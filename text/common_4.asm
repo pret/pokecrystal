@@ -1,817 +1,985 @@
 _OakText6: ; 0x1c4000
-	db $0, "Now, what did you", $4f
-	db "say your name was?", $58
+	text "Now, what did you"
+	line "say your name was?"
+	prompt
 ; 0x1c4026
 
 _OakText7: ; 0x1c4026
-	db $0, $52, ", are you", $4f
-	db "ready?", $51
-	db "Your very own", $4f
-	db "#MON story is", $55
-	db "about to unfold.", $51
-	db "You'll face fun", $4f
-	db "times and tough", $55
-	db "challenges.", $51
-	db "A world of dreams", $4f
-	db "and adventures", $51
-	db "with #MON", $4f
-	db "awaits! Let's go!", $51
-	db "I'll be seeing you", $4f
-	db "later!", $57
+	text $52, ", are you"
+	line "ready?"
+
+	para "Your very own"
+	line "#MON story is"
+	cont "about to unfold."
+
+	para "You'll face fun"
+	line "times and tough"
+	cont "challenges."
+
+	para "A world of dreams"
+	line "and adventures"
+
+	para "with #MON"
+	line "awaits! Let's go!"
+
+	para "I'll be seeing you"
+	line "later!"
+	done
 ; 0x1c40e6
 
 UnknownText_0x1c40e6: ; 0x1c40e6
-	db $0, "The clock's time", $4f
-	db "may be wrong.", $51
-	db "Please reset the", $4f
-	db "time.", $58
+	text "The clock's time"
+	line "may be wrong."
+
+	para "Please reset the"
+	line "time."
+	prompt
 ; 0x1c411c
 
 UnknownText_0x1c411c: ; 0x1c411c
-	db $0, "Set with the", $4f
-	db "Control Pad.", $51
-	db "Confirm: A Button", $4f
-	db "Cancel:  B Button", $57
+	text "Set with the"
+	line "Control Pad."
+
+	para "Confirm: A Button"
+	line "Cancel:  B Button"
+	done
 ; 0x1c415b
 
 UnknownText_0x1c415b: ; 0x1c415b
-	db $0, "Is this OK?", $57
+	text "Is this OK?"
+	done
 ; 0x1c4168
 
 UnknownText_0x1c4168: ; 0x1c4168
-	db $0, "The clock has been", $4f
-	db "reset.", $57
+	text "The clock has been"
+	line "reset."
+	done
 ; 0x1c4183
 
 UnknownText_0x1c4183: ; 0x1c4183
-	db $0, "Too much time has", $4f
-	db "elapsed. Please", $55
-	db "try again.", $58
+	text "Too much time has"
+	line "elapsed. Please"
+	cont "try again."
+	prompt
 ; 0x1c41b1
 
 UnknownText_0x1c41b1: ; 0x1c41b1
-	db $0, "If you trade that", $4f
-	db "#MON, you won't", $55
-	db "be able to battle.", $58
+	text "If you trade that"
+	line "#MON, you won't"
+	cont "be able to battle."
+	prompt
 ; 0x1c41e6
 
 UnknownText_0x1c41e6: ; 0x1c41e6
-	db $0, "Your friend's", $4f
-	db "@"
+	text "Your friend's"
+	line "@"
 	text_from_ram $d073
-	db $0, " appears", $55
-	db "to be abnormal!", $58
+	text " appears"
+	cont "to be abnormal!"
+	prompt
 ; 0x1c4212
 
 UnknownText_0x1c4212: ; 0x1c4212
-	db $0, "Trade @"
+	text "Trade @"
 	text_from_ram $d004
-	db $0, $4f
-	db "for @"
+	db $0
+	line "for @"
 	text_from_ram $d073
-	db $0, "?", $57
+	text "?"
+	done
 ; 0x1c422a
 
 UnknownText_0x1c422a: ; 0x1c422a
-	db $0, "To enter a mobile", $4f
-	db "battle, you must", $51
-	db "pick a team of", $4f
-	db "three #MON.", $51
-	db "Is that OK?", $57
+	text "To enter a mobile"
+	line "battle, you must"
+
+	para "pick a team of"
+	line "three #MON."
+
+	para "Is that OK?"
+	done
 ; 0x1c4275
 
 UnknownText_0x1c4275: ; 0x1c4275
-	db $0, "Need more info on", $4f
-	db "mobile battles?", $57
+	text "Need more info on"
+	line "mobile battles?"
+	done
 ; 0x1c4298
 
 UnknownText_0x1c4298: ; 0x1c4298
-	db $0, "For a mobile", $4f
-	db "battle, choose", $55
-	db "three #MON.", $51
-	db "The maximum daily", $4f
-	db "play time is ten", $51
-	db "minutes for each", $4f
-	db "linked player.", $51
-	db "If a battle isn't", $4f
-	db "finished within", $51
-	db "the time limit,", $4f
-	db "the player with", $51
-	db "the fewest fainted", $4f
-	db "#MON wins.", $51
-	db "If tied, the team", $4f
-	db "that lost the", $51
-	db "least amount of HP", $4f
-	db "wins.", $57
+	text "For a mobile"
+	line "battle, choose"
+	cont "three #MON."
+
+	para "The maximum daily"
+	line "play time is ten"
+
+	para "minutes for each"
+	line "linked player."
+
+	para "If a battle isn't"
+	line "finished within"
+
+	para "the time limit,"
+	line "the player with"
+
+	para "the fewest fainted"
+	line "#MON wins."
+
+	para "If tied, the team"
+	line "that lost the"
+
+	para "least amount of HP"
+	line "wins."
+	done
 ; 0x1c439c
 
 UnknownText_0x1c439c: ; 0x1c439c
-	db $0, "Today's remaining", $4f
-	db "time is @"
+	text "Today's remaining"
+	line "time is @"
 	deciram $d086, $12
-	db $0, " min.", $51
-	db "Would you like to", $4f
-	db "battle?", $57
+	text " min."
+
+	para "Would you like to"
+	line "battle?"
+	done
 ; 0x1c43dc
 
 UnknownText_0x1c43dc: ; 0x1c43dc
-	db $0, "There are only @"
+	text "There are only @"
 	deciram $d086, $12
-	db $0, $4f
-	db "min. left today.", $51
-	db "Want a quick", $4f
-	db "battle?", $57
+	db $0
+	line "min. left today."
+
+	para "Want a quick"
+	line "battle?"
+	done
 ; 0x1c4419
 
 UnknownText_0x1c4419: ; 0x1c4419
-	db $0, "There is only", $4f
-	db "1 min. left today!", $51
-	db "Want to rush", $4f
-	db "through a battle?", $57
+	text "There is only"
+	line "1 min. left today!"
+
+	para "Want to rush"
+	line "through a battle?"
+	done
 ; 0x1c445a
 
 UnknownText_0x1c445a: ; 0x1c445a
-	db $0, "There is less than", $4f
-	db "1 min. left today!", $51
-	db "Please try again", $4f
-	db "tomorrow.", $57
+	text "There is less than"
+	line "1 min. left today!"
+
+	para "Please try again"
+	line "tomorrow."
+	done
 ; 0x1c449c
 
 UnknownText_0x1c449c: ; 0x1c449c
-	db $0, "Try again using", $4f
-	db "the same settings?", $57
+	text "Try again using"
+	line "the same settings?"
+	done
 ; 0x1c44c0
 
 UnknownText_0x1c44c0: ; 0x1c44c0
-	db $0, "There is less than", $4f
-	db "1 min. left today!", $57
+	text "There is less than"
+	line "1 min. left today!"
+	done
 ; 0x1c44e7
 
 UnknownText_0x1c44e7: ; 0x1c44e7
-	db $0, "No time left for", $4f
-	db "linking today.", $57
+	text "No time left for"
+	line "linking today."
+	done
 ; 0x1c4508
 
 UnknownText_0x1c4508: ; 0x1c4508
-	db $0, "Pick three #MON", $4f
-	db "for battle.", $57
+	text "Pick three #MON"
+	line "for battle."
+	done
 ; 0x1c4525
 
 UnknownText_0x1c4525: ; 0x1c4525
-	db $0, "Today's remaining", $4f
-	db "time is @"
+	text "Today's remaining"
+	line "time is @"
 	deciram $d086, $12
-	db $0, " min.", $57
+	text " min."
+	done
 ; 0x1c454b
 
 UnknownText_0x1c454b: ; 0x1c454b
-	db $0, "Would you like to", $4f
-	db "save the game?", $57
+	text "Would you like to"
+	line "save the game?"
+	done
 ; 0x1c456d
 
 UnknownText_0x1c456d: ; 0x1c456d
-	db $0, "SAVING… DON'T TURN", $4f
-	db "OFF THE POWER.", $57
+	text "SAVING… DON'T TURN"
+	line "OFF THE POWER."
+	done
 ; 0x1c4590
 
 UnknownText_0x1c4590: ; 0x1c4590
-	db $0, $52, " saved", $4f
-	db "the game.", $57
+	text $52, " saved"
+	line "the game."
+	done
 ; 0x1c45a3
 
 UnknownText_0x1c45a3: ; 0x1c45a3
-	db $0, "There is already a", $4f
-	db "save file. Is it", $55
-	db "OK to overwrite?", $57
+	text "There is already a"
+	line "save file. Is it"
+	cont "OK to overwrite?"
+	done
 ; 0x1c45d9
 
 UnknownText_0x1c45d9: ; 0x1c45d9
-	db $0, "There is another", $4f
-	db "save file. Is it", $55
-	db "OK to overwrite?", $57
+	text "There is another"
+	line "save file. Is it"
+	cont "OK to overwrite?"
+	done
 ; 0x1c460d
 
 UnknownText_0x1c460d: ; 0x1c460d
-	db $0, "The save file is", $4f
-	db "corrupted!", $58
+	text "The save file is"
+	line "corrupted!"
+	prompt
 ; 0x1c462a
 
 UnknownText_0x1c462a: ; 0x1c462a
-	db $0, "When you change a", $4f
-	db "#MON BOX, data", $55
-	db "will be saved. OK?", $57
+	text "When you change a"
+	line "#MON BOX, data"
+	cont "will be saved. OK?"
+	done
 ; 0x1c465f
 
 UnknownText_0x1c465f: ; 0x1c465f
-	db $0, "Each time you move", $4f
-	db "a #MON, data", $55
-	db "will be saved. OK?", $57
+	text "Each time you move"
+	line "a #MON, data"
+	cont "will be saved. OK?"
+	done
 ; 0x1c4693
 
 UnknownText_0x1c4693: ; 0x1c4693
-	db $0, "The window save", $4f
-	db "area was exceeded.", $57
+	text "The window save"
+	line "area was exceeded."
+	done
 ; 0x1c46b7
 
 UnknownText_0x1c46b7: ; 0x1c46b7
-	db $0, "No windows avail-", $4f
-	db "able for popping.", $57
+	text "No windows avail-"
+	line "able for popping."
+	done
 ; 0x1c46dc
 
 UnknownText_0x1c46dc: ; 0x1c46dc
-	db $0, "Corrupted event!", $58
+	text "Corrupted event!"
+	prompt
 ; 0x1c46ee
 
 _ObjectEventText:: ; 0x1c46ee
-	db $0, "Object event", $57
+	text "Object event"
+	done
 ; 0x1c46fc
 
 UnknownText_0x1c46fc:: ; 0x1c46fc
-	db $0, "BG event", $57
+	text "BG event"
+	done
 ; 0x1c4706
 
 UnknownText_0x1c4706:: ; 0x1c4706
-	db $0, "Coordinates event", $57
+	text "Coordinates event"
+	done
 ; 0x1c4719
 
 UnknownText_0x1c4719:: ; 0x1c4719
-	db $0, $52, " received", $4f
-	db "@"
+	text $52, " received"
+	line "@"
 	text_from_ram $d0ac
-	db $0, ".", $57
+	text "."
+	done
 ; 0x1c472c
 
 UnknownText_0x1c472c:: ; 0x1c472c
-	db $0, $52, " put the", $4f
-	db "@"
+	text $52, " put the"
+	line "@"
 	text_from_ram $d073
-	db $0, " in", $55
-	db "the @"
+	text " in"
+	cont "the @"
 	text_from_ram $d099
-	db $0, ".", $58
+	text "."
+	prompt
 ; 0x1c474b
 
 UnknownText_0x1c474b:: ; 0x1c474b
-	db $0, "The @"
+	text "The @"
 	text_from_ram $d099
-	db $0, $4f
-	db "is full…", $58
+	db $0
+	line "is full…"
+	prompt
 ; 0x1c475f
 
 UnknownText_0x1c475f: ; 0x1c475f
-	db $0, "I see all.", $4f
-	db "I know all…", $51
-	db "Certainly, I know", $4f
-	db "of your #MON!", $57
+	text "I see all."
+	line "I know all…"
+
+	para "Certainly, I know"
+	line "of your #MON!"
+	done
 ; 0x1c4797
 
 UnknownText_0x1c4797: ; 0x1c4797
-	db $0, "Whaaaat? I can't", $4f
-	db "tell a thing!", $51
-	db "How could I not", $4f
-	db "know of this?", $57
+	text "Whaaaat? I can't"
+	line "tell a thing!"
+
+	para "How could I not"
+	line "know of this?"
+	done
 ; 0x1c47d4
 
 UnknownText_0x1c47d4: ; 0x1c47d4
-	db $0, "Hm… I see you met", $4f
-	db "@"
+	text "Hm… I see you met"
+	line "@"
 	text_from_ram $d003
-	db $0, " here:", $55
-	db "@"
+	text " here:"
+	cont "@"
 	text_from_ram $d00e
-	db $0, "!", $58
+	text "!"
+	prompt
 ; 0x1c47fa
 
 UnknownText_0x1c47fa: ; 0x1c47fa
-	db $0, "The time was", $4f
-	db "@"
+	text "The time was"
+	line "@"
 	text_from_ram $d01f
-	db $0, "!", $51
-	db "Its level was @"
+	text "!"
+
+	para "Its level was @"
 	text_from_ram $d036
-	db $0, "!", $51
-	db "Am I good or what?", $58
+	text "!"
+
+	para "Am I good or what?"
+	prompt
 ; 0x1c4837
 
 UnknownText_0x1c4837: ; 0x1c4837
-	db $0, "Hm… @"
+	text "Hm… @"
 	text_from_ram $d003
-	db $0, $4f
-	db "came from @"
+	db $0
+	line "came from @"
 	text_from_ram $d02a
-	db $0, $55
-	db "in a trade?", $51
-	db "@"
+	text $55
+	db "in a trade?"
+
+	para "@"
 	text_from_ram $d00e
-	db $0, $4f
-	db "was where @"
+	db $0
+	line "was where @"
 	text_from_ram $d02a
-	db $0, $55
+	text $55
 	db "met @"
 	text_from_ram $d003
-	db $0, "!", $58
+	text "!"
+	prompt
 ; 0x1c487f
 
 UnknownText_0x1c487f: ; 0x1c487f
-	db $0, "What!? Incredible!", $51
-	db "I don't understand", $4f
-	db "how, but it is", $51
-	db "incredible!", $4f
-	db "You are special.", $51
-	db "I can't tell where", $4f
-	db "you met it, but it", $55
-	db "was at level @"
+	text "What!? Incredible!"
+
+	para "I don't understand"
+	line "how, but it is"
+
+	para "incredible!"
+	line "You are special."
+
+	para "I can't tell where"
+	line "you met it, but it"
+	cont "was at level @"
 	text_from_ram $d036
-	db $0, ".", $51
-	db "Am I good or what?", $58
+	text "."
+
+	para "Am I good or what?"
+	prompt
 ; 0x1c491d
 
 UnknownText_0x1c491d: ; 0x1c491d
-	db $0, "Hey!", $51
-	db "That's an EGG!", $51
-	db "You can't say that", $4f
-	db "you've met it yet…", $57
+	text "Hey!"
+
+	para "That's an EGG!"
+
+	para "You can't say that"
+	line "you've met it yet…"
+	done
 ; 0x1c4955
 
 UnknownText_0x1c4955: ; 0x1c4955
-	db $0, "Fufufu! I saw that", $4f
-	db "you'd do nothing!", $57
+	text "Fufufu! I saw that"
+	line "you'd do nothing!"
+	done
 ; 0x1c497a
 
 UnknownText_0x1c497a: ; 0x1c497a
-	db $0, "Incidentally…", $51
-	db "It would be wise", $4f
-	db "to raise your", $51
-	db "#MON with a", $4f
-	db "little more care.", $57
+	text "Incidentally…"
+
+	para "It would be wise"
+	line "to raise your"
+
+	para "#MON with a"
+	line "little more care."
+	done
 ; 0x1c49c6
 
 UnknownText_0x1c49c6: ; 0x1c49c6
-	db $0, "Incidentally…", $51
-	db "It seems to have", $4f
-	db "grown a little.", $51
-	db "@"
+	text "Incidentally…"
+
+	para "It seems to have"
+	line "grown a little."
+
+	para "@"
 	text_from_ram $d003
-	db $0, " seems", $4f
-	db "to be becoming", $55
-	db "more confident.", $57
+	text " seems"
+	line "to be becoming"
+	cont "more confident."
+	done
 ; 0x1c4a21
 
 UnknownText_0x1c4a21: ; 0x1c4a21
-	db $0, "Incidentally…", $51
-	db "@"
+	text "Incidentally…"
+
+	para "@"
 	text_from_ram $d003
-	db $0, " has", $4f
-	db "grown. It's gained", $55
-	db "much strength.", $57
+	text " has"
+	line "grown. It's gained"
+	cont "much strength."
+	done
 ; 0x1c4a5b
 
 UnknownText_0x1c4a5b: ; 0x1c4a5b
-	db $0, "Incidentally…", $51
-	db "It certainly has", $4f
-	db "grown mighty!", $51
-	db "This @"
+	text "Incidentally…"
+
+	para "It certainly has"
+	line "grown mighty!"
+
+	para "This @"
 	text_from_ram $d003
-	db $0, $4f
-	db "must have come", $51
-	db "through numerous", $4f
-	db "#MON battles.", $51
-	db "It looks brimming", $4f
-	db "with confidence.", $57
+	db $0
+	line "must have come"
+
+	para "through numerous"
+	line "#MON battles."
+
+	para "It looks brimming"
+	line "with confidence."
+	done
 ; 0x1c4ae5
 
 UnknownText_0x1c4ae5: ; 0x1c4ae5
-	db $0, "Incidentally…", $51
-	db "I'm impressed by", $4f
-	db "your dedication.", $51
-	db "It's been a long", $4f
-	db "time since I've", $51
-	db "seen a #MON as", $4f
-	db "mighty as this", $55
-	db "@"
+	text "Incidentally…"
+
+	para "I'm impressed by"
+	line "your dedication."
+
+	para "It's been a long"
+	line "time since I've"
+
+	para "seen a #MON as"
+	line "mighty as this"
+	cont "@"
 	text_from_ram $d003
-	db $0, ".", $51
-	db "I'm sure that", $4f
-	db "seeing @"
+	text "."
+
+	para "I'm sure that"
+	line "seeing @"
 	text_from_ram $d003
-	db $0, $51
-	db "in battle would", $4f
-	db "excite anyone.", $57
+	text $51
+	db "in battle would"
+	line "excite anyone."
+	done
 ; 0x1c4b92
 
 UnknownText_0x1c4b92: ; 0x1c4b92
-	db $0, "Congratulations!", $4f
-	db "Your @"
+	text "Congratulations!"
+	line "Your @"
 	text_from_ram $d086
-	db $50
+	db "@"
 ; 0x1c4bae
 
 UnknownText_0x1c4bae: ; 0x1c4bae
-	db $50
+	db "@"
 ; 0x1c4baf
 
 UnknownText_0x1c4baf: ; 0x1c4baf
-	db $0, $51
-	db "evolved into", $4f
-	db "@"
+	text $51
+	db "evolved into"
+	line "@"
 	text_from_ram $d073
-	db $0, "!", $57
+	text "!"
+	done
 ; 0x1c4bc5
 
 UnknownText_0x1c4bc5: ; 0x1c4bc5
-	db $0, "Huh? @"
+	text "Huh? @"
 	text_from_ram $d086
-	db $0, $4f
-	db "stopped evolving!", $58
+	db $0
+	line "stopped evolving!"
+	prompt
 ; 0x1c4be3
 
 UnknownText_0x1c4be3: ; 0x1c4be3
-	db $0, "What? @"
+	text "What? @"
 	text_from_ram $d086
-	db $0, $4f
-	db "is evolving!", $57
+	db $0
+	line "is evolving!"
+	done
 ; 0x1c4bfd
 
 UnknownText_0x1c4bfd: ; 0x1c4bfd
-	db $0, "How many?", $57
+	text "How many?"
+	done
 ; 0x1c4c08
 
 UnknownText_0x1c4c08: ; 0x1c4c08
 	deciram $d10c, $12
-	db $0, " @"
+	text " @"
 	text_from_ram $d086
-	db $0, "(S)", $4f
-	db "will be ¥@"
+	text "(S)"
+	line "will be ¥@"
 	deciram $ffc3, $36
-	db $0, ".", $57
+	text "."
+	done
 ; 0x1c4c28
 
 UnknownText_0x1c4c28: ; 0x1c4c28
-	db $0, "Hello, dear.", $51
-	db "I sell inexpensive", $4f
-	db "herbal medicine.", $51
-	db "They're good, but", $4f
-	db "a trifle bitter.", $51
-	db "Your #MON may", $4f
-	db "not like them.", $51
-	db "Hehehehe…", $57
+	text "Hello, dear."
+
+	para "I sell inexpensive"
+	line "herbal medicine."
+
+	para "They're good, but"
+	line "a trifle bitter."
+
+	para "Your #MON may"
+	line "not like them."
+
+	para "Hehehehe…"
+	done
 ; 0x1c4ca3
 
 UnknownText_0x1c4ca3: ; 0x1c4ca3
-	db $0, "How many?", $57
+	text "How many?"
+	done
 ; 0x1c4cae
 
 UnknownText_0x1c4cae: ; 0x1c4cae
 	deciram $d10c, $12
-	db $0, " @"
+	text " @"
 	text_from_ram $d086
-	db $0, "(S)", $4f
-	db "will be ¥@"
+	text "(S)"
+	line "will be ¥@"
 	deciram $ffc3, $36
-	db $0, ".", $57
+	text "."
+	done
 ; 0x1c4cce
 
 UnknownText_0x1c4cce: ; 0x1c4cce
-	db $0, "Thank you, dear.", $4f
-	db "Hehehehe…", $57
+	text "Thank you, dear."
+	line "Hehehehe…"
+	done
 ; 0x1c4cea
 
 UnknownText_0x1c4cea: ; 0x1c4cea
-	db $0, "Oh? Your PACK is", $4f
-	db "full, dear.", $57
+	text "Oh? Your PACK is"
+	line "full, dear."
+	done
 ; 0x1c4d08
 
 UnknownText_0x1c4d08: ; 0x1c4d08
-	db $0, "Hehehe… You don't", $4f
-	db "have the money.", $57
+	text "Hehehe… You don't"
+	line "have the money."
+	done
 ; 0x1c4d2a
 
 UnknownText_0x1c4d2a: ; 0x1c4d2a
-	db $0, "Come again, dear.", $4f
-	db "Hehehehe…", $57
+	text "Come again, dear."
+	line "Hehehehe…"
+	done
 ; 0x1c4d47
 
 UnknownText_0x1c4d47: ; 0x1c4d47
-	db $0, "Hiya! Care to see", $4f
-	db "some bargains?", $51
-	db "I sell rare items", $4f
-	db "that nobody else", $51
-	db "carries--but only", $4f
-	db "one of each item.", $57
+	text "Hiya! Care to see"
+	line "some bargains?"
+
+	para "I sell rare items"
+	line "that nobody else"
+
+	para "carries--but only"
+	line "one of each item."
+	done
 ; 0x1c4db0
 
 UnknownText_0x1c4db0: ; 0x1c4db0
 	text_from_ram $d086
-	db $0, " costs", $4f
-	db "¥@"
+	text " costs"
+	line "¥@"
 	deciram $ffc3, $36
-	db $0, ". Want it?", $57
+	text ". Want it?"
+	done
 ; 0x1c4dcd
 
 UnknownText_0x1c4dcd: ; 0x1c4dcd
-	db $0, "Thanks.", $57
+	text "Thanks."
+	done
 ; 0x1c4dd6
 
 UnknownText_0x1c4dd6: ; 0x1c4dd6
-	db $0, "Uh-oh, your PACK", $4f
-	db "is chock-full.", $57
+	text "Uh-oh, your PACK"
+	line "is chock-full."
+	done
 ; 0x1c4df7
 
 UnknownText_0x1c4df7: ; 0x1c4df7
-	db $0, "You bought that", $4f
-	db "already. I'm all", $55
-	db "sold out of it.", $57
+	text "You bought that"
+	line "already. I'm all"
+	cont "sold out of it."
+	done
 ; 0x1c4e28
 
 UnknownText_0x1c4e28: ; 0x1c4e28
-	db $0, "Uh-oh, you're", $4f
-	db "short on funds.", $57
+	text "Uh-oh, you're"
+	line "short on funds."
+	done
 ; 0x1c4e46
 
 UnknownText_0x1c4e46: ; 0x1c4e46
-	db $0, "Come by again", $4f
-	db "sometime.", $57
+	text "Come by again"
+	line "sometime."
+	done
 ; 0x1c4e5f
 
 UnknownText_0x1c4e5f: ; 0x1c4e5f
-	db $0, "What's up? Need", $4f
-	db "some medicine?", $57
+	text "What's up? Need"
+	line "some medicine?"
+	done
 ; 0x1c4e7e
 
 UnknownText_0x1c4e7e: ; 0x1c4e7e
-	db $0, "How many?", $57
+	text "How many?"
+	done
 ; 0x1c4e89
 
 UnknownText_0x1c4e89: ; 0x1c4e89
 	deciram $d10c, $12
-	db $0, " @"
+	text " @"
 	text_from_ram $d086
-	db $0, "(S)", $4f
-	db "will cost ¥@"
+	text "(S)"
+	line "will cost ¥@"
 	deciram $ffc3, $36
-	db $0, ".", $57
+	text "."
+	done
 ; 0x1c4eab
 
 UnknownText_0x1c4eab: ; 0x1c4eab
-	db $0, "Thanks much!", $57
+	text "Thanks much!"
+	done
 ; 0x1c4eb9
 
 UnknownText_0x1c4eb9: ; 0x1c4eb9
-	db $0, "You don't have any", $4f
-	db "more space.", $57
+	text "You don't have any"
+	line "more space."
+	done
 ; 0x1c4ed8
 
 UnknownText_0x1c4ed8: ; 0x1c4ed8
-	db $0, "Huh? That's not", $4f
-	db "enough money.", $57
+	text "Huh? That's not"
+	line "enough money."
+	done
 ; 0x1c4ef6
 
 UnknownText_0x1c4ef6: ; 0x1c4ef6
-	db $0, "All right.", $4f
-	db "See you around.", $57
+	text "All right."
+	line "See you around."
+	done
 ; 0x1c4f12
 
 UnknownText_0x1c4f12: ; 0x1c4f12
-	db $0, "You don't have", $4f
-	db "anything to sell.", $58
+	text "You don't have"
+	line "anything to sell."
+	prompt
 ; 0x1c4f33
 
 UnknownText_0x1c4f33: ; 0x1c4f33
-	db $0, "How many?", $57
+	text "How many?"
+	done
 ; 0x1c4f3e
 
 UnknownText_0x1c4f3e: ; 0x1c4f3e
-	db $0, "I can pay you", $4f
-	db "¥@"
+	text "I can pay you"
+	line "¥@"
 	deciram $ffc3, $36
-	db $0, ".", $51
-	db "Is that OK?", $57
+	text "."
+
+	para "Is that OK?"
+	done
 ; 0x1c4f62
 
 UnknownText_0x1c4f62: ; 0x1c4f62
-	db $0, "Welcome! How may I", $4f
-	db "help you?", $57
+	text "Welcome! How may I"
+	line "help you?"
+	done
 ; 0x1c4f80
 
 UnknownText_0x1c4f80: ; 0x1c4f80
-	db $0, "Here you are.", $4f
-	db "Thank you!", $57
+	text "Here you are."
+	line "Thank you!"
+	done
 ; 0x1c4f9a
 
 UnknownText_0x1c4f9a: ; 0x1c4f9a
-	db $0, "You don't have", $4f
-	db "enough money.", $57
+	text "You don't have"
+	line "enough money."
+	done
 ; 0x1c4fb7
 
 UnknownText_0x1c4fb7: ; 0x1c4fb7
-	db $0, "You can't carry", $4f
-	db "any more items.", $57
+	text "You can't carry"
+	line "any more items."
+	done
 ; 0x1c4fd7
 
 UnknownText_0x1c4fd7: ; 0x1c4fd7
-	db $0, "Sorry, I can't buy", $4f
-	db "that from you.", $58
+	text "Sorry, I can't buy"
+	line "that from you."
+	prompt
 ; 0x1c4ff9
 
 UnknownText_0x1c4ff9: ; 0x1c4ff9
-	db $0, "Please come again!", $57
+	text "Please come again!"
+	done
 ; 0x1c500d
 
 UnknownText_0x1c500d: ; 0x1c500d
-	db $0, "Can I do anything", $4f
-	db "else for you?", $57
+	text "Can I do anything"
+	line "else for you?"
+	done
 ; 0x1c502e
 
 UnknownText_0x1c502e: ; 0x1c502e
-	db $0, "Got ¥@"
+	text "Got ¥@"
 	deciram $ffc3, $36
-	db $0, " for", $4f
-	db "@"
+	text " for"
+	line "@"
 	text_from_ram $d086
-	db $0, "(S).", $57
+	text "(S)."
+	done
 ; 0x1c5049
 
 UnknownText_0x1c5049: ; 0x1c5049
-	db $0, "Bet how many", $4f
-	db "coins?", $57
+	text "Bet how many"
+	line "coins?"
+	done
 ; 0x1c505e
 
 UnknownText_0x1c505e: ; 0x1c505e
-	db $0, "Start!", $57
+	text "Start!"
+	done
 ; 0x1c5066
 
 UnknownText_0x1c5066: ; 0x1c5066
-	db $0, "Not enough", $4f
-	db "coins.", $58
+	text "Not enough"
+	line "coins."
+	prompt
 ; 0x1c5079
 
 UnknownText_0x1c5079: ; 0x1c5079
-	db $0, "Darn… Ran out of", $4f
-	db "coins…", $57
+	text "Darn… Ran out of"
+	line "coins…"
+	done
 ; 0x1c5092
 
 UnknownText_0x1c5092: ; 0x1c5092
-	db $0, "Play again?", $57
+	text "Play again?"
+	done
 ; 0x1c509f
 
 UnknownText_0x1c509f: ; 0x1c509f
-	db $0, "lined up!", $4f
-	db "Won @"
+	text "lined up!"
+	line "Won @"
 	text_from_ram $d086
-	db $0, " coins!", $57
+	text " coins!"
+	done
 ; 0x1c50bb
 
 UnknownText_0x1c50bb: ; 0x1c50bb
-	db $0, "Darn!", $57
+	text "Darn!"
+	done
 ; 0x1c50c2
 
 _MobileStadiumEntryText: ; 0x1c50c2
-	db $0, "Data for use in", $4f
-	db "the MOBILE STADIUM", $51
-	db "of the N64 #MON", $4f
-	db "STADIUM 2 can be", $55
-	db "read here.", $51
-	db "Read the data?", $57
+	text "Data for use in"
+	line "the MOBILE STADIUM"
+
+	para "of the N64 #MON"
+	line "STADIUM 2 can be"
+	cont "read here."
+
+	para "Read the data?"
+	done
 ; 0x1c5121
 
 _MobileStadiumSuccessText: ; 0x1c5121
-	db $0, "Data transfer is", $4f
-	db "complete.", $51
-	db "We hope you enjoy", $4f
-	db "MOBILE STADIUM", $51
-	db "battles in the N64", $4f
-	db "#MON STADIUM 2.", $51
+	text "Data transfer is"
+	line "complete.", $51
+	db "We hope you enjoy"
+	line "MOBILE STADIUM", $51
+	db "battles in the N64"
+	line "#MON STADIUM 2.", $51
 	db $57
 ; 0x1c5182
 
 UnknownText_0x1c5182: ; 0x1c5182
-	db $0, "Clock time unknown", $57
+	text "Clock time unknown"
+	done
 ; 0x1c5196
 
 UnknownText_0x1c5196: ; 0x1c5196
-	db $0, "Delete the saved", $4f
-	db "LOG-IN PASSWORD?", $57
+	text "Delete the saved"
+	line "LOG-IN PASSWORD?"
+	done
 ; 0x1c51b9
 
 UnknownText_0x1c51b9: ; 0x1c51b9
-	db $0, "Deleted the LOG-IN", $4f
-	db "PASSWORD.", $57
+	text "Deleted the LOG-IN"
+	line "PASSWORD."
+	done
 ; 0x1c51d7
 
 UnknownText_0x1c51d7: ; 0x1c51d7
-	db $0, "Pick three #MON", $4f
-	db "for battle.", $58
+	text "Pick three #MON"
+	line "for battle."
+	prompt
 ; 0x1c51f4
 
 UnknownText_0x1c51f4: ; 0x1c51f4
 	text_from_ram $d006
-	db $0, ",", $4f
-	db "@"
+	text ","
+	line "@"
 	text_from_ram $d00c
-	db $0, " and", $55
-	db "@"
+	text " and"
+	cont "@"
 	text_from_ram $d012
-	db $0, ".", $51
-	db "Use these three?", $57
+	text "."
+
+	para "Use these three?"
+	done
 ; 0x1c521c
 
 UnknownText_0x1c521c: ; 0x1c521c
-	db $0, "Only three #MON", $4f
-	db "may enter.", $58
+	text "Only three #MON"
+	line "may enter."
+	prompt
 ; 0x1c5238
 
 UnknownText_0x1c5238: ; 0x1c5238
-	db $0, "The CARD FOLDER", $4f
-	db "stores your and", $51
-	db "your friends'", $4f
-	db "CARDS.", $51
-	db "A CARD contains", $4f
-	db "information like", $51
-	db "the person's name,", $4f
-	db "phone number and", $55
+	text "The CARD FOLDER"
+	line "stores your and", $51
+	db "your friends'"
+	line "CARDS.", $51
+	db "A CARD contains"
+	line "information like", $51
+	db "the person's name,"
+	line "phone number and", $55
 	db "profile.", $51
 	db $57
 ; 0x1c52bc
 
 UnknownText_0x1c52bc: ; 0x1c52bc
-	db $0, "This is your CARD.", $51
-	db "Once you've", $4f
-	db "entered your phone", $51
-	db "number, you can", $4f
-	db "trade CARDS with", $55
+	text "This is your CARD.", $51
+	db "Once you've"
+	line "entered your phone", $51
+	db "number, you can"
+	line "trade CARDS with", $55
 	db "your friends.", $51
 	db $57
 ; 0x1c531e
 
 UnknownText_0x1c531e: ; 0x1c531e
-	db $0, "If you have your", $4f
-	db "friend's CARD, you", $51
-	db "can use it to make", $4f
-	db "a call from a", $51
-	db "mobile phone on", $4f
-	db "the 2nd floor of a", $55
+	text "If you have your"
+	line "friend's CARD, you", $51
+	db "can use it to make"
+	line "a call from a", $51
+	db "mobile phone on"
+	line "the 2nd floor of a", $55
 	db "#MON CENTER.", $51
 	db $57
 ; 0x1c5394
 
 UnknownText_0x1c5394: ; 0x1c5394
-	db $0, "To safely store", $4f
-	db "your collection of", $51
-	db "CARDS, you must", $4f
-	db "set a PASSCODE for", $55
+	text "To safely store"
+	line "your collection of", $51
+	db "CARDS, you must"
+	line "set a PASSCODE for", $55
 	db "your CARD FOLDER.", $51
 	db $57
 ; 0x1c53ee
 
 UnknownText_0x1c53ee: ; 0x1c53ee
-	db $0, "If the CARD FOLDER", $4f
-	db "is deleted, all", $51
-	db "its CARDS and the", $4f
-	db "PASSCODE will also", $55
-	db "be deleted.", $51
-	db "Beware--a deleted", $4f
-	db "CARD FOLDER can't", $55
-	db "be restored.", $51
-	db "Want to delete", $4f
-	db "your CARD FOLDER?", $57
+	text "If the CARD FOLDER"
+	line "is deleted, all"
+
+	para "its CARDS and the"
+	line "PASSCODE will also"
+	cont "be deleted."
+
+	para "Beware--a deleted"
+	line "CARD FOLDER can't"
+	cont "be restored."
+
+	para "Want to delete"
+	line "your CARD FOLDER?"
+	done
 ; 0x1c5494
 
 UnknownText_0x1c5494: ; 0x1c5494
-	db $0, "Are you sure you", $4f
-	db "want to delete it?", $57
+	text "Are you sure you"
+	line "want to delete it?"
+	done
 ; 0x1c54b9
 
 UnknownText_0x1c54b9: ; 0x1c54b9
-	db $0, "The CARD FOLDER", $4f
-	db "has been deleted.", $51
+	text "The CARD FOLDER"
+	line "has been deleted.", $51
 	db $57
 ; 0x1c54dd
 
 UnknownText_0x1c54dd: ; 0x1c54dd
-	db $0, "There is an older", $4f
-	db "CARD FOLDER from a", $55
-	db "previous journey.", $51
-	db "Do you want to", $4f
-	db "open it?", $57
+	text "There is an older"
+	line "CARD FOLDER from a"
+	cont "previous journey."
+
+	para "Do you want to"
+	line "open it?"
+	done
 ; 0x1c552d
 
 UnknownText_0x1c552d: ; 0x1c552d
-	db $0, "Delete the old", $4f
-	db "CARD FOLDER?", $57
+	text "Delete the old"
+	line "CARD FOLDER?"
+	done
 ; 0x1c554a
 
 UnknownText_0x1c554a: ; 0x1c554a
-	db $0, "Finish registering", $4f
-	db "CARDS?", $57
+	text "Finish registering"
+	line "CARDS?"
+	done
 ; 0x1c5565
 
 UnknownText_0x1c5565: ; 0x1c5565
-	db $0, "Huh? Sorry, wrong", $4f
-	db "number!", $57
+	text "Huh? Sorry, wrong"
+	line "number!"
+	done
 ; 0x1c5580
 
 UnknownText_0x1c5580: ; 0x1c5580
-	db $0, "Click!", $57
+	text "Click!"
+	done
 ; 0x1c5588
 
 UnknownText_0x1c5588: ; 0x1c5588
@@ -819,171 +987,197 @@ UnknownText_0x1c5588: ; 0x1c5588
 ; 0x1c558b
 
 UnknownText_0x1c558b: ; 0x1c558b
-	db $0, "That number is out", $4f
-	db "of the area.", $57
+	text "That number is out"
+	line "of the area."
+	done
 ; 0x1c55ac
 
 UnknownText_0x1c55ac: ; 0x1c55ac
-	db $0, "Just go talk to", $4f
-	db "that person!", $57
+	text "Just go talk to"
+	line "that person!"
+	done
 ; 0x1c55ca
 
 UnknownText_0x1c55ca: ; 0x1c55ca
-	db $0, "Thank you!", $57
+	text "Thank you!"
+	done
 ; 0x1c55d6
 
 UnknownText_0x1c55d6: ; 0x1c55d6
-	db $0, "  :", $57
+	text "  :"
+	done
 ; 0x1c55db
 
 UnknownText_0x1c55db: ; 0x1c55db
-	db $0, "Password OK.", $4f
-	db "Select CONTINUE &", $55
-	db "reset settings.", $58
+	text "Password OK."
+	line "Select CONTINUE &"
+	cont "reset settings."
+	prompt
 ; 0x1c560b
 
 UnknownText_0x1c560b: ; 0x1c560b
-	db $0, "Wrong password!", $58
+	text "Wrong password!"
+	prompt
 ; 0x1c561c
 
 UnknownText_0x1c561c: ; 0x1c561c
-	db $0, "Reset the clock?", $57
+	text "Reset the clock?"
+	done
 ; 0x1c562e
 
 UnknownText_0x1c562e: ; 0x1c562e
-	db $0, "Please enter the", $4f
-	db "password.", $57
+	text "Please enter the"
+	line "password."
+	done
 ; 0x1c564a
 
 UnknownText_0x1c564a: ; 0x1c564a
-	db $0, "Clear all save", $4f
-	db "data?", $57
+	text "Clear all save"
+	line "data?"
+	done
 ; 0x1c5660
 
 UnknownText_0x1c5660: ; 0x1c5660
 	text_from_ram $d050
-	db $0, " learned", $4f
-	db "@"
+	text " learned"
+	line "@"
 	text_from_ram $d086
-	db $0, "!@"
+	text "!@"
 	sound0
 	text_waitbutton
-	db $50
+	db "@"
 ; 0x1c5677
 
 UnknownText_0x1c5677: ; 0x1c5677
-	db $50
+	db "@"
 ; 0x1c5678
 
 UnknownText_0x1c5678: ; 0x1c5678
-	db $0, "Which move should", $4e, "be forgotten?", $57
+	text "Which move should", $4e, "be forgotten?"
+	done
 ; 0x1c5699
 
 UnknownText_0x1c5699: ; 0x1c5699
-	db $0, "Stop learning", $4f
-	db "@"
+	text "Stop learning"
+	line "@"
 	text_from_ram $d086
-	db $0, "?", $57
+	text "?"
+	done
 ; 0x1c56af
 
 UnknownText_0x1c56af: ; 0x1c56af
 	text_from_ram $d050
-	db $0, $4f
-	db "did not learn", $55
-	db "@"
+	db $0
+	line "did not learn"
+	cont "@"
 	text_from_ram $d086
-	db $0, ".", $58
+	text "."
+	prompt
 ; 0x1c56c9
 
 UnknownText_0x1c56c9: ; 0x1c56c9
 	text_from_ram $d050
-	db $0, " is", $4f
-	db "trying to learn", $55
-	db "@"
+	text " is"
+	line "trying to learn"
+	cont "@"
 	text_from_ram $d086
-	db $0, ".", $51
-	db "But @"
+	text "."
+
+	para "But @"
 	text_from_ram $d050
-	db $0, $4f
-	db "can't learn more", $55
-	db "than four moves.", $51
-	db "Delete an older", $4f
-	db "move to make room", $55
-	db "for @"
+	db $0
+	line "can't learn more"
+	cont "than four moves."
+
+	para "Delete an older"
+	line "move to make room"
+	cont "for @"
 	text_from_ram $d086
-	db $0, "?", $57
+	text "?"
+	done
 ; 0x1c5740
 
 UnknownText_0x1c5740: ; 0x1c5740
-	db $0, "1, 2 and…@"
+	text "1, 2 and…@"
 	interpret_data
-	db $50
+	db "@"
 ; 0x1c574d
 
 UnknownText_0x1c574d: ; 0x1c574d
-	db $50
+	db "@"
 ; 0x1c574e
 
 UnknownText_0x1c574e: ; 0x1c574e
-	db $0, " Poof!@"
+	text " Poof!@"
 	interpret_data
-	db $0, $51
+	text $51
 	db "@"
 	text_from_ram $d050
-	db $0, " forgot", $4f
-	db "@"
+	text " forgot"
+	line "@"
 	text_from_ram $d073
-	db $0, ".", $51
-	db "And…", $58
+	text "."
+
+	para "And…"
+	prompt
 ; 0x1c5772
 
 UnknownText_0x1c5772: ; 0x1c5772
-	db $0, "HM moves can't be", $4f
-	db "forgotten now.", $58
+	text "HM moves can't be"
+	line "forgotten now."
+	prompt
 ; 0x1c5793
 
 UnknownText_0x1c5793: ; 0x1c5793
-	db $0, "Play with three", $4f
-	db "coins?", $57
+	text "Play with three"
+	line "coins?"
+	done
 ; 0x1c57ab
 
 UnknownText_0x1c57ab: ; 0x1c57ab
-	db $0, "Not enough coins…", $58
+	text "Not enough coins…"
+	prompt
 ; 0x1c57be
 
 UnknownText_0x1c57be: ; 0x1c57be
-	db $0, "Choose a card.", $57
+	text "Choose a card."
+	done
 ; 0x1c57ce
 
 UnknownText_0x1c57ce: ; 0x1c57ce
-	db $0, "Place your bet.", $57
+	text "Place your bet."
+	done
 ; 0x1c57df
 
 UnknownText_0x1c57df: ; 0x1c57df
-	db $0, "Want to play", $4f
-	db "again?", $57
+	text "Want to play"
+	line "again?"
+	done
 ; 0x1c57f4
 
 UnknownText_0x1c57f4: ; 0x1c57f4
-	db $0, "The cards have", $4f
-	db "been shuffled.", $58
+	text "The cards have"
+	line "been shuffled."
+	prompt
 ; 0x1c5813
 
 UnknownText_0x1c5813: ; 0x1c5813
-	db $0, "Yeah!", $57
+	text "Yeah!"
+	done
 ; 0x1c581a
 
 UnknownText_0x1c581a: ; 0x1c581a
-	db $0, "Darn…", $57
+	text "Darn…"
+	done
 ; 0x1c5821
 
 UnknownText_0x1c5821: ; 0x1c5821
 	current_day
-	db $50
+	db "@"
 ; 0x1c5823
 
 UnknownText_0x1c5823: ; 0x1c5823
-	db $50
+	db "@"
 ; 0x1c5824
 
 UnknownText_0x1c5824: ; 0x1c5824
@@ -991,465 +1185,529 @@ UnknownText_0x1c5824: ; 0x1c5824
 ; 0x1c5827
 
 UnknownText_0x1c5827: ; 0x1c5827
-	db $0, "You're out of the", $4f
-	db "service area.", $58
+	text "You're out of the"
+	line "service area."
+	prompt
 ; 0x1c5847
 
 UnknownText_0x1c5847: ; 0x1c5847
-	db $0, "Whom do you want", $4f
-	db "to call?", $57
+	text "Whom do you want"
+	line "to call?"
+	done
 ; 0x1c5862
 
 UnknownText_0x1c5862: ; 0x1c5862
-	db $0, "Press any button", $4f
-	db "to exit.", $57
+	text "Press any button"
+	line "to exit."
+	done
 ; 0x1c587d
 
 UnknownText_0x1c587d: ; 0x1c587d
-	db $0, "Delete this stored", $4f
-	db "phone number?", $57
+	text "Delete this stored"
+	line "phone number?"
+	done
 ; 0x1c589f
 
 UnknownText_0x1c589f: ; 0x1c589f
-	db $0, "Which prize would", $4f
-	db "you like?", $57
+	text "Which prize would"
+	line "you like?"
+	done
 ; 0x1c58bc
 
 UnknownText_0x1c58bc: ; 0x1c58bc
 	text_from_ram $d073
-	db $0, "?", $4f
-	db "Is that right?", $57
+	text "?"
+	line "Is that right?"
+	done
 ; 0x1c58d1
 
 UnknownText_0x1c58d1: ; 0x1c58d1
-	db $0, "Here you go!", $51
+	text "Here you go!", $51
 	db $57
 ; 0x1c58e0
 
 UnknownText_0x1c58e0: ; 0x1c58e0
-	db $0, "You don't have", $4f
-	db "enough points.", $51
+	text "You don't have"
+	line "enough points.", $51
 	db $57
 ; 0x1c58ff
 
 UnknownText_0x1c58ff: ; 0x1c58ff
-	db $0, "You have no room", $4f
-	db "for it.", $51
+	text "You have no room"
+	line "for it.", $51
 	db $57
 ; 0x1c591a
 
 UnknownText_0x1c591a: ; 0x1c591a
-	db $0, "Oh. Please come", $4f
-	db "back again!", $57
+	text "Oh. Please come"
+	line "back again!"
+	done
 ; 0x1c5937
 
 UnknownText_0x1c5937: ; 0x1c5937
-	db $0, "Excuse me!", $51
+	text "Excuse me!", $51
 	db $57
 ; 0x1c5944
 
 UnknownText_0x1c5944: ; 0x1c5944
-	db $0, "Excuse me.", $4f
-	db "You're not ready.", $51
+	text "Excuse me."
+	line "You're not ready.", $51
 	db $57
 ; 0x1c5962
 
 UnknownText_0x1c5962: ; 0x1c5962
-	db $0, "Please return when", $4f
-	db "you're ready.", $57
+	text "Please return when"
+	line "you're ready."
+	done
 ; 0x1c5983
 
 UnknownText_0x1c5983: ; 0x1c5983
-	db $0, "You need at least", $4f
-	db "three #MON.", $51
+	text "You need at least"
+	line "three #MON.", $51
 	db $57
 ; 0x1c59a3
 
 UnknownText_0x1c59a3: ; 0x1c59a3
-	db $0, "Sorry, an EGG", $4f
-	db "doesn't qualify.", $51
+	text "Sorry, an EGG"
+	line "doesn't qualify.", $51
 	db $57
 ; 0x1c59c3
 
 UnknownText_0x1c59c3: ; 0x1c59c3
-	db $0, "Only three #MON", $4f
-	db "may be entered.", $51
+	text "Only three #MON"
+	line "may be entered.", $51
 	db $57
 ; 0x1c59e5
 
 UnknownText_0x1c59e5: ; 0x1c59e5
-	db $0, "The @"
+	text "The @"
 	text_from_ram $d086
-	db $0, " #MON", $4f
-	db "must all be", $55
+	text " #MON"
+	line "must all be", $55
 	db "different kinds.", $51
 	db $57
 ; 0x1c5a13
 
 UnknownText_0x1c5a13: ; 0x1c5a13
-	db $0, "The @"
+	text "The @"
 	text_from_ram $d086
-	db $0, " #MON", $4f
-	db "must not hold the", $55
+	text " #MON"
+	line "must not hold the", $55
 	db "same items.", $51
 	db $57
 ; 0x1c5a42
 
 UnknownText_0x1c5a42: ; 0x1c5a42
-	db $0, "You can't take an", $4f
-	db "EGG!", $51
+	text "You can't take an"
+	line "EGG!", $51
 	db $57
 ; 0x1c5a5a
 
 UnknownText_0x1c5a5a: ; 0x1c5a5a
-	db $0, "It dodged the", $4f
-	db "thrown BALL!", $51
-	db "This #MON", $4f
-	db "can't be caught!", $58
+	text "It dodged the"
+	line "thrown BALL!"
+
+	para "This #MON"
+	line "can't be caught!"
+	prompt
 ; 0x1c5a90
 
 UnknownText_0x1c5a90: ; 0x1c5a90
-	db $0, "You missed the", $4f
-	db "#MON!", $58
+	text "You missed the"
+	line "#MON!"
+	prompt
 ; 0x1c5aa6
 
 UnknownText_0x1c5aa6: ; 0x1c5aa6
-	db $0, "Oh no! The #MON", $4f
-	db "broke free!", $58
+	text "Oh no! The #MON"
+	line "broke free!"
+	prompt
 ; 0x1c5ac3
 
 UnknownText_0x1c5ac3: ; 0x1c5ac3
-	db $0, "Aww! It appeared", $4f
-	db "to be caught!", $58
+	text "Aww! It appeared"
+	line "to be caught!"
+	prompt
 ; 0x1c5ae3
 
 UnknownText_0x1c5ae3: ; 0x1c5ae3
-	db $0, "Aargh!", $4f
-	db "Almost had it!", $58
+	text "Aargh!"
+	line "Almost had it!"
+	prompt
 ; 0x1c5afa
 
 UnknownText_0x1c5afa: ; 0x1c5afa
-	db $0, "Shoot! It was so", $4f
-	db "close too!", $58
+	text "Shoot! It was so"
+	line "close too!"
+	prompt
 ; 0x1c5b17
 
 UnknownText_0x1c5b17: ; 0x1c5b17
-	db $0, "Gotcha! @"
+	text "Gotcha! @"
 	text_from_ram $c616
-	db $0, $4f
-	db "was caught!@"
+	db $0
+	line "was caught!@"
 	sound0x02
-	db $50
+	db "@"
 ; 0x1c5b34
 
 UnknownText_0x1c5b34: ; 0x1c5b34
-	db $50
+	db "@"
 ; 0x1c5b35
 
 UnknownText_0x1c5b35: ; 0x1c5b35
 	text_waitbutton
-	db $50
+	db "@"
 ; 0x1c5b37
 
 UnknownText_0x1c5b37: ; 0x1c5b37
-	db $50
+	db "@"
 ; 0x1c5b38
 
 UnknownText_0x1c5b38: ; 0x1c5b38
 	text_from_ram $d050
-	db $0, " was", $4f
-	db "sent to BILL's PC.", $58
+	text " was"
+	line "sent to BILL's PC."
+	prompt
 ; 0x1c5b53
 
 UnknownText_0x1c5b53: ; 0x1c5b53
 	text_from_ram $c616
-	db $0, "'s data", $4f
-	db "was newly added to", $55
+	text "'s data"
+	line "was newly added to", $55
 	db "the #DEX.@"
 	sound0x2C
 	text_waitbutton
-	db $50
+	db "@"
 ; 0x1c5b7e
 
 UnknownText_0x1c5b7e: ; 0x1c5b7e
-	db $50
+	db "@"
 ; 0x1c5b7f
 
 UnknownText_0x1c5b7f: ; 0x1c5b7f
-	db $0, "Give a nickname to", $4f
-	db "@"
+	text "Give a nickname to"
+	line "@"
 	text_from_ram $d073
-	db $0, "?", $57
+	text "?"
+	done
 ; 0x1c5b9a
 
 UnknownText_0x1c5b9a: ; 0x1c5b9a
 	text_from_ram $d073
-	db $0, "'s", $4f
-	db "@"
+	text "'s"
+	line "@"
 	text_from_ram $d086
-	db $0, " rose.", $58
+	text " rose."
+	prompt
 ; 0x1c5bac
 
 UnknownText_0x1c5bac: ; 0x1c5bac
-	db $0, "That can't be used", $4f
-	db "on this #MON.", $58
+	text "That can't be used"
+	line "on this #MON."
+	prompt
 ; 0x1c5bcd
 
 UnknownText_0x1c5bcd: ; 0x1c5bcd
-	db $0, "The REPEL used", $4f
-	db "earlier is still", $55
-	db "in effect.", $58
+	text "The REPEL used"
+	line "earlier is still"
+	cont "in effect."
+	prompt
 ; 0x1c5bf9
 
 UnknownText_0x1c5bf9: ; 0x1c5bf9
-	db $0, "Played the #", $4f
-	db "FLUTE.", $51
-	db "Now, that's a", $4f
-	db "catchy tune!", $58
+	text "Played the #"
+	line "FLUTE."
+
+	para "Now, that's a"
+	line "catchy tune!"
+	prompt
 ; 0x1c5c28
 
 UnknownText_0x1c5c28: ; 0x1c5c28
-	db $0, "All sleeping", $4f
-	db "#MON woke up.", $58
+	text "All sleeping"
+	line "#MON woke up."
+	prompt
 ; 0x1c5c44
 
 UnknownText_0x1c5c44: ; 0x1c5c44
-	db $0, $52, " played the", $4f
-	db "# FLUTE.@"
+	db $0, $52, " played the"
+	line "# FLUTE.@"
 	text_waitbutton
-	db $50
+	db "@"
 ; 0x1c5c5d
 
 UnknownText_0x1c5c5d: ; 0x1c5c5d
-	db $50
+	db "@"
 ; 0x1c5c5e
 
 UnknownText_0x1c5c5e: ; 0x1c5c5e
-	db $0, "You now have", $4f
-	db "@"
+	text "You now have"
+	line "@"
 	deciram $dc4b, $12
-	db $0, " points.", $57
+	text " points."
+	done
 ; 0x1c5c7b
 
 UnknownText_0x1c5c7b: ; 0x1c5c7b
-	db $0, "Coins:", $4f
-	db "@"
+	text "Coins:"
+	line "@"
 	deciram $d855, $24
-	db $50
+	db "@"
 ; 0x1c5c89
 
 UnknownText_0x1c5c89: ; 0x1c5c89
-	db $50
+	db "@"
 ; 0x1c5c8a
 
 UnknownText_0x1c5c8a: ; 0x1c5c8a
-	db $0, "Raise the PP of", $4f
-	db "which move?", $57
+	text "Raise the PP of"
+	line "which move?"
+	done
 ; 0x1c5ca7
 
 UnknownText_0x1c5ca7: ; 0x1c5ca7
-	db $0, "Restore the PP of", $4f
-	db "which move?", $57
+	text "Restore the PP of"
+	line "which move?"
+	done
 ; 0x1c5cc6
 
 UnknownText_0x1c5cc6: ; 0x1c5cc6
 	text_from_ram $d086
-	db $0, "'s PP", $4f
-	db "is maxed out.", $58
+	text "'s PP"
+	line "is maxed out."
+	prompt
 ; 0x1c5cdd
 
 UnknownText_0x1c5cdd: ; 0x1c5cdd
 	text_from_ram $d086
-	db $0, "'s PP", $4f
-	db "increased.", $58
+	text "'s PP"
+	line "increased."
+	prompt
 ; 0x1c5cf1
 
 UnknownText_0x1c5cf1: ; 0x1c5cf1
-	db $0, "PP was restored.", $58
+	text "PP was restored."
+	prompt
 ; 0x1c5d03
 
 UnknownText_0x1c5d03: ; 0x1c5d03
-	db $0, "There was a trophy", $4f
-	db "inside!@"
+	text "There was a trophy"
+	line "inside!@"
 	sound0
-	db $0, $51
+	text $51
 	db "@"
 	text_from_ram PlayerName
-	db $0, " sent the", $4f
-	db "trophy home.", $58
+	text " sent the"
+	line "trophy home."
+	prompt
 ; 0x1c5d3e
 
 UnknownText_0x1c5d3e: ; 0x1c5d3e
-	db $0, "It looks bitter…", $58
+	text "It looks bitter…"
+	prompt
 ; 0x1c5d50
 
 UnknownText_0x1c5d50: ; 0x1c5d50
-	db $0, "That can't be used", $4f
-	db "on an EGG.", $58
+	text "That can't be used"
+	line "on an EGG."
+	prompt
 ; 0x1c5d6e
 
 UnknownText_0x1c5d6e: ; 0x1c5d6e
-	db $0, "OAK: ", $52, "!", $4f
-	db "This isn't the", $55
-	db "time to use that!", $58
+	text "OAK: ", $52, "!"
+	line "This isn't the"
+	cont "time to use that!"
+	prompt
 ; 0x1c5d97
 
 UnknownText_0x1c5d97: ; 0x1c5d97
-	db $0, "That belongs to", $4f
-	db "someone else!", $58
+	text "That belongs to"
+	line "someone else!"
+	prompt
 ; 0x1c5db6
 
 UnknownText_0x1c5db6: ; 0x1c5db6
-	db $0, "It won't have any", $4f
-	db "effect.", $58
+	text "It won't have any"
+	line "effect."
+	prompt
 ; 0x1c5dd0
 
 UnknownText_0x1c5dd0: ; 0x1c5dd0
-	db $0, "The trainer", $4f
-	db "blocked the BALL!", $58
+	text "The trainer"
+	line "blocked the BALL!"
+	prompt
 ; 0x1c5def
 
 UnknownText_0x1c5def: ; 0x1c5def
-	db $0, "Don't be a thief!", $58
+	text "Don't be a thief!"
+	prompt
 ; 0x1c5e01
 
 UnknownText_0x1c5e01: ; 0x1c5e01
-	db $0, "Cycling isn't", $4f
-	db "allowed here.", $58
+	text "Cycling isn't"
+	line "allowed here."
+	prompt
 ; 0x1c5e1d
 
 UnknownText_0x1c5e1d: ; 0x1c5e1d
-	db $0, "Can't get on your", $4f
-	db "@"
+	text "Can't get on your"
+	line "@"
 	text_from_ram $d073
-	db $0, " now.", $58
+	text " now."
+	prompt
 ; 0x1c5e3a
 
 UnknownText_0x1c5e3a: ; 0x1c5e3a
-	db $0, "The #MON BOX", $4f
-	db "is full. That", $55
-	db "can't be used now.", $58
+	text "The #MON BOX"
+	line "is full. That"
+	cont "can't be used now."
+	prompt
 ; 0x1c5e68
 
 UnknownText_0x1c5e68: ; 0x1c5e68
-	db $0, $52, " used the@"
+	text $52, " used the@"
 	text_dunno1
 	text_from_ram $d086
-	db $0, ".", $57
+	text "."
+	done
 ; 0x1c5e7b
 
 UnknownText_0x1c5e7b: ; 0x1c5e7b
-	db $0, $52, " got on the@"
+	text $52, " got on the@"
 	text_dunno1
 	text_from_ram $d086
-	db $0, ".", $58
+	text "."
+	prompt
 ; 0x1c5e90
 
 UnknownText_0x1c5e90: ; 0x1c5e90
-	db $0, $52, " got off@"
+	text $52, " got off@"
 	text_dunno1
-	db $0, "the @"
+	text "the @"
 	text_from_ram $d086
-	db $0, ".", $58
+	text "."
+	prompt
 ; 0x1c5ea8
 
 UnknownText_0x1c5ea8: ; 0x1c5ea8
 	text_from_ram $d073
-	db $0, " knows", $4f
-	db "@"
+	text " knows"
+	line "@"
 	text_from_ram $d086
-	db $0, ".", $58
+	text "."
+	prompt
 ; 0x1c5eba
 
 UnknownText_0x1c5eba: ; 0x1c5eba
-	db $0, "That #MON knows", $4f
-	db "only one move.", $57
+	text "That #MON knows"
+	line "only one move."
+	done
 ; 0x1c5eda
 
 UnknownText_0x1c5eda: ; 0x1c5eda
-	db $0, "Oh, make it forget", $4f
-	db "@"
+	text "Oh, make it forget"
+	line "@"
 	text_from_ram $d073
-	db $0, "?", $57
+	text "?"
+	done
 ; 0x1c5ef5
 
 UnknownText_0x1c5ef5: ; 0x1c5ef5
-	db $0, "Done! Your #MON", $4f
-	db "forgot the move.", $57
+	text "Done! Your #MON"
+	line "forgot the move."
+	done
 ; 0x1c5f17
 
 UnknownText_0x1c5f17: ; 0x1c5f17
-	db $0, "An EGG doesn't", $4f
-	db "know any moves!", $57
+	text "An EGG doesn't"
+	line "know any moves!"
+	done
 ; 0x1c5f36
 
 UnknownText_0x1c5f36: ; 0x1c5f36
-	db $0, "No? Come visit me", $4f
-	db "again.", $57
+	text "No? Come visit me"
+	line "again."
+	done
 ; 0x1c5f50
 
 UnknownText_0x1c5f50: ; 0x1c5f50
-	db $0, "Which move should", $4f
-	db "it forget, then?", $58
+	text "Which move should"
+	line "it forget, then?"
+	prompt
 ; 0x1c5f74
 
 UnknownText_0x1c5f74: ; 0x1c5f74
-	db $0, "Um… Oh, yes, I'm", $4f
-	db "the MOVE DELETER.", $51
-	db "I can make #MON", $4f
-	db "forget moves.", $51
-	db "Shall I make a", $4f
-	db "#MON forget?", $57
+	text "Um… Oh, yes, I'm"
+	line "the MOVE DELETER."
+
+	para "I can make #MON"
+	line "forget moves."
+
+	para "Shall I make a"
+	line "#MON forget?"
+	done
 ; 0x1c5fd1
 
 UnknownText_0x1c5fd1: ; 0x1c5fd1
-	db $0, "Which #MON?", $58
+	text "Which #MON?"
+	prompt
 ; 0x1c5fde
 
 UnknownText_0x1c5fde: ; 0x1c5fde
-	db $0, " DST,", $4f
-	db "is that OK?", $57
+	text " DST,"
+	line "is that OK?"
+	done
 ; 0x1c5ff1
 
 UnknownText_0x1c5ff1: ; 0x1c5ff1
-	db $0, ",", $4f
-	db "is that OK?", $57
+	text ","
+	line "is that OK?"
+	done
 ; 0x1c6000
 
 UnknownText_0x1c6000: ; 0x1c6000
-	db $0, "Do you want to", $4f
-	db "switch to Daylight", $55
-	db "Saving Time?", $57
+	text "Do you want to"
+	line "switch to Daylight"
+	cont "Saving Time?"
+	done
 ; 0x1c6030
 
 UnknownText_0x1c6030: ; 0x1c6030
-	db $0, "I set the clock", $4f
-	db "forward by one", $55
-	db "hour.", $58
+	text "I set the clock"
+	line "forward by one"
+	cont "hour."
+	prompt
 ; 0x1c6056
 
 UnknownText_0x1c6056: ; 0x1c6056
-	db $0, "Is Daylight Saving", $4f
-	db "Time over?", $57
+	text "Is Daylight Saving"
+	line "Time over?"
+	done
 ; 0x1c6075
 
 UnknownText_0x1c6075: ; 0x1c6075
-	db $0, "I put the clock", $4f
-	db "back one hour.", $58
+	text "I put the clock"
+	line "back one hour."
+	prompt
 ; 0x1c6095
 
 UnknownText_0x1c6095: ; 0x1c6095
-	db $0, "Do you want to", $4f
-	db "adjust your clock", $51
-	db "for Daylight", $4f
-	db "Saving Time?", $57
+	text "Do you want to"
+	line "adjust your clock"
+
+	para "for Daylight"
+	line "Saving Time?"
+	done
 ; 0x1c60d1
 
 UnknownText_0x1c60d1: ; 0x1c60d1
-	db $0, "I lost the in-", $4f
-	db "struction booklet", $55
-	db "for the #GEAR.", $51
-	db "Come back again in", $4f
-	db "a while.", $58
+	text "I lost the in-"
+	line "struction booklet"
+	cont "for the #GEAR."
+
+	para "Come back again in"
+	line "a while."
+	prompt
 ; 0x1c611e
 

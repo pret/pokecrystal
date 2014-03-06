@@ -1,127 +1,165 @@
 MomPhoneGreetingText: ; 0x1b4000
-	db $0, "Hello?", $51
-	db "Oh, hi, ", $52, "!", $4f
-	db "Working hard?", $57
+	text "Hello?"
+
+	para "Oh, hi, ", $52, "!"
+	line "Working hard?"
+	done
 
 UnknownText_0x1b4021: ; 0x1b4021
-	db $0, "Oh, so you're in", $4f
-	db "@"
+	text "Oh, so you're in"
+	line "@"
 	TX_RAM StringBuffer3
-	db $0, "…", $51
-	db "Isn't that where", $4f
-	db "@"
+	text "…"
+
+	para "Isn't that where"
+	line "@"
 	TX_RAM StringBuffer4
-	db $0, $51
-	db "is? Did you go", $4f
-	db "take a look?", $57
+	text $51
+	db "is? Did you go"
+	line "take a look?"
+	done
 
 MomPhoneGenericAreaText: ; 0x1b406b
-	db $0, "Really, you're in", $4f
-	db "@"
+	text "Really, you're in"
+	line "@"
 	TX_RAM StringBuffer3
-	db $0, "?", $51
-	db "I've never gone", $4f
-	db "there. That's kind", $55
-	db "of neat, ", $52, ".", $57
+	text "?"
+
+	para "I've never gone"
+	line "there. That's kind"
+	cont "of neat, ", $52, "."
+	done
 
 MomPhoneNewBarkText: ; 0x1b40b1
-	db $0, "What? You're in", $4f
-	db "@"
+	text "What? You're in"
+	line "@"
 	TX_RAM StringBuffer3
-	db $0, "?", $51
-	db "Come see your MOM", $4f
-	db "sometime!", $57
+	text "?"
+
+	para "Come see your MOM"
+	line "sometime!"
+	done
 
 MomPhoneCherrygroveText: ; 0x1b40e4
-	db $0, "You're visiting", $4f
-	db "@"
+	text "You're visiting"
+	line "@"
 	TX_RAM StringBuffer3
-	db $0, "?", $51
-	db "How about coming", $4f
-	db "home for a bit?", $57
+	text "?"
+
+	para "How about coming"
+	line "home for a bit?"
+	done
 
 UnknownText_0x1b411c: ; 0x1b411c
-	db $0, "Wow, you're in", $4f
-	db "@"
+	text "Wow, you're in"
+	line "@"
 	TX_RAM StringBuffer3
-	db $0, "?", $51
-	db "Good luck on your", $4f
-	db "#MON quest!", $57
+	text "?"
+
+	para "Good luck on your"
+	line "#MON quest!"
+	done
 
 UnknownText_0x1b4150: ; 0x1b4150
-	db $0, "That sounds really", $4f
-	db "tough.", $51
-	db "But, ", $52, ", I", $4f
-	db "know you're really", $51
-	db "determined. You'll", $4f
-	db "be OK, right?", $57
+	text "That sounds really"
+	line "tough."
+
+	para "But, ", $52, ", I"
+	line "know you're really"
+
+	para "determined. You'll"
+	line "be OK, right?"
+	done
 
 UnknownText_0x1b41a7: ; 0x1b41a7
-	db $0, "By the way, you've", $4f
-	db "saved up ¥@"
+	text "By the way, you've"
+	line "saved up ¥@"
 	TX_RAM StringBuffer3
-	db $0, ".", $51
-	db "Do you want to", $4f
-	db "keep on saving?", $57
+	text "."
+
+	para "Do you want to"
+	line "keep on saving?"
+	done
 
 UnknownText_0x1b41ea: ; 0x1b41ea
-	db $0, "It's important to", $4f
-	db "save your money.", $57
+	text "It's important to"
+	line "save your money."
+	done
 
 UnknownText_0x1b420d: ; 0x1b420d
-	db $0, "Oh, ", $52, ",", $4f
-	db "you're not saving", $51
-	db "any money. Would", $4f
-	db "you like to save?", $57
+	text "Oh, ", $52, ","
+	line "you're not saving"
+
+	para "any money. Would"
+	line "you like to save?"
+	done
 
 UnknownText_0x1b4249: ; 0x1b4249
-	db $0, "By the way, you've", $4f
-	db "saved up ¥@"
+	text "By the way, you've"
+	line "saved up ¥@"
 	TX_RAM StringBuffer3
-	db $0, ".", $51
-	db "Want to start", $4f
-	db "saving again?", $57
+	text "."
+
+	para "Want to start"
+	line "saving again?"
+	done
 
 UnknownText_0x1b4289: ; 0x1b4289
-	db $0, "OK. I'll save your", $4f
-	db "money.", $57
+	text "OK. I'll save your"
+	line "money."
+	done
 
 MomPhoneWontSaveMoneyText: ; 0x1b42a3
-	db $0, "OK. I won't save", $4f
-	db "your money.", $57
+	text "OK. I won't save"
+	line "your money."
+	done
 
 MomPhoneHangUpText: ; 0x1b42c0
-	db $0, $52, ", keep it", $4f
-	db "up! I'm rooting", $55
-	db "for you, baby!", $57
+	text $52, ", keep it"
+	line "up! I'm rooting"
+	cont "for you, baby!"
+	done
 
 MomPhoneNoPokemonText: ; 0x1b42ea
-	db $0, "Hello?", $51
-	db "Oh, hi, ", $52, "!", $4f
-	db "Wasn't PROF.ELM", $55
-	db "waiting for you?", $57
+	text "Hello?"
+
+	para "Oh, hi, ", $52, "!"
+	line "Wasn't PROF.ELM"
+	cont "waiting for you?"
+	done
 
 MomPhoneNoPokedexText: ; 0x1b431d
-	db $0, "Hello?", $51
-	db "Oh, hi, ", $52, "!", $4f
-	db "You're on a big", $51
-	db "mission for PROF.", $4f
-	db "ELM? Be good!", $57
+	text "Hello?"
+
+	para "Oh, hi, ", $52, "!"
+	line "You're on a big"
+
+	para "mission for PROF."
+	line "ELM? Be good!"
+	done
 
 MomPhoneNoGymQuestText: ; 0x1b435f
-	db $0, "Hello?", $51
-	db "Hi, ", $52, "! If", $4f
-	db "you're done with", $51
-	db "your errand come", $4f
-	db "on home, dear.", $57
+	text "Hello?"
+
+	para "Hi, ", $52, "! If"
+	line "you're done with"
+
+	para "your errand come"
+	line "on home, dear."
+	done
 
 MomPhoneLectureText: ; 0x1b43a1
-	db $0, "Hello?", $51
-	db "…… ", $52, "?", $4f
-	db "I heard from PROF.", $51
-	db "ELM that you went", $4f
-	db "on a long trip.", $51
-	db "I wish you would", $4f
-	db "have told me…", $51
-	db "What about money?", $4f
-	db "Should I save it?", $57
+	text "Hello?"
+
+	para "…… ", $52, "?"
+	line "I heard from PROF."
+
+	para "ELM that you went"
+	line "on a long trip."
+
+	para "I wish you would"
+	line "have told me…"
+
+	para "What about money?"
+	line "Should I save it?"
+	done
