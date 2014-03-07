@@ -57,6 +57,168 @@ party_struct: MACRO
 ENDM
 
 
+channel_struct: MACRO
+; Addresses are Channel1 ($c101).
+
+\1MusicID:: ; c101
+	ds 2
+\1MusicBank:: ; c103
+	ds 1
+\1Flags:: ; c104
+; 0: on/off
+; 1: subroutine
+; 2: 
+; 3: 
+; 4: noise sampling on/off
+; 5: 
+; 6: 
+; 7: 
+	ds 1
+\1Flags2:: ; c105
+; 0: vibrato on/off
+; 1: 
+; 2: duty cycle on/off
+; 3: 
+; 4: 
+; 5: 
+; 6: 
+; 7: 
+	ds 1
+\1Flags3:: ; c106
+; 0: vibrato up/down
+; 1: 
+; 2: 
+; 3: 
+; 4: 
+; 5: 
+; 6: 
+; 7: 
+	ds 1
+\1MusicAddress:: ; c107
+	ds 2
+\1LastMusicAddress:: ; c109
+	ds 2
+; could have been meant as a third-level address
+	ds 2
+\1NoteFlags:: ; c10d
+; 0: 
+; 1: 
+; 2: 
+; 3: 
+; 4: 
+; 5: rest
+; 6: 
+; 7: 
+	ds 1
+\1Condition:: ; c10e
+; used for conditional jumps
+	ds 1
+\1DutyCycle:: ; c10f
+; uses top 2 bits only
+;	0: 12.5%
+;	1: 25%
+;	2: 50%
+;	3: 75%
+	ds 1
+\1Intensity:: ; c110
+;	hi: pressure
+;   lo: velocity
+	ds 1
+\1Frequency::
+; 11 bits
+\1FrequencyLo:: ; c111
+	ds 1
+\1FrequencyHi:: ; c112
+	ds 1
+\1Pitch:: ; c113
+; 0: rest
+; 1: C
+; 2: C#
+; 3: D
+; 4: D#
+; 5: E
+; 6: F
+; 7: F#
+; 8: G
+; 9: G#
+; a: A
+; b: A#
+; c: B
+	ds 1
+\1Octave:: ; c114
+; 0: highest
+; 7: lowest
+	ds 1
+\1StartingOctave:: ; c115
+; raises existing octaves by this value
+; used for repeating phrases in a higher octave to save space
+	ds 1
+\1NoteDuration:: ; c116
+; number of frames remaining in the current note
+	ds 1
+; c117
+	ds 1
+; c118
+	ds 1
+\1LoopCount:: ; c119
+	ds 1
+\1Tempo:: ; c11a
+	ds 2
+\1Tracks:: ; c11c
+; hi: l
+; lo: r
+	ds 1
+; c11d
+	ds 1
+
+\1VibratoDelayCount:: ; c11e
+; initialized at the value in VibratoDelay
+; decrements each frame
+; at 0, vibrato starts
+	ds 1
+\1VibratoDelay:: ; c11f
+; number of frames a note plays until vibrato starts
+	ds 1
+\1VibratoExtent:: ; c120
+; difference in 
+	ds 1
+\1VibratoRate:: ; c121
+; counts down from a max of 15 frames
+; over which the pitch is alternated
+; hi: init frames
+; lo: frame count
+	ds 1
+
+; c122
+	ds 1
+; c123
+	ds 1
+; c124
+	ds 1
+; c125
+	ds 1
+; c126
+	ds 1
+; c127
+	ds 1
+\1CryPitch:: ; c128
+	ds 1
+\1CryEcho:: ; c129
+	ds 1
+	ds 4
+\1NoteLength:: ; c12e
+; # frames per 16th note
+	ds 1
+; c12f
+	ds 1
+; c130
+	ds 1
+; c131
+	ds 1
+; c132
+	ds 1
+ENDM
+
 SECTION "tiles0",VRAM[$8000],BANK[0]
 VTiles0::
 SECTION "tiles1",VRAM[$8800],BANK[0]
@@ -83,182 +245,24 @@ MusicPlaying:: ; c100
 	ds 1
 
 Channels::
-Channel1::
-Channel1MusicID:: ; c101
-	ds 2
-Channel1MusicBank:: ; c103
-	ds 1
-Channel1Flags:: ; c104
-; 0: on/off
-; 1: subroutine
-; 2: 
-; 3: 
-; 4: noise sampling on/off
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-Channel1Flags2:: ; c105
-; 0: vibrato on/off
-; 1: 
-; 2: duty cycle on/off
-; 3: 
-; 4: 
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-Channel1Flags3:: ; c106
-; 0: vibrato up/down
-; 1: 
-; 2: 
-; 3: 
-; 4: 
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-Channel1MusicAddress:: ; c107
-	ds 2
-Channel1LastMusicAddress:: ; c109
-	ds 2
-; could have been meant as a third-level address
-	ds 2
-Channel1NoteFlags:: ; c10d
-; 0: 
-; 1: 
-; 2: 
-; 3: 
-; 4: 
-; 5: rest
-; 6: 
-; 7: 
-	ds 1
-Channel1Condition:: ; c10e
-; used for conditional jumps
-	ds 1
-Channel1DutyCycle:: ; c10f
-; uses top 2 bits only
-;	0: 12.5%
-;	1: 25%
-;	2: 50%
-;	3: 75%
-	ds 1
-Channel1Intensity:: ; c110
-;	hi: pressure
-;   lo: velocity
-	ds 1
-Channel1Frequency::
-; 11 bits
-Channel1FrequencyLo:: ; c111
-	ds 1
-Channel1FrequencyHi:: ; c112
-	ds 1
-Channel1Pitch:: ; c113
-; 0: rest
-; 1: C
-; 2: C#
-; 3: D
-; 4: D#
-; 5: E
-; 6: F
-; 7: F#
-; 8: G
-; 9: G#
-; a: A
-; b: A#
-; c: B
-	ds 1
-Channel1Octave:: ; c114
-; 0: highest
-; 7: lowest
-	ds 1
-Channel1StartingOctave:: ; c115
-; raises existing octaves by this value
-; used for repeating phrases in a higher octave to save space
-	ds 1
-Channel1NoteDuration:: ; c116
-; number of frames remaining in the current note
-	ds 1
-; c117
-	ds 1
-; c118
-	ds 1
-Channel1LoopCount:: ; c119
-	ds 1
-Channel1Tempo:: ; c11a
-	ds 2
-Channel1Tracks:: ; c11c
-; hi: l
-; lo: r
-	ds 1
-; c11d
-	ds 1
-
-Channel1VibratoDelayCount:: ; c11e
-; initialized at the value in VibratoDelay
-; decrements each frame
-; at 0, vibrato starts
-	ds 1
-Channel1VibratoDelay:: ; c11f
-; number of frames a note plays until vibrato starts
-	ds 1
-Channel1VibratoExtent:: ; c120
-; difference in 
-	ds 1
-Channel1VibratoRate:: ; c121
-; counts down from a max of 15 frames
-; over which the pitch is alternated
-; hi: init frames
-; lo: frame count
-	ds 1
-
-; c122
-	ds 1
-; c123
-	ds 1
-; c124
-	ds 1
-; c125
-	ds 1
-; c126
-	ds 1
-; c127
-	ds 1
-Channel1CryPitch:: ; c128
-	ds 1
-Channel1CryEcho:: ; c129
-	ds 1
-	ds 4
-Channel1NoteLength:: ; c12e
-; # frames per 16th note
-	ds 1
-; c12f
-	ds 1
-; c130
-	ds 1
-; c131
-	ds 1
-; c132
-	ds 1
-; end
-
+Channel1:: ; c101
+	channel_struct Channel1
 Channel2:: ; c133
-	ds 50
+	channel_struct Channel2
 Channel3:: ; c165
-	ds 50
+	channel_struct Channel3
 Channel4:: ; c197
-	ds 50
+	channel_struct Channel4
 
 SFXChannels::
 Channel5:: ; c1c9
-	ds 50
+	channel_struct Channel5
 Channel6:: ; c1fb
-	ds 50
+	channel_struct Channel6
 Channel7:: ; c22d
-	ds 50
+	channel_struct Channel7
 Channel8:: ; c25f
-	ds 50
+	channel_struct Channel8
 
 ; c291
 	ds 1

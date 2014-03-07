@@ -56049,7 +56049,7 @@ Function4dd72: ; 4dd72 (13:5d72)
 	callba Function10402d
 	call Function4ddf2
 	ld a, [CurPartySpecies] ; $d108
-	cp $fd
+	cp EGG
 	jr z, .asm_4dd9b
 	call Function4deea
 	ld hl, $cf64
@@ -56819,8 +56819,8 @@ Function4e307: ; 4e307 (13:6307)
 	push af
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld de, $5204
-	ld bc, $3e01
+	ld de, GFX_f9204
+	lb bc, BANK(GFX_f9204), 1
 	ld hl, $97f0
 	call Get2bpp
 	pop af
@@ -56832,7 +56832,10 @@ Function4e307: ; 4e307 (13:6307)
 	ret
 ; 4e32a (13:632a)
 
-INCBIN "baserom.gbc",$4e32a,$4e33a - $4e32a
+Unknown_4e32a: ; 4e32a
+; A blank tile?
+	ds 16
+; 4e33a
 
 EggStatsScreen: ; 4e33a
 	xor a
@@ -59866,38 +59869,44 @@ Function50e1b: ; 50e1b
 
 
 Function50e47: ; 50e47
+
 	ld a, [BaseGrowthRate]
 	add a
 	add a
 	ld c, a
-	ld b, $0
-	ld hl, $4efa
+	ld b, 0
+	ld hl, GrowthRates
 	add hl, bc
 	call Function50eed
 	ld a, d
 	ld [hMultiplier], a
 	call Multiply
+
 	ld a, [hl]
 	and $f0
 	swap a
 	ld [hMultiplier], a
 	call Multiply
+
 	ld a, [hli]
 	and $f
 	ld [hMultiplier], a
 	ld b, $4
 	call Divide
+
 	ld a, [hMultiplicand]
 	push af
 	ld a, [$ffb5]
 	push af
 	ld a, [$ffb6]
 	push af
+
 	call Function50eed
 	ld a, [hl]
 	and $7f
 	ld [hMultiplier], a
 	call Multiply
+
 	ld a, [hMultiplicand]
 	push af
 	ld a, [$ffb5]
@@ -59906,6 +59915,7 @@ Function50e47: ; 50e47
 	push af
 	ld a, [hli]
 	push af
+
 	xor a
 	ld [hMultiplicand], a
 	ld [$ffb5], a
@@ -59914,6 +59924,7 @@ Function50e47: ; 50e47
 	ld a, [hli]
 	ld [hMultiplier], a
 	call Multiply
+
 	ld b, [hl]
 	ld a, [$ffb6]
 	sub b
@@ -59925,9 +59936,11 @@ Function50e47: ; 50e47
 	ld a, [hMultiplicand]
 	sbc b
 	ld [hMultiplicand], a
+
 	pop af
 	and $80
 	jr nz, .asm_50ec8
+
 	pop bc
 	ld a, [$ffb6]
 	add b
@@ -59982,7 +59995,26 @@ Function50eed: ; 50eed
 	jp Multiply
 ; 50efa
 
-INCBIN "baserom.gbc",$50efa,$50f12 - $50efa
+GrowthRates: ; 50efa
+
+growth_rate: MACRO
+; [1]/[2]*n^3 + [3]*n^2 + [4]*n - [5]
+	dn \1, \2
+	IF \3 & $80 ; signed
+		db ((\3 ^ $ff) + 1) | $80
+	ELSE
+		db \3
+	ENDC
+	db \4, \5
+ENDM
+
+	growth_rate 1, 1,   0,   0,   0 ; Medium Fast
+	growth_rate 3, 4,  10,   0,  30
+	growth_rate 3, 4,  20,   0,  70
+	growth_rate 6, 5, -15, 100, 140 ; Medium Slow
+	growth_rate 4, 5,   0,   0,   0 ; Fast
+	growth_rate 5, 4,   0,   0,   0 ; Slow
+; 50f12
 
 Function50f12:
 	ld a, [$d0e3]
@@ -60022,7 +60054,7 @@ Function50f34: ; 50f34 (14:4f34)
 	add hl, de
 	dec c
 	jr nz, .asm_50f55
-	ld de, $20
+	ld de, SFX_SWITCH_POKEMON
 	call WaitPlaySFX
 	ret
 
@@ -74186,11 +74218,27 @@ Function9020d: ; 9020d (24:420d)
 	ret
 ; 90233 (24:4233)
 
-INCBIN "baserom.gbc",$90233,$9026f - $90233
+INCBIN "baserom.gbc",$90233,$90241 - $90233
+
+UnknownScript_0x90241: ; 0x90241
+	refreshscreen $0
+	3callasm Function9026f
+	2ptcall $d048
+	closetext
+	3callasm Function902eb
+	loadmovesprites
+	3callasm Function113e5
+	end
+; 0x90255
+
+INCBIN "baserom.gbc",$90255,$9026f - $90255
+
+Function9026f: ; 9026f
 	call Function9027c
 	call Function9027c
 	callba Function1060d3
 	ret
+; 9027c
 
 ; known jump sources: 9026f (24:426f), 90272 (24:4272)
 Function9027c: ; 9027c (24:427c)
@@ -79130,9 +79178,9 @@ Functionb8098:: ; b8098 (2e:4098)
 
 
 Functionb80c6: ; b80c6
-	ld de, $5344
+	ld de, GFX_f9344
 	ld hl, $9600
-	ld bc, $3e0e
+	lb bc, BANK(GFX_f9344), $e
 	call Get2bpp
 	ret
 ; b80d3
@@ -87820,18 +87868,60 @@ INCBIN "gfx/frames/9.1bpp"
 
 ; TODO: Various misc graphics here.
 
+GFX_f89b0: ; f89b0
 INCBIN "baserom.gbc", $f89b0, $f8a90 - $f89b0
+; f8a90
 
 ShinyIcon: ; f8a90
 INCBIN "gfx/stats/shiny.2bpp"
 
-INCBIN "baserom.gbc", $f8aa0, $f8ba0 - $f8aa0
+GFX_f8aa0: ; f8aa0
+INCBIN "baserom.gbc", $f8aa0, $f8ac0 - $f8aa0
+; f8ac0
+
+GFX_f8ac0: ; f8ac0
+INCBIN "baserom.gbc", $f8ac0, $f8ae0 - $f8ac0
+; f8ae0
+
+GFX_f8ae0: ; f8ae0
+INCBIN "baserom.gbc", $f8ae0, $f8b10 - $f8ae0
+; f8b10
+
+GFX_f8b10: ; f8b10
+INCBIN "baserom.gbc", $f8b10, $f8ba0 - $f8b10
+; f8ba0
 
 TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.lz"
 ; f8ea4
 
-INCBIN "baserom.gbc", $f8ea4, $f9434 - $f8ea4
+GFX_f8ea4: ; f8ea4
+INCBIN "baserom.gbc", $f8ea4, $f8f24 - $f8ea4
+; f8f24
+
+GFX_f8f24: ; f8f24
+INCBIN "baserom.gbc", $f8f24, $f8f34 - $f8f24
+; f8f34
+
+GFX_f8f34: ; f8f34
+INCBIN "baserom.gbc", $f8f34, $f9204 - $f8f34
+; f9204
+
+GFX_f9204: ; f9204
+INCBIN "baserom.gbc", $f9204, $f9214 - $f9204
+; f9214
+
+GFX_f9214: ; f9214
+INCBIN "baserom.gbc", $f9214, $f9344 - $f9214
+; f9344
+
+GFX_f9344: ; f9344
+INCBIN "baserom.gbc", $f9344, $f9424 - $f9344
+; f9424
+
+GFX_f9424: ; f9424
+INCBIN "baserom.gbc", $f9424, $f9434 - $f9424
+; f9434
 
 Footprints: ; f9434
 INCBIN "gfx/misc/footprints.1bpp"
@@ -87868,34 +87958,34 @@ Functionfb449:: ; fb449
 
 
 Functionfb48a:: ; fb48a
-	ld de, $5214
+	ld de, GFX_f9214
 	ld hl, $9600
-	ld bc, $3e01
+	lb bc, BANK(GFX_f9214), 1
 	call Functionddc
-	ld de, $4f24
+	ld de, GFX_f8f24
 	ld hl, $9620
-	ld bc, $3e01
+	lb bc, BANK(GFX_f8f24), 1
 	call Functiondc9
-	ld de, $4030
+	ld de, FontExtra + $30
 	ld hl, $9630
-	ld bc, $3e16
+	lb bc, BANK(FontExtra), $16
 	call Functiondc9
 	jr Functionfb4cc
 ; fb4b0
 
 Functionfb4b0:: ; fb4b0
-	ld de, $5424
+	ld de, GFX_f9424
 	ld hl, $9610
-	ld b, $3e
-	ld c, $1
+	ld b, BANK(GFX_f9424)
+	ld c, 1
 	call Functiondc9
 	ret
 ; fb4be
 
 Functionfb4be:: ; fb4be
-	ld de, $4600
+	ld de, FontBattleExtra
 	ld hl, $9600
-	ld bc, $3e19
+	lb bc, BANK(FontBattleExtra), $19
 	call Functiondc9
 	jr Functionfb4cc
 ; fb4cc
@@ -87909,69 +87999,69 @@ Functionfb4cc: ; fb4cc
 	ld d, h
 	ld e, l
 	ld hl, $9790
-	ld bc, $3e06
+	lb bc, BANK(Frames), 6
 	call Functionddc
 	ld hl, $97f0
-	ld de, $5204
-	ld bc, $3e01
+	ld de, GFX_f9204
+	lb bc, BANK(GFX_f9204), 1
 	call Functionddc
 	ret
 ; fb4f2
 
 Functionfb4f2: ; fb4f2
-	ld de, $4600
+	ld de, FontBattleExtra
 	ld hl, $9600
-	ld bc, $3e0c
+	lb bc, BANK(FontBattleExtra), $c
 	call Functiondc9
 	ld hl, $9700
-	ld de, $4700
-	ld bc, $3e03
+	ld de, FontBattleExtra + $100
+	lb bc, BANK(FontBattleExtra), 3
 	call Functiondc9
 	call Functionfb4cc
 
 Functionfb50d: ; fb50d
-	ld de, $4ac0
+	ld de, GFX_f8ac0
 	ld hl, $96c0
-	ld bc, $3e04
+	lb bc, BANK(GFX_f8ac0), 4
 	call Functionddc
-	ld de, $4ae0
+	ld de, GFX_f8ae0
 	ld hl, $9730
-	ld bc, $3e06
+	lb bc, BANK(GFX_f8ae0), 6
 	call Functionddc
-	ld de, $4b10
+	ld de, GFX_f8b10
 	ld hl, $9550
-	ld bc, $3e09
+	lb bc, BANK(GFX_f8b10), 9
 	call Functiondc9
-	ld de, $52a4
+	ld de, GFX_f9214 + $90
 	ld hl, $95e0
-	ld bc, $3e02
+	lb bc, BANK(GFX_f9214), 2
 	call Functiondc9
 	ret
 ; fb53e
 
 Functionfb53e: ; fb53e
 	call Functionfb4be
-	ld de, $4ac0
+	ld de, GFX_f8ac0
 	ld hl, $96c0
-	ld bc, $3e04
+	lb bc, BANK(GFX_f8ac0), 4
 	call Functionddc
-	ld de, $4ae0
+	ld de, GFX_f8ae0
 	ld hl, $9780
-	ld bc, $3e01
+	lb bc, BANK(GFX_f8ae0), 1
 	call Functionddc
-	ld de, $4af8
+	ld de, GFX_f8ae0 + $18
 	ld hl, $9760
-	ld bc, $3e02
+	lb bc, BANK(GFX_f8ae0), 2
 	call Functionddc
-	ld de, $4b10
+	ld de, GFX_f8b10
 	ld hl, $9550
-	ld bc, $3e08
+	lb bc, BANK(GFX_f8b10), 8
 	call Functiondc9
 
 Functionfb571: ; fb571
-	ld de, $49b0
+	ld de, GFX_f89b0
 	ld hl, $9310
-	ld bc, $3e11
+	lb bc, BANK(GFX_f89b0), $11
 	call Functiondc9
 	ret
 ; fb57e
@@ -87984,12 +88074,12 @@ Functionfb57e: ; fb57e
 	ld a, [$d003]
 	inc a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, OTPartyCount
 	add hl, bc
 	ld a, [hl]
 	pop hl
-	cp $fd
+	cp EGG
 	jr z, .asm_fb59c
 	cp [hl]
 	jr nz, .asm_fb5db
@@ -87997,10 +88087,10 @@ Functionfb57e: ; fb57e
 .asm_fb59c
 	ld b, h
 	ld c, l
-	ld hl, $001f
+	ld hl, OTPartyMon1Level - OTPartyMon1
 	add hl, bc
 	ld a, [hl]
-	cp $65
+	cp 101
 	jr nc, .asm_fb5db
 	ld a, [InLinkBattle]
 	cp $1
@@ -88008,13 +88098,17 @@ Functionfb57e: ; fb57e
 	ld hl, OTPartySpecies
 	ld a, [$d003]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	cp $51
+
+	; Magnemite and Magneton's types changed
+	; from Electric to Electric/Steel.
+	cp MAGNEMITE
 	jr z, .asm_fb5d9
-	cp $52
+	cp MAGNETON
 	jr z, .asm_fb5d9
+
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, $cbea
@@ -88213,8 +88307,8 @@ Functionfb8f1: ; fb8f1
 	push hl
 	ld a, [$d265]
 	ld b, a
-	ld c, $0
-	ld hl, $791c
+	ld c, 0
+	ld hl, Unknown_fb91c
 .asm_fb8fc
 	inc c
 	ld a, [hli]
@@ -88233,7 +88327,7 @@ Functionfb908: ; fb908
 	ld a, [$d265]
 	dec a
 	ld hl, Unknown_fb91c
-	ld b, $0
+	ld b, 0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
@@ -88737,19 +88831,19 @@ Functionfbd54: ; fbd54
 	call Functionfbd9d
 .asm_fbd64
 	call ClearBox
-	jr asm_fbd91
+	jr Functionfbd91
 
 ; no known jump sources
 Functionfbd69: ; fbd69 (3e:7d69)
 	callba BattleCommanda6
-	jr asm_fbd77
+	jr Functionfbd77
 
 ; no known jump sources
 Functionfbd71: ; fbd71 (3e:7d71)
 	callba BattleCommanda7
 
 ; known jump sources: fbd6f (3e:7d6f)
-asm_fbd77: ; fbd77 (3e:7d77)
+Functionfbd77: ; fbd77 (3e:7d77)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, [hBattleTurn] ; $ff00+$e4
@@ -88765,7 +88859,7 @@ asm_fbd77: ; fbd77 (3e:7d77)
 	ld [$FF00+$ad], a
 	ld a, $13
 	call Predef
-asm_fbd91: ; fbd91 (3e:7d91)
+Functionfbd91: ; fbd91 (3e:7d91)
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
@@ -89630,14 +89724,19 @@ Functionfcfec:: ; fcfec
 	ret nc
 	call Functionfd0c3
 	ret nc
-	ld b, $3f
-	ld de, $500f
+	ld b, BANK(UnknownScript_0xfd00f)
+	ld de, UnknownScript_0xfd00f
 	callba Function97c4f
 	scf
 	ret
 ; fd00f
 
-INCBIN "baserom.gbc",$fd00f,$fd017 - $fd00f
+UnknownScript_0xfd00f: ; 0xfd00f
+	3callasm Functionfd017
+	3jump UnknownScript_0x90241
+; 0xfd017
+
+Functionfd017: ; fd017
 	call Functionfd0a6
 	call Functionfd0eb
 	ld a, [$dc18]
@@ -89648,7 +89747,7 @@ INCBIN "baserom.gbc",$fd00f,$fd017 - $fd00f
 .asm_fd027
 	ld a, $1
 	ld [$dbf9], a
-	ld bc, CurFruit ; $d03f
+	ld bc, $d03f
 	ld hl, $0
 	add hl, bc
 	ld [hl], $0
@@ -89663,7 +89762,7 @@ INCBIN "baserom.gbc",$fd00f,$fd017 - $fd00f
 	ld a, d
 	ld [hl], a
 	ret
-
+; fd044
 
 Functionfd044: ; fd044
 	ld a, [$dc17]
@@ -89774,14 +89873,28 @@ Functionfd0eb: ; fd0eb (3f:50eb)
 	ld de, $6
 	add hl, de
 	ld a, [hli]
-	ld de, $50fd
+	ld de, UnknownScript_0xfd0fd
 	cp $1
 	ret z
-	ld de, $510a
+	ld de, UnknownScript_0xfd10a
 	ret
 ; fd0fd (3f:50fd)
 
-INCBIN "baserom.gbc",$fd0fd,$fd117 - $fd0fd
+UnknownScript_0xfd0fd: ; 0xfd0fd
+	2writetext UnknownText_0xfd1b1
+	2writetext UnknownText_0xfd1b6
+	2writetext UnknownText_0xfd1bb
+	2writetext UnknownText_0xfd1c0
+	end
+; 0xfd10a
+
+UnknownScript_0xfd10a: ; 0xfd10a
+	2writetext UnknownText_0xfd1b1
+	2writetext UnknownText_0xfd1c5
+	2writetext UnknownText_0xfd1bb
+	2writetext UnknownText_0xfd1ca
+	end
+; 0xfd117
 
 
 Functionfd117: ; fd117
@@ -89789,7 +89902,7 @@ Functionfd117: ; fd117
 	and a
 	jr z, .asm_fd123
 	dec a
-	ld de, $5136
+	ld de, Unknown_fd136
 	jr .asm_fd12e
 
 .asm_fd123
@@ -89799,11 +89912,11 @@ Functionfd117: ; fd117
 	xor a
 
 .asm_fd12b
-	ld de, $515e
+	ld de, Unknown_fd15e
 
 .asm_fd12e
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
@@ -89811,13 +89924,72 @@ Functionfd117: ; fd117
 	ret
 ; fd136
 
-INCBIN "baserom.gbc",$fd136,$fd1d0 - $fd136
+Unknown_fd136: ; fd136
+	db $00, $00, $00, $00, $02, $58, $01, SUPER_POTION
+	db $00, $00, $00, $00, $00, $5a, $01, ANTIDOTE
+	db $00, $00, $00, $00, $00, $b4, $01, POKE_BALL
+	db $00, $00, $00, $00, $01, $c2, $01, ESCAPE_ROPE
+	db $00, $00, $00, $00, $01, $f4, $01, GREAT_BALL
+; fd15e
+
+Unknown_fd15e: ; fd15e
+	db $00, $03, $84, $00, $02, $58, $01, SUPER_POTION
+	db $00, $0f, $a0, $00, $01, $0e, $01, REPEL
+	db $00, $1b, $58, $00, $02, $58, $01, SUPER_POTION
+	db $00, $27, $10, $00, $07, $08, $02, $23 ; CHARMANDER_DOLL
+	db $00, $3a, $98, $00, $0b, $b8, $01, MOON_STONE
+	db $00, $4a, $38, $00, $02, $58, $01, SUPER_POTION
+	db $00, $75, $30, $00, $12, $c0, $02, $20 ; CLEFAIRY_DOLL
+	db $00, $9c, $40, $00, $03, $84, $01, HYPER_POTION
+	db $00, $c3, $50, $00, $1f, $40, $02, $1e ; PIKACHU_DOLL
+	db $01, $86, $a0, $00, $59, $10, $02, $1a ; SNORLAX_DOLL
+; fd1ae
+
+INCBIN "baserom.gbc", $fd1ae, $fd1b1 - $fd1ae
+
+UnknownText_0xfd1b1: ; 0xfd1b1
+	; Hi,  ! How are you?
+	text_jump UnknownText_0x1bc615
+	db "@"
+; 0xfd1b6
+
+UnknownText_0xfd1b6: ; 0xfd1b6
+	; I found a useful item shopping, so
+	text_jump UnknownText_0x1bc62a
+	db "@"
+; 0xfd1bb
+
+UnknownText_0xfd1bb: ; 0xfd1bb
+	; I bought it with your money. Sorry!
+	text_jump UnknownText_0x1bc64e
+	db "@"
+; 0xfd1c0
+
+UnknownText_0xfd1c0: ; 0xfd1c0
+	; It's in your PC. You'll like it!
+	text_jump UnknownText_0x1bc673
+	db "@"
+; 0xfd1c5
+
+UnknownText_0xfd1c5: ; 0xfd1c5
+	; While shopping today, I saw this adorable doll, so
+	text_jump UnknownText_0x1bc693
+	db "@"
+; 0xfd1ca
+
+UnknownText_0xfd1ca: ; 0xfd1ca
+	; It's in your room. You'll love it!
+	text_jump UnknownText_0x1bc6c7
+	db "@"
+; 0xfd1cf
+
+INCBIN "baserom.gbc", $fd1cf, $fd1d0 - $fd1cf
 
 Functionfd1d0: ; fd1d0
 	ret
 ; fd1d1
 
-INCBIN "baserom.gbc",$fd1d1,$fd1d2 - $fd1d1
+INCBIN "baserom.gbc", $fd1d1, $fd1d2 - $fd1d1
 
 
 SECTION "bank40", ROMX, BANK[$40]
