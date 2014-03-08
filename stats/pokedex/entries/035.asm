@@ -1,8 +1,12 @@
 ; ClefairyPokedexEntry: ; 0x1824c8
 	db "FAIRY@" ; species name
-	dw 200, 170; height, width
+	dw 200, 170 ; height, width
 	
-	db "Though rarely", $4e, "seen, it becomes", $4e, "easier to spot,@"
-	db "for some reason,", $4e, "on the night of a ", $4e, "full moon.@"
+	db   "Though rarely"
+	next "seen, it becomes"
+	next "easier to spot,"
+	page "for some reason,"
+	next "on the night of a "
+	next "full moon.@"
 ; 0x182530
 

@@ -196,172 +196,232 @@ MovementData_0x98628: ; 0x98628
 ; 0x9862b
 
 UnknownText_0x9862b: ; 0x9862b
-	db $0, "Astounding…", $51
-	db "SUICUNE, ENTEI and", $4f
-	db "RAIKOU have arisen", $55
-	db "from their sleep…", $51
-	db "Is the legend", $4f
-	db "coming true?", $57
+	text "Astounding…"
+
+	para "SUICUNE, ENTEI and"
+	line "RAIKOU have arisen"
+	cont "from their sleep…"
+
+	para "Is the legend"
+	line "coming true?"
+	done
 ; 0x9868b
 
 UnknownText_0x9868b: ; 0x9868b
-	db $0, "We train at the", $4f
-	db "BURNED TOWER, but", $51
-	db "we've never heard", $4f
-	db "of a hole opening", $51
-	db "up there before.", $4f
-	db "It must have been", $51
-	db "deliberately made", $4f
-	db "by someone.", $57
+	text "We train at the"
+	line "BURNED TOWER, but"
+
+	para "we've never heard"
+	line "of a hole opening"
+
+	para "up there before."
+	line "It must have been"
+
+	para "deliberately made"
+	line "by someone."
+	done
 ; 0x98712
 
 UnknownText_0x98712: ; 0x98712
-	db $0, "TIN TOWER may be", $4f
-	db "entered by those", $51
-	db "bearing ECRUTEAK's", $4f
-	db "GYM BADGE.", $51
-	db "However, now that", $4f
-	db "SUICUNE, RAIKOU", $51
-	db "and ENTEI have", $4f
-	db "arisen, I ask you", $51
-	db "to refrain from", $4f
-	db "entering!", $57
+	text "TIN TOWER may be"
+	line "entered by those"
+
+	para "bearing ECRUTEAK's"
+	line "GYM BADGE."
+
+	para "However, now that"
+	line "SUICUNE, RAIKOU"
+
+	para "and ENTEI have"
+	line "arisen, I ask you"
+
+	para "to refrain from"
+	line "entering!"
+	done
 ; 0x987af
 
 UnknownText_0x987af: ; 0x987af
-	db $0, "We, the WISE TRIO,", $4f
-	db "are the protectors", $51
-	db "of the legendary", $4f
-	db "#MON.", $57
+	text "We, the WISE TRIO,"
+	line "are the protectors"
+
+	para "of the legendary"
+	line "#MON."
+	done
 ; 0x987ed
 
 SageGakuSeenText: ; 0x987ed
-	db $0, "Legend has it that", $4f
-	db "upon the emergence", $51
-	db "of a trainer who", $4f
-	db "has the ability to", $51
-	db "touch the souls of", $4f
-	db "#MON, a #MON", $51
-	db "will come forth to", $4f
-	db "put that trainer", $51
-	db "to test at the TIN", $4f
-	db "TOWER.", $51
-	db "The legend has", $4f
-	db "come true!", $51
-	db "The legendary", $4f
-	db "#MON SUICUNE", $55
-	db "has arrived!", $51
-	db "We, the WISE TRIO,", $4f
-	db "shall test your", $51
-	db "worthiness to go", $4f
-	db "inside!", $57
+	text "Legend has it that"
+	line "upon the emergence"
+
+	para "of a trainer who"
+	line "has the ability to"
+
+	para "touch the souls of"
+	line "#MON, a #MON"
+
+	para "will come forth to"
+	line "put that trainer"
+
+	para "to test at the TIN"
+	line "TOWER."
+
+	para "The legend has"
+	line "come true!"
+
+	para "The legendary"
+	line "#MON SUICUNE"
+	cont "has arrived!"
+
+	para "We, the WISE TRIO,"
+	line "shall test your"
+
+	para "worthiness to go"
+	line "inside!"
+	done
 ; 0x98914
 
 SageGakuBeatenText: ; 0x98914
-	db $0, "Stronger than we", $4f
-	db "thought? Perhaps…", $57
+	text "Stronger than we"
+	line "thought? Perhaps…"
+	done
 ; 0x98938
 
 UnknownText_0x98938: ; 0x98938
-	db $0, "Ah, so it is you", $4f
-	db "who claim to have", $51
-	db "seen SUICUNE,", $4f
-	db "ENTEI and RAIKOU", $55
-	db "while they slept?", $51
-	db "Unbelievable!", $51
-	db "Legend has it that", $4f
-	db "they can't be seen", $55
-	db "while they sleep…", $57
+	text "Ah, so it is you"
+	line "who claim to have"
+
+	para "seen SUICUNE,"
+	line "ENTEI and RAIKOU"
+	cont "while they slept?"
+
+	para "Unbelievable!"
+
+	para "Legend has it that"
+	line "they can't be seen"
+	cont "while they sleep…"
+	done
 ; 0x989d2
 
 SageMasaSeenText: ; 0x989d2
-	db $0, "Can you be trusted", $4f
-	db "with the truth?", $51
-	db "I must ascertain", $4f
-	db "your worthiness.", $57
+	text "Can you be trusted"
+	line "with the truth?"
+
+	para "I must ascertain"
+	line "your worthiness."
+	done
 ; 0x98a18
 
 SageMasaBeatenText: ; 0x98a18
-	db $0, "…I will tell you", $4f
-	db "the truth…", $57
+	text "…I will tell you"
+	line "the truth…"
+	done
 ; 0x98a35
 
 UnknownText_0x98a35: ; 0x98a35
-	db $0, "In the past, there", $4f
-	db "were two nine-tier", $55
-	db "towers here.", $51
-	db "The BRASS TOWER,", $4f
-	db "which was said to", $51
-	db "awaken #MON,", $4f
-	db "and the TIN TOWER,", $51
-	db "where #MON were", $4f
-	db "said to rest.", $51
-	db "The view from the", $4f
-	db "tops of the TOWERS", $51
-	db "must have been", $4f
-	db "magnificent.", $51
-	db "At the time, an", $4f
-	db "immense, silver-", $51
-	db "colored #MON", $4f
-	db "was said to make", $51
-	db "its roost atop the", $4f
-	db "BRASS TOWER.", $51
-	db "However…", $51
-	db "About 150 years", $4f
-	db "ago, a lightning", $51
-	db "bolt struck one of", $4f
-	db "the TOWERS.", $51
-	db "It was engulfed in", $4f
-	db "flames that raged", $55
-	db "for three days.", $51
-	db "A sudden downpour", $4f
-	db "finally put out", $55
-	db "the blaze.", $51
-	db "And that is how", $4f
-	db "the BURNED TOWER", $55
-	db "came to be.", $57
+	text "In the past, there"
+	line "were two nine-tier"
+	cont "towers here."
+
+	para "The BRASS TOWER,"
+	line "which was said to"
+
+	para "awaken #MON,"
+	line "and the TIN TOWER,"
+
+	para "where #MON were"
+	line "said to rest."
+
+	para "The view from the"
+	line "tops of the TOWERS"
+
+	para "must have been"
+	line "magnificent."
+
+	para "At the time, an"
+	line "immense, silver-"
+
+	para "colored #MON"
+	line "was said to make"
+
+	para "its roost atop the"
+	line "BRASS TOWER."
+
+	para "However…"
+
+	para "About 150 years"
+	line "ago, a lightning"
+
+	para "bolt struck one of"
+	line "the TOWERS."
+
+	para "It was engulfed in"
+	line "flames that raged"
+	cont "for three days."
+
+	para "A sudden downpour"
+	line "finally put out"
+	cont "the blaze."
+
+	para "And that is how"
+	line "the BURNED TOWER"
+	cont "came to be."
+	done
 ; 0x98c42
 
 SageKojiSeenText: ; 0x98c42
-	db $0, "Let me see your", $4f
-	db "power!", $57
+	text "Let me see your"
+	line "power!"
+	done
 ; 0x98c5a
 
 SageKojiBeatenText: ; 0x98c5a
-	db $0, "Too strong!", $4f
-	db "Why?", $57
+	text "Too strong!"
+	line "Why?"
+	done
 ; 0x98c6c
 
 UnknownText_0x98c6c: ; 0x98c6c
-	db $0, "You… Are you the", $4f
-	db "trainer who is", $51
-	db "awaited by the", $4f
-	db "legendary #MON?", $57
+	text "You… Are you the"
+	line "trainer who is"
+
+	para "awaited by the"
+	line "legendary #MON?"
+	done
 ; 0x98cac
 
 UnknownText_0x98cac: ; 0x98cac
-	db $0, "I see…", $51
-	db "We, the WISE TRIO,", $4f
-	db "have been given ", $51
-	db "the responsibility", $4f
-	db "of protecting the", $51
-	db "legendary #MON.", $4f
-	db "We are to allow", $51
-	db "passage only to", $4f
-	db "those people who", $51
-	db "possess the power", $4f
-	db "and soul of truth.", $51
-	db "Please, do go on", $4f
-	db "and enter the TIN", $55
-	db "TOWER ahead.", $51
-	db "SUICUNE will put", $4f
-	db "you to the test.", $57
+	text "I see…"
+
+	para "We, the WISE TRIO,"
+	line "have been given "
+
+	para "the responsibility"
+	line "of protecting the"
+
+	para "legendary #MON."
+	line "We are to allow"
+
+	para "passage only to"
+	line "those people who"
+
+	para "possess the power"
+	line "and soul of truth."
+
+	para "Please, do go on"
+	line "and enter the TIN"
+	cont "TOWER ahead."
+
+	para "SUICUNE will put"
+	line "you to the test."
+	done
 ; 0x98db5
 
 UnknownText_0x98db5: ; 0x98db5
-	db $0, "Please, do go on.", $51
-	db "SUICUNE will put", $4f
-	db "you to the test.", $57
+	text "Please, do go on."
+
+	para "SUICUNE will put"
+	line "you to the test."
+	done
 ; 0x98dea
 
 WiseTriosRoom_MapEventHeader: ; 0x98dea

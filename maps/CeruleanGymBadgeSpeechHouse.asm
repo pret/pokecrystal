@@ -11,8 +11,9 @@ PokefanMScript_0x188002: ; 0x188002
 ; 0x188005
 
 UnknownText_0x188005: ; 0x188005
-	db $0, "Are you collecting", $4f
-	db "KANTO GYM BADGES?", $57
+	text "Are you collecting"
+	line "KANTO GYM BADGES?"
+	done
 ; 0x18802b
 
 CeruleanGymBadgeSpeechHouse_MapEventHeader: ; 0x18802b

@@ -30,7 +30,8 @@ MapSilverCaveOutsideSignpostItem2: ; 0x1b2051
 ; 0x1b2054
 
 UnknownText_0x1b2054: ; 0x1b2054
-	db $0, "MT.SILVER", $57
+	text "MT.SILVER"
+	done
 ; 0x1b205f
 
 SilverCaveOutside_MapEventHeader: ; 0x1b205f

@@ -38,39 +38,50 @@ MapSafariZoneWardensHomeSignpost1Script: ; 0x1965e3
 ; 0x1965e6
 
 UnknownText_0x1965e6: ; 0x1965e6
-	db $0, "My grandpa is the", $4f
-	db "SAFARI ZONE WAR-", $55
-	db "DEN.", $51
-	db "At least he was…", $51
-	db "He decided to go", $4f
-	db "on a vacation and", $51
-	db "took off overseas", $4f
-	db "all by himself.", $51
-	db "He quit running", $4f
-	db "SAFARI ZONE just", $55
-	db "like that.", $57
+	text "My grandpa is the"
+	line "SAFARI ZONE WAR-"
+	cont "DEN."
+
+	para "At least he was…"
+
+	para "He decided to go"
+	line "on a vacation and"
+
+	para "took off overseas"
+	line "all by himself."
+
+	para "He quit running"
+	line "SAFARI ZONE just"
+	cont "like that."
+	done
 ; 0x196691
 
 UnknownText_0x196691: ; 0x196691
-	db $0, "Many people were", $4f
-	db "disappointed that", $51
-	db "SAFARI ZONE closed", $4f
-	db "down, but Grandpa", $55
-	db "is so stubborn…", $57
+	text "Many people were"
+	line "disappointed that"
+
+	para "SAFARI ZONE closed"
+	line "down, but Grandpa"
+	cont "is so stubborn…"
+	done
 ; 0x1966ea
 
 UnknownText_0x1966ea: ; 0x1966ea
-	db $0, "It's a photo of a", $4f
-	db "grinning old man", $51
-	db "who's surrounded", $4f
-	db "by #MON.", $57
+	text "It's a photo of a"
+	line "grinning old man"
+
+	para "who's surrounded"
+	line "by #MON."
+	done
 ; 0x196726
 
 UnknownText_0x196726: ; 0x196726
-	db $0, "It's a photo of a", $4f
-	db "huge grassy plain", $51
-	db "with rare #MON", $4f
-	db "frolicking in it.", $57
+	text "It's a photo of a"
+	line "huge grassy plain"
+
+	para "with rare #MON"
+	line "frolicking in it."
+	done
 ; 0x19676b
 
 SafariZoneWardensHome_MapEventHeader: ; 0x19676b

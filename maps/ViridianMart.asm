@@ -22,16 +22,19 @@ CooltrainerMScript_0x9b5f1: ; 0x9b5f1
 ; 0x9b5f4
 
 UnknownText_0x9b5f4: ; 0x9b5f4
-	db $0, "The GYM LEADER", $4f
-	db "here is totally", $55
-	db "cool.", $57
+	text "The GYM LEADER"
+	line "here is totally"
+	cont "cool."
+	done
 ; 0x9b61a
 
 UnknownText_0x9b61a: ; 0x9b61a
-	db $0, "Have you been to", $4f
-	db "CINNABAR?", $51
-	db "It's an island way", $4f
-	db "south of here.", $57
+	text "Have you been to"
+	line "CINNABAR?"
+
+	para "It's an island way"
+	line "south of here."
+	done
 ; 0x9b657
 
 ViridianMart_MapEventHeader: ; 0x9b657

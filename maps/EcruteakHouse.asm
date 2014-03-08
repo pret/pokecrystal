@@ -171,102 +171,138 @@ MovementData_0x980cc: ; 0x980cc
 ; 0x980d1
 
 UnknownText_0x980d1: ; 0x980d1
-	db $0, "TIN TOWER is off", $4f
-	db "limits to anyone", $51
-	db "without ECRUTEAK", $4f
-	db "GYM's BADGE.", $51
-	db "Sorry, but you'll", $4f
-	db "have to leave.", $57
+	text "TIN TOWER is off"
+	line "limits to anyone"
+
+	para "without ECRUTEAK"
+	line "GYM's BADGE."
+
+	para "Sorry, but you'll"
+	line "have to leave."
+	done
 ; 0x98131
 
 UnknownText_0x98131: ; 0x98131
-	db $0, "TIN TOWER is off", $4f
-	db "limits to anyone", $51
-	db "without ECRUTEAK", $4f
-	db "GYM's BADGE.", $51
-	db "Ah!", $51
-	db "ECRUTEAK's GYM", $4f
-	db "BADGE! Please, go", $55
-	db "right through.", $57
+	text "TIN TOWER is off"
+	line "limits to anyone"
+
+	para "without ECRUTEAK"
+	line "GYM's BADGE."
+
+	para "Ah!"
+
+	para "ECRUTEAK's GYM"
+	line "BADGE! Please, go"
+	cont "right through."
+	done
 ; 0x981a4
 
 UnknownText_0x981a4: ; 0x981a4
-	db $0, "A momentous event", $4f
-	db "has occurred.", $51
-	db "I beg your pardon,", $4f
-	db "but I must ask you", $55
-	db "to leave.", $51
-	db "…What soothes the", $4f
-	db "soul…", $51
-	db "The WISE TRIO say", $4f
-	db "things that are so", $51
-	db "very difficult to", $4f
-	db "understand…", $57
+	text "A momentous event"
+	line "has occurred."
+
+	para "I beg your pardon,"
+	line "but I must ask you"
+	cont "to leave."
+
+	para "…What soothes the"
+	line "soul…"
+
+	para "The WISE TRIO say"
+	line "things that are so"
+
+	para "very difficult to"
+	line "understand…"
+	done
 ; 0x98250
 
 UnknownText_0x98250: ; 0x98250
-	db $0, "A momentous event", $4f
-	db "has occurred.", $51
-	db "I beg your pardon,", $4f
-	db "but I must ask you", $55
-	db "to leave.", $51
-	db $56, $56, $56, $51
-	db "Ah!", $51
-	db "The sound of that", $4f
-	db "CLEAR BELL!", $51
-	db "It… It's sublime!", $51
-	db "I've never heard", $4f
-	db "so beautiful a", $55
-	db "sound before!", $51
-	db "That bell's chime", $4f
-	db "is indicative of", $55
-	db "the bearer's soul.", $51
-	db "You…", $51
-	db "You may be able to", $4f
-	db "make it through", $55
-	db "TIN TOWER.", $51
-	db "Please, do go on.", $57
+	text "A momentous event"
+	line "has occurred."
+
+	para "I beg your pardon,"
+	line "but I must ask you"
+	cont "to leave."
+
+	para $56, $56, $56
+
+	para "Ah!"
+
+	para "The sound of that"
+	line "CLEAR BELL!"
+
+	para "It… It's sublime!"
+
+	para "I've never heard"
+	line "so beautiful a"
+	cont "sound before!"
+
+	para "That bell's chime"
+	line "is indicative of"
+	cont "the bearer's soul."
+
+	para "You…"
+
+	para "You may be able to"
+	line "make it through"
+	cont "TIN TOWER."
+
+	para "Please, do go on."
+	done
 ; 0x9837e
 
 UnknownText_0x9837e: ; 0x9837e
-	db $0, "Please, do go on.", $57
+	text "Please, do go on."
+	done
 ; 0x98391
 
 UnknownText_0x98391: ; 0x98391
-	db $0, "That bell's chime", $4f
-	db "is indicative of", $55
-	db "the bearer's soul.", $51
-	db "You…", $51
-	db "You may be able to", $4f
-	db "make it through", $55
-	db "TIN TOWER.", $51
-	db "Please, do go on.", $57
+	text "That bell's chime"
+	line "is indicative of"
+	cont "the bearer's soul."
+
+	para "You…"
+
+	para "You may be able to"
+	line "make it through"
+	cont "TIN TOWER."
+
+	para "Please, do go on."
+	done
 ; 0x9840b
 
 UnknownText_0x9840b: ; 0x9840b
-	db $0, "The TIN TOWER", $4f
-	db "ahead is a nine-", $51
-	db "tier tower of", $4f
-	db "divine beauty.", $51
-	db "It soothes the", $4f
-	db "soul of all who", $55
-	db "see it.", $57
+	text "The TIN TOWER"
+	line "ahead is a nine-"
+
+	para "tier tower of"
+	line "divine beauty."
+
+	para "It soothes the"
+	line "soul of all who"
+	cont "see it."
+	done
 ; 0x9846f
 
 UnknownText_0x9846f: ; 0x9846f
-	db $0, "The TIN TOWER", $4f
-	db "shook! A #MON", $51
-	db "must have returned", $4f
-	db "to the top!", $57
+	text "The TIN TOWER"
+	line "shook! A #MON"
+
+	para "must have returned"
+	line "to the top!"
+	done
 ; 0x984ab
 
 UnknownText_0x984ab: ; 0x984ab
-	db $0, "Two towers…", $4f
-	db "Two #MON…", $51
-	db "But when one", $4f
-	db "burned down, both", $51
-	db "#MON flew away,", $4f
-	db "never to return.", $57
+	text "Two towers…"
+	line "Two #MON…"
+
+	para "But when one"
+	line "burned down, both"
+
+	para "#MON flew away,"
+	line "never to return."
+	done
 ; 0x98502
 
 EcruteakHouse_MapEventHeader: ; 0x98502

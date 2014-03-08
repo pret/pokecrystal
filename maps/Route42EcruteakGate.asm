@@ -11,10 +11,12 @@ OfficerScript_0x19a4b5: ; 0x19a4b5
 ; 0x19a4b8
 
 UnknownText_0x19a4b8: ; 0x19a4b8
-	db $0, "MT.MORTAR is like", $4f
-	db "a maze inside.", $51
-	db "Be careful. Don't", $4f
-	db "get lost in there.", $57
+	text "MT.MORTAR is like"
+	line "a maze inside."
+
+	para "Be careful. Don't"
+	line "get lost in there."
+	done
 ; 0x19a4fe
 
 Route42EcruteakGate_MapEventHeader: ; 0x19a4fe

@@ -22,16 +22,19 @@ BuenaScript_0x191f88: ; 0x191f88
 ; 0x191f8b
 
 UnknownText_0x191f8b: ; 0x191f8b
-	db $0, "TEAM ROCKET is no", $4f
-	db "longer in KANTO.", $51
-	db "That alone makes", $4f
-	db "me happy.", $57
+	text "TEAM ROCKET is no"
+	line "longer in KANTO."
+
+	para "That alone makes"
+	line "me happy."
+	done
 ; 0x191fca
 
 UnknownText_0x191fca: ; 0x191fca
-	db $0, "I'm thinking about", $4f
-	db "going shopping in", $55
-	db "SAFFRON.", $57
+	text "I'm thinking about"
+	line "going shopping in"
+	cont "SAFFRON."
+	done
 ; 0x191ff8
 
 VermilionMart_MapEventHeader: ; 0x191ff8

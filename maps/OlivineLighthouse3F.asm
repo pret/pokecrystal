@@ -98,63 +98,77 @@ ItemFragment_0x5b279: ; 0x5b279
 ; 0x5b27b
 
 Bird_keeperTheoSeenText: ; 0x5b27b
-	db $0, "Why are you here?", $4f
-	db "Are you just going", $51
-	db "to gawk? I suggest", $4f
-	db "that you leave!", $57
+	text "Why are you here?"
+	line "Are you just going"
+
+	para "to gawk? I suggest"
+	line "that you leave!"
+	done
 ; 0x5b2c4
 
 Bird_keeperTheoBeatenText: ; 0x5b2c4
-	db $0, "You really are", $4f
-	db "concerned…", $57
+	text "You really are"
+	line "concerned…"
+	done
 ; 0x5b2df
 
 UnknownText_0x5b2df: ; 0x5b2df
-	db $0, "How the heck do", $4f
-	db "you go up?", $51
-	db "I want to visit", $4f
-	db "the sick #MON,", $51
-	db "but I can't get up", $4f
-	db "there…", $57
+	text "How the heck do"
+	line "you go up?"
+
+	para "I want to visit"
+	line "the sick #MON,"
+
+	para "but I can't get up"
+	line "there…"
+	done
 ; 0x5b333
 
 SailorTerrellSeenText: ; 0x5b333
-	db $0, "Sailors are both", $4f
-	db "kind and strong.", $55
-	db "How about you?", $57
+	text "Sailors are both"
+	line "kind and strong."
+	cont "How about you?"
+	done
 ; 0x5b365
 
 SailorTerrellBeatenText: ; 0x5b365
-	db $0, "You are both kind", $4f
-	db "and strong…", $57
+	text "You are both kind"
+	line "and strong…"
+	done
 ; 0x5b384
 
 UnknownText_0x5b384: ; 0x5b384
-	db $0, "Every time I come", $4f
-	db "back to OLIVINE, I", $55
-	db "visit the GYM.", $51
-	db "The GYM LEADER's", $4f
-	db "#MON type has", $51
-	db "changed without me", $4f
-	db "noticing.", $57
+	text "Every time I come"
+	line "back to OLIVINE, I"
+	cont "visit the GYM."
+
+	para "The GYM LEADER's"
+	line "#MON type has"
+
+	para "changed without me"
+	line "noticing."
+	done
 ; 0x5b3f4
 
 GentlemanPrestonSeenText: ; 0x5b3f4
-	db $0, "I travel the world", $4f
-	db "to train my #-", $55
-	db "MON. I wish to", $55
-	db "battle with you.", $57
+	text "I travel the world"
+	line "to train my #-"
+	cont "MON. I wish to"
+	cont "battle with you."
+	done
 ; 0x5b437
 
 GentlemanPrestonBeatenText: ; 0x5b437
-	db $0, "…sigh… I must", $4f
-	db "train some more…", $57
+	text "…sigh… I must"
+	line "train some more…"
+	done
 ; 0x5b457
 
 UnknownText_0x5b457: ; 0x5b457
-	db $0, "JASMINE used to", $4f
-	db "use rock #MON", $55
-	db "like ONIX.", $57
+	text "JASMINE used to"
+	line "use rock #MON"
+	cont "like ONIX."
+	done
 ; 0x5b481
 
 OlivineLighthouse3F_MapEventHeader: ; 0x5b481

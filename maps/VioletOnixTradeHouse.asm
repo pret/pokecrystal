@@ -20,13 +20,16 @@ YoungsterScript_0x69990: ; 0x69990
 ; 0x69997
 
 UnknownText_0x69997: ; 0x69997
-	db $0, "A #MON you get", $4f
-	db "in a trade grows", $55
-	db "quickly.", $51
-	db "But if you don't", $4f
-	db "have the right GYM", $51
-	db "BADGE, they may", $4f
-	db "disobey you.", $57
+	text "A #MON you get"
+	line "in a trade grows"
+	cont "quickly."
+
+	para "But if you don't"
+	line "have the right GYM"
+
+	para "BADGE, they may"
+	line "disobey you."
+	done
 ; 0x69a01
 
 VioletOnixTradeHouse_MapEventHeader: ; 0x69a01

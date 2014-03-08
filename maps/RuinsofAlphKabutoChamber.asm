@@ -171,96 +171,122 @@ MovementData_0x587fe: ; 0x587fe
 ; 0x58800
 
 UnknownText_0x58800: ; 0x58800
-	db $0, "Welcome to this", $4f
-	db "chamber.", $51
-	db "There are sliding", $4f
-	db "panels that depict", $51
-	db "a #MON drawn by", $4f
-	db "the ancients.", $51
-	db "Slide the panels", $4f
-	db "around to form the", $55
-	db "picture.", $51
-	db "To the right is a", $4f
-	db "description of the", $55
-	db "#MON.", $51
-	db "Scientists in the", $4f
-	db "back are examining", $51
-	db "some newly found", $4f
-	db "patterns.", $57
+	text "Welcome to this"
+	line "chamber."
+
+	para "There are sliding"
+	line "panels that depict"
+
+	para "a #MON drawn by"
+	line "the ancients."
+
+	para "Slide the panels"
+	line "around to form the"
+	cont "picture."
+
+	para "To the right is a"
+	line "description of the"
+	cont "#MON."
+
+	para "Scientists in the"
+	line "back are examining"
+
+	para "some newly found"
+	line "patterns."
+	done
 ; 0x588f5
 
 UnknownText_0x588f5: ; 0x588f5
-	db $0, "Recently, strange,", $4f
-	db "cryptic patterns", $55
-	db "have appeared.", $51
-	db "It's odd. They", $4f
-	db "weren't here a", $55
-	db "little while ago…", $51
-	db "You should take a", $4f
-	db "look at the walls.", $57
+	text "Recently, strange,"
+	line "cryptic patterns"
+	cont "have appeared."
+
+	para "It's odd. They"
+	line "weren't here a"
+	cont "little while ago…"
+
+	para "You should take a"
+	line "look at the walls."
+	done
 ; 0x5897c
 
 UnknownText_0x5897c: ; 0x5897c
-	db $0, "Ah! Here's another", $4f
-	db "huge hole!", $51
-	db "It's big enough to", $4f
-	db "go through!", $57
+	text "Ah! Here's another"
+	line "huge hole!"
+
+	para "It's big enough to"
+	line "go through!"
+	done
 ; 0x589b8
 
 UnknownText_0x589b8: ; 0x589b8
-	db $0, "That tremor was", $4f
-	db "pretty scary!", $51
-	db "But I'm more", $4f
-	db "concerned about", $55
-	db "this wall here…", $57
+	text "That tremor was"
+	line "pretty scary!"
+
+	para "But I'm more"
+	line "concerned about"
+	cont "this wall here…"
+	done
 ; 0x58a03
 
 ; possibly unused
 UnknownText_0x58a03: ; 0x58a03
-	db $0, "The patterns on", $4f
-	db "the wall appear to", $55
-	db "be words!", $51
-	db "And those sliding", $4f
-	db "stone panels seem", $51
-	db "to be signals of", $4f
-	db "some kind.", $51
-	db "I think they make", $4f
-	db "#MON appear,", $51
-	db "but it's not clear", $4f
-	db "yet…", $57
+	text "The patterns on"
+	line "the wall appear to"
+	cont "be words!"
+
+	para "And those sliding"
+	line "stone panels seem"
+
+	para "to be signals of"
+	line "some kind."
+
+	para "I think they make"
+	line "#MON appear,"
+
+	para "but it's not clear"
+	line "yet…"
+	done
 ; 0x58aa7
 
 UnknownText_0x58aa7: ; 0x58aa7
-	db $0, "Patterns appeared", $4f
-	db "on the walls…", $57
+	text "Patterns appeared"
+	line "on the walls…"
+	done
 ; 0x58ac8
 
 ; possibly unused
 UnknownText_0x58ac8: ; 0x58ac8
-	db $0, "It's UNOWN text!", $57
+	text "It's UNOWN text!"
+	done
 ; 0x58ad9
 
 UnknownText_0x58ad9: ; 0x58ad9
-	db $0, "Patterns appeared", $4f
-	db "on the walls…", $57
+	text "Patterns appeared"
+	line "on the walls…"
+	done
 ; 0x58afa
 
 UnknownText_0x58afa: ; 0x58afa
-	db $0, "There's a big hole", $4f
-	db "in the wall!", $57
+	text "There's a big hole"
+	line "in the wall!"
+	done
 ; 0x58b1a
 
 UnknownText_0x58b1a: ; 0x58b1a
-	db $0, "It's a replica of", $4f
-	db "an ancient #-", $55
-	db "MON.", $57
+	text "It's a replica of"
+	line "an ancient #-"
+	cont "MON."
+	done
 ; 0x58b3f
 
 UnknownText_0x58b3f: ; 0x58b3f
-	db $0, "A #MON that hid", $4f
-	db "on the sea floor.", $51
-	db "Eyes on its back", $4f
-	db "scanned the area.", $57
+	text "A #MON that hid"
+	line "on the sea floor."
+
+	para "Eyes on its back"
+	line "scanned the area."
+	done
 ; 0x58b85
 
 RuinsofAlphKabutoChamber_MapEventHeader: ; 0x58b85

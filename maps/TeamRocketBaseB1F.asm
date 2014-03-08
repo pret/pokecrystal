@@ -699,90 +699,112 @@ SecurityCameraMovement9: ; 0x6cb0c
 ; 0x6cb12
 
 CameraGrunt1SeenText: ; 0x6cb12
-	db $0, "Hey!", $4f
-	db "Intruder alert!", $57
+	text "Hey!"
+	line "Intruder alert!"
+	done
 ; 0x6cb28
 
 CameraGrunt1BeatenText: ; 0x6cb28
-	db $0, "Dang… I failed…", $57
+	text "Dang… I failed…"
+	done
 ; 0x6cb39
 
 CameraGrunt2SeenText: ; 0x6cb39
-	db $0, "It's my turn!", $4f
-	db "There's no escape!", $57
+	text "It's my turn!"
+	line "There's no escape!"
+	done
 ; 0x6cb59
 
 CameraGrunt2BeatenText: ; 0x6cb59
-	db $0, "Surveillance cams", $4f
-	db "are in the #MON", $55
-	db "statues.", $51
-	db "We'll keep appear-", $4f
-	db "ing until you trip", $55
-	db "a secret switch.", $57
+	text "Surveillance cams"
+	line "are in the #MON"
+	cont "statues."
+
+	para "We'll keep appear-"
+	line "ing until you trip"
+	cont "a secret switch."
+	done
 ; 0x6cbbb
 
 ScientistJedSeenText: ; 0x6cbbb
-	db $0, "This was once a", $4f
-	db "ninja hideout.", $51
-	db "There are traps to", $4f
-	db "confound intruders", $55
-	db "like you.", $57
+	text "This was once a"
+	line "ninja hideout."
+
+	para "There are traps to"
+	line "confound intruders"
+	cont "like you."
+	done
 ; 0x6cc0b
 
 ScientistJedBeatenText: ; 0x6cc0b
-	db $0, "I get it…", $57
+	text "I get it…"
+	done
 ; 0x6cc16
 
 UnknownText_0x6cc16: ; 0x6cc16
-	db $0, "All right. I'll", $4f
-	db "divulge a secret", $55
-	db "about our hideout.", $51
-	db "That thing on the", $4f
-	db "floor up ahead is", $55
-	db "a warp panel.", $51
-	db "If you step on it,", $4f
-	db "you'll be warped", $51
-	db "back to the en-", $4f
-	db "trance.", $57
+	text "All right. I'll"
+	line "divulge a secret"
+	cont "about our hideout."
+
+	para "That thing on the"
+	line "floor up ahead is"
+	cont "a warp panel."
+
+	para "If you step on it,"
+	line "you'll be warped"
+
+	para "back to the en-"
+	line "trance."
+	done
 ; 0x6ccb7
 
 GruntM16SeenText: ; 0x6ccb7
-	db $0, "Heheh. Feeling", $4f
-	db "lucky, punk?", $51
-	db "Go ahead, take", $4f
-	db "another step.", $51
-	db "We've got traps", $4f
-	db "set in the floor!", $57
+	text "Heheh. Feeling"
+	line "lucky, punk?"
+
+	para "Go ahead, take"
+	line "another step."
+
+	para "We've got traps"
+	line "set in the floor!"
+	done
 ; 0x6cd12
 
 GruntM16BeatenText: ; 0x6cd12
-	db $0, "Kaboom!", $57
+	text "Kaboom!"
+	done
 ; 0x6cd1b
 
 UnknownText_0x6cd1b: ; 0x6cd1b
-	db $0, "I don't even know", $4f
-	db "where the traps", $55
-	db "are planted.", $51
-	db "You'll just have", $4f
-	db "to collect your", $55
-	db "courage and walk.", $57
+	text "I don't even know"
+	line "where the traps"
+	cont "are planted."
+
+	para "You'll just have"
+	line "to collect your"
+	cont "courage and walk."
+	done
 ; 0x6cd7c
 
 SecurityCameraText: ; 0x6cd7c
-	db $0, "It's a PERSIAN", $4f
-	db "statue…", $51
-	db "Its eyes are oddly", $4f
-	db "shiny.", $57
+	text "It's a PERSIAN"
+	line "statue…"
+
+	para "Its eyes are oddly"
+	line "shiny."
+	done
 ; 0x6cdad
 
 UnknownText_0x6cdad: ; 0x6cdad
-	db $0, "A secret switch!", $4f
-	db "Better press it.", $57
+	text "A secret switch!"
+	line "Better press it."
+	done
 ; 0x6cdd0
 
 UnknownText_0x6cdd0: ; 0x6cdd0
-	db $0, "The switch is", $4f
-	db "turned off.", $57
+	text "The switch is"
+	line "turned off."
+	done
 ; 0x6cdeb
 
 TeamRocketBaseB1F_MapEventHeader: ; 0x6cdeb

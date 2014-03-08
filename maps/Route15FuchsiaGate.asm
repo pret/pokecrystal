@@ -11,10 +11,12 @@ OfficerScript_0x19679e: ; 0x19679e
 ; 0x1967a1
 
 UnknownText_0x1967a1: ; 0x1967a1
-	db $0, "You're working on", $4f
-	db "a #DEX? That's", $51
-	db "really something.", $4f
-	db "Don't give up!", $57
+	text "You're working on"
+	line "a #DEX? That's"
+
+	para "really something."
+	line "Don't give up!"
+	done
 ; 0x1967e1
 
 Route15FuchsiaGate_MapEventHeader: ; 0x1967e1

@@ -83,43 +83,53 @@ MapOlivineLighthouse5FSignpostItem0: ; 0x609b0
 ; 0x609b3
 
 SailorErnestSeenText: ; 0x609b3
-	db $0, "I wanted to battle", $4f
-	db "JASMINE, but she's", $51
-	db "not up to it now.", $4f
-	db "So, how about you?", $57
+	text "I wanted to battle"
+	line "JASMINE, but she's"
+
+	para "not up to it now."
+	line "So, how about you?"
+	done
 ; 0x609fe
 
 SailorErnestBeatenText: ; 0x609fe
-	db $0, "Whoa, whoa. You're", $4f
-	db "overwhelming!", $57
+	text "Whoa, whoa. You're"
+	line "overwhelming!"
+	done
 ; 0x60a1f
 
 UnknownText_0x60a1f: ; 0x60a1f
-	db $0, "A GYM LEADER isn't", $4f
-	db "just about being", $51
-	db "strong. A LEADER", $4f
-	db "also needs to be", $55
-	db "compassionate.", $57
+	text "A GYM LEADER isn't"
+	line "just about being"
+
+	para "strong. A LEADER"
+	line "also needs to be"
+	cont "compassionate."
+	done
 ; 0x60a74
 
 Bird_keeperDenisSeenText: ; 0x60a74
-	db $0, "We're pretty high", $4f
-	db "up here. My bird", $51
-	db "#MON are in", $4f
-	db "prime form.", $57
+	text "We're pretty high"
+	line "up here. My bird"
+
+	para "#MON are in"
+	line "prime form."
+	done
 ; 0x60aaf
 
 Bird_keeperDenisBeatenText: ; 0x60aaf
-	db $0, "Oops…They crashed…", $57
+	text "Oops…They crashed…"
+	done
 ; 0x60ac3
 
 UnknownText_0x60ac3: ; 0x60ac3
-	db $0, "My #MON learned", $4f
-	db "how to use FLY in", $55
-	db "CIANWOOD.", $51
-	db "Well, since I'm a", $4f
-	db "loser, I'll FLY", $55
-	db "across the sea…", $57
+	text "My #MON learned"
+	line "how to use FLY in"
+	cont "CIANWOOD."
+
+	para "Well, since I'm a"
+	line "loser, I'll FLY"
+	cont "across the sea…"
+	done
 ; 0x60b20
 
 OlivineLighthouse5F_MapEventHeader: ; 0x60b20

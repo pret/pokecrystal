@@ -434,222 +434,291 @@ MovementData_0x18d2e3: ; 0x18d2e3
 ; 0x18d2ea
 
 UnknownText_0x18d2ea: ; 0x18d2ea
-	db $0, "Hm… Good to see", $4f
-	db "you here.", $51
-	db "No need to explain", $4f
-	db "why you came.", $51
-	db "CLAIR sent you", $4f
-	db "here, didn't she?", $51
-	db "That girl is a", $4f
-	db "handful…", $51
-	db "I am sorry, but I", $4f
-	db "must test you.", $51
-	db "Not to worry, you", $4f
-	db "are to answer only", $55
-	db "a few questions.", $51
-	db "Ready?", $57
+	text "Hm… Good to see"
+	line "you here."
+
+	para "No need to explain"
+	line "why you came."
+
+	para "CLAIR sent you"
+	line "here, didn't she?"
+
+	para "That girl is a"
+	line "handful…"
+
+	para "I am sorry, but I"
+	line "must test you."
+
+	para "Not to worry, you"
+	line "are to answer only"
+	cont "a few questions."
+
+	para "Ready?"
+	done
 ; 0x18d3bc
 
 UnknownText_0x18d3bc: ; 0x18d3bc
-	db $0, "What are #MON", $4f
-	db "to you?", $57
+	text "What are #MON"
+	line "to you?"
+	done
 ; 0x18d3d3
 
 UnknownText_0x18d3d3: ; 0x18d3d3
-	db $0, "What helps you to", $4f
-	db "win battles?", $57
+	text "What helps you to"
+	line "win battles?"
+	done
 ; 0x18d3f3
 
 UnknownText_0x18d3f3: ; 0x18d3f3
-	db $0, "What kind of", $4f
-	db "trainer do you", $55
-	db "wish to battle?", $57
+	text "What kind of"
+	line "trainer do you"
+	cont "wish to battle?"
+	done
 ; 0x18d420
 
 UnknownText_0x18d420: ; 0x18d420
-	db $0, "What is most", $4f
-	db "important for", $55
-	db "raising #MON?", $57
+	text "What is most"
+	line "important for"
+	cont "raising #MON?"
+	done
 ; 0x18d44a
 
 UnknownText_0x18d44a: ; 0x18d44a
-	db $0, "Strong #MON.", $4f
-	db "Weak #MON.", $51
-	db "Which is more", $4f
-	db "important?", $57
+	text "Strong #MON."
+	line "Weak #MON."
+
+	para "Which is more"
+	line "important?"
+	done
 ; 0x18d47c
 
 UnknownText_0x18d47c: ; 0x18d47c
-	db $0, "Hm… I see…", $51
-	db "You care deeply", $4f
-	db "for #MON.", $51
-	db "Very commendable.", $51
-	db "That conviction is", $4f
-	db "what is important!", $51
-	db $52, ", don't", $4f
-	db "lose that belief.", $51
-	db "It will see you", $4f
-	db "through at the", $55
-	db "#MON LEAGUE.", $57
+	text "Hm… I see…"
+
+	para "You care deeply"
+	line "for #MON."
+
+	para "Very commendable."
+
+	para "That conviction is"
+	line "what is important!"
+
+	para $52, ", don't"
+	line "lose that belief."
+
+	para "It will see you"
+	line "through at the"
+	cont "#MON LEAGUE."
+	done
 ; 0x18d520
 
 UnknownText_0x18d520: ; 0x18d520
-	db $0, "CLAIR!", $51
-	db "This child is", $4f
-	db "impeccable, in", $55
-	db "skill and spirit!", $51
-	db "Admit defeat and", $4f
-	db "confer the RISING-", $55
-	db "BADGE!", $51
-	db "…Or must I inform", $4f
-	db "LANCE of this?", $57
+	text "CLAIR!"
+
+	para "This child is"
+	line "impeccable, in"
+	cont "skill and spirit!"
+
+	para "Admit defeat and"
+	line "confer the RISING-"
+	cont "BADGE!"
+
+	para "…Or must I inform"
+	line "LANCE of this?"
+	done
 ; 0x18d5a3
 
 UnknownText_0x18d5a3: ; 0x18d5a3
-	db $0, "CLAIR…", $51
-	db "Reflect upon what", $4f
-	db "it is that you", $51
-	db "lack and this", $4f
-	db "child has.", $57
+	text "CLAIR…"
+
+	para "Reflect upon what"
+	line "it is that you"
+
+	para "lack and this"
+	line "child has."
+	done
 ; 0x18d5e5
 
 UnknownText_0x18d5e5: ; 0x18d5e5
-	db $0, "Come again, if you", $4f
-	db "so desire.", $57
+	text "Come again, if you"
+	line "so desire."
+	done
 ; 0x18d604
 
 UnknownText_0x18d604: ; 0x18d604
-	db $0, "Hm… Good to see", $4f
-	db "you here.", $51
-	db "Your arrival is", $4f
-	db "most fortunate.", $51
-	db "I have something", $4f
-	db "for you.", $51
-	db "Take this DRATINI", $4f
-	db "as proof that I", $51
-	db "have recognized", $4f
-	db "your worth.", $57
+	text "Hm… Good to see"
+	line "you here."
+
+	para "Your arrival is"
+	line "most fortunate."
+
+	para "I have something"
+	line "for you."
+
+	para "Take this DRATINI"
+	line "as proof that I"
+
+	para "have recognized"
+	line "your worth."
+	done
 ; 0x18d697
 
 UnknownText_0x18d697: ; 0x18d697
-	db $0, $52, " received", $4f
-	db "DRATINI!", $57
+	text $52, " received"
+	line "DRATINI!"
+	done
 ; 0x18d6ac
 
 UnknownText_0x18d6ac: ; 0x18d6ac
-	db $0, "Hm? Your #MON", $4f
-	db "party is full.", $57
+	text "Hm? Your #MON"
+	line "party is full."
+	done
 ; 0x18d6ca
 
 UnknownText_0x18d6ca: ; 0x18d6ca
-	db $0, "Dragon #MON are", $4f
-	db "symbolic of our", $55
-	db "clan.", $51
-	db "You have shown", $4f
-	db "that you can be", $51
-	db "entrusted with", $4f
-	db "one.", $57
+	text "Dragon #MON are"
+	line "symbolic of our"
+	cont "clan."
+
+	para "You have shown"
+	line "that you can be"
+
+	para "entrusted with"
+	line "one."
+	done
 ; 0x18d724
 
 UnknownText_0x18d724: ; 0x18d724
-	db $0, "CLAIR appears to", $4f
-	db "have learned an", $51
-	db "invaluable lesson", $4f
-	db "from you.", $51
-	db "I thank you as her", $4f
-	db "grandfather.", $57
+	text "CLAIR appears to"
+	line "have learned an"
+
+	para "invaluable lesson"
+	line "from you."
+
+	para "I thank you as her"
+	line "grandfather."
+	done
 ; 0x18d782
 
 UnknownText_0x18d782: ; 0x18d782
-	db $0, "A boy close to", $4f
-	db "your age is in", $55
-	db "training here.", $51
-	db "He is much like", $4f
-	db "CLAIR when she was", $51
-	db "younger. It is a", $4f
-	db "little worrisome…", $57
+	text "A boy close to"
+	line "your age is in"
+	cont "training here."
+
+	para "He is much like"
+	line "CLAIR when she was"
+
+	para "younger. It is a"
+	line "little worrisome…"
+	done
 ; 0x18d7f6
 
 UnknownText_0x18d7f6: ; 0x18d7f6
-	db $0, "Hah? I didn't", $4f
-	db "quite catch that…", $57
+	text "Hah? I didn't"
+	line "quite catch that…"
+	done
 ; 0x18d816
 
 UnknownText_0x18d816: ; 0x18d816
-	db $0, "What was it you", $4f
-	db "said?", $57
+	text "What was it you"
+	line "said?"
+	done
 ; 0x18d82d
 
 UnknownText_0x18d82d: ; 0x18d82d
-	db $0, "Oh, I understand…", $57
+	text "Oh, I understand…"
+	done
 ; 0x18d840
 
 UnknownText_0x18d840: ; 0x18d840
-	db $0, "It's been quite", $4f
-	db "some time since a", $51
-	db "trainer has gained", $4f
-	db "our MASTER's rare", $55
-	db "approval.", $51
-	db "In fact, not since", $4f
-	db "Master LANCE.", $57
+	text "It's been quite"
+	line "some time since a"
+
+	para "trainer has gained"
+	line "our MASTER's rare"
+	cont "approval."
+
+	para "In fact, not since"
+	line "Master LANCE."
+	done
 ; 0x18d8b1
 
 UnknownText_0x18d8b1: ; 0x18d8b1
-	db $0, "You know young", $4f
-	db "Master LANCE?", $51
-	db "He looks so much", $4f
-	db "like our MASTER", $55
-	db "did in his youth.", $51
-	db "It's in their", $4f
-	db "blood.", $57
+	text "You know young"
+	line "Master LANCE?"
+
+	para "He looks so much"
+	line "like our MASTER"
+	cont "did in his youth."
+
+	para "It's in their"
+	line "blood."
+	done
 ; 0x18d916
 
 UnknownText_0x18d916: ; 0x18d916
-	db $0, "So how did it go?", $51
-	db "I guess there's no", $4f
-	db "point in asking.", $51
-	db "You did fail?", $51
-	db $56, $56, $56, $56, $56, $56, $51
-	db "…What? You passed?", $57
+	text "So how did it go?"
+
+	para "I guess there's no"
+	line "point in asking."
+
+	para "You did fail?"
+
+	para $56, $56, $56, $56, $56, $56
+
+	para "…What? You passed?"
+	done
 ; 0x18d974
 
 UnknownText_0x18d974: ; 0x18d974
-	db $0, "That can't be!", $57
+	text "That can't be!"
+	done
 ; 0x18d983
 
 UnknownText_0x18d983: ; 0x18d983
-	db $0, "You're lying!", $51
-	db "Even I haven't", $4f
-	db "been approved!", $57
+	text "You're lying!"
+
+	para "Even I haven't"
+	line "been approved!"
+	done
 ; 0x18d9ae
 
 UnknownText_0x18d9ae: ; 0x18d9ae
-	db $0, "I-I understand…", $57
+	text "I-I understand…"
+	done
 ; 0x18d9bf
 
 UnknownText_0x18d9bf: ; 0x18d9bf
-	db $0, "Here, this is the", $4f
-	db "RISINGBADGE…", $51
-	db "Hurry up! Take it!", $57
+	text "Here, this is the"
+	line "RISINGBADGE…"
+
+	para "Hurry up! Take it!"
+	done
 ; 0x18d9f2
 
 UnknownText_0x18d9f2: ; 0x18d9f2
-	db $0, $52, " received", $4f
-	db "RISINGBADGE.", $57
+	text $52, " received"
+	line "RISINGBADGE."
+	done
 ; 0x18da0b
 
 UnknownText_0x18da0b: ; 0x18da0b
-	db $0, "RISINGBADGE will", $4f
-	db "enable your", $51
-	db "#MON to use the", $4f
-	db "move for climbing", $55
-	db "waterfalls.", $51
-	db "Also, all #MON", $4f
-	db "will recognize you", $51
-	db "as a trainer and", $4f
-	db "obey your every", $51
-	db "command without", $4f
-	db "question.", $57
+	text "RISINGBADGE will"
+	line "enable your"
+
+	para "#MON to use the"
+	line "move for climbing"
+	cont "waterfalls."
+
+	para "Also, all #MON"
+	line "will recognize you"
+
+	para "as a trainer and"
+	line "obey your every"
+
+	para "command without"
+	line "question."
+	done
 ; 0x18dab4
 
 UnknownText_0x18dab4: ; 0x18dab4

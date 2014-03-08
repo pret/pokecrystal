@@ -70,36 +70,50 @@ MovementData_0x1814a4: ; 0x1814a4
 ; 0x1814a6
 
 UnknownText_0x1814a6: ; 0x1814a6
-	db $0, "LANCE: It's been a", $4f
-	db "long time since I", $55
-	db "last came here.", $51
-	db "This is where we", $4f
-	db "honor the LEAGUE", $51
-	db "CHAMPIONS for all", $4f
-	db "eternity.", $51
-	db "Their courageous", $4f
-	db "#MON are also", $55
-	db "inducted.", $51
-	db "Here today, we", $4f
-	db "witnessed the rise", $51
-	db "of a new LEAGUE", $4f
-	db "CHAMPION--a", $51
-	db "trainer who feels", $4f
-	db "compassion for,", $51
-	db "and trust toward,", $4f
-	db "all #MON.", $51
-	db "A trainer who", $4f
-	db "succeeded through", $51
-	db "perseverance and", $4f
-	db "determination.", $51
-	db "The new LEAGUE", $4f
-	db "CHAMPION who has", $51
-	db "all the makings", $4f
-	db "of greatness!", $51
-	db $14, ", allow me", $4f
-	db "to register you", $51
-	db "and your partners", $4f
-	db "as CHAMPIONS!", $57
+	text "LANCE: It's been a"
+	line "long time since I"
+	cont "last came here."
+
+	para "This is where we"
+	line "honor the LEAGUE"
+
+	para "CHAMPIONS for all"
+	line "eternity."
+
+	para "Their courageous"
+	line "#MON are also"
+	cont "inducted."
+
+	para "Here today, we"
+	line "witnessed the rise"
+
+	para "of a new LEAGUE"
+	line "CHAMPION--a"
+
+	para "trainer who feels"
+	line "compassion for,"
+
+	para "and trust toward,"
+	line "all #MON."
+
+	para "A trainer who"
+	line "succeeded through"
+
+	para "perseverance and"
+	line "determination."
+
+	para "The new LEAGUE"
+	line "CHAMPION who has"
+
+	para "all the makings"
+	line "of greatness!"
+
+	para $14, ", allow me"
+	line "to register you"
+
+	para "and your partners"
+	line "as CHAMPIONS!"
+	done
 ; 0x181678
 
 HallOfFame_MapEventHeader: ; 0x181678

@@ -164,95 +164,115 @@ FruitTreeScript_0x6c06c: ; 0x6c06c
 ; 0x6c06e
 
 BikerDwayneSeenText: ; 0x6c06e
-	db $0, "We're the KANTO", $4f
-	db "#MON FEDERATION", $55
-	db "trainer group.", $51
-	db "We'll drive you", $4f
-	db "under our wheels!", $57
+	text "We're the KANTO"
+	line "#MON FEDERATION"
+	cont "trainer group."
+
+	para "We'll drive you"
+	line "under our wheels!"
+	done
 ; 0x6c0be
 
 BikerDwayneBeatenText: ; 0x6c0be
-	db $0, "S-sorry!", $57
+	text "S-sorry!"
+	done
 ; 0x6c0c8
 
 UnknownText_0x6c0c8: ; 0x6c0c8
-	db $0, "The KANTO #MON", $4f
-	db "FEDERATION will", $55
-	db "never fall!", $57
+	text "The KANTO #MON"
+	line "FEDERATION will"
+	cont "never fall!"
+	done
 ; 0x6c0f4
 
 BikerHarrisSeenText: ; 0x6c0f4
-	db $0, "The cops shut down", $4f
-	db "our UNDERGROUND", $51
-	db "PATH! That really", $4f
-	db "fries me!", $57
+	text "The cops shut down"
+	line "our UNDERGROUND"
+
+	para "PATH! That really"
+	line "fries me!"
+	done
 ; 0x6c134
 
 BikerHarrisBeatenText: ; 0x6c134
-	db $0, "F-forgive me!", $57
+	text "F-forgive me!"
+	done
 ; 0x6c143
 
 UnknownText_0x6c143: ; 0x6c143
-	db $0, "Wiped out by some", $4f
-	db "punk from JOHTO…", $57
+	text "Wiped out by some"
+	line "punk from JOHTO…"
+	done
 ; 0x6c167
 
 BikerZekeSeenText: ; 0x6c167
-	db $0, "We're the KANTO", $4f
-	db "#MON FEDERA-", $55
-	db "TION!", $55
-	db "Right on!", $57
+	text "We're the KANTO"
+	line "#MON FEDERA-"
+	cont "TION!"
+	cont "Right on!"
+	done
 ; 0x6c194
 
 BikerZekeBeatenText: ; 0x6c194
-	db $0, "Yikes! Sorry!", $57
+	text "Yikes! Sorry!"
+	done
 ; 0x6c1a3
 
 UnknownText_0x6c1a3: ; 0x6c1a3
-	db $0, "We'll try not to", $4f
-	db "disturb anyone", $55
-	db "from now on…", $57
+	text "We'll try not to"
+	line "disturb anyone"
+	cont "from now on…"
+	done
 ; 0x6c1d0
 
 SupernerdSamSeenText: ; 0x6c1d0
-	db $0, "How does the MAG-", $4f
-	db "NET TRAIN work?", $57
+	text "How does the MAG-"
+	line "NET TRAIN work?"
+	done
 ; 0x6c1f3
 
 SupernerdSamBeatenText: ; 0x6c1f3
-	db $0, "I just want to see", $4f
-	db "the MAGNET TRAIN…", $57
+	text "I just want to see"
+	line "the MAGNET TRAIN…"
+	done
 ; 0x6c219
 
 UnknownText_0x6c219: ; 0x6c219
-	db $0, "The power of mag-", $4f
-	db "nets is awesome!", $57
+	text "The power of mag-"
+	line "nets is awesome!"
+	done
 ; 0x6c23d
 
 SupernerdTomSeenText: ; 0x6c23d
-	db $0, "Hm… You've got", $4f
-	db "many GYM BADGES.", $57
+	text "Hm… You've got"
+	line "many GYM BADGES."
+	done
 ; 0x6c25d
 
 SupernerdTomBeatenText: ; 0x6c25d
-	db $0, "Just as I thought…", $4f
-	db "You're tough!", $57
+	text "Just as I thought…"
+	line "You're tough!"
+	done
 ; 0x6c27e
 
 UnknownText_0x6c27e: ; 0x6c27e
-	db $0, "GYM BADGES give", $4f
-	db "you advantages in", $55
-	db "battles.", $57
+	text "GYM BADGES give"
+	line "you advantages in"
+	cont "battles."
+	done
 ; 0x6c2aa
 
 UnknownText_0x6c2aa: ; 0x6c2aa
-	db $0, "It's locked…", $57
+	text "It's locked…"
+	done
 ; 0x6c2b7
 
 UnknownText_0x6c2b7: ; 0x6c2b7
-	db $0, "The flyer's torn.", $51
-	db "It's impossible to", $4f
-	db "read…", $57
+	text "The flyer's torn."
+
+	para "It's impossible to"
+	line "read…"
+	done
 ; 0x6c2e1
 
 Route8_MapEventHeader: ; 0x6c2e1

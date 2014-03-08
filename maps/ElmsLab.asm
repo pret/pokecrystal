@@ -802,542 +802,708 @@ AfterChikoritaMovement: ; 0x78fb0
 ; 0x78fb6
 
 UnknownText_0x78fb6: ; 0x78fb6
-	db $0, "ELM: ", $14, "!", $4f
-	db "There you are!", $51
-	db "I needed to ask", $4f
-	db "you a favor.", $51
-	db "I'm conducting new", $4f
-	db "#MON research", $51
-	db "right now. I was", $4f
-	db "wondering if you", $51
-	db "could help me with", $4f
-	db "it, ", $14, ".", $51
-	db "You see…", $51
-	db "I'm writing a", $4f
-	db "paper that I want", $51
-	db "to present at a", $4f
-	db "conference.", $51
-	db "But there are some", $4f
-	db "things I don't", $51
-	db "quite understand", $4f
-	db "yet.", $51
-	db "So!", $51
-	db "I'd like you to", $4f
-	db "raise a #MON", $51
-	db "that I recently", $4f
-	db "caught.", $57
+	text "ELM: ", $14, "!"
+	line "There you are!"
+
+	para "I needed to ask"
+	line "you a favor."
+
+	para "I'm conducting new"
+	line "#MON research"
+
+	para "right now. I was"
+	line "wondering if you"
+
+	para "could help me with"
+	line "it, ", $14, "."
+
+	para "You see…"
+
+	para "I'm writing a"
+	line "paper that I want"
+
+	para "to present at a"
+	line "conference."
+
+	para "But there are some"
+	line "things I don't"
+
+	para "quite understand"
+	line "yet."
+
+	para "So!"
+
+	para "I'd like you to"
+	line "raise a #MON"
+
+	para "that I recently"
+	line "caught."
+	done
 ; 0x790fa
 
 UnknownText_0x790fa: ; 0x790fa
-	db $0, "Thanks, ", $14, "!", $51
-	db "You're a great", $4f
-	db "help!", $57
+	text "Thanks, ", $14, "!"
+
+	para "You're a great"
+	line "help!"
+	done
 ; 0x7911a
 
 UnknownText_0x7911a: ; 0x7911a
-	db $0, "But… Please, I", $4f
-	db "need your help!", $57
+	text "But… Please, I"
+	line "need your help!"
+	done
 ; 0x7913a
 
 UnknownText_0x7913a: ; 0x7913a
-	db $0, "When I announce my", $4f
-	db "findings, I'm sure", $51
-	db "we'll delve a bit", $4f
-	db "deeper into the", $51
-	db "many mysteries of", $4f
-	db "#MON.", $51
-	db "You can count on", $4f
-	db "it!", $57
+	text "When I announce my"
+	line "findings, I'm sure"
+
+	para "we'll delve a bit"
+	line "deeper into the"
+
+	para "many mysteries of"
+	line "#MON."
+
+	para "You can count on"
+	line "it!"
+	done
 ; 0x791ae
 
 UnknownText_0x791ae: ; 0x791ae
-	db $0, "Oh, hey! I got an", $4f
-	db "e-mail!", $51
-	db $56, $56, $56, $4f
-	db "Hm… Uh-huh…", $51
-	db "Okay…", $57
+	text "Oh, hey! I got an"
+	line "e-mail!"
+
+	para $56, $56, $56
+	line "Hm… Uh-huh…"
+
+	para "Okay…"
+	done
 ; 0x791df
 
 UnknownText_0x791df: ; 0x791df
-	db $0, "Hey, listen.", $51
-	db "I have an acquain-", $4f
-	db "tance called MR.", $55
-	db "#MON.", $51
-	db "He keeps finding", $4f
-	db "weird things and", $51
-	db "raving about his", $4f
-	db "discoveries.", $51
-	db "Anyway, I just got", $4f
-	db "an e-mail from him", $51
-	db "saying that this", $4f
-	db "time it's real.", $51
-	db "It is intriguing,", $4f
-	db "but we're busy", $51
-	db "with our #MON", $4f
-	db "research…", $51
-	db "Wait!", $51
-	db "I know!", $51
-	db $14, ", can you", $4f
-	db "go in our place?", $57
+	text "Hey, listen."
+
+	para "I have an acquain-"
+	line "tance called MR."
+	cont "#MON."
+
+	para "He keeps finding"
+	line "weird things and"
+
+	para "raving about his"
+	line "discoveries."
+
+	para "Anyway, I just got"
+	line "an e-mail from him"
+
+	para "saying that this"
+	line "time it's real."
+
+	para "It is intriguing,"
+	line "but we're busy"
+
+	para "with our #MON"
+	line "research…"
+
+	para "Wait!"
+
+	para "I know!"
+
+	para $14, ", can you"
+	line "go in our place?"
+	done
 ; 0x792ff
 
 UnknownText_0x792ff: ; 0x792ff
-	db $0, "I want you to", $4f
-	db "raise one of the", $51
-	db "#MON contained", $4f
-	db "in these BALLS.", $51
-	db "You'll be that", $4f
-	db "#MON's first", $55
-	db "partner, ", $14, "!", $51
-	db "Go on. Pick one!", $57
+	text "I want you to"
+	line "raise one of the"
+
+	para "#MON contained"
+	line "in these BALLS."
+
+	para "You'll be that"
+	line "#MON's first"
+	cont "partner, ", $14, "!"
+
+	para "Go on. Pick one!"
+	done
 ; 0x79375
 
 UnknownText_0x79375: ; 0x79375
-	db $0, "If a wild #MON", $4f
-	db "appears, let your", $55
-	db "#MON battle it!", $57
+	text "If a wild #MON"
+	line "appears, let your"
+	cont "#MON battle it!"
+	done
 ; 0x793a7
 
 LabWhereGoingText: ; 0x793a7
-	db $0, "ELM: Wait! Where", $4f
-	db "are you going?", $57
+	text "ELM: Wait! Where"
+	line "are you going?"
+	done
 ; 0x793c8
 
 TakeCyndaquilText: ; 0x793c8
-	db $0, "ELM: You'll take", $4f
-	db "CYNDAQUIL, the", $55
-	db "fire #MON?", $57
+	text "ELM: You'll take"
+	line "CYNDAQUIL, the"
+	cont "fire #MON?"
+	done
 ; 0x793f3
 
 TakeTotodileText: ; 0x793f3
-	db $0, "ELM: Do you want", $4f
-	db "TOTODILE, the", $55
-	db "water #MON?", $57
+	text "ELM: Do you want"
+	line "TOTODILE, the"
+	cont "water #MON?"
+	done
 ; 0x7941f
 
 TakeChikoritaText: ; 0x7941f
-	db $0, "ELM: So, you like", $4f
-	db "CHIKORITA, the", $55
-	db "grass #MON?", $57
+	text "ELM: So, you like"
+	line "CHIKORITA, the"
+	cont "grass #MON?"
+	done
 ; 0x7944d
 
 DidntChooseStarterText: ; 0x7944d
-	db $0, "ELM: Think it over", $4f
-	db "carefully.", $51
-	db "Your partner is", $4f
-	db "important.", $57
+	text "ELM: Think it over"
+	line "carefully."
+
+	para "Your partner is"
+	line "important."
+	done
 ; 0x79487
 
 ChoseStarterText: ; 0x79487
-	db $0, "ELM: I think", $4f
-	db "that's a great", $55
-	db "#MON too!", $57
+	text "ELM: I think"
+	line "that's a great"
+	cont "#MON too!"
+	done
 ; 0x794ad
 
 ReceivedStarterText: ; 0x794ad
-	db $0, $52, " received", $4f
-	db "@"
+	text $52, " received"
+	line "@"
 	text_from_ram $d099
-	db $0, "!", $57
+	text "!"
+	done
 ; 0x794c0
 
 ElmDirectionsText1: ; 0x794c0
-	db $0, "MR.#MON lives a", $4f
-	db "little bit beyond", $51
-	db "CHERRYGROVE, the", $4f
-	db "next city over.", $51
-	db "It's almost a", $4f
-	db "direct route", $51
-	db "there, so you", $4f
-	db "can't miss it.", $51
-	db "But just in case,", $4f
-	db "here's my phone", $51
-	db "number. Call me if", $4f
-	db "anything comes up!", $57
+	text "MR.#MON lives a"
+	line "little bit beyond"
+
+	para "CHERRYGROVE, the"
+	line "next city over."
+
+	para "It's almost a"
+	line "direct route"
+
+	para "there, so you"
+	line "can't miss it."
+
+	para "But just in case,"
+	line "here's my phone"
+
+	para "number. Call me if"
+	line "anything comes up!"
+	done
 ; 0x79581
 
 ElmDirectionsText2: ; 0x79581
-	db $0, "If your #MON is", $4f
-	db "hurt, you should", $51
-	db "heal it with this", $4f
-	db "machine.", $51
-	db "Feel free to use", $4f
-	db "it anytime.", $57
+	text "If your #MON is"
+	line "hurt, you should"
+
+	para "heal it with this"
+	line "machine."
+
+	para "Feel free to use"
+	line "it anytime."
+	done
 ; 0x795db
 
 ElmDirectionsText3: ; 0x795db
-	db $0, $14, ", I'm", $4f
-	db "counting on you!", $57
+	text $14, ", I'm"
+	line "counting on you!"
+	done
 ; 0x795f3
 
 GotElmsNumberText: ; 0x795f3
-	db $0, $52, " got ELM's", $4f
-	db "phone number.", $57
+	text $52, " got ELM's"
+	line "phone number."
+	done
 ; 0x7960d
 
 ElmDescribesMrPokemonText: ; 0x7960d
-	db $0, "MR.#MON goes", $4f
-	db "everywhere and", $55
-	db "finds rarities.", $51
-	db "Too bad they're", $4f
-	db "just rare and", $55
-	db "not very useful…", $57
+	text "MR.#MON goes"
+	line "everywhere and"
+	cont "finds rarities."
+
+	para "Too bad they're"
+	line "just rare and"
+	cont "not very useful…"
+	done
 ; 0x79668
 
 ElmPokeBallText: ; 0x79668
-	db $0, "It contains a", $4f
-	db "#MON caught by", $55
-	db "PROF.ELM.", $57
+	text "It contains a"
+	line "#MON caught by"
+	cont "PROF.ELM."
+	done
 ; 0x79690
 
 UnknownText_0x79690: ; 0x79690
-	db $0, "I wonder what this", $4f
-	db "does?", $57
+	text "I wonder what this"
+	line "does?"
+	done
 ; 0x796aa
 
 UnknownText_0x796aa: ; 0x796aa
-	db $0, "Would you like to", $4f
-	db "heal your #MON?", $57
+	text "Would you like to"
+	line "heal your #MON?"
+	done
 ; 0x796cd
 
 ElmAfterTheftText1: ; 0x796cd
-	db $0, "ELM: ", $14, ", this", $4f
-	db "is terrible…", $51
-	db "Oh, yes, what was", $4f
-	db "MR.#MON's big", $55
-	db "discovery?", $57
+	text "ELM: ", $14, ", this"
+	line "is terrible…"
+
+	para "Oh, yes, what was"
+	line "MR.#MON's big"
+	cont "discovery?"
+	done
 ; 0x79712
 
 ElmAfterTheftText2: ; 0x79712
-	db $0, $52, " handed", $4f
-	db "the MYSTERY EGG to", $55
-	db "PROF.ELM.", $57
+	text $52, " handed"
+	line "the MYSTERY EGG to"
+	cont "PROF.ELM."
+	done
 ; 0x79739
 
 ElmAfterTheftText3: ; 0x79739
-	db $0, "ELM: This?", $57
+	text "ELM: This?"
+	done
 ; 0x79745
 
 ElmAfterTheftText4: ; 0x79745
-	db $0, "But… Is it a", $4f
-	db "#MON EGG?", $51
-	db "If it is, it is a", $4f
-	db "great discovery!", $57
+	text "But… Is it a"
+	line "#MON EGG?"
+
+	para "If it is, it is a"
+	line "great discovery!"
+	done
 ; 0x79780
 
 ElmAfterTheftText5: ; 0x79780
-	db $0, "ELM: What?!?", $51
-	db "PROF.OAK gave you", $4f
-	db "a #DEX?", $51
-	db $14, ", is that", $4f
-	db "true? Th-that's", $55
-	db "incredible!", $51
-	db "He is superb at", $4f
-	db "seeing the poten-", $55
-	db "tial of people as", $55
-	db "trainers.", $51
-	db "Wow, ", $14, ". You", $4f
-	db "may have what it", $51
-	db "takes to become", $4f
-	db "the CHAMPION.", $51
-	db "You seem to be", $4f
-	db "getting on great", $55
-	db "with #MON too.", $51
-	db "You should take", $4f
-	db "the #MON GYM", $55
-	db "challenge.", $51
-	db "The closest GYM", $4f
-	db "would be the one", $55
-	db "in VIOLET CITY.", $57
+	text "ELM: What?!?"
+
+	para "PROF.OAK gave you"
+	line "a #DEX?"
+
+	para $14, ", is that"
+	line "true? Th-that's"
+	cont "incredible!"
+
+	para "He is superb at"
+	line "seeing the poten-"
+	cont "tial of people as"
+	cont "trainers."
+
+	para "Wow, ", $14, ". You"
+	line "may have what it"
+
+	para "takes to become"
+	line "the CHAMPION."
+
+	para "You seem to be"
+	line "getting on great"
+	cont "with #MON too."
+
+	para "You should take"
+	line "the #MON GYM"
+	cont "challenge."
+
+	para "The closest GYM"
+	line "would be the one"
+	cont "in VIOLET CITY."
+	done
 ; 0x798cf
 
 ElmAfterTheftText6: ; 0x798cf
-	db $0, "…", $14, ". The", $4f
-	db "road to the", $51
-	db "championship will", $4f
-	db "be a long one.", $51
-	db "Before you leave,", $4f
-	db "make sure that you", $55
-	db "talk to your mom.", $57
+	text "…", $14, ". The"
+	line "road to the"
+
+	para "championship will"
+	line "be a long one."
+
+	para "Before you leave,"
+	line "make sure that you"
+	cont "talk to your mom."
+	done
 ; 0x7993c
 
 ElmStudyingEggText: ; 0x7993c
-	db $0, "ELM: Don't give", $4f
-	db "up! I'll call if", $51
-	db "I learn anything", $4f
-	db "about that EGG!", $57
+	text "ELM: Don't give"
+	line "up! I'll call if"
+
+	para "I learn anything"
+	line "about that EGG!"
+	done
 ; 0x7997d
 
 ElmAideHasEggText: ; 0x7997d
-	db $0, "ELM: ", $14, "?", $4f
-	db "Didn't you meet my", $55
-	db "assistant?", $51
-	db "He should have met", $4f
-	db "you with the EGG", $51
-	db "at VIOLET CITY's", $4f
-	db "#MON CENTER.", $51
-	db "You must have just", $4f
-	db "missed him. Try to", $55
-	db "catch him there.", $57
+	text "ELM: ", $14, "?"
+	line "Didn't you meet my"
+	cont "assistant?"
+
+	para "He should have met"
+	line "you with the EGG"
+
+	para "at VIOLET CITY's"
+	line "#MON CENTER."
+
+	para "You must have just"
+	line "missed him. Try to"
+	cont "catch him there."
+	done
 ; 0x79a1b
 
 ElmWaitingEggHatchText: ; 0x79a1b
-	db $0, "ELM: Hey, has that", $4f
-	db "EGG changed any?", $57
+	text "ELM: Hey, has that"
+	line "EGG changed any?"
+	done
 ; 0x79a40
 
 UnknownText_0x79a40: ; 0x79a40
-	db $0, $14, "? I thought", $4f
-	db "the EGG hatched.", $51
-	db "Where is the", $4f
-	db "#MON?", $57
+	text $14, "? I thought"
+	line "the EGG hatched."
+
+	para "Where is the"
+	line "#MON?"
+	done
 ; 0x79a72
 
 ShowElmTogepiText1: ; 0x79a72
-	db $0, "ELM: ", $14, ", you", $4f
-	db "look great!", $57
+	text "ELM: ", $14, ", you"
+	line "look great!"
+	done
 ; 0x79a8b
 
 ShowElmTogepiText2: ; 0x79a8b
-	db $0, "What?", $4f
-	db "That #MON!?!", $57
+	text "What?"
+	line "That #MON!?!"
+	done
 ; 0x79a9f
 
 ShowElmTogepiText3: ; 0x79a9f
-	db $0, "The EGG hatched!", $4f
-	db "So, #MON are", $55
-	db "born from EGGS…", $51
-	db "No, perhaps not", $4f
-	db "all #MON are.", $51
-	db "Wow, there's still", $4f
-	db "a lot of research", $55
-	db "to be done.", $57
+	text "The EGG hatched!"
+	line "So, #MON are"
+	cont "born from EGGS…"
+
+	para "No, perhaps not"
+	line "all #MON are."
+
+	para "Wow, there's still"
+	line "a lot of research"
+	cont "to be done."
+	done
 ; 0x79b1c
 
 ElmGiveEverstoneText1: ; 0x79b1c
-	db $0, "Thanks, ", $14, "!", $4f
-	db "You're helping", $51
-	db "unravel #MON", $4f
-	db "mysteries for us!", $51
-	db "I want you to have", $4f
-	db "this as a token of", $55
-	db "our appreciation.", $57
+	text "Thanks, ", $14, "!"
+	line "You're helping"
+
+	para "unravel #MON"
+	line "mysteries for us!"
+
+	para "I want you to have"
+	line "this as a token of"
+	cont "our appreciation."
+	done
 ; 0x79b8d
 
 ElmGiveEverstoneText2: ; 0x79b8d
-	db $0, "That's an", $4f
-	db "EVERSTONE.", $51
-	db "Some species of", $4f
-	db "#MON evolve", $51
-	db "when they grow to", $4f
-	db "certain levels.", $51
-	db "A #MON holding", $4f
-	db "the EVERSTONE", $55
-	db "won't evolve.", $51
-	db "Give it to a #-", $4f
-	db "MON you don't want", $55
-	db "to evolve.", $57
+	text "That's an"
+	line "EVERSTONE."
+
+	para "Some species of"
+	line "#MON evolve"
+
+	para "when they grow to"
+	line "certain levels."
+
+	para "A #MON holding"
+	line "the EVERSTONE"
+	cont "won't evolve."
+
+	para "Give it to a #-"
+	line "MON you don't want"
+	cont "to evolve."
+	done
 ; 0x79c37
 
 UnknownText_0x79c37: ; 0x79c37
-	db $0, "ELM: ", $14, ", I'll", $4f
-	db "call you if any-", $55
-	db "thing comes up.", $57
+	text "ELM: ", $14, ", I'll"
+	line "call you if any-"
+	cont "thing comes up."
+	done
 ; 0x79c65
 
 UnknownText_0x79c65: ; 0x79c65
-	db $0, "…sigh… That", $4f
-	db "stolen #MON.", $51
-	db "I wonder how it's", $4f
-	db "doing.", $51
-	db "They say a #MON", $4f
-	db "raised by a bad", $51
-	db "person turns bad", $4f
-	db "itself.", $57
+	text "…sigh… That"
+	line "stolen #MON."
+
+	para "I wonder how it's"
+	line "doing."
+
+	para "They say a #MON"
+	line "raised by a bad"
+
+	para "person turns bad"
+	line "itself."
+	done
 ; 0x79cd0
 
 ElmGiveMasterBallText1: ; 0x79cd0
-	db $0, "ELM: Hi, ", $14, "!", $4f
-	db "Thanks to you, my", $51
-	db "research is going", $4f
-	db "great!", $51
-	db "Take this as a", $4f
-	db "token of my", $55
-	db "appreciation.", $57
+	text "ELM: Hi, ", $14, "!"
+	line "Thanks to you, my"
+
+	para "research is going"
+	line "great!"
+
+	para "Take this as a"
+	line "token of my"
+	cont "appreciation."
+	done
 ; 0x79d31
 
 ElmGiveMasterBallText2: ; 0x79d31
-	db $0, "The MASTER BALL is", $4f
-	db "the best!", $51
-	db "It's the ultimate", $4f
-	db "BALL! It'll catch", $51
-	db "any #MON with-", $4f
-	db "out fail.", $51
-	db "It's given only to", $4f
-	db "recognized #MON", $55
-	db "researchers.", $51
-	db "I think you can", $4f
-	db "make much better", $51
-	db "use of it than I", $4f
-	db "can, ", $14, "!", $57
+	text "The MASTER BALL is"
+	line "the best!"
+
+	para "It's the ultimate"
+	line "BALL! It'll catch"
+
+	para "any #MON with-"
+	line "out fail."
+
+	para "It's given only to"
+	line "recognized #MON"
+	cont "researchers."
+
+	para "I think you can"
+	line "make much better"
+
+	para "use of it than I"
+	line "can, ", $14, "!"
+	done
 ; 0x79df3
 
 ElmGiveTicketText1: ; 0x79df3
-	db $0, "ELM: ", $14, "!", $4f
-	db "There you are!", $51
-	db "I called because I", $4f
-	db "have something for", $55
-	db "you.", $51
-	db "See? It's an", $4f
-	db "S.S.TICKET.", $51
-	db "Now you can catch", $4f
-	db "#MON in KANTO.", $57
+	text "ELM: ", $14, "!"
+	line "There you are!"
+
+	para "I called because I"
+	line "have something for"
+	cont "you."
+
+	para "See? It's an"
+	line "S.S.TICKET."
+
+	para "Now you can catch"
+	line "#MON in KANTO."
+	done
 ; 0x79e6f
 
 ElmGiveTicketText2: ; 0x79e6f
-	db $0, "The ship departs", $4f
-	db "from OLIVINE CITY.", $51
-	db "But you knew that", $4f
-	db "already, ", $14, ".", $51
-	db "After all, you've", $4f
-	db "traveled all over", $55
-	db "with your #MON.", $51
-	db "Give my regards to", $4f
-	db "PROF.OAK in KANTO!", $57
+	text "The ship departs"
+	line "from OLIVINE CITY."
+
+	para "But you knew that"
+	line "already, ", $14, "."
+
+	para "After all, you've"
+	line "traveled all over"
+	cont "with your #MON."
+
+	para "Give my regards to"
+	line "PROF.OAK in KANTO!"
+	done
 ; 0x79f0b
 
 UnknownText_0x79f0b: ; 0x79f0b
-	db $0, "It's the #MON", $4f
-	db "EGG being studied", $55
-	db "by PROF.ELM.", $57
+	text "It's the #MON"
+	line "EGG being studied"
+	cont "by PROF.ELM."
+	done
 ; 0x79f38
 
 UnknownText_0x79f38: ; 0x79f38
-	db $0, $14, ", I want", $4f
-	db "you to have this", $55
-	db "for your errand.", $57
+	text $14, ", I want"
+	line "you to have this"
+	cont "for your errand."
+	done
 ; 0x79f65
 
 UnknownText_0x79f65: ; 0x79f65
-	db $0, "There are only two", $4f
-	db "of us, so we're", $55
-	db "always busy.", $57
+	text "There are only two"
+	line "of us, so we're"
+	cont "always busy."
+	done
 ; 0x79f95
 
 UnknownText_0x79f95: ; 0x79f95
-	db $0, "There was a loud", $4f
-	db "noise outside…", $51
-	db "When we went to", $4f
-	db "look, someone", $55
-	db "stole a #MON.", $51
-	db "It's unbelievable", $4f
-	db "that anyone would", $55
-	db "do that!", $51
-	db "…sigh… That", $4f
-	db "stolen #MON.", $51
-	db "I wonder how it's", $4f
-	db "doing.", $51
-	db "They say a #MON", $4f
-	db "raised by a bad", $51
-	db "person turns bad", $4f
-	db "itself.", $57
+	text "There was a loud"
+	line "noise outside…"
+
+	para "When we went to"
+	line "look, someone"
+	cont "stole a #MON."
+
+	para "It's unbelievable"
+	line "that anyone would"
+	cont "do that!"
+
+	para "…sigh… That"
+	line "stolen #MON."
+
+	para "I wonder how it's"
+	line "doing."
+
+	para "They say a #MON"
+	line "raised by a bad"
+
+	para "person turns bad"
+	line "itself."
+	done
 ; 0x7a078
 
 UnknownText_0x7a078: ; 0x7a078
-	db $0, $14, "!", $51
-	db "Use these on your", $4f
-	db "#DEX quest!", $57
+	text $14, "!"
+
+	para "Use these on your"
+	line "#DEX quest!"
+	done
 ; 0x7a09a
 
 UnknownText_0x7a09a: ; 0x7a09a
-	db $0, "To add to your", $4f
-	db "#DEX, you have", $55
-	db "to catch #MON.", $51
-	db "Throw # BALLS", $4f
-	db "at wild #MON", $55
-	db "to get them.", $57
+	text "To add to your"
+	line "#DEX, you have"
+	cont "to catch #MON."
+
+	para "Throw # BALLS"
+	line "at wild #MON"
+	cont "to get them."
+	done
 ; 0x7a0f0
 
 UnknownText_0x7a0f0: ; 0x7a0f0
-	db $0, "I heard a #MON", $4f
-	db "was stolen here…", $51
-	db "I was just getting", $4f
-	db "some information", $55
-	db "from PROF.ELM.", $51
-	db "Apparently, it was", $4f
-	db "a young male with", $55
-	db "long, red hair…", $51
-	db "What?", $51
-	db "You battled a", $4f
-	db "trainer like that?", $51
-	db "Did you happen to", $4f
-	db "get his name?", $57
+	text "I heard a #MON"
+	line "was stolen here…"
+
+	para "I was just getting"
+	line "some information"
+	cont "from PROF.ELM."
+
+	para "Apparently, it was"
+	line "a young male with"
+	cont "long, red hair…"
+
+	para "What?"
+
+	para "You battled a"
+	line "trainer like that?"
+
+	para "Did you happen to"
+	line "get his name?"
+	done
 ; 0x7a1c0
 
 UnknownText_0x7a1c0: ; 0x7a1c0
-	db $0, "OK! So ", $53, $4f
-	db "was his name.", $51
-	db "Thanks for helping", $4f
-	db "my investigation!", $57
+	text "OK! So ", $53
+	line "was his name."
+
+	para "Thanks for helping"
+	line "my investigation!"
+	done
 ; 0x7a1fd
 
 UnknownText_0x7a1fd: ; 0x7a1fd
-	db $0, "The window's open.", $51
-	db "A pleasant breeze", $4f
-	db "is blowing in.", $57
+	text "The window's open."
+
+	para "A pleasant breeze"
+	line "is blowing in."
+	done
 ; 0x7a231
 
 UnknownText_0x7a231: ; 0x7a231
-	db $0, "He broke in", $4f
-	db "through here!", $57
+	text "He broke in"
+	line "through here!"
+	done
 ; 0x7a24c
 
 UnknownText_0x7a24c: ; 0x7a24c
-	db $0, $52, " opened a", $4f
-	db "book.", $51
-	db "Travel Tip 1:", $51
-	db "Press START to", $4f
-	db "open the MENU.", $57
+	text $52, " opened a"
+	line "book."
+
+	para "Travel Tip 1:"
+
+	para "Press START to"
+	line "open the MENU."
+	done
 ; 0x7a28a
 
 UnknownText_0x7a28a: ; 0x7a28a
-	db $0, $52, " opened a", $4f
-	db "book.", $51
-	db "Travel Tip 2:", $51
-	db "Record your trip", $4f
-	db "with SAVE!", $57
+	text $52, " opened a"
+	line "book."
+
+	para "Travel Tip 2:"
+
+	para "Record your trip"
+	line "with SAVE!"
+	done
 ; 0x7a2c6
 
 UnknownText_0x7a2c6: ; 0x7a2c6
-	db $0, $52, " opened a", $4f
-	db "book.", $51
-	db "Travel Tip 3:", $51
-	db "Open your PACK and", $4f
-	db "press SELECT to", $55
-	db "move items.", $57
+	text $52, " opened a"
+	line "book."
+
+	para "Travel Tip 3:"
+
+	para "Open your PACK and"
+	line "press SELECT to"
+	cont "move items."
+	done
 ; 0x7a315
 
 UnknownText_0x7a315: ; 0x7a315
-	db $0, $52, " opened a", $4f
-	db "book.", $51
-	db "Travel Tip 4:", $51
-	db "Check your #MON", $4f
-	db "moves. Press the", $51
-	db "A Button to switch", $4f
-	db "moves.", $57
+	text $52, " opened a"
+	line "book."
+
+	para "Travel Tip 4:"
+
+	para "Check your #MON"
+	line "moves. Press the"
+
+	para "A Button to switch"
+	line "moves."
+	done
 ; 0x7a370
 
 UnknownText_0x7a370: ; 0x7a370
-	db $0, "The wrapper from", $4f
-	db "the snack PROF.ELM", $55
-	db "ate is in there…", $57
+	text "The wrapper from"
+	line "the snack PROF.ELM"
+	cont "ate is in there…"
+	done
 ; 0x7a3a6
 
 UnknownText_0x7a3a6: ; 0x7a3a6
-	db $0, "OBSERVATIONS ON", $4f
-	db "#MON EVOLUTION", $51
-	db "…It says on the", $4f
-	db "screen…", $57
+	text "OBSERVATIONS ON"
+	line "#MON EVOLUTION"
+
+	para "…It says on the"
+	line "screen…"
+	done
 ; 0x7a3de
 
 ElmsLab_MapEventHeader: ; 0x7a3de

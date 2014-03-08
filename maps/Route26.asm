@@ -379,142 +379,180 @@ ItemFragment_0x1a4ec4: ; 0x1a4ec4
 ; 0x1a4ec6
 
 CooltrainermJakeSeenText: ; 0x1a4ec6
-	db $0, "I'm making my", $4f
-	db "final preparations", $51
-	db "for the #MON", $4f
-	db "LEAGUE.", $57
+	text "I'm making my"
+	line "final preparations"
+
+	para "for the #MON"
+	line "LEAGUE."
+	done
 ; 0x1a4efc
 
 CooltrainermJakeBeatenText: ; 0x1a4efc
-	db $0, "I blew it!", $57
+	text "I blew it!"
+	done
 ; 0x1a4f08
 
 UnknownText_0x1a4f08: ; 0x1a4f08
-	db $0, "It's going to be", $4f
-	db "tough to win at", $55
-	db "the LEAGUE.", $51
-	db "I need to do some", $4f
-	db "more training.", $51
-	db "I hear that the", $4f
-	db "LEAGUE's ELITE", $51
-	db "FOUR are tougher", $4f
-	db "than GYM LEADERS.", $57
+	text "It's going to be"
+	line "tough to win at"
+	cont "the LEAGUE."
+
+	para "I need to do some"
+	line "more training."
+
+	para "I hear that the"
+	line "LEAGUE's ELITE"
+
+	para "FOUR are tougher"
+	line "than GYM LEADERS."
+	done
 ; 0x1a4f97
 
 CooltrainermGaven3SeenText: ; 0x1a4f97
-	db $0, "By experiencing", $4f
-	db "tough battles, you", $55
-	db "gain power.", $57
+	text "By experiencing"
+	line "tough battles, you"
+	cont "gain power."
+	done
 ; 0x1a4fc7
 
 CooltrainermGaven3BeatenText: ; 0x1a4fc7
-	db $0, "Gaah! Life is even", $4f
-	db "tougher!", $57
+	text "Gaah! Life is even"
+	line "tougher!"
+	done
 ; 0x1a4fe4
 
 UnknownText_0x1a4fe4: ; 0x1a4fe4
-	db $0, "To get to #MON", $4f
-	db "LEAGUE, you have", $51
-	db "to get through", $4f
-	db "VICTORY ROAD.", $51
-	db "But VICTORY ROAD", $4f
-	db "is tough.", $51
-	db "Practically nobody", $4f
-	db "goes there!", $57
+	text "To get to #MON"
+	line "LEAGUE, you have"
+
+	para "to get through"
+	line "VICTORY ROAD."
+
+	para "But VICTORY ROAD"
+	line "is tough."
+
+	para "Practically nobody"
+	line "goes there!"
+	done
 ; 0x1a505c
 
 CooltrainerfJoyceSeenText: ; 0x1a505c
-	db $0, "Since you've come", $4f
-	db "this far, you must", $55
-	db "be good.", $51
-	db "I'm going to give", $4f
-	db "this battle every-", $55
-	db "thing I've got!", $57
+	text "Since you've come"
+	line "this far, you must"
+	cont "be good."
+
+	para "I'm going to give"
+	line "this battle every-"
+	cont "thing I've got!"
+	done
 ; 0x1a50bd
 
 CooltrainerfJoyceBeatenText: ; 0x1a50bd
-	db $0, "No! I don't", $4f
-	db "believe this!", $57
+	text "No! I don't"
+	line "believe this!"
+	done
 ; 0x1a50d7
 
 UnknownText_0x1a50d7: ; 0x1a50d7
-	db $0, "I've defeated", $4f
-	db "eight GYM LEADERS,", $51
-	db "so I was feeling", $4f
-	db "confident.", $51
-	db "I'll have to try", $4f
-	db "harder next time.", $57
+	text "I've defeated"
+	line "eight GYM LEADERS,"
+
+	para "so I was feeling"
+	line "confident."
+
+	para "I'll have to try"
+	line "harder next time."
+	done
 ; 0x1a5136
 
 CooltrainerfBeth1SeenText: ; 0x1a5136
-	db $0, "I lost to a train-", $4f
-	db "er named ", $53, ".", $51
-	db "He was really", $4f
-	db "strong, but…", $51
-	db "It was as if he", $4f
-	db "absolutely had to", $55
-	db "win at any cost.", $51
-	db "I felt sorry for", $4f
-	db "his #MON.", $57
+	text "I lost to a train-"
+	line "er named ", $53, "."
+
+	para "He was really"
+	line "strong, but…"
+
+	para "It was as if he"
+	line "absolutely had to"
+	cont "win at any cost."
+
+	para "I felt sorry for"
+	line "his #MON."
+	done
 ; 0x1a51bf
 
 CooltrainerfBeth1BeatenText: ; 0x1a51bf
-	db $0, "#MON aren't", $4f
-	db "tools of war.", $57
+	text "#MON aren't"
+	line "tools of war."
+	done
 ; 0x1a51d9
 
 UnknownText_0x1a51d9: ; 0x1a51d9
-	db $0, "#MON are in-", $4f
-	db "valuable, lifelong", $55
-	db "partners.", $57
+	text "#MON are in-"
+	line "valuable, lifelong"
+	cont "partners."
+	done
 ; 0x1a5204
 
 PsychicRichardSeenText: ; 0x1a5204
-	db $0, "Wow, look at all", $4f
-	db "those BADGES!", $55
-	db "I'm impressed.", $51
-	db "But you're not", $4f
-	db "satisfied by just", $51
-	db "collecting them,", $4f
-	db "right?", $57
+	text "Wow, look at all"
+	line "those BADGES!"
+	cont "I'm impressed."
+
+	para "But you're not"
+	line "satisfied by just"
+
+	para "collecting them,"
+	line "right?"
+	done
 ; 0x1a526a
 
 PsychicRichardBeatenText: ; 0x1a526a
-	db $0, "Good battle!", $57
+	text "Good battle!"
+	done
 ; 0x1a5278
 
 UnknownText_0x1a5278: ; 0x1a5278
-	db $0, "People and #MON", $4f
-	db "grow from their", $55
-	db "experiences.", $51
-	db "Don't get lazy and", $4f
-	db "complacent.", $57
+	text "People and #MON"
+	line "grow from their"
+	cont "experiences."
+
+	para "Don't get lazy and"
+	line "complacent."
+	done
 ; 0x1a52c4
 
 FisherScottSeenText: ; 0x1a52c4
-	db $0, "I'm feeling great", $4f
-	db "today!", $51
-	db "I feel like I", $4f
-	db "could boot even", $55
-	db "the LEAGUE CHAMP!", $57
+	text "I'm feeling great"
+	line "today!"
+
+	para "I feel like I"
+	line "could boot even"
+	cont "the LEAGUE CHAMP!"
+	done
 ; 0x1a530d
 
 FisherScottBeatenText: ; 0x1a530d
-	db $0, "No! Not in this", $4f
-	db "battle!", $57
+	text "No! Not in this"
+	line "battle!"
+	done
 ; 0x1a5326
 
 UnknownText_0x1a5326: ; 0x1a5326
-	db $0, "Just like in fish-", $4f
-	db "ing, it's all over", $51
-	db "in #MON if you", $4f
-	db "give up.", $57
+	text "Just like in fish-"
+	line "ing, it's all over"
+
+	para "in #MON if you"
+	line "give up."
+	done
 ; 0x1a5364
 
 UnknownText_0x1a5364: ; 0x1a5364
-	db $0, "ROUTE 26", $51
-	db "#MON LEAGUE", $4f
-	db "RECEPTION GATE", $57
+	text "ROUTE 26"
+
+	para "#MON LEAGUE"
+	line "RECEPTION GATE"
+	done
 ; 0x1a5389
 
 Route26_MapEventHeader: ; 0x1a5389

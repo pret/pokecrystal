@@ -64,14 +64,16 @@ UnknownScript_0x193624: ; 0x193624
 ; 0x193626
 
 UnknownText_0x193626: ; 0x193626
-	db $0, "Establishing", $4f
-	db "communications…", $57
+	text "Establishing"
+	line "communications…"
+	done
 ; 0x193644
 
 UnknownText_0x193644: ; 0x193644
-	db $0, "Your #MON will", $4f
-	db "be fully healed", $55
-	db "before battle.", $57
+	text "Your #MON will"
+	line "be fully healed"
+	cont "before battle."
+	done
 ; 0x193673
 
 MobileBattleRoom_MapEventHeader: ; 0x193673

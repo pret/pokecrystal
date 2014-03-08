@@ -37,8 +37,9 @@ MapMobileTradeRoomMobileSignpost0Script: ; 0x193582
 ; 0x193591
 
 UnknownText_0x193591: ; 0x193591
-	db $0, "Establishing", $4f
-	db "communications…", $57
+	text "Establishing"
+	line "communications…"
+	done
 ; 0x1935af
 
 MobileTradeRoomMobile_MapEventHeader: ; 0x1935af

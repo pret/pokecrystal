@@ -22,22 +22,28 @@ GrannyScript_0x99c45: ; 0x99c45
 ; 0x99c48
 
 UnknownText_0x99c48: ; 0x99c48
-	db $0, "My EEVEE evolved", $4f
-	db "into an ESPEON.", $51
-	db "But my friend's", $4f
-	db "EEVEE turned into", $55
-	db "an UMBREON.", $51
-	db "I wonder why? We", $4f
-	db "both were raising", $51
-	db "our EEVEE in the", $4f
-	db "same way…", $57
+	text "My EEVEE evolved"
+	line "into an ESPEON."
+
+	para "But my friend's"
+	line "EEVEE turned into"
+	cont "an UMBREON."
+
+	para "I wonder why? We"
+	line "both were raising"
+
+	para "our EEVEE in the"
+	line "same way…"
+	done
 ; 0x99cd5
 
 UnknownText_0x99cd5: ; 0x99cd5
-	db $0, "If you use REVIVE,", $4f
-	db "a #MON that's", $51
-	db "fainted will wake", $4f
-	db "right up.", $57
+	text "If you use REVIVE,"
+	line "a #MON that's"
+
+	para "fainted will wake"
+	line "right up."
+	done
 ; 0x99d12
 
 EcruteakMart_MapEventHeader: ; 0x99d12

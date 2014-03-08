@@ -403,216 +403,266 @@ MovementData_0x76876: ; 0x76876
 ; 0x7687b
 
 UnknownText_0x7687b: ; 0x7687b
-	db $0, "Hey, kid. Could I", $4f
-	db "get you to look", $55
-	db "for my buddy?", $51
-	db "He's goofing off", $4f
-	db "somewhere, that", $55
-	db "lazy bum!", $51
-	db "I want to go find", $4f
-	db "him, but I'm on", $55
-	db "duty right now.", $57
+	text "Hey, kid. Could I"
+	line "get you to look"
+	cont "for my buddy?"
+
+	para "He's goofing off"
+	line "somewhere, that"
+	cont "lazy bum!"
+
+	para "I want to go find"
+	line "him, but I'm on"
+	cont "duty right now."
+	done
 ; 0x76907
 
 UnknownText_0x76907: ; 0x76907
-	db $0, "Oh, gee…", $51
-	db "The CAPTAIN will", $4f
-	db "be furious…", $57
+	text "Oh, gee…"
+
+	para "The CAPTAIN will"
+	line "be furious…"
+	done
 ; 0x7692e
 
 UnknownText_0x7692e: ; 0x7692e
-	db $0, "Thanks, kid!", $4f
-	db "I chewed him out", $51
-	db "good so he'll quit", $4f
-	db "slacking off!", $57
+	text "Thanks, kid!"
+	line "I chewed him out"
+
+	para "good so he'll quit"
+	line "slacking off!"
+	done
 ; 0x7696d
 
 UnknownText_0x7696d: ; 0x7696d
-	db $0, "A little girl?", $51
-	db "I may have seen", $4f
-	db "her go by here.", $57
+	text "A little girl?"
+
+	para "I may have seen"
+	line "her go by here."
+	done
 ; 0x7699d
 
 UnknownText_0x7699d: ; 0x7699d
-	db $0, "The dining room is", $4f
-	db "up ahead.", $51
-	db "The stairs at the", $4f
-	db "end lead to the", $55
-	db "CAPTAIN's cabin.", $57
+	text "The dining room is"
+	line "up ahead."
+
+	para "The stairs at the"
+	line "end lead to the"
+	cont "CAPTAIN's cabin."
+	done
 ; 0x769ed
 
 SailorJeffSeenText: ; 0x769ed
-	db $0, "Nothing beats a", $4f
-	db "battle when I'm", $55
-	db "on my break.", $57
+	text "Nothing beats a"
+	line "battle when I'm"
+	cont "on my break."
+	done
 ; 0x76a1a
 
 SailorJeffBeatenText: ; 0x76a1a
-	db $0, "Win or lose, my", $4f
-	db "break's over!", $57
+	text "Win or lose, my"
+	line "break's over!"
+	done
 ; 0x76a38
 
 UnknownText_0x76a38: ; 0x76a38
-	db $0, "I guess I can't", $4f
-	db "win if I don't get", $55
-	db "serious.", $57
+	text "I guess I can't"
+	line "win if I don't get"
+	cont "serious."
+	done
 ; 0x76a63
 
 PicnickerDebraSeenText: ; 0x76a63
-	db $0, "I'm so bored.", $4f
-	db "Want to battle?", $57
+	text "I'm so bored."
+	line "Want to battle?"
+	done
 ; 0x76a81
 
 PicnickerDebraBeatenText: ; 0x76a81
-	db $0, "Yow! You're too", $4f
-	db "strong!", $57
+	text "Yow! You're too"
+	line "strong!"
+	done
 ; 0x76a99
 
 UnknownText_0x76a99: ; 0x76a99
-	db $0, "SAFFRON, CELADON…", $4f
-	db "I hear there are", $51
-	db "many big cities", $4f
-	db "in KANTO.", $57
+	text "SAFFRON, CELADON…"
+	line "I hear there are"
+
+	para "many big cities"
+	line "in KANTO."
+	done
 ; 0x76ad7
 
 JugglerFritzSeenText: ; 0x76ad7
-	db $0, "Urrf…", $4f
-	db "I'm seasick!", $57
+	text "Urrf…"
+	line "I'm seasick!"
+	done
 ; 0x76aea
 
 JugglerFritzBeatenText: ; 0x76aea
-	db $0, "I can't move any-", $4f
-	db "more…", $57
+	text "I can't move any-"
+	line "more…"
+	done
 ; 0x76b02
 
 UnknownText_0x76b02: ; 0x76b02
-	db $0, "No more ships for", $4f
-	db "me. Next time,", $51
-	db "I'm taking the", $4f
-	db "MAGNET TRAIN.", $57
+	text "No more ships for"
+	line "me. Next time,"
+
+	para "I'm taking the"
+	line "MAGNET TRAIN."
+	done
 ; 0x76b40
 
 SailorGarrettSeenText: ; 0x76b40
-	db $0, "This is where we", $4f
-	db "sailors work!", $57
+	text "This is where we"
+	line "sailors work!"
+	done
 ; 0x76b60
 
 SailorGarrettBeatenText: ; 0x76b60
-	db $0, "I lost on my home", $4f
-	db "field…", $57
+	text "I lost on my home"
+	line "field…"
+	done
 ; 0x76b7a
 
 UnknownText_0x76b7a: ; 0x76b7a
-	db $0, "We get different", $4f
-	db "passengers from", $51
-	db "VERMILION CITY to", $4f
-	db "OLIVINE CITY.", $57
+	text "We get different"
+	line "passengers from"
+
+	para "VERMILION CITY to"
+	line "OLIVINE CITY."
+	done
 ; 0x76bbc
 
 FisherJonahSeenText: ; 0x76bbc
-	db $0, "Even though we're", $4f
-	db "out on the sea, I", $55
-	db "can't fish!", $51
-	db "This is boring!", $4f
-	db "Let's battle!", $57
+	text "Even though we're"
+	line "out on the sea, I"
+	cont "can't fish!"
+
+	para "This is boring!"
+	line "Let's battle!"
+	done
 ; 0x76c08
 
 FisherJonahBeatenText: ; 0x76c08
-	db $0, "I… I'm not bored", $4f
-	db "anymore…", $57
+	text "I… I'm not bored"
+	line "anymore…"
+	done
 ; 0x76c22
 
 UnknownText_0x76c22: ; 0x76c22
-	db $0, "I plan to fish off", $4f
-	db "VERMILION's pier.", $57
+	text "I plan to fish off"
+	line "VERMILION's pier."
+	done
 ; 0x76c47
 
 BlackbeltWaiSeenText: ; 0x76c47
-	db $0, "I'm building up my", $4f
-	db "legs by bracing", $51
-	db "against the ship's", $4f
-	db "rocking!", $57
+	text "I'm building up my"
+	line "legs by bracing"
+
+	para "against the ship's"
+	line "rocking!"
+	done
 ; 0x76c85
 
 BlackbeltWaiBeatenText: ; 0x76c85
-	db $0, "Rocked and rolled", $4f
-	db "over!", $57
+	text "Rocked and rolled"
+	line "over!"
+	done
 ; 0x76c9e
 
 UnknownText_0x76c9e: ; 0x76c9e
-	db $0, "I couldn't find", $4f
-	db "the KARATE KING in", $55
-	db "JOHTO.", $51
-	db "He's supposed to", $4f
-	db "be training in a", $55
-	db "cave somewhere.", $57
+	text "I couldn't find"
+	line "the KARATE KING in"
+	cont "JOHTO."
+
+	para "He's supposed to"
+	line "be training in a"
+	cont "cave somewhere."
+	done
 ; 0x76cf9
 
 SailorKennethSeenText: ; 0x76cf9
-	db $0, "I'm a sailor man!", $51
-	db "But I'm training", $4f
-	db "#MON, so I can", $55
-	db "become the CHAMP!", $57
+	text "I'm a sailor man!"
+
+	para "But I'm training"
+	line "#MON, so I can"
+	cont "become the CHAMP!"
+	done
 ; 0x76d3c
 
 SailorKennethBeatenText: ; 0x76d3c
-	db $0, "My lack of train-", $4f
-	db "ing is obvious…", $57
+	text "My lack of train-"
+	line "ing is obvious…"
+	done
 ; 0x76d5f
 
 UnknownText_0x76d5f: ; 0x76d5f
-	db $0, "Eight BADGES!", $4f
-	db "They must prove", $51
-	db "that you've beaten", $4f
-	db "GYM LEADERS.", $51
-	db "No wonder you're", $4f
-	db "so good!", $57
+	text "Eight BADGES!"
+	line "They must prove"
+
+	para "that you've beaten"
+	line "GYM LEADERS."
+
+	para "No wonder you're"
+	line "so good!"
+	done
 ; 0x76db6
 
 TeacherShirleySeenText: ; 0x76db6
-	db $0, "Don't lay a finger", $4f
-	db "on my students!", $57
+	text "Don't lay a finger"
+	line "on my students!"
+	done
 ; 0x76dd9
 
 TeacherShirleyBeatenText: ; 0x76dd9
-	db $0, "Aaack!", $57
+	text "Aaack!"
+	done
 ; 0x76de1
 
 UnknownText_0x76de1: ; 0x76de1
-	db $0, "We're on a field", $4f
-	db "trip to the RUINS", $55
-	db "outside VIOLET.", $57
+	text "We're on a field"
+	line "trip to the RUINS"
+	cont "outside VIOLET."
+	done
 ; 0x76e14
 
 SchoolboyNateSeenText: ; 0x76e14
-	db $0, "Do you know the", $4f
-	db "RUINS OF ALPH?", $57
+	text "Do you know the"
+	line "RUINS OF ALPH?"
+	done
 ; 0x76e34
 
 SchoolboyNateBeatenText: ; 0x76e34
-	db $0, "Yaargh!", $57
+	text "Yaargh!"
+	done
 ; 0x76e3d
 
 UnknownText_0x76e3d: ; 0x76e3d
-	db $0, "Radios pick up", $4f
-	db "strange signals", $55
-	db "inside the RUINS.", $57
+	text "Radios pick up"
+	line "strange signals"
+	cont "inside the RUINS."
+	done
 ; 0x76e6f
 
 SchoolboyRickySeenText: ; 0x76e6f
-	db $0, "There are some odd", $4f
-	db "stone panels in", $55
-	db "the RUINS OF ALPH.", $57
+	text "There are some odd"
+	line "stone panels in"
+	cont "the RUINS OF ALPH."
+	done
 ; 0x76ea6
 
 SchoolboyRickyBeatenText: ; 0x76ea6
-	db $0, "I was done in!", $57
+	text "I was done in!"
+	done
 ; 0x76eb6
 
 UnknownText_0x76eb6: ; 0x76eb6
-	db $0, "I read that there", $4f
-	db "are four of those", $55
-	db "stone panels.", $57
+	text "I read that there"
+	line "are four of those"
+	cont "stone panels."
+	done
 ; 0x76ee9
 
 FastShipB1F_MapEventHeader: ; 0x76ee9

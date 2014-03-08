@@ -20,11 +20,13 @@ GrowlitheScript_0x1a280a: ; 0x1a280a
 ; 0x1a2814
 
 UnknownText_0x1a2814: ; 0x1a2814
-	db $0, "NIDORAN, shake!", $57
+	text "NIDORAN, shake!"
+	done
 ; 0x1a2825
 
 UnknownText_0x1a2825: ; 0x1a2825
-	db $0, "NIDORAN: Gau gau!", $57
+	text "NIDORAN: Gau gau!"
+	done
 ; 0x1a2838
 
 PewterNidoranSpeechHouse_MapEventHeader: ; 0x1a2838

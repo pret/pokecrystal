@@ -15,14 +15,18 @@ MapLavenderTownSpeechHouseSignpost1Script: ; 0x7ea4a
 ; 0x7ea4d
 
 UnknownText_0x7ea4d: ; 0x7ea4d
-	db $0, "LAVENDER is a", $4f
-	db "tiny, quiet town", $51
-	db "at the foot of the", $4f
-	db "mountains.", $51
-	db "It's gotten a bit", $4f
-	db "busier since the", $51
-	db "RADIO TOWER was", $4f
-	db "built.", $57
+	text "LAVENDER is a"
+	line "tiny, quiet town"
+
+	para "at the foot of the"
+	line "mountains."
+
+	para "It's gotten a bit"
+	line "busier since the"
+
+	para "RADIO TOWER was"
+	line "built."
+	done
 ; 0x7eac4
 
 LavenderTownSpeechHouse_MapEventHeader: ; 0x7eac4

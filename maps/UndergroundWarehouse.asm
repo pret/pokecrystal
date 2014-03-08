@@ -152,99 +152,128 @@ ItemFragment_0x7d9e8: ; 0x7d9e8
 ; 0x7d9ea
 
 GruntM24SeenText: ; 0x7d9ea
-	db $0, "How did you get", $4f
-	db "this far?", $51
-	db "I guess it can't", $4f
-	db "be helped. I'll", $55
-	db "dispose of you.", $57
+	text "How did you get"
+	line "this far?"
+
+	para "I guess it can't"
+	line "be helped. I'll"
+	cont "dispose of you."
+	done
 ; 0x7da34
 
 GruntM24BeatenText: ; 0x7da34
-	db $0, "I got disposed of…", $57
+	text "I got disposed of…"
+	done
 ; 0x7da48
 
 UnknownText_0x7da48: ; 0x7da48
-	db $0, "TEAM ROCKET will", $4f
-	db "keep going, wait-", $55
-	db "ing for the return", $55
-	db "of GIOVANNI.", $51
-	db "We'll do whatever", $4f
-	db "it takes.", $57
+	text "TEAM ROCKET will"
+	line "keep going, wait-"
+	cont "ing for the return"
+	cont "of GIOVANNI."
+
+	para "We'll do whatever"
+	line "it takes."
+	done
 ; 0x7daa7
 
 GruntM14SeenText: ; 0x7daa7
-	db $0, "You're not going", $4f
-	db "any farther!", $51
-	db "I don't show mercy", $4f
-	db "to my enemies, not", $55
-	db "even brats!", $57
+	text "You're not going"
+	line "any farther!"
+
+	para "I don't show mercy"
+	line "to my enemies, not"
+	cont "even brats!"
+	done
 ; 0x7daf6
 
 GruntM14BeatenText: ; 0x7daf6
-	db $0, "Blast it!", $57
+	text "Blast it!"
+	done
 ; 0x7db01
 
 UnknownText_0x7db01: ; 0x7db01
-	db $0, "I lost…", $51
-	db "Please forgive me,", $4f
-	db "GIOVANNI!", $57
+	text "I lost…"
+
+	para "Please forgive me,"
+	line "GIOVANNI!"
+	done
 ; 0x7db27
 
 GruntM15SeenText: ; 0x7db27
-	db $0, "Hyuck-hyuck-hyuck!", $4f
-	db "I remember you!", $51
-	db "You got me good", $4f
-	db "at our hideout!", $57
+	text "Hyuck-hyuck-hyuck!"
+	line "I remember you!"
+
+	para "You got me good"
+	line "at our hideout!"
+	done
 ; 0x7db6b
 
 GruntM15BeatenText: ; 0x7db6b
-	db $0, "Hyuck-hyuck-hyuck!", $4f
-	db "So, that's how?", $57
+	text "Hyuck-hyuck-hyuck!"
+	line "So, that's how?"
+	done
 ; 0x7db8e
 
 UnknownText_0x7db8e: ; 0x7db8e
-	db $0, "Hyuck-hyuck-hyuck!", $4f
-	db "That was a blast!", $55
-	db "I'll remember you!", $57
+	text "Hyuck-hyuck-hyuck!"
+	line "That was a blast!"
+	cont "I'll remember you!"
+	done
 ; 0x7dbc6
 
 UnknownText_0x7dbc6: ; 0x7dbc6
-	db $0, "DIRECTOR: Who?", $4f
-	db "What? You came to", $55
-	db "rescue me?", $51
-	db "Thank you!", $51
-	db "The RADIO TOWER!", $51
-	db "What's happening", $4f
-	db "there?", $51
-	db "Taken over by TEAM", $4f
-	db "ROCKET?", $51
-	db "Here. Take this", $4f
-	db "CARD KEY.", $57
+	text "DIRECTOR: Who?"
+	line "What? You came to"
+	cont "rescue me?"
+
+	para "Thank you!"
+
+	para "The RADIO TOWER!"
+
+	para "What's happening"
+	line "there?"
+
+	para "Taken over by TEAM"
+	line "ROCKET?"
+
+	para "Here. Take this"
+	line "CARD KEY."
+	done
 ; 0x7dc5b
 
 UnknownText_0x7dc5b: ; 0x7dc5b
-	db $0, "DIRECTOR: Use that", $4f
-	db "to open the shut-", $55
-	db "ters on 3F.", $57
+	text "DIRECTOR: Use that"
+	line "to open the shut-"
+	cont "ters on 3F."
+	done
 ; 0x7dc8d
 
 UnknownText_0x7dc8d: ; 0x7dc8d
-	db $0, "I'm begging you to", $4f
-	db "help.", $51
-	db "There's no telling", $4f
-	db "what they'll do if", $51
-	db "they control the", $4f
-	db "transmitter.", $51
-	db "They may even be", $4f
-	db "able to control", $51
-	db "#MON using a", $4f
-	db "special signal!", $51
-	db "You're the only", $4f
-	db "one I can call on.", $51
-	db "Please save the", $4f
-	db "RADIO TOWER…", $51
-	db "And all the #-", $4f
-	db "MON nationwide!", $57
+	text "I'm begging you to"
+	line "help."
+
+	para "There's no telling"
+	line "what they'll do if"
+
+	para "they control the"
+	line "transmitter."
+
+	para "They may even be"
+	line "able to control"
+
+	para "#MON using a"
+	line "special signal!"
+
+	para "You're the only"
+	line "one I can call on."
+
+	para "Please save the"
+	line "RADIO TOWER…"
+
+	para "And all the #-"
+	line "MON nationwide!"
+	done
 ; 0x7dd84
 
 UndergroundWarehouse_MapEventHeader: ; 0x7dd84

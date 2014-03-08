@@ -24,19 +24,24 @@ UnknownText_0x195956: ; 0x195956
 	db $0, "ズ", $03, $00
 
 UnknownText_0x19595c: ; 0x19595c
-	db $0, "A clan of trainers", $4f
-	db "who can freely", $51
-	db "command dragons", $4f
-	db "live right here in", $55
-	db "BLACKTHORN.", $51
-	db "As a result, there", $4f
-	db "are many legends", $51
-	db "about dragons in", $4f
-	db "this town.", $57
+	text "A clan of trainers"
+	line "who can freely"
+
+	para "command dragons"
+	line "live right here in"
+	cont "BLACKTHORN."
+
+	para "As a result, there"
+	line "are many legends"
+
+	para "about dragons in"
+	line "this town."
+	done
 ; 0x1959ee
 
 UnknownText_0x1959ee: ; 0x1959ee
-	db $0, "DRATINI: Draa!", $57
+	text "DRATINI: Draa!"
+	done
 ; 0x1959fe
 
 BlackthornDragonSpeechHouse_MapEventHeader: ; 0x1959fe

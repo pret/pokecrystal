@@ -226,105 +226,142 @@ MovementData_0x180f5b: ; 0x180f5b
 ; 0x180f67
 
 UnknownText_0x180f67: ; 0x180f67
-	db $0, "LANCE: I've been", $4f
-	db "waiting for you.", $51
-	db $14, "!", $51
-	db "I knew that you,", $4f
-	db "with your skills,", $51
-	db "would eventually", $4f
-	db "reach me here.", $51
-	db "There's no need", $4f
-	db "for words now.", $51
-	db "We will battle to", $4f
-	db "determine who is", $51
-	db "the stronger of", $4f
-	db "the two of us.", $51
-	db "As the most power-", $4f
-	db "ful trainer and as", $51
-	db "the #MON LEAGUE", $4f
-	db "CHAMPION…", $51
-	db "I, LANCE the drag-", $4f
-	db "on master, accept", $55
-	db "your challenge!", $57
+	text "LANCE: I've been"
+	line "waiting for you."
+
+	para $14, "!"
+
+	para "I knew that you,"
+	line "with your skills,"
+
+	para "would eventually"
+	line "reach me here."
+
+	para "There's no need"
+	line "for words now."
+
+	para "We will battle to"
+	line "determine who is"
+
+	para "the stronger of"
+	line "the two of us."
+
+	para "As the most power-"
+	line "ful trainer and as"
+
+	para "the #MON LEAGUE"
+	line "CHAMPION…"
+
+	para "I, LANCE the drag-"
+	line "on master, accept"
+	cont "your challenge!"
+	done
 ; 0x1810a4
 
 UnknownText_0x1810a4: ; 0x1810a4
-	db $0, "…It's over.", $51
-	db "But it's an odd", $4f
-	db "feeling.", $51
-	db "I'm not angry that", $4f
-	db "I lost. In fact, I", $55
-	db "feel happy.", $51
-	db "Happy that I", $4f
-	db "witnessed the rise", $51
-	db "of a great new", $4f
-	db "CHAMPION!", $57
+	text "…It's over."
+
+	para "But it's an odd"
+	line "feeling."
+
+	para "I'm not angry that"
+	line "I lost. In fact, I"
+	cont "feel happy."
+
+	para "Happy that I"
+	line "witnessed the rise"
+
+	para "of a great new"
+	line "CHAMPION!"
+	done
 ; 0x181132
 
 UnknownText_0x181132: ; 0x181132
-	db $0, "…Whew.", $51
-	db "You have become", $4f
-	db "truly powerful,", $55
-	db $14, ".", $51
-	db "Your #MON have", $4f
-	db "responded to your", $51
-	db "strong and up-", $4f
-	db "standing nature.", $51
-	db "As a trainer, you", $4f
-	db "will continue to", $51
-	db "grow strong with", $4f
-	db "your #MON.", $57
+	text "…Whew."
+
+	para "You have become"
+	line "truly powerful,"
+	cont $14, "."
+
+	para "Your #MON have"
+	line "responded to your"
+
+	para "strong and up-"
+	line "standing nature."
+
+	para "As a trainer, you"
+	line "will continue to"
+
+	para "grow strong with"
+	line "your #MON."
+	done
 ; 0x1811dd
 
 UnknownText_0x1811dd: ; 0x1811dd
-	db $0, "MARY: Oh, no!", $4f
-	db "It's all over!", $51
-	db "PROF.OAK, if you", $4f
-	db "weren't so slow…", $57
+	text "MARY: Oh, no!"
+	line "It's all over!"
+
+	para "PROF.OAK, if you"
+	line "weren't so slow…"
+	done
 ; 0x18121b
 
 UnknownText_0x18121b: ; 0x18121b
-	db $0, "PROF.OAK: Ah,", $4f
-	db $14, "!", $51
-	db "It's been a long", $4f
-	db "while.", $51
-	db "You certainly look", $4f
-	db "more impressive.", $51
-	db "Your conquest of", $4f
-	db "the LEAGUE is just", $55
-	db "fantastic!", $51
-	db "Your dedication,", $4f
-	db "trust and love for", $51
-	db "your #MON made", $4f
-	db "this happen.", $51
-	db "Your #MON were", $4f
-	db "outstanding too.", $51
-	db "Because they be-", $4f
-	db "lieved in you as a", $51
-	db "trainer, they per-", $4f
-	db "severed.", $51
-	db "Congratulations,", $4f
-	db $14, "!", $57
+	text "PROF.OAK: Ah,"
+	line $14, "!"
+
+	para "It's been a long"
+	line "while."
+
+	para "You certainly look"
+	line "more impressive."
+
+	para "Your conquest of"
+	line "the LEAGUE is just"
+	cont "fantastic!"
+
+	para "Your dedication,"
+	line "trust and love for"
+
+	para "your #MON made"
+	line "this happen."
+
+	para "Your #MON were"
+	line "outstanding too."
+
+	para "Because they be-"
+	line "lieved in you as a"
+
+	para "trainer, they per-"
+	line "severed."
+
+	para "Congratulations,"
+	line $14, "!"
+	done
 ; 0x18134b
 
 UnknownText_0x18134b: ; 0x18134b
-	db $0, "MARY: Let's inter-", $4f
-	db "view the brand new", $55
-	db "CHAMPION!", $57
+	text "MARY: Let's inter-"
+	line "view the brand new"
+	cont "CHAMPION!"
+	done
 ; 0x18137b
 
 UnknownText_0x18137b: ; 0x18137b
-	db $0, "LANCE: This is", $4f
-	db "getting to be a", $55
-	db "bit too noisy…", $51
-	db $14, ", could you", $4f
-	db "come with me?", $57
+	text "LANCE: This is"
+	line "getting to be a"
+	cont "bit too noisy…"
+
+	para $14, ", could you"
+	line "come with me?"
+	done
 ; 0x1813c5
 
 UnknownText_0x1813c5: ; 0x1813c5
-	db $0, "MARY: Oh, wait!", $4f
-	db "We haven't done", $55
-	db "the interview!", $57
+	text "MARY: Oh, wait!"
+	line "We haven't done"
+	cont "the interview!"
+	done
 ; 0x1813f4
 
 LancesRoom_MapEventHeader: ; 0x1813f4

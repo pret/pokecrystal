@@ -23,30 +23,36 @@ CooltrainerFScript_0x19a35f: ; 0x19a35f
 ; 0x19a362
 
 UnknownText_0x19a362: ; 0x19a362
-	db $0, "What's this? TEAM", $4f
-	db "ROCKET has come", $55
-	db "back?", $51
-	db "I saw some men in", $4f
-	db "black at LAKE OF", $55
-	db "RAGE…", $57
+	text "What's this? TEAM"
+	line "ROCKET has come"
+	cont "back?"
+
+	para "I saw some men in"
+	line "black at LAKE OF"
+	cont "RAGE…"
+	done
 ; 0x19a3b3
 
 UnknownText_0x19a3b3: ; 0x19a3b3
-	db $0, "I stop my #MON", $4f
-	db "from evolving too", $55
-	db "early.", $51
-	db "I make them learn", $4f
-	db "certain moves be-", $55
-	db "fore I let them", $55
-	db "evolve.", $57
+	text "I stop my #MON"
+	line "from evolving too"
+	cont "early."
+
+	para "I make them learn"
+	line "certain moves be-"
+	cont "fore I let them"
+	cont "evolve."
+	done
 ; 0x19a418
 
 UnknownText_0x19a418: ; 0x19a418
-	db $0, "#MON do become", $4f
-	db "stronger when they", $51
-	db "evolve, but they", $4f
-	db "also learn moves", $55
-	db "more slowly.", $57
+	text "#MON do become"
+	line "stronger when they"
+
+	para "evolve, but they"
+	line "also learn moves"
+	cont "more slowly."
+	done
 ; 0x19a46a
 
 MahoganyPokeCenter1F_MapEventHeader: ; 0x19a46a

@@ -22,25 +22,31 @@ CooltrainerMScript_0x6829f: ; 0x6829f
 ; 0x682a2
 
 UnknownText_0x682a2: ; 0x682a2
-	db $0, "When you first", $4f
-	db "catch a #MON,", $55
-	db "it may be weak.", $51
-	db "But it will even-", $4f
-	db "tually grow to be", $55
-	db "strong.", $51
-	db "It's important to", $4f
-	db "treat #MON with", $55
-	db "love.", $57
+	text "When you first"
+	line "catch a #MON,"
+	cont "it may be weak."
+
+	para "But it will even-"
+	line "tually grow to be"
+	cont "strong."
+
+	para "It's important to"
+	line "treat #MON with"
+	cont "love."
+	done
 ; 0x68323
 
 UnknownText_0x68323: ; 0x68323
-	db $0, "#MON can hold", $4f
-	db "items like POTION", $55
-	db "and ANTIDOTE.", $51
-	db "But they don't", $4f
-	db "appear to know how", $51
-	db "to use manmade", $4f
-	db "items.", $57
+	text "#MON can hold"
+	line "items like POTION"
+	cont "and ANTIDOTE."
+
+	para "But they don't"
+	line "appear to know how"
+
+	para "to use manmade"
+	line "items."
+	done
 ; 0x68389
 
 VioletMart_MapEventHeader: ; 0x68389

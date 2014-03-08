@@ -200,141 +200,178 @@ UnknownScript_0x72b21: ; 0x72b21
 ; 0x72b28
 
 UnknownText_0x72b28: ; 0x72b28
-	db $0, "ERIKA: Hello…", $4f
-	db "Lovely weather,", $51
-	db "isn't it?", $4f
-	db "It's so pleasant…", $51
-	db "…I'm afraid I may", $4f
-	db "doze off…", $51
-	db "My name is ERIKA.", $4f
-	db "I am the LEADER of", $55
-	db "CELADON GYM.", $51
-	db "…Oh? All the way", $4f
-	db "from JOHTO, you", $55
-	db "say? How nice…", $51
-	db "Oh. I'm sorry, I", $4f
-	db "didn't realize", $51
-	db "that you wished to", $4f
-	db "challenge me.", $51
-	db "Very well, but I", $4f
-	db "shall not lose.", $57
+	text "ERIKA: Hello…"
+	line "Lovely weather,"
+
+	para "isn't it?"
+	line "It's so pleasant…"
+
+	para "…I'm afraid I may"
+	line "doze off…"
+
+	para "My name is ERIKA."
+	line "I am the LEADER of"
+	cont "CELADON GYM."
+
+	para "…Oh? All the way"
+	line "from JOHTO, you"
+	cont "say? How nice…"
+
+	para "Oh. I'm sorry, I"
+	line "didn't realize"
+
+	para "that you wished to"
+	line "challenge me."
+
+	para "Very well, but I"
+	line "shall not lose."
+	done
 ; 0x72c3e
 
 UnknownText_0x72c3e: ; 0x72c3e
-	db $0, "ERIKA: Oh!", $4f
-	db "I concede defeat…", $51
-	db "You are remarkably", $4f
-	db "strong…", $51
-	db "I shall give you", $4f
-	db "RAINBOWBADGE…", $57
+	text "ERIKA: Oh!"
+	line "I concede defeat…"
+
+	para "You are remarkably"
+	line "strong…"
+
+	para "I shall give you"
+	line "RAINBOWBADGE…"
+	done
 ; 0x72c96
 
 UnknownText_0x72c96: ; 0x72c96
-	db $0, $52, " received", $4f
-	db "RAINBOWBADGE.", $57
+	text $52, " received"
+	line "RAINBOWBADGE."
+	done
 ; 0x72cb0
 
 UnknownText_0x72cb0: ; 0x72cb0
-	db $0, "ERIKA: That was a", $4f
-	db "delightful match.", $51
-	db "I felt inspired.", $4f
-	db "Please, I wish you", $55
-	db "to have this TM.", $51
-	db "It is GIGA DRAIN.", $51
-	db "It is a wonderful", $4f
-	db "move that drains", $51
-	db "half the damage it", $4f
-	db "inflicts to heal", $55
-	db "your #MON.", $51
-	db "Please use it if", $4f
-	db "it pleases you…", $57
+	text "ERIKA: That was a"
+	line "delightful match."
+
+	para "I felt inspired."
+	line "Please, I wish you"
+	cont "to have this TM."
+
+	para "It is GIGA DRAIN."
+
+	para "It is a wonderful"
+	line "move that drains"
+
+	para "half the damage it"
+	line "inflicts to heal"
+	cont "your #MON."
+
+	para "Please use it if"
+	line "it pleases you…"
+	done
 ; 0x72d8f
 
 UnknownText_0x72d8f: ; 0x72d8f
-	db $0, "ERIKA: Losing", $4f
-	db "leaves a bitter", $55
-	db "aftertaste…", $51
-	db "But knowing that", $4f
-	db "there are strong", $51
-	db "trainers spurs me", $4f
-	db "to do better…", $57
+	text "ERIKA: Losing"
+	line "leaves a bitter"
+	cont "aftertaste…"
+
+	para "But knowing that"
+	line "there are strong"
+
+	para "trainers spurs me"
+	line "to do better…"
+	done
 ; 0x72dfc
 
 LassMichelleSeenText: ; 0x72dfc
-	db $0, "Do you think a", $4f
-	db "girls-only GYM", $55
-	db "is rare?", $57
+	text "Do you think a"
+	line "girls-only GYM"
+	cont "is rare?"
+	done
 ; 0x72e24
 
 LassMichelleBeatenText: ; 0x72e24
-	db $0, "Oh, bleah!", $57
+	text "Oh, bleah!"
+	done
 ; 0x72e30
 
 UnknownText_0x72e30: ; 0x72e30
-	db $0, "I just got care-", $4f
-	db "less, that's all!", $57
+	text "I just got care-"
+	line "less, that's all!"
+	done
 ; 0x72e53
 
 PicnickerTanyaSeenText: ; 0x72e53
-	db $0, "Oh, a battle?", $4f
-	db "That's kind of", $55
-	db "scary, but OK!", $57
+	text "Oh, a battle?"
+	line "That's kind of"
+	cont "scary, but OK!"
+	done
 ; 0x72e7f
 
 PicnickerTanyaBeatenText: ; 0x72e7f
-	db $0, "Oh, that's it?", $57
+	text "Oh, that's it?"
+	done
 ; 0x72e8e
 
 UnknownText_0x72e8e: ; 0x72e8e
-	db $0, "Oh, look at all", $4f
-	db "your BADGES. No", $51
-	db "wonder I couldn't", $4f
-	db "win!", $57
+	text "Oh, look at all"
+	line "your BADGES. No"
+
+	para "wonder I couldn't"
+	line "win!"
+	done
 ; 0x72ec5
 
 BeautyJuliaSeenText: ; 0x72ec5
-	db $0, "Were you looking", $4f
-	db "at these flowers", $55
-	db "or at me?", $57
+	text "Were you looking"
+	line "at these flowers"
+	cont "or at me?"
+	done
 ; 0x72ef2
 
 BeautyJuliaBeatenText: ; 0x72ef2
-	db $0, "How annoying!", $57
+	text "How annoying!"
+	done
 ; 0x72f01
 
 UnknownText_0x72f01: ; 0x72f01
-	db $0, "How do I go about", $4f
-	db "becoming ladylike", $55
-	db "like ERIKA?", $57
+	text "How do I go about"
+	line "becoming ladylike"
+	cont "like ERIKA?"
+	done
 ; 0x72f32
 
 TwinsJoandzoe1SeenText: ; 0x72f32
-	db $0, "We'll show you", $4f
-	db "#MON moves that", $55
-	db "ERIKA taught us!", $57
+	text "We'll show you"
+	line "#MON moves that"
+	cont "ERIKA taught us!"
+	done
 ; 0x72f62
 
 TwinsJoandzoe1BeatenText: ; 0x72f62
-	db $0, "Oh… We lost…", $57
+	text "Oh… We lost…"
+	done
 ; 0x72f70
 
 UnknownText_0x72f70: ; 0x72f70
-	db $0, "ERIKA will get you", $4f
-	db "back for us!", $57
+	text "ERIKA will get you"
+	line "back for us!"
+	done
 ; 0x72f91
 
 TwinsJoandzoe2SeenText: ; 0x72f91
-	db $0, "We're going to", $4f
-	db "protect ERIKA!", $57
+	text "We're going to"
+	line "protect ERIKA!"
+	done
 ; 0x72faf
 
 TwinsJoandzoe2BeatenText: ; 0x72faf
-	db $0, "We couldn't win…", $57
+	text "We couldn't win…"
+	done
 ; 0x72fc0
 
 UnknownText_0x72fc0: ; 0x72fc0
-	db $0, "ERIKA is much,", $4f
-	db "much stronger!", $57
+	text "ERIKA is much,"
+	line "much stronger!"
+	done
 ; 0x72fdf
 
 CeladonGym_MapEventHeader: ; 0x72fdf

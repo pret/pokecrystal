@@ -125,126 +125,169 @@ MapGoldenrodPokeComCenter2FMobileSignpost2Script: ; 0x62671
 ; 0x62674
 
 UnknownText_0x62674: ; 0x62674
-	db $0, "#COM CENTER and", $4f
-	db "MOBILE CENTER were", $51
-	db "built to satisfy", $4f
-	db "demands for trades", $51
-	db "and battles with", $4f
-	db "trainers far away", $51
-	db "and with total", $4f
-	db "strangers.", $57
+	text "#COM CENTER and"
+	line "MOBILE CENTER were"
+
+	para "built to satisfy"
+	line "demands for trades"
+
+	para "and battles with"
+	line "trainers far away"
+
+	para "and with total"
+	line "strangers."
+	done
 ; 0x626f9
 
 UnknownText_0x626f9: ; 0x626f9
-	db $0, "When you linked", $4f
-	db "with someone by", $51
-	db "mobile phone for", $4f
-	db "the first time,", $51
-	db "weren't you", $4f
-	db "impressed?", $51
-	db "When my first try", $4f
-	db "worked, I was so", $51
-	db "impressed that I", $4f
-	db "got the shakes!", $57
+	text "When you linked"
+	line "with someone by"
+
+	para "mobile phone for"
+	line "the first time,"
+
+	para "weren't you"
+	line "impressed?"
+
+	para "When my first try"
+	line "worked, I was so"
+
+	para "impressed that I"
+	line "got the shakes!"
+	done
 ; 0x62795
 
 UnknownText_0x62795: ; 0x62795
-	db $0, "They were able to", $4f
-	db "build this huge", $51
-	db "facility thanks to", $4f
-	db "advances in wire-", $55
-	db "less technology.", $57
+	text "They were able to"
+	line "build this huge"
+
+	para "facility thanks to"
+	line "advances in wire-"
+	cont "less technology."
+	done
 ; 0x627ee
 
 UnknownText_0x627ee: ; 0x627ee
-	db $0, "It's a notice", $4f
-	db "about where MOBILE", $51
-	db "ADAPTERS are to be", $4f
-	db "used…", $57
+	text "It's a notice"
+	line "about where MOBILE"
+
+	para "ADAPTERS are to be"
+	line "used…"
+	done
 ; 0x62828
 
 UnknownText_0x62828: ; 0x62828
-	db $0, "There's a #COM", $4f
-	db "CLUB upstairs in", $51
-	db "any #MON", $4f
-	db "CENTER.", $51
-	db "There, you can", $4f
-	db "battle or trade", $51
-	db "with a friend far", $4f
-	db "away by using a", $55
-	db "MOBILE ADAPTER.", $51
-	db "To link up, your", $4f
-	db "friend must have", $51
-	db "the same kind of", $4f
-	db "MOBILE ADAPTER as", $55
-	db "you.", $57
+	text "There's a #COM"
+	line "CLUB upstairs in"
+
+	para "any #MON"
+	line "CENTER."
+
+	para "There, you can"
+	line "battle or trade"
+
+	para "with a friend far"
+	line "away by using a"
+	cont "MOBILE ADAPTER."
+
+	para "To link up, your"
+	line "friend must have"
+
+	para "the same kind of"
+	line "MOBILE ADAPTER as"
+	cont "you."
+	done
 ; 0x628f4
 
 UnknownText_0x628f4: ; 0x628f4
-	db $0, "To use the TRADE", $4f
-	db "CORNER or read the", $51
-	db "#MON NEWS, you", $4f
-	db "need to phone the", $55
-	db "MOBILE CENTER.", $51
-	db "You must register", $4f
-	db "at the MOBILE", $51
-	db "CENTER before", $4f
-	db "connecting there.", $57
+	text "To use the TRADE"
+	line "CORNER or read the"
+
+	para "#MON NEWS, you"
+	line "need to phone the"
+	cont "MOBILE CENTER."
+
+	para "You must register"
+	line "at the MOBILE"
+
+	para "CENTER before"
+	line "connecting there."
+	done
 ; 0x62989
 
 UnknownText_0x62989: ; 0x62989
-	db $0, "It's a notice", $4f
-	db "about using the", $55
-	db "phone…", $57
+	text "It's a notice"
+	line "about using the"
+	cont "phone…"
+	done
 ; 0x629ae
 
 UnknownText_0x629ae: ; 0x629ae
-	db $0, "Please ensure that", $4f
-	db "your phone and", $51
-	db "MOBILE ADAPTER are", $4f
-	db "properly linked.", $51
-	db "Please make sure", $4f
-	db "the wireless phone", $55
-	db "signal is strong.", $51
-	db "Don't touch or", $4f
-	db "hang up the phone", $55
-	db "while linking.", $57
+	text "Please ensure that"
+	line "your phone and"
+
+	para "MOBILE ADAPTER are"
+	line "properly linked."
+
+	para "Please make sure"
+	line "the wireless phone"
+	cont "signal is strong."
+
+	para "Don't touch or"
+	line "hang up the phone"
+	cont "while linking."
+	done
 ; 0x62a5a
 
 UnknownText_0x62a5a: ; 0x62a5a
-	db $0, "If the server is", $4f
-	db "busy, it may not", $51
-	db "be possible to log", $4f
-	db "on.", $51
-	db "If so, please call", $4f
-	db "back later.", $51
-	db "If you are unable", $4f
-	db "to log on or don't", $51
-	db "understand the", $4f
-	db "error messages,", $51
-	db "call a support", $4f
-	db "center or read the", $55
-	db "instructions.", $57
+	text "If the server is"
+	line "busy, it may not"
+
+	para "be possible to log"
+	line "on."
+
+	para "If so, please call"
+	line "back later."
+
+	para "If you are unable"
+	line "to log on or don't"
+
+	para "understand the"
+	line "error messages,"
+
+	para "call a support"
+	line "center or read the"
+	cont "instructions."
+	done
 ; 0x62b26
 
 UnknownText_0x62b26: ; 0x62b26
-	db $0, "The ADMINISTRATION", $4f
-	db "OFFICE received an", $55
-	db "e-mail. It says…", $51
-	db $56, " ", $56, " ", $56, $51
-	db "To the #COM", $4f
-	db "CENTER staff…", $51
-	db "Wireless communi-", $4f
-	db "cation has enabled", $51
-	db "#MON trainers", $4f
-	db "to interact across", $51
-	db "the nation. Let's", $4f
-	db "keep working for", $51
-	db "the day when all", $4f
-	db "the trainers in", $51
-	db "the world can link", $4f
-	db "without barriers!", $51
-	db $56, " ", $56, " ", $56, $57
+	text "The ADMINISTRATION"
+	line "OFFICE received an"
+	cont "e-mail. It says…"
+
+	para $56, " ", $56, " ", $56
+
+	para "To the #COM"
+	line "CENTER staff…"
+
+	para "Wireless communi-"
+	line "cation has enabled"
+
+	para "#MON trainers"
+	line "to interact across"
+
+	para "the nation. Let's"
+	line "keep working for"
+
+	para "the day when all"
+	line "the trainers in"
+
+	para "the world can link"
+	line "without barriers!"
+
+	para $56, " ", $56, " ", $56
+	done
 ; 0x62c32
 
 GoldenrodPokeComCenter2FMobile_MapEventHeader: ; 0x62c32

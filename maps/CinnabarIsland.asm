@@ -52,65 +52,92 @@ MovementData_0x1ac9d0: ; 0x1ac9d0
 ; 0x1ac9d2
 
 UnknownText_0x1ac9d2: ; 0x1ac9d2
-	db $0, "Who are you?", $51
-	db "Well, it's plain", $4f
-	db "to see that you're", $55
-	db "a trainer…", $51
-	db "My name's BLUE.", $51
-	db "I was once the", $4f
-	db "CHAMPION, although", $51
-	db "it was for only a", $4f
-	db "short time…", $51
-	db "That meddling RED", $4f
-	db "did me in…", $51
-	db "Anyway, what do", $4f
-	db "you want? You want", $51
-	db "to challenge me or", $4f
-	db "something?", $51
-	db "…I hate to say", $4f
-	db "it, but I'm not in", $51
-	db "the mood for a", $4f
-	db "battle now.", $51
-	db "Take a good look", $4f
-	db "around you…", $51
-	db "A volcano erupts,", $4f
-	db "and just like", $51
-	db "that, a whole town", $4f
-	db "disappears.", $51
-	db "We can go on win-", $4f
-	db "ning and losing in", $51
-	db "#MON. But if", $4f
-	db "nature so much as", $51
-	db "twitches, we can", $4f
-	db "lose in a second.", $51
-	db "…", $51
-	db "That's the way it", $4f
-	db "is…", $51
-	db "But, anyway, I'm", $4f
-	db "still a trainer.", $51
-	db "If I see a strong", $4f
-	db "opponent, it makes", $55
-	db "me want to battle.", $51
-	db "If you want to", $4f
-	db "battle me, come to", $55
-	db "the VIRIDIAN GYM.", $51
-	db "I'll take you on", $4f
-	db "then.", $57
+	text "Who are you?"
+
+	para "Well, it's plain"
+	line "to see that you're"
+	cont "a trainer…"
+
+	para "My name's BLUE."
+
+	para "I was once the"
+	line "CHAMPION, although"
+
+	para "it was for only a"
+	line "short time…"
+
+	para "That meddling RED"
+	line "did me in…"
+
+	para "Anyway, what do"
+	line "you want? You want"
+
+	para "to challenge me or"
+	line "something?"
+
+	para "…I hate to say"
+	line "it, but I'm not in"
+
+	para "the mood for a"
+	line "battle now."
+
+	para "Take a good look"
+	line "around you…"
+
+	para "A volcano erupts,"
+	line "and just like"
+
+	para "that, a whole town"
+	line "disappears."
+
+	para "We can go on win-"
+	line "ning and losing in"
+
+	para "#MON. But if"
+	line "nature so much as"
+
+	para "twitches, we can"
+	line "lose in a second."
+
+	para "…"
+
+	para "That's the way it"
+	line "is…"
+
+	para "But, anyway, I'm"
+	line "still a trainer."
+
+	para "If I see a strong"
+	line "opponent, it makes"
+	cont "me want to battle."
+
+	para "If you want to"
+	line "battle me, come to"
+	cont "the VIRIDIAN GYM."
+
+	para "I'll take you on"
+	line "then."
+	done
 ; 0x1acc73
 
 UnknownText_0x1acc73: ; 0x1acc73
-	db $0, "There's a notice", $4f
-	db "here…", $51
-	db "CINNABAR GYM has", $4f
-	db "relocated to SEA-", $55
-	db "FOAM ISLANDS.", $51
-	db "BLAINE", $57
+	text "There's a notice"
+	line "here…"
+
+	para "CINNABAR GYM has"
+	line "relocated to SEA-"
+	cont "FOAM ISLANDS."
+
+	para "BLAINE"
+	done
 ; 0x1accc2
 
 UnknownText_0x1accc2: ; 0x1accc2
-	db $0, "CINNABAR ISLAND", $51
-	db "The Fiery Town of", $4f
-	db "Burning Desire", $57
+	text "CINNABAR ISLAND"
+
+	para "The Fiery Town of"
+	line "Burning Desire"
+	done
 ; 0x1accf4
 
 CinnabarIsland_MapEventHeader: ; 0x1accf4

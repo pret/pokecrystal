@@ -29,9 +29,11 @@ MapRoute16Signpost0Script: ; 0x1ad32c
 ; 0x1ad32f
 
 UnknownText_0x1ad32f: ; 0x1ad32f
-	db $0, "CYCLING ROAD", $51
-	db "DOWNHILL COASTING", $4f
-	db "ALL THE WAY!", $57
+	text "CYCLING ROAD"
+
+	para "DOWNHILL COASTING"
+	line "ALL THE WAY!"
+	done
 ; 0x1ad35c
 
 Route16_MapEventHeader: ; 0x1ad35c

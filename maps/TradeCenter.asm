@@ -58,8 +58,9 @@ UnknownScript_0x19340b: ; 0x19340b
 ; 0x193412
 
 UnknownText_0x193412: ; 0x193412
-	db $0, "Your friend is", $4f
-	db "ready.", $57
+	text "Your friend is"
+	line "ready."
+	done
 ; 0x193429
 
 TradeCenter_MapEventHeader: ; 0x193429

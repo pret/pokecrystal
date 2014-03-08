@@ -249,131 +249,167 @@ MovementData_0x195f27: ; 0x195f27
 ; 0x195f35
 
 UnknownText_0x195f35: ; 0x195f35
-	db $0, "Fufufufu…", $51
-	db "I'm sorry to dis-", $4f
-	db "appoint you…", $51
-	db "I'm only joking!", $51
-	db "I'm the real deal!", $51
-	db "JANINE of FUCHSIA", $4f
-	db "GYM, that's me!", $57
+	text "Fufufufu…"
+
+	para "I'm sorry to dis-"
+	line "appoint you…"
+
+	para "I'm only joking!"
+
+	para "I'm the real deal!"
+
+	para "JANINE of FUCHSIA"
+	line "GYM, that's me!"
+	done
 ; 0x195fa1
 
 UnknownText_0x195fa1: ; 0x195fa1
-	db $0, "JANINE: You're a", $4f
-	db "tough one. You", $55
-	db "definitely won…", $51
-	db "Here's SOULBADGE.", $4f
-	db "Take it.", $57
+	text "JANINE: You're a"
+	line "tough one. You"
+	cont "definitely won…"
+
+	para "Here's SOULBADGE."
+	line "Take it."
+	done
 ; 0x195feb
 
 UnknownText_0x195feb: ; 0x195feb
-	db $0, $52, " received", $4f
-	db "SOULBADGE.", $57
+	text $52, " received"
+	line "SOULBADGE."
+	done
 ; 0x196002
 
 UnknownText_0x196002: ; 0x196002
-	db $0, "JANINE: You're so", $4f
-	db "tough! I have a", $55
-	db "special gift!", $51
-	db "It's TOXIC, a pow-", $4f
-	db "erful poison that", $51
-	db "steadily saps the", $4f
-	db "victim's HP.", $57
+	text "JANINE: You're so"
+	line "tough! I have a"
+	cont "special gift!"
+
+	para "It's TOXIC, a pow-"
+	line "erful poison that"
+
+	para "steadily saps the"
+	line "victim's HP."
+	done
 ; 0x196074
 
 UnknownText_0x196074: ; 0x196074
-	db $0, "JANINE: I'm going", $4f
-	db "to really apply", $51
-	db "myself and improve", $4f
-	db "my skills.", $51
-	db "I want to become", $4f
-	db "better than both", $55
-	db "Father and you!", $57
+	text "JANINE: I'm going"
+	line "to really apply"
+
+	para "myself and improve"
+	line "my skills."
+
+	para "I want to become"
+	line "better than both"
+	cont "Father and you!"
+	done
 ; 0x1960e6
 
 UnknownText_0x1960e6: ; 0x1960e6
-	db $0, "Fufufu!", $51
-	db "I'm JANINE, the", $4f
-	db "GYM LEADER!", $51
-	db "No, I'm not!", $4f
-	db "Gotcha, sucker!", $57
+	text "Fufufu!"
+
+	para "I'm JANINE, the"
+	line "GYM LEADER!"
+
+	para "No, I'm not!"
+	line "Gotcha, sucker!"
+	done
 ; 0x196126
 
 UnknownText_0x196126: ; 0x196126
-	db $0, "I had you fooled…", $57
+	text "I had you fooled…"
+	done
 ; 0x196139
 
 UnknownText_0x196139: ; 0x196139
-	db $0, "How will you dis-", $4f
-	db "tinguish our real", $55
-	db "LEADER?", $57
+	text "How will you dis-"
+	line "tinguish our real"
+	cont "LEADER?"
+	done
 ; 0x196166
 
 UnknownText_0x196166: ; 0x196166
-	db $0, "Fooled you!", $4f
-	db "Hahaha!", $57
+	text "Fooled you!"
+	line "Hahaha!"
+	done
 ; 0x19617b
 
 UnknownText_0x19617b: ; 0x19617b
-	db $0, "Ooh… I lost…", $4f
-	db "You're not weak…", $57
+	text "Ooh… I lost…"
+	line "You're not weak…"
+	done
 ; 0x196199
 
 UnknownText_0x196199: ; 0x196199
-	db $0, "Well? Wasn't my", $4f
-	db "disguise perfect?", $57
+	text "Well? Wasn't my"
+	line "disguise perfect?"
+	done
 ; 0x1961bb
 
 UnknownText_0x1961bb: ; 0x1961bb
-	db $0, "I'm JANINE!", $51
-	db "How did you know I", $4f
-	db "was real?", $51
-	db "Let's battle!", $57
+	text "I'm JANINE!"
+
+	para "How did you know I"
+	line "was real?"
+
+	para "Let's battle!"
+	done
 ; 0x1961f1
 
 UnknownText_0x1961f1: ; 0x1961f1
-	db $0, "Darn it!", $4f
-	db "I wanted to win!", $57
+	text "Darn it!"
+	line "I wanted to win!"
+	done
 ; 0x19620c
 
 UnknownText_0x19620c: ; 0x19620c
-	db $0, "You must be", $4f
-	db "getting tired.", $57
+	text "You must be"
+	line "getting tired."
+	done
 ; 0x196228
 
 UnknownText_0x196228: ; 0x196228
-	db $0, "Wahahaha!", $51
-	db "You betcha!", $4f
-	db "I'm JANINE!", $57
+	text "Wahahaha!"
+
+	para "You betcha!"
+	line "I'm JANINE!"
+	done
 ; 0x19624a
 
 UnknownText_0x19624a: ; 0x19624a
-	db $0, "My disguise was", $4f
-	db "right on! Dang!", $57
+	text "My disguise was"
+	line "right on! Dang!"
+	done
 ; 0x19626b
 
 UnknownText_0x19626b: ; 0x19626b
-	db $0, "Hey, you. Was my", $4f
-	db "disguise cute or", $55
-	db "what, huh?", $57
+	text "Hey, you. Was my"
+	line "disguise cute or"
+	cont "what, huh?"
+	done
 ; 0x196299
 
 FuchsiaGymGuyText: ; 0x196299
-	db $0, "Yo, CHAMP in", $4f
-	db "making!", $51
-	db "Whoops! Take a", $4f
-	db "good look around", $51
-	db "you. The trainers", $4f
-	db "all look like the", $55
-	db "LEADER, JANINE.", $51
-	db "Which of them is", $4f
-	db "the real JANINE?", $57
+	text "Yo, CHAMP in"
+	line "making!"
+
+	para "Whoops! Take a"
+	line "good look around"
+
+	para "you. The trainers"
+	line "all look like the"
+	cont "LEADER, JANINE."
+
+	para "Which of them is"
+	line "the real JANINE?"
+	done
 ; 0x196325
 
 FuchsiaGymGuyWinText: ; 0x196325
-	db $0, "That was a great", $4f
-	db "battle, trainer", $55
-	db "from JOHTO!", $57
+	text "That was a great"
+	line "battle, trainer"
+	cont "from JOHTO!"
+	done
 ; 0x196353
 
 FuchsiaGym_MapEventHeader: ; 0x196353

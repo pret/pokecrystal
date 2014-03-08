@@ -28,15 +28,18 @@ MapOlivineHouseBetaSignpost1Script: ; 0x9c59f
 ; 0x9c5a2
 
 UnknownText_0x9c5a2: ; 0x9c5a2
-	db $0, "When my #MON", $4f
-	db "got sick, the", $51
-	db "PHARMACIST in", $4f
-	db "ECRUTEAK made some", $55
-	db "medicine for me.", $57
+	text "When my #MON"
+	line "got sick, the"
+
+	para "PHARMACIST in"
+	line "ECRUTEAK made some"
+	cont "medicine for me."
+	done
 ; 0x9c5f0
 
 UnknownText_0x9c5f0: ; 0x9c5f0
-	db $0, "RHYDON: Gugooh!", $57
+	text "RHYDON: Gugooh!"
+	done
 ; 0x9c601
 
 OlivineHouseBeta_MapEventHeader: ; 0x9c601

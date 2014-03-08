@@ -15,21 +15,26 @@ YoungsterScript_0x7b5be: ; 0x7b5be
 ; 0x7b5c1
 
 UnknownText_0x7b5c1: ; 0x7b5c1
-	db $0, "You can't climb", $4f
-	db "ledges.", $51
-	db "But you can jump", $4f
-	db "down from them to", $55
-	db "take a shortcut.", $57
+	text "You can't climb"
+	line "ledges."
+
+	para "But you can jump"
+	line "down from them to"
+	cont "take a shortcut."
+	done
 ; 0x7b60d
 
 UnknownText_0x7b60d: ; 0x7b60d
-	db $0, "Different kinds of", $4f
-	db "#MON appear", $55
-	db "past here.", $51
-	db "If you want to", $4f
-	db "catch them all,", $51
-	db "you have to look", $4f
-	db "everywhere.", $57
+	text "Different kinds of"
+	line "#MON appear"
+	cont "past here."
+
+	para "If you want to"
+	line "catch them all,"
+
+	para "you have to look"
+	line "everywhere."
+	done
 ; 0x7b674
 
 Route2946Gate_MapEventHeader: ; 0x7b674

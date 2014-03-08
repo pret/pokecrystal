@@ -41,23 +41,30 @@ MovementData_0x73405: ; 0x73405
 ; 0x73408
 
 UnknownText_0x73408: ; 0x73408
-	db $0, "CYCLING ROAD", $4f
-	db "starts here.", $51
-	db "It's all downhill,", $4f
-	db "so it's totally", $55
-	db "exhilarating.", $51
-	db "It's a great sort", $4f
-	db "of feeling that", $51
-	db "you can't get from", $4f
-	db "a ship or train.", $57
+	text "CYCLING ROAD"
+	line "starts here."
+
+	para "It's all downhill,"
+	line "so it's totally"
+	cont "exhilarating."
+
+	para "It's a great sort"
+	line "of feeling that"
+
+	para "you can't get from"
+	line "a ship or train."
+	done
 ; 0x73496
 
 UnknownText_0x73496: ; 0x73496
-	db $0, "Hey! Whoa! Stop!", $51
-	db "You can't go out", $4f
-	db "on the CYCLING", $51
-	db "ROAD without a", $4f
-	db "BICYCLE.", $57
+	text "Hey! Whoa! Stop!"
+
+	para "You can't go out"
+	line "on the CYCLING"
+
+	para "ROAD without a"
+	line "BICYCLE."
+	done
 ; 0x734df
 
 Route16Gate_MapEventHeader: ; 0x734df

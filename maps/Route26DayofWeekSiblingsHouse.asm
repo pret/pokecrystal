@@ -22,40 +22,54 @@ UnknownText_0x7b1f7: ; 0x7b1f7
 ; 0x7b1f9
 
 UnknownText_0x7b1f9: ; 0x7b1f9
-	db $0, "There's something", $4f
-	db "written here.", $51
-	db "Read it?", $57
+	text "There's something"
+	line "written here."
+
+	para "Read it?"
+	done
 ; 0x7b222
 
 UnknownText_0x7b222: ; 0x7b222
-	db $0, "To my brothers and", $4f
-	db "sisters:", $51
-	db "We take pride in", $4f
-	db "serving #MON", $55
-	db "trainers.", $51
-	db "When trainers talk", $4f
-	db "to you, give them", $55
-	db "something useful.", $51
-	db "Love,", $4f
-	db "MONICA", $51
-	db "Keep reading?", $57
+	text "To my brothers and"
+	line "sisters:"
+
+	para "We take pride in"
+	line "serving #MON"
+	cont "trainers."
+
+	para "When trainers talk"
+	line "to you, give them"
+	cont "something useful."
+
+	para "Love,"
+	line "MONICA"
+
+	para "Keep reading?"
+	done
 ; 0x7b2b9
 
 UnknownText_0x7b2b9: ; 0x7b2b9
-	db $0, "Monday, MONICA", $4f
-	db "ROUTE 40", $51
-	db "Tuesday, TUSCANY", $4f
-	db "ROUTE 29", $51
-	db "Wednesday, WESLEY", $4f
-	db "LAKE OF RAGE", $51
-	db "Thursday, ARTHUR", $4f
-	db "ROUTE 36", $51
-	db "Friday, FRIEDA", $4f
-	db "ROUTE 32", $51
-	db "Saturday, SANTOS", $4f
-	db "BLACKTHORN CITY", $51
-	db "Sunday, SUNNY", $4f
-	db "ROUTE 37", $57
+	text "Monday, MONICA"
+	line "ROUTE 40"
+
+	para "Tuesday, TUSCANY"
+	line "ROUTE 29"
+
+	para "Wednesday, WESLEY"
+	line "LAKE OF RAGE"
+
+	para "Thursday, ARTHUR"
+	line "ROUTE 36"
+
+	para "Friday, FRIEDA"
+	line "ROUTE 32"
+
+	para "Saturday, SANTOS"
+	line "BLACKTHORN CITY"
+
+	para "Sunday, SUNNY"
+	line "ROUTE 37"
+	done
 ; 0x7b375
 
 Route26DayofWeekSiblingsHouse_MapEventHeader: ; 0x7b375

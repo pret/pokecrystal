@@ -33,27 +33,34 @@ MapRoute5CleanseTagSpeechHouseSignpost1Script: ; 0x18b652
 ; 0x18b655
 
 UnknownText_0x18b655: ; 0x18b655
-	db $0, "Eeyaaaah!", $51
-	db "I sense a sinister", $4f
-	db "shadow hovering", $55
-	db "over you.", $51
-	db "Take this to ward", $4f
-	db "it off!", $57
+	text "Eeyaaaah!"
+
+	para "I sense a sinister"
+	line "shadow hovering"
+	cont "over you."
+
+	para "Take this to ward"
+	line "it off!"
+	done
 ; 0x18b6a7
 
 UnknownText_0x18b6a7: ; 0x18b6a7
-	db $0, "You were in mortal", $4f
-	db "danger, but you", $55
-	db "are protected now.", $57
+	text "You were in mortal"
+	line "danger, but you"
+	cont "are protected now."
+	done
 ; 0x18b6de
 
 UnknownText_0x18b6de: ; 0x18b6de
-	db $0, "My grandma is into", $4f
-	db "warding off what", $51
-	db "she believes to be", $4f
-	db "evil spirits.", $51
-	db "I'm sorry that she", $4f
-	db "startled you.", $57
+	text "My grandma is into"
+	line "warding off what"
+
+	para "she believes to be"
+	line "evil spirits."
+
+	para "I'm sorry that she"
+	line "startled you."
+	done
 ; 0x18b744
 
 Route5CleanseTagSpeechHouse_MapEventHeader: ; 0x18b744

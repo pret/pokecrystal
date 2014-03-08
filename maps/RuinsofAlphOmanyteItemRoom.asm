@@ -27,9 +27,10 @@ MapRuinsofAlphOmanyteItemRoomSignpost1Script: ; 0x59a34
 ; 0x59a37
 
 UnknownText_0x59a37: ; 0x59a37
-	db $0, "It's a replica of", $4f
-	db "an ancient #-", $55
-	db "MON.", $57
+	text "It's a replica of"
+	line "an ancient #-"
+	cont "MON."
+	done
 ; 0x59a5c
 
 RuinsofAlphOmanyteItemRoom_MapEventHeader: ; 0x59a5c

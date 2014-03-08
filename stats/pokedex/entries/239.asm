@@ -1,8 +1,12 @@
 ; ElekidPokedexEntry: ; 0x1d1398
 	db "ELECTRIC@" ; species name
-	dw 200, 520; height, width
+	dw 200, 520 ; height, width
 	
-	db "It loves violent", $4e, "thunder. The space", $4e, "between its horns@"
-	db "flickers bluish-", $4e, "white when it is", $4e, "charging energy.@"
+	db   "It loves violent"
+	next "thunder. The space"
+	next "between its horns"
+	page "flickers bluish-"
+	next "white when it is"
+	next "charging energy.@"
 ; 0x1d140e
 

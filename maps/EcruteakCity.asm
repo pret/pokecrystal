@@ -107,142 +107,185 @@ MapEcruteakCitySignpostItem7: ; 0x1a4055
 
 UnusedMissingDaughterText: ; 0x1a4058
 ; This text is neither used nor referenced in the final game.
-	db $0, "Oh, no. Oh, no…",$51
-	db "My daughter is", $4f
-	db "missing.", $51
-	db "No… She couldn't", $4f
-	db "have gone to the", $55
-	db "BURNED TOWER.", $51
-	db "I told her not to", $4f
-	db "go near it…", $51
-	db "People seem to", $4f
-	db "disappear there…", $51
-	db "Oh, what should I", $4f
-	db "do…?", $57
+	text "Oh, no. Oh, no…"
+
+	para "My daughter is"
+	line "missing."
+
+	para "No… She couldn't"
+	line "have gone to the"
+	cont "BURNED TOWER."
+
+	para "I told her not to"
+	line "go near it…"
+
+	para "People seem to"
+	line "disappear there…"
+
+	para "Oh, what should I"
+	line "do…?"
+	done
 
 UnknownText_0x1a4105: ; 0x1a4105
-	db $0, "ECRUTEAK used to", $4f
-	db "have two towers:", $51
-	db "one each in the", $4f
-	db "east and west.", $57
+	text "ECRUTEAK used to"
+	line "have two towers:"
+
+	para "one each in the"
+	line "east and west."
+	done
 ; 0x1a4147
 
 UnknownText_0x1a4147: ; 0x1a4147
-	db $0, "Ah, child.", $4f
-	db "Have you learned", $51
-	db "to dance like the", $4f
-	db "KIMONO GIRLS?", $51
-	db "If you go to their", $4f
-	db "DANCE THEATER, an", $51
-	db "odd old man will", $4f
-	db "give you something", $55
-	db "nice, I hear.", $57
+	text "Ah, child."
+	line "Have you learned"
+
+	para "to dance like the"
+	line "KIMONO GIRLS?"
+
+	para "If you go to their"
+	line "DANCE THEATER, an"
+
+	para "odd old man will"
+	line "give you something"
+	cont "nice, I hear."
+	done
 ; 0x1a41db
 
 UnknownText_0x1a41db: ; 0x1a41db
-	db $0, "I'm going to prac-", $4f
-	db "tice at the DANCE", $51
-	db "THEATER. Care to", $4f
-	db "join me?", $57
+	text "I'm going to prac-"
+	line "tice at the DANCE"
+
+	para "THEATER. Care to"
+	line "join me?"
+	done
 ; 0x1a421a
 
 UnknownText_0x1a421a: ; 0x1a421a
-	db $0, "The tower that", $4f
-	db "used to be here…", $51
-	db "My grandma told me", $4f
-	db "it used to be much", $55
-	db "taller.", $57
+	text "The tower that"
+	line "used to be here…"
+
+	para "My grandma told me"
+	line "it used to be much"
+	cont "taller."
+	done
 ; 0x1a4269
 
 UnknownText_0x1a4269: ; 0x1a4269
-	db $0, "Three big #MON", $4f
-	db "ran off in differ-", $55
-	db "ent directions.", $55
-	db "What were they?", $57
+	text "Three big #MON"
+	line "ran off in differ-"
+	cont "ent directions."
+	cont "What were they?"
+	done
 ; 0x1a42ac
 
 UnknownText_0x1a42ac: ; 0x1a42ac
-	db $0, "I heard a rumor", $4f
-	db "about OLIVINE", $55
-	db "LIGHTHOUSE.", $51
-	db "The #MON that", $4f
-	db "serves as the", $51
-	db "beacon fell ill.", $4f
-	db "Sounds like they", $55
-	db "are in trouble.", $57
+	text "I heard a rumor"
+	line "about OLIVINE"
+	cont "LIGHTHOUSE."
+
+	para "The #MON that"
+	line "serves as the"
+
+	para "beacon fell ill."
+	line "Sounds like they"
+	cont "are in trouble."
+	done
 ; 0x1a4325
 
 UnknownText_0x1a4325: ; 0x1a4325
-	db $0, "The #MON at", $4f
-	db "OLIVINE LIGHTHOUSE", $55
-	db "has been cured.", $51
-	db "Boats can safely", $4f
-	db "sail out to sea at", $55
-	db "night again.", $57
+	text "The #MON at"
+	line "OLIVINE LIGHTHOUSE"
+	cont "has been cured."
+
+	para "Boats can safely"
+	line "sail out to sea at"
+	cont "night again."
+	done
 ; 0x1a4386
 
 UnknownText_0x1a4386: ; 0x1a4386
-	db $0, "I hear #MON are", $4f
-	db "rampaging at the", $51
-	db "LAKE OF RAGE. I'd", $4f
-	db "like to see that.", $57
+	text "I hear #MON are"
+	line "rampaging at the"
+
+	para "LAKE OF RAGE. I'd"
+	line "like to see that."
+	done
 ; 0x1a43cb
 
 UnknownText_0x1a43cb: ; 0x1a43cb
-	db $0, "In the distant", $4f
-	db "past…", $51
-	db "This tower burned", $4f
-	db "in a fire. Three", $51
-	db "nameless #MON", $4f
-	db "perished in it.", $51
-	db "A rainbow-colored", $4f
-	db "#MON descended", $51
-	db "from the sky and", $4f
-	db "resurrected them…", $51
-	db "It's a legend that", $4f
-	db "has been passed", $51
-	db "down by ECRUTEAK", $4f
-	db "GYM LEADERS.", $51
-	db "Me?", $51
-	db "I was a trainer", $4f
-	db "way back when.", $55
-	db "Hohoho!", $57
+	text "In the distant"
+	line "past…"
+
+	para "This tower burned"
+	line "in a fire. Three"
+
+	para "nameless #MON"
+	line "perished in it."
+
+	para "A rainbow-colored"
+	line "#MON descended"
+
+	para "from the sky and"
+	line "resurrected them…"
+
+	para "It's a legend that"
+	line "has been passed"
+
+	para "down by ECRUTEAK"
+	line "GYM LEADERS."
+
+	para "Me?"
+
+	para "I was a trainer"
+	line "way back when."
+	cont "Hohoho!"
+	done
 ; 0x1a44d1
 
 UnknownText_0x1a44d1: ; 0x1a44d1
-	db $0, "ECRUTEAK CITY", $4f
-	db "A Historical City", $51
-	db "Where the Past", $4f
-	db "Meets the Present", $57
+	text "ECRUTEAK CITY"
+	line "A Historical City"
+
+	para "Where the Past"
+	line "Meets the Present"
+	done
 ; 0x1a4513
 
 UnknownText_0x1a4513: ; 0x1a4513
-	db $0, "TIN TOWER", $51
-	db "A legendary #-", $4f
-	db "MON is said to", $55
-	db "roost here.", $57
+	text "TIN TOWER"
+
+	para "A legendary #-"
+	line "MON is said to"
+	cont "roost here."
+	done
 ; 0x1a4548
 
 UnknownText_0x1a4548: ; 0x1a4548
-	db $0, "ECRUTEAK CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: MORTY", $51
-	db "The Mystic Seer of", $4f
-	db "the Future", $57
+	text "ECRUTEAK CITY"
+	line "#MON GYM"
+	cont "LEADER: MORTY"
+
+	para "The Mystic Seer of"
+	line "the Future"
+	done
 ; 0x1a458c
 
 UnknownText_0x1a458c: ; 0x1a458c
-	db $0, "ECRUTEAK DANCE", $4f
-	db "THEATER", $57
+	text "ECRUTEAK DANCE"
+	line "THEATER"
+	done
 ; 0x1a45a4
 
 UnknownText_0x1a45a4: ; 0x1a45a4
-	db $0, "BURNED TOWER", $51
-	db "It was destroyed", $4f
-	db "by a mysterious", $55
-	db "fire.", $51
-	db "Please stay away,", $4f
-	db "as it is unsafe.", $57
+	text "BURNED TOWER"
+
+	para "It was destroyed"
+	line "by a mysterious"
+	cont "fire."
+
+	para "Please stay away,"
+	line "as it is unsafe."
+	done
 ; 0x1a45fc
 
 EcruteakCity_MapEventHeader: ; 0x1a45fc

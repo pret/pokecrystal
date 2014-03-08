@@ -35,32 +35,41 @@ MapLakeofRageHiddenPowerHouseSignpost1Script: ; 0x19a548
 ; 0x19a54b
 
 UnknownText_0x19a54b: ; 0x19a54b
-	db $0, "…You have strayed", $4f
-	db "far…", $51
-	db "Here I have medi-", $4f
-	db "tated. Inside me,", $51
-	db "a new power has", $4f
-	db "been awakened.", $51
-	db "Let me share my", $4f
-	db "power with your", $51
-	db "#MON.", $4f
-	db "Take this, child.", $57
+	text "…You have strayed"
+	line "far…"
+
+	para "Here I have medi-"
+	line "tated. Inside me,"
+
+	para "a new power has"
+	line "been awakened."
+
+	para "Let me share my"
+	line "power with your"
+
+	para "#MON."
+	line "Take this, child."
+	done
 ; 0x19a5de
 
 UnknownText_0x19a5de: ; 0x19a5de
-	db $0, "Do you see it? It", $4f
-	db "is HIDDEN POWER!", $51
-	db "It draws out the", $4f
-	db "power of #MON", $55
-	db "for attacking.", $51
-	db "Remember this: its", $4f
-	db "type and power de-", $55
-	db "pend on the #-", $55
-	db "MON using it.", $57
+	text "Do you see it? It"
+	line "is HIDDEN POWER!"
+
+	para "It draws out the"
+	line "power of #MON"
+	cont "for attacking."
+
+	para "Remember this: its"
+	line "type and power de-"
+	cont "pend on the #-"
+	cont "MON using it."
+	done
 ; 0x19a673
 
 UnknownText_0x19a673: ; 0x19a673
-	db $0, "I am meditating…", $57
+	text "I am meditating…"
+	done
 ; 0x19a685
 
 LakeofRageHiddenPowerHouse_MapEventHeader: ; 0x19a685

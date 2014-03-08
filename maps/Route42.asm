@@ -304,86 +304,109 @@ MovementData_0x1a9356: ; 0x1a9356
 ; 0x1a935f
 
 FisherTully1SeenText: ; 0x1a935f
-	db $0, "Let me demonstrate", $4f
-	db "the power of the", $55
-	db "#MON I caught!", $57
+	text "Let me demonstrate"
+	line "the power of the"
+	cont "#MON I caught!"
+	done
 ; 0x1a9393
 
 FisherTully1BeatenText: ; 0x1a9393
-	db $0, "What? That's not", $4f
-	db "right.", $57
+	text "What? That's not"
+	line "right."
+	done
 ; 0x1a93ab
 
 UnknownText_0x1a93ab: ; 0x1a93ab
-	db $0, "I want to become", $4f
-	db "the trainer CHAMP", $51
-	db "using the #MON", $4f
-	db "I caught.", $51
-	db "That's the best", $4f
-	db "part of fishing!", $57
+	text "I want to become"
+	line "the trainer CHAMP"
+
+	para "using the #MON"
+	line "I caught."
+
+	para "That's the best"
+	line "part of fishing!"
+	done
 ; 0x1a9408
 
 HikerBenjaminSeenText: ; 0x1a9408
-	db $0, "Ah, it's good to", $4f
-	db "be outside!", $55
-	db "I feel so free!", $57
+	text "Ah, it's good to"
+	line "be outside!"
+	cont "I feel so free!"
+	done
 ; 0x1a9435
 
 HikerBenjaminBeatenText: ; 0x1a9435
-	db $0, "Gahahah!", $57
+	text "Gahahah!"
+	done
 ; 0x1a943f
 
 UnknownText_0x1a943f: ; 0x1a943f
-	db $0, "Losing feels in-", $4f
-	db "significant if you", $51
-	db "look up at the big", $4f
-	db "sky!", $57
+	text "Losing feels in-"
+	line "significant if you"
+
+	para "look up at the big"
+	line "sky!"
+	done
 ; 0x1a947c
 
 PokemaniacShaneSeenText: ; 0x1a947c
-	db $0, "HEY!", $51
-	db "This is my secret", $4f
-	db "place! Get lost,", $55
-	db "you outsider!", $57
+	text "HEY!"
+
+	para "This is my secret"
+	line "place! Get lost,"
+	cont "you outsider!"
+	done
 ; 0x1a94b3
 
 PokemaniacShaneBeatenText: ; 0x1a94b3
-	db $0, "I should have used", $4f
-	db "my MOON STONE…", $57
+	text "I should have used"
+	line "my MOON STONE…"
+	done
 ; 0x1a94d6
 
 UnknownText_0x1a94d6: ; 0x1a94d6
-	db $0, "You're working on", $4f
-	db "a #DEX?", $51
-	db "Wow, you must know", $4f
-	db "some pretty rare", $55
-	db "#MON!", $51
-	db "May I please see", $4f
-	db "it. Please?", $57
+	text "You're working on"
+	line "a #DEX?"
+
+	para "Wow, you must know"
+	line "some pretty rare"
+	cont "#MON!"
+
+	para "May I please see"
+	line "it. Please?"
+	done
 ; 0x1a9537
 
 UnknownText_0x1a9537: ; 0x1a9537
-	db $0, "ROUTE 42", $51
-	db "ECRUTEAK CITY -", $4f
-	db "MAHOGANY TOWN", $57
+	text "ROUTE 42"
+
+	para "ECRUTEAK CITY -"
+	line "MAHOGANY TOWN"
+	done
 ; 0x1a955f
 
 UnknownText_0x1a955f: ; 0x1a955f
-	db $0, "MT.MORTAR", $51
-	db "WATERFALL CAVE", $4f
-	db "INSIDE", $57
+	text "MT.MORTAR"
+
+	para "WATERFALL CAVE"
+	line "INSIDE"
+	done
 ; 0x1a9580
 
 UnknownText_0x1a9580: ; 0x1a9580
-	db $0, "MT.MORTAR", $51
-	db "WATERFALL CAVE", $4f
-	db "INSIDE", $57
+	text "MT.MORTAR"
+
+	para "WATERFALL CAVE"
+	line "INSIDE"
+	done
 ; 0x1a95a1
 
 UnknownText_0x1a95a1: ; 0x1a95a1
-	db $0, "ROUTE 42", $51
-	db "ECRUTEAK CITY -", $4f
-	db "MAHOGANY TOWN", $57
+	text "ROUTE 42"
+
+	para "ECRUTEAK CITY -"
+	line "MAHOGANY TOWN"
+	done
 ; 0x1a95c9
 
 Route42_MapEventHeader: ; 0x1a95c9

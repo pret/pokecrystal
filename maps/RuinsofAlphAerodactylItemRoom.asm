@@ -27,9 +27,10 @@ MapRuinsofAlphAerodactylItemRoomSignpost1Script: ; 0x59abe
 ; 0x59ac1
 
 UnknownText_0x59ac1: ; 0x59ac1
-	db $0, "It's a replica of", $4f
-	db "an ancient #-", $55
-	db "MON.", $57
+	text "It's a replica of"
+	line "an ancient #-"
+	cont "MON."
+	done
 ; 0x59ae6
 
 RuinsofAlphAerodactylItemRoom_MapEventHeader: ; 0x59ae6

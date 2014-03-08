@@ -27,25 +27,32 @@ MapGoldenrodPPSpeechHouseSignpost2Script: ; 0x55656
 ; 0x55659
 
 UnknownText_0x55659: ; 0x55659
-	db $0, "Once while I was", $4f
-	db "battling, my", $51
-	db "#MON couldn't", $4f
-	db "make any moves.", $51
-	db "The POWER POINTS,", $4f
-	db "or PP, of its", $51
-	db "moves were all", $4f
-	db "gone.", $57
+	text "Once while I was"
+	line "battling, my"
+
+	para "#MON couldn't"
+	line "make any moves."
+
+	para "The POWER POINTS,"
+	line "or PP, of its"
+
+	para "moves were all"
+	line "gone."
+	done
 ; 0x556ca
 
 UnknownText_0x556ca: ; 0x556ca
-	db $0, "Sometimes, a", $4f
-	db "healthy #MON", $51
-	db "may be unable to", $4f
-	db "use its moves.", $51
-	db "If that happens,", $4f
-	db "heal it at a #-", $55
-	db "MON CENTER or use", $55
-	db "an item.", $57
+	text "Sometimes, a"
+	line "healthy #MON"
+
+	para "may be unable to"
+	line "use its moves."
+
+	para "If that happens,"
+	line "heal it at a #-"
+	cont "MON CENTER or use"
+	cont "an item."
+	done
 ; 0x55741
 
 GoldenrodPPSpeechHouse_MapEventHeader: ; 0x55741

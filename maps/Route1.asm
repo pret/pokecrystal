@@ -73,42 +73,52 @@ FruitTreeScript_0x1ac581: ; 0x1ac581
 ; 0x1ac583
 
 SchoolboyDannySeenText: ; 0x1ac583
-	db $0, "If trainers meet,", $4f
-	db "the first thing to", $55
-	db "do is battle.", $57
+	text "If trainers meet,"
+	line "the first thing to"
+	cont "do is battle."
+	done
 ; 0x1ac5b7
 
 SchoolboyDannyBeatenText: ; 0x1ac5b7
-	db $0, "Awww… I've got a", $4f
-	db "losing record…", $57
+	text "Awww… I've got a"
+	line "losing record…"
+	done
 ; 0x1ac5d7
 
 UnknownText_0x1ac5d7: ; 0x1ac5d7
-	db $0, "For trainers, it's", $4f
-	db "a given that we'll", $51
-	db "battle whenever we", $4f
-	db "meet.", $57
+	text "For trainers, it's"
+	line "a given that we'll"
+
+	para "battle whenever we"
+	line "meet."
+	done
 ; 0x1ac615
 
 CooltrainerfQuinnSeenText: ; 0x1ac615
-	db $0, "You there!", $4f
-	db "Want to battle?", $57
+	text "You there!"
+	line "Want to battle?"
+	done
 ; 0x1ac631
 
 CooltrainerfQuinnBeatenText: ; 0x1ac631
-	db $0, "Down and out…", $57
+	text "Down and out…"
+	done
 ; 0x1ac640
 
 UnknownText_0x1ac640: ; 0x1ac640
-	db $0, "You're strong.", $51
-	db "You obviously must", $4f
-	db "have trained hard.", $57
+	text "You're strong."
+
+	para "You obviously must"
+	line "have trained hard."
+	done
 ; 0x1ac675
 
 UnknownText_0x1ac675: ; 0x1ac675
-	db $0, "ROUTE 1", $51
-	db "PALLET TOWN -", $4f
-	db "VIRIDIAN CITY", $57
+	text "ROUTE 1"
+
+	para "PALLET TOWN -"
+	line "VIRIDIAN CITY"
+	done
 ; 0x1ac69a
 
 Route1_MapEventHeader: ; 0x1ac69a

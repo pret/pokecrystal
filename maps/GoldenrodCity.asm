@@ -320,243 +320,304 @@ MovementData_0x198a63: ; 0x198a63
 ; 0x198a69
 
 UnknownText_0x198a69: ; 0x198a69
-	db $0, "They built the new", $4f
-	db "RADIO TOWER to", $51
-	db "replace the old,", $4f
-	db "creaky one.", $57
+	text "They built the new"
+	line "RADIO TOWER to"
+
+	para "replace the old,"
+	line "creaky one."
+	done
 ; 0x198aa9
 
 UnknownText_0x198aa9: ; 0x198aa9
-	db $0, "I know there's a", $4f
-	db "new BIKE SHOP, but", $51
-	db "I can't find it", $4f
-	db "anywhere.", $57
+	text "I know there's a"
+	line "new BIKE SHOP, but"
+
+	para "I can't find it"
+	line "anywhere."
+	done
 ; 0x198ae6
 
 UnknownText_0x198ae6: ; 0x198ae6
-	db $0, "Is that man in", $4f
-	db "black dressed up", $51
-	db "like a TEAM ROCKET", $4f
-	db "member? How silly!", $57
+	text "Is that man in"
+	line "black dressed up"
+
+	para "like a TEAM ROCKET"
+	line "member? How silly!"
+	done
 ; 0x198b2d
 
 UnknownText_0x198b2d: ; 0x198b2d
-	db $0, "Was that man in", $4f
-	db "black really part", $51
-	db "of TEAM ROCKET? I", $4f
-	db "can't believe it!", $57
+	text "Was that man in"
+	line "black really part"
+
+	para "of TEAM ROCKET? I"
+	line "can't believe it!"
+	done
 ; 0x198b73
 
 UnknownText_0x198b73: ; 0x198b73
-	db $0, "The RADIO TOWER in", $4f
-	db "GOLDENROD CITY is", $55
-	db "a landmark.", $51
-	db "They're running a", $4f
-	db "promotional cam- ", $55
-	db "paign right now.", $51
-	db "They'll modify", $4f
-	db "your #GEAR,", $51
-	db "so it can also", $4f
-	db "serve as a radio.", $57
+	text "The RADIO TOWER in"
+	line "GOLDENROD CITY is"
+	cont "a landmark."
+
+	para "They're running a"
+	line "promotional cam- "
+	cont "paign right now."
+
+	para "They'll modify"
+	line "your #GEAR,"
+
+	para "so it can also"
+	line "serve as a radio."
+	done
 ; 0x198c14
 
 UnknownText_0x198c14: ; 0x198c14
-	db $0, "Oh, your #GEAR", $4f
-	db "works as a radio!", $57
+	text "Oh, your #GEAR"
+	line "works as a radio!"
+	done
 ; 0x198c36
 
 UnknownText_0x198c36: ; 0x198c36
-	db $0, "E-he-he-he…", $51
-	db "I got in trouble", $4f
-	db "for playing in the", $51
-	db "basement of the", $4f
-	db "DEPT.STORE.", $57
+	text "E-he-he-he…"
+
+	para "I got in trouble"
+	line "for playing in the"
+
+	para "basement of the"
+	line "DEPT.STORE."
+	done
 ; 0x198c83
 
 UnknownText_0x198c83: ; 0x198c83
-	db $0, "The man at that", $4f
-	db "house rates your", $55
-	db "#MON names.", $51
-	db "He can even rename", $4f
-	db "your #MON.", $57
+	text "The man at that"
+	line "house rates your"
+	cont "#MON names."
+
+	para "He can even rename"
+	line "your #MON."
+	done
 ; 0x198ccf
 
 UnknownText_0x198ccf: ; 0x198ccf
-	db $0, "Whew! This is one", $4f
-	db "big town. I don't", $51
-	db "know where any-", $4f
-	db "thing is.", $57
+	text "Whew! This is one"
+	line "big town. I don't"
+
+	para "know where any-"
+	line "thing is."
+	done
 ; 0x198d0d
 
 UnknownText_0x198d0d: ; 0x198d0d
-	db $0, "So this is the", $4f
-	db "RADIO TOWER…", $57
+	text "So this is the"
+	line "RADIO TOWER…"
+	done
 ; 0x198d2a
 
 UnknownText_0x198d2a: ; 0x198d2a
-	db $0, "What do you want,", $4f
-	db "you pest? Scram!", $57
+	text "What do you want,"
+	line "you pest? Scram!"
+	done
 ; 0x198d4e
 
 UnknownText_0x198d4e: ; 0x198d4e
-	db $0, "Stay out of the", $4f
-	db "way! Beat it!", $57
+	text "Stay out of the"
+	line "way! Beat it!"
+	done
 ; 0x198d6d
 
 UnknownText_0x198d6d: ; 0x198d6d
-	db $0, "Take over the", $4f
-	db "RADIO TOWER…", $51
-	db "What? It's none of", $4f
-	db "your business!", $57
+	text "Take over the"
+	line "RADIO TOWER…"
+
+	para "What? It's none of"
+	line "your business!"
+	done
 ; 0x198daa
 
 UnknownText_0x198daa: ; 0x198daa
-	db $0, "#MON? They're", $4f
-	db "nothing more than", $51
-	db "tools for making", $4f
-	db "money!", $57
+	text "#MON? They're"
+	line "nothing more than"
+
+	para "tools for making"
+	line "money!"
+	done
 ; 0x198de2
 
 UnknownText_0x198de2: ; 0x198de2
-	db $0, "Our dream will", $4f
-	db "soon come true…", $51
-	db "It was such a long", $4f
-	db "struggle…", $57
+	text "Our dream will"
+	line "soon come true…"
+
+	para "It was such a long"
+	line "struggle…"
+	done
 ; 0x198e1f
 
 UnknownText_0x198e1f: ; 0x198e1f
-	db $0, "Hey, brat! You", $4f
-	db "don't belong here!", $55
-	db "Get lost!", $57
+	text "Hey, brat! You"
+	line "don't belong here!"
+	cont "Get lost!"
+	done
 ; 0x198e4b
 
 UnknownText_0x198e4b: ; 0x198e4b
-	db $0, "Come taste the", $4f
-	db "true terror of", $55
-	db "TEAM ROCKET!", $57
+	text "Come taste the"
+	line "true terror of"
+	cont "TEAM ROCKET!"
+	done
 ; 0x198e77
 
 UnknownText_0x198e77: ; 0x198e77
-	db $0, "GOLDENROD CITY", $4f
-	db "STATION", $57
+	text "GOLDENROD CITY"
+	line "STATION"
+	done
 ; 0x198e8f
 
 UnknownText_0x198e8f: ; 0x198e8f
-	db $0, "GOLDENROD CITY", $4f
-	db "RADIO TOWER", $57
+	text "GOLDENROD CITY"
+	line "RADIO TOWER"
+	done
 ; 0x198eab
 
 UnknownText_0x198eab: ; 0x198eab
-	db $0, "Full Selection of", $4f
-	db "#MON Goods!", $51
-	db "GOLDENROD CITY", $4f
-	db "DEPT.STORE", $57
+	text "Full Selection of"
+	line "#MON Goods!"
+
+	para "GOLDENROD CITY"
+	line "DEPT.STORE"
+	done
 ; 0x198ee4
 
 UnknownText_0x198ee4: ; 0x198ee4
-	db $0, "GOLDENROD CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: WHITNEY", $51
-	db "The Incredibly", $4f
-	db "Pretty Girl!", $57
+	text "GOLDENROD CITY"
+	line "#MON GYM"
+	cont "LEADER: WHITNEY"
+
+	para "The Incredibly"
+	line "Pretty Girl!"
+	done
 ; 0x198f29
 
 UnknownText_0x198f29: ; 0x198f29
-	db $0, "GOLDENROD CITY", $51
-	db "The Festive City", $4f
-	db "of Opulent Charm", $57
+	text "GOLDENROD CITY"
+
+	para "The Festive City"
+	line "of Opulent Charm"
+	done
 ; 0x198f5b
 
 UnknownText_0x198f5b: ; 0x198f5b
-	db $0, "The World is a", $4f
-	db "Cycle Path!", $55
-	db "BIKE SHOP", $57
+	text "The World is a"
+	line "Cycle Path!"
+	cont "BIKE SHOP"
+	done
 ; 0x198f81
 
 UnknownText_0x198f81: ; 0x198f81
-	db $0, "Your Playground!", $51
-	db "GOLDENROD CITY", $4f
-	db "GAME CORNER", $57
+	text "Your Playground!"
+
+	para "GOLDENROD CITY"
+	line "GAME CORNER"
+	done
 ; 0x198fae
 
 UnknownText_0x198fae: ; 0x198fae
-	db $0, "NAME RATER", $51
-	db "Get Your #MON", $4f
-	db "Nicknames Rated", $57
+	text "NAME RATER"
+
+	para "Get Your #MON"
+	line "Nicknames Rated"
+	done
 ; 0x198fd8
 
 UnknownText_0x198fd8: ; 0x198fd8
-	db $0, "UNDERGROUND", $4f
-	db "ENTRANCE", $57
+	text "UNDERGROUND"
+	line "ENTRANCE"
+	done
 ; 0x198fee
 
 UnknownText_0x198fee: ; 0x198fee
-	db $0, "UNDERGROUND", $4f
-	db "ENTRANCE", $57
+	text "UNDERGROUND"
+	line "ENTRANCE"
+	done
 ; 0x199004
 
 UnknownText_0x199004: ; 0x199004
-	db $0, "For Mobile Tips!", $4f
-	db "#COM CENTER", $57
+	text "For Mobile Tips!"
+	line "#COM CENTER"
+	done
 ; 0x199022
 
 UnknownText_0x199022: ; 0x199022
-	db $0, "Blooming Beautiful", $4f
-	db "FLOWER SHOP", $57
+	text "Blooming Beautiful"
+	line "FLOWER SHOP"
+	done
 ; 0x199042
 
 UnknownText_0x199042: ; 0x199042
-	db $0, "I can teach your", $4f
-	db "#MON amazing", $51
-	db "moves if you'd", $4f
-	db "like.", $51
-	db "Should I teach a", $4f
-	db "new move?", $57
+	text "I can teach your"
+	line "#MON amazing"
+
+	para "moves if you'd"
+	line "like."
+
+	para "Should I teach a"
+	line "new move?"
+	done
 ; 0x199090
 
 UnknownText_0x199090: ; 0x199090
-	db $0, "It will cost you", $4f
-	db "4000 coins. Okay?", $57
+	text "It will cost you"
+	line "4000 coins. Okay?"
+	done
 ; 0x1990b4
 
 UnknownText_0x1990b4: ; 0x1990b4
-	db $0, "Aww… But they're", $4f
-	db "amazing…", $57
+	text "Aww… But they're"
+	line "amazing…"
+	done
 ; 0x1990ce
 
 UnknownText_0x1990ce: ; 0x1990ce
-	db $0, "Wahahah! You won't", $4f
-	db "regret it!", $51
-	db "Which move should", $4f
-	db "I teach?", $57
+	text "Wahahah! You won't"
+	line "regret it!"
+
+	para "Which move should"
+	line "I teach?"
+	done
 ; 0x199107
 
 UnknownText_0x199107: ; 0x199107
-	db $0, "Hm, too bad. I'll", $4f
-	db "have to get some", $55
-	db "cash from home…", $57
+	text "Hm, too bad. I'll"
+	line "have to get some"
+	cont "cash from home…"
+	done
 ; 0x19913a
 
 UnknownText_0x19913a: ; 0x19913a
-	db $0, "If you understand", $4f
-	db "what's so amazing", $51
-	db "about this move,", $4f
-	db "you've made it as", $55
-	db "a trainer.", $57
+	text "If you understand"
+	line "what's so amazing"
+
+	para "about this move,"
+	line "you've made it as"
+	cont "a trainer."
+	done
 ; 0x19918b
 
 UnknownText_0x19918b: ; 0x19918b
-	db $0, "Wahahah!", $4f
-	db "Farewell, kid!", $57
+	text "Wahahah!"
+	line "Farewell, kid!"
+	done
 ; 0x1991a4
 
 UnknownText_0x1991a4: ; 0x1991a4
-	db $0, "B-but…", $57
+	text "B-but…"
+	done
 ; 0x1991ac
 
 UnknownText_0x1991ac: ; 0x1991ac
-	db $0, "…You don't have", $4f
-	db "enough coins here…", $57
+	text "…You don't have"
+	line "enough coins here…"
+	done
 ; 0x1991cf
 
 UnknownText_0x1991cf: ; 0x1991cf

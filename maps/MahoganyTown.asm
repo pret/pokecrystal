@@ -162,95 +162,120 @@ MovementData_0x1900ad: ; 0x1900ad
 ; 0x1900b0
 
 UnknownText_0x1900b0: ; 0x1900b0
-	db $0, "Hiya, kid!", $51
-	db "I see you're new", $4f
-	db "in MAHOGANY TOWN.", $51
-	db "Since you're new,", $4f
-	db "you should try a", $51
-	db "yummy RAGECANDY-", $4f
-	db "BAR!", $51
-	db "Right now, it can", $4f
-	db "be yours for just", $55
-	db "¥300! Want one?", $57
+	text "Hiya, kid!"
+
+	para "I see you're new"
+	line "in MAHOGANY TOWN."
+
+	para "Since you're new,"
+	line "you should try a"
+
+	para "yummy RAGECANDY-"
+	line "BAR!"
+
+	para "Right now, it can"
+	line "be yours for just"
+	cont "¥300! Want one?"
+	done
 ; 0x19014a
 
 UnknownText_0x19014a: ; 0x19014a
-	db $0, "Good! Savor it!", $57
+	text "Good! Savor it!"
+	done
 ; 0x19015b
 
 UnknownText_0x19015b: ; 0x19015b
-	db $0, "You don't have", $4f
-	db "enough money.", $57
+	text "You don't have"
+	line "enough money."
+	done
 ; 0x190178
 
 UnknownText_0x190178: ; 0x190178
-	db $0, "Oh, fine then…", $57
+	text "Oh, fine then…"
+	done
 ; 0x190188
 
 UnknownText_0x190188: ; 0x190188
-	db $0, "You don't have", $4f
-	db "room for this.", $57
+	text "You don't have"
+	line "room for this."
+	done
 ; 0x1901a6
 
 UnknownText_0x1901a6: ; 0x1901a6
-	db $0, "RAGECANDYBAR's", $4f
-	db "sold out.", $51
-	db "I'm packing up.", $4f
-	db "Don't bother me,", $55
-	db "kiddo.", $57
+	text "RAGECANDYBAR's"
+	line "sold out."
+
+	para "I'm packing up."
+	line "Don't bother me,"
+	cont "kiddo."
+	done
 ; 0x1901e5
 
 UnknownText_0x1901e5: ; 0x1901e5
-	db $0, "Are you off to see", $4f
-	db "the GYARADOS ram-", $55
-	db "page at the LAKE?", $57
+	text "Are you off to see"
+	line "the GYARADOS ram-"
+	cont "page at the LAKE?"
+	done
 ; 0x19021d
 
 UnknownText_0x19021d: ; 0x19021d
-	db $0, "MAGIKARP have", $4f
-	db "returned to LAKE", $55
-	db "OF RAGE.", $51
-	db "That should be", $4f
-	db "good news for the", $55
-	db "anglers there.", $57
+	text "MAGIKARP have"
+	line "returned to LAKE"
+	cont "OF RAGE."
+
+	para "That should be"
+	line "good news for the"
+	cont "anglers there."
+	done
 ; 0x190276
 
 UnknownText_0x190276: ; 0x190276
-	db $0, "Since you came", $4f
-	db "this far, take the", $51
-	db "time to do some", $4f
-	db "sightseeing.", $51
-	db "You should head", $4f
-	db "north and check", $51
-	db "out LAKE OF RAGE", $4f
-	db "right now.", $57
+	text "Since you came"
+	line "this far, take the"
+
+	para "time to do some"
+	line "sightseeing."
+
+	para "You should head"
+	line "north and check"
+
+	para "out LAKE OF RAGE"
+	line "right now."
+	done
 ; 0x1902f2
 
 UnknownText_0x1902f2: ; 0x1902f2
-	db $0, "Visit Grandma's", $4f
-	db "shop. She sells", $51
-	db "stuff that nobody", $4f
-	db "else has.", $57
+	text "Visit Grandma's"
+	line "shop. She sells"
+
+	para "stuff that nobody"
+	line "else has."
+	done
 ; 0x19032e
 
 UnknownText_0x19032e: ; 0x19032e
-	db $0, "MAHOGANY TOWN", $51
-	db "Welcome to the", $4f
-	db "Home of the Ninja", $57
+	text "MAHOGANY TOWN"
+
+	para "Welcome to the"
+	line "Home of the Ninja"
+	done
 ; 0x19035e
 
 UnknownText_0x19035e: ; 0x19035e
-	db $0, "While visiting", $4f
-	db "MAHOGANY TOWN, try", $55
-	db "a RAGECANDYBAR!", $57
+	text "While visiting"
+	line "MAHOGANY TOWN, try"
+	cont "a RAGECANDYBAR!"
+	done
 ; 0x190391
 
 UnknownText_0x190391: ; 0x190391
-	db $0, "MAHOGANY TOWN", $4f
-	db "#MON GYM", $55
-	db "LEADER: PRYCE", $51
-	db "The Teacher of", $4f
-	db "Winter's Harshness", $57
+	text "MAHOGANY TOWN"
+	line "#MON GYM"
+	cont "LEADER: PRYCE"
+
+	para "The Teacher of"
+	line "Winter's Harshness"
+	done
 ; 0x1903d8
 
 MahoganyTown_MapEventHeader: ; 0x1903d8

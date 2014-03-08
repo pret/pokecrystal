@@ -128,45 +128,55 @@ CooltrainerfFranScript: ; 0x195781
 ; 0x195789
 
 CooltrainermCodySeenText: ; 0x195789
-	db $0, "It's not as if we", $4f
-	db "all use dragon-", $55
-	db "type #MON.", $57
+	text "It's not as if we"
+	line "all use dragon-"
+	cont "type #MON."
+	done
 ; 0x1957b6
 
 CooltrainermCodyBeatenText: ; 0x1957b6
-	db $0, "Rats! If only I", $4f
-	db "had a dragon!", $57
+	text "Rats! If only I"
+	line "had a dragon!"
+	done
 ; 0x1957d5
 
 UnknownText_0x1957d5: ; 0x1957d5
-	db $0, "Members of our", $4f
-	db "dragon-user clan", $51
-	db "can use dragon", $4f
-	db "#MON only after", $51
-	db "our MASTER allows", $4f
-	db "it.", $57
+	text "Members of our"
+	line "dragon-user clan"
+
+	para "can use dragon"
+	line "#MON only after"
+
+	para "our MASTER allows"
+	line "it."
+	done
 ; 0x19582b
 
 CooltrainerfFranSeenText: ; 0x19582b
-	db $0, "I can't allow a", $4f
-	db "nameless trainer", $55
-	db "past me!", $51
-	db "CLAIR would be", $4f
-	db "livid if I did!", $57
+	text "I can't allow a"
+	line "nameless trainer"
+	cont "past me!"
+
+	para "CLAIR would be"
+	line "livid if I did!"
+	done
 ; 0x195874
 
 CooltrainerfFranBeatenText: ; 0x195874
-	db $0, "Awww… I lost…", $57
+	text "Awww… I lost…"
+	done
 ; 0x195883
 
 UnknownText_0x195883: ; 0x195883
-	db $0, "Uh-oh… CLAIR is", $4f
-	db "going to be mad…", $57
+	text "Uh-oh… CLAIR is"
+	line "going to be mad…"
+	done
 ; 0x1958a5
 
 UnknownText_0x1958a5: ; 0x1958a5
-	db $0, "The boulder fell", $4f
-	db "through!", $57
+	text "The boulder fell"
+	line "through!"
+	done
 ; 0x1958c0
 
 BlackthornGym2F_MapEventHeader: ; 0x1958c0

@@ -182,93 +182,129 @@ MovementData_0x185cd3: ; 0x185cd3
 ; 0x185cd9
 
 UnknownText_0x185cd9: ; 0x185cd9
-	db $0, $56, " ", $56, " ", $56, $51
-	db "…Oh, it's you.", $51
-	db "I came looking for", $4f
-	db "some legendary", $51
-	db "#MON that they", $4f
-	db "say roosts here.", $51
-	db "But there's", $4f
-	db "nothing here!", $51
-	db "Nothing after all", $4f
-	db "the trouble of", $51
-	db "coming to this", $4f
-	db "dump? No way!", $51
-	db "It's all your", $4f
-	db "fault!", $57
+	text $56, " ", $56, " ", $56
+
+	para "…Oh, it's you."
+
+	para "I came looking for"
+	line "some legendary"
+
+	para "#MON that they"
+	line "say roosts here."
+
+	para "But there's"
+	line "nothing here!"
+
+	para "Nothing after all"
+	line "the trouble of"
+
+	para "coming to this"
+	line "dump? No way!"
+
+	para "It's all your"
+	line "fault!"
+	done
 ; 0x185d9b
 
 UnknownText_0x185d9b: ; 0x185d9b
-	db $0, "…Humph!", $51
-	db "This is why I hate", $4f
-	db "battling wimps.", $51
-	db "There's no", $4f
-	db "challenge in it.", $57
+	text "…Humph!"
+
+	para "This is why I hate"
+	line "battling wimps."
+
+	para "There's no"
+	line "challenge in it."
+	done
 ; 0x185de2
 
 UnknownText_0x185de2: ; 0x185de2
-	db $0, "…Aw, whatever.", $51
-	db "You would never be", $4f
-	db "able to catch a", $51
-	db "legendary #MON", $4f
-	db "anyway.", $57
+	text "…Aw, whatever."
+
+	para "You would never be"
+	line "able to catch a"
+
+	para "legendary #MON"
+	line "anyway."
+	done
 ; 0x185e2c
 
 UnknownText_0x185e2c: ; 0x185e2c
-	db $0, "…Humph!", $51
-	db "This is why I hate", $4f
-	db "battling wimps.", $51
-	db "It's just a waste", $4f
-	db "of my time.", $57
+	text "…Humph!"
+
+	para "This is why I hate"
+	line "battling wimps."
+
+	para "It's just a waste"
+	line "of my time."
+	done
 ; 0x185e75
 
 UnknownText_0x185e75: ; 0x185e75
-	db $0, "Humph!", $51
-	db "What are you doing", $4f
-	db "falling into a", $51
-	db "hole? Some genius", $4f
-	db "you are!", $51
-	db "Serves you right!", $57
+	text "Humph!"
+
+	para "What are you doing"
+	line "falling into a"
+
+	para "hole? Some genius"
+	line "you are!"
+
+	para "Serves you right!"
+	done
 ; 0x185ecc
 
 UnknownText_0x185ecc: ; 0x185ecc
-	db $0, "EUSINE: My name's", $4f
-	db "EUSINE.", $51
-	db "I'm on the trail", $4f
-	db "of a #MON named", $55
-	db "SUICUNE.", $51
-	db "And you are…?", $51
-	db $52, "? Glad to", $4f
-	db "meet you!", $51
-	db "I heard rumors", $4f
-	db "that SUICUNE is in", $51
-	db "this BURNED TOWER,", $4f
-	db "so I came to look.", $51
-	db "But where exactly", $4f
-	db "could it be?", $57
+	text "EUSINE: My name's"
+	line "EUSINE."
+
+	para "I'm on the trail"
+	line "of a #MON named"
+	cont "SUICUNE."
+
+	para "And you are…?"
+
+	para $52, "? Glad to"
+	line "meet you!"
+
+	para "I heard rumors"
+	line "that SUICUNE is in"
+
+	para "this BURNED TOWER,"
+	line "so I came to look."
+
+	para "But where exactly"
+	line "could it be?"
+	done
 ; 0x185f99
 
 UnknownText_0x185f99: ; 0x185f99
-	db $0, "EUSINE: I heard", $4f
-	db "that SUICUNE is in", $51
-	db "this BURNED TOWER,", $4f
-	db "so I came to look.", $51
-	db "But where exactly", $4f
-	db "could it be?", $57
+	text "EUSINE: I heard"
+	line "that SUICUNE is in"
+
+	para "this BURNED TOWER,"
+	line "so I came to look."
+
+	para "But where exactly"
+	line "could it be?"
+	done
 ; 0x186002
 
 UnknownText_0x186002: ; 0x186002
-	db $0, "MORTY: ECRUTEAK's", $4f
-	db "GYM LEADER has to", $51
-	db "study what are", $4f
-	db "said to be the", $51
-	db "legendary #MON", $4f
-	db "--SUICUNE, ENTEI", $55
-	db "and RAIKOU.", $51
-	db "EUSINE is here, so", $4f
-	db "I've decided to", $51
-	db "investigate the", $4f
-	db "TOWER with him.", $57
+	text "MORTY: ECRUTEAK's"
+	line "GYM LEADER has to"
+
+	para "study what are"
+	line "said to be the"
+
+	para "legendary #MON"
+	line "--SUICUNE, ENTEI"
+	cont "and RAIKOU."
+
+	para "EUSINE is here, so"
+	line "I've decided to"
+
+	para "investigate the"
+	line "TOWER with him."
+	done
 ; 0x1860b2
 
 BurnedTower1F_MapEventHeader: ; 0x1860b2

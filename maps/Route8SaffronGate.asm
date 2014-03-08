@@ -11,10 +11,12 @@ OfficerScript_0x7f416: ; 0x7f416
 ; 0x7f419
 
 UnknownText_0x7f419: ; 0x7f419
-	db $0, "Have you been to", $4f
-	db "LAVENDER TOWN?", $51
-	db "There's a tall", $4f
-	db "RADIO TOWER there.", $57
+	text "Have you been to"
+	line "LAVENDER TOWN?"
+
+	para "There's a tall"
+	line "RADIO TOWER there."
+	done
 ; 0x7f45b
 
 Route8SaffronGate_MapEventHeader: ; 0x7f45b

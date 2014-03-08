@@ -97,91 +97,115 @@ FisherScript_0x69dda: ; 0x69dda
 ; 0x69ddd
 
 UnknownText_0x69ddd: ; 0x69ddd
-	db $0, "Excuse me, kid!", $4f
-	db "Can you do a guy", $55
-	db "a favor?", $51
-	db "Can you take this", $4f
-	db "#MON with MAIL", $55
-	db "to my friend?", $51
-	db "He's on ROUTE 31.", $57
+	text "Excuse me, kid!"
+	line "Can you do a guy"
+	cont "a favor?"
+
+	para "Can you take this"
+	line "#MON with MAIL"
+	cont "to my friend?"
+
+	para "He's on ROUTE 31."
+	done
 ; 0x69e48
 
 UnknownText_0x69e48: ; 0x69e48
-	db $0, "You will? Perfect!", $4f
-	db "Thanks, kid!", $51
-	db "My pal's a chubby", $4f
-	db "guy who snoozes", $55
-	db "all the time.", $51
-	db "You'll recognize", $4f
-	db "him right away!", $57
+	text "You will? Perfect!"
+	line "Thanks, kid!"
+
+	para "My pal's a chubby"
+	line "guy who snoozes"
+	cont "all the time."
+
+	para "You'll recognize"
+	line "him right away!"
+	done
 ; 0x69eb8
 
 UnknownText_0x69eb8: ; 0x69eb8
-	db $0, $52, " received a", $4f
-	db "#MON with MAIL.", $57
+	text $52, " received a"
+	line "#MON with MAIL."
+	done
 ; 0x69ed6
 
 UnknownText_0x69ed6: ; 0x69ed6
-	db $0, "You can read it,", $4f
-	db "but don't lose it!", $55
-	db "ROUTE 31!", $51
-	db "Oh, yeah. There", $4f
-	db "was a weird tree", $55
-	db "blocking the road.", $51
-	db "I wonder if it's", $4f
-	db "been cleared?", $57
+	text "You can read it,"
+	line "but don't lose it!"
+	cont "ROUTE 31!"
+
+	para "Oh, yeah. There"
+	line "was a weird tree"
+	cont "blocking the road."
+
+	para "I wonder if it's"
+	line "been cleared?"
+	done
 ; 0x69f56
 
 UnknownText_0x69f56: ; 0x69f56
-	db $0, "You can't carry", $4f
-	db "another #MON…", $57
+	text "You can't carry"
+	line "another #MON…"
+	done
 ; 0x69f74
 
 UnknownText_0x69f74: ; 0x69f74
-	db $0, "Oh… Never mind,", $4f
-	db "then…", $57
+	text "Oh… Never mind,"
+	line "then…"
+	done
 ; 0x69f8b
 
 UnknownText_0x69f8b: ; 0x69f8b
-	db $0, "Thanks, kid! You", $4f
-	db "made the delivery", $55
-	db "for me!", $51
-	db "Here's something", $4f
-	db "for your trouble!", $57
+	text "Thanks, kid! You"
+	line "made the delivery"
+	cont "for me!"
+
+	para "Here's something"
+	line "for your trouble!"
+	done
 ; 0x69fd9
 
 UnknownText_0x69fd9: ; 0x69fd9
-	db $0, "My pal was snooz-", $4f
-	db "ing, right? Heh,", $55
-	db "what'd I say?", $57
+	text "My pal was snooz-"
+	line "ing, right? Heh,"
+	cont "what'd I say?"
+	done
 ; 0x6a00a
 
 UnknownText_0x6a00a: ; 0x6a00a
-	db $0, "A strange tree is", $4f
-	db "blocking the road.", $51
-	db "It wriggles around", $4f
-	db "if you talk to it.", $51
-	db "I heard it became", $4f
-	db "wild when someone", $51
-	db "watered it with a", $4f
-	db "SQUIRTBOTTLE.", $57
+	text "A strange tree is"
+	line "blocking the road."
+
+	para "It wriggles around"
+	line "if you talk to it."
+
+	para "I heard it became"
+	line "wild when someone"
+
+	para "watered it with a"
+	line "SQUIRTBOTTLE."
+	done
 ; 0x6a09a
 
 UnknownText_0x6a09a: ; 0x6a09a
-	db $0, "I like the #MON", $4f
-	db "Lullaby they play", $55
-	db "on the radio.", $57
+	text "I like the #MON"
+	line "Lullaby they play"
+	cont "on the radio."
+	done
 ; 0x6a0cb
 
 UnknownText_0x6a0cb: ; 0x6a0cb
-	db $0, "I wonder how many", $4f
-	db "kinds of #MON", $51
-	db "there are in the", $4f
-	db "world.", $51
-	db "Three years ago,", $4f
-	db "PROF.OAK said that", $51
-	db "there were 150", $4f
-	db "different kinds.", $57
+	text "I wonder how many"
+	line "kinds of #MON"
+
+	para "there are in the"
+	line "world."
+
+	para "Three years ago,"
+	line "PROF.OAK said that"
+
+	para "there were 150"
+	line "different kinds."
+	done
 ; 0x6a148
 
 Route35Goldenrodgate_MapEventHeader: ; 0x6a148

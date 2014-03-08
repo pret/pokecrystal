@@ -1,8 +1,12 @@
 ; GolemPokedexEntry: ; 0x1b8481
 	db "MEGATON@" ; species name
-	dw 407, 6620; height, width
+	dw 407, 6620 ; height, width
 	
-	db "Its rock-like body", $4e, "is so durable,", $4e, "even high-powered@"
-	db "dynamite blasts", $4e, "fail to scratch", $4e, "its rugged hide.@"
+	db   "Its rock-like body"
+	next "is so durable,"
+	next "even high-powered"
+	page "dynamite blasts"
+	next "fail to scratch"
+	next "its rugged hide.@"
 ; 0x1b84f2
 

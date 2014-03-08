@@ -19,24 +19,31 @@ MapCherrygroveGymSpeechHouseSignpost1Script: ; 0x196ae7
 ; 0x196aea
 
 UnknownText_0x196aea: ; 0x196aea
-	db $0, "You're trying to", $4f
-	db "see how good you", $51
-	db "are as a #MON", $4f
-	db "trainer?", $51
-	db "You better visit", $4f
-	db "the #MON GYMS", $51
-	db "all over JOHTO and", $4f
-	db "collect BADGES.", $57
+	text "You're trying to"
+	line "see how good you"
+
+	para "are as a #MON"
+	line "trainer?"
+
+	para "You better visit"
+	line "the #MON GYMS"
+
+	para "all over JOHTO and"
+	line "collect BADGES."
+	done
 ; 0x196b65
 
 UnknownText_0x196b65: ; 0x196b65
-	db $0, "When I get older,", $4f
-	db "I'm going to be a", $55
-	db "GYM LEADER!", $51
-	db "I make my #MON", $4f
-	db "battle with my", $51
-	db "friend's to make", $4f
-	db "them tougher!", $57
+	text "When I get older,"
+	line "I'm going to be a"
+	cont "GYM LEADER!"
+
+	para "I make my #MON"
+	line "battle with my"
+
+	para "friend's to make"
+	line "them tougher!"
+	done
 ; 0x196bd1
 
 CherrygroveGymSpeechHouse_MapEventHeader: ; 0x196bd1

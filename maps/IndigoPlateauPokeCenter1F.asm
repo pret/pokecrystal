@@ -217,83 +217,111 @@ MovementData_0x180172: ; 0x180172
 ; 0x180178
 
 UnknownText_0x180178: ; 0x180178
-	db $0, "At the #MON", $4f
-	db "LEAGUE, you'll get", $51
-	db "tested by the", $4f
-	db "ELITE FOUR.", $51
-	db "You have to beat", $4f
-	db "them all. If you", $51
-	db "lose, you have to", $4f
-	db "start all over!", $57
+	text "At the #MON"
+	line "LEAGUE, you'll get"
+
+	para "tested by the"
+	line "ELITE FOUR."
+
+	para "You have to beat"
+	line "them all. If you"
+
+	para "lose, you have to"
+	line "start all over!"
+	done
 ; 0x1801f5
 
 UnknownText_0x1801f5: ; 0x1801f5
-	db $0, "Hold it.", $51
-	db "You're going to", $4f
-	db "take the #MON", $51
-	db "LEAGUE challenge", $4f
-	db "now?", $51
-	db "That's not going", $4f
-	db "to happen.", $51
-	db "My super-well-", $4f
-	db "trained #MON", $51
-	db "are going to pound", $4f
-	db "you.", $51
-	db $52, "!", $4f
-	db "I challenge you!", $57
+	text "Hold it."
+
+	para "You're going to"
+	line "take the #MON"
+
+	para "LEAGUE challenge"
+	line "now?"
+
+	para "That's not going"
+	line "to happen."
+
+	para "My super-well-"
+	line "trained #MON"
+
+	para "are going to pound"
+	line "you."
+
+	para $52, "!"
+	line "I challenge you!"
+	done
 ; 0x180295
 
 UnknownText_0x180295: ; 0x180295
-	db $0, "…", $51
-	db "OK--I lost…", $57
+	text "…"
+
+	para "OK--I lost…"
+	done
 ; 0x1802a4
 
 UnknownText_0x1802a4: ; 0x1802a4
-	db $0, "…Darn… I still", $4f
-	db "can't win…", $51
-	db "I… I have to think", $4f
-	db "more about my", $55
-	db "#MON…", $51
-	db "Humph! Try not to", $4f
-	db "lose!", $57
+	text "…Darn… I still"
+	line "can't win…"
+
+	para "I… I have to think"
+	line "more about my"
+	cont "#MON…"
+
+	para "Humph! Try not to"
+	line "lose!"
+	done
 ; 0x1802fd
 
 UnknownText_0x1802fd: ; 0x1802fd
-	db $0, "…", $51
-	db "Whew…", $4f
-	db "With my partners,", $51
-	db "I'm going to be", $4f
-	db "the CHAMPION!", $57
+	text "…"
+
+	para "Whew…"
+	line "With my partners,"
+
+	para "I'm going to be"
+	line "the CHAMPION!"
+	done
 ; 0x180335
 
 UnknownText_0x180335: ; 0x180335
-	db $0, "Ah! You're chal-", $4f
-	db "lenging the ELITE", $51
-	db "FOUR? Are you sure", $4f
-	db "you're ready?", $51
-	db "If you need to", $4f
-	db "train some more,", $51
-	db "my ABRA can help", $4f
-	db "you.", $51
-	db "It can TELEPORT", $4f
-	db "you home.", $51
-	db "Would you like to", $4f
-	db "go home now?", $57
+	text "Ah! You're chal-"
+	line "lenging the ELITE"
+
+	para "FOUR? Are you sure"
+	line "you're ready?"
+
+	para "If you need to"
+	line "train some more,"
+
+	para "my ABRA can help"
+	line "you."
+
+	para "It can TELEPORT"
+	line "you home."
+
+	para "Would you like to"
+	line "go home now?"
+	done
 ; 0x1803e7
 
 UnknownText_0x1803e7: ; 0x1803e7
-	db $0, "OK, OK. Picture", $4f
-	db "your house in your", $55
-	db "mind…", $57
+	text "OK, OK. Picture"
+	line "your house in your"
+	cont "mind…"
+	done
 ; 0x180411
 
 UnknownText_0x180411: ; 0x180411
-	db $0, "OK, OK. The best", $4f
-	db "of luck to you!", $57
+	text "OK, OK. The best"
+	line "of luck to you!"
+	done
 ; 0x180433
 
 UnknownText_0x180433: ; 0x180433
-	db $0, "ABRA: Aabra…", $57
+	text "ABRA: Aabra…"
+	done
 ; 0x180441
 
 IndigoPlateauPokeCenter1F_MapEventHeader: ; 0x180441

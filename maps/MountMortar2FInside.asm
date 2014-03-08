@@ -66,21 +66,26 @@ MapMountMortar2FInsideSignpostItem0: ; 0x7e0ea
 ; 0x7e0ed
 
 SupernerdHughSeenText: ; 0x7e0ed
-	db $0, "Yo! MARKUS!", $57
+	text "Yo! MARKUS!"
+	done
 ; 0x7e0fa
 
 SupernerdHughBeatenText: ; 0x7e0fa
-	db $0, "Sorry, my mistake.", $57
+	text "Sorry, my mistake."
+	done
 ; 0x7e10e
 
 UnknownText_0x7e10e: ; 0x7e10e
-	db $0, "I'm investigating", $4f
-	db "MT.MORTAR, but my", $55
-	db "pal's gone AWOL.", $51
-	db "Have you seen a", $4f
-	db "trainer who has a", $51
-	db "SLOWPOKE that can", $4f
-	db "use STRENGTH?", $57
+	text "I'm investigating"
+	line "MT.MORTAR, but my"
+	cont "pal's gone AWOL."
+
+	para "Have you seen a"
+	line "trainer who has a"
+
+	para "SLOWPOKE that can"
+	line "use STRENGTH?"
+	done
 ; 0x7e184
 
 MountMortar2FInside_MapEventHeader: ; 0x7e184

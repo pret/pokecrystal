@@ -38,84 +38,108 @@ MapBattleTowerOutsideSignpost0Script: ; 0x9f868
 ; 0x9f86b
 
 UnknownText_0x9f86b: ; 0x9f86b
-	db $0, "Wow, the BATTLE", $4f
-	db "TOWER is huge! My", $51
-	db "neck is tired from", $4f
-	db "looking up at it.", $57
+	text "Wow, the BATTLE"
+	line "TOWER is huge! My"
+
+	para "neck is tired from"
+	line "looking up at it."
+	done
 ; 0x9f8b3
 
 UnknownText_0x9f8b3: ; 0x9f8b3
-	db $0, "Wow, the BATTLE", $4f
-	db "TOWER is huge!", $51
-	db "Since there are a", $4f
-	db "whole bunch of", $51
-	db "trainers inside,", $4f
-	db "there must also be", $51
-	db "a wide variety of", $4f
-	db "#MON.", $57
+	text "Wow, the BATTLE"
+	line "TOWER is huge!"
+
+	para "Since there are a"
+	line "whole bunch of"
+
+	para "trainers inside,"
+	line "there must also be"
+
+	para "a wide variety of"
+	line "#MON."
+	done
 ; 0x9f930
 
 UnknownText_0x9f930: ; 0x9f930
-	db $0, "Wow, the BATTLE", $4f
-	db "TOWER is huge!", $51
-	db "There must be many", $4f
-	db "kinds of #MON", $55
-	db "in there!", $57
+	text "Wow, the BATTLE"
+	line "TOWER is huge!"
+
+	para "There must be many"
+	line "kinds of #MON"
+	cont "in there!"
+	done
 ; 0x9f97b
 
 UnknownText_0x9f97b: ; 0x9f97b
-	db $0, "What on earth do", $4f
-	db "they do here?", $51
-	db "If the name says", $4f
-	db "anything, I guess", $51
-	db "it must be for", $4f
-	db "#MON battles.", $57
+	text "What on earth do"
+	line "they do here?"
+
+	para "If the name says"
+	line "anything, I guess"
+
+	para "it must be for"
+	line "#MON battles."
+	done
 ; 0x9f9db
 
 UnknownText_0x9f9db: ; 0x9f9db
-	db $0, "You can use only", $4f
-	db "three #MON.", $51
-	db "It's so hard to", $4f
-	db "decide which three", $51
-	db "should go into", $4f
-	db "battle…", $57
+	text "You can use only"
+	line "three #MON."
+
+	para "It's so hard to"
+	line "decide which three"
+
+	para "should go into"
+	line "battle…"
+	done
 ; 0x9fa32
 
 UnknownText_0x9fa32: ; 0x9fa32
-	db $0, "Ehehehe…", $4f
-	db "I sneaked out of", $55
-	db "work to come here.", $51
-	db "I'm never giving", $4f
-	db "up until I become", $55
-	db "a LEADER!", $57
+	text "Ehehehe…"
+	line "I sneaked out of"
+	cont "work to come here."
+
+	para "I'm never giving"
+	line "up until I become"
+	cont "a LEADER!"
+	done
 ; 0x9fa8c
 
 UnknownText_0x9fa8c: ; 0x9fa8c
-	db $0, "Hehehe, I snuck", $4f
-	db "out from work.", $51
-	db "I can't bail out", $4f
-	db "until I've won!", $51
-	db "I have to win it", $4f
-	db "all. That I must!", $57
+	text "Hehehe, I snuck"
+	line "out from work."
+
+	para "I can't bail out"
+	line "until I've won!"
+
+	para "I have to win it"
+	line "all. That I must!"
+	done
 ; 0x9faee
 
 UnknownText_0x9faee: ; 0x9faee
-	db $0, "BATTLE TOWER", $57
+	text "BATTLE TOWER"
+	done
 ; 0x9fafc
 
 UnknownText_0x9fafc: ; 0x9fafc
-	db $0, "BATTLE TOWER", $51
-	db "Take the Ultimate", $4f
-	db "Trainer Challenge!", $57
+	text "BATTLE TOWER"
+
+	para "Take the Ultimate"
+	line "Trainer Challenge!"
+	done
 ; 0x9fb2f
 
 UnknownText_0x9fb2f: ; 0x9fb2f
-	db $0, "The BATTLE TOWER's", $4f
-	db "doors are closed…", $57
+	text "The BATTLE TOWER's"
+	line "doors are closed…"
+	done
 ; 0x9fb54
 
 UnknownText_0x9fb54: ; 0x9fb54
-	db $0, "It's open!", $57
+	text "It's open!"
+	done
 ; 0x9fb5f
 
 BattleTowerOutside_MapEventHeader: ; 0x9fb5f

@@ -371,177 +371,223 @@ MovementData_0x19f000: ; 0x19f000
 ; 0x19f006
 
 UnknownText_0x19f006: ; 0x19f006
-	db $0, "MISTY: Aww! Why", $4f
-	db "did you have to", $51
-	db "show up and bug us", $4f
-	db "now?", $51
-	db "Do you know what", $4f
-	db "they call people", $55
-	db "like you?", $51
-	db "Pests! You heard", $4f
-	db "me right, pest!", $51
-	db "…", $51
-	db "…Oh? Those BADGES", $4f
-	db "you have… Are they", $55
-	db "JOHTO GYM BADGES?", $51
-	db "If you have eight,", $4f
-	db "you must be good.", $51
-	db "OK, then. Come to", $4f
-	db "CERULEAN GYM.", $51
-	db "I'll be happy to", $4f
-	db "take you on.", $51
-	db "I'm MISTY, the", $4f
-	db "GYM LEADER in", $55
-	db "CERULEAN.", $57
+	text "MISTY: Aww! Why"
+	line "did you have to"
+
+	para "show up and bug us"
+	line "now?"
+
+	para "Do you know what"
+	line "they call people"
+	cont "like you?"
+
+	para "Pests! You heard"
+	line "me right, pest!"
+
+	para "…"
+
+	para "…Oh? Those BADGES"
+	line "you have… Are they"
+	cont "JOHTO GYM BADGES?"
+
+	para "If you have eight,"
+	line "you must be good."
+
+	para "OK, then. Come to"
+	line "CERULEAN GYM."
+
+	para "I'll be happy to"
+	line "take you on."
+
+	para "I'm MISTY, the"
+	line "GYM LEADER in"
+	cont "CERULEAN."
+	done
 ; 0x19f14d
 
 SchoolboyDudleySeenText: ; 0x19f14d
-	db $0, "Beat the six of us", $4f
-	db "trainers to win a", $55
-	db "fabulous prize!", $51
-	db "Think you've got", $4f
-	db "what it takes?", $57
+	text "Beat the six of us"
+	line "trainers to win a"
+	cont "fabulous prize!"
+
+	para "Think you've got"
+	line "what it takes?"
+	done
 ; 0x19f1a2
 
 SchoolboyDudleyBeatenText: ; 0x19f1a2
-	db $0, "Whoo! Good stuff.", $57
+	text "Whoo! Good stuff."
+	done
 ; 0x19f1b5
 
 UnknownText_0x19f1b5: ; 0x19f1b5
-	db $0, "I did my best.", $4f
-	db "I have no regrets.", $57
+	text "I did my best."
+	line "I have no regrets."
+	done
 ; 0x19f1d8
 
 LassEllenSeenText: ; 0x19f1d8
-	db $0, "I'm second.", $4f
-	db "Now it's serious!", $57
+	text "I'm second."
+	line "Now it's serious!"
+	done
 ; 0x19f1f5
 
 LassEllenBeatenText: ; 0x19f1f5
-	db $0, "How could I lose?", $57
+	text "How could I lose?"
+	done
 ; 0x19f208
 
 UnknownText_0x19f208: ; 0x19f208
-	db $0, "I did my best.", $4f
-	db "I have no regrets.", $57
+	text "I did my best."
+	line "I have no regrets."
+	done
 ; 0x19f22b
 
 SchoolboyJoeSeenText: ; 0x19f22b
-	db $0, "Here's No. 3!", $4f
-	db "I won't be easy.", $57
+	text "Here's No. 3!"
+	line "I won't be easy."
+	done
 ; 0x19f249
 
 SchoolboyJoeBeatenText: ; 0x19f249
-	db $0, "Ow! Stomped flat!", $57
+	text "Ow! Stomped flat!"
+	done
 ; 0x19f25c
 
 UnknownText_0x19f25c: ; 0x19f25c
-	db $0, "I did my best.", $4f
-	db "I have no regrets.", $57
+	text "I did my best."
+	line "I have no regrets."
+	done
 ; 0x19f27f
 
 LassLauraSeenText: ; 0x19f27f
-	db $0, "I'm No. 4!", $4f
-	db "Getting tired?", $57
+	text "I'm No. 4!"
+	line "Getting tired?"
+	done
 ; 0x19f299
 
 LassLauraBeatenText: ; 0x19f299
-	db $0, "I lost too…", $57
+	text "I lost too…"
+	done
 ; 0x19f2a6
 
 UnknownText_0x19f2a6: ; 0x19f2a6
-	db $0, "I did my best.", $4f
-	db "I have no regrets.", $57
+	text "I did my best."
+	line "I have no regrets."
+	done
 ; 0x19f2c9
 
 CamperLloydSeenText: ; 0x19f2c9
-	db $0, "OK! I'm No. 5.", $4f
-	db "I'll stomp you!", $57
+	text "OK! I'm No. 5."
+	line "I'll stomp you!"
+	done
 ; 0x19f2e7
 
 CamperLloydBeatenText: ; 0x19f2e7
-	db $0, "Whoa! Too much.", $57
+	text "Whoa! Too much."
+	done
 ; 0x19f2f8
 
 UnknownText_0x19f2f8: ; 0x19f2f8
-	db $0, "I did my best.", $4f
-	db "I have no regrets.", $57
+	text "I did my best."
+	line "I have no regrets."
+	done
 ; 0x19f31b
 
 LassShannonSeenText: ; 0x19f31b
-	db $0, "I'm the last in", $4f
-	db "line, but I tell", $55
-	db "you, I'm tough!", $57
+	text "I'm the last in"
+	line "line, but I tell"
+	cont "you, I'm tough!"
+	done
 ; 0x19f34b
 
 LassShannonBeatenText: ; 0x19f34b
-	db $0, "You're kidding.", $57
+	text "You're kidding."
+	done
 ; 0x19f35b
 
 UnknownText_0x19f35b: ; 0x19f35b
-	db $0, "I did my best.", $4f
-	db "I have no regrets.", $57
+	text "I did my best."
+	line "I have no regrets."
+	done
 ; 0x19f37e
 
 SupernerdPatSeenText: ; 0x19f37e
-	db $0, "Mufufufu…", $51
-	db "I have nothing to", $4f
-	db "do with the six-", $55
-	db "pack trainers.", $51
-	db "I waited here to", $4f
-	db "beat you when you", $51
-	db "were tired out by", $4f
-	db "all the battles.", $57
+	text "Mufufufu…"
+
+	para "I have nothing to"
+	line "do with the six-"
+	cont "pack trainers."
+
+	para "I waited here to"
+	line "beat you when you"
+
+	para "were tired out by"
+	line "all the battles."
+	done
 ; 0x19f401
 
 SupernerdPatBeatenText: ; 0x19f401
-	db $0, "Aren't you tired", $4f
-	db "at all?", $57
+	text "Aren't you tired"
+	line "at all?"
+	done
 ; 0x19f41a
 
 UnknownText_0x19f41a: ; 0x19f41a
-	db $0, "I'm sorry… I won't", $4f
-	db "cheat anymore…", $57
+	text "I'm sorry… I won't"
+	line "cheat anymore…"
+	done
 ; 0x19f43b
 
 UnknownText_0x19f43b: ; 0x19f43b
-	db $0, "You took on one", $4f
-	db "more battle than", $51
-	db "you expected, but", $4f
-	db "you won anyway.", $51
-	db "As promised, you", $4f
-	db "win a prize.", $57
+	text "You took on one"
+	line "more battle than"
+
+	para "you expected, but"
+	line "you won anyway."
+
+	para "As promised, you"
+	line "win a prize."
+	done
 ; 0x19f49d
 
 UnknownText_0x19f49d: ; 0x19f49d
-	db $0, "But after seeing", $4f
-	db "how you battle, I", $51
-	db "want to see how", $4f
-	db "I'll fare.", $51
-	db "How about it? Let", $4f
-	db "me take you on.", $57
+	text "But after seeing"
+	line "how you battle, I"
+
+	para "want to see how"
+	line "I'll fare."
+
+	para "How about it? Let"
+	line "me take you on."
+	done
 ; 0x19f4fd
 
 UnknownText_0x19f4fd: ; 0x19f4fd
-	db $0, "I've never had a", $4f
-	db "battle this good!", $57
+	text "I've never had a"
+	line "battle this good!"
+	done
 ; 0x19f520
 
 UnknownText_0x19f520: ; 0x19f520
-	db $0, "That was a great", $4f
-	db "battle!", $51
-	db "You and your #-", $4f
-	db "MON are truly out-", $55
-	db "standing!", $57
+	text "That was a great"
+	line "battle!"
+
+	para "You and your #-"
+	line "MON are truly out-"
+	cont "standing!"
+	done
 ; 0x19f567
 
 UnknownText_0x19f567: ; 0x19f567
-	db $0, "SEA COTTAGE", $4f
-	db "BILL'S HOUSE", $57
+	text "SEA COTTAGE"
+	line "BILL'S HOUSE"
+	done
 ; 0x19f581
 
 UnknownText_0x19f581: ; 0x19f581
-	db $0, "BILL'S HOUSE", $57
+	text "BILL'S HOUSE"
+	done
 ; 0x19f58f
 
 Route25_MapEventHeader: ; 0x19f58f

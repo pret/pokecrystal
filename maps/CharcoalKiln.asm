@@ -83,64 +83,81 @@ MapCharcoalKilnSignpost2Script: ; 0x18dd71
 ; 0x18dd74
 
 UnknownText_0x18dd74: ; 0x18dd74
-	db $0, "All the SLOWPOKE", $4f
-	db "have disappeared", $55
-	db "from the town.", $51
-	db "The forest's pro-", $4f
-	db "tector may be", $55
-	db "angry with us…", $51
-	db "It may be a bad", $4f
-	db "omen. We should", $55
-	db "stay in.", $57
+	text "All the SLOWPOKE"
+	line "have disappeared"
+	cont "from the town."
+
+	para "The forest's pro-"
+	line "tector may be"
+	cont "angry with us…"
+
+	para "It may be a bad"
+	line "omen. We should"
+	cont "stay in."
+	done
 ; 0x18ddfd
 
 UnknownText_0x18ddfd: ; 0x18ddfd
-	db $0, "The SLOWPOKE have", $4f
-	db "returned…", $51
-	db "But my APPRENTICE", $4f
-	db "hasn't come back", $55
-	db "from ILEX FOREST.", $51
-	db "Where in the world", $4f
-	db "is that lazy guy?", $57
+	text "The SLOWPOKE have"
+	line "returned…"
+
+	para "But my APPRENTICE"
+	line "hasn't come back"
+	cont "from ILEX FOREST."
+
+	para "Where in the world"
+	line "is that lazy guy?"
+	done
 ; 0x18de73
 
 UnknownText_0x18de73: ; 0x18de73
-	db $0, "You chased off", $4f
-	db "TEAM ROCKET and", $51
-	db "went to ILEX", $4f
-	db "FOREST alone?", $51
-	db "That takes guts!", $4f
-	db "I like that. Come", $55
-	db "train with us.", $57
+	text "You chased off"
+	line "TEAM ROCKET and"
+
+	para "went to ILEX"
+	line "FOREST alone?"
+
+	para "That takes guts!"
+	line "I like that. Come"
+	cont "train with us."
+	done
 ; 0x18dee0
 
 UnknownText_0x18dee0: ; 0x18dee0
-	db $0, "Where have all the", $4f
-	db "SLOWPOKE gone?", $51
-	db "Are they out play-", $4f
-	db "ing somewhere?", $57
+	text "Where have all the"
+	line "SLOWPOKE gone?"
+
+	para "Are they out play-"
+	line "ing somewhere?"
+	done
 ; 0x18df25
 
 UnknownText_0x18df25: ; 0x18df25
-	db $0, "I'm sorry--I for-", $4f
-	db "got to thank you.", $51
-	db "This is CHARCOAL", $4f
-	db "that I made.", $51
-	db "Fire-type #MON", $4f
-	db "would be happy to", $55
-	db "hold that.", $57
+	text "I'm sorry--I for-"
+	line "got to thank you."
+
+	para "This is CHARCOAL"
+	line "that I made."
+
+	para "Fire-type #MON"
+	line "would be happy to"
+	cont "hold that."
+	done
 ; 0x18df93
 
 UnknownText_0x18df93: ; 0x18df93
-	db $0, "The SLOWPOKE came", $4f
-	db "back, and you even", $55
-	db "found FARFETCH'D.", $51
-	db "You're the cool-", $4f
-	db "est, man!", $57
+	text "The SLOWPOKE came"
+	line "back, and you even"
+	cont "found FARFETCH'D."
+
+	para "You're the cool-"
+	line "est, man!"
+	done
 ; 0x18dfe5
 
 UnknownText_0x18dfe5: ; 0x18dfe5
-	db $0, "FARFETCH'D: Kwaa!", $57
+	text "FARFETCH'D: Kwaa!"
+	done
 ; 0x18dff8
 
 CharcoalKiln_MapEventHeader: ; 0x18dff8

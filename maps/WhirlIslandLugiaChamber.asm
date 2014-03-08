@@ -45,7 +45,8 @@ LugiaScript_0x18c518: ; 0x18c518
 ; 0x18c531
 
 UnknownText_0x18c531: ; 0x18c531
-	db $0, "Gyaaas!", $57
+	text "Gyaaas!"
+	done
 ; 0x18c53a
 
 WhirlIslandLugiaChamber_MapEventHeader: ; 0x18c53a

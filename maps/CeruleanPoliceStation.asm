@@ -24,21 +24,25 @@ DiglettScript_0x188050: ; 0x188050
 ; 0x18805a
 
 UnknownText_0x18805a: ; 0x18805a
-	db $0, "I heard that some", $4f
-	db "shady character is", $55
-	db "skulking about.", $51
-	db "I won't stand for", $4f
-	db "it if he turns out", $55
-	db "to be a thief.", $57
+	text "I heard that some"
+	line "shady character is"
+	cont "skulking about."
+
+	para "I won't stand for"
+	line "it if he turns out"
+	cont "to be a thief."
+	done
 ; 0x1880c3
 
 UnknownText_0x1880c3: ; 0x1880c3
-	db $0, "We were held up by", $4f
-	db "robbers before.", $57
+	text "We were held up by"
+	line "robbers before."
+	done
 ; 0x1880e7
 
 UnknownText_0x1880e7: ; 0x1880e7
-	db $0, "DIGLETT: Dug dug.", $57
+	text "DIGLETT: Dug dug."
+	done
 ; 0x1880fa
 
 CeruleanPoliceStation_MapEventHeader: ; 0x1880fa

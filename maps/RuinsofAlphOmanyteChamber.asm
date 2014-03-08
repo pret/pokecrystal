@@ -131,36 +131,43 @@ MovementData_0x58c8c: ; 0x58c8c
 ; 0x58c8e
 
 UnknownText_0x58c8e: ; 0x58c8e
-	db $0, "Patterns appeared", $4f
-	db "on the walls…", $57
+	text "Patterns appeared"
+	line "on the walls…"
+	done
 ; 0x58caf
 
 ; possibly unused.. this again?
 UnknownText_0x58caf: ; 0x58caf
-	db $0, "It's UNOWN text!", $57
+	text "It's UNOWN text!"
+	done
 ; 0x58cc0
 
 UnknownText_0x58cc0: ; 0x58cc0
-	db $0, "Patterns appeared", $4f
-	db "on the walls…", $57
+	text "Patterns appeared"
+	line "on the walls…"
+	done
 ; 0x58ce1
 
 UnknownText_0x58ce1: ; 0x58ce1
-	db $0, "There's a big hole", $4f
-	db "in the wall!", $57
+	text "There's a big hole"
+	line "in the wall!"
+	done
 ; 0x58d01
 
 UnknownText_0x58d01: ; 0x58d01
-	db $0, "It's a replica of", $4f
-	db "an ancient #-", $55
-	db "MON.", $57
+	text "It's a replica of"
+	line "an ancient #-"
+	cont "MON."
+	done
 ; 0x58d26
 
 UnknownText_0x58d26: ; 0x58d26
-	db $0, "This #MON", $4f
-	db "drifted in the", $51
-	db "sea by twisting", $4f
-	db "its ten tentacles.", $57
+	text "This #MON"
+	line "drifted in the"
+
+	para "sea by twisting"
+	line "its ten tentacles."
+	done
 ; 0x58d63
 
 RuinsofAlphOmanyteChamber_MapEventHeader: ; 0x58d63

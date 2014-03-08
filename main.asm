@@ -99139,101 +99139,121 @@ Function11a8fa: ; 11a8fa
 INCBIN "baserom.gbc",$11a909,$11aa13 - $11a909
 
 UnknownText_0x11aa13: ; 0x11aa13
-	db $0, "SAVE FILE will be", $4f
-	db "sent.", $57
+	text "SAVE FILE will be"
+	line "sent."
+	done
 ; 0x11aa2c
 
 UnknownText_0x11aa2c: ; 0x11aa2c
-	db $0, "Sent SAVE FILE.", $4f
-	db "Reading NEWS…", $57
+	text "Sent SAVE FILE."
+	line "Reading NEWS…"
+	done
 ; 0x11aa4b
 
 UnknownText_0x11aa4b: ; 0x11aa4b
-	db $0, "Reading NEWS…", $57
+	text "Reading NEWS…"
+	done
 ; 0x11aa5a
 
 UnknownText_0x11aa5a: ; 0x11aa5a
-	db $0, "Received NEWS!", $57
+	text "Received NEWS!"
+	done
 ; 0x11aa6a
 
 UnknownText_0x11aa6a: ; 0x11aa6a
-	db $0, "Quit reading NEWS?", $57
+	text "Quit reading NEWS?"
+	done
 ; 0x11aa7e
 
 UnknownText_0x11aa7e: ; 0x11aa7e
-	db $0, "Canceled sending", $4f
-	db "SAVE FILE.", $57
+	text "Canceled sending"
+	line "SAVE FILE."
+	done
 ; 0x11aa9b
 
 UnknownText_0x11aa9b: ; 0x11aa9b
-	db $0, "ODD EGG", $4f
-	db "was received!", $57
+	text "ODD EGG"
+	line "was received!"
+	done
 ; 0x11aab2
 
 UnknownText_0x11aab2: ; 0x11aab2
-	db $0, "Registering your", $4f
-	db "record…", $57
+	text "Registering your"
+	line "record…"
+	done
 ; 0x11aacc
 
 UnknownText_0x11aacc: ; 0x11aacc
-	db $0, "One visit per day", $4f
-	db "per BATTLE ROOM!", $57
+	text "One visit per day"
+	line "per BATTLE ROOM!"
+	done
 ; 0x11aaf0
 
 UnknownText_0x11aaf0: ; 0x11aaf0
-	db $0, "A party #MON", $4f
-	db "tops this level.", $57
+	text "A party #MON"
+	line "tops this level."
+	done
 ; 0x11ab0f
 
 UnknownText_0x11ab0f: ; 0x11ab0f
 	text_from_ram $cd49
-	db $0, " may go", $4f
-	db "only to BATTLE", $51
-	db "ROOMS that are", $4f
-	db "Lv.70 or higher.", $57
+	text " may go"
+	line "only to BATTLE"
+
+	para "ROOMS that are"
+	line "Lv.70 or higher."
+	done
 ; 0x11ab4a
 
 UnknownText_0x11ab4a: ; 0x11ab4a
-	db $0, "Cancel your BATTLE", $4f
-	db "ROOM challenge?", $57
+	text "Cancel your BATTLE"
+	line "ROOM challenge?"
+	done
 ; 0x11ab6e
 
 UnknownText_0x11ab6e: ; 0x11ab6e
-	db $0, "Exit GYM LEADER", $4f
-	db "HONOR ROLL?", $57
+	text "Exit GYM LEADER"
+	line "HONOR ROLL?"
+	done
 ; 0x11ab8b
 
 UnknownText_0x11ab8b: ; 0x11ab8b
-	db $0, "Linking with the", $4f
-	db "CENTER…", $57
+	text "Linking with the"
+	line "CENTER…"
+	done
 ; 0x11aba5
 
 UnknownText_0x11aba5: ; 0x11aba5
-	db $0, "What level do you", $4f
-	db "want to challenge?", $57
+	text "What level do you"
+	line "want to challenge?"
+	done
 ; 0x11abcb
 
 UnknownText_0x11abcb: ; 0x11abcb
-	db $0, "Check BATTLE ROOM", $4f
-	db "list by max level?", $57
+	text "Check BATTLE ROOM"
+	line "list by max level?"
+	done
 ; 0x11abf1
 
 UnknownText_0x11abf1: ; 0x11abf1
-	db $0, "Enter which", $4f
-	db "BATTLE ROOM?", $57
+	text "Enter which"
+	line "BATTLE ROOM?"
+	done
 ; 0x11ac0b
 
 UnknownText_0x11ac0b: ; 0x11ac0b
-	db $0, "Which BATTLE ROOM?", $57
+	text "Which BATTLE ROOM?"
+	done
 ; 0x11ac1f
 
 UnknownText_0x11ac1f: ; 0x11ac1f
 	text_from_ram StringBuffer3
-	db $0, "'s ROOM", $4f
-	db "@"
+	text "'s ROOM"
+	line "@"
 	text_from_ram StringBuffer4
-	db $0, "?", $55
-	db "Please wait…", $57
+	text "?"
+	cont "Please wait…"
+	done
 ; 0x11ac3e
 
 Function11ac3e: ; 11ac3e

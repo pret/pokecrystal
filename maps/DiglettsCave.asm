@@ -17,10 +17,12 @@ MapDiglettsCaveSignpostItem0: ; 0x74005
 ; 0x74008
 
 UnknownText_0x74008: ; 0x74008
-	db $0, "A bunch of DIGLETT", $4f
-	db "popped out of the", $51
-	db "ground! That was", $4f
-	db "shocking.", $57
+	text "A bunch of DIGLETT"
+	line "popped out of the"
+
+	para "ground! That was"
+	line "shocking."
+	done
 ; 0x74049
 
 DiglettsCave_MapEventHeader: ; 0x74049

@@ -17,7 +17,8 @@ MapRoute28SignpostItem1: ; 0x1a5410
 ; 0x1a5413
 
 UnknownText_0x1a5413: ; 0x1a5413
-	db $0, "ROUTE 28", $57
+	text "ROUTE 28"
+	done
 ; 0x1a541d
 
 Route28_MapEventHeader: ; 0x1a541d

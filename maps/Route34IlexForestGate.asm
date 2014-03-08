@@ -96,43 +96,55 @@ MovementData_0x62d9a: ; 0x62d9a
 ; 0x62d9d
 
 UnknownText_0x62d9d: ; 0x62d9d
-	db $0, "Oh, honey. You're", $4f
-	db "making a #DEX?", $51
-	db "It must be hard if", $4f
-	db "#MON won't", $51
-	db "appear. Try using", $4f
-	db "this TM.", $57
+	text "Oh, honey. You're"
+	line "making a #DEX?"
+
+	para "It must be hard if"
+	line "#MON won't"
+
+	para "appear. Try using"
+	line "this TM."
+	done
 ; 0x62df6
 
 UnknownText_0x62df6: ; 0x62df6
-	db $0, "It's SWEET SCENT.", $51
-	db "Use it wherever", $4f
-	db "#MON appear.", $51
-	db "#MON will be", $4f
-	db "enticed by it.", $57
+	text "It's SWEET SCENT."
+
+	para "Use it wherever"
+	line "#MON appear."
+
+	para "#MON will be"
+	line "enticed by it."
+	done
 ; 0x62e41
 
 UnknownText_0x62e41: ; 0x62e41
-	db $0, "Something's wrong", $4f
-	db "in ILEX FOREST…", $51
-	db "You should stay", $4f
-	db "away right now.", $57
+	text "Something's wrong"
+	line "in ILEX FOREST…"
+
+	para "You should stay"
+	line "away right now."
+	done
 ; 0x62e83
 
 UnknownText_0x62e83: ; 0x62e83
-	db $0, "BUTTERFREE: Freeh!", $57
+	text "BUTTERFREE: Freeh!"
+	done
 ; 0x62e97
 
 UnknownText_0x62e97: ; 0x62e97
-	db $0, "Did you see the", $4f
-	db "shrine honoring", $55
-	db "the protector?", $51
-	db "It watches over", $4f
-	db "the FOREST from", $55
-	db "across time.", $51
-	db "I think that it", $4f
-	db "must be a grass-", $55
-	db "type #MON.", $57
+	text "Did you see the"
+	line "shrine honoring"
+	cont "the protector?"
+
+	para "It watches over"
+	line "the FOREST from"
+	cont "across time."
+
+	para "I think that it"
+	line "must be a grass-"
+	cont "type #MON."
+	done
 ; 0x62f20
 
 Route34IlexForestGate_MapEventHeader: ; 0x62f20

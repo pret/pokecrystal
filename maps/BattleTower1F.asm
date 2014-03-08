@@ -382,20 +382,24 @@ MovementData_0x9e5a9: ; 0x9e5a9
 ; 0x9e5ab
 
 UnknownText_0x9e5ab: ; 0x9e5ab
-	db $0, "BATTLE TOWER", $4f
-	db "welcomes you!", $51
-	db "I could show you", $4f
-	db "to a BATTLE ROOM.", $57
+	text "BATTLE TOWER"
+	line "welcomes you!"
+
+	para "I could show you"
+	line "to a BATTLE ROOM."
+	done
 ; 0x9e5ea
 
 UnknownText_0x9e5ea: ; 0x9e5ea
-	db $0, "Want to go into a", $4f
-	db "BATTLE ROOM?", $57
+	text "Want to go into a"
+	line "BATTLE ROOM?"
+	done
 ; 0x9e60a
 
 UnknownText_0x9e60a: ; 0x9e60a
-	db $0, "Right this way to", $4f
-	db "your BATTLE ROOM.", $57
+	text "Right this way to"
+	line "your BATTLE ROOM."
+	done
 ; 0x9e62f
 
 UnknownText_0x9e62f: ; 0x9e62f
@@ -474,8 +478,9 @@ UnknownText_0x9e9eb: ; 0x9e9eb
 ; 0x9ea1b
 
 UnknownText_0x9ea1b: ; 0x9ea1b
-	db $0, "Please confirm on", $4f
-	db "this monitor.", $57
+	text "Please confirm on"
+	line "this monitor."
+	done
 ; 0x9ea3c
 
 UnknownText_0x9ea3c: ; 0x9ea3c
@@ -484,8 +489,9 @@ UnknownText_0x9ea3c: ; 0x9ea3c
 ; 0x9ea49
 
 UnknownText_0x9ea49: ; 0x9ea49
-	db $0, "Thanks for", $4f
-	db "visiting!", $57
+	text "Thanks for"
+	line "visiting!"
+	done
 ; 0x9ea5f
 
 UnknownText_0x9ea5f: ; 0x9ea5f
@@ -511,10 +517,12 @@ UnknownText_0x9eaef: ; 0x9eaef
 ; 0x9eb45
 
 UnknownText_0x9eb45: ; 0x9eb45
-	db $0, "Would you like to", $4f
-	db "register your", $51
-	db "record with the", $4f
-	db "CENTER?", $57
+	text "Would you like to"
+	line "register your"
+
+	para "record with the"
+	line "CENTER?"
+	done
 ; 0x9eb7e
 
 UnknownText_0x9eb7e: ; 0x9eb7e
@@ -528,230 +536,292 @@ UnknownText_0x9eb7e: ; 0x9eb7e
 ; 0x9eb94
 
 UnknownText_0x9eb94: ; 0x9eb94
-	db $0, "Oops, your PACK is", $4f
-	db "stuffed full.", $51
-	db "Please make room", $4f
-	db "and come back.", $57
+	text "Oops, your PACK is"
+	line "stuffed full."
+
+	para "Please make room"
+	line "and come back."
+	done
 ; 0x9ebd6
 
 UnknownText_0x9ebd6: ; 0x9ebd6
-	db $0, "Your registration", $4f
-	db "is complete.", $51
-	db "Please come again!", $57
+	text "Your registration"
+	line "is complete."
+
+	para "Please come again!"
+	done
 ; 0x9ec09
 
 UnknownText_0x9ec09: ; 0x9ec09
-	db $0, "We hope to serve", $4f
-	db "you again.", $57
+	text "We hope to serve"
+	line "you again."
+	done
 ; 0x9ec26
 
 UnknownText_0x9ec26: ; 0x9ec26
-	db $0, "Please step this", $4f
-	db "way.", $57
+	text "Please step this"
+	line "way."
+	done
 ; 0x9ec3d
 
 UnknownText_0x9ec3d: ; 0x9ec3d
-	db $0, "Would you like to", $4f
-	db "hear about the", $55
-	db "BATTLE TOWER?", $57
+	text "Would you like to"
+	line "hear about the"
+	cont "BATTLE TOWER?"
+	done
 ; 0x9ec6d
 
 UnknownText_0x9ec6d: ; 0x9ec6d
-	db $0, "Your record from", $4f
-	db "the previous", $51
-	db "BATTLE ROOM can't", $4f
-	db "be registered. OK?", $57
+	text "Your record from"
+	line "the previous"
+
+	para "BATTLE ROOM can't"
+	line "be registered. OK?"
+	done
 ; 0x9ecb0
 
 UnknownText_0x9ecb0: ; 0x9ecb0
-	db $0, "Your record from", $4f
-	db "the previous", $51
-	db "BATTLE ROOM can't", $4f
-	db "be registered.", $51
-	db "Also, the existing", $4f
-	db "record will be", $55
-	db "deleted. OK?", $57
+	text "Your record from"
+	line "the previous"
+
+	para "BATTLE ROOM can't"
+	line "be registered."
+
+	para "Also, the existing"
+	line "record will be"
+	cont "deleted. OK?"
+	done
 ; 0x9ed1e
 
 UnknownText_0x9ed1e: ; 0x9ed1e
-	db $0, "Check the LEADER", $4f
-	db "HONOR ROLL?", $57
+	text "Check the LEADER"
+	line "HONOR ROLL?"
+	done
 ; 0x9ed3c
 
 UnknownText_0x9ed3c: ; 0x9ed3c
-	db $0, "BATTLE TOWER rules", $4f
-	db "are written here.", $51
-	db "Read the rules?", $57
+	text "BATTLE TOWER rules"
+	line "are written here."
+
+	para "Read the rules?"
+	done
 ; 0x9ed72
 
 UnknownText_0x9ed72: ; 0x9ed72
-	db $0, "Three #MON may", $4f
-	db "enter battles.", $51
-	db "All three must be", $4f
-	db "different.", $51
-	db "The items they", $4f
-	db "hold must also be", $55
-	db "different.", $51
-	db "Certain #MON", $4f
-	db "may also have", $51
-	db "level restrictions", $4f
-	db "placed on them.", $57
+	text "Three #MON may"
+	line "enter battles."
+
+	para "All three must be"
+	line "different."
+
+	para "The items they"
+	line "hold must also be"
+	cont "different."
+
+	para "Certain #MON"
+	line "may also have"
+
+	para "level restrictions"
+	line "placed on them."
+	done
 ; 0x9ee18
 
 UnknownText_0x9ee18: ; 0x9ee18
-	db $0, "Excuse me!", $4f
-	db "You didn't SAVE", $51
-	db "before exiting", $4f
-	db "the BATTLE ROOM.", $51
-	db "I'm awfully sorry,", $4f
-	db "but your challenge", $51
-	db "will be declared", $4f
-	db "invalid.", $57
+	text "Excuse me!"
+	line "You didn't SAVE"
+
+	para "before exiting"
+	line "the BATTLE ROOM."
+
+	para "I'm awfully sorry,"
+	line "but your challenge"
+
+	para "will be declared"
+	line "invalid."
+	done
 ; 0x9ee92
 
 UnknownText_0x9ee92: ; 0x9ee92
-	db $0, "Your #MON will", $4f
-	db "be healed to full", $55
-	db "health.", $57
+	text "Your #MON will"
+	line "be healed to full"
+	cont "health."
+	done
 ; 0x9eebc
 
 UnknownText_0x9eebc: ; 0x9eebc
-	db $0, "Next up, opponent", $4f
-	db "no.@"
+	text "Next up, opponent"
+	line "no.@"
 	text_from_ram $d099
-	db $0, ". Ready?", $57
+	text ". Ready?"
+	done
 ; 0x9eee0
 
 UnknownText_0x9eee0: ; 0x9eee0
-	db $0, "Your session will", $4f
-	db "be SAVED before", $51
-	db "connecting with", $4f
-	db "the CENTER.", $57
+	text "Your session will"
+	line "be SAVED before"
+
+	para "connecting with"
+	line "the CENTER."
+	done
 ; 0x9ef1f
 
 UnknownText_0x9ef1f: ; 0x9ef1f
-	db $0, "Before entering", $4f
-	db "the BATTLE ROOM,", $51
-	db "your progress will", $4f
-	db "be saved.", $57
+	text "Before entering"
+	line "the BATTLE ROOM,"
+
+	para "your progress will"
+	line "be saved."
+	done
 ; 0x9ef5e
 
 UnknownText_0x9ef5e: ; 0x9ef5e
-	db $0, "SAVE and end the", $4f
-	db "session?", $57
+	text "SAVE and end the"
+	line "session?"
+	done
 ; 0x9ef79
 
 UnknownText_0x9ef79: ; 0x9ef79
-	db $0, "Your record will", $4f
-	db "be SAVED before", $51
-	db "you go back into", $4f
-	db "the previous ROOM.", $57
+	text "Your record will"
+	line "be SAVED before"
+
+	para "you go back into"
+	line "the previous ROOM."
+	done
 ; 0x9efbf
 
 UnknownText_0x9efbf: ; 0x9efbf
-	db $0, "Cancel your BATTLE", $4f
-	db "ROOM challenge?", $57
+	text "Cancel your BATTLE"
+	line "ROOM challenge?"
+	done
 ; 0x9efe3
 
 UnknownText_0x9efe3: ; 0x9efe3
-	db $0, "We have your", $4f
-	db "previous record on", $51
-	db "file. Would you", $4f
-	db "like to register", $55
-	db "it at the CENTER?", $57
+	text "We have your"
+	line "previous record on"
+
+	para "file. Would you"
+	line "like to register"
+	cont "it at the CENTER?"
+	done
 ; 0x9f037
 
 UnknownText_0x9f037: ; 0x9f037
-	db $0, "We've been waiting", $4f
-	db "for you. This way", $51
-	db "to a BATTLE ROOM,", $4f
-	db "please.", $57
+	text "We've been waiting"
+	line "for you. This way"
+
+	para "to a BATTLE ROOM,"
+	line "please."
+	done
 ; 0x9f076
 
 UnknownText_0x9f076: ; 0x9f076
-	db $0, "You may enter only", $4f
-	db "five BATTLE ROOMS", $55
-	db "each day.", $51
-	db "Please come back", $4f
-	db "tomorrow.", $57
+	text "You may enter only"
+	line "five BATTLE ROOMS"
+	cont "each day."
+
+	para "Please come back"
+	line "tomorrow."
+	done
 ; 0x9f0c1
 
 UnknownText_0x9f0c1: ; 0x9f0c1
-	db $0, "Sorry, but it's", $4f
-	db "not possible to", $51
-	db "register your", $4f
-	db "current record at", $51
-	db "the CENTER because", $4f
-	db "too much time has", $51
-	db "elapsed since the", $4f
-	db "start of your", $55
-	db "challenge.", $57
+	text "Sorry, but it's"
+	line "not possible to"
+
+	para "register your"
+	line "current record at"
+
+	para "the CENTER because"
+	line "too much time has"
+
+	para "elapsed since the"
+	line "start of your"
+	cont "challenge."
+	done
 ; 0x9f151
 
 ; a dupe?
 UnknownText_0x9f151: ; 0x9f151
-	db $0, "Sorry, but it's", $4f
-	db "not possible to", $51
-	db "register your most", $4f
-	db "recent record at", $51
-	db "the CENTER because", $4f
-	db "too much time has", $51
-	db "elapsed since the", $4f
-	db "start of your", $55
-	db "challenge.", $57
+	text "Sorry, but it's"
+	line "not possible to"
+
+	para "register your most"
+	line "recent record at"
+
+	para "the CENTER because"
+	line "too much time has"
+
+	para "elapsed since the"
+	line "start of your"
+	cont "challenge."
+	done
 ; 0x9f1e5
 
 UnknownText_0x9f1e5: ; 0x9f1e5
-	db $0, "One or more of", $4f
-	db "your #MON's", $55
-	db "levels exceeds @"
+	text "One or more of"
+	line "your #MON's"
+	cont "levels exceeds @"
 	deciram ScriptVar, $13
-	db $0, ".", $57
+	text "."
+	done
 ; 0x9f217
 
 UnknownText_0x9f217: ; 0x9f217
 	text_from_ram $cd49
-	db $0, " may not", $4f
-	db "enter a BATTLE", $55
-	db "ROOM under L70.", $51
-	db "This BATTLE ROOM", $4f
-	db "is for L@"
+	text " may not"
+	line "enter a BATTLE"
+	cont "ROOM under L70."
+
+	para "This BATTLE ROOM"
+	line "is for L@"
 	deciram ScriptVar, $13
-	db $0, ".", $57
+	text "."
+	done
 ; 0x9f264
 
 UnknownText_0x9f264: ; 0x9f264
-	db $0, "Destroyed by the", $4f
-	db "first opponent in", $51
-	db "no time at all…", $4f
-	db "I'm no good…", $57
+	text "Destroyed by the"
+	line "first opponent in"
+
+	para "no time at all…"
+	line "I'm no good…"
+	done
 ; 0x9f2a4
 
 UnknownText_0x9f2a4: ; 0x9f2a4
-	db $0, "There are lots of", $4f
-	db "BATTLE ROOMS, but", $51
-	db "I'm going to win", $4f
-	db "them all!", $57
+	text "There are lots of"
+	line "BATTLE ROOMS, but"
+
+	para "I'm going to win"
+	line "them all!"
+	done
 ; 0x9f2e3
 
 UnknownText_0x9f2e3: ; 0x9f2e3
-	db $0, "It's a grueling", $4f
-	db "task, not being", $51
-	db "able to use items", $4f
-	db "in battle.", $51
-	db "Making your", $4f
-	db "#MON hold items", $51
-	db "is the key to", $4f
-	db "winning battles.", $57
+	text "It's a grueling"
+	line "task, not being"
+
+	para "able to use items"
+	line "in battle."
+
+	para "Making your"
+	line "#MON hold items"
+
+	para "is the key to"
+	line "winning battles."
+	done
 ; 0x9f35b
 
 UnknownText_0x9f35b: ; 0x9f35b
-	db $0, "I'm trying to see", $4f
-	db "how far I can go", $51
-	db "using just bug", $4f
-	db "#MON.", $51
-	db "Don't let there be", $4f
-	db "any fire #MON…", $57
+	text "I'm trying to see"
+	line "how far I can go"
+
+	para "using just bug"
+	line "#MON."
+
+	para "Don't let there be"
+	line "any fire #MON…"
+	done
 ; 0x9f3b4
 
 BattleTower1F_MapEventHeader: ; 0x9f3b4

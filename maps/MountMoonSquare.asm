@@ -149,8 +149,9 @@ MovementData_0x77134: ; 0x77134
 ; 0x7713b
 
 UnknownText_0x7713b: ; 0x7713b
-	db $0, "MT.MOON SQUARE", $4f
-	db "DON'T LITTER", $57
+	text "MT.MOON SQUARE"
+	line "DON'T LITTER"
+	done
 ; 0x77158
 
 MountMoonSquare_MapEventHeader: ; 0x77158

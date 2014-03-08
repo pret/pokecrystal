@@ -91,98 +91,123 @@ MapCeladonMansion3FSignpost3Script: ; 0x716cb
 ; 0x716ce
 
 UnknownText_0x716ce: ; 0x716ce
-	db $0, "Is that right?", $51
-	db "I'm the GAME", $4f
-	db "DESIGNER!", $51
-	db "Filling up your", $4f
-	db "#DEX is tough,", $55
-	db "but don't give up!", $57
+	text "Is that right?"
+
+	para "I'm the GAME"
+	line "DESIGNER!"
+
+	para "Filling up your"
+	line "#DEX is tough,"
+	cont "but don't give up!"
+	done
 ; 0x71725
 
 UnknownText_0x71725: ; 0x71725
-	db $0, "Wow! Excellent!", $4f
-	db "You completed your", $55
-	db "#DEX!", $51
-	db "Congratulations!", $57
+	text "Wow! Excellent!"
+	line "You completed your"
+	cont "#DEX!"
+
+	para "Congratulations!"
+	done
 ; 0x71760
 
 UnknownText_0x71760: ; 0x71760
-	db $0, "…", $57
+	text "…"
+	done
 ; 0x71763
 
 UnknownText_0x71763: ; 0x71763
-	db $0, "The GRAPHIC ARTIST", $4f
-	db "will print out a", $55
-	db "DIPLOMA for you.", $51
-	db "You should go show", $4f
-	db "it off.", $57
+	text "The GRAPHIC ARTIST"
+	line "will print out a"
+	cont "DIPLOMA for you."
+
+	para "You should go show"
+	line "it off."
+	done
 ; 0x717b4
 
 UnknownText_0x717b4: ; 0x717b4
-	db $0, "I'm the GRAPHIC", $4f
-	db "ARTIST.", $51
-	db "I drew you!", $57
+	text "I'm the GRAPHIC"
+	line "ARTIST."
+
+	para "I drew you!"
+	done
 ; 0x717d8
 
 UnknownText_0x717d8: ; 0x717d8
-	db $0, "I'm the GRAPHIC", $4f
-	db "ARTIST.", $51
-	db "Oh, you completed", $4f
-	db "your #DEX?", $51
-	db "Want me to print", $4f
-	db "out your DIPLOMA?", $57
+	text "I'm the GRAPHIC"
+	line "ARTIST."
+
+	para "Oh, you completed"
+	line "your #DEX?"
+
+	para "Want me to print"
+	line "out your DIPLOMA?"
+	done
 ; 0x71830
 
 UnknownText_0x71830: ; 0x71830
-	db $0, "Give me a shout if", $4f
-	db "you want your", $55
-	db "DIPLOMA printed.", $57
+	text "Give me a shout if"
+	line "you want your"
+	cont "DIPLOMA printed."
+	done
 ; 0x71863
 
 UnknownText_0x71863: ; 0x71863
-	db $0, "Something's wrong.", $4f
-	db "I'll have to can-", $55
-	db "cel printing.", $57
+	text "Something's wrong."
+	line "I'll have to can-"
+	cont "cel printing."
+	done
 ; 0x71895
 
 UnknownText_0x71895: ; 0x71895
-	db $0, "Who, me? I'm the", $4f
-	db "PROGRAMMER.", $51
-	db "Play the slot", $4f
-	db "machines!", $57
+	text "Who, me? I'm the"
+	line "PROGRAMMER."
+
+	para "Play the slot"
+	line "machines!"
+	done
 ; 0x718ca
 
 UnknownText_0x718ca: ; 0x718ca
-	db $0, "Aren't the TWINS", $4f
-	db "adorable?", $51
-	db "JASMINE's pretty", $4f
-	db "too.", $51
-	db "Oh, I love them!", $57
+	text "Aren't the TWINS"
+	line "adorable?"
+
+	para "JASMINE's pretty"
+	line "too."
+
+	para "Oh, I love them!"
+	done
 ; 0x7190b
 
 UnknownText_0x7190b: ; 0x7190b
-	db $0, "GAME FREAK", $4f
-	db "DEVELOPMENT ROOM", $57
+	text "GAME FREAK"
+	line "DEVELOPMENT ROOM"
+	done
 ; 0x71928
 
 UnknownText_0x71928: ; 0x71928
-	db $0, "It's a detailed", $4f
-	db "drawing of a", $55
-	db "pretty girl.", $57
+	text "It's a detailed"
+	line "drawing of a"
+	cont "pretty girl."
+	done
 ; 0x71952
 
 UnknownText_0x71952: ; 0x71952
-	db $0, "It's the game", $4f
-	db "program. Messing", $51
-	db "with it could put", $4f
-	db "a bug in the game!", $57
+	text "It's the game"
+	line "program. Messing"
+
+	para "with it could put"
+	line "a bug in the game!"
+	done
 ; 0x71996
 
 UnknownText_0x71996: ; 0x71996
-	db $0, "It's crammed with", $4f
-	db "reference materi-", $55
-	db "als. There's even", $55
-	db "a # DOLL.", $57
+	text "It's crammed with"
+	line "reference materi-"
+	cont "als. There's even"
+	cont "a # DOLL."
+	done
 ; 0x719d5
 
 CeladonMansion3F_MapEventHeader: ; 0x719d5

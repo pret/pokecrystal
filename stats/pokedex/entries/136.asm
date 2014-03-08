@@ -1,8 +1,12 @@
 ; FlareonPokedexEntry: ; 0x1cc2ec
 	db "FLAME@" ; species name
-	dw 211, 550; height, width
+	dw 211, 550 ; height, width
 	
-	db "Once it has stored", $4e, "up enough heat,", $4e, "this #MON's@"
-	db "body temperature", $4e, "can reach up to", $4e, "1700 degrees.@"
+	db   "Once it has stored"
+	next "up enough heat,"
+	next "this #MON's"
+	page "body temperature"
+	next "can reach up to"
+	next "1700 degrees.@"
 ; 0x1cc353
 

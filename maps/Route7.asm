@@ -15,22 +15,28 @@ MapRoute7Signpost1Script: ; 0x1ad385
 ; 0x1ad388
 
 UnknownText_0x1ad388: ; 0x1ad388
-	db $0, "What's this flyer?", $51
-	db "… Uncouth trainers", $4f
-	db "have been holding", $51
-	db "battles in the", $4f
-	db "UNDERGROUND PATH.", $51
-	db "Because of rising", $4f
-	db "complaints by lo-", $55
-	db "cal residents, the", $55
-	db "UNDERGROUND PATH", $55
-	db "has been sealed", $55
-	db "indefinitely.", $51
-	db "CELADON POLICE", $57
+	text "What's this flyer?"
+
+	para "… Uncouth trainers"
+	line "have been holding"
+
+	para "battles in the"
+	line "UNDERGROUND PATH."
+
+	para "Because of rising"
+	line "complaints by lo-"
+	cont "cal residents, the"
+	cont "UNDERGROUND PATH"
+	cont "has been sealed"
+	cont "indefinitely."
+
+	para "CELADON POLICE"
+	done
 ; 0x1ad456
 
 UnknownText_0x1ad456: ; 0x1ad456
-	db $0, "It's locked…", $57
+	text "It's locked…"
+	done
 ; 0x1ad463
 
 Route7_MapEventHeader: ; 0x1ad463

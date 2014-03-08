@@ -700,237 +700,293 @@ MovementData_0x78337: ; 0x78337
 ; 0x7833d
 
 YoungsterSamuelSeenText: ; 0x7833d
-	db $0, "This is where I do", $4f
-	db "my training!", $57
+	text "This is where I do"
+	line "my training!"
+	done
 ; 0x7835e
 
 YoungsterSamuelBeatenText: ; 0x7835e
-	db $0, "Beaten by a", $4f
-	db "passing stranger!", $57
+	text "Beaten by a"
+	line "passing stranger!"
+	done
 ; 0x7837d
 
 UnknownText_0x7837d: ; 0x7837d
-	db $0, "Have you been to", $4f
-	db "GOLDENROD CITY?", $51
-	db "Weren't you amazed", $4f
-	db "by how they've", $51
-	db "changed the", $4f
-	db "#MON CENTER?", $57
+	text "Have you been to"
+	line "GOLDENROD CITY?"
+
+	para "Weren't you amazed"
+	line "by how they've"
+
+	para "changed the"
+	line "#MON CENTER?"
+	done
 ; 0x783d8
 
 UnknownText_0x783d8: ; 0x783d8
-	db $0, "I'm going to train", $4f
-	db "even harder.", $51
-	db "After all, I'm", $4f
-	db "trying to become", $55
-	db "a GYM LEADER.", $57
+	text "I'm going to train"
+	line "even harder."
+
+	para "After all, I'm"
+	line "trying to become"
+	cont "a GYM LEADER."
+	done
 ; 0x78425
 
 YoungsterIanSeenText: ; 0x78425
-	db $0, "I'm the best in my", $4f
-	db "class at #MON.", $57
+	text "I'm the best in my"
+	line "class at #MON."
+	done
 ; 0x78447
 
 YoungsterIanBeatenText: ; 0x78447
-	db $0, "No! There are bet-", $4f
-	db "ter trainers…", $57
+	text "No! There are bet-"
+	line "ter trainers…"
+	done
 ; 0x78469
 
 UnknownText_0x78469: ; 0x78469
-	db $0, "I'm trying hard so", $4f
-	db "I can be the star", $55
-	db "in my class.", $57
+	text "I'm trying hard so"
+	line "I can be the star"
+	cont "in my class."
+	done
 ; 0x7849b
 
 CamperTodd1SeenText: ; 0x7849b
-	db $0, "I'm confident in", $4f
-	db "my ability to", $55
-	db "raise #MON.", $51
-	db "Want to see?", $57
+	text "I'm confident in"
+	line "my ability to"
+	cont "raise #MON."
+
+	para "Want to see?"
+	done
 ; 0x784d3
 
 CamperTodd1BeatenText: ; 0x784d3
-	db $0, "Did I screw up my", $4f
-	db "training?", $57
+	text "Did I screw up my"
+	line "training?"
+	done
 ; 0x784f0
 
 UnknownText_0x784f0: ; 0x784f0
-	db $0, "Maybe I should", $4f
-	db "take one to a DAY-", $51
-	db "CARE. Or maybe use", $4f
-	db "some items…", $57
+	text "Maybe I should"
+	line "take one to a DAY-"
+
+	para "CARE. Or maybe use"
+	line "some items…"
+	done
 ; 0x78532
 
 UnknownText_0x78532: ; 0x78532
-	db $0, "Shopping under the", $4f
-	db "sky!", $51
-	db "It feels so nice", $4f
-	db "up on a rooftop.", $57
+	text "Shopping under the"
+	line "sky!"
+
+	para "It feels so nice"
+	line "up on a rooftop."
+	done
 ; 0x7856d
 
 PicnickerGina1SeenText: ; 0x7856d
-	db $0, "Are you a trainer?", $51
-	db "Let's have a", $4f
-	db "practice battle.", $57
+	text "Are you a trainer?"
+
+	para "Let's have a"
+	line "practice battle."
+	done
 ; 0x7859e
 
 PicnickerGina1BeatenText: ; 0x7859e
-	db $0, "Oh, no! I just", $4f
-	db "can't win…", $57
+	text "Oh, no! I just"
+	line "can't win…"
+	done
 ; 0x785b8
 
 UnknownText_0x785b8: ; 0x785b8
-	db $0, "You're too strong", $4f
-	db "to be a practice", $55
-	db "partner.", $57
+	text "You're too strong"
+	line "to be a practice"
+	cont "partner."
+	done
 ; 0x785e4
 
 UnknownText_0x785e4: ; 0x785e4
-	db $0, "Who goes there?", $4f
-	db "What are you up", $55
-	db "to?", $57
+	text "Who goes there?"
+	line "What are you up"
+	cont "to?"
+	done
 ; 0x78609
 
 UnknownText_0x78609: ; 0x78609
-	db $0, "You're a tough", $4f
-	db "little kid.", $57
+	text "You're a tough"
+	line "little kid."
+	done
 ; 0x78624
 
 UnknownText_0x78624: ; 0x78624
-	db $0, "Yep, I see nothing", $4f
-	db "wrong today. You", $51
-	db "be good and stay", $4f
-	db "out of trouble.", $57
+	text "Yep, I see nothing"
+	line "wrong today. You"
+
+	para "be good and stay"
+	line "out of trouble."
+	done
 ; 0x7866a
 
 UnknownText_0x7866a: ; 0x7866a
-	db $0, "I'm on patrol for", $4f
-	db "suspicious indi-", $55
-	db "viduals.", $57
+	text "I'm on patrol for"
+	line "suspicious indi-"
+	cont "viduals."
+	done
 ; 0x78696
 
 PokefanmBrandonSeenText: ; 0x78696
-	db $0, "I just got my", $4f
-	db "#MON back from", $55
-	db "DAY-CARE.", $51
-	db "Let's see how much", $4f
-	db "stronger it got!", $57
+	text "I just got my"
+	line "#MON back from"
+	cont "DAY-CARE."
+
+	para "Let's see how much"
+	line "stronger it got!"
+	done
 ; 0x786e1
 
 PokefanmBrandonBeatenText: ; 0x786e1
-	db $0, "Why does it end", $4f
-	db "this way?", $57
+	text "Why does it end"
+	line "this way?"
+	done
 ; 0x786fc
 
 UnknownText_0x786fc: ; 0x786fc
-	db $0, "My #MON knew", $4f
-	db "moves I didn't", $55
-	db "know it had.", $51
-	db "That confounded me", $4f
-	db "to no end!", $57
+	text "My #MON knew"
+	line "moves I didn't"
+	cont "know it had."
+
+	para "That confounded me"
+	line "to no end!"
+	done
 ; 0x78743
 
 CooltrainerfIreneSeenText: ; 0x78743
-	db $0, "IRENE: Kyaaah!", $4f
-	db "Someone found us!", $57
+	text "IRENE: Kyaaah!"
+	line "Someone found us!"
+	done
 ; 0x78765
 
 CooltrainerfIreneBeatenText: ; 0x78765
-	db $0, "IRENE: Ohhh!", $4f
-	db "Too strong!", $57
+	text "IRENE: Ohhh!"
+	line "Too strong!"
+	done
 ; 0x7877f
 
 UnknownText_0x7877f: ; 0x7877f
-	db $0, "IRENE: My sister", $4f
-	db "KATE will get you", $55
-	db "for this!", $57
+	text "IRENE: My sister"
+	line "KATE will get you"
+	cont "for this!"
+	done
 ; 0x787ad
 
 UnknownText_0x787ad: ; 0x787ad
-	db $0, "IRENE: Isn't this", $4f
-	db "beach great?", $51
-	db "It's our secret", $4f
-	db "little getaway!", $57
+	text "IRENE: Isn't this"
+	line "beach great?"
+
+	para "It's our secret"
+	line "little getaway!"
+	done
 ; 0x787eb
 
 CooltrainerfJennSeenText: ; 0x787eb
-	db $0, "JENN: You can't", $4f
-	db "beat IRENE and go", $55
-	db "unpunished!", $57
+	text "JENN: You can't"
+	line "beat IRENE and go"
+	cont "unpunished!"
+	done
 ; 0x78819
 
 CooltrainerfJennBeatenText: ; 0x78819
-	db $0, "JENN: So sorry,", $4f
-	db "IRENE! Sis!", $57
+	text "JENN: So sorry,"
+	line "IRENE! Sis!"
+	done
 ; 0x78836
 
 UnknownText_0x78836: ; 0x78836
-	db $0, "JENN: Don't get", $4f
-	db "cocky! My sister", $55
-	db "KATE is tough!", $57
+	text "JENN: Don't get"
+	line "cocky! My sister"
+	cont "KATE is tough!"
+	done
 ; 0x78866
 
 UnknownText_0x78866: ; 0x78866
-	db $0, "JENN: Sunlight", $4f
-	db "makes your body", $55
-	db "stronger.", $57
+	text "JENN: Sunlight"
+	line "makes your body"
+	cont "stronger."
+	done
 ; 0x78890
 
 CooltrainerfKateSeenText: ; 0x78890
-	db $0, "KATE: You sure", $4f
-	db "were mean to my", $55
-	db "little sisters!", $57
+	text "KATE: You sure"
+	line "were mean to my"
+	cont "little sisters!"
+	done
 ; 0x788c0
 
 CooltrainerfKateBeatenText: ; 0x788c0
-	db $0, "KATE: No! I can't", $4f
-	db "believe I lost.", $57
+	text "KATE: No! I can't"
+	line "believe I lost."
+	done
 ; 0x788e2
 
 UnknownText_0x788e2: ; 0x788e2
-	db $0, "KATE: You're too", $4f
-	db "strong. I didn't", $55
-	db "stand a chance.", $51
-	db "Here. You deserve", $4f
-	db "this.", $57
+	text "KATE: You're too"
+	line "strong. I didn't"
+	cont "stand a chance."
+
+	para "Here. You deserve"
+	line "this."
+	done
 ; 0x7892b
 
 UnknownText_0x7892b: ; 0x7892b
-	db $0, "KATE: I'm sorry we", $4f
-	db "jumped you.", $51
-	db "We never expected", $4f
-	db "anyone to find us", $51
-	db "here. You sure", $4f
-	db "startled us.", $57
+	text "KATE: I'm sorry we"
+	line "jumped you."
+
+	para "We never expected"
+	line "anyone to find us"
+
+	para "here. You sure"
+	line "startled us."
+	done
 ; 0x7898a
 
 UnknownText_0x7898a: ; 0x7898a
-	db $0, "ILEX FOREST", $4f
-	db "THROUGH THE GATE", $57
+	text "ILEX FOREST"
+	line "THROUGH THE GATE"
+	done
 ; 0x789a8
 
 UnknownText_0x789a8: ; 0x789a8
-	db $0, "ROUTE 34", $51
-	db "GOLDENROD CITY -", $4f
-	db "AZALEA TOWN", $51
-	db "ILEX FOREST", $4f
-	db "SOMEWHERE BETWEEN", $57
+	text "ROUTE 34"
+
+	para "GOLDENROD CITY -"
+	line "AZALEA TOWN"
+
+	para "ILEX FOREST"
+	line "SOMEWHERE BETWEEN"
+	done
 ; 0x789ed
 
 UnknownText_0x789ed: ; 0x789ed
-	db $0, "TRAINER TIPS", $51
-	db "BERRY trees grow", $4f
-	db "new BERRIES", $55
-	db "every day.", $51
-	db "Make a note of", $4f
-	db "which trees bear", $55
-	db "which BERRIES.", $57
+	text "TRAINER TIPS"
+
+	para "BERRY trees grow"
+	line "new BERRIES"
+	cont "every day."
+
+	para "Make a note of"
+	line "which trees bear"
+	cont "which BERRIES."
+	done
 ; 0x78a52
 
 UnknownText_0x78a52: ; 0x78a52
-	db $0, "DAY-CARE", $51
-	db "LET US RAISE YOUR", $4f
-	db "#MON FOR YOU!", $57
+	text "DAY-CARE"
+
+	para "LET US RAISE YOUR"
+	line "#MON FOR YOU!"
+	done
 ; 0x78a7c
 
 Route34_MapEventHeader: ; 0x78a7c

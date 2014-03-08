@@ -241,187 +241,238 @@ UnknownScript_0x18ed04: ; 0x18ed04
 ; 0x18ed0b
 
 UnknownText_0x18ed0b: ; 0x18ed0b
-	db $0, "I'm BUGSY!", $4f
-	db "I never lose when", $51
-	db "it comes to bug", $4f
-	db "#MON.", $51
-	db "My research is", $4f
-	db "going to make me", $51
-	db "the authority on", $4f
-	db "bug #MON!", $51
-	db "Let me demonstrate", $4f
-	db "what I've learned", $55
-	db "from my studies.", $57
+	text "I'm BUGSY!"
+	line "I never lose when"
+
+	para "it comes to bug"
+	line "#MON."
+
+	para "My research is"
+	line "going to make me"
+
+	para "the authority on"
+	line "bug #MON!"
+
+	para "Let me demonstrate"
+	line "what I've learned"
+	cont "from my studies."
+	done
 ; 0x18edae
 
 UnknownText_0x18edae: ; 0x18edae
-	db $0, "Whoa, amazing!", $4f
-	db "You're an expert", $55
-	db "on #MON!", $51
-	db "My research isn't", $4f
-	db "complete yet.", $51
-	db "OK, you win. Take", $4f
-	db "this BADGE.", $57
+	text "Whoa, amazing!"
+	line "You're an expert"
+	cont "on #MON!"
+
+	para "My research isn't"
+	line "complete yet."
+
+	para "OK, you win. Take"
+	line "this BADGE."
+	done
 ; 0x18ee14
 
 UnknownText_0x18ee14: ; 0x18ee14
-	db $0, $52, " received", $4f
-	db "HIVEBADGE.", $57
+	text $52, " received"
+	line "HIVEBADGE."
+	done
 ; 0x18ee2b
 
 UnknownText_0x18ee2b: ; 0x18ee2b
-	db $0, "Do you know the", $4f
-	db "benefits of HIVE-", $55
-	db "BADGE?", $51
-	db "If you have it,", $4f
-	db "#MON up to L30", $51
-	db "will obey you,", $4f
-	db "even traded ones.", $51
-	db "#MON that know", $4f
-	db "CUT will be able", $51
-	db "to use it outside", $4f
-	db "of battle too.", $51
-	db "Here, I also want", $4f
-	db "you to have this.", $57
+	text "Do you know the"
+	line "benefits of HIVE-"
+	cont "BADGE?"
+
+	para "If you have it,"
+	line "#MON up to L30"
+
+	para "will obey you,"
+	line "even traded ones."
+
+	para "#MON that know"
+	line "CUT will be able"
+
+	para "to use it outside"
+	line "of battle too."
+
+	para "Here, I also want"
+	line "you to have this."
+	done
 ; 0x18eefa
 
 UnknownText_0x18eefa: ; 0x18eefa
-	db $0, "TM49 contains", $4f
-	db "FURY CUTTER.", $51
-	db "If you don't miss,", $4f
-	db "it gets stronger", $55
-	db "every turn.", $51
-	db "The longer your", $4f
-	db "battle goes, the", $55
-	db "better it gets.", $51
-	db "Isn't that great?", $4f
-	db "I discovered it!", $57
+	text "TM49 contains"
+	line "FURY CUTTER."
+
+	para "If you don't miss,"
+	line "it gets stronger"
+	cont "every turn."
+
+	para "The longer your"
+	line "battle goes, the"
+	cont "better it gets."
+
+	para "Isn't that great?"
+	line "I discovered it!"
+	done
 ; 0x18ef98
 
 UnknownText_0x18ef98: ; 0x18ef98
-	db $0, "Bug #MON are", $4f
-	db "deep. There are", $51
-	db "many mysteries to", $4f
-	db "be explored.", $51
-	db "Study your favor-", $4f
-	db "ites thoroughly.", $57
+	text "Bug #MON are"
+	line "deep. There are"
+
+	para "many mysteries to"
+	line "be explored."
+
+	para "Study your favor-"
+	line "ites thoroughly."
+	done
 ; 0x18eff8
 
 Bug_catcherBug_catcher_bennySeenText: ; 0x18eff8
-	db $0, "Bug #MON evolve", $4f
-	db "young. So they get", $51
-	db "stronger that much", $4f
-	db "faster.", $57
+	text "Bug #MON evolve"
+	line "young. So they get"
+
+	para "stronger that much"
+	line "faster."
+	done
 ; 0x18f037
 
 Bug_catcherBug_catcher_bennyBeatenText: ; 0x18f037
-	db $0, "Just evolving", $4f
-	db "isn't enough!", $57
+	text "Just evolving"
+	line "isn't enough!"
+	done
 ; 0x18f053
 
 UnknownText_0x18f053: ; 0x18f053
-	db $0, "#MON become", $4f
-	db "stronger if they", $55
-	db "evolve. Really!", $57
+	text "#MON become"
+	line "stronger if they"
+	cont "evolve. Really!"
+	done
 ; 0x18f081
 
 Bug_catcherAlSeenText: ; 0x18f081
-	db $0, "Bug #MON are", $4f
-	db "cool and tough!", $51
-	db "I'll prove it to", $4f
-	db "you!", $57
+	text "Bug #MON are"
+	line "cool and tough!"
+
+	para "I'll prove it to"
+	line "you!"
+	done
 ; 0x18f0b4
 
 Bug_catcherAlBeatenText: ; 0x18f0b4
-	db $0, "You proved how", $4f
-	db "tough you are…", $57
+	text "You proved how"
+	line "tough you are…"
+	done
 ; 0x18f0d3
 
 UnknownText_0x18f0d3: ; 0x18f0d3
-	db $0, "They're so cool,", $4f
-	db "but most girls", $51
-	db "don't like bug", $4f
-	db "#MON.", $51
-	db "I don't know why…", $57
+	text "They're so cool,"
+	line "but most girls"
+
+	para "don't like bug"
+	line "#MON."
+
+	para "I don't know why…"
+	done
 ; 0x18f118
 
 Bug_catcherJoshSeenText: ; 0x18f118
-	db $0, "You saved all the", $4f
-	db "SLOWPOKE? Whew,", $55
-	db "you're mighty!", $51
-	db "But my grown-up", $4f
-	db "#MON are pretty", $55
-	db "tough too!", $57
+	text "You saved all the"
+	line "SLOWPOKE? Whew,"
+	cont "you're mighty!"
+
+	para "But my grown-up"
+	line "#MON are pretty"
+	cont "tough too!"
+	done
 ; 0x18f174
 
 Bug_catcherJoshBeatenText: ; 0x18f174
-	db $0, "Urrgggh!", $57
+	text "Urrgggh!"
+	done
 ; 0x18f17e
 
 UnknownText_0x18f17e: ; 0x18f17e
-	db $0, "I guess I should", $4f
-	db "teach them better", $55
-	db "moves…", $57
+	text "I guess I should"
+	line "teach them better"
+	cont "moves…"
+	done
 ; 0x18f1a9
 
 TwinsAmyandmay1SeenText: ; 0x18f1a9
-	db $0, "AMY: Hi! Are you", $4f
-	db "challenging the", $55
-	db "LEADER? No way!", $57
+	text "AMY: Hi! Are you"
+	line "challenging the"
+	cont "LEADER? No way!"
+	done
 ; 0x18f1db
 
 TwinsAmyandmay1BeatenText: ; 0x18f1db
-	db $0, "AMY & MAY: Oh,", $4f
-	db "double goodness!", $57
+	text "AMY & MAY: Oh,"
+	line "double goodness!"
+	done
 ; 0x18f1fc
 
 UnknownText_0x18f1fc: ; 0x18f1fc
-	db $0, "AMY: You're", $4f
-	db "really strong!", $57
+	text "AMY: You're"
+	line "really strong!"
+	done
 ; 0x18f217
 
 TwinsAmyandmay2SeenText: ; 0x18f217
-	db $0, "MAY: You want to", $4f
-	db "see the LEADER?", $55
-	db "We come first!", $57
+	text "MAY: You want to"
+	line "see the LEADER?"
+	cont "We come first!"
+	done
 ; 0x18f248
 
 TwinsAmyandmay2BeatenText: ; 0x18f248
-	db $0, "AMY & MAY: Oh,", $4f
-	db "double goodness!", $57
+	text "AMY & MAY: Oh,"
+	line "double goodness!"
+	done
 ; 0x18f269
 
 UnknownText_0x18f269: ; 0x18f269
-	db $0, "MAY: Our bug #-", $4f
-	db "MON lost! Oh, what", $55
-	db "a shame.", $57
+	text "MAY: Our bug #-"
+	line "MON lost! Oh, what"
+	cont "a shame."
+	done
 ; 0x18f296
 
 AzaleaGymGuyText: ; 0x18f296
-	db $0, "Yo, challenger!", $51
-	db "BUGSY's young, but", $4f
-	db "his knowledge of", $51
-	db "bug #MON is for", $4f
-	db "real.", $51
-	db "It's going to be", $4f
-	db "tough without my", $55
-	db "advice.", $51
-	db "Let's see… Bug", $4f
-	db "#MON don't like", $55
-	db "fire.", $51
-	db "Flying-type moves", $4f
-	db "are super-effec-", $55
-	db "tive too.", $57
+	text "Yo, challenger!"
+
+	para "BUGSY's young, but"
+	line "his knowledge of"
+
+	para "bug #MON is for"
+	line "real."
+
+	para "It's going to be"
+	line "tough without my"
+	cont "advice."
+
+	para "Let's see… Bug"
+	line "#MON don't like"
+	cont "fire."
+
+	para "Flying-type moves"
+	line "are super-effec-"
+	cont "tive too."
+	done
 ; 0x18f359
 
 AzaleaGymGuyWinText: ; 0x18f359
-	db $0, "Well done! That", $4f
-	db "was a great clash", $51
-	db "of talented young", $4f
-	db "trainers.", $51
-	db "With people like", $4f
-	db "you, the future of", $55
-	db "#MON is bright!", $57
+	text "Well done! That"
+	line "was a great clash"
+
+	para "of talented young"
+	line "trainers."
+
+	para "With people like"
+	line "you, the future of"
+	cont "#MON is bright!"
+	done
 ; 0x18f3cc
 
 AzaleaGym_MapEventHeader: ; 0x18f3cc

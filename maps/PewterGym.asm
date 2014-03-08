@@ -96,110 +96,146 @@ UnknownScript_0x1a28c9: ; 0x1a28c9
 ; 0x1a28d0
 
 UnknownText_0x1a28d0: ; 0x1a28d0
-	db $0, "BROCK: Wow, it's", $4f
-	db "not often that we", $51
-	db "get a challenger", $4f
-	db "from JOHTO.", $51
-	db "I'm BROCK, the", $4f
-	db "PEWTER GYM LEADER.", $51
-	db "I'm an expert on", $4f
-	db "rock-type #MON.", $51
-	db "My #MON are im-", $4f
-	db "pervious to most", $51
-	db "physical attacks.", $4f
-	db "You'll have a hard", $51
-	db "time inflicting", $4f
-	db "any damage.", $51
-	db "Come on!", $57
+	text "BROCK: Wow, it's"
+	line "not often that we"
+
+	para "get a challenger"
+	line "from JOHTO."
+
+	para "I'm BROCK, the"
+	line "PEWTER GYM LEADER."
+
+	para "I'm an expert on"
+	line "rock-type #MON."
+
+	para "My #MON are im-"
+	line "pervious to most"
+
+	para "physical attacks."
+	line "You'll have a hard"
+
+	para "time inflicting"
+	line "any damage."
+
+	para "Come on!"
+	done
 ; 0x1a29bb
 
 UnknownText_0x1a29bb: ; 0x1a29bb
-	db $0, "BROCK: Your #-", $4f
-	db "MON's powerful at-", $55
-	db "tacks overcame my", $55
-	db "rock-hard defense…", $51
-	db "You're stronger", $4f
-	db "than I expected…", $51
-	db "Go ahead--take", $4f
-	db "this BADGE.", $57
+	text "BROCK: Your #-"
+	line "MON's powerful at-"
+	cont "tacks overcame my"
+	cont "rock-hard defense…"
+
+	para "You're stronger"
+	line "than I expected…"
+
+	para "Go ahead--take"
+	line "this BADGE."
+	done
 ; 0x1a2a3d
 
 UnknownText_0x1a2a3d: ; 0x1a2a3d
-	db $0, $52, " received", $4f
-	db "BOULDERBADGE.", $57
+	text $52, " received"
+	line "BOULDERBADGE."
+	done
 ; 0x1a2a57
 
 UnknownText_0x1a2a57: ; 0x1a2a57
-	db $0, "BROCK: ", $14, ",", $4f
-	db "thanks. I enjoyed", $51
-	db "battling you, even", $4f
-	db "though I am a bit", $55
-	db "upset.", $51
-	db "That BOULDERBADGE", $4f
-	db "will make your", $51
-	db "#MON even more", $4f
-	db "powerful.", $57
+	text "BROCK: ", $14, ","
+	line "thanks. I enjoyed"
+
+	para "battling you, even"
+	line "though I am a bit"
+	cont "upset."
+
+	para "That BOULDERBADGE"
+	line "will make your"
+
+	para "#MON even more"
+	line "powerful."
+	done
 ; 0x1a2ada
 
 UnknownText_0x1a2ada: ; 0x1a2ada
-	db $0, "BROCK: The world", $4f
-	db "is huge. There are", $51
-	db "still many strong", $4f
-	db "trainers like you.", $51
-	db "Just wait and see.", $4f
-	db "I'm going to be-", $55
-	db "come a lot strong-", $55
-	db "er too.", $57
+	text "BROCK: The world"
+	line "is huge. There are"
+
+	para "still many strong"
+	line "trainers like you."
+
+	para "Just wait and see."
+	line "I'm going to be-"
+	cont "come a lot strong-"
+	cont "er too."
+	done
 ; 0x1a2b62
 
 CamperJerrySeenText: ; 0x1a2b62
-	db $0, "The trainers of", $4f
-	db "this GYM use rock-", $55
-	db "type #MON.", $51
-	db "The rock-type has", $4f
-	db "high DEFENSE.", $51
-	db "Battles could end", $4f
-	db "up going a long", $51
-	db "time. Are you", $4f
-	db "ready for this?", $57
+	text "The trainers of"
+	line "this GYM use rock-"
+	cont "type #MON."
+
+	para "The rock-type has"
+	line "high DEFENSE."
+
+	para "Battles could end"
+	line "up going a long"
+
+	para "time. Are you"
+	line "ready for this?"
+	done
 ; 0x1a2bf1
 
 CamperJerryBeatenText: ; 0x1a2bf1
-	db $0, "I have to win", $4f
-	db "these battles…", $57
+	text "I have to win"
+	line "these battles…"
+	done
 ; 0x1a2c0f
 
 UnknownText_0x1a2c0f: ; 0x1a2c0f
-	db $0, "Hey, you! Trainer", $4f
-	db "from JOHTO! BROCK", $51
-	db "is tough. He'll", $4f
-	db "punish you if you", $51
-	db "don't take him", $4f
-	db "seriously.", $57
+	text "Hey, you! Trainer"
+	line "from JOHTO! BROCK"
+
+	para "is tough. He'll"
+	line "punish you if you"
+
+	para "don't take him"
+	line "seriously."
+	done
 ; 0x1a2c6e
 
 PewterGymGuyText: ; 0x1a2c6e
-	db $0, "Yo! CHAMP in", $4f
-	db "making! You're", $51
-	db "really rocking.", $4f
-	db "Are you battling", $51
-	db "the GYM LEADERS of", $4f
-	db "KANTO?", $51
-	db "They're strong and", $4f
-	db "dedicated people,", $51
-	db "just like JOHTO's", $4f
-	db "GYM LEADERS.", $57
+	text "Yo! CHAMP in"
+	line "making! You're"
+
+	para "really rocking."
+	line "Are you battling"
+
+	para "the GYM LEADERS of"
+	line "KANTO?"
+
+	para "They're strong and"
+	line "dedicated people,"
+
+	para "just like JOHTO's"
+	line "GYM LEADERS."
+	done
 ; 0x1a2d07
 
 PewterGymGuyWinText: ; 0x1a2d07
-	db $0, "Yo! CHAMP in", $4f
-	db "making! That GYM", $51
-	db "didn't give you", $4f
-	db "much trouble.", $51
-	db "The way you took", $4f
-	db "charge was really", $51
-	db "inspiring. I mean", $4f
-	db "that seriously.", $57
+	text "Yo! CHAMP in"
+	line "making! That GYM"
+
+	para "didn't give you"
+	line "much trouble."
+
+	para "The way you took"
+	line "charge was really"
+
+	para "inspiring. I mean"
+	line "that seriously."
+	done
 ; 0x1a2d88
 
 PewterGym_MapEventHeader: ; 0x1a2d88

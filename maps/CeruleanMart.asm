@@ -22,22 +22,28 @@ CooltrainerFScript_0x188aca: ; 0x188aca
 ; 0x188acd
 
 UnknownText_0x188acd: ; 0x188acd
-	db $0, "You'll run into", $4f
-	db "many trainers on", $51
-	db "the way to CERU-", $4f
-	db "LEAN's CAPE.", $51
-	db "They want to see", $4f
-	db "how they stack", $51
-	db "up against other", $4f
-	db "trainers.", $57
+	text "You'll run into"
+	line "many trainers on"
+
+	para "the way to CERU-"
+	line "LEAN's CAPE."
+
+	para "They want to see"
+	line "how they stack"
+
+	para "up against other"
+	line "trainers."
+	done
 ; 0x188b46
 
 UnknownText_0x188b46: ; 0x188b46
-	db $0, "MISTY is about the", $4f
-	db "only person in", $51
-	db "town who can beat", $4f
-	db "the trainers at", $55
-	db "CERULEAN's CAPE.", $57
+	text "MISTY is about the"
+	line "only person in"
+
+	para "town who can beat"
+	line "the trainers at"
+	cont "CERULEAN's CAPE."
+	done
 ; 0x188b9b
 
 CeruleanMart_MapEventHeader: ; 0x188b9b

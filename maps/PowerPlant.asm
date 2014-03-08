@@ -231,152 +231,195 @@ MovementData_0x188eda: ; 0x188eda
 ; 0x188ee0
 
 UnknownText_0x188ee0: ; 0x188ee0
-	db $0, "A thief broke into", $4f
-	db "the POWER PLANT…", $51
-	db "What is the world", $4f
-	db "coming to?", $57
+	text "A thief broke into"
+	line "the POWER PLANT…"
+
+	para "What is the world"
+	line "coming to?"
+	done
 ; 0x188f22
 
 UnknownText_0x188f22: ; 0x188f22
-	db $0, "I just got word", $4f
-	db "from CERULEAN.", $51
-	db "It appears that a", $4f
-	db "shady character", $51
-	db "has been loitering", $4f
-	db "around.", $57
+	text "I just got word"
+	line "from CERULEAN."
+
+	para "It appears that a"
+	line "shady character"
+
+	para "has been loitering"
+	line "around."
+	done
 ; 0x188f7f
 
 UnknownText_0x188f7f: ; 0x188f7f
-	db $0, "Could I ask for", $4f
-	db "your cooperation?", $57
+	text "Could I ask for"
+	line "your cooperation?"
+	done
 ; 0x188fa2
 
 UnknownText_0x188fa2: ; 0x188fa2
-	db $0, "We'll have to beef", $4f
-	db "up our security", $55
-	db "presence.", $57
+	text "We'll have to beef"
+	line "up our security"
+	cont "presence."
+	done
 ; 0x188fcf
 
 UnknownText_0x188fcf: ; 0x188fcf
-	db $0, "Someone made off", $4f
-	db "with a part that's", $51
-	db "essential for the", $4f
-	db "generator.", $51
-	db "Without it, the", $4f
-	db "new generator's", $55
-	db "useless!", $57
+	text "Someone made off"
+	line "with a part that's"
+
+	para "essential for the"
+	line "generator."
+
+	para "Without it, the"
+	line "new generator's"
+	cont "useless!"
+	done
 ; 0x189038
 
 UnknownText_0x189038: ; 0x189038
-	db $0, "The generator's up", $4f
-	db "and running. It's", $51
-	db "making electricity", $4f
-	db "to spare.", $57
+	text "The generator's up"
+	line "and running. It's"
+
+	para "making electricity"
+	line "to spare."
+	done
 ; 0x189079
 
 UnknownText_0x189079: ; 0x189079
-	db $0, "This POWER PLANT", $4f
-	db "had been abandoned", $55
-	db "in the past.", $51
-	db "We got it back up", $4f
-	db "and running to", $51
-	db "provide power to", $4f
-	db "the MAGNET TRAIN.", $57
+	text "This POWER PLANT"
+	line "had been abandoned"
+	cont "in the past."
+
+	para "We got it back up"
+	line "and running to"
+
+	para "provide power to"
+	line "the MAGNET TRAIN."
+	done
 ; 0x1890ef
 
 UnknownText_0x1890ef: ; 0x1890ef
-	db $0, "The generator's", $4f
-	db "running again!", $57
+	text "The generator's"
+	line "running again!"
+	done
 ; 0x18910e
 
 UnknownText_0x18910e: ; 0x18910e
-	db $0, "The POWER PLANT's", $4f
-	db "MANAGER is up", $55
-	db "ahead.", $51
-	db "But since someone", $4f
-	db "wrecked the gener-", $55
-	db "ator, he's been", $55
-	db "both sad and", $55
-	db "furious…", $57
+	text "The POWER PLANT's"
+	line "MANAGER is up"
+	cont "ahead."
+
+	para "But since someone"
+	line "wrecked the gener-"
+	cont "ator, he's been"
+	cont "both sad and"
+	cont "furious…"
+	done
 ; 0x18917f
 
 UnknownText_0x18917f: ; 0x18917f
-	db $0, "Since the gener-", $4f
-	db "ator's been fixed,", $51
-	db "the MANAGER has", $4f
-	db "been cheerful.", $57
+	text "Since the gener-"
+	line "ator's been fixed,"
+
+	para "the MANAGER has"
+	line "been cheerful."
+	done
 ; 0x1891c2
 
 UnknownText_0x1891c2: ; 0x1891c2
-	db $0, "The MAGNET TRAIN", $4f
-	db "consumes a lot of", $55
-	db "electricity.", $51
-	db "It can't move if", $4f
-	db "the new generator", $55
-	db "isn't operating.", $57
+	text "The MAGNET TRAIN"
+	line "consumes a lot of"
+	cont "electricity."
+
+	para "It can't move if"
+	line "the new generator"
+	cont "isn't operating."
+	done
 ; 0x189225
 
 UnknownText_0x189225: ; 0x189225
-	db $0, "All right! We can", $4f
-	db "finally get the", $51
-	db "MAGNET TRAIN", $4f
-	db "running again.", $57
+	text "All right! We can"
+	line "finally get the"
+
+	para "MAGNET TRAIN"
+	line "running again."
+	done
 ; 0x189264
 
 UnknownText_0x189264: ; 0x189264
-	db $0, "MANAGER: I, I, I'm", $4f
-	db "ready to blast", $55
-	db "someone!", $51
-	db "Who would dare", $4f
-	db "ruin my generator?", $51
-	db "I spent so much", $4f
-	db "time on it!", $51
-	db "If I catch him,", $4f
-	db "he's going to get", $51
-	db "a taste of my ZAP", $4f
-	db "CANNON!", $57
+	text "MANAGER: I, I, I'm"
+	line "ready to blast"
+	cont "someone!"
+
+	para "Who would dare"
+	line "ruin my generator?"
+
+	para "I spent so much"
+	line "time on it!"
+
+	para "If I catch him,"
+	line "he's going to get"
+
+	para "a taste of my ZAP"
+	line "CANNON!"
+	done
 ; 0x189308
 
 UnknownText_0x189308: ; 0x189308
-	db $0, "MANAGER: I won't", $4f
-	db "forgive him!", $51
-	db "The culprit can", $4f
-	db "cry and apologize,", $51
-	db "but I'll still", $4f
-	db "hammer him!", $51
-	db "Gahahahah!", $57
+	text "MANAGER: I won't"
+	line "forgive him!"
+
+	para "The culprit can"
+	line "cry and apologize,"
+
+	para "but I'll still"
+	line "hammer him!"
+
+	para "Gahahahah!"
+	done
 ; 0x18936e
 
 UnknownText_0x18936e: ; 0x18936e
-	db $0, "MANAGER: Ah! Yeah!", $51
-	db "That's the missing", $4f
-	db "PART from my be-", $55
-	db "loved generator!", $55
-	db "You found it?", $57
+	text "MANAGER: Ah! Yeah!"
+
+	para "That's the missing"
+	line "PART from my be-"
+	cont "loved generator!"
+	cont "You found it?"
+	done
 ; 0x1893c4
 
 UnknownText_0x1893c4: ; 0x1893c4
-	db $0, "Wahah! Thanks!", $51
-	db "Here! Take this TM", $4f
-	db "as a reward!", $57
+	text "Wahah! Thanks!"
+
+	para "Here! Take this TM"
+	line "as a reward!"
+	done
 ; 0x1893f4
 
 UnknownText_0x1893f4: ; 0x1893f4
-	db $0, "MANAGER: TM07 is", $4f
-	db "my ZAP CANNON.", $51
-	db "It's a powerful", $4f
-	db "technique!", $51
-	db "It's not what any-", $4f
-	db "one would consider", $51
-	db "accurate, but it", $4f
-	db "packs a wallop!", $57
+	text "MANAGER: TM07 is"
+	line "my ZAP CANNON."
+
+	para "It's a powerful"
+	line "technique!"
+
+	para "It's not what any-"
+	line "one would consider"
+
+	para "accurate, but it"
+	line "packs a wallop!"
+	done
 ; 0x189475
 
 UnknownText_0x189475: ; 0x189475
-	db $0, "MANAGER: My be-", $4f
-	db "loved generator!", $51
-	db "Keep pumping the", $4f
-	db "electricity out!", $57
+	text "MANAGER: My be-"
+	line "loved generator!"
+
+	para "Keep pumping the"
+	line "electricity out!"
+	done
 ; 0x1894b9
 
 PowerPlant_MapEventHeader: ; 0x1894b9

@@ -45,29 +45,38 @@ MapCianwoodPharmacySignpost1Script: ; 0x9dfca
 ; 0x9dfcd
 
 UnknownText_0x9dfcd: ; 0x9dfcd
-	db $0, "Your #MON ap-", $4f
-	db "pear to be fine.", $51
-	db "Is something wor- ", $4f
-	db "rying you?", $51
-	db "…", $51
-	db "The LIGHTHOUSE", $4f
-	db "#MON is in", $55
-	db "trouble?", $51
-	db "I got it!", $51
-	db "This ought to do", $4f
-	db "the trick.", $57
+	text "Your #MON ap-"
+	line "pear to be fine."
+
+	para "Is something wor- "
+	line "rying you?"
+
+	para "…"
+
+	para "The LIGHTHOUSE"
+	line "#MON is in"
+	cont "trouble?"
+
+	para "I got it!"
+
+	para "This ought to do"
+	line "the trick."
+	done
 ; 0x9e056
 
 UnknownText_0x9e056: ; 0x9e056
-	db $0, $52, " received", $4f
-	db "SECRETPOTION.", $57
+	text $52, " received"
+	line "SECRETPOTION."
+	done
 ; 0x9e070
 
 UnknownText_0x9e070: ; 0x9e070
-	db $0, "My SECRETPOTION is", $4f
-	db "a tad too strong.", $51
-	db "I only offer it in", $4f
-	db "an emergency.", $57
+	text "My SECRETPOTION is"
+	line "a tad too strong."
+
+	para "I only offer it in"
+	line "an emergency."
+	done
 ; 0x9e0b7
 
 CianwoodPharmacy_MapEventHeader: ; 0x9e0b7

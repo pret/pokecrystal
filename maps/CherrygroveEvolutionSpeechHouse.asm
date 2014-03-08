@@ -27,16 +27,20 @@ MapCherrygroveEvolutionSpeechHouseSignpost1Script: ; 0x196cc0
 ; 0x196cc3
 
 UnknownText_0x196cc3: ; 0x196cc3
-	db $0, "#MON gain expe-", $4f
-	db "rience in battle", $51
-	db "and change their", $4f
-	db "form.", $57
+	text "#MON gain expe-"
+	line "rience in battle"
+
+	para "and change their"
+	line "form."
+	done
 ; 0x196cfc
 
 UnknownText_0x196cfc: ; 0x196cfc
-	db $0, "#MON change?", $51
-	db "I would be shocked", $4f
-	db "if one did that!", $57
+	text "#MON change?"
+
+	para "I would be shocked"
+	line "if one did that!"
+	done
 ; 0x196d2e
 
 CherrygroveEvolutionSpeechHouse_MapEventHeader: ; 0x196d2e

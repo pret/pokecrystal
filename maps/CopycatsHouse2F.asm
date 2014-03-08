@@ -219,137 +219,178 @@ MovementData_0x18afd0: ; 0x18afd0
 ; 0x18afda
 
 UnknownText_0x18afda: ; 0x18afda
-	db $0, $52, ": Hi! Do", $4f
-	db "you like #MON?", $51
-	db $52, ": Uh, no, I", $4f
-	db "just asked you.", $51
-	db $52, ": Huh?", $4f
-	db "You're strange!", $57
+	text $52, ": Hi! Do"
+	line "you like #MON?"
+
+	para $52, ": Uh, no, I"
+	line "just asked you."
+
+	para $52, ": Huh?"
+	line "You're strange!"
+	done
 ; 0x18b028
 
 UnknownText_0x18b028: ; 0x18b028
-	db $0, "COPYCAT: Hmm?", $4f
-	db "Quit mimicking?", $51
-	db "But that's my", $4f
-	db "favorite hobby!", $57
+	text "COPYCAT: Hmm?"
+	line "Quit mimicking?"
+
+	para "But that's my"
+	line "favorite hobby!"
+	done
 ; 0x18b064
 
 UnknownText_0x18b064: ; 0x18b064
-	db $0, $52, ": Hi!", $4f
-	db "I heard that you", $51
-	db "lost your favorite", $4f
-	db "# DOLL.", $51
-	db $52, ": If I find", $4f
-	db "it, you'll give me", $55
-	db "a rail PASS?", $51
-	db $52, ": I'll go", $4f
-	db "find it for you.", $51
-	db "You think you lost", $4f
-	db "it when you went", $55
-	db "to VERMILION CITY?", $57
+	text $52, ": Hi!"
+	line "I heard that you"
+
+	para "lost your favorite"
+	line "# DOLL."
+
+	para $52, ": If I find"
+	line "it, you'll give me"
+	cont "a rail PASS?"
+
+	para $52, ": I'll go"
+	line "find it for you."
+
+	para "You think you lost"
+	line "it when you went"
+	cont "to VERMILION CITY?"
+	done
 ; 0x18b116
 
 UnknownText_0x18b116: ; 0x18b116
-	db $0, "COPYCAT: Pardon?", $51
-	db "I shouldn't decide", $4f
-	db "what you should", $55
-	db "do?", $51
-	db "But I'm really", $4f
-	db "worried… What if", $55
-	db "someone finds it?", $57
+	text "COPYCAT: Pardon?"
+
+	para "I shouldn't decide"
+	line "what you should"
+	cont "do?"
+
+	para "But I'm really"
+	line "worried… What if"
+	cont "someone finds it?"
+	done
 ; 0x18b17f
 
 UnknownText_0x18b17f: ; 0x18b17f
-	db $0, "COPYCAT: Yay!", $4f
-	db "That's my CLEFAIRY", $55
-	db "# DOLL!", $51
-	db "See the tear where", $4f
-	db "the right leg is", $51
-	db "sewn on? That's", $4f
-	db "proof!", $57
+	text "COPYCAT: Yay!"
+	line "That's my CLEFAIRY"
+	cont "# DOLL!"
+
+	para "See the tear where"
+	line "the right leg is"
+
+	para "sewn on? That's"
+	line "proof!"
+	done
 ; 0x18b1e2
 
 UnknownText_0x18b1e2: ; 0x18b1e2
-	db $0, "OK. Here's the", $4f
-	db "MAGNET TRAIN PASS", $55
-	db "like I promised!", $57
+	text "OK. Here's the"
+	line "MAGNET TRAIN PASS"
+	cont "like I promised!"
+	done
 ; 0x18b214
 
 UnknownText_0x18b214: ; 0x18b214
-	db $0, "COPYCAT: That's", $4f
-	db "the PASS for the", $55
-	db "MAGNET TRAIN.", $51
-	db "The rail company", $4f
-	db "man gave me that", $51
-	db "when they tore", $4f
-	db "down our old house", $55
-	db "for the STATION.", $57
+	text "COPYCAT: That's"
+	line "the PASS for the"
+	cont "MAGNET TRAIN."
+
+	para "The rail company"
+	line "man gave me that"
+
+	para "when they tore"
+	line "down our old house"
+	cont "for the STATION."
+	done
 ; 0x18b298
 
 UnknownText_0x18b298: ; 0x18b298
-	db $0, $52, ": Hi!", $4f
-	db "Thanks a lot for", $55
-	db "the rail PASS!", $51
-	db $52, ": Pardon?", $51
-	db $52, ": Is it", $4f
-	db "that fun to mimic", $55
-	db "my every move?", $57
+	text $52, ": Hi!"
+	line "Thanks a lot for"
+	cont "the rail PASS!"
+
+	para $52, ": Pardon?"
+
+	para $52, ": Is it"
+	line "that fun to mimic"
+	cont "my every move?"
+	done
 ; 0x18b2f5
 
 UnknownText_0x18b2f5: ; 0x18b2f5
-	db $0, "COPYCAT: You bet!", $4f
-	db "It's a scream!", $57
+	text "COPYCAT: You bet!"
+	line "It's a scream!"
+	done
 ; 0x18b316
 
 UnknownText_0x18b316: ; 0x18b316
-	db $0, $52, ": Hi. You", $4f
-	db "must like #MON.", $51
-	db $52, ": No, not", $4f
-	db "me. I asked you.", $51
-	db $52, ": Pardon?", $4f
-	db "You're weird!", $57
+	text $52, ": Hi. You"
+	line "must like #MON."
+
+	para $52, ": No, not"
+	line "me. I asked you."
+
+	para $52, ": Pardon?"
+	line "You're weird!"
+	done
 ; 0x18b366
 
 UnknownText_0x18b366: ; 0x18b366
-	db $0, $52, ": Hi. Did", $4f
-	db "you really lose", $55
-	db "your # DOLL?", $51
-	db $52, ": You'll", $4f
-	db "really give me a", $51
-	db "rail PASS if I", $4f
-	db "find it for you?", $51
-	db $52, ": Sure,", $4f
-	db "I'll look for it!", $51
-	db "You think you lost", $4f
-	db "it when you were", $55
-	db "in VERMILION?", $57
+	text $52, ": Hi. Did"
+	line "you really lose"
+	cont "your # DOLL?"
+
+	para $52, ": You'll"
+	line "really give me a"
+
+	para "rail PASS if I"
+	line "find it for you?"
+
+	para $52, ": Sure,"
+	line "I'll look for it!"
+
+	para "You think you lost"
+	line "it when you were"
+	cont "in VERMILION?"
+	done
 ; 0x18b415
 
 UnknownText_0x18b415: ; 0x18b415
-	db $0, $52, ": Thank you", $4f
-	db "for the rail PASS!", $51
-	db $52, ": …Pardon?", $51
-	db $52, ": Is it", $4f
-	db "really that fun to", $51
-	db "copy what I say", $4f
-	db "and do?", $57
+	text $52, ": Thank you"
+	line "for the rail PASS!"
+
+	para $52, ": …Pardon?"
+
+	para $52, ": Is it"
+	line "really that fun to"
+
+	para "copy what I say"
+	line "and do?"
+	done
 ; 0x18b476
 
 UnknownText_0x18b476: ; 0x18b476
-	db $0, "DODRIO: Gii giii!", $57
+	text "DODRIO: Gii giii!"
+	done
 ; 0x18b489
 
 UnknownText_0x18b489: ; 0x18b489
-	db $0, "MIRROR, MIRROR ON", $4f
-	db "THE WALL, WHO'S", $51
-	db "THE FAIREST ONE OF", $4f
-	db "ALL?", $57
+	text "MIRROR, MIRROR ON"
+	line "THE WALL, WHO'S"
+
+	para "THE FAIREST ONE OF"
+	line "ALL?"
+	done
 ; 0x18b4c4
 
 UnknownText_0x18b4c4: ; 0x18b4c4
-	db $0, "This is a rare", $4f
-	db "#MON! Huh?", $51
-	db "It's only a doll…", $57
+	text "This is a rare"
+	line "#MON! Huh?"
+
+	para "It's only a doll…"
+	done
 ; 0x18b4f0
 
 CopycatsHouse2F_MapEventHeader: ; 0x18b4f0

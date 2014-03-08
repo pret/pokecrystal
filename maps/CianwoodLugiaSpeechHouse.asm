@@ -23,36 +23,45 @@ MapCianwoodLugiaSpeechHouseSignpost1Script: ; 0x9e1b9
 ; 0x9e1bc
 
 UnknownText_0x9e1bc: ; 0x9e1bc
-	db $0, "You came from", $4f
-	db "OLIVINE?", $51
-	db "Do you remember", $4f
-	db "the four islands", $55
-	db "along the way?", $51
-	db "I heard that a ", $4f
-	db "mythical sea crea-", $55
-	db "ture is hiding in", $55
-	db "them.", $57
+	text "You came from"
+	line "OLIVINE?"
+
+	para "Do you remember"
+	line "the four islands"
+	cont "along the way?"
+
+	para "I heard that a "
+	line "mythical sea crea-"
+	cont "ture is hiding in"
+	cont "them."
+	done
 ; 0x9e23f
 
 UnknownText_0x9e23f: ; 0x9e23f
-	db $0, "I heard that you", $4f
-	db "can only see it if", $51
-	db "you have a SILVER", $4f
-	db "WING.", $51
-	db "It must have the", $4f
-	db "same scent as the", $55
-	db "creature.", $57
+	text "I heard that you"
+	line "can only see it if"
+
+	para "you have a SILVER"
+	line "WING."
+
+	para "It must have the"
+	line "same scent as the"
+	cont "creature."
+	done
 ; 0x9e2a9
 
 UnknownText_0x9e2a9: ; 0x9e2a9
-	db $0, "I've heard that", $4f
-	db "the whirlpools", $51
-	db "around the islands", $4f
-	db "are caused by the", $55
-	db "sea creature.", $51
-	db "You might need a", $4f
-	db "special move to", $55
-	db "get past them.", $57
+	text "I've heard that"
+	line "the whirlpools"
+
+	para "around the islands"
+	line "are caused by the"
+	cont "sea creature."
+
+	para "You might need a"
+	line "special move to"
+	cont "get past them."
+	done
 ; 0x9e32b
 
 CianwoodLugiaSpeechHouse_MapEventHeader: ; 0x9e32b

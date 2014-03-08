@@ -11,10 +11,12 @@ PokefanMScript_0x76fac: ; 0x76fac
 ; 0x76faf
 
 UnknownText_0x76faf: ; 0x76faf
-	db $0, "FAST SHIP S.S.AQUA", $4f
-	db "sails to KANTO on", $51
-	db "Mondays and Fri-", $4f
-	db "days.", $57
+	text "FAST SHIP S.S.AQUA"
+	line "sails to KANTO on"
+
+	para "Mondays and Fri-"
+	line "days."
+	done
 ; 0x76fec
 
 OlivinePortPassage_MapEventHeader: ; 0x76fec

@@ -145,67 +145,80 @@ MapRoute17SignpostItem1: ; 0x1ad105
 ; 0x1ad108
 
 BikerRileySeenText: ; 0x1ad108
-	db $0, "Hey, you! You're", $4f
-	db "from JOHTO, huh?", $57
+	text "Hey, you! You're"
+	line "from JOHTO, huh?"
+	done
 ; 0x1ad12a
 
 BikerRileyBeatenText: ; 0x1ad12a
-	db $0, "Whoa, you kick!", $57
+	text "Whoa, you kick!"
+	done
 ; 0x1ad13b
 
 UnknownText_0x1ad13b: ; 0x1ad13b
-	db $0, "Don't get cocky,", $4f
-	db "you JOHTO punk!", $57
+	text "Don't get cocky,"
+	line "you JOHTO punk!"
+	done
 ; 0x1ad15c
 
 BikerJoelSeenText: ; 0x1ad15c
-	db $0, "Wow. That's a cool", $4f
-	db "BICYCLE!", $57
+	text "Wow. That's a cool"
+	line "BICYCLE!"
+	done
 ; 0x1ad178
 
 BikerJoelBeatenText: ; 0x1ad178
-	db $0, "But you don't just", $4f
-	db "look cool…", $57
+	text "But you don't just"
+	line "look cool…"
+	done
 ; 0x1ad196
 
 UnknownText_0x1ad196: ; 0x1ad196
-	db $0, "I look cool, but", $4f
-	db "I'm weak, so I'm", $55
-	db "not really cool.", $51
-	db "I have to train", $4f
-	db "harder…", $57
+	text "I look cool, but"
+	line "I'm weak, so I'm"
+	cont "not really cool."
+
+	para "I have to train"
+	line "harder…"
+	done
 ; 0x1ad1e0
 
 BikerGlennSeenText: ; 0x1ad1e0
-	db $0, "Hey! Want to have", $4f
-	db "a speed battle?", $57
+	text "Hey! Want to have"
+	line "a speed battle?"
+	done
 ; 0x1ad203
 
 BikerGlennBeatenText: ; 0x1ad203
-	db $0, "Yikes! You've got", $4f
-	db "awesome torque!", $57
+	text "Yikes! You've got"
+	line "awesome torque!"
+	done
 ; 0x1ad225
 
 UnknownText_0x1ad225: ; 0x1ad225
-	db $0, "Hands-free riding", $4f
-	db "is considered cool", $55
-	db "on CYCLING ROAD.", $57
+	text "Hands-free riding"
+	line "is considered cool"
+	cont "on CYCLING ROAD."
+	done
 ; 0x1ad25c
 
 BikerCharlesSeenText: ; 0x1ad25c
-	db $0, "We're fearless", $4f
-	db "highway stars!", $57
+	text "We're fearless"
+	line "highway stars!"
+	done
 ; 0x1ad27a
 
 BikerCharlesBeatenText: ; 0x1ad27a
-	db $0, "Arrrgh! Crash and", $4f
-	db "burn!", $57
+	text "Arrrgh! Crash and"
+	line "burn!"
+	done
 ; 0x1ad293
 
 UnknownText_0x1ad293: ; 0x1ad293
-	db $0, "Reckless driving", $4f
-	db "causes accidents!", $55
-	db "Take it easy!", $57
+	text "Reckless driving"
+	line "causes accidents!"
+	cont "Take it easy!"
+	done
 ; 0x1ad2c5
 
 Route17_MapEventHeader: ; 0x1ad2c5

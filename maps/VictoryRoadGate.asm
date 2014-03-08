@@ -60,42 +60,52 @@ MovementData_0x9ba27: ; 0x9ba27
 ; 0x9ba29
 
 UnknownText_0x9ba29: ; 0x9ba29
-	db $0, "Only trainers who", $4f
-	db "have proven them-", $55
-	db "selves may pass.", $57
+	text "Only trainers who"
+	line "have proven them-"
+	cont "selves may pass."
+	done
 ; 0x9ba5f
 
 UnknownText_0x9ba5f: ; 0x9ba5f
-	db $0, "You don't have all", $4f
-	db "the GYM BADGES of", $55
-	db "JOHTO.", $51
-	db "I'm sorry, but I", $4f
-	db "can't let you go", $55
-	db "through.", $57
+	text "You don't have all"
+	line "the GYM BADGES of"
+	cont "JOHTO."
+
+	para "I'm sorry, but I"
+	line "can't let you go"
+	cont "through."
+	done
 ; 0x9bab4
 
 UnknownText_0x9bab4: ; 0x9bab4
-	db $0, "Oh! The eight", $4f
-	db "BADGES of JOHTO!", $51
-	db "Please, go right", $4f
-	db "on through!", $57
+	text "Oh! The eight"
+	line "BADGES of JOHTO!"
+
+	para "Please, go right"
+	line "on through!"
+	done
 ; 0x9baf1
 
 UnknownText_0x9baf1: ; 0x9baf1
-	db $0, "This way leads to", $4f
-	db "MT.SILVER.", $51
-	db "You'll see scary-", $4f
-	db "strong #MON out", $55
-	db "there.", $57
+	text "This way leads to"
+	line "MT.SILVER."
+
+	para "You'll see scary-"
+	line "strong #MON out"
+	cont "there."
+	done
 ; 0x9bb37
 
 UnknownText_0x9bb37: ; 0x9bb37
-	db $0, "Off to the #MON", $4f
-	db "LEAGUE, are you?", $51
-	db "The ELITE FOUR are", $4f
-	db "so strong it's", $51
-	db "scary, and they're", $4f
-	db "ready for you!", $57
+	text "Off to the #MON"
+	line "LEAGUE, are you?"
+
+	para "The ELITE FOUR are"
+	line "so strong it's"
+
+	para "scary, and they're"
+	line "ready for you!"
+	done
 ; 0x9bb9b
 
 VictoryRoadGate_MapEventHeader: ; 0x9bb9b

@@ -224,184 +224,247 @@ MovementData_0x60125: ; 0x60125
 ; 0x60128
 
 UnknownText_0x60128: ; 0x60128
-	db $0, "Y-you! You came to", $4f
-	db "rescue me?", $57
+	text "Y-you! You came to"
+	line "rescue me?"
+	done
 ; 0x60147
 
 UnknownText_0x60147: ; 0x60147
-	db $0, "Is that what you", $4f
-	db "were expecting?", $51
-	db "Wrong!", $4f
-	db "I'm an imposter!", $51
-	db "I pretended to be", $4f
-	db "the real thing to", $51
-	db "prepare for our", $4f
-	db "takeover.", $51
-	db "Do you want to", $4f
-	db "know where we hid", $55
-	db "the real DIRECTOR?", $51
-	db "Sure, I'll tell", $4f
-	db "you. But only if", $55
-	db "you can beat me!", $57
+	text "Is that what you"
+	line "were expecting?"
+
+	para "Wrong!"
+	line "I'm an imposter!"
+
+	para "I pretended to be"
+	line "the real thing to"
+
+	para "prepare for our"
+	line "takeover."
+
+	para "Do you want to"
+	line "know where we hid"
+	cont "the real DIRECTOR?"
+
+	para "Sure, I'll tell"
+	line "you. But only if"
+	cont "you can beat me!"
+	done
 ; 0x60223
 
 UnknownText_0x60223: ; 0x60223
-	db $0, "OK, OK. I'll tell", $4f
-	db "you where he is.", $57
+	text "OK, OK. I'll tell"
+	line "you where he is."
+	done
 ; 0x60246
 
 UnknownText_0x60246: ; 0x60246
-	db $0, "We stashed the", $4f
-	db "real DIRECTOR in", $51
-	db "the UNDERGROUND", $4f
-	db "WAREHOUSE.", $51
-	db "It's at the far", $4f
-	db "end of the UNDER-", $55
-	db "GROUND.", $51
-	db "But I doubt you'll", $4f
-	db "get that far.", $57
+	text "We stashed the"
+	line "real DIRECTOR in"
+
+	para "the UNDERGROUND"
+	line "WAREHOUSE."
+
+	para "It's at the far"
+	line "end of the UNDER-"
+	cont "GROUND."
+
+	para "But I doubt you'll"
+	line "get that far."
+	done
 ; 0x602cb
 
 Executivef1SeenText: ; 0x602cb
-	db $0, "Remember me from", $4f
-	db "the HIDEOUT in", $55
-	db "MAHOGANY TOWN?", $51
-	db "I lost then, but I", $4f
-	db "won't this time.", $57
+	text "Remember me from"
+	line "the HIDEOUT in"
+	cont "MAHOGANY TOWN?"
+
+	para "I lost then, but I"
+	line "won't this time."
+	done
 ; 0x6031e
 
 Executivef1BeatenText: ; 0x6031e
-	db $0, "This can't be", $4f
-	db "happening!", $51
-	db "I fought hard, but", $4f
-	db "I still lost…", $57
+	text "This can't be"
+	line "happening!"
+
+	para "I fought hard, but"
+	line "I still lost…"
+	done
 ; 0x60358
 
 UnknownText_0x60358: ; 0x60358
-	db $0, $52, ", isn't it?", $51
-	db "A brat like you", $4f
-	db "won't appreciate", $51
-	db "the magnificence", $4f
-	db "of TEAM ROCKET.", $51
-	db "That's too bad.", $4f
-	db "I really admire", $55
-	db "your power.", $57
+	text $52, ", isn't it?"
+
+	para "A brat like you"
+	line "won't appreciate"
+
+	para "the magnificence"
+	line "of TEAM ROCKET."
+
+	para "That's too bad."
+	line "I really admire"
+	cont "your power."
+	done
 ; 0x603d1
 
 UnknownText_0x603d1: ; 0x603d1
-	db $0, "Oh? You managed to", $4f
-	db "get this far?", $51
-	db "You must be quite", $4f
-	db "the trainer.", $51
-	db "We intend to take", $4f
-	db "over this RADIO", $51
-	db "STATION and an-", $4f
-	db "nounce our come-", $55
-	db "back.", $51
-	db "That should bring", $4f
-	db "our boss GIOVANNI", $51
-	db "back from his solo", $4f
-	db "training.", $51
-	db "We are going to", $4f
-	db "regain our former", $55
-	db "glory.", $51
-	db "I won't allow you", $4f
-	db "to interfere with", $55
-	db "our plans.", $57
+	text "Oh? You managed to"
+	line "get this far?"
+
+	para "You must be quite"
+	line "the trainer."
+
+	para "We intend to take"
+	line "over this RADIO"
+
+	para "STATION and an-"
+	line "nounce our come-"
+	cont "back."
+
+	para "That should bring"
+	line "our boss GIOVANNI"
+
+	para "back from his solo"
+	line "training."
+
+	para "We are going to"
+	line "regain our former"
+	cont "glory."
+
+	para "I won't allow you"
+	line "to interfere with"
+	cont "our plans."
+	done
 ; 0x604f3
 
 UnknownText_0x604f3: ; 0x604f3
-	db $0, "No! Forgive me,", $4f
-	db "GIOVANNI!", $57
+	text "No! Forgive me,"
+	line "GIOVANNI!"
+	done
 ; 0x6050e
 
 UnknownText_0x6050e: ; 0x6050e
-	db $0, "How could this be?", $51
-	db "Our dreams have", $4f
-	db "come to naught.", $51
-	db "I wasn't up to the", $4f
-	db "task after all.", $51
-	db "Like GIOVANNI did", $4f
-	db "before me, I will", $51
-	db "disband TEAM", $4f
-	db "ROCKET here today.", $51
-	db "Farewell.", $57
+	text "How could this be?"
+
+	para "Our dreams have"
+	line "come to naught."
+
+	para "I wasn't up to the"
+	line "task after all."
+
+	para "Like GIOVANNI did"
+	line "before me, I will"
+
+	para "disband TEAM"
+	line "ROCKET here today."
+
+	para "Farewell."
+	done
 ; 0x605b2
 
 UnknownText_0x605b2: ; 0x605b2
-	db $0, "DIRECTOR: ", $14, ",", $4f
-	db "thank you!", $51
-	db "Your courageous", $4f
-	db "actions have saved", $51
-	db "#MON nation-", $4f
-	db "wide.", $51
-	db "I know it's not", $4f
-	db "much, but please", $55
-	db "take this.", $57
+	text "DIRECTOR: ", $14, ","
+	line "thank you!"
+
+	para "Your courageous"
+	line "actions have saved"
+
+	para "#MON nation-"
+	line "wide."
+
+	para "I know it's not"
+	line "much, but please"
+	cont "take this."
+	done
 ; 0x6062c
 
 UnknownText_0x6062c: ; 0x6062c
-	db $0, "There used to be a", $4f
-	db "tower right here", $55
-	db "in GOLDENROD CITY.", $51
-	db "But it was old and", $4f
-	db "creaky.", $51
-	db "So we replaced it", $4f
-	db "with our RADIO", $55
-	db "TOWER.", $51
-	db "We dug up that", $4f
-	db "bell during", $55
-	db "construction.", $51
-	db "I heard that all", $4f
-	db "sorts of #MON", $51
-	db "lived in GOLDENROD", $4f
-	db "in the past.", $51
-	db "Perhaps…", $51
-	db "That bell has some", $4f
-	db "connection to the", $51
-	db "TIN TOWER in", $4f
-	db "ECRUTEAK CITY…", $51
-	db "Ah!", $51
-	db "That reminds me…", $51
-	db "I overheard TEAM", $4f
-	db "ROCKET whispering.", $51
-	db "Apparently, some-", $4f
-	db "thing is going on", $55
-	db "at the TIN TOWER.", $51
-	db "I have no idea", $4f
-	db "what is happening,", $51
-	db "but you might look", $4f
-	db "into it.", $51
-	db "OK, I better go to", $4f
-	db "my OFFICE.", $57
+	text "There used to be a"
+	line "tower right here"
+	cont "in GOLDENROD CITY."
+
+	para "But it was old and"
+	line "creaky."
+
+	para "So we replaced it"
+	line "with our RADIO"
+	cont "TOWER."
+
+	para "We dug up that"
+	line "bell during"
+	cont "construction."
+
+	para "I heard that all"
+	line "sorts of #MON"
+
+	para "lived in GOLDENROD"
+	line "in the past."
+
+	para "Perhaps…"
+
+	para "That bell has some"
+	line "connection to the"
+
+	para "TIN TOWER in"
+	line "ECRUTEAK CITY…"
+
+	para "Ah!"
+
+	para "That reminds me…"
+
+	para "I overheard TEAM"
+	line "ROCKET whispering."
+
+	para "Apparently, some-"
+	line "thing is going on"
+	cont "at the TIN TOWER."
+
+	para "I have no idea"
+	line "what is happening,"
+
+	para "but you might look"
+	line "into it."
+
+	para "OK, I better go to"
+	line "my OFFICE."
+	done
 ; 0x60824
 
 UnknownText_0x60824: ; 0x60824
-	db $0, "DIRECTOR: Hello,", $4f
-	db $14, "!", $51
-	db "You know, I love", $4f
-	db "#MON.", $51
-	db "I built this RADIO", $4f
-	db "TOWER so I could", $51
-	db "express my love", $4f
-	db "of #MON.", $51
-	db "It would be nice", $4f
-	db "if people enjoyed", $55
-	db "our programs.", $57
+	text "DIRECTOR: Hello,"
+	line $14, "!"
+
+	para "You know, I love"
+	line "#MON."
+
+	para "I built this RADIO"
+	line "TOWER so I could"
+
+	para "express my love"
+	line "of #MON."
+
+	para "It would be nice"
+	line "if people enjoyed"
+	cont "our programs."
+	done
 ; 0x608be
 
 UnknownText_0x608be: ; 0x608be
-	db $0, "BEN: Do you listen", $4f
-	db "to our music?", $57
+	text "BEN: Do you listen"
+	line "to our music?"
+	done
 ; 0x608e0
 
 UnknownText_0x608e0: ; 0x608e0
-	db $0, "5F DIRECTOR'S", $4f
-	db "   OFFICE", $57
+	text "5F DIRECTOR'S"
+	line "   OFFICE"
+	done
 ; 0x608f9
 
 UnknownText_0x608f9: ; 0x608f9
-	db $0, "5F STUDIO 1", $57
+	text "5F STUDIO 1"
+	done
 ; 0x60906
 
 RadioTower5F_MapEventHeader: ; 0x60906

@@ -43,60 +43,78 @@ YoungsterScript_0x18a4a0: ; 0x18a4a0
 ; 0x18a4a3
 
 UnknownText_0x18a4a3: ; 0x18a4a3
-	db $0, "What are JOHTO's", $4f
-	db "#MON CENTERS", $55
-	db "like?", $51
-	db "…Oh, I see. So", $4f
-	db "they're not much", $51
-	db "different from the", $4f
-	db "ones in KANTO.", $51
-	db "I can go to JOHTO", $4f
-	db "without worrying,", $55
-	db "then!", $57
+	text "What are JOHTO's"
+	line "#MON CENTERS"
+	cont "like?"
+
+	para "…Oh, I see. So"
+	line "they're not much"
+
+	para "different from the"
+	line "ones in KANTO."
+
+	para "I can go to JOHTO"
+	line "without worrying,"
+	cont "then!"
+	done
 ; 0x18a532
 
 UnknownText_0x18a532: ; 0x18a532
-	db $0, "What are JOHTO's", $4f
-	db "#MON CENTERS", $55
-	db "like?", $51
-	db "…Oh, I see.", $4f
-	db "So they let you", $51
-	db "link with people", $4f
-	db "far away?", $51
-	db "Then I'll get my", $4f
-	db "friend in JOHTO to", $51
-	db "catch a MARILL and", $4f
-	db "trade it to me!", $57
+	text "What are JOHTO's"
+	line "#MON CENTERS"
+	cont "like?"
+
+	para "…Oh, I see."
+	line "So they let you"
+
+	para "link with people"
+	line "far away?"
+
+	para "Then I'll get my"
+	line "friend in JOHTO to"
+
+	para "catch a MARILL and"
+	line "trade it to me!"
+	done
 ; 0x18a5d3
 
 UnknownText_0x18a5d3: ; 0x18a5d3
-	db $0, "I just happened to", $4f
-	db "come through ROCK", $51
-	db "TUNNEL. There was", $4f
-	db "some commotion at", $55
-	db "the POWER PLANT.", $57
+	text "I just happened to"
+	line "come through ROCK"
+
+	para "TUNNEL. There was"
+	line "some commotion at"
+	cont "the POWER PLANT."
+	done
 ; 0x18a62e
 
 UnknownText_0x18a62e: ; 0x18a62e
-	db $0, "Caves collapse", $4f
-	db "easily.", $51
-	db "Several caves have", $4f
-	db "disappeared in the", $51
-	db "past few years,", $4f
-	db "like the one out-", $55
-	db "side CERULEAN.", $51
-	db "As a pro HIKER,", $4f
-	db "that's common", $55
-	db "knowledge.", $57
+	text "Caves collapse"
+	line "easily."
+
+	para "Several caves have"
+	line "disappeared in the"
+
+	para "past few years,"
+	line "like the one out-"
+	cont "side CERULEAN."
+
+	para "As a pro HIKER,"
+	line "that's common"
+	cont "knowledge."
+	done
 ; 0x18a6c5
 
 UnknownText_0x18a6c5: ; 0x18a6c5
-	db $0, "SILPH CO.'s HEAD", $4f
-	db "OFFICE and the", $51
-	db "MAGNET TRAIN STA-", $4f
-	db "TION--they're the", $51
-	db "places to see in", $4f
-	db "SAFFRON.", $57
+	text "SILPH CO.'s HEAD"
+	line "OFFICE and the"
+
+	para "MAGNET TRAIN STA-"
+	line "TION--they're the"
+
+	para "places to see in"
+	line "SAFFRON."
+	done
 ; 0x18a722
 
 SaffronPokeCenter1F_MapEventHeader: ; 0x18a722

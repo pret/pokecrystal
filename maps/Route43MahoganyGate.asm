@@ -25,16 +25,19 @@ UnknownScript_0x19ab19: ; 0x19ab19
 ; 0x19ab1f
 
 UnknownText_0x19ab1f: ; 0x19ab1f
-	db $0, "Only people headed", $4f
-	db "up to LAKE OF RAGE", $51
-	db "have been through", $4f
-	db "here lately.", $57
+	text "Only people headed"
+	line "up to LAKE OF RAGE"
+
+	para "have been through"
+	line "here lately."
+	done
 ; 0x19ab65
 
 UnknownText_0x19ab65: ; 0x19ab65
-	db $0, "Nobody goes up to", $4f
-	db "LAKE OF RAGE these", $55
-	db "days.", $57
+	text "Nobody goes up to"
+	line "LAKE OF RAGE these"
+	cont "days."
+	done
 ; 0x19ab91
 
 Route43MahoganyGate_MapEventHeader: ; 0x19ab91

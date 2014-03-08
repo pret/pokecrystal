@@ -162,148 +162,191 @@ MapBlackthornCitySignpost5Script: ; 0x1a4777
 ; 0x1a477a
 
 UnknownText_0x1a477a: ; 0x1a477a
-	db $0, "I am sorry.", $51
-	db "CLAIR, our GYM", $4f
-	db "LEADER, entered", $51
-	db "the DRAGON'S DEN", $4f
-	db "behind the GYM.", $51
-	db "I have no idea", $4f
-	db "when our LEADER", $55
-	db "will return.", $57
+	text "I am sorry."
+
+	para "CLAIR, our GYM"
+	line "LEADER, entered"
+
+	para "the DRAGON'S DEN"
+	line "behind the GYM."
+
+	para "I have no idea"
+	line "when our LEADER"
+	cont "will return."
+	done
 ; 0x1a47f3
 
 UnknownText_0x1a47f3: ; 0x1a47f3
-	db $0, "CLAIR, our GYM", $4f
-	db "LEADER, is waiting", $55
-	db "for you.", $51
-	db "However, it would", $4f
-	db "be impossible for", $51
-	db "a run-of-the-mill", $4f
-	db "trainer to win.", $57
+	text "CLAIR, our GYM"
+	line "LEADER, is waiting"
+	cont "for you."
+
+	para "However, it would"
+	line "be impossible for"
+
+	para "a run-of-the-mill"
+	line "trainer to win."
+	done
 ; 0x1a4865
 
 UnknownText_0x1a4865: ; 0x1a4865
-	db $0, "You defeated", $4f
-	db "CLAIR?", $51
-	db "That's amazing!", $51
-	db "I've never heard", $4f
-	db "of her losing to", $51
-	db "anyone other than", $4f
-	db "LANCE.", $57
+	text "You defeated"
+	line "CLAIR?"
+
+	para "That's amazing!"
+
+	para "I've never heard"
+	line "of her losing to"
+
+	para "anyone other than"
+	line "LANCE."
+	done
 ; 0x1a48c3
 
 UnknownText_0x1a48c3: ; 0x1a48c3
-	db $0, "No. Only chosen", $4f
-	db "trainers may train", $51
-	db "here.", $4f
-	db "Please leave.", $57
+	text "No. Only chosen"
+	line "trainers may train"
+
+	para "here."
+	line "Please leave."
+	done
 ; 0x1a48fb
 
 UnknownText_0x1a48fb: ; 0x1a48fb
-	db $0, "If CLAIR allows", $4f
-	db "it, her grand-", $55
-	db "father--our MASTER", $55
-	db "--will also.", $51
-	db "You may enter.", $57
+	text "If CLAIR allows"
+	line "it, her grand-"
+	cont "father--our MASTER"
+	cont "--will also."
+
+	para "You may enter."
+	done
 ; 0x1a494a
 
 UnknownText_0x1a494a: ; 0x1a494a
-	db $0, "My radio's busted?", $4f
-	db "Lately, I only get", $55
-	db "this weird signal.", $57
+	text "My radio's busted?"
+	line "Lately, I only get"
+	cont "this weird signal."
+	done
 ; 0x1a4983
 
 UnknownText_0x1a4983: ; 0x1a4983
-	db $0, "Arooo! Voices in", $4f
-	db "my head!", $51
-	db "Huh? I'm listening", $4f
-	db "to my radio!", $57
+	text "Arooo! Voices in"
+	line "my head!"
+
+	para "Huh? I'm listening"
+	line "to my radio!"
+	done
 ; 0x1a49bd
 
 UnknownText_0x1a49bd: ; 0x1a49bd
-	db $0, "Are you going to", $4f
-	db "make your #MON", $55
-	db "forget some moves?", $57
+	text "Are you going to"
+	line "make your #MON"
+	cont "forget some moves?"
+	done
 ; 0x1a49f1
 
 UnknownText_0x1a49f1: ; 0x1a49f1
-	db $0, "Dragon masters all", $4f
-	db "come from the city", $55
-	db "of BLACKTHORN.", $57
+	text "Dragon masters all"
+	line "come from the city"
+	cont "of BLACKTHORN."
+	done
 ; 0x1a4a27
 
 UnknownText_0x1a4a27: ; 0x1a4a27
-	db $0, "SANTOS: …", $51
-	db "It's Saturday…", $51
-	db "I'm SANTOS of", $4f
-	db "Saturday…", $57
+	text "SANTOS: …"
+
+	para "It's Saturday…"
+
+	para "I'm SANTOS of"
+	line "Saturday…"
+	done
 ; 0x1a4a57
 
 UnknownText_0x1a4a57: ; 0x1a4a57
-	db $0, "You can have this…", $57
+	text "You can have this…"
+	done
 ; 0x1a4a6b
 
 UnknownText_0x1a4a6b: ; 0x1a4a6b
-	db $0, "SANTOS: …", $51
-	db "SPELL TAG…", $51
-	db "Ghost-type moves", $4f
-	db "get stronger…", $51
-	db "It will frighten", $4f
-	db "you…", $57
+	text "SANTOS: …"
+
+	para "SPELL TAG…"
+
+	para "Ghost-type moves"
+	line "get stronger…"
+
+	para "It will frighten"
+	line "you…"
+	done
 ; 0x1a4ab6
 
 UnknownText_0x1a4ab6: ; 0x1a4ab6
-	db $0, "SANTOS: …", $51
-	db "See you again on", $4f
-	db "another Saturday…", $51
-	db "I won't have any", $4f
-	db "more gifts…", $57
+	text "SANTOS: …"
+
+	para "See you again on"
+	line "another Saturday…"
+
+	para "I won't have any"
+	line "more gifts…"
+	done
 ; 0x1a4b00
 
 UnknownText_0x1a4b00: ; 0x1a4b00
-	db $0, "SANTOS: Today's", $4f
-	db "not Saturday…", $57
+	text "SANTOS: Today's"
+	line "not Saturday…"
+	done
 ; 0x1a4b1e
 
 UnknownText_0x1a4b1e: ; 0x1a4b1e
-	db $0, "Wow, you came", $4f
-	db "through the ICE", $55
-	db "PATH?", $51
-	db "You must be a real", $4f
-	db "hotshot trainer!", $57
+	text "Wow, you came"
+	line "through the ICE"
+	cont "PATH?"
+
+	para "You must be a real"
+	line "hotshot trainer!"
+	done
 ; 0x1a4b67
 
 UnknownText_0x1a4b67: ; 0x1a4b67
-	db $0, "BLACKTHORN CITY", $51
-	db "A Quiet Mountain", $4f
-	db "Retreat", $57
+	text "BLACKTHORN CITY"
+
+	para "A Quiet Mountain"
+	line "Retreat"
+	done
 ; 0x1a4b91
 
 UnknownText_0x1a4b91: ; 0x1a4b91
-	db $0, "BLACKTHORN CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: CLAIR", $51
-	db "The Blessed User", $4f
-	db "of Dragon #MON", $57
+	text "BLACKTHORN CITY"
+	line "#MON GYM"
+	cont "LEADER: CLAIR"
+
+	para "The Blessed User"
+	line "of Dragon #MON"
+	done
 ; 0x1a4bd9
 
 UnknownText_0x1a4bd9: ; 0x1a4bd9
-	db $0, "MOVE DELETER'S", $4f
-	db "HOUSE", $57
+	text "MOVE DELETER'S"
+	line "HOUSE"
+	done
 ; 0x1a4bef
 
 UnknownText_0x1a4bef: ; 0x1a4bef
-	db $0, "DRAGON'S DEN", $4f
-	db "AHEAD", $57
+	text "DRAGON'S DEN"
+	line "AHEAD"
+	done
 ; 0x1a4c03
 
 UnknownText_0x1a4c03: ; 0x1a4c03
-	db $0, "TRAINER TIPS", $51
-	db "A #MON holding", $4f
-	db "a MIRACLEBERRY", $51
-	db "will cure itself", $4f
-	db "of any status", $55
-	db "problem.", $57
+	text "TRAINER TIPS"
+
+	para "A #MON holding"
+	line "a MIRACLEBERRY"
+
+	para "will cure itself"
+	line "of any status"
+	cont "problem."
+	done
 ; 0x1a4c57
 
 BlackthornCity_MapEventHeader: ; 0x1a4c57

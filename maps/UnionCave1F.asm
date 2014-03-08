@@ -172,106 +172,132 @@ UnknownScript_0x59c08: ; 0x59c08
 ; 0x59c0b
 
 HikerRussellSeenText: ; 0x59c0b
-	db $0, "You're headed to", $4f
-	db "AZALEA, are you?", $51
-	db "Let my #MON see", $4f
-	db "if you are good", $55
-	db "enough to battle.", $57
+	text "You're headed to"
+	line "AZALEA, are you?"
+
+	para "Let my #MON see"
+	line "if you are good"
+	cont "enough to battle."
+	done
 ; 0x59c5f
 
 HikerRussellBeatenText: ; 0x59c5f
-	db $0, "Oh, oh, oh!", $57
+	text "Oh, oh, oh!"
+	done
 ; 0x59c6c
 
 UnknownText_0x59c6c: ; 0x59c6c
-	db $0, "All right, then!", $4f
-	db "I've decided.", $51
-	db "I'm not leaving", $4f
-	db "until my #MON", $55
-	db "get tougher!", $57
+	text "All right, then!"
+	line "I've decided."
+
+	para "I'm not leaving"
+	line "until my #MON"
+	cont "get tougher!"
+	done
 ; 0x59cb5
 
 PokemaniacLarrySeenText: ; 0x59cb5
-	db $0, "I roam far and", $4f
-	db "wide in search of", $55
-	db "#MON.", $51
-	db "Are you looking", $4f
-	db "for #MON too?", $51
-	db "Then you're my", $4f
-	db "collecting rival!", $57
+	text "I roam far and"
+	line "wide in search of"
+	cont "#MON."
+
+	para "Are you looking"
+	line "for #MON too?"
+
+	para "Then you're my"
+	line "collecting rival!"
+	done
 ; 0x59d1b
 
 PokemaniacLarryBeatenText: ; 0x59d1b
-	db $0, "Ugh. My poor #-", $4f
-	db "MON…", $57
+	text "Ugh. My poor #-"
+	line "MON…"
+	done
 ; 0x59d31
 
 UnknownText_0x59d31: ; 0x59d31
-	db $0, "Every Friday, you", $4f
-	db "can hear #MON", $51
-	db "roars from deep", $4f
-	db "inside the cave.", $57
+	text "Every Friday, you"
+	line "can hear #MON"
+
+	para "roars from deep"
+	line "inside the cave."
+	done
 ; 0x59d73
 
 HikerDanielSeenText: ; 0x59d73
-	db $0, "Whoa! What a", $4f
-	db "surprise!", $51
-	db "I didn't expect to", $4f
-	db "see anyone here!", $57
+	text "Whoa! What a"
+	line "surprise!"
+
+	para "I didn't expect to"
+	line "see anyone here!"
+	done
 ; 0x59dae
 
 HikerDanielBeatenText: ; 0x59dae
-	db $0, "Whoa! I'm beaten", $4f
-	db "big time!", $57
+	text "Whoa! I'm beaten"
+	line "big time!"
+	done
 ; 0x59dc9
 
 UnknownText_0x59dc9: ; 0x59dc9
-	db $0, "I was conned into", $4f
-	db "buying a SLOWPOKE-", $55
-	db "TAIL.", $51
-	db "I feel sorry for", $4f
-	db "the poor #MON.", $57
+	text "I was conned into"
+	line "buying a SLOWPOKE-"
+	cont "TAIL."
+
+	para "I feel sorry for"
+	line "the poor #MON."
+	done
 ; 0x59e15
 
 FirebreatherBillSeenText: ; 0x59e15
-	db $0, "ZUBAT's SUPERSONIC", $4f
-	db "keeps confusing", $55
-	db "my #MON.", $51
-	db "I'm seriously", $4f
-	db "upset about that!", $57
+	text "ZUBAT's SUPERSONIC"
+	line "keeps confusing"
+	cont "my #MON."
+
+	para "I'm seriously"
+	line "upset about that!"
+	done
 ; 0x59e60
 
 FirebreatherBillBeatenText: ; 0x59e60
-	db $0, "I flamed out!", $57
+	text "I flamed out!"
+	done
 ; 0x59e6f
 
 UnknownText_0x59e6f: ; 0x59e6f
-	db $0, "On weekends, you", $4f
-	db "can hear strange", $51
-	db "roars from deep in", $4f
-	db "the cave.", $57
+	text "On weekends, you"
+	line "can hear strange"
+
+	para "roars from deep in"
+	line "the cave."
+	done
 ; 0x59eaf
 
 FirebreatherRaySeenText: ; 0x59eaf
-	db $0, "If it's light, a", $4f
-	db "cave isn't scary.", $51
-	db "If you're strong,", $4f
-	db "#MON aren't", $55
-	db "scary.", $57
+	text "If it's light, a"
+	line "cave isn't scary."
+
+	para "If you're strong,"
+	line "#MON aren't"
+	cont "scary."
+	done
 ; 0x59ef4
 
 FirebreatherRayBeatenText: ; 0x59ef4
-	db $0, "FLASH!", $57
+	text "FLASH!"
+	done
 ; 0x59efc
 
 UnknownText_0x59efc: ; 0x59efc
-	db $0, "It's my #MON's", $4f
-	db "fire that lights", $55
-	db "up this cave.", $57
+	text "It's my #MON's"
+	line "fire that lights"
+	cont "up this cave."
+	done
 ; 0x59f29
 
 UnknownText_0x59f29: ; 0x59f29
-	db $0, "UNION CAVE", $57
+	text "UNION CAVE"
+	done
 ; 0x59f35
 
 UnionCave1F_MapEventHeader: ; 0x59f35

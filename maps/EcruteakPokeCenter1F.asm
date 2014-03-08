@@ -108,86 +108,116 @@ MovementData_0x98ed4: ; 0x98ed4
 ; 0x98ed8
 
 UnknownText_0x98ed8: ; 0x98ed8
-	db $0, "Hi, I'm BILL. And", $4f
-	db "who are you?", $51
-	db "Hmm, ", $52, ", huh?", $4f
-	db "You've come at the", $55
-	db "right time.", $57
+	text "Hi, I'm BILL. And"
+	line "who are you?"
+
+	para "Hmm, ", $52, ", huh?"
+	line "You've come at the"
+	cont "right time."
+	done
 ; 0x98f22
 
 UnknownText_0x98f22: ; 0x98f22
-	db $0, "I just finished", $4f
-	db "adjustments on my", $55
-	db "TIME CAPSULE.", $51
-	db "You know that", $4f
-	db "#MON can be", $55
-	db "traded, right?", $51
-	db "My TIME CAPSULE", $4f
-	db "was developed to", $51
-	db "enable trades with", $4f
-	db "the past.", $51
-	db "But you can't send", $4f
-	db "anything that", $51
-	db "didn't exist in", $4f
-	db "the past.", $51
-	db "If you did, the PC", $4f
-	db "in the past would", $55
-	db "have a breakdown.", $51
-	db "So you have to", $4f
-	db "remove anything", $51
-	db "that wasn't around", $4f
-	db "in the past.", $51
-	db "Put simply, no", $4f
-	db "sending new moves", $51
-	db "or new #MON in", $4f
-	db "the TIME CAPSULE.", $51
-	db "Don't you worry.", $4f
-	db "I'm done with the", $55
-	db "adjustments.", $51
-	db "Tomorrow, TIME", $4f
-	db "CAPSULES will be", $51
-	db "running at all", $4f
-	db "#MON CENTERS.", $51
-	db "I have to hurry on", $4f
-	db "back to GOLDENROD", $55
-	db "and see my folks.", $51
-	db "Buh-bye!", $57
+	text "I just finished"
+	line "adjustments on my"
+	cont "TIME CAPSULE."
+
+	para "You know that"
+	line "#MON can be"
+	cont "traded, right?"
+
+	para "My TIME CAPSULE"
+	line "was developed to"
+
+	para "enable trades with"
+	line "the past."
+
+	para "But you can't send"
+	line "anything that"
+
+	para "didn't exist in"
+	line "the past."
+
+	para "If you did, the PC"
+	line "in the past would"
+	cont "have a breakdown."
+
+	para "So you have to"
+	line "remove anything"
+
+	para "that wasn't around"
+	line "in the past."
+
+	para "Put simply, no"
+	line "sending new moves"
+
+	para "or new #MON in"
+	line "the TIME CAPSULE."
+
+	para "Don't you worry."
+	line "I'm done with the"
+	cont "adjustments."
+
+	para "Tomorrow, TIME"
+	line "CAPSULES will be"
+
+	para "running at all"
+	line "#MON CENTERS."
+
+	para "I have to hurry on"
+	line "back to GOLDENROD"
+	cont "and see my folks."
+
+	para "Buh-bye!"
+	done
 ; 0x99155
 
 UnknownText_0x99155: ; 0x99155
-	db $0, "The way the KIMONO", $4f
-	db "GIRLS dance is", $51
-	db "marvelous. Just", $4f
-	db "like the way they", $55
-	db "use their #MON.", $57
+	text "The way the KIMONO"
+	line "GIRLS dance is"
+
+	para "marvelous. Just"
+	line "like the way they"
+	cont "use their #MON."
+	done
 ; 0x991aa
 
 UnknownText_0x991aa: ; 0x991aa
-	db $0, "You must be hoping", $4f
-	db "to battle more", $51
-	db "people, right?", $4f
-	db "There's apparently", $51
-	db "some place where", $4f
-	db "trainers gather.", $51
-	db "Where, you ask?", $51
-	db "It's a little past", $4f
-	db "OLIVINE CITY.", $57
+	text "You must be hoping"
+	line "to battle more"
+
+	para "people, right?"
+	line "There's apparently"
+
+	para "some place where"
+	line "trainers gather."
+
+	para "Where, you ask?"
+
+	para "It's a little past"
+	line "OLIVINE CITY."
+	done
 ; 0x99240
 
 UnknownText_0x99240: ; 0x99240
-	db $0, "MORTY, the GYM", $4f
-	db "LEADER, is soooo", $55
-	db "cool.", $51
-	db "His #MON are", $4f
-	db "really tough too.", $57
+	text "MORTY, the GYM"
+	line "LEADER, is soooo"
+	cont "cool."
+
+	para "His #MON are"
+	line "really tough too."
+	done
 ; 0x99286
 
 UnknownText_0x99286: ; 0x99286
-	db $0, "LAKE OF RAGE…", $51
-	db "The appearance of", $4f
-	db "a GYARADOS swarm…", $51
-	db "I smell a conspir-", $4f
-	db "acy. I know it!", $57
+	text "LAKE OF RAGE…"
+
+	para "The appearance of"
+	line "a GYARADOS swarm…"
+
+	para "I smell a conspir-"
+	line "acy. I know it!"
+	done
 ; 0x992dc
 
 EcruteakPokeCenter1F_MapEventHeader: ; 0x992dc

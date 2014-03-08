@@ -191,115 +191,142 @@ MapRoute9SignpostItem1: ; 0x1aafa2
 ; 0x1aafa5
 
 CamperDeanSeenText: ; 0x1aafa5
-	db $0, "I came to explore", $4f
-	db "ROCK TUNNEL.", $57
+	text "I came to explore"
+	line "ROCK TUNNEL."
+	done
 ; 0x1aafc5
 
 CamperDeanBeatenText: ; 0x1aafc5
-	db $0, "Whoa! Danger, man.", $57
+	text "Whoa! Danger, man."
+	done
 ; 0x1aafd9
 
 UnknownText_0x1aafd9: ; 0x1aafd9
-	db $0, "My #MON were", $4f
-	db "hurt before even", $51
-	db "entering ROCK", $4f
-	db "TUNNEL.", $51
-	db "I'd better take", $4f
-	db "them to a #MON", $55
-	db "CENTER right away.", $57
+	text "My #MON were"
+	line "hurt before even"
+
+	para "entering ROCK"
+	line "TUNNEL."
+
+	para "I'd better take"
+	line "them to a #MON"
+	cont "CENTER right away."
+	done
 ; 0x1ab03f
 
 PicnickerHeidiSeenText: ; 0x1ab03f
-	db $0, "Have you ever been", $4f
-	db "to a picnic?", $51
-	db "They're so much", $4f
-	db "fun!", $57
+	text "Have you ever been"
+	line "to a picnic?"
+
+	para "They're so much"
+	line "fun!"
+	done
 ; 0x1ab074
 
 PicnickerHeidiBeatenText: ; 0x1ab074
-	db $0, "Ohhhh!", $57
+	text "Ohhhh!"
+	done
 ; 0x1ab07c
 
 UnknownText_0x1ab07c: ; 0x1ab07c
-	db $0, "We bake lots of", $4f
-	db "goodies and share", $51
-	db "them all around.", $4f
-	db "They're delicious!", $57
+	text "We bake lots of"
+	line "goodies and share"
+
+	para "them all around."
+	line "They're delicious!"
+	done
 ; 0x1ab0c2
 
 CamperSidSeenText: ; 0x1ab0c2
-	db $0, "Hey, you!", $4f
-	db "Don't litter!", $57
+	text "Hey, you!"
+	line "Don't litter!"
+	done
 ; 0x1ab0da
 
 CamperSidBeatenText: ; 0x1ab0da
-	db $0, "I was just point-", $4f
-	db "ing out…", $57
+	text "I was just point-"
+	line "ing out…"
+	done
 ; 0x1ab0f6
 
 UnknownText_0x1ab0f6: ; 0x1ab0f6
-	db $0, "Sorry. You weren't", $4f
-	db "littering. It was", $55
-	db "my mistake.", $57
+	text "Sorry. You weren't"
+	line "littering. It was"
+	cont "my mistake."
+	done
 ; 0x1ab127
 
 PicnickerEdnaSeenText: ; 0x1ab127
-	db $0, "People shouldn't", $4f
-	db "leave any litter", $55
-	db "behind.", $57
+	text "People shouldn't"
+	line "leave any litter"
+	cont "behind."
+	done
 ; 0x1ab151
 
 PicnickerEdnaBeatenText: ; 0x1ab151
-	db $0, "Ohh… I lost…", $57
+	text "Ohh… I lost…"
+	done
 ; 0x1ab15f
 
 UnknownText_0x1ab15f: ; 0x1ab15f
-	db $0, "Conserving energy", $4f
-	db "is important, but", $51
-	db "the environment is", $4f
-	db "even more vital.", $57
+	text "Conserving energy"
+	line "is important, but"
+
+	para "the environment is"
+	line "even more vital."
+	done
 ; 0x1ab1a8
 
 HikerTimSeenText: ; 0x1ab1a8
-	db $0, "She'll be coming", $4f
-	db "'round MT.SILVER", $55
-	db "when she comes…", $51
-	db "MT.SILVER is in", $4f
-	db "JOHTO, right?", $57
+	text "She'll be coming"
+	line "'round MT.SILVER"
+	cont "when she comes…"
+
+	para "MT.SILVER is in"
+	line "JOHTO, right?"
+	done
 ; 0x1ab1f7
 
 HikerTimBeatenText: ; 0x1ab1f7
-	db $0, "I was too busy", $4f
-	db "singing…", $57
+	text "I was too busy"
+	line "singing…"
+	done
 ; 0x1ab210
 
 UnknownText_0x1ab210: ; 0x1ab210
-	db $0, "Battles are about", $4f
-	db "concentration.", $57
+	text "Battles are about"
+	line "concentration."
+	done
 ; 0x1ab232
 
 HikerSidneySeenText: ; 0x1ab232
-	db $0, "I'll tell you a", $4f
-	db "secret.", $51
-	db "But first, we", $4f
-	db "battle!", $57
+	text "I'll tell you a"
+	line "secret."
+
+	para "But first, we"
+	line "battle!"
+	done
 ; 0x1ab260
 
 HikerSidneyBeatenText: ; 0x1ab260
-	db $0, "Oh, dang!", $4f
-	db "I lost that…", $57
+	text "Oh, dang!"
+	line "I lost that…"
+	done
 ; 0x1ab278
 
 UnknownText_0x1ab278: ; 0x1ab278
-	db $0, "The POWER PLANT is", $4f
-	db "across a small", $55
-	db "river.", $57
+	text "The POWER PLANT is"
+	line "across a small"
+	cont "river."
+	done
 ; 0x1ab2a2
 
 UnknownText_0x1ab2a2: ; 0x1ab2a2
-	db $0, "ROUTE 9", $51
-	db "CERULEAN CITY -", $4f
-	db "ROCK TUNNEL", $57
+	text "ROUTE 9"
+
+	para "CERULEAN CITY -"
+	line "ROCK TUNNEL"
+	done
 ; 0x1ab2c7
 
 Route9_MapEventHeader: ; 0x1ab2c7

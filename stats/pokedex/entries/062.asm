@@ -1,8 +1,12 @@
 ; PoliwrathPokedexEntry: ; 0x183066
 	db "TADPOLE@" ; species name
-	dw 403, 1190; height, width
+	dw 403, 1190 ; height, width
 	
-	db "It can use its", $4e, "well-developed", $4e, "arms and legs to@"
-	db "run on the surface", $4e, "of the water for a", $4e, "split second.@"
+	db   "It can use its"
+	next "well-developed"
+	next "arms and legs to"
+	page "run on the surface"
+	next "of the water for a"
+	next "split second.@"
 ; 0x1830d5
 

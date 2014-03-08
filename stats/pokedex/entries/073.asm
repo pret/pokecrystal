@@ -1,8 +1,12 @@
 ; TentacruelPokedexEntry: ; 0x1b8337
 	db "JELLYFISH@" ; species name
-	dw 503, 1210; height, width
+	dw 503, 1210 ; height, width
 	
-	db "When its 80 feel-", $4e, "ers absorb water,", $4e, "it stretches to@"
-	db "become like a net", $4e, "to entangle its", $4e, "prey.@"
+	db   "When its 80 feel-"
+	next "ers absorb water,"
+	next "it stretches to"
+	page "become like a net"
+	next "to entangle its"
+	next "prey.@"
 ; 0x1b83a1
 

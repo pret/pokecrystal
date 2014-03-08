@@ -318,130 +318,169 @@ ItemFragment_0x1a55fd: ; 0x1a55fd
 ; 0x1a55ff
 
 UnknownText_0x1a55ff: ; 0x1a55ff
-	db $0, "DARK CAVE…", $51
-	db "If #MON could", $4f
-	db "light it up, I'd", $55
-	db "explore it.", $57
+	text "DARK CAVE…"
+
+	para "If #MON could"
+	line "light it up, I'd"
+	cont "explore it."
+	done
 ; 0x1a5635
 
 Bug_catcherWade1SeenText: ; 0x1a5635
-	db $0, "I caught a bunch", $4f
-	db "of #MON. Let me", $55
-	db "battle with you!", $57
+	text "I caught a bunch"
+	line "of #MON. Let me"
+	cont "battle with you!"
+	done
 ; 0x1a5668
 
 Bug_catcherWade1BeatenText: ; 0x1a5668
-	db $0, "Awwwww…", $57
+	text "Awwwww…"
+	done
 ; 0x1a5671
 
 UnknownText_0x1a5671: ; 0x1a5671
-	db $0, "You can catch", $4f
-	db "#MON even if", $51
-	db "you have six with", $4f
-	db "you.", $51
-	db "If you catch one,", $4f
-	db "it'll go to your", $55
-	db "BOX automatically.", $57
+	text "You can catch"
+	line "#MON even if"
+
+	para "you have six with"
+	line "you."
+
+	para "If you catch one,"
+	line "it'll go to your"
+	cont "BOX automatically."
+	done
 ; 0x1a56d9
 
 UnknownText_0x1a56d9: ; 0x1a56d9
-	db $0, "… Hnuurg… Huh?", $51
-	db "I walked too far", $4f
-	db "today looking for", $55
-	db "#MON.", $51
-	db "My feet hurt and", $4f
-	db "I'm sleepy…", $51
-	db "If I were a wild", $4f
-	db "#MON, I'd be", $55
-	db "easy to catch…", $51
-	db "…Zzzz…", $57
+	text "… Hnuurg… Huh?"
+
+	para "I walked too far"
+	line "today looking for"
+	cont "#MON."
+
+	para "My feet hurt and"
+	line "I'm sleepy…"
+
+	para "If I were a wild"
+	line "#MON, I'd be"
+	cont "easy to catch…"
+
+	para "…Zzzz…"
+	done
 ; 0x1a5761
 
 UnknownText_0x1a5761: ; 0x1a5761
-	db $0, "…Zzzz… Huh?", $51
-	db "What's that? You", $4f
-	db "have MAIL for me?", $57
+	text "…Zzzz… Huh?"
+
+	para "What's that? You"
+	line "have MAIL for me?"
+	done
 ; 0x1a5790
 
 UnknownText_0x1a5790: ; 0x1a5790
-	db $0, $52, " handed", $4f
-	db "over the #MON", $55
-	db "holding the MAIL.", $57
+	text $52, " handed"
+	line "over the #MON"
+	cont "holding the MAIL."
+	done
 ; 0x1a57ba
 
 UnknownText_0x1a57ba: ; 0x1a57ba
-	db $0, "Let's see…", $51
-	db "…DARK CAVE leads", $4f
-	db "to another road…", $51
-	db "That's good to", $4f
-	db "know.", $51
-	db "Thanks for bring-", $4f
-	db "ing this to me.", $51
-	db "My friend's a good", $4f
-	db "guy, and you're", $55
-	db "swell too!", $51
-	db "I'd like to do", $4f
-	db "something good in", $55
-	db "return too!", $51
-	db "I know! I want you", $4f
-	db "to have this!", $57
+	text "Let's see…"
+
+	para "…DARK CAVE leads"
+	line "to another road…"
+
+	para "That's good to"
+	line "know."
+
+	para "Thanks for bring-"
+	line "ing this to me."
+
+	para "My friend's a good"
+	line "guy, and you're"
+	cont "swell too!"
+
+	para "I'd like to do"
+	line "something good in"
+	cont "return too!"
+
+	para "I know! I want you"
+	line "to have this!"
+	done
 ; 0x1a5896
 
 UnknownText_0x1a5896: ; 0x1a5896
-	db $0, "TM50 is NIGHTMARE.", $51
-	db "It's a wicked move", $4f
-	db "that steadily cuts", $51
-	db "the HP of a sleep-", $4f
-	db "ing enemy.", $51
-	db "Ooooh…", $4f
-	db "That's scary…", $51
-	db "I don't want to", $4f
-	db "have bad dreams.", $57
+	text "TM50 is NIGHTMARE."
+
+	para "It's a wicked move"
+	line "that steadily cuts"
+
+	para "the HP of a sleep-"
+	line "ing enemy."
+
+	para "Ooooh…"
+	line "That's scary…"
+
+	para "I don't want to"
+	line "have bad dreams."
+	done
 ; 0x1a5921
 
 UnknownText_0x1a5921: ; 0x1a5921
-	db $0, "This MAIL isn't", $4f
-	db "for me.", $57
+	text "This MAIL isn't"
+	line "for me."
+	done
 ; 0x1a5939
 
 UnknownText_0x1a5939: ; 0x1a5939
-	db $0, "Why is this #-", $4f
-	db "MON so special?", $51
-	db "It doesn't have", $4f
-	db "any MAIL.", $57
+	text "Why is this #-"
+	line "MON so special?"
+
+	para "It doesn't have"
+	line "any MAIL."
+	done
 ; 0x1a5972
 
 UnknownText_0x1a5972: ; 0x1a5972
-	db $0, "What? You don't", $4f
-	db "want anything?", $57
+	text "What? You don't"
+	line "want anything?"
+	done
 ; 0x1a5991
 
 UnknownText_0x1a5991: ; 0x1a5991
-	db $0, "If I take that", $4f
-	db "#MON from you,", $51
-	db "what are you going", $4f
-	db "to use in battle?", $57
+	text "If I take that"
+	line "#MON from you,"
+
+	para "what are you going"
+	line "to use in battle?"
+	done
 ; 0x1a59d5
 
 UnknownText_0x1a59d5: ; 0x1a59d5
-	db $0, "I found a good", $4f
-	db "#MON in DARK", $55
-	db "CAVE.", $51
-	db "I'm going to raise", $4f
-	db "it to take on", $55
-	db "FALKNER.", $51
-	db "He's the leader of", $4f
-	db "VIOLET CITY's GYM.", $57
+	text "I found a good"
+	line "#MON in DARK"
+	cont "CAVE."
+
+	para "I'm going to raise"
+	line "it to take on"
+	cont "FALKNER."
+
+	para "He's the leader of"
+	line "VIOLET CITY's GYM."
+	done
 ; 0x1a5a45
 
 UnknownText_0x1a5a45: ; 0x1a5a45
-	db $0, "ROUTE 31", $51
-	db "VIOLET CITY -", $4f
-	db "CHERRYGROVE CITY", $57
+	text "ROUTE 31"
+
+	para "VIOLET CITY -"
+	line "CHERRYGROVE CITY"
+	done
 ; 0x1a5a6e
 
 UnknownText_0x1a5a6e: ; 0x1a5a6e
-	db $0, "DARK CAVE", $57
+	text "DARK CAVE"
+	done
 ; 0x1a5a79
 
 Route31_MapEventHeader: ; 0x1a5a79

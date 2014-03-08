@@ -51,41 +51,53 @@ MapCeladonDeptStore3FSignpost0Script: ; 0x70d50
 ; 0x70d53
 
 UnknownText_0x70d53: ; 0x70d53
-	db $0, "I can't decide", $4f
-	db "which #MON I", $51
-	db "should use this TM", $4f
-	db "on…", $57
+	text "I can't decide"
+	line "which #MON I"
+
+	para "should use this TM"
+	line "on…"
+	done
 ; 0x70d86
 
 UnknownText_0x70d86: ; 0x70d86
-	db $0, "Uh-oh! I traded my", $4f
-	db "#MON without", $51
-	db "removing the UP-", $4f
-	db "GRADE from it.", $57
+	text "Uh-oh! I traded my"
+	line "#MON without"
+
+	para "removing the UP-"
+	line "GRADE from it."
+	done
 ; 0x70dc7
 
 UnknownText_0x70dc7: ; 0x70dc7
-	db $0, "Yeah! I'm finally", $4f
-	db "getting a PORYGON!", $51
-	db "I'm no good at the", $4f
-	db "slots, so I could", $51
-	db "never get enough", $4f
-	db "coins…", $51
-	db "…Huh?", $51
-	db "The traded PORYGON", $4f
-	db "turned into a dif-", $55
-	db "ferent #MON!", $57
+	text "Yeah! I'm finally"
+	line "getting a PORYGON!"
+
+	para "I'm no good at the"
+	line "slots, so I could"
+
+	para "never get enough"
+	line "coins…"
+
+	para "…Huh?"
+
+	para "The traded PORYGON"
+	line "turned into a dif-"
+	cont "ferent #MON!"
+	done
 ; 0x70e61
 
 UnknownText_0x70e61: ; 0x70e61
-	db $0, "The TM SHOP sells", $4f
-	db "some rare moves.", $57
+	text "The TM SHOP sells"
+	line "some rare moves."
+	done
 ; 0x70e85
 
 UnknownText_0x70e85: ; 0x70e85
-	db $0, "3F: TM SHOP", $51
-	db "Make Your #MON", $4f
-	db "Stronger!", $57
+	text "3F: TM SHOP"
+
+	para "Make Your #MON"
+	line "Stronger!"
+	done
 ; 0x70eab
 
 CeladonDeptStore3F_MapEventHeader: ; 0x70eab

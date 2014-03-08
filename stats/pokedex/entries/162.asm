@@ -1,8 +1,12 @@
 ; FurretPokedexEntry: ; 0x1ccddd
 	db "LONG BODY@" ; species name
-	dw 511, 720; height, width
+	dw 511, 720 ; height, width
 	
-	db "It lives in narrow", $4e, "burrows that fit", $4e, "its slim body. The@"
-	db "deeper the nests", $4e, "go, the more maze-", $4e, "like they become.@"
+	db   "It lives in narrow"
+	next "burrows that fit"
+	next "its slim body. The"
+	page "deeper the nests"
+	next "go, the more maze-"
+	next "like they become.@"
 ; 0x1cce58
 

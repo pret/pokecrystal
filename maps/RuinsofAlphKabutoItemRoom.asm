@@ -27,9 +27,10 @@ MapRuinsofAlphKabutoItemRoomSignpost1Script: ; 0x599aa
 ; 0x599ad
 
 UnknownText_0x599ad: ; 0x599ad
-	db $0, "It's a replica of", $4f
-	db "an ancient #-", $55
-	db "MON.", $57
+	text "It's a replica of"
+	line "an ancient #-"
+	cont "MON."
+	done
 ; 0x599d2
 
 RuinsofAlphKabutoItemRoom_MapEventHeader: ; 0x599d2

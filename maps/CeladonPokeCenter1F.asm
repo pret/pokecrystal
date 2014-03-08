@@ -76,60 +76,81 @@ MovementData_0x71e6b: ; 0x71e6b
 ; 0x71e70
 
 UnknownText_0x71e70: ; 0x71e70
-	db $0, "ERIKA is a master", $4f
-	db "of grass #MON.", $51
-	db "She'll make you", $4f
-	db "pay if you don't", $55
-	db "watch yourself.", $57
+	text "ERIKA is a master"
+	line "of grass #MON."
+
+	para "She'll make you"
+	line "pay if you don't"
+	cont "watch yourself."
+	done
 ; 0x71ec1
 
 UnknownText_0x71ec1: ; 0x71ec1
-	db $0, "TEAM ROCKET's", $4f
-	db "hideout is in the", $51
-	db "basement of the", $4f
-	db "GAME CORNER.", $51
-	db "Oh, wait. That was", $4f
-	db "three years ago.", $57
+	text "TEAM ROCKET's"
+	line "hideout is in the"
+
+	para "basement of the"
+	line "GAME CORNER."
+
+	para "Oh, wait. That was"
+	line "three years ago."
+	done
 ; 0x71f22
 
 UnknownText_0x71f22: ; 0x71f22
-	db $0, "EUSINE: Hi!", $51
-	db "I'm back visiting", $4f
-	db "my hometown.", $51
-	db "It's been quite a", $4f
-	db "while.", $57
+	text "EUSINE: Hi!"
+
+	para "I'm back visiting"
+	line "my hometown."
+
+	para "It's been quite a"
+	line "while."
+	done
 ; 0x71f65
 
 UnknownText_0x71f65: ; 0x71f65
-	db $0, $52, ", have you", $4f
-	db "heard?", $51
-	db "There have been", $4f
-	db "fresh rumors of a", $51
-	db "rainbow-colored", $4f
-	db "#MON appearing", $55
-	db "at TIN TOWER.", $51
-	db "I've just had my", $4f
-	db "party healed, so", $51
-	db "now I'm headed to", $4f
-	db "ECRUTEAK.", $51
-	db "I'll be seeing", $4f
-	db "you, ", $52, "!", $57
+	text $52, ", have you"
+	line "heard?"
+
+	para "There have been"
+	line "fresh rumors of a"
+
+	para "rainbow-colored"
+	line "#MON appearing"
+	cont "at TIN TOWER."
+
+	para "I've just had my"
+	line "party healed, so"
+
+	para "now I'm headed to"
+	line "ECRUTEAK."
+
+	para "I'll be seeing"
+	line "you, ", $52, "!"
+	done
 ; 0x7201a
 
 UnknownText_0x7201a: ; 0x7201a
-	db $0, "Oh, by the way,", $4f
-	db $52, ".", $51
-	db "Have you caught", $4f
-	db "the legendary", $51
-	db "#MON RAIKOU and", $4f
-	db "ENTEI?", $51
-	db $56, $56, $56, $51
-	db "Okay…", $51
-	db "If you catch even", $4f
-	db "one, I hope that", $55
-	db "you'll inform me.", $51
-	db "I'm counting on", $4f
-	db "you, ", $52, "!", $57
+	text "Oh, by the way,"
+	line $52, "."
+
+	para "Have you caught"
+	line "the legendary"
+
+	para "#MON RAIKOU and"
+	line "ENTEI?"
+
+	para $56, $56, $56
+
+	para "Okay…"
+
+	para "If you catch even"
+	line "one, I hope that"
+	cont "you'll inform me."
+
+	para "I'm counting on"
+	line "you, ", $52, "!"
+	done
 ; 0x720b8
 
 CeladonPokeCenter1F_MapEventHeader: ; 0x720b8

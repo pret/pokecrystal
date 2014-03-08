@@ -91,41 +91,54 @@ MovementData_0x18052c: ; 0x18052c
 ; 0x180531
 
 UnknownText_0x180531: ; 0x180531
-	db $0, "Welcome to #MON", $4f
-	db "LEAGUE, ", $52, ".", $51
-	db "Allow me to intro-", $4f
-	db "duce myself. I am", $55
-	db "WILL.", $51
-	db "I have trained all", $4f
-	db "around the world,", $51
-	db "making my psychic", $4f
-	db "#MON powerful.", $51
-	db "And, at last, I've", $4f
-	db "been accepted into", $55
-	db "the ELITE FOUR.", $51
-	db "I can only keep", $4f
-	db "getting better!", $51
-	db "Losing is not an", $4f
-	db "option!", $57
+	text "Welcome to #MON"
+	line "LEAGUE, ", $52, "."
+
+	para "Allow me to intro-"
+	line "duce myself. I am"
+	cont "WILL."
+
+	para "I have trained all"
+	line "around the world,"
+
+	para "making my psychic"
+	line "#MON powerful."
+
+	para "And, at last, I've"
+	line "been accepted into"
+	cont "the ELITE FOUR."
+
+	para "I can only keep"
+	line "getting better!"
+
+	para "Losing is not an"
+	line "option!"
+	done
 ; 0x18062c
 
 UnknownText_0x18062c: ; 0x18062c
-	db $0, "I… I can't…", $4f
-	db "believe it…", $57
+	text "I… I can't…"
+	line "believe it…"
+	done
 ; 0x180644
 
 UnknownText_0x180644: ; 0x180644
-	db $0, "Even though I was", $4f
-	db "defeated, I won't", $55
-	db "change my course.", $51
-	db "I will continue", $4f
-	db "battling until I", $51
-	db "stand above all", $4f
-	db "trainers!", $51
-	db "Now, ", $52, ", move", $4f
-	db "on and experience", $51
-	db "the true ferocity", $4f
-	db "of the ELITE FOUR.", $57
+	text "Even though I was"
+	line "defeated, I won't"
+	cont "change my course."
+
+	para "I will continue"
+	line "battling until I"
+
+	para "stand above all"
+	line "trainers!"
+
+	para "Now, ", $52, ", move"
+	line "on and experience"
+
+	para "the true ferocity"
+	line "of the ELITE FOUR."
+	done
 ; 0x1806f9
 
 WillsRoom_MapEventHeader: ; 0x1806f9

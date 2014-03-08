@@ -92,8 +92,9 @@ MapIcePathB1FSignpostItem0: ; 0x7e50f
 
 
 UnknownText_0x7e512: ; 0x7e512
-	db $0, "The boulder fell", $4f
-	db "through.", $57
+	text "The boulder fell"
+	line "through."
+	done
 ; 0x7e52d
 
 

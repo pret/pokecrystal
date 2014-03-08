@@ -27,41 +27,55 @@ MapCeladonDeptStore6FSignpost1Script: ; 0x709ec
 ; 0x709ef
 
 UnknownText_0x709ef: ; 0x709ef
-	db $0, "Hello! Welcome to", $4f
-	db "CELADON DEPT.", $55
-	db "STORE!", $51
-	db "The directory is", $4f
-	db "on the wall.", $57
+	text "Hello! Welcome to"
+	line "CELADON DEPT."
+	cont "STORE!"
+
+	para "The directory is"
+	line "on the wall."
+	done
 ; 0x70a35
 
 UnknownText_0x70a35: ; 0x70a35
-	db $0, "This DEPT.STORE is", $4f
-	db "part of the same", $51
-	db "chain as the one", $4f
-	db "in GOLDENROD CITY.", $51
-	db "They were both", $4f
-	db "renovated at the", $55
-	db "same time.", $57
+	text "This DEPT.STORE is"
+	line "part of the same"
+
+	para "chain as the one"
+	line "in GOLDENROD CITY."
+
+	para "They were both"
+	line "renovated at the"
+	cont "same time."
+	done
 ; 0x70aa9
 
 UnknownText_0x70aa9: ; 0x70aa9
-	db $0, "This is my first", $4f
-	db "time here.", $51
-	db "It's so big…", $51
-	db "I'm afraid I'll", $4f
-	db "get lost.", $57
+	text "This is my first"
+	line "time here."
+
+	para "It's so big…"
+
+	para "I'm afraid I'll"
+	line "get lost."
+	done
 ; 0x70aea
 
 UnknownText_0x70aea: ; 0x70aea
-	db $0, "1F: SERVICE", $4f
-	db "    COUNTER", $51
-	db "2F: TRAINER'S", $4f
-	db "    MARKET", $51
-	db "3F: TM SHOP", $51
-	db "4F: WISEMAN GIFTS", $51
-	db "5F: DRUG STORE", $51
-	db "6F: ROOFTOP", $4f
-	db "    SQUARE", $57
+	text "1F: SERVICE"
+	line "    COUNTER"
+
+	para "2F: TRAINER'S"
+	line "    MARKET"
+
+	para "3F: TM SHOP"
+
+	para "4F: WISEMAN GIFTS"
+
+	para "5F: DRUG STORE"
+
+	para "6F: ROOFTOP"
+	line "    SQUARE"
+	done
 ; 0x70b60
 
 CeladonDeptStore1F_MapEventHeader: ; 0x70b60

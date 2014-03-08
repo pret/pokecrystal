@@ -64,29 +64,35 @@ MovementData_0x196486: ; 0x196486
 ; 0x196494
 
 UnknownText_0x196494: ; 0x196494
-	db $0, "Hey! You have a", $4f
-	db "brand new kind of", $55
-	db "#DEX.", $51
-	db "Did PROF.OAK give", $4f
-	db "that to you?", $57
+	text "Hey! You have a"
+	line "brand new kind of"
+	cont "#DEX."
+
+	para "Did PROF.OAK give"
+	line "that to you?"
+	done
 ; 0x1964dc
 
 UnknownText_0x1964dc: ; 0x1964dc
-	db $0, "I got quite a", $4f
-	db "shock at the GYM.", $51
-	db "There were all", $4f
-	db "these girls who", $55
-	db "looked identical.", $57
+	text "I got quite a"
+	line "shock at the GYM."
+
+	para "There were all"
+	line "these girls who"
+	cont "looked identical."
+	done
 ; 0x19652e
 
 UnknownText_0x19652e: ; 0x19652e
-	db $0, "I'm JANINE! Hocus-", $4f
-	db "pocus… Poof!", $57
+	text "I'm JANINE! Hocus-"
+	line "pocus… Poof!"
+	done
 ; 0x19654e
 
 UnknownText_0x19654e: ; 0x19654e
-	db $0, "See? I look just", $4f
-	db "like her now!", $57
+	text "See? I look just"
+	line "like her now!"
+	done
 ; 0x19656e
 
 FuchsiaPokeCenter1F_MapEventHeader: ; 0x19656e

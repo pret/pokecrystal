@@ -123,84 +123,106 @@ UnknownScript_0x730db: ; 0x730db
 ; 0x730de
 
 UnknownText_0x730de: ; 0x730de
-	db $0, "Hi!", $51
-	db "We're holding an", $4f
-	db "eatathon contest.", $51
-	db "We can't serve you", $4f
-	db "right now. Sorry.", $57
+	text "Hi!"
+
+	para "We're holding an"
+	line "eatathon contest."
+
+	para "We can't serve you"
+	line "right now. Sorry."
+	done
 ; 0x73129
 
 UnknownText_0x73129: ; 0x73129
-	db $0, "…Snarfle, chew…", $57
+	text "…Snarfle, chew…"
+	done
 ; 0x7313a
 
 UnknownText_0x7313a: ; 0x7313a
-	db $0, "Don't talk to me!", $51
-	db "You'll break my", $4f
-	db "concentration!", $57
+	text "Don't talk to me!"
+
+	para "You'll break my"
+	line "concentration!"
+	done
 ; 0x7316a
 
 UnknownText_0x7316a: ; 0x7316a
-	db $0, "…Gulp… Chew…", $57
+	text "…Gulp… Chew…"
+	done
 ; 0x73178
 
 UnknownText_0x73178: ; 0x73178
-	db $0, "I take quantity", $4f
-	db "over quality!", $51
-	db "I'm happy when I'm", $4f
-	db "full!", $57
+	text "I take quantity"
+	line "over quality!"
+
+	para "I'm happy when I'm"
+	line "full!"
+	done
 ; 0x731ae
 
 UnknownText_0x731ae: ; 0x731ae
-	db $0, "Munch, munch…", $57
+	text "Munch, munch…"
+	done
 ; 0x731bd
 
 UnknownText_0x731bd: ; 0x731bd
-	db $0, "The food is good", $4f
-	db "here, but GOLDEN-", $55
-	db "ROD has the best", $55
-	db "food anywhere.", $57
+	text "The food is good"
+	line "here, but GOLDEN-"
+	cont "ROD has the best"
+	cont "food anywhere."
+	done
 ; 0x73201
 
 UnknownText_0x73201: ; 0x73201
-	db $0, "Crunch… Crunch…", $57
+	text "Crunch… Crunch…"
+	done
 ; 0x73212
 
 UnknownText_0x73212: ; 0x73212
-	db $0, "Nobody here will", $4f
-	db "give you a COIN", $51
-	db "CASE. You should", $4f
-	db "look in JOHTO.", $57
+	text "Nobody here will"
+	line "give you a COIN"
+
+	para "CASE. You should"
+	line "look in JOHTO."
+	done
 ; 0x73254
 
 UnknownText_0x73254: ; 0x73254
-	db $0, "Crunch… Crunch…", $51
-	db "I can keep eating!", $57
+	text "Crunch… Crunch…"
+
+	para "I can keep eating!"
+	done
 ; 0x73278
 
 UnknownText_0x73278: ; 0x73278
-	db $0, "More, CHEF!", $57
+	text "More, CHEF!"
+	done
 ; 0x73285
 
 UnknownText_0x73285: ; 0x73285
-	db $0, "Eatathon Contest!", $4f
-	db "No time limit!", $51
-	db "A battle without", $4f
-	db "end! The biggest", $51
-	db "muncher gets it", $4f
-	db "all for free!", $57
+	text "Eatathon Contest!"
+	line "No time limit!"
+
+	para "A battle without"
+	line "end! The biggest"
+
+	para "muncher gets it"
+	line "all for free!"
+	done
 ; 0x732e7
 
 UnknownText_0x732e7: ; 0x732e7
-	db $0, $52, " found", $4f
-	db "@"
+	text $52, " found"
+	line "@"
 	text_from_ram $d099
-	db $0, "!", $57
+	text "!"
+	done
 ; 0x732f7
 
 UnknownText_0x732f7: ; 0x732f7
-	db $0, "But ", $52, " can't", $4f
-	db "hold another item…", $57
+	text "But ", $52, " can't"
+	line "hold another item…"
+	done
 ; 0x73316
 
 CeladonCafe_MapEventHeader: ; 0x73316

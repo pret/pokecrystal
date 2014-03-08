@@ -1,8 +1,12 @@
 ; MiltankPokedexEntry: ; 0x1d1482
 	db "MILK COW@" ; species name
-	dw 311, 1660; height, width
+	dw 311, 1660 ; height, width
 	
-	db "In order to milk a", $4e, "MILTANK, one must", $4e, "have a knack for@"
-	db "rhythmically pull-", $4e, "ing up and down", $4e, "on its udders.@"
+	db   "In order to milk a"
+	next "MILTANK, one must"
+	next "have a knack for"
+	page "rhythmically pull-"
+	next "ing up and down"
+	next "on its udders.@"
 ; 0x1d14f7
 

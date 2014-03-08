@@ -1,23 +1,32 @@
 BillPhoneMornGreetingText: ; 0x1b4427
-	db $0, "Good morning!", $51
-	db "This is the #-", $4f
-	db "MON STORAGE SYSTEM", $51
-	db "ADMINISTRATION", $4f
-	db "SERVICE.", $57
+	text "Good morning!"
+
+	para "This is the #-"
+	line "MON STORAGE SYSTEM"
+
+	para "ADMINISTRATION"
+	line "SERVICE."
+	done
 
 BillPhoneDayGreetingText: ; 0x1b4470
-	db $0, "Good day!", $51
-	db "This is the #-", $4f
-	db "MON STORAGE SYSTEM", $51
-	db "ADMINISTRATION", $4f
-	db "SERVICE.", $57
+	text "Good day!"
+
+	para "This is the #-"
+	line "MON STORAGE SYSTEM"
+
+	para "ADMINISTRATION"
+	line "SERVICE."
+	done
 
 BillPhoneNiteGreetingText: ; 0x1b44b5
-	db $0, "Good evening!", $51
-	db "This is the #-", $4f
-	db "MON STORAGE SYSTEM", $51
-	db "ADMINISTRATION", $4f
-	db "SERVICE.", $57
+	text "Good evening!"
+
+	para "This is the #-"
+	line "MON STORAGE SYSTEM"
+
+	para "ADMINISTRATION"
+	line "SERVICE."
+	done
 
 BillPhoneGeneriText: ; 0x1b44fe
 	db $0, "Who's calling?", $51
@@ -27,47 +36,63 @@ BillPhoneGeneriText: ; 0x1b44fe
 	db $56, $57
 
 BillPhoneNotFullText: ; 0x1b452a
-	db $0, "Thanks for", $4f
-	db "waiting!", $51
-	db $14, ", your BOX", $4f
-	db "has room for @"
+	text "Thanks for"
+	line "waiting!"
+
+	para $14, ", your BOX"
+	line "has room for @"
 	TX_RAM StringBuffer3
-	db $0, $55
-	db "more #MON.", $51
-	db "Get out there and", $4f
-	db "fill it up!", $57
+	text $55
+	db "more #MON."
+
+	para "Get out there and"
+	line "fill it up!"
+	done
 
 BillPhoneNearlyFullText: ; 0x1b4587
-	db $0, "Thanks for", $4f
-	db "waiting!", $51
-	db $14, ", your BOX", $4f
-	db "has room for only", $55
-	db "@"
+	text "Thanks for"
+	line "waiting!"
+
+	para $14, ", your BOX"
+	line "has room for only"
+	cont "@"
 	TX_RAM StringBuffer3
-	db $0, " more #MON.", $51
-	db "Maybe you should", $4f
-	db "switch your BOX.", $57
+	text " more #MON."
+
+	para "Maybe you should"
+	line "switch your BOX."
+	done
 
 BillPhoneFullText: ; 0x1b45ed
-	db $0, "Thanks for", $4f
-	db "waiting!", $51
-	db $14, ", your BOX", $4f
-	db "is full!", $51
-	db "You'll have to", $4f
-	db "switch BOXES if", $51
-	db "you want to catch", $4f
-	db "more #MON.", $57
+	text "Thanks for"
+	line "waiting!"
+
+	para $14, ", your BOX"
+	line "is full!"
+
+	para "You'll have to"
+	line "switch BOXES if"
+
+	para "you want to catch"
+	line "more #MON."
+	done
 
 BillPhoneNewlyFullText: ; 0x1b4652
-	db $0, "Hi, ", $14, "?", $4f
-	db "It's me, BILL!", $51
-	db "Thanks for using", $4f
-	db "my STORAGE SYSTEM.", $51
-	db "That last #MON", $4f
-	db "you sent filled", $55
-	db "your BOX up.", $51
-	db "You'll have to", $4f
-	db "switch BOXES if", $51
-	db "you want to catch", $4f
-	db "more #MON.", $51
-	db "Bye now!", $57
+	text "Hi, ", $14, "?"
+	line "It's me, BILL!"
+
+	para "Thanks for using"
+	line "my STORAGE SYSTEM."
+
+	para "That last #MON"
+	line "you sent filled"
+	cont "your BOX up."
+
+	para "You'll have to"
+	line "switch BOXES if"
+
+	para "you want to catch"
+	line "more #MON."
+
+	para "Bye now!"
+	done

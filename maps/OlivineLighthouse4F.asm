@@ -65,47 +65,59 @@ SailorKentScript: ; 0x5b50a
 ; 0x5b512
 
 SailorKentSeenText: ; 0x5b512
-	db $0, "JASMINE must be", $4f
-	db "worried sick about", $55
-	db "the #MON here.", $51
-	db "She won't even", $4f
-	db "smile these days.", $57
+	text "JASMINE must be"
+	line "worried sick about"
+	cont "the #MON here."
+
+	para "She won't even"
+	line "smile these days."
+	done
 ; 0x5b565
 
 SailorKentBeatenText: ; 0x5b565
-	db $0, "I can't manage a", $4f
-	db "smile either…", $57
+	text "I can't manage a"
+	line "smile either…"
+	done
 ; 0x5b584
 
 UnknownText_0x5b584: ; 0x5b584
-	db $0, "Speaking of sick,", $4f
-	db "I've heard there's", $51
-	db "a good PHARMACY in", $4f
-	db "CIANWOOD.", $57
+	text "Speaking of sick,"
+	line "I've heard there's"
+
+	para "a good PHARMACY in"
+	line "CIANWOOD."
+	done
 ; 0x5b5c5
 
 LassConnie1SeenText: ; 0x5b5c5
-	db $0, "JASMINE is this", $4f
-	db "city's GYM LEADER.", $51
-	db "I mean to bring", $4f
-	db "her back with me.", $51
-	db "Nobody had better", $4f
-	db "get in my way!", $57
+	text "JASMINE is this"
+	line "city's GYM LEADER."
+
+	para "I mean to bring"
+	line "her back with me."
+
+	para "Nobody had better"
+	line "get in my way!"
+	done
 ; 0x5b62b
 
 LassConnie1BeatenText: ; 0x5b62b
-	db $0, "Aaack! My #MON!", $57
+	text "Aaack! My #MON!"
+	done
 ; 0x5b63c
 
 UnknownText_0x5b63c: ; 0x5b63c
-	db $0, "Right. Anybody", $4f
-	db "would be worried", $55
-	db "if his or her own", $55
-	db "#MON were hurt.", $51
-	db "I'll pray for the", $4f
-	db "#MON here, so", $51
-	db "JASMINE can come", $4f
-	db "back to the GYM.", $57
+	text "Right. Anybody"
+	line "would be worried"
+	cont "if his or her own"
+	cont "#MON were hurt."
+
+	para "I'll pray for the"
+	line "#MON here, so"
+
+	para "JASMINE can come"
+	line "back to the GYM."
+	done
 ; 0x5b6c0
 
 OlivineLighthouse4F_MapEventHeader: ; 0x5b6c0

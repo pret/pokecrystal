@@ -461,198 +461,249 @@ MapRoute45SignpostItem1: ; 0x19e29e
 ; 0x19e2a1
 
 HikerErikSeenText: ; 0x19e2a1
-	db $0, "Be prepared for", $4f
-	db "anything!", $51
-	db "Let me see if your", $4f
-	db "#MON have been", $55
-	db "raised properly!", $57
+	text "Be prepared for"
+	line "anything!"
+
+	para "Let me see if your"
+	line "#MON have been"
+	cont "raised properly!"
+	done
 ; 0x19e2ef
 
 HikerErikBeatenText: ; 0x19e2ef
-	db $0, "Oh, I lost that!", $57
+	text "Oh, I lost that!"
+	done
 ; 0x19e301
 
 UnknownText_0x19e301: ; 0x19e301
-	db $0, "I'll head back to", $4f
-	db "BLACKTHORN's ICE", $51
-	db "PATH and train", $4f
-	db "some more.", $57
+	text "I'll head back to"
+	line "BLACKTHORN's ICE"
+
+	para "PATH and train"
+	line "some more."
+	done
 ; 0x19e33d
 
 HikerMichaelSeenText: ; 0x19e33d
-	db $0, "Yo! You're spunky!", $4f
-	db "But you know what?", $51
-	db "When it comes to", $4f
-	db "sheer spunkiness,", $55
-	db "I'm the man!", $57
+	text "Yo! You're spunky!"
+	line "But you know what?"
+
+	para "When it comes to"
+	line "sheer spunkiness,"
+	cont "I'm the man!"
+	done
 ; 0x19e392
 
 HikerMichaelBeatenText: ; 0x19e392
-	db $0, "My #MON weren't", $4f
-	db "spunky enough!", $57
+	text "My #MON weren't"
+	line "spunky enough!"
+	done
 ; 0x19e3b1
 
 UnknownText_0x19e3b1: ; 0x19e3b1
-	db $0, "Boy, do I love", $4f
-	db "HP UP! Mmmm, yum!", $51
-	db "I keep drinking my", $4f
-	db "#MON's!", $51
-	db "I can't help it!", $57
+	text "Boy, do I love"
+	line "HP UP! Mmmm, yum!"
+
+	para "I keep drinking my"
+	line "#MON's!"
+
+	para "I can't help it!"
+	done
 ; 0x19e3fd
 
 HikerParry3SeenText: ; 0x19e3fd
-	db $0, "My #MON are", $4f
-	db "power packed!", $57
+	text "My #MON are"
+	line "power packed!"
+	done
 ; 0x19e418
 
 HikerParry3BeatenText: ; 0x19e418
-	db $0, "Wahahah! I'm the", $4f
-	db "big loser!", $57
+	text "Wahahah! I'm the"
+	line "big loser!"
+	done
 ; 0x19e434
 
 UnknownText_0x19e434: ; 0x19e434
-	db $0, "I'm not much good", $4f
-	db "at thinking, see?", $51
-	db "So, I just plow", $4f
-	db "ahead with power!", $57
+	text "I'm not much good"
+	line "at thinking, see?"
+
+	para "So, I just plow"
+	line "ahead with power!"
+	done
 ; 0x19e47a
 
 HikerTimothySeenText: ; 0x19e47a
-	db $0, "Why do I climb", $4f
-	db "mountains?", $51
-	db "Because they're", $4f
-	db "there.", $51
-	db "Why do I train", $4f
-	db "#MON?", $51
-	db "Because they're", $4f
-	db "there!", $57
+	text "Why do I climb"
+	line "mountains?"
+
+	para "Because they're"
+	line "there."
+
+	para "Why do I train"
+	line "#MON?"
+
+	para "Because they're"
+	line "there!"
+	done
 ; 0x19e4d6
 
 HikerTimothyBeatenText: ; 0x19e4d6
-	db $0, "Losses…", $4f
-	db "They're there too!", $57
+	text "Losses…"
+	line "They're there too!"
+	done
 ; 0x19e4f1
 
 UnknownText_0x19e4f1: ; 0x19e4f1
-	db $0, "The best thing to", $4f
-	db "ever happen to me", $51
-	db "was discovering", $4f
-	db "#MON.", $57
+	text "The best thing to"
+	line "ever happen to me"
+
+	para "was discovering"
+	line "#MON."
+	done
 ; 0x19e52c
 
 UnknownText_0x19e52c: ; 0x19e52c
-	db $0, "I just can't find", $4f
-	db "a way to win!", $51
-	db "Keep it up!", $51
-	db "Oh, and take this", $4f
-	db "--it's the gift", $51
-	db "you couldn't take", $4f
-	db "when we last met.", $57
+	text "I just can't find"
+	line "a way to win!"
+
+	para "Keep it up!"
+
+	para "Oh, and take this"
+	line "--it's the gift"
+
+	para "you couldn't take"
+	line "when we last met."
+	done
 ; 0x19e59c
 
 BlackbeltKenji3SeenText: ; 0x19e59c
-	db $0, "I was training", $4f
-	db "here alone.", $51
-	db "Behold the fruits", $4f
-	db "of my labor!", $57
+	text "I was training"
+	line "here alone."
+
+	para "Behold the fruits"
+	line "of my labor!"
+	done
 ; 0x19e5d7
 
 BlackbeltKenji3BeatenText: ; 0x19e5d7
-	db $0, "Waaaargh!", $57
+	text "Waaaargh!"
+	done
 ; 0x19e5e2
 
 UnknownText_0x19e5e2: ; 0x19e5e2
-	db $0, "This calls for", $4f
-	db "extreme measures.", $51
-	db "I must take to the", $4f
-	db "hills and train in", $55
-	db "solitude.", $57
+	text "This calls for"
+	line "extreme measures."
+
+	para "I must take to the"
+	line "hills and train in"
+	cont "solitude."
+	done
 ; 0x19e634
 
 UnknownText_0x19e634: ; 0x19e634
-	db $0, "I'm going to train", $4f
-	db "a bit more before", $55
-	db "I break for lunch.", $57
+	text "I'm going to train"
+	line "a bit more before"
+	cont "I break for lunch."
+	done
 ; 0x19e66c
 
 UnknownText_0x19e66c: ; 0x19e66c
-	db $0, "We had plenty of", $4f
-	db "rest at lunch, so", $51
-	db "now we're all", $4f
-	db "ready to go again!", $51
-	db "We're going to", $4f
-	db "train again!", $57
+	text "We had plenty of"
+	line "rest at lunch, so"
+
+	para "now we're all"
+	line "ready to go again!"
+
+	para "We're going to"
+	line "train again!"
+	done
 ; 0x19e6cb
 
 CooltrainermRyanSeenText: ; 0x19e6cb
-	db $0, "What are your", $4f
-	db "thoughts on rais-", $55
-	db "ing #MON?", $57
+	text "What are your"
+	line "thoughts on rais-"
+	cont "ing #MON?"
+	done
 ; 0x19e6f6
 
 CooltrainermRyanBeatenText: ; 0x19e6f6
-	db $0, "You've won my", $4f
-	db "respect.", $57
+	text "You've won my"
+	line "respect."
+	done
 ; 0x19e70d
 
 UnknownText_0x19e70d: ; 0x19e70d
-	db $0, "I see you're rais-", $4f
-	db "ing your #MON", $55
-	db "with care.", $51
-	db "The bond you build", $4f
-	db "will save you in", $55
-	db "tough situations.", $57
+	text "I see you're rais-"
+	line "ing your #MON"
+	cont "with care."
+
+	para "The bond you build"
+	line "will save you in"
+	cont "tough situations."
+	done
 ; 0x19e76f
 
 CooltrainerfKellySeenText: ; 0x19e76f
-	db $0, "What is your", $4f
-	db "battle strategy?", $51
-	db "It is foolish to", $4f
-	db "use strong moves", $55
-	db "indiscriminately.", $57
+	text "What is your"
+	line "battle strategy?"
+
+	para "It is foolish to"
+	line "use strong moves"
+	cont "indiscriminately."
+	done
 ; 0x19e7c2
 
 CooltrainerfKellyBeatenText: ; 0x19e7c2
-	db $0, "Fine. I lost.", $57
+	text "Fine. I lost."
+	done
 ; 0x19e7d1
 
 UnknownText_0x19e7d1: ; 0x19e7d1
-	db $0, "I'm not in favor", $4f
-	db "of overly power-", $55
-	db "ful moves.", $51
-	db "I want to win, but", $4f
-	db "I also don't want", $55
-	db "to harm #MON.", $57
+	text "I'm not in favor"
+	line "of overly power-"
+	cont "ful moves."
+
+	para "I want to win, but"
+	line "I also don't want"
+	cont "to harm #MON."
+	done
 ; 0x19e830
 
 UnknownText_0x19e830: ; 0x19e830
-	db $0, "I'm really, really", $4f
-	db "tough!", $51
-	db "Is there anywhere", $4f
-	db "I can prove how", $55
-	db "tough I really am?", $57
+	text "I'm really, really"
+	line "tough!"
+
+	para "Is there anywhere"
+	line "I can prove how"
+	cont "tough I really am?"
+	done
 ; 0x19e87f
 
 UnknownText_0x19e87f: ; 0x19e87f
-	db $0, "I'm really, really", $4f
-	db "tough!", $57
+	text "I'm really, really"
+	line "tough!"
+	done
 ; 0x19e899
 
 UnknownText_0x19e899: ; 0x19e899
-	db $0, "I was tough at the", $4f
-	db "BATTLE TOWER…", $57
+	text "I was tough at the"
+	line "BATTLE TOWER…"
+	done
 ; 0x19e8bb
 
 UnknownText_0x19e8bb: ; 0x19e8bb
-	db $0, "Have you been to", $4f
-	db "the BATTLE TOWER?", $51
-	db "I never, ever lose", $4f
-	db "there, but…", $57
+	text "Have you been to"
+	line "the BATTLE TOWER?"
+
+	para "I never, ever lose"
+	line "there, but…"
+	done
 ; 0x19e8fe
 
 UnknownText_0x19e8fe: ; 0x19e8fe
-	db $0, "ROUTE 45", $4f
-	db "MOUNTAIN RD. AHEAD", $57
+	text "ROUTE 45"
+	line "MOUNTAIN RD. AHEAD"
+	done
 ; 0x19e91b
 
 Route45_MapEventHeader: ; 0x19e91b

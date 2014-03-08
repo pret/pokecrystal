@@ -31,43 +31,57 @@ MapGoldenrodDeptStore1FSignpost1Script: ; 0x55990
 ; 0x55993
 
 UnknownText_0x55993: ; 0x55993
-	db $0, "Welcome to GOLDEN-", $4f
-	db "ROD DEPT.STORE.", $57
+	text "Welcome to GOLDEN-"
+	line "ROD DEPT.STORE."
+	done
 ; 0x559b7
 
 UnknownText_0x559b7: ; 0x559b7
-	db $0, "The DEPT.STORE", $4f
-	db "has a decent se-", $55
-	db "lection.", $51
-	db "But some items", $4f
-	db "are only available", $51
-	db "as GAME CORNER", $4f
-	db "prizes.", $57
+	text "The DEPT.STORE"
+	line "has a decent se-"
+	cont "lection."
+
+	para "But some items"
+	line "are only available"
+
+	para "as GAME CORNER"
+	line "prizes."
+	done
 ; 0x55a1a
 
 UnknownText_0x55a1a: ; 0x55a1a
-	db $0, "I'm raring to shop", $4f
-	db "again today!", $57
+	text "I'm raring to shop"
+	line "again today!"
+	done
 ; 0x55a3a
 
 UnknownText_0x55a3a: ; 0x55a3a
-	db $0, "Mom's good at", $4f
-	db "bargain hunting.", $51
-	db "She always buys", $4f
-	db "stuff at lower", $55
-	db "prices.", $57
+	text "Mom's good at"
+	line "bargain hunting."
+
+	para "She always buys"
+	line "stuff at lower"
+	cont "prices."
+	done
 ; 0x55a80
 
 UnknownText_0x55a80: ; 0x55a80
-	db $0, "1F SERVICE COUNTER", $51
-	db "2F TRAINER'S", $4f
-	db "   MARKET", $51
-	db "3F BATTLE", $4f
-	db "   COLLECTION", $51
-	db "4F MEDICINE BOX", $51
-	db "5F TM CORNER", $51
-	db "6F TRANQUIL SQUARE", $51
-	db "ROOFTOP LOOKOUT", $57
+	text "1F SERVICE COUNTER"
+
+	para "2F TRAINER'S"
+	line "   MARKET"
+
+	para "3F BATTLE"
+	line "   COLLECTION"
+
+	para "4F MEDICINE BOX"
+
+	para "5F TM CORNER"
+
+	para "6F TRANQUIL SQUARE"
+
+	para "ROOFTOP LOOKOUT"
+	done
 ; 0x55b03
 
 GoldenrodDeptStore1F_MapEventHeader: ; 0x55b03

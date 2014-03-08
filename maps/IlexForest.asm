@@ -829,168 +829,220 @@ MovementData_0x6ef58: ; 0x6ef58
 ; 0x6ef5c
 
 UnknownText_0x6ef5c: ; 0x6ef5c
-	db $0, "Oh, man… My boss", $4f
-	db "is going to be", $55
-	db "steaming…", $51
-	db "The FARFETCH'D", $4f
-	db "that CUTS trees", $51
-	db "for charcoal took", $4f
-	db "off on me.", $51
-	db "I can't go looking", $4f
-	db "for it here in the", $55
-	db "ILEX FOREST.", $51
-	db "It's too big, dark", $4f
-	db "and scary for me…", $57
+	text "Oh, man… My boss"
+	line "is going to be"
+	cont "steaming…"
+
+	para "The FARFETCH'D"
+	line "that CUTS trees"
+
+	para "for charcoal took"
+	line "off on me."
+
+	para "I can't go looking"
+	line "for it here in the"
+	cont "ILEX FOREST."
+
+	para "It's too big, dark"
+	line "and scary for me…"
+	done
 ; 0x6f019
 
 UnknownText_0x6f019: ; 0x6f019
-	db $0, "Wow! Thanks a", $4f
-	db "whole bunch!", $51
-	db "My boss's #MON", $4f
-	db "won't obey me be-", $55
-	db "cause I don't have", $55
-	db "a BADGE.", $57
+	text "Wow! Thanks a"
+	line "whole bunch!"
+
+	para "My boss's #MON"
+	line "won't obey me be-"
+	cont "cause I don't have"
+	cont "a BADGE."
+	done
 ; 0x6f06f
 
 UnknownText_0x6f06f: ; 0x6f06f
-	db $0, "It's the missing", $4f
-	db "#MON!", $57
+	text "It's the missing"
+	line "#MON!"
+	done
 ; 0x6f086
 
 UnknownText_0x6f086: ; 0x6f086
-	db $0, "FARFETCH'D: Kwaa!", $57
+	text "FARFETCH'D: Kwaa!"
+	done
 ; 0x6f099
 
 UnknownText_0x6f099: ; 0x6f099
-	db $0, "Ah! My FARFETCH'D!", $51
-	db "You found it for", $4f
-	db "us, kid?", $51
-	db "Without it, we", $4f
-	db "wouldn't be able", $51
-	db "to CUT trees for", $4f
-	db "charcoal.", $51
-	db "Thanks, kid!", $51
-	db "Now, how can I", $4f
-	db "thank you…", $51
-	db "I know! Here, take", $4f
-	db "this.", $57
+	text "Ah! My FARFETCH'D!"
+
+	para "You found it for"
+	line "us, kid?"
+
+	para "Without it, we"
+	line "wouldn't be able"
+
+	para "to CUT trees for"
+	line "charcoal."
+
+	para "Thanks, kid!"
+
+	para "Now, how can I"
+	line "thank you…"
+
+	para "I know! Here, take"
+	line "this."
+	done
 ; 0x6f141
 
 UnknownText_0x6f141: ; 0x6f141
-	db $0, "That's the CUT HM.", $4f
-	db "Teach that to a", $51
-	db "#MON to clear", $4f
-	db "small trees.", $51
-	db "Of course, you", $4f
-	db "have to have the", $51
-	db "GYM BADGE from", $4f
-	db "AZALEA to use it.", $57
+	text "That's the CUT HM."
+	line "Teach that to a"
+
+	para "#MON to clear"
+	line "small trees."
+
+	para "Of course, you"
+	line "have to have the"
+
+	para "GYM BADGE from"
+	line "AZALEA to use it."
+	done
 ; 0x6f1c0
 
 UnknownText_0x6f1c0: ; 0x6f1c0
-	db $0, "Do you want to", $4f
-	db "apprentice as a", $51
-	db "charcoal maker", $4f
-	db "with me?", $51
-	db "You'll be first-", $4f
-	db "rate in ten years!", $57
+	text "Do you want to"
+	line "apprentice as a"
+
+	para "charcoal maker"
+	line "with me?"
+
+	para "You'll be first-"
+	line "rate in ten years!"
+	done
 ; 0x6f21b
 
 UnknownText_0x6f21b: ; 0x6f21b
-	db $0, "What am I doing?", $51
-	db "I'm shaking trees", $4f
-	db "using HEADBUTT.", $51
-	db "It's fun. Here,", $4f
-	db "you try it too!", $57
+	text "What am I doing?"
+
+	para "I'm shaking trees"
+	line "using HEADBUTT."
+
+	para "It's fun. Here,"
+	line "you try it too!"
+	done
 ; 0x6f26d
 
 UnknownText_0x6f26d: ; 0x6f26d
-	db $0, "Rattle trees with", $4f
-	db "HEADBUTT. Some-", $55
-	db "times, sleeping", $55
-	db "#MON fall out.", $57
+	text "Rattle trees with"
+	line "HEADBUTT. Some-"
+	cont "times, sleeping"
+	cont "#MON fall out."
+	done
 ; 0x6f2af
 
 UnknownText_0x6f2af: ; 0x6f2af
-	db $0, "Did something", $4f
-	db "happen to the", $55
-	db "forest's guardian?", $57
+	text "Did something"
+	line "happen to the"
+	cont "forest's guardian?"
+	done
 ; 0x6f2de
 
 UnknownText_0x6f2de: ; 0x6f2de
-	db $0, "ILEX FOREST is", $4f
-	db "so overgrown with", $51
-	db "trees that you", $4f
-	db "can't see the sky.", $51
-	db "Please watch out", $4f
-	db "for items that may", $55
-	db "have been dropped.", $57
+	text "ILEX FOREST is"
+	line "so overgrown with"
+
+	para "trees that you"
+	line "can't see the sky."
+
+	para "Please watch out"
+	line "for items that may"
+	cont "have been dropped."
+	done
 ; 0x6f358
 
 UnknownText_0x6f358: ; 0x6f358
-	db $0, "ILEX FOREST", $4f
-	db "SHRINE…", $51
-	db "It's in honor of", $4f
-	db "the forest's", $55
-	db "protector…", $57
+	text "ILEX FOREST"
+	line "SHRINE…"
+
+	para "It's in honor of"
+	line "the forest's"
+	cont "protector…"
+	done
 ; 0x6f394
 
 UnknownText_0x6f394: ; 0x6f394
-	db $0, "ILEX FOREST", $4f
-	db "SHRINE…", $51
-	db "It's in honor of", $4f
-	db "the forest's", $55
-	db "protector…", $51
-	db "Oh? What is this?", $51
-	db "It's a hole.", $4f
-	db "It looks like the", $51
-	db "GS BALL would fit", $4f
-	db "inside it.", $51
-	db "Want to put the GS", $4f
-	db "BALL here?", $57
+	text "ILEX FOREST"
+	line "SHRINE…"
+
+	para "It's in honor of"
+	line "the forest's"
+	cont "protector…"
+
+	para "Oh? What is this?"
+
+	para "It's a hole."
+	line "It looks like the"
+
+	para "GS BALL would fit"
+	line "inside it."
+
+	para "Want to put the GS"
+	line "BALL here?"
+	done
 ; 0x6f43b
 
 UnknownText_0x6f43b: ; 0x6f43b
-	db $0, $52, " put in the", $4f
-	db "GS BALL.", $57
+	text $52, " put in the"
+	line "GS BALL."
+	done
 ; 0x6f452
 
 UnknownText_0x6f452: ; 0x6f452
-	db $0, "Whew, wasn't that", $4f
-	db "something!", $51
-	db $52, ", that was", $4f
-	db "fantastic. Thanks!", $51
-	db "The legends about", $4f
-	db "that SHRINE were", $55
-	db "real after all.", $51
-	db "I feel inspired by", $4f
-	db "what I just saw.", $51
-	db "It motivates me to", $4f
-	db "make better BALLS!", $51
-	db "I'm going!", $57
+	text "Whew, wasn't that"
+	line "something!"
+
+	para $52, ", that was"
+	line "fantastic. Thanks!"
+
+	para "The legends about"
+	line "that SHRINE were"
+	cont "real after all."
+
+	para "I feel inspired by"
+	line "what I just saw."
+
+	para "It motivates me to"
+	line "make better BALLS!"
+
+	para "I'm going!"
+	done
 ; 0x6f515
 
 Bug_catcherWayneSeenText: ; 0x6f515
-	db $0, "Don't sneak up on", $4f
-	db "me like that!", $51
-	db "You frightened a", $4f
-	db "#MON away!", $57
+	text "Don't sneak up on"
+	line "me like that!"
+
+	para "You frightened a"
+	line "#MON away!"
+	done
 ; 0x6f551
 
 Bug_catcherWayneBeatenText: ; 0x6f551
-	db $0, "I hadn't seen that", $4f
-	db "#MON before…", $57
+	text "I hadn't seen that"
+	line "#MON before…"
+	done
 ; 0x6f571
 
 UnknownText_0x6f571: ; 0x6f571
-	db $0, "A #MON I've", $4f
-	db "never seen before", $51
-	db "fell out of the", $4f
-	db "tree when I used", $55
-	db "HEADBUTT.", $51
-	db "I ought to use", $4f
-	db "HEADBUTT in other", $55
-	db "places too.", $57
+	text "A #MON I've"
+	line "never seen before"
+
+	para "fell out of the"
+	line "tree when I used"
+	cont "HEADBUTT."
+
+	para "I ought to use"
+	line "HEADBUTT in other"
+	cont "places too."
+	done
 ; 0x6f5e7
 
 IlexForest_MapEventHeader: ; 0x6f5e7

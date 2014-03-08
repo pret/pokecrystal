@@ -490,216 +490,279 @@ MovementData_0x194262: ; 0x194262
 ; 0x19426b
 
 UnknownText_0x19426b: ; 0x19426b
-	db $0, "It's a weird tree.", $4f
-	db "Use SQUIRTBOTTLE?", $57
+	text "It's a weird tree."
+	line "Use SQUIRTBOTTLE?"
+	done
 ; 0x194290
 
 UnknownText_0x194290: ; 0x194290
-	db $0, $52, " used the", $4f
-	db "SQUIRTBOTTLE.", $57
+	text $52, " used the"
+	line "SQUIRTBOTTLE."
+	done
 ; 0x1942aa
 
 UnknownText_0x1942aa: ; 0x1942aa
-	db $0, "The weird tree", $4f
-	db "doesn't like the", $55
-	db "SQUIRTBOTTLE!", $51
-	db "The weird tree", $4f
-	db "attacked!", $57
+	text "The weird tree"
+	line "doesn't like the"
+	cont "SQUIRTBOTTLE!"
+
+	para "The weird tree"
+	line "attacked!"
+	done
 ; 0x1942f1
 
 UnknownText_0x1942f1: ; 0x1942f1
-	db $0, "I'm the FLOWER", $4f
-	db "SHOP's FLORIA!", $51
-	db "Listen, listen!", $51
-	db "When I sprinkled", $4f
-	db "water on that", $51
-	db "wiggly tree, it", $4f
-	db "jumped right up!", $51
-	db "It just has to be", $4f
-	db "a #MON.", $51
-	db "I bet it would be", $4f
-	db "shocked out of its", $51
-	db "disguise if you", $4f
-	db "soaked it!", $51
-	db "I know! I'll tell", $4f
-	db "my sis and borrow", $55
-	db "her water bottle!", $57
+	text "I'm the FLOWER"
+	line "SHOP's FLORIA!"
+
+	para "Listen, listen!"
+
+	para "When I sprinkled"
+	line "water on that"
+
+	para "wiggly tree, it"
+	line "jumped right up!"
+
+	para "It just has to be"
+	line "a #MON."
+
+	para "I bet it would be"
+	line "shocked out of its"
+
+	para "disguise if you"
+	line "soaked it!"
+
+	para "I know! I'll tell"
+	line "my sis and borrow"
+	cont "her water bottle!"
+	done
 ; 0x1943ed
 
 UnknownText_0x1943ed: ; 0x1943ed
-	db $0, "When I told my sis", $4f
-	db "about the jiggly", $51
-	db "tree, she said", $4f
-	db "it's dangerous.", $51
-	db "If I beat WHITNEY,", $4f
-	db "I wonder if she'll", $51
-	db "lend me her water", $4f
-	db "bottle…", $57
+	text "When I told my sis"
+	line "about the jiggly"
+
+	para "tree, she said"
+	line "it's dangerous."
+
+	para "If I beat WHITNEY,"
+	line "I wonder if she'll"
+
+	para "lend me her water"
+	line "bottle…"
+	done
 ; 0x19446f
 
 UnknownText_0x19446f: ; 0x19446f
-	db $0, "Wa-hey!", $51
-	db "I was going to", $4f
-	db "snap that tree", $51
-	db "with my straight-", $4f
-	db "arm punch.", $51
-	db "But I couldn't!", $4f
-	db "I'm a failure!", $57
+	text "Wa-hey!"
+
+	para "I was going to"
+	line "snap that tree"
+
+	para "with my straight-"
+	line "arm punch."
+
+	para "But I couldn't!"
+	line "I'm a failure!"
+	done
 ; 0x1944d0
 
 UnknownText_0x1944d0: ; 0x1944d0
-	db $0, "Did you clear that", $4f
-	db "wretched tree?", $51
-	db "I'm impressed!", $4f
-	db "I want you to", $55
-	db "have this.", $57
+	text "Did you clear that"
+	line "wretched tree?"
+
+	para "I'm impressed!"
+	line "I want you to"
+	cont "have this."
+	done
 ; 0x19451a
 
 UnknownText_0x19451a: ; 0x19451a
-	db $0, $52, " received", $4f
-	db "TM08.", $57
+	text $52, " received"
+	line "TM08."
+	done
 ; 0x19452c
 
 UnknownText_0x19452c: ; 0x19452c
-	db $0, "That happens to be", $4f
-	db "ROCK SMASH.", $51
-	db "You can shatter", $4f
-	db "rocks with just a", $51
-	db "single well-aimed", $4f
-	db "smack.", $51
-	db "If any rocks are", $4f
-	db "in your way, just", $55
-	db "smash 'em up!", $57
+	text "That happens to be"
+	line "ROCK SMASH."
+
+	para "You can shatter"
+	line "rocks with just a"
+
+	para "single well-aimed"
+	line "smack."
+
+	para "If any rocks are"
+	line "in your way, just"
+	cont "smash 'em up!"
+	done
 ; 0x1945b8
 
 UnknownText_0x1945b8: ; 0x1945b8
-	db $0, "An odd tree is", $4f
-	db "blocking the way", $55
-	db "to GOLDENROD CITY.", $51
-	db "I wanted to go see", $4f
-	db "the huge #MON", $51
-	db "CENTER they just", $4f
-	db "opened…", $57
+	text "An odd tree is"
+	line "blocking the way"
+	cont "to GOLDENROD CITY."
+
+	para "I wanted to go see"
+	line "the huge #MON"
+
+	para "CENTER they just"
+	line "opened…"
+	done
 ; 0x194626
 
 UnknownText_0x194626: ; 0x194626
-	db $0, "An odd tree is", $4f
-	db "blocking the way", $55
-	db "to GOLDENROD CITY.", $51
-	db "It's preventing", $4f
-	db "me from shopping.", $51
-	db "Something should", $4f
-	db "be done about it.", $57
+	text "An odd tree is"
+	line "blocking the way"
+	cont "to GOLDENROD CITY."
+
+	para "It's preventing"
+	line "me from shopping."
+
+	para "Something should"
+	line "be done about it."
+	done
 ; 0x19469e
 
 UnknownText_0x19469e: ; 0x19469e
-	db $0, "That odd tree dis-", $4f
-	db "appeared without a", $55
-	db "trace.", $51
-	db "Oh! That tree was", $4f
-	db "really a #MON?", $57
+	text "That odd tree dis-"
+	line "appeared without a"
+	cont "trace."
+
+	para "Oh! That tree was"
+	line "really a #MON?"
+	done
 ; 0x1946ed
 
 PsychicMarkSeenText: ; 0x1946ed
-	db $0, "I'm going to read", $4f
-	db "your thoughts!", $57
+	text "I'm going to read"
+	line "your thoughts!"
+	done
 ; 0x19470e
 
 PsychicMarkBeatenText: ; 0x19470e
-	db $0, "I misread you!", $57
+	text "I misread you!"
+	done
 ; 0x19471e
 
 UnknownText_0x19471e: ; 0x19471e
-	db $0, "I'd be strong if", $4f
-	db "only I could tell", $51
-	db "what my opponent", $4f
-	db "was thinking.", $57
+	text "I'd be strong if"
+	line "only I could tell"
+
+	para "what my opponent"
+	line "was thinking."
+	done
 ; 0x194760
 
 SchoolboyAlan1SeenText: ; 0x194760
-	db $0, "Thanks to my stud-", $4f
-	db "ies, I'm ready for", $55
-	db "any #MON!", $57
+	text "Thanks to my stud-"
+	line "ies, I'm ready for"
+	cont "any #MON!"
+	done
 ; 0x194790
 
 SchoolboyAlan1BeatenText: ; 0x194790
-	db $0, "Oops! Computation", $4f
-	db "error?", $57
+	text "Oops! Computation"
+	line "error?"
+	done
 ; 0x1947aa
 
 UnknownText_0x1947aa: ; 0x1947aa
-	db $0, "Darn. I study five", $4f
-	db "hours a day too.", $51
-	db "There's more to", $4f
-	db "learning than just", $55
-	db "reading books.", $57
+	text "Darn. I study five"
+	line "hours a day too."
+
+	para "There's more to"
+	line "learning than just"
+	cont "reading books."
+	done
 ; 0x194800
 
 UnknownText_0x194800: ; 0x194800
-	db $0, "ARTHUR: Who are", $4f
-	db "you?", $51
-	db "I'm ARTHUR of", $4f
-	db "Thursday.", $57
+	text "ARTHUR: Who are"
+	line "you?"
+
+	para "I'm ARTHUR of"
+	line "Thursday."
+	done
 ; 0x19482d
 
 UnknownText_0x19482d: ; 0x19482d
-	db $0, "Here. You can have", $4f
-	db "this.", $57
+	text "Here. You can have"
+	line "this."
+	done
 ; 0x194847
 
 UnknownText_0x194847: ; 0x194847
-	db $0, "ARTHUR: A #MON", $4f
-	db "that uses rock-", $51
-	db "type moves should", $4f
-	db "hold on to that.", $51
-	db "It pumps up rock-", $4f
-	db "type attacks.", $57
+	text "ARTHUR: A #MON"
+	line "that uses rock-"
+
+	para "type moves should"
+	line "hold on to that."
+
+	para "It pumps up rock-"
+	line "type attacks."
+	done
 ; 0x1948aa
 
 UnknownText_0x1948aa: ; 0x1948aa
-	db $0, "ARTHUR: I'm ARTHUR", $4f
-	db "of Thursday. I'm", $51
-	db "the second son out", $4f
-	db "of seven children.", $57
+	text "ARTHUR: I'm ARTHUR"
+	line "of Thursday. I'm"
+
+	para "the second son out"
+	line "of seven children."
+	done
 ; 0x1948f3
 
 UnknownText_0x1948f3: ; 0x1948f3
-	db $0, "ARTHUR: Today's", $4f
-	db "not Thursday. How", $55
-	db "disappointing.", $57
+	text "ARTHUR: Today's"
+	line "not Thursday. How"
+	cont "disappointing."
+	done
 ; 0x194924
 
 UnknownText_0x194924: ; 0x194924
-	db $0, "ROUTE 36", $57
+	text "ROUTE 36"
+	done
 ; 0x19492e
 
 UnknownText_0x19492e: ; 0x19492e
-	db $0, "RUINS OF ALPH", $4f
-	db "NORTH ENTRANCE", $57
+	text "RUINS OF ALPH"
+	line "NORTH ENTRANCE"
+	done
 ; 0x19494c
 
 UnknownText_0x19494c: ; 0x19494c
-	db $0, "TRAINER TIPS", $51
-	db "#MON stats", $4f
-	db "vary--even within", $55
-	db "the same species.", $51
-	db "Their stats may be", $4f
-	db "similar at first.", $51
-	db "However, differ-", $4f
-	db "ences will become", $51
-	db "pronounced as the", $4f
-	db "#MON grow.", $57
+	text "TRAINER TIPS"
+
+	para "#MON stats"
+	line "vary--even within"
+	cont "the same species."
+
+	para "Their stats may be"
+	line "similar at first."
+
+	para "However, differ-"
+	line "ences will become"
+
+	para "pronounced as the"
+	line "#MON grow."
+	done
 ; 0x1949ee
 
 UnknownText_0x1949ee: ; 0x1949ee
-	db $0, "TRAINER TIPS", $51
-	db "Use DIG to return", $4f
-	db "to the entrance of", $55
-	db "any place.", $51
-	db "It is convenient", $4f
-	db "for exploring", $51
-	db "caves and other", $4f
-	db "landmarks.", $57
+	text "TRAINER TIPS"
+
+	para "Use DIG to return"
+	line "to the entrance of"
+	cont "any place."
+
+	para "It is convenient"
+	line "for exploring"
+
+	para "caves and other"
+	line "landmarks."
+	done
 ; 0x194a66
 
 Route36_MapEventHeader: ; 0x194a66

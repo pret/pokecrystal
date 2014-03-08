@@ -36,66 +36,89 @@ RocketScript_0x1adbfa: ; 0x1adbfa
 ; 0x1adc2e
 
 UnknownText_0x1adc2e: ; 0x1adc2e
-	db $0, "Hey, kid! Me am a", $4f
-	db "TEAM ROCKET member", $55
-	db "kind of guy!", $51
-	db "Come from another", $4f
-	db "country, a trainer", $55
-	db "number one, me!", $51
-	db "Think I did, if", $4f
-	db "stop the energy,", $51
-	db "be big panic for", $4f
-	db "here people!", $51
-	db "Secret it is my", $4f
-	db "mission, so tell", $55
-	db "you I not!", $51
-	db "But! If win you do", $4f
-	db "versus me, a man I", $51
-	db "be and mine secret", $4f
-	db "to you I tell.", $51
-	db "Hey, kid! Battle", $4f
-	db "begin we do!", $57
+	text "Hey, kid! Me am a"
+	line "TEAM ROCKET member"
+	cont "kind of guy!"
+
+	para "Come from another"
+	line "country, a trainer"
+	cont "number one, me!"
+
+	para "Think I did, if"
+	line "stop the energy,"
+
+	para "be big panic for"
+	line "here people!"
+
+	para "Secret it is my"
+	line "mission, so tell"
+	cont "you I not!"
+
+	para "But! If win you do"
+	line "versus me, a man I"
+
+	para "be and mine secret"
+	line "to you I tell."
+
+	para "Hey, kid! Battle"
+	line "begin we do!"
+	done
 ; 0x1add67
 
 UnknownText_0x1add67: ; 0x1add67
-	db $0, "Ayieeeh! No, no,", $4f
-	db "no, believe it I", $55
-	db "can't!", $51
-	db "Strong very much", $4f
-	db "be you! Match I am", $55
-	db "not to you!", $57
+	text "Ayieeeh! No, no,"
+	line "no, believe it I"
+	cont "can't!"
+
+	para "Strong very much"
+	line "be you! Match I am"
+	cont "not to you!"
+	done
 ; 0x1addc0
 
 UnknownText_0x1addc0: ; 0x1addc0
-	db $0, "OK. Tell you mine", $4f
-	db "secret will I.", $51
-	db "MACHINE PART steal", $4f
-	db "by me, hide it I", $51
-	db "did in GYM of the", $4f
-	db "CERULEAN.", $51
-	db "Inside water put", $4f
-	db "it I did. Look for", $51
-	db "in water center of", $4f
-	db "GYM at.", $51
-	db "But you forget me", $4f
-	db "not!", $51
-	db "Beat you for sure", $4f
-	db "will TEAM ROCKET.", $51
-	db "Come from JOHTO", $4f
-	db "will they, mine", $51
-	db "friends, yes. Will", $4f
-	db "revenge they are.", $57
+	text "OK. Tell you mine"
+	line "secret will I."
+
+	para "MACHINE PART steal"
+	line "by me, hide it I"
+
+	para "did in GYM of the"
+	line "CERULEAN."
+
+	para "Inside water put"
+	line "it I did. Look for"
+
+	para "in water center of"
+	line "GYM at."
+
+	para "But you forget me"
+	line "not!"
+
+	para "Beat you for sure"
+	line "will TEAM ROCKET."
+
+	para "Come from JOHTO"
+	line "will they, mine"
+
+	para "friends, yes. Will"
+	line "revenge they are."
+	done
 ; 0x1adee1
 
 UnknownText_0x1adee1: ; 0x1adee1
-	db $0, "…", $51
-	db "You say what? TEAM", $4f
-	db "ROCKET bye-bye a", $51
-	db "go-go? Broken it", $4f
-	db "is says you?", $51
-	db "Oh, no! Should I", $4f
-	db "do what now on", $55
-	db "from, me?", $57
+	text "…"
+
+	para "You say what? TEAM"
+	line "ROCKET bye-bye a"
+
+	para "go-go? Broken it"
+	line "is says you?"
+
+	para "Oh, no! Should I"
+	line "do what now on"
+	cont "from, me?"
+	done
 ; 0x1adf50
 
 Route24_MapEventHeader: ; 0x1adf50

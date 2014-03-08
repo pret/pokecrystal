@@ -22,23 +22,30 @@ RockerScript_0x7eb26: ; 0x7eb26
 ; 0x7eb29
 
 UnknownText_0x7eb29: ; 0x7eb29
-	db $0, "REPEL is a neces-", $4f
-	db "sity if you are", $51
-	db "going to explore a", $4f
-	db "cave.", $51
-	db "Even though I like", $4f
-	db "exploring, I still", $51
-	db "haven't made it to", $4f
-	db "all the caves.", $57
+	text "REPEL is a neces-"
+	line "sity if you are"
+
+	para "going to explore a"
+	line "cave."
+
+	para "Even though I like"
+	line "exploring, I still"
+
+	para "haven't made it to"
+	line "all the caves."
+	done
 ; 0x7ebac
 
 UnknownText_0x7ebac: ; 0x7ebac
-	db $0, "I heard about a", $4f
-	db "craftsman who", $51
-	db "makes custom BALLS", $4f
-	db "in the JOHTO town", $51
-	db "of AZALEA. I wish", $4f
-	db "I had some.", $57
+	text "I heard about a"
+	line "craftsman who"
+
+	para "makes custom BALLS"
+	line "in the JOHTO town"
+
+	para "of AZALEA. I wish"
+	line "I had some."
+	done
 ; 0x7ec0e
 
 LavenderMart_MapEventHeader: ; 0x7ec0e

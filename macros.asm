@@ -1,4 +1,16 @@
-; rgbds macros
+
+text   EQUS "db $00," ; Start writing text.
+next   EQUS "db $4e," ; Move a line down.
+line   EQUS "db $4f," ; Start writing at the bottom line.
+para   EQUS "db $51," ; Start a new paragraph.
+cont   EQUS "db $55," ; Scroll to the next line.
+done   EQUS "db $57"  ; End a text box.
+prompt EQUS "db $58"  ; Prompt the player to end a text box (initiating some other event).
+
+; Pokedex text commands are only used with pokered.
+; They are included for compatibility.
+page   EQUS "db $50,"     ; Start a new Pokedex page.
+dex    EQUS "db $e8, $50" ; End a Pokedex entry.
 
 
 ; macros require rst vectors to be defined

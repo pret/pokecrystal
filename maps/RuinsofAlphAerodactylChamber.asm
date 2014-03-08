@@ -130,36 +130,43 @@ MovementData_0x58e4d: ; 0x58e4d
 ; 0x58e4f
 
 UnknownText_0x58e4f: ; 0x58e4f
-	db $0, "Patterns appeared", $4f
-	db "on the walls…", $57
+	text "Patterns appeared"
+	line "on the walls…"
+	done
 ; 0x58e70
 
 ; possibly unused.. again?
 UnknownText_0x58e70: ; 0x58e70
-	db $0, "It's UNOWN text!", $57
+	text "It's UNOWN text!"
+	done
 ; 0x58e81
 
 UnknownText_0x58e81: ; 0x58e81
-	db $0, "Patterns appeared", $4f
-	db "on the walls…", $57
+	text "Patterns appeared"
+	line "on the walls…"
+	done
 ; 0x58ea2
 
 UnknownText_0x58ea2: ; 0x58ea2
-	db $0, "There's a big hole", $4f
-	db "in the wall!", $57
+	text "There's a big hole"
+	line "in the wall!"
+	done
 ; 0x58ec2
 
 UnknownText_0x58ec2: ; 0x58ec2
-	db $0, "It's a replica of", $4f
-	db "an ancient #-", $55
-	db "MON.", $57
+	text "It's a replica of"
+	line "an ancient #-"
+	cont "MON."
+	done
 ; 0x58ee7
 
 UnknownText_0x58ee7: ; 0x58ee7
-	db $0, "This flying #-", $4f
-	db "MON attacked its", $51
-	db "prey with saw-like", $4f
-	db "fangs.", $57
+	text "This flying #-"
+	line "MON attacked its"
+
+	para "prey with saw-like"
+	line "fangs."
+	done
 ; 0x58f22
 
 RuinsofAlphAerodactylChamber_MapEventHeader: ; 0x58f22

@@ -103,91 +103,116 @@ UnknownScript_0x9c1b2: ; 0x9c1b2
 ; 0x9c1b9
 
 UnknownText_0x9c1b9: ; 0x9c1b9
-	db $0, "…Thank you for", $4f
-	db "your help at the", $55
-	db "LIGHTHOUSE…", $51
-	db "But this is dif-", $4f
-	db "ferent. Please", $51
-	db "allow me to intro-", $4f
-	db "duce myself.", $51
-	db "I am JASMINE, a", $4f
-	db "GYM LEADER. I use", $55
-	db "the steel-type.", $51
-	db "…Do you know about", $4f
-	db "the steel-type?", $51
-	db "It's a type that", $4f
-	db "was only recently", $55
-	db "discovered.", $51
-	db "…Um… May I begin?", $57
+	text "…Thank you for"
+	line "your help at the"
+	cont "LIGHTHOUSE…"
+
+	para "But this is dif-"
+	line "ferent. Please"
+
+	para "allow me to intro-"
+	line "duce myself."
+
+	para "I am JASMINE, a"
+	line "GYM LEADER. I use"
+	cont "the steel-type."
+
+	para "…Do you know about"
+	line "the steel-type?"
+
+	para "It's a type that"
+	line "was only recently"
+	cont "discovered."
+
+	para "…Um… May I begin?"
+	done
 ; 0x9c2bb
 
 UnknownText_0x9c2bb: ; 0x9c2bb
-	db $0, "…You are a better", $4f
-	db "trainer than me,", $51
-	db "in both skill and", $4f
-	db "kindness.", $51
-	db "In accordance with", $4f
-	db "LEAGUE rules, I", $51
-	db "confer upon you", $4f
-	db "this BADGE.", $57
+	text "…You are a better"
+	line "trainer than me,"
+
+	para "in both skill and"
+	line "kindness."
+
+	para "In accordance with"
+	line "LEAGUE rules, I"
+
+	para "confer upon you"
+	line "this BADGE."
+	done
 ; 0x9c33a
 
 UnknownText_0x9c33a: ; 0x9c33a
-	db $0, $52, " received", $4f
-	db "MINERALBADGE.", $57
+	text $52, " received"
+	line "MINERALBADGE."
+	done
 ; 0x9c354
 
 UnknownText_0x9c354: ; 0x9c354
-	db $0, "MINERALBADGE", $4f
-	db "raises #MON's", $55
-	db "DEFENSE.", $51
-	db "…Um… Please take", $4f
-	db "this too…", $57
+	text "MINERALBADGE"
+	line "raises #MON's"
+	cont "DEFENSE."
+
+	para "…Um… Please take"
+	line "this too…"
+	done
 ; 0x9c393
 
 UnknownText_0x9c393: ; 0x9c393
-	db $0, $52, " received", $4f
-	db "TM09.", $57
+	text $52, " received"
+	line "TM09."
+	done
 ; 0x9c3a5
 
 UnknownText_0x9c3a5: ; 0x9c3a5
-	db $0, "…You could use", $4f
-	db "that TM to teach", $55
-	db "IRON TAIL.", $57
+	text "…You could use"
+	line "that TM to teach"
+	cont "IRON TAIL."
+	done
 ; 0x9c3d1
 
 UnknownText_0x9c3d1: ; 0x9c3d1
-	db $0, "Um… I don't know", $4f
-	db "how to say this,", $55
-	db "but good luck…", $57
+	text "Um… I don't know"
+	line "how to say this,"
+	cont "but good luck…"
+	done
 ; 0x9c402
 
 OlivineGymGuyText: ; 0x9c402
-	db $0, "JASMINE uses the", $4f
-	db "newly discovered", $55
-	db "steel-type.", $51
-	db "I don't know very", $4f
-	db "much about it.", $57
+	text "JASMINE uses the"
+	line "newly discovered"
+	cont "steel-type."
+
+	para "I don't know very"
+	line "much about it."
+	done
 ; 0x9c451
 
 OlivineGymGuyWinText: ; 0x9c451
-	db $0, "That was awesome.", $51
-	db "The steel-type,", $4f
-	db "huh?", $51
-	db "That was a close", $4f
-	db "encounter of an", $55
-	db "unknown kind!", $57
+	text "That was awesome."
+
+	para "The steel-type,"
+	line "huh?"
+
+	para "That was a close"
+	line "encounter of an"
+	cont "unknown kind!"
+	done
 ; 0x9c4a8
 
 OlivineGymGuyPreText: ; 0x9c4a8
-	db $0, "JASMINE, the GYM", $4f
-	db "LEADER, is at the", $55
-	db "LIGHTHOUSE.", $51
-	db "She's been tending", $4f
-	db "to a sick #MON.", $51
-	db "A strong trainer", $4f
-	db "has to be compas-", $55
-	db "sionate.", $57
+	text "JASMINE, the GYM"
+	line "LEADER, is at the"
+	cont "LIGHTHOUSE."
+
+	para "She's been tending"
+	line "to a sick #MON."
+
+	para "A strong trainer"
+	line "has to be compas-"
+	cont "sionate."
+	done
 ; 0x9c526
 
 OlivineGym_MapEventHeader: ; 0x9c526

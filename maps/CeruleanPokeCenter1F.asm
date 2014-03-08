@@ -25,34 +25,44 @@ GymGuyScript_0x18821e: ; 0x18821e
 ; 0x188221
 
 UnknownText_0x188221: ; 0x188221
-	db $0, "For battles, I'd", $4f
-	db "much rather use", $51
-	db "#MON I've been", $4f
-	db "raising, even if", $51
-	db "they're weaker", $4f
-	db "than some newly", $55
-	db "caught #MON.", $57
+	text "For battles, I'd"
+	line "much rather use"
+
+	para "#MON I've been"
+	line "raising, even if"
+
+	para "they're weaker"
+	line "than some newly"
+	cont "caught #MON."
+	done
 ; 0x18828c
 
 UnknownText_0x18828c: ; 0x18828c
-	db $0, "Do you battle by", $4f
-	db "mobile phone?", $51
-	db "If time runs out", $4f
-	db "during a battle,", $51
-	db "waiting to see who", $4f
-	db "won is really", $55
-	db "nerve wracking.", $57
+	text "Do you battle by"
+	line "mobile phone?"
+
+	para "If time runs out"
+	line "during a battle,"
+
+	para "waiting to see who"
+	line "won is really"
+	cont "nerve wracking."
+	done
 ; 0x1882ff
 
 UnknownText_0x1882ff: ; 0x1882ff
-	db $0, "The MAGNET TRAIN", $4f
-	db "travels at over", $51
-	db "340 mph. It goes", $4f
-	db "between KANTO and", $51
-	db "JOHTO in almost no", $4f
-	db "time at all.", $51
-	db "It really makes", $4f
-	db "JOHTO accessible.", $57
+	text "The MAGNET TRAIN"
+	line "travels at over"
+
+	para "340 mph. It goes"
+	line "between KANTO and"
+
+	para "JOHTO in almost no"
+	line "time at all."
+
+	para "It really makes"
+	line "JOHTO accessible."
+	done
 ; 0x188386
 
 CeruleanPokeCenter1F_MapEventHeader: ; 0x188386

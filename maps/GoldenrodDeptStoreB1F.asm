@@ -85,32 +85,41 @@ ItemFragment_0x7d7c9: ; 0x7d7c9
 ; 0x7d7cb
 
 UnknownText_0x7d7cb: ; 0x7d7cb
-	db $0, "Hey, kid! You're", $4f
-	db "holding us up!", $51
-	db "Our policy is to", $4f
-	db "work behind the", $51
-	db "scenes where no", $4f
-	db "one can see us!", $57
+	text "Hey, kid! You're"
+	line "holding us up!"
+
+	para "Our policy is to"
+	line "work behind the"
+
+	para "scenes where no"
+	line "one can see us!"
+	done
 ; 0x7d82c
 
 UnknownText_0x7d82c: ; 0x7d82c
-	db $0, "I lose my passion", $4f
-	db "for work if some-", $55
-	db "one's watching.", $51
-	db "Come on, kid,", $4f
-	db "scoot!", $57
+	text "I lose my passion"
+	line "for work if some-"
+	cont "one's watching."
+
+	para "Come on, kid,"
+	line "scoot!"
+	done
 ; 0x7d875
 
 UnknownText_0x7d875: ; 0x7d875
-	db $0, "Oohah! Oohah!", $51
-	db "The stuff on the", $4f
-	db "ground's junk.", $51
-	db "Take it if you", $4f
-	db "want it!", $57
+	text "Oohah! Oohah!"
+
+	para "The stuff on the"
+	line "ground's junk."
+
+	para "Take it if you"
+	line "want it!"
+	done
 ; 0x7d8bb
 
 UnknownText_0x7d8bb: ; 0x7d8bb
-	db $0, "MACHOKE: Maaacho!", $57
+	text "MACHOKE: Maaacho!"
+	done
 ; 0x7d8ce
 
 GoldenrodDeptStoreB1F_MapEventHeader: ; 0x7d8ce

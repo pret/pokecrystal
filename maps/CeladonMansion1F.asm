@@ -46,31 +46,38 @@ MapCeladonMansion1FSignpost2Script: ; 0x71413
 ; 0x71416
 
 UnknownText_0x71416: ; 0x71416
-	db $0, "My dear #MON", $4f
-	db "keep me company,", $51
-	db "so I don't ever", $4f
-	db "feel lonely.", $51
-	db "MEOWTH even brings", $4f
-	db "money home.", $57
+	text "My dear #MON"
+	line "keep me company,"
+
+	para "so I don't ever"
+	line "feel lonely."
+
+	para "MEOWTH even brings"
+	line "money home."
+	done
 ; 0x71470
 
 UnknownText_0x71470: ; 0x71470
-	db $0, "MEOWTH: Meow!", $57
+	text "MEOWTH: Meow!"
+	done
 ; 0x7147f
 
 UnknownText_0x7147f: ; 0x7147f
-	db $0, "CLEFAIRY: Clef", $4f
-	db "cleff!", $57
+	text "CLEFAIRY: Clef"
+	line "cleff!"
+	done
 ; 0x71496
 
 UnknownText_0x71496: ; 0x71496
-	db $0, "NIDORAN: Kya", $4f
-	db "kyaoo!", $57
+	text "NIDORAN: Kya"
+	line "kyaoo!"
+	done
 ; 0x714ab
 
 UnknownText_0x714ab: ; 0x714ab
-	db $0, "CELADON MANSION", $4f
-	db "MANAGER'S SUITE", $57
+	text "CELADON MANSION"
+	line "MANAGER'S SUITE"
+	done
 ; 0x714cc
 
 CeladonMansion1F_MapEventHeader: ; 0x714cc

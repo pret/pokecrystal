@@ -453,139 +453,175 @@ MovementData_0x1a0a69: ; 0x1a0a69
 ; 0x1a0a6b
 
 UnknownText_0x1a0a6b: ; 0x1a0a6b
-	db $0, "Hey!", $57
+	text "Hey!"
+	done
 ; 0x1a0a71
 
 UnknownText_0x1a0a71: ; 0x1a0a71
-	db $0, "Do you know what", $4f
-	db "you just did?", $51
-	db "You've taken your", $4f
-	db "first step into", $55
-	db "KANTO.", $51
-	db "Check your #-", $4f
-	db "GEAR MAP and see.", $57
+	text "Do you know what"
+	line "you just did?"
+
+	para "You've taken your"
+	line "first step into"
+	cont "KANTO."
+
+	para "Check your #-"
+	line "GEAR MAP and see."
+	done
 ; 0x1a0ad9
 
 CooltrainermBlakeSeenText: ; 0x1a0ad9
-	db $0, "You look pretty", $4f
-	db "strong.", $55
-	db "Let me battle you!", $57
+	text "You look pretty"
+	line "strong."
+	cont "Let me battle you!"
+	done
 ; 0x1a0b05
 
 CooltrainermBlakeBeatenText: ; 0x1a0b05
-	db $0, "Yow!", $57
+	text "Yow!"
+	done
 ; 0x1a0b0b
 
 UnknownText_0x1a0b0b: ; 0x1a0b0b
-	db $0, "If you prevail on", $4f
-	db "this harsh trek,", $51
-	db "the truth will be", $4f
-	db "revealed!", $51
-	db "Heh, sorry, I just", $4f
-	db "wanted to say", $55
-	db "something cool.", $57
+	text "If you prevail on"
+	line "this harsh trek,"
+
+	para "the truth will be"
+	line "revealed!"
+
+	para "Heh, sorry, I just"
+	line "wanted to say"
+	cont "something cool."
+	done
 ; 0x1a0b7c
 
 CooltrainermBrianSeenText: ; 0x1a0b7c
-	db $0, "Hm? You're good,", $4f
-	db "aren't you?", $57
+	text "Hm? You're good,"
+	line "aren't you?"
+	done
 ; 0x1a0b98
 
 CooltrainermBrianBeatenText: ; 0x1a0b98
-	db $0, "Just as I thought!", $57
+	text "Just as I thought!"
+	done
 ; 0x1a0bac
 
 UnknownText_0x1a0bac: ; 0x1a0bac
-	db $0, "A good trainer can", $4f
-	db "recognize other", $55
-	db "good trainers.", $57
+	text "A good trainer can"
+	line "recognize other"
+	cont "good trainers."
+	done
 ; 0x1a0bdf
 
 CooltrainerfReena1SeenText: ; 0x1a0bdf
-	db $0, "You shouldn't", $4f
-	db "underestimate the", $51
-	db "wild #MON in", $4f
-	db "these parts.", $57
+	text "You shouldn't"
+	line "underestimate the"
+
+	para "wild #MON in"
+	line "these parts."
+	done
 ; 0x1a0c19
 
 CooltrainerfReena1BeatenText: ; 0x1a0c19
-	db $0, "Oh! You're much", $4f
-	db "too strong!", $57
+	text "Oh! You're much"
+	line "too strong!"
+	done
 ; 0x1a0c35
 
 UnknownText_0x1a0c35: ; 0x1a0c35
-	db $0, "You're just a kid,", $4f
-	db "but you're not to", $51
-	db "be underestimated", $4f
-	db "either.", $57
+	text "You're just a kid,"
+	line "but you're not to"
+
+	para "be underestimated"
+	line "either."
+	done
 ; 0x1a0c73
 
 CooltrainerfMeganSeenText: ; 0x1a0c73
-	db $0, "It's rare to see", $4f
-	db "anyone come here.", $51
-	db "Are you training", $4f
-	db "on your own?", $57
+	text "It's rare to see"
+	line "anyone come here."
+
+	para "Are you training"
+	line "on your own?"
+	done
 ; 0x1a0cb4
 
 CooltrainerfMeganBeatenText: ; 0x1a0cb4
-	db $0, "Oh! You're really", $4f
-	db "strong!", $57
+	text "Oh! You're really"
+	line "strong!"
+	done
 ; 0x1a0cce
 
 UnknownText_0x1a0cce: ; 0x1a0cce
-	db $0, "I'm checking out", $4f
-	db "pre- and post-", $55
-	db "evolution #MON.", $51
-	db "Evolution really", $4f
-	db "does make #MON", $55
-	db "stronger.", $51
-	db "But evolved forms", $4f
-	db "also learn moves", $55
-	db "later on.", $57
+	text "I'm checking out"
+	line "pre- and post-"
+	cont "evolution #MON."
+
+	para "Evolution really"
+	line "does make #MON"
+	cont "stronger."
+
+	para "But evolved forms"
+	line "also learn moves"
+	cont "later on."
+	done
 ; 0x1a0d55
 
 PsychicGilbertSeenText: ; 0x1a0d55
-	db $0, "Don't say a thing!", $51
-	db "Let me guess what", $4f
-	db "you're thinking.", $51
-	db "Mmmmmmm…", $51
-	db "I got it! You're", $4f
-	db "on the #MON", $55
-	db "LEAGUE challenge!", $57
+	text "Don't say a thing!"
+
+	para "Let me guess what"
+	line "you're thinking."
+
+	para "Mmmmmmm…"
+
+	para "I got it! You're"
+	line "on the #MON"
+	cont "LEAGUE challenge!"
+	done
 ; 0x1a0dc1
 
 PsychicGilbertBeatenText: ; 0x1a0dc1
-	db $0, "You're too much!", $57
+	text "You're too much!"
+	done
 ; 0x1a0dd2
 
 UnknownText_0x1a0dd2: ; 0x1a0dd2
-	db $0, "With your skills,", $4f
-	db "you'll do well at", $55
-	db "the LEAGUE.", $51
-	db "That's what my", $4f
-	db "premonition says.", $57
+	text "With your skills,"
+	line "you'll do well at"
+	cont "the LEAGUE."
+
+	para "That's what my"
+	line "premonition says."
+	done
 ; 0x1a0e22
 
 Bird_keeperJose2SeenText: ; 0x1a0e22
-	db $0, "Tweet! Tweet!", $4f
-	db "Tetweet!", $57
+	text "Tweet! Tweet!"
+	line "Tetweet!"
+	done
 ; 0x1a0e3a
 
 Bird_keeperJose2BeatenText: ; 0x1a0e3a
-	db $0, "Tweet!", $57
+	text "Tweet!"
+	done
 ; 0x1a0e42
 
 UnknownText_0x1a0e42: ; 0x1a0e42
-	db $0, "BIRD KEEPERS like", $4f
-	db "me mimic bird", $51
-	db "whistles to com-", $4f
-	db "mand #MON.", $57
+	text "BIRD KEEPERS like"
+	line "me mimic bird"
+
+	para "whistles to com-"
+	line "mand #MON."
+	done
 ; 0x1a0e7f
 
 UnknownText_0x1a0e7f: ; 0x1a0e7f
-	db $0, "TOHJO FALLS", $51
-	db "THE LINK BETWEEN", $4f
-	db "KANTO AND JOHTO", $57
+	text "TOHJO FALLS"
+
+	para "THE LINK BETWEEN"
+	line "KANTO AND JOHTO"
+	done
 ; 0x1a0ead
 
 Route27_MapEventHeader: ; 0x1a0ead

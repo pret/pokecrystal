@@ -25,21 +25,26 @@ UnknownScript_0x73526: ; 0x73526
 ; 0x7352c
 
 UnknownText_0x7352c: ; 0x7352c
-	db $0, "Did you hear about", $4f
-	db "the accident at", $55
-	db "the POWER PLANT?", $51
-	db "It's located in", $4f
-	db "the East, close to", $55
-	db "LAVENDER TOWN.", $57
+	text "Did you hear about"
+	line "the accident at"
+	cont "the POWER PLANT?"
+
+	para "It's located in"
+	line "the East, close to"
+	cont "LAVENDER TOWN."
+	done
 ; 0x73592
 
 UnknownText_0x73592: ; 0x73592
-	db $0, "I take my GUARD", $4f
-	db "job seriously.", $51
-	db "Hey! You have a", $4f
-	db "#DEX.", $51
-	db "OK. You can go", $4f
-	db "through.", $57
+	text "I take my GUARD"
+	line "job seriously."
+
+	para "Hey! You have a"
+	line "#DEX."
+
+	para "OK. You can go"
+	line "through."
+	done
 ; 0x735e0
 
 Route7SaffronGate_MapEventHeader: ; 0x735e0

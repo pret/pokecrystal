@@ -227,183 +227,228 @@ MapDanceTheatreSignpost1Script: ; 0x9952b
 ; 0x9952e
 
 Kimono_girlNaoko2SeenText: ; 0x9952e
-	db $0, "You have lovely", $4f
-	db "#MON. May I see", $55
-	db "them in battle?", $57
+	text "You have lovely"
+	line "#MON. May I see"
+	cont "them in battle?"
+	done
 ; 0x9955f
 
 Kimono_girlNaoko2BeatenText: ; 0x9955f
-	db $0, "Oh, you are very", $4f
-	db "strong.", $57
+	text "Oh, you are very"
+	line "strong."
+	done
 ; 0x99579
 
 UnknownText_0x99579: ; 0x99579
-	db $0, "I enjoyed that", $4f
-	db "bout. I would like", $55
-	db "to see you again.", $57
+	text "I enjoyed that"
+	line "bout. I would like"
+	cont "to see you again."
+	done
 ; 0x995ae
 
 Kimono_girlSayoSeenText: ; 0x995ae
-	db $0, "I always dance", $4f
-	db "with my #MON.", $51
-	db "Of course, I also", $4f
-	db "train them.", $57
+	text "I always dance"
+	line "with my #MON."
+
+	para "Of course, I also"
+	line "train them."
+	done
 ; 0x995ea
 
 Kimono_girlSayoBeatenText: ; 0x995ea
-	db $0, "Oh, so close!", $4f
-	db "I almost had you.", $57
+	text "Oh, so close!"
+	line "I almost had you."
+	done
 ; 0x9960b
 
 UnknownText_0x9960b: ; 0x9960b
-	db $0, "Rhythm is impor-", $4f
-	db "tant for both", $51
-	db "dancing and #-", $4f
-	db "MON.", $57
+	text "Rhythm is impor-"
+	line "tant for both"
+
+	para "dancing and #-"
+	line "MON."
+	done
 ; 0x9963f
 
 Kimono_girlZukiSeenText: ; 0x9963f
-	db $0, "Isn't my barrette", $4f
-	db "pretty?", $51
-	db "Oh. A #MON", $4f
-	db "battle?", $57
+	text "Isn't my barrette"
+	line "pretty?"
+
+	para "Oh. A #MON"
+	line "battle?"
+	done
 ; 0x9966c
 
 Kimono_girlZukiBeatenText: ; 0x9966c
-	db $0, "I don't have any", $4f
-	db "#MON left…", $57
+	text "I don't have any"
+	line "#MON left…"
+	done
 ; 0x99688
 
 UnknownText_0x99688: ; 0x99688
-	db $0, "I put a different", $4f
-	db "flower in my bar-", $55
-	db "rette every month.", $57
+	text "I put a different"
+	line "flower in my bar-"
+	cont "rette every month."
+	done
 ; 0x996c0
 
 Kimono_girlKuniSeenText: ; 0x996c0
-	db $0, "Oh, you're a cute", $4f
-	db "trainer. Would you", $55
-	db "like to battle?", $57
+	text "Oh, you're a cute"
+	line "trainer. Would you"
+	cont "like to battle?"
+	done
 ; 0x996f5
 
 Kimono_girlKuniBeatenText: ; 0x996f5
-	db $0, "You're stronger", $4f
-	db "than you look.", $57
+	text "You're stronger"
+	line "than you look."
+	done
 ; 0x99714
 
 UnknownText_0x99714: ; 0x99714
-	db $0, "I trained a lot,", $4f
-	db "so I thought I was", $51
-	db "a capable trainer.", $4f
-	db "I guess I'm not.", $57
+	text "I trained a lot,"
+	line "so I thought I was"
+
+	para "a capable trainer."
+	line "I guess I'm not."
+	done
 ; 0x9975c
 
 Kimono_girlMikiSeenText: ; 0x9975c
-	db $0, "Do you like my", $4f
-	db "dancing? I'm good", $55
-	db "at #MON too.", $57
+	text "Do you like my"
+	line "dancing? I'm good"
+	cont "at #MON too."
+	done
 ; 0x9978a
 
 Kimono_girlMikiBeatenText: ; 0x9978a
-	db $0, "Ooh, you're good", $4f
-	db "at #MON too.", $57
+	text "Ooh, you're good"
+	line "at #MON too."
+	done
 ; 0x997a8
 
 UnknownText_0x997a8: ; 0x997a8
-	db $0, "I can keep dancing", $4f
-	db "because there are", $51
-	db "people who enjoy", $4f
-	db "what I do.", $51
-	db "My #MON keep my", $4f
-	db "spirits up too.", $57
+	text "I can keep dancing"
+	line "because there are"
+
+	para "people who enjoy"
+	line "what I do."
+
+	para "My #MON keep my"
+	line "spirits up too."
+	done
 ; 0x9980a
 
 UnknownText_0x9980a: ; 0x9980a
-	db $0, "Not only are the", $4f
-	db "KIMONO GIRLS great", $51
-	db "dancers, they're", $4f
-	db "also skilled at", $55
-	db "#MON.", $51
-	db "I always challenge", $4f
-	db "them, but I've", $51
-	db "never even left a", $4f
-	db "scratch…", $57
+	text "Not only are the"
+	line "KIMONO GIRLS great"
+
+	para "dancers, they're"
+	line "also skilled at"
+	cont "#MON."
+
+	para "I always challenge"
+	line "them, but I've"
+
+	para "never even left a"
+	line "scratch…"
+	done
 ; 0x99891
 
 UnknownText_0x99891: ; 0x99891
-	db $0, "Lad! If you can", $4f
-	db "defeat all the", $51
-	db "KIMONO GIRLS, I'll", $4f
-	db "give you a gift.", $57
+	text "Lad! If you can"
+	line "defeat all the"
+
+	para "KIMONO GIRLS, I'll"
+	line "give you a gift."
+	done
 ; 0x998d4
 
 UnknownText_0x998d4: ; 0x998d4
-	db $0, "Lassie, if you can", $4f
-	db "defeat all the", $51
-	db "KIMONO GIRLS, I'll", $4f
-	db "give you a gift.", $57
+	text "Lassie, if you can"
+	line "defeat all the"
+
+	para "KIMONO GIRLS, I'll"
+	line "give you a gift."
+	done
 ; 0x9991a
 
 UnknownText_0x9991a: ; 0x9991a
-	db $0, "The way you bat-", $4f
-	db "tled, it was like", $55
-	db "watching a dance.", $51
-	db "It was a rare", $4f
-	db "treat to see!", $51
-	db "I want you to have", $4f
-	db "this. Don't worry", $55
-	db "--take it!", $57
+	text "The way you bat-"
+	line "tled, it was like"
+	cont "watching a dance."
+
+	para "It was a rare"
+	line "treat to see!"
+
+	para "I want you to have"
+	line "this. Don't worry"
+	cont "--take it!"
+	done
 ; 0x9999b
 
 UnknownText_0x9999b: ; 0x9999b
-	db $0, "That's SURF.", $51
-	db "It's a move that", $4f
-	db "lets #MON swim", $55
-	db "across water.", $57
+	text "That's SURF."
+
+	para "It's a move that"
+	line "lets #MON swim"
+	cont "across water."
+	done
 ; 0x999d5
 
 UnknownText_0x999d5: ; 0x999d5
-	db $0, "I wish my #MON", $4f
-	db "were as elegant as", $55
-	db "the KIMONO GIRLS…", $57
+	text "I wish my #MON"
+	line "were as elegant as"
+	cont "the KIMONO GIRLS…"
+	done
 ; 0x99a0a
 
 UnknownText_0x99a0a: ; 0x99a0a
-	db $0, "RHYDON: Gugooh", $4f
-	db "gugogooh!", $57
+	text "RHYDON: Gugooh"
+	line "gugogooh!"
+	done
 ; 0x99a24
 
 UnknownText_0x99a24: ; 0x99a24
-	db $0, "That man's always", $4f
-	db "with his RHYDON.", $51
-	db "Says he wants a", $4f
-	db "#MON that can", $55
-	db "SURF and dance.", $51
-	db "Is he trying to", $4f
-	db "make a synchro-", $55
-	db "nized swimming", $55
-	db "#MON?", $57
+	text "That man's always"
+	line "with his RHYDON."
+
+	para "Says he wants a"
+	line "#MON that can"
+	cont "SURF and dance."
+
+	para "Is he trying to"
+	line "make a synchro-"
+	cont "nized swimming"
+	cont "#MON?"
+	done
 ; 0x99aaa
 
 UnknownText_0x99aaa: ; 0x99aaa
-	db $0, "The KIMONO GIRLS", $4f
-	db "are so beautiful…", $51
-	db "But they have to", $4f
-	db "go through rigor-", $55
-	db "ous training.", $51
-	db "And they have to", $4f
-	db "learn to follow", $51
-	db "customs before ap-", $4f
-	db "pearing in public.", $51
-	db "But if you love", $4f
-	db "something, any-", $55
-	db "thing is possible.", $57
+	text "The KIMONO GIRLS"
+	line "are so beautiful…"
+
+	para "But they have to"
+	line "go through rigor-"
+	cont "ous training."
+
+	para "And they have to"
+	line "learn to follow"
+
+	para "customs before ap-"
+	line "pearing in public."
+
+	para "But if you love"
+	line "something, any-"
+	cont "thing is possible."
+	done
 ; 0x99b79
 
 UnknownText_0x99b79: ; 0x99b79
-	db $0, "It's a fancy panel", $4f
-	db "that's decorated", $55
-	db "with flowers.", $57
+	text "It's a fancy panel"
+	line "that's decorated"
+	cont "with flowers."
+	done
 ; 0x99baa
 
 DanceTheatre_MapEventHeader: ; 0x99baa

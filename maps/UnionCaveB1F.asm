@@ -135,81 +135,100 @@ BoulderScript_0x5a01a: ; 0x5a01a
 ; 0x5a01d
 
 HikerPhillipSeenText: ; 0x5a01d
-	db $0, "It's been a while", $4f
-	db "since I last saw", $55
-	db "another person.", $51
-	db "Don't be shy.", $4f
-	db "Let's battle!", $57
+	text "It's been a while"
+	line "since I last saw"
+	cont "another person."
+
+	para "Don't be shy."
+	line "Let's battle!"
+	done
 ; 0x5a06a
 
 HikerPhillipBeatenText: ; 0x5a06a
-	db $0, "Uurggh…", $57
+	text "Uurggh…"
+	done
 ; 0x5a073
 
 UnknownText_0x5a073: ; 0x5a073
-	db $0, "I've been lost for", $4f
-	db "a long time…", $51
-	db "I don't mind it", $4f
-	db "here, but I am", $55
-	db "soooo hungry!", $57
+	text "I've been lost for"
+	line "a long time…"
+
+	para "I don't mind it"
+	line "here, but I am"
+	cont "soooo hungry!"
+	done
 ; 0x5a0bf
 
 HikerLeonardSeenText: ; 0x5a0bf
-	db $0, "What do you know!", $4f
-	db "A visitor!", $57
+	text "What do you know!"
+	line "A visitor!"
+	done
 ; 0x5a0dd
 
 HikerLeonardBeatenText: ; 0x5a0dd
-	db $0, "Wahahah! You're a", $4f
-	db "feisty one!", $57
+	text "Wahahah! You're a"
+	line "feisty one!"
+	done
 ; 0x5a0fb
 
 UnknownText_0x5a0fb: ; 0x5a0fb
-	db $0, "I live down here.", $51
-	db "You can, too, if", $4f
-	db "you'd like.", $51
-	db "There's plenty of", $4f
-	db "room, you see.", $57
+	text "I live down here."
+
+	para "You can, too, if"
+	line "you'd like."
+
+	para "There's plenty of"
+	line "room, you see."
+	done
 ; 0x5a14a
 
 PokemaniacAndrewSeenText: ; 0x5a14a
-	db $0, "Who's there?", $51
-	db "Leave me and my", $4f
-	db "#MON alone!", $57
+	text "Who's there?"
+
+	para "Leave me and my"
+	line "#MON alone!"
+	done
 ; 0x5a173
 
 PokemaniacAndrewBeatenText: ; 0x5a173
-	db $0, "Go…", $4f
-	db "Go away!", $57
+	text "Go…"
+	line "Go away!"
+	done
 ; 0x5a181
 
 UnknownText_0x5a181: ; 0x5a181
-	db $0, "Just me and my", $4f
-	db "#MON. I'm de-", $55
-	db "lirious with joy.", $57
+	text "Just me and my"
+	line "#MON. I'm de-"
+	cont "lirious with joy."
+	done
 ; 0x5a1b0
 
 PokemaniacCalvinSeenText: ; 0x5a1b0
-	db $0, "I came all the way", $4f
-	db "here to conduct my", $55
-	db "#MON research.", $51
-	db "Let me demonstrate", $4f
-	db "my findings in a", $55
-	db "real battle!", $57
+	text "I came all the way"
+	line "here to conduct my"
+	cont "#MON research."
+
+	para "Let me demonstrate"
+	line "my findings in a"
+	cont "real battle!"
+	done
 ; 0x5a217
 
 PokemaniacCalvinBeatenText: ; 0x5a217
-	db $0, "You demonstrated", $4f
-	db "on me!", $57
+	text "You demonstrated"
+	line "on me!"
+	done
 ; 0x5a230
 
 UnknownText_0x5a230: ; 0x5a230
-	db $0, "I should compile", $4f
-	db "and announce my", $55
-	db "study findings.", $51
-	db "I might even be-", $4f
-	db "come famous like", $55
-	db "PROF.ELM.", $57
+	text "I should compile"
+	line "and announce my"
+	cont "study findings."
+
+	para "I might even be-"
+	line "come famous like"
+	cont "PROF.ELM."
+	done
 ; 0x5a28e
 
 UnionCaveB1F_MapEventHeader: ; 0x5a28e

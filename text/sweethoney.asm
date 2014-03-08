@@ -9,46 +9,60 @@
 ; The last text is associated with a second NPC, probably a Butterfree.
 
 UnusedSweetHoneyText: ; 0x5578a
-	db 0, "My #MON is an", $4f
-	db "expert at collect-", $55
-	db "ing SWEET HONEY.", $51
-	db "I'll share some", $4f
-	db "with you.", $57
+	text "My #MON is an"
+	line "expert at collect-"
+	cont "ing SWEET HONEY."
+
+	para "I'll share some"
+	line "with you."
+	done
 
 UnusedSweetHoneyBagFullText: ; 0x557d6
-	db 0, "I want to give you", $4f
-	db "some SWEET HONEY,", $51
-	db "but you have no", $4f
-	db "room for it.", $57
+	text "I want to give you"
+	line "some SWEET HONEY,"
+
+	para "but you have no"
+	line "room for it."
+	done
 
 UnusedSweetHoneyGiveText: ; 0x55819
-	db 0, "Here you go! Have", $4f
-	db "some SWEET HONEY!", $57
+	text "Here you go! Have"
+	line "some SWEET HONEY!"
+	done
 
 UnusedGotSweetHoneyText: ; 0x5583e
-	db 0, $52, " received", $4f
-	db "SWEET HONEY.", $57
+	text $52, " received"
+	line "SWEET HONEY."
+	done
 
 UnusedSweetHoneyAfterText1: ; 0x55856
-	db 0, "My little brother", $4f
-	db "takes SWEET HONEY", $51
-	db "and goes somewhere", $4f
-	db "with it.", $51
-	db "I wonder what he's", $4f
-	db "up to?", $57
+	text "My little brother"
+	line "takes SWEET HONEY"
+
+	para "and goes somewhere"
+	line "with it."
+
+	para "I wonder what he's"
+	line "up to?"
+	done
 
 UnusedSweetHoneyAfterText2: ; 0x558b1
-	db 0, "Did you put SWEET", $4f
-	db "HONEY on a tree?", $51
-	db "What happened to", $4f
-	db "it?", $57
+	text "Did you put SWEET"
+	line "HONEY on a tree?"
+
+	para "What happened to"
+	line "it?"
+	done
 
 UnusedSweetHoneyAfterText3: ; 0x558ea
-	db 0, "Did you put SWEET", $4f
-	db "HONEY on a tree?", $51
-	db "It takes about a", $4f
-	db "day for #MON to", $55
-	db "be drawn to it.", $57
+	text "Did you put SWEET"
+	line "HONEY on a tree?"
+
+	para "It takes about a"
+	line "day for #MON to"
+	cont "be drawn to it."
+	done
 
 UnusedSweetHoneyButterfreeText: ; 0x5593f
-	db 0, "BUTTERFREE: Freeh!", $57
+	text "BUTTERFREE: Freeh!"
+	done

@@ -212,88 +212,110 @@ MovementData_0x1a80f5: ; 0x1a80f5
 ; 0x1a80f7
 
 UnknownText_0x1a80f7: ; 0x1a80f7
-	db $0, "Wow, your #GEAR", $4f
-	db "is impressive!", $51
-	db "Did your mom get", $4f
-	db "it for you?", $57
+	text "Wow, your #GEAR"
+	line "is impressive!"
+
+	para "Did your mom get"
+	line "it for you?"
+	done
 ; 0x1a8134
 
 UnknownText_0x1a8134: ; 0x1a8134
-	db $0, "Wait, ", $14, "!", $57
+	text "Wait, ", $14, "!"
+	done
 ; 0x1a813e
 
 UnknownText_0x1a813e: ; 0x1a813e
-	db $0, "What do you think", $4f
-	db "you're doing?", $57
+	text "What do you think"
+	line "you're doing?"
+	done
 ; 0x1a815e
 
 UnknownText_0x1a815e: ; 0x1a815e
-	db $0, "It's dangerous to", $4f
-	db "go out without a", $55
-	db "#MON!", $51
-	db "Wild #MON", $4f
-	db "jump out of the", $51
-	db "grass on the way", $4f
-	db "to the next town.", $57
+	text "It's dangerous to"
+	line "go out without a"
+	cont "#MON!"
+
+	para "Wild #MON"
+	line "jump out of the"
+
+	para "grass on the way"
+	line "to the next town."
+	done
 ; 0x1a81c4
 
 UnknownText_0x1a81c4: ; 0x1a81c4
-	db $0, "Oh! Your #MON", $4f
-	db "is adorable!", $55
-	db "I wish I had one!", $57
+	text "Oh! Your #MON"
+	line "is adorable!"
+	cont "I wish I had one!"
+	done
 ; 0x1a81f2
 
 UnknownText_0x1a81f2: ; 0x1a81f2
-	db $0, "Hi, ", $14, "!", $4f
-	db "Leaving again?", $51
-	db "You should tell", $4f
-	db "your mom if you", $55
-	db "are leaving.", $57
+	text "Hi, ", $14, "!"
+	line "Leaving again?"
+
+	para "You should tell"
+	line "your mom if you"
+	cont "are leaving."
+	done
 ; 0x1a8236
 
 UnknownText_0x1a8236: ; 0x1a8236
-	db $0, "Call your mom on", $4f
-	db "your #GEAR to", $51
-	db "let her know how", $4f
-	db "you're doing.", $57
+	text "Call your mom on"
+	line "your #GEAR to"
+
+	para "let her know how"
+	line "you're doing."
+	done
 ; 0x1a8274
 
 UnknownText_0x1a8274: ; 0x1a8274
-	db $0, "Yo, ", $52, "!", $51
-	db "I hear PROF.ELM", $4f
-	db "discovered some", $55
-	db "new #MON.", $57
+	text "Yo, ", $52, "!"
+
+	para "I hear PROF.ELM"
+	line "discovered some"
+	cont "new #MON."
+	done
 ; 0x1a82a6
 
 UnknownText_0x1a82a6: ; 0x1a82a6
-	db $0, $56, $51
-	db "So this is the", $4f
-	db "famous ELM #MON", $55
-	db "LAB…", $57
+	text $56
+
+	para "So this is the"
+	line "famous ELM #MON"
+	cont "LAB…"
+	done
 ; 0x1a82cd
 
 UnknownText_0x1a82cd: ; 0x1a82cd
-	db $0, "…What are you", $4f
-	db "staring at?", $57
+	text "…What are you"
+	line "staring at?"
+	done
 ; 0x1a82e8
 
 UnknownText_0x1a82e8: ; 0x1a82e8
-	db $0, "NEW BARK TOWN", $51
-	db "The Town Where the", $4f
-	db "Winds of a New", $55
-	db "Beginning Blow", $57
+	text "NEW BARK TOWN"
+
+	para "The Town Where the"
+	line "Winds of a New"
+	cont "Beginning Blow"
+	done
 ; 0x1a8328
 
 UnknownText_0x1a8328: ; 0x1a8328
-	db $0, $52, "'s House", $57
+	text $52, "'s House"
+	done
 ; 0x1a8332
 
 UnknownText_0x1a8332: ; 0x1a8332
-	db $0, "ELM #MON LAB", $57
+	text "ELM #MON LAB"
+	done
 ; 0x1a8340
 
 UnknownText_0x1a8340: ; 0x1a8340
-	db $0, "ELM'S HOUSE", $57
+	text "ELM'S HOUSE"
+	done
 ; 0x1a834d
 
 NewBarkTown_MapEventHeader: ; 0x1a834d

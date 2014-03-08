@@ -73,52 +73,64 @@ MapRoute6Signpost0Script: ; 0x1ad954
 ; 0x1ad957
 
 UnknownText_0x1ad957: ; 0x1ad957
-	db $0, "The road is closed", $4f
-	db "until the problem", $51
-	db "at the POWER PLANT", $4f
-	db "is solved.", $57
+	text "The road is closed"
+	line "until the problem"
+
+	para "at the POWER PLANT"
+	line "is solved."
+	done
 ; 0x1ad99b
 
 UnknownText_0x1ad99b: ; 0x1ad99b
-	db $0, "UNDERGROUND PATH", $51
-	db "CERULEAN CITY -", $4f
-	db "VERMILION CITY", $57
+	text "UNDERGROUND PATH"
+
+	para "CERULEAN CITY -"
+	line "VERMILION CITY"
+	done
 ; 0x1ad9cc
 
 PokefanmRexSeenText: ; 0x1ad9cc
-	db $0, "My PHANPY is the", $4f
-	db "cutest in the", $55
-	db "world.", $57
+	text "My PHANPY is the"
+	line "cutest in the"
+	cont "world."
+	done
 ; 0x1ad9f3
 
 PokefanmRexBeatenText: ; 0x1ad9f3
-	db $0, "My PHANPY!", $57
+	text "My PHANPY!"
+	done
 ; 0x1ad9ff
 
 UnknownText_0x1ad9ff: ; 0x1ad9ff
-	db $0, "Look how adorable", $4f
-	db "my PHANPY acts!", $51
-	db "Isn't it cute", $4f
-	db "enough to make", $55
-	db "your heart melt?", $57
+	text "Look how adorable"
+	line "my PHANPY acts!"
+
+	para "Isn't it cute"
+	line "enough to make"
+	cont "your heart melt?"
+	done
 ; 0x1ada4f
 
 PokefanmAllanSeenText: ; 0x1ada4f
-	db $0, "My TEDDIURSA is", $4f
-	db "the cutest in the", $55
-	db "world.", $57
+	text "My TEDDIURSA is"
+	line "the cutest in the"
+	cont "world."
+	done
 ; 0x1ada79
 
 PokefanmAllanBeatenText: ; 0x1ada79
-	db $0, "My TEDDIURSA!", $57
+	text "My TEDDIURSA!"
+	done
 ; 0x1ada88
 
 UnknownText_0x1ada88: ; 0x1ada88
-	db $0, "Look how adorable", $4f
-	db "my TEDDIURSA acts!", $51
-	db "Isn't it cute", $4f
-	db "enough to make", $55
-	db "your heart melt?", $57
+	text "Look how adorable"
+	line "my TEDDIURSA acts!"
+
+	para "Isn't it cute"
+	line "enough to make"
+	cont "your heart melt?"
+	done
 ; 0x1adadb
 
 Route6_MapEventHeader: ; 0x1adadb

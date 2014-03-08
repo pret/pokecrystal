@@ -69,43 +69,53 @@ MapRoute18Signpost0Script: ; 0x1acf59
 ; 0x1acf5c
 
 Bird_keeperBorisSeenText: ; 0x1acf5c
-	db $0, "If you're looking", $4f
-	db "for #MON, you", $51
-	db "have to look in", $4f
-	db "the tall grass.", $57
+	text "If you're looking"
+	line "for #MON, you"
+
+	para "have to look in"
+	line "the tall grass."
+	done
 ; 0x1acf9c
 
 Bird_keeperBorisBeatenText: ; 0x1acf9c
-	db $0, "Ayieee!", $57
+	text "Ayieee!"
+	done
 ; 0x1acfa5
 
 UnknownText_0x1acfa5: ; 0x1acfa5
-	db $0, "Since you're so", $4f
-	db "strong, it must be", $55
-	db "fun to battle.", $57
+	text "Since you're so"
+	line "strong, it must be"
+	cont "fun to battle."
+	done
 ; 0x1acfd7
 
 Bird_keeperBobSeenText: ; 0x1acfd7
-	db $0, "CYCLING ROAD is a", $4f
-	db "quick shortcut to", $55
-	db "CELADON.", $57
+	text "CYCLING ROAD is a"
+	line "quick shortcut to"
+	cont "CELADON."
+	done
 ; 0x1ad005
 
 Bird_keeperBobBeatenText: ; 0x1ad005
-	db $0, "…Whew!", $57
+	text "…Whew!"
+	done
 ; 0x1ad00d
 
 UnknownText_0x1ad00d: ; 0x1ad00d
-	db $0, "If you don't have", $4f
-	db "a BICYCLE, you're", $51
-	db "not allowed to use", $4f
-	db "the shortcut.", $57
+	text "If you don't have"
+	line "a BICYCLE, you're"
+
+	para "not allowed to use"
+	line "the shortcut."
+	done
 ; 0x1ad051
 
 UnknownText_0x1ad051: ; 0x1ad051
-	db $0, "ROUTE 18", $51
-	db "CELADON CITY -", $4f
-	db "FUCHSIA CITY", $57
+	text "ROUTE 18"
+
+	para "CELADON CITY -"
+	line "FUCHSIA CITY"
+	done
 ; 0x1ad077
 
 Route18_MapEventHeader: ; 0x1ad077

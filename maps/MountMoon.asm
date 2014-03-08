@@ -96,58 +96,80 @@ MovementData_0x740fd: ; 0x740fd
 ; 0x74105
 
 UnknownText_0x74105: ; 0x74105
-	db $0, $56, " ", $56, " ", $56, $51
-	db "It's been a while,", $4f
-	db $52, ".", $51
-	db "…Since I lost to", $4f
-	db "you, I thought", $51
-	db "about what I was", $4f
-	db "lacking with my", $55
-	db "#MON…", $51
-	db "And we came up", $4f
-	db "with an answer.", $51
-	db $52, ", now we'll", $4f
-	db "show you!", $57
+	text $56, " ", $56, " ", $56
+
+	para "It's been a while,"
+	line $52, "."
+
+	para "…Since I lost to"
+	line "you, I thought"
+
+	para "about what I was"
+	line "lacking with my"
+	cont "#MON…"
+
+	para "And we came up"
+	line "with an answer."
+
+	para $52, ", now we'll"
+	line "show you!"
+	done
 ; 0x7419d
 
 UnknownText_0x7419d: ; 0x7419d
-	db $0, $56, " ", $56, " ", $56, $51
-	db "I thought I raised", $4f
-	db "my #MON to be", $51
-	db "the best they", $4f
-	db "could be…", $51
-	db "…But it still ", $4f
-	db "wasn't enough…", $57
+	text $56, " ", $56, " ", $56
+
+	para "I thought I raised"
+	line "my #MON to be"
+
+	para "the best they"
+	line "could be…"
+
+	para "…But it still "
+	line "wasn't enough…"
+	done
 ; 0x741fa
 
 UnknownText_0x741fa: ; 0x741fa
-	db $0, $56, " ", $56, " ", $56, $51
-	db "…You won, fair", $4f
-	db "and square.", $51
-	db "I admit it. But", $4f
-	db "this isn't the", $55
-	db "end.", $51
-	db "I'm going to be", $4f
-	db "the greatest #-", $55
-	db "MON trainer ever.", $51
-	db "Because these guys", $4f
-	db "are behind me.", $51
-	db "…Listen, ", $52, ".", $51
-	db "One of these days", $4f
-	db "I'm going to prove", $51
-	db "how good I am by", $4f
-	db "beating you.", $57
+	text $56, " ", $56, " ", $56
+
+	para "…You won, fair"
+	line "and square."
+
+	para "I admit it. But"
+	line "this isn't the"
+	cont "end."
+
+	para "I'm going to be"
+	line "the greatest #-"
+	cont "MON trainer ever."
+
+	para "Because these guys"
+	line "are behind me."
+
+	para "…Listen, ", $52, "."
+
+	para "One of these days"
+	line "I'm going to prove"
+
+	para "how good I am by"
+	line "beating you."
+	done
 ; 0x742e0
 
 UnknownText_0x742e0: ; 0x742e0
-	db $0, $56, " ", $56, " ", $56, $51
-	db "I've repaid my", $4f
-	db "debt to you.", $51
-	db "With my #MON,", $4f
-	db "I'm going to beat", $51
-	db "the CHAMPION and", $4f
-	db "become the world's", $55
-	db "greatest trainer.", $57
+	text $56, " ", $56, " ", $56
+
+	para "I've repaid my"
+	line "debt to you."
+
+	para "With my #MON,"
+	line "I'm going to beat"
+
+	para "the CHAMPION and"
+	line "become the world's"
+	cont "greatest trainer."
+	done
 ; 0x74356
 
 MountMoon_MapEventHeader: ; 0x74356

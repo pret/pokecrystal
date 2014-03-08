@@ -49,26 +49,33 @@ MapRoute28FamousSpeechHouseSignpost1Script: ; 0x1ae67f
 ; 0x1ae682
 
 UnknownText_0x1ae682: ; 0x1ae682
-	db $0, "Oh, dear.", $4f
-	db "You've found me.", $51
-	db "Please don't tell", $4f
-	db "anyone about me.", $51
-	db "I'll give you this", $4f
-	db "for keeping my", $55
-	db "secret. Please?", $57
+	text "Oh, dear."
+	line "You've found me."
+
+	para "Please don't tell"
+	line "anyone about me."
+
+	para "I'll give you this"
+	line "for keeping my"
+	cont "secret. Please?"
+	done
 ; 0x1ae6f0
 
 UnknownText_0x1ae6f0: ; 0x1ae6f0
-	db $0, "It's tough being a", $4f
-	db "top celebrity.", $51
-	db "Everywhere I go,", $4f
-	db "people chase me.", $51
-	db "I just want to be", $4f
-	db "left alone…", $57
+	text "It's tough being a"
+	line "top celebrity."
+
+	para "Everywhere I go,"
+	line "people chase me."
+
+	para "I just want to be"
+	line "left alone…"
+	done
 ; 0x1ae752
 
 UnknownText_0x1ae752: ; 0x1ae752
-	db $0, "FEAROW: Feero!", $57
+	text "FEAROW: Feero!"
+	done
 ; 0x1ae762
 
 Route28FamousSpeechHouse_MapEventHeader: ; 0x1ae762

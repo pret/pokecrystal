@@ -186,156 +186,198 @@ UnknownScript_0x189cd8: ; 0x189cd8
 ; 0x189cdf
 
 UnknownText_0x189cdf: ; 0x189cdf
-	db $0, "SABRINA: I knew", $4f
-	db "you were coming…", $51
-	db "Three years ago I", $4f
-	db "had a vision of", $55
-	db "your arrival.", $51
-	db "You're after my", $4f
-	db "BADGE.", $51
-	db "I don't enjoy bat-", $4f
-	db "tling, but it's my", $51
-	db "duty as a LEADER", $4f
-	db "to confer BADGES", $51
-	db "on anyone who has", $4f
-	db "proven him- or", $55
-	db "herself worthy.", $51
-	db "Since you wish it,", $4f
-	db "I will show you my", $55
-	db "psychic powers!", $57
+	text "SABRINA: I knew"
+	line "you were coming…"
+
+	para "Three years ago I"
+	line "had a vision of"
+	cont "your arrival."
+
+	para "You're after my"
+	line "BADGE."
+
+	para "I don't enjoy bat-"
+	line "tling, but it's my"
+
+	para "duty as a LEADER"
+	line "to confer BADGES"
+
+	para "on anyone who has"
+	line "proven him- or"
+	cont "herself worthy."
+
+	para "Since you wish it,"
+	line "I will show you my"
+	cont "psychic powers!"
+	done
 ; 0x189df4
 
 UnknownText_0x189df4: ; 0x189df4
-	db $0, "SABRINA: Your", $4f
-	db "power…", $51
-	db "It far exceeds", $4f
-	db "what I foresaw…", $51
-	db "Maybe it isn't", $4f
-	db "possible to fully", $51
-	db "predict what the", $4f
-	db "future holds…", $51
-	db "OK, you win. You", $4f
-	db "earned yourself", $55
-	db "MARSHBADGE.", $57
+	text "SABRINA: Your"
+	line "power…"
+
+	para "It far exceeds"
+	line "what I foresaw…"
+
+	para "Maybe it isn't"
+	line "possible to fully"
+
+	para "predict what the"
+	line "future holds…"
+
+	para "OK, you win. You"
+	line "earned yourself"
+	cont "MARSHBADGE."
+	done
 ; 0x189e95
 
 UnknownText_0x189e95: ; 0x189e95
-	db $0, $52, " received", $4f
-	db "MARSHBADGE.", $57
+	text $52, " received"
+	line "MARSHBADGE."
+	done
 ; 0x189ead
 
 UnknownText_0x189ead: ; 0x189ead
-	db $0, "SABRINA: MARSH-", $4f
-	db "BADGE draws out", $51
-	db "your subliminal", $4f
-	db "powers…", $51
-	db "Although I failed", $4f
-	db "to accurately pre-", $55
-	db "dict your power,", $55
-	db "this much I know", $55
-	db "to be true.", $51
-	db "You will become a", $4f
-	db "celebrated and", $55
-	db "beloved CHAMPION!", $57
+	text "SABRINA: MARSH-"
+	line "BADGE draws out"
+
+	para "your subliminal"
+	line "powers…"
+
+	para "Although I failed"
+	line "to accurately pre-"
+	cont "dict your power,"
+	cont "this much I know"
+	cont "to be true."
+
+	para "You will become a"
+	line "celebrated and"
+	cont "beloved CHAMPION!"
+	done
 ; 0x189f6c
 
 UnknownText_0x189f6c: ; 0x189f6c
-	db $0, "SABRINA: Your love", $4f
-	db "for your #MON", $51
-	db "overwhelmed my", $4f
-	db "psychic power…", $51
-	db "The power of love,", $4f
-	db "I think, is also a", $51
-	db "kind of psychic", $4f
-	db "power…", $57
+	text "SABRINA: Your love"
+	line "for your #MON"
+
+	para "overwhelmed my"
+	line "psychic power…"
+
+	para "The power of love,"
+	line "I think, is also a"
+
+	para "kind of psychic"
+	line "power…"
+	done
 ; 0x189fe9
 
 MediumRebeccaSeenText: ; 0x189fe9
-	db $0, "The power of all", $4f
-	db "those you defeated", $55
-	db "comes to me!", $57
+	text "The power of all"
+	line "those you defeated"
+	cont "comes to me!"
+	done
 ; 0x18a01b
 
 MediumRebeccaBeatenText: ; 0x18a01b
-	db $0, "Strong…", $4f
-	db "Far too strong…", $57
+	text "Strong…"
+	line "Far too strong…"
+	done
 ; 0x18a034
 
 UnknownText_0x18a034: ; 0x18a034
-	db $0, "What is the source", $4f
-	db "of your power?", $57
+	text "What is the source"
+	line "of your power?"
+	done
 ; 0x18a057
 
 PsychicFranklinSeenText: ; 0x18a057
-	db $0, "Psychic power is", $4f
-	db "the power of your", $55
-	db "soul.", $57
+	text "Psychic power is"
+	line "the power of your"
+	cont "soul."
+	done
 ; 0x18a081
 
 PsychicFranklinBeatenText: ; 0x18a081
-	db $0, "Your soul has more", $4f
-	db "power than mine!", $57
+	text "Your soul has more"
+	line "power than mine!"
+	done
 ; 0x18a0a6
 
 UnknownText_0x18a0a6: ; 0x18a0a6
-	db $0, "You made your soul", $4f
-	db "stronger, not just", $55
-	db "your abilities.", $57
+	text "You made your soul"
+	line "stronger, not just"
+	cont "your abilities."
+	done
 ; 0x18a0dd
 
 MediumDorisSeenText: ; 0x18a0dd
-	db $0, "Fufufufu…", $4f
-	db "I see it clearly.", $51
-	db "I can see into", $4f
-	db "your soul!", $57
+	text "Fufufufu…"
+	line "I see it clearly."
+
+	para "I can see into"
+	line "your soul!"
+	done
 ; 0x18a114
 
 MediumDorisBeatenText: ; 0x18a114
-	db $0, "Though I read you,", $4f
-	db "I still lost…", $57
+	text "Though I read you,"
+	line "I still lost…"
+	done
 ; 0x18a136
 
 UnknownText_0x18a136: ; 0x18a136
-	db $0, "Darn! I forgot", $4f
-	db "that I predicted I", $55
-	db "would lose to you.", $57
+	text "Darn! I forgot"
+	line "that I predicted I"
+	cont "would lose to you."
+	done
 ; 0x18a16c
 
 PsychicJaredSeenText: ; 0x18a16c
-	db $0, "The FIGHTING DOJO", $4f
-	db "next door was once", $55
-	db "this city's GYM.", $57
+	text "The FIGHTING DOJO"
+	line "next door was once"
+	cont "this city's GYM."
+	done
 ; 0x18a1a2
 
 PsychicJaredBeatenText: ; 0x18a1a2
-	db $0, "I was no match…", $57
+	text "I was no match…"
+	done
 ; 0x18a1b3
 
 UnknownText_0x18a1b3: ; 0x18a1b3
-	db $0, "KARATE KING, the", $4f
-	db "master of the", $51
-	db "FIGHTING DOJO, was", $4f
-	db "just destroyed by", $55
-	db "SABRINA.", $57
+	text "KARATE KING, the"
+	line "master of the"
+
+	para "FIGHTING DOJO, was"
+	line "just destroyed by"
+	cont "SABRINA."
+	done
 ; 0x18a201
 
 SaffronGymGuyText: ; 0x18a201
-	db $0, "Yo, CHAMP in", $4f
-	db "making!", $51
-	db "A trainer as", $4f
-	db "skilled as you", $51
-	db "doesn't need to be", $4f
-	db "told how to deal", $51
-	db "with psychic-type", $4f
-	db "#MON, right?", $51
-	db "I expect great", $4f
-	db "things from you!", $51
-	db "Good luck!", $57
+	text "Yo, CHAMP in"
+	line "making!"
+
+	para "A trainer as"
+	line "skilled as you"
+
+	para "doesn't need to be"
+	line "told how to deal"
+
+	para "with psychic-type"
+	line "#MON, right?"
+
+	para "I expect great"
+	line "things from you!"
+
+	para "Good luck!"
+	done
 ; 0x18a2a0
 
 SaffronGymGuyWinText: ; 0x18a2a0
-	db $0, "That was another", $4f
-	db "fantastic battle!", $57
+	text "That was another"
+	line "fantastic battle!"
+	done
 ; 0x18a2c4
 
 SaffronGym_MapEventHeader: ; 0x18a2c4

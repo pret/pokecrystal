@@ -64,67 +64,84 @@ FruitTreeScript_0x194b43: ; 0x194b43
 ; 0x194b45
 
 UnknownText_0x194b45: ; 0x194b45
-	db $0, "One of the ELITE", $4f
-	db "FOUR used to be", $51
-	db "the LEADER of", $4f
-	db "FUCHSIA's GYM.", $57
+	text "One of the ELITE"
+	line "FOUR used to be"
+
+	para "the LEADER of"
+	line "FUCHSIA's GYM."
+	done
 ; 0x194b83
 
 UnknownText_0x194b83: ; 0x194b83
-	db $0, "KOGA's daughter", $4f
-	db "succeeded him as", $51
-	db "the GYM LEADER", $4f
-	db "after he joined", $55
-	db "the ELITE FOUR.", $57
+	text "KOGA's daughter"
+	line "succeeded him as"
+
+	para "the GYM LEADER"
+	line "after he joined"
+	cont "the ELITE FOUR."
+	done
 ; 0x194bd3
 
 UnknownText_0x194bd3: ; 0x194bd3
-	db $0, "The SAFARI ZONE is", $4f
-	db "closed… It's sad,", $51
-	db "considering it's", $4f
-	db "FUCHSIA's main", $55
-	db "attraction.", $57
+	text "The SAFARI ZONE is"
+	line "closed… It's sad,"
+
+	para "considering it's"
+	line "FUCHSIA's main"
+	cont "attraction."
+	done
 ; 0x194c22
 
 UnknownText_0x194c22: ; 0x194c22
-	db $0, "FUCHSIA CITY", $51
-	db "Behold! It's", $4f
-	db "Passion Pink!", $57
+	text "FUCHSIA CITY"
+
+	para "Behold! It's"
+	line "Passion Pink!"
+	done
 ; 0x194c4a
 
 UnknownText_0x194c4a: ; 0x194c4a
-	db $0, "FUCHSIA CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: JANINE", $51
-	db "The Poisonous", $4f
-	db "Ninja Master", $57
+	text "FUCHSIA CITY"
+	line "#MON GYM"
+	cont "LEADER: JANINE"
+
+	para "The Poisonous"
+	line "Ninja Master"
+	done
 ; 0x194c8b
 
 UnknownText_0x194c8b: ; 0x194c8b
-	db $0, "There's a notice", $4f
-	db "here…", $51
-	db "SAFARI ZONE OFFICE", $4f
-	db "is closed until", $55
-	db "further notice.", $57
+	text "There's a notice"
+	line "here…"
+
+	para "SAFARI ZONE OFFICE"
+	line "is closed until"
+	cont "further notice."
+	done
 ; 0x194cd5
 
 UnknownText_0x194cd5: ; 0x194cd5
-	db $0, "SAFARI ZONE", $4f
-	db "WARDEN'S HOME", $57
+	text "SAFARI ZONE"
+	line "WARDEN'S HOME"
+	done
 ; 0x194cf0
 
 UnknownText_0x194cf0: ; 0x194cf0
-	db $0, "The WARDEN is", $4f
-	db "traveling abroad.", $51
-	db "Therefore, the", $4f
-	db "SAFARI ZONE is", $55
-	db "closed.", $57
+	text "The WARDEN is"
+	line "traveling abroad."
+
+	para "Therefore, the"
+	line "SAFARI ZONE is"
+	cont "closed."
+	done
 ; 0x194d37
 
 UnknownText_0x194d37: ; 0x194d37
-	db $0, "No littering.", $51
-	db "Please take your", $4f
-	db "waste with you.", $57
+	text "No littering."
+
+	para "Please take your"
+	line "waste with you."
+	done
 ; 0x194d67
 
 FuchsiaCity_MapEventHeader: ; 0x194d67

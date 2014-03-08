@@ -132,63 +132,77 @@ ItemFragment_0x5a36c: ; 0x5a36c
 ; 0x5a36e
 
 CooltrainermNickSeenText: ; 0x5a36e
-	db $0, "There are two", $4f
-	db "kinds of people.", $51
-	db "Those who have", $4f
-	db "style, and those", $55
-	db "who don't.", $51
-	db "What kind of", $4f
-	db "person are you?", $57
+	text "There are two"
+	line "kinds of people."
+
+	para "Those who have"
+	line "style, and those"
+	cont "who don't."
+
+	para "What kind of"
+	line "person are you?"
+	done
 ; 0x5a3d5
 
 CooltrainermNickBeatenText: ; 0x5a3d5
-	db $0, "You've got", $4f
-	db "dazzling style!", $57
+	text "You've got"
+	line "dazzling style!"
+	done
 ; 0x5a3f0
 
 UnknownText_0x5a3f0: ; 0x5a3f0
-	db $0, "Your #MON style", $4f
-	db "is stunning and", $55
-	db "colorful, I admit.", $51
-	db "You'll just keep", $4f
-	db "getting better!", $57
+	text "Your #MON style"
+	line "is stunning and"
+	cont "colorful, I admit."
+
+	para "You'll just keep"
+	line "getting better!"
+	done
 ; 0x5a444
 
 CooltrainerfGwenSeenText: ; 0x5a444
-	db $0, "I'm in training.", $4f
-	db "Care for a round?", $57
+	text "I'm in training."
+	line "Care for a round?"
+	done
 ; 0x5a467
 
 CooltrainerfGwenBeatenText: ; 0x5a467
-	db $0, "Aww, no! You're", $4f
-	db "too good for me.", $57
+	text "Aww, no! You're"
+	line "too good for me."
+	done
 ; 0x5a488
 
 UnknownText_0x5a488: ; 0x5a488
-	db $0, "I'm going to train", $4f
-	db "by myself until I", $55
-	db "improve.", $57
+	text "I'm going to train"
+	line "by myself until I"
+	cont "improve."
+	done
 ; 0x5a4b6
 
 CooltrainerfEmmaSeenText: ; 0x5a4b6
-	db $0, "If the #MON I", $4f
-	db "liked were there,", $55
-	db "I'd go anywhere.", $51
-	db "That's what a real", $4f
-	db "trainer does.", $57
+	text "If the #MON I"
+	line "liked were there,"
+	cont "I'd go anywhere."
+
+	para "That's what a real"
+	line "trainer does."
+	done
 ; 0x5a507
 
 CooltrainerfEmmaBeatenText: ; 0x5a507
-	db $0, "I'd rather pet my", $4f
-	db "babies than this!", $57
+	text "I'd rather pet my"
+	line "babies than this!"
+	done
 ; 0x5a52b
 
 UnknownText_0x5a52b: ; 0x5a52b
-	db $0, "Just once a week,", $4f
-	db "a #MON comes to", $55
-	db "the water's edge.", $51
-	db "I wanted to see", $4f
-	db "that #MON…", $57
+	text "Just once a week,"
+	line "a #MON comes to"
+	cont "the water's edge."
+
+	para "I wanted to see"
+	line "that #MON…"
+	done
 ; 0x5a57a
 
 UnionCaveB2F_MapEventHeader: ; 0x5a57a

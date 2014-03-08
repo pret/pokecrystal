@@ -22,23 +22,28 @@ BugCatcherScript_0x18e04a: ; 0x18e04a
 ; 0x18e04d
 
 UnknownText_0x18e04d: ; 0x18e04d
-	db $0, "There's no GREAT", $4f
-	db "BALL here. #", $51
-	db "BALLS will have", $4f
-	db "to do.", $51
-	db "I wish KURT would", $4f
-	db "make me some of", $55
-	db "his custom BALLS.", $57
+	text "There's no GREAT"
+	line "BALL here. #"
+
+	para "BALLS will have"
+	line "to do."
+
+	para "I wish KURT would"
+	line "make me some of"
+	cont "his custom BALLS."
+	done
 ; 0x18e0b6
 
 UnknownText_0x18e0b6: ; 0x18e0b6
-	db $0, "A GREAT BALL is", $4f
-	db "better for catch-", $55
-	db "ing #MON than a", $55
-	db "# BALL.", $51
-	db "But KURT's might", $4f
-	db "be better some-", $55
-	db "times.", $57
+	text "A GREAT BALL is"
+	line "better for catch-"
+	cont "ing #MON than a"
+	cont "# BALL."
+
+	para "But KURT's might"
+	line "be better some-"
+	cont "times."
+	done
 ; 0x18e118
 
 AzaleaMart_MapEventHeader: ; 0x18e118

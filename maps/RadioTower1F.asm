@@ -244,37 +244,44 @@ MovementData_0x5ce74: ; 0x5ce74
 ; 0x5ce77
 
 UnknownText_0x5ce77: ; 0x5ce77
-	db $0, "Welcome!", $57
+	text "Welcome!"
+	done
 ; 0x5ce81
 
 UnknownText_0x5ce81: ; 0x5ce81
-	db $0, "Hello. I'm sorry,", $4f
-	db "but we're not", $55
-	db "offering any tours", $55
-	db "today.", $57
+	text "Hello. I'm sorry,"
+	line "but we're not"
+	cont "offering any tours"
+	cont "today."
+	done
 ; 0x5ceba
 
 UnknownText_0x5ceba: ; 0x5ceba
-	db $0, "Hi, are you here", $4f
-	db "for the LUCKY NUM-", $55
-	db "BER SHOW?", $51
-	db "Want me to check", $4f
-	db "the ID numbers of", $55
-	db "your #MON?", $51
-	db "If you get lucky,", $4f
-	db "you win a prize.", $57
+	text "Hi, are you here"
+	line "for the LUCKY NUM-"
+	cont "BER SHOW?"
+
+	para "Want me to check"
+	line "the ID numbers of"
+	cont "your #MON?"
+
+	para "If you get lucky,"
+	line "you win a prize."
+	done
 ; 0x5cf3a
 
 UnknownText_0x5cf3a: ; 0x5cf3a
-	db $0, "This week's ID", $4f
-	db "number is @"
+	text "This week's ID"
+	line "number is @"
 	text_from_ram $d099
-	db $0, ".", $57
+	text "."
+	done
 ; 0x5cf5a
 
 UnknownText_0x5cf5a: ; 0x5cf5a
-	db $0, "Let's see if you", $4f
-	db "have a match.", $57
+	text "Let's see if you"
+	line "have a match."
+	done
 ; 0x5cf79
 
 UnknownText_0x5cf79: ; 0x5cf79
@@ -283,193 +290,246 @@ UnknownText_0x5cf79: ; 0x5cf79
 ; 0x5cf7e
 
 UnknownText_0x5cf7e: ; 0x5cf7e
-	db $0, "Please come back", $4f
-	db "next week for the", $55
-	db "next LUCKY NUMBER.", $57
+	text "Please come back"
+	line "next week for the"
+	cont "next LUCKY NUMBER."
+	done
 ; 0x5cfb5
 
 UnknownText_0x5cfb5: ; 0x5cfb5
-	db $0, "Wow! You have a", $4f
-	db "perfect match of", $55
-	db "all five numbers!", $51
-	db "We have a grand", $4f
-	db "prize winner!", $51
-	db "You have won a", $4f
-	db "MASTER BALL!", $57
+	text "Wow! You have a"
+	line "perfect match of"
+	cont "all five numbers!"
+
+	para "We have a grand"
+	line "prize winner!"
+
+	para "You have won a"
+	line "MASTER BALL!"
+	done
 ; 0x5d023
 
 UnknownText_0x5d023: ; 0x5d023
-	db $0, "Hey! You've", $4f
-	db "matched the last", $55
-	db "three numbers!", $51
-	db "You've won second", $4f
-	db "prize, an EXP.", $55
-	db "SHARE!", $57
+	text "Hey! You've"
+	line "matched the last"
+	cont "three numbers!"
+
+	para "You've won second"
+	line "prize, an EXP."
+	cont "SHARE!"
+	done
 ; 0x5d076
 
 UnknownText_0x5d076: ; 0x5d076
-	db $0, "Ooh, you've", $4f
-	db "matched the last", $55
-	db "two numbers.", $51
-	db "You've won third", $4f
-	db "prize, a PP UP.", $57
+	text "Ooh, you've"
+	line "matched the last"
+	cont "two numbers."
+
+	para "You've won third"
+	line "prize, a PP UP."
+	done
 ; 0x5d0c0
 
 UnknownText_0x5d0c0: ; 0x5d0c0
-	db $0, "Nope, none of your", $4f
-	db "ID numbers match.", $57
+	text "Nope, none of your"
+	line "ID numbers match."
+	done
 ; 0x5d0e6
 
 UnknownText_0x5d0e6: ; 0x5d0e6
-	db $0, "You've got no room", $4f
-	db "for your prize.", $51
-	db "Make room and come", $4f
-	db "back right away.", $57
+	text "You've got no room"
+	line "for your prize."
+
+	para "Make room and come"
+	line "back right away."
+	done
 ; 0x5d12d
 
 UnknownText_0x5d12d: ; 0x5d12d
-	db $0, "We have a special", $4f
-	db "quiz campaign on", $55
-	db "right now.", $51
-	db "Answer five ques-", $4f
-	db "tions correctly to", $55
-	db "win a RADIO CARD.", $51
-	db "Slide it into your", $4f
-	db "#GEAR to play", $51
-	db "the radio anytime,", $4f
-	db "anywhere.", $51
-	db "Would you like to", $4f
-	db "take the quiz?", $57
+	text "We have a special"
+	line "quiz campaign on"
+	cont "right now."
+
+	para "Answer five ques-"
+	line "tions correctly to"
+	cont "win a RADIO CARD."
+
+	para "Slide it into your"
+	line "#GEAR to play"
+
+	para "the radio anytime,"
+	line "anywhere."
+
+	para "Would you like to"
+	line "take the quiz?"
+	done
 ; 0x5d1f2
 
 UnknownText_0x5d1f2: ; 0x5d1f2
-	db $0, "Question 1:", $51
-	db "Is there a #MON", $4f
-	db "that appears only", $55
-	db "in the morning?", $57
+	text "Question 1:"
+
+	para "Is there a #MON"
+	line "that appears only"
+	cont "in the morning?"
+	done
 ; 0x5d231
 
 UnknownText_0x5d231: ; 0x5d231
-	db $0, "Correct!", $4f
-	db "Question 2:", $51
-	db "Is this statement", $4f
-	db "correct?", $51
-	db "You can't buy a", $4f
-	db "BERRY at a MART.", $57
+	text "Correct!"
+	line "Question 2:"
+
+	para "Is this statement"
+	line "correct?"
+
+	para "You can't buy a"
+	line "BERRY at a MART."
+	done
 ; 0x5d282
 
 UnknownText_0x5d282: ; 0x5d282
-	db $0, "Bull's-eye!", $4f
-	db "Question 3:", $51
-	db "Does HM01 contain", $4f
-	db "the move FLASH?", $57
+	text "Bull's-eye!"
+	line "Question 3:"
+
+	para "Does HM01 contain"
+	line "the move FLASH?"
+	done
 ; 0x5d2bc
 
 UnknownText_0x5d2bc: ; 0x5d2bc
-	db $0, "So far so good!", $4f
-	db "Question 4:", $51
-	db "Is FALKNER the", $4f
-	db "VIOLET GYM LEADER", $51
-	db "who uses bird", $4f
-	db "#MON?", $57
+	text "So far so good!"
+	line "Question 4:"
+
+	para "Is FALKNER the"
+	line "VIOLET GYM LEADER"
+
+	para "who uses bird"
+	line "#MON?"
+	done
 ; 0x5d30e
 
 UnknownText_0x5d30e: ; 0x5d30e
-	db $0, "Wow! Right again!", $4f
-	db "Here's the final", $55
-	db "question:", $51
-	db "Do GOLDENROD GAME", $4f
-	db "CORNER's slots", $51
-	db "have CHARMANDER", $4f
-	db "on their reels?", $57
+	text "Wow! Right again!"
+	line "Here's the final"
+	cont "question:"
+
+	para "Do GOLDENROD GAME"
+	line "CORNER's slots"
+
+	para "have CHARMANDER"
+	line "on their reels?"
+	done
 ; 0x5d37b
 
 UnknownText_0x5d37b: ; 0x5d37b
-	db $0, "Bingo! You got it!", $4f
-	db "Congratulations!", $51
-	db "Here's your prize,", $4f
-	db "a RADIO CARD!", $57
+	text "Bingo! You got it!"
+	line "Congratulations!"
+
+	para "Here's your prize,"
+	line "a RADIO CARD!"
+	done
 ; 0x5d3c0
 
 UnknownText_0x5d3c0: ; 0x5d3c0
-	db $0, $52, "'s #GEAR", $4f
-	db "can now double as", $55
-	db "a radio!", $57
+	text $52, "'s #GEAR"
+	line "can now double as"
+	cont "a radio!"
+	done
 ; 0x5d3e5
 
 UnknownText_0x5d3e5: ; 0x5d3e5
-	db $0, "Please tune in to", $4f
-	db "our radio shows.", $57
+	text "Please tune in to"
+	line "our radio shows."
+	done
 ; 0x5d409
 
 UnknownText_0x5d409: ; 0x5d409
-	db $0, "Oh, dear.", $4f
-	db "Sorry, but you", $51
-	db "got it wrong.", $4f
-	db "Please try again!", $57
+	text "Oh, dear."
+	line "Sorry, but you"
+
+	para "got it wrong."
+	line "Please try again!"
+	done
 ; 0x5d443
 
 UnknownText_0x5d443: ; 0x5d443
-	db $0, "Oh. I see. Please", $4f
-	db "see me if you", $55
-	db "change your mind.", $57
+	text "Oh. I see. Please"
+	line "see me if you"
+	cont "change your mind."
+	done
 ; 0x5d476
 
 UnknownText_0x5d476: ; 0x5d476
-	db $0, "BEN is a fabulous", $4f
-	db "DJ.", $51
-	db "His sweet voice", $4f
-	db "makes me melt!", $57
+	text "BEN is a fabulous"
+	line "DJ."
+
+	para "His sweet voice"
+	line "makes me melt!"
+	done
 ; 0x5d4ac
 
 UnknownText_0x5d4ac: ; 0x5d4ac
-	db $0, "I love MARY, from", $4f
-	db "#MON TALK.", $51
-	db "I only know what", $4f
-	db "she sounds like,", $55
-	db "though.", $57
+	text "I love MARY, from"
+	line "#MON TALK."
+
+	para "I only know what"
+	line "she sounds like,"
+	cont "though."
+	done
 ; 0x5d4f4
 
 GruntM3SeenText: ; 0x5d4f4
-	db $0, "We've finally", $4f
-	db "taken over the", $55
-	db "RADIO TOWER!", $51
-	db "Now everyone will", $4f
-	db "get to experience", $51
-	db "the true terror of", $4f
-	db "TEAM ROCKET!", $51
-	db "We'll show you", $4f
-	db "how scary we are!", $57
+	text "We've finally"
+	line "taken over the"
+	cont "RADIO TOWER!"
+
+	para "Now everyone will"
+	line "get to experience"
+
+	para "the true terror of"
+	line "TEAM ROCKET!"
+
+	para "We'll show you"
+	line "how scary we are!"
+	done
 ; 0x5d582
 
 GruntM3BeatenText: ; 0x5d582
-	db $0, "Too strong! We", $4f
-	db "must watch you…", $57
+	text "Too strong! We"
+	line "must watch you…"
+	done
 ; 0x5d5a2
 
 UnknownText_0x5d5a2: ; 0x5d5a2
-	db $0, "You're too strong.", $51
-	db "Our plan could be", $4f
-	db "ruined. I must", $55
-	db "warn the others…", $57
+	text "You're too strong."
+
+	para "Our plan could be"
+	line "ruined. I must"
+	cont "warn the others…"
+	done
 ; 0x5d5e7
 
 UnknownText_0x5d5e7: ; 0x5d5e7
-	db $0, "1F RECEPTION", $4f
-	db "2F SALES", $51
-	db "3F PERSONNEL", $4f
-	db "4F PRODUCTION", $51
-	db "5F DIRECTOR'S", $4f
-	db "   OFFICE", $57
+	text "1F RECEPTION"
+	line "2F SALES"
+
+	para "3F PERSONNEL"
+	line "4F PRODUCTION"
+
+	para "5F DIRECTOR'S"
+	line "   OFFICE"
+	done
 ; 0x5d631
 
 UnknownText_0x5d631: ; 0x5d631
-	db $0, "LUCKY CHANNEL!", $51
-	db "Win with #MON", $4f
-	db "ID numbers!", $51
-	db "Trade your #MON", $4f
-	db "to collect differ-", $55
-	db "ent ID numbers!", $57
+	text "LUCKY CHANNEL!"
+
+	para "Win with #MON"
+	line "ID numbers!"
+
+	para "Trade your #MON"
+	line "to collect differ-"
+	cont "ent ID numbers!"
+	done
 ; 0x5d68e
 
 RadioTower1F_MapEventHeader: ; 0x5d68e

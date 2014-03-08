@@ -160,138 +160,176 @@ UnknownScript_0x19213b: ; 0x19213b
 ; 0x192142
 
 UnknownText_0x192142: ; 0x192142
-	db $0, "SURGE: Hey, you", $4f
-	db "little tyke!", $51
-	db "I have to hand it", $4f
-	db "to you. It may not", $51
-	db "be very smart to", $4f
-	db "challenge me, but", $55
-	db "it takes guts!", $51
-	db "When it comes to", $4f
-	db "electric #MON,", $55
-	db "I'm number one!", $51
-	db "I've never lost on", $4f
-	db "the battlefield.", $51
-	db "I'll zap you just", $4f
-	db "like I did my", $55
-	db "enemies in war!", $57
+	text "SURGE: Hey, you"
+	line "little tyke!"
+
+	para "I have to hand it"
+	line "to you. It may not"
+
+	para "be very smart to"
+	line "challenge me, but"
+	cont "it takes guts!"
+
+	para "When it comes to"
+	line "electric #MON,"
+	cont "I'm number one!"
+
+	para "I've never lost on"
+	line "the battlefield."
+
+	para "I'll zap you just"
+	line "like I did my"
+	cont "enemies in war!"
+	done
 ; 0x192238
 
 UnknownText_0x192238: ; 0x192238
-	db $0, "SURGE: Arrrgh!", $4f
-	db "You are strong!", $51
-	db "OK, kid. You get", $4f
-	db "THUNDERBADGE!", $57
+	text "SURGE: Arrrgh!"
+	line "You are strong!"
+
+	para "OK, kid. You get"
+	line "THUNDERBADGE!"
+	done
 ; 0x192277
 
 UnknownText_0x192277: ; 0x192277
-	db $0, $52, " received", $4f
-	db "THUNDERBADGE.", $57
+	text $52, " received"
+	line "THUNDERBADGE."
+	done
 ; 0x192291
 
 UnknownText_0x192291: ; 0x192291
-	db $0, "SURGE: THUNDER-", $4f
-	db "BADGE increases", $55
-	db "#MON's speed. ", $51
-	db "Consider it proof", $4f
-	db "that you defeated", $51
-	db "me. You wear it", $4f
-	db "proudly, hear?", $57
+	text "SURGE: THUNDER-"
+	line "BADGE increases"
+	cont "#MON's speed. "
+
+	para "Consider it proof"
+	line "that you defeated"
+
+	para "me. You wear it"
+	line "proudly, hear?"
+	done
 ; 0x192303
 
 UnknownText_0x192303: ; 0x192303
-	db $0, "SURGE: Hey, kid!", $4f
-	db "Still slugging and", $55
-	db "chugging away?", $51
-	db "My #MON and I", $4f
-	db "are still at it!", $57
+	text "SURGE: Hey, kid!"
+	line "Still slugging and"
+	cont "chugging away?"
+
+	para "My #MON and I"
+	line "are still at it!"
+	done
 ; 0x192356
 
 GentlemanGregorySeenText: ; 0x192356
-	db $0, "You're here to", $4f
-	db "defeat LT.SURGE?", $51
-	db "Not if I can help", $4f
-	db "it!", $57
+	text "You're here to"
+	line "defeat LT.SURGE?"
+
+	para "Not if I can help"
+	line "it!"
+	done
 ; 0x19238c
 
 GentlemanGregoryBeatenText: ; 0x19238c
-	db $0, "Sorry I failed", $4f
-	db "you, LT.SURGE,", $55
-	db "sir!", $57
+	text "Sorry I failed"
+	line "you, LT.SURGE,"
+	cont "sir!"
+	done
 ; 0x1923b0
 
 UnknownText_0x1923b0: ; 0x1923b0
-	db $0, "When I was still", $4f
-	db "in the army, LT.", $51
-	db "SURGE saved my", $4f
-	db "life.", $57
+	text "When I was still"
+	line "in the army, LT."
+
+	para "SURGE saved my"
+	line "life."
+	done
 ; 0x1923e8
 
 GuitaristVincentSeenText: ; 0x1923e8
-	db $0, "LT.SURGE recog-", $4f
-	db "nized my potential", $51
-	db "with electric", $4f
-	db "#MON.", $51
-	db "Think you can beat", $4f
-	db "me?", $57
+	text "LT.SURGE recog-"
+	line "nized my potential"
+
+	para "with electric"
+	line "#MON."
+
+	para "Think you can beat"
+	line "me?"
+	done
 ; 0x192437
 
 GuitaristVincentBeatenText: ; 0x192437
-	db $0, "Ooh, how shocking!", $57
+	text "Ooh, how shocking!"
+	done
 ; 0x19244b
 
 UnknownText_0x19244b: ; 0x19244b
-	db $0, "If the GYM's traps", $4f
-	db "were working, you", $51
-	db "would have been", $4f
-	db "toast…", $57
+	text "If the GYM's traps"
+	line "were working, you"
+
+	para "would have been"
+	line "toast…"
+	done
 ; 0x192487
 
 JugglerHortonSeenText: ; 0x192487
-	db $0, "I'm going to take", $4f
-	db "you down! Prepare", $55
-	db "to be shocked!", $57
+	text "I'm going to take"
+	line "you down! Prepare"
+	cont "to be shocked!"
+	done
 ; 0x1924ba
 
 JugglerHortonBeatenText: ; 0x1924ba
-	db $0, "Gwaaah!", $4f
-	db "I was overpowered…", $57
+	text "Gwaaah!"
+	line "I was overpowered…"
+	done
 ; 0x1924d6
 
 UnknownText_0x1924d6: ; 0x1924d6
-	db $0, "Don't get too com-", $4f
-	db "fortable about", $51
-	db "beating me…", $4f
-	db "LT.SURGE is tough.", $57
+	text "Don't get too com-"
+	line "fortable about"
+
+	para "beating me…"
+	line "LT.SURGE is tough."
+	done
 ; 0x192517
 
 VermilionGymGuyText: ; 0x192517
-	db $0, "Yo! CHAMP in", $4f
-	db "making!", $51
-	db "You lucked out", $4f
-	db "this time.", $51
-	db "LT.SURGE is very", $4f
-	db "cautious. He has", $51
-	db "traps set all over", $4f
-	db "the GYM.", $51
-	db "But--he-heh--the", $4f
-	db "traps aren't", $55
-	db "active right now.", $51
-	db "You'll have no", $4f
-	db "problem getting to", $55
-	db "LT.SURGE.", $57
+	text "Yo! CHAMP in"
+	line "making!"
+
+	para "You lucked out"
+	line "this time."
+
+	para "LT.SURGE is very"
+	line "cautious. He has"
+
+	para "traps set all over"
+	line "the GYM."
+
+	para "But--he-heh--the"
+	line "traps aren't"
+	cont "active right now."
+
+	para "You'll have no"
+	line "problem getting to"
+	cont "LT.SURGE."
+	done
 ; 0x1925df
 
 VermilionGymGuyWinText: ; 0x1925df
-	db $0, "Whew! That was an", $4f
-	db "electrifying bout!", $51
-	db "It sure made me", $4f
-	db "nervous.", $57
+	text "Whew! That was an"
+	line "electrifying bout!"
+
+	para "It sure made me"
+	line "nervous."
+	done
 ; 0x19261e
 
 UnknownText_0x19261e: ; 0x19261e
-	db $0, "Nope! Nothing here", $4f
-	db "but trash.", $57
+	text "Nope! Nothing here"
+	line "but trash."
+	done
 ; 0x19263d
 
 VermilionGym_MapEventHeader: ; 0x19263d

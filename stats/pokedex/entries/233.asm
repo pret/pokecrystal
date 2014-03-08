@@ -1,8 +1,12 @@
 ; Porygon2PokedexEntry: ; 0x1d110c
 	db "VIRTUAL@" ; species name
-	dw 200, 720; height, width
+	dw 200, 720 ; height, width
 	
-	db "This manmade", $4e, "#MON evolved", $4e, "from the latest@"
-	db "technology. It", $4e, "may have unprog-", $4e, "rammed reactions.@"
+	db   "This manmade"
+	next "#MON evolved"
+	next "from the latest"
+	page "technology. It"
+	next "may have unprog-"
+	next "rammed reactions.@"
 ; 0x1d1174
 

@@ -23,22 +23,27 @@ ItemFragment_0x189b6a: ; 0x189b6a
 ; 0x189b6c
 
 UnknownText_0x189b6c: ; 0x189b6c
-	db $0, "Hello!", $51
-	db "KARATE KING, the", $4f
-	db "FIGHTING DOJO's", $51
-	db "master, is in a", $4f
-	db "cave in JOHTO for", $55
-	db "training.", $57
+	text "Hello!"
+
+	para "KARATE KING, the"
+	line "FIGHTING DOJO's"
+
+	para "master, is in a"
+	line "cave in JOHTO for"
+	cont "training."
+	done
 ; 0x189bc0
 
 UnknownText_0x189bc0: ; 0x189bc0
-	db $0, "What goes around", $4f
-	db "comes around!", $57
+	text "What goes around"
+	line "comes around!"
+	done
 ; 0x189be0
 
 UnknownText_0x189be0: ; 0x189be0
-	db $0, "Enemies on every", $4f
-	db "side!", $57
+	text "Enemies on every"
+	line "side!"
+	done
 ; 0x189bf8
 
 FightingDojo_MapEventHeader: ; 0x189bf8

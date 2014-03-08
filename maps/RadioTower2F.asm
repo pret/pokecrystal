@@ -431,323 +431,413 @@ MovementData_0x5d921: ; 0x5d921
 ; 0x5d924
 
 UnknownText_0x5d924: ; 0x5d924
-	db $0, "You can listen to", $4f
-	db "the radio any-", $55
-	db "where. Tune in!", $57
+	text "You can listen to"
+	line "the radio any-"
+	cont "where. Tune in!"
+	done
 ; 0x5d956
 
 UnknownText_0x5d956: ; 0x5d956
-	db $0, "Lullabies on the", $4f
-	db "radio may make", $55
-	db "#MON sleep.", $57
+	text "Lullabies on the"
+	line "radio may make"
+	cont "#MON sleep."
+	done
 ; 0x5d983
 
 UnknownText_0x5d983: ; 0x5d983
-	db $0, "Why would they", $4f
-	db "want to take over", $55
-	db "the RADIO TOWER?", $57
+	text "Why would they"
+	line "want to take over"
+	cont "the RADIO TOWER?"
+	done
 ; 0x5d9b6
 
 UnknownText_0x5d9b6: ; 0x5d9b6
-	db $0, "JIGGLYPUFF:", $4f
-	db "Jiggly…", $57
+	text "JIGGLYPUFF:"
+	line "Jiggly…"
+	done
 ; 0x5d9cb
 
 UnknownText_0x5d9cb: ; 0x5d9cb
-	db $0, "Sorry. Authorized", $4f
-	db "personnel only", $55
-	db "beyond this point.", $51
-	db "It wasn't that way", $4f
-	db "before.", $51
-	db "There's something", $4f
-	db "wrong with the", $55
-	db "DIRECTOR…", $57
+	text "Sorry. Authorized"
+	line "personnel only"
+	cont "beyond this point."
+
+	para "It wasn't that way"
+	line "before."
+
+	para "There's something"
+	line "wrong with the"
+	cont "DIRECTOR…"
+	done
 ; 0x5da44
 
 UnknownText_0x5da44: ; 0x5da44
-	db $0, "Feel free to look", $4f
-	db "around anywhere.", $51
-	db "The DIRECTOR is", $4f
-	db "nice again, just", $55
-	db "as he was before.", $57
+	text "Feel free to look"
+	line "around anywhere."
+
+	para "The DIRECTOR is"
+	line "nice again, just"
+	cont "as he was before."
+	done
 ; 0x5da9b
 
 GruntM4SeenText: ; 0x5da9b
-	db $0, "Three years ago,", $4f
-	db "TEAM ROCKET was", $55
-	db "forced to disband.", $51
-	db "But we're making a", $4f
-	db "comeback here!", $57
+	text "Three years ago,"
+	line "TEAM ROCKET was"
+	cont "forced to disband."
+
+	para "But we're making a"
+	line "comeback here!"
+	done
 ; 0x5daf1
 
 GruntM4BeatenText: ; 0x5daf1
-	db $0, "Gwah! Don't get", $4f
-	db "cute!", $57
+	text "Gwah! Don't get"
+	line "cute!"
+	done
 ; 0x5db07
 
 UnknownText_0x5db07: ; 0x5db07
-	db $0, "We won't let you", $4f
-	db "ruin our plans", $55
-	db "for our comeback!", $57
+	text "We won't let you"
+	line "ruin our plans"
+	cont "for our comeback!"
+	done
 ; 0x5db39
 
 GruntM5SeenText: ; 0x5db39
-	db $0, "We're TEAM ROCKET,", $4f
-	db "the exploiters of", $55
-	db "#MON!", $51
-	db "We love being", $4f
-	db "evil! Scared?", $57
+	text "We're TEAM ROCKET,"
+	line "the exploiters of"
+	cont "#MON!"
+
+	para "We love being"
+	line "evil! Scared?"
+	done
 ; 0x5db80
 
 GruntM5BeatenText: ; 0x5db80
-	db $0, "You think you're a", $4f
-	db "hero?", $57
+	text "You think you're a"
+	line "hero?"
+	done
 ; 0x5db99
 
 UnknownText_0x5db99: ; 0x5db99
-	db $0, "We're not always", $4f
-	db "evil. We just do", $55
-	db "whatever we like.", $57
+	text "We're not always"
+	line "evil. We just do"
+	cont "whatever we like."
+	done
 ; 0x5dbcd
 
 GruntM6SeenText: ; 0x5dbcd
-	db $0, "Hey, hey! Keep out", $4f
-	db "of our way!", $57
+	text "Hey, hey! Keep out"
+	line "of our way!"
+	done
 ; 0x5dbed
 
 GruntM6BeatenText: ; 0x5dbed
-	db $0, "Arggh. I give up.", $57
+	text "Arggh. I give up."
+	done
 ; 0x5dc00
 
 UnknownText_0x5dc00: ; 0x5dc00
-	db $0, "Our EXECUTIVES are", $4f
-	db "trying to take", $55
-	db "this place over.", $51
-	db "They have some big", $4f
-	db "plan. I wonder", $55
-	db "what that is?", $57
+	text "Our EXECUTIVES are"
+	line "trying to take"
+	cont "this place over."
+
+	para "They have some big"
+	line "plan. I wonder"
+	cont "what that is?"
+	done
 ; 0x5dc64
 
 GruntF2SeenText: ; 0x5dc64
-	db $0, "Hahaha!", $51
-	db "How boring.", $4f
-	db "It was far too", $51
-	db "easy to take over", $4f
-	db "this place!", $51
-	db "Come on, keep me", $4f
-	db "amused!", $57
+	text "Hahaha!"
+
+	para "How boring."
+	line "It was far too"
+
+	para "easy to take over"
+	line "this place!"
+
+	para "Come on, keep me"
+	line "amused!"
+	done
 ; 0x5dcbf
 
 GruntF2BeatenText: ; 0x5dcbf
-	db $0, "Wh-who are you?", $57
+	text "Wh-who are you?"
+	done
 ; 0x5dcd0
 
 UnknownText_0x5dcd0: ; 0x5dcd0
-	db $0, "You beat me, and", $4f
-	db "I won't forget it!", $57
+	text "You beat me, and"
+	line "I won't forget it!"
+	done
 ; 0x5dcf4
 
 UnknownText_0x5dcf4: ; 0x5dcf4
-	db $0, "BUENA: Hi! I'm", $4f
-	db "BUENA!", $51
-	db "Do you know about", $4f
-	db "a radio program", $55
-	db "called PASSWORD?", $51
-	db "If you can tell me", $4f
-	db "the password from", $51
-	db "the program, you", $4f
-	db "will earn points.", $51
-	db "Save up those", $4f
-	db "points and trade", $51
-	db "them to that sweet", $4f
-	db "young lady over", $51
-	db "there for some", $4f
-	db "choice prizes!", $51
-	db "Here you go!", $51
-	db "It's your very own", $4f
-	db "point card!", $57
+	text "BUENA: Hi! I'm"
+	line "BUENA!"
+
+	para "Do you know about"
+	line "a radio program"
+	cont "called PASSWORD?"
+
+	para "If you can tell me"
+	line "the password from"
+
+	para "the program, you"
+	line "will earn points."
+
+	para "Save up those"
+	line "points and trade"
+
+	para "them to that sweet"
+	line "young lady over"
+
+	para "there for some"
+	line "choice prizes!"
+
+	para "Here you go!"
+
+	para "It's your very own"
+	line "point card!"
+	done
 ; 0x5de10
 
 UnknownText_0x5de10: ; 0x5de10
-	db $0, "BUENA: Tune in to", $4f
-	db "my PASSWORD SHOW!", $57
+	text "BUENA: Tune in to"
+	line "my PASSWORD SHOW!"
+	done
 ; 0x5de35
 
 UnknownText_0x5de35: ; 0x5de35
-	db $0, "BUENA: Hi!", $4f
-	db "Did you tune in to", $55
-	db "my radio show?", $51
-	db "Do you remember", $4f
-	db "today's password?", $57
+	text "BUENA: Hi!"
+	line "Did you tune in to"
+	cont "my radio show?"
+
+	para "Do you remember"
+	line "today's password?"
+	done
 ; 0x5de84
 
 UnknownText_0x5de84: ; 0x5de84
-	db $0, "BUENA: Oh, wow!", $4f
-	db "Thank you!", $51
-	db "What was your name", $4f
-	db "again?", $51
-	db "…", $14, ", OK!", $51
-	db "Come on, ", $14, ".", $4f
-	db "Join the show.", $57
+	text "BUENA: Oh, wow!"
+	line "Thank you!"
+
+	para "What was your name"
+	line "again?"
+
+	para "…", $14, ", OK!"
+
+	para "Come on, ", $14, "."
+	line "Join the show."
+	done
 ; 0x5dedd
 
 UnknownText_0x5dedd: ; 0x5dedd
-	db $0, "BUENA: Everyone", $4f
-	db "ready?", $51
-	db "I want to hear you", $4f
-	db "shout out today's", $51
-	db "password for", $4f
-	db $14, "!", $57
+	text "BUENA: Everyone"
+	line "ready?"
+
+	para "I want to hear you"
+	line "shout out today's"
+
+	para "password for"
+	line $14, "!"
+	done
 ; 0x5df29
 
 UnknownText_0x5df29: ; 0x5df29
-	db $0, "BUENA: Come back", $4f
-	db "after you listen", $51
-	db "to my show, OK?", $4f
-	db "Catch ya later!", $57
+	text "BUENA: Come back"
+	line "after you listen"
+
+	para "to my show, OK?"
+	line "Catch ya later!"
+	done
 ; 0x5df6c
 
 UnknownText_0x5df6c: ; 0x5df6c
-	db $0, "BUENA: Sorry…", $51
-	db "You get just one", $4f
-	db "chance each day.", $51
-	db "Come back tomorrow", $4f
-	db "for another try!", $57
+	text "BUENA: Sorry…"
+
+	para "You get just one"
+	line "chance each day."
+
+	para "Come back tomorrow"
+	line "for another try!"
+	done
 ; 0x5dfc1
 
 UnknownText_0x5dfc1: ; 0x5dfc1
-	db $0, "BUENA: YIPPEE!", $4f
-	db "That's right!", $51
-	db "You did tune in!", $4f
-	db "I'm so happy!", $51
-	db "You earned one", $4f
-	db "point! Congrats!", $57
+	text "BUENA: YIPPEE!"
+	line "That's right!"
+
+	para "You did tune in!"
+	line "I'm so happy!"
+
+	para "You earned one"
+	line "point! Congrats!"
+	done
 ; 0x5e01c
 
 UnknownText_0x5e01c: ; 0x5e01c
-	db $0, "BUENA: Aww…", $4f
-	db "That's not it…", $51
-	db "Did you forget the", $4f
-	db "password?", $57
+	text "BUENA: Aww…"
+	line "That's not it…"
+
+	para "Did you forget the"
+	line "password?"
+	done
 ; 0x5e054
 
 UnknownText_0x5e054: ; 0x5e054
-	db $0, "BUENA: Yup! Our", $4f
-	db "contestant was", $51
-	db $14, ".", $4f
-	db "Thanks for coming!", $51
-	db "I hope all you", $4f
-	db "listeners will", $51
-	db "come too!", $4f
-	db "I'll be waiting!", $57
+	text "BUENA: Yup! Our"
+	line "contestant was"
+
+	para $14, "."
+	line "Thanks for coming!"
+
+	para "I hope all you"
+	line "listeners will"
+
+	para "come too!"
+	line "I'll be waiting!"
+	done
 ; 0x5e0c2
 
 UnknownText_0x5e0c2: ; 0x5e0c2
-	db $0, "BUENA: Huh?", $4f
-	db "Today's password?", $51
-	db "HELP, of course!", $57
+	text "BUENA: Huh?"
+	line "Today's password?"
+
+	para "HELP, of course!"
+	done
 ; 0x5e0f1
 
 UnknownText_0x5e0f1: ; 0x5e0f1
-	db $0, "BUENA: Your BLUE", $4f
-	db "CARD's full.", $51
-	db "Trade it in for a", $4f
-	db "fabulous prize!", $57
+	text "BUENA: Your BLUE"
+	line "CARD's full."
+
+	para "Trade it in for a"
+	line "fabulous prize!"
+	done
 ; 0x5e131
 
 UnknownText_0x5e131: ; 0x5e131
-	db $0, "BUENA: Tune in to", $4f
-	db "PASSWORD every", $51
-	db "night from six to", $4f
-	db "midnight!", $51
-	db "Tune in, then drop", $4f
-	db "in for a visit!", $57
+	text "BUENA: Tune in to"
+	line "PASSWORD every"
+
+	para "night from six to"
+	line "midnight!"
+
+	para "Tune in, then drop"
+	line "in for a visit!"
+	done
 ; 0x5e192
 
 UnknownText_0x5e192: ; 0x5e192
-	db $0, "BUENA: Oh? You", $4f
-	db "forgot to bring", $55
-	db "your BLUE CARD?", $51
-	db "I can't give you", $4f
-	db "points if you", $55
-	db "don't have it.", $57
+	text "BUENA: Oh? You"
+	line "forgot to bring"
+	cont "your BLUE CARD?"
+
+	para "I can't give you"
+	line "points if you"
+	cont "don't have it."
+	done
 ; 0x5e1ee
 
 UnknownText_0x5e1ee: ; 0x5e1ee
-	db $0, "BUENA: Oh! Your", $4f
-	db "BLUE CARD reached", $51
-	db "30 points today!", $4f
-	db "That's so wild!", $51
-	db "Hmm… There isn't a", $4f
-	db "prize for hitting", $55
-	db "30 points, but…", $51
-	db "You came by so", $4f
-	db "often, ", $14, ".", $51
-	db "I'll make you a", $4f
-	db "special deal!", $51
-	db "How would you like", $4f
-	db "my phone number?", $57
+	text "BUENA: Oh! Your"
+	line "BLUE CARD reached"
+
+	para "30 points today!"
+	line "That's so wild!"
+
+	para "Hmm… There isn't a"
+	line "prize for hitting"
+	cont "30 points, but…"
+
+	para "You came by so"
+	line "often, ", $14, "."
+
+	para "I'll make you a"
+	line "special deal!"
+
+	para "How would you like"
+	line "my phone number?"
+	done
 ; 0x5e2bf
 
 UnknownText_0x5e2bf: ; 0x5e2bf
-	db $0, "BUENA: ", $14, ",", $4f
-	db "do you want to", $51
-	db "register my phone", $4f
-	db "number?", $57
+	text "BUENA: ", $14, ","
+	line "do you want to"
+
+	para "register my phone"
+	line "number?"
+	done
 ; 0x5e2f3
 
 UnknownText_0x5e2f3: ; 0x5e2f3
-	db $0, $52, " registered", $4f
-	db "BUENA's number.", $57
+	text $52, " registered"
+	line "BUENA's number."
+	done
 ; 0x5e310
 
 UnknownText_0x5e310: ; 0x5e310
-	db $0, "BUENA: I look", $4f
-	db "forward to hearing", $55
-	db "from you!", $57
+	text "BUENA: I look"
+	line "forward to hearing"
+	cont "from you!"
+	done
 ; 0x5e33c
 
 UnknownText_0x5e33c: ; 0x5e33c
-	db $0, "BUENA: Aww… It's a", $4f
-	db "special prize…", $57
+	text "BUENA: Aww… It's a"
+	line "special prize…"
+	done
 ; 0x5e35e
 
 UnknownText_0x5e35e: ; 0x5e35e
-	db $0, "BUENA: ", $14, ",", $4f
-	db "your phone list", $51
-	db "has no room left", $4f
-	db "for me…", $57
+	text "BUENA: ", $14, ","
+	line "your phone list"
+
+	para "has no room left"
+	line "for me…"
+	done
 ; 0x5e392
 
 UnknownText_0x5e392: ; 0x5e392
-	db $0, "You can cash in", $4f
-	db "your saved points", $51
-	db "for a lovely prize", $4f
-	db "of your choice!", $57
+	text "You can cash in"
+	line "your saved points"
+
+	para "for a lovely prize"
+	line "of your choice!"
+	done
 ; 0x5e3d8
 
 UnknownText_0x5e3d8: ; 0x5e3d8
-	db $0, "You can't trade in", $4f
-	db "points without", $55
-	db "your BLUE CARD.", $51
-	db "Don't forget your", $4f
-	db "BLUE CARD!", $57
+	text "You can't trade in"
+	line "points without"
+	cont "your BLUE CARD."
+
+	para "Don't forget your"
+	line "BLUE CARD!"
+	done
 ; 0x5e426
 
 UnknownText_0x5e426: ; 0x5e426
-	db $0, "2F SALES", $57
+	text "2F SALES"
+	done
 ; 0x5e430
 
 UnknownText_0x5e430: ; 0x5e430
-	db $0, "PROF.OAK'S #MON", $4f
-	db "TALK", $51
-	db "The Hottest Show", $4f
-	db "on the Air!", $57
+	text "PROF.OAK'S #MON"
+	line "TALK"
+
+	para "The Hottest Show"
+	line "on the Air!"
+	done
 ; 0x5e463
 
 UnknownText_0x5e463: ; 0x5e463
-	db $0, "Anywhere, Anytime", $4f
-	db "#MON Radio", $57
+	text "Anywhere, Anytime"
+	line "#MON Radio"
+	done
 ; 0x5e481
 
 RadioTower2F_MapEventHeader: ; 0x5e481

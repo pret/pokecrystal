@@ -103,60 +103,75 @@ PokefanmTrevorScript: ; 0x1ad4ba
 ; 0x1ad4c2
 
 PokefanmCarterSeenText: ; 0x1ad4c2
-	db $0, "Let me tell you,", $4f
-	db "I had a hard time", $51
-	db "catching my prized", $4f
-	db "#MON.", $57
+	text "Let me tell you,"
+	line "I had a hard time"
+
+	para "catching my prized"
+	line "#MON."
+	done
 ; 0x1ad4ff
 
 PokefanmCarterBeatenText: ; 0x1ad4ff
-	db $0, "Awaaah!", $57
+	text "Awaaah!"
+	done
 ; 0x1ad508
 
 UnknownText_0x1ad508: ; 0x1ad508
-	db $0, "SQUIRTLE, CHARMAN-", $4f
-	db "DER and BULBASAUR…", $51
-	db "I think that's a", $4f
-	db "well-balanced mix.", $57
+	text "SQUIRTLE, CHARMAN-"
+	line "DER and BULBASAUR…"
+
+	para "I think that's a"
+	line "well-balanced mix."
+	done
 ; 0x1ad552
 
 Bird_keeperRoySeenText: ; 0x1ad552
-	db $0, "My dream is to fly", $4f
-	db "with my beloved", $55
-	db "bird #MON.", $57
+	text "My dream is to fly"
+	line "with my beloved"
+	cont "bird #MON."
+	done
 ; 0x1ad581
 
 Bird_keeperRoyBeatenText: ; 0x1ad581
-	db $0, "I can dream, but I", $4f
-	db "can't ever fly…", $57
+	text "I can dream, but I"
+	line "can't ever fly…"
+	done
 ; 0x1ad5a4
 
 UnknownText_0x1ad5a4: ; 0x1ad5a4
-	db $0, "You have #MON", $4f
-	db "that know the HM", $51
-	db "move FLY, don't", $4f
-	db "you? I envy you.", $57
+	text "You have #MON"
+	line "that know the HM"
+
+	para "move FLY, don't"
+	line "you? I envy you."
+	done
 ; 0x1ad5e4
 
 PokefanmTrevorSeenText: ; 0x1ad5e4
-	db $0, "Hi. Did you know…?", $51
-	db "#MON get more", $4f
-	db "friendly if you", $51
-	db "train them in a", $4f
-	db "place that they", $55
-	db "remember.", $57
+	text "Hi. Did you know…?"
+
+	para "#MON get more"
+	line "friendly if you"
+
+	para "train them in a"
+	line "place that they"
+	cont "remember."
+	done
 ; 0x1ad640
 
 PokefanmTrevorBeatenText: ; 0x1ad640
-	db $0, "Where did I meet", $4f
-	db "this PSYDUCK?", $57
+	text "Where did I meet"
+	line "this PSYDUCK?"
+	done
 ; 0x1ad660
 
 UnknownText_0x1ad660: ; 0x1ad660
-	db $0, "If only there were", $4f
-	db "an easy way to", $51
-	db "identify where I", $4f
-	db "got my #MON…", $57
+	text "If only there were"
+	line "an easy way to"
+
+	para "identify where I"
+	line "got my #MON…"
+	done
 ; 0x1ad6a1
 
 Route14_MapEventHeader: ; 0x1ad6a1

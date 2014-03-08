@@ -22,17 +22,20 @@ CooltrainerFScript_0x195cf2: ; 0x195cf2
 ; 0x195cf5
 
 UnknownText_0x195cf5: ; 0x195cf5
-	db $0, "I was hoping to", $4f
-	db "buy some SAFARI", $51
-	db "ZONE souvenirs,", $4f
-	db "but it's closed…", $57
+	text "I was hoping to"
+	line "buy some SAFARI"
+
+	para "ZONE souvenirs,"
+	line "but it's closed…"
+	done
 ; 0x195d36
 
 UnknownText_0x195d36: ; 0x195d36
-	db $0, "The SAFARI ZONE", $4f
-	db "WARDEN's grand-", $55
-	db "daughter lives in", $55
-	db "town.", $57
+	text "The SAFARI ZONE"
+	line "WARDEN's grand-"
+	cont "daughter lives in"
+	cont "town."
+	done
 ; 0x195d6e
 
 FuchsiaMart_MapEventHeader: ; 0x195d6e

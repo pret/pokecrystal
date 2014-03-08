@@ -241,194 +241,249 @@ UnknownScript_0x199b86: ; 0x199b86
 ; 0x199b8d
 
 UnknownText_0x199b8d: ; 0x199b8d
-	db $0, "#MON have many", $4f
-	db "experiences in", $51
-	db "their lives, just ", $4f
-	db "like we do. ", $51
-	db "I, too, have seen", $4f
-	db "and suffered much", $55
-	db "in my life.", $51
-	db "Since I am your", $4f
-	db "elder, let me show", $55
-	db "you what I mean.", $51
-	db "I have been with", $4f
-	db "#MON since", $51
-	db "before you were", $4f
-	db "born.", $51
-	db "I do not lose", $4f
-	db "easily.", $51
-	db "I, PRYCE--the", $4f
-	db "winter trainer--", $51
-	db "shall demonstrate", $4f
-	db "my power!", $57
+	text "#MON have many"
+	line "experiences in"
+
+	para "their lives, just "
+	line "like we do. "
+
+	para "I, too, have seen"
+	line "and suffered much"
+	cont "in my life."
+
+	para "Since I am your"
+	line "elder, let me show"
+	cont "you what I mean."
+
+	para "I have been with"
+	line "#MON since"
+
+	para "before you were"
+	line "born."
+
+	para "I do not lose"
+	line "easily."
+
+	para "I, PRYCE--the"
+	line "winter trainer--"
+
+	para "shall demonstrate"
+	line "my power!"
+	done
 ; 0x199cb3
 
 UnknownText_0x199cb3: ; 0x199cb3
-	db $0, "Ah, I am impressed", $4f
-	db "by your prowess.", $51
-	db "With your strong", $4f
-	db "will, I know you", $51
-	db "will overcome all", $4f
-	db "life's obstacles.", $51
-	db "You are worthy of", $4f
-	db "this BADGE!", $57
+	text "Ah, I am impressed"
+	line "by your prowess."
+
+	para "With your strong"
+	line "will, I know you"
+
+	para "will overcome all"
+	line "life's obstacles."
+
+	para "You are worthy of"
+	line "this BADGE!"
+	done
 ; 0x199d3b
 
 UnknownText_0x199d3b: ; 0x199d3b
-	db $0, $52, " received", $4f
-	db "GLACIERBADGE.", $57
+	text $52, " received"
+	line "GLACIERBADGE."
+	done
 ; 0x199d55
 
 UnknownText_0x199d55: ; 0x199d55
-	db $0, "That BADGE will", $4f
-	db "raise the SPECIAL", $55
-	db "stats of #MON.", $51
-	db "It also lets your", $4f
-	db "#MON use WHIRL-", $55
-	db "POOL to get across", $55
-	db "real whirlpools.", $51
-	db "And this… This is", $4f
-	db "a gift from me!", $57
+	text "That BADGE will"
+	line "raise the SPECIAL"
+	cont "stats of #MON."
+
+	para "It also lets your"
+	line "#MON use WHIRL-"
+	cont "POOL to get across"
+	cont "real whirlpools."
+
+	para "And this… This is"
+	line "a gift from me!"
+	done
 ; 0x199def
 
 UnknownText_0x199def: ; 0x199def
-	db $0, "That TM contains", $4f
-	db "ICY WIND.", $51
-	db "It inflicts damage", $4f
-	db "and lowers speed.", $51
-	db "It demonstrates", $4f
-	db "the harshness of", $55
-	db "winter.", $57
+	text "That TM contains"
+	line "ICY WIND."
+
+	para "It inflicts damage"
+	line "and lowers speed."
+
+	para "It demonstrates"
+	line "the harshness of"
+	cont "winter."
+	done
 ; 0x199e59
 
 UnknownText_0x199e59: ; 0x199e59
-	db $0, "When the ice and", $4f
-	db "snow melt, spring", $55
-	db "arrives.", $51
-	db "You and your #-", $4f
-	db "MON will be to-", $51
-	db "gether for many", $4f
-	db "years to come.", $51
-	db "Cherish your time", $4f
-	db "together!", $57
+	text "When the ice and"
+	line "snow melt, spring"
+	cont "arrives."
+
+	para "You and your #-"
+	line "MON will be to-"
+
+	para "gether for many"
+	line "years to come."
+
+	para "Cherish your time"
+	line "together!"
+	done
 ; 0x199ee1
 
 BoarderRonaldSeenText: ; 0x199ee1
-	db $0, "I'll freeze your", $4f
-	db "#MON, so you", $55
-	db "can't do a thing!", $57
+	text "I'll freeze your"
+	line "#MON, so you"
+	cont "can't do a thing!"
+	done
 ; 0x199f10
 
 BoarderRonaldBeatenText: ; 0x199f10
-	db $0, "Darn. I couldn't", $4f
-	db "do a thing.", $57
+	text "Darn. I couldn't"
+	line "do a thing."
+	done
 ; 0x199f2d
 
 UnknownText_0x199f2d: ; 0x199f2d
-	db $0, "I think there's a", $4f
-	db "move a #MON", $51
-	db "can use while it's", $4f
-	db "frozen.", $57
+	text "I think there's a"
+	line "move a #MON"
+
+	para "can use while it's"
+	line "frozen."
+	done
 ; 0x199f65
 
 BoarderBradSeenText: ; 0x199f65
-	db $0, "This GYM has a", $4f
-	db "slippery floor.", $51
-	db "It's fun, isn't", $4f
-	db "it?", $51
-	db "But hey--we're", $4f
-	db "not playing games", $55
-	db "here!", $57
+	text "This GYM has a"
+	line "slippery floor."
+
+	para "It's fun, isn't"
+	line "it?"
+
+	para "But hey--we're"
+	line "not playing games"
+	cont "here!"
+	done
 ; 0x199fbd
 
 BoarderBradBeatenText: ; 0x199fbd
-	db $0, "Do you see how", $4f
-	db "serious we are?", $57
+	text "Do you see how"
+	line "serious we are?"
+	done
 ; 0x199fdd
 
 UnknownText_0x199fdd: ; 0x199fdd
-	db $0, "This GYM is great.", $4f
-	db "I love boarding", $55
-	db "with my #MON!", $57
+	text "This GYM is great."
+	line "I love boarding"
+	cont "with my #MON!"
+	done
 ; 0x19a00f
 
 BoarderDouglasSeenText: ; 0x19a00f
-	db $0, "I know PRYCE's", $4f
-	db "secret.", $57
+	text "I know PRYCE's"
+	line "secret."
+	done
 ; 0x19a026
 
 BoarderDouglasBeatenText: ; 0x19a026
-	db $0, "OK. I'll tell you", $4f
-	db "PRYCE's secret.", $57
+	text "OK. I'll tell you"
+	line "PRYCE's secret."
+	done
 ; 0x19a047
 
 UnknownText_0x19a047: ; 0x19a047
-	db $0, "The secret behind", $4f
-	db "PRYCE's power…", $51
-	db "He meditates under", $4f
-	db "a waterfall daily", $51
-	db "to strengthen his", $4f
-	db "mind and body.", $57
+	text "The secret behind"
+	line "PRYCE's power…"
+
+	para "He meditates under"
+	line "a waterfall daily"
+
+	para "to strengthen his"
+	line "mind and body."
+	done
 ; 0x19a0ae
 
 SkierRoxanneSeenText: ; 0x19a0ae
-	db $0, "To get to PRYCE,", $4f
-	db "our GYM LEADER,", $51
-	db "you need to think", $4f
-	db "before you skate.", $57
+	text "To get to PRYCE,"
+	line "our GYM LEADER,"
+
+	para "you need to think"
+	line "before you skate."
+	done
 ; 0x19a0f4
 
 SkierRoxanneBeatenText: ; 0x19a0f4
-	db $0, "I wouldn't lose to", $4f
-	db "you in skiing!", $57
+	text "I wouldn't lose to"
+	line "you in skiing!"
+	done
 ; 0x19a116
 
 UnknownText_0x19a116: ; 0x19a116
-	db $0, "If you don't skate", $4f
-	db "with precision,", $51
-	db "you won't get far", $4f
-	db "in this GYM.", $57
+	text "If you don't skate"
+	line "with precision,"
+
+	para "you won't get far"
+	line "in this GYM."
+	done
 ; 0x19a157
 
 SkierClarissaSeenText: ; 0x19a157
-	db $0, "Check out my", $4f
-	db "parallel turn!", $57
+	text "Check out my"
+	line "parallel turn!"
+	done
 ; 0x19a174
 
 SkierClarissaBeatenText: ; 0x19a174
-	db $0, "No! You made me", $4f
-	db "wipe out!", $57
+	text "No! You made me"
+	line "wipe out!"
+	done
 ; 0x19a18f
 
 UnknownText_0x19a18f: ; 0x19a18f
-	db $0, "I shouldn't have", $4f
-	db "been bragging", $55
-	db "about my skiing…", $57
+	text "I shouldn't have"
+	line "been bragging"
+	cont "about my skiing…"
+	done
 ; 0x19a1bf
 
 MahoganyGymGuyText: ; 0x19a1bf
-	db $0, "PRYCE is a veteran", $4f
-	db "who has trained", $51
-	db "#MON for some", $4f
-	db "50 years.", $51
-	db "He's said to be", $4f
-	db "good at freezing", $51
-	db "opponents with", $4f
-	db "ice-type moves.", $51
-	db "That means you", $4f
-	db "should melt him", $51
-	db "with your burning", $4f
-	db "ambition!", $57
+	text "PRYCE is a veteran"
+	line "who has trained"
+
+	para "#MON for some"
+	line "50 years."
+
+	para "He's said to be"
+	line "good at freezing"
+
+	para "opponents with"
+	line "ice-type moves."
+
+	para "That means you"
+	line "should melt him"
+
+	para "with your burning"
+	line "ambition!"
+	done
 ; 0x19a275
 
 MahoganyGymGuyWinText: ; 0x19a275
-	db $0, "PRYCE is some-", $4f
-	db "thing, but you're", $55
-	db "something else!", $51
-	db "That was a hot", $4f
-	db "battle that", $51
-	db "bridged the gen-", $4f
-	db "eration gap!", $57
+	text "PRYCE is some-"
+	line "thing, but you're"
+	cont "something else!"
+
+	para "That was a hot"
+	line "battle that"
+
+	para "bridged the gen-"
+	line "eration gap!"
+	done
 ; 0x19a2df
 
 MahoganyGym_MapEventHeader: ; 0x19a2df

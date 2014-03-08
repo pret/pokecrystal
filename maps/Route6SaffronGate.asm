@@ -32,26 +32,34 @@ UnknownScript_0x1926f8: ; 0x1926f8
 ; 0x1926fe
 
 UnknownText_0x1926fe: ; 0x1926fe
-	db $0, "Welcome to SAFFRON", $4f
-	db "CITY, home of the", $55
-	db "MAGNET TRAIN!", $51
-	db "…That's what I'd", $4f
-	db "normally say, but", $51
-	db "the MAGNET TRAIN", $4f
-	db "isn't running now.", $51
-	db "It's not getting", $4f
-	db "any electricity", $51
-	db "because there's", $4f
-	db "something wrong", $51
-	db "with the POWER", $4f
-	db "PLANT.", $57
+	text "Welcome to SAFFRON"
+	line "CITY, home of the"
+	cont "MAGNET TRAIN!"
+
+	para "…That's what I'd"
+	line "normally say, but"
+
+	para "the MAGNET TRAIN"
+	line "isn't running now."
+
+	para "It's not getting"
+	line "any electricity"
+
+	para "because there's"
+	line "something wrong"
+
+	para "with the POWER"
+	line "PLANT."
+	done
 ; 0x1927cb
 
 UnknownText_0x1927cb: ; 0x1927cb
-	db $0, "The MAGNET TRAIN", $4f
-	db "is the most famous", $51
-	db "thing about SAF-", $4f
-	db "FRON.", $57
+	text "The MAGNET TRAIN"
+	line "is the most famous"
+
+	para "thing about SAF-"
+	line "FRON."
+	done
 ; 0x192807
 
 Route6SaffronGate_MapEventHeader: ; 0x192807

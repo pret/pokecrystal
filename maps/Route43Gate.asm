@@ -219,51 +219,63 @@ MovementData_0x19accd: ; 0x19accd
 ; 0x19acd2
 
 UnknownText_0x19acd2: ; 0x19acd2
-	db $0, "Hold it there,", $4f
-	db "kiddo!", $51
-	db "The toll is ¥1000", $4f
-	db "to go through.", $57
+	text "Hold it there,"
+	line "kiddo!"
+
+	para "The toll is ¥1000"
+	line "to go through."
+	done
 ; 0x19ad0a
 
 UnknownText_0x19ad0a: ; 0x19ad0a
-	db $0, "Thank you very", $4f
-	db "much!", $57
+	text "Thank you very"
+	line "much!"
+	done
 ; 0x19ad20
 
 UnknownText_0x19ad20: ; 0x19ad20
-	db $0, "Then pay what you", $4f
-	db "have, please.", $57
+	text "Then pay what you"
+	line "have, please."
+	done
 ; 0x19ad41
 
 UnknownText_0x19ad41: ; 0x19ad41
-	db $0, "He-he-he. We're", $4f
-	db "making a bundle.", $51
-	db "Everyone wants to", $4f
-	db "see what's going", $51
-	db "on up at LAKE OF", $4f
-	db "RAGE.", $57
+	text "He-he-he. We're"
+	line "making a bundle."
+
+	para "Everyone wants to"
+	line "see what's going"
+
+	para "on up at LAKE OF"
+	line "RAGE."
+	done
 ; 0x19ad9b
 
 UnknownText_0x19ad9b: ; 0x19ad9b
-	db $0, "I got chased from", $4f
-	db "my post by these", $55
-	db "thugs in black.", $51
-	db "They left this", $4f
-	db "behind.", $51
-	db "It makes me uncom-", $4f
-	db "fortable. Could", $55
-	db "you take it away?", $57
+	text "I got chased from"
+	line "my post by these"
+	cont "thugs in black."
+
+	para "They left this"
+	line "behind."
+
+	para "It makes me uncom-"
+	line "fortable. Could"
+	cont "you take it away?"
+	done
 ; 0x19ae1b
 
 UnknownText_0x19ae1b: ; 0x19ae1b
-	db $0, $52, " received", $4f
-	db "TM30.", $57
+	text $52, " received"
+	line "TM30."
+	done
 ; 0x19ae2d
 
 UnknownText_0x19ae2d: ; 0x19ae2d
-	db $0, "Use this gate to", $4f
-	db "avoid walking in", $55
-	db "the grass.", $57
+	text "Use this gate to"
+	line "avoid walking in"
+	cont "the grass."
+	done
 ; 0x19ae5b
 
 Route43Gate_MapEventHeader: ; 0x19ae5b

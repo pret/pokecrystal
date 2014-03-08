@@ -31,22 +31,27 @@ MapCeladonDeptStore4FSignpost1Script: ; 0x70f1e
 ; 0x70f21
 
 UnknownText_0x70f21: ; 0x70f21
-	db $0, "I'm here to buy", $4f
-	db "SURF MAIL to send", $55
-	db "to my girlfriend.", $57
+	text "I'm here to buy"
+	line "SURF MAIL to send"
+	cont "to my girlfriend."
+	done
 ; 0x70f55
 
 UnknownText_0x70f55: ; 0x70f55
-	db $0, "This is the only", $4f
-	db "place where you", $51
-	db "can buy LOVELY", $4f
-	db "MAIL.", $57
+	text "This is the only"
+	line "place where you"
+
+	para "can buy LOVELY"
+	line "MAIL."
+	done
 ; 0x70f8c
 
 UnknownText_0x70f8c: ; 0x70f8c
-	db $0, "Express Yourself", $4f
-	db "With Gifts!", $51
-	db "4F: WISEMAN GIFTS", $57
+	text "Express Yourself"
+	line "With Gifts!"
+
+	para "4F: WISEMAN GIFTS"
+	done
 ; 0x70fbc
 
 CeladonDeptStore4F_MapEventHeader: ; 0x70fbc

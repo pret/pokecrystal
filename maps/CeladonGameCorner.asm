@@ -155,113 +155,149 @@ MapCeladonGameCornerSignpost9Script: ; 0x721c3
 INCBIN "baserom.gbc",$721cd,$721d0 - $721cd
 
 UnknownText_0x721d0: ; 0x721d0
-	db $0, "Welcome!", $51
-	db "You may exchange", $4f
-	db "your coins for", $51
-	db "fabulous prizes", $4f
-	db "next door.", $57
+	text "Welcome!"
+
+	para "You may exchange"
+	line "your coins for"
+
+	para "fabulous prizes"
+	line "next door."
+	done
 ; 0x72215
 
 UnknownText_0x72215: ; 0x72215
-	db $0, "The slot machines", $4f
-	db "are all state of", $55
-	db "the art.", $57
+	text "The slot machines"
+	line "are all state of"
+	cont "the art."
+	done
 ; 0x72242
 
 UnknownText_0x72242: ; 0x72242
-	db $0, "It's this machine", $4f
-	db "I want.", $51
-	db "It cleaned me out", $4f
-	db "yesterday, so it", $51
-	db "should pay out", $4f
-	db "today.", $57
+	text "It's this machine"
+	line "I want."
+
+	para "It cleaned me out"
+	line "yesterday, so it"
+
+	para "should pay out"
+	line "today."
+	done
 ; 0x72295
 
 UnknownText_0x72295: ; 0x72295
-	db $0, "I think this slot", $4f
-	db "machine will pay", $55
-	db "out…", $51
-	db "The odds vary", $4f
-	db "among machines.", $57
+	text "I think this slot"
+	line "machine will pay"
+	cont "out…"
+
+	para "The odds vary"
+	line "among machines."
+	done
 ; 0x722dc
 
 UnknownText_0x722dc: ; 0x722dc
-	db $0, "Gahahaha!", $51
-	db "The coins just", $4f
-	db "keep popping out!", $51
-	db "Hm? What, kid? You", $4f
-	db "want to play?", $51
-	db "I'll share my luck", $4f
-	db "with you!", $57
+	text "Gahahaha!"
+
+	para "The coins just"
+	line "keep popping out!"
+
+	para "Hm? What, kid? You"
+	line "want to play?"
+
+	para "I'll share my luck"
+	line "with you!"
+	done
 ; 0x72345
 
 UnknownText_0x72345: ; 0x72345
-	db $0, "Gahahaha!", $51
-	db "It makes me feel", $4f
-	db "good to do nice", $51
-	db "things for other", $4f
-	db "people!", $57
+	text "Gahahaha!"
+
+	para "It makes me feel"
+	line "good to do nice"
+
+	para "things for other"
+	line "people!"
+	done
 ; 0x7238a
 
 UnknownText_0x7238a: ; 0x7238a
-	db $0, "Hey, you don't", $4f
-	db "have a COIN CASE.", $51
-	db "How am I supposed", $4f
-	db "to give you any", $55
-	db "coins, kid?", $57
+	text "Hey, you don't"
+	line "have a COIN CASE."
+
+	para "How am I supposed"
+	line "to give you any"
+	cont "coins, kid?"
+	done
 ; 0x723d9
 
 UnknownText_0x723d9: ; 0x723d9
-	db $0, "Hey, your COIN", $4f
-	db "CASE is full, kid.", $51
-	db "You must be riding", $4f
-	db "a winning streak", $55
-	db "too.", $57
+	text "Hey, your COIN"
+	line "CASE is full, kid."
+
+	para "You must be riding"
+	line "a winning streak"
+	cont "too."
+	done
 ; 0x72425
 
 CeladonGymGuyText: ; 0x72425
-	db $0, "Hey! CHAMP in", $4f
-	db "making!", $51
-	db "Are you playing", $4f
-	db "the slots too?", $51
-	db "I'm trying to get", $4f
-	db "enough coins for a", $55
-	db "prize #MON.", $51
-	db "But I don't have", $4f
-	db "enough coins yet…", $57
+	text "Hey! CHAMP in"
+	line "making!"
+
+	para "Are you playing"
+	line "the slots too?"
+
+	para "I'm trying to get"
+	line "enough coins for a"
+	cont "prize #MON."
+
+	para "But I don't have"
+	line "enough coins yet…"
+	done
 ; 0x724ad
 
 UnknownText_0x724ad: ; 0x724ad
-	db $0, "Hmmm… The odds are", $4f
-	db "surely better for", $51
-	db "PIKACHU's line,", $4f
-	db "but… What to do?", $57
+	text "Hmmm… The odds are"
+	line "surely better for"
+
+	para "PIKACHU's line,"
+	line "but… What to do?"
+	done
 ; 0x724f3
 
 UnknownText_0x724f3: ; 0x724f3
-	db $0, "Hey!", $51
-	db "Underneath this", $4f
-	db "poster…", $51
-	db "There's nothing!", $57
+	text "Hey!"
+
+	para "Underneath this"
+	line "poster…"
+
+	para "There's nothing!"
+	done
 ; 0x72521
 
 UnknownText_0x72521: ; 0x72521
-	db $0, "Hey!", $51
-	db "Underneath this", $4f
-	db "poster…", $51
-	db "There's nothing!", $57
+	text "Hey!"
+
+	para "Underneath this"
+	line "poster…"
+
+	para "There's nothing!"
+	done
 ; 0x7254f
 
 UnknownText_0x7254f: ; 0x7254f
-	db $0, "There's a lighter", $4f
-	db "here.", $57
+	text "There's a lighter"
+	line "here."
+	done
 ; 0x72567
 
 UnknownText_0x72567: ; 0x72567
-	db $0, "A can of soda…", $51
-	db "Someone must be", $4f
-	db "coming back…", $51
-	db "Huh? It's empty!", $57
+	text "A can of soda…"
+
+	para "Someone must be"
+	line "coming back…"
+
+	para "Huh? It's empty!"
+	done
 ; 0x725a4
 
 CeladonGameCorner_MapEventHeader: ; 0x725a4

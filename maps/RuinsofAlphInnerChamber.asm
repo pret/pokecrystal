@@ -50,36 +50,43 @@ MapRuinsofAlphInnerChamberSignpost25Script: ; 0x58f86
 ; 0x58f89
 
 UnknownText_0x58f89: ; 0x58f89
-	db $0, "There is a strange", $4f
-	db "presence here…", $57
+	text "There is a strange"
+	line "presence here…"
+	done
 ; 0x58fac
 
 UnknownText_0x58fac: ; 0x58fac
-	db $0, "This is a big", $4f
-	db "room, but there's", $55
-	db "nothing here.", $57
+	text "This is a big"
+	line "room, but there's"
+	cont "nothing here."
+	done
 ; 0x58fda
 
 UnknownText_0x58fda: ; 0x58fda
-	db $0, "This place has a", $4f
-	db "mystical quality", $55
-	db "to it.", $51
-	db "It feels sort of", $4f
-	db "ethereal even.", $57
+	text "This place has a"
+	line "mystical quality"
+	cont "to it."
+
+	para "It feels sort of"
+	line "ethereal even."
+	done
 ; 0x59024
 
 UnknownText_0x59024: ; 0x59024
-	db $0, "Ancient buildings", $4f
-	db "are often tombs of", $55
-	db "kings.", $51
-	db "Like the pyramids,", $4f
-	db "for instance.", $57
+	text "Ancient buildings"
+	line "are often tombs of"
+	cont "kings."
+
+	para "Like the pyramids,"
+	line "for instance."
+	done
 ; 0x59072
 
 UnknownText_0x59072: ; 0x59072
-	db $0, "It's a replica of", $4f
-	db "an ancient #-", $55
-	db "MON.", $57
+	text "It's a replica of"
+	line "an ancient #-"
+	cont "MON."
+	done
 ; 0x59097
 
 RuinsofAlphInnerChamber_MapEventHeader: ; 0x59097

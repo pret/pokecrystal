@@ -203,50 +203,61 @@ UnknownScript_0x5b076: ; 0x5b076
 ; 0x5b07a
 
 SailorHuey1SeenText: ; 0x5b07a
-	db $0, "Men of the sea are", $4f
-	db "always spoiling", $55
-	db "for a good fight!", $57
+	text "Men of the sea are"
+	line "always spoiling"
+	cont "for a good fight!"
+	done
 ; 0x5b0b0
 
 SailorHuey1BeatenText: ; 0x5b0b0
-	db $0, "Urf!", $4f
-	db "I lose!", $57
+	text "Urf!"
+	line "I lose!"
+	done
 ; 0x5b0be
 
 ; possibly unused
 UnknownText_0x5b0be: ; 0x5b0be
-	db $0, "What power!", $4f
-	db "How would you like", $51
-	db "to sail the seas", $4f
-	db "with me?", $57
+	text "What power!"
+	line "How would you like"
+
+	para "to sail the seas"
+	line "with me?"
+	done
 ; 0x5b0f8
 
 GentlemanAlfredSeenText: ; 0x5b0f8
-	db $0, "Hm? This is no", $4f
-	db "place for playing.", $57
+	text "Hm? This is no"
+	line "place for playing."
+	done
 ; 0x5b11b
 
 GentlemanAlfredBeatenText: ; 0x5b11b
-	db $0, "Ah! I can see that", $4f
-	db "you're serious.", $57
+	text "Ah! I can see that"
+	line "you're serious."
+	done
 ; 0x5b13e
 
 UnknownText_0x5b13e: ; 0x5b13e
-	db $0, "Up top is a #-", $4f
-	db "MON that keeps the", $55
-	db "LIGHTHOUSE lit.", $51
-	db "But I hear that", $4f
-	db "it's sick now and", $51
-	db "can't be cured by", $4f
-	db "ordinary medicine.", $57
+	text "Up top is a #-"
+	line "MON that keeps the"
+	cont "LIGHTHOUSE lit."
+
+	para "But I hear that"
+	line "it's sick now and"
+
+	para "can't be cured by"
+	line "ordinary medicine."
+	done
 ; 0x5b1b6
 
 UnknownText_0x5b1b6: ; 0x5b1b6
-	db $0, "Man! You're as", $4f
-	db "tough as ever!", $51
-	db "Anyway, here's", $4f
-	db "that medicine from", $55
-	db "before.", $57
+	text "Man! You're as"
+	line "tough as ever!"
+
+	para "Anyway, here's"
+	line "that medicine from"
+	cont "before."
+	done
 ; 0x5b1fd
 
 OlivineLighthouse2F_MapEventHeader: ; 0x5b1fd

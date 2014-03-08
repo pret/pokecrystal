@@ -22,22 +22,28 @@ SuperNerdScript_0x1a2dd5: ; 0x1a2dd5
 ; 0x1a2dd8
 
 UnknownText_0x1a2dd8: ; 0x1a2dd8
-	db $0, "Hi! Check out my", $4f
-	db "GYARADOS!", $51
-	db "I raised it from a", $4f
-	db "MAGIKARP. I can't", $51
-	db "believe how strong", $4f
-	db "it has become.", $57
+	text "Hi! Check out my"
+	line "GYARADOS!"
+
+	para "I raised it from a"
+	line "MAGIKARP. I can't"
+
+	para "believe how strong"
+	line "it has become."
+	done
 ; 0x1a2e3a
 
 UnknownText_0x1a2e3a: ; 0x1a2e3a
-	db $0, "There once was a", $4f
-	db "weird old man who", $55
-	db "sold MAGIKARP.", $51
-	db "He was saying the", $4f
-	db "MAGIKARP from the", $51
-	db "LAKE OF RAGE were", $4f
-	db "excellent.", $57
+	text "There once was a"
+	line "weird old man who"
+	cont "sold MAGIKARP."
+
+	para "He was saying the"
+	line "MAGIKARP from the"
+
+	para "LAKE OF RAGE were"
+	line "excellent."
+	done
 ; 0x1a2eae
 
 PewterMart_MapEventHeader: ; 0x1a2eae

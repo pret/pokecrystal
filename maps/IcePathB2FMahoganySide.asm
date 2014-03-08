@@ -25,8 +25,9 @@ MapIcePathB2FMahoganySideSignpostItem0: ; 0x7e5aa
 ; 0x7e5ad
 
 UnknownText_0x7e5ad: ; 0x7e5ad
-	db $0, "It's immovably", $4f
-	db "imbedded in ice.", $57
+	text "It's immovably"
+	line "imbedded in ice."
+	done
 ; 0x7e5cd
 
 IcePathB2FMahoganySide_MapEventHeader: ; 0x7e5cd

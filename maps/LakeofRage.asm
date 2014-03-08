@@ -341,223 +341,282 @@ MovementData_0x70155: ; 0x70155
 ; 0x70157
 
 UnknownText_0x70157: ; 0x70157
-	db $0, "This lake is full", $4f
-	db "of GYARADOS but", $55
-	db "nothing else…", $51
-	db "So the MAGIKARP", $4f
-	db "are being forced", $55
-	db "to evolve…", $57
+	text "This lake is full"
+	line "of GYARADOS but"
+	cont "nothing else…"
+
+	para "So the MAGIKARP"
+	line "are being forced"
+	cont "to evolve…"
+	done
 ; 0x701b4
 
 UnknownText_0x701b4: ; 0x701b4
-	db $0, "Did you come here", $4f
-	db "because of the", $55
-	db "rumors?", $51
-	db "You're ", $52, "?", $4f
-	db "I'm LANCE, a", $55
-	db "trainer like you.", $51
-	db "I heard some ru-", $4f
-	db "mors, so I came to", $55
-	db "investigate…", $51
-	db "I saw the way you", $4f
-	db "battled earlier,", $55
-	db $14, ".", $51
-	db "I can tell that", $4f
-	db "you're a trainer", $51
-	db "with considerable", $4f
-	db "skill.", $51
-	db "If you don't mind,", $4f
-	db "could you help me", $55
-	db "investigate?", $57
+	text "Did you come here"
+	line "because of the"
+	cont "rumors?"
+
+	para "You're ", $52, "?"
+	line "I'm LANCE, a"
+	cont "trainer like you."
+
+	para "I heard some ru-"
+	line "mors, so I came to"
+	cont "investigate…"
+
+	para "I saw the way you"
+	line "battled earlier,"
+	cont $14, "."
+
+	para "I can tell that"
+	line "you're a trainer"
+
+	para "with considerable"
+	line "skill."
+
+	para "If you don't mind,"
+	line "could you help me"
+	cont "investigate?"
+	done
 ; 0x702c6
 
 UnknownText_0x702c6: ; 0x702c6
-	db $0, "LANCE: Excellent!", $51
-	db "It seems that the", $4f
-	db "LAKE's MAGIKARP", $51
-	db "are being forced", $4f
-	db "to evolve.", $51
-	db "A mysterious radio", $4f
-	db "broadcast coming", $51
-	db "from MAHOGANY is", $4f
-	db "the cause.", $51
-	db "I'll be waiting", $4f
-	db "for you, ", $14, ".", $57
+	text "LANCE: Excellent!"
+
+	para "It seems that the"
+	line "LAKE's MAGIKARP"
+
+	para "are being forced"
+	line "to evolve."
+
+	para "A mysterious radio"
+	line "broadcast coming"
+
+	para "from MAHOGANY is"
+	line "the cause."
+
+	para "I'll be waiting"
+	line "for you, ", $14, "."
+	done
 ; 0x70371
 
 UnknownText_0x70371: ; 0x70371
-	db $0, "Oh… Well, if you", $4f
-	db "change your mind,", $55
-	db "please help me.", $57
+	text "Oh… Well, if you"
+	line "change your mind,"
+	cont "please help me."
+	done
 ; 0x703a5
 
 UnknownText_0x703a5: ; 0x703a5
-	db $0, "LANCE: Hm? Are you", $4f
-	db "going to help me?", $57
+	text "LANCE: Hm? Are you"
+	line "going to help me?"
+	done
 ; 0x703cb
 
 UnknownText_0x703cb: ; 0x703cb
-	db $0, "GYARADOS: Gyashaa!", $57
+	text "GYARADOS: Gyashaa!"
+	done
 ; 0x703df
 
 UnknownText_0x703df: ; 0x703df
-	db $0, $52, " obtained a", $4f
-	db "RED SCALE.", $57
+	text $52, " obtained a"
+	line "RED SCALE."
+	done
 ; 0x703f8
 
 UnknownText_0x703f8: ; 0x703f8
-	db $0, "The GYARADOS are", $4f
-	db "angry!", $51
-	db "It's a bad omen!", $57
+	text "The GYARADOS are"
+	line "angry!"
+
+	para "It's a bad omen!"
+	done
 ; 0x70421
 
 UnknownText_0x70421: ; 0x70421
-	db $0, "Hahah! The MAGI-", $4f
-	db "KARP are biting!", $57
+	text "Hahah! The MAGI-"
+	line "KARP are biting!"
+	done
 ; 0x70444
 
 UnknownText_0x70444: ; 0x70444
-	db $0, "I heard this lake", $4f
-	db "was made by ram-", $55
-	db "paging GYARADOS.", $51
-	db "I wonder if there", $4f
-	db "is any connection", $51
-	db "to their mass out-", $4f
-	db "break now?", $57
+	text "I heard this lake"
+	line "was made by ram-"
+	cont "paging GYARADOS."
+
+	para "I wonder if there"
+	line "is any connection"
+
+	para "to their mass out-"
+	line "break now?"
+	done
 ; 0x704bb
 
 UnknownText_0x704bb: ; 0x704bb
-	db $0, "Did my eyes de-", $4f
-	db "ceive me? I saw a", $51
-	db "red GYARADOS in", $4f
-	db "the LAKE…", $51
-	db "But I thought", $4f
-	db "GYARADOS were", $55
-	db "usually blue?", $57
+	text "Did my eyes de-"
+	line "ceive me? I saw a"
+
+	para "red GYARADOS in"
+	line "the LAKE…"
+
+	para "But I thought"
+	line "GYARADOS were"
+	cont "usually blue?"
+	done
 ; 0x70522
 
 FisherAndreSeenText: ; 0x70522
-	db $0, "Let me battle with", $4f
-	db "the #MON I just", $55
-	db "caught!", $57
+	text "Let me battle with"
+	line "the #MON I just"
+	cont "caught!"
+	done
 ; 0x7054e
 
 FisherAndreBeatenText: ; 0x7054e
-	db $0, "I might be an ex-", $4f
-	db "pert angler, but", $51
-	db "I stink as a #-", $4f
-	db "MON trainer…", $57
+	text "I might be an ex-"
+	line "pert angler, but"
+
+	para "I stink as a #-"
+	line "MON trainer…"
+	done
 ; 0x7058f
 
 UnknownText_0x7058f: ; 0x7058f
-	db $0, "I won't lose as an", $4f
-	db "angler! I catch", $55
-	db "#MON all day.", $57
+	text "I won't lose as an"
+	line "angler! I catch"
+	cont "#MON all day."
+	done
 ; 0x705c0
 
 FisherRaymondSeenText: ; 0x705c0
-	db $0, "No matter what I", $4f
-	db "do, all I catch", $51
-	db "are the same #-", $4f
-	db "MON…", $57
+	text "No matter what I"
+	line "do, all I catch"
+
+	para "are the same #-"
+	line "MON…"
+	done
 ; 0x705f7
 
 FisherRaymondBeatenText: ; 0x705f7
-	db $0, "My line's all", $4f
-	db "tangled up…", $57
+	text "My line's all"
+	line "tangled up…"
+	done
 ; 0x70611
 
 UnknownText_0x70611: ; 0x70611
-	db $0, "Why can't I catch", $4f
-	db "any good #MON?", $57
+	text "Why can't I catch"
+	line "any good #MON?"
+	done
 ; 0x70632
 
 CooltrainermAaronSeenText: ; 0x70632
-	db $0, "If a trainer spots", $4f
-	db "another trainer,", $51
-	db "he has to make a", $4f
-	db "challenge.", $51
-	db "That is our", $4f
-	db "destiny.", $57
+	text "If a trainer spots"
+	line "another trainer,"
+
+	para "he has to make a"
+	line "challenge."
+
+	para "That is our"
+	line "destiny."
+	done
 ; 0x70688
 
 CooltrainermAaronBeatenText: ; 0x70688
-	db $0, "Whew…", $4f
-	db "Good battle.", $57
+	text "Whew…"
+	line "Good battle."
+	done
 ; 0x7069c
 
 UnknownText_0x7069c: ; 0x7069c
-	db $0, "#MON and their", $4f
-	db "trainer become", $51
-	db "powerful through", $4f
-	db "constant battling.", $57
+	text "#MON and their"
+	line "trainer become"
+
+	para "powerful through"
+	line "constant battling."
+	done
 ; 0x706df
 
 CooltrainerfLoisSeenText: ; 0x706df
-	db $0, "What happened to", $4f
-	db "the red GYARADOS?", $51
-	db "It's gone?", $51
-	db "Oh, darn. I came", $4f
-	db "here for nothing?", $51
-	db "I know--let's", $4f
-	db "battle!", $57
+	text "What happened to"
+	line "the red GYARADOS?"
+
+	para "It's gone?"
+
+	para "Oh, darn. I came"
+	line "here for nothing?"
+
+	para "I know--let's"
+	line "battle!"
+	done
 ; 0x70745
 
 CooltrainerfLoisBeatenText: ; 0x70745
-	db $0, "Good going!", $57
+	text "Good going!"
+	done
 ; 0x70752
 
 UnknownText_0x70752: ; 0x70752
-	db $0, "Come to think of", $4f
-	db "it, I've seen a", $55
-	db "pink BUTTERFREE.", $57
+	text "Come to think of"
+	line "it, I've seen a"
+	cont "pink BUTTERFREE."
+	done
 ; 0x70784
 
 UnknownText_0x70784: ; 0x70784
-	db $0, "WESLEY: Well, how", $4f
-	db "do you do?", $51
-	db "Seeing as how it's", $4f
-	db "Wednesday today,", $51
-	db "I'm WESLEY of", $4f
-	db "Wednesday.", $57
+	text "WESLEY: Well, how"
+	line "do you do?"
+
+	para "Seeing as how it's"
+	line "Wednesday today,"
+
+	para "I'm WESLEY of"
+	line "Wednesday."
+	done
 ; 0x707dd
 
 UnknownText_0x707dd: ; 0x707dd
-	db $0, "Pleased to meet", $4f
-	db "you. Please take a", $55
-	db "souvenir.", $57
+	text "Pleased to meet"
+	line "you. Please take a"
+	cont "souvenir."
+	done
 ; 0x7080b
 
 UnknownText_0x7080b: ; 0x7080b
-	db $0, "WESLEY: BLACKBELT", $4f
-	db "beefs up the power", $55
-	db "of fighting moves.", $57
+	text "WESLEY: BLACKBELT"
+	line "beefs up the power"
+	cont "of fighting moves."
+	done
 ; 0x70844
 
 UnknownText_0x70844: ; 0x70844
-	db $0, "WESLEY: Since you", $4f
-	db "found me, you must", $51
-	db "have met my broth-", $4f
-	db "ers and sisters.", $51
-	db "Or did you just", $4f
-	db "get lucky?", $57
+	text "WESLEY: Since you"
+	line "found me, you must"
+
+	para "have met my broth-"
+	line "ers and sisters."
+
+	para "Or did you just"
+	line "get lucky?"
+	done
 ; 0x708a9
 
 UnknownText_0x708a9: ; 0x708a9
-	db $0, "WESLEY: Today's", $4f
-	db "not Wednesday.", $55
-	db "That's too bad.", $57
+	text "WESLEY: Today's"
+	line "not Wednesday."
+	cont "That's too bad."
+	done
 ; 0x708d7
 
 UnknownText_0x708d7: ; 0x708d7
-	db $0, "LAKE OF RAGE,", $4f
-	db "also known as", $55
-	db "GYARADOS LAKE.", $57
+	text "LAKE OF RAGE,"
+	line "also known as"
+	cont "GYARADOS LAKE."
+	done
 ; 0x70903
 
 UnknownText_0x70903: ; 0x70903
-	db $0, "FISHING GURU'S", $4f
-	db "HOUSE", $57
+	text "FISHING GURU'S"
+	line "HOUSE"
+	done
 ; 0x70919
 
 LakeofRage_MapEventHeader: ; 0x70919

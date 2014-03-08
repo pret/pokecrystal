@@ -214,152 +214,196 @@ KurtSlowpokeWellVictoryMovementData: ; 0x5a6a5
 ; 0x5a6b5
 
 UnknownText_0x5a6b5: ; 0x5a6b5
-	db $0, "KURT: Hey there,", $4f
-	db $52, "!", $51
-	db "The guard up top", $4f
-	db "took off when I", $55
-	db "shouted at him.", $51
-	db "But then I took a", $4f
-	db "tumble down the", $55
-	db "WELL.", $51
-	db "I slammed down", $4f
-	db "hard on my back,", $55
-	db "so I can't move.", $51
-	db "Rats! If I were", $4f
-	db "fit, my #MON", $51
-	db "would've punished", $4f
-	db "them…", $51
-	db "Ah, it can't be", $4f
-	db "helped.", $51
-	db $52, ", show them", $4f
-	db "how gutsy you are", $55
-	db "in my place!", $57
+	text "KURT: Hey there,"
+	line $52, "!"
+
+	para "The guard up top"
+	line "took off when I"
+	cont "shouted at him."
+
+	para "But then I took a"
+	line "tumble down the"
+	cont "WELL."
+
+	para "I slammed down"
+	line "hard on my back,"
+	cont "so I can't move."
+
+	para "Rats! If I were"
+	line "fit, my #MON"
+
+	para "would've punished"
+	line "them…"
+
+	para "Ah, it can't be"
+	line "helped."
+
+	para $52, ", show them"
+	line "how gutsy you are"
+	cont "in my place!"
+	done
 ; 0x5a7ca
 
 KurtLeaveSlowpokeWellText: ; 0x5a7ca
-	db $0, "KURT: Way to go,", $4f
-	db $52, "!", $51
-	db "TEAM ROCKET has", $4f
-	db "taken off.", $51
-	db "My back's better", $4f
-	db "too. Let's get out", $55
-	db "of here.", $57
+	text "KURT: Way to go,"
+	line $52, "!"
+
+	para "TEAM ROCKET has"
+	line "taken off."
+
+	para "My back's better"
+	line "too. Let's get out"
+	cont "of here."
+	done
 ; 0x5a825
 
 GruntM29SeenText: ; 0x5a825
-	db $0, "Darn! I was stand-", $4f
-	db "ing guard up top", $51
-	db "when some old coot", $4f
-	db "yelled at me.", $51
-	db "He startled me so", $4f
-	db "much that I fell", $55
-	db "down here.", $51
-	db "I think I'll vent", $4f
-	db "my anger by taking", $55
-	db "it out on you!", $57
+	text "Darn! I was stand-"
+	line "ing guard up top"
+
+	para "when some old coot"
+	line "yelled at me."
+
+	para "He startled me so"
+	line "much that I fell"
+	cont "down here."
+
+	para "I think I'll vent"
+	line "my anger by taking"
+	cont "it out on you!"
+	done
 ; 0x5a8cc
 
 GruntM29BeatenText: ; 0x5a8cc
-	db $0, "Arrgh! This is NOT", $4f
-	db "my day!", $57
+	text "Arrgh! This is NOT"
+	line "my day!"
+	done
 ; 0x5a8e8
 
 TrainerGruntM29SlowpokeProfitText: ; 0x5a8e8
-	db $0, "Sure, we've been", $4f
-	db "hacking the tails", $51
-	db "off SLOWPOKE and", $4f
-	db "selling them.", $51
-	db "Everything we do", $4f
-	db "is for profit.", $51
-	db "That's right!", $4f
-	db "We're TEAM ROCKET,", $51
-	db "and we'll do any-", $4f
-	db "thing for money!", $57
+	text "Sure, we've been"
+	line "hacking the tails"
+
+	para "off SLOWPOKE and"
+	line "selling them."
+
+	para "Everything we do"
+	line "is for profit."
+
+	para "That's right!"
+	line "We're TEAM ROCKET,"
+
+	para "and we'll do any-"
+	line "thing for money!"
+	done
 ; 0x5a98b
 
 GruntM1SeenText: ; 0x5a98b
-	db $0, "What do you want?", $51
-	db "If you interrupt", $4f
-	db "our work, don't", $55
-	db "expect any mercy!", $57
+	text "What do you want?"
+
+	para "If you interrupt"
+	line "our work, don't"
+	cont "expect any mercy!"
+	done
 ; 0x5a9d0
 
 GruntM1BeatenText: ; 0x5a9d0
-	db $0, "You did OK today,", $4f
-	db "but wait till next", $55
-	db "time!", $57
+	text "You did OK today,"
+	line "but wait till next"
+	cont "time!"
+	done
 ; 0x5a9fc
 
 TrainerGruntM1WhenTalkText: ; 0x5a9fc
-	db $0, "Yeah, TEAM ROCKET", $4f
-	db "was broken up", $55
-	db "three years ago.", $51
-	db "But we continued", $4f
-	db "our activities", $55
-	db "underground.", $51
-	db "Now you can have", $4f
-	db "fun watching us", $55
-	db "stir up trouble!", $57
+	text "Yeah, TEAM ROCKET"
+	line "was broken up"
+	cont "three years ago."
+
+	para "But we continued"
+	line "our activities"
+	cont "underground."
+
+	para "Now you can have"
+	line "fun watching us"
+	cont "stir up trouble!"
+	done
 ; 0x5aa8d
 
 GruntM2SeenText: ; 0x5aa8d
-	db $0, "Quit taking SLOW-", $4f
-	db "POKETAILS?", $51
-	db "If we obeyed you,", $4f
-	db "TEAM ROCKET's rep", $55
-	db "would be ruined!", $57
+	text "Quit taking SLOW-"
+	line "POKETAILS?"
+
+	para "If we obeyed you,"
+	line "TEAM ROCKET's rep"
+	cont "would be ruined!"
+	done
 ; 0x5aadf
 
 GruntM2BeatenText: ; 0x5aadf
-	db $0, "Just…", $4f
-	db "Too strong…", $57
+	text "Just…"
+	line "Too strong…"
+	done
 ; 0x5aaf2
 
 UnknownText_0x5aaf2: ; 0x5aaf2
-	db $0, "We need the money,", $4f
-	db "but selling SLOW-", $55
-	db "POKETAILS?", $51
-	db "It's tough being a", $4f
-	db "ROCKET GRUNT!", $57
+	text "We need the money,"
+	line "but selling SLOW-"
+	cont "POKETAILS?"
+
+	para "It's tough being a"
+	line "ROCKET GRUNT!"
+	done
 ; 0x5ab43
 
 GruntF1SeenText: ; 0x5ab43
-	db $0, "Stop taking TAILS?", $51
-	db "Yeah, just try to", $4f
-	db "defeat all of us!", $57
+	text "Stop taking TAILS?"
+
+	para "Yeah, just try to"
+	line "defeat all of us!"
+	done
 ; 0x5ab7b
 
 GruntF1BeatenText: ; 0x5ab7b
-	db $0, "You rotten brat!", $57
+	text "You rotten brat!"
+	done
 ; 0x5ab8d
 
 UnknownText_0x5ab8d: ; 0x5ab8d
-	db $0, "SLOWPOKETAILS", $4f
-	db "grow back fast!", $51
-	db "What's wrong with", $4f
-	db "selling them?", $57
+	text "SLOWPOKETAILS"
+	line "grow back fast!"
+
+	para "What's wrong with"
+	line "selling them?"
+	done
 ; 0x5abcb
 
 UnknownText_0x5abcb: ; 0x5abcb
-	db $0, "A SLOWPOKE with", $4f
-	db "its TAIL cut off…", $51
-	db "Huh? It has MAIL.", $4f
-	db "Read it?", $57
+	text "A SLOWPOKE with"
+	line "its TAIL cut off…"
+
+	para "Huh? It has MAIL."
+	line "Read it?"
+	done
 ; 0x5ac09
 
 UnknownText_0x5ac09: ; 0x5ac09
-	db $0, $52, " read the", $4f
-	db "MAIL.", $51
-	db "Be good and look", $4f
-	db "after the house", $51
-	db "with Grandpa and", $4f
-	db "SLOWPOKE.", $51
-	db "Love, Dad", $57
+	text $52, " read the"
+	line "MAIL."
+
+	para "Be good and look"
+	line "after the house"
+
+	para "with Grandpa and"
+	line "SLOWPOKE."
+
+	para "Love, Dad"
+	done
 ; 0x5ac61
 
 UnknownText_0x5ac61: ; 0x5ac61
-	db $0, "A SLOWPOKE with", $4f
-	db "its TAIL cut off…", $57
+	text "A SLOWPOKE with"
+	line "its TAIL cut off…"
+	done
 ; 0x5ac84
 
 SlowpokeWellB1F_MapEventHeader: ; 0x5ac84

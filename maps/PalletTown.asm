@@ -40,37 +40,46 @@ MapPalletTownSignpost3Script: ; 0x1ac6e4
 ; 0x1ac6e7
 
 UnknownText_0x1ac6e7: ; 0x1ac6e7
-	db $0, "I'm raising #-", $4f
-	db "MON too.", $51
-	db "They serve as my", $4f
-	db "private guards.", $57
+	text "I'm raising #-"
+	line "MON too."
+
+	para "They serve as my"
+	line "private guards."
+	done
 ; 0x1ac720
 
 UnknownText_0x1ac720: ; 0x1ac720
-	db $0, "Technology is", $4f
-	db "incredible!", $51
-	db "You can now trade", $4f
-	db "#MON across", $55
-	db "time like e-mail.", $57
+	text "Technology is"
+	line "incredible!"
+
+	para "You can now trade"
+	line "#MON across"
+	cont "time like e-mail."
+	done
 ; 0x1ac76b
 
 UnknownText_0x1ac76b: ; 0x1ac76b
-	db $0, "PALLET TOWN", $51
-	db "A Tranquil Setting", $4f
-	db "of Peace & Purity", $57
+	text "PALLET TOWN"
+
+	para "A Tranquil Setting"
+	line "of Peace & Purity"
+	done
 ; 0x1ac79d
 
 UnknownText_0x1ac79d: ; 0x1ac79d
-	db $0, "RED'S HOUSE", $57
+	text "RED'S HOUSE"
+	done
 ; 0x1ac7aa
 
 UnknownText_0x1ac7aa: ; 0x1ac7aa
-	db $0, "OAK #MON", $4f
-	db "RESEARCH LAB", $57
+	text "OAK #MON"
+	line "RESEARCH LAB"
+	done
 ; 0x1ac7c1
 
 UnknownText_0x1ac7c1: ; 0x1ac7c1
-	db $0, "BLUE'S HOUSE", $57
+	text "BLUE'S HOUSE"
+	done
 ; 0x1ac7cf
 
 PalletTown_MapEventHeader: ; 0x1ac7cf

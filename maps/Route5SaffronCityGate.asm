@@ -11,11 +11,13 @@ OfficerScript_0x18b5b9: ; 0x18b5b9
 ; 0x18b5bc
 
 UnknownText_0x18b5bc: ; 0x18b5bc
-	db $0, "You're from JOHTO,", $4f
-	db "aren't you?", $51
-	db "How do you like", $4f
-	db "KANTO? It's nice,", $55
-	db "don't you agree?", $57
+	text "You're from JOHTO,"
+	line "aren't you?"
+
+	para "How do you like"
+	line "KANTO? It's nice,"
+	cont "don't you agree?"
+	done
 ; 0x18b60b
 
 Route5SaffronCityGate_MapEventHeader: ; 0x18b60b

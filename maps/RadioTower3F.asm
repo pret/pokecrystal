@@ -237,158 +237,199 @@ MapRadioTower3FSignpost1Script: ; 0x5e61e
 ; 0x5e621
 
 UnknownText_0x5e621: ; 0x5e621
-	db $0, "We have recordings", $4f
-	db "of the cries of", $51
-	db "all #MON that", $4f
-	db "have been found.", $51
-	db "We must have about", $4f
-	db "200 kinds.", $57
+	text "We have recordings"
+	line "of the cries of"
+
+	para "all #MON that"
+	line "have been found."
+
+	para "We must have about"
+	line "200 kinds."
+	done
 ; 0x5e682
 
 UnknownText_0x5e682: ; 0x5e682
-	db $0, "To trainers, #-", $4f
-	db "MON are their", $55
-	db "beloved partners.", $51
-	db "It's terrible how", $4f
-	db "TEAM ROCKET is", $51
-	db "trying to control", $4f
-	db "#MON.", $57
+	text "To trainers, #-"
+	line "MON are their"
+	cont "beloved partners."
+
+	para "It's terrible how"
+	line "TEAM ROCKET is"
+
+	para "trying to control"
+	line "#MON."
+	done
 ; 0x5e6eb
 
 UnknownText_0x5e6eb: ; 0x5e6eb
-	db $0, "We run 24 hours a", $4f
-	db "day to broadcast", $51
-	db "entertaining pro-", $4f
-	db "grams.", $51
-	db "I'll do my best to", $4f
-	db "run around the", $55
-	db "clock too!", $57
+	text "We run 24 hours a"
+	line "day to broadcast"
+
+	para "entertaining pro-"
+	line "grams."
+
+	para "I'll do my best to"
+	line "run around the"
+	cont "clock too!"
+	done
 ; 0x5e754
 
 UnknownText_0x5e754: ; 0x5e754
-	db $0, "The TEAM ROCKET", $4f
-	db "boss has locked", $55
-	db "himself in.", $51
-	db "But the DIRECTOR", $4f
-	db "can open it.", $51
-	db "He's up on the", $4f
-	db "fifth floor.", $51
-	db "Please save him!", $57
+	text "The TEAM ROCKET"
+	line "boss has locked"
+	cont "himself in."
+
+	para "But the DIRECTOR"
+	line "can open it."
+
+	para "He's up on the"
+	line "fifth floor."
+
+	para "Please save him!"
+	done
 ; 0x5e7cb
 
 UnknownText_0x5e7cb: ; 0x5e7cb
-	db $0, "Is the DIRECTOR", $4f
-	db "safe?", $57
+	text "Is the DIRECTOR"
+	line "safe?"
+	done
 ; 0x5e7e2
 
 UnknownText_0x5e7e2: ; 0x5e7e2
-	db $0, "Thank you!", $4f
-	db "You're my hero!", $51
-	db "This is a token of", $4f
-	db "my appreciation.", $57
+	text "Thank you!"
+	line "You're my hero!"
+
+	para "This is a token of"
+	line "my appreciation."
+	done
 ; 0x5e821
 
 UnknownText_0x5e821: ; 0x5e821
-	db $0, "It's SUNNY DAY.", $4f
-	db "It powers up fire-", $55
-	db "type moves for a", $55
-	db "while.", $57
+	text "It's SUNNY DAY."
+	line "It powers up fire-"
+	cont "type moves for a"
+	cont "while."
+	done
 ; 0x5e85c
 
 UnknownText_0x5e85c: ; 0x5e85c
-	db $0, "You were simply", $4f
-	db "marvelous!", $57
+	text "You were simply"
+	line "marvelous!"
+	done
 ; 0x5e878
 
 GruntM7SeenText: ; 0x5e878
-	db $0, "I've been given", $4f
-	db "strict orders.", $51
-	db "I'm to crush any-", $4f
-	db "one who challenges", $55
-	db "TEAM ROCKET!", $57
+	text "I've been given"
+	line "strict orders."
+
+	para "I'm to crush any-"
+	line "one who challenges"
+	cont "TEAM ROCKET!"
+	done
 ; 0x5e8c8
 
 GruntM7BeatenText: ; 0x5e8c8
-	db $0, "What?!", $57
+	text "What?!"
+	done
 ; 0x5e8d0
 
 UnknownText_0x5e8d0: ; 0x5e8d0
-	db $0, "I failed in my", $4f
-	db "duties…", $51
-	db "I'll be docked pay", $4f
-	db "for this…", $57
+	text "I failed in my"
+	line "duties…"
+
+	para "I'll be docked pay"
+	line "for this…"
+	done
 ; 0x5e904
 
 GruntM8SeenText: ; 0x5e904
-	db $0, "It feels great", $4f
-	db "ordering #MON", $55
-	db "to commit crimes.", $57
+	text "It feels great"
+	line "ordering #MON"
+	cont "to commit crimes."
+	done
 ; 0x5e934
 
 GruntM8BeatenText: ; 0x5e934
-	db $0, "You're kidding!", $57
+	text "You're kidding!"
+	done
 ; 0x5e944
 
 UnknownText_0x5e944: ; 0x5e944
-	db $0, "I feel lousy over", $4f
-	db "losing!", $51
-	db "Darn it! I hate", $4f
-	db "useless #MON!", $57
+	text "I feel lousy over"
+	line "losing!"
+
+	para "Darn it! I hate"
+	line "useless #MON!"
+	done
 ; 0x5e97d
 
 GruntM9SeenText: ; 0x5e97d
-	db $0, "Why did the shut-", $4f
-	db "ter open? Did you", $51
-	db "have something to", $4f
-	db "do with this?", $57
+	text "Why did the shut-"
+	line "ter open? Did you"
+
+	para "have something to"
+	line "do with this?"
+	done
 ; 0x5e9c2
 
 GruntM9BeatenText: ; 0x5e9c2
-	db $0, "I'm done for!", $57
+	text "I'm done for!"
+	done
 ; 0x5e9d0
 
 UnknownText_0x5e9d0: ; 0x5e9d0
-	db $0, "What?! You made it", $4f
-	db "past our men in", $55
-	db "the UNDERGROUND?", $51
-	db "How could you?", $57
+	text "What?! You made it"
+	line "past our men in"
+	cont "the UNDERGROUND?"
+
+	para "How could you?"
+	done
 ; 0x5ea14
 
 ScientistMarcSeenText: ; 0x5ea14
-	db $0, "An unknown child", $4f
-	db "wandering here?", $51
-	db "Who are you?", $57
+	text "An unknown child"
+	line "wandering here?"
+
+	para "Who are you?"
+	done
 ; 0x5ea43
 
 ScientistMarcBeatenText: ; 0x5ea43
-	db $0, "Tch! I took you", $4f
-	db "too lightly!", $57
+	text "Tch! I took you"
+	line "too lightly!"
+	done
 ; 0x5ea61
 
 UnknownText_0x5ea61: ; 0x5ea61
-	db $0, "Bwahahaha…", $51
-	db "I can transmit as", $4f
-	db "strong a signal as", $55
-	db "I need from here.", $57
+	text "Bwahahaha…"
+
+	para "I can transmit as"
+	line "strong a signal as"
+	cont "I need from here."
+	done
 ; 0x5eaa4
 
 UnknownText_0x5eaa4: ; 0x5eaa4
-	db $0, "It's the CARD KEY", $4f
-	db "slot.", $57
+	text "It's the CARD KEY"
+	line "slot."
+	done
 ; 0x5eabc
 
 UnknownText_0x5eabc: ; 0x5eabc
-	db $0, $52, " inserted", $4f
-	db "the CARD KEY.", $57
+	text $52, " inserted"
+	line "the CARD KEY."
+	done
 ; 0x5ead6
 
 UnknownText_0x5ead6: ; 0x5ead6
-	db $0, "3F PERSONNEL", $57
+	text "3F PERSONNEL"
+	done
 ; 0x5eae4
 
 UnknownText_0x5eae4: ; 0x5eae4
-	db $0, "#MON MUSIC with", $4f
-	db "Host DJ BEN", $57
+	text "#MON MUSIC with"
+	line "Host DJ BEN"
+	done
 ; 0x5eb01
 
 RadioTower3F_MapEventHeader: ; 0x5eb01

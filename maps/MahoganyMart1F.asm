@@ -173,59 +173,75 @@ MovementData_0x6c412: ; 0x6c412
 ; 0x6c414
 
 UnknownText_0x6c414: ; 0x6c414
-	db $0, "Hello, kiddo!", $51
-	db "How would you like", $4f
-	db "some RAGECANDYBAR?", $51
-	db "It's the thing to", $4f
-	db "eat in MAHOGANY!", $57
+	text "Hello, kiddo!"
+
+	para "How would you like"
+	line "some RAGECANDYBAR?"
+
+	para "It's the thing to"
+	line "eat in MAHOGANY!"
+	done
 ; 0x6c46b
 
 UnknownText_0x6c46b: ; 0x6c46b
-	db $0, "Arrgh… You found", $4f
-	db "the secret stair-", $55
-	db "way…", $57
+	text "Arrgh… You found"
+	line "the secret stair-"
+	cont "way…"
+	done
 ; 0x6c494
 
 UnknownText_0x6c494: ; 0x6c494
-	db $0, "Heheh! The experi-", $4f
-	db "ment worked like a", $55
-	db "charm.", $51
-	db "MAGIKARP are just", $4f
-	db "worthless, but", $51
-	db "GYARADOS are big", $4f
-	db "moneymakers.", $57
+	text "Heheh! The experi-"
+	line "ment worked like a"
+	cont "charm."
+
+	para "MAGIKARP are just"
+	line "worthless, but"
+
+	para "GYARADOS are big"
+	line "moneymakers."
+	done
 ; 0x6c501
 
 UnknownText_0x6c501: ; 0x6c501
-	db $0, "Urrgh…", $51
-	db "That guy's dragon", $4f
-	db "#MON are tough…", $57
+	text "Urrgh…"
+
+	para "That guy's dragon"
+	line "#MON are tough…"
+	done
 ; 0x6c52a
 
 UnknownText_0x6c52a: ; 0x6c52a
-	db $0, "LANCE: DRAGONITE,", $4f
-	db "HYPER BEAM.", $57
+	text "LANCE: DRAGONITE,"
+	line "HYPER BEAM."
+	done
 ; 0x6c549
 
 UnknownText_0x6c549: ; 0x6c549
-	db $0, "What took you,", $4f
-	db $14, "?", $51
-	db "Just as I thought,", $4f
-	db "that strange radio", $51
-	db "signal is coming", $4f
-	db "from here.", $57
+	text "What took you,"
+	line $14, "?"
+
+	para "Just as I thought,"
+	line "that strange radio"
+
+	para "signal is coming"
+	line "from here."
+	done
 ; 0x6c59e
 
 UnknownText_0x6c59e: ; 0x6c59e
-	db $0, "The stairs are", $4f
-	db "right here.", $57
+	text "The stairs are"
+	line "right here."
+	done
 ; 0x6c5ba
 
 UnknownText_0x6c5ba: ; 0x6c5ba
-	db $0, "LANCE: ", $14, ", we", $4f
-	db "should split up to", $51
-	db "check this place.", $4f
-	db "I'll go first.", $57
+	text "LANCE: ", $14, ", we"
+	line "should split up to"
+
+	para "check this place."
+	line "I'll go first."
+	done
 ; 0x6c5fb
 
 MahoganyMart1F_MapEventHeader: ; 0x6c5fb

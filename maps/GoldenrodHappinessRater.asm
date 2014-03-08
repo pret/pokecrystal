@@ -79,64 +79,77 @@ MapGoldenrodHappinessRaterSignpost2Script: ; 0x549a0
 ; 0x549a3
 
 UnknownText_0x549a3: ; 0x549a3
-	db $0, "If you treat your", $4f
-	db "#MON nicely,", $51
-	db "they will love you", $4f
-	db "in return.", $51
-	db "Oh? Let me see", $4f
-	db "your @"
+	text "If you treat your"
+	line "#MON nicely,"
+
+	para "they will love you"
+	line "in return."
+
+	para "Oh? Let me see"
+	line "your @"
 	text_from_ram $d099
-	db $0, "…", $57
+	text "…"
+	done
 ; 0x549fc
 
 UnknownText_0x549fc: ; 0x549fc
-	db $0, "It looks really", $4f
-	db "happy! It must", $55
-	db "love you a lot.", $57
+	text "It looks really"
+	line "happy! It must"
+	cont "love you a lot."
+	done
 ; 0x54a2c
 
 UnknownText_0x54a2c: ; 0x54a2c
-	db $0, "I get the feeling", $4f
-	db "that it really", $55
-	db "trusts you.", $57
+	text "I get the feeling"
+	line "that it really"
+	cont "trusts you."
+	done
 ; 0x54a5a
 
 UnknownText_0x54a5a: ; 0x54a5a
-	db $0, "It's friendly to-", $4f
-	db "ward you. It looks", $55
-	db "sort of happy.", $57
+	text "It's friendly to-"
+	line "ward you. It looks"
+	cont "sort of happy."
+	done
 ; 0x54a8e
 
 UnknownText_0x54a8e: ; 0x54a8e
-	db $0, "It's quite cute.", $57
+	text "It's quite cute."
+	done
 ; 0x54a9f
 
 UnknownText_0x54a9f: ; 0x54a9f
-	db $0, "You should treat", $4f
-	db "it better. It's", $55
-	db "not used to you.", $57
+	text "You should treat"
+	line "it better. It's"
+	cont "not used to you."
+	done
 ; 0x54ad1
 
 UnknownText_0x54ad1: ; 0x54ad1
-	db $0, "It doesn't seem to", $4f
-	db "like you at all.", $55
-	db "It looks mean.", $57
+	text "It doesn't seem to"
+	line "like you at all."
+	cont "It looks mean."
+	done
 ; 0x54b04
 
 UnknownText_0x54b04: ; 0x54b04
-	db $0, "I keep losing in", $4f
-	db "battles, and my", $51
-	db "#MON end up", $4f
-	db "fainting…", $51
-	db "Maybe that's why", $4f
-	db "my #MON don't", $55
-	db "like me much…", $57
+	text "I keep losing in"
+	line "battles, and my"
+
+	para "#MON end up"
+	line "fainting…"
+
+	para "Maybe that's why"
+	line "my #MON don't"
+	cont "like me much…"
+	done
 ; 0x54b67
 
 UnknownText_0x54b67: ; 0x54b67
-	db $0, "When I use an item", $4f
-	db "on my #MON, it", $55
-	db "acts really glad!", $57
+	text "When I use an item"
+	line "on my #MON, it"
+	cont "acts really glad!"
+	done
 ; 0x54b9c
 
 GoldenrodHappinessRater_MapEventHeader: ; 0x54b9c

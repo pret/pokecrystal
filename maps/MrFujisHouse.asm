@@ -46,33 +46,42 @@ MapMrFujisHouseSignpost1Script: ; 0x7e8ee
 ; 0x7e8f1
 
 UnknownText_0x7e8f1: ; 0x7e8f1
-	db $0, "MR.FUJI does live", $4f
-	db "here, but he's not", $51
-	db "home now.", $51
-	db "He should be at", $4f
-	db "the SOUL HOUSE.", $57
+	text "MR.FUJI does live"
+	line "here, but he's not"
+
+	para "home now."
+
+	para "He should be at"
+	line "the SOUL HOUSE."
+	done
 ; 0x7e940
 
 UnknownText_0x7e940: ; 0x7e940
-	db $0, "Some cold-hearted", $4f
-	db "people stop caring", $55
-	db "for their #MON.", $51
-	db "Grandpa takes in", $4f
-	db "the poor homeless", $51
-	db "#MON and takes", $4f
-	db "care of them.", $57
+	text "Some cold-hearted"
+	line "people stop caring"
+	cont "for their #MON."
+
+	para "Grandpa takes in"
+	line "the poor homeless"
+
+	para "#MON and takes"
+	line "care of them."
+	done
 ; 0x7e9b6
 
 UnknownText_0x7e9b6: ; 0x7e9b6
-	db $0, "PSYDUCK: Gu-guwa?", $57
+	text "PSYDUCK: Gu-guwa?"
+	done
 ; 0x7e9c9
 
 UnknownText_0x7e9c9: ; 0x7e9c9
-	db $0, "NIDORINO: Gyun!", $57
+	text "NIDORINO: Gyun!"
+	done
 ; 0x7e9da
 
 UnknownText_0x7e9da: ; 0x7e9da
-	db $0, "PIDGEY: Pijji!", $57
+	text "PIDGEY: Pijji!"
+	done
 ; 0x7e9ea
 
 MrFujisHouse_MapEventHeader: ; 0x7e9ea

@@ -463,157 +463,201 @@ ItemFragment_0x19d268: ; 0x19d268
 ; 0x19d26a
 
 PokemaniacBenSeenText: ; 0x19d26a
-	db $0, "I love #MON!", $51
-	db "That's why I", $4f
-	db "started--and why", $51
-	db "I'll keep on col-", $4f
-	db "lecting #MON!", $57
+	text "I love #MON!"
+
+	para "That's why I"
+	line "started--and why"
+
+	para "I'll keep on col-"
+	line "lecting #MON!"
+	done
 ; 0x19d2b4
 
 PokemaniacBenBeatenText: ; 0x19d2b4
-	db $0, "How could you do", $4f
-	db "this to me?", $57
+	text "How could you do"
+	line "this to me?"
+	done
 ; 0x19d2d2
 
 UnknownText_0x19d2d2: ; 0x19d2d2
-	db $0, "What else do I", $4f
-	db "like besides", $55
-	db "#MON?", $51
-	db "MARY on the radio.", $4f
-	db "I bet she's cute!", $57
+	text "What else do I"
+	line "like besides"
+	cont "#MON?"
+
+	para "MARY on the radio."
+	line "I bet she's cute!"
+	done
 ; 0x19d319
 
 PokemaniacBrent1SeenText: ; 0x19d319
-	db $0, "Hey! Do you have", $4f
-	db "any rare #MON?", $57
+	text "Hey! Do you have"
+	line "any rare #MON?"
+	done
 ; 0x19d33a
 
 PokemaniacBrent1BeatenText: ; 0x19d33a
-	db $0, "Oh, my poor #-", $4f
-	db "MON! Darlings!", $57
+	text "Oh, my poor #-"
+	line "MON! Darlings!"
+	done
 ; 0x19d359
 
 UnknownText_0x19d359: ; 0x19d359
-	db $0, "I'd be happy just", $4f
-	db "to own a single", $55
-	db "rare #MON.", $57
+	text "I'd be happy just"
+	line "to own a single"
+	cont "rare #MON."
+	done
 ; 0x19d386
 
 PokemaniacRonSeenText: ; 0x19d386
-	db $0, "Would you get", $4f
-	db "this?", $51
-	db "Some ", $53, " guy", $4f
-	db "made fun of my", $55
-	db "#MON!", $51
-	db "Darn it! My #-", $4f
-	db "MON's great!", $57
+	text "Would you get"
+	line "this?"
+
+	para "Some ", $53, " guy"
+	line "made fun of my"
+	cont "#MON!"
+
+	para "Darn it! My #-"
+	line "MON's great!"
+	done
 ; 0x19d3d6
 
 PokemaniacRonBeatenText: ; 0x19d3d6
-	db $0, "My NIDOKING did", $4f
-	db "pretty right on!", $57
+	text "My NIDOKING did"
+	line "pretty right on!"
+	done
 ; 0x19d3f8
 
 UnknownText_0x19d3f8: ; 0x19d3f8
-	db $0, "It's okay for", $4f
-	db "people to like", $51
-	db "different types", $4f
-	db "of #MON.", $51
-	db "#MON isn't just", $4f
-	db "about having the", $55
-	db "most powerful one.", $57
+	text "It's okay for"
+	line "people to like"
+
+	para "different types"
+	line "of #MON."
+
+	para "#MON isn't just"
+	line "about having the"
+	cont "most powerful one."
+	done
 ; 0x19d461
 
 FisherMarvinSeenText: ; 0x19d461
-	db $0, "I'm in a slump.", $51
-	db "Maybe it's the", $4f
-	db "gear I'm using.", $51
-	db "Let's battle for a", $4f
-	db "change of pace!", $57
+	text "I'm in a slump."
+
+	para "Maybe it's the"
+	line "gear I'm using."
+
+	para "Let's battle for a"
+	line "change of pace!"
+	done
 ; 0x19d4b0
 
 FisherMarvinBeatenText: ; 0x19d4b0
-	db $0, "I lost, but I feel", $4f
-	db "better anyway.", $57
+	text "I lost, but I feel"
+	line "better anyway."
+	done
 ; 0x19d4d3
 
 UnknownText_0x19d4d3: ; 0x19d4d3
-	db $0, "KURT's LURE BALL", $4f
-	db "is the best for", $51
-	db "catching hooked", $4f
-	db "#MON.", $51
-	db "It's much more", $4f
-	db "effective than a", $55
-	db "ULTRA BALL.", $57
+	text "KURT's LURE BALL"
+	line "is the best for"
+
+	para "catching hooked"
+	line "#MON."
+
+	para "It's much more"
+	line "effective than a"
+	cont "ULTRA BALL."
+	done
 ; 0x19d535
 
 CamperSpencerSeenText: ; 0x19d535
-	db $0, "I can do so much", $4f
-	db "with my #MON--", $55
-	db "it's super-fun!", $57
+	text "I can do so much"
+	line "with my #MON--"
+	cont "it's super-fun!"
+	done
 ; 0x19d565
 
 CamperSpencerBeatenText: ; 0x19d565
-	db $0, "Losing isn't fun", $4f
-	db "at all…", $57
+	text "Losing isn't fun"
+	line "at all…"
+	done
 ; 0x19d57e
 
 UnknownText_0x19d57e: ; 0x19d57e
-	db $0, "What is going on", $4f
-	db "at LAKE OF RAGE?", $51
-	db "We were planning", $4f
-	db "to camp there.", $57
+	text "What is going on"
+	line "at LAKE OF RAGE?"
+
+	para "We were planning"
+	line "to camp there."
+	done
 ; 0x19d5c1
 
 PicnickerTiffany3SeenText: ; 0x19d5c1
-	db $0, "Are you going to", $4f
-	db "LAKE OF RAGE too?", $51
-	db "Let's play for a ", $4f
-	db "little while!", $57
+	text "Are you going to"
+	line "LAKE OF RAGE too?"
+
+	para "Let's play for a "
+	line "little while!"
+	done
 ; 0x19d604
 
 PicnickerTiffany3BeatenText: ; 0x19d604
-	db $0, "I played too much!", $57
+	text "I played too much!"
+	done
 ; 0x19d618
 
 UnknownText_0x19d618: ; 0x19d618
-	db $0, "I'm having a pic-", $4f
-	db "nic with #MON.", $51
-	db "Won't you join us?", $57
+	text "I'm having a pic-"
+	line "nic with #MON."
+
+	para "Won't you join us?"
+	done
 ; 0x19d64b
 
 UnknownText_0x19d64b: ; 0x19d64b
-	db $0, "Isn't my CLEFAIRY", $4f
-	db "just the most", $55
-	db "adorable thing?", $57
+	text "Isn't my CLEFAIRY"
+	line "just the most"
+	cont "adorable thing?"
+	done
 ; 0x19d67b
 
 UnknownText_0x19d67b: ; 0x19d67b
-	db $0, "ROUTE 43", $51
-	db "LAKE OF RAGE -", $4f
-	db "MAHOGANY TOWN", $57
+	text "ROUTE 43"
+
+	para "LAKE OF RAGE -"
+	line "MAHOGANY TOWN"
+	done
 ; 0x19d6a2
 
 UnknownText_0x19d6a2: ; 0x19d6a2
-	db $0, "ROUTE 43", $51
-	db "LAKE OF RAGE -", $4f
-	db "MAHOGANY TOWN", $57
+	text "ROUTE 43"
+
+	para "LAKE OF RAGE -"
+	line "MAHOGANY TOWN"
+	done
 ; 0x19d6c9
 
 UnknownText_0x19d6c9: ; 0x19d6c9
-	db $0, "TRAINER TIPS", $51
-	db "All #MON have", $4f
-	db "pros and cons", $51
-	db "depending on their", $4f
-	db "types.", $51
-	db "If their types", $4f
-	db "differ, a higher-", $51
-	db "level #MON may", $4f
-	db "lose in battle.", $51
-	db "Learn which types", $4f
-	db "are strong and", $51
-	db "weak against your", $4f
-	db "#MON's type.", $57
+	text "TRAINER TIPS"
+
+	para "All #MON have"
+	line "pros and cons"
+
+	para "depending on their"
+	line "types."
+
+	para "If their types"
+	line "differ, a higher-"
+
+	para "level #MON may"
+	line "lose in battle."
+
+	para "Learn which types"
+	line "are strong and"
+
+	para "weak against your"
+	line "#MON's type."
+	done
 ; 0x19d78c
 
 Route43_MapEventHeader: ; 0x19d78c

@@ -237,75 +237,94 @@ FruitTreeScript_0x1a9791: ; 0x1a9791
 ; 0x1a9793
 
 HikerBaileySeenText: ; 0x1a9793
-	db $0, "Awright! I'll show", $4f
-	db "you the power of", $55
-	db "mountain #MON!", $57
+	text "Awright! I'll show"
+	line "you the power of"
+	cont "mountain #MON!"
+	done
 ; 0x1a97c6
 
 HikerBaileyBeatenText: ; 0x1a97c6
-	db $0, "Mercy! You showed", $4f
-	db "me your power!", $57
+	text "Mercy! You showed"
+	line "me your power!"
+	done
 ; 0x1a97e8
 
 UnknownText_0x1a97e8: ; 0x1a97e8
-	db $0, "It's over. I don't", $4f
-	db "mind. We HIKERS", $55
-	db "are like that.", $57
+	text "It's over. I don't"
+	line "mind. We HIKERS"
+	cont "are like that."
+	done
 ; 0x1a9819
 
 CamperTedSeenText: ; 0x1a9819
-	db $0, "I'm raising #-", $4f
-	db "MON too!", $51
-	db "Will you battle", $4f
-	db "with me?", $57
+	text "I'm raising #-"
+	line "MON too!"
+
+	para "Will you battle"
+	line "with me?"
+	done
 ; 0x1a984a
 
 CamperTedBeatenText: ; 0x1a984a
-	db $0, "Wha…?", $57
+	text "Wha…?"
+	done
 ; 0x1a9851
 
 UnknownText_0x1a9851: ; 0x1a9851
-	db $0, "I did my best but", $4f
-	db "came up short.", $51
-	db "No excuses--I", $4f
-	db "admit I lost.", $57
+	text "I did my best but"
+	line "came up short."
+
+	para "No excuses--I"
+	line "admit I lost."
+	done
 ; 0x1a988f
 
 PicnickerErin1SeenText: ; 0x1a988f
-	db $0, "I raise #MON", $4f
-	db "too!", $51
-	db "Will you battle", $4f
-	db "with me?", $57
+	text "I raise #MON"
+	line "too!"
+
+	para "Will you battle"
+	line "with me?"
+	done
 ; 0x1a98bb
 
 PicnickerErin1BeatenText: ; 0x1a98bb
-	db $0, "Oh, rats!", $57
+	text "Oh, rats!"
+	done
 ; 0x1a98c6
 
 UnknownText_0x1a98c6: ; 0x1a98c6
-	db $0, "I've been to many", $4f
-	db "GYMS, but the GYM", $51
-	db "in GOLDENROD is my", $4f
-	db "favorite.", $51
-	db "It's filled with", $4f
-	db "pretty flowers!", $57
+	text "I've been to many"
+	line "GYMS, but the GYM"
+
+	para "in GOLDENROD is my"
+	line "favorite."
+
+	para "It's filled with"
+	line "pretty flowers!"
+	done
 ; 0x1a9927
 
 UnknownText_0x1a9927: ; 0x1a9927
-	db $0, "Aww… I keep losing", $4f
-	db "all the time!", $51
-	db "I'll just have to", $4f
-	db "try harder!", $51
-	db "Anyway, thanks for", $4f
-	db "battling me again", $51
-	db "and again. Here's", $4f
-	db "that present from", $55
-	db "the other time.", $57
+	text "Aww… I keep losing"
+	line "all the time!"
+
+	para "I'll just have to"
+	line "try harder!"
+
+	para "Anyway, thanks for"
+	line "battling me again"
+
+	para "and again. Here's"
+	line "that present from"
+	cont "the other time."
+	done
 ; 0x1a99be
 
 UnknownText_0x1a99be: ; 0x1a99be
-	db $0, "ROUTE 46", $4f
-	db "MOUNTAIN RD. AHEAD", $57
+	text "ROUTE 46"
+	line "MOUNTAIN RD. AHEAD"
+	done
 ; 0x1a99db
 
 Route46_MapEventHeader: ; 0x1a99db

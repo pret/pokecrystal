@@ -1,8 +1,12 @@
 ; TangelaPokedexEntry: ; 0x1b948c
 	db "VINE@" ; species name
-	dw 303, 770; height, width
+	dw 303, 770 ; height, width
 	
-	db "During battle, it", $4e, "constantly moves", $4e, "the vines that@"
-	db "cover its body in", $4e, "order to annoy its", $4e, "opponent.@"
+	db   "During battle, it"
+	next "constantly moves"
+	next "the vines that"
+	page "cover its body in"
+	next "order to annoy its"
+	next "opponent.@"
 ; 0x1b94f6
 

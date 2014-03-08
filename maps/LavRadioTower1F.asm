@@ -84,117 +84,158 @@ UnknownScript_0x7eebc: ; 0x7eebc
 ; 0x7eebf
 
 UnknownText_0x7eebf: ; 0x7eebf
-	db $0, "Welcome!", $4f
-	db "Feel free to look", $51
-	db "around anywhere on", $4f
-	db "this floor.", $57
+	text "Welcome!"
+	line "Feel free to look"
+
+	para "around anywhere on"
+	line "this floor."
+	done
 ; 0x7eefa
 
 UnknownText_0x7eefa: ; 0x7eefa
-	db $0, "Sorry, but you can", $4f
-	db "only tour the", $55
-	db "ground floor.", $51
-	db "Ever since JOHTO's", $4f
-	db "RADIO TOWER was", $51
-	db "taken over by a", $4f
-	db "criminal gang, we", $51
-	db "have had to step", $4f
-	db "up our security.", $57
+	text "Sorry, but you can"
+	line "only tour the"
+	cont "ground floor."
+
+	para "Ever since JOHTO's"
+	line "RADIO TOWER was"
+
+	para "taken over by a"
+	line "criminal gang, we"
+
+	para "have had to step"
+	line "up our security."
+	done
 ; 0x7ef90
 
 UnknownText_0x7ef90: ; 0x7ef90
-	db $0, "Many people are", $4f
-	db "hard at work here", $51
-	db "in the RADIO", $4f
-	db "TOWER.", $51
-	db "They must be doing", $4f
-	db "their best to put", $55
-	db "on good shows.", $57
+	text "Many people are"
+	line "hard at work here"
+
+	para "in the RADIO"
+	line "TOWER."
+
+	para "They must be doing"
+	line "their best to put"
+	cont "on good shows."
+	done
 ; 0x7effb
 
 UnknownText_0x7effb: ; 0x7effb
-	db $0, "Oh, no, no, no!", $51
-	db "We've been off the", $4f
-	db "air ever since the", $51
-	db "POWER PLANT shut", $4f
-	db "down.", $51
-	db "All my efforts to", $4f
-	db "start this station", $51
-	db "would be wasted if", $4f
-	db "I can't broadcast.", $51
-	db "I'll be ruined!", $57
+	text "Oh, no, no, no!"
+
+	para "We've been off the"
+	line "air ever since the"
+
+	para "POWER PLANT shut"
+	line "down."
+
+	para "All my efforts to"
+	line "start this station"
+
+	para "would be wasted if"
+	line "I can't broadcast."
+
+	para "I'll be ruined!"
+	done
 ; 0x7f0a1
 
 UnknownText_0x7f0a1: ; 0x7f0a1
-	db $0, "Ah! So you're the", $4f
-	db $14, " who solved", $51
-	db "the POWER PLANT's", $4f
-	db "problem?", $51
-	db "Thanks to you, I", $4f
-	db "never lost my job.", $51
-	db "I tell you, you're", $4f
-	db "a real lifesaver!", $51
-	db "Please take this", $4f
-	db "as my thanks.", $57
+	text "Ah! So you're the"
+	line $14, " who solved"
+
+	para "the POWER PLANT's"
+	line "problem?"
+
+	para "Thanks to you, I"
+	line "never lost my job."
+
+	para "I tell you, you're"
+	line "a real lifesaver!"
+
+	para "Please take this"
+	line "as my thanks."
+	done
 ; 0x7f141
 
 UnknownText_0x7f141: ; 0x7f141
-	db $0, "With that thing,", $4f
-	db "you can tune into", $51
-	db "the radio programs", $4f
-	db "here in KANTO.", $51
-	db "Gahahahaha!", $57
+	text "With that thing,"
+	line "you can tune into"
+
+	para "the radio programs"
+	line "here in KANTO."
+
+	para "Gahahahaha!"
+	done
 ; 0x7f193
 
 UnknownText_0x7f193: ; 0x7f193
-	db $0, "Hey there!", $51
-	db "I am the super", $4f
-	db "MUSIC DIRECTOR!", $51
-	db "Huh? Your #GEAR", $4f
-	db "can't tune into my", $51
-	db "music programs.", $4f
-	db "How unfortunate!", $51
-	db "If you get an EXPN", $4f
-	db "CARD upgrade, you", $51
-	db "can tune in. You'd", $4f
-	db "better get one!", $57
+	text "Hey there!"
+
+	para "I am the super"
+	line "MUSIC DIRECTOR!"
+
+	para "Huh? Your #GEAR"
+	line "can't tune into my"
+
+	para "music programs."
+	line "How unfortunate!"
+
+	para "If you get an EXPN"
+	line "CARD upgrade, you"
+
+	para "can tune in. You'd"
+	line "better get one!"
+	done
 ; 0x7f248
 
 UnknownText_0x7f248: ; 0x7f248
-	db $0, "Hey there!", $51
-	db "I am the super", $4f
-	db "MUSIC DIRECTOR!", $51
-	db "I'm responsible", $4f
-	db "for the gorgeous", $51
-	db "melodies that go", $4f
-	db "out over the air.", $51
-	db "Don't be square.", $4f
-	db "Grab your music", $55
-	db "off the air!", $57
+	text "Hey there!"
+
+	para "I am the super"
+	line "MUSIC DIRECTOR!"
+
+	para "I'm responsible"
+	line "for the gorgeous"
+
+	para "melodies that go"
+	line "out over the air."
+
+	para "Don't be square."
+	line "Grab your music"
+	cont "off the air!"
+	done
 ; 0x7f2e3
 
 UnknownText_0x7f2e3: ; 0x7f2e3
-	db $0, "1F RECEPTION", $4f
-	db "2F SALES", $51
-	db "3F PERSONNEL", $4f
-	db "4F PRODUCTION", $51
-	db "5F DIRECTOR'S", $4f
-	db "   OFFICE", $57
+	text "1F RECEPTION"
+	line "2F SALES"
+
+	para "3F PERSONNEL"
+	line "4F PRODUCTION"
+
+	para "5F DIRECTOR'S"
+	line "   OFFICE"
+	done
 ; 0x7f32d
 
 UnknownText_0x7f32d: ; 0x7f32d
-	db $0, "Perk Up #MON", $4f
-	db "with Mellow Sounds", $51
-	db "of the # FLUTE", $4f
-	db "on CHANNEL 20", $57
+	text "Perk Up #MON"
+	line "with Mellow Sounds"
+
+	para "of the # FLUTE"
+	line "on CHANNEL 20"
+	done
 ; 0x7f36b
 
 UnknownText_0x7f36b: ; 0x7f36b
-	db $0, "Wow! A full rack", $4f
-	db "of #MON CDs and", $55
-	db "videos.", $51
-	db "This must be the", $4f
-	db "reference library.", $57
+	text "Wow! A full rack"
+	line "of #MON CDs and"
+	cont "videos."
+
+	para "This must be the"
+	line "reference library."
+	done
 ; 0x7f3b9
 
 LavRadioTower1F_MapEventHeader: ; 0x7f3b9

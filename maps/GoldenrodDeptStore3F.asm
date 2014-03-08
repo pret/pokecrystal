@@ -31,27 +31,33 @@ MapGoldenrodDeptStore3FSignpost1Script: ; 0x55dc9
 ; 0x55dcc
 
 UnknownText_0x55dcc: ; 0x55dcc
-	db $0, "I, I, I'm really", $4f
-	db "impatient!", $51
-	db "I use X SPEED in", $4f
-	db "battle to speed up", $55
-	db "my #MON.", $57
+	text "I, I, I'm really"
+	line "impatient!"
+
+	para "I use X SPEED in"
+	line "battle to speed up"
+	cont "my #MON."
+	done
 ; 0x55e15
 
 UnknownText_0x55e15: ; 0x55e15
-	db $0, "Hey! When you bat-", $4f
-	db "tle, do you use X", $55
-	db "SPECIAL?", $51
-	db "It's awesome. It", $4f
-	db "really jacks up", $55
-	db "SPECIAL ATTACK!", $57
+	text "Hey! When you bat-"
+	line "tle, do you use X"
+	cont "SPECIAL?"
+
+	para "It's awesome. It"
+	line "really jacks up"
+	cont "SPECIAL ATTACK!"
+	done
 ; 0x55e74
 
 UnknownText_0x55e74: ; 0x55e74
-	db $0, "For Victory", $4f
-	db "Seekers", $51
-	db "3F BATTLE", $4f
-	db "   COLLECTION", $57
+	text "For Victory"
+	line "Seekers"
+
+	para "3F BATTLE"
+	line "   COLLECTION"
+	done
 ; 0x55ea1
 
 GoldenrodDeptStore3F_MapEventHeader: ; 0x55ea1

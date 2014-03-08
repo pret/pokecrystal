@@ -41,7 +41,8 @@ UnknownText_0x18c637: ; 0x18c637
 ; 0x18c63c
 
 UnknownText_0x18c63c: ; 0x18c63c
-	db $0, "…", $57
+	text "…"
+	done
 ; 0x18c63f
 
 UnknownText_0x18c63f: ; 0x18c63f

@@ -38,33 +38,42 @@ ClefairyScript_0x18ad2a: ; 0x18ad2a
 ; 0x18ad34
 
 UnknownText_0x18ad34: ; 0x18ad34
-	db $0, "My daughter likes", $4f
-	db "to mimic people.", $51
-	db "Her mimicry has", $4f
-	db "earned her the", $51
-	db "nickname COPYCAT", $4f
-	db "around here.", $57
+	text "My daughter likes"
+	line "to mimic people."
+
+	para "Her mimicry has"
+	line "earned her the"
+
+	para "nickname COPYCAT"
+	line "around here."
+	done
 ; 0x18ad95
 
 UnknownText_0x18ad95: ; 0x18ad95
-	db $0, "My daughter is so", $4f
-	db "self-centered…", $51
-	db "She only has a few", $4f
-	db "friends.", $57
+	text "My daughter is so"
+	line "self-centered…"
+
+	para "She only has a few"
+	line "friends."
+	done
 ; 0x18add3
 
 UnknownText_0x18add3: ; 0x18add3
-	db $0, "She recently lost", $4f
-	db "the # DOLL that", $51
-	db "a boy gave her", $4f
-	db "three years ago.", $51
-	db "Ever since then,", $4f
-	db "she's gotten even", $55
-	db "better at mimicry…", $57
+	text "She recently lost"
+	line "the # DOLL that"
+
+	para "a boy gave her"
+	line "three years ago."
+
+	para "Ever since then,"
+	line "she's gotten even"
+	cont "better at mimicry…"
+	done
 ; 0x18ae4b
 
 UnknownText_0x18ae4b: ; 0x18ae4b
-	db $0, "BLISSEY: Bliisii!", $57
+	text "BLISSEY: Bliisii!"
+	done
 ; 0x18ae5e
 
 CopycatsHouse1F_MapEventHeader: ; 0x18ae5e

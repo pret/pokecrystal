@@ -430,180 +430,219 @@ FruitTreeScript_0x19ca7e: ; 0x19ca7e
 ; 0x19ca80
 
 CamperIvanSeenText: ; 0x19ca80
-	db $0, "I've been getting", $4f
-	db "#MON data off", $51
-	db "my radio. I think", $4f
-	db "I'm good.", $57
+	text "I've been getting"
+	line "#MON data off"
+
+	para "my radio. I think"
+	line "I'm good."
+	done
 ; 0x19cabb
 
 CamperIvanBeatenText: ; 0x19cabb
-	db $0, "I give!", $57
+	text "I give!"
+	done
 ; 0x19cac4
 
 UnknownText_0x19cac4: ; 0x19cac4
-	db $0, "Music on the radio", $4f
-	db "changes the moods", $55
-	db "of wild #MON.", $57
+	text "Music on the radio"
+	line "changes the moods"
+	cont "of wild #MON."
+	done
 ; 0x19caf8
 
 CamperElliotSeenText: ; 0x19caf8
-	db $0, "I'm gonna show my", $4f
-	db "girlfriend I'm hot", $55
-	db "stuff!", $57
+	text "I'm gonna show my"
+	line "girlfriend I'm hot"
+	cont "stuff!"
+	done
 ; 0x19cb23
 
 CamperElliotBeatenText: ; 0x19cb23
-	db $0, "I wish you would", $4f
-	db "have lost for me…", $57
+	text "I wish you would"
+	line "have lost for me…"
+	done
 ; 0x19cb47
 
 UnknownText_0x19cb47: ; 0x19cb47
-	db $0, "I was humiliated", $4f
-	db "in front of my", $55
-	db "girlfriend…", $57
+	text "I was humiliated"
+	line "in front of my"
+	cont "girlfriend…"
+	done
 ; 0x19cb74
 
 PicnickerBrookeSeenText: ; 0x19cb74
-	db $0, "My boyfriend's", $4f
-	db "weak, so I can't", $55
-	db "rely on him.", $57
+	text "My boyfriend's"
+	line "weak, so I can't"
+	cont "rely on him."
+	done
 ; 0x19cba0
 
 PicnickerBrookeBeatenText: ; 0x19cba0
-	db $0, "Oh, my! You're so", $4f
-	db "strong!", $57
+	text "Oh, my! You're so"
+	line "strong!"
+	done
 ; 0x19cbba
 
 UnknownText_0x19cbba: ; 0x19cbba
-	db $0, "I can count on my", $4f
-	db "#MON more than", $55
-	db "my boyfriend.", $57
+	text "I can count on my"
+	line "#MON more than"
+	cont "my boyfriend."
+	done
 ; 0x19cbea
 
 PicnickerKimSeenText: ; 0x19cbea
-	db $0, "Are you going to", $4f
-	db "the GYM? Me too!", $57
+	text "Are you going to"
+	line "the GYM? Me too!"
+	done
 ; 0x19cc0d
 
 PicnickerKimBeatenText: ; 0x19cc0d
-	db $0, "Oh. I couldn't", $4f
-	db "win…", $57
+	text "Oh. I couldn't"
+	line "win…"
+	done
 ; 0x19cc21
 
 UnknownText_0x19cc21: ; 0x19cc21
-	db $0, "The GYM BADGES are", $4f
-	db "pretty. I collect", $55
-	db "them.", $57
+	text "The GYM BADGES are"
+	line "pretty. I collect"
+	cont "them."
+	done
 ; 0x19cc4d
 
 Bird_keeperBryanSeenText: ; 0x19cc4d
-	db $0, "What kinds of", $4f
-	db "BALLS do you use?", $57
+	text "What kinds of"
+	line "BALLS do you use?"
+	done
 ; 0x19cc6e
 
 Bird_keeperBryanBeatenText: ; 0x19cc6e
-	db $0, "Yikes! Not fast", $4f
-	db "enough!", $57
+	text "Yikes! Not fast"
+	line "enough!"
+	done
 ; 0x19cc87
 
 UnknownText_0x19cc87: ; 0x19cc87
-	db $0, "Some #MON flee", $4f
-	db "right away.", $51
-	db "Try catching them", $4f
-	db "with KURT's FAST", $55
-	db "BALL.", $51
-	db "Whenever I find a", $4f
-	db "WHT APRICORN, I", $55
-	db "take it to KURT.", $51
-	db "He turns it into a", $4f
-	db "custom BALL.", $57
+	text "Some #MON flee"
+	line "right away."
+
+	para "Try catching them"
+	line "with KURT's FAST"
+	cont "BALL."
+
+	para "Whenever I find a"
+	line "WHT APRICORN, I"
+	cont "take it to KURT."
+
+	para "He turns it into a"
+	line "custom BALL."
+	done
 ; 0x19cd1e
 
 JugglerIrwin1SeenText: ; 0x19cd1e
-	db $0, "Behold my graceful", $4f
-	db "BALL dexterity!", $57
+	text "Behold my graceful"
+	line "BALL dexterity!"
+	done
 ; 0x19cd42
 
 JugglerIrwin1BeatenText: ; 0x19cd42
-	db $0, "Whew! That was a", $4f
-	db "jolt!", $57
+	text "Whew! That was a"
+	line "jolt!"
+	done
 ; 0x19cd5a
 
 UnknownText_0x19cd5a: ; 0x19cd5a
-	db $0, "I was going to", $4f
-	db "dazzle you with my", $55
-	db "prize #MON.", $51
-	db "But your prowess", $4f
-	db "electrified me!", $57
+	text "I was going to"
+	line "dazzle you with my"
+	cont "prize #MON."
+
+	para "But your prowess"
+	line "electrified me!"
+	done
 ; 0x19cdaa
 
 Bug_catcherArnie1SeenText: ; 0x19cdaa
-	db $0, "I'll go anywhere", $4f
-	db "if bug #MON", $55
-	db "appear there.", $57
+	text "I'll go anywhere"
+	line "if bug #MON"
+	cont "appear there."
+	done
 ; 0x19cdd5
 
 Bug_catcherArnie1BeatenText: ; 0x19cdd5
-	db $0, "Huh? I shouldn't", $4f
-	db "have lost that…", $57
+	text "Huh? I shouldn't"
+	line "have lost that…"
+	done
 ; 0x19cdf6
 
 UnknownText_0x19cdf6: ; 0x19cdf6
-	db $0, "My VENONAT won me", $4f
-	db "the Bug-Catching", $51
-	db "Contest at the", $4f
-	db "NATIONAL PARK.", $57
+	text "My VENONAT won me"
+	line "the Bug-Catching"
+
+	para "Contest at the"
+	line "NATIONAL PARK."
+	done
 ; 0x19ce38
 
 UnknownText_0x19ce38: ; 0x19ce38
-	db $0, "Wow… Look at all", $4f
-	db "those YANMA!", $51
-	db "I'm so blown away,", $4f
-	db "I can't move.", $57
+	text "Wow… Look at all"
+	line "those YANMA!"
+
+	para "I'm so blown away,"
+	line "I can't move."
+	done
 ; 0x19ce76
 
 FirebreatherWaltSeenText: ; 0x19ce76
-	db $0, "I'm practicing my", $4f
-	db "fire breathing.", $57
+	text "I'm practicing my"
+	line "fire breathing."
+	done
 ; 0x19ce98
 
 FirebreatherWaltBeatenText: ; 0x19ce98
-	db $0, "Ow! I scorched the", $4f
-	db "tip of my nose!", $57
+	text "Ow! I scorched the"
+	line "tip of my nose!"
+	done
 ; 0x19cebc
 
 UnknownText_0x19cebc: ; 0x19cebc
-	db $0, "The #MON March", $4f
-	db "on the radio lures", $55
-	db "wild #MON.", $57
+	text "The #MON March"
+	line "on the radio lures"
+	cont "wild #MON."
+	done
 ; 0x19ceea
 
 UnknownText_0x19ceea: ; 0x19ceea
-	db $0, "Danger lurks in", $4f
-	db "the night!", $57
+	text "Danger lurks in"
+	line "the night!"
+	done
 ; 0x19cf06
 
 UnknownText_0x19cf06: ; 0x19cf06
-	db $0, "Whoops!", $57
+	text "Whoops!"
+	done
 ; 0x19cf0f
 
 UnknownText_0x19cf0f: ; 0x19cf0f
-	db $0, "You know, night-", $4f
-	db "time is fun in its", $55
-	db "own ways.", $51
-	db "But don't overdo", $4f
-	db "it, OK?", $57
+	text "You know, night-"
+	line "time is fun in its"
+	cont "own ways."
+
+	para "But don't overdo"
+	line "it, OK?"
+	done
 ; 0x19cf56
 
 UnknownText_0x19cf56: ; 0x19cf56
-	db $0, "Your #MON look", $4f
-	db "pretty tough.", $51
-	db "You could go any-", $4f
-	db "where safely.", $57
+	text "Your #MON look"
+	line "pretty tough."
+
+	para "You could go any-"
+	line "where safely."
+	done
 ; 0x19cf94
 
 UnknownText_0x19cf94: ; 0x19cf94
-	db $0, "ROUTE 35", $57
+	text "ROUTE 35"
+	done
 ; 0x19cf9e
 
 Route35_MapEventHeader: ; 0x19cf9e

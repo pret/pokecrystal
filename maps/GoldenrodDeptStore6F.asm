@@ -108,51 +108,63 @@ MapGoldenrodDeptStore6FSignpost1Script: ; 0x564c8
 ; 0x564cb
 
 UnknownText_0x564cb: ; 0x564cb
-	db $0, "A vending machine!", $4f
-	db "Here's the menu.", $57
+	text "A vending machine!"
+	line "Here's the menu."
+	done
 ; 0x564ef
 
 UnknownText_0x564ef: ; 0x564ef
-	db $0, "Clang! A can of", $4f
-	db "@"
+	text "Clang! A can of"
+	line "@"
 	text_from_ram $d099
-	db $0, $55
-	db "popped out!", $57
+	text $55
+	db "popped out!"
+	done
 ; 0x56512
 
 UnknownText_0x56512: ; 0x56512
-	db $0, "Oops, not enough", $4f
-	db "money.", $57
+	text "Oops, not enough"
+	line "money."
+	done
 ; 0x5652b
 
 UnknownText_0x5652b: ; 0x5652b
-	db $0, "There's no more", $4f
-	db "room for stuff.", $57
+	text "There's no more"
+	line "room for stuff."
+	done
 ; 0x5654b
 
 UnknownText_0x5654b: ; 0x5654b
-	db $0, "Do you listen to", $4f
-	db "LUCKY CHANNEL?", $51
-	db "If you want to", $4f
-	db "win, trade #MON", $51
-	db "with as many peo-", $4f
-	db "ple as possible to", $51
-	db "get different ID", $4f
-	db "numbers.", $57
+	text "Do you listen to"
+	line "LUCKY CHANNEL?"
+
+	para "If you want to"
+	line "win, trade #MON"
+
+	para "with as many peo-"
+	line "ple as possible to"
+
+	para "get different ID"
+	line "numbers."
+	done
 ; 0x565ca
 
 UnknownText_0x565ca: ; 0x565ca
-	db $0, "If you're tired,", $4f
-	db "try the vending", $55
-	db "machine's drinks.", $51
-	db "Your #MON will", $4f
-	db "love them too.", $57
+	text "If you're tired,"
+	line "try the vending"
+	cont "machine's drinks."
+
+	para "Your #MON will"
+	line "love them too."
+	done
 ; 0x5661a
 
 UnknownText_0x5661a: ; 0x5661a
-	db $0, "Take a Break from", $4f
-	db "Shopping!", $51
-	db "6F TRANQUIL SQUARE", $57
+	text "Take a Break from"
+	line "Shopping!"
+
+	para "6F TRANQUIL SQUARE"
+	done
 ; 0x5664a
 
 GoldenrodDeptStore6F_MapEventHeader: ; 0x5664a
