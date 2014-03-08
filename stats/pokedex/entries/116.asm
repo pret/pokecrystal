@@ -1,11 +1,11 @@
 ; HorseaPokedexEntry: ; 0x1b9553
-	db   "DRAGON@" ; species name
-	dw 104, 180; height, width
+	db "DRAGON@" ; species name
+	dw 104, 180 ; height, width
 	
 	db   "When they're in a"
 	next "safe location,"
-	next "they can be seen@"
-	db   "playfully tangling"
+	next "they can be seen"
+	page "playfully tangling"
 	next "their tails"
 	next "together.@"
 ; 0x1b95b8

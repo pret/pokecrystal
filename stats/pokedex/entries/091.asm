@@ -1,11 +1,11 @@
 ; CloysterPokedexEntry: ; 0x1b8ad9
-	db   "BIVALVE@" ; species name
-	dw 411, 2920; height, width
+	db "BIVALVE@" ; species name
+	dw 411, 2920 ; height, width
 	
 	db   "Even a missile"
 	next "can't break the"
-	next "spikes it uses to@"
-	db   "stab opponents."
+	next "spikes it uses to"
+	page "stab opponents."
 	next "They're even hard-"
 	next "er than its shell.@"
 ; 0x1b8b4a

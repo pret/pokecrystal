@@ -1,11 +1,11 @@
 ; KoffingPokedexEntry: ; 0x1b9276
-	db   "POISON GAS@" ; species name
-	dw 200, 20; height, width
+	db "POISON GAS@" ; species name
+	dw 200, 20 ; height, width
 	
 	db   "If one gets close"
 	next "enough to it when"
-	next "it expels poison-@"
-	db   "ous gas, the gas"
+	next "it expels poison-"
+	page "ous gas, the gas"
 	next "swirling inside it"
 	next "can be seen.@"
 ; 0x1b92ec
