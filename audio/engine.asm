@@ -1293,7 +1293,7 @@ GetNoiseSample: ; e86c5
 	ld e, a
 	ld d, $00
 	; load ptr to noise sample set in hl
-	ld hl, NoiseSampleSetsPointers
+	ld hl, Drumkits
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -2813,306 +2813,305 @@ WaveSamples: ; e8db2
 	db $11, $00, $00, $08, $00, $13, $57, $9a, $b4, $ba, $a9, $98, $87, $65, $43, $21
 ; e8e52
 
-NoiseSampleSetsPointers: ; e8e52
-	dw NoiseSampleSets0
-	dw NoiseSampleSets1
-	dw NoiseSampleSets2
-	dw NoiseSampleSets3
-	dw NoiseSampleSets4
-	dw NoiseSampleSets5
+Drumkits: ; e8e52
+	dw Drumkit0
+	dw Drumkit1
+	dw Drumkit2
+	dw Drumkit3
+	dw Drumkit4
+	dw Drumkit5
 ; e8e5e
 
-NoiseSampleSets:
-NoiseSampleSets0: ; e8e5e
-	dw NoiseSampleSet00 ; rest
-	dw NoiseSampleSet01 ; c
-	dw NoiseSampleSet02 ; c#
-	dw NoiseSampleSet03 ; d
-	dw NoiseSampleSet04 ; d#
-	dw NoiseSampleSet05 ; e
-	dw NoiseSampleSet06 ; f
-	dw NoiseSampleSet07 ; f#
-	dw NoiseSampleSet08 ; g
-	dw NoiseSampleSet09 ; g#
-	dw NoiseSampleSet10 ; a
-	dw NoiseSampleSet11 ; a#
-	dw NoiseSampleSet12 ; b
-NoiseSampleSets1: ; e8e78
-	dw NoiseSampleSet00
-	dw NoiseSampleSet08
-	dw NoiseSampleSet09
-	dw NoiseSampleSet10
-	dw NoiseSampleSet11
-	dw NoiseSampleSet12
-	dw NoiseSampleSet13
-	dw NoiseSampleSet14
-	dw NoiseSampleSet15
-	dw NoiseSampleSet16
-	dw NoiseSampleSet17
-	dw NoiseSampleSet18
-	dw NoiseSampleSet19
-NoiseSampleSets2: ; e8e92
-	dw NoiseSampleSet00
-	dw NoiseSampleSet01
-	dw NoiseSampleSet17
-	dw NoiseSampleSet18
-	dw NoiseSampleSet19
-	dw NoiseSampleSet05
-	dw NoiseSampleSet06
-	dw NoiseSampleSet07
-	dw NoiseSampleSet08
-	dw NoiseSampleSet09
-	dw NoiseSampleSet10
-	dw NoiseSampleSet11
-	dw NoiseSampleSet12
-NoiseSampleSets3: ; e8eac
-	dw NoiseSampleSet21
-	dw NoiseSampleSet22
-	dw NoiseSampleSet23
-	dw NoiseSampleSet24
-	dw NoiseSampleSet25
-	dw NoiseSampleSet26
-	dw NoiseSampleSet20
-	dw NoiseSampleSet27
-	dw NoiseSampleSet28
-	dw NoiseSampleSet29
-	dw NoiseSampleSet21
-	dw NoiseSampleSet37
-	dw NoiseSampleSet34
-NoiseSampleSets4: ; e8ec6
-	dw NoiseSampleSet21
-	dw NoiseSampleSet20
-	dw NoiseSampleSet23
-	dw NoiseSampleSet24
-	dw NoiseSampleSet25
-	dw NoiseSampleSet33
-	dw NoiseSampleSet26
-	dw NoiseSampleSet35
-	dw NoiseSampleSet31
-	dw NoiseSampleSet32
-	dw NoiseSampleSet36
-	dw NoiseSampleSet37
-	dw NoiseSampleSet30
-NoiseSampleSets5: ; e8ee0
-	dw NoiseSampleSet00
-	dw NoiseSampleSet17
-	dw NoiseSampleSet18
-	dw NoiseSampleSet19
-	dw NoiseSampleSet27
-	dw NoiseSampleSet28
-	dw NoiseSampleSet29
-	dw NoiseSampleSet05
-	dw NoiseSampleSet06
-	dw NoiseSampleSet30
-	dw NoiseSampleSet24
-	dw NoiseSampleSet23
-	dw NoiseSampleSet37
+Drumkit0: ; e8e5e
+	dw Drum00    ; rest
+	dw Snare1    ; c
+	dw Snare2    ; c#
+	dw Snare3    ; d
+	dw Snare4    ; d#
+	dw Drum05    ; e
+	dw Triangle1 ; f
+	dw Triangle2 ; f#
+	dw HiHat1    ; g
+	dw Snare5    ; g#
+	dw Snare6    ; a
+	dw Snare7    ; a#
+	dw HiHat2    ; b
+Drumkit1: ; e8e78
+	dw Drum00
+	dw HiHat1
+	dw Snare5
+	dw Snare6
+	dw Snare7
+	dw HiHat2
+	dw HiHat3
+	dw Snare8
+	dw Triangle3
+	dw Triangle4
+	dw Snare9
+	dw Snare10
+	dw Snare11
+Drumkit2: ; e8e92
+	dw Drum00
+	dw Snare1
+	dw Snare9
+	dw Snare10
+	dw Snare11
+	dw Drum05
+	dw Triangle1
+	dw Triangle2
+	dw HiHat1
+	dw Snare5
+	dw Snare6
+	dw Snare7
+	dw HiHat2
+Drumkit3: ; e8eac
+	dw Drum21
+	dw Snare12
+	dw Snare13
+	dw Snare14
+	dw Kick1
+	dw Triangle5
+	dw Drum20
+	dw Drum27
+	dw Drum28
+	dw Drum29
+	dw Drum21
+	dw Kick2
+	dw Crash2
+Drumkit4: ; e8ec6
+	dw Drum21
+	dw Drum20
+	dw Snare13
+	dw Snare14
+	dw Kick1
+	dw Drum33
+	dw Triangle5
+	dw Drum35
+	dw Drum31
+	dw Drum32
+	dw Drum36
+	dw Kick2
+	dw Crash1
+Drumkit5: ; e8ee0
+	dw Drum00
+	dw Snare9
+	dw Snare10
+	dw Snare11
+	dw Drum27
+	dw Drum28
+	dw Drum29
+	dw Drum05
+	dw Triangle1
+	dw Crash1
+	dw Snare14
+	dw Snare13
+	dw Kick2
 ; e8efa
 
-NoiseSampleSet00: ; e8efa
+Drum00: ; e8efa
 ; unused
-	db $20, $11, $00
+	noise $20, $11, $00
 	db $ff ; end
 ; e8efe
 
-NoiseSampleSet01: ; e8efe
-	db $20, $c1, $33
+Snare1: ; e8efe
+	noise $20, $c1, $33
 	db $ff ; end
 ; e8f02
 
-NoiseSampleSet02: ; e8f02
-	db $20, $b1, $33
+Snare2: ; e8f02
+	noise $20, $b1, $33
 	db $ff ; end
 ; e8f06
 
-NoiseSampleSet03: ; e8f06
-	db $20, $a1, $33
+Snare3: ; e8f06
+	noise $20, $a1, $33
 	db $ff ; end
 ; e8f0a
 
-NoiseSampleSet04: ; e8f0a
-	db $20, $81, $33
+Snare4: ; e8f0a
+	noise $20, $81, $33
 	db $ff ; end
 ; e8f0e
 
-NoiseSampleSet05: ; e8f0e
-	db $27, $84, $37
-	db $26, $84, $36
-	db $25, $83, $35
-	db $24, $83, $34
-	db $23, $82, $33
-	db $22, $81, $32
+Drum05: ; e8f0e
+	noise $27, $84, $37
+	noise $26, $84, $36
+	noise $25, $83, $35
+	noise $24, $83, $34
+	noise $23, $82, $33
+	noise $22, $81, $32
 	db $ff ; end
 ; e8f21
 
-NoiseSampleSet06: ; e8f21
-	db $20, $51, $2a
+Triangle1: ; e8f21
+	noise $20, $51, $2a
 	db $ff ; end
 ; e8f25
 
-NoiseSampleSet07: ; e8f25
-	db $21, $41, $2b
-	db $20, $61, $2a
+Triangle2: ; e8f25
+	noise $21, $41, $2b
+	noise $20, $61, $2a
 	db $ff ; end
 ; e8f2c
 
-NoiseSampleSet08: ; e8f2c
-	db $20, $81, $10
+HiHat1: ; e8f2c
+	noise $20, $81, $10
 	db $ff ; end
 ; e8f30
 
-NoiseSampleSet09: ; e8f30
-	db $20, $82, $23
+Snare5: ; e8f30
+	noise $20, $82, $23
 	db $ff ; end
 ; e8f34
 
-NoiseSampleSet10: ; e8f34
-	db $20, $82, $25
+Snare6: ; e8f34
+	noise $20, $82, $25
 	db $ff ; end
 ; e8f38
 
-NoiseSampleSet11: ; e8f38
-	db $20, $82, $26
+Snare7: ; e8f38
+	noise $20, $82, $26
 	db $ff ; end
 ; e8f3c
 
-NoiseSampleSet12: ; e8f3c
-	db $20, $a1, $10
+HiHat2: ; e8f3c
+	noise $20, $a1, $10
 	db $ff ; end
 ; e8f40
 
-NoiseSampleSet13: ; e8f40
-	db $20, $a2, $11
+HiHat3: ; e8f40
+	noise $20, $a2, $11
 	db $ff ; end
 ; e8f44
 
-NoiseSampleSet14: ; e8f44
-	db $20, $a2, $50
+Snare8: ; e8f44
+	noise $20, $a2, $50
 	db $ff ; end
 ; e8f48
 
-NoiseSampleSet15: ; e8f48
-	db $20, $a1, $18
-	db $20, $31, $33
+Triangle3: ; e8f48
+	noise $20, $a1, $18
+	noise $20, $31, $33
 	db $ff ; end
 ; e8f4f
 
-NoiseSampleSet16: ; e8f4f
-	db $22, $91, $28
-	db $20, $71, $18
+Triangle4: ; e8f4f
+	noise $22, $91, $28
+	noise $20, $71, $18
 	db $ff ; end
 ; e8f56
 
-NoiseSampleSet17: ; e8f56
-	db $20, $91, $22
+Snare9: ; e8f56
+	noise $20, $91, $22
 	db $ff ; end
 ; e8f5a
 
-NoiseSampleSet18: ; e8f5a
-	db $20, $71, $22
+Snare10: ; e8f5a
+	noise $20, $71, $22
 	db $ff ; end
 ; e8f5e
 
-NoiseSampleSet19: ; e8f5e
-	db $20, $61, $22
+Snare11: ; e8f5e
+	noise $20, $61, $22
 	db $ff ; end
 ; e8f62
 
-NoiseSampleSet20: ; e8f62
-	db $20, $11, $11
+Drum20: ; e8f62
+	noise $20, $11, $11
 	db $ff ; end
 ; e8f66
 
-NoiseSampleSet21: ; e8f66
+Drum21: ; e8f66
 	db $ff
 ; e8f67
 
-NoiseSampleSet22: ; e8f67
-	db $20, $91, $33
+Snare12: ; e8f67
+	noise $20, $91, $33
 	db $ff ; end
 ; e8f6b
 
-NoiseSampleSet23: ; e8f6b
-	db $20, $51, $32
+Snare13: ; e8f6b
+	noise $20, $51, $32
 	db $ff ; end
 ; e8f6f
 
-NoiseSampleSet24: ; e8f6f
-	db $20, $81, $31
+Snare14: ; e8f6f
+	noise $20, $81, $31
 	db $ff ; end
 ; e8f73
 
-NoiseSampleSet25: ; e8f73
-	db $20, $88, $6b
-	db $20, $71, $00
+Kick1: ; e8f73
+	noise $20, $88, $6b
+	noise $20, $71, $00
 	db $ff ; end
 ; e8f7a
 
-NoiseSampleSet26: ; e8f7a
-	db $30, $91, $18
+Triangle5: ; e8f7a
+	noise $30, $91, $18
 	db $ff ; end
 ; e8f7e
 
-NoiseSampleSet27: ; e8f7e
-	db $27, $92, $10
+Drum27: ; e8f7e
+	noise $27, $92, $10
 	db $ff ; end
 ; e8f82
 
-NoiseSampleSet28: ; e8f82
-	db $33, $91, $00
-	db $33, $11, $00
+Drum28: ; e8f82
+	noise $33, $91, $00
+	noise $33, $11, $00
 	db $ff ; end
 ; e8f89
 
-NoiseSampleSet29: ; e8f89
-	db $33, $91, $11
-	db $33, $11, $00
+Drum29: ; e8f89
+	noise $33, $91, $11
+	noise $33, $11, $00
 	db $ff ; end
 ; e8f90
 
-NoiseSampleSet30: ; e8f90
-	db $33, $88, $15
-	db $20, $65, $12
+Crash1: ; e8f90
+	noise $33, $88, $15
+	noise $20, $65, $12
 	db $ff ; end
 ; e8f97
 
-NoiseSampleSet31: ; e8f97
-	db $33, $51, $21
-	db $33, $11, $11
+Drum31: ; e8f97
+	noise $33, $51, $21
+	noise $33, $11, $11
 	db $ff ; end
 ; e8f9e
 
-NoiseSampleSet32: ; e8f9e
-	db $33, $51, $50
-	db $33, $11, $11
+Drum32: ; e8f9e
+	noise $33, $51, $50
+	noise $33, $11, $11
 	db $ff ; end
 ; e8fa5
 
-NoiseSampleSet33: ; e8fa5
-	db $20, $a1, $31
+Drum33: ; e8fa5
+	noise $20, $a1, $31
 	db $ff ; end
 ; e8fa9
 
-NoiseSampleSet34: ; e8fa9
-	db $20, $84, $12
+Crash2: ; e8fa9
+	noise $20, $84, $12
 	db $ff ; end
 ; e8fad
 
-NoiseSampleSet35: ; e8fad
-	db $33, $81, $00
-	db $33, $11, $00
+Drum35: ; e8fad
+	noise $33, $81, $00
+	noise $33, $11, $00
 	db $ff ; end
 ; e8fb4
 
-NoiseSampleSet36: ; e8fb4
-	db $33, $81, $21
-	db $33, $11, $11
+Drum36: ; e8fb4
+	noise $33, $81, $21
+	noise $33, $11, $11
 	db $ff ; end
 ; e8fbb
 
-NoiseSampleSet37: ; e8fbb
-	db $20, $a8, $6b
-	db $20, $71, $00
+Kick2: ; e8fbb
+	noise $20, $a8, $6b
+	noise $20, $71, $00
 	db $ff ; end
 ; e8fc2
 
