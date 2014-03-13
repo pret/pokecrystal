@@ -71188,12 +71188,12 @@ Function8c5dc: ; 8c5dc (23:45dc)
 	call DelayFrame
 	jr Function8c673
 .asm_8c639
-	ld hl, $46a1
+	ld hl, Unknown_8c6a1
 	ld a, [TimeOfDayPal] ; $d841
-	and $3
-	cp $3
+	and 3
+	cp 3
 	jr nz, .asm_8c648
-	ld hl, $46a9
+	ld hl, Unknown_8c6a9
 .asm_8c648
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -71243,16 +71243,33 @@ Function8c698: ; 8c698 (23:4698)
 	ret
 ; 8c6a1 (23:46a1)
 
-INCBIN "baserom.gbc",$8c6a1,$8c6b1 - $8c6a1
+Unknown_8c6a1: ; 8c6a1
+	RGB 31, 18, 29
+	RGB 31, 11, 15
+	RGB 31, 05, 05
+	RGB 07, 07, 07
+; 8c6a9
+
+Unknown_8c6a9: ; 8c6a9
+	RGB 31, 18, 29
+	RGB 31, 05, 05
+	RGB 31, 05, 05
+	RGB 31, 05, 05
+; 8c6b1
 
 ; known jump sources: 8c5fa (23:45fa)
 Function8c6b1: ; 8c6b1 (23:46b1)
 	ld a, [OtherTrainerClass] ; $d22f
-	ld de, $46b8
+	ld de, Unknown_8c6b8
 	ret
 ; 8c6b8 (23:46b8)
 
-INCBIN "baserom.gbc",$8c6b8,$8c6d8 - $8c6b8
+Unknown_8c6b8: ; 8c6b8
+	db $03, $c0, $0f, $f0, $3c, $3c, $30, $0c
+	db $60, $06, $63, $c6, $c6, $63, $fc, $3f
+	db $fc, $3f, $c6, $63, $63, $c6, $60, $06
+	db $30, $0c, $3c, $3c, $0f, $f0, $03, $c0
+; 8c6d8
 
 Function8c6d8: ; 8c6d8
 	ld a, [rSVBK]
@@ -71299,14 +71316,14 @@ Function8c6f7: ; 8c6f7 (23:46f7)
 Function8c70c: ; 8c70c (23:470c)
 	ld e, a
 	ld a, d
-	ld d, $0
-	ld hl, $4728
+	ld d, 0
+	ld hl, Unknown_8c728
 	add hl, de
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0
+	ld hl, 0
 .asm_8c71b
 	srl a
 	jr nc, .asm_8c720
@@ -71319,12 +71336,19 @@ Function8c70c: ; 8c70c (23:470c)
 	ret
 ; 8c728 (23:4728)
 
-INCBIN "baserom.gbc",$8c728,$8c768 - $8c728
+Unknown_8c728: ; 8c728
+; Another sine wave?
+x	set 0
+	rept $20
+	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+x	set x + $100 * $40000
+	endr
+; 8c768
 
 ; no known jump sources
 Function8c768: ; 8c768 (23:4768)
 	callba Function5602
-	ld de, $4792
+	ld de, Unknown_8c792
 .asm_8c771
 	ld a, [de]
 	cp $ff
@@ -71351,7 +71375,18 @@ Function8c768: ; 8c768 (23:4768)
 	ret
 ; 8c792 (23:4792)
 
-INCBIN "baserom.gbc",$8c792,$8c7b7 - $8c792
+Unknown_8c792: ; 8c792
+	dbbw  4,  2, $c548 ; (8, 8)
+	dbbw  6,  4, $c533 ; (7, 7)
+	dbbw  8,  6, $c51e ; (6, 6)
+	dbbw 10,  8, $c509 ; (5, 5)
+	dbbw 12, 10, $c4f4 ; (4, 4)
+	dbbw 14, 12, $c4df ; (3, 3)
+	dbbw 16, 14, $c4ca ; (2, 2)
+	dbbw 18, 16, $c4b5 ; (1, 1)
+	dbbw 20, 18, $c4a0 ; (0, 0)
+	db $ff
+; 8c7b7
 
 ; known jump sources: 8c784 (23:4784)
 Function8c7b7: ; 8c7b7 (23:47b7)
@@ -71372,11 +71407,18 @@ Function8c7b7: ; 8c7b7 (23:47b7)
 	ret
 ; 8c7c9 (23:47c9)
 
-INCBIN "baserom.gbc",$8c7c9,$8c7d4 - $8c7c9
+Function8c7c9: ; 8c7c9
+	ld a, $1
+	ld [hBGMapMode], a
+	call WaitBGMap
+	xor a
+	ld [hBGMapMode], a
+	ret
+; 8c7d4
 
 Function8c7d4: ; 8c7d4
 	call WaitSFX
-	ld de, $0053
+	ld de, SFX_SURF
 	call PlaySFX
 	call WaitSFX
 	ret
@@ -71397,13 +71439,13 @@ Function8c7e1: ; 8c7e1
 
 Function8c80a: ; 8c80a
 	callba Function8cf53
-	ld de, $49cc
+	ld de, GFX_8c9cc
 	ld hl, VTiles1
-	ld bc, $2304
+	lb bc, BANK(GFX_8c9cc), 4
 	call Request2bpp
-	ld de, $4893
+	ld de, HeadbuttTreeGFX
 	ld hl, $8840
-	ld bc, $2308
+	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
 	call Function8cad3
 	ld a, $1b
@@ -71418,7 +71460,7 @@ Function8c80a: ; 8c80a
 	ld a, $20
 	ld [$cf64], a
 	call WaitSFX
-	ld de, $006d
+	ld de, SFX_SANDSTORM
 	call PlaySFX
 .asm_8c852
 	ld hl, $cf64
@@ -71442,15 +71484,17 @@ Function8c80a: ; 8c80a
 	ld bc, $0010
 	xor a
 	call ByteFill
-	ld de, $4200
+	ld de, Font
 	ld hl, VTiles1
-	ld bc, $3e0c
+	lb bc, BANK(Font), $c
 	call Get1bpp
 	call Functione4a
 	ret
 ; 8c893
 
+HeadbuttTreeGFX: ; 8c893
 INCBIN "baserom.gbc", $8c893, $8c913 - $8c893
+; 8c913
 
 Function8c913: ; 8c913
 	xor a
@@ -71459,8 +71503,8 @@ Function8c913: ; 8c913
 	and $c
 	srl a
 	ld e, a
-	ld d, $0
-	ld hl, $4938
+	ld d, 0
+	ld hl, Unknown_8c938
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -71478,7 +71522,12 @@ Function8c913: ; 8c913
 	ret
 ; 8c938
 
-INCBIN "baserom.gbc", $8c938, $8c940 - $8c938
+Unknown_8c938: ; 8c938
+	dw $c570 ; ( 8, 10)
+	dw $c520 ; ( 8,  6)
+	dw $c546 ; ( 6,  8)
+	dw $c54a ; (10,  8)
+; 8c940
 
 Function8c940: ; 8c940
 	ld a, e
@@ -71486,7 +71535,7 @@ Function8c940: ; 8c940
 	ld [$cf63], a
 	call Function8c96d
 	call WaitSFX
-	ld de, $001e
+	ld de, SFX_PLACE_PUZZLE_PIECE_DOWN
 	call PlaySFX
 .asm_8c952
 	ld a, [$cf63]
@@ -71505,18 +71554,24 @@ Function8c940: ; 8c940
 
 Function8c96d: ; 8c96d
 	callab Function8cf53
-	ld de, $49cc
+	ld de, GFX_8c9cc
 	ld hl, VTiles1
-	ld bc, $2304
+	lb bc, BANK(GFX_8c9cc), 4
 	call Request2bpp
-	ld de, $498c
+	ld de, CutTreeGFX
 	ld hl, $8840
-	ld bc, $2304
+	lb bc, BANK(CutTreeGFX), 4
 	call Request2bpp
 	ret
 ; 8c98c
 
-INCBIN "baserom.gbc",$8c98c,$8ca0c - $8c98c
+CutTreeGFX: ; c898c
+INCBIN "baserom.gbc", $8c98c, $8c9cc - $8c98c
+; c89cc
+
+GFX_8c9cc: ; 8c9cc
+INCBIN "baserom.gbc", $8c9cc, $8ca0c - $8c9cc
+; 8ca0c
 
 Function8ca0c: ; 8ca0c
 	ld a, [$cf63]
@@ -71628,7 +71683,7 @@ Function8ca8e: ; 8ca8e (23:4a8e)
 	and $c
 	add e
 	ld e, a
-	ld hl, $4ab3
+	ld hl, Unknown_8cab3
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -71637,7 +71692,24 @@ Function8ca8e: ; 8ca8e (23:4a8e)
 	ret
 ; 8cab3 (23:4ab3)
 
-INCBIN "baserom.gbc",$8cab3,$8cad3 - $8cab3
+Unknown_8cab3: ; 8cab3
+	db $58, $60
+	db $48, $60
+	db $58, $70
+	db $48, $70
+	db $58, $40
+	db $48, $40
+	db $58, $50
+	db $48, $50
+	db $38, $60
+	db $48, $60
+	db $38, $50
+	db $48, $50
+	db $58, $60
+	db $68, $60
+	db $58, $50
+	db $68, $50
+; 8cad3
 
 ; known jump sources: 8ca23 (23:4a23)
 Function8cad3: ; 8cad3 (23:4ad3)
@@ -71645,8 +71717,8 @@ Function8cad3: ; 8cad3 (23:4ad3)
 	and $c
 	srl a
 	ld e, a
-	ld d, $0
-	ld hl, $4ae5
+	ld d, 0
+	ld hl, Unknown_8cae5
 	add hl, de
 	ld e, [hl]
 	inc hl
@@ -71654,7 +71726,12 @@ Function8cad3: ; 8cad3 (23:4ad3)
 	ret
 ; 8cae5 (23:4ae5)
 
-INCBIN "baserom.gbc",$8cae5,$8caed - $8cae5
+Unknown_8cae5: ; 8cae5
+	db $50, $68
+	db $50, $48
+	db $40, $58
+	db $60, $58
+; 8caed
 
 Function8caed: ; 8caed
 	call DelayFrame
@@ -71756,7 +71833,7 @@ Function8cb9b: ; 8cb9b (23:4b9b)
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartySpecies ; $dcd8
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	ld [$d265], a
@@ -71778,7 +71855,7 @@ Function8cbc8: ; 8cbc8 (23:4bc8)
 	ret c
 	and $7
 	ret nz
-	ld de, $18
+	ld de, SFX_FLY
 	call PlaySFX
 	ret
 .asm_8cbe0
@@ -87981,13 +88058,13 @@ INCBIN "gfx/misc/footprints.w128.1bpp"
 INCBIN "baserom.gbc", $fb434, $fb449 - $fb434
 
 Functionfb449:: ; fb449
-	ld de, $4200
+	ld de, Font
 	ld hl, VTiles1
 	ld bc, Function3e80
 	ld a, [rLCDC]
 	bit 7, a
 	jp z, Copy1bpp
-	ld de, $4200
+	ld de, Font
 	ld hl, VTiles1
 	ld bc, $3e20
 	call Functionddc
