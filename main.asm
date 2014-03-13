@@ -72002,8 +72002,8 @@ Function8ccc9: ; 8ccc9
 	call ClearSprites
 	call DisableLCD
 	callab Function8cf53
-	call Function8cdc3
-	call Function8cd27
+	call SetMagnetTrainPals
+	call DrawMagnetTrain
 	ld a, $90
 	ld [hWY], a
 	call EnableLCD
@@ -72041,61 +72041,59 @@ Function8ccc9: ; 8ccc9
 	ret
 ; 8cd27
 
-Function8cd27: ; 8cd27
+DrawMagnetTrain: ; 8cd27
 	ld hl, VBGMap0
 	xor a
 .asm_8cd2b
-	call Function8cd74
-	ld b, $10
-	call Function8cd6c
+	call GetMagnetTrainBGTiles
+	ld b, 32 / 2
+	call .FillAlt
 	inc a
 	cp $12
 	jr c, .asm_8cd2b
 	ld hl, $98c0
-	ld de, $4eff
-	ld c, $14
-	call Function8cd65
+	ld de, MagnetTrainTilemap1
+	ld c, 20
+	call .FillLine
 	ld hl, $98e0
-	ld de, $4f13
-	ld c, $14
-	call Function8cd65
+	ld de, MagnetTrainTilemap2
+	ld c, 20
+	call .FillLine
 	ld hl, $9900
-	ld de, $4f27
-	ld c, $14
-	call Function8cd65
+	ld de, MagnetTrainTilemap3
+	ld c, 20
+	call .FillLine
 	ld hl, $9920
-	ld de, $4f3b
-	ld c, $14
-	call Function8cd65
+	ld de, MagnetTrainTilemap4
+	ld c, 20
+	call .FillLine
 	ret
 ; 8cd65
 
-Function8cd65: ; 8cd65
-.asm_8cd65
+.FillLine ; 8cd65
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
-	jr nz, .asm_8cd65
+	jr nz, .FillLine
 	ret
 ; 8cd6c
 
-Function8cd6c: ; 8cd6c
-.asm_8cd6c
+.FillAlt ; 8cd6c
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	inc hl
 	dec b
-	jr nz, .asm_8cd6c
+	jr nz, .FillAlt
 	ret
 ; 8cd74
 
-Function8cd74: ; 8cd74
+GetMagnetTrainBGTiles: ; 8cd74
 	push hl
 	ld e, a
-	ld d, $0
-	ld hl, $4d82
+	ld d, 0
+	ld hl, MagnetTrainBGTiles
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -72105,7 +72103,28 @@ Function8cd74: ; 8cd74
 	ret
 ; 8cd82
 
-INCBIN "baserom.gbc",$8cd82,$8cda6 - $8cd82
+MagnetTrainBGTiles: ; 8cd82
+; Alternating tiles for each line
+; of the Magnet Train tilemap.
+	db $4c, $4d ; bush
+	db $5c, $5d ; bush
+	db $4c, $4d ; bush
+	db $5c, $5d ; bush
+	db $08, $08 ; fence
+	db $18, $18 ; fence
+	db $1f, $1f ; track
+	db $31, $31 ; track
+	db $11, $11 ; track
+	db $11, $11 ; track
+	db $0d, $0d ; track
+	db $31, $31 ; track
+	db $04, $04 ; fence
+	db $18, $18 ; fence
+	db $4c, $4d ; bush
+	db $5c, $5d ; bush
+	db $4c, $4d ; bush
+	db $5c, $5d ; bush
+; 8cda6
 
 Function8cda6: ; 8cda6
 	ld hl, LYOverrides
@@ -72121,25 +72140,34 @@ Function8cda6: ; 8cda6
 	ret
 ; 8cdc3
 
-Function8cdc3: ; 8cdc3
+SetMagnetTrainPals: ; 8cdc3
 	ld a, $1
 	ld [rVBK], a
+
+	; bushes
 	ld hl, VBGMap0
 	ld bc, $0080
 	ld a, $2
 	call ByteFill
+
+	; train
 	ld hl, $9880
 	ld bc, $0140
 	xor a
 	call ByteFill
+
+	; more bushes
 	ld hl, $99c0
 	ld bc, $0080
 	ld a, $2
 	call ByteFill
+
+	; train window
 	ld hl, $9907
 	ld bc, $0006
 	ld a, $4
 	call ByteFill
+
 	ld a, $0
 	ld [rVBK], a
 	ret
@@ -72148,8 +72176,8 @@ Function8cdc3: ; 8cdc3
 Function8cdf7: ; 8cdf7
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $4e06
+	ld d, 0
+	ld hl, Jumptable_8ce06
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -72158,7 +72186,124 @@ Function8cdf7: ; 8cdf7
 	jp [hl]
 ; 8ce06
 
-INCBIN "baserom.gbc",$8ce06,$8ceae - $8ce06
+Jumptable_8ce06: ; 8ce06
+	dw Function8ce19
+	dw Function8ce6d
+	dw Function8ce47
+	dw Function8ce6d
+	dw Function8ce7a
+	dw Function8ce6d
+	dw Function8cea2
+; 8ce14
+
+Function8ce14: ; 8ce14
+	ld hl, $cf63
+	inc [hl]
+	ret
+; 8ce19
+
+Function8ce19: ; 8ce19
+	ld d, $55
+	ld a, [$d195]
+	ld e, a
+	ld b, $15
+	ld a, [rSVBK]
+	push af
+	ld a, $1
+	ld [rSVBK], a
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_8ce31
+	ld b, $1f
+
+.asm_8ce31
+	pop af
+	ld [rSVBK], a
+	ld a, b
+	call Function3b2a
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $0
+	call Function8ce14
+	ld a, $80
+	ld [$cf66], a
+	ret
+; 8ce47
+
+Function8ce47: ; 8ce47
+	ld hl, $d193
+	ld a, [$cf65]
+	cp [hl]
+	jr z, .asm_8ce64
+	ld e, a
+	ld a, [$d191]
+	xor $ff
+	inc a
+	add e
+	ld [$cf65], a
+	ld hl, $c3c0
+	ld a, [$d191]
+	add [hl]
+	ld [hl], a
+	ret
+
+.asm_8ce64
+	call Function8ce14
+	ld a, $80
+	ld [$cf66], a
+	ret
+; 8ce6d
+
+Function8ce6d: ; 8ce6d
+	ld hl, $cf66
+	ld a, [hl]
+	and a
+	jr z, .asm_8ce76
+	dec [hl]
+	ret
+
+.asm_8ce76
+	call Function8ce14
+	ret
+; 8ce7a
+
+Function8ce7a: ; 8ce7a
+	ld hl, $d194
+	ld a, [$cf65]
+	cp [hl]
+	jr z, .asm_8ce9e
+	ld e, a
+	ld a, [$d191]
+	xor $ff
+	inc a
+	ld d, a
+	ld a, e
+	add d
+	add d
+	ld [$cf65], a
+	ld hl, $c3c0
+	ld a, [$d191]
+	ld d, a
+	ld a, [hl]
+	add d
+	add d
+	ld [hl], a
+	ret
+
+	ret
+
+.asm_8ce9e
+	call Function8ce14
+	ret
+; 8cea2
+
+Function8cea2: ; 8cea2
+	ld a, $80
+	ld [$cf63], a
+	ld de, SFX_TRAIN_ARRIVED
+	call PlaySFX
+	ret
+; 8ceae
 
 Function8ceae: ; 8ceae
 	callba Function8cf69
@@ -72197,7 +72342,11 @@ Function8ceae: ; 8ceae
 	ret
 ; 8ceff
 
-INCBIN "baserom.gbc",$8ceff,$8cf4f - $8ceff
+MagnetTrainTilemap1: db $1f, $05, $06, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0b, $0c, $1f
+MagnetTrainTilemap2: db $14, $15, $16, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1b, $1c, $1d
+MagnetTrainTilemap3: db $24, $25, $26, $27, $07, $2f, $29, $28, $28, $28, $28, $28, $28, $29, $07, $2f, $2a, $2b, $2c, $2d
+MagnetTrainTilemap4: db $20, $1f, $2e, $1f, $17, $00, $2e, $1f, $1f, $1f, $1f, $1f, $1f, $2e, $17, $00, $1f, $2e, $1f, $0f
+; 8cf4f
 
 Function8cf4f: ; 8cf4f
 	call Function3238
@@ -72223,8 +72372,6 @@ Function8cf62: ; 8cf62
 	call DelayFrame
 	ret
 ; 8cf69
-
-
 
 Function8cf69: ; 8cf69
 	push hl
