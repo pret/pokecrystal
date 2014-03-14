@@ -72843,7 +72843,7 @@ Function8d24b: ; 8d24b
 	add hl, bc
 	ld e, [hl]
 	ld d, $0
-	ld hl, $525b
+	ld hl, Jumptable_8d25b
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -72972,7 +72972,62 @@ Function8d302: ; 8d302 (23:5302)
 	jp [hl]
 ; 8d306 (23:5306)
 
-INCBIN "baserom.gbc",$8d306,$8d35a - $8d306
+; Anonymous jumptable (see Function8d6c5)
+	dw Function8d30a
+	dw Function8d321
+; 8d30a
+
+Function8d30a: ; 8d30a
+	call Function8d6d8
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	ld hl, $000d
+	add hl, bc
+	and $3
+	ld [hl], a
+	inc [hl]
+	swap a
+	ld hl, $000c
+	add hl, bc
+	ld [hl], a
+
+Function8d321: ; 8d321
+	ld hl, $0004
+	add hl, bc
+	ld a, [hl]
+	cp $a4
+	jr nc, .asm_8d356
+	ld hl, $000d
+	add hl, bc
+	add $4
+	ld hl, $0004
+	add hl, bc
+	ld [hl], a
+	ld hl, $0005
+	add hl, bc
+	inc [hl]
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	sla a
+	sla a
+	ld d, $2
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	add $3
+	ld [hl], a
+	call Function8d6de
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	ret
+
+.asm_8d356
+	call Function8d036
+	ret
+; 8d35a
 
 ; no known jump sources
 Function8d35a: ; 8d35a (23:535a)
@@ -73149,7 +73204,7 @@ Function8d43e: ; 8d43e (23:543e)
 	call Function8d036
 	ld a, $4
 	ld [$cf64], a
-	ld de, $1e
+	ld de, SFX_PLACE_PUZZLE_PIECE_DOWN
 	call PlaySFX
 	ret
 .asm_8d461
@@ -73184,7 +73239,119 @@ Function8d483: ; 8d483 (23:5483)
 	jp [hl]
 ; 8d487 (23:5487)
 
-INCBIN "baserom.gbc",$8d487,$8d52a - $8d487
+; Anonymous jumptable (see Function8d6c5)
+	dw Function8d493
+	dw Function8d4d5
+	dw Function8d4a5
+	dw Function8d4b8
+	dw Function8d4e8
+	dw Function8d526
+; 8d493
+
+Function8d493: ; 8d493
+	ld a, $14
+	call Function8d120
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $2
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $20
+	ret
+; 8d4a5
+
+Function8d4a5: ; 8d4a5
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_8d4af
+	dec [hl]
+	ret
+
+.asm_8d4af
+	call Function8d6d8
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $40
+
+Function8d4b8: ; 8d4b8
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	cp $30
+	jr c, .asm_8d4cd
+	dec [hl]
+	ld d, $28
+	call Function8d6de
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	ret
+
+.asm_8d4cd
+	ld de, SFX_GOT_SAFARI_BALLS
+	call PlaySFX
+	jr Function8d526
+; 8d4d5
+
+Function8d4d5: ; 8d4d5
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $4
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $30
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $24
+	ret
+; 8d4e8
+
+Function8d4e8: ; 8d4e8
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_8d51c
+	ld d, a
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	call Function8e72c
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	ld hl, $000c
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	and $3f
+	ret nz
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $20
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	sub $c
+	ld [hl], a
+	ld de, SFX_SWITCH_POKEMON
+	call PlaySFX
+	ret
+
+.asm_8d51c
+	xor a
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	call Function8d6d8
+	ret
+
+Function8d526: ; 8d526
+	call Function8d036
+	ret
+; 8d52a
 
 ; no known jump sources
 Function8d52a: ; 8d52a (23:552a)
@@ -73197,7 +73364,7 @@ Function8d52a: ; 8d52a (23:552a)
 	jr nc, .asm_8d53f
 	and $3
 	ret nz
-	ld de, $3
+	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
 	call PlaySFX
 	ret
 .asm_8d53f
@@ -73501,7 +73668,12 @@ Function8d6c5: ; 8d6c5 (23:56c5)
 	ret
 ; 8d6d8 (23:56d8)
 
-INCBIN "baserom.gbc",$8d6d8,$8d6de - $8d6d8
+Function8d6d8: ; 8d6d8
+	ld hl, $000b
+	add hl, bc
+	inc [hl]
+	ret
+; 8d6de
 
 ; known jump sources: 8d363 (23:5363), 8d39c (23:539c), 8d3d7 (23:53d7), 8d465 (23:5465), 8d561 (23:5561), 8d59d (23:559d), 8d658 (23:5658), 8d677 (23:5677), 8d68f (23:568f)
 Function8d6de: ; 8d6de (23:56de)
@@ -74577,15 +74749,14 @@ Function902c9: ; 902c9
 
 ; no known jump sources
 Function902e3: ; 902e3 (24:42e3)
-	ld de, $6c
+	ld de, SFX_NO_SIGNAL
 	call PlaySFX
-	jr asm_902f1
-
+	jr Function902f1
 
 Function902eb:: ; 902eb
 	call Function9031d
 	call Function90355
-asm_902f1:
+Function902f1:
 	call Function9032f
 	call Function90355
 	call Function9033b
@@ -75375,7 +75546,7 @@ Function90b8d: ; 90b8d (24:4b8d)
 	call DelayFrame
 	jr .asm_90ba9
 .asm_90bc4
-	ld de, $8
+	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	call WaitSFX
 	pop af
