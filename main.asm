@@ -57876,7 +57876,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	cp $ff
 	jr z, .asm_50084 ; 0x5007a $8
 	push hl
-	ld hl, Table50089
+	ld hl, Jumptable_50089
 	rst JumpTable
 	pop hl
 	jr .asm_50077 ; 0x50082 $f3
@@ -57886,7 +57886,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	ret
 ; 0x50089
 
-Table50089: ; 50089
+Jumptable_50089: ; 50089
 	dw Function5009b
 	dw Function500cf
 	dw Function50138
@@ -57925,12 +57925,14 @@ Function5009b: ; 5009b
 .asm_500bf
 	dec hl
 	dec hl
-	ld de, $40c8
+	ld de, String_500c8
 	call PlaceString
 	ret
 ; 500c8
 
-INCBIN "baserom.gbc",$500c8,$500cf - $500c8
+String_500c8: ; 500c8
+	db "CANCEL@"
+; 500cf
 
 
 Function500cf: ; 500cf
@@ -58162,15 +58164,21 @@ Function50215: ; 50215
 	ld a, c
 	and a
 	jr nz, .asm_5021d
-	ld de, $4226
+	ld de, String_50226
 	ret
 
 .asm_5021d
-	ld de, $4221
+	ld de, String_50221
 	ret
 ; 50221
 
-INCBIN "baserom.gbc",$50221,$5022f - $50221
+String_50221: ; 50221
+	db "ABLE@"
+; 50226
+
+String_50226: ; 50226
+	db "NOT ABLE@"
+; 5022f
 
 
 Function5022f: ; 5022f
@@ -58178,7 +58186,7 @@ Function5022f: ; 5022f
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $c4d4
 .asm_5023a
 	push bc
@@ -58193,8 +58201,8 @@ Function5022f: ; 5022f
 	ld a, [hl]
 	dec a
 	ld e, a
-	ld d, $0
-	ld hl, $65b1
+	ld d, 0
+	ld hl, EvosAttacksPointers
 	add hl, de
 	add hl, de
 	call Function50268
@@ -58214,16 +58222,16 @@ Function5022f: ; 5022f
 
 Function50268: ; 50268
 	ld de, StringBuffer1
-	ld a, $10
-	ld bc, $0002
+	ld a, BANK(EvosAttacksPointers)
+	ld bc, 2
 	call FarCopyBytes
 	ld hl, StringBuffer1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld de, StringBuffer1
-	ld a, $10
-	ld bc, $000a
+	ld a, BANK(EvosAttacks)
+	ld bc, $a
 	call FarCopyBytes
 	ld hl, StringBuffer1
 .asm_50287
@@ -58232,7 +58240,7 @@ Function50268: ; 50268
 	jr z, .asm_5029f
 	inc hl
 	inc hl
-	cp $2
+	cp EVOLVE_ITEM
 	jr nz, .asm_50287
 	dec hl
 	dec hl
@@ -58241,15 +58249,20 @@ Function50268: ; 50268
 	inc hl
 	inc hl
 	jr nz, .asm_50287
-	ld de, $42a3
+	ld de, String_502a3
 	ret
 
 .asm_5029f
-	ld de, $42a8
+	ld de, String_502a8
 	ret
 ; 502a3
 
-INCBIN "baserom.gbc",$502a3,$502b1 - $502a3
+String_502a3: ; 502a3
+	db "ABLE@"
+; 502a8
+String_502a8: ; 502a8
+	db "NOT ABLE@"
+; 502b1
 
 
 Function502b1: ; 502b1
@@ -58257,7 +58270,7 @@ Function502b1: ; 502b1
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $c4d4
 .asm_502bc
 	push bc
@@ -58271,11 +58284,11 @@ Function502b1: ; 502b1
 	xor a
 	ld [MonType], a
 	call GetGender
-	ld de, $42fe
+	ld de, String_502fe
 	jr c, .asm_502df
-	ld de, $42ee
+	ld de, String_502ee
 	jr nz, .asm_502df
-	ld de, $42f5
+	ld de, String_502f5
 
 .asm_502df
 	pop hl
@@ -58292,7 +58305,17 @@ Function502b1: ; 502b1
 	ret
 ; 502ee
 
-INCBIN "baserom.gbc",$502ee,$50307 - $502ee
+String_502ee: ; 502ee
+	db "♂…MALE@"
+; 502f5
+
+String_502f5: ; 502f5
+	db "♀…FEMALE@"
+; 502fe
+
+String_502fe: ; 502fe
+	db "…UNKNOWN@"
+; 50307
 
 
 Function50307: ; 50307
@@ -58300,12 +58323,12 @@ Function50307: ; 50307
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $c4c0
 .asm_50312
 	push bc
 	push hl
-	ld de, $4372
+	ld de, String_50372
 	call PlaceString
 	pop hl
 	ld de, $0028
@@ -58321,7 +58344,7 @@ Function50307: ; 50307
 	ld a, h
 	sbc $0
 	ld h, a
-	ld de, $4379
+	ld de, String_50379
 	call PlaceString
 	ld b, $3
 	ld c, $0
@@ -58340,7 +58363,7 @@ Function50307: ; 50307
 	jr .asm_50340
 
 .asm_5034a
-	ld de, $436b
+	ld de, String_5036b
 	push hl
 	call PlaceString
 	pop hl
@@ -58348,7 +58371,7 @@ Function50307: ; 50307
 	push bc
 	push hl
 	ld a, c
-	ld hl, $4383
+	ld hl, Strings_50383
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -58364,14 +58387,25 @@ Function50307: ; 50307
 	jr .asm_5033b
 ; 5036b
 
-INCBIN "baserom.gbc",$5036b,$50389 - $5036b
+String_5036b: ; 5036b
+	db " ばんめ  @" ; Place
+; 50372
+String_50372: ; 50372
+	db "さんかしない@" ; Cancel
+; 50379
+String_50379: ; 50379
+	db "けってい  やめる@" ; Quit
+; 50383
+Strings_50383: ; 50383
+	db "1@", "2@", "3@" ; 1st, 2nd, 3rd
+; 50389
 
 
 Function50389: ; 50389
-	ld a, PartySpecies & $ff
+	ld a, PartySpecies % $100
 	add b
 	ld e, a
-	ld a, PartySpecies >> 8
+	ld a, PartySpecies / $100
 	adc 0
 	ld d, a
 	ld a, [de]
@@ -58387,7 +58421,7 @@ Function50396: ; 50396
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, $43b2
+	ld hl, Unknown_503b2
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -58396,11 +58430,29 @@ Function50396: ; 50396
 	ret
 
 .asm_503ae
-	ld hl, $43c6
+	ld hl, Unknown_503c6
 	ret
 ; 503b2
 
-INCBIN "baserom.gbc",$503b2,$503e0 - $503b2
+Unknown_503b2: ; 503b2
+	dw Unknown_503c6
+	dw Unknown_503c6
+	dw Unknown_503c6
+	dw Unknown_503cc
+	dw Unknown_503c6
+	dw Unknown_503d1
+	dw Unknown_503d6
+	dw Unknown_503d6
+	dw Unknown_503c6
+	dw Unknown_503db
+; 503c6
+
+Unknown_503c6: db 0, 1, 2, 3, 4, $ff
+Unknown_503cc: db 0, 5, 3, 4, $ff
+Unknown_503d1: db 0, 6, 3, 4, $ff
+Unknown_503d6: db 0, 7, 3, 4, $ff
+Unknown_503db: db 0, 8, 3, 4, $ff
+; 503e0
 
 
 Function503e0: ; 503e0
@@ -58432,7 +58484,7 @@ Function503e0: ; 503e0
 Function50405: ; 50405
 	xor a
 	ld [$d0e3], a
-	ld de, $444f
+	ld de, Unknown_5044f
 	call Function1bb1
 	ld a, [PartyCount]
 	inc a
@@ -58457,7 +58509,7 @@ Function50405: ; 50405
 ; 5042d
 
 Function5042d: ; 0x5042d
-	ld de, $444f
+	ld de, Unknown_5044f
 	call Function1bb1
 	ld a, [PartyCount] ; $dcd7
 	ld [$cfa3], a
@@ -58477,7 +58529,17 @@ Function5042d: ; 0x5042d
 	ret
 ; 5044f (14:444f)
 
-INCBIN "baserom.gbc",$5044f,$50457 - $5044f
+Unknown_5044f: ; 5044f
+; cursor y
+; cursor x
+; list length
+; ?
+; bit 6: animate sprites  bit 5: wrap around
+; ?
+; distance between items (hi: y, lo: x)
+; allowed buttons (mask)
+	db $01, $00, $00, $01, $60, $00, $20, $00
+; 50457
 
 PartyMenuSelect: ; 0x50457
 ; sets carry if exitted menu.
@@ -61795,8 +61857,8 @@ Function84000: ; 84000
 Function84022: ; 84022
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $4031
+	ld d, 0
+	ld hl, Jumptable_84031
 	add hl, de
 	add hl, de
 	ld a, [hli]
