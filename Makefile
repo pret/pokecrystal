@@ -1,8 +1,14 @@
 PYTHON := python
-POKEMONTOOLS := extras/pokemontools
-.SUFFIXES: .asm .tx .o .gbc .png .2bpp .1bpp .lz .pal .bin
+
+.SUFFIXES:
+.SUFFIXES: .asm .tx .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
 .PHONY: all clean crystal pngs
 .SECONDEXPANSION:
+
+POKEMONTOOLS := extras/pokemontools
+GFX          := $(PYTHON) $(POKEMONTOOLS)/gfx.py
+INCLUDES     := $(PYTHON) $(POKEMONTOOLS)/scan_includes.py
+PREPROCESS   := $(PYTHON) prequeue.py
 
 TEXTQUEUE :=
 
@@ -26,12 +32,8 @@ OBJS := $(CRYSTAL_OBJS)
 
 ROMS := pokecrystal.gbc
 
-
-# generate a list of dependencies for each object file
-$(shell $(foreach obj, $(OBJS), \
-	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) $(POKEMONTOOLS)/scan_includes.py $(obj:.o=.asm))) \
-))
-
+# object dependencies
+$(shell $(foreach obj, $(OBJS), $(eval $(obj:.o=)_DEPENDENCIES := $(shell $(INCLUDES) $(obj:.o=.asm)))))
 
 all: $(ROMS)
 
@@ -52,7 +54,7 @@ baserom.gbc: ;
 	@rm -f $@
 
 $(OBJS): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_DEPENDENCIES))
-	@$(PYTHON) prequeue.py $(TEXTQUEUE)
+	@$(PREPROCESS) $(TEXTQUEUE)
 	$(eval TEXTQUEUE :=)
 	rgbasm -o $@ $*.tx
 
@@ -63,49 +65,17 @@ pokecrystal.gbc: $(CRYSTAL_OBJS)
 
 
 pngs:
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py mass-decompress
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py dump-pngs
+	find . -iname "*.lz"      -exec $(GFX) unlz {} +
+	find . -iname "*.[12]bpp" -exec $(GFX) png  {} +
+	find . -iname "*.[12]bpp" -exec touch {} +
+	find . -iname "*.lz"      -exec touch {} +
 
-gfx/pics/%/front.lz:: gfx/pics/%/tiles.2bpp gfx/pics/%/front.png
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-lz --front $^
-gfx/pics/%/front.2bpp:: gfx/pics/%/front.lz
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py front-to-2bpp $<
-gfx/pics/%/front.png:: gfx/pics/%/front.2bpp
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py 2bpp-to-png $<
-gfx/pics/%/tiles.2bpp:: gfx/pics/%/front.lz
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py anim-from-front $<
-
-gfx/pics/%/tiles.2bpp:: gfx/pics/%/tiles.png
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-2bpp $<
-gfx/pics/%/tiles.png:: gfx/pics/%/tiles.2bpp
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py 2bpp-to-png $<
-
-gfx/pics/%/back.lz:: gfx/pics/%/back.png
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-lz --vert $<
-gfx/pics/%/back.png:: gfx/pics/%/back.lz
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py lz-to-png --vert $<
-
-gfx/trainers/%.lz:: gfx/trainers/%.png
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-lz --vert $<
-gfx/trainers/%.png:: gfx/trainers/%.lz
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py lz-to-png --vert $<
-
-
-%.lz:: %.png
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-lz $<
-%.png:: %.lz
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py lz-to-png $<
-
-%.2bpp:: %.png
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-2bpp $<
-%.png:: %.2bpp
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py 2bpp-to-png $<
-
-%.1bpp:: %.png
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-1bpp $<
-%.png:: %.1bpp
-	$(PYTHON) $(POKEMONTOOLS)/gfx.py 1bpp-to-png $<
+%.2bpp: %.png ; $(GFX) 2bpp $<
+%.1bpp: %.png ; $(GFX) 1bpp $<
+%.lz:   %     ; $(GFX) lz   $<
 
 %.pal: ;
 %.bin: ;
+%.blk: ;
+%.tilemap: ;
 
