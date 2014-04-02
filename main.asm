@@ -16425,7 +16425,7 @@ PackMenuGFX:
 INCBIN "gfx/misc/pack_menu.2bpp"
 
 PackGFX:
-INCBIN "gfx/misc/pack.2bpp"
+INCBIN "gfx/misc/pack.w40.2bpp"
 
 Function113d6: ; 113d6
 	call Function114dd
@@ -34515,10 +34515,10 @@ Unknown_254c9: ; 254c9
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 
-LeaderGFX:  INCBIN "gfx/misc/leaders.2bpp"
-LeaderGFX2: INCBIN "gfx/misc/leaders.2bpp"
-BadgeGFX:   INCBIN "gfx/misc/badges.2bpp"
-BadgeGFX2:  INCBIN "gfx/misc/badges.2bpp"
+LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
+LeaderGFX2: INCBIN "gfx/misc/leaders.w24.2bpp"
+BadgeGFX:   INCBIN "gfx/misc/badges.w16.2bpp"
+BadgeGFX2:  INCBIN "gfx/misc/badges.w16.2bpp"
 
 CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
 
@@ -41629,11 +41629,11 @@ Function2ba01: ; 2ba01
 
 
 ChrisBackpic: ; 2ba1a
-INCBIN "gfx/misc/player.lz"
+INCBIN "gfx/misc/player.6x6.2bpp.lz"
 ; 2bbaa
 
 DudeBackpic: ; 2bbaa
-INCBIN "gfx/misc/dude.lz"
+INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 ; 2bcea
 
 
@@ -51182,7 +51182,7 @@ PackFGFXPointers: ; 48e93
 ; 48e9b
 
 PackFGFX: ; 48e9b
-INCBIN "gfx/misc/pack_f.2bpp"
+INCBIN "gfx/misc/pack_f.w40.2bpp"
 ; 4925b
 
 Function4925b: ; 4925b
@@ -76413,7 +76413,7 @@ Function914bb: ; 914bb (24:54bb)
 INCBIN "baserom.gbc",$914ce,$914dd - $914ce
 
 PokegearSpritesGFX: ; 914dd
-INCBIN "gfx/misc/pokegear_sprites.lz"
+INCBIN "gfx/misc/pokegear_sprites.2bpp.lz"
 ; 91508
 
 INCBIN "baserom.gbc",$91508,$9163e - $91508
@@ -81535,7 +81535,7 @@ Functioncbce5: ; cbce5
 ; cbd2e
 
 TheEndGFX:: ; cbd2e
-INCBIN "gfx/credits/theend.2bpp"
+INCBIN "gfx/credits/theend.w64.2bpp"
 ; cbe2e
 
 
@@ -81710,7 +81710,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 SECTION "bank36", ROMX, BANK[$36]
 
-FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
+FontInversed: INCBIN "gfx/misc/font_inversed.w128.1bpp"
 
 
 SECTION "Pic Animations 3", ROMX, BANK[$36]
@@ -87911,7 +87911,7 @@ FontExtra:
 INCBIN "gfx/misc/font_extra.2bpp"
 
 Font:
-INCBIN "gfx/misc/font.1bpp"
+INCBIN "gfx/misc/font.w128.1bpp"
 
 FontBattleExtra:
 INCBIN "gfx/misc/font_battle_extra.2bpp"
@@ -87954,7 +87954,7 @@ INCBIN "baserom.gbc", $f8b10, $f8ba0 - $f8b10
 ; f8ba0
 
 TownMapGFX: ; f8ba0
-INCBIN "gfx/misc/town_map.lz"
+INCBIN "gfx/misc/town_map.2bpp.lz"
 ; f8ea4
 
 GFX_f8ea4: ; f8ea4
@@ -87986,7 +87986,7 @@ INCBIN "baserom.gbc", $f9424, $f9434 - $f9424
 ; f9434
 
 Footprints: ; f9434
-INCBIN "gfx/misc/footprints.1bpp"
+INCBIN "gfx/misc/footprints.w128.1bpp"
 ; fb434
 
 INCBIN "baserom.gbc", $fb434, $fb449 - $fb434
@@ -107093,7 +107093,7 @@ Function1de2c5: ; 1de2c5
 ; 1de2e4
 
 PokegearGFX: ; 1de2e4
-INCBIN "gfx/misc/pokegear.lz"
+INCBIN "gfx/misc/pokegear.2bpp.lz"
 ; 1de5c7
 
 INCBIN "baserom.gbc",$1de5c7,$1de5c8 - $1de5c7
