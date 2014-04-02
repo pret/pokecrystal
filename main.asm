@@ -16425,7 +16425,7 @@ PackMenuGFX:
 INCBIN "gfx/misc/pack_menu.2bpp"
 
 PackGFX:
-INCBIN "gfx/misc/pack.2bpp"
+INCBIN "gfx/misc/pack.w40.2bpp"
 
 Function113d6: ; 113d6
 	call Function114dd
@@ -34515,10 +34515,10 @@ Unknown_254c9: ; 254c9
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 
-LeaderGFX:  INCBIN "gfx/misc/leaders.2bpp"
-LeaderGFX2: INCBIN "gfx/misc/leaders.2bpp"
-BadgeGFX:   INCBIN "gfx/misc/badges.2bpp"
-BadgeGFX2:  INCBIN "gfx/misc/badges.2bpp"
+LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
+LeaderGFX2: INCBIN "gfx/misc/leaders.w24.2bpp"
+BadgeGFX:   INCBIN "gfx/misc/badges.w16.2bpp"
+BadgeGFX2:  INCBIN "gfx/misc/badges.w16.2bpp"
 
 CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
 
@@ -39881,7 +39881,7 @@ Tilemap_298f7: ; 297f7
 TradeArrowGFX:  INCBIN "gfx/trade/arrow.2bpp"
 TradeCableGFX:  INCBIN "gfx/trade/cable.2bpp"
 TradeBubbleGFX: INCBIN "gfx/trade/bubble.2bpp"
-TradeGameBoyLZ: INCBIN "gfx/trade/game_boy.lz"
+TradeGameBoyLZ: INCBIN "gfx/trade/game_boy.2bpp.lz"
 TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
 TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
 
@@ -41629,11 +41629,11 @@ Function2ba01: ; 2ba01
 
 
 ChrisBackpic: ; 2ba1a
-INCBIN "gfx/misc/player.lz"
+INCBIN "gfx/misc/player.6x6.2bpp.lz"
 ; 2bbaa
 
 DudeBackpic: ; 2bbaa
-INCBIN "gfx/misc/dude.lz"
+INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 ; 2bcea
 
 
@@ -51182,7 +51182,7 @@ PackFGFXPointers: ; 48e93
 ; 48e9b
 
 PackFGFX: ; 48e9b
-INCBIN "gfx/misc/pack_f.2bpp"
+INCBIN "gfx/misc/pack_f.w40.2bpp"
 ; 4925b
 
 Function4925b: ; 4925b
@@ -57876,7 +57876,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	cp $ff
 	jr z, .asm_50084 ; 0x5007a $8
 	push hl
-	ld hl, Table50089
+	ld hl, Jumptable_50089
 	rst JumpTable
 	pop hl
 	jr .asm_50077 ; 0x50082 $f3
@@ -57886,7 +57886,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	ret
 ; 0x50089
 
-Table50089: ; 50089
+Jumptable_50089: ; 50089
 	dw Function5009b
 	dw Function500cf
 	dw Function50138
@@ -57925,12 +57925,14 @@ Function5009b: ; 5009b
 .asm_500bf
 	dec hl
 	dec hl
-	ld de, $40c8
+	ld de, String_500c8
 	call PlaceString
 	ret
 ; 500c8
 
-INCBIN "baserom.gbc",$500c8,$500cf - $500c8
+String_500c8: ; 500c8
+	db "CANCEL@"
+; 500cf
 
 
 Function500cf: ; 500cf
@@ -58162,15 +58164,21 @@ Function50215: ; 50215
 	ld a, c
 	and a
 	jr nz, .asm_5021d
-	ld de, $4226
+	ld de, String_50226
 	ret
 
 .asm_5021d
-	ld de, $4221
+	ld de, String_50221
 	ret
 ; 50221
 
-INCBIN "baserom.gbc",$50221,$5022f - $50221
+String_50221: ; 50221
+	db "ABLE@"
+; 50226
+
+String_50226: ; 50226
+	db "NOT ABLE@"
+; 5022f
 
 
 Function5022f: ; 5022f
@@ -58178,7 +58186,7 @@ Function5022f: ; 5022f
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $c4d4
 .asm_5023a
 	push bc
@@ -58193,8 +58201,8 @@ Function5022f: ; 5022f
 	ld a, [hl]
 	dec a
 	ld e, a
-	ld d, $0
-	ld hl, $65b1
+	ld d, 0
+	ld hl, EvosAttacksPointers
 	add hl, de
 	add hl, de
 	call Function50268
@@ -58214,16 +58222,16 @@ Function5022f: ; 5022f
 
 Function50268: ; 50268
 	ld de, StringBuffer1
-	ld a, $10
-	ld bc, $0002
+	ld a, BANK(EvosAttacksPointers)
+	ld bc, 2
 	call FarCopyBytes
 	ld hl, StringBuffer1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld de, StringBuffer1
-	ld a, $10
-	ld bc, $000a
+	ld a, BANK(EvosAttacks)
+	ld bc, $a
 	call FarCopyBytes
 	ld hl, StringBuffer1
 .asm_50287
@@ -58232,7 +58240,7 @@ Function50268: ; 50268
 	jr z, .asm_5029f
 	inc hl
 	inc hl
-	cp $2
+	cp EVOLVE_ITEM
 	jr nz, .asm_50287
 	dec hl
 	dec hl
@@ -58241,15 +58249,20 @@ Function50268: ; 50268
 	inc hl
 	inc hl
 	jr nz, .asm_50287
-	ld de, $42a3
+	ld de, String_502a3
 	ret
 
 .asm_5029f
-	ld de, $42a8
+	ld de, String_502a8
 	ret
 ; 502a3
 
-INCBIN "baserom.gbc",$502a3,$502b1 - $502a3
+String_502a3: ; 502a3
+	db "ABLE@"
+; 502a8
+String_502a8: ; 502a8
+	db "NOT ABLE@"
+; 502b1
 
 
 Function502b1: ; 502b1
@@ -58257,7 +58270,7 @@ Function502b1: ; 502b1
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $c4d4
 .asm_502bc
 	push bc
@@ -58271,11 +58284,11 @@ Function502b1: ; 502b1
 	xor a
 	ld [MonType], a
 	call GetGender
-	ld de, $42fe
+	ld de, String_502fe
 	jr c, .asm_502df
-	ld de, $42ee
+	ld de, String_502ee
 	jr nz, .asm_502df
-	ld de, $42f5
+	ld de, String_502f5
 
 .asm_502df
 	pop hl
@@ -58292,7 +58305,17 @@ Function502b1: ; 502b1
 	ret
 ; 502ee
 
-INCBIN "baserom.gbc",$502ee,$50307 - $502ee
+String_502ee: ; 502ee
+	db "♂…MALE@"
+; 502f5
+
+String_502f5: ; 502f5
+	db "♀…FEMALE@"
+; 502fe
+
+String_502fe: ; 502fe
+	db "…UNKNOWN@"
+; 50307
 
 
 Function50307: ; 50307
@@ -58300,12 +58323,12 @@ Function50307: ; 50307
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $c4c0
 .asm_50312
 	push bc
 	push hl
-	ld de, $4372
+	ld de, String_50372
 	call PlaceString
 	pop hl
 	ld de, $0028
@@ -58321,7 +58344,7 @@ Function50307: ; 50307
 	ld a, h
 	sbc $0
 	ld h, a
-	ld de, $4379
+	ld de, String_50379
 	call PlaceString
 	ld b, $3
 	ld c, $0
@@ -58340,7 +58363,7 @@ Function50307: ; 50307
 	jr .asm_50340
 
 .asm_5034a
-	ld de, $436b
+	ld de, String_5036b
 	push hl
 	call PlaceString
 	pop hl
@@ -58348,7 +58371,7 @@ Function50307: ; 50307
 	push bc
 	push hl
 	ld a, c
-	ld hl, $4383
+	ld hl, Strings_50383
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -58364,14 +58387,25 @@ Function50307: ; 50307
 	jr .asm_5033b
 ; 5036b
 
-INCBIN "baserom.gbc",$5036b,$50389 - $5036b
+String_5036b: ; 5036b
+	db " ばんめ  @" ; Place
+; 50372
+String_50372: ; 50372
+	db "さんかしない@" ; Cancel
+; 50379
+String_50379: ; 50379
+	db "けってい  やめる@" ; Quit
+; 50383
+Strings_50383: ; 50383
+	db "1@", "2@", "3@" ; 1st, 2nd, 3rd
+; 50389
 
 
 Function50389: ; 50389
-	ld a, PartySpecies & $ff
+	ld a, PartySpecies % $100
 	add b
 	ld e, a
-	ld a, PartySpecies >> 8
+	ld a, PartySpecies / $100
 	adc 0
 	ld d, a
 	ld a, [de]
@@ -58387,7 +58421,7 @@ Function50396: ; 50396
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, $43b2
+	ld hl, Unknown_503b2
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -58396,11 +58430,29 @@ Function50396: ; 50396
 	ret
 
 .asm_503ae
-	ld hl, $43c6
+	ld hl, Unknown_503c6
 	ret
 ; 503b2
 
-INCBIN "baserom.gbc",$503b2,$503e0 - $503b2
+Unknown_503b2: ; 503b2
+	dw Unknown_503c6
+	dw Unknown_503c6
+	dw Unknown_503c6
+	dw Unknown_503cc
+	dw Unknown_503c6
+	dw Unknown_503d1
+	dw Unknown_503d6
+	dw Unknown_503d6
+	dw Unknown_503c6
+	dw Unknown_503db
+; 503c6
+
+Unknown_503c6: db 0, 1, 2, 3, 4, $ff
+Unknown_503cc: db 0, 5, 3, 4, $ff
+Unknown_503d1: db 0, 6, 3, 4, $ff
+Unknown_503d6: db 0, 7, 3, 4, $ff
+Unknown_503db: db 0, 8, 3, 4, $ff
+; 503e0
 
 
 Function503e0: ; 503e0
@@ -58432,7 +58484,7 @@ Function503e0: ; 503e0
 Function50405: ; 50405
 	xor a
 	ld [$d0e3], a
-	ld de, $444f
+	ld de, Unknown_5044f
 	call Function1bb1
 	ld a, [PartyCount]
 	inc a
@@ -58457,7 +58509,7 @@ Function50405: ; 50405
 ; 5042d
 
 Function5042d: ; 0x5042d
-	ld de, $444f
+	ld de, Unknown_5044f
 	call Function1bb1
 	ld a, [PartyCount] ; $dcd7
 	ld [$cfa3], a
@@ -58477,7 +58529,17 @@ Function5042d: ; 0x5042d
 	ret
 ; 5044f (14:444f)
 
-INCBIN "baserom.gbc",$5044f,$50457 - $5044f
+Unknown_5044f: ; 5044f
+; cursor y
+; cursor x
+; list length
+; ?
+; bit 6: animate sprites  bit 5: wrap around
+; ?
+; distance between items (hi: y, lo: x)
+; allowed buttons (mask)
+	db $01, $00, $00, $01, $60, $00, $20, $00
+; 50457
 
 PartyMenuSelect: ; 0x50457
 ; sets carry if exitted menu.
@@ -61795,8 +61857,8 @@ Function84000: ; 84000
 Function84022: ; 84022
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $4031
+	ld d, 0
+	ld hl, Jumptable_84031
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -76351,7 +76413,7 @@ Function914bb: ; 914bb (24:54bb)
 INCBIN "baserom.gbc",$914ce,$914dd - $914ce
 
 PokegearSpritesGFX: ; 914dd
-INCBIN "gfx/misc/pokegear_sprites.lz"
+INCBIN "gfx/misc/pokegear_sprites.2bpp.lz"
 ; 91508
 
 INCBIN "baserom.gbc",$91508,$9163e - $91508
@@ -81473,7 +81535,7 @@ Functioncbce5: ; cbce5
 ; cbd2e
 
 TheEndGFX:: ; cbd2e
-INCBIN "gfx/credits/theend.2bpp"
+INCBIN "gfx/credits/theend.w64.2bpp"
 ; cbe2e
 
 
@@ -81648,7 +81710,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 SECTION "bank36", ROMX, BANK[$36]
 
-FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
+FontInversed: INCBIN "gfx/misc/font_inversed.w128.1bpp"
 
 
 SECTION "Pic Animations 3", ROMX, BANK[$36]
@@ -87718,122 +87780,122 @@ Functione552f: ; e552f (39:552f)
 	ret
 
 IntroSuicuneRunGFX: ; e555d
-INCBIN "gfx/intro/suicune_run.lz"
+INCBIN "gfx/intro/suicune_run.2bpp.lz"
 ; e592d
 
 IntroPichuWooperGFX: ; e592d
-INCBIN "gfx/intro/pichu_wooper.lz"
+INCBIN "gfx/intro/pichu_wooper.2bpp.lz"
 ; e5c7d
 
 IntroBackgroundGFX: ; e5c7d
-INCBIN "gfx/intro/background.lz"
+INCBIN "gfx/intro/background.2bpp.lz"
 ; e5e6d
 
 IntroTilemap004: ; e5e6d
-INCBIN "gfx/intro/004.lz"
+INCBIN "gfx/intro/004.tilemap.lz"
 ; e5ecd
 
 IntroTilemap003: ; e5ecd
-INCBIN "gfx/intro/003.lz"
+INCBIN "gfx/intro/003.tilemap.lz"
 ; e5edd
 
 UnknownDatae5edd: ; e5edd
 INCBIN "baserom.gbc", $e5edd, $e5f5d - $e5edd
 
 IntroUnownsGFX: ; e5f5d
-INCBIN "gfx/intro/unowns.lz"
+INCBIN "gfx/intro/unowns.2bpp.lz"
 ; e634d
 
 IntroPulseGFX: ; e634d
-INCBIN "gfx/intro/pulse.lz"
+INCBIN "gfx/intro/pulse.2bpp.lz"
 ; e63dd
 
 IntroTilemap002: ; e63dd
-INCBIN "gfx/intro/002.lz"
+INCBIN "gfx/intro/002.tilemap.lz"
 ; e641d
 
 IntroTilemap001: ; e641d
-INCBIN "gfx/intro/001.lz"
+INCBIN "gfx/intro/001.tilemap.lz"
 ; e642d
 
 IntroTilemap006: ; e642d
-INCBIN "gfx/intro/006.lz"
+INCBIN "gfx/intro/006.tilemap.lz"
 ; e647d
 
 IntroTilemap005: ; e647d
-INCBIN "gfx/intro/005.lz"
+INCBIN "gfx/intro/005.tilemap.lz"
 ; e649d
 
 IntroTilemap008: ; e649d
-INCBIN "gfx/intro/008.lz"
+INCBIN "gfx/intro/008.tilemap.lz"
 ; e655d
 
 IntroTilemap007: ; e655d
-INCBIN "gfx/intro/007.lz"
+INCBIN "gfx/intro/007.tilemap.lz"
 ; e65ad
 
 UnknownDatae65ad: ; e65ad
 INCBIN "baserom.gbc", $e65ad, $e662d - $e65ad
 
 IntroCrystalUnownsGFX: ; e662d
-INCBIN "gfx/intro/crystal_unowns.lz"
+INCBIN "gfx/intro/crystal_unowns.2bpp.lz"
 ; e672d
 
 IntroTilemap017: ; e672d
-INCBIN "gfx/intro/017.lz"
+INCBIN "gfx/intro/017.tilemap.lz"
 ; e676d
 
 IntroTilemap015: ; e676d
-INCBIN "gfx/intro/015.lz"
+INCBIN "gfx/intro/015.tilemap.lz"
 ; e679d
 
 UnknownDatae679d: ; e679d
 INCBIN "baserom.gbc", $e679d, $e681d - $e679d
 
 IntroSuicuneCloseGFX: ; e681d
-INCBIN "gfx/intro/suicune_close.lz"
+INCBIN "gfx/intro/suicune_close.2bpp.lz"
 ; e6c3d
 
 IntroTilemap012: ; e6c3d
-INCBIN "gfx/intro/012.lz"
+INCBIN "gfx/intro/012.tilemap.lz"
 ; e6d0d
 
 IntroTilemap011: ; e6d0d
-INCBIN "gfx/intro/011.lz"
+INCBIN "gfx/intro/011.tilemap.lz"
 ; e6d6d
 
 UnknownDatae6d6d: ; e6d6d
 INCBIN "baserom.gbc", $e6d6d, $e6ded - $e6d6d
 
 IntroSuicuneJumpGFX: ; e6ded
-INCBIN "gfx/intro/suicune_jump.lz"
+INCBIN "gfx/intro/suicune_jump.2bpp.lz"
 ; e72ad
 
 IntroSuicuneBackGFX: ; e72ad
-INCBIN "gfx/intro/suicune_back.lz"
+INCBIN "gfx/intro/suicune_back.2bpp.lz"
 ; e764d
 
 IntroTilemap010: ; e764d
-INCBIN "gfx/intro/010.lz"
+INCBIN "gfx/intro/010.tilemap.lz"
 ; e76ad
 
 IntroTilemap009: ; e76ad
-INCBIN "gfx/intro/009.lz"
+INCBIN "gfx/intro/009.tilemap.lz"
 ; e76bd
 
 IntroTilemap014: ; e76bd
-INCBIN "gfx/intro/014.lz"
+INCBIN "gfx/intro/014.tilemap.lz"
 ; e778d
 
 IntroTilemap013: ; e778d
-INCBIN "gfx/intro/013.lz"
+INCBIN "gfx/intro/013.tilemap.lz"
 ; e77dd
 
 UnknownDatae77dd: ; e77dd
 INCBIN "baserom.gbc", $e77dd, $e785d - $e77dd
 
 IntroUnownBackGFX: ; e785d
-INCBIN "gfx/intro/unown_back.lz"
+INCBIN "gfx/intro/unown_back.2bpp.lz"
 ; e799d
 
 INCBIN "baserom.gbc", $e799d, $e7a5d - $e799d
@@ -87849,7 +87911,7 @@ FontExtra:
 INCBIN "gfx/misc/font_extra.2bpp"
 
 Font:
-INCBIN "gfx/misc/font.1bpp"
+INCBIN "gfx/misc/font.w128.1bpp"
 
 FontBattleExtra:
 INCBIN "gfx/misc/font_battle_extra.2bpp"
@@ -87892,7 +87954,7 @@ INCBIN "baserom.gbc", $f8b10, $f8ba0 - $f8b10
 ; f8ba0
 
 TownMapGFX: ; f8ba0
-INCBIN "gfx/misc/town_map.lz"
+INCBIN "gfx/misc/town_map.2bpp.lz"
 ; f8ea4
 
 GFX_f8ea4: ; f8ea4
@@ -87924,7 +87986,7 @@ INCBIN "baserom.gbc", $f9424, $f9434 - $f9424
 ; f9434
 
 Footprints: ; f9434
-INCBIN "gfx/misc/footprints.1bpp"
+INCBIN "gfx/misc/footprints.w128.1bpp"
 ; fb434
 
 INCBIN "baserom.gbc", $fb434, $fb449 - $fb434
@@ -96675,7 +96737,7 @@ Function108be0: ; 108be0 (42:4be0)
 INCBIN "baserom.gbc",$108bec,$109407 - $108bec
 
 IntroLogoGFX: ; 109407
-INCBIN "gfx/intro/logo.lz"
+INCBIN "gfx/intro/logo.2bpp.lz"
 ; 109847
 
 
@@ -107031,7 +107093,7 @@ Function1de2c5: ; 1de2c5
 ; 1de2e4
 
 PokegearGFX: ; 1de2e4
-INCBIN "gfx/misc/pokegear.lz"
+INCBIN "gfx/misc/pokegear.2bpp.lz"
 ; 1de5c7
 
 INCBIN "baserom.gbc",$1de5c7,$1de5c8 - $1de5c7

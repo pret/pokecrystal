@@ -137,14 +137,14 @@ DrawGBCOnlyGraphic: ; 4eb27
 
 
 GBCOnlyString: ; 4eb38
-	db "This Game Pak is", $4e
-	db "designed only for", $4e
-	db "use on the", $4e
-	db "Game Boy Color.@"
+	db   "This Game Pak is"
+	next "designed only for"
+	next "use on the"
+	next "Game Boy Color.@"
 ; 4eb76
 
 
 GBCOnlyGFX: ; 4eb76
-INCBIN "gfx/misc/gbc_only.lz"
+INCBIN "gfx/misc/gbc_only.w112.2bpp.lz"
 ; 4f0bc
 

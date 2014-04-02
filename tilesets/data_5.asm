@@ -1,5 +1,5 @@
 Tileset21GFX: ; 0xb4000
-INCBIN "gfx/tilesets/21.lz"
+INCBIN "gfx/tilesets/21.2bpp.lz"
 ; 0xb48a0
 
 Tileset21Meta: ; 0xb48a0
@@ -11,7 +11,7 @@ INCBIN "tilesets/21_collision.bin"
 ; 0xb4da0
 
 Tileset22GFX: ; 0xb4da0
-INCBIN "gfx/tilesets/22.lz"
+INCBIN "gfx/tilesets/22.2bpp.lz"
 ; 0xb50e0
 
 Tileset22Meta: ; 0xb50e0
@@ -23,7 +23,7 @@ INCBIN "tilesets/22_collision.bin"
 ; 0xb55e0
 
 Tileset08GFX: ; 0xb55e0
-INCBIN "gfx/tilesets/08.lz"
+INCBIN "gfx/tilesets/08.2bpp.lz"
 ; 0xb59e0
 
 Tileset08Meta: ; 0xb59e0
@@ -36,7 +36,7 @@ INCBIN "tilesets/08_collision.bin"
 
 Tileset02GFX: ; 0xb5ee0
 Tileset04GFX: ; 0xb5ee0
-INCBIN "gfx/tilesets/04.lz"
+INCBIN "gfx/tilesets/04.2bpp.lz"
 ; 0xb6ae8
 
 Tileset02Meta: ; 0xb6ae8
@@ -48,7 +48,7 @@ INCBIN "tilesets/02_collision.bin"
 ; 0xb74e8
 
 Tileset16GFX: ; 0xb74e8
-INCBIN "gfx/tilesets/16.lz"
+INCBIN "gfx/tilesets/16.2bpp.lz"
 ; 0xb79a8
 
 Tileset16Meta: ; 0xb79a8
