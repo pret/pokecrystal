@@ -39881,7 +39881,7 @@ Tilemap_298f7: ; 297f7
 TradeArrowGFX:  INCBIN "gfx/trade/arrow.2bpp"
 TradeCableGFX:  INCBIN "gfx/trade/cable.2bpp"
 TradeBubbleGFX: INCBIN "gfx/trade/bubble.2bpp"
-TradeGameBoyLZ: INCBIN "gfx/trade/game_boy.lz"
+TradeGameBoyLZ: INCBIN "gfx/trade/game_boy.2bpp.lz"
 TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
 TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
 
@@ -87780,122 +87780,122 @@ Functione552f: ; e552f (39:552f)
 	ret
 
 IntroSuicuneRunGFX: ; e555d
-INCBIN "gfx/intro/suicune_run.lz"
+INCBIN "gfx/intro/suicune_run.2bpp.lz"
 ; e592d
 
 IntroPichuWooperGFX: ; e592d
-INCBIN "gfx/intro/pichu_wooper.lz"
+INCBIN "gfx/intro/pichu_wooper.2bpp.lz"
 ; e5c7d
 
 IntroBackgroundGFX: ; e5c7d
-INCBIN "gfx/intro/background.lz"
+INCBIN "gfx/intro/background.2bpp.lz"
 ; e5e6d
 
 IntroTilemap004: ; e5e6d
-INCBIN "gfx/intro/004.lz"
+INCBIN "gfx/intro/004.tilemap.lz"
 ; e5ecd
 
 IntroTilemap003: ; e5ecd
-INCBIN "gfx/intro/003.lz"
+INCBIN "gfx/intro/003.tilemap.lz"
 ; e5edd
 
 UnknownDatae5edd: ; e5edd
 INCBIN "baserom.gbc", $e5edd, $e5f5d - $e5edd
 
 IntroUnownsGFX: ; e5f5d
-INCBIN "gfx/intro/unowns.lz"
+INCBIN "gfx/intro/unowns.2bpp.lz"
 ; e634d
 
 IntroPulseGFX: ; e634d
-INCBIN "gfx/intro/pulse.lz"
+INCBIN "gfx/intro/pulse.2bpp.lz"
 ; e63dd
 
 IntroTilemap002: ; e63dd
-INCBIN "gfx/intro/002.lz"
+INCBIN "gfx/intro/002.tilemap.lz"
 ; e641d
 
 IntroTilemap001: ; e641d
-INCBIN "gfx/intro/001.lz"
+INCBIN "gfx/intro/001.tilemap.lz"
 ; e642d
 
 IntroTilemap006: ; e642d
-INCBIN "gfx/intro/006.lz"
+INCBIN "gfx/intro/006.tilemap.lz"
 ; e647d
 
 IntroTilemap005: ; e647d
-INCBIN "gfx/intro/005.lz"
+INCBIN "gfx/intro/005.tilemap.lz"
 ; e649d
 
 IntroTilemap008: ; e649d
-INCBIN "gfx/intro/008.lz"
+INCBIN "gfx/intro/008.tilemap.lz"
 ; e655d
 
 IntroTilemap007: ; e655d
-INCBIN "gfx/intro/007.lz"
+INCBIN "gfx/intro/007.tilemap.lz"
 ; e65ad
 
 UnknownDatae65ad: ; e65ad
 INCBIN "baserom.gbc", $e65ad, $e662d - $e65ad
 
 IntroCrystalUnownsGFX: ; e662d
-INCBIN "gfx/intro/crystal_unowns.lz"
+INCBIN "gfx/intro/crystal_unowns.2bpp.lz"
 ; e672d
 
 IntroTilemap017: ; e672d
-INCBIN "gfx/intro/017.lz"
+INCBIN "gfx/intro/017.tilemap.lz"
 ; e676d
 
 IntroTilemap015: ; e676d
-INCBIN "gfx/intro/015.lz"
+INCBIN "gfx/intro/015.tilemap.lz"
 ; e679d
 
 UnknownDatae679d: ; e679d
 INCBIN "baserom.gbc", $e679d, $e681d - $e679d
 
 IntroSuicuneCloseGFX: ; e681d
-INCBIN "gfx/intro/suicune_close.lz"
+INCBIN "gfx/intro/suicune_close.2bpp.lz"
 ; e6c3d
 
 IntroTilemap012: ; e6c3d
-INCBIN "gfx/intro/012.lz"
+INCBIN "gfx/intro/012.tilemap.lz"
 ; e6d0d
 
 IntroTilemap011: ; e6d0d
-INCBIN "gfx/intro/011.lz"
+INCBIN "gfx/intro/011.tilemap.lz"
 ; e6d6d
 
 UnknownDatae6d6d: ; e6d6d
 INCBIN "baserom.gbc", $e6d6d, $e6ded - $e6d6d
 
 IntroSuicuneJumpGFX: ; e6ded
-INCBIN "gfx/intro/suicune_jump.lz"
+INCBIN "gfx/intro/suicune_jump.2bpp.lz"
 ; e72ad
 
 IntroSuicuneBackGFX: ; e72ad
-INCBIN "gfx/intro/suicune_back.lz"
+INCBIN "gfx/intro/suicune_back.2bpp.lz"
 ; e764d
 
 IntroTilemap010: ; e764d
-INCBIN "gfx/intro/010.lz"
+INCBIN "gfx/intro/010.tilemap.lz"
 ; e76ad
 
 IntroTilemap009: ; e76ad
-INCBIN "gfx/intro/009.lz"
+INCBIN "gfx/intro/009.tilemap.lz"
 ; e76bd
 
 IntroTilemap014: ; e76bd
-INCBIN "gfx/intro/014.lz"
+INCBIN "gfx/intro/014.tilemap.lz"
 ; e778d
 
 IntroTilemap013: ; e778d
-INCBIN "gfx/intro/013.lz"
+INCBIN "gfx/intro/013.tilemap.lz"
 ; e77dd
 
 UnknownDatae77dd: ; e77dd
 INCBIN "baserom.gbc", $e77dd, $e785d - $e77dd
 
 IntroUnownBackGFX: ; e785d
-INCBIN "gfx/intro/unown_back.lz"
+INCBIN "gfx/intro/unown_back.2bpp.lz"
 ; e799d
 
 INCBIN "baserom.gbc", $e799d, $e7a5d - $e799d
@@ -96737,7 +96737,7 @@ Function108be0: ; 108be0 (42:4be0)
 INCBIN "baserom.gbc",$108bec,$109407 - $108bec
 
 IntroLogoGFX: ; 109407
-INCBIN "gfx/intro/logo.lz"
+INCBIN "gfx/intro/logo.2bpp.lz"
 ; 109847
 
 

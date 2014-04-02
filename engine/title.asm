@@ -375,15 +375,15 @@ AnimateTitleCrystal: ; 10ef32
 ; 10ef46
 
 TitleSuicuneGFX: ; 10ef46
-INCBIN "gfx/title/suicune.lz"
+INCBIN "gfx/title/suicune.w128.2bpp.lz"
 ; 10f326
 
 TitleLogoGFX: ; 10f326
-INCBIN "gfx/title/logo.lz"
+INCBIN "gfx/title/logo.w160.t4.2bpp.lz"
 ; 10fcee
 
 TitleCrystalGFX: ; 10fcee
-INCBIN "gfx/title/crystal.lz"
+INCBIN "gfx/title/crystal.w48.interleave.2bpp.lz"
 ; 10fede
 
 TitleScreenPalettes:
