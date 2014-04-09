@@ -5809,27 +5809,16 @@ Function6ec1: ; 6ec1
 
 .asm_6ee9
 	bit 6, [hl]
-	jr nz, Function6ef5
+	jr nz, .asm_6ef5
+
 	push hl
 	push bc
-	; fallthrough
-; 6eef
-
-DrawGraphic: ; 6eef
-; input:
-;   hl: draw location
-;   b: height
-;   c: width
-;   d: tile to start drawing from
-;   e: number of tiles to advance for each row
 	call Function7009
 	pop bc
 	pop hl
 	ret c
-	; fallthrough
-; 6ef5
 
-Function6ef5: ; 6ef5
+.asm_6ef5
 	bit 5, [hl]
 	jr nz, .asm_6f05
 	push hl

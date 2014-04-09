@@ -119,14 +119,14 @@ _TitleScreen: ; 10ed67
 	ld bc, $0714 ; 20x7
 	ld d, $80
 	ld e, $14
-	call DrawGraphic
+	call DrawTitleGraphic
 	
 ; Draw copyright text
 	ld hl, $9c03 ; BGMap1(3,0)
 	ld bc, $010d ; 13x1
 	ld d, $c
 	ld e, $10
-	call DrawGraphic
+	call DrawTitleGraphic
 	
 ; Initialize running Suicune?
 	ld d, $0
@@ -286,7 +286,13 @@ Function10eed2: ; 10eed2
 	ret
 ; 10eeef
 
-Function10eeef: ; 10eeef
+DrawTitleGraphic: ; 10eeef
+; input:
+;   hl: draw location
+;   b: height
+;   c: width
+;   d: tile to start drawing from
+;   e: number of tiles to advance for each row
 .asm_10eeef
 	push de
 	push bc
