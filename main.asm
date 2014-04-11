@@ -71188,12 +71188,12 @@ Function8c5dc: ; 8c5dc (23:45dc)
 	call DelayFrame
 	jr Function8c673
 .asm_8c639
-	ld hl, $46a1
+	ld hl, Unknown_8c6a1
 	ld a, [TimeOfDayPal] ; $d841
-	and $3
-	cp $3
+	and 3
+	cp 3
 	jr nz, .asm_8c648
-	ld hl, $46a9
+	ld hl, Unknown_8c6a9
 .asm_8c648
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -71243,16 +71243,33 @@ Function8c698: ; 8c698 (23:4698)
 	ret
 ; 8c6a1 (23:46a1)
 
-INCBIN "baserom.gbc",$8c6a1,$8c6b1 - $8c6a1
+Unknown_8c6a1: ; 8c6a1
+	RGB 31, 18, 29
+	RGB 31, 11, 15
+	RGB 31, 05, 05
+	RGB 07, 07, 07
+; 8c6a9
+
+Unknown_8c6a9: ; 8c6a9
+	RGB 31, 18, 29
+	RGB 31, 05, 05
+	RGB 31, 05, 05
+	RGB 31, 05, 05
+; 8c6b1
 
 ; known jump sources: 8c5fa (23:45fa)
 Function8c6b1: ; 8c6b1 (23:46b1)
 	ld a, [OtherTrainerClass] ; $d22f
-	ld de, $46b8
+	ld de, Unknown_8c6b8
 	ret
 ; 8c6b8 (23:46b8)
 
-INCBIN "baserom.gbc",$8c6b8,$8c6d8 - $8c6b8
+Unknown_8c6b8: ; 8c6b8
+	db $03, $c0, $0f, $f0, $3c, $3c, $30, $0c
+	db $60, $06, $63, $c6, $c6, $63, $fc, $3f
+	db $fc, $3f, $c6, $63, $63, $c6, $60, $06
+	db $30, $0c, $3c, $3c, $0f, $f0, $03, $c0
+; 8c6d8
 
 Function8c6d8: ; 8c6d8
 	ld a, [rSVBK]
@@ -71299,14 +71316,14 @@ Function8c6f7: ; 8c6f7 (23:46f7)
 Function8c70c: ; 8c70c (23:470c)
 	ld e, a
 	ld a, d
-	ld d, $0
-	ld hl, $4728
+	ld d, 0
+	ld hl, Unknown_8c728
 	add hl, de
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0
+	ld hl, 0
 .asm_8c71b
 	srl a
 	jr nc, .asm_8c720
@@ -71319,12 +71336,19 @@ Function8c70c: ; 8c70c (23:470c)
 	ret
 ; 8c728 (23:4728)
 
-INCBIN "baserom.gbc",$8c728,$8c768 - $8c728
+Unknown_8c728: ; 8c728
+; Another sine wave?
+x	set 0
+	rept $20
+	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+x	set x + $100 * $40000
+	endr
+; 8c768
 
 ; no known jump sources
 Function8c768: ; 8c768 (23:4768)
 	callba Function5602
-	ld de, $4792
+	ld de, Unknown_8c792
 .asm_8c771
 	ld a, [de]
 	cp $ff
@@ -71351,7 +71375,18 @@ Function8c768: ; 8c768 (23:4768)
 	ret
 ; 8c792 (23:4792)
 
-INCBIN "baserom.gbc",$8c792,$8c7b7 - $8c792
+Unknown_8c792: ; 8c792
+	dbbw  4,  2, $c548 ; (8, 8)
+	dbbw  6,  4, $c533 ; (7, 7)
+	dbbw  8,  6, $c51e ; (6, 6)
+	dbbw 10,  8, $c509 ; (5, 5)
+	dbbw 12, 10, $c4f4 ; (4, 4)
+	dbbw 14, 12, $c4df ; (3, 3)
+	dbbw 16, 14, $c4ca ; (2, 2)
+	dbbw 18, 16, $c4b5 ; (1, 1)
+	dbbw 20, 18, $c4a0 ; (0, 0)
+	db $ff
+; 8c7b7
 
 ; known jump sources: 8c784 (23:4784)
 Function8c7b7: ; 8c7b7 (23:47b7)
@@ -71372,11 +71407,18 @@ Function8c7b7: ; 8c7b7 (23:47b7)
 	ret
 ; 8c7c9 (23:47c9)
 
-INCBIN "baserom.gbc",$8c7c9,$8c7d4 - $8c7c9
+Function8c7c9: ; 8c7c9
+	ld a, $1
+	ld [hBGMapMode], a
+	call WaitBGMap
+	xor a
+	ld [hBGMapMode], a
+	ret
+; 8c7d4
 
 Function8c7d4: ; 8c7d4
 	call WaitSFX
-	ld de, $0053
+	ld de, SFX_SURF
 	call PlaySFX
 	call WaitSFX
 	ret
@@ -71397,13 +71439,13 @@ Function8c7e1: ; 8c7e1
 
 Function8c80a: ; 8c80a
 	callba Function8cf53
-	ld de, $49cc
+	ld de, GFX_8c9cc
 	ld hl, VTiles1
-	ld bc, $2304
+	lb bc, BANK(GFX_8c9cc), 4
 	call Request2bpp
-	ld de, $4893
+	ld de, HeadbuttTreeGFX
 	ld hl, $8840
-	ld bc, $2308
+	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
 	call Function8cad3
 	ld a, $1b
@@ -71418,7 +71460,7 @@ Function8c80a: ; 8c80a
 	ld a, $20
 	ld [$cf64], a
 	call WaitSFX
-	ld de, $006d
+	ld de, SFX_SANDSTORM
 	call PlaySFX
 .asm_8c852
 	ld hl, $cf64
@@ -71442,15 +71484,17 @@ Function8c80a: ; 8c80a
 	ld bc, $0010
 	xor a
 	call ByteFill
-	ld de, $4200
+	ld de, Font
 	ld hl, VTiles1
-	ld bc, $3e0c
+	lb bc, BANK(Font), $c
 	call Get1bpp
 	call Functione4a
 	ret
 ; 8c893
 
+HeadbuttTreeGFX: ; 8c893
 INCBIN "baserom.gbc", $8c893, $8c913 - $8c893
+; 8c913
 
 Function8c913: ; 8c913
 	xor a
@@ -71459,8 +71503,8 @@ Function8c913: ; 8c913
 	and $c
 	srl a
 	ld e, a
-	ld d, $0
-	ld hl, $4938
+	ld d, 0
+	ld hl, Unknown_8c938
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -71478,7 +71522,12 @@ Function8c913: ; 8c913
 	ret
 ; 8c938
 
-INCBIN "baserom.gbc", $8c938, $8c940 - $8c938
+Unknown_8c938: ; 8c938
+	dw $c570 ; ( 8, 10)
+	dw $c520 ; ( 8,  6)
+	dw $c546 ; ( 6,  8)
+	dw $c54a ; (10,  8)
+; 8c940
 
 Function8c940: ; 8c940
 	ld a, e
@@ -71486,7 +71535,7 @@ Function8c940: ; 8c940
 	ld [$cf63], a
 	call Function8c96d
 	call WaitSFX
-	ld de, $001e
+	ld de, SFX_PLACE_PUZZLE_PIECE_DOWN
 	call PlaySFX
 .asm_8c952
 	ld a, [$cf63]
@@ -71505,18 +71554,24 @@ Function8c940: ; 8c940
 
 Function8c96d: ; 8c96d
 	callab Function8cf53
-	ld de, $49cc
+	ld de, GFX_8c9cc
 	ld hl, VTiles1
-	ld bc, $2304
+	lb bc, BANK(GFX_8c9cc), 4
 	call Request2bpp
-	ld de, $498c
+	ld de, CutTreeGFX
 	ld hl, $8840
-	ld bc, $2304
+	lb bc, BANK(CutTreeGFX), 4
 	call Request2bpp
 	ret
 ; 8c98c
 
-INCBIN "baserom.gbc",$8c98c,$8ca0c - $8c98c
+CutTreeGFX: ; c898c
+INCBIN "baserom.gbc", $8c98c, $8c9cc - $8c98c
+; c89cc
+
+GFX_8c9cc: ; 8c9cc
+INCBIN "baserom.gbc", $8c9cc, $8ca0c - $8c9cc
+; 8ca0c
 
 Function8ca0c: ; 8ca0c
 	ld a, [$cf63]
@@ -71628,7 +71683,7 @@ Function8ca8e: ; 8ca8e (23:4a8e)
 	and $c
 	add e
 	ld e, a
-	ld hl, $4ab3
+	ld hl, Unknown_8cab3
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -71637,7 +71692,24 @@ Function8ca8e: ; 8ca8e (23:4a8e)
 	ret
 ; 8cab3 (23:4ab3)
 
-INCBIN "baserom.gbc",$8cab3,$8cad3 - $8cab3
+Unknown_8cab3: ; 8cab3
+	db $58, $60
+	db $48, $60
+	db $58, $70
+	db $48, $70
+	db $58, $40
+	db $48, $40
+	db $58, $50
+	db $48, $50
+	db $38, $60
+	db $48, $60
+	db $38, $50
+	db $48, $50
+	db $58, $60
+	db $68, $60
+	db $58, $50
+	db $68, $50
+; 8cad3
 
 ; known jump sources: 8ca23 (23:4a23)
 Function8cad3: ; 8cad3 (23:4ad3)
@@ -71645,8 +71717,8 @@ Function8cad3: ; 8cad3 (23:4ad3)
 	and $c
 	srl a
 	ld e, a
-	ld d, $0
-	ld hl, $4ae5
+	ld d, 0
+	ld hl, Unknown_8cae5
 	add hl, de
 	ld e, [hl]
 	inc hl
@@ -71654,7 +71726,12 @@ Function8cad3: ; 8cad3 (23:4ad3)
 	ret
 ; 8cae5 (23:4ae5)
 
-INCBIN "baserom.gbc",$8cae5,$8caed - $8cae5
+Unknown_8cae5: ; 8cae5
+	db $50, $68
+	db $50, $48
+	db $40, $58
+	db $60, $58
+; 8caed
 
 Function8caed: ; 8caed
 	call DelayFrame
@@ -71756,7 +71833,7 @@ Function8cb9b: ; 8cb9b (23:4b9b)
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartySpecies ; $dcd8
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	ld [$d265], a
@@ -71778,7 +71855,7 @@ Function8cbc8: ; 8cbc8 (23:4bc8)
 	ret c
 	and $7
 	ret nz
-	ld de, $18
+	ld de, SFX_FLY
 	call PlaySFX
 	ret
 .asm_8cbe0
@@ -71925,8 +72002,8 @@ Function8ccc9: ; 8ccc9
 	call ClearSprites
 	call DisableLCD
 	callab Function8cf53
-	call Function8cdc3
-	call Function8cd27
+	call SetMagnetTrainPals
+	call DrawMagnetTrain
 	ld a, $90
 	ld [hWY], a
 	call EnableLCD
@@ -71964,61 +72041,59 @@ Function8ccc9: ; 8ccc9
 	ret
 ; 8cd27
 
-Function8cd27: ; 8cd27
+DrawMagnetTrain: ; 8cd27
 	ld hl, VBGMap0
 	xor a
 .asm_8cd2b
-	call Function8cd74
-	ld b, $10
-	call Function8cd6c
+	call GetMagnetTrainBGTiles
+	ld b, 32 / 2
+	call .FillAlt
 	inc a
 	cp $12
 	jr c, .asm_8cd2b
 	ld hl, $98c0
-	ld de, $4eff
-	ld c, $14
-	call Function8cd65
+	ld de, MagnetTrainTilemap1
+	ld c, 20
+	call .FillLine
 	ld hl, $98e0
-	ld de, $4f13
-	ld c, $14
-	call Function8cd65
+	ld de, MagnetTrainTilemap2
+	ld c, 20
+	call .FillLine
 	ld hl, $9900
-	ld de, $4f27
-	ld c, $14
-	call Function8cd65
+	ld de, MagnetTrainTilemap3
+	ld c, 20
+	call .FillLine
 	ld hl, $9920
-	ld de, $4f3b
-	ld c, $14
-	call Function8cd65
+	ld de, MagnetTrainTilemap4
+	ld c, 20
+	call .FillLine
 	ret
 ; 8cd65
 
-Function8cd65: ; 8cd65
-.asm_8cd65
+.FillLine ; 8cd65
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
-	jr nz, .asm_8cd65
+	jr nz, .FillLine
 	ret
 ; 8cd6c
 
-Function8cd6c: ; 8cd6c
-.asm_8cd6c
+.FillAlt ; 8cd6c
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	inc hl
 	dec b
-	jr nz, .asm_8cd6c
+	jr nz, .FillAlt
 	ret
 ; 8cd74
 
-Function8cd74: ; 8cd74
+GetMagnetTrainBGTiles: ; 8cd74
 	push hl
 	ld e, a
-	ld d, $0
-	ld hl, $4d82
+	ld d, 0
+	ld hl, MagnetTrainBGTiles
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -72028,7 +72103,28 @@ Function8cd74: ; 8cd74
 	ret
 ; 8cd82
 
-INCBIN "baserom.gbc",$8cd82,$8cda6 - $8cd82
+MagnetTrainBGTiles: ; 8cd82
+; Alternating tiles for each line
+; of the Magnet Train tilemap.
+	db $4c, $4d ; bush
+	db $5c, $5d ; bush
+	db $4c, $4d ; bush
+	db $5c, $5d ; bush
+	db $08, $08 ; fence
+	db $18, $18 ; fence
+	db $1f, $1f ; track
+	db $31, $31 ; track
+	db $11, $11 ; track
+	db $11, $11 ; track
+	db $0d, $0d ; track
+	db $31, $31 ; track
+	db $04, $04 ; fence
+	db $18, $18 ; fence
+	db $4c, $4d ; bush
+	db $5c, $5d ; bush
+	db $4c, $4d ; bush
+	db $5c, $5d ; bush
+; 8cda6
 
 Function8cda6: ; 8cda6
 	ld hl, LYOverrides
@@ -72044,25 +72140,34 @@ Function8cda6: ; 8cda6
 	ret
 ; 8cdc3
 
-Function8cdc3: ; 8cdc3
+SetMagnetTrainPals: ; 8cdc3
 	ld a, $1
 	ld [rVBK], a
+
+	; bushes
 	ld hl, VBGMap0
 	ld bc, $0080
 	ld a, $2
 	call ByteFill
+
+	; train
 	ld hl, $9880
 	ld bc, $0140
 	xor a
 	call ByteFill
+
+	; more bushes
 	ld hl, $99c0
 	ld bc, $0080
 	ld a, $2
 	call ByteFill
+
+	; train window
 	ld hl, $9907
 	ld bc, $0006
 	ld a, $4
 	call ByteFill
+
 	ld a, $0
 	ld [rVBK], a
 	ret
@@ -72071,8 +72176,8 @@ Function8cdc3: ; 8cdc3
 Function8cdf7: ; 8cdf7
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $4e06
+	ld d, 0
+	ld hl, Jumptable_8ce06
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -72081,7 +72186,124 @@ Function8cdf7: ; 8cdf7
 	jp [hl]
 ; 8ce06
 
-INCBIN "baserom.gbc",$8ce06,$8ceae - $8ce06
+Jumptable_8ce06: ; 8ce06
+	dw Function8ce19
+	dw Function8ce6d
+	dw Function8ce47
+	dw Function8ce6d
+	dw Function8ce7a
+	dw Function8ce6d
+	dw Function8cea2
+; 8ce14
+
+Function8ce14: ; 8ce14
+	ld hl, $cf63
+	inc [hl]
+	ret
+; 8ce19
+
+Function8ce19: ; 8ce19
+	ld d, $55
+	ld a, [$d195]
+	ld e, a
+	ld b, $15
+	ld a, [rSVBK]
+	push af
+	ld a, $1
+	ld [rSVBK], a
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_8ce31
+	ld b, $1f
+
+.asm_8ce31
+	pop af
+	ld [rSVBK], a
+	ld a, b
+	call Function3b2a
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $0
+	call Function8ce14
+	ld a, $80
+	ld [$cf66], a
+	ret
+; 8ce47
+
+Function8ce47: ; 8ce47
+	ld hl, $d193
+	ld a, [$cf65]
+	cp [hl]
+	jr z, .asm_8ce64
+	ld e, a
+	ld a, [$d191]
+	xor $ff
+	inc a
+	add e
+	ld [$cf65], a
+	ld hl, $c3c0
+	ld a, [$d191]
+	add [hl]
+	ld [hl], a
+	ret
+
+.asm_8ce64
+	call Function8ce14
+	ld a, $80
+	ld [$cf66], a
+	ret
+; 8ce6d
+
+Function8ce6d: ; 8ce6d
+	ld hl, $cf66
+	ld a, [hl]
+	and a
+	jr z, .asm_8ce76
+	dec [hl]
+	ret
+
+.asm_8ce76
+	call Function8ce14
+	ret
+; 8ce7a
+
+Function8ce7a: ; 8ce7a
+	ld hl, $d194
+	ld a, [$cf65]
+	cp [hl]
+	jr z, .asm_8ce9e
+	ld e, a
+	ld a, [$d191]
+	xor $ff
+	inc a
+	ld d, a
+	ld a, e
+	add d
+	add d
+	ld [$cf65], a
+	ld hl, $c3c0
+	ld a, [$d191]
+	ld d, a
+	ld a, [hl]
+	add d
+	add d
+	ld [hl], a
+	ret
+
+	ret
+
+.asm_8ce9e
+	call Function8ce14
+	ret
+; 8cea2
+
+Function8cea2: ; 8cea2
+	ld a, $80
+	ld [$cf63], a
+	ld de, SFX_TRAIN_ARRIVED
+	call PlaySFX
+	ret
+; 8ceae
 
 Function8ceae: ; 8ceae
 	callba Function8cf69
@@ -72120,7 +72342,11 @@ Function8ceae: ; 8ceae
 	ret
 ; 8ceff
 
-INCBIN "baserom.gbc",$8ceff,$8cf4f - $8ceff
+MagnetTrainTilemap1: db $1f, $05, $06, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0b, $0c, $1f
+MagnetTrainTilemap2: db $14, $15, $16, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1b, $1c, $1d
+MagnetTrainTilemap3: db $24, $25, $26, $27, $07, $2f, $29, $28, $28, $28, $28, $28, $28, $29, $07, $2f, $2a, $2b, $2c, $2d
+MagnetTrainTilemap4: db $20, $1f, $2e, $1f, $17, $00, $2e, $1f, $1f, $1f, $1f, $1f, $1f, $2e, $17, $00, $1f, $2e, $1f, $0f
+; 8cf4f
 
 Function8cf4f: ; 8cf4f
 	call Function3238
@@ -72146,8 +72372,6 @@ Function8cf62: ; 8cf62
 	call DelayFrame
 	ret
 ; 8cf69
-
-
 
 Function8cf69: ; 8cf69
 	push hl
@@ -72619,7 +72843,7 @@ Function8d24b: ; 8d24b
 	add hl, bc
 	ld e, [hl]
 	ld d, $0
-	ld hl, $525b
+	ld hl, Jumptable_8d25b
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -72748,7 +72972,62 @@ Function8d302: ; 8d302 (23:5302)
 	jp [hl]
 ; 8d306 (23:5306)
 
-INCBIN "baserom.gbc",$8d306,$8d35a - $8d306
+; Anonymous jumptable (see Function8d6c5)
+	dw Function8d30a
+	dw Function8d321
+; 8d30a
+
+Function8d30a: ; 8d30a
+	call Function8d6d8
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	ld hl, $000d
+	add hl, bc
+	and $3
+	ld [hl], a
+	inc [hl]
+	swap a
+	ld hl, $000c
+	add hl, bc
+	ld [hl], a
+
+Function8d321: ; 8d321
+	ld hl, $0004
+	add hl, bc
+	ld a, [hl]
+	cp $a4
+	jr nc, .asm_8d356
+	ld hl, $000d
+	add hl, bc
+	add $4
+	ld hl, $0004
+	add hl, bc
+	ld [hl], a
+	ld hl, $0005
+	add hl, bc
+	inc [hl]
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	sla a
+	sla a
+	ld d, $2
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	add $3
+	ld [hl], a
+	call Function8d6de
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	ret
+
+.asm_8d356
+	call Function8d036
+	ret
+; 8d35a
 
 ; no known jump sources
 Function8d35a: ; 8d35a (23:535a)
@@ -72925,7 +73204,7 @@ Function8d43e: ; 8d43e (23:543e)
 	call Function8d036
 	ld a, $4
 	ld [$cf64], a
-	ld de, $1e
+	ld de, SFX_PLACE_PUZZLE_PIECE_DOWN
 	call PlaySFX
 	ret
 .asm_8d461
@@ -72960,7 +73239,119 @@ Function8d483: ; 8d483 (23:5483)
 	jp [hl]
 ; 8d487 (23:5487)
 
-INCBIN "baserom.gbc",$8d487,$8d52a - $8d487
+; Anonymous jumptable (see Function8d6c5)
+	dw Function8d493
+	dw Function8d4d5
+	dw Function8d4a5
+	dw Function8d4b8
+	dw Function8d4e8
+	dw Function8d526
+; 8d493
+
+Function8d493: ; 8d493
+	ld a, $14
+	call Function8d120
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $2
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $20
+	ret
+; 8d4a5
+
+Function8d4a5: ; 8d4a5
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_8d4af
+	dec [hl]
+	ret
+
+.asm_8d4af
+	call Function8d6d8
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $40
+
+Function8d4b8: ; 8d4b8
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	cp $30
+	jr c, .asm_8d4cd
+	dec [hl]
+	ld d, $28
+	call Function8d6de
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	ret
+
+.asm_8d4cd
+	ld de, SFX_GOT_SAFARI_BALLS
+	call PlaySFX
+	jr Function8d526
+; 8d4d5
+
+Function8d4d5: ; 8d4d5
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $4
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $30
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $24
+	ret
+; 8d4e8
+
+Function8d4e8: ; 8d4e8
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_8d51c
+	ld d, a
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	call Function8e72c
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	ld hl, $000c
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	and $3f
+	ret nz
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $20
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	sub $c
+	ld [hl], a
+	ld de, SFX_SWITCH_POKEMON
+	call PlaySFX
+	ret
+
+.asm_8d51c
+	xor a
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	call Function8d6d8
+	ret
+
+Function8d526: ; 8d526
+	call Function8d036
+	ret
+; 8d52a
 
 ; no known jump sources
 Function8d52a: ; 8d52a (23:552a)
@@ -72973,7 +73364,7 @@ Function8d52a: ; 8d52a (23:552a)
 	jr nc, .asm_8d53f
 	and $3
 	ret nz
-	ld de, $3
+	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
 	call PlaySFX
 	ret
 .asm_8d53f
@@ -73277,7 +73668,12 @@ Function8d6c5: ; 8d6c5 (23:56c5)
 	ret
 ; 8d6d8 (23:56d8)
 
-INCBIN "baserom.gbc",$8d6d8,$8d6de - $8d6d8
+Function8d6d8: ; 8d6d8
+	ld hl, $000b
+	add hl, bc
+	inc [hl]
+	ret
+; 8d6de
 
 ; known jump sources: 8d363 (23:5363), 8d39c (23:539c), 8d3d7 (23:53d7), 8d465 (23:5465), 8d561 (23:5561), 8d59d (23:559d), 8d658 (23:5658), 8d677 (23:5677), 8d68f (23:568f)
 Function8d6de: ; 8d6de (23:56de)
@@ -74353,15 +74749,14 @@ Function902c9: ; 902c9
 
 ; no known jump sources
 Function902e3: ; 902e3 (24:42e3)
-	ld de, $6c
+	ld de, SFX_NO_SIGNAL
 	call PlaySFX
-	jr asm_902f1
-
+	jr Function902f1
 
 Function902eb:: ; 902eb
 	call Function9031d
 	call Function90355
-asm_902f1:
+Function902f1:
 	call Function9032f
 	call Function90355
 	call Function9033b
@@ -75151,7 +75546,7 @@ Function90b8d: ; 90b8d (24:4b8d)
 	call DelayFrame
 	jr .asm_90ba9
 .asm_90bc4
-	ld de, $8
+	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	call WaitSFX
 	pop af
@@ -87981,13 +88376,13 @@ INCBIN "gfx/misc/footprints.w128.1bpp"
 INCBIN "baserom.gbc", $fb434, $fb449 - $fb434
 
 Functionfb449:: ; fb449
-	ld de, $4200
+	ld de, Font
 	ld hl, VTiles1
 	ld bc, Function3e80
 	ld a, [rLCDC]
 	bit 7, a
 	jp z, Copy1bpp
-	ld de, $4200
+	ld de, Font
 	ld hl, VTiles1
 	ld bc, $3e20
 	call Functionddc
