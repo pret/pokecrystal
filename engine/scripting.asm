@@ -519,7 +519,7 @@ Script_interpretmenu2: ; 0x96f30
 ; script command 0x59
 
 	ld a, [ScriptBank]
-	ld hl, $1d81
+	ld hl, Function1d81
 	rst FarCall
 	ld a, [$cfa9]
 	jr nc, .asm_96f3d ; 0x96f3a $1
@@ -533,7 +533,7 @@ Script_interpretmenu: ; 0x96f41
 ; script command 0x58
 
 	ld a, [ScriptBank]
-	ld hl, $202a
+	ld hl, Function202a
 	rst FarCall
 	ld a, [$cf88]
 	jr nc, .asm_96f4e ; 0x96f4b $1
@@ -2284,7 +2284,7 @@ Script_stringtotext: ; 0x9777d
 	call GetScriptByte
 	ld d, a
 	ld a, [ScriptBank]
-	ld hl, $30d6
+	ld hl, CopyName1
 	rst FarCall
 	ld de, StringBuffer2
 	jp Unknown_976c0
