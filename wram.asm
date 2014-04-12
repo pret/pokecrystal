@@ -1880,7 +1880,13 @@ EventFlags:: ; da72
 	ds 250
 ; db6c
 
-SECTION "BoxNames",WRAMX[$db75],BANK[1]
+SECTION "Boxes",WRAMX[$db72],BANK[1]
+
+wCurBox:: ; db72
+	ds 1
+
+	ds 2
+
 ; 8 chars + $50
 Box1Name:: ; db75
 	ds 9
