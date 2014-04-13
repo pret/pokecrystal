@@ -1927,16 +1927,9 @@ Palettes_a8be: ; a8be
 Palettes_a8ca: ; a8ca
 	RGB 30, 26, 15
 	RGB 04, 17, 31
+; a8ce
 
-Palettes_a8ce: ; a8ce
-	RGB 30, 22, 17
-	RGB 16, 14, 19
-
-	RGB 30, 22, 17
-	RGB 16, 14, 19
-; a8d6
-
-; a8d6
+; a8ce
 INCLUDE "gfx/pics/palette_pointers.asm"
 ; b0ce
 
