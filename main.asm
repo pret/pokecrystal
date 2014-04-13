@@ -59580,17 +59580,88 @@ Function50566: ; 50566
 	call GetNick
 	ld a, [PartyMenuActionText]
 	and $f
-	ld hl, $457b
+	ld hl, Unknown_5057b
 	call Function505c1
 	ret
 ; 5057b
 
-INCBIN "baserom.gbc",$5057b,$505c1 - $5057b
+Unknown_5057b: ; 5057b
+	dw UnknownText_0x50594
+	dw UnknownText_0x5059e
+	dw UnknownText_0x505a3
+	dw UnknownText_0x505a8
+	dw UnknownText_0x50599
+	dw UnknownText_0x5058f
+	dw UnknownText_0x505ad
+	dw UnknownText_0x505b2
+	dw UnknownText_0x505b7
+	dw UnknownText_0x505bc
+; 5058f
+
+UnknownText_0x5058f: ; 0x5058f
+	; recovered @ HP!
+	text_jump UnknownText_0x1bc0a2
+	db "@"
+; 0x50594
+
+UnknownText_0x50594: ; 0x50594
+	; 's cured of poison.
+	text_jump UnknownText_0x1bc0bb
+	db "@"
+; 0x50599
+
+UnknownText_0x50599: ; 0x50599
+	; 's rid of paralysis.
+	text_jump UnknownText_0x1bc0d2
+	db "@"
+; 0x5059e
+
+UnknownText_0x5059e: ; 0x5059e
+	; 's burn was healed.
+	text_jump UnknownText_0x1bc0ea
+	db "@"
+; 0x505a3
+
+UnknownText_0x505a3: ; 0x505a3
+	; was defrosted.
+	text_jump UnknownText_0x1bc101
+	db "@"
+; 0x505a8
+
+UnknownText_0x505a8: ; 0x505a8
+	; woke up.
+	text_jump UnknownText_0x1bc115
+	db "@"
+; 0x505ad
+
+UnknownText_0x505ad: ; 0x505ad
+	; 's health returned.
+	text_jump UnknownText_0x1bc123
+	db "@"
+; 0x505b2
+
+UnknownText_0x505b2: ; 0x505b2
+	; is revitalized.
+	text_jump UnknownText_0x1bc13a
+	db "@"
+; 0x505b7
+
+UnknownText_0x505b7: ; 0x505b7
+	; grew to level @ !@ @
+	text_jump UnknownText_0x1bc14f
+	db "@"
+; 0x505bc
+
+UnknownText_0x505bc: ; 0x505bc
+	; came to its senses.
+	text_jump UnknownText_0x1bc16e
+	db "@"
+; 0x505c1
 
 
 Function505c1: ; 505c1
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -59649,7 +59720,7 @@ Function505da:: ; 505da
 	ret
 
 .asm_50622
-	ld a, $14
+	ld a, BANK(UnknownScript_0x50669)
 	ld hl, UnknownScript_0x50669
 	call CallScript
 	scf
@@ -59822,13 +59893,15 @@ Function506ef: ; 506ef
 ; 50726
 
 UnknownText_0x50726: ; 0x50726
+	; used SWEET SCENT!
 	text_jump UnknownText_0x1c0b03
-	db $50
+	db "@"
 ; 0x5072b
 
 UnknownText_0x5072b: ; 0x5072b
+	; Looks like there's nothing here…
 	text_jump UnknownText_0x1c0b1a
-	db $50
+	db "@"
 ; 0x50730
 
 
@@ -59853,8 +59926,9 @@ UnknownScript_0x5074b: ; 0x5074b
 ; 0x5074e
 
 UnknownText_0x5074e: ; 0x5074e
+	; sprinkled water. But nothing happened…
 	text_jump UnknownText_0x1c0b3b
-	db $50
+	db "@"
 ; 0x50753
 
 Function50753: ; 50753
@@ -60028,8 +60102,9 @@ UnknownScript_0x50821: ; 0x50821
 ; 0x50845
 
 UnknownText_0x50845: ; 0x50845
+	; 's #MON were all healed!
 	text_jump UnknownText_0x1c0b65
-	db $50
+	db "@"
 ; 0x5084a
 
 Function5084a: ; 5084a
@@ -60371,9 +60446,10 @@ DrawHP: ; 50b10
 
 
 Function50b7b: ; 50b7b
+; Print a monster's stats on level up.
 	push bc
 	push hl
-	ld de, $4bb5
+	ld de, String_50bb5
 	call PlaceString
 	pop hl
 	pop bc
@@ -60402,7 +60478,14 @@ Function50bab: ; 50bab
 	ret
 ; 50bb5
 
-INCBIN "baserom.gbc",$50bb5,$50bdd - $50bb5
+String_50bb5: ; 50bb5
+	db   "ATTACK"
+	next "DEFENSE"
+	next "SPCL.ATK"
+	next "SPCL.DEF"
+	next "SPEED"
+	next "@"
+; 50bdd
 
 
 GetGender: ; 50bdd
@@ -60615,7 +60698,17 @@ Function50cc9: ; 50cc9
 	ret
 ; 50cd0
 
-INCBIN "baserom.gbc",$50cd0,$50cdb - $50cd0
+Function50cd0: ; 50cd0
+.asm_50cd0
+	ld [hl], $32
+	inc hl
+	ld [hl], $3e
+	dec hl
+	add hl, de
+	dec c
+	jr nz, .asm_50cd0
+	ret
+; 50cdb
 
 Function50cdb: ; 50cdb
 	push hl
@@ -60628,7 +60721,7 @@ Function50cdb: ; 50cdb
 	call Function5084a
 	pop hl
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_50d09
 	push hl
 	ld bc, $fff4
@@ -60659,15 +60752,16 @@ Function50d0a: ; 50d0a
 	pop de
 	jr nz, Function50d2e
 	push de
-	ld de, .string_50d21
+	ld de, FntString
 	call Function50d25
 	pop de
 	ld a, $1
 	and a
 	ret
+; 50d22
 
-.string_50d21
-	db "カセト@"
+FntString: ; 50d22
+	db "FNT@"
 ; 50d25
 
 Function50d25: ; 50d25
@@ -60685,20 +60779,20 @@ Function50d25: ; 50d25
 Function50d2e: ; 50d2e
 	push de
 	ld a, [de]
-	ld de, $4d5f
-	bit 3, a
+	ld de, PsnString
+	bit PSN, a
 	jr nz, .asm_50d53
-	ld de, $4d63
-	bit 4, a
+	ld de, BrnString
+	bit BRN, a
 	jr nz, .asm_50d53
-	ld de, $4d67
-	bit 5, a
+	ld de, FrzString
+	bit FRZ, a
 	jr nz, .asm_50d53
-	ld de, $4d6b
-	bit 6, a
+	ld de, ParString
+	bit PAR, a
 	jr nz, .asm_50d53
-	ld de, $4d5b
-	and $7
+	ld de, SlpString
+	and SLP
 	jr z, .asm_50d59
 
 .asm_50d53
@@ -60711,7 +60805,12 @@ Function50d2e: ; 50d2e
 	ret
 ; 50d5b
 
-INCBIN "baserom.gbc",$50d5b,$50d6f - $50d5b
+SlpString: db "SLP@"
+PsnString: db "PSN@"
+BrnString: db "BRN@"
+FrzString: db "FRZ@"
+ParString: db "PAR@"
+; 50d6f
 
 Function50d6f: ; 50d6f
 	ld de, $d25e
@@ -60808,7 +60907,7 @@ Function50db9: ; 50db9
 .asm_50dfc
 	ld [$cf61], a
 	ld a, l
-	ld [LYOverrides], a
+	ld [$d100], a
 	ld a, h
 	ld [$d101], a
 	ld a, e
@@ -60828,11 +60927,11 @@ Function50e1b: ; 50e1b
 	ld a, [TempMonSpecies]
 	ld [CurSpecies], a
 	call GetBaseData
-	ld d, $1
+	ld d, 1
 .asm_50e26
 	inc d
 	ld a, d
-	cp $65
+	cp MAX_LEVEL + 1
 	jr z, .asm_50e45
 	call Function50e47
 	push hl
@@ -61258,7 +61357,7 @@ Function510a5: ; 510a5
 	pop hl
 	push hl
 	ld de, Unkn1Pals
-	ld c, $31
+	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -61267,16 +61366,18 @@ Function510a5: ; 510a5
 ; 510d7
 
 Function510d7: ; 510d7
+GLOBAL PicPointers, UnownPicPointers
+
 	ld a, [CurPartySpecies]
-	cp $c9
+	cp UNOWN
 	jr z, .asm_510e5
 	ld a, [CurPartySpecies]
-	ld d, $48
+	ld d, BANK(PicPointers)
 	jr .asm_510ea
 
 .asm_510e5
 	ld a, [UnownLetter]
-	ld d, $49
+	ld d, BANK(UnownPicPointers)
 
 .asm_510ea
 	ld hl, Function50000
@@ -61313,15 +61414,15 @@ Function51103: ; 51103
 	pop hl
 	and $f
 	ld de, $d990
-	ld c, $19
-	cp $5
+	ld c, 5 * 5
+	cp 5
 	jr z, .asm_5113b
 	ld de, $da40
-	ld c, $24
-	cp $6
+	ld c, 6 * 6
+	cp 6
 	jr z, .asm_5113b
 	ld de, $db10
-	ld c, $31
+	ld c, 7 * 7
 
 .asm_5113b
 	push hl
@@ -61373,13 +61474,17 @@ Function5116c: ; 5116c
 	ld a, $6
 	ld [rSVBK], a
 	push de
-	ld hl, Function50000
+
+	; These are assumed to be at the same
+	; address in their respective banks.
+	GLOBAL PicPointers,  UnownPicPointers
+	ld hl, PicPointers ; UnownPicPointers
 	ld a, b
-	ld d, $48
-	cp $c9
+	ld d, BANK(PicPointers)
+	cp UNOWN
 	jr nz, .asm_51190
 	ld a, c
-	ld d, $49
+	ld d, BANK(UnownPicPointers)
 
 .asm_51190
 	dec a
@@ -61417,7 +61522,7 @@ Function511c5: ; 511c5
 	sub $12
 	ld c, a
 	ld b, 0
-	ld hl, $51d4
+	ld hl, Unknown_511d4
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -61425,6 +61530,7 @@ Function511c5: ; 511c5
 	ret
 ; 511d4
 
+Unknown_511d4: ; 511d4
 INCBIN "baserom.gbc",$511d4,$5120d - $511d4
 
 
@@ -61432,7 +61538,7 @@ Function5120d: ; 5120d
 	ld a, [TrainerClass]
 	and a
 	ret z
-	cp $44
+	cp NUM_TRAINER_CLASSES
 	ret nc
 	call WaitBGMap
 	xor a
@@ -86545,7 +86651,7 @@ Functione2655: ; e2655 (38:6655)
 
 ; no known jump sources
 Functione2675: ; e2675 (38:6675)
-	ld hl, $6731
+	ld hl, Unknown_e2731
 	call Function1d3c
 	ld a, [$cfa9]
 	call Function1d4b
@@ -86646,6 +86752,7 @@ BillsPCWithdrawFuncCancel: ; e272b (38:672b)
 	ret
 ; e2731 (38:6731)
 
+Unknown_e2731: ; e2731
 INCBIN "baserom.gbc", $e2731, $e2759 - $e2731
 
 Functione2759: ; e2759
@@ -95225,7 +95332,7 @@ Function100e72: ; 100e72
 
 Function100e84: ; 100e84
 	ld a, [$cd67]
-	ld hl, $4e8c
+	ld hl, Jumptable_100e8c
 	rst JumpTable
 	ret
 ; 100e8c
@@ -100872,8 +100979,8 @@ Function1176ee: ; 1176ee (45:76ee)
 Function117719: ; 117719 (45:7719)
 	ld a, [$cd49]
 	ld e, a
-	ld d, $0
-	ld hl, $7728
+	ld d, 0
+	ld hl, Jumptable_117728
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -102006,8 +102113,8 @@ INCBIN "baserom.gbc",$1185d2,$1186f5 - $1185d2
 Function1186f5: ; 1186f5 (46:46f5)
 	ld a, [$cf66]
 	ld e, a
-	ld d, $0
-	ld hl, $4704
+	ld d, 0
+	ld hl, Jumptable_118704
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -104307,8 +104414,8 @@ Function11c283: ; 11c283
 Function11c2ac: ; 11c2ac
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $42bb
+	ld d, 0
+	ld hl, Jumptable_11c2bb
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -106131,8 +106238,8 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	add hl, bc
 	ld a, [hl]
 	ld e, a
-	ld d, $0
-	ld hl, $50c7
+	ld d, 0
+	ld hl, Jumptable_11d0c7
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -107105,8 +107212,8 @@ INCBIN "baserom.gbc",$17051f,$170687 - $17051f
 Function170687: ; 170687
 	ld a, [ScriptVar]
 	ld e, a
-	ld d, $0
-	ld hl, $4696
+	ld d, 0
+	ld hl, Jumptable_170696
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -107860,8 +107967,8 @@ Function171a11: ; 171a11 (5c:5a11)
 Function171a36: ; 171a36 (5c:5a36)
 	ld a, [$cd49]
 	ld e, a
-	ld d, $0
-	ld hl, $5a45
+	ld d, 0
+	ld hl, Jumptable_171a45
 	add hl, de
 	add hl, de
 	ld a, [hli]

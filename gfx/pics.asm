@@ -3,19 +3,19 @@ INCLUDE "includes.asm"
 
 SECTION "Pic Pointers", ROMX, BANK[PIC_POINTERS]
 
-PicPointers:
+PicPointers::
 INCLUDE "gfx/pics/pic_pointers.asm"
 
 
 SECTION "Unown Pic Pointers", ROMX, BANK[UNOWN_PIC_POINTERS]
 
-UnownPicPointers:
+UnownPicPointers::
 INCLUDE "gfx/pics/unown_pic_pointers.asm"
 
 
 SECTION "Trainer Pic Pointers", ROMX, BANK[TRAINER_PIC_POINTERS]
 
-TrainerPicPointers:
+TrainerPicPointers::
 INCLUDE "gfx/pics/trainer_pic_pointers.asm"
 
 

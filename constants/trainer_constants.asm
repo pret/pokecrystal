@@ -1,3 +1,5 @@
+NUM_TRAINER_CLASSES EQU $44
+
 ; trainer groups
 FALKNER      EQU $01
 WHITNEY      EQU $02
