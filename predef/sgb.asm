@@ -464,7 +464,7 @@ Function8969: ; 8969
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, Palettes_a8ce
+	ld de, PokemonPalettes
 	add hl, de
 	ld a, [$cf65]
 	and 3
