@@ -5107,7 +5107,7 @@ Copyright: ; 63e2
 	call Functione5f
 	ld de, CopyrightGFX
 	ld hl, VTiles2 + $600 ; tile $60
-	ld bc, BANK(CopyrightGFX) << 8 + $1d
+	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
 	hlcoord 2, 7
 	ld de, CopyrightString
@@ -58039,7 +58039,7 @@ _EvolutionAnimation: ; 4e607
 
 	ld de, EvolutionGFX
 	ld hl, VTiles0
-	ld bc, BANK(EvolutionGFX) << 8 + 8
+	lb bc, BANK(EvolutionGFX), 8
 	call Request2bpp
 
 	xor a
@@ -65608,7 +65608,7 @@ GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
 	ld hl, $9310
-	ld bc, BANK(KrisBackpic) << 8 + (7 * 7) ; dimensions
+	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret
 ; 88ed6
@@ -79482,7 +79482,7 @@ TownMapPlayerIcon: ; 91fa6
 Function91ff2: ; 91ff2
 	ld hl, TownMapGFX
 	ld de, VTiles2
-	ld bc, BANK(TownMapGFX) << 8 + $30
+	lb bc, BANK(TownMapGFX), $30
 	call Functione73
 	ret
 ; 91fff
@@ -89689,23 +89689,23 @@ Options_TextSpeed: ; e42f5
 
 GetTextSpeed: ; e4346
 	ld a, [Options] ;This converts the number of frames, to 0,1,2 representing speed
-	and $7
-	cp $5 ;5 frames of delay is slow
-	jr z, SpeedSlow
-	cp $1 ;1 frame of delay is fast
-	jr z, SpeedFast
-	ld c, $1 ;set it to mid if not one of the above
-	ld de, $0105
+	and 7
+	cp 5 ;5 frames of delay is slow
+	jr z, .slow
+	cp 1 ;1 frame of delay is fast
+	jr z, .fast
+	ld c, 1 ;set it to mid if not one of the above
+	lb de, 1, 5
 	ret
 
-SpeedSlow
-	ld c, $2
-	ld de, $0301
+.slow
+	ld c, 2
+	lb de, 3, 1
 	ret
 
-SpeedFast
-	ld c, $0
-	ld de, $0503
+.fast
+	ld c, 0
+	lb de, 5, 3
 	ret
 ; e4365
 
@@ -90156,7 +90156,7 @@ Functione4579: ; e4579
 Functione45e8: ; e45e8
 	ld de, GameFreakLogo
 	ld hl, VTiles2
-	ld bc, BANK(GameFreakLogo) << 8 + $1c
+	lb bc, BANK(GameFreakLogo), $1c
 	call Get1bpp
 	ld a, [rSVBK]
 	push af
@@ -90217,7 +90217,7 @@ Functione4670: ; e4670
 	ld a, [$cf63]
 	ld e, a
 	ld d, 0
-	ld hl, .pointers
+	ld hl, Jumptable_e467f
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -90226,7 +90226,7 @@ Functione4670: ; e4670
 	jp [hl]
 ; e467f
 
-.pointers
+Jumptable_e467f: ; e467f
 	dw Functione468c
 	dw Functione468d
 	dw Functione46ba
@@ -90315,7 +90315,7 @@ Functione46ed: ; e46ed (39:46ed)
 	ld hl, $b
 	add hl, bc
 	ld e, [hl]
-	ld d, $0
+	ld d, 0
 	ld hl, Jumptable_e46fd
 	add hl, de
 	add hl, de
@@ -90372,7 +90372,7 @@ Functione470d: ; e470d (39:470d)
 	ld a, [hl]
 	sub $30
 	ld [hl], a
-	ld de, $c7
+	ld de, SFX_DITTO_BOUNCE
 	call PlaySFX
 	ret
 .asm_e4747
@@ -90382,7 +90382,7 @@ Functione470d: ; e470d (39:470d)
 	ld hl, $d
 	add hl, bc
 	ld [hl], $0
-	ld de, $c1
+	ld de, SFX_DITTO_POP_UP
 	call PlaySFX
 	ret
 
@@ -90402,7 +90402,7 @@ Functione4759: ; e4759 (39:4759)
 	ld hl, $d
 	add hl, bc
 	ld [hl], $0
-	ld de, $c2
+	ld de, SFX_DITTO_TRANSFORM
 	call PlaySFX
 	ret
 
@@ -90418,7 +90418,7 @@ Functione4776: ; e4776 (39:4776)
 	srl a
 	ld e, a
 	ld d, $0
-	ld hl, UnknownDatae47ac
+	ld hl, Unknown_e47ac
 	add hl, de
 	add hl, de
 	ld a, [rSVBK] ; $ff00+$70
@@ -90445,8 +90445,27 @@ Functione47ab: ; e47ab (39:47ab)
 	ret
 ; e47ac (39:47ac)
 
-UnknownDatae47ac: ; e47ac
-INCBIN "baserom.gbc",$e47ac,$e47cc - $e47ac
+Unknown_e47ac: ; e47ac
+; Ditto's color as it turns into the Game Freak logo.
+; Fade from pink to orange.
+; One color per step.
+	RGB 23, 12, 28
+	RGB 23, 12, 27
+	RGB 23, 13, 26
+	RGB 23, 13, 24
+	RGB 24, 14, 22
+	RGB 24, 14, 20
+	RGB 24, 15, 18
+	RGB 24, 15, 16
+	RGB 25, 16, 14
+	RGB 25, 16, 12
+	RGB 25, 17, 10
+	RGB 25, 17, 08
+	RGB 26, 18, 06
+	RGB 26, 18, 04
+	RGB 26, 19, 02
+	RGB 26, 19, 00
+;' e47cc
  
 GameFreakLogo: ; e47cc
 INCBIN "gfx/splash/logo.1bpp"
@@ -90477,7 +90496,7 @@ Functione48bc: ; e48bc
 	jp Functione48bc
 
 .asm_e48db
-	ld de, $0000
+	ld de, MUSIC_NONE
 	call PlayMusic
 
 .asm_e48e1
@@ -90514,8 +90533,8 @@ Functione4901: ; e4901
 Functione490f: ; e490f
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, Jumptable_e491e
+	ld d, 0
+	ld hl, IntroScenes
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -90525,46 +90544,44 @@ Functione490f: ; e490f
 ; e491e
 
 
-; no known jump sources
-Jumptable_e491e: ; e491e (39:491e)
-	dw Functione495b
-	dw Functione49d6
-	dw Functione49fd
-	dw Functione4a69
-	dw Functione4a7a
-	dw Functione4af7
-	dw Functione4b3f
-	dw Functione4bd3
-	dw Functione4c04
-	dw Functione4c4f
-	dw Functione4c86
-	dw Functione4cfa
-	dw Functione4d6d
-	dw Functione4dfa
-	dw Functione4e40
-	dw Functione4edc
-	dw Functione4ef5
-	dw Functione4f67
-	dw Functione4f7e
-	dw Functione5019
-	dw Functione505d
-	dw Functione5072
-	dw Functione5086
-	dw Functione508e
-	dw Functione50ad
-	dw Functione50bb
-	dw Functione512d
-	dw Functione5152
+IntroScenes: ; e491e (39:491e)
+	dw IntroScene1
+	dw IntroScene2
+	dw IntroScene3
+	dw IntroScene4
+	dw IntroScene5
+	dw IntroScene6
+	dw IntroScene7
+	dw IntroScene8
+	dw IntroScene9
+	dw IntroScene10
+	dw IntroScene11
+	dw IntroScene12
+	dw IntroScene13
+	dw IntroScene14
+	dw IntroScene15
+	dw IntroScene16
+	dw IntroScene17
+	dw IntroScene18
+	dw IntroScene19
+	dw IntroScene20
+	dw IntroScene21
+	dw IntroScene22
+	dw IntroScene23
+	dw IntroScene24
+	dw IntroScene25
+	dw IntroScene26
+	dw IntroScene27
+	dw IntroScene28
 
 
-; known jump sources: e49d2 (39:49d2), e49f9 (39:49f9), e4a65 (39:4a65), e4a76 (39:4a76), e4af3 (39:4af3), e4b3b (39:4b3b), e4bcf (39:4bcf), e4c00 (39:4c00), e4c4b (39:4c4b), e4c82 (39:4c82), e4cf6 (39:4cf6), e4d32 (39:4d32), e4df6 (39:4df6), e4e3c (39:4e3c), e4ed8 (39:4ed8), e4ef1 (39:4ef1), e4f63 (39:4f63), e4f7a (39:4f7a), e5015 (39:5015), e5059 (39:5059), e506e (39:506e), e5082 (39:5082), e508a (39:508a), e50a9 (39:50a9), e50b7 (39:50b7), e5129 (39:5129), e5149 (39:5149)
-Functione4956: ; e4956 (39:4956)
+NextIntroScene: ; e4956 (39:4956)
 	ld hl, $cf63
 	inc [hl]
 	ret
 
-; no known jump sources
-Functione495b: ; e495b (39:495b)
+IntroScene1: ; e495b (39:495b)
+; Setup the next scene.
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -90590,11 +90607,11 @@ Functione495b: ; e495b (39:495b)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae65ad
+	ld hl, Unknown_e65ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae65ad
+	ld hl, Unknown_e65ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -90612,11 +90629,11 @@ Functione495b: ; e495b (39:495b)
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione49d6: ; e49d6 (39:49d6)
+IntroScene2: ; e49d6 (39:49d6)
+; First Unown (A) fades in, pulses, then fades out.
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
@@ -90627,7 +90644,7 @@ Functione49d6: ; e49d6 (39:49d6)
 	push af
 	ld de, $5858
 	call Functione51dc
-	ld de, $be
+	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
 .asm_e49f1
@@ -90636,11 +90653,11 @@ Functione49d6: ; e49d6 (39:49d6)
 	call Functione5223
 	ret
 .asm_e49f9
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione49fd: ; e49fd (39:49fd)
+IntroScene3: ; e49fd (39:49fd)
+; More setup. Transition to the outdoor scene.
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -90663,11 +90680,11 @@ Functione49fd: ; e49fd (39:49fd)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae5edd
+	ld hl, Unknown_e5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae5edd
+	ld hl, Unknown_e5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -90684,11 +90701,11 @@ Functione49fd: ; e49fd (39:49fd)
 	call Functione549e
 	xor a
 	ld [$cf64], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4a69: ; e4a69 (39:4a69)
+IntroScene4: ; e4a69 (39:4a69)
+; Scroll the outdoor panorama for a bit.
 	call Functione552f
 	ld hl, $cf64
 	ld a, [hl]
@@ -90697,11 +90714,11 @@ Functione4a69: ; e4a69 (39:4a69)
 	inc [hl]
 	ret
 .asm_e4a76
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4a7a: ; e4a7a (39:4a7a)
+IntroScene5: ; e4a7a (39:4a7a)
+; Go back to the Unown.
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -90728,11 +90745,11 @@ Functione4a7a: ; e4a7a (39:4a7a)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae65ad
+	ld hl, Unknown_e65ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae65ad
+	ld hl, Unknown_e65ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -90750,11 +90767,11 @@ Functione4a7a: ; e4a7a (39:4a7a)
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4af7: ; e4af7 (39:4af7)
+IntroScene6: ; e4af7 (39:4af7)
+; Two more Unown (I, H) fade in.
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
@@ -90771,7 +90788,7 @@ Functione4af7: ; e4af7 (39:4af7)
 	push af
 	ld de, $3878
 	call Functione51dc
-	ld de, $bf
+	ld de, SFX_INTRO_UNOWN_2
 	call PlaySFX
 	pop af
 .asm_e4b1c
@@ -90783,7 +90800,7 @@ Functione4af7: ; e4af7 (39:4af7)
 	push af
 	ld de, $7030
 	call Functione51dc
-	ld de, $be
+	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
 .asm_e4b32
@@ -90792,11 +90809,11 @@ Functione4af7: ; e4af7 (39:4af7)
 	call Functione5223
 	ret
 .asm_e4b3b
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4b3f: ; e4b3f (39:4b3f)
+IntroScene7: ; e4b3f (39:4b3f)
+; Back to the outdoor scene.
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -90825,11 +90842,11 @@ Functione4b3f: ; e4b3f (39:4b3f)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae5edd
+	ld hl, Unknown_e5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae5edd
+	ld hl, Unknown_e5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -90853,11 +90870,11 @@ Functione4b3f: ; e4b3f (39:4b3f)
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4bd3: ; e4bd3 (39:4bd3)
+IntroScene8: ; e4bd3 (39:4bd3)
+; Scroll the scene, then show Suicune running across the screen.
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
@@ -90867,7 +90884,7 @@ Functione4bd3: ; e4bd3 (39:4bd3)
 	call Functione552f
 	ret
 .asm_e4be2
-	ld de, $c6
+	ld de, SFX_INTRO_SUICUNE_3
 	call PlaySFX
 .asm_e4be8
 	ld a, [$c3c0]
@@ -90877,14 +90894,14 @@ Functione4bd3: ; e4bd3 (39:4bd3)
 	ld [$c3c0], a
 	ret
 .asm_e4bf4
-	ld de, $c5
+	ld de, SFX_INTRO_SUICUNE_2
 	call PlaySFX
 	callba Function8d03d
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4c04: ; e4c04 (39:4c04)
+IntroScene9: ; e4c04 (39:4c04)
+; Set up the next scene (same bg).
 	xor a
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	call ClearSprites
@@ -90914,42 +90931,44 @@ Functione4c04: ; e4c04 (39:4c04)
 	ld [$c3c0], a
 	xor a
 	ld [$cf64], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4c4f: ; e4c4f (39:4c4f)
+IntroScene10: ; e4c4f (39:4c4f)
+; Wooper and Pichu enter.
 	call Functione546d
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
 	cp $c0
-	jr z, .asm_e4c82
+	jr z, .done
 	cp $20
-	jr z, .asm_e4c73
+	jr z, .wooper
 	cp $40
-	jr z, .asm_e4c64
-	ret
-.asm_e4c64
-	ld de, $a980
-	ld a, $27
-	call Function3b2a
-	ld de, $c4
-	call PlaySFX
-	ret
-.asm_e4c73
-	ld de, $b030
-	ld a, $28
-	call Function3b2a
-	ld de, $c4
-	call PlaySFX
-	ret
-.asm_e4c82
-	call Functione4956
+	jr z, .pichu
 	ret
 
-; no known jump sources
-Functione4c86: ; e4c86 (39:4c86)
+.pichu
+	lb de, $a9, $80
+	ld a, $27
+	call Function3b2a
+	ld de, SFX_INTRO_PICHU
+	call PlaySFX
+	ret
+
+.wooper
+	lb de, $b0, $30
+	ld a, $28
+	call Function3b2a
+	ld de, SFX_INTRO_PICHU
+	call PlaySFX
+	ret
+.done
+	call NextIntroScene
+	ret
+
+IntroScene11: ; e4c86 (39:4c86)
+; Back to Unown again.
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -90973,11 +90992,11 @@ Functione4c86: ; e4c86 (39:4c86)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae65ad
+	ld hl, Unknown_e65ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae65ad
+	ld hl, Unknown_e65ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -90995,11 +91014,11 @@ Functione4c86: ; e4c86 (39:4c86)
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4cfa: ; e4cfa (39:4cfa)
+IntroScene12: ; e4cfa (39:4cfa)
+; Even more Unown.
 	call Functione4d36
 	ld hl, $cf64
 	ld a, [hl]
@@ -91031,14 +91050,13 @@ Functione4cfa: ; e4cfa (39:4cfa)
 	call Functione5223
 	ret
 .asm_e4d32
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; known jump sources: e4cfa (39:4cfa)
 Functione4d36: ; e4d36 (39:4d36)
 	ld a, [$cf64]
 	ld c, a
-	ld hl, UnknownDatae4d54
+	ld hl, Unknown_e4d54
 .asm_e4d3d
 	ld a, [hli]
 	cp $ff
@@ -91059,11 +91077,20 @@ Functione4d36: ; e4d36 (39:4d36)
 	ret
 ; e4d54 (39:4d54)
 
-UnknownDatae4d54: ; e4d54
-INCBIN "baserom.gbc",$e4d54,$e4d6d - $e4d54
+Unknown_e4d54: ; e4d54
+	dbw $00, SFX_INTRO_UNOWN_3
+	dbw $20, SFX_INTRO_UNOWN_2
+	dbw $40, SFX_INTRO_UNOWN_1
+	dbw $60, SFX_INTRO_UNOWN_2
+	dbw $80, SFX_INTRO_UNOWN_3
+	dbw $90, SFX_INTRO_UNOWN_2
+	dbw $a0, SFX_INTRO_UNOWN_1
+	dbw $b0, SFX_INTRO_UNOWN_2
+	db $ff
+; e4d6d
 
-; no known jump sources
-Functione4d6d: ; e4d6d (39:4d6d)
+IntroScene13: ; e4d6d (39:4d6d)
+; Switch scenes again.
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -91089,11 +91116,11 @@ Functione4d6d: ; e4d6d (39:4d6d)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae5edd
+	ld hl, Unknown_e5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae5edd
+	ld hl, Unknown_e5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -91107,10 +91134,10 @@ Functione4d6d: ; e4d6d (39:4d6d)
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
 	callba Function8cf53
-	ld de, $6c58
+	lb de, $6c, $58
 	ld a, $26
 	call Function3b2a
-	ld de, $62
+	ld de, MUSIC_CRYSTAL_OPENING
 	call PlayMusic
 	xor a
 	ld [$c3c0], a
@@ -91118,28 +91145,30 @@ Functione4d6d: ; e4d6d (39:4d6d)
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4dfa: ; e4dfa (39:4dfa)
+IntroScene14: ; e4dfa (39:4dfa)
+; Suicune runs then jumps.
 	ld a, [hSCX] ; $ff00+$cf
-	sub $a
+	sub 10
 	ld [hSCX], a ; $ff00+$cf
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
 	cp $80
-	jr z, .asm_e4e3c
+	jr z, .done
 	cp $60
-	jr z, .asm_e4e14
+	jr z, .jump
 	jr nc, .asm_e4e1a
 	cp $40
 	jr nc, .asm_e4e33
 	ret
-.asm_e4e14
-	ld de, $c8
+
+.jump
+	ld de, SFX_INTRO_SUICUNE_4
 	call PlaySFX
+
 .asm_e4e1a
 	ld a, $1
 	ld [$cf65], a
@@ -91149,20 +91178,23 @@ Functione4dfa: ; e4dfa (39:4dfa)
 	sub $8
 	ld [$c3c0], a
 	ret
+
 .asm_e4e2c
 	callba Function8d03d
 	ret
+
 .asm_e4e33
 	ld a, [$c3c0]
 	sub $2
 	ld [$c3c0], a
 	ret
-.asm_e4e3c
-	call Functione4956
+
+.done
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4e40: ; e4e40 (39:4e40)
+IntroScene15: ; e4e40 (39:4e40)
+; Transition to a new scene.
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -91181,9 +91213,9 @@ Functione4e40: ; e4e40 (39:4e40)
 	ld hl, IntroUnownBackGFX
 	ld de, $8000
 	call Functione54c2
-	ld de, UnknownDatae7a5d
+	ld de, GFX_e7a5d
 	ld hl, $8800
-	ld bc, $3901
+	lb bc, BANK(GFX_e7a5d), 1
 	call Request2bpp
 	ld hl, IntroTilemap010
 	ld de, $9800
@@ -91193,11 +91225,11 @@ Functione4e40: ; e4e40 (39:4e40)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae77dd
+	ld hl, Unknown_e77dd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae77dd
+	ld hl, Unknown_e77dd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -91213,38 +91245,38 @@ Functione4e40: ; e4e40 (39:4e40)
 	ld [hWY], a ; $ff00+$d2
 	callba Function8cf53
 	call Functione549e
-	ld de, $4028
+	lb de, $40, $28
 	ld a, $2a
 	call Function3b2a
-	ld de, $6000
+	lb de, $60, $00
 	ld a, $2b
 	call Function3b2a
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4edc: ; e4edc (39:4edc)
+IntroScene16: ; e4edc (39:4edc)
+; Suicune shows its face. An Unown appears in front.
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
 	cp $80
-	jr nc, .asm_e4ef1
+	jr nc, .done
 	call Functione5441
 	ld a, [hSCY] ; $ff00+$d0
 	and a
 	ret z
-	add $8
+	add 8
 	ld [hSCY], a ; $ff00+$d0
 	ret
-.asm_e4ef1
-	call Functione4956
+.done
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4ef5: ; e4ef5 (39:4ef5)
+IntroScene17: ; e4ef5 (39:4ef5)
+; ...
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -91267,11 +91299,11 @@ Functione4ef5: ; e4ef5 (39:4ef5)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae6d6d
+	ld hl, Unknown_e6d6d
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae6d6d
+	ld hl, Unknown_e6d6d
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -91289,28 +91321,28 @@ Functione4ef5: ; e4ef5 (39:4ef5)
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4f67: ; e4f67 (39:4f67)
+IntroScene18: ; e4f67 (39:4f67)
+; Suicune close up.
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
 	cp $60
-	jr nc, .asm_e4f7a
+	jr nc, .done
 	ld a, [hSCX] ; $ff00+$cf
 	cp $60
 	ret z
-	add $8
+	add 8
 	ld [hSCX], a ; $ff00+$cf
 	ret
-.asm_e4f7a
-	call Functione4956
+.done
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione4f7e: ; e4f7e (39:4f7e)
+IntroScene19: ; e4f7e (39:4f7e)
+; More setup.
 	call Functione54a3
 	call ClearSprites
 	call ClearTileMap
@@ -91329,9 +91361,9 @@ Functione4f7e: ; e4f7e (39:4f7e)
 	ld hl, IntroUnownsGFX
 	ld de, $8800
 	call Functione54c2
-	ld de, UnknownDatae7a5d
+	ld de, GFX_e7a5d
 	ld hl, $8ff0
-	ld bc, $3901
+	lb bc, BANK(GFX_e7a5d), 1
 	call Request2bpp
 	ld hl, IntroTilemap014
 	ld de, $9800
@@ -91341,11 +91373,11 @@ Functione4f7e: ; e4f7e (39:4f7e)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae77dd
+	ld hl, Unknown_e77dd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae77dd
+	ld hl, Unknown_e77dd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -91365,17 +91397,17 @@ Functione4f7e: ; e4f7e (39:4f7e)
 	ld [hli], a
 	ld [hl], $7f
 	call Functione549e
-	ld de, $6000
+	lb de, $60, $00
 	ld a, $2b
 	call Function3b2a
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione5019: ; e5019 (39:5019)
+IntroScene20: ; e5019 (39:5019)
+; Suicune running away. A bunch of Unown appear.
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
@@ -91391,6 +91423,7 @@ Functione5019: ; e5019 (39:5019)
 	inc a
 	ld [hSCY], a ; $ff00+$d0
 	ret
+
 .asm_e5032
 	sub $18
 	ld c, a
@@ -91407,13 +91440,21 @@ Functione5019: ; e5019 (39:5019)
 	ret
 ; e5049 (39:5049)
 
-INCBIN "baserom.gbc",$e5049,$e5059 - $e5049
-.asm_e5059
-	call Functione4956
+	ld a, c
+	and $1c
+	srl a
+	srl a
+	ld [$cf65], a
+	ld a, 1
+	call Functione5348
 	ret
 
-; no known jump sources
-Functione505d: ; e505d (39:505d)
+.asm_e5059
+	call NextIntroScene
+	ret
+
+IntroScene21: ; e505d (39:505d)
+; Suicune gets more distant and turns black.
 	call Functione5451
 	ld c, $3
 	call DelayFrames
@@ -91421,36 +91462,35 @@ Functione505d: ; e505d (39:505d)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione5072: ; e5072 (39:5072)
+IntroScene22: ; e5072 (39:5072)
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
 	cp $8
-	jr nc, .asm_e507c
+	jr nc, .done
 	ret
-.asm_e507c
+.done
 	callba Function8d03d
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione5086: ; e5086 (39:5086)
+IntroScene23: ; e5086 (39:5086)
 	xor a
 	ld [$cf64], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione508e: ; e508e (39:508e)
+IntroScene24: ; e508e (39:508e)
+; Fade to white.
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
 	cp $20
-	jr nc, .asm_e50a4
+	jr nc, .done
+
 	ld c, a
 	and $3
 	ret nz
@@ -91459,25 +91499,26 @@ Functione508e: ; e508e (39:508e)
 	sla a
 	call Functione5172
 	ret
-.asm_e50a4
+
+.done
 	ld a, $40
 	ld [$cf64], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione50ad: ; e50ad (39:50ad)
+IntroScene25: ; e50ad (39:50ad)
+; Wait around a bit.
 	ld a, [$cf64]
 	dec a
-	jr z, .asm_e50b7
+	jr z, .done
 	ld [$cf64], a
 	ret
-.asm_e50b7
-	call Functione4956
+.done
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione50bb: ; e50bb (39:50bb)
+IntroScene26: ; e50bb (39:50bb)
+; Load the final scene.
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
@@ -91500,11 +91541,11 @@ Functione50bb: ; e50bb (39:50bb)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, UnknownDatae679d
+	ld hl, Unknown_e679d
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, UnknownDatae679d
+	ld hl, Unknown_e679d
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -91522,18 +91563,19 @@ Functione50bb: ; e50bb (39:50bb)
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	call Functione4956
+	call NextIntroScene
 	ret
 
-; no known jump sources
-Functione512d: ; e512d (39:512d)
+IntroScene27: ; e512d (39:512d)
+; Spell out C R Y S T A L with Unown.
 	ld hl, $cf65
 	inc [hl]
 	ld hl, $cf64
 	ld a, [hl]
 	inc [hl]
 	cp $80
-	jr nc, .asm_e5149
+	jr nc, .done
+
 	ld c, a
 	and $f
 	ld [$cf65], a
@@ -91542,37 +91584,41 @@ Functione512d: ; e512d (39:512d)
 	swap a
 	call Functione539d
 	ret
-.asm_e5149
-	call Functione4956
+
+.done
+	call NextIntroScene
 	ld a, $80
 	ld [$cf64], a
 	ret
 
-; no known jump sources
-Functione5152: ; e5152 (39:5152)
+IntroScene28: ; e5152 (39:5152)
+; Cut out when the music ends, and lead into the title screen.
 	ld hl, $cf64
 	ld a, [hl]
 	and a
-	jr z, .asm_e516c
+	jr z, .done
 	dec [hl]
 	cp $18
-	jr z, .asm_e5168
+	jr z, .clear
 	cp $8
 	ret nz
-	ld de, $cb
+
+	ld de, SFX_UNKNOWN_CB
 	call PlaySFX
 	ret
-.asm_e5168
+
+.clear
 	call WhiteBGMap
 	ret
-.asm_e516c
+
+.done
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 
-; known jump sources: e50a0 (39:50a0)
+
 Functione5172: ; e5172 (39:5172)
-	ld hl, UnknownDatae519c
+	ld hl, Unknown_e519c
 	add l
 	ld l, a
 	ld a, $0
@@ -91603,8 +91649,48 @@ Functione5172: ; e5172 (39:5172)
 	ret
 ; e519c (39:519c)
 
-UnknownDatae519c: ; e519c
-INCBIN "baserom.gbc",$e519c,$e51dc - $e519c
+Unknown_e519c: ; e519c
+; Fade to white.
+	RGB 24, 12, 09
+	RGB 31, 31, 31
+	RGB 12, 00, 31
+	RGB 00, 00, 00
+
+	RGB 31, 19, 05
+	RGB 31, 31, 31
+	RGB 15, 05, 31
+	RGB 07, 07, 07
+
+	RGB 31, 21, 09
+	RGB 31, 31, 31
+	RGB 18, 09, 31
+	RGB 11, 11, 11
+
+	RGB 31, 23, 13
+	RGB 31, 31, 31
+	RGB 21, 13, 31
+	RGB 15, 15, 15
+
+	RGB 31, 25, 17
+	RGB 31, 31, 31
+	RGB 25, 17, 31
+	RGB 19, 19, 19
+
+	RGB 31, 27, 21
+	RGB 31, 31, 31
+	RGB 27, 21, 31
+	RGB 23, 23, 23
+
+	RGB 31, 29, 25
+	RGB 31, 31, 31
+	RGB 29, 26, 31
+	RGB 27, 27, 27
+
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+; e51dc
 
 ; known jump sources: e49e7 (39:49e7), e4b12 (39:4b12), e4b28 (39:4b28)
 Functione51dc: ; e51dc (39:51dc)
@@ -91617,6 +91703,7 @@ Functione51dc: ; e51dc (39:51dc)
 	ld a, $3c
 	call Function3b3c
 	pop de
+
 	push de
 	ld a, $29
 	call Function3b2a
@@ -91626,6 +91713,7 @@ Functione51dc: ; e51dc (39:51dc)
 	ld a, $3b
 	call Function3b3c
 	pop de
+
 	push de
 	ld a, $29
 	call Function3b2a
@@ -91635,6 +91723,7 @@ Functione51dc: ; e51dc (39:51dc)
 	ld a, $39
 	call Function3b3c
 	pop de
+
 	ld a, $29
 	call Function3b2a
 	ld hl, $c
@@ -91679,7 +91768,7 @@ Functione5223: ; e5223 (39:5223)
 	pop bc
 	pop hl
 	push hl
-	ld hl, UnknownDatae5288
+	ld hl, Unknown_e5288
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -91691,7 +91780,7 @@ Functione5223: ; e5223 (39:5223)
 	ld a, d
 	ld [hli], a
 	push hl
-	ld hl, UnknownDatae52c8
+	ld hl, Unknown_e52c8
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -91703,7 +91792,7 @@ Functione5223: ; e5223 (39:5223)
 	ld a, d
 	ld [hli], a
 	push hl
-	ld hl, UnknownDatae5308
+	ld hl, Unknown_e5308
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -91721,23 +91810,41 @@ Functione5223: ; e5223 (39:5223)
 	ret
 ; e5288 (39:5288)
 
-UnknownDatae5288: ; e5288
-INCBIN "baserom.gbc",$e5288,$e52c8 - $e5288
+Unknown_e5288: ; e5288
+; Fade between black and white.
+hue = 0
+rept 32
+	RGB hue, hue, hue
+hue = hue + 1
+endr
+; e52c8
 
-UnknownDatae52c8: ; e52c8
-INCBIN "baserom.gbc",$e52c8,$e5308 - $e52c8
+Unknown_e52c8: ; e52c8
+; Fade between black and light blue.
+hue = 0
+rept 32
+	RGB 0, hue / 2, hue
+hue = hue + 1
+endr
+; e5308
 
-UnknownDatae5308: ; e5308
-INCBIN "baserom.gbc",$e5308,$e5348 - $e5308
+Unknown_e5308: ; e5308
+; Fade between black and blue.
+hue = 0
+rept 32
+	RGB 0, 0, hue
+hue = hue + 1
+endr
+; e5348
 
 ; known jump sources: e5045 (39:5045)
 Functione5348: ; e5348 (39:5348)
 	and a
 	jr nz, .asm_e5350
-	ld hl, UnknownDatae538d
+	ld hl, Unknown_e538d
 	jr .asm_e5353
 .asm_e5350
-	ld hl, UnknownDatae5395
+	ld hl, Unknown_e5395
 .asm_e5353
 	ld a, [$cf65]
 	and $7
@@ -91776,10 +91883,10 @@ Functione5348: ; e5348 (39:5348)
 	ret
 ; e538d (39:538d)
 
-UnknownDatae538d: ; e538d
+Unknown_e538d: ; e538d
 INCBIN "baserom.gbc",$e538d,$e5395 - $e538d
 
-UnknownDatae5395: ; e5395
+Unknown_e5395: ; e5395
 INCBIN "baserom.gbc",$e5395,$e539d - $e5395
 
 ; known jump sources: e5145 (39:5145)
@@ -91804,7 +91911,7 @@ Functione539d: ; e539d (39:539d)
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
 	push hl
-	ld hl, UnknownDatae53db
+	ld hl, Unknown_e53db
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
@@ -91815,7 +91922,7 @@ Functione539d: ; e539d (39:539d)
 	ld a, d
 	ld [hli], a
 	push hl
-	ld hl, UnknownDatae53fb
+	ld hl, Unknown_e53fb
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
@@ -91832,10 +91939,10 @@ Functione539d: ; e539d (39:539d)
 	ret
 ; e53db (39:53db)
 
-UnknownDatae53db: ; e53db
+Unknown_e53db: ; e53db
 INCBIN "baserom.gbc",$e53db,$e53fb - $e53db
 
-UnknownDatae53fb: ; e53fb
+Unknown_e53fb: ; e53fb
 INCBIN "baserom.gbc",$e53fb,$e541b - $e53fb
 
 ; known jump sources: e4e84 (39:4e84), e4fc2 (39:4fc2)
@@ -91911,7 +92018,7 @@ Functione546d: ; e546d (39:546d)
 	srl a
 	ld e, a
 	ld d, $0
-	ld hl, UnknownDatae5496
+	ld hl, Unknown_e5496
 	add hl, de
 	ld a, [hli]
 	ld [$cf68], a
@@ -91926,7 +92033,7 @@ Functione546d: ; e546d (39:546d)
 	ret
 ; e5496 (39:5496)
 
-UnknownDatae5496: ; e5496
+Unknown_e5496: ; e5496
 INCBIN "baserom.gbc",$e5496,$e549e - $e5496
 
 ; known jump sources: e49c8 (39:49c8), e4a5e (39:4a5e), e4ae9 (39:4ae9), e4bc5 (39:4bc5), e4cec (39:4cec), e4dec (39:4dec), e4ebe (39:4ebe), e4f59 (39:4f59), e5003 (39:5003), e511f (39:511f)
@@ -92067,7 +92174,7 @@ IntroTilemap003: ; e5ecd
 INCBIN "gfx/intro/003.tilemap.lz"
 ; e5edd
 
-UnknownDatae5edd: ; e5edd
+Unknown_e5edd: ; e5edd
 INCBIN "baserom.gbc", $e5edd, $e5f5d - $e5edd
 
 IntroUnownsGFX: ; e5f5d
@@ -92102,7 +92209,7 @@ IntroTilemap007: ; e655d
 INCBIN "gfx/intro/007.tilemap.lz"
 ; e65ad
 
-UnknownDatae65ad: ; e65ad
+Unknown_e65ad: ; e65ad
 INCBIN "baserom.gbc", $e65ad, $e662d - $e65ad
 
 IntroCrystalUnownsGFX: ; e662d
@@ -92117,7 +92224,7 @@ IntroTilemap015: ; e676d
 INCBIN "gfx/intro/015.tilemap.lz"
 ; e679d
 
-UnknownDatae679d: ; e679d
+Unknown_e679d: ; e679d
 INCBIN "baserom.gbc", $e679d, $e681d - $e679d
 
 IntroSuicuneCloseGFX: ; e681d
@@ -92132,7 +92239,7 @@ IntroTilemap011: ; e6d0d
 INCBIN "gfx/intro/011.tilemap.lz"
 ; e6d6d
 
-UnknownDatae6d6d: ; e6d6d
+Unknown_e6d6d: ; e6d6d
 INCBIN "baserom.gbc", $e6d6d, $e6ded - $e6d6d
 
 IntroSuicuneJumpGFX: ; e6ded
@@ -92159,7 +92266,7 @@ IntroTilemap013: ; e778d
 INCBIN "gfx/intro/013.tilemap.lz"
 ; e77dd
 
-UnknownDatae77dd: ; e77dd
+Unknown_e77dd: ; e77dd
 INCBIN "baserom.gbc", $e77dd, $e785d - $e77dd
 
 IntroUnownBackGFX: ; e785d
@@ -92168,8 +92275,8 @@ INCBIN "gfx/intro/unown_back.2bpp.lz"
 
 INCBIN "baserom.gbc", $e799d, $e7a5d - $e799d
 
-UnknownDatae7a5d: ; e7a5d
-INCBIN "baserom.gbc", $e7a5d, $e7a70 - $e7a5d
+GFX_e7a5d: ; e7a5d
+INCBIN "baserom.gbc", $e7a5d, $e7a6d - $e7a5d
 
 
 
