@@ -4603,15 +4603,15 @@ Function610f: ; 610f
 	ld c, 8
 	call DelayFrames
 
-	ld hl, $5249
-	ld b, $13
+	ld hl, Shrink1Pic
+	ld b, BANK(Shrink1Pic)
 	call Function61b4
 
 	ld c, 8
 	call DelayFrames
 
-	ld hl, $52d9
-	ld b, $13
+	ld hl, Shrink2Pic
+	ld b, BANK(Shrink2Pic)
 	call Function61b4
 
 	ld c, 8
@@ -55772,7 +55772,12 @@ Function4d1cb: ; 4d1cb
 	ret
 ; 4d249
 
-INCBIN "baserom.gbc",$4d249,$4d319 - $4d249
+Shrink1Pic: ; 4d249
+INCBIN "gfx/shrink1.2bpp.lz"
+
+Shrink2Pic: ; 4d2d9
+INCBIN "gfx/shrink2.2bpp.lz"
+; 4d319
 
 Function4d319: ; 4d319
 	ld a, [$cfa9]
@@ -62131,8 +62136,12 @@ INCLUDE "stats/base_stats.asm"
 PokemonNames::
 INCLUDE "stats/pokemon_names.asm"
 
-INCBIN "baserom.gbc",$53d84,$53e2e - $53d84
+INCBIN "baserom.gbc",$53d84,$53d9c - $53d84
 
+UnknownEggPic:: ; 53d9c
+; Another egg pic. This is shifted up a few pixels.
+INCBIN "gfx/misc/unknown_egg.5x5.2bpp.lz"
+; 53e2e
 
 
 SECTION "bank19", ROMX, BANK[$19]
