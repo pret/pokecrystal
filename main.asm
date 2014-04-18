@@ -49347,13 +49347,13 @@ Function4802f: ; 4802f (12:402f)
 .asm_4805a
 	call Function486bf
 	call Functione5f
-	ld de, $48c3
+	ld de, GFX_488c3
 	ld hl, $9100
-	lb bc, $12, $01
+	lb bc, BANK(GFX_488c3), 1
 	call Request1bpp
-	ld de, $48cb
+	ld de, GFX_488cb
 	ld hl, $9110
-	lb bc, $12, $01
+	lb bc, BANK(GFX_488cb), 1
 	call Request1bpp
 	call Function4a3a7
 	call WhiteBGMap
@@ -49384,7 +49384,7 @@ Function4802f: ; 4802f (12:402f)
 	ld bc, $13
 	add hl, bc
 	ld [hl], a
-	ld de, $4471
+	ld de, MobileProfileString
 	ld hl, $c4b5
 	call PlaceString
 	ld hl, $c4c8
@@ -49392,26 +49392,26 @@ Function4802f: ; 4802f (12:402f)
 	ld c, $12
 	call Function48cdc
 	ld hl, $c4f2
-	ld de, $4482
+	ld de, String_48482
 	call PlaceString
 .asm_480d7
 	ld hl, $c51a
-	ld de, $4489
+	ld de, String_48489
 	call PlaceString
 	ld hl, $c542
-	ld de, $448d
+	ld de, String_4848d
 	call PlaceString
 	ld hl, $c56a
-	ld de, $4495
+	ld de, String_48495
 	call PlaceString
 	ld hl, $c592
-	ld de, $449e
+	ld de, String_4849e
 	call PlaceString
 	ld a, [DefaultFlypoint] ; $d002
 	bit 6, a
 	jr nz, .asm_48113
 	ld a, [PlayerGender] ; $d472
-	ld hl, $44fb
+	ld hl, Strings_484fb
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -49422,7 +49422,7 @@ Function4802f: ; 4802f (12:402f)
 	call Function487ec
 	ld a, [$d474]
 	dec a
-	ld hl, $455b
+	ld hl, Prefectures
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -49492,7 +49492,7 @@ Function48187: ; 48187 (12:4187)
 .asm_481a2
 	push de
 	ld hl, $c592
-	ld de, $449e
+	ld de, String_4849e
 	call PlaceString
 	pop de
 .asm_481ad
@@ -49576,7 +49576,7 @@ Function4820d: ; 4820d (12:420d)
 	ld b, $2
 	ld c, $12
 	call ClearBox
-	ld de, $44a1
+	ld de, String_484a1
 	ld hl, $c5e1
 	call PlaceString
 	call WaitBGMap
@@ -49615,9 +49615,9 @@ Function48283: ; 48283 (12:4283)
 asm_4828d: ; 4828d (12:428d)
 	call Function48283
 	ld hl, $c5e1
-	ld de, $44b1
+	ld de, String_484b1
 	call PlaceString
-	ld hl, $44f1
+	ld hl, MenuDataHeader_0x484f1
 	call LoadMenuDataHeader
 	call Function4873c
 	ld hl, $c4d3
@@ -49625,10 +49625,10 @@ asm_4828d: ; 4828d (12:428d)
 	ld c, $7
 	call Function48cdc
 	ld hl, $c4fd
-	ld de, $44fb
+	ld de, String_484fb
 	call PlaceString
 	ld hl, $c525
-	ld de, $44ff
+	ld de, String_484ff
 	call PlaceString
 	call WaitBGMap
 	ld a, [PlayerGender] ; $d472
@@ -49641,7 +49641,7 @@ asm_4828d: ; 4828d (12:428d)
 	jp z, Function4840c
 	ld hl, $cfa9
 	ld a, [hl]
-	ld hl, $44fb
+	ld hl, Strings_484fb
 	cp $1
 	jr z, .asm_482ed
 .asm_482e1
@@ -49668,11 +49668,11 @@ asm_4828d: ; 4828d (12:428d)
 Function48304: ; 48304 (12:4304)
 	call Function48283
 	ld hl, $c5e1
-	ld de, $44cf
+	ld de, String_484cf
 	call PlaceString
-	ld hl, $4504
+	ld hl, MenuDataHeader_0x48504
 	call LoadMenuDataHeader
-	ld hl, $4513
+	ld hl, MenuDataHeader_0x48513
 	call LoadMenuDataHeader
 	ld hl, $c4aa
 	ld b, $c
@@ -49792,7 +49792,34 @@ Function483bb: ; 483bb (12:43bb)
 	ret
 ; 483e8 (12:43e8)
 
-INCBIN "baserom.gbc",$483e8,$4840c - $483e8
+Function483e8: ; 483e8
+	push de
+	ld hl, Prefectures
+	ld a, [MenuSelection]
+	cp $ff
+	jr nz, .asm_483f8
+	ld hl, Wakayama ; last string
+	jr .asm_48405
+
+.asm_483f8
+	ld d, a
+	and a
+	jr z, .asm_48405
+.asm_483fc
+	ld a, [hli]
+	cp "@"
+	jr nz, .asm_483fc
+	ld a, d
+	dec a
+	jr .asm_483f8
+
+.asm_48405
+	ld d, h
+	ld e, l
+	pop hl
+	call PlaceString
+	ret
+; 4840c
 
 ; known jump sources: 48272 (12:4272), 482d3 (12:42d3), 48301 (12:4301), 48380 (12:4380), 487e9 (12:47e9), 488e2 (12:48e2), 489e7 (12:49e7)
 Function4840c: ; 4840c (12:440c)
@@ -49857,23 +49884,69 @@ Unknown_4845d: ; 4845d
 	db "7@"
 	db "8@"
 	db "9@"
-	db "  Mobile Profile@"
-	db "Gender@"
-	db "Age@"
-	db "Address@"
-	db "Zip Code@"
-	db "OK@"
-	db "Profile Changed@"
-	db "Boy or girl?@"
-	db "How old are you?@"
-	db "Where do you live?@"
-	db "Your zip code?@"
+; 48471
+
+MobileProfileString: db "  Mobile Profile@"
+String_48482: db "Gender@"
+String_48489: db "Age@"
+String_4848d: db "Address@"
+String_48495: db "Zip Code@"
+String_4849e: db "OK@"
+String_484a1: db "Profile Changed@"
+String_484b1: db "Boy or girl?@"
+String_484be: db "How old are you?@"
+String_484cf: db "Where do you live?@"
+String_484e2: db "Your zip code?@"
 ; 484f1
 
-INCBIN "baserom.gbc",$484f1,$48552 - $484f1
+MenuDataHeader_0x484f1: ; 0x484f1
+	db $40 ; flags
+	db 02, 11 ; start coords
+	db 07, 19 ; end coords
+	dw MenuData2_0x484f9
+	db 1 ; default option
+; 0x484f9
 
-; 48552
-	db "がぎぐげござじず", $ff
+MenuData2_0x484f9: ; 0x484f9
+	db $a0 ; flags
+	db 2 ; items
+Strings_484fb:
+String_484fb: db "Boy@"
+String_484ff: db "Girl@"
+; 0x48504
+
+MenuDataHeader_0x48504: ; 0x48504
+	db $40 ; flags
+	db 00, 10 ; start coords
+	db 17, 19 ; end coords
+
+MenuDataHeader_0x48509: ; 0x48509
+	db $40 ; flags
+	db 05, 10 ; start coords
+	db 07, 19 ; end coords
+
+MenuDataHeader_0x4850e: ; 0x4850e
+        db $40 ; flags
+        db 09, 10 ; start coords
+        db 11, 19 ; end coords
+
+MenuDataHeader_0x48513: ; 0x48513
+        db $40 ; flags
+        db 01, 11 ; start coords
+        db 12, 18 ; end coords
+        dw MenuData2_0x4851b
+        db 1 ; default option
+; 0x4851b
+
+MenuData2_0x4851b: ; 0x4851b
+        db $1d ; flags
+        db 6 ; items
+
+Unknown_4851d: ; 4851d
+	db $00, $01, $12, $2b, $45, $12, $e8, $43, $00, $00, $00, $00, $00, $00, $2e, $00, $01, $02, $03, $04
+	db $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f, $10, $11, $12, $13, $14, $15, $16, $17, $18
+	db $19, $1a, $1b, $1c, $1d, $1e, $1f, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $2a, $2b, $2c
+	db $2d, $ff
 
 Prefectures:
 Aichi:     db "あいちけん@"   ; Aichi
@@ -49942,7 +50015,7 @@ Function48689: ; 48689 (12:4689)
 	ld bc, $13
 	add hl, bc
 	ld [hl], a
-	ld de, $4471
+	ld de, MobileProfileString
 	ld hl, $c4c9
 	call PlaceString
 	ld hl, $c4f0
@@ -50079,9 +50152,9 @@ Function4873c: ; 4873c (12:473c)
 Function4876f: ; 4876f (12:476f)
 	call Function48283
 	ld hl, $c5e1
-	ld de, $44be
+	ld de, String_484be
 	call PlaceString
-	ld hl, $4509
+	ld hl, MenuDataHeader_0x48509
 	call LoadMenuDataHeader
 	ld a, [$FF00+$aa]
 	push af
@@ -50169,23 +50242,23 @@ String_4880d: ; 4880d
 ; known jump sources: 487c9 (12:47c9)
 Function4880e: ; 4880e (12:480e)
 	ld a, [hJoyPressed] ; $ff00+$a7
-	and $1
+	and A_BUTTON
 	jp nz, Function488b9
 	ld a, [hJoyPressed] ; $ff00+$a7
-	and $2
+	and B_BUTTON
 	jp nz, Function488b4
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_48843
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_48838
 	ld a, [hl]
-	and $20
+	and D_LEFT
 	jr nz, .asm_4884f
 	ld a, [hl]
-	and $10
+	and D_RIGHT
 	jr nz, .asm_4885f
 	call DelayFrame
 	and a
@@ -50277,17 +50350,21 @@ Function488b9: ; 488b9 (12:48b9)
 	ret
 ; 488c3 (12:48c3)
 
-INCBIN "baserom.gbc",$488c3,$488d3 - $488c3
+GFX_488c3: ; 488c3
+INCBIN "baserom.gbc",$488c3,$488cb - $488c3
+
+GFX_488cb: ; 488cb
+INCBIN "baserom.gbc",$488cb,$488d3 - $488cb
 
 ; known jump sources: 48230 (12:4230)
 Function488d3: ; 488d3 (12:48d3)
 	call Function48283
 	ld hl, $c5e1
-	ld de, $44e2
+	ld de, String_484e2
 	call PlaceString
 	call Function48a3a
 	jp c, Function4840c
-	ld hl, $450e
+	ld hl, MenuDataHeader_0x4850e
 	call LoadMenuDataHeader
 	ld a, [$FF00+$aa]
 	push af
@@ -50351,7 +50428,23 @@ asm_48922: ; 48922 (12:4922)
 	jr asm_48972
 ; 4895a (12:495a)
 
-INCBIN "baserom.gbc",$4895a,$4896e - $4895a
+Function4895a: ; 4895a
+	ld a, [hJoyPressed]
+	and a
+	jr z, .asm_48965
+	pop bc
+	ld b, $1
+	push bc
+	jr asm_48972
+
+.asm_48965
+	ld a, [$ffa9]
+	and a
+	jr z, asm_48972
+
+	pop bc
+	ld b, $1
+	push bc
 
 ; known jump sources: 48929 (12:4929), 4892e (12:492e), 48933 (12:4933)
 Function4896e: ; 4896e (12:496e)
@@ -50473,7 +50566,7 @@ String_48a38: ; 48a38
 
 ; known jump sources: 488df (12:48df)
 Function48a3a: ; 48a3a (12:4a3a)
-	ld hl, $4a9c
+	ld hl, MenuDataHeader_0x48a9c
 	call LoadMenuDataHeader
 	call Function4873c
 	ld a, $a
@@ -50487,7 +50580,7 @@ Function48a3a: ; 48a3a (12:4a3a)
 	ld c, $8
 	call Function48cdc
 	ld hl, $c574
-	ld de, $4aa1
+	ld de, String_48aa1
 	call PlaceString
 	call Function1bc9
 	push af
@@ -50520,15 +50613,24 @@ Function48a9a: ; 48a9a (12:4a9a)
 	ret
 ; 48a9c (12:4a9c)
 
-INCBIN "baserom.gbc",$48a9c,$48ab5 - $48a9c
+MenuDataHeader_0x48a9c: ; 0x48a9c
+        db $40 ; flags
+        db 08, 10 ; start coords
+        db 13, 19 ; end coord
+
+String_48aa1: ; 48aa1
+	db   "Tell Now"
+	next "Tell Later@"
+; 48ab5
+
 
 ; known jump sources: 48972 (12:4972)
 Function48ab5: ; 48ab5 (12:4ab5)
 	ld a, [hJoyPressed] ; $ff00+$a7
-	and $1
+	and A_BUTTON
 	jp nz, Function48c0f
 	ld a, [hJoyPressed] ; $ff00+$a7
-	and $2
+	and B_BUTTON
 	jp nz, Function48c0d
 	ld a, d
 	and a
@@ -50829,7 +50931,7 @@ Function48c5a: ; 48c5a (12:4c5a)
 	ret
 
 Function48c63: ; 48c63
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ld a, c
 	cp $30
@@ -50840,8 +50942,8 @@ Function48c63: ; 48c63
 	push de
 	ld h, d
 	ld l, e
-	ld a, $50
-	ld b, $7
+	ld a, "@"
+	ld b, 7
 .asm_48c76
 	ld [hli], a
 	dec b
@@ -50854,7 +50956,7 @@ Function48c63: ; 48c63
 	ld [de], a
 	inc de
 	ld a, [hl]
-	cp $50
+	cp "@"
 	jr nz, .asm_48c81
 	and a
 	pop de
@@ -50865,7 +50967,61 @@ Function48c63: ; 48c63
 	ret
 ; 48c8e
 
-INCBIN "baserom.gbc",$48c8e,$48cda - $48c8e
+Function48c8e: ; 48c8e
+	ld hl, $d02a
+	ld d, h
+	ld e, l
+	callba Function48c63
+	ld hl, $c536
+	call PlaceString
+	call WaitBGMap
+	ret
+; 48ca3
+
+Function48ca3: ; 48ca3
+	push af
+	push bc
+	push de
+	push hl
+	ld b, 0
+	ld c, 0
+	ld d, 0
+.asm_48cad
+	cp 100
+	jr c, .asm_48cb6
+	sub 100
+	inc b
+	jr .asm_48cad
+
+.asm_48cb6
+	cp 10
+	jr c, .asm_48cbf
+	sub 10
+	inc c
+	jr .asm_48cb6
+
+.asm_48cbf
+	cp 1
+	jr c, .asm_48cc7
+	dec a
+	inc d
+	jr .asm_48cbf
+
+.asm_48cc7
+	ld a, b
+	call Function48444
+	inc hl
+	ld a, c
+	call Function48444
+	inc hl
+	ld a, d
+	call Function48444
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 48cda
 
 ; no known jump sources
 Function48cda: ; 48cda (12:4cda)
@@ -50969,7 +51125,7 @@ Function48d4a: ; 48d4a (12:4d4a)
 	srl b
 	srl b
 	push bc
-	ld c, $a
+	ld c, 10
 	ld a, b
 	call SimpleMultiply
 	pop bc
@@ -50983,14 +51139,14 @@ Function48d4a: ; 48d4a (12:4d4a)
 	srl a
 	srl a
 	srl a
-	ld c, $a
+	ld c, 10
 	call SimpleMultiply
 	ld b, a
 	ld a, [hli]
 	and $f
 	add b
 	ld [$FF00+$b6], a
-	ld a, $64
+	ld a, 100
 	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
 	call Multiply
 	ld a, [$FF00+$b5]
@@ -51017,9 +51173,9 @@ Function48d94: ; 48d94 (12:4d94)
 	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
 	ld a, [hl]
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld a, $64
+	ld a, 100
 	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
-	ld b, $2
+	ld b, 2
 	call Divide
 	ld a, [hDivisor] ; $ff00+$b7 (aliases: hMultiplier)
 	ld c, $a
@@ -51031,7 +51187,7 @@ Function48d94: ; 48d94 (12:4d94)
 	or b
 	ld [hld], a
 	ld a, [$FF00+$b6]
-	ld c, $a
+	ld c, 10
 	call SimpleDivide
 	sla b
 	sla b
@@ -51050,7 +51206,7 @@ Function48dcb: ; 48dcb (12:4dcb)
 	call Function32f9
 	ld hl, UnknownText_0x48e0f
 	call PrintText
-	ld hl, Unknown_48dfc
+	ld hl, MenuDataHeader_0x48dfc
 	call LoadMenuDataHeader
 	call Function3200
 	call Function1d81
@@ -51063,8 +51219,20 @@ Function48dcb: ; 48dcb (12:4dcb)
 	ret
 ; 48dfc (12:4dfc)
 
-Unknown_48dfc: ; 48dfc
-INCBIN "baserom.gbc", $48dfc, $48e0f - $48dfc
+MenuDataHeader_0x48dfc: ; 0x48dfc
+	db $40 ; flags
+	db 04, 06 ; start coords
+	db 09, 12 ; end coords
+	dw MenuData2_0x48e04
+	db 1 ; default option
+; 0x48e04
+
+MenuData2_0x48e04: ; 0x48e04
+	db $a1 ; flags
+	db 2 ; items
+	db "Boy@"
+	db "Girl@"
+; 0x48e0f
 
 UnknownText_0x48e0f: ; 0x48e0f
 	; Are you a boy? Or are you a girl?
@@ -51097,7 +51265,7 @@ Function48e14: ; 48e14 (12:4e14)
 
 ; known jump sources: 48dce (12:4dce)
 Function48e47: ; 48e47 (12:4e47)
-	ld hl, $4e5c
+	ld hl, Palette_48e5c
 	ld de, Unkn1Pals ; $d000
 	ld bc, $8
 	ld a, $5
@@ -51106,17 +51274,23 @@ Function48e47: ; 48e47 (12:4e47)
 	ret
 ; 48e5c (12:4e5c)
 
-INCBIN "baserom.gbc",$48e5c,$48e64 - $48e5c
+Palette_48e5c: ; 48e5c
+	RGB 31, 31, 31
+	RGB 09, 30, 31
+	RGB 01, 11, 31
+	RGB 00, 00, 00
+; 48e64
 
 ; known jump sources: 48dd1 (12:4dd1)
 Function48e64: ; 48e64 (12:4e64)
-	ld de, $4e71
+	ld de, GFX_48e71
 	ld hl, $9000
-	ld bc, $1201
+	lb bc, BANK(GFX_48e71), 1
 	call Get2bpp
 	ret
 ; 48e71 (12:4e71)
 
+GFX_48e71: ; 48e71
 INCBIN "baserom.gbc",$48e71,$48e81 - $48e71
 
 
@@ -51188,15 +51362,15 @@ Function492a5: ; 492a5
 	jr z, .asm_492b3
 	cp $2
 	jr z, .asm_492b6
-	ld a, $3a
+	ld a, ICE_BEAM
 	ret
 
 .asm_492b3
-	ld a, $35
+	ld a, FLAMETHROWER
 	ret
 
 .asm_492b6
-	ld a, $55
+	ld a, THUNDERBOLT
 	ret
 ; 492b9
 
@@ -53062,7 +53236,7 @@ Function4a149: ; 4a149 (12:6149)
 	ld c, $10
 	call Function48cdc
 	ld hl, $c4f3
-	ld de, $61ef
+	ld de, String_4a1ef
 	call PlaceString
 	ld hl, $c590
 	ld b, $4
@@ -53070,7 +53244,7 @@ Function4a149: ; 4a149 (12:6149)
 	call TextBox
 	ld a, [$cfa9]
 	dec a
-	ld hl, $623d
+	ld hl, Strings_4a23d
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -53140,7 +53314,11 @@ asm_4a19d: ; 4a19d (12:619d)
 	jp Function4a195
 ; 4a1ef (12:61ef)
 
-INCBIN "baserom.gbc",$4a1ef,$4a20e - $4a1ef
+String_4a1ef: ; 4a1ef
+	db   "モバイルセンター", $1f, "えらぶ"
+	next "ログインパスワード", $1f, "いれる"
+	next "もどる@"
+; 4a20e
 
 ; known jump sources: 4a1ad (12:61ad)
 Function4a20e: ; 4a20e (12:620e)
@@ -53203,7 +53381,7 @@ Function4a28a: ; 4a28a (12:628a)
 	ld c, $6
 	call Function48cdc
 	ld hl, $c4c2
-	ld de, $634b
+	ld de, String_4a34b
 	call PlaceString
 	callba Function104148
 	call Function4a118
@@ -53227,14 +53405,14 @@ Function4a28a: ; 4a28a (12:628a)
 	ret
 .asm_4a2f0
 	call Function1bee
-	ld hl, $6358
+	ld hl, UnknownText_0x4a358
 	call PrintText
 	ld hl, $c53a
 	ld b, $3
 	ld c, $4
 	call TextBox
 	callba Function104148
-	ld hl, $6362
+	ld hl, MenuDataHeader_0x4a362
 	call LoadMenuDataHeader
 	call Function1d81
 	bit 1, a
@@ -53249,7 +53427,7 @@ Function4a28a: ; 4a28a (12:628a)
 	ld bc, $11
 	call ByteFill
 	call CloseSRAM
-	ld hl, $635d
+	ld hl, UnknownText_0x4a35d
 	call PrintText
 	call Functiona36
 .asm_4a338
@@ -53261,7 +53439,43 @@ Function4a28a: ; 4a28a (12:628a)
 	ret
 ; 4a346 (12:6346)
 
-INCBIN "baserom.gbc",$4a346,$4a373 - $4a346
+MenuDataHeader_0x4a346: ; 0x4a346
+	db $40 ; flags
+	db 00, 12 ; start coords
+	db 06, 19 ; end coords
+
+String_4a34b: ; 4a34b
+	db   "いれなおす"
+	next "けす"
+	next "もどる@"
+; 4a358
+
+UnknownText_0x4a358: ; 0x4a358
+	; Delete the saved LOG-IN PASSWORD?
+	text_jump UnknownText_0x1c5196
+	db "@"
+; 0x4a35d
+
+UnknownText_0x4a35d: ; 0x4a35d
+	; Deleted the LOG-IN PASSWORD.
+	text_jump UnknownText_0x1c51b9
+	db "@"
+; 0x4a362
+
+MenuDataHeader_0x4a362: ; 0x4a362
+	db $40 ; flags
+	db 07, 14 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x4a36a
+	db 2 ; default option
+; 0x4a36a
+
+MenuData2_0x4a36a: ; 0x4a36a
+	db $e0 ; flags
+	db 2 ; items
+	db "はい@"
+	db "いいえ@"
+; 0x4a373
 
 ; known jump sources: 4a141 (12:6141), 4a1db (12:61db), 4a22b (12:622b)
 Function4a373: ; 4a373 (12:6373)
@@ -53292,11 +53506,18 @@ Function4a373: ; 4a373 (12:6373)
 	ret
 ; 4a39a (12:639a)
 
-INCBIN "baserom.gbc",$4a39a,$4a3a7 - $4a39a
+Function4a39a: ; 4a39a
+	call Function4a485
+	call Function4a492
+	call Function4a3aa
+	call Function32f9
+	ret
+; 4a3a7
 
 ; known jump sources: 48078 (12:4078), 49f0d (12:5f0d), 4a13b (12:613b), 4a4c7 (12:64c7)
 Function4a3a7: ; 4a3a7 (12:63a7)
 	call Function4a485
+Function4a3aa: ; 4a3aa
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $301
 	xor a
@@ -53360,7 +53581,31 @@ Function4a3a7: ; 4a3a7 (12:63a7)
 	ret
 ; 4a449 (12:6449)
 
-INCBIN "baserom.gbc",$4a449,$4a485 - $4a449
+Function4a449: ; 4a449
+	ld bc, $003c
+	ld a, $0
+	ld hl, TileMap
+	call ByteFill
+	ld bc, $0028
+	ld a, $1
+	call ByteFill
+	ld bc, $0028
+	ld a, $0
+	call ByteFill
+	ld bc, $0028
+	ld a, $1
+	call ByteFill
+	ld bc, $0014
+	ld a, $2
+	call ByteFill
+	ld bc, $0014
+	ld a, $3
+	call ByteFill
+	ld bc, $0014
+	ld a, $7f
+	call ByteFill
+	ret
+; 4a485
 
 ; known jump sources: 4a0b2 (12:60b2), 4a3a7 (12:63a7)
 Function4a485: ; 4a485 (12:6485)
@@ -54592,7 +54837,7 @@ Function4ac58: ; 4ac58
 	ld hl, $c5cd
 	call ClearBox
 	callba Function8ea4a
-	ld hl, Unknown_4aca2
+	ld hl, MenuDataHeader_0x4aca2
 	call LoadMenuDataHeader
 	ld hl, $d019
 	bit 1, [hl]
@@ -54622,8 +54867,13 @@ Function4ac58: ; 4ac58
 	ret
 ; 4aca2
 
-Unknown_4aca2: ; 4aca2
-INCBIN "baserom.gbc",$4aca2,$4acaa - $4aca2
+MenuDataHeader_0x4aca2: ; 0x4aca2
+	db $40 ; flags
+	db 09, 11 ; start coords
+	db 17, 19 ; end coords
+	dw NULL
+	db 1 ; default option
+; 0x4acaa
 
 Function4acaa: ; 4acaa
 .asm_4acaa
