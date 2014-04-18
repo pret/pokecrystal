@@ -74964,15 +74964,15 @@ Function8e82b: ; 8e82b
 	ld a, e
 	call ReadMonMenuIcon
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	ld de, IconPointers
 	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld b, $23
-	ld c, $8
+	ld b, BANK(Icons)
+	ld c, 8
 	ret
 ; 8e83f
 
@@ -75261,7 +75261,7 @@ GetIconGFX: ; 8e9de
 	ld de, $80 ; 8 tiles
 	add hl, de
 	ld de, HeldItemIcons
-	ld bc, $2302
+	lb bc, BANK(HeldItemIcons), 2
 	call GetGFXUnlessMobile
 	ld a, [$c3b7]
 	add 10
@@ -75274,20 +75274,20 @@ INCBIN "gfx/icon/item.2bpp"
 ; 8ea17
 
 GetIcon_de: ; 8ea17
-; Load icon graphics into VRAM starting from tile de
+; Load icon graphics into VRAM starting from tile de.
 	ld l, e
 	ld h, d
 	jr GetIcon
 	
 GetIcon_a: ; 8ea1b
-; Load icon graphics into VRAM starting from tile a
+; Load icon graphics into VRAM starting from tile a.
 	ld l, a
 	ld h, 0
 	
 GetIcon: ; 8ea1e
-; Load icon graphics into VRAM starting from tile hl
+; Load icon graphics into VRAM starting from tile hl.
 
-; One tile is 16 bytes long
+; One tile is 16 bytes long.
 	add hl, hl
 	add hl, hl
 	add hl, hl
@@ -75296,9 +75296,9 @@ GetIcon: ; 8ea1e
 	ld de, VTiles0
 	add hl, de
 	push hl
-	
-; Reading the icon pointer table would only make sense if they were
-; scattered. However, the icons are contiguous and in-order.
+
+; The icons are contiguous, in order and of the same
+; size, so the pointer table is somewhat redundant.
 	ld a, [CurIcon]
 	push hl
 	ld l, a
@@ -75311,8 +75311,9 @@ GetIcon: ; 8ea1e
 	ld d, [hl]
 	pop hl
 	
-	ld bc, $2308
+	lb bc, BANK(Icons), 8
 	call GetGFXUnlessMobile
+
 	pop hl
 	ret
 ; 8ea3f
