@@ -64381,7 +64381,383 @@ String_81fcd: ; 81fcd
 DebugColorTestGFX:
 INCBIN "gfx/debug/color_test.2bpp"
 
-INCBIN "baserom.gbc",$82153,$823c8 - $82153
+
+TilesetColorTest:
+	ret
+	xor a
+	ld [$cf63], a
+	ld [$cf64], a
+	ld [$cf65], a
+	ld [$cf66], a
+	ld [$ffde], a
+	call ClearSprites
+	call Function2173
+	call Function3200
+	xor a
+	ld [hBGMapMode], a
+	ld de, DebugColorTestGFX + $10
+	ld hl, $96a0
+	lb bc, BANK(DebugColorTestGFX), $16
+	call Request2bpp
+	ld de, DebugColorTestGFX
+	ld hl, VTiles1
+	lb bc, BANK(DebugColorTestGFX), 1
+	call Request2bpp
+	ld a, $9c
+	ld [$ffd7], a
+	ld hl, TileMap
+	ld bc, $0168
+	ld a, $6f
+	call ByteFill
+	ld hl, AttrMap
+	ld bc, $0168
+	ld a, $7
+	call ByteFill
+	ld de, $0015
+	ld a, $6c
+	call Function821d2
+	ld de, $001a
+	ld a, $6d
+	call Function821d2
+	ld de, $001f
+	ld a, $6e
+	call Function821d2
+	ld de, $0024
+	ld a, $6f
+	call Function821d2
+	call Function821f4
+	call Function8220f
+	call Function3200
+	ld [$cf63], a
+	ld a, $40
+	ld [hWY], a
+	ret
+; 821d2
+
+Function821d2: ; 821d2
+	ld hl, TileMap
+	call Function821de
+
+Function821d8: ; 821d8
+	ld a, [$cf64]
+	ld hl, AttrMap
+
+Function821de: ; 821de
+	add hl, de
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld bc, $0010
+	add hl, bc
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld bc, $0010
+	add hl, bc
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ret
+; 821f4
+
+Function821f4: ; 821f4
+	ld hl, $c4f2
+	call Function82203
+	ld hl, $c51a
+	call Function82203
+	ld hl, $c542
+
+Function82203: ; 82203
+	ld a, $6a
+	ld [hli], a
+	ld bc, $000f
+	ld a, $6b
+	call ByteFill
+	ret
+; 8220f
+
+Function8220f: ; 8220f
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld a, [$cf64]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, Unkn1Pals
+	add hl, de
+	ld de, EnemyMoveAnimation
+	ld bc, $0008
+	call CopyBytes
+	ld de, EnemyMoveAnimation
+	call Function81ea5
+	pop af
+	ld [rSVBK], a
+	ret
+; 82236
+
+
+Function82236: ; 82236
+	ld hl, $ffa9
+	ld a, [hl]
+	and $4
+	jr nz, .asm_82247
+	ld a, [hl]
+	and $2
+	jr nz, .asm_82299
+	call Function822f0
+	ret
+
+.asm_82247
+	ld hl, $cf64
+	ld a, [hl]
+	inc a
+	and $7
+	cp $7
+	jr nz, .asm_82253
+	xor a
+
+.asm_82253
+	ld [hl], a
+	ld de, $0015
+	call Function821d8
+	ld de, $001a
+	call Function821d8
+	ld de, $001f
+	call Function821d8
+	ld de, $0024
+	call Function821d8
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld hl, BGPals
+	ld a, [$cf64]
+	ld bc, $0008
+	call AddNTimes
+	ld de, EnemyMoveAnimation
+	ld bc, $0008
+	call CopyBytes
+	pop af
+	ld [rSVBK], a
+	ld a, $2
+	ld [hBGMapMode], a
+	ld c, $3
+	call DelayFrames
+	ld a, $1
+	ld [hBGMapMode], a
+	ret
+
+.asm_82299
+	call ClearSprites
+	ld a, [hWY]
+	xor $d0
+	ld [hWY], a
+	ret
+; 822a3
+
+Function822a3: ; 822a3
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld hl, BGPals
+	ld a, [$cf64]
+	ld bc, $0008
+	call AddNTimes
+	ld e, l
+	ld d, h
+	ld hl, EnemyMoveAnimation
+	ld bc, $0008
+	call CopyBytes
+	ld hl, $c4a1
+	ld de, EnemyMoveAnimation
+	call Function81ca7
+	ld hl, $c4a6
+	ld de, EnemyMovePower
+	call Function81ca7
+	ld hl, $c4ab
+	ld de, EnemyMoveAccuracy
+	call Function81ca7
+	ld hl, $c4b0
+	ld de, EnemyMoveEffectChance
+	call Function81ca7
+	pop af
+	ld [rSVBK], a
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	call DelayFrame
+	ret
+; 822f0
+
+Function822f0: ; 822f0
+	ld a, [$cf65]
+	and 3
+	ld e, a
+	ld d, 0
+	ld hl, Jumptable_82301
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; 82301
+
+Jumptable_82301: ; 82301
+	dw Function82309
+	dw Function82339
+	dw Function8234b
+	dw Function8235d
+; 82309
+
+Function82309: ; 82309
+	ld hl, $ffa9
+	ld a, [hl]
+	and $80
+	jr nz, Function8238c
+	ld a, [hl]
+	and $20
+	jr nz, .asm_8231c
+	ld a, [hl]
+	and $10
+	jr nz, .asm_82322
+	ret
+
+.asm_8231c
+	ld a, [$cf66]
+	dec a
+	jr .asm_82326
+
+.asm_82322
+	ld a, [$cf66]
+	inc a
+
+.asm_82326
+	and $3
+	ld [$cf66], a
+	ld e, a
+	ld d, $0
+	ld hl, EnemyMoveAnimation
+	add hl, de
+	add hl, de
+	ld e, l
+	ld d, h
+	call Function81ea5
+	ret
+
+Function82339: ; 82338
+	ld hl, $ffa9
+	ld a, [hl]
+	and $80
+	jr nz, Function8238c
+	ld a, [hl]
+	and $40
+	jr nz, Function82387
+	ld hl, PlayerMoveType
+	jr Function82368
+
+Function8234b: ; 8234b
+	ld hl, $ffa9
+	ld a, [hl]
+	and $80
+	jr nz, Function8238c
+	ld a, [hl]
+	and $40
+	jr nz, Function82387
+	ld hl, PlayerMoveAccuracy
+	jr Function82368
+
+Function8235d: ; 8235d
+	ld hl, $ffa9
+	ld a, [hl]
+	and $40
+	jr nz, Function82387
+	ld hl, PlayerMovePP
+
+Function82368: ; 82368
+	ld a, [$ffa9]
+	and $10
+	jr nz, .asm_82375
+	ld a, [$ffa9]
+	and $20
+	jr nz, .asm_8237c
+	ret
+
+.asm_82375
+	ld a, [hl]
+	cp $1f
+	ret nc
+	inc [hl]
+	jr .asm_82380
+
+.asm_8237c
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+
+.asm_82380
+	call Function82391
+	call Function822a3
+	ret
+
+Function82387: ; 82387
+	ld hl, $cf65
+	dec [hl]
+	ret
+
+Function8238c: ; 8238c
+	ld hl, $cf65
+	inc [hl]
+	ret
+; 82391
+
+Function82391: ; 82391
+	ld a, [PlayerMoveType]
+	and $1f
+	ld e, a
+	ld a, [PlayerMoveAccuracy]
+	and $7
+	sla a
+	swap a
+	or e
+	ld e, a
+	ld a, [PlayerMoveAccuracy]
+	and $18
+	sla a
+	swap a
+	ld d, a
+	ld a, [PlayerMovePP]
+	and $1f
+	sla a
+	sla a
+	or d
+	ld d, a
+	ld a, [$cf66]
+	ld c, a
+	ld b, $0
+	ld hl, EnemyMoveAnimation
+	add hl, bc
+	add hl, bc
+	ld a, e
+	ld [hli], a
+	ld [hl], d
+	ret
+; 823c6
+
+Function823c6: ; 823c6
+	ret
+
+Function823c7: ; 823c7
+	ret
+; 823c8
 
 
 SECTION "bank21", ROMX, BANK[$21]
