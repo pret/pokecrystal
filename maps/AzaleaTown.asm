@@ -153,11 +153,12 @@ SlowpokeScript_0x1980cb: ; 0x1980cb
 	end
 ; 0x1980da
 
-UnknownScript_0x1980da: ; 0x1980da
+WoosterScript: ; 0x1980da
+; unused
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x1985cd
-	cry $00c3
+	2writetext WoosterText
+	cry QUAGSIRE
 	closetext
 	loadmovesprites
 	end
@@ -421,7 +422,7 @@ UnknownText_0x1985c3: ; 0x1985c3
 	done
 ; 0x1985cd
 
-UnknownText_0x1985cd: ; 0x1985cd
+WoosterText: ; 0x1985cd
 	text "WOOSTER: Gugyoo…"
 	done
 ; 0x1985df

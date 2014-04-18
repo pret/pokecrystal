@@ -1901,7 +1901,7 @@ GetBaseData:: ; 3856
 	
 .egg
 ; ????
-	ld de, $7d9c
+	ld de, UnknownEggPic
 	
 ; Sprite dimensions
 	ld b, $55 ; 5x5
