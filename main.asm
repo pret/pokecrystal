@@ -64852,7 +64852,7 @@ Function84071: ; 84071 (21:4071)
 ; no known jump sources
 Function84077: ; 84077 (21:4077)
 	call Function841fb
-	ld hl, $42b7
+	ld hl, Unknown_842b7
 	call Function841e2
 	xor a
 	ld [$ca8e], a
@@ -64872,7 +64872,7 @@ Function84099: ; 84099 (21:4099)
 	ld a, [hl]
 	and a
 	jr z, Function840c5
-	ld hl, $42c3
+	ld hl, Unknown_842c3
 	call Function841e2
 	call Function84260
 	ld a, $80
@@ -64890,7 +64890,7 @@ Function84099: ; 84099 (21:4099)
 Function840c5: ; 840c5 (21:40c5)
 	ld a, $6
 	ld [$cf63], a
-	ld hl, $42c9
+	ld hl, Unknown_842c9
 	call Function841e2
 	xor a
 	ld [$ca8e], a
@@ -64902,7 +64902,7 @@ Function840c5: ; 840c5 (21:40c5)
 ; no known jump sources
 Function840de: ; 840de (21:40de)
 	call Function841fb
-	ld hl, $42bd
+	ld hl, Unknown_842bd
 	call Function841e2
 	call Function84249
 	ld a, $4
@@ -64919,7 +64919,7 @@ Function840de: ; 840de (21:40de)
 ; no known jump sources
 Function84103: ; 84103 (21:4103)
 	call Function841fb
-	ld hl, $42b7
+	ld hl, Unknown_842b7
 	call Function841e2
 	xor a
 	ld [$ca8e], a
@@ -65178,7 +65178,7 @@ Function84260: ; 84260 (21:4260)
 	or $80
 .asm_84299
 	ld d, a
-	ld bc, $2101
+	lb bc, $21, 1
 	call Request2bpp
 	pop hl
 	ld de, $10
@@ -65204,7 +65204,13 @@ Function842ab: ; 842ab
 	ret
 ; 842b7
 
-INCBIN "baserom.gbc",$842b7,$842db - $842b7
+Unknown_842b7: db  1, 0, $00, 0,  1, 0
+Unknown_842bd: db  2, 0, $04, 0,  0, 0
+Unknown_842c3: db  4, 0, $80, 2,  0, 0
+Unknown_842c9: db  4, 0, $00, 0,  4, 0
+Unknown_842cf: db  8, 0, $00, 0,  8, 0 ; unused
+Unknown_842d5: db 15, 0, $00, 0, 15, 0 ; unused
+; 842db
 
 
 Function842db:: ; 842db
@@ -65456,8 +65462,8 @@ Function8442c: ; 8442c
 	ld a, [$cf65]
 	push af
 	ld hl, VTiles1
-	ld de, Function84000
-	ld bc, $3680
+	ld de, FontInversed
+	lb bc, BANK(FontInversed), $80
 	call Request1bpp
 	xor a
 	ld [$ffac], a
@@ -66784,8 +66790,8 @@ Function86748: ; 86748
 Function86810: ; 86810
 	call WhiteBGMap
 	ld hl, $9630
-	ld de, $40d0
-	ld bc, $3e01
+	ld de, FontExtra + $d0
+	lb bc, BANK(FontExtra), 1
 	call Request2bpp
 	ld hl, TileMap
 	ld bc, $0168
@@ -66876,20 +66882,28 @@ Function86810: ; 86810
 SECTION "bank22", ROMX, BANK[$22]
 
 Function88000: ; 88000
-	ld hl, $4007
+	ld hl, UnknownText_0x88007
 	call PrintText
 	ret
 ; 88007
 
-INCBIN "baserom.gbc",$88007,$8800c - $88007
+UnknownText_0x88007: ; 0x88007
+	; Which APRICORN should I use?
+	text_jump UnknownText_0x1bc06b
+	db "@"
+; 0x8800c
 
 Function8800c: ; 8800c
-	ld hl, $4013
+	ld hl, UnknownText_0x88013
 	call PrintText
 	ret
 ; 88013
 
-INCBIN "baserom.gbc",$88013,$88018 - $88013
+UnknownText_0x88013: ; 0x88013
+	; How many should I make?
+	text_jump UnknownText_0x1bc089
+	db "@"
+; 0x88018
 
 Function88018: ; 88018
 	call Function1d6e
@@ -66928,7 +66942,7 @@ Function88018: ; 88018
 Function88055: ; 88055
 	callba Function24c64
 	jr c, .asm_88083
-	ld hl, $4086
+	ld hl, MenuDataHeader_0x88086
 	call Function1d3c
 	ld a, [MenuSelection]
 	ld [$cf88], a
@@ -66952,7 +66966,43 @@ Function88055: ; 88055
 	ret
 ; 88086
 
-INCBIN "baserom.gbc",$88086,$880c2 - $88086
+MenuDataHeader_0x88086: ; 0x88086
+        db $40 ; flags
+        db 01, 01 ; start coords
+        db 10, 13 ; end coords
+        dw MenuData2_0x8808f
+        db 1 ; default option
+; 0x8808e
+
+	db 0
+
+MenuData2_0x8808f: ; 0x8808f
+        db $10 ; flags
+	db 4, 7
+	db 1
+	dbw 0, $d1ea
+	dbw BANK(Function8809f), Function8809f
+	dbw BANK(Function880ab), Function880ab
+	dbw BANK(NULL), NULL
+
+Function8809f: ; 8809f
+	ld a, [MenuSelection]
+	and a
+	ret z
+	callba Function24ab4
+	ret
+; 880ab
+
+Function880ab: ; 880ab
+	ld a, [MenuSelection]
+	ld [CurItem], a
+	call Function88139
+	ret z
+	ld a, [$d10c]
+	ld [$cf75], a
+	callba Function24ac3
+	ret
+; 880c2
 
 Function880c2: ; 880c2
 	ld a, [CurItem]
@@ -66963,7 +67013,7 @@ Function880c2: ; 880c2
 	ld [$d10d], a
 	ld a, $1
 	ld [$d10c], a
-	ld hl, $410d
+	ld hl, MenuDataHeader_0x8810d
 	call LoadMenuDataHeader
 .asm_880de
 	xor a
@@ -66990,7 +67040,12 @@ Function880c2: ; 880c2
 	ret
 ; 8810d
 
-INCBIN "baserom.gbc",$8810d,$88116 - $8810d
+MenuDataHeader_0x8810d: ; 0x8810d
+        db $40 ; flags
+        db 09, 06 ; start coords
+        db 12, 19 ; end coords
+
+INCBIN "baserom.gbc",$88112,$88116 - $88112
 
 Function88116: ; 88116
 	call Function1cfd
@@ -67226,7 +67281,19 @@ Function88211: ; 88211
 	ret
 ; 88248
 
-INCBIN "baserom.gbc",$88248,$88258 - $88248
+
+Function88248: ; 88248
+	ld c, $c
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_88253
+	ld c, $e
+
+.asm_88253
+	ld a, c
+	ld [TrainerClass], a
+	ret
+; 88258
 
 MovePlayerPicRight: ; 88258
 	hlcoord 6, 4
@@ -67304,6 +67371,7 @@ MenuData2_0x882be: ; 882be
 	db $91 ; flags
 	db 5 ; items
 	db "NEW NAME@"
+Unknown_882c9: ; 882c9
 	db "CHRIS@"
 	db "MAT@"
 	db "ALLAN@"
@@ -67325,6 +67393,7 @@ MenuData2_0x882ee: ; 882ee
 	db $91 ; flags
 	db 5 ; items
 	db "NEW NAME@"
+Unknown_882f9: ; 882f9
 	db "KRIS@"
 	db "AMANDA@"
 	db "JUANA@"
@@ -67333,7 +67402,18 @@ MenuData2_0x882ee: ; 882ee
 	db " NAME @" ; title
 ; 88318
 
-INCBIN "baserom.gbc",$88318,$8832c - $88318
+Function88318: ; 88318
+	ld hl, PlayerName
+	ld de, Unknown_882c9
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_88328
+	ld de, Unknown_882f9
+
+.asm_88328
+	call InitName
+	ret
+; 8832c
 
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
@@ -67355,35 +67435,45 @@ GetPlayerIcon: ; 8832c
 ; 8833e
 
 Function8833e: ; 8833e
-	ld hl, $4365
+	ld hl, ChrisCardPic
 	ld a, [PlayerGender] ; $d472
 	bit 0, a
 	jr z, .asm_8834b
-	ld hl, $4595
+	ld hl, KrisCardPic
 .asm_8834b
 	ld de, $9000
 	ld bc, $230
-	ld a, $22
+	ld a, BANK(ChrisCardPic) ; BANK(KrisCardPic)
 	call FarCopyBytes
-	ld hl, $47c5
+	ld hl, CardGFX
 	ld de, $9230
 	ld bc, $60
-	ld a, $22
+	ld a, BANK(CardGFX)
 	call FarCopyBytes
 	ret
 ; 88365 (22:4365)
 
-INCBIN "baserom.gbc",$88365,$88825 - $88365
+ChrisCardPic: ; 88365
+INCBIN "gfx/misc/chris.5x7.2bpp"
+; 88595
+
+KrisCardPic: ; 88595
+INCBIN "gfx/misc/kris.5x7.2bpp"
+; 887c5
+
+CardGFX: ; 887c5
+INCBIN "gfx/misc/trainer_card.2bpp"
+; 88825
 
 
 GetPlayerBackpic: ; 88825
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_88830
+	jr z, GetChrisBackpic
 	call GetKrisBackpic
 	ret
 
-.asm_88830
+GetChrisBackpic: ; 88830
 	ld hl, ChrisBackpic
 	ld b, BANK(ChrisBackpic)
 	ld de, $9310
@@ -67397,11 +67487,11 @@ Function88840: ; 88840
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld e, $0
+	ld e, 0
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_88851
-	ld e, $1
+	ld e, 1
 
 .asm_88851
 	ld a, e
@@ -67414,7 +67504,7 @@ Function88840: ; 88840
 
 .asm_88862
 	ld hl, VTiles2
-	ld b, $22
+	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, $31
 	call Get2bpp
 	call WaitBGMap
@@ -67446,7 +67536,7 @@ DrawIntroPlayerPic: ; 88874
 	ld de, KrisPic
 .GotPic
 	ld hl, VTiles2
-	ld b, BANK(ChrisPic)
+	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7 ; dimensions
 	call Get2bpp
 
@@ -67462,11 +67552,11 @@ DrawIntroPlayerPic: ; 88874
 
 
 ChrisPic: ; 888a9
-INCBIN "baserom.gbc",$888a9,$88bb9 - $888a9
+INCBIN "gfx/misc/chris.7x7.2bpp"
 ; 88bb9
 
 KrisPic: ; 88bb9
-INCBIN "baserom.gbc",$88bb9,$88ec9 - $88bb9
+INCBIN "gfx/misc/kris.7x7.2bpp"
 ; 88ec9
 
 
@@ -67480,11 +67570,27 @@ GetKrisBackpic: ; 88ec9
 ; 88ed6
 
 KrisBackpic: ; 88ed6
-INCBIN "baserom.gbc",$88ed6,$89116 - $88ed6
+INCBIN "gfx/misc/kris_back.6x6.2bpp"
 ; 89116
 
 
-INCBIN "baserom.gbc",$89116,$89160 - $89116
+String_89116:
+	db "-----@"
+; 8911c
+
+String_8911c: ; 8911c
+	db   "でんわばんごうが ただしく"   ; Phone number is not
+	next "はいって いません!@"         ; entered correctly!
+; 89135
+
+String_89135: ; 89135
+	db   "データが かわって いますが"  ; The data has changed.
+	next "かきかえないで やめますか?@" ; Quit anyway?
+; 89153
+
+String_89153: ; 89153
+	db   "メッセージは ありません@"    ; No message
+; 89160
 
 Function89160: ; 89160
 	push af
@@ -67714,7 +67820,7 @@ Function8925e: ; 8925e
 Function89261: ; 89261
 	push af
 	push bc
-	ld hl, $52a3
+	ld hl, MenuDataHeader_0x892a3
 	call Function1d3c
 	pop bc
 	ld hl, $cf82
@@ -67752,7 +67858,20 @@ Function89261: ; 89261
 	ret
 ; 892a3
 
-INCBIN "baserom.gbc",$892a3,$892b4 - $892a3
+MenuDataHeader_0x892a3: ; 0x892a3
+	db $40 ; flags
+	db 05, 10 ; start coords
+	db 09, 15 ; end coords
+	dw MenuData2_0x892ab
+	db 1 ; default option
+; 0x892ab
+
+MenuData2_0x892ab: ; 0x892ab
+	db $c0 ; flags
+	db 2 ; items
+	db "はい@"
+	db "いいえ@"
+; 0x892b4
 
 ; known jump sources: 89313 (22:5313), 8a8f4 (22:68f4), 8b9ff (22:79ff)
 Function892b4: ; 892b4 (22:52b4)
@@ -67999,14 +68118,24 @@ Function893e2: ; 893e2 (22:53e2)
 
 Function893ef: ; 893ef
 	ld de, VTiles0
-	ld hl, $540b
+	ld hl, GFX_8940b
 	ld bc, $0020
-	ld a, $22
+	ld a, BANK(GFX_8940b)
 	call FarCopyBytes
 	ret
 ; 893fe
 
-INCBIN "baserom.gbc",$893fe,$8942b - $893fe
+Function893fe: ; 893fe
+	call DisableLCD
+	call Function893ef
+	call EnableLCD
+	call DelayFrame
+	ret
+; 8940b
+
+GFX_8940b: ; 8940b
+INCBIN "baserom.gbc",$8940b,$8942b - $8940b
+; 8942b
 
 ; known jump sources: 893c2 (22:53c2)
 Function8942b: ; 8942b (22:542b)
@@ -68086,7 +68215,7 @@ Function8949c: ; 8949c
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $54b3
+	ld hl, Palette_894b3
 	ld de, $d038
 	ld bc, $0008
 	call CopyBytes
@@ -68095,7 +68224,12 @@ Function8949c: ; 8949c
 	ret
 ; 894b3
 
-INCBIN "baserom.gbc",$894b3,$894bb - $894b3
+Palette_894b3: ; 894b3
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+; 894bb
 
 Function894bb: ; 894bb
 	call Function894dc
@@ -68126,8 +68260,8 @@ Function894dc: ; 894dc
 	ld a, $5
 	ld [rSVBK], a
 	ld c, d
-	ld b, $0
-	ld hl, $5509
+	ld b, 0
+	ld hl, Unknown_89509
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -68136,7 +68270,7 @@ Function894dc: ; 894dc
 	ld de, Unkn1Pals
 	ld bc, $0018
 	call CopyBytes
-	ld hl, $5557
+	ld hl, Palette_89557
 	ld de, $d018
 	ld bc, $0018
 	call CopyBytes
@@ -68146,7 +68280,76 @@ Function894dc: ; 894dc
 	ret
 ; 89509
 
-INCBIN "baserom.gbc",$89509,$8956f - $89509
+Unknown_89509: ; 89509
+	dw Palette_8950f
+	dw Palette_89527
+	dw Palette_8953f
+; 8950f
+
+Palette_8950f: ; 8950f
+	RGB 31, 31, 31
+	RGB 10, 17, 13
+	RGB 10, 08, 22
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 16, 20, 31
+	RGB 10, 08, 22
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 16, 20, 31
+	RGB 10, 17, 13
+	RGB 00, 00, 00
+
+Palette_89527: ; 89527
+	RGB 31, 31, 31
+	RGB 30, 22, 11
+	RGB 31, 08, 15
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 16, 20, 31
+	RGB 31, 08, 15
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 16, 20, 31
+	RGB 30, 22, 11
+	RGB 00, 00, 00
+
+Palette_8953f: ; 8953f
+	RGB 31, 31, 31
+	RGB 15, 20, 26
+	RGB 25, 07, 20
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 16, 20, 31
+	RGB 25, 07, 20
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 16, 20, 31
+	RGB 15, 20, 26
+	RGB 00, 00, 00
+
+Palette_89557: ; 89557
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 13, 00
+	RGB 14, 08, 00
+
+	RGB 31, 31, 31
+	RGB 16, 16, 31
+	RGB 00, 00, 31
+	RGB 00, 00, 00
+
+	RGB 19, 31, 11
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+; 8956f
 
 Function8956f: ; 8956f
 	push bc
@@ -68177,7 +68380,7 @@ Function8956f: ; 8956f
 	ld l, a
 	add hl, hl
 	add hl, hl
-	ld de, $70ce
+	ld de, TrainerPalettes
 	add hl, de
 	ld a, [rSVBK]
 	push af
@@ -68186,7 +68389,7 @@ Function8956f: ; 8956f
 	ld de, $d032
 	ld c, $4
 .asm_895b1
-	ld a, $2
+	ld a, BANK(TrainerPalettes)
 	call GetFarByte
 	ld [de], a
 	inc de
@@ -68210,7 +68413,7 @@ Function895c7: ; 895c7 (22:55c7)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $55de
+	ld hl, Palette_895de
 	ld de, $d030
 	ld bc, $8
 	call CopyBytes
@@ -68219,7 +68422,20 @@ Function895c7: ; 895c7 (22:55c7)
 	ret
 ; 895de (22:55de)
 
-INCBIN "baserom.gbc",$895de,$895f2 - $895de
+Palette_895de: ; 895de
+	RGB 31, 31, 31
+	RGB 07, 07, 06
+	RGB 07, 07, 06
+	RGB 00, 00, 00
+; 895e6
+
+Function895e6: ; 895e6
+	ld a, $7
+	ld hl, AttrMap
+	ld bc, $0168
+	call ByteFill
+	ret
+; 895f2
 
 Function895f2: ; 895f2
 	push bc
@@ -68747,7 +68963,7 @@ Function898be: ; 898be
 	ld hl, DefaultFlypoint
 	call Function89331
 	jr nc, .asm_898cd
-	ld de, $5116
+	ld de, String_89116
 
 .asm_898cd
 	ld hl, $c4bd
@@ -68770,7 +68986,7 @@ Function898dc: ; 898dc
 	ld e, l
 	call Function8934a
 	jr nc, .asm_898eb
-	ld de, $5116
+	ld de, String_89116
 
 .asm_898eb
 	ld hl, $c4f6
@@ -68794,7 +69010,7 @@ Function898f3: ; 898f3
 
 .asm_8990a
 	ld hl, $c509
-	ld de, $5116
+	ld de, String_89116
 	call PlaceString
 
 .asm_89913
@@ -68805,7 +69021,7 @@ Function898f3: ; 898f3
 Function89915: ; 89915
 	push bc
 	push hl
-	ld de, $5942
+	ld de, Unknown_89942
 	ld c, $8
 .asm_8991c
 	ld a, [de]
@@ -68820,7 +69036,7 @@ Function89915: ; 89915
 	ld b, $4
 	ld c, $2b
 	ld a, $8
-	ld de, $594a
+	ld de, Unknown_8994a
 .asm_89932
 	push af
 	ld a, [de]
@@ -68838,7 +69054,11 @@ Function89915: ; 89915
 	ret
 ; 89942
 
-INCBIN "baserom.gbc",$89942,$8994e - $89942
+Unknown_89942: ; 89942
+	db $24, $25, $26, " ", $27, $28, $29, $2a
+Unknown_8994a: ; 8994a
+	db $24, $27, $29, $ff
+; 8994e
 
 Function8994e: ; 8994e
 	push hl
@@ -68921,12 +69141,14 @@ Function8999c: ; 8999c (22:599c)
 	inc bc
 	ld h, b
 	ld l, c
-	ld de, $59ac
+	ld de, String_899ac
 	call PlaceString
 	ret
 ; 899ac (22:59ac)
 
-INCBIN "baserom.gbc",$899ac,$899b2 - $899ac
+String_899ac: ; 899ac
+	db "の めいし@"
+; 899b2
 
 ; known jump sources: 89897 (22:5897)
 Function899b2: ; 899b2 (22:59b2)
@@ -68936,7 +69158,7 @@ Function899b2: ; 899b2 (22:59b2)
 	ld de, PlayerName ; $d47d
 	jr .asm_899c2
 .asm_899bf
-	ld de, $5116
+	ld de, String_89116
 .asm_899c2
 	ld hl, $c4f6
 	call PlaceString
@@ -68991,7 +69213,7 @@ Function89a0c: ; 89a0c
 	ret
 
 .asm_89a1c
-	ld de, $5153
+	ld de, String_89153
 	call PlaceString
 	ret
 ; 89a23
@@ -69012,16 +69234,22 @@ Function89a2e: ; 89a2e (22:5a2e)
 	ld c, $6
 	call TextBox
 	ld hl, $c5b1
-	ld de, $5a4e
+	ld de, String_89a4e
 	call PlaceString
 	ld hl, $c5c5
-	ld de, $5a53
+	ld de, String_89a53
 	call PlaceString
 	call Function89655
 	ret
 ; 89a4e (22:5a4e)
 
-INCBIN "baserom.gbc",$89a4e,$89a57 - $89a4e
+String_89a4e: ; 89a4e
+	db "けってい@"
+; 89a53
+
+String_89a53: ; 89a53
+	db "やめる@"
+; 89a57
 
 Function89a57: ; 89a57
 	call Function354b
@@ -69063,7 +69291,7 @@ Function89a57: ; 89a57
 
 Function89a8a: ; 89a8a
 	push af
-	ld de, $0062
+	ld de, SFX_UNKNOWN_62
 	call PlaySFX
 	pop af
 	ret
@@ -69165,7 +69393,19 @@ Function89b00: ; 89b00 (22:5b00)
 	ret
 ; 89b07 (22:5b07)
 
-INCBIN "baserom.gbc",$89b07,$89b1e - $89b07
+Function89b07: ; 89b07
+	call Function8923c
+	call DelayFrame
+	callba Function4a3a7
+	ret
+; 89b14
+
+Function89b14: ; 89b14
+	call WhiteBGMap
+	call Function89b07
+	call Function89b00
+	ret
+; 89b1e
 
 ; known jump sources: 893e2 (22:53e2)
 Function89b1e: ; 89b1e (22:5b1e)
@@ -69271,7 +69511,7 @@ Function89b97: ; 89b97 (22:5b97)
 	ret
 .asm_89ba0
 	ld a, [$d011]
-	ld hl, $5bd8
+	ld hl, Unknown_89bd8
 	and a
 	jr z, .asm_89bae
 .asm_89ba9
@@ -69317,6 +69557,7 @@ Function89b97: ; 89b97 (22:5b97)
 	jr .asm_89bb4
 ; 89bd8 (22:5bd8)
 
+Unknown_89bd8: ; 89bd8
 INCBIN "baserom.gbc",$89bd8,$89c34 - $89bd8
 
 ; known jump sources: 89b97 (22:5b97), 89c44 (22:5c44)
@@ -69400,11 +69641,11 @@ Function89c67: ; 89c67 (22:5c67)
 	dec a
 	ld c, a
 	ld d, $0
-	ld hl, $5cbf
+	ld hl, Unknown_89cbf
 	ld a, [$d02f]
 	and a
 	jr z, .asm_89ca5
-	ld hl, $5ccf
+	ld hl, Unknown_89ccf
 .asm_89ca5
 	ld a, [$d011]
 	and a
@@ -69427,7 +69668,12 @@ Function89c67: ; 89c67 (22:5c67)
 	ret
 ; 89cbf (22:5cbf)
 
-INCBIN "baserom.gbc",$89cbf,$89cdf - $89cbf
+Unknown_89cbf: ; 89cbf
+INCBIN "baserom.gbc",$89cbf,$89ccf - $89cbf
+
+Unknown_89ccf: ; 89ccf
+INCBIN "baserom.gbc",$89ccf,$89cdf - $89ccf
+; 89cdf
 
 ; known jump sources: 8a50e (22:650e)
 Function89cdf: ; 89cdf (22:5cdf)
@@ -69479,13 +69725,13 @@ Function89d0d: ; 89d0d (22:5d0d)
 	ld de, Unkn1Pals ; $d000
 .asm_89d1c
 	push bc
-	ld hl, $5d4e
+	ld hl, Palette_89d4e
 	ld bc, $8
 	call CopyBytes
 	pop bc
 	dec c
 	jr nz, .asm_89d1c
-	ld hl, $5d56
+	ld hl, Palette_89d56
 	ld de, $d010
 	ld bc, $8
 	call CopyBytes
@@ -69500,7 +69746,19 @@ Function89d0d: ; 89d0d (22:5d0d)
 	ret
 ; 89d4e (22:5d4e)
 
-INCBIN "baserom.gbc",$89d4e,$89d5e - $89d4e
+Palette_89d4e: ; 89d4e
+	RGB 31, 31, 31
+	RGB 19, 19, 19
+	RGB 15, 15, 15
+	RGB 00, 00, 00
+; 89d56
+
+Palette_89d56: ; 89d56
+	RGB 31, 31, 31
+	RGB 19, 19, 19
+	RGB 19, 19, 19
+	RGB 00, 00, 00
+; 89d5e
 
 ; known jump sources: 8a18b (22:618b), 8a9de (22:69de), 8b989 (22:7989)
 Function89d5e: ; 89d5e (22:5d5e)
@@ -69710,7 +69968,7 @@ Function89e9a: ; 89e9a (22:5e9a)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $5eb1
+	ld hl, Palette_89eb1
 	ld de, $d028
 	ld bc, $8
 	call CopyBytes
@@ -69719,7 +69977,12 @@ Function89e9a: ; 89e9a (22:5e9a)
 	ret
 ; 89eb1 (22:5eb1)
 
-INCBIN "baserom.gbc",$89eb1,$89eb9 - $89eb1
+Palette_89eb1: ; 89eb1
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 27, 19, 00
+	RGB 00, 00, 00
+; 89eb9
 
 ; no known jump sources
 Function89eb9: ; 89eb9 (22:5eb9)
@@ -69929,7 +70192,7 @@ Function89fce: ; 89fce (22:5fce)
 
 ; no known jump sources
 Function89fed: ; 89fed (22:5fed)
-	ld hl, $6102
+	ld hl, UnknownText_0x8a102
 	call PrintText
 	jp Function89e36
 
@@ -69962,7 +70225,7 @@ Function89ff6: ; 89ff6 (22:5ff6)
 
 ; no known jump sources
 Function8a03d: ; 8a03d (22:603d)
-	ld hl, $6107
+	ld hl, UnknownText_0x8a107
 	call Function89209
 	call PrintText
 	call Function8920f
@@ -69970,7 +70233,7 @@ Function8a03d: ; 8a03d (22:603d)
 
 ; no known jump sources
 Function8a04c: ; 8a04c (22:604c)
-	ld hl, $610c
+	ld hl, UnknownText_0x8a10c
 	call PrintText
 	jp Function89e36
 
@@ -70078,7 +70341,7 @@ Function8a0e6: ; 8a0e6 (22:60e6)
 
 ; no known jump sources
 Function8a0ec: ; 8a0ec (22:60ec)
-	ld hl, $6111
+	ld hl, UnknownText_0x8a111
 	call PrintText
 	jp Function89e36
 
@@ -70094,7 +70357,29 @@ Function8a0ff: ; 8a0ff (22:60ff)
 	jp Function89e36
 ; 8a102 (22:6102)
 
-INCBIN "baserom.gbc",$8a102,$8a116 - $8a102
+UnknownText_0x8a102: ; 0x8a102
+	; The CARD FOLDER stores your and your friends' CARDS. A CARD contains information like the person's name, phone number and profile.
+	text_jump UnknownText_0x1c5238
+	db "@"
+; 0x8a107
+
+UnknownText_0x8a107: ; 0x8a107
+	; This is your CARD. Once you've entered your phone number, you can trade CARDS with your friends.
+	text_jump UnknownText_0x1c52bc
+	db "@"
+; 0x8a10c
+
+UnknownText_0x8a10c: ; 0x8a10c
+	; If you have your friend's CARD, you can use it to make a call from a mobile phone on the 2nd floor of a #MON CENTER.
+	text_jump UnknownText_0x1c531e
+	db "@"
+; 0x8a111
+
+UnknownText_0x8a111: ; 0x8a111
+	; To safely store your collection of CARDS, you must set a PASSCODE for your CARD FOLDER.
+	text_jump UnknownText_0x1c5394
+	db "@"
+; 0x8a116
 
 ; no known jump sources
 Function8a116: ; 8a116 (22:6116)
@@ -73029,7 +73314,7 @@ Function8b94a: ; 8b94a
 
 ; known jump sources: 8a656 (22:6656)
 Function8b960: ; 8b960 (22:7960)
-	ld hl, $79ac
+	ld hl, MenuDataHeader_0x8b9ac
 	call LoadMenuDataHeader
 	call Function8b9e9
 	jr c, .asm_8b97a
@@ -73037,18 +73322,18 @@ Function8b960: ; 8b960 (22:7960)
 	ld b, $6
 	ld c, $7
 	call Function8b703
-	ld hl, $79b1
+	ld hl, MenuDataHeader_0x8b9b1
 	jr .asm_8b987
 .asm_8b97a
 	ld hl, $c4ab
 	ld b, $a
 	ld c, $7
 	call Function8b703
-	ld hl, $79ca
+	ld hl, MenuDataHeader_0x8b9ca
 .asm_8b987
 	ld a, $1
 	call Function89d5e
-	ld hl, $79ab
+	ld hl, Function8b9ab
 	call Function89d85
 	call Function1c07
 	jr c, .asm_8b99c
@@ -73072,7 +73357,48 @@ Function8b99f: ; 8b99f (22:799f)
 	ret
 ; 8b9ab (22:79ab)
 
-INCBIN "baserom.gbc",$8b9ab,$8b9e9 - $8b9ab
+Function8b9ab: ; 8b9ab
+	ret
+; 8b9ac
+
+MenuDataHeader_0x8b9ac: ; 0x8b9ac
+        db $40 ; flags
+        db 00, 11 ; start coords
+        db 11, 19 ; end coords
+
+MenuDataHeader_0x8b9b1: ; 0x8b9b1
+        db $40 ; flags
+        db 00, 11 ; start coords
+        db 07, 19 ; end coords
+        dw MenuData2_0x8b9b9
+        db 1 ; default option
+; 0x8b9b9
+
+MenuData2_0x8b9b9: ; 0x8b9b9
+        db $a0 ; flags
+        db 3 ; items
+        db "へんしゅう@" ; EDIT
+        db "いれかえ@"   ; REPLACE
+        db "やめる@"     ; QUIT
+; 0x8b9ca
+
+MenuDataHeader_0x8b9ca: ; 0x8b9ca
+        db $40 ; flags
+        db 00, 11 ; start coords
+        db 11, 19 ; end coords
+        dw MenuData2_0x8b9d2
+        db 1 ; default option
+; 0x8b9d2
+
+MenuData2_0x8b9d2: ; 0x8b9d2
+        db $a0 ; flags
+        db 5 ; items
+        db "みる@"       ; VIEW
+        db "へんしゅう@" ; EDIT
+        db "いれかえ@"   ; REPLACE
+        db "けす@"       ; ERASE
+        db "やめる@"     ; QUIT
+; 0x8b9e9
 
 ; known jump sources: 8b966 (22:7966)
 Function8b9e9: ; 8b9e9 (22:79e9)
@@ -73089,10 +73415,10 @@ Function8b9e9: ; 8b9e9 (22:79e9)
 .asm_8b9ff
 	call Function892b4
 	and a
-	ld de, $7a1c
+	ld de, Unknown_8ba1c
 	jr .asm_8ba0c
 .asm_8ba08
-	ld de, $7a1f
+	ld de, Unknown_8ba1f
 	scf
 .asm_8ba0c
 	push af
@@ -73108,7 +73434,12 @@ Function8b9e9: ; 8b9e9 (22:79e9)
 	ret
 ; 8ba1c (22:7a1c)
 
-INCBIN "baserom.gbc",$8ba1c,$8ba24 - $8ba1c
+Unknown_8ba1c: ; 8b1ac
+	db 2, 4, -1
+
+Unknown_8ba1f: ; 8ba1f
+	db 1, 2, 4, 3, -1
+; 8ba24
 
 
 SECTION "bank23", ROMX, BANK[$23]
@@ -73720,10 +74051,10 @@ Function8c2a0: ; 8c2a0
 ; 8c2aa
 
 Function8c2aa: ; 8c2aa
-	ld de, $42f4
+	ld de, GFX_8c2f4
 	ld hl, $8fe0
-	ld b, $23
-	ld c, $2
+	ld b, BANK(GFX_8c2f4)
+	ld c, 2
 	call Request2bpp
 	ld a, [rVBK]
 	push af
@@ -73764,6 +74095,7 @@ Function8c2cf: ; 8c2cf
 	ret
 ; 8c2f4
 
+GFX_8c2f4: ; 8c2f4
 INCBIN "baserom.gbc",$8c2f4,$8c314 - $8c2f4
 
 Function8c314: ; 8c314
@@ -73836,13 +74168,14 @@ Function8c365: ; 8c365 (23:4365)
 	jr z, .asm_8c386
 	set 1, e
 .asm_8c386
-	ld hl, $438f
+	ld hl, Unknown_8c38f
 	add hl, de
 	ld a, [hl]
 	ld [$cf63], a
 	ret
 ; 8c38f (23:438f)
 
+Unknown_8c38f: ; 8c38f
 INCBIN "baserom.gbc",$8c38f,$8c393 - $8c38f
 
 ; no known jump sources
@@ -73883,8 +74216,8 @@ Function8c3b3: ; 8c3b3 (23:43b3)
 	inc [hl]
 	srl a
 	ld e, a
-	ld d, $0
-	ld hl, $43db
+	ld d, 0
+	ld hl, Unknown_8c3db
 	add hl, de
 	ld a, [hl]
 	cp $1
@@ -73900,6 +74233,7 @@ Function8c3b3: ; 8c3b3 (23:43b3)
 	ret
 ; 8c3db (23:43db)
 
+Unknown_8c3db: ; 8c3db
 INCBIN "baserom.gbc",$8c3db,$8c3e8 - $8c3db
 
 ; no known jump sources
@@ -73975,8 +74309,8 @@ Function8c44f: ; 8c44f (23:444f)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, [$cf64]
 	ld e, a
-	ld d, $0
-	ld hl, $4490
+	ld d, 0
+	ld hl, Unknown_8c490
 	add hl, de
 	add hl, de
 	add hl, de
@@ -74007,6 +74341,7 @@ Function8c44f: ; 8c44f (23:444f)
 	ret
 ; 8c490 (23:4490)
 
+Unknown_8c490: ; 8c490
 INCBIN "baserom.gbc",$8c490,$8c4f5 - $8c490
 
 ; known jump sources: 8c468 (23:4468)
