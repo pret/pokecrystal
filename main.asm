@@ -43081,7 +43081,7 @@ PrintMoveDesc: ; 2cb3e
 	jp PlaceString
 ; 2cb52
 
-MoveDescriptions: ; 2cb52
+MoveDescriptions:: ; 2cb52
 INCLUDE "battle/moves/move_descriptions.asm"
 ; 2ed44
 
