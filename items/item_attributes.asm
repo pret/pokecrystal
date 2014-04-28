@@ -43,7 +43,7 @@ Item2Attributes:
 	db $06 ; ball
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -195,7 +195,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -355,7 +355,7 @@ Item2Attributes:
 	db $06 ; ball
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -395,7 +395,7 @@ Item2Attributes:
 	db $06 ; ball
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -443,7 +443,7 @@ Item2Attributes:
 	db $60 ; overworld
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -715,7 +715,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -795,7 +795,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -955,7 +955,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1075,7 +1075,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1083,7 +1083,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1091,7 +1091,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1123,7 +1123,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1131,7 +1131,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1155,7 +1155,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1171,7 +1171,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1179,7 +1179,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1187,7 +1187,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1219,7 +1219,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1227,7 +1227,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1235,7 +1235,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1291,7 +1291,7 @@ Item2Attributes:
 	db $06 ; ball
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1363,7 +1363,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1403,7 +1403,7 @@ Item2Attributes:
 	db $60 ; overworld
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1427,7 +1427,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1515,7 +1515,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1555,7 +1555,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1755,7 +1755,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -1995,7 +1995,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -2003,7 +2003,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -2011,7 +2011,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -2019,7 +2019,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -2027,7 +2027,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -2035,7 +2035,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TERU-SAMA
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
@@ -2043,7 +2043,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; ?
-	dw 39321 ; price
+	dw $9999 ; price
 	db NONE ; effect
 	db 0 ; param
 	db 0 ; can select + toss
