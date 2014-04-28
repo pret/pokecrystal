@@ -81291,7 +81291,7 @@ Function919b0: ; 919b0
 
 Function91a04: ; 91a04
 	ld a, [DefaultFlypoint]
-	cp $2f
+	cp KANTO_LANDMARK
 	jr nc, .asm_91a0f
 	ld e, $0
 	jr .asm_91a11
@@ -81992,12 +81992,14 @@ Function91de9: ; 91de9
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld de, $5e16
+	ld de, String_91e16
 	call PlaceString
 	ret
 ; 91e16
 
-INCBIN "baserom.gbc",$91e16,$91e1e - $91e16
+String_91e16:
+	db "'S NEST@"
+; 91e1e
 
 Function91e1e: ; 91e1e
 	ld [$d003], a
@@ -82039,74 +82041,87 @@ Function91e1e: ; 91e1e
 Function91e5a: ; 91e5a
 	call Function91ea9
 	ret c
+
 	ld a, [DefaultFlypoint]
 	ld e, a
 	callba GetLandmarkCoords
 	ld c, e
 	ld b, d
-	ld de, $5e9c
+	ld de, Unknown_91e9c
 	ld hl, Sprites
 .asm_91e70
 	ld a, [de]
 	cp $80
 	jr z, .asm_91e91
+
 	add b
 	ld [hli], a
 	inc de
+
 	ld a, [de]
 	add c
 	ld [hli], a
 	inc de
+
 	ld a, [de]
 	add $78
 	ld [hli], a
 	inc de
+
 	push bc
-	ld c, $0
+	ld c, 0
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_91e8c
 	inc c
-
 .asm_91e8c
 	ld a, c
 	ld [hli], a
 	pop bc
+
 	jr .asm_91e70
 
 .asm_91e91
-	ld hl, $c410
-	ld bc, $0090
+	ld hl, Sprites + $10
+	ld bc, SpritesEnd - (Sprites + $10)
 	xor a
 	call ByteFill
 	ret
 ; 91e9c
 
-INCBIN "baserom.gbc",$91e9c,$91ea9 - $91e9c
+Unknown_91e9c: ; 91e9c
+	db -8, -8,  0
+	db -8,  0,  1
+	db  0, -8,  2
+	db  0,  0,  3
+	db $80 ; terminator
+; 91ea9
 
 Function91ea9: ; 91ea9
 	ld a, [DefaultFlypoint]
-	cp $5f
-	jr z, .asm_91ebc
-	cp $2f
-	jr c, .asm_91ebc
+	cp FAST_SHIP
+	jr z, .johto
+	cp KANTO_LANDMARK
+	jr c, .johto
+
+.kanto
 	ld a, [$d003]
 	and a
-	jr z, .asm_91ec4
-	jr .asm_91ec2
+	jr z, .clear
+	jr .ok
 
-.asm_91ebc
+.johto
 	ld a, [$d003]
 	and a
-	jr nz, .asm_91ec4
+	jr nz, .clear
 
-.asm_91ec2
+.ok
 	and a
 	ret
 
-.asm_91ec4
+.clear
 	ld hl, Sprites
-	ld bc, $00a0
+	ld bc, SpritesEnd - Sprites
 	xor a
 	call ByteFill
 	scf
@@ -82115,14 +82130,14 @@ Function91ea9: ; 91ea9
 
 Function91ed0: ; 91ed0
 	ld a, [DefaultFlypoint]
-	cp $5f
+	cp FAST_SHIP
 	jr z, .asm_91ede
 	callba GetPlayerIcon
 	ret
 
 .asm_91ede
-	ld de, $4cb2
-	ld b, $24
+	ld de, FastShipGFX
+	ld b, BANK(FastShipGFX)
 	ret
 ; 91ee4
 
@@ -82195,7 +82210,7 @@ TownMapPals: ; 91f13
 	
 ; The palette data is condensed to nybbles,
 ; least-significant first.
-	ld hl, .Pals
+	ld hl, TownMapPalMap
 	srl a
 	jr c, .odd
 	
@@ -82234,7 +82249,7 @@ TownMapPals: ; 91f13
 	jr nz, .loop
 	ret
 
-.Pals
+TownMapPalMap:
 	db $11, $21, $22, $00, $11, $13, $54, $54, $11, $21, $22, $00
 	db $11, $10, $01, $00, $11, $21, $22, $00, $00, $00, $00, $00
 	db $00, $00, $44, $04, $00, $00, $00, $00, $33, $33, $33, $33
@@ -82289,7 +82304,7 @@ TownMapPlayerIcon: ; 91fa6
 	ld e, l
 	ld hl, $8140
 	ld c, 4 ; # tiles
-	ld a, $30
+	ld a, BANK(ChrisSpriteGFX) ; does nothing
 	call Request2bpp
 	
 ; Animation/palette
@@ -82299,7 +82314,6 @@ TownMapPlayerIcon: ; 91fa6
 	bit 0, a
 	jr z, .asm_91fd3
 	ld b, $1e ; Female
-	
 .asm_91fd3
 	ld a, b
 	call Function3b2a
