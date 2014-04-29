@@ -104690,10 +104690,6 @@ Function10ed51: ; 10ed51
 INCLUDE "engine/title.asm"
 
 
-SECTION "bank44", ROMX, BANK[$44]
-
-INCLUDE "lib/mobile/main.asm"
-
 
 SECTION "bank45", ROMX, BANK[$45]
 

@@ -15,6 +15,7 @@ TEXTQUEUE :=
 CRYSTAL_OBJS := \
 wram.o \
 main.o \
+lib/mobile/main.o \
 home.o \
 audio.o \
 maps_crystal.o \

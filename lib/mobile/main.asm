@@ -1,5 +1,10 @@
 ; A library included as part of the Mobile Adapter GB SDK.
 
+INCLUDE "gbhw.asm"
+
+
+SECTION "Main", ROMX
+
 ; known jump sources: 110004 (44:4004), 111bdd (44:5bdd), 111bfd (44:5bfd), 111c0e (44:5c0e), 111c7d (44:5c7d), 111cbd (44:5cbd), 111cf4 (44:5cf4), 111d30 (44:5d30)
 Function110000: ; 110000 (44:4000)
 	ld a, [hli]
