@@ -67,12 +67,12 @@ UnknownScript_0x6e019: ; 0x6e019
 	appear $a
 	applymovement $a, MovementData_0x6e164
 	spriteface $0, $2
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x6e267
 	closetext
 	loadmovesprites
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $0, MovementData_0x6e175
 	applymovement $a, MovementData_0x6e16d
 	disappear $a
@@ -95,7 +95,7 @@ UnknownScript_0x6e052: ; 0x6e052
 UnknownScript_0x6e056: ; 0x6e056
 	pause 30
 	showemote $0, $3, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, $0
 	loadfont
 	2writetext UnknownText_0x6e400
@@ -113,7 +113,7 @@ UnknownScript_0x6e056: ; 0x6e056
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x6e144
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $3, MovementData_0x6e147
 	disappear $3
 	dotrigger $3
@@ -272,7 +272,7 @@ UnknownScript_0x6e105: ; 0x6e105
 UnknownScript_0x6e10b: ; 0x6e10b
 	2writetext UnknownText_0x6e9a3
 	closetext
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	changeblock $a, $8, $7
 	reloadmappart
 	loadmovesprites

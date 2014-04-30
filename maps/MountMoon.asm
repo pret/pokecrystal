@@ -25,7 +25,7 @@ UnknownScript_0x7408e: ; 0x7408e
 	special $006a
 	pause 15
 	applymovement $2, MovementData_0x740f9
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x74105
 	closetext
@@ -64,7 +64,7 @@ UnknownScript_0x740d3: ; 0x740d3
 ; 0x740e3
 
 UnknownScript_0x740e3: ; 0x740e3
-	playmusic $0020
+	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	2writetext UnknownText_0x741fa
 	closetext

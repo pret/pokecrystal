@@ -21,7 +21,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 	setevent EVENT_BEAT_BLUE
 	loadfont
 	2writetext UnknownText_0x9ac0f
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $002a
 	2writetext UnknownText_0x9ac27

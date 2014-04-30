@@ -36,11 +36,11 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	spriteface $0, $1
 	showemote $0, $0, 15
 	pause 15
-	playsound $0014
+	playsound SFX_WARP_FROM
 	applymovement $d, MovementData_0x1a00da
 	spriteface $0, $0
 	pause 15
-	playsound $0014
+	playsound SFX_WARP_FROM
 	applymovement $d, MovementData_0x1a00e0
 	disappear $d
 	pause 10
@@ -50,7 +50,7 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	checkevent $0333
 	iftrue UnknownScript_0x1a0083
 	setevent $0333
-	playmusic $0061
+	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	appear $c
 	applymovement $c, MovementData_0x1a00e7
 	loadfont
@@ -63,7 +63,7 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	playmusic $0061
+	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x1a05c3
 	closetext

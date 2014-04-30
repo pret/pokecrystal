@@ -50,7 +50,7 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	loadmovesprites
 	showemote $0, $0, 15
 	spriteface $0, $2
-	playmusic $005d
+	playmusic MUSIC_CLAIR
 	applymovement $3, MovementData_0x18c9ae
 	loadfont
 	2writetext UnknownText_0x18c9bf
@@ -59,7 +59,7 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	iffalse UnknownScript_0x18c8f4
 	itemtotext TM_24, $0
 	2writetext UnknownText_0x18c9fb
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
@@ -208,7 +208,7 @@ PokeBallScript_0x18c95a: ; 0x18c95a
 	loadfont
 	itemtotext DRAGON_FANG, $0
 	2writetext UnknownText_0x18cf41
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	loadmovesprites
@@ -227,7 +227,7 @@ UnknownScript_0x18c970: ; 0x18c970
 ; 0x18c97e
 
 SilverScript_0x18c97e: ; 0x18c97e
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	loadfont
 	checkevent $0000

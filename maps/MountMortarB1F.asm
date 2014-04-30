@@ -29,7 +29,7 @@ UnknownScript_0x7e217: ; 0x7e217
 	checkcode $1
 	if_equal $6, UnknownScript_0x7e237
 	2writetext UnknownText_0x7e355
-	playsound $0002
+	playsound SFX_CAUGHT_MON
 	waitbutton
 	givepoke TYROGUE, 10, 0, 0
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO

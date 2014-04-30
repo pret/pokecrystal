@@ -35,7 +35,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	if_equal $1, .UnknownScript_0x69511
 	spriteface $0, $0
 	applymovement $6, MovementData_0x69549
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $6
 	waitbutton
 	end
@@ -44,7 +44,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	applymovement $6, MovementData_0x6954e
 	spriteface $0, $0
 	applymovement $6, MovementData_0x69551
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $6
 	waitbutton
 	end

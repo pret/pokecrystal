@@ -12,7 +12,7 @@ MapGoldenrodDeptStoreElevatorSignpost0Script: ; 0x56699
 	loadmovesprites
 	iffalse UnknownScript_0x566df
 	pause 5
-	playsound $006e
+	playsound SFX_ELEVATOR
 	earthquake 60
 	waitbutton
 	checkevent $0307

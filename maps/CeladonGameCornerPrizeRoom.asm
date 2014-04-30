@@ -77,7 +77,7 @@ UnknownScript_0x72768: ; 0x72768
 
 UnknownScript_0x7276d: ; 0x7276d
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x729ad
 	closetext
 	2jump UnknownScript_0x726fd
@@ -158,7 +158,7 @@ UnknownScript_0x727ed: ; 0x727ed
 	2call UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x729ad
 	closetext
 	writebyte PIKACHU
@@ -177,7 +177,7 @@ UnknownScript_0x7281b: ; 0x7281b
 	2call UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x729ad
 	closetext
 	writebyte PORYGON
@@ -196,7 +196,7 @@ UnknownScript_0x72849: ; 0x72849
 	2call UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x729ad
 	closetext
 	writebyte LARVITAR

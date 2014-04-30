@@ -32,11 +32,11 @@ UnknownScript_0x1a8833: ; 0x1a8833
 	showemote $0, $0, 15
 	special $006a
 	pause 15
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	appear $5
 	waitbutton
 	applymovement $5, MovementData_0x1a88d2
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x1a88fa
 	closetext
@@ -57,11 +57,11 @@ UnknownScript_0x1a886b: ; 0x1a886b
 	showemote $0, $0, 15
 	special $006a
 	pause 15
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	appear $5
 	waitbutton
 	applymovement $5, MovementData_0x1a88d6
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x1a88fa
 	closetext

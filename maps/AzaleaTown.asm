@@ -53,7 +53,7 @@ UnknownScript_0x198034: ; 0x198034
 	applymovement $b, MovementData_0x19813c
 	spriteface $0, $1
 UnknownScript_0x198049: ; 0x198049
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x19814d
 	closetext
@@ -93,14 +93,14 @@ UnknownScript_0x198081: ; 0x198081
 ; 0x198091
 
 UnknownScript_0x198091: ; 0x198091
-	playmusic $0020
+	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	2writetext UnknownText_0x198233
 	closetext
 	loadmovesprites
 	spriteface $0, $2
 	applymovement $b, MovementData_0x198144
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $b
 	dotrigger $0
 	waitbutton

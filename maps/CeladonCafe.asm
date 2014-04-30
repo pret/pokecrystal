@@ -99,7 +99,7 @@ MapCeladonCafeSignpost1Script: ; 0x730b0
 	loadfont
 	itemtotext LEFTOVERS, $0
 	2writetext UnknownText_0x732e7
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	loadmovesprites

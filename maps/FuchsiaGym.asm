@@ -31,7 +31,7 @@ JanineScript_0x195db9: ; 0x195db9
 	special $005e
 	loadfont
 	2writetext UnknownText_0x195feb
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0027
 	2jump UnknownScript_0x195e02

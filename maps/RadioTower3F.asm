@@ -219,7 +219,7 @@ UnknownScript_0x5e605: ; 0x5e605
 	2writetext UnknownText_0x5eabc
 	closetext
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	changeblock $e, $2, $2a
 	changeblock $e, $4, $1
 	reloadmappart

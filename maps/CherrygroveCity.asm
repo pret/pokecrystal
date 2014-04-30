@@ -40,7 +40,7 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	2writetext UnknownText_0x19c26f
 	closetext
 	loadmovesprites
-	playmusic $0011
+	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, $0
 	applymovement $2, MovementData_0x19c195
 	loadfont
@@ -85,7 +85,7 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	special $003d
 	spriteface $0, $1
 	applymovement $2, MovementData_0x19c1cb
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	disappear $2
 	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
 	waitbutton
@@ -118,7 +118,7 @@ UnknownScript_0x19c0ae: ; 0x19c0ae
 	appear $3
 	applymovement $3, MovementData_0x19c1ce
 	spriteface $0, $3
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x19c4e2
 	closetext
@@ -163,7 +163,7 @@ UnknownScript_0x19c104: ; 0x19c104
 ; 0x19c11a
 
 UnknownScript_0x19c11a: ; 0x19c11a
-	playmusic $0020
+	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	2writetext UnknownText_0x19c608
 	closetext
@@ -172,13 +172,13 @@ UnknownScript_0x19c11a: ; 0x19c11a
 ; 0x19c126
 
 UnknownScript_0x19c126: ; 0x19c126
-	playmusic $0020
+	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	2writetext UnknownText_0x19c59e
 	closetext
 	loadmovesprites
 UnknownScript_0x19c12f: ; 0x19c12f
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $0, MovementData_0x19c1d4
 	spriteface $0, $2
 	applymovement $3, MovementData_0x19c1da

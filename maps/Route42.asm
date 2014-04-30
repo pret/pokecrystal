@@ -21,7 +21,7 @@ UnknownScript_0x1a9217: ; 0x1a9217
 UnknownScript_0x1a9218: ; 0x1a9218
 	showemote $0, $0, 15
 	pause 15
-	playsound $0014
+	playsound SFX_WARP_FROM
 	applymovement $a, MovementData_0x1a9356
 	disappear $a
 	pause 10

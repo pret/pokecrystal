@@ -34,7 +34,7 @@ MortyScript_0x99d58: ; 0x99d58
 	setevent EVENT_BEAT_MORTY
 	loadfont
 	2writetext UnknownText_0x9a043
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001e
 	checkcode $7
@@ -93,7 +93,7 @@ UnknownScript_0x99dc6: ; 0x99dc6
 	applymovement $0, MovementData_0x99e5f
 	stopfollow
 	special $002e
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	waitbutton
 	warp GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, $6, $1b
 	end

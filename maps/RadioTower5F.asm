@@ -31,7 +31,7 @@ UnknownScript_0x60011: ; 0x60011
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x60109
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x60147
 	closetext
@@ -100,7 +100,7 @@ Executivef1Script: ; 0x60066
 
 UnknownScript_0x6006e: ; 0x6006e
 	applymovement $0, MovementData_0x60125
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, $3
 	loadfont
 	2writetext UnknownText_0x603d1
@@ -155,7 +155,7 @@ UnknownScript_0x6006e: ; 0x6006e
 
 UnknownScript_0x600f1: ; 0x600f1
 	applymovement $2, MovementData_0x6011a
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $2
 	end
 ; 0x600fb

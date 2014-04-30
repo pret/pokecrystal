@@ -20,11 +20,11 @@ UnknownScript_0x60f94: ; 0x60f94
 UnknownScript_0x60f9e: ; 0x60f9e
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue UnknownScript_0x60fd8
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	moveperson $3, $0, $7
 	disappear $3
 	appear $3
-	playmusic $0011
+	playmusic MUSIC_SHOW_ME_AROUND
 	applymovement $3, MovementData_0x6105a
 	spriteface $0, $1
 	loadfont
@@ -39,7 +39,7 @@ UnknownScript_0x60f9e: ; 0x60f9e
 	applymovement $3, MovementData_0x61060
 	special $003d
 	disappear $3
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 UnknownScript_0x60fd8: ; 0x60fd8
 	end
 ; 0x60fd9
@@ -54,11 +54,11 @@ UnknownScript_0x60fd9: ; 0x60fd9
 UnknownScript_0x60fe3: ; 0x60fe3
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue UnknownScript_0x6101d
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	moveperson $3, $0, $7
 	disappear $3
 	appear $3
-	playmusic $0011
+	playmusic MUSIC_SHOW_ME_AROUND
 	applymovement $3, MovementData_0x61065
 	spriteface $0, $1
 	loadfont
@@ -73,7 +73,7 @@ UnknownScript_0x60fe3: ; 0x60fe3
 	applymovement $3, MovementData_0x6106c
 	special $003d
 	disappear $3
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 UnknownScript_0x6101d: ; 0x6101d
 	end
 ; 0x6101e

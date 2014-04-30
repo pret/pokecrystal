@@ -103,21 +103,21 @@ YoungsterScript_0x184064: ; 0x184064
 
 UnknownScript_0x184072: ; 0x184072
 	waitbutton
-	playsound $0012
+	playsound SFX_SECOND_PART_OF_ITEMFINDER
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	waitbutton
-	playsound $0012
+	playsound SFX_SECOND_PART_OF_ITEMFINDER
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	waitbutton
-	playsound $0012
+	playsound SFX_SECOND_PART_OF_ITEMFINDER
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	waitbutton
-	playsound $0012
+	playsound SFX_SECOND_PART_OF_ITEMFINDER
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	waitbutton
 	showemote $0, $7, 15
 	spriteface $7, $2

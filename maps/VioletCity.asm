@@ -36,7 +36,7 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	2writetext UnknownText_0x1a84cb
 	closetext
 	loadmovesprites
-	playmusic $0011
+	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, $0
 	applymovement $2, MovementData_0x1a842a
 	spriteface $0, $1
@@ -49,7 +49,7 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	loadmovesprites
 	applymovement $2, MovementData_0x1a8465
 	applymovement $2, MovementData_0x1a8463
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	disappear $2
 	clearevent $06cb
 	waitbutton

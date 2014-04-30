@@ -83,7 +83,7 @@ UnknownScript_0x6a1ee: ; 0x6a1ee
 	closetext
 	loadmovesprites
 	2call UnknownScript_0x6a261
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	special $002e
 	waitbutton
 	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
@@ -114,14 +114,14 @@ UnknownScript_0x6a234: ; 0x6a234
 	2writetext UnknownText_0x6a39d
 	keeptextopen
 	2writetext UnknownText_0x6a3c7
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	2writetext UnknownText_0x6a3e2
 	closetext
 	loadmovesprites
 	special $0018
 	2call UnknownScript_0x6a261
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	special $002e
 	waitbutton
 	special $0047
@@ -159,7 +159,7 @@ UnknownScript_0x6a27d: ; 6a27d
 	2writetext UnknownText_0x6a537
 	keeptextopen
 	2writetext UnknownText_0x6a56b
-	playsound $000c
+	playsound SFX_GOT_SAFARI_BALLS
 	waitbutton
 	keeptextopen
 	2jump UnknownScript_0x6a234

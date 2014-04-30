@@ -24,7 +24,7 @@ PharmacistScript_0x9df9e: ; 0x9df9e
 	keeptextopen
 	giveitem SECRETPOTION, $1
 	2writetext UnknownText_0x9e056
-	playsound $0091
+	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY

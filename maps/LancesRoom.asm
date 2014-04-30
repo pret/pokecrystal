@@ -38,7 +38,7 @@ UnknownScript_0x180e52: ; 0x180e52
 UnknownScript_0x180e53: ; 0x180e53
 	applymovement $0, MovementData_0x180f33
 	refreshscreen $86
-	playsound $001b
+	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock $4, $16, $34
 	reloadmappart
@@ -74,7 +74,7 @@ LanceScript_0x180e7b: ; 0x180e7b
 	2writetext UnknownText_0x181132
 	closetext
 	loadmovesprites
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	changeblock $4, $0, $b
 	reloadmappart
 	loadmovesprites
@@ -119,10 +119,10 @@ LanceScript_0x180e7b: ; 0x180e7b
 	spriteface $4, $1
 	applymovement $2, MovementData_0x180f53
 	stopfollow
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $2
 	applymovement $0, MovementData_0x180f55
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $0
 	applymovement $3, MovementData_0x180f57
 	showemote $0, $3, 15

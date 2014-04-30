@@ -317,7 +317,7 @@ UnknownScript_0x7c1cd: ; 0x7c1cd
 	closetext
 	loadmovesprites
 	special $002e
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	pause 60
 	special $0031
 	special $003d
@@ -409,7 +409,7 @@ UnknownScript_0x7c27a: ; 0x7c27a
 	closetext
 	loadmovesprites
 	special $002e
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	pause 60
 	special $0031
 	special $003d
@@ -481,7 +481,7 @@ MapWarehouseEntranceSignpost0Script:: ; 0x7c2d6
 ; 0x7c2e8
 
 UnknownScript_0x7c2e8: ; 0x7c2e8
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x7c5d6
 	closetext
 	loadmovesprites

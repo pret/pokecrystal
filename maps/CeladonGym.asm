@@ -25,7 +25,7 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
 	loadfont
 	2writetext UnknownText_0x72c96
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0026
 UnknownScript_0x72a9b: ; 0x72a9b

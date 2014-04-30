@@ -48,7 +48,7 @@ UnknownScript_0x9f425: ; 0x9f425
 	2writetext UnknownText_0x9ee92
 	closetext
 	loadmovesprites
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	special $002e
 	special $00a4
 	pause 60
@@ -75,7 +75,7 @@ UnknownScript_0x9f483: ; 0x9f483
 	special $0086
 	writebyte $3
 	special $0086
-	playsound $0025
+	playsound SFX_SAVE
 	waitbutton
 	special $002e
 	special $007e

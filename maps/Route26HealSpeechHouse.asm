@@ -15,7 +15,7 @@ TeacherScript_0x7b125: ; 0x7b125
 	special $0030
 	special $0033
 	special $009d
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	special $001b
 	pause 60
 	special $0032

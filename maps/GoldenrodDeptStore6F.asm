@@ -53,7 +53,7 @@ UnknownScript_0x56443: ; 0x56443
 
 UnknownScript_0x5645d: ; 0x5645d
 	pause 10
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2writetext UnknownText_0x564ef
 	keeptextopen
 	itemnotify

@@ -38,7 +38,7 @@ UnknownScript_0x180741: ; 0x180741
 UnknownScript_0x180742: ; 0x180742
 	applymovement $0, MovementData_0x18078e
 	refreshscreen $86
-	playsound $001b
+	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock $4, $e, $2a
 	reloadmappart
@@ -66,7 +66,7 @@ KogaScript_0x18075a: ; 0x18075a
 	2writetext UnknownText_0x1808ca
 	closetext
 	loadmovesprites
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	changeblock $4, $2, $16
 	reloadmappart
 	loadmovesprites

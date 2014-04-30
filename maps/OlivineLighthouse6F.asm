@@ -37,7 +37,7 @@ UnknownScript_0x60bab: ; 0x60bab
 	pause 15
 	spriteface $3, $2
 	loadfont
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	2writetext UnknownText_0x60e44
 	pause 60
 	keeptextopen

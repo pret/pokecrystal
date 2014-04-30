@@ -101,7 +101,7 @@ UnknownScript_0x9ccfa: ; 0x9ccfa
 ; 0x9cd04
 
 UnknownScript_0x9cd04: ; 0x9cd04
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	2writetext UnknownText_0x9cdbc
 	pause 60
 	keeptextopen

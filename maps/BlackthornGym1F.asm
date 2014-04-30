@@ -72,7 +72,7 @@ UnknownScript_0x194e69: ; 0x194e69
 	iffalse UnknownScript_0x194e8e
 	itemtotext TM_24, $0
 	2writetext UnknownText_0x1951bf
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH

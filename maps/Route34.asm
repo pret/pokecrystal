@@ -59,7 +59,7 @@ GrampsScript_0x7803d: ; 0x7803d
 	checkcode $9
 	if_equal $3, UnknownScript_0x7805b
 	applymovement $8, MovementData_0x78333
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	disappear $8
 UnknownScript_0x7805a: ; 0x7805a
 	end
@@ -67,7 +67,7 @@ UnknownScript_0x7805a: ; 0x7805a
 
 UnknownScript_0x7805b: ; 0x7805b
 	applymovement $8, MovementData_0x78337
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	disappear $8
 	end
 ; 0x78065
@@ -423,7 +423,7 @@ OfficerScript_0x7824c: ; 0x7824c
 	iffalse UnknownScript_0x78276
 	checkevent $0546
 	iftrue UnknownScript_0x78270
-	playmusic $000c
+	playmusic MUSIC_OFFICER_ENCOUNTER
 	2writetext UnknownText_0x785e4
 	closetext
 	loadmovesprites

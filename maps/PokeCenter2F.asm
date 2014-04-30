@@ -480,7 +480,7 @@ UnknownScript_0x192b12: ; 0x192b12
 	2writetext UnknownText_0x193278
 	closetext
 	loadmovesprites
-	playsound $00ca
+	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $80
 	special $0098
@@ -509,7 +509,7 @@ UnknownScript_0x192b63: ; 0x192b63
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
 	clearflag $009f
-	playsound $00ca
+	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $90
 	special $0098
@@ -533,7 +533,7 @@ UnknownScript_0x192b9d: ; 0x192b9d
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
 	clearflag $009f
-	playsound $00ca
+	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $90
 	special $0098
@@ -598,7 +598,7 @@ UnknownScript_0x192c20: ; 0x192c20
 	2writetext UnknownText_0x193278
 	closetext
 	loadmovesprites
-	playsound $00ca
+	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $80
 	special $0098
@@ -629,7 +629,7 @@ UnknownScript_0x192c66: ; 0x192c66
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cfc
 	clearflag $009f
-	playsound $00ca
+	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $90
 	special $0098

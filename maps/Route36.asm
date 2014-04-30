@@ -37,7 +37,7 @@ UnknownScript_0x194018: ; 0x194018
 UnknownScript_0x19401b: ; 0x19401b
 	showemote $0, $0, 15
 	pause 15
-	playsound $0014
+	playsound SFX_WARP_FROM
 	spriteface $0, $1
 	applymovement $a, MovementData_0x194262
 	disappear $a
@@ -53,7 +53,7 @@ WeirdTreeScript_0x19403c: ; 0x19403c
 	checkitem SQUIRTBOTTLE
 	iftrue UnknownScript_0x19404a
 	waitbutton
-	playsound $006d
+	playsound SFX_SANDSTORM
 	applymovement $4, MovementData_0x194249
 	end
 ; 0x19404a
@@ -73,7 +73,7 @@ WateredWeirdTreeScript:: ; 0x194053
 	closetext
 	loadmovesprites
 	waitbutton
-	playsound $006d
+	playsound SFX_SANDSTORM
 	applymovement $4, MovementData_0x194249
 	loadfont
 	2writetext UnknownText_0x1942aa

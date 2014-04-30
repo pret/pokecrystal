@@ -26,7 +26,7 @@ UnknownScript_0x19eea0: ; 0x19eea0
 	applymovement $3, MovementData_0x19efe8
 	disappear $3
 	pause 15
-	playmusic $0038
+	playmusic MUSIC_BEAUTY_ENCOUNTER
 	spriteface $2, $1
 	pause 10
 	applymovement $2, MovementData_0x19efed
@@ -53,7 +53,7 @@ UnknownScript_0x19eee0: ; 0x19eee0
 	applymovement $3, MovementData_0x19efea
 	disappear $3
 	pause 15
-	playmusic $0038
+	playmusic MUSIC_BEAUTY_ENCOUNTER
 	spriteface $2, $1
 	pause 10
 	applymovement $2, MovementData_0x19eff4

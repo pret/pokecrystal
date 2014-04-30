@@ -91,7 +91,7 @@ UnknownScript_0x6ab76: ; 0x6ab76
 	closetext
 	loadmovesprites
 	spriteface $0, $2
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	special $002e
 	waitbutton
 	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
@@ -168,7 +168,7 @@ UnknownScript_0x6ac10: ; 0x6ac10
 	keeptextopen
 	waitbutton
 	2writetext UnknownText_0x6aeb1
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	2writetext UnknownText_0x6aecc
 	closetext
@@ -176,7 +176,7 @@ UnknownScript_0x6ac10: ; 0x6ac10
 	setflag $0011
 	special $0018
 	spriteface $0, $2
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	special $002e
 	waitbutton
 	special $0047
@@ -201,7 +201,7 @@ UnknownScript_0x6ac4d: ; 0x6ac4d
 	2writetext UnknownText_0x6b021
 	keeptextopen
 	2writetext UnknownText_0x6b055
-	playsound $000c
+	playsound SFX_GOT_SAFARI_BALLS
 	waitbutton
 	keeptextopen
 	2jump UnknownScript_0x6ac10

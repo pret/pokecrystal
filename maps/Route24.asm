@@ -8,7 +8,7 @@ Route24_MapScriptHeader: ; 0x1adbf8
 
 RocketScript_0x1adbfa: ; 0x1adbfa
 	faceplayer
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x1adc2e
 	closetext
@@ -18,7 +18,7 @@ RocketScript_0x1adbfa: ; 0x1adbfa
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x1addc0
 	keeptextopen

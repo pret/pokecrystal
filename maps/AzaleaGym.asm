@@ -21,7 +21,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	setevent EVENT_BEAT_BUGSY
 	loadfont
 	2writetext UnknownText_0x18ee14
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001c
 	checkcode $7

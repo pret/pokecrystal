@@ -21,7 +21,7 @@ BlueScript_0x1ac9b0: ; 0x1ac9b0
 	2writetext UnknownText_0x1ac9d2
 	closetext
 	loadmovesprites
-	playsound $0013
+	playsound SFX_WARP_TO
 	applymovement $2, MovementData_0x1ac9d0
 	disappear $2
 	clearevent $0776

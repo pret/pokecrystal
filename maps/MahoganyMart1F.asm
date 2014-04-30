@@ -75,7 +75,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	2writetext UnknownText_0x6c52a
 	pause 15
 	loadmovesprites
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $5, MovementData_0x6c3f6
 	applymovement $3, MovementData_0x6c3fb
 	pause 15
@@ -95,7 +95,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	2writetext UnknownText_0x6c59e
 	closetext
 	showemote $0, $2, 10
-	playsound $002a
+	playsound SFX_UNKNOWN_2A
 	changeblock $6, $2, $1e
 	reloadmappart
 	loadmovesprites
@@ -106,7 +106,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x6c412
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $4
 	dotrigger $0
 	waitbutton

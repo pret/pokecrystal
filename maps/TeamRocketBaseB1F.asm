@@ -29,7 +29,7 @@ SecurityCamera1a: ; 0x6c65e
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
 	spriteface $0, $2
@@ -38,7 +38,7 @@ SecurityCamera1a: ; 0x6c65e
 	if_equal $1, NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
 	applymovement $2, SecurityCameraMovement1
@@ -55,7 +55,7 @@ SecurityCamera1b: ; 0x6c6a7
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
 	spriteface $0, $2
@@ -64,7 +64,7 @@ SecurityCamera1b: ; 0x6c6a7
 	if_equal $1, NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
 	applymovement $2, SecurityCameraMovement1
@@ -81,7 +81,7 @@ SecurityCamera2a: ; 0x6c6f0
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $7
 	appear $2
 	spriteface $0, $2
@@ -90,7 +90,7 @@ SecurityCamera2a: ; 0x6c6f0
 	if_equal $1, NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $c, $5
 	appear $2
@@ -108,7 +108,7 @@ SecurityCamera2b: ; 0x6c73c
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $8
 	appear $2
 	spriteface $0, $2
@@ -117,7 +117,7 @@ SecurityCamera2b: ; 0x6c73c
 	if_equal $1, NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $c, $5
 	appear $2
@@ -135,7 +135,7 @@ SecurityCamera3a: ; 0x6c788
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $6
 	appear $2
 	spriteface $0, $2
@@ -144,7 +144,7 @@ SecurityCamera3a: ; 0x6c788
 	if_equal $1, NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $b
 	appear $2
@@ -162,7 +162,7 @@ SecurityCamera3b: ; 0x6c7d4
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $7
 	appear $2
 	spriteface $0, $2
@@ -171,7 +171,7 @@ SecurityCamera3b: ; 0x6c7d4
 	if_equal $1, NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $c
 	appear $2
@@ -189,7 +189,7 @@ SecurityCamera4: ; 0x6c820
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $11, $10
 	appear $2
 	spriteface $0, $2
@@ -198,7 +198,7 @@ SecurityCamera4: ; 0x6c820
 	if_equal $1, NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $b
 	appear $2
@@ -216,7 +216,7 @@ SecurityCamera5: ; 0x6c86c
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $3, $10
 	appear $2
 	spriteface $0, $2
@@ -225,7 +225,7 @@ SecurityCamera5: ; 0x6c86c
 	if_equal $1, NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $e, $10
 	appear $2
@@ -269,17 +269,17 @@ TrainerCameraGrunt2: ; 0x6c8ce
 ; 0x6c8e3
 
 PlaySecurityCameraSounds: ; 0x6c8e3
-	playsound $0030
+	playsound SFX_LICK
 	pause 10
-	playsound $0030
+	playsound SFX_LICK
 	pause 10
-	playsound $0030
+	playsound SFX_LICK
 	pause 10
-	playsound $0030
+	playsound SFX_LICK
 	pause 10
-	playsound $0030
+	playsound SFX_LICK
 	pause 10
-	playsound $0030
+	playsound SFX_LICK
 	end
 ; 0x6c900
 
@@ -564,7 +564,7 @@ MapTeamRocketBaseB1FSignpost0Script: ; 0x6ca9c
 	checkevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	iftrue UnknownScript_0x6cabe
 	2writetext UnknownText_0x6cdad
-	playsound $0021
+	playsound SFX_TALLY
 	closetext
 	loadmovesprites
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS

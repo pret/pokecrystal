@@ -59,7 +59,7 @@ UnknownScript_0x19574c: ; 0x19574c
 ; 0x195758
 
 UnknownScript_0x195758: ; 0x195758
-	playsound $001b
+	playsound SFX_STRENGTH
 	earthquake 80
 	end
 ; 0x19575e

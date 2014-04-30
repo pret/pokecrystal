@@ -119,9 +119,9 @@ UnknownScript_0x18d100: ; 0x18d100
 	2writetext UnknownText_0x18d47c
 	closetext
 	loadmovesprites
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	showemote $0, $0, 15
-	playmusic $005d
+	playmusic MUSIC_CLAIR
 	appear $5
 	waitbutton
 	spriteface $0, $0
@@ -161,7 +161,7 @@ UnknownScript_0x18d100: ; 0x18d100
 	2writetext UnknownText_0x18d9bf
 	closetext
 	setflag $0022
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	special $003d
 	specialphonecall $8
@@ -185,7 +185,7 @@ UnknownScript_0x18d100: ; 0x18d100
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x18d2e3
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	disappear $5
 	waitbutton
 	setevent $0000
@@ -215,7 +215,7 @@ UnknownScript_0x18d1c5: ; 0x18d1c5
 	checkcode $1
 	if_equal $6, UnknownScript_0x18d1ed
 	2writetext UnknownText_0x18d697
-	playsound $0002
+	playsound SFX_CAUGHT_MON
 	waitbutton
 	givepoke DRATINI, 15, 0, 0
 	checkevent $00c1

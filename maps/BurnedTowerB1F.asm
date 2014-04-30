@@ -31,7 +31,7 @@ UnknownScript_0x18616a: ; 0x18616a
 ; 0x18616b
 
 UnknownScript_0x18616b: ; 0x18616b
-	playmusic $0000
+	playmusic MUSIC_NONE
 	pause 30
 	appear $3
 	spriteface $0, $1
@@ -52,28 +52,28 @@ UnknownScript_0x18616b: ; 0x18616b
 	pause 15
 	cry SUICUNE
 	pause 15
-	playsound $0014
+	playsound SFX_WARP_FROM
 	spriteface $0, $2
 	applymovement $3, MovementData_0x186236
 	disappear $3
 	waitbutton
-	playsound $0014
+	playsound SFX_WARP_FROM
 	spriteface $0, $3
 	applymovement $4, MovementData_0x18623b
 	disappear $4
 	waitbutton
 	pause 15
-	playsound $0014
+	playsound SFX_WARP_FROM
 	spriteface $0, $1
 	applymovement $5, MovementData_0x186241
-	playsound $0014
+	playsound SFX_WARP_FROM
 	spriteface $0, $0
 	applymovement $5, MovementData_0x186248
 	spriteface $0, $1
 	pause 20
 	cry SUICUNE
 	pause 30
-	playsound $0014
+	playsound SFX_WARP_FROM
 	applymovement $5, MovementData_0x186253
 	spriteface $0, $0
 	disappear $5
@@ -114,7 +114,7 @@ UnknownScript_0x186226: ; 0x186226
 	applymovement $a, MovementData_0x18625c
 UnknownScript_0x18622a: ; 0x18622a
 	disappear $a
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	waitbutton
 	end
 ; 0x186231

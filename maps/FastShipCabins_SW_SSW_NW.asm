@@ -141,7 +141,7 @@ MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	special $0033
 	special $009d
 	special $001b
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	pause 60
 	special $003d
 	special $0032
@@ -160,7 +160,7 @@ UnknownScript_0x75ae1: ; 0x75ae1
 ; 0x75ae2
 
 UnknownScript_0x75ae2: ; 0x75ae2
-	playsound $0027
+	playsound SFX_ELEVATOR_END
 	pause 30
 	checkevent $002f
 	iftrue UnknownScript_0x75af7

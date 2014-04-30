@@ -70,7 +70,7 @@ UnknownScript_0x78ba5: ; 0x78ba5
 	2writetext UnknownText_0x7913a
 	closetext
 	loadmovesprites
-	playsound $00bc
+	playsound SFX_GLASS_TING
 	pause 30
 	showemote $0, $2, 10
 	spriteface $2, $0
@@ -188,7 +188,7 @@ CyndaquilPokeBallScript: ; 0x78c73
 	waitbutton
 	pokenamemem CYNDAQUIL, $0
 	2writetext ReceivedStarterText
-	playsound $0002
+	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
 	givepoke CYNDAQUIL, 5, BERRY, 0
@@ -219,7 +219,7 @@ TotodilePokeBallScript: ; 0x78cb5
 	waitbutton
 	pokenamemem TOTODILE, $0
 	2writetext ReceivedStarterText
-	playsound $0002
+	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
 	givepoke TOTODILE, 5, BERRY, 0
@@ -248,7 +248,7 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	waitbutton
 	pokenamemem CHIKORITA, $0
 	2writetext ReceivedStarterText
-	playsound $0002
+	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
 	givepoke CHIKORITA, 5, BERRY, 0
@@ -273,7 +273,7 @@ ElmDirectionsScript: ; 0x78d33
 	addcellnum $4
 	loadfont
 	2writetext GotElmsNumberText
-	playsound $0093
+	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	closetext
 	loadmovesprites
@@ -330,7 +330,7 @@ UnknownScript_0x78d81: ; 0x78d81
 UnknownScript_0x78d8a: ; 0x78d8a
 	special $009d
 	special $001b
-	playmusic $0000
+	playmusic MUSIC_NONE
 	writebyte $1
 	special $003e
 	pause 30

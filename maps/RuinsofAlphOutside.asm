@@ -67,7 +67,7 @@ UnknownScript_0x58044: ; 0x58044
 	2writetext UnknownText_0x580c7
 	closetext
 	loadmovesprites
-	playmusic $0011
+	playmusic MUSIC_SHOW_ME_AROUND
 	follow $3, $0
 	applymovement $3, MovementData_0x580ba
 	disappear $3

@@ -38,7 +38,7 @@ UnknownScript_0x1809ac: ; 0x1809ac
 UnknownScript_0x1809ad: ; 0x1809ad
 	applymovement $0, MovementData_0x1809f9
 	refreshscreen $86
-	playsound $001b
+	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock $4, $e, $2a
 	reloadmappart
@@ -66,7 +66,7 @@ BrunoScript_0x1809c5: ; 0x1809c5
 	2writetext UnknownText_0x180b3c
 	closetext
 	loadmovesprites
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	changeblock $4, $2, $16
 	reloadmappart
 	loadmovesprites

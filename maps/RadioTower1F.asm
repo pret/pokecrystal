@@ -45,7 +45,7 @@ UnknownScript_0x5cd4c: ; 0x5cd4c
 	keeptextopen
 	waitbutton
 	2writetext UnknownText_0x5cf79
-	playsound $0009
+	playsound SFX_DEX_FANFARE_20_49
 	waitbutton
 	keeptextopen
 	special $0052
@@ -67,7 +67,7 @@ UnknownScript_0x5cd84: ; 0x5cd84
 
 UnknownScript_0x5cd8a: ; 0x5cd8a
 	2writetext UnknownText_0x5cfb5
-	playsound $0099
+	playsound SFX_1ST_PLACE
 	waitbutton
 	keeptextopen
 	giveitem MASTER_BALL, $1
@@ -79,7 +79,7 @@ UnknownScript_0x5cd8a: ; 0x5cd8a
 
 UnknownScript_0x5cd9f: ; 0x5cd9f
 	2writetext UnknownText_0x5d023
-	playsound $0098
+	playsound SFX_2ND_PLACE
 	waitbutton
 	keeptextopen
 	giveitem EXP_SHARE, $1
@@ -91,7 +91,7 @@ UnknownScript_0x5cd9f: ; 0x5cd9f
 
 UnknownScript_0x5cdb4: ; 0x5cdb4
 	2writetext UnknownText_0x5d076
-	playsound $0094
+	playsound SFX_3RD_PLACE
 	waitbutton
 	keeptextopen
 	giveitem PP_UP, $1
@@ -126,27 +126,27 @@ CooltrainerFScript_0x5cdd5: ; 0x5cdd5
 	2writetext UnknownText_0x5d1f2
 	yesorno
 	iffalse UnknownScript_0x5ce42
-	playsound $0027
+	playsound SFX_ELEVATOR_END
 	waitbutton
 	2writetext UnknownText_0x5d231
 	yesorno
 	iffalse UnknownScript_0x5ce42
-	playsound $0027
+	playsound SFX_ELEVATOR_END
 	waitbutton
 	2writetext UnknownText_0x5d282
 	yesorno
 	iftrue UnknownScript_0x5ce42
-	playsound $0027
+	playsound SFX_ELEVATOR_END
 	waitbutton
 	2writetext UnknownText_0x5d2bc
 	yesorno
 	iffalse UnknownScript_0x5ce42
-	playsound $0027
+	playsound SFX_ELEVATOR_END
 	waitbutton
 	2writetext UnknownText_0x5d30e
 	yesorno
 	iftrue UnknownScript_0x5ce42
-	playsound $0027
+	playsound SFX_ELEVATOR_END
 	waitbutton
 	2writetext UnknownText_0x5d37b
 	keeptextopen
@@ -172,7 +172,7 @@ UnknownScript_0x5ce3e: ; 0x5ce3e
 ; 0x5ce42
 
 UnknownScript_0x5ce42: ; 0x5ce42
-	playsound $0019
+	playsound SFX_WRONG
 	2writetext UnknownText_0x5d409
 	closetext
 	loadmovesprites

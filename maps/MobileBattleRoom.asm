@@ -41,7 +41,7 @@ UnknownScript_0x1935f4: ; 0x1935f4
 	pause 20
 	loadmovesprites
 	special $002e
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	special $00a4
 	pause 60
 	special $0031

@@ -20,7 +20,7 @@ BillScript_0x54be4: ; 0x54be4
 	checkcode $1
 	if_equal $6, UnknownScript_0x54c13
 	2writetext UnknownText_0x54dae
-	playsound $0002
+	playsound SFX_CAUGHT_MON
 	waitbutton
 	givepoke EEVEE, 20, 0, 0
 	setevent EVENT_GOT_EEVEE
@@ -81,7 +81,7 @@ TwinScript_0x54c39: ; 0x54c39
 	waitbutton
 	addcellnum $3
 	2writetext UnknownText_0x54fd9
-	playsound $0093
+	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	keeptextopen
 UnknownScript_0x54c58: ;0x54c58
