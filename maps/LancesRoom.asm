@@ -51,13 +51,13 @@ UnknownScript_0x180e53: ; 0x180e53
 UnknownScript_0x180e6a: ; 0x180e6a
 	special $006a
 	applymovement $0, MovementData_0x180f38
-	2jump UnknownScript_0x180e7b
+	2jump LanceScript_0x180e7b
 ; 0x180e74
 
 UnknownScript_0x180e74: ; 0x180e74
 	special $006a
 	applymovement $0, MovementData_0x180f3c
-UnknownScript_0x180e7b: ; 0x180e7b
+LanceScript_0x180e7b: ; 0x180e7b
 	spriteface $2, $2
 	loadfont
 	2writetext UnknownText_0x180f67
@@ -385,7 +385,7 @@ LancesRoom_MapEventHeader: ; 0x1813f4
 
 	; people-events
 	db 3
-	person_event SPRITE_LANCE, 7, 9, $6, $0, 255, 255, $0, 0, $4e7b, $ffff
+	person_event SPRITE_LANCE, 7, 9, $6, $0, 255, 255, $0, 0, LanceScript_0x180e7b, $ffff
 	person_event SPRITE_TEACHER, 11, 8, $7, $0, 255, 255, $a0, 0, ObjectEvent, $075f
 	person_event SPRITE_OAK, 11, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $075f
 ; 0x181445

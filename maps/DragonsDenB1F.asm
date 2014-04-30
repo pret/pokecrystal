@@ -542,7 +542,7 @@ DragonsDenB1F_MapEventHeader: ; 0x18cf73
 	person_event SPRITE_SILVER, 27, 24, $2, $22, 255, 255, $0, 0, SilverScript_0x18c97e, $06c6
 	person_event SPRITE_COOLTRAINER_M, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, $ffff
 	person_event SPRITE_COOLTRAINER_F, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, $ffff
-	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, $4932, $ffff
+	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia1, $ffff
 	person_event SPRITE_TWIN, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, $ffff
 	person_event SPRITE_POKE_BALL, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, $07bf
 	person_event SPRITE_POKE_BALL, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, $07c0
