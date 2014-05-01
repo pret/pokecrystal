@@ -8030,8 +8030,8 @@ SpecialsPointers: ; c029
 	dbw BANK(Function4989a), Function4989a
 	dbw BANK(Function49bf9), Function49bf9
 	dbw BANK(SpecialPokeSeer), SpecialPokeSeer
-	dbw BANK(Function8af6b), Function8af6b
-	dbw BANK(Function8afd4), Function8afd4
+	dbw BANK(SpecialBuenasPassword), SpecialBuenasPassword
+	dbw BANK(SpecialBuenaPrize), SpecialBuenaPrize
 	dbw BANK(SpecialDratini),SpecialDratini
 	dbw BANK(Function11485), Function11485
 	dbw BANK(SpecialBeastsCheck),SpecialBeastsCheck
@@ -69627,7 +69627,40 @@ Function89b97: ; 89b97 (22:5b97)
 ; 89bd8 (22:5bd8)
 
 Unknown_89bd8: ; 89bd8
-INCBIN "baserom.gbc",$89bd8,$89c34 - $89bd8
+	dw Unknown_89be0
+	dw Unknown_89bf5
+	dw Unknown_89c0a
+	dw Unknown_89c1f
+; 89be0
+
+Unknown_89be0: ; 89be0
+	db $01, $12, $4e, $01, $00
+	db $01, $19, $4e, $01, $40
+	db $01, $12, $72, $01, $20
+	db $01, $19, $72, $01, $60
+	db $ff
+
+Unknown_89bf5: ; 89bf5
+	db $01, $60, $16, $01, $00
+	db $01, $62, $16, $01, $40
+	db $01, $60, $92, $01, $20
+	db $01, $62, $92, $01, $60
+	db $ff
+
+Unknown_89c0a: ; 89c0a
+	db $01, $78, $66, $01, $00
+	db $01, $78, $66, $01, $40
+	db $01, $78, $92, $01, $20
+	db $01, $78, $92, $01, $60
+	db $ff
+
+Unknown_89c1f: ; 89c1f
+	db $01, $80, $66, $01, $00
+	db $01, $80, $66, $01, $40
+	db $01, $80, $92, $01, $20
+	db $01, $80, $92, $01, $60
+	db $ff
+; 89c34
 
 ; known jump sources: 89b97 (22:5b97), 89c44 (22:5c44)
 Function89c34: ; 89c34 (22:5c34)
@@ -69738,10 +69771,16 @@ Function89c67: ; 89c67 (22:5c67)
 ; 89cbf (22:5cbf)
 
 Unknown_89cbf: ; 89cbf
-INCBIN "baserom.gbc",$89cbf,$89ccf - $89cbf
+	db 0, 2, 0, 0
+	db 1, 3, 0, 0
+	db 2, 4, 0, 0
+	db 3, 0, 0, 0
 
 Unknown_89ccf: ; 89ccf
-INCBIN "baserom.gbc",$89ccf,$89cdf - $89ccf
+	db 0, 0, 0, 0
+	db 0, 3, 0, 0
+	db 2, 4, 0, 0
+	db 3, 0, 0, 0
 ; 89cdf
 
 ; known jump sources: 8a50e (22:650e)
@@ -72458,10 +72497,10 @@ Function8af1c: ; 8af1c
 	ret
 ; 8af6b
 
-Function8af6b: ; 8af6b
+SpecialBuenasPassword: ; 8af6b
 	xor a
 	ld [$cf76], a
-	ld hl, Unknown_8afa9
+	ld hl, MenuDataHeader_0x8afa9
 	call Function1d3c
 	ld a, [$dc4a]
 	ld c, a
@@ -72488,10 +72527,42 @@ Function8af6b: ; 8af6b
 	ret
 ; 8afa9
 
-Unknown_8afa9: ; 8afa9
-INCBIN "baserom.gbc",$8afa9,$8afd4 - $8afa9
+MenuDataHeader_0x8afa9: ; 0x8afa9
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 07, 10 ; end coords
+	dw MenuData2_0x8afb2
+	db 1 ; default option
+; 0x8afb1
 
-Function8afd4: ; 8afd4
+	db 0
+
+MenuData2_0x8afb2: ; 0x8afb2
+	db $81 ; flags
+	db 0 ; items
+	dw Unknown_8afb8
+	dw Function8afbd
+; 0x8afb4
+
+Unknown_8afb8: ; 8afb8
+	db 3
+	db 0, 1, 2, $ff
+
+Function8afbd: ; 8afbd
+	push de
+	ld a, [$dc4a]
+	and $f0
+	ld c, a
+	ld a, [MenuSelection]
+	add c
+	ld c, a
+	callba Functionb8f8f
+	pop hl
+	call PlaceString
+	ret
+; 8afd4
+
+SpecialBuenaPrize: ; 8afd4
 	xor a
 	ld [$d0e4], a
 	ld a, $1
@@ -72513,7 +72584,7 @@ Function8afd4: ; 8afd4
 	call Function8b0e2
 	jr z, .asm_8b05f
 	ld [$cf75], a
-	call Function8b154
+	call GetBuenaPrize
 	ld a, [hl]
 	ld [$d265], a
 	call GetItemName
@@ -72522,7 +72593,7 @@ Function8afd4: ; 8afd4
 	call YesNoBox
 	jr c, .asm_8afeb
 	ld a, [$cf75]
-	call Function8b154
+	call GetBuenaPrize
 	inc hl
 	ld a, [hld]
 	ld c, a
@@ -72566,7 +72637,7 @@ Function8afd4: ; 8afd4
 .asm_8b05f
 	call Function1c17
 	call Function1c17
-	ld hl, $708b
+	ld hl, UnknownText_0x8b08b
 	call PrintText
 	call Functiona36
 	call PlayClickSFX
@@ -72610,7 +72681,7 @@ UnknownText_0x8b08b: ; 0x8b08b
 ; 0x8b090
 
 Function8b090: ; 8b090
-	ld hl, $70d1
+	ld hl, MenuDataHeader_0x8b0d1
 	call LoadMenuDataHeader
 	ret
 ; 8b097
@@ -72669,7 +72740,7 @@ MenuDataHeader_0x8b0dd: ; 0x8b0dd
 ; 8b0e2
 
 Function8b0e2: ; 8b0e2
-	ld hl, Unknown_8b113
+	ld hl, MenuDataHeader_0x8b113
 	call Function1d3c
 	ld a, [MenuSelection]
 	ld [$cf88], a
@@ -72695,21 +72766,73 @@ Function8b0e2: ; 8b0e2
 	ret
 ; 8b113
 
-Unknown_8b113: ; 8b113
-INCBIN "baserom.gbc",$8b113,$8b154 - $8b113
+MenuDataHeader_0x8b113: ; 0x8b113
+	db $40 ; flags
+	db 01, 01 ; start coords
+	db 09, 16 ; end coords
+	dw MenuData2_0x8b11c
+	db 1 ; default option
+; 0x8b11b
 
-Function8b154: ; 8b154
+	db 0
+
+MenuData2_0x8b11c: ; 0x8b11c
+	db $10 ; flags
+	db 4 ; items
+	db $d, $1
+	dbw BANK(Unknown_8b129), Unknown_8b129
+	dbw BANK(BuenaPrizeItem), BuenaPrizeItem
+	dbw BANK(BuenaPrizePoints), BuenaPrizePoints
+; 8b129
+
+Unknown_8b129: ; 8b129
+	db 9
+	db 1, 2, 3, 4, 5, 6, 7, 8, 9, $ff
+; 8b134
+
+BuenaPrizeItem: ; 8b134
+	ld a, [MenuSelection]
+	call GetBuenaPrize
+	ld a, [hl]
+	push de
+	ld [$d265], a
+	call GetItemName
+	pop hl
+	call PlaceString
+	ret
+; 8b147
+
+BuenaPrizePoints: ; 8b147
+	ld a, [MenuSelection]
+	call GetBuenaPrize
+	inc hl
+	ld a, [hl]
+	ld c, "0"
+	add c
+	ld [de], a
+	ret
+; 8b154
+
+GetBuenaPrize: ; 8b154
 	dec a
-	ld hl, Unknown_8b15e
-	ld b, $0
+	ld hl, BuenaPrizes
+	ld b, 0
 	ld c, a
 	add hl, bc
 	add hl, bc
 	ret
 ; 8b15e
 
-Unknown_8b15e: ; 8b15e
-INCBIN "baserom.gbc",$8b15e,$8b170 - $8b15e
+BuenaPrizes: ; 8b15e
+	db ULTRA_BALL,   2
+	db FULL_RESTORE, 2
+	db NUGGET,       3
+	db RARE_CANDY,   3
+	db PROTEIN,      5
+	db IRON,         5
+	db CARBOS,       5
+	db CALCIUM,      5
+	db HP_UP,        5
 ; 8b170
 
 
@@ -73877,7 +74000,7 @@ Function8b79e: ; 8b79e
 
 Function8b7bd: ; 8b7bd
 	call Function8b855
-	ld hl, Unknown_8b867
+	ld hl, MenuDataHeader_0x8b867
 	call Function1d3c
 	ld a, [$d030]
 	ld [$cf88], a
@@ -73978,8 +74101,118 @@ Function8b855: ; 8b855
 	ret
 ; 8b867
 
-Unknown_8b867: ; 8b867
-INCBIN "baserom.gbc",$8b867,$8b94a - $8b867
+MenuDataHeader_0x8b867: ; 0x8b867
+        db $40 ; flags
+        db 03, 01 ; start coords
+        db 13, 18 ; end coords
+        dw MenuData2_0x8b870
+        db 1 ; default option
+; 0x8b86f
+
+	db 0
+
+MenuData2_0x8b870: ; 0x8b870
+        db $3c ; flags
+        db 5 ; items
+	db 3, 1
+	dbw 0, $d002
+	dbw BANK(Function8b880), Function8b880
+	dbw BANK(Function8b88c), Function8b88c
+	dbw BANK(Function8b8c8), Function8b8c8
+; 8b880
+
+Function8b880: ; 8b880
+	ld h, d
+	ld l, e
+	ld de, MenuSelection
+	ld bc, $8102
+	call PrintNum
+	ret
+; 8b88c
+
+Function8b88c: ; 8b88c
+	call Function89160
+	ld h, d
+	ld l, e
+	push hl
+	ld de, String_89116
+	call Function8931b
+	call Function8932d
+	jr c, .asm_8b8a3
+	ld hl, $0000
+	add hl, bc
+	ld d, h
+	ld e, l
+
+.asm_8b8a3
+	pop hl
+	push hl
+	call PlaceString
+	pop hl
+	ld d, $0
+	ld e, $6
+	add hl, de
+	push hl
+	ld de, String_89116
+	call Function8931b
+	call Function8934a
+	jr c, .asm_8b8c0
+	ld hl, $0006
+	add hl, bc
+	ld d, h
+	ld e, l
+
+.asm_8b8c0
+	pop hl
+	call PlaceString
+	call CloseSRAM
+	ret
+; 8b8c8
+
+Function8b8c8: ; 8b8c8
+	ld hl, $c5b8
+	ld b, $2
+	ld c, $12
+	call TextBox
+	ld a, [$d033]
+	ld b, 0
+	ld c, a
+	ld hl, Unknown_8b903
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld d, h
+	ld e, l
+	ld hl, $c5e1
+	call PlaceString
+	ld hl, $c5a4
+	ld a, $f
+	ld [hl], a
+	ld hl, $c5b7
+	ld a, $11
+	ld [hl], a
+	ld a, [$d0e4]
+	cp $24
+	ret c
+	ld hl, $c5a4
+	ld c, $12
+	call Function8b732
+	ret
+; 8b903
+
+Unknown_8b903: ; 8b903
+	dw String_8b90b
+	dw String_8b919
+	dw String_8b92a
+	dw String_8b938
+
+String_8b90b: db "めいしを えらんでください@"        ; Please select a noun.
+String_8b919: db "どの めいしと いれかえますか?@"    ; OK to swap with any noun?
+String_8b92a: db "あいてを えらんでください@"        ; Please select an opponent.
+String_8b938: db "いれる ところを えらんでください@" ; Please select a location.
+; 8b94a
 
 Function8b94a: ; 8b94a
 	ld [$d033], a
@@ -86426,7 +86659,7 @@ Functionb8f8f: ; b8f8f
 	and $f
 	ld c, a
 	push hl
-	ld hl, $4fb8
+	ld hl, Jumptable_b8fb8
 	ld e, b
 	add hl, de
 	add hl, de

@@ -201,7 +201,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	loadmovesprites
 	spriteface $b, $0
 	refreshscreen $0
-	special $0092
+	special SPECIAL_BUENAS_PASSWORD
 	loadmovesprites
 	iffalse UnknownScript_0x5d845
 	loadfont
@@ -396,7 +396,7 @@ ReceptionistScript_0x5d8ff: ; 0x5d8ff
 	iffalse UnknownScript_0x5d90f
 	2writetext UnknownText_0x5e392
 	keeptextopen
-	special $0093
+	special SPECIAL_BUENA_PRIZE
 	loadmovesprites
 	end
 ; 0x5d90f
