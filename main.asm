@@ -74564,7 +74564,7 @@ Function8c0c1: ; 8c0c1
 ; 8c0e5
 
 Function8c0e5: ; 8c0e5
-	ld hl, $410f
+	ld hl, Unknown_8c10f
 	ld a, [$c2d0]
 	cp $4
 	jr z, .asm_8c0fc
@@ -74590,21 +74590,27 @@ Function8c0e5: ; 8c0e5
 	ret
 ; 8c10f (23:410f)
 
-INCBIN "baserom.gbc",$8c10f,$8c117 - $8c10f
+Unknown_8c10f: ; 8c10f
+	db $e4 ; 3210
+	db $55 ; 1111
+	db $aa ; 2222
+	db $00 ; 0000
+	db $ff ; 3333
+	db $e4 ; 3210
+	db $e4 ; 3210
+	db $e4 ; 3210
+; 8c117
 
 GetTimePalette: ; 8c117
-; get time of day
 	ld a, [TimeOfDay]
 	ld e, a
-	ld d, $0
-; get fn ptr
+	ld d, 0
 	ld hl, .TimePalettes
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-; go
 	jp [hl]
 ; 8c126
 
@@ -74614,28 +74620,25 @@ GetTimePalette: ; 8c117
 	dw .NitePalette
 	dw .DarknessPalette
 
-.MorningPalette ; 8c12e
+.MorningPalette
 	ld a, [$d847]
 	and %00000011 ; 0
 	ret
-; 8c134
 
-.DayPalette ; 8c134
+.DayPalette
 	ld a, [$d847]
 	and %00001100 ; 1
 	srl a
 	srl a
 	ret
-; 8c13e
 
-.NitePalette ; 8c13e
+.NitePalette
 	ld a, [$d847]
 	and %00110000 ; 2
 	swap a
 	ret
-; 8c146
 
-.DarknessPalette ; 8c146
+.DarknessPalette
 	ld a, [$d847]
 	and %11000000 ; 3
 	rlca
@@ -74720,163 +74723,57 @@ GetTimePalFade: ; 8c17c
 	ld b, $0
 	add hl, bc
 	ret
-; 8c19e
 
-.dmgfades ; 8c19e
+.dmgfades
 	dw .morn
 	dw .day
 	dw .nite
 	dw .darkness
-; 8c1a6
 
-.morn ; 8c1a6
-	db %11111111
-	db %11111111
-	db %11111111
-	
-	db %11111110
-	db %11111110
-	db %11111110
-	
-	db %11111001
-	db %11100100
-	db %11100100
-	
-	db %11100100
-	db %11010000
-	db %11010000
-	
-	db %10010000
-	db %10000000
-	db %10000000
-	
-	db %01000000
-	db %01000000
-	db %01000000
-	
-	db %00000000
-	db %00000000
-	db %00000000
-; 8c1bb
+.morn
+	db %11111111, %11111111, %11111111
+	db %11111110, %11111110, %11111110
+	db %11111001, %11100100, %11100100
+	db %11100100, %11010000, %11010000
+	db %10010000, %10000000, %10000000
+	db %01000000, %01000000, %01000000
+	db %00000000, %00000000, %00000000
 
-.day ; 8c1bb
-	db %11111111
-	db %11111111
-	db %11111111
-	
-	db %11111110
-	db %11111110
-	db %11111110
-	
-	db %11111001
-	db %11100100
-	db %11100100
-	
-	db %11100100
-	db %11010000
-	db %11010000
-	
-	db %10010000
-	db %10000000
-	db %10000000
-	
-	db %01000000
-	db %01000000
-	db %01000000
-	
-	db %00000000
-	db %00000000
-	db %00000000
-; 8c1d0
+.day
+	db %11111111, %11111111, %11111111	
+	db %11111110, %11111110, %11111110	
+	db %11111001, %11100100, %11100100
+	db %11100100, %11010000, %11010000
+	db %10010000, %10000000, %10000000
+	db %01000000, %01000000, %01000000
+	db %00000000, %00000000, %00000000
 
-.nite ; 8c1d0
-	db %11111111
-	db %11111111
-	db %11111111
-	
-	db %11111110
-	db %11111110
-	db %11111110
-	
-	db %11111001
-	db %11100100
-	db %11100100
-	
-	db %11101001
-	db %11010000
-	db %11010000
-	
-	db %10010000
-	db %10000000
-	db %10000000
-	
-	db %01000000
-	db %01000000
-	db %01000000
-	
-	db %00000000
-	db %00000000
-	db %00000000
-; 8c1e5
+.nite
+	db %11111111, %11111111, %11111111
+	db %11111110, %11111110, %11111110
+	db %11111001, %11100100, %11100100
+	db %11101001, %11010000, %11010000
+	db %10010000, %10000000, %10000000
+	db %01000000, %01000000, %01000000
+	db %00000000, %00000000, %00000000
 
-.darkness ; 8c1e5
-	db %11111111
-	db %11111111
-	db %11111111
-	
-	db %11111110
-	db %11111110
-	db %11111111
-	
-	db %11111110
-	db %11100100
-	db %11111111
-	
-	db %11111101
-	db %11010000
-	db %11111111
-	
-	db %11111101
-	db %10000000
-	db %11111111
-	
-	db %00000000
-	db %01000000
-	db %00000000
-	
-	db %00000000
-	db %00000000
-	db %00000000
-; 8c1fa
+.darkness
+	db %11111111, %11111111, %11111111
+	db %11111110, %11111110, %11111111
+	db %11111110, %11100100, %11111111
+	db %11111101, %11010000, %11111111
+	db %11111101, %10000000, %11111111
+	db %00000000, %01000000, %00000000
+	db %00000000, %00000000, %00000000
 
-.cgbfade ; 8c1fa
-	db %11111111
-	db %11111111
-	db %11111111
-	
-	db %11111110
-	db %11111110
-	db %11111110
-	
-	db %11111001
-	db %11111001
-	db %11111001
-	
-	db %11100100
-	db %11100100
-	db %11100100
-	
-	db %10010000
-	db %10010000
-	db %10010000
-	
-	db %01000000
-	db %01000000
-	db %01000000
-	
-	db %00000000
-	db %00000000
-	db %00000000
+.cgbfade
+	db %11111111, %11111111, %11111111
+	db %11111110, %11111110, %11111110
+	db %11111001, %11111001, %11111001
+	db %11100100, %11100100, %11100100
+	db %10010000, %10010000, %10010000
+	db %01000000, %01000000, %01000000
+	db %00000000, %00000000, %00000000
 ; 8c20f
 
 
@@ -74975,10 +74872,10 @@ Function8c2aa: ; 8c2aa
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld de, $42f4
+	ld de, GFX_8c2f4
 	ld hl, $8fe0
-	ld b, $23
-	ld c, $2
+	ld b, BANK(GFX_8c2f4)
+	ld c, 2
 	call Request2bpp
 	pop af
 	ld [rVBK], a
@@ -74991,8 +74888,8 @@ Function8c2cf: ; 8c2cf
 	ld a, $6
 	ld [rSVBK], a
 	push hl
-	ld hl, Unkn1Pals
-	ld bc, $0280
+	ld hl, $d000
+	ld bc, $28 * $10
 .asm_8c2dd
 	ld [hl], $ff
 	inc hl
@@ -75001,8 +74898,8 @@ Function8c2cf: ; 8c2cf
 	or b
 	jr nz, .asm_8c2dd
 	pop hl
-	ld de, Unkn1Pals
-	ld b, $23
+	ld de, $d000
+	ld b, BANK(Function8c2cf) ; BANK(@)
 	ld c, $28
 	call Request2bpp
 	pop af
@@ -75012,6 +74909,7 @@ Function8c2cf: ; 8c2cf
 
 GFX_8c2f4: ; 8c2f4
 INCBIN "baserom.gbc",$8c2f4,$8c314 - $8c2f4
+
 
 Function8c314: ; 8c314
 	ld a, [$cf63]
@@ -75025,7 +74923,6 @@ Function8c314: ; 8c314
 	ld l, a
 	jp [hl]
 ; 8c323
-
 
 ; no known jump sources
 Jumptable_8c323: ; 8c323 (23:4323)
@@ -75066,9 +74963,9 @@ Jumptable_8c323: ; 8c323 (23:4323)
 
 ; no known jump sources
 Function8c365: ; 8c365 (23:4365)
-	ld de, $0
+	ld de, 0
 	ld a, [BattleMonLevel] ; $c639
-	add $3
+	add 3
 	ld hl, EnemyMonLevel ; $d213
 	cp [hl]
 	jr nc, .asm_8c375
@@ -75091,7 +74988,9 @@ Function8c365: ; 8c365 (23:4365)
 ; 8c38f (23:438f)
 
 Unknown_8c38f: ; 8c38f
-INCBIN "baserom.gbc",$8c38f,$8c393 - $8c38f
+	db 1,  9
+	db 16, 24
+; 8c393
 
 ; no known jump sources
 Function8c393: ; 8c393 (23:4393)
@@ -75149,7 +75048,20 @@ Function8c3b3: ; 8c3b3 (23:43b3)
 ; 8c3db (23:43db)
 
 Unknown_8c3db: ; 8c3db
-INCBIN "baserom.gbc",$8c3db,$8c3e8 - $8c3db
+	db $f9 ; 3321
+	db $fe ; 3332
+	db $ff ; 3333
+	db $fe ; 3332
+	db $f9 ; 3321
+	db $e4 ; 3210
+	db $90 ; 2100
+	db $40 ; 1000
+	db $00 ; 0000
+	db $40 ; 1000
+	db $90 ; 2100
+	db $e4 ; 3210
+	db $01 ; 0001
+; 8c3e8
 
 ; no known jump sources
 Function8c3e8: ; 8c3e8 (23:43e8)
@@ -75190,7 +75102,7 @@ Function8c419: ; 8c419 (23:4419)
 	add [hl]
 	ld [hl], a
 	ld a, $90
-	ld bc, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld bc, $d100
 	ld e, $0
 .asm_8c42b
 	push af
@@ -75257,7 +75169,35 @@ Function8c44f: ; 8c44f (23:444f)
 ; 8c490 (23:4490)
 
 Unknown_8c490: ; 8c490
-INCBIN "baserom.gbc",$8c490,$8c4f5 - $8c490
+macro_8c490: MACRO
+	db \1
+	dw \2
+	FuncCoord \3, \4
+	dw Coord
+ENDM
+
+	macro_8c490 0, Unknown_8c538,  1,  6
+	macro_8c490 0, Unknown_8c53e,  0,  3
+	macro_8c490 0, Unknown_8c548,  1,  0
+	macro_8c490 0, Unknown_8c55a,  5,  0
+	macro_8c490 0, Unknown_8c568,  9,  0
+	macro_8c490 1, Unknown_8c568, 10,  0
+	macro_8c490 1, Unknown_8c55a, 14,  0
+	macro_8c490 1, Unknown_8c548, 18,  0
+	macro_8c490 1, Unknown_8c53e, 19,  3
+	macro_8c490 1, Unknown_8c538, 18,  6
+	macro_8c490 3, Unknown_8c538, 18, 11
+	macro_8c490 3, Unknown_8c53e, 19, 14
+	macro_8c490 3, Unknown_8c548, 18, 17
+	macro_8c490 3, Unknown_8c55a, 14, 17
+	macro_8c490 3, Unknown_8c568, 10, 17
+	macro_8c490 2, Unknown_8c568,  9, 17
+	macro_8c490 2, Unknown_8c55a,  5, 17
+	macro_8c490 2, Unknown_8c548,  1, 17
+	macro_8c490 2, Unknown_8c53e,  0, 14
+	macro_8c490 2, Unknown_8c538,  1, 11
+	db $ff
+; 8c4f5
 
 ; known jump sources: 8c468 (23:4468)
 Function8c4f5: ; 8c4f5 (23:44f5)
@@ -75314,7 +75254,12 @@ Function8c4f5: ; 8c4f5 (23:44f5)
 	jr .asm_8c4fc
 ; 8c538 (23:4538)
 
-INCBIN "baserom.gbc",$8c538,$8c578 - $8c538
+Unknown_8c538: db 2, 3, 5, 4, 9, $ff
+Unknown_8c53e: db 1, 1, 2, 2, 4, 2, 4, 2, 3, $ff
+Unknown_8c548: db 2, 1, 3, 1, 4, 1, 4, 1, 4, 1, 3, 1, 2, 1, 1, 1, 1, $ff
+Unknown_8c55a: db 4, 1, 4, 0, 3, 1, 3, 0, 2, 1, 2, 0, 1, $ff
+Unknown_8c568: db 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 1, 0, 1, $ff
+; 8c578
 
 ; no known jump sources
 Function8c578: ; 8c578 (23:4578)
@@ -75484,7 +75429,7 @@ Function8c677: ; 8c677 (23:4677)
 	call Function8c698
 	ld de, $d070
 	call Function8c698
-	ld de, CurMart ; $d0f0
+	ld de, $d0f0
 	call Function8c698
 	ld de, $d078
 	call Function8c698
@@ -76082,9 +76027,9 @@ Function8cb82: ; 8cb82 (23:4b82)
 ; known jump sources: 8caf8 (23:4af8), 8cb3e (23:4b3e)
 Function8cb9b: ; 8cb9b (23:4b9b)
 	callab Function8cf53
-	ld de, $49cc
+	ld de, GFX_8c9cc
 	ld hl, $8800
-	ld bc, $2304
+	lb bc, BANK(GFX_8c9cc), 4
 	call Request2bpp
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartySpecies ; $dcd8
