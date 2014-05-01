@@ -53,6 +53,7 @@ Select the following packages:
 * git
 * python
 * python-setuptools
+* gcc
 * libsasl2
 * ca-certificates
 
@@ -66,8 +67,8 @@ Then set up the repository. In the **Cygwin terminal**:
 	cd pokecrystal
 	git submodule init
 	git submodule update
-	sudo easy_install pip
-	sudo pip install -r extras/requirements.txt
+	easy_install pip
+	pip install -r extras/requirements.txt
 
 - Copy your Pokémon Crystal rom to the directory. Name it **baserom.gbc**.
 
