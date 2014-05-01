@@ -65963,13 +65963,52 @@ Function84785: ; 84785
 	ret
 ; 847bd
 
-INCBIN "baserom.gbc", $847bd, $847f5 - $847bd
+Function847bd: ; 847bd
+	ld a, [$cbf8]
+	and a
+	ret z
+	push af
+	xor a
+	ld [hBGMapMode], a
+	ld hl, $c4f2
+	ld bc, $0d10
+	call ClearBox
+	pop af
+	ld e, a
+	ld d, 0
+	ld hl, Unknown_84807
+	add hl, de
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, $c530
+	ld a, $77
+	call Function13d4
+	ld hl, $c5d0
+	ld de, String_847f5
+	call PlaceString
+	ld a, $1
+	ld [hBGMapMode], a
+	xor a
+	ld [$cbf8], a
+	ret
+; 847f5
 
 String_847f5:
 	db "Press B to Cancel@"
 ; 84807
 
-INCBIN "baserom.gbc", $84807, $84817 - $84807
+Unknown_84807: ; 84807
+	dw String_1dc275
+	dw String_1dc276
+	dw String_1dc289
+	dw String_1dc29c
+	dw String_1dc2ad
+	dw String_1dc2e2
+	dw String_1dc317
+	dw String_1dc34c
+; 84817
 
 ; known jump sources: 844f2 (21:44f2)
 Function84817: ; 84817 (21:4817)
@@ -114398,7 +114437,31 @@ Function1dc26a: ; 1dc26a
 	ret
 ; 1dc275
 
-INCBIN "baserom.gbc", $1dc275, $1dc381 - $1dc275
+String_1dc275: db "@"
+String_1dc276: next " CHECKING LINK...@"
+String_1dc289: next "  TRANSMITTING...@"
+String_1dc29c: next "    PRINTING...@"
+String_1dc2ad:
+	db   " Printer Error 1"
+	db   $4e
+	next "Check the Game Boy"
+	next "Printer Manual.@"
+String_1dc2e2:
+	db   " Printer Error 2"
+	db   $4e
+	next "Check the Game Boy"
+	next "Printer Manual.@"
+String_1dc317:
+	db   " Printer Error 3"
+	db   $4e
+	next "Check the Game Boy"
+	next "Printer Manual.@"
+String_1dc34c:
+	db   " Printer Error 4"
+	db   $4e
+	next "Check the Game Boy"
+	next "Printer Manual.@"
+; 1dc381
 
 Function1dc381: ; 1dc381
 	call WhiteBGMap
