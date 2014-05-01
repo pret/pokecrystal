@@ -255,3 +255,40 @@ UndergroundName:     db "UNDERGROUND@"
 BattleTowerName:     db "BATTLE", $1f, "TOWER@"
 SpecialMapName:      db "SPECIAL@"
 
+
+RegionCheck: ; 0x1caea1
+; Checks if the player is in Kanto or Johto.
+; If in Johto, returns 0 in e.
+; If in Kanto, returns 1 in e.
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+	call GetWorldMapLocation
+	cp FAST_SHIP ; S.S. Aqua
+	jr z, .johto
+	cp SPECIAL_MAP
+	jr nz, .checkagain
+
+; In a special map, get the backup map group / map id
+	ld a, [BackupMapGroup]
+	ld b, a
+	ld a, [BackupMapNumber]
+	ld c, a
+	call GetWorldMapLocation
+
+.checkagain
+	cp KANTO_LANDMARK
+	jr c, .johto
+
+; Victory Road area is considered to be Johto.
+	cp VICTORY_ROAD
+	jr c, .kanto
+
+.johto
+	ld e, 0
+	ret
+.kanto
+	ld e, 1
+	ret
+
