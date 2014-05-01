@@ -11455,9 +11455,9 @@ GetTMHMNumber:: ; d407
 	ld a, c
 
 ; Skip any dummy items.
-	cp $c3 ; TM04-05
+	cp ITEM_C3 ; TM04-05
 	jr c, .done
-	cp $dc ; TM28-29
+	cp ITEM_DC ; TM28-29
 	jr c, .skip
 
 	dec a
@@ -11477,13 +11477,14 @@ GetNumberedTMHM: ; d417
 	ld a, c 
 
 ; Skip any gaps.
-	cp 5
+	cp ITEM_C3 - (TM_01 - 1)
 	jr c, .done
-	cp 29
-	jr c, .skip
+	cp ITEM_DC - (TM_01 - 1) - 1
+	jr c, .skip_one
 
+.skip_two
 	inc a
-.skip
+.skip_one
 	inc a
 .done
 	add TM_01
