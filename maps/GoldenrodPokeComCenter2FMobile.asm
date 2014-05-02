@@ -75,7 +75,7 @@ MapGoldenrodPokeComCenter2FMobileSignpost1Script: ; 0x62624
 	closetext
 UnknownScript_0x62629: ; 0x62629
 	reloadmappart
-	loadmenudata $664c
+	loadmenudata MenuDataHeader_0x6264c
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x6263a
