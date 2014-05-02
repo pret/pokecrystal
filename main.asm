@@ -8407,7 +8407,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 
 ; check background music
 	ld a, [CurMusic]
-	cp $40 ; Poké Flute Channel
+	cp MUSIC_POKE_FLUTE_CHANNEL
 	jr nz, .nope
 
 	ld a, [XCoord]
@@ -80197,7 +80197,7 @@ Jumptable_90f13: ; 90f13 (24:4f13)
 ; no known jump sources
 Function90f2d: ; 90f2d (24:4f2d)
 	call Function90da8
-	ld hl, $54d3
+	ld hl, UnknownText_0x914d3
 	call PrintText
 	ld hl, $cf63
 	inc [hl]
@@ -80552,7 +80552,7 @@ Function91156: ; 91156 (24:5156)
 	ld [$c6d3], a
 	call Function90da8
 	call Function91492
-	ld hl, $54ce
+	ld hl, UnknownText_0x914ce
 	call PrintText
 	ret
 
@@ -80632,45 +80632,55 @@ Function911eb: ; 911eb (24:51eb)
 	call Function2d05
 	and a
 	jr nz, .asm_91234
-	ld hl, Options ; $cfcc
-	res 4, [hl]
+	ld hl, Options
+	res NO_TEXT_SCROLL, [hl]
 	xor a
-	ld [$FF00+$aa], a
-	ld de, $6a
+	ld [$ffaa], a
+	ld de, SFX_CALL
 	call PlaySFX
-	ld hl, $524c
+	ld hl, UnknownText_0x9124c
 	call PrintText
 	call WaitSFX
-	ld de, $6a
+	ld de, SFX_CALL
 	call PlaySFX
-	ld hl, $524c
+	ld hl, UnknownText_0x9124c
 	call PrintText
 	call WaitSFX
 	ld a, [$c6d3]
 	ld b, a
 	call Function90199
-	ld c, $a
+	ld c, 10
 	call DelayFrames
-	ld hl, Options ; $cfcc
-	set 4, [hl]
+	ld hl, Options
+	set NO_TEXT_SCROLL, [hl]
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	call Function912b7
 	ld hl, $cf63
 	inc [hl]
 	ret
 .asm_91234
 	callba Function902e3
-	ld hl, $5251
+	ld hl, OutOfServiceAreaText
 	call PrintText
 	ld a, $8
 	ld [$cf63], a
-	ld hl, $54ce
+	ld hl, UnknownText_0x914ce
 	call PrintText
 	ret
 ; 9124c (24:524c)
 
-INCBIN "baserom.gbc",$9124c,$91256 - $9124c
+UnknownText_0x9124c: ; 0x9124c
+	;
+	text_jump UnknownText_0x1c5824
+	db "@"
+; 0x91251
+
+OutOfServiceAreaText: ; 0x91251
+	; You're out of the service area.
+	text_jump UnknownText_0x1c5827
+	db "@"
+; 0x91256
 
 ; no known jump sources
 Function91256: ; 91256 (24:5256)
@@ -80680,7 +80690,7 @@ Function91256: ; 91256 (24:5256)
 	callba Function902eb
 	ld a, $8
 	ld [$cf63], a
-	ld hl, $54ce
+	ld hl, UnknownText_0x914ce
 	call PrintText
 	ret
 
@@ -80695,28 +80705,28 @@ Function9126d: ; 9126d (24:526d)
 	jr nz, .asm_9128e
 	ret
 .asm_9127b
-	ld hl, PlayerAccLevel ; $c6d1
+	ld hl, $c6d1
 	ld a, [hl]
 	and a
 	jr z, .asm_91285
 	dec [hl]
 	jr .asm_912a3
 .asm_91285
-	ld hl, PlayerEvaLevel ; $c6d2
+	ld hl, $c6d2
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
 	jr .asm_912ad
 .asm_9128e
-	ld hl, PlayerAccLevel ; $c6d1
+	ld hl, $c6d1
 	ld a, [hl]
 	cp $3
 	jr nc, .asm_91299
 	inc [hl]
 	jr .asm_912a3
 .asm_91299
-	ld hl, PlayerEvaLevel ; $c6d2
+	ld hl, $c6d2
 	ld a, [hl]
 	cp $6
 	ret nc
@@ -80747,7 +80757,7 @@ Function912b7: ; 912b7 (24:52b7)
 	ld hl, $c569
 	ld [hl], a
 	ld hl, $c4f1
-	ld a, [PlayerAccLevel] ; $c6d1
+	ld a, [$c6d1] 
 	ld bc, $28
 	call AddNTimes
 	ld [hl], $ed
@@ -80768,19 +80778,19 @@ Function912d8: ; 912d8 (24:52d8)
 	inc hl
 	dec b
 	jr nz, .asm_912df
-	ld a, [PlayerEvaLevel] ; $c6d2
+	ld a, [$c6d2] 
 	ld e, a
 	ld d, $0
 	ld hl, $dc7c
 	add hl, de
 	xor a
-	ld [PlayerSDefLevel], a ; $c6d0
+	ld [$c6d0], a 
 .asm_912f8
 	ld a, [hli]
 	push hl
 	push af
 	ld hl, $c4f2
-	ld a, [PlayerSDefLevel] ; $c6d0
+	ld a, [$c6d0] 
 	ld bc, $28
 	call AddNTimes
 	ld d, h
@@ -80789,39 +80799,67 @@ Function912d8: ; 912d8 (24:52d8)
 	ld b, a
 	call Function90380
 	pop hl
-	ld a, [PlayerSDefLevel] ; $c6d0
+	ld a, [$c6d0] 
 	inc a
-	ld [PlayerSDefLevel], a ; $c6d0
+	ld [$c6d0], a 
 	cp $4
 	jr c, .asm_912f8
 	call Function912b7
 	ret
 ; 9131e (24:531e)
 
-INCBIN "baserom.gbc",$9131e,$91342 - $9131e
+Function9131e: ; 9131e
+	ld hl, $dc7c
+	ld a, [PlayerEvaLevel]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [PlayerAccLevel]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld [hl], $0
+	ld hl, $dc7c
+	ld c, $a
+.asm_91336
+	ld a, [hli]
+	and a
+	jr nz, .asm_9133e
+	ld a, [hld]
+	ld [hli], a
+	ld [hl], $0
+
+.asm_9133e
+	dec c
+	jr nz, .asm_91336
+	ret
+; 91342
 
 ; known jump sources: 911db (24:51db)
 Function91342: ; 91342 (24:5342)
 	ld hl, $dc7c
-	ld a, [PlayerEvaLevel] ; $c6d2
+	ld a, [$c6d2] 
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
-	ld a, [PlayerAccLevel] ; $c6d1
+	ld a, [$c6d1] 
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld c, [hl]
 	callba Function9038a
 	ld a, c
 	and a
 	jr z, .asm_91366
-	ld hl, $5455
-	ld de, $543f
+
+	ld hl, Jumptable_91455
+	ld de, Unknown_9143f
 	jr .asm_9136c
+
 .asm_91366
-	ld hl, $546a
-	ld de, $545b
+	ld hl, Jumptable_9146a
+	ld de, Unknown_9145b
+
 .asm_9136c
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -80840,7 +80878,7 @@ Function91342: ; 91342 (24:5342)
 	inc de
 	sla a
 	ld b, a
-	ld c, $8
+	ld c, 8
 	push de
 	call TextBox
 	pop de
@@ -80849,43 +80887,47 @@ Function91342: ; 91342 (24:5342)
 	call PlaceString
 	pop de
 	xor a
-	ld [EnemyAtkLevel], a ; $c6d4 (aliases: EnemyStatLevels, PlayerStatLevelsEnd)
+	ld [$c6d4], a 
 	call Function9141d
 	call WaitBGMap
+
 .asm_91398
 	push de
 	call Functiona57
 	pop de
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_913b4
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_913c1
 	ld a, [hl]
-	and $3
+	and A_BUTTON | B_BUTTON
 	jr nz, .asm_913d4
 	call DelayFrame
 	jr .asm_91398
+
 .asm_913b4
-	ld hl, EnemyAtkLevel ; $c6d4 (aliases: EnemyStatLevels, PlayerStatLevelsEnd)
+	ld hl, $c6d4
 	ld a, [hl]
 	and a
 	jr z, .asm_91398
 	dec [hl]
 	call Function9141d
 	jr .asm_91398
+
 .asm_913c1
-	ld hl, $2
+	ld hl, 2
 	add hl, de
-	ld a, [EnemyAtkLevel] ; $c6d4 (aliases: EnemyStatLevels, PlayerStatLevelsEnd)
+	ld a, [$c6d4] 
 	inc a
 	cp [hl]
 	jr nc, .asm_91398
-	ld [EnemyAtkLevel], a ; $c6d4 (aliases: EnemyStatLevels, PlayerStatLevelsEnd)
+	ld [$c6d4], a 
 	call Function9141d
 	jr .asm_91398
+
 .asm_913d4
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -80894,9 +80936,10 @@ Function91342: ; 91342 (24:5342)
 	ld [hBGMapMode], a ; $ff00+$d4
 	pop hl
 	ld a, [hJoyPressed] ; $ff00+$a7
-	and $2
-	jr nz, .asm_913f1
-	ld a, [EnemyAtkLevel] ; $c6d4 (aliases: EnemyStatLevels, PlayerStatLevelsEnd)
+	and B_BUTTON
+	jr nz, Function913f1
+
+	ld a, [$c6d4] 
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -80905,14 +80948,37 @@ Function91342: ; 91342 (24:5342)
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-.asm_913f1
-	ld hl, $54ce
+
+Function913f1: ; 913f1
+	ld hl, UnknownText_0x914ce
 	call PrintText
 	scf
 	ret
 ; 913f9 (24:53f9)
 
-INCBIN "baserom.gbc",$913f9,$9141d - $913f9
+Function913f9: ; 913f9
+	ld hl, UnknownText_0x914d8
+	call Function1d4f
+	call YesNoBox
+	call Function1c07
+	jr c, .asm_91419
+	call Function9131e
+	xor a
+	ld [hBGMapMode], a
+	call Function912d8
+	ld hl, UnknownText_0x914ce
+	call PrintText
+	call WaitBGMap
+
+.asm_91419
+	scf
+	ret
+; 9141b
+
+Function9141b: ; 9141b
+	and a
+	ret
+; 9141d
 
 ; known jump sources: 91392 (24:5392), 913bc (24:53bc), 913cf (24:53cf)
 Function9141d: ; 9141d (24:541d)
@@ -80926,27 +80992,70 @@ Function9141d: ; 9141d (24:541d)
 	ld a, [de]
 	ld c, a
 	push hl
-	ld a, $7f
-	ld de, $28
+	ld a, " "
+	ld de, 20 * 2
 .asm_9142c
 	ld [hl], a
 	add hl, de
 	dec c
 	jr nz, .asm_9142c
 	pop hl
-	ld a, [EnemyAtkLevel] ; $c6d4 (aliases: EnemyStatLevels, PlayerStatLevelsEnd)
-	ld bc, $28
+	ld a, [$c6d4]
+	ld bc, 20 * 2
 	call AddNTimes
-	ld [hl], $ed
+	ld [hl], "▶"
 	pop de
 	ret
 ; 9143f (24:543f)
 
-INCBIN "baserom.gbc",$9143f,$91480 - $9143f
+Unknown_9143f: ; 9143f
+	dw $c522
+	db 3
+	db   "CALL"
+	next "DELETE"
+	next "CANCEL"
+	db   "@"
+; 91455
+
+Jumptable_91455: ; 91455
+	dw Function9141b
+	dw Function913f9
+	dw Function913f1
+; 9145b
+
+Unknown_9145b: ; 9145b
+	dw $c54a
+	db 2
+	db   "CALL"
+	next "CANCEL"
+	db   "@"
+; 9146a
+
+Jumptable_9146a: ; 9146a
+	dw Function9141b
+	dw Function913f1
+; 9146e
+
+
+Function9146e: ; 9146e
+	ld a, [hHours]
+	cp 12
+	jr c, .asm_9147b
+	sub 12
+	ld [$d265], a
+	scf
+	ret
+
+.asm_9147b
+	ld [$d265], a
+	and a
+	ret
+; 91480
+
 
 ; known jump sources: 90f71 (24:4f71), 91025 (24:5025), 9114c (24:514c), 911ac (24:51ac)
 Function91480: ; 91480 (24:5480)
-	ld de, $8
+	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ld a, c
 	ld [$cf63], a
@@ -80956,19 +81065,19 @@ Function91480: ; 91480 (24:5480)
 	ret
 
 Function91492: ; 91492
-	ld a, [EnemyTurnsTaken]
+	ld a, [$c6dc]
 	cp $fe
 	jr z, .asm_914a3
 	cp $ff
 	call z, Function3d03
 	xor a
-	ld [EnemyTurnsTaken], a
+	ld [$c6dc], a
 	ret
 
 .asm_914a3
 	call Function3d47
 	xor a
-	ld [EnemyTurnsTaken], a
+	ld [$c6dc], a
 	ret
 ; 914ab
 
@@ -81003,17 +81112,36 @@ Function914bb: ; 914bb (24:54bb)
 	jr .asm_914be
 ; 914ce (24:54ce)
 
-INCBIN "baserom.gbc",$914ce,$914dd - $914ce
+UnknownText_0x914ce: ; 0x914ce
+	; Whom do you want to call?
+	text_jump UnknownText_0x1c5847
+	db "@"
+; 0x914d3
+
+UnknownText_0x914d3: ; 0x914d3
+	; Press any button to exit.
+	text_jump UnknownText_0x1c5862
+	db "@"
+; 0x914d8
+
+UnknownText_0x914d8: ; 0x914d8
+	; Delete this stored phone number?
+	text_jump UnknownText_0x1c587d
+	db "@"
+; 0x914dd
+
 
 PokegearSpritesGFX: ; 914dd
 INCBIN "gfx/misc/pokegear_sprites.2bpp.lz"
 ; 91508
 
+
 INCBIN "baserom.gbc",$91508,$9163e - $91508
+
 
 ; known jump sources: 9110a (24:510a)
 Function9163e: ; 9163e (24:563e)
-	jr asm_9166f
+	jr UpdateRadioStation
 
 ; no known jump sources
 Function91640: ; 91640 (24:5640)
@@ -81030,31 +81158,36 @@ Function91640: ; 91640 (24:5640)
 Function9164e: ; 9164e (24:564e)
 	ld hl, $ffa9
 	ld a, [hl]
-	and $80
-	jr nz, .asm_9165c
+	and D_DOWN
+	jr nz, .down
 	ld a, [hl]
-	and $40
-	jr nz, .asm_91666
+	and D_UP
+	jr nz, .up
 	ret
-.asm_9165c
+
+.down
 	ld hl, $d958
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
 	dec [hl]
-	jr asm_9166f
-.asm_91666
+	jr .update
+
+.up
 	ld hl, $d958
 	ld a, [hl]
-	cp $50
+	cp 80
 	ret nc
 	inc [hl]
 	inc [hl]
-asm_9166f: ; 9166f (24:566f)
+
+.update
+
+UpdateRadioStation: ; 9166f (24:566f)
 	ld hl, $d958
 	ld d, [hl]
-	ld hl, $56ad
+	ld hl, Unknown_916ad
 .asm_91676
 	ld a, [hli]
 	cp $ff
@@ -81064,9 +81197,11 @@ asm_9166f: ; 9166f (24:566f)
 	inc hl
 	inc hl
 	jr .asm_91676
+
 .asm_91682
-	call Function91888
+	call NoRadioStation
 	ret
+
 .asm_91686
 	ld a, [hli]
 	ld h, [hl]
@@ -81074,9 +81209,8 @@ asm_9166f: ; 9166f (24:566f)
 	ld de, .asm_9168e
 	push de
 	jp [hl]
-
 .asm_9168e
-	ld a, [EnemyAccLevel] ; $c6d9
+	ld a, [$c6d9] 
 	and a
 	ret z
 	xor a
@@ -81088,221 +81222,280 @@ asm_9166f: ; 9166f (24:566f)
 	ret
 ; 916a1 (24:56a1)
 
-INCBIN "baserom.gbc",$916a1,$916c9 - $916a1
+Function916a1: ; 916a1
+	ld [$c6d9], a 
+	ld a, [hli]
+	ld [$c6da], a 
+	ld a, [hli]
+	ld [$c6db], a
+	ret
+; 916ad
+
+Unknown_916ad: ; 916ad
+	dbw 16, Function916c9
+	dbw 28, Function916d8
+	dbw 32, Function916e0
+	dbw 40, Function916e8
+	dbw 52, Function916f0
+	dbw 64, Function916fa
+	dbw 72, Function91709
+	dbw 78, Function91718
+	dbw 80, Function91727
+	db $ff
+; 916c9
+
+Function916c9: ; 916c9
 	call Function91744
-	jr nc, .asm_91740
-	ld a, [TimeOfDay] ; $d269
+	jr nc, Function91740
+	ld a, [TimeOfDay]
 	and a
 	jp z, Function91766
 	jp Function91753
+
+Function916d8: ; 916d8
 	call Function91744
-	jr nc, .asm_91740
+	jr nc, Function91740
 	jp Function9177b
+
+Function916e0: ; 916e0
 	call Function91744
-	jr nc, .asm_91740
+	jr nc, Function91740
 	jp Function91790
+
+Function916e8: ; 916e8
 	call Function91744
-	jr nc, .asm_91740
+	jr nc, Function91740
 	jp Function917a5
-	ld a, [EnemySDefLevel] ; $c6d8
-	cp $9
-	jr nz, .asm_91740
+
+Function916f0: ; 916f0
+	ld a, [$c6d8]
+	cp RUINS_OF_ALPH
+	jr nz, Function91740
 	jp Function917d5
+
+Function916fa: ; 916fa
 	call Function91744
-	jr c, .asm_91740
+	jr c, Function91740
 	ld a, [$d957]
 	bit 3, a
-	jr z, .asm_91740
+	jr z, Function91740
 	jp Function917ea
+
+Function91709: ; 91709
 	call Function91744
-	jr c, .asm_91740
+	jr c, Function91740
 	ld a, [$d957]
 	bit 3, a
-	jr z, .asm_91740
+	jr z, Function91740
 	jp Function917ff
+
+Function91718: ; 91718
 	call Function91744
-	jr c, .asm_91740
+	jr c, Function91740
 	ld a, [$d957]
 	bit 3, a
-	jr z, .asm_91740
+	jr z, Function91740
 	jp Function91829
-	ld a, [StatusFlags] ; $d84c
+
+Function91727: ; 91727
+; This station airs in the Lake of Rage
+; area when Rocket are still in Mahogany.
+
+	ld a, [StatusFlags]
 	bit 4, a
-	jr z, .asm_91740
-	ld a, [EnemySDefLevel] ; $c6d8
-	cp $24
-	jr z, .asm_9173d
-	cp $25
-	jr z, .asm_9173d
-	cp $26
-	jr nz, .asm_91740
-.asm_9173d
+	jr z, Function91740
+
+	ld a, [$c6d8]
+	cp MAHOGANY_TOWN
+	jr z, .ok
+	cp ROUTE_43
+	jr z, .ok
+	cp LAKE_OF_RAGE
+	jr nz, Function91740
+.ok
 	jp Function9183e
-.asm_91740
-	call Function91888
+
+Function91740: ; 91740
+	call NoRadioStation
 	ret
 
 ; known jump sources: 916c9 (24:56c9), 916d8 (24:56d8), 916e0 (24:56e0), 916e8 (24:56e8), 916fa (24:56fa), 91709 (24:5709), 91718 (24:5718)
 Function91744: ; 91744 (24:5744)
-	ld a, [EnemySDefLevel] ; $c6d8
-	cp $5f
-	jr z, .asm_91751
-	cp $2f
-	jr c, .asm_91751
+	ld a, [$c6d8]
+	cp FAST_SHIP
+	jr z, .johto
+	cp KANTO_LANDMARK
+	jr c, .johto
+.kanto
 	and a
 	ret
-.asm_91751
+.johto
 	scf
 	ret
 
+
+OAKS_POKEMON_TALK EQU 0
+POKEDEX_SHOW      EQU 1
+POKEMON_MUSIC     EQU 2
+LUCKY_CHANNEL     EQU 3
+BUENAS_PASSWORD   EQU 4
+PLACES_AND_PEOPLE EQU 5
+LETS_ALL_SING     EQU 6
+ROCKET_RADIO      EQU 7
+POKE_FLUTE_RADIO  EQU 8
+UNOWN_RADIO       EQU 9
+EVOLUTION_RADIO   EQU 10
+
 ; known jump sources: 916d5 (24:56d5)
 Function91753: ; 91753 (24:5753)
-	xor a
-	ld [DefaultFlypoint], a ; $d002
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	xor a ; OAKS_POKEMON_TALK
+	ld [$d002], a 
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $58bf
+	ld de, OaksPkmnTalkName
 	ret
 
 ; known jump sources: 916d2 (24:56d2)
 Function91766: ; 91766 (24:5766)
-	ld a, $1
-	ld [DefaultFlypoint], a ; $d002
+	ld a, POKEDEX_SHOW
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $58cc
+	ld de, PokedexShowName
 	ret
 
 ; known jump sources: 916dd (24:56dd)
 Function9177b: ; 9177b (24:577b)
-	ld a, $2
-	ld [DefaultFlypoint], a ; $d002
+	ld a, POKEMON_MUSIC
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $58d6
+	ld de, PokemonMusicName
 	ret
 
 ; known jump sources: 916e5 (24:56e5)
 Function91790: ; 91790 (24:5790)
-	ld a, $3
-	ld [DefaultFlypoint], a ; $d002
+	ld a, LUCKY_CHANNEL
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $58e1
+	ld de, LuckyChannelName
 	ret
 
 ; known jump sources: 916ed (24:56ed)
 Function917a5: ; 917a5 (24:57a5)
-	ld a, $4
-	ld [DefaultFlypoint], a ; $d002
+	ld a, BUENAS_PASSWORD
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $57d4
+	ld de, NotBuenasPasswordName
 	ld a, [StatusFlags2] ; $d84d
 	bit 0, a
 	ret z
-	ld de, $57c3
+	ld de, BuenasPasswordName
 	ret
 ; 917c3 (24:57c3)
 
-INCBIN "baserom.gbc",$917c3,$917d5 - $917c3
+BuenasPasswordName:    db "BUENA'S PASSWORD@"
+NotBuenasPasswordName: db "@"
 
 ; known jump sources: 916f7 (24:56f7)
 Function917d5: ; 917d5 (24:57d5)
-	ld a, $9
-	ld [DefaultFlypoint], a ; $d002
+	ld a, UNOWN_RADIO
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $58ef
+	ld de, UnknownStationName
 	ret
 
 ; known jump sources: 91706 (24:5706)
 Function917ea: ; 917ea (24:57ea)
-	ld a, $5
-	ld [DefaultFlypoint], a ; $d002
+	ld a, PLACES_AND_PEOPLE
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $58f5
+	ld de, PlacesAndPeopleName
 	ret
 
 ; known jump sources: 91715 (24:5715)
 Function917ff: ; 917ff (24:57ff)
-	ld a, $6
-	ld [DefaultFlypoint], a ; $d002
+	ld a, LETS_ALL_SING
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $5905
+	ld de, LetsAllSingName
 	ret
 ; 91814 (24:5814)
 
 Function91814: ; 91814
-	ld a, $7
-	ld [DefaultFlypoint], a
+	ld a, ROCKET_RADIO
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $5905
+	ld de, LetsAllSingName
 	ret
 ; 91829
 
 ; known jump sources: 91724 (24:5724)
 Function91829: ; 91829 (24:5829)
-	ld a, $8
-	ld [DefaultFlypoint], a ; $d002
+	ld a, POKE_FLUTE_RADIO
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $5914
+	ld de, PokeFluteStationName
 	ret
 
 ; known jump sources: 9173d (24:573d)
 Function9183e: ; 9183e (24:583e)
-	ld a, $a
-	ld [DefaultFlypoint], a ; $d002
+	ld a, EVOLUTION_RADIO
+	ld [$d002], a 
 	xor a
-	ld [StartFlypoint], a ; $d005
-	ld a, $2e
-	ld hl, $4612
+	ld [$d005], a 
+	ld a, BANK(Functionb8612)
+	ld hl, Functionb8612
 	call Function9187c
-	ld de, $58ef
+	ld de, UnknownStationName
 	ret
 ; 91853 (24:5853)
 
-INCBIN "baserom.gbc",$91853,$91854 - $91853
+Function91853: ; 91853
+	ret
 
 ; no known jump sources
 Function91854: ; 91854 (24:5854)
 	push de
 	ld a, e
-	ld [EnemyTurnsTaken], a ; $c6dc
-	ld de, $0
+	ld [$c6dc], a 
+	ld de, MUSIC_NONE
 	call PlayMusic
 	pop de
 	ld a, e
@@ -81314,45 +81507,45 @@ Function91854: ; 91854 (24:5854)
 Function91868: ; 91868 (24:5868)
 	push de
 	ld a, $fe
-	ld [EnemyTurnsTaken], a ; $c6dc
-	ld de, $0
+	ld [$c6dc], a 
+	ld de, MUSIC_NONE
 	call PlayMusic
 	pop de
-	ld de, $3f
+	ld de, MUSIC_POKEMON_CHANNEL
 	call PlayMusic
 	ret
 
 ; known jump sources: 9175f (24:575f), 91774 (24:5774), 91789 (24:5789), 9179e (24:579e), 917b3 (24:57b3), 917e3 (24:57e3), 917f8 (24:57f8), 9180d (24:580d), 91837 (24:5837), 9184c (24:584c)
 Function9187c: ; 9187c (24:587c)
-	ld [EnemyAccLevel], a ; $c6d9
+	ld [$c6d9], a 
 	ld a, l
-	ld [EnemyEvaLevel], a ; $c6da
+	ld [$c6da], a 
 	ld a, h
 	ld [$c6db], a
 	ret
 
 ; known jump sources: 91682 (24:5682), 91740 (24:5740)
-Function91888: ; 91888 (24:5888)
-	call Function9189d
-	call Function918a9
+NoRadioStation: ; 91888 (24:5888)
+	call NoRadioMusic
+	call NoRadioName
 	xor a
-	ld [EnemyAccLevel], a ; $c6d9
-	ld [EnemyEvaLevel], a ; $c6da
+	ld [$c6d9], a 
+	ld [$c6da], a 
 	ld [$c6db], a
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
 ; known jump sources: 91888 (24:5888)
-Function9189d: ; 9189d (24:589d)
-	ld de, $0
+NoRadioMusic: ; 9189d (24:589d)
+	ld de, MUSIC_NONE
 	call PlayMusic
 	ld a, $ff
-	ld [EnemyTurnsTaken], a ; $c6dc
+	ld [$c6dc], a 
 	ret
 
 ; known jump sources: 9188b (24:588b)
-Function918a9: ; 918a9 (24:58a9)
+NoRadioName: ; 918a9 (24:58a9)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld hl, $c541
@@ -81362,17 +81555,16 @@ Function918a9: ; 918a9 (24:58a9)
 	ld bc, $412
 	call TextBox
 	ret
+; 918bf
 
-RadioChannels: ; 918bf
-; Buena's Password is at 0x917c3
-	db "OAK's ", $e1, $e2, " Talk@"
-	db "#DEX Show@"
-	db "#MON Music@"
-	db "Lucky Channel@"
-	db "?????@"
-	db "Places & People@"
-	db "Let's All Sing!@"
-	db "# FLUTE@"
+OaksPkmnTalkName:     db "OAK's ", $e1, $e2, " Talk@"
+PokedexShowName:      db "#DEX Show@"
+PokemonMusicName:     db "#MON Music@"
+LuckyChannelName:     db "Lucky Channel@"
+UnknownStationName:   db "?????@"
+PlacesAndPeopleName:  db "Places & People@"
+LetsAllSingName:      db "Let's All Sing!@"
+PokeFluteStationName: db "# FLUTE@"
 ; 9191c
 
 Function9191c: ; 9191c
@@ -85484,22 +85676,23 @@ KrisFishingGFX: ; b8582
 INCBIN "baserom.gbc",$b8582,$b8612 - $b8582
 ; b8612
 
-	ld a, [DefaultFlypoint] ; $d002
-	cp $8
-	jr nc, .asm_b862b
-	ld a, [StatusFlags2] ; $d84d
+Functionb8612: ; b8612
+	ld a, [$d002] 
+	cp 8
+	jr nc, .ok
+	ld a, [StatusFlags2]
 	bit 0, a
-	jr z, .asm_b862b
+	jr z, .ok
 	call IsInJohto
 	and a
-	jr nz, .asm_b862b
-	ld a, $7
-	ld [DefaultFlypoint], a ; $d002
-.asm_b862b
-	ld a, [DefaultFlypoint] ; $d002
+	jr nz, .ok
+	ld a, 7
+	ld [$d002], a 
+.ok
+	ld a, [$d002] 
 	ld e, a
-	ld d, $0
-	ld hl, $463a
+	ld d, 0
+	ld hl, Jumptable_b863a
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -86787,8 +86980,8 @@ Functionb9122: ; b9122 (2e:5122)
 Functionb912a: ; b912a (2e:512a)
 	ld a, [hBGMapMode] ; $ff00+$d4
 	push af
-	callba Function9189d
-	callba Function918a9
+	callba NoRadioMusic
+	callba NoRadioName
 	pop af
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld hl, $dc1f
