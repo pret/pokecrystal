@@ -21,7 +21,7 @@ FalknerScript_0x683c2: ; 0x683c2
 	setevent EVENT_BEAT_FALKNER
 	loadfont
 	2writetext UnknownText_0x685af
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001b
 	checkcode $7

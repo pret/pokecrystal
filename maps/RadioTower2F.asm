@@ -182,7 +182,7 @@ BuenaScript_0x5d775: ; 0x5d775
 	iffalse UnknownScript_0x5d86b
 	checkcode $18
 	if_equal $1e, UnknownScript_0x5d87f
-	playmusic $0060
+	playmusic MUSIC_BUENAS_PASSWORD
 	2writetext UnknownText_0x5de35
 	special $00a3
 	iffalse UnknownScript_0x5d81e
@@ -201,7 +201,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	loadmovesprites
 	spriteface $b, $0
 	refreshscreen $0
-	special $0092
+	special SPECIAL_BUENAS_PASSWORD
 	loadmovesprites
 	iffalse UnknownScript_0x5d845
 	loadfont
@@ -212,7 +212,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	addvar $1
 	writevarcode $18
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	setflag $0060
 	pause 20
 	spriteface $b, $3
@@ -361,7 +361,7 @@ UnknownScript_0x5d8d0: ; 0x5d8d0
 	if_equal $1, UnknownScript_0x5d8f6
 	if_equal $2, UnknownScript_0x5d8ed
 	2writetext UnknownText_0x5e2f3
-	playsound $0093
+	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	keeptextopen
 	2writetext UnknownText_0x5e310
@@ -396,7 +396,7 @@ ReceptionistScript_0x5d8ff: ; 0x5d8ff
 	iffalse UnknownScript_0x5d90f
 	2writetext UnknownText_0x5e392
 	keeptextopen
-	special $0093
+	special SPECIAL_BUENA_PRIZE
 	loadmovesprites
 	end
 ; 0x5d90f

@@ -24,7 +24,7 @@ OfficerScript_0x69d37: ; 0x69d37
 	checkcode $1
 	if_equal $6, UnknownScript_0x69d79
 	2writetext UnknownText_0x69eb8
-	playsound $0091
+	playsound SFX_KEY_ITEM
 	waitbutton
 	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail

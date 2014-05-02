@@ -37,7 +37,7 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	special $007d
 	loadfont
 	2writetext UnknownText_0x631ae
-	playsound $0091
+	playsound SFX_KEY_ITEM
 	waitbutton
 	2writetext UnknownText_0x631c3
 	closetext

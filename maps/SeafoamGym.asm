@@ -31,7 +31,7 @@ UnknownScript_0x1ab516: ; 0x1ab516
 	setevent $04cb
 	loadfont
 	2writetext UnknownText_0x1ab683
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0029
 	2writetext UnknownText_0x1ab69d

@@ -24,7 +24,7 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	setevent EVENT_BEAT_JUGGLER_HORTON
 	loadfont
 	2writetext UnknownText_0x192277
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0025
 	2writetext UnknownText_0x192291

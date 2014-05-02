@@ -842,9 +842,8 @@ NamesPointers:: ; 33ab
 	dbw 0, PartyMonOT
 	dbw 0, OTPartyMonOT
 	dbw BANK(TrainerClassNames), TrainerClassNames
-	dbw $04, $4b52 ; ????
+	dbw $04, MoveDescriptions ; ????
 ; 33c3
-
 
 GetName:: ; 33c3
 ; Return name CurSpecies from name list $cf61 in StringBuffer1.

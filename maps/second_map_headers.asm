@@ -587,7 +587,7 @@ Route30_SecondMapHeader: ; 0x9500c
 
 	; NORTH to Route 31
 	db GROUP_ROUTE_31, MAP_ROUTE_31 ; connected map (group, id)
-	dw $7288 ; strip pointer
+	dw (Route31_BlockData + ((ROUTE_31_HEIGHT - 3) * ROUTE_31_WIDTH) + 7) ; strip pointer
 	dw ($C703 + 253) ; strip destination
 	db 13, ROUTE_31_WIDTH ; (connection strip length, connected map width)
 	db ((ROUTE_31_HEIGHT * 2) - 1), 20 ; yoffset, xoffset
@@ -1351,7 +1351,7 @@ Route1_SecondMapHeader: ; 0x9530c
 
 	; NORTH to Viridian City
 	db GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY ; connected map (group, id)
-	dw $6d9c ; strip pointer
+	dw (ViridianCity_BlockData + ((VIRIDIAN_CITY_HEIGHT - 3) * VIRIDIAN_CITY_WIDTH) + 7) ; strip pointer
 	dw ($C703 + 253) ; strip destination
 	db 13, VIRIDIAN_CITY_WIDTH ; (connection strip length, connected map width)
 	db ((VIRIDIAN_CITY_HEIGHT * 2) - 1), 20 ; yoffset, xoffset
@@ -1611,7 +1611,7 @@ Route18_SecondMapHeader: ; 0x95414
 
 	; WEST to Route 17
 	db GROUP_ROUTE_17, MAP_ROUTE_17 ; connected map (group, id)
-	dw $7152 ; strip pointer
+	dw (Route17_BlockData + ((ROUTE_17_HEIGHT - 10) * ROUTE_17_WIDTH) + 7) ; strip pointer
 	dw $c800 ; strip destination
 	db 10, ROUTE_17_WIDTH ; (connection strip length, connected map width)
 	db 76, ((ROUTE_17_WIDTH * 2) - 1) ; yoffset, xoffset
@@ -2443,7 +2443,7 @@ Route10North_SecondMapHeader: ; 0x95768
 
 	; NORTH to Route 9
 	db GROUP_ROUTE_9, MAP_ROUTE_9 ; connected map (group, id)
-	dw $7eae ; strip pointer
+	dw (Route9_BlockData + ((ROUTE_9_HEIGHT - 3) * ROUTE_9_WIDTH) + 17) ; strip pointer
 	dw ($C703 + 253) ; strip destination
 	db 13, ROUTE_9_WIDTH ; (connection strip length, connected map width)
 	db ((ROUTE_9_HEIGHT * 2) - 1), 40 ; yoffset, xoffset

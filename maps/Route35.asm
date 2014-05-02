@@ -390,7 +390,7 @@ OfficerScript_0x19ca49: ; 0x19ca49
 	iffalse UnknownScript_0x19ca73
 	checkevent $0547
 	iftrue UnknownScript_0x19ca6d
-	playmusic $000c
+	playmusic MUSIC_OFFICER_ENCOUNTER
 	2writetext UnknownText_0x19ceea
 	closetext
 	loadmovesprites

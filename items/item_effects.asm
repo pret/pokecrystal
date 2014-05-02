@@ -19,7 +19,7 @@ ItemEffects: ; e73c
 	dw Brightpowder
 	dw GreatBall
 	dw PokeBall
-	dw Item06
+	dw TownMap
 	dw Bicycle
 	dw MoonStone
 	dw Antidote
@@ -69,7 +69,7 @@ ItemEffects: ; e73c
 	dw XSpecial
 	dw CoinCase
 	dw Itemfinder
-	dw Item38
+	dw PokeFlute
 	dw ExpShare
 	dw OldRod
 	dw GoodRod
@@ -1152,7 +1152,7 @@ Functionedfa: ; edfa (3:6dfa)
 	callba Function2715c
 	ret
 
-Item06: ; ee01
+TownMap: ; ee01
 	callba Function91ae1
 	ret
 ; ee08
@@ -2374,7 +2374,7 @@ Tablef504: ; f504
 ; f50c
 
 
-Item38: ; f50c
+PokeFlute: ; f50c
 	ld a, [IsInBattle]
 	and a
 	jr nz, .asm_f512

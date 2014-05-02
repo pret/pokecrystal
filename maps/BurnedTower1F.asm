@@ -61,7 +61,7 @@ UnknownScript_0x185c25: ; 0x185c25
 	pause 15
 	applymovement $0, MovementData_0x185ccd
 	applymovement $4, MovementData_0x185ccf
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x185cd9
 	closetext
@@ -100,7 +100,7 @@ UnknownScript_0x185c70: ; 0x185c70
 ; 0x185c80
 
 UnknownScript_0x185c80: ; 0x185c80
-	playmusic $0020
+	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	2writetext UnknownText_0x185de2
 	closetext
@@ -111,13 +111,13 @@ UnknownScript_0x185c80: ; 0x185c80
 	pause 15
 	earthquake 50
 	showemote $0, $0, 15
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	waitbutton
 	changeblock $a, $8, $25
 	reloadmappart
 	pause 15
 	applymovement $0, MovementData_0x185cd1
-	playsound $002f
+	playsound SFX_KINESIS
 	showemote $0, $4, 20
 	loadfont
 	2writetext UnknownText_0x185e75

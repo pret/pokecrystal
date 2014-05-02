@@ -23,7 +23,7 @@ ClerkScript_0x54750: ; 0x54750
 	waitbutton
 	giveitem BICYCLE, $1
 	2writetext UnknownText_0x54848
-	playsound $0091
+	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
 	setflag $0014

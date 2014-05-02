@@ -181,7 +181,7 @@ BurglarCoreyScript: ; 0x755e9
 ; 0x755f1
 
 SailorScript_0x755f1: ; 0x755f1
-	playmusic $000a
+	playmusic MUSIC_HIKER_ENCOUNTER
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x75812
@@ -202,7 +202,7 @@ SailorScript_0x755f1: ; 0x755f1
 	checkcode $9
 	if_equal $3, UnknownScript_0x75629
 	applymovement $6, MovementData_0x75637
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $6
 	waitbutton
 	end
@@ -210,7 +210,7 @@ SailorScript_0x755f1: ; 0x755f1
 
 UnknownScript_0x75629: ; 0x75629
 	applymovement $6, MovementData_0x7563c
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $6
 	waitbutton
 	end

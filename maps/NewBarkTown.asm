@@ -29,7 +29,7 @@ UnknownScript_0x1a800f: ; 0x1a800f
 ; 0x1a8016
 
 UnknownScript_0x1a8016: ; 0x1a8016
-	playmusic $004e
+	playmusic MUSIC_MOM
 	spriteface $2, $2
 	loadfont
 	2writetext UnknownText_0x1a8134
@@ -53,7 +53,7 @@ UnknownScript_0x1a8016: ; 0x1a8016
 ; 0x1a8041
 
 UnknownScript_0x1a8041: ; 0x1a8041
-	playmusic $004e
+	playmusic MUSIC_MOM
 	spriteface $2, $2
 	loadfont
 	2writetext UnknownText_0x1a8134
@@ -133,7 +133,7 @@ SilverScript_0x1a809e: ; 0x1a809e
 	pause 5
 	spriteface $4, $0
 	pause 5
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $0, MovementData_0x1a80f0
 	applymovement $4, MovementData_0x1a80f5
 	end

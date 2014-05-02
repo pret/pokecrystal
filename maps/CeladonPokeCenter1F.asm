@@ -53,7 +53,7 @@ UnknownScript_0x71e5a: ; 0x71e5a
 	applymovement $6, MovementData_0x71e65
 UnknownScript_0x71e5e: ; 0x71e5e
 	disappear $6
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	waitbutton
 	end
 ; 0x71e65

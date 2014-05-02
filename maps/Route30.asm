@@ -8,12 +8,12 @@ Route30_MapScriptHeader: ; 0x1a1671
 
 YoungsterScript_0x1a1673: ; 0x1a1673
 	waitbutton
-	playmusic $002a
+	playmusic MUSIC_JOHTO_TRAINER_BATTLE
 	loadfont
 	2writetext UnknownText_0x1a1806
 	pause 30
 	loadmovesprites
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $8, MovementData_0x1a17fe
 	loadfont
 	faceplayer
@@ -21,7 +21,7 @@ YoungsterScript_0x1a1673: ; 0x1a1673
 	closetext
 	spriteface $2, $1
 	loadmovesprites
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $7, MovementData_0x1a1802
 	special $003d
 	end

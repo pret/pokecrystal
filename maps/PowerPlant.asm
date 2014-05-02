@@ -19,7 +19,7 @@ UnknownScript_0x188dc4: ; 0x188dc4
 ; 0x188dc5
 
 UnknownScript_0x188dc5: ; 0x188dc5
-	playsound $006a
+	playsound SFX_CALL
 	showemote $0, $2, 15
 	waitbutton
 	pause 30

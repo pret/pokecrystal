@@ -22,12 +22,12 @@ UnknownScript_0x184947: ; 0x184947
 	spriteface $0, $1
 	showemote $0, $0, 15
 	special $006a
-	playsound $0041
-	playsound $006e
+	playsound SFX_TACKLE
+	playsound SFX_ELEVATOR
 	earthquake 79
 	pause 15
-	playsound $0041
-	playsound $006e
+	playsound SFX_TACKLE
+	playsound SFX_ELEVATOR
 	earthquake 79
 	applymovement $0, MovementData_0x184a1d
 	applymovement $8, MovementData_0x184a22
@@ -39,7 +39,7 @@ UnknownScript_0x184947: ; 0x184947
 	spriteface $8, $0
 	pause 15
 	applymovement $8, MovementData_0x184a24
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x184aec
 	closetext
@@ -49,7 +49,7 @@ UnknownScript_0x184947: ; 0x184947
 	2writetext UnknownText_0x184bc8
 	pause 15
 	loadmovesprites
-	playsound $0013
+	playsound SFX_WARP_TO
 	special $0030
 	special $0033
 	disappear $8

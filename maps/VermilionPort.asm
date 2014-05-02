@@ -52,11 +52,11 @@ SailorScript_0x74dc4: ; 0x74dc4
 	loadmovesprites
 	spriteface $2, $0
 	pause 10
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $2
 	waitbutton
 	applymovement $0, MovementData_0x74ef1
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	special $002e
 	waitbutton
 	setevent $073a

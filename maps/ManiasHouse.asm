@@ -22,7 +22,7 @@ RockerScript_0x9d278: ; 0x9d278
 	keeptextopen
 	waitbutton
 	2writetext UnknownText_0x9d41b
-	playsound $0091
+	playsound SFX_KEY_ITEM
 	waitbutton
 	loadmovesprites
 	setevent EVENT_GOT_SHUCKIE

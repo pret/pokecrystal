@@ -22,7 +22,7 @@ BrockScript_0x1a2864: ; 0x1a2864
 	setevent EVENT_BEAT_CAMPER_JERRY
 	loadfont
 	2writetext UnknownText_0x1a2a3d
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0023
 	2writetext UnknownText_0x1a2a57

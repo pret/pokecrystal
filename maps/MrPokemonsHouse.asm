@@ -33,7 +33,7 @@ UnknownScript_0x196e56: ; 0x196e56
 	waitbutton
 	giveitem MYSTERY_EGG, $1
 	2writetext UnknownText_0x196fd2
-	playsound $0091
+	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
@@ -90,7 +90,7 @@ UnknownScript_0x196ec7: ; 0x196ec7
 ; 0x196ec9
 
 UnknownScript_0x196ec9: ; 0x196ec9
-	playmusic $001e
+	playmusic MUSIC_PROF_OAK
 	applymovement $3, MovementData_0x196f5d
 	spriteface $0, $3
 	loadfont
@@ -98,7 +98,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	keeptextopen
 	waitbutton
 	2writetext UnknownText_0x1973cc
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	setflag $000b
 	2writetext UnknownText_0x1973de
@@ -106,7 +106,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	loadmovesprites
 	spriteface $0, $0
 	applymovement $3, MovementData_0x196f61
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $3
 	waitbutton
 	special $003d
@@ -118,7 +118,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	loadmovesprites
 	special $0030
 	special $0033
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	special $009d
 	special $001b
 	pause 60

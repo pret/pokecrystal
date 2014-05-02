@@ -63,7 +63,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	spriteface $0, $0
 	showemote $0, $0, 15
 	applymovement $0, MovementData_0x6d21f
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	applymovement $3, MovementData_0x6d224
 	spriteface $0, $1
 	applymovement $2, MovementData_0x6d22f
@@ -169,7 +169,7 @@ UnknownScript_0x6d091: ; 0x6d091
 	loadmovesprites
 	special $002e
 	special $009d
-	playsound $0005
+	playsound SFX_FULL_HEAL
 	special $001b
 	special $0031
 	loadfont
@@ -395,7 +395,7 @@ MapTeamRocketBaseB2FSignpost1Script: ; 0x6d1db
 UnknownScript_0x6d1e8: ; 0x6d1e8
 	2writetext UnknownText_0x6dd6b
 	closetext
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	changeblock $e, $c, $7
 	reloadmappart
 	loadmovesprites

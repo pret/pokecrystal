@@ -80,7 +80,7 @@ UnknownScript_0x191844: ; 0x191844
 	iffalse UnknownScript_0x191865
 	disappear $6
 	2writetext UnknownText_0x191d0a
-	playsound $0091
+	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB

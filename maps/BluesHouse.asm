@@ -33,7 +33,7 @@ UnknownScript_0x19b0de: ; 0x19b0de
 	closetext
 	loadmovesprites
 	special $002e
-	playmusic $000d
+	playmusic MUSIC_HEAL
 	pause 60
 	special $0031
 	special $003d

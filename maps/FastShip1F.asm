@@ -29,7 +29,7 @@ UnknownScript_0x7513b: ; 0x7513b
 	applymovement $0, MovementData_0x75217
 	applymovement $2, MovementData_0x75211
 	pause 30
-	playsound $001c
+	playsound SFX_BOAT
 	earthquake 30
 	blackoutmod GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW
 	clearevent $0031
@@ -71,7 +71,7 @@ UnknownScript_0x7517a: ; 0x7517a
 	closetext
 	loadmovesprites
 	2call UnknownScript_0x751b8
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	special $002e
 	waitbutton
 	setevent $072b
@@ -85,7 +85,7 @@ UnknownScript_0x7519c: ; 0x7519c
 	closetext
 	loadmovesprites
 	2call UnknownScript_0x751b8
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	special $002e
 	waitbutton
 	setevent $072a
@@ -137,7 +137,7 @@ UnknownScript_0x751e7: ; 0x751e7
 UnknownScript_0x751eb: ; 0x751eb
 	appear $5
 	applymovement $5, MovementData_0x7521b
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $0, MovementData_0x7522e
 	applymovement $5, MovementData_0x75220
 	loadfont

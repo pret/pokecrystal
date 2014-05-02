@@ -32,7 +32,7 @@ UnknownScript_0x9cec5: ; 0x9cec5
 	takemoney $0, 500
 	special $0051
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x9d05d
 	keeptextopen
 	itemnotify

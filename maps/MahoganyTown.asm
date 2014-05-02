@@ -67,7 +67,7 @@ UnknownScript_0x190040: ; 0x190040
 	giveitem RAGECANDYBAR, $1
 	iffalse UnknownScript_0x190078
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	takemoney $0, 300
 	special $0051
 	2writetext UnknownText_0x19014a

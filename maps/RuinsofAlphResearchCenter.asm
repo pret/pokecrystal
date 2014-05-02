@@ -37,13 +37,13 @@ UnknownScript_0x5918b: ; 0x5918b
 
 UnknownScript_0x59192: ; 0x59192
 	applymovement $4, MovementData_0x5926f
-	playsound $000d
+	playsound SFX_BOOT_PC
 	pause 60
-	playsound $0020
+	playsound SFX_SWITCH_POKEMON
 	pause 30
-	playsound $0021
+	playsound SFX_TALLY
 	pause 30
-	playsound $0022
+	playsound SFX_TRANSACTION
 	pause 30
 	spriteface $4, $0
 	loadfont
@@ -53,7 +53,7 @@ UnknownScript_0x59192: ; 0x59192
 	applymovement $4, MovementData_0x59274
 	loadfont
 	2writetext UnknownText_0x592fa
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	setflag $000c
 	2writetext UnknownText_0x59311

@@ -201,8 +201,8 @@ _UpdateSound:: ; e805c
 	ld [CurChannel], a
 	cp a, $08 ; are we done?
 	jp nz, .loop ; do it all again
-	; writing to hardware registers?
-	call Functione8307
+
+	call PlayDanger
 	; fade music in/out
 	call FadeMusic
 	; write volume to hardware register
@@ -240,7 +240,7 @@ UpdateChannels: ; e8125
 	dw .Channel8
 
 .Channel1
-	ld a, [$c2a6]
+	ld a, [Danger]
 	bit 7, a
 	ret nz
 .Channel5
@@ -513,9 +513,8 @@ _CheckSFX: ; e82e7
 	ret
 ; e8307
 
-Functione8307: ; e8307
-; what is $c2a6?
-	ld a, [$c2a6]
+PlayDanger: ; e8307
+	ld a, [Danger]
 	bit 7, a
 	ret z
 	and a, $7f
@@ -524,7 +523,7 @@ Functione8307: ; e8307
 	jr c, .asm_e8335
 	and a
 	jr z, .asm_e8323
-	cp a, $10
+	cp a, 16 ; halfway
 	jr z, .asm_e831e
 	jr .asm_e8335
 .asm_e831e
@@ -546,12 +545,12 @@ Functione8307: ; e8307
 .asm_e8335
 	ld a, d
 	inc a
-	cp a, $1e
+	cp a, 30
 	jr c, .asm_e833c
 	xor a
 .asm_e833c
 	or a, $80
-	ld [$c2a6], a
+	ld [Danger], a
 	; is hw ch1 on?
 	ld a, [SoundOutput]
 	and a, $11

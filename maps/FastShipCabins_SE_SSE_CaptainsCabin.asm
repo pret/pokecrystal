@@ -100,7 +100,7 @@ UnknownScript_0x75f37: ; 0x75f37
 UnknownScript_0x75f44: ; 0x75f44
 	loadmovesprites
 	waitbutton
-	playsound $0027
+	playsound SFX_ELEVATOR_END
 	pause 30
 	loadfont
 	2writetext UnknownText_0x76645

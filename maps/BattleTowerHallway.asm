@@ -55,17 +55,17 @@ UnknownScript_0x9f5dc: ; 0x9f5dc
 ; 0x9f603
 
 UnknownScript_0x9f603: ; 0x9f603
-	applymovement $2, $657c
+	applymovement $2, MovementData_0x9e57c
 	2jump UnknownScript_0x9f61f
 ; 0x9f60a
 
 UnknownScript_0x9f60a: ; 0x9f60a
-	applymovement $2, $6586
+	applymovement $2, MovementData_0x9e586
 	2jump UnknownScript_0x9f61f
 ; 0x9f611
 
 UnknownScript_0x9f611: ; 0x9f611
-	applymovement $2, $6584
+	applymovement $2, MovementData_0x9e584
 	2jump UnknownScript_0x9f61f
 ; 0x9f618
 
@@ -81,7 +81,7 @@ UnknownScript_0x9f61f: ; 0x9f61f
 	closetext
 	loadmovesprites
 	stopfollow
-	applymovement $0, $6576
+	applymovement $0, MovementData_0x9e576
 	warpcheck
 	end
 ; 0x9f62f

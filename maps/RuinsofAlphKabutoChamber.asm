@@ -53,7 +53,7 @@ UnknownScript_0x58751: ; 0x58751
 	earthquake 30
 	showemote $0, $0, 20
 	pause 30
-	playsound $001b
+	playsound SFX_STRENGTH
 	changeblock $4, $0, $30
 	reloadmappart
 	earthquake 50
@@ -86,10 +86,10 @@ UnknownScript_0x58778: ; 0x58778
 	changeblock $2, $2, $18
 	changeblock $4, $2, $19
 	reloadmappart
-	playsound $001b
+	playsound SFX_STRENGTH
 	earthquake 80
 	applymovement $0, MovementData_0x587fe
-	playsound $002f
+	playsound SFX_KINESIS
 	waitbutton
 	pause 20
 	warpcheck

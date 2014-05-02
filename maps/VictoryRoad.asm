@@ -51,7 +51,7 @@ UnknownScript_0x744b5: ; 0x744b5
 
 UnknownScript_0x744d4: ; 0x744d4
 	spriteface $0, $0
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x7455f
 	closetext
@@ -91,7 +91,7 @@ UnknownScript_0x7450f: ; 0x7450f
 ; 0x7451f
 
 UnknownScript_0x7451f: ; 0x7451f
-	playmusic $0020
+	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	2writetext UnknownText_0x746ce
 	closetext

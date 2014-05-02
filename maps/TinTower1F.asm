@@ -96,10 +96,10 @@ UnknownScript_0x18508f: ; 0x18508f
 	spriteface $0, $2
 	cry RAIKOU
 	pause 10
-	playsound $0014
+	playsound SFX_WARP_FROM
 	applymovement $3, MovementData_0x1851d4
 	disappear $3
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	waitbutton
 UnknownScript_0x1850b6: ; 0x1850b6
 	writebyte ENTEI
@@ -109,10 +109,10 @@ UnknownScript_0x1850b6: ; 0x1850b6
 	spriteface $0, $3
 	cry ENTEI
 	pause 10
-	playsound $0014
+	playsound SFX_WARP_FROM
 	applymovement $4, MovementData_0x1851de
 	disappear $4
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	waitbutton
 UnknownScript_0x1850d7: ; 0x1850d7
 	spriteface $0, $1
@@ -138,20 +138,20 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	returnafterbattle
 	pause 20
 	spriteface $0, $0
-	playmusic $0061
-	playsound $001f
+	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
+	playsound SFX_ENTER_DOOR
 	moveperson $5, $a, $f
 	appear $5
 	applymovement $5, MovementData_0x1851ec
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	moveperson $6, $9, $f
 	appear $6
 	applymovement $6, MovementData_0x1851f5
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	moveperson $7, $9, $f
 	appear $7
 	applymovement $7, MovementData_0x1851fb
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	moveperson $8, $9, $f
 	appear $8
 	applymovement $8, MovementData_0x1851fe
@@ -164,7 +164,7 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x1851f1
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $5
 	waitbutton
 	special $006a
@@ -209,7 +209,7 @@ SageScript_0x185188: ; 0x185188
 	refreshscreen $0
 	earthquake 72
 	waitbutton
-	playsound $001b
+	playsound SFX_STRENGTH
 	changeblock $a, $2, $20
 	reloadmappart
 	setevent EVENT_GOT_RAINBOW_WING

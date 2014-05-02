@@ -21,7 +21,7 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	setevent EVENT_BEAT_JASMINE
 	loadfont
 	2writetext UnknownText_0x9c33a
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001f
 	checkcode $7

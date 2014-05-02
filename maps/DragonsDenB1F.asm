@@ -50,7 +50,7 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	loadmovesprites
 	showemote $0, $0, 15
 	spriteface $0, $2
-	playmusic $005d
+	playmusic MUSIC_CLAIR
 	applymovement $3, MovementData_0x18c9ae
 	loadfont
 	2writetext UnknownText_0x18c9bf
@@ -59,7 +59,7 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	iffalse UnknownScript_0x18c8f4
 	itemtotext TM_24, $0
 	2writetext UnknownText_0x18c9fb
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
@@ -208,7 +208,7 @@ PokeBallScript_0x18c95a: ; 0x18c95a
 	loadfont
 	itemtotext DRAGON_FANG, $0
 	2writetext UnknownText_0x18cf41
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	loadmovesprites
@@ -227,7 +227,7 @@ UnknownScript_0x18c970: ; 0x18c970
 ; 0x18c97e
 
 SilverScript_0x18c97e: ; 0x18c97e
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	loadfont
 	checkevent $0000
@@ -542,7 +542,7 @@ DragonsDenB1F_MapEventHeader: ; 0x18cf73
 	person_event SPRITE_SILVER, 27, 24, $2, $22, 255, 255, $0, 0, SilverScript_0x18c97e, $06c6
 	person_event SPRITE_COOLTRAINER_M, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, $ffff
 	person_event SPRITE_COOLTRAINER_F, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, $ffff
-	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, $4932, $ffff
+	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia1, $ffff
 	person_event SPRITE_TWIN, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, $ffff
 	person_event SPRITE_POKE_BALL, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, $07bf
 	person_event SPRITE_POKE_BALL, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, $07c0

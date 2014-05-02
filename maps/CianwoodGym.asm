@@ -20,7 +20,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	closetext
 	loadmovesprites
 	applymovement $7, MovementData_0x9d6f3
-	playsound $001b
+	playsound SFX_STRENGTH
 	earthquake 80
 	disappear $7
 	pause 30
@@ -36,7 +36,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	setevent EVENT_BEAT_CHUCK
 	loadfont
 	2writetext UnknownText_0x9d835
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0020
 	checkcode $7

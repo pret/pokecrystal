@@ -23,7 +23,7 @@ UnknownScript_0x7a4d8: ; 0x7a4d8
 ; 0x7a4db
 
 UnknownScript_0x7a4db: ; 0x7a4db
-	playmusic $004e
+	playmusic MUSIC_MOM
 	showemote $0, $2, 15
 	spriteface $0, $2
 	checkevent $0000
@@ -110,7 +110,7 @@ UnknownScript_0x7a56b: ; 0x7a56b
 ; 0x7a572
 
 UnknownScript_0x7a572: ; 0x7a572
-	playmusic $004e
+	playmusic MUSIC_MOM
 	2jump UnknownScript_0x7a4f6
 ; 0x7a578
 

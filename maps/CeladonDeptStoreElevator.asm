@@ -12,7 +12,7 @@ MapCeladonDeptStoreElevatorSignpost0Script: ; 0x713ad
 	loadmovesprites
 	iffalse UnknownScript_0x713bd
 	pause 5
-	playsound $006e
+	playsound SFX_ELEVATOR
 	earthquake 60
 	waitbutton
 UnknownScript_0x713bd: ; 0x713bd

@@ -21,7 +21,7 @@ UnknownScript_0x98e63: ; 0x98e63
 
 UnknownScript_0x98e64: ; 0x98e64
 	pause 30
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	appear $6
 	waitbutton
 	applymovement $6, MovementData_0x98ec5
@@ -48,7 +48,7 @@ UnknownScript_0x98e95: ; 0x98e95
 	loadmovesprites
 	spriteface $0, $0
 	applymovement $6, MovementData_0x98ece
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $6
 	clearevent $0712
 	setflag $0053

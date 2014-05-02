@@ -127,7 +127,7 @@ UnknownScript_0x1989a6: ; 0x1989a6
 	keeptextopen
 	takecoins 4000
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	special $004f
 	2writetext UnknownText_0x19918b
 	closetext
@@ -141,7 +141,7 @@ UnknownScript_0x1989a6: ; 0x1989a6
 UnknownScript_0x1989c6: ; 0x1989c6
 	applymovement $10, MovementData_0x198a63
 UnknownScript_0x1989ca: ; 0x1989ca
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	disappear $10
 	clearevent $076b
 	setflag $005e

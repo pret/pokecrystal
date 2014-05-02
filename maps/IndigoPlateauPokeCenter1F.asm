@@ -61,7 +61,7 @@ UnknownScript_0x180053: ; 0x180053
 	special $006a
 	pause 15
 	applymovement $5, MovementData_0x180164
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface $0, $3
 	2jump UnknownScript_0x1800ce
 ; 0x180094
@@ -83,7 +83,7 @@ UnknownScript_0x180094: ; 0x180094
 	special $006a
 	pause 15
 	applymovement $5, MovementData_0x18016b
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface $0, $2
 UnknownScript_0x1800ce: ; 0x1800ce
 	loadfont
@@ -125,7 +125,7 @@ UnknownScript_0x180103: ; 0x180103
 ; 0x180113
 
 UnknownScript_0x180113: ; 0x180113
-	playmusic $0020
+	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	2writetext UnknownText_0x1802a4
 	closetext
@@ -164,7 +164,7 @@ GrampsScript_0x180139: ; 0x180139
 	2writetext UnknownText_0x1803e7
 	closetext
 	loadmovesprites
-	playsound $0013
+	playsound SFX_WARP_TO
 	special $002e
 	waitbutton
 	warp GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $d, $6

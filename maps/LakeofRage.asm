@@ -55,7 +55,7 @@ UnknownScript_0x70035: ; 0x70035
 	2writetext UnknownText_0x702c6
 	closetext
 	loadmovesprites
-	playsound $0013
+	playsound SFX_WARP_TO
 	applymovement $2, MovementData_0x70155
 	disappear $2
 	clearevent $06d5
@@ -98,7 +98,7 @@ UnknownScript_0x7007a: ; 0x7007a
 	giveitem RED_SCALE, $1
 	waitbutton
 	2writetext UnknownText_0x703df
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	loadmovesprites

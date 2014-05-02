@@ -108,7 +108,7 @@ UnknownScript_0x56ca1: ; 0x56ca1
 
 UnknownScript_0x56ca6: ; 0x56ca6
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x56ebd
 	closetext
 	2jump UnknownScript_0x56c36
@@ -189,7 +189,7 @@ UnknownScript_0x56d26: ; 0x56d26
 	2call UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x56ebd
 	closetext
 	writebyte ABRA
@@ -208,7 +208,7 @@ UnknownScript_0x56d54: ; 0x56d54
 	2call UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x56ebd
 	closetext
 	writebyte CUBONE
@@ -227,7 +227,7 @@ UnknownScript_0x56d82: ; 0x56d82
 	2call UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	2writetext UnknownText_0x56ebd
 	closetext
 	writebyte WOBBUFFET

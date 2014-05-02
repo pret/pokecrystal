@@ -23,7 +23,7 @@ MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
 	iftrue UnknownScript_0x7ad24
 	checkevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
 	iftrue UnknownScript_0x7ad27
-	playmusic $001d
+	playmusic MUSIC_POKEMON_TALK
 	loadfont
 	2writetext UnknownText_0x7ae3b
 	pause 45

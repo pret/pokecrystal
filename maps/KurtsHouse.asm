@@ -48,9 +48,9 @@ KurtScript_0x18e178: ; 0x18e178
 	checkcode $9
 	if_equal $1, UnknownScript_0x18e1ab
 	spriteface $0, $0
-	playsound $0018
+	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e466
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $2
 	waitbutton
 	special $003d
@@ -59,9 +59,9 @@ KurtScript_0x18e178: ; 0x18e178
 
 UnknownScript_0x18e1ab: ; 0x18e1ab
 	spriteface $0, $0
-	playsound $0018
+	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e46c
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $2
 	waitbutton
 	special $003d
@@ -325,17 +325,17 @@ UnknownScript_0x18e378: ; 0x18e378
 	checkcode $9
 	if_equal $1, UnknownScript_0x18e3a2
 	spriteface $0, $0
-	playsound $0018
+	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e466
 	2jump UnknownScript_0x18e3ac
 ; 0x18e3a2
 
 UnknownScript_0x18e3a2: ; 0x18e3a2
 	spriteface $0, $0
-	playsound $0018
+	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e46c
 UnknownScript_0x18e3ac: ; 0x18e3ac
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $2
 	clearevent $07a4
 	waitbutton

@@ -308,6 +308,7 @@ MovementData_0x9e578: ; 0x9e578
 MovementData_0x9e57a: ; 0x9e57a
 	step_right
 	step_right
+MovementData_0x9e57c: ; 0x9e57c
 	step_right
 	step_right
 	step_up
@@ -319,8 +320,10 @@ MovementData_0x9e57a: ; 0x9e57a
 MovementData_0x9e582: ; 0x9e582
 	step_left
 	step_left
+MovementData_0x9e584: ; 0x9e584
 	step_left
 	step_left
+MovementData_0x9e586: ; 0x9e586
 	step_left
 	step_left
 	step_up

@@ -20,7 +20,7 @@ CooltrainerMScript_0x71670: ; 0x71670
 UnknownScript_0x7167e: ; 0x7167e
 	keeptextopen
 	2writetext UnknownText_0x71725
-	playsound $00a3
+	playsound SFX_DEX_FANFARE_230_PLUS
 	waitbutton
 	2writetext UnknownText_0x71760
 	keeptextopen

@@ -25,7 +25,7 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	setevent EVENT_BEAT_PSYCHIC_JARED
 	loadfont
 	2writetext UnknownText_0x189e95
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0028
 	2writetext UnknownText_0x189ead

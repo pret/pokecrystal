@@ -88,14 +88,14 @@ UnknownScript_0x7ca80: ; 0x7ca80
 	showemote $0, $0, 15
 	special $006a
 	pause 15
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	appear $c
 	waitbutton
 	applymovement $c, MovementData_0x7ce87
 	spriteface $0, $3
 	2call UnknownScript_0x7cad4
 	applymovement $c, MovementData_0x7ce92
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $c
 	dotrigger $1
 	waitbutton
@@ -108,14 +108,14 @@ UnknownScript_0x7caaa: ; 0x7caaa
 	showemote $0, $0, 15
 	special $006a
 	pause 15
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	appear $c
 	waitbutton
 	applymovement $c, MovementData_0x7ce8c
 	spriteface $0, $3
 	2call UnknownScript_0x7cad4
 	applymovement $c, MovementData_0x7ce97
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $c
 	dotrigger $1
 	waitbutton
@@ -129,7 +129,7 @@ UnknownScript_0x7cad4: ; 0x7cad4
 	setevent $06c5
 	domaptrigger GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F, $1
 UnknownScript_0x7cae1: ; 0x7cae1
-	playmusic $001f
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x7ce9d
 	closetext
@@ -169,7 +169,7 @@ UnknownScript_0x7cb19: ; 0x7cb19
 ; 0x7cb29
 
 UnknownScript_0x7cb29: ; 0x7cb29
-	playmusic $0020
+	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	2writetext UnknownText_0x7cfc2
 	closetext
@@ -479,7 +479,7 @@ UnknownScript_0x7cc8d: ; 0x7cc8d
 	if_equal $6, UnknownScript_0x7cd5e
 	if_equal $7, UnknownScript_0x7cd79
 UnknownScript_0x7ccb0: ; 0x7ccb0
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2call UnknownScript_0x7ce11
 	2call UnknownScript_0x7ce19
 	2call UnknownScript_0x7ce21
@@ -497,7 +497,7 @@ UnknownScript_0x7ccb0: ; 0x7ccb0
 ; 0x7ccd7
 
 UnknownScript_0x7ccd7: ; 0x7ccd7
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2call UnknownScript_0x7cda5
 	2call UnknownScript_0x7cdd5
 	2call UnknownScript_0x7cdf9
@@ -511,7 +511,7 @@ UnknownScript_0x7ccd7: ; 0x7ccd7
 ; 0x7ccf2
 
 UnknownScript_0x7ccf2: ; 0x7ccf2
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2call UnknownScript_0x7cdad
 	2call UnknownScript_0x7cde1
 	2call UnknownScript_0x7cded
@@ -525,7 +525,7 @@ UnknownScript_0x7ccf2: ; 0x7ccf2
 ; 0x7cd0d
 
 UnknownScript_0x7cd0d: ; 0x7cd0d
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2call UnknownScript_0x7cdb5
 	2call UnknownScript_0x7cdd5
 	2call UnknownScript_0x7cdf9
@@ -539,7 +539,7 @@ UnknownScript_0x7cd0d: ; 0x7cd0d
 ; 0x7cd28
 
 UnknownScript_0x7cd28: ; 0x7cd28
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2call UnknownScript_0x7cdbd
 	2call UnknownScript_0x7cde1
 	2call UnknownScript_0x7cded
@@ -553,7 +553,7 @@ UnknownScript_0x7cd28: ; 0x7cd28
 ; 0x7cd43
 
 UnknownScript_0x7cd43: ; 0x7cd43
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2call UnknownScript_0x7cdc5
 	2call UnknownScript_0x7cdd5
 	2call UnknownScript_0x7cdf9
@@ -567,7 +567,7 @@ UnknownScript_0x7cd43: ; 0x7cd43
 ; 0x7cd5e
 
 UnknownScript_0x7cd5e: ; 0x7cd5e
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2call UnknownScript_0x7cdcd
 	2call UnknownScript_0x7cde1
 	2call UnknownScript_0x7cded
@@ -581,7 +581,7 @@ UnknownScript_0x7cd5e: ; 0x7cd5e
 ; 0x7cd79
 
 UnknownScript_0x7cd79: ; 0x7cd79
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2call UnknownScript_0x7ce11
 	2call UnknownScript_0x7ce19
 	2call UnknownScript_0x7cdb5

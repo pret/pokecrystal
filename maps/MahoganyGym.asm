@@ -21,7 +21,7 @@ PryceScript_0x199a9e: ; 0x199a9e
 	setevent EVENT_BEAT_PRYCE
 	loadfont
 	2writetext UnknownText_0x199d3b
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0021
 	checkcode $7

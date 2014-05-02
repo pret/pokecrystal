@@ -56,7 +56,7 @@ UnknownScript_0x54044: ; 0x54044
 	keeptextopen
 	waitbutton
 	2writetext UnknownText_0x54273
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001d
 	checkcode $7

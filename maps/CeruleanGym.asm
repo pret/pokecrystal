@@ -21,9 +21,9 @@ UnknownScript_0x1883da: ; 0x1883da
 
 UnknownScript_0x1883de: ; 0x1883de
 	applymovement $2, MovementData_0x1884e3
-	playsound $0041
+	playsound SFX_TACKLE
 	applymovement $2, MovementData_0x1884eb
-	playmusic $0039
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	2writetext UnknownText_0x1884fb
 	closetext
@@ -40,7 +40,7 @@ UnknownScript_0x1883de: ; 0x1883de
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x1884e8
-	playsound $0023
+	playsound SFX_EXIT_BUILDING
 	disappear $2
 	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	clearevent $076c
@@ -74,7 +74,7 @@ MistyScript_0x188432: ; 0x188432
 	setevent EVENT_BEAT_SWIMMERM_PARKER
 	loadfont
 	2writetext UnknownText_0x188768
-	playsound $009c
+	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0024
 UnknownScript_0x188460: ; 0x188460

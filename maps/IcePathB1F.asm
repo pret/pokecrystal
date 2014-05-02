@@ -71,7 +71,7 @@ UnknownScript_0x7e4f8: ; 0x7e4f8
 ; 0x7e504
 
 UnknownScript_0x7e504: ; 0x7e504
-	playsound $001b
+	playsound SFX_STRENGTH
 	earthquake 80
 	end
 ; 0x7e50a

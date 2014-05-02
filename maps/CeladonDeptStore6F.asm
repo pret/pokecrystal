@@ -70,7 +70,7 @@ UnknownScript_0x711ce: ; 0x711ce
 
 UnknownScript_0x711e8: ; 0x711e8
 	pause 10
-	playsound $001f
+	playsound SFX_ENTER_DOOR
 	2writetext UnknownText_0x71274
 	keeptextopen
 	itemnotify
