@@ -16292,15 +16292,15 @@ MenuData2_0x10a87: ; 0x10a87
 ; 10a97
 
 MenuDataHeader_0x10a97: ; 0x10a97
-        db $40 ; flags
-        db 01, 07 ; start coords
-        db 11, 19 ; end coords
-        dw MenuData2_0x10a9f
-        db 1 ; default option
+	db $40 ; flags
+	db 01, 07 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x10a9f
+	db 1 ; default option
 ; 0x10a9f
 
 MenuData2_0x10a9f: ; 0x10a9f
-        db $2e ; flags
+	db $2e ; flags
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, $d8bc
@@ -16310,15 +16310,15 @@ MenuData2_0x10a9f: ; 0x10a9f
 ; 10aaf
 
 MenuDataHeader_0x10aaf: ; 0x10aaf
-        db $40 ; flags
-        db 01, 07 ; start coords
-        db 11, 19 ; end coords
-        dw MenuData2_0x10ab7
-        db 1 ; default option
+	db $40 ; flags
+	db 01, 07 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x10ab7
+	db 1 ; default option
 ; 0x10ab7
 
 MenuData2_0x10ab7: ; 0x10ab7
-        db $ae ; flags
+	db $ae ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, $d8d7
@@ -16328,15 +16328,15 @@ MenuData2_0x10ab7: ; 0x10ab7
 ; 10ac7
 
 MenuDataHeader_0x10ac7: ; 0x10ac7
-        db $40 ; flags
-        db 01, 07 ; start coords
-        db 11, 19 ; end coords
-        dw MenuData2_0x10acf
-        db 1 ; default option
+	db $40 ; flags
+	db 01, 07 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x10acf
+	db 1 ; default option
 ; 0x10acf
 
 MenuData2_0x10acf: ; 0x10acf
-        db $2e ; flags
+	db $2e ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, $d8d7
@@ -31950,11 +31950,11 @@ Function24528:: ; 24528
 ; 24547
 
 MenuDataHeader_0x24547: ; 0x24547
-        db $40 ; flags
-        db 04, 06 ; start coords
-        db 13, 14 ; end coords
-        dw NULL
-        db 1 ; default option
+	db $40 ; flags
+	db 04, 06 ; start coords
+	db 13, 14 ; end coords
+	dw NULL
+	db 1 ; default option
 ; 0x2454f
 
 Function2454f: ; 2454f
@@ -32911,19 +32911,19 @@ Function24b01: ; 24b01
 ; 24b15
 
 MenuDataHeader_0x24b15: ; 0x24b15
-        db $40 ; flags
-        db 00, 11 ; start coords
-        db 02, 19 ; end coords
-        dw NULL
-        db 1 ; default option
+	db $40 ; flags
+	db 00, 11 ; start coords
+	db 02, 19 ; end coords
+	dw NULL
+	db 1 ; default option
 ; 0x24b1d
 
 MenuDataHeader_0x24b1d: ; 0x24b1d
-        db $40 ; flags
-        db 11, 00 ; start coords
-        db 13, 08 ; end coords
-        dw NULL
-        db 1 ; default option
+	db $40 ; flags
+	db 11, 00 ; start coords
+	db 13, 08 ; end coords
+	dw NULL
+	db 1 ; default option
 ; 0x24b25
 
 Function24b25: ; 24b25
@@ -33821,27 +33821,27 @@ Function250d1: ; 250d1
 ; 250ed
 
 MenuDataHeader_0x250ed: ; 0x250ed
-        db $40 ; flags
-        db 09, 15 ; start coords
-        db 11, 19 ; end coords
-        dw Function25097
-        db 0 ; default option
+	db $40 ; flags
+	db 09, 15 ; start coords
+	db 11, 19 ; end coords
+	dw Function25097
+	db 0 ; default option
 ; 0x250f5
 
 MenuDataHeader_0x250f5: ; 0x250f5
-        db $40 ; flags
-        db 15, 07 ; start coords
-        db 17, 19 ; end coords
-        dw Function25098
-        db -1 ; default option
+	db $40 ; flags
+	db 15, 07 ; start coords
+	db 17, 19 ; end coords
+	dw Function25098
+	db -1 ; default option
 ; 0x250fd
 
 MenuDataHeader_0x250fd: ; 0x250fd
-        db $40 ; flags
-        db 15, 07 ; start coords
-        db 17, 19 ; end coords
-        dw Function2509f
-        db 0 ; default option
+	db $40 ; flags
+	db 15, 07 ; start coords
+	db 17, 19 ; end coords
+	dw Function2509f
+	db 0 ; default option
 ; 0x25105
 
 Function25105: ; 25105
@@ -35163,12 +35163,12 @@ MenuDataHeader_0x269c5: ; 0x269c5
 
 MenuData2_0x269cd: ; 0x269cd
 	db $10 ; flags
-        db 8, 0 ; rows, columns
-        db 1 ; horizontal spacing
-        dbw 0, $d002 ; text pointer
-        dbw BANK(Function269f3), Function269f3
-        dbw 0, 0
-        dbw 0, 0
+	db 8, 0 ; rows, columns
+	db 1 ; horizontal spacing
+	dbw 0, $d002 ; text pointer
+	dbw BANK(Function269f3), Function269f3
+	dbw 0, 0
+	dbw 0, 0
 ; 269dd
 
 
@@ -49934,21 +49934,21 @@ MenuDataHeader_0x48509: ; 0x48509
 	db 07, 19 ; end coords
 
 MenuDataHeader_0x4850e: ; 0x4850e
-        db $40 ; flags
-        db 09, 10 ; start coords
-        db 11, 19 ; end coords
+	db $40 ; flags
+	db 09, 10 ; start coords
+	db 11, 19 ; end coords
 
 MenuDataHeader_0x48513: ; 0x48513
-        db $40 ; flags
-        db 01, 11 ; start coords
-        db 12, 18 ; end coords
-        dw MenuData2_0x4851b
-        db 1 ; default option
+	db $40 ; flags
+	db 01, 11 ; start coords
+	db 12, 18 ; end coords
+	dw MenuData2_0x4851b
+	db 1 ; default option
 ; 0x4851b
 
 MenuData2_0x4851b: ; 0x4851b
-        db $1d ; flags
-        db 6 ; items
+	db $1d ; flags
+	db 6 ; items
 
 Unknown_4851d: ; 4851d
 	db $00, $01, $12, $2b, $45, $12, $e8, $43, $00, $00, $00, $00, $00, $00, $2e, $00, $01, $02, $03, $04
@@ -50622,9 +50622,9 @@ Function48a9a: ; 48a9a (12:4a9a)
 ; 48a9c (12:4a9c)
 
 MenuDataHeader_0x48a9c: ; 0x48a9c
-        db $40 ; flags
-        db 08, 10 ; start coords
-        db 13, 19 ; end coord
+	db $40 ; flags
+	db 08, 10 ; start coords
+	db 13, 19 ; end coord
 
 String_48aa1: ; 48aa1
 	db   "Tell Now"
@@ -67036,17 +67036,17 @@ Function88055: ; 88055
 ; 88086
 
 MenuDataHeader_0x88086: ; 0x88086
-        db $40 ; flags
-        db 01, 01 ; start coords
-        db 10, 13 ; end coords
-        dw MenuData2_0x8808f
-        db 1 ; default option
+	db $40 ; flags
+	db 01, 01 ; start coords
+	db 10, 13 ; end coords
+	dw MenuData2_0x8808f
+	db 1 ; default option
 ; 0x8808e
 
 	db 0
 
 MenuData2_0x8808f: ; 0x8808f
-        db $10 ; flags
+	db $10 ; flags
 	db 4, 7
 	db 1
 	dbw 0, $d1ea
@@ -67110,9 +67110,9 @@ Function880c2: ; 880c2
 ; 8810d
 
 MenuDataHeader_0x8810d: ; 0x8810d
-        db $40 ; flags
-        db 09, 06 ; start coords
-        db 12, 19 ; end coords
+	db $40 ; flags
+	db 09, 06 ; start coords
+	db 12, 19 ; end coords
 
 INCBIN "baserom.gbc",$88112,$88116 - $88112
 
@@ -71664,9 +71664,9 @@ Jumptable_8a9c5: ; 8a9c5 (22:69c5)
 ; 8a9c9 (22:69c9)
 
 MenuDataHeader_0x8a9c9: ; 0x8a9c9
-        db $40 ; flags
-        db 04, 11 ; start coords
-        db 11, 18 ; end coords
+	db $40 ; flags
+	db 04, 11 ; start coords
+	db 11, 18 ; end coords
 ; 8a9ce
 
 ; known jump sources: 8a9a1 (22:69a1)
@@ -72365,24 +72365,24 @@ Unknown_8aebc: ; 8aebc
 ; 8aed5
 
 MenuDataHeader_0x8aed5: ; 0x8aed5
-        db $40 ; flags
-        db 04, 03 ; start coords
-        db 09, 16 ; end coords
+	db $40 ; flags
+	db 04, 03 ; start coords
+	db 09, 16 ; end coords
 
 MenuDataHeader_0x8aeda: ; 0x8aeda
-        db $40 ; flags
-        db 04, 04 ; start coords
-        db 09, 15 ; end coords
+	db $40 ; flags
+	db 04, 04 ; start coords
+	db 09, 15 ; end coords
 
 MenuDataHeader_0x8aedf: ; 0x8aedf
-        db $40 ; flags
-        db 04, 04 ; start coords
-        db 09, 15 ; end coords
+	db $40 ; flags
+	db 04, 04 ; start coords
+	db 09, 15 ; end coords
 
 MenuDataHeader_0x8aee4: ; 0x8aee4
-        db $40 ; flags
-        db 04, 04 ; start coords
-        db 09, 15 ; end coords
+	db $40 ; flags
+	db 04, 04 ; start coords
+	db 09, 15 ; end coords
 ; 8aee9
 
 Function8aee9: ; 8aee9
@@ -74102,18 +74102,18 @@ Function8b855: ; 8b855
 ; 8b867
 
 MenuDataHeader_0x8b867: ; 0x8b867
-        db $40 ; flags
-        db 03, 01 ; start coords
-        db 13, 18 ; end coords
-        dw MenuData2_0x8b870
-        db 1 ; default option
+	db $40 ; flags
+	db 03, 01 ; start coords
+	db 13, 18 ; end coords
+	dw MenuData2_0x8b870
+	db 1 ; default option
 ; 0x8b86f
 
 	db 0
 
 MenuData2_0x8b870: ; 0x8b870
-        db $3c ; flags
-        db 5 ; items
+	db $3c ; flags
+	db 5 ; items
 	db 3, 1
 	dbw 0, $d002
 	dbw BANK(Function8b880), Function8b880
@@ -74277,42 +74277,42 @@ Function8b9ab: ; 8b9ab
 ; 8b9ac
 
 MenuDataHeader_0x8b9ac: ; 0x8b9ac
-        db $40 ; flags
-        db 00, 11 ; start coords
-        db 11, 19 ; end coords
+	db $40 ; flags
+	db 00, 11 ; start coords
+	db 11, 19 ; end coords
 
 MenuDataHeader_0x8b9b1: ; 0x8b9b1
-        db $40 ; flags
-        db 00, 11 ; start coords
-        db 07, 19 ; end coords
-        dw MenuData2_0x8b9b9
-        db 1 ; default option
+	db $40 ; flags
+	db 00, 11 ; start coords
+	db 07, 19 ; end coords
+	dw MenuData2_0x8b9b9
+	db 1 ; default option
 ; 0x8b9b9
 
 MenuData2_0x8b9b9: ; 0x8b9b9
-        db $a0 ; flags
-        db 3 ; items
-        db "へんしゅう@" ; EDIT
-        db "いれかえ@"   ; REPLACE
-        db "やめる@"     ; QUIT
+	db $a0 ; flags
+	db 3 ; items
+	db "へんしゅう@" ; EDIT
+	db "いれかえ@"   ; REPLACE
+	db "やめる@"     ; QUIT
 ; 0x8b9ca
 
 MenuDataHeader_0x8b9ca: ; 0x8b9ca
-        db $40 ; flags
-        db 00, 11 ; start coords
-        db 11, 19 ; end coords
-        dw MenuData2_0x8b9d2
-        db 1 ; default option
+	db $40 ; flags
+	db 00, 11 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x8b9d2
+	db 1 ; default option
 ; 0x8b9d2
 
 MenuData2_0x8b9d2: ; 0x8b9d2
-        db $a0 ; flags
-        db 5 ; items
-        db "みる@"       ; VIEW
-        db "へんしゅう@" ; EDIT
-        db "いれかえ@"   ; REPLACE
-        db "けす@"       ; ERASE
-        db "やめる@"     ; QUIT
+	db $a0 ; flags
+	db 5 ; items
+	db "みる@"       ; VIEW
+	db "へんしゅう@" ; EDIT
+	db "いれかえ@"   ; REPLACE
+	db "けす@"       ; ERASE
+	db "やめる@"     ; QUIT
 ; 0x8b9e9
 
 ; known jump sources: 8b966 (22:7966)
@@ -88213,99 +88213,99 @@ Functione0768: ; e0768
 
 
 Functione0770: ; e0770
-        ld e, $0
-        jr Functione07ce
+	ld e, $0
+	jr Functione07ce
 
 Functione0774: ; e0774
-        ld e, $1
-        jr Functione07ce
+	ld e, $1
+	jr Functione07ce
 
 Functione0778: ; e0778
-        ld e, $2
-        jr Functione07ce
+	ld e, $2
+	jr Functione07ce
 
 Functione077c: ; e077c
-        ld e, $3
-        jr Functione07ce
+	ld e, $3
+	jr Functione07ce
 
 Functione0780: ; e0780
-        ld e, $4
-        jr Functione07ce
+	ld e, $4
+	jr Functione07ce
 
 Functione0784: ; e0784
-        ld e, $5
-        jr Functione07ce
+	ld e, $5
+	jr Functione07ce
 
 Functione0788: ; e0788
-        ld e, $6
-        jr Functione07ce
+	ld e, $6
+	jr Functione07ce
 
 Functione078c: ; e078c
-        ld e, $7
-        jr Functione07ce
+	ld e, $7
+	jr Functione07ce
 
 Functione0790: ; e0790
-        ld e, $8
-        jr Functione07ce
+	ld e, $8
+	jr Functione07ce
 
 Functione0794: ; e0794
-        ld e, $9
-        jr Functione07ce
+	ld e, $9
+	jr Functione07ce
 
 Functione0798: ; e0798
-        ld e, $a
-        jr Functione07ce
+	ld e, $a
+	jr Functione07ce
 
 Functione079c: ; e079c
-        ld e, $b
-        jr Functione07ce
+	ld e, $b
+	jr Functione07ce
 
 Functione07a0: ; e07a0
-        ld e, $c
-        jr Functione07ce
+	ld e, $c
+	jr Functione07ce
 
 Functione07a4: ; e07a4
-        ld e, $d
-        jr Functione07ce
+	ld e, $d
+	jr Functione07ce
 
 Functione07a8: ; e07a8
-        ld e, $e
-        jr Functione07ce
+	ld e, $e
+	jr Functione07ce
 
 Functione07ac: ; e07ac
-        ld e, $f
-        jr Functione07ce
+	ld e, $f
+	jr Functione07ce
 
 Functione07b0: ; e07b0
-        ld e, $10
-        jr Functione07ce
+	ld e, $10
+	jr Functione07ce
 
 Functione07b4: ; e07b4
-        ld e, $11
-        jr Functione07ce
+	ld e, $11
+	jr Functione07ce
 
 Functione07b8: ; e07b8
-        ld e, $12
-        jr Functione07ce
+	ld e, $12
+	jr Functione07ce
 
 Functione07bc: ; e07bc
-        ld e, $13
-        jr Functione07ce
+	ld e, $13
+	jr Functione07ce
 
 Functione07c0: ; e07c0
-        ld e, $14
-        jr Functione07ce
+	ld e, $14
+	jr Functione07ce
 
 Functione07c4: ; e07c4
-        ld e, $15
-        jr Functione07ce
+	ld e, $15
+	jr Functione07ce
 
 Functione07c8: ; e07c8
-        ld e, $16
-        jr Functione07ce
+	ld e, $16
+	jr Functione07ce
 
 Functione07cc: ; e07cc
-        ld e, $17
+	ld e, $17
 
 Functione07ce: ; e07ce
 	ld a, [CurEnemyMoveNum]
@@ -104349,87 +104349,87 @@ SECTION "bank43", ROMX, BANK[$43]
 
 UnusedTitleScreen: ; 10c000
 
-        call WhiteBGMap
-        call ClearTileMap
-        call DisableLCD
-        xor a
-        ld [hBGMapMode], a
+	call WhiteBGMap
+	call ClearTileMap
+	call DisableLCD
+	xor a
+	ld [hBGMapMode], a
 
-        ld hl, $cf63
-        ld [hli], a
-        ld [hli], a
-        ld [hli], a
-        ld [hl], a
+	ld hl, $cf63
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
 
-        ld hl, UnusedTitleBG_GFX
-        ld de, VTiles2
-        ld bc, $800
-        call CopyBytes
+	ld hl, UnusedTitleBG_GFX
+	ld de, VTiles2
+	ld bc, $800
+	call CopyBytes
 
-        ld hl, UnusedTitleBG_GFX + $800
-        ld de, VTiles1
-        ld bc, $800
-        call CopyBytes
+	ld hl, UnusedTitleBG_GFX + $800
+	ld de, VTiles1
+	ld bc, $800
+	call CopyBytes
 
-        ld hl, UnusedTitleFG_GFX
-        ld de, VTiles0
-        ld bc, $800
-        call CopyBytes
+	ld hl, UnusedTitleFG_GFX
+	ld de, VTiles0
+	ld bc, $800
+	call CopyBytes
 
-        ld hl, UnusedTitleBG_Tilemap
-        ld de, VBGMap0
-        ld bc, 32 * 32
+	ld hl, UnusedTitleBG_Tilemap
+	ld de, VBGMap0
+	ld bc, 32 * 32
 .copy
-        ld a, 0
-        ld [rVBK], a
-        ld a, [hli]
-        ld [de], a
-        ld a, 1
-        ld [rVBK], a
-        ld a, [hli]
-        ld [de], a
-        inc de
-        dec bc
-        ld a, b
-        or c
-        jr nz, .copy
+	ld a, 0
+	ld [rVBK], a
+	ld a, [hli]
+	ld [de], a
+	ld a, 1
+	ld [rVBK], a
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .copy
 
-        ld hl, UnusedTitleFG_OAM
-        ld de, Sprites
-        ld bc, $a0
-        call CopyBytes
+	ld hl, UnusedTitleFG_OAM
+	ld de, Sprites
+	ld bc, $a0
+	call CopyBytes
 
-        call EnableLCD
-        ld a, [rLCDC]
-        set 1, a
-        set 2, a
-        ld [rLCDC], a
+	call EnableLCD
+	ld a, [rLCDC]
+	set 1, a
+	set 2, a
+	ld [rLCDC], a
 
-        call DelayFrame
+	call DelayFrame
 
-        ld a, [rSVBK]
-        push af
-        ld a, $5
-        ld [rSVBK], a
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
 
-        ld hl, UnsuedTitleBG_Palettes
-        ld de, Unkn1Pals
-        ld bc, $40
-        call CopyBytes
+	ld hl, UnsuedTitleBG_Palettes
+	ld de, Unkn1Pals
+	ld bc, $40
+	call CopyBytes
 
-        ld hl, UnsuedTitleFG_Palettes
-        ld de, Unkn2Pals
-        ld bc, $40
-        call CopyBytes
+	ld hl, UnsuedTitleFG_Palettes
+	ld de, Unkn2Pals
+	ld bc, $40
+	call CopyBytes
 
-        ld hl, UnsuedTitleBG_Palettes
-        ld de, BGPals
-        ld bc, $40
-        call CopyBytes
+	ld hl, UnsuedTitleBG_Palettes
+	ld de, BGPals
+	ld bc, $40
+	call CopyBytes
 
-        ld hl, UnsuedTitleFG_Palettes
-        ld de, OBPals
-        ld bc, $40
+	ld hl, UnsuedTitleFG_Palettes
+	ld de, OBPals
+	ld bc, $40
 	call CopyBytes
 
 	pop af
