@@ -81133,10 +81133,10 @@ UnknownText_0x914d8: ; 0x914d8
 
 PokegearSpritesGFX: ; 914dd
 INCBIN "gfx/misc/pokegear_sprites.2bpp.lz"
-; 91508
+; 9150d
 
 
-INCBIN "baserom.gbc",$91508,$9163e - $91508
+INCBIN "baserom.gbc",$9150d,$9163e - $9150d
 
 
 ; known jump sources: 9110a (24:510a)
