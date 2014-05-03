@@ -78789,7 +78789,7 @@ Function90178: ; 90178 (24:4178)
 
 ; known jump sources: 9121b (24:521b)
 Function90199: ; 90199 (24:4199)
-	ld a, [InLinkBattle] ; $c2dc
+	ld a, [InLinkBattle]
 	and a
 	jr nz, .asm_901e7
 	call Function2d05
@@ -78797,29 +78797,30 @@ Function90199: ; 90199 (24:4199)
 	jr nz, .asm_901e7
 	ld a, b
 	ld [$dbf9], a
-	ld hl, $445f
-	ld bc, $c
+	ld hl, Unknown_9045f
+	ld bc, 12
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, $4
+	ld hl, 4
 	add hl, de
 	ld a, [hl]
 	call Function900ad
 	jr z, .asm_901e7
-	ld hl, $2
+	ld hl, 2
 	add hl, de
-	ld a, [MapGroup] ; $dcb5
+	ld a, [MapGroup]
 	cp [hl]
 	jr nz, .asm_901d9
 	ld hl, $3
 	add hl, de
-	ld a, [MapNumber] ; $dcb6
+	ld a, [MapNumber]
 	cp [hl]
 	jr nz, .asm_901d9
-	ld b, $24
-	ld hl, $4660
+	ld b, BANK(Unknown_90660)
+	ld hl, Unknown_90660
 	jr .asm_901f0
+
 .asm_901d9
 	ld hl, $5
 	add hl, de
@@ -78830,25 +78831,35 @@ Function90199: ; 90199 (24:4199)
 	ld h, [hl]
 	ld l, a
 	jr .asm_901f0
+
 .asm_901e7
-	ld b, $24
-	ld de, $4209
+	ld b, BANK(Unknown_90209)
+	ld de, Unknown_90209
 	call Function2674
 	ret
+
 .asm_901f0
 	ld a, b
-	ld [DefaultFlypoint], a ; $d002
+	ld [$d002], a
 	ld a, l
 	ld [$d003], a
 	ld a, h
 	ld [$d004], a
-	ld b, $24
-	ld de, $4205
+	ld b, BANK(Unknown_90205)
+	ld de, Unknown_90205
 	call Function2674
 	ret
 ; 90205 (24:4205)
 
-INCBIN "baserom.gbc",$90205,$9020d - $90205
+Unknown_90205: ; 90205
+	db 2
+	dw $d002
+	db $90
+
+Unknown_90209: ; 90209
+	db 0
+	dw $4657
+	db $90
 
 ; known jump sources: 90097 (24:4097), 90158 (24:4158)
 Function9020d: ; 9020d (24:420d)
@@ -78858,23 +78869,31 @@ Function9020d: ; 9020d (24:420d)
 	ld [$dbf9], a
 	and a
 	jr nz, .asm_9021d
-	ld a, $24
-	ld hl, $4233
+	ld a, BANK(Unknown_90233)
+	ld hl, Unknown_90233
 	jr .asm_90229
 .asm_9021d
-	ld hl, $445f
-	ld bc, $c
+	ld hl, Unknown_9045f
+	ld bc, 12
 	ld a, e
 	call AddNTimes
-	ld a, $24
+	ld a, BANK(Unknown_9045f)
 .asm_90229
-	ld de, CurFruit ; $d03f
-	ld bc, $c
+	ld de, $d03f
+	ld bc, 12
 	call FarCopyBytes
 	ret
 ; 90233 (24:4233)
 
-INCBIN "baserom.gbc",$90233,$90241 - $90233
+Unknown_90233: ; 90233
+	db $00, $00
+	db $24, $38
+	db $42, $4c
+	db $3c, $42
+	db $91, $16
+	db $65, $55
+	db $71, $50
+; 90241
 
 UnknownScript_0x90241: ; 0x90241
 	refreshscreen $0
@@ -78887,7 +78906,26 @@ UnknownScript_0x90241: ; 0x90241
 	end
 ; 0x90255
 
-INCBIN "baserom.gbc",$90255,$9026f - $90255
+UnknownScript_0x90255: ; 0x90255
+	3callasm Function9025c
+	2jump UnknownScript_0x90241
+; 0x9025c
+
+Function9025c: ; 9025c
+	ld e, $3
+	jp Function9020d
+; 90261
+
+UnknownScript_0x90261: ; 0x90261
+	3callasm Function9026a
+	pause 30
+	2jump UnknownScript_0x90241
+; 0x9026a
+
+Function9026a: ; 9026a
+	ld e, $4
+	jp Function9020d
+; 9026f
 
 Function9026f: ; 9026f
 	call Function9027c
@@ -78981,8 +79019,11 @@ Function902f1:
 	ret
 ; 90316
 
-INCBIN "baserom.gbc",$90316,$9031d - $90316
-
+Function90316: ; 90316
+	ld de, SFX_SHUT_DOWN_PC
+	call PlaySFX
+	ret
+; 9031d
 
 Function9031d: ; 9031d
 	ld hl, UnknownText_0x9032a
@@ -79029,7 +79070,7 @@ Function90355: ; 90355
 	jr Function90357
 
 Function90357
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	callba Function4d188
 	ret
@@ -79085,8 +79126,8 @@ Function9038a: ; 9038a (24:438a)
 
 Function9039a: ; 9039a
 	push hl
-	ld hl, $445f
-	ld bc, $000c
+	ld hl, Unknown_9045f
+	ld bc, 12
 	call AddNTimes
 	ld a, [hli]
 	ld b, [hl]
@@ -79101,24 +79142,26 @@ Function903a9: ; 903a9 (24:43a9)
 	ld a, c
 	and a
 	jr z, .asm_903c5
+
 	call Function90423
 	push hl
 	push bc
 	call PlaceString
-	ld a, $9c
+	ld a, ":"
 	ld [bc], a
 	pop bc
 	pop hl
-	ld de, $17
+	ld de, 20 + 3
 	add hl, de
 	call Function9042e
 	call PlaceString
 	ret
+
 .asm_903c5
 	push hl
 	ld c, b
-	ld b, $0
-	ld hl, $43d6
+	ld b, 0
+	ld hl, Unknown_903d6
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -79129,7 +79172,21 @@ Function903a9: ; 903a9 (24:43a9)
 	ret
 ; 903d6 (24:43d6)
 
-INCBIN "baserom.gbc",$903d6,$90423 - $903d6
+Unknown_903d6: ; 903d6
+	dw String_903e2
+	dw String_903ed
+	dw String_90402
+	dw String_903f2
+	dw String_903f8
+	dw String_9040d
+
+String_903e2: db "----------@"
+String_903ed: db "MOM:@"
+String_903f2: db "BILL:@"
+String_903f8: db "PROF.ELM:@"
+String_90402: db "BIKE SHOP:@"
+String_9040d: db "BUENA:", $22, "   DISC JOCKEY@"
+; 90423
 
 ; known jump sources: 903ad (24:43ad)
 Function90423: ; 90423 (24:4423)
@@ -79156,8 +79213,8 @@ Function90439: ; 90439
 	ld e, b
 	push de
 	ld a, [$dbf9]
-	ld hl, $4461
-	ld bc, $000c
+	ld hl, Unknown_9045f + 2
+	ld bc, 12
 	call AddNTimes
 	ld b, [hl]
 	inc hl
@@ -79171,23 +79228,77 @@ Function90439: ; 90439
 	ret
 ; 9045f
 
-INCBIN "baserom.gbc",$9045f,$90672 - $9045f
+Unknown_9045f: ; 9045f
+phone: MACRO
+	db \1, \2
+	map \3
+	db \4, \5
+	dw \6
+	db \7, \8
+	dw \9
+ENDM
+
+	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
+	phone 0, 1, KRISS_HOUSE_1F,                 $07, $2f, $4eaa, $00, $2f, $4ea5
+	phone 0, 2, OAKS_LAB,                       $00, $2f, $4ea5, $00, $2f, $4ea5
+	phone 0, 3, N_A,                            $07, $2f, $4fc5, $00, $2f, $5007
+	phone 0, 4, ELMS_LAB,                       $07, $2f, $500d, $00, $2f, $5081
+	phone SCHOOLBOY, JACK1, NATIONAL_PARK,      $07, $2f, $50d0, $07, $2f, $50fa
+	phone POKEFANF, BEVERLY1, NATIONAL_PARK,    $07, $2f, $513f, $07, $2f, $5158
+	phone SAILOR, HUEY1, OLIVINE_LIGHTHOUSE_2F, $07, $2f, $517c, $07, $2f, $51a9
+	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
+	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
+	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
+	phone COOLTRAINERM, GAVEN3, ROUTE_26,       $07, $2f, $51da, $07, $2f, $5204
+	phone COOLTRAINERF, BETH1, ROUTE_26,        $07, $2f, $523d, $07, $2f, $5267
+	phone BIRD_KEEPER, JOSE2, ROUTE_27,         $07, $2f, $5294, $07, $2f, $52cb
+	phone COOLTRAINERF, REENA1, ROUTE_27,       $07, $2f, $531c, $07, $2f, $5346
+	phone YOUNGSTER, JOEY1, ROUTE_30,           $07, $2f, $5373, $07, $2f, $53a0
+	phone BUG_CATCHER, WADE1, ROUTE_31,         $07, $2f, $53d1, $07, $2f, $5428
+	phone FISHER, RALPH1, ROUTE_32,             $07, $2f, $54d2, $07, $2f, $5509
+	phone PICNICKER, LIZ1, ROUTE_32,            $07, $2f, $5560, $07, $2f, $558d
+	phone HIKER, ANTHONY2, ROUTE_33,            $07, $2f, $5634, $07, $2f, $566b
+	phone CAMPER, TODD1, ROUTE_34,              $07, $2f, $56c1, $07, $2f, $56f5
+	phone PICNICKER, GINA1, ROUTE_34,           $07, $2f, $5743, $07, $2f, $5784
+	phone JUGGLER, IRWIN1, ROUTE_35,            $07, $2f, $57e7, $07, $2f, $57fd
+	phone BUG_CATCHER, ARNIE1, ROUTE_35,        $07, $2f, $5813, $07, $2f, $584a
+	phone SCHOOLBOY, ALAN1, ROUTE_36,           $07, $2f, $58a6, $07, $2f, $58dd
+	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
+	phone LASS, DANA1, ROUTE_38,                $07, $2f, $5930, $07, $2f, $5967
+	phone SCHOOLBOY, CHAD1, ROUTE_38,           $07, $2f, $59c6, $07, $2f, $59f0
+	phone POKEFANM, DEREK1, ROUTE_39,           $07, $2f, $5a35, $07, $2f, $5a6e
+	phone FISHER, TULLY1, ROUTE_42,             $07, $2f, $5aac, $07, $2f, $5ae3
+	phone POKEMANIAC, BRENT1, ROUTE_43,         $07, $2f, $5b36, $07, $2f, $5b60
+	phone PICNICKER, TIFFANY3, ROUTE_43,        $07, $2f, $5b99, $07, $2f, $5bd0
+	phone BIRD_KEEPER, VANCE1, ROUTE_44,        $07, $2f, $5c73, $07, $2f, $5c9d
+	phone FISHER, WILTON1, ROUTE_44,            $07, $2f, $5cce, $07, $2f, $5d05
+	phone BLACKBELT_T, KENJI3, ROUTE_45,        $07, $2f, $5d71, $07, $2f, $5d7d
+	phone HIKER, PARRY1, ROUTE_45,              $07, $2f, $5d89, $07, $2f, $5db3
+	phone PICNICKER, ERIN1, ROUTE_46,           $07, $2f, $5de4, $07, $2f, $5e0e
+	phone 0, 5, GOLDENROD_DEPT_STORE_ROOF,      $07, $28, $4b14, $07, $28, $4b26
+; 90627
+
+Unknown_90627: ; 90627
+INCBIN "baserom.gbc",$90627,$90660 - $90627
+
+Unknown_90660: ; 90660
+INCBIN "baserom.gbc",$90660,$90672 - $90660
 
 ; no known jump sources
 Function90672: ; 90672 (24:4672)
-	ld a, [$FF00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	ld a, $0
 	ld [$c2ce], a
 	ld a, $10
-	ld [MusicFade], a ; $c2a7
-	ld a, $0
-	ld [MusicFadeIDLo], a ; $c2a9
-	ld a, $0
-	ld [MusicFadeIDHi], a ; $c2aa
-	ld c, $8
+	ld [MusicFade], a
+	ld a, MUSIC_NONE % $100
+	ld [MusicFadeIDLo], a
+	ld a, MUSIC_NONE / $100
+	ld [MusicFadeIDHi], a
+	ld c, 8
 	call DelayFrames
 	call Function4dd
 	call ClearTileMap
@@ -79197,31 +79308,31 @@ Function90672: ; 90672 (24:4672)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Functione51
-	ld de, $48fb
+	ld de, GFX_908fb
 	ld hl, $9000
-	ld bc, $2401
+	lb bc, BANK(GFX_908fb), 1
 	call Request1bpp
-	ld de, $4903
+	ld de, GFX_90903
 	ld hl, $9010
-	ld bc, $2401
+	lb bc, BANK(GFX_90903), 1
 	call Request1bpp
-	ld de, $490b
+	ld de, GFX_9090b
 	ld hl, $9020
-	ld bc, $2401
+	lb bc, BANK(GFX_9090b), 1
 	call Request1bpp
 	call Function90783
 	call WaitBGMap
 	call Function4a3
-	ld hl, $4874
+	ld hl, UnknownText_0x90874
 	call PrintText
-	ld hl, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld hl, $c608
 	ld bc, $32
 	xor a
 	call ByteFill
 	ld a, $a
 	ld [$c61c], a
 .asm_906e8
-	ld hl, $4879
+	ld hl, UnknownText_0x90879
 	call PrintText
 	ld hl, $c52f
 	ld b, $2
@@ -79242,14 +79353,14 @@ Function90672: ; 90672 (24:4672)
 	ld a, [$c61c]
 	ld [$d087], a
 	call Function90783
-	ld hl, $4886
+	ld hl, UnknownText_0x90886
 	call PrintText
 	call YesNoBox
 	jr nc, .asm_9072e
 	call Function90783
 	jr .asm_906e8
 .asm_9072e
-	ld hl, $489a
+	ld hl, UnknownText_0x9089a
 	call PrintText
 	ld hl, $c537
 	ld bc, $207
@@ -79260,7 +79371,7 @@ Function90672: ; 90672 (24:4672)
 	ld [hl], $2
 	ld hl, $c560
 	call Function90859
-	ld c, $a
+	ld c, 10
 	call DelayFrames
 .asm_90752
 	call Functiona57
@@ -79269,7 +79380,7 @@ Function90672: ; 90672 (24:4672)
 	ld a, [$c626]
 	ld [$d088], a
 	call Function90783
-	ld hl, $48a4
+	ld hl, UnknownText_0x908a4
 	call PrintText
 	call YesNoBox
 	jr nc, .asm_90773
@@ -79277,7 +79388,7 @@ Function90672: ; 90672 (24:4672)
 	jr .asm_9072e
 .asm_90773
 	call Function658
-	ld hl, $48b8
+	ld hl, UnknownText_0x908b8
 	call PrintText
 	call Functiona80
 	pop af
@@ -79298,48 +79409,53 @@ Function90783: ; 90783 (24:4783)
 
 ; known jump sources: 90710 (24:4710)
 Function90795: ; 90795 (24:4795)
-	ld a, [hJoyPressed] ; $ff00+$a7
-	and $1
+	ld a, [hJoyPressed]
+	and A_BUTTON
 	jr nz, .asm_907dc
+
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
-	jr nz, .asm_907ba
+	and D_UP
+	jr nz, .up
 	ld a, [hl]
-	and $80
-	jr nz, .asm_907ad
+	and D_DOWN
+	jr nz, .down
 	call DelayFrame
 	and a
 	ret
-.asm_907ad
+
+.down
 	ld hl, $c61c
 	ld a, [hl]
 	and a
 	jr nz, .asm_907b6
-	ld a, $18
+	ld a, 23 + 1
 .asm_907b6
 	dec a
 	ld [hl], a
 	jr .asm_907c6
-.asm_907ba
+
+.up
 	ld hl, $c61c
 	ld a, [hl]
-	cp $17
+	cp 23
 	jr c, .asm_907c4
-	ld a, $ff
+	ld a, -1
 .asm_907c4
 	inc a
 	ld [hl], a
+
 .asm_907c6
 	ld hl, $c558
-	ld a, $7f
-	ld bc, $f
+	ld a, " "
+	ld bc, 15
 	call ByteFill
 	ld hl, $c558
 	call Function907de
 	call WaitBGMap
 	and a
 	ret
+
 .asm_907dc
 	scf
 	ret
@@ -79353,13 +79469,38 @@ Function907de: ; 907de (24:47de)
 	ld d, h
 	call Function90b3e
 	inc hl
-	ld de, $487e
+	ld de, String_9087e
 	call PlaceString
 	pop hl
 	ret
 ; 907f1 (24:47f1)
 
-INCBIN "baserom.gbc",$907f1,$90810 - $907f1
+Function907f1: ; 907f1
+	ld h, d
+	ld l, e
+	push hl
+	call Function907de
+	pop de
+	inc de
+	inc de
+	ld a, $9c
+	ld [de], a
+	inc de
+	push de
+	ld hl, $0003
+	add hl, de
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	ld [hl], a
+	pop hl
+	call Function90859
+	inc hl
+	inc hl
+	inc hl
+	ret
+; 90810
 
 ; known jump sources: 90755 (24:4755)
 Function90810: ; 90810 (24:4810)
@@ -79368,10 +79509,10 @@ Function90810: ; 90810 (24:4810)
 	jr nz, .asm_90857
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_90835
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_90828
 	call DelayFrame
 	and a
@@ -79381,7 +79522,7 @@ Function90810: ; 90810 (24:4810)
 	ld a, [hl]
 	and a
 	jr nz, .asm_90831
-	ld a, $3c
+	ld a, 59 + 1
 .asm_90831
 	dec a
 	ld [hl], a
@@ -79389,16 +79530,16 @@ Function90810: ; 90810 (24:4810)
 .asm_90835
 	ld hl, $c626
 	ld a, [hl]
-	cp $3b
+	cp 59
 	jr c, .asm_9083f
-	ld a, $ff
+	ld a, -1
 .asm_9083f
 	inc a
 	ld [hl], a
 .asm_90841
 	ld hl, $c560
-	ld a, $7f
-	ld bc, $7
+	ld a, " "
+	ld bc, 7
 	call ByteFill
 	ld hl, $c560
 	call Function90859
@@ -79414,14 +79555,14 @@ Function90859: ; 90859 (24:4859)
 	ld de, $c626
 	call Function90867
 	inc hl
-	ld de, $489f
+	ld de, String_9089f
 	call PlaceString
 	ret
 
 ; known jump sources: 9085c (24:485c), 90b54 (24:4b54)
 Function90867: ; 90867 (24:4867)
 	push hl
-	ld a, $7f
+	ld a, " "
 	ld [hli], a
 	ld [hl], a
 	pop hl
@@ -79430,26 +79571,72 @@ Function90867: ; 90867 (24:4867)
 	ret
 ; 90874 (24:4874)
 
-INCBIN "baserom.gbc",$90874,$9088b - $90874
+UnknownText_0x90874: ; 0x90874
+	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
+	text_jump UnknownText_0x1bc29c
+	db "@"
+; 0x90879
+
+UnknownText_0x90879: ; 0x90879
+	; What time is it?
+	text_jump UnknownText_0x1bc2eb
+	db "@"
+; 0x9087e
+
+String_9087e:
+	db "o'clock@"
+; 90886
+
+UnknownText_0x90886: ; 0x90886
+	; What?@ @
+	text_jump UnknownText_0x1bc2fd
+	start_asm
 	ld hl, $c5e1
 	call Function907de
-	ld hl, $4895
+	ld hl, UnknownText_0x90895
 	ret
 ; 90895 (24:4895)
 
-INCBIN "baserom.gbc",$90895,$908a9 - $90895
+UnknownText_0x90895: ; 0x90895
+	; ?
+	text_jump UnknownText_0x1bc305
+	db "@"
+; 0x9089a
+
+UnknownText_0x9089a: ; 0x9089a
+	; How many minutes?
+	text_jump UnknownText_0x1bc308
+	db "@"
+; 0x9089f
+
+String_9089f:
+	db "min.@"
+; 908a4
+
+UnknownText_0x908a4: ; 0x908a4
+	; Whoa!@ @
+	text_jump UnknownText_0x1bc31b
+	start_asm
+; 0x908a9
 	ld hl, $c5bf
 	call Function90859
-	ld hl, $48b3
+	ld hl, UnknownText_0x908b3
 	ret
 ; 908b3 (24:48b3)
 
-INCBIN "baserom.gbc",$908b3,$908b9 - $908b3
+UnknownText_0x908b3: ; 0x908b3
+	; ?
+	text_jump UnknownText_0x1bc323
+	db "@"
+; 0x908b8
+
+UnknownText_0x908b8: ; 0x908b8
+	start_asm
 	ld de, $c5b9
 	ld a, [$c61c]
 	ld c, a
 	call Function90b3e
-	ld [hl], $9c
+	ld [hl], ":"
 	inc hl
 	ld de, $c626
 	ld bc, $8102
@@ -79457,37 +79644,61 @@ INCBIN "baserom.gbc",$908b3,$908b9 - $908b3
 	ld b, h
 	ld c, l
 	ld a, [$c61c]
-	cp $4
+	cp 4
 	jr c, .asm_908e0
-	cp $b
+	cp 11
 	jr c, .asm_908e4
-	cp $12
+	cp 18
 	jr c, .asm_908e8
 .asm_908e0
-	ld hl, $48f6
+	ld hl, UnknownText_0x908f6
 	ret
 .asm_908e4
-	ld hl, $48ec
+	ld hl, UnknownText_0x908ec
 	ret
 .asm_908e8
-	ld hl, $48f1
+	ld hl, UnknownText_0x908f1
 	ret
 ; 908ec (24:48ec)
 
-INCBIN "baserom.gbc",$908ec,$90913 - $908ec
+UnknownText_0x908ec: ; 0x908ec
+	; ! I overslept!
+	text_jump UnknownText_0x1bc326
+	db "@"
+; 0x908f1
+
+UnknownText_0x908f1: ; 0x908f1
+	; ! Yikes! I over- slept!
+	text_jump UnknownText_0x1bc336
+	db "@"
+; 0x908f6
+
+UnknownText_0x908f6: ; 0x908f6
+	; ! No wonder it's so dark!
+	text_jump UnknownText_0x1bc34f
+	db "@"
+; 0x908fb
+
+GFX_908fb: ; 908fb
+INCBIN "baserom.gbc", $908fb, $90903 - $908fb
+GFX_90903: ; 90903
+INCBIN "baserom.gbc",$90903,$9090b - $90903
+GFX_9090b: ; 9090b
+INCBIN "baserom.gbc",$9090b,$90913 - $9090b
+; 90913
 
 Function90913: ; 90913
 	ld a, [$ffaa]
 	push af
 	ld a, $1
 	ld [$ffaa], a
-	ld de, $4903
+	ld de, GFX_90903
 	ld hl, $8ef0
-	ld bc, $2401
+	lb bc, BANK(GFX_90903), 1
 	call Request1bpp
-	ld de, $490b
+	ld de, GFX_9090b
 	ld hl, $8f50
-	ld bc, $2401
+	lb bc, BANK(GFX_9090b), 1
 	call Request1bpp
 	xor a
 	ld [DefaultFlypoint], a
@@ -79496,7 +79707,7 @@ Function90913: ; 90913
 	ld bc, $0412
 	call TextBox
 	call Function1d6e
-	ld hl, $4a3f
+	ld hl, UnknownText_0x90a3f
 	call PrintText
 	ld hl, $c4e5
 	ld b, $2
@@ -79517,7 +79728,7 @@ Function90913: ; 90913
 	jr nc, .asm_9096a
 	call Function1c07
 	call Function1ad2
-	ld hl, $4a44
+	ld hl, UnknownText_0x90a44
 	call PrintText
 	call YesNoBox
 	jr c, .asm_90936
@@ -79532,7 +79743,7 @@ Function90913: ; 90913
 
 Function90993: ; 90993
 	ld a, [hJoyPressed]
-	and $1
+	and A_BUTTON
 	jr z, .asm_9099b
 	scf
 	ret
@@ -79540,21 +79751,21 @@ Function90993: ; 90993
 .asm_9099b
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_909ba
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_909ad
 	call DelayFrame
 	and a
 	ret
 
 .asm_909ad
-	ld hl, DefaultFlypoint
+	ld hl, $d002
 	ld a, [hl]
 	and a
 	jr nz, .asm_909b6
-	ld a, $7
+	ld a, 6 + 1
 
 .asm_909b6
 	dec a
@@ -79562,11 +79773,11 @@ Function90993: ; 90993
 	jr .asm_909c6
 
 .asm_909ba
-	ld hl, DefaultFlypoint
+	ld hl, $d002
 	ld a, [hl]
-	cp $6
+	cp 6
 	jr c, .asm_909c4
-	ld a, $ff
+	ld a, -1
 
 .asm_909c4
 	inc a
@@ -79588,10 +79799,10 @@ Function90993: ; 90993
 
 Function909de: ; 909de
 	push hl
-	ld a, [DefaultFlypoint]
+	ld a, [$d002]
 	ld e, a
-	ld d, $0
-	ld hl, $49f2
+	ld d, 0
+	ld hl, Unknown_909f2
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -79602,39 +79813,44 @@ Function909de: ; 909de
 	ret
 ; 909f2
 
-dw Sunday
-dw Monday
-dw Tuesday
-dw Wednesday
-dw Thursday
-dw Friday
-dw Saturday
-dw Sunday
+Unknown_909f2: ; 909f2
+	dw Sunday
+	dw Monday
+	dw Tuesday
+	dw Wednesday
+	dw Thursday
+	dw Friday
+	dw Saturday
+	dw Sunday
 
-Sunday:
-	db " SUNDAY@"
-Monday:
-	db " MONDAY@"
-Tuesday:
-	db " TUESDAY@"
-Wednesday:
-	db "WEDNESDAY@"
-Thursday:
-	db "THURSDAY@"
-Friday:
-	db " FRIDAY@"
-Saturday:
-	db "SATURDAY@"
+Sunday:    db " SUNDAY@"
+Monday:    db " MONDAY@"
+Tuesday:   db " TUESDAY@"
+Wednesday: db "WEDNESDAY@"
+Thursday:  db "THURSDAY@"
+Friday:    db " FRIDAY@"
+Saturday:  db "SATURDAY@"
 
 
-INCBIN "baserom.gbc",$90a3f,$90a45 - $90a3f
+UnknownText_0x90a3f: ; 0x90a3f
+	; What day is it?
+	text_jump UnknownText_0x1bc369
+	db "@"
+; 0x90a44
+
+UnknownText_0x90a44: ; 0x90a44
+	start_asm
 	ld hl, $c5b9
 	call Function909de
-	ld hl, $4a4f
+	ld hl, UnknownText_0x90a4f
 	ret
 ; 90a4f (24:4a4f)
 
-INCBIN "baserom.gbc",$90a4f,$90a54 - $90a4f
+UnknownText_0x90a4f: ; 0x90a4f
+	; , is it?
+	text_jump UnknownText_0x1bc37a
+	db "@"
+; 0x90a54
 
 Function90a54: ; 90a54
 	ld a, [$d4c2]
@@ -79643,12 +79859,13 @@ Function90a54: ; 90a54
 	ld hl, $c5b9
 	ld bc, $0312
 	call ClearBox
-	ld hl, $4a6c
+	ld hl, UnknownText_0x90a6c
 	call Function13e5
 	ret
 ; 90a6c
 
-INCBIN "baserom.gbc",$90a6c,$90a6d - $90a6c
+UnknownText_0x90a6c: ; 90a6c
+	start_asm
 	call UpdateTime
 	ld a, [hHours] ; $ff00+$94
 	ld b, a
@@ -79656,11 +79873,15 @@ INCBIN "baserom.gbc",$90a6c,$90a6d - $90a6c
 	ld c, a
 	ld de, $c5b9
 	callba Function1dd6bb
-	ld hl, $4a83
+	ld hl, UnknownText_0x90a83
 	ret
 ; 90a83 (24:4a83)
 
-INCBIN "baserom.gbc",$90a83,$90a88 - $90a83
+UnknownText_0x90a83: ; 0x90a83
+	; DST, is that OK?
+	text_jump UnknownText_0x1c5fde
+	db "@"
+; 0x90a88
 
 Function90a88: ; 90a88
 	ld a, [$d4c2]
@@ -79669,12 +79890,113 @@ Function90a88: ; 90a88
 	ld hl, $c5b9
 	ld bc, $0312
 	call ClearBox
-	ld hl, $4aa0
+	ld hl, UnknownText_0x90aa0
 	call Function13e5
 	ret
 ; 90aa0
 
-INCBIN "baserom.gbc",$90aa0,$90b3e - $90aa0
+UnknownText_0x90aa0: ; 90aa0
+	start_asm
+	call UpdateTime
+	ld a, [hHours]
+	ld b, a
+	ld a, [hMinutes]
+	ld c, a
+	ld de, $c5b9
+	callba Function1dd6bb
+	ld hl, UnknownText_0x90ab7
+	ret
+; 90ab7
+
+UnknownText_0x90ab7: ; 0x90ab7
+	; , is that OK?
+	text_jump UnknownText_0x1c5ff1
+	db "@"
+; 0x90abc
+
+Function90abc: ; 90abc
+	ld hl, $c5b9
+	ld bc, $0312
+	call ClearBox
+	ld hl, UnknownText_0x90acc
+	call Function13e5
+	ret
+; 90acc
+
+UnknownText_0x90acc: ; 0x90acc
+	start_asm
+
+	call UpdateTime
+
+	hlcoord 1, 14
+	ld [hl], "R"
+	inc hl
+	ld [hl], "T"
+	inc hl
+	ld [hl], " "
+	inc hl
+
+	ld de, hRTCDayLo
+	call Function90b23
+
+	hlcoord 1, 16
+	ld [hl], "D"
+	inc hl
+	ld [hl], "F"
+	inc hl
+	ld [hl], " "
+	inc hl
+
+	ld de, StartDay
+	call Function90b23
+
+	ld [hl], " "
+	inc hl
+
+	ld a, [$d4c2]
+	bit 7, a
+	jr z, .off
+
+	ld [hl], "O"
+	inc hl
+	ld [hl], "N"
+	inc hl
+	jr .done
+
+.off
+	ld [hl], "O"
+	inc hl
+	ld [hl], "F"
+	inc hl
+	ld [hl], "F"
+	inc hl
+
+.done
+	ld hl, UnknownText_0x90b13
+	ret
+; 90b13
+
+UnknownText_0x90b13: ; 0x90b13
+	db $0
+	para "Now on DEBUG…"
+	prompt
+; 0x90b23
+
+Function90b23: ; 90b23
+	ld bc, $0103
+	call PrintNum
+	ld [hl], "."
+	inc hl
+	inc de
+	ld bc, $8102
+	call PrintNum
+	ld [hl], ":"
+	inc hl
+	inc de
+	ld bc, $8102
+	call PrintNum
+	ret
+; 90b3e
 
 ; known jump sources: 907e5 (24:47e5), 908c0 (24:48c0)
 Function90b3e: ; 90b3e (24:4b3e)
@@ -79696,81 +80018,86 @@ Function90b3e: ; 90b3e (24:4b3e)
 ; known jump sources: 90b41 (24:4b41)
 Function90b58: ; 90b58 (24:4b58)
 	ld a, c
-	cp $4
-	jr c, .asm_90b65
-	cp $a
-	jr c, .asm_90b69
-	cp $12
-	jr c, .asm_90b6d
-.asm_90b65
-	ld de, $4b71
+	cp 4
+	jr c, .nite
+	cp 10
+	jr c, .morn
+	cp 18
+	jr c, .day
+.nite
+	ld de, String_90b71
 	ret
-.asm_90b69
-	ld de, $4b76
+.morn
+	ld de, String_90b76
 	ret
-.asm_90b6d
-	ld de, $4b7b
+.day
+	ld de, String_90b7b
 	ret
 ; 90b71 (24:4b71)
 
-INCBIN "baserom.gbc",$90b71,$90b7f - $90b71
+String_90b71: db "NITE@"
+String_90b76: db "MORN@"
+String_90b7b: db "DAY@"
+; 90b7f
 
 ; known jump sources: 90b4b (24:4b4b)
 Function90b7f: ; 90b7f (24:4b7f)
 	ld a, c
 	or a
 	jr z, .asm_90b8a
-	cp $c
+	cp 12
 	ret c
 	ret z
-	sub $c
+	sub 12
 	ret
 .asm_90b8a
-	ld a, $c
+	ld a, 12
 	ret
 
 Function90b8d: ; 90b8d (24:4b8d)
-	ld hl, Options ; $cfcc
+	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
-	ld a, [$FF00+$aa]
+	set NO_TEXT_SCROLL, [hl]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
-	ld a, [VramState] ; $d0ed
+	ld [$ffaa], a
+	ld a, [VramState]
 	push af
 	xor a
-	ld [VramState], a ; $d0ed
+	ld [VramState], a
 	call Function90bea
 	call DelayFrame
-.asm_90ba9
+
+.loop
 	call UpdateTime
 	call Functiona57
 	ld a, [$cf63]
 	bit 7, a
-	jr nz, .asm_90bc4
+	jr nz, .done
 	call Function90f04
 	callba Function8cf69
 	call DelayFrame
-	jr .asm_90ba9
-.asm_90bc4
+	jr .loop
+
+.done
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	call WaitSFX
 	pop af
-	ld [VramState], a ; $d0ed
+	ld [VramState], a
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	pop af
-	ld [Options], a ; $cfcc
+	ld [Options], a
 	call WhiteBGMap
 	xor a
-	ld [hBGMapAddress], a ; $ff00+$d6
+	ld [hBGMapAddress], a
 	ld a, $98
-	ld [$FF00+$d7], a
+	ld [hBGMapAddress + 1], a
 	ld a, $90
-	ld [hWY], a ; $ff00+$d2
+	ld [hWY], a
 	call Function91492
 	ret
 
@@ -79781,35 +80108,35 @@ Function90bea: ; 90bea (24:4bea)
 	call ClearSprites
 	call DisableLCD
 	xor a
-	ld [hSCY], a ; $ff00+$d0
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCY], a
+	ld [hSCX], a
 	ld a, $7
-	ld [hWX], a ; $ff00+$d1
+	ld [hWX], a
 	call Function90c4e
 	callba Function8cf53
 	call Function90d32
 	ld a, $8
 	call Function3cb4
 	ld a, $e3
-	ld [rLCDC], a ; $ff00+$40
+	ld [rLCDC], a
 	call Function90d70
 	xor a
 	ld [$cf63], a
 	ld [$cf64], a
 	ld [$cf65], a
 	ld [$cf66], a
-	ld [PlayerEvaLevel], a ; $c6d2
-	ld [PlayerAccLevel], a ; $c6d1
+	ld [$c6d2], a
+	ld [$c6d1], a
 	ld [$c6d3], a
-	ld [EnemyAccLevel], a ; $c6d9
-	ld [EnemyEvaLevel], a ; $c6da
+	ld [$c6d9], a
+	ld [$c6da], a
 	ld [$c6db], a
 	call Function90d9e
 	call Function90da8
 	ld b, $2
 	call GetSGBLayout
 	call Function32f9
-	ld a, [hCGB] ; $ff00+$e6
+	ld a, [hCGB]
 	and a
 	ret z
 	ld a, $e4
@@ -79889,8 +80216,8 @@ Function90d32: ; 90d32 (24:4d32)
 Function90d41: ; 90d41 (24:4d41)
 	ld hl, $cf64
 	ld e, [hl]
-	ld d, $0
-	ld hl, $4d52
+	ld d, 0
+	ld hl, Unknown_90d52
 	add hl, de
 	ld a, [hl]
 	ld hl, $6
@@ -79899,7 +80226,9 @@ Function90d41: ; 90d41 (24:4d41)
 	ret
 ; 90d52 (24:4d52)
 
-INCBIN "baserom.gbc",$90d52,$90d56 - $90d52
+Unknown_90d52: ; 90d52
+	db $00, $10, $20, $30
+; 90d56
 
 Function90d56: ; 90d56
 	ld a, [MapGroup]
@@ -79920,9 +80249,9 @@ Function90d56: ; 90d56
 
 ; known jump sources: 90c14 (24:4c14)
 Function90d70: ; 90d70 (24:4d70)
-	ld a, [MapGroup] ; $dcb5
+	ld a, [MapGroup]
 	ld b, a
-	ld a, [MapNumber] ; $dcb6
+	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
 
@@ -79932,9 +80261,9 @@ Function90d70: ; 90d70 (24:4d70)
 	cp SPECIAL_MAP
 	jr nz, .asm_90d8e
 
-	ld a, [BackupMapGroup] ; $dcad
+	ld a, [BackupMapGroup]
 	ld b, a
-	ld a, [BackupMapNumber] ; $dcae
+	ld a, [BackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 
@@ -79945,7 +80274,7 @@ Function90d70: ; 90d70 (24:4d70)
 
 .asm_90d95
 	ld [$c6d8], a
-	ld a, 1
+	ld a, NEW_BARK_TOWN
 	ld [$c6d7], a
 	ret
 
@@ -79960,7 +80289,7 @@ Function90d9e: ; 90d9e (24:4d9e)
 ; known jump sources: 90c39 (24:4c39), 90f2d (24:4f2d), 90fcd (24:4fcd), 910f9 (24:50f9), 91164 (24:5164)
 Function90da8: ; 90da8 (24:4da8)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld hl, TileMap
 	ld bc, TileMapEnd - TileMap
 	ld a, $4f
@@ -79985,22 +80314,25 @@ Function90da8: ; 90da8 (24:4da8)
 	ld a, [$cf65]
 	and a
 	jr nz, .asm_90de8
+
 	xor a
-	ld [hBGMapAddress], a ; $ff00+$d6
+	ld [hBGMapAddress], a
 	ld a, $98
-	ld [$FF00+$d7], a
+	ld [hBGMapAddress + 1], a
 	call Function90e00
 	ld a, $90
 	jr .asm_90df3
+
 .asm_90de8
 	xor a
-	ld [hBGMapAddress], a ; $ff00+$d6
+	ld [hBGMapAddress], a
 	ld a, $9c
-	ld [$FF00+$d7], a
+	ld [hBGMapAddress + 1], a
 	call Function90e00
 	xor a
+
 .asm_90df3
-	ld [hWY], a ; $ff00+$d2
+	ld [hWY], a
 	ld a, [$cf65]
 	and 1
 	xor 1
@@ -80029,7 +80361,7 @@ Jumptable_90e12: ; 90e12
 ; 90e1a
 
 Function90e1a: ; 90e1a
-	ld de, $55db
+	ld de, ClockTilemapRLE
 	call Function914bb
 	ld hl, $c4c0
 	ld de, .switch
@@ -80054,10 +80386,10 @@ Function90e3f: ; 90e3f
 	jr nc, .kanto
 .johto
 	ld e, 0
-	jr .asm_90e50
+	jr .ok
 .kanto
 	ld e, 1
-.asm_90e50
+.ok
 	callba Function91ae1
 	ld a, $7
 	ld bc, $12
@@ -80073,7 +80405,7 @@ Function90e3f: ; 90e3f
 ; 90e72
 
 Function90e72: ; 90e72
-	ld de, $550d
+	ld de, RadioTilemapRLE
 	call Function914bb
 	ld hl, $c590
 	ld bc, $412
@@ -80082,7 +80414,7 @@ Function90e72: ; 90e72
 ; 90e82
 
 Function90e82: ; 90e82
-	ld de, $558a
+	ld de, PhoneTilemapRLE
 	call Function914bb
 	ld hl, $c590
 	ld bc, $412
@@ -80261,30 +80593,37 @@ Function90f86: ; 90f86 (24:4f86)
 	ld c, a
 	ld de, $c546
 	callba Function1dd6bb
-	ld hl, $4faf
+	ld hl, UnknownText_0x90faf
 	ld bc, $c51e
 	call Function13e5
 	ret
 ; 90fa8 (24:4fa8)
 
-INCBIN "baserom.gbc",$90fa8,$90fb4 - $90fa8
+String_90fa8: db "ごぜん@"
+String_90fac: db "ごご@"
+
+UnknownText_0x90faf: ; 0x90faf
+	; @
+	text_jump UnknownText_0x1c5821
+	db "@"
+; 0x90fb4
 
 ; no known jump sources
 Function90fb4: ; 90fb4 (24:4fb4)
-	ld a, [EnemySDefLevel] ; $c6d8
-	cp $5f
-	jr z, .asm_90fbf
-	cp $2f
-	jr nc, .asm_90fc4
-.asm_90fbf
-	ld a, $3
-	jr .asm_90fc6
-; 90fc3 (24:4fc3)
+	ld a, [$c6d8]
+	cp FAST_SHIP
+	jr z, .johto
+	cp KANTO_LANDMARK
+	jr nc, .kanto
+.johto
+	ld a, 3
+	jr .done
 
-INCBIN "baserom.gbc",$90fc3,$90fc4 - $90fc3
-.asm_90fc4
-	ld a, $5
-.asm_90fc6
+	ret
+
+.kanto
+	ld a, 5
+.done
 	ld [$cf63], a
 	call Function91492
 	ret
@@ -80292,12 +80631,12 @@ INCBIN "baserom.gbc",$90fc3,$90fc4 - $90fc3
 ; no known jump sources
 Function90fcd: ; 90fcd (24:4fcd)
 	call Function90da8
-	ld a, [EnemySDefLevel] ; $c6d8
+	ld a, [$c6d8]
 	call Function9106a
-	ld a, [EnemySAtkLevel] ; $c6d7
+	ld a, [$c6d7]
 	call Function91098
 	ld a, c
-	ld [EnemyDefLevel], a ; $c6d5
+	ld [$c6d5], a
 	ld a, b
 	ld [$c6d6], a
 	ld hl, $cf63
@@ -80307,46 +80646,49 @@ Function90fcd: ; 90fcd (24:4fcd)
 ; no known jump sources
 Function90fe9: ; 90fe9 (24:4fe9)
 	call Function910e8
-	jr asm_90ff2
+	jr Function90ff2
 
 ; no known jump sources
 Function90fee: ; 90fee (24:4fee)
 	ld d, $2e
 	ld e, $1
-asm_90ff2: ; 90ff2 (24:4ff2)
+Function90ff2: ; 90ff2 (24:4ff2)
 	ld hl, $ffa9
 	ld a, [hl]
-	and $2
-	jr nz, .asm_91029
+	and B_BUTTON
+	jr nz, .cancel
 	ld a, [hl]
-	and $10
-	jr nz, .asm_91008
+	and D_RIGHT
+	jr nz, .right
 	ld a, [hl]
-	and $20
-	jr nz, .asm_91021
+	and D_LEFT
+	jr nz, .left
 	call Function9102f
 	ret
-.asm_91008
+
+.right
 	ld a, [$d957]
 	bit 2, a
 	jr z, .asm_91015
 	ld c, $7
 	ld b, $2
-	jr .asm_91025
+	jr .done
+
 .asm_91015
 	ld a, [$d957]
 	bit 1, a
 	ret z
 	ld c, $b
 	ld b, $3
-	jr .asm_91025
-.asm_91021
+	jr .done
+
+.left
 	ld c, $0
 	ld b, $0
-.asm_91025
+.done
 	call Function91480
 	ret
-.asm_91029
+.cancel
 	ld hl, $cf63
 	set 7, [hl]
 	ret
@@ -80355,14 +80697,14 @@ asm_90ff2: ; 90ff2 (24:4ff2)
 Function9102f: ; 9102f (24:502f)
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
-	jr nz, .asm_9103d
+	and D_UP
+	jr nz, .up
 	ld a, [hl]
-	and $80
-	jr nz, .asm_9104a
+	and D_DOWN
+	jr nz, .down
 	ret
-.asm_9103d
-	ld hl, EnemySAtkLevel ; $c6d7
+.up
+	ld hl, $c6d7
 	ld a, [hl]
 	cp d
 	jr c, .asm_91047
@@ -80371,9 +80713,10 @@ Function9102f: ; 9102f (24:502f)
 	ld [hl], a
 .asm_91047
 	inc [hl]
-	jr .asm_91055
-.asm_9104a
-	ld hl, EnemySAtkLevel ; $c6d7
+	jr .done
+
+.down
+	ld hl, $c6d7
 	ld a, [hl]
 	cp e
 	jr nz, .asm_91054
@@ -80382,14 +80725,15 @@ Function9102f: ; 9102f (24:502f)
 	ld [hl], a
 .asm_91054
 	dec [hl]
-.asm_91055
-	ld a, [EnemySAtkLevel] ; $c6d7
+
+.done
+	ld a, [$c6d7]
 	call Function910b4
-	ld a, [EnemyDefLevel] ; $c6d5
+	ld a, [$c6d5]
 	ld c, a
 	ld a, [$c6d6]
 	ld b, a
-	ld a, [EnemySAtkLevel] ; $c6d7
+	ld a, [$c6d7]
 	call Function910d4
 	ret
 
@@ -80503,27 +80847,29 @@ Function910f9: ; 910f9 (24:50f9)
 Function91112: ; 91112 (24:5112)
 	ld hl, $ffa9
 	ld a, [hl]
-	and $2
-	jr nz, .asm_91150
+	and B_BUTTON
+	jr nz, .cancel
 	ld a, [hl]
-	and $20
-	jr nz, .asm_9112e
-	ld a, [EnemyEvaLevel] ; $c6da
+	and D_LEFT
+	jr nz, .left
+	ld a, [$c6da]
 	ld l, a
 	ld a, [$c6db]
 	ld h, a
-	ld a, [EnemyAccLevel] ; $c6d9
+	ld a, [$c6d9]
 	and a
 	ret z
 	rst FarCall
 	ret
-.asm_9112e
+
+.left
 	ld a, [$d957]
 	bit 2, a
 	jr z, .asm_9113b
 	ld c, $7
 	ld b, $2
 	jr .asm_9114c
+
 .asm_9113b
 	ld a, [$d957]
 	bit 0, a
@@ -80531,13 +80877,15 @@ Function91112: ; 91112 (24:5112)
 	ld c, $2
 	ld b, $1
 	jr .asm_9114c
+
 .asm_91148
 	ld c, $0
 	ld b, $0
 .asm_9114c
 	call Function91480
 	ret
-.asm_91150
+
+.cancel
 	ld hl, $cf63
 	set 7, [hl]
 	ret
@@ -80547,8 +80895,8 @@ Function91156: ; 91156 (24:5156)
 	ld hl, $cf63
 	inc [hl]
 	xor a
-	ld [PlayerEvaLevel], a ; $c6d2
-	ld [PlayerAccLevel], a ; $c6d1
+	ld [$c6d2], a
+	ld [$c6d1], a
 	ld [$c6d3], a
 	call Function90da8
 	call Function91492
@@ -80558,23 +80906,24 @@ Function91156: ; 91156 (24:5156)
 
 ; no known jump sources
 Function91171: ; 91171 (24:5171)
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
-	jr nz, .asm_911b0
+	and B_BUTTON
+	jr nz, .b
 	ld a, [hl]
-	and $1
-	jr nz, .asm_911b6
+	and A_BUTTON
+	jr nz, .a
 	ld hl, $ffa9
 	ld a, [hl]
-	and $20
-	jr nz, .asm_9118f
+	and D_LEFT
+	jr nz, .left
 	ld a, [hl]
-	and $10
-	jr nz, .asm_911a2
+	and D_RIGHT
+	jr nz, .right
 	call Function9126d
 	ret
-.asm_9118f
+
+.left
 	ld a, [$d957]
 	bit 0, a
 	jr z, .asm_9119c
@@ -80585,7 +80934,8 @@ Function91171: ; 91171 (24:5171)
 	ld c, $0
 	ld b, $0
 	jr .asm_911ac
-.asm_911a2
+
+.right
 	ld a, [$d957]
 	bit 1, a
 	ret z
@@ -80594,34 +80944,39 @@ Function91171: ; 91171 (24:5171)
 .asm_911ac
 	call Function91480
 	ret
-.asm_911b0
+
+.b
 	ld hl, $cf63
 	set 7, [hl]
 	ret
-.asm_911b6
+
+.a
 	ld hl, $dc7c
-	ld a, [PlayerEvaLevel] ; $c6d2
+	ld a, [$c6d2]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
-	ld a, [PlayerAccLevel] ; $c6d1
+	ld a, [$c6d1]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	and a
 	ret z
+
 	ld [$c6d3], a
 	ld hl, $c4f1
-	ld a, [PlayerAccLevel] ; $c6d1
-	ld bc, $28
+	ld a, [$c6d1]
+	ld bc, 20 * 2
 	call AddNTimes
-	ld [hl], $ec
+	ld [hl], "▷"
 	call Function91342
 	jr c, .asm_911e5
+
 	ld hl, $cf63
 	inc [hl]
 	ret
+
 .asm_911e5
 	ld a, $8
 	ld [$cf63], a
@@ -80698,19 +81053,21 @@ Function91256: ; 91256 (24:5256)
 Function9126d: ; 9126d (24:526d)
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
-	jr nz, .asm_9127b
+	and D_UP
+	jr nz, .up
 	ld a, [hl]
-	and $80
-	jr nz, .asm_9128e
+	and D_DOWN
+	jr nz, .down
 	ret
-.asm_9127b
+
+.up
 	ld hl, $c6d1
 	ld a, [hl]
 	and a
 	jr z, .asm_91285
 	dec [hl]
 	jr .asm_912a3
+
 .asm_91285
 	ld hl, $c6d2
 	ld a, [hl]
@@ -80718,13 +81075,15 @@ Function9126d: ; 9126d (24:526d)
 	ret z
 	dec [hl]
 	jr .asm_912ad
-.asm_9128e
+
+.down
 	ld hl, $c6d1
 	ld a, [hl]
 	cp $3
 	jr nc, .asm_91299
 	inc [hl]
 	jr .asm_912a3
+
 .asm_91299
 	ld hl, $c6d2
 	ld a, [hl]
@@ -80732,22 +81091,24 @@ Function9126d: ; 9126d (24:526d)
 	ret nc
 	inc [hl]
 	jr .asm_912ad
+
 .asm_912a3
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function912b7
 	call WaitBGMap
 	ret
+
 .asm_912ad
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function912d8
 	call WaitBGMap
 	ret
 
 ; known jump sources: 9122c (24:522c), 912a6 (24:52a6), 9131a (24:531a)
 Function912b7: ; 912b7 (24:52b7)
-	ld a, $7f
+	ld a, " "
 	ld hl, $c4f1
 	ld [hl], a
 	ld hl, $c519
@@ -80760,7 +81121,7 @@ Function912b7: ; 912b7 (24:52b7)
 	ld a, [$c6d1] 
 	ld bc, $28
 	call AddNTimes
-	ld [hl], $ed
+	ld [hl], "▶"
 	ret
 
 ; known jump sources: 90e94 (24:4e94), 912b0 (24:52b0), 913d7 (24:53d7)
@@ -80810,15 +81171,15 @@ Function912d8: ; 912d8 (24:52d8)
 
 Function9131e: ; 9131e
 	ld hl, $dc7c
-	ld a, [PlayerEvaLevel]
+	ld a, [$c6d2]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
-	ld a, [PlayerAccLevel]
+	ld a, [$c6d1]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, $dc7c
 	ld c, $a
 .asm_91336
@@ -80827,8 +81188,7 @@ Function9131e: ; 9131e
 	jr nz, .asm_9133e
 	ld a, [hld]
 	ld [hli], a
-	ld [hl], $0
-
+	ld [hl], 0
 .asm_9133e
 	dec c
 	jr nz, .asm_91336
@@ -80862,7 +81222,7 @@ Function91342: ; 91342 (24:5342)
 
 .asm_9136c
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	push hl
 	push de
 	ld a, [de]
@@ -80895,7 +81255,7 @@ Function91342: ; 91342 (24:5342)
 	push de
 	call Functiona57
 	pop de
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and D_UP
 	jr nz, .asm_913b4
@@ -80930,12 +81290,12 @@ Function91342: ; 91342 (24:5342)
 
 .asm_913d4
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function912d8
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	pop hl
-	ld a, [hJoyPressed] ; $ff00+$a7
+	ld a, [hJoyPressed]
 	and B_BUTTON
 	jr nz, Function913f1
 
@@ -80969,7 +81329,6 @@ Function913f9: ; 913f9
 	ld hl, UnknownText_0x914ce
 	call PrintText
 	call WaitBGMap
-
 .asm_91419
 	scf
 	ret
@@ -81135,9 +81494,15 @@ PokegearSpritesGFX: ; 914dd
 INCBIN "gfx/misc/pokegear_sprites.2bpp.lz"
 ; 9150d
 
+RadioTilemapRLE: ; 9150d
+INCBIN "baserom.gbc",$9150d,$9158a - $9150d
 
-INCBIN "baserom.gbc",$9150d,$9163e - $9150d
+PhoneTilemapRLE: ; 9158a
+INCBIN "baserom.gbc",$9158a,$915db - $9158a
 
+ClockTilemapRLE: ; 915db
+INCBIN "baserom.gbc",$915db,$9163e - $915db
+; 9163e
 
 ; known jump sources: 9110a (24:510a)
 Function9163e: ; 9163e (24:563e)
@@ -81214,11 +81579,11 @@ UpdateRadioStation: ; 9166f (24:566f)
 	and a
 	ret z
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld hl, $c556
 	call PlaceString
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 ; 916a1 (24:56a1)
 
@@ -81591,20 +81956,20 @@ Function9191c: ; 9191c
 	ld a, $e3
 	ld [rLCDC], a
 	call Function90d56
-	ld [DefaultFlypoint], a
+	ld [$d002], a
 	ld [$d003], a
 	xor a
 	ld [hBGMapMode], a
 	call Function91a04
 	call Function3200
-	ld a, [DefaultFlypoint]
+	ld a, [$d002]
 	call Function9106a
 	ld a, [$d003]
 	call Function91098
 	ld a, c
 	ld [$d004], a
 	ld a, b
-	ld [StartFlypoint], a
+	ld [$d005], a
 	ld b, $2
 	call GetSGBLayout
 	call Function32f9
@@ -81616,11 +81981,11 @@ Function9191c: ; 9191c
 	call DelayFrame
 
 .asm_9198b
-	ld a, [DefaultFlypoint]
-	cp $2f
+	ld a, [$d002]
+	cp KANTO_LANDMARK
 	jr nc, .asm_9199b
-	ld d, $2e
-	ld e, $1
+	ld d, KANTO_LANDMARK - 1
+	ld e, 1
 	call Function919b0
 	jr .asm_919a1
 
@@ -81644,14 +82009,14 @@ Function919b0: ; 919b0
 	call Functiona57
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	ret nz
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_919d4
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_919e1
 .asm_919c7
 	push de
@@ -81691,7 +82056,7 @@ Function919b0: ; 919b0
 	call Function910b4
 	ld a, [$d004]
 	ld c, a
-	ld a, [StartFlypoint]
+	ld a, [$d005]
 	ld b, a
 	ld a, [$d003]
 	call Function910d4
@@ -81700,7 +82065,7 @@ Function919b0: ; 919b0
 ; 91a04
 
 Function91a04: ; 91a04
-	ld a, [DefaultFlypoint]
+	ld a, [$d002]
 	cp KANTO_LANDMARK
 	jr nc, .asm_91a0f
 	ld e, $0
@@ -81741,12 +82106,12 @@ Function91a53: ; 91a53
 	push af
 	set 4, [hl]
 	call Function91a87
-	ld c, $64
+	ld c, 100
 	call DelayFrames
 .asm_91a62
 	call Functiona57
 	ld a, [hJoyPressed]
-	and $3
+	and A_BUTTON | B_BUTTON
 	jr nz, .asm_91a7f
 	ld a, [EnemyEvaLevel]
 	ld l, a
