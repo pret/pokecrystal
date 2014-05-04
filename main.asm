@@ -87348,7 +87348,7 @@ Functionb8219: ; b8219
 	jr nc, .quit
 
 	ld a, 10
-	call Function2fb1
+	call RandomRange
 	cp 4
 	jr nc, .quit
 
@@ -87631,23 +87631,23 @@ Functionb83e5: ; b83e5
 	ret
 
 .asm_b83f6
-	ld a, $a
-	call Function2fb1
+	ld a, 10
+	call RandomRange
 	and a
 	jr nz, Functionb843b
 	jr Functionb841f
 
 .asm_b8400
-	ld a, $a
-	call Function2fb1
-	cp $5
+	ld a, 10
+	call RandomRange
+	cp 5
 	jr nc, Functionb843b
 	jr Functionb841f
 
 .asm_b840b
-	ld a, $a
-	call Function2fb1
-	cp $8
+	ld a, 10
+	call RandomRange
+	cp 8
 	jr nc, Functionb843b
 	jr .asm_b8416
 
@@ -87663,7 +87663,7 @@ Functionb841f: ; b841f
 ; Read a TreeMons table.
 
 	ld a, 100
-	call Function2fb1
+	call RandomRange
 .asm_b8424
 	sub [hl]
 	jr c, .asm_b842c
@@ -99806,8 +99806,8 @@ Functionfd044: ; fd044
 
 .asm_fd08b
 	call Functionfd099
-	ld a, $5
-	call Function2fb1
+	ld a, 5
+	call RandomRange
 	inc a
 	ld [$dc18], a
 	scf
