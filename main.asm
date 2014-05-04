@@ -8909,16 +8909,16 @@ Functionc6e0: ; c6e0
 
 Functionc6ea: ; c6ea
 	xor a
-	ld hl, MagikarpLength
+	ld hl, Buffer1
 	ld bc, $0007
 	call ByteFill
 	ret
 ; c6f5
 
 Functionc6f5: ; c6f5
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	rst JumpTable
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	bit 7, a
 	jr nz, .asm_c702
 	and a
@@ -12422,7 +12422,7 @@ Functiond906: ; d906
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	ld a, $1b
 	call Predef
 
@@ -87238,7 +87238,7 @@ Functionb8164: ; b8164
 
 Functionb8172: ; b8172
 	call GetMapScriptHeaderBank
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	ld a, [XCoord]
 	add $5
 	ld [$d1ed], a
@@ -87272,9 +87272,9 @@ Functionb8172: ; b8172
 	call Functionb81e2
 	cp $7
 	jr nz, .asm_b81d2
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	call GetFarHalfword
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	call GetFarHalfword
 	ld d, h
 	ld e, l
@@ -87303,7 +87303,7 @@ Functionb8172: ; b8172
 ; b81e2
 
 Functionb81e2: ; b81e2
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	call GetFarByte
 	inc hl
 	ret
@@ -87314,7 +87314,7 @@ Functionb81ea: ; b81ea
 	xor a
 	ld [$d22e], a
 	ld [CurPartyLevel], a
-	ld hl, $425e
+	ld hl, TreeMonMaps
 	call GetTreeMonEncounterTable
 	jr nc, .asm_b8214
 	call LoadTreeMonData
@@ -87395,14 +87395,50 @@ GetTreeMonEncounterTable: ; b823f
 	ret
 ; b825e
 
-INCBIN "baserom.gbc",$b825e,$b82c5 - $b825e
+TreeMonMaps: ; b825e
+	db GROUP_ROUTE_26, MAP_ROUTE_26, 4
+	db GROUP_ROUTE_27, MAP_ROUTE_27, 4
+	db GROUP_ROUTE_28, MAP_ROUTE_28, 0
+	db GROUP_ROUTE_29, MAP_ROUTE_29, 3
+	db GROUP_ROUTE_30, MAP_ROUTE_30, 3
+	db GROUP_ROUTE_31, MAP_ROUTE_31, 3
+	db GROUP_ROUTE_32, MAP_ROUTE_32, 4
+	db GROUP_ROUTE_33, MAP_ROUTE_33, 2
+	db GROUP_ROUTE_34, MAP_ROUTE_34, 3
+	db GROUP_ROUTE_35, MAP_ROUTE_35, 3
+	db GROUP_ROUTE_36, MAP_ROUTE_36, 3
+	db GROUP_ROUTE_37, MAP_ROUTE_37, 3
+	db GROUP_ROUTE_38, MAP_ROUTE_38, 3
+	db GROUP_ROUTE_39, MAP_ROUTE_39, 3
+	db GROUP_ROUTE_40, MAP_ROUTE_40, 0
+	db GROUP_ROUTE_41, MAP_ROUTE_41, 0
+	db GROUP_ROUTE_42, MAP_ROUTE_42, 2
+	db GROUP_ROUTE_43, MAP_ROUTE_43, 5
+	db GROUP_ROUTE_44, MAP_ROUTE_44, 1
+	db GROUP_ROUTE_45, MAP_ROUTE_45, 1
+	db GROUP_ROUTE_46, MAP_ROUTE_46, 1
+	db GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, 0
+	db GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 0
+	db GROUP_VIOLET_CITY, MAP_VIOLET_CITY, 0
+	db GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, 2
+	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, 0
+	db GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY, 0
+	db GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY, 0
+	db GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, 0
+	db GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN, 0
+	db GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE, 5
+	db GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY, 0
+	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE, 0
+	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST, 6
+	db -1
+; b82c5
 
 RockMonMaps: ; b82c5
 	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, 7
 	db GROUP_ROUTE_40, MAP_ROUTE_40, 7
 	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE, 7
 	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F, 7
-	db $ff ; end
+	db -1
 ; b82d2
 
 LoadTreeMonData: ; b82d2
@@ -87437,7 +87473,7 @@ LoadTreeMonData: ; b82d2
 TreeMonPointers: ; b82e8
 ; seems to point to "normal" tree encounter data
 ; so only odd-numbered tables are used
-	dw TreeMons1  ; filler
+	dw TreeMons1  ; 0
 	dw TreeMons1  ; 1
 	dw TreeMons3  ; 2
 	dw TreeMons5  ; 3
@@ -101569,7 +101605,7 @@ Function100c74: ; 100c74
 	ld bc, $0004
 	call CopyBytes
 	ld a, $28
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	ld hl, $c56a
 	ld a, $20
 	call Predef
