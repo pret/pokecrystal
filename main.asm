@@ -90162,13 +90162,13 @@ Unknown_b92f8: ; b92f8
 Functionb9317: ; b9317
 	push bc
 	ld hl, $9310
-	ld de, $5d46
+	ld de, Unknown_b9d46
 	ld c, $40
 	call Functionb9915
-	ld de, $5a26
+	ld de, MailLaprasGFX
 	ld c, $30
 	call Functionb991e
-	ld de, $594e
+	ld de, Unknown_b994e
 	ld c, $8
 	call Functionb9915
 	jr Functionb9351
@@ -90176,23 +90176,23 @@ Functionb9317: ; b9317
 Functionb9335: ; b9335
 	push bc
 	ld hl, $9310
-	ld de, $5dc6
+	ld de, Unknown_b9dc6
 	ld c, $40
 	call Functionb9915
-	ld de, $59c6
+	ld de, MailDratiniGFX
 	ld c, $30
 	call Functionb991e
-	ld de, $595e
+	ld de, Unknown_b995e
 	ld c, $8
 	call Functionb9915
 
 Functionb9351: ; b9351
-	ld de, $5976
+	ld de, Unknown_b9976
 	ld c, $10
 	call Functionb9915
 	ld c, $10
 	call Functionb990c
-	ld de, $5c3e
+	ld de, Unknown_b9c3e
 	ld c, $40
 	call Functionb990c
 	ld c, $40
@@ -90246,29 +90246,29 @@ Functionb9351: ; b9351
 Functionb93d2: ; b93d2
 	push bc
 	ld hl, $9310
-	ld de, $597e
+	ld de, Unknown_b997e
 	ld c, $8
 	call Functionb9915
-	ld de, $598e
+	ld de, Unknown_b998e
 	ld c, $8
 	call Functionb990c
-	ld de, $598e
+	ld de, Unknown_b998e
 	ld c, $8
 	call Functionb990c
-	ld de, $597e
+	ld de, Unknown_b997e
 	ld c, $8
 	call Functionb9915
-	ld de, $5d76
+	ld de, Unknown_b9d76
 	ld c, $8
 	call Functionb9915
-	ld de, $5a56
+	ld de, MailPikaGFX
 	ld c, $30
 	call Functionb991e
 	ld hl, $93d0
-	ld de, $5c9e
+	ld de, Unknown_b9c9e
 	ld c, $20
 	call Functionb990c
-	ld de, $598e
+	ld de, Unknown_b998e
 	ld c, $8
 	call Functionb9915
 	ld a, $31
@@ -90295,19 +90295,19 @@ Functionb93d2: ; b93d2
 Functionb944b: ; b944b
 	push bc
 	ld hl, $9310
-	ld de, $5e26
+	ld de, Unknown_b9e26
 	ld c, $28
 	call Functionb9915
-	ld de, $59f6
+	ld de, MailPoliwagGFX
 	ld c, $30
 	call Functionb991e
-	ld de, $5966
+	ld de, Unknown_b9966
 	ld c, $8
 	call Functionb9915
-	ld de, $5c5e
+	ld de, Unknown_b9c5e
 	ld c, $20
 	call Functionb9915
-	ld de, $596e
+	ld de, Unknown_b996e
 	ld c, $8
 	call Functionb990c
 	call Functionb987b
@@ -90359,22 +90359,22 @@ Functionb94d6: ; b94d6
 	ld hl, $9310
 	ld bc, $0028
 	call Functionb97f8
-	ld de, $5c96
-	ld c, $8
+	ld de, Unknown_b9c96
+	ld c, 8
 	call Functionb9915
-	ld de, $5c7e
-	ld c, $8
+	ld de, Unknown_b9c7e
+	ld c, 8
 	call Functionb9915
-	ld de, $593e
-	ld c, $8
+	ld de, Unknown_b993e
+	ld c, 8
 	call Functionb9915
-	ld de, $597e
-	ld c, $8
+	ld de, Unknown_b997e
+	ld c, 8
 	call Functionb990c
-	ld de, $5926
-	ld c, $8
+	ld de, Unknown_b9926
+	ld c, 8
 	call Functionb9915
-	ld de, $5a86
+	ld de, MailDittoGFX
 	ld c, $30
 	call Functionb991e
 	call Functionb987b
@@ -90433,31 +90433,31 @@ Functionb94d6: ; b94d6
 Functionb9582: ; b9582
 	push bc
 	ld hl, $9310
-	ld de, $597e
+	ld de, Unknown_b997e
 	ld c, $8
 	call Functionb9915
 	ld a, $ff
 	ld bc, $0010
 	call ByteFill
-	ld de, $592e
+	ld de, Unknown_b992e
 	ld c, $8
 	call Functionb991e
-	ld de, $5b46
+	ld de, MailDragoniteGFX
 	ld c, $b8
 	call Functionb991e
-	ld de, $5d16
+	ld de, MailCloudGFX
 	ld c, $30
 	call Functionb990c
-	ld de, $5db6
+	ld de, Unknown_b9db6
 	ld c, $8
 	call Functionb990c
-	ld de, $5d16
+	ld de, MailCloudGFX
 	ld c, $8
 	call Functionb990c
-	ld de, $5d26
+	ld de, Unknown_b9d26
 	ld c, $10
 	call Functionb990c
-	ld de, $5d3e
+	ld de, Unknown_b9d3e
 	ld c, $8
 	call Functionb990c
 	ld a, $31
@@ -90520,16 +90520,16 @@ Functionb9636: ; b9636
 Functionb963e: ; b963e
 	push bc
 	ld hl, $9310
-	ld de, $5d86
+	ld de, Unknown_b9d86
 	ld c, $40
 	call Functionb990c
-	ld de, $5c1e
+	ld de, MailOddishGFX
 	ld c, $20
 	call Functionb991e
-	ld de, $5db6
+	ld de, Unknown_b9db6
 	ld c, $8
 	call Functionb9915
-	ld de, $5cbe
+	ld de, Unknown_b9cbe
 	ld c, $20
 	call Functionb990c
 	ld c, $20
@@ -90574,17 +90574,17 @@ Functionb963e: ; b963e
 Functionb96ca: ; b96ca
 	push bc
 	ld hl, $9310
-	ld de, $5e4e
+	ld de, Unknown_b9e4e
 	ld c, $28
 	call Functionb9915
-	ld de, $595e
+	ld de, Unknown_b995e
 	ld c, $8
 	call Functionb9915
 	ld hl, $93d0
-	ld de, $5bfe
+	ld de, Unknown_b9bfe
 	ld c, $20
 	call Functionb990c
-	ld de, $5936
+	ld de, Unknown_b9936
 	ld c, $8
 	call Functionb9915
 	call Functionb987b
@@ -90604,22 +90604,22 @@ Functionb96ca: ; b96ca
 Functionb9710: ; b9710
 	push bc
 	ld hl, $9310
-	ld de, $5e06
+	ld de, Unknown_b9e06
 	ld c, $20
 	call Functionb9915
-	ld de, $593e
+	ld de, Unknown_b993e
 	ld c, $10
 	call Functionb9915
-	ld de, $5996
+	ld de, Unknown_b9996
 	ld c, $30
 	call Functionb991e
 	xor a
 	ld bc, $0010
 	call ByteFill
-	ld de, $5cfe
+	ld de, Unknown_b9cfe
 	ld c, $18
 	call Functionb990c
-	ld de, $5946
+	ld de, Unknown_b9946
 	ld c, $8
 	call Functionb990c
 	ld a, $31
@@ -90648,16 +90648,16 @@ Functionb9776: ; b9776
 	ld hl, $9310
 	ld bc, $0028
 	call Functionb97f8
-	ld de, $592e
+	ld de, Unknown_b992e
 	ld c, $8
 	call Functionb9915
-	ld de, $5ab6
+	ld de, MailMewGFX
 	ld c, $90
 	call Functionb9915
-	ld de, $5dce
+	ld de, Unknown_b9dce
 	ld c, $8
 	call Functionb990c
-	ld de, $5df6
+	ld de, Unknown_b9df6
 	ld c, $8
 	call Functionb990c
 	call Functionb987b
@@ -90718,7 +90718,7 @@ Functionb97f8: ; b97f8
 
 Functionb9803: ; b9803
 	ld bc, $002f
-	ld de, DefaultFlypoint
+	ld de, $d002
 	ld a, $0
 	call GetSRAMBank
 	call CopyBytes
@@ -90730,7 +90730,7 @@ Functionb9803: ; b9803
 	ld a, $50
 	ld [$d023], a
 	ld [$d05a], a
-	ld de, DefaultFlypoint
+	ld de, $d002
 	ld hl, $c52e
 	call PlaceString
 	ld de, $d050
@@ -90750,7 +90750,17 @@ Functionb9803: ; b9803
 	jp PlaceString
 ; b984e
 
-INCBIN "baserom.gbc", $b984e, $b9858 - $b984e
+Functionb984e: ; b984e
+.asm_b984e
+	ld a, [hl]
+	xor $ff
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_b984e
+	ret
+; b9858
 
 Functionb9858: ; b9858
 	ld hl, TileMap
@@ -90949,7 +90959,140 @@ Functionb991e: ; b991e
 	ret
 ; b9926
 
-INCBIN "baserom.gbc", $b9926, $b9e76 - $b9926
+Unknown_b9926: ; b9926
+INCBIN "baserom.gbc", $b9926, $b992e - $b9926
+
+Unknown_b992e: ; b992e
+INCBIN "baserom.gbc", $b992e, $b9936 - $b992e
+
+Unknown_b9936: ; b9936
+INCBIN "baserom.gbc", $b9936, $b993e - $b9936
+
+Unknown_b993e: ; b993e
+INCBIN "baserom.gbc", $b993e, $b9946 - $b993e
+
+Unknown_b9946: ; b9946
+INCBIN "baserom.gbc", $b9946, $b994e - $b9946
+
+Unknown_b994e: ; b994e
+INCBIN "baserom.gbc", $b994e, $b995e - $b994e
+
+Unknown_b995e: ; b995e
+INCBIN "baserom.gbc", $b995e, $b9966 - $b995e
+
+Unknown_b9966: ; b9966
+INCBIN "baserom.gbc", $b9966, $b996e - $b9966
+
+Unknown_b996e: ; b996e
+INCBIN "baserom.gbc", $b996e, $b9976 - $b996e
+
+Unknown_b9976: ; b9976
+INCBIN "baserom.gbc", $b9976, $b997e - $b9976
+
+Unknown_b997e: ; b997e
+INCBIN "baserom.gbc", $b997e, $b998e - $b997e
+
+Unknown_b998e: ; b998e
+INCBIN "baserom.gbc", $b998e, $b9996 - $b998e
+
+Unknown_b9996: ; b9996
+INCBIN "baserom.gbc", $b9996, $b99c6 - $b9996
+
+MailDratiniGFX: ; b99c6
+INCBIN "baserom.gbc", $b99c6, $b99f6 - $b99c6
+
+MailPoliwagGFX: ; b99f6
+INCBIN "baserom.gbc", $b99f6, $b9a26 - $b99f6
+
+MailLaprasGFX: ; b9a26
+INCBIN "baserom.gbc", $b9a26, $b9a56 - $b9a26
+
+MailPikaGFX: ; b9a56
+INCBIN "baserom.gbc", $b9a56, $b9a86 - $b9a56
+
+MailDittoGFX: ; b9a86
+INCBIN "baserom.gbc", $b9a86, $b9ab6 - $b9a86
+
+MailMewGFX: ; b9ab6
+INCBIN "baserom.gbc", $b9ab6, $b9b46 - $b9ab6
+
+MailDragoniteGFX: ; b9b46
+INCBIN "baserom.gbc", $b9b46, $b9bce - $b9b46
+
+MailSentretGFX: ; b9bce
+INCBIN "baserom.gbc", $b9bce, $b9bee - $b9bce
+
+Unknown_b9bee: ; b9bee
+INCBIN "baserom.gbc", $b9bee, $b9bfe - $b9bee
+
+Unknown_b9bfe: ; b9bfe
+INCBIN "baserom.gbc", $b9bfe, $b9c1e - $b9bfe
+
+MailOddishGFX: ; b9c1e
+INCBIN "baserom.gbc", $b9c1e, $b9c3e - $b9c1e
+
+Unknown_b9c3e: ; b9c3e
+INCBIN "baserom.gbc", $b9c3e, $b9c5e - $b9c3e
+
+Unknown_b9c5e: ; b9c5e
+INCBIN "baserom.gbc", $b9c5e, $b9c7e - $b9c5e
+
+Unknown_b9c7e: ; b9c7e
+INCBIN "baserom.gbc", $b9c7e, $b9c96 - $b9c7e
+
+Unknown_b9c96: ; b9c96
+INCBIN "baserom.gbc", $b9c96, $b9c9e - $b9c96
+
+Unknown_b9c9e: ; b9c9e
+INCBIN "baserom.gbc", $b9c9e, $b9cbe - $b9c9e
+
+Unknown_b9cbe: ; b9cbe
+INCBIN "baserom.gbc", $b9cbe, $b9cde - $b9cbe
+
+Unknown_b9cde: ; b9cde
+INCBIN "baserom.gbc", $b9cde, $b9cfe - $b9cde
+
+Unknown_b9cfe: ; b9cfe
+INCBIN "baserom.gbc", $b9cfe, $b9d16 - $b9cfe
+
+MailCloudGFX: ; b9d16
+INCBIN "baserom.gbc", $b9d16, $b9d26 - $b9d16
+
+Unknown_b9d26: ; b9d26
+INCBIN "baserom.gbc", $b9d26, $b9d3e - $b9d26
+
+Unknown_b9d3e: ; b9d3e
+INCBIN "baserom.gbc", $b9d3e, $b9d46 - $b9d3e
+
+Unknown_b9d46: ; b9d46
+INCBIN "baserom.gbc", $b9d46, $b9d76 - $b9d46
+
+Unknown_b9d76: ; b9d76
+INCBIN "baserom.gbc", $b9d76, $b9d86 - $b9d76
+
+Unknown_b9d86: ; b9d86
+INCBIN "baserom.gbc", $b9d86, $b9db6 - $b9d86
+
+Unknown_b9db6: ; b9db6
+INCBIN "baserom.gbc", $b9db6, $b9dc6 - $b9db6
+
+Unknown_b9dc6: ; b9dc6
+INCBIN "baserom.gbc", $b9dc6, $b9dce - $b9dc6
+
+Unknown_b9dce: ; b9dce
+INCBIN "baserom.gbc", $b9dce, $b9df6 - $b9dce
+
+Unknown_b9df6: ; b9df6
+INCBIN "baserom.gbc", $b9df6, $b9e06 - $b9df6
+
+Unknown_b9e06: ; b9e06
+INCBIN "baserom.gbc", $b9e06, $b9e26 - $b9e06
+
+Unknown_b9e26: ; b9e26
+INCBIN "baserom.gbc", $b9e26, $b9e4e - $b9e26
+
+Unknown_b9e4e: ; b9e4e
+INCBIN "baserom.gbc", $b9e4e, $b9e76 - $b9e4e
 
 
 ItemIsMail: ; b9e76
@@ -90983,7 +91126,7 @@ INCBIN "baserom.gbc",$bd0d0,$be66a - $bd0d0
 UnknownScript_0xbe66a:: ; 0xbe66a
 	faceplayer
 	trainerstatus $2
-	iftrue $6698
+	iftrue UnknownScript_0xbe698
 	loadtrainerdata
 	playrammusic
 	2jump UnknownScript_0xbe68a
@@ -91010,6 +91153,8 @@ UnknownScript_0xbe68a: ; 0xbe68a
 	returnafterbattle
 	trainerstatus $1
 	loadvar $d04d, $ff
+
+UnknownScript_0xbe698:
 	scripttalkafter
 ; 0xbe699
 
