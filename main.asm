@@ -31903,7 +31903,7 @@ Function244c3: ; 0x244c3
 ; 0x244e3
 
 Function244e3:: ; 244e3
-	ld hl, $4547
+	ld hl, MenuDataHeader_0x24547
 	call Function1d3c
 	call Function1cbb
 	call Function1ad2
@@ -45748,7 +45748,7 @@ Function40658: ; 40658 (10:4658)
 asm_4065d: ; 4065d (10:465d)
 	ld e, a
 	ld d, 0
-	ld hl, $4a40
+	ld hl, Unknown_40a3e + 2
 	add hl, de
 	add hl, de
 	add hl, de
@@ -65943,8 +65943,8 @@ Function84785: ; 84785
 	call TextBox
 	pop af
 	ld e, a
-	ld d, $0
-	ld hl, $4807
+	ld d, 0
+	ld hl, Unknown_84807
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -65983,7 +65983,7 @@ Function847bd: ; 847bd
 	inc hl
 	ld d, [hl]
 	ld hl, $c530
-	ld a, $77
+	ld a, BANK(GBPrinterStrings)
 	call Function13d4
 	ld hl, $c5d0
 	ld de, String_847f5
@@ -80066,8 +80066,8 @@ Function90074:: ; 90074 (24:4074)
 	jr nc, .asm_900a4
 	ld e, a
 	call Function9020d
-	ld a, $24
-	ld hl, $4241
+	ld a, BANK(UnknownScript_0x90241)
+	ld hl, UnknownScript_0x90241
 	call CallScript
 	scf
 	ret
@@ -80097,7 +80097,7 @@ Function900ad: ; 900ad (24:40ad)
 
 ; known jump sources: 90091 (24:4091)
 Function900bf: ; 900bf (24:40bf)
-	ld a, [MartPointer] ; $d040 (aliases: Unkn2Pals)
+	ld a, [$d040]
 	and a
 	jr z, .asm_900dc
 	ld c, a
@@ -80122,19 +80122,19 @@ Function900de: ; 900de (24:40de)
 	callba Functionc000
 	ld a, c
 	ld [EngineBuffer1], a ; $d03e (aliases: MenuItemsList, CurFruitTree, CurInput)
-	ld hl, MartPointer ; $d040 (aliases: Unkn2Pals)
+	ld hl, $d040
 	ld bc, $b
 	xor a
 	call ByteFill
 	ld de, $dc7c
 	ld a, $a
 .asm_900f7
-	ld [CurFruit], a ; $d03f
+	ld [$d03f], a
 	ld a, [de]
 	and a
 	jr z, .asm_9012e
-	ld hl, $4467
-	ld bc, $c
+	ld hl, PhoneContacts + 8
+	ld bc, 12
 	call AddNTimes
 	ld a, [EngineBuffer1] ; $d03e (aliases: MenuItemsList, CurFruitTree, CurInput)
 	and [hl]
@@ -80149,18 +80149,18 @@ Function900de: ; 900de (24:40de)
 	cp [hl]
 	jr z, .asm_9012e
 .asm_9011e
-	ld a, [MartPointer] ; $d040 (aliases: Unkn2Pals)
+	ld a, [$d040]
 	ld c, a
 	ld b, $0
 	inc a
-	ld [MartPointer], a ; $d040 (aliases: Unkn2Pals)
+	ld [$d040], a
 	ld hl, $d041
 	add hl, bc
 	ld a, [de]
 	ld [hl], a
 .asm_9012e
 	inc de
-	ld a, [CurFruit] ; $d03f
+	ld a, [$d03f]
 	dec a
 	jr nz, .asm_900f7
 	ret
@@ -80172,9 +80172,9 @@ Function90136:: ; 90136 (24:4136)
 	jr z, .asm_90171
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, $4627
-	ld a, $6
+	ld b, 0
+	ld hl, Unknown_90627
+	ld a, 6
 	call AddNTimes
 	ld a, [hli]
 	ld h, [hl]
@@ -80218,11 +80218,13 @@ Function90178: ; 90178 (24:4178)
 	ld a, [$dc31]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, $4627
-	ld a, $6
+	ld b, 0
+	ld hl, Unknown_90627
+	ld a, 6
 	call AddNTimes
 	ret
+
+Function90188: ; 90188
 	ld a, [$d19a]
 	cp $1
 	jr z, .asm_90195
@@ -80233,6 +80235,8 @@ Function90178: ; 90178 (24:4178)
 .asm_90195
 	scf
 	ret
+
+Function90197: ; 90197
 	scf
 	ret
 
@@ -80246,7 +80250,7 @@ Function90199: ; 90199 (24:4199)
 	jr nz, .asm_901e7
 	ld a, b
 	ld [$dbf9], a
-	ld hl, Unknown_9045f
+	ld hl, PhoneContacts
 	ld bc, 12
 	call AddNTimes
 	ld d, h
@@ -80266,8 +80270,8 @@ Function90199: ; 90199 (24:4199)
 	ld a, [MapNumber]
 	cp [hl]
 	jr nz, .asm_901d9
-	ld b, BANK(Unknown_90660)
-	ld hl, Unknown_90660
+	ld b, BANK(UnknownScript_0x90660)
+	ld hl, UnknownScript_0x90660
 	jr .asm_901f0
 
 .asm_901d9
@@ -80282,8 +80286,8 @@ Function90199: ; 90199 (24:4199)
 	jr .asm_901f0
 
 .asm_901e7
-	ld b, BANK(Unknown_90209)
-	ld de, Unknown_90209
+	ld b, BANK(UnknownScript_0x90209)
+	ld de, UnknownScript_0x90209
 	call Function2674
 	ret
 
@@ -80294,21 +80298,21 @@ Function90199: ; 90199 (24:4199)
 	ld [$d003], a
 	ld a, h
 	ld [$d004], a
-	ld b, BANK(Unknown_90205)
-	ld de, Unknown_90205
+	ld b, BANK(UnknownScript_0x90205)
+	ld de, UnknownScript_0x90205
 	call Function2674
 	ret
 ; 90205 (24:4205)
 
-Unknown_90205: ; 90205
-	db 2
-	dw $d002
-	db $90
+UnknownScript_0x90205: ; 0x90205
+	2ptcall $d002
+	return
+; 0x90209
 
-Unknown_90209: ; 90209
-	db 0
-	dw $4657
-	db $90
+UnknownScript_0x90209: ; 0x90209
+	2call UnknownScript_0x90657
+	return
+; 0x9020d
 
 ; known jump sources: 90097 (24:4097), 90158 (24:4158)
 Function9020d: ; 9020d (24:420d)
@@ -80322,11 +80326,11 @@ Function9020d: ; 9020d (24:420d)
 	ld hl, Unknown_90233
 	jr .asm_90229
 .asm_9021d
-	ld hl, Unknown_9045f
+	ld hl, PhoneContacts
 	ld bc, 12
 	ld a, e
 	call AddNTimes
-	ld a, BANK(Unknown_9045f)
+	ld a, BANK(PhoneContacts)
 .asm_90229
 	ld de, $d03f
 	ld bc, 12
@@ -80432,7 +80436,7 @@ Function902c9: ; 902c9
 	ld [hl], $62
 	inc hl
 	inc hl
-	ld a, [DefaultFlypoint]
+	ld a, [$d002]
 	ld b, a
 	ld a, [$d003]
 	ld e, a
@@ -80575,7 +80579,7 @@ Function9038a: ; 9038a (24:438a)
 
 Function9039a: ; 9039a
 	push hl
-	ld hl, Unknown_9045f
+	ld hl, PhoneContacts
 	ld bc, 12
 	call AddNTimes
 	ld a, [hli]
@@ -80662,7 +80666,7 @@ Function90439: ; 90439
 	ld e, b
 	push de
 	ld a, [$dbf9]
-	ld hl, Unknown_9045f + 2
+	ld hl, PhoneContacts + 2
 	ld bc, 12
 	call AddNTimes
 	ld b, [hl]
@@ -80677,14 +80681,14 @@ Function90439: ; 90439
 	ret
 ; 9045f
 
-Unknown_9045f: ; 9045f
+PhoneContacts: ; 9045f
 phone: MACRO
-	db \1, \2
-	map \3
-	db \4, \5
-	dw \6
-	db \7, \8
-	dw \9
+	db  \1, \2 ; trainer
+	map \3     ; map
+	db  \4
+	dbw \5, \6 ; script 1
+	db  \7
+	dbw \8, \9 ; script 2
 ENDM
 
 	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
@@ -80728,10 +80732,71 @@ ENDM
 ; 90627
 
 Unknown_90627: ; 90627
-INCBIN "baserom.gbc",$90627,$90660 - $90627
+	dw Function90188
+	db $04
+	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
 
-Unknown_90660: ; 90660
-INCBIN "baserom.gbc",$90660,$90672 - $90660
+	dw Function90188
+	db $04
+	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
+
+	dw Function90188
+	db $04
+	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
+
+	dw Function90188
+	db $04
+	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
+
+	dw Function90197
+	db $04
+	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
+
+	dw Function90197
+	db $02
+	dbw $28, $4b09 ; XXX bike shop
+
+	dw Function90197
+	db $01
+	dbw BANK(MomPhoneLectureScript), MomPhoneLectureScript
+
+	dw Function90188
+	db $04
+	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
+; 90657
+
+UnknownScript_0x90657: ; 0x90657
+	2writetext UnknownText_0x9065b
+	end
+; 0x9065b
+
+UnknownText_0x9065b: ; 0x9065b
+	; That number is out of the area.
+	text_jump UnknownText_0x1c558b
+	db "@"
+; 0x90660
+
+UnknownScript_0x90660: ; 0x90660
+	2writetext UnknownText_0x90664
+	end
+; 0x90664
+
+UnknownText_0x90664: ; 0x90664
+	; Just go talk to that person!
+	text_jump UnknownText_0x1c55ac
+	db "@"
+; 0x90669
+
+UnknownScript_0x90669: ; 0x90669
+	2writetext UnknownText_0x9066d
+	end
+; 0x9066d
+
+UnknownText_0x9066d: ; 0x9066d
+	; Thank you!
+	text_jump UnknownText_0x1c55ca
+	db "@"
+; 0x90672
 
 ; no known jump sources
 Function90672: ; 90672 (24:4672)
@@ -83928,6 +83993,8 @@ Flypoints: ; 91c5e
 	db SILVER_CAVE,      SPAWN_MT_SILVER
 
 ; Kanto
+KANTO_FLYPOINT EQU const_value
+
 	const FLY_PALLET
 	const FLY_VIRIDIAN
 	const FLY_PEWTER
@@ -84093,7 +84160,7 @@ Function91d11: ; 91d11
 	ld de, GFX_922d1
 	ld hl, $87f0
 	lb bc, BANK(GFX_922d1), 1
-	call Request2bpp
+	call Request2bpp ; actually 1bpp
 	call Function91ed0
 	ld hl, $8780
 	ld c, $4
@@ -84583,8 +84650,143 @@ GFX_922d1: ; 922d1
 INCBIN "baserom.gbc", $922d1, $922e1 - $922d1
 GFX_922e1: ; 922e1
 INCBIN "baserom.gbc", $922e1, $92301 - $922e1
+GFX_92301: ; 92301
+INCBIN "baserom.gbc", $92301, $92311 - $92301
 
-INCBIN "baserom.gbc",$92301,$92402 - $92301
+Function92311: ; 92311
+	xor a
+	ld [DefaultFlypoint], a
+	call WhiteBGMap
+	call ClearTileMap
+	call ClearSprites
+	ld hl, $ffaa
+	ld a, [hl]
+	push af
+	ld [hl], $1
+	xor a
+	ld [hBGMapMode], a
+	callba Function8cf53
+	call Function91ff2
+	ld de, GFX_922e1
+	ld hl, $9300
+	lb bc, BANK(GFX_922e1), 6
+	call Request1bpp
+	call FillKantoMap
+	call TownMapBubble
+	call TownMapPals
+	ld hl, VBGMap1
+	call TownMapBGUpdate
+	call FillJohtoMap
+	call TownMapBubble
+	call TownMapPals
+	ld hl, VBGMap0
+	call TownMapBGUpdate
+	call TownMapMon
+	ld a, c
+	ld [$d003], a
+	ld a, b
+	ld [$d004], a
+	ld b, $2
+	call GetSGBLayout
+	call Function32f9
+.asm_9236e
+	call Functiona57
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and B_BUTTON
+	jr nz, .asm_9238f
+	ld a, [hl]
+	and A_BUTTON
+	jr nz, .asm_92393
+	call Function923b8
+	call Function91c17
+	callba Function8cf69
+	call DelayFrame
+	jr .asm_9236e
+
+.asm_9238f
+	ld a, $ff
+	jr .asm_9239f
+
+.asm_92393
+	ld a, [DefaultFlypoint]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, Flypoints + 1
+	add hl, de
+	ld a, [hl]
+
+.asm_9239f
+	ld [DefaultFlypoint], a
+	pop af
+	ld [$ffaa], a
+	call WhiteBGMap
+	ld a, $90
+	ld [hWY], a
+	xor a
+	ld [hBGMapAddress], a
+	ld a, $98
+	ld [$ffd7], a
+	ld a, [DefaultFlypoint]
+	ld e, a
+	ret
+; 923b8
+
+Function923b8: ; 923b8
+	ld hl, $ffa9
+	ld a, [hl]
+	and D_DOWN | D_RIGHT
+	jr nz, .asm_923c6
+	ld a, [hl]
+	and D_UP | D_LEFT
+	jr nz, .asm_923d3
+	ret
+
+.asm_923c6
+	ld hl, DefaultFlypoint
+	ld a, [hl]
+	cp FLY_INDIGO_PLATEAU
+	jr c, .asm_923d0
+	ld [hl], -1
+.asm_923d0
+	inc [hl]
+	jr .asm_923dd
+
+.asm_923d3
+	ld hl, DefaultFlypoint
+	ld a, [hl]
+	and a
+	jr nz, .asm_923dc
+	ld [hl], FLY_INDIGO_PLATEAU + 1
+.asm_923dc
+	dec [hl]
+
+.asm_923dd
+	ld a, [DefaultFlypoint]
+	cp KANTO_FLYPOINT
+	jr c, .johto
+
+	call FillKantoMap
+	xor a
+	ld b, $9c
+	jr .asm_923f3
+
+.johto
+	call FillJohtoMap
+	ld a, $90
+	ld b, $98
+
+.asm_923f3
+	ld [hWY], a
+	ld a, b
+	ld [$ffd7], a
+	call TownMapBubble
+	call WaitBGMap
+	xor a
+	ld [hBGMapMode], a
+	ret
+; 92402
 
 
 INCLUDE "stats/wild/fish.asm"
@@ -84711,7 +84913,29 @@ Function927d3: ; 927d3 (24:67d3)
 	ret
 ; 927d4 (24:67d4)
 
-INCBIN "baserom.gbc",$927d4,$927f8 - $927d4
+Function927d4: ; 927d4
+	ld a, [$c6d0]
+	and a
+	ret nz
+	ld a, [$c6e0]
+	and a
+	ret nz
+	ld a, [$c70c]
+	and a
+	jr nz, .asm_927ea
+	ld a, $e4
+	call DmgToCgbBGPals
+	ret
+
+.asm_927ea
+	ld a, [TextDelayFrames]
+	and $7
+	ret nz
+	ld a, [rBGP]
+	xor %1100
+	call DmgToCgbBGPals
+	ret
+; 927f8
 
 ; known jump sources: 927c6 (24:67c6)
 Function927f8: ; 927f8 (24:67f8)
@@ -84726,7 +84950,43 @@ Function927f8: ; 927f8 (24:67f8)
 	ret
 ; 92811 (24:6811)
 
-INCBIN "baserom.gbc",$92811,$92844 - $92811
+Function92811: ; 92811
+	ld a, [$c709]
+	add 0
+	daa
+	ld e, a
+	and $f
+	add "0"
+	hlcoord 1, 0
+	ld [hl], a
+	ld a, e
+	swap a
+	and $f
+	add "0"
+	hlcoord 0, 0
+	ld [hl], a
+	ret
+; 9282c
+
+Function9282c: ; 9282c
+	ld hl, $cf66
+	ld a, [hl]
+	inc [hl]
+	and $7
+	ret nz
+	ld hl, $c442
+	ld c, $18
+.asm_92839
+	ld a, [hl]
+	xor $20
+	ld [hli], a
+	inc hl
+	inc hl
+	inc hl
+	dec c
+	jr nz, .asm_92839
+	ret
+; 92844
 
 ; known jump sources: 927b6 (24:67b6)
 Function92844: ; 92844 (24:6844)
@@ -84776,10 +85036,10 @@ Function92879: ; 92879 (24:6879)
 Function9287e: ; 9287e (24:687e)
 	call Function92879
 	xor a
-	ld [WeatherCount], a ; $c70b
-	ld [LoweredStat], a ; $c70c
+	ld [$c70b], a
+	ld [$c70c], a
 	ld a, $ff
-	ld [EffectFailed], a ; $c70d
+	ld [$c70d], a
 	ret
 
 ; no known jump sources
@@ -84796,15 +85056,15 @@ Function9288e: ; 9288e (24:688e)
 	ld a, $20
 	ld [$cf64], a
 	ld a, $4
-	ld [PlayerSDefLevel], a ; $c6d0
+	ld [$c6d0], a
 	ld [$c6e0], a
 	ld [$c6f0], a
 	ld a, $4
-	ld [EnemyAccLevel], a ; $c6d9
-	ld [CurEnemyMoveNum], a ; $c6e9
-	ld [LastPlayerCounterMove], a ; $c6f9
+	ld [$c6d9], a
+	ld [$c6e9], a
+	ld [$c6f9], a
 	call WaitSFX
-	ld a, $2c
+	ld a, SFX_SLOT_MACHINE_START
 	call Function9331e
 	ret
 
@@ -84826,21 +85086,21 @@ Function928c6: ; 928c6 (24:68c6)
 Function928d6: ; 928d6 (24:68d6)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	ret z
 	call Function92879
 	call Function92a2b
-	ld [PlayerSDefLevel], a ; $c6d0
+	ld [$c6d0], a
 
 ; no known jump sources
 Function928e6: ; 928e6 (24:68e6)
-	ld a, [PlayerSDefLevel] ; $c6d0
+	ld a, [$c6d0]
 	cp $0
 	ret nz
-	ld a, $ba
+	ld a, SFX_STOP_SLOT
 	call Function9331e
-	ld bc, PlayerSDefLevel ; $c6d0
-	ld de, EnemyScreens ; $c700
+	ld bc, $c6d0
+	ld de, $c700
 	call Function929f6
 	call Function92879
 	xor a
@@ -84850,7 +85110,7 @@ Function928e6: ; 928e6 (24:68e6)
 Function92900: ; 92900 (24:6900)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	ret z
 	call Function92879
 	call Function92a2e
@@ -84861,10 +85121,10 @@ Function92910: ; 92910 (24:6910)
 	ld a, [$c6e0]
 	cp $0
 	ret nz
-	ld a, $ba
+	ld a, SFX_STOP_SLOT
 	call Function9331e
 	ld bc, $c6e0
-	ld de, PlayerReflectCount ; $c703
+	ld de, $c703
 	call Function929f6
 	call Function92879
 	xor a
@@ -84874,7 +85134,7 @@ Function92910: ; 92910 (24:6910)
 Function9292a: ; 9292a (24:692a)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	ret z
 	call Function92879
 	call Function92a60
@@ -84885,10 +85145,10 @@ Function9293a: ; 9293a (24:693a)
 	ld a, [$c6f0]
 	cp $0
 	ret nz
-	ld a, $ba
+	ld a, SFX_STOP_SLOT
 	call Function9331e
 	ld bc, $c6f0
-	ld de, EnemyLightScreenCount ; $c706
+	ld de, $c706
 	call Function929f6
 	call Function92879
 	xor a
@@ -84897,7 +85157,7 @@ Function9293a: ; 9293a (24:693a)
 
 ; no known jump sources
 Function92955: ; 92955 (24:6955)
-	ld a, [EffectFailed] ; $c70d
+	ld a, [$c70d]
 	cp $ff
 	jr nz, .asm_92963
 	call Function92879
@@ -84931,8 +85191,8 @@ Function9296b: ; 9296b (24:696b)
 ; no known jump sources
 Function92987: ; 92987 (24:6987)
 	xor a
-	ld [WeatherCount], a ; $c70b
-	ld [LoweredStat], a ; $c70c
+	ld [$c70b], a
+	ld [$c70c], a
 	ld a, $e4
 	call DmgToCgbBGPals
 	call Function93124
@@ -84977,7 +85237,7 @@ Function929a4: ; 929a4 (24:69a4)
 	ld a, [$cf64]
 	and $7
 	ret z
-	ld de, $67
+	ld de, SFX_GET_COIN_FROM_SLOTS
 	call PlaySFX
 	ret
 .asm_929d5
@@ -85022,10 +85282,10 @@ Function929f6: ; 929f6 (24:69f6)
 ; known jump sources: 929bf (24:69bf)
 Function92a04: ; 92a04 (24:6a04)
 	ld a, d
-	cp $27
+	cp 9999 / $100
 	jr c, .asm_92a10
 	ld a, e
-	cp $f
+	cp 9999 % $100
 	jr c, .asm_92a10
 	scf
 	ret
@@ -85061,7 +85321,7 @@ Function92a2b: ; 92a2b (24:6a2b)
 
 ; known jump sources: 9290a (24:690a)
 Function92a2e: ; 92a2e (24:6a2e)
-	ld a, [Weather] ; $c70a
+	ld a, [$c70a]
 	cp $2
 	jr c, .asm_92a4e
 	ld a, [$c709]
@@ -85083,33 +85343,33 @@ Function92a2e: ; 92a2e (24:6a2e)
 
 ; known jump sources: 92a3f (24:6a3f)
 Function92a51: ; 92a51 (24:6a51)
-	ld a, [EnemyScreens] ; $c700
+	ld a, [$c700]
 	and a
 	ret z
 	ld a, [$c701]
 	and a
 	ret z
-	ld a, [PlayerLightScreenCount] ; $c702
+	ld a, [$c702]
 	and a
 	ret
 
 ; known jump sources: 92934 (24:6934)
 Function92a60: ; 92a60 (24:6a60)
-	ld a, [WeatherCount] ; $c70b
+	ld a, [$c70b]
 	and a
 	jr z, .asm_92a95
-	ld a, [LoweredStat] ; $c70c
+	ld a, [$c70c]
 	and a
 	jr z, .asm_92a95
 	ld a, [$c709]
 	and a
 	jr nz, .asm_92a84
 	call Random
-	cp $b4
+	cp 180
 	jr nc, .asm_92a95
-	cp $78
+	cp 120
 	jr nc, .asm_92a92
-	cp $3c
+	cp 60
 	jr nc, .asm_92a8f
 	ld a, $15
 	ret
@@ -85131,7 +85391,7 @@ Function92a60: ; 92a60 (24:6a60)
 
 ; known jump sources: 9276e (24:676e)
 Function92a98: ; 92a98 (24:6a98)
-	ld bc, PlayerSDefLevel ; $c6d0
+	ld bc, $c6d0
 	ld hl, $6
 	add hl, bc
 	ld de, $c440
@@ -85200,7 +85460,7 @@ Function92af9: ; 92af9 (24:6af9)
 
 ; known jump sources: 927b9 (24:67b9)
 Function92b0f: ; 92b0f (24:6b0f)
-	ld bc, PlayerSDefLevel ; $c6d0
+	ld bc, $c6d0
 	call Function92b22
 	ld bc, $c6e0
 	call Function92b22
@@ -85319,11 +85579,27 @@ Function92b83: ; 92b83 (24:6b83)
 	ret
 ; 92bbe (24:6bbe)
 
-INCBIN "baserom.gbc",$92bbe,$92bd4 - $92bbe
+Function92bbe: ; 92bbe
+	push hl
+	srl a
+	srl a
+	add Unknown_92bce % $100
+	ld l, a
+	ld a, 0
+	adc Unknown_92bce / $100
+	ld h, a
+	ld a, [hl]
+	pop hl
+	ret
+; 92bce
+
+Unknown_92bce: ; 92bce
+	db 0, 1, 2, 3, 4, 5
+; 92bd4
 
 ; known jump sources: 92b2b (24:6b2b)
 Function92bd4: ; 92bd4 (24:6bd4)
-	ld hl, $0
+	ld hl, 0
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -85523,14 +85799,14 @@ Function92ca9: ; 92ca9
 Function92cd2: ; 92cd2
 	call Function92e94
 	jr nc, .asm_92ce1
-	ld a, [LoweredStat]
+	ld a, [$c70c]
 	and a
 	jr z, .asm_92ce1
 	call Function92c3a
 	ret
 
 .asm_92ce1
-	ld a, $ba
+	ld a, SFX_STOP_SLOT
 	call Function9331e
 	ld hl, $0000
 	add hl, bc
@@ -85554,7 +85830,7 @@ Function92cf8: ; 92cf8
 	ret
 
 .asm_92d02
-	ld a, $28
+	ld a, SFX_THROW_BALL
 	call Function9331e
 	ld hl, $0000
 	add hl, bc
@@ -85568,7 +85844,7 @@ Function92cf8: ; 92cf8
 Function92d13: ; 92d13
 	call Function92e94
 	ret nc
-	ld a, [LoweredStat]
+	ld a, [$c70c]
 	and a
 	ret z
 	call Function92c3a
@@ -85578,7 +85854,7 @@ Function92d13: ; 92d13
 Function92d20: ; 92d20
 	call Function92f1d
 	ret c
-	ld a, $ba
+	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
 	ld hl, $0000
@@ -85639,7 +85915,7 @@ Function92d6e: ; 92d6e
 Function92d7e: ; 92d7e
 	call Function92f1d
 	ret c
-	ld a, $ba
+	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
 	ld hl, $0000
@@ -85717,7 +85993,7 @@ Function92dca: ; 92dca
 Function92df7: ; 92df7
 	call Function92f1d
 	ret c
-	ld a, $ba
+	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
 	ld hl, $0000
@@ -85772,7 +86048,7 @@ Function92e31: ; 92e31
 Function92e47: ; 92e47
 	call Function92f1d
 	ret c
-	ld a, $ba
+	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
 	ld hl, $0005
@@ -85793,7 +86069,7 @@ Function92e64: ; 92e64
 	jr z, .asm_92e73
 	dec [hl]
 .asm_92e6d
-	ld a, $c
+	ld a, SFX_GOT_SAFARI_BALLS
 	call Function9331e
 	ret
 
@@ -85819,11 +86095,11 @@ Function92e64: ; 92e64
 
 Function92e94: ; 92e94
 	xor a
-	ld [WeatherCount], a
-	ld [LoweredStat], a
+	ld [$c70b], a
+	ld [$c70c], a
 	call Function92a12
 	call Function92fb4
-	ld a, [Weather]
+	ld a, [$c70a]
 	and 3
 	ld e, a
 	ld d, 0
@@ -85838,7 +86114,7 @@ Function92e94: ; 92e94
 	jp [hl]
 
 .asm_92eb6
-	ld a, [WeatherCount]
+	ld a, [$c70b]
 	and a
 	ret z
 	scf
@@ -85868,7 +86144,7 @@ Function92ed4: ; 92ed4
 ; 92ed5
 
 Function92ed5: ; 92ed5
-	ld hl, FailedMessage
+	ld hl, $c70e
 	ld a, [EnemyScreens]
 	cp [hl]
 	call z, Function92f0c
@@ -85877,7 +86153,7 @@ Function92ed5: ; 92ed5
 
 Function92ee0: ; 92ee0
 	ld hl, $c70f
-	ld a, [EnemyScreens]
+	ld a, [$c700]
 	cp [hl]
 	call z, Function92f0c
 	ret
@@ -85893,7 +86169,7 @@ Function92eeb: ; 92eeb
 
 Function92ef6: ; 92ef6
 	ld hl, $c70f
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	cp [hl]
 	call z, Function92f0c
 	ret
@@ -85901,7 +86177,7 @@ Function92ef6: ; 92ef6
 
 Function92f01: ; 92f01
 	ld hl, $c710
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	cp [hl]
 	call z, Function92f0c
 	ret
@@ -85912,11 +86188,11 @@ Function92f0c: ; 92f0c
 	and a
 	jr nz, .asm_92f17
 	ld a, $1
-	ld [LoweredStat], a
+	ld [$c70c], a
 
 .asm_92f17
 	ld a, $1
-	ld [WeatherCount], a
+	ld [$c70b], a
 	ret
 ; 92f1d
 
@@ -85925,7 +86201,7 @@ Function92f1d: ; 92f1d
 	ld [EffectFailed], a
 	call Function92a12
 	call Function92fb4
-	ld a, [Weather]
+	ld a, [$c70a]
 	and 3
 	ld e, a
 	ld d, 0
@@ -85940,7 +86216,7 @@ Function92f1d: ; 92f1d
 	jp [hl]
 
 .asm_92f3d
-	ld a, [EffectFailed]
+	ld a, [$c70d]
 	cp $ff
 	jr nz, .asm_92f46
 	and a
@@ -85974,11 +86250,11 @@ Function92f5f: ; 92f5f
 ; 92f60
 
 Function92f60: ; 92f60
-	ld hl, FailedMessage
-	ld a, [EnemyScreens]
+	ld hl, $c70e
+	ld a, [$c700]
 	cp [hl]
 	ret nz
-	ld hl, PlayerReflectCount
+	ld hl, $c703
 	cp [hl]
 	call z, Function92fb0
 	ret
@@ -85986,7 +86262,7 @@ Function92f60: ; 92f60
 
 Function92f70: ; 92f70
 	ld hl, $c710
-	ld a, [EnemyScreens]
+	ld a, [$c700]
 	cp [hl]
 	ret nz
 	ld hl, $c704
@@ -86007,8 +86283,8 @@ Function92f80: ; 92f80
 ; 92f90
 
 Function92f90: ; 92f90
-	ld hl, FailedMessage
-	ld a, [PlayerLightScreenCount]
+	ld hl, $c70e
+	ld a, [$c702]
 	cp [hl]
 	ret nz
 	ld hl, $c704
@@ -86019,7 +86295,7 @@ Function92f90: ; 92f90
 
 Function92fa0: ; 92fa0
 	ld hl, $c710
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	cp [hl]
 	ret nz
 	ld hl, $c705
@@ -86029,12 +86305,12 @@ Function92fa0: ; 92fa0
 ; 92fb0
 
 Function92fb0: ; 92fb0
-	ld [EffectFailed], a
+	ld [$c70d], a
 	ret
 ; 92fb4
 
 Function92fb4: ; 92fb4
-	ld de, FailedMessage
+	ld de, $c70e
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -86124,17 +86400,29 @@ Function93002: ; 93002 (24:7002)
 ; 93023 (24:7023)
 
 Unknown_93023: ; 93023
-INCBIN "baserom.gbc", $93023, $93031 - $93023
+	db $01, $00
+	db $03, $04
+	db $0a, $14
+	db $14, $10
+	db $28, $0c
+	db $30, $08
+	db $ff, $ff
 ; 93031
 
 Unknown_93031: ; 93031
-INCBIN "baserom.gbc", $93031, $9303f - $93031
+	db $02, $00
+	db $03, $04
+	db $08, $14
+	db $10, $10
+	db $1e, $0c
+	db $50, $08
+	db $ff, $ff
 ; 9303f
 
 ; known jump sources: 9289c (24:689c)
 Function9303f: ; 9303f (24:703f)
 	ld b, $14
-	ld a, [Weather] ; $c70a
+	ld a, [$c70a]
 	dec a
 	jr z, asm_93066
 	dec a
@@ -86186,7 +86474,7 @@ Function9307c: ; 9307c (24:707c)
 	ld b, a
 	ld a, $4
 	sub b
-	ld [Weather], a ; $c70a
+	ld [$c70a], a ; $c70a
 	ld hl, Coins ; $d855
 	ld c, a
 	ld a, [hli]
@@ -86207,7 +86495,7 @@ Function9307c: ; 9307c (24:707c)
 	dec [hl]
 .asm_930b6
 	call WaitSFX
-	ld de, $68
+	ld de, SFX_PAY_DAY
 	call PlaySFX
 	ld hl, UnknownText_0x930cc
 	call PrintText
@@ -86512,7 +86800,7 @@ Function93259: ; 93259 (24:7259)
 	ld [hl], $2
 	ld a, $1
 	ld [$cf64], a
-	ld a, $1e
+	ld a, SFX_PLACE_PUZZLE_PIECE_DOWN
 	call Function9331e
 	ret
 
@@ -116622,6 +116910,7 @@ Function1dc26a: ; 1dc26a
 	ret
 ; 1dc275
 
+GBPrinterStrings:
 String_1dc275: db "@"
 String_1dc276: next " CHECKING LINK...@"
 String_1dc289: next "  TRANSMITTING...@"
