@@ -231,7 +231,7 @@ Functionc80fb: ; c80fb (32:40fb)
 
 ; no known jump sources
 Functionc812d: ; c812d (32:412d)
-	ld de, $413d
+	ld de, Unknown_c813d
 	call Functionc8d57
 	jr c, .asm_c8139
 	ld [$cfc7], a
@@ -241,11 +241,13 @@ Functionc812d: ; c812d (32:412d)
 	ret
 ; c813d (32:413d)
 
-INCBIN "baserom.gbc",$c813d,$c8141 - $c813d
+Unknown_c813d:
+	db $e4, $e0, $d0, $ff
+; c8141
 
 ; no known jump sources
 Functionc8141: ; c8141 (32:4141)
-	ld de, $4151
+	ld de, Unknown_c8151
 	call Functionc8d57
 	jr c, .asm_c814d
 	ld [$cfc7], a
@@ -255,11 +257,13 @@ Functionc8141: ; c8141 (32:4141)
 	ret
 ; c8151 (32:4151)
 
-INCBIN "baserom.gbc",$c8151,$c8155 - $c8151
+Unknown_c8151:
+	db $e4, $f4, $f8, $ff
+; c8155
 
 ; no known jump sources
 Functionc8155: ; c8155 (32:4155)
-	ld de, $4168
+	ld de, Unknown_c8168
 	call Functionc8d57
 	jr c, .asm_c8164
 	ld [$cfc7], a
@@ -270,49 +274,65 @@ Functionc8155: ; c8155 (32:4155)
 	ret
 ; c8168 (32:4168)
 
-INCBIN "baserom.gbc",$c8168,$c8171 - $c8168
+Unknown_c8168:
+	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
+; c8171
 
 ; no known jump sources
 Functionc8171: ; c8171 (32:4171)
 	call Functionc9059
 	jr nz, .asm_c817b
-	ld de, $4185
+	ld de, Unknown_c8185
 	jr .asm_c817e
 .asm_c817b
-	ld de, $4188
+	ld de, Unknown_c8188
 .asm_c817e
 	call Functionc8d57
 	ld [$cfc8], a
 	ret
 ; c8185 (32:4185)
 
-INCBIN "baserom.gbc",$c8185,$c818b - $c8185
+Unknown_c8185:
+	db $e4, $90, $fe
+; c8188
+
+Unknown_c8188:
+	db $f0, $c0, $fe
+; c818b
 
 ; no known jump sources
 Functionc818b: ; c818b (32:418b)
 	call Functionc9059
 	jr nz, .asm_c8195
-	ld de, $419f
+	ld de, Unknown_c819f
 	jr .asm_c8198
 .asm_c8195
-	ld de, $41a2
+	ld de, Unknown_c81a2
 .asm_c8198
 	call Functionc8d57
 	ld [$cfc8], a
 	ret
 ; c819f (32:419f)
 
-INCBIN "baserom.gbc",$c819f,$c81a5 - $c819f
+Unknown_c819f:
+	db $e4, $d8, $fe
+; c81a2
+
+Unknown_c81a2:
+	db $f0, $cc, $fe
+; c81a5
 
 ; no known jump sources
 Functionc81a5: ; c81a5 (32:41a5)
-	ld de, $41af
+	ld de, Unknown_c81af
 	call Functionc8d57
 	ld [$cfc7], a
 	ret
 ; c81af (32:41af)
 
-INCBIN "baserom.gbc",$c81af,$c81b3 - $c81af
+Unknown_c81af:
+	db $1b, $63, $87, $fe
+; c81b3
 
 ; no known jump sources
 Functionc81b3: ; c81b3 (32:41b3)
@@ -364,10 +384,10 @@ Functionc81ea: ; c81ea (32:41ea)
 .asm_c81f3
 	call Functionc9038
 	jr nz, .asm_c81fd
-	ld de, $4210
+	ld de, Unknown_c8210
 	jr .asm_c8200
 .asm_c81fd
-	ld de, $420c
+	ld de, Unknown_c820c
 .asm_c8200
 	ld a, e
 	ld [$d41a], a
@@ -377,7 +397,15 @@ Functionc81ea: ; c81ea (32:41ea)
 	ret
 ; c820c (32:420c)
 
-INCBIN "baserom.gbc",$c820c,$c8214 - $c820c
+Unknown_c820c:
+	db $00, $31, $00
+	db $ff
+; c8210
+
+Unknown_c8210:
+	db $03, $00, $03
+	db $ff
+; c8214
 
 ; no known jump sources
 Functionc8214: ; c8214 (32:4214)
@@ -634,10 +662,10 @@ Functionc8365: ; c8365 (32:4365)
 Functionc837b: ; c837b (32:437b)
 	call Functionc9038
 	jr nz, .asm_c8385
-	ld de, $439e
+	ld de, Unknown_c839e
 	jr .asm_c8388
 .asm_c8385
-	ld de, $4394
+	ld de, Unknown_c8394
 .asm_c8388
 	ld a, e
 	ld [$d41a], a
@@ -647,16 +675,28 @@ Functionc837b: ; c837b (32:437b)
 	ret
 ; c8394 (32:4394)
 
-INCBIN "baserom.gbc",$c8394,$c83a8 - $c8394
+Unknown_c8394:
+	db $02, $31, $02
+	db $01, $31, $01
+	db $00, $31, $00
+	db $ff
+; c839e
+
+Unknown_c839e:
+	db $05, $00, $05
+	db $04, $00, $04
+	db $03, $00, $03
+	db $ff
+; c83a8
 
 ; no known jump sources
 Functionc83a8: ; c83a8 (32:43a8)
 	call Functionc9038
 	jr nz, .asm_c83b2
-	ld de, $43d7
+	ld de, Unknown_c83d7
 	jr .asm_c83b5
 .asm_c83b2
-	ld de, $43c1
+	ld de, Unknown_c83c1
 .asm_c83b5
 	ld a, e
 	ld [$d41a], a
@@ -666,7 +706,27 @@ Functionc83a8: ; c83a8 (32:43a8)
 	ret
 ; c83c1 (32:43c1)
 
-INCBIN "baserom.gbc",$c83c1,$c83ed - $c83c1
+Unknown_c83c1:
+	db $00, $31, $00
+	db $fe, $66, $00
+	db $01, $31, $01
+	db $fe, $44, $01
+	db $02, $31, $02
+	db $fe, $22, $02
+	db $fd, $00, $00
+	db $ff
+; c83d7
+
+Unknown_c83d7:
+	db $03, $00, $03
+	db $fe, $77, $03
+	db $04, $00, $04
+	db $fe, $55, $04
+	db $05, $00, $05
+	db $fe, $33, $05
+	db $fd, $00, $00
+	db $ff
+; c83ed
 
 ; known jump sources: c8208 (32:4208), c8390 (32:4390), c83bd (32:43bd)
 Functionc83ed: ; c83ed (32:43ed)
@@ -741,8 +801,8 @@ Functionc843b: ; c843b (32:443b)
 	and $f
 	ld b, a
 	ld e, [hl]
-	ld d, $0
-	ld hl, $449c
+	ld d, 0
+	ld hl, Unknown_c849c
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -757,8 +817,8 @@ Functionc8458: ; c8458 (32:4458)
 	push bc
 	push hl
 	ld e, [hl]
-	ld d, $0
-	ld hl, $44a8
+	ld d, 0
+	ld hl, Unknown_c84a8
 	add hl, de
 	add hl, de
 	add hl, de
@@ -779,8 +839,8 @@ Functionc8458: ; c8458 (32:4458)
 	ld [$d419], a
 	push de
 	ld e, [hl]
-	ld d, $0
-	ld hl, $449c
+	ld d, 0
+	ld hl, Unknown_c849c
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -809,7 +869,68 @@ Functionc8458: ; c8458 (32:4458)
 	ret
 ; c849c (32:449c)
 
-INCBIN "baserom.gbc",$c849c,$c8545 - $c849c
+Unknown_c849c: ; c849c
+	dw $c51a ; ( 2,  6)
+	dw $c543 ; ( 3,  8)
+	dw $c56c ; ( 4, 10)
+	dw $c4ac ; (12,  0)
+	dw $c4d5 ; (13,  2)
+	dw $c4fe ; (14,  4)
+; c84a8
+
+Unknown_c84a8: ; c84a8
+	dbw $66, Unknown_c84ba
+	dbw $44, Unknown_c84de
+	dbw $22, Unknown_c84ee
+	dbw $77, Unknown_c84f2
+	dbw $55, Unknown_c8523
+	dbw $33, Unknown_c853c
+; c84ba
+
+Unknown_c84ba: ; c84ba
+	db $00, $06, $0c, $12, $18, $1e
+	db $01, $07, $0d, $13, $19, $1f
+	db $02, $08, $0e, $14, $1a, $20
+	db $03, $09, $0f, $15, $1b, $21
+	db $04, $0a, $10, $16, $1c, $22
+	db $05, $0b, $11, $17, $1d, $23
+; c84de
+
+Unknown_c84de: ; c84de
+	db $00, $0c, $12, $1e
+	db $02, $0e, $14, $20
+	db $03, $0f, $15, $21
+	db $05, $11, $17, $23
+; c84ee
+
+Unknown_c84ee: ; c84ee
+	db $00, $1e
+	db $05, $23
+; c84f2
+
+Unknown_c84f2: ; c84f2
+	db $00, $07, $0e, $15, $1c, $23, $2a
+	db $01, $08, $0f, $16, $1d, $24, $2b
+	db $02, $09, $10, $17, $1e, $25, $2c
+	db $03, $0a, $11, $18, $1f, $26, $2d
+	db $04, $0b, $12, $19, $20, $27, $2e
+	db $05, $0c, $13, $1a, $21, $28, $2f
+	db $06, $0d, $14, $1b, $22, $29, $30
+; c8523
+
+Unknown_c8523: ; c8523
+	db $00, $07, $15, $23, $2a
+	db $01, $08, $16, $24, $2b
+	db $03, $0a, $18, $26, $2d
+	db $05, $0c, $1a, $28, $2f
+	db $06, $0d, $1b, $29, $30
+; c853c
+
+Unknown_c853c: ; c853c
+	db $00, $15, $2a
+	db $03, $18, $2d
+	db $06, $1b, $30
+; c8545
 
 ; no known jump sources
 Functionc8545: ; c8545 (32:4545)
@@ -1505,7 +1626,7 @@ Functionc88a5: ; c88a5 (32:48a5)
 	or a
 	jr nz, .asm_c88b3
 	ld a, [FXAnimIDLo] ; $cfc2
-	cp $cd
+	cp ROLLOUT
 	jr z, .asm_c88b7
 .asm_c88b3
 	pop af
@@ -1516,7 +1637,7 @@ Functionc88a5: ; c88a5 (32:48a5)
 	ld a, [$FF00+$c8]
 	sub d
 	ld d, a
-	ld h, $d2
+	ld h, LYOverridesBackup / $100
 	ld a, [hSCY] ; $ff00+$d0
 	or a
 	jr nz, .asm_c88d0
@@ -1925,15 +2046,17 @@ Functionc8ab0: ; c8ab0 (32:4ab0)
 	srl a
 	srl a
 	ld e, a
-	ld d, $0
-	ld hl, $4ac7
+	ld d, 0
+	ld hl, Unknown_c8ac7
 	add hl, de
 	ld a, [hl]
 	cp $ff
 	ret
 ; c8ac7 (32:4ac7)
 
-INCBIN "baserom.gbc",$c8ac7,$c8acc - $c8ac7
+Unknown_c8ac7:
+	db $00, $40, $90, $e4, $ff
+; c8acc
 
 ; no known jump sources
 Functionc8acc: ; c8acc (32:4acc)
@@ -2022,7 +2145,7 @@ Functionc8b22: ; c8b22 (32:4b22)
 	push bc
 	call Functionc9038
 	jr nz, .asm_c8b4d
-	ld hl, $4bd8
+	ld hl, Unknown_c8bd8
 	add hl, de
 	ld a, [hli]
 	ld [$cfc9], a
@@ -2031,7 +2154,7 @@ Functionc8b22: ; c8b22 (32:4b22)
 	ld bc, $2f30
 	jr .asm_c8b5b
 .asm_c8b4d
-	ld hl, $4be0
+	ld hl, Unknown_c8be0
 	add hl, de
 	ld d, [hl]
 	inc hl
@@ -2067,93 +2190,185 @@ Functionc8b6c: ; c8b6c (32:4b6c)
 	jr nz, .asm_c8b74
 	ret
 asm_c8b7a: ; c8b7a (32:4b7a)
-	ld de, $4b81
+	ld de, Jumptable_c8b81
 	call Functionc80ca
 	jp [hl]
 ; c8b81 (32:4b81)
 
-INCBIN "baserom.gbc",$c8b81,$c8be8 - $c8b81
+Jumptable_c8b81: ; c8b81
+	dw Functionc8b87
+	dw Functionc8b91
+	dw Functionc8bca
+; c8b87
+
+Functionc8b87: ; c8b87
+	call Functionc80e5
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $0
+	ret
+; c8b91
+
+Functionc8b91: ; c8b91
+	ld hl, $0003
+	add hl, bc
+	ld a, [hl]
+	inc [hl]
+	ld e, a
+	and $7
+	ret nz
+	ld a, e
+	and $18
+	sla a
+	swap a
+	sla a
+	ld e, a
+	ld d, 0
+	call Functionc9038
+	jr nz, .asm_c8bbb
+	ld hl, Unknown_c8bd8
+	add hl, de
+	ld a, [hli]
+	push hl
+	call Functionc8e7f
+	pop hl
+	ld a, [hl]
+	call Functionc8e52
+	ret
+
+.asm_c8bbb
+	ld hl, Unknown_c8bd8
+	add hl, de
+	ld a, [hli]
+	push hl
+	call Functionc8e52
+	pop hl
+	ld a, [hl]
+	call Functionc8e7f
+	ret
+; c8bca
+
+Functionc8bca: ; c8bca
+	ld a, $e4
+	call Functionc8e52
+	ld a, $e4
+	call Functionc8e7f
+	call EndBattleBGEffect
+	ret
+; c8bd8
+
+Unknown_c8bd8: ; c8bd8
+	db $e4, $e4
+	db $f8, $90
+	db $fc, $40
+	db $f8, $90
+; c8be0
+
+Unknown_c8be0: ; c8be0
+	db $e4, $e4
+	db $90, $f8
+	db $40, $fc
+	db $90, $f8
+; c8be8
 
 ; no known jump sources
 Functionc8be8: ; c8be8 (32:4be8)
-	ld de, $4bef
+	ld de, Unknown_c8bef
 	call Functionc8d77
 	ret
 ; c8bef (32:4bef)
 
-INCBIN "baserom.gbc",$c8bef,$c8bf2 - $c8bef
+Unknown_c8bef: ; c8bef
+	db $e4, $6c, $fe
+; c8bf2
 
 ; no known jump sources
 Functionc8bf2: ; c8bf2 (32:4bf2)
-	ld de, $4bf9
+	ld de, Unknown_c8bf9
 	call Functionc8d77
 	ret
 ; c8bf9 (32:4bf9)
 
-INCBIN "baserom.gbc",$c8bf9,$c8bfd - $c8bf9
+Unknown_c8bf9: ; c8bf9
+	db $e4, $90, $40, $ff
+; c8bfd
 
 ; no known jump sources
 Functionc8bfd: ; c8bfd (32:4bfd)
-	ld de, $4c04
+	ld de, Unknown_c8c04
 	call Functionc8d77
 	ret
 ; c8c04 (32:4c04)
 
-INCBIN "baserom.gbc",$c8c04,$c8c08 - $c8c04
+Unknown_c8c04: ; c8c04
+	db $e4, $f8, $fc, $ff
+; c8c08
 
 ; no known jump sources
 Functionc8c08: ; c8c08 (32:4c08)
-	ld de, $4c0f
+	ld de, Unknown_c8c0f
 	call Functionc8d77
 	ret
 ; c8c0f (32:4c0f)
 
-INCBIN "baserom.gbc",$c8c0f,$c8c14 - $c8c0f
+Unknown_c8c0f: ; c8c0f
+	db $e4, $90, $40, $90, $fe
+; c8c14
 
 ; no known jump sources
 Functionc8c14: ; c8c14 (32:4c14)
-	ld de, $4c1b
+	ld de, Unknown_c8c1b
 	call Functionc8d77
 	ret
 ; c8c1b (32:4c1b)
 
-INCBIN "baserom.gbc",$c8c1b,$c8c20 - $c8c1b
+Unknown_c8c1b: ; c8c1b
+	db $e4, $f8, $fc, $f8, $fe
+; c8c20
 
 ; no known jump sources
 Functionc8c20: ; c8c20 (32:4c20)
-	ld de, $4c27
+	ld de, Unknown_c8c27
 	call Functionc8d77
 	ret
 ; c8c27 (32:4c27)
 
-INCBIN "baserom.gbc",$c8c27,$c8c30 - $c8c27
+Unknown_c8c27: ; c8c27
+	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
+; c8c30
 
 ; no known jump sources
 Functionc8c30: ; c8c30 (32:4c30)
-	ld de, $4c37
+	ld de, Unknown_c8c37
 	call Functionc8d77
 	ret
 ; c8c37 (32:4c37)
 
-INCBIN "baserom.gbc",$c8c37,$c8c3c - $c8c37
+Unknown_c8c37:
+	db $e4, $fc, $e4, $00, $fe
+; c8c3c
 
 ; no known jump sources
 Functionc8c3c: ; c8c3c (32:4c3c)
-	ld de, $4c43
+	ld de, Unknown_c8c43
 	call Functionc8d77
 	ret
 ; c8c43 (32:4c43)
 
-INCBIN "baserom.gbc",$c8c43,$c8c55 - $c8c43
+Unknown_c8c43:
+	db $e4, $90, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $90, $e4, $ff
+; c8c55
 
 ; no known jump sources
 Functionc8c55: ; c8c55 (32:4c55)
-	ld de, $4c5c
+	ld de, Unknown_c8c5c
 	call Functionc8d77
 	ret
 ; c8c5c (32:4c5c)
 
-INCBIN "baserom.gbc",$c8c5c,$c8c61 - $c8c5c
+Unknown_c8c5c:
+	db $00, $40, $90, $e4, $ff
+; c8c61
 
 ; no known jump sources
 Functionc8c61: ; c8c61 (32:4c61)
@@ -2578,7 +2793,7 @@ Functionc8e7f: ; c8e7f (32:4e7f)
 	ld c, $1
 	call CopyPals
 	ld hl, OBPals ; $d0c0
-	ld de, MartPointer ; $d040 (aliases: Unkn2Pals)
+	ld de, Unkn2Pals ; $d040
 	pop af
 	ld b, a
 	ld c, $1
@@ -2624,13 +2839,13 @@ Functionc8eca: ; c8eca (32:4eca)
 
 ; known jump sources: c8a4e (32:4a4e), c8b13 (32:4b13), c8d90 (32:4d90)
 Functionc8ecb: ; c8ecb (32:4ecb)
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, LYOverrides ; $d100
 	ld e, $99
 .asm_c8ed0
 	ld [hli], a
 	dec e
 	jr nz, .asm_c8ed0
-	ld hl, $d200
+	ld hl, LYOverridesBackup
 	ld e, $91
 .asm_c8ed9
 	ld [hli], a
@@ -2907,11 +3122,11 @@ Functionc9042: ; c9042 (32:5042)
 	xor [hl]
 	jr nz, .asm_c9053
 	ld a, [EnemySubStatus3] ; $c66f
-	and $60
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 .asm_c9053
 	ld a, [PlayerSubStatus3] ; $c66a
-	and $60
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 
 ; known jump sources: c8171 (32:4171), c818b (32:418b)
