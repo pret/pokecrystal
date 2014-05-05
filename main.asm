@@ -7722,11 +7722,7 @@ Function84ef: ; 84ef
 SineWave: ; 850b
 ; A $20-word table representing a sine wave.
 ; 90 degrees is index $10 at a base amplitude of $100.
-x	set 0
-	rept $20
-	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-x	set x + $100 * $40000
-	endr
+	sine_wave $100
 ; 854b
 
 
@@ -52516,12 +52512,7 @@ Function49b52: ; 49b52 (12:5b52)
 ; 49b6e (12:5b6e)
 
 Unknown_49b6e: ; 49b6e
-; Yet another sine wave.
-x	set 0
-	rept $20
-	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-x	set x + $100 * $40000
-	endr
+	sine_wave $100
 ; 49bae
 
 Function49bae: ; 49bae
@@ -75538,12 +75529,7 @@ Function8c70c: ; 8c70c (23:470c)
 ; 8c728 (23:4728)
 
 Unknown_8c728: ; 8c728
-; Another sine wave?
-x	set 0
-	rept $20
-	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-x	set x + $100 * $40000
-	endr
+	sine_wave $100
 ; 8c768
 
 ; no known jump sources
@@ -79367,12 +79353,7 @@ Function8e741: ; 8e741
 ; 8e75d
 
 Unknown_8e75d: ; 8e75d
-; A sine wave.
-x	set 0
-	rept $20
-	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-x	set x + $100 * $40000
-	endr
+	sine_wave $100
 
 
 Function8e79d: ; 8e79d
