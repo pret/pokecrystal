@@ -22,9 +22,7 @@ AIScoring_RedStatus: ; 38591
 	push hl
 	push de
 	push bc
-	ld a, $b
-	ld hl, $441a
-	rst FarCall
+	callba Function2c41a
 	pop bc
 	pop de
 	pop hl
@@ -494,9 +492,8 @@ AIScoring_LockOn: ; 3881d
 	ld [hBattleTurn], a
 	push hl
 	push bc
-	ld a, $d
-	ld hl, $47c8
-	rst FarCall
+
+	callba Function347c8
 
 	ld a, [$d265]
 	cp $a
@@ -1105,7 +1102,7 @@ AIScoring_SpDefenseUp2: ; 38aed
 
 AIScoring_Fly: ; 38b12
 	ld a, [PlayerSubStatus3]
-	and 1<<SUBSTATUS_FLYING | 1<<SUBSTATUS_UNDERGROUND
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
 	call AICompareSpeed
 	ret nc
@@ -1244,9 +1241,7 @@ AIScoring_Mimic: ; 38ba8
 
 	ld a, $1
 	ld [hBattleTurn], a
-	ld hl, $47c8
-	ld a, $d
-	rst FarCall
+	callab Function347c8
 
 	ld a, [$d265]
 	cp $a
@@ -1444,7 +1439,7 @@ AIScoring_PainSplit: ; 38ca4
 	ld c, [hl]
 	sla c
 	rl b
-	ld hl, $c63d
+	ld hl, BattleMonHP + 1
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -1622,30 +1617,21 @@ AIScoring_PriorityHit: ; 38d5a
 
 	ret c
 	ld a, [PlayerSubStatus3]
-	and $60
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	jp nz, AIDiscourageMove
 
 	ld a, $1
 	ld [hBattleTurn], a
 	push hl
-	ld hl, $53f6
-	ld a, $d
-	rst FarCall
-
-	ld hl, $5612
-	ld a, $d
-	rst FarCall
-
-	ld hl, $46d2
-	ld a, $d
-	rst FarCall
-
+	callab EnemyAttackDamage
+	callab BattleCommand62
+	callab BattleCommand07
 	pop hl
-	ld a, [$d257]
+	ld a, [CurDamage + 1]
 	ld c, a
 	ld a, [CurDamage]
 	ld b, a
-	ld a, [$c63d]
+	ld a, [BattleMonHP + 1]
 	cp c
 	ld a, [BattleMonHP]
 	sbc b
@@ -1683,9 +1669,7 @@ AIScoring_Conversion2: ; 38d98
 	xor a
 	ld [hBattleTurn], a
 
-	ld hl, $47c8
-	ld a, $d
-	rst FarCall
+	callab Function347c8
 
 	ld a, [$d265]
 	cp $a
@@ -2296,9 +2280,7 @@ AIScoring_HiddenPower: ; 3909e
 	push hl
 	ld a, 1
 	ld [hBattleTurn], a
-	ld hl, $7ced
-	ld a, $3e
-	rst FarCall
+	callab HiddenPowerDamage
 	callab Function347c8
 	pop hl
 
@@ -2604,7 +2586,7 @@ AIScoring_FutureSight: ; 391f3
 	ret nc
 
 	ld a, [PlayerSubStatus3]
-	and 1<<SUBSTATUS_FLYING | 1<<SUBSTATUS_UNDERGROUND
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
 
 	dec [hl]

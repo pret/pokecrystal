@@ -50,26 +50,35 @@ BattleRandom:: ; 2f9f
 ; 2fb1
 
 
-Function2fb1:: ; 2fb1
+RandomRange:: ; 2fb1
+; Return a random number between 0 and a (non-inclusive).
+
 	push bc
 	ld c, a
+
+	; b = $100 % c
 	xor a
 	sub c
-.asm_2fb5
+.mod
 	sub c
-	jr nc, .asm_2fb5
+	jr nc, .mod
 	add c
 	ld b, a
+
+	; Get a random number
+	; from 0 to $ff - b.
 	push bc
-.asm_2fbb
+.loop
 	call Random
 	ld a, [hRandomAdd]
 	ld c, a
 	add b
-	jr c, .asm_2fbb
+	jr c, .loop
 	ld a, c
 	pop bc
+
 	call SimpleDivide
+
 	pop bc
 	ret
 ; 2fcb

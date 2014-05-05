@@ -1888,6 +1888,7 @@ wCurBox:: ; db72
 	ds 2
 
 ; 8 chars + $50
+wBoxNames::
 Box1Name:: ; db75
 	ds 9
 Box2Name:: ; db7e
