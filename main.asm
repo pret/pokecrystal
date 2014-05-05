@@ -8296,7 +8296,7 @@ Functionc3ae: ; c3ae
 	ld a, [hli]
 	or [hl]
 	jr z, .asm_c3c4
-	ld a, $36
+	ld a, COIN_CASE
 	ld [CurItem], a
 	ld hl, NumItems
 	call CheckItem
@@ -86487,7 +86487,7 @@ Function9307c: ; 9307c (24:707c)
 	call PrintText
 	jr Function9307c
 .asm_930ad
-	ld hl, $d856
+	ld hl, Coins + 1
 	ld a, [hl]
 	sub c
 	ld [hld], a
@@ -91517,7 +91517,18 @@ Functione0078: ; e0078
 ; e008b
 
 Unknown_e008b: ; e008b
-INCBIN "baserom.gbc",$e008b,$e00ed - $e008b
+	dw $caa0, $ca30, $c9c0, $c950, $c8e0, $c870, $c800
+	dw $cab0, $ca40, $c9d0, $c960, $c8f0, $c880, $c810
+	dw $cac0, $ca50, $c9e0, $c970, $c900, $c890, $c820
+	dw $cad0, $ca60, $c9f0, $c980, $c910, $c8a0, $c830
+	dw $cae0, $ca70, $ca00, $c990, $c920, $c8b0, $c840
+	dw $caf0, $ca80, $ca10, $c9a0, $c930, $c8c0, $c850
+	dw $cb00, $ca90, $ca20, $c9b0, $c940, $c8d0, $c860
+; e00ed
+
+Unknown_e00ed:
+; Graphics for an unused Game Corner
+; game were meant to be here.
 
 ; no known jump sources
 Functione00ed: ; e00ed (38:40ed)
@@ -91530,26 +91541,26 @@ Functione00ee: ; e00ee (38:40ee)
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
-	ld de, $0
+	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	call DisableLCD
 	call Functione51
 	call Functione5f
-	ld hl, $4d16
+	ld hl, LZ_e0d16
 	ld de, $9000
 	call Decompress
-	ld hl, $4ea8
+	ld hl, LZ_e0ea8
 	ld de, $93e0
 	call Decompress
-	ld hl, $4cdb
+	ld hl, LZ_e0cdb
 	ld de, $8000
 	call Decompress
-	ld hl, $4cf6
+	ld hl, Unknown_e0cf6
 	ld de, $8ef0
 	ld bc, $10
 	call CopyBytes
-	ld hl, $4d06
+	ld hl, Unknown_e0d06
 	ld de, $8f50
 	ld bc, $10
 	call CopyBytes
@@ -91661,7 +91672,7 @@ Functione01d2: ; e01d2
 	ld a, h
 	ld [Coins], a
 	ld a, l
-	ld [$d856], a
+	ld [Coins + 1], a
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	xor a
@@ -91930,26 +91941,33 @@ Functione03ac: ; e03ac
 Functione03c1: ; e03c1
 	xor a
 	ld [hBGMapMode], a
-	ld de, $43ce
-	ld bc, $0605
+	ld de, Unknown_e03ce
+	lb bc, 6, 5
 	call Functione04f7
 	ret
 ; e03ce
 
-INCBIN "baserom.gbc", $e03ce, $e03ec - $e03ce
+Unknown_e03ce: ; e03ce
+	db $08, $09, $09, $09, $0a
+	db $0b, $28, $2b, $28, $0c
+	db $0b, $2c, $2d, $2e, $0c
+	db $0b, $2f, $30, $31, $0c
+	db $0b, $32, $33, $34, $0c
+	db $0d, $0e, $0e, $0e, $0f
+; e03ec
 
 Functione03ec: ; e03ec
 	xor a
 	ld [hBGMapMode], a
 	push hl
 	push hl
-	ld de, $443b
-	ld bc, $0605
+	ld de, Unknown_e043b
+	lb bc, 6, 5
 	call Functione04f7
 	ld a, [CurEnemyMoveNum]
 	ld e, a
-	ld d, $0
-	ld hl, $4459
+	ld d, 0
+	ld hl, Unknown_e0459
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -91983,14 +92001,30 @@ Functione03ec: ; e03ec
 	ld de, $0939
 	add hl, de
 	ld a, [CurEnemyMoveNum]
-	and $3
+	and 3
 	inc a
-	ld bc, $0605
+	lb bc, 6, 5
 	call Functione04e7
 	ret
 ; e043b
 
-INCBIN "baserom.gbc", $e043b, $e0489 - $e043b
+Unknown_e043b: ; e043b
+	db $18, $19, $19, $19, $1a
+	db $1b, $35, $7f, $7f, $1c
+	db $0b, $28, $28, $28, $0c
+	db $0b, $28, $28, $28, $0c
+	db $0b, $28, $28, $28, $0c
+	db $1d, $1e, $1e, $1e, $1f
+; e0459
+
+Unknown_e0459: ; e0459
+	db $f7,$4e, $f7,$57, $f7,$69, $f7,$60
+	db $f8,$4e, $f8,$57, $f8,$69, $f8,$60
+	db $f9,$4e, $f9,$57, $f9,$69, $f9,$60
+	db $fa,$4e, $fa,$57, $fa,$69, $fa,$60
+	db $fb,$4e, $fb,$57, $fb,$69, $fb,$60
+	db $fc,$4e, $fc,$57, $fc,$69, $fc,$60
+; e0489
 
 Functione0489: ; e0489
 	push hl
@@ -92010,7 +92044,7 @@ Functione049c: ; e049c
 	ld c, $9
 	call TextBox
 	ld hl, $c5ea
-	ld de, $44bc
+	ld de, String_e04bc
 	call PlaceString
 	ld hl, $c5ef
 	ld de, Coins
@@ -92019,7 +92053,9 @@ Functione049c: ; e049c
 	ret
 ; e04bc
 
-INCBIN "baserom.gbc", $e04bc, $e04c1 - $e04bc
+String_e04bc:
+	db "COIN@"
+; e04c1
 
 ; known jump sources: e0144 (38:4144)
 Functione04c1: ; e04c1 (38:44c1)
@@ -92030,8 +92066,8 @@ Functione04c1: ; e04c1 (38:44c1)
 	ld a, $29
 	call ByteFill
 	ld hl, $c4a9
-	ld de, $510c
-	ld bc, $c0b
+	ld de, Unknown_e110c
+	lb bc, 12, 11
 	call Functione04f7
 	ld hl, $c590
 	ld bc, $412
@@ -92120,17 +92156,17 @@ Functione0534: ; e0534
 	ld [hBGMapMode], a
 	ld a, [CurEnemyMoveNum]
 	ld e, a
-	ld d, $0
-	and $3
+	ld d, 0
+	and 3
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld a, e
 	and $1c
 	srl a
-	add $53
+	add Jumptable_e0553 % $100
 	ld l, a
-	ld a, $0
-	adc $45
+	ld a, 0
+	adc Jumptable_e0553 / $100
 	ld h, a
 	ld a, [hli]
 	ld h, [hl]
@@ -92138,7 +92174,170 @@ Functione0534: ; e0534
 	jp [hl]
 ; e0553
 
-INCBIN "baserom.gbc", $e0553, $e0637 - $e0553
+Jumptable_e0553: ; e0553
+	dw Functione055f
+	dw Functione0583
+	dw Functione05a7
+	dw Functione05cb
+	dw Functione05ef
+	dw Functione0613
+; e055f
+
+Functione055f: ; e055f
+	ld hl, $c6ee
+	add hl, de
+	ld a, [hl]
+	and a
+	jr nz, .asm_e0575
+	ld hl, $c4e9
+	add hl, bc
+	add hl, bc
+	ld [hl], $36
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $37
+	ret
+
+.asm_e0575
+	ld hl, $c4e9
+	add hl, bc
+	add hl, bc
+	ld [hl], $36
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3d
+	ret
+; e0583
+
+Functione0583: ; e0583
+	ld hl, $c6e6
+	add hl, de
+	ld a, [hl]
+	and a
+	jr nz, .asm_e0599
+	ld hl, $c4fd
+	add hl, bc
+	add hl, bc
+	ld [hl], $3b
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3a
+	ret
+
+.asm_e0599
+	ld hl, $c4fd
+	add hl, bc
+	add hl, bc
+	ld [hl], $3d
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3a
+	ret
+; e05a7
+
+Functione05a7: ; e05a7
+	ld hl, $c6ee
+	add hl, de
+	ld a, [hl]
+	and a
+	jr nz, .asm_e05bd
+	ld hl, $c525
+	add hl, bc
+	add hl, bc
+	ld [hl], $36
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $38
+	ret
+
+.asm_e05bd
+	ld hl, $c525
+	add hl, bc
+	add hl, bc
+	ld [hl], $36
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3d
+	ret
+; e05cb
+
+Functione05cb: ; e05cb
+	ld hl, $c6e6
+	add hl, de
+	ld a, [hl]
+	and a
+	jr nz, .asm_e05e1
+	ld hl, $c539
+	add hl, bc
+	add hl, bc
+	ld [hl], $3c
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3a
+	ret
+
+.asm_e05e1
+	ld hl, $c539
+	add hl, bc
+	add hl, bc
+	ld [hl], $3d
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3a
+	ret
+; e05ef
+
+Functione05ef: ; e05ef
+	ld hl, $c6ee
+	add hl, de
+	ld a, [hl]
+	and a
+	jr nz, .asm_e0605
+	ld hl, $c561
+	add hl, bc
+	add hl, bc
+	ld [hl], $36
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $39
+	ret
+
+.asm_e0605
+	ld hl, $c561
+	add hl, bc
+	add hl, bc
+	ld [hl], $36
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3d
+	ret
+; e0613
+
+Functione0613: ; e0613
+	ld hl, $c6e6
+	add hl, de
+	ld a, [hl]
+	and a
+	jr nz, .asm_e0629
+	ld hl, $c575
+	add hl, bc
+	add hl, bc
+	ld [hl], $3c
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3a
+	ret
+
+.asm_e0629
+	ld hl, $c575
+	add hl, bc
+	add hl, bc
+	ld [hl], $3d
+	ld bc, $0014
+	add hl, bc
+	ld [hl], $3a
+	ret
+; e0637
 
 Functione0637: ; e0637
 	call Functione0398
@@ -92482,13 +92681,13 @@ UnknownText_0xe0816: ; 0xe0816
 Functione081b: ; e081b
 	ld a, [Coins]
 	ld h, a
-	ld a, [$d856]
+	ld a, [Coins + 1]
 	ld l, a
 	inc hl
 	ld a, h
 	ld [Coins], a
 	ld a, l
-	ld [$d856], a
+	ld [Coins + 1], a
 	ld de, SFX_PAY_DAY
 	call PlaySFX
 	ret
@@ -92523,21 +92722,40 @@ Functione0849: ; e0849
 ; e0853
 
 Unknown_e0853: ; e0853
-INCBIN "baserom.gbc", $e0853, $e089c - $e0853
+	db 18
+	db $00, $00, $04, $00
+	db $00, $08, $06, $00
+	db $00, $10, $06, $00
+	db $00, $18, $06, $00
+	db $00, $20, $04, $20
+	db $08, $00, $05, $00
+	db $08, $20, $05, $20
+	db $10, $00, $05, $00
+	db $10, $20, $05, $20
+	db $18, $00, $05, $00
+	db $18, $20, $05, $20
+	db $20, $00, $05, $00
+	db $20, $20, $05, $20
+	db $28, $00, $04, $40
+	db $28, $08, $06, $40
+	db $28, $10, $06, $40
+	db $28, $18, $06, $40
+	db $28, $20, $04, $60
+; e089c
 
 Functione089c: ; e089c
 	ld hl, $ffa9
 	ld a, [hl]
-	and $20
+	and D_LEFT
 	jp nz, Functione08b8
 	ld a, [hl]
-	and $10
+	and D_RIGHT
 	jp nz, Functione08ef
 	ld a, [hl]
-	and $40
+	and D_UP
 	jp nz, Functione090a
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jp nz, Functione093d
 	ret
 ; e08b8
@@ -92692,7 +92910,205 @@ Functione0960: ; e0960
 ; e0981
 
 Unknown_e0981: ; e0981
-INCBIN "baserom.gbc", $e0981, $e0c37 - $e0981
+	dbbw $58, $10, Unknown_e0c26
+	dbbw $60, $10, Unknown_e0c26
+	dbbw $68, $10, Unknown_e0b8d
+	dbbw $68, $10, Unknown_e0b8d
+	dbbw $88, $10, Unknown_e0b8d
+	dbbw $88, $10, Unknown_e0b8d
+
+	dbbw $58, $18, Unknown_e0c26
+	dbbw $60, $18, Unknown_e0c26
+	dbbw $68, $18, Unknown_e0a5a
+	dbbw $78, $18, Unknown_e0a5a
+	dbbw $88, $18, Unknown_e0a5a
+	dbbw $98, $18, Unknown_e0a5a
+
+	dbbw $58, $28, Unknown_e0b14
+	dbbw $60, $28, Unknown_e0ac3
+	dbbw $68, $28, Unknown_e0a41
+	dbbw $78, $28, Unknown_e0a41
+	dbbw $88, $28, Unknown_e0a41
+	dbbw $98, $28, Unknown_e0a41
+	dbbw $58, $28, Unknown_e0b14
+
+	dbbw $60, $34, Unknown_e0ac3
+	dbbw $68, $34, Unknown_e0a41
+	dbbw $78, $34, Unknown_e0a41
+	dbbw $88, $34, Unknown_e0a41
+	dbbw $98, $34, Unknown_e0a41
+
+	dbbw $58, $40, Unknown_e0b14
+	dbbw $60, $40, Unknown_e0ac3
+	dbbw $68, $40, Unknown_e0a41
+	dbbw $78, $40, Unknown_e0a41
+	dbbw $88, $40, Unknown_e0a41
+	dbbw $98, $40, Unknown_e0a41
+	dbbw $58, $40, Unknown_e0b14
+
+	dbbw $60, $4c, Unknown_e0ac3
+	dbbw $68, $4c, Unknown_e0a41
+	dbbw $78, $4c, Unknown_e0a41
+	dbbw $88, $4c, Unknown_e0a41
+	dbbw $98, $4c, Unknown_e0a41
+
+	dbbw $58, $58, Unknown_e0b14
+	dbbw $60, $58, Unknown_e0ac3
+	dbbw $68, $58, Unknown_e0a41
+	dbbw $78, $58, Unknown_e0a41
+	dbbw $88, $58, Unknown_e0a41
+	dbbw $98, $58, Unknown_e0a41
+	dbbw $58, $58, Unknown_e0b14
+
+	dbbw $60, $64, Unknown_e0ac3
+	dbbw $68, $64, Unknown_e0a41
+	dbbw $78, $64, Unknown_e0a41
+	dbbw $88, $64, Unknown_e0a41
+	dbbw $98, $64, Unknown_e0a41
+; e0a41
+
+Unknown_e0a41: ; e0a41
+	db 6
+	db $00, $ff, $00, $80
+	db $00, $00, $02, $80
+	db $00, $08, $03, $80
+	db $05, $ff, $00, $c0
+	db $05, $00, $02, $c0
+	db $05, $08, $03, $80
+
+Unknown_e0a5a: ; e0a5a
+	db 26
+	db $00, $ff, $00, $80
+	db $00, $00, $02, $80
+	db $00, $08, $00, $a0
+	db $08, $ff, $01, $80
+	db $08, $08, $01, $a0
+	db $10, $ff, $01, $80
+	db $10, $08, $03, $80
+	db $18, $ff, $01, $80
+	db $18, $08, $03, $80
+	db $20, $ff, $01, $80
+	db $20, $08, $03, $80
+	db $28, $ff, $01, $80
+	db $28, $08, $03, $80
+	db $30, $ff, $01, $80
+	db $30, $08, $03, $80
+	db $38, $ff, $01, $80
+	db $38, $08, $03, $80
+	db $40, $ff, $01, $80
+	db $40, $08, $03, $80
+	db $48, $ff, $01, $80
+	db $48, $08, $03, $80
+	db $50, $ff, $01, $80
+	db $50, $08, $03, $80
+	db $51, $ff, $00, $c0
+	db $51, $00, $02, $c0
+	db $51, $08, $03, $80
+
+Unknown_e0ac3: ; e0ac3
+	db 20
+	db $00, $ff, $00, $80
+	db $00, $00, $02, $80
+	db $00, $08, $02, $80
+	db $00, $10, $03, $80
+	db $00, $18, $02, $80
+	db $00, $20, $03, $80
+	db $00, $28, $02, $80
+	db $00, $30, $03, $80
+	db $00, $38, $02, $80
+	db $00, $40, $03, $80
+	db $05, $ff, $00, $c0
+	db $05, $00, $02, $c0
+	db $05, $08, $02, $c0
+	db $05, $10, $03, $80
+	db $05, $18, $02, $c0
+	db $05, $20, $03, $80
+	db $05, $28, $02, $c0
+	db $05, $30, $03, $80
+	db $05, $38, $02, $c0
+	db $05, $40, $03, $80
+
+Unknown_e0b14: ; e0b14
+	db 30
+	db $00, $00, $00, $80
+	db $00, $08, $02, $80
+	db $00, $10, $02, $80
+	db $00, $18, $03, $80
+	db $00, $20, $02, $80
+	db $00, $28, $03, $80
+	db $00, $30, $02, $80
+	db $00, $38, $03, $80
+	db $00, $40, $02, $80
+	db $00, $48, $03, $80
+	db $08, $00, $01, $80
+	db $08, $18, $03, $80
+	db $08, $28, $03, $80
+	db $08, $38, $03, $80
+	db $08, $48, $03, $80
+	db $10, $00, $01, $80
+	db $10, $18, $03, $80
+	db $10, $28, $03, $80
+	db $10, $38, $03, $80
+	db $10, $48, $03, $80
+	db $11, $00, $00, $c0
+	db $11, $08, $02, $c0
+	db $11, $10, $02, $c0
+	db $11, $18, $03, $80
+	db $11, $20, $03, $80
+	db $11, $28, $03, $80
+	db $11, $30, $03, $80
+	db $11, $38, $03, $80
+	db $11, $40, $03, $80
+	db $11, $48, $03, $80
+
+Unknown_e0b8d: ; e0b8d
+	db 38
+	db $00, $ff, $00, $80
+	db $00, $18, $00, $a0
+	db $08, $ff, $01, $80
+	db $08, $18, $01, $a0
+	db $10, $ff, $01, $80
+	db $10, $18, $01, $a0
+	db $18, $ff, $01, $80
+	db $18, $08, $03, $80
+	db $18, $18, $03, $80
+	db $20, $ff, $01, $80
+	db $20, $08, $03, $80
+	db $20, $18, $03, $80
+	db $28, $ff, $01, $80
+	db $28, $08, $03, $80
+	db $28, $18, $03, $80
+	db $30, $ff, $01, $80
+	db $30, $08, $03, $80
+	db $30, $18, $03, $80
+	db $38, $ff, $01, $80
+	db $38, $08, $03, $80
+	db $38, $18, $03, $80
+	db $40, $ff, $01, $80
+	db $40, $08, $03, $80
+	db $40, $18, $03, $80
+	db $48, $ff, $01, $80
+	db $48, $08, $03, $80
+	db $48, $18, $03, $80
+	db $50, $ff, $01, $80
+	db $50, $08, $03, $80
+	db $50, $18, $03, $80
+	db $58, $ff, $01, $80
+	db $58, $08, $03, $80
+	db $58, $18, $03, $80
+	db $59, $ff, $00, $c0
+	db $59, $00, $02, $c0
+	db $59, $08, $03, $c0
+	db $59, $10, $02, $c0
+	db $59, $18, $03, $e0
+
+Unknown_e0c26: ; e0c26
+	db 4
+	db $00, $00, $00, $80
+	db $00, $08, $00, $a0
+	db $08, $00, $00, $c0
+	db $08, $08, $00, $e0
+; e0c37
 
 ; known jump sources: e0147 (38:4147)
 Functione0c37: ; e0c37 (38:4c37)
@@ -92727,7 +93143,7 @@ Functione0c37: ; e0c37 (38:4c37)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e0c93
+	ld hl, Palette_e0c93
 	ld de, Unkn1Pals ; $d000
 	ld bc, $48
 	call CopyBytes
@@ -92736,8 +93152,82 @@ Functione0c37: ; e0c37 (38:4c37)
 	ret
 ; e0c93 (38:4c93)
 
-Unknown_e0c93: ; e0c93
-INCBIN "baserom.gbc",$e0c93,$e1190 - $e0c93
+Palette_e0c93: ; e0c93
+	RGB 31, 31, 31
+	RGB 17, 07, 31
+	RGB 06, 19, 08
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 29, 25, 00
+	RGB 06, 19, 08
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 31, 13, 30
+	RGB 06, 19, 08
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 08, 17, 30
+	RGB 06, 19, 08
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 08, 31, 08
+	RGB 06, 19, 08
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 17, 07, 31
+	RGB 06, 19, 08
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 17, 07, 31
+	RGB 06, 19, 08
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 17, 07, 31
+	RGB 06, 19, 08
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 00, 00
+	RGB 31, 00, 00
+; e0cdb
+
+LZ_e0cdb: ; e0cdb
+INCBIN "baserom.gbc", $e0cdb, $e0cf6 - $e0cdb
+
+Unknown_e0cf6: ; e0cf6
+INCBIN "baserom.gbc", $e0cf6, $e0d06 - $e0cf6
+
+Unknown_e0d06: ; e0d06
+INCBIN "baserom.gbc", $e0d06, $e0d16 - $e0d06
+
+LZ_e0d16: ; e0d16
+INCBIN "baserom.gbc", $e0d16, $e0ea8 - $e0d16
+
+LZ_e0ea8: ; e0ea8
+INCBIN "baserom.gbc", $e0ea8, $e110c - $e0ea8
+
+Unknown_e110c: ; e110c
+	db $ef, $15, $27, $2a, $2a, $06, $27, $2a, $2a, $06, $27
+	db $ef, $07, $27, $3e, $3f, $42, $43, $46, $47, $4a, $4b
+	db $ef, $17, $26, $40, $41, $44, $45, $48, $49, $4c, $4d
+	db $ef, $25, $04, $00, $01, $00, $01, $00, $01, $00, $01
+	db $ef, $05, $14, $10, $11, $10, $11, $10, $11, $10, $11
+	db $ef, $16, $24, $20, $21, $20, $21, $20, $21, $20, $21
+	db $ef, $25, $04, $00, $02, $00, $02, $00, $02, $00, $02
+	db $ef, $05, $14, $10, $12, $10, $12, $10, $12, $10, $12
+	db $ef, $16, $24, $20, $22, $20, $22, $20, $22, $20, $22
+	db $ef, $25, $04, $00, $03, $00, $03, $00, $03, $00, $03
+	db $ef, $05, $14, $10, $13, $10, $13, $10, $13, $10, $13
+	db $ef, $16, $24, $20, $23, $20, $23, $20, $23, $20, $23
+; e1190
 
 Functione1190: ; e1190
 	ld a, [$ffaa]
@@ -92754,11 +93244,11 @@ Functione1190: ; e1190
 	ld bc, $01e0
 	xor a
 	call ByteFill
-	ld hl, $57c5
+	ld hl, GFX_e17c5
 	ld de, $8e00
 	ld bc, $0040
 	call CopyBytes
-	ld hl, $5805
+	ld hl, LZ_e1805
 	ld de, $8ed0
 	call Decompress
 	call Functione17a3
@@ -93391,7 +93881,7 @@ Functione16aa: ; e16aa
 	ld hl, Unknown_e16b7
 	add l
 	ld l, a
-	ld a, $0
+	ld a, 0
 	adc h
 	ld h, a
 	ld a, [hl]
@@ -93400,7 +93890,11 @@ Functione16aa: ; e16aa
 ; e16b7
 
 Unknown_e16b7: ; e16b7
-INCBIN "baserom.gbc",$e16b7,$e16c7 - $e16b7
+	db $00, $03, $0c, $0f
+	db $30, $33, $3c, $3f
+	db $c0, $c3, $cc, $cf
+	db $f0, $f3, $fc, $ff
+; e16c7
 
 Functione16c7: ; e16c7
 	ld hl, Unknown_e1703
@@ -93457,11 +93951,22 @@ Functione16e2: ; e16e2
 ; e1703
 
 Unknown_e1703: ; e1703
-INCBIN "baserom.gbc",$e1703,$e17a3 - $e1703
+	dw GFX_e1723 + $00, $8000
+	dw GFX_e1723 + $10, $8010
+	dw GFX_e1723 + $20, $8020
+	dw GFX_e1723 + $30, $80c0
+	dw GFX_e1723 + $40, $80e0
+	dw GFX_e1723 + $50, $8180
+	dw GFX_e1723 + $60, $8190
+	dw GFX_e1723 + $70, $81a0
+; e1723
+
+GFX_e1723: ; e1723
+INCBIN "baserom.gbc", $e1723, $e17a3 - $e1723
 
 Functione17a3: ; e17a3
 	ld a, [ScriptVar]
-	and $3
+	and 3
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_e17bd
@@ -93477,7 +93982,29 @@ Functione17a3: ; e17a3
 ; e17bd
 
 Unknown_e17bd: ; e17bd
-INCBIN "baserom.gbc",$e17bd,$e1e5b - $e17bd
+	dw LZ_e1bab
+	dw LZ_e1c9b
+	dw LZ_e19fb
+	dw LZ_e18ab
+; e17c5
+
+GFX_e17c5: ; e17c5
+INCBIN "baserom.gbc", $e17c5, $e1805 - $e17c5
+
+LZ_e1805: ; e1805
+INCBIN "baserom.gbc", $e1805, $e18ab - $e1805
+
+LZ_e18ab: ; e18ab
+INCBIN "baserom.gbc", $e18ab, $e19fb - $e18ab
+
+LZ_e19fb: ; e19fb
+INCBIN "baserom.gbc", $e19fb, $e1bab - $e19fb
+
+LZ_e1bab: ; e1bab
+INCBIN "baserom.gbc", $e1bab, $e1c9b - $e1bab
+
+LZ_e1c9b: ; e1c9b
+INCBIN "baserom.gbc", $e1c9b, $e1e5b - $e1c9b
 
 ; no known jump sources
 Functione1e5b: ; e1e5b (38:5e5b)
@@ -93497,10 +94024,10 @@ Functione1e67: ; e1e67 (38:5e67)
 	ld hl, LZ_e2221
 	ld de, $9000
 	call Decompress
-	ld hl, $40ed
+	ld hl, Unknown_e00ed
 	ld de, $8000
 	ld bc, $40
-	ld a, $38
+	ld a, BANK(Unknown_e00ed)
 	call FarCopyBytes
 	ld a, $8
 	ld hl, $c300
@@ -93913,7 +94440,10 @@ Functione2101: ; e2101
 ; e2110
 
 Unknown_e2110: ; e2110
-INCBIN "baserom.gbc", $e2110, $e2128 - $e2110
+	db $02, $03, $06, $06, $06, $08, $08, $06
+	db $02, $02, $04, $06, $06, $08, $08, $09
+	db $02, $02, $02, $04, $07, $08, $08, $0c
+; e2128
 
 Functione2128: ; e2128
 	ld a, [$c6fd]
@@ -94006,19 +94536,19 @@ Functione21a1: ; e21a1 (38:61a1)
 	call Functiona57
 	ld hl, hJoypadPressed ; $ffa3
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_e21cf
 	ld a, [hl]
-	and $20
+	and D_LEFT
 	jr nz, .asm_e21d9
 	ld a, [hl]
-	and $10
+	and D_RIGHT
 	jr nz, .asm_e21e9
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_e21fa
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_e220d
 	ret
 .asm_e21c8
@@ -94156,7 +94686,7 @@ Functione23e9: ; e23e9 (38:63e9)
 	ld a, $5
 	ld [$cb2d], a
 	call Functione2c2c
-	call Functione2ac6
+	call PCMonInfo
 	ld a, $ff
 	ld [CurPartySpecies], a ; $d108
 	ld a, $17
@@ -94170,10 +94700,10 @@ Functione23e9: ; e23e9 (38:63e9)
 Functione241a: ; e241a (38:641a)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_e2457
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_e2443
 	call Functione29b5
 	and a
@@ -94182,7 +94712,7 @@ Functione241a: ; e241a (38:641a)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Functione2c2c
-	call Functione2ac6
+	call PCMonInfo
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
 	call DelayFrame
@@ -94227,7 +94757,7 @@ Functione245d: ; e245d (38:645d)
 
 ; no known jump sources
 Functione247d: ; e247d (38:647d)
-	ld hl, $653d
+	ld hl, BillsPCDepositMenuDataHeader
 	call Function1d3c
 	ld a, [$cfa9]
 	call Function1d4b
@@ -94276,7 +94806,7 @@ BillsPCDepositFuncStats: ; e24c8 (38:64c8)
 	call Function1d6e
 	call Functione2f7e
 	call Function1c07
-	call Functione2ac6
+	call PCMonInfo
 	call Functione2def
 	ld [CurPartySpecies], a ; $d108
 	ld a, $17
@@ -94431,7 +94961,7 @@ Functione25dc: ; e25dc (38:65dc)
 	ld a, $5
 	ld [$cb2d], a
 	call Functione2c2c
-	call Functione2ac6
+	call PCMonInfo
 	ld a, $ff
 	ld [CurPartySpecies], a ; $d108
 	ld a, $17
@@ -94445,10 +94975,10 @@ Functione25dc: ; e25dc (38:65dc)
 Functione2612: ; e2612 (38:6612)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_e264f
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_e263b
 	call Functione29b5
 	and a
@@ -94457,7 +94987,7 @@ Functione2612: ; e2612 (38:6612)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Functione2c2c
-	call Functione2ac6
+	call PCMonInfo
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
 	call DelayFrame
@@ -94503,7 +95033,7 @@ Functione2655: ; e2655 (38:6655)
 
 ; no known jump sources
 Functione2675: ; e2675 (38:6675)
-	ld hl, Unknown_e2731
+	ld hl, BillsPCWithdrawMenuDataHeader
 	call Function1d3c
 	ld a, [$cfa9]
 	call Function1d4b
@@ -94552,7 +95082,7 @@ BillsPCWithdrawFuncStats: ; e26c0 (38:66c0)
 	call Function1d6e
 	call Functione2f7e
 	call Function1c07
-	call Functione2ac6
+	call PCMonInfo
 	call Functione2def
 	ld [CurPartySpecies], a ; $d108
 	ld a, $17
@@ -94604,8 +95134,22 @@ BillsPCWithdrawFuncCancel: ; e272b (38:672b)
 	ret
 ; e2731 (38:6731)
 
-Unknown_e2731: ; e2731
-INCBIN "baserom.gbc", $e2731, $e2759 - $e2731
+BillsPCWithdrawMenuDataHeader: ; 0xe2731
+	db $40 ; flags
+	db 04, 09 ; start coords
+	db 13, 19 ; end coords
+	dw BillsPCWithdrawMenuData
+	db 1 ; default option
+; 0xe2739
+
+BillsPCWithdrawMenuData: ; 0xe2739
+	db $80 ; flags
+	db 4 ; items
+	db "WITHDRAW@"
+	db "STATS@"
+	db "RELEASE@"
+	db "CANCEL@"
+; 0xe2759
 
 Functione2759: ; e2759
 	ld hl, Options
@@ -94676,7 +95220,7 @@ Functione27ba: ; e27ba
 	ld [$cb2d], a
 	call Functione2c2c
 	call Functione2a80
-	call Functione2ac6
+	call PCMonInfo
 	ld a, $ff
 	ld [CurPartySpecies], a
 	ld a, $17
@@ -94690,10 +95234,10 @@ Functione27ba: ; e27ba
 Functione27eb: ; e27eb
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_e2837
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_e2823
 	call Functione29d0
 	jr c, .asm_e2816
@@ -94703,7 +95247,7 @@ Functione27eb: ; e27eb
 	xor a
 	ld [hBGMapMode], a
 	call Functione2c2c
-	call Functione2ac6
+	call PCMonInfo
 	ld a, $1
 	ld [hBGMapMode], a
 	call DelayFrame
@@ -94799,7 +95343,7 @@ Functione28a5: ; e28a5
 	call Function1d6e
 	call Functione2f7e
 	call Function1c07
-	call Functione2ac6
+	call PCMonInfo
 	call Functione2def
 	ld [CurPartySpecies], a
 	ld a, $17
@@ -94849,10 +95393,10 @@ Functione28df: ; e28df
 Functione2903: ; e2903
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_e294b
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_e2938
 	call Functione29f4
 	jr c, .asm_e292b
@@ -94944,10 +95488,10 @@ Functione2998: ; e2998 (38:6998)
 	jr z, .asm_e29b2
 	ld e, a
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, Functione2a18
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, Functione2a2c
 .asm_e29b2
 	jp Functione2a65
@@ -94962,10 +95506,10 @@ Functione29b5: ; e29b5 (38:69b5)
 	and a
 	jr z, .asm_e29cd
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, Functione2a18
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, Functione2a2c
 .asm_e29cd
 	jp Functione2a65
@@ -94980,18 +95524,18 @@ Functione29d0: ; e29d0
 	and a
 	jr z, .asm_e29e8
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, Functione2a18
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, Functione2a2c
 
 .asm_e29e8
 	ld a, [hl]
-	and $20
+	and D_LEFT
 	jr nz, Functione2a48
 	ld a, [hl]
-	and $10
+	and D_RIGHT
 	jr nz, Functione2a56
 	jr Functione2a65
 
@@ -95005,18 +95549,18 @@ Functione29f4: ; e29f4
 	jr z, .asm_e2a0c
 
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, Functione2a18
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, Functione2a2c
 
 .asm_e2a0c
 	ld a, [hl]
-	and $20
+	and D_LEFT
 	jr nz, Functione2a48
 	ld a, [hl]
-	and $10
+	and D_RIGHT
 	jr nz, Functione2a56
 	jr Functione2a65
 
@@ -95121,76 +95665,92 @@ Functione2a80: ; e2a80
 	ret
 ; e2a8e
 
-; known jump sources: e23f2 (38:63f2), e25ea (38:65ea)
 Functione2a8e: ; e2a8e (38:6a8e)
-	ld hl, $c4a8
-	ld bc, $10a
+	hlcoord 8, 0
+	lb bc, 1, 10
 	call TextBox
+
 	ld a, [$cb2e]
 	and a
-	jr z, .asm_e2ab3
-	cp $f
-	jr nz, .asm_e2aa5
+	jr z, .party
+
+	cp NUM_BOXES + 1
+	jr nz, .gotbox
+
 	ld a, [wCurBox]
 	inc a
-.asm_e2aa5
+.gotbox
 	dec a
-	ld hl, Box1Name ; $db75
-	ld bc, $9
+	ld hl, wBoxNames
+	ld bc, 9
 	call AddNTimes
 	ld e, l
 	ld d, h
-	jr .asm_e2ab6
-.asm_e2ab3
+	jr .print
+
+.party
 	ld de, String_e2abd
-.asm_e2ab6
-	ld hl, $c4be
+.print
+	hlcoord 10, 1
 	call PlaceString
 	ret
 ; e2abd (38:6abd)
 
 String_e2abd:
-	db "PARTY ゅょ@"
+	db "PARTY ", $e1, $e2, "@"
 ; e2ac6
 
-; known jump sources: e2403 (38:6403), e2435 (38:6435), e24d1 (38:64d1), e25fb (38:65fb), e262d (38:662d), e26c9 (38:66c9)
-Functione2ac6: ; e2ac6 (38:6ac6)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
-	ld bc, $f08
+PCMonInfo: ; e2ac6 (38:6ac6)
+; Display a monster's pic and
+; attributes when highlighting
+; it in a PC menu.
+
+; Includes the neat cascading
+; effect when showing the pic.
+
+; Example: Species, level, gender,
+; whether it's holding an item.
+
+	hlcoord 0, 0
+	lb bc, 15, 8
 	call ClearBox
-	ld hl, $c5c0
-	ld bc, $103
+
+	hlcoord 8, 14
+	lb bc, 1, 3
 	call ClearBox
+
 	call Functione2def
 	and a
 	ret z
 	cp $ff
 	ret z
+
 	ld [$d265], a
-	ld hl, $c4f1
+	hlcoord 1, 4
 	xor a
-	ld b, $7
+	ld b, 7
 .asm_e2ae9
-	ld c, $7
+	ld c, 7
 	push af
 	push hl
 .asm_e2aed
 	ld [hli], a
-	add $7
+	add 7
 	dec c
 	jr nz, .asm_e2aed
 	pop hl
-	ld de, $14
+	ld de, 20
 	add hl, de
 	pop af
 	inc a
 	dec b
 	jr nz, .asm_e2ae9
+
 	call Functione2b6d
 	ld a, [$d265]
-	ld [CurPartySpecies], a ; $d108
-	ld [CurSpecies], a ; $cf60
-	ld hl, TempMonDVs ; $d123
+	ld [CurPartySpecies], a
+	ld [CurSpecies], a
+	ld hl, TempMonDVs
 	ld a, $2d
 	call Predef
 	call GetBaseData
@@ -95199,40 +95759,46 @@ Functione2ac6: ; e2ac6 (38:6ac6)
 	call Predef
 	xor a
 	ld [$cb32], a
-	ld a, [CurPartySpecies] ; $d108
+	ld a, [CurPartySpecies]
 	ld [$d265], a
-	cp $fd
+
+	cp EGG
 	ret z
+
 	call GetBasePokemonName
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
-	ld hl, $c591
+
+	hlcoord 1, 12
 	call PrintLevel
+
 	ld a, $3
-	ld [MonType], a ; $cf5f
+	ld [MonType], a
 	callba GetGender
 	jr c, .asm_e2b4f
-	ld a, $ef
-	jr nz, .asm_e2b4b
-	ld a, $f5
-.asm_e2b4b
-	ld hl, $c595
+	ld a, "♂"
+	jr nz, .printgender
+	ld a, "♀"
+.printgender
+	hlcoord 5, 12
 	ld [hl], a
 .asm_e2b4f
-	ld a, [TempMonItem] ; $d10f
+
+	ld a, [TempMonItem]
 	and a
 	ret z
+
 	ld d, a
 	callab ItemIsMail
-	jr c, .asm_e2b61
-	ld a, $5d
-	jr .asm_e2b68
-.asm_e2b61
+	jr c, .mail
+	ld a, $5d ; item icon
+	jr .printitem
+.mail
 	ld a, $1
 	ld [$cb32], a
-	ld a, $5c
-.asm_e2b68
-	ld hl, $c597
+	ld a, $5c ; mail icon
+.printitem
+	hlcoord 7, 12
 	ld [hl], a
 	ret
 
@@ -95341,23 +95907,25 @@ Functione2b6d: ; e2b6d (38:6b6d)
 
 ; known jump sources: e2400 (38:6400), e2432 (38:6432), e25f8 (38:65f8), e262a (38:662a)
 Functione2c2c: ; e2c2c (38:6c2c)
-	ld hl, $c4d0
-	ld bc, $a0a
+	hlcoord 8, 2
+	lb bc, 10, 10
 	call TextBox
-	ld hl, $c4d0
-	ld [hl], $7d
-	ld hl, $c4db
-	ld [hl], $7e
+
+	hlcoord 8, 2
+	ld [hl], "└"
+	hlcoord 19, 2
+	ld [hl], "┘"
+
 	ld a, [$cb2a]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, OverworldMap ; $c800
 	add hl, de
 	add hl, de
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $c4f9
+	hlcoord 9, 4
 	ld a, [$cb2d]
 .asm_e2c53
 	push af
@@ -95652,7 +96220,32 @@ Functione2e01: ; e2e01 (38:6e01)
 ; e2e2b (38:6e2b)
 
 Unknown_e2e2b: ; e2e2b
-INCBIN "baserom.gbc", $e2e2b, $e2e8c - $e2e2b
+	db $26, $50, $00, $00
+	db $26, $58, $00, $00
+	db $26, $60, $00, $00
+	db $26, $68, $00, $00
+	db $26, $70, $00, $00
+	db $26, $78, $00, $00
+	db $26, $80, $00, $00
+	db $26, $88, $00, $00
+	db $26, $90, $00, $00
+	db $26, $97, $00, $00
+	db $39, $50, $00, $40
+	db $39, $58, $00, $40
+	db $39, $60, $00, $40
+	db $39, $68, $00, $40
+	db $39, $70, $00, $40
+	db $39, $78, $00, $40
+	db $39, $80, $00, $40
+	db $39, $88, $00, $40
+	db $39, $90, $00, $40
+	db $39, $97, $00, $40
+	db $2e, $4e, $01, $00
+	db $31, $4e, $01, $40
+	db $2e, $99, $01, $20
+	db $31, $99, $01, $60
+	db $ff
+; e2e8c
 
 Functione2e8c: ; e2e8c
 	ld hl, Unknown_e2eac
@@ -95681,7 +96274,35 @@ Functione2e8c: ; e2e8c
 ; e2eac
 
 Unknown_e2eac: ; e2eac
-INCBIN "baserom.gbc", $e2eac, $e2ee5 - $e2eac
+	db $27, $50, $06, $00
+	db $2b, $58, $00, $40
+	db $2b, $60, $00, $40
+	db $2b, $68, $00, $40
+	db $2b, $70, $00, $40
+	db $2b, $78, $00, $40
+	db $2b, $80, $00, $40
+	db $2b, $88, $00, $40
+	db $2b, $90, $00, $40
+	db $27, $98, $07, $00
+	db $ff
+; e2ed5
+
+Functione2ed5: ; e2ed5
+.asm_e2ed5
+	push bc
+	push hl
+.asm_e2ed7
+	ld [hli], a
+	dec c
+	jr nz, .asm_e2ed7
+	pop hl
+	ld bc, $0014
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .asm_e2ed5
+	ret
+; e2ee5
 
 Functione2ee5: ; e2ee5
 	ld hl, $cb2e
@@ -95712,7 +96333,7 @@ Functione2ee5: ; e2ee5
 	ld de, SFX_WRONG
 	call WaitPlaySFX
 	call WaitSFX
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	scf
 	ret
@@ -95751,7 +96372,7 @@ Functione2f18: ; e2f18 (38:6f18)
 	ld de, SFX_WRONG
 	call WaitPlaySFX
 	call WaitSFX
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	scf
 	ret
@@ -95769,7 +96390,7 @@ Functione2f5f: ; e2f5f (38:6f5f)
 	ld de, SFX_WRONG
 	call WaitPlaySFX
 	call WaitSFX
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	scf
 	ret
@@ -95927,9 +96548,9 @@ Functione307c: ; e307c (38:707c)
 	ld h, b
 	ld de, StringBuffer1 ; $d073
 	call PlaceString
-	ld a, $e7
+	ld a, "!"
 	ld [bc], a
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	and a
 	ret
@@ -95939,7 +96560,7 @@ Functione307c: ; e307c (38:707c)
 	ld de, SFX_WRONG
 	call WaitPlaySFX
 	call WaitSFX
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	scf
 	ret
@@ -95985,7 +96606,7 @@ Functione30fa: ; e30fa (38:70fa)
 	call PlaceString
 	ld a, $e7
 	ld [bc], a
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	and a
 	ret
@@ -95995,7 +96616,7 @@ Functione30fa: ; e30fa (38:70fa)
 	ld de, SFX_WRONG
 	call WaitPlaySFX
 	call WaitSFX
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	scf
 	ret
@@ -96025,7 +96646,7 @@ Functione3180: ; e3180 (38:7180)
 	ld hl, $c5e1
 	ld de, String_e3551
 	call PlaceString
-	ld c, $50
+	ld c, 80
 	call DelayFrames
 	ld hl, $c5cc
 	ld bc, $112
@@ -96041,7 +96662,7 @@ Functione3180: ; e3180 (38:7180)
 	ld l, c
 	ld h, b
 	ld [hl], $e7
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	ret
 ; e31e7 (38:71e7)
@@ -96057,7 +96678,7 @@ Functione31e7: ; e31e7
 	ld hl, $c5e1
 	ld de, String_e3233
 	call PlaceString
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	pop af
 	pop bc
@@ -96363,15 +96984,15 @@ PCSelectLZ: INCBIN "gfx/pc.2bpp.lz"
 PCMailGFX:  INCBIN "gfx/pc_mail.2bpp"
 ; e34dd
 
-String_e34dd: db "Choose a ゅょ.@"
+String_e34dd: db "Choose a ", $e1, $e2, ".@"
 String_e34ea: db "What's up?@"
-String_e34f4: db "Release ゅょ?@"
+String_e34f4: db "Release ", $e1, $e2, "?@"
 String_e3500: db "Move to where?@"
-String_e350f: db "It's your last ゅょ!@"
+String_e350f: db "It's your last ", $e1, $e2, "!@"
 String_e3521: db "There's no room!@"
-String_e3531: db "No more usable ゅょ!@"
+String_e3531: db "No more usable ", $e1, $e2, "!@"
 String_e3544: db "Remove MAIL.@"
-String_e3551: db "Released ゅょ.@"
+String_e3551: db "Released ", $e1, $e2, ".@"
 String_e355e: db "Bye,@"
 String_e3563: db "Stored @"
 String_e356b: db "Got @"
@@ -99036,10 +99657,10 @@ endr
 Functione5348: ; e5348 (39:5348)
 	and a
 	jr nz, .asm_e5350
-	ld hl, Unknown_e538d
+	ld hl, Palette_e538d
 	jr .asm_e5353
 .asm_e5350
-	ld hl, Unknown_e5395
+	ld hl, Palette_e5395
 .asm_e5353
 	ld a, [$cf65]
 	and $7
@@ -99078,11 +99699,19 @@ Functione5348: ; e5348 (39:5348)
 	ret
 ; e538d (39:538d)
 
-Unknown_e538d: ; e538d
-INCBIN "baserom.gbc",$e538d,$e5395 - $e538d
+Palette_e538d: ; e538d
+	RGB 24, 12, 09
+	RGB 31, 31, 31
+	RGB 12, 00, 31
+	RGB 00, 00, 00
+; e5395
 
-Unknown_e5395: ; e5395
-INCBIN "baserom.gbc",$e5395,$e539d - $e5395
+Palette_e5395: ; e5395
+	RGB 24, 12, 09
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+; e539d
 
 ; known jump sources: e5145 (39:5145)
 Functione539d: ; e539d (39:539d)
@@ -99106,7 +99735,7 @@ Functione539d: ; e539d (39:539d)
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
 	push hl
-	ld hl, Unknown_e53db
+	ld hl, Palette_e53db
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
@@ -99117,7 +99746,7 @@ Functione539d: ; e539d (39:539d)
 	ld a, d
 	ld [hli], a
 	push hl
-	ld hl, Unknown_e53fb
+	ld hl, Palette_e53fb
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
@@ -99134,11 +99763,23 @@ Functione539d: ; e539d (39:539d)
 	ret
 ; e53db (39:53db)
 
-Unknown_e53db: ; e53db
-INCBIN "baserom.gbc",$e53db,$e53fb - $e53db
+Palette_e53db: ; e53db
+hue = 31
+rept 8
+	RGB hue, hue, hue
+hue = hue + -1
+	RGB hue, hue, hue
+hue = hue + -2
+endr
+; e53fb
 
-Unknown_e53fb: ; e53fb
-INCBIN "baserom.gbc",$e53fb,$e541b - $e53fb
+Palette_e53fb: ; e53fb
+hue = 31
+rept 16
+	RGB hue, hue, hue
+hue = hue + -1
+endr
+; e541b
 
 ; known jump sources: e4e84 (39:4e84), e4fc2 (39:4fc2)
 Functione541b: ; e541b (39:541b)
