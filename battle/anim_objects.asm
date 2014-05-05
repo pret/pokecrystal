@@ -36,8 +36,8 @@ Functioncc9bd: ; cc9bd
 Functioncc9c4: ; cc9c4 (33:49c4)
 	ld a, [$d419]
 	ld e, a
-	ld d, $0
-	ld hl, $4b56
+	ld d, 0
+	ld hl, Unknown_ccb56
 	add hl, de
 	add hl, de
 	add hl, de
@@ -322,6 +322,7 @@ Functionccb4f: ; ccb4f (33:4b4f)
 	ret
 ; ccb56 (33:4b56)
 
+Unknown_ccb56: ; ccb56
 INCBIN "baserom.gbc",$ccb56,$ccfbe - $ccb56
 
 
@@ -329,8 +330,8 @@ Functionccfbe: ; ccfbe
 	ld hl, $0004
 	add hl, bc
 	ld e, [hl]
-	ld d, $0
-	ld hl, $4fce
+	ld d, 0
+	ld hl, Jumptable_ccfce
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -794,7 +795,7 @@ Functioncd232: ; cd232 (33:5232)
 
 ; known jump sources: cd177 (33:5177), cd1dd (33:51dd), cd21b (33:521b)
 Functioncd249: ; cd249 (33:5249)
-	ld hl, $526c
+	ld hl, Unknown_cd26c
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $1
@@ -819,6 +820,7 @@ Functioncd249: ; cd249 (33:5249)
 	ret
 ; cd26c (33:526c)
 
+Unknown_cd26c: ; cd26c
 INCBIN "baserom.gbc",$cd26c,$cd284 - $cd26c
 
 ; no known jump sources
@@ -2259,13 +2261,14 @@ Functioncd9f4: ; cd9f4 (33:59f4)
 	ld hl, $10
 	add hl, bc
 	ld e, [hl]
-	ld d, $0
-	ld hl, $5a01
+	ld d, 0
+	ld hl, Unknown_cda01
 	add hl, de
 	ld d, [hl]
 	ret
 ; cda01 (33:5a01)
 
+Unknown_cda01: ; cda01
 INCBIN "baserom.gbc",$cda01,$cda0a - $cda01
 
 ; no known jump sources
@@ -3055,8 +3058,8 @@ Functioncde02: ; cde02 (33:5e02)
 	ld hl, $b
 	add hl, bc
 	ld e, [hl]
-	ld d, $0
-	ld hl, $5e25
+	ld d, 0
+	ld hl, Unknown_cde25
 	add hl, de
 	ld a, [hl]
 	ld hl, $a
@@ -3073,6 +3076,7 @@ Functioncde21: ; cde21 (33:5e21)
 	ret
 ; cde25 (33:5e25)
 
+Unknown_cde25: ; cde25
 INCBIN "baserom.gbc",$cde25,$cde28 - $cde25
 
 ; no known jump sources
@@ -3934,10 +3938,10 @@ Functionce29f: ; ce29f (33:629f)
 	ld a, [hSGB] ; $ff00+$e7
 	and a
 	jr nz, .asm_ce2b6
-	ld hl, $62c4
+	ld hl, Unknown_ce2c4
 	jr .asm_ce2b9
 .asm_ce2b6
-	ld hl, $62c8
+	ld hl, Unknown_ce2c8
 .asm_ce2b9
 	add hl, de
 	ld a, [hl]
@@ -3948,7 +3952,10 @@ Functionce29f: ; ce29f (33:629f)
 	ret
 ; ce2c4 (33:62c4)
 
-INCBIN "baserom.gbc",$ce2c4,$ce2cc - $ce2c4
+Unknown_ce2c4: ; ce2c4
+INCBIN "baserom.gbc",$ce2c4,$ce2c8 - $ce2c4
+Unknown_ce2c8: ; ce2c8
+INCBIN "baserom.gbc",$ce2c8,$ce2cc - $ce2c8
 
 ; no known jump sources
 Functionce2cc: ; ce2cc (33:62cc)
@@ -4866,8 +4873,8 @@ Functionce734: ; ce734 (33:6734)
 Functionce749: ; ce749 (33:6749)
 	ld e, a
 	ld a, d
-	ld d, $0
-	ld hl, $677f
+	ld d, 0
+	ld hl, Unknown_ce77f
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -4900,7 +4907,24 @@ Functionce76b: ; ce76b (33:676b)
 	ret
 ; ce771 (33:6771)
 
-INCBIN "baserom.gbc",$ce771,$ce7bf - $ce771
+Functionce771: ; ce771
+	ld a, e
+	call Functionce734
+	ld e, l
+	ld d, h
+	ret
+; ce778
+
+Functionce778: ; ce778
+	ld a, e
+	call Functionce732
+	ld e, l
+	ld d, h
+	ret
+; ce77f
+
+Unknown_ce77f: ; ce77f
+INCBIN "baserom.gbc", $ce77f, $ce7bf - $ce77f
 
 ; known jump sources: cd18f (33:518f), cd19b (33:519b), cd1cb (33:51cb), cd1d4 (33:51d4), cd1e2 (33:51e2), cd2ba (33:52ba), cd419 (33:5419), cd434 (33:5434), cd4ab (33:54ab), cd53c (33:553c), cd618 (33:5618), cd6f4 (33:56f4), cd74c (33:574c), cd773 (33:5773), cd81c (33:581c), cd883 (33:5883), cd8e8 (33:58e8), cda40 (33:5a40), cda73 (33:5a73), cda89 (33:5a89), cdc20 (33:5c20), cdc3b (33:5c3b), cdc4a (33:5c4a), cdce9 (33:5ce9), cdd4b (33:5d4b), cddb1 (33:5db1), cddf5 (33:5df5), cde0c (33:5e0c), cde85 (33:5e85), cdebb (33:5ebb), ce372 (33:6372), ce3ab (33:63ab), ce458 (33:6458), ce4ad (33:64ad)
 Functionce7bf: ; ce7bf (33:67bf)
@@ -4983,8 +5007,8 @@ Functionce823: ; ce823
 	ld hl, $0003
 	add hl, bc
 	ld e, [hl]
-	ld d, $0
-	ld hl, $685e
+	ld d, 0
+	ld hl, Unknown_ce85e
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -5001,8 +5025,8 @@ Functionce823: ; ce823
 
 Functionce83c: ; ce83c
 	ld l, a
-	ld h, $0
-	ld de, $6eae
+	ld h, 0
+	ld de, Unknown_ceeae
 	add hl, hl
 	add hl, hl
 	add hl, de
@@ -5034,7 +5058,11 @@ Functionce846: ; ce846 (33:6846)
 ; ce85e (33:685e)
 
 
-INCBIN "baserom.gbc", $ce85e, $cfcf6 - $ce85e
+Unknown_ce85e: ; ce85e
+INCBIN "baserom.gbc", $ce85e, $ceeae - $ce85e
+
+Unknown_ceeae: ; ceeae
+INCBIN "baserom.gbc", $ceeae, $cfcf6 - $ceeae
 
 
 AnimObjGFX: ; cfcf6
