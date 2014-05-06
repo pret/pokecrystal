@@ -21177,13 +21177,13 @@ Function1344a: ; 1344a
 	ld a, e
 	ld [$d03f], a
 	ld a, d
-	ld [MartPointer], a
+	ld [$d040], a
 	call Function1345a
 	ret
 ; 1345a
 
 Function1345a: ; 1345a
-	ld de, CurMart
+	ld de, $d0f0
 	ld bc, $0004
 	ld hl, $d03f
 	ld a, [hli]
@@ -27077,7 +27077,7 @@ Function15c25: ; 15c25
 	ld l, a
 	push hl
 	inc hl
-	ld bc, DefaultFlypoint
+	ld bc, $d002
 	ld de, CurMart + 1
 .asm_15c33
 	ld a, [hli]
@@ -27316,7 +27316,7 @@ Function15da5: ; 15da5
 	ld a, [$d107]
 	ld e, a
 	ld d, $0
-	ld hl, MartPointer
+	ld hl, $d040
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -27357,7 +27357,7 @@ Function15df9: ; 15df9
 	ld a, [$d107]
 	ld e, a
 	ld d, 0
-	ld hl, MartPointer
+	ld hl, $d040
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -49099,7 +49099,7 @@ Function447fb: ; 0x447fb
 
 Function44806: ; 0x44806
 	xor a
-	ld [CurMart], a
+	ld [$d0f0], a
 	ld a, $1
 	ld [$d0f1], a
 .asm_4480f
@@ -49112,11 +49112,11 @@ Function44806: ; 0x44806
 	call Function1ad2
 	ld a, [$d0f1]
 	ld [$cf88], a
-	ld a, [CurMart]
+	ld a, [$d0f0]
 	ld [$d0e4], a
 	call Function350c
 	ld a, [$d0e4]
-	ld [CurMart], a
+	ld [$d0f0], a
 	ld a, [$cfa9]
 	ld [$d0f1], a
 	ld a, [$cf73]
@@ -61140,7 +61140,7 @@ Function50db9: ; 50db9
 .asm_50dd8
 	cp $5
 	jr nz, .asm_50de6
-	ld hl, CurMart
+	ld hl, $d0f0
 	ld de, PokemonNames
 	ld a, $1
 	jr .asm_50dfc
@@ -61154,7 +61154,7 @@ Function50db9: ; 50db9
 	jr .asm_50dfc
 
 .asm_50df4
-	ld hl, CurMart
+	ld hl, $d0f0
 	ld de, Function50000
 	ld a, $4
 
@@ -62490,7 +62490,7 @@ TryStep: ; 8016b
 TrySurfStep: ; 801c0
 
 	call CheckWaterPermissions
-	ld [MartPointer], a
+	ld [$d040], a
 	jr c, .asm_801f1
 
 	call Function80341
@@ -62500,7 +62500,7 @@ TrySurfStep: ; 801c0
 	cp 2
 	jr z, .asm_801f1
 
-	ld a, [MartPointer]
+	ld a, [$d040]
 	and a
 	jr nz, .ExitWater
 
@@ -99934,7 +99934,7 @@ Functione5516: ; e5516 (39:5516)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, LYOverrides
 	ld bc, $90
 	xor a
 	call ByteFill
@@ -99953,7 +99953,7 @@ Functione552f: ; e552f (39:552f)
 	ld a, [$cf64]
 	and $1
 	jr z, .asm_e5548
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, LYOverrides
 	ld a, [hl]
 	inc a
 	ld bc, $5f
@@ -99965,7 +99965,7 @@ Functione552f: ; e552f (39:552f)
 	inc a
 	ld bc, $31
 	call ByteFill
-	ld a, [CurMartEnd] ; $d100 (aliases: LYOverrides)
+	ld a, [LYOverrides + 0]
 	ld [hSCX], a ; $ff00+$cf
 	pop af
 	ld [rSVBK], a ; $ff00+$70
@@ -114152,7 +114152,7 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	jr nz, .asm_11c7d0
 	ret
 .asm_11c7e9
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, $d100
 	ld a, [$cd26]
 	ld e, a
 	add hl, de
@@ -114186,8 +114186,8 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	pop de
 	ret
 .asm_11c814
-	ld hl, BattleMonSpclDef ; $c648
-	ld a, [CreditsTimer] ; $cd22
+	ld hl, $c648
+	ld a, [$cd22]
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -114336,13 +114336,13 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	add [hl]
 	ld c, a
 	ld b, $0
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, $d100
 	add hl, bc
 	ld a, [hl]
 	jr .asm_11c911
 .asm_11c938
-	ld hl, BattleMonSpclDef ; $c648
-	ld a, [CreditsTimer] ; $cd22
+	ld hl, $c648
+	ld a, [$cd22]
 	ld e, a
 	ld d, $0
 	add hl, de
