@@ -37,7 +37,7 @@ Functioncc9c4: ; cc9c4 (33:49c4)
 	ld a, [$d419]
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_ccb56
+	ld hl, BattleAnimObjects
 	add hl, de
 	add hl, de
 	add hl, de
@@ -91,9 +91,9 @@ Functioncc9c4: ; cc9c4 (33:49c4)
 Functioncca09: ; cca09
 	call Functionccaaa
 	call Functionce7d1
-	cp EGG
+	cp $fd
 	jp z, .asm_ccaa5
-	cp NUM_POKEMON + 1
+	cp $fc
 	jp z, .asm_ccaa2
 	push af
 	ld hl, $d419
@@ -173,7 +173,7 @@ Functioncca09: ; cca09
 	and $10
 	or b
 	ld b, a
-	ld a, [OTPartyMon6Nickname]
+	ld a, [$d421]
 	and $f
 	or b
 	ld [de], a
@@ -212,7 +212,7 @@ Functionccaaa: ; ccaaa
 	ld hl, $0005
 	add hl, bc
 	ld a, [hl]
-	ld [OTPartyMon6Nickname], a
+	ld [$d421], a
 	ld hl, $0002
 	add hl, bc
 	ld a, [hl]
@@ -322,8 +322,196 @@ Functionccb4f: ; ccb4f (33:4b4f)
 	ret
 ; ccb56 (33:4b56)
 
-Unknown_ccb56: ; ccb56
-INCBIN "baserom.gbc",$ccb56,$ccfbe - $ccb56
+BattleAnimObjects: ; ccb56
+	db $01, $ff, $00, $00, $02, $01
+	db $01, $ff, $01, $00, $02, $01
+	db $01, $ff, $02, $00, $02, $01
+	db $01, $90, $00, $00, $02, $01
+	db $01, $90, $01, $00, $02, $01
+	db $01, $90, $02, $00, $02, $01
+	db $01, $ff, $03, $00, $02, $01
+	db $01, $ff, $04, $1b, $02, $01
+	db $01, $ff, $05, $00, $02, $01
+	db $01, $ff, $06, $00, $02, $01
+	db $01, $90, $07, $09, $02, $01
+	db $01, $aa, $10, $10, $04, $03
+	db $01, $90, $0e, $04, $04, $03
+	db $01, $90, $0f, $03, $04, $03
+	db $01, $90, $10, $08, $04, $03
+	db $01, $90, $0f, $0a, $04, $03
+	db $01, $90, $11, $03, $04, $03
+	db $01, $90, $12, $08, $06, $0a
+	db $01, $90, $13, $00, $06, $0a
+	db $01, $90, $14, $01, $06, $0a
+	db $21, $78, $16, $0b, $05, $06
+	db $00, $00, $09, $12, $04, $0b
+	db $00, $00, $09, $13, $04, $0b
+	db $01, $90, $18, $00, $04, $08
+	db $01, $ff, $18, $00, $04, $08
+	db $01, $90, $1d, $06, $02, $0c
+	db $01, $b4, $1f, $38, $02, $0c
+	db $01, $90, $08, $00, $02, $07
+	db $01, $a0, $08, $00, $02, $07
+	db $01, $ff, $19, $07, $07, $09
+	db $01, $ff, $1a, $07, $07, $09
+	db $01, $b0, $1b, $36, $07, $09
+	db $01, $b0, $84, $36, $06, $21
+	db $01, $90, $21, $0c, $06, $0d
+	db $00, $00, $23, $0d, $06, $0d
+	db $01, $90, $24, $0e, $02, $0e
+	db $61, $80, $27, $0f, $06, $04
+	db $01, $b4, $2a, $00, $06, $04
+	db $01, $40, $2b, $11, $05, $0f
+	db $61, $98, $2c, $00, $03, $10
+	db $61, $98, $2d, $09, $03, $10
+	db $01, $b8, $2e, $00, $06, $0a
+	db $01, $b8, $2f, $00, $06, $0a
+	db $01, $b8, $30, $14, $07, $11
+	db $01, $90, $21, $14, $03, $0d
+	db $21, $b0, $31, $00, $03, $05
+	db $21, $b0, $32, $00, $03, $05
+	db $21, $b0, $33, $00, $03, $05
+	db $21, $90, $34, $15, $03, $05
+	db $21, $90, $36, $00, $03, $05
+	db $21, $90, $37, $03, $02, $08
+	db $21, $90, $38, $00, $03, $05
+	db $21, $90, $39, $03, $02, $08
+	db $21, $90, $3a, $16, $02, $02
+	db $01, $90, $3c, $17, $02, $02
+	db $21, $ff, $3e, $00, $02, $02
+	db $21, $ff, $3f, $00, $02, $02
+	db $21, $ff, $40, $00, $02, $02
+	db $21, $ff, $41, $00, $02, $02
+	db $21, $ff, $42, $00, $02, $02
+	db $01, $88, $43, $18, $05, $12
+	db $01, $88, $44, $00, $05, $12
+	db $21, $b8, $45, $19, $02, $13
+	db $21, $ff, $46, $00, $02, $14
+	db $21, $ff, $47, $00, $02, $14
+	db $21, $ff, $48, $1a, $02, $14
+	db $21, $ff, $49, $1a, $02, $14
+	db $21, $98, $4a, $01, $02, $14
+	db $21, $80, $4b, $00, $03, $11
+	db $01, $88, $4c, $1c, $05, $12
+	db $21, $b0, $4d, $1d, $02, $15
+	db $01, $b0, $51, $1e, $03, $11
+	db $21, $ff, $52, $1f, $05, $16
+	db $21, $ff, $54, $1f, $05, $16
+	db $21, $68, $56, $20, $05, $06
+	db $21, $90, $59, $21, $02, $0e
+	db $21, $90, $5c, $02, $02, $17
+	db $01, $90, $5d, $22, $03, $11
+	db $61, $88, $5f, $00, $03, $10
+	db $61, $88, $2d, $09, $03, $10
+	db $21, $88, $60, $00, $03, $18
+	db $21, $80, $60, $00, $02, $18
+	db $21, $50, $61, $23, $03, $19
+	db $01, $80, $63, $24, $02, $19
+	db $01, $80, $66, $25, $02, $19
+	db $01, $50, $1c, $00, $02, $0c
+	db $21, $a8, $67, $26, $07, $1a
+	db $21, $a8, $68, $00, $07, $1a
+	db $21, $90, $69, $01, $02, $1a
+	db $21, $90, $6d, $28, $03, $19
+	db $21, $90, $6a, $27, $02, $1b
+	db $00, $00, $6f, $29, $02, $1c
+	db $21, $48, $70, $29, $02, $1c
+	db $21, $48, $6f, $29, $02, $1c
+	db $21, $78, $6f, $2a, $02, $1c
+	db $61, $90, $71, $2b, $02, $1d
+	db $61, $90, $72, $2c, $02, $1d
+	db $01, $48, $73, $2d, $04, $1e
+	db $01, $90, $74, $06, $02, $15
+	db $01, $ff, $75, $2e, $07, $19
+	db $21, $90, $4a, $02, $02, $14
+	db $01, $80, $30, $2f, $02, $11
+	db $01, $78, $76, $2a, $04, $23
+	db $01, $80, $77, $30, $02, $1f
+	db $01, $90, $77, $02, $02, $1f
+	db $01, $ff, $77, $00, $02, $1f
+	db $01, $80, $78, $08, $03, $23
+	db $21, $90, $79, $00, $02, $1f
+	db $01, $ff, $7a, $31, $03, $11
+	db $01, $88, $7a, $31, $03, $11
+	db $21, $88, $7b, $32, $02, $20
+	db $21, $98, $7c, $00, $02, $04
+	db $21, $80, $7d, $00, $02, $18
+	db $01, $80, $21, $2f, $06, $0d
+	db $01, $b0, $7e, $33, $03, $12
+	db $01, $80, $7f, $2f, $02, $08
+	db $21, $a0, $6f, $34, $02, $1c
+	db $21, $a0, $74, $35, $02, $15
+	db $21, $b0, $80, $33, $02, $14
+	db $01, $88, $81, $37, $02, $11
+	db $01, $88, $85, $00, $02, $22
+	db $01, $88, $86, $00, $02, $22
+	db $01, $90, $87, $39, $02, $1f
+	db $01, $80, $30, $3a, $03, $11
+	db $21, $90, $34, $00, $03, $05
+	db $a1, $88, $88, $3b, $06, $13
+	db $01, $80, $76, $25, $04, $23
+	db $01, $98, $10, $34, $04, $03
+	db $01, $a8, $0f, $3c, $04, $03
+	db $21, $68, $89, $29, $02, $1f
+	db $21, $b0, $8a, $00, $02, $1f
+	db $21, $80, $8c, $00, $02, $1f
+	db $21, $50, $8d, $00, $03, $1f
+	db $01, $40, $24, $40, $02, $0e
+	db $21, $a8, $8e, $41, $04, $1f
+	db $21, $88, $8f, $3e, $02, $1f
+	db $21, $88, $93, $3e, $02, $1f
+	db $21, $90, $97, $3d, $02, $1f
+	db $21, $90, $78, $3d, $03, $23
+	db $01, $ff, $99, $2e, $02, $19
+	db $21, $a0, $74, $02, $02, $15
+	db $21, $a0, $99, $35, $04, $19
+	db $21, $70, $8b, $3f, $02, $1f
+	db $01, $90, $15, $08, $02, $0a
+	db $01, $90, $11, $02, $04, $03
+	db $01, $80, $7f, $42, $02, $08
+	db $01, $90, $9a, $00, $02, $1b
+	db $21, $a0, $9b, $35, $04, $23
+	db $21, $80, $9c, $23, $02, $25
+	db $21, $80, $9d, $25, $02, $25
+	db $21, $80, $9c, $00, $02, $25
+	db $21, $80, $9e, $00, $06, $25
+	db $61, $80, $9f, $3a, $05, $23
+	db $21, $80, $a0, $16, $02, $23
+	db $21, $70, $78, $43, $03, $23
+	db $21, $c0, $a2, $01, $02, $25
+	db $21, $40, $a3, $44, $03, $24
+	db $01, $80, $a4, $00, $02, $24
+	db $01, $80, $a5, $00, $03, $24
+	db $01, $88, $43, $45, $04, $12
+	db $21, $ff, $a6, $00, $02, $02
+	db $21, $ff, $a7, $00, $02, $02
+	db $21, $00, $b4, $4a, $07, $0f
+	db $21, $90, $a8, $02, $03, $05
+	db $21, $40, $9c, $11, $02, $25
+	db $61, $90, $a9, $46, $02, $23
+	db $00, $00, $24, $47, $02, $0e
+	db $01, $80, $aa, $00, $02, $24
+	db $21, $b8, $ab, $48, $02, $13
+	db $21, $90, $ac, $44, $02, $13
+	db $01, $a8, $05, $00, $02, $01
+	db $01, $90, $24, $43, $02, $0e
+	db $01, $88, $ad, $00, $06, $17
+	db $01, $a8, $ae, $49, $02, $01
+	db $21, $90, $af, $01, $03, $11
+	db $21, $00, $b0, $4a, $02, $04
+	db $00, $00, $70, $4b, $04, $1c
+	db $01, $88, $b1, $4c, $02, $19
+	db $01, $b8, $19, $4d, $07, $09
+	db $61, $98, $b3, $00, $03, $27
+	db $61, $98, $74, $04, $06, $15
+	db $21, $ff, $19, $4e, $07, $09
+	db $01, $90, $73, $08, $04, $1e
+	db $01, $ff, $89, $4f, $04, $1f
+	db $00, $00, $b5, $00, $00, $28
+	db $00, $00, $b6, $00, $01, $29
+	db $00, $00, $b7, $00, $00, $28
+	db $00, $00, $b8, $00, $01, $29
+; ccfbe
 
 
 Functionccfbe: ; ccfbe
@@ -821,7 +1009,19 @@ Functioncd249: ; cd249 (33:5249)
 ; cd26c (33:526c)
 
 Unknown_cd26c: ; cd26c
-INCBIN "baserom.gbc",$cd26c,$cd284 - $cd26c
+	db MASTER_BALL, 5
+	db ULTRA_BALL,  3
+	db GREAT_BALL,  6
+	db POKE_BALL,   4
+	db HEAVY_BALL,  2
+	db LEVEL_BALL,  7
+	db LURE_BALL,   6
+	db FAST_BALL,   6
+	db FRIEND_BALL, 3
+	db MOON_BALL,   2
+	db LOVE_BALL,   4
+	db $ff,         2
+; cd284
 
 ; no known jump sources
 Functioncd284: ; cd284 (33:5284)
@@ -2269,7 +2469,8 @@ Functioncd9f4: ; cd9f4 (33:59f4)
 ; cda01 (33:5a01)
 
 Unknown_cda01: ; cda01
-INCBIN "baserom.gbc",$cda01,$cda0a - $cda01
+	db 8, 6, 5, 4, 5, 6, 8, 12, 16
+; cda0a
 
 ; no known jump sources
 Functioncda0a: ; cda0a (33:5a0a)
@@ -3077,7 +3278,8 @@ Functioncde21: ; cde21 (33:5e21)
 ; cde25 (33:5e25)
 
 Unknown_cde25: ; cde25
-INCBIN "baserom.gbc",$cde25,$cde28 - $cde25
+	db $ec, $f8, $00
+; cde28
 
 ; no known jump sources
 Functioncde28: ; cde28 (33:5e28)
@@ -3953,9 +4155,10 @@ Functionce29f: ; ce29f (33:629f)
 ; ce2c4 (33:62c4)
 
 Unknown_ce2c4: ; ce2c4
-INCBIN "baserom.gbc",$ce2c4,$ce2c8 - $ce2c4
+	db $ff, $aa, $55, $aa
 Unknown_ce2c8: ; ce2c8
-INCBIN "baserom.gbc",$ce2c8,$ce2cc - $ce2c8
+	db $ff, $ff, $00, $00
+; ce2cc
 
 ; no known jump sources
 Functionce2cc: ; ce2cc (33:62cc)
@@ -4924,7 +5127,8 @@ Functionce778: ; ce778
 ; ce77f
 
 Unknown_ce77f: ; ce77f
-INCBIN "baserom.gbc", $ce77f, $ce7bf - $ce77f
+	sine_wave $100
+; ce7bf
 
 ; known jump sources: cd18f (33:518f), cd19b (33:519b), cd1cb (33:51cb), cd1d4 (33:51d4), cd1e2 (33:51e2), cd2ba (33:52ba), cd419 (33:5419), cd434 (33:5434), cd4ab (33:54ab), cd53c (33:553c), cd618 (33:5618), cd6f4 (33:56f4), cd74c (33:574c), cd773 (33:5773), cd81c (33:581c), cd883 (33:5883), cd8e8 (33:58e8), cda40 (33:5a40), cda73 (33:5a73), cda89 (33:5a89), cdc20 (33:5c20), cdc3b (33:5c3b), cdc4a (33:5c4a), cdce9 (33:5ce9), cdd4b (33:5d4b), cddb1 (33:5db1), cddf5 (33:5df5), cde0c (33:5e0c), cde85 (33:5e85), cdebb (33:5ebb), ce372 (33:6372), ce3ab (33:63ab), ce458 (33:6458), ce4ad (33:64ad)
 Functionce7bf: ; ce7bf (33:67bf)
@@ -5059,10 +5263,1468 @@ Functionce846: ; ce846 (33:6846)
 
 
 Unknown_ce85e: ; ce85e
-INCBIN "baserom.gbc", $ce85e, $ceeae - $ce85e
+	dw Unknown_ce9d0
+	dw Unknown_ce9d3
+	dw Unknown_ce9d6
+	dw Unknown_ce9d9
+	dw Unknown_ce9dc
+	dw Unknown_ce9df
+	dw Unknown_ce9e2
+	dw Unknown_ce9e5
+	dw Unknown_cea6b
+	dw Unknown_cea74
+	dw Unknown_cea7d
+	dw Unknown_cea80
+	dw Unknown_cea83
+	dw Unknown_cea86
+	dw Unknown_cea91
+	dw Unknown_cea94
+	dw Unknown_cea99
+	dw Unknown_cea9e
+	dw Unknown_ceaaf
+	dw Unknown_ceabc
+	dw Unknown_cead3
+	dw Unknown_cead6
+	dw Unknown_ceadb
+	dw Unknown_ceade
+	dw Unknown_ceb06
+	dw Unknown_ceb0d
+	dw Unknown_ceb10
+	dw Unknown_ceb13
+	dw Unknown_ceb16
+	dw Unknown_ceb19
+	dw Unknown_ceb1c
+	dw Unknown_ceb1f
+	dw Unknown_ceb26
+	dw Unknown_ceb2b
+	dw Unknown_ceb2e
+	dw Unknown_ceb37
+	dw Unknown_ceb3a
+	dw Unknown_ceb3d
+	dw Unknown_ceb40
+	dw Unknown_ceb43
+	dw Unknown_ceb46
+	dw Unknown_ceb4b
+	dw Unknown_ceb50
+	dw Unknown_ceb63
+	dw Unknown_ceb68
+	dw Unknown_ceb6d
+	dw Unknown_ceb70
+	dw Unknown_ceb78
+	dw Unknown_ceb89
+	dw Unknown_ceb8e
+	dw Unknown_ceb97
+	dw Unknown_ceba0
+	dw Unknown_ceba9
+	dw Unknown_cebb0
+	dw Unknown_cebc1
+	dw Unknown_cebca
+	dw Unknown_cebcf
+	dw Unknown_cebd4
+	dw Unknown_cebd9
+	dw Unknown_cebdc
+	dw Unknown_cebdf
+	dw Unknown_cebe2
+	dw Unknown_ce9f6
+	dw Unknown_cea0b
+	dw Unknown_cea20
+	dw Unknown_cea35
+	dw Unknown_cea50
+	dw Unknown_cebe5
+	dw Unknown_cebf3
+	dw Unknown_cec0f
+	dw Unknown_cec20
+	dw Unknown_cec25
+	dw Unknown_cec2a
+	dw Unknown_cec37
+	dw Unknown_cec44
+	dw Unknown_cec4d
+	dw Unknown_cebec
+	dw Unknown_cec56
+	dw Unknown_cec67
+	dw Unknown_cec72
+	dw Unknown_cec77
+	dw Unknown_cec7c
+	dw Unknown_cec7f
+	dw Unknown_cec86
+	dw Unknown_cec8b
+	dw Unknown_cec92
+	dw Unknown_ceaf3
+	dw Unknown_ceaf6
+	dw Unknown_ceb01
+	dw Unknown_cec97
+	dw Unknown_cec9a
+	dw Unknown_cec9d
+	dw Unknown_ceca0
+	dw Unknown_cecab
+	dw Unknown_cecb0
+	dw Unknown_cecc9
+	dw Unknown_ceccc
+	dw Unknown_cece7
+	dw Unknown_cecec
+	dw Unknown_cecf1
+	dw Unknown_cecf4
+	dw Unknown_cecf7
+	dw Unknown_cecfa
+	dw Unknown_ced09
+	dw Unknown_ced0c
+	dw Unknown_ced19
+	dw Unknown_ced22
+	dw Unknown_ced2b
+	dw Unknown_ced32
+	dw Unknown_ced39
+	dw Unknown_ced3c
+	dw Unknown_ced3f
+	dw Unknown_ced44
+	dw Unknown_ced49
+	dw Unknown_ced4c
+	dw Unknown_ced4f
+	dw Unknown_ced54
+	dw Unknown_ced57
+	dw Unknown_ced5a
+	dw Unknown_ced5d
+	dw Unknown_ced62
+	dw Unknown_ced65
+	dw Unknown_cecb3
+	dw Unknown_ced72
+	dw Unknown_ced75
+	dw Unknown_ced88
+	dw Unknown_cec08
+	dw Unknown_ced8b
+	dw Unknown_ced8e
+	dw Unknown_ced91
+	dw Unknown_ced93
+	dw Unknown_ced95
+	dw Unknown_ced98
+	dw Unknown_ced9b
+	dw Unknown_ceda8
+	dw Unknown_cedb5
+	dw Unknown_cedb8
+	dw Unknown_cedbb
+	dw Unknown_cedbe
+	dw Unknown_cedc1
+	dw Unknown_cedc4
+	dw Unknown_cedc7
+	dw Unknown_cedcc
+	dw Unknown_cedcf
+	dw Unknown_cedd2
+	dw Unknown_cedd5
+	dw Unknown_cedd8
+	dw Unknown_ceddb
+	dw Unknown_cedde
+	dw Unknown_cede1
+	dw Unknown_cede4
+	dw Unknown_cede7
+	dw Unknown_cedea
+	dw Unknown_ceded
+	dw Unknown_cedf0
+	dw Unknown_cedf3
+	dw Unknown_cedf6
+	dw Unknown_cedf9
+	dw Unknown_cedfc
+	dw Unknown_cedff
+	dw Unknown_cee02
+	dw Unknown_cee05
+	dw Unknown_cee08
+	dw Unknown_cee0b
+	dw Unknown_cee12
+	dw Unknown_cee19
+	dw Unknown_cee1e
+	dw Unknown_cee3d
+	dw Unknown_cee5c
+	dw Unknown_cee61
+	dw Unknown_cee64
+	dw Unknown_cee6b
+	dw Unknown_cee70
+	dw Unknown_cee75
+	dw Unknown_cee7e
+	dw Unknown_cecbe
+	dw Unknown_cee81
+	dw Unknown_cee84
+	dw Unknown_cee8d
+	dw Unknown_cee96
+	dw Unknown_cee9f
+	dw Unknown_ceea2
+	dw Unknown_ceea5
+	dw Unknown_ceea8
+	dw Unknown_ceeab
+; ce9d0
+
+Unknown_ce9d0:	db $00,$06, $fc
+Unknown_ce9d3:	db $01,$06, $fc
+Unknown_ce9d6:	db $02,$06, $fc
+Unknown_ce9d9:	db $03,$06, $fc
+Unknown_ce9dc:	db $04,$06, $fc
+Unknown_ce9df:	db $05,$06, $fc
+Unknown_ce9e2:	db $06,$06, $fc
+Unknown_ce9e5:	db $03,$04, $01,$01, $03,$04, $01,$01, $03,$04, $01,$01, $03,$04, $01,$01, $fc
+Unknown_ce9f6:	db $4b,$02, $4c,$02, $4d,$04, $4e,$02, $fd,$02, $4e,$02, $fd,$02, $4e,$02, $fd,$02, $4e,$02, $fc
+Unknown_cea0b:	db $4b,$42, $4c,$42, $4d,$44, $4e,$42, $fd,$02, $4e,$42, $fd,$02, $4e,$42, $fd,$02, $4e,$42, $fc
+Unknown_cea20:	db $4b,$c2, $4c,$c2, $4d,$c4, $4e,$c2, $fd,$02, $4e,$c2, $fd,$02, $4e,$c2, $fd,$02, $4e,$c2, $fc
+Unknown_cea35:	db $4b,$01, $4c,$01, $4d,$01, $4f,$01, $50,$01, $51,$01, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fc
+Unknown_cea50:	db $4b,$41, $4c,$41, $4d,$41, $4f,$41, $50,$41, $51,$41, $52,$42, $fd,$02, $52,$42, $fd,$02, $52,$42, $fd,$02, $52,$42, $fc
+Unknown_cea6b:	db $00,$03, $07,$03, $08,$03, $09,$03, $fc
+Unknown_cea74:	db $0a,$07, $0b,$07, $0a,$07, $0b,$47, $fe
+Unknown_cea7d:	db $0c,$08, $ff
+Unknown_cea80:	db $0d,$08, $ff
+Unknown_cea83:	db $0a,$08, $ff
+Unknown_cea86:	db $0a,$07, $0b,$07, $0a,$07, $0b,$47, $0a,$07, $ff
+Unknown_cea91:	db $0a,$08, $ff
+Unknown_cea94:	db $0a,$04, $0e,$04, $fe
+Unknown_cea99:	db $0f,$04, $10,$04, $fe
+Unknown_cea9e:	db $10,$04, $0f,$04, $0e,$04, $0a,$04, $0e,$04, $0a,$04, $0e,$04, $0a,$04, $fc
+Unknown_ceaaf:	db $10,$01, $0f,$01, $12,$01, $11,$01, $12,$01, $0f,$01, $fe
+Unknown_ceabc:	db $10,$03, $0f,$03, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$03, $fc
+Unknown_cead3:	db $13,$14, $fc
+Unknown_cead6:	db $10,$01, $0f,$01, $fe
+Unknown_ceadb:	db $14,$08, $ff
+Unknown_ceade:	db $17,$04, $16,$08, $15,$08, $16,$08, $17,$04, $17,$04, $16,$48, $15,$48, $16,$48, $17,$04, $fe
+Unknown_ceaf3:	db $69,$08, $ff
+Unknown_ceaf6:	db $69,$20, $6a,$04, $6b,$04, $6d,$04, $6c,$04, $ff
+Unknown_ceb01:	db $6c,$08, $6d,$08, $fe
+Unknown_ceb06:	db $18,$04, $19,$04, $1a,$04, $fc
+Unknown_ceb0d:	db $1b,$08, $ff
+Unknown_ceb10:	db $0f,$08, $ff
+Unknown_ceb13:	db $1c,$08, $ff
+Unknown_ceb16:	db $0a,$08, $fc
+Unknown_ceb19:	db $1d,$08, $ff
+Unknown_ceb1c:	db $17,$08, $ff
+Unknown_ceb1f:	db $0f,$03, $10,$03, $1e,$03, $ff
+Unknown_ceb26:	db $1f,$10, $20,$03, $fc
+Unknown_ceb2b:	db $20,$08, $ff
+Unknown_ceb2e:	db $20,$08, $21,$08, $1b,$08, $21,$08, $fe
+Unknown_ceb37:	db $22,$08, $ff
+Unknown_ceb3a:	db $1b,$08, $ff
+Unknown_ceb3d:	db $23,$08, $ff
+Unknown_ceb40:	db $24,$08, $ff
+Unknown_ceb43:	db $25,$08, $ff
+Unknown_ceb46:	db $26,$08, $27,$08, $ff
+Unknown_ceb4b:	db $28,$08, $29,$08, $fc
+Unknown_ceb50:	db $2a,$01, $2b,$01, $2c,$01, $2d,$01, $2e,$01, $2d,$01, $2c,$01, $2b,$01, $2a,$01, $fc
+Unknown_ceb63:	db $14,$01, $15,$01, $fe
+Unknown_ceb68:	db $2f,$04, $30,$28, $fc
+Unknown_ceb6d:	db $31,$08, $ff
+Unknown_ceb70:	db $32,$20, $33,$20, $34,$20, $35,$20 ; fallthrough
+Unknown_ceb78:	db $fd,$02, $35,$04, $fd,$02, $35,$04, $fd,$02, $35,$04, $fd,$02, $35,$04, $fc
+Unknown_ceb89:	db $14,$04, $15,$04, $fe
+Unknown_ceb8e:	db $36,$02, $37,$02, $38,$02, $39,$20, $fc
+Unknown_ceb97:	db $3a,$02, $3b,$02, $3c,$02, $3d,$20, $fc
+Unknown_ceba0:	db $3a,$42, $3b,$42, $3c,$42, $3d,$60, $fc
+Unknown_ceba9:	db $3e,$08, $3f,$08, $40,$08, $ff
+Unknown_cebb0:	db $40,$02, $fd,$02, $40,$02, $fd,$02, $41,$02, $fd,$02, $41,$02, $fd,$02, $fe
+Unknown_cebc1:	db $42,$02, $43,$02, $44,$02, $45,$02, $fe
+Unknown_cebca:	db $19,$02, $fd,$02, $fe
+Unknown_cebcf:	db $46,$04, $47,$04, $fe
+Unknown_cebd4:	db $18,$02, $fd,$02, $fe
+Unknown_cebd9:	db $48,$08, $ff
+Unknown_cebdc:	db $48,$48, $ff
+Unknown_cebdf:	db $49,$08, $ff
+Unknown_cebe2:	db $4a,$08, $ff
+Unknown_cebe5:	db $20,$10, $1f,$10, $1e,$10, $ff
+Unknown_cebec:	db $20,$08, $1f,$08, $1e,$08, $ff
+Unknown_cebf3:	db $fd,$14, $55,$28, $54,$28, $53,$14, $fd,$04, $53,$04, $fd,$04, $53,$04, $fd,$04, $53,$04, $fc
+Unknown_cec08:	db $1e,$08, $1f,$08, $20,$08, $fc
+Unknown_cec0f:	db $fd,$00, $14,$00, $15,$00, $14,$40, $fd,$00, $16,$40, $15,$00, $16,$00, $fe
+Unknown_cec20:	db $56,$02, $57,$04, $fc
+Unknown_cec25:	db $56,$c2, $57,$c4, $fc
+Unknown_cec2a:	db $56,$01, $57,$01, $58,$01, $57,$c1, $58,$c1, $57,$02, $fc
+Unknown_cec37:	db $56,$c1, $57,$c1, $58,$c1, $57,$01, $58,$01, $57,$c2, $fc
+Unknown_cec44:	db $57,$c1, $58,$c1, $57,$01, $58,$01, $fe
+Unknown_cec4d:	db $59,$01, $5a,$01, $5b,$01, $5c,$02, $fc
+Unknown_cec56:	db $0a,$0a, $0b,$43, $5d,$43, $0b,$c3, $0a,$82, $0b,$81, $5d,$01, $0b,$01, $fe
+Unknown_cec67:	db $0a,$03, $0b,$47, $0a,$07, $0b,$07, $0a,$03, $fe
+Unknown_cec72:	db $5e,$20, $5e,$20, $fc
+Unknown_cec77:	db $5f,$20, $5f,$20, $fc
+Unknown_cec7c:	db $60,$08, $ff
+Unknown_cec7f:	db $61,$01, $62,$01, $63,$01, $ff
+Unknown_cec86:	db $63,$07, $64,$07, $fe
+Unknown_cec8b:	db $65,$01, $66,$01, $67,$01, $ff
+Unknown_cec92:	db $67,$07, $68,$07, $fe
+Unknown_cec97:	db $6e,$08, $ff
+Unknown_cec9a:	db $6f,$08, $ff
+Unknown_cec9d:	db $6e,$88, $ff
+Unknown_ceca0:	db $18,$04, $70,$04, $71,$04, $72,$04, $73,$04, $fc
+Unknown_cecab:	db $74,$04, $75,$04, $fe
+Unknown_cecb0:	db $14,$08, $ff
+Unknown_cecb3:	db $74,$03, $14,$03, $15,$03, $14,$03, $15,$03, $fc
+Unknown_cecbe:	db $14,$00, $15,$00, $14,$00, $15,$00, $74,$0c, $fc
+Unknown_cecc9:	db $76,$08, $ff
+Unknown_ceccc:	db $77,$01, $78,$01, $79,$01, $7a,$01, $7b,$01, $7c,$01, $7d,$01, $7c,$c1, $7b,$c1, $7a,$c1, $79,$c1, $78,$c1, $77,$c1, $fc
+Unknown_cece7:	db $1b,$04, $7e,$04, $fe
+Unknown_cecec:	db $1b,$44, $7e,$44, $fe
+Unknown_cecf1:	db $7f,$08, $ff
+Unknown_cecf4:	db $25,$08, $ff
+Unknown_cecf7:	db $80,$08, $ff
+Unknown_cecfa:	db $83,$07, $82,$07, $81,$07, $82,$07, $83,$07, $82,$07, $81,$07, $fc
+Unknown_ced09:	db $1b,$10, $fc
+Unknown_ced0c:	db $fd,$0f, $84,$0f, $85,$0f, $29,$0f, $28,$0f, $86,$20, $fc
+Unknown_ced19:	db $1b,$03, $87,$03, $88,$03, $89,$03, $fc
+Unknown_ced22:	db $8a,$02, $8b,$02, $8c,$02, $8d,$02, $fc
+Unknown_ced2b:	db $61,$02, $62,$02, $63,$02, $ff
+Unknown_ced32:	db $65,$02, $66,$02, $67,$02, $ff
+Unknown_ced39:	db $8e,$08, $ff
+Unknown_ced3c:	db $8e,$48, $ff
+Unknown_ced3f:	db $8f,$10, $90,$10, $fe
+Unknown_ced44:	db $91,$10, $92,$10, $fe
+Unknown_ced49:	db $93,$08, $ff
+Unknown_ced4c:	db $1e,$08, $ff
+Unknown_ced4f:	db $1b,$07, $94,$07, $fe
+Unknown_ced54:	db $95,$08, $ff
+Unknown_ced57:	db $96,$08, $ff
+Unknown_ced5a:	db $95,$08, $ff
+Unknown_ced5d:	db $97,$01, $97,$41, $fe
+Unknown_ced62:	db $98,$08, $ff
+Unknown_ced65:	db $99,$20, $99,$20, $99,$20, $99,$20, $99,$20, $9a,$08, $ff
+Unknown_ced72:	db $9b,$08, $ff
+Unknown_ced75:	db $9c,$02, $9d,$02, $9e,$08, $fd,$02, $9e,$02, $fd,$02, $9e,$02, $fd,$02, $9e,$02, $fc
+Unknown_ced88:	db $9f,$08, $ff
+Unknown_ced8b:	db $0f,$08, $ff
+Unknown_ced8e:	db $6b,$18, $fc
+Unknown_ced91:	db $a0,$01 ; fallthrough
+Unknown_ced93:	db $a1,$01 ; fallthrough
+Unknown_ced95:	db $a2,$01, $fc
+Unknown_ced98:	db $a3,$08, $ff
+Unknown_ced9b:	db $a4,$04, $a5,$04, $a6,$04, $a7,$04, $a6,$44, $a5,$44, $fe
+Unknown_ceda8:	db $a8,$04, $a9,$04, $aa,$04, $ab,$04, $aa,$44, $a9,$44, $fe
+Unknown_cedb5:	db $1b,$08, $ff
+Unknown_cedb8:	db $ac,$08, $ff
+Unknown_cedbb:	db $ad,$08, $ff
+Unknown_cedbe:	db $ae,$08, $ff
+Unknown_cedc1:	db $af,$08, $ff
+Unknown_cedc4:	db $b0,$20, $fc
+Unknown_cedc7:	db $b1,$07, $b1,$47, $fe
+Unknown_cedcc:	db $b2,$08, $ff
+Unknown_cedcf:	db $b3,$08, $ff
+Unknown_cedd2:	db $b3,$48, $ff
+Unknown_cedd5:	db $b3,$88, $ff
+Unknown_cedd8:	db $b3,$c8, $ff
+Unknown_ceddb:	db $b5,$08, $ff
+Unknown_cedde:	db $b5,$48, $ff
+Unknown_cede1:	db $b5,$88, $ff
+Unknown_cede4:	db $b5,$c8, $ff
+Unknown_cede7:	db $b4,$08, $ff
+Unknown_cedea:	db $6b,$08, $ff
+Unknown_ceded:	db $b6,$08, $ff
+Unknown_cedf0:	db $b7,$20, $ff
+Unknown_cedf3:	db $1b,$20, $ff
+Unknown_cedf6:	db $b8,$20, $ff
+Unknown_cedf9:	db $b8,$60, $ff
+Unknown_cedfc:	db $b9,$20, $ff
+Unknown_cedff:	db $ba,$20, $ff
+Unknown_cee02:	db $bb,$60, $ff
+Unknown_cee05:	db $bb,$20, $ff
+Unknown_cee08:	db $bc,$20, $ff
+Unknown_cee0b:	db $bd,$0b, $be,$0b, $1b,$0b, $fc
+Unknown_cee12:	db $bf,$04, $c0,$04, $c1,$04, $fc
+Unknown_cee19:	db $c2,$20, $c2,$20, $fc
+Unknown_cee1e:	db $4b,$02, $4c,$02, $4d,$20, $4d,$20, $4d,$20, $4f,$01, $50,$01, $51,$01, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fc
+Unknown_cee3d:	db $4b,$c2, $4c,$c2, $4d,$e0, $4d,$e0, $4d,$e0, $4f,$c1, $50,$c1, $51,$c1, $52,$c2, $fd,$02, $52,$c2, $fd,$02, $52,$c2, $fd,$02, $52,$c2, $fc
+Unknown_cee5c:	db $c3,$01, $c3,$c1, $fe
+Unknown_cee61:	db $c4,$20, $ff
+Unknown_cee64:	db $c5,$04, $c6,$04, $c7,$04, $fc
+Unknown_cee6b:	db $c8,$01, $c8,$41, $fe
+Unknown_cee70:	db $c9,$03, $05,$03, $fc
+Unknown_cee75:	db $ca,$20, $cb,$03, $ca,$03, $cb,$03, $fe
+Unknown_cee7e:	db $03,$a0, $ff
+Unknown_cee81:	db $cc,$20, $ff
+Unknown_cee84:	db $7f,$02, $25,$02, $80,$02, $25,$02, $fe
+Unknown_cee8d:	db $cd,$04, $ce,$04, $cd,$c4, $ce,$c4, $fe
+Unknown_cee96:	db $cf,$04, $d0,$04, $d1,$04, $d2,$04, $fc
+Unknown_cee9f:	db $d3,$20, $ff
+Unknown_ceea2:	db $d4,$08, $ff
+Unknown_ceea5:	db $d5,$08, $ff
+Unknown_ceea8:	db $d6,$08, $ff
+Unknown_ceeab:	db $d7,$08, $ff
+; ceeae
+
 
 Unknown_ceeae: ; ceeae
-INCBIN "baserom.gbc", $ceeae, $cfcf6 - $ceeae
+; ?, length, address
+	dbbw $00, $10, Unknown_cf2f6
+	dbbw $04, $09, Unknown_cf262
+	dbbw $08, $04, Unknown_cf22e
+	dbbw $09, $04, Unknown_cf21e
+	dbbw $0d, $04, Unknown_cf386
+	dbbw $0f, $04, Unknown_cf21e
+	dbbw $13, $04, Unknown_cf386
+	dbbw $04, $10, Unknown_cf2f6
+	dbbw $08, $10, Unknown_cf2f6
+	dbbw $08, $10, Unknown_cf336
+	dbbw $00, $04, Unknown_cf386
+	dbbw $02, $04, Unknown_cf21e
+	dbbw $06, $02, Unknown_cf376
+	dbbw $07, $02, Unknown_cf376
+	dbbw $02, $04, Unknown_cf386
+	dbbw $04, $01, Unknown_cf736
+	dbbw $05, $01, Unknown_cf736
+	dbbw $00, $02, Unknown_cf20e
+	dbbw $02, $02, Unknown_cf20e
+	dbbw $00, $04, Unknown_cf3a6
+	dbbw $00, $01, Unknown_cf736
+	dbbw $01, $01, Unknown_cf736
+	dbbw $02, $01, Unknown_cf736
+	dbbw $03, $01, Unknown_cf736
+	dbbw $00, $04, Unknown_cf22e
+	dbbw $01, $10, Unknown_cf2f6
+	dbbw $05, $10, Unknown_cf2f6
+	dbbw $00, $04, Unknown_cf21e
+	dbbw $05, $0c, Unknown_cf2b6
+	dbbw $02, $04, Unknown_cf22e
+	dbbw $06, $01, Unknown_cf736
+	dbbw $07, $01, Unknown_cf736
+	dbbw $08, $01, Unknown_cf736
+	dbbw $04, $04, Unknown_cf21e
+	dbbw $09, $16, Unknown_cf3b6
+	dbbw $04, $02, Unknown_cf20e
+	dbbw $06, $02, Unknown_cf20e
+	dbbw $0c, $01, Unknown_cf736
+	dbbw $0a, $01, Unknown_cf736
+	dbbw $0b, $04, Unknown_cf22e
+	dbbw $08, $04, Unknown_cf386
+	dbbw $06, $04, Unknown_cf386
+	dbbw $00, $05, Unknown_cf40e
+	dbbw $03, $06, Unknown_cf422
+	dbbw $00, $07, Unknown_cf43a
+	dbbw $03, $08, Unknown_cf456
+	dbbw $00, $09, Unknown_cf476
+	dbbw $00, $04, Unknown_cf49a
+	dbbw $02, $04, Unknown_cf4aa
+	dbbw $04, $06, Unknown_cf4ba
+	dbbw $00, $02, Unknown_cf4da
+	dbbw $00, $07, Unknown_cf512
+	dbbw $00, $0e, Unknown_cf4da
+	dbbw $00, $15, Unknown_cf512
+	dbbw $00, $02, Unknown_cf566
+	dbbw $00, $06, Unknown_cf566
+	dbbw $00, $0a, Unknown_cf566
+	dbbw $00, $0e, Unknown_cf566
+	dbbw $00, $02, Unknown_cf59e
+	dbbw $00, $06, Unknown_cf59e
+	dbbw $00, $0a, Unknown_cf59e
+	dbbw $00, $0e, Unknown_cf59e
+	dbbw $00, $04, Unknown_cf5d6
+	dbbw $00, $10, Unknown_cf5d6
+	dbbw $00, $1a, Unknown_cf5d6
+	dbbw $00, $1a, Unknown_cf63e
+	dbbw $0e, $04, Unknown_cf6a6
+	dbbw $0e, $08, Unknown_cf6a6
+	dbbw $0e, $04, Unknown_cf6c6
+	dbbw $0e, $08, Unknown_cf6c6
+	dbbw $0e, $04, Unknown_cf6e6
+	dbbw $0e, $04, Unknown_cf6f6
+	dbbw $00, $06, Unknown_cf706
+	dbbw $03, $04, Unknown_cf71e
+	dbbw $03, $02, Unknown_cf72e
+	dbbw $01, $05, Unknown_cf736
+	dbbw $01, $06, Unknown_cf74a
+	dbbw $01, $07, Unknown_cf762
+	dbbw $01, $03, Unknown_cf762
+	dbbw $01, $08, Unknown_cf77e
+	dbbw $01, $09, Unknown_cf79e
+	dbbw $01, $0a, Unknown_cf7c2
+	dbbw $01, $06, Unknown_cf7c2
+	dbbw $00, $09, Unknown_cf262
+	dbbw $04, $04, Unknown_cf22e
+	dbbw $05, $04, Unknown_cf22e
+	dbbw $00, $02, Unknown_cf216
+	dbbw $02, $02, Unknown_cf216
+	dbbw $04, $02, Unknown_cf216
+	dbbw $02, $04, Unknown_cf7ea
+	dbbw $02, $04, Unknown_cf7fa
+	dbbw $02, $02, Unknown_cf376
+	dbbw $04, $02, Unknown_cf376
+	dbbw $06, $04, Unknown_cf396
+	dbbw $08, $02, Unknown_cf376
+	dbbw $09, $02, Unknown_cf376
+	dbbw $05, $02, Unknown_cf80a
+	dbbw $00, $02, Unknown_cf812
+	dbbw $00, $05, Unknown_cf812
+	dbbw $00, $09, Unknown_cf812
+	dbbw $09, $09, Unknown_cf812
+	dbbw $00, $04, Unknown_cf836
+	dbbw $00, $07, Unknown_cf836
+	dbbw $00, $09, Unknown_cf836
+	dbbw $09, $09, Unknown_cf836
+	dbbw $04, $01, Unknown_cf80e
+	dbbw $05, $02, Unknown_cf37e
+	dbbw $06, $04, Unknown_cf21e
+	dbbw $0a, $04, Unknown_cf21e
+	dbbw $0e, $04, Unknown_cf21e
+	dbbw $08, $05, Unknown_cf8f6
+	dbbw $0d, $03, Unknown_cf90a
+	dbbw $01, $08, Unknown_cfa06
+	dbbw $03, $08, Unknown_cfa06
+	dbbw $05, $08, Unknown_cfa06
+	dbbw $07, $08, Unknown_cfa06
+	dbbw $06, $04, Unknown_cf22e
+	dbbw $07, $04, Unknown_cf22e
+	dbbw $0a, $02, Unknown_cf4d2
+	dbbw $00, $01, Unknown_cf916
+	dbbw $00, $03, Unknown_cf91a
+	dbbw $00, $06, Unknown_cf926
+	dbbw $00, $09, Unknown_cf93e
+	dbbw $00, $0c, Unknown_cf962
+	dbbw $00, $0e, Unknown_cf992
+	dbbw $00, $0f, Unknown_cf9ca
+	dbbw $04, $04, Unknown_cf21e
+	dbbw $08, $04, Unknown_cf21e
+	dbbw $0d, $01, Unknown_cf736
+	dbbw $0e, $04, Unknown_cfa26
+	dbbw $10, $01, Unknown_cf736
+	dbbw $11, $01, Unknown_cf736
+	dbbw $04, $02, Unknown_cf37e
+	dbbw $05, $02, Unknown_cf37e
+	dbbw $0a, $04, Unknown_cf386
+	dbbw $00, $08, Unknown_cfa36
+	dbbw $00, $0c, Unknown_cfa76
+	dbbw $00, $10, Unknown_cfa36
+	dbbw $09, $02, Unknown_cfaa6
+	dbbw $09, $04, Unknown_cfaa6
+	dbbw $09, $06, Unknown_cfaa6
+	dbbw $09, $08, Unknown_cfaa6
+	dbbw $12, $05, Unknown_cfac6
+	dbbw $00, $04, Unknown_cfada
+	dbbw $04, $04, Unknown_cfada
+	dbbw $08, $04, Unknown_cfada
+	dbbw $0c, $04, Unknown_cfada
+	dbbw $00, $06, Unknown_cfaea
+	dbbw $04, $04, Unknown_cf21e
+	dbbw $0a, $04, Unknown_cf386
+	dbbw $15, $04, Unknown_cf4aa
+	dbbw $04, $04, Unknown_cf4aa
+	dbbw $0c, $04, Unknown_cf386
+	dbbw $0a, $04, Unknown_cfb02
+	dbbw $0c, $04, Unknown_cf21e
+	dbbw $00, $24, Unknown_cfb12
+	dbbw $0d, $02, Unknown_cfba2
+	dbbw $0d, $04, Unknown_cfba2
+	dbbw $0d, $06, Unknown_cfba2
+	dbbw $02, $08, Unknown_cfbba
+	dbbw $08, $07, Unknown_cfbda
+	dbbw $08, $05, Unknown_cfbda
+	dbbw $08, $03, Unknown_cfbda
+	dbbw $00, $10, Unknown_cf2b6
+	dbbw $00, $09, Unknown_cfbf6
+	dbbw $06, $09, Unknown_cfbf6
+	dbbw $0c, $09, Unknown_cfbf6
+	dbbw $12, $09, Unknown_cfbf6
+	dbbw $18, $09, Unknown_cfbf6
+	dbbw $1e, $09, Unknown_cfbf6
+	dbbw $24, $09, Unknown_cfbf6
+	dbbw $2a, $09, Unknown_cfbf6
+	dbbw $03, $04, Unknown_cfc1a
+	dbbw $12, $04, Unknown_cf21e
+	dbbw $10, $04, Unknown_cf386
+	dbbw $16, $01, Unknown_cf736
+	dbbw $17, $04, Unknown_cf22e
+	dbbw $18, $04, Unknown_cf21e
+	dbbw $1c, $04, Unknown_cf21e
+	dbbw $20, $03, Unknown_cf21e
+	dbbw $23, $04, Unknown_cf386
+	dbbw $25, $03, Unknown_cf21e
+	dbbw $17, $04, Unknown_cf21e
+	dbbw $0a, $10, Unknown_cf2f6
+	dbbw $10, $10, Unknown_cf2b6
+	dbbw $00, $10, Unknown_cf2b6
+	dbbw $04, $04, Unknown_cf21e
+	dbbw $08, $02, Unknown_cf20e
+	dbbw $20, $06, Unknown_cfc2a
+	dbbw $08, $01, Unknown_cf736
+	dbbw $04, $04, Unknown_cf21e
+	dbbw $1a, $04, Unknown_cf4aa
+	dbbw $16, $09, Unknown_cf262
+	dbbw $10, $10, Unknown_cfc42
+	dbbw $09, $06, Unknown_cfc82
+	dbbw $11, $09, Unknown_cf23e
+	dbbw $0e, $04, Unknown_cf21e
+	dbbw $0b, $04, Unknown_cf4aa
+	dbbw $1c, $06, Unknown_cf22e
+	dbbw $20, $10, Unknown_cfc42
+	dbbw $05, $06, Unknown_cfc9a
+	dbbw $0b, $04, Unknown_cf21e
+	dbbw $09, $04, Unknown_cfcb2
+	dbbw $0b, $04, Unknown_cf386
+	dbbw $11, $0d, Unknown_cfcc2
+	dbbw $00, $09, Unknown_cf23e
+	dbbw $09, $09, Unknown_cf23e
+	dbbw $00, $0c, Unknown_cf286
+	dbbw $06, $0c, Unknown_cf286
+	dbbw $0c, $0c, Unknown_cf286
+	dbbw $12, $0c, Unknown_cf286
+	dbbw $00, $0d, Unknown_cfcc2
+	dbbw $00, $07, Unknown_cf85a
+	dbbw $00, $06, Unknown_cf8ae
+	dbbw $00, $0e, Unknown_cf876
+	dbbw $00, $0c, Unknown_cf8c6
+; cf20e
+
+
+Unknown_cf20e:
+	db $f8, $fc, $00, $00
+	db $00, $fc, $01, $00
+
+Unknown_cf216:
+	db $fc, $f8, $00, $00
+	db $fc, $00, $01, $00
+
+Unknown_cf21e:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $01, $00
+	db $00, $f8, $02, $00
+	db $00, $00, $03, $00
+
+Unknown_cf22e:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $00, $20
+	db $00, $f8, $00, $40
+	db $00, $00, $00, $60
+
+Unknown_cf23e:
+	db $f4, $f4, $00, $00
+	db $f4, $fc, $01, $00
+	db $f4, $04, $02, $00
+	db $fc, $f4, $03, $00
+	db $fc, $fc, $04, $00
+	db $fc, $04, $05, $00
+	db $04, $f4, $06, $00
+	db $04, $fc, $07, $00
+	db $04, $04, $08, $00
+
+Unknown_cf262:
+	db $f4, $f4, $00, $00
+	db $f4, $fc, $01, $00
+	db $f4, $04, $00, $20
+	db $fc, $f4, $02, $00
+	db $fc, $fc, $03, $00
+	db $fc, $04, $02, $60
+	db $04, $f4, $00, $40
+	db $04, $fc, $01, $60
+	db $04, $04, $00, $60
+
+Unknown_cf286:
+	db $f0, $f4, $00, $00
+	db $f0, $fc, $01, $00
+	db $f0, $04, $02, $00
+	db $f8, $f4, $03, $00
+	db $f8, $fc, $04, $00
+	db $f8, $04, $05, $00
+	db $00, $f4, $05, $60
+	db $00, $fc, $04, $60
+	db $00, $04, $03, $60
+	db $08, $f4, $02, $60
+	db $08, $fc, $01, $60
+	db $08, $04, $00, $60
+
+Unknown_cf2b6:
+	db $f0, $f0, $00, $00
+	db $f0, $f8, $01, $00
+	db $f0, $00, $02, $00
+	db $f0, $08, $03, $00
+	db $f8, $f0, $04, $00
+	db $f8, $f8, $05, $00
+	db $f8, $00, $06, $00
+	db $f8, $08, $07, $00
+	db $00, $f0, $08, $00
+	db $00, $f8, $09, $00
+	db $00, $00, $0a, $00
+	db $00, $08, $0b, $00
+	db $08, $f0, $0c, $00
+	db $08, $f8, $0d, $00
+	db $08, $00, $0e, $00
+	db $08, $08, $0f, $00
+
+Unknown_cf2f6:
+	db $f0, $f0, $00, $00
+	db $f0, $f8, $01, $00
+	db $f8, $f0, $02, $00
+	db $f8, $f8, $03, $00
+	db $f0, $00, $01, $20
+	db $f0, $08, $00, $20
+	db $f8, $00, $03, $20
+	db $f8, $08, $02, $20
+	db $00, $f0, $02, $40
+	db $00, $f8, $03, $40
+	db $08, $f0, $00, $40
+	db $08, $f8, $01, $40
+	db $00, $00, $03, $60
+	db $00, $08, $02, $60
+	db $08, $00, $01, $60
+	db $08, $08, $00, $60
+
+Unknown_cf336:
+	db $ec, $ec, $00, $00
+	db $ec, $f4, $01, $00
+	db $f4, $ec, $02, $00
+	db $f4, $f4, $03, $00
+	db $ec, $04, $01, $20
+	db $ec, $0c, $00, $20
+	db $f4, $04, $03, $20
+	db $f4, $0c, $02, $20
+	db $04, $ec, $02, $40
+	db $04, $f4, $03, $40
+	db $0c, $ec, $00, $40
+	db $0c, $f4, $01, $40
+	db $04, $04, $03, $60
+	db $04, $0c, $02, $60
+	db $0c, $04, $01, $60
+	db $0c, $0c, $00, $60
+
+Unknown_cf376:
+	db $fc, $f8, $00, $00
+	db $fc, $00, $00, $20
+
+Unknown_cf37e:
+	db $00, $f8, $00, $00
+	db $00, $00, $00, $20
+
+Unknown_cf386:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $00, $20
+	db $00, $f8, $01, $00
+	db $00, $00, $01, $20
+
+Unknown_cf396:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $01, $00
+	db $00, $f8, $00, $40
+	db $00, $00, $01, $40
+
+Unknown_cf3a6:
+	db $fa, $f8, $02, $00
+	db $02, $f8, $03, $00
+	db $f6, $00, $02, $00
+	db $fe, $00, $03, $00
+
+Unknown_cf3b6:
+	db $08, $a8, $01, $00
+	db $00, $b0, $02, $00
+	db $00, $b8, $03, $00
+	db $00, $c0, $00, $00
+	db $00, $c8, $03, $00
+	db $00, $d0, $00, $00
+	db $00, $d8, $03, $00
+	db $00, $e0, $00, $00
+	db $00, $e8, $03, $00
+	db $00, $f0, $00, $00
+	db $00, $f8, $01, $00
+	db $f8, $00, $02, $00
+	db $f8, $08, $03, $00
+	db $f8, $10, $00, $00
+	db $f8, $18, $03, $00
+	db $f8, $20, $00, $00
+	db $f8, $28, $03, $00
+	db $f8, $30, $00, $00
+	db $f8, $38, $03, $00
+	db $f8, $40, $00, $00
+	db $f8, $48, $01, $00
+	db $f0, $50, $02, $00
+
+Unknown_cf40e:
+	db $ec, $f8, $00, $00
+	db $ec, $00, $00, $20
+	db $f4, $f8, $01, $00
+	db $f4, $00, $01, $20
+	db $fc, $fc, $02, $00
+
+Unknown_cf422:
+	db $e4, $f8, $00, $00
+	db $e4, $00, $00, $20
+	db $ec, $f8, $01, $00
+	db $ec, $00, $01, $20
+	db $f4, $fc, $02, $00
+	db $fc, $fc, $02, $00
+
+Unknown_cf43a:
+	db $dc, $f8, $00, $00
+	db $dc, $00, $00, $20
+	db $e4, $f8, $01, $00
+	db $e4, $00, $01, $20
+	db $ec, $fc, $02, $00
+	db $f4, $fc, $02, $00
+	db $fc, $fc, $02, $00
+
+Unknown_cf456:
+	db $d4, $f8, $00, $00
+	db $d4, $00, $00, $20
+	db $dc, $f8, $01, $00
+	db $dc, $00, $01, $20
+	db $e4, $fc, $02, $00
+	db $ec, $fc, $02, $00
+	db $f4, $fc, $02, $00
+	db $fc, $fc, $02, $00
+
+Unknown_cf476:
+	db $cc, $f8, $00, $00
+	db $cc, $00, $00, $20
+	db $d4, $f8, $01, $00
+	db $d4, $00, $01, $20
+	db $dc, $fc, $02, $00
+	db $e4, $fc, $02, $00
+	db $ec, $fc, $02, $00
+	db $f4, $fc, $02, $00
+	db $fc, $fc, $02, $00
+
+Unknown_cf49a:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $00, $20
+	db $00, $f8, $01, $00
+	db $00, $00, $00, $60
+
+Unknown_cf4aa:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $01, $00
+	db $00, $f8, $01, $60
+	db $00, $00, $00, $60
+
+Unknown_cf4ba:
+	db $f4, $f8, $00, $00
+	db $f4, $00, $01, $00
+	db $fc, $f8, $02, $00
+	db $fc, $00, $03, $00
+	db $04, $f8, $04, $00
+	db $04, $00, $05, $00
+
+Unknown_cf4d2:
+	db $fd, $f8, $00, $00
+	db $f9, $00, $00, $00
+
+Unknown_cf4da:
+	db $f8, $f4, $00, $00
+	db $f8, $04, $00, $00
+	db $e8, $f4, $00, $00
+	db $e8, $04, $00, $00
+	db $f0, $ec, $00, $00
+	db $f0, $f4, $01, $00
+	db $f0, $fc, $00, $00
+	db $f0, $04, $01, $00
+	db $f0, $0c, $00, $00
+	db $f8, $e4, $00, $00
+	db $f8, $ec, $01, $00
+	db $f8, $fc, $01, $00
+	db $f8, $0c, $01, $00
+	db $f8, $14, $00, $00
+
+Unknown_cf512:
+	db $f0, $f4, $00, $00
+	db $f0, $04, $00, $00
+	db $f8, $ec, $00, $00
+	db $f8, $f4, $01, $00
+	db $f8, $fc, $00, $00
+	db $f8, $04, $01, $00
+	db $f8, $0c, $00, $00
+	db $e0, $f4, $00, $00
+	db $e0, $04, $00, $00
+	db $e8, $ec, $00, $00
+	db $e8, $f4, $01, $00
+	db $e8, $fc, $00, $00
+	db $e8, $04, $01, $00
+	db $e8, $0c, $00, $00
+	db $f0, $e4, $00, $00
+	db $f0, $ec, $01, $00
+	db $f0, $fc, $01, $00
+	db $f0, $0c, $01, $00
+	db $f0, $14, $00, $00
+	db $f8, $e4, $01, $00
+	db $f8, $14, $01, $00
+
+Unknown_cf566:
+	db $cc, $f8, $00, $00
+	db $cc, $00, $01, $00
+	db $d4, $f8, $02, $00
+	db $d4, $00, $03, $00
+	db $dc, $f8, $04, $00
+	db $dc, $00, $05, $00
+	db $e4, $f8, $06, $00
+	db $e4, $00, $07, $00
+	db $ec, $f8, $08, $00
+	db $ec, $00, $09, $00
+	db $f4, $f8, $0a, $00
+	db $f4, $00, $0b, $00
+	db $fc, $f8, $0c, $00
+	db $fc, $00, $0d, $00
+
+Unknown_cf59e:
+	db $cc, $f8, $0c, $00
+	db $cc, $00, $0d, $00
+	db $d4, $f8, $08, $00
+	db $d4, $00, $09, $00
+	db $dc, $f8, $04, $00
+	db $dc, $00, $05, $00
+	db $e4, $f8, $00, $00
+	db $e4, $00, $01, $00
+	db $ec, $f8, $02, $00
+	db $ec, $00, $03, $00
+	db $f4, $00, $02, $00
+	db $f4, $08, $03, $00
+	db $fc, $00, $0a, $00
+	db $fc, $08, $0b, $00
+
+Unknown_cf5d6:
+	db $0c, $f0, $00, $40
+	db $0c, $f8, $02, $40
+	db $0c, $00, $02, $60
+	db $0c, $08, $00, $60
+	db $fc, $e8, $09, $20
+	db $fc, $f0, $08, $20
+	db $fc, $f8, $06, $00
+	db $fc, $00, $07, $00
+	db $fc, $08, $08, $00
+	db $fc, $10, $09, $00
+	db $04, $e8, $01, $20
+	db $04, $f0, $00, $20
+	db $04, $f8, $0c, $00
+	db $04, $00, $0d, $00
+	db $04, $08, $00, $00
+	db $04, $10, $01, $00
+	db $ec, $f0, $00, $00
+	db $ec, $f8, $02, $00
+	db $ec, $00, $02, $20
+	db $ec, $08, $00, $20
+	db $f4, $e8, $03, $20
+	db $f4, $f0, $02, $20
+	db $f4, $f8, $04, $00
+	db $f4, $00, $05, $00
+	db $f4, $08, $02, $00
+	db $f4, $10, $03, $00
+
+Unknown_cf63e:
+	db $ec, $f0, $00, $00
+	db $ec, $f8, $02, $00
+	db $ec, $00, $02, $20
+	db $ec, $08, $00, $20
+	db $f4, $ec, $00, $00
+	db $f4, $f4, $01, $00
+	db $f4, $f8, $05, $20
+	db $f4, $00, $04, $20
+	db $f4, $04, $01, $20
+	db $f4, $0c, $00, $20
+	db $fc, $ec, $02, $00
+	db $fc, $f4, $03, $00
+	db $fc, $f8, $07, $20
+	db $fc, $00, $06, $20
+	db $fc, $04, $03, $20
+	db $fc, $0c, $02, $20
+	db $04, $ec, $04, $00
+	db $04, $f4, $05, $00
+	db $04, $f8, $0d, $20
+	db $04, $00, $0c, $20
+	db $04, $04, $05, $20
+	db $04, $0c, $04, $20
+	db $0c, $f0, $00, $40
+	db $0c, $f8, $02, $40
+	db $0c, $00, $02, $60
+	db $0c, $08, $00, $60
+
+Unknown_cf6a6:
+	db $e8, $fc, $02, $00
+	db $10, $fc, $02, $60
+	db $fc, $e8, $01, $00
+	db $fc, $10, $01, $60
+	db $e0, $fc, $02, $00
+	db $18, $fc, $02, $60
+	db $fc, $e0, $01, $00
+	db $fc, $18, $01, $60
+
+Unknown_cf6c6:
+	db $ed, $ed, $00, $20
+	db $ed, $0b, $00, $00
+	db $0b, $ed, $00, $60
+	db $0b, $0b, $00, $40
+	db $e5, $e5, $00, $20
+	db $e5, $13, $00, $00
+	db $13, $e5, $00, $60
+	db $13, $13, $00, $40
+
+Unknown_cf6e6:
+	db $ec, $fc, $02, $00
+	db $0c, $fc, $02, $60
+	db $fc, $ec, $01, $00
+	db $fc, $0c, $01, $60
+
+Unknown_cf6f6:
+	db $f0, $f0, $00, $20
+	db $f0, $08, $00, $00
+	db $08, $f0, $00, $60
+	db $08, $08, $00, $40
+
+Unknown_cf706:
+	db $e8, $fc, $00, $00
+	db $f0, $fa, $00, $00
+	db $f8, $f8, $00, $00
+	db $00, $f8, $00, $00
+	db $08, $fa, $00, $00
+	db $10, $fc, $00, $00
+
+Unknown_cf71e:
+	db $fc, $f0, $00, $20
+	db $fa, $f8, $00, $20
+	db $fa, $00, $00, $00
+	db $fc, $08, $00, $00
+
+Unknown_cf72e:
+	db $fc, $f8, $00, $60
+	db $fc, $00, $00, $40
+
+Unknown_cf736:
+	db $fc, $fc, $00, $00
+	db $fc, $f4, $01, $00
+	db $fc, $fc, $01, $20
+	db $04, $f4, $01, $40
+	db $04, $fc, $01, $60
+
+Unknown_cf74a:
+	db $fc, $fc, $00, $00
+	db $02, $f6, $00, $00
+	db $02, $ee, $01, $00
+	db $02, $f6, $01, $20
+	db $0a, $ee, $01, $40
+	db $0a, $f6, $01, $60
+
+Unknown_cf762:
+	db $fc, $fc, $00, $00
+	db $02, $f6, $00, $00
+	db $08, $f0, $00, $00
+	db $08, $e8, $01, $00
+	db $08, $f0, $01, $20
+	db $10, $e8, $01, $40
+	db $10, $f0, $01, $60
+
+Unknown_cf77e:
+	db $fc, $fc, $00, $00
+	db $02, $f6, $00, $00
+	db $08, $f0, $00, $00
+	db $0e, $ea, $00, $00
+	db $0e, $e2, $01, $00
+	db $0e, $ea, $01, $20
+	db $16, $e2, $01, $40
+	db $16, $ea, $01, $60
+
+Unknown_cf79e:
+	db $fc, $fc, $00, $00
+	db $02, $f6, $00, $00
+	db $08, $f0, $00, $00
+	db $0e, $ea, $00, $00
+	db $14, $e4, $00, $00
+	db $14, $dc, $01, $00
+	db $14, $e4, $01, $20
+	db $1c, $dc, $01, $40
+	db $1c, $e4, $01, $60
+
+Unknown_cf7c2:
+	db $fc, $fc, $00, $00
+	db $02, $f6, $00, $00
+	db $08, $f0, $00, $00
+	db $0e, $ea, $00, $00
+	db $14, $e4, $00, $00
+	db $1a, $de, $00, $00
+	db $1a, $d6, $01, $00
+	db $1a, $de, $01, $20
+	db $22, $d6, $01, $40
+	db $22, $de, $01, $60
+
+Unknown_cf7ea:
+	db $fc, $f0, $00, $00
+	db $fc, $f8, $01, $00
+	db $fc, $00, $01, $20
+	db $fc, $08, $00, $20
+
+Unknown_cf7fa:
+	db $fc, $f0, $02, $00
+	db $fc, $f8, $01, $00
+	db $fc, $00, $01, $20
+	db $fc, $08, $02, $20
+
+Unknown_cf80a:
+	db $f8, $fc, $00, $00
+
+Unknown_cf80e:
+	db $00, $fc, $00, $00
+
+Unknown_cf812:
+	db $fc, $e4, $00, $00
+	db $fc, $ec, $01, $00
+	db $fc, $f4, $02, $00
+	db $fc, $fc, $03, $00
+	db $fc, $04, $04, $00
+	db $fc, $0c, $05, $00
+	db $fc, $14, $06, $00
+	db $f4, $0c, $07, $00
+	db $f4, $14, $08, $00
+
+Unknown_cf836:
+	db $f4, $e4, $08, $20
+	db $f4, $ec, $07, $20
+	db $fc, $e4, $06, $20
+	db $fc, $ec, $05, $20
+	db $fc, $f4, $04, $20
+	db $fc, $fc, $03, $20
+	db $fc, $04, $02, $20
+	db $fc, $0c, $01, $20
+	db $fc, $14, $00, $20
+
+Unknown_cf85a:
+	db $00, $e4, $00, $10
+	db $00, $ec, $01, $10
+	db $00, $f4, $02, $10
+	db $00, $fc, $03, $10
+	db $00, $04, $04, $10
+	db $00, $0c, $05, $10
+	db $00, $14, $06, $10
+
+Unknown_cf876:
+	db $f8, $e4, $00, $10
+	db $00, $e4, $01, $10
+	db $f8, $ec, $02, $10
+	db $00, $ec, $03, $10
+	db $f8, $f4, $04, $10
+	db $00, $f4, $05, $10
+	db $f8, $fc, $06, $10
+	db $00, $fc, $07, $10
+	db $f8, $04, $08, $10
+	db $00, $04, $09, $10
+	db $f8, $0c, $0a, $10
+	db $00, $0c, $0b, $10
+	db $f8, $14, $0c, $10
+	db $00, $14, $0d, $10
+
+Unknown_cf8ae:
+	db $00, $e8, $00, $11
+	db $00, $f0, $01, $11
+	db $00, $f8, $02, $11
+	db $00, $00, $03, $11
+	db $00, $08, $04, $11
+	db $00, $10, $05, $11
+
+Unknown_cf8c6:
+	db $00, $e8, $00, $11
+	db $08, $e8, $01, $11
+	db $00, $f0, $02, $11
+	db $08, $f0, $03, $11
+	db $00, $f8, $04, $11
+	db $08, $f8, $05, $11
+	db $00, $00, $06, $11
+	db $08, $00, $07, $11
+	db $00, $08, $08, $11
+	db $08, $08, $09, $11
+	db $00, $10, $0a, $11
+	db $08, $10, $0b, $11
+
+Unknown_cf8f6:
+	db $f4, $04, $00, $00
+	db $fc, $f4, $01, $00
+	db $fc, $fc, $02, $00
+	db $fc, $04, $03, $00
+	db $04, $f4, $04, $00
+
+Unknown_cf90a:
+	db $fc, $f4, $00, $00
+	db $fc, $fc, $01, $00
+	db $fc, $04, $02, $00
+
+Unknown_cf916:
+	db $e4, $0c, $01, $60
+
+Unknown_cf91a:
+	db $e4, $0c, $00, $00
+	db $e4, $04, $01, $60
+	db $ec, $0c, $01, $60
+
+Unknown_cf926:
+	db $e4, $0c, $01, $00
+	db $e4, $04, $00, $00
+	db $e4, $fc, $01, $60
+	db $ec, $0c, $00, $00
+	db $ec, $04, $01, $60
+	db $f4, $0c, $01, $60
+
+Unknown_cf93e:
+	db $e4, $f4, $01, $60
+	db $e4, $fc, $00, $00
+	db $e4, $04, $01, $00
+	db $ec, $fc, $01, $60
+	db $ec, $04, $00, $00
+	db $ec, $0c, $01, $00
+	db $f4, $04, $01, $60
+	db $f4, $0c, $00, $00
+	db $fc, $0c, $01, $60
+
+Unknown_cf962:
+	db $e4, $ec, $01, $60
+	db $e4, $f4, $00, $00
+	db $e4, $fc, $01, $00
+	db $ec, $f4, $01, $60
+	db $ec, $fc, $00, $00
+	db $ec, $04, $01, $00
+	db $f4, $fc, $01, $60
+	db $f4, $04, $00, $00
+	db $f4, $0c, $01, $00
+	db $fc, $04, $01, $60
+	db $fc, $0c, $00, $00
+	db $04, $0c, $01, $60
+
+Unknown_cf992:
+	db $e4, $ec, $00, $00
+	db $e4, $f4, $01, $00
+	db $ec, $ec, $01, $60
+	db $ec, $f4, $00, $00
+	db $ec, $fc, $01, $00
+	db $f4, $f4, $01, $60
+	db $f4, $fc, $00, $00
+	db $f4, $04, $01, $00
+	db $fc, $fc, $01, $60
+	db $fc, $04, $00, $00
+	db $fc, $0c, $01, $00
+	db $04, $04, $01, $60
+	db $04, $0c, $00, $00
+	db $0c, $0c, $01, $60
+
+Unknown_cf9ca:
+	db $e4, $ec, $01, $00
+	db $ec, $ec, $00, $00
+	db $ec, $f4, $01, $00
+	db $f4, $ec, $01, $60
+	db $f4, $f4, $00, $00
+	db $f4, $fc, $01, $00
+	db $fc, $f4, $01, $60
+	db $fc, $fc, $00, $00
+	db $fc, $04, $01, $00
+	db $04, $fc, $01, $60
+	db $04, $04, $00, $00
+	db $04, $0c, $01, $00
+	db $0c, $04, $01, $60
+	db $0c, $0c, $00, $00
+	db $14, $0c, $01, $60
+
+Unknown_cfa06:
+	db $f0, $f8, $00, $00
+	db $f8, $f8, $01, $00
+	db $f0, $00, $00, $20
+	db $f8, $00, $01, $20
+	db $00, $f8, $01, $40
+	db $08, $f8, $00, $40
+	db $00, $00, $01, $60
+	db $08, $00, $00, $60
+
+Unknown_cfa26:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $01, $00
+	db $00, $f8, $01, $60
+	db $00, $00, $00, $60
+
+Unknown_cfa36:
+	db $f4, $f8, $00, $00
+	db $f4, $00, $01, $00
+	db $fc, $f8, $02, $00
+	db $fc, $00, $03, $00
+	db $fc, $f8, $00, $00
+	db $fc, $00, $01, $00
+	db $04, $f8, $02, $00
+	db $04, $00, $03, $00
+	db $ec, $f8, $00, $00
+	db $ec, $00, $01, $00
+	db $f4, $f8, $02, $00
+	db $f4, $00, $03, $00
+	db $04, $f8, $00, $00
+	db $04, $00, $01, $00
+	db $0c, $f8, $02, $00
+	db $0c, $00, $03, $00
+
+Unknown_cfa76:
+	db $f0, $f8, $00, $00
+	db $f0, $00, $01, $00
+	db $f8, $f8, $02, $00
+	db $f8, $00, $03, $00
+	db $f8, $f8, $00, $00
+	db $f8, $00, $01, $00
+	db $00, $f8, $02, $00
+	db $00, $00, $03, $00
+	db $00, $f8, $00, $00
+	db $00, $00, $01, $00
+	db $08, $f8, $02, $00
+	db $08, $00, $03, $00
+
+Unknown_cfaa6:
+	db $fc, $fc, $00, $00
+	db $f8, $04, $00, $00
+	db $f4, $0c, $00, $00
+	db $f0, $14, $00, $00
+	db $ec, $1c, $00, $00
+	db $e8, $24, $00, $00
+	db $e0, $2c, $00, $00
+	db $dc, $34, $00, $00
+
+Unknown_cfac6:
+	db $ec, $fc, $00, $00
+	db $f4, $fc, $01, $00
+	db $fc, $fc, $02, $00
+	db $04, $fc, $01, $40
+	db $0c, $fc, $00, $40
+
+Unknown_cfada:
+	db $fc, $f0, $00, $00
+	db $fc, $f8, $01, $00
+	db $fc, $00, $02, $00
+	db $fc, $08, $03, $00
+
+Unknown_cfaea:
+	db $f8, $f4, $00, $00
+	db $f8, $fc, $01, $00
+	db $f8, $04, $02, $00
+	db $00, $f4, $03, $00
+	db $00, $fc, $04, $00
+	db $00, $04, $05, $00
+
+Unknown_cfb02:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $05, $00
+	db $00, $f8, $01, $00
+	db $00, $00, $05, $00
+
+Unknown_cfb12:
+	db $e4, $08, $00, $00
+	db $e4, $10, $01, $00
+	db $ec, $f8, $02, $00
+	db $ec, $00, $03, $00
+	db $ec, $08, $04, $00
+	db $ec, $10, $05, $00
+	db $ec, $18, $06, $00
+	db $f4, $f0, $07, $00
+	db $f4, $f8, $08, $00
+	db $f4, $00, $09, $00
+	db $f4, $08, $0a, $00
+	db $f4, $10, $0b, $00
+	db $f4, $18, $0c, $00
+	db $f4, $20, $0d, $00
+	db $fc, $e8, $0e, $00
+	db $fc, $f0, $0f, $00
+	db $fc, $f8, $10, $00
+	db $fc, $00, $11, $00
+	db $fc, $08, $12, $00
+	db $fc, $10, $13, $00
+	db $04, $d8, $14, $00
+	db $04, $e0, $15, $00
+	db $04, $e8, $16, $00
+	db $04, $f0, $17, $00
+	db $04, $f8, $18, $00
+	db $04, $00, $19, $00
+	db $04, $08, $1a, $00
+	db $04, $10, $1b, $00
+	db $04, $18, $1c, $00
+	db $0c, $d8, $1d, $00
+	db $0c, $e0, $1e, $00
+	db $0c, $f0, $1f, $00
+	db $0c, $f8, $20, $00
+	db $0c, $00, $21, $00
+	db $0c, $08, $22, $00
+	db $14, $00, $23, $00
+
+Unknown_cfba2:
+	db $04, $f8, $02, $00
+	db $04, $00, $03, $00
+	db $fc, $f8, $01, $00
+	db $fc, $00, $01, $20
+	db $f4, $f8, $00, $00
+	db $f4, $00, $00, $20
+
+Unknown_cfbba:
+	db $f8, $f0, $00, $00
+	db $f8, $f8, $01, $00
+	db $f8, $00, $02, $00
+	db $f8, $08, $03, $00
+	db $00, $f0, $04, $00
+	db $00, $f8, $05, $00
+	db $00, $00, $06, $00
+	db $00, $08, $07, $00
+
+Unknown_cfbda:
+	db $f4, $fc, $00, $00
+	db $fc, $fc, $00, $00
+	db $04, $fc, $00, $00
+	db $ec, $fc, $00, $00
+	db $0c, $fc, $00, $00
+	db $e4, $fc, $00, $00
+	db $14, $fc, $00, $00
+
+Unknown_cfbf6:
+	db $f4, $f4, $00, $00
+	db $f4, $fc, $01, $00
+	db $f4, $04, $02, $00
+	db $fc, $f4, $03, $00
+	db $fc, $fc, $04, $00
+	db $fc, $04, $05, $00
+	db $04, $f4, $00, $40
+	db $04, $fc, $01, $40
+	db $04, $04, $02, $40
+
+Unknown_cfc1a:
+	db $fc, $f0, $00, $00
+	db $fc, $f8, $01, $00
+	db $fc, $00, $01, $20
+	db $fc, $08, $00, $20
+
+Unknown_cfc2a:
+	db $fc, $e8, $00, $00
+	db $fc, $f0, $01, $00
+	db $fc, $f8, $02, $00
+	db $fc, $00, $02, $20
+	db $fc, $08, $01, $20
+	db $fc, $10, $00, $20
+
+Unknown_cfc42:
+	db $f0, $f0, $00, $00
+	db $f0, $f8, $01, $00
+	db $f0, $00, $02, $00
+	db $f0, $08, $00, $20
+	db $f8, $f0, $03, $00
+	db $f8, $f8, $04, $00
+	db $f8, $00, $04, $20
+	db $f8, $08, $05, $00
+	db $00, $f0, $05, $60
+	db $00, $f8, $04, $40
+	db $00, $00, $04, $60
+	db $00, $08, $03, $60
+	db $08, $f0, $00, $40
+	db $08, $f8, $02, $60
+	db $08, $00, $01, $60
+	db $08, $08, $00, $60
+
+Unknown_cfc82:
+	db $f8, $f0, $00, $00
+	db $f8, $f8, $01, $00
+	db $f8, $00, $00, $60
+	db $00, $f8, $00, $00
+	db $00, $00, $01, $00
+	db $00, $08, $00, $60
+
+Unknown_cfc9a:
+	db $f8, $0c, $00, $00
+	db $f8, $14, $01, $00
+	db $00, $fc, $02, $00
+	db $00, $04, $03, $00
+	db $00, $0c, $04, $00
+	db $00, $14, $05, $00
+
+Unknown_cfcb2:
+	db $f8, $f8, $00, $00
+	db $f8, $00, $01, $60
+	db $00, $f8, $01, $00
+	db $00, $00, $01, $20
+
+Unknown_cfcc2:
+	db $f0, $9c, $00, $00
+	db $e0, $ac, $00, $00
+	db $f8, $bc, $00, $00
+	db $d8, $cc, $00, $00
+	db $e8, $dc, $00, $00
+	db $d8, $ec, $00, $00
+	db $e8, $fc, $00, $00
+	db $e8, $04, $00, $00
+	db $d8, $14, $00, $00
+	db $00, $24, $00, $00
+	db $f0, $34, $00, $00
+	db $e0, $44, $00, $00
+	db $f0, $54, $00, $00
+; cfcf6
 
 
 AnimObjGFX: ; cfcf6

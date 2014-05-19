@@ -233,7 +233,24 @@ ClearActorHud: ; cc207
 	ret
 ; cc220
 
-INCBIN "baserom.gbc",$cc220,$cc23d - $cc220
+Functioncc220: ; cc220
+; Appears to be unused.
+	xor a
+	ld [hBGMapMode], a
+	ld a, $80
+	ld [hBGMapAddress], a
+	ld a, $9a
+	ld [$ffd7], a
+	call Function3200
+	ld a, $60
+	ld [hWY], a
+	xor a
+	ld [hBGMapAddress], a
+	ld a, $98
+	ld [$ffd7], a
+	call BattleAnimDelayFrame
+	ret
+; cc23d
 
 
 Functioncc23d: ; cc23d
