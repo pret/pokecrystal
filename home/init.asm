@@ -172,7 +172,7 @@ Init:: ; 17d
 
 	call SoundRestart
 	xor a
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	jp GameInit
 ; 245
 

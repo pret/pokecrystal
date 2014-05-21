@@ -57,6 +57,7 @@ INCLUDE "home/window.asm"
 
 
 Function2e4e:: ; 2e4e
+; Unreferenced.
 	scf
 	ret
 ; 2e50
@@ -70,10 +71,9 @@ Function2ebb:: ; 2ebb
 	bit 1, a
 	ret z
 	ld a, [hJoyDown]
-	bit A_BUTTON, a
+	bit 1, a ; B_BUTTON
 	ret
 ; 2ec6
-
 
 Function2ec6:: ; 2ec6
 	xor a
@@ -219,7 +219,7 @@ Function309d:: ; 309d
 	ld [rSVBK], a
 	ld hl, TileMap
 	ld de, $d000
-	ld bc, 360
+	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -242,7 +242,7 @@ Function30bf:: ; 30bf
 	ld [rSVBK], a
 	ld hl, $d000
 	ld de, TileMap
-	ld bc, 360
+	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -289,8 +289,8 @@ IsInArray:: ; 30e1
 ; 30f4
 
 SkipNames:: ; 0x30f4
-; skips n names where n = a
-	ld bc, $000b ; name length
+; Skip a names.
+	ld bc, NAME_LENGTH
 	and a
 	ret z
 .loop
@@ -301,7 +301,7 @@ SkipNames:: ; 0x30f4
 ; 0x30fe
 
 AddNTimes:: ; 0x30fe
-; adds bc n times where n = a
+; Add bc * a to hl.
 	and a
 	ret z
 .loop
@@ -400,7 +400,7 @@ PrintLetterDelay:: ; 313d
 
 
 CopyDataUntil:: ; 318c
-; Copy [hl .. bc) to [de .. de + bc - hl).
+; Copy [hl .. bc) to de.
 
 ; In other words, the source data is
 ; from hl up to but not including bc,
@@ -550,13 +550,14 @@ WaitBGMap:: ; 31f6
 Function3200:: ; 0x3200
 	ld a, [hCGB]
 	and a
-	jr z, .asm_320e
+	jr z, .bg0
+
 	ld a, 2
 	ld [hBGMapMode], a
 	ld c, 4
 	call DelayFrames
 
-.asm_320e
+.bg0
 	ld a, 1
 	ld [hBGMapMode], a
 	ld c, 4
@@ -575,17 +576,17 @@ Function3218:: ; 3218
 Function321c:: ; 321c
 	ld a, [hCGB]
 	and a
-	jr z, .asm_322e
+	jr z, .dmg
 
 	ld a, [$c2ce]
 	cp 0
-	jr z, .asm_322e
+	jr z, .dmg
 
 	ld a, 1
 	ld [hBGMapMode], a
 	jr Function323d
 
-.asm_322e
+.dmg
 	ld a, 1
 	ld [hBGMapMode], a
 	ld c, 4
@@ -616,10 +617,11 @@ Function3246:: ; 3246
 	push af
 	xor a
 	ld [$ffde], a
-.asm_3252
+.wait
 	ld a, [rLY]
 	cp $7f
-	jr c, .asm_3252 ; 3256 $fa
+	jr c, .wait
+
 	di
 	ld a, $1
 	ld [rVBK], a
@@ -629,11 +631,12 @@ Function3246:: ; 3246
 	ld [rVBK], a
 	ld hl, TileMap
 	call Function327b
-.asm_326d
+.wait2
 	ld a, [rLY]
 	cp $7f
-	jr c, .asm_326d ; 3271 $fa
+	jr c, .wait2
 	ei
+
 	pop af
 	ld [$ffde], a
 	pop af
@@ -651,10 +654,10 @@ Function327b:: ; 327b
 	ld [$ffd3], a
 	ld b, $2
 	ld c, $41
-.asm_328c
-	pop de
 
-rept 9
+.loop
+rept 10
+	pop de
 .loop\@
 	ld a, [$ff00+c]
 	and b
@@ -663,27 +666,18 @@ rept 9
 	inc l
 	ld [hl], d
 	inc l
-	pop de
 endr
-
-.asm_32de
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
 
 	ld de, $000c
 	add hl, de
 	ld a, [$ffd3]
 	dec a
 	ld [$ffd3], a
-	jr nz, .asm_328c
+	jr nz, .loop
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
@@ -2464,6 +2458,7 @@ GetBattleAnimByte:: ; 3af0
 ; 3b0c
 
 Function3b0c:: ; 3b0c
+
 	ld a, [hLCDStatCustom]
 	and a
 	ret z
@@ -2486,14 +2481,17 @@ Function3b0c:: ; 3b0c
 
 
 Function3b2a:: ; 3b2a
+
 	ld [$c3b8], a
 	ld a, [hROMBank]
 	push af
+
 	ld a, BANK(Function8cfd6)
 	rst Bankswitch
-
 	ld a, [$c3b8]
+
 	call Function8cfd6
+
 	pop af
 	rst Bankswitch
 
@@ -2502,14 +2500,17 @@ Function3b2a:: ; 3b2a
 
 
 Function3b3c:: ; 3b3c
+
 	ld [$c3b8], a
 	ld a, [hROMBank]
 	push af
+
 	ld a, BANK(Function8d120)
 	rst Bankswitch
-
 	ld a, [$c3b8]
+
 	call Function8d120
+
 	pop af
 	rst Bankswitch
 
@@ -2659,23 +2660,21 @@ PlayMusic2:: ; 3bbc
 
 
 PlayCryHeader:: ; 3be3
-; Play a cry given parameters in header de
+; Play a cry given parameters at header de
 
 	push hl
 	push de
 	push bc
 	push af
 
-; Save current bank
 	ld a, [hROMBank]
 	push af
 
-; Cry headers are stuck in one bank.
+	; Cry headers are stuck in one bank.
 	ld a, BANK(CryHeaders)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-; Each header is 6 bytes long:
 	ld hl, CryHeaders
 	add hl, de
 	add hl, de
@@ -2696,7 +2695,7 @@ PlayCryHeader:: ; 3be3
 	ld a, [hli]
 	ld [CryLength], a
 	ld a, [hl]
-	ld [CryLength+1], a
+	ld [CryLength + 1], a
 
 	ld a, BANK(PlayCry)
 	ld [hROMBank], a
@@ -2725,20 +2724,21 @@ PlaySFX:: ; 3c23
 	push bc
 	push af
 
-; Is something already playing?
+	; Is something already playing?
 	call CheckSFX
 	jr nc, .play
-; Does it have priority?
+
+	; Does it have priority?
 	ld a, [CurSFX]
 	cp e
-	jr c, .quit
+	jr c, .done
 
 .play
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(_PlaySFX)
 	ld [hROMBank], a
-	ld [MBC3RomBank], a ; bankswitch
+	ld [MBC3RomBank], a
 
 	ld a, e
 	ld [CurSFX], a
@@ -2746,8 +2746,9 @@ PlaySFX:: ; 3c23
 
 	pop af
 	ld [hROMBank], a
-	ld [MBC3RomBank], a ; bankswitch
-.quit
+	ld [MBC3RomBank], a
+
+.done
 	pop af
 	pop bc
 	pop de
@@ -2768,47 +2769,47 @@ WaitSFX:: ; 3c55
 
 	push hl
 	
-.loop
-	; ch5 on?
-	ld hl, Channel5 + Channel1Flags - Channel1
+.wait
+	ld hl, Channel5Flags
 	bit 0, [hl]
-	jr nz, .loop
-	; ch6 on?
-	ld hl, Channel6 + Channel1Flags - Channel1
+	jr nz, .wait
+	ld hl, Channel6Flags
 	bit 0, [hl]
-	jr nz, .loop
-	; ch7 on?
-	ld hl, Channel7 + Channel1Flags - Channel1
+	jr nz, .wait
+	ld hl, Channel7Flags
 	bit 0, [hl]
-	jr nz, .loop
-	; ch8 on?
-	ld hl, Channel8 + Channel1Flags - Channel1
+	jr nz, .wait
+	ld hl, Channel8Flags
 	bit 0, [hl]
-	jr nz, .loop
+	jr nz, .wait
 	
 	pop hl
 	ret
 ; 3c74
 
-Function3c74:: ; 3c74
+IsSFXPlaying:: ; 3c74
+; Return carry if no sound effect is playing.
+; The inverse of CheckSFX.
 	push hl
-	ld hl, $c1cc
+
+	ld hl, Channel5Flags
 	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c1fe
+	jr nz, .playing
+	ld hl, Channel6Flags
 	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c230
+	jr nz, .playing
+	ld hl, Channel7Flags
 	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c262
+	jr nz, .playing
+	ld hl, Channel8Flags
 	bit 0, [hl]
-	jr nz, .asm_3c94
+	jr nz, .playing
+
 	pop hl
 	scf
 	ret
 
-.asm_3c94
+.playing
 	pop hl
 	and a
 	ret
@@ -2833,45 +2834,47 @@ VolumeOff:: ; 3ca3
 ; 3ca8
 
 Function3ca8:: ; 3ca8
-	ld a, $4
+	ld a, 4
 	ld [MusicFade], a
 	ret
 ; 3cae
 
 Function3cae:: ; 3cae
-	ld a, $84
+	ld a, 4 | 1 << 7
 	ld [MusicFade], a
 	ret
 ; 3cb4
 
-Function3cb4:: ; 3cb4
-.asm_3cb4
+SkipMusic:: ; 3cb4
+; Skip a frames of music.
 	and a
 	ret z
 	dec a
 	call UpdateSound
-	jr .asm_3cb4
+	jr SkipMusic
 ; 3cbc
 
-Function3cbc:: ; 3cbc
+FadeToMapMusic:: ; 3cbc
 	push hl
 	push de
 	push bc
 	push af
-	call Function3d97
-	ld a, [CurMusic]
+
+	call GetMapMusic
+	ld a, [wMapMusic]
 	cp e
-	jr z, .asm_3cda
-	ld a, $8
+	jr z, .done
+
+	ld a, 8
 	ld [MusicFade], a
 	ld a, e
 	ld [MusicFadeIDLo], a
 	ld a, d
 	ld [MusicFadeIDHi], a
 	ld a, e
-	ld [CurMusic], a
+	ld [wMapMusic], a
 
-.asm_3cda
+.done
 	pop af
 	pop bc
 	pop de
@@ -2879,25 +2882,27 @@ Function3cbc:: ; 3cbc
 	ret
 ; 3cdf
 
-Function3cdf:: ; 3cdf
+PlayMapMusic:: ; 3cdf
 	push hl
 	push de
 	push bc
 	push af
-	call Function3d97
-	ld a, [CurMusic]
+
+	call GetMapMusic
+	ld a, [wMapMusic]
 	cp e
-	jr z, .asm_3cfe
+	jr z, .done
+
 	push de
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	pop de
 	ld a, e
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	call PlayMusic
 
-.asm_3cfe
+.done
 	pop af
 	pop bc
 	pop de
@@ -2905,27 +2910,30 @@ Function3cdf:: ; 3cdf
 	ret
 ; 3d03
 
-Function3d03:: ; 3d03
+EnterMapMusic:: ; 3d03
 	push hl
 	push de
 	push bc
 	push af
+
 	xor a
 	ld [$c2c1], a
 	ld de, MUSIC_BICYCLE
 	ld a, [PlayerState]
-	cp $1
-	jr z, .asm_3d18
-	call Function3d97
-.asm_3d18
+	cp PLAYER_BIKE
+	jr z, .play
+	call GetMapMusic
+.play
 	push de
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	pop de
+
 	ld a, e
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	call PlayMusic
+
 	pop af
 	pop bc
 	pop de
@@ -2936,9 +2944,9 @@ Function3d03:: ; 3d03
 Function3d2f:: ; 3d2f
 	ld a, [$c2c1]
 	and a
-	jr z, Function3d47
+	jr z, RestartMapMusic
 	xor a
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
@@ -2947,7 +2955,7 @@ Function3d2f:: ; 3d2f
 	ret
 ; 3d47
 
-Function3d47:: ; 3d47
+RestartMapMusic:: ; 3d47
 	push hl
 	push de
 	push bc
@@ -2955,7 +2963,7 @@ Function3d47:: ; 3d47
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
-	ld a, [CurMusic]
+	ld a, [wMapMusic]
 	ld e, a
 	ld d, 0
 	call PlayMusic
@@ -2966,52 +2974,58 @@ Function3d47:: ; 3d47
 	ret
 ; 3d62
 
-Function3d62:: ; 3d62
+SpecialMapMusic:: ; 3d62
 	ld a, [PlayerState]
-	cp $4
-	jr z, .asm_3d7b
-	cp $8
-	jr z, .asm_3d7b
+	cp PLAYER_SURF
+	jr z, .surf
+	cp PLAYER_SURF_PIKA
+	jr z, .surf
+
 	ld a, [StatusFlags2]
 	bit 2, a
-	jr nz, .asm_3d80
-.asm_3d74
+	jr nz, .contest
+
+.no
 	and a
 	ret
 
-	ld de, $0013
+.bike
+	ld de, MUSIC_BICYCLE
 	scf
 	ret
 
-.asm_3d7b
-	ld de, $0021
+.surf
+	ld de, MUSIC_SURF
 	scf
 	ret
 
-.asm_3d80
+.contest
 	ld a, [MapGroup]
-	cp $a
-	jr nz, .asm_3d74
+	cp GROUP_ROUTE_35_NATIONAL_PARK_GATE
+	jr nz, .no
 	ld a, [MapNumber]
-	cp $f
-	jr z, .asm_3d92
-	cp $11
-	jr nz, .asm_3d74
+	cp MAP_ROUTE_35_NATIONAL_PARK_GATE
+	jr z, .ranking
+	cp MAP_ROUTE_36_NATIONAL_PARK_GATE
+	jr nz, .no
 
-.asm_3d92
-	ld de, $0058
+.ranking
+	ld de, MUSIC_BUG_CATCHING_CONTEST_RANKING
 	scf
 	ret
 ; 3d97
 
-Function3d97:: ; 3d97
-	call Function3d62
+GetMapMusic:: ; 3d97
+	call SpecialMapMusic
 	ret c
-	call Function2cbd
+	call GetMapHeaderMusic
 	ret
 ; 3d9f
 
 Function3d9f:: ; 3d9f
+; Places a BCD number at the
+; upper center of the screen.
+; Unreferenced.
 	ld a, $20
 	ld [$c498], a
 	ld [$c49c], a
@@ -3024,44 +3038,44 @@ Function3d9f:: ; 3d9f
 	ld [$c49f], a
 	ld a, [$c296]
 	cp $64
-	jr nc, .asm_3dd5
-	add $1
+	jr nc, .max
+	add 1
 	daa
 	ld b, a
 	swap a
 	and $f
-	add $f6
+	add "0"
 	ld [$c49a], a
 	ld a, b
 	and $f
-	add $f6
+	add "0"
 	ld [$c49e], a
 	ret
 
-.asm_3dd5
-	ld a, $ff
+.max
+	ld a, "9"
 	ld [$c49a], a
 	ld [$c49e], a
 	ret
 ; 3dde
 
 CheckSFX:: ; 3dde
-; returns carry if sfx channels are active
-	ld a, [$c1cc] ; 1
+; Return carry if any SFX channels are active.
+	ld a, [Channel5Flags]
 	bit 0, a
-	jr nz, .quit
-	ld a, [$c1fe] ; 2
+	jr nz, .playing
+	ld a, [Channel6Flags]
 	bit 0, a
-	jr nz, .quit
-	ld a, [$c230] ; 3
+	jr nz, .playing
+	ld a, [Channel7Flags]
 	bit 0, a
-	jr nz, .quit
-	ld a, [$c262] ; 4
+	jr nz, .playing
+	ld a, [Channel8Flags]
 	bit 0, a
-	jr nz, .quit
+	jr nz, .playing
 	and a
 	ret
-.quit
+.playing
 	scf
 	ret
 ; 3dfe
@@ -3083,9 +3097,9 @@ ChannelsOff:: ; 3e10
 ; Quickly turn off music channels
 	xor a
 	ld [Channel1Flags], a
-	ld [$c136], a
-	ld [$c168], a
-	ld [$c19a], a
+	ld [Channel2Flags], a
+	ld [Channel3Flags], a
+	ld [Channel4Flags], a
 	ld [SoundInput], a
 	ret
 ; 3e21
@@ -3093,15 +3107,17 @@ ChannelsOff:: ; 3e10
 SFXChannelsOff:: ; 3e21
 ; Quickly turn off sound effect channels
 	xor a
-	ld [$c1cc], a
-	ld [$c1fe], a
-	ld [$c230], a
-	ld [$c262], a
+	ld [Channel5Flags], a
+	ld [Channel6Flags], a
+	ld [Channel7Flags], a
+	ld [Channel8Flags], a
 	ld [SoundInput], a
 	ret
 ; 3e32
 
+
 Function3e32:: ; 3e32
+; Mobile
 	cp $2
 	ld [$c988], a
 	ld a, l
@@ -3109,6 +3125,7 @@ Function3e32:: ; 3e32
 	ld a, h
 	ld [$c987], a
 	jr nz, .asm_3e4f
+
 	ld [$c982], a
 	ld a, l
 	ld [$c981], a
@@ -3130,13 +3147,13 @@ Function3e32:: ; 3e32
 	jp Function110030
 ; 3e60
 
-
 Function3e60:: ; 3e60
 	ld [$c986], a
 	ld a, l
 	ld [$c987], a
 	ld a, h
 	ld [$c988], a
+
 	pop bc
 	ld a, b
 	ld [$c981], a
@@ -3151,7 +3168,6 @@ Function3e60:: ; 3e60
 	ld a, [$c986]
 	ret
 ; 3e80
-
 
 Function3e80:: ; 3e80
 	ld a, [hROMBank]
