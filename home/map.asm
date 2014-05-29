@@ -1034,7 +1034,7 @@ Function2653:: ; 2653
 ; 2674
 
 Function2674:: ; 2674
-	callba Unknown_0x974f3
+	callba Function974f3
 	ld a, [ScriptMode]
 	push af
 	ld hl, ScriptFlags
@@ -2021,8 +2021,8 @@ Function2bae:: ; 2bae
 	callba Function8c001
 	call Function2173
 	call Function2821
-	ld a, $9
-	call Function3cb4
+	ld a, 9
+	call SkipMusic
 	pop af
 	rst Bankswitch
 
@@ -2259,48 +2259,51 @@ GetWorldMapLocation:: ; 0x2caf
 	ret
 ; 0x2cbd
 
-Function2cbd:: ; 2cbd
+GetMapHeaderMusic:: ; 2cbd
+RADIO_TOWER_MUSIC EQU 7
+
 	push hl
 	push bc
-	ld de, $0006
+	ld de, 6 ; music
 	call GetMapHeaderMember
 	ld a, c
-	cp $64
-	jr z, .asm_2cee
-	bit 7, c
-	jr nz, .asm_2cda
+	cp MUSIC_MAHOGANY_MART
+	jr z, .mahoganymart
+	bit RADIO_TOWER_MUSIC, c
+	jr nz, .radiotower
 	callba Function8b342
 	ld e, c
-	ld d, $0
-.asm_2cd7
+	ld d, 0
+.done
 	pop bc
 	pop hl
 	ret
 
-.asm_2cda
+.radiotower
 	ld a, [StatusFlags2]
 	bit 0, a
-	jr z, .asm_2ce6
-	ld de, $0056
-	jr .asm_2cd7
+	jr z, .clearedradiotower
+	ld de, MUSIC_ROCKET_OVERTURE
+	jr .done
 
-.asm_2ce6
+.clearedradiotower
+	; the rest of the byte
 	ld a, c
-	and $7f
+	and 1 << RADIO_TOWER_MUSIC - 1
 	ld e, a
-	ld d, $0
-	jr .asm_2cd7
+	ld d, 0
+	jr .done
 
-.asm_2cee
+.mahoganymart
 	ld a, [StatusFlags2]
 	bit 7, a
-	jr z, .asm_2cfa
-	ld de, $0048
-	jr .asm_2cd7
+	jr z, .clearedmahogany
+	ld de, MUSIC_ROCKET_HIDEOUT
+	jr .done
 
-.asm_2cfa
-	ld de, $0026
-	jr .asm_2cd7
+.clearedmahogany
+	ld de, MUSIC_CHERRYGROVE_CITY
+	jr .done
 ; 2cff
 
 Function2cff:: ; 2cff

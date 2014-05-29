@@ -57,6 +57,7 @@ INCLUDE "home/window.asm"
 
 
 Function2e4e:: ; 2e4e
+; Unreferenced.
 	scf
 	ret
 ; 2e50
@@ -70,10 +71,9 @@ Function2ebb:: ; 2ebb
 	bit 1, a
 	ret z
 	ld a, [hJoyDown]
-	bit A_BUTTON, a
+	bit 1, a ; B_BUTTON
 	ret
 ; 2ec6
-
 
 Function2ec6:: ; 2ec6
 	xor a
@@ -219,7 +219,7 @@ Function309d:: ; 309d
 	ld [rSVBK], a
 	ld hl, TileMap
 	ld de, $d000
-	ld bc, 360
+	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -242,7 +242,7 @@ Function30bf:: ; 30bf
 	ld [rSVBK], a
 	ld hl, $d000
 	ld de, TileMap
-	ld bc, 360
+	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -289,8 +289,8 @@ IsInArray:: ; 30e1
 ; 30f4
 
 SkipNames:: ; 0x30f4
-; skips n names where n = a
-	ld bc, $000b ; name length
+; Skip a names.
+	ld bc, NAME_LENGTH
 	and a
 	ret z
 .loop
@@ -301,7 +301,7 @@ SkipNames:: ; 0x30f4
 ; 0x30fe
 
 AddNTimes:: ; 0x30fe
-; adds bc n times where n = a
+; Add bc * a to hl.
 	and a
 	ret z
 .loop
@@ -400,7 +400,7 @@ PrintLetterDelay:: ; 313d
 
 
 CopyDataUntil:: ; 318c
-; Copy [hl .. bc) to [de .. de + bc - hl).
+; Copy [hl .. bc) to de.
 
 ; In other words, the source data is
 ; from hl up to but not including bc,
@@ -550,13 +550,14 @@ WaitBGMap:: ; 31f6
 Function3200:: ; 0x3200
 	ld a, [hCGB]
 	and a
-	jr z, .asm_320e
+	jr z, .bg0
+
 	ld a, 2
 	ld [hBGMapMode], a
 	ld c, 4
 	call DelayFrames
 
-.asm_320e
+.bg0
 	ld a, 1
 	ld [hBGMapMode], a
 	ld c, 4
@@ -575,17 +576,17 @@ Function3218:: ; 3218
 Function321c:: ; 321c
 	ld a, [hCGB]
 	and a
-	jr z, .asm_322e
+	jr z, .dmg
 
 	ld a, [$c2ce]
 	cp 0
-	jr z, .asm_322e
+	jr z, .dmg
 
 	ld a, 1
 	ld [hBGMapMode], a
 	jr Function323d
 
-.asm_322e
+.dmg
 	ld a, 1
 	ld [hBGMapMode], a
 	ld c, 4
@@ -616,10 +617,11 @@ Function3246:: ; 3246
 	push af
 	xor a
 	ld [$ffde], a
-.asm_3252
+.wait
 	ld a, [rLY]
 	cp $7f
-	jr c, .asm_3252 ; 3256 $fa
+	jr c, .wait
+
 	di
 	ld a, $1
 	ld [rVBK], a
@@ -629,11 +631,12 @@ Function3246:: ; 3246
 	ld [rVBK], a
 	ld hl, TileMap
 	call Function327b
-.asm_326d
+.wait2
 	ld a, [rLY]
 	cp $7f
-	jr c, .asm_326d ; 3271 $fa
+	jr c, .wait2
 	ei
+
 	pop af
 	ld [$ffde], a
 	pop af
@@ -651,10 +654,10 @@ Function327b:: ; 327b
 	ld [$ffd3], a
 	ld b, $2
 	ld c, $41
-.asm_328c
-	pop de
 
-rept 9
+.loop
+rept 10
+	pop de
 .loop\@
 	ld a, [$ff00+c]
 	and b
@@ -663,27 +666,18 @@ rept 9
 	inc l
 	ld [hl], d
 	inc l
-	pop de
 endr
-
-.asm_32de
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
 
 	ld de, $000c
 	add hl, de
 	ld a, [$ffd3]
 	dec a
 	ld [$ffd3], a
-	jr nz, .asm_328c
+	jr nz, .loop
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
@@ -2077,340 +2071,7 @@ Function392d:: ; 392d
 ; 3945
 
 
-UserPartyAttr:: ; 3945
-	push af
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .asm_394e
-	pop af
-	jr BattlePartyAttr
-.asm_394e
-	pop af
-	jr OTPartyAttr
-; 3951
-
-
-OpponentPartyAttr:: ; 3951
-	push af
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_395a
-	pop af
-	jr BattlePartyAttr
-.asm_395a
-	pop af
-	jr OTPartyAttr
-; 395d
-
-
-BattlePartyAttr:: ; 395d
-; Get attribute a from the active BattleMon's party struct.
-	push bc
-	ld c, a
-	ld b, 0
-	ld hl, PartyMons
-	add hl, bc
-	ld a, [CurBattleMon]
-	call GetPartyLocation
-	pop bc
-	ret
-; 396d
-
-
-OTPartyAttr:: ; 396d
-; Get attribute a from the active EnemyMon's party struct.
-	push bc
-	ld c, a
-	ld b, 0
-	ld hl, OTPartyMon1Species
-	add hl, bc
-	ld a, [CurOTMon]
-	call GetPartyLocation
-	pop bc
-	ret
-; 397d
-
-
-ResetDamage:: ; 397d
-	xor a
-	ld [CurDamage], a
-	ld [CurDamage + 1], a
-	ret
-; 3985
-
-SetPlayerTurn:: ; 3985
-	xor a
-	ld [hBattleTurn], a
-	ret
-; 3989
-
-SetEnemyTurn:: ; 3989
-	ld a, 1
-	ld [hBattleTurn], a
-	ret
-; 398e
-
-
-UpdateOpponentInParty:: ; 398e
-	ld a, [hBattleTurn]
-	and a
-	jr z, UpdateEnemyMonInParty
-	jr UpdateBattleMonInParty
-; 3995
-
-UpdateUserInParty:: ; 3995
-	ld a, [hBattleTurn]
-	and a
-	jr z, UpdateBattleMonInParty
-	jr UpdateEnemyMonInParty
-; 399c
-
-UpdateBattleMonInParty:: ; 399c
-; Update level, status, current HP
-
-	ld a, [CurBattleMon]
-
-Function399f:: ; 399f
-	ld hl, PartyMon1Level
-	call GetPartyLocation
-
-	ld d, h
-	ld e, l
-	ld hl, BattleMonLevel
-	ld bc, BattleMonMaxHP - BattleMonLevel
-	jp CopyBytes
-; 39b0
-
-UpdateEnemyMonInParty:: ; 39b0
-; Update level, status, current HP
-
-; No wildmons.
-	ld a, [IsInBattle]
-	dec a
-	ret z
-
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Level
-	call GetPartyLocation
-
-	ld d, h
-	ld e, l
-	ld hl, EnemyMonLevel
-	ld bc, EnemyMonMaxHP - EnemyMonLevel
-	jp CopyBytes
-; 39c9
-
-
-RefreshBattleHuds:: ; 39c9
-	call UpdateBattleHuds
-	ld c, 3
-	call DelayFrames
-	jp WaitBGMap
-; 39d4
-
-UpdateBattleHuds:: ; 39d4
-	callba Function3df48
-	callba Function3e036
-	ret
-; 39e1
-
-
-GetBattleVar:: ; 39e1
-; Preserves hl.
-	push hl
-	call _GetBattleVar
-	pop hl
-	ret
-; 39e7
-
-_GetBattleVar:: ; 39e7
-; Get variable from pair a, depending on whose turn it is.
-; There are 21 variable pairs.
-
-	push bc
-
-	ld hl, .battlevarpairs
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-; Enemy turn uses the second byte instead.
-; This lets battle variable calls be side-neutral.
-	ld a, [hBattleTurn]
-	and a
-	jr z, .getvar
-	inc hl
-	
-.getvar
-; var id
-	ld a, [hl]
-	ld c, a
-	ld b, 0
-
-	ld hl, .vars
-	add hl, bc
-	add hl, bc
-
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	
-	ld a, [hl]
-	
-	pop bc
-	ret
-
-
-.battlevarpairs
-	dw .substatus1, .substatus2, .substatus3, .substatus4, .substatus5
-	dw .substatus1opp, .substatus2opp, .substatus3opp, .substatus4opp, .substatus5opp
-	dw .status, .statusopp, .animation, .effect, .power, .type
-	dw .curmove, .lastcounter, .lastcounteropp, .lastmove, .lastmoveopp
-
-
-	const_def
-	const PLAYER_SUBSTATUS_1
-	const ENEMY_SUBSTATUS_1
-	const PLAYER_SUBSTATUS_2
-	const ENEMY_SUBSTATUS_2
-	const PLAYER_SUBSTATUS_3
-	const ENEMY_SUBSTATUS_3
-	const PLAYER_SUBSTATUS_4
-	const ENEMY_SUBSTATUS_4
-	const PLAYER_SUBSTATUS_5
-	const ENEMY_SUBSTATUS_5
-	const PLAYER_STATUS
-	const ENEMY_STATUS
-	const PLAYER_MOVE_ANIMATION
-	const ENEMY_MOVE_ANIMATION
-	const PLAYER_MOVE_EFFECT
-	const ENEMY_MOVE_EFFECT
-	const PLAYER_MOVE_POWER
-	const ENEMY_MOVE_POWER
-	const PLAYER_MOVE_TYPE
-	const ENEMY_MOVE_TYPE
-	const PLAYER_CUR_MOVE
-	const ENEMY_CUR_MOVE
-	const PLAYER_COUNTER_MOVE
-	const ENEMY_COUNTER_MOVE
-	const PLAYER_LAST_MOVE
-	const ENEMY_LAST_MOVE
-
-
-;                       player                     enemy
-.substatus1     db PLAYER_SUBSTATUS_1,    ENEMY_SUBSTATUS_1
-.substatus1opp  db ENEMY_SUBSTATUS_1,     PLAYER_SUBSTATUS_1
-.substatus2     db PLAYER_SUBSTATUS_2,    ENEMY_SUBSTATUS_2
-.substatus2opp  db ENEMY_SUBSTATUS_2,     PLAYER_SUBSTATUS_2
-.substatus3     db PLAYER_SUBSTATUS_3,    ENEMY_SUBSTATUS_3
-.substatus3opp  db ENEMY_SUBSTATUS_3,     PLAYER_SUBSTATUS_3
-.substatus4     db PLAYER_SUBSTATUS_4,    ENEMY_SUBSTATUS_4
-.substatus4opp  db ENEMY_SUBSTATUS_4,     PLAYER_SUBSTATUS_4
-.substatus5     db PLAYER_SUBSTATUS_5,    ENEMY_SUBSTATUS_5
-.substatus5opp  db ENEMY_SUBSTATUS_5,     PLAYER_SUBSTATUS_5
-.status         db PLAYER_STATUS,         ENEMY_STATUS
-.statusopp      db ENEMY_STATUS,          PLAYER_STATUS
-.animation      db PLAYER_MOVE_ANIMATION, ENEMY_MOVE_ANIMATION
-.effect         db PLAYER_MOVE_EFFECT,    ENEMY_MOVE_EFFECT
-.power          db PLAYER_MOVE_POWER,     ENEMY_MOVE_POWER
-.type           db PLAYER_MOVE_TYPE,      ENEMY_MOVE_TYPE
-.curmove        db PLAYER_CUR_MOVE,       ENEMY_CUR_MOVE
-.lastcounter    db PLAYER_COUNTER_MOVE,   ENEMY_COUNTER_MOVE
-.lastcounteropp db ENEMY_COUNTER_MOVE,    PLAYER_COUNTER_MOVE
-.lastmove       db PLAYER_LAST_MOVE,      ENEMY_LAST_MOVE
-.lastmoveopp    db ENEMY_LAST_MOVE,       PLAYER_LAST_MOVE
-
-.vars
-	dw PlayerSubStatus1,     EnemySubStatus1
-	dw PlayerSubStatus2,     EnemySubStatus2
-	dw PlayerSubStatus3,     EnemySubStatus3
-	dw PlayerSubStatus4,     EnemySubStatus4
-	dw PlayerSubStatus5,     EnemySubStatus5
-	dw BattleMonStatus,      EnemyMonStatus
-	dw PlayerMoveAnimation,  EnemyMoveAnimation
-	dw PlayerMoveEffect,     EnemyMoveEffect
-	dw PlayerMovePower,      EnemyMovePower
-	dw PlayerMoveType,       EnemyMoveType
-	dw CurPlayerMove,        CurEnemyMove
-	dw LastEnemyCounterMove, LastPlayerCounterMove
-	dw LastPlayerMove,       LastEnemyMove
-; 3a90
-
-
-Function3a90:: ; 3a90
-	inc hl
-	ld a, [hROMBank]
-	push af
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	ld a, e
-	ld l, a
-	ld a, d
-	ld h, a
-	ld de, $d00c
-	ld bc, $0028
-	call CopyBytes
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	ret
-; 3ab2
-
-
-MobileTextBorder:: ; 3ab2
-; For mobile link battles only.
-	ld a, [InLinkBattle]
-	cp 4
-	ret c
-; Draw a cell phone icon at the top right corner of the border.
-	ld hl, $c5a3 ; TileMap(19,12)
-	ld [hl], $5e ; cell phone top
-	ld hl, $c5b7 ; TileMap(19,13)
-	ld [hl], $5f ; cell phone bottom
-	ret
-; 3ac3
-
-
-BattleTextBox:: ; 3ac3
-; Open a textbox and print text at hl.
-	push hl
-	call SpeechTextBox
-	call MobileTextBorder
-	call Function1ad2
-	call Function321c
-	pop hl
-	call PrintTextBoxText
-	ret
-; 3ad5
-
-
-StdBattleTextBox:: ; 3ad5
-; Open a textbox and print battle text at 20:hl.
-
-GLOBAL BattleText
-
-	ld a, [hROMBank]
-	push af
-
-	ld a, BANK(BattleText)
-	rst Bankswitch
-
-	call BattleTextBox
-
-	pop af
-	rst Bankswitch
-	ret
-; 3ae1
+INCLUDE "home/battle.asm"
 
 
 Function3ae1:: ; 3ae1
@@ -2464,6 +2125,7 @@ GetBattleAnimByte:: ; 3af0
 ; 3b0c
 
 Function3b0c:: ; 3b0c
+
 	ld a, [hLCDStatCustom]
 	and a
 	ret z
@@ -2486,14 +2148,17 @@ Function3b0c:: ; 3b0c
 
 
 Function3b2a:: ; 3b2a
+
 	ld [$c3b8], a
 	ld a, [hROMBank]
 	push af
+
 	ld a, BANK(Function8cfd6)
 	rst Bankswitch
-
 	ld a, [$c3b8]
+
 	call Function8cfd6
+
 	pop af
 	rst Bankswitch
 
@@ -2502,14 +2167,17 @@ Function3b2a:: ; 3b2a
 
 
 Function3b3c:: ; 3b3c
+
 	ld [$c3b8], a
 	ld a, [hROMBank]
 	push af
+
 	ld a, BANK(Function8d120)
 	rst Bankswitch
-
 	ld a, [$c3b8]
+
 	call Function8d120
+
 	pop af
 	rst Bankswitch
 
@@ -2517,591 +2185,11 @@ Function3b3c:: ; 3b3c
 ; 3b4e
 
 
-SoundRestart:: ; 3b4e
+INCLUDE "home/audio.asm"
 
-	push hl
-	push de
-	push bc
-	push af
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_SoundRestart)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call _SoundRestart
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3b6a
-
-
-UpdateSound:: ; 3b6a
-
-	push hl
-	push de
-	push bc
-	push af
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_UpdateSound)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call _UpdateSound
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3b86
-
-
-_LoadMusicByte:: ; 3b86
-; CurMusicByte = [a:de]
-GLOBAL LoadMusicByte
-
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	ld a, [de]
-	ld [CurMusicByte], a
-	ld a, BANK(LoadMusicByte)
-
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	ret
-; 3b97
-
-
-PlayMusic:: ; 3b97
-; Play music de.
-
-	push hl
-	push de
-	push bc
-	push af
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PlayMusic) ; and BANK(_SoundRestart)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	ld a, e
-	and a
-	jr z, .nomusic
-
-	call _PlayMusic
-	jr .end
-
-.nomusic
-	call _SoundRestart
-
-.end
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3bbc
-
-
-PlayMusic2:: ; 3bbc
-; Stop playing music, then play music de.
-
-	push hl
-	push de
-	push bc
-	push af
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PlayMusic)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	push de
-	ld de, MUSIC_NONE
-	call _PlayMusic
-	call DelayFrame
-	pop de
-	call _PlayMusic
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-
-; 3be3
-
-
-PlayCryHeader:: ; 3be3
-; Play a cry given parameters in header de
-
-	push hl
-	push de
-	push bc
-	push af
-
-; Save current bank
-	ld a, [hROMBank]
-	push af
-
-; Cry headers are stuck in one bank.
-	ld a, BANK(CryHeaders)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-; Each header is 6 bytes long:
-	ld hl, CryHeaders
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-
-	ld a, [hli]
-	ld [CryPitch], a
-	ld a, [hli]
-	ld [CryEcho], a
-	ld a, [hli]
-	ld [CryLength], a
-	ld a, [hl]
-	ld [CryLength+1], a
-
-	ld a, BANK(PlayCry)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call PlayCry
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3c23
-
-
-PlaySFX:: ; 3c23
-; Play sound effect de.
-; Sound effects are ordered by priority (lowest to highest)
-
-	push hl
-	push de
-	push bc
-	push af
-
-; Is something already playing?
-	call CheckSFX
-	jr nc, .play
-; Does it have priority?
-	ld a, [CurSFX]
-	cp e
-	jr c, .quit
-
-.play
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PlaySFX)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a ; bankswitch
-
-	ld a, e
-	ld [CurSFX], a
-	call _PlaySFX
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a ; bankswitch
-.quit
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3c4e
-
-
-WaitPlaySFX:: ; 3c4e
-	call WaitSFX
-	call PlaySFX
-	ret
-; 3c55
-
-
-WaitSFX:: ; 3c55
-; infinite loop until sfx is done playing
-
-	push hl
-	
-.loop
-	; ch5 on?
-	ld hl, Channel5 + Channel1Flags - Channel1
-	bit 0, [hl]
-	jr nz, .loop
-	; ch6 on?
-	ld hl, Channel6 + Channel1Flags - Channel1
-	bit 0, [hl]
-	jr nz, .loop
-	; ch7 on?
-	ld hl, Channel7 + Channel1Flags - Channel1
-	bit 0, [hl]
-	jr nz, .loop
-	; ch8 on?
-	ld hl, Channel8 + Channel1Flags - Channel1
-	bit 0, [hl]
-	jr nz, .loop
-	
-	pop hl
-	ret
-; 3c74
-
-Function3c74:: ; 3c74
-	push hl
-	ld hl, $c1cc
-	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c1fe
-	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c230
-	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c262
-	bit 0, [hl]
-	jr nz, .asm_3c94
-	pop hl
-	scf
-	ret
-
-.asm_3c94
-	pop hl
-	and a
-	ret
-; 3c97
-
-MaxVolume:: ; 3c97
-	ld a, $77 ; max
-	ld [Volume], a
-	ret
-; 3c9d
-
-LowVolume:: ; 3c9d
-	ld a, $33 ; 40%
-	ld [Volume], a
-	ret
-; 3ca3
-
-VolumeOff:: ; 3ca3
-	xor a
-	ld [Volume], a
-	ret
-; 3ca8
-
-Function3ca8:: ; 3ca8
-	ld a, $4
-	ld [MusicFade], a
-	ret
-; 3cae
-
-Function3cae:: ; 3cae
-	ld a, $84
-	ld [MusicFade], a
-	ret
-; 3cb4
-
-Function3cb4:: ; 3cb4
-.asm_3cb4
-	and a
-	ret z
-	dec a
-	call UpdateSound
-	jr .asm_3cb4
-; 3cbc
-
-Function3cbc:: ; 3cbc
-	push hl
-	push de
-	push bc
-	push af
-	call Function3d97
-	ld a, [CurMusic]
-	cp e
-	jr z, .asm_3cda
-	ld a, $8
-	ld [MusicFade], a
-	ld a, e
-	ld [MusicFadeIDLo], a
-	ld a, d
-	ld [MusicFadeIDHi], a
-	ld a, e
-	ld [CurMusic], a
-
-.asm_3cda
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3cdf
-
-Function3cdf:: ; 3cdf
-	push hl
-	push de
-	push bc
-	push af
-	call Function3d97
-	ld a, [CurMusic]
-	cp e
-	jr z, .asm_3cfe
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	pop de
-	ld a, e
-	ld [CurMusic], a
-	call PlayMusic
-
-.asm_3cfe
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d03
-
-Function3d03:: ; 3d03
-	push hl
-	push de
-	push bc
-	push af
-	xor a
-	ld [$c2c1], a
-	ld de, MUSIC_BICYCLE
-	ld a, [PlayerState]
-	cp $1
-	jr z, .asm_3d18
-	call Function3d97
-.asm_3d18
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	pop de
-	ld a, e
-	ld [CurMusic], a
-	call PlayMusic
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d2f
-
-Function3d2f:: ; 3d2f
-	ld a, [$c2c1]
-	and a
-	jr z, Function3d47
-	xor a
-	ld [CurMusic], a
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	xor a
-	ld [$c2c1], a
-	ret
-; 3d47
-
-Function3d47:: ; 3d47
-	push hl
-	push de
-	push bc
-	push af
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	ld a, [CurMusic]
-	ld e, a
-	ld d, 0
-	call PlayMusic
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d62
-
-Function3d62:: ; 3d62
-	ld a, [PlayerState]
-	cp $4
-	jr z, .asm_3d7b
-	cp $8
-	jr z, .asm_3d7b
-	ld a, [StatusFlags2]
-	bit 2, a
-	jr nz, .asm_3d80
-.asm_3d74
-	and a
-	ret
-
-	ld de, $0013
-	scf
-	ret
-
-.asm_3d7b
-	ld de, $0021
-	scf
-	ret
-
-.asm_3d80
-	ld a, [MapGroup]
-	cp $a
-	jr nz, .asm_3d74
-	ld a, [MapNumber]
-	cp $f
-	jr z, .asm_3d92
-	cp $11
-	jr nz, .asm_3d74
-
-.asm_3d92
-	ld de, $0058
-	scf
-	ret
-; 3d97
-
-Function3d97:: ; 3d97
-	call Function3d62
-	ret c
-	call Function2cbd
-	ret
-; 3d9f
-
-Function3d9f:: ; 3d9f
-	ld a, $20
-	ld [$c498], a
-	ld [$c49c], a
-	ld a, $50
-	ld [$c499], a
-	ld a, $58
-	ld [$c49d], a
-	xor a
-	ld [$c49b], a
-	ld [$c49f], a
-	ld a, [$c296]
-	cp $64
-	jr nc, .asm_3dd5
-	add $1
-	daa
-	ld b, a
-	swap a
-	and $f
-	add $f6
-	ld [$c49a], a
-	ld a, b
-	and $f
-	add $f6
-	ld [$c49e], a
-	ret
-
-.asm_3dd5
-	ld a, $ff
-	ld [$c49a], a
-	ld [$c49e], a
-	ret
-; 3dde
-
-CheckSFX:: ; 3dde
-; returns carry if sfx channels are active
-	ld a, [$c1cc] ; 1
-	bit 0, a
-	jr nz, .quit
-	ld a, [$c1fe] ; 2
-	bit 0, a
-	jr nz, .quit
-	ld a, [$c230] ; 3
-	bit 0, a
-	jr nz, .quit
-	ld a, [$c262] ; 4
-	bit 0, a
-	jr nz, .quit
-	and a
-	ret
-.quit
-	scf
-	ret
-; 3dfe
-
-Function3dfe:: ; 3dfe
-	xor a
-	ld [$c1cc], a
-	ld [SoundInput], a
-	ld [rNR10], a
-	ld [rNR11], a
-	ld [rNR12], a
-	ld [rNR13], a
-	ld [rNR14], a
-	ret
-; 3e10
-
-
-ChannelsOff:: ; 3e10
-; Quickly turn off music channels
-	xor a
-	ld [Channel1Flags], a
-	ld [$c136], a
-	ld [$c168], a
-	ld [$c19a], a
-	ld [SoundInput], a
-	ret
-; 3e21
-
-SFXChannelsOff:: ; 3e21
-; Quickly turn off sound effect channels
-	xor a
-	ld [$c1cc], a
-	ld [$c1fe], a
-	ld [$c230], a
-	ld [$c262], a
-	ld [SoundInput], a
-	ret
-; 3e32
 
 Function3e32:: ; 3e32
+; Mobile
 	cp $2
 	ld [$c988], a
 	ld a, l
@@ -3109,6 +2197,7 @@ Function3e32:: ; 3e32
 	ld a, h
 	ld [$c987], a
 	jr nz, .asm_3e4f
+
 	ld [$c982], a
 	ld a, l
 	ld [$c981], a
@@ -3130,13 +2219,13 @@ Function3e32:: ; 3e32
 	jp Function110030
 ; 3e60
 
-
 Function3e60:: ; 3e60
 	ld [$c986], a
 	ld a, l
 	ld [$c987], a
 	ld a, h
 	ld [$c988], a
+
 	pop bc
 	ld a, b
 	ld [$c981], a
@@ -3151,7 +2240,6 @@ Function3e60:: ; 3e60
 	ld a, [$c986]
 	ret
 ; 3e80
-
 
 Function3e80:: ; 3e80
 	ld a, [hROMBank]

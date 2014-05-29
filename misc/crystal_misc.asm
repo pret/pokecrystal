@@ -257,7 +257,7 @@ Function17a7ff: ; 17a7ff (5e:67ff)
 
 ; no known jump sources
 Function17a81a: ; 17a81a (5e:681a)
-	call Function3c74
+	call IsSFXPlaying
 	ret nc
 	ld a, [hJoyPressed] ; $ff00+$a7
 	and $3

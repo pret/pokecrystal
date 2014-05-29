@@ -3747,7 +3747,7 @@ Function5ae8: ; 5ae8
 	call DelayFrame
 	ld de, MUSIC_MAIN_MENU
 	ld a, e
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	call PlayMusic
 	callba MainMenu
 	jp Function6219
@@ -7940,8 +7940,8 @@ SpecialsPointers: ; c029
 	dbw BANK(Functionc230), Functionc230
 	dbw BANK(SpecialSeenMon), SpecialSeenMon
 	dbw BANK(WaitSFX),WaitSFX
-	dbw BANK(Function3cdf), Function3cdf
-	dbw BANK(Function3d47), Function3d47
+	dbw BANK(PlayMapMusic), PlayMapMusic
+	dbw BANK(RestartMapMusic), RestartMapMusic
 	dbw BANK(Function12324), Function12324
 	dbw BANK(Function8379), Function8379
 	dbw BANK(Functionc25a), Functionc25a
@@ -8402,7 +8402,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 ; ScriptVar is 1 if the conditions are met, otherwise 0.
 
 ; check background music
-	ld a, [CurMusic]
+	ld a, [wMapMusic]
 	cp MUSIC_POKE_FLUTE_CHANNEL
 	jr nz, .nope
 
@@ -10774,7 +10774,7 @@ Functiond0bc: ; d0bc
 	call MaxVolume
 	ld de, MUSIC_BICYCLE
 	ld a, e
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	call PlayMusic
 	ld a, $1
 	ret
@@ -21177,13 +21177,13 @@ Function1344a: ; 1344a
 	ld a, e
 	ld [$d03f], a
 	ld a, d
-	ld [MartPointer], a
+	ld [$d040], a
 	call Function1345a
 	ret
 ; 1345a
 
 Function1345a: ; 1345a
-	ld de, CurMart
+	ld de, $d0f0
 	ld bc, $0004
 	ld hl, $d03f
 	ld a, [hli]
@@ -23072,6 +23072,8 @@ AddSpriteGFX: ; 142e5
 
 
 LoadSpriteGFX: ; 14306
+; Bug: b is not preserved, so
+; it's useless as a loop count.
 
 	ld hl, UsedSprites
 	ld b, $20
@@ -25882,11 +25884,11 @@ MapSetupCommands: ; 15440
 	dbw BANK(EnableLCD), EnableLCD
 	dbw BANK(DisableLCD), DisableLCD
 	dbw BANK(SoundRestart), SoundRestart
-	dbw BANK(Function3cdf), Function3cdf
-	dbw BANK(Function3d47), Function3d47
-	dbw BANK(Function3cbc), Function3cbc
+	dbw BANK(PlayMapMusic), PlayMapMusic
+	dbw BANK(RestartMapMusic), RestartMapMusic
+	dbw BANK(FadeToMapMusic), FadeToMapMusic
 	dbw BANK(Function15574), Function15574
-	dbw BANK(Function3d03), Function3d03
+	dbw BANK(EnterMapMusic), EnterMapMusic
 	dbw BANK(Function15587), Function15587
 	dbw BANK(Function3cae), Function3cae
 	dbw BANK(Function24cd), Function24cd
@@ -26045,8 +26047,8 @@ Function1554e: ; 1554e (5:554e)
 ; 15567
 
 Function15567: ; 15567
-	ld a, $6
-	call Function3cb4
+	ld a, 6
+	call SkipMusic
 	ret
 ; 1556d
 
@@ -27077,7 +27079,7 @@ Function15c25: ; 15c25
 	ld l, a
 	push hl
 	inc hl
-	ld bc, DefaultFlypoint
+	ld bc, $d002
 	ld de, CurMart + 1
 .asm_15c33
 	ld a, [hli]
@@ -27316,7 +27318,7 @@ Function15da5: ; 15da5
 	ld a, [$d107]
 	ld e, a
 	ld d, $0
-	ld hl, MartPointer
+	ld hl, $d040
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -27357,7 +27359,7 @@ Function15df9: ; 15df9
 	ld a, [$d107]
 	ld e, a
 	ld d, 0
-	ld hl, MartPointer
+	ld hl, $d040
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -29488,12 +29490,12 @@ Function16be4: ; 16be4
 
 	ld de, UnownDexATile
 	ld hl, $8ef0
-	ld bc, $0501
+	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
 	ld de, UnownDexBTile
 	ld hl, $8f50
-	ld bc, $0501
+	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
 	ld hl, TileMap
@@ -29554,7 +29556,7 @@ Function16be4: ; 16be4
 	ld a, [$cf63]
 	push af
 	callba Function84560
-	call Function3d47
+	call RestartMapMusic
 	pop af
 	ld [$cf63], a
 	jr .asm_16c6b
@@ -29969,7 +29971,7 @@ Function16f5e:: ; 16f5e
 	call Function1d6e
 	call Function16f70
 	call Function2b4d
-	call Function3d47
+	call RestartMapMusic
 	jp Function2dcf
 ; 16f70
 
@@ -40609,7 +40611,7 @@ Function2a111: ; 2a111
 Function2a124:: ; 2a124
 ; Pokemon March and Ruins of Alph signal double encounter rate.
 ; Pokemon Lullaby halves encounter rate.
-	ld a, [CurMusic]
+	ld a, [wMapMusic]
 	cp MUSIC_POKEMON_MARCH
 	jr z, .asm_2a135
 	cp MUSIC_RUINS_OF_ALPH_RADIO
@@ -47388,8 +47390,8 @@ Function414b7: ; 414b7
 	ld hl, PokedexSlowpokeLZ
 	ld de, VTiles0
 	call Decompress
-	ld a, $6
-	call Function3cb4
+	ld a, 6
+	call SkipMusic
 	call EnableLCD
 	ret
 
@@ -47893,7 +47895,7 @@ Function423ff: ; 423ff
 	ret nz
 	ld a, [$d268]
 	and a
-	call nz, Function3d47
+	call nz, RestartMapMusic
 	ret
 ; 42414
 
@@ -49099,7 +49101,7 @@ Function447fb: ; 0x447fb
 
 Function44806: ; 0x44806
 	xor a
-	ld [CurMart], a
+	ld [$d0f0], a
 	ld a, $1
 	ld [$d0f1], a
 .asm_4480f
@@ -49112,11 +49114,11 @@ Function44806: ; 0x44806
 	call Function1ad2
 	ld a, [$d0f1]
 	ld [$cf88], a
-	ld a, [CurMart]
+	ld a, [$d0f0]
 	ld [$d0e4], a
 	call Function350c
 	ld a, [$d0e4]
-	ld [CurMart], a
+	ld [$d0f0], a
 	ld a, [$cfa9]
 	ld [$d0f1], a
 	ld a, [$cf73]
@@ -52964,7 +52966,7 @@ MainMenu_MysteryGift: ; 49ef5
 MainMenu_Mobile: ; 49efc
 	call WhiteBGMap
 	ld a, MUSIC_MOBILE_ADAPTER_MENU
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	ld de, MUSIC_MOBILE_ADAPTER_MENU
 	call Function4a6c5
 Function49f0a: ; 49f0a
@@ -53031,7 +53033,7 @@ Function49f16: ; 49f16
 	call WhiteBGMap
 	call ClearTileMap
 	ld a, MUSIC_MAIN_MENU
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	ld de, MUSIC_MAIN_MENU
 	call Function4a6c5
 	ret
@@ -57194,7 +57196,7 @@ Function4ddd6: ; 4ddd6 (13:5dd6)
 
 ; no known jump sources
 Function4dde6: ; 4dde6 (13:5de6)
-	call Function3c74
+	call IsSFXPlaying
 	ret nc
 	ld a, [$cf63]
 	inc a
@@ -61140,7 +61142,7 @@ Function50db9: ; 50db9
 .asm_50dd8
 	cp $5
 	jr nz, .asm_50de6
-	ld hl, CurMart
+	ld hl, $d0f0
 	ld de, PokemonNames
 	ld a, $1
 	jr .asm_50dfc
@@ -61154,7 +61156,7 @@ Function50db9: ; 50db9
 	jr .asm_50dfc
 
 .asm_50df4
-	ld hl, CurMart
+	ld hl, $d0f0
 	ld de, Function50000
 	ld a, $4
 
@@ -62432,7 +62434,7 @@ TryStep: ; 8016b
 	call CheckLandPermissions
 	jr c, .asm_801be
 
-	call Function80341
+	call IsNPCInFront
 	and a
 	jr z, .asm_801be
 	cp 2
@@ -62490,17 +62492,17 @@ TryStep: ; 8016b
 TrySurfStep: ; 801c0
 
 	call CheckWaterPermissions
-	ld [MartPointer], a
+	ld [$d040], a
 	jr c, .asm_801f1
 
-	call Function80341
+	call IsNPCInFront
 	ld [$d03f], a
 	and a
 	jr z, .asm_801f1
 	cp 2
 	jr z, .asm_801f1
 
-	ld a, [MartPointer]
+	ld a, [$d040]
 	and a
 	jr nz, .ExitWater
 
@@ -62511,7 +62513,7 @@ TrySurfStep: ; 801c0
 
 .ExitWater
 	call WaterToLandSprite
-	call Function3cdf ; PlayMapMusic
+	call PlayMapMusic
 	ld a, STEP_WALK
 	call DoStep
 	ld a, 6
@@ -62773,7 +62775,7 @@ GetMovementAction: ; 802ec
 ; 80341
 
 
-Function80341: ; 80341
+IsNPCInFront: ; 80341
 
 	ld a, 0
 	ld [hConnectionStripLength], a
@@ -65883,7 +65885,7 @@ Function8474c: ; 8474c
 ; 84753
 
 Function84753: ; 84753
-	call Function3d47
+	call RestartMapMusic
 	ret
 ; 84757
 
@@ -69841,7 +69843,7 @@ Function89d0d: ; 89d0d (22:5d0d)
 	call Function89240
 	ld c, $18
 	call DelayFrames
-	call Function3d47
+	call RestartMapMusic
 	ret
 ; 89d4e (22:5d4e)
 
@@ -81610,8 +81612,8 @@ Function90bea: ; 90bea (24:4bea)
 	call Function90c4e
 	callba Function8cf53
 	call Function90d32
-	ld a, $8
-	call Function3cb4
+	ld a, 8
+	call SkipMusic
 	ld a, $e3
 	ld [rLCDC], a
 	call Function90d70
@@ -82923,13 +82925,13 @@ Function91492: ; 91492
 	cp $fe
 	jr z, .asm_914a3
 	cp $ff
-	call z, Function3d03
+	call z, EnterMapMusic
 	xor a
 	ld [$c6dc], a
 	ret
 
 .asm_914a3
-	call Function3d47
+	call RestartMapMusic
 	xor a
 	ld [$c6dc], a
 	ret
@@ -83359,7 +83361,7 @@ Function91854: ; 91854 (24:5854)
 	call PlayMusic
 	pop de
 	ld a, e
-	ld [CurMusic], a ; $c2c0
+	ld [wMapMusic], a
 	call PlayMusic
 	ret
 
@@ -83446,8 +83448,8 @@ Function9191c: ; 9191c
 	call DisableLCD
 	call Function90c4e
 	callba Function8cf53
-	ld a, $8
-	call Function3cb4
+	ld a, 8
+	call SkipMusic
 	ld a, $e3
 	ld [rLCDC], a
 	call Function90d56
@@ -96955,8 +96957,8 @@ Functione33e8: ; e33e8 (38:73e8)
 	ld hl, PCSelectLZ
 	ld de, $8000
 	call Decompress
-	ld a, $6
-	call Function3cb4
+	ld a, 6
+	call SkipMusic
 	call EnableLCD
 	ret
 ; e3419 (38:7419)
@@ -97617,7 +97619,7 @@ Options_Sound: ; e43dd
 
 .SetMono
 	res 5, [hl]
-	call Function3d47 ;reload the music
+	call RestartMapMusic
 
 .ToggleMono
 	ld de, .Mono
@@ -97625,7 +97627,7 @@ Options_Sound: ; e43dd
 
 .SetStereo
 	set 5, [hl]
-	call Function3d47 ;reload the music
+	call RestartMapMusic
 
 .ToggleStereo
 	ld de, .Stereo
@@ -99934,7 +99936,7 @@ Functione5516: ; e5516 (39:5516)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, LYOverrides
 	ld bc, $90
 	xor a
 	call ByteFill
@@ -99953,7 +99955,7 @@ Functione552f: ; e552f (39:552f)
 	ld a, [$cf64]
 	and $1
 	jr z, .asm_e5548
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, LYOverrides
 	ld a, [hl]
 	inc a
 	ld bc, $5f
@@ -99965,7 +99967,7 @@ Functione552f: ; e552f (39:552f)
 	inc a
 	ld bc, $31
 	call ByteFill
-	ld a, [CurMartEnd] ; $d100 (aliases: LYOverrides)
+	ld a, [LYOverrides + 0]
 	ld [hSCX], a ; $ff00+$cf
 	pop af
 	ld [rSVBK], a ; $ff00+$70
@@ -101561,7 +101563,7 @@ NPCTrade:: ; fcba8
 	ld hl, TradedForText
 	call PrintText
 
-	call Function3d47
+	call RestartMapMusic
 
 	ld a, TRADE_COMPLETE
 
@@ -112685,7 +112687,7 @@ Function11b7e5: ; 11b7e5
 
 .asm_11b872
 	call Function2b3c
-	call Function3d47
+	call RestartMapMusic
 	ret
 ; 11b879
 
@@ -114152,7 +114154,7 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	jr nz, .asm_11c7d0
 	ret
 .asm_11c7e9
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, $d100
 	ld a, [$cd26]
 	ld e, a
 	add hl, de
@@ -114186,8 +114188,8 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	pop de
 	ret
 .asm_11c814
-	ld hl, BattleMonSpclDef ; $c648
-	ld a, [CreditsTimer] ; $cd22
+	ld hl, $c648
+	ld a, [$cd22]
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -114336,13 +114338,13 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	add [hl]
 	ld c, a
 	ld b, $0
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
+	ld hl, $d100
 	add hl, bc
 	ld a, [hl]
 	jr .asm_11c911
 .asm_11c938
-	ld hl, BattleMonSpclDef ; $c648
-	ld a, [CreditsTimer] ; $cd22
+	ld hl, $c648
+	ld a, [$cd22]
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -117747,7 +117749,7 @@ Function17d2ce: ; 17d2ce
 	ld [rSVBK], a
 	ld de, MUSIC_MOBILE_CENTER
 	ld a, e
-	ld [CurMusic], a
+	ld [wMapMusic], a
 	ld [MusicFadeIDLo], a
 	ld a, d
 	ld [MusicFadeIDHi], a
@@ -119158,7 +119160,7 @@ Function17ff23: ; 17ff23
 	ret z
 	ld a, $8
 	ld [MusicFade], a
-	ld a, [CurMusic]
+	ld a, [wMapMusic]
 	ld [MusicFadeIDLo], a
 	xor a
 	ld [MusicFadeIDHi], a

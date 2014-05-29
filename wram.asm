@@ -365,8 +365,7 @@ CryTracks:: ; c2bd
 CurSFX:: ; c2bf
 ; id of sfx currently playing
 	ds 1
-CurMusic:: ; c2c0
-; id of music currently playing
+wMapMusic:: ; c2c0
 	ds 1
 
 SECTION "auto",WRAM0[$c2c7]
