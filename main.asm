@@ -41394,22 +41394,22 @@ Function2a567: ; 2a567
 
 
 WildMons1: ; 0x2a5e9
-INCLUDE "stats/wild/johto_grass.asm"
+INCLUDE "data/wild/johto_grass.asm"
 
 WildMons2: ; 0x2b11d
-INCLUDE "stats/wild/johto_water.asm"
+INCLUDE "data/wild/johto_water.asm"
 
 WildMons3: ; 0x2b274
-INCLUDE "stats/wild/kanto_grass.asm"
+INCLUDE "data/wild/kanto_grass.asm"
 
 WildMons4: ; 0x2b7f7
-INCLUDE "stats/wild/kanto_water.asm"
+INCLUDE "data/wild/kanto_water.asm"
 
 WildMons5: ; 0x2b8d0
-INCLUDE "stats/wild/swarm_grass.asm"
+INCLUDE "data/wild/swarm_grass.asm"
 
 WildMons6: ; 0x2b92f
-INCLUDE "stats/wild/swarm_water.asm"
+INCLUDE "data/wild/swarm_water.asm"
 
 
 Function2b930: ; 2b930
@@ -46582,10 +46582,10 @@ Function40c30: ; 40c30
 ; 40c65
 
 AlphabeticalPokedexOrder: ; 0x40c65
-INCLUDE "stats/pokedex/order_alpha.asm"
+INCLUDE "data/pokedex/order_alpha.asm"
 
 NewPokedexOrder: ; 0x40d60
-INCLUDE "stats/pokedex/order_new.asm"
+INCLUDE "data/pokedex/order_new.asm"
 
 Function40e5b: ; 40e5b
 	xor a
@@ -48717,7 +48717,7 @@ Function44355: ; 44355
 
 
 PokedexDataPointerTable: ; 0x44378
-INCLUDE "stats/pokedex/entry_pointers.asm"
+INCLUDE "data/pokedex/entry_pointers.asm"
 
 
 Function4456e: ; 4456e
@@ -62132,10 +62132,10 @@ Function513e0: ; 513e0
 ; 51424
 
 BaseData::
-INCLUDE "stats/base_stats.asm"
+INCLUDE "data/base_stats.asm"
 
 PokemonNames::
-INCLUDE "stats/pokemon_names.asm"
+INCLUDE "data/pokemon_names.asm"
 
 INCBIN "baserom.gbc",$53d84,$53d9c - $53d84
 
@@ -84772,7 +84772,7 @@ Function923b8: ; 923b8
 ; 92402
 
 
-INCLUDE "stats/wild/fish.asm"
+INCLUDE "data/wild/fish.asm"
 
 
 Function926c7:
@@ -120142,8 +120142,8 @@ INCBIN "baserom.gbc",$1f4018,$1f636a - $1f4018
 
 SECTION "bank7E", ROMX, BANK[$7E]
 
-INCLUDE "stats/battle_tower.asm"
-INCLUDE "stats/odd_eggs.asm"
+INCLUDE "data/battle_tower.asm"
+INCLUDE "data/odd_eggs.asm"
 
 
 SECTION "bank7F", ROMX, BANK[$7F]
