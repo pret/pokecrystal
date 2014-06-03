@@ -22210,15 +22210,15 @@ Function13a47: ; 13a47
 	ld a, [hl]
 	and a
 	ret z
-	cp $7
+	cp 6 + 1
 	jr c, .asm_13a54
-	ld a, $6
+	ld a, 6
 	ld [hl], a
 
 .asm_13a54
 	inc hl
 	ld b, a
-	ld c, $0
+	ld c, 0
 .asm_13a58
 	ld a, [hl]
 	and a
@@ -22229,13 +22229,13 @@ Function13a47: ; 13a47
 	jr c, .asm_13a73
 
 .asm_13a64
-	ld [hl], $eb
+	ld [hl], SMEARGLE
 	push hl
 	push bc
 	ld a, c
-	ld hl, PartyMon1
+	ld hl, PartyMon1Species
 	call GetPartyLocation
-	ld [hl], $eb
+	ld [hl], SMEARGLE
 	pop bc
 	pop hl
 
@@ -22248,7 +22248,7 @@ Function13a47: ; 13a47
 	ld hl, PartyMon1
 	ld a, [PartyCount]
 	ld d, a
-	ld e, $0
+	ld e, 0
 .asm_13a83
 	push de
 	push hl
@@ -22261,35 +22261,34 @@ Function13a47: ; 13a47
 	jr c, .asm_13a9c
 
 .asm_13a8f
-	ld [hl], $eb
+	ld [hl], SMEARGLE
 	push de
-	ld d, $0
+	ld d, 0
 	ld hl, PartySpecies
 	add hl, de
 	pop de
-	ld a, $eb
+	ld a, SMEARGLE
 	ld [hl], a
 
 .asm_13a9c
 	ld [CurSpecies], a
 	call GetBaseData
-	ld hl, $001f
+	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [hl]
-	cp $2
-	ld a, $2
+	cp 2
+	ld a, 2
 	jr c, .asm_13ab4
 	ld a, [hl]
-	cp $64
+	cp MAX_LEVEL
 	jr c, .asm_13ab5
-	ld a, $64
-
+	ld a, MAX_LEVEL
 .asm_13ab4
 	ld [hl], a
-
 .asm_13ab5
 	ld [CurPartyLevel], a
-	ld hl, $0024
+
+	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -22299,16 +22298,16 @@ Function13a47: ; 13a47
 	ld a, $c
 	call Predef
 	pop hl
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop de
 	inc e
 	dec d
 	jr nz, .asm_13a83
-	ld de, $de41
+	ld de, PartyMonNicknames
 	ld a, [PartyCount]
 	ld b, a
-	ld c, $0
+	ld c, 0
 .asm_13adc
 	push bc
 	call Function13b71
@@ -22321,11 +22320,11 @@ Function13a47: ; 13a47
 	push hl
 	ld hl, PartySpecies
 	push bc
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	ld a, [hl]
-	cp $fd
+	cp EGG
 	ld hl, String_13b6b
 	jr z, .asm_13b06
 	ld [$d265], a
@@ -22342,10 +22341,10 @@ Function13a47: ; 13a47
 	inc c
 	dec b
 	jr nz, .asm_13adc
-	ld de, $ddff
+	ld de, PartyMonOT
 	ld a, [PartyCount]
 	ld b, a
-	ld c, $0
+	ld c, 0
 .asm_13b1b
 	push bc
 	call Function13b71
@@ -22364,12 +22363,13 @@ Function13a47: ; 13a47
 	inc c
 	dec b
 	jr nz, .asm_13b1b
-	ld hl, $dce1
+
+	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	ld b, a
 .asm_13b40
 	push hl
-	ld c, $4
+	ld c, NUM_MOVES
 	ld a, [hl]
 	and a
 	jr z, .asm_13b4b
@@ -22377,13 +22377,13 @@ Function13a47: ; 13a47
 	jr c, .asm_13b4d
 
 .asm_13b4b
-	ld [hl], $1
+	ld [hl], POUND
 
 .asm_13b4d
 	ld a, [hl]
 	and a
 	jr z, .asm_13b55
-	cp $fc
+	cp NUM_ATTACKS + 1
 	jr c, .asm_13b5c
 
 .asm_13b55
@@ -22401,7 +22401,7 @@ Function13a47: ; 13a47
 .asm_13b60
 	pop hl
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
 	dec b
@@ -22415,11 +22415,11 @@ String_13b6b: ; 13b6b
 
 Function13b71: ; 13b71
 	push de
-	ld c, $1
-	ld b, $6
+	ld c, 1
+	ld b, 6
 .asm_13b76
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_13b85
 	inc de
 	inc c
@@ -22427,7 +22427,7 @@ Function13b71: ; 13b71
 	jr nz, .asm_13b76
 	dec c
 	dec de
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 
 .asm_13b85
@@ -59239,8 +59239,8 @@ Function50176: ; 50176
 	and a
 	ret z
 	ld c, a
-	ld b, $0
-	ld hl, $c4d0
+	ld b, 0
+	hlcoord 8, 2
 .asm_50181
 	push bc
 	push hl
@@ -59248,26 +59248,25 @@ Function50176: ; 50176
 	jr z, .asm_501a7
 	push hl
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Level
 	call AddNTimes
 	ld e, l
 	ld d, h
 	pop hl
 	ld a, [de]
-	cp $64
+	cp 100 ; This is distinct from MAX_LEVEL.
 	jr nc, .asm_501a1
-	ld a, $6e
+	ld a, LV_CHAR
 	ld [hli], a
 	ld bc, $4102
-
 .asm_501a1
 	ld bc, $4103
 	call PrintNum
 
 .asm_501a7
 	pop hl
-	ld de, $0028
+	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
@@ -59281,7 +59280,7 @@ Function501b2: ; 501b2
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $c4cd
 .asm_501bd
 	push bc
@@ -59290,7 +59289,7 @@ Function501b2: ; 501b2
 	jr z, .asm_501d5
 	push hl
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Status
 	call AddNTimes
 	ld e, l
@@ -59300,7 +59299,7 @@ Function501b2: ; 501b2
 
 .asm_501d5
 	pop hl
-	ld de, $0028
+	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
@@ -59314,7 +59313,7 @@ Function501e0: ; 501e0
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $c4d4
 .asm_501eb
 	push bc
@@ -59324,7 +59323,7 @@ Function501e0: ; 501e0
 	push hl
 	ld hl, PartySpecies
 	ld e, b
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	ld [CurPartySpecies], a
@@ -59336,7 +59335,7 @@ Function501e0: ; 501e0
 
 .asm_5020a
 	pop hl
-	ld de, $0028
+	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b

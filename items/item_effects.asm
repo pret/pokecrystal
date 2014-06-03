@@ -1352,7 +1352,7 @@ RareCandy: ; ef14
 	call GetPartyParamLocation
 
 	ld a, [hl]
-	cp 100
+	cp MAX_LEVEL
 	jp nc, Functionee83
 
 	inc a

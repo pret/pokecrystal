@@ -7296,6 +7296,7 @@ Function3ee27: ; 3ee27
 
 
 Function3ee3b: ; 3ee3b
+; Give experience.
 	ld a, [InLinkBattle]
 	and a
 	ret nz
@@ -7329,7 +7330,7 @@ Function3ee3b: ; 3ee3b
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, EnemyMonType2
+	ld hl, EnemyMonBaseStats - 1
 	push bc
 	ld c, $5
 .asm_3ee7c
@@ -7403,20 +7404,20 @@ Function3ee3b: ; 3ee3b
 	jr z, .asm_3eee2
 
 .asm_3eedd
-	call Function3f106
+	call DoubleExp
 	ld a, $1
 
 .asm_3eee2
 	ld [$d088], a
 	ld a, [IsInBattle]
 	dec a
-	call nz, Function3f106
+	call nz, DoubleExp
 	push bc
-	ld a, $1
+	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
-	cp $7e
-	call z, Function3f106
+	cp LUCKY_EGG
+	call z, DoubleExp
 	ld a, [$ffb6]
 	ld [$d087], a
 	ld a, [$ffb5]
@@ -7464,7 +7465,7 @@ Function3ee3b: ; 3ee3b
 	ld [CurSpecies], a
 	call GetBaseData
 	push bc
-	ld d, $64
+	ld d, MAX_LEVEL
 	callab Function50e47
 	pop bc
 	ld hl, $000a
@@ -7497,10 +7498,10 @@ Function3ee3b: ; 3ee3b
 	call Predef
 	callab Function50e1b
 	pop bc
-	ld hl, $001f
+	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [hl]
-	cp $64
+	cp MAX_LEVEL
 	jp nc, .asm_3f0b9
 	cp d
 	jp z, .asm_3f0b9
@@ -7510,7 +7511,7 @@ Function3ee3b: ; 3ee3b
 	ld a, d
 	ld [CurPartyLevel], a
 	ld [hl], a
-	ld hl, $0000
+	ld hl, PartyMon1Species - PartyMon1
 	add hl, bc
 	ld a, [hl]
 	ld [CurSpecies], a
@@ -7704,7 +7705,7 @@ Function3f0d4: ; 3f0d4
 	ret
 ; 3f106
 
-Function3f106: ; 3f106
+DoubleExp: ; 3f106
 	push bc
 	ld a, [$ffb5]
 	ld b, a
@@ -7791,7 +7792,7 @@ Function3f136: ; 3f136
 	ld [hl], a
 
 .asm_3f186
-	ld d, $64
+	ld d, MAX_LEVEL
 	callab Function50e47
 	ld a, [hMultiplicand]
 	ld b, a

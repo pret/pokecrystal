@@ -1,8 +1,10 @@
 
-; name length
+; strings
 PLAYER_NAME_LENGTH EQU 8
 PKMN_NAME_LENGTH EQU 11
 NAME_LENGTH EQU 11
+LV_CHAR EQU $6e
+
 
 ; boxes
 NUM_BOXES EQU 14
