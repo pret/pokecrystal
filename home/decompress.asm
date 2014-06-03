@@ -1,19 +1,14 @@
 FarDecompress:: ; b40
-; Decompress graphics data at a:hl to de
+; Decompress graphics data from a:hl to de.
 
-; put a away for a sec
 	ld [$c2c4], a
-; save bank
 	ld a, [hROMBank]
 	push af
-; bankswitch
 	ld a, [$c2c4]
 	rst Bankswitch
-	
-; what we came here for
+
 	call Decompress
-	
-; restore bank
+
 	pop af
 	rst Bankswitch
 	ret
@@ -22,346 +17,325 @@ FarDecompress:: ; b40
 
 Decompress:: ; b50
 ; Pokemon Crystal uses an lz variant for compression.
+; This is mainly (but not necessarily) used for graphics.
 
-; This is mainly used for graphics, but the intro's
-; tilemaps also use this compression.
-
-; This function decompresses lz-compressed data at hl to de.
+; This function decompresses lz-compressed data from hl to de.
 
 
-; Basic rundown:
-
-;	A typical control command consists of:
-;		-the command (bits 5-7)
-;		-the count (bits 0-4)
-;		-and any additional params
-
-;	$ff is used as a terminator.
+LZ_END EQU $ff ; Compressed data is terminated with $ff.
 
 
-;	Commands:
+; A typical control command consists of:
 
-;		0: literal
-;			literal data for some number of bytes
-;		1: iterate
-;			one byte repeated for some number of bytes
-;		2: alternate
-;			two bytes alternated for some number of bytes
-;		3: zero (whitespace)
-;			0x00 repeated for some number of bytes
+LZ_CMD EQU %11100000 ; command id (bits 5-7)
+LZ_LEN EQU %00011111 ; length n   (bits 0-4)
 
-;	Repeater control commands have a signed parameter used to determine the start point.
-;	Wraparound is simulated:
-;		Positive values are added to the start address of the decompressed data
-;		and negative values are subtracted from the current position.
+; Additional parameters are read during command execution.
 
-;		4: repeat
-;			repeat some number of bytes from decompressed data
-;		5: flipped
-;			repeat some number of flipped bytes from decompressed data
-;			ex: $ad = %10101101 -> %10110101 = $b5
-;		6: reverse
-;			repeat some number of bytes in reverse from decompressed data
 
-;	If the value in the count needs to be larger than 5 bits,
-;	control code 7 can be used to expand the count to 10 bits.
+; Commands:
 
-;		A new control command is read in bits 2-4.
-;		The new 10-bit count is split:
-;			bits 0-1 contain the top 2 bits
-;			another byte is added containing the latter 8
+LZ_LITERAL   EQU 0 << 5 ; Read literal data for n bytes.
+LZ_ITERATE   EQU 1 << 5 ; Write the same byte for n bytes.
+LZ_ALTERNATE EQU 2 << 5 ; Alternate two bytes for n bytes.
+LZ_ZERO      EQU 3 << 5 ; Write 0 for n bytes.
 
-;		So, the structure of the control command becomes:
-;			111xxxyy yyyyyyyy
-;			 |  |  |    |
-;            |  | our new count
-;            | the control command for this count
-;            7 (this command)
 
-; For more information, refer to the code below and in extras/gfx.py .
+; Another class of commands reuses data from the decompressed output.
+LZ_RW        EQU 2 + 5 ; bit
 
-; save starting output address
+; These commands take a signed offset to start copying from.
+; Wraparound is simulated.
+; Positive offsets (15-bit) are added to the start address.
+; Negative offsets (7-bit) are subtracted from the current position.
+
+LZ_REPEAT    EQU 4 << 5 ; Repeat n bytes from the offset.
+LZ_FLIP      EQU 5 << 5 ; Repeat n bitflipped bytes.
+LZ_REVERSE   EQU 6 << 5 ; Repeat n bytes in reverse.
+
+
+; If the value in the count needs to be larger than 5 bits,
+; LZ_LONG can be used to expand the count to 10 bits.
+LZ_LONG      EQU 7 << 5
+
+; A new control command is read in bits 2-4.
+; The top two bits of the length are bits 0-1.
+; Another byte is read containing the bottom 8 bits.
+LZ_LONG_HI   EQU %00000011
+
+; In other words, the structure of the command becomes
+; 111xxxyy yyyyyyyy
+; x: the new control command
+; y: the length
+
+
+; For more information, refer to the code below and in extras/gfx.py.
+
+
+	; Save the output address
+	; for rewrite commands.
 	ld a, e
 	ld [$c2c2], a
 	ld a, d
-	ld [$c2c3], a
-	
-.loop
-; get next byte
+	ld [$c2c2 + 1], a
+
+.Main
 	ld a, [hl]
-; done?
-	cp $ff ; end
+	cp LZ_END
 	ret z
 
-; get control code
-	and %11100000
-	
-; 10-bit param?
-	cp $e0 ; LZ_HI
-	jr nz, .normal
-	
-	
-; 10-bit param:
+	and LZ_CMD
 
-; get next 3 bits (%00011100)
+	cp LZ_LONG
+	jr nz, .short
+
+.long
+; The count is now 10 bits.
+
+	; Read the next 3 bits.
+	; %00011100 -> %11100000
 	ld a, [hl]
 	add a
 	add a ; << 3
 	add a
-	
-; this is our new control code
-	and %11100000
-	push af
-	
-; get param hi
-	ld a, [hli]
-	and %00000011
-	ld b, a
-	
-; get param lo
-	ld a, [hli]
-	ld c, a
-	
-; read at least 1 byte
-	inc bc
-	jr .readers
-	
-	
-.normal
-; push control code
-	push af
-; get param
-	ld a, [hli]
-	and %00011111
-	ld c, a
-	ld b, $0
-; read at least 1 byte
-	inc c
-	
-.readers
-; let's get started
 
-; inc loop counts since we bail as soon as they hit 0
+        ; This is our new control code.
+	and LZ_CMD
+	push af
+
+	ld a, [hli]
+	and LZ_LONG_HI
+	ld b, a
+	ld a, [hli]
+	ld c, a
+
+	; read at least 1 byte
+	inc bc
+	jr .command
+
+
+.short
+	push af
+
+	ld a, [hli]
+	and LZ_LEN
+	ld c, a
+	ld b, 0
+
+	; read at least 1 byte
+	inc c
+
+
+.command
+	; Increment loop counts.
+	; We bail the moment they hit 0.
 	inc b
 	inc c
-	
-; get control code
+
 	pop af
-; command type
-	bit 7, a ; 80, a0, c0
-	jr nz, .repeatertype
-	
-; literals
-	cp $20 ; LZ_ITER
-	jr z, .iter
-	cp $40 ; LZ_ALT
-	jr z, .alt
-	cp $60 ; LZ_ZERO
-	jr z, .zero
-	; else $00
-	
-; 00 ; LZ_LIT
-; literal data for bc bytes
-.loop1
-; done?
+
+	bit LZ_RW, a
+	jr nz, .rewrite
+
+	cp LZ_ITERATE
+	jr z, .Iter
+	cp LZ_ALTERNATE
+	jr z, .Alt
+	cp LZ_ZERO
+	jr z, .Zero
+
+
+.Literal
+; Read literal data for bc bytes.
+.lloop
 	dec c
-	jr nz, .next1
+	jr nz, .lnext
 	dec b
-	jp z, .loop
-	
-.next1
+	jp z, .Main
+
+.lnext
 	ld a, [hli]
 	ld [de], a
 	inc de
-	jr .loop1
-	
-	
-; 20 ; LZ_ITER
-; write byte for bc bytes
-.iter
+	jr .lloop
+
+
+.Iter
+; Write the same byte for bc bytes.
 	ld a, [hli]
-	
+
 .iterloop
 	dec c
 	jr nz, .iternext
 	dec b
-	jp z, .loop
-	
+	jp z, .Main
+
 .iternext
 	ld [de], a
 	inc de
 	jr .iterloop
-	
-	
-; 40 ; LZ_ALT
-; alternate two bytes for bc bytes
 
-; next pair
-.alt
-; done?
+
+.Alt
+; Alternate two bytes for bc bytes.
 	dec c
-	jr nz, .alt0
+	jr nz, .anext1
 	dec b
-	jp z, .altclose0
-	
-; alternate for bc
-.alt0
+	jp z, .adone1
+.anext1
 	ld a, [hli]
 	ld [de], a
 	inc de
+
 	dec c
-	jr nz, .alt1
-; done?
+	jr nz, .anext2
 	dec b
-	jp z, .altclose1
-.alt1
+	jp z, .adone2
+.anext2
 	ld a, [hld]
 	ld [de], a
 	inc de
-	jr .alt
-	
-; skip past the bytes we were alternating
-.altclose0
+
+	jr .Alt
+
+	; Skip past the bytes we were alternating.
+.adone1
 	inc hl
-.altclose1
+.adone2
 	inc hl
-	jr .loop
-	
-	
-; 60 ; LZ_ZERO
-; write 00 for bc bytes
-.zero
+	jr .Main
+
+
+.Zero
+; Write 0 for bc bytes.
 	xor a
-	
-.zeroloop
+
+.zloop
 	dec c
-	jr nz, .zeronext
+	jr nz, .znext
 	dec b
-	jp z, .loop
-	
-.zeronext
+	jp z, .Main
+
+.znext
 	ld [de], a
 	inc de
-	jr .zeroloop
-	
-	
-; repeats
-; 80, a0, c0
-; repeat decompressed data from output
-.repeatertype
+	jr .zloop
+
+
+.rewrite
+; Repeat decompressed data from output.
 	push hl
 	push af
-; get next byte
+
 	ld a, [hli]
-; absolute?
-	bit 7, a
-	jr z, .absolute
-	
-; relative
-; a = -a
-	and %01111111 ; forget the bit we just looked at
+	bit 7, a ; sign
+	jr z, .positive
+
+.negative
+; hl = de - a
+	; Since we can't subtract a from de,
+	; Make it negative and add de.
+	and %01111111
 	cpl
-; add de (current output address)
 	add e
 	ld l, a
-	ld a, $ff ; -1
+	ld a, -1
 	adc d
 	ld h, a
-	jr .repeaters
-	
-.absolute
-; get next byte (lo)
+	jr .ok
+
+.positive
+; Positive offsets are two bytes.
 	ld l, [hl]
-; last byte (hi)
 	ld h, a
-; add starting output address
+	; add to starting output address
 	ld a, [$c2c2]
 	add l
 	ld l, a
 	ld a, [$c2c3]
 	adc h
 	ld h, a
-	
-.repeaters
+
+.ok
 	pop af
-	cp $80 ; LZ_REPEAT
-	jr z, .repeat
-	cp $a0 ; LZ_FLIP
-	jr z, .flip
-	cp $c0 ; LZ_REVERSE
-	jr z, .reverse
-	
-; e0 -> 80
-	
-; 80 ; LZ_REPEAT
-; repeat some decompressed data
-.repeat
-; done?
+
+	cp LZ_REPEAT
+	jr z, .Repeat
+	cp LZ_FLIP
+	jr z, .Flip
+	cp LZ_REVERSE
+	jr z, .Reverse
+
+; Since LZ_LONG is command 7,
+; only commands 0-6 are passed in.
+; This leaves room for an extra command 7.
+; However, lengths longer than 768
+; would be interpreted as LZ_END.
+
+; For now, it defaults to LZ_REPEAT.
+
+
+.Repeat
+; Copy decompressed data for bc bytes.
 	dec c
-	jr nz, .repeatnext
+	jr nz, .rnext
 	dec b
-	jr z, .cleanup
-	
-.repeatnext
+	jr z, .donerw
+
+.rnext
 	ld a, [hli]
 	ld [de], a
 	inc de
-	jr .repeat
-	
-	
-; a0 ; LZ_FLIP
-; repeat some decompressed data w/ flipped bit order
-.flip
+	jr .Repeat
+
+
+.Flip
+; Copy bitflipped decompressed data for bc bytes.
 	dec c
-	jr nz, .flipnext
+	jr nz, .fnext
 	dec b
-	jp z, .cleanup
-	
-.flipnext
+	jp z, .donerw
+
+.fnext
 	ld a, [hli]
 	push bc
-	ld bc, $0008
-	
-.fliploop
+	lb bc, 0, 8
+
+.floop
 	rra
 	rl b
 	dec c
-	jr nz, .fliploop
+	jr nz, .floop
 	ld a, b
 	pop bc
 	ld [de], a
 	inc de
-	jr .flip
-	
-	
-; c0 ; LZ_REVERSE
-; repeat some decompressed data in reverse
-.reverse
+	jr .Flip
+
+
+.Reverse
+; Copy reversed decompressed data for bc bytes.
 	dec c
-	jr nz, .reversenext
-	
+	jr nz, .rvnext
+
 	dec b
-	jp z, .cleanup
-	
-.reversenext
+	jp z, .donerw
+
+.rvnext
 	ld a, [hld]
 	ld [de], a
 	inc de
-	jr .reverse
-	
-	
-.cleanup
-; get type of repeat we just used
+	jr .Reverse
+
+
+.donerw
 	pop hl
-; was it relative or absolute?
+
 	bit 7, [hl]
 	jr nz, .next
-
-; skip two bytes for absolute
-	inc hl
-; skip one byte for relative
+	inc hl ; positive offset is two bytes
 .next
 	inc hl
-	jp .loop
+	jp .Main
 ; c2f
 
