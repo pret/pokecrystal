@@ -61186,7 +61186,7 @@ Function50e1b: ; 50e1b
 .asm_50e26
 	inc d
 	ld a, d
-	cp MAX_LEVEL + 1
+	cp (MAX_LEVEL + 1) % $100
 	jr z, .asm_50e45
 	call Function50e47
 	push hl
