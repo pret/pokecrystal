@@ -481,10 +481,10 @@ Function17a964: ; 17a964 (5e:6964)
 
 ; known jump sources: 17a75b (5e:675b)
 Function17a97b: ; 17a97b (5e:697b)
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld bc, $212
 	call ClearBox
-	ld hl, $c4cb
+	hlcoord 3, 2
 	ld de, Buffer1 ; $d1ea (aliases: MagikarpLength)
 	ld a, [$d08c]
 	and a
@@ -505,11 +505,11 @@ Function17a97b: ; 17a97b (5e:697b)
 
 ; known jump sources: 17a92f (5e:692f)
 Function17a99e: ; 17a99e (5e:699e)
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function17ac46
-	ld hl, $c5ba
+	hlcoord 2, 14
 	ld de, $69b2
 	call PlaceString
 	ret
@@ -784,7 +784,7 @@ Function17ac0c: ; 17ac0c (5e:6c0c)
 ; known jump sources: 17a7e3 (5e:67e3), 17a804 (5e:6804), 17a826 (5e:6826), 17ac0c (5e:6c0c)
 Function17ac1d: ; 17ac1d (5e:6c1d)
 	ld hl, $6cd5
-	ld de, $c4f0
+	decoord 0, 4
 	ld bc, $118
 	call CopyBytes
 	ret

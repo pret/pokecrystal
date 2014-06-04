@@ -537,13 +537,13 @@ Function109a95: ; 109a95 (42:5a95)
 	ld bc, $168
 	call ByteFill
 	ld a, $7f
-	ld hl, $c4f0
+	hlcoord 0, 4
 	ld bc, $118
 	call ByteFill
-	ld hl, $c4f0
+	hlcoord 0, 4
 	ld a, $24
 	call Function109b1d
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld a, $20
 	call Function109b1d
 	ld hl, AttrMap ; $cdd9
@@ -787,9 +787,9 @@ CreditsMonsFrames: ; 109bf1
 ; known jump sources: 109a1b (42:5a1b)
 Function109c11: ; 109c11 (42:5c11)
 	ld a, $40
-	ld hl, $c55a
+	hlcoord 6, 9
 	call Function109c1c
-	ld hl, $c56e
+	hlcoord 6, 10
 
 ; known jump sources: 109c16 (42:5c16)
 Function109c1c: ; 109c1c (42:5c1c)

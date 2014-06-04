@@ -2350,7 +2350,7 @@ Function3eea:: ; 3eea
 
 Function3efd:: ; 3efd
 	push hl
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function3f0d

@@ -115,15 +115,15 @@ _TitleScreen: ; 10ed67
 	call ByteFill
 	
 ; Draw Pokemon logo
-	ld hl, $c4dc ; TileMap(0,3)
-	ld bc, $0714 ; 20x7
+	hlcoord 0, 3
+	lb bc, 7, 20
 	ld d, $80
 	ld e, $14
 	call DrawTitleGraphic
 	
 ; Draw copyright text
 	ld hl, $9c03 ; BGMap1(3,0)
-	ld bc, $010d ; 13x1
+	lb bc, 1, 13
 	ld d, $c
 	ld e, $10
 	call DrawTitleGraphic
@@ -262,7 +262,7 @@ Unknown_10eece: ; 10eece
 
 
 Function10eed2: ; 10eed2
-	ld hl, $c596
+	hlcoord 6, 12
 	ld b, $6
 .asm_10eed7
 	ld c, $8
