@@ -57412,7 +57412,7 @@ Function4df66: ; 4df66 (13:5f66)
 	callba GetGender
 	pop hl
 	ret c
-	ld a, "♂""
+	ld a, "♂"
 	jr nz, .asm_4df75
 	ld a, "♀"
 .asm_4df75
@@ -57421,12 +57421,29 @@ Function4df66: ; 4df66 (13:5f66)
 ; 4df77 (13:5f77)
 
 Unknown_4df77: ; 4df77
-INCBIN "baserom.gbc",$4df77,$4df8f - $4df77
+	dw $de41
+	dw $d3ea
+	dw $b082
+	dw $d002
+; 4df7f
+
+Function4df7f: ; 4df7f
+	ld hl, $c4a7
+	ld bc, 20
+	ld d, 18
+.asm_4df87
+	ld a, $31
+	ld [hl], a
+	add hl, bc
+	dec d
+	jr nz, .asm_4df87
+	ret
+; 4df8f
 
 ; known jump sources: 4df3b (13:5f3b), 4e348 (13:6348)
 Function4df8f: ; 4df8f (13:5f8f)
 	ld hl, $c52c
-	ld b, $14
+	ld b, 20
 	ld a, $62
 .asm_4df96
 	ld [hli], a
