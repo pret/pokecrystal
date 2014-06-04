@@ -1,3 +1,8 @@
+; growth rate
+MEDIUM_FAST EQU 0
+MEDIUM_SLOW EQU 3
+SLOW        EQU 4
+FAST        EQU 5
 
 ; egg group constants
 
