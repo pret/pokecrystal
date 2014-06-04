@@ -4657,7 +4657,7 @@ BattleCommand42: ; 35926
 	call .asm_3597d
 	ld a, $1
 	ld [$d10a], a
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld a, $b
 	call Predef
 	ld hl, EnemyMonHPHi
@@ -4673,7 +4673,7 @@ BattleCommand42: ; 35926
 	xor a
 	ld [$d10a], a
 	call ResetDamage
-	ld hl, $c4ca
+	hlcoord 2, 2
 	ld a, $b
 	call Predef
 	callba Function178000
@@ -5383,7 +5383,7 @@ Function35d1c: ; 35d1c
 	ld [$d1ef], a
 	ld a, [hl]
 	ld [$d1ee], a
-	ld hl, $c4ca
+	hlcoord 2, 2
 	xor a
 	ld [$d10a], a
 	ld a, $b
@@ -5441,7 +5441,7 @@ Function35d7e: ; 35d7e
 	ld [$d1eb], a
 	ld a, [hl]
 	ld [$d1ea], a
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld a, $1
 	ld [$d10a], a
 	ld a, $b
@@ -5884,10 +5884,10 @@ Function36011: ; 36011
 .asm_36070
 	ld a, [hBattleTurn]
 	and a
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld a, $1
 	jr z, .asm_3607e ; 0x36078 $4
-	ld hl, $c4ca
+	hlcoord 2, 2
 	xor a
 .asm_3607e
 	ld [$d10a], a
@@ -7268,7 +7268,7 @@ BattleCommand23: ; 3680f
 	call AnimateCurrentMove
 	ld c, $14
 	call DelayFrames
-	ld hl, $c4a1
+	hlcoord 1, 0
 	ld bc, $040a
 	call ClearBox
 	ld c, $14
@@ -7362,7 +7362,7 @@ BattleCommand23: ; 3680f
 	call AnimateCurrentMove
 	ld c, $14
 	call DelayFrames
-	ld hl, $c535
+	hlcoord 9, 7
 	ld bc, $050b
 	call ClearBox
 	ld c, $14
@@ -8029,12 +8029,12 @@ BattleCommand27: ; 36cb2
 	ld [hli], a
 	ld [hl], a
 .asm_36cfe
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld a, [hBattleTurn]
 	and a
 	ld a, $1
 	jr z, .asm_36d0c ; 36d06 $4
-	ld hl, $c4ca
+	hlcoord 2, 2
 	xor a
 .asm_36d0c
 	ld [$d10a], a

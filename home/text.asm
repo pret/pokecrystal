@@ -605,13 +605,13 @@ Function12f2:: ; 12f2
 .asm_1301
 	call Function13b6
 	call Functionaaf
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
 	call Function13cd
 	ld c, $14
 	call DelayFrames
-	ld hl, $c5b9
+	hlcoord 1, 14
 	pop de
 	jp NextChar
 ; 131f
@@ -704,8 +704,8 @@ Function1383:: ; 1383
 ; 138c
 
 Function138c:: ; 138c
-	ld hl, $c5b9
-	ld de, $c5a5
+	hlcoord 1, 14
+	decoord 1, 13
 	ld a, $3
 .asm_1394
 	push af
@@ -723,7 +723,7 @@ Function138c:: ; 138c
 	pop af
 	dec a
 	jr nz, .asm_1394
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld a, $7f
 	ld bc, $0012
 	call ByteFill

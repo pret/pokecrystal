@@ -2,7 +2,7 @@
 
 
 Functiond0000: ; d0000
-	ld hl, $c4ac
+	hlcoord 12, 0
 	ld a, [IsInBattle]
 	cp $1
 	jr z, .asm_d0012

@@ -1219,7 +1219,7 @@ Function272a:: ; 272a
 ; 2748
 
 Function2748:: ; 2748
-	ld hl, $c5e0
+	hlcoord 0, 16
 	ld de, BGMapBuffer
 	call Function27b7
 	ld c, $28
@@ -1258,7 +1258,7 @@ Function2771:: ; 2771
 ; 278f
 
 Function278f:: ; 278f
-	ld hl, $c4b2
+	hlcoord 18, 0
 	ld de, BGMapBuffer
 	call Function27c0
 	ld c, $24
@@ -1987,7 +1987,7 @@ Function2b74:: ; 0x2b74
 	call WhiteBGMap
 	call ClearSprites
 	call Function2bae
-	ld hl, $c590 ; tile 0, 12
+	hlcoord 0, 12
 	ld bc, $0412
 	call TextBox
 	ld hl, VramState

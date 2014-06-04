@@ -1352,7 +1352,7 @@ RareCandy: ; ef14
 	call GetPartyParamLocation
 
 	ld a, [hl]
-	cp 100
+	cp MAX_LEVEL
 	jp nc, Functionee83
 
 	inc a
@@ -1408,12 +1408,12 @@ RareCandy: ; ef14
 	ld a, $1f
 	call Predef
 
-	ld hl, $c4a9
+	hlcoord 9, 0
 	ld b, 10
 	ld c, 9
 	call TextBox
 
-	ld hl, $c4bf
+	hlcoord 11, 1
 	ld bc, $0004
 	ld a, $28
 	call Predef
@@ -1829,7 +1829,7 @@ Functionf1db: ; f1db (3:71db)
 	call WaitPlaySFX
 	pop de
 	ld a, [CurPartyMon] ; $d109
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld bc, $28
 	call AddNTimes
 	ld a, $2

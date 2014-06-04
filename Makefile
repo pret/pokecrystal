@@ -23,9 +23,9 @@ engine/events.o \
 engine/scripting_crystal.o \
 engine/events_2.o \
 engine/credits_crystal.o \
-stats/egg_moves_crystal.o \
-stats/evos_attacks_crystal.o \
-stats/pokedex/entries_crystal.o \
+data/egg_moves_crystal.o \
+data/evos_attacks_crystal.o \
+data/pokedex/entries_crystal.o \
 misc/crystal_misc.o \
 gfx/pics.o
 

@@ -82,7 +82,7 @@ Function3c000: ; 3c000
 	ld a, [hl]
 	ld [CurPartySpecies], a
 	ld [TempBattleMonSpecies], a
-	ld hl, $c505
+	hlcoord 1, 5
 	ld a, $9
 	call Function3d490
 	call Function309d
@@ -2063,12 +2063,12 @@ Function3cd36: ; 3cd36
 
 
 Function3cd3c: ; 3cd3c
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld a, [hBattleTurn]
 	and a
 	ld a, $1
 	jr z, .asm_3cd4a
-	ld hl, $c4ca
+	hlcoord 2, 2
 	xor a
 
 .asm_3cd4a
@@ -2146,7 +2146,7 @@ Function3cdca: ; 3cdca
 	cp $1
 	jr z, .asm_3cde6
 	call ClearSprites
-	ld hl, $c4a1
+	hlcoord 1, 0
 	ld bc, $040a
 	call ClearBox
 	call Function3d2b3
@@ -2330,7 +2330,7 @@ Function3cef1: ; 3cef1
 	ld a, [BattleMonSpecies]
 	call Function37b6
 	call Function3d43b
-	ld hl, $c535
+	hlcoord 9, 7
 	ld bc, $050b
 	call ClearBox
 	ld hl, BattleText_0x80a75
@@ -3140,14 +3140,14 @@ LostBattle: ; 3d38e
 
 
 Function3d432: ; 3d432
-	ld hl, $c510
-	ld de, $c524
+	hlcoord 12, 5
+	decoord 12, 6
 	jp Function3d444
 ; 3d43b
 
 Function3d43b: ; 3d43b
-	ld hl, $c569
-	ld de, $c57d
+	hlcoord 1, 10
+	decoord 1, 11
 	jp Function3d444
 ; 3d444
 
@@ -3348,7 +3348,7 @@ Function3d557: ; 3d557
 	ld [$c6e6], a
 	xor a
 	ld [$c730], a
-	ld hl, $c4b2
+	hlcoord 18, 0
 	ld a, $8
 	call Function3d490
 	call EmptyBattleTextBox
@@ -3675,7 +3675,7 @@ Function3d7a0: ; 3d7a0
 	ld [hBGMapMode], a
 	call Function1c07
 	call ClearSprites
-	ld hl, $c4a1
+	hlcoord 1, 0
 	ld bc, $040a
 	call ClearBox
 	call WaitBGMap
@@ -3718,7 +3718,7 @@ Function3d7c7: ; 3d7c7
 	jr c, .asm_3d82c
 	callba CheckBattleScene
 	jr c, .asm_3d821
-	ld hl, $c4ac
+	hlcoord 12, 0
 	ld d, $0
 	ld e, $0
 	ld a, $47
@@ -4180,7 +4180,7 @@ Function3db5f: ; 3db5f
 	ld hl, BattleMonAtkDefDV
 	ld a, $2d
 	call Predef
-	ld hl, $c505
+	hlcoord 1, 5
 	ld b, $7
 	ld c, $8
 	call ClearBox
@@ -4496,9 +4496,9 @@ Function3dd2f: ; 3dd2f
 	ld a, [hBattleTurn]
 	ld [$d10a], a
 	and a
-	ld hl, $c4ca
+	hlcoord 2, 2
 	jr z, .asm_3dda4
-	ld hl, $c55e
+	hlcoord 10, 9
 
 .asm_3dda4
 	ld [$d10a], a
@@ -4885,9 +4885,9 @@ PrintPlayerHUD: ; 3dfbf
 	ld a, $f5
 
 .asm_3e013
-	ld hl, $c551
+	hlcoord 17, 8
 	ld [hl], a
-	ld hl, $c54e
+	hlcoord 14, 8
 	push af
 	push hl
 	ld de, BattleMonStatus
@@ -4922,7 +4922,7 @@ Function3e036:: ; 3e036
 Function3e043: ; 3e043
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c4a1
+	hlcoord 1, 0
 	ld bc, $040b
 	call ClearBox
 	callba Function2c0c5
@@ -4931,7 +4931,7 @@ Function3e043: ; 3e043
 	ld [CurPartySpecies], a
 	call GetBaseData
 	ld de, EnemyMonNick
-	ld hl, $c4a1
+	hlcoord 1, 0
 	call Function3e138
 	call PlaceString
 	ld h, b
@@ -4960,9 +4960,9 @@ Function3e043: ; 3e043
 	ld a, $f5
 
 .asm_3e09a
-	ld hl, $c4bd
+	hlcoord 9, 1
 	ld [hl], a
-	ld hl, $c4ba
+	hlcoord 6, 1
 	push af
 	push hl
 	ld de, EnemyMonStatus
@@ -5041,7 +5041,7 @@ Function3e043: ; 3e043
 .asm_3e11a
 	xor a
 	ld [$d10a], a
-	ld hl, $c4ca
+	hlcoord 2, 2
 	ld b, $0
 	call DrawHPBar
 	ret
@@ -5552,23 +5552,23 @@ Function3e4bc: ; 3e4bc
 	call CopyBytes
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c594
+	hlcoord 4, 12
 	ld b, $4
 	ld c, $e
 	ld a, [$d235]
 	cp $2
 	jr nz, .asm_3e503
-	ld hl, $c544
+	hlcoord 4, 8
 	ld b, $4
 	ld c, $e
 
 .asm_3e503
 	call TextBox
-	ld hl, $c5aa
+	hlcoord 6, 13
 	ld a, [$d235]
 	cp $2
 	jr nz, .asm_3e513
-	ld hl, $c55a
+	hlcoord 6, 9
 
 .asm_3e513
 	ld a, $14
@@ -5630,7 +5630,7 @@ Function3e4bc: ; 3e4bc
 	jr z, .asm_3e58e
 	dec a
 	jr nz, .asm_3e5a3
-	ld hl, $c5c3
+	hlcoord 11, 14
 	ld de, .string_3e61c
 	call PlaceString
 	jr .asm_3e5a3
@@ -5640,7 +5640,7 @@ Function3e4bc: ; 3e4bc
 	ld a, [$d0e3]
 	and a
 	jr z, .asm_3e5a3
-	ld hl, $c5a9
+	hlcoord 5, 13
 	ld bc, $0014
 	dec a
 	call AddNTimes
@@ -6796,7 +6796,7 @@ Function3ebd8: ; 3ebd8
 	ld [TrainerClass], a
 	ld de, VTiles2
 	callab Function5120d
-	ld hl, $c4b3
+	hlcoord 19, 0
 	ld c, $0
 .asm_3ebf3
 	inc c
@@ -7296,6 +7296,7 @@ Function3ee27: ; 3ee27
 
 
 Function3ee3b: ; 3ee3b
+; Give experience.
 	ld a, [InLinkBattle]
 	and a
 	ret nz
@@ -7329,7 +7330,7 @@ Function3ee3b: ; 3ee3b
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, EnemyMonType2
+	ld hl, EnemyMonBaseStats - 1
 	push bc
 	ld c, $5
 .asm_3ee7c
@@ -7403,20 +7404,20 @@ Function3ee3b: ; 3ee3b
 	jr z, .asm_3eee2
 
 .asm_3eedd
-	call Function3f106
+	call DoubleExp
 	ld a, $1
 
 .asm_3eee2
 	ld [$d088], a
 	ld a, [IsInBattle]
 	dec a
-	call nz, Function3f106
+	call nz, DoubleExp
 	push bc
-	ld a, $1
+	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
-	cp $7e
-	call z, Function3f106
+	cp LUCKY_EGG
+	call z, DoubleExp
 	ld a, [$ffb6]
 	ld [$d087], a
 	ld a, [$ffb5]
@@ -7464,7 +7465,7 @@ Function3ee3b: ; 3ee3b
 	ld [CurSpecies], a
 	call GetBaseData
 	push bc
-	ld d, $64
+	ld d, MAX_LEVEL
 	callab Function50e47
 	pop bc
 	ld hl, $000a
@@ -7497,10 +7498,10 @@ Function3ee3b: ; 3ee3b
 	call Predef
 	callab Function50e1b
 	pop bc
-	ld hl, $001f
+	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [hl]
-	cp $64
+	cp MAX_LEVEL
 	jp nc, .asm_3f0b9
 	cp d
 	jp z, .asm_3f0b9
@@ -7510,7 +7511,7 @@ Function3ee3b: ; 3ee3b
 	ld a, d
 	ld [CurPartyLevel], a
 	ld [hl], a
-	ld hl, $0000
+	ld hl, PartyMon1Species - PartyMon1
 	add hl, bc
 	ld a, [hl]
 	ld [CurSpecies], a
@@ -7609,11 +7610,11 @@ Function3ee3b: ; 3ee3b
 	ld [MonType], a
 	ld a, $1f
 	call Predef
-	ld hl, $c4a9
+	hlcoord 9, 0
 	ld b, $a
 	ld c, $9
 	call TextBox
-	ld hl, $c4bf
+	hlcoord 11, 1
 	ld bc, $0004
 	ld a, $28
 	call Predef
@@ -7704,7 +7705,7 @@ Function3f0d4: ; 3f0d4
 	ret
 ; 3f106
 
-Function3f106: ; 3f106
+DoubleExp: ; 3f106
 	push bc
 	ld a, [$ffb5]
 	ld b, a
@@ -7791,7 +7792,7 @@ Function3f136: ; 3f136
 	ld [hl], a
 
 .asm_3f186
-	ld d, $64
+	ld d, MAX_LEVEL
 	callab Function50e47
 	ld a, [hMultiplicand]
 	ld b, a
@@ -7895,7 +7896,7 @@ Function3f22c: ; 3f22c
 	inc b
 	push bc
 	push de
-	ld hl, $c58d
+	hlcoord 17, 11
 	call Function3f41c
 	pop de
 	ld a, $1
@@ -7911,7 +7912,7 @@ Function3f22c: ; 3f22c
 	inc b
 	push bc
 	push de
-	ld hl, $c58d
+	hlcoord 17, 11
 	call Function3f41c
 	pop de
 	ld a, $1
@@ -8478,7 +8479,7 @@ Function3f594: ; 3f594
 	ld [$ffad], a
 	dec a
 	ld [$c6e6], a
-	ld hl, $c4ac
+	hlcoord 12, 0
 	ld bc, $0707
 	ld a, $13
 	call Predef
@@ -8546,7 +8547,7 @@ Function3f607: ; 3f607
 	xor a
 	ld [TrainerClass], a
 	ld [$ffad], a
-	ld hl, $c4ac
+	hlcoord 12, 0
 	ld bc, $0707
 	ld a, $13
 	call Predef
@@ -8748,7 +8749,7 @@ Function3f77c: ; 3f77c
 	jr .asm_3f7c3
 
 .asm_3f7c3
-	ld hl, $c546
+	hlcoord 6, 8
 	call PlaceString
 	callba Function106187
 	ld c, $c8
@@ -8781,7 +8782,7 @@ Function3f77c: ; 3f77c
 
 
 Function3f80f: ; 3f80f
-	ld hl, $c546
+	hlcoord 6, 8
 	ld de, .Invalid
 	call PlaceString
 	ld c, $c8
@@ -8826,7 +8827,7 @@ Function3f85f: ; 3f85f
 	call ClearTileMap
 	call ClearSprites
 	call .asm_3f8e0
-	ld hl, $c540
+	hlcoord 0, 8
 	ld b, $5
 	ld de, $b268
 .asm_3f870
@@ -8895,19 +8896,19 @@ Function3f85f: ; 3f85f
 	ret
 
 .asm_3f8e0
-	ld hl, $c4a1
+	hlcoord 1, 0
 	ld de, .Record
 	call PlaceString
 
-	ld hl, $c518
+	hlcoord 0, 6
 	ld de, .Result
 	call PlaceString
 
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld de, .Total
 	call PlaceString
 
-	ld hl, $c4f6
+	hlcoord 6, 4
 	ld de, $b260
 	call .asm_3f92b
 	jr c, .asm_3f92a
@@ -8915,14 +8916,14 @@ Function3f85f: ; 3f85f
 	ld bc, $0204
 	call PrintNum
 
-	ld hl, $c4fb
+	hlcoord 11, 4
 	ld de, $b262
 	call .asm_3f92b
 
 	ld bc, $0204
 	call PrintNum
 
-	ld hl, $c500
+	hlcoord 16, 4
 	ld de, $b264
 	call .asm_3f92b
 
@@ -9277,12 +9278,12 @@ Function3fb54: ; 3fb54
 
 Function3fb6c: ; 3fb6c
 	call Function3fbf8
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
 	callba MobileTextBorder
-	ld hl, $c505
+	hlcoord 1, 5
 	ld bc, $0307
 	call ClearBox
 	call Functione51
@@ -9302,7 +9303,7 @@ Function3fb6c: ; 3fb6c
 	ld [hBGMapMode], a
 	ld a, $31
 	ld [$ffad], a
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld bc, $0606
 	ld a, $13
 	call Predef
@@ -9398,7 +9399,7 @@ Function3fc30: ; 3fc30
 	call Function3fc5b
 	ld a, $31
 	ld [$ffad], a
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld bc, $0606
 	ld a, $13
 	call Predef

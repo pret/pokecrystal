@@ -353,11 +353,11 @@ Functionc81c0: ; c81c0 (32:41c0)
 	push bc
 	call Functionc9038
 	jr nz, .asm_c81d1
-	ld hl, $c4ac
+	hlcoord 12, 0
 	ld bc, $707
 	jr .asm_c81d7
 .asm_c81d1
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld bc, $606
 .asm_c81d7
 	call ClearBox
@@ -458,11 +458,11 @@ Functionc825a: ; c825a (32:425a)
 	push bc
 	call Functionc9038
 	jr nz, .asm_c826b
-	ld hl, $c524
+	hlcoord 12, 6
 	ld bc, $107
 	jr .asm_c8271
 .asm_c826b
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld bc, $106
 .asm_c8271
 	call ClearBox
@@ -529,11 +529,11 @@ Functionc82c7: ; c82c7 (32:42c7)
 	push bc
 	call Functionc9038
 	jr nz, .asm_c82d8
-	ld hl, $c510
+	hlcoord 12, 5
 	ld bc, $207
 	jr .asm_c82de
 .asm_c82d8
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld bc, $206
 .asm_c82de
 	call ClearBox
@@ -594,7 +594,7 @@ Functionc831d: ; c831d (32:431d)
 	ld a, [hl]
 	and a
 	jr z, .asm_c833e
-	ld hl, $c518
+	hlcoord 0, 6
 	ld de, $806
 .asm_c832b
 	push de
@@ -613,7 +613,7 @@ Functionc831d: ; c831d (32:431d)
 	jr nz, .asm_c832b
 	jr .asm_c8355
 .asm_c833e
-	ld hl, $c4b3
+	hlcoord 19, 0
 	ld de, $807
 .asm_c8344
 	push de

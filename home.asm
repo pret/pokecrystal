@@ -1829,7 +1829,7 @@ PrintLevel:: ; 382d
 ; Print TempMonLevel at hl
 
 	ld a, [TempMonLevel]
-	ld [hl], $6e ; ":L"
+	ld [hl], LV_CHAR
 	inc hl
 
 ; How many digits?
@@ -1845,7 +1845,7 @@ PrintLevel:: ; 382d
 
 Function383d:: ; 383d
 ; Print :L and all 3 digits
-	ld [hl], $6e
+	ld [hl], LV_CHAR
 	inc hl
 	ld c, 3
 ; 3842
@@ -2350,7 +2350,7 @@ Function3eea:: ; 3eea
 
 Function3efd:: ; 3efd
 	push hl
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function3f0d

@@ -10,7 +10,7 @@ SECTION "Egg Moves", ROMX, BANK[EGG_MOVES]
 ; and can only breed with Ditto.
 
 
-INCLUDE "stats/egg_move_pointers.asm"
+INCLUDE "data/egg_move_pointers.asm"
 
 
 EggMoves::

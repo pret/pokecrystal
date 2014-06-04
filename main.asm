@@ -4617,7 +4617,7 @@ Function610f: ; 610f
 	ld c, 8
 	call DelayFrames
 
-	ld hl, $c50a
+	hlcoord 6, 5
 	ld b, 7
 	ld c, 7
 	call ClearBox
@@ -4680,7 +4680,7 @@ Function619c: ; 619c
 	callba Function5120d
 	xor a
 	ld [$ffad], a
-	ld hl, $c4f6
+	hlcoord 6, 4
 	ld bc, $0707
 	ld a, $13
 	call Predef
@@ -4694,7 +4694,7 @@ Function61b4: ; 61b4
 	call Predef
 	xor a
 	ld [$ffad], a
-	ld hl, $c4f6
+	hlcoord 6, 4
 	ld bc, $0707
 	ld a, $13
 	call Predef
@@ -5381,11 +5381,11 @@ Function65d3: ; 65d3
 	push hl
 	ld hl, UnknownText_0x6670
 	call PrintText
-	ld hl, $c4cd
+	hlcoord 5, 2
 	ld b, $8
 	ld c, $d
 	call TextBox
-	ld hl, $c4f7
+	hlcoord 7, 4
 	ld a, $28
 	ld [Buffer1], a
 	ld a, $20
@@ -16117,11 +16117,11 @@ Function10955: ; 10955
 	ld bc, $0600
 	ld a, BANK(PackMenuGFX)
 	call FarCopyBytes
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld bc, $00dc
 	ld a, $24
 	call ByteFill
-	ld hl, $c4b9
+	hlcoord 5, 1
 	ld bc, $0b0f
 	call ClearBox
 	ld hl, TileMap
@@ -16134,7 +16134,7 @@ Function10955: ; 10955
 	jr nz, .asm_1098a
 	call Function109bb
 	call Function109a5
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $0412
 	call TextBox
 	call EnableLCD
@@ -16143,7 +16143,7 @@ Function10955: ; 10955
 ; 109a5
 
 Function109a5: ; 109a5
-	ld hl, $c4dc
+	hlcoord 0, 3
 	ld a, $50
 	ld de, 15
 	ld b, 3
@@ -16174,7 +16174,7 @@ Function109bb: ; 109bb
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, $c52c
+	hlcoord 0, 7
 	ld c, 3
 .asm_109d0
 	ld b, 5
@@ -16218,7 +16218,7 @@ Function10a2a: ; 10a2a
 
 ; known jump sources: 1005a (4:405a), 10099 (4:4099), 100d8 (4:40d8), 1018b (4:418b), 104ed (4:44ed), 1052c (4:452c), 1056b (4:456b), 10599 (4:4599), 10765 (4:4765)
 Function10a36: ; 10a36 (4:4a36)
-	ld hl, $c4cd
+	hlcoord 5, 2
 	ld bc, $a0f
 	call ClearBox
 	ret
@@ -17092,14 +17092,14 @@ Function1173e: ; 1173e (4:573e)
 	ld a, [CurPartySpecies] ; $d108
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $c4cd
+	hlcoord 5, 2
 	call PlaceString
 	ld l, c
 	ld h, b
 	ld de, Strings_11780
 	call PlaceString
 	inc de
-	ld hl, $c4f5
+	hlcoord 5, 4
 	call PlaceString
 	callba GetGender
 	jr c, .asm_1177c
@@ -17107,7 +17107,7 @@ Function1173e: ; 1173e (4:573e)
 	jr nz, .asm_11778
 	ld a, $f5
 .asm_11778
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld [hl], a
 .asm_1177c
 	call Function1187b
@@ -17123,7 +17123,7 @@ Strings_11780: ; 11780
 Function1178d: ; 1178d (4:578d)
 	callba GetPlayerIcon
 	call Function11847
-	ld hl, $c4cd
+	hlcoord 5, 2
 	ld de, String_117a3
 	call PlaceString
 	call Function11882
@@ -17139,7 +17139,7 @@ Function117ae: ; 117ae (4:57ae)
 	ld de, SilverSpriteGFX
 	ld b, BANK(SilverSpriteGFX)
 	call Function11847
-	ld hl, $c4cd
+	hlcoord 5, 2
 	ld de, String_117c3
 	call PlaceString
 	call Function11882
@@ -17155,7 +17155,7 @@ Function117d1: ; 117d1 (4:57d1)
 	ld de, MomSpriteGFX
 	ld b, BANK(MomSpriteGFX)
 	call Function11847
-	ld hl, $c4cd
+	hlcoord 5, 2
 	ld de, String_117e6
 	call PlaceString
 	call Function11882
@@ -17182,7 +17182,7 @@ Function117f5: ; 117f5 (4:57f5)
 	ld hl, $1
 	add hl, bc
 	ld [hl], $0
-	ld hl, $c4cd
+	hlcoord 5, 2
 	ld de, String_11822
 	call PlaceString
 	call Function11889
@@ -17195,7 +17195,7 @@ String_11822: ; 11822
 
 ; no known jump sources
 Function1182c: ; 1182c (4:582c)
-	ld hl, $c4cb
+	hlcoord 3, 2
 	ld de, String_11839
 	call PlaceString
 	call Function11882
@@ -17242,19 +17242,19 @@ Function11847: ; 11847 (4:5847)
 ; known jump sources: 1177c (4:577c)
 Function1187b: ; 1187b (4:587b)
 	ld a, $a
-	ld hl, $c51d
+	hlcoord 5, 6
 	jr Function11890
 
 ; known jump sources: 1179f (4:579f), 117bf (4:57bf), 117e2 (4:57e2), 11835 (4:5835)
 Function11882: ; 11882 (4:5882)
 	ld a, $7
-	ld hl, $c51d
+	hlcoord 5, 6
 	jr Function11890
 
 ; known jump sources: 1181e (4:581e)
 Function11889: ; 11889 (4:5889)
 	ld a, $8
-	ld hl, $c4f5
+	hlcoord 5, 4
 	jr Function11890
 
 ; known jump sources: 11880 (4:5880), 11887 (4:5887), 1188e (4:588e)
@@ -17285,7 +17285,7 @@ Function118a8: ; 118a8
 	ld bc, $0168
 	ld a, $60
 	call ByteFill
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld bc, $0612
 	call Function1189c
 	jr nz, .asm_118c4
@@ -17304,24 +17304,24 @@ Function118ca: ; 118ca
 
 .asm_118d5
 	push de
-	ld hl, $c541
+	hlcoord 1, 8
 	ld bc, $0712
 	call Function1189c
 	jr nz, .asm_118e7
-	ld hl, $c519
+	hlcoord 1, 6
 	ld bc, $0912
 
 .asm_118e7
 	call ClearBox
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld bc, $0112
 	call ClearBox
 	pop de
-	ld hl, $c542
+	hlcoord 2, 8
 	ld b, $5
 	call Function1189c
 	jr nz, .asm_11903
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld b, $6
 
 .asm_11903
@@ -17366,10 +17366,10 @@ Function11915: ; 11915
 Function11940: ; 11940
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c505
+	hlcoord 1, 5
 	call Function1189c
 	jr nz, .asm_1194e
-	ld hl, $c4dd
+	hlcoord 1, 3
 
 .asm_1194e
 	ld bc, $0112
@@ -18061,18 +18061,18 @@ Function11f84: ; 11f84 (4:5f84)
 	ld bc, $78
 	ld a, $60
 	call ByteFill
-	ld hl, $c518
+	hlcoord 0, 6
 	ld bc, $f0
 	ld a, $7f
 	call ByteFill
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld bc, $412
 	call ClearBox
 	ld de, String_121dd
 
 ; known jump sources: 120b6 (4:60b6), 120bd (4:60bd)
 Function11fa9: ; 11fa9 (4:5fa9)
-	ld hl, $c52d
+	hlcoord 1, 7
 	ld b, $6
 .asm_11fae
 	ld c, $13
@@ -18115,14 +18115,14 @@ Function11fc0: ; 11fc0 (4:5fc0)
 Function11feb: ; 11feb (4:5feb)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld bc, $412
 	call ClearBox
 	ld hl, PlayerSDefLevel ; $c6d0
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $c4ca
+	hlcoord 2, 2
 	call PlaceString
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -20557,13 +20557,13 @@ Function12fd5: ; 12fd5
 
 .asm_13018
 	ld a, $7f
-	ld hl, $c57d
+	hlcoord 1, 11
 	ld bc, $0005
 	call ByteFill
-	ld hl, $c591
+	hlcoord 1, 12
 	ld bc, $0512
 	call ClearBox
-	ld hl, $c591
+	hlcoord 1, 12
 	ld de, $716b
 	call PlaceString
 	jp .asm_12ff2
@@ -20577,7 +20577,7 @@ Function12fd5: ; 12fd5
 	ld [$cfa9], a
 	xor a
 	ld [$d0e3], a
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld bc, $0812
 	call ClearBox
 	jp .asm_12fe8
@@ -20689,10 +20689,10 @@ Function12fd5: ; 12fd5
 	ld de, SFX_SWITCH_POKEMON
 	call PlaySFX
 	call WaitSFX
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld bc, $0812
 	call ClearBox
-	ld hl, $c572
+	hlcoord 10, 10
 	ld bc, $0109
 	call ClearBox
 	jp .asm_12fe8
@@ -20755,15 +20755,15 @@ Function13172: ; 13172
 	ld [$d265], a
 	ld e, $2
 	callba Function8e83f
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld b, $9
 	ld c, $12
 	call TextBox
-	ld hl, $c57c
+	hlcoord 0, 11
 	ld b, $5
 	ld c, $12
 	call TextBox
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld bc, $0203
 	call ClearBox
 	xor a
@@ -20771,7 +20771,7 @@ Function13172: ; 13172
 	ld hl, PartyMon1Nickname
 	ld a, [CurPartyMon]
 	call GetNick
-	ld hl, $c4b9
+	hlcoord 5, 1
 	call PlaceString
 	push bc
 	callba Function5084a
@@ -20781,7 +20781,7 @@ Function13172: ; 13172
 	call SetHPPal
 	ld b, $e
 	call GetSGBLayout
-	ld hl, $c4b0
+	hlcoord 16, 0
 	ld bc, $0103
 	jp ClearBox
 ; 131ef
@@ -20799,10 +20799,10 @@ Function131ef: ; 131ef
 	call CopyBytes
 	ld a, $28
 	ld [Buffer1], a
-	ld hl, $c4de
+	hlcoord 2, 3
 	ld a, $20
 	call Predef
-	ld hl, $c4fa
+	hlcoord 10, 4
 	ld a, $23
 	call Predef
 	call WaitBGMap
@@ -20810,7 +20810,7 @@ Function131ef: ; 131ef
 	ld a, [$d0eb]
 	inc a
 	ld [$cfa3], a
-	ld hl, $c57c
+	hlcoord 0, 11
 	ld b, $5
 	ld c, $12
 	jp TextBox
@@ -20828,7 +20828,7 @@ Function13235: ; 13235
 	add hl, bc
 	ld a, [hl]
 	ld [CurSpecies], a
-	ld hl, $c591
+	hlcoord 1, 12
 	ld bc, $0512
 	jp ClearBox
 ; 13256
@@ -20836,18 +20836,18 @@ Function13235: ; 13235
 Function13256: ; 13256
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c568
+	hlcoord 0, 10
 	ld de, String_132ba
 	call PlaceString
-	ld hl, $c57c
+	hlcoord 0, 11
 	ld de, String_132c2
 	call PlaceString
-	ld hl, $c59c
+	hlcoord 12, 12
 	ld de, String_132ca
 	call PlaceString
 	ld a, [CurSpecies]
 	ld b, a
-	ld hl, $c592
+	hlcoord 2, 12
 	ld a, PREDEF_PRINT_MOVE_TYPE
 	call Predef
 	ld a, [CurSpecies]
@@ -20857,7 +20857,7 @@ Function13256: ; 13256
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
-	ld hl, $c5a0
+	hlcoord 16, 12
 	cp $2
 	jr c, .asm_132a7
 	ld [$d265], a
@@ -20871,7 +20871,7 @@ Function13256: ; 13256
 	call PlaceString
 
 .asm_132ad
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld a, $11
 	call Predef
 	ld a, $1
@@ -20923,7 +20923,7 @@ Function132da: ; 132da
 	ret
 
 .asm_132f8
-	ld hl, $c4b0
+	hlcoord 16, 0
 	ld [hl], $71
 	ret
 ; 132fe
@@ -21314,10 +21314,10 @@ Function13512: ; 13512
 	ld b, $4
 	ld c, $8
 	call TextBox
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld de, String_13537
 	call PlaceString
-	ld hl, $c4f4
+	hlcoord 4, 4
 	call Function1353f
 	pop af
 	ld [Options], a
@@ -22210,15 +22210,15 @@ Function13a47: ; 13a47
 	ld a, [hl]
 	and a
 	ret z
-	cp $7
+	cp 6 + 1
 	jr c, .asm_13a54
-	ld a, $6
+	ld a, 6
 	ld [hl], a
 
 .asm_13a54
 	inc hl
 	ld b, a
-	ld c, $0
+	ld c, 0
 .asm_13a58
 	ld a, [hl]
 	and a
@@ -22229,13 +22229,13 @@ Function13a47: ; 13a47
 	jr c, .asm_13a73
 
 .asm_13a64
-	ld [hl], $eb
+	ld [hl], SMEARGLE
 	push hl
 	push bc
 	ld a, c
-	ld hl, PartyMon1
+	ld hl, PartyMon1Species
 	call GetPartyLocation
-	ld [hl], $eb
+	ld [hl], SMEARGLE
 	pop bc
 	pop hl
 
@@ -22248,7 +22248,7 @@ Function13a47: ; 13a47
 	ld hl, PartyMon1
 	ld a, [PartyCount]
 	ld d, a
-	ld e, $0
+	ld e, 0
 .asm_13a83
 	push de
 	push hl
@@ -22261,35 +22261,34 @@ Function13a47: ; 13a47
 	jr c, .asm_13a9c
 
 .asm_13a8f
-	ld [hl], $eb
+	ld [hl], SMEARGLE
 	push de
-	ld d, $0
+	ld d, 0
 	ld hl, PartySpecies
 	add hl, de
 	pop de
-	ld a, $eb
+	ld a, SMEARGLE
 	ld [hl], a
 
 .asm_13a9c
 	ld [CurSpecies], a
 	call GetBaseData
-	ld hl, $001f
+	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [hl]
-	cp $2
-	ld a, $2
+	cp 2
+	ld a, 2
 	jr c, .asm_13ab4
 	ld a, [hl]
-	cp $64
+	cp MAX_LEVEL
 	jr c, .asm_13ab5
-	ld a, $64
-
+	ld a, MAX_LEVEL
 .asm_13ab4
 	ld [hl], a
-
 .asm_13ab5
 	ld [CurPartyLevel], a
-	ld hl, $0024
+
+	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -22299,16 +22298,16 @@ Function13a47: ; 13a47
 	ld a, $c
 	call Predef
 	pop hl
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop de
 	inc e
 	dec d
 	jr nz, .asm_13a83
-	ld de, $de41
+	ld de, PartyMonNicknames
 	ld a, [PartyCount]
 	ld b, a
-	ld c, $0
+	ld c, 0
 .asm_13adc
 	push bc
 	call Function13b71
@@ -22321,11 +22320,11 @@ Function13a47: ; 13a47
 	push hl
 	ld hl, PartySpecies
 	push bc
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	ld a, [hl]
-	cp $fd
+	cp EGG
 	ld hl, String_13b6b
 	jr z, .asm_13b06
 	ld [$d265], a
@@ -22342,10 +22341,10 @@ Function13a47: ; 13a47
 	inc c
 	dec b
 	jr nz, .asm_13adc
-	ld de, $ddff
+	ld de, PartyMonOT
 	ld a, [PartyCount]
 	ld b, a
-	ld c, $0
+	ld c, 0
 .asm_13b1b
 	push bc
 	call Function13b71
@@ -22364,12 +22363,13 @@ Function13a47: ; 13a47
 	inc c
 	dec b
 	jr nz, .asm_13b1b
-	ld hl, $dce1
+
+	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	ld b, a
 .asm_13b40
 	push hl
-	ld c, $4
+	ld c, NUM_MOVES
 	ld a, [hl]
 	and a
 	jr z, .asm_13b4b
@@ -22377,13 +22377,13 @@ Function13a47: ; 13a47
 	jr c, .asm_13b4d
 
 .asm_13b4b
-	ld [hl], $1
+	ld [hl], POUND
 
 .asm_13b4d
 	ld a, [hl]
 	and a
 	jr z, .asm_13b55
-	cp $fc
+	cp NUM_ATTACKS + 1
 	jr c, .asm_13b5c
 
 .asm_13b55
@@ -22401,7 +22401,7 @@ Function13a47: ; 13a47
 .asm_13b60
 	pop hl
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
 	dec b
@@ -22415,11 +22415,11 @@ String_13b6b: ; 13b6b
 
 Function13b71: ; 13b71
 	push de
-	ld c, $1
-	ld b, $6
+	ld c, 1
+	ld b, 6
 .asm_13b76
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_13b85
 	inc de
 	inc c
@@ -22427,7 +22427,7 @@ Function13b71: ; 13b71
 	jr nz, .asm_13b76
 	dec c
 	dec de
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 
 .asm_13b85
@@ -27623,7 +27623,7 @@ Function15efd: ; 15efd
 	callba Function24fe1
 	call Function1c07
 	jr c, .asm_15f6e
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
 	ld hl, UnknownText_0x15f78
@@ -27638,7 +27638,7 @@ Function15efd: ; 15efd
 	call TossItem
 	ld a, $3b
 	call Predef
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
 	ld hl, UnknownText_0x15fbe
@@ -28276,20 +28276,20 @@ Function16439: ; 16439
 
 .asm_1644b
 	call Function164ea
-	ld bc, $c5b9
+	bccoord 1, 14
 	ld hl, UnknownText_0x164f4
 	call Function13e5
 	call YesNoBox
 	ret c
 	call Function164ea
-	ld bc, $c5b9
+	bccoord 1, 14
 	ld hl, UnknownText_0x164f9
 	call Function13e5
 	ret
 
 .asm_16468
 	call Function164ea
-	ld bc, $c5b9
+	bccoord 1, 14
 	ld a, [$d4c2]
 	bit 7, a
 	jr z, .asm_16497
@@ -28302,7 +28302,7 @@ Function16439: ; 16439
 	ld [$d4c2], a
 	call Function164d1
 	call Function164ea
-	ld bc, $c5b9
+	bccoord 1, 14
 	ld hl, UnknownText_0x1650d
 	call Function13e5
 	ret
@@ -28317,7 +28317,7 @@ Function16439: ; 16439
 	ld [$d4c2], a
 	call Function164b9
 	call Function164ea
-	ld bc, $c5b9
+	bccoord 1, 14
 	ld hl, UnknownText_0x16503
 	call Function13e5
 	ret
@@ -28355,7 +28355,7 @@ Function164d1: ; 164d1
 ; 164ea
 
 Function164ea: ; 164ea
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
 	ret
@@ -28411,24 +28411,24 @@ Function1651a: ; 1651a
 	ld hl, TileMap
 	ld bc, $0612
 	call TextBox
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld de, String_16699
 	call PlaceString
-	ld hl, $c4d4
+	hlcoord 12, 2
 	ld de, $d851
 	ld bc, $2306
 	call PrintNum
-	ld hl, $c4f1
+	hlcoord 1, 4
 	ld de, String_166b0
 	call PlaceString
-	ld hl, $c4fc
+	hlcoord 12, 4
 	ld de, Money
 	ld bc, $2306
 	call PrintNum
-	ld hl, $c519
+	hlcoord 1, 6
 	pop de
 	call PlaceString
-	ld hl, $c524
+	hlcoord 12, 6
 	ld de, StringBuffer2
 	ld bc, $a306
 	call PrintNum
@@ -28456,18 +28456,18 @@ Function16571: ; 16571
 	call Function165b9
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c524
+	hlcoord 12, 6
 	ld bc, $0007
 	ld a, $7f
 	call ByteFill
-	ld hl, $c524
+	hlcoord 12, 6
 	ld de, StringBuffer2
 	ld bc, $a306
 	call PrintNum
 	ld a, [$ff9b]
 	and $10
 	jr nz, .asm_165b0
-	ld hl, $c525
+	hlcoord 13, 6
 	ld a, [$cf64]
 	ld c, a
 	ld b, $0
@@ -29502,23 +29502,23 @@ Function16be4: ; 16be4
 	ld bc, $0312
 	call TextBox
 
-	ld hl, $c504
+	hlcoord 0, 5
 	ld bc, $0707
 	call TextBox
 
-	ld hl, $c5b8
+	hlcoord 0, 14
 	ld bc, $0212
 	call TextBox
 
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld de, AlphRuinsStampString
 	call PlaceString
 
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, UnownDexDoWhatString
 	call PlaceString
 
-	ld hl, $c522
+	hlcoord 10, 6
 	ld de, UnownDexMenuString
 	call PlaceString
 
@@ -29619,7 +29619,7 @@ Function16cc8: ; 16cc8
 	ld a, $3c
 	call Predef
 	call Function16cff
-	ld hl, $c519
+	hlcoord 1, 6
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
@@ -29650,10 +29650,10 @@ Function16cff: ; 16cff
 ; 16d20
 
 Function16d20: ; 16d20
-	ld hl, $c519
+	hlcoord 1, 6
 	ld bc, $0707
 	call ClearBox
-	ld hl, $c555
+	hlcoord 1, 9
 	ld de, UnownDexVacantString
 	call PlaceString
 	xor a
@@ -29701,7 +29701,7 @@ Function16dac: ; 16dac
 	ld bc, $0168
 	ld a, $7f
 	call ByteFill
-	ld hl, $c583
+	hlcoord 7, 11
 	ld a, $31
 	ld [$ffad], a
 	ld bc, $0707
@@ -30498,7 +30498,7 @@ Function1728f: ; 1728f (5:728f)
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic
 	call EnableLCD
-	ld hl, $c4f7
+	hlcoord 7, 4
 	ld b, $98
 	ld c, $31
 	ld a, EGG
@@ -30545,7 +30545,7 @@ Function1728f: ; 1728f (5:728f)
 	ld [$c3c0], a
 	call ClearSprites
 	call Function173b3
-	ld hl, $c4e2
+	hlcoord 6, 3
 	ld b, $98
 	ld c, $0
 	ld a, [$cf63]
@@ -30554,7 +30554,7 @@ Function1728f: ; 1728f (5:728f)
 	call WaitSFX
 	ld a, [$cf63]
 	ld [CurPartySpecies], a ; $d108
-	ld hl, $c4e2
+	hlcoord 6, 3
 	ld d, $0
 	ld e, $5
 	ld a, $47
@@ -30980,11 +30980,11 @@ Function200ba: ; 200ba (8:40ba)
 
 ; known jump sources: 20078 (8:4078), 2009f (8:409f), 200bf (8:40bf)
 Function2011f: ; 2011f (8:411f)
-	ld hl, $c504
+	hlcoord 0, 5
 	ld b, $5
 	ld c, $12
 	call TextBox
-	ld de, $c541
+	decoord 1, 8
 	ld a, [$d1ed]
 	ld b, a
 	callba Function5b05
@@ -30992,7 +30992,7 @@ Function2011f: ; 2011f (8:411f)
 	ld b, a
 	ld a, [$d1ef]
 	ld c, a
-	ld de, $c54b
+	decoord 11, 8
 	callba Function1dd6bb
 	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
 	lb de, $7f, $7f
@@ -31895,7 +31895,7 @@ Function244c3: ; 0x244c3
 	ld a, [MenuSelection]
 	cp $ff
 	ret z
-	ld de, $c5b9
+	decoord 1, 14
 	callba GetItemDescription
 	ret
 ; 0x244e3
@@ -32925,39 +32925,39 @@ MenuDataHeader_0x24b1d: ; 0x24b1d
 ; 0x24b25
 
 Function24b25: ; 24b25
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld b, $1
 	ld c, $7
 	call TextBox
-	ld hl, $c4ac
+	hlcoord 12, 0
 	ld de, CoinString
 	call PlaceString
-	ld hl, $c4c5
+	hlcoord 17, 1
 	ld de, String24b8e
 	call PlaceString
 	ld de, Coins
 	ld bc, $0204
-	ld hl, $c4c1
+	hlcoord 13, 1
 	call PrintNum
 	ret
 ; 24b4e
 
 Function24b4e: ; 24b4e
-	ld hl, $c4a5
+	hlcoord 5, 0
 	ld b, $3
 	ld c, $d
 	call TextBox
-	ld hl, $c4ba
+	hlcoord 6, 1
 	ld de, MoneyString
 	call PlaceString
-	ld hl, $c4c0
+	hlcoord 12, 1
 	ld de, Money
 	ld bc, $2306
 	call PrintNum
-	ld hl, $c4e2
+	hlcoord 6, 3
 	ld de, CoinString
 	call PlaceString
-	ld hl, $c4eb
+	hlcoord 15, 3
 	ld de, Coins
 	ld bc, $0204
 	call PrintNum
@@ -32981,17 +32981,17 @@ Function24b8f: ; 24b8f
 	ld b, $3
 	ld c, $7
 	call TextBox
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld de, $dc7a
 	ld bc, $0203
 	call PrintNum
-	ld hl, $c4b8
+	hlcoord 4, 1
 	ld de, String24bcf
 	call PlaceString
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld de, String24bd4
 	call PlaceString
-	ld hl, $c4e1
+	hlcoord 5, 3
 	ld de, $dc79
 	ld bc, $0102
 	call PrintNum
@@ -33020,14 +33020,14 @@ Function24be7: ; 24be7
 	push af
 	set 4, [hl]
 	call Function24bdc
-	ld hl, $c505
+	hlcoord 1, 5
 	ld de, String24c52
 	call PlaceString
-	ld hl, $c50c
+	hlcoord 8, 5
 	ld de, $dc79
 	ld bc, $4102
 	call PrintNum
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld de, String24c4b
 	call PlaceString
 	ld a, [$df9c]
@@ -33038,12 +33038,12 @@ Function24be7: ; 24be7
 	call GetPokemonName
 
 .asm_24c1e
-	ld hl, $c4bc
+	hlcoord 8, 1
 	call PlaceString
 	ld a, [$df9c]
 	and a
 	jr z, .asm_24c3e
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld de, String24c5e
 	call PlaceString
 	ld a, [$dfbb]
@@ -33561,7 +33561,7 @@ Strings24f5f: ; 24f5f
 ; 24f7c
 
 Function24f7c: ; 24f7c
-	ld hl, $c5b5
+	hlcoord 17, 13
 	ld de, $dc79
 	ld bc, $8102
 	call PrintNum
@@ -33593,7 +33593,7 @@ Strings24f9a: ; 24f9a
 ; 24fb2
 
 Function24fb2: ; 24fb2
-	ld hl, $c5ed
+	hlcoord 13, 16
 	ld de, $dc79
 	ld bc, $8102
 	call PrintNum
@@ -33889,7 +33889,7 @@ Function2513b: ; 2513b (9:513b)
 	ld a, BANK(CardStatusGFX)
 	call FarCopyBytes
 	call Function25299
-	ld hl, $c540
+	hlcoord 0, 8
 	ld d, $6
 	call Function253b0
 	call EnableLCD
@@ -33945,7 +33945,7 @@ Function251b0: ; 251b0 (9:51b0)
 ; no known jump sources
 Function251b6: ; 251b6 (9:51b6)
 	call ClearSprites
-	ld hl, $c540
+	hlcoord 0, 8
 	ld d, $6
 	call Function253b0
 	call WaitBGMap
@@ -33983,7 +33983,7 @@ Function251e9: ; 251e9
 ; no known jump sources
 Function251f4: ; 251f4 (9:51f4)
 	call ClearSprites
-	ld hl, $c540
+	hlcoord 0, 8
 	ld d, $6
 	call Function253b0
 	call WaitBGMap
@@ -34034,7 +34034,7 @@ Function25246: ; 25246
 ; no known jump sources
 Function2524c: ; 2524c (9:524c)
 	call ClearSprites
-	ld hl, $c540
+	hlcoord 0, 8
 	ld d, $6
 	call Function253b0
 	call WaitBGMap
@@ -34076,27 +34076,27 @@ Function25299: ; 25299 (9:5299)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld d, $5
 	call Function253b0
-	ld hl, $c4ca
+	hlcoord 2, 2
 	ld de, String_252ec
 	call PlaceString
-	ld hl, $c4f2
+	hlcoord 2, 4
 	ld de, Tilemap_252f9
 	call Function253a8
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld de, PlayerName ; $d47d
 	call PlaceString
-	ld hl, $c4f5
+	hlcoord 5, 4
 	ld de, PlayerID ; $d47b
 	ld bc, $8205
 	call PrintNum
-	ld hl, $c51f
+	hlcoord 7, 6
 	ld de, Money ; $d84e
 	ld bc, $2306
 	call PrintNum
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld de, Tilemap_252fc
 	call Function253a8
-	ld hl, $c4c2
+	hlcoord 14, 1
 	ld bc, $507
 	xor a
 	ld [$FF00+$ad], a
@@ -34119,27 +34119,27 @@ Tilemap_252fc: ; 252fc
 
 ; known jump sources: 251d0 (9:51d0)
 Function2530a: ; 2530a (9:530a)
-	ld hl, $c56a
+	hlcoord 2, 10
 	ld de, String_2534c
 	call PlaceString
-	ld hl, $c5d6
+	hlcoord 10, 15
 	ld de, String_2535c
 	call PlaceString
 	ld hl, PokedexCaught ; $de99
 	ld b, $20
 	call CountSetBits
 	ld de, $d265
-	ld hl, $c577
+	hlcoord 15, 10
 	ld bc, $103
 	call PrintNum
 	call Function25415
-	ld hl, $c542
+	hlcoord 2, 8
 	ld de, Tilemap_25366
 	call Function253a8
 	ld a, [StatusFlags] ; $d84c
 	bit 0, a
 	ret nz
-	ld hl, $c555
+	hlcoord 1, 9
 	ld bc, $211
 	call ClearBox
 	ret
@@ -34161,10 +34161,10 @@ Tilemap_25366: ; 25366
 
 ; known jump sources: 2521a (9:521a), 25272 (9:5272)
 Function2536c: ; 2536c (9:536c)
-	ld hl, $c542
+	hlcoord 2, 8
 	ld de, Tilemap_253a2
 	call Function253a8
-	ld hl, $c56a
+	hlcoord 2, 10
 	ld a, $29
 	ld c, $4
 .asm_2537c
@@ -34175,7 +34175,7 @@ Function2536c: ; 2536c (9:536c)
 	inc hl
 	dec c
 	jr nz, .asm_2537c
-	ld hl, $c5a6
+	hlcoord 2, 13
 	ld a, $51
 	ld c, $4
 .asm_2538d
@@ -34293,7 +34293,7 @@ Function253f4: ; 253f4 (9:53f4)
 
 ; known jump sources: 251d7 (9:51d7), 25330 (9:5330)
 Function25415: ; 25415 (9:5415)
-	ld hl, $c59b
+	hlcoord 11, 12
 	ld de, GameTimeHours ; $d4c4
 	ld bc, $204
 	call PrintNum
@@ -34304,7 +34304,7 @@ Function25415: ; 25415 (9:5415)
 	ld a, [$FF00+$9b]
 	and $1f
 	ret nz
-	ld hl, $c59f
+	hlcoord 15, 12
 	ld a, [hl]
 	xor $51
 	ld [hl], a
@@ -36271,13 +36271,13 @@ Function28000: ; 28000
 	call Functione58
 	callba Function16d69a
 	call Function3200
-	ld hl, $c543
+	hlcoord 3, 8
 	ld b, $2
 	ld c, $c
 	ld d, h
 	ld e, l
 	callba Function4d35b
-	ld hl, $c56c
+	hlcoord 4, 10
 	ld de, String28419
 	call PlaceString
 	call Function28eff
@@ -36738,7 +36738,7 @@ Function283b2: ; 283b2
 	ld [hl], a
 	ld [$ff9e], a
 	push de
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	push de
@@ -36747,7 +36747,7 @@ Function283b2: ; 283b2
 	callba Function4d35b
 	pop de
 	pop hl
-	ld bc, $c5b9
+	bccoord 1, 14
 	call Function13e5
 	call Function4b6
 	call Functionfdb
@@ -37616,11 +37616,11 @@ Function28926: ; 28926
 	call Function309d
 	ld a, [$cfa9]
 	push af
-	ld hl, $c5cc
+	hlcoord 0, 15
 	ld b, $1
 	ld c, $12
 	call Function28eef
-	ld hl, $c5e2
+	hlcoord 2, 16
 	ld de, String28ab4
 	call PlaceString
 	callba Function4d354
@@ -37693,11 +37693,11 @@ Function28926: ; 28926
 	callab Function50db9
 	callba Function4d319
 	call Function30b4
-	ld hl, $c4ba
+	hlcoord 6, 1
 	ld bc, $0601
 	ld a, $7f
 	call Function28b77
-	ld hl, $c4c5
+	hlcoord 17, 1
 	ld bc, $0601
 	ld a, $7f
 	call Function28b77
@@ -37725,13 +37725,13 @@ Function28926: ; 28926
 	xor a
 	ld [$cf57], a
 	ld [$cf52], a
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function28eef
 	callba Function4d354
 	ld hl, UnknownText_0x28aaf
-	ld bc, $c5b9
+	bccoord 1, 14
 	call Function13e5
 	jr .asm_28a89
 
@@ -37747,21 +37747,21 @@ Function28926: ; 28926
 	ld a, [hl]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function28eef
 	callba Function4d354
 	ld hl, UnknownText_0x28ac4
-	ld bc, $c5b9
+	bccoord 1, 14
 	call Function13e5
 
 .asm_28a89
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function28eef
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, String28ece
 	call PlaceString
 	ld a, $1
@@ -37857,15 +37857,15 @@ Function28b22: ; 28b22
 ; 28b42
 
 Function28b42: ; 28b42
-	ld hl, $c5e0
+	hlcoord 0, 16
 	ld a, $7e
 	ld bc, $0028
 	call ByteFill
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld a, $7f
 	ld bc, $0012
 	call ByteFill
-	ld hl, $c5e2
+	hlcoord 2, 16
 	ld de, String_28b61
 	jp PlaceString
 ; 28b61
@@ -37876,7 +37876,7 @@ String_28b61: ; 28b61
 
 Function28b68: ; 28b68
 	ld a, [$cf51]
-	ld hl, $c55a
+	hlcoord 6, 9
 	ld bc, $0014
 	call AddNTimes
 	ld [hl], $ec
@@ -37904,7 +37904,7 @@ Function28b87: ; 28b87
 	xor a
 	ld [$cf57], a
 	ld [$cf52], a
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function28eef
@@ -37930,15 +37930,15 @@ Function28b87: ; 28b87
 	ld [$d265], a
 	call GetPokemonName
 	ld hl, UnknownText_0x28eb8
-	ld bc, $c5b9
+	bccoord 1, 14
 	call Function13e5
 	call Function1d6e
-	ld hl, $c536
+	hlcoord 10, 7
 	ld b, $3
 	ld c, $7
 	call Function28eef
 	ld de, String28eab
-	ld hl, $c54c
+	hlcoord 12, 8
 	call PlaceString
 	ld a, $8
 	ld [$cfa1], a
@@ -37973,11 +37973,11 @@ Function28b87: ; 28b87
 .asm_28c33
 	ld a, $1
 	ld [$cf56], a
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function28eef
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, String28ece
 	call PlaceString
 	callba Function16d6ce
@@ -37990,11 +37990,11 @@ Function28b87: ; 28b87
 	ld a, [$cf51]
 	dec a
 	jr nz, .asm_28c7b
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function28eef
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, String28ece
 	call PlaceString
 	jp Function28ea3
@@ -38223,11 +38223,11 @@ Function28b87: ; 28b87
 	callba Function106187
 	ld c, $28
 	call DelayFrames
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call Function28eef
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, String28ebd
 	call PlaceString
 	callba Function4d354
@@ -38822,20 +38822,20 @@ Jumptable_2928f: ; 2928f
 
 Function29297: ; 29297
 	call Function297cf
-	ld hl, $c4e5
+	hlcoord 9, 3
 	ld [hl], $5b
 	inc hl
 	ld bc, $000a
 	ld a, $60
 	call ByteFill
-	ld hl, $c4cb
+	hlcoord 3, 2
 	call Function292ec
 	ret
 ; 292af
 
 Function292af: ; 292af
 	call Function297cf
-	ld hl, $c4dc
+	hlcoord 0, 3
 	ld bc, $0014
 	ld a, $60
 	call ByteFill
@@ -38844,11 +38844,11 @@ Function292af: ; 292af
 
 Function292be: ; 292be
 	call Function297cf
-	ld hl, $c4dc
+	hlcoord 0, 3
 	ld bc, $0011
 	ld a, $60
 	call ByteFill
-	ld hl, $c4ed
+	hlcoord 17, 3
 	ld a, $5d
 	ld [hl], a
 	ld a, $61
@@ -38864,7 +38864,7 @@ Function292be: ; 292be
 	ld [hld], a
 	ld a, $5b
 	ld [hl], a
-	ld hl, $c522
+	hlcoord 10, 6
 	call Function292ec
 	ret
 ; 292ec
@@ -38887,7 +38887,7 @@ Function292f6: ; 292f6
 	ld bc, $0014
 	ld a, $7a
 	call ByteFill
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld de, $c736
 	call PlaceString
 	ld hl, $c741
@@ -38900,11 +38900,11 @@ Function292f6: ; 292f6
 	jr .asm_2931e
 
 .asm_29326
-	ld hl, $c4f0
+	hlcoord 0, 4
 	add hl, de
 	ld de, $c741
 	call PlaceString
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld bc, $0006
 	pop af
 	call ByteFill
@@ -38922,7 +38922,7 @@ Function29348: ; 29348
 	ld a, $a0
 	ld [hSCX], a
 	call DelayFrame
-	ld hl, $c4d0
+	hlcoord 8, 2
 	ld de, Tilemap_298f7
 	lb bc, 3, 12
 	call Function297db
@@ -39147,7 +39147,7 @@ Function294c3: ; 294c3
 	call Request2bpp
 	call WaitTop
 	call Function297cf
-	ld hl, $c4cf
+	hlcoord 7, 2
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
@@ -39244,11 +39244,11 @@ Function29573: ; 29573
 	call Function297cf
 	ld a, $9c
 	ld [$ffd7], a
-	ld hl, $c4a3
+	hlcoord 3, 0
 	ld b, $6
 	ld c, $d
 	call TextBox
-	ld hl, $c4a4
+	hlcoord 4, 0
 	ld de, String29591
 	call PlaceString
 	ret
@@ -39266,11 +39266,11 @@ Function295a1: ; 295a1
 	call Function297cf
 	ld a, $9c
 	ld [$ffd7], a
-	ld hl, $c4a3
+	hlcoord 3, 0
 	ld b, $6
 	ld c, $d
 	call TextBox
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String295c2
 	call PlaceString
 	call Function295d8
@@ -39292,7 +39292,7 @@ Function295d8: ; 295d8
 ; 295e3
 
 Function295e3: ; 295e3
-	ld hl, $c4aa
+	hlcoord 10, 0
 	ld bc, $8103
 	call PrintNum
 	ld [hl], $7f
@@ -39300,7 +39300,7 @@ Function295e3: ; 295e3
 ; 295ef
 
 Function295ef: ; 295ef
-	ld hl, $c4cc
+	hlcoord 4, 2
 	call PlaceString
 	ret
 ; 295f6
@@ -39312,7 +39312,7 @@ Function295f6: ; 295f6
 
 .asm_295fb
 	push af
-	ld hl, $c4f7
+	hlcoord 7, 4
 	call PlaceString
 	inc bc
 	pop af
@@ -39330,7 +39330,7 @@ Unknown_2960e: ; 2960e
 ; 29611
 
 Function29611: ; 29611
-	ld hl, $c51f
+	hlcoord 7, 6
 	ld bc, $8205
 	call PrintNum
 	ret
@@ -39567,7 +39567,7 @@ UnknownText_0x29757: ; 0x29757
 
 Function2975c: ; 2975c
 	call WaitTop
-	ld hl, $c568
+	hlcoord 0, 10
 	ld bc, $00a0
 	ld a, $7f
 	call ByteFill
@@ -41394,22 +41394,22 @@ Function2a567: ; 2a567
 
 
 WildMons1: ; 0x2a5e9
-INCLUDE "stats/wild/johto_grass.asm"
+INCLUDE "data/wild/johto_grass.asm"
 
 WildMons2: ; 0x2b11d
-INCLUDE "stats/wild/johto_water.asm"
+INCLUDE "data/wild/johto_water.asm"
 
 WildMons3: ; 0x2b274
-INCLUDE "stats/wild/kanto_grass.asm"
+INCLUDE "data/wild/kanto_grass.asm"
 
 WildMons4: ; 0x2b7f7
-INCLUDE "stats/wild/kanto_water.asm"
+INCLUDE "data/wild/kanto_water.asm"
 
 WildMons5: ; 0x2b8d0
-INCLUDE "stats/wild/swarm_grass.asm"
+INCLUDE "data/wild/swarm_grass.asm"
 
 WildMons6: ; 0x2b92f
-INCLUDE "stats/wild/swarm_water.asm"
+INCLUDE "data/wild/swarm_water.asm"
 
 
 Function2b930: ; 2b930
@@ -41706,7 +41706,7 @@ DrawPlayerExpBar: ; 2c095
 	ld de, $d004
 	ld bc, 4
 	call CopyBytes
-	ld hl, $c57a
+	hlcoord 18, 10
 	ld de, -1
 	jr Function2c0f1
 
@@ -41722,7 +41722,7 @@ Function2c0ad: ; 2c0ad
 	ld de, $d004
 	ld bc, 4
 	call CopyBytes
-	ld hl, $c57a
+	hlcoord 18, 10
 	ld de, -1
 	jr Function2c0f1
 
@@ -41735,7 +41735,7 @@ Function2c0c5: ; 2c0c5
 	ld de, $d004
 	ld bc, 4
 	call CopyBytes
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld de, 1
 	call Function2c0f1
 	ld a, [IsInBattle]
@@ -41745,7 +41745,7 @@ Function2c0c5: ; 2c0c5
 	dec a
 	call CheckCaughtMon
 	ret z
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld [hl], $5d
 	ret
 
@@ -41839,17 +41839,17 @@ INCBIN "gfx/battle/balls.2bpp"
 Function2c1b2: ; 2c1b2
 	call WhiteBGMap
 	call Functione5f
-	ld hl, $c4de
+	hlcoord 2, 3
 	ld b, $9
 	ld c, $e
 	call TextBox
-	ld hl, $c508
+	hlcoord 4, 5
 	ld de, PlayerName
 	call PlaceString
-	ld hl, $c56c
+	hlcoord 4, 10
 	ld de, $d26b
 	call PlaceString
-	ld hl, $c549
+	hlcoord 9, 8
 	ld a, $69
 	ld [hli], a
 	ld [hl], $6a
@@ -42734,7 +42734,7 @@ Function2c915: ; 2c915 (b:4915)
 Function2c946: ; 2c946 (b:4946)
 	call Function2c98a
 	jp nc, Function2c9af
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
@@ -42746,7 +42746,7 @@ Function2c946: ; 2c946 (b:4946)
 	call Predef
 	ld a, [$d265]
 	ld [CurSpecies], a ; $cf60
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PrintMoveDesc
 	jp Function2c915
 
@@ -42836,7 +42836,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	ld a, [BattleType] ; $d230
 	cp $3
 	jp z, Function2caca
-	ld hl, $c4cd
+	hlcoord 5, 2
 	ld bc, $a0f
 	ld a, $7f
 	call ClearBox
@@ -42926,7 +42926,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 
 ; known jump sources: 2ca0c (b:4a0c), 2ca77 (b:4a77)
 Function2ca86: ; 2ca86 (b:4a86)
-	ld hl, $c4a5
+	hlcoord 5, 0
 	ld bc, $28
 	ld a, $6
 	sub d
@@ -42977,7 +42977,7 @@ Function2cab5: ; 2cab5 (b:4ab5)
 
 ; known jump sources: 2c9e7 (b:49e7)
 Function2caca: ; 2caca (b:4aca)
-	ld hl, $c4e5
+	hlcoord 9, 3
 	push de
 	ld de, String_2caae
 	call PlaceString
@@ -44165,7 +44165,7 @@ Function383f8: ; 383f8
 	ld [$d1ef], a
 asm_38436: ; 38436 (e:4436)
 	call Function38571
-	ld hl, $c4ca
+	hlcoord 2, 2
 	xor a
 	ld [$d10a], a
 	call Function3839a
@@ -45043,7 +45043,7 @@ Function4013c: ; 4013c (10:413c)
 	ld bc, $168
 	call ByteFill
 	callba Function1de171
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld de, $47f2
 	call Function40acd
 	ld a, $7
@@ -45072,7 +45072,7 @@ Function4013c: ; 4013c (10:413c)
 	call Function41423
 	call Function41148
 	callba Function1de171
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld de, $47f2
 	call Function40acd
 	ld a, $7
@@ -45917,7 +45917,7 @@ Function40741: ; 40741
 
 ; known jump sources: 40169 (10:4169)
 Function4074c: ; 4074c (10:474c)
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld de, Unknown_407f2
 	call Function40acd
 	ld a, $32
@@ -45927,47 +45927,47 @@ Function4074c: ; 4074c (10:474c)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $707
 	call Function40ad5
-	ld hl, $c554
+	hlcoord 0, 9
 	ld bc, $607
 	call Function40ad5
-	ld hl, $c57d
+	hlcoord 1, 11
 	ld de, Unknown_407e1
 	call Function40acd
 	ld hl, PokedexSeen ; $deb9 (aliases: EndPokedexSeen)
 	ld b, $20
 	call CountSetBits
 	ld de, $d265
-	ld hl, $c595
+	hlcoord 5, 12
 	ld bc, $103
 	call PrintNum
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, Unknown_407e6
 	call Function40acd
 	ld hl, PokedexCaught ; $de99
 	ld b, $20
 	call CountSetBits
 	ld de, $d265
-	ld hl, $c5d1
+	hlcoord 5, 15
 	ld bc, $103
 	call PrintNum
-	ld hl, $c5f5
+	hlcoord 1, 17
 	ld de, Unknown_407ea
 	call Function40acd
-	ld hl, $c4bc
+	hlcoord 8, 1
 	ld b, $7
 	ld a, $5a
 	call Function40741
-	ld hl, $c570
+	hlcoord 8, 10
 	ld b, $6
 	ld a, $5a
 	call Function40741
-	ld hl, $c4a8
+	hlcoord 8, 0
 	ld [hl], $59
-	ld hl, $c548
+	hlcoord 8, 8
 	ld [hl], $53
-	ld hl, $c55c
+	hlcoord 8, 9
 	ld [hl], $54
-	ld hl, $c5e8
+	hlcoord 8, 16
 	ld [hl], $5b
 	call Function40ab2
 	ret
@@ -45988,28 +45988,28 @@ Function407fd: ; 407fd
 	ld hl, TileMap
 	ld bc, $0f12
 	call Function40ad5
-	ld hl, $c4b3
+	hlcoord 19, 0
 	ld [hl], $34
-	ld hl, $c4c7
+	hlcoord 19, 1
 	ld a, $7f
 	ld b, $f
 	call Function40741
 	ld [hl], $39
-	ld hl, $c569
+	hlcoord 1, 10
 	ld bc, $0013
 	ld a, $61
 	call ByteFill
-	ld hl, $c5f5
+	hlcoord 1, 17
 	ld bc, $0012
 	ld a, $7f
 	call ByteFill
-	ld hl, $c535
+	hlcoord 9, 7
 	ld de, Unknown_40852
 	call Function40acd
-	ld hl, $c55d
+	hlcoord 9, 9
 	ld de, Unknown_4085c
 	call Function40acd
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld de, Unknown_40867
 	call Function40acd
 	call Function40ab2
@@ -46029,22 +46029,22 @@ Unknown_40867: ; 40867
 ; known jump sources: 403a3 (10:43a3)
 Function4087c: ; 4087c (10:487c)
 	call Function40aa6
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld bc, $812
 	call Function40ad5
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $412
 	call Function40ad5
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld de, Unknown_408b2
 	call Function40acd
-	ld hl, $c4f3
+	hlcoord 3, 4
 	ld de, String_408bd
 	call PlaceString
 	ld a, [$c7dc]
 	and a
 	ret z
-	ld hl, $c56b
+	hlcoord 3, 10
 	ld de, String_408e5
 	call PlaceString
 	ret
@@ -46067,22 +46067,22 @@ String_408e5: ; 408e5
 ; known jump sources: 40449 (10:4449)
 Function408f0: ; 408f0 (10:48f0)
 	call Function40aa6
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld bc, $e12
 	call Function40ad5
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld de, Unknown_4092a
 	call Function40acd
-	ld hl, $c4f8
+	hlcoord 8, 4
 	ld de, Unknown_40935
 	call Function40acd
-	ld hl, $c520
+	hlcoord 8, 6
 	ld de, Unknown_40935
 	call Function40acd
-	ld hl, $c4f3
+	hlcoord 3, 4
 	ld de, String_40940
 	call PlaceString
-	ld hl, $c5a7
+	hlcoord 3, 13
 	ld de, String_4094c
 	call PlaceString
 	ret
@@ -46111,27 +46111,27 @@ Function40962: ; 40962 (10:4962)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $707
 	call Function40ad5
-	ld hl, $c57c
+	hlcoord 0, 11
 	ld bc, $512
 	call Function40ad5
-	ld hl, $c591
+	hlcoord 1, 12
 	ld de, String_409ae
 	call PlaceString
 	ld de, $c7d7
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld bc, $103
 	call PrintNum
-	ld hl, $c4a8
+	hlcoord 8, 0
 	ld [hl], $59
-	ld hl, $c4bc
+	hlcoord 8, 1
 	ld b, $7
 	ld a, $5a
 	call Function40741
-	ld hl, $c548
+	hlcoord 8, 8
 	ld [hl], $53
-	ld hl, $c55c
+	hlcoord 8, 9
 	ld [hl], $69
-	ld hl, $c570
+	hlcoord 8, 10
 	ld [hl], $6a
 	call Function40ab2
 	ret
@@ -46146,7 +46146,7 @@ String_409ae: ; 409ae
 ; known jump sources: 40523 (10:4523), 4054e (10:454e)
 Function409cf: ; 409cf (10:49cf)
 	ld a, [$c7d5]
-	ld hl, $c5b8
+	hlcoord 0, 14
 	call Function40fcd
 	ld a, [$c7d5]
 	ld b, a
@@ -46155,9 +46155,9 @@ Function409cf: ; 409cf (10:49cf)
 	jr z, .asm_409f0
 	cp b
 	jr z, .asm_409f0
-	ld hl, $c5ce
+	hlcoord 2, 15
 	call Function40fcd
-	ld hl, $c5cd
+	hlcoord 1, 15
 	ld [hl], $f3
 .asm_409f0
 	ret
@@ -46165,17 +46165,17 @@ Function409cf: ; 409cf (10:49cf)
 ; known jump sources: 405c0 (10:45c0)
 Function409f1: ; 409f1 (10:49f1)
 	call Function40aa6
-	ld hl, $c4b6
+	hlcoord 2, 1
 	ld bc, $a0d
 	call Function40ad5
-	ld hl, $c5ba
+	hlcoord 2, 14
 	ld bc, $10d
 	call Function40ad5
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld [hl], $3d
-	ld hl, $c5dc
+	hlcoord 16, 15
 	ld [hl], $3e
-	ld hl, $c50a
+	hlcoord 6, 5
 	call Function40ab5
 	ld de, $0
 	ld b, $0
@@ -46246,7 +46246,7 @@ Function40aa6: ; 40aa6
 ; 40ab2
 
 Function40ab2: ; 40ab2
-	ld hl, $c4b5
+	hlcoord 1, 1
 Function40ab5: ; 40ab5
 	xor a
 	ld b, $7
@@ -46336,7 +46336,7 @@ Function40b0f: ; 40b0f (10:4b0f)
 .asm_40b1a
 	ld c, $b
 .asm_40b1c
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld a, [$c7d3]
 	add a
 	inc a
@@ -46350,7 +46350,7 @@ Function40b0f: ; 40b0f (10:4b0f)
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld a, [$c7d3]
 .asm_40b3c
 	push af
@@ -46427,12 +46427,12 @@ String_40b9a: ; 40b9a
 ; 40ba0
 
 Function40ba0: ; 40ba0
-	ld hl, $c4c6
+	hlcoord 18, 1
 	ld a, $62
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $c4da
+	hlcoord 18, 2
 	ld a, $64
 	ld [hli], a
 	inc a
@@ -46582,15 +46582,15 @@ Function40c30: ; 40c30
 ; 40c65
 
 AlphabeticalPokedexOrder: ; 0x40c65
-INCLUDE "stats/pokedex/order_alpha.asm"
+INCLUDE "data/pokedex/order_alpha.asm"
 
 NewPokedexOrder: ; 0x40d60
-INCLUDE "stats/pokedex/order_new.asm"
+INCLUDE "data/pokedex/order_new.asm"
 
 Function40e5b: ; 40e5b
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $0412
 	call Function40ad5
 	ld a, [$c7d8]
@@ -46598,7 +46598,7 @@ Function40e5b: ; 40e5b
 	call Function41432
 	ld e, l
 	ld d, h
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld a, $1
 	ld [hBGMapMode], a
@@ -46636,11 +46636,11 @@ String_40ee4: ; 40ee4
 Function40f08: ; 40f08 (10:4f08)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $412
 	call Function40ad5
 	ld de, $4f32
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -46726,15 +46726,15 @@ Function40f84: ; 40f84
 Function40fa8: ; 40fa8 (10:4fa8)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, $c4e5
+	hlcoord 9, 3
 	ld bc, $408
 	ld a, $7f
 	call Function413fe
 	ld a, [$c7d5]
-	ld hl, $c4f9
+	hlcoord 9, 4
 	call Function40fcd
 	ld a, [$c7d6]
-	ld hl, $c521
+	hlcoord 9, 6
 	call Function40fcd
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -46881,11 +46881,11 @@ Unknown_410f6: ; 410f6
 Function41107: ; 41107
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $0412
 	call Function40ad5
 	ld de, String_41126
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld a, $1
 	ld [hBGMapMode], a
@@ -47482,7 +47482,7 @@ Function41a7f: ; 41a7f
 	ld [CurPartySpecies], a
 	call Function407fd
 	call Function40ba0
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld [hl], $3b
 	inc hl
 	ld bc, $0013
@@ -48515,19 +48515,19 @@ Unknown_44228: ; 44228
 
 Function4424d: ; 4424d
 	call GetPokemonName
-	ld hl, $c4e5
+	hlcoord 9, 3
 	call PlaceString
 	ld a, [$d265]
 	ld b, a
 	call Function44333
 	ld a, b
 	push af
-	ld hl, $c50d
+	hlcoord 9, 5
 	call Function13d4
 	ld h, b
 	ld l, c
 	push de
-	ld hl, $c542
+	hlcoord 2, 8
 	ld a, $5c
 	ld [hli], a
 	ld a, $5d
@@ -48561,10 +48561,10 @@ Function4424d: ; 4424d
 	ld hl, [sp+$0]
 	ld d, h
 	ld e, l
-	ld hl, $c538
+	hlcoord 12, 7
 	ld bc, $0224
 	call PrintNum
-	ld hl, $c53a
+	hlcoord 14, 7
 	ld [hl], $5e
 	pop af
 	pop hl
@@ -48585,31 +48585,31 @@ Function4424d: ; 4424d
 	ld hl, [sp+$0]
 	ld d, h
 	ld e, l
-	ld hl, $c55f
+	hlcoord 11, 9
 	ld bc, ClearVRAM
 	call PrintNum
 	pop de
 
 .asm_442cd
 	ld bc, $0512
-	ld hl, $c57e
+	hlcoord 2, 11
 	call ClearBox
-	ld hl, $c569
+	hlcoord 1, 10
 	ld bc, $0013
 	ld a, $61
 	call ByteFill
-	ld hl, $c555
+	hlcoord 1, 9
 	ld [hl], $55
 	inc hl
 	ld [hl], $55
-	ld hl, $c569
+	hlcoord 1, 10
 	ld [hl], $56
 	inc hl
 	ld [hl], $57
 	pop de
 	inc de
 	pop af
-	ld hl, $c57e
+	hlcoord 2, 11
 	push af
 	call Function13d4
 	pop bc
@@ -48619,24 +48619,24 @@ Function4424d: ; 4424d
 	push bc
 	push de
 	ld bc, $0512
-	ld hl, $c57e
+	hlcoord 2, 11
 	call ClearBox
-	ld hl, $c569
+	hlcoord 1, 10
 	ld bc, $0013
 	ld a, $61
 	call ByteFill
-	ld hl, $c555
+	hlcoord 1, 9
 	ld [hl], $55
 	inc hl
 	ld [hl], $55
-	ld hl, $c569
+	hlcoord 1, 10
 	ld [hl], $56
 	inc hl
 	ld [hl], $58
 	pop de
 	inc de
 	pop af
-	ld hl, $c57e
+	hlcoord 2, 11
 	call Function13d4
 	ret
 ; 44331
@@ -48717,7 +48717,7 @@ Function44355: ; 44355
 
 
 PokedexDataPointerTable: ; 0x44378
-INCLUDE "stats/pokedex/entry_pointers.asm"
+INCLUDE "data/pokedex/entry_pointers.asm"
 
 
 Function4456e: ; 4456e
@@ -49384,33 +49384,33 @@ Function4802f: ; 4802f (12:402f)
 	ld b, $2
 	ld c, $14
 	call ClearBox
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld a, $c
 	ld [hl], a
 	ld bc, $13
 	add hl, bc
 	ld [hl], a
 	ld de, MobileProfileString
-	ld hl, $c4b5
+	hlcoord 1, 1
 	call PlaceString
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld b, $a
 	ld c, $12
 	call Function48cdc
-	ld hl, $c4f2
+	hlcoord 2, 4
 	ld de, String_48482
 	call PlaceString
 .asm_480d7
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld de, String_48489
 	call PlaceString
-	ld hl, $c542
+	hlcoord 2, 8
 	ld de, String_4848d
 	call PlaceString
-	ld hl, $c56a
+	hlcoord 2, 10
 	ld de, String_48495
 	call PlaceString
-	ld hl, $c592
+	hlcoord 2, 12
 	ld de, String_4849e
 	call PlaceString
 	ld a, [DefaultFlypoint] ; $d002
@@ -49421,10 +49421,10 @@ Function4802f: ; 4802f (12:402f)
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $c4fb
+	hlcoord 11, 4
 	call PlaceString
 .asm_48113
-	ld hl, $c523
+	hlcoord 11, 6
 	call Function487ec
 	ld a, [$d474]
 	dec a
@@ -49432,15 +49432,15 @@ Function4802f: ; 4802f (12:402f)
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $c54b
+	hlcoord 11, 8
 	call PlaceString
-	ld hl, $c573
+	hlcoord 11, 10
 	call Function489ea
-	ld hl, $c5b8
+	hlcoord 0, 14
 	ld b, $2
 	ld c, $12
 	call TextBox
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_48275
 	call PlaceString
 	call Function48187
@@ -49492,12 +49492,12 @@ Function48187: ; 48187 (12:4187)
 	call Function48725
 	jr c, .asm_481a2
 	ld bc, $104
-	ld hl, $c592
+	hlcoord 2, 12
 	call ClearBox
 	jr .asm_481ad
 .asm_481a2
 	push de
-	ld hl, $c592
+	hlcoord 2, 12
 	ld de, String_4849e
 	call PlaceString
 	pop de
@@ -49508,19 +49508,19 @@ Function48187: ; 48187 (12:4187)
 	bit 0, d
 	jr nz, .asm_481c1
 	ld bc, $108
-	ld hl, $c4fb
+	hlcoord 11, 4
 	call ClearBox
 .asm_481c1
 	bit 1, d
 	jr nz, .asm_481ce
 	ld bc, $108
-	ld hl, $c523
+	hlcoord 11, 6
 	call ClearBox
 .asm_481ce
 	bit 2, d
 	jr nz, .asm_481db
 	ld bc, $208
-	ld hl, $c537
+	hlcoord 11, 7
 	call ClearBox
 .asm_481db
 	bit 3, d
@@ -49529,7 +49529,7 @@ Function48187: ; 48187 (12:4187)
 	bit 0, a
 	jr nz, .asm_481f8
 	ld bc, $108
-	ld hl, $c573
+	hlcoord 11, 10
 	call ClearBox
 	jr .asm_48201
 .asm_481f1
@@ -49537,7 +49537,7 @@ Function48187: ; 48187 (12:4187)
 	bit 0, a
 	jr nz, .asm_48201
 .asm_481f8
-	ld hl, $c573
+	hlcoord 11, 10
 	ld de, String_48202
 	call PlaceString
 .asm_48201
@@ -49578,12 +49578,12 @@ Function4820d: ; 4820d (12:420d)
 	jr .asm_4825c
 ; 48241 (12:4241)
 
-	ld hl, $c5cd
+	hlcoord 1, 15
 	ld b, $2
 	ld c, $12
 	call ClearBox
 	ld de, String_484a1
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call PlaceString
 	call WaitBGMap
 	ld c, $30
@@ -49613,27 +49613,27 @@ String_48275: ; 48275
 ; known jump sources: 4828d (12:428d), 48304 (12:4304), 4840f (12:440f), 4876f (12:476f), 488d3 (12:48d3)
 Function48283: ; 48283 (12:4283)
 	ld bc, $212
-	ld hl, $c5cd
+	hlcoord 1, 15
 	call ClearBox
 	ret
 
 ; known jump sources: 48222 (12:4222)
 asm_4828d: ; 4828d (12:428d)
 	call Function48283
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_484b1
 	call PlaceString
 	ld hl, MenuDataHeader_0x484f1
 	call LoadMenuDataHeader
 	call Function4873c
-	ld hl, $c4d3
+	hlcoord 11, 2
 	ld b, $4
 	ld c, $7
 	call Function48cdc
-	ld hl, $c4fd
+	hlcoord 13, 4
 	ld de, String_484fb
 	call PlaceString
-	ld hl, $c525
+	hlcoord 13, 6
 	ld de, String_484ff
 	call PlaceString
 	call WaitBGMap
@@ -49663,7 +49663,7 @@ asm_4828d: ; 4828d (12:428d)
 .asm_482f1
 	ld d, h
 	ld e, l
-	ld hl, $c4fb
+	hlcoord 11, 4
 	call PlaceString
 	ld a, [$d003]
 	set 0, a
@@ -49673,14 +49673,14 @@ asm_4828d: ; 4828d (12:428d)
 ; known jump sources: 4822b (12:422b)
 Function48304: ; 48304 (12:4304)
 	call Function48283
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_484cf
 	call PlaceString
 	ld hl, MenuDataHeader_0x48504
 	call LoadMenuDataHeader
 	ld hl, MenuDataHeader_0x48513
 	call LoadMenuDataHeader
-	ld hl, $c4aa
+	hlcoord 10, 0
 	ld b, $c
 	ld c, $8
 	call Function48cdc
@@ -49791,9 +49791,9 @@ Function483bb: ; 483bb (12:43bb)
 	ld e, l
 	ld b, $2
 	ld c, $8
-	ld hl, $c537
+	hlcoord 11, 7
 	call ClearBox
-	ld hl, $c54b
+	hlcoord 11, 8
 	call PlaceString
 	ret
 ; 483e8 (12:43e8)
@@ -49831,7 +49831,7 @@ Function483e8: ; 483e8
 Function4840c: ; 4840c (12:440c)
 	call Function48187
 	call Function48283
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_48275
 	call PlaceString
 	call Function486bf
@@ -49843,13 +49843,13 @@ Function4840c: ; 4840c (12:440c)
 	jr nz, .asm_48437
 	ld b, $9
 	ld c, $1
-	ld hl, $c4f1
+	hlcoord 1, 4
 	call ClearBox
 	jp Function48157
 .asm_48437
 	ld b, $7
 	ld c, $1
-	ld hl, $c519
+	hlcoord 1, 6
 	call ClearBox
 	jp Function48157
 
@@ -50015,16 +50015,16 @@ Function48689: ; 48689 (12:4689)
 	ld b, $4
 	ld c, $14
 	call ClearBox
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld a, $c
 	ld [hl], a
 	ld bc, $13
 	add hl, bc
 	ld [hl], a
 	ld de, MobileProfileString
-	ld hl, $c4c9
+	hlcoord 1, 2
 	call PlaceString
-	ld hl, $c4f0
+	hlcoord 0, 4
 	ld b, $8
 	ld c, $12
 	call Function48cdc
@@ -50157,7 +50157,7 @@ Function4873c: ; 4873c (12:473c)
 ; known jump sources: 48226 (12:4226)
 Function4876f: ; 4876f (12:476f)
 	call Function48283
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_484be
 	call PlaceString
 	ld hl, MenuDataHeader_0x48509
@@ -50166,7 +50166,7 @@ Function4876f: ; 4876f (12:476f)
 	push af
 	ld a, $1
 	ld [$FF00+$aa], a
-	ld hl, $c50e
+	hlcoord 10, 5
 	ld b, $1
 	ld c, $8
 	call Function48cdc
@@ -50176,20 +50176,20 @@ Function4876f: ; 4876f (12:476f)
 	jr z, .asm_487ab
 	cp $64
 	jr z, .asm_487b2
-	ld hl, $c510
+	hlcoord 12, 5
 	ld [hl], $10
-	ld hl, $c538
+	hlcoord 12, 7
 	ld [hl], $11
 	jr .asm_487b7
 .asm_487ab
-	ld hl, $c510
+	hlcoord 12, 5
 	ld [hl], $10
 	jr .asm_487b7
 .asm_487b2
-	ld hl, $c538
+	hlcoord 12, 7
 	ld [hl], $11
 .asm_487b7
-	ld hl, $c523
+	hlcoord 11, 6
 	call Function487ec
 	ld c, $a
 	call DelayFrames
@@ -50208,7 +50208,7 @@ Function4876f: ; 4876f (12:476f)
 .asm_487da
 	ld a, [$d473]
 	call Function1c07
-	ld hl, $c523
+	hlcoord 11, 6
 	call Function487ec
 	pop af
 	ld [$FF00+$aa], a
@@ -50312,28 +50312,28 @@ Function4880e: ; 4880e (12:480e)
 	cp $64
 	jr z, .asm_48898
 	jr z, .asm_488a7
-	ld hl, $c510
+	hlcoord 12, 5
 	ld [hl], $10
-	ld hl, $c538
+	hlcoord 12, 7
 	ld [hl], $11
 	jr .asm_488a7
 .asm_48887
-	ld hl, $c50e
+	hlcoord 10, 5
 	ld b, $1
 	ld c, $8
 	call Function48cdc
-	ld hl, $c510
+	hlcoord 12, 5
 	ld [hl], $10
 	jr .asm_488a7
 .asm_48898
-	ld hl, $c50e
+	hlcoord 10, 5
 	ld b, $1
 	ld c, $8
 	call Function48cdc
-	ld hl, $c538
+	hlcoord 12, 7
 	ld [hl], $11
 .asm_488a7
-	ld hl, $c523
+	hlcoord 11, 6
 	call Function487ec
 	call WaitBGMap
 	ld a, $1
@@ -50365,7 +50365,7 @@ INCBIN "baserom.gbc",$488cb,$488d3 - $488cb
 ; known jump sources: 48230 (12:4230)
 Function488d3: ; 488d3 (12:48d3)
 	call Function48283
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_484e2
 	call PlaceString
 	call Function48a3a
@@ -50376,14 +50376,14 @@ Function488d3: ; 488d3 (12:48d3)
 	push af
 	ld a, $1
 	ld [$FF00+$aa], a
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld b, $1
 	ld c, $8
 	call Function48cdc
 	ld a, [$d475]
 	and $f
 	ld d, $0
-	ld hl, $c573
+	hlcoord 11, 10
 	call Function489ea
 	call WaitBGMap
 	ld a, [$d475]
@@ -50471,7 +50471,7 @@ asm_48972: ; 48972 (12:4972)
 	and $cf
 	ld [DefaultFlypoint], a ; $d002
 .asm_48988
-	ld hl, $c573
+	hlcoord 11, 10
 	ld b, $0
 	ld c, d
 	add hl, bc
@@ -50517,9 +50517,9 @@ asm_48972: ; 48972 (12:4972)
 	pop bc
 	pop af
 	call Function1c07
-	ld hl, $c573
+	hlcoord 11, 10
 	call Function489ea
-	ld hl, $c55f
+	hlcoord 11, 9
 	ld bc, $108
 	call ClearBox
 	pop af
@@ -50581,11 +50581,11 @@ Function48a3a: ; 48a3a (12:4a3a)
 	ld [$cfa2], a
 	ld a, $1
 	ld [$cfa9], a
-	ld hl, $c54a
+	hlcoord 10, 8
 	ld b, $4
 	ld c, $8
 	call Function48cdc
-	ld hl, $c574
+	hlcoord 12, 10
 	ld de, String_48aa1
 	call PlaceString
 	call Function1bc9
@@ -50695,7 +50695,7 @@ Function48ab5: ; 48ab5 (12:4ab5)
 	push hl
 	push af
 	ld e, $0
-	ld hl, $c573
+	hlcoord 11, 10
 	ld a, d
 .asm_48b25
 	and a
@@ -50717,7 +50717,7 @@ Function48ab5: ; 48ab5 (12:4ab5)
 	ld a, [hl]
 	and $10
 	jr nz, .asm_48b9d
-	ld hl, $c573
+	hlcoord 11, 10
 	call Function489ea
 	ld a, [DefaultFlypoint] ; $d002
 	bit 7, a
@@ -50741,13 +50741,13 @@ Function48ab5: ; 48ab5 (12:4ab5)
 .asm_48b62
 	push de
 	push af
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld b, $1
 	ld c, $8
 	call Function48cdc
 	pop af
 	pop de
-	ld hl, $c573
+	hlcoord 11, 10
 	ld b, a
 	ld a, d
 	cp $3
@@ -50779,7 +50779,7 @@ Function48ab5: ; 48ab5 (12:4ab5)
 	jr .asm_48b62
 .asm_48b9d
 	push de
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld b, $1
 	ld c, $8
 	call Function48cdc
@@ -50809,7 +50809,7 @@ Function48ab5: ; 48ab5 (12:4ab5)
 
 ; known jump sources: 48bc2 (12:4bc2), 48bf6 (12:4bf6), 48bfe (12:4bfe)
 asm_48bc7: ; 48bc7 (12:4bc7)
-	ld hl, $c573
+	hlcoord 11, 10
 	push af
 	ld a, d
 	cp $3
@@ -50824,7 +50824,7 @@ asm_48bc7: ; 48bc7 (12:4bc7)
 ; known jump sources: 48b3c (12:4b3c)
 Function48bd7: ; 48bd7 (12:4bd7)
 	push de
-	ld hl, $c55e
+	hlcoord 10, 9
 	ld b, $1
 	ld c, $8
 	call Function48cdc
@@ -50856,7 +50856,7 @@ Function48bd7: ; 48bd7 (12:4bd7)
 ; known jump sources: 48b8a (12:4b8a), 48bd5 (12:4bd5)
 Function48c00: ; 48c00 (12:4c00)
 	push af
-	ld hl, $c573
+	hlcoord 11, 10
 	call Function489ea
 	ld a, $1
 	and a
@@ -50978,7 +50978,7 @@ Function48c8e: ; 48c8e
 	ld d, h
 	ld e, l
 	callba Function48c63
-	ld hl, $c536
+	hlcoord 10, 7
 	call PlaceString
 	call WaitBGMap
 	ret
@@ -52848,7 +52848,7 @@ Function49e27: ; 49e27
 	call Function6e3
 	and $80
 	jr nz, .asm_49e39
-	ld hl, $c5b8
+	hlcoord 0, 14
 	ld b, $2
 	ld c, $12
 	call TextBox
@@ -52978,20 +52978,20 @@ Function49f16: ; 49f16
 	call Function4a071
 	ld c, $c
 	call DelayFrames
-	ld hl, $c4a4
+	hlcoord 4, 0
 	ld b, $a
 	ld c, $a
 	call Function48cdc
-	ld hl, $c4ce
+	hlcoord 6, 2
 	ld de, MobileString1
 	call PlaceString
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
 	xor a
 	ld de, String_0x49fe9
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	call Function3200
 	call Function32f9
@@ -53046,11 +53046,11 @@ Function49f16: ; 49f16
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld b, $4
 	ld c, $12
 	call ClearBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	jp .asm_49fb7
 
@@ -53061,7 +53061,7 @@ Function49f16: ; 49f16
 	ld [hl], b
 	ld b, $a
 	ld c, $1
-	ld hl, $c4b9
+	hlcoord 5, 1
 	call ClearBox
 	jp .asm_49f55
 ; 49fcc
@@ -53232,14 +53232,14 @@ Function4a13b: ; 4a13b (12:613b)
 
 ; known jump sources: 4a236 (12:6236)
 Function4a149: ; 4a149 (12:6149)
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld b, $6
 	ld c, $10
 	call Function48cdc
-	ld hl, $c4f3
+	hlcoord 3, 4
 	ld de, String_4a1ef
 	call PlaceString
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
@@ -53249,11 +53249,11 @@ Function4a149: ; 4a149 (12:6149)
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld b, $4
 	ld c, $12
 	call ClearBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	callba Function104148
 	call Function32f9
@@ -53297,11 +53297,11 @@ asm_4a19d: ; 4a19d (12:619d)
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld b, $4
 	ld c, $12
 	call ClearBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	jr .asm_4a1db
 .asm_4a1db
@@ -53310,7 +53310,7 @@ asm_4a19d: ; 4a19d (12:619d)
 	ld hl, $cfa9
 	ld [hl], b
 	ld bc, $601
-	ld hl, $c4de
+	hlcoord 2, 3
 	call ClearBox
 	jp Function4a195
 ; 4a1ef (12:61ef)
@@ -53364,7 +53364,7 @@ Strings_4a23d: ; 4a23d
 
 ; known jump sources: 4a226 (12:6226)
 Function4a28a: ; 4a28a (12:628a)
-	ld hl, $c4de
+	hlcoord 2, 3
 	ld bc, $601
 	ld a, $7f
 	call Function4a6d8
@@ -53377,11 +53377,11 @@ Function4a28a: ; 4a28a (12:628a)
 	call CloseSRAM
 	and a
 	jr z, .asm_4a2df
-	ld hl, $c4ac
+	hlcoord 12, 0
 	ld b, $5
 	ld c, $6
 	call Function48cdc
-	ld hl, $c4c2
+	hlcoord 14, 1
 	ld de, String_4a34b
 	call PlaceString
 	callba Function104148
@@ -53408,7 +53408,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call Function1bee
 	ld hl, UnknownText_0x4a358
 	call PrintText
-	ld hl, $c53a
+	hlcoord 14, 7
 	ld b, $3
 	ld c, $4
 	call TextBox
@@ -53541,7 +53541,7 @@ Function4a3aa: ; 4a3aa
 	ld bc, $101
 	ld a, $7f
 	call Function4a6d8
-	ld hl, $c4a1
+	hlcoord 1, 0
 	ld a, $1
 	ld bc, $312
 	call Function4a6d8
@@ -53557,7 +53557,7 @@ Function4a3aa: ; 4a3aa
 	ld bc, $b12
 	ld a, $7f
 	call Function4a6d8
-	ld hl, $c4b3
+	hlcoord 19, 0
 	ld bc, $301
 	ld a, $0
 	call Function4a6d8
@@ -53658,26 +53658,26 @@ Function4a4c4: ; 4a4c4 (12:64c4)
 	call WhiteBGMap
 	ld c, $14
 	call DelayFrames
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld b, $a
 	ld c, $e
 	call Function48cdc
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_4a5c5
 	call PlaceString
-	ld hl, $c4f4
+	hlcoord 4, 4
 	ld de, String_4a5cd
 	call PlaceString
-	ld hl, $c51c
+	hlcoord 4, 6
 	ld de, String_4a5da
 	call PlaceString
-	ld hl, $c544
+	hlcoord 4, 8
 	ld de, String_4a5e6
 	call PlaceString
-	ld hl, $c56c
+	hlcoord 4, 10
 	ld de, String_4a5f2
 	call PlaceString
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
@@ -53685,14 +53685,14 @@ Function4a4c4: ; 4a4c4 (12:64c4)
 	ld hl, Strings_4a5f6
 	ld d, h
 	ld e, l
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld a, $1
 	ld hl, Strings_4a5f6
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call PlaceString
 	call Function3200
 	call Function32f9
@@ -53744,11 +53744,11 @@ asm_4a54d: ; 4a54d (12:654d)
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld b, $4
 	ld c, $12
 	call ClearBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	pop af
 	inc a
@@ -53756,7 +53756,7 @@ asm_4a54d: ; 4a54d (12:654d)
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call PlaceString
 	jp Function4a5b0
 
@@ -53768,7 +53768,7 @@ Function4a5b0: ; 4a5b0 (12:65b0)
 	ld [hl], b
 	ld b, $a
 	ld c, $1
-	ld hl, $c4b7
+	hlcoord 3, 1
 	call ClearBox
 	jp Function4a545
 ; 4a5c5 (12:65c5)
@@ -54571,7 +54571,7 @@ Function4aab6: ; 4aab6
 	jr z, .asm_4aad2
 	push de
 	push hl
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld bc, $0028
 	call AddNTimes
 	ld [hl], $ec
@@ -54803,12 +54803,12 @@ Function4abc3: ; 4abc3
 	ld [$cfaa], a
 
 .asm_4ac29
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld bc, $0d01
 	call ClearBox
 	call Function4aab6
 	ld a, [PartyCount]
-	ld hl, $c4ba
+	hlcoord 6, 1
 .asm_4ac3b
 	ld bc, $0028
 	add hl, bc
@@ -54835,7 +54835,7 @@ Function4abc3: ; 4abc3
 
 Function4ac58: ; 4ac58
 	ld bc, $0212
-	ld hl, $c5cd
+	hlcoord 1, 15
 	call ClearBox
 	callba Function8ea4a
 	ld hl, MenuDataHeader_0x4aca2
@@ -54843,17 +54843,17 @@ Function4ac58: ; 4ac58
 	ld hl, $d019
 	bit 1, [hl]
 	jr z, .asm_4ac89
-	ld hl, $c5af
+	hlcoord 11, 13
 	ld b, $3
 	ld c, $7
 	call TextBox
-	ld hl, $c5c5
+	hlcoord 13, 14
 	ld de, String_4ada7
 	call PlaceString
 	jr .asm_4ac96
 
 .asm_4ac89
-	ld hl, $c55f
+	hlcoord 11, 9
 	ld b, $7
 	ld c, $7
 	call TextBox
@@ -54992,17 +54992,17 @@ Function4ad67: ; 4ad67
 ; 4ad68
 
 Function4ad68: ; 4ad68
-	ld hl, $c59d
+	hlcoord 13, 12
 	ld de, String_4ad88
 	call PlaceString
 	call Function4adb2
 	jr c, .asm_4ad7e
-	ld hl, $c575
+	hlcoord 13, 10
 	ld de, String_4ada0
 	jr .asm_4ad84
 
 .asm_4ad7e
-	ld hl, $c575
+	hlcoord 13, 10
 	ld de, String_4ad9a
 
 .asm_4ad84
@@ -55997,7 +55997,7 @@ UnknownText_0x4d463: ; 0x4d463
 ; 0x4d468
 
 Function4d468: ; 4d468
-	ld hl, $c5da
+	hlcoord 14, 15
 	ld de, StringBuffer2
 	ld c, $5
 .asm_4d470
@@ -56007,11 +56007,11 @@ Function4d468: ; 4d468
 	inc de
 	dec c
 	jr nz, .asm_4d470
-	ld hl, $c5ee
+	hlcoord 14, 16
 	ld bc, $0005
 	ld a, $7f
 	call ByteFill
-	ld hl, $c5ee
+	hlcoord 14, 16
 	ld a, [$d08b]
 	ld e, a
 	ld d, $0
@@ -56311,7 +56311,7 @@ Function4d81e: ; 4d81e
 	callba Function294c0
 	ld a, [PlayerLightScreenCount]
 	ld [CurPartySpecies], a
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld d, $0
 	ld e, $3
 	ld a, $47
@@ -57358,25 +57358,25 @@ Function4deea: ; 4deea (13:5eea)
 	ld a, [CurBaseData] ; $d236 (aliases: BaseDexNo)
 	ld [$d265], a
 	ld [CurSpecies], a ; $cf60
-	ld hl, $c4a8
+	hlcoord 8, 0
 	ld [hl], "№"
 	inc hl
 	ld [hl], "."
 	inc hl
-	ld hl, $c4aa
+	hlcoord 10, 0
 	ld bc, $8103
 	ld de, $d265
 	call PrintNum
-	ld hl, $c4ae
+	hlcoord 14, 0
 	call PrintLevel
 	ld hl, Unknown_4df77
 	call Function4e528
 	call Function4e505
-	ld hl, $c4d0
+	hlcoord 8, 2
 	call PlaceString
-	ld hl, $c4b2
+	hlcoord 18, 0
 	call Function4df66
-	ld hl, $c4f9
+	hlcoord 9, 4
 	ld a, $f3
 	ld [hli], a
 	ld a, [CurBaseData] ; $d236 (aliases: BaseDexNo)
@@ -57412,7 +57412,7 @@ Function4df66: ; 4df66 (13:5f66)
 	callba GetGender
 	pop hl
 	ret c
-	ld a, "♂""
+	ld a, "♂"
 	jr nz, .asm_4df75
 	ld a, "♀"
 .asm_4df75
@@ -57421,12 +57421,29 @@ Function4df66: ; 4df66 (13:5f66)
 ; 4df77 (13:5f77)
 
 Unknown_4df77: ; 4df77
-INCBIN "baserom.gbc",$4df77,$4df8f - $4df77
+	dw $de41
+	dw $d3ea
+	dw $b082
+	dw $d002
+; 4df7f
+
+Function4df7f: ; 4df7f
+	hlcoord 7, 0
+	ld bc, 20
+	ld d, 18
+.asm_4df87
+	ld a, $31
+	ld [hl], a
+	add hl, bc
+	dec d
+	jr nz, .asm_4df87
+	ret
+; 4df8f
 
 ; known jump sources: 4df3b (13:5f3b), 4e348 (13:6348)
 Function4df8f: ; 4df8f (13:5f8f)
-	ld hl, $c52c
-	ld b, $14
+	hlcoord 0, 7
+	ld b, 20
 	ld a, $62
 .asm_4df96
 	ld [hli], a
@@ -57436,9 +57453,9 @@ Function4df8f: ; 4df8f (13:5f8f)
 
 ; known jump sources: 4df3e (13:5f3e)
 Function4df9b: ; 4df9b (13:5f9b)
-	ld hl, $c524
+	hlcoord 12, 6
 	ld [hl], $71
-	ld hl, $c52b
+	hlcoord 19, 6
 	ld [hl], $ed
 	ret
 
@@ -57447,7 +57464,7 @@ Function4dfa6: ; 4dfa6 (13:5fa6)
 	ld bc, TempMonDVs ; $d123
 	callba CheckShininess
 	ret nc
-	ld hl, $c4b3
+	hlcoord 19, 0
 	ld [hl], $3f
 	ret
 
@@ -57476,7 +57493,7 @@ Function4dfda: ; 4dfda (13:5fda)
 	and $3
 	ld c, a
 	call Function4e4cd
-	ld hl, $c540
+	hlcoord 0, 8
 	ld bc, $a14
 	call ClearBox
 	ret
@@ -57510,14 +57527,14 @@ Jumptable_4e00d: ; 4e00d (13:600d)
 
 ; no known jump sources
 Function4e013: ; 4e013 (13:6013)
-	ld hl, $c554
+	hlcoord 0, 9
 	ld b, $0
 	ld a, $26
 	call Predef
-	ld hl, $c55c
+	hlcoord 8, 9
 	ld [hl], $41
 	ld de, String_4e119
-	ld hl, $c590
+	hlcoord 0, 12
 	call PlaceString
 	ld a, [$d12a]
 	ld b, a
@@ -57526,13 +57543,13 @@ Function4e013: ; 4e013 (13:6013)
 	ld a, b
 	and $f0
 	jr z, .asm_4e03d
-	ld hl, $c548
+	hlcoord 8, 8
 	ld [hl], $e8
 .asm_4e03d
 	ld a, [MonType] ; $cf5f
 	cp $2
 	jr z, .asm_4e060
-	ld hl, $c5aa
+	hlcoord 6, 13
 	push hl
 	ld de, TempMonStatus ; $d12e
 	ld a, $45
@@ -57542,17 +57559,17 @@ Function4e013: ; 4e013 (13:6013)
 	jr .asm_4e060
 .asm_4e055
 	ld de, String_4e142
-	ld hl, $c5a5
+	hlcoord 1, 13
 	call PlaceString
 	jr .asm_4e066
 .asm_4e060
 	ld de, String_4e127
 	call PlaceString
 .asm_4e066
-	ld hl, $c5cd
+	hlcoord 1, 15
 	ld a, $2c
 	call Predef
-	ld hl, $c549
+	hlcoord 9, 8
 	ld de, $14
 	ld b, $a
 	ld a, $31
@@ -57562,34 +57579,34 @@ Function4e013: ; 4e013 (13:6013)
 	dec b
 	jr nz, .asm_4e078
 	ld de, String_4e12b
-	ld hl, $c55e
+	hlcoord 10, 9
 	call PlaceString
-	ld hl, $c5c9
+	hlcoord 17, 14
 	call Function4e0d3
-	ld hl, $c575
+	hlcoord 13, 10
 	ld bc, $307
 	ld de, TempMonExp ; $d116
 	call PrintNum
 	call Function4e0e7
-	ld hl, $c5b1
+	hlcoord 13, 13
 	ld bc, $307
 	ld de, Buffer1 ; $d1ea (aliases: MagikarpLength)
 	call PrintNum
 	ld de, String_4e136
-	ld hl, $c59a
+	hlcoord 10, 12
 	call PlaceString
 	ld de, String_4e13f
-	ld hl, $c5c6
+	hlcoord 14, 14
 	call PlaceString
-	ld hl, $c5eb
+	hlcoord 11, 16
 	ld a, [TempMonLevel] ; $d12d
 	ld b, a
 	ld de, $d118
 	ld a, $17
 	call Predef
-	ld hl, $c5ea
+	hlcoord 10, 16
 	ld [hl], $40
-	ld hl, $c5f3
+	hlcoord 19, 16
 	ld [hl], $41
 	ret
 
@@ -57666,24 +57683,24 @@ String_4e142: ; 4e142
 ; no known jump sources
 Function4e147: ; 4e147 (13:6147)
 	ld de, String_4e1a0
-	ld hl, $c540
+	hlcoord 0, 8
 	call PlaceString
 	call Function4e189
-	ld hl, $c548
+	hlcoord 8, 8
 	call PlaceString
 	ld de, String_4e1a9
-	ld hl, $c568
+	hlcoord 0, 10
 	call PlaceString
 	ld hl, TempMonMoves ; $d110 (aliases: TempMonMove1)
 	ld de, $d25e
 	ld bc, $4
 	call CopyBytes
-	ld hl, $c570
+	hlcoord 8, 10
 	ld a, $28
 	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
 	ld a, $20
 	call Predef
-	ld hl, $c588
+	hlcoord 12, 11
 	ld a, $28
 	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
 	ld a, $23
@@ -57719,7 +57736,7 @@ String_4e1a9: ; 4e1a9
 ; no known jump sources
 Function4e1ae: ; 4e1ae (13:61ae)
 	call Function4e1cc
-	ld hl, $c54a
+	hlcoord 10, 8
 	ld de, $14
 	ld b, $a
 	ld a, $31
@@ -57728,7 +57745,7 @@ Function4e1ae: ; 4e1ae (13:61ae)
 	add hl, de
 	dec b
 	jr nz, .asm_4e1bb
-	ld hl, $c54b
+	hlcoord 11, 8
 	ld bc, $6
 	ld a, $28
 	call Predef
@@ -57737,12 +57754,12 @@ Function4e1ae: ; 4e1ae (13:61ae)
 ; known jump sources: 4e1ae (13:61ae)
 Function4e1cc: ; 4e1cc (13:61cc)
 	ld de, IDNoString
-	ld hl, $c554
+	hlcoord 0, 9
 	call PlaceString
 	ld de, OTString
-	ld hl, $c590
+	hlcoord 0, 12
 	call PlaceString
-	ld hl, $c56a
+	hlcoord 2, 10
 	ld bc, $8205
 	ld de, TempMonID ; $d114
 	call PrintNum
@@ -57750,7 +57767,7 @@ Function4e1cc: ; 4e1cc (13:61cc)
 	call Function4e528
 	call Function4e505
 	callba CheckNickErrors
-	ld hl, $c5a6
+	hlcoord 2, 13
 	call PlaceString
 	ld a, [$d12c]
 	and a
@@ -57762,7 +57779,7 @@ Function4e1cc: ; 4e1cc (13:61cc)
 	jr z, .asm_4e211
 	ld a, "♀"
 .asm_4e211
-	ld hl, $c5ad
+	hlcoord 9, 13
 	ld [hl], a
 .asm_4e215
 	ret
@@ -58075,23 +58092,23 @@ Function4e497: ; 4e497 (13:6497)
 
 ; known jump sources: 4dfe0 (13:5fe0)
 Function4e4cd: ; 4e4cd (13:64cd)
-	ld hl, $c511
+	hlcoord 13, 5
 	ld a, $36
 	call Function4e4f7
-	ld hl, $c513
+	hlcoord 15, 5
 	ld a, $36
 	call Function4e4f7
-	ld hl, $c515
+	hlcoord 17, 5
 	ld a, $36
 	call Function4e4f7
 	ld a, c
 	cp $2
 	ld a, $3a
-	ld hl, $c511
+	hlcoord 13, 5
 	jr c, Function4e4f7
-	ld hl, $c513
+	hlcoord 15, 5
 	jr z, Function4e4f7
-	ld hl, $c515
+	hlcoord 17, 5
 
 ; known jump sources: 4e4d2 (13:64d2), 4e4da (13:64da), 4e4e2 (13:64e2), 4e4ed (13:64ed), 4e4f2 (13:64f2)
 Function4e4f7: ; 4e4f7 (13:64f7)
@@ -58375,7 +58392,7 @@ _EvolutionAnimation: ; 4e607
 
 	ld a, [PlayerHPPal]
 	ld [CurPartySpecies], a
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld d, $0
 	ld e, $4
 	ld a, $47
@@ -58416,7 +58433,7 @@ Function4e703: ; 4e703
 
 Function4e708: ; 4e708
 	call GetBaseData
-	ld hl, $c4cf
+	hlcoord 7, 2
 	jp Function3786
 ; 4e711
 
@@ -58472,7 +58489,7 @@ Function4e755: ; 4e755
 	push bc
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld bc, $0707
 	ld de, $000d
 .asm_4e762
@@ -58928,7 +58945,7 @@ Function4ea0a: ; 4ea0a
 	ld a, $1
 	ld [rSVBK], a
 	ld bc, $cd53
-	ld de, $c5b9
+	decoord 1, 14
 	callba Function11c0c6
 	pop af
 	ld [rSVBK], a
@@ -59084,7 +59101,7 @@ Jumptable_50089: ; 50089
 ; 5009b
 
 Function5009b: ; 5009b
-	ld hl, $c4b7
+	hlcoord 3, 1
 	ld a, [PartyCount]
 	and a
 	jr z, .asm_500bf
@@ -59128,7 +59145,7 @@ Function500cf: ; 500cf
 	ret z
 	ld c, a
 	ld b, $0
-	ld hl, $c4d3
+	hlcoord 11, 2
 .asm_500de
 	push bc
 	push hl
@@ -59198,7 +59215,7 @@ Function50138: ; 50138
 	ret z
 	ld c, a
 	ld b, $0
-	ld hl, $c4c1
+	hlcoord 13, 1
 .asm_50143
 	push bc
 	push hl
@@ -59239,8 +59256,8 @@ Function50176: ; 50176
 	and a
 	ret z
 	ld c, a
-	ld b, $0
-	ld hl, $c4d0
+	ld b, 0
+	hlcoord 8, 2
 .asm_50181
 	push bc
 	push hl
@@ -59248,26 +59265,25 @@ Function50176: ; 50176
 	jr z, .asm_501a7
 	push hl
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Level
 	call AddNTimes
 	ld e, l
 	ld d, h
 	pop hl
 	ld a, [de]
-	cp $64
+	cp 100 ; This is distinct from MAX_LEVEL.
 	jr nc, .asm_501a1
-	ld a, $6e
+	ld a, LV_CHAR
 	ld [hli], a
 	ld bc, $4102
-
 .asm_501a1
 	ld bc, $4103
 	call PrintNum
 
 .asm_501a7
 	pop hl
-	ld de, $0028
+	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
@@ -59281,8 +59297,8 @@ Function501b2: ; 501b2
 	and a
 	ret z
 	ld c, a
-	ld b, $0
-	ld hl, $c4cd
+	ld b, 0
+	hlcoord 5, 2
 .asm_501bd
 	push bc
 	push hl
@@ -59290,7 +59306,7 @@ Function501b2: ; 501b2
 	jr z, .asm_501d5
 	push hl
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Status
 	call AddNTimes
 	ld e, l
@@ -59300,7 +59316,7 @@ Function501b2: ; 501b2
 
 .asm_501d5
 	pop hl
-	ld de, $0028
+	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
@@ -59314,8 +59330,8 @@ Function501e0: ; 501e0
 	and a
 	ret z
 	ld c, a
-	ld b, $0
-	ld hl, $c4d4
+	ld b, 0
+	hlcoord 12, 2
 .asm_501eb
 	push bc
 	push hl
@@ -59324,7 +59340,7 @@ Function501e0: ; 501e0
 	push hl
 	ld hl, PartySpecies
 	ld e, b
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	ld [CurPartySpecies], a
@@ -59336,7 +59352,7 @@ Function501e0: ; 501e0
 
 .asm_5020a
 	pop hl
-	ld de, $0028
+	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
@@ -59372,7 +59388,7 @@ Function5022f: ; 5022f
 	ret z
 	ld c, a
 	ld b, 0
-	ld hl, $c4d4
+	hlcoord 12, 2
 .asm_5023a
 	push bc
 	push hl
@@ -59456,7 +59472,7 @@ Function502b1: ; 502b1
 	ret z
 	ld c, a
 	ld b, 0
-	ld hl, $c4d4
+	hlcoord 12, 2
 .asm_502bc
 	push bc
 	push hl
@@ -59509,7 +59525,7 @@ Function50307: ; 50307
 	ret z
 	ld c, a
 	ld b, 0
-	ld hl, $c4c0
+	hlcoord 12, 1
 .asm_50312
 	push bc
 	push hl
@@ -59538,7 +59554,7 @@ Function50307: ; 50307
 .asm_5033b
 	push hl
 	push bc
-	ld hl, $c4c0
+	hlcoord 12, 1
 .asm_50340
 	and a
 	jr z, .asm_5034a
@@ -59767,7 +59783,7 @@ PartyMenuSelect: ; 0x50457
 
 
 PrintPartyMenuText: ; 5049a
-	ld hl, $c5b8
+	hlcoord 0, 14
 	ld bc, $0212
 	call TextBox
 	ld a, [PartyCount]
@@ -59791,7 +59807,7 @@ PrintPartyMenuText: ; 5049a
 	push af
 	set 4, a ; disable text delay
 	ld [Options], a
-	ld hl, $c5e1 ; Coord
+	hlcoord 1, 16 ; Coord
 	call PlaceString
 	pop af
 	ld [Options], a
@@ -61187,7 +61203,7 @@ Function50e1b: ; 50e1b
 .asm_50e26
 	inc d
 	ld a, d
-	cp MAX_LEVEL + 1
+	cp (MAX_LEVEL + 1) % $100
 	jr z, .asm_50e45
 	call Function50e47
 	push hl
@@ -61344,13 +61360,13 @@ Function50eed: ; 50eed
 GrowthRates: ; 50efa
 
 growth_rate: MACRO
-; [1]/[2]*n^3 + [3]*n^2 + [4]*n - [5]
+; [1]/[2]*n**3 + [3]*n**2 + [4]*n - [5]
 	dn \1, \2
-	IF \3 & $80 ; signed
-		db ((\3 ^ $ff) + 1) | $80
-	ELSE
+	if \3 & $80 ; signed
+		db -\3 | $80
+	else
 		db \3
-	ENDC
+	endc
 	db \4, \5
 ENDM
 
@@ -61383,7 +61399,7 @@ Function50f12:
 ; known jump sources: 50f2a (14:4f2a), 50f30 (14:4f30)
 Function50f34: ; 50f34 (14:4f34)
 	push af
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld bc, $28
 	call AddNTimes
 	ld bc, $28
@@ -62132,10 +62148,10 @@ Function513e0: ; 513e0
 ; 51424
 
 BaseData::
-INCLUDE "stats/base_stats.asm"
+INCLUDE "data/base_stats.asm"
 
 PokemonNames::
-INCLUDE "stats/pokemon_names.asm"
+INCLUDE "data/pokemon_names.asm"
 
 INCBIN "baserom.gbc",$53d84,$53d9c - $53d84
 
@@ -63611,15 +63627,15 @@ Function81adb: ; 81adb
 	ld bc, $0168
 	ld a, $6f
 	call ByteFill
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld bc, $0712
 	ld a, $6c
 	call Function81efc
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld bc, $0203
 	ld a, $6d
 	call Function81efc
-	ld hl, $c4b0
+	hlcoord 16, 0
 	ld bc, $0203
 	ld a, $6e
 	call Function81efc
@@ -63629,7 +63645,7 @@ Function81adb: ; 81adb
 	inc a
 	ld [CurPartySpecies], a
 	ld [$d265], a
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld de, $d265
 	ld bc, $8103
 	call PrintNum
@@ -63639,18 +63655,18 @@ Function81adb: ; 81adb
 	ld a, $1
 	ld [UnownLetter], a
 	call GetPokemonName
-	ld hl, $c4b8
+	hlcoord 4, 1
 	call PlaceString
 	xor a
 	ld [$c2c6], a
-	ld hl, $c4e8
+	hlcoord 12, 3
 	call Function378b
 	ld de, $9310
 	ld a, $3d
 	call Predef
 	ld a, $31
 	ld [$ffad], a
-	ld hl, $c4f2
+	hlcoord 2, 4
 	ld bc, $0606
 	ld a, $13
 	call Predef
@@ -63664,9 +63680,9 @@ Function81adb: ; 81adb
 	ld de, String_81bb4
 
 .asm_81b69
-	ld hl, $c5fb
+	hlcoord 7, 17
 	call PlaceString
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld de, String_81bb9
 	call PlaceString
 	jr .asm_81ba9
@@ -63676,14 +63692,14 @@ Function81adb: ; 81adb
 	ld [TrainerClass], a
 	callab Function3957b
 	ld de, StringBuffer1
-	ld hl, $c4b8
+	hlcoord 4, 1
 	call PlaceString
 	ld de, VTiles2
 	callab Function5120d
 	xor a
 	ld [TempEnemyMonSpecies], a
 	ld [$ffad], a
-	ld hl, $c4de
+	hlcoord 2, 3
 	ld bc, $0707
 	ld a, $13
 	call Predef
@@ -63701,15 +63717,15 @@ String_81bb9: db $7a, "きりかえ▶@" ; (A) switches
 
 Function81bc0: ; 81bc0
 	ld de, $ceb5
-	ld hl, $c57e
+	hlcoord 2, 11
 	ld a, $1
 	call Function81bde
 	ld de, $cedd
-	ld hl, $c5a6
+	hlcoord 2, 13
 	ld a, $2
 	call Function81bde
 	ld de, $cf05
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld a, $3
 
 Function81bde: ; 81bde
@@ -63776,10 +63792,10 @@ Function81c33: ; 81c33
 	ld de, EnemyMoveAnimation
 	ld c, $1
 	call Function81ee3
-	ld hl, $c4d2
+	hlcoord 10, 2
 	ld de, EnemyMoveAnimation
 	call Function81ca7
-	ld hl, $c4d7
+	hlcoord 15, 2
 	ld de, EnemyMovePower
 	call Function81ca7
 	ld a, $1
@@ -63812,10 +63828,10 @@ Function81c33: ; 81c33
 	ld [hl], a
 	ld hl, $cda9
 	call Function81f0c
-	ld hl, $c4d2
+	hlcoord 10, 2
 	ld de, EnemyMoveAnimation
 	call Function81ca7
-	ld hl, $c4d7
+	hlcoord 15, 2
 	ld de, EnemyMovePower
 	call Function81ca7
 	ld a, $3
@@ -63989,11 +64005,11 @@ Function81d89: ; 81d89
 ; 81d8e
 
 Function81d8e: ; 81d8e
-	ld hl, $c568
+	hlcoord 0, 10
 	ld bc, $00a0
 	ld a, $6f
 	call ByteFill
-	ld hl, $c592
+	hlcoord 2, 12
 	ld de, String_81fcd
 	call PlaceString
 	xor a
@@ -64062,13 +64078,13 @@ Function81dc7: ; 81dc7
 ; 81df4
 
 Function81df4: ; 81df4
-	ld hl, $c586
+	hlcoord 10, 11
 	call Function81e5e
-	ld hl, $c59a
+	hlcoord 10, 12
 	call Function81e5e
-	ld hl, $c5ae
+	hlcoord 10, 13
 	call Function81e5e
-	ld hl, $c5c2
+	hlcoord 10, 14
 	call Function81e5e
 	ld a, [$d004]
 	inc a
@@ -64078,7 +64094,7 @@ Function81df4: ; 81df4
 	ld a, [$d265]
 	ld [$d262], a
 	call GetMoveName
-	ld hl, $c59a
+	hlcoord 10, 12
 	call PlaceString
 	ld a, [$d004]
 	call Function81e55
@@ -64092,7 +64108,7 @@ Function81df4: ; 81df4
 	ld de, String_81e4d
 
 .asm_81e3f
-	ld hl, $c5c2
+	hlcoord 10, 14
 	call PlaceString
 	ret
 ; 81e46
@@ -64304,15 +64320,15 @@ Function81f1d: ; 81f1d
 
 Function81f5e: ; 81f5e
 	ld a, $6f
-	ld hl, $c4aa
+	hlcoord 10, 0
 	ld [hl], a
-	ld hl, $c4af
+	hlcoord 15, 0
 	ld [hl], a
-	ld hl, $c57d
+	hlcoord 1, 11
 	ld [hl], a
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld [hl], a
-	ld hl, $c5cd
+	hlcoord 1, 15
 	ld [hl], a
 	ld a, [$cf63]
 	cp $3
@@ -64321,7 +64337,7 @@ Function81f5e: ; 81f5e
 	and a
 	jr z, .asm_81f8d
 	dec a
-	ld hl, $c57d
+	hlcoord 1, 11
 	ld bc, $0028
 	call AddNTimes
 	ld [hl], $ed
@@ -64330,11 +64346,11 @@ Function81f5e: ; 81f5e
 	ld a, [$cf65]
 	and a
 	jr z, .asm_81f98
-	ld hl, $c4af
+	hlcoord 15, 0
 	jr .asm_81f9b
 
 .asm_81f98
-	ld hl, $c4aa
+	hlcoord 10, 0
 
 .asm_81f9b
 	ld [hl], $ed
@@ -64465,11 +64481,11 @@ Function821de: ; 821de
 ; 821f4
 
 Function821f4: ; 821f4
-	ld hl, $c4f2
+	hlcoord 2, 4
 	call Function82203
-	ld hl, $c51a
+	hlcoord 2, 6
 	call Function82203
-	ld hl, $c542
+	hlcoord 2, 8
 
 Function82203: ; 82203
 	ld a, $6a
@@ -64577,16 +64593,16 @@ Function822a3: ; 822a3
 	ld hl, EnemyMoveAnimation
 	ld bc, $0008
 	call CopyBytes
-	ld hl, $c4a1
+	hlcoord 1, 0
 	ld de, EnemyMoveAnimation
 	call Function81ca7
-	ld hl, $c4a6
+	hlcoord 6, 0
 	ld de, EnemyMovePower
 	call Function81ca7
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld de, EnemyMoveAccuracy
 	call Function81ca7
-	ld hl, $c4b0
+	hlcoord 16, 0
 	ld de, EnemyMoveEffectChance
 	call Function81ca7
 	pop af
@@ -65931,7 +65947,7 @@ Function84785: ; 84785
 	push af
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c504
+	hlcoord 0, 5
 	ld bc, $0a12
 	call TextBox
 	pop af
@@ -65943,10 +65959,10 @@ Function84785: ; 84785
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $c52d
+	hlcoord 1, 7
 	ld a, $77
 	call Function13d4
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld de, String_847f5
 	call PlaceString
 	ld a, $1
@@ -65963,7 +65979,7 @@ Function847bd: ; 847bd
 	push af
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c4f2
+	hlcoord 2, 4
 	ld bc, $0d10
 	call ClearBox
 	pop af
@@ -65975,10 +65991,10 @@ Function847bd: ; 847bd
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $c530
+	hlcoord 4, 7
 	ld a, BANK(GBPrinterStrings)
 	call Function13d4
-	ld hl, $c5d0
+	hlcoord 4, 15
 	ld de, String_847f5
 	call PlaceString
 	ld a, $1
@@ -66018,7 +66034,7 @@ Function84817: ; 84817 (21:4817)
 	call ByteFill
 	call Function849e9
 	call Function849d7
-	ld hl, $c4e0
+	hlcoord 4, 3
 	ld de, String_84865
 	call PlaceString
 	ld a, [MovementBuffer] ; $d007
@@ -66027,11 +66043,11 @@ Function84817: ; 84817 (21:4817)
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, $c50a
+	hlcoord 6, 5
 	call PlaceString
 	ld a, $1
 	call Function849c6
-	ld hl, $c556
+	hlcoord 2, 9
 	ld c, $3
 	call Function848e7
 	ret
@@ -66054,7 +66070,7 @@ Function8486f: ; 8486f (21:486f)
 	ret nz
 	ld a, $4
 	call Function849c6
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld c, $6
 	call Function848e7
 	ret
@@ -66072,7 +66088,7 @@ Function84893: ; 84893 (21:4893)
 	ret nz
 	ld a, $a
 	call Function849c6
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld c, $6
 	call Function848e7
 	ret
@@ -66084,7 +66100,7 @@ Function848b7: ; 848b7 (21:48b7)
 	ld a, $7f
 	call ByteFill
 	call Function84a0e
-	ld hl, $c5cd
+	hlcoord 1, 15
 	ld bc, $212
 	call ClearBox
 	call Function849e9
@@ -66094,7 +66110,7 @@ Function848b7: ; 848b7 (21:48b7)
 	ret nz
 	ld a, $10
 	call Function849c6
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld c, $5
 	call Function848e7
 	ret
@@ -66276,7 +66292,7 @@ Function849e9: ; 849e9 (21:49e9)
 
 ; known jump sources: 848d1 (21:48d1)
 Function849fc: ; 849fc (21:49fc)
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld a, $7d
 	ld [hli], a
 	ld a, $7a
@@ -66291,7 +66307,7 @@ Function849fc: ; 849fc (21:49fc)
 
 ; known jump sources: 84826 (21:4826), 8487a (21:487a), 8489e (21:489e), 848c2 (21:48c2)
 Function84a0e: ; 84a0e (21:4a0e)
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld c, $6
 .asm_84a13
 	push bc
@@ -66438,10 +66454,10 @@ Function864c3: ; 864c3
 Function8650c: ; 8650c
 	call Function86748
 	ld de, String_8652c
-	ld hl, $c4c9
+	hlcoord 1, 2
 	call PlaceString
 	call WaitBGMap
-	ld de, $c50a
+	decoord 6, 5
 	ld c, $6
 	ld a, $49
 	call Predef
@@ -66562,7 +66578,7 @@ Function865b5: ; 865b5
 	call Predef
 	ld a, $31
 	ld [$ffad], a
-	ld hl, $c51e
+	hlcoord 6, 6
 	ld bc, $0606
 	ld a, $13
 	call Predef
@@ -66583,7 +66599,7 @@ Function865b5: ; 865b5
 	ld bc, $0168
 	ld a, $7f
 	call ByteFill
-	ld hl, $c50a
+	hlcoord 6, 5
 	call Function378b
 	call WaitBGMap
 	xor a
@@ -66691,20 +66707,20 @@ Function86692: ; 86692
 	cp 200 + 1
 	jr c, .asm_866c6
 	ld de, String_866fc
-	ld hl, $c4c9
+	hlcoord 1, 2
 	call PlaceString
-	ld hl, $c4d5
+	hlcoord 13, 2
 	jr .asm_866de
 
 .asm_866c6
 	ld de, String_8670c
-	ld hl, $c4c9
+	hlcoord 1, 2
 	call PlaceString
-	ld hl, $c4ca
+	hlcoord 2, 2
 	ld de, EnemyMoveAnimation
 	ld bc, $0103
 	call PrintNum
-	ld hl, $c4d3
+	hlcoord 11, 2
 
 .asm_866de
 	ld de, String_866fb
@@ -66713,7 +66729,7 @@ Function86692: ; 86692
 	ld b, $1a
 	call GetSGBLayout
 	call Function32f9
-	ld de, $c50a
+	decoord 6, 5
 	ld c, $6
 	ld a, $49
 	call Predef
@@ -66788,7 +66804,7 @@ Function86748: ; 86748
 	ld hl, TileMap
 	ld bc, $0312
 	call TextBox
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $0412
 	call TextBox
 	ld a, [TempMonSpecies]
@@ -66799,21 +66815,21 @@ Function86748: ; 86748
 	call Predef
 	xor a
 	ld [$c2c6], a
-	ld hl, $c50a
+	hlcoord 6, 5
 	call Function378b
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_867f8
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld a, $74
 	ld [hli], a
 	ld [hl], $f2
-	ld hl, $c5a7
+	hlcoord 3, 13
 	ld de, $d265
 	ld bc, $8103
 	call PrintNum
 	call GetBasePokemonName
-	ld hl, $c5ab
+	hlcoord 7, 13
 	call PlaceString
 	ld a, $3
 	ld [MonType], a
@@ -66825,24 +66841,24 @@ Function86748: ; 86748
 	ld a, $f5
 
 .asm_867e2
-	ld hl, $c5b6
+	hlcoord 18, 13
 	ld [hli], a
-	ld hl, $c5c0
+	hlcoord 8, 14
 	ld a, $f3
 	ld [hli], a
 	ld de, StringBuffer2
 	call PlaceString
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call PrintLevel
 
 .asm_867f8
-	ld hl, $c5e7
+	hlcoord 7, 16
 	ld a, $73
 	ld [hli], a
 	ld a, $74
 	ld [hli], a
 	ld [hl], $f3
-	ld hl, $c5ea
+	hlcoord 10, 16
 	ld de, TempMonID
 	ld bc, $8205
 	call PrintNum
@@ -68590,7 +68606,7 @@ Function89655: ; 89655
 Function8966c: ; 8966c
 	push bc
 	call Function89688
-	ld hl, $c4a4
+	hlcoord 4, 0
 	ld c, $8
 	call Function896f5
 	pop bc
@@ -68602,7 +68618,7 @@ Function8966c: ; 8966c
 Function8967a: ; 8967a (22:567a)
 	push bc
 	call Function89688
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld c, $c
 	call Function896f5
 	pop bc
@@ -68906,7 +68922,7 @@ Function897d5: ; 897d5
 .asm_897f3
 	ld a, $37
 	ld [$ffad], a
-	ld hl, $c4e8
+	hlcoord 12, 3
 	ld bc, $0707
 	ld a, $13
 	call Predef
@@ -68980,7 +68996,7 @@ Function89856: ; 89856
 	call Function898f3
 	push bc
 	ld bc, $d008
-	ld hl, $c56a
+	hlcoord 2, 10
 	call Function89975
 	pop bc
 	call Function897d5
@@ -68994,15 +69010,15 @@ Function8987f: ; 8987f (22:587f)
 	call Function895f2
 	call Function8967a
 	call Function899d3
-	ld hl, $c4b9
+	hlcoord 5, 1
 	call Function8999c
-	ld hl, $c4e9
+	hlcoord 13, 3
 	call Function89829
 	call Function899b2
-	ld hl, $c509
+	hlcoord 5, 5
 	call Function899c9
 	ld bc, $d008
-	ld hl, $c56a
+	hlcoord 2, 10
 	call Function89975
 	ret
 
@@ -69011,7 +69027,7 @@ Function898aa: ; 898aa
 	and a
 	ret z
 	push bc
-	ld hl, $c4ba
+	hlcoord 6, 1
 	ld de, MenuSelection
 	ld bc, $8102
 	call PrintNum
@@ -69028,7 +69044,7 @@ Function898be: ; 898be
 	ld de, String_89116
 
 .asm_898cd
-	ld hl, $c4bd
+	hlcoord 9, 1
 	ld a, [MenuSelection]
 	and a
 	jr nz, .asm_898d7
@@ -69051,7 +69067,7 @@ Function898dc: ; 898dc
 	ld de, String_89116
 
 .asm_898eb
-	ld hl, $c4f6
+	hlcoord 6, 4
 	call PlaceString
 	pop bc
 	ret
@@ -69065,13 +69081,13 @@ Function898f3: ; 898f3
 	ld e, l
 	call Function8934a
 	jr c, .asm_8990a
-	ld hl, $c509
+	hlcoord 5, 5
 	ld bc, $8205
 	call PrintNum
 	jr .asm_89913
 
 .asm_8990a
-	ld hl, $c509
+	hlcoord 5, 5
 	ld de, String_89116
 	call PlaceString
 
@@ -69222,7 +69238,7 @@ Function899b2: ; 899b2 (22:59b2)
 .asm_899bf
 	ld de, String_89116
 .asm_899c2
-	ld hl, $c4f6
+	hlcoord 6, 4
 	call PlaceString
 	ret
 
@@ -69234,19 +69250,19 @@ Function899c9: ; 899c9 (22:59c9)
 	ret
 
 Function899d3: ; 899d3
-	ld hl, $c4f1
+	hlcoord 1, 4
 	call Function89753
-	ld hl, $c506
+	hlcoord 2, 5
 	call Function8975b
-	ld hl, $c555
+	hlcoord 1, 9
 	call Function89771
-	ld hl, $c57d
+	hlcoord 1, 11
 	call Function8977a
-	ld hl, $c505
+	hlcoord 1, 5
 	call Function89797
-	ld hl, $c4f2
+	hlcoord 2, 4
 	call Function89962
-	ld hl, $c556
+	hlcoord 2, 9
 	call Function89915
 	ret
 ; 899fe
@@ -69283,7 +69299,7 @@ Function89a0c: ; 89a0c
 
 ; known jump sources: 8a729 (22:6729), 8a818 (22:6818), 8a8ac (22:68ac), 8a8fa (22:68fa), 8aab6 (22:6ab6), 8ab24 (22:6b24)
 Function89a23: ; 89a23 (22:5a23)
-	ld hl, $c57c
+	hlcoord 0, 11
 	ld b, $4
 	ld c, $12
 	call Function8921f
@@ -69291,14 +69307,14 @@ Function89a23: ; 89a23 (22:5a23)
 
 ; known jump sources: 8a6ee (22:66ee), 8a80d (22:680d), 8aa3d (22:6a3d)
 Function89a2e: ; 89a2e (22:5a2e)
-	ld hl, $c59b
+	hlcoord 11, 12
 	ld b, $2
 	ld c, $6
 	call TextBox
-	ld hl, $c5b1
+	hlcoord 13, 13
 	ld de, String_89a4e
 	call PlaceString
-	ld hl, $c5c5
+	hlcoord 13, 14
 	ld de, String_89a53
 	call PlaceString
 	call Function89655
@@ -70051,7 +70067,7 @@ Function89e6f: ; 89e6f (22:5e6f)
 	call Function89245
 	call Function89ee1
 	call Function89e9a
-	ld hl, $c4f7
+	hlcoord 7, 4
 	call Function8a58d
 	ld a, $5
 	ld hl, $ce30
@@ -70090,7 +70106,7 @@ Function89eb9: ; 89eb9 (22:5eb9)
 	call Function891fe
 	call Function89ee1
 	call Function89e9a
-	ld hl, $c4f7
+	hlcoord 7, 4
 	call Function8a58d
 	ld a, $5
 	ld hl, $ce30
@@ -70109,7 +70125,7 @@ Function89ee1: ; 89ee1 (22:5ee1)
 	call Function8923c
 	callba Function4a3a7
 	callba Function49384
-	ld hl, $c4a1
+	hlcoord 1, 0
 	call Function8a53d
 	ret
 
@@ -70316,7 +70332,7 @@ Function89ff6: ; 89ff6 (22:5ff6)
 	call CloseSRAM
 	call Function8987f
 	call Function89160
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld bc, $a007
 	call Function89a0c
 	call CloseSRAM
@@ -70366,7 +70382,7 @@ Function8a055: ; 8a055 (22:6055)
 	cp $b
 	jr nz, .asm_8a059
 	call Function8a0a1
-	ld hl, $c4fc
+	hlcoord 12, 4
 	call Function8a58d
 	ld a, $5
 	ld hl, $ce35
@@ -70538,7 +70554,7 @@ MenuDataHeader_0x8a176: ; 0x8a176
 
 ; known jump sources: 8a124 (22:6124)
 Function8a17b: ; 8a17b (22:617b)
-	ld de, $c4ae
+	decoord 14, 0
 	ld b, $5
 	ld c, $4
 	call Function89b3b
@@ -70571,11 +70587,11 @@ MenuData2_0x8a1a2: ; 0x8a1a2
 ; 0x8a1b0
 
 Function8a1b0: ; 8a1b0
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld a, [$cfa9]
 	ld de, Strings_8a1cc
 	dec a
@@ -70660,9 +70676,9 @@ Function8a262: ; 8a262 (22:6262)
 	call Function8923c
 	callba Function4a3a7
 	callba Function49384
-	ld hl, $c4a1
+	hlcoord 1, 0
 	call Function8a53d
-	ld hl, $c4fc
+	hlcoord 12, 4
 	call Function8a58d
 	ld a, $5
 	ld hl, $ce35
@@ -70758,9 +70774,9 @@ Function8a31c: ; 8a31c (22:631c)
 	call Function8923c
 	callba Function4a3a7
 	callba Function49384
-	ld hl, $c4a1
+	hlcoord 1, 0
 	call Function8a53d
-	ld hl, $c4fc
+	hlcoord 12, 4
 	call Function8a58d
 	call Function8a3b2
 	pop bc
@@ -70838,14 +70854,14 @@ Function8a3b2: ; 8a3b2 (22:63b2)
 	call Function8a4fc
 	call Function8a3df
 	jr nc, .asm_8a3ce
-	ld de, $c4c8
+	decoord 0, 2
 	ld b, $6
 	ld c, $9
 	call Function89b3b
 	ld hl, MenuDataHeader_0x8a435
 	jr .asm_8a3db
 .asm_8a3ce
-	ld de, $c4c8
+	decoord 0, 2
 	ld b, $8
 	ld c, $9
 	call Function89b3b
@@ -70920,11 +70936,11 @@ MenuData2_0x8a43d: ; 0x8a43d
 
 ; known jump sources: 8a354 (22:6354)
 Function8a453: ; 8a453 (22:6453)
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, String_8a476
 	ld a, [MenuSelection] ; $cf74
 	cp $ff
@@ -71245,7 +71261,7 @@ Function8a679: ; 8a679 (22:6679)
 	call Function89160
 	call Function8939a
 	call Function89856
-	ld hl, $c5a5
+	hlcoord 1, 13
 	call Function899fe
 	call Function891ab
 	call CloseSRAM
@@ -71323,7 +71339,7 @@ Function8a6cd: ; 8a6cd (22:66cd)
 	call Function8923c
 	call Function89448
 	call Function89a23
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld de, String_89135
 	call PlaceString
 	call WaitBGMap
@@ -71472,7 +71488,7 @@ Function8a818: ; 8a818 (22:6818)
 	ld hl, $d008
 	ld c, $8
 	call Function89193
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld de, .string_8a868
 	call PlaceString
 	call WaitBGMap
@@ -71492,7 +71508,7 @@ Function8a818: ; 8a818 (22:6818)
 .asm_8a87a
 	ld de, String_8911c
 .asm_8a87d
-	ld hl, $c5a5
+	hlcoord 1, 13
 	call PlaceString
 	call WaitBGMap
 	call Functiona36
@@ -71512,7 +71528,7 @@ Function8a8a1: ; 8a8a1 (22:68a1)
 	call CloseSRAM
 	jr nc, .asm_8a8bf
 	call Function89a23
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld de, String_89135
 	call PlaceString
 	ld a, $2
@@ -71537,7 +71553,7 @@ Function8a8c3: ; 8a8c3 (22:68c3)
 	call Function89856
 	call CloseSRAM
 	call Function891ab
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld de, String_8a919
 	call PlaceString
 	ld a, $2
@@ -71548,7 +71564,7 @@ Function8a8c3: ; 8a8c3 (22:68c3)
 	call CloseSRAM
 	call Function89a23
 	call Function8923c
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld de, String_8a926
 	call PlaceString
 	call WaitBGMap
@@ -71665,7 +71681,7 @@ MenuDataHeader_0x8a9c9: ; 0x8a9c9
 ; known jump sources: 8a9a1 (22:69a1)
 Function8a9ce: ; 8a9ce (22:69ce)
 	push bc
-	ld de, $c4fb
+	decoord 11, 4
 	ld b, $6
 	ld c, $6
 	call Function89b3b
@@ -71808,7 +71824,7 @@ Function8aab6: ; 8aab6 (22:6ab6)
 	ld de, $a603
 	ld c, $8
 	call Function89193
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld de, String_8aaf0
 	call PlaceString
 	call WaitBGMap
@@ -71825,7 +71841,7 @@ String_8aaf0: ; 8aaf0
 
 Function8ab00: ; 8ab00
 	ld de, String_8911c
-	ld hl, $c5a5
+	hlcoord 1, 13
 	call PlaceString
 	call WaitBGMap
 	call Function89235
@@ -71842,7 +71858,7 @@ Function8ab11: ; 8ab11 (22:6b11)
 	call CloseSRAM
 	jr z, .asm_8ab37
 	call Function89a23
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld de, String_89135
 	call PlaceString
 	ld a, $2
@@ -71870,7 +71886,7 @@ Function8ab3b: ; 8ab3b (22:6b3b)
 	call CloseSRAM
 	call Function8987f
 	call Function89160
-	ld hl, $c5a5
+	hlcoord 1, 13
 	ld bc, $a007
 	call Function89a0c
 	call CloseSRAM
@@ -71951,7 +71967,7 @@ Function8aba9: ; 8aba9
 	call Function89160
 	call Function8939a
 	call Function89856
-	ld hl, $c5a5
+	hlcoord 1, 13
 	call Function899fe
 	call CloseSRAM
 	call Function891ab
@@ -71962,11 +71978,11 @@ Function8aba9: ; 8aba9
 	jr z, .asm_8abe5
 	cp $2
 	jr z, .asm_8ac0f
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, String_8ac3b
 	call PlaceString
 	ld a, $1
@@ -71993,7 +72009,7 @@ Function8ac4e: ; 8ac4e
 	call Function89844
 	call Function8939a
 	call Function89856
-	ld hl, $c5a5
+	hlcoord 1, 13
 	call Function899fe
 	call Function891ab
 	ret
@@ -72104,7 +72120,7 @@ Function8ad0b: ; 8ad0b
 	call Function89844
 	call Function8939a
 	call Function89856
-	ld hl, $c5a5
+	hlcoord 1, 13
 	call Function899fe
 	call CloseSRAM
 	call Function891ab
@@ -72120,23 +72136,23 @@ Function8ad0b: ; 8ad0b
 	jr z, .asm_8ad37
 	call Function8923c
 	push bc
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
 	ld de, String_8ad89
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld a, $2
 	call Function8925e
 	jr c, .asm_8ad87
 	call Function8923c
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
 	ld de, String_8ad9c
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld a, $1
 	call Function8925e
@@ -73923,13 +73939,13 @@ Function8b75d: ; 8b75d
 	ld a, $1
 	ld bc, $0014
 	call ByteFill
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld a, $2
 	ld [hl], a
-	ld hl, $c4bd
+	hlcoord 9, 1
 	ld c, $b
 	call Function8b788
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld a, $4
 	ld e, $8
 .asm_8b780
@@ -74014,7 +74030,7 @@ Function8b7bd: ; 8b7bd
 	ld [$cf77], a
 
 .asm_8b7ea
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld b, $b
 	ld c, $12
 	call Function8b703
@@ -74163,7 +74179,7 @@ Function8b88c: ; 8b88c
 ; 8b8c8
 
 Function8b8c8: ; 8b8c8
-	ld hl, $c5b8
+	hlcoord 0, 14
 	ld b, $2
 	ld c, $12
 	call TextBox
@@ -74178,18 +74194,18 @@ Function8b8c8: ; 8b8c8
 	ld l, a
 	ld d, h
 	ld e, l
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call PlaceString
-	ld hl, $c5a4
+	hlcoord 0, 13
 	ld a, $f
 	ld [hl], a
-	ld hl, $c5b7
+	hlcoord 19, 13
 	ld a, $11
 	ld [hl], a
 	ld a, [$d0e4]
 	cp $24
 	ret c
-	ld hl, $c5a4
+	hlcoord 0, 13
 	ld c, $12
 	call Function8b732
 	ret
@@ -74226,14 +74242,14 @@ Function8b960: ; 8b960 (22:7960)
 	call LoadMenuDataHeader
 	call Function8b9e9
 	jr c, .asm_8b97a
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld b, $6
 	ld c, $7
 	call Function8b703
 	ld hl, MenuDataHeader_0x8b9b1
 	jr .asm_8b987
 .asm_8b97a
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld b, $a
 	ld c, $7
 	call Function8b703
@@ -75165,8 +75181,7 @@ Unknown_8c490: ; 8c490
 macro_8c490: MACRO
 	db \1
 	dw \2
-	FuncCoord \3, \4
-	dw Coord
+	dw TileMap + SCREEN_WIDTH * \4 + \3
 ENDM
 
 	macro_8c490 0, Unknown_8c538,  1,  6
@@ -75340,7 +75355,7 @@ Function8c5dc: ; 8c5dc (23:45dc)
 	dec b
 	jr nz, .asm_8c5f0
 	call Function8c6b1
-	ld hl, $c4b6
+	hlcoord 2, 1
 	ld b, $10
 .asm_8c602
 	push hl
@@ -80415,7 +80430,7 @@ Function902b3: ; 902b3
 
 Function902c9: ; 902c9
 	call Function90375
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld [hl], $62
 	inc hl
 	inc hl
@@ -80517,7 +80532,7 @@ Function90357
 Function90363: ; 90363 (24:4363)
 	push bc
 	call Function90375
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld [hl], $62
 	inc hl
 	inc hl
@@ -80831,15 +80846,15 @@ Function90672: ; 90672 (24:4672)
 .asm_906e8
 	ld hl, UnknownText_0x90879
 	call PrintText
-	ld hl, $c52f
+	hlcoord 3, 7
 	ld b, $2
 	ld c, $f
 	call TextBox
-	ld hl, $c537
+	hlcoord 11, 7
 	ld [hl], $1
-	ld hl, $c573
+	hlcoord 11, 10
 	ld [hl], $2
-	ld hl, $c558
+	hlcoord 4, 9
 	call Function907de
 	ld c, $a
 	call DelayFrames
@@ -80859,14 +80874,14 @@ Function90672: ; 90672 (24:4672)
 .asm_9072e
 	ld hl, UnknownText_0x9089a
 	call PrintText
-	ld hl, $c537
+	hlcoord 11, 7
 	ld bc, $207
 	call TextBox
-	ld hl, $c53b
+	hlcoord 15, 7
 	ld [hl], $1
-	ld hl, $c577
+	hlcoord 15, 10
 	ld [hl], $2
-	ld hl, $c560
+	hlcoord 12, 9
 	call Function90859
 	ld c, 10
 	call DelayFrames
@@ -80943,11 +80958,11 @@ Function90795: ; 90795 (24:4795)
 	ld [hl], a
 
 .asm_907c6
-	ld hl, $c558
+	hlcoord 4, 9
 	ld a, " "
 	ld bc, 15
 	call ByteFill
-	ld hl, $c558
+	hlcoord 4, 9
 	call Function907de
 	call WaitBGMap
 	and a
@@ -81034,11 +81049,11 @@ Function90810: ; 90810 (24:4810)
 	inc a
 	ld [hl], a
 .asm_90841
-	ld hl, $c560
+	hlcoord 12, 9
 	ld a, " "
 	ld bc, 7
 	call ByteFill
-	ld hl, $c560
+	hlcoord 12, 9
 	call Function90859
 	call WaitBGMap
 	and a
@@ -81088,7 +81103,7 @@ UnknownText_0x90886: ; 0x90886
 	; What?@ @
 	text_jump UnknownText_0x1bc2fd
 	start_asm
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call Function907de
 	ld hl, UnknownText_0x90895
 	ret
@@ -81115,7 +81130,7 @@ UnknownText_0x908a4: ; 0x908a4
 	text_jump UnknownText_0x1bc31b
 	start_asm
 ; 0x908a9
-	ld hl, $c5bf
+	hlcoord 7, 14
 	call Function90859
 	ld hl, UnknownText_0x908b3
 	ret
@@ -81129,7 +81144,7 @@ UnknownText_0x908b3: ; 0x908b3
 
 UnknownText_0x908b8: ; 0x908b8
 	start_asm
-	ld de, $c5b9
+	decoord 1, 14
 	ld a, [$c61c]
 	ld c, a
 	call Function90b3e
@@ -81200,21 +81215,21 @@ Function90913: ; 90913
 	xor a
 	ld [DefaultFlypoint], a
 .asm_90936
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $0412
 	call TextBox
 	call Function1d6e
 	ld hl, UnknownText_0x90a3f
 	call PrintText
-	ld hl, $c4e5
+	hlcoord 9, 3
 	ld b, $2
 	ld c, $9
 	call TextBox
-	ld hl, $c4ea
+	hlcoord 14, 3
 	ld [hl], $ef
-	ld hl, $c526
+	hlcoord 14, 6
 	ld [hl], $f5
-	ld hl, $c50e
+	hlcoord 10, 5
 	call Function909de
 	call Function321c
 	ld c, $a
@@ -81283,11 +81298,11 @@ Function90993: ; 90993
 .asm_909c6
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c4fa
+	hlcoord 10, 4
 	ld b, $2
 	ld c, $9
 	call ClearBox
-	ld hl, $c50e
+	hlcoord 10, 5
 	call Function909de
 	call WaitBGMap
 	and a
@@ -81337,7 +81352,7 @@ UnknownText_0x90a3f: ; 0x90a3f
 
 UnknownText_0x90a44: ; 0x90a44
 	start_asm
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call Function909de
 	ld hl, UnknownText_0x90a4f
 	ret
@@ -81353,7 +81368,7 @@ Function90a54: ; 90a54
 	ld a, [$d4c2]
 	set 7, a
 	ld [$d4c2], a
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
 	ld hl, UnknownText_0x90a6c
@@ -81368,7 +81383,7 @@ UnknownText_0x90a6c: ; 90a6c
 	ld b, a
 	ld a, [hMinutes] ; $ff00+$96
 	ld c, a
-	ld de, $c5b9
+	decoord 1, 14
 	callba Function1dd6bb
 	ld hl, UnknownText_0x90a83
 	ret
@@ -81384,7 +81399,7 @@ Function90a88: ; 90a88
 	ld a, [$d4c2]
 	res 7, a
 	ld [$d4c2], a
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
 	ld hl, UnknownText_0x90aa0
@@ -81399,7 +81414,7 @@ UnknownText_0x90aa0: ; 90aa0
 	ld b, a
 	ld a, [hMinutes]
 	ld c, a
-	ld de, $c5b9
+	decoord 1, 14
 	callba Function1dd6bb
 	ld hl, UnknownText_0x90ab7
 	ret
@@ -81412,7 +81427,7 @@ UnknownText_0x90ab7: ; 0x90ab7
 ; 0x90abc
 
 Function90abc: ; 90abc
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
 	ld hl, UnknownText_0x90acc
@@ -81860,10 +81875,10 @@ Jumptable_90e12: ; 90e12
 Function90e1a: ; 90e1a
 	ld de, ClockTilemapRLE
 	call Function914bb
-	ld hl, $c4c0
+	hlcoord 12, 1
 	ld de, .switch
 	call PlaceString
-	ld hl, $c590
+	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
 	call Function90f86
@@ -81890,11 +81905,11 @@ Function90e3f: ; 90e3f
 	callba Function91ae1
 	ld a, $7
 	ld bc, $12
-	ld hl, $c4c9
+	hlcoord 1, 2
 	call ByteFill
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld [hl], $6
-	ld hl, $c4db
+	hlcoord 19, 2
 	ld [hl], $17
 	ld a, [$c6d7]
 	call Function910b4
@@ -81904,7 +81919,7 @@ Function90e3f: ; 90e3f
 Function90e72: ; 90e72
 	ld de, RadioTilemapRLE
 	call Function914bb
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $412
 	call TextBox
 	ret
@@ -81913,7 +81928,7 @@ Function90e72: ; 90e72
 Function90e82: ; 90e82
 	ld de, PhoneTilemapRLE
 	call Function914bb
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $412
 	call TextBox
 	call Function90e98
@@ -81923,18 +81938,18 @@ Function90e82: ; 90e82
 
 ; known jump sources: 90e91 (24:4e91)
 Function90e98: ; 90e98 (24:4e98)
-	ld hl, $c4c5
+	hlcoord 17, 1
 	ld a, $3c
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $c4d9
+	hlcoord 17, 2
 	inc a
 	ld [hli], a
 	call Function2d05
 	and a
 	ret nz
-	ld hl, $c4da
+	hlcoord 18, 2
 	ld [hl], $3f
 	ret
 
@@ -81944,7 +81959,7 @@ Function90eb0: ; 90eb0 (24:4eb0)
 	ld bc, $8
 	ld a, $4f
 	call ByteFill
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld bc, $8
 	ld a, $4f
 	call ByteFill
@@ -81965,19 +81980,19 @@ Function90eb0: ; 90eb0 (24:4eb0)
 
 ; known jump sources: 90ecc (24:4ecc)
 Function90ee4: ; 90ee4 (24:4ee4)
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld a, $40
 	jr Function90ef7
 
 ; known jump sources: 90ed2 (24:4ed2)
 Function90eeb: ; 90eeb (24:4eeb)
-	ld hl, $c4a4
+	hlcoord 4, 0
 	ld a, $44
 	jr Function90ef7
 
 ; known jump sources: 90ed8 (24:4ed8)
 Function90ef2: ; 90ef2 (24:4ef2)
-	ld hl, $c4a6
+	hlcoord 6, 0
 	ld a, $42
 
 ; known jump sources: 90ee0 (24:4ee0), 90ee9 (24:4ee9), 90ef0 (24:4ef0)
@@ -82081,17 +82096,17 @@ Function90f7b: ; 90f7b (24:4f7b)
 
 ; known jump sources: 90e32 (24:4e32), 90f7e (24:4f7e)
 Function90f86: ; 90f86 (24:4f86)
-	ld hl, $c507
+	hlcoord 3, 5
 	ld bc, $50e
 	call ClearBox
 	ld a, [hHours] ; $ff00+$94
 	ld b, a
 	ld a, [hMinutes] ; $ff00+$96
 	ld c, a
-	ld de, $c546
+	decoord 6, 8
 	callba Function1dd6bb
 	ld hl, UnknownText_0x90faf
-	ld bc, $c51e
+	bccoord 6, 6
 	call Function13e5
 	ret
 ; 90fa8 (24:4fa8)
@@ -82283,7 +82298,7 @@ Function91098: ; 91098
 
 Function910b4: ; 910b4
 	push af
-	ld hl, $c4a8
+	hlcoord 8, 0
 	ld bc, $020c
 	call ClearBox
 	pop af
@@ -82292,7 +82307,7 @@ Function910b4: ; 910b4
 	callba GetLandmarkName
 	pop de
 	callba Function1de2c5
-	ld hl, $c4a8
+	hlcoord 8, 0
 	ld [hl], $34
 	ret
 ; 910d4
@@ -82462,7 +82477,7 @@ Function91171: ; 91171 (24:5171)
 	ret z
 
 	ld [$c6d3], a
-	ld hl, $c4f1
+	hlcoord 1, 4
 	ld a, [$c6d1]
 	ld bc, 20 * 2
 	call AddNTimes
@@ -82606,15 +82621,15 @@ Function9126d: ; 9126d (24:526d)
 ; known jump sources: 9122c (24:522c), 912a6 (24:52a6), 9131a (24:531a)
 Function912b7: ; 912b7 (24:52b7)
 	ld a, " "
-	ld hl, $c4f1
+	hlcoord 1, 4
 	ld [hl], a
-	ld hl, $c519
+	hlcoord 1, 6
 	ld [hl], a
-	ld hl, $c541
+	hlcoord 1, 8
 	ld [hl], a
-	ld hl, $c569
+	hlcoord 1, 10
 	ld [hl], a
-	ld hl, $c4f1
+	hlcoord 1, 4
 	ld a, [$c6d1] 
 	ld bc, $28
 	call AddNTimes
@@ -82623,7 +82638,7 @@ Function912b7: ; 912b7 (24:52b7)
 
 ; known jump sources: 90e94 (24:4e94), 912b0 (24:52b0), 913d7 (24:53d7)
 Function912d8: ; 912d8 (24:52d8)
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld b, $9
 	ld a, $7f
 .asm_912df
@@ -82647,7 +82662,7 @@ Function912d8: ; 912d8 (24:52d8)
 	ld a, [hli]
 	push hl
 	push af
-	ld hl, $c4f2
+	hlcoord 2, 4
 	ld a, [$c6d0] 
 	ld bc, $28
 	call AddNTimes
@@ -83077,7 +83092,7 @@ UpdateRadioStation: ; 9166f (24:566f)
 	ret z
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c556
+	hlcoord 2, 9
 	call PlaceString
 	ld a, $1
 	ld [hBGMapMode], a
@@ -83410,10 +83425,10 @@ NoRadioMusic: ; 9189d (24:589d)
 NoRadioName: ; 918a9 (24:58a9)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, $c541
+	hlcoord 1, 8
 	ld bc, $312
 	call ClearBox
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $412
 	call TextBox
 	ret
@@ -83575,21 +83590,21 @@ Function91a04: ; 91a04
 	callba Function91ae1
 	ld a, $7
 	ld bc, $0006
-	ld hl, $c4a1
+	hlcoord 1, 0
 	call ByteFill
 	ld hl, TileMap
 	ld [hl], $6
-	ld hl, $c4a7
+	hlcoord 7, 0
 	ld [hl], $17
-	ld hl, $c4bb
+	hlcoord 7, 1
 	ld [hl], $16
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld [hl], $26
 	ld a, $7
 	ld bc, $000b
-	ld hl, $c4d0
+	hlcoord 8, 2
 	call ByteFill
-	ld hl, $c4db
+	hlcoord 19, 2
 	ld [hl], $17
 	ld a, [$d003]
 	call Function910b4
@@ -83646,13 +83661,13 @@ Function91a87: ; 91a87
 
 .asm_91a9b
 	push de
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $0412
 	call TextBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld [hl], $72
 	pop de
-	ld hl, $c5ba
+	hlcoord 2, 14
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -84254,7 +84269,7 @@ Function91de9: ; 91de9
 	ld bc, $0014
 	ld a, $7f
 	call ByteFill
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld a, $6
 	ld [hli], a
 	ld bc, $0012
@@ -84262,7 +84277,7 @@ Function91de9: ; 91de9
 	call ByteFill
 	ld [hl], $17
 	call GetPokemonName
-	ld hl, $c4a2
+	hlcoord 2, 0
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -84772,7 +84787,7 @@ Function923b8: ; 923b8
 ; 92402
 
 
-INCLUDE "stats/wild/fish.asm"
+INCLUDE "data/wild/fish.asm"
 
 
 Function926c7:
@@ -84922,11 +84937,11 @@ Function927d4: ; 927d4
 
 ; known jump sources: 927c6 (24:67c6)
 Function927f8: ; 927f8 (24:67f8)
-	ld hl, $c4b9
+	hlcoord 5, 1
 	ld de, Coins ; $d855
 	ld bc, $8204
 	call PrintNum
-	ld hl, $c4bf
+	hlcoord 11, 1
 	ld de, $c711
 	ld bc, $8204
 	call PrintNum
@@ -86416,17 +86431,17 @@ Function9303f: ; 9303f (24:703f)
 Function9304c: ; 9304c (24:704c)
 	ld b, $23
 asm_9304e: ; 9304e (24:704e)
-	ld hl, $c4cb
+	hlcoord 3, 2
 	call Function93069
-	ld hl, $c56b
+	hlcoord 3, 10
 	call Function93069
 asm_9305a: ; 9305a (24:705a)
-	ld hl, $c4f3
+	hlcoord 3, 4
 	call Function93069
-	ld hl, $c543
+	hlcoord 3, 8
 	call Function93069
 asm_93066: ; 93066 (24:7066)
-	ld hl, $c51b
+	hlcoord 3, 6
 
 ; known jump sources: 93051 (24:7051), 93057 (24:7057), 9305d (24:705d), 93063 (24:7063)
 Function93069: ; 93069 (24:7069)
@@ -86653,7 +86668,7 @@ Function931ba: ; 931ba
 	ld [$c5a7], a
 	inc a
 	ld [$c5bb], a
-	ld hl, $c606
+	hlcoord 18, 17
 	ld [hl], $ee
 	ld hl, UnknownText_0x931db
 	inc bc
@@ -87116,7 +87131,7 @@ Functionb80e1: ; b80e1 (2e:40e1)
 	srl a
 	ld b, $0
 	ld c, a
-	ld hl, $c4c8
+	hlcoord 0, 2
 	add hl, bc
 	ld de, StringBuffer1 ; $d073
 	call PlaceString
@@ -87926,7 +87941,7 @@ Functionb86ea: ; b86ea (2e:46ea)
 	ld [$d005], a
 	cp $2
 	jr nz, .asm_b870a
-	ld bc, $c5e1
+	bccoord 1, 16
 	call Function13e5
 	jr .asm_b870d
 .asm_b870a
@@ -88462,7 +88477,7 @@ Functionb8994: ; b8994 (2e:4994)
 	ld hl, $d004
 	dec [hl]
 	ret nz
-	ld hl, $c5c1
+	hlcoord 9, 14
 	ld de, String_b89a4
 	ld a, $3d
 	jp Functionb8a00
@@ -88477,7 +88492,7 @@ Functionb89a9: ; b89a9 (2e:49a9)
 	ld hl, $d004
 	dec [hl]
 	ret nz
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_b89b9
 	ld a, $3e
 	jp Functionb8a00
@@ -88492,7 +88507,7 @@ Functionb89c6: ; b89c6 (2e:49c6)
 	ld hl, $d004
 	dec [hl]
 	ret nz
-	ld hl, $c5ec
+	hlcoord 12, 16
 	ld de, String_b89d6
 	ld a, $3f
 	jp Functionb8a00
@@ -88535,18 +88550,18 @@ Functionb8a00: ; b8a00 (2e:4a00)
 
 ; known jump sources: b873c (2e:473c)
 Functionb8a0b: ; b8a0b (2e:4a0b)
-	ld hl, $c5cc
-	ld de, $c5a4
+	hlcoord 0, 15
+	decoord 0, 13
 	ld bc, $28
 	jp CopyBytes
 
 ; known jump sources: b873f (2e:473f)
 Functionb8a17: ; b8a17 (2e:4a17)
-	ld hl, $c5cd
+	hlcoord 1, 15
 	ld bc, $12
 	ld a, $7f
 	call ByteFill
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld bc, $12
 	ld a, $7f
 	jp ByteFill
@@ -89535,7 +89550,7 @@ Functionb8f22: ; b8f22 (2e:4f22)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld de, String_b9171
-	ld hl, $c556
+	hlcoord 2, 9
 	call PlaceString
 	pop af
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -90181,46 +90196,46 @@ Functionb9351: ; b9351
 	ld c, $40
 	call Functionb9915
 	call Functionb9858
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld a, $3f
 	call Functionb98d4
 	ld a, $39
-	ld hl, $c5c7
+	hlcoord 15, 14
 	call Functionb98fc
 	ld a, $44
-	ld hl, $c4ca
+	hlcoord 2, 2
 	call Functionb98ee
-	ld hl, $c58b
+	hlcoord 15, 11
 	call Functionb98ee
 	ld a, $4c
-	ld hl, $c593
+	hlcoord 3, 12
 	call Functionb98ee
-	ld hl, $c4d7
+	hlcoord 15, 2
 	call Functionb98ee
 	ld a, $50
-	ld hl, $c4e2
+	hlcoord 6, 3
 	call Functionb98ee
 	ld a, $40
-	ld hl, $c4d5
+	hlcoord 13, 2
 	ld [hli], a
-	ld hl, $c5be
+	hlcoord 6, 14
 	ld [hl], a
 	ld a, $41
-	ld hl, $c508
+	hlcoord 4, 5
 	ld [hli], a
-	ld hl, $c515
+	hlcoord 17, 5
 	ld [hli], a
-	ld hl, $c59d
+	hlcoord 13, 12
 	ld [hl], a
 	ld a, $42
-	ld hl, $c4d1
+	hlcoord 9, 2
 	ld [hli], a
-	ld hl, $c512
+	hlcoord 14, 5
 	ld [hli], a
-	ld hl, $c56b
+	hlcoord 3, 10
 	ld [hl], a
 	ld a, $43
-	ld hl, $c582
+	hlcoord 6, 11
 	ld [hli], a
 	pop hl
 	jp Functionb9803
@@ -90257,18 +90272,18 @@ Functionb93d2: ; b93d2
 	ld a, $31
 	ld hl, TileMap
 	call Functionb98a8
-	ld hl, $c5f5
+	hlcoord 1, 17
 	call Functionb98a8
 	ld a, $33
-	ld hl, $c4b4
+	hlcoord 0, 1
 	call Functionb98ba
-	ld hl, $c4b3
+	hlcoord 19, 0
 	call Functionb98ba
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld a, $35
 	call Functionb98d4
 	inc a
-	ld hl, $c5c7
+	hlcoord 15, 14
 	call Functionb98fc
 	call Functionb9491
 	pop hl
@@ -90294,11 +90309,11 @@ Functionb944b: ; b944b
 	ld c, $8
 	call Functionb990c
 	call Functionb987b
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld a, $3c
 	call Functionb98d4
 	ld a, $36
-	ld hl, $c5c7
+	hlcoord 15, 14
 	call Functionb98fc
 	call Functionb9491
 	pop hl
@@ -90307,32 +90322,32 @@ Functionb944b: ; b944b
 
 Functionb9491: ; b9491
 	ld a, $3d
-	ld hl, $c4ca
+	hlcoord 2, 2
 	call Functionb98ee
-	ld hl, $c4d8
+	hlcoord 16, 2
 	call Functionb98ee
-	ld hl, $c4f9
+	hlcoord 9, 4
 	call Functionb98ee
-	ld hl, $c57e
+	hlcoord 2, 11
 	call Functionb98ee
-	ld hl, $c596
+	hlcoord 6, 12
 	call Functionb98ee
-	ld hl, $c588
+	hlcoord 12, 11
 	call Functionb98ee
 	ld a, $41
-	ld hl, $c4f5
+	hlcoord 5, 4
 	ld [hl], a
-	ld hl, $c4ce
+	hlcoord 6, 2
 	ld [hl], a
-	ld hl, $c4fc
+	hlcoord 12, 4
 	ld [hl], a
-	ld hl, $c4d6
+	hlcoord 14, 2
 	ld [hl], a
-	ld hl, $c5a7
+	hlcoord 3, 13
 	ld [hl], a
-	ld hl, $c585
+	hlcoord 9, 11
 	ld [hl], a
-	ld hl, $c5a0
+	hlcoord 16, 12
 	ld [hl], a
 	ret
 ; b94d6
@@ -90362,52 +90377,52 @@ Functionb94d6: ; b94d6
 	call Functionb991e
 	call Functionb987b
 	ld a, $31
-	ld hl, $c4b5
+	hlcoord 1, 1
 	call Functionb98ee
-	ld hl, $c5dd
+	hlcoord 17, 15
 	call Functionb98ee
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld [hl], a
-	ld hl, $c4b7
+	hlcoord 3, 1
 	ld [hl], a
-	ld hl, $c5f0
+	hlcoord 16, 16
 	ld [hl], a
-	ld hl, $c5ca
+	hlcoord 18, 14
 	ld [hl], a
 	ld a, $36
-	ld hl, $c4f1
+	hlcoord 1, 4
 	ld [hl], a
-	ld hl, $c4de
+	hlcoord 2, 3
 	ld [hl], a
-	ld hl, $c4cb
+	hlcoord 3, 2
 	ld [hl], a
-	ld hl, $c4b8
-	ld [hl], a
-	inc a
-	ld hl, $c5ef
-	ld [hl], a
-	ld hl, $c5dc
-	ld [hl], a
-	ld hl, $c5c9
-	ld [hl], a
-	ld hl, $c5b6
+	hlcoord 4, 1
 	ld [hl], a
 	inc a
-	ld hl, $c5ce
+	hlcoord 15, 16
+	ld [hl], a
+	hlcoord 16, 15
+	ld [hl], a
+	hlcoord 17, 14
+	ld [hl], a
+	hlcoord 18, 13
+	ld [hl], a
+	inc a
+	hlcoord 2, 15
 	ld b, $e
 	call Functionb98de
 	inc a
-	ld hl, $c57e
+	hlcoord 2, 11
 	call Functionb98d4
-	ld hl, $c506
+	hlcoord 2, 5
 	call Functionb98d4
 	inc a
-	ld hl, $c4ba
+	hlcoord 6, 1
 	call Functionb98d0
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call Functionb98d0
 	inc a
-	ld hl, $c5a7
+	hlcoord 3, 13
 	call Functionb98fc
 	pop hl
 	jp Functionb9803
@@ -90446,45 +90461,45 @@ Functionb9582: ; b9582
 	ld a, $31
 	ld hl, TileMap
 	call Functionb98dc
-	ld hl, $c4b4
+	hlcoord 0, 1
 	call Functionb98e3
-	ld hl, $c4c7
+	hlcoord 19, 1
 	call Functionb98e3
 	inc a
-	ld hl, $c5f4
+	hlcoord 0, 17
 	call Functionb98dc
 	inc a
-	ld hl, $c5e0
+	hlcoord 0, 16
 	call Functionb98dc
 	inc a
-	ld hl, $c4ca
+	hlcoord 2, 2
 	call Functionb9636
-	ld hl, $c4df
+	hlcoord 3, 3
 	call Functionb9636
-	ld hl, $c4f4
+	hlcoord 4, 4
 	call Functionb9636
 	dec hl
 	ld [hl], $7f
 	dec a
-	ld hl, $c5c7
+	hlcoord 15, 14
 	call Functionb98ee
 	add $4
-	ld hl, $c5ef
+	hlcoord 15, 16
 	ld [hli], a
 	inc a
 	ld [hl], a
 	inc a
 	push af
-	ld hl, $c4c0
+	hlcoord 12, 1
 	call Functionb98fc
 	pop af
-	ld hl, $c4ff
+	hlcoord 15, 4
 	call Functionb98fc
 	inc a
-	ld hl, $c57e
+	hlcoord 2, 11
 	call Functionb98d4
 	inc a
-	ld hl, $c4e6
+	hlcoord 10, 3
 	call Functionb98ee
 	pop hl
 	jp Functionb9803
@@ -90518,37 +90533,37 @@ Functionb963e: ; b963e
 	ld c, $20
 	call Functionb9915
 	call Functionb9858
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld a, $3d
 	call Functionb98d4
 	ld a, $39
-	ld hl, $c5b4
+	hlcoord 16, 13
 	call Functionb98ee
-	ld hl, $c5a6
+	hlcoord 2, 13
 	call Functionb98ee
 	ld a, $3e
-	ld hl, $c4ca
+	hlcoord 2, 2
 	call Functionb98ee
-	ld hl, $c4e1
+	hlcoord 5, 3
 	call Functionb98ee
-	ld hl, $c4d2
+	hlcoord 10, 2
 	call Functionb98ee
-	ld hl, $c4ec
+	hlcoord 16, 3
 	call Functionb98ee
-	ld hl, $c581
+	hlcoord 5, 11
 	call Functionb98ee
-	ld hl, $c578
+	hlcoord 16, 10
 	call Functionb98ee
 	ld a, $42
-	ld hl, $c4f3
+	hlcoord 3, 4
 	call Functionb98ee
-	ld hl, $c4e8
+	hlcoord 12, 3
 	call Functionb98ee
-	ld hl, $c4d6
+	hlcoord 14, 2
 	call Functionb98ee
-	ld hl, $c56a
+	hlcoord 2, 10
 	call Functionb98ee
-	ld hl, $c58a
+	hlcoord 14, 11
 	call Functionb98ee
 	pop hl
 	jp Functionb9803
@@ -90571,14 +90586,14 @@ Functionb96ca: ; b96ca
 	ld c, $8
 	call Functionb9915
 	call Functionb987b
-	ld hl, $c5d4
+	hlcoord 8, 15
 	ld a, $36
 	ld b, $a
 	call Functionb98de
 	call Functionb9491
 	ld a, $1
 	ld [UnownLetter], a
-	ld hl, $c569
+	hlcoord 1, 10
 	call Function3786
 	pop hl
 	jp Functionb9803
@@ -90608,18 +90623,18 @@ Functionb9710: ; b9710
 	ld a, $31
 	ld hl, TileMap
 	call Functionb98a8
-	ld hl, $c5f5
+	hlcoord 1, 17
 	call Functionb98a8
 	ld a, $33
-	ld hl, $c4b4
+	hlcoord 0, 1
 	call Functionb98ba
-	ld hl, $c4b3
+	hlcoord 19, 0
 	call Functionb98ba
 	ld a, $35
-	ld hl, $c5ce
+	hlcoord 2, 15
 	call Functionb989e
 	ld a, $37
-	ld hl, $c5c7
+	hlcoord 15, 14
 	call Functionb98fc
 	call Functionb9491
 	pop hl
@@ -90645,42 +90660,42 @@ Functionb9776: ; b9776
 	call Functionb990c
 	call Functionb987b
 	ld a, $36
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call Functionb98d8
 	inc a
-	ld hl, $c5c7
+	hlcoord 15, 14
 	call Functionb98fc
 	inc a
-	ld hl, $c5ef
+	hlcoord 15, 16
 	ld [hli], a
 	inc a
 	ld [hl], a
 	ld a, $3f
-	ld hl, $c4b5
+	hlcoord 1, 1
 	call Functionb98a8
 	ld a, $41
-	ld hl, $c4c8
+	hlcoord 0, 2
 	call Functionb98b5
 	ld a, $43
-	ld hl, $c4db
+	hlcoord 19, 2
 	call Functionb98b5
 	ld a, $45
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld [hl], a
 	inc a
-	ld hl, $c4c7
+	hlcoord 19, 1
 	ld [hl], a
 	inc a
-	ld hl, $c5e0
+	hlcoord 0, 16
 	ld [hl], a
 	inc a
-	ld hl, $c5f3
+	hlcoord 19, 16
 	ld [hl], a
 	inc a
-	ld hl, $c506
+	hlcoord 2, 5
 	call Functionb98d4
 	inc a
-	ld hl, $c57e
+	hlcoord 2, 11
 	call Functionb98d4
 	pop hl
 	jp Functionb9803
@@ -90714,20 +90729,20 @@ Functionb9803: ; b9803
 	ld [$d023], a
 	ld [$d05a], a
 	ld de, $d002
-	ld hl, $c52e
+	hlcoord 2, 7
 	call PlaceString
 	ld de, $d050
 	ld a, [de]
 	and a
 	ret z
 	ld a, [$d1ec]
-	ld hl, $c5c0
+	hlcoord 8, 14
 	cp $3
 	jr z, .asm_b984b
-	ld hl, $c5be
+	hlcoord 6, 14
 	cp $6
 	jr z, .asm_b984b
-	ld hl, $c5bd
+	hlcoord 5, 14
 
 .asm_b984b
 	jp PlaceString
@@ -90759,7 +90774,7 @@ Functionb9858: ; b9858
 	ld [hli], a
 	inc a
 	call Functionb98d8
-	ld hl, $c4c7
+	hlcoord 19, 1
 	ld a, $35
 	call Functionb98e3
 	ld a, $38
@@ -90781,7 +90796,7 @@ Functionb987b: ; b987b
 	inc hl
 	inc a
 	call Functionb98d8
-	ld hl, $c4c7
+	hlcoord 19, 1
 	ld a, $35
 	call Functionb98e3
 	ld [hl], $31
@@ -91680,7 +91695,7 @@ Functione0217: ; e0217
 	ld hl, TileMap
 	ld bc, $0c09
 	call Functione04e5
-	ld hl, $c4a9
+	hlcoord 9, 0
 	ld bc, $0014
 	ld a, [$c6e8]
 	call AddNTimes
@@ -91689,13 +91704,13 @@ Functione0217: ; e0217
 	ld [hBGMapMode], a
 	ld c, $14
 	call DelayFrames
-	ld hl, $c4a2
+	hlcoord 2, 0
 	call Functione03c1
 	ld a, $1
 	ld [hBGMapMode], a
 	ld c, $14
 	call DelayFrames
-	ld hl, $c51a
+	hlcoord 2, 6
 	call Functione03c1
 	call WaitBGMap
 	ld hl, UnknownText_0xe02b2
@@ -91909,12 +91924,12 @@ Functione03ac: ; e03ac
 	ld a, [$cf66]
 	and a
 	jr nz, .asm_e03ba
-	ld hl, $c4a2
+	hlcoord 2, 0
 	ld bc, $1018
 	jr .asm_e03c0
 
 .asm_e03ba
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld bc, $4018
 
 .asm_e03c0
@@ -92011,7 +92026,7 @@ Unknown_e0459: ; e0459
 
 Functione0489: ; e0489
 	push hl
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	call TextBox
@@ -92022,14 +92037,14 @@ Functione0489: ; e0489
 ; e049c
 
 Functione049c: ; e049c
-	ld hl, $c5d5
+	hlcoord 9, 15
 	ld b, $1
 	ld c, $9
 	call TextBox
-	ld hl, $c5ea
+	hlcoord 10, 16
 	ld de, String_e04bc
 	call PlaceString
-	ld hl, $c5ef
+	hlcoord 15, 16
 	ld de, Coins
 	ld bc, $8204
 	call PrintNum
@@ -92048,11 +92063,11 @@ Functione04c1: ; e04c1 (38:44c1)
 	ld bc, $168
 	ld a, $29
 	call ByteFill
-	ld hl, $c4a9
+	hlcoord 9, 0
 	ld de, Unknown_e110c
 	lb bc, 12, 11
 	call Functione04f7
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $412
 	call TextBox
 	ret
@@ -92172,7 +92187,7 @@ Functione055f: ; e055f
 	ld a, [hl]
 	and a
 	jr nz, .asm_e0575
-	ld hl, $c4e9
+	hlcoord 13, 3
 	add hl, bc
 	add hl, bc
 	ld [hl], $36
@@ -92182,7 +92197,7 @@ Functione055f: ; e055f
 	ret
 
 .asm_e0575
-	ld hl, $c4e9
+	hlcoord 13, 3
 	add hl, bc
 	add hl, bc
 	ld [hl], $36
@@ -92198,7 +92213,7 @@ Functione0583: ; e0583
 	ld a, [hl]
 	and a
 	jr nz, .asm_e0599
-	ld hl, $c4fd
+	hlcoord 13, 4
 	add hl, bc
 	add hl, bc
 	ld [hl], $3b
@@ -92208,7 +92223,7 @@ Functione0583: ; e0583
 	ret
 
 .asm_e0599
-	ld hl, $c4fd
+	hlcoord 13, 4
 	add hl, bc
 	add hl, bc
 	ld [hl], $3d
@@ -92224,7 +92239,7 @@ Functione05a7: ; e05a7
 	ld a, [hl]
 	and a
 	jr nz, .asm_e05bd
-	ld hl, $c525
+	hlcoord 13, 6
 	add hl, bc
 	add hl, bc
 	ld [hl], $36
@@ -92234,7 +92249,7 @@ Functione05a7: ; e05a7
 	ret
 
 .asm_e05bd
-	ld hl, $c525
+	hlcoord 13, 6
 	add hl, bc
 	add hl, bc
 	ld [hl], $36
@@ -92250,7 +92265,7 @@ Functione05cb: ; e05cb
 	ld a, [hl]
 	and a
 	jr nz, .asm_e05e1
-	ld hl, $c539
+	hlcoord 13, 7
 	add hl, bc
 	add hl, bc
 	ld [hl], $3c
@@ -92260,7 +92275,7 @@ Functione05cb: ; e05cb
 	ret
 
 .asm_e05e1
-	ld hl, $c539
+	hlcoord 13, 7
 	add hl, bc
 	add hl, bc
 	ld [hl], $3d
@@ -92276,7 +92291,7 @@ Functione05ef: ; e05ef
 	ld a, [hl]
 	and a
 	jr nz, .asm_e0605
-	ld hl, $c561
+	hlcoord 13, 9
 	add hl, bc
 	add hl, bc
 	ld [hl], $36
@@ -92286,7 +92301,7 @@ Functione05ef: ; e05ef
 	ret
 
 .asm_e0605
-	ld hl, $c561
+	hlcoord 13, 9
 	add hl, bc
 	add hl, bc
 	ld [hl], $36
@@ -92302,7 +92317,7 @@ Functione0613: ; e0613
 	ld a, [hl]
 	and a
 	jr nz, .asm_e0629
-	ld hl, $c575
+	hlcoord 13, 10
 	add hl, bc
 	add hl, bc
 	ld [hl], $3c
@@ -92312,7 +92327,7 @@ Functione0613: ; e0613
 	ret
 
 .asm_e0629
-	ld hl, $c575
+	hlcoord 13, 10
 	add hl, bc
 	add hl, bc
 	ld [hl], $3d
@@ -93239,7 +93254,7 @@ Functione1190: ; e1190
 	ld bc, $0168
 	ld a, $ee
 	call ByteFill
-	ld hl, $c4e0
+	hlcoord 4, 3
 	ld bc, $0c0c
 	ld a, $ef
 	call Functione13ee
@@ -93329,7 +93344,7 @@ INCBIN "baserom.gbc",$e126d,$e127d - $e126d
 
 Functione127d: ; e127d
 	call Functione128d
-	ld hl, $c5e5
+	hlcoord 5, 16
 	ld a, $f6
 	ld c, $a
 .asm_e1287
@@ -93341,31 +93356,31 @@ Functione127d: ; e127d
 ; e128d
 
 Functione128d: ; e128d
-	ld hl, $c5d0
+	hlcoord 4, 15
 	ld a, $f0
 	ld [hli], a
 	ld bc, $000a
 	ld a, $f1
 	call ByteFill
-	ld hl, $c5db
+	hlcoord 15, 15
 	ld a, $f2
 	ld [hli], a
-	ld hl, $c5e4
+	hlcoord 4, 16
 	ld a, $f3
 	ld [hli], a
 	ld bc, $000a
 	ld a, $ef
 	call ByteFill
-	ld hl, $c5ef
+	hlcoord 15, 16
 	ld a, $f3
 	ld [hli], a
-	ld hl, $c5f8
+	hlcoord 4, 17
 	ld a, $f4
 	ld [hli], a
 	ld bc, $000a
 	ld a, $f1
 	call ByteFill
-	ld hl, $c603
+	hlcoord 15, 17
 	ld a, $f5
 	ld [hl], a
 	ret
@@ -94128,7 +94143,7 @@ Functione1f1c: ; e1f1c
 
 Functione1f42: ; e1f42
 	ld a, [PlayerLightScreenCount]
-	ld hl, $c4b1
+	hlcoord 17, 0
 	add $f6
 	ld [hl], a
 	ld hl, PlayerLightScreenCount
@@ -94295,7 +94310,7 @@ Functione2010: ; e2010
 	inc [hl]
 	inc [hl]
 	ld d, $0
-	ld hl, $c4a5
+	hlcoord 5, 0
 	add hl, de
 	call Functione2128
 	ld hl, UnknownText_0xe2083
@@ -94322,7 +94337,7 @@ UnknownText_0xe2083: ; 0xe2083
 
 Functione2084: ; e2084
 	push bc
-	ld hl, $c5a6
+	hlcoord 2, 13
 	call Functione2128
 	ld hl, UnknownText_0xe2093
 	pop bc
@@ -94468,7 +94483,7 @@ Functione2152: ; e2152
 	ld hl, TileMap
 	ld de, String_e2177
 	call PlaceString
-	ld hl, $c4af
+	hlcoord 15, 0
 	ld de, String_e217d
 	call PlaceString
 	ld hl, UnknownText_0xe2176
@@ -94495,7 +94510,7 @@ Functione2183: ; e2183
 .asm_e218c
 	add $9
 	ld e, a
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld bc, $0028
 .asm_e2195
 	ld a, d
@@ -94865,11 +94880,11 @@ Functione2564: ; e2564
 	ld b, $4
 	ld c, $8
 	call ClearBox
-	ld hl, $c4f0
+	hlcoord 0, 4
 	ld b, $a
 	ld c, $9
 	call ClearBox
-	ld hl, $c5b8
+	hlcoord 0, 14
 	ld b, $2
 	ld c, $8
 	call ClearBox
@@ -95630,20 +95645,20 @@ Functione2a6c: ; e2a6c
 ; known jump sources: e23f8 (38:63f8), e2471 (38:6471), e24c4 (38:64c4), e24f1 (38:64f1), e252f (38:652f), e25f0 (38:65f0), e2669 (38:6669), e26bc (38:66bc), e26e4 (38:66e4), e2723 (38:6723), e2f4c (38:6f4c), e2f6b (38:6f6b), e30e7 (38:70e7), e316d (38:716d)
 Functione2a6e: ; e2a6e (38:6a6e)
 	push de
-	ld hl, $c5cc
+	hlcoord 0, 15
 	ld bc, $112
 	call TextBox
 	pop de
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call PlaceString
 	ret
 ; e2a80 (38:6a80)
 
 Functione2a80: ; e2a80
 	call Functione2a8e
-	ld hl, $c4bc
+	hlcoord 8, 1
 	ld [hl], $5f
-	ld hl, $c4c7
+	hlcoord 19, 1
 	ld [hl], $5e
 	ret
 ; e2a8e
@@ -96517,14 +96532,14 @@ Functione307c: ; e307c (38:707c)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $f08
 	call ClearBox
-	ld hl, $c5c0
+	hlcoord 8, 14
 	ld bc, $103
 	call ClearBox
-	ld hl, $c5cc
+	hlcoord 0, 15
 	ld bc, $112
 	call TextBox
 	call WaitBGMap
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_e3563
 	call PlaceString
 	ld l, c
@@ -96573,14 +96588,14 @@ Functione30fa: ; e30fa (38:70fa)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $f08
 	call ClearBox
-	ld hl, $c5c0
+	hlcoord 8, 14
 	ld bc, $103
 	call ClearBox
-	ld hl, $c5cc
+	hlcoord 0, 15
 	ld bc, $112
 	call TextBox
 	call WaitBGMap
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_e356b
 	call PlaceString
 	ld l, c
@@ -96609,10 +96624,10 @@ Functione3180: ; e3180 (38:7180)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $f08
 	call ClearBox
-	ld hl, $c5c0
+	hlcoord 8, 14
 	ld bc, $103
 	call ClearBox
-	ld hl, $c5cc
+	hlcoord 0, 15
 	ld bc, $112
 	call TextBox
 	call WaitBGMap
@@ -96626,15 +96641,15 @@ Functione3180: ; e3180 (38:7180)
 	ld a, [CurPartySpecies] ; $d108
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_e3551
 	call PlaceString
 	ld c, 80
 	call DelayFrames
-	ld hl, $c5cc
+	hlcoord 0, 15
 	ld bc, $112
 	call TextBox
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_e355e
 	call PlaceString
 	ld l, c
@@ -96655,10 +96670,10 @@ Functione31e7: ; e31e7
 	push de
 	push bc
 	push af
-	ld hl, $c5cc
+	hlcoord 0, 15
 	ld bc, $0112
 	call TextBox
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, String_e3233
 	call PlaceString
 	ld c, 20
@@ -96998,7 +97013,7 @@ Functione35aa: ; e35aa (38:75aa)
 	call Function1d3c
 	xor a
 	ld [$d0e4], a
-	ld hl, $c4f0
+	hlcoord 0, 4
 	ld bc, $809
 	call TextBox
 	call Function350c
@@ -97068,18 +97083,18 @@ Functione3626: ; e3626 (38:7626)
 ; e3632 (38:7632)
 
 Functione3632: ; e3632
-	ld hl, $c537
+	hlcoord 11, 7
 	ld bc, $0507
 	call TextBox
 	ld a, [MenuSelection]
 	cp $ff
 	ret z
-	ld hl, $c560
+	hlcoord 12, 9
 	ld de, String_e3663
 	call PlaceString
 	call Functione366c
 	ld [$d265], a
-	ld hl, $c589
+	hlcoord 13, 11
 	ld de, $d265
 	ld bc, $0102
 	call PrintNum
@@ -97161,13 +97176,13 @@ Functione36cf: ; e36cf (38:76cf)
 	ld b, $2
 	ld c, $12
 	call TextBox
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld de, String_e36f1
 	call PlaceString
 	ld a, [wCurBox]
 	and $f
 	call Functione3626
-	ld hl, $c4d3
+	hlcoord 11, 2
 	call PlaceString
 	ret
 ; e36f1 (38:76f1)
@@ -97303,11 +97318,11 @@ String_e37d3: ; e37d3
 ; known jump sources: e379f (38:779f), e37b2 (38:77b2), e37c1 (38:77c1)
 Functione37e3: ; e37e3 (38:77e3)
 	push de
-	ld hl, $c5b8
+	hlcoord 0, 14
 	ld bc, $212
 	call TextBox
 	pop de
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call PlaceString
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -97330,7 +97345,7 @@ _OptionsMenu: ; e41d0
 	ld b, $10
 	ld c, $12
 	call TextBox
-	ld hl, $c4ca
+	hlcoord 2, 2
 	ld de, StringOptions
 	call PlaceString
 	xor a
@@ -97816,7 +97831,7 @@ Options_Frame: ; e44fa
 
 Functione4512: ; e4512
 	ld a, [TextBoxFrame]
-	ld hl, $c5dc ;where on the screen the number is drawn
+	hlcoord 16, 15 ;where on the screen the number is drawn
 	add "1"
 	ld [hl], a
 	call Functione5f
@@ -100425,20 +100440,20 @@ Functionfb5dd: ; fb5dd
 ; fb60d
 
 Functionfb60d: ; fb60d
-	ld hl, $c4a4
+	hlcoord 4, 0
 	ld de, PlayerName
 	call PlaceString
 	ld a, $14
 	ld [bc], a
-	ld hl, $c544
+	hlcoord 4, 8
 	ld de, $d26b
 	call PlaceString
 	ld a, $14
 	ld [bc], a
-	ld hl, $c4bb
+	hlcoord 7, 1
 	ld de, PartySpecies
 	call Functionfb634
-	ld hl, $c55b
+	hlcoord 7, 9
 	ld de, OTPartySpecies
 
 Functionfb634: ; fb634
@@ -101026,7 +101041,7 @@ Functionfba18: ; fba18
 
 ; no known jump sources
 Functionfba2e: ; fba2e (3e:7a2e)
-	ld hl, $c5d0
+	hlcoord 4, 15
 	ld bc, $c
 	ld a, $7f
 	call ByteFill
@@ -101044,7 +101059,7 @@ Functionfba2e: ; fba2e (3e:7a2e)
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, $c5d0
+	hlcoord 4, 15
 .asm_fba52
 	ld a, [de]
 	cp $ff
@@ -101275,13 +101290,13 @@ Functionfbd91: ; fbd91 (3e:7d91)
 
 ; known jump sources: fbd5c (3e:7d5c), fbd7f (3e:7d7f)
 Functionfbd96: ; fbd96 (3e:7d96)
-	ld hl, $c4ac
+	hlcoord 12, 0
 	ld bc, $707
 	ret
 
 ; known jump sources: fbd61 (3e:7d61), fbd85 (3e:7d85)
 Functionfbd9d: ; fbd9d (3e:7d9d)
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld bc, $606
 	ret
 
@@ -103177,7 +103192,7 @@ Function100504: ; 100504
 	call Function3f20
 	call Function1ad2
 	pop de
-	ld hl, $c4cc
+	hlcoord 4, 2
 	call PlaceString
 	ret
 ; 100513
@@ -103534,7 +103549,7 @@ Function1008e0: ; 1008e0
 ; 100902
 
 Function100902: ; 100902
-	ld hl, $c56b
+	hlcoord 3, 10
 	ld b, $1
 	ld c, $b
 	call TextBox
@@ -103545,9 +103560,9 @@ Function100902: ; 100902
 	ld [StringBuffer2], a
 	jr z, .asm_10093f
 	ld de, .string_100966
-	ld hl, $c580
+	hlcoord 4, 11
 	call PlaceString
-	ld hl, $c584
+	hlcoord 8, 11
 	ld bc, $0102
 	ld de, StringBuffer2
 	call PrintNum
@@ -103560,7 +103575,7 @@ Function100902: ; 100902
 
 .asm_10093f
 	ld de, .string_10095a
-	ld hl, $c580
+	hlcoord 4, 11
 	call PlaceString
 	ld de, SFX_4_NOTE_DITTY
 	call PlaySFX
@@ -104008,7 +104023,7 @@ Function100bc2: ; 100bc2
 ; 100c74
 
 Function100c74: ; 100c74
-	ld hl, $c540
+	hlcoord 0, 8
 	ld b, $8
 	ld c, $8
 	call TextBox
@@ -104018,7 +104033,7 @@ Function100c74: ; 100c74
 	call CopyBytes
 	ld a, $28
 	ld [Buffer1], a
-	ld hl, $c56a
+	hlcoord 2, 10
 	ld a, $20
 	call Predef
 	ret
@@ -104541,7 +104556,7 @@ Function10202c: ; 10202c
 	call Function10142c
 	ld e, $d
 	call Function101ee4
-	ld hl, $c4f4
+	hlcoord 4, 4
 	call Function100681
 	ret
 ; 102048
@@ -105896,7 +105911,7 @@ Function1048ba: ; 1048ba (41:48ba)
 	call ClearSprites
 	call WaitBGMap
 	call Function105153
-	ld hl, $c543
+	hlcoord 3, 8
 	ld de, $49cd
 	call PlaceString
 	call WaitBGMap
@@ -105922,7 +105937,7 @@ Function1048ba: ; 1048ba (41:48ba)
 	call GetSGBLayout
 	call Function32f9
 	pop de
-	ld hl, $c542
+	hlcoord 2, 8
 	ld a, d
 	ld de, $49fd
 	cp $10
@@ -107166,7 +107181,7 @@ Function105153: ; 105153 (41:5153)
 	ld a, $42
 	ld bc, $168
 	call ByteFill
-	ld hl, $c52f
+	hlcoord 3, 7
 	ld bc, $90f
 	call ClearBox
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -107174,69 +107189,69 @@ Function105153: ; 105153 (41:5153)
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $c4b4
+	hlcoord 0, 1
 	inc a
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $c4bb
+	hlcoord 7, 1
 	ld a, $12
 	call Function10522e
-	ld hl, $c4ca
+	hlcoord 2, 2
 	ld a, $17
 	call Function105236
-	ld hl, $c4de
+	hlcoord 2, 3
 	ld a, $27
 	call Function105236
-	ld hl, $c4f9
+	hlcoord 9, 4
 	ld a, $37
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld [hl], $4
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld a, $5
 	call Function105246
 	ld a, $9
-	ld hl, $c516
+	hlcoord 18, 5
 	call Function105242
-	ld hl, $c506
+	hlcoord 2, 5
 	ld a, $b
 	call Function105251
-	ld hl, $c5e2
+	hlcoord 2, 16
 	ld a, $7
 	call Function105251
-	ld hl, $c506
+	hlcoord 2, 5
 	ld a, $d
 	call Function10522e
-	ld hl, $c50b
+	hlcoord 7, 5
 	ld [hl], $c
-	ld hl, $c516
+	hlcoord 18, 5
 	ld [hl], $a
-	ld hl, $c5f2
+	hlcoord 18, 16
 	ld [hl], $8
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld [hl], $6
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld a, $3a
 	call Function105251
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld a, $40
 	call Function105251
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld a, $3c
 	call Function10523e
-	ld hl, $c529
+	hlcoord 17, 6
 	ld a, $3e
 	call Function10523e
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld [hl], $39
-	ld hl, $c529
+	hlcoord 17, 6
 	ld [hl], $3b
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld [hl], $3f
-	ld hl, $c5dd
+	hlcoord 17, 15
 	ld [hl], $41
 	call EnableLCD
 	call WaitBGMap
@@ -107307,7 +107322,7 @@ Function105688: ; 105688 (41:5688)
 	call ClearSprites
 	call WaitBGMap
 	call Function1057d7
-	ld hl, $c543
+	hlcoord 3, 8
 	ld de, $572e
 	call PlaceString
 	call WaitBGMap
@@ -107458,7 +107473,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld a, $3f
 	ld bc, $168
 	call ByteFill
-	ld hl, $c52f
+	hlcoord 3, 7
 	ld bc, $90f
 	call ClearBox
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -107466,64 +107481,64 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $c4b4
+	hlcoord 0, 1
 	inc a
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld a, $13
 	call Function1058ca
-	ld hl, $c4e0
+	hlcoord 4, 3
 	ld a, $1e
 	call Function1058ce
-	ld hl, $c4f4
+	hlcoord 4, 4
 	ld a, $2a
 	call Function1058ce
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld [hl], $4
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld a, $5
 	call Function1058de
 	ld a, $9
-	ld hl, $c516
+	hlcoord 18, 5
 	call Function1058da
-	ld hl, $c506
+	hlcoord 2, 5
 	ld a, $b
 	call Function1058e9
-	ld hl, $c5e2
+	hlcoord 2, 16
 	ld a, $7
 	call Function1058e9
-	ld hl, $c506
+	hlcoord 2, 5
 	ld a, $d
 	call Function1058c6
-	ld hl, $c50c
+	hlcoord 8, 5
 	ld [hl], $c
-	ld hl, $c516
+	hlcoord 18, 5
 	ld [hl], $a
-	ld hl, $c5f2
+	hlcoord 18, 16
 	ld [hl], $8
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld [hl], $6
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld a, $37
 	call Function1058e9
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld a, $3d
 	call Function1058e9
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld a, $39
 	call Function1058d6
-	ld hl, $c529
+	hlcoord 17, 6
 	ld a, $3b
 	call Function1058d6
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld [hl], $36
-	ld hl, $c529
+	hlcoord 17, 6
 	ld [hl], $38
-	ld hl, $c5ce
+	hlcoord 2, 15
 	ld [hl], $3c
-	ld hl, $c5dd
+	hlcoord 17, 15
 	ld [hl], $3e
 	ld de, Sprites ; $c400
 	ld hl, $58f0
@@ -110072,7 +110087,7 @@ asm_1177d6: ; 1177d6 (45:77d6)
 	add hl, de
 	xor a
 	ld [hl], a
-	ld hl, $c4f2
+	hlcoord 2, 4
 	add hl, de
 	ld [hl], a
 	ret
@@ -110181,7 +110196,7 @@ Function11784c: ; 11784c (45:784c)
 	add hl, de
 	ld [hl], a
 	pop de
-	ld hl, $c4f2
+	hlcoord 2, 4
 	add hl, de
 	sub $20
 	ld [hl], a
@@ -110201,13 +110216,13 @@ Function1178aa: ; 1178aa (45:78aa)
 	call Function1cbb
 	call Function1cfd
 	callba Function104061
-	ld hl, $c550
+	hlcoord 16, 8
 	ld de, $79c5
 	call PlaceString
-	ld hl, $c577
+	hlcoord 15, 10
 	ld a, $ed
 	ld [hl], a
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, $79cc
 	call PlaceString
 	ld a, $1
@@ -110230,10 +110245,10 @@ Function1178e8: ; 1178e8 (45:78e8)
 	ret z
 	dec a
 	ld [$cd4e], a
-	ld hl, $c54f
+	hlcoord 15, 8
 	ld a, $ed
 	ld [hl], a
-	ld hl, $c577
+	hlcoord 15, 10
 	ld a, $7f
 	ld [hl], a
 	ret
@@ -110243,10 +110258,10 @@ Function1178e8: ; 1178e8 (45:78e8)
 	ret nz
 	inc a
 	ld [$cd4e], a
-	ld hl, $c54f
+	hlcoord 15, 8
 	ld a, $7f
 	ld [hl], a
-	ld hl, $c577
+	hlcoord 15, 10
 	ld a, $ed
 	ld [hl], a
 	ret
@@ -110267,7 +110282,7 @@ Function1178e8: ; 1178e8 (45:78e8)
 ; no known jump sources
 Function117942: ; 117942 (45:7942)
 	call SpeechTextBox
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, $79f7
 	call PlaceString
 	ld a, $1e
@@ -110304,7 +110319,7 @@ Function117984: ; 117984 (45:7984)
 	call Function1cbb
 	call Function1cfd
 	callba Function104061
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, $79e1
 	call PlaceString
 	ld a, $1e
@@ -110436,10 +110451,10 @@ Function117b31:
 	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
-	ld hl, $c550
+	hlcoord 16, 8
 	ld de, YesNo117ccc
 	call PlaceString
-	ld hl, $c54f
+	hlcoord 15, 8
 	ld a, "▶"
 	ld [hl], a
 	jp Function117cdd
@@ -110459,10 +110474,10 @@ Function117b4f:
 	ret z
 	dec a
 	ld [$cf64], a
-	ld hl, $c54f
+	hlcoord 15, 8
 	ld a, "▶"
 	ld [hl], a
-	ld hl, $c577
+	hlcoord 15, 10
 	ld a, " "
 	ld [hl], a
 	ret
@@ -110472,10 +110487,10 @@ Function117b4f:
 	ret nz
 	inc a
 	ld [$cf64], a
-	ld hl, $c54f
+	hlcoord 15, 8
 	ld a, " "
 	ld [hl], a
-	ld hl, $c577
+	hlcoord 15, 10
 	ld a, "▶"
 	ld [hl], a
 	ret
@@ -112287,10 +112302,10 @@ Function11acb7: ; 11acb7
 	sla c
 	rl b
 	add hl, bc
-	ld de, $c51e
+	decoord 6, 6
 	ld a, [hli]
 	ld [de], a
-	ld de, $c52c
+	decoord 0, 7
 	ld bc, $0007
 	call CopyBytes
 	ld a, [$cd49]
@@ -112314,7 +112329,7 @@ Function11acb7: ; 11acb7
 	sla c
 	rl b
 	add hl, bc
-	ld de, $c557
+	decoord 3, 9
 	ld bc, $0007
 	call CopyBytes
 	ld a, [$cd4a]
@@ -113007,7 +113022,7 @@ Function11c000:: ; 11c000
 	ld a, [hl]
 	ld l, c
 	ld h, a
-	ld bc, $c5b9
+	bccoord 1, 14
 	pop af
 	ld [rSVBK], a
 	call Function13e5
@@ -113354,7 +113369,7 @@ Function11c254: ; 11c254
 ; known jump sources: 11c3c2 (47:43c2), 11c52c (47:452c), 11c658 (47:4658), 11cd20 (47:4d20), 11ce0b (47:4e0b)
 Function11c277: ; 11c277 (47:4277)
 	ld a, $7f
-	ld hl, $c518
+	hlcoord 0, 6
 	ld bc, $f0
 	call ByteFill
 	ret
@@ -113555,10 +113570,10 @@ Function11c3c2: ; 11c3c2 (47:43c2)
 	call Function11c277
 	ld de, $4fbe
 	call Function11d035
-	ld hl, $c52d
+	hlcoord 1, 7
 	ld de, $44db
 	call PlaceString
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld de, $451b
 	call PlaceString
 	call Function11c4be
@@ -113626,7 +113641,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	jr z, .asm_11c460
 	ld de, $4fba
 	call Function11cfce
-	ld de, $c4c9
+	decoord 1, 2
 	ld bc, $cd36
 	call Function11c08f
 	ld hl, $cd24
@@ -113889,7 +113904,7 @@ Function11c5f0: ; 11c5f0 (47:45f0)
 	pop af
 	dec a
 	jr nz, .asm_11c5f8
-	ld hl, $c5f5
+	hlcoord 1, 17
 	ld de, $462a
 	call PlaceString
 	ret
@@ -114246,10 +114261,10 @@ Function11c86e: ; 11c86e (47:486e)
 	ld a, [$cd26]
 	and a
 	jr z, .asm_11c88a
-	ld hl, $c5f6
+	hlcoord 2, 17
 	ld de, $48f0
 	call PlaceString
-	ld hl, $c5fa
+	hlcoord 6, 17
 	ld c, $3
 	xor a
 .asm_11c883
@@ -114259,7 +114274,7 @@ Function11c86e: ; 11c86e (47:486e)
 	jr nz, .asm_11c883
 	jr .asm_11c895
 .asm_11c88a
-	ld hl, $c5f6
+	hlcoord 2, 17
 	ld c, $7
 	ld a, $7f
 .asm_11c891
@@ -114273,10 +114288,10 @@ Function11c86e: ; 11c86e (47:486e)
 	jr c, .asm_11c8b7
 	cp [hl]
 	jr nc, .asm_11c8b7
-	ld hl, $c604
+	hlcoord 16, 17
 	ld de, $48f3
 	call PlaceString
-	ld hl, $c5ff
+	hlcoord 11, 17
 	ld a, $3
 	ld c, a
 .asm_11c8b1
@@ -114286,10 +114301,10 @@ Function11c86e: ; 11c86e (47:486e)
 	jr nz, .asm_11c8b1
 	ret
 .asm_11c8b7
-	ld hl, $c5f1
+	hlcoord 17, 16
 	ld a, $7f
 	ld [hl], a
-	ld hl, $c5ff
+	hlcoord 11, 17
 	ld c, $7
 .asm_11c8c2
 	ld [hli], a
@@ -114410,7 +114425,7 @@ INCBIN "baserom.gbc",$11c986,$11c992 - $11c986
 ; known jump sources: 11c6c4 (47:46c4)
 Function11c992: ; 11c992 (47:4992)
 	ld a, $8
-	ld hl, $c52e
+	hlcoord 2, 7
 .asm_11c997
 	push af
 	ld a, $7f
@@ -114562,10 +114577,10 @@ Function11ca7f: ; 11ca7f (47:4a7f)
 	call Function11cfce
 	ld de, $4fca
 	call Function11cfce
-	ld hl, $c5b9
+	hlcoord 1, 14
 	pop de
 	call PlaceString
-	ld hl, $c550
+	hlcoord 16, 8
 	ld de, $4a57
 	call PlaceString
 	call Function11ca01
@@ -114610,7 +114625,7 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	jr z, .asm_11caf3
 	ld a, $ff
 	ld [$cd35], a
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, $4b31
 	call PlaceString
 	ld a, $1
@@ -114725,7 +114740,7 @@ Function11cb66: ; 11cb66 (47:4b66)
 	ld e, a
 	ld a, [hl]
 	ld d, a
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld hl, $cf63
 	inc [hl]
@@ -114774,7 +114789,7 @@ INCBIN "baserom.gbc",$11cc01,$11ccef - $11cc01
 Function11ccef: ; 11ccef (47:4cef)
 	ld de, $4fc6
 	call Function11cfce
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, $4d10
 	call PlaceString
 	call Function11ca19
@@ -114798,7 +114813,7 @@ Function11cd20: ; 11cd20 (47:4d20)
 	call Function11c277
 	ld de, $4fc6
 	call Function11cfce
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld a, [$cd2b]
 	ld [$cd2c], a
 	and a
@@ -114809,7 +114824,7 @@ Function11cd20: ; 11cd20 (47:4d20)
 	ld de, $4dd9
 .asm_11cd3d
 	call PlaceString
-	ld hl, $c544
+	hlcoord 4, 8
 	ld de, $4df5
 	call PlaceString
 	call Function11cdaa
@@ -114869,7 +114884,7 @@ Function11cd54: ; 11cd54 (47:4d54)
 	ld de, $4fc6
 	call Function11cfce
 	pop de
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 
@@ -114892,10 +114907,10 @@ INCBIN "baserom.gbc",$11cdc7,$11ce0b - $11cdc7
 ; no known jump sources
 Function11ce0b: ; 11ce0b (47:4e0b)
 	call Function11c277
-	ld hl, $c52d
+	hlcoord 1, 7
 	ld de, $4f79
 	call PlaceString
-	ld hl, $c5f5
+	hlcoord 1, 17
 	ld de, $462a
 	call PlaceString
 	call Function11c618
@@ -115806,7 +115821,7 @@ Function16d673: ; 16d673
 	call Function16d6ae
 	callba Function49856
 	callba Functionfb60d
-	ld hl, $c5fe
+	hlcoord 10, 17
 	ld de, $568f
 	call PlaceString
 	ret
@@ -115840,7 +115855,7 @@ Function16d6ae: ; 16d6ae
 	ld bc, $0028
 	call CopyBytes
 	ld hl, $55f5
-	ld de, $c5e0
+	decoord 0, 16
 	ld bc, $0028
 	call CopyBytes
 	ret
@@ -115861,12 +115876,12 @@ Function16d6ce: ; 16d6ce
 ; 16d6e1
 
 Function16d6e1: ; 16d6e1
-	ld hl, $c56c
+	hlcoord 4, 10
 	ld b, $1
 	ld c, $a
 	ld a, $10
 	call Predef
-	ld hl, $c581
+	hlcoord 5, 11
 	ld de, $5701
 	call PlaceString
 	call WaitBGMap
@@ -116991,7 +117006,7 @@ Function171a5d: ; 171a5d (5c:5a5d)
 ; no known jump sources
 Function171a95: ; 171a95 (5c:5a95)
 	callba Function171ccd
-	ld hl, $c542
+	hlcoord 2, 8
 	ld de, $5aa7
 	call PlaceString
 	jp Function171c66
@@ -117027,7 +117042,7 @@ Function171aec: ; 171aec (5c:5aec)
 	callba Function118452
 	pop af
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $c51a
+	hlcoord 2, 6
 	ld a, $8
 .asm_171b01
 	push af
@@ -117041,7 +117056,7 @@ Function171aec: ; 171aec (5c:5aec)
 	pop af
 	dec a
 	jr nz, .asm_171b01
-	ld hl, $c52e
+	hlcoord 2, 7
 	ld a, $3
 	ld de, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
 .asm_171b1b
@@ -117190,7 +117205,7 @@ Function171beb: ; 171beb (5c:5beb)
 	call Function1cbb
 	call Function1cfd
 	callba Function104061
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, $5c73
 	call PlaceString
 	ld a, [$cd4a]
@@ -117265,10 +117280,10 @@ Function171c87: ; 171c87 (5c:5c87)
 	ld de, AttrMap ; $cdd9
 	ld bc, $168
 	call CopyBytes
-	ld hl, $c4cb
+	hlcoord 3, 2
 	ld de, $6e31
 	call PlaceString
-	ld hl, $c5e3
+	hlcoord 3, 16
 	ld de, $6e3f
 	call PlaceString
 	ret
@@ -117296,7 +117311,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 ; no known jump sources
 Function171cf0: ; 171cf0 (5c:5cf0)
 	xor a
-	ld hl, $c5d0
+	hlcoord 4, 15
 	ld [hli], a
 	ld [hli], a
 	ld a, [$cd4b]
@@ -117305,18 +117320,18 @@ Function171cf0: ; 171cf0 (5c:5cf0)
 	and a
 	jr nz, .asm_171d16
 	ld hl, $651d
-	ld de, $c52c
+	decoord 0, 7
 	ld bc, $8c
 	call CopyBytes
-	ld hl, $c5e3
+	hlcoord 3, 16
 	ld de, $6e3f
 	jp PlaceString
 .asm_171d16
 	ld hl, $65f9
-	ld de, $c52c
+	decoord 0, 7
 	ld bc, $8c
 	call CopyBytes
-	ld hl, $c5e3
+	hlcoord 3, 16
 	ld de, $6e4e
 	jp PlaceString
 
@@ -117339,10 +117354,10 @@ Function171d2b: ; 171d2b (5c:5d2b)
 	ld de, AttrMap ; $cdd9
 	ld bc, $168
 	call CopyBytes
-	ld hl, $c4ca
+	hlcoord 2, 2
 	ld de, $6e5d
 	call PlaceString
-	ld hl, $c5ee
+	hlcoord 14, 16
 	ld de, $6e58
 	call PlaceString
 	ret
@@ -119027,20 +119042,20 @@ Function17f5e4: ; 17f5e4
 	ld hl, AttrMap
 	ld bc, $0168
 	call ByteFill
-	ld hl, $c4b6
+	hlcoord 2, 1
 	ld b, $1
 	ld c, $e
 	call Function3eea
-	ld hl, $c4f1
+	hlcoord 1, 4
 	ld b, $c
 	ld c, $10
 	call Function3eea
-	ld hl, $c4cb
+	hlcoord 3, 2
 	ld de, $76dc
 	call PlaceString
 	call Function17ff3c
 	jr nc, .asm_17f632
-	ld hl, $c4d3
+	hlcoord 11, 2
 	call Function17f6b7
 
 .asm_17f632
@@ -119104,7 +119119,7 @@ Function17f5e4: ; 17f5e4
 	jr .asm_17f684
 
 .asm_17f67d
-	ld hl, $c51a
+	hlcoord 2, 6
 	call PlaceString
 	ret
 
@@ -119119,7 +119134,7 @@ Function17f5e4: ; 17f5e4
 	ld e, a
 	ld a, [hl]
 	ld d, a
-	ld hl, $c51a
+	hlcoord 2, 6
 	call PlaceString
 	ret
 ; 17f699
@@ -119174,7 +119189,7 @@ Function17ff3c: ; 17ff3c
 	ld a, [$c300]
 	cp $d0
 	ret c
-	ld hl, $c4d2
+	hlcoord 10, 2
 	ld de, $7f68
 	call PlaceString
 	ld a, [$c300]
@@ -119182,7 +119197,7 @@ Function17ff3c: ; 17ff3c
 	sub $d0
 	inc a
 	ld [$c300], a
-	ld hl, $c4d6
+	hlcoord 14, 2
 	ld de, $c300
 	ld bc, $8103
 	call PrintNum
@@ -119411,14 +119426,14 @@ Function1dc381: ; 1dc381
 	xor a
 	ld [MonType], a
 	callba Function5084a
-	ld hl, $c52c
+	hlcoord 0, 7
 	ld b, $9
 	ld c, $12
 	call TextBox
-	ld hl, $c4d0
+	hlcoord 8, 2
 	ld a, [TempMonLevel]
 	call Function383d
-	ld hl, $c4d4
+	hlcoord 12, 2
 	ld [hl], $71
 	inc hl
 	ld de, TempMonMaxHP
@@ -119429,14 +119444,14 @@ Function1dc381: ; 1dc381
 	ld [CurSpecies], a
 	ld hl, PartyMon1Nickname
 	call Function1dc50e
-	ld hl, $c4f8
+	hlcoord 8, 4
 	call PlaceString
-	ld hl, $c521
+	hlcoord 9, 6
 	ld [hl], $f3
 	call GetPokemonName
-	ld hl, $c522
+	hlcoord 10, 6
 	call PlaceString
-	ld hl, $c4a8
+	hlcoord 8, 0
 	ld [hl], $74
 	inc hl
 	ld [hl], $e8
@@ -119444,24 +119459,24 @@ Function1dc381: ; 1dc381
 	ld de, $d265
 	ld bc, $8103
 	call PrintNum
-	ld hl, $c555
+	hlcoord 1, 9
 	ld de, String1dc550
 	call PlaceString
 	ld hl, PartyMon1OT
 	call Function1dc50e
-	ld hl, $c558
+	hlcoord 4, 9
 	call PlaceString
-	ld hl, $c57d
+	hlcoord 1, 11
 	ld de, String1dc559
 	call PlaceString
-	ld hl, $c580
+	hlcoord 4, 11
 	ld de, TempMonID
 	ld bc, $8205
 	call PrintNum
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld de, String1dc554
 	call PlaceString
-	ld hl, $c5bf
+	hlcoord 7, 14
 	ld a, [TempMonMove1]
 	call Function1dc51a
 	call Function1dc52c
@@ -119502,33 +119517,33 @@ Function1dc47b: ; 1dc47b
 	call TextBox
 	ld bc, SCREEN_WIDTH
 	ld de, TileMap
-	ld hl, $c4b4
+	hlcoord 0, 1
 	call CopyBytes
-	ld hl, $c4a7
+	hlcoord 7, 0
 	ld a, [TempMonMove2]
 	call Function1dc51a
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld a, [TempMonMove3]
 	call Function1dc51a
-	ld hl, $c4f7
+	hlcoord 7, 4
 	ld a, [TempMonMove4]
 	call Function1dc51a
-	ld hl, $c533
+	hlcoord 7, 7
 	ld de, String1dc55d
 	call PlaceString
-	ld hl, $c53c
+	hlcoord 16, 7
 	ld de, TempMonAtk
 	call Function1dc507
-	ld hl, $c564
+	hlcoord 16, 9
 	ld de, TempMonDef
 	call Function1dc507
-	ld hl, $c58c
+	hlcoord 16, 11
 	ld de, TempMonSpclAtk
 	call Function1dc507
-	ld hl, $c5b4
+	hlcoord 16, 13
 	ld de, TempMonSpclDef
 	call Function1dc507
-	ld hl, $c5dc
+	hlcoord 16, 15
 	ld de, TempMonSpd
 	call Function1dc507
 	call WaitBGMap
@@ -119578,12 +119593,12 @@ Function1dc52c: ; 1dc52c
 	ld a, $f5
 
 .asm_1dc53c
-	ld hl, $c4d9
+	hlcoord 17, 2
 	ld [hl], a
 	ld bc, TempMonDVs
 	callba CheckShininess
 	ret nc
-	ld hl, $c4da
+	hlcoord 18, 2
 	ld [hl], $3f
 	ret
 ; 1dc550
@@ -119687,16 +119702,16 @@ Function1dd709: ; 1dd709
 	ld bc, $0168
 	call CopyBytes
 	ld de, $5760
-	ld hl, $c506
+	hlcoord 2, 5
 	call PlaceString
 	ld de, $5767
-	ld hl, $c513
+	hlcoord 15, 5
 	call PlaceString
 	ld de, PlayerName
-	ld hl, $c50d
+	hlcoord 9, 5
 	call PlaceString
 	ld de, $5768
-	ld hl, $c542
+	hlcoord 2, 8
 	call PlaceString
 	call EnableLCD
 	call WaitBGMap
@@ -119719,12 +119734,12 @@ Function1dd7ae: ; 1dd7ae
 	ld bc, $0168
 	call CopyBytes
 	ld de, $57fa
-	ld hl, $c4a8
+	hlcoord 8, 0
 	call PlaceString
 	ld de, $57f0
-	ld hl, $c5cf
+	hlcoord 3, 15
 	call PlaceString
-	ld hl, $c5d8
+	hlcoord 12, 15
 	ld de, GameTimeHours
 	ld bc, $0204
 	call PrintNum
@@ -119771,10 +119786,10 @@ INCBIN "baserom.gbc",$1de0e1,$1de171 - $1de0e1
 ; no known jump sources
 Function1de171: ; 1de171 (77:6171)
 	ld a, $32
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld bc, $c
 	call ByteFill
-	ld hl, $c4b4
+	hlcoord 0, 1
 	ld bc, $f0b
 	call ClearBox
 	ld a, $34
@@ -119782,29 +119797,29 @@ Function1de171: ; 1de171 (77:6171)
 	ld bc, $b
 	call ByteFill
 	ld a, $39
-	ld hl, $c5e0
+	hlcoord 0, 16
 	ld bc, $b
 	call ByteFill
-	ld hl, $c4a5
+	hlcoord 5, 0
 	ld [hl], $3f
-	ld hl, $c5e5
+	hlcoord 5, 16
 	ld [hl], $40
 	ld a, [$c7d4]
 	cp $1
 	jr z, .asm_1de1bf
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld [hl], $50
 	ld a, $51
-	ld hl, $c4bf
+	hlcoord 11, 1
 	ld b, $f
 	call Function1de27f
 	ld [hl], $52
 	jr .asm_1de1d0
 .asm_1de1bf
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld [hl], $66
 	ld a, $67
-	ld hl, $c4bf
+	hlcoord 11, 1
 	ld b, $f
 	call Function1de27f
 	ld [hl], $68
@@ -119818,40 +119833,40 @@ Function1de1d1: ; 1de1d1 (77:61d1)
 	ld bc, $b
 	call ByteFill
 	ld a, $39
-	ld hl, $c568
+	hlcoord 0, 10
 	ld bc, $b
 	call ByteFill
-	ld hl, $c4a5
+	hlcoord 5, 0
 	ld [hl], $3f
-	ld hl, $c56d
+	hlcoord 5, 10
 	ld [hl], $40
-	ld hl, $c4ab
+	hlcoord 11, 0
 	ld [hl], $66
 	ld a, $67
-	ld hl, $c4bf
+	hlcoord 11, 1
 	ld b, $9
 	call Function1de27f
 	ld [hl], $68
 	ld a, $34
-	ld hl, $c57c
+	hlcoord 0, 11
 	ld bc, $b
 	call ByteFill
 	ld a, $39
-	ld hl, $c5f4
+	hlcoord 0, 17
 	ld bc, $b
 	call ByteFill
-	ld hl, $c587
+	hlcoord 11, 11
 	ld [hl], $66
 	ld a, $67
-	ld hl, $c59b
+	hlcoord 11, 12
 	ld b, $5
 	call Function1de27f
 	ld [hl], $68
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $50b
 	call ClearBox
 	ld de, $623c
-	ld hl, $c590
+	hlcoord 0, 12
 	call PlaceString
 	ret
 ; 1de23c (77:623c)
@@ -119870,14 +119885,14 @@ Function1de247: ; 1de247
 	ld [hBGMapAddress], a
 	ld a, h
 	ld [$ffd7], a
-	ld hl, $c4b3
+	hlcoord 19, 0
 	ld [hl], $66
-	ld hl, $c4c7
+	hlcoord 19, 1
 	ld a, $67
 	ld b, $f
 	call Function1de27f
 	ld [hl], $68
-	ld hl, $c607
+	hlcoord 19, 17
 	ld [hl], $3c
 	xor a
 	ld b, $12
@@ -119977,7 +119992,7 @@ Function1de2c5: ; 1de2c5
 
 .asm_1de2da
 	ld de, StringBuffer1
-	ld hl, $c4a9
+	hlcoord 9, 0
 	call PlaceString
 	ret
 ; 1de2e4
@@ -120142,8 +120157,8 @@ INCBIN "baserom.gbc",$1f4018,$1f636a - $1f4018
 
 SECTION "bank7E", ROMX, BANK[$7E]
 
-INCLUDE "stats/battle_tower.asm"
-INCLUDE "stats/odd_eggs.asm"
+INCLUDE "data/battle_tower.asm"
+INCLUDE "data/odd_eggs.asm"
 
 
 SECTION "bank7F", ROMX, BANK[$7F]
