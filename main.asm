@@ -61360,13 +61360,13 @@ Function50eed: ; 50eed
 GrowthRates: ; 50efa
 
 growth_rate: MACRO
-; [1]/[2]*n^3 + [3]*n^2 + [4]*n - [5]
+; [1]/[2]*n**3 + [3]*n**2 + [4]*n - [5]
 	dn \1, \2
-	IF \3 & $80 ; signed
-		db ((\3 ^ $ff) + 1) | $80
-	ELSE
+	if \3 & $80 ; signed
+		db -\3 | $80
+	else
 		db \3
-	ENDC
+	endc
 	db \4, \5
 ENDM
 
