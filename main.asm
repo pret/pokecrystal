@@ -75181,8 +75181,7 @@ Unknown_8c490: ; 8c490
 macro_8c490: MACRO
 	db \1
 	dw \2
-	FuncCoord \3, \4
-	dw Coord
+	dw TileMap + SCREEN_WIDTH * \4 + \3
 ENDM
 
 	macro_8c490 0, Unknown_8c538,  1,  6

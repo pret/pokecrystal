@@ -117,24 +117,16 @@ A# EQU 11
 B_ EQU 12
 
 
-; It's better to use *coord than FuncCoord.
-FuncCoord: MACRO
-Coord = $c4a0 + 20 * \2 + \1
-	ENDM
-
 bccoord: MACRO
-	FuncCoord \1, \2
-	ld bc, Coord
+	ld bc, TileMap + SCREEN_WIDTH * \2 + \1
 	ENDM
 	
 decoord: MACRO
-	FuncCoord \1, \2
-	ld de, Coord
+	ld de, TileMap + SCREEN_WIDTH * \2 + \1
 	ENDM
 
 hlcoord: MACRO
-	FuncCoord \1, \2
-	ld hl, Coord
+	ld hl, TileMap + SCREEN_WIDTH * \2 + \1
 	ENDM
 
 
