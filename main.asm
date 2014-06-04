@@ -8503,55 +8503,65 @@ SpecialTrainerHouse: ; 0xc4b9
 	ld [ScriptVar], a
 	jp CloseSRAM
 
-_PrintNum:: ; c4c7
-	push bc
-	bit 5, b
-	jr z, .asm_c4d9
-	bit 7, b
-	jr nz, .asm_c4d4
-	bit 6, b
-	jr z, .asm_c4d9
 
-.asm_c4d4
+_PrintNum:: ; c4c7
+; Print c digits of the b-byte value at hl.
+; Allows 2 to 7 digits. For 1-digit numbers, add
+; the value to char "0" instead of calling PrintNum.
+; Some extra flags can be given in bits 5-7 of b.
+
+	push bc
+
+	bit 5, b
+	jr z, .main
+	bit 7, b
+	jr nz, .bit_7
+	bit 6, b
+	jr z, .main
+
+.bit_7
 	ld a, $f0
 	ld [hli], a
 	res 5, b
 
-.asm_c4d9
+.main
 	xor a
-	ld [hProduct], a
-	ld [hMultiplicand], a
+	ld [$ffb3], a
+	ld [$ffb4], a
 	ld [$ffb5], a
 	ld a, b
 	and $f
-	cp $1
-	jr z, .asm_c501
-	cp $2
-	jr z, .asm_c4f8
+	cp 1
+	jr z, .byte
+	cp 2
+	jr z, .word
+
+.long
 	ld a, [de]
-	ld [hMultiplicand], a
+	ld [$ffb4], a
 	inc de
 	ld a, [de]
 	ld [$ffb5], a
 	inc de
 	ld a, [de]
 	ld [$ffb6], a
-	jr .asm_c504
+	jr .start
 
-.asm_c4f8
+.word
 	ld a, [de]
 	ld [$ffb5], a
 	inc de
 	ld a, [de]
 	ld [$ffb6], a
-	jr .asm_c504
+	jr .start
 
-.asm_c501
+.byte
 	ld a, [de]
 	ld [$ffb6], a
 
-.asm_c504
+.start
 	push de
+
 	ld d, b
 	ld a, c
 	swap a
@@ -8560,123 +8570,126 @@ _PrintNum:: ; c4c7
 	ld a, c
 	and $f
 	ld b, a
-	ld c, $0
-	cp $2
-	jr z, .asm_c57c
-	cp $3
-	jr z, .asm_c56c
-	cp $4
-	jr z, .asm_c55b
-	cp $5
-	jr z, .asm_c54a
-	cp $6
-	jr z, .asm_c538
-	ld a, $f
-	ld [hMultiplier], a
-	ld a, $42
-	ld [hMathBuffer], a
-	ld a, $40
-	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	ld c, 0
+	cp 2
+	jr z, .two
+	cp 3
+	jr z, .three
+	cp 4
+	jr z, .four
+	cp 5
+	jr z, .five
+	cp 6
+	jr z, .six
 
-.asm_c538
-	ld a, $1
-	ld [hMultiplier], a
-	ld a, $86
-	ld [hMathBuffer], a
-	ld a, $a0
+.seven
+	ld a, 1000000 / $10000 % $100
+	ld [$ffb7], a
+	ld a, 1000000 / $100 % $100
+	ld [$ffb8], a
+	ld a, 1000000 % $100
 	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	call .PrintDigit
+	call .AdvancePointer
 
-.asm_c54a
+.six
+	ld a, 100000 / $10000 % $100
+	ld [$ffb7], a
+	ld a, 100000 / $100 % $100
+	ld [$ffb8], a
+	ld a, 100000 % $100
+	ld [$ffb9], a
+	call .PrintDigit
+	call .AdvancePointer
+
+.five
 	xor a
-	ld [hMultiplier], a
-	ld a, $27
-	ld [hMathBuffer], a
-	ld a, $10
+	ld [$ffb7], a
+	ld a, 10000 / $100
+	ld [$ffb8], a
+	ld a, 10000 % $100
 	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	call .PrintDigit
+	call .AdvancePointer
 
-.asm_c55b
+.four
 	xor a
-	ld [hMultiplier], a
-	ld a, $3
-	ld [hMathBuffer], a
-	ld a, $e8
+	ld [$ffb7], a
+	ld a, 1000 / $100
+	ld [$ffb8], a
+	ld a, 1000 % $100
 	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	call .PrintDigit
+	call .AdvancePointer
 
-.asm_c56c
+.three
 	xor a
-	ld [hMultiplier], a
+	ld [$ffb7], a
 	xor a
-	ld [hMathBuffer], a
-	ld a, $64
+	ld [$ffb8], a
+	ld a, 100
 	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	call .PrintDigit
+	call .AdvancePointer
 
-.asm_c57c
+.two
 	dec e
 	jr nz, .asm_c583
 	ld a, $f6
-	ld [hProduct], a
-
+	ld [$ffb3], a
 .asm_c583
-	ld c, $0
-	ld a, [$ffb6]
-.asm_c587
-	cp $a
-	jr c, .asm_c590
-	sub $a
-	inc c
-	jr .asm_c587
 
-.asm_c590
+	ld c, 0
+	ld a, [$ffb6]
+.mod_10
+	cp 10
+	jr c, .modded_10
+	sub 10
+	inc c
+	jr .mod_10
+.modded_10
+
 	ld b, a
-	ld a, [hProduct]
+	ld a, [$ffb3]
 	or c
 	jr nz, .asm_c59b
-	call PrintNumber_PrintLeadingZero
+	call .PrintLeadingZero
 	jr .asm_c5ad
 
 .asm_c59b
-	call Functionc5ba
+	call .PrintYen
 	push af
-	ld a, $f6
+	ld a, "0"
 	add c
 	ld [hl], a
 	pop af
-	ld [hProduct], a
+	ld [$ffb3], a
 	inc e
 	dec e
 	jr nz, .asm_c5ad
 	inc hl
-	ld [hl], $f2
+	ld [hl], $f2 ; XXX
 
 .asm_c5ad
-	call PrintNumber_AdvancePointer
-	call Functionc5ba
-	ld a, $f6
+	call .AdvancePointer
+	call .PrintYen
+	ld a, "0"
 	add b
 	ld [hli], a
+
 	pop de
 	pop bc
 	ret
 ; c5ba
 
-Functionc5ba: ; c5ba
+.PrintYen: ; c5ba
 	push af
-	ld a, [hProduct]
+	ld a, [$ffb3]
 	and a
 	jr nz, .asm_c5c9
 	bit 5, d
 	jr z, .asm_c5c9
-	ld a, $f0
+	ld a, "¥"
 	ld [hli], a
 	res 5, d
 
@@ -8685,76 +8698,72 @@ Functionc5ba: ; c5ba
 	ret
 ; c5cb
 
-
-; known jump sources: c532 (3:4532), c544 (3:4544), c555 (3:4555), c566 (3:4566), c576 (3:4576)
-Functionc5cb: ; c5cb (3:45cb)
+.PrintDigit: ; c5cb (3:45cb)
 	dec e
-	jr nz, PrintNumber_PrintDigit
+	jr nz, .ok
 	ld a, $f6
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
-
-; known jump sources: c5cc (3:45cc)
-PrintNumber_PrintDigit: ; c5d2 (3:45d2)
+	ld [$ffb3], a
+.ok
 	ld c, $0
 .asm_c5d4
-	ld a, [hDivisor] ; $ff00+$b7 (aliases: hMultiplier)
+	ld a, [$ffb7]
 	ld b, a
-	ld a, [hQuotient] ; $ff00+$b4 (aliases: hMultiplicand)
-	ld [$FF00+$ba], a
+	ld a, [$ffb4]
+	ld [$ffba], a
 	cp b
 	jr c, .asm_c624
 	sub b
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld a, [hMathBuffer] ; $ff00+$b8
+	ld [$ffb4], a
+	ld a, [$ffb8]
 	ld b, a
-	ld a, [$FF00+$b5]
-	ld [$FF00+$bb], a
+	ld a, [$ffb5]
+	ld [$ffbb], a
 	cp b
 	jr nc, .asm_c5f6
-	ld a, [hQuotient] ; $ff00+$b4 (aliases: hMultiplicand)
+	ld a, [$ffb4]
 	or $0
 	jr z, .asm_c620
 	dec a
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld a, [$FF00+$b5]
+	ld [$ffb4], a
+	ld a, [$ffb5]
 .asm_c5f6
 	sub b
-	ld [$FF00+$b5], a
-	ld a, [$FF00+$b9]
+	ld [$ffb5], a
+	ld a, [$ffb9]
 	ld b, a
-	ld a, [$FF00+$b6]
-	ld [$FF00+$bc], a
+	ld a, [$ffb6]
+	ld [$ffbc], a
 	cp b
 	jr nc, .asm_c616
-	ld a, [$FF00+$b5]
+	ld a, [$ffb5]
 	and a
 	jr nz, .asm_c611
-	ld a, [hQuotient] ; $ff00+$b4 (aliases: hMultiplicand)
+	ld a, [$ffb4]
 	and a
 	jr z, .asm_c61c
 	dec a
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
+	ld [$ffb4], a
 	xor a
 .asm_c611
 	dec a
-	ld [$FF00+$b5], a
-	ld a, [$FF00+$b6]
+	ld [$ffb5], a
+	ld a, [$ffb6]
 .asm_c616
 	sub b
-	ld [$FF00+$b6], a
+	ld [$ffb6], a
 	inc c
 	jr .asm_c5d4
 .asm_c61c
-	ld a, [$FF00+$bb]
-	ld [$FF00+$b5], a
+	ld a, [$ffbb]
+	ld [$ffb5], a
 .asm_c620
-	ld a, [$FF00+$ba]
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
+	ld a, [$ffba]
+	ld [$ffb4], a
 .asm_c624
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	or c
-	jr z, PrintNumber_PrintLeadingZero
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	jr z, .PrintLeadingZero
+	ld a, [$ffb3]
 	and a
 	jr nz, .asm_c637
 	bit 5, d
@@ -8766,7 +8775,7 @@ PrintNumber_PrintDigit: ; c5d2 (3:45d2)
 	ld a, $f6
 	add c
 	ld [hl], a
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	inc e
 	dec e
 	ret nz
@@ -8774,49 +8783,51 @@ PrintNumber_PrintDigit: ; c5d2 (3:45d2)
 	ld [hl], $f2
 	ret
 
-PrintNumber_PrintLeadingZero: ; c644
+.PrintLeadingZero: ; c644
 ; prints a leading zero unless they are turned off in the flags
 	bit 7, d ; print leading zeroes?
 	ret z
 	ld [hl], "0"
 	ret
 
-PrintNumber_AdvancePointer: ; c64a
+.AdvancePointer: ; c64a
 ; increments the pointer unless leading zeroes are not being printed,
 ; the number is left-aligned, and no nonzero digits have been printed yet
 	bit 7, d ; print leading zeroes?
-	jr nz, .incrementPointer
+	jr nz, .inc
 	bit 6, d ; left alignment or right alignment?
-	jr z, .incrementPointer
-	ld a, [hPastLeadingZeroes]
+	jr z, .inc
+	ld a, [$ffb3]
 	and a
 	ret z
-.incrementPointer
+.inc
 	inc hl
 	ret
-; 0xc658
+; c658
+
 
 Functionc658: ; c658
 	xor a
 	ld [CurPartyMon], a
 	ld hl, PartySpecies
-.asm_c65f
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_c676
-	cp $fd
-	jr z, .asm_c66d
+	jr z, .done
+	cp EGG
+	jr z, .next
+
 	push hl
 	call Functionc677
 	pop hl
 
-.asm_c66d
+.next
 	ld a, [CurPartyMon]
 	inc a
 	ld [CurPartyMon], a
-	jr .asm_c65f
+	jr .loop
 
-.asm_c676
+.done
 	ret
 ; c677
 
@@ -44727,7 +44738,7 @@ Function3989d: ; 3989d
 
 ; known jump sources: 397d0 (e:57d0)
 Function3991b: ; 3991b (e:591b)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	xor a
 	ld [hli], a
 	ld [hli], a
@@ -51173,10 +51184,10 @@ Function48d4a: ; 48d4a (12:4d4a)
 ; known jump sources: 48d40 (12:4d40), 48d46 (12:4d46)
 Function48d94: ; 48d94 (12:4d94)
 	xor a
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, [hli]
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	ld a, [hl]
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, 100
@@ -106119,7 +106130,7 @@ Function104a95: ; 104a95 (41:4a95)
 	ld a, [$FF00+$bb]
 	cp $2
 	jr z, Function104b22
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	jr nz, .asm_104ac8
@@ -106197,7 +106208,7 @@ Function104b22: ; 104b22 (41:4b22)
 
 ; known jump sources: 104b04 (41:4b04), 104b2e (41:4b2e)
 Function104b40: ; 104b40 (41:4b40)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -106208,14 +106219,14 @@ Function104b49: ; 104b49 (41:4b49)
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret nz
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	cp $96
 	jp nz, Function104d32
 	ld a, $90
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	call Function104d38
 	ret nz
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -106238,8 +106249,8 @@ Function104b49: ; 104b49 (41:4b49)
 ; known jump sources: 104b10 (41:4b10), 104b22 (41:4b22)
 Function104b88: ; 104b88 (41:4b88)
 	ld a, $96
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -106249,7 +106260,7 @@ Function104b88: ; 104b88 (41:4b88)
 	ret nz
 	call Function104d43
 	ret nz
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -106257,7 +106268,7 @@ Function104b88: ; 104b88 (41:4b88)
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret nz
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	cp $90
 	jp nz, Function104d32
 	call Function104d38
@@ -106358,7 +106369,7 @@ Function104c2d: ; 104c2d (41:4c2d)
 
 ; known jump sources: 104c4e (41:4c4e), 104c78 (41:4c78)
 Function104c8a: ; 104c8a (41:4c8a)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -106366,14 +106377,14 @@ Function104c8a: ; 104c8a (41:4c8a)
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret nz
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	cp $3c
 	jp nz, Function104d32
 	swap a
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	call Function104d38
 	ret nz
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -106396,8 +106407,8 @@ Function104c8a: ; 104c8a (41:4c8a)
 ; known jump sources: 104c5a (41:4c5a), 104c6c (41:4c6c)
 Function104cd2: ; 104cd2 (41:4cd2)
 	ld a, $3c
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -106407,7 +106418,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	ret nz
 	call Function104d43
 	ret nz
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -106415,7 +106426,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret nz
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	swap a
 	cp $3c
 	jp nz, Function104d32
