@@ -6,11 +6,7 @@ party_struct: MACRO
 \1Species::  db
 \1Item::     db
 
-\1Moves::
-\1Move1::    db
-\1Move2::    db
-\1Move3::    db
-\1Move4::    db
+\1Moves::    ds NUM_MOVES
 
 \1ID::       dw
 \1Exp::      ds 3 ; Big endian
@@ -25,11 +21,7 @@ party_struct: MACRO
 \1AtkDefDV:: db
 \1SpdSpcDV:: db
 
-\1PP::
-\1PPMove1::  db
-\1PPMove2::  db
-\1PPMove3::  db
-\1PPMove4::  db
+\1PP::       ds NUM_MOVES
 
 \1Happiness::     db
 \1PokerusStatus:: db
@@ -483,15 +475,8 @@ BattleMonSpecies:: ; c62c
 BattleMonItem:: ; c62d
 	ds 1
 
-BattleMonMoves::
-BattleMonMove1:: ; c62e
-	ds 1
-BattleMonMove2:: ; c62f
-	ds 1
-BattleMonMove3:: ; c630
-	ds 1
-BattleMonMove4:: ; c631
-	ds 1
+BattleMonMoves:: ; c62e
+	ds NUM_MOVES
 
 BattleMonDVs::
 BattleMonAtkDefDV:: ; c632
@@ -499,15 +484,8 @@ BattleMonAtkDefDV:: ; c632
 BattleMonSpdSpclDV:: ; c633
 	ds 1
 
-BattleMonPP::
-BattleMonPPMove1:: ; c634
-	ds 1
-BattleMonPPMove2:: ; c635
-	ds 1
-BattleMonPPMove3:: ; c636
-	ds 1
-BattleMonPPMove4:: ; c637
-	ds 1
+BattleMonPP:: ; c634
+	ds NUM_MOVES
 
 BattleMonHappiness:: ; c638
 	ds 1
@@ -736,7 +714,14 @@ EnemyTurnsTaken:: ; c6dc
 PlayerTurnsTaken:: ; c6dd
 	ds 1
 
-	ds 5
+	ds 1
+
+PlayerSubstituteHP:: ; c6df
+	ds 1
+EnemySubstituteHP:: ; c6e0
+	ds 1
+
+	ds 2
 
 CurPlayerMove:: ; c6e3
 	ds 1
@@ -788,15 +773,17 @@ EnemyScreens:: ; c700
 ; see PlayerScreens
 	ds 1
 
+PlayerSafeguardCount:: ; c701
 	ds 1
-
 PlayerLightScreenCount:: ; c702
 	ds 1
 PlayerReflectCount:: ; c703
 	ds 1
 
-	ds 2
+	ds 1
 
+EnemySafeguardCount:: ; c705
+	ds 1
 EnemyLightScreenCount:: ; c706
 	ds 1
 EnemyReflectCount:: ; c707
@@ -1083,70 +1070,7 @@ CurPartyMon:: ; d109
 	ds 4
 
 TempMon::
-TempMonSpecies:: ; d10e
-	ds 1
-TempMonItem:: ; d10f
-	ds 1
-TempMonMoves:: ; d110
-TempMonMove1:: ; d110
-	ds 1
-TempMonMove2:: ; d111
-	ds 1
-TempMonMove3:: ; d112
-	ds 1
-TempMonMove4:: ; d113
-	ds 1
-TempMonID:: ; d114
-	ds 2
-TempMonExp:: ; d116
-	ds 3
-TempMonHPExp:: ; d119
-	ds 2
-TempMonAtkExp:: ; d11b
-	ds 2
-TempMonDefExp:: ; d11d
-	ds 2
-TempMonSpdExp:: ; d11f
-	ds 2
-TempMonSpclExp:: ; d121
-	ds 2
-TempMonDVs:: ; d123
-; hp = %1000 for each dv
-	ds 1 ; atk/def
-	ds 1 ; spd/spc
-TempMonPP:: ; d125
-	ds 4
-TempMonHappiness:: ; d129
-	ds 1
-TempMonPokerusStatus:: ; d12a
-	ds 1
-TempMonCaughtData:: ; d12b
-TempMonCaughtTime:: ; d12b
-TempMonCaughtLevel:: ; d12b
-	ds 1
-TempMonCaughtGender:: ; d12c
-TempMonCaughtLocation:: ; d12c
-	ds 1
-TempMonLevel:: ; d12d
-	ds 1
-TempMonStatus:: ; d12e
-	ds 1
-; d12f
-	ds 1
-TempMonHP:: ; d130
-	ds 2
-TempMonMaxHP:: ; d132
-	ds 2
-TempMonAtk:: ; d134
-	ds 2
-TempMonDef:: ; d136
-	ds 2
-TempMonSpd:: ; d138
-	ds 2
-TempMonSpclAtk:: ; d13a
-	ds 2
-TempMonSpclDef:: ; d13c
-	ds 2
+	party_struct TempMon
 TempMonEnd:: ; d13e
 
 	ds 3
@@ -1316,15 +1240,8 @@ EnemyMonSpecies:: ; d206
 EnemyMonItem:: ; d207
 	ds 1
 
-EnemyMonMoves::
-EnemyMonMove1:: ; d208
-	ds 1
-EnemyMonMove2:: ; d209
-	ds 1
-EnemyMonMove3:: ; d20a
-	ds 1
-EnemyMonMove4:: ; d20b
-	ds 1
+EnemyMonMoves:: ; d208
+	ds NUM_MOVES
 EnemyMonMovesEnd::
 
 EnemyMonDVs::
@@ -1333,16 +1250,9 @@ EnemyMonAtkDefDV:: ; d20c
 EnemyMonSpdSpclDV:: ; d20d
 	ds 1
 	
-EnemyMonPP::
-EnemyMonPPMove1:: ; d20e
-	ds 1
-EnemyMonPPMove2:: ; d20f
-	ds 1
-EnemyMonPPMove3:: ; d210
-	ds 1
-EnemyMonPPMove4:: ; d211
-	ds 1
-	
+EnemyMonPP:: ; d20e
+	ds NUM_MOVES
+
 EnemyMonHappiness:: ; d212
 	ds 1
 EnemyMonLevel:: ; d213
@@ -1729,7 +1639,10 @@ StatusFlags2:: ; d84d
 Money:: ; d84e
 	ds 3
 
-	ds 4
+wMomsMoney:: ; d851
+	ds 3
+wMomSavingMoney:: ; d854
+	ds 1
 
 Coins:: ; d855
 	ds 2
@@ -2087,7 +2000,7 @@ EggNick:: ; df65
 	ds 11
 EggOT:: ; df70
 	ds 11
-EggStats::
+EggMon::
 EggSpecies:: ; df7b
 	ds 1
 	ds 31

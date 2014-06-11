@@ -366,7 +366,7 @@ ParkBall: ; e8a2
 
 .asm_e98e
 	ld b, a
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	call Random
 
 	cp b
@@ -478,13 +478,13 @@ ParkBall: ; e8a2
 	bit 3, [hl]
 	jr nz, .asm_ea67
 	ld hl, $c735
-	ld de, EnemyMonMove1
-	ld bc, $0004
+	ld de, EnemyMonMoves
+	ld bc, NUM_MOVES
 	call CopyBytes
 
 	ld hl, $c739
-	ld de, EnemyMonPPMove1
-	ld bc, $0004
+	ld de, EnemyMonPP
+	ld bc, NUM_MOVES
 	call CopyBytes
 
 .asm_ea67
@@ -2633,11 +2633,11 @@ Functionf652: ; f652
 
 .asm_f677
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld de, BattleMonMove1
-	ld b, $4
+	ld de, BattleMonMoves
+	ld b, NUM_MOVES
 .asm_f688
 	ld a, [de]
 	and a
@@ -2647,13 +2647,10 @@ Functionf652: ; f652
 	push hl
 	push de
 	push bc
+	rept NUM_MOVES + 2 ; BattleMonPP - BattleMonMoves
 	inc de
-	inc de
-	inc de
-	inc de
-	inc de
-	inc de
-	ld bc, $0015
+	endr
+	ld bc, PartyMon1PP - PartyMon1Moves
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
@@ -2682,15 +2679,16 @@ Functionf6af: ; f6af
 	ld hl, $cfa9
 	ld [hli], a
 	ld [hl], a
-	ld b, $4
+	ld b, NUM_MOVES
 .asm_f6b7
 	push bc
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	call Functionf963
 	ld a, [hl]
 	and a
 	jr z, .asm_f6ce
+
 	call Functionf6e8
 	jr z, .asm_f6ce
 	ld hl, $cfaa
@@ -2721,7 +2719,7 @@ Functionf6e8: ; f6e8
 	ld [MonType], a
 	call Functionf8ec
 	ld hl, PartyMon1PP
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionf963
 	ld a, [$d265]
 	ld b, a
@@ -2739,6 +2737,7 @@ Functionf6e8: ; f6e8
 	ld c, 5
 	cp MYSTERYBERRY
 	jr z, .asm_f715
+
 	ld c, 10
 
 .asm_f715
@@ -2985,7 +2984,7 @@ WontHaveAnyEffect_NotUsedMessage: ; f7ca
 	ld hl, WontHaveAnyEffectText
 	call PrintText
 
-; Item wasn't used.
+	; Item wasn't used.
 	ld a, $2
 	ld [$d0ec], a
 	ret
@@ -3000,7 +2999,7 @@ Ball_BoxIsFullMessage: ; f7dc
 	ld hl, Ball_BoxIsFullText
 	call PrintText
 
-; Item wasn't used.
+	; Item wasn't used.
 	ld a, $2
 	ld [$d0ec], a
 	ret
@@ -3116,21 +3115,21 @@ GotOffTheItemText: ; 0xf847
 
 
 Functionf84c: ; f84c
-	ld a, $2
+	ld a, PartyMon1Moves - PartyMon1
 	call GetPartyParamLocation
 	push hl
-	ld de, MagikarpLength
-	ld a, $5
+	ld de, Buffer1
+	ld a, PREDEF_FILLPP
 	call Predef
 	pop hl
-	ld bc, $0015
+	ld bc, PartyMon1PP - PartyMon1Moves
 	add hl, bc
-	ld de, MagikarpLength
-	ld b, $0
+	ld de, Buffer1
+	ld b, 0
 .asm_f864
 	inc b
 	ld a, b
-	cp $5
+	cp NUM_MOVES + 1
 	ret z
 	ld a, [$d265]
 	dec a
@@ -3157,14 +3156,14 @@ Functionf84c: ; f84c
 Functionf881: ; f881
 	push bc
 	ld a, [de]
-	ld [$ffb6], a
+	ld [hDividend + 3], a
 	xor a
-	ld [hProduct], a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
-	ld a, $5
-	ld [hMultiplier], a
-	ld b, $4
+	ld [hDividend], a
+	ld [hDividend + 1], a
+	ld [hDividend + 2], a
+	ld a, 5
+	ld [hDivisor], a
+	ld b, 4
 	call Divide
 	ld a, [hl]
 	ld b, a
@@ -3197,16 +3196,16 @@ Functionf881: ; f881
 ; f8b9
 
 Functionf8b9: ; f8b9
-	ld a, $17
+	ld a, PartyMon1PP - PartyMon1
 	call GetPartyParamLocation
 	push hl
-	ld a, $2
+	ld a, PartyMon1Moves - PartyMon1
 	call GetPartyParamLocation
 	pop de
 	xor a
 	ld [$cfa9], a
 	ld [MonType], a
-	ld c, $4
+	ld c, NUM_MOVES
 .asm_f8ce
 	ld a, [hli]
 	and a
@@ -3265,21 +3264,21 @@ Functionf8ec: ; f8ec
 	ld a, [hl]
 	dec a
 	push hl
-	ld hl, $5b00
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	ld b, a
 	ld de, StringBuffer1
 	ld [de], a
 	pop hl
 	push bc
-	ld bc, $0015
+	ld bc, PartyMon1PP - PartyMon1Moves
 	ld a, [MonType]
 	cp WILDMON
 	jr nz, .asm_f942
-	ld bc, $0006
+	ld bc, EnemyMonPP - EnemyMonMoves
 
 .asm_f942
 	add hl, bc
@@ -3310,7 +3309,7 @@ Functionf963: ; f963
 Functionf969: ; f969
 	ld a, [$cfa9]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ret
 ; f971

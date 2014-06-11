@@ -5266,13 +5266,13 @@ Function6508: ; 6508
 	call CopyBytes
 
 Function6520: ; 6520
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld b, $4
+	ld b, NUM_MOVES
 .asm_6530
 	ld a, [hl]
 	and a
@@ -5284,9 +5284,11 @@ Function6520: ; 6520
 	call Function65d3
 	pop de
 	jp c, Function65b5
+
 	push hl
 	push de
 	ld [$d265], a
+
 	ld b, a
 	ld a, [IsInBattle]
 	and a
@@ -5297,8 +5299,8 @@ Function6520: ; 6520
 	xor a
 	ld [DisabledMove], a
 	ld [PlayerDisableCount], a
-
 .asm_6559
+
 	call GetMoveName
 	ld hl, UnknownText_0x6684
 	call PrintText
@@ -5334,13 +5336,13 @@ Function6520: ; 6520
 	jp nz, Function65ca
 	ld h, d
 	ld l, e
-	ld de, BattleMonMove1
-	ld bc, $0004
+	ld de, BattleMonMoves
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld bc, $0011
+	ld bc, PartyMon1PP - (PartyMon1Moves + NUM_MOVES)
 	add hl, bc
-	ld de, BattleMonPPMove1
-	ld bc, $0004
+	ld de, BattleMonPP
+	ld bc, NUM_MOVES
 	call CopyBytes
 	jp Function65ca
 ; 65b5
@@ -5370,11 +5372,11 @@ Function65d3: ; 65d3
 	call YesNoBox
 	pop hl
 	ret c
-	ld bc, $fffc
+	ld bc, -NUM_MOVES
 	add hl, bc
 	push hl
 	ld de, $d25e
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
 	pop hl
 .asm_65ee
@@ -5382,13 +5384,13 @@ Function65d3: ; 65d3
 	ld hl, UnknownText_0x6670
 	call PrintText
 	hlcoord 5, 2
-	ld b, $8
-	ld c, $d
+	ld b, NUM_MOVES * 2
+	ld c, MOVE_NAME_LENGTH
 	call TextBox
-	hlcoord 7, 4
-	ld a, $28
+	hlcoord 5 + 2, 2 + 2
+	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
-	ld a, $20
+	ld a, PREDEF_LIST_MOVES
 	call Predef
 	ld a, $4
 	ld [$cfa1], a
@@ -5420,7 +5422,7 @@ Function65d3: ; 65d3
 	ld a, [$cfa9]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -5474,9 +5476,6 @@ UnknownText_0x667f: ; 667f
 UnknownText_0x6684: ; 6684
 	text_jump UnknownText_0x1c5740
 	start_asm
-; 6689
-
-; 6689
 	push de
 	ld de, SFX_SWITCH_POKEMON
 	call PlaySFX
@@ -7790,7 +7789,7 @@ PredefPointers: ; 856b
 	dwb Function28f63, BANK(Function28f63)
 	dwb Function28f24, BANK(Function28f24)
 	dwb Function5084a, BANK(Function5084a)
-	dwb Function50d6f, BANK(Function50d6f) ; $20
+	dwb ListMoves, BANK(ListMoves) ; $20
 	dwb Function50d2e, BANK(Function50d2e)
 	dwb Function50cdb, BANK(Function50cdb)
 	dwb Function50c50, BANK(Function50c50)
@@ -12379,7 +12378,7 @@ Functiond88c: ; d88c
 .asm_d8fd
 	ld a, [$ffae]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 Functiond906: ; d906
 	ld e, l
@@ -12409,25 +12408,21 @@ Functiond906: ; d906
 	ld a, [MonType]
 	and a
 	jr nz, .asm_d943
-	ld de, EnemyMonMove1
+	ld de, EnemyMonMoves
+	rept NUM_MOVES + -1
 	ld a, [de]
 	inc de
 	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
+	endr
 	ld a, [de]
 	ld [hl], a
 	jr .asm_d950
 
 .asm_d943
 	xor a
+	rept NUM_MOVES + -1
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+	endr
 	ld [hl], a
 	ld [Buffer1], a
 	ld a, $1b
@@ -12553,9 +12548,10 @@ Functiond906: ; d906
 	ld a, [EnemyMonSpdSpclDV]
 	ld [de], a
 	inc de
+
 	push hl
-	ld hl, EnemyMonPPMove1
-	ld b, $4
+	ld hl, EnemyMonPP
+	ld b, NUM_MOVES
 .asm_da03
 	ld a, [hli]
 	ld [de], a
@@ -12563,7 +12559,8 @@ Functiond906: ; d906
 	dec b
 	jr nz, .asm_da03
 	pop hl
-	ld a, $46
+
+	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
 	xor a
@@ -12617,7 +12614,7 @@ Functiond906: ; d906
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, $2d
 	call Predef
@@ -12676,7 +12673,7 @@ Functionda96: ; da96
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -12713,9 +12710,9 @@ Functionda96: ; da96
 	ld hl, PartyMon1Happiness
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld [hl], $46
+	ld [hl], BASE_HAPPINESS
 
 .asm_db12
 	ld a, [CurPartySpecies]
@@ -12724,7 +12721,7 @@ Functionda96: ; da96
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, $2d
 	call Predef
@@ -12781,7 +12778,7 @@ Functiondb3f: ; db3f
 	ld a, [$d10b]
 	dec a
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [PartyCount]
 	jr nz, .asm_db97
 	ld hl, BoxMon1Species
@@ -12805,7 +12802,7 @@ Functiondb3f: ; db3f
 	ld hl, BreedMon1Species
 	jr z, .asm_dbbd
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 
 .asm_dbb7
 	ld a, [CurPartyMon]
@@ -12996,7 +12993,7 @@ Functiondcb6: ; dcb6
 	ld a, [hli]
 	and a
 	jr z, .asm_dd18
-	ld [TempMonMove1], a
+	ld [TempMonMoves+0], a
 	ld a, BOXMON
 	ld [MonType], a
 	ld a, b
@@ -13128,10 +13125,10 @@ Functiondd64: ; dd64
 	push bc
 	ld b, $1
 	call Functione167
-	ld hl, PartyMon1Move1
+	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -13163,7 +13160,7 @@ Functionde1a: ; de1a
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -13197,7 +13194,7 @@ Functionde44: ; de44
 	call CopyBytes
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld bc, $0020
 	jp CopyBytes
@@ -13303,7 +13300,7 @@ Functionde6e: ; de6e
 
 .asm_df20
 	ld hl, BoxMon1Moves
-	ld de, TempMonMove1
+	ld de, TempMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld hl, BoxMon1PP
@@ -13417,7 +13414,7 @@ Functiondf8c:: ; df8c
 	ld [CurPartySpecies], a
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Species
 	call AddNTimes
 	ld a, [CurPartySpecies]
@@ -13438,7 +13435,7 @@ Functiondf8c:: ; df8c
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Happiness
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [$c2cc]
 	bit 1, a
@@ -13451,7 +13448,7 @@ Functiondf8c:: ; df8c
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1HP
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	xor a
 	ld [hli], a
@@ -13875,7 +13872,7 @@ Functione277:: ; e277
 	jr z, .asm_e2e1
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [CurItem]
 	ld [hl], a
@@ -13958,7 +13955,7 @@ Functione277:: ; e277
 	push bc
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, $3
 	ld [hli], a
@@ -14261,7 +14258,7 @@ UnknownText_0xe533: ; 0xe533
 
 Functione538: ; e538
 	ld hl, PartyMon1HP
-	ld de, $0030
+	ld de, PartyMon2 - PartyMon1
 	ld b, $0
 .asm_e540
 	ld a, [CurPartyMon]
@@ -14539,7 +14536,7 @@ Functione6fd: ; e6fd
 	ld [CurPartySpecies], a
 	call GetBaseData
 	xor a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, $df9c
 	call ByteFill
 	xor a
@@ -20670,8 +20667,8 @@ Function12fd5: ; 12fd5
 	jp .asm_13018
 
 .asm_130de
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	push hl
@@ -20682,7 +20679,7 @@ Function12fd5: ; 12fd5
 	call Function1313a
 	ld a, [IsInBattle]
 	jr z, .asm_13113
-	ld hl, BattleMonMove1
+	ld hl, BattleMonMoves
 	ld bc, $0020
 	ld a, [CurPartyMon]
 	call AddNTimes
@@ -20804,14 +20801,14 @@ Function131ef: ; 131ef
 	ld [MonType], a
 	ld a, $1f
 	call Predef
-	ld hl, TempMonMove1
+	ld hl, TempMonMoves
 	ld de, $d25e
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld a, $28
+	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 3
-	ld a, $20
+	ld a, PREDEF_LIST_MOVES
 	call Predef
 	hlcoord 10, 4
 	ld a, $23
@@ -20822,14 +20819,14 @@ Function131ef: ; 131ef
 	inc a
 	ld [$cfa3], a
 	hlcoord 0, 11
-	ld b, $5
-	ld c, $12
+	ld b, 5
+	ld c, 18
 	jp TextBox
 ; 13235
 
 Function13235: ; 13235
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld a, [$cfa9]
@@ -20840,7 +20837,7 @@ Function13235: ; 13235
 	ld a, [hl]
 	ld [CurSpecies], a
 	hlcoord 1, 12
-	ld bc, $0512
+	lb bc, 5, 18
 	jp ClearBox
 ; 13256
 
@@ -28827,7 +28824,7 @@ Function16798: ; 16798
 	callba Functione538
 	jr c, .asm_167e9
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, [hl]
@@ -29231,17 +29228,17 @@ Function169ac: ; 169ac
 	call Function16a31
 	ld hl, EggOT
 	call CopyBytes
-	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld hl, PartyMon1
+	ld bc, PartyMon2 - PartyMon1
 	call Function16a31
-	ld hl, EggSpecies
+	ld hl, EggMon
 	ld bc, $0020
 	call CopyBytes
 	call GetBaseData
 	ld a, [PartyCount]
 	dec a
-	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld hl, PartyMon1
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -36944,7 +36941,7 @@ Function28499: ; 28499
 .asm_284db
 	push bc
 	call Function284f6
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
 	dec c
@@ -38183,7 +38180,7 @@ Function28b87: ; 28b87
 	ld a, c
 	call GetPartyLocation
 	ld de, TempMonSpecies
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 	ld a, $7
 	call Predef
@@ -39873,22 +39870,23 @@ Function29bfb: ; 29bfb
 	pop bc
 	pop hl
 	jr c, .asm_29c5e
-	ld de, $0030
+	ld de, PartyMon2 - PartyMon1
 	add hl, de
 	dec b
 	jr nz, .asm_29c13
-	ld hl, PartyMon1Move1
+
+	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	ld b, a
 .asm_29c2e
-	ld c, $4
+	ld c, NUM_MOVES
 .asm_29c30
 	ld a, [hli]
 	cp STRUGGLE + 1
 	jr nc, .asm_29c4c
 	dec c
 	jr nz, .asm_29c30
-	ld de, $002c
+	ld de, PartyMon2 - (PartyMon1 + NUM_MOVES)
 	add hl, de
 	dec b
 	jr nz, .asm_29c2e
@@ -42153,11 +42151,11 @@ Function2c547: ; 2c547
 	callba Function50000
 	jr c, .asm_2c5c3
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_2c5bc
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Move2
-	ld bc, $0030
+	ld hl, PartyMon1Moves + 1
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [hl]
 	and a
@@ -42258,18 +42256,18 @@ Function2c5f9: ; 2c5f9
 	push bc
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, PartyMon1Move1
+	ld b, 0
+	ld hl, PartyMon1Moves
 	add hl, bc
 	ld a, [CurPartyMon]
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	push bc
 	inc b
 .asm_2c60f
 	ld a, b
-	cp $5
+	cp NUM_MOVES + 1
 	jr z, .asm_2c61b
 	inc hl
 	ld a, [hld]
@@ -42282,21 +42280,22 @@ Function2c5f9: ; 2c5f9
 	xor a
 	ld [hl], a
 	pop bc
+
 	ld a, b
 	push bc
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, PartyMon1PP
 	add hl, bc
 	ld a, [CurPartyMon]
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	inc b
 .asm_2c633
 	ld a, b
-	cp $5
+	cp NUM_MOVES + 1
 	jr z, .asm_2c63f
 	inc hl
 	ld a, [hld]
@@ -43108,7 +43107,7 @@ Function2ed44: ; 2ed44
 	ld hl, PartyMon1PokerusStatus
 	ld a, [PartyCount]
 	ld b, a
-	ld de, $0030
+	ld de, PartyMon2 - PartyMon1
 .loopMons
 	ld a, [hl]
 	and $f
@@ -43757,7 +43756,7 @@ Function38170: ; 38170
 	ld d, a
 	ld e, $0
 	ld hl, OTPartyMon1Level
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 .asm_3817c
 	ld a, [hl]
 	cp e
@@ -44200,7 +44199,7 @@ Function3844b: ; 3844b
 
 .asm_3845b
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
 	dec c
@@ -44224,7 +44223,7 @@ Function3846c: ; 3846c
 	push af
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -44269,7 +44268,7 @@ Function384d5: ; 384d5
 Function384e0: ; 384e0
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	xor a
 	ld [hl], a
@@ -44569,20 +44568,20 @@ Function39806: ; 39806
 	ld [CurPartyLevel], a
 	ld a, [hli]
 	ld [CurPartySpecies], a
-	ld a, $1
+	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
 	ld a, $6
 	call Predef
 	ld a, [OTPartyCount]
 	dec a
-	ld hl, OTPartyMon1Move1
-	ld bc, $0030
+	ld hl, OTPartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
-	ld b, $4
+	ld b, NUM_MOVES
 .asm_39830
 	ld a, [hli]
 	ld [de], a
@@ -44593,7 +44592,7 @@ Function39806: ; 39806
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -44674,7 +44673,7 @@ Function3989d: ; 3989d
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, $d289
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -44685,7 +44684,7 @@ Function3989d: ; 3989d
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, $d28a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -44701,7 +44700,7 @@ Function3989d: ; 3989d
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -47652,8 +47651,8 @@ Function421f5: ; 421f5
 	jp z, .asm_423f8
 
 	push hl
-	ld de, TempMonAtk
-	ld hl, TempMonDef
+	ld de, TempMonAttack
+	ld hl, TempMonDefense
 	ld c, 2
 	call StringCmp
 	ld a, ATK_EQ_DEF
@@ -47850,7 +47849,7 @@ Function421f5: ; 421f5
 	ld [hl], a
 
 	ld hl, TempMonSpecies
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 
 	ld a, [CurSpecies]
@@ -48014,11 +48013,11 @@ Function42487: ; 42487
 	jr nz, .asm_4249d
 	push hl
 	ld d, a
-	ld hl, PartyMon1Move1
+	ld hl, PartyMon1Moves
 	ld a, [CurPartyMon]
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld b, $4
+	ld b, NUM_MOVES
 .asm_424b9
 	ld a, [hli]
 	cp d
@@ -48121,7 +48120,7 @@ FillMoves: ; 424e1
 	and a
 	jr z, .ShiftedMove
 	push de
-	ld bc, PartyMon1PP - PartyMon1Move4
+	ld bc, PartyMon1PP - (PartyMon1Moves + NUM_MOVES - 1)
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -48161,7 +48160,7 @@ FillMoves: ; 424e1
 ; 4256e
 
 ShiftMoves: ; 4256e
-	ld c, $3
+	ld c, NUM_MOVES - 1
 .asm_42570
 	inc de
 	ld a, [de]
@@ -48268,7 +48267,7 @@ AIChooseMove: ; 440ce
 	and a
 	jr z, .CheckPP
 
-	ld hl, EnemyMonMove1
+	ld hl, EnemyMonMoves
 	ld c, 0
 .CheckDisabledMove
 	cp [hl]
@@ -48380,12 +48379,12 @@ AIChooseMove: ; 440ce
 	inc [hl]
 	dec hl
 	inc a
-	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	cp NUM_MOVES + 1
 	jr nz, .asm_44175
 
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
-	ld c, EnemyMonMovesEnd - EnemyMonMoves
+	ld c, NUM_MOVES
 .asm_44184
 	ld a, [de]
 	and a
@@ -48447,14 +48446,16 @@ AIScoringPointers: ; 441af
 Function441cf: ; 441cf
 	ld hl, Unknown_441fc
 	ld b, 25
-.asm_441d4
-	ld a, [hli]
-	cp $fe
-	jr nz, .asm_441dd
-	ld hl, Unknown_441fc
+.loop
 	ld a, [hli]
 
-.asm_441dd
+	; Wrap around
+	cp $fe
+	jr nz, .ok
+	ld hl, Unknown_441fc
+	ld a, [hli]
+.ok
+
 	ld [$c7db], a
 	ld a, [hli]
 	ld c, a
@@ -48465,7 +48466,7 @@ Function441cf: ; 441cf
 	pop bc
 	call DelayFrames
 	dec b
-	jr nz, .asm_441d4
+	jr nz, .loop
 	xor a
 	ld [$c7db], a
 	call Function44207
@@ -48475,11 +48476,11 @@ Function441cf: ; 441cf
 ; 441fc
 
 Unknown_441fc: ; 441fc
-	db $00, $07
-	db $01, $07
-	db $02, $07
-	db $03, $07
-	db $04, $07
+	db 0, 7
+	db 1, 7
+	db 2, 7
+	db 3, 7
+	db 4, 7
 	db $fe
 ; 44207
 
@@ -48865,7 +48866,7 @@ Function44654:: ; 44654
 	jr c, .asm_446c6
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, [hl]
 	callba ItemIsMail
@@ -48928,7 +48929,7 @@ Function446cc:: ; 446cc
 	push af
 	push bc
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	ld [hl], b
@@ -48954,7 +48955,7 @@ Function446cc:: ; 446cc
 	call CopyBytes
 	pop af
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [hli]
 	ld [de], a
@@ -49029,7 +49030,7 @@ Function44781: ; 44781
 	pop de
 	pop hl
 	ret c
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	dec e
 	jr nz, .asm_4478b
@@ -55796,7 +55797,7 @@ Function4d319: ; 4d319
 	dec a
 	ld [CurPartyMon], a
 	call LowVolume
-	ld a, $25
+	ld a, PREDEF_STATS_SCREEN
 	call Predef
 	ld a, [CurPartyMon]
 	inc a
@@ -56615,12 +56616,12 @@ Function4d9e5: ; 4d9e5
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, $df9c
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 	ld a, [PartyCount]
 	dec a
@@ -56902,7 +56903,7 @@ Function4dc0a: ; 4dc0a
 	dec a
 	push hl
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	ld a, b
@@ -56935,7 +56936,7 @@ Function4dc31: ; 4dc31
 	dec a
 	push hl
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	ld a, b
@@ -57702,18 +57703,18 @@ Function4e147: ; 4e147 (13:6147)
 	ld de, String_4e1a9
 	hlcoord 0, 10
 	call PlaceString
-	ld hl, TempMonMoves ; $d110 (aliases: TempMonMove1)
+	ld hl, TempMonMoves
 	ld de, $d25e
-	ld bc, $4
+	ld bc, NUM_MOVES
 	call CopyBytes
 	hlcoord 8, 10
-	ld a, $28
-	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
-	ld a, $20
+	ld a, SCREEN_WIDTH * 2
+	ld [Buffer1], a
+	ld a, PREDEF_LIST_MOVES
 	call Predef
 	hlcoord 12, 11
 	ld a, $28
-	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
+	ld [Buffer1], a
 	ld a, $23
 	call Predef
 	ret
@@ -59194,7 +59195,7 @@ Function500cf: ; 500cf
 
 Function50117: ; 50117
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
@@ -59234,7 +59235,7 @@ Function50138: ; 50138
 	jr z, .asm_5016b
 	push hl
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld e, l
@@ -59407,7 +59408,7 @@ Function5022f: ; 5022f
 	jr z, .asm_5025d
 	push hl
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Species
 	call AddNTimes
 	ld a, [hl]
@@ -60415,7 +60416,7 @@ Function5084a: ; 5084a
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, TempMonSpecies
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 
 .asm_5088a
@@ -60739,16 +60740,16 @@ Function50b7b: ; 50b7b
 	add hl, bc
 	ld bc, $0014
 	add hl, bc
-	ld de, TempMonAtk
+	ld de, TempMonAttack
 	ld bc, $0203
 	call Function50bab
-	ld de, TempMonDef
+	ld de, TempMonDefense
 	call Function50bab
 	ld de, TempMonSpclAtk
 	call Function50bab
 	ld de, TempMonSpclDef
 	call Function50bab
-	ld de, TempMonSpd
+	ld de, TempMonSpeed
 	jp PrintNum
 ; 50bab
 
@@ -60916,8 +60917,8 @@ Function50c50: ; 50c50
 	inc hl
 	ld d, h
 	ld e, l
-	ld hl, TempMonMove1
-	ld b, $0
+	ld hl, TempMonMoves
+	ld b, 0
 .asm_50c7a
 	ld a, [hli]
 	and a
@@ -60937,7 +60938,7 @@ Function50c50: ; 50c50
 	pop de
 	pop hl
 	push hl
-	ld bc, $0014
+	ld bc, TempMonPP - (TempMonMoves + 1)
 	add hl, bc
 	ld a, [hl]
 	and $3f
@@ -60956,7 +60957,7 @@ Function50c50: ; 50c50
 	pop hl
 	ld a, [Buffer1]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld d, h
 	ld e, l
@@ -60964,7 +60965,7 @@ Function50c50: ; 50c50
 	pop bc
 	inc b
 	ld a, b
-	cp $4
+	cp NUM_MOVES
 	jr nz, .asm_50c7a
 
 .asm_50cc8
@@ -61095,7 +61096,8 @@ FrzString: db "FRZ@"
 ParString: db "PAR@"
 ; 50d6f
 
-Function50d6f: ; 50d6f
+ListMoves: ; 50d6f
+; List moves at hl, spaced every [Buffer1] tiles.
 	ld de, $d25e
 	ld b, $0
 .asm_50d74
@@ -61107,7 +61109,7 @@ Function50d6f: ; 50d6f
 	push hl
 	push hl
 	ld [CurSpecies], a
-	ld a, $2
+	ld a, MOVE_NAME
 	ld [$cf61], a
 	call GetName
 	ld de, StringBuffer1
@@ -61122,12 +61124,12 @@ Function50d6f: ; 50d6f
 	push bc
 	ld a, [Buffer1]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	pop de
 	ld a, b
-	cp $4
+	cp NUM_MOVES
 	jr z, .asm_50db8
 	jr .asm_50d74
 
@@ -61135,14 +61137,14 @@ Function50d6f: ; 50d6f
 	ld a, b
 .asm_50da8
 	push af
-	ld [hl], $e3
+	ld [hl], "-"
 	ld a, [Buffer1]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop af
 	inc a
-	cp $4
+	cp NUM_MOVES
 	jr nz, .asm_50da8
 
 .asm_50db8
@@ -61151,41 +61153,42 @@ Function50d6f: ; 50d6f
 
 Function50db9: ; 50db9
 	ld a, [$d263]
+
 	cp $1
 	jr nz, .asm_50dca
 	ld hl, OTPartyCount
 	ld de, OTPartyMon1OT
-	ld a, $6
+	ld a, ENEMY_OT_NAME
 	jr .asm_50dfc
-
 .asm_50dca
+
 	cp $4
 	jr nz, .asm_50dd8
 	ld hl, PartyCount
 	ld de, PartyMon1OT
-	ld a, $5
+	ld a, PARTY_OT_NAME
 	jr .asm_50dfc
-
 .asm_50dd8
+
 	cp $5
 	jr nz, .asm_50de6
 	ld hl, $d0f0
 	ld de, PokemonNames
-	ld a, $1
+	ld a, PKMN_NAME
 	jr .asm_50dfc
-
 .asm_50de6
+
 	cp $2
 	jr nz, .asm_50df4
 	ld hl, NumItems
-	ld de, Function50000
-	ld a, $4
+	ld de, ItemNames
+	ld a, ITEM_NAME
 	jr .asm_50dfc
-
 .asm_50df4
+
 	ld hl, $d0f0
-	ld de, Function50000
-	ld a, $4
+	ld de, ItemNames
+	ld a, ITEM_NAME
 
 .asm_50dfc
 	ld [$cf61], a
@@ -61197,7 +61200,7 @@ Function50db9: ; 50db9
 	ld [$d102], a
 	ld a, d
 	ld [$d103], a
-	ld bc, $67c1
+	ld bc, $67c1 ; XXX ItemAttributes?
 	ld a, c
 	ld [$d104], a
 	ld a, b
@@ -62047,12 +62050,12 @@ Function51322: ; 51322
 	ld de, $d018
 	call Function513e0
 	ld hl, $d01a
-	ld de, TempMonMove1
-	ld bc, $0004
+	ld de, TempMonMoves
+	ld bc, NUM_MOVES
 	call CopyBytes
 	ld hl, $d02f
 	ld de, TempMonPP
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, [CurPartyMon]
 	ld b, a
@@ -62081,7 +62084,7 @@ Function5138b: ; 5138b
 	dec a
 	ld [$d265], a
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld de, $d018
 	call Function513e0
 	ret
@@ -66509,7 +66512,7 @@ Function8653f: ; 8653f
 	push bc
 	ld a, c
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld c, l
 	ld b, h
@@ -73161,7 +73164,7 @@ Function8b2e9: ; 8b2e9
 
 Function8b31a: ; 8b31a
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	inc de
 	pop bc
@@ -96856,7 +96859,7 @@ Functione3316: ; e3316
 	ld hl, PartyMon1OT
 	call Functione3376
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functione3389
 	xor a
 	ld [$d10b], a
@@ -101146,7 +101149,7 @@ Functionfbb32: ; fbb32
 	jr nz, .asm_fbba4
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	push hl
 	ld bc, $0015
@@ -103997,8 +104000,8 @@ Function100bc2: ; 100bc2
 	ld a, [$cfa9]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, BattleMonPPMove1
+	ld b, 0
+	ld hl, BattleMonPP
 	add hl, bc
 	ld a, [hl]
 	and $3f
@@ -104012,8 +104015,8 @@ Function100bc2: ; 100bc2
 	ld a, [$cfa9]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, BattleMonMove1
+	ld b, 0
+	ld hl, BattleMonMoves
 	add hl, bc
 	ld a, [hl]
 	ld [CurPlayerMove], a
@@ -104035,23 +104038,23 @@ Function100bc2: ; 100bc2
 
 Function100c74: ; 100c74
 	hlcoord 0, 8
-	ld b, $8
-	ld c, $8
+	ld b, 8
+	ld c, 8
 	call TextBox
-	ld hl, BattleMonMove1
+	ld hl, BattleMonMoves
 	ld de, $d25e
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld a, $28
+	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 10
-	ld a, $20
+	ld a, PREDEF_LIST_MOVES
 	call Predef
 	ret
 ; 100c98
 
 Function100c98: ; 100c98
-	ld de, $4cad
+	ld de, Unknown_100cad
 	call Function1bb1
 	ld a, [$d0eb]
 	inc a
@@ -104062,6 +104065,7 @@ Function100c98: ; 100c98
 	ret
 ; 100cad
 
+Unknown_100cad: ; 100cad
 INCBIN "baserom.gbc",$100cad,$100cb5 - $100cad
 
 
@@ -112882,7 +112886,7 @@ Function11b98f: ; 11b98f
 	ld a, $ff
 	ld [bc], a
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, e
 	ld [$cd2a], a
 .asm_11b9ba
@@ -112896,7 +112900,7 @@ Function11b98f: ; 11b98f
 	ld l, a
 	ld a, [$cd23]
 	ld h, a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 	ld hl, PartyMon1OT
 	ld bc, $000b
@@ -119488,7 +119492,7 @@ Function1dc381: ; 1dc381
 	ld de, String1dc554
 	call PlaceString
 	hlcoord 7, 14
-	ld a, [TempMonMove1]
+	ld a, [TempMonMoves + 0]
 	call Function1dc51a
 	call Function1dc52c
 	ld hl, TempMonDVs
@@ -119498,7 +119502,7 @@ Function1dc381: ; 1dc381
 	xor a
 	ld [hl], a
 	ld a, [CurPartySpecies]
-	cp $c9
+	cp UNOWN
 	jr z, .asm_1dc469
 	inc [hl]
 
@@ -119531,22 +119535,22 @@ Function1dc47b: ; 1dc47b
 	hlcoord 0, 1
 	call CopyBytes
 	hlcoord 7, 0
-	ld a, [TempMonMove2]
+	ld a, [TempMonMoves + 1]
 	call Function1dc51a
 	hlcoord 7, 2
-	ld a, [TempMonMove3]
+	ld a, [TempMonMoves + 2]
 	call Function1dc51a
 	hlcoord 7, 4
-	ld a, [TempMonMove4]
+	ld a, [TempMonMoves + 3]
 	call Function1dc51a
 	hlcoord 7, 7
 	ld de, String1dc55d
 	call PlaceString
 	hlcoord 16, 7
-	ld de, TempMonAtk
+	ld de, TempMonAttack
 	call Function1dc507
 	hlcoord 16, 9
-	ld de, TempMonDef
+	ld de, TempMonDefense
 	call Function1dc507
 	hlcoord 16, 11
 	ld de, TempMonSpclAtk
@@ -119555,7 +119559,7 @@ Function1dc47b: ; 1dc47b
 	ld de, TempMonSpclDef
 	call Function1dc507
 	hlcoord 16, 15
-	ld de, TempMonSpd
+	ld de, TempMonSpeed
 	call Function1dc507
 	call WaitBGMap
 	ld b, $3
