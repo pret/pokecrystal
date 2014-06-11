@@ -1675,7 +1675,7 @@ Function3484e: ; 3484e
 	jr z, .asm_3489f ; 0x34863 $3a
 	push hl
 	dec a
-	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
+	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
 	jr z, .asm_3489b ; 0x3486e $2b
@@ -1761,7 +1761,7 @@ Function348de: ; 348de
 
 	inc de
 	dec a
-	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
+	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
 	jr z, .loop
@@ -2024,7 +2024,7 @@ Function34a2a: ; 34a2a
 	call GetBaseData
 	ld a, [LastEnemyCounterMove]
 	dec a
-	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
+	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
 	jr z, .asm_34a77
@@ -2114,7 +2114,7 @@ Function34aa7: ; 34aa7
 	jr z, .asm_34aef
 
 	dec a
-	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
+	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
 	jr z, .asm_34ae9
@@ -2207,7 +2207,7 @@ Function34b20: ; 34b20
 	jr z, .asm_34b4a
 
 	dec a
-	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
+	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
 	jr z, .asm_34b4a
@@ -4779,7 +4779,7 @@ BattleCommand44: ; 359e6
 	jr z, .asm_35a50 ; 359fd $51
 	push hl
 	dec a
-	ld hl, Moves + PlayerMoveType - PlayerMoveStruct
+	ld hl, Moves + MOVE_TYPE
 	call GetMoveAttr
 	ld d, a
 	pop hl
@@ -4904,10 +4904,10 @@ BattleCommand46: ; 35a74
 	push bc
 	push hl
 	dec a
-	ld hl, Moves + PlayerMovePP - PlayerMoveStruct
+	ld hl, Moves + MOVE_PP
 	call GetMoveAttr
 	pop hl
-	ld bc, $0006
+	ld bc, BattleMonPP - BattleMonMoves
 	add hl, bc
 	ld [hl], a
 	pop bc
@@ -8653,7 +8653,7 @@ BattleCommand1f: ; 3707f
 	push hl
 	push bc
 	dec a
-	ld hl, Moves + PlayerMoveType - PlayerMoveStruct
+	ld hl, Moves + MOVE_TYPE
 	call GetMoveAttr
 	ld [de], a
 	inc de
@@ -10656,7 +10656,7 @@ SkipToBattleCommand: ; 37e8c
 GetMoveAttr: ; 37ea1
 ; Assuming hl = Moves + x, return attribute x of move a.
 	push bc
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	call GetMoveByte
 	pop bc
@@ -10667,7 +10667,7 @@ GetMoveAttr: ; 37ea1
 GetMoveData: ; 37ead
 ; Copy move struct a to de.
 	ld hl, Moves
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, Bank(Moves)
 	jp FarCopyBytes

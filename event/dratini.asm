@@ -51,8 +51,8 @@ SpecialDratini: ; 0x8b170
 
 	; get the PP of the new move
 	dec a
-	ld hl, Moves + PlayerMovePP - PlayerMoveStruct
-	ld bc, Move2 - Move1
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte

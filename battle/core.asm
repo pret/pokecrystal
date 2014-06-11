@@ -915,7 +915,7 @@ GetMoveEffect: ; 3c5ec
 	ld a, b
 	dec a
 	ld hl, Moves + MOVE_EFFECT
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -3436,7 +3436,7 @@ Function3d5d7: ; 3d5d7
 	push bc
 	dec a
 	ld hl, Moves + MOVE_ANIM
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld de, EnemyMoveAnimation
 	ld a, BANK(Moves)
@@ -8580,7 +8580,7 @@ Function3f662: ; 3f662
 	push hl
 	dec a
 	ld hl, Moves + MOVE_PP
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte

@@ -1,22 +1,17 @@
 Moves: ; 41afb
-
-; Characteristics of each move
-
-; animation, effect, power, type, accuracy, PP, effect chance
+; Characteristics of each move.
 
 move: MACRO
 	db \1 ; animation
 	db \2 ; effect
 	db \3 ; power
 	db \4 ; type
-	db \5 * $ff / 100 ; accuracy (percent)
+	db \5 percent ; accuracy
 	db \6 ; pp
-	db \7 * $ff / 100  ; effect chance (percent)
+	db \7 percent ; effect chance
 ENDM
 
-Move1:
 	move POUND,        EFFECT_NORMAL_HIT,         40, NORMAL,   100, 35,   0
-Move2:
 	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         50, FIGHTING, 100, 25,   0
 	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, NORMAL,    85, 10,   0
 	move COMET_PUNCH,  EFFECT_MULTI_HIT,          18, NORMAL,    85, 15,   0

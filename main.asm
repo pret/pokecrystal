@@ -5316,7 +5316,7 @@ Function6520: ; 6520
 	push de
 	dec a
 	ld hl, Moves + MOVE_PP
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -12637,7 +12637,7 @@ FillPP: ; da6d
 	push de
 	push bc
 	ld hl, Moves
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld de, StringBuffer1
 	ld a, BANK(Moves)
@@ -20861,7 +20861,7 @@ Function13256: ; 13256
 	ld a, [CurSpecies]
 	dec a
 	ld hl, Moves + MOVE_POWER
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -44611,7 +44611,7 @@ Function39806: ; 39806
 	push bc
 	dec a
 	ld hl, Moves + MOVE_PP
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -48143,7 +48143,7 @@ FillMoves: ; 424e1
 	push hl
 	dec a
 	ld hl, Moves + MOVE_PP
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte

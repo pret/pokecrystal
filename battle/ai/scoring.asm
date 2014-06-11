@@ -1658,8 +1658,8 @@ AIScoring_Conversion2: ; 38d98
 
 	push hl
 	dec a
-	ld hl, Moves + PlayerMoveType - PlayerMoveStruct
-	ld bc, Move2 - Move1
+	ld hl, Moves + MOVE_TYPE
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 
 	ld a, BANK(Moves)
@@ -3314,7 +3314,7 @@ AIGetEnemyMove: ; 39508
 	push bc
 	dec a
 	ld hl, Moves
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 
 	ld de, EnemyMoveStruct
