@@ -2395,12 +2395,12 @@ BattleCommand09: ; 34d32
 
 	call .StatModifiers
 
-	ld a, [PlayerMoveAccuracy]
+	ld a, [wPlayerMoveStruct + MOVE_ACC]
 	ld b, a
 	ld a, [hBattleTurn]
 	and a
 	jr z, .BrightPowder
-	ld a, [EnemyMoveAccuracy]
+	ld a, [wEnemyMoveStruct + MOVE_ACC]
 	ld b, a
 
 .BrightPowder
@@ -2592,7 +2592,7 @@ BattleCommand09: ; 34d32
 	ld a, [hBattleTurn]
 	and a
 
-	ld hl, PlayerMoveAccuracy
+	ld hl, wPlayerMoveStruct + MOVE_ACC
 	ld a, [PlayerAccLevel]
 	ld b, a
 	ld a, [EnemyEvaLevel]
@@ -2600,7 +2600,7 @@ BattleCommand09: ; 34d32
 
 	jr z, .asm_34e60
 
-	ld hl, EnemyMoveAccuracy
+	ld hl, wEnemyMoveStruct + MOVE_ACC
 	ld a, [EnemyAccLevel]
 	ld b, a
 	ld a, [PlayerEvaLevel]
@@ -2695,11 +2695,11 @@ BattleCommand90: ; 34ecc
 	jr nz, .failed
 
 	push hl
-	ld hl, PlayerMoveEffectChance
+	ld hl, wPlayerMoveStruct + MOVE_CHANCE
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_34ee1
-	ld hl, EnemyMoveEffectChance
+	ld hl, wEnemyMoveStruct + MOVE_CHANCE
 .asm_34ee1
 
 	call BattleRandom
@@ -3224,7 +3224,7 @@ BattleCommand11: ; 351c0
 
 ; Faint the user if it fainted an opponent using Destiny Bond.
 
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_351cb
@@ -3438,7 +3438,7 @@ PlayerAttackDamage: ; 352e2
 
 	call ResetDamage
 
-	ld hl, PlayerMovePower
+	ld hl, wPlayerMoveStruct + MOVE_POWER
 	ld a, [hli]
 	and a
 	ld d, a
@@ -3450,7 +3450,7 @@ PlayerAttackDamage: ; 352e2
 
 
 ; Physical
-	ld hl, EnemyMonDef
+	ld hl, EnemyMonDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -3463,7 +3463,7 @@ PlayerAttackDamage: ; 352e2
 	rl b
 
 .physicalcrit
-	ld hl, BattleMonAtk
+	ld hl, BattleMonAttack
 	call GetDamageStatsCritical
 	jr c, .thickclub
 
@@ -3586,7 +3586,7 @@ GetDamageStats: ; 3537e
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy
-	ld a, [PlayerMoveType]
+	ld a, [wPlayerMoveStruct + MOVE_TYPE]
 	cp SPECIAL
 ; special
 	ld a, [PlayerSAtkLevel]
@@ -3600,7 +3600,7 @@ GetDamageStats: ; 3537e
 	jr .end
 
 .enemy
-	ld a, [EnemyMoveType]
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	cp SPECIAL
 ; special
 	ld a, [EnemySAtkLevel]
@@ -3699,8 +3699,8 @@ EnemyAttackDamage: ; 353f6
 	call ResetDamage
 
 ; No damage dealt with 0 power.
-	ld hl, EnemyMovePower
-	ld a, [hli] ; hl = EnemyMoveType
+	ld hl, wEnemyMoveStruct + MOVE_POWER
+	ld a, [hli] ; hl = wEnemyMoveStruct + MOVE_TYPE
 	ld d, a
 	and a
 	ret z
@@ -3711,7 +3711,7 @@ EnemyAttackDamage: ; 353f6
 
 
 ; Physical
-	ld hl, BattleMonDef
+	ld hl, BattleMonDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -3724,7 +3724,7 @@ EnemyAttackDamage: ; 353f6
 	rl b
 
 .physicalcrit
-	ld hl, EnemyMonAtk
+	ld hl, EnemyMonAttack
 	call GetDamageStatsCritical
 	jr c, .thickclub
 
@@ -3804,7 +3804,7 @@ BattleCommanda1: ; 35461
 	ld [DefaultFlypoint], a
 .asm_3548d
 	ld a, [DefaultFlypoint]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	ld a, $22
 	call Function355bd
@@ -3847,7 +3847,7 @@ BattleCommanda1: ; 35461
 	ld a, [hl]
 	ld e, a
 	pop bc
-	ld a, [PlayerMovePower]
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
 	ld d, a
 	ret
 
@@ -3893,7 +3893,7 @@ BattleCommanda1: ; 35461
 
 .asm_35532
 	ld a, [DefaultFlypoint]
-	ld hl, OTPartyMon1Nickname
+	ld hl, OTPartyMonNicknames
 	ld bc, $000b
 	call AddNTimes
 	ld de, StringBuffer1
@@ -3952,7 +3952,7 @@ BattleCommanda1: ; 35461
 	ld a, [hl]
 	ld e, a
 	pop bc
-	ld a, [EnemyMovePower]
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	ld d, a
 	ret
 ; 355b0
@@ -4004,12 +4004,12 @@ Function355dd: ; 355dd
 	call ResetDamage
 	ld a, [hBattleTurn]
 	and a
-	ld hl, BattleMonDef
+	ld hl, BattleMonDefense
 	ld de, PlayerScreens
 	ld a, [BattleMonLevel]
 	jr z, .asm_355f7
 
-	ld hl, EnemyMonDef
+	ld hl, EnemyMonDefense
 	ld de, EnemyScreens
 	ld a, [EnemyMonLevel]
 .asm_355f7
@@ -4345,7 +4345,7 @@ BattleCommand3f: ; 35726
 	ld a, $0
 	jr .asm_3578c ; 35769 $21
 .asm_3576b
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35776 ; 35771 $3
@@ -4376,7 +4376,7 @@ BattleCommand3f: ; 35726
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3579d ; 35798 $3
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 .asm_3579d
 	xor a
 	ld [$ffb3], a
@@ -4433,14 +4433,14 @@ BattleCommand3f: ; 35726
 	ld a, [hl]
 	jr nz, .asm_357f8
 
-	ld hl, PlayerMovePower
+	ld hl, wPlayerMoveStruct + MOVE_POWER
 	ld [hl], a
 	push hl
 	call PlayerAttackDamage
 	jr .asm_35800
 
 .asm_357f8
-	ld hl, EnemyMovePower
+	ld hl, wEnemyMoveStruct + MOVE_POWER
 	ld [hl], a
 	push hl
 	call EnemyAttackDamage
@@ -4600,7 +4600,7 @@ BattleCommand41: ; 35864
 	ld a, b
 	ld [CurPlayerMove], a
 	dec a
-	ld de, PlayerMoveStruct
+	ld de, wPlayerMoveStruct
 	call GetMoveData
 	jr .asm_3591a
 .asm_358ef
@@ -4629,7 +4629,7 @@ BattleCommand41: ; 35864
 	ld a, b
 	ld [CurEnemyMove], a
 	dec a
-	ld de, EnemyMoveStruct
+	ld de, wEnemyMoveStruct
 	call GetMoveData
 .asm_3591a
 	call AnimateCurrentMove
@@ -4654,14 +4654,14 @@ BattleCommand42: ; 35926
 	jp nz, Function359cd
 	call AnimateCurrentMove
 	ld hl, $c63f
-	ld de, EnemyMonMaxHPLo
+	ld de, EnemyMonMaxHP + 1
 	call .asm_3597d
 	ld a, $1
 	ld [$d10a], a
 	hlcoord 10, 9
 	ld a, $b
 	call Predef
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [$d1ed], a
 	ld a, [hli]
@@ -5230,7 +5230,7 @@ BattleCommand4a: ; 35c0f
 BattleCommand4b: ; 35c94
 ; falseswipe
 
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35c9f ; 35c9a $3
@@ -5362,7 +5362,7 @@ Function35d1c: ; 35d1c
 	ld a, [EnemyMonHP]
 	ld [$d1ec + 1], a
 	sbc b
-	ld [EnemyMonHPHi], a
+	ld [EnemyMonHP], a
 	jr nc, .asm_35d59
 
 	ld a, [$d1ed]
@@ -5837,8 +5837,8 @@ Function36011: ; 36011
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36037 ; 0x3602f $6
-	ld hl, EnemyMonHPHi
-	ld de, EnemyMonMaxHPHi
+	ld hl, EnemyMonHP
+	ld de, EnemyMonMaxHP
 .asm_36037
 	ld bc, $d1ed
 	ld a, [hli]
@@ -6396,12 +6396,12 @@ BattleCommand1d: ; 362e3
 	jr nc, .Hit
 
 	push hl
-	ld hl, EnemyMonAtk + 1
+	ld hl, EnemyMonAttack + 1
 	ld de, EnemyStats
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36366
-	ld hl, BattleMonAtk + 1
+	ld hl, BattleMonAttack + 1
 	ld de, PlayerStats
 .asm_36366
 	call Function3641a
@@ -6840,7 +6840,7 @@ BattleCommanda7: ; 365c3
 Function365d7: ; 365d7
 	ld hl, PlayerAtkLevel
 	ld de, PlayerStats
-	ld bc, BattleMonAtk
+	ld bc, BattleMonAttack
 
 	ld a, $5
 	call Function3661d
@@ -6863,7 +6863,7 @@ Function365d7: ; 365d7
 Function365fd: ; 365fd
 	ld hl, EnemyAtkLevel
 	ld de, EnemyStats
-	ld bc, EnemyMonAtk
+	ld bc, EnemyMonAttack
 
 	ld a, $5
 	call Function3661d
@@ -7040,8 +7040,8 @@ BattleCommand22: ; 366e5
 	ld [de], a
 	inc de
 	ld [de], a
-	ld [PlayerMoveEffect], a
-	ld [EnemyMoveEffect], a
+	ld [wPlayerMoveStruct + MOVE_EFFECT], a
+	ld [wEnemyMoveStruct + MOVE_EFFECT], a
 	call BattleRandom
 	and $1
 	inc a
@@ -7257,7 +7257,7 @@ BattleCommand23: ; 3680f
 	inc a
 	ld [$d232], a
 	call Function36804
-	ld a, [PlayerMoveAnimation]
+	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	jp .asm_36975
 .asm_36869
 	call Function349f4
@@ -7348,7 +7348,7 @@ BattleCommand23: ; 3680f
 	inc a
 	ld [$d232], a
 	call Function36804
-	ld a, [EnemyMoveAnimation]
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
 	jr .asm_36975
 
 .asm_36908
@@ -7687,7 +7687,7 @@ BattleCommand26: ; 36af3
 	jr z, .asm_36b2f ; 36afb $32
 	ld hl, EnemyMonLevel
 	ld de, BattleMonLevel
-	ld bc, PlayerMoveAccuracy
+	ld bc, wPlayerMoveStruct + MOVE_ACC
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36b12 ; 36b09 $7
@@ -7695,7 +7695,7 @@ BattleCommand26: ; 36af3
 	ld h, d
 	ld l, e
 	pop de
-	ld bc, EnemyMoveAccuracy
+	ld bc, wEnemyMoveStruct + MOVE_ACC
 .asm_36b12
 	ld a, [de]
 	sub [hl]
@@ -7990,7 +7990,7 @@ BattleCommand27: ; 36cb2
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36cbd ; 36cb8 $3
-	ld hl, EnemyMonMaxHPHi
+	ld hl, EnemyMonMaxHP
 .asm_36cbd
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -9951,20 +9951,25 @@ CheckAnyOtherAliveMons: ; 37b01
 
 
 BattleCommand68: ; 37b1d
-	ld hl, $c711
+; pursuit
+; Double damage if the opponent is switching.
+
+	ld hl, wEnemyIsSwitching
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37b28 ; 37b23 $3
-	ld hl, $c710
-.asm_37b28
+	jr z, .ok
+	ld hl, wPlayerIsSwitching
+.ok
 	ld a, [hl]
 	and a
 	ret z
+
 	ld hl, CurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]
 	ret nc
+
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a

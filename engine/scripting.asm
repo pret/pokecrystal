@@ -2659,7 +2659,7 @@ Script_giveegg: ; 0x97968
 	ld [CurPartySpecies], a
 	call GetScriptByte
 	ld [CurPartyLevel], a
-	callba Functiondf8c
+	callba GiveEgg
 	ret nc
 	ld a, $2
 	ld [ScriptVar], a

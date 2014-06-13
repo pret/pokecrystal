@@ -250,10 +250,10 @@ _GetBattleVar:: ; 39e7
 	dw PlayerSubStatus4,     EnemySubStatus4
 	dw PlayerSubStatus5,     EnemySubStatus5
 	dw BattleMonStatus,      EnemyMonStatus
-	dw PlayerMoveAnimation,  EnemyMoveAnimation
-	dw PlayerMoveEffect,     EnemyMoveEffect
-	dw PlayerMovePower,      EnemyMovePower
-	dw PlayerMoveType,       EnemyMoveType
+	dw wPlayerMoveStruct + MOVE_ANIM,   wEnemyMoveStruct + MOVE_ANIM
+	dw wPlayerMoveStruct + MOVE_EFFECT, wEnemyMoveStruct + MOVE_EFFECT
+	dw wPlayerMoveStruct + MOVE_POWER,  wEnemyMoveStruct + MOVE_POWER
+	dw wPlayerMoveStruct + MOVE_TYPE,   wEnemyMoveStruct + MOVE_TYPE
 	dw CurPlayerMove,        CurEnemyMove
 	dw LastEnemyCounterMove, LastPlayerCounterMove
 	dw LastPlayerMove,       LastEnemyMove

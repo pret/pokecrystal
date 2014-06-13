@@ -274,7 +274,7 @@ ParkBall: ; e8a2
 	ld a, b
 	ld [$ffb6], a
 
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
@@ -449,9 +449,9 @@ ParkBall: ; e8a2
 .asm_ea1a
 	set 3, [hl]
 	ld hl, $c6f2
-	ld a, [EnemyMonAtkDefDV]
+	ld a, [EnemyMonDVs]
 	ld [hli], a
-	ld a, [EnemyMonSpdSpclDV]
+	ld a, [EnemyMonDVs + 1]
 	ld [hl], a
 
 .asm_ea27
@@ -579,7 +579,7 @@ ParkBall: ; e8a2
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	call AddNTimes
 
@@ -1316,11 +1316,11 @@ Functioneed9: ; eed9
 ; eeeb
 
 Table_eeeb: ; eeeb
-	db HP_UP,   PartyMon1HPExp   - PartyMon1StatExp
-	db PROTEIN, PartyMon1AtkExp  - PartyMon1StatExp
-	db IRON,    PartyMon1DefExp  - PartyMon1StatExp
-	db CARBOS,  PartyMon1SpdExp  - PartyMon1StatExp
-	db CALCIUM, PartyMon1SpclExp - PartyMon1StatExp
+	db HP_UP,   PartyMon1HPExp  - PartyMon1StatExp
+	db PROTEIN, PartyMon1AtkExp - PartyMon1StatExp
+	db IRON,    PartyMon1DefExp - PartyMon1StatExp
+	db CARBOS,  PartyMon1SpdExp - PartyMon1StatExp
+	db CALCIUM, PartyMon1SpcExp - PartyMon1StatExp
 ; eef5
 
 
@@ -1334,7 +1334,7 @@ Functioneef5: ; eef5
 	ld [CurPartyLevel], a
 	call GetBaseData
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	ret
 ; 0xef14

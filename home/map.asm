@@ -120,7 +120,7 @@ Function2198:: ; 2198
 	ld e, a
 	ld a, [$d195]
 	ld d, a
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld b, $5
 
 .asm_21a5

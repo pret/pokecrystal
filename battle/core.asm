@@ -12,8 +12,8 @@ Function3c000: ; 3c000
 	inc a
 	ld [$d264], a
 	ld hl, OTPartyMon1HP
-	ld bc, $002f
-	ld d, $3
+	ld bc, OTPartyMon2 - (OTPartyMon1 + 1)
+	ld d, NUM_MOVES - 1
 .asm_3c019
 	inc d
 	ld a, [hli]
@@ -166,8 +166,8 @@ Function3c12f: ; 3c12f
 	call Function3c3f5
 	jp c, .asm_3c1be
 	xor a
-	ld [$c710], a
-	ld [$c711], a
+	ld [wPlayerIsSwitching], a
+	ld [wEnemyIsSwitching], a
 	ld [$d264], a
 	ld [$c73f], a
 	ld [$c740], a
@@ -455,7 +455,7 @@ Function3c314: ; 3c314
 	jr z, .asm_3c35b
 	cp $d
 	jr z, .asm_3c35b
-	sub $4
+	sub NUM_MOVES
 	jr c, .asm_3c35b
 	ld a, [$d0ec]
 	cp $2
@@ -537,8 +537,8 @@ Function3c314: ; 3c314
 	jr .asm_3c3c5
 
 .asm_3c3c5
-	ld de, BattleMonSpd
-	ld hl, EnemyMonSpd
+	ld de, BattleMonSpeed
+	ld hl, EnemyMonSpeed
 	ld c, $2
 	call StringCmp
 	jr z, .asm_3c3d8
@@ -653,26 +653,26 @@ Function3c434: ; 3c434
 	callab UpdateMoveData
 	xor a
 	ld [$c732], a
-	ld a, [PlayerMoveEffect]
-	cp $77
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_FURY_CUTTER
 	jr z, .asm_3c494
 	xor a
 	ld [PlayerFuryCutterCount], a
 
 .asm_3c494
-	ld a, [PlayerMoveEffect]
-	cp $51
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_RAGE
 	jr z, .asm_3c4a4
 	ld hl, PlayerSubStatus4
-	res 6, [hl]
+	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ld [$c72b], a
 
 .asm_3c4a4
-	ld a, [PlayerMoveEffect]
-	cp $6f
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_PROTECT
 	jr z, .asm_3c4c9
-	cp $74
+	cp EFFECT_ENDURE
 	jr z, .asm_3c4c9
 	xor a
 	ld [PlayerProtectCount], a
@@ -1055,7 +1055,7 @@ Function3c706: ; 3c706
 	and a
 	jr z, Function3c710
 Function3c70b: ; 3c70b
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	jr Function3c713
 
 Function3c710: ; 3c710
@@ -1176,7 +1176,7 @@ Function3c716: ; 3c716
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3c7f4
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 
 .asm_3c7f4
 	ld a, [hli]
@@ -1243,7 +1243,7 @@ Function3c801: ; 3c801
 	ret
 
 .asm_3c85c
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -1352,7 +1352,7 @@ Function3c8eb: ; 3c8eb
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3c922
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 
 .asm_3c922
 	ld a, [hli]
@@ -2423,7 +2423,7 @@ EnemyPartyMonEntrance: ; 3cf78
 	call SetEnemyTurn
 	call SpikesDamage
 	xor a
-	ld [EnemyMoveAnimation], a
+	ld [wEnemyMoveStruct + MOVE_ANIM], a
 	ld [$d0ec], a
 	inc a
 	ret
@@ -2732,7 +2732,7 @@ KantoGymLeaders:
 
 Function3d14e: ; 3d14e
 	call Function3cef1
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
 	call z, Function3cf14
@@ -2743,7 +2743,7 @@ Function3d14e: ; 3d14e
 	ld a, d
 	and a
 	jp z, LostBattle
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_3d185
@@ -2841,7 +2841,7 @@ Function3d1f8: ; 3d1f8
 	cp $1
 	jr z, .asm_3d20a
 	ld hl, PartyMon1Speed
-	ld de, EnemyMonSpd
+	ld de, EnemyMonSpeed
 	jp Function3d8b3
 ; 3d227
 
@@ -2862,7 +2862,7 @@ Function3d227: ; 3d227
 	ld [$d0ec], a
 	call Function3d2e0
 	jr c, .asm_3d251
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_3d26c
@@ -3296,7 +3296,7 @@ Function3d4e1: ; 3d4e1
 	ld [$c6fc], a
 	ld [$d0ec], a
 	inc a
-	ld [$c711], a
+	ld [wEnemyIsSwitching], a
 	call Function309d
 	jp Function3e3ad
 ; 3d517
@@ -3309,8 +3309,8 @@ Function3d517: ; 3d517
 
 .asm_3d522
 	call Function3d6ca
-	ld a, $1
-	ld [$c711], a
+	ld a, 1
+	ld [wEnemyIsSwitching], a
 	call Function3d7a0
 	call Function3d7b8
 	jp Function3d7c7
@@ -3321,7 +3321,7 @@ Function3d533: ; 3d533
 	and a
 	jr z, .asm_3d541
 	ld a, [$d430]
-	sub $4
+	sub NUM_MOVES
 	ld b, a
 	jr .asm_3d555
 
@@ -3435,10 +3435,10 @@ Function3d5d7: ; 3d5d7
 	push de
 	push bc
 	dec a
-	ld hl, Moves + MOVE_ANIM
+	ld hl, Moves
 	ld bc, MOVE_LENGTH
 	call AddNTimes
-	ld de, EnemyMoveAnimation
+	ld de, wEnemyMoveStruct
 	ld a, BANK(Moves)
 	call FarCopyBytes
 	call SetEnemyTurn
@@ -3475,14 +3475,14 @@ Function3d618: ; 3d618
 	ld a, BANK(BaseData)
 	call FarCopyBytes
 	ld a, [BattleMonType1]
-	ld [PlayerMoveType], a
+	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	call SetPlayerTurn
 	callab Function347c8
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_3d663
 	ld a, [BattleMonType2]
-	ld [PlayerMoveType], a
+	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	callab Function347c8
 	ld a, [$d265]
 	cp $b
@@ -3592,14 +3592,14 @@ Function3d6ca: ; 3d6ca
 	ld a, [$def4]
 	and a
 	jr nz, .asm_3d708
-	ld hl, EnemyMonAtkDefDV
-	ld a, $2d
+	ld hl, EnemyMonDVs
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	ld a, [UnownLetter]
 	ld [$def4], a
 
 .asm_3d708
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [$c6ea], a
 	ld a, [hl]
@@ -3759,7 +3759,7 @@ NewEnemyMonStatus: ; 3d834
 	ld [hl], a
 	ld [EnemyDisableCount], a
 	ld [EnemyFuryCutterCount], a
-	ld [$c681], a
+	ld [EnemyProtectCount], a
 	ld [$c72c], a
 	ld [EnemyDisabledMove], a
 	ld [$c6fa], a
@@ -4019,21 +4019,21 @@ Function3d8b3: ; 3d8b3
 
 
 Function3da0d: ; 3da0d
-	ld a, $0
+	ld a, PartyMon1Species - PartyMon1
 	call GetPartyParamLocation
 	ld de, BattleMonSpecies
-	ld bc, $0006
+	ld bc, 1 + 1 + NUM_MOVES ; species, item, moves ; BattleMonDVs - BattleMonSpecies
 	call CopyBytes
-	ld bc, $000f
+	ld bc, PartyMon1DVs - (PartyMon1Species + 1 + 1 + NUM_MOVES)
 	add hl, bc
-	ld de, BattleMonAtkDefDV
-	ld bc, $0007
+	ld de, BattleMonDVs
+	ld bc, 2 + NUM_MOVES + 1 ; DVs, PP, happiness ; BattleMonLevel - BattleMonDVs
 	call CopyBytes
 	inc hl
 	inc hl
 	inc hl
 	ld de, BattleMonLevel
-	ld bc, $0011
+	ld bc, 1 + 1 + 1 + 2 + 2 * 6 ; level, status, unused, stats
 	call CopyBytes
 	ld a, [BattleMonSpecies]
 	ld [TempBattleMonSpecies], a
@@ -4044,15 +4044,15 @@ Function3da0d: ; 3da0d
 	ld [BattleMonType1], a
 	ld a, [BaseType2]
 	ld [BattleMonType2], a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [CurBattleMon]
 	call SkipNames
 	ld de, BattleMonNick
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-	ld hl, BattleMonAtk
+	ld hl, BattleMonAttack
 	ld de, PlayerStats
-	ld bc, $000a
+	ld bc, 2 * 5
 	call CopyBytes
 	call Function3ec2c
 	call BadgeStatBoosts
@@ -4074,7 +4074,7 @@ Function3da7c: ; 3da7c
 ; 3da85
 
 Function3da85: ; 3da85
-	ld hl, BattleMonAtkDefDV
+	ld hl, BattleMonDVs
 	ld a, [PlayerSubStatus5]
 	bit 3, a
 	ret z
@@ -4084,7 +4084,7 @@ Function3da85: ; 3da85
 ; 3da97
 
 Function3da97: ; 3da97
-	ld hl, EnemyMonAtkDefDV
+	ld hl, EnemyMonDVs
 	ld a, [EnemySubStatus5]
 	bit 3, a
 	ret z
@@ -4092,7 +4092,7 @@ Function3da97: ; 3da97
 	ld a, [IsInBattle]
 	dec a
 	ret z
-	ld hl, OTPartyMon1AtkDefDV
+	ld hl, OTPartyMon1DVs
 	ld a, [CurOTMon]
 	jp GetPartyLocation
 ; 3dab1
@@ -4114,31 +4114,31 @@ Function3dabd: ; 3dabd
 	ld hl, OTPartyMon1Species
 	call GetPartyLocation
 	ld de, EnemyMonSpecies
-	ld bc, $0006
+	ld bc, 1 + 1 + NUM_MOVES
 	call CopyBytes
-	ld bc, $000f
+	ld bc, OTPartyMon1DVs - (OTPartyMon1Species + 1 + 1 + NUM_MOVES)
 	add hl, bc
-	ld de, EnemyMonAtkDefDV
-	ld bc, $0007
+	ld de, EnemyMonDVs
+	ld bc, 2 + NUM_MOVES + 1
 	call CopyBytes
 	inc hl
 	inc hl
 	inc hl
 	ld de, EnemyMonLevel
-	ld bc, $0011
+	ld bc, 1 + 1 + 1 + 2 + 2 * 6
 	call CopyBytes
 	ld a, [EnemyMonSpecies]
 	ld [CurSpecies], a
 	call GetBaseData
-	ld hl, OTPartyMon1Nickname
+	ld hl, OTPartyMonNicknames
 	ld a, [CurPartyMon]
 	call SkipNames
 	ld de, EnemyMonNick
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-	ld hl, EnemyMonAtk
+	ld hl, EnemyMonAttack
 	ld de, EnemyStats
-	ld bc, $000a
+	ld bc, 2 * 5
 	call CopyBytes
 	call Function3ec30
 	ld hl, BaseType1
@@ -4148,9 +4148,9 @@ Function3dabd: ; 3dabd
 	inc de
 	ld a, [hl]
 	ld [de], a
-	ld hl, BaseHP
+	ld hl, BaseStats
 	ld de, EnemyMonBaseStats
-	ld b, $5
+	ld b, 5
 .asm_3db25
 	ld a, [hli]
 	ld [de], a
@@ -4177,7 +4177,7 @@ Function3db32: ; 3db32
 	call Function3db5f
 	call EmptyBattleTextBox
 	call Function309d
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
 	ret
@@ -4185,12 +4185,12 @@ Function3db32: ; 3db32
 
 
 Function3db5f: ; 3db5f
-	ld hl, BattleMonAtkDefDV
-	ld a, $2d
+	ld hl, BattleMonDVs
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	hlcoord 1, 5
-	ld b, $7
-	ld c, $8
+	ld b, 7
+	ld c, 8
 	call ClearBox
 	call WaitBGMap
 	xor a
@@ -4201,7 +4201,7 @@ Function3db5f: ; 3db5f
 	ld [$d0d2], a
 	ld [CurMoveNum], a
 	ld [TypeModifier], a
-	ld [PlayerMoveAnimation], a
+	ld [wPlayerMoveStruct + MOVE_ANIM], a
 	ld [LastEnemyCounterMove], a
 	ld [LastPlayerCounterMove], a
 	ld [LastPlayerMove], a
@@ -4223,7 +4223,7 @@ Function3db5f: ; 3db5f
 	call Function3ee17
 
 .asm_3dbbc
-	ld a, $0
+	ld a, PartyMon1Species - PartyMon1
 	call GetPartyParamLocation
 	ld b, h
 	ld c, l
@@ -4281,20 +4281,20 @@ BreakAttraction: ; 3dc18
 
 SpikesDamage: ; 3dc23
 	ld hl, PlayerScreens
-	ld de, BattleMonType1
+	ld de, BattleMonType
 	ld bc, Function3df48
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld hl, EnemyScreens
-	ld de, EnemyMonType1
+	ld de, EnemyMonType
 	ld bc, Function3e036
 .ok
 
 	bit SCREENS_SPIKES, [hl]
 	ret z
 
-; Flying-types aren't affected by Spikes.
+	; Flying-types aren't affected by Spikes.
 	ld a, [de]
 	cp FLYING
 	ret z
@@ -4321,15 +4321,17 @@ SpikesDamage: ; 3dc23
 ; 3dc5b
 
 Function3dc5b: ; 3dc5b
-	ld a, $10
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	ld b, a
 	call GetMoveEffect
 	ld a, b
-	cp $80
+	cp EFFECT_PURSUIT
 	jr nz, .asm_3dce4
+
 	ld a, [CurBattleMon]
 	push af
+
 	ld hl, DoPlayerTurn
 	ld a, [hBattleTurn]
 	and a
@@ -4337,25 +4339,29 @@ Function3dc5b: ; 3dc5b
 	ld hl, DoEnemyTurn
 	ld a, [$c71a]
 	ld [CurBattleMon], a
-
 .asm_3dc7e
 	ld a, BANK(DoPlayerTurn)
 	rst FarCall
-	ld a, $10
+
+	ld a, BATTLE_VARS_MOVE
 	call _GetBattleVar
 	ld a, $ff
 	ld [hl], a
+
 	pop af
 	ld [CurBattleMon], a
+
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3dcc0
+
 	ld a, [$c71a]
 	call Function399f
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_3dce4
+
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
@@ -4371,10 +4377,11 @@ Function3dc5b: ; 3dc5b
 	jr .asm_3dcdf
 
 .asm_3dcc0
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_3dce4
+
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
@@ -4436,8 +4443,8 @@ Function3dd2f: ; 3dd2f
 	ld a, b
 	cp $1
 	ret nz
-	ld de, EnemyMonHPLo
-	ld hl, EnemyMonMaxHPHi
+	ld de, EnemyMonHP + 1
+	ld hl, EnemyMonMaxHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3dd4a
@@ -4945,7 +4952,7 @@ Function3e043: ; 3e043
 	ld h, b
 	ld l, c
 	dec hl
-	ld hl, EnemyMonAtkDefDV
+	ld hl, EnemyMonDVs
 	ld de, TempMonDVs
 	ld a, [EnemySubStatus5]
 	bit 3, a
@@ -4990,7 +4997,7 @@ Function3e043: ; 3e043
 	call PrintLevel
 
 .asm_3e0be
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [$ffb5], a
 	ld a, [hld]
@@ -5008,7 +5015,7 @@ Function3e043: ; 3e043
 	ld a, $30
 	ld [hMultiplier], a
 	call Multiply
-	ld hl, EnemyMonMaxHPHi
+	ld hl, EnemyMonMaxHP
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -5386,8 +5393,8 @@ Function3e358: ; 3e358
 ; 3e3ad
 
 Function3e3ad: ; 3e3ad
-	ld a, $1
-	ld [$c710], a
+	ld a, 1
+	ld [wPlayerIsSwitching], a
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_3e3c1
@@ -5412,7 +5419,7 @@ Function3e3ad: ; 3e3ad
 	jp z, .asm_3e3ca
 	cp $d
 	jp z, .asm_3e3ca
-	cp $4
+	cp NUM_MOVES
 	jp c, .asm_3e3ca
 	cp $f
 	jr nz, .asm_3e3e9
@@ -5452,9 +5459,9 @@ BattleMonEntrance: ; 3e40b
 
 	call SetEnemyTurn
 	call Function3dc5b
-	jr c, .asm_3e423
+	jr c, .ok
 	call Function3dce6
-.asm_3e423
+.ok
 
 	hlcoord 9, 7
 	lb bc, 5, 11
@@ -5506,8 +5513,8 @@ Function3e489: ; 3e489
 	call Function30b4
 	ld a, $3
 	ld [$cfa9], a
-	ld hl, BattleMonSpd
-	ld de, EnemyMonSpd
+	ld hl, BattleMonSpeed
+	ld de, EnemyMonSpeed
 	call Function3d8b3
 	ld a, $0
 	ld [$d266], a
@@ -5906,7 +5913,7 @@ MoveInfoBox: ; 3e6c8
 	ld [hl], "/"
 
 	callab UpdateMoveData
-	ld a, [PlayerMoveAnimation]
+	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	ld b, a
 	hlcoord 2, 10
 	ld a, PREDEF_PRINT_MOVE_TYPE
@@ -5996,7 +6003,7 @@ Function3e786: ; 3e786
 
 
 Function3e7c1: ; 3e7c1
-	ld a, [$c711]
+	ld a, [wEnemyIsSwitching]
 	and a
 	ret nz
 	ld a, [InLinkBattle]
@@ -6013,16 +6020,17 @@ Function3e7c1: ; 3e7c1
 	jp z, .asm_3e8bd
 	cp $d
 	jp z, .asm_3e82c
-	cp $4
+	cp NUM_MOVES
 	jp nc, Function3e8c1
 	ld [CurEnemyMoveNum], a
 	ld c, a
 	ld a, [EnemySubStatus1]
-	bit 6, a
+	bit SUBSTATUS_ENCORED, a
 	jp nz, .asm_3e882
 	ld a, [EnemySubStatus3]
-	and $13
+	and 1 << SUBSTATUS_CHARGED | 1 << SUBSTATUS_ROLLOUT | 1 << SUBSTATUS_BIDE
 	jp nz, .asm_3e882
+
 	ld hl, EnemySubStatus5
 	bit 4, [hl]
 	ld a, [LastEnemyMove]
@@ -6113,14 +6121,14 @@ Function3e7c1: ; 3e7c1
 	ld [$c733], a
 
 .asm_3e894
-	ld a, [EnemyMoveEffect]
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_FURY_CUTTER
 	jr z, .asm_3e89f
 	xor a
 	ld [EnemyFuryCutterCount], a
 
 .asm_3e89f
-	ld a, [EnemyMoveEffect]
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
 	jr z, .asm_3e8af
 	ld hl, EnemySubStatus4
@@ -6129,13 +6137,13 @@ Function3e7c1: ; 3e7c1
 	ld [$c72c], a
 
 .asm_3e8af
-	ld a, [EnemyMoveEffect]
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_PROTECT
 	ret z
 	cp EFFECT_ENDURE
 	ret z
 	xor a
-	ld [$c681], a
+	ld [EnemyProtectCount], a
 	ret
 
 .asm_3e8bd
@@ -6146,7 +6154,7 @@ Function3e7c1: ; 3e7c1
 Function3e8c1: ; 3e8c1
 	xor a
 	ld [EnemyFuryCutterCount], a
-	ld [$c681], a
+	ld [EnemyProtectCount], a
 	ld [$c72c], a
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
@@ -6492,9 +6500,9 @@ LoadEnemyMon: ; 3e8eb
 	ld [hli], a
 	
 ; Full HP...
-	ld a, [EnemyMonMaxHPHi]
+	ld a, [EnemyMonMaxHP]
 	ld [hli], a
-	ld a, [EnemyMonMaxHPLo]
+	ld a, [EnemyMonMaxHP + 1]
 	ld [hl], a
 	
 ; ...unless it's a RoamMon
@@ -6510,13 +6518,13 @@ LoadEnemyMon: ; 3e8eb
 	jr z, .InitRoamHP
 ; Update from the struct if it has
 	ld a, [hl]
-	ld [EnemyMonHPLo], a
+	ld [EnemyMonHP + 1], a
 	jr .Moves
 	
 .InitRoamHP
 ; HP only uses the lo byte in the RoamMon struct since
 ; Raikou/Entei/Suicune will have < 256 hp at level 40
-	ld a, [EnemyMonHPLo]
+	ld a, [EnemyMonHP + 1]
 	ld [hl], a
 	jr .Moves
 	
@@ -6527,9 +6535,9 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [CurPartyMon]
 	call GetPartyLocation
 	ld a, [hld]
-	ld [EnemyMonHPLo], a
+	ld [EnemyMonHP + 1], a
 	ld a, [hld]
-	ld [EnemyMonHPHi], a
+	ld [EnemyMonHP], a
 	
 ; Make sure everything knows which monster the opponent is using
 	ld a, [CurPartyMon]
@@ -6975,11 +6983,11 @@ Function3ecb7: ; 3ecb7
 	ld a, [$d265]
 	and a
 	ld a, c
-	ld hl, BattleMonAtk
+	ld hl, BattleMonAttack
 	ld de, PlayerStats
 	ld bc, PlayerAtkLevel
 	jr z, .asm_3ecd2
-	ld hl, EnemyMonAtk
+	ld hl, EnemyMonAttack
 	ld de, EnemyStats
 	ld bc, EnemyAtkLevel
 
@@ -7113,7 +7121,7 @@ BadgeStatBoosts: ; 3ed45
 	or c
 	ld b, a
 
-	ld hl, BattleMonAtk
+	ld hl, BattleMonAttack
 	ld c, 4
 .CheckBadge
 	ld a, b
@@ -7432,7 +7440,7 @@ Function3ee3b: ; 3ee3b
 	ld a, [$ffb5]
 	ld [StringBuffer2], a
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	ld hl, UnknownText_0x3f11b
 	call BattleTextBox
@@ -7960,14 +7968,14 @@ Function3f26d: ; 3f26d
 	jr nz, .asm_3f2ce
 
 .asm_3f27c
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
 	ld hl, UnknownText_0x3f2d1
 	jr z, .asm_3f2ce
 	xor a
 	ld [hMultiplicand], a
-	ld hl, EnemyMonHPHi
+	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [$c6ea], a
 	ld [$ffb5], a
@@ -7977,7 +7985,7 @@ Function3f26d: ; 3f26d
 	ld a, $19
 	ld [hMultiplier], a
 	call Multiply
-	ld hl, EnemyMonMaxHPHi
+	ld hl, EnemyMonMaxHP
 	ld a, [hli]
 	ld b, [hl]
 	srl a
@@ -8052,7 +8060,7 @@ UnknownText_0x3f2fa: ; 3f2fa
 Function3f2ff: ; 3f2ff
 	push de
 	push bc
-	ld hl, EnemyMonHPLo
+	ld hl, EnemyMonHP + 1
 	ld de, $c6eb
 	ld b, [hl]
 	dec hl
@@ -8067,7 +8075,7 @@ Function3f2ff: ; 3f2ff
 	ld a, $19
 	ld [hMultiplier], a
 	call Multiply
-	ld hl, EnemyMonMaxHPHi
+	ld hl, EnemyMonMaxHP
 	ld a, [hli]
 	ld b, [hl]
 	srl a
@@ -8300,8 +8308,8 @@ Function3f447: ; 3f447
 	push af
 	ld a, [BattleMonSpecies]
 	ld [CurPartySpecies], a
-	ld hl, BattleMonAtkDefDV
-	ld a, $2d
+	ld hl, BattleMonDVs
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	ld de, $9310
 	ld a, $3d
@@ -8339,8 +8347,8 @@ Function3f486: ; 3f486
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
 	call GetBaseData
-	ld hl, EnemyMonAtkDefDV
-	ld a, $2d
+	ld hl, EnemyMonDVs
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	ld de, VTiles2
 	ld a, $3e
@@ -8537,8 +8545,8 @@ Function3f607: ; 3f607
 	ld de, $c739
 	ld bc, NUM_MOVES
 	call CopyBytes
-	ld hl, EnemyMonAtkDefDV
-	ld a, $2d
+	ld hl, EnemyMonDVs
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	ld a, [CurPartySpecies]
 	cp UNOWN
@@ -8975,7 +8983,7 @@ Function3f998: ; 3f998
 	and $f
 	jr z, .asm_3f9af
 	call GetRoamMonHP
-	ld a, [EnemyMonHPLo]
+	ld a, [EnemyMonHP + 1]
 	ld [hl], a
 	jr .asm_3f9ca
 
@@ -9003,74 +9011,74 @@ Function3f998: ; 3f998
 GetRoamMonMapGroup: ; 3f9d1
 	ld a, [TempEnemyMonSpecies]
 	ld b, a
-	ld a, [RoamMon1Species]
+	ld a, [wRoamMon1Species]
 	cp b
-	ld hl, RoamMon1MapGroup
+	ld hl, wRoamMon1MapGroup
 	ret z
-	ld a, [RoamMon2Species]
+	ld a, [wRoamMon2Species]
 	cp b
-	ld hl, RoamMon2MapGroup
+	ld hl, wRoamMon2MapGroup
 	ret z
-	ld hl, RoamMon3MapGroup
+	ld hl, wRoamMon3MapGroup
 	ret
 ; 3f9e9
 
 GetRoamMonMapNumber: ; 3f9e9
 	ld a, [TempEnemyMonSpecies]
 	ld b, a
-	ld a, [RoamMon1Species]
+	ld a, [wRoamMon1Species]
 	cp b
-	ld hl, RoamMon1MapNumber
+	ld hl, wRoamMon1MapNumber
 	ret z
-	ld a, [RoamMon2Species]
+	ld a, [wRoamMon2Species]
 	cp b
-	ld hl, RoamMon2MapNumber
+	ld hl, wRoamMon2MapNumber
 	ret z
-	ld hl, RoamMon3MapNumber
+	ld hl, wRoamMon3MapNumber
 	ret
 ; 3fa01
 
 GetRoamMonHP: ; 3fa01
-; output: hl = RoamMonHP
+; output: hl = wRoamMonHP
 	ld a, [TempEnemyMonSpecies]
 	ld b, a
-	ld a, [RoamMon1Species]
+	ld a, [wRoamMon1Species]
 	cp b
-	ld hl, RoamMon1HP
+	ld hl, wRoamMon1HP
 	ret z
-	ld a, [RoamMon2Species]
+	ld a, [wRoamMon2Species]
 	cp b
-	ld hl, RoamMon2HP
+	ld hl, wRoamMon2HP
 	ret z
-	ld hl, RoamMon3HP
+	ld hl, wRoamMon3HP
 	ret
 ; 3fa19
 
 GetRoamMonDVs: ; 3fa19
-; output: hl = RoamMonDVs
+; output: hl = wRoamMonDVs
 	ld a, [TempEnemyMonSpecies]
 	ld b, a
-	ld a, [RoamMon1Species]
+	ld a, [wRoamMon1Species]
 	cp b
-	ld hl, RoamMon1DVs
+	ld hl, wRoamMon1DVs
 	ret z
-	ld a, [RoamMon2Species]
+	ld a, [wRoamMon2Species]
 	cp b
-	ld hl, RoamMon2DVs
+	ld hl, wRoamMon2DVs
 	ret z
-	ld hl, RoamMon3DVs
+	ld hl, wRoamMon3DVs
 	ret
 ; 3fa31
 
 GetRoamMonSpecies: ; 3fa31
 	ld a, [TempEnemyMonSpecies]
-	ld hl, RoamMon1Species
+	ld hl, wRoamMon1Species
 	cp [hl]
 	ret z
-	ld hl, RoamMon2Species
+	ld hl, wRoamMon2Species
 	cp [hl]
 	ret z
-	ld hl, RoamMon3Species
+	ld hl, wRoamMon3Species
 	ret
 ; 3fa42
 
