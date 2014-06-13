@@ -71,165 +71,50 @@ ENDM
 
 
 channel_struct: MACRO
-; Addresses are Channel1 ($c101).
-
-\1MusicID:: ; c101
-	ds 2
-\1MusicBank:: ; c103
-	ds 1
-\1Flags:: ; c104
-; 0: on/off
-; 1: subroutine
-; 2: 
-; 3: 
-; 4: noise sampling on/off
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-\1Flags2:: ; c105
-; 0: vibrato on/off
-; 1: 
-; 2: duty cycle on/off
-; 3: 
-; 4: 
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-\1Flags3:: ; c106
-; 0: vibrato up/down
-; 1: 
-; 2: 
-; 3: 
-; 4: 
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-\1MusicAddress:: ; c107
-	ds 2
-\1LastMusicAddress:: ; c109
-	ds 2
-; could have been meant as a third-level address
-	ds 2
-\1NoteFlags:: ; c10d
-; 0: 
-; 1: 
-; 2: 
-; 3: 
-; 4: 
-; 5: rest
-; 6: 
-; 7: 
-	ds 1
-\1Condition:: ; c10e
-; used for conditional jumps
-	ds 1
-\1DutyCycle:: ; c10f
-; uses top 2 bits only
-;	0: 12.5%
-;	1: 25%
-;	2: 50%
-;	3: 75%
-	ds 1
-\1Intensity:: ; c110
-;	hi: pressure
-;   lo: velocity
-	ds 1
-\1Frequency::
-; 11 bits
-\1FrequencyLo:: ; c111
-	ds 1
-\1FrequencyHi:: ; c112
-	ds 1
-\1Pitch:: ; c113
-; 0: rest
-; 1: C
-; 2: C#
-; 3: D
-; 4: D#
-; 5: E
-; 6: F
-; 7: F#
-; 8: G
-; 9: G#
-; a: A
-; b: A#
-; c: B
-	ds 1
-\1Octave:: ; c114
-; 0: highest
-; 7: lowest
-	ds 1
-\1StartingOctave:: ; c115
-; raises existing octaves by this value
-; used for repeating phrases in a higher octave to save space
-	ds 1
-\1NoteDuration:: ; c116
-; number of frames remaining in the current note
-	ds 1
-; c117
-	ds 1
-; c118
-	ds 1
-\1LoopCount:: ; c119
-	ds 1
-\1Tempo:: ; c11a
-	ds 2
-\1Tracks:: ; c11c
-; hi: l
-; lo: r
-	ds 1
-; c11d
-	ds 1
-
-\1VibratoDelayCount:: ; c11e
-; initialized at the value in VibratoDelay
-; decrements each frame
-; at 0, vibrato starts
-	ds 1
-\1VibratoDelay:: ; c11f
-; number of frames a note plays until vibrato starts
-	ds 1
-\1VibratoExtent:: ; c120
-; difference in 
-	ds 1
-\1VibratoRate:: ; c121
-; counts down from a max of 15 frames
-; over which the pitch is alternated
-; hi: init frames
-; lo: frame count
-	ds 1
-
-; c122
-	ds 1
-; c123
-	ds 1
-; c124
-	ds 1
-; c125
-	ds 1
-; c126
-	ds 1
-; c127
-	ds 1
-\1CryPitch:: ; c128
-	ds 1
-\1CryEcho:: ; c129
-	ds 1
-	ds 4
-\1NoteLength:: ; c12e
-; # frames per 16th note
-	ds 1
-; c12f
-	ds 1
-; c130
-	ds 1
-; c131
-	ds 1
-; c132
-	ds 1
+; Addreses are Channel1 (c101).
+\1MusicID::           dw
+\1MusicBank::         db
+\1Flags::             db ; 0:on/off 1:subroutine 4:noise
+\1Flags2::            db ; 0:vibrato on/off 2:duty
+\1Flags3::            db ; 0:vibrato up/down
+\1MusicAddress::      dw
+\1LastMusicAddress::  dw
+                      dw
+\1NoteFlags::         db ; 5:rest
+\1Condition::         db ; conditional jumps
+\1DutyCycle::         db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
+\1Intensity::         db ; hi:pressure lo:velocity
+\1Frequency:: ; 11 bits
+\1FrequencyLo::       db
+\1FrequencyHi::       db
+\1Pitch::             db ; 0:rest 1-c:note
+\1Octave::            db ; 7-0 (0 is highest)
+\1StartingOctave::    db ; raises existing octaves (to repeat phrases)
+\1NoteDuration::      db ; frames remaining for the current note
+                      ds 1 ; c117
+                      ds 1 ; c118
+\1LoopCount::         db
+\1Tempo::             dw
+\1Tracks::            db ; hi:left lo:right
+                      ds 1 ; c11d
+\1VibratoDelayCount:: db ; initialized by \1VibratoDelay
+\1VibratoDelay::      db ; number of frames a note plays until vibrato starts
+\1VibratoExtent::     db
+\1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
+                      ds 1 ; c122
+                      ds 1 ; c123
+                      ds 1 ; c124
+                      ds 1 ; c125
+                      ds 1 ; c126
+                      ds 1 ; c127
+\1CryPitch::          db
+\1CryEcho::           db
+                      ds 4
+\1NoteLength::        db ; frames per 16th note
+                      ds 1 ; c12f
+                      ds 1 ; c130
+                      ds 1 ; c131
+                      ds 1 ; c132
 ENDM
 
 SECTION "tiles0",VRAM[$8000],BANK[0]
@@ -248,8 +133,7 @@ VBGMap1::
 SECTION "WRAMBank0",WRAM0[$c000]
 
 SECTION "stack",WRAM0[$c0ff]
-Stack:: ; c0ff
-	ds -$100
+Stack:: ds -$100 ; c0ff
 
 
 SECTION "audio",WRAM0[$c100]
@@ -258,39 +142,24 @@ MusicPlaying:: ; c100
 	ds 1
 
 Channels::
-Channel1:: ; c101
-	channel_struct Channel1
-Channel2:: ; c133
-	channel_struct Channel2
-Channel3:: ; c165
-	channel_struct Channel3
-Channel4:: ; c197
-	channel_struct Channel4
+Channel1:: channel_struct Channel1 ; c101
+Channel2:: channel_struct Channel2 ; c133
+Channel3:: channel_struct Channel3 ; c165
+Channel4:: channel_struct Channel4 ; c197
 
 SFXChannels::
-Channel5:: ; c1c9
-	channel_struct Channel5
-Channel6:: ; c1fb
-	channel_struct Channel6
-Channel7:: ; c22d
-	channel_struct Channel7
-Channel8:: ; c25f
-	channel_struct Channel8
+Channel5:: channel_struct Channel5 ; c1c9
+Channel6:: channel_struct Channel6 ; c1fb
+Channel7:: channel_struct Channel7 ; c22d
+Channel8:: channel_struct Channel8 ; c25f
 
-; c291
-	ds 1
-; c292
-	ds 1
-; c293
-	ds 1
-; c294
-	ds 1
-; c295
-	ds 1
-; c296
-	ds 1
-; c297
-	ds 1
+	ds 1 ; c291
+	ds 1 ; c292
+	ds 1 ; c293
+	ds 1 ; c294
+	ds 1 ; c295
+	ds 1 ; c296
+	ds 1 ; c297
 
 CurMusicByte:: ; c298
 	ds 1
@@ -457,14 +326,16 @@ wBattle::
 wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
 wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
 
-EnemyMonNick::  ds 11 ; c616
-BattleMonNick:: ds 11 ; c621
+EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
+BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
 
 BattleMon:: battle_struct BattleMon ; c62c
 	ds 10
 
 OTName:: ; c656
-	ds 13
+	ds NAME_LENGTH
+
+	ds 2
 
 CurOTMon:: ; c663
 	ds 1
@@ -475,7 +346,6 @@ TypeModifier:: ; c665
 ; >10: super-effective
 ;  10: normal
 ; <10: not very effective
-
 ; bit 7: stab
 	ds 1
 
@@ -1293,7 +1163,7 @@ TimeOfDay:: ; d269
 SECTION "OTParty",WRAMX[$d280],BANK[1]
 
 OTPartyCount::   ds 1 ; d280
-OTPartySpecies:: ds 6 ; d281
+OTPartySpecies:: ds PARTY_LENGTH ; d281
 OTPartyEnd::     ds 1
 
 OTPartyMon1:: party_struct OTPartyMon1 ; d288
@@ -1303,8 +1173,8 @@ OTPartyMon4:: party_struct OTPartyMon4 ; d318
 OTPartyMon5:: party_struct OTPartyMon5 ; d348
 OTPartyMon6:: party_struct OTPartyMon6 ; d378
 
-OTPartyMonOT:: ds 11 * 6 ; d3a8
-OTPartyMonNicknames:: ds 11 * 6 ; d3ea
+OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
+OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea
 
 
 SECTION "Map Events", WRAMX[$d432], BANK[1]
@@ -1344,16 +1214,11 @@ PlayerGender:: ; d472
 PlayerID:: ; d47b
 	ds 2
 
-PlayerName:: ; d47d
-	ds 11
-MomsName:: ; d488
-	ds 11
-RivalName:: ; d493
-	ds 11
-RedsName:: ; d49e
-	ds 11
-GreensName:: ; d4a9
-	ds 11
+PlayerName:: ds NAME_LENGTH ; d47d
+MomsName::   ds NAME_LENGTH ; d488
+RivalName::  ds NAME_LENGTH ; d493
+RedsName::   ds NAME_LENGTH ; d49e
+GreensName:: ds NAME_LENGTH ; d4a9
 
 	ds 2
 
@@ -1721,7 +1586,7 @@ SECTION "PlayerParty",WRAMX[$dcd7],BANK[1]
 PartyCount:: ; dcd7
 	ds 1 ; number of Pokémon in party
 PartySpecies:: ; dcd8
-	ds 6 ; species of each Pokémon in party
+	ds PARTY_LENGTH ; species of each Pokémon in party
 PartyEnd:: ; dcde
 	ds 1 ; legacy functions don't check PartyCount
 		 
@@ -1733,20 +1598,20 @@ PartyMon4:: party_struct PartyMon4 ; dd6f
 PartyMon5:: party_struct PartyMon5 ; dd9f
 PartyMon6:: party_struct PartyMon6 ; ddcf
 
-PartyMonOT:: ds 11 * 6 ; ddff
+PartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; ddff
 
-PartyMonNicknames:: ds 11 * 6 ; de41
+PartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; de41
 PartyMonNicknamesEnd::
 
 
 SECTION "Pokedex", WRAMX[$de99], BANK[1]
 
 PokedexCaught:: ; de99
-	flag_array 251
+	flag_array NUM_POKEMON
 EndPokedexCaught::
 
 PokedexSeen:: ; deb9
-	flag_array 251
+	flag_array NUM_POKEMON
 EndPokedexSeen::
 
 UnownDex:: ; ded9
@@ -1764,8 +1629,8 @@ wDaycareMan:: ; def5
 	ds 1
 
 wBreedMon1::
-wBreedMon1Nick:: ds PKMN_NAME_LENGTH ; def6
-wBreedMon1OT::   ds NAME_LENGTH ; df01
+wBreedMon1Nick::  ds PKMN_NAME_LENGTH ; def6
+wBreedMon1OT::    ds NAME_LENGTH ; df01
 wBreedMon1Stats:: box_struct wBreedMon1 ; df0c
 
 wDaycareLady:: ; df2c
@@ -1781,13 +1646,13 @@ wDittoInDaycare:: ; df2e
 	ds 1
 
 wBreedMon2::
-wBreedMon2Nick:: ds PKMN_NAME_LENGTH ; df2f
-wBreedMon2OT::   ds NAME_LENGTH ; df3a
+wBreedMon2Nick::  ds PKMN_NAME_LENGTH ; df2f
+wBreedMon2OT::    ds NAME_LENGTH ; df3a
 wBreedMon2Stats:: box_struct wBreedMon2 ; df45
 
 wEggNick:: ds PKMN_NAME_LENGTH ; df65
 wEggOT::   ds NAME_LENGTH ; df70
-wEggMon:: box_struct wEggMon ; df7b
+wEggMon::  box_struct wEggMon ; df7b
 
 	ds 1
 
@@ -1813,23 +1678,19 @@ wRoamMon3:: roam_struct wRoamMon3 ; dfdd
 SECTION "WRAMBank5",WRAMX[$d000],BANK[5]
 
 ; 8 4-color palettes
-Unkn1Pals:: ; d000
-	ds $40
-Unkn2Pals:: ; d040
-	ds $40
-BGPals:: ; d080
-	ds $40
-OBPals:: ; d0c0
-	ds $40
+Unkn1Pals:: ds 8 * 8 ; d000
+Unkn2Pals:: ds 8 * 8 ; d040
+BGPals::    ds 8 * 8 ; d080
+OBPals::    ds 8 * 8 ; d0c0
 
 LYOverrides:: ; d100
-	ds 144
+	ds SCREEN_HEIGHT_PX
 LYOverridesEnd::
 
 	ds 112
 
 LYOverridesBackup:: ; d200
-	ds 144
+	ds SCREEN_HEIGHT_PX
 LYOverridesBackupEnd::
 
 
@@ -1880,8 +1741,8 @@ sBoxMon1:: box_struct sBoxMon1
 sBoxMon2::
 	ds box_struct_length * (MONS_PER_BOX +- 1)
 
-sBoxMonOT:: ds 11 * 20 ; afa6
+sBoxMonOT:: ds NAME_LENGTH * MONS_PER_BOX ; afa6
 
-sBoxMonNicknames:: ds 11 * 20 ; b082
+sBoxMonNicknames:: ds PKMN_NAME_LENGTH * MONS_PER_BOX ; b082
 sBoxMonNicknamesEnd::
 ; b15e
