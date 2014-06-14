@@ -36,7 +36,7 @@ BattleCommand34: ; 37418
 
 
 	ld a, BATTLE_VARS_MOVE
-	call _GetBattleVar
+	call GetBattleVarAddr
 	ld [hl], b
 	call UpdateMoveData
 	jp ResetTurn

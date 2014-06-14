@@ -107651,12 +107651,12 @@ UsedMoveText: ; 105db9
 	
 .start
 	ld a, BATTLE_VARS_LAST_MOVE
-	call _GetBattleVar
+	call GetBattleVarAddr
 	ld d, h
 	ld e, l
 	
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
-	call _GetBattleVar
+	call GetBattleVarAddr
 	
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar

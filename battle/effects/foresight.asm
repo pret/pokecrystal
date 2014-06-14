@@ -9,7 +9,7 @@ BattleCommand57: ; 376a0
 	jr nz, .failed
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	bit SUBSTATUS_IDENTIFIED, [hl]
 	jr nz, .failed
 

@@ -397,11 +397,11 @@ Function3c27c: ; 3c27c
 	xor a
 	ld [hl], a
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call _GetBattleVar
+	call GetBattleVarAddr
 	push af
 	set SUBSTATUS_CONFUSED, [hl]
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call _GetBattleVar
+	call GetBattleVarAddr
 	push hl
 	push af
 	xor a
@@ -1033,18 +1033,18 @@ Function3c6de: ; 3c6de
 
 Function3c6ed: ; 3c6ed
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res SUBSTATUS_PROTECT, [hl]
 	res SUBSTATUS_ENDURE, [hl]
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res SUBSTATUS_DESTINY_BOND, [hl]
 	ret
 ; 3c6fe
 
 Function3c6fe: ; 3c6fe
 	ld a, BATTLE_VARS_SUBSTATUS5
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res SUBSTATUS_DESTINY_BOND, [hl]
 	ret
 ; 3c706
@@ -1121,7 +1121,7 @@ Function3c716: ; 3c716
 	jp z, .asm_3c7f7
 
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call _GetBattleVar
+	call GetBattleVarAddr
 	bit SUBSTATUS_LEECH_SEED, [hl]
 	jr z, .asm_3c7a1
 
@@ -1148,7 +1148,7 @@ Function3c716: ; 3c716
 	jr z, .asm_3c7f7
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
+	call GetBattleVarAddr
 	bit SUBSTATUS_NIGHTMARE, [hl]
 	jr z, .asm_3c7c5
 
@@ -1166,7 +1166,7 @@ Function3c716: ; 3c716
 	jr z, .asm_3c7f7
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
+	call GetBattleVarAddr
 	bit SUBSTATUS_CURSE, [hl]
 	jr z, .asm_3c7e9
 
@@ -1233,7 +1233,7 @@ Function3c801: ; 3c801
 	pop af
 	ret nz
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res SUBSTATUS_PERISH, [hl]
 	ld a, [hBattleTurn]
 	and a
@@ -1556,7 +1556,7 @@ Function3ca26: ; 3ca26
 	call StdBattleTextBox
 
 	ld a, BATTLE_VARS_MOVE
-	call _GetBattleVar
+	call GetBattleVarAddr
 	push af
 	ld a, FUTURE_SIGHT
 	ld [hl], a
@@ -1573,7 +1573,7 @@ Function3ca26: ; 3ca26
 	ld [CurDamage + 1], a
 
 	ld a, BATTLE_VARS_MOVE
-	call _GetBattleVar
+	call GetBattleVarAddr
 	pop af
 	ld [hl], a
 
@@ -4350,7 +4350,7 @@ Function3dc5b: ; 3dc5b
 	rst FarCall
 
 	ld a, BATTLE_VARS_MOVE
-	call _GetBattleVar
+	call GetBattleVarAddr
 	ld a, $ff
 	ld [hl], a
 
@@ -4570,7 +4570,7 @@ Function3dde9: ; 3dde9
 	dec hl
 	ld b, [hl]
 	ld a, BATTLE_VARS_STATUS_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	and b
 	ret z
 	xor a
@@ -4579,18 +4579,18 @@ Function3dde9: ; 3dde9
 	call UpdateOpponentInParty
 	pop bc
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	and [hl]
 	res SUBSTATUS_TOXIC, [hl]
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	and [hl]
 	res SUBSTATUS_NIGHTMARE, [hl]
 	ld a, b
 	cp $7f
 	jr nz, .asm_3de26
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
 
 .asm_3de26
@@ -4639,7 +4639,7 @@ Function3de51: ; 3de51
 	ld a, [hl]
 	ld [$d265], a
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
 	call GetItemName
 	call Function3ddc8

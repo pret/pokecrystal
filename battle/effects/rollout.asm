@@ -50,7 +50,7 @@ BattleCommand5c: ; 37734
 	jr z, .hit
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res 6, [hl]
 	ret
 
@@ -62,13 +62,13 @@ BattleCommand5c: ; 37734
 	jr c, .asm_3776e
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res 6, [hl]
 	jr .asm_37775
 
 .asm_3776e
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
+	call GetBattleVarAddr
 	set 6, [hl]
 
 .asm_37775

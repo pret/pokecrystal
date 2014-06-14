@@ -7,7 +7,7 @@ BattleCommand5a: ; 3766f
 	ret c
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
+	call GetBattleVarAddr
 	set SUBSTATUS_ENDURE, [hl]
 
 	call AnimateCurrentMove

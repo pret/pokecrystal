@@ -14,14 +14,14 @@ BattleCommand52: ; 37536
 ; Only works on a sleeping opponent.
 
 	ld a, BATTLE_VARS_STATUS_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	and SLP
 	jr z, .failed
 
 ; Bail if the opponent is already having a nightmare.
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	bit SUBSTATUS_NIGHTMARE, [hl]
 	jr nz, .failed
 

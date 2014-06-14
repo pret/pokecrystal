@@ -139,12 +139,12 @@ UpdateBattleHuds:: ; 39d4
 GetBattleVar:: ; 39e1
 ; Preserves hl.
 	push hl
-	call _GetBattleVar
+	call GetBattleVarAddr
 	pop hl
 	ret
 ; 39e7
 
-_GetBattleVar:: ; 39e7
+GetBattleVarAddr:: ; 39e7
 ; Get variable from pair a, depending on whose turn it is.
 ; There are 21 variable pairs.
 

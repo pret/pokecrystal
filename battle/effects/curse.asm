@@ -66,7 +66,7 @@ BattleCommand54: ; 37588
 	jr nz, .failed
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call _GetBattleVar
+	call GetBattleVarAddr
 	bit 1, [hl]
 	jr nz, .failed
 
