@@ -43541,7 +43541,7 @@ Function38000: ; 38000
 	callba Function3e8d1
 	ret nz
 	ld a, [PlayerSubStatus5]
-	bit 7, a
+	bit SUBSTATUS_CANT_RUN, a
 	jr nz, Function38041
 	ld a, [$c731]
 	and a
@@ -43672,7 +43672,7 @@ Function380c1: ; 380c1
 
 Function380ff: ; 380ff
 	ld a, [EnemySubStatus5]
-	bit 7, a
+	bit SUBSTATUS_CANT_RUN, a
 	ret
 ; 38105
 
@@ -43737,13 +43737,13 @@ Function38105: ; 38105
 	inc a
 	ld [$c70f], a
 	ld hl, EnemySubStatus3 ; $c66f
-	res 0, [hl]
+	res SUBSTATUS_BIDE, [hl]
 	xor a
 	ld [EnemyFuryCutterCount], a ; $c680
 	ld [$c681], a
 	ld [$c72c], a
 	ld hl, EnemySubStatus4 ; $c670
-	res 6, [hl]
+	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ld [LastPlayerCounterMove], a ; $c6f9
 	scf
@@ -43753,9 +43753,9 @@ Function38105: ; 38105
 Function38170: ; 38170
 	ld a, [OTPartyCount]
 	ld d, a
-	ld e, $0
+	ld e, 0
 	ld hl, OTPartyMon1Level
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, OTPartyMon2 - OTPartyMon1
 .asm_3817c
 	ld a, [hl]
 	cp e
@@ -43809,6 +43809,7 @@ Function381ca: ; 381ca (e:41ca)
 	ld a, [EnemyMonStatus] ; $d214
 	and a
 	jp z, Function38383
+
 	ld a, [bc]
 	bit 6, a
 	jr nz, .asm_381e7
@@ -43821,8 +43822,8 @@ Function381ca: ; 381ca (e:41ca)
 	jp Function38383
 
 .asm_381e7
-	ld a, [EnemySubStatus5] ; $c671
-	bit 0, a
+	ld a, [EnemySubStatus5]
+	bit SUBSTATUS_TOXIC, a
 	jr z, .asm_381fd
 	ld a, [$c67c]
 	cp $4
@@ -43831,8 +43832,8 @@ Function381ca: ; 381ca (e:41ca)
 	cp $80
 	jp c, Function38385
 .asm_381fd
-	ld a, [EnemyMonStatus] ; $d214
-	and $27
+	ld a, [EnemyMonStatus]
+	and 1 << FRZ | SLP
 	jp z, Function38383
 	jp Function38385
 ; 38208
@@ -43875,7 +43876,6 @@ Function3822c: ; 3822c (e:422c)
 	jp c, Function38281
 	jp Function38383
 
-; known jump sources: 3823d (e:423d)
 Function38254: ; 38254 (e:4254)
 	callab AICheckEnemyQuarterHP
 	jp c, Function38383
@@ -43893,7 +43893,6 @@ Function38267: ; 38267 (e:4267)
 	cp $32
 	jp nc, Function38383
 
-; known jump sources: 38246 (e:4246), 3824e (e:424e), 38265 (e:4265), 38276 (e:4276)
 Function38281: ; 38281 (e:4281)
 	jp Function38385
 ; 38284
@@ -44044,12 +44043,10 @@ Function3834d: ; 3834d (e:434d)
 	jp nc, Function38383
 	jp Function38385
 
-; known jump sources: 381c1 (e:41c1), 381ce (e:41ce), 381e4 (e:41e4), 38202 (e:4202), 38211 (e:4211), 38217 (e:4217), 38223 (e:4223), 38237 (e:4237), 38251 (e:4251), 3825a (e:425a), 38262 (e:4262), 3826d (e:426d), 3827e (e:427e), 38287 (e:4287), 38314 (e:4314), 3835e (e:435e), 3836c (e:436c), 38375 (e:4375), 3837d (e:437d)
 Function38383: ; 38383 (e:4383)
 	scf
 	ret
 
-; known jump sources: 381c7 (e:41c7), 381d9 (e:41d9), 381e1 (e:41e1), 381fa (e:41fa), 38205 (e:4205), 3821d (e:421d), 38229 (e:4229), 38281 (e:4281), 3828f (e:428f), 3831a (e:431a), 38356 (e:4356), 38364 (e:4364), 3836f (e:436f), 38380 (e:4380)
 Function38385: ; 38385 (e:4385)
 	and a
 	ret
@@ -44079,7 +44076,7 @@ Function3839a: ; 3839a
 Function383a3: ; 383a3 (e:43a3)
 	call Function3839a
 	call Function384e0
-	ld a, $26
+	ld a, FULL_HEAL
 	jp Function38568
 
 ; known jump sources: 38226 (e:4226)
@@ -44094,7 +44091,7 @@ Function383b5: ; 383b5 (e:43b5)
 	ld a, $e
 	ld [$d1f1], a
 	ld hl, EnemySubStatus3 ; $c66f
-	res 7, [hl]
+	res SUBSTATUS_CONFUSED, [hl]
 	xor a
 	ld [EnemyConfuseCount], a ; $c67b
 asm_383c6: ; 383c6 (e:43c6)
@@ -44215,7 +44212,7 @@ Function3846c: ; 3846c
 	ld [$c711], a
 	ld [$c70f], a
 	ld hl, EnemySubStatus4
-	res 6, [hl]
+	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ld [hBattleTurn], a
 	callab Function3dc5b
@@ -44240,7 +44237,7 @@ Function3846c: ; 3846c
 	callab NewEnemyMonStatus
 	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
-	res 7, [hl]
+	res SUBSTATUS_IN_LOVE, [hl]
 	callba Function3d4e1
 	callba Function3d57a
 	xor a
@@ -44260,7 +44257,7 @@ UnknownText_0x384d0: ; 384d0
 Function384d5: ; 384d5
 	call Function3839a
 	call Function384e0
-	ld a, $34
+	ld a, X_SPEED
 	jp Function38568
 ; 384e0
 
@@ -44273,31 +44270,31 @@ Function384e0: ; 384e0
 	ld [hl], a
 	ld [EnemyMonStatus], a
 	ld hl, EnemySubStatus5
-	res 0, [hl]
+	res SUBSTATUS_TOXIC, [hl]
 	ret
 ; 384f7
 
 Function384f7: ; 384f7
 	call Function3839a
 	ld hl, EnemySubStatus4
-	set 0, [hl]
-	ld a, $21
+	set SUBSTATUS_UNLEASH, [hl]
+	ld a, X_ACCURACY
 	jp Function38568
 ; 38504
 
 Function38504: ; 38504
 	call Function3839a
 	ld hl, EnemySubStatus4
-	set 1, [hl]
-	ld a, $29
+	set SUBSTATUS_MIST, [hl]
+	ld a, GUARD_SPEC
 	jp Function38568
 ; 38511
 
 Function38511: ; 38511
 	call Function3839a
 	ld hl, EnemySubStatus4
-	set 2, [hl]
-	ld a, $2c
+	set SUBSTATUS_FOCUS_ENERGY, [hl]
+	ld a, DIRE_HIT
 	jp Function38568
 ; 3851e
 
@@ -44328,26 +44325,26 @@ Function3851e: ; 3851e
 ; 38541
 
 Function38541: ; 38541
-	ld b, $0
-	ld a, $31
+	ld b, ATTACK
+	ld a, X_ATTACK
 	jr Function38557
 ; 38547
 
 Function38547: ; 38547
-	ld b, $1
-	ld a, $33
+	ld b, DEFENSE
+	ld a, X_DEFEND
 	jr Function38557
 ; 3854d
 
 Function3854d: ; 3854d
-	ld b, $2
-	ld a, $34
+	ld b, SPEED
+	ld a, X_SPEED
 	jr Function38557
 ; 38553
 
 Function38553: ; 38553
-	ld b, $3
-	ld a, $35
+	ld b, SP_ATTACK
+	ld a, X_SPECIAL
 
 Function38557
 	ld [$d1f1], a
