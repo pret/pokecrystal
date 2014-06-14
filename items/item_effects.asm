@@ -238,10 +238,10 @@ ParkBall: ; e8a2
 	ld a, [EnemyMonCatchRate]
 	ld b, a
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jp z, .asm_e99c
 	ld a, [CurItem]
-	cp $1
+	cp MASTER_BALL
 	jp z, .asm_e99c
 	ld a, [CurItem]
 	ld c, a

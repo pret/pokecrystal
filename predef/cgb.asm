@@ -840,11 +840,13 @@ Function93ba: ; 93ba
 
 Function93d3: ; 93d3
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_93e6
+
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_93e6
+
 	ld hl, Palettes_9469
 	jr .asm_93e9
 

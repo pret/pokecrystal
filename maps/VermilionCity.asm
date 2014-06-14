@@ -56,7 +56,7 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	pause 15
 	cry SNORLAX
 	loadmovesprites
-	writecode $3, $a
+	writecode $3, BATTLETYPE_FORCEITEM
 	loadpokedata SNORLAX, 50
 	startbattle
 	disappear $6

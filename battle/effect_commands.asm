@@ -7083,7 +7083,7 @@ BattleCommanda0: ; 36778
 	jr z, .asm_367b9
 	cp $9
 	jr z, .asm_367b9
-	cp $b
+	cp BATTLETYPE_CELEBI
 	jr z, .asm_367b9
 	cp BATTLETYPE_SUICUNE
 	jr z, .asm_367b9
@@ -7175,7 +7175,7 @@ BattleCommand23: ; 3680f
 	jp z, .asm_36969
 	cp $9
 	jp z, .asm_36969
-	cp $b
+	cp BATTLETYPE_CELEBI
 	jp z, .asm_36969
 	cp BATTLETYPE_SUICUNE
 	jp z, .asm_36969

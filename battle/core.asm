@@ -58,7 +58,7 @@ Function3c000: ; 3c000
 	ld a, [BattleType]
 	cp $2
 	jp z, Function3c0e2
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jp z, Function3c0e2
 	xor a
 	ld [CurPartyMon], a
@@ -2459,7 +2459,7 @@ Function3cfa4: ; 3cfa4
 	ld c, $28
 	call DelayFrames
 	ld a, [BattleType]
-	cp $1
+	cp BATTLETYPE_CANLOSE
 	jr nz, .asm_3cfe8
 	ld a, $2
 	call Predef
@@ -3717,13 +3717,13 @@ Function3d7c7: ; 3d7c7
 	ld [$cfca], a
 	ld [$c689], a
 	call SetEnemyTurn
-	ld de, $0101
+	ld de, ANIM_SEND_OUT_MON
 	call Function3ee17
 	call Function3da79
 	jr nc, .asm_3d800
 	ld a, $1
 	ld [$c689], a
-	ld de, $0101
+	ld de, ANIM_SEND_OUT_MON
 	call Function3ee17
 
 .asm_3d800
@@ -3773,7 +3773,7 @@ NewEnemyMonStatus: ; 3d834
 	ld [$c731], a
 	ld [EnemyTurnsTaken], a
 	ld hl, PlayerSubStatus5
-	res 7, [hl]
+	res SUBSTATUS_CANT_RUN, [hl]
 	ret
 ; 3d867
 
@@ -3793,7 +3793,7 @@ Function3d873: ; 3d873
 	ld e, a
 	xor a
 	ld hl, PartyMon1HP
-	ld bc, $002f
+	ld bc, PartyMon2 - (PartyMon1 + 1)
 .asm_3d87e
 	or [hl]
 	inc hl
@@ -3842,13 +3842,13 @@ Function3d8b3: ; 3d8b3
 	jp z, .asm_3d9a2
 	cp $6
 	jp z, .asm_3d9a2
-	cp $9
+	cp BATTLETYPE_TRAP
 	jp z, .asm_3d98d
-	cp $b
+	cp BATTLETYPE_CELEBI
 	jp z, .asm_3d98d
-	cp $7
+	cp BATTLETYPE_SHINY
 	jp z, .asm_3d98d
-	cp $c
+	cp BATTLETYPE_SUICUNE
 	jp z, .asm_3d98d
 
 	ld a, [InLinkBattle]
@@ -3860,7 +3860,7 @@ Function3d8b3: ; 3d8b3
 	jp nz, .asm_3d992
 
 	ld a, [EnemySubStatus5]
-	bit 7, a
+	bit SUBSTATUS_CANT_RUN, a
 	jp nz, .asm_3d98d
 
 	ld a, [$c730]
@@ -5093,7 +5093,7 @@ Function3e139: ; 3e139
 	ld a, [BattleType]
 	cp $2
 	jr z, .asm_3e156
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_3e156
 	call EmptyBattleTextBox
 	call UpdateBattleHuds
@@ -5173,7 +5173,7 @@ Function3e1c7: ; 3e1c7
 	jp nz, Function3e22b
 	call Function1d6e
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_3e1f1
 	cp $6
 	jr z, .asm_3e201
@@ -5234,7 +5234,7 @@ Function3e234: ; 3e234
 	call Function3ed9f
 	call ClearSprites
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_3e25d
 	call Function3f43d
 
@@ -9527,8 +9527,8 @@ BattleStartMessage: ; 3fc8b
 	ld hl, PokemonFellFromTreeText
 	cp BATTLETYPE_TREE
 	jr z, .asm_3fd0e
-	ld hl, WildPokemonAppearedText2
-	cp $b
+	ld hl, WildCelebiAppearedText
+	cp BATTLETYPE_CELEBI
 	jr z, .asm_3fd0e
 	ld hl, WildPokemonAppearedText
 

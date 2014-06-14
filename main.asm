@@ -10585,7 +10585,7 @@ Functioncfaf: ; cfaf
 	ld [$d22e], a
 	ld a, e
 	ld [CurPartyLevel], a
-	ld a, $4
+	ld a, BATTLETYPE_FISH
 	ld [BattleType], a
 	ld a, $2
 	ret
@@ -16003,7 +16003,7 @@ Function1089d: ; 1089d
 	ld e, a
 	ld d, $0
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_108b3
 	ld a, [PlayerGender]
 	bit 0, a
@@ -16127,7 +16127,7 @@ Function10955: ; 10955
 	ld a, $24
 	call ByteFill
 	hlcoord 5, 1
-	ld bc, $0b0f
+	lb bc, 11, 15
 	call ClearBox
 	ld hl, TileMap
 	ld a, $28
@@ -16140,7 +16140,7 @@ Function10955: ; 10955
 	call Function109bb
 	call Function109a5
 	hlcoord 0, 12
-	ld bc, $0412
+	lb bc, 4, 18
 	call TextBox
 	call EnableLCD
 	call Function1089d
@@ -36142,7 +36142,7 @@ Function2715c: ; 2715c
 	call WhiteBGMap
 	call ClearTileMap
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_27171
 	callba Function3f43d
 	jr .asm_27177
@@ -40583,7 +40583,7 @@ Function2a0e7:: ; 2a0e7
 	ret
 
 .asm_2a0f8
-	xor a
+	xor a ; BATTLETYPE_NORMAL
 	ld [$d22e], a
 	ld [BattleType], a
 	ld a, 1
@@ -40984,6 +40984,7 @@ Function2a2ce: ; 2a2ce
 	ld [CurPartyLevel], a
 	ld a, BATTLETYPE_ROAMING
 	ld [BattleType], a
+
 	pop hl
 	scf
 	ret
@@ -42840,9 +42841,10 @@ Function2c9b1: ; 2c9b1 (b:49b1)
 
 ; known jump sources: 2c8d6 (b:48d6), 2c915 (b:4915), 2c9bf (b:49bf), 2c9dc (b:49dc)
 Function2c9e2: ; 2c9e2 (b:49e2)
-	ld a, [BattleType] ; $d230
-	cp $3
+	ld a, [BattleType]
+	cp BATTLETYPE_TUTORIAL
 	jp z, Function2caca
+
 	hlcoord 5, 2
 	ld bc, $a0f
 	ld a, $7f
@@ -52591,7 +52593,7 @@ Function49bed: ; 49bed
 ; 49bf3
 
 Function49bf3: ; 49bf3
-	ld a, $b
+	ld a, BATTLETYPE_CELEBI
 	ld [BattleType], a
 	ret
 ; 49bf9
@@ -58218,11 +58220,11 @@ Jumptable_4e564: ; 4e564 (13:6564)
 Function4e56a: ; 4e56a (13:656a)
 	ld hl, PlayerName ; $d47d
 	ld de, MomsName ; $d488
-	ld bc, $b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld hl, String_4e5da
 	ld de, PlayerName ; $d47d
-	ld bc, $b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	call Function4e5b7
 	xor a
@@ -58242,7 +58244,7 @@ Function4e56a: ; 4e56a (13:656a)
 	ld [Options], a ; $cfcc
 	ld hl, MomsName ; $d488
 	ld de, PlayerName ; $d47d
-	ld bc, $b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret
 
@@ -63190,7 +63192,7 @@ Unknown_80671: ; 80671
 Function806c5: ; 806c5
 ; Caught mons.
 	ld hl, PokedexCaught
-	ld b, $20
+	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	ld a, [$d265]
 	jp Function8066c
@@ -63199,7 +63201,7 @@ Function806c5: ; 806c5
 Function806d3: ; 806d3
 ; Seen mons.
 	ld hl, PokedexSeen
-	ld b, $20
+	ld b, EndPokedexSeen - PokedexSeen
 	call CountSetBits
 	ld a, [$d265]
 	jp Function8066c
@@ -63207,7 +63209,7 @@ Function806d3: ; 806d3
 
 Function806e1: ; 806e1
 ; Number of owned badges.
-	ld hl, JohtoBadges ; $d857
+	ld hl, Badges ; $d857
 	ld b, 2
 	call CountSetBits
 	ld a, [$d265]
@@ -87330,7 +87332,7 @@ Functionb81ea: ; b81ea
 	jr nc, .asm_b8214
 	call Functionb83e5
 	jr nc, .asm_b8214
-	ld a, $8
+	ld a, BATTLETYPE_TREE
 	ld [BattleType], a
 	ld a, $1
 	ld [ScriptVar], a
@@ -108250,7 +108252,7 @@ Function106050: ; 106050
 
 Function106051: ; 106051
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	ret z
 	ld hl, $a01b
 	jp Function10611d
@@ -108263,7 +108265,7 @@ Function10605d: ; 10605d
 
 Function10605e: ; 10605e
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	ret z
 	ld hl, $a01e
 	jp Function10611d

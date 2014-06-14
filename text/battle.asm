@@ -30,7 +30,7 @@ PokemonFellFromTreeText: ; 0x80778
 	prompt
 ; 0x80793
 
-WildPokemonAppearedText2: ; 0x80793
+WildCelebiAppearedText: ; 0x80793
 	text "Wild @"
 	text_from_ram $c616
 	db $0

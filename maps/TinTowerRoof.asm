@@ -36,7 +36,7 @@ HoOhScript_0x77244: ; 0x77244
 	pause 15
 	loadmovesprites
 	setevent EVENT_FOUGHT_HO_OH
-	writecode $3, $a
+	writecode $3, BATTLETYPE_FORCEITEM
 	loadpokedata HO_OH, 60
 	startbattle
 	disappear $2

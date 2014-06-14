@@ -1375,9 +1375,9 @@ Coins:: ; d855
 	
 Badges::
 JohtoBadges:: ; d857
-	ds 1
+	flag_array 8
 KantoBadges:: ; d858
-	ds 1
+	flag_array 8
 	
 SECTION "Items",WRAMX[$d859],BANK[1]
 TMsHMs:: ; d859
