@@ -24,7 +24,7 @@ Function3c000: ; 3c000
 
 .asm_3c021
 	ld a, d
-	ld [$d430], a
+	ld [wBattleAction], a
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_3c031
@@ -421,9 +421,9 @@ Function3c27c: ; 3c27c
 	ret nz
 	xor a
 	ld [$cfca], a
-	ld de, $0103
+	ld de, ANIM_CONFUSED
 	call Function3ee0f
-	call Function3c8e4
+	call SwitchTurnCore
 	ld hl, BecameConfusedText
 	jp StdBattleTextBox
 ; 3c300
@@ -432,7 +432,7 @@ Function3c300: ; 3c300
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_3c30d
-	ld a, [$d430]
+	ld a, [wBattleAction]
 	cp $f
 	jr z, .asm_3c30f
 
@@ -450,7 +450,7 @@ Function3c314: ; 3c314
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_3c35b
-	ld a, [$d430]
+	ld a, [wBattleAction]
 	cp $e
 	jr z, .asm_3c35b
 	cp $d
@@ -496,10 +496,10 @@ Function3c314: ; 3c314
 	callab GetOpponentItem
 	pop de
 	ld a, d
-	cp $4a
+	cp HELD_QUICK_CLAW
 	jr nz, .asm_3c391
 	ld a, b
-	cp $4a
+	cp HELD_QUICK_CLAW
 	jr z, .asm_3c39f
 	call BattleRandom
 	cp e
@@ -508,7 +508,7 @@ Function3c314: ; 3c314
 
 .asm_3c391
 	ld a, b
-	cp $4a
+	cp HELD_QUICK_CLAW
 	jr nz, .asm_3c3c5
 	call BattleRandom
 	cp c
@@ -589,23 +589,22 @@ Function3c3f5: ; 3c3f5
 
 Function3c410: ; 3c410
 	ld a, [PlayerSubStatus4]
-	and $20
-	jp nz, Function3c432
+	and 1 << SUBSTATUS_RECHARGE
+	jp nz, .quit
 	ld hl, EnemySubStatus3
-	res 3, [hl]
+	res SUBSTATUS_FLINCHED, [hl]
 	ld hl, PlayerSubStatus3
-	res 3, [hl]
+	res SUBSTATUS_FLINCHED, [hl]
 	ld a, [hl]
-	and $12
-	jp nz, Function3c432
+	and 1 << SUBSTATUS_CHARGED | 1 << SUBSTATUS_ROLLOUT
+	jp nz, .quit
 	ld hl, PlayerSubStatus1
-	bit 6, [hl]
-	jp nz, Function3c432
+	bit SUBSTATUS_ENCORED, [hl]
+	jp nz, .quit
 	and a
 	ret
-; 3c432
 
-Function3c432: ; 3c432
+.quit
 	scf
 	ret
 ; 3c434
@@ -627,18 +626,18 @@ Function3c434: ; 3c434
 	and a
 	jr nz, .asm_3c4b5
 	ld a, [PlayerSubStatus3]
-	and $1
+	and 1 << SUBSTATUS_BIDE
 	jr nz, .asm_3c4ba
 	xor a
 	ld [$d235], a
-	inc a
+	inc a ; POUND
 	ld [FXAnimIDLo], a
 	call Function3e4bc
 	push af
 	call Function30b4
 	call UpdateBattleHuds
 	ld a, [CurPlayerMove]
-	cp $a5
+	cp STRUGGLE
 	jr z, .asm_3c476
 	call PlayClickSFX
 
@@ -680,7 +679,7 @@ Function3c434: ; 3c434
 
 .asm_3c4b5
 	ld hl, PlayerSubStatus3
-	res 0, [hl]
+	res SUBSTATUS_BIDE, [hl]
 
 .asm_3c4ba
 	xor a
@@ -688,7 +687,7 @@ Function3c434: ; 3c434
 	ld [PlayerProtectCount], a
 	ld [$c72b], a
 	ld hl, PlayerSubStatus4
-	res 6, [hl]
+	res SUBSTATUS_RAGE, [hl]
 
 .asm_3c4c9
 	call Function3e7c1
@@ -701,7 +700,7 @@ Function3c434: ; 3c434
 	ld [PlayerProtectCount], a
 	ld [$c72b], a
 	ld hl, PlayerSubStatus4
-	res 6, [hl]
+	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ret
 ; 3c4df
@@ -726,7 +725,7 @@ Function3c4df: ; 3c4df
 	ld hl, BattleMonPP
 	ld a, [CurMoveNum]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	and $3f
@@ -750,7 +749,7 @@ Function3c4df: ; 3c4df
 	ld hl, EnemyMonPP
 	ld a, [CurEnemyMoveNum]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	and $3f
@@ -771,7 +770,7 @@ Function3c543: ; 3c543
 	jr nz, .Stay
 
 	ld a, [PlayerSubStatus5]
-	bit 7, a
+	bit SUBSTATUS_CANT_RUN, a
 	jr nz, .Stay
 
 	ld a, [$c731]
@@ -1033,20 +1032,20 @@ Function3c6de: ; 3c6de
 ; 3c6ed
 
 Function3c6ed: ; 3c6ed
-	ld a, $5
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call _GetBattleVar
-	res 2, [hl]
-	res 5, [hl]
-	ld a, $9
+	res SUBSTATUS_PROTECT, [hl]
+	res SUBSTATUS_ENDURE, [hl]
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call _GetBattleVar
-	res 6, [hl]
+	res SUBSTATUS_DESTINY_BOND, [hl]
 	ret
 ; 3c6fe
 
 Function3c6fe: ; 3c6fe
-	ld a, $4
+	ld a, BATTLE_VARS_SUBSTATUS5
 	call _GetBattleVar
-	res 6, [hl]
+	res SUBSTATUS_DESTINY_BOND, [hl]
 	ret
 ; 3c706
 
@@ -1070,18 +1069,20 @@ Function3c713: ; 3c713
 Function3c716: ; 3c716
 	call Function3c706
 	ret z
-	ld a, $a
+
+	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and $18
+	and 1 << PSN | 1 << BRN
 	jr z, .asm_3c768
+
 	ld hl, BattleText_0x807e2
-	ld de, $0106
-	and $10
+	ld de, ANIM_PSN
+	and 1 << BRN
 	jr z, .asm_3c733
 	ld hl, BattleText_0x807f8
-	ld de, $0105
-
+	ld de, ANIM_BRN
 .asm_3c733
+
 	push de
 	call StdBattleTextBox
 	pop de
@@ -1096,11 +1097,11 @@ Function3c716: ; 3c716
 	ld de, $c67c
 
 .asm_3c74d
-	ld a, $4
+	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVar
-	bit 0, a
+	bit SUBSTATUS_TOXIC, a
 	jr z, .asm_3c765
-	call Function3cc76
+	call GetSixteenthMaxHP
 	ld a, [de]
 	inc a
 	ld [de], a
@@ -1118,19 +1119,22 @@ Function3c716: ; 3c716
 .asm_3c768
 	call Function3c706
 	jp z, .asm_3c7f7
-	ld a, $3
+
+	ld a, BATTLE_VARS_SUBSTATUS4
 	call _GetBattleVar
-	bit 7, [hl]
+	bit SUBSTATUS_LEECH_SEED, [hl]
 	jr z, .asm_3c7a1
-	call Function3c8e4
+
+	call SwitchTurnCore
 	xor a
 	ld [$cfca], a
-	ld de, $0107
-	ld a, $7
+	ld de, ANIM_SAP
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
-	and $60
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	call z, Function3ee0f
-	call Function3c8e4
+	call SwitchTurnCore
+
 	call GetEighthMaxHP
 	call Function3cc3f
 	ld a, $1
@@ -1142,13 +1146,15 @@ Function3c716: ; 3c716
 .asm_3c7a1
 	call Function3c706
 	jr z, .asm_3c7f7
-	ld a, $0
+
+	ld a, BATTLE_VARS_SUBSTATUS1
 	call _GetBattleVar
-	bit 0, [hl]
+	bit SUBSTATUS_NIGHTMARE, [hl]
 	jr z, .asm_3c7c5
+
 	xor a
 	ld [$cfca], a
-	ld de, $010c
+	ld de, ANIM_IN_NIGHTMARE
 	call Function3ee0f
 	call GetQuarterMaxHP
 	call Function3cc3f
@@ -1158,13 +1164,15 @@ Function3c716: ; 3c716
 .asm_3c7c5
 	call Function3c706
 	jr z, .asm_3c7f7
-	ld a, $0
+
+	ld a, BATTLE_VARS_SUBSTATUS1
 	call _GetBattleVar
-	bit 1, [hl]
+	bit SUBSTATUS_CURSE, [hl]
 	jr z, .asm_3c7e9
+
 	xor a
 	ld [$cfca], a
-	ld de, $010c
+	ld de, ANIM_IN_NIGHTMARE
 	call Function3ee0f
 	call GetQuarterMaxHP
 	call Function3cc3f
@@ -1185,7 +1193,7 @@ Function3c716: ; 3c716
 
 .asm_3c7f7
 	call RefreshBattleHuds
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	xor a
 	ret
@@ -1212,9 +1220,9 @@ Function3c801: ; 3c801
 	ld hl, EnemyPerishCount
 
 .asm_3c827
-	ld a, $0
+	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVar
-	bit 4, a
+	bit SUBSTATUS_PERISH, a
 	ret z
 	dec [hl]
 	ld a, [hl]
@@ -1224,9 +1232,9 @@ Function3c801: ; 3c801
 	call StdBattleTextBox
 	pop af
 	ret nz
-	ld a, $0
+	ld a, BATTLE_VARS_SUBSTATUS1
 	call _GetBattleVar
-	res 4, [hl]
+	res SUBSTATUS_PERISH, [hl]
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_3c85c
@@ -1285,9 +1293,9 @@ Function3c874: ; 3c874
 	ld a, [hl]
 	and a
 	ret z
-	ld a, $3
+	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
-	bit 4, a
+	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 	ld a, [de]
 	ld [$d265], a
@@ -1295,20 +1303,20 @@ Function3c874: ; 3c874
 	call GetMoveName
 	dec [hl]
 	jr z, .asm_3c8de
-	ld a, $2
+	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
-	and $60
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	jr nz, .asm_3c8d3
-	call Function3c8e4
+	call SwitchTurnCore
 	xor a
 	ld [$cfca], a
 	ld [FXAnimIDHi], a
 	ld a, $37
 	call Predef
-	call Function3c8e4
+	call SwitchTurnCore
 
 .asm_3c8d3
-	call Function3cc76
+	call GetSixteenthMaxHP
 	call Function3cc3f
 	ld hl, BattleText_0x80de2
 	jr .asm_3c8e1
@@ -1320,9 +1328,9 @@ Function3c874: ; 3c874
 	jp StdBattleTextBox
 ; 3c8e4
 
-Function3c8e4: ; 3c8e4
+SwitchTurnCore: ; 3c8e4
 	ld a, [hBattleTurn]
-	xor $1
+	xor 1
 	ld [hBattleTurn], a
 	ret
 ; 3c8eb
@@ -1367,8 +1375,8 @@ Function3c8eb: ; 3c8eb
 	ret z
 
 .asm_3c92d
-	call Function3cc76
-	call Function3c8e4
+	call GetSixteenthMaxHP
+	call SwitchTurnCore
 	call Function3ccef
 	ld hl, BattleText_0x80880
 	jp StdBattleTextBox
@@ -1481,7 +1489,7 @@ Function3c93c: ; 3c93c
 	ld a, [EnemySubStatus5]
 
 .asm_3c9ee
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .asm_3c9f5
 	ld a, [de]
 	add b
@@ -1508,9 +1516,9 @@ Function3c93c: ; 3c93c
 
 .asm_3ca14
 	call GetItemName
-	call Function3c8e4
+	call SwitchTurnCore
 	call Function3ddc8
-	call Function3c8e4
+	call SwitchTurnCore
 	ld hl, BattleText_0x80899
 	jp StdBattleTextBox
 ; 3ca26
@@ -1740,37 +1748,37 @@ FadeReflect: ; 3cb91
 ; 3cb9e
 
 HandleWeather: ; 3cb9e
-
 	ld a, [Weather]
-	cp 0
+	cp WEATHER_NONE
 	ret z
 
 	ld hl, WeatherCount
 	dec [hl]
-	jr z, .asm_3cc13
+	jr z, .ended
 
 	ld hl, .WeatherMessages
-	call .asm_3cc1e
+	call .PrintWeatherMessage
+
 	ld a, [Weather]
 	cp WEATHER_SANDSTORM
 	ret nz
+
 	ld a, [$ffcb]
 	cp 1
-	jr z, .asm_3cbc7
+	jr z, .enemy_first
 
-; Player first
+.player_first
 	call SetPlayerTurn
-	call .asm_3cbd0
+	call .SandstormDamage
 	call SetEnemyTurn
-	jr .asm_3cbd0
+	jr .SandstormDamage
 
-.asm_3cbc7
-; Enemy first
+.enemy_first
 	call SetEnemyTurn
-	call .asm_3cbd0
+	call .SandstormDamage
 	call SetPlayerTurn
 
-.asm_3cbd0
+.SandstormDamage
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a
@@ -1779,10 +1787,9 @@ HandleWeather: ; 3cb9e
 	ld hl, BattleMonType1
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3cbe3
+	jr z, .ok
 	ld hl, EnemyMonType1
-
-.asm_3cbe3
+.ok
 	ld a, [hli]
 	cp ROCK
 	ret z
@@ -1799,26 +1806,26 @@ HandleWeather: ; 3cb9e
 	cp STEEL
 	ret z
 
-	call Function3c8e4
+	call SwitchTurnCore
 	xor a
 	ld [$cfca], a
-	ld de, $010b
+	ld de, ANIM_IN_SANDSTORM
 	call Function3ee17
-	call Function3c8e4
+	call SwitchTurnCore
 	call GetEighthMaxHP
 	call Function3cc3f
 
 	ld hl, BattleText_0x8084d
 	jp StdBattleTextBox
 
-.asm_3cc13
+.ended
 	ld hl, .WeatherEndedMessages
-	call .asm_3cc1e
+	call .PrintWeatherMessage
 	xor a
 	ld [Weather], a
 	ret
 
-.asm_3cc1e
+.PrintWeatherMessage
 	ld a, [Weather]
 	dec a
 	ld c, a
@@ -1852,15 +1859,13 @@ Function3cc3f: ; 3cc3f
 ; 3cc45
 
 
-
 Function3cc45: ; 3cc45
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3cc50
+	jr z, .ok
 	ld hl, EnemyMonHP
-
-.asm_3cc50
+.ok
 	inc hl
 	ld a, [hl]
 	ld [$d1ec], a
@@ -1885,16 +1890,17 @@ Function3cc45: ; 3cc45
 	ret
 ; 3cc76
 
-Function3cc76: ; 3cc76
+GetSixteenthMaxHP: ; 3cc76
 	call GetQuarterMaxHP
+	; quarter result
 	srl c
 	srl c
+	; round up
 	ld a, c
 	and a
-	jr nz, .asm_3cc82
+	jr nz, .ok
 	inc c
-
-.asm_3cc82
+.ok
 	ret
 ; 3cc83
 
@@ -1940,7 +1946,7 @@ GetHalfMaxHP: ; 3cc9f
 ; output: bc
 	call GetMaxHP
 
-; halve reslut
+; halve result
 	srl b
 	rr c
 
@@ -1957,18 +1963,12 @@ GetHalfMaxHP: ; 3cc9f
 GetMaxHP: ; 3ccac
 ; output: bc, Buffer1-2
 
-; player
 	ld hl, BattleMonMaxHP
-
-; whose turn?
 	ld a, [hBattleTurn]
 	and a
-	jr z, .gethp
-
-; enemy
+	jr z, .ok
 	ld hl, EnemyMonMaxHP
-
-.gethp
+.ok
 	ld a, [hli]
 	ld [Buffer2], a
 	ld b, a
@@ -1983,10 +1983,9 @@ Function3ccc2: ; 3ccc2
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3cccd
+	jr z, .ok
 	ld hl, EnemyMonHP
-
-.asm_3cccd
+.ok
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
@@ -2004,10 +2003,9 @@ Function3ccde: ; 3ccde
 	ld hl, BattleMonHP + 1
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3cce9
+	jr z, .ok
 	ld hl, EnemyMonHP + 1
-
-.asm_3cce9
+.ok
 	ld a, c
 	sub [hl]
 	dec hl
@@ -2021,10 +2019,9 @@ Function3ccef: ; 3ccef
 	ld hl, EnemyMonMaxHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3ccfa
+	jr z, .ok
 	ld hl, BattleMonMaxHP
-
-.asm_3ccfa
+.ok
 	ld a, [hli]
 	ld [Buffer2], a
 	ld a, [hld]
@@ -2040,6 +2037,7 @@ Function3ccef: ; 3ccef
 	adc b
 	ld [hli], a
 	ld [$d1ef], a
+
 	ld a, [Buffer1]
 	ld c, a
 	ld a, [hld]
@@ -2055,11 +2053,11 @@ Function3ccef: ; 3ccef
 	ld a, c
 	ld [hl], a
 	ld [$d1ee], a
-
 .asm_3cd2d
-	call Function3c8e4
+
+	call SwitchTurnCore
 	call Function3cd36
-	jp Function3c8e4
+	jp SwitchTurnCore
 ; 3cd36
 
 Function3cd36: ; 3cd36
@@ -2072,7 +2070,7 @@ Function3cd3c: ; 3cd3c
 	hlcoord 10, 9
 	ld a, [hBattleTurn]
 	and a
-	ld a, $1
+	ld a, 1
 	jr z, .asm_3cd4a
 	hlcoord 2, 2
 	xor a
@@ -2099,31 +2097,38 @@ Function3cd55: ; 3cd55
 	ld a, d
 	and a
 	jp z, LostBattle
+
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
 	call nz, Function3df48
+
 	ld a, $1
 	ld [hBGMapMode], a
 	ld c, 60
 	call DelayFrames
+
 	ld a, [IsInBattle]
 	dec a
 	jr nz, .asm_3cd8c
-	ld a, $1
+
+	ld a, 1
 	ld [BattleEnded], a
 	ret
 
 .asm_3cd8c
 	call Function3cf35
 	jp z, Function3cfa4
+
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_3cdba
+
 	call Function3d1f8
 	jr nc, .asm_3cda4
-	ld a, $1
+
+	ld a, 1
 	ld [BattleEnded], a
 	ret
 
@@ -2131,6 +2136,7 @@ Function3cd55: ; 3cd55
 	call Function3d227
 	call Function3d2e0
 	jp c, Function3c0e5
+
 	ld a, $1
 	ld [$d0ec], a
 	call Function3cf4a
@@ -2387,7 +2393,7 @@ Function3cf4a: ; 3cf4a
 	and a
 	jr z, .asm_3cf6d
 	call Function3e8e4
-	ld a, [$d430]
+	ld a, [wBattleAction]
 	cp $f
 	ret z
 	call Function30b4
@@ -2483,7 +2489,7 @@ Function3cfa4: ; 3cfa4
 	ld c, $3
 	callba Function11c000
 	call Functiona80
-	ld hl, $c6ec
+	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
 	inc hl
@@ -2651,7 +2657,7 @@ Function3d0ea: ; 3d0ea
 	call Function3ceaa
 	pop de
 	jr nz, .asm_3d11e
-	ld hl, $c6ec
+	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_3d11e
@@ -3212,7 +3218,7 @@ Function3d444: ; 3d444
 
 
 Function3d490: ; 3d490
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld c, a
 .asm_3d493
 	push bc
@@ -3222,7 +3228,7 @@ Function3d490: ; 3d490
 	push hl
 	call Function3d4ae
 	pop hl
-	ld de, 20
+	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
 	jr nz, .asm_3d497
@@ -3236,24 +3242,24 @@ Function3d490: ; 3d490
 ; 3d4ae
 
 Function3d4ae: ; 3d4ae
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld c, a
 	cp $8
-	jr nz, .asm_3d4bc
-.asm_3d4b5
+	jr nz, .back
+.forward
 	ld a, [hli]
 	ld [hld], a
 	dec hl
 	dec c
-	jr nz, .asm_3d4b5
+	jr nz, .forward
 	ret
 
-.asm_3d4bc
+.back
 	ld a, [hld]
 	ld [hli], a
 	inc hl
 	dec c
-	jr nz, .asm_3d4bc
+	jr nz, .back
 	ret
 ; 3d4c3
 
@@ -3320,7 +3326,7 @@ Function3d533: ; 3d533
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_3d541
-	ld a, [$d430]
+	ld a, [wBattleAction]
 	sub NUM_MOVES
 	ld b, a
 	jr .asm_3d555
@@ -3868,7 +3874,7 @@ Function3d8b3: ; 3d8b3
 	ld b, a
 	callab GetItem
 	ld a, b
-	cp $48
+	cp HELD_ESCAPE
 	pop de
 	pop hl
 	jr nz, .asm_3d916
@@ -3977,8 +3983,8 @@ Function3d8b3: ; 3d8b3
 	call Function3d2e0
 	jr c, .asm_3d9f5
 
-; Got away safely
-	ld a, [$d430]
+	; Got away safely
+	ld a, [wBattleAction]
 	cp $f
 	ld a, $2
 	jr z, .asm_3d9cf
@@ -4076,7 +4082,7 @@ Function3da7c: ; 3da7c
 Function3da85: ; 3da85
 	ld hl, BattleMonDVs
 	ld a, [PlayerSubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	ret z
 	ld hl, PartyMon1DVs
 	ld a, [CurBattleMon]
@@ -4086,7 +4092,7 @@ Function3da85: ; 3da85
 Function3da97: ; 3da97
 	ld hl, EnemyMonDVs
 	ld a, [EnemySubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	ret z
 	ld hl, $c6f2
 	ld a, [IsInBattle]
@@ -4205,7 +4211,7 @@ Function3db5f: ; 3db5f
 	ld [LastEnemyCounterMove], a
 	ld [LastPlayerCounterMove], a
 	ld [LastPlayerMove], a
-	call Function3e4a8
+	call CheckAmuletCoin
 	call Function3ee27
 	xor a
 	ld [$c731], a
@@ -4213,13 +4219,13 @@ Function3db5f: ; 3db5f
 	xor a
 	ld [$cfca], a
 	ld [$c689], a
-	ld de, $0101
+	ld de, ANIM_SEND_OUT_MON
 	call Function3ee17
 	call Function3da74
 	jr nc, .asm_3dbbc
 	ld a, $1
 	ld [$c689], a
-	ld de, $0101
+	ld de, ANIM_SEND_OUT_MON
 	call Function3ee17
 
 .asm_3dbbc
@@ -4407,7 +4413,7 @@ Function3dce6: ; 3dce6
 	xor a
 	ld [hBattleTurn], a
 	ld [$cfca], a
-	ld de, $0102
+	ld de, ANIM_RETURN_MON
 	call Function3ee17
 	pop af
 	ld [hBattleTurn], a
@@ -4536,15 +4542,15 @@ Function3ddc8: ; 3ddc8
 	push de
 	push bc
 	call EmptyBattleTextBox
-	ld a, $69
+	ld a, RECOVER
 	ld [FXAnimIDLo], a
-	call Function3c8e4
+	call SwitchTurnCore
 	xor a
 	ld [$cfca], a
 	ld [FXAnimIDHi], a
 	ld a, $37
 	call Predef
-	call Function3c8e4
+	call SwitchTurnCore
 	pop bc
 	pop de
 	pop hl
@@ -4563,7 +4569,7 @@ Function3dde9: ; 3dde9
 	jr nz, .asm_3ddf2
 	dec hl
 	ld b, [hl]
-	ld a, $b
+	ld a, BATTLE_VARS_STATUS_OPP
 	call _GetBattleVar
 	and b
 	ret z
@@ -4572,20 +4578,20 @@ Function3dde9: ; 3dde9
 	push bc
 	call UpdateOpponentInParty
 	pop bc
-	ld a, $9
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call _GetBattleVar
 	and [hl]
-	res 0, [hl]
-	ld a, $5
+	res SUBSTATUS_TOXIC, [hl]
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call _GetBattleVar
 	and [hl]
-	res 0, [hl]
+	res SUBSTATUS_NIGHTMARE, [hl]
 	ld a, b
 	cp $7f
 	jr nz, .asm_3de26
-	ld a, $7
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call _GetBattleVar
-	res 7, [hl]
+	res SUBSTATUS_CONFUSED, [hl]
 
 .asm_3de26
 	ld hl, Function365fd
@@ -4595,10 +4601,10 @@ Function3dde9: ; 3dde9
 	ld hl, Function365d7
 
 .asm_3de31
-	call Function3c8e4
+	call SwitchTurnCore
 	ld a, BANK(Function365fd)
 	rst FarCall
-	call Function3c8e4
+	call SwitchTurnCore
 	call Function3ddc8
 	call Function3ddac
 	ld a, $1
@@ -4618,23 +4624,23 @@ Function3dde9: ; 3dde9
 
 
 Function3de51: ; 3de51
-	ld a, $7
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
-	bit 7, a
+	bit SUBSTATUS_CONFUSED, a
 	ret z
 	callab GetOpponentItem
 	ld a, b
-	cp $10
+	cp HELD_HEAL_CONFUSION
 	jr z, .asm_3de67
-	cp $f
+	cp HELD_HEAL_STATUS
 	ret nz
 
 .asm_3de67
 	ld a, [hl]
 	ld [$d265], a
-	ld a, $7
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call _GetBattleVar
-	res 7, [hl]
+	res SUBSTATUS_CONFUSED, [hl]
 	call GetItemName
 	call Function3ddc8
 	ld hl, BattleText_0x80dab
@@ -4730,13 +4736,13 @@ Function3deb6: ; 3deb6
 ; 3defc
 
 .data_3defc
-	dbw $1f, BattleCommand70
-	dbw $20, BattleCommand71
-	dbw $21, BattleCommand72
-	dbw $22, BattleCommand73
-	dbw $23, BattleCommand74
-	dbw $24, BattleCommand75
-	dbw $25, BattleCommand76
+	dbw HELD_ATTACK_UP,     BattleCommand70
+	dbw HELD_DEFENSE_UP,    BattleCommand71
+	dbw HELD_SPEED_UP,      BattleCommand72
+	dbw HELD_SP_ATTACK_UP,  BattleCommand73
+	dbw HELD_SP_DEFENSE_UP, BattleCommand74
+	dbw HELD_ACCURACY_UP,   BattleCommand75
+	dbw HELD_EVASION_UP,    BattleCommand76
 	db $ff
 ; 3df12
 
@@ -4793,9 +4799,9 @@ DrawPlayerHUD: ; 3df58
 	xor a
 	ld [hBGMapMode], a
 
-; Clear the area
+	; Clear the area
 	hlcoord 9, 7
-	ld bc, $050b
+	lb bc, 5, 11
 	call ClearBox
 
 	callba DrawPlayerExpBar
@@ -4804,7 +4810,7 @@ DrawPlayerHUD: ; 3df58
 	ld [hl], $73 ; vertical bar
 	call PrintPlayerHUD
 
-; HP bar
+	; HP bar
 	hlcoord 10, 9
 	ld b, OTPARTYMON
 	xor a
@@ -4812,7 +4818,7 @@ DrawPlayerHUD: ; 3df58
 	ld a, PREDEF_DRAW_PLAYER_HP
 	call Predef
 
-; Exp bar
+	; Exp bar
 	push de
 	ld a, [CurBattleMon]
 	ld hl, PartyMon1Exp + 2
@@ -4837,24 +4843,24 @@ CheckDanger: ; 3df9e
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_3dfb2
+	jr z, .no_danger
 	ld a, [$c6fd]
 	and a
-	jr nz, .asm_3dfbe
+	jr nz, .done
 	ld a, [PlayerHPPal]
 	cp $2
-	jr z, .asm_3dfb9
+	jr z, .danger
 
-.asm_3dfb2
+.no_danger
 	ld hl, Danger
 	res 7, [hl]
-	jr .asm_3dfbe
+	jr .done
 
-.asm_3dfb9
+.danger
 	ld hl, Danger
 	set 7, [hl]
 
-.asm_3dfbe
+.done
 	ret
 ; 3dfbf
 
@@ -4893,11 +4899,11 @@ PrintPlayerHUD: ; 3dfbf
 	ld a, $3
 	ld [MonType], a
 	callab GetGender
-	ld a, $7f
+	ld a, " "
 	jr c, .asm_3e013
-	ld a, $ef
+	ld a, "♂"
 	jr nz, .asm_3e013
-	ld a, $f5
+	ld a, "♀"
 
 .asm_3e013
 	hlcoord 17, 8
@@ -4938,7 +4944,7 @@ Function3e043: ; 3e043
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 1, 0
-	ld bc, $040b
+	lb bc, 4, 11
 	call ClearBox
 	callba Function2c0c5
 	ld a, [TempEnemyMonSpecies]
@@ -4955,10 +4961,9 @@ Function3e043: ; 3e043
 	ld hl, EnemyMonDVs
 	ld de, TempMonDVs
 	ld a, [EnemySubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	jr z, .asm_3e080
 	ld hl, $c6f2
-
 .asm_3e080
 	ld a, [hli]
 	ld [de], a
@@ -4968,11 +4973,11 @@ Function3e043: ; 3e043
 	ld a, $3
 	ld [MonType], a
 	callab GetGender
-	ld a, $7f
+	ld a, " "
 	jr c, .asm_3e09a
-	ld a, $ef
+	ld a, "♂"
 	jr nz, .asm_3e09a
-	ld a, $f5
+	ld a, "♀"
 
 .asm_3e09a
 	hlcoord 9, 1
@@ -5006,13 +5011,13 @@ Function3e043: ; 3e043
 	jr nz, .asm_3e0d1
 	ld c, a
 	ld e, a
-	ld d, $6
+	ld d, HP_BAR_LENGTH
 	jp .asm_3e11a
 
 .asm_3e0d1
 	xor a
 	ld [hMultiplicand], a
-	ld a, $30
+	ld a, HP_BAR_LENGTH_PX
 	ld [hMultiplier], a
 	call Multiply
 	ld hl, EnemyMonMaxHP
@@ -5050,7 +5055,7 @@ Function3e043: ; 3e043
 	call Divide
 	ld a, [$ffb6]
 	ld e, a
-	ld a, $6
+	ld a, HP_BAR_LENGTH
 	ld d, a
 	ld c, a
 .asm_3e11a
@@ -5180,13 +5185,13 @@ Function3e1c7: ; 3e1c7
 
 .asm_3e1f1
 	callba Function107bb
-	ld a, $5
+	ld a, POKE_BALL
 	ld [CurItem], a
 	call DoItemEffect
 	jr .asm_3e209
 
 .asm_3e201
-	ld a, $b1
+	ld a, PARK_BALL
 	ld [CurItem], a
 	call DoItemEffect
 
@@ -5365,7 +5370,7 @@ Function3e358: ; 3e358
 	and a
 	jr nz, .asm_3e378
 	ld a, [EnemySubStatus5]
-	bit 7, a
+	bit SUBSTATUS_CANT_RUN, a
 	jr z, .asm_3e381
 
 .asm_3e378
@@ -5414,7 +5419,7 @@ Function3e3ad: ; 3e3ad
 	ret
 
 .asm_3e3cf
-	ld a, [$d430]
+	ld a, [wBattleAction]
 	cp $e
 	jp z, .asm_3e3ca
 	cp $d
@@ -5527,14 +5532,14 @@ Function3e489: ; 3e489
 
 
 
-Function3e4a8: ; 3e4a8
+CheckAmuletCoin: ; 3e4a8
 	ld a, [BattleMonItem]
 	ld b, a
 	callab GetItem
 	ld a, b
-	cp $4c
+	cp HELD_AMULET_COIN
 	ret nz
-	ld a, $1
+	ld a, 1
 	ld [$c73d], a
 	ret
 ; 3e4bc
@@ -5805,7 +5810,7 @@ Function3e643: ; 3e643
 
 .asm_3e682
 	ld a, [PlayerSubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .asm_3e69e
 	ld hl, PartyMon1Moves
 	ld a, [CurBattleMon]
@@ -5813,7 +5818,7 @@ Function3e643: ; 3e643
 	push hl
 	call .asm_3e6a5
 	pop hl
-	ld bc, $0015
+	ld bc, PartyMon1PP - PartyMon1Moves
 	add hl, bc
 	call .asm_3e6a5
 
@@ -6015,7 +6020,7 @@ Function3e7c1: ; 3e7c1
 	and a
 	call z, Function3e8e4
 	call Function30b4
-	ld a, [$d430]
+	ld a, [wBattleAction]
 	cp $e
 	jp z, .asm_3e8bd
 	cp $d
@@ -6268,9 +6273,8 @@ LoadEnemyMon: ; 3e8eb
 	and a
 	jr z, .InitDVs
 	
-; ????
 	ld a, [EnemySubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	jr z, .InitDVs
 	
 ; Unknown
@@ -6478,15 +6482,14 @@ LoadEnemyMon: ; 3e8eb
 	and a
 	jr z, .TreeMon
 	
-; ????
 	ld a, [EnemySubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	jp nz, .Moves
 	
 .TreeMon
 ; If we're headbutting trees, some monsters enter battle asleep
 	call CheckSleepingTreeMon
-	ld a, 7 ; Asleep for 7 turns
+	ld a, SLP ; Asleep for 7 turns
 	jr c, .UpdateStatus
 ; Otherwise, no status
 	xor a
@@ -7588,7 +7591,7 @@ Function3ee3b: ; 3ee3b
 	ld a, [hl]
 	ld [BattleMonLevel], a
 	ld a, [PlayerSubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .asm_3f012
 	ld hl, $0026
 	add hl, bc
@@ -8687,7 +8690,7 @@ Function3f6d0: ; 3f6d0
 ; 3f71d
 
 Function3f71d: ; 3f71d
-	ld hl, $c6ec
+	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
 	inc hl
@@ -8696,7 +8699,7 @@ Function3f71d: ; 3f71d
 	ld a, [$c73d]
 	and a
 	jr z, .asm_3f73d
-	ld hl, $c6ee
+	ld hl, wPayDayMoney + 2
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -8709,7 +8712,7 @@ Function3f71d: ; 3f71d
 	ld [hl], a
 
 .asm_3f73d
-	ld hl, $c6ee
+	ld hl, wPayDayMoney + 2
 	ld de, Money + 2
 	call Function3d0be
 	ld hl, BattleText_0x80730
@@ -9426,7 +9429,7 @@ Function3fc30: ; 3fc30
 Function3fc5b: ; 3fc5b
 	ld hl, Sprites
 	xor a
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld b, $6
 	ld e, $a8
 .asm_3fc65
@@ -9437,10 +9440,10 @@ Function3fc5b: ; 3fc5b
 	inc hl
 	ld [hl], e
 	inc hl
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld [hli], a
 	inc a
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld a, $1
 	ld [hli], a
 	ld a, d
@@ -9448,9 +9451,9 @@ Function3fc5b: ; 3fc5b
 	ld d, a
 	dec c
 	jr nz, .asm_3fc69
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	add $3
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld a, e
 	add $8
 	ld e, a
@@ -9487,7 +9490,7 @@ BattleStartMessage: ; 3fc8b
 	ld [hBattleTurn], a
 	ld a, 1
 	ld [$c689], a
-	ld de, $0101
+	ld de, ANIM_SEND_OUT_MON
 	call Function3ee17
 
 .asm_3fcc2

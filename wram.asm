@@ -552,7 +552,11 @@ LinkBattleRNCount:: ; c6e5
 CurEnemyMoveNum:: ; c6e9
 	ds 1
 
-	ds 10
+	ds 2
+
+wPayDayMoney:: ds 3 ; c6ec
+
+	ds 5
 
 AlreadyDisobeyed:: ; c6f4
 	ds 1
@@ -1176,8 +1180,12 @@ OTPartyMon6:: party_struct OTPartyMon6 ; d378
 OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
 OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea
 
+	ds 4
 
-SECTION "Map Events", WRAMX[$d432], BANK[1]
+wBattleAction:: ds 1 ; d430
+
+	ds 1
+
 MapStatus:: ; d432
 	ds 1
 MapEventStatus:: ; d433

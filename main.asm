@@ -57004,7 +57004,7 @@ StatsScreenInit: ; 4dc8a
 	jr StatsScreenInit_gotaddress
 
 Function4dc8f: ; 4dc8f
-	ld hl, Function4dcf7
+	ld hl, StatsScreenBattle
 	jr StatsScreenInit_gotaddress
 
 StatsScreenInit_gotaddress: ; 4dc94
@@ -57063,7 +57063,7 @@ StatsScreenMain: ; 0x4dcd2
 	ret
 ; 0x4dcf7
 
-Function4dcf7: ; 4dcf7
+StatsScreenBattle: ; 4dcf7
 	xor a
 	ld [$cf63], a
 	ld [$cf64], a
