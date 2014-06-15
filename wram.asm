@@ -1170,12 +1170,14 @@ OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
 OTPartyEnd::     ds 1
 
+OTPartyMons::
 OTPartyMon1:: party_struct OTPartyMon1 ; d288
 OTPartyMon2:: party_struct OTPartyMon2 ; d2b8
 OTPartyMon3:: party_struct OTPartyMon3 ; d2e8
 OTPartyMon4:: party_struct OTPartyMon4 ; d318
 OTPartyMon5:: party_struct OTPartyMon5 ; d348
 OTPartyMon6:: party_struct OTPartyMon6 ; d378
+OTPartyMonsEnd::
 
 OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
 OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea

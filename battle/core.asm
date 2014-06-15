@@ -8485,14 +8485,15 @@ Function3f594: ; 3f594
 	xor a
 	ld [TempEnemyMonSpecies], a
 	callab Function3957b
-	callab Function39771
+	callab ReadTrainerParty
+
 	ld a, [TrainerClass]
-	cp $9
-	jr nz, .asm_3f5b8
+	cp RIVAL1
+	jr nz, .ok
 	xor a
 	ld [OTPartyMon1Item], a
+.ok
 
-.asm_3f5b8
 	ld de, VTiles2
 	callab Function5120d
 	xor a
@@ -8500,13 +8501,14 @@ Function3f594: ; 3f594
 	dec a
 	ld [$c6e6], a
 	hlcoord 12, 0
-	ld bc, $0707
-	ld a, $13
+	lb bc, 7, 7
+	ld a, PREDEF_FILL_BOX
 	call Predef
 	ld a, $ff
 	ld [CurOTMon], a
-	ld a, $2
+	ld a, TRAINER_BATTLE
 	ld [IsInBattle], a
+
 	call IsJohtoGymLeader
 	jr nc, .asm_3f606
 	xor a
@@ -8515,14 +8517,13 @@ Function3f594: ; 3f594
 	ld b, a
 .asm_3f5ea
 	push bc
-	ld a, $22
+	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	or [hl]
 	jr z, .asm_3f5fc
 	ld c, $4
 	callab ChangeHappiness
-
 .asm_3f5fc
 	pop bc
 	dec b
@@ -8530,7 +8531,6 @@ Function3f594: ; 3f594
 	ld hl, CurPartyMon
 	inc [hl]
 	jr .asm_3f5ea
-
 .asm_3f606
 	ret
 ; 3f607
@@ -8568,8 +8568,8 @@ Function3f607: ; 3f607
 	ld [TrainerClass], a
 	ld [$ffad], a
 	hlcoord 12, 0
-	ld bc, $0707
-	ld a, $13
+	lb bc, 7, 7
+	ld a, PREDEF_FILL_BOX
 	call Predef
 	ret
 ; 3f662

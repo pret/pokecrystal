@@ -36688,7 +36688,7 @@ Function28177: ; 28177
 	or $3
 	ld [hl], a
 	ld hl, $d26b
-	ld de, $c656
+	ld de, OTName
 	ld bc, $000b
 	call CopyBytes
 	call Function222a
@@ -43539,19 +43539,20 @@ INCLUDE "battle/ai/scoring.asm"
 Function3952d: ; 3952d
 	ld hl, RivalName
 	ld a, c
-	cp $9
-	jr z, .asm_39544
+	cp RIVAL1
+	jr z, .rival
+
 	ld [CurSpecies], a
-	ld a, $7
+	ld a, TRAINER_NAME
 	ld [$cf61], a
 	call GetName
 	ld de, StringBuffer1
 	ret
 
-.asm_39544
+.rival
 	ld de, StringBuffer1
 	push de
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	pop de
 	ret
@@ -43561,20 +43562,22 @@ Function39550: ; 39550
 	ld hl, $d26b
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_3956f
+	jr nz, .ok
+
 	ld hl, RivalName
 	ld a, c
-	cp $9
-	jr z, .asm_3956f
+	cp RIVAL1
+	jr z, .ok
+
 	ld [CurSpecies], a
-	ld a, $7
+	ld a, TRAINER_NAME
 	ld [$cf61], a
 	call GetName
 	ld hl, StringBuffer1
 
-.asm_3956f
+.ok
 	ld bc, $000d
-	ld de, $c656
+	ld de, OTName
 	push de
 	call CopyBytes
 	pop de
@@ -43604,122 +43607,134 @@ Function3957b: ; 3957b
 INCLUDE "trainers/attributes.asm"
 
 
-Function39771: ; 39771
+ReadTrainerParty: ; 39771
 	ld a, [$cfc0]
 	bit 0, a
 	ret nz
+
 	ld a, [InLinkBattle]
 	and a
 	ret nz
+
 	ld hl, OTPartyCount
 	xor a
 	ld [hli], a
 	dec a
 	ld [hl], a
-	ld hl, OTPartyMon1Species
-	ld bc, $0120
+
+	ld hl, OTPartyMons
+	ld bc, OTPartyMonsEnd - OTPartyMons
 	xor a
 	call ByteFill
-	ld a, [OtherTrainerClass]
-	cp $c
-	jr nz, .asm_3979e
-	ld a, [OtherTrainerID]
-	cp $2
-	jr z, .asm_397d3
-	ld a, [OtherTrainerClass]
 
-.asm_3979e
+	ld a, [OtherTrainerClass]
+	cp CAL
+	jr nz, .not_cal2
+	ld a, [OtherTrainerID]
+	cp CAL2
+	jr z, .cal2
+	ld a, [OtherTrainerClass]
+.not_cal2
+
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, TrainerGroups
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	ld a, [OtherTrainerID]
 	ld b, a
-.asm_397ae
+.skip_trainer
 	dec b
-	jr z, .asm_397b8
-.asm_397b1
+	jr z, .got_trainer
+.next
 	ld a, [hli]
 	cp $ff
-	jr nz, .asm_397b1
-	jr .asm_397ae
+	jr nz, .next
+	jr .skip_trainer
+.got_trainer
 
-.asm_397b8
+.skip_name
 	ld a, [hli]
-	cp $50
-	jr nz, .asm_397b8
+	cp "@"
+	jr nz, .skip_name
+
 	ld a, [hli]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld d, h
 	ld e, l
-	ld hl, Jumptable_397e3
+	ld hl, TrainerTypes
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, .asm_397d0
+	ld bc, .done
 	push bc
 	jp [hl]
 
-.asm_397d0
+.done
 	jp Function3991b
 
-.asm_397d3
+.cal2
 	ld a, $0
 	call GetSRAMBank
 	ld de, $ac0a
-	call Function39806
+	call TrainerType2
 	call CloseSRAM
-	jr .asm_397d0
+	jr .done
 ; 397e3
 
-Jumptable_397e3: ; 397e3
-	dw Function397eb
-	dw Function39806
-	dw Function39871
-	dw Function3989d
+TrainerTypes: ; 397e3
+	dw TrainerType1 ; level, species
+	dw TrainerType2 ; level, species, moves
+	dw TrainerType3 ; level, species, item
+	dw TrainerType4 ; level, species, item, moves
 ; 397eb
 
-Function397eb: ; 397eb
+TrainerType1: ; 397eb
+; normal (level, species)
 	ld h, d
 	ld l, e
-.asm_397ed
+.loop
 	ld a, [hli]
 	cp $ff
 	ret z
-	ld [CurPartyLevel], a ; $d143
-	ld a, [hli]
-	ld [CurPartySpecies], a ; $d108
-	ld a, $1
-	ld [MonType], a ; $cf5f
-	push hl
-	ld a, $6
-	call Predef
-	pop hl
-	jr .asm_397ed
-; 39806
 
-Function39806: ; 39806
-	ld h, d
-	ld l, e
-.asm_39808
-	ld a, [hli]
-	cp $ff
-	ret z
 	ld [CurPartyLevel], a
 	ld a, [hli]
 	ld [CurPartySpecies], a
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	ld a, $6
+	ld a, PREDEF_ADDPARTYMON
+	call Predef
+	pop hl
+	jr .loop
+; 39806
+
+TrainerType2: ; 39806
+; moves
+	ld h, d
+	ld l, e
+.loop
+	ld a, [hli]
+	cp $ff
+	ret z
+
+	ld [CurPartyLevel], a
+	ld a, [hli]
+	ld [CurPartySpecies], a
+	ld a, OTPARTYMON
+	ld [MonType], a
+
+	push hl
+	ld a, PREDEF_ADDPARTYMON
 	call Predef
 	ld a, [OTPartyCount]
 	dec a
@@ -43729,14 +43744,17 @@ Function39806: ; 39806
 	ld d, h
 	ld e, l
 	pop hl
+
 	ld b, NUM_MOVES
-.asm_39830
+.copy_moves
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_39830
+	jr nz, .copy_moves
+
 	push hl
+
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Species
@@ -43744,17 +43762,19 @@ Function39806: ; 39806
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, $0017
+	ld hl, OTPartyMon1PP - OTPartyMon1
 	add hl, de
 	push hl
-	ld hl, $0002
+	ld hl, OTPartyMon1Moves - OTPartyMon1
 	add hl, de
 	pop de
-	ld b, $4
-.asm_39852
+
+	ld b, NUM_MOVES
+.copy_pp
 	ld a, [hli]
 	and a
-	jr z, .asm_3986e
+	jr z, .copied_pp
+
 	push hl
 	push bc
 	dec a
@@ -43765,104 +43785,119 @@ Function39806: ; 39806
 	call GetFarByte
 	pop bc
 	pop hl
+
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_39852
+	jr nz, .copy_pp
+.copied_pp
 
-.asm_3986e
 	pop hl
-	jr .asm_39808
+	jr .loop
 ; 39871
 
-Function39871: ; 39871
+TrainerType3: ; 39871
+; item
 	ld h, d
 	ld l, e
-.asm_39873
+.loop
 	ld a, [hli]
 	cp $ff
 	ret z
-	ld [CurPartyLevel], a ; $d143
-	ld a, [hli]
-	ld [CurPartySpecies], a ; $d108
-	ld a, $1
-	ld [MonType], a ; $cf5f
-	push hl
-	ld a, $6
-	call Predef
-	ld a, [OTPartyCount] ; $d280
-	dec a
-	ld hl, OTPartyMon1Item ; $d289
-	ld bc, $30
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-	ld a, [hli]
-	ld [de], a
-	jr .asm_39873
-; 3989d (e:589d)
 
-Function3989d: ; 3989d
-	ld h, d
-	ld l, e
-.asm_3989f
-	ld a, [hli]
-	cp $ff
-	ret z
 	ld [CurPartyLevel], a
 	ld a, [hli]
 	ld [CurPartySpecies], a
-	ld a, $1
+	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	ld a, $6
+	ld a, PREDEF_ADDPARTYMON
 	call Predef
 	ld a, [OTPartyCount]
 	dec a
-	ld hl, $d289
-	ld bc, PartyMon2 - PartyMon1
+	ld hl, OTPartyMon1Item
+	ld bc, OTPartyMon2 - OTPartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
 	ld a, [hli]
 	ld [de], a
+	jr .loop
+; 3989d (e:589d)
+
+TrainerType4: ; 3989d
+; item + moves
+	ld h, d
+	ld l, e
+.loop
+	ld a, [hli]
+	cp $ff
+	ret z
+
+	ld [CurPartyLevel], a
+	ld a, [hli]
+	ld [CurPartySpecies], a
+
+	ld a, OTPARTYMON
+	ld [MonType], a
+
 	push hl
+	ld a, PREDEF_ADDPARTYMON
+	call Predef
 	ld a, [OTPartyCount]
 	dec a
-	ld hl, $d28a
-	ld bc, PartyMon2 - PartyMon1
+	ld hl, OTPartyMon1Item
+	ld bc, OTPartyMon2 - OTPartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
-	ld b, $4
-.asm_398da
+
+	ld a, [hli]
+	ld [de], a
+
+	push hl
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, OTPartyMon1Moves
+	ld bc, OTPartyMon2 - OTPartyMon1
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+
+	ld b, NUM_MOVES
+.copy_moves
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_398da
+	jr nz, .copy_moves
+
 	push hl
+
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, OTPartyMon2 - OTPartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, $0017
+	ld hl, OTPartyMon1PP - OTPartyMon1
 	add hl, de
+
 	push hl
-	ld hl, $0002
+	ld hl, OTPartyMon1Moves - OTPartyMon1
 	add hl, de
 	pop de
-	ld b, $4
-.asm_398fc
+
+	ld b, NUM_MOVES
+.copy_pp
 	ld a, [hli]
 	and a
-	jr z, .asm_39918
+	jr z, .copied_pp
+
 	push hl
 	push bc
 	dec a
@@ -43873,34 +43908,34 @@ Function3989d: ; 3989d
 	call GetFarByte
 	pop bc
 	pop hl
+
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_398fc
+	jr nz, .copy_pp
+.copied_pp
 
-.asm_39918
 	pop hl
-	jr .asm_3989f
+	jr .loop
 ; 3991b
 
-; known jump sources: 397d0 (e:57d0)
 Function3991b: ; 3991b (e:591b)
 	ld hl, $ffb3
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld a, [$c652]
+	ld a, [$c652] ; base reward
 	ld [hli], a
-	ld a, [CurPartyLevel] ; $d143
+	ld a, [CurPartyLevel]
 	ld [hl], a
 	call Multiply
 	ld hl, $c686
 	xor a
 	ld [hli], a
-	ld a, [$FF00+$b5]
+	ld a, [$ffb5]
 	ld [hli], a
-	ld a, [$FF00+$b6]
+	ld a, [$ffb6]
 	ld [hl], a
 	ret
 
@@ -43918,14 +43953,16 @@ Function39939:: ; 39939
 
 Function3994c:: ; 3994c
 	ld a, c
-	cp $c
+	cp CAL
 	jr nz, .asm_3996d
+
 	ld a, $0
 	call GetSRAMBank
 	ld a, [$abfd]
 	and a
 	call CloseSRAM
 	jr z, .asm_3996d
+
 	ld a, $0
 	call GetSRAMBank
 	ld hl, $abfe
@@ -43947,6 +43984,7 @@ Function3994c:: ; 3994c
 .asm_3997a
 	dec b
 	jr z, Function39984
+
 .asm_3997d
 	ld a, [hli]
 	cp $ff
