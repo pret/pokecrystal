@@ -5,14 +5,13 @@ PYTHON := python
 .PHONY: all clean crystal pngs
 .SECONDEXPANSION:
 
-POKEMONTOOLS := extras/pokemontools
-GFX          := $(PYTHON) $(POKEMONTOOLS)/gfx.py
-INCLUDES     := $(PYTHON) $(POKEMONTOOLS)/scan_includes.py
-PREPROCESS   := $(PYTHON) prequeue.py
+poketools := extras/pokemontools
+gfx       := $(PYTHON) $(poketools)/gfx.py
+includes  := $(PYTHON) $(poketools)/scan_includes.py
+pre       := $(PYTHON) prequeue.py
 
-TEXTQUEUE :=
 
-CRYSTAL_OBJS := \
+crystal_obj := \
 wram.o \
 main.o \
 lib/mobile/main.o \
@@ -29,20 +28,21 @@ data/pokedex/entries_crystal.o \
 misc/crystal_misc.o \
 gfx/pics.o
 
-OBJS := $(CRYSTAL_OBJS)
-
-ROMS := pokecrystal.gbc
+all_obj := $(crystal_obj)
 
 # object dependencies
-$(shell $(foreach obj, $(OBJS), $(eval $(obj:.o=)_DEPENDENCIES := $(shell $(INCLUDES) $(obj:.o=.asm)))))
+$(foreach obj, $(all_obj), \
+	$(eval $(obj:.o=)_dep := $(shell $(includes) $(obj:.o=.asm))) \
+)
 
-all: $(ROMS)
 
+roms := pokecrystal.gbc
+
+all: $(roms)
 crystal: pokecrystal.gbc
 
 clean:
-	rm -f $(ROMS)
-	rm -f $(OBJS)
+	rm -f $(roms) $(all_obj)
 	find -iname '*.tx' -exec rm {} +
 
 baserom.gbc: ;
@@ -50,30 +50,31 @@ baserom.gbc: ;
 
 
 %.asm: ;
-.asm.tx:
-	$(eval TEXTQUEUE += $<)
-	@rm -f $@
+%.tx: %.asm ; $(eval txq += $<) @rm -f $@
 
-$(OBJS): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_DEPENDENCIES))
-	@$(PREPROCESS) $(TEXTQUEUE)
-	$(eval TEXTQUEUE :=)
+$(all_obj): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_dep))
+	@$(pre) $(txq);        $(eval txq :=)
+	@$(gfx) 2bpp $(2bppq); $(eval 2bppq :=)
+	@$(gfx) 1bpp $(1bppq); $(eval 1bppq :=)
+	@$(gfx) lz $(lzq);     $(eval lzq   :=)
 	rgbasm -o $@ $*.tx
 
-pokecrystal.gbc: $(CRYSTAL_OBJS)
+pokecrystal.gbc: $(crystal_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 	cmp baserom.gbc $@
 
 
 pngs:
-	find . -iname "*.lz"      -exec $(GFX) unlz {} +
-	find . -iname "*.[12]bpp" -exec $(GFX) png  {} +
-	find . -iname "*.[12]bpp" -exec touch {} +
+	find . -iname "*.lz"      -exec $(gfx) unlz {} +
+	find . -iname "*.[12]bpp" -exec $(gfx) png  {} +
 	find . -iname "*.lz"      -exec touch {} +
+	find . -iname "*.[12]bpp" -exec touch {} +
 
-%.2bpp: %.png ; $(GFX) 2bpp $<
-%.1bpp: %.png ; $(GFX) 1bpp $<
-%.lz:   %     ; $(GFX) lz   $<
+%.2bpp: %.png ; $(eval 2bppq += $<) @rm -f $@
+%.1bpp: %.png ; $(eval 1bppq += $<) @rm -f $@
+%.lz:   %     ; $(eval lzq   += $<) @rm -f $@
+
 
 %.pal: ;
 %.bin: ;
