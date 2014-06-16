@@ -3227,8 +3227,7 @@ BattleCommand11: ; 351c0
 	ld [$d1ef], a
 	ld h, b
 	ld l, c
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 	call RefreshBattleHuds
 
 	call SwitchTurn
@@ -4607,8 +4606,7 @@ BattleCommand42: ; 35926
 	ld a, $1
 	ld [$d10a], a
 	hlcoord 10, 9
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [$d1ed], a
@@ -4623,8 +4621,7 @@ BattleCommand42: ; 35926
 	ld [$d10a], a
 	call ResetDamage
 	hlcoord 2, 2
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 	callba Function178000
 
 	ld hl, SharedPainText
@@ -4767,8 +4764,7 @@ BattleCommand44: ; 359e6
 
 	ld a, [hl]
 	ld [$d265], a
-	ld a, $29
-	call Predef
+	predef GetTypeName
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
 
@@ -5341,8 +5337,7 @@ Function35d1c: ; 35d1c
 	hlcoord 2, 2
 	xor a
 	ld [$d10a], a
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 .asm_35d7b
 	jp RefreshBattleHuds
 ; 35d7e
@@ -5401,8 +5396,7 @@ Function35d7e: ; 35d7e
 	hlcoord 10, 9
 	ld a, $1
 	ld [$d10a], a
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 .asm_35ddd
 	jp RefreshBattleHuds
 ; 35de0
@@ -5850,8 +5844,7 @@ Function36011: ; 36011
 	xor a
 .asm_3607e
 	ld [$d10a], a
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 	call RefreshBattleHuds
 	jp UpdateBattleMonInParty
 ; 3608c
@@ -8001,8 +7994,7 @@ BattleCommand27: ; 36cb2
 	xor a
 .asm_36d0c
 	ld [$d10a], a
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 	call RefreshBattleHuds
 	ld hl, RecoilText
 	jp StdBattleTextBox

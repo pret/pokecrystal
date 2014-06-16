@@ -17,8 +17,7 @@ Function4000:: ; 4000
 	jr .asm_4017
 
 .asm_4012
-	ld a, $10
-	call Predef
+	predef Function28eef
 
 .asm_4017
 	hlcoord 4, 11
@@ -4678,22 +4677,19 @@ Function619c: ; 619c
 	ld [$ffad], a
 	hlcoord 6, 4
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 61b4
 
 Function61b4: ; 61b4
 	ld de, VTiles2
 	ld c, $31
-	ld a, $40
-	call Predef
+	predef DecompressPredef
 	xor a
 	ld [$ffad], a
 	hlcoord 6, 4
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 61cd
 
@@ -5392,8 +5388,7 @@ Function65d3: ; 65d3
 	hlcoord 5 + 2, 2 + 2
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
-	ld a, PREDEF_LIST_MOVES
-	call Predef
+	predef ListMoves
 	ld a, $4
 	ld [$cfa1], a
 	ld a, $6
@@ -6607,8 +6602,7 @@ SpecialGiveShuckle: ; 7305
 	ld a, 15
 	ld [CurPartyLevel], a
 
-	ld a, PREDEF_ADDPARTYMON
-	call Predef
+	predef Functiond88c
 	jr nc, .NotGiven
 
 ; Caught data.
@@ -7755,84 +7749,84 @@ GetPredefPointer:: ; 854b
 	ret
 ; 856b
 
-PredefPointers: ; 856b
+PredefPointers:: ; 856b
 ; $4b Predef pointers
 ; address, bank
 
-	dwb LearnMove, BANK(LearnMove) ; $0
-	dwb Function747a, BANK(Function747a)
-	dwb Functionc658, BANK(Functionc658)
-	dwb FlagPredef, BANK(FlagPredef)
-	dwb Functionc699, BANK(Functionc699)
-	dwb FillPP, BANK(FillPP)
-	dwb Functiond88c, BANK(Functiond88c)
-	dwb Functionda96, BANK(Functionda96)
-	dwb Functiondb3f, BANK(Functiondb3f) ; $8
-	dwb Functionde6e, BANK(Functionde6e)
-	dwb GiveEgg, BANK(GiveEgg)
-	dwb Functionc6e0, BANK(Functionc6e0)
-	dwb Functione167, BANK(Functione167)
-	dwb Functione17b, BANK(Functione17b)
-	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
-	dwb GetTMHMMove, BANK(GetTMHMMove)
-	dwb Function28eef, BANK(Function28eef) ; $ 10
-	dwb PrintMoveDesc, BANK(PrintMoveDesc)
-	dwb Function3df48, BANK(Function3df48) ; UpdatePlayerHUD
-	dwb FillBox, BANK(FillBox)
-	dwb Function3d873, BANK(Function3d873)
-	dwb Function3e036, BANK(Function3e036) ; UpdateEnemyHUD
-	dwb StartBattle, BANK(StartBattle)
-	dwb FillInExpBar, BANK(FillInExpBar)
-	dwb Function3f43d, BANK(Function3f43d) ; $18
-	dwb Function3f47c, BANK(Function3f47c)
-	dwb LearnLevelMoves, BANK(LearnLevelMoves)
-	dwb FillMoves, BANK(FillMoves)
-	dwb Function421e6, BANK(Function421e6)
-	dwb Function28f63, BANK(Function28f63)
-	dwb Function28f24, BANK(Function28f24)
-	dwb Function5084a, BANK(Function5084a)
-	dwb ListMoves, BANK(ListMoves) ; $20
-	dwb Function50d2e, BANK(Function50d2e)
-	dwb Function50cdb, BANK(Function50cdb)
-	dwb Function50c50, BANK(Function50c50)
-	dwb GetGender, BANK(GetGender)
-	dwb StatsScreenInit, BANK(StatsScreenInit)
-	dwb DrawPlayerHP, BANK(DrawPlayerHP)
-	dwb DrawEnemyHP, BANK(DrawEnemyHP)
-	dwb Function50b7b, BANK(Function50b7b) ; $28
-	dwb GetTypeName, BANK(GetTypeName)
-	dwb PrintMoveType, BANK(PrintMoveType)
-	dwb PrintType, BANK(PrintType)
-	dwb PrintMonTypes, BANK(PrintMonTypes)
-	dwb GetUnownLetter, BANK(GetUnownLetter)
-	dwb Functioncbcdd, BANK(Functioncbcdd)
-	dwb Predef2F, BANK(Predef2F)
-	dwb Function9853, BANK(Function9853) ; $30
-	dwb Function864c, BANK(Function864c)
-	dwb Function91d11, BANK(Function91d11)
-	dwb CheckContestMon, BANK(CheckContestMon)
-	dwb Function8c20f, BANK(Function8c20f)
-	dwb Function8c000, BANK(Function8c000)
-	dwb Function8c000, BANK(Function8c000)
-	dwb PlayBattleAnim, BANK(PlayBattleAnim)
-	dwb Predef38, BANK(Predef38) ; $38
-	dwb Predef39, BANK(Predef39)
-	dwb Functionfd1d0, BANK(Functionfd1d0)
-	dwb PartyMonItemName, BANK(PartyMonItemName)
-	dwb Function51077, BANK(Function51077)
-	dwb Function5116c, BANK(Function5116c)
-	dwb Function5108b, BANK(Function5108b)
-	dwb Function5120d, BANK(Function5120d)
-	dwb DecompressPredef, BANK(DecompressPredef) ; $40
-	dwb Function347d3, BANK(Function347d3)
-	dwb Functionfb908, BANK(Functionfb908)
-	dwb Functionfb877, BANK(Functionfb877)
-	dwb Functiond0000, BANK(Functiond0000)
-	dwb Function50d0a, BANK(Function50d0a)
-	dwb Functiond00a3, BANK(Functiond00a3)
-	dwb Functiond008e, BANK(Functiond008e)
-	dwb Functiond0669, BANK(Functiond0669) ; $48
-	dwb Functiond066e, BANK(Functiond066e)
+	add_predef LearnMove ; $0
+	add_predef Function747a
+	add_predef Functionc658
+	add_predef FlagPredef
+	add_predef Functionc699
+	add_predef FillPP
+	add_predef Functiond88c
+	add_predef Functionda96
+	add_predef Functiondb3f ; $8
+	add_predef Functionde6e
+	add_predef GiveEgg
+	add_predef Functionc6e0
+	add_predef Functione167
+	add_predef Functione17b
+	add_predef CanLearnTMHMMove
+	add_predef GetTMHMMove
+	add_predef Function28eef ; $ 10
+	add_predef PrintMoveDesc
+	add_predef Function3df48 ; UpdatePlayerHUD
+	add_predef FillBox
+	add_predef Function3d873
+	add_predef Function3e036 ; UpdateEnemyHUD
+	add_predef StartBattle
+	add_predef FillInExpBar
+	add_predef Function3f43d ; $18
+	add_predef Function3f47c
+	add_predef LearnLevelMoves
+	add_predef FillMoves
+	add_predef Function421e6
+	add_predef Function28f63
+	add_predef Function28f24
+	add_predef Function5084a
+	add_predef ListMoves ; $20
+	add_predef Function50d2e
+	add_predef Function50cdb
+	add_predef Function50c50
+	add_predef GetGender
+	add_predef StatsScreenInit
+	add_predef DrawPlayerHP
+	add_predef DrawEnemyHP
+	add_predef Function50b7b ; $28
+	add_predef GetTypeName
+	add_predef PrintMoveType
+	add_predef PrintType
+	add_predef PrintMonTypes
+	add_predef GetUnownLetter
+	add_predef Functioncbcdd
+	add_predef Predef2F
+	add_predef Function9853 ; $30
+	add_predef Function864c
+	add_predef Function91d11
+	add_predef CheckContestMon
+	add_predef Function8c20f
+	add_predef Function8c000
+	add_predef Function8c000_2
+	add_predef PlayBattleAnim
+	add_predef Predef38 ; $38
+	add_predef Predef39
+	add_predef Functionfd1d0
+	add_predef PartyMonItemName
+	add_predef Function51077
+	add_predef Function5116c
+	add_predef Function5108b
+	add_predef Function5120d
+	add_predef DecompressPredef ; $40
+	add_predef Function347d3
+	add_predef Functionfb908
+	add_predef Functionfb877
+	add_predef Functiond0000
+	add_predef Function50d0a
+	add_predef Functiond00a3
+	add_predef Functiond008e
+	add_predef Functiond0669 ; $48
+	add_predef Functiond066e
 	dbw $ff, Function2d43 ; ????
 ; 864c
 
@@ -12427,8 +12421,7 @@ Functiond906: ; d906
 	endr
 	ld [hl], a
 	ld [Buffer1], a
-	ld a, $1b
-	call Predef
+	predef FillMoves
 
 .asm_d950
 	pop de
@@ -12618,8 +12611,7 @@ Functiond906: ; d906
 	dec a
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 
 .asm_da6b
@@ -12726,8 +12718,7 @@ Functionda96: ; da96
 	dec a
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 	ld a, [$def4]
 	and a
@@ -12892,8 +12883,7 @@ Functiondb3f: ; db3f
 	srl a
 	add $2
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	callab Function50e1b
 	ld a, d
 	ld [CurPartyLevel], a
@@ -13137,8 +13127,7 @@ Functiondd64: ; dd64
 	ld e, l
 	ld a, $1
 	ld [Buffer1], a
-	ld a, $1b
-	call Predef
+	predef FillMoves
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
@@ -13297,8 +13286,7 @@ Functionde6e: ; de6e
 	cp UNOWN
 	jr nz, .asm_df20
 	ld hl, sBoxMon1DVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 
 .asm_df20
@@ -13395,8 +13383,7 @@ GiveEgg:: ; df8c
 	ld d, $0
 	ld hl, PokedexCaught
 	ld b, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 
 .asm_dfc3
 	pop bc
@@ -13409,8 +13396,7 @@ GiveEgg:: ; df8c
 	ld d, $0
 	ld hl, PokedexSeen
 	ld b, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 
 .asm_dfd9
 	pop af
@@ -16917,8 +16903,7 @@ CanLearnTMHMMove: ; 11639
 	ld b, CHECK_FLAG
 	push de
 	ld d, 0
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	pop de
 	ret
 
@@ -20228,8 +20213,7 @@ OpenPartyStats: ; 12e00
 	xor a
 	ld [MonType], a
 	call LowVolume
-	ld a, $25
-	call Predef
+	predef StatsScreenInit
 	call MaxVolume
 	call Function1d7d
 	ld a, 0
@@ -20802,8 +20786,7 @@ Function131ef: ; 131ef
 	ld [hBGMapMode], a
 	ld [$d0e3], a
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	ld hl, TempMonMoves
 	ld de, $d25e
 	ld bc, NUM_MOVES
@@ -20811,11 +20794,9 @@ Function131ef: ; 131ef
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 3
-	ld a, PREDEF_LIST_MOVES
-	call Predef
+	predef ListMoves
 	hlcoord 10, 4
-	ld a, $23
-	call Predef
+	predef Function50c50
 	call WaitBGMap
 	call Function32f9
 	ld a, [$d0eb]
@@ -20859,8 +20840,7 @@ Function13256: ; 13256
 	ld a, [CurSpecies]
 	ld b, a
 	hlcoord 2, 12
-	ld a, PREDEF_PRINT_MOVE_TYPE
-	call Predef
+	predef PrintMoveType
 	ld a, [CurSpecies]
 	dec a
 	ld hl, Moves + MOVE_POWER
@@ -20883,8 +20863,7 @@ Function13256: ; 13256
 
 .asm_132ad
 	hlcoord 1, 14
-	ld a, $11
-	call Predef
+	predef PrintMoveDesc
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -22306,8 +22285,7 @@ Function13a47: ; 13a47
 	ld hl, $000a
 	add hl, bc
 	ld b, $1
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop hl
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
@@ -26447,8 +26425,7 @@ Function157e9: ; 0x157e9
 	ld [$d107], a
 	ld hl, PCItems
 	call TossItem
-	ld a, $3b
-	call Predef
+	predef PartyMonItemName
 	ld hl, .WithdrewText
 	call Function1d4f
 	xor a
@@ -26622,8 +26599,7 @@ Function1590a: ; 0x1590a
 	ld [$d107], a
 	ld hl, NumItems
 	call TossItem
-	ld a, $3b
-	call Predef
+	predef PartyMonItemName
 	ld hl, .DepositText
 	call PrintText
 	ret
@@ -27306,8 +27282,7 @@ Function15d83: ; 15d83
 ; 15d97
 
 Function15d97: ; 15d97
-	ld a, $3b
-	call Predef
+	predef PartyMonItemName
 	ld a, $1
 	call Function15c7d
 	call YesNoBox
@@ -27647,8 +27622,7 @@ Function15efd: ; 15efd
 	ld a, [$d107]
 	ld hl, NumItems
 	call TossItem
-	ld a, $3b
-	call Predef
+	predef PartyMonItemName
 	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
@@ -29255,8 +29229,7 @@ Function169ac: ; 169ac
 	pop hl
 	push bc
 	ld b, $0
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop bc
 	ld hl, $0022
 	add hl, bc
@@ -29374,8 +29347,7 @@ Function16a66: ; 16a66
 	ld de, $df7d
 	xor a
 	ld [Buffer1], a
-	ld a, $1b
-	call Predef
+	predef FillMoves
 	callba Function170bf
 	ld hl, $df81
 	ld a, [PlayerID]
@@ -29461,8 +29433,7 @@ Function16a66: ; 16a66
 	call CopyBytes
 	ld hl, $df7d
 	ld de, $df92
-	ld a, $5
-	call Predef
+	predef FillPP
 	ld hl, $d050
 	ld de, StringBuffer1
 	ld bc, $000b
@@ -29627,15 +29598,13 @@ Function16cc8: ; 16cc8
 	xor a
 	ld [$c2c6], a
 	ld de, VTiles2
-	ld a, $3c
-	call Predef
+	predef Function51077
 	call Function16cff
 	hlcoord 1, 6
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld de, $9310
 	callba Functione0000
 	ret
@@ -29716,8 +29685,7 @@ Function16dac: ; 16dac
 	ld a, $31
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 16dc7
 
@@ -29795,8 +29763,7 @@ Function16e1d: ; 16e1d
 	ld [$d124], a
 	ld a, $3
 	ld [MonType], a
-	ld a, $24
-	call Predef
+	predef GetGender
 	jr c, .asm_16e70
 	ld b, $1
 	jr nz, .asm_16e48
@@ -29812,8 +29779,7 @@ Function16e1d: ; 16e1d
 	ld [$d124], a
 	ld a, $3
 	ld [MonType], a
-	ld a, $24
-	call Predef
+	predef GetGender
 	pop bc
 	jr c, .asm_16e70
 	ld a, $1
@@ -30062,8 +30028,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld bc, $a
 	add hl, bc
 	ld b, $0
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop bc
 	ld hl, $24
 	add hl, bc
@@ -30291,8 +30256,7 @@ GLOBAL EggMoves
 	cp b
 	jr nz, .asm_17149
 	ld [$d262], a
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
 	ld a, c
 	and a
 	jr z, .asm_17166
@@ -30337,8 +30301,7 @@ Function17169: ; 17169
 	ld [hl], b
 	ld hl, $df7d
 	ld de, $df92
-	ld a, $5
-	call Predef
+	predef FillPP
 	pop bc
 	pop de
 	ret
@@ -30369,8 +30332,7 @@ Function17197: ; 17197
 	ld [$d124], a
 	ld a, $3
 	ld [MonType], a
-	ld a, $24
-	call Predef
+	predef GetGender
 	jr c, .asm_171fb
 	jr nz, .asm_171fb
 	jr .asm_17203
@@ -30386,8 +30348,7 @@ Function17197: ; 17197
 	ld [$d124], a
 	ld a, $3
 	ld [MonType], a
-	ld a, $24
-	call Predef
+	predef GetGender
 	jr c, .asm_17203
 	jr nz, .asm_17203
 
@@ -30429,11 +30390,9 @@ Function17224: ; 17224 (5:7224)
 	ld [CurSpecies], a ; $cf60
 	call GetBaseData
 	ld hl, BattleMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	pop de
-	ld a, $3c
-	jp Predef
+	predef_jump Function51077
 
 ; known jump sources: 172c2 (5:72c2)
 Function1723c: ; 1723c (5:723c)
@@ -30442,11 +30401,9 @@ Function1723c: ; 1723c (5:723c)
 	ld [CurSpecies], a ; $cf60
 	call GetBaseData
 	ld hl, BattleMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	pop de
-	ld a, $3e
-	jp Predef
+	predef_jump Function5108b
 
 ; known jump sources: 172df (5:72df), 17343 (5:7343)
 Function17254: ; 17254 (5:7254)
@@ -30465,8 +30422,7 @@ Function17254: ; 17254 (5:7254)
 	ld a, c
 	ld [$ffad], a
 	ld bc, $707
-	ld a, $13
-	call Predef
+	predef FillBox
 	pop af
 	call Function17363
 	call Function32f9
@@ -30568,8 +30524,7 @@ Function1728f: ; 1728f (5:728f)
 	hlcoord 6, 3
 	ld d, $0
 	ld e, $5
-	ld a, $47
-	call Predef
+	predef Functiond008e
 	pop af
 	ld [CurSpecies], a ; $cf60
 	ret
@@ -31925,8 +31880,7 @@ Function244e3:: ; 244e3
 	ld [CurSpecies], a
 	call GetBaseData
 	ld de, VTiles1
-	ld a, $3c
-	call Predef
+	predef Function51077
 	ld a, [$cf82]
 	inc a
 	ld b, a
@@ -31937,8 +31891,7 @@ Function244e3:: ; 244e3
 	ld a, $80
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	call WaitBGMap
 	ret
 ; 24528
@@ -34111,8 +34064,7 @@ Function25299: ; 25299 (9:5299)
 	ld bc, $507
 	xor a
 	ld [$FF00+$ad], a
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 252ec (9:52ec)
 
@@ -36713,8 +36665,7 @@ Function28177: ; 28177
 	ld [rIE], a
 	pop af
 	ld [rIF], a
-	ld a, $16
-	call Predef
+	predef StartBattle
 	ld a, [rIF]
 	ld h, a
 	xor a
@@ -37052,8 +37003,7 @@ Function284f6: ; 284f6
 	add hl, bc
 	ld c, $5
 	ld b, $1
-	ld a, $d
-	call Predef
+	predef Functione17b
 
 	pop bc
 	pop de
@@ -37324,8 +37274,7 @@ Function286ba: ; 286ba
 	add hl, bc
 	ld c, $5
 	ld b, $1
-	ld a, $d
-	call Predef
+	predef Functione17b
 	pop bc
 	pop hl
 	ld a, [$ffb5]
@@ -37338,8 +37287,7 @@ Function286ba: ; 286ba
 	add hl, bc
 	ld c, $6
 	ld b, $1
-	ld a, $d
-	call Predef
+	predef Functione17b
 	pop bc
 	pop hl
 	ld a, [$ffb5]
@@ -38161,13 +38109,11 @@ Function28b87: ; 28b87
 	ld a, [$ffcb]
 	cp $1
 	jr z, .asm_28de4
-	ld a, $1e
-	call Predef
+	predef Function28f24
 	jr .asm_28de9
 
 .asm_28de4
-	ld a, $1d
-	call Predef
+	predef Function28f63
 
 .asm_28de9
 	pop af
@@ -38185,8 +38131,7 @@ Function28b87: ; 28b87
 	ld de, TempMonSpecies
 	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
-	ld a, $7
-	call Predef
+	predef Functionda96
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
@@ -39123,15 +39068,13 @@ Function29487: ; 29487
 Function29491: ; 29491
 	push de
 	push af
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	ld a, $3c
-	call Predef
+	predef Function51077
 	ret
 ; 294a9
 
@@ -39164,8 +39107,7 @@ Function294c3: ; 294c3
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	call WaitBGMap
 	ret
 ; 294e7
@@ -40391,8 +40333,7 @@ Function29fe4: ; 29fe4
 	call GetSRAMBank
 	ld d, $0
 	ld b, $2
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	call CloseSRAM
 	ld a, c
 	and a
@@ -42534,8 +42475,7 @@ Function2c7a7: ; 2c7a7 (b:47a7)
 ; known jump sources: 2c7cd (b:47cd)
 Function2c7b6: ; 2c7b6 (b:47b6)
 	call Function2c7a7
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ret
 
 Function2c7bf: ; 2c7bf (b:47bf)
@@ -42617,8 +42557,7 @@ Function2c80a: ; 2c80a
 ; 2c867
 
 Function2c867: ; 2c867
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
 
 	push bc
 	ld a, [CurPartyMon] ; $d109
@@ -42641,8 +42580,7 @@ Function2c867: ; 2c867
 	callab KnowsMove
 	jr c, .asm_2c8b6
 
-	ld a, PREDEF_LEARN_MOVE
-	call Predef
+	predef LearnMove
 	ld a, b
 	and a
 	jr z, .asm_2c8b6
@@ -42764,8 +42702,7 @@ Function2c946: ; 2c946 (b:4946)
 	cp $3a
 	jr nc, Function2c915
 	ld [$d265], a
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ld a, [$d265]
 	ld [CurSpecies], a ; $cf60
 	hlcoord 1, 14
@@ -42900,8 +42837,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	pop af
 	ld [$d265], a
 .asm_2ca38
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ld a, [$d265]
 	ld [$d262], a
 	call GetMoveName
@@ -42965,8 +42901,7 @@ Function2ca95: ; 2ca95
 	pop hl
 	ld bc, $0003
 	add hl, bc
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ld a, [$d265]
 	ld [$d262], a
 	call GetMoveName
@@ -43302,8 +43237,7 @@ Function2ee2f: ; 2ee2f
 	add hl, de
 	ld a, [hl]
 	ld [BattleMonLevel], a
-	ld a, PREDEF_BATTLE_TRANSITION
-	call Predef
+	predef Function8c20f
 	callba Function3ed9f
 	ld a, 1
 	ld [hBGMapMode], a
@@ -43726,8 +43660,7 @@ TrainerType1: ; 397eb
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	ld a, PREDEF_ADDPARTYMON
-	call Predef
+	predef Functiond88c
 	pop hl
 	jr .loop
 ; 39806
@@ -43748,8 +43681,7 @@ TrainerType2: ; 39806
 	ld [MonType], a
 
 	push hl
-	ld a, PREDEF_ADDPARTYMON
-	call Predef
+	predef Functiond88c
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Moves
@@ -43825,8 +43757,7 @@ TrainerType3: ; 39871
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	ld a, PREDEF_ADDPARTYMON
-	call Predef
+	predef Functiond88c
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
@@ -43857,8 +43788,7 @@ TrainerType4: ; 3989d
 	ld [MonType], a
 
 	push hl
-	ld a, PREDEF_ADDPARTYMON
-	call Predef
+	predef Functiond88c
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
@@ -44481,8 +44411,7 @@ Function402fa: ; 402fa
 	call Function40bb1
 	ld a, [$c7e4]
 	ld e, a
-	ld a, $32
-	call Predef
+	predef Function91d11
 	call Function41401
 	call DelayFrame
 	xor a
@@ -46510,8 +46439,7 @@ Function4143b: ; 4143b
 	ld [CurPartySpecies], a
 	call GetBaseData
 	ld de, VTiles2
-	ld a, $3c
-	call Predef
+	predef Function51077
 	ret
 
 .asm_4145b
@@ -46672,8 +46600,7 @@ Function41a58: ; 41a58 (10:5a58)
 	ld [CurPartySpecies], a ; $d108
 	call GetBaseData
 	ld de, $9000
-	ld a, $3c
-	call Predef
+	predef Function51077
 	pop af
 	ld [UnownLetter], a ; $d234
 	ret
@@ -46703,8 +46630,7 @@ Function41a7f: ; 41a7f
 	call WaitBGMap
 	call GetBaseData
 	ld de, VTiles2
-	ld a, $3c
-	call Predef
+	predef Function51077
 	ld a, $4
 	call Function41423
 	ld a, [CurPartySpecies]
@@ -46808,8 +46734,7 @@ Function421f5: ; 421f5
 	push hl
 	xor a
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	pop hl
 
 .asm_42230
@@ -47019,8 +46944,7 @@ Function421f5: ; 421f5
 	ld hl, $d118
 	ld de, TempMonMaxHP
 	ld b, $1
-	ld a, PREDEF_FILLSTATS
-	call Predef
+	predef Functione167
 
 	ld a, [CurPartyMon]
 	ld hl, PartyMons
@@ -47066,8 +46990,7 @@ Function421f5: ; 421f5
 	jr nz, .asm_423ec
 
 	ld hl, TempMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 
 .asm_423ec
@@ -47241,8 +47164,7 @@ LearnLevelMoves: ; 42487
 	ld [$d265], a
 	call GetMoveName
 	call CopyName1
-	ld a, PREDEF_LEARN_MOVE
-	call Predef
+	predef LearnMove
 	pop hl
 	jr .find_move
 
@@ -47379,8 +47301,7 @@ ShiftMoves: ; 4256e
 Function42577: ; 42577
 	push de
 	ld d, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	pop de
 	ret
 ; 42581
@@ -47533,8 +47454,7 @@ AIChooseMove: ; 440ce
 
 	push bc
 	ld d, $e ; BANK(TrainerAI)
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	ld d, c
 	pop bc
 
@@ -50601,8 +50521,7 @@ Function492b9: ; 492b9
 	ld hl, MenuDataHeader_0x4930a
 	call LoadMenuDataHeader
 
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
 
 	push bc
 	ld a, [CurPartyMon]
@@ -50626,8 +50545,7 @@ Function492b9: ; 492b9
 	callab KnowsMove
 	jr c, .didnt_learn
 
-	ld a, PREDEF_LEARN_MOVE
-	call Predef
+	predef LearnMove
 	ld a, b
 	and a
 	jr z, .didnt_learn
@@ -55007,8 +54925,7 @@ Function4d319: ; 4d319
 	dec a
 	ld [CurPartyMon], a
 	call LowVolume
-	ld a, PREDEF_STATS_SCREEN
-	call Predef
+	predef StatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
 	ld [$cfa9], a
@@ -55503,15 +55420,13 @@ Function4d7fd: ; 4d7fd
 	ld de, VTiles2
 	push de
 	push af
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	ret
 ; 4d81e
 
@@ -55536,8 +55451,7 @@ Function4d81e: ; 4d81e
 	hlcoord 7, 2
 	ld d, $0
 	ld e, $3
-	ld a, $47
-	call Predef
+	predef Functiond008e
 	ret
 ; 4d860
 
@@ -56751,8 +56665,7 @@ Jumptable_4e00d: ; 4e00d (13:600d)
 Function4e013: ; 4e013 (13:6013)
 	hlcoord 0, 9
 	ld b, $0
-	ld a, $26
-	call Predef
+	predef DrawPlayerHP
 	hlcoord 8, 9
 	ld [hl], $41
 	ld de, String_4e119
@@ -56774,8 +56687,7 @@ Function4e013: ; 4e013 (13:6013)
 	hlcoord 6, 13
 	push hl
 	ld de, TempMonStatus ; $d12e
-	ld a, $45
-	call Predef
+	predef Function50d0a
 	pop hl
 	jr nz, .asm_4e066
 	jr .asm_4e060
@@ -56789,8 +56701,7 @@ Function4e013: ; 4e013 (13:6013)
 	call PlaceString
 .asm_4e066
 	hlcoord 1, 15
-	ld a, $2c
-	call Predef
+	predef PrintMonTypes
 	hlcoord 9, 8
 	ld de, $14
 	ld b, $a
@@ -56824,8 +56735,7 @@ Function4e013: ; 4e013 (13:6013)
 	ld a, [TempMonLevel] ; $d12d
 	ld b, a
 	ld de, $d118
-	ld a, $17
-	call Predef
+	predef FillInExpBar
 	hlcoord 10, 16
 	ld [hl], $40
 	hlcoord 19, 16
@@ -56920,13 +56830,11 @@ Function4e147: ; 4e147 (13:6147)
 	hlcoord 8, 10
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
-	ld a, PREDEF_LIST_MOVES
-	call Predef
+	predef ListMoves
 	hlcoord 12, 11
 	ld a, $28
 	ld [Buffer1], a
-	ld a, $23
-	call Predef
+	predef Function50c50
 	ret
 
 ; known jump sources: 4e150 (13:6150)
@@ -56969,8 +56877,7 @@ Function4e1ae: ; 4e1ae (13:61ae)
 	jr nz, .asm_4e1bb
 	hlcoord 11, 8
 	ld bc, $6
-	ld a, $28
-	call Predef
+	predef Function50b7b
 	ret
 
 ; known jump sources: 4e1ae (13:61ae)
@@ -57025,8 +56932,7 @@ OTString: ; 4e222
 ; known jump sources: 4dfd6 (13:5fd6)
 Function4e226: ; 4e226 (13:6226)
 	ld hl, TempMonDVs ; $d123
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	call Function4e2ad
 	jr c, .asm_4e238
 	and a
@@ -57086,13 +56992,11 @@ Function4e289: ; 4e289 (13:6289)
 	ret c
 	call Function4e307
 	ld de, $9000
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld d, $0
 	ld e, $2
-	ld a, $46
-	call Predef
+	predef Functiond00a3
 	ld hl, $cf64
 	set 6, [hl]
 	ret
@@ -57301,13 +57205,11 @@ Function4e497: ; 4e497 (13:6497)
 	ld [$c2c6], a
 	call Function4e307
 	ld de, $9000
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	pop de
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld d, $0
-	ld a, $46
-	call Predef
+	predef Functiond00a3
 	ld hl, $cf64
 	set 6, [hl]
 	ret
@@ -57617,8 +57519,7 @@ _EvolutionAnimation: ; 4e607
 	hlcoord 7, 2
 	ld d, $0
 	ld e, $4
-	ld a, $47
-	call Predef
+	predef Functiond008e
 
 	pop af
 	ld [CurPartySpecies], a
@@ -57664,8 +57565,7 @@ Function4e711: ; 4e711
 	ld a, $1
 	ld [$c2c6], a
 	ld de, VTiles2
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	xor a
 	ld [$c2c6], a
 	ret
@@ -58426,8 +58326,7 @@ Function50117: ; 50117
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	ld a, $4
-	call Predef
+	predef Functionc699
 	ret
 ; 50138
 
@@ -58566,8 +58465,7 @@ Function501e0: ; 501e0
 	add hl, de
 	ld a, [hl]
 	ld [CurPartySpecies], a
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
 	pop hl
 	call Function50215
 	call PlaceString
@@ -59262,8 +59160,7 @@ Function50658: ; 50658
 	ld de, SFX_POISON
 	call PlaySFX
 	ld b, $2
-	ld a, $2e
-	call Predef
+	predef Functioncbcdd
 	call DelayFrame
 	ret
 ; 50669
@@ -59304,8 +59201,7 @@ Function5067b: ; 5067b
 	ld a, [PartyCount]
 	cp [hl]
 	jr nz, .asm_50682
-	ld a, $14
-	call Predef
+	predef Function3d873
 	ld a, d
 	ld [ScriptVar], a
 	ret
@@ -59657,8 +59553,7 @@ Function50893: ; 50893
 	add hl, bc
 	push bc
 	ld b, $1
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop bc
 	ld hl, TempMonHP - TempMon
 	add hl, bc
@@ -59897,8 +59792,7 @@ DrawHP: ; 50b10
 	ld c, e
 
 .asm_50b41
-	ld a, $4
-	call Predef
+	predef Functionc699
 	ld a, 6
 	ld d, a
 	ld c, a
@@ -62886,14 +62780,12 @@ Function81adb: ; 81adb
 	hlcoord 12, 3
 	call Function378b
 	ld de, $9310
-	ld a, $3d
-	call Predef
+	predef Function5116c
 	ld a, $31
 	ld [$ffad], a
 	hlcoord 2, 4
 	ld bc, $0606
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld a, [$d003]
 	and a
 	jr z, .asm_81b66
@@ -62925,8 +62817,7 @@ Function81adb: ; 81adb
 	ld [$ffad], a
 	hlcoord 2, 3
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 
 .asm_81ba9
 	ld a, $1
@@ -63313,8 +63204,7 @@ Function81df4: ; 81df4
 	ld a, [$d004]
 	inc a
 	ld [$d265], a
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ld a, [$d265]
 	ld [$d262], a
 	call GetMoveName
@@ -63323,8 +63213,7 @@ Function81df4: ; 81df4
 	ld a, [$d004]
 	call Function81e55
 	ld [CurItem], a
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
 	ld a, c
 	and a
 	ld de, String_81e46
@@ -65683,8 +65572,7 @@ Function8650c: ; 8650c
 	call WaitBGMap
 	decoord 6, 5
 	ld c, $6
-	ld a, $49
-	call Predef
+	predef Functiond066e
 	ld c, $3c
 	call DelayFrames
 	and a
@@ -65791,21 +65679,18 @@ Function865b5: ; 865b5
 	ld a, [hli]
 	ld [$d124], a
 	ld hl, TempMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	ld hl, TileMap
 	ld bc, $0168
 	ld a, $7f
 	call ByteFill
 	ld de, $9310
-	ld a, $3d
-	call Predef
+	predef Function5116c
 	ld a, $31
 	ld [$ffad], a
 	hlcoord 6, 6
 	ld bc, $0606
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld a, $d0
 	ld [hSCY], a
 	ld a, $90
@@ -65955,8 +65840,7 @@ Function86692: ; 86692
 	call Function32f9
 	decoord 6, 5
 	ld c, $6
-	ld a, $49
-	call Predef
+	predef Functiond066e
 	and a
 	ret
 ; 866fb
@@ -66035,8 +65919,7 @@ Function86748: ; 86748
 	ld [CurPartySpecies], a
 	ld [$d265], a
 	ld hl, TempMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	xor a
 	ld [$c2c6], a
 	hlcoord 6, 5
@@ -66104,8 +65987,7 @@ Function86810: ; 86810
 	ld [$ffad], a
 	hlcoord 6, 6
 	ld bc, $0606
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld a, $d0
 	ld [hSCY], a
 	ld a, $90
@@ -66129,8 +66011,7 @@ Function86810: ; 86810
 	ld [$ffad], a
 	hlcoord 12, 5
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld a, $c0
 	ld [hSCX], a
 	call WaitBGMap
@@ -66617,8 +66498,7 @@ MovePlayerPic: ; 88266
 	xor a
 	ld [hBGMapMode], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	xor a
 	ld [hBGMapThird], a
 	call WaitBGMap
@@ -66780,8 +66660,7 @@ GetChrisBackpic: ; 88830
 	ld b, BANK(ChrisBackpic)
 	ld de, $9310
 	ld c, $31
-	ld a, $40
-	call Predef
+	predef DecompressPredef
 	ret
 ; 88840
 
@@ -66847,8 +66726,7 @@ DrawIntroPlayerPic: ; 88874
 	ld [$ffad], a
 	hlcoord 6, 4
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 888a9
 
@@ -68148,8 +68026,7 @@ Function897d5: ; 897d5
 	ld [$ffad], a
 	hlcoord 12, 3
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	call Function8963d
 	pop bc
 	ret
@@ -73593,6 +73470,7 @@ Unknown_8ba1f: ; 8ba1f
 SECTION "bank23", ROMX, BANK[$23]
 
 Function8c000: ; 8c000
+Function8c000_2:
 	ret
 ; 8c001
 
@@ -83176,8 +83054,7 @@ HasVisitedSpawn: ; 91c50
 	ld hl, VisitedSpawns
 	ld b, CHECK_FLAG
 	ld d, 0
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	ld a, c
 	ret
 ; 91c5e
@@ -94973,12 +94850,10 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	ld hl, TempMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	call GetBaseData
 	ld de, $9000
-	ld a, $3c
-	call Predef
+	predef Function51077
 	xor a
 	ld [$cb32], a
 	ld a, [CurPartySpecies]
@@ -95623,8 +95498,7 @@ Functione2f7e: ; e2f7e (38:6f7e)
 	call Functione2fd6
 	ld a, $3
 	ld [MonType], a ; $cf5f
-	ld a, $25
-	call Predef
+	predef StatsScreenInit
 	call Functione33e8
 	call MaxVolume
 	ret
@@ -95652,8 +95526,7 @@ Functione2f95: ; e2f95 (38:6f95)
 	ld [CurPartySpecies], a ; $d108
 	ld [CurSpecies], a ; $cf60
 	ld hl, TempMonDVs ; $d123
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	call GetBaseData
 	call Functione2fd6
 .asm_e2fd0
@@ -95745,8 +95618,7 @@ Functione307c: ; e307c (38:707c)
 	call GetNick
 	ld a, $1
 	ld [$d10b], a
-	ld a, $8
-	call Predef
+	predef Functiondb3f
 	jr c, .asm_e30e4
 	xor a
 	ld [$d10b], a
@@ -95801,8 +95673,7 @@ Functione30fa: ; e30fa (38:70fa)
 	call CloseSRAM
 	xor a
 	ld [$d10b], a
-	ld a, $8
-	call Predef
+	predef Functiondb3f
 	jr c, .asm_e316a
 	ld a, $1
 	ld [$d10b], a
@@ -100508,8 +100379,7 @@ Functionfbd77: ; fbd77 (3e:7d77)
 	ld a, $31
 .asm_fbd8a
 	ld [$FF00+$ad], a
-	ld a, $13
-	call Predef
+	predef FillBox
 Functionfbd91: ; fbd91 (3e:7d91)
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -100820,8 +100690,7 @@ Functionfcc07: ; fcc07
 	push af
 	ld a, [$cf64]
 	push af
-	ld a, $1e
-	call Predef
+	predef Function28f24
 	pop af
 	ld [$cf64], a
 	pop af
@@ -100863,8 +100732,7 @@ TradeFlagAction: ; fcc4a
 	ld hl, $d960
 	ld a, [$cf63]
 	ld c, a
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	ld a, c
 	and a
 	ret
@@ -100951,8 +100819,7 @@ Functionfcc63: ; fcc63
 	ld [MonType], a
 	ld [$d10b], a
 	callab Functione039
-	ld a, PREDEF_ADDPARTYMON
-	call Predef
+	predef Functiond88c
 
 	ld e, TRADE_DIALOG
 	call GetTradeAttribute
@@ -103261,8 +103128,7 @@ Function100c74: ; 100c74
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 10
-	ld a, PREDEF_LIST_MOVES
-	call Predef
+	predef ListMoves
 	ret
 ; 100c98
 
@@ -106238,7 +106104,7 @@ Function105069: ; 105069 (41:5069)
 	ld d, $0
 	ld b, $2
 	ld hl, $abf0
-	ld a, $3
+	predef_id FlagPredef
 	push hl
 	push bc
 	call Predef
@@ -106250,8 +106116,7 @@ Function105069: ; 105069 (41:5069)
 	ret nz
 	call Function105106
 	ld b, $1
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	call CloseSRAM
 	xor a
 	ret
@@ -106265,8 +106130,7 @@ Function105091: ; 105091 (41:5091)
 	ld d, $0
 	ld b, $2
 	ld hl, $abf0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	ld a, c
 	and a
 	pop bc
@@ -115099,8 +114963,7 @@ Function16d6e1: ; 16d6e1
 	hlcoord 4, 10
 	ld b, $1
 	ld c, $a
-	ld a, $10
-	call Predef
+	predef Function28eef
 	hlcoord 5, 11
 	ld de, $5701
 	call PlaceString
@@ -116882,8 +116745,7 @@ Function17d1f1: ; 17d1f1
 	dec a
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 	ld a, [$def4]
 	and a
@@ -118703,8 +118565,7 @@ Function1dc381: ; 1dc381
 	call Function1dc51a
 	call Function1dc52c
 	ld hl, TempMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	ld hl, $c2c6
 	xor a
 	ld [hl], a

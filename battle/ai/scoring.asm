@@ -1336,8 +1336,7 @@ AIScoring_Encore: ; 38c3b
 	push hl
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	ld hl, EnemyMonType1
-	ld a, $41
-	call Predef
+	predef Function347d3
 
 	pop hl
 	ld a, [$d265]

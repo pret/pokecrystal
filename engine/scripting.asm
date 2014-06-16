@@ -1531,8 +1531,7 @@ Script_startbattle: ; 0x97436
 ; script command 0x5f
 
 	call Function2879
-	ld a, PREDEF_START_BATTLE
-	call Predef
+	predef StartBattle
 	ld a, [$d0ee]
 	and $3f
 	ld [ScriptVar], a

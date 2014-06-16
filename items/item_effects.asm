@@ -399,8 +399,7 @@ ParkBall: ; e8a2
 	ld [hBattleTurn], a
 	ld [Buffer2], a
 	ld [$cfca], a
-	ld a, $37
-	call Predef
+	predef PlayBattleAnim
 
 	ld a, [$c64e]
 	and a
@@ -525,8 +524,7 @@ ParkBall: ; e8a2
 
 	ld a, [EnemyMonSpecies]
 	ld [$d265], a
-	ld a, $43
-	call Predef
+	predef Functionfb877
 
 .asm_eab7
 	ld a, [BattleType]
@@ -546,8 +544,7 @@ ParkBall: ; e8a2
 	ld [MonType], a
 	call ClearSprites
 
-	ld a, $6
-	call Predef
+	predef Functiond88c
 
 	callba Function4db49
 
@@ -604,8 +601,7 @@ ParkBall: ; e8a2
 .asm_eb3c
 	call ClearSprites
 
-	ld a, $9
-	call Predef
+	predef Functionde6e
 
 	callba Function4db83
 
@@ -1265,8 +1261,7 @@ Functionee8c: ; ee8c
 	ld a, PartyMon1HPExp - 1 - PartyMon1
 	call GetPartyParamLocation
 	ld b, $1
-	ld a, $c
-	jp Predef
+	predef_jump Functione167
 ; ee9f
 
 Functionee9f: ; ee9f
@@ -1405,8 +1400,7 @@ RareCandy: ; ef14
 
 	xor a
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 
 	hlcoord 9, 0
 	ld b, 10
@@ -1415,8 +1409,7 @@ RareCandy: ; ef14
 
 	hlcoord 11, 1
 	ld bc, $0004
-	ld a, $28
-	call Predef
+	predef Function50b7b
 
 	call Functiona80
 
@@ -1424,8 +1417,7 @@ RareCandy: ; ef14
 	ld [MonType], a
 	ld a, [CurPartySpecies]
 	ld [$d265], a
-	ld a, $1a
-	call Predef
+	predef LearnLevelMoves
 
 	xor a
 	ld [$d1e9], a
@@ -1654,8 +1646,7 @@ Functionf0d6: ; f0d6
 	ld d, 0
 	ld hl, $c6fc
 	ld b, CHECK_FLAG
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	ld a, c
 	and a
 	jr z, .asm_f104
@@ -1664,8 +1655,7 @@ Functionf0d6: ; f0d6
 	ld c, a
 	ld hl, $c664
 	ld b, SET_FLAG
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 
 .asm_f104
 	xor a
@@ -1834,8 +1824,7 @@ Functionf1db: ; f1db (3:71db)
 	call AddNTimes
 	ld a, $2
 	ld [$d10a], a
-	ld a, $b
-	jp Predef
+	predef_jump Functionc6e0
 
 ; known jump sources: ee11 (3:6e11), ee3f (3:6e3f), ef16 (3:6f16), efaf (3:6faf), efce (3:6fce), f0ab (3:70ab), f0ca (3:70ca), f12a (3:712a), f1ab (3:71ab), f5c7 (3:75c7)
 Functionf1f9: ; f1f9 (3:71f9)
@@ -2971,8 +2960,7 @@ Functionf7a0: ; f7a0
 	ld [$c689], a
 	ld [hBattleTurn], a
 	ld [$cfca], a
-	ld a, $37
-	call Predef
+	predef PlayBattleAnim
 	ld hl, BlockedTheBallText
 	call PrintText
 	ld hl, DontBeAThiefText
@@ -3119,8 +3107,7 @@ Functionf84c: ; f84c
 	call GetPartyParamLocation
 	push hl
 	ld de, Buffer1
-	ld a, PREDEF_FILLPP
-	call Predef
+	predef FillPP
 	pop hl
 	ld bc, PartyMon1PP - PartyMon1Moves
 	add hl, bc

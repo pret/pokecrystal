@@ -167,8 +167,7 @@ Init:: ; 17d
 
 	call DelayFrame
 
-	ld a, $30
-	call Predef
+	predef Function9853
 
 	call SoundRestart
 	xor a

@@ -1311,8 +1311,7 @@ Function3c874: ; 3c874
 	xor a
 	ld [$cfca], a
 	ld [FXAnimIDHi], a
-	ld a, $37
-	call Predef
+	predef PlayBattleAnim
 	call SwitchTurnCore
 
 .asm_3c8d3
@@ -2078,8 +2077,7 @@ Function3cd3c: ; 3cd3c
 .asm_3cd4a
 	push bc
 	ld [$d10a], a
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 	pop bc
 	ret
 ; 3cd55
@@ -2461,8 +2459,7 @@ Function3cfa4: ; 3cfa4
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
 	jr nz, .asm_3cfe8
-	ld a, $2
-	call Predef
+	predef Functionc658
 
 .asm_3cfe8
 	ld a, [$c2cc]
@@ -2791,8 +2788,7 @@ Function3d1aa: ; 3d1aa
 	ld c, a
 	ld hl, $c664
 	ld b, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	ld hl, EnemySubStatus3
 	res 2, [hl]
 	xor a
@@ -3379,12 +3375,10 @@ Function3d581: ; 3d581
 	ld hl, $c664
 	ld b, $1
 	push bc
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	pop bc
 	ld hl, $c6fc
-	ld a, $3
-	jp Predef
+	predef_jump FlagPredef
 ; 3d599
 
 Function3d599: ; 3d599
@@ -3599,8 +3593,7 @@ Function3d6ca: ; 3d6ca
 	and a
 	jr nz, .asm_3d708
 	ld hl, EnemyMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	ld a, [UnownLetter]
 	ld [$def4], a
 
@@ -3710,8 +3703,7 @@ Function3d7c7: ; 3d7c7
 	call GetBaseData
 	ld a, $1
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	call Function3f47c
 	xor a
 	ld [$cfca], a
@@ -3735,8 +3727,7 @@ Function3d7c7: ; 3d7c7
 	hlcoord 12, 0
 	ld d, $0
 	ld e, $0
-	ld a, $47
-	call Predef
+	predef Functiond008e
 	jr .asm_3d82c
 
 .asm_3d821
@@ -4192,8 +4183,7 @@ Function3db32: ; 3db32
 
 Function3db5f: ; 3db5f
 	ld hl, BattleMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	hlcoord 1, 5
 	ld b, 7
 	ld c, 8
@@ -4376,8 +4366,7 @@ Function3dc5b: ; 3dc5b
 	ld c, a
 	ld hl, $c664
 	ld b, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	call Function3d43b
 	ld hl, BattleText_0x80a75
 	jr .asm_3dcdf
@@ -4523,8 +4512,7 @@ Function3dd2f: ; 3dd2f
 
 .asm_3dda4
 	ld [$d10a], a
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 Function3ddac:
 	call RefreshBattleHuds
 	callab GetOpponentItem
@@ -4548,8 +4536,7 @@ Function3ddc8: ; 3ddc8
 	xor a
 	ld [$cfca], a
 	ld [FXAnimIDHi], a
-	ld a, $37
-	call Predef
+	predef PlayBattleAnim
 	call SwitchTurnCore
 	pop bc
 	pop de
@@ -4815,8 +4802,7 @@ DrawPlayerHUD: ; 3df58
 	ld b, OTPARTYMON
 	xor a
 	ld [MonType], a
-	ld a, PREDEF_DRAW_PLAYER_HP
-	call Predef
+	predef DrawPlayerHP
 
 	; Exp bar
 	push de
@@ -4912,8 +4898,7 @@ PrintPlayerHUD: ; 3dfbf
 	push af
 	push hl
 	ld de, BattleMonStatus
-	ld a, $21
-	call Predef
+	predef Function50d2e
 	pop hl
 	pop bc
 	ret nz
@@ -4986,8 +4971,7 @@ Function3e043: ; 3e043
 	push af
 	push hl
 	ld de, EnemyMonStatus
-	ld a, $21
-	call Predef
+	predef Function50d2e
 	pop hl
 	pop bc
 	jr nz, .asm_3e0be
@@ -5593,8 +5577,7 @@ Function3e4bc: ; 3e4bc
 .asm_3e513
 	ld a, SCREEN_WIDTH
 	ld [Buffer1], a
-	ld a, PREDEF_LIST_MOVES
-	call Predef
+	predef ListMoves
 
 	ld b, 5
 	ld a, [$d235]
@@ -5921,8 +5904,7 @@ MoveInfoBox: ; 3e6c8
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	ld b, a
 	hlcoord 2, 10
-	ld a, PREDEF_PRINT_MOVE_TYPE
-	call Predef
+	predef PrintMoveType
 
 .done
 	ret
@@ -6387,8 +6369,7 @@ LoadEnemyMon: ; 3e8eb
 	
 ; Get letter based on DVs
 	ld hl, EnemyMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 ; Can't use any letters that haven't been unlocked
 ; If combined with forced shiny battletype, causes an infinite loop
 	call CheckUnownLetter
@@ -6469,8 +6450,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, EnemyMonMaxHP
 	ld b, $00
 	ld hl, $d201 ; ?
-	ld a, PREDEF_FILLSTATS
-	call Predef
+	predef Functione167
 	
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
@@ -6588,8 +6568,7 @@ LoadEnemyMon: ; 3e8eb
 ; Make sure the predef knows this isn't a partymon
 	ld [MagikarpLength], a
 ; Fill moves based on level
-	ld a, PREDEF_FILLMOVES
-	call Predef
+	predef FillMoves
 	
 .PP
 ; Trainer battle?
@@ -6600,8 +6579,7 @@ LoadEnemyMon: ; 3e8eb
 ; Fill wild PP
 	ld hl, EnemyMonMoves
 	ld de, EnemyMonPP
-	ld a, PREDEF_FILLPP
-	call Predef
+	predef FillPP
 	jr .Finish
 	
 .TrainerPP
@@ -6654,8 +6632,7 @@ LoadEnemyMon: ; 3e8eb
 	ld c, a
 	ld b, 1 ; set
 	ld hl, PokedexSeen
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 
 	ld hl, EnemyMonStats
 	ld de, EnemyStats
@@ -7294,8 +7271,7 @@ Function3ee17: ; 3ee17
 	ld a, d
 	ld [FXAnimIDHi], a
 	call WaitBGMap
-	ld a, $37
-	jp Predef
+	predef_jump PlayBattleAnim
 ; 3ee27
 
 Function3ee27: ; 3ee27
@@ -7340,8 +7316,7 @@ Function3ee3b: ; 3ee3b
 	ld c, a
 	ld b, $2
 	ld d, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	ld a, c
 	and a
 	pop bc
@@ -7514,8 +7489,7 @@ Function3ee3b: ; 3ee3b
 .asm_3ef74
 	xor a
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	callab Function50e1b
 	pop bc
 	ld hl, PartyMon1Level - PartyMon1
@@ -7551,8 +7525,7 @@ Function3ee3b: ; 3ee3b
 	add hl, bc
 	push bc
 	ld b, $1
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop bc
 	pop de
 	ld hl, $0025
@@ -7628,16 +7601,14 @@ Function3ee3b: ; 3ee3b
 .asm_3f057
 	xor a
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	hlcoord 9, 0
 	ld b, $a
 	ld c, $9
 	call TextBox
 	hlcoord 11, 1
 	ld bc, $0004
-	ld a, $28
-	call Predef
+	predef Function50b7b
 	ld c, $1e
 	call DelayFrames
 	call Functiona80
@@ -7657,8 +7628,7 @@ Function3ee3b: ; 3ee3b
 	ld a, b
 	ld [CurPartyLevel], a
 	push bc
-	ld a, $1a
-	call Predef
+	predef LearnLevelMoves
 	pop bc
 	ld a, b
 	cp c
@@ -7669,8 +7639,7 @@ Function3ee3b: ; 3ee3b
 	ld a, [CurPartyMon]
 	ld c, a
 	ld b, $1
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	pop af
 	ld [CurPartyLevel], a
 
@@ -7787,8 +7756,7 @@ Function3f136: ; 3f136
 	ld [DefaultFlypoint], a
 	xor a
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	ld a, [TempMonLevel]
 	ld b, a
 	ld e, a
@@ -8312,11 +8280,9 @@ Function3f447: ; 3f447
 	ld a, [BattleMonSpecies]
 	ld [CurPartySpecies], a
 	ld hl, BattleMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	ld de, $9310
-	ld a, $3d
-	call Predef
+	predef Function5116c
 	pop af
 	ld [CurPartySpecies], a
 	ret
@@ -8351,11 +8317,9 @@ Function3f486: ; 3f486
 	ld [CurPartySpecies], a
 	call GetBaseData
 	ld hl, EnemyMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	ld de, VTiles2
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	pop af
 	ld [CurPartySpecies], a
 	ret
@@ -8502,8 +8466,7 @@ Function3f594: ; 3f594
 	ld [$c6e6], a
 	hlcoord 12, 0
 	lb bc, 7, 7
-	ld a, PREDEF_FILL_BOX
-	call Predef
+	predef FillBox
 	ld a, $ff
 	ld [CurOTMon], a
 	ld a, TRAINER_BATTLE
@@ -8549,8 +8512,7 @@ Function3f607: ; 3f607
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld hl, EnemyMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	ld a, [CurPartySpecies]
 	cp UNOWN
 	jr nz, .asm_3f648
@@ -8562,15 +8524,13 @@ Function3f607: ; 3f607
 
 .asm_3f648
 	ld de, VTiles2
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	xor a
 	ld [TrainerClass], a
 	ld [$ffad], a
 	hlcoord 12, 0
 	lb bc, 7, 7
-	ld a, PREDEF_FILL_BOX
-	call Predef
+	predef FillBox
 	ret
 ; 3f662
 
@@ -8650,8 +8610,7 @@ Function3f6a5: ; 3f6a5
 	call Function3f71d
 	xor a
 	ld [$d1e9], a
-	ld a, $1c
-	call Predef
+	predef Function421e6
 	callba Function2ed44
 	ret
 ; 3f6d0
@@ -9325,8 +9284,7 @@ Function3fb6c: ; 3fb6c
 	ld [$ffad], a
 	hlcoord 2, 6
 	ld bc, $0606
-	ld a, $13
-	call Predef
+	predef FillBox
 	xor a
 	ld [hWY], a
 	ld [rWY], a
@@ -9397,8 +9355,7 @@ GetBattleBackpic: ; 3fbff
 .Decompress
 	ld de, $9310
 	ld c, $31
-	ld a, PREDEF_DECOMPRESS
-	call Predef
+	predef DecompressPredef
 	ret
 ; 3fc30
 
@@ -9421,8 +9378,7 @@ Function3fc30: ; 3fc30
 	ld [$ffad], a
 	hlcoord 2, 6
 	ld bc, $0606
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 3fc5b
 
@@ -9503,8 +9459,7 @@ BattleStartMessage: ; 3fc8b
 	hlcoord 12, 0
 	ld d, $0
 	ld e, $1
-	ld a, $47
-	call Predef
+	predef Functiond008e
 	jr .asm_3fceb
 
 .asm_3fce0

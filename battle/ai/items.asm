@@ -643,8 +643,7 @@ asm_38436: ; 38436 (e:4436)
 	xor a
 	ld [$d10a], a
 	call Function3839a
-	ld a, $b
-	call Predef
+	predef Functionc6e0
 	jp Function38387
 
 

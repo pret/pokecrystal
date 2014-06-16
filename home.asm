@@ -753,15 +753,14 @@ GetSGBLayout:: ; 3340
 
 	ld a, [hCGB]
 	and a
-	jr nz, .dosgb
+	jr nz, .sgb
 	
 	ld a, [hSGB]
 	and a
 	ret z
 	
-.dosgb
-	ld a, $31 ; LoadSGBLayout
-	jp Predef
+.sgb
+	predef_jump Function864c ; LoadSGBLayout
 ; 334e
 
 
@@ -1700,14 +1699,12 @@ Function378b:: ; 378b
 	jr c, .asm_37ad
 	push hl
 	ld de, VTiles2
-	ld a, $3c
-	call Predef
+	predef Function51077
 	pop hl
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	xor a
 	ld [$c2c6], a
 	ret
