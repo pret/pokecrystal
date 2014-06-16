@@ -5251,7 +5251,7 @@ Function64db: ; 64db
 	ret
 ; 6508
 
-Function6508: ; 6508
+LearnMove: ; 6508
 	call Function309d
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
@@ -5261,7 +5261,7 @@ Function6508: ; 6508
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-Function6520: ; 6520
+.loop
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
@@ -5269,17 +5269,18 @@ Function6520: ; 6520
 	ld d, h
 	ld e, l
 	ld b, NUM_MOVES
-.asm_6530
+.next
 	ld a, [hl]
 	and a
-	jr z, .asm_6564
+	jr z, .learn
 	inc hl
 	dec b
-	jr nz, .asm_6530
+	jr nz, .next
+
 	push de
 	call Function65d3
 	pop de
-	jp c, Function65b5
+	jp c, .cancel
 
 	push hl
 	push de
@@ -5288,14 +5289,14 @@ Function6520: ; 6520
 	ld b, a
 	ld a, [IsInBattle]
 	and a
-	jr z, .asm_6559
+	jr z, .not_disabled
 	ld a, [DisabledMove]
 	cp b
-	jr nz, .asm_6559
+	jr nz, .not_disabled
 	xor a
 	ld [DisabledMove], a
 	ld [PlayerDisableCount], a
-.asm_6559
+.not_disabled
 
 	call GetMoveName
 	ld hl, UnknownText_0x6684
@@ -5303,11 +5304,12 @@ Function6520: ; 6520
 	pop de
 	pop hl
 
-.asm_6564
+.learn
 	ld a, [$d262]
 	ld [hl], a
-	ld bc, $0015
+	ld bc, PartyMon1PP - PartyMon1Moves
 	add hl, bc
+
 	push hl
 	push de
 	dec a
@@ -5318,18 +5320,23 @@ Function6520: ; 6520
 	call GetFarByte
 	pop de
 	pop hl
+
 	ld [hl], a
+
 	ld a, [IsInBattle]
 	and a
-	jp z, Function65ca
+	jp z, .learned
+
 	ld a, [CurPartyMon]
 	ld b, a
 	ld a, [CurBattleMon]
 	cp b
-	jp nz, Function65ca
+	jp nz, .learned
+
 	ld a, [PlayerSubStatus5]
-	bit 3, a
-	jp nz, Function65ca
+	bit SUBSTATUS_TRANSFORMED, a
+	jp nz, .learned
+
 	ld h, d
 	ld l, e
 	ld de, BattleMonMoves
@@ -5340,24 +5347,23 @@ Function6520: ; 6520
 	ld de, BattleMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-	jp Function65ca
-; 65b5
+	jp .learned
 
-Function65b5: ; 65b5
+.cancel
 	ld hl, UnknownText_0x6675
 	call PrintText
 	call YesNoBox
-	jp c, Function6520
+	jp c, .loop
+
 	ld hl, UnknownText_0x667a
 	call PrintText
-	ld b, $0
+	ld b, 0
 	ret
-; 65ca
 
-Function65ca: ; 65ca
+.learned
 	ld hl, UnknownText_0x666b
 	call PrintText
-	ld b, $1
+	ld b, 1
 	ret
 ; 65d3
 
@@ -6452,8 +6458,8 @@ ChangeHappiness: ; 71c2
 	db  +5,  +3,  +2
 	db  +5,  +3,  +2
 	db  +1,  +1,  +0
-	db  +3,  +2,  +1
-	db  +1,  +1,  +0
+	db  +3,  +2,  +1 ; Battled a Gym Leader
+	db  +1,  +1,  +0 ; Learned a move
 	db  -1,  -1,  -1
 	db  -5,  -5, -10
 	db  -5,  -5, -10
@@ -7753,7 +7759,7 @@ PredefPointers: ; 856b
 ; $4b Predef pointers
 ; address, bank
 
-	dwb Function6508, BANK(Function6508) ; $0
+	dwb LearnMove, BANK(LearnMove) ; $0
 	dwb Function747a, BANK(Function747a)
 	dwb Functionc658, BANK(Functionc658)
 	dwb FlagPredef, BANK(FlagPredef)
@@ -7779,7 +7785,7 @@ PredefPointers: ; 856b
 	dwb FillInExpBar, BANK(FillInExpBar)
 	dwb Function3f43d, BANK(Function3f43d) ; $18
 	dwb Function3f47c, BANK(Function3f47c)
-	dwb Function42487, BANK(Function42487)
+	dwb LearnLevelMoves, BANK(LearnLevelMoves)
 	dwb FillMoves, BANK(FillMoves)
 	dwb Function421e6, BANK(Function421e6)
 	dwb Function28f63, BANK(Function28f63)
@@ -14644,12 +14650,12 @@ WobbleChances: ; f9ba
 ; f9ea
 
 
-Functionf9ea: ; f9ea
-	ld a, $2
+KnowsMove: ; f9ea
+	ld a, PartyMon1Moves - PartyMon1
 	call GetPartyParamLocation
 	ld a, [$d262]
 	ld b, a
-	ld c, $4
+	ld c, NUM_MOVES
 .asm_f9f5
 	ld a, [hli]
 	cp b
@@ -38251,7 +38257,8 @@ Function28ea3: ; 28ea3
 ; 28eab
 
 String28eab: ; 28eab
-	db "TRADE", $4e, "CANCEL@"
+	db   "TRADE"
+	next "CANCEL@"
 
 UnknownText_0x28eb8: ; 0x28eb8
 	; Trade @ for @ ?
@@ -38260,10 +38267,11 @@ UnknownText_0x28eb8: ; 0x28eb8
 ; 0x28ebd
 
 String28ebd: ; 28ebd
-	db "Trade completed!@"
+	db   "Trade completed!@"
 
 String28ece: ; 28ece
-	db "Too bad! The trade", $4e, "was canceled!@"
+	db   "Too bad! The trade"
+	next "was canceled!@"
 
 
 Function28eef: ; 28eef
@@ -42611,11 +42619,13 @@ Function2c80a: ; 2c80a
 Function2c867: ; 2c867
 	ld a, $e
 	call Predef
+
 	push bc
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMonNicknames)
 	call GetNick
 	pop bc
+
 	ld a, c
 	and a
 	jr nz, .asm_2c88b
@@ -42627,31 +42637,35 @@ Function2c867: ; 2c867
 	call PrintText
 	jr .asm_2c8b6
 .asm_2c88b
-	callab Functionf9ea
+
+	callab KnowsMove
 	jr c, .asm_2c8b6
-	ld a, $0
+
+	ld a, PREDEF_LEARN_MOVE
 	call Predef
 	ld a, b
 	and a
 	jr z, .asm_2c8b6
+
 	callba Function106049
-	ld a, [CurItem] ; $d106
+	ld a, [CurItem]
 	call IsHM
 	ret c
+
 	ld c, $5
 	callab ChangeHappiness
 	call Function2cb0c
-	jr Function2c8bd
+	jr .asm_2c8bd
+
 .asm_2c8b6
 	and a
 	ret
-; 2c8b8 (b:48b8)
 
-Function2c8b8: ; 2c8b8
+.asm_2c8b8
 	ld a, $2
 	ld [$d0ec], a
 
-Function2c8bd: ; 2c8bd
+.asm_2c8bd
 	scf
 	ret
 ; 2c8bf (b:48bf)
@@ -47042,7 +47056,7 @@ Function421f5: ; 421f5
 	ld [$d265], a
 	xor a
 	ld [MonType], a
-	call Function42487
+	call LearnLevelMoves
 	ld a, [$d265]
 	dec a
 	call SetSeenAndCaughtMon
@@ -47172,7 +47186,7 @@ UnknownText_0x42482: ; 0x42482
 ; 0x42487
 
 
-Function42487: ; 42487
+LearnLevelMoves: ; 42487
 	ld a, [$d265]
 	ld [CurPartySpecies], a
 	dec a
@@ -47184,50 +47198,55 @@ Function42487: ; 42487
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_42499
+
+.skip_evos
 	ld a, [hli]
 	and a
-	jr nz, .asm_42499
-.asm_4249d
+	jr nz, .skip_evos
+
+.find_move
 	ld a, [hli]
 	and a
-	jr z, .asm_424da
+	jr z, .done
+
 	ld b, a
 	ld a, [CurPartyLevel]
 	cp b
 	ld a, [hli]
-	jr nz, .asm_4249d
+	jr nz, .find_move
+
 	push hl
 	ld d, a
 	ld hl, PartyMon1Moves
 	ld a, [CurPartyMon]
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
+
 	ld b, NUM_MOVES
-.asm_424b9
+.check_move
 	ld a, [hli]
 	cp d
-	jr z, .asm_424c2
+	jr z, .has_move
 	dec b
-	jr nz, .asm_424b9
-	jr .asm_424c5
+	jr nz, .check_move
+	jr .learn
+.has_move
 
-.asm_424c2
 	pop hl
-	jr .asm_4249d
+	jr .find_move
 
-.asm_424c5
+.learn
 	ld a, d
 	ld [$d262], a
 	ld [$d265], a
 	call GetMoveName
 	call CopyName1
-	ld a, $0
+	ld a, PREDEF_LEARN_MOVE
 	call Predef
 	pop hl
-	jr .asm_4249d
+	jr .find_move
 
-.asm_424da
+.done
 	ld a, [CurPartySpecies]
 	ld [$d265], a
 	ret
@@ -47235,7 +47254,7 @@ Function42487: ; 42487
 
 
 FillMoves: ; 424e1
-; Fill in moves at de for CurPartySpecies at CurPartyLevle
+; Fill in moves at de for CurPartySpecies at CurPartyLevel
 
 	push hl
 	push de
@@ -50581,16 +50600,19 @@ Function492a5: ; 492a5
 Function492b9: ; 492b9
 	ld hl, MenuDataHeader_0x4930a
 	call LoadMenuDataHeader
+
 	ld a, $e
 	call Predef
+
 	push bc
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
 	call GetNick
 	pop bc
+
 	ld a, c
 	and a
-	jr nz, .asm_492e5
+	jr nz, .can_learn
 	push de
 	ld de, SFX_WRONG
 	call PlaySFX
@@ -50598,26 +50620,28 @@ Function492b9: ; 492b9
 	ld a, BANK(UnknownText_0x2c8ce)
 	ld hl, UnknownText_0x2c8ce
 	call FarPrintText
-	jr .asm_49300
+	jr .didnt_learn
+.can_learn
 
-.asm_492e5
-	callab Functionf9ea
-	jr c, .asm_49300
-	ld a, $0
+	callab KnowsMove
+	jr c, .didnt_learn
+
+	ld a, PREDEF_LEARN_MOVE
 	call Predef
 	ld a, b
 	and a
-	jr z, .asm_49300
+	jr z, .didnt_learn
+
 	ld c, $5
 	callab ChangeHappiness
-	jr .asm_49305
+	jr .learned
 
-.asm_49300
+.didnt_learn
 	call Function1c07
 	and a
 	ret
 
-.asm_49305
+.learned
 	call Function1c07
 	scf
 	ret
@@ -67785,12 +67809,12 @@ Function8963d: ; 8963d
 ; 89655
 
 Function89655: ; 89655
-	ld hl, $ceca
-	ld de, $0014
-	ld a, $5
-	ld b, $4
+	ld hl, AttrMap + SCREEN_WIDTH * 12 + 1
+	ld de, SCREEN_WIDTH
+	ld a, 5
+	ld b, 4
 .asm_8965f
-	ld c, $12
+	ld c, 18
 	push hl
 .asm_89662
 	ld [hli], a
