@@ -1,3 +1,6 @@
+MAX_ROLLOUT_COUNT EQU 5
+
+
 BattleCommand5b: ; 37718
 ; checkcurl
 
@@ -28,7 +31,7 @@ BattleCommand5c: ; 37734
 
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and 7
+	and SLP
 	ret nz
 
 	ld hl, PlayerRolloutCount
@@ -58,23 +61,23 @@ BattleCommand5c: ; 37734
 	inc [hl]
 	ld a, [hl]
 	ld b, a
-	cp $5
+	cp MAX_ROLLOUT_COUNT
 	jr c, .asm_3776e
 
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
-	res 6, [hl]
+	res SUBSTATUS_ENCORED, [hl]
 	jr .asm_37775
 
 .asm_3776e
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
-	set 6, [hl]
+	set SUBSTATUS_ENCORED, [hl]
 
 .asm_37775
 	ld a, BATTLE_VARS_SUBSTATUS2
 	call GetBattleVar
-	bit 0, a
+	bit SUBSTATUS_CURLED, a
 	jr z, .asm_3777f
 	inc b
 .asm_3777f

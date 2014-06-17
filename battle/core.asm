@@ -57,9 +57,9 @@ Function3c000: ; 3c000
 	call Function30b4
 	ld a, [BattleType]
 	cp $2
-	jp z, Function3c0e2
+	jp z, .asm_3c0e2
 	cp BATTLETYPE_TUTORIAL
-	jp z, Function3c0e2
+	jp z, .asm_3c0e2
 	xor a
 	ld [CurPartyMon], a
 .asm_3c06b
@@ -114,10 +114,9 @@ Function3c000: ; 3c000
 
 .asm_3c0df
 	jp Function3c12f
-; 3c0e2
 
-Function3c0e2: ; 3c0e2
-	jp Function3e139
+.asm_3c0e2
+	jp BattleMenu
 ; 3c0e5
 
 
@@ -162,9 +161,11 @@ Function3c0e5: ; 3c0e5
 ; 3c12f
 
 Function3c12f: ; 3c12f
+.loop
 	call Function3c1bf
 	call Function3c3f5
-	jp c, .asm_3c1be
+	jp c, .quit
+
 	xor a
 	ld [wPlayerIsSwitching], a
 	ld [wEnemyIsSwitching], a
@@ -173,58 +174,62 @@ Function3c12f: ; 3c12f
 	ld [$c740], a
 	ld [CurDamage], a
 	ld [CurDamage + 1], a
+
 	call Function3c27c
 	call UpdateBattleMonInParty
 	callba AIChooseMove
-	call Function3d2f1
-	jr nz, .asm_3c174
+
+	call IsMobileBattle
+	jr nz, .not_disconnected
 	callba Function100da5
 	callba Function100641
 	callba Function100dd8
-	jp c, .asm_3c1be
+	jp c, .quit
+.not_disconnected
 
-.asm_3c174
 	call Function3c410
 	jr c, .asm_3c18a
 .asm_3c179
-	call Function3e139
-	jr c, .asm_3c1be
+	call BattleMenu
+	jr c, .quit
 	ld a, [BattleEnded]
 	and a
-	jr nz, .asm_3c1be
-	ld a, [$d232]
+	jr nz, .quit
+	ld a, [$d232] ; roared/whirlwinded/teleported
 	and a
-	jr nz, .asm_3c1be
-
+	jr nz, .quit
 .asm_3c18a
 	call Function3c434
 	jr nz, .asm_3c179
+
 	call Function3c300
-	jr c, .asm_3c1be
+	jr c, .quit
+
 	call Function3c314
 	jr c, .asm_3c19e
 	call Function3c5fe
 	jr .asm_3c1a1
-
 .asm_3c19e
 	call Function3c664
-
 .asm_3c1a1
 	call Function3d2e0
-	jr c, .asm_3c1be
+	jr c, .quit
+
 	ld a, [$d232]
 	and a
-	jr nz, .asm_3c1be
+	jr nz, .quit
+
 	ld a, [BattleEnded]
 	and a
-	jr nz, .asm_3c1be
+	jr nz, .quit
+
 	call Function3c1d6
 	ld a, [BattleEnded]
 	and a
-	jr nz, .asm_3c1be
-	jp Function3c12f
+	jr nz, .quit
+	jp .loop
 
-.asm_3c1be
+.quit
 	ret
 ; 3c1bf
 
@@ -570,7 +575,7 @@ Function3c3f3: ; 3c3f3
 
 Function3c3f5: ; 3c3f5
 	ld a, [BattleType]
-	cp $6
+	cp BATTLETYPE_CONTEST
 	jr nz, .asm_3c40e
 	ld a, [$dc79]
 	and a
@@ -591,16 +596,20 @@ Function3c410: ; 3c410
 	ld a, [PlayerSubStatus4]
 	and 1 << SUBSTATUS_RECHARGE
 	jp nz, .quit
+
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_FLINCHED, [hl]
 	ld hl, PlayerSubStatus3
 	res SUBSTATUS_FLINCHED, [hl]
+
 	ld a, [hl]
 	and 1 << SUBSTATUS_CHARGED | 1 << SUBSTATUS_ROLLOUT
 	jp nz, .quit
+
 	ld hl, PlayerSubStatus1
 	bit SUBSTATUS_ENCORED, [hl]
 	jp nz, .quit
+
 	and a
 	ret
 
@@ -2445,7 +2454,7 @@ Function3cfa4: ; 3cfa4
 	callab Function39939
 	ld hl, BattleText_0x809da
 	call StdBattleTextBox
-	call Function3d2f1
+	call IsMobileBattle
 	jr z, .asm_3cff5
 	ld a, [InLinkBattle]
 	and a
@@ -2945,7 +2954,7 @@ Function3d2e0: ; 3d2e0
 	ret
 ; 3d2f1
 
-Function3d2f1: ; 3d2f1
+IsMobileBattle: ; 3d2f1
 	ld a, [InLinkBattle]
 	cp $4
 	ret
@@ -2971,25 +2980,25 @@ Function3d313: ; 3d313
 ; 3d329
 
 Function3d329: ; 3d329
-	call Function3d2f1
-	jr z, .asm_3d335
+	call IsMobileBattle
+	jr z, .mobile
 	callba PartyMenuSelect
 	ret
 
-.asm_3d335
+.mobile
 	callba Function100cb5
 	ret
 ; 3d33c
 
 PickPartyMonInBattle: ; 3d33c
-.asm_3d33c
+.loop
 	ld a, $2 ; Which PKMN?
 	ld [PartyMenuActionText], a
 	call Function3d313
 	call Function3d329
 	ret c
 	call Function3d887
-	jr z, .asm_3d33c
+	jr z, .loop
 	xor a
 	ret
 ; 3d34f
@@ -3121,7 +3130,7 @@ LostBattle: ; 3d38e
 
 .asm_3d40a
 	ld hl, LostAgainstText
-	call Function3d2f1
+	call IsMobileBattle
 	jr z, .asm_3d417
 
 .asm_3d412
@@ -3830,7 +3839,7 @@ Function3d8b3: ; 3d8b3
 	ld a, [BattleType]
 	cp $2
 	jp z, .asm_3d9a2
-	cp $6
+	cp BATTLETYPE_CONTEST
 	jp z, .asm_3d9a2
 	cp BATTLETYPE_TRAP
 	jp z, .asm_3d98d
@@ -5075,54 +5084,56 @@ Function3e138: ; 3e138
 	ret
 ; 3e139
 
-Function3e139: ; 3e139
+BattleMenu: ; 3e139
 	xor a
 	ld [hBGMapMode], a
 	call Function30bf
 
 	ld a, [BattleType]
 	cp $2
-	jr z, .asm_3e156
+	jr z, .ok
 	cp BATTLETYPE_TUTORIAL
-	jr z, .asm_3e156
+	jr z, .ok
 	call EmptyBattleTextBox
 	call UpdateBattleHuds
 	call EmptyBattleTextBox
 	call Function309d
-.asm_3e156
+.ok
 
+.loop
 	ld a, [BattleType]
-	cp $6
-	jr nz, .asm_3e165
-	callba Function24f13
-	jr .asm_3e175
-.asm_3e165
+	cp BATTLETYPE_CONTEST
+	jr nz, .not_contest
+	callba ContestBattleMenu
+	jr .next
+.not_contest
 
+	; Auto input: choose "ITEM"
 	ld a, [InputType]
 	or a
 	jr z, .asm_3e171
 	callba Function1de294
 .asm_3e171
 
-	call Function3e19b
+	call LoadBattleMenu2
 	ret c
 
-.asm_3e175
+.next
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, [$d0d2]
 	cp $1
-	jp z, Function3e192
+	jp z, BattleMenu_Fight
 	cp $3
-	jp z, Function3e1c7
+	jp z, BattleMenu_Pack
 	cp $2
-	jp z, Function3e28d
+	jp z, BattleMenu_PKMN
 	cp $4
-	jp z, Function3e489
-	jr .asm_3e156
+	jp z, BattleMenu_Run
+	jr .loop
 ; 3e192
 
-Function3e192: ; 3e192
+BattleMenu_Fight: ; 3e192
 	xor a
 	ld [$d267], a
 	call Function30b4
@@ -5130,15 +5141,15 @@ Function3e192: ; 3e192
 	ret
 ; 3e19b
 
-Function3e19b: ; 3e19b
-	call Function3d2f1
-	jr z, .asm_3e1a8
+LoadBattleMenu2: ; 3e19b
+	call IsMobileBattle
+	jr z, .mobile
 
-	callba LoadBattleMenuDataHeader
+	callba LoadBattleMenu
 	and a
 	ret
 
-.asm_3e1a8
+.mobile
 	callba Function100b12
 	ld a, [$cd2b]
 	and a
@@ -5146,44 +5157,47 @@ Function3e19b: ; 3e19b
 
 	ld hl, $cd2a
 	bit 4, [hl]
-	jr nz, .asm_3e1c5
+	jr nz, .error
 	ld hl, BattleText_0x81863
 	call StdBattleTextBox
 	ld c, 60
 	call DelayFrames
-.asm_3e1c5
-
+.error
 	scf
 	ret
 ; 3e1c7
 
-Function3e1c7: ; 3e1c7
+BattleMenu_Pack: ; 3e1c7
 	ld a, [InLinkBattle]
 	and a
-	jp nz, Function3e22b
+	jp nz, ItemsCantBeUsed
+
 	ld a, [$cfc0]
 	and a
-	jp nz, Function3e22b
+	jp nz, ItemsCantBeUsed
+
 	call Function1d6e
+
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jr z, .asm_3e1f1
-	cp $6
-	jr z, .asm_3e201
-	callba Function10493
+	jr z, .tutorial
+	cp BATTLETYPE_CONTEST
+	jr z, .contest
+
+	callba BattlePack
 	ld a, [$d0ec]
 	and a
 	jr z, .asm_3e20d
 	jr .asm_3e209
 
-.asm_3e1f1
+.tutorial
 	callba Function107bb
 	ld a, POKE_BALL
 	ld [CurItem], a
 	call DoItemEffect
 	jr .asm_3e209
 
-.asm_3e201
+.contest
 	ld a, PARK_BALL
 	ld [CurItem], a
 	call DoItemEffect
@@ -5202,13 +5216,13 @@ Function3e1c7: ; 3e1c7
 	call WaitBGMap
 	call Function3ee27
 	call Function309d
-	jp Function3e139
+	jp BattleMenu
 ; 3e22b
 
-Function3e22b: ; 3e22b
+ItemsCantBeUsed: ; 3e22b
 	ld hl, BattleText_0x80bf3
 	call StdBattleTextBox
-	jp Function3e139
+	jp BattleMenu
 ; 3e234
 
 Function3e234: ; 3e234
@@ -5256,7 +5270,7 @@ Function3e234: ; 3e234
 	ret
 ; 3e28d
 
-Function3e28d: ; 3e28d
+BattleMenu_PKMN: ; 3e28d
 	call Function1d6e
 Function3e290:
 	call Function1c07
@@ -5303,11 +5317,11 @@ Function3e299:
 	call Function309d
 	call ClearSGB
 	call Function32f9
-	jp Function3e139
+	jp BattleMenu
 ; 3e2f5
 
 Function3e2f5: ; 3e2f5
-	call Function3d2f1
+	call IsMobileBattle
 	jr z, .asm_3e301
 	callba Function24e99
 	ret
@@ -5506,8 +5520,7 @@ PassedBattleMonEntrance: ; 3e459
 ; 3e489
 
 
-
-Function3e489: ; 3e489
+BattleMenu_Run: ; 3e489
 	call Function30b4
 	ld a, $3
 	ld [$cfa9], a
@@ -5520,9 +5533,8 @@ Function3e489: ; 3e489
 	ld a, [$d0ec]
 	and a
 	ret nz
-	jp Function3e139
+	jp BattleMenu
 ; 3e4a8
-
 
 
 CheckAmuletCoin: ; 3e4a8
@@ -5538,7 +5550,7 @@ CheckAmuletCoin: ; 3e4a8
 ; 3e4bc
 
 Function3e4bc: ; 3e4bc
-	call Function3d2f1
+	call IsMobileBattle
 	jr nz, .asm_3e4c8
 	callba Function100b9f
 	ret

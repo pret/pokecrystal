@@ -14669,7 +14669,7 @@ UnknownText_0xfa06: ; 0xfa06
 
 SECTION "bank4", ROMX, BANK[$4]
 
-Function10000: ; 10000
+Pack: ; 10000
 	ld hl, Options
 	set 4, [hl]
 	call Function1068a
@@ -15333,7 +15333,7 @@ Function10492: ; 10492
 ; 10493
 
 
-Function10493: ; 10493
+BattlePack: ; 10493
 	ld hl, Options
 	set 4, [hl]
 	call Function1068a
@@ -19499,7 +19499,7 @@ StartMenu_Pokegear: ; 1294c
 StartMenu_Pack: ; 1295b
 
 	call FadeToMenu
-	callba Function10000
+	callba Pack
 	ld a, [$cf66]
 	and a
 	jr nz, .asm_12970
@@ -21441,7 +21441,7 @@ Function135db: ; 135db
 ; 135eb
 
 UnknownScript_0x135eb:: ; 0x135eb
-	writecode $3, $6
+	writecode $3, BATTLETYPE_CONTEST
 	battlecheck
 	startbattle
 	returnafterbattle
@@ -33442,7 +33442,7 @@ MenuData2_0x24edc: ; 24edc
 ; 24ef2
 
 
-LoadBattleMenuDataHeader: ; 24ef2
+LoadBattleMenu: ; 24ef2
 	ld hl, BattleMenuDataHeader
 	call LoadMenuDataHeader
 	ld a, [$d0d2]
@@ -33455,15 +33455,14 @@ LoadBattleMenuDataHeader: ; 24ef2
 ; 24f0b
 
 
-Function24f0b: ; 24f0b
-; Safari battle menu (untranslated).
+SafariBattleMenu: ; 24f0b
+; untranslated
 	ld hl, MenuDataHeader_0x24f4e
 	call LoadMenuDataHeader
 	jr Function24f19
 ; 24f13
 
-Function24f13: ; 24f13
-; Park battle menu.
+ContestBattleMenu: ; 24f13
 	ld hl, MenuDataHeader_0x24f89
 	call LoadMenuDataHeader
 ; 24f19
@@ -57309,6 +57308,7 @@ Function4e53f: ; 4e53f
 	ret
 ; 4e554
 
+
 Function4e554:: ; 4e554
 	ld a, [BattleType]
 	dec a
@@ -57323,39 +57323,39 @@ Function4e554:: ; 4e554
 	jp [hl]
 ; 4e564
 
-
-; no known jump sources
 Jumptable_4e564: ; 4e564 (13:6564)
 	dw Function4e56a
 	dw Function4e56a
 	dw Function4e56a
 
-
-; no known jump sources
 Function4e56a: ; 4e56a (13:656a)
 	ld hl, PlayerName ; $d47d
 	ld de, MomsName ; $d488
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld hl, String_4e5da
+
+	ld hl, DudeString
 	ld de, PlayerName ; $d47d
 	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	call Function4e5b7
+
 	xor a
-	ld [hJoyDown], a ; $ff00+$a8
-	ld [hJoyPressed], a ; $ff00+$a7
-	ld a, [Options] ; $cfcc
+	ld [hJoyDown], a
+	ld [hJoyPressed], a
+	ld a, [Options]
 	push af
 	and $f8
 	add $3
-	ld [Options], a ; $cfcc
+	ld [Options], a
 	ld hl, AutoInput_4e5df
 	ld a, BANK(AutoInput_4e5df)
 	call StartAutoInput
 	callab StartBattle
 	call StopAutoInput
 	pop af
+
 	ld [Options], a ; $cfcc
 	ld hl, MomsName ; $d488
 	ld de, PlayerName ; $d47d
@@ -57387,7 +57387,7 @@ Function4e5b7: ; 4e5b7 (13:65b7)
 	ret
 ; 4e5da (13:65da)
 
-String_4e5da: ; 4e5da
+DudeString: ; 4e5da
 	db "DUDE@"
 ; 4e5df
 
@@ -79440,7 +79440,7 @@ UnknownScript_0x90241: ; 0x90241
 	end
 ; 0x90255
 
-UnknownScript_0x90255: ; 0x90255
+UnknownScript_0x90255:: ; 0x90255
 	3callasm Function9025c
 	2jump UnknownScript_0x90241
 ; 0x9025c
@@ -102924,11 +102924,11 @@ INCBIN "baserom.gbc",$100b0a,$100b12 - $100b0a
 Function100b12: ; 100b12
 	call Function100dd8
 	ret c
-	ld hl, $4f2c
-	ld a, $9
+	ld hl, BattleMenuDataHeader
+	ld a, BANK(BattleMenuDataHeader)
 	ld de, LoadMenuDataHeader
 	call FarCall_de
-	ld a, $9
+	ld a, BANK(BattleMenuDataHeader)
 	ld [$cf94], a
 	ld a, [$d0d2]
 	ld [$cf88], a

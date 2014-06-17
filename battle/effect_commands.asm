@@ -6753,7 +6753,7 @@ BattleCommandaf: ; 365a7
 ; curl
 	ld a, BATTLE_VARS_SUBSTATUS2
 	call GetBattleVarAddr
-	set 0, [hl]
+	set SUBSTATUS_CURLED, [hl]
 	ret
 ; 365af
 
@@ -7046,20 +7046,20 @@ BattleCommand3d: ; 36751
 ; No rampage during Sleep Talk.
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and 7
+	and SLP
 	ret nz
 
 	ld de, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_36764 ; 3675f $3
+	jr z, .ok
 	ld de, EnemyRolloutCount
-.asm_36764
+.ok
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	set 1, [hl]
+	set SUBSTATUS_ROLLOUT, [hl]
 	call BattleRandom
-	and $1
+	and 1
 	inc a
 	ld [de], a
 	ld a, 1
@@ -7073,24 +7073,24 @@ BattleCommanda0: ; 36778
 
 	ld a, [BattleType]
 	cp BATTLETYPE_SHINY
-	jr z, .asm_367b9
-	cp $9
-	jr z, .asm_367b9
+	jr z, .failed
+	cp BATTLETYPE_TRAP
+	jr z, .failed
 	cp BATTLETYPE_CELEBI
-	jr z, .asm_367b9
+	jr z, .failed
 	cp BATTLETYPE_SUICUNE
-	jr z, .asm_367b9
+	jr z, .failed
 
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVar
 	bit SUBSTATUS_CANT_RUN, a
-	jr nz, .asm_367b9
+	jr nz, .failed
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_367bf
 	ld a, [IsInBattle]
 	dec a
-	jr nz, .asm_367b9
+	jr nz, .failed
 	ld a, [$d143]
 	ld b, a
 	ld a, [BattleMonLevel]
@@ -7108,14 +7108,14 @@ BattleCommanda0: ; 36778
 	cp b
 	jr nc, .asm_367df ; 367b7 $26
 
-.asm_367b9
+.failed
 	call AnimateFailedMove
 	jp PrintButItFailed
 
 .asm_367bf
 	ld a, [IsInBattle]
 	dec a
-	jr nz, .asm_367b9 ; 367c3 $f4
+	jr nz, .failed
 	ld a, [BattleMonLevel]
 	ld b, a
 	ld a, [$d143]
