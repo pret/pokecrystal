@@ -433,6 +433,7 @@ PlayerRolloutCount:: ; c672
 	ds 1
 PlayerConfuseCount:: ; c673
 	ds 1
+PlayerToxicCount:: ; c674
 	ds 1
 PlayerDisableCount:: ; c675
 	ds 1
@@ -449,6 +450,7 @@ EnemyRolloutCount:: ; c67a
 	ds 1
 EnemyConfuseCount:: ; c67b
 	ds 1
+EnemyToxicCount:: ; c67c
 	ds 1
 EnemyDisableCount:: ; c67d
 	ds 1

@@ -356,12 +356,12 @@ CheckPlayerTurn:
 CantMove: ; 341f0
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
-	res SUBSTATUS_ENCORED, [hl]
+	res SUBSTATUS_ROLLOUT, [hl]
 
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	ld a, [hl]
-	and $ff ^ (1<<SUBSTATUS_BIDE + 1<<SUBSTATUS_ROLLOUT + 1<<SUBSTATUS_CHARGED)
+	and $ff ^ (1<<SUBSTATUS_BIDE + 1<<SUBSTATUS_RAMPAGE + 1<<SUBSTATUS_CHARGED)
 	ld [hl], a
 
 	call ResetFuryCutterCount
@@ -819,7 +819,7 @@ BattleCommand02: ; 343db
 	ld hl, WontObeyText
 	call StdBattleTextBox
 	call HitConfusion
-	jp Function3450c
+	jp .asm_3450c
 
 
 .Nap
@@ -855,7 +855,7 @@ BattleCommand02: ; 343db
 
 .Print
 	call StdBattleTextBox
-	jp Function3450c
+	jp .asm_3450c
 
 
 .UseInstead
@@ -959,19 +959,15 @@ BattleCommand02: ; 343db
 	pop af
 	ld [CurMoveNum], a
 
-	; fallthrough
-; 3450c
 
-
-Function3450c: ; 3450c
+.asm_3450c
 	xor a
 	ld [LastPlayerMove], a
 	ld [LastEnemyCounterMove], a
 
+	; Break Encore too.
 	ld hl, PlayerSubStatus5
-	res 4, [hl]
-
-; Break encore too.
+	res SUBSTATUS_ENCORED, [hl]
 	xor a
 	ld [PlayerEncoreCount], a
 
@@ -994,7 +990,7 @@ IgnoreSleepOnly: ; 3451f
 .CheckSleep
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and 7
+	and SLP
 	ret z
 
 ; 'ignored orders…sleeping!'
@@ -4475,20 +4471,20 @@ BattleCommand41: ; 35864
 	ld de, EnemyEncoreCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_35875 ; 3586d $6
+	jr z, .ok
 	ld hl, BattleMonMoves
 	ld de, PlayerEncoreCount
-.asm_35875
+.ok
 	ld a, BATTLE_VARS_LAST_MOVE_OPP
 	call GetBattleVar
 	and a
-	jp z, .asm_35923
+	jp z, .failed
 	cp STRUGGLE
-	jp z, .asm_35923
+	jp z, .failed
 	cp ENCORE
-	jp z, .asm_35923
+	jp z, .failed
 	cp MIRROR_MOVE
-	jp z, .asm_35923
+	jp z, .failed
 	ld b, a
 
 .asm_3588e
@@ -4500,15 +4496,15 @@ BattleCommand41: ; 35864
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	jp z, .asm_35923
+	jp z, .failed
 	ld a, [AttackMissed]
 	and a
-	jp nz, .asm_35923
+	jp nz, .failed
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarAddr
-	bit 4, [hl]
-	jp nz, .asm_35923
-	set 4, [hl]
+	bit SUBSTATUS_ENCORED, [hl]
+	jp nz, .failed
+	set SUBSTATUS_ENCORED, [hl]
 	call BattleRandom
 	and $3
 	inc a
@@ -4535,10 +4531,11 @@ BattleCommand41: ; 35864
 	cp NUM_MOVES
 	jr c, .asm_358cc
 	pop hl
-	res 4, [hl]
+	res SUBSTATUS_ENCORED, [hl]
 	xor a
 	ld [de], a
-	jr .asm_35923
+	jr .failed
+
 .asm_358dd
 	pop hl
 
@@ -4566,10 +4563,10 @@ BattleCommand41: ; 35864
 	cp NUM_MOVES
 	jr c, .asm_358f9
 	pop hl
-	res 4, [hl]
+	res SUBSTATUS_ENCORED, [hl]
 	xor a
 	ld [de], a
-	jr .asm_35923
+	jr .failed
 .asm_3590a
 	pop hl
 
@@ -4586,7 +4583,7 @@ BattleCommand41: ; 35864
 	ld hl, GotAnEncoreText
 	jp StdBattleTextBox
 
-.asm_35923
+.failed
 	jp PrintDidntAffect2
 ; 35926
 
@@ -5669,6 +5666,7 @@ BattleCommand2f: ; 35f2c
 	call BattleRandom
 	cp $40
 	jr c, .asm_35fb8
+
 .asm_35f89
 	call CheckSubstituteOpp
 	jr nz, .asm_35fb8
@@ -5677,12 +5675,12 @@ BattleCommand2f: ; 35f2c
 	jr nz, .asm_35fb8
 	call Function35fc9
 	jr z, .asm_35fa4
-	call Function35fc0
 
+	call Function35fc0
 	ld hl, WasPoisonedText
 	call StdBattleTextBox
-
 	jr .asm_35fb1
+
 .asm_35fa4
 	set SUBSTATUS_TOXIC, [hl]
 	xor a
@@ -5716,10 +5714,10 @@ Function35fc9: ; 35fc9
 	call GetBattleVarAddr
 	ld a, [hBattleTurn]
 	and a
-	ld de, $c67c
-	jr z, .asm_35fd9
-	ld de, $c674
-.asm_35fd9
+	ld de, EnemyToxicCount
+	jr z, .ok
+	ld de, PlayerToxicCount
+.ok
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_TOXIC
@@ -5731,9 +5729,9 @@ Function35fe1: ; 35fe1
 	ld de, EnemyMonType1
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_35fec
+	jr z, .ok
 	ld de, BattleMonType1
-.asm_35fec
+.ok
 	ld a, [de]
 	inc de
 	cp POISON
@@ -7057,7 +7055,7 @@ BattleCommand3d: ; 36751
 .ok
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	set SUBSTATUS_ROLLOUT, [hl]
+	set SUBSTATUS_RAMPAGE, [hl]
 	call BattleRandom
 	and 1
 	inc a
@@ -9831,7 +9829,7 @@ ResetBatonPassStatus: ; 37ab1
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
 	res SUBSTATUS_TRANSFORMED, [hl]
-	res 4, [hl]
+	res SUBSTATUS_ENCORED, [hl]
 
 	; New mon hasn't used a move yet.
 	ld a, BATTLE_VARS_LAST_MOVE

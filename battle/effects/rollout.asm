@@ -7,19 +7,18 @@ BattleCommand5b: ; 37718
 	ld de, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37723
+	jr z, .ok
 	ld de, EnemyRolloutCount
-
-.asm_37723
+.ok
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVar
-	bit SUBSTATUS_ENCORED, a
-	jr z, .asm_37731
+	bit SUBSTATUS_ROLLOUT, a
+	jr z, .reset
 
 	ld b, $4 ; doturn
 	jp SkipToBattleCommand
 
-.asm_37731
+.reset
 	xor a
 	ld [de], a
 	ret
@@ -66,13 +65,13 @@ BattleCommand5c: ; 37734
 
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
-	res SUBSTATUS_ENCORED, [hl]
+	res SUBSTATUS_ROLLOUT, [hl]
 	jr .asm_37775
 
 .asm_3776e
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
-	set SUBSTATUS_ENCORED, [hl]
+	set SUBSTATUS_ROLLOUT, [hl]
 
 .asm_37775
 	ld a, BATTLE_VARS_SUBSTATUS2

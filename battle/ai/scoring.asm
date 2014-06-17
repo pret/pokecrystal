@@ -439,41 +439,34 @@ AIScoring_LeechHit: ; 387f7
 
 AIScoring_LockOn: ; 3881d
 	ld a, [PlayerSubStatus5]
-	bit 5, a
+	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .asm_38882
 
 	push hl
 	call AICheckEnemyQuarterHP
-
 	jr nc, .asm_38877
 
 	call AICheckEnemyHalfHP
-
 	jr c, .asm_38834
 
 	call AICompareSpeed
-
 	jr nc, .asm_38877
-
 
 .asm_38834
 	ld a, [PlayerEvaLevel]
 	cp $a
 	jr nc, .asm_3887a
-
 	cp $8
 	jr nc, .asm_38875
 
 	ld a, [EnemyAccLevel]
 	cp $5
 	jr c, .asm_3887a
-
 	cp $7
 	jr c, .asm_38875
 
 	ld hl, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
-
 .asm_3884f
 	dec c
 	jr z, .asm_38877
@@ -490,17 +483,15 @@ AIScoring_LockOn: ; 3881d
 
 	ld a, $1
 	ld [hBattleTurn], a
+
 	push hl
 	push bc
-
 	callba Function347c8
-
 	ld a, [$d265]
 	cp $a
 	pop bc
 	pop hl
 	jr c, .asm_3884f
-
 
 .asm_38875
 	pop hl
@@ -514,8 +505,8 @@ AIScoring_LockOn: ; 3881d
 .asm_3887a
 	pop hl
 	call Function39527
-
 	ret c
+
 	dec [hl]
 	dec [hl]
 	ret
@@ -546,11 +537,9 @@ AIScoring_LockOn: ; 3881d
 	dec [hl]
 	jr .asm_3888b
 
-
 .asm_388a2
 	pop hl
 	jp AIDiscourageMove
-
 ; 388a6
 
 
@@ -632,7 +621,6 @@ AIScoring_EvasionUp: ; 388d4
 	jr c, .asm_388ef
 	jr .asm_38911
 
-
 .asm_3890a
 	call Function39527
 	jr c, .asm_38911
@@ -661,7 +649,7 @@ AIScoring_EvasionUp: ; 388d4
 	jr nz, .asm_388ef
 
 	ld a, [PlayerSubStatus1]
-	bit SUBSTATUS_ENCORED, a
+	bit SUBSTATUS_ROLLOUT, a
 	jr nz, .asm_388ef
 
 
@@ -679,8 +667,8 @@ AIScoring_EvasionUp: ; 388d4
 
 .asm_38941
 	call Function39527
-
 	ret c
+
 	dec [hl]
 	ret
 ; 38947
@@ -802,7 +790,7 @@ AIScoring_AccuracyDown: ; 38985
 	jr nz, .asm_3899d
 
 	ld a, [PlayerSubStatus1]
-	bit SUBSTATUS_ENCORED, a
+	bit SUBSTATUS_ROLLOUT, a
 	jr nz, .asm_3899d
 
 .asm_389e4
@@ -951,7 +939,7 @@ AIScoring_Bind: ; 38a71
 	jr nz, .asm_38a91
 
 	ld a, [PlayerSubStatus1]
-	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ENCORED | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
+	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ROLLOUT | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
 	jr nz, .asm_38a91
 
 	ld a, [PlayerTurnsTaken]
@@ -1168,7 +1156,7 @@ AIScoring_HyperBeam: ; 38b63
 
 AIScoring_Rage: ; 38b7f
 	ld a, [EnemySubStatus4]
-	bit 6, a
+	bit SUBSTATUS_RAGE, a
 	jr z, .asm_38b9b
 
 	call Function39527
@@ -1714,7 +1702,7 @@ AIScoring_MeanLook: ; 38dfb
 	jr nz, .asm_38e26
 
 	ld a, [PlayerSubStatus1]
-	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ENCORED | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
+	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ROLLOUT | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
 	jr nz, .asm_38e26
 
 	push hl
@@ -1902,7 +1890,7 @@ AIScoring_Protect: ; 38ed2
 	bit SUBSTATUS_CURSE, a
 	jr nz, .asm_38f0d
 
-	bit SUBSTATUS_ENCORED, a
+	bit SUBSTATUS_ROLLOUT, a
 	jr z, .asm_38f14
 
 	ld a, [PlayerRolloutCount]
@@ -1966,7 +1954,7 @@ AIScoring_PerishSong: ; 38f4a
 	jr c, .asm_38f75
 
 	ld a, [PlayerSubStatus5]
-	bit 7, a
+	bit SUBSTATUS_CANT_RUN, a
 	jr nz, .asm_38f6f
 
 	push hl
@@ -1984,8 +1972,8 @@ AIScoring_PerishSong: ; 38f4a
 
 .asm_38f6f
 	call Function39527
-
 	ret c
+
 	dec [hl]
 	ret
 
@@ -2146,14 +2134,14 @@ AIScoring_Swagger:
 AIScoring_Attract: ; 39026
 	ld a, [PlayerTurnsTaken]
 	and a
-	jr z, .asm_39032
+	jr z, .first_turn
 
 	call Function39521
 	ret c
 	inc [hl]
 	ret
 
-.asm_39032
+.first_turn
 	call Random
 	cp 200
 	ret nc
@@ -2180,7 +2168,7 @@ AIScoring_Earthquake: ; 39044
 
 	ld a, [PlayerSubStatus3]
 	bit SUBSTATUS_UNDERGROUND, a
-	jr z, .asm_39058
+	jr z, .could_dig
 
 	call AICompareSpeed
 	ret nc
@@ -2188,7 +2176,9 @@ AIScoring_Earthquake: ; 39044
 	dec [hl]
 	ret
 
-.asm_39058
+.could_dig
+	; Try to predict if the player
+	; will use Dig this turn.
 	call AICompareSpeed
 	ret c
 	call Function39527
@@ -2263,7 +2253,7 @@ AIScoring_HiddenPower: ; 3909e
 	jr c, .asm_390c9
 
 	ld a, d
-	cp $32
+	cp 50
 	jr c, .asm_390c9
 
 	ld a, [$d265]
@@ -2271,7 +2261,7 @@ AIScoring_HiddenPower: ; 3909e
 	jr nc, .asm_390c7
 
 	ld a, d
-	cp $46
+	cp 70
 	ret c
 
 .asm_390c7
