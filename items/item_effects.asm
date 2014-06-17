@@ -3193,7 +3193,7 @@ Functionf8b9: ; f8b9
 	ld [$cfa9], a
 	ld [MonType], a
 	ld c, NUM_MOVES
-.asm_f8ce
+.loop
 	ld a, [hli]
 	and a
 	ret z
@@ -3214,30 +3214,36 @@ Functionf8b9: ; f8b9
 	inc [hl]
 	pop hl
 	dec c
-	jr nz, .asm_f8ce
+	jr nz, .loop
 	ret
 ; f8ec
 
 
 Functionf8ec: ; f8ec
-	ld a, [StringBuffer1]
+	ld a, [StringBuffer1 + 0]
 	push af
-	ld a, [$d074]
+	ld a, [StringBuffer1 + 1]
 	push af
+
 	ld a, [MonType]
 	and a
+
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
 	jr z, .asm_f91a
+
 	ld hl, OTPartyMon1Moves
 	dec a
 	jr z, .asm_f91a
+
 	ld hl, TempMonMoves
 	dec a
 	jr z, .asm_f915
+
 	ld hl, TempMonMoves
 	dec a
 	jr z, .asm_f915
+
 	ld hl, BattleMonMoves
 
 .asm_f915
@@ -3250,6 +3256,7 @@ Functionf8ec: ; f8ec
 .asm_f91d
 	ld a, [hl]
 	dec a
+
 	push hl
 	ld hl, Moves + MOVE_PP
 	ld bc, MOVE_LENGTH
@@ -3260,18 +3267,19 @@ Functionf8ec: ; f8ec
 	ld de, StringBuffer1
 	ld [de], a
 	pop hl
+
 	push bc
 	ld bc, PartyMon1PP - PartyMon1Moves
 	ld a, [MonType]
 	cp WILDMON
 	jr nz, .asm_f942
 	ld bc, EnemyMonPP - EnemyMonMoves
-
 .asm_f942
 	add hl, bc
 	ld a, [hl]
 	and $c0
 	pop bc
+
 	or b
 	ld hl, $d074
 	ld [hl], a
@@ -3282,10 +3290,11 @@ Functionf8ec: ; f8ec
 	ld a, [hl]
 	and $3f
 	ld [$d265], a
+
 	pop af
-	ld [$d074], a
+	ld [StringBuffer1 + 1], a
 	pop af
-	ld [StringBuffer1], a
+	ld [StringBuffer1 + 0], a
 	ret
 ; f963
 

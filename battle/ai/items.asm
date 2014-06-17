@@ -522,7 +522,7 @@ Function38385: ; 38385 (e:4385)
 
 Function38387: ; 38387
 	call UpdateEnemyMonInParty
-	callba Function3e036
+	callba UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
 	ld hl, $c6e6

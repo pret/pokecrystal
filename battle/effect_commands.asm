@@ -180,7 +180,7 @@ CheckPlayerTurn:
 	call StdBattleTextBox
 	call CantMove
 	call UpdateBattleMonInParty
-	ld hl, Function3df48
+	ld hl, UpdatePlayerHUD
 	call CallBattleCore
 	ld a, $1
 	ld [$ffd4], a
@@ -428,7 +428,7 @@ CheckEnemyTurn: ; 3421f
 	call StdBattleTextBox
 	call CantMove
 	call UpdateEnemyMonInParty
-	ld hl, Function3e036
+	ld hl, UpdateEnemyHUD
 	call CallBattleCore
 	ld a, $1
 	ld [$ffd4], a
@@ -663,7 +663,7 @@ HitConfusion: ; 343a5
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	call z, PlayFXAnimID
 
-	ld hl, Function3df48
+	ld hl, UpdatePlayerHUD
 	call CallBattleCore
 	ld a, $1
 	ld [$ffd4], a
@@ -9131,7 +9131,7 @@ BattleCommand1a: ; 37380
 	call Function37ed5
 	ret nc
 	callba DrawPlayerHUD
-	callba Function3e043
+	callba DrawEnemyHUD
 	call WaitBGMap
 	jp RefreshBattleHuds
 ; 373c9

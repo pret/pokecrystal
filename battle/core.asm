@@ -2099,7 +2099,7 @@ Function3cd55: ; 3cd55
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
-	call nz, Function3df48
+	call nz, UpdatePlayerHUD
 
 	ld a, $1
 	ld [hBGMapMode], a
@@ -2460,7 +2460,6 @@ Function3cfa4: ; 3cfa4
 	cp BATTLETYPE_CANLOSE
 	jr nz, .asm_3cfe8
 	predef Functionc658
-
 .asm_3cfe8
 	ld a, [$c2cc]
 	bit 0, a
@@ -3737,7 +3736,7 @@ Function3d7c7: ; 3d7c7
 	call Function37b6
 
 .asm_3d82c
-	call Function3e036
+	call UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -4231,7 +4230,7 @@ Function3db5f: ; 3db5f
 	call Function37b6
 
 .asm_3dbd6
-	call Function3df48
+	call UpdatePlayerHUD
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -4278,13 +4277,13 @@ BreakAttraction: ; 3dc18
 SpikesDamage: ; 3dc23
 	ld hl, PlayerScreens
 	ld de, BattleMonType
-	ld bc, Function3df48
+	ld bc, UpdatePlayerHUD
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld hl, EnemyScreens
 	ld de, EnemyMonType
-	ld bc, Function3e036
+	ld bc, UpdateEnemyHUD
 .ok
 
 	bit SCREENS_SPIKES, [hl]
@@ -4758,7 +4757,7 @@ Function3df2c: ; 3df2c
 	ld hl, PlayerHPPal
 	call SetHPPal
 	call CheckDanger
-	call Function3e043
+	call DrawEnemyHUD
 	ld hl, EnemyHPPal
 	call SetHPPal
 	pop bc
@@ -4769,7 +4768,7 @@ Function3df2c: ; 3df2c
 
 
 
-Function3df48:: ; 3df48
+UpdatePlayerHUD:: ; 3df48
 	push hl
 	push de
 	push bc
@@ -4799,7 +4798,7 @@ DrawPlayerHUD: ; 3df58
 
 	; HP bar
 	hlcoord 10, 9
-	ld b, OTPARTYMON
+	ld b, 1
 	xor a
 	ld [MonType], a
 	predef DrawPlayerHP
@@ -4834,7 +4833,7 @@ CheckDanger: ; 3df9e
 	and a
 	jr nz, .done
 	ld a, [PlayerHPPal]
-	cp $2
+	cp HP_RED
 	jr z, .danger
 
 .no_danger
@@ -4913,25 +4912,28 @@ PrintPlayerHUD: ; 3dfbf
 	jp PrintLevel
 ; 3e036
 
-Function3e036:: ; 3e036
+UpdateEnemyHUD:: ; 3e036
 	push hl
 	push de
 	push bc
-	call Function3e043
-	call Function3e127
+	call DrawEnemyHUD
+	call UpdateEnemyHPPal
 	pop bc
 	pop de
 	pop hl
 	ret
 ; 3e043
 
-Function3e043: ; 3e043
+DrawEnemyHUD: ; 3e043
 	xor a
 	ld [hBGMapMode], a
+
 	hlcoord 1, 0
 	lb bc, 4, 11
 	call ClearBox
+
 	callba Function2c0c5
+
 	ld a, [TempEnemyMonSpecies]
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
@@ -4943,18 +4945,20 @@ Function3e043: ; 3e043
 	ld h, b
 	ld l, c
 	dec hl
+
 	ld hl, EnemyMonDVs
 	ld de, TempMonDVs
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
-	jr z, .asm_3e080
+	jr z, .ok
 	ld hl, $c6f2
-.asm_3e080
+.ok
 	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, [hl]
 	ld [de], a
+
 	ld a, $3
 	ld [MonType], a
 	callab GetGender
@@ -4967,6 +4971,7 @@ Function3e043: ; 3e043
 .asm_3e09a
 	hlcoord 9, 1
 	ld [hl], a
+
 	hlcoord 6, 1
 	push af
 	push hl
@@ -4976,16 +4981,15 @@ Function3e043: ; 3e043
 	pop bc
 	jr nz, .asm_3e0be
 	ld a, b
-	cp $7f
+	cp " "
 	jr nz, .asm_3e0b5
 	dec hl
-
 .asm_3e0b5
 	ld a, [EnemyMonLevel]
 	ld [TempMonLevel], a
 	call PrintLevel
-
 .asm_3e0be
+
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [$ffb5], a
@@ -4997,8 +5001,8 @@ Function3e043: ; 3e043
 	ld e, a
 	ld d, HP_BAR_LENGTH
 	jp .asm_3e11a
-
 .asm_3e0d1
+
 	xor a
 	ld [hMultiplicand], a
 	ld a, HP_BAR_LENGTH_PX
@@ -5042,16 +5046,17 @@ Function3e043: ; 3e043
 	ld a, HP_BAR_LENGTH
 	ld d, a
 	ld c, a
+
 .asm_3e11a
 	xor a
 	ld [$d10a], a
 	hlcoord 2, 2
-	ld b, $0
+	ld b, 0
 	call DrawHPBar
 	ret
 ; 3e127
 
-Function3e127: ; 3e127
+UpdateEnemyHPPal: ; 3e127
 	ld hl, EnemyHPPal
 	call Function3e12e
 	ret
@@ -5074,6 +5079,7 @@ Function3e139: ; 3e139
 	xor a
 	ld [hBGMapMode], a
 	call Function30bf
+
 	ld a, [BattleType]
 	cp $2
 	jr z, .asm_3e156
@@ -5083,20 +5089,21 @@ Function3e139: ; 3e139
 	call UpdateBattleHuds
 	call EmptyBattleTextBox
 	call Function309d
-
 .asm_3e156
+
 	ld a, [BattleType]
 	cp $6
 	jr nz, .asm_3e165
 	callba Function24f13
 	jr .asm_3e175
-
 .asm_3e165
+
 	ld a, [InputType]
 	or a
 	jr z, .asm_3e171
 	callba Function1de294
 .asm_3e171
+
 	call Function3e19b
 	ret c
 
@@ -5126,6 +5133,7 @@ Function3e192: ; 3e192
 Function3e19b: ; 3e19b
 	call Function3d2f1
 	jr z, .asm_3e1a8
+
 	callba LoadBattleMenuDataHeader
 	and a
 	ret
@@ -5135,15 +5143,16 @@ Function3e19b: ; 3e19b
 	ld a, [$cd2b]
 	and a
 	ret z
+
 	ld hl, $cd2a
 	bit 4, [hl]
 	jr nz, .asm_3e1c5
 	ld hl, BattleText_0x81863
 	call StdBattleTextBox
-	ld c, $3c
+	ld c, 60
 	call DelayFrames
-
 .asm_3e1c5
+
 	scf
 	ret
 ; 3e1c7
@@ -7578,7 +7587,7 @@ Function3ee3b: ; 3ee3b
 	call Function3ecab
 	callab Function3ec2c
 	callab BadgeStatBoosts
-	callab Function3df48
+	callab UpdatePlayerHUD
 	call EmptyBattleTextBox
 	call Function309d
 	ld a, $1
@@ -8394,7 +8403,7 @@ Function3f4dd: ; 3f4dd
 	call ClearSprites
 	ld a, [IsInBattle]
 	cp $1
-	call z, Function3e036
+	call z, UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
 	ret

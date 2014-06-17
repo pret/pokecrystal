@@ -694,6 +694,7 @@ AttrMap:: ; cdd9
 ; bit 3: vram bank
 ; bit 0-2: palette id
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
+AttrMapEnd::
 
 	ds 30
 	

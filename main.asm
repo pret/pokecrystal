@@ -6823,7 +6823,8 @@ Function746e: ; 746e
 	jp CopyBytes
 ; 747a
 
-Function747a: ; 747a
+Predef1: ; 747a
+; not used
 	ret
 ; 747b
 
@@ -6837,11 +6838,11 @@ Function8000: ; 8000
 	call WhiteBGMap
 	call ClearSprites
 	ld hl, TileMap
-	ld bc, $0168
+	ld bc, TileMapEnd - TileMap
 	ld a, " "
 	call ByteFill
 	ld hl, AttrMap
-	ld bc, $0168
+	ld bc, AttrMapEnd - AttrMap
 	ld a, $7
 	call ByteFill
 	call Function3200
@@ -7754,7 +7755,7 @@ PredefPointers:: ; 856b
 ; address, bank
 
 	add_predef LearnMove ; $0
-	add_predef Function747a
+	add_predef Predef1
 	add_predef Functionc658
 	add_predef FlagPredef
 	add_predef Functionc699
@@ -7771,10 +7772,10 @@ PredefPointers:: ; 856b
 	add_predef GetTMHMMove
 	add_predef Function28eef ; $ 10
 	add_predef PrintMoveDesc
-	add_predef Function3df48 ; UpdatePlayerHUD
+	add_predef UpdatePlayerHUD
 	add_predef FillBox
 	add_predef Function3d873
-	add_predef Function3e036 ; UpdateEnemyHUD
+	add_predef UpdateEnemyHUD
 	add_predef StartBattle
 	add_predef FillInExpBar
 	add_predef Function3f43d ; $18
@@ -8827,17 +8828,18 @@ Functionc658: ; c658
 ; c677
 
 Functionc677: ; c677
-	ld a, $0
+	ld a, PartyMon1Species - PartyMon1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld hl, $0020
+	ld hl, PartyMon1Status - PartyMon1Species 
 	add hl, de
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld hl, $0024
+	ld hl, PartyMon1MaxHP - PartyMon1Species
 	add hl, de
+	; bc = PartyMon1HP - PartyMon1Species
 	ld b, h
 	ld c, l
 	dec bc
@@ -59703,48 +59705,27 @@ Strings50a42: ; 50a42
 	dw OTName
 	dw OTName
 
-.Youngster
-	db "たんパン@"
-.BugCatcher
-	db "むしとり@"
-.Lass
-	db "ミニスカ@"
-.JrTrainerM
-	db "ボーイ@"
-.JrTrainerF
-	db "ガール@"
-.Pokemaniac
-	db "マニア@"
-.SuperNerd
-	db "りかけい@"
-.Burglar
-	db "どろぼう@"
-.Engineer
-	db "ォヤジ@"
-.Jack
-	db "ジャック@"
-.Swimmer
-	db "かいパン@"
-.Beauty
-	db "おねえさん@"
-.Rocker
-	db "グループ@"
-.Juggler
-	db "ジャグラー@"
-.Blackbelt
-	db "からて@"
-.ProfOak
-	db "ォーキド@"
-.Chief
-	db "チーフ@"
-.Scientist
-	db "けんきゅういん@"
-.Rocket
-	db "だんいん@"
-.CooltrainerM
-	db "エりート♂@"
-.CooltrainerF
-	db "エりート♀@"
+.Youngster    db "たんパン@"
+.BugCatcher   db "むしとり@"
+.Lass         db "ミニスカ@"
+.JrTrainerM   db "ボーイ@"
+.JrTrainerF   db "ガール@"
+.Pokemaniac   db "マニア@"
+.SuperNerd    db "りかけい@"
+.Burglar      db "どろぼう@"
+.Engineer     db "ォヤジ@"
+.Jack         db "ジャック@"
+.Swimmer      db "かいパン@"
+.Beauty       db "おねえさん@"
+.Rocker       db "グループ@"
+.Juggler      db "ジャグラー@"
+.Blackbelt    db "からて@"
+.ProfOak      db "ォーキド@"
+.Chief        db "チーフ@"
+.Scientist    db "けんきゅういん@"
+.Rocket       db "だんいん@"
+.CooltrainerM db "エりート♂@"
+.CooltrainerF db "エりート♀@"
 ; 50b0a
 
 
@@ -116510,7 +116491,7 @@ Function178000:
 	callba DrawPlayerHUD
 	ld hl, PlayerHPPal ; $cd99
 	call SetHPPal
-	callba Function3e043
+	callba DrawEnemyHUD
 	ld hl, EnemyHPPal ; $cd9a
 	call SetHPPal
 	callba Function3ee27

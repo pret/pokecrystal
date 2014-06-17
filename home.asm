@@ -775,7 +775,7 @@ SetHPPal:: ; 334e
 GetHPPal:: ; 3353
 ; Get palette for hp bar pixel length e in d.
 
-	ld d, 0 ; green
+	ld d, HP_GREEN
 	ld a, e
 	cp 24
 	ret nc
