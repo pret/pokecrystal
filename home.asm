@@ -1699,7 +1699,7 @@ Function378b:: ; 378b
 	jr c, .asm_37ad
 	push hl
 	ld de, VTiles2
-	predef Function51077
+	predef GetFrontpic
 	pop hl
 	xor a
 	ld [$ffad], a

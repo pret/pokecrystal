@@ -4672,7 +4672,7 @@ Function6182: ; 6182
 
 Function619c: ; 619c
 	ld de, VTiles2
-	callba Function5120d
+	callba GetTrainerPic
 	xor a
 	ld [$ffad], a
 	hlcoord 6, 4
@@ -7814,10 +7814,10 @@ PredefPointers:: ; 856b
 	add_predef Predef39
 	add_predef Functionfd1d0
 	add_predef PartyMonItemName
-	add_predef Function51077
-	add_predef Function5116c
+	add_predef GetFrontpic
+	add_predef GetBackpic
 	add_predef Function5108b
-	add_predef Function5120d
+	add_predef GetTrainerPic
 	add_predef DecompressPredef ; $40
 	add_predef Function347d3
 	add_predef Functionfb908
@@ -29600,7 +29600,7 @@ Function16cc8: ; 16cc8
 	xor a
 	ld [$c2c6], a
 	ld de, VTiles2
-	predef Function51077
+	predef GetFrontpic
 	call Function16cff
 	hlcoord 1, 6
 	xor a
@@ -30394,7 +30394,7 @@ Function17224: ; 17224 (5:7224)
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	pop de
-	predef_jump Function51077
+	predef_jump GetFrontpic
 
 ; known jump sources: 172c2 (5:72c2)
 Function1723c: ; 1723c (5:723c)
@@ -31882,7 +31882,7 @@ Function244e3:: ; 244e3
 	ld [CurSpecies], a
 	call GetBaseData
 	ld de, VTiles1
-	predef Function51077
+	predef GetFrontpic
 	ld a, [$cf82]
 	inc a
 	ld b, a
@@ -39075,7 +39075,7 @@ Function29491: ; 29491
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef Function51077
+	predef GetFrontpic
 	ret
 ; 294a9
 
@@ -46440,7 +46440,7 @@ Function4143b: ; 4143b
 	ld [CurPartySpecies], a
 	call GetBaseData
 	ld de, VTiles2
-	predef Function51077
+	predef GetFrontpic
 	ret
 
 .asm_4145b
@@ -46601,7 +46601,7 @@ Function41a58: ; 41a58 (10:5a58)
 	ld [CurPartySpecies], a ; $d108
 	call GetBaseData
 	ld de, $9000
-	predef Function51077
+	predef GetFrontpic
 	pop af
 	ld [UnownLetter], a ; $d234
 	ret
@@ -46631,7 +46631,7 @@ Function41a7f: ; 41a7f
 	call WaitBGMap
 	call GetBaseData
 	ld de, VTiles2
-	predef Function51077
+	predef GetFrontpic
 	ld a, $4
 	call Function41423
 	ld a, [CurPartySpecies]
@@ -60679,14 +60679,14 @@ GetUnownLetter: ; 51040
 ; 51077
 
 
-Function51077: ; 51077
+GetFrontpic: ; 51077
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call IsAPokemon
 	ret c
 	ld a, [rSVBK]
 	push af
-	call Function510a5
+	call _GetFrontpic
 	pop af
 	ld [rSVBK], a
 	ret
@@ -60701,33 +60701,33 @@ Function5108b: ; 5108b
 	push af
 	xor a
 	ld [hBGMapMode], a
-	call Function510a5
+	call _GetFrontpic
 	call Function51103
 	pop af
 	ld [rSVBK], a
 	ret
 ; 510a5
 
-Function510a5: ; 510a5
+_GetFrontpic: ; 510a5
 	push de
 	call GetBaseData
 	ld a, [BasePicSize]
 	and $f
 	ld b, a
 	push bc
-	call Function510d7
+	call GetFrontpicPointer
 	ld a, $6
 	ld [rSVBK], a
 	ld a, b
 	ld de, $d800
 	call FarDecompress
 	pop bc
-	ld hl, Unkn1Pals
+	ld hl, $d000
 	ld de, $d800
 	call Function512ab
 	pop hl
 	push hl
-	ld de, Unkn1Pals
+	ld de, $d000
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -60736,28 +60736,28 @@ Function510a5: ; 510a5
 	ret
 ; 510d7
 
-Function510d7: ; 510d7
+GetFrontpicPointer: ; 510d7
 GLOBAL PicPointers, UnownPicPointers
 
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr z, .asm_510e5
+	jr z, .unown
 	ld a, [CurPartySpecies]
 	ld d, BANK(PicPointers)
-	jr .asm_510ea
+	jr .ok
 
-.asm_510e5
+.unown
 	ld a, [UnownLetter]
 	ld d, BANK(UnownPicPointers)
 
-.asm_510ea
-	ld hl, Function50000
+.ok
+	ld hl, PicPointers ; UnownPicPointers
 	dec a
-	ld bc, $0006
+	ld bc, 6
 	call AddNTimes
 	ld a, d
 	call GetFarByte
-	call Function511c5
+	call FixPicBank
 	push af
 	inc hl
 	ld a, d
@@ -60770,13 +60770,13 @@ Function51103: ; 51103
 	ld a, $1
 	ld [rVBK], a
 	push hl
-	ld de, Unkn1Pals
-	ld c, $31
+	ld de, $d000
+	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	pop hl
-	ld de, $0310
+	ld de, 7 * 7 * $10
 	add hl, de
 	push hl
 	ld a, $1
@@ -60784,24 +60784,24 @@ Function51103: ; 51103
 	call GetFarWRAMByte
 	pop hl
 	and $f
-	ld de, $d990
+	ld de, $d800 + 5 * 5 * $10
 	ld c, 5 * 5
 	cp 5
 	jr z, .asm_5113b
-	ld de, $da40
+	ld de, $d800 + 6 * 6 * $10
 	ld c, 6 * 6
 	cp 6
 	jr z, .asm_5113b
-	ld de, $db10
+	ld de, $d800 + 7 * 7 * $10
 	ld c, 7 * 7
-
 .asm_5113b
+
 	push hl
 	push bc
 	call Function5114f
 	pop bc
 	pop hl
-	ld de, Unkn1Pals
+	ld de, $d000
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -60832,10 +60832,11 @@ Function5114f: ; 5114f
 	ret
 ; 5116c
 
-Function5116c: ; 5116c
+GetBackpic: ; 5116c
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	ret c
+
 	ld a, [CurPartySpecies]
 	ld b, a
 	ld a, [UnownLetter]
@@ -60853,31 +60854,30 @@ Function5116c: ; 5116c
 	ld a, b
 	ld d, BANK(PicPointers)
 	cp UNOWN
-	jr nz, .asm_51190
+	jr nz, .ok
 	ld a, c
 	ld d, BANK(UnownPicPointers)
-
-.asm_51190
+.ok
 	dec a
-	ld bc, $0006
+	ld bc, 6
 	call AddNTimes
-	ld bc, $0003
+	ld bc, 3
 	add hl, bc
 	ld a, d
 	call GetFarByte
-	call Function511c5
+	call FixPicBank
 	push af
 	inc hl
 	ld a, d
 	call GetFarHalfword
-	ld de, Unkn1Pals
+	ld de, $d000
 	pop af
 	call FarDecompress
-	ld hl, Unkn1Pals
-	ld c, $24
+	ld hl, $d000
+	ld c, 6 * 6
 	call Function5127c
 	pop hl
-	ld de, Unkn1Pals
+	ld de, $d000
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -60887,10 +60887,11 @@ Function5116c: ; 5116c
 ; 511c5
 
 
-Function511c5: ; 511c5
+FixPicBank: ; 511c5
+; This is a thing for some reason.
 	push hl
 	push bc
-	sub $12
+	sub PICS_1 - $36
 	ld c, a
 	ld b, 0
 	ld hl, Unknown_511d4
@@ -60902,10 +60903,53 @@ Function511c5: ; 511c5
 ; 511d4
 
 Unknown_511d4: ; 511d4
-INCBIN "baserom.gbc",$511d4,$5120d - $511d4
+	db PICS_1
+	db PICS_2
+	db PICS_3
+	db PICS_4
+	db PICS_5
+	db PICS_6
+	db PICS_7
+	db PICS_8
+	db PICS_9
+	db PICS_10
+	db PICS_11
+	db PICS_12
+	db PICS_13
+	db PICS_14
+	db PICS_15
+	db PICS_16
+	db PICS_17
+	db PICS_18
+	db PICS_19
+	db PICS_19 + 1
+	db PICS_19 + 2
+	db PICS_19 + 3
+	db PICS_19 + 4
+	db PICS_19 + 5
+
+Function511ec: ; 511ec
+	ld a, c
+	push de
+	ld hl, PicPointers
+	dec a
+	ld bc, 6
+	call AddNTimes
+	ld a, BANK(PicPointers)
+	call GetFarByte
+	call FixPicBank
+	push af
+	inc hl
+	ld a, BANK(PicPointers)
+	call GetFarHalfword
+	pop af
+	pop de
+	call FarDecompress
+	ret
+; 0x5120d
 
 
-Function5120d: ; 5120d
+GetTrainerPic: ; 5120d
 	ld a, [TrainerClass]
 	and a
 	ret z
@@ -60914,29 +60958,29 @@ Function5120d: ; 5120d
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld hl, Function50000
+	ld hl, TrainerPicPointers
 	ld a, [TrainerClass]
 	dec a
-	ld bc, $0003
+	ld bc, 3
 	call AddNTimes
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
 	push de
-	ld a, $4a
+	ld a, BANK(TrainerPicPointers)
 	call GetFarByte
-	call Function511c5
+	call FixPicBank
 	push af
 	inc hl
-	ld a, $4a
+	ld a, BANK(TrainerPicPointers)
 	call GetFarHalfword
 	pop af
 	ld de, $d000
 	call FarDecompress
 	pop hl
 	ld de, $d000
-	ld c, $31
+	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -60983,13 +61027,13 @@ Function5127c: ; 5127c
 	and a
 	jr z, .asm_512a8
 	ld a, c
-	cp $31
-	ld de, $0310
+	cp 7 * 7
+	ld de, 7 * 7 * $10
 	jr z, .asm_51296
-	cp $24
-	ld de, $0240
+	cp 6 * 6
+	ld de, 6 * 6 * $10
 	jr z, .asm_51296
-	ld de, $0190
+	ld de, 5 * 5 * $10
 
 .asm_51296
 	ld a, [hl]
@@ -61015,54 +61059,53 @@ Function5127c: ; 5127c
 
 Function512ab: ; 512ab
 	ld a, b
-	cp $6
-	jr z, .asm_512bd
-	cp $5
-	jr z, .asm_512d2
-.asm_512b4
+	cp 6
+	jr z, .six
+	cp 5
+	jr z, .five
+
+.seven
 	ld c, $70
 	call Function512f2
 	dec b
-	jr nz, .asm_512b4
+	jr nz, .seven
 	ret
 
-.asm_512bd
+.six
 	ld c, $70
 	xor a
-	call Function512ed
+	call .Fill
 .asm_512c3
 	ld c, $10
 	xor a
-	call Function512ed
+	call .Fill
 	ld c, $60
 	call Function512f2
 	dec b
 	jr nz, .asm_512c3
 	ret
 
-.asm_512d2
+.five
 	ld c, $70
 	xor a
-	call Function512ed
+	call .Fill
 .asm_512d8
 	ld c, $20
 	xor a
-	call Function512ed
+	call .Fill
 	ld c, $50
 	call Function512f2
 	dec b
 	jr nz, .asm_512d8
 	ld c, $70
 	xor a
-	call Function512ed
+	call .Fill
 	ret
-; 512ed
 
-Function512ed: ; 512ed
-.asm_512ed
+.Fill
 	ld [hli], a
 	dec c
-	jr nz, .asm_512ed
+	jr nz, .Fill
 	ret
 ; 512f2
 
@@ -61085,22 +61128,10 @@ Function512f2: ; 512f2
 	inc de
 	ld b, a
 	xor a
+	rept 8
 	rr b
 	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
+	endr
 	ld [hli], a
 	dec c
 	jr nz, .asm_51300
@@ -62761,7 +62792,7 @@ Function81adb: ; 81adb
 	hlcoord 12, 3
 	call Function378b
 	ld de, $9310
-	predef Function5116c
+	predef GetBackpic
 	ld a, $31
 	ld [$ffad], a
 	hlcoord 2, 4
@@ -62792,7 +62823,7 @@ Function81adb: ; 81adb
 	hlcoord 4, 1
 	call PlaceString
 	ld de, VTiles2
-	callab Function5120d
+	callab GetTrainerPic
 	xor a
 	ld [TempEnemyMonSpecies], a
 	ld [$ffad], a
@@ -65666,7 +65697,7 @@ Function865b5: ; 865b5
 	ld a, $7f
 	call ByteFill
 	ld de, $9310
-	predef Function5116c
+	predef GetBackpic
 	ld a, $31
 	ld [$ffad], a
 	hlcoord 6, 6
@@ -67975,7 +68006,7 @@ Function897af: ; 897af
 	xor a
 	ld [CurPartySpecies], a
 	ld de, $9370
-	callba Function5120d
+	callba GetTrainerPic
 	pop bc
 	ret
 ; 897d5
@@ -94834,7 +94865,7 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 	predef GetUnownLetter
 	call GetBaseData
 	ld de, $9000
-	predef Function51077
+	predef GetFrontpic
 	xor a
 	ld [$cb32], a
 	ld a, [CurPartySpecies]

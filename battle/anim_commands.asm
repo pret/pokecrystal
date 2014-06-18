@@ -956,7 +956,7 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	ld hl, BattleMonDVs ; $c632
 	predef GetUnownLetter
 	ld de, $8000
-	predef Function51077
+	predef GetFrontpic
 	jr .done
 
 .player
@@ -965,7 +965,7 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	ld hl, EnemyMonDVs ; $d20c
 	predef GetUnownLetter
 	ld de, $8000
-	predef Function5116c
+	predef GetBackpic
 
 .done
 	pop af
@@ -1192,14 +1192,14 @@ BattleAnimCmd_E6: ; cc776 (33:4776)
 	ld hl, BattleMonDVs ; $c632
 	predef GetUnownLetter
 	ld de, $9000
-	predef Function51077
+	predef GetFrontpic
 	jr .done
 
 .player
 	ld hl, EnemyMonDVs ; $d20c
 	predef GetUnownLetter
 	ld de, $9310
-	predef Function5116c
+	predef GetBackpic
 
 .done
 	pop af

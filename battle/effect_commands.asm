@@ -1536,7 +1536,7 @@ Function347d3: ; 347d3
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
-	ld a, $a
+	ld a, 10 ; 1.0
 	ld [$d265], a
 	ld hl, TypeMatchup
 .asm_347e7
