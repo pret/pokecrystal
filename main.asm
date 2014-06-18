@@ -28038,7 +28038,7 @@ Function16290: ; 16290
 	jr .asm_162a4
 
 .asm_1629f
-	call Function16439
+	call DSTChecks
 	ld a, $7
 
 .asm_162a4
@@ -28248,20 +28248,22 @@ Function16433: ; 16433
 	ret
 ; 16439
 
-Function16439: ; 16439
+DSTChecks: ; 16439
+; check the time; avoid changing DST if doing so would change the current day
 	ld a, [$d4c2]
 	bit 7, a
 	ld a, [hHours]
 	jr z, .asm_16447
-	and a
-	jr z, .asm_1644b
-	jr .asm_16468
+	and a ; within one hour of 00:00?
+	jr z, .LostBooklet
+	jr .next
 
 .asm_16447
-	cp $17
-	jr nz, .asm_16468
+	cp 23 ; within one hour of 23:00?
+	jr nz, .next
+	; fallthrough
 
-.asm_1644b
+.LostBooklet
 	call Function164ea
 	bccoord 1, 14
 	ld hl, UnknownText_0x164f4
@@ -28270,11 +28272,11 @@ Function16439: ; 16439
 	ret c
 	call Function164ea
 	bccoord 1, 14
-	ld hl, UnknownText_0x164f9
+	ld hl, LostInstructionBookletText
 	call Function13e5
 	ret
 
-.asm_16468
+.next
 	call Function164ea
 	bccoord 1, 14
 	ld a, [$d4c2]
@@ -28354,8 +28356,9 @@ UnknownText_0x164f4: ; 0x164f4
 	db "@"
 ; 0x164f9
 
-UnknownText_0x164f9: ; 0x164f9
-	; I lost the in- struction booklet for the #GEAR. Come back again in a while.
+LostInstructionBookletText: ; 0x164f9
+	; I lost the instruction booklet for the POKéGEAR.
+	; Come back again in a while.
 	text_jump UnknownText_0x1c60d1
 	db "@"
 ; 0x164fe
