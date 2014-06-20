@@ -109,7 +109,7 @@ Function4357:: ; 4357
 	push af
 	ld h, b
 	ld l, c
-	ld bc, $0028
+	ld bc, ObjectStruct2 - ObjectStruct1
 	xor a
 	call ByteFill
 	pop af
@@ -136,12 +136,12 @@ Function437b: ; 437b
 ; 4386
 
 Function4386: ; 4386
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 6, [hl]
 	ld a, [XCoord]
 	ld e, a
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	add $1
@@ -151,7 +151,7 @@ Function4386: ; 4386
 	jr nc, .asm_43b2
 	ld a, [YCoord]
 	ld e, a
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	add $1
@@ -162,7 +162,7 @@ Function4386: ; 4386
 	jr .asm_43dc
 
 .asm_43b2
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 6, [hl]
 	ld a, [XCoord]
@@ -200,7 +200,7 @@ Function4386: ; 4386
 	ret
 
 .asm_43eb
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 6, [hl]
 	and a
@@ -213,7 +213,7 @@ Function43f3: ; 43f3
 	ld a, [hl]
 	and a
 	jr z, .asm_4409
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 5, [hl]
 	jr nz, .asm_4426
@@ -223,7 +223,7 @@ Function43f3: ; 43f3
 
 .asm_4409
 	call Function47bc
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 5, [hl]
 	jr nz, .asm_4426
@@ -253,7 +253,7 @@ Function4427: ; 4427
 	bit 0, [hl]
 	jr nz, Function44a3
 
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 6, [hl]
 	jr nz, Function44a3
@@ -969,16 +969,16 @@ Function47b6: ; 47b6
 ; 47bc
 
 Function47bc: ; 47bc
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	push bc
 	call Function2a3c
 	pop bc
-	ld hl, $000e
+	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld [hl], a
 	call Function4600
@@ -1553,7 +1553,7 @@ Function4af0: ; 4af0
 	add hl, bc
 	ld [hl], $2
 	ld hl, $d4cf
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	cp [hl]
 	jr z, .asm_4b10
 	ld hl, $0009
@@ -2240,10 +2240,10 @@ Function4ecd: ; 4ecd
 	dec [hl]
 	ret nz
 	push bc
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	ld hl, $0001
@@ -2252,7 +2252,7 @@ Function4ecd: ; 4ecd
 	ld b, a
 	callba Function807e
 	pop bc
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 2, [hl]
 	call Function4600
@@ -2562,7 +2562,7 @@ Function54b8: ; 54b8
 	ret z
 	ld a, [$d4cd]
 	ld d, a
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	cp d
 	ret nz
 	ld a, e
@@ -2705,7 +2705,7 @@ Function5565: ; 5565
 
 Function5579: ; 5579
 	push bc
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld c, a
 	call Function5582
 	pop bc
@@ -2713,7 +2713,7 @@ Function5579: ; 5579
 ; 5582
 
 Function5582: ; 5582
-	ld de, $d4d6
+	ld de, ObjectStructs
 	ld a, $d
 .asm_5587
 	push af
@@ -2728,12 +2728,12 @@ Function5582: ; 5582
 	jr z, .asm_55a1
 	push bc
 	xor a
-	ld bc, $0028
+	ld bc, ObjectStruct2 - ObjectStruct1
 	call ByteFill
 	pop bc
 
 .asm_55a1
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, de
 	ld d, h
 	ld e, l
@@ -2766,7 +2766,7 @@ Function55b9: ; 55b9
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld [hli], a
 	push hl
 	ld hl, $0010
@@ -2788,20 +2788,20 @@ Function55e0:: ; 55e0
 	ld a, [VramState]
 	bit 0, a
 	ret z
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_55ea
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	call Function1af1
 	jr z, .asm_55f4
 	call Function565c
 
 .asm_55f4
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $d
 	jr nz, .asm_55ea
@@ -2853,15 +2853,15 @@ Function5629: ; 5629
 
 Function5645: ; 5645
 	xor a
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 .asm_5649
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	call Function5680
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $d
 	jr nz, .asm_5649
@@ -3083,20 +3083,20 @@ Function5771: ; 5771
 ; 5781
 
 Function5781: ; 5781
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_5785
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	call Function1af1
 	jr z, .asm_578f
 	call Function437b
 
 .asm_578f
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $d
 	jr nz, .asm_5785
@@ -3146,7 +3146,7 @@ Function57d9: ; 57d9
 ; 57db
 
 Function57db: ; 57db
-	ld bc, $d4d6
+	ld bc, PlayerStruct
 	call Function1af8
 	ret
 ; 57e2
@@ -3165,7 +3165,7 @@ Function57e2: ; 57e2
 	swap a
 	and $7
 	ld d, a
-	ld bc, $d4d6
+	ld bc, PlayerStruct
 	ld hl, $0006
 	add hl, bc
 	ld a, [hl]
@@ -3190,7 +3190,7 @@ Function5803:: ; 5803
 Function5815: ; 5815
 	call Function18de
 	ret c
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	ld [$d4cd], a
 	ret
 ; 581f
@@ -3219,7 +3219,7 @@ Function582c: ; 582c
 	ld hl, $0009
 	add hl, bc
 	ld [hl], $0
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	ld [$d4ce], a
 	ret
 ; 5847
@@ -3260,7 +3260,7 @@ Function586e: ; 586e
 ; 587a
 
 Function587a: ; 587a
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_587e
 	push af
@@ -3271,7 +3271,7 @@ Function587a: ; 587a
 	set 5, [hl]
 
 .asm_588a
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3306,7 +3306,7 @@ Function5897:: ; 5897
 
 Function58b9:: ; 58b9
 	push bc
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_58be
 	push af
@@ -3317,7 +3317,7 @@ Function58b9:: ; 58b9
 	res 5, [hl]
 
 .asm_58ca
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3429,7 +3429,7 @@ Function5958: ; 5958
 	ld d, a
 	ld a, [$d14d]
 	ld e, a
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	ld a, $d
 
 .asm_5968
@@ -3450,7 +3450,7 @@ Function5958: ; 5958
 	ld [hl], a
 
 .asm_597c
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -6022,9 +6022,9 @@ CheckFacingObject:: ; 6fd9
 	ld e, a
 
 .asm_6ff1
-	ld bc, $d4d6
+	ld bc, ObjectStructs ; redundant
 	ld a, 0
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	call Function7041
 	ret nc
 	ld hl, $0007
@@ -6052,7 +6052,7 @@ Function7009: ; 7009
 ; 7015
 
 Function7015: ; 7015
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	call Function1ae5
 	call Function7021
 	call Function7041
@@ -6089,10 +6089,10 @@ Function7021: ; 7021
 ; 7041
 
 Function7041: ; 7041
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_7045
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	call Function1af1
 	jr z, .asm_7093
 	ld hl, $0004
@@ -6108,47 +6108,47 @@ Function7041: ; 7041
 	jr .asm_7073
 
 .asm_7063
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .asm_707b
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_707b
 
 .asm_7073
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld l, a
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	cp l
 	jr nz, .asm_70a2
 
 .asm_707b
-	ld hl, $0012
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .asm_7093
-	ld hl, $0013
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_7093
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld l, a
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	cp l
 	jr nz, .asm_70a2
 
 .asm_7093
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
 	cp $d
 	jr nz, .asm_7045
@@ -6256,10 +6256,10 @@ Function7113: ; 7113
 	ld d, a
 	ld a, [MapY]
 	ld e, a
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_711f
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	call Function1af1
 	jr z, .asm_7160
 	ld hl, $0003
@@ -6272,28 +6272,28 @@ Function7113: ; 7113
 	jr .asm_7160
 
 .asm_7136
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_714e
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .asm_714e
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	cp $0
 	jr z, .asm_7160
 	jr .asm_716f
 
 .asm_714e
-	ld hl, $0013
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_7160
-	ld hl, $0012
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -6301,11 +6301,11 @@ Function7113: ; 7113
 	jr .asm_716f
 
 .asm_7160
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
 	cp $d
 	jr nz, .asm_711f
@@ -6855,7 +6855,7 @@ Function8029: ; 8029
 	ld [$d4cd], a
 	ld [$d4ce], a
 	ld a, $0
-	ld hl, Data8071
+	ld hl, PlayerObjectTemplate
 	call Function19a6
 	ld b, $0
 	call Function808f
@@ -6875,18 +6875,18 @@ Function8029: ; 8029
 .asm_8059
 	ld [hl], e
 	ld a, $0
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld bc, MapObjects
 	ld a, $0
-	ld [hConnectedMapWidth], a
-	ld de, $d4d6
+	ld [$ffb0], a
+	ld de, ObjectStructs
 	call Function8116
 	ld a, $0
 	ld [$d4cf], a
 	ret
 ; 8071
 
-Data8071: ; 8071
+PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
@@ -6931,7 +6931,7 @@ Function80a1:: ; 80a1
 	ld hl, $0011
 	add hl, bc
 	ld e, [hl]
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld b, a
 	call Function807e
 	and a
@@ -6972,16 +6972,16 @@ Function80e7:: ; 80e7
 	call Function2707
 	and a
 	ret nz
-	ld hl, $d4fe
-	ld a, $1
-	ld de, $0028
+	ld hl, ObjectStructs + (ObjectStruct2 - ObjectStruct1) * 1
+	ld a, 1
+	ld de, ObjectStruct2 - ObjectStruct1
 .asm_80f4
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	ld a, [hl]
 	and a
 	jr z, .asm_8104
 	add hl, de
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
 	cp $d
 	jr nz, .asm_80f4
@@ -7008,11 +7008,11 @@ Function8116: ; 8116
 ; 811d
 
 Function811d: ; 811d
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	ld hl, $0000
 	add hl, bc
 	ld [hl], a
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld [$c2f0], a
 	ld hl, $0001
 	add hl, bc
@@ -7060,7 +7060,7 @@ Function8177: ; 8177
 	ld bc, $d72e
 	ld a, $1
 .asm_817c
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
@@ -7101,7 +7101,7 @@ Function8177: ; 8177
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $10
 	jr nz, .asm_817c
@@ -7145,7 +7145,7 @@ Function81ea: ; 81ea
 	ld bc, $d72e
 	ld a, $1
 .asm_81f4
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
@@ -7180,7 +7180,7 @@ Function81ea: ; 81ea
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $10
 	jr nz, .asm_81f4
@@ -7203,7 +7203,7 @@ Function823e: ; 823e
 	ld bc, $d72e
 	ld a, $1
 .asm_8248
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
@@ -7238,7 +7238,7 @@ Function823e: ; 823e
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $10
 	jr nz, .asm_8248
@@ -7495,7 +7495,7 @@ Function839e:: ; 839e
 	ld hl, $0018
 	add hl, de
 	ld [hl], a
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	ld hl, $0020
 	add hl, de
 	ld [hl], a
@@ -10439,7 +10439,7 @@ Functioncef4: ; cef4
 Functioncf0d: ; cf0d
 	callba CheckFacingObject
 	jr nc, .asm_cf2c
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	call Function1ae5
 	ld hl, $0001
 	add hl, bc
@@ -22772,21 +22772,21 @@ GetPlayerSprite: ; 14183
 
 .asm_141ad
 	ld [UsedSprites + 0], a
-	ld [$d4d6], a
-	ld [$d71f], a
+	ld [PlayerStruct + 0], a
+	ld [MapObjects + OBJECT_LENGTH * 0 + 1], a
 	ret
 
 .Chris
-	db PLAYER_NORMAL, SPRITE_CHRIS
-	db PLAYER_BIKE, SPRITE_CHRIS_BIKE
-	db PLAYER_SURF, SPRITE_SURF
+	db PLAYER_NORMAL,    SPRITE_CHRIS
+	db PLAYER_BIKE,      SPRITE_CHRIS_BIKE
+	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
 	db $ff
 
 .Kris
-	db PLAYER_NORMAL, SPRITE_KRIS
-	db PLAYER_BIKE, SPRITE_KRIS_BIKE
-	db PLAYER_SURF, SPRITE_SURF
+	db PLAYER_NORMAL,    SPRITE_KRIS
+	db PLAYER_BIKE,      SPRITE_KRIS_BIKE
+	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
 	db $ff
 ; 141c9
@@ -36846,7 +36846,7 @@ Function28434: ; 28434
 	ld a, $ff
 	ld [de], a
 	inc de
-	ld bc, Start
+	ld bc, $100
 	jr .asm_28464
 
 .asm_28495
@@ -45625,7 +45625,7 @@ Function40bd0: ; 40bd0
 
 Function40bdc: ; 40bdc
 	ld hl, PlayerSDefLevel
-	ld bc, Start
+	ld bc, $100
 	xor a
 	call ByteFill
 	ld a, [$c7d4]
@@ -53736,15 +53736,15 @@ Function4aad3: ; 4aad3
 
 	ld c, a
 	xor a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 .asm_4aadd
 	push bc
 	push hl
 	ld e, 0
 	callba Function8e83f
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	pop hl
 	pop bc
 	dec c
@@ -58788,7 +58788,7 @@ Function503e0: ; 503e0
 	ret z
 	ld c, a
 	xor a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 .asm_503ea
 	push bc
 	push hl
@@ -58796,9 +58796,9 @@ Function503e0: ; 503e0
 	ld a, BANK(Function8e83f)
 	ld e, $0
 	rst FarCall
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	pop hl
 	pop bc
 	dec c
@@ -61927,7 +61927,7 @@ GetMovementAction: ; 802ec
 IsNPCInFront: ; 80341
 
 	ld a, 0
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld a, [MapX]
 	ld d, a
 	ld a, [WalkingX]
@@ -61938,7 +61938,7 @@ IsNPCInFront: ; 80341
 	ld a, [WalkingY]
 	add e
 	ld e, a
-	ld bc, $d4d6
+	ld bc, ObjectStructs ; redundant
 	callba Function7041
 	jr nc, .asm_80369
 	call Function8036f
@@ -78637,9 +78637,9 @@ Function8e862: ; 8e862 (23:6862)
 ; known jump sources: 8e865 (23:6865)
 Function8e86c: ; 8e86c (23:686c)
 	push bc
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	ld hl, PartyMon1Item ; $dce0
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	ld a, [hl]
@@ -78713,7 +78713,7 @@ Function8e8d5: ; 8e8d5 (23:68d5)
 ; known jump sources: 8e8d8 (23:68d8)
 Function8e8df: ; 8e8df (23:68df)
 	push bc
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	ld hl, PartyMon1Item ; $dce0
 	ld bc, $30
 	call AddNTimes
@@ -78742,7 +78742,7 @@ Function8e8df: ; 8e8df (23:68df)
 Function8e908: ; 8e908 (23:6908)
 	ld a, [$c3b7]
 	push af
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	ld hl, PartySpecies ; $dcd8
 	ld e, a
 	ld d, $0
@@ -78751,7 +78751,7 @@ Function8e908: ; 8e908 (23:6908)
 	call ReadMonMenuIcon
 	ld [CurIcon], a ; $c3b6
 	call Function8e9db
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	add a
 	add a
 	add a
@@ -78770,7 +78770,7 @@ Function8e908: ; 8e908 (23:6908)
 ; known jump sources: 8e868 (23:6868), 8e8b4 (23:68b4), 8e8db (23:68db)
 Function8e936: ; 8e936 (23:6936)
 	push bc
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	ld b, a
 	call Function8e94c
 	ld a, b
@@ -101584,7 +101584,7 @@ Function100063: ; 100063
 	call ByteFill
 	xor a
 	ld hl, $c300
-	ld bc, Start
+	ld bc, $100
 	call ByteFill
 	ld a, [rIE]
 	ld [BGMapBuffer], a
@@ -104395,10 +104395,10 @@ Function104263: ; 104263 (41:4263)
 
 ; known jump sources: 104261 (41:4261)
 asm_104265: ; 104265 (41:4265)
-	ld a, [hConnectionStripLength] ; $ff00+$af
+	ld a, [$ffaf]
 	push af
 	ld a, c
-	ld [hConnectionStripLength], a ; $ff00+$af
+	ld [$ffaf], a
 	ld c, $12
 .asm_10426d
 	ld b, $14
@@ -104408,7 +104408,7 @@ asm_104265: ; 104265 (41:4265)
 	ld [hli], a
 	dec b
 	jr nz, .asm_10426f
-	ld a, [hConnectionStripLength] ; $ff00+$af
+	ld a, [$ffaf]
 	ld b, $c
 .asm_104279
 	ld [hli], a
@@ -104417,7 +104417,7 @@ asm_104265: ; 104265 (41:4265)
 	dec c
 	jr nz, .asm_10426d
 	pop af
-	ld [hConnectionStripLength], a ; $ff00+$af
+	ld [$ffaf], a
 	ret
 
 
@@ -104472,7 +104472,7 @@ Function1042b2:: ; 1042b2
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, Start
+	ld bc, $100
 	add hl, bc
 	pop bc
 	ld a, c
@@ -111451,7 +111451,7 @@ Function11ad1b: ; 11ad1b
 	ld a, [$cfa9]
 	ld [$cd82], a
 	dec a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	ld a, $10
 	ld [$c3b7], a
 	ld hl, Function8e83f
@@ -112434,7 +112434,7 @@ Function11c1ca: ; 11c1ca
 	ld [rSVBK], a
 	ld hl, PlayerSDefLevel
 	ld de, LYOverrides
-	ld bc, Start
+	ld bc, $100
 	call CopyBytes
 	pop af
 	ld [rSVBK], a

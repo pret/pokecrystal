@@ -454,7 +454,7 @@ Function19e9:: ; 19e9
 Function1a13:: ; 1a13
 	push bc
 	push de
-	ld hl, $d4d6
+	ld hl, ObjectStructs
 	ld de, $0028
 	ld c, $d
 .asm_1a1d
@@ -641,7 +641,7 @@ Function1ad2:: ; 1ad2
 
 Function1ae5:: ; 1ae5
 	ld bc, $0028
-	ld hl, $d4d6
+	ld hl, ObjectStructs
 	call AddNTimes
 	ld b, h
 	ld c, l
