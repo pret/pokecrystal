@@ -611,7 +611,7 @@ Function91e4: ; 91e4
 
 .asm_91f5
 	ld hl, PartyMon1DVs
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld c, l

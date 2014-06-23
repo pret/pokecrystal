@@ -2395,7 +2395,7 @@ Function3cf35: ; 3cf35
 
 Function3cf4a: ; 3cf4a
 	ld hl, EnemyHPPal
-	ld e, $30
+	ld e, HP_BAR_LENGTH_PX
 	call Function3e12e
 	call WaitBGMap
 	callba Function2c012

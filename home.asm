@@ -1696,20 +1696,21 @@ Function3786:: ; 3786
 Function378b:: ; 378b
 	ld a, [CurPartySpecies]
 	call IsAPokemon
-	jr c, .asm_37ad
+	jr c, .not_pokemon
+
 	push hl
 	ld de, VTiles2
 	predef GetFrontpic
 	pop hl
 	xor a
 	ld [$ffad], a
-	ld bc, $0707
+	lb bc, 7, 7
 	predef FillBox
 	xor a
 	ld [$c2c6], a
 	ret
 
-.asm_37ad
+.not_pokemon
 	xor a
 	ld [$c2c6], a
 	inc a

@@ -54741,9 +54741,9 @@ Function4d15b:: ; 4d15b
 
 .asm_4d170
 	ld de, TileMap
-	ld b, $12
+	ld b, SCREEN_HEIGHT
 .asm_4d175
-	ld c, $14
+	ld c, SCREEN_WIDTH
 .asm_4d177
 	ld a, [hli]
 	ld [de], a
@@ -93036,7 +93036,7 @@ Functione16c7: ; e16c7
 ; e16e2
 
 Functione16e2: ; e16e2
-	ld bc, $0404
+	lb bc, 4, 4
 .asm_e16e5
 	push bc
 .asm_e16e6

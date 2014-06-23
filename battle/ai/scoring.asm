@@ -1523,13 +1523,13 @@ AIScoring_HealBell: ; 38d1f
 	ld b, a
 	ld c, 0
 	ld hl, OTPartyMon1HP
-	ld de, $0030
+	ld de, OTPartyMon2 - OTPartyMon1
 
-.asm_38d2c
+.loop
 	push hl
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_38d37
+	jr z, .next
 
 	dec hl
 	dec hl
@@ -1538,34 +1538,31 @@ AIScoring_HealBell: ; 38d1f
 	or c
 	ld c, a
 
-.asm_38d37
+.next
 	pop hl
 	add hl, de
 	dec b
-	jr nz, .asm_38d2c
+	jr nz, .loop
 
 	pop hl
 	ld a, c
 	and a
-	jr z, .asm_38d52
+	jr z, .no_status
 
 	ld a, [EnemyMonStatus]
 	and a
-	jr z, .asm_38d48
-
+	jr z, .ok
 	dec [hl]
-
-.asm_38d48
-	and $27
+.ok
+	and 1 << FRZ | SLP
 	ret z
 	call Function39527
-
 	ret c
 	dec [hl]
 	dec [hl]
 	ret
 
-.asm_38d52
+.no_status
 	ld a, [EnemyMonStatus]
 	and a
 	ret nz

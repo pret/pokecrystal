@@ -2356,10 +2356,10 @@ XSpecial: ; f4c5
 ; f504
 
 Tablef504: ; f504
-	db X_ATTACK,  0
-	db X_DEFEND,  1
-	db X_SPEED,   2
-	db X_SPECIAL, 3
+	db X_ATTACK,  ATTACK
+	db X_DEFEND,  DEFENSE
+	db X_SPEED,   SPEED
+	db X_SPECIAL, SP_ATTACK
 ; f50c
 
 
@@ -2367,21 +2367,23 @@ PokeFlute: ; f50c
 	ld a, [IsInBattle]
 	and a
 	jr nz, .asm_f512
-
 .asm_f512
+
 	xor a
 	ld [$d002], a
-	ld b, $f8
+
+	ld b, $ff ^ SLP
+
 	ld hl, PartyMon1Status
-	call .asm_f554
+	call .Functionf554
 
 	ld a, [IsInBattle]
-	cp $1
+	cp WILD_BATTLE
 	jr z, .asm_f52b
 	ld hl, OTPartyMon1Status
-	call .asm_f554
-
+	call .Functionf554
 .asm_f52b
+
 	ld hl, BattleMonStatus
 	ld a, [hl]
 	and b
@@ -2390,6 +2392,7 @@ PokeFlute: ; f50c
 	ld a, [hl]
 	and b
 	ld [hl], a
+
 	ld a, [$d002]
 	and a
 	ld hl, UnknownText_0xf56c
@@ -2400,31 +2403,29 @@ PokeFlute: ; f50c
 	ld a, [Danger]
 	and $80
 	jr nz, .asm_f54e
-
 .asm_f54e
 	ld hl, UnknownText_0xf571
 	jp PrintText
 
 
-.asm_f554
-	ld de, $0030
-	ld c, $6
+.Functionf554
+	ld de, PartyMon2 - PartyMon1
+	ld c, PARTY_LENGTH
 
-.asm_f559
+.loop
 	ld a, [hl]
 	push af
-	and $7
+	and SLP
 	jr z, .asm_f564
-	ld a, $1
+	ld a, 1
 	ld [$d002], a
-
 .asm_f564
 	pop af
 	and b
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .asm_f559
+	jr nz, .loop
 	ret
 ; f56c
 

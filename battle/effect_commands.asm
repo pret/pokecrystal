@@ -5092,7 +5092,7 @@ BattleCommand4a: ; 35c0f
 	ld a, [AttackMissed]
 	and a
 	jp nz, .asm_35c91
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1 ; ????
 	ld hl, EnemyMonMoves
 	ld a, [hBattleTurn]
 	and a
@@ -5106,7 +5106,7 @@ BattleCommand4a: ; 35c0f
 	cp STRUGGLE
 	jr z, .asm_35c91
 	ld b, a
-	ld c, $ff
+	ld c, -1
 .asm_35c33
 	inc c
 	ld a, [hli]
@@ -5114,9 +5114,9 @@ BattleCommand4a: ; 35c0f
 	jr nz, .asm_35c33
 	ld [$d265], a
 	dec hl
-	ld b, $0
+	ld b, 0
 	push bc
-	ld c, $6
+	ld c, BattleMonPP - BattleMonMoves
 	add hl, bc
 	pop bc
 	ld a, [hl]
@@ -7380,7 +7380,7 @@ Function36994: ; 36994
 	ld a, [PartyCount]
 	ld d, a
 	ld e, 0
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 .asm_3699d
 	ld a, [CurBattleMon]
 	cp e
