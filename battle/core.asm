@@ -75,9 +75,9 @@ Function3c000: ; 3c000
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	inc a
-	ld hl, PartyCount
+	ld hl, PartySpecies - 1
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ld [CurPartySpecies], a
@@ -1463,7 +1463,6 @@ Function3c93c: ; 3c93c
 	ld b, 1
 	jr z, .asm_3c9b8
 	ld b, 5
-
 .asm_3c9b8
 	ld a, [de]
 	add b
@@ -1479,7 +1478,6 @@ Function3c93c: ; 3c93c
 	jr z, .asm_3c9d2
 	ld de, EnemyMonMoves - 1
 	ld hl, EnemyMonPP
-
 .asm_3c9d2
 	inc de
 	pop bc
@@ -1491,6 +1489,7 @@ Function3c93c: ; 3c93c
 	add hl, bc
 	pop de
 	pop bc
+
 	ld a, [$d265]
 	cp [hl]
 	jr nz, .asm_3c9f5
@@ -1499,14 +1498,12 @@ Function3c93c: ; 3c93c
 	ld a, [PlayerSubStatus5]
 	jr z, .asm_3c9ee
 	ld a, [EnemySubStatus5]
-
 .asm_3c9ee
 	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .asm_3c9f5
 	ld a, [de]
 	add b
 	ld [de], a
-
 .asm_3c9f5
 	callab GetUserItem
 	ld a, [hl]
@@ -2207,7 +2204,7 @@ Function3ce01: ; 3ce01
 
 .asm_3ce16
 	ld hl, PlayerSubStatus3
-	res 2, [hl]
+	res SUBSTATUS_IN_LOOP, [hl]
 	xor a
 	ld hl, EnemyDamageTaken
 	ld [hli], a
@@ -2287,8 +2284,8 @@ Function3ceaa: ; 3ceaa
 	ld a, [PartyCount]
 	ld b, a
 	ld hl, PartyMon1
-	ld c, $1
-	ld d, $0
+	ld c, 1
+	ld d, 0
 .asm_3ceb5
 	push hl
 	push bc
@@ -2322,9 +2319,10 @@ Function3ceaa: ; 3ceaa
 	pop de
 	dec b
 	jr nz, .asm_3ceb5
+
 	ld a, d
-	ld e, $0
-	ld b, $6
+	ld e, 0
+	ld b, PARTY_LENGTH
 .asm_3cee1
 	srl a
 	jr nc, .asm_3cee6
@@ -2801,7 +2799,7 @@ Function3d1aa: ; 3d1aa
 	ld b, $0
 	predef FlagPredef
 	ld hl, EnemySubStatus3
-	res 2, [hl]
+	res SUBSTATUS_IN_LOOP, [hl]
 	xor a
 	ld [Danger], a
 	ld hl, PlayerDamageTaken
@@ -3471,14 +3469,14 @@ Function3d618: ; 3d618
 	ld a, b
 	inc a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	dec a
 	ld hl, BaseData + 7 ; type
 	ld bc, $20
 	call AddNTimes
-	ld de, EnemyMonType1
+	ld de, EnemyMonType
 	ld bc, 2
 	ld a, BANK(BaseData)
 	call FarCopyBytes
@@ -3487,13 +3485,13 @@ Function3d618: ; 3d618
 	call SetPlayerTurn
 	callab Function347c8
 	ld a, [$d265]
-	cp $b
+	cp 10 + 1 ; 1.0 + 0.1
 	jr nc, .asm_3d663
 	ld a, [BattleMonType2]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	callab Function347c8
 	ld a, [$d265]
-	cp $b
+	cp 10 + 1 ; 1.0 + 0.1
 	jr nc, .asm_3d663
 	pop bc
 	ret

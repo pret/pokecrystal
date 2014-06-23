@@ -1241,7 +1241,7 @@ BattleCommand05: ; 34631
 .FocusEnergy
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
-	bit 2, a
+	bit SUBSTATUS_FOCUS_ENERGY, a
 	jr z, .CheckCritical
 
 ; +1 critical level
@@ -1595,8 +1595,8 @@ BattleCommanda3: ; 34833
 	call Function347c8
 	ld a, [$d265]
 	and a
-	ld a, $a
-	jr nz, .asm_3484a ; 3483c $c
+	ld a, 10 ; 1.0
+	jr nz, .asm_3484a
 	call ResetDamage
 	xor a
 	ld [TypeModifier], a
@@ -1618,75 +1618,86 @@ Function3484e: ; 3484e
 	ld hl, PlayerUsedMoves
 	ld a, [hl]
 	and a
-	jr z, .asm_348b0 ; 0x3485b $53
-	ld d, $4
-	ld e, $0
-.asm_34861
+	jr z, .unknown_moves
+
+	ld d, NUM_MOVES
+	ld e, 0
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_3489f ; 0x34863 $3a
+	jr z, .exit
 	push hl
 	dec a
 	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
-	jr z, .asm_3489b ; 0x3486e $2b
+	jr z, .next
+
 	inc hl
 	call GetMoveByte
-	ld hl, EnemyMonType1
+	ld hl, EnemyMonType
 	call Function347d3
 	ld a, [$d265]
-	cp $b
-	jr nc, .asm_34895 ; 0x3487f $14
+	cp 10 + 1 ; 1.0 + 0.1
+	jr nc, .super_effective
 	and a
-	jr z, .asm_3489b ; 0x34882 $17
-	cp $a
-	jr nc, .asm_34891 ; 0x34886 $9
+	jr z, .next
+	cp 10 ; 1.0
+	jr nc, .neutral
+
+.not_very_effective
 	ld a, e
-	cp $1
-	jr nc, .asm_3489b ; 0x3488b $e
-	ld e, $1
-	jr .asm_3489b ; 0x3488f $a
-.asm_34891
-	ld e, $2
-	jr .asm_3489b ; 0x34893 $6
-.asm_34895
+	cp 1 ; 0.1
+	jr nc, .next
+	ld e, 1
+	jr .next
+
+.neutral
+	ld e, 2
+	jr .next
+
+.super_effective
 	call Function34931
 	pop hl
-	jr .asm_348d7 ; 0x34899 $3c
-.asm_3489b
+	jr .done
+
+.next
 	pop hl
 	dec d
-	jr nz, .asm_34861 ; 0x3489d $c2
-.asm_3489f
+	jr nz, .loop
+
+.exit
 	ld a, e
-	cp $2
-	jr z, .asm_348d7 ; 0x348a2 $33
+	cp 2
+	jr z, .done
 	call Function34939
 	ld a, e
 	and a
-	jr nz, .asm_348d7 ; 0x348a9 $2c
+	jr nz, .done
 	call Function34939
-	jr .asm_348d7 ; 0x348ae $27
-.asm_348b0
+	jr .done
+
+.unknown_moves
 	ld a, [BattleMonType1]
 	ld b, a
 	ld hl, EnemyMonType1
 	call Function347d3
 	ld a, [$d265]
-	cp $b
-	jr c, .asm_348c4 ; 0x348bf $3
+	cp 10 + 1 ; 1.0 + 0.1
+	jr c, .ok
 	call Function34931
-.asm_348c4
+.ok
 	ld a, [BattleMonType2]
 	cp b
-	jr z, .asm_348d7 ; 0x348c8 $d
+	jr z, .ok2
 	call Function347d3
 	ld a, [$d265]
-	cp $b
-	jr c, .asm_348d7 ; 0x348d2 $3
+	cp 10 + 1 ; 1.0 + 0.1
+	jr c, .ok2
 	call Function34931
-.asm_348d7
+.ok2
+
+.done
 	call Function348de
 	pop bc
 	pop de
@@ -1702,7 +1713,6 @@ Function348de: ; 348de
 
 	ld a, [$d265]
 	push af
-
 .loop
 	dec b
 	jr z, .exit
@@ -1722,27 +1732,31 @@ Function348de: ; 348de
 	call GetMoveByte
 	ld hl, BattleMonType1
 	call Function347d3
+
 	ld a, [$d265]
+	; immune
 	and a
 	jr z, .loop
 
+	; not very effective
 	inc c
 	cp 10
 	jr c, .loop
 
+	; neutral
 	inc c
 	inc c
 	inc c
 	inc c
 	inc c
-
 	cp 10
 	jr z, .loop
 
+	; super effective
 	ld c, 100
 	jr .loop
-.exit
 
+.exit
 	pop af
 	ld [$d265], a
 
@@ -1897,18 +1911,18 @@ Function34941: ; 34941
 Function349f4: ; 349f4
 	ld a, [OTPartyCount]
 	cp 2
-	jr c, .asm_34a26
+	jr c, .only_one
 
 	ld d, a
 	ld e, 0
-	ld b, $20
+	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
 	ld hl, OTPartyMon1HP
 
-.asm_34a05
+.loop
 	ld a, [CurOTMon]
 	cp e
-	jr z, .asm_34a16
+	jr z, .next
 
 	push bc
 	ld b, [hl]
@@ -1916,13 +1930,13 @@ Function349f4: ; 349f4
 	ld a, [hld]
 	or b
 	pop bc
-	jr z, .asm_34a16
+	jr z, .next
 
 	ld a, c
 	or b
 	ld c, a
 
-.asm_34a16
+.next
 	srl b
 	push bc
 	ld bc, PartyMon2 - PartyMon1
@@ -1930,17 +1944,17 @@ Function349f4: ; 349f4
 	pop bc
 	inc e
 	dec d
-	jr nz, .asm_34a05
+	jr nz, .loop
 
 	ld a, c
 	and a
-	jr nz, .asm_34a28
+	jr nz, .more_than_one
 
-.asm_34a26
+.only_one
 	scf
 	ret
 
-.asm_34a28
+.more_than_one
 	and a
 	ret
 ; 34a2a
@@ -2205,15 +2219,15 @@ Function34b20: ; 34b20
 Function34b77: ; 34b77
 	push bc
 	ld de, OTPartySpecies
-	ld b, $20
+	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
 	ld hl, OTPartyMon1HP
 
-.asm_34b82
+.loop
 	ld a, [de]
 	inc de
 	cp $ff
-	jr z, .asm_34bac
+	jr z, .done
 
 	push hl
 	push bc
@@ -2231,22 +2245,22 @@ Function34b77: ; 34b77
 	ld a, [hl]
 	sbc b
 	pop bc
-	jr nc, .asm_34ba1
+	jr nc, .next
 
 	ld a, b
 	or c
 	ld c, a
 
-.asm_34ba1
+.next
 	srl b
 	pop hl
 	push bc
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
-	jr .asm_34b82
+	jr .loop
 
-.asm_34bac
+.done
 	ld a, c
 	pop bc
 	and c
@@ -2339,7 +2353,7 @@ BattleCommand09: ; 34d32
 	call .UnleashedEnergy
 	ret nz
 
-; Perfect-accuracy moves
+	; Perfect-accuracy moves
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
@@ -2893,9 +2907,9 @@ BattleCommand0d: ; 35023
 	call GetBattleVarAddr
 
 	cp FLY
-	jr z, .asm_3504f ; 35032 $1b
+	jr z, .asm_3504f
 	cp DIG
-	jr z, .asm_3504f ; 35036 $17
+	jr z, .asm_3504f
 
 ; Move effect:
 	inc hl
@@ -2929,25 +2943,25 @@ BattleCommand0e: ; 3505e
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_ENDURE, a
-	jr z, .asm_35072 ; 35065 $b
+	jr z, .asm_35072
 	call BattleCommand4b
 	ld b, $0
-	jr nc, .asm_3508b ; 3506c $1d
+	jr nc, .asm_3508b
 	ld b, $1
-	jr .asm_3508b ; 35070 $19
+	jr .asm_3508b
 
 .asm_35072
 	call GetOpponentItem
 	ld a, b
 	cp HELD_FOCUS_BAND
 	ld b, $0
-	jr nz, .asm_3508b ; 3507a $f
+	jr nz, .asm_3508b
 	call BattleRandom
 	cp c
-	jr nc, .asm_3508b ; 35080 $9
+	jr nc, .asm_3508b
 	call BattleCommand4b
 	ld b, $0
-	jr nc, .asm_3508b ; 35087 $2
+	jr nc, .asm_3508b
 	ld b, $2
 .asm_3508b
 	push bc
@@ -2968,7 +2982,7 @@ BattleCommand0e: ; 3505e
 	and a
 	ret z
 	dec a
-	jr nz, .asm_350ab ; 350a3 $6
+	jr nz, .asm_350ab
 	ld hl, EnduredText
 	jp StdBattleTextBox
 
@@ -3019,23 +3033,24 @@ Function350e4: ; 350e4
 	ld de, DoesntAffectText
 	ld a, [TypeModifier]
 	and $7f
-	jr z, .asm_35110 ; 0x350ef $1f
+	jr z, .asm_35110
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_FUTURE_SIGHT
 	ld hl, ButItFailedText
 	ld de, ItFailedText
-	jr z, .asm_35110 ; 0x350fe $10
+	jr z, .asm_35110
 	ld hl, AttackMissedText
 	ld de, AttackMissed2Text
 	ld a, [CriticalHit]
 	cp $ff
-	jr nz, .asm_35110 ; 0x3510b $3
+	jr nz, .asm_35110
 	ld hl, UnaffectedText
 .asm_35110
 	call Function35157
 	xor a
 	ld [CriticalHit], a
+
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_JUMP_KICK
@@ -3046,17 +3061,15 @@ Function350e4: ; 350e4
 	ld hl, CurDamage
 	ld a, [hli]
 	ld b, [hl]
+	rept 3
 	srl a
 	rr b
-	srl a
-	rr b
-	srl a
-	rr b
+	endr
 	ld [hl], b
 	dec hl
 	ld [hli], a
 	or b
-	jr nz, .asm_3513e ; 0x3513a $2
+	jr nz, .asm_3513e
 	inc a
 	ld [hl], a
 .asm_3513e
@@ -3106,7 +3119,7 @@ BattleCommand0f: ; 35175
 
 	dec a
 	add a
-	ld hl, .ptrs
+	ld hl, .texts
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -3122,9 +3135,9 @@ BattleCommand0f: ; 35175
 	ld c, 20
 	jp DelayFrames
 
-.ptrs
-	dw CriticalHitText ; 'critical hit'
-	dw OneHitKOText    ; 'one-hit ko'
+.texts
+	dw CriticalHitText
+	dw OneHitKOText
 ; 35197
 
 
@@ -3134,10 +3147,9 @@ BattleCommandae: ; 35197
 	ld hl, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_351a2
+	jr z, .ok
 	ld hl, EnemyRolloutCount
-
-.asm_351a2
+.ok
 	xor a
 	ld [hl], a
 	ret
@@ -3149,7 +3161,7 @@ BattleCommandad: ; 351a5
 
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	bit 2, a
+	bit SUBSTATUS_IN_LOOP, a
 	ret nz
 
 	; fallthrough
@@ -3163,9 +3175,9 @@ BattleCommand10: ; 351ad
 	and $7f
 	cp 10 ; 1.0
 	ret z
-	ld hl, SuperEffectiveText ; 'super-effective'
+	ld hl, SuperEffectiveText
 	jr nc, .print
-	ld hl, NotVeryEffectiveText ; 'not very effective'
+	ld hl, NotVeryEffectiveText
 .print
 	jp StdBattleTextBox
 ; 351c0
@@ -3304,14 +3316,14 @@ BattleCommanda2: ; 3527b
 	ld a, [hBattleTurn]
 	and a
 	ld a, [$c72b]
-	jr z, .asm_35290 ; 3528b $3
+	jr z, .asm_35290
 	ld a, [$c72c]
 .asm_35290
 	and a
-	jr z, .asm_3529a ; 35291 $7
+	jr z, .asm_3529a
 	dec a
 	add hl, bc
-	jr nc, .asm_35290 ; 35295 $f9
+	jr nc, .asm_35290
 	ld hl, $ffff
 .asm_3529a
 	ld a, h
@@ -3440,11 +3452,11 @@ PlayerAttackDamage: ; 352e2
 	call GetDamageStatsCritical
 	jr c, .lightball
 
-	ld hl, $c6c9
+	ld hl, EnemyStats + SP_DEFENSE * 2
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, $c6bc
+	ld hl, PlayerStats + SP_ATTACK * 2
 
 .lightball
 ; Note: Returns player special attack at hl in hl.
@@ -3730,7 +3742,7 @@ BattleCommanda1: ; 35461
 	and a
 	jp nz, .asm_354ef
 	ld a, [PlayerSubStatus3]
-	bit 2, a
+	bit SUBSTATUS_IN_LOOP, a
 	jr nz, .asm_35482
 	ld c, 20
 	call DelayFrames
@@ -3796,7 +3808,7 @@ BattleCommanda1: ; 35461
 
 .asm_354ef
 	ld a, [EnemySubStatus3]
-	bit 2, a
+	bit SUBSTATUS_IN_LOOP, a
 	jr nz, .asm_35502
 
 	xor a
@@ -7423,9 +7435,9 @@ BattleCommand24: ; 369b6
 
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	bit 2, [hl]
+	bit SUBSTATUS_IN_LOOP, [hl]
 	jp nz, .asm_36a43
-	set 2, [hl]
+	set SUBSTATUS_IN_LOOP, [hl]
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarAddr
 	ld a, [hl]
@@ -7470,7 +7482,7 @@ BattleCommand24: ; 369b6
 .asm_36a1e
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	res 2, [hl]
+	res SUBSTATUS_IN_LOOP, [hl]
 	call BattleCommanda8
 	jp EndMoveEffect
 .asm_36a2b
@@ -7499,7 +7511,7 @@ BattleCommand24: ; 369b6
 .asm_36a48
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	res 2, [hl]
+	res SUBSTATUS_IN_LOOP, [hl]
 
 	ld hl, PlayerHitTimesText
 	ld a, [hBattleTurn]
