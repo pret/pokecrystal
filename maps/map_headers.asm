@@ -39,8 +39,6 @@ OlivinePokeCenter1F_MapHeader:: ; 0x94034
 
 	; location on world map, music, time of day, fishing group
 	db OLIVINE_CITY, MUSIC_POKEMON_CENTER, 1, 1
-; had to increase the final size by 1
-; had to convert 0x->$ (duh..)
 ; 0x9403d
 
 OlivineGym_MapHeader:: ; 0x9403d
