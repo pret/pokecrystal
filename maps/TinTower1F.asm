@@ -122,7 +122,7 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	cry SUICUNE
 	pause 20
 	loadpokedata SUICUNE, 40
-	writecode $3, $c
+	writecode $3, BATTLETYPE_SUICUNE
 	startbattle
 	reloadmapmusic
 	disappear $2

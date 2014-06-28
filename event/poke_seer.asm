@@ -139,7 +139,7 @@ ReadCaughtData: ; 4f134
 
 GetCaughtName: ; 4f176
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	call AddNTimes
 	ld de, $d003
@@ -258,8 +258,8 @@ GetCaughtLocation: ; 4f20a
 
 GetCaughtOT: ; 4f242
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1OT
-	ld bc, $000b
+	ld hl, PartyMonOT
+	ld bc, NAME_LENGTH
 	call AddNTimes
 	ld de, $d02a
 	ld bc, $000b

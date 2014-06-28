@@ -30,7 +30,7 @@ PokemonFellFromTreeText: ; 0x80778
 	prompt
 ; 0x80793
 
-WildPokemonAppearedText2: ; 0x80793
+WildCelebiAppearedText: ; 0x80793
 	text "Wild @"
 	text_from_ram $c616
 	db $0
@@ -60,43 +60,43 @@ BattleText_0x807cf: ; 0x807cf
 	prompt
 ; 0x807e2
 
-BattleText_0x807e2: ; 0x807e2
+HurtByPoisonText: ; 0x807e2
 	text $5a
 	line "is hurt by poison!"
 	prompt
 ; 0x807f8
 
-BattleText_0x807f8: ; 0x807f8
+HurtByBurnText: ; 0x807f8
 	text $5a, "'s"
 	line "hurt by its burn!"
 	prompt
 ; 0x8080e
 
-BattleText_0x8080e: ; 0x8080e
+LeechSeedSapsText: ; 0x8080e
 	text "LEECH SEED saps"
 	line $5a, "!"
 	prompt
 ; 0x80822
 
-BattleText_0x80822: ; 0x80822
+HasANightmareText: ; 0x80822
 	text $5a
 	line "has a NIGHTMARE!"
 	prompt
 ; 0x80836
 
-BattleText_0x80836: ; 0x80836
+HurtByCurseText: ; 0x80836
 	text $5a, "'s"
 	line "hurt by the CURSE!"
 	prompt
 ; 0x8084d
 
-BattleText_0x8084d: ; 0x8084d
+SandstormHitsText: ; 0x8084d
 	text "The SANDSTORM hits"
 	line $5a, "!"
 	prompt
 ; 0x80864
 
-BattleText_0x80864: ; 0x80864
+PerishCountText: ; 0x80864
 	text $5a, "'s"
 	line "PERISH count is @"
 	deciram $d265, $11

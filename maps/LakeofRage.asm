@@ -88,7 +88,7 @@ GyaradosScript_0x70063: ; 0x70063
 	cry GYARADOS
 	loadmovesprites
 	loadpokedata GYARADOS, 30
-	writecode $3, $7
+	writecode $3, BATTLETYPE_SHINY
 	startbattle
 	if_equal $1, UnknownScript_0x7007a
 	disappear $a

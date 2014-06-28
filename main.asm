@@ -17,8 +17,7 @@ Function4000:: ; 4000
 	jr .asm_4017
 
 .asm_4012
-	ld a, $10
-	call Predef
+	predef Function28eef
 
 .asm_4017
 	hlcoord 4, 11
@@ -110,7 +109,7 @@ Function4357:: ; 4357
 	push af
 	ld h, b
 	ld l, c
-	ld bc, $0028
+	ld bc, ObjectStruct2 - ObjectStruct1
 	xor a
 	call ByteFill
 	pop af
@@ -137,12 +136,12 @@ Function437b: ; 437b
 ; 4386
 
 Function4386: ; 4386
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 6, [hl]
 	ld a, [XCoord]
 	ld e, a
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	add $1
@@ -152,7 +151,7 @@ Function4386: ; 4386
 	jr nc, .asm_43b2
 	ld a, [YCoord]
 	ld e, a
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	add $1
@@ -163,7 +162,7 @@ Function4386: ; 4386
 	jr .asm_43dc
 
 .asm_43b2
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 6, [hl]
 	ld a, [XCoord]
@@ -201,7 +200,7 @@ Function4386: ; 4386
 	ret
 
 .asm_43eb
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 6, [hl]
 	and a
@@ -214,7 +213,7 @@ Function43f3: ; 43f3
 	ld a, [hl]
 	and a
 	jr z, .asm_4409
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 5, [hl]
 	jr nz, .asm_4426
@@ -224,7 +223,7 @@ Function43f3: ; 43f3
 
 .asm_4409
 	call Function47bc
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 5, [hl]
 	jr nz, .asm_4426
@@ -254,7 +253,7 @@ Function4427: ; 4427
 	bit 0, [hl]
 	jr nz, Function44a3
 
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 6, [hl]
 	jr nz, Function44a3
@@ -970,16 +969,16 @@ Function47b6: ; 47b6
 ; 47bc
 
 Function47bc: ; 47bc
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	push bc
 	call Function2a3c
 	pop bc
-	ld hl, $000e
+	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld [hl], a
 	call Function4600
@@ -1554,7 +1553,7 @@ Function4af0: ; 4af0
 	add hl, bc
 	ld [hl], $2
 	ld hl, $d4cf
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	cp [hl]
 	jr z, .asm_4b10
 	ld hl, $0009
@@ -2241,10 +2240,10 @@ Function4ecd: ; 4ecd
 	dec [hl]
 	ret nz
 	push bc
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	ld hl, $0001
@@ -2253,7 +2252,7 @@ Function4ecd: ; 4ecd
 	ld b, a
 	callba Function807e
 	pop bc
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 2, [hl]
 	call Function4600
@@ -2563,7 +2562,7 @@ Function54b8: ; 54b8
 	ret z
 	ld a, [$d4cd]
 	ld d, a
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	cp d
 	ret nz
 	ld a, e
@@ -2706,7 +2705,7 @@ Function5565: ; 5565
 
 Function5579: ; 5579
 	push bc
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld c, a
 	call Function5582
 	pop bc
@@ -2714,7 +2713,7 @@ Function5579: ; 5579
 ; 5582
 
 Function5582: ; 5582
-	ld de, $d4d6
+	ld de, ObjectStructs
 	ld a, $d
 .asm_5587
 	push af
@@ -2729,12 +2728,12 @@ Function5582: ; 5582
 	jr z, .asm_55a1
 	push bc
 	xor a
-	ld bc, $0028
+	ld bc, ObjectStruct2 - ObjectStruct1
 	call ByteFill
 	pop bc
 
 .asm_55a1
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, de
 	ld d, h
 	ld e, l
@@ -2767,7 +2766,7 @@ Function55b9: ; 55b9
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld [hli], a
 	push hl
 	ld hl, $0010
@@ -2789,20 +2788,20 @@ Function55e0:: ; 55e0
 	ld a, [VramState]
 	bit 0, a
 	ret z
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_55ea
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	call Function1af1
 	jr z, .asm_55f4
 	call Function565c
 
 .asm_55f4
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $d
 	jr nz, .asm_55ea
@@ -2854,15 +2853,15 @@ Function5629: ; 5629
 
 Function5645: ; 5645
 	xor a
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 .asm_5649
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	call Function5680
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $d
 	jr nz, .asm_5649
@@ -3084,20 +3083,20 @@ Function5771: ; 5771
 ; 5781
 
 Function5781: ; 5781
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_5785
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	call Function1af1
 	jr z, .asm_578f
 	call Function437b
 
 .asm_578f
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $d
 	jr nz, .asm_5785
@@ -3147,7 +3146,7 @@ Function57d9: ; 57d9
 ; 57db
 
 Function57db: ; 57db
-	ld bc, $d4d6
+	ld bc, PlayerStruct
 	call Function1af8
 	ret
 ; 57e2
@@ -3166,7 +3165,7 @@ Function57e2: ; 57e2
 	swap a
 	and $7
 	ld d, a
-	ld bc, $d4d6
+	ld bc, PlayerStruct
 	ld hl, $0006
 	add hl, bc
 	ld a, [hl]
@@ -3191,7 +3190,7 @@ Function5803:: ; 5803
 Function5815: ; 5815
 	call Function18de
 	ret c
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	ld [$d4cd], a
 	ret
 ; 581f
@@ -3220,7 +3219,7 @@ Function582c: ; 582c
 	ld hl, $0009
 	add hl, bc
 	ld [hl], $0
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	ld [$d4ce], a
 	ret
 ; 5847
@@ -3261,7 +3260,7 @@ Function586e: ; 586e
 ; 587a
 
 Function587a: ; 587a
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_587e
 	push af
@@ -3272,7 +3271,7 @@ Function587a: ; 587a
 	set 5, [hl]
 
 .asm_588a
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3307,7 +3306,7 @@ Function5897:: ; 5897
 
 Function58b9:: ; 58b9
 	push bc
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_58be
 	push af
@@ -3318,7 +3317,7 @@ Function58b9:: ; 58b9
 	res 5, [hl]
 
 .asm_58ca
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3430,7 +3429,7 @@ Function5958: ; 5958
 	ld d, a
 	ld a, [$d14d]
 	ld e, a
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	ld a, $d
 
 .asm_5968
@@ -3451,7 +3450,7 @@ Function5958: ; 5958
 	ld [hl], a
 
 .asm_597c
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3891,7 +3890,7 @@ Function5bae: ; 5bae
 
 	ld a, 1
 	call GetSRAMBank
-	ld hl, BoxCount
+	ld hl, sBoxCount
 	call Function5ca1
 	call CloseSRAM
 	
@@ -3908,16 +3907,16 @@ Function5bae: ; 5bae
 	call Function5ca1
 
 	xor a
-	ld [RoamMon1Species], a
-	ld [RoamMon2Species], a
-	ld [RoamMon3Species], a
+	ld [wRoamMon1Species], a
+	ld [wRoamMon2Species], a
+	ld [wRoamMon3Species], a
 	ld a, -1
-	ld [RoamMon1MapGroup], a
-	ld [RoamMon2MapGroup], a
-	ld [RoamMon3MapGroup], a
-	ld [RoamMon1MapNumber], a
-	ld [RoamMon2MapNumber], a
-	ld [RoamMon3MapNumber], a
+	ld [wRoamMon1MapGroup], a
+	ld [wRoamMon2MapGroup], a
+	ld [wRoamMon3MapGroup], a
+	ld [wRoamMon1MapNumber], a
+	ld [wRoamMon2MapNumber], a
+	ld [wRoamMon3MapNumber], a
 
 	ld a, 0
 	call GetSRAMBank
@@ -3977,8 +3976,8 @@ Function5ca1: ; 5ca1
 ; 5ca6
 
 Function5ca6: ; 5ca6
-	ld hl, Box1Name
-	ld c, $0
+	ld hl, wBoxNames
+	ld c, 0
 .asm_5cab
 	push hl
 	ld de, .Box
@@ -3986,22 +3985,22 @@ Function5ca6: ; 5ca6
 	dec hl
 	ld a, c
 	inc a
-	cp $a
+	cp 10
 	jr c, .asm_5cbe
-	sub $a
-	ld [hl], $f7
+	sub 10
+	ld [hl], "1"
 	inc hl
 
 .asm_5cbe
-	add $f6
+	add "0"
 	ld [hli], a
-	ld [hl], $50
+	ld [hl], "@"
 	pop hl
-	ld de, $0009
+	ld de, 9
 	add hl, de
 	inc c
 	ld a, c
-	cp $e
+	cp NUM_BOXES
 	jr c, .asm_5cab
 	ret
 
@@ -4041,18 +4040,14 @@ Function5ce9: ; 5ce9
 	ld de, GreensName
 
 .Copy
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret
 
-.Rival
-	db "???@"
-.Red
-	db "RED@"
-.Green
-	db "GREEN@"
-.Mom
-	db "MOM@"
+.Rival  db "???@"
+.Red    db "RED@"
+.Green  db "GREEN@"
+.Mom    db "MOM@"
 ; 5d23
 
 Function5d23: ; 5d23
@@ -4677,27 +4672,24 @@ Function6182: ; 6182
 
 Function619c: ; 619c
 	ld de, VTiles2
-	callba Function5120d
+	callba GetTrainerPic
 	xor a
 	ld [$ffad], a
 	hlcoord 6, 4
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 61b4
 
 Function61b4: ; 61b4
 	ld de, VTiles2
 	ld c, $31
-	ld a, $40
-	call Predef
+	predef DecompressPredef
 	xor a
 	ld [$ffad], a
 	hlcoord 6, 4
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 61cd
 
@@ -5255,111 +5247,119 @@ Function64db: ; 64db
 	ret
 ; 6508
 
-Function6508: ; 6508
+LearnMove: ; 6508
 	call Function309d
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	ld hl, StringBuffer1
 	ld de, $d050
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-Function6520: ; 6520
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+.loop
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld b, $4
-.asm_6530
+	ld b, NUM_MOVES
+.next
 	ld a, [hl]
 	and a
-	jr z, .asm_6564
+	jr z, .learn
 	inc hl
 	dec b
-	jr nz, .asm_6530
+	jr nz, .next
+
 	push de
 	call Function65d3
 	pop de
-	jp c, Function65b5
+	jp c, .cancel
+
 	push hl
 	push de
 	ld [$d265], a
+
 	ld b, a
 	ld a, [IsInBattle]
 	and a
-	jr z, .asm_6559
+	jr z, .not_disabled
 	ld a, [DisabledMove]
 	cp b
-	jr nz, .asm_6559
+	jr nz, .not_disabled
 	xor a
 	ld [DisabledMove], a
 	ld [PlayerDisableCount], a
+.not_disabled
 
-.asm_6559
 	call GetMoveName
 	ld hl, UnknownText_0x6684
 	call PrintText
 	pop de
 	pop hl
 
-.asm_6564
+.learn
 	ld a, [$d262]
 	ld [hl], a
-	ld bc, $0015
+	ld bc, PartyMon1PP - PartyMon1Moves
 	add hl, bc
+
 	push hl
 	push de
 	dec a
 	ld hl, Moves + MOVE_PP
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
 	pop de
 	pop hl
+
 	ld [hl], a
+
 	ld a, [IsInBattle]
 	and a
-	jp z, Function65ca
+	jp z, .learned
+
 	ld a, [CurPartyMon]
 	ld b, a
 	ld a, [CurBattleMon]
 	cp b
-	jp nz, Function65ca
+	jp nz, .learned
+
 	ld a, [PlayerSubStatus5]
-	bit 3, a
-	jp nz, Function65ca
+	bit SUBSTATUS_TRANSFORMED, a
+	jp nz, .learned
+
 	ld h, d
 	ld l, e
-	ld de, BattleMonMove1
-	ld bc, $0004
+	ld de, BattleMonMoves
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld bc, $0011
+	ld bc, PartyMon1PP - (PartyMon1Moves + NUM_MOVES)
 	add hl, bc
-	ld de, BattleMonPPMove1
-	ld bc, $0004
+	ld de, BattleMonPP
+	ld bc, NUM_MOVES
 	call CopyBytes
-	jp Function65ca
-; 65b5
+	jp .learned
 
-Function65b5: ; 65b5
+.cancel
 	ld hl, UnknownText_0x6675
 	call PrintText
 	call YesNoBox
-	jp c, Function6520
+	jp c, .loop
+
 	ld hl, UnknownText_0x667a
 	call PrintText
-	ld b, $0
+	ld b, 0
 	ret
-; 65ca
 
-Function65ca: ; 65ca
+.learned
 	ld hl, UnknownText_0x666b
 	call PrintText
-	ld b, $1
+	ld b, 1
 	ret
 ; 65d3
 
@@ -5370,11 +5370,11 @@ Function65d3: ; 65d3
 	call YesNoBox
 	pop hl
 	ret c
-	ld bc, $fffc
+	ld bc, -NUM_MOVES
 	add hl, bc
 	push hl
 	ld de, $d25e
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
 	pop hl
 .asm_65ee
@@ -5382,14 +5382,13 @@ Function65d3: ; 65d3
 	ld hl, UnknownText_0x6670
 	call PrintText
 	hlcoord 5, 2
-	ld b, $8
-	ld c, $d
+	ld b, NUM_MOVES * 2
+	ld c, MOVE_NAME_LENGTH
 	call TextBox
-	hlcoord 7, 4
-	ld a, $28
+	hlcoord 5 + 2, 2 + 2
+	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
-	ld a, $20
-	call Predef
+	predef ListMoves
 	ld a, $4
 	ld [$cfa1], a
 	ld a, $6
@@ -5420,7 +5419,7 @@ Function65d3: ; 65d3
 	ld a, [$cfa9]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -5474,9 +5473,6 @@ UnknownText_0x667f: ; 667f
 UnknownText_0x6684: ; 6684
 	text_jump UnknownText_0x1c5740
 	start_asm
-; 6689
-
-; 6689
 	push de
 	ld de, SFX_SWITCH_POKEMON
 	call PlaySFX
@@ -6026,9 +6022,9 @@ CheckFacingObject:: ; 6fd9
 	ld e, a
 
 .asm_6ff1
-	ld bc, $d4d6
+	ld bc, ObjectStructs ; redundant
 	ld a, 0
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	call Function7041
 	ret nc
 	ld hl, $0007
@@ -6056,7 +6052,7 @@ Function7009: ; 7009
 ; 7015
 
 Function7015: ; 7015
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	call Function1ae5
 	call Function7021
 	call Function7041
@@ -6093,10 +6089,10 @@ Function7021: ; 7021
 ; 7041
 
 Function7041: ; 7041
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_7045
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	call Function1af1
 	jr z, .asm_7093
 	ld hl, $0004
@@ -6112,47 +6108,47 @@ Function7041: ; 7041
 	jr .asm_7073
 
 .asm_7063
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .asm_707b
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_707b
 
 .asm_7073
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld l, a
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	cp l
 	jr nz, .asm_70a2
 
 .asm_707b
-	ld hl, $0012
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .asm_7093
-	ld hl, $0013
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_7093
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld l, a
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	cp l
 	jr nz, .asm_70a2
 
 .asm_7093
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
 	cp $d
 	jr nz, .asm_7045
@@ -6260,10 +6256,10 @@ Function7113: ; 7113
 	ld d, a
 	ld a, [MapY]
 	ld e, a
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	xor a
 .asm_711f
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	call Function1af1
 	jr z, .asm_7160
 	ld hl, $0003
@@ -6276,28 +6272,28 @@ Function7113: ; 7113
 	jr .asm_7160
 
 .asm_7136
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_714e
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .asm_714e
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	cp $0
 	jr z, .asm_7160
 	jr .asm_716f
 
 .asm_714e
-	ld hl, $0013
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_7160
-	ld hl, $0012
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -6305,11 +6301,11 @@ Function7113: ; 7113
 	jr .asm_716f
 
 .asm_7160
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
 	cp $d
 	jr nz, .asm_711f
@@ -6457,8 +6453,8 @@ ChangeHappiness: ; 71c2
 	db  +5,  +3,  +2
 	db  +5,  +3,  +2
 	db  +1,  +1,  +0
-	db  +3,  +2,  +1
-	db  +1,  +1,  +0
+	db  +3,  +2,  +1 ; Battled a Gym Leader
+	db  +1,  +1,  +0 ; Learned a move
 	db  -1,  -1,  -1
 	db  -5,  -5, -10
 	db  -5,  -5, -10
@@ -6515,7 +6511,7 @@ StepHappiness:: ; 725a
 
 DaycareStep:: ; 7282
 
-	ld a, [DaycareMan]
+	ld a, [wDaycareMan]
 	bit 0, a
 	jr z, .asm_72a4
 
@@ -6537,7 +6533,7 @@ DaycareStep:: ; 7282
 	ld [hl], a
 
 .asm_72a4
-	ld a, [DaycareLady]
+	ld a, [wDaycareLady]
 	bit 0, a
 	jr z, .asm_72c6
 
@@ -6559,10 +6555,10 @@ DaycareStep:: ; 7282
 	ld [hl], a
 
 .asm_72c6
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	bit 5, [hl] ; egg
 	ret z
-	ld hl, StepsToEgg
+	ld hl, wStepsToEgg
 	dec [hl]
 	ret nz
 
@@ -6587,7 +6583,7 @@ DaycareStep:: ; 7282
 	call Random
 	cp b
 	ret nc
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	res 5, [hl]
 	set 6, [hl]
 	ret
@@ -6606,8 +6602,7 @@ SpecialGiveShuckle: ; 7305
 	ld a, 15
 	ld [CurPartyLevel], a
 
-	ld a, PREDEF_ADDPARTYMON
-	call Predef
+	predef Functiond88c
 	jr nc, .NotGiven
 
 ; Caught data.
@@ -6636,7 +6631,7 @@ SpecialGiveShuckle: ; 7305
 ; Nickname.
 	ld a, [PartyCount]
 	dec a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call SkipNames
 	ld de, SpecialShuckleNick
 	call CopyName2
@@ -6644,7 +6639,7 @@ SpecialGiveShuckle: ; 7305
 ; OT.
 	ld a, [PartyCount]
 	dec a
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call SkipNames
 	ld de, SpecialShuckleOT
 	call CopyName2
@@ -6692,7 +6687,7 @@ SpecialReturnShuckle: ; 737e
 
 ; OT
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call SkipNames
 	ld de, SpecialShuckleOT
 .CheckOT
@@ -6828,7 +6823,8 @@ Function746e: ; 746e
 	jp CopyBytes
 ; 747a
 
-Function747a: ; 747a
+Predef1: ; 747a
+; not used
 	ret
 ; 747b
 
@@ -6842,11 +6838,11 @@ Function8000: ; 8000
 	call WhiteBGMap
 	call ClearSprites
 	ld hl, TileMap
-	ld bc, $0168
+	ld bc, TileMapEnd - TileMap
 	ld a, " "
 	call ByteFill
 	ld hl, AttrMap
-	ld bc, $0168
+	ld bc, AttrMapEnd - AttrMap
 	ld a, $7
 	call ByteFill
 	call Function3200
@@ -6859,7 +6855,7 @@ Function8029: ; 8029
 	ld [$d4cd], a
 	ld [$d4ce], a
 	ld a, $0
-	ld hl, Data8071
+	ld hl, PlayerObjectTemplate
 	call Function19a6
 	ld b, $0
 	call Function808f
@@ -6879,18 +6875,18 @@ Function8029: ; 8029
 .asm_8059
 	ld [hl], e
 	ld a, $0
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld bc, MapObjects
 	ld a, $0
-	ld [hConnectedMapWidth], a
-	ld de, $d4d6
+	ld [$ffb0], a
+	ld de, ObjectStructs
 	call Function8116
 	ld a, $0
 	ld [$d4cf], a
 	ret
 ; 8071
 
-Data8071: ; 8071
+PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
@@ -6935,7 +6931,7 @@ Function80a1:: ; 80a1
 	ld hl, $0011
 	add hl, bc
 	ld e, [hl]
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld b, a
 	call Function807e
 	and a
@@ -6976,16 +6972,16 @@ Function80e7:: ; 80e7
 	call Function2707
 	and a
 	ret nz
-	ld hl, $d4fe
-	ld a, $1
-	ld de, $0028
+	ld hl, ObjectStructs + (ObjectStruct2 - ObjectStruct1) * 1
+	ld a, 1
+	ld de, ObjectStruct2 - ObjectStruct1
 .asm_80f4
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	ld a, [hl]
 	and a
 	jr z, .asm_8104
 	add hl, de
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
 	cp $d
 	jr nz, .asm_80f4
@@ -7012,11 +7008,11 @@ Function8116: ; 8116
 ; 811d
 
 Function811d: ; 811d
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	ld hl, $0000
 	add hl, bc
 	ld [hl], a
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	ld [$c2f0], a
 	ld hl, $0001
 	add hl, bc
@@ -7064,7 +7060,7 @@ Function8177: ; 8177
 	ld bc, $d72e
 	ld a, $1
 .asm_817c
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
@@ -7105,7 +7101,7 @@ Function8177: ; 8177
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $10
 	jr nz, .asm_817c
@@ -7149,7 +7145,7 @@ Function81ea: ; 81ea
 	ld bc, $d72e
 	ld a, $1
 .asm_81f4
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
@@ -7184,7 +7180,7 @@ Function81ea: ; 81ea
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $10
 	jr nz, .asm_81f4
@@ -7207,7 +7203,7 @@ Function823e: ; 823e
 	ld bc, $d72e
 	ld a, $1
 .asm_8248
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
@@ -7242,7 +7238,7 @@ Function823e: ; 823e
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	inc a
 	cp $10
 	jr nz, .asm_8248
@@ -7499,7 +7495,7 @@ Function839e:: ; 839e
 	ld hl, $0018
 	add hl, de
 	ld [hl], a
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	ld hl, $0020
 	add hl, de
 	ld [hl], a
@@ -7754,84 +7750,84 @@ GetPredefPointer:: ; 854b
 	ret
 ; 856b
 
-PredefPointers: ; 856b
+PredefPointers:: ; 856b
 ; $4b Predef pointers
 ; address, bank
 
-	dwb Function6508, BANK(Function6508) ; $0
-	dwb Function747a, BANK(Function747a)
-	dwb Functionc658, BANK(Functionc658)
-	dwb FlagPredef, BANK(FlagPredef)
-	dwb Functionc699, BANK(Functionc699)
-	dwb FillPP, BANK(FillPP)
-	dwb Functiond88c, BANK(Functiond88c)
-	dwb Functionda96, BANK(Functionda96)
-	dwb Functiondb3f, BANK(Functiondb3f) ; $8
-	dwb Functionde6e, BANK(Functionde6e)
-	dwb Functiondf8c, BANK(Functiondf8c)
-	dwb Functionc6e0, BANK(Functionc6e0)
-	dwb Functione167, BANK(Functione167)
-	dwb Functione17b, BANK(Functione17b)
-	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
-	dwb GetTMHMMove, BANK(GetTMHMMove)
-	dwb Function28eef, BANK(Function28eef) ; $ 10
-	dwb PrintMoveDesc, BANK(PrintMoveDesc)
-	dwb Function3df48, BANK(Function3df48) ; UpdatePlayerHUD
-	dwb FillBox, BANK(FillBox)
-	dwb Function3d873, BANK(Function3d873)
-	dwb Function3e036, BANK(Function3e036) ; UpdateEnemyHUD
-	dwb StartBattle, BANK(StartBattle)
-	dwb FillInExpBar, BANK(FillInExpBar)
-	dwb Function3f43d, BANK(Function3f43d) ; $18
-	dwb Function3f47c, BANK(Function3f47c)
-	dwb Function42487, BANK(Function42487)
-	dwb FillMoves, BANK(FillMoves)
-	dwb Function421e6, BANK(Function421e6)
-	dwb Function28f63, BANK(Function28f63)
-	dwb Function28f24, BANK(Function28f24)
-	dwb Function5084a, BANK(Function5084a)
-	dwb Function50d6f, BANK(Function50d6f) ; $20
-	dwb Function50d2e, BANK(Function50d2e)
-	dwb Function50cdb, BANK(Function50cdb)
-	dwb Function50c50, BANK(Function50c50)
-	dwb GetGender, BANK(GetGender)
-	dwb StatsScreenInit, BANK(StatsScreenInit)
-	dwb DrawPlayerHP, BANK(DrawPlayerHP)
-	dwb DrawEnemyHP, BANK(DrawEnemyHP)
-	dwb Function50b7b, BANK(Function50b7b) ; $28
-	dwb GetTypeName, BANK(GetTypeName)
-	dwb PrintMoveType, BANK(PrintMoveType)
-	dwb PrintType, BANK(PrintType)
-	dwb PrintMonTypes, BANK(PrintMonTypes)
-	dwb GetUnownLetter, BANK(GetUnownLetter)
-	dwb Functioncbcdd, BANK(Functioncbcdd)
-	dwb Predef2F, BANK(Predef2F)
-	dwb Function9853, BANK(Function9853) ; $30
-	dwb Function864c, BANK(Function864c)
-	dwb Function91d11, BANK(Function91d11)
-	dwb CheckContestMon, BANK(CheckContestMon)
-	dwb Function8c20f, BANK(Function8c20f)
-	dwb Function8c000, BANK(Function8c000)
-	dwb Function8c000, BANK(Function8c000)
-	dwb PlayBattleAnim, BANK(PlayBattleAnim)
-	dwb Predef38, BANK(Predef38) ; $38
-	dwb Predef39, BANK(Predef39)
-	dwb Functionfd1d0, BANK(Functionfd1d0)
-	dwb PartyMonItemName, BANK(PartyMonItemName)
-	dwb Function51077, BANK(Function51077)
-	dwb Function5116c, BANK(Function5116c)
-	dwb Function5108b, BANK(Function5108b)
-	dwb Function5120d, BANK(Function5120d)
-	dwb DecompressPredef, BANK(DecompressPredef) ; $40
-	dwb Function347d3, BANK(Function347d3)
-	dwb Functionfb908, BANK(Functionfb908)
-	dwb Functionfb877, BANK(Functionfb877)
-	dwb Functiond0000, BANK(Functiond0000)
-	dwb Function50d0a, BANK(Function50d0a)
-	dwb Functiond00a3, BANK(Functiond00a3)
-	dwb Functiond008e, BANK(Functiond008e)
-	dwb Functiond0669, BANK(Functiond0669) ; $48
-	dwb Functiond066e, BANK(Functiond066e)
+	add_predef LearnMove ; $0
+	add_predef Predef1
+	add_predef Functionc658
+	add_predef FlagPredef
+	add_predef Functionc699
+	add_predef FillPP
+	add_predef Functiond88c
+	add_predef Functionda96
+	add_predef Functiondb3f ; $8
+	add_predef Functionde6e
+	add_predef GiveEgg
+	add_predef Functionc6e0
+	add_predef Functione167
+	add_predef Functione17b
+	add_predef CanLearnTMHMMove
+	add_predef GetTMHMMove
+	add_predef Function28eef ; $ 10
+	add_predef PrintMoveDesc
+	add_predef UpdatePlayerHUD
+	add_predef FillBox
+	add_predef Function3d873
+	add_predef UpdateEnemyHUD
+	add_predef StartBattle
+	add_predef FillInExpBar
+	add_predef Function3f43d ; $18
+	add_predef Function3f47c
+	add_predef LearnLevelMoves
+	add_predef FillMoves
+	add_predef Function421e6
+	add_predef Function28f63
+	add_predef Function28f24
+	add_predef Function5084a
+	add_predef ListMoves ; $20
+	add_predef Function50d2e
+	add_predef Function50cdb
+	add_predef Function50c50
+	add_predef GetGender
+	add_predef StatsScreenInit
+	add_predef DrawPlayerHP
+	add_predef DrawEnemyHP
+	add_predef Function50b7b ; $28
+	add_predef GetTypeName
+	add_predef PrintMoveType
+	add_predef PrintType
+	add_predef PrintMonTypes
+	add_predef GetUnownLetter
+	add_predef Functioncbcdd
+	add_predef Predef2F
+	add_predef Function9853 ; $30
+	add_predef Function864c
+	add_predef Function91d11
+	add_predef CheckContestMon
+	add_predef Function8c20f
+	add_predef Function8c000
+	add_predef Function8c000_2
+	add_predef PlayBattleAnim
+	add_predef Predef38 ; $38
+	add_predef Predef39
+	add_predef Functionfd1d0
+	add_predef PartyMonItemName
+	add_predef GetFrontpic
+	add_predef GetBackpic
+	add_predef Function5108b
+	add_predef GetTrainerPic
+	add_predef DecompressPredef ; $40
+	add_predef Function347d3
+	add_predef Functionfb908
+	add_predef Functionfb877
+	add_predef Functiond0000
+	add_predef Function50d0a
+	add_predef Functiond00a3
+	add_predef Functiond008e
+	add_predef Functiond0669 ; $48
+	add_predef Functiond066e
 	dbw $ff, Function2d43 ; ????
 ; 864c
 
@@ -8503,55 +8499,65 @@ SpecialTrainerHouse: ; 0xc4b9
 	ld [ScriptVar], a
 	jp CloseSRAM
 
-_PrintNum:: ; c4c7
-	push bc
-	bit 5, b
-	jr z, .asm_c4d9
-	bit 7, b
-	jr nz, .asm_c4d4
-	bit 6, b
-	jr z, .asm_c4d9
 
-.asm_c4d4
+_PrintNum:: ; c4c7
+; Print c digits of the b-byte value at hl.
+; Allows 2 to 7 digits. For 1-digit numbers, add
+; the value to char "0" instead of calling PrintNum.
+; Some extra flags can be given in bits 5-7 of b.
+
+	push bc
+
+	bit 5, b
+	jr z, .main
+	bit 7, b
+	jr nz, .bit_7
+	bit 6, b
+	jr z, .main
+
+.bit_7
 	ld a, $f0
 	ld [hli], a
 	res 5, b
 
-.asm_c4d9
+.main
 	xor a
-	ld [hProduct], a
-	ld [hMultiplicand], a
+	ld [$ffb3], a
+	ld [$ffb4], a
 	ld [$ffb5], a
 	ld a, b
 	and $f
-	cp $1
-	jr z, .asm_c501
-	cp $2
-	jr z, .asm_c4f8
+	cp 1
+	jr z, .byte
+	cp 2
+	jr z, .word
+
+.long
 	ld a, [de]
-	ld [hMultiplicand], a
+	ld [$ffb4], a
 	inc de
 	ld a, [de]
 	ld [$ffb5], a
 	inc de
 	ld a, [de]
 	ld [$ffb6], a
-	jr .asm_c504
+	jr .start
 
-.asm_c4f8
+.word
 	ld a, [de]
 	ld [$ffb5], a
 	inc de
 	ld a, [de]
 	ld [$ffb6], a
-	jr .asm_c504
+	jr .start
 
-.asm_c501
+.byte
 	ld a, [de]
 	ld [$ffb6], a
 
-.asm_c504
+.start
 	push de
+
 	ld d, b
 	ld a, c
 	swap a
@@ -8560,123 +8566,126 @@ _PrintNum:: ; c4c7
 	ld a, c
 	and $f
 	ld b, a
-	ld c, $0
-	cp $2
-	jr z, .asm_c57c
-	cp $3
-	jr z, .asm_c56c
-	cp $4
-	jr z, .asm_c55b
-	cp $5
-	jr z, .asm_c54a
-	cp $6
-	jr z, .asm_c538
-	ld a, $f
-	ld [hMultiplier], a
-	ld a, $42
-	ld [hMathBuffer], a
-	ld a, $40
-	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	ld c, 0
+	cp 2
+	jr z, .two
+	cp 3
+	jr z, .three
+	cp 4
+	jr z, .four
+	cp 5
+	jr z, .five
+	cp 6
+	jr z, .six
 
-.asm_c538
-	ld a, $1
-	ld [hMultiplier], a
-	ld a, $86
-	ld [hMathBuffer], a
-	ld a, $a0
+.seven
+	ld a, 1000000 / $10000 % $100
+	ld [$ffb7], a
+	ld a, 1000000 / $100 % $100
+	ld [$ffb8], a
+	ld a, 1000000 % $100
 	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	call .PrintDigit
+	call .AdvancePointer
 
-.asm_c54a
+.six
+	ld a, 100000 / $10000 % $100
+	ld [$ffb7], a
+	ld a, 100000 / $100 % $100
+	ld [$ffb8], a
+	ld a, 100000 % $100
+	ld [$ffb9], a
+	call .PrintDigit
+	call .AdvancePointer
+
+.five
 	xor a
-	ld [hMultiplier], a
-	ld a, $27
-	ld [hMathBuffer], a
-	ld a, $10
+	ld [$ffb7], a
+	ld a, 10000 / $100
+	ld [$ffb8], a
+	ld a, 10000 % $100
 	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	call .PrintDigit
+	call .AdvancePointer
 
-.asm_c55b
+.four
 	xor a
-	ld [hMultiplier], a
-	ld a, $3
-	ld [hMathBuffer], a
-	ld a, $e8
+	ld [$ffb7], a
+	ld a, 1000 / $100
+	ld [$ffb8], a
+	ld a, 1000 % $100
 	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	call .PrintDigit
+	call .AdvancePointer
 
-.asm_c56c
+.three
 	xor a
-	ld [hMultiplier], a
+	ld [$ffb7], a
 	xor a
-	ld [hMathBuffer], a
-	ld a, $64
+	ld [$ffb8], a
+	ld a, 100
 	ld [$ffb9], a
-	call Functionc5cb
-	call PrintNumber_AdvancePointer
+	call .PrintDigit
+	call .AdvancePointer
 
-.asm_c57c
+.two
 	dec e
 	jr nz, .asm_c583
 	ld a, $f6
-	ld [hProduct], a
-
+	ld [$ffb3], a
 .asm_c583
-	ld c, $0
-	ld a, [$ffb6]
-.asm_c587
-	cp $a
-	jr c, .asm_c590
-	sub $a
-	inc c
-	jr .asm_c587
 
-.asm_c590
+	ld c, 0
+	ld a, [$ffb6]
+.mod_10
+	cp 10
+	jr c, .modded_10
+	sub 10
+	inc c
+	jr .mod_10
+.modded_10
+
 	ld b, a
-	ld a, [hProduct]
+	ld a, [$ffb3]
 	or c
 	jr nz, .asm_c59b
-	call PrintNumber_PrintLeadingZero
+	call .PrintLeadingZero
 	jr .asm_c5ad
 
 .asm_c59b
-	call Functionc5ba
+	call .PrintYen
 	push af
-	ld a, $f6
+	ld a, "0"
 	add c
 	ld [hl], a
 	pop af
-	ld [hProduct], a
+	ld [$ffb3], a
 	inc e
 	dec e
 	jr nz, .asm_c5ad
 	inc hl
-	ld [hl], $f2
+	ld [hl], $f2 ; XXX
 
 .asm_c5ad
-	call PrintNumber_AdvancePointer
-	call Functionc5ba
-	ld a, $f6
+	call .AdvancePointer
+	call .PrintYen
+	ld a, "0"
 	add b
 	ld [hli], a
+
 	pop de
 	pop bc
 	ret
 ; c5ba
 
-Functionc5ba: ; c5ba
+.PrintYen: ; c5ba
 	push af
-	ld a, [hProduct]
+	ld a, [$ffb3]
 	and a
 	jr nz, .asm_c5c9
 	bit 5, d
 	jr z, .asm_c5c9
-	ld a, $f0
+	ld a, "¥"
 	ld [hli], a
 	res 5, d
 
@@ -8685,76 +8694,72 @@ Functionc5ba: ; c5ba
 	ret
 ; c5cb
 
-
-; known jump sources: c532 (3:4532), c544 (3:4544), c555 (3:4555), c566 (3:4566), c576 (3:4576)
-Functionc5cb: ; c5cb (3:45cb)
+.PrintDigit: ; c5cb (3:45cb)
 	dec e
-	jr nz, PrintNumber_PrintDigit
+	jr nz, .ok
 	ld a, $f6
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
-
-; known jump sources: c5cc (3:45cc)
-PrintNumber_PrintDigit: ; c5d2 (3:45d2)
+	ld [$ffb3], a
+.ok
 	ld c, $0
 .asm_c5d4
-	ld a, [hDivisor] ; $ff00+$b7 (aliases: hMultiplier)
+	ld a, [$ffb7]
 	ld b, a
-	ld a, [hQuotient] ; $ff00+$b4 (aliases: hMultiplicand)
-	ld [$FF00+$ba], a
+	ld a, [$ffb4]
+	ld [$ffba], a
 	cp b
 	jr c, .asm_c624
 	sub b
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld a, [hMathBuffer] ; $ff00+$b8
+	ld [$ffb4], a
+	ld a, [$ffb8]
 	ld b, a
-	ld a, [$FF00+$b5]
-	ld [$FF00+$bb], a
+	ld a, [$ffb5]
+	ld [$ffbb], a
 	cp b
 	jr nc, .asm_c5f6
-	ld a, [hQuotient] ; $ff00+$b4 (aliases: hMultiplicand)
+	ld a, [$ffb4]
 	or $0
 	jr z, .asm_c620
 	dec a
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld a, [$FF00+$b5]
+	ld [$ffb4], a
+	ld a, [$ffb5]
 .asm_c5f6
 	sub b
-	ld [$FF00+$b5], a
-	ld a, [$FF00+$b9]
+	ld [$ffb5], a
+	ld a, [$ffb9]
 	ld b, a
-	ld a, [$FF00+$b6]
-	ld [$FF00+$bc], a
+	ld a, [$ffb6]
+	ld [$ffbc], a
 	cp b
 	jr nc, .asm_c616
-	ld a, [$FF00+$b5]
+	ld a, [$ffb5]
 	and a
 	jr nz, .asm_c611
-	ld a, [hQuotient] ; $ff00+$b4 (aliases: hMultiplicand)
+	ld a, [$ffb4]
 	and a
 	jr z, .asm_c61c
 	dec a
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
+	ld [$ffb4], a
 	xor a
 .asm_c611
 	dec a
-	ld [$FF00+$b5], a
-	ld a, [$FF00+$b6]
+	ld [$ffb5], a
+	ld a, [$ffb6]
 .asm_c616
 	sub b
-	ld [$FF00+$b6], a
+	ld [$ffb6], a
 	inc c
 	jr .asm_c5d4
 .asm_c61c
-	ld a, [$FF00+$bb]
-	ld [$FF00+$b5], a
+	ld a, [$ffbb]
+	ld [$ffb5], a
 .asm_c620
-	ld a, [$FF00+$ba]
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
+	ld a, [$ffba]
+	ld [$ffb4], a
 .asm_c624
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	or c
-	jr z, PrintNumber_PrintLeadingZero
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	jr z, .PrintLeadingZero
+	ld a, [$ffb3]
 	and a
 	jr nz, .asm_c637
 	bit 5, d
@@ -8766,7 +8771,7 @@ PrintNumber_PrintDigit: ; c5d2 (3:45d2)
 	ld a, $f6
 	add c
 	ld [hl], a
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	inc e
 	dec e
 	ret nz
@@ -8774,64 +8779,67 @@ PrintNumber_PrintDigit: ; c5d2 (3:45d2)
 	ld [hl], $f2
 	ret
 
-PrintNumber_PrintLeadingZero: ; c644
+.PrintLeadingZero: ; c644
 ; prints a leading zero unless they are turned off in the flags
 	bit 7, d ; print leading zeroes?
 	ret z
 	ld [hl], "0"
 	ret
 
-PrintNumber_AdvancePointer: ; c64a
+.AdvancePointer: ; c64a
 ; increments the pointer unless leading zeroes are not being printed,
 ; the number is left-aligned, and no nonzero digits have been printed yet
 	bit 7, d ; print leading zeroes?
-	jr nz, .incrementPointer
+	jr nz, .inc
 	bit 6, d ; left alignment or right alignment?
-	jr z, .incrementPointer
-	ld a, [hPastLeadingZeroes]
+	jr z, .inc
+	ld a, [$ffb3]
 	and a
 	ret z
-.incrementPointer
+.inc
 	inc hl
 	ret
-; 0xc658
+; c658
+
 
 Functionc658: ; c658
 	xor a
 	ld [CurPartyMon], a
 	ld hl, PartySpecies
-.asm_c65f
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_c676
-	cp $fd
-	jr z, .asm_c66d
+	jr z, .done
+	cp EGG
+	jr z, .next
+
 	push hl
 	call Functionc677
 	pop hl
 
-.asm_c66d
+.next
 	ld a, [CurPartyMon]
 	inc a
 	ld [CurPartyMon], a
-	jr .asm_c65f
+	jr .loop
 
-.asm_c676
+.done
 	ret
 ; c677
 
 Functionc677: ; c677
-	ld a, $0
+	ld a, PartyMon1Species - PartyMon1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld hl, $0020
+	ld hl, PartyMon1Status - PartyMon1Species 
 	add hl, de
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld hl, $0024
+	ld hl, PartyMon1MaxHP - PartyMon1Species
 	add hl, de
+	; bc = PartyMon1HP - PartyMon1Species
 	ld b, h
 	ld c, l
 	dec bc
@@ -8929,7 +8937,7 @@ Functionc6f5: ; c6f5
 
 GetPartyNick: ; c706
 ; write CurPartyMon nickname to StringBuffer1-3
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, BOXMON
 	ld [MonType], a
 	ld a, [CurPartyMon]
@@ -10431,7 +10439,7 @@ Functioncef4: ; cef4
 Functioncf0d: ; cf0d
 	callba CheckFacingObject
 	jr nc, .asm_cf2c
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	call Function1ae5
 	ld hl, $0001
 	add hl, bc
@@ -10579,7 +10587,7 @@ Functioncfaf: ; cfaf
 	ld [$d22e], a
 	ld a, e
 	ld [CurPartyLevel], a
-	ld a, $4
+	ld a, BATTLETYPE_FISH
 	ld [BattleType], a
 	ld a, $2
 	ret
@@ -12311,7 +12319,7 @@ Functiond88c: ; d88c
 .asm_d899
 	ld a, [de]
 	inc a
-	cp $7
+	cp PARTY_LENGTH + 1
 	ret nc
 	ld [de], a
 	ld a, [de]
@@ -12327,11 +12335,11 @@ Functiond88c: ; d88c
 	inc de
 	ld a, $ff
 	ld [de], a
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld a, [MonType]
 	and $f
 	jr z, .asm_d8bc
-	ld hl, OTPartyMon1OT
+	ld hl, OTPartyMonOT
 
 .asm_d8bc
 	ld a, [$ffae]
@@ -12340,7 +12348,7 @@ Functiond88c: ; d88c
 	ld d, h
 	ld e, l
 	ld hl, PlayerName
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [MonType]
 	and a
@@ -12348,14 +12356,14 @@ Functiond88c: ; d88c
 	ld a, [CurPartySpecies]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [$ffae]
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
 	ld hl, StringBuffer1
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
 .asm_d8f0
@@ -12368,7 +12376,7 @@ Functiond88c: ; d88c
 .asm_d8fd
 	ld a, [$ffae]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 Functiond906: ; d906
 	ld e, l
@@ -12398,29 +12406,24 @@ Functiond906: ; d906
 	ld a, [MonType]
 	and a
 	jr nz, .asm_d943
-	ld de, EnemyMonMove1
+	ld de, EnemyMonMoves
+	rept NUM_MOVES + -1
 	ld a, [de]
 	inc de
 	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
+	endr
 	ld a, [de]
 	ld [hl], a
 	jr .asm_d950
 
 .asm_d943
 	xor a
+	rept NUM_MOVES + -1
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+	endr
 	ld [hl], a
 	ld [Buffer1], a
-	ld a, $1b
-	call Predef
+	predef FillMoves
 
 .asm_d950
 	pop de
@@ -12536,15 +12539,16 @@ Functiond906: ; d906
 	jr .asm_da29
 
 .asm_d9f3
-	ld a, [EnemyMonAtkDefDV]
+	ld a, [EnemyMonDVs]
 	ld [de], a
 	inc de
-	ld a, [EnemyMonSpdSpclDV]
+	ld a, [EnemyMonDVs + 1]
 	ld [de], a
 	inc de
+
 	push hl
-	ld hl, EnemyMonPPMove1
-	ld b, $4
+	ld hl, EnemyMonPP
+	ld b, NUM_MOVES
 .asm_da03
 	ld a, [hli]
 	ld [de], a
@@ -12552,7 +12556,8 @@ Functiond906: ; d906
 	dec b
 	jr nz, .asm_da03
 	pop hl
-	ld a, $46
+
+	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
 	xor a
@@ -12583,7 +12588,7 @@ Functiond906: ; d906
 	ld a, [IsInBattle]
 	dec a
 	jr nz, .asm_da3b
-	ld hl, EnemyMonMaxHPHi
+	ld hl, EnemyMonMaxHP
 	ld bc, $000c
 	call CopyBytes
 	pop hl
@@ -12601,15 +12606,14 @@ Functiond906: ; d906
 	and $f
 	jr nz, .asm_da6b
 	ld a, [CurPartySpecies]
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_da6b
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 
 .asm_da6b
@@ -12629,7 +12633,7 @@ FillPP: ; da6d
 	push de
 	push bc
 	ld hl, Moves
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld de, StringBuffer1
 	ld a, BANK(Moves)
@@ -12651,13 +12655,13 @@ FillPP: ; da6d
 Functionda96: ; da96
 	ld hl, PartyCount
 	ld a, [hl]
-	cp $6
+	cp PARTY_LENGTH
 	scf
 	ret z
 	inc a
 	ld [hl], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [CurPartySpecies]
 	ld [hli], a
@@ -12665,66 +12669,66 @@ Functionda96: ; da96
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld e, l
 	ld d, h
 	ld hl, TempMonSpecies
 	call CopyBytes
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld a, [PartyCount]
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
-	ld hl, OTPartyMon1OT
+	ld hl, OTPartyMonOT
 	ld a, [CurPartyMon]
 	call SkipNames
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
-	ld hl, OTPartyMon1Nickname
+	ld hl, OTPartyMonNicknames
 	ld a, [CurPartyMon]
 	call SkipNames
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
+
 	ld a, [CurPartySpecies]
 	ld [$d265], a
-	cp $fd
-	jr z, .asm_db12
+	cp EGG
+	jr z, .owned
 	dec a
 	call SetSeenAndCaughtMon
 	ld hl, PartyMon1Happiness
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld [hl], $46
+	ld [hl], BASE_HAPPINESS
+.owned
 
-.asm_db12
 	ld a, [CurPartySpecies]
-	cp $c9
-	jr nz, .asm_db3d
+	cp UNOWN
+	jr nz, .done
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 	ld a, [$def4]
 	and a
-	jr nz, .asm_db3d
+	jr nz, .done
 	ld a, [UnownLetter]
 	ld [$def4], a
+.done
 
-.asm_db3d
 	and a
 	ret
 ; db3f
@@ -12738,29 +12742,29 @@ Functiondb3f: ; db3f
 	cp $2
 	jr z, .asm_db60
 	cp $3
-	ld hl, BreedMon1Species
+	ld hl, wBreedMon1Species
 	jr z, .asm_db9b
-	ld hl, BoxCount
+	ld hl, sBoxCount
 	ld a, [hl]
-	cp $14
+	cp MONS_PER_BOX
 	jr nz, .asm_db69
 	jp Functiondcb1
 
 .asm_db60
 	ld hl, PartyCount
 	ld a, [hl]
-	cp $6
+	cp PARTY_LENGTH
 	jp z, Functiondcb1
 
 .asm_db69
 	inc a
 	ld [hl], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [$d10b]
 	cp $2
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	jr z, .asm_db7c
 	ld a, [CurPartySpecies]
 
@@ -12770,12 +12774,12 @@ Functiondb3f: ; db3f
 	ld a, [$d10b]
 	dec a
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [PartyCount]
 	jr nz, .asm_db97
-	ld hl, BoxMon1Species
-	ld bc, $0020
-	ld a, [BoxCount]
+	ld hl, sBoxMon1Species
+	ld bc, sBoxMon1End - sBoxMon1
+	ld a, [sBoxCount]
 
 .asm_db97
 	dec a
@@ -12787,32 +12791,32 @@ Functiondb3f: ; db3f
 	ld d, h
 	ld a, [$d10b]
 	and a
-	ld hl, BoxMon1Species
-	ld bc, $0020
+	ld hl, sBoxMon1Species
+	ld bc, sBoxMon1End - sBoxMon1
 	jr z, .asm_dbb7
 	cp $2
-	ld hl, BreedMon1Species
+	ld hl, wBreedMon1Species
 	jr z, .asm_dbbd
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 
 .asm_dbb7
 	ld a, [CurPartyMon]
 	call AddNTimes
 
 .asm_dbbd
-	ld bc, $0020
+	ld bc, sBoxMon1End - sBoxMon1
 	call CopyBytes
 	ld a, [$d10b]
 	cp $3
-	ld de, BreedMon1OT
+	ld de, wBreedMon1OT
 	jr z, .asm_dbe2
 	dec a
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld a, [PartyCount]
 	jr nz, .asm_dbdc
-	ld hl, BoxMon1OT
-	ld a, [BoxCount]
+	ld hl, sBoxMonOT
+	ld a, [sBoxCount]
 
 .asm_dbdc
 	dec a
@@ -12821,32 +12825,32 @@ Functiondb3f: ; db3f
 	ld e, l
 
 .asm_dbe2
-	ld hl, BoxMon1OT
+	ld hl, sBoxMonOT
 	ld a, [$d10b]
 	and a
 	jr z, .asm_dbf5
-	ld hl, BreedMon1OT
+	ld hl, wBreedMon1OT
 	cp $2
 	jr z, .asm_dbfb
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 
 .asm_dbf5
 	ld a, [CurPartyMon]
 	call SkipNames
 
 .asm_dbfb
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [$d10b]
 	cp $3
-	ld de, BreedMon1Nick
+	ld de, wBreedMon1Nick
 	jr z, .asm_dc20
 	dec a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
 	jr nz, .asm_dc1a
-	ld hl, BoxMon1Nickname
-	ld a, [BoxCount]
+	ld hl, sBoxMonNicknames
+	ld a, [sBoxCount]
 
 .asm_dc1a
 	dec a
@@ -12855,21 +12859,21 @@ Functiondb3f: ; db3f
 	ld e, l
 
 .asm_dc20
-	ld hl, BoxMon1Nickname
+	ld hl, sBoxMonNicknames
 	ld a, [$d10b]
 	and a
 	jr z, .asm_dc33
-	ld hl, BreedMon1Nick
+	ld hl, wBreedMon1Nick
 	cp $2
 	jr z, .asm_dc39
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 
 .asm_dc33
 	ld a, [CurPartyMon]
 	call SkipNames
 
 .asm_dc39
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop hl
 	ld a, [$d10b]
@@ -12881,8 +12885,7 @@ Functiondb3f: ; db3f
 	srl a
 	add $2
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	callab Function50e1b
 	ld a, d
 	ld [CurPartyLevel], a
@@ -12914,7 +12917,7 @@ Functiondb3f: ; db3f
 	ld d, h
 	ld e, l
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_dc9e
 	inc hl
 	inc hl
@@ -12933,7 +12936,7 @@ Functiondb3f: ; db3f
 	jr .asm_dcac
 
 .asm_dca4
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	dec a
 	ld b, a
 	call Functiondcb6
@@ -12954,12 +12957,12 @@ Functiondcb1: ; dcb1
 Functiondcb6: ; dcb6
 
 	ld a, b
-	ld hl, BoxMons
-	ld bc, BoxMon2 - BoxMon1
+	ld hl, sBoxMons
+	ld bc, sBoxMon1End - sBoxMon1
 	call AddNTimes
 	ld b, h
 	ld c, l
-	ld hl, BoxMon1PP - BoxMon1
+	ld hl, sBoxMon1PP - sBoxMon1
 	add hl, bc
 	push hl
 	push bc
@@ -12967,7 +12970,7 @@ Functiondcb6: ; dcb6
 	ld bc, NUM_MOVES
 	call CopyBytes
 	pop bc
-	ld hl, BoxMon1Moves - BoxMon1
+	ld hl, sBoxMon1Moves - sBoxMon1
 	add hl, bc
 	push hl
 	ld de, TempMonMoves
@@ -12985,7 +12988,7 @@ Functiondcb6: ; dcb6
 	ld a, [hli]
 	and a
 	jr z, .asm_dd18
-	ld [TempMonMove1], a
+	ld [TempMonMoves+0], a
 	ld a, BOXMON
 	ld [MonType], a
 	ld a, b
@@ -13019,7 +13022,7 @@ Functiondcb6: ; dcb6
 
 
 Functiondd21: ; dd21
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	ld [CurPartySpecies], a
 	ld de, SFX_TRANSACTION
 	call PlaySFX
@@ -13035,7 +13038,7 @@ Functiondd21: ; dd21
 ; dd42
 
 Functiondd42: ; dd42
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	ld [CurPartySpecies], a
 	ld de, SFX_TRANSACTION
 	call PlaySFX
@@ -13053,7 +13056,7 @@ Functiondd42: ; dd42
 Functiondd64: ; dd64
 	ld hl, PartyCount
 	ld a, [hl]
-	cp $6
+	cp PARTY_LENGTH
 	jr nz, .asm_dd6e
 	scf
 	ret
@@ -13062,22 +13065,22 @@ Functiondd64: ; dd64
 	inc a
 	ld [hl], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [$d10b]
 	and a
-	ld a, [BreedMon1Species]
-	ld de, BreedMon1Nick
+	ld a, [wBreedMon1Species]
+	ld de, wBreedMon1Nick
 	jr z, .asm_dd86
-	ld a, [BreedMon2Species]
-	ld de, BreedMon2Nick
+	ld a, [wBreedMon2Species]
+	ld de, wBreedMon2Nick
 
 .asm_dd86
 	ld [hli], a
 	ld [CurSpecies], a
 	ld a, $ff
 	ld [hl], a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
 	dec a
 	call SkipNames
@@ -13087,7 +13090,7 @@ Functiondd64: ; dd64
 	pop de
 	call CopyBytes
 	push hl
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld a, [PartyCount]
 	dec a
 	call SkipNames
@@ -13117,17 +13120,16 @@ Functiondd64: ; dd64
 	push bc
 	ld b, $1
 	call Functione167
-	ld hl, PartyMon1Move1
+	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld a, $1
 	ld [Buffer1], a
-	ld a, $1b
-	call Predef
+	predef FillMoves
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
@@ -13152,7 +13154,7 @@ Functionde1a: ; de1a
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -13160,7 +13162,7 @@ Functionde1a: ; de1a
 ; de2a
 
 Functionde2a: ; de2a
-	ld de, BreedMon1Nick
+	ld de, wBreedMon1Nick
 	call Functionde44
 	xor a
 	ld [$d10b], a
@@ -13168,7 +13170,7 @@ Functionde2a: ; de2a
 ; de37
 
 Functionde37: ; de37
-	ld de, BreedMon2Nick
+	ld de, wBreedMon2Nick
 	call Functionde44
 	xor a
 	ld [$d10b], a
@@ -13177,28 +13179,28 @@ Functionde37: ; de37
 
 Functionde44: ; de44
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call SkipNames
 	call CopyBytes
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call SkipNames
 	call CopyBytes
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld bc, $0020
+	ld bc, sBoxMon1End - sBoxMon1
 	jp CopyBytes
 ; de6e
 
 
 Functionde6e: ; de6e
-	ld a, 1 ; BANK(BoxCount)
+	ld a, 1 ; BANK(sBoxCount)
 	call GetSRAMBank
-	ld de, BoxCount
+	ld de, sBoxCount
 	ld a, [de]
-	cp 20
+	cp MONS_PER_BOX
 	jp nc, Functiondf42
 	inc a
 	ld [de], a
@@ -13217,19 +13219,19 @@ Functionde6e: ; de6e
 	call GetBaseData
 	call ShiftBoxMon
 	ld hl, PlayerName
-	ld de, BoxMonOT
-	ld bc, BoxMon2OT - BoxMon1OT
+	ld de, sBoxMonOT
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [CurPartySpecies]
 	ld [$d265], a
 	call GetPokemonName
-	ld de, BoxMon1Nickname
+	ld de, sBoxMonNicknames
 	ld hl, StringBuffer1
-	ld bc, BoxMon2Nickname - BoxMon1Nickname
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ld hl, EnemyMon
-	ld de, BoxMon1
-	ld bc, 6 ; species + item + moves
+	ld de, sBoxMon1
+	ld bc, 1 + 1 + NUM_MOVES ; species + item + moves
 	call CopyBytes
 	ld hl, PlayerID
 	ld a, [hli]
@@ -13259,15 +13261,15 @@ Functionde6e: ; de6e
 	inc de
 	dec b
 	jr nz, .asm_dee5
-	ld hl, EnemyMonAtkDefDV
-	ld b, $6
+	ld hl, EnemyMonDVs
+	ld b, 2 + NUM_MOVES ; DVs and PP ; EnemyMonHappiness - EnemyMonDVs
 .asm_deef
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .asm_deef
-	ld a, $46
+	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
 	xor a
@@ -13285,17 +13287,16 @@ Functionde6e: ; de6e
 	ld a, [CurPartySpecies]
 	cp UNOWN
 	jr nz, .asm_df20
-	ld hl, BoxMon1DVs
-	ld a, $2d
-	call Predef
+	ld hl, sBoxMon1DVs
+	predef GetUnownLetter
 	callab Functionfba18
 
 .asm_df20
-	ld hl, BoxMon1Moves
-	ld de, TempMonMove1
+	ld hl, sBoxMon1Moves
+	ld de, TempMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
-	ld hl, BoxMon1PP
+	ld hl, sBoxMon1PP
 	ld de, TempMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
@@ -13313,19 +13314,19 @@ Functiondf42: ; df42
 ; df47
 
 ShiftBoxMon: ; df47
-	ld hl, BoxMonOT
-	ld bc, BoxMon2OT - BoxMon1OT
+	ld hl, sBoxMonOT
+	ld bc, NAME_LENGTH
 	call .asm_df5f
 
-	ld hl, BoxMonNicknames
-	ld bc, BoxMon2Nickname - BoxMon1Nickname
+	ld hl, sBoxMonNicknames
+	ld bc, PKMN_NAME_LENGTH
 	call .asm_df5f
 
-	ld hl, BoxMons
-	ld bc, BoxMon2 - BoxMon1
+	ld hl, sBoxMons
+	ld bc, sBoxMon1End - sBoxMon1
 
 .asm_df5f
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	cp 2
 	ret c
 
@@ -13336,13 +13337,13 @@ ShiftBoxMon: ; df47
 	ld d, h
 	pop hl
 
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	dec a
 	call AddNTimes
 	dec hl
 
 	push hl
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	dec a
 	ld hl, 0
 	call AddNTimes
@@ -13360,7 +13361,7 @@ ShiftBoxMon: ; df47
 	ret
 ; df8c
 
-Functiondf8c:: ; df8c
+GiveEgg:: ; df8c
 	ld a, [CurPartySpecies]
 	push af
 	callab GetPreEvolution
@@ -13384,8 +13385,7 @@ Functiondf8c:: ; df8c
 	ld d, $0
 	ld hl, PokedexCaught
 	ld b, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 
 .asm_dfc3
 	pop bc
@@ -13398,36 +13398,35 @@ Functiondf8c:: ; df8c
 	ld d, $0
 	ld hl, PokedexSeen
 	ld b, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 
 .asm_dfd9
 	pop af
 	ld [CurPartySpecies], a
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Species
 	call AddNTimes
 	ld a, [CurPartySpecies]
 	ld [hl], a
 	ld hl, PartyCount
 	ld a, [hl]
-	ld b, $0
+	ld b, 0
 	ld c, a
 	add hl, bc
-	ld a, $fd
+	ld a, EGG
 	ld [hl], a
 	ld a, [PartyCount]
 	dec a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call SkipNames
 	ld de, Stringe035
 	call CopyName2
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Happiness
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [$c2cc]
 	bit 1, a
@@ -13440,7 +13439,7 @@ Functiondf8c:: ; df8c
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1HP
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	xor a
 	ld [hli], a
@@ -13461,9 +13460,9 @@ Functione039: ; e039
 	and a
 	jr z, .asm_e04a
 
-	ld a, 1 ; BANK(BoxCount)
+	ld a, 1 ; BANK(sBoxCount)
 	call GetSRAMBank
-	ld hl, BoxCount
+	ld hl, sBoxCount
 
 .asm_e04a
 	ld a, [hl]
@@ -13482,13 +13481,13 @@ Functione039: ; e039
 	ld [hli], a
 	inc a
 	jr nz, .asm_e057
-	ld hl, PartyMon1OT
-	ld d, $5
+	ld hl, PartyMonOT
+	ld d, PARTY_LENGTH - 1
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e06d
-	ld hl, BoxMonOT
-	ld d, $13
+	ld hl, sBoxMonOT
+	ld d, MONS_PER_BOX - 1
 
 .asm_e06d
 	ld a, [CurPartyMon]
@@ -13502,13 +13501,13 @@ Functione039: ; e039
 .asm_e07e
 	ld d, h
 	ld e, l
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	add hl, bc
-	ld bc, PartyMon1Nickname
+	ld bc, PartyMonNicknames
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e090
-	ld bc, BoxMonNicknames
+	ld bc, sBoxMonNicknames
 .asm_e090
 	call CopyDataUntil
 
@@ -13517,8 +13516,8 @@ Functione039: ; e039
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e0a5
-	ld hl, BoxMons
-	ld bc, BoxMon2 - BoxMon1
+	ld hl, sBoxMons
+	ld bc, sBoxMon1End - sBoxMon1
 
 .asm_e0a5
 	ld a, [CurPartyMon]
@@ -13528,37 +13527,37 @@ Functione039: ; e039
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e0bc
-	ld bc, BoxMon2 - BoxMon1
+	ld bc, sBoxMon1End - sBoxMon1
 	add hl, bc
-	ld bc, BoxMonOT
+	ld bc, sBoxMonOT
 	jr .asm_e0c3
 
 .asm_e0bc
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
-	ld bc, PartyMon1OT
+	ld bc, PartyMonOT
 
 .asm_e0c3
 	call CopyDataUntil
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e0d2
-	ld hl, BoxMonNicknames
+	ld hl, sBoxMonNicknames
 
 .asm_e0d2
-	ld bc, BoxMon2Nickname - BoxMon1Nickname
+	ld bc, PKMN_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld bc, BoxMon2Nickname - BoxMon1Nickname
+	ld bc, PKMN_NAME_LENGTH
 	add hl, bc
 	ld bc, PartyMonNicknamesEnd
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e0ed
-	ld bc, BoxMonNicknamesEnd
+	ld bc, sBoxMonNicknamesEnd
 
 .asm_e0ed
 	call CopyDataUntil
@@ -13846,7 +13845,7 @@ Functione277:: ; e277
 	ld [MonType], a
 	call Functiond88c
 	jr nc, .asm_e2b0
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
@@ -13864,7 +13863,7 @@ Functione277:: ; e277
 	jr z, .asm_e2e1
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [CurItem]
 	ld [hl], a
@@ -13891,7 +13890,7 @@ Functione277:: ; e277
 	and a
 	jr z, .asm_e2e1
 	ld a, [CurItem]
-	ld [BoxMon1Item], a
+	ld [sBoxMon1Item], a
 
 .asm_e2e1
 	ld a, [CurPartySpecies]
@@ -13928,7 +13927,7 @@ Functione277:: ; e277
 	jr nz, .asm_e35e
 	push hl
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call SkipNames
 	ld d, h
 	ld e, l
@@ -13947,7 +13946,7 @@ Functione277:: ; e277
 	push bc
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, $3
 	ld [hli], a
@@ -13959,7 +13958,7 @@ Functione277:: ; e277
 .asm_e35e
 	ld a, $1
 	call GetSRAMBank
-	ld de, BoxMon1OT
+	ld de, sBoxMonOT
 .asm_e366
 	ld a, [ScriptBank]
 	call GetFarByte
@@ -13971,7 +13970,7 @@ Functione277:: ; e277
 	ld a, [ScriptBank]
 	call GetFarByte
 	ld b, a
-	ld hl, BoxMon1ID
+	ld hl, sBoxMon1ID
 	call Random
 	ld [hli], a
 	call Random
@@ -14011,7 +14010,7 @@ Functione277:: ; e277
 	ld a, $1
 	call GetSRAMBank
 	ld hl, $d050
-	ld de, BoxMon1Nickname
+	ld de, sBoxMonNicknames
 	ld bc, $000b
 	call CopyBytes
 	call CloseSRAM
@@ -14217,7 +14216,7 @@ Functione512: ; e512
 	ld a, [PartyCount]
 	and a
 	jr z, .asm_e51e
-	cp $2
+	cp 2
 	jr c, .asm_e526
 	and a
 	ret
@@ -14250,7 +14249,7 @@ UnknownText_0xe533: ; 0xe533
 
 Functione538: ; e538
 	ld hl, PartyMon1HP
-	ld de, $0030
+	ld de, PartyMon2 - PartyMon1
 	ld b, $0
 .asm_e540
 	ld a, [CurPartyMon]
@@ -14292,7 +14291,7 @@ Functione559: ; e559 (3:6559)
 
 Functione56d: ; e56d
 	ld a, [PartyCount]
-	cp $6
+	cp PARTY_LENGTH
 	jr nc, .asm_e576
 	and a
 	ret
@@ -14339,7 +14338,7 @@ ClearPCItemScreen: ; e58b
 
 Functione5bb: ; e5bb
 	ld a, [CurPartyMon]
-	ld hl, BoxMon1Species
+	ld hl, sBoxMon1Species
 	ld bc, $0020
 	call AddNTimes
 	ld de, TempMonSpecies
@@ -14369,7 +14368,7 @@ Functione5d9: ; e5d9
 
 .asm_e5f1
 	ld a, $1
-	ld hl, BoxCount
+	ld hl, sBoxCount
 
 .asm_e5f6
 	call GetSRAMBank
@@ -14378,7 +14377,7 @@ Functione5d9: ; e5d9
 	add hl, bc
 	ld b, a
 	ld c, $0
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld a, b
 	and a
 	jr z, .asm_e66a
@@ -14471,7 +14470,7 @@ Unknown_e66e: ; e66e
 ; e698
 
 Functione698: ; e698
-	ld hl, BreedMon1Species
+	ld hl, wBreedMon1Species
 	ld de, TempMonSpecies
 	ld bc, $0020
 	call CopyBytes
@@ -14486,7 +14485,7 @@ Functione698: ; e698
 ; e6b3
 
 Functione6b3: ; e6b3
-	ld hl, BreedMon2Species
+	ld hl, wBreedMon2Species
 	ld de, TempMonSpecies
 	ld bc, $0020
 	call CopyBytes
@@ -14528,7 +14527,7 @@ Functione6fd: ; e6fd
 	ld [CurPartySpecies], a
 	call GetBaseData
 	xor a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, $df9c
 	call ByteFill
 	xor a
@@ -14639,12 +14638,12 @@ WobbleChances: ; f9ba
 ; f9ea
 
 
-Functionf9ea: ; f9ea
-	ld a, $2
+KnowsMove: ; f9ea
+	ld a, PartyMon1Moves - PartyMon1
 	call GetPartyParamLocation
 	ld a, [$d262]
 	ld b, a
-	ld c, $4
+	ld c, NUM_MOVES
 .asm_f9f5
 	ld a, [hli]
 	cp b
@@ -14670,7 +14669,7 @@ UnknownText_0xfa06: ; 0xfa06
 
 SECTION "bank4", ROMX, BANK[$4]
 
-Function10000: ; 10000
+Pack: ; 10000
 	ld hl, Options
 	set 4, [hl]
 	call Function1068a
@@ -15286,7 +15285,7 @@ Function103fd: ; 103fd
 	callba PartyMenuSelect
 	jr c, .asm_10475
 	ld a, [CurPartySpecies] ; $d108
-	cp $fd
+	cp EGG
 	jr nz, .asm_10453
 	ld hl, UnknownText_0x1048d
 	call PrintText
@@ -15299,7 +15298,7 @@ Function103fd: ; 103fd
 	call GetCurNick
 	ld hl, StringBuffer1 ; $d073
 	ld de, $d050
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call Function12bd9
 	pop af
@@ -15334,7 +15333,7 @@ Function10492: ; 10492
 ; 10493
 
 
-Function10493: ; 10493
+BattlePack: ; 10493
 	ld hl, Options
 	set 4, [hl]
 	call Function1068a
@@ -15998,7 +15997,7 @@ Function1089d: ; 1089d
 	ld e, a
 	ld d, $0
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_108b3
 	ld a, [PlayerGender]
 	bit 0, a
@@ -16122,7 +16121,7 @@ Function10955: ; 10955
 	ld a, $24
 	call ByteFill
 	hlcoord 5, 1
-	ld bc, $0b0f
+	lb bc, 11, 15
 	call ClearBox
 	ld hl, TileMap
 	ld a, $28
@@ -16135,7 +16134,7 @@ Function10955: ; 10955
 	call Function109bb
 	call Function109a5
 	hlcoord 0, 12
-	ld bc, $0412
+	lb bc, 4, 18
 	call TextBox
 	call EnableLCD
 	call Function1089d
@@ -16906,8 +16905,7 @@ CanLearnTMHMMove: ; 11639
 	ld b, CHECK_FLAG
 	push de
 	ld d, 0
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	pop de
 	ret
 
@@ -19501,7 +19499,7 @@ StartMenu_Pokegear: ; 1294c
 StartMenu_Pack: ; 1295b
 
 	call FadeToMenu
-	callba Function10000
+	callba Pack
 	ld a, [$cf66]
 	and a
 	jr nz, .asm_12970
@@ -20217,8 +20215,7 @@ OpenPartyStats: ; 12e00
 	xor a
 	ld [MonType], a
 	call LowVolume
-	ld a, $25
-	call Predef
+	predef StatsScreenInit
 	call MaxVolume
 	call Function1d7d
 	ld a, 0
@@ -20659,8 +20656,8 @@ Function12fd5: ; 12fd5
 	jp .asm_13018
 
 .asm_130de
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	push hl
@@ -20671,7 +20668,7 @@ Function12fd5: ; 12fd5
 	call Function1313a
 	ld a, [IsInBattle]
 	jr z, .asm_13113
-	ld hl, BattleMonMove1
+	ld hl, BattleMonMoves
 	ld bc, $0020
 	ld a, [CurPartyMon]
 	call AddNTimes
@@ -20768,7 +20765,7 @@ Function13172: ; 13172
 	call ClearBox
 	xor a
 	ld [MonType], a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [CurPartyMon]
 	call GetNick
 	hlcoord 5, 1
@@ -20791,34 +20788,31 @@ Function131ef: ; 131ef
 	ld [hBGMapMode], a
 	ld [$d0e3], a
 	ld [MonType], a
-	ld a, $1f
-	call Predef
-	ld hl, TempMonMove1
+	predef Function5084a
+	ld hl, TempMonMoves
 	ld de, $d25e
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld a, $28
+	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 3
-	ld a, $20
-	call Predef
+	predef ListMoves
 	hlcoord 10, 4
-	ld a, $23
-	call Predef
+	predef Function50c50
 	call WaitBGMap
 	call Function32f9
 	ld a, [$d0eb]
 	inc a
 	ld [$cfa3], a
 	hlcoord 0, 11
-	ld b, $5
-	ld c, $12
+	ld b, 5
+	ld c, 18
 	jp TextBox
 ; 13235
 
 Function13235: ; 13235
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld a, [$cfa9]
@@ -20829,7 +20823,7 @@ Function13235: ; 13235
 	ld a, [hl]
 	ld [CurSpecies], a
 	hlcoord 1, 12
-	ld bc, $0512
+	lb bc, 5, 18
 	jp ClearBox
 ; 13256
 
@@ -20848,12 +20842,11 @@ Function13256: ; 13256
 	ld a, [CurSpecies]
 	ld b, a
 	hlcoord 2, 12
-	ld a, PREDEF_PRINT_MOVE_TYPE
-	call Predef
+	predef PrintMoveType
 	ld a, [CurSpecies]
 	dec a
 	ld hl, Moves + MOVE_POWER
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -20872,8 +20865,7 @@ Function13256: ; 13256
 
 .asm_132ad
 	hlcoord 1, 14
-	ld a, $11
-	call Predef
+	predef PrintMoveDesc
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -21449,7 +21441,7 @@ Function135db: ; 135db
 ; 135eb
 
 UnknownScript_0x135eb:: ; 0x135eb
-	writecode $3, $6
+	writecode $3, BATTLETYPE_CONTEST
 	battlecheck
 	startbattle
 	returnafterbattle
@@ -22000,7 +21992,7 @@ ContestScore: ; 13900
 	call .AddContestStat
 
 	; DVs
-	ld a, [wContestMonAtkDefDV]
+	ld a, [wContestMonDVs + 0]
 	ld b, a
 	and 2
 	add a
@@ -22014,7 +22006,7 @@ ContestScore: ; 13900
 	add c
 	ld d, a
 
-	ld a, [wContestMonSpdSpcDV]
+	ld a, [wContestMonDVs + 1]
 	ld b, a
 	and 2
 	ld c, a
@@ -22171,7 +22163,7 @@ Function13a12: ; 13a12
 	or [hl]
 	jr z, .asm_13a2b
 	ld hl, PartyCount
-	ld a, $1
+	ld a, 1
 	ld [hli], a
 	inc hl
 	ld a, [hl]
@@ -22188,7 +22180,7 @@ Function13a12: ; 13a12
 ; 13a31
 
 Function13a31: ; 13a31
-	ld hl, $dcd9
+	ld hl, PartySpecies + 1
 	ld a, [$df9b]
 	ld [hl], a
 	ld b, $1
@@ -22295,8 +22287,7 @@ Function13a47: ; 13a47
 	ld hl, $000a
 	add hl, bc
 	ld b, $1
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop hl
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
@@ -22781,21 +22772,21 @@ GetPlayerSprite: ; 14183
 
 .asm_141ad
 	ld [UsedSprites + 0], a
-	ld [$d4d6], a
-	ld [$d71f], a
+	ld [PlayerStruct + 0], a
+	ld [MapObjects + OBJECT_LENGTH * 0 + 1], a
 	ret
 
 .Chris
-	db PLAYER_NORMAL, SPRITE_CHRIS
-	db PLAYER_BIKE, SPRITE_CHRIS_BIKE
-	db PLAYER_SURF, SPRITE_SURF
+	db PLAYER_NORMAL,    SPRITE_CHRIS
+	db PLAYER_BIKE,      SPRITE_CHRIS_BIKE
+	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
 	db $ff
 
 .Kris
-	db PLAYER_NORMAL, SPRITE_KRIS
-	db PLAYER_BIKE, SPRITE_KRIS_BIKE
-	db PLAYER_SURF, SPRITE_SURF
+	db PLAYER_NORMAL,    SPRITE_KRIS
+	db PLAYER_BIKE,      SPRITE_KRIS_BIKE
+	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
 	db $ff
 ; 141c9
@@ -22918,9 +22909,9 @@ GetMonSprite: ; 14259
 	cp SPRITE_POKEMON
 	jr c, .Normal
 	cp SPRITE_DAYCARE_MON_1
-	jr z, .BreedMon1
+	jr z, .wBreedMon1
 	cp SPRITE_DAYCARE_MON_2
-	jr z, .BreedMon2
+	jr z, .wBreedMon2
 	cp SPRITE_VARS
 	jr nc, .Variable
 	jr .Icon
@@ -22938,12 +22929,12 @@ GetMonSprite: ; 14259
 	ld a, [hl]
 	jr .Mon
 
-.BreedMon1
-	ld a, [BreedMon1Species]
+.wBreedMon1
+	ld a, [wBreedMon1Species]
 	jr .Mon
 
-.BreedMon2
-	ld a, [BreedMon2Species]
+.wBreedMon2
+	ld a, [wBreedMon2Species]
 
 .Mon
 	ld e, a
@@ -25223,8 +25214,8 @@ Function150f9: ; 150f9
 	push de
 	ld a, $1
 	call GetSRAMBank
-	ld hl, BoxCount
-	ld de, EnemyMoveAnimation
+	ld hl, sBoxCount
+	ld de, $c608
 	ld bc, $01e0
 	call CopyBytes
 	call CloseSRAM
@@ -25233,14 +25224,14 @@ Function150f9: ; 150f9
 	push af
 	push de
 	call GetSRAMBank
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld bc, $01e0
 	call CopyBytes
 	call CloseSRAM
 	ld a, $1
 	call GetSRAMBank
 	ld hl, $aef0
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $01e0
 	call CopyBytes
 	call CloseSRAM
@@ -25253,14 +25244,14 @@ Function150f9: ; 150f9
 	push af
 	push de
 	call GetSRAMBank
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld bc, $01e0
 	call CopyBytes
 	call CloseSRAM
 	ld a, $1
 	call GetSRAMBank
 	ld hl, $b0d0
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $008e
 	call CopyBytes
 	call CloseSRAM
@@ -25271,7 +25262,7 @@ Function150f9: ; 150f9
 	ld e, l
 	ld d, h
 	call GetSRAMBank
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld bc, $008e
 	call CopyBytes
 	call CloseSRAM
@@ -25288,13 +25279,13 @@ Function1517d: ; 1517d (5:517d)
 	push af
 	push hl
 	call GetSRAMBank
-	ld de, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld de, $c608
 	ld bc, $1e0
 	call CopyBytes
 	call CloseSRAM
 	ld a, $1
 	call GetSRAMBank
-	ld hl, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld hl, $c608
 	ld de, $ad10
 	ld bc, $1e0
 	call CopyBytes
@@ -25306,13 +25297,13 @@ Function1517d: ; 1517d (5:517d)
 	push af
 	push hl
 	call GetSRAMBank
-	ld de, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld de, $c608
 	ld bc, $1e0
 	call CopyBytes
 	call CloseSRAM
 	ld a, $1
 	call GetSRAMBank
-	ld hl, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld hl, $c608
 	ld de, $aef0
 	ld bc, $1e0
 	call CopyBytes
@@ -25322,13 +25313,13 @@ Function1517d: ; 1517d (5:517d)
 	ld de, $1e0
 	add hl, de
 	call GetSRAMBank
-	ld de, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld de, $c608
 	ld bc, $8e
 	call CopyBytes
 	call CloseSRAM
 	ld a, $1
 	call GetSRAMBank
-	ld hl, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld hl, $c608
 	ld de, $b0d0
 	ld bc, $8e
 	call CopyBytes
@@ -26436,8 +26427,7 @@ Function157e9: ; 0x157e9
 	ld [$d107], a
 	ld hl, PCItems
 	call TossItem
-	ld a, $3b
-	call Predef
+	predef PartyMonItemName
 	ld hl, .WithdrewText
 	call Function1d4f
 	xor a
@@ -26611,8 +26601,7 @@ Function1590a: ; 0x1590a
 	ld [$d107], a
 	ld hl, NumItems
 	call TossItem
-	ld a, $3b
-	call Predef
+	predef PartyMonItemName
 	ld hl, .DepositText
 	call PrintText
 	ret
@@ -27295,8 +27284,7 @@ Function15d83: ; 15d83
 ; 15d97
 
 Function15d97: ; 15d97
-	ld a, $3b
-	call Predef
+	predef PartyMonItemName
 	ld a, $1
 	call Function15c7d
 	call YesNoBox
@@ -27636,8 +27624,7 @@ Function15efd: ; 15efd
 	ld a, [$d107]
 	ld hl, NumItems
 	call TossItem
-	ld a, $3b
-	call Predef
+	predef PartyMonItemName
 	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
@@ -28707,17 +28694,17 @@ MenuData2_0x166bd: ; 0x166bd
 ; 0x166d6
 
 Function166d6: ; 166d6
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	bit 0, [hl]
 	jr nz, .asm_166fe
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	ld a, $0
 	call Function1678f
 	jr c, .asm_16724
 	call Function16798
 	jr c, .asm_16721
 	callba Functionde2a
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	set 0, [hl]
 	call Function167f6
 	call Function16a3b
@@ -28725,13 +28712,13 @@ Function166d6: ; 166d6
 
 .asm_166fe
 	callba Functione698
-	ld hl, BreedMon1Nick
+	ld hl, wBreedMon1Nick
 	call Function1686d
 	call Function16807
 	jr c, .asm_16721
 	callba Functiondd21
 	call Function16850
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	res 0, [hl]
 	res 5, [hl]
 	jr .asm_16724
@@ -28746,17 +28733,17 @@ Function166d6: ; 166d6
 ; 1672a
 
 Function1672a: ; 1672a
-	ld hl, DaycareLady
+	ld hl, wDaycareLady
 	bit 0, [hl]
 	jr nz, .asm_16752
-	ld hl, DaycareLady
+	ld hl, wDaycareLady
 	ld a, $2
 	call Function16781
 	jr c, .asm_1677b
 	call Function16798
 	jr c, .asm_16778
 	callba Functionde37
-	ld hl, DaycareLady
+	ld hl, wDaycareLady
 	set 0, [hl]
 	call Function167f6
 	call Function16a3b
@@ -28764,15 +28751,15 @@ Function1672a: ; 1672a
 
 .asm_16752
 	callba Functione6b3
-	ld hl, BreedMon2Nick
+	ld hl, wBreedMon2Nick
 	call Function1686d
 	call Function16807
 	jr c, .asm_16778
 	callba Functiondd42
 	call Function16850
-	ld hl, DaycareLady
+	ld hl, wDaycareLady
 	res 0, [hl]
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	res 5, [hl]
 	jr .asm_1677b
 
@@ -28819,13 +28806,13 @@ Function16798: ; 16798
 	callba Functione538
 	jr c, .asm_167e9
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, [hl]
 	callba ItemIsMail
 	jr c, .asm_167ed
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [CurPartyMon]
 	call GetNick
 	and a
@@ -29113,7 +29100,7 @@ UnknownText_0x16931: ; 0x16931
 ; 0x16936
 
 Function16936: ; 16936
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	bit 6, [hl]
 	jr nz, Function16949
 	ld hl, UnknownText_0x16944
@@ -29135,7 +29122,7 @@ Function16949: ; 16949
 	cp $6
 	jr nc, .asm_16987
 	call Function169ac
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	res 6, [hl]
 	call Function16a3b
 	ld hl, UnknownText_0x16998
@@ -29208,32 +29195,32 @@ Function169ac: ; 169ac
 	add hl, bc
 	ld a, EGG
 	ld [hli], a
-	ld a, [EggSpecies]
+	ld a, [wEggMonSpecies]
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
 	ld a, $ff
 	ld [hl], a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, $000b
 	call Function16a31
-	ld hl, EggNick
+	ld hl, wEggNick
 	call CopyBytes
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld bc, $000b
 	call Function16a31
-	ld hl, EggOT
+	ld hl, wEggOT
 	call CopyBytes
-	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld hl, PartyMon1
+	ld bc, PartyMon2 - PartyMon1
 	call Function16a31
-	ld hl, EggSpecies
-	ld bc, $0020
+	ld hl, wEggMon
+	ld bc, wEggMonEnd - wEggMon
 	call CopyBytes
 	call GetBaseData
 	ld a, [PartyCount]
 	dec a
-	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld hl, PartyMon1
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -29247,8 +29234,7 @@ Function169ac: ; 169ac
 	pop hl
 	push bc
 	ld b, $0
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop bc
 	ld hl, $0022
 	add hl, bc
@@ -29273,10 +29259,10 @@ Function16a31: ; 16a31
 ; 16a3b
 
 Function16a3b: ; 16a3b
-	ld a, [DaycareLady]
+	ld a, [wDaycareLady]
 	bit 0, a
 	ret z
-	ld a, [DaycareMan]
+	ld a, [wDaycareMan]
 	bit 0, a
 	ret z
 	callab Function16e1d
@@ -29285,40 +29271,40 @@ Function16a3b: ; 16a3b
 	ret z
 	inc a
 	ret z
-	ld hl, DaycareMan
+	ld hl, wDaycareMan
 	set 5, [hl]
 .asm_16a59
 	call Random
 	cp 150
 	jr c, .asm_16a59
-	ld [StepsToEgg], a
+	ld [wStepsToEgg], a
 	jp Function16a66
 ; 16a66
 
 Function16a66: ; 16a66
 	xor a
-	ld hl, EggSpecies
-	ld bc, $0020
+	ld hl, wEggMon
+	ld bc, wEggMonEnd - wEggMon
 	call ByteFill
-	ld hl, EggNick
-	ld bc, $000b
+	ld hl, wEggNick
+	ld bc, PKMN_NAME_LENGTH
 	call ByteFill
-	ld hl, EggOT
-	ld bc, $000b
+	ld hl, wEggOT
+	ld bc, NAME_LENGTH
 	call ByteFill
 	ld a, [$df21]
 	ld [TempMonDVs], a
 	ld a, [$df22]
 	ld [$d124], a
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	ld [CurPartySpecies], a
 	ld a, $3
 	ld [MonType], a
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	cp DITTO
 	ld a, $1
 	jr z, .asm_16ab6
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	cp DITTO
 	ld a, $0
 	jr z, .asm_16ab6
@@ -29328,11 +29314,11 @@ Function16a66: ; 16a66
 	inc a
 
 .asm_16ab6
-	ld [DittoInDaycare], a
+	ld [wDittoInDaycare], a
 	and a
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	jr z, .asm_16ac2
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 
 .asm_16ac2
 	ld [CurPartySpecies], a
@@ -29352,22 +29338,21 @@ Function16a66: ; 16a66
 .asm_16ae8
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
-	ld [EggSpecies], a
+	ld [wEggMonSpecies], a
 	call GetBaseData
-	ld hl, EggNick
+	ld hl, wEggNick
 	ld de, String_16be0
 	call CopyName2
 	ld hl, PlayerName
-	ld de, EggOT
-	ld bc, $000b
+	ld de, wEggOT
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	xor a
 	ld [$df7c], a
 	ld de, $df7d
 	xor a
 	ld [Buffer1], a
-	ld a, $1b
-	call Predef
+	predef FillMoves
 	callba Function170bf
 	ld hl, $df81
 	ld a, [PlayerID]
@@ -29399,11 +29384,11 @@ Function16a66: ; 16a66
 	ld [hld], a
 	ld [$d124], a
 	ld de, $df21
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	cp DITTO
 	jr z, .asm_16b98
 	ld de, $df5a
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .asm_16b98
 	ld a, $3
@@ -29415,7 +29400,7 @@ Function16a66: ; 16a66
 	ld bc, $df5a
 	jr c, .asm_16bab
 	jr z, .asm_16b90
-	ld a, [DittoInDaycare]
+	ld a, [wDittoInDaycare]
 	and a
 	jr z, .asm_16b98
 	ld d, b
@@ -29423,7 +29408,7 @@ Function16a66: ; 16a66
 	jr .asm_16b98
 
 .asm_16b90
-	ld a, [DittoInDaycare]
+	ld a, [wDittoInDaycare]
 	and a
 	jr nz, .asm_16b98
 	ld d, b
@@ -29453,8 +29438,7 @@ Function16a66: ; 16a66
 	call CopyBytes
 	ld hl, $df7d
 	ld de, $df92
-	ld a, $5
-	call Predef
+	predef FillPP
 	ld hl, $d050
 	ld de, StringBuffer1
 	ld bc, $000b
@@ -29619,15 +29603,13 @@ Function16cc8: ; 16cc8
 	xor a
 	ld [$c2c6], a
 	ld de, VTiles2
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	call Function16cff
 	hlcoord 1, 6
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld de, $9310
 	callba Functione0000
 	ret
@@ -29708,8 +29690,7 @@ Function16dac: ; 16dac
 	ld a, $31
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 16dc7
 
@@ -29779,7 +29760,7 @@ Function16e1d: ; 16e1d
 	call Function16ed6
 	ld c, $0
 	jp nc, .asm_16eb7
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	ld [CurPartySpecies], a
 	ld a, [$df21]
 	ld [TempMonDVs], a
@@ -29787,8 +29768,7 @@ Function16e1d: ; 16e1d
 	ld [$d124], a
 	ld a, $3
 	ld [MonType], a
-	ld a, $24
-	call Predef
+	predef GetGender
 	jr c, .asm_16e70
 	ld b, $1
 	jr nz, .asm_16e48
@@ -29796,7 +29776,7 @@ Function16e1d: ; 16e1d
 
 .asm_16e48
 	push bc
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	ld [CurPartySpecies], a
 	ld a, [$df5a]
 	ld [TempMonDVs], a
@@ -29804,8 +29784,7 @@ Function16e1d: ; 16e1d
 	ld [$d124], a
 	ld a, $3
 	ld [MonType], a
-	ld a, $24
-	call Predef
+	predef GetGender
 	pop bc
 	jr c, .asm_16e70
 	ld a, $1
@@ -29818,16 +29797,16 @@ Function16e1d: ; 16e1d
 
 .asm_16e70
 	ld c, $0
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	cp DITTO
 	jr z, .asm_16e82
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr nz, .asm_16eb7
 	jr .asm_16e89
 
 .asm_16e82
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .asm_16eb7
 
@@ -29835,9 +29814,9 @@ Function16e1d: ; 16e1d
 	call Function16ebc
 	ld c, $ff
 	jp z, .asm_16eb7
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	ld b, a
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	cp b
 	ld c, $fe
 	jr z, .asm_16e9f
@@ -29884,19 +29863,19 @@ Function16ebc: ; 16ebc (5:6ebc)
 ; 16ed6
 
 Function16ed6: ; 16ed6
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
 	cp $ff
 	jr z, .asm_16f3a
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
 	cp $ff
 	jr z, .asm_16f3a
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .asm_16f3c
 	ld [CurSpecies], a
@@ -29909,7 +29888,7 @@ Function16ed6: ; 16ed6
 	and $f0
 	swap a
 	ld c, a
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	cp DITTO
 	jr z, .asm_16f3c
 	ld [CurSpecies], a
@@ -30054,8 +30033,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld bc, $a
 	add hl, bc
 	ld b, $0
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop bc
 	ld hl, $24
 	add hl, bc
@@ -30075,7 +30053,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld a, [$d47c]
 	ld [hl], a
 	ld a, [CurPartyMon] ; $d109
-	ld hl, PartyMonOT ; $ddff (aliases: PartyMon1OT)
+	ld hl, PartyMonOT ; $ddff (aliases: PartyMonOT)
 	ld bc, $b
 	call AddNTimes
 	ld d, h
@@ -30085,7 +30063,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld hl, UnknownText_0x1708b
 	call PrintText
 	ld a, [CurPartyMon] ; $d109
-	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMon1Nickname)
+	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMonNicknames)
 	ld bc, $b
 	call AddNTimes
 	ld d, h
@@ -30206,7 +30184,7 @@ Function170e4: ; 170e4
 GLOBAL EggMoves
 
 	push bc
-	ld a, [EggSpecies]
+	ld a, [wEggMonSpecies]
 	dec a
 	ld c, a
 	ld b, 0
@@ -30240,7 +30218,7 @@ GLOBAL EggMoves
 	jr .asm_1710c
 
 .asm_17116
-	ld a, [EggSpecies]
+	ld a, [wEggMonSpecies]
 	dec a
 	ld c, a
 	ld b, 0
@@ -30283,8 +30261,7 @@ GLOBAL EggMoves
 	cp b
 	jr nz, .asm_17149
 	ld [$d262], a
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
 	ld a, c
 	and a
 	jr z, .asm_17166
@@ -30329,8 +30306,7 @@ Function17169: ; 17169
 	ld [hl], b
 	ld hl, $df7d
 	ld de, $df92
-	ld a, $5
-	call Predef
+	predef FillPP
 	pop bc
 	pop de
 	ret
@@ -30338,13 +30314,13 @@ Function17169: ; 17169
 
 Function17197: ; 17197
 	ld hl, $df47
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	cp DITTO
 	jr z, .asm_171b1
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .asm_171d7
-	ld a, [DittoInDaycare]
+	ld a, [wDittoInDaycare]
 	and a
 	ret z
 	ld hl, $df0e
@@ -30353,7 +30329,7 @@ Function17197: ; 17197
 .asm_171b1
 	ld a, [CurPartySpecies]
 	push af
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	ld [CurPartySpecies], a
 	ld a, [$df5a]
 	ld [TempMonDVs], a
@@ -30361,8 +30337,7 @@ Function17197: ; 17197
 	ld [$d124], a
 	ld a, $3
 	ld [MonType], a
-	ld a, $24
-	call Predef
+	predef GetGender
 	jr c, .asm_171fb
 	jr nz, .asm_171fb
 	jr .asm_17203
@@ -30370,7 +30345,7 @@ Function17197: ; 17197
 .asm_171d7
 	ld a, [CurPartySpecies]
 	push af
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	ld [CurPartySpecies], a
 	ld a, [$df21]
 	ld [TempMonDVs], a
@@ -30378,8 +30353,7 @@ Function17197: ; 17197
 	ld [$d124], a
 	ld a, $3
 	ld [MonType], a
-	ld a, $24
-	call Predef
+	predef GetGender
 	jr c, .asm_17203
 	jr nz, .asm_17203
 
@@ -30398,13 +30372,13 @@ Function17197: ; 17197
 
 Function1720b: ; 1720b
 	ld hl, $df0e
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	cp DITTO
 	ret z
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .asm_17220
-	ld a, [DittoInDaycare]
+	ld a, [wDittoInDaycare]
 	and a
 	ret z
 
@@ -30420,12 +30394,10 @@ Function17224: ; 17224 (5:7224)
 	ld [CurPartySpecies], a ; $d108
 	ld [CurSpecies], a ; $cf60
 	call GetBaseData
-	ld hl, BattleMonDVs ; $c632 (aliases: BattleMonAtkDefDV)
-	ld a, $2d
-	call Predef
+	ld hl, BattleMonDVs
+	predef GetUnownLetter
 	pop de
-	ld a, $3c
-	jp Predef
+	predef_jump GetFrontpic
 
 ; known jump sources: 172c2 (5:72c2)
 Function1723c: ; 1723c (5:723c)
@@ -30433,12 +30405,10 @@ Function1723c: ; 1723c (5:723c)
 	ld [CurPartySpecies], a ; $d108
 	ld [CurSpecies], a ; $cf60
 	call GetBaseData
-	ld hl, BattleMonDVs ; $c632 (aliases: BattleMonAtkDefDV)
-	ld a, $2d
-	call Predef
+	ld hl, BattleMonDVs
+	predef GetUnownLetter
 	pop de
-	ld a, $3e
-	jp Predef
+	predef_jump Function5108b
 
 ; known jump sources: 172df (5:72df), 17343 (5:7343)
 Function17254: ; 17254 (5:7254)
@@ -30457,8 +30427,7 @@ Function17254: ; 17254 (5:7254)
 	ld a, c
 	ld [$ffad], a
 	ld bc, $707
-	ld a, $13
-	call Predef
+	predef FillBox
 	pop af
 	call Function17363
 	call Function32f9
@@ -30560,8 +30529,7 @@ Function1728f: ; 1728f (5:728f)
 	hlcoord 6, 3
 	ld d, $0
 	ld e, $5
-	ld a, $47
-	call Predef
+	predef Functiond008e
 	pop af
 	ld [CurSpecies], a ; $cf60
 	ret
@@ -30667,26 +30635,26 @@ Function17418: ; 17418 (5:7418)
 Function17421: ; 17421
 	ld hl, UnknownText_0x17467
 	call PrintText
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	call Function37ce
-	ld a, [DaycareLady]
+	ld a, [wDaycareLady]
 	bit 0, a
 	jr z, Function1745f
 	call Functionaaf
-	ld hl, BreedMon2Nick
+	ld hl, wBreedMon2Nick
 	call Function1746c
 	jp PrintText
 
 Function17440: ; 17440
 	ld hl, UnknownText_0x17462
 	call PrintText
-	ld a, [BreedMon2Species]
+	ld a, [wBreedMon2Species]
 	call Function37ce
-	ld a, [DaycareMan]
+	ld a, [wDaycareMan]
 	bit 0, a
 	jr z, Function1745f
 	call Functionaaf
-	ld hl, BreedMon1Nick
+	ld hl, wBreedMon1Nick
 	call Function1746c
 	jp PrintText
 
@@ -31917,8 +31885,7 @@ Function244e3:: ; 244e3
 	ld [CurSpecies], a
 	call GetBaseData
 	ld de, VTiles1
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	ld a, [$cf82]
 	inc a
 	ld b, a
@@ -31929,8 +31896,7 @@ Function244e3:: ; 244e3
 	ld a, $80
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	call WaitBGMap
 	ret
 ; 24528
@@ -33479,7 +33445,7 @@ MenuData2_0x24edc: ; 24edc
 ; 24ef2
 
 
-LoadBattleMenuDataHeader: ; 24ef2
+LoadBattleMenu: ; 24ef2
 	ld hl, BattleMenuDataHeader
 	call LoadMenuDataHeader
 	ld a, [$d0d2]
@@ -33492,15 +33458,14 @@ LoadBattleMenuDataHeader: ; 24ef2
 ; 24f0b
 
 
-Function24f0b: ; 24f0b
-; Safari battle menu (untranslated).
+SafariBattleMenu: ; 24f0b
+; untranslated
 	ld hl, MenuDataHeader_0x24f4e
 	call LoadMenuDataHeader
 	jr Function24f19
 ; 24f13
 
-Function24f13: ; 24f13
-; Park battle menu.
+ContestBattleMenu: ; 24f13
 	ld hl, MenuDataHeader_0x24f89
 	call LoadMenuDataHeader
 ; 24f19
@@ -34103,8 +34068,7 @@ Function25299: ; 25299 (9:5299)
 	ld bc, $507
 	xor a
 	ld [$FF00+$ad], a
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 252ec (9:52ec)
 
@@ -36140,7 +36104,7 @@ Function2715c: ; 2715c
 	call WhiteBGMap
 	call ClearTileMap
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_27171
 	callba Function3f43d
 	jr .asm_27177
@@ -36340,7 +36304,7 @@ Function2805d: ; 2805d
 	call Function75f
 	ld a, $fe
 	ld [de], a
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld de, PlayerSDefLevel
 	ld bc, $00c8
 	call Function75f
@@ -36483,7 +36447,7 @@ Function28177: ; 28177
 	call Function75f
 	ld a, $fe
 	ld [de], a
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld de, PlayerSDefLevel
 	ld bc, $00c8
 	call Function75f
@@ -36686,7 +36650,7 @@ Function28177: ; 28177
 	or $3
 	ld [hl], a
 	ld hl, $d26b
-	ld de, $c656
+	ld de, OTName
 	ld bc, $000b
 	call CopyBytes
 	call Function222a
@@ -36705,8 +36669,7 @@ Function28177: ; 28177
 	ld [rIE], a
 	pop af
 	ld [rIF], a
-	ld a, $16
-	call Predef
+	predef StartBattle
 	ld a, [rIF]
 	ld h, a
 	xor a
@@ -36833,7 +36796,7 @@ Function28434: ; 28434
 	ld [hli], a
 	dec b
 	jr nz, .asm_28441
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld a, $fd
 	ld [hli], a
 	ld [hli], a
@@ -36845,7 +36808,7 @@ Function28434: ; 28434
 	dec b
 	jr nz, .asm_28457
 	ld hl, $c818
-	ld de, PlayerMoveType
+	ld de, $c612
 	ld bc, $0000
 .asm_28464
 	inc c
@@ -36883,7 +36846,7 @@ Function28434: ; 28434
 	ld a, $ff
 	ld [de], a
 	inc de
-	ld bc, Start
+	ld bc, $100
 	jr .asm_28464
 
 .asm_28495
@@ -36936,7 +36899,7 @@ Function28499: ; 28499
 .asm_284db
 	push bc
 	call Function284f6
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
 	dec c
@@ -37044,8 +37007,7 @@ Function284f6: ; 284f6
 	add hl, bc
 	ld c, $5
 	ld b, $1
-	ld a, $d
-	call Predef
+	predef Functione17b
 
 	pop bc
 	pop de
@@ -37082,10 +37044,10 @@ Function28595: ; 28595
 	ld hl, PartyMon1Species
 	ld bc, $0120
 	call CopyBytes
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld bc, $0042
 	call CopyBytes
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, $0042
 	call CopyBytes
 	ld a, [InLinkBattle]
@@ -37221,10 +37183,10 @@ Function2868a: ; 2868a
 	pop hl
 	ld bc, $0108
 	add hl, bc
-	ld de, OTPartyMon1OT
+	ld de, OTPartyMonOT
 	ld bc, $0042
 	call CopyBytes
-	ld de, OTPartyMon1Nickname
+	ld de, OTPartyMonNicknames
 	ld bc, $0042
 	jp CopyBytes
 ; 286ba
@@ -37316,8 +37278,7 @@ Function286ba: ; 286ba
 	add hl, bc
 	ld c, $5
 	ld b, $1
-	ld a, $d
-	call Predef
+	predef Functione17b
 	pop bc
 	pop hl
 	ld a, [$ffb5]
@@ -37330,8 +37291,7 @@ Function286ba: ; 286ba
 	add hl, bc
 	ld c, $6
 	ld b, $1
-	ld a, $d
-	call Predef
+	predef Functione17b
 	pop bc
 	pop hl
 	ld a, [$ffb5]
@@ -38054,7 +38014,7 @@ Function28b87: ; 28b87
 	ld [PlayerSDefLevel], a
 	push af
 	ld a, [DefaultFlypoint]
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call SkipNames
 	ld de, $c6f2
 	ld bc, $000b
@@ -38093,7 +38053,7 @@ Function28b87: ; 28b87
 	ld a, [hl]
 	ld [PlayerLightScreenCount], a
 	ld a, [$d003]
-	ld hl, OTPartyMon1OT
+	ld hl, OTPartyMonOT
 	call SkipNames
 	ld de, $c724
 	ld bc, $000b
@@ -38105,7 +38065,7 @@ Function28b87: ; 28b87
 	ld [$c731], a
 	ld a, [hl]
 	ld [$c732], a
-	ld hl, OTPartyMon1AtkDefDV
+	ld hl, OTPartyMon1DVs
 	ld a, [$d003]
 	call GetPartyLocation
 	ld a, [hli]
@@ -38153,13 +38113,11 @@ Function28b87: ; 28b87
 	ld a, [$ffcb]
 	cp $1
 	jr z, .asm_28de4
-	ld a, $1e
-	call Predef
+	predef Function28f24
 	jr .asm_28de9
 
 .asm_28de4
-	ld a, $1d
-	call Predef
+	predef Function28f63
 
 .asm_28de9
 	pop af
@@ -38175,10 +38133,9 @@ Function28b87: ; 28b87
 	ld a, c
 	call GetPartyLocation
 	ld de, TempMonSpecies
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
-	ld a, $7
-	call Predef
+	predef Functionda96
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
@@ -38249,7 +38206,8 @@ Function28ea3: ; 28ea3
 ; 28eab
 
 String28eab: ; 28eab
-	db "TRADE", $4e, "CANCEL@"
+	db   "TRADE"
+	next "CANCEL@"
 
 UnknownText_0x28eb8: ; 0x28eb8
 	; Trade @ for @ ?
@@ -38258,10 +38216,11 @@ UnknownText_0x28eb8: ; 0x28eb8
 ; 0x28ebd
 
 String28ebd: ; 28ebd
-	db "Trade completed!@"
+	db   "Trade completed!@"
 
 String28ece: ; 28ece
-	db "Too bad! The trade", $4e, "was canceled!@"
+	db   "Too bad! The trade"
+	next "was canceled!@"
 
 
 Function28eef: ; 28eef
@@ -39113,15 +39072,13 @@ Function29487: ; 29487
 Function29491: ; 29491
 	push de
 	push af
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	ret
 ; 294a9
 
@@ -39154,8 +39111,7 @@ Function294c3: ; 294c3
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	call WaitBGMap
 	ret
 ; 294e7
@@ -39865,22 +39821,23 @@ Function29bfb: ; 29bfb
 	pop bc
 	pop hl
 	jr c, .asm_29c5e
-	ld de, $0030
+	ld de, PartyMon2 - PartyMon1
 	add hl, de
 	dec b
 	jr nz, .asm_29c13
-	ld hl, PartyMon1Move1
+
+	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	ld b, a
 .asm_29c2e
-	ld c, $4
+	ld c, NUM_MOVES
 .asm_29c30
 	ld a, [hli]
 	cp STRUGGLE + 1
 	jr nc, .asm_29c4c
 	dec c
 	jr nz, .asm_29c30
-	ld de, $002c
+	ld de, PartyMon2 - (PartyMon1 + NUM_MOVES)
 	add hl, de
 	dec b
 	jr nz, .asm_29c2e
@@ -40380,8 +40337,7 @@ Function29fe4: ; 29fe4
 	call GetSRAMBank
 	ld d, $0
 	ld b, $2
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	call CloseSRAM
 	ld a, c
 	and a
@@ -40535,14 +40491,14 @@ Function2a09c: ; 2a09c
 ; 2a0b7
 
 Function2a0b7: ; 2a0b7
-	ld a, [RoamMon1Species]
+	ld a, [wRoamMon1Species]
 	ld b, a
 	ld a, [$d265]
 	cp b
 	ret nz
-	ld a, [RoamMon1MapGroup]
+	ld a, [wRoamMon1MapGroup]
 	ld b, a
-	ld a, [RoamMon1MapNumber]
+	ld a, [wRoamMon1MapNumber]
 	ld c, a
 	call Function2a09c
 	ret nc
@@ -40552,14 +40508,14 @@ Function2a0b7: ; 2a0b7
 ; 2a0cf
 
 Function2a0cf: ; 2a0cf
-	ld a, [RoamMon2Species]
+	ld a, [wRoamMon2Species]
 	ld b, a
 	ld a, [$d265]
 	cp b
 	ret nz
-	ld a, [RoamMon2MapGroup]
+	ld a, [wRoamMon2MapGroup]
 	ld b, a
-	ld a, [RoamMon2MapNumber]
+	ld a, [wRoamMon2MapNumber]
 	ld c, a
 	call Function2a09c
 	ret nc
@@ -40580,7 +40536,7 @@ Function2a0e7:: ; 2a0e7
 	ret
 
 .asm_2a0f8
-	xor a
+	xor a ; BATTLETYPE_NORMAL
 	ld [$d22e], a
 	ld [BattleType], a
 	ld a, 1
@@ -40905,45 +40861,45 @@ Function2a288: ; 2a288
 
 
 InitRoamMons: ; 2a2a0
-; initialize RoamMon structs
+; initialize wRoamMon structs
 
 ; species
 	ld a, RAIKOU
-	ld [RoamMon1Species], a
+	ld [wRoamMon1Species], a
 	ld a, ENTEI
-	ld [RoamMon2Species], a
+	ld [wRoamMon2Species], a
 ;	ld a, SUICUNE
-;	ld [RoamMon3Species], a
+;	ld [wRoamMon3Species], a
 
 ; level
 	ld a, 40
-	ld [RoamMon1Level], a
-	ld [RoamMon2Level], a
-;	ld [RoamMon3Level], a
+	ld [wRoamMon1Level], a
+	ld [wRoamMon2Level], a
+;	ld [wRoamMon3Level], a
 
 ; raikou starting map
 	ld a, GROUP_ROUTE_42
-	ld [RoamMon1MapGroup], a
+	ld [wRoamMon1MapGroup], a
 	ld a, MAP_ROUTE_42
-	ld [RoamMon1MapNumber], a
+	ld [wRoamMon1MapNumber], a
 
 ; entei starting map
 	ld a, GROUP_ROUTE_37
-	ld [RoamMon2MapGroup], a
+	ld [wRoamMon2MapGroup], a
 	ld a, MAP_ROUTE_37
-	ld [RoamMon2MapNumber], a
+	ld [wRoamMon2MapNumber], a
 
 ; suicune starting map
 ;	ld a, GROUP_ROUTE_38
-;	ld [RoamMon3MapGroup], a
+;	ld [wRoamMon3MapGroup], a
 ;	ld a, MAP_ROUTE_38
-;	ld [RoamMon3MapNumber], a
+;	ld [wRoamMon3MapNumber], a
 
 ; hp
 	xor a ; generate new stats
-	ld [RoamMon1HP], a
-	ld [RoamMon2HP], a
-;	ld [RoamMon3HP], a
+	ld [wRoamMon1HP], a
+	ld [wRoamMon2HP], a
+;	ld [wRoamMon3HP], a
 
 	ret
 ; 2a2ce
@@ -40960,7 +40916,7 @@ Function2a2ce: ; 2a2ce
 	and 3
 	jr z, .asm_2a30a
 	dec a
-	ld hl, RoamMon1MapGroup
+	ld hl, wRoamMon1MapGroup
 	ld c, a
 	ld b, 0
 	ld a, 7
@@ -40981,6 +40937,7 @@ Function2a2ce: ; 2a2ce
 	ld [CurPartyLevel], a
 	ld a, BATTLETYPE_ROAMING
 	ld [BattleType], a
+
 	pop hl
 	scf
 	ret
@@ -40993,43 +40950,43 @@ Function2a2ce: ; 2a2ce
 
 
 Function2a30d: ; 2a30d
-	ld a, [RoamMon1MapGroup]
+	ld a, [wRoamMon1MapGroup]
 	cp $ff
 	jr z, .asm_2a324
 	ld b, a
-	ld a, [RoamMon1MapNumber]
+	ld a, [wRoamMon1MapNumber]
 	ld c, a
 	call Function2a355
 	ld a, b
-	ld [RoamMon1MapGroup], a
+	ld [wRoamMon1MapGroup], a
 	ld a, c
-	ld [RoamMon1MapNumber], a
+	ld [wRoamMon1MapNumber], a
 
 .asm_2a324
-	ld a, [RoamMon2MapGroup]
+	ld a, [wRoamMon2MapGroup]
 	cp $ff
 	jr z, .asm_2a33b
 	ld b, a
-	ld a, [RoamMon2MapNumber]
+	ld a, [wRoamMon2MapNumber]
 	ld c, a
 	call Function2a355
 	ld a, b
-	ld [RoamMon2MapGroup], a
+	ld [wRoamMon2MapGroup], a
 	ld a, c
-	ld [RoamMon2MapNumber], a
+	ld [wRoamMon2MapNumber], a
 
 .asm_2a33b
-	ld a, [RoamMon3MapGroup]
+	ld a, [wRoamMon3MapGroup]
 	cp $ff
 	jr z, .asm_2a352
 	ld b, a
-	ld a, [RoamMon3MapNumber]
+	ld a, [wRoamMon3MapNumber]
 	ld c, a
 	call Function2a355
 	ld a, b
-	ld [RoamMon3MapGroup], a
+	ld [wRoamMon3MapGroup], a
 	ld a, c
-	ld [RoamMon3MapNumber], a
+	ld [wRoamMon3MapNumber], a
 
 .asm_2a352
 	jp Function2a3f6
@@ -41090,34 +41047,34 @@ Function2a355: ; 2a355
 	ret
 
 Function2a394: ; 2a394
-	ld a, [RoamMon1MapGroup]
+	ld a, [wRoamMon1MapGroup]
 	cp $ff
 	jr z, .asm_2a3a6
 	call Function2a3cd
 	ld a, b
-	ld [RoamMon1MapGroup], a
+	ld [wRoamMon1MapGroup], a
 	ld a, c
-	ld [RoamMon1MapNumber], a
+	ld [wRoamMon1MapNumber], a
 .asm_2a3a6
 
-	ld a, [RoamMon2MapGroup]
+	ld a, [wRoamMon2MapGroup]
 	cp $ff
 	jr z, .asm_2a3b8
 	call Function2a3cd
 	ld a, b
-	ld [RoamMon2MapGroup], a
+	ld [wRoamMon2MapGroup], a
 	ld a, c
-	ld [RoamMon2MapNumber], a
+	ld [wRoamMon2MapNumber], a
 .asm_2a3b8
 
-	ld a, [RoamMon3MapGroup]
+	ld a, [wRoamMon3MapGroup]
 	cp $ff
 	jr z, .asm_2a3ca
 	call Function2a3cd
 	ld a, b
-	ld [RoamMon3MapGroup], a
+	ld [wRoamMon3MapGroup], a
 	ld a, c
-	ld [RoamMon3MapNumber], a
+	ld [wRoamMon3MapNumber], a
 .asm_2a3ca
 
 	jp Function2a3f6
@@ -42145,11 +42102,11 @@ Function2c547: ; 2c547
 	callba Function50000
 	jr c, .asm_2c5c3
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_2c5bc
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Move2
-	ld bc, $0030
+	ld hl, PartyMon1Moves + 1
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [hl]
 	and a
@@ -42250,18 +42207,18 @@ Function2c5f9: ; 2c5f9
 	push bc
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, PartyMon1Move1
+	ld b, 0
+	ld hl, PartyMon1Moves
 	add hl, bc
 	ld a, [CurPartyMon]
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	push bc
 	inc b
 .asm_2c60f
 	ld a, b
-	cp $5
+	cp NUM_MOVES + 1
 	jr z, .asm_2c61b
 	inc hl
 	ld a, [hld]
@@ -42274,21 +42231,22 @@ Function2c5f9: ; 2c5f9
 	xor a
 	ld [hl], a
 	pop bc
+
 	ld a, b
 	push bc
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, PartyMon1PP
 	add hl, bc
 	ld a, [CurPartyMon]
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	inc b
 .asm_2c633
 	ld a, b
-	cp $5
+	cp NUM_MOVES + 1
 	jr z, .asm_2c63f
 	inc hl
 	ld a, [hld]
@@ -42521,8 +42479,7 @@ Function2c7a7: ; 2c7a7 (b:47a7)
 ; known jump sources: 2c7cd (b:47cd)
 Function2c7b6: ; 2c7b6 (b:47b6)
 	call Function2c7a7
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ret
 
 Function2c7bf: ; 2c7bf (b:47bf)
@@ -42604,13 +42561,14 @@ Function2c80a: ; 2c80a
 ; 2c867
 
 Function2c867: ; 2c867
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
+
 	push bc
 	ld a, [CurPartyMon] ; $d109
-	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMon1Nickname)
+	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMonNicknames)
 	call GetNick
 	pop bc
+
 	ld a, c
 	and a
 	jr nz, .asm_2c88b
@@ -42622,31 +42580,34 @@ Function2c867: ; 2c867
 	call PrintText
 	jr .asm_2c8b6
 .asm_2c88b
-	callab Functionf9ea
+
+	callab KnowsMove
 	jr c, .asm_2c8b6
-	ld a, $0
-	call Predef
+
+	predef LearnMove
 	ld a, b
 	and a
 	jr z, .asm_2c8b6
+
 	callba Function106049
-	ld a, [CurItem] ; $d106
+	ld a, [CurItem]
 	call IsHM
 	ret c
+
 	ld c, $5
 	callab ChangeHappiness
 	call Function2cb0c
-	jr Function2c8bd
+	jr .asm_2c8bd
+
 .asm_2c8b6
 	and a
 	ret
-; 2c8b8 (b:48b8)
 
-Function2c8b8: ; 2c8b8
+.asm_2c8b8
 	ld a, $2
 	ld [$d0ec], a
 
-Function2c8bd: ; 2c8bd
+.asm_2c8bd
 	scf
 	ret
 ; 2c8bf (b:48bf)
@@ -42745,8 +42706,7 @@ Function2c946: ; 2c946 (b:4946)
 	cp $3a
 	jr nc, Function2c915
 	ld [$d265], a
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ld a, [$d265]
 	ld [CurSpecies], a ; $cf60
 	hlcoord 1, 14
@@ -42836,9 +42796,10 @@ Function2c9b1: ; 2c9b1 (b:49b1)
 
 ; known jump sources: 2c8d6 (b:48d6), 2c915 (b:4915), 2c9bf (b:49bf), 2c9dc (b:49dc)
 Function2c9e2: ; 2c9e2 (b:49e2)
-	ld a, [BattleType] ; $d230
-	cp $3
+	ld a, [BattleType]
+	cp BATTLETYPE_TUTORIAL
 	jp z, Function2caca
+
 	hlcoord 5, 2
 	ld bc, $a0f
 	ld a, $7f
@@ -42880,8 +42841,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	pop af
 	ld [$d265], a
 .asm_2ca38
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ld a, [$d265]
 	ld [$d262], a
 	call GetMoveName
@@ -42945,8 +42905,7 @@ Function2ca95: ; 2ca95
 	pop hl
 	ld bc, $0003
 	add hl, bc
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ld a, [$d265]
 	ld [$d262], a
 	call GetMoveName
@@ -43100,7 +43059,7 @@ Function2ed44: ; 2ed44
 	ld hl, PartyMon1PokerusStatus
 	ld a, [PartyCount]
 	ld b, a
-	ld de, $0030
+	ld de, PartyMon2 - PartyMon1
 .loopMons
 	ld a, [hl]
 	and $f
@@ -43282,8 +43241,7 @@ Function2ee2f: ; 2ee2f
 	add hl, de
 	ld a, [hl]
 	ld [BattleMonLevel], a
-	ld a, PREDEF_BATTLE_TRANSITION
-	call Predef
+	predef Function8c20f
 	callba Function3ed9f
 	ld a, 1
 	ld [hBGMapMode], a
@@ -43436,8 +43394,8 @@ ClearBattleRAM: ; 2ef18
 	ld [hl], a
 
 ; Clear the entire BattleMons area
-	ld hl, EnemyMoveStruct
-	ld bc, $0139
+	ld hl, wBattle
+	ld bc, wBattleEnd - wBattle
 	xor a
 	call ByteFill
 
@@ -43524,858 +43482,7 @@ INCLUDE "battle/effect_commands.asm"
 
 SECTION "bankE", ROMX, BANK[$E]
 
-Function38000: ; 38000
-	and a
-	ld a, [IsInBattle]
-	dec a
-	ret z
-	ld a, [InLinkBattle]
-	and a
-	ret nz
-	callba Function3e8d1
-	ret nz
-	ld a, [PlayerSubStatus5]
-	bit 7, a
-	jr nz, Function38041
-	ld a, [$c731]
-	and a
-	jr nz, Function38041
-	ld hl, TrainerClassAttributes + 5
-	ld a, [$cfc0]
-	and a
-	jr nz, .asm_38032
-	ld a, [TrainerClass]
-	dec a
-	ld bc, 7
-	call AddNTimes
-
-.asm_38032
-	bit 0, [hl]
-	jp nz, Function38045
-	bit 1, [hl]
-	jp nz, Function38083
-	bit 2, [hl]
-	jp nz, Function380c1
-	; fallthrough
-; 38041
-
-Function38041: ; 38041
-	call Function38105
-	ret
-; 38045
-
-Function38045: ; 38045
-	callab Function34941
-	ld a, [$c717]
-	and $f0
-	jp z, Function38041
-	cp $10
-	jr nz, .asm_38061
-	call Random
-	cp $80
-	jr c, .asm_38077
-	jp Function38041
-
-.asm_38061
-	cp $20
-	jr nz, .asm_3806f
-	call Random
-	cp $c8
-	jr c, .asm_38077
-	jp Function38041
-
-.asm_3806f
-	call Random
-	cp $a
-	jp c, Function38041
-
-.asm_38077
-	ld a, [$c717]
-	and $f
-	inc a
-	ld [$c718], a
-	jp Function3844b
-; 38083
-
-Function38083: ; 38083
-	callab Function34941
-	ld a, [$c717]
-	and $f0
-	jp z, Function38041
-	cp $10
-	jr nz, .asm_3809f
-	call Random
-	cp $14
-	jr c, .asm_380b5
-	jp Function38041
-
-.asm_3809f
-	cp $20
-	jr nz, .asm_380ad
-	call Random
-	cp $1e
-	jr c, .asm_380b5
-	jp Function38041
-
-.asm_380ad
-	call Random
-	cp $c8
-	jp c, Function38041
-
-.asm_380b5
-	ld a, [$c717]
-	and $f
-	inc a
-	ld [$c718], a
-	jp Function3844b
-; 380c1
-
-Function380c1: ; 380c1
-	callab Function34941
-	ld a, [$c717]
-	and $f0
-	jp z, Function38041
-	cp $10
-	jr nz, .asm_380dd
-	call Random
-	cp $32
-	jr c, .asm_380f3
-	jp Function38041
-
-.asm_380dd
-	cp $20
-	jr nz, .asm_380eb
-	call Random
-	cp $80
-	jr c, .asm_380f3
-	jp Function38041
-
-.asm_380eb
-	call Random
-	cp $32
-	jp c, Function38041
-
-.asm_380f3
-	ld a, [$c717]
-	and $f
-	inc a
-	ld [$c718], a
-	jp Function3844b
-; 380ff
-
-
-Function380ff: ; 380ff
-	ld a, [EnemySubStatus5]
-	bit 7, a
-	ret
-; 38105
-
-
-Function38105: ; 38105
-	ld a, [$cfc0]
-	and a
-	ret nz
-	ld a, [$c650]
-	ld b, a
-	ld a, [$c651]
-	or b
-	ret z
-	call Function38170
-	ret nc
-	ld a, [TrainerClass]
-	dec a
-	ld hl, TrainerClassAttributes + 5
-	ld bc, 7
-	call AddNTimes
-	ld b, h
-	ld c, l
-	ld hl, Unknown_38196
-	ld de, $c650
-.asm_3812c
-	ld a, [hl]
-	and a
-	inc a
-	ret z
-	ld a, [de]
-	cp [hl]
-	jr z, .asm_3813f
-	inc de
-	ld a, [de]
-	cp [hl]
-	jr z, .asm_3813f
-	dec de
-	inc hl
-	inc hl
-	inc hl
-	jr .asm_3812c
-
-.asm_3813f
-	inc hl
-	push hl
-	push de
-	ld de, .asm_3814a
-	push de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-.asm_3814a
-	pop de
-	pop hl
-	inc hl
-	inc hl
-	jr c, .asm_3812c
-	xor a
-	ld [de], a
-	inc a
-	ld [$c70f], a
-	ld hl, EnemySubStatus3 ; $c66f
-	res 0, [hl]
-	xor a
-	ld [EnemyFuryCutterCount], a ; $c680
-	ld [$c681], a
-	ld [$c72c], a
-	ld hl, EnemySubStatus4 ; $c670
-	res 6, [hl]
-	xor a
-	ld [LastPlayerCounterMove], a ; $c6f9
-	scf
-	ret
-
-
-Function38170: ; 38170
-	ld a, [OTPartyCount]
-	ld d, a
-	ld e, $0
-	ld hl, OTPartyMon1Level
-	ld bc, $0030
-.asm_3817c
-	ld a, [hl]
-	cp e
-	jr c, .asm_38181
-	ld e, a
-.asm_38181
-	add hl, bc
-	dec d
-	jr nz, .asm_3817c
-
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Level
-	call AddNTimes
-	ld a, [hl]
-	cp e
-	jr nc, .asm_38194
-	and a
-	ret
-
-.asm_38194
-	scf
-	ret
-; 38196
-
-Unknown_38196: ; 39196
-	dbw FULL_RESTORE, Function38208
-	dbw MAX_POTION,   Function38220
-	dbw HYPER_POTION, Function38284
-	dbw SUPER_POTION, Function38292
-	dbw POTION,       Function382a0
-	dbw X_ACCURACY,   Function382f9
-	dbw FULL_HEAL,    Function381be
-	dbw GUARD_SPEC,   Function38305
-	dbw DIRE_HIT,     Function38311
-	dbw X_ATTACK,     Function3831d
-	dbw X_DEFEND,     Function38329
-	dbw X_SPEED,      Function38335
-	dbw X_SPECIAL,    Function38341
-	db $ff
-; 381be
-
-Function381be: ; 381be
-	call Function381ca
-	jp c, Function38383
-	call Function383a3
-	jp Function38385
-; 381ca
-
-; known jump sources: 381be (e:41be), 38214 (e:4214)
-Function381ca: ; 381ca (e:41ca)
-	ld a, [EnemyMonStatus] ; $d214
-	and a
-	jp z, Function38383
-	ld a, [bc]
-	bit 6, a
-	jr nz, .asm_381e7
-	ld a, [bc]
-	bit 4, a
-	jp nz, Function38385
-	call Random
-	cp $32
-	jp c, Function38385
-	jp Function38383
-
-.asm_381e7
-	ld a, [EnemySubStatus5] ; $c671
-	bit 0, a
-	jr z, .asm_381fd
-	ld a, [$c67c]
-	cp $4
-	jr c, .asm_381fd
-	call Random
-	cp $80
-	jp c, Function38385
-.asm_381fd
-	ld a, [EnemyMonStatus] ; $d214
-	and $27
-	jp z, Function38383
-	jp Function38385
-; 38208
-
-Function38208: ; 38208
-	call Function3822c
-	jp nc, Function3821a
-	ld a, [bc]
-	bit 6, a
-	jp z, Function38383
-	call Function381ca
-	jp c, Function38383
-
-; known jump sources: 3820b (e:420b)
-Function3821a: ; 3821a (e:421a)
-	call Function383b5
-	jp Function38385
-; 38220
-
-Function38220: ; 38220
-	call Function3822c
-	jp c, Function38383
-	call Function383ae
-	jp Function38385
-
-; known jump sources: 38208 (e:4208), 38220 (e:4220), 38284 (e:4284)
-Function3822c: ; 3822c (e:422c)
-	ld a, [bc]
-	bit 6, a
-	jr nz, Function38267
-	callab AICheckEnemyHalfHP
-	jp c, Function38383
-	ld a, [bc]
-	bit 5, a
-	jp nz, Function38254
-	callab AICheckEnemyQuarterHP
-	jp nc, Function38281
-	call Random
-	cp $80
-	jp c, Function38281
-	jp Function38383
-
-; known jump sources: 3823d (e:423d)
-Function38254: ; 38254 (e:4254)
-	callab AICheckEnemyQuarterHP
-	jp c, Function38383
-	call Random
-	cp $32
-	jp c, Function38383
-	jr Function38281
-
-Function38267: ; 38267 (e:4267)
-	callab AICheckEnemyHalfHP
-	jp c, Function38383
-	callab AICheckEnemyQuarterHP
-	jp nc, Function38281
-	call Random
-	cp $32
-	jp nc, Function38383
-
-; known jump sources: 38246 (e:4246), 3824e (e:424e), 38265 (e:4265), 38276 (e:4276)
-Function38281: ; 38281 (e:4281)
-	jp Function38385
-; 38284
-
-Function38284: ; 38284
-	call Function3822c
-	jp c, Function38383
-	ld b, 200
-	call Function383f4
-	jp Function38385
-; 38292 (e:4292)
-
-Function38292: ; 38292
-	call Function3822c
-	jp c, Function38383
-
-Function38298: ; 38298
-	ld b, 50
-	call Function383ee
-	jp Function38385
-; 382a0
-
-Function382a0: ; 382a0
-	call Function3822c
-	jp c, Function38383
-	ld b, 20
-	call Function383e8
-	jp Function38385
-; 382ae
-
-Function382ae: ; 382ae
-	callab AICheckEnemyMaxHP
-	jr c, .asm_382e4
-	push bc
-	ld de, EnemyMonMaxHPLo
-	ld hl, EnemyMonHPLo
-	ld a, [de]
-	sub [hl]
-	jr z, .asm_382e7
-	dec hl
-	dec de
-	ld c, a
-	sbc [hl]
-	and a
-	jr nz, .asm_382e7
-	ld a, c
-	cp b
-	jp c, .asm_382d5
-	callab AICheckEnemyQuarterHP
-	jr c, .asm_382e7
-
-.asm_382d5
-	pop bc
-	ld a, [bc]
-	bit 5, a
-	jp z, Function38385
-	call Random
-	cp $80
-	jp c, Function38385
-
-.asm_382e4
-	jp Function38383
-
-.asm_382e7
-	pop bc
-	ld a, [bc]
-	bit 5, a
-	jp z, Function38383
-	call Random
-	cp $64
-	jp c, Function38385
-	jp Function38383
-; 382f9
-
-Function382f9: ; 382f9
-	call Function3834d
-	jp c, Function38383
-	call Function384f7
-	jp Function38385
-; 38305
-
-Function38305: ; 38305
-	call Function3834d
-	jp c, Function38383
-	call Function38504
-	jp Function38385
-; 38311
-
-Function38311: ; 38311
-	call Function3834d
-	jp c, Function38383
-	call Function38511
-	jp Function38385
-; 3831d (e:431d)
-
-Function3831d: ; 3831d
-	call Function3834d
-	jp c, Function38383
-	call Function38541
-	jp Function38385
-; 38329
-
-Function38329: ; 38329
-	call Function3834d
-	jp c, Function38383
-	call Function38547
-	jp Function38385
-; 38335
-
-Function38335: ; 38335
-	call Function3834d
-	jp c, Function38383
-	call Function3854d
-	jp Function38385
-; 38341
-
-Function38341: ; 38341
-	call Function3834d
-	jp c, Function38383
-	call Function38553
-	jp Function38385
-; 3834d
-
-; known jump sources: 38311 (e:4311)
-Function3834d: ; 3834d (e:434d)
-	ld a, [EnemyTurnsTaken] ; $c6dc
-	and a
-	jr nz, .asm_38372
-	ld a, [bc]
-	bit 4, a
-	jp nz, Function38385
-	call Random
-	cp $80
-	jp c, Function38383
-	ld a, [bc]
-	bit 6, a
-	jp nz, Function38385
-	call Random
-	cp $80
-	jp c, Function38383
-	jp Function38385
-.asm_38372
-	ld a, [bc]
-	bit 4, a
-	jp z, Function38383
-	call Random
-	cp $32
-	jp nc, Function38383
-	jp Function38385
-
-; known jump sources: 381c1 (e:41c1), 381ce (e:41ce), 381e4 (e:41e4), 38202 (e:4202), 38211 (e:4211), 38217 (e:4217), 38223 (e:4223), 38237 (e:4237), 38251 (e:4251), 3825a (e:425a), 38262 (e:4262), 3826d (e:426d), 3827e (e:427e), 38287 (e:4287), 38314 (e:4314), 3835e (e:435e), 3836c (e:436c), 38375 (e:4375), 3837d (e:437d)
-Function38383: ; 38383 (e:4383)
-	scf
-	ret
-
-; known jump sources: 381c7 (e:41c7), 381d9 (e:41d9), 381e1 (e:41e1), 381fa (e:41fa), 38205 (e:4205), 3821d (e:421d), 38229 (e:4229), 38281 (e:4281), 3828f (e:428f), 3831a (e:431a), 38356 (e:4356), 38364 (e:4364), 3836f (e:436f), 38380 (e:4380)
-Function38385: ; 38385 (e:4385)
-	and a
-	ret
-
-
-Function38387: ; 38387
-	call UpdateEnemyMonInParty
-	callba Function3e036
-	ld a, $1
-	ld [hBGMapMode], a
-	ld hl, $c6e6
-	dec [hl]
-	scf
-	ret
-; 3839a
-
-Function3839a: ; 3839a
-	push de
-	ld de, SFX_FULL_HEAL
-	call PlaySFX
-	pop de
-	ret
-; 383a3
-
-
-; known jump sources: 381c4 (e:41c4)
-Function383a3: ; 383a3 (e:43a3)
-	call Function3839a
-	call Function384e0
-	ld a, $26
-	jp Function38568
-
-; known jump sources: 38226 (e:4226)
-Function383ae: ; 383ae (e:43ae)
-	ld a, $f
-	ld [$d1f1], a
-	jr asm_383c6
-
-; known jump sources: 3821a (e:421a)
-Function383b5: ; 383b5 (e:43b5)
-	call Function384e0
-	ld a, $e
-	ld [$d1f1], a
-	ld hl, EnemySubStatus3 ; $c66f
-	res 7, [hl]
-	xor a
-	ld [EnemyConfuseCount], a ; $c67b
-asm_383c6: ; 383c6 (e:43c6)
-	ld de, $d1ec
-	ld hl, EnemyMonHPLo ; $d217
-	ld a, [hld]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	inc de
-	ld hl, EnemyMonMaxHPLo ; $d219
-	ld a, [hld]
-	ld [de], a
-	inc de
-	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
-	ld [EnemyMonHPLo], a ; $d217
-	ld a, [hl]
-	ld [de], a
-	ld [Buffer2], a ; $d1eb (aliases: MovementType)
-	ld [EnemyMonHPHi], a ; $d216 (aliases: EnemyMonHP)
-	jr asm_38436
-; 383e8 (e:43e8)
-
-Function383e8: ; 383e8
-	ld a, POTION
-	ld b, 20
-	jr Function383f8
-
-Function383ee: ; 383ee
-	ld a, SUPER_POTION
-	ld b, 50
-	jr Function383f8
-
-; known jump sources: 3828c (e:428c)
-Function383f4: ; 383f4 (e:43f4)
-	ld a, HYPER_POTION
-	ld b, 200
-
-Function383f8: ; 383f8
-	ld [$d1f1], a
-	ld hl, EnemyMonHPLo ; $d217
-	ld a, [hl]
-	ld [$d1ec], a
-	add b
-	ld [hld], a
-	ld [$d1ee], a
-	ld a, [hl]
-	ld [$d1ed], a
-	ld [$d1ef], a
-	jr nc, .asm_38415
-	inc a
-	ld [hl], a
-	ld [$d1ef], a
-.asm_38415
-	inc hl
-	ld a, [hld]
-	ld b, a
-	ld de, EnemyMonMaxHPLo ; $d219
-	ld a, [de]
-	dec de
-	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
-	sub b
-	ld a, [hli]
-	ld b, a
-	ld a, [de]
-	ld [Buffer2], a ; $d1eb (aliases: MovementType)
-	sbc b
-	jr nc, asm_38436
-	inc de
-	ld a, [de]
-	dec de
-	ld [hld], a
-	ld [$d1ee], a
-	ld a, [de]
-	ld [hl], a
-	ld [$d1ef], a
-asm_38436: ; 38436 (e:4436)
-	call Function38571
-	hlcoord 2, 2
-	xor a
-	ld [$d10a], a
-	call Function3839a
-	ld a, $b
-	call Predef
-	jp Function38387
-
-
-Function3844b: ; 3844b
-	ld a, [OTPartyCount]
-	ld c, a
-	ld hl, OTPartyMon1HP
-	ld d, 0
-.asm_38454
-	ld a, [hli]
-	ld b, a
-	ld a, [hld]
-	or b
-	jr z, .asm_3845b
-	inc d
-
-.asm_3845b
-	push bc
-	ld bc, $0030
-	add hl, bc
-	pop bc
-	dec c
-	jr nz, .asm_38454
-	ld a, d
-	cp $2
-	jp nc, Function3846c
-	and a
-	ret
-; 3846c
-
-Function3846c: ; 3846c
-	ld a, $1
-	ld [$c711], a
-	ld [$c70f], a
-	ld hl, EnemySubStatus4
-	res 6, [hl]
-	xor a
-	ld [hBattleTurn], a
-	callab Function3dc5b
-	push af
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Status
-	ld bc, $0030
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld hl, EnemyMonStatus
-	ld bc, $0004
-	call CopyBytes
-	pop af
-	jr c, .asm_384a3
-	ld hl, UnknownText_0x384d0
-	call PrintText
-
-.asm_384a3
-	ld a, $1
-	ld [$d264], a
-	callab NewEnemyMonStatus
-	callab ResetEnemyStatLevels
-	ld hl, PlayerSubStatus1
-	res 7, [hl]
-	callba Function3d4e1
-	callba Function3d57a
-	xor a
-	ld [$d264], a
-	ld a, [InLinkBattle]
-	and a
-	ret nz
-	scf
-	ret
-; 384d0
-
-UnknownText_0x384d0: ; 384d0
-	text_jump UnknownText_0x1bcf9c
-	db "@"
-; 384d5
-
-Function384d5: ; 384d5
-	call Function3839a
-	call Function384e0
-	ld a, $34
-	jp Function38568
-; 384e0
-
-Function384e0: ; 384e0
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Status
-	ld bc, $0030
-	call AddNTimes
-	xor a
-	ld [hl], a
-	ld [EnemyMonStatus], a
-	ld hl, EnemySubStatus5
-	res 0, [hl]
-	ret
-; 384f7
-
-Function384f7: ; 384f7
-	call Function3839a
-	ld hl, EnemySubStatus4
-	set 0, [hl]
-	ld a, $21
-	jp Function38568
-; 38504
-
-Function38504: ; 38504
-	call Function3839a
-	ld hl, EnemySubStatus4
-	set 1, [hl]
-	ld a, $29
-	jp Function38568
-; 38511
-
-Function38511: ; 38511
-	call Function3839a
-	ld hl, EnemySubStatus4
-	set 2, [hl]
-	ld a, $2c
-	jp Function38568
-; 3851e
-
-Function3851e: ; 3851e
-	ld [hMultiplier], a
-	ld hl, EnemyMonMaxHPHi
-	ld a, [hli]
-	ld [hProduct], a
-	ld a, [hl]
-	ld [hMultiplicand], a
-	ld b, $2
-	call Divide
-	ld a, [$ffb6]
-	ld c, a
-	ld a, [$ffb5]
-	ld b, a
-	ld hl, EnemyMonHPLo
-	ld a, [hld]
-	ld e, a
-	ld a, [hl]
-	ld d, a
-	ld a, d
-	sub b
-	ret nz
-	ld a, e
-	sub c
-	ret
-; 38541
-
-Function38541: ; 38541
-	ld b, $0
-	ld a, $31
-	jr Function38557
-; 38547
-
-Function38547: ; 38547
-	ld b, $1
-	ld a, $33
-	jr Function38557
-; 3854d
-
-Function3854d: ; 3854d
-	ld b, $2
-	ld a, $34
-	jr Function38557
-; 38553
-
-Function38553: ; 38553
-	ld b, $3
-	ld a, $35
-
-Function38557
-	ld [$d1f1], a
-	push bc
-	call Function38571
-	pop bc
-	callba Function361ef
-	jp Function38387
-; 38568
-
-
-Function38568: ; 38568
-	ld [$d1f1], a
-	call Function38571
-	jp Function38387
-; 38571
-
-Function38571: ; 38571
-	ld a, [$d1f1]
-	ld [$d265], a
-	call GetItemName
-	ld hl, StringBuffer1
-	ld de, $d050
-	ld bc, $000d
-	call CopyBytes
-	ld hl, UnknownText_0x3858c
-	jp PrintText
-; 3858c
-
-UnknownText_0x3858c: ; 3858c
-	text_jump UnknownText_0x1bcfaf
-	db "@"
-; 38591
-
+INCLUDE "battle/ai/items.asm"
 
 AIScoring: ; 38591
 INCLUDE "battle/ai/scoring.asm"
@@ -44384,19 +43491,20 @@ INCLUDE "battle/ai/scoring.asm"
 Function3952d: ; 3952d
 	ld hl, RivalName
 	ld a, c
-	cp $9
-	jr z, .asm_39544
+	cp RIVAL1
+	jr z, .rival
+
 	ld [CurSpecies], a
-	ld a, $7
+	ld a, TRAINER_NAME
 	ld [$cf61], a
 	call GetName
 	ld de, StringBuffer1
 	ret
 
-.asm_39544
+.rival
 	ld de, StringBuffer1
 	push de
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	pop de
 	ret
@@ -44406,20 +43514,22 @@ Function39550: ; 39550
 	ld hl, $d26b
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_3956f
+	jr nz, .ok
+
 	ld hl, RivalName
 	ld a, c
-	cp $9
-	jr z, .asm_3956f
+	cp RIVAL1
+	jr z, .ok
+
 	ld [CurSpecies], a
-	ld a, $7
+	ld a, TRAINER_NAME
 	ld [$cf61], a
 	call GetName
 	ld hl, StringBuffer1
 
-.asm_3956f
+.ok
 	ld bc, $000d
-	ld de, $c656
+	ld de, OTName
 	push de
 	call CopyBytes
 	pop de
@@ -44449,265 +43559,172 @@ Function3957b: ; 3957b
 INCLUDE "trainers/attributes.asm"
 
 
-Function39771: ; 39771
+ReadTrainerParty: ; 39771
 	ld a, [$cfc0]
 	bit 0, a
 	ret nz
+
 	ld a, [InLinkBattle]
 	and a
 	ret nz
+
 	ld hl, OTPartyCount
 	xor a
 	ld [hli], a
 	dec a
 	ld [hl], a
-	ld hl, OTPartyMon1Species
-	ld bc, $0120
+
+	ld hl, OTPartyMons
+	ld bc, OTPartyMonsEnd - OTPartyMons
 	xor a
 	call ByteFill
-	ld a, [OtherTrainerClass]
-	cp $c
-	jr nz, .asm_3979e
-	ld a, [OtherTrainerID]
-	cp $2
-	jr z, .asm_397d3
-	ld a, [OtherTrainerClass]
 
-.asm_3979e
+	ld a, [OtherTrainerClass]
+	cp CAL
+	jr nz, .not_cal2
+	ld a, [OtherTrainerID]
+	cp CAL2
+	jr z, .cal2
+	ld a, [OtherTrainerClass]
+.not_cal2
+
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, TrainerGroups
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	ld a, [OtherTrainerID]
 	ld b, a
-.asm_397ae
+.skip_trainer
 	dec b
-	jr z, .asm_397b8
-.asm_397b1
+	jr z, .got_trainer
+.next
 	ld a, [hli]
 	cp $ff
-	jr nz, .asm_397b1
-	jr .asm_397ae
+	jr nz, .next
+	jr .skip_trainer
+.got_trainer
 
-.asm_397b8
+.skip_name
 	ld a, [hli]
-	cp $50
-	jr nz, .asm_397b8
+	cp "@"
+	jr nz, .skip_name
+
 	ld a, [hli]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld d, h
 	ld e, l
-	ld hl, Jumptable_397e3
+	ld hl, TrainerTypes
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, .asm_397d0
+	ld bc, .done
 	push bc
 	jp [hl]
 
-.asm_397d0
+.done
 	jp Function3991b
 
-.asm_397d3
+.cal2
 	ld a, $0
 	call GetSRAMBank
 	ld de, $ac0a
-	call Function39806
+	call TrainerType2
 	call CloseSRAM
-	jr .asm_397d0
+	jr .done
 ; 397e3
 
-Jumptable_397e3: ; 397e3
-	dw Function397eb
-	dw Function39806
-	dw Function39871
-	dw Function3989d
+TrainerTypes: ; 397e3
+	dw TrainerType1 ; level, species
+	dw TrainerType2 ; level, species, moves
+	dw TrainerType3 ; level, species, item
+	dw TrainerType4 ; level, species, item, moves
 ; 397eb
 
-Function397eb: ; 397eb
+TrainerType1: ; 397eb
+; normal (level, species)
 	ld h, d
 	ld l, e
-.asm_397ed
+.loop
 	ld a, [hli]
 	cp $ff
 	ret z
-	ld [CurPartyLevel], a ; $d143
-	ld a, [hli]
-	ld [CurPartySpecies], a ; $d108
-	ld a, $1
-	ld [MonType], a ; $cf5f
-	push hl
-	ld a, $6
-	call Predef
-	pop hl
-	jr .asm_397ed
-; 39806
 
-Function39806: ; 39806
-	ld h, d
-	ld l, e
-.asm_39808
-	ld a, [hli]
-	cp $ff
-	ret z
 	ld [CurPartyLevel], a
 	ld a, [hli]
 	ld [CurPartySpecies], a
-	ld a, $1
+	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	ld a, $6
-	call Predef
+	predef Functiond88c
+	pop hl
+	jr .loop
+; 39806
+
+TrainerType2: ; 39806
+; moves
+	ld h, d
+	ld l, e
+.loop
+	ld a, [hli]
+	cp $ff
+	ret z
+
+	ld [CurPartyLevel], a
+	ld a, [hli]
+	ld [CurPartySpecies], a
+	ld a, OTPARTYMON
+	ld [MonType], a
+
+	push hl
+	predef Functiond88c
 	ld a, [OTPartyCount]
 	dec a
-	ld hl, OTPartyMon1Move1
-	ld bc, $0030
+	ld hl, OTPartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
-	ld b, $4
-.asm_39830
+
+	ld b, NUM_MOVES
+.copy_moves
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_39830
+	jr nz, .copy_moves
+
 	push hl
+
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, $0017
+	ld hl, OTPartyMon1PP - OTPartyMon1
 	add hl, de
 	push hl
-	ld hl, $0002
-	add hl, de
-	pop de
-	ld b, $4
-.asm_39852
-	ld a, [hli]
-	and a
-	jr z, .asm_3986e
-	push hl
-	push bc
-	dec a
-	ld hl, Moves + MOVE_PP
-	ld bc, Move2 - Move1
-	call AddNTimes
-	ld a, BANK(Moves)
-	call GetFarByte
-	pop bc
-	pop hl
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .asm_39852
-
-.asm_3986e
-	pop hl
-	jr .asm_39808
-; 39871
-
-Function39871: ; 39871
-	ld h, d
-	ld l, e
-.asm_39873
-	ld a, [hli]
-	cp $ff
-	ret z
-	ld [CurPartyLevel], a ; $d143
-	ld a, [hli]
-	ld [CurPartySpecies], a ; $d108
-	ld a, $1
-	ld [MonType], a ; $cf5f
-	push hl
-	ld a, $6
-	call Predef
-	ld a, [OTPartyCount] ; $d280
-	dec a
-	ld hl, OTPartyMon1Item ; $d289
-	ld bc, $30
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-	ld a, [hli]
-	ld [de], a
-	jr .asm_39873
-; 3989d (e:589d)
-
-Function3989d: ; 3989d
-	ld h, d
-	ld l, e
-.asm_3989f
-	ld a, [hli]
-	cp $ff
-	ret z
-	ld [CurPartyLevel], a
-	ld a, [hli]
-	ld [CurPartySpecies], a
-	ld a, $1
-	ld [MonType], a
-	push hl
-	ld a, $6
-	call Predef
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, $d289
-	ld bc, $0030
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-	ld a, [hli]
-	ld [de], a
-	push hl
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, $d28a
-	ld bc, $0030
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-	ld b, $4
-.asm_398da
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .asm_398da
-	push hl
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, OTPartyMon1
-	ld bc, $0030
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld hl, $0017
-	add hl, de
-	push hl
-	ld hl, $0002
+	ld hl, OTPartyMon1Moves - OTPartyMon1
 	add hl, de
 	pop de
-	ld b, $4
-.asm_398fc
+
+	ld b, NUM_MOVES
+.copy_pp
 	ld a, [hli]
 	and a
-	jr z, .asm_39918
+	jr z, .copied_pp
+
 	push hl
 	push bc
 	dec a
@@ -44718,34 +43735,155 @@ Function3989d: ; 3989d
 	call GetFarByte
 	pop bc
 	pop hl
+
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_398fc
+	jr nz, .copy_pp
+.copied_pp
 
-.asm_39918
 	pop hl
-	jr .asm_3989f
+	jr .loop
+; 39871
+
+TrainerType3: ; 39871
+; item
+	ld h, d
+	ld l, e
+.loop
+	ld a, [hli]
+	cp $ff
+	ret z
+
+	ld [CurPartyLevel], a
+	ld a, [hli]
+	ld [CurPartySpecies], a
+	ld a, OTPARTYMON
+	ld [MonType], a
+	push hl
+	predef Functiond88c
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, OTPartyMon1Item
+	ld bc, OTPartyMon2 - OTPartyMon1
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, [hli]
+	ld [de], a
+	jr .loop
+; 3989d (e:589d)
+
+TrainerType4: ; 3989d
+; item + moves
+	ld h, d
+	ld l, e
+.loop
+	ld a, [hli]
+	cp $ff
+	ret z
+
+	ld [CurPartyLevel], a
+	ld a, [hli]
+	ld [CurPartySpecies], a
+
+	ld a, OTPARTYMON
+	ld [MonType], a
+
+	push hl
+	predef Functiond88c
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, OTPartyMon1Item
+	ld bc, OTPartyMon2 - OTPartyMon1
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+
+	ld a, [hli]
+	ld [de], a
+
+	push hl
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, OTPartyMon1Moves
+	ld bc, OTPartyMon2 - OTPartyMon1
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+
+	ld b, NUM_MOVES
+.copy_moves
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .copy_moves
+
+	push hl
+
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, OTPartyMon1
+	ld bc, OTPartyMon2 - OTPartyMon1
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, OTPartyMon1PP - OTPartyMon1
+	add hl, de
+
+	push hl
+	ld hl, OTPartyMon1Moves - OTPartyMon1
+	add hl, de
+	pop de
+
+	ld b, NUM_MOVES
+.copy_pp
+	ld a, [hli]
+	and a
+	jr z, .copied_pp
+
+	push hl
+	push bc
+	dec a
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	pop bc
+	pop hl
+
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .copy_pp
+.copied_pp
+
+	pop hl
+	jr .loop
 ; 3991b
 
-; known jump sources: 397d0 (e:57d0)
 Function3991b: ; 3991b (e:591b)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld a, [$c652]
+	ld a, [$c652] ; base reward
 	ld [hli], a
-	ld a, [CurPartyLevel] ; $d143
+	ld a, [CurPartyLevel]
 	ld [hl], a
 	call Multiply
 	ld hl, $c686
 	xor a
 	ld [hli], a
-	ld a, [$FF00+$b5]
+	ld a, [$ffb5]
 	ld [hli], a
-	ld a, [$FF00+$b6]
+	ld a, [$ffb6]
 	ld [hl], a
 	ret
 
@@ -44763,14 +43901,16 @@ Function39939:: ; 39939
 
 Function3994c:: ; 3994c
 	ld a, c
-	cp $c
+	cp CAL
 	jr nz, .asm_3996d
+
 	ld a, $0
 	call GetSRAMBank
 	ld a, [$abfd]
 	and a
 	call CloseSRAM
 	jr z, .asm_3996d
+
 	ld a, $0
 	call GetSRAMBank
 	ld hl, $abfe
@@ -44792,6 +43932,7 @@ Function3994c:: ; 3994c
 .asm_3997a
 	dec b
 	jr z, Function39984
+
 .asm_3997d
 	ld a, [hli]
 	cp $ff
@@ -45274,8 +44415,7 @@ Function402fa: ; 402fa
 	call Function40bb1
 	ld a, [$c7e4]
 	ld e, a
-	ld a, $32
-	call Predef
+	predef Function91d11
 	call Function41401
 	call DelayFrame
 	xor a
@@ -46485,7 +45625,7 @@ Function40bd0: ; 40bd0
 
 Function40bdc: ; 40bdc
 	ld hl, PlayerSDefLevel
-	ld bc, Start
+	ld bc, $100
 	xor a
 	call ByteFill
 	ld a, [$c7d4]
@@ -47303,8 +46443,7 @@ Function4143b: ; 4143b
 	ld [CurPartySpecies], a
 	call GetBaseData
 	ld de, VTiles2
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	ret
 
 .asm_4145b
@@ -47465,8 +46604,7 @@ Function41a58: ; 41a58 (10:5a58)
 	ld [CurPartySpecies], a ; $d108
 	call GetBaseData
 	ld de, $9000
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	pop af
 	ld [UnownLetter], a ; $d234
 	ret
@@ -47496,8 +46634,7 @@ Function41a7f: ; 41a7f
 	call WaitBGMap
 	call GetBaseData
 	ld de, VTiles2
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	ld a, $4
 	call Function41423
 	ld a, [CurPartySpecies]
@@ -47601,8 +46738,7 @@ Function421f5: ; 421f5
 	push hl
 	xor a
 	ld [MonType], a
-	ld a, $1f
-	call Predef
+	predef Function5084a
 	pop hl
 
 .asm_42230
@@ -47644,8 +46780,8 @@ Function421f5: ; 421f5
 	jp z, .asm_423f8
 
 	push hl
-	ld de, TempMonAtk
-	ld hl, TempMonDef
+	ld de, TempMonAttack
+	ld hl, TempMonDefense
 	ld c, 2
 	call StringCmp
 	ld a, ATK_EQ_DEF
@@ -47753,7 +46889,7 @@ Function421f5: ; 421f5
 	ld a, [hl]
 	ld [Buffer2], a
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	call CopyName1
 	ld hl, UnknownText_0x42482
@@ -47812,8 +46948,7 @@ Function421f5: ; 421f5
 	ld hl, $d118
 	ld de, TempMonMaxHP
 	ld b, $1
-	ld a, PREDEF_FILLSTATS
-	call Predef
+	predef Functione167
 
 	ld a, [CurPartyMon]
 	ld hl, PartyMons
@@ -47842,14 +46977,14 @@ Function421f5: ; 421f5
 	ld [hl], a
 
 	ld hl, TempMonSpecies
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 
 	ld a, [CurSpecies]
 	ld [$d265], a
 	xor a
 	ld [MonType], a
-	call Function42487
+	call LearnLevelMoves
 	ld a, [$d265]
 	dec a
 	call SetSeenAndCaughtMon
@@ -47859,8 +46994,7 @@ Function421f5: ; 421f5
 	jr nz, .asm_423ec
 
 	ld hl, TempMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 
 .asm_423ec
@@ -47922,7 +47056,7 @@ Function42414: ; 42414
 	jr nz, .asm_4242b
 	ld a, [CurPartyMon]
 	ld bc, $000b
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call AddNTimes
 	push hl
 	ld a, [CurSpecies]
@@ -47979,7 +47113,7 @@ UnknownText_0x42482: ; 0x42482
 ; 0x42487
 
 
-Function42487: ; 42487
+LearnLevelMoves: ; 42487
 	ld a, [$d265]
 	ld [CurPartySpecies], a
 	dec a
@@ -47991,50 +47125,54 @@ Function42487: ; 42487
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_42499
+
+.skip_evos
 	ld a, [hli]
 	and a
-	jr nz, .asm_42499
-.asm_4249d
+	jr nz, .skip_evos
+
+.find_move
 	ld a, [hli]
 	and a
-	jr z, .asm_424da
+	jr z, .done
+
 	ld b, a
 	ld a, [CurPartyLevel]
 	cp b
 	ld a, [hli]
-	jr nz, .asm_4249d
+	jr nz, .find_move
+
 	push hl
 	ld d, a
-	ld hl, PartyMon1Move1
+	ld hl, PartyMon1Moves
 	ld a, [CurPartyMon]
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld b, $4
-.asm_424b9
+
+	ld b, NUM_MOVES
+.check_move
 	ld a, [hli]
 	cp d
-	jr z, .asm_424c2
+	jr z, .has_move
 	dec b
-	jr nz, .asm_424b9
-	jr .asm_424c5
+	jr nz, .check_move
+	jr .learn
+.has_move
 
-.asm_424c2
 	pop hl
-	jr .asm_4249d
+	jr .find_move
 
-.asm_424c5
+.learn
 	ld a, d
 	ld [$d262], a
 	ld [$d265], a
 	call GetMoveName
 	call CopyName1
-	ld a, $0
-	call Predef
+	predef LearnMove
 	pop hl
-	jr .asm_4249d
+	jr .find_move
 
-.asm_424da
+.done
 	ld a, [CurPartySpecies]
 	ld [$d265], a
 	ret
@@ -48042,7 +47180,7 @@ Function42487: ; 42487
 
 
 FillMoves: ; 424e1
-; Fill in moves at de for CurPartySpecies at CurPartyLevle
+; Fill in moves at de for CurPartySpecies at CurPartyLevel
 
 	push hl
 	push de
@@ -48113,7 +47251,7 @@ FillMoves: ; 424e1
 	and a
 	jr z, .ShiftedMove
 	push de
-	ld bc, PartyMon1PP - PartyMon1Move4
+	ld bc, PartyMon1PP - (PartyMon1Moves + NUM_MOVES - 1)
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -48136,7 +47274,7 @@ FillMoves: ; 424e1
 	push hl
 	dec a
 	ld hl, Moves + MOVE_PP
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -48153,7 +47291,7 @@ FillMoves: ; 424e1
 ; 4256e
 
 ShiftMoves: ; 4256e
-	ld c, $3
+	ld c, NUM_MOVES - 1
 .asm_42570
 	inc de
 	ld a, [de]
@@ -48167,8 +47305,7 @@ ShiftMoves: ; 4256e
 Function42577: ; 42577
 	push de
 	ld d, $0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	pop de
 	ret
 ; 42581
@@ -48260,7 +47397,7 @@ AIChooseMove: ; 440ce
 	and a
 	jr z, .CheckPP
 
-	ld hl, EnemyMonMove1
+	ld hl, EnemyMonMoves
 	ld c, 0
 .CheckDisabledMove
 	cp [hl]
@@ -48321,8 +47458,7 @@ AIChooseMove: ; 440ce
 
 	push bc
 	ld d, $e ; BANK(TrainerAI)
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	ld d, c
 	pop bc
 
@@ -48372,12 +47508,12 @@ AIChooseMove: ; 440ce
 	inc [hl]
 	dec hl
 	inc a
-	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	cp NUM_MOVES + 1
 	jr nz, .asm_44175
 
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
-	ld c, EnemyMonMovesEnd - EnemyMonMoves
+	ld c, NUM_MOVES
 .asm_44184
 	ld a, [de]
 	and a
@@ -48439,14 +47575,16 @@ AIScoringPointers: ; 441af
 Function441cf: ; 441cf
 	ld hl, Unknown_441fc
 	ld b, 25
-.asm_441d4
-	ld a, [hli]
-	cp $fe
-	jr nz, .asm_441dd
-	ld hl, Unknown_441fc
+.loop
 	ld a, [hli]
 
-.asm_441dd
+	; Wrap around
+	cp $fe
+	jr nz, .ok
+	ld hl, Unknown_441fc
+	ld a, [hli]
+.ok
+
 	ld [$c7db], a
 	ld a, [hli]
 	ld c, a
@@ -48457,7 +47595,7 @@ Function441cf: ; 441cf
 	pop bc
 	call DelayFrames
 	dec b
-	jr nz, .asm_441d4
+	jr nz, .loop
 	xor a
 	ld [$c7db], a
 	call Function44207
@@ -48467,11 +47605,11 @@ Function441cf: ; 441cf
 ; 441fc
 
 Unknown_441fc: ; 441fc
-	db $00, $07
-	db $01, $07
-	db $02, $07
-	db $03, $07
-	db $04, $07
+	db 0, 7
+	db 1, 7
+	db 2, 7
+	db 3, 7
+	db 4, 7
 	db $fe
 ; 44207
 
@@ -48857,7 +47995,7 @@ Function44654:: ; 44654
 	jr c, .asm_446c6
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, [hl]
 	callba ItemIsMail
@@ -48920,7 +48058,7 @@ Function446cc:: ; 446cc
 	push af
 	push bc
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	ld [hl], b
@@ -48939,14 +48077,14 @@ Function446cc:: ; 446cc
 	call CopyBytes
 	pop af
 	push af
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld bc, $000b
 	call AddNTimes
 	ld bc, $000a
 	call CopyBytes
 	pop af
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [hli]
 	ld [de], a
@@ -49021,7 +48159,7 @@ Function44781: ; 44781
 	pop de
 	pop hl
 	ret c
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	dec e
 	jr nz, .asm_4478b
@@ -51176,10 +50314,10 @@ Function48d4a: ; 48d4a (12:4d4a)
 ; known jump sources: 48d40 (12:4d40), 48d46 (12:4d46)
 Function48d94: ; 48d94 (12:4d94)
 	xor a
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, [hli]
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	ld a, [hl]
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, 100
@@ -51386,16 +50524,18 @@ Function492a5: ; 492a5
 Function492b9: ; 492b9
 	ld hl, MenuDataHeader_0x4930a
 	call LoadMenuDataHeader
-	ld a, $e
-	call Predef
+
+	predef CanLearnTMHMMove
+
 	push bc
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	pop bc
+
 	ld a, c
 	and a
-	jr nz, .asm_492e5
+	jr nz, .can_learn
 	push de
 	ld de, SFX_WRONG
 	call PlaySFX
@@ -51403,26 +50543,27 @@ Function492b9: ; 492b9
 	ld a, BANK(UnknownText_0x2c8ce)
 	ld hl, UnknownText_0x2c8ce
 	call FarPrintText
-	jr .asm_49300
+	jr .didnt_learn
+.can_learn
 
-.asm_492e5
-	callab Functionf9ea
-	jr c, .asm_49300
-	ld a, $0
-	call Predef
+	callab KnowsMove
+	jr c, .didnt_learn
+
+	predef LearnMove
 	ld a, b
 	and a
-	jr z, .asm_49300
+	jr z, .didnt_learn
+
 	ld c, $5
 	callab ChangeHappiness
-	jr .asm_49305
+	jr .learned
 
-.asm_49300
+.didnt_learn
 	call Function1c07
 	and a
 	ret
 
-.asm_49305
+.learned
 	call Function1c07
 	scf
 	ret
@@ -52585,7 +51726,7 @@ Function49bed: ; 49bed
 ; 49bf3
 
 Function49bf3: ; 49bf3
-	ld a, $b
+	ld a, BATTLETYPE_CELEBI
 	ld [BattleType], a
 	ret
 ; 49bf9
@@ -53936,7 +53077,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	ld d, a
 	ld e, 0
 	ld hl, PartyMon1Species
-	ld bc, PartyMon1OT
+	ld bc, PartyMonOT
 
 	; Run CheckOwnMon on each Pokémon in the party.
 .partymon
@@ -53954,13 +53095,13 @@ CheckOwnMonAnywhere: ; 0x4a721
 	; Run CheckOwnMon on each Pokémon in the PC.
 	ld a, 1
 	call GetSRAMBank
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	and a
 	jr z, .boxes
 
 	ld d, a
-	ld hl, BoxMon1Species
-	ld bc, BoxMon1OT
+	ld hl, sBoxMon1Species
+	ld bc, sBoxMonOT
 .openboxmon
 	call CheckOwnMon
 	jr nc, .next
@@ -53971,7 +53112,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 
 .next
 	push bc
-	ld bc, BoxMon2 - BoxMon1
+	ld bc, sBoxMon2 - sBoxMon1
 	add hl, bc
 	pop bc
 	call UpdateOTPointer
@@ -54010,13 +53151,13 @@ CheckOwnMonAnywhere: ; 0x4a721
 	push bc
 
 	push hl
-	ld de, BoxMons - BoxCount
+	ld de, sBoxMons - sBoxCount
 	add hl, de
 	ld d, h
 	ld e, l
 	pop hl
 	push de
-	ld de, BoxMonOT - BoxCount
+	ld de, sBoxMonOT - sBoxCount
 	add hl, de
 	ld b, h
 	ld c, l
@@ -54035,7 +53176,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 
 .nextboxmon
 	push bc
-	ld bc, BoxMon2 - BoxMon1
+	ld bc, sBoxMon2 - sBoxMon1
 	add hl, bc
 	pop bc
 	call UpdateOTPointer
@@ -54144,7 +53285,7 @@ Unknown_4a810: ; 4a810
 
 UpdateOTPointer: ; 0x4a83a
 	push hl
-	ld hl, PartyMon2OT - PartyMon1OT
+	ld hl, NAME_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -54164,7 +53305,7 @@ Function4a843: ; 4a843
 	ld d, a
 	ld e, 0
 	ld hl, PartyMon1Species
-	ld bc, PartyMon1OT
+	ld bc, PartyMonOT
 .asm_4a851
 	call Function4a8dc
 	ret c
@@ -54177,12 +53318,12 @@ Function4a843: ; 4a843
 	jr nz, .asm_4a851
 	ld a, 1
 	call GetSRAMBank
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	and a
 	jr z, .asm_4a888
 	ld d, a
-	ld hl, BoxMon1Species
-	ld bc, BoxMon1OT
+	ld hl, sBoxMon1Species
+	ld bc, sBoxMonOT
 .asm_4a873
 	call Function4a8dc
 	jr nc, .asm_4a87c
@@ -54191,7 +53332,7 @@ Function4a843: ; 4a843
 
 .asm_4a87c
 	push bc
-	ld bc, BoxMon2 - BoxMon1
+	ld bc, sBoxMon2 - sBoxMon1
 	add hl, bc
 	pop bc
 	call Function4a91e
@@ -54221,13 +53362,13 @@ Function4a843: ; 4a843
 	jr z, .asm_4a8d1
 	push bc
 	push hl
-	ld de, BoxMons - BoxCount
+	ld de, sBoxMons - sBoxCount
 	add hl, de
 	ld d, h
 	ld e, l
 	pop hl
 	push de
-	ld de, BoxMonOT - BoxCount
+	ld de, sBoxMonOT - sBoxCount
 	add hl, de
 	ld b, h
 	ld c, l
@@ -54242,7 +53383,7 @@ Function4a843: ; 4a843
 
 .asm_4a8c4
 	push bc
-	ld bc, BoxMon2 - BoxMon1
+	ld bc, sBoxMon2 - sBoxMon1
 	add hl, bc
 	pop bc
 	call Function4a91e
@@ -54307,7 +53448,7 @@ Unknown_4a8f4: ; 4a8f4
 
 Function4a91e: ; 4a91e
 	push hl
-	ld hl, PartyMon2OT - PartyMon1OT
+	ld hl, NAME_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -54429,7 +53570,7 @@ Function4a9c3: ; 4a9c3
 
 Function4a9d7: ; 4a9d7
 	ld a, [DefaultFlypoint]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	ld h, d
 	ld l, e
@@ -54437,7 +53578,7 @@ Function4a9d7: ; 4a9d7
 	ld bc, $0006
 	call CopyBytes
 	ld a, [$d003]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	ld h, d
 	ld l, e
@@ -54445,7 +53586,7 @@ Function4a9d7: ; 4a9d7
 	ld bc, $0006
 	call CopyBytes
 	ld a, [$d004]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	ld h, d
 	ld l, e
@@ -54595,15 +53736,15 @@ Function4aad3: ; 4aad3
 
 	ld c, a
 	xor a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 .asm_4aadd
 	push bc
 	push hl
 	ld e, 0
 	callba Function8e83f
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	pop hl
 	pop bc
 	dec c
@@ -55584,7 +54725,7 @@ ENDM
 
 
 Function4d15b:: ; 4d15b
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld a, [$d196]
 	and a
 	jr z, .asm_4d168
@@ -55600,9 +54741,9 @@ Function4d15b:: ; 4d15b
 
 .asm_4d170
 	ld de, TileMap
-	ld b, $12
+	ld b, SCREEN_HEIGHT
 .asm_4d175
-	ld c, $14
+	ld c, SCREEN_WIDTH
 .asm_4d177
 	ld a, [hli]
 	ld [de], a
@@ -55788,8 +54929,7 @@ Function4d319: ; 4d319
 	dec a
 	ld [CurPartyMon], a
 	call LowVolume
-	ld a, $25
-	call Predef
+	predef StatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
 	ld [$cfa9], a
@@ -56284,15 +55424,13 @@ Function4d7fd: ; 4d7fd
 	ld de, VTiles2
 	push de
 	push af
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	ret
 ; 4d81e
 
@@ -56317,8 +55455,7 @@ Function4d81e: ; 4d81e
 	hlcoord 7, 2
 	ld d, $0
 	ld e, $3
-	ld a, $47
-	call Predef
+	predef Functiond008e
 	ret
 ; 4d860
 
@@ -56372,12 +55509,12 @@ Function4d87a: ; 4d87a
 	jr nz, .asm_4d88d
 	ld a, $1
 	call GetSRAMBank
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	and a
 	jr z, .asm_4d8c8
 	ld d, a
-	ld hl, BoxMon1ID
-	ld bc, BoxSpecies
+	ld hl, sBoxMon1ID
+	ld bc, sBoxSpecies
 .asm_4d8af
 	ld a, [bc]
 	inc bc
@@ -56390,7 +55527,7 @@ Function4d87a: ; 4d87a
 
 .asm_4d8bf
 	push bc
-	ld bc, BoxMon2 - BoxMon1
+	ld bc, sBoxMon2 - sBoxMon1
 	add hl, bc
 	pop bc
 	dec d
@@ -56437,7 +55574,7 @@ Function4d87a: ; 4d87a
 
 .asm_4d901
 	push bc
-	ld bc, BoxMon2 - BoxMon1
+	ld bc, sBoxMon2 - sBoxMon1
 	add hl, bc
 	pop bc
 	dec d
@@ -56607,16 +55744,16 @@ Function4d9e5: ; 4d9e5
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, $df9c
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 	ld a, [PartyCount]
 	dec a
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call SkipNames
 	ld d, h
 	ld e, l
@@ -56642,7 +55779,7 @@ Function4d9e5: ; 4d9e5
 .asm_4da66
 	ld a, [PartyCount]
 	dec a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call SkipNames
 	ld d, h
 	ld e, l
@@ -56674,20 +55811,20 @@ Function4d9e5: ; 4d9e5
 Function4daa3: ; 4daa3
 	ld a, $1
 	call GetSRAMBank
-	ld hl, BoxCount
+	ld hl, sBoxCount
 	ld a, [hl]
-	cp 20
+	cp MONS_PER_BOX
 	call CloseSRAM
 	jr nc, .asm_4db08
 	xor a
 	ld [CurPartyMon], a
 	ld hl, $df9c
 	ld de, $d018
-	ld bc, BoxMon2 - BoxMon1
+	ld bc, sBoxMon2 - sBoxMon1
 	call CopyBytes
 	ld hl, PlayerName
 	ld de, $d00d
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	callab Function51322
 	ld a, [CurPartySpecies]
@@ -56705,21 +55842,21 @@ Function4daa3: ; 4daa3
 .asm_4daf7
 	ld a, $1
 	call GetSRAMBank
-	ld de, BoxMon1Nickname
-	ld bc, $000b
+	ld de, sBoxMonNicknames
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 
 .asm_4db08
 	ld a, $1
 	call GetSRAMBank
-	ld a, [BoxMon1Level]
+	ld a, [sBoxMon1Level]
 	ld [CurPartyLevel], a
 	call CloseSRAM
 	call Function4db83
 	ld a, $1
 	call GetSRAMBank
-	ld hl, BoxMon1CaughtLocation
+	ld hl, sBoxMon1CaughtLocation
 	ld a, [hl]
 	and $80
 	ld b, $13
@@ -56795,7 +55932,7 @@ Function4db53: ; 4db53
 Function4db83: ; 4db83
 	ld a, $1
 	call GetSRAMBank
-	ld hl, BoxMon1CaughtLevel
+	ld hl, sBoxMon1CaughtLevel
 	call Function4db53
 	call CloseSRAM
 	ret
@@ -56805,7 +55942,7 @@ Function4db92: ; 4db92
 	push bc
 	ld a, $1
 	call GetSRAMBank
-	ld hl, BoxMon1CaughtLevel
+	ld hl, sBoxMon1CaughtLevel
 	pop bc
 	call Function4dbaf
 	call CloseSRAM
@@ -56894,7 +56031,7 @@ Function4dc0a: ; 4dc0a
 	dec a
 	push hl
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	ld a, b
@@ -56927,7 +56064,7 @@ Function4dc31: ; 4dc31
 	dec a
 	push hl
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	ld a, b
@@ -56998,7 +56135,7 @@ StatsScreenInit: ; 4dc8a
 	jr StatsScreenInit_gotaddress
 
 Function4dc8f: ; 4dc8f
-	ld hl, Function4dcf7
+	ld hl, StatsScreenBattle
 	jr StatsScreenInit_gotaddress
 
 StatsScreenInit_gotaddress: ; 4dc94
@@ -57057,7 +56194,7 @@ StatsScreenMain: ; 0x4dcd2
 	ret
 ; 0x4dcf7
 
-Function4dcf7: ; 4dcf7
+StatsScreenBattle: ; 4dcf7
 	xor a
 	ld [$cf63], a
 	ld [$cf64], a
@@ -57532,8 +56669,7 @@ Jumptable_4e00d: ; 4e00d (13:600d)
 Function4e013: ; 4e013 (13:6013)
 	hlcoord 0, 9
 	ld b, $0
-	ld a, $26
-	call Predef
+	predef DrawPlayerHP
 	hlcoord 8, 9
 	ld [hl], $41
 	ld de, String_4e119
@@ -57555,8 +56691,7 @@ Function4e013: ; 4e013 (13:6013)
 	hlcoord 6, 13
 	push hl
 	ld de, TempMonStatus ; $d12e
-	ld a, $45
-	call Predef
+	predef Function50d0a
 	pop hl
 	jr nz, .asm_4e066
 	jr .asm_4e060
@@ -57570,8 +56705,7 @@ Function4e013: ; 4e013 (13:6013)
 	call PlaceString
 .asm_4e066
 	hlcoord 1, 15
-	ld a, $2c
-	call Predef
+	predef PrintMonTypes
 	hlcoord 9, 8
 	ld de, $14
 	ld b, $a
@@ -57605,8 +56739,7 @@ Function4e013: ; 4e013 (13:6013)
 	ld a, [TempMonLevel] ; $d12d
 	ld b, a
 	ld de, $d118
-	ld a, $17
-	call Predef
+	predef FillInExpBar
 	hlcoord 10, 16
 	ld [hl], $40
 	hlcoord 19, 16
@@ -57694,20 +56827,18 @@ Function4e147: ; 4e147 (13:6147)
 	ld de, String_4e1a9
 	hlcoord 0, 10
 	call PlaceString
-	ld hl, TempMonMoves ; $d110 (aliases: TempMonMove1)
+	ld hl, TempMonMoves
 	ld de, $d25e
-	ld bc, $4
+	ld bc, NUM_MOVES
 	call CopyBytes
 	hlcoord 8, 10
-	ld a, $28
-	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
-	ld a, $20
-	call Predef
+	ld a, SCREEN_WIDTH * 2
+	ld [Buffer1], a
+	predef ListMoves
 	hlcoord 12, 11
 	ld a, $28
-	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
-	ld a, $23
-	call Predef
+	ld [Buffer1], a
+	predef Function50c50
 	ret
 
 ; known jump sources: 4e150 (13:6150)
@@ -57750,8 +56881,7 @@ Function4e1ae: ; 4e1ae (13:61ae)
 	jr nz, .asm_4e1bb
 	hlcoord 11, 8
 	ld bc, $6
-	ld a, $28
-	call Predef
+	predef Function50b7b
 	ret
 
 ; known jump sources: 4e1ae (13:61ae)
@@ -57791,7 +56921,7 @@ Function4e1cc: ; 4e1cc (13:61cc)
 Unknown_4e216: ; 4e216
 	dw PartyMonOT
 	dw OTPartyMonOT
-	dw BoxMonOT
+	dw sBoxMonOT
 	dw $d00d
 ; 4e21e
 
@@ -57806,8 +56936,7 @@ OTString: ; 4e222
 ; known jump sources: 4dfd6 (13:5fd6)
 Function4e226: ; 4e226 (13:6226)
 	ld hl, TempMonDVs ; $d123
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	call Function4e2ad
 	jr c, .asm_4e238
 	and a
@@ -57867,13 +56996,11 @@ Function4e289: ; 4e289 (13:6289)
 	ret c
 	call Function4e307
 	ld de, $9000
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld d, $0
 	ld e, $2
-	ld a, $46
-	call Predef
+	predef Functiond00a3
 	ld hl, $cf64
 	set 6, [hl]
 	ret
@@ -57898,7 +57025,7 @@ Jumptable_4e2b5: ; 4e2b5 (13:62b5)
 Function4e2bf: ; 4e2bf (13:62bf)
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartyMons ; $dcdf (aliases: PartyMon1, PartyMon1Species)
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -57911,7 +57038,7 @@ Function4e2cf: ; 4e2cf (13:62cf)
 
 ; no known jump sources
 Function4e2d1: ; 4e2d1 (13:62d1)
-	ld hl, BoxMons
+	ld hl, sBoxMons
 	ld bc, $30
 	ld a, [CurPartyMon] ; $d109
 	call AddNTimes
@@ -58082,13 +57209,11 @@ Function4e497: ; 4e497 (13:6497)
 	ld [$c2c6], a
 	call Function4e307
 	ld de, $9000
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	pop de
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld d, $0
-	ld a, $46
-	call Predef
+	predef Functiond00a3
 	ld hl, $cf64
 	set 6, [hl]
 	ret
@@ -58186,6 +57311,7 @@ Function4e53f: ; 4e53f
 	ret
 ; 4e554
 
+
 Function4e554:: ; 4e554
 	ld a, [BattleType]
 	dec a
@@ -58200,43 +57326,43 @@ Function4e554:: ; 4e554
 	jp [hl]
 ; 4e564
 
-
-; no known jump sources
 Jumptable_4e564: ; 4e564 (13:6564)
 	dw Function4e56a
 	dw Function4e56a
 	dw Function4e56a
 
-
-; no known jump sources
 Function4e56a: ; 4e56a (13:656a)
 	ld hl, PlayerName ; $d47d
 	ld de, MomsName ; $d488
-	ld bc, $b
+	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld hl, String_4e5da
+
+	ld hl, DudeString
 	ld de, PlayerName ; $d47d
-	ld bc, $b
+	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	call Function4e5b7
+
 	xor a
-	ld [hJoyDown], a ; $ff00+$a8
-	ld [hJoyPressed], a ; $ff00+$a7
-	ld a, [Options] ; $cfcc
+	ld [hJoyDown], a
+	ld [hJoyPressed], a
+	ld a, [Options]
 	push af
 	and $f8
 	add $3
-	ld [Options], a ; $cfcc
+	ld [Options], a
 	ld hl, AutoInput_4e5df
 	ld a, BANK(AutoInput_4e5df)
 	call StartAutoInput
 	callab StartBattle
 	call StopAutoInput
 	pop af
+
 	ld [Options], a ; $cfcc
 	ld hl, MomsName ; $d488
 	ld de, PlayerName ; $d47d
-	ld bc, $b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret
 
@@ -58264,7 +57390,7 @@ Function4e5b7: ; 4e5b7 (13:65b7)
 	ret
 ; 4e5da (13:65da)
 
-String_4e5da: ; 4e5da
+DudeString: ; 4e5da
 	db "DUDE@"
 ; 4e5df
 
@@ -58398,8 +57524,7 @@ _EvolutionAnimation: ; 4e607
 	hlcoord 7, 2
 	ld d, $0
 	ld e, $4
-	ld a, $47
-	call Predef
+	predef Functiond008e
 
 	pop af
 	ld [CurPartySpecies], a
@@ -58445,8 +57570,7 @@ Function4e711: ; 4e711
 	ld a, $1
 	ld [$c2c6], a
 	ld de, VTiles2
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	xor a
 	ld [$c2c6], a
 	ret
@@ -59114,7 +58238,7 @@ Function5009b: ; 5009b
 	push bc
 	push hl
 	push hl
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, b
 	call GetNick
 	pop hl
@@ -59186,7 +58310,7 @@ Function500cf: ; 500cf
 
 Function50117: ; 50117
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
@@ -59207,8 +58331,7 @@ Function50117: ; 50117
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	ld a, $4
-	call Predef
+	predef Functionc699
 	ret
 ; 50138
 
@@ -59226,7 +58349,7 @@ Function50138: ; 50138
 	jr z, .asm_5016b
 	push hl
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld e, l
@@ -59347,8 +58470,7 @@ Function501e0: ; 501e0
 	add hl, de
 	ld a, [hl]
 	ld [CurPartySpecies], a
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
 	pop hl
 	call Function50215
 	call PlaceString
@@ -59399,7 +58521,7 @@ Function5022f: ; 5022f
 	jr z, .asm_5025d
 	push hl
 	ld a, b
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Species
 	call AddNTimes
 	ld a, [hl]
@@ -59666,7 +58788,7 @@ Function503e0: ; 503e0
 	ret z
 	ld c, a
 	xor a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 .asm_503ea
 	push bc
 	push hl
@@ -59674,9 +58796,9 @@ Function503e0: ; 503e0
 	ld a, BANK(Function8e83f)
 	ld e, $0
 	rst FarCall
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	inc a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	pop hl
 	pop bc
 	dec c
@@ -59851,7 +58973,7 @@ YouHaveNoPKMNString: ; 0x50556
 
 Function50566: ; 50566
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call GetNick
 	ld a, [PartyMenuActionText]
 	and $f
@@ -60043,8 +59165,7 @@ Function50658: ; 50658
 	ld de, SFX_POISON
 	call PlaySFX
 	ld b, $2
-	ld a, $2e
-	call Predef
+	predef Functioncbcdd
 	call DelayFrame
 	ret
 ; 50669
@@ -60085,8 +59206,7 @@ Function5067b: ; 5067b
 	ld a, [PartyCount]
 	cp [hl]
 	jr nz, .asm_50682
-	ld a, $14
-	call Predef
+	predef Function3d873
 	ld a, d
 	ld [ScriptVar], a
 	ret
@@ -60407,7 +59527,7 @@ Function5084a: ; 5084a
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, TempMonSpecies
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 
 .asm_5088a
@@ -60438,8 +59558,7 @@ Function50893: ; 50893
 	add hl, bc
 	push bc
 	ld b, $1
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop bc
 	ld hl, TempMonHP - TempMon
 	add hl, bc
@@ -60492,15 +59611,15 @@ Function508d5: ; 508d5
 	jr .asm_50905
 
 .asm_508f1
-	ld a, 1 ; BANK(BoxSpecies)
+	ld a, 1 ; BANK(sBoxSpecies)
 	call GetSRAMBank
-	ld hl, BoxSpecies
+	ld hl, sBoxSpecies
 	call .asm_50905
 	call CloseSRAM
 	ret
 
 .asm_50900
-	ld a, [BreedMon1Species]
+	ld a, [wBreedMon1Species]
 	jr .asm_50909
 
 .asm_50905
@@ -60589,48 +59708,27 @@ Strings50a42: ; 50a42
 	dw OTName
 	dw OTName
 
-.Youngster
-	db "たんパン@"
-.BugCatcher
-	db "むしとり@"
-.Lass
-	db "ミニスカ@"
-.JrTrainerM
-	db "ボーイ@"
-.JrTrainerF
-	db "ガール@"
-.Pokemaniac
-	db "マニア@"
-.SuperNerd
-	db "りかけい@"
-.Burglar
-	db "どろぼう@"
-.Engineer
-	db "ォヤジ@"
-.Jack
-	db "ジャック@"
-.Swimmer
-	db "かいパン@"
-.Beauty
-	db "おねえさん@"
-.Rocker
-	db "グループ@"
-.Juggler
-	db "ジャグラー@"
-.Blackbelt
-	db "からて@"
-.ProfOak
-	db "ォーキド@"
-.Chief
-	db "チーフ@"
-.Scientist
-	db "けんきゅういん@"
-.Rocket
-	db "だんいん@"
-.CooltrainerM
-	db "エりート♂@"
-.CooltrainerF
-	db "エりート♀@"
+.Youngster    db "たんパン@"
+.BugCatcher   db "むしとり@"
+.Lass         db "ミニスカ@"
+.JrTrainerM   db "ボーイ@"
+.JrTrainerF   db "ガール@"
+.Pokemaniac   db "マニア@"
+.SuperNerd    db "りかけい@"
+.Burglar      db "どろぼう@"
+.Engineer     db "ォヤジ@"
+.Jack         db "ジャック@"
+.Swimmer      db "かいパン@"
+.Beauty       db "おねえさん@"
+.Rocker       db "グループ@"
+.Juggler      db "ジャグラー@"
+.Blackbelt    db "からて@"
+.ProfOak      db "ォーキド@"
+.Chief        db "チーフ@"
+.Scientist    db "けんきゅういん@"
+.Rocket       db "だんいん@"
+.CooltrainerM db "エりート♂@"
+.CooltrainerF db "エりート♀@"
 ; 50b0a
 
 
@@ -60678,8 +59776,7 @@ DrawHP: ; 50b10
 	ld c, e
 
 .asm_50b41
-	ld a, $4
-	call Predef
+	predef Functionc699
 	ld a, 6
 	ld d, a
 	ld c, a
@@ -60731,16 +59828,16 @@ Function50b7b: ; 50b7b
 	add hl, bc
 	ld bc, $0014
 	add hl, bc
-	ld de, TempMonAtk
+	ld de, TempMonAttack
 	ld bc, $0203
 	call Function50bab
-	ld de, TempMonDef
+	ld de, TempMonDefense
 	call Function50bab
 	ld de, TempMonSpclAtk
 	call Function50bab
 	ld de, TempMonSpclDef
 	call Function50bab
-	ld de, TempMonSpd
+	ld de, TempMonSpeed
 	jp PrintNum
 ; 50bab
 
@@ -60788,11 +59885,11 @@ GetGender: ; 50bdd
 	dec a
 	jr z, .PartyMon
 	
-; 2: BoxMon
-	ld hl, BoxMon1DVs
-	ld bc, BoxMon2 - BoxMon1
+; 2: sBoxMon
+	ld hl, sBoxMon1DVs
+	ld bc, sBoxMon2 - sBoxMon1
 	dec a
-	jr z, .BoxMon
+	jr z, .sBoxMon
 	
 ; 3: Unknown
 	ld hl, TempMonDVs
@@ -60807,14 +59904,14 @@ GetGender: ; 50bdd
 ; Get our place in the party/box.
 	
 .PartyMon
-.BoxMon
+.sBoxMon
 	ld a, [CurPartyMon]
 	call AddNTimes
 	
 	
 .DVs
 	
-; BoxMon data is read directly from SRAM.
+; sBoxMon data is read directly from SRAM.
 	ld a, [MonType]
 	cp BOXMON
 	ld a, 1
@@ -60833,7 +59930,7 @@ GetGender: ; 50bdd
 	or b
 	ld b, a
 
-; Close SRAM if we were dealing with a BoxMon.
+; Close SRAM if we were dealing with a sBoxMon.
 	ld a, [MonType]
 	cp BOXMON
 	call z, CloseSRAM
@@ -60908,8 +60005,8 @@ Function50c50: ; 50c50
 	inc hl
 	ld d, h
 	ld e, l
-	ld hl, TempMonMove1
-	ld b, $0
+	ld hl, TempMonMoves
+	ld b, 0
 .asm_50c7a
 	ld a, [hli]
 	and a
@@ -60929,7 +60026,7 @@ Function50c50: ; 50c50
 	pop de
 	pop hl
 	push hl
-	ld bc, $0014
+	ld bc, TempMonPP - (TempMonMoves + 1)
 	add hl, bc
 	ld a, [hl]
 	and $3f
@@ -60948,7 +60045,7 @@ Function50c50: ; 50c50
 	pop hl
 	ld a, [Buffer1]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld d, h
 	ld e, l
@@ -60956,7 +60053,7 @@ Function50c50: ; 50c50
 	pop bc
 	inc b
 	ld a, b
-	cp $4
+	cp NUM_MOVES
 	jr nz, .asm_50c7a
 
 .asm_50cc8
@@ -60988,7 +60085,7 @@ Function50cd0: ; 50cd0
 Function50cdb: ; 50cdb
 	push hl
 	push hl
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld a, [CurPartyMon]
 	call GetNick
 	pop hl
@@ -61087,7 +60184,8 @@ FrzString: db "FRZ@"
 ParString: db "PAR@"
 ; 50d6f
 
-Function50d6f: ; 50d6f
+ListMoves: ; 50d6f
+; List moves at hl, spaced every [Buffer1] tiles.
 	ld de, $d25e
 	ld b, $0
 .asm_50d74
@@ -61099,7 +60197,7 @@ Function50d6f: ; 50d6f
 	push hl
 	push hl
 	ld [CurSpecies], a
-	ld a, $2
+	ld a, MOVE_NAME
 	ld [$cf61], a
 	call GetName
 	ld de, StringBuffer1
@@ -61114,12 +60212,12 @@ Function50d6f: ; 50d6f
 	push bc
 	ld a, [Buffer1]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	pop de
 	ld a, b
-	cp $4
+	cp NUM_MOVES
 	jr z, .asm_50db8
 	jr .asm_50d74
 
@@ -61127,14 +60225,14 @@ Function50d6f: ; 50d6f
 	ld a, b
 .asm_50da8
 	push af
-	ld [hl], $e3
+	ld [hl], "-"
 	ld a, [Buffer1]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop af
 	inc a
-	cp $4
+	cp NUM_MOVES
 	jr nz, .asm_50da8
 
 .asm_50db8
@@ -61143,41 +60241,42 @@ Function50d6f: ; 50d6f
 
 Function50db9: ; 50db9
 	ld a, [$d263]
+
 	cp $1
 	jr nz, .asm_50dca
 	ld hl, OTPartyCount
-	ld de, OTPartyMon1OT
-	ld a, $6
+	ld de, OTPartyMonOT
+	ld a, ENEMY_OT_NAME
 	jr .asm_50dfc
-
 .asm_50dca
+
 	cp $4
 	jr nz, .asm_50dd8
 	ld hl, PartyCount
-	ld de, PartyMon1OT
-	ld a, $5
+	ld de, PartyMonOT
+	ld a, PARTY_OT_NAME
 	jr .asm_50dfc
-
 .asm_50dd8
+
 	cp $5
 	jr nz, .asm_50de6
 	ld hl, $d0f0
 	ld de, PokemonNames
-	ld a, $1
+	ld a, PKMN_NAME
 	jr .asm_50dfc
-
 .asm_50de6
+
 	cp $2
 	jr nz, .asm_50df4
 	ld hl, NumItems
-	ld de, Function50000
-	ld a, $4
+	ld de, ItemNames
+	ld a, ITEM_NAME
 	jr .asm_50dfc
-
 .asm_50df4
+
 	ld hl, $d0f0
-	ld de, Function50000
-	ld a, $4
+	ld de, ItemNames
+	ld a, ITEM_NAME
 
 .asm_50dfc
 	ld [$cf61], a
@@ -61189,7 +60288,7 @@ Function50db9: ; 50db9
 	ld [$d102], a
 	ld a, d
 	ld [$d103], a
-	ld bc, $67c1
+	ld bc, $67c1 ; XXX ItemAttributes?
 	ld a, c
 	ld [$d104], a
 	ld a, b
@@ -61466,12 +60565,12 @@ Function50f62: ; 50f62 (14:4f62)
 	ld bc, $30
 	call CopyBytes
 	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
-	ld hl, PartyMonOT ; $ddff (aliases: PartyMon1OT)
+	ld hl, PartyMonOT ; $ddff (aliases: PartyMonOT)
 	call SkipNames
 	push hl
 	call Function51036
 	ld a, [$d1ec]
-	ld hl, PartyMonOT ; $ddff (aliases: PartyMon1OT)
+	ld hl, PartyMonOT ; $ddff (aliases: PartyMonOT)
 	call SkipNames
 	pop de
 	push hl
@@ -61479,12 +60578,12 @@ Function50f62: ; 50f62 (14:4f62)
 	pop de
 	ld hl, DefaultFlypoint ; $d002
 	call Function51039
-	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMon1Nickname)
+	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMonNicknames)
 	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
 	call SkipNames
 	push hl
 	call Function51036
-	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMon1Nickname)
+	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMonNicknames)
 	ld a, [$d1ec]
 	call SkipNames
 	pop de
@@ -61535,8 +60634,8 @@ GetUnownLetter: ; 51040
 ; Return Unown letter in UnownLetter based on DVs at hl
 
 ; Take the middle 2 bits of each DV and place them in order:
-;	AtkDefDV | SpdSpcDV
-;	.ww..xx.   .yy..zz.
+;	atk  def  spd  spc
+;	.ww..xx.  .yy..zz.
 
 	; atk
 	ld a, [hl]
@@ -61583,14 +60682,14 @@ GetUnownLetter: ; 51040
 ; 51077
 
 
-Function51077: ; 51077
+GetFrontpic: ; 51077
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call IsAPokemon
 	ret c
 	ld a, [rSVBK]
 	push af
-	call Function510a5
+	call _GetFrontpic
 	pop af
 	ld [rSVBK], a
 	ret
@@ -61605,33 +60704,33 @@ Function5108b: ; 5108b
 	push af
 	xor a
 	ld [hBGMapMode], a
-	call Function510a5
+	call _GetFrontpic
 	call Function51103
 	pop af
 	ld [rSVBK], a
 	ret
 ; 510a5
 
-Function510a5: ; 510a5
+_GetFrontpic: ; 510a5
 	push de
 	call GetBaseData
 	ld a, [BasePicSize]
 	and $f
 	ld b, a
 	push bc
-	call Function510d7
+	call GetFrontpicPointer
 	ld a, $6
 	ld [rSVBK], a
 	ld a, b
 	ld de, $d800
 	call FarDecompress
 	pop bc
-	ld hl, Unkn1Pals
+	ld hl, $d000
 	ld de, $d800
 	call Function512ab
 	pop hl
 	push hl
-	ld de, Unkn1Pals
+	ld de, $d000
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -61640,28 +60739,28 @@ Function510a5: ; 510a5
 	ret
 ; 510d7
 
-Function510d7: ; 510d7
+GetFrontpicPointer: ; 510d7
 GLOBAL PicPointers, UnownPicPointers
 
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr z, .asm_510e5
+	jr z, .unown
 	ld a, [CurPartySpecies]
 	ld d, BANK(PicPointers)
-	jr .asm_510ea
+	jr .ok
 
-.asm_510e5
+.unown
 	ld a, [UnownLetter]
 	ld d, BANK(UnownPicPointers)
 
-.asm_510ea
-	ld hl, Function50000
+.ok
+	ld hl, PicPointers ; UnownPicPointers
 	dec a
-	ld bc, $0006
+	ld bc, 6
 	call AddNTimes
 	ld a, d
 	call GetFarByte
-	call Function511c5
+	call FixPicBank
 	push af
 	inc hl
 	ld a, d
@@ -61674,13 +60773,13 @@ Function51103: ; 51103
 	ld a, $1
 	ld [rVBK], a
 	push hl
-	ld de, Unkn1Pals
-	ld c, $31
+	ld de, $d000
+	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	pop hl
-	ld de, $0310
+	ld de, 7 * 7 * $10
 	add hl, de
 	push hl
 	ld a, $1
@@ -61688,24 +60787,24 @@ Function51103: ; 51103
 	call GetFarWRAMByte
 	pop hl
 	and $f
-	ld de, $d990
+	ld de, $d800 + 5 * 5 * $10
 	ld c, 5 * 5
 	cp 5
 	jr z, .asm_5113b
-	ld de, $da40
+	ld de, $d800 + 6 * 6 * $10
 	ld c, 6 * 6
 	cp 6
 	jr z, .asm_5113b
-	ld de, $db10
+	ld de, $d800 + 7 * 7 * $10
 	ld c, 7 * 7
-
 .asm_5113b
+
 	push hl
 	push bc
 	call Function5114f
 	pop bc
 	pop hl
-	ld de, Unkn1Pals
+	ld de, $d000
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -61736,10 +60835,11 @@ Function5114f: ; 5114f
 	ret
 ; 5116c
 
-Function5116c: ; 5116c
+GetBackpic: ; 5116c
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	ret c
+
 	ld a, [CurPartySpecies]
 	ld b, a
 	ld a, [UnownLetter]
@@ -61757,31 +60857,30 @@ Function5116c: ; 5116c
 	ld a, b
 	ld d, BANK(PicPointers)
 	cp UNOWN
-	jr nz, .asm_51190
+	jr nz, .ok
 	ld a, c
 	ld d, BANK(UnownPicPointers)
-
-.asm_51190
+.ok
 	dec a
-	ld bc, $0006
+	ld bc, 6
 	call AddNTimes
-	ld bc, $0003
+	ld bc, 3
 	add hl, bc
 	ld a, d
 	call GetFarByte
-	call Function511c5
+	call FixPicBank
 	push af
 	inc hl
 	ld a, d
 	call GetFarHalfword
-	ld de, Unkn1Pals
+	ld de, $d000
 	pop af
 	call FarDecompress
-	ld hl, Unkn1Pals
-	ld c, $24
+	ld hl, $d000
+	ld c, 6 * 6
 	call Function5127c
 	pop hl
-	ld de, Unkn1Pals
+	ld de, $d000
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -61791,10 +60890,11 @@ Function5116c: ; 5116c
 ; 511c5
 
 
-Function511c5: ; 511c5
+FixPicBank: ; 511c5
+; This is a thing for some reason.
 	push hl
 	push bc
-	sub $12
+	sub PICS_1 - $36
 	ld c, a
 	ld b, 0
 	ld hl, Unknown_511d4
@@ -61806,10 +60906,53 @@ Function511c5: ; 511c5
 ; 511d4
 
 Unknown_511d4: ; 511d4
-INCBIN "baserom.gbc",$511d4,$5120d - $511d4
+	db PICS_1
+	db PICS_2
+	db PICS_3
+	db PICS_4
+	db PICS_5
+	db PICS_6
+	db PICS_7
+	db PICS_8
+	db PICS_9
+	db PICS_10
+	db PICS_11
+	db PICS_12
+	db PICS_13
+	db PICS_14
+	db PICS_15
+	db PICS_16
+	db PICS_17
+	db PICS_18
+	db PICS_19
+	db PICS_19 + 1
+	db PICS_19 + 2
+	db PICS_19 + 3
+	db PICS_19 + 4
+	db PICS_19 + 5
+
+Function511ec: ; 511ec
+	ld a, c
+	push de
+	ld hl, PicPointers
+	dec a
+	ld bc, 6
+	call AddNTimes
+	ld a, BANK(PicPointers)
+	call GetFarByte
+	call FixPicBank
+	push af
+	inc hl
+	ld a, BANK(PicPointers)
+	call GetFarHalfword
+	pop af
+	pop de
+	call FarDecompress
+	ret
+; 0x5120d
 
 
-Function5120d: ; 5120d
+GetTrainerPic: ; 5120d
 	ld a, [TrainerClass]
 	and a
 	ret z
@@ -61818,29 +60961,29 @@ Function5120d: ; 5120d
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld hl, Function50000
+	ld hl, TrainerPicPointers
 	ld a, [TrainerClass]
 	dec a
-	ld bc, $0003
+	ld bc, 3
 	call AddNTimes
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
 	push de
-	ld a, $4a
+	ld a, BANK(TrainerPicPointers)
 	call GetFarByte
-	call Function511c5
+	call FixPicBank
 	push af
 	inc hl
-	ld a, $4a
+	ld a, BANK(TrainerPicPointers)
 	call GetFarHalfword
 	pop af
 	ld de, $d000
 	call FarDecompress
 	pop hl
 	ld de, $d000
-	ld c, $31
+	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -61887,13 +61030,13 @@ Function5127c: ; 5127c
 	and a
 	jr z, .asm_512a8
 	ld a, c
-	cp $31
-	ld de, $0310
+	cp 7 * 7
+	ld de, 7 * 7 * $10
 	jr z, .asm_51296
-	cp $24
-	ld de, $0240
+	cp 6 * 6
+	ld de, 6 * 6 * $10
 	jr z, .asm_51296
-	ld de, $0190
+	ld de, 5 * 5 * $10
 
 .asm_51296
 	ld a, [hl]
@@ -61919,54 +61062,53 @@ Function5127c: ; 5127c
 
 Function512ab: ; 512ab
 	ld a, b
-	cp $6
-	jr z, .asm_512bd
-	cp $5
-	jr z, .asm_512d2
-.asm_512b4
+	cp 6
+	jr z, .six
+	cp 5
+	jr z, .five
+
+.seven
 	ld c, $70
 	call Function512f2
 	dec b
-	jr nz, .asm_512b4
+	jr nz, .seven
 	ret
 
-.asm_512bd
+.six
 	ld c, $70
 	xor a
-	call Function512ed
+	call .Fill
 .asm_512c3
 	ld c, $10
 	xor a
-	call Function512ed
+	call .Fill
 	ld c, $60
 	call Function512f2
 	dec b
 	jr nz, .asm_512c3
 	ret
 
-.asm_512d2
+.five
 	ld c, $70
 	xor a
-	call Function512ed
+	call .Fill
 .asm_512d8
 	ld c, $20
 	xor a
-	call Function512ed
+	call .Fill
 	ld c, $50
 	call Function512f2
 	dec b
 	jr nz, .asm_512d8
 	ld c, $70
 	xor a
-	call Function512ed
+	call .Fill
 	ret
-; 512ed
 
-Function512ed: ; 512ed
-.asm_512ed
+.Fill
 	ld [hli], a
 	dec c
-	jr nz, .asm_512ed
+	jr nz, .Fill
 	ret
 ; 512f2
 
@@ -61989,22 +61131,10 @@ Function512f2: ; 512f2
 	inc de
 	ld b, a
 	xor a
+	rept 8
 	rr b
 	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
-	rr b
-	rla
+	endr
 	ld [hli], a
 	dec c
 	jr nz, .asm_51300
@@ -62015,36 +61145,36 @@ Function512f2: ; 512f2
 Function51322: ; 51322
 	ld a, $1
 	call GetSRAMBank
-	ld hl, BoxCount
+	ld hl, sBoxCount
 	call Function513cb
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	dec a
 	ld [$d265], a
-	ld hl, BoxMon1Nickname
-	ld bc, $000b
-	ld de, DefaultFlypoint
+	ld hl, sBoxMonNicknames
+	ld bc, PKMN_NAME_LENGTH
+	ld de, $d002
 	call Function513e0
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	dec a
 	ld [$d265], a
-	ld hl, BoxMon1OT
-	ld bc, $000b
+	ld hl, sBoxMonOT
+	ld bc, NAME_LENGTH
 	ld de, $d00d
 	call Function513e0
-	ld a, [BoxCount]
+	ld a, [sBoxCount]
 	dec a
 	ld [$d265], a
-	ld hl, BoxMon1Species
-	ld bc, $0020
+	ld hl, sBoxMons
+	ld bc, sBoxMon1End - sBoxMon1
 	ld de, $d018
 	call Function513e0
 	ld hl, $d01a
-	ld de, TempMonMove1
-	ld bc, $0004
+	ld de, TempMonMoves
+	ld bc, NUM_MOVES
 	call CopyBytes
 	ld hl, $d02f
 	ld de, TempMonPP
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, [CurPartyMon]
 	ld b, a
@@ -62058,22 +61188,22 @@ Function5138b: ; 5138b
 	ld a, [PartyCount]
 	dec a
 	ld [$d265], a
-	ld hl, PartyMon1Nickname
-	ld bc, $000b
-	ld de, DefaultFlypoint
+	ld hl, PartyMonNicknames
+	ld bc, PKMN_NAME_LENGTH
+	ld de, $d002
 	call Function513e0
 	ld a, [PartyCount]
 	dec a
 	ld [$d265], a
-	ld hl, PartyMon1OT
-	ld bc, $000b
+	ld hl, PartyMonOT
+	ld bc, NAME_LENGTH
 	ld de, $d00d
 	call Function513e0
 	ld a, [PartyCount]
 	dec a
 	ld [$d265], a
-	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld hl, PartyMons
+	ld bc, PartyMon2 - PartyMon1
 	ld de, $d018
 	call Function513e0
 	ret
@@ -62084,7 +61214,7 @@ Function513cb: ; 513cb
 	inc hl
 	ld a, [CurPartyMon]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [CurPartySpecies]
 	ld c, a
@@ -62797,7 +61927,7 @@ GetMovementAction: ; 802ec
 IsNPCInFront: ; 80341
 
 	ld a, 0
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld a, [MapX]
 	ld d, a
 	ld a, [WalkingX]
@@ -62808,7 +61938,7 @@ IsNPCInFront: ; 80341
 	ld a, [WalkingY]
 	add e
 	ld e, a
-	ld bc, $d4d6
+	ld bc, ObjectStructs ; redundant
 	callba Function7041
 	jr nc, .asm_80369
 	call Function8036f
@@ -63182,7 +62312,7 @@ Unknown_80671: ; 80671
 Function806c5: ; 806c5
 ; Caught mons.
 	ld hl, PokedexCaught
-	ld b, $20
+	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	ld a, [$d265]
 	jp Function8066c
@@ -63191,7 +62321,7 @@ Function806c5: ; 806c5
 Function806d3: ; 806d3
 ; Seen mons.
 	ld hl, PokedexSeen
-	ld b, $20
+	ld b, EndPokedexSeen - PokedexSeen
 	call CountSetBits
 	ld a, [$d265]
 	jp Function8066c
@@ -63199,7 +62329,7 @@ Function806d3: ; 806d3
 
 Function806e1: ; 806e1
 ; Number of owned badges.
-	ld hl, JohtoBadges ; $d857
+	ld hl, Badges ; $d857
 	ld b, 2
 	call CountSetBits
 	ld a, [$d265]
@@ -63243,10 +62373,10 @@ Function806ff: ; 806ff
 
 Function80715: ; 80715
 ; Remaining slots in the current box.
-	ld a, $1
+	ld a, 1 ; BANK(sBoxCount)
 	call GetSRAMBank
-	ld hl, BoxCount
-	ld a, 20
+	ld hl, sBoxCount
+	ld a, MONS_PER_BOX
 	sub [hl]
 	ld b, a
 	call CloseSRAM
@@ -63447,13 +62577,13 @@ Function819a7: ; 819a7
 	dec c
 	jr nz, .asm_819d6
 	ld a, $94
-	ld [EnemyMoveAnimation], a
+	ld [$c608], a
 	ld a, $52
-	ld [EnemyMoveEffect], a
+	ld [$c609], a
 	ld a, $4a
-	ld [EnemyMovePower], a
+	ld [$c60a], a
 	ld a, $29
-	ld [EnemyMoveType], a
+	ld [$c60b], a
 	pop af
 	ld [rSVBK], a
 	ret
@@ -63665,14 +62795,12 @@ Function81adb: ; 81adb
 	hlcoord 12, 3
 	call Function378b
 	ld de, $9310
-	ld a, $3d
-	call Predef
+	predef GetBackpic
 	ld a, $31
 	ld [$ffad], a
 	hlcoord 2, 4
 	ld bc, $0606
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld a, [$d003]
 	and a
 	jr z, .asm_81b66
@@ -63698,14 +62826,13 @@ Function81adb: ; 81adb
 	hlcoord 4, 1
 	call PlaceString
 	ld de, VTiles2
-	callab Function5120d
+	callab GetTrainerPic
 	xor a
 	ld [TempEnemyMonSpecies], a
 	ld [$ffad], a
 	hlcoord 2, 3
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 
 .asm_81ba9
 	ld a, $1
@@ -63755,13 +62882,13 @@ Function81bf4: ; 81bf4
 	add hl, hl
 	ld de, OverworldMap
 	add hl, de
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0004
 	call CopyBytes
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call Function81ea5
 	ret
 ; 81c18
@@ -63792,14 +62919,14 @@ Function81c33: ; 81c33
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, BGPals
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld c, $1
 	call Function81ee3
 	hlcoord 10, 2
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call Function81ca7
 	hlcoord 15, 2
-	ld de, EnemyMovePower
+	ld de, $c60a
 	call Function81ca7
 	ld a, $1
 	ld [hCGBPalUpdate], a
@@ -63817,13 +62944,13 @@ Function81c33: ; 81c33
 	ld [hli], a
 	ld a, $7f
 	ld [hli], a
-	ld a, [EnemyMoveAnimation]
+	ld a, [$c608]
 	ld [hli], a
-	ld a, [EnemyMoveEffect]
+	ld a, [$c609]
 	ld [hli], a
-	ld a, [EnemyMovePower]
+	ld a, [$c60a]
 	ld [hli], a
-	ld a, [EnemyMoveType]
+	ld a, [$c60b]
 	ld [hli], a
 	xor a
 	ld [hli], a
@@ -63832,10 +62959,10 @@ Function81c33: ; 81c33
 	ld hl, $cda9
 	call Function81f0c
 	hlcoord 10, 2
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call Function81ca7
 	hlcoord 15, 2
-	ld de, EnemyMovePower
+	ld de, $c60a
 	call Function81ca7
 	ld a, $3
 	ld [$cf63], a
@@ -63928,14 +63055,14 @@ Function81d0a: ; 81d0a
 .asm_81d1d
 	xor a
 	ld [$cf65], a
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call Function81ea5
 	ret
 
 .asm_81d28
 	ld a, $1
 	ld [$cf65], a
-	ld de, EnemyMovePower
+	ld de, $c60a
 	call Function81ea5
 	ret
 
@@ -63947,7 +63074,7 @@ Function81d34: ; 81d34
 	ld a, [hl]
 	and $40
 	jr nz, Function81d84
-	ld hl, PlayerMoveType
+	ld hl, $c612
 	jr Function81d63
 
 Function81d46: ; 81d46
@@ -63958,7 +63085,7 @@ Function81d46: ; 81d46
 	ld a, [hl]
 	and $40
 	jr nz, Function81d84
-	ld hl, PlayerMoveAccuracy
+	ld hl, $c613
 	jr Function81d63
 
 Function81d58: ; 81d58
@@ -63966,7 +63093,7 @@ Function81d58: ; 81d58
 	ld a, [hl]
 	and $40
 	jr nz, Function81d84
-	ld hl, PlayerMovePP
+	ld hl, $c614
 
 Function81d63: ; 81d63
 	ld a, [$ffa9]
@@ -64092,8 +63219,7 @@ Function81df4: ; 81df4
 	ld a, [$d004]
 	inc a
 	ld [$d265], a
-	ld a, $f
-	call Predef
+	predef GetTMHMMove
 	ld a, [$d265]
 	ld [$d262], a
 	call GetMoveName
@@ -64102,8 +63228,7 @@ Function81df4: ; 81df4
 	ld a, [$d004]
 	call Function81e55
 	ld [CurItem], a
-	ld a, $e
-	call Predef
+	predef CanLearnTMHMMove
 	ld a, c
 	and a
 	ld de, String_81e46
@@ -64139,21 +63264,21 @@ Function81e5e: ; 81e5e
 ; 81e67
 
 Function81e67: ; 81e67
-	ld a, [PlayerMoveType]
+	ld a, [$c612]
 	and $1f
 	ld e, a
-	ld a, [PlayerMoveAccuracy]
+	ld a, [$c613]
 	and $7
 	sla a
 	swap a
 	or e
 	ld e, a
-	ld a, [PlayerMoveAccuracy]
+	ld a, [$c613]
 	and $18
 	sla a
 	swap a
 	ld d, a
-	ld a, [PlayerMovePP]
+	ld a, [$c614]
 	and $1f
 	sla a
 	sla a
@@ -64163,23 +63288,23 @@ Function81e67: ; 81e67
 	and a
 	jr z, .asm_81e9c
 	ld a, e
-	ld [EnemyMovePower], a
+	ld [$c60a], a
 	ld a, d
-	ld [EnemyMoveType], a
+	ld [$c60b], a
 	ret
 
 .asm_81e9c
 	ld a, e
-	ld [EnemyMoveAnimation], a
+	ld [$c608], a
 	ld a, d
-	ld [EnemyMoveEffect], a
+	ld [$c609], a
 	ret
 ; 81ea5
 
 Function81ea5: ; 81ea5
 	ld a, [de]
 	and $1f
-	ld [PlayerMoveType], a
+	ld [$c612], a
 	ld a, [de]
 	and $e0
 	swap a
@@ -64191,12 +63316,12 @@ Function81ea5: ; 81ea5
 	swap a
 	srl a
 	or b
-	ld [PlayerMoveAccuracy], a
+	ld [$c613], a
 	ld a, [de]
 	and $7c
 	srl a
 	srl a
-	ld [PlayerMovePP], a
+	ld [$c614], a
 	ret
 ; 81eca
 
@@ -64211,7 +63336,7 @@ Function81eca: ; 81eca
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld bc, $0004
 	call CopyBytes
 	ret
@@ -64360,11 +63485,11 @@ Function81f5e: ; 81f5e
 	ld b, $70
 	ld c, $5
 	ld hl, Sprites
-	ld de, PlayerMoveType
+	ld de, $c612
 	call .asm_81fb7
-	ld de, PlayerMoveAccuracy
+	ld de, $c613
 	call .asm_81fb7
-	ld de, PlayerMovePP
+	ld de, $c614
 	call .asm_81fb7
 	ret
 
@@ -64512,10 +63637,10 @@ Function8220f: ; 8220f
 	add hl, hl
 	ld de, Unkn1Pals
 	add hl, de
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0008
 	call CopyBytes
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call Function81ea5
 	pop af
 	ld [rSVBK], a
@@ -64561,7 +63686,7 @@ Function82236: ; 82236
 	ld a, [$cf64]
 	ld bc, $0008
 	call AddNTimes
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0008
 	call CopyBytes
 	pop af
@@ -64593,20 +63718,20 @@ Function822a3: ; 822a3
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld bc, $0008
 	call CopyBytes
 	hlcoord 1, 0
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call Function81ca7
 	hlcoord 6, 0
-	ld de, EnemyMovePower
+	ld de, $c60a
 	call Function81ca7
 	hlcoord 11, 0
-	ld de, EnemyMoveAccuracy
+	ld de, $c60c
 	call Function81ca7
 	hlcoord 16, 0
-	ld de, EnemyMoveEffectChance
+	ld de, $c60e
 	call Function81ca7
 	pop af
 	ld [rSVBK], a
@@ -64664,7 +63789,7 @@ Function82309: ; 82309
 	ld [$cf66], a
 	ld e, a
 	ld d, $0
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	add hl, de
 	add hl, de
 	ld e, l
@@ -64680,7 +63805,7 @@ Function82339: ; 82338
 	ld a, [hl]
 	and $40
 	jr nz, Function82387
-	ld hl, PlayerMoveType
+	ld hl, $c612
 	jr Function82368
 
 Function8234b: ; 8234b
@@ -64691,7 +63816,7 @@ Function8234b: ; 8234b
 	ld a, [hl]
 	and $40
 	jr nz, Function82387
-	ld hl, PlayerMoveAccuracy
+	ld hl, $c613
 	jr Function82368
 
 Function8235d: ; 8235d
@@ -64699,7 +63824,7 @@ Function8235d: ; 8235d
 	ld a, [hl]
 	and $40
 	jr nz, Function82387
-	ld hl, PlayerMovePP
+	ld hl, $c614
 
 Function82368: ; 82368
 	ld a, [$ffa9]
@@ -64740,21 +63865,21 @@ Function8238c: ; 8238c
 ; 82391
 
 Function82391: ; 82391
-	ld a, [PlayerMoveType]
+	ld a, [$c612]
 	and $1f
 	ld e, a
-	ld a, [PlayerMoveAccuracy]
+	ld a, [$c613]
 	and $7
 	sla a
 	swap a
 	or e
 	ld e, a
-	ld a, [PlayerMoveAccuracy]
+	ld a, [$c613]
 	and $18
 	sla a
 	swap a
 	ld d, a
-	ld a, [PlayerMovePP]
+	ld a, [$c614]
 	and $1f
 	sla a
 	sla a
@@ -64763,7 +63888,7 @@ Function82391: ; 82391
 	ld a, [$cf66]
 	ld c, a
 	ld b, $0
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	add hl, bc
 	add hl, bc
 	ld a, e
@@ -66025,13 +65150,13 @@ Unknown_84807: ; 84807
 ; known jump sources: 844f2 (21:44f2)
 Function84817: ; 84817 (21:4817)
 	xor a
-	ld [DefaultFlypoint], a ; $d002
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld [$d002], a
+	ld hl, TileMap
 	ld bc, $168
 	ld a, $7f
 	call ByteFill
 	call Function84a0e
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $b4
 	ld a, $7f
 	call ByteFill
@@ -66040,9 +65165,9 @@ Function84817: ; 84817 (21:4817)
 	hlcoord 4, 3
 	ld de, String_84865
 	call PlaceString
-	ld a, [MovementBuffer] ; $d007
-	ld bc, $9
-	ld hl, Box1Name ; $db75
+	ld a, [$d007]
+	ld bc, 9
+	ld hl, wBoxNames
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -66429,7 +65554,7 @@ Function864c3: ; 864c3
 	ld a, [$cf64]
 	cp $6
 	jr nc, .asm_864fb
-	ld hl, EnemyMoveEffect
+	ld hl, $c609
 	ld bc, $0010
 	call AddNTimes
 	ld a, [hl]
@@ -66462,8 +65587,7 @@ Function8650c: ; 8650c
 	call WaitBGMap
 	decoord 6, 5
 	ld c, $6
-	ld a, $49
-	call Predef
+	predef Functiond066e
 	ld c, $3c
 	call DelayFrames
 	and a
@@ -66501,7 +65625,7 @@ Function8653f: ; 8653f
 	push bc
 	ld a, c
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld c, l
 	ld b, h
@@ -66534,7 +65658,7 @@ Function8653f: ; 8653f
 	pop bc
 	push bc
 	ld a, c
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, $000b
 	call AddNTimes
 	ld bc, $000a
@@ -66570,21 +65694,18 @@ Function865b5: ; 865b5
 	ld a, [hli]
 	ld [$d124], a
 	ld hl, TempMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	ld hl, TileMap
 	ld bc, $0168
 	ld a, $7f
 	call ByteFill
 	ld de, $9310
-	ld a, $3d
-	call Predef
+	predef GetBackpic
 	ld a, $31
 	ld [$ffad], a
 	hlcoord 6, 6
 	ld bc, $0606
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld a, $d0
 	ld [hSCY], a
 	ld a, $90
@@ -66690,7 +65811,7 @@ Function86692: ; 86692
 	ld a, [$cf64]
 	cp $6
 	jr nc, .asm_866a7
-	ld hl, EnemyMoveEffect
+	ld hl, $c609
 	ld bc, $0010
 	call AddNTimes
 	ld a, [hl]
@@ -66706,7 +65827,7 @@ Function86692: ; 86692
 	call WhiteBGMap
 	pop hl
 	call Function86748
-	ld a, [EnemyMoveAnimation]
+	ld a, [$c608]
 	cp 200 + 1
 	jr c, .asm_866c6
 	ld de, String_866fc
@@ -66720,7 +65841,7 @@ Function86692: ; 86692
 	hlcoord 1, 2
 	call PlaceString
 	hlcoord 2, 2
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0103
 	call PrintNum
 	hlcoord 11, 2
@@ -66734,8 +65855,7 @@ Function86692: ; 86692
 	call Function32f9
 	decoord 6, 5
 	ld c, $6
-	ld a, $49
-	call Predef
+	predef Functiond066e
 	and a
 	ret
 ; 866fb
@@ -66765,7 +65885,7 @@ Function8671c: ; 8671c
 	ld a, [hl]
 	and a
 	jr z, .asm_86743
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0062
 	call CopyBytes
 	call CloseSRAM
@@ -66814,8 +65934,7 @@ Function86748: ; 86748
 	ld [CurPartySpecies], a
 	ld [$d265], a
 	ld hl, TempMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	xor a
 	ld [$c2c6], a
 	hlcoord 6, 5
@@ -66883,8 +66002,7 @@ Function86810: ; 86810
 	ld [$ffad], a
 	hlcoord 6, 6
 	ld bc, $0606
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld a, $d0
 	ld [hSCY], a
 	ld a, $90
@@ -66908,8 +66026,7 @@ Function86810: ; 86810
 	ld [$ffad], a
 	hlcoord 12, 5
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ld a, $c0
 	ld [hSCX], a
 	call WaitBGMap
@@ -67396,8 +66513,7 @@ MovePlayerPic: ; 88266
 	xor a
 	ld [hBGMapMode], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	xor a
 	ld [hBGMapThird], a
 	call WaitBGMap
@@ -67559,8 +66675,7 @@ GetChrisBackpic: ; 88830
 	ld b, BANK(ChrisBackpic)
 	ld de, $9310
 	ld c, $31
-	ld a, $40
-	call Predef
+	predef DecompressPredef
 	ret
 ; 88840
 
@@ -67626,8 +66741,7 @@ DrawIntroPlayerPic: ; 88874
 	ld [$ffad], a
 	hlcoord 6, 4
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	ret
 ; 888a9
 
@@ -68588,12 +67702,12 @@ Function8963d: ; 8963d
 ; 89655
 
 Function89655: ; 89655
-	ld hl, $ceca
-	ld de, $0014
-	ld a, $5
-	ld b, $4
+	ld hl, AttrMap + SCREEN_WIDTH * 12 + 1
+	ld de, SCREEN_WIDTH
+	ld a, 5
+	ld b, 4
 .asm_8965f
-	ld c, $12
+	ld c, 18
 	push hl
 .asm_89662
 	ld [hli], a
@@ -68895,7 +68009,7 @@ Function897af: ; 897af
 	xor a
 	ld [CurPartySpecies], a
 	ld de, $9370
-	callba Function5120d
+	callba GetTrainerPic
 	pop bc
 	ret
 ; 897d5
@@ -68927,8 +68041,7 @@ Function897d5: ; 897d5
 	ld [$ffad], a
 	hlcoord 12, 3
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	call Function8963d
 	pop bc
 	ret
@@ -73153,7 +72266,7 @@ Function8b2e9: ; 8b2e9
 
 Function8b31a: ; 8b31a
 	push bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	inc de
 	pop bc
@@ -74372,6 +73485,7 @@ Unknown_8ba1f: ; 8ba1f
 SECTION "bank23", ROMX, BANK[$23]
 
 Function8c000: ; 8c000
+Function8c000_2:
 	ret
 ; 8c001
 
@@ -79523,9 +78637,9 @@ Function8e862: ; 8e862 (23:6862)
 ; known jump sources: 8e865 (23:6865)
 Function8e86c: ; 8e86c (23:686c)
 	push bc
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	ld hl, PartyMon1Item ; $dce0
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	pop bc
 	ld a, [hl]
@@ -79584,9 +78698,9 @@ Function8e8b1: ; 8e8b1 (23:68b1)
 	ld a, $60
 	ld [hl], a
 	ld a, c
-	ld [EnemyMoveAnimation], a ; $c608 (aliases: EnemyMoveStruct)
+	ld [$c608], a
 	ld a, b
-	ld [EnemyMoveEffect], a ; $c609
+	ld [$c609], a
 	ret
 
 ; known jump sources: 8e898 (23:6898)
@@ -79599,7 +78713,7 @@ Function8e8d5: ; 8e8d5 (23:68d5)
 ; known jump sources: 8e8d8 (23:68d8)
 Function8e8df: ; 8e8df (23:68df)
 	push bc
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	ld hl, PartyMon1Item ; $dce0
 	ld bc, $30
 	call AddNTimes
@@ -79628,7 +78742,7 @@ Function8e8df: ; 8e8df (23:68df)
 Function8e908: ; 8e908 (23:6908)
 	ld a, [$c3b7]
 	push af
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	ld hl, PartySpecies ; $dcd8
 	ld e, a
 	ld d, $0
@@ -79637,7 +78751,7 @@ Function8e908: ; 8e908 (23:6908)
 	call ReadMonMenuIcon
 	ld [CurIcon], a ; $c3b6
 	call Function8e9db
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	add a
 	add a
 	add a
@@ -79656,7 +78770,7 @@ Function8e908: ; 8e908 (23:6908)
 ; known jump sources: 8e868 (23:6868), 8e8b4 (23:68b4), 8e8db (23:68db)
 Function8e936: ; 8e936 (23:6936)
 	push bc
-	ld a, [hConnectedMapWidth] ; $ff00+$b0
+	ld a, [$ffb0]
 	ld b, a
 	call Function8e94c
 	ld a, b
@@ -80360,7 +79474,7 @@ UnknownScript_0x90241: ; 0x90241
 	end
 ; 0x90255
 
-UnknownScript_0x90255: ; 0x90255
+UnknownScript_0x90255:: ; 0x90255
 	3callasm Function9025c
 	2jump UnknownScript_0x90241
 ; 0x9025c
@@ -83955,8 +83069,7 @@ HasVisitedSpawn: ; 91c50
 	ld hl, VisitedSpawns
 	ld b, CHECK_FLAG
 	ld d, 0
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	ld a, c
 	ret
 ; 91c5e
@@ -87322,7 +86435,7 @@ Functionb81ea: ; b81ea
 	jr nc, .asm_b8214
 	call Functionb83e5
 	jr nc, .asm_b8214
-	ld a, $8
+	ld a, BATTLETYPE_TREE
 	ld [BattleType], a
 	ld a, $1
 	ld [ScriptVar], a
@@ -91299,7 +90412,7 @@ Functioncc000: ; cc000
 	call PrintNum
 
 	hlcoord 11, 10
-	ld de, EnemyMonMaxHPHi
+	ld de, EnemyMonMaxHP
 	call PrintNum
 
 	ld hl, SwitchMonText
@@ -93241,7 +92354,7 @@ Functione1190: ; e1190
 	xor a
 	ld [hBGMapMode], a
 	call DisableLCD
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld bc, $01e0
 	xor a
 	call ByteFill
@@ -93923,7 +93036,7 @@ Functione16c7: ; e16c7
 ; e16e2
 
 Functione16e2: ; e16e2
-	ld bc, $0404
+	lb bc, 4, 4
 .asm_e16e5
 	push bc
 .asm_e16e6
@@ -95752,12 +94865,10 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	ld hl, TempMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	call GetBaseData
 	ld de, $9000
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	xor a
 	ld [$cb32], a
 	ld a, [CurPartySpecies]
@@ -96011,7 +95122,7 @@ Functione2c6e: ; e2c6e (38:6c6e)
 	ld a, [hl]
 	and a
 	jr z, .asm_e2cee
-	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMon1Nickname)
+	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMonNicknames)
 	ld bc, $b
 	ld a, e
 	call AddNTimes
@@ -96402,8 +95513,7 @@ Functione2f7e: ; e2f7e (38:6f7e)
 	call Functione2fd6
 	ld a, $3
 	ld [MonType], a ; $cf5f
-	ld a, $25
-	call Predef
+	predef StatsScreenInit
 	call Functione33e8
 	call MaxVolume
 	ret
@@ -96431,8 +95541,7 @@ Functione2f95: ; e2f95 (38:6f95)
 	ld [CurPartySpecies], a ; $d108
 	ld [CurSpecies], a ; $cf60
 	ld hl, TempMonDVs ; $d123
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	call GetBaseData
 	call Functione2fd6
 .asm_e2fd0
@@ -96474,9 +95583,9 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 .asm_e3020
 	ld hl, PartySpecies ; $dcd8
 	call Functione3357
-	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMon1Nickname)
+	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMonNicknames)
 	call Functione3363
-	ld hl, PartyMonOT ; $ddff (aliases: PartyMon1OT)
+	ld hl, PartyMonOT ; $ddff (aliases: PartyMonOT)
 	call Functione3376
 	ld hl, PartyMons ; $dcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, $30
@@ -96519,13 +95628,12 @@ Functione307c: ; e307c (38:707c)
 	ld hl, $cb2a
 	add [hl]
 	ld [CurPartyMon], a ; $d109
-	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMon1Nickname)
+	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMonNicknames)
 	ld a, [CurPartyMon] ; $d109
 	call GetNick
 	ld a, $1
 	ld [$d10b], a
-	ld a, $8
-	call Predef
+	predef Functiondb3f
 	jr c, .asm_e30e4
 	xor a
 	ld [$d10b], a
@@ -96580,8 +95688,7 @@ Functione30fa: ; e30fa (38:70fa)
 	call CloseSRAM
 	xor a
 	ld [$d10b], a
-	ld a, $8
-	call Predef
+	predef Functiondb3f
 	jr c, .asm_e316a
 	ld a, $1
 	ld [$d10b], a
@@ -96806,14 +95913,14 @@ Functione32b0: ; e32b0
 	ld [CurPartyMon], a
 	ld a, $1
 	call GetSRAMBank
-	ld hl, BoxSpecies
+	ld hl, sBoxSpecies
 	call Functione3357
-	ld hl, BoxMon1Nickname
+	ld hl, sBoxMonNicknames
 	call Functione3363
-	ld hl, BoxMon1OT
+	ld hl, sBoxMonOT
 	call Functione3376
-	ld hl, BoxMon1Species
-	ld bc, $0020
+	ld hl, sBoxMons
+	ld bc, sBoxMon1End - sBoxMon1
 	call Functione3389
 	call CloseSRAM
 	callba Function5088b
@@ -96843,12 +95950,12 @@ Functione3316: ; e3316
 	ld [CurPartyMon], a
 	ld hl, PartySpecies
 	call Functione3357
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call Functione3363
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call Functione3376
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functione3389
 	xor a
 	ld [$d10b], a
@@ -97077,8 +96184,8 @@ Functione3619: ; e3619
 
 ; known jump sources: e36e7 (38:76e7), e375d (38:775d), e376e (38:776e)
 Functione3626: ; e3626 (38:7626)
-	ld bc, $9
-	ld hl, Box1Name ; $db75
+	ld bc, 9
+	ld hl, wBoxNames
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -97111,7 +96218,10 @@ String_e3663: ; e3663
 ; e3668
 
 String_e3668: ; e3668
-	db "/20@"
+	db "/"
+	db "0" + MONS_PER_BOX / 10
+	db "0" + MONS_PER_BOX % 10
+	db "@"
 ; e366c
 
 ; known jump sources: e3717 (38:7717)
@@ -101138,7 +100248,7 @@ Functionfbb32: ; fbb32
 	jr nz, .asm_fbba4
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	push hl
 	ld bc, $0015
@@ -101169,7 +100279,7 @@ Functionfbb32: ; fbb32
 	ld [de], a
 	inc de
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call SkipNames
 	call CopyBytes
 	ld a, $3
@@ -101284,8 +100394,7 @@ Functionfbd77: ; fbd77 (3e:7d77)
 	ld a, $31
 .asm_fbd8a
 	ld [$FF00+$ad], a
-	ld a, $13
-	call Predef
+	predef FillBox
 Functionfbd91: ; fbd91 (3e:7d91)
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -101596,8 +100705,7 @@ Functionfcc07: ; fcc07
 	push af
 	ld a, [$cf64]
 	push af
-	ld a, $1e
-	call Predef
+	predef Function28f24
 	pop af
 	ld [$cf64], a
 	pop af
@@ -101639,8 +100747,7 @@ TradeFlagAction: ; fcc4a
 	ld hl, $d960
 	ld a, [$cf63]
 	ld c, a
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	ld a, c
 	and a
 	ret
@@ -101675,7 +100782,7 @@ Functionfcc63: ; fcc63
 	call Functionfcde8
 	call Functionfcdf4
 
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld bc, $000b
 	call Functionfcdd7
 	ld de, $c6f2
@@ -101727,8 +100834,7 @@ Functionfcc63: ; fcc63
 	ld [MonType], a
 	ld [$d10b], a
 	callab Functione039
-	ld a, PREDEF_ADDPARTYMON
-	call Predef
+	predef Functiond88c
 
 	ld e, TRADE_DIALOG
 	call GetTradeAttribute
@@ -101745,7 +100851,7 @@ Functionfcc63: ; fcc63
 	ld de, $c70e
 	call Functionfcdf4
 
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	call Functionfcdde
 	ld hl, $c70e
@@ -101760,7 +100866,7 @@ Functionfcc63: ; fcc63
 	ld de, $c719
 	call Functionfcdf4
 
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld bc, $000b
 	call Functionfcdde
 	ld hl, $c724
@@ -102478,7 +101584,7 @@ Function100063: ; 100063
 	call ByteFill
 	xor a
 	ld hl, $c300
-	ld bc, Start
+	ld bc, $100
 	call ByteFill
 	ld a, [rIE]
 	ld [BGMapBuffer], a
@@ -103852,11 +102958,11 @@ INCBIN "baserom.gbc",$100b0a,$100b12 - $100b0a
 Function100b12: ; 100b12
 	call Function100dd8
 	ret c
-	ld hl, $4f2c
-	ld a, $9
+	ld hl, BattleMenuDataHeader
+	ld a, BANK(BattleMenuDataHeader)
 	ld de, LoadMenuDataHeader
 	call FarCall_de
-	ld a, $9
+	ld a, BANK(BattleMenuDataHeader)
 	ld [$cf94], a
 	ld a, [$d0d2]
 	ld [$cf88], a
@@ -103989,8 +103095,8 @@ Function100bc2: ; 100bc2
 	ld a, [$cfa9]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, BattleMonPPMove1
+	ld b, 0
+	ld hl, BattleMonPP
 	add hl, bc
 	ld a, [hl]
 	and $3f
@@ -104004,8 +103110,8 @@ Function100bc2: ; 100bc2
 	ld a, [$cfa9]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, BattleMonMove1
+	ld b, 0
+	ld hl, BattleMonMoves
 	add hl, bc
 	ld a, [hl]
 	ld [CurPlayerMove], a
@@ -104027,23 +103133,22 @@ Function100bc2: ; 100bc2
 
 Function100c74: ; 100c74
 	hlcoord 0, 8
-	ld b, $8
-	ld c, $8
+	ld b, 8
+	ld c, 8
 	call TextBox
-	ld hl, BattleMonMove1
+	ld hl, BattleMonMoves
 	ld de, $d25e
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld a, $28
+	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 10
-	ld a, $20
-	call Predef
+	predef ListMoves
 	ret
 ; 100c98
 
 Function100c98: ; 100c98
-	ld de, $4cad
+	ld de, Unknown_100cad
 	call Function1bb1
 	ld a, [$d0eb]
 	inc a
@@ -104054,6 +103159,7 @@ Function100c98: ; 100c98
 	ret
 ; 100cad
 
+Unknown_100cad: ; 100cad
 INCBIN "baserom.gbc",$100cad,$100cb5 - $100cad
 
 
@@ -104584,10 +103690,10 @@ Function1020ea: ; 1020ea
 	bit 2, [hl]
 	jr nz, .asm_102110
 	call Function10218d
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	bit 4, [hl]
 	jr z, .asm_102110
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	bit 2, [hl]
 	jr nz, .asm_102110
 	call Function102112
@@ -104607,7 +103713,7 @@ Function102112: ; 102112
 	ld c, $28
 .asm_10211c
 	push hl
-	ld de, PlayerMoveAnimation
+	ld de, $c60f
 	ld b, $1f
 .asm_102122
 	ld a, [de]
@@ -104666,7 +103772,7 @@ Function102142: ; 102142
 ; 102180
 
 Function102180: ; 102180
-	ld hl, EnemyMoveEffect
+	ld hl, $c609
 	ld de, StringBuffer2
 	ld bc, $000b
 	call CopyBytes
@@ -104675,18 +103781,18 @@ Function102180: ; 102180
 
 Function10218d: ; 10218d
 	ld hl, $dc00
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0026
 	ld a, $5
 	call FarCopyWRAM
-	ld de, EnemyMoveEffect
+	ld de, $c609
 	ret
 ; 10219f
 
 Function10219f: ; 10219f
 	call FadeToMenu
 	call Function10218d
-	ld de, EnemyMoveEffect
+	ld de, $c609
 	callba Function8ac4e
 	call Functiona36
 	call PlayClickSFX
@@ -104697,7 +103803,7 @@ Function10219f: ; 10219f
 Function1021b8: ; 1021b8
 	call FadeToMenu
 	call Function10218d
-	ld de, PlayerMoveAnimation
+	ld de, $c60f
 	callba Function8ac70
 	ld a, c
 	ld [StringBuffer1], a
@@ -105289,10 +104395,10 @@ Function104263: ; 104263 (41:4263)
 
 ; known jump sources: 104261 (41:4261)
 asm_104265: ; 104265 (41:4265)
-	ld a, [hConnectionStripLength] ; $ff00+$af
+	ld a, [$ffaf]
 	push af
 	ld a, c
-	ld [hConnectionStripLength], a ; $ff00+$af
+	ld [$ffaf], a
 	ld c, $12
 .asm_10426d
 	ld b, $14
@@ -105302,7 +104408,7 @@ asm_104265: ; 104265 (41:4265)
 	ld [hli], a
 	dec b
 	jr nz, .asm_10426f
-	ld a, [hConnectionStripLength] ; $ff00+$af
+	ld a, [$ffaf]
 	ld b, $c
 .asm_104279
 	ld [hli], a
@@ -105311,7 +104417,7 @@ asm_104265: ; 104265 (41:4265)
 	dec c
 	jr nz, .asm_10426d
 	pop af
-	ld [hConnectionStripLength], a ; $ff00+$af
+	ld [$ffaf], a
 	ret
 
 
@@ -105366,7 +104472,7 @@ Function1042b2:: ; 1042b2
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, Start
+	ld bc, $100
 	add hl, bc
 	pop bc
 	ld a, c
@@ -106122,7 +105228,7 @@ Function104a95: ; 104a95 (41:4a95)
 	ld a, [$FF00+$bb]
 	cp $2
 	jr z, Function104b22
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	jr nz, .asm_104ac8
@@ -106200,7 +105306,7 @@ Function104b22: ; 104b22 (41:4b22)
 
 ; known jump sources: 104b04 (41:4b04), 104b2e (41:4b2e)
 Function104b40: ; 104b40 (41:4b40)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -106211,14 +105317,14 @@ Function104b49: ; 104b49 (41:4b49)
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret nz
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	cp $96
 	jp nz, Function104d32
 	ld a, $90
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	call Function104d38
 	ret nz
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -106241,8 +105347,8 @@ Function104b49: ; 104b49 (41:4b49)
 ; known jump sources: 104b10 (41:4b10), 104b22 (41:4b22)
 Function104b88: ; 104b88 (41:4b88)
 	ld a, $96
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -106252,7 +105358,7 @@ Function104b88: ; 104b88 (41:4b88)
 	ret nz
 	call Function104d43
 	ret nz
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -106260,7 +105366,7 @@ Function104b88: ; 104b88 (41:4b88)
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret nz
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	cp $90
 	jp nz, Function104d32
 	call Function104d38
@@ -106361,7 +105467,7 @@ Function104c2d: ; 104c2d (41:4c2d)
 
 ; known jump sources: 104c4e (41:4c4e), 104c78 (41:4c78)
 Function104c8a: ; 104c8a (41:4c8a)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -106369,14 +105475,14 @@ Function104c8a: ; 104c8a (41:4c8a)
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret nz
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	cp $3c
 	jp nz, Function104d32
 	swap a
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
 	call Function104d38
 	ret nz
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -106399,8 +105505,8 @@ Function104c8a: ; 104c8a (41:4c8a)
 ; known jump sources: 104c5a (41:4c5a), 104c6c (41:4c6c)
 Function104cd2: ; 104cd2 (41:4cd2)
 	ld a, $3c
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld [$ffb3], a
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -106410,7 +105516,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	ret nz
 	call Function104d43
 	ret nz
-	ld hl, hPastLeadingZeroes ; $ffb3 (aliases: hDividend, hProduct)
+	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -106418,7 +105524,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret nz
-	ld a, [hPastLeadingZeroes] ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [$ffb3]
 	swap a
 	cp $3c
 	jp nz, Function104d32
@@ -107013,7 +106119,7 @@ Function105069: ; 105069 (41:5069)
 	ld d, $0
 	ld b, $2
 	ld hl, $abf0
-	ld a, $3
+	predef_id FlagPredef
 	push hl
 	push bc
 	call Predef
@@ -107025,8 +106131,7 @@ Function105069: ; 105069 (41:5069)
 	ret nz
 	call Function105106
 	ld b, $1
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	call CloseSRAM
 	xor a
 	ret
@@ -107040,8 +106145,7 @@ Function105091: ; 105091 (41:5091)
 	ld d, $0
 	ld b, $2
 	ld hl, $abf0
-	ld a, $3
-	call Predef
+	predef FlagPredef
 	ld a, c
 	and a
 	pop bc
@@ -107623,45 +106727,37 @@ DisplayUsedMoveText: ; 105db0
 
 
 UsedMoveText: ; 105db9
-
 ; this is a stream of text and asm from 105db9 to 105ef6
 
-; print actor name
 	text_jump _ActorNameText
 	start_asm
 
-; ????
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .start
 	
-; append used move list
-	ld a, [PlayerMoveAnimation]
+	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	call UpdateUsedMoves
 	
 .start
-; get address for last move
-	ld a, $13 ; last move
-	call _GetBattleVar
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVarAddr
 	ld d, h
 	ld e, l
 	
-; get address for last counter move
-	ld a, $11
-	call _GetBattleVar
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
+	call GetBattleVarAddr
 	
-; get move animation (id)
-	ld a, $c ; move animation
+	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld [$d265], a
 	
-; check actor ????
 	push hl
 	callba Function34548
 	pop hl
 	jr nz, .grammar
 	
-; update last move
+	; update last move
 	ld a, [$d265]
 	ld [hl], a
 	ld [de], a
@@ -107673,13 +106769,13 @@ UsedMoveText: ; 105db9
 	
 ; everything except 'instead' made redundant in localization
 
-; check obedience
+	; check obedience
 	ld a, [AlreadyDisobeyed]
 	and a
 	ld hl, UsedMove2Text
 	ret nz
 	
-; check move grammar
+	; check move grammar
 	ld a, [$d265]
 	cp $3
 	ld hl, UsedMove2Text
@@ -108246,7 +107342,7 @@ Function106050: ; 106050
 
 Function106051: ; 106051
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	ret z
 	ld hl, $a01b
 	jp Function10611d
@@ -108259,7 +107355,7 @@ Function10605d: ; 10605d
 
 Function10605e: ; 10605e
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	ret z
 	ld hl, $a01e
 	jp Function10611d
@@ -111517,33 +110613,33 @@ Function119451: ; 119451 (46:5451)
 Function119471: ; 119471 (46:5471)
 	push af
 	ld a, [hli]
-	ld [EnemyMoveAnimation], a ; $c608 (aliases: EnemyMoveStruct)
+	ld [$c608], a
 	ld a, [hli]
-	ld [EnemyMoveType], a ; $c60b
+	ld [$c60b], a
 	ld a, [hli]
-	ld [EnemyMoveEffect], a ; $c609
+	ld [$c609], a
 	ld a, [hli]
-	ld [EnemyMovePower], a ; $c60a
+	ld [$c60a], a
 	ld a, [hli]
-	ld [EnemyMoveAccuracy], a ; $c60c
+	ld [$c60c], a
 	ld a, [hli]
-	ld [EnemyMovePP], a ; $c60d
+	ld [$c60d], a ; $c60d
 	push hl
-	ld a, [EnemyMoveAnimation] ; $c608 (aliases: EnemyMoveStruct)
+	ld a, [$c608]
 	cp $ff
 	jr z, .asm_1194a7
-	ld a, [EnemyMovePower] ; $c60a
+	ld a, [$c60a]
 	cp $ff
 	jr z, .asm_1194a7
-	ld a, [EnemyMoveEffect] ; $c609
+	ld a, [$c609]
 	cp $ff
 	jr nz, .asm_1194a7
 	call Function119584
 	jr c, .asm_11950c
 	jr .asm_1194f0
 .asm_1194a7
-	ld hl, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
-	ld de, EnemyMoveType ; $c60b
+	ld hl, $c608
+	ld de, $c60b
 	ld c, $3
 .asm_1194af
 	ld a, [de]
@@ -111559,7 +110655,7 @@ Function119471: ; 119471 (46:5471)
 .asm_1194bc
 	ld c, $3
 	ld hl, $cd49
-	ld de, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld de, $c608
 .asm_1194c4
 	ld a, [de]
 	inc de
@@ -111576,7 +110672,7 @@ Function119471: ; 119471 (46:5471)
 .asm_1194d5
 	ld c, $3
 	ld hl, $cd49
-	ld de, EnemyMoveType ; $c60b
+	ld de, $c60b
 .asm_1194dd
 	ld a, [de]
 	inc de
@@ -111597,7 +110693,7 @@ Function119471: ; 119471 (46:5471)
 .asm_1194f3
 	ld c, $3
 	ld hl, $cd49
-	ld de, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld de, $c608
 .asm_1194fb
 	ld a, [de]
 	inc de
@@ -111616,9 +110712,9 @@ Function119471: ; 119471 (46:5471)
 	ld a, $1
 	ld [$cd50], a
 	ld a, l
-	ld [EnemyMoveAnimation], a ; $c608 (aliases: EnemyMoveStruct)
+	ld [$c608], a
 	ld a, h
-	ld [EnemyMoveEffect], a ; $c609
+	ld [$c609], a
 	ld de, $cd69
 	ld c, $10
 	ld b, $0
@@ -111698,9 +110794,9 @@ Function119471: ; 119471 (46:5471)
 
 ; known jump sources: 1194a0 (46:54a0)
 Function119584: ; 119584 (46:5584)
-	ld a, [EnemyMoveAnimation] ; $c608 (aliases: EnemyMoveStruct)
+	ld a, [$c608]
 	ld b, a
-	ld a, [EnemyMoveType] ; $c60b
+	ld a, [$c60b]
 	ld c, a
 	cp b
 	jr c, .asm_11959c
@@ -111717,9 +110813,9 @@ Function119584: ; 119584 (46:5584)
 	cp b
 	jr c, .asm_119595
 .asm_1195a2
-	ld a, [EnemyMovePower] ; $c60a
+	ld a, [$c60a]
 	ld b, a
-	ld a, [EnemyMovePP] ; $c60d
+	ld a, [$c60d] ; $c60d
 	ld c, a
 	cp b
 	jr c, .asm_1195ba
@@ -111764,9 +110860,9 @@ Function1195c4: ; 1195c4 (46:55c4)
 	call CopyBytes
 	xor a
 	ld [de], a
-	ld a, [EnemyMoveAnimation] ; $c608 (aliases: EnemyMoveStruct)
+	ld a, [$c608]
 	ld l, a
-	ld a, [EnemyMoveEffect] ; $c609
+	ld a, [$c609]
 	ld h, a
 	ld de, $cd69
 	ld bc, $10
@@ -111938,11 +111034,11 @@ Function119d93: ; 119d93 (46:5d93)
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
 	ld a, [$cd4f]
-	ld c, $a
+	ld c, 10
 	call SimpleMultiply
 	ld hl, $cd50
 	ld [hl], a
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	ld de, PartyMon1Level ; $dcfe
 	ld a, [PartyCount] ; $dcd7
 .asm_119daf
@@ -111980,28 +111076,28 @@ Function119dd1: ; 119dd1 (46:5dd1)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, [$cd4f]
-	cp $7
+	cp 70 / 10
 	jr nc, .asm_119e08
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
 	ld hl, PartyMon1Level ; $dcfe
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	ld de, PartySpecies ; $dcd8
 	ld a, [PartyCount] ; $dcd7
 .asm_119deb
 	push af
 	ld a, [de]
-	cp $96
+	cp MEWTWO
 	jr z, .asm_119dfd
-	cp $97
+	cp MEW
 	jr z, .asm_119dfd
-	cp $f9
+	cp LUGIA
 	jr c, .asm_119e02
-	cp $fc
+	cp NUM_POKEMON + 1
 	jr nc, .asm_119e02
 .asm_119dfd
 	ld a, [hl]
-	cp $46
+	cp 70
 	jr c, .asm_119e0d
 .asm_119e02
 	add hl, bc
@@ -112021,7 +111117,7 @@ Function119dd1: ; 119dd1 (46:5dd1)
 	call GetPokemonName
 	ld hl, StringBuffer1 ; $d073
 	ld de, $cd49
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ld a, $a
 	ld [$cf66], a
@@ -112355,7 +111451,7 @@ Function11ad1b: ; 11ad1b
 	ld a, [$cfa9]
 	ld [$cd82], a
 	dec a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	ld a, $10
 	ld [$c3b7], a
 	ld hl, Function8e83f
@@ -112591,13 +111687,13 @@ Function11b5e8: ; 11b5e8
 	ld a, $0
 	call GetSRAMBank
 	ld hl, $d4ba
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0004
 	call CopyBytes
 	call CloseSRAM
 	ld a, $5
 	call GetSRAMBank
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld de, $b08c
 	ld bc, $0004
 	call CopyBytes
@@ -112651,7 +111747,7 @@ Function11b65a: ; 11b65a
 INCBIN "baserom.gbc",$11b669,$11b7e5 - $11b669
 
 Function11b7e5: ; 11b7e5
-	ld a, [EnemyMovePP]
+	ld a, [$c60d]
 	ld [PlayerLightScreenCount], a
 	ld [CurPartySpecies], a
 	ld a, [$cd81]
@@ -112662,16 +111758,16 @@ Function11b7e5: ; 11b7e5
 	call CopyBytes
 	ld a, $50
 	ld [de], a
-	ld a, [PlayerMoveAccuracy]
+	ld a, [$c613]
 	ld [$c731], a
-	ld a, [PlayerMovePP]
+	ld a, [$c614]
 	ld [$c732], a
 	ld hl, $c622
 	ld a, [hli]
 	ld [$c72f], a
 	ld a, [hl]
 	ld [$c730], a
-	ld bc, EnemyMovePP
+	ld bc, $c60d
 	callba GetCaughtGender
 	ld a, c
 	ld [$c733], a
@@ -112821,7 +111917,7 @@ Function11b93b: ; 11b93b
 	xor a
 	ld [$a800], a
 	ld hl, $a823
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $008f
 	call CopyBytes
 	call CloseSRAM
@@ -112874,7 +111970,7 @@ Function11b98f: ; 11b98f
 	ld a, $ff
 	ld [bc], a
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, e
 	ld [$cd2a], a
 .asm_11b9ba
@@ -112888,9 +111984,9 @@ Function11b98f: ; 11b98f
 	ld l, a
 	ld a, [$cd23]
 	ld h, a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	ld bc, $000b
 	ld a, [$cd2a]
 .asm_11b9d8
@@ -112908,7 +112004,7 @@ Function11b98f: ; 11b98f
 	call CopyBytes
 	ld a, $50
 	ld [de], a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, $000b
 	ld a, [$cd2a]
 .asm_11b9f9
@@ -113187,7 +112283,7 @@ Function11c0c6: ; 11c0c6
 .asm_11c123
 	sub e
 	ld [$cf64], a
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 .asm_11c12a
 	ld a, [de]
 	cp $50
@@ -113214,7 +112310,7 @@ Function11c0c6: ; 11c0c6
 
 Function11c14a: ; 11c14a
 	ld c, $0
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 .asm_11c14f
 	ld a, [hli]
 	cp $50
@@ -113229,7 +112325,7 @@ Function11c156: ; 11c156
 	ld a, $1
 	ld [rSVBK], a
 	ld a, $50
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld bc, $000b
 	call ByteFill
 	ld a, d
@@ -113258,9 +112354,9 @@ Function11c156: ; 11c156
 	add hl, bc
 	ld bc, $0005
 .asm_11c18f
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call CopyBytes
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	pop af
 	ld [rSVBK], a
 	ret
@@ -113338,7 +112434,7 @@ Function11c1ca: ; 11c1ca
 	ld [rSVBK], a
 	ld hl, PlayerSDefLevel
 	ld de, LYOverrides
-	ld bc, Start
+	ld bc, $100
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -115882,8 +114978,7 @@ Function16d6e1: ; 16d6e1
 	hlcoord 4, 10
 	ld b, $1
 	ld c, $a
-	ld a, $10
-	call Predef
+	predef Function28eef
 	hlcoord 5, 11
 	ld de, $5701
 	call PlaceString
@@ -116098,7 +115193,7 @@ Function170121: ; 170121
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a948
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $00f6
 	call CopyBytes
 	call CloseSRAM
@@ -116617,21 +115712,21 @@ Function170923: ; 170923
 Function17093c: ; 17093c (5c:493c)
 	xor a
 	ld [ScriptVar], a ; $c2dd
-	ld a, $81
+	ld a, EGG_TICKET
 	ld [CurItem], a ; $d106
 	ld hl, NumItems ; $d892 (aliases: TMsHMsEnd)
 	call CheckItem
 	ret nc
 	ld a, [PartyCount] ; $dcd7
-	ld b, $0
+	ld b, 0
 	ld c, a
 	ld hl, PartySpecies ; $dcd8
 .asm_170955
 	ld a, [hli]
-	cp $fd
+	cp EGG
 	jr nz, .asm_17099f
 	push hl
-	ld hl, PartyMonOT ; $ddff (aliases: PartyMon1OT)
+	ld hl, PartyMonOT ; $ddff (aliases: PartyMonOT)
 	ld de, $6
 	ld a, b
 	and a
@@ -116641,7 +115736,7 @@ Function17093c: ; 17093c (5c:493c)
 	dec a
 	jr nz, .asm_170965
 .asm_170969
-	ld de, $49a4
+	ld de, String_1709a4
 	ld a, $6
 .asm_17096e
 	push af
@@ -116661,7 +115756,7 @@ Function17093c: ; 17093c (5c:493c)
 	ld [hli], a
 	ld [hli], a
 	pop hl
-	ld a, $81
+	ld a, EGG_TICKET
 	ld [CurItem], a ; $d106
 	ld a, $1
 	ld [$d10c], a
@@ -116672,6 +115767,7 @@ Function17093c: ; 17093c (5c:493c)
 	ld a, $1
 	ld [ScriptVar], a ; $c2dd
 	ret
+
 .asm_17099d
 	pop af
 	pop hl
@@ -116682,7 +115778,8 @@ Function17093c: ; 17093c (5c:493c)
 	ret
 ; 1709a4 (5c:49a4)
 
-INCBIN "baserom.gbc",$1709a4,$1709aa - $1709a4
+String_1709a4: ; 1709a4
+	db "なぞナゾ@@"
 
 ; no known jump sources
 Function1709aa: ; 1709aa (5c:49aa)
@@ -116802,7 +115899,7 @@ Function170b16: ; 170b16 (5c:4b16)
 	call GetSRAMBank
 	ld a, [$b2fb]
 	call CloseSRAM
-	ld c, $a
+	ld c, 10
 	call SimpleDivide
 	ld a, b
 	ld [$cd4f], a
@@ -117028,10 +116125,10 @@ Function171ac9: ; 171ac9 (5c:5ac9)
 ; no known jump sources
 Function171ad7: ; 171ad7 (5c:5ad7)
 	xor a
-	ld hl, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld hl, $c608
 	ld bc, $66
 	call ByteFill
-	ld de, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld de, $c608
 	ld a, $c
 	call Function3e32
 	jp Function171c66
@@ -117061,7 +116158,7 @@ Function171aec: ; 171aec (5c:5aec)
 	jr nz, .asm_171b01
 	hlcoord 2, 7
 	ld a, $3
-	ld de, EnemyMoveAnimation ; $c608 (aliases: EnemyMoveStruct)
+	ld de, $c608
 .asm_171b1b
 	push af
 	push hl
@@ -117428,7 +116525,7 @@ Function178000:
 	callba DrawPlayerHUD
 	ld hl, PlayerHPPal ; $cd99
 	call SetHPPal
-	callba Function3e043
+	callba DrawEnemyHUD
 	ld hl, EnemyHPPal ; $cd9a
 	call SetHPPal
 	callba Function3ee27
@@ -117663,8 +116760,7 @@ Function17d1f1: ; 17d1f1
 	dec a
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	callab Functionfba18
 	ld a, [$def4]
 	and a
@@ -117843,7 +116939,7 @@ Function17d370: ; 17d370
 	callba Function104061
 	call DisableLCD
 	ld hl, $8ee0
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0010
 	call CopyBytes
 	ld a, $1
@@ -117856,7 +116952,7 @@ Function17d370: ; 17d370
 	ld hl, $97f0
 	ld bc, $0010
 	call ByteFill
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld de, $8ee0
 	ld bc, $0010
 	call CopyBytes
@@ -117919,7 +117015,7 @@ Function17d60b: ; 17d60b
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b1d3
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0020
 	call CopyBytes
 	ld a, [$b1b1]
@@ -117954,7 +117050,7 @@ Function17d60b: ; 17d60b
 	ld [$cd49], a
 	push hl
 	push de
-	ld hl, EnemyMoveAnimation
+	ld hl, $c608
 	ld e, b
 	ld d, $0
 	add hl, de
@@ -118198,7 +117294,7 @@ Function17f0f8: ; 17f0f8
 	ld a, [$cd55]
 	ld d, a
 	add hl, de
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld a, [$cd56]
 	ld c, a
 	ld b, $0
@@ -118206,7 +117302,7 @@ Function17f0f8: ; 17f0f8
 	ld a, $50
 	ld [de], a
 	pop hl
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call PlaceString
 	ld a, c
 	ld [$cd52], a
@@ -118298,10 +117394,10 @@ Function17f181: ; 17f181
 	add hl, de
 	ld a, [hl]
 	ld c, a
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	callba Function48c63
 	pop hl
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call PlaceString
 	ld a, c
 	ld [$cd52], a
@@ -118533,13 +117629,13 @@ Function17f2ff: ; 17f2ff
 	ld a, $1
 	ld [rSVBK], a
 	ld hl, PlayerName
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0006
 	call CopyBytes
 	ld a, $4
 	ld [rSVBK], a
 	pop hl
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call PlaceString
 	ld a, c
 	ld [$cd52], a
@@ -118580,10 +117676,10 @@ Function17f334: ; 17f334
 .asm_17f35d
 	ld c, a
 	call CloseSRAM
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	callba Function48c63
 	pop hl
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	call PlaceString
 	ld a, c
 	ld [$cd52], a
@@ -118797,7 +117893,7 @@ Function17f44f: ; 17f44f
 	ld l, a
 	ld a, [$cd56]
 	ld h, a
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld a, [$cd57]
 	ld c, a
 	ld b, $0
@@ -118815,7 +117911,7 @@ Function17f44f: ; 17f44f
 	call GetSRAMBank
 
 .asm_17f4b7
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	pop hl
 	push hl
 	ld a, [$cd57]
@@ -119445,7 +118541,7 @@ Function1dc381: ; 1dc381
 	ld a, [CurPartySpecies]
 	ld [$d265], a
 	ld [CurSpecies], a
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	call Function1dc50e
 	hlcoord 8, 4
 	call PlaceString
@@ -119465,7 +118561,7 @@ Function1dc381: ; 1dc381
 	hlcoord 1, 9
 	ld de, String1dc550
 	call PlaceString
-	ld hl, PartyMon1OT
+	ld hl, PartyMonOT
 	call Function1dc50e
 	hlcoord 4, 9
 	call PlaceString
@@ -119480,17 +118576,16 @@ Function1dc381: ; 1dc381
 	ld de, String1dc554
 	call PlaceString
 	hlcoord 7, 14
-	ld a, [TempMonMove1]
+	ld a, [TempMonMoves + 0]
 	call Function1dc51a
 	call Function1dc52c
 	ld hl, TempMonDVs
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	ld hl, $c2c6
 	xor a
 	ld [hl], a
 	ld a, [CurPartySpecies]
-	cp $c9
+	cp UNOWN
 	jr z, .asm_1dc469
 	inc [hl]
 
@@ -119523,22 +118618,22 @@ Function1dc47b: ; 1dc47b
 	hlcoord 0, 1
 	call CopyBytes
 	hlcoord 7, 0
-	ld a, [TempMonMove2]
+	ld a, [TempMonMoves + 1]
 	call Function1dc51a
 	hlcoord 7, 2
-	ld a, [TempMonMove3]
+	ld a, [TempMonMoves + 2]
 	call Function1dc51a
 	hlcoord 7, 4
-	ld a, [TempMonMove4]
+	ld a, [TempMonMoves + 3]
 	call Function1dc51a
 	hlcoord 7, 7
 	ld de, String1dc55d
 	call PlaceString
 	hlcoord 16, 7
-	ld de, TempMonAtk
+	ld de, TempMonAttack
 	call Function1dc507
 	hlcoord 16, 9
-	ld de, TempMonDef
+	ld de, TempMonDefense
 	call Function1dc507
 	hlcoord 16, 11
 	ld de, TempMonSpclAtk
@@ -119547,7 +118642,7 @@ Function1dc47b: ; 1dc47b
 	ld de, TempMonSpclDef
 	call Function1dc507
 	hlcoord 16, 15
-	ld de, TempMonSpd
+	ld de, TempMonSpeed
 	call Function1dc507
 	call WaitBGMap
 	ld b, $3

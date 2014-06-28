@@ -464,7 +464,7 @@ VoltorbExplodingTrap: ; 0x6ca34
 	cry VOLTORB
 	special $0031
 	setlasttalked $ff
-	writecode $3, $9
+	writecode $3, BATTLETYPE_TRAP
 	loadpokedata VOLTORB, 23
 	startbattle
 	end
@@ -474,7 +474,7 @@ GeodudeExplodingTrap: ; 0x6ca47
 	cry GEODUDE
 	special $0031
 	setlasttalked $ff
-	writecode $3, $9
+	writecode $3, BATTLETYPE_TRAP
 	loadpokedata GEODUDE, 21
 	startbattle
 	end
@@ -484,7 +484,7 @@ KoffingExplodingTrap: ; 0x6ca5a
 	cry KOFFING
 	special $0031
 	setlasttalked $ff
-	writecode $3, $9
+	writecode $3, BATTLETYPE_TRAP
 	loadpokedata KOFFING, 21
 	startbattle
 	end

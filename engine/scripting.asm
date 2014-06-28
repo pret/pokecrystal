@@ -1531,8 +1531,7 @@ Script_startbattle: ; 0x97436
 ; script command 0x5f
 
 	call Function2879
-	ld a, PREDEF_START_BATTLE
-	call Predef
+	predef StartBattle
 	ld a, [$d0ee]
 	and $3f
 	ld [ScriptVar], a
@@ -1545,7 +1544,7 @@ Script_catchtutorial: ; 0x97447
 ;     byte (SingleByteParam)
 
 	call GetScriptByte
-	ld [$d230], a
+	ld [BattleType], a
 	call Function2879
 	callba Function4e554
 	jp Script_reloadmap
@@ -1573,8 +1572,8 @@ Script_returnafterbattle: ; 0x97459
 	ld a, [$d0ee]
 	bit 7, a
 	jr z, .asm_9748e ; 0x97481 $b
-	ld b, $24
-	ld de, $4255
+	ld b, BANK(UnknownScript_0x90255)
+	ld de, UnknownScript_0x90255
 	callba Function97c4f
 .asm_9748e
 	jp Script_reloadmap
@@ -2659,7 +2658,7 @@ Script_giveegg: ; 0x97968
 	ld [CurPartySpecies], a
 	call GetScriptByte
 	ld [CurPartyLevel], a
-	callba Functiondf8c
+	callba GiveEgg
 	ret nc
 	ld a, $2
 	ld [ScriptVar], a

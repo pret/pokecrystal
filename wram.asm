@@ -1,222 +1,120 @@
 INCLUDE "includes.asm"
 
+flag_array: MACRO
+	ds ((\1) + 7) / 8
+ENDM
 
-party_struct: MACRO
-
-\1Species::  db
-\1Item::     db
-
-\1Moves::
-\1Move1::    db
-\1Move2::    db
-\1Move3::    db
-\1Move4::    db
-
-\1ID::       dw
-\1Exp::      ds 3 ; Big endian
+box_struct_length EQU 32
+box_struct: MACRO
+\1Species::        db
+\1Item::           db
+\1Moves::          ds NUM_MOVES
+\1ID::             dw
+\1Exp::            ds 3
 \1StatExp::
-\1HPExp::    dw
-\1AtkExp::   dw
-\1DefExp::   dw
-\1SpdExp::   dw
-\1SpclExp::  dw
-
-\1DVs::
-\1AtkDefDV:: db
-\1SpdSpcDV:: db
-
-\1PP::
-\1PPMove1::  db
-\1PPMove2::  db
-\1PPMove3::  db
-\1PPMove4::  db
-
-\1Happiness::     db
-\1PokerusStatus:: db
-
+\1HPExp::          dw
+\1AtkExp::         dw
+\1DefExp::         dw
+\1SpdExp::         dw
+\1SpcExp::         dw
+\1DVs::            ds 2
+\1PP::             ds NUM_MOVES
+\1Happiness::      db
+\1PokerusStatus::  db
 \1CaughtData::
 \1CaughtTime::
 \1CaughtLevel::    db
 \1CaughtGender::
 \1CaughtLocation:: db
+\1Level::          db
+\1End::
+ENDM
 
-\1Level:: db
+party_struct: MACRO
+	box_struct \1
+\1Status::         db
+\1Unused::         db
+\1HP::             dw
+\1MaxHP::          dw
+\1Stats:: ; big endian
+\1Attack::         dw
+\1Defense::        dw
+\1Speed::          dw
+\1SpclAtk::        dw
+\1SpclDef::        dw
+\1StatsEnd::
+ENDM
 
-\1Status::   db
-\1Unused::   db
-
-; Stats are big endian.
-\1HP::       dw
-\1MaxHP::    dw
-\1Attack::   dw
-\1Defense::  dw
-\1Speed::    dw
-\1SpclAtk::  dw
-\1SpclDef::  dw
-
+battle_struct: MACRO
+\1Species::   db
+\1Item::      db
+\1Moves::     ds NUM_MOVES
+\1MovesEnd::
+\1DVs::       ds 2
+\1PP::        ds NUM_MOVES
+\1Happiness:: db
+\1Level::     db
+\1Status::    ds 2
+\1HP::        dw
+\1MaxHP::     dw
+\1Stats:: ; big endian
+\1Attack::    dw
+\1Defense::   dw
+\1Speed::     dw
+\1SpclAtk::   dw
+\1SpclDef::   dw
+\1StatsEnd::
+\1Type::
+\1Type1::     db
+\1Type2::     db
 ENDM
 
 
 channel_struct: MACRO
-; Addresses are Channel1 ($c101).
-
-\1MusicID:: ; c101
-	ds 2
-\1MusicBank:: ; c103
-	ds 1
-\1Flags:: ; c104
-; 0: on/off
-; 1: subroutine
-; 2: 
-; 3: 
-; 4: noise sampling on/off
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-\1Flags2:: ; c105
-; 0: vibrato on/off
-; 1: 
-; 2: duty cycle on/off
-; 3: 
-; 4: 
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-\1Flags3:: ; c106
-; 0: vibrato up/down
-; 1: 
-; 2: 
-; 3: 
-; 4: 
-; 5: 
-; 6: 
-; 7: 
-	ds 1
-\1MusicAddress:: ; c107
-	ds 2
-\1LastMusicAddress:: ; c109
-	ds 2
-; could have been meant as a third-level address
-	ds 2
-\1NoteFlags:: ; c10d
-; 0: 
-; 1: 
-; 2: 
-; 3: 
-; 4: 
-; 5: rest
-; 6: 
-; 7: 
-	ds 1
-\1Condition:: ; c10e
-; used for conditional jumps
-	ds 1
-\1DutyCycle:: ; c10f
-; uses top 2 bits only
-;	0: 12.5%
-;	1: 25%
-;	2: 50%
-;	3: 75%
-	ds 1
-\1Intensity:: ; c110
-;	hi: pressure
-;   lo: velocity
-	ds 1
-\1Frequency::
-; 11 bits
-\1FrequencyLo:: ; c111
-	ds 1
-\1FrequencyHi:: ; c112
-	ds 1
-\1Pitch:: ; c113
-; 0: rest
-; 1: C
-; 2: C#
-; 3: D
-; 4: D#
-; 5: E
-; 6: F
-; 7: F#
-; 8: G
-; 9: G#
-; a: A
-; b: A#
-; c: B
-	ds 1
-\1Octave:: ; c114
-; 0: highest
-; 7: lowest
-	ds 1
-\1StartingOctave:: ; c115
-; raises existing octaves by this value
-; used for repeating phrases in a higher octave to save space
-	ds 1
-\1NoteDuration:: ; c116
-; number of frames remaining in the current note
-	ds 1
-; c117
-	ds 1
-; c118
-	ds 1
-\1LoopCount:: ; c119
-	ds 1
-\1Tempo:: ; c11a
-	ds 2
-\1Tracks:: ; c11c
-; hi: l
-; lo: r
-	ds 1
-; c11d
-	ds 1
-
-\1VibratoDelayCount:: ; c11e
-; initialized at the value in VibratoDelay
-; decrements each frame
-; at 0, vibrato starts
-	ds 1
-\1VibratoDelay:: ; c11f
-; number of frames a note plays until vibrato starts
-	ds 1
-\1VibratoExtent:: ; c120
-; difference in 
-	ds 1
-\1VibratoRate:: ; c121
-; counts down from a max of 15 frames
-; over which the pitch is alternated
-; hi: init frames
-; lo: frame count
-	ds 1
-
-; c122
-	ds 1
-; c123
-	ds 1
-; c124
-	ds 1
-; c125
-	ds 1
-; c126
-	ds 1
-; c127
-	ds 1
-\1CryPitch:: ; c128
-	ds 1
-\1CryEcho:: ; c129
-	ds 1
-	ds 4
-\1NoteLength:: ; c12e
-; # frames per 16th note
-	ds 1
-; c12f
-	ds 1
-; c130
-	ds 1
-; c131
-	ds 1
-; c132
-	ds 1
+; Addreses are Channel1 (c101).
+\1MusicID::           dw
+\1MusicBank::         db
+\1Flags::             db ; 0:on/off 1:subroutine 4:noise
+\1Flags2::            db ; 0:vibrato on/off 2:duty
+\1Flags3::            db ; 0:vibrato up/down
+\1MusicAddress::      dw
+\1LastMusicAddress::  dw
+                      dw
+\1NoteFlags::         db ; 5:rest
+\1Condition::         db ; conditional jumps
+\1DutyCycle::         db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
+\1Intensity::         db ; hi:pressure lo:velocity
+\1Frequency:: ; 11 bits
+\1FrequencyLo::       db
+\1FrequencyHi::       db
+\1Pitch::             db ; 0:rest 1-c:note
+\1Octave::            db ; 7-0 (0 is highest)
+\1StartingOctave::    db ; raises existing octaves (to repeat phrases)
+\1NoteDuration::      db ; frames remaining for the current note
+                      ds 1 ; c117
+                      ds 1 ; c118
+\1LoopCount::         db
+\1Tempo::             dw
+\1Tracks::            db ; hi:left lo:right
+                      ds 1 ; c11d
+\1VibratoDelayCount:: db ; initialized by \1VibratoDelay
+\1VibratoDelay::      db ; number of frames a note plays until vibrato starts
+\1VibratoExtent::     db
+\1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
+                      ds 1 ; c122
+                      ds 1 ; c123
+                      ds 1 ; c124
+                      ds 1 ; c125
+                      ds 1 ; c126
+                      ds 1 ; c127
+\1CryPitch::          db
+\1CryEcho::           db
+                      ds 4
+\1NoteLength::        db ; frames per 16th note
+                      ds 1 ; c12f
+                      ds 1 ; c130
+                      ds 1 ; c131
+                      ds 1 ; c132
 ENDM
 
 SECTION "tiles0",VRAM[$8000],BANK[0]
@@ -235,8 +133,7 @@ VBGMap1::
 SECTION "WRAMBank0",WRAM0[$c000]
 
 SECTION "stack",WRAM0[$c0ff]
-Stack:: ; c0ff
-	ds -$100
+Stack:: ds -$100 ; c0ff
 
 
 SECTION "audio",WRAM0[$c100]
@@ -245,39 +142,24 @@ MusicPlaying:: ; c100
 	ds 1
 
 Channels::
-Channel1:: ; c101
-	channel_struct Channel1
-Channel2:: ; c133
-	channel_struct Channel2
-Channel3:: ; c165
-	channel_struct Channel3
-Channel4:: ; c197
-	channel_struct Channel4
+Channel1:: channel_struct Channel1 ; c101
+Channel2:: channel_struct Channel2 ; c133
+Channel3:: channel_struct Channel3 ; c165
+Channel4:: channel_struct Channel4 ; c197
 
 SFXChannels::
-Channel5:: ; c1c9
-	channel_struct Channel5
-Channel6:: ; c1fb
-	channel_struct Channel6
-Channel7:: ; c22d
-	channel_struct Channel7
-Channel8:: ; c25f
-	channel_struct Channel8
+Channel5:: channel_struct Channel5 ; c1c9
+Channel6:: channel_struct Channel6 ; c1fb
+Channel7:: channel_struct Channel7 ; c22d
+Channel8:: channel_struct Channel8 ; c25f
 
-; c291
-	ds 1
-; c292
-	ds 1
-; c293
-	ds 1
-; c294
-	ds 1
-; c295
-	ds 1
-; c296
-	ds 1
-; c297
-	ds 1
+	ds 1 ; c291
+	ds 1 ; c292
+	ds 1 ; c293
+	ds 1 ; c294
+	ds 1 ; c295
+	ds 1 ; c296
+	ds 1 ; c297
 
 CurMusicByte:: ; c298
 	ds 1
@@ -430,118 +312,30 @@ Sprites:: ; c400
 ;		bit 4: pal # (non-cgb)
 ;		bit 3: vram bank (cgb only)
 ;		bit 2-0: pal # (cgb only)
-	ds 160
+	ds 4 * 40
 SpritesEnd::
 
 TileMap:: ; c4a0
 ; 20x18 grid of 8x8 tiles
-	ds 360
+	ds SCREEN_WIDTH * SCREEN_HEIGHT
 TileMapEnd::
 
-SECTION "BattleMons",WRAM0[$c608]
 
-EnemyMoveStruct::
-EnemyMoveAnimation:: ; c608
-	ds 1
-EnemyMoveEffect:: ; c609
-	ds 1
-EnemyMovePower:: ; c60a
-	ds 1
-EnemyMoveType:: ; c60b
-	ds 1
-EnemyMoveAccuracy:: ; c60c
-	ds 1
-EnemyMovePP:: ; c60d
-	ds 1
-EnemyMoveEffectChance:: ; c60e
-	ds 1
+wBattle::
 
-PlayerMoveStruct::
-PlayerMoveAnimation:: ; c60f
-	ds 1
-PlayerMoveEffect:: ; c610
-	ds 1
-PlayerMovePower:: ; c611
-	ds 1
-PlayerMoveType:: ; c612
-	ds 1
-PlayerMoveAccuracy:: ; c613
-	ds 1
-PlayerMovePP:: ; c614
-	ds 1
-PlayerMoveEffectChance:: ; c615
-	ds 1
+wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
+wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
 
-EnemyMonNick:: ; c616
-	ds 11
-BattleMonNick:: ; c621
-	ds 11
+EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
+BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
 
-
-BattleMonSpecies:: ; c62c
-	ds 1
-BattleMonItem:: ; c62d
-	ds 1
-
-BattleMonMoves::
-BattleMonMove1:: ; c62e
-	ds 1
-BattleMonMove2:: ; c62f
-	ds 1
-BattleMonMove3:: ; c630
-	ds 1
-BattleMonMove4:: ; c631
-	ds 1
-
-BattleMonDVs::
-BattleMonAtkDefDV:: ; c632
-	ds 1
-BattleMonSpdSpclDV:: ; c633
-	ds 1
-
-BattleMonPP::
-BattleMonPPMove1:: ; c634
-	ds 1
-BattleMonPPMove2:: ; c635
-	ds 1
-BattleMonPPMove3:: ; c636
-	ds 1
-BattleMonPPMove4:: ; c637
-	ds 1
-
-BattleMonHappiness:: ; c638
-	ds 1
-BattleMonLevel:: ; c639
-	ds 1
-
-BattleMonStatus:: ; c63a
-	ds 2
-
-BattleMonHP:: ; c63c
-	ds 2
-BattleMonMaxHP:: ; c63e
-	ds 2
-
-BattleMonAtk:: ; c640
-	ds 2
-BattleMonDef:: ; c642
-	ds 2
-BattleMonSpd:: ; c644
-	ds 2
-BattleMonSpclAtk:: ; c646
-	ds 2
-BattleMonSpclDef:: ; c648
-	ds 2
-
-BattleMonType1:: ; c64a
-	ds 1
-BattleMonType2:: ; c64b
-	ds 1
-
+BattleMon:: battle_struct BattleMon ; c62c
 	ds 10
 
 OTName:: ; c656
-	ds 13
+	ds NAME_LENGTH
+
+	ds 2
 
 CurOTMon:: ; c663
 	ds 1
@@ -552,7 +346,6 @@ TypeModifier:: ; c665
 ; >10: super-effective
 ;  10: normal
 ; <10: not very effective
-
 ; bit 7: stab
 	ds 1
 
@@ -640,6 +433,7 @@ PlayerRolloutCount:: ; c672
 	ds 1
 PlayerConfuseCount:: ; c673
 	ds 1
+PlayerToxicCount:: ; c674
 	ds 1
 PlayerDisableCount:: ; c675
 	ds 1
@@ -656,6 +450,7 @@ EnemyRolloutCount:: ; c67a
 	ds 1
 EnemyConfuseCount:: ; c67b
 	ds 1
+EnemyToxicCount:: ; c67c
 	ds 1
 EnemyDisableCount:: ; c67d
 	ds 1
@@ -736,7 +531,14 @@ EnemyTurnsTaken:: ; c6dc
 PlayerTurnsTaken:: ; c6dd
 	ds 1
 
-	ds 5
+	ds 1
+
+PlayerSubstituteHP:: ; c6df
+	ds 1
+EnemySubstituteHP:: ; c6e0
+	ds 1
+
+	ds 2
 
 CurPlayerMove:: ; c6e3
 	ds 1
@@ -752,7 +554,11 @@ LinkBattleRNCount:: ; c6e5
 CurEnemyMoveNum:: ; c6e9
 	ds 1
 
-	ds 10
+	ds 2
+
+wPayDayMoney:: ds 3 ; c6ec
+
+	ds 5
 
 AlreadyDisobeyed:: ; c6f4
 	ds 1
@@ -788,15 +594,17 @@ EnemyScreens:: ; c700
 ; see PlayerScreens
 	ds 1
 
+PlayerSafeguardCount:: ; c701
 	ds 1
-
 PlayerLightScreenCount:: ; c702
 	ds 1
 PlayerReflectCount:: ; c703
 	ds 1
 
-	ds 2
+	ds 1
 
+EnemySafeguardCount:: ; c705
+	ds 1
 EnemyLightScreenCount:: ; c706
 	ds 1
 EnemyReflectCount:: ; c707
@@ -825,7 +633,10 @@ EffectFailed:: ; c70d
 FailedMessage:: ; c70e
 	ds 1
 
-	ds 3
+	ds 1
+
+wPlayerIsSwitching:: ds 1 ; c710
+wEnemyIsSwitching::  ds 1 ; c711
 
 PlayerUsedMoves:: ; c712
 ; add a move that has been used once by the player
@@ -839,11 +650,14 @@ LastPlayerMove:: ; c71b
 LastEnemyMove:: ; c71c
 	ds 1
 
+	ds 23
 
-SECTION "battle",WRAM0[$c734]
 BattleEnded:: ; c734
 	ds 1
 
+	ds 12
+wBattleEnd::
+; c741
 
 SECTION "overworldmap",WRAM0[$c800]
 OverworldMap:: ; c800
@@ -881,7 +695,8 @@ AttrMap:: ; cdd9
 ; read horizontally from the top row
 ; bit 3: vram bank
 ; bit 0-2: palette id
-	ds 360
+	ds SCREEN_WIDTH * SCREEN_HEIGHT
+AttrMapEnd::
 
 	ds 30
 	
@@ -1083,71 +898,7 @@ CurPartyMon:: ; d109
 	ds 4
 
 TempMon::
-TempMonSpecies:: ; d10e
-	ds 1
-TempMonItem:: ; d10f
-	ds 1
-TempMonMoves:: ; d110
-TempMonMove1:: ; d110
-	ds 1
-TempMonMove2:: ; d111
-	ds 1
-TempMonMove3:: ; d112
-	ds 1
-TempMonMove4:: ; d113
-	ds 1
-TempMonID:: ; d114
-	ds 2
-TempMonExp:: ; d116
-	ds 3
-TempMonHPExp:: ; d119
-	ds 2
-TempMonAtkExp:: ; d11b
-	ds 2
-TempMonDefExp:: ; d11d
-	ds 2
-TempMonSpdExp:: ; d11f
-	ds 2
-TempMonSpclExp:: ; d121
-	ds 2
-TempMonDVs:: ; d123
-; hp = %1000 for each dv
-	ds 1 ; atk/def
-	ds 1 ; spd/spc
-TempMonPP:: ; d125
-	ds 4
-TempMonHappiness:: ; d129
-	ds 1
-TempMonPokerusStatus:: ; d12a
-	ds 1
-TempMonCaughtData:: ; d12b
-TempMonCaughtTime:: ; d12b
-TempMonCaughtLevel:: ; d12b
-	ds 1
-TempMonCaughtGender:: ; d12c
-TempMonCaughtLocation:: ; d12c
-	ds 1
-TempMonLevel:: ; d12d
-	ds 1
-TempMonStatus:: ; d12e
-	ds 1
-; d12f
-	ds 1
-TempMonHP:: ; d130
-	ds 2
-TempMonMaxHP:: ; d132
-	ds 2
-TempMonAtk:: ; d134
-	ds 2
-TempMonDef:: ; d136
-	ds 2
-TempMonSpd:: ; d138
-	ds 2
-TempMonSpclAtk:: ; d13a
-	ds 2
-TempMonSpclDef:: ; d13c
-	ds 2
-TempMonEnd:: ; d13e
+	party_struct TempMon
 
 	ds 3
 
@@ -1290,7 +1041,7 @@ TilesetPalettes:: ; d1e6
 	ds 2
 
 EvolvableFlags:: ; d1e8
-	ds 1
+	flag_array PARTY_LENGTH
 
 	ds 1
 
@@ -1305,90 +1056,13 @@ SECTION "BattleMons2",WRAMX[$d1fa],BANK[1]
 LinkBattleRNs:: ; d1fa
 	ds 10
 
-TempEnemyMonSpecies:: ; d204
-	ds 1
-TempBattleMonSpecies:: ; d205
-	ds 1
+TempEnemyMonSpecies::  ds 1 ; d204
+TempBattleMonSpecies:: ds 1 ; d205
 
-EnemyMon::
-EnemyMonSpecies:: ; d206
-	ds 1
-EnemyMonItem:: ; d207
-	ds 1
-
-EnemyMonMoves::
-EnemyMonMove1:: ; d208
-	ds 1
-EnemyMonMove2:: ; d209
-	ds 1
-EnemyMonMove3:: ; d20a
-	ds 1
-EnemyMonMove4:: ; d20b
-	ds 1
-EnemyMonMovesEnd::
-
-EnemyMonDVs::
-EnemyMonAtkDefDV:: ; d20c
-	ds 1
-EnemyMonSpdSpclDV:: ; d20d
-	ds 1
-	
-EnemyMonPP::
-EnemyMonPPMove1:: ; d20e
-	ds 1
-EnemyMonPPMove2:: ; d20f
-	ds 1
-EnemyMonPPMove3:: ; d210
-	ds 1
-EnemyMonPPMove4:: ; d211
-	ds 1
-	
-EnemyMonHappiness:: ; d212
-	ds 1
-EnemyMonLevel:: ; d213
-	ds 1
-	
-EnemyMonStatus:: ; d214
-	ds 2
-
-EnemyMonHP::
-EnemyMonHPHi:: ; d216
-	ds 1
-EnemyMonHPLo:: ; d217
-	ds 1
-
-EnemyMonMaxHP::
-EnemyMonMaxHPHi:: ; d218
-	ds 1
-EnemyMonMaxHPLo:: ; d219
-	ds 1
-
-EnemyMonStats::
-EnemyMonAtk:: ; d21a
-	ds 2
-EnemyMonDef:: ; d21c
-	ds 2
-EnemyMonSpd:: ; d21e
-	ds 2
-EnemyMonSpclAtk:: ; d220
-	ds 2
-EnemyMonSpclDef:: ; d222
-	ds 2
-EnemyMonStatsEnd::
-
-EnemyMonType1:: ; d224
-	ds 1
-EnemyMonType2:: ; d225
-	ds 1
-
-EnemyMonBaseStats:: ; d226
-	ds 5
-
-EnemyMonCatchRate:: ; d22b
-	ds 1
-EnemyMonBaseExp:: ; d22c
-	ds 1
-
+EnemyMon:: battle_struct EnemyMon ; d206
+EnemyMonBaseStats:: ds 5 ; d226
+EnemyMonCatchRate:: db ; d22b
+EnemyMonBaseExp::   db ; d22c
 EnemyMonEnd::
 
 
@@ -1492,59 +1166,31 @@ SECTION "TimeOfDay",WRAMX[$d269],BANK[1]
 TimeOfDay:: ; d269
 	ds 1
 
+
 SECTION "OTParty",WRAMX[$d280],BANK[1]
 
-OTPartyCount:: ; d280
-	ds 1 ; number of Pokémon in party
-OTPartySpecies:: ; d281
-	ds 6 ; species of each Pokémon in party
-; d287
-	ds 1 ; any empty slots including the 7th must be FF
-	     ; or the routine will keep going
+OTPartyCount::   ds 1 ; d280
+OTPartySpecies:: ds PARTY_LENGTH ; d281
+OTPartyEnd::     ds 1
 
-OTPartyMon1:: ; d288
-	party_struct OTPartyMon1
-OTPartyMon2:: ; d2b8
-	party_struct OTPartyMon2
-OTPartyMon3:: ; d2e8
-	party_struct OTPartyMon3
-OTPartyMon4:: ; d318
-	party_struct OTPartyMon4
-OTPartyMon5:: ; d348
-	party_struct OTPartyMon5
-OTPartyMon6:: ; d378
-	party_struct OTPartyMon6
+OTPartyMons::
+OTPartyMon1:: party_struct OTPartyMon1 ; d288
+OTPartyMon2:: party_struct OTPartyMon2 ; d2b8
+OTPartyMon3:: party_struct OTPartyMon3 ; d2e8
+OTPartyMon4:: party_struct OTPartyMon4 ; d318
+OTPartyMon5:: party_struct OTPartyMon5 ; d348
+OTPartyMon6:: party_struct OTPartyMon6 ; d378
+OTPartyMonsEnd::
 
+OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
+OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea
 
-OTPartyMonOT::
-OTPartyMon1OT:: ; d3a8
-	ds 11
-OTPartyMon2OT:: ; d3b3
-	ds 11
-OTPartyMon3OT:: ; d3be
-	ds 11
-OTPartyMon4OT:: ; d3c9
-	ds 11
-OTPartyMon5OT:: ; d3d4
-	ds 11
-OTPartyMon6OT:: ; d3df
-	ds 11
+	ds 4
 
-OTPartyMonNicknames::
-OTPartyMon1Nickname:: ; d3ea
-	ds 11
-OTPartyMon2Nickname:: ; d3f5
-	ds 11
-OTPartyMon3Nickname:: ; d400
-	ds 11
-OTPartyMon4Nickname:: ; d40b
-	ds 11
-OTPartyMon5Nickname:: ; d416
-	ds 11
-OTPartyMon6Nickname:: ; d421
-	ds 11
+wBattleAction:: ds 1 ; d430
 
-SECTION "Map Events", WRAMX[$d432], BANK[1]
+	ds 1
+
 MapStatus:: ; d432
 	ds 1
 MapEventStatus:: ; d433
@@ -1581,16 +1227,11 @@ PlayerGender:: ; d472
 PlayerID:: ; d47b
 	ds 2
 
-PlayerName:: ; d47d
-	ds 11
-MomsName:: ; d488
-	ds 11
-RivalName:: ; d493
-	ds 11
-RedsName:: ; d49e
-	ds 11
-GreensName:: ; d4a9
-	ds 11
+PlayerName:: ds NAME_LENGTH ; d47d
+MomsName::   ds NAME_LENGTH ; d488
+RivalName::  ds NAME_LENGTH ; d493
+RedsName::   ds NAME_LENGTH ; d49e
+GreensName:: ds NAME_LENGTH ; d4a9
 
 	ds 2
 
@@ -1729,16 +1370,19 @@ StatusFlags2:: ; d84d
 Money:: ; d84e
 	ds 3
 
-	ds 4
+wMomsMoney:: ; d851
+	ds 3
+wMomSavingMoney:: ; d854
+	ds 1
 
 Coins:: ; d855
 	ds 2
 	
 Badges::
 JohtoBadges:: ; d857
-	ds 1
+	flag_array 8
 KantoBadges:: ; d858
-	ds 1
+	flag_array 8
 	
 SECTION "Items",WRAMX[$d859],BANK[1]
 TMsHMs:: ; d859
@@ -1876,7 +1520,7 @@ EventFlags:: ; da72
 ;PoliceAtElmsLabEvent:: ; db52
 ;SalesmanMahoganyTownEvent:: ; db5c
 ;RedGyaradosEvent:: ; db5c
-	ds 250
+	flag_array 2000
 ; db6c
 
 SECTION "Boxes",WRAMX[$db72],BANK[1]
@@ -1887,35 +1531,7 @@ wCurBox:: ; db72
 	ds 2
 
 ; 8 chars + $50
-wBoxNames::
-Box1Name:: ; db75
-	ds 9
-Box2Name:: ; db7e
-	ds 9
-Box3Name:: ; db87
-	ds 9
-Box4Name:: ; db90
-	ds 9
-Box5Name:: ; db99
-	ds 9
-Box6Name:: ; dba2
-	ds 9
-Box7Name:: ; dbab
-	ds 9
-Box8Name:: ; dbb4
-	ds 9
-Box9Name:: ; dbbd
-	ds 9
-Box10Name:: ; dbc6
-	ds 9
-Box11Name:: ; dbcf
-	ds 9
-Box12Name:: ; dbd8
-	ds 9
-Box13Name:: ; dbe1
-	ds 9
-Box14Name:: ; dbea
-	ds 9
+wBoxNames:: ds 9 * NUM_BOXES ; db75
 
 SECTION "bike", WRAMX[$dbf5],BANK[1]
 BikeFlags:: ; dbf5
@@ -1954,7 +1570,7 @@ PoisonStepCount:: ; dc74
 
 SECTION "Visited Spawn Points", WRAMX[$dca5],BANK[1]
 VisitedSpawns:: ; dca5
-	ds 4
+	flag_array 27
 
 SECTION "BackupMapInfo", WRAMX[$dcad],BANK[1]
 
@@ -1983,183 +1599,111 @@ SECTION "PlayerParty",WRAMX[$dcd7],BANK[1]
 PartyCount:: ; dcd7
 	ds 1 ; number of Pokémon in party
 PartySpecies:: ; dcd8
-	ds 6 ; species of each Pokémon in party
+	ds PARTY_LENGTH ; species of each Pokémon in party
 PartyEnd:: ; dcde
 	ds 1 ; legacy functions don't check PartyCount
 		 
 PartyMons::
-PartyMon1:: ; dcdf
-	party_struct PartyMon1
-PartyMon2:: ; dd0f
-	party_struct PartyMon2
-PartyMon3:: ; dd3f
-	party_struct PartyMon3
-PartyMon4:: ; dd6f
-	party_struct PartyMon4
-PartyMon5:: ; dd9f
-	party_struct PartyMon5
-PartyMon6:: ; ddcf
-	party_struct PartyMon6
+PartyMon1:: party_struct PartyMon1 ; dcdf
+PartyMon2:: party_struct PartyMon2 ; dd0f
+PartyMon3:: party_struct PartyMon3 ; dd3f
+PartyMon4:: party_struct PartyMon4 ; dd6f
+PartyMon5:: party_struct PartyMon5 ; dd9f
+PartyMon6:: party_struct PartyMon6 ; ddcf
 
-PartyMonOT::
-PartyMon1OT:: ; ddff
-	ds 11
-PartyMon2OT:: ; de0a
-	ds 11
-PartyMon3OT:: ; de15
-	ds 11
-PartyMon4OT:: ; de20
-	ds 11
-PartyMon5OT:: ; de2b
-	ds 11
-PartyMon6OT:: ; de36
-	ds 11
+PartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; ddff
 
-PartyMonNicknames::
-PartyMon1Nickname:: ; de41
-	ds 11
-PartyMon2Nickname:: ; de4c
-	ds 11
-PartyMon3Nickname:: ; de57
-	ds 11
-PartyMon4Nickname:: ; de62
-	ds 11
-PartyMon5Nickname:: ; de6d
-	ds 11
-PartyMon6Nickname:: ; de78
-	ds 11
+PartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; de41
 PartyMonNicknamesEnd::
 
-SECTION "Pokedex",WRAMX[$de99],BANK[1]
+
+SECTION "Pokedex", WRAMX[$de99], BANK[1]
+
 PokedexCaught:: ; de99
-	ds 32
+	flag_array NUM_POKEMON
 EndPokedexCaught::
+
 PokedexSeen:: ; deb9
-	ds 32
+	flag_array NUM_POKEMON
 EndPokedexSeen::
+
 UnownDex:: ; ded9
 	ds 26
 UnlockedUnowns:: ; def3
 	ds 1
 
-SECTION "Breeding",WRAMX[$def5],BANK[1]
-DaycareMan:: ; def5
+	ds 1
+
+wDaycareMan:: ; def5
 ; bit 7: active
 ; bit 6: monsters are compatible
 ; bit 5: egg ready
 ; bit 0: monster 1 in daycare
 	ds 1
 
-BreedMon1::
-BreedMon1Nick:: ; def6
-	ds 11
-BreedMon1OT:: ; df01
-	ds 11
-BreedMon1Stats::
-BreedMon1Species:: ; df0c
-	ds 1
-	ds 31
+wBreedMon1::
+wBreedMon1Nick::  ds PKMN_NAME_LENGTH ; def6
+wBreedMon1OT::    ds NAME_LENGTH ; df01
+wBreedMon1Stats:: box_struct wBreedMon1 ; df0c
 
-DaycareLady:: ; df2c
+wDaycareLady:: ; df2c
 ; bit 7: active
 ; bit 0: monster 2 in daycare
 	ds 1
 
-StepsToEgg:: ; df2d
+wStepsToEgg:: ; df2d
 	ds 1
-DittoInDaycare:: ; df2e
+wDittoInDaycare:: ; df2e
 ;  z: yes
 ; nz: no
 	ds 1
 
-BreedMon2::
-BreedMon2Nick:: ; df2f
-	ds 11
-BreedMon2OT:: ; df3a
-	ds 11
-BreedMon2Stats::
-BreedMon2Species:: ; df45
-	ds 1
-	ds 31
+wBreedMon2::
+wBreedMon2Nick::  ds PKMN_NAME_LENGTH ; df2f
+wBreedMon2OT::    ds NAME_LENGTH ; df3a
+wBreedMon2Stats:: box_struct wBreedMon2 ; df45
 
-EggNick:: ; df65
-; EGG@
-	ds 11
-EggOT:: ; df70
-	ds 11
-EggStats::
-EggSpecies:: ; df7b
-	ds 1
-	ds 31
+wEggNick:: ds PKMN_NAME_LENGTH ; df65
+wEggOT::   ds NAME_LENGTH ; df70
+wEggMon::  box_struct wEggMon ; df7b
 
 	ds 1
 
-wContestMon:: ; df9c
-	party_struct wContestMon
+wContestMon:: party_struct wContestMon ; df9c
 
 	ds 3
 
-RoamMon1Species:: ; dfcf
-	ds 1
-RoamMon1Level:: ; dfd0
-	ds 1
-RoamMon1MapGroup:: ; dfd1
-	ds 1
-RoamMon1MapNumber:: ; dfd2
-	ds 1
-RoamMon1HP:: ; dfd3
-	ds 1
-RoamMon1DVs:: ; dfd4
-	ds 2
+roam_struct: MACRO
+\1Species::   db
+\1Level::     db
+\1MapGroup::  db
+\1MapNumber:: db
+\1HP::        ds 1
+\1DVs::       ds 2
+ENDM
 
-RoamMon2Species:: ; dfd6
-	ds 1
-RoamMon2Level:: ; dfd7
-	ds 1
-RoamMon2MapGroup:: ; dfd8
-	ds 1
-RoamMon2MapNumber:: ; dfd9
-	ds 1
-RoamMon2HP:: ; dfda
-	ds 1
-RoamMon2DVs:: ; dfdb
-	ds 2
-
-RoamMon3Species:: ; dfdd
-	ds 1
-RoamMon3Level:: ; dfde
-	ds 1
-RoamMon3MapGroup:: ; dfdf
-	ds 1
-RoamMon3MapNumber:: ; dfe0
-	ds 1
-RoamMon3HP:: ; dfe1
-	ds 1
-RoamMon3DVs:: ; dfe2
-	ds 2
+wRoamMon1:: roam_struct wRoamMon1 ; dfcf
+wRoamMon2:: roam_struct wRoamMon2 ; dfd6
+wRoamMon3:: roam_struct wRoamMon3 ; dfdd
 
 
 
 SECTION "WRAMBank5",WRAMX[$d000],BANK[5]
 
 ; 8 4-color palettes
-Unkn1Pals:: ; d000
-	ds $40
-Unkn2Pals:: ; d040
-	ds $40
-BGPals:: ; d080
-	ds $40
-OBPals:: ; d0c0
-	ds $40
+Unkn1Pals:: ds 8 * 8 ; d000
+Unkn2Pals:: ds 8 * 8 ; d040
+BGPals::    ds 8 * 8 ; d080
+OBPals::    ds 8 * 8 ; d0c0
 
 LYOverrides:: ; d100
-	ds 144
+	ds SCREEN_HEIGHT_PX
 LYOverridesEnd::
 
 	ds 112
 
 LYOverridesBackup:: ; d200
-	ds 144
+	ds SCREEN_HEIGHT_PX
 LYOverridesBackupEnd::
 
 
@@ -2194,175 +1738,24 @@ BattleAnimTemps:: ; d419
 	ds 8
 
 
-SECTION "SRAMBank1",SRAM,BANK[1]
+SECTION "Scratch", SRAM, BANK[0]
 
-SECTION "BoxMons",SRAM[$ad10],BANK[1]
-BoxCount:: ; ad10
-	ds 1
-BoxSpecies:: ; ad11
-	ds 20
-	ds 1
-BoxMons::
-BoxMon1::
-BoxMon1Species:: ; ad26
-	ds 1
-BoxMon1Item:: ; ad27
-	ds 1
-BoxMon1Moves:: ; ad28
-	ds 4
-BoxMon1ID:: ; ad2c
-	ds 2
-BoxMon1Exp:: ; ad2e
-	ds 3
-BoxMon1HPExp:: ; ad31
-	ds 2
-BoxMon1AtkExp:: ; ad33
-	ds 2
-BoxMon1DefExp:: ; ad35
-	ds 2
-BoxMon1SpdExp:: ; ad37
-	ds 2
-BoxMon1SpcExp:: ; ad39
-	ds 2
-BoxMon1DVs:: ; ad3b
-	ds 2
-BoxMon1PP:: ; ad3d
-	ds 4
-BoxMon1Happiness:: ; ad41
-	ds 1
-BoxMon1PokerusStatus:: ; ad42
-	ds 1
-BoxMon1CaughtData::
-BoxMon1CaughtTime::
-BoxMon1CaughtLevel:: ; ad43
-	ds 1
-BoxMon1CaughtGender::
-BoxMon1CaughtLocation:: ; ad44
-	ds 1
-BoxMon1Level:: ; ad45
+
+SECTION "SRAM Bank 1", SRAM, BANK[1]
+
+SECTION "BoxMons", SRAM[$ad10], BANK[1]
+
+sBoxCount::   ds 1 ; ad10
+sBoxSpecies:: ds MONS_PER_BOX ; ad11
 	ds 1
 
-BoxMon2:: ; ad46
-	ds 32
-BoxMon3:: ; ad66
-	ds 32
-BoxMon4:: ; ad86
-	ds 32
-BoxMon5:: ; ada6
-	ds 32
-BoxMon6:: ; adc6
-	ds 32
-BoxMon7:: ; ade6
-	ds 32
-BoxMon8:: ; ae06
-	ds 32
-BoxMon9:: ; ae26
-	ds 32
-BoxMon10:: ; ae46
-	ds 32
-BoxMon11:: ; ae66
-	ds 32
-BoxMon12:: ; ae86
-	ds 32
-BoxMon13:: ; aea6
-	ds 32
-BoxMon14:: ; aec6
-	ds 32
-BoxMon15:: ; aee6
-	ds 32
-BoxMon16:: ; af06
-	ds 32
-BoxMon17:: ; af26
-	ds 32
-BoxMon18:: ; af46
-	ds 32
-BoxMon19:: ; af66
-	ds 32
-BoxMon20:: ; af86
-	ds 32
+sBoxMons:: ; ad26
+sBoxMon1:: box_struct sBoxMon1
+sBoxMon2::
+	ds box_struct_length * (MONS_PER_BOX +- 1)
 
-BoxMonOT::
-BoxMon1OT:: ; afa6
-	ds 11
-BoxMon2OT:: ; afb1
-	ds 11
-BoxMon3OT:: ; afbc
-	ds 11
-BoxMon4OT:: ; afc7
-	ds 11
-BoxMon5OT:: ; afd2
-	ds 11
-BoxMon6OT:: ; afdd
-	ds 11
-BoxMon7OT:: ; afe8
-	ds 11
-BoxMon8OT:: ; aff3
-	ds 11
-BoxMon9OT:: ; affe
-	ds 11
-BoxMon10OT:: ; b009
-	ds 11
-BoxMon11OT:: ; b014
-	ds 11
-BoxMon12OT:: ; b01f
-	ds 11
-BoxMon13OT:: ; b02a
-	ds 11
-BoxMon14OT:: ; b035
-	ds 11
-BoxMon15OT:: ; b040
-	ds 11
-BoxMon16OT:: ; b04b
-	ds 11
-BoxMon17OT:: ; b056
-	ds 11
-BoxMon18OT:: ; b061
-	ds 11
-BoxMon19OT:: ; b06c
-	ds 11
-BoxMon20OT:: ; b077
-	ds 11
+sBoxMonOT:: ds NAME_LENGTH * MONS_PER_BOX ; afa6
 
-BoxMonNicknames::
-BoxMon1Nickname:: ; b082
-	ds 11
-BoxMon2Nickname:: ; b08d
-	ds 11
-BoxMon3Nickname:: ; b098
-	ds 11
-BoxMon4Nickname:: ; b0a3
-	ds 11
-BoxMon5Nickname:: ; b0ae
-	ds 11
-BoxMon6Nickname:: ; b0b9
-	ds 11
-BoxMon7Nickname:: ; b0c4
-	ds 11
-BoxMon8Nickname:: ; b0cf
-	ds 11
-BoxMon9Nickname:: ; b0da
-	ds 11
-BoxMon10Nickname:: ; b0e5
-	ds 11
-BoxMon11Nickname:: ; b0f0
-	ds 11
-BoxMon12Nickname:: ; b0fb
-	ds 11
-BoxMon13Nickname:: ; b106
-	ds 11
-BoxMon14Nickname:: ; b111
-	ds 11
-BoxMon15Nickname:: ; b11c
-	ds 11
-BoxMon16Nickname:: ; b127
-	ds 11
-BoxMon17Nickname:: ; b132
-	ds 11
-BoxMon18Nickname:: ; b13d
-	ds 11
-BoxMon19Nickname:: ; b148
-	ds 11
-BoxMon20Nickname:: ; b153
-	ds 11
-BoxMonNicknamesEnd::
-
+sBoxMonNicknames:: ds PKMN_NAME_LENGTH * MONS_PER_BOX ; b082
+sBoxMonNicknamesEnd::
+; b15e

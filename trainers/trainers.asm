@@ -5,7 +5,7 @@
 	; Type
 		; 0: Level, species
 		; 1: Level, species, moves
-		; 2: Level, sepcies, item
+		; 2: Level, species, item
 		; 3: Level, species, item, moves
 	; Party
 		; Up to six monsters following the data type

@@ -1,22 +1,24 @@
+MAX_ROLLOUT_COUNT EQU 5
+
+
 BattleCommand5b: ; 37718
 ; checkcurl
 
 	ld de, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37723
+	jr z, .ok
 	ld de, EnemyRolloutCount
-
-.asm_37723
+.ok
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVar
-	bit SUBSTATUS_ENCORED, a
-	jr z, .asm_37731
+	bit SUBSTATUS_ROLLOUT, a
+	jr z, .reset
 
 	ld b, $4 ; doturn
 	jp SkipToBattleCommand
 
-.asm_37731
+.reset
 	xor a
 	ld [de], a
 	ret
@@ -28,7 +30,7 @@ BattleCommand5c: ; 37734
 
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and 7
+	and SLP
 	ret nz
 
 	ld hl, PlayerRolloutCount
@@ -50,7 +52,7 @@ BattleCommand5c: ; 37734
 	jr z, .hit
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
+	call GetBattleVarAddr
 	res 6, [hl]
 	ret
 
@@ -58,23 +60,23 @@ BattleCommand5c: ; 37734
 	inc [hl]
 	ld a, [hl]
 	ld b, a
-	cp $5
+	cp MAX_ROLLOUT_COUNT
 	jr c, .asm_3776e
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
-	res 6, [hl]
+	call GetBattleVarAddr
+	res SUBSTATUS_ROLLOUT, [hl]
 	jr .asm_37775
 
 .asm_3776e
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
-	set 6, [hl]
+	call GetBattleVarAddr
+	set SUBSTATUS_ROLLOUT, [hl]
 
 .asm_37775
 	ld a, BATTLE_VARS_SUBSTATUS2
 	call GetBattleVar
-	bit 0, a
+	bit SUBSTATUS_CURLED, a
 	jr z, .asm_3777f
 	inc b
 .asm_3777f

@@ -8,8 +8,7 @@ GetItemDescription: ; 0x1c8955
 	pop hl
 	ld a, [$d265]
 	ld [$cf60], a
-	ld a, $11
-	call Predef
+	predef PrintMoveDesc
 	ret
 
 .nomovedesc

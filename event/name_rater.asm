@@ -34,7 +34,7 @@ NameRater: ; fb6ed
 	call Functionfb7d3
 	ld hl, UnknownText_0xfb837
 	jr c, .asm_fb76c
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, $000b
 	ld a, [CurPartyMon]
 	call AddNTimes
@@ -70,12 +70,12 @@ NameRater: ; fb6ed
 ; fb78a
 
 Functionfb78a: ; fb78a
-	ld hl, PartyMon1OT
-	ld bc, $000b
+	ld hl, PartyMonOT
+	ld bc, NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, PlayerName
-	ld c, $b
+	ld c, NAME_LENGTH
 	call .asm_fb7b1
 	jr c, .asm_fb7bc
 	ld hl, PartyMon1ID
@@ -122,7 +122,7 @@ Functionfb7be: ; fb7be
 ; fb7d3
 
 Functionfb7d3: ; fb7d3
-	ld hl, PartyMon1Nickname
+	ld hl, PartyMonNicknames
 	ld bc, $000b
 	ld a, [CurPartyMon]
 	call AddNTimes

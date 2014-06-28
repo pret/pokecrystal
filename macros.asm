@@ -13,6 +13,8 @@ page   EQUS "db $50,"     ; Start a new Pokedex page.
 dex    EQUS "db $e8, $50" ; End a Pokedex entry.
 
 
+percent EQUS "* $ff / 100"
+
 ; macros require rst vectors to be defined
 FarCall    EQU $08
 Bankswitch EQU $10
@@ -118,15 +120,15 @@ B_ EQU 12
 
 
 bccoord: MACRO
-	ld bc, TileMap + SCREEN_WIDTH * \2 + \1
+	ld bc, TileMap + SCREEN_WIDTH * (\2) + (\1)
 	ENDM
 	
 decoord: MACRO
-	ld de, TileMap + SCREEN_WIDTH * \2 + \1
+	ld de, TileMap + SCREEN_WIDTH * (\2) + (\1)
 	ENDM
 
 hlcoord: MACRO
-	ld hl, TileMap + SCREEN_WIDTH * \2 + \1
+	ld hl, TileMap + SCREEN_WIDTH * (\2) + (\1)
 	ENDM
 
 
@@ -194,3 +196,25 @@ x = x + \1 * $40000
 	endr
 ENDM
 
+
+add_predef: MACRO
+\1Predef::
+	dw \1
+	db BANK(\1)
+ENDM
+
+predef_id: MACRO
+; Some functions load the predef id
+; without immediately calling Predef.
+	ld a, (\1Predef - PredefPointers) / 3
+ENDM
+
+predef: MACRO
+	predef_id \1
+	call Predef
+ENDM
+
+predef_jump: MACRO
+	predef_id \1
+	jp Predef
+ENDM

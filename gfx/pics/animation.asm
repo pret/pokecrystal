@@ -1007,8 +1007,7 @@ Functiond066e: ; d066e
 	push bc
 	push hl
 	ld de, VTiles2
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	pop hl
 	pop bc
 	ld d, $0

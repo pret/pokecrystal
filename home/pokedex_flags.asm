@@ -31,8 +31,7 @@ CheckSeenMon:: ; 339b
 
 PokedexFlagAction:: ; 33a1
 	ld d, 0
-	ld a, PREDEF_FLAG
-	call Predef
+	predef FlagPredef
 	ld a, c
 	and a
 	ret

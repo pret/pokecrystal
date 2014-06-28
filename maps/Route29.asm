@@ -52,7 +52,7 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	applymovement $2, MovementData_0x1a109a
 	stopfollow
 	loadpokedata RATTATA, 5
-	catchtutorial $3
+	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface $2, $1
 	loadfont
 	2writetext UnknownText_0x1a114d
@@ -78,7 +78,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	applymovement $2, MovementData_0x1a10a1
 	stopfollow
 	loadpokedata RATTATA, 5
-	catchtutorial $3
+	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface $2, $1
 	loadfont
 	2writetext UnknownText_0x1a114d
@@ -121,7 +121,7 @@ CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	iffalse UnknownScript_0x1a1022
 	loadmovesprites
 	loadpokedata RATTATA, 5
-	catchtutorial $3
+	catchtutorial BATTLETYPE_TUTORIAL
 	loadfont
 	2writetext UnknownText_0x1a114d
 	closetext

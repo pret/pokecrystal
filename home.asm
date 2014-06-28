@@ -753,15 +753,14 @@ GetSGBLayout:: ; 3340
 
 	ld a, [hCGB]
 	and a
-	jr nz, .dosgb
+	jr nz, .sgb
 	
 	ld a, [hSGB]
 	and a
 	ret z
 	
-.dosgb
-	ld a, $31 ; LoadSGBLayout
-	jp Predef
+.sgb
+	predef_jump Function864c ; LoadSGBLayout
 ; 334e
 
 
@@ -776,7 +775,7 @@ SetHPPal:: ; 334e
 GetHPPal:: ; 3353
 ; Get palette for hp bar pixel length e in d.
 
-	ld d, 0 ; green
+	ld d, HP_GREEN
 	ld a, e
 	cp 24
 	ret nc
@@ -1583,7 +1582,7 @@ Function36f5:: ; 36f5
 
 Function3718:: ; 3718
 	ld a, [BattleType]
-	cp $1
+	cp BATTLETYPE_CANLOSE
 	jr .asm_3724
 
 	ld hl, WalkingTile
@@ -1697,22 +1696,21 @@ Function3786:: ; 3786
 Function378b:: ; 378b
 	ld a, [CurPartySpecies]
 	call IsAPokemon
-	jr c, .asm_37ad
+	jr c, .not_pokemon
+
 	push hl
 	ld de, VTiles2
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	pop hl
 	xor a
 	ld [$ffad], a
-	ld bc, $0707
-	ld a, $13
-	call Predef
+	lb bc, 7, 7
+	predef FillBox
 	xor a
 	ld [$c2c6], a
 	ret
 
-.asm_37ad
+.not_pokemon
 	xor a
 	ld [$c2c6], a
 	inc a

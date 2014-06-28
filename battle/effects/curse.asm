@@ -66,11 +66,11 @@ BattleCommand54: ; 37588
 	jr nz, .failed
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call _GetBattleVar
-	bit 1, [hl]
+	call GetBattleVarAddr
+	bit SUBSTATUS_CURSE, [hl]
 	jr nz, .failed
 
-	set 1, [hl]
+	set SUBSTATUS_CURSE, [hl]
 	call AnimateCurrentMove
 	ld hl, GetHalfMaxHP
 	call CallBattleCore

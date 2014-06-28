@@ -9,13 +9,13 @@
 	dwb $d957, %00001000 ; expn card
 	dwb $d957, %10000000 ; on/off
 	
-	;   DaycareMan, %10000000 ; daycare 1 on
-	dwb DaycareMan, %01000000 ; monster 1 and 2 are compatible
-	;   DaycareMan, %00100000 ; egg is ready
-	dwb DaycareMan, %00000001 ; monster 1 in daycare
+	;   wDaycareMan, %10000000 ; daycare 1 on
+	dwb wDaycareMan, %01000000 ; monster 1 and 2 are compatible
+	;   wDaycareMan, %00100000 ; egg is ready
+	dwb wDaycareMan, %00000001 ; monster 1 in daycare
 	
-	;   DaycareLady, %10000000 = daycare 2 on
-	dwb DaycareLady, %00000001 ; monster 2 in daycare
+	;   wDaycareLady, %10000000 = daycare 2 on
+	dwb wDaycareLady, %00000001 ; monster 2 in daycare
 	
 	dwb $d854, %00000001 ; mom saving money ; $8
 	dwb $d854, %10000000 ; dst

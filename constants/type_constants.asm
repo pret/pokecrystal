@@ -25,7 +25,7 @@ UNUSED_TYPES EQU const_value
 	const TYPE_17
 	const TYPE_18
 	const CURSE_T
-
+UNUSED_TYPES_END EQU const_value
 
 SPECIAL EQU const_value
 	const FIRE
@@ -37,3 +37,4 @@ SPECIAL EQU const_value
 	const DRAGON
 	const DARK
 
+TYPES_END EQU const_value

@@ -42,13 +42,13 @@ PrintMoveType: ; 5093a
 	push hl
 	ld a, b
 	dec a
-	ld bc, Move2 - Move1
+	ld bc, MOVE_LENGTH
 	ld hl, Moves
 	call AddNTimes
 	ld de, StringBuffer1
 	ld a, BANK(Moves)
 	call FarCopyBytes
-	ld a, [StringBuffer1 + PlayerMoveType - PlayerMoveStruct]
+	ld a, [StringBuffer1 + MOVE_TYPE]
 	pop hl
 
 	ld b, a

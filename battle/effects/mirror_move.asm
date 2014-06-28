@@ -4,7 +4,7 @@ BattleCommand1b: ; 373c9
 	call Function372d8
 
 	ld a, BATTLE_VARS_MOVE
-	call _GetBattleVar
+	call GetBattleVarAddr
 
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
@@ -28,7 +28,7 @@ BattleCommand1b: ; 373c9
 
 	push af
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call _GetBattleVar
+	call GetBattleVarAddr
 	ld d, h
 	ld e, l
 	pop af

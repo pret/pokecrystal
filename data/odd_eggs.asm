@@ -35,7 +35,7 @@ GiveOddEgg: ; 1fb4b6
 	ld hl, OddEggs
 	ld a, OddEgg2 - OddEgg1
 	call AddNTimes
-	ld de, EnemyMoveAnimation
+	ld de, $c608
 	ld bc, $0046
 	call CopyBytes
 	ld a, EGG_TICKET

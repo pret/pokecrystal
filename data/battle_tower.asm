@@ -70,9 +70,11 @@ Function1f8000: ; 1f8000
 
 Function1f8081: ; 1f8081
 	ld c, $3
+.loop
 	push bc
 	ld a, $1
 	call GetSRAMBank
+
 .asm_1f8089
 	ld a, [$d800]
 	dec a
@@ -150,14 +152,15 @@ Function1f8081: ; 1f8081
 	ld h, d
 	ld l, e
 	pop de
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop de
 	pop af
 	ld [$d265], a
 	pop bc
 	dec c
-	jp nz, $4083
+	jp nz, .loop
+
 	ld a, [$be51]
 	ld [$be54], a
 	ld a, [$be52]

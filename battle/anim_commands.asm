@@ -954,22 +954,18 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	ld a, [TempBattleMonSpecies] ; $d205
 	ld [CurPartySpecies], a ; $d108
 	ld hl, BattleMonDVs ; $c632
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	ld de, $8000
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	jr .done
 
 .player
 	ld a, [TempEnemyMonSpecies] ; $d204
 	ld [CurPartySpecies], a ; $d108
 	ld hl, EnemyMonDVs ; $d20c
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	ld de, $8000
-	ld a, $3d
-	call Predef
+	predef GetBackpic
 
 .done
 	pop af
@@ -1194,20 +1190,16 @@ BattleAnimCmd_E6: ; cc776 (33:4776)
 	jr z, .player
 
 	ld hl, BattleMonDVs ; $c632
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	ld de, $9000
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	jr .done
 
 .player
 	ld hl, EnemyMonDVs ; $d20c
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
+	predef GetUnownLetter
 	ld de, $9310
-	ld a, $3d
-	call Predef
+	predef GetBackpic
 
 .done
 	pop af

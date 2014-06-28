@@ -130,8 +130,8 @@ RefreshBattleHuds:: ; 39c9
 ; 39d4
 
 UpdateBattleHuds:: ; 39d4
-	callba Function3df48
-	callba Function3e036
+	callba UpdatePlayerHUD
+	callba UpdateEnemyHUD
 	ret
 ; 39e1
 
@@ -139,12 +139,12 @@ UpdateBattleHuds:: ; 39d4
 GetBattleVar:: ; 39e1
 ; Preserves hl.
 	push hl
-	call _GetBattleVar
+	call GetBattleVarAddr
 	pop hl
 	ret
 ; 39e7
 
-_GetBattleVar:: ; 39e7
+GetBattleVarAddr:: ; 39e7
 ; Get variable from pair a, depending on whose turn it is.
 ; There are 21 variable pairs.
 
@@ -250,10 +250,10 @@ _GetBattleVar:: ; 39e7
 	dw PlayerSubStatus4,     EnemySubStatus4
 	dw PlayerSubStatus5,     EnemySubStatus5
 	dw BattleMonStatus,      EnemyMonStatus
-	dw PlayerMoveAnimation,  EnemyMoveAnimation
-	dw PlayerMoveEffect,     EnemyMoveEffect
-	dw PlayerMovePower,      EnemyMovePower
-	dw PlayerMoveType,       EnemyMoveType
+	dw wPlayerMoveStruct + MOVE_ANIM,   wEnemyMoveStruct + MOVE_ANIM
+	dw wPlayerMoveStruct + MOVE_EFFECT, wEnemyMoveStruct + MOVE_EFFECT
+	dw wPlayerMoveStruct + MOVE_POWER,  wEnemyMoveStruct + MOVE_POWER
+	dw wPlayerMoveStruct + MOVE_TYPE,   wEnemyMoveStruct + MOVE_TYPE
 	dw CurPlayerMove,        CurEnemyMove
 	dw LastEnemyCounterMove, LastPlayerCounterMove
 	dw LastPlayerMove,       LastEnemyMove
