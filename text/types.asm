@@ -1,5 +1,6 @@
 PrintMonTypes: ; 5090d
-; Print both types of CurSpecies on the stats screen at hl.
+; Print one or both types of [CurSpecies]
+; on the stats screen at hl.
 
 	push hl
 	call GetBaseData
@@ -7,27 +8,29 @@ PrintMonTypes: ; 5090d
 
 	push hl
 	ld a, [BaseType1]
-	call .PrintType
+	call .Print
 
+	; Single-typed monsters really
+	; have two of the same type.
 	ld a, [BaseType1]
 	ld b, a
 	ld a, [BaseType2]
 	cp b
 	pop hl
-	jr z, .HideSecondType
+	jr z, .hide_type_2
 
-; Next row
-	ld bc, 20
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 
-.PrintType
+.Print
 	ld b, a
 	jr PrintType
 
-.HideSecondType
-; This doesn't actually do anything.
+.hide_type_2
+	; Erase any type name that was here before.
+	; Seems to be pointless in localized versions.
 	ld a, " "
-	ld bc, 20 - 3
+	ld bc, SCREEN_WIDTH - 3
 	add hl, bc
 	ld [hl], a
 	inc bc
@@ -35,6 +38,7 @@ PrintMonTypes: ; 5090d
 	ld bc, 5
 	jp ByteFill
 ; 5093a
+
 
 PrintMoveType: ; 5093a
 ; Print the type of move b at hl.
@@ -52,10 +56,11 @@ PrintMoveType: ; 5093a
 	pop hl
 
 	ld b, a
-; 50953
+
 
 PrintType: ; 50953
 ; Print type b at hl.
+
 	ld a, b
 
 	push hl
@@ -74,7 +79,8 @@ PrintType: ; 50953
 
 
 GetTypeName: ; 50964
-; Copy the name of type $d265 to StringBuffer1.
+; Copy the name of type [$d265] to StringBuffer1.
+
 	ld a, [$d265]
 	ld hl, TypeNames
 	ld e, a
@@ -85,7 +91,7 @@ GetTypeName: ; 50964
 	ld h, [hl]
 	ld l, a
 	ld de, StringBuffer1
-	ld bc, $000d
+	ld bc, 13
 	jp CopyBytes
 ; 5097b
 
@@ -110,7 +116,7 @@ TypeNames: ; 5097b
 	dw Normal
 	dw Normal
 	dw Normal
-	dw UnknownType
+	dw CurseType
 	dw Fire
 	dw Water
 	dw Grass
@@ -120,43 +126,24 @@ TypeNames: ; 5097b
 	dw Dragon
 	dw Dark
 
-Normal:
-	db "NORMAL@"
-Fighting:
-	db "FIGHTING@"
-Flying:
-	db "FLYING@"
-Poison:
-	db "POISON@"
-UnknownType:
-	db "???@"
-Fire:
-	db "FIRE@"
-Water:
-	db "WATER@"
-Grass:
-	db "GRASS@"
-Electric:
-	db "ELECTRIC@"
-Psychic:
-	db "PSYCHIC@"
-Ice:
-	db "ICE@"
-Ground:
-	db "GROUND@"
-Rock:
-	db "ROCK@"
-Bird:
-	db "BIRD@"
-Bug:
-	db "BUG@"
-Ghost:
-	db "GHOST@"
-Steel:
-	db "STEEL@"
-Dragon:
-	db "DRAGON@"
-Dark:
-	db "DARK@"
-; 50a28
+Normal:    db "NORMAL@"
+Fighting:  db "FIGHTING@"
+Flying:    db "FLYING@"
+Poison:    db "POISON@"
+CurseType: db "???@"
+Fire:      db "FIRE@"
+Water:     db "WATER@"
+Grass:     db "GRASS@"
+Electric:  db "ELECTRIC@"
+Psychic:   db "PSYCHIC@"
+Ice:       db "ICE@"
+Ground:    db "GROUND@"
+Rock:      db "ROCK@"
+Bird:      db "BIRD@"
+Bug:       db "BUG@"
+Ghost:     db "GHOST@"
+Steel:     db "STEEL@"
+Dragon:    db "DRAGON@"
+Dark:      db "DARK@"
 
+; 50a28

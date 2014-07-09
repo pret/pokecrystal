@@ -1,4 +1,3 @@
-
 	const_def
 
 PHYSICAL EQU const_value
@@ -12,7 +11,6 @@ PHYSICAL EQU const_value
 	const BUG
 	const GHOST
 	const STEEL
-
 
 UNUSED_TYPES EQU const_value
 	const TYPE_10
