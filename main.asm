@@ -4426,7 +4426,7 @@ OakSpeech: ; 0x5f99
 	call Function4b6
 	call ClearTileMap
 
-	ld a, $c2
+	ld a, WOOPER
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
 	call GetBaseData
