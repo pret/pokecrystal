@@ -71,6 +71,16 @@ Route10South_BlockData: ; 0xa8d9c
 ; 0xa8df6
 
 CinnabarPokeCenter2FBeta_BlockData: ; 0xa8df6
+CeruleanPokeCenter2FBeta_BlockData:
+Route10PokeCenter2FBeta_BlockData:
+VermilionPokeCenter2FBeta_BlockData:
+PewterPokeCEnter2FBeta_BlockData:
+FuchsiaPokeCenter2FBeta_BlockData:
+LavenderPokeCenter2FBeta_BlockData:
+PokeCenter2F_BlockData:
+CeladonPokeCenter2FBeta_BlockData:
+ViridianPokeCenter2FBeta_BlockData:
+SaffronPokeCenter2FBeta_BlockData:
 	INCBIN "maps/CinnabarPokeCenter2FBeta.blk"
 ; 0xa8e16
 
@@ -183,10 +193,70 @@ BetaCianwoodCity_BlockData: ; 0xaa80d
 ; 0xaa867
 
 OlivineVoltorbHouse_BlockData: ; 0xaa867
+OlivineHouseBeta_BlockData:
+OlivinePunishmentSpeechHouse_BlockData:
+OlivineGoodRodHouse_BlockData:
+Route39Farmhouse_BlockData:
+MahoganyRedGyaradosSpeechHouse_BlockData:
+BlackthornDragonSpeechHouse_BlockData:
+BlackthornDodrioTradeHouse_BlockData:
+MoveDeletersHouse_BlockData:
+CeruleanGymBadgeSpeechHouse_BlockData:
+CeruleanPoliceStation_BlockData:
+CeruleanTradeSpeechHouse_BlockData:
+BillsHouse_BlockData:
+CharcoalKiln_BlockData:
+LakeofRageHiddenPowerHouse_BlockData:
+LakeofRageMagikarpHouse_BlockData:
+GoldenrodHappinessRater_BlockData:
+GoldenrodBillsHouse_BlockData:
+GoldenrodPPSpeechHouse_BlockData:
+GoldenrodNameRatersHouse_BlockData:
+VermilionHouseFishingSpeechHouse_BlockData:
+VermilionMagnetTrainSpeechHouse_BlockData:
+VermilionHouseDiglettsCaveSpeechHouse_BlockData:
+BluesHouse_BlockData:
+PewterNidoranSpeechHouse_BlockData:
+PewterSnoozeSpeechHouse_BlockData:
+FuchsiaBillSpeechHouse_BlockData:
+LavenderTownSpeechHouse_BlockData:
+LavenderNameRater_BlockData:
+Route12SuperRodHouse_BlockData:
+Route28FamousSpeechHouse_BlockData:
+CeladonMansionRoofHouse_BlockData:
+Route16FuchsiaSpeechHouse_BlockData:
+ManiasHouse_BlockData:
+CianwoodPharmacy_BlockData:
+CianwoodCityPhotoStudio_BlockData:
+CianwoodLugiaSpeechHouse_BlockData:
+PokeSeersHouse_BlockData:
+ViridianNicknameSpeechHouse_BlockData:
+Route2NuggetSpeechHouse_BlockData:
+KrissNeighborsHouse_BlockData:
+Route26HealSpeechHouse_BlockData:
+Route26DayofWeekSiblingsHouse_BlockData:
+Route27SandstormHouse_BlockData:
+MrPsychicsHouse_BlockData:
+Route5CleanseTagSpeechHouse_BlockData:
+CherrygroveGymSpeechHouse_BlockData:
+GuideGentsHouse_BlockData:
+CherrygroveEvolutionSpeechHouse_BlockData:
+Route30BerrySpeechHouse_BlockData:
 	INCBIN "maps/OlivineVoltorbHouse.blk"
 ; 0xaa877
 
 SafariZoneFuchsiaGateBeta_BlockData: ; 0xaa877
+Route19FuchsiaGate_BlockData:
+Route43MahoganyGate_BlockData:
+Route43Gate_BlockData:
+Route35Goldenrodgate_BlockData:
+Route36RuinsofAlphgate_BlockData:
+Route34IlexForestGate_BlockData:
+Route6SaffronGate_BlockData:
+Route40BattleTowerGate_BlockData:
+Route2Gate_BlockData:
+Route2946Gate_BlockData:
+Route5SaffronCityGate_BlockData:
 	INCBIN "maps/SafariZoneFuchsiaGateBeta.blk"
 ; 0xaa88b
 
@@ -263,6 +333,15 @@ KrissHouse1F_BlockData: ; 0xab69b
 ; 0xab6af
 
 Route38EcruteakGate_BlockData: ; 0xab6af
+Route42EcruteakGate_BlockData:
+Route32RuinsofAlphGate_BlockData:
+IlexForestAzaleaGate_BlockData:
+Route15FuchsiaGate_BlockData:
+Route8SaffronGate_BlockData:
+Route16Gate_BlockData:
+Route7SaffronGate_BlockData:
+Route1718Gate_BlockData:
+Route31VioletGate_BlockData:
 	INCBIN "maps/Route38EcruteakGate.blk"
 ; 0xab6c3
 

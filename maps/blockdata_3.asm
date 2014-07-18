@@ -83,6 +83,7 @@ VermilionPort_BlockData: ; 0xb0899
 ; 0xb094d
 
 OlivineCafe_BlockData: ; 0xb094d
+SafariZoneMainOffice_BlockData:
 	INCBIN "maps/OlivineCafe.blk"
 ; 0xb095d
 
@@ -111,6 +112,7 @@ PowerPlant_BlockData: ; 0xb0a72
 ; 0xb0acc
 
 PokemonFanClub_BlockData: ; 0xb0acc
+SafariZoneWardensHome_BlockData:
 	INCBIN "maps/PokemonFanClub.blk"
 ; 0xb0ae0
 
@@ -215,6 +217,7 @@ VictoryRoadGate_BlockData: ; 0xb10a1
 ; 0xb10fb
 
 OlivinePortPassage_BlockData: ; 0xb10fb
+VermilionPortPassage_BlockData:
 	INCBIN "maps/OlivinePortPassage.blk"
 ; 0xb1155
 
@@ -283,6 +286,9 @@ TohjoFalls_BlockData: ; 0xb16ec
 ; 0xb1773
 
 RuinsofAlphHoOhItemRoom_BlockData: ; 0xb1773
+RuinsofAlphKabutoItemRoom_BlockData:
+RuinsofAlphOmanyteItemRoom_BlockData:
+RuinsofAlphAerodactylItemRoom_BlockData:
 	INCBIN "maps/RuinsofAlphHoOhItemRoom.blk"
 ; 0xb1787
 

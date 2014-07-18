@@ -7,6 +7,18 @@ BetaSproutTower8_BlockData: ; 0xac0b4
 ; 0xac10e
 
 OlivineMart_BlockData: ; 0xac10e
+EcruteakMart_BlockData:
+BlackthornMart_BlockData:
+CeruleanMart_BlockData:
+AzaleaMart_BlockData:
+VioletMart_BlockData:
+VermilionMart_BlockData:
+PewterMart_BlockData:
+FuchsiaMart_BlockData:
+LavenderMart_BlockData:
+ViridianMart_BlockData:
+SaffronMart_BlockData:
+CherrygroveMart_BlockData:
 	INCBIN "maps/OlivineMart.blk"
 ; 0xac126
 
@@ -19,6 +31,26 @@ BetaLakeOfRage_BlockData: ; 0xac180
 ; 0xac2e8
 
 OlivinePokeCenter1F_BlockData: ; 0xac2e8
+MahoganyPokeCenter1F_BlockData:
+EcruteakPokeCenter1F_BlockData:
+BlackthornPokeCenter1F_BlockData:
+CinnabarPokeCenter1F_BlockData:
+CeruleanPokeCenter1F_BlockData:
+Route10PokeCenter1F_BlockData:
+AzaleaPokeCenter1F_BlockData:
+VioletPokeCenter1F_BlockData:
+Route32PokeCenter1F_BlockData:
+GoldenrodPokeCenter1F_BlockData:
+VermilionPokeCenter1F_BlockData:
+PewterPokeCenter1F_BlockData:
+FuchsiaPokeCenter1F_BlockData:
+LavenderPokeCenter1F_BlockData:
+SilverCavePokeCenter1F_BlockData:
+CeladonPokeCenter1F_BlockData:
+CianwoodPokeCenter1F_BlockData:
+ViridianPokeCenter1F_BlockData:
+SaffronPokeCenter1F_BlockData:
+CherrygrovePokeCenter1F_BlockData:
 	INCBIN "maps/OlivinePokeCenter1F.blk"
 ; 0xac2fc
 
@@ -51,30 +83,37 @@ BetaCinnabarIslandPokemonLabRoom3_BlockData: ; 0xac3a4
 ; 0xac3b4
 
 GoldenrodDeptStore1F_BlockData: ; 0xac3b4
+CeladonDeptStore1F_BlockData:
 	INCBIN "maps/GoldenrodDeptStore1F.blk"
 ; 0xac3d4
 
 GoldenrodDeptStore2F_BlockData: ; 0xac3d4
+CeladonDeptStore2F_BlockData:
 	INCBIN "maps/GoldenrodDeptStore2F.blk"
 ; 0xac3f4
 
 GoldenrodDeptStore3F_BlockData: ; 0xac3f4
+CeladonDeptStore3F_BlockData:
 	INCBIN "maps/GoldenrodDeptStore3F.blk"
 ; 0xac414
 
 GoldenrodDeptStore4F_BlockData: ; 0xac414
+CeladonDeptStore4F_BlockData:
 	INCBIN "maps/GoldenrodDeptStore4F.blk"
 ; 0xac434
 
 GoldenrodDeptStore5F_BlockData: ; 0xac434
+CeladonDeptStore5F_BlockData:
 	INCBIN "maps/GoldenrodDeptStore5F.blk"
 ; 0xac454
 
 GoldenrodDeptStore6F_BlockData: ; 0xac454
+CeladonDeptStore6F_BlockData:
 	INCBIN "maps/GoldenrodDeptStore6F.blk"
 ; 0xac474
 
 GoldenrodDeptStoreElevator_BlockData: ; 0xac474
+CeladonDeptStoreElevator_BlockData:
 	INCBIN "maps/GoldenrodDeptStoreElevator.blk"
 ; 0xac478
 
@@ -111,10 +150,14 @@ Colosseum_BlockData: ; 0xac527
 ; 0xac53b
 
 TradeCenter_BlockData: ; 0xac53b
+TimeCapsule_BlockData:
 	INCBIN "maps/TradeCenter.blk"
 ; 0xac54f
 
 EcruteakLugiaSpeechHouse_BlockData: ; 0xac54f
+EcruteakItemfinderHouse_BlockData:
+VioletNicknameSpeechHouse_BlockData:
+VioletOnixTradeHouse_BlockData:
 	INCBIN "maps/EcruteakLugiaSpeechHouse.blk"
 ; 0xac55f
 
@@ -135,10 +178,12 @@ UnionCave1F_BlockData: ; 0xac721
 ; 0xac7d5
 
 NationalPark_BlockData: ; 0xac7d5
+NationalParkBugContest_BlockData:
 	INCBIN "maps/NationalPark.blk"
 ; 0xac9f1
 
 Route6UndergroundEntrance_BlockData: ; 0xac9f1
+Route5UndergroundEntrance_BlockData:
 	INCBIN "maps/Route6UndergroundEntrance.blk"
 ; 0xaca01
 
@@ -167,6 +212,9 @@ RuinsofAlphInnerChamber_BlockData: ; 0xacb53
 ; 0xacbdf
 
 RuinsofAlphHoOhChamber_BlockData: ; 0xacbdf
+RuinsofAlphKabutoChamber_BlockData:
+RuinsofAlphOmanyteChamber_BlockData:
+RuinsofAlphAerodactylChamber_BlockData:
 	INCBIN "maps/RuinsofAlphHoOhChamber.blk"
 ; 0xacbf3
 
@@ -447,6 +495,7 @@ BetaRocketHideout3_BlockData: ; 0xaf777
 ; 0xaf885
 
 MahoganyMart1F_BlockData: ; 0xaf885
+MountMoonGiftShop_BlockData:
 	INCBIN "maps/MahoganyMart1F.blk"
 ; 0xaf895
 
