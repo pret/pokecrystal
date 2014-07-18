@@ -9339,16 +9339,16 @@ Jumptable_c91a: ; c91a (3:491a)
 
 ; no known jump sources
 Functionc922: ; c922 (3:4922)
-	ld de, $1e
+	ld de, ENGINE_FOGBADGE
 	call CheckBadge
 	jr c, .asm_c956
-	ld hl, BikeFlags ; $dbf5
-	bit 1, [hl]
+	ld hl, BikeFlags
+	bit 1, [hl] ; always on bike
 	jr nz, .asm_c95c
-	ld a, [PlayerState] ; $d95d
-	cp $4
+	ld a, [PlayerState]
+	cp PLAYER_SURF
 	jr z, .asm_c959
-	cp $8
+	cp PLAYER_SURF_PIKA
 	jr z, .asm_c959
 	call GetFacingTileCoord
 	call GetTileCollision
@@ -9422,18 +9422,18 @@ Functionc9a2: ; c9a2
 ; c9a9
 
 UsedSurfText: ; c9a9
-	TX_FAR _UsedSurfText ; [MONSTER] used
-	db "@"	       ; SURF!
+	TX_FAR _UsedSurfText
+	db "@"
 ; c9ae
 
 CantSurfText: ; c9ae
-	TX_FAR _CantSurfText ; You can't SURF
-	db "@"	       ; here.
+	TX_FAR _CantSurfText
+	db "@"
 ; c9b3
 
 AlreadySurfingText: ; c9b3
-	TX_FAR _AlreadySurfingText ; You're already
-	db "@"		     ; SURFING.
+	TX_FAR _AlreadySurfingText
+	db "@"
 ; c9b8
 
 
@@ -10143,25 +10143,31 @@ UnknownText_0xcd73: ; 0xcd73
 ; 0xcd78
 
 Functioncd78: ; cd78
-	ld d, $46
+	ld d, STRENGTH
 	call CheckPartyMove
 	jr c, .asm_cd92
-	ld de, $1d
+
+	ld de, ENGINE_PLAINBADGE
 	call CheckEngineFlag
 	jr c, .asm_cd92
+
 	ld hl, BikeFlags ; $dbf5
 	bit 0, [hl]
 	jr z, .asm_cd96
-	ld a, $2
+
+	ld a, 2
 	jr .asm_cd99
+
 .asm_cd92
-	ld a, $1
+	ld a, 1
 	jr .asm_cd99
+
 .asm_cd96
 	xor a
 	jr .asm_cd99
+
 .asm_cd99
-	ld [ScriptVar], a ; $c2dd
+	ld [ScriptVar], a
 	ret
 ; cd9d
 
@@ -10521,7 +10527,7 @@ UnknownText_0xcf77: ; 0xcf77
 ; 0xcf7c
 
 Functioncf7c: ; cf7c
-	ld d, $f9
+	ld d, ROCK_SMASH
 	call CheckPartyMove
 	jr nc, .asm_cf87
 	ld a, $1
