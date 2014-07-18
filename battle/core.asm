@@ -2350,7 +2350,7 @@ Function3cef1: ; 3cef1
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
-	call Function37b6
+	call PlayStereoCry
 	call Function3d43b
 	hlcoord 9, 7
 	lb bc, 5, 11
@@ -3741,7 +3741,7 @@ Function3d7c7: ; 3d7c7
 	ld a, $f
 	ld [CryTracks], a
 	ld a, [TempEnemyMonSpecies]
-	call Function37b6
+	call PlayStereoCry
 
 .asm_3d82c
 	call UpdateEnemyHUD
@@ -4235,7 +4235,7 @@ Function3db5f: ; 3db5f
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [CurPartySpecies]
-	call Function37b6
+	call PlayStereoCry
 
 .asm_3dbd6
 	call UpdatePlayerHUD
@@ -4368,7 +4368,7 @@ Function3dc5b: ; 3dc5b
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
-	call Function37b6
+	call PlayStereoCry
 	ld a, [$c71a]
 	ld c, a
 	ld hl, $c664
@@ -9490,7 +9490,7 @@ BattleStartMessage: ; 3fc8b
 	ld a, $0f
 	ld [CryTracks], a
 	ld a, [TempEnemyMonSpecies]
-	call Function37b6
+	call PlayStereoCry
 
 .asm_3fceb
 	ld a, [BattleType]

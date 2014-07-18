@@ -142,7 +142,7 @@ PlayMusic2:: ; 3bbc
 
 
 PlayCryHeader:: ; 3be3
-; Play a cry given parameters at header de
+; Play cry header de.
 
 	push hl
 	push de

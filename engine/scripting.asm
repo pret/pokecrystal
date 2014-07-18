@@ -1040,10 +1040,10 @@ Script_cry: ; 0x971d1
 	call GetScriptByte
 	pop af
 	and a
-	jr nz, .asm_971df ; 0x971da $3
+	jr nz, .ok
 	ld a, [ScriptVar]
-.asm_971df
-	call Function37ce
+.ok
+	call PlayCry
 	ret
 ; 0x971e3
 

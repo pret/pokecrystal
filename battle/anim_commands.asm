@@ -1317,7 +1317,7 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 
 .asm_cc834
 	push hl
-	call Function37f3
+	call LoadCryHeader
 	pop hl
 	jr c, .done
 

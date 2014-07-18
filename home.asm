@@ -1718,61 +1718,69 @@ Function378b:: ; 378b
 	ret
 ; 37b6
 
-Function37b6:: ; 37b6
+
+PlayStereoCry:: ; 37b6
 	push af
-	ld a, $1
+	ld a, 1
 	ld [$c2bc], a
 	pop af
-	call Function37e2
+	call _PlayCry
 	call WaitSFX
 	ret
 ; 37c4
 
-Function37c4:: ; 37c4
+PlayStereoCry2:: ; 37c4
+; Don't wait for the cry to end.
+; Used during pic animations.
 	push af
-	ld a, $1
+	ld a, 1
 	ld [$c2bc], a
 	pop af
-	jp Function37e2
+	jp _PlayCry
 ; 37ce
 
-Function37ce:: ; 37ce
-	call Function37d5
+PlayCry:: ; 37ce
+	call PlayCry2
 	call WaitSFX
 	ret
 ; 37d5
 
-Function37d5:: ; 37d5
+PlayCry2:: ; 37d5
+; Don't wait for the cry to end.
 	push af
 	xor a
 	ld [$c2bc], a
 	ld [CryTracks], a
 	pop af
-	call Function37e2
+	call _PlayCry
 	ret
 ; 37e2
 
-Function37e2:: ; 37e2
+_PlayCry:: ; 37e2
 	push hl
 	push de
 	push bc
 
-	call Function381e
-	jr c, .asm_37ef
+	call GetCryIndex
+	jr c, .done
+
 	ld e, c
 	ld d, b
 	call PlayCryHeader
-.asm_37ef
 
+.done
 	pop bc
 	pop de
 	pop hl
 	ret
 ; 37f3
 
-Function37f3:: ; 37f3
-	call Function381e
+LoadCryHeader:: ; 37f3
+; Load cry header bc.
+
+	call GetCryIndex
 	ret c
+
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(CryHeaders)
@@ -1790,6 +1798,7 @@ Function37f3:: ; 37f3
 	inc hl
 	ld d, [hl]
 	inc hl
+
 	ld a, [hli]
 	ld [CryPitch], a
 	ld a, [hli]
@@ -1805,11 +1814,11 @@ Function37f3:: ; 37f3
 	ret
 ; 381e
 
-Function381e:: ; 381e
+GetCryIndex:: ; 381e
 	and a
-	jr z, .asm_382b
+	jr z, .no
 	cp NUM_POKEMON + 1
-	jr nc, .asm_382b
+	jr nc, .no
 
 	dec a
 	ld c, a
@@ -1817,7 +1826,7 @@ Function381e:: ; 381e
 	and a
 	ret
 
-.asm_382b
+.no
 	scf
 	ret
 ; 382d
