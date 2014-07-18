@@ -250,7 +250,13 @@ CurSFX:: ; c2bf
 wMapMusic:: ; c2c0
 	ds 1
 
-SECTION "auto",WRAM0[$c2c7]
+	ds 1
+
+wLZAddress:: dw ; c2c2
+wLZBank::    db ; c2c4
+
+	ds 2
+
 InputType:: ; c2c7
 	ds 1
 AutoInputAddress:: ; c2c8
@@ -260,14 +266,14 @@ AutoInputBank:: ; c2ca
 AutoInputLength:: ; c2cb
 	ds 1
 
-SECTION "linkbattle",WRAM0[$c2dc]
+	ds 16
+
 InLinkBattle:: ; c2dc
 ; 0 not in link battle
 ; 1 link battle
 ; 4 mobile battle
 	ds 1
 
-SECTION "scriptengine",WRAM0[$c2dd]
 ScriptVar:: ; c2dd
 	ds 1
 
