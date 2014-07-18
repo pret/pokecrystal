@@ -99732,12 +99732,12 @@ Functionfb841: ; fb841
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $fec0
+	ld bc, -$140
 	add hl, bc
 	ld a, l
 	ld [CryPitch], a
 	ld a, h
-	ld [CryEcho], a
+	ld [CryPitch + 1], a
 	ld hl, CryLength
 	ld a, [hli]
 	ld h, [hl]
@@ -99747,7 +99747,7 @@ Functionfb841: ; fb841
 	ld a, l
 	ld [CryLength], a
 	ld a, h
-	ld [$c2b3], a
+	ld [CryLength + 1], a
 	callba PlayCry
 	call WaitSFX
 

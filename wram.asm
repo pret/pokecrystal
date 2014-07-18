@@ -107,8 +107,7 @@ channel_struct: MACRO
                       ds 1 ; c125
                       ds 1 ; c126
                       ds 1 ; c127
-\1CryPitch::          db
-\1CryEcho::           db
+\1CryPitch::          dw
                       ds 4
 \1NoteLength::        db ; frames per 16th note
                       ds 1 ; c12f
@@ -227,9 +226,7 @@ MusicFadeIDHi:: ; c2aa
 	ds 1
 	ds 5
 CryPitch:: ; c2b0
-	ds 1
-CryEcho:: ; c2b1
-	ds 1
+	ds 2
 CryLength:: ; c2b2
 	ds 2
 LastVolume:: ; c2b4

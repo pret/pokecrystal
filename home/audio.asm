@@ -173,7 +173,7 @@ PlayCryHeader:: ; 3be3
 	ld a, [hli]
 	ld [CryPitch], a
 	ld a, [hli]
-	ld [CryEcho], a
+	ld [CryPitch + 1], a
 	ld a, [hli]
 	ld [CryLength], a
 	ld a, [hl]

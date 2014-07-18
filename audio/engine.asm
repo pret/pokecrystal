@@ -828,7 +828,7 @@ Functione8466: ; e8466
 	add hl, bc
 	bit 4, [hl]
 	jr z, .vibrato
-	ld hl, $0027
+	ld hl, Channel1CryPitch - Channel1
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -1758,7 +1758,7 @@ MusicE6: ; e88e4
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set 4, [hl]
-	ld hl, $0028
+	ld hl, Channel1CryPitch + 1 - Channel1
 	add hl, bc
 	call GetMusicByte
 	ld [hld], a
@@ -2367,7 +2367,6 @@ _PlayMusic:: ; e8b30
 PlayCry:: ; e8b79
 ; Play cry de using parameters:
 ;	CryPitch
-;	CryEcho
 ;	CryLength
 	
 	call MusicOff
@@ -2416,7 +2415,7 @@ PlayCry:: ; e8b79
 	add hl, bc
 	ld a, [CryPitch]
 	ld [hli], a
-	ld a, [CryEcho]
+	ld a, [CryPitch + 1]
 	ld [hl], a
 	
 ; No tempo for channel 4
