@@ -1,43 +1,52 @@
 GiveOddEgg: ; 1fb4b6
 
-; Figure out which egg to give.
+	; Figure out which egg to give.
+
+	; Compare a random word to
+	; probabilities out of 0xffff.
 	call Random
 	ld hl, .Probabilities
 	ld c, 0
 	ld b, c
-.next
+.loop
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
+
+	; Break on $ffff.
 	ld a, d
-	cp $ff
-	jr nz, .first
+	cp $ffff / $100
+	jr nz, .not_done
 	ld a, e
-	cp $ff
+	cp $ffff % $100
 	jr z, .done
-.first
-	ld a, [hRandomSub]
+.not_done
+
+	; Break when [hRandom] <= de.
+	ld a, [hRandom + 1]
 	cp d
 	jr c, .done
-	jr z, .second
-	jr .good
-.second
-	ld a, [hRandomAdd]
+	jr z, .ok
+	jr .next
+.ok
+	ld a, [hRandom + 0]
 	cp e
 	jr c, .done
 	jr z, .done
-.good
+.next
 	inc bc
-	jr .next
+	jr .loop
 .done
 
 	ld hl, OddEggs
 	ld a, OddEgg2 - OddEgg1
 	call AddNTimes
+
 	ld de, $c608
 	ld bc, $0046
 	call CopyBytes
+
 	ld a, EGG_TICKET
 	ld [CurItem], a
 	ld a, $1
@@ -46,29 +55,31 @@ GiveOddEgg: ; 1fb4b6
 	ld [$d107], a
 	ld hl, NumItems
 	call TossItem
+
 	ld a, EGG
 	ld [$cd2a], a
-	ld a, $29
+
+	ld a, $cd29 % $100
 	ld [$cd20], a
-	ld a, $cd
+	ld a, $cd29 / $100
 	ld [$cd21], a
-	ld a, $8
+	ld a, $c608 % $100
 	ld [$cd22], a
-	ld a, $c6
+	ld a, $c608 / $100
 	ld [$cd23], a
 
 	ld hl, .Odd
 	ld de, $cd2b
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-	ld a, $2b
+	ld a, $cd2b % $100
 	ld [$cd24], a
-	ld a, $cd
+	ld a, $cd2b / $100
 	ld [$cd25], a
-	ld a, $38
+	ld a, $c638 % $100
 	ld [$cd26], a
-	ld a, $c6
+	ld a, $c638 / $100
 	ld [$cd27], a
 	callba Function11b98f
 	ret
@@ -78,20 +89,28 @@ GiveOddEgg: ; 1fb4b6
 	db "ODD@@@@@@@@@"
 
 .Probabilities
-	dw $147a ; 92% ->  8%
-	dw $170a ; 91% ->  1%
-	dw $3fff ; 75% -> 16%
-	dw $47ad ; 72% ->  3%
-	dw $70a3 ; 56% -> 16%
-	dw $7851 ; 53% ->  3%
-	dw $9c28 ; 39% -> 14%
-	dw $a147 ; 37% ->  2%
-	dw $bae0 ; 27% -> 10%
-	dw $bfff ; 25% ->  2%
-	dw $deb7 ; 13% -> 12%
-	dw $e3d6 ; 11% ->  2%
-	dw $fd6f ;  1% -> 10%
-	dw $ffff ;  0% ->  1%
+
+prob: MACRO
+prob_total = prob_total + (\1)
+	dw prob_total * $ffff / 100
+ENDM
+
+prob_total = 0
+
+	prob 8
+	prob 1
+	prob 16
+	prob 3
+	prob 16
+	prob 3
+	prob 14
+	prob 2
+	prob 10
+	prob 2
+	prob 12
+	prob 2
+	prob 10
+	prob 1
 ; 1fb56e
 
 

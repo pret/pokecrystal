@@ -2053,7 +2053,7 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 	; get pointer to map group
 	dec b
 	ld c, b
-	ld b, $0
+	ld b, 0
 	ld hl, MapGroupPointers
 	add hl, bc
 	add hl, bc
@@ -2065,8 +2065,8 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 
 	; find the cth map header
 	dec c
-	ld b, $0
-	ld a, OlivineGym_MapHeader - OlivinePokeCenter1F_MapHeader
+	ld b, 0
+	ld a, 9
 	call AddNTimes
 	ret
 ; 0x2c04

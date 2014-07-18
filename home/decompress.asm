@@ -1,10 +1,10 @@
 FarDecompress:: ; b40
 ; Decompress graphics data from a:hl to de.
 
-	ld [$c2c4], a
+	ld [wLZBank], a
 	ld a, [hROMBank]
 	push af
-	ld a, [$c2c4]
+	ld a, [wLZBank]
 	rst Bankswitch
 
 	call Decompress
@@ -75,9 +75,9 @@ LZ_LONG_HI   EQU %00000011
 	; Save the output address
 	; for rewrite commands.
 	ld a, e
-	ld [$c2c2], a
+	ld [wLZAddress], a
 	ld a, d
-	ld [$c2c2 + 1], a
+	ld [wLZAddress + 1], a
 
 .Main
 	ld a, [hl]
@@ -164,16 +164,16 @@ LZ_LONG_HI   EQU %00000011
 ; Write the same byte for bc bytes.
 	ld a, [hli]
 
-.iterloop
+.iloop
 	dec c
-	jr nz, .iternext
+	jr nz, .inext
 	dec b
 	jp z, .Main
 
-.iternext
+.inext
 	ld [de], a
 	inc de
-	jr .iterloop
+	jr .iloop
 
 
 .Alt
@@ -249,10 +249,10 @@ LZ_LONG_HI   EQU %00000011
 	ld l, [hl]
 	ld h, a
 	; add to starting output address
-	ld a, [$c2c2]
+	ld a, [wLZAddress]
 	add l
 	ld l, a
-	ld a, [$c2c3]
+	ld a, [wLZAddress + 1]
 	adc h
 	ld h, a
 
@@ -272,6 +272,7 @@ LZ_LONG_HI   EQU %00000011
 ; However, lengths longer than 768
 ; would be interpreted as LZ_END.
 
+; More practically, LZ_LONG is not recursive.
 ; For now, it defaults to LZ_REPEAT.
 
 
@@ -306,8 +307,10 @@ LZ_LONG_HI   EQU %00000011
 	rl b
 	dec c
 	jr nz, .floop
+
 	ld a, b
 	pop bc
+
 	ld [de], a
 	inc de
 	jr .Flip
