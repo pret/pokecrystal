@@ -179,11 +179,11 @@ PlayCryHeader:: ; 3be3
 	ld a, [hl]
 	ld [CryLength + 1], a
 
-	ld a, BANK(PlayCry)
+	ld a, BANK(_PlayCryHeader)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-	call PlayCry
+	call _PlayCryHeader
 
 	pop af
 	ld [hROMBank], a

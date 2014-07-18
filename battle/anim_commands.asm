@@ -1354,7 +1354,7 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 	ld a, 1
 	ld [$c2bc], a
 
-	callab PlayCry
+	callab _PlayCryHeader
 
 .done
 	pop af

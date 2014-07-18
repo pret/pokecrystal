@@ -99748,7 +99748,7 @@ Functionfb841: ; fb841
 	ld [CryLength], a
 	ld a, h
 	ld [CryLength + 1], a
-	callba PlayCry
+	callba _PlayCryHeader
 	call WaitSFX
 
 .asm_fb876

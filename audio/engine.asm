@@ -5,7 +5,6 @@
 ; Notable functions:
 ; 	FadeMusic
 ; 	PlayStereoSFX
-; 	PlayCry
 
 _SoundRestart:: ; e8000
 ; restart sound operation
@@ -2364,7 +2363,7 @@ _PlayMusic:: ; e8b30
 	ret
 ; e8b79
 
-PlayCry:: ; e8b79
+_PlayCryHeader:: ; e8b79
 ; Play cry de using parameters:
 ;	CryPitch
 ;	CryLength
