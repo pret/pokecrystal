@@ -180,7 +180,7 @@ Functiond0171: ; d0171
 
 Functiond017a: ; d017a
 	ld a, [$d16b]
-	call Function37e2
+	call _PlayCry
 	ld a, [$d168]
 	inc a
 	ld [$d168], a
@@ -189,7 +189,7 @@ Functiond017a: ; d017a
 
 Functiond0188: ; d0188
 	ld a, [$d16b]
-	call Function37d5
+	call PlayCry2
 	ld a, [$d168]
 	inc a
 	ld [$d168], a
@@ -200,7 +200,7 @@ Functiond0196: ; d0196
 	ld a, $f
 	ld [CryTracks], a
 	ld a, [$d16b]
-	call Function37c4
+	call PlayStereoCry2
 	ld a, [$d168]
 	inc a
 	ld [$d168], a

@@ -1317,7 +1317,7 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 
 .asm_cc834
 	push hl
-	call Function37f3
+	call LoadCryHeader
 	pop hl
 	jr c, .done
 
@@ -1327,15 +1327,15 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 	ld b, a
 
 	push hl
-	ld hl, CryPitch ; $c2b0
+	ld hl, CryPitch
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, bc
 	ld a, l
-	ld [CryPitch], a ; $c2b0
+	ld [CryPitch], a
 	ld a, h
-	ld [CryEcho], a ; $c2b1
+	ld [CryPitch + 1], a
 	pop hl
 
 	ld a, [hli]
@@ -1354,7 +1354,7 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 	ld a, 1
 	ld [$c2bc], a
 
-	callab PlayCry
+	callab _PlayCryHeader
 
 .done
 	pop af
@@ -1363,11 +1363,11 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 ; cc871 (33:4871)
 
 Datacc871: ; cc871
-; +pitch, +echo, +length
-	db $00, $00, $c0, $00
-	db $00, $00, $40, $00
-	db $00, $00, $00, $00
-	db $00, $00, $00, $00
+; +pitch, +length
+	dw 0, $c0
+	dw 0, $40
+	dw 0, $00
+	dw 0, $00
 ; cc881
 
 

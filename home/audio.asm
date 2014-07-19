@@ -142,7 +142,7 @@ PlayMusic2:: ; 3bbc
 
 
 PlayCryHeader:: ; 3be3
-; Play a cry given parameters at header de
+; Play cry header de.
 
 	push hl
 	push de
@@ -173,17 +173,17 @@ PlayCryHeader:: ; 3be3
 	ld a, [hli]
 	ld [CryPitch], a
 	ld a, [hli]
-	ld [CryEcho], a
+	ld [CryPitch + 1], a
 	ld a, [hli]
 	ld [CryLength], a
 	ld a, [hl]
 	ld [CryLength + 1], a
 
-	ld a, BANK(PlayCry)
+	ld a, BANK(_PlayCryHeader)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-	call PlayCry
+	call _PlayCryHeader
 
 	pop af
 	ld [hROMBank], a

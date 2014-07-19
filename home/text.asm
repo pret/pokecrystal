@@ -1108,7 +1108,7 @@ Function1522:: ; 1522
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call Function37ce
+	call PlayCry
 	pop de
 	pop hl
 	pop bc

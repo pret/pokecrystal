@@ -4426,7 +4426,7 @@ OakSpeech: ; 0x5f99
 	call Function4b6
 	call ClearTileMap
 
-	ld a, $c2
+	ld a, WOOPER
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
 	call GetBaseData
@@ -4487,7 +4487,7 @@ OakText2: ; 0x604a
 	TX_FAR _OakText2
 	start_asm
 	ld a,WOOPER
-	call Function37ce
+	call PlayCry
 	call WaitSFX
 	ld hl,OakText3
 	ret
@@ -8443,7 +8443,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 
 Functionc472: ; c472
 	ld a, [CurPartySpecies]
-	jp Function37ce
+	jp PlayCry
 ; c478
 
 SpecialGameboyCheck: ; c478
@@ -9339,16 +9339,16 @@ Jumptable_c91a: ; c91a (3:491a)
 
 ; no known jump sources
 Functionc922: ; c922 (3:4922)
-	ld de, $1e
+	ld de, ENGINE_FOGBADGE
 	call CheckBadge
 	jr c, .asm_c956
-	ld hl, BikeFlags ; $dbf5
-	bit 1, [hl]
+	ld hl, BikeFlags
+	bit 1, [hl] ; always on bike
 	jr nz, .asm_c95c
-	ld a, [PlayerState] ; $d95d
-	cp $4
+	ld a, [PlayerState]
+	cp PLAYER_SURF
 	jr z, .asm_c959
-	cp $8
+	cp PLAYER_SURF_PIKA
 	jr z, .asm_c959
 	call GetFacingTileCoord
 	call GetTileCollision
@@ -9422,18 +9422,18 @@ Functionc9a2: ; c9a2
 ; c9a9
 
 UsedSurfText: ; c9a9
-	TX_FAR _UsedSurfText ; [MONSTER] used
-	db "@"	       ; SURF!
+	TX_FAR _UsedSurfText
+	db "@"
 ; c9ae
 
 CantSurfText: ; c9ae
-	TX_FAR _CantSurfText ; You can't SURF
-	db "@"	       ; here.
+	TX_FAR _CantSurfText
+	db "@"
 ; c9b3
 
 AlreadySurfingText: ; c9b3
-	TX_FAR _AlreadySurfingText ; You're already
-	db "@"		     ; SURFING.
+	TX_FAR _AlreadySurfingText
+	db "@"
 ; c9b8
 
 
@@ -10143,25 +10143,31 @@ UnknownText_0xcd73: ; 0xcd73
 ; 0xcd78
 
 Functioncd78: ; cd78
-	ld d, $46
+	ld d, STRENGTH
 	call CheckPartyMove
 	jr c, .asm_cd92
-	ld de, $1d
+
+	ld de, ENGINE_PLAINBADGE
 	call CheckEngineFlag
 	jr c, .asm_cd92
+
 	ld hl, BikeFlags ; $dbf5
 	bit 0, [hl]
 	jr z, .asm_cd96
-	ld a, $2
+
+	ld a, 2
 	jr .asm_cd99
+
 .asm_cd92
-	ld a, $1
+	ld a, 1
 	jr .asm_cd99
+
 .asm_cd96
 	xor a
 	jr .asm_cd99
+
 .asm_cd99
-	ld [ScriptVar], a ; $c2dd
+	ld [ScriptVar], a
 	ret
 ; cd9d
 
@@ -10521,7 +10527,7 @@ UnknownText_0xcf77: ; 0xcf77
 ; 0xcf7c
 
 Functioncf7c: ; cf7c
-	ld d, $f9
+	ld d, ROCK_SMASH
 	call CheckPartyMove
 	jr nc, .asm_cf87
 	ld a, $1
@@ -28842,7 +28848,7 @@ Function167f6: ; 167f6
 	ld a, $5
 	call Function1689b
 	ld a, [CurPartySpecies]
-	call Function37ce
+	call PlayCry
 	ld a, $9
 	call Function1689b
 	ret
@@ -28902,7 +28908,7 @@ Function16850: ; 16850
 	ld a, $d
 	call Function1689b
 	ld a, [CurPartySpecies]
-	call Function37ce
+	call PlayCry
 	ld a, $e
 	call Function1689b
 	ret
@@ -30624,7 +30630,7 @@ Function17421: ; 17421
 	ld hl, UnknownText_0x17467
 	call PrintText
 	ld a, [wBreedMon1Species]
-	call Function37ce
+	call PlayCry
 	ld a, [wDaycareLady]
 	bit 0, a
 	jr z, Function1745f
@@ -30637,7 +30643,7 @@ Function17440: ; 17440
 	ld hl, UnknownText_0x17462
 	call PrintText
 	ld a, [wBreedMon2Species]
-	call Function37ce
+	call PlayCry
 	ld a, [wDaycareMan]
 	bit 0, a
 	jr z, Function1745f
@@ -39022,14 +39028,15 @@ Function2942e: ; 2942e
 	ld a, $e4
 	call DmgToCgbBGPals
 	call Function294bb
+
 	ld a, [PlayerSDefLevel]
-	call Function381e
+	call GetCryIndex
 	jr c, .asm_2945d
 	ld e, c
 	ld d, b
 	call PlayCryHeader
-
 .asm_2945d
+
 	call Function29114
 	ret
 ; 29461
@@ -44298,7 +44305,7 @@ Function40217: ; 40217 (10:4217)
 	ld a, $4
 	call Function41423
 	ld a, [CurPartySpecies] ; $d108
-	call Function37ce
+	call PlayCry
 	call Function40131
 	ret
 
@@ -44370,7 +44377,7 @@ Function402aa: ; 402aa (10:42aa)
 	ld a, $4
 	call Function41423
 	ld a, [CurPartySpecies] ; $d108
-	call Function37ce
+	call PlayCry
 	ld hl, $cf63
 	dec [hl]
 	ret
@@ -44426,7 +44433,7 @@ Function402fa: ; 402fa
 Function40340: ; 40340
 	call Function40bb1
 	ld a, [$d265]
-	call Function381e
+	call GetCryIndex
 	ld e, c
 	ld d, b
 	call PlayCryHeader
@@ -46626,7 +46633,7 @@ Function41a7f: ; 41a7f
 	ld a, $4
 	call Function41423
 	ld a, [CurPartySpecies]
-	call Function37ce
+	call PlayCry
 	ret
 ; 41ad7
 
@@ -56942,7 +56949,7 @@ Function4e226: ; 4e226 (13:6226)
 	call Function32f9
 	call Function4e253
 	ld a, [CurPartySpecies] ; $d108
-	call Function37d5
+	call PlayCry2
 	ret
 
 ; known jump sources: 4e23f (13:623f), 4e249 (13:6249)
@@ -57469,7 +57476,7 @@ _EvolutionAnimation: ; 4e607
 	jr c, .asm_4e67c
 
 	ld a, [Buffer1]
-	call Function37ce
+	call PlayCry
 
 .asm_4e67c
 	ld de, MUSIC_EVOLUTION
@@ -57538,7 +57545,7 @@ _EvolutionAnimation: ; 4e607
 	ret c
 
 	ld a, [PlayerHPPal]
-	call Function37ce
+	call PlayCry
 	ret
 ; 4e703
 
@@ -95608,7 +95615,7 @@ Functione307c: ; e307c (38:707c)
 	ld [$d10b], a
 	callba Functione039
 	ld a, [CurPartySpecies] ; $d108
-	call Function37ce
+	call PlayCry
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $f08
 	call ClearBox
@@ -95663,7 +95670,7 @@ Functione30fa: ; e30fa (38:70fa)
 	ld [$d10b], a
 	callba Functione039
 	ld a, [CurPartySpecies] ; $d108
-	call Function37ce
+	call PlayCry
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $f08
 	call ClearBox
@@ -95709,14 +95716,16 @@ Functione3180: ; e3180 (38:7180)
 	hlcoord 0, 15
 	ld bc, $112
 	call TextBox
+
 	call WaitBGMap
 	ld a, [CurPartySpecies] ; $d108
-	call Function381e
+	call GetCryIndex
 	jr c, .asm_e31ab
 	ld e, c
 	ld d, b
 	call PlayCryHeader
 .asm_e31ab
+
 	ld a, [CurPartySpecies] ; $d108
 	ld [$d265], a
 	call GetPokemonName
@@ -99726,32 +99735,33 @@ INCLUDE "event/name_rater.asm"
 
 Functionfb841: ; fb841
 	ld a, [ScriptVar]
-	call Function37f3
-	jr c, .asm_fb876
+	call LoadCryHeader
+	jr c, .done
+
 	ld hl, CryPitch
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $fec0
+	ld bc, -$140
 	add hl, bc
 	ld a, l
 	ld [CryPitch], a
 	ld a, h
-	ld [CryEcho], a
+	ld [CryPitch + 1], a
 	ld hl, CryLength
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $0060
+	ld bc, $60
 	add hl, bc
 	ld a, l
 	ld [CryLength], a
 	ld a, h
-	ld [$c2b3], a
-	callba PlayCry
+	ld [CryLength + 1], a
+	callba _PlayCryHeader
 	call WaitSFX
 
-.asm_fb876
+.done
 	ret
 ; fb877
 
