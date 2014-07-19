@@ -3818,8 +3818,10 @@ NewGame: ; 5b6b
 	call Function5d23
 	ld a, $1
 	ld [$c2d8], a
-	ld a, $0
+
+	ld a, 0 ; SPAWN_HOME
 	ld [$d001], a
+
 	ld a, $f1
 	ld [$ff9f], a
 	jp Function5e5d
@@ -4132,14 +4134,14 @@ Continue: ; 5d65
 	ret
 
 .asm_5dd7
-	ld a, $e
+	ld a, $e ; SPAWN_NEW_BARK
 	ld [$d001], a
 	call Function5de7
 	jp Function5e5d
 ; 5de2
 
 Function5de2: ; 5de2
-	ld a, $1a
+	ld a, $1a ; SPAWN_MT_SILVER
 	ld [$d001], a
 ; 5de7
 
@@ -9587,10 +9589,11 @@ Functionca52: ; ca52
 	call ClearSprites
 	callba Function91af3
 	ld a, e
-	cp $ff
+	cp -1
 	jr z, .asm_ca8b
-	cp $1c
+	cp $1c ; NUM_SPAWNS
 	jr nc, .asm_ca8b
+
 	ld [$d001], a
 	call Function1c17
 	ld a, $1
@@ -25459,64 +25462,49 @@ UnknownText_0x152a6: ; 0x152a6
 SpawnPoints: ; 0x152ab
 
 	const_def
-	const SPAWN_HOME
-	const SPAWN_VIRIDIAN_POKECENTER
-	const SPAWN_PALLET
-	const SPAWN_VIRIDIAN
-	const SPAWN_PEWTER
-	const SPAWN_CERULEAN
-	const SPAWN_ROCK_TUNNEL
-	const SPAWN_VERMILION
-	const SPAWN_LAVENDER
-	const SPAWN_SAFFRON
-	const SPAWN_CELADON
-	const SPAWN_FUCHSIA
-	const SPAWN_CINNABAR
-	const SPAWN_INDIGO_PLATEAU
-	const SPAWN_NEW_BARK
-	const SPAWN_CHERRYGROVE
-	const SPAWN_VIOLET
-	const SPAWN_UNION_CAVE
-	const SPAWN_AZALEA
-	const SPAWN_CIANWOOD
-	const SPAWN_GOLDENROD
-	const SPAWN_OLIVINE
-	const SPAWN_ECRUTEAK
-	const SPAWN_MAHOGANY
-	const SPAWN_LAKE
-	const SPAWN_BLACKTHORN
-	const SPAWN_MT_SILVER
-	const SPAWN_FAST_SHIP
 
-	db GROUP_KRISS_HOUSE_2F, MAP_KRISS_HOUSE_2F, 3, 3
-	db GROUP_VIRIDIAN_POKECENTER_1F, MAP_VIRIDIAN_POKECENTER_1F, 5, 3 ; unused
-	db GROUP_PALLET_TOWN, MAP_PALLET_TOWN, 5, 6
-	db GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY, 23, 26
-	db GROUP_PEWTER_CITY, MAP_PEWTER_CITY, 13, 26
-	db GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY, 19, 22
-	db GROUP_ROUTE_10A, MAP_ROUTE_10A, 11, 2
-	db GROUP_VERMILION_CITY, MAP_VERMILION_CITY, 9, 6
-	db GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN, 5, 6
-	db GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY, 9, 30
-	db GROUP_CELADON_CITY, MAP_CELADON_CITY, 29, 10
-	db GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY, 19, 28
-	db GROUP_CINNABAR_ISLAND, MAP_CINNABAR_ISLAND, 11, 12
-	db GROUP_ROUTE_23, MAP_ROUTE_23, 9, 6
-	db GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, 13, 6
-	db GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 29, 4
-	db GROUP_VIOLET_CITY, MAP_VIOLET_CITY, 31, 26
-	db GROUP_ROUTE_32, MAP_ROUTE_32, 11, 74
-	db GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, 15, 10
-	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, 23, 44
-	db GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY, 15, 28
-	db GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY, 13, 22
-	db GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, 23, 28
-	db GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN, 15, 14
-	db GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE, 21, 29
-	db GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY, 21, 30
-	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE, 23, 20
-	db GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW, 6, 2
+spawn: MACRO
+; name, map, y, x
+\1\@ EQUS "SPAWN_\1"
+	const \1\@
+	map \2
+	db \3, \4
+ENDM
+
+	spawn HOME,        KRISS_HOUSE_2F,              3,  3
+	spawn DEBUG,       VIRIDIAN_POKECENTER_1F,      5,  3
+
+	spawn PALLET,      PALLET_TOWN,                 5,  6
+	spawn VIRIDIAN,    VIRIDIAN_CITY,              23, 26
+	spawn PEWTER,      PEWTER_CITY,                13, 26
+	spawn CERULEAN,    CERULEAN_CITY,              19, 22
+	spawn ROCK_TUNNEL, ROUTE_10A,                  11,  2
+	spawn VERMILION,   VERMILION_CITY,              9,  6
+	spawn LAVENDER,    LAVENDER_TOWN,               5,  6
+	spawn SAFFRON,     SAFFRON_CITY,                9, 30
+	spawn CELADON,     CELADON_CITY,               29, 10
+	spawn FUCHSIA,     FUCHSIA_CITY,               19, 28
+	spawn CINNABAR,    CINNABAR_ISLAND,            11, 12
+	spawn INDIGO,      ROUTE_23,                    9,  6
+
+	spawn NEW_BARK,    NEW_BARK_TOWN,              13,  6
+	spawn CHERRYGROVE, CHERRYGROVE_CITY,           29,  4
+	spawn VIOLET,      VIOLET_CITY,                31, 26
+	spawn UNION_CAVE,  ROUTE_32,                   11, 74
+	spawn AZALEA,      AZALEA_TOWN,                15, 10
+	spawn CIANWOOD,    CIANWOOD_CITY,              23, 44
+	spawn GOLDENROD,   GOLDENROD_CITY,             15, 28
+	spawn OLIVINE,     OLIVINE_CITY,               13, 22
+	spawn ECRUTEAK,    ECRUTEAK_CITY,              23, 28
+	spawn MAHOGANY,    MAHOGANY_TOWN,              15, 14
+	spawn LAKE,        LAKE_OF_RAGE,               21, 29
+	spawn BLACKTHORN,  BLACKTHORN_CITY,            21, 30
+	spawn MT_SILVER,   SILVER_CAVE_OUTSIDE,        23, 20
+	spawn FAST_SHIP,   FAST_SHIP_CABINS_SW_SSW_NW,  6,  2
+
 	db -1, -1, -1, -1
+
+	const NUM_SPAWNS
 
 
 LoadSpawnPoint: ; 1531f
@@ -83079,61 +83067,42 @@ Flypoints: ; 91c5e
 
 	const_def
 
-; Johto
-	const FLY_NEW_BARK
-	const FLY_CHERRYGROVE
-	const FLY_VIOLET
-	const FLY_AZALEA
-	const FLY_GOLDENROD
-	const FLY_ECRUTEAK
-	const FLY_OLIVINE
-	const FLY_CIANWOOD
-	const FLY_MAHOGANY
-	const FLY_LAKE
-	const FLY_BLACKTHORN
-	const FLY_MT_SILVER
+flypoint: MACRO
+\1\@FLY   EQUS "FLY_\1"
+\1\@SPAWN EQUS "SPAWN_\1"
+	const \1\@FLY
+	db \2, \1\@SPAWN
+ENDM
 
-	db NEW_BARK_TOWN,    SPAWN_NEW_BARK
-	db CHERRYGROVE_CITY, SPAWN_CHERRYGROVE
-	db VIOLET_CITY,      SPAWN_VIOLET
-	db AZALEA_TOWN,      SPAWN_AZALEA
-	db GOLDENROD_CITY,   SPAWN_GOLDENROD
-	db ECRUTEAK_CITY,    SPAWN_ECRUTEAK
-	db OLIVINE_CITY,     SPAWN_OLIVINE
-	db CIANWOOD_CITY,    SPAWN_CIANWOOD
-	db MAHOGANY_TOWN,    SPAWN_MAHOGANY
-	db LAKE_OF_RAGE,     SPAWN_LAKE
-	db BLACKTHORN_CITY,  SPAWN_BLACKTHORN
-	db SILVER_CAVE,      SPAWN_MT_SILVER
+; Johto
+	flypoint NEW_BARK,    NEW_BARK_TOWN
+	flypoint CHERRYGROVE, CHERRYGROVE_CITY
+	flypoint VIOLET,      VIOLET_CITY
+	flypoint AZALEA,      AZALEA_TOWN
+	flypoint GOLDENROD,   GOLDENROD_CITY
+	flypoint ECRUTEAK,    ECRUTEAK_CITY
+	flypoint OLIVINE,     OLIVINE_CITY
+	flypoint CIANWOOD,    CIANWOOD_CITY
+	flypoint MAHOGANY,    MAHOGANY_TOWN
+	flypoint LAKE,        LAKE_OF_RAGE
+	flypoint BLACKTHORN,  BLACKTHORN_CITY
+	flypoint MT_SILVER,   SILVER_CAVE
 
 ; Kanto
 KANTO_FLYPOINT EQU const_value
 
-	const FLY_PALLET
-	const FLY_VIRIDIAN
-	const FLY_PEWTER
-	const FLY_CERULEAN
-	const FLY_VERMILION
-	const FLY_ROCK_TUNNEL
-	const FLY_LAVENDER
-	const FLY_CELADON
-	const FLY_SAFFRON
-	const FLY_FUCHSIA
-	const FLY_CINNABAR
-	const FLY_INDIGO_PLATEAU
-
-	db PALLET_TOWN,      SPAWN_PALLET
-	db VIRIDIAN_CITY,    SPAWN_VIRIDIAN
-	db PEWTER_CITY,      SPAWN_PEWTER
-	db CERULEAN_CITY,    SPAWN_CERULEAN
-	db VERMILION_CITY,   SPAWN_VERMILION
-	db ROCK_TUNNEL,      SPAWN_ROCK_TUNNEL
-	db LAVENDER_TOWN,    SPAWN_LAVENDER
-	db CELADON_CITY,     SPAWN_CELADON
-	db SAFFRON_CITY,     SPAWN_SAFFRON
-	db FUCHSIA_CITY,     SPAWN_FUCHSIA
-	db CINNABAR_ISLAND,  SPAWN_CINNABAR
-	db INDIGO_PLATEAU,   SPAWN_INDIGO_PLATEAU
+	flypoint PALLET,      PALLET_TOWN
+	flypoint VIRIDIAN,    VIRIDIAN_CITY
+	flypoint PEWTER,      PEWTER_CITY
+	flypoint CERULEAN,    CERULEAN_CITY
+	flypoint VERMILION,   VERMILION_CITY
+	flypoint ROCK_TUNNEL, ROCK_TUNNEL
+	flypoint LAVENDER,    LAVENDER_TOWN
+	flypoint CELADON,     CELADON_CITY
+	flypoint SAFFRON,     SAFFRON_CITY
+	flypoint FUCHSIA,     FUCHSIA_CITY
+	flypoint CINNABAR,    CINNABAR_ISLAND
+	flypoint INDIGO,      INDIGO_PLATEAU
 
 	db -1
 ; 91c8f
@@ -83202,7 +83171,7 @@ FlyMap: ; 91c90
 ; visited and its flypoint enabled
 	
 	push af
-	ld c, SPAWN_INDIGO_PLATEAU
+	ld c, SPAWN_INDIGO
 	call HasVisitedSpawn
 	and a
 	jr z, .NoKanto
@@ -83213,7 +83182,7 @@ FlyMap: ; 91c90
 	ld a, FLY_PALLET
 	ld [StartFlypoint], a
 ; ...and end at Indigo Plateau
-	ld a, FLY_INDIGO_PLATEAU
+	ld a, FLY_INDIGO
 	ld [EndFlypoint], a
 	
 ; Because Indigo Plateau is the first flypoint the player
@@ -83860,7 +83829,7 @@ Function923b8: ; 923b8
 .asm_923c6
 	ld hl, DefaultFlypoint
 	ld a, [hl]
-	cp FLY_INDIGO_PLATEAU
+	cp FLY_INDIGO
 	jr c, .asm_923d0
 	ld [hl], -1
 .asm_923d0
@@ -83872,7 +83841,7 @@ Function923b8: ; 923b8
 	ld a, [hl]
 	and a
 	jr nz, .asm_923dc
-	ld [hl], FLY_INDIGO_PLATEAU + 1
+	ld [hl], FLY_INDIGO + 1
 .asm_923dc
 	dec [hl]
 
