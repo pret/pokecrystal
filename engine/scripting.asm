@@ -293,7 +293,7 @@ Script_special: ; 0x96e26
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	callba Functionc01b
+	callba Special
 	ret
 ; 0x96e35
 

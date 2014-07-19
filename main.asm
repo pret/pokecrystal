@@ -7861,7 +7861,9 @@ Datac012: ; c012
 	db $ff
 ; c01b
 
-Functionc01b:: ; c01b
+
+Special:: ; c01b
+; Run script special de.
 	ld hl, SpecialsPointers
 	add hl, de
 	add hl, de
@@ -7875,7 +7877,6 @@ Functionc01b:: ; c01b
 	rst FarCall
 	ret
 ; c029
-
 
 SpecialsPointers: ; c029
 	dbw BANK(Function97c28), Function97c28
@@ -8434,46 +8435,47 @@ SpecialSnorlaxAwake: ; 0xc43d
 	ret
 
 .ProximityCoords
-	db $21, $08
-	db $22, $0a
-	db $23, $0a
-	db $24, $08
-	db $24, $09
+	;   x,  y
+	db 33,  8 ; left
+	db 34, 10 ; below
+	db 35, 10 ; below
+	db 36,  8 ; right
+	db 36,  9 ; right
 	db $ff
+
 
 Functionc472: ; c472
 	ld a, [CurPartySpecies]
 	jp PlayCry
 ; c478
 
+
 SpecialGameboyCheck: ; c478
-; check cgb
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-; check sgb
+
 	ld a, [hSGB]
 	and a
 	jr nz, .sgb
-; gb
+
+.gb
 	xor a
 	jr .done
-	
 .sgb
 	ld a, 1
 	jr .done
-
 .cgb
 	ld a, 2
-	
 .done
 	ld [ScriptVar], a
 	ret
 
+
 Functionc48f: ; c48f
-	ld a, $0
+	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
-	ld a, $0
+	ld a, MUSIC_NONE / $100
 	ld [MusicFadeIDHi], a
 	ld a, $2
 	ld [MusicFade], a
@@ -8834,23 +8836,28 @@ Functionc677: ; c677
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
+
 	ld hl, PartyMon1Status - PartyMon1Species 
 	add hl, de
 	xor a
 	ld [hli], a
 	ld [hl], a
+
 	ld hl, PartyMon1MaxHP - PartyMon1Species
 	add hl, de
+
 	; bc = PartyMon1HP - PartyMon1Species
 	ld b, h
 	ld c, l
 	dec bc
 	dec bc
+
 	ld a, [hli]
 	ld [bc], a
 	inc bc
 	ld a, [hl]
 	ld [bc], a
+
 	callba Functionf8b9
 	ret
 ; c699
@@ -8952,6 +8959,7 @@ GetPartyNick: ; c706
 	ret
 ; c721
 
+
 CheckEngineFlag: ; c721
 ; Check engine flag de
 ; Return carry if flag is not set
@@ -8985,51 +8993,52 @@ BadgeRequiredText: ; c73d
 	db "@"
 ; c742
 
-CheckPartyMove: ; c742
-; checks if a pokemon in your party has a move
-; e = partymon being checked
 
-; input: d = move id
-	ld e, $00 ; mon #
+CheckPartyMove: ; c742
+; Check if a monster in your party has move d.
+
+	ld e, 0
 	xor a
 	ld [CurPartyMon], a
-.checkmon
-; check for valid species
+.loop
 	ld c, e
-	ld b, $00
+	ld b, 0
 	ld hl, PartySpecies
 	add hl, bc
 	ld a, [hl]
-	and a ; no id
-	jr z, .quit
-	cp a, $ff ; terminator
-	jr z, .quit
+	and a
+	jr z, .no
+	cp a, $ff
+	jr z, .no
 	cp a, EGG
-	jr z, .nextmon
-; navigate to appropriate move table
+	jr z, .next
+
 	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Moves
 	ld a, e
 	call AddNTimes
-	ld b, $04 ; number of moves
-.checkmove
+	ld b, NUM_MOVES
+.check
 	ld a, [hli]
-	cp d ; move id
-	jr z, .end
-	dec b ; how many moves left?
-	jr nz, .checkmove
-.nextmon
-	inc e ; mon #
-	jr .checkmon
-.end
+	cp d
+	jr z, .yes
+	dec b
+	jr nz, .check
+
+.next
+	inc e
+	jr .loop
+
+.yes
 	ld a, e
 	ld [CurPartyMon], a ; which mon has the move
 	xor a
 	ret
-.quit
+.no
 	scf
 	ret
 ; c779
+
 
 Functionc779: ; c779
 	ld hl, UnknownText_0xc780
@@ -9044,10 +9053,10 @@ UnknownText_0xc780: ; 0xc780
 
 Functionc785: ; c785
 	call Functionc6ea
-.asm_c788
+.loop
 	ld hl, Jumptable_c796
 	call Functionc6f5
-	jr nc, .asm_c788
+	jr nc, .loop
 	and $7f
 	ld [$d0ec], a
 	ret
