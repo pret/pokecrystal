@@ -152,7 +152,12 @@ MapCeladonGameCornerSignpost9Script: ; 0x721c3
 	end
 ; 0x721cd
 
-INCBIN "baserom.gbc",$721cd,$721d0 - $721cd
+MovementData_0x721cd: ; 0x721cd
+; Unreferenced.
+	step_right
+	turn_head_left
+	step_end
+; 0x721d0
 
 UnknownText_0x721d0: ; 0x721d0
 	text "Welcome!"
