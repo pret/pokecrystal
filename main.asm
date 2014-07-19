@@ -9063,14 +9063,12 @@ Functionc785: ; c785
 ; c796
 
 
-; no known jump sources
 Jumptable_c796: ; c796 (3:4796)
 	dw Functionc79c
 	dw Functionc7b2
 	dw Functionc7bb
 
 
-; no known jump sources
 Functionc79c: ; c79c (3:479c)
 	ld de, ENGINE_HIVEBADGE
 	call CheckBadge
@@ -9086,14 +9084,12 @@ Functionc79c: ; c79c (3:479c)
 	ld a, $2
 	ret
 
-; no known jump sources
 Functionc7b2: ; c7b2 (3:47b2)
 	ld hl, UnknownScript_0xc7fe
 	call Function31cd
 	ld a, $81
 	ret
 
-; no known jump sources
 Functionc7bb: ; c7bb (3:47bb)
 	ld hl, UnknownText_0xc7c9
 	call Function1d67
@@ -9338,7 +9334,6 @@ Functionc909: ; c909
 ; c91a
 
 
-; no known jump sources
 Jumptable_c91a: ; c91a (3:491a)
 	dw Functionc922
 	dw Functionc95f
@@ -9346,7 +9341,6 @@ Jumptable_c91a: ; c91a (3:491a)
 	dw Functionc97a
 
 
-; no known jump sources
 Functionc922: ; c922 (3:4922)
 	ld de, ENGINE_FOGBADGE
 	call CheckBadge
@@ -9379,7 +9373,6 @@ Functionc922: ; c922 (3:4922)
 	ld a, $2
 	ret
 
-; no known jump sources
 Functionc95f: ; c95f (3:495f)
 	call GetSurfType
 	ld [Buffer2], a ; $d1eb (aliases: MovementType)
@@ -9389,14 +9382,12 @@ Functionc95f: ; c95f (3:495f)
 	ld a, $81
 	ret
 
-; no known jump sources
 Functionc971: ; c971 (3:4971)
 	ld hl, CantSurfText
 	call Function1d67
 	ld a, $80
 	ret
 
-; no known jump sources
 Functionc97a: ; c97a (3:497a)
 	ld hl, AlreadySurfingText
 	call Function1d67
@@ -11615,7 +11606,6 @@ GetItemPrice: ; d486
 ; d497
 
 
-; no known jump sources
 Functiond497:: ; d497 (3:5497)
 	ld a, [$d150]
 	and a
@@ -11649,7 +11639,6 @@ Functiond497:: ; d497 (3:5497)
 	ld [$d14d], a
 	ret
 
-; no known jump sources
 Functiond4d2:: ; d4d2 (3:54d2)
 	ld a, [$d14e]
 	ld d, a
@@ -11663,7 +11652,6 @@ Functiond4d2:: ; d4d2 (3:54d2)
 	ld [hSCY], a ; $ff00+$d0
 	ret
 
-; known jump sources: d4b8 (3:54b8)
 Functiond4e5: ; d4e5 (3:54e5)
 	ld hl, $d13f
 	ld a, [hl]
@@ -11675,7 +11663,6 @@ Functiond4e5: ; d4e5 (3:54e5)
 	rst JumpTable
 	ret
 
-; no known jump sources
 Jumptable_d4f2: ; d4f2 (3:54f2)
 	dw Function2914
 	dw Function2879
@@ -11690,20 +11677,16 @@ Jumptable_d4f2: ; d4f2 (3:54f2)
 	dw Functiond508
 
 
-; no known jump sources
 Functiond508: ; d508 (3:5508)
 	ret
 
-; no known jump sources
 Functiond509: ; d509 (3:5509)
 	callba Function10602e
 	ret
 
-; no known jump sources
 Functiond510: ; d510 (3:5510)
 	ret
 
-; known jump sources: d4b3 (3:54b3)
 Functiond511: ; d511 (3:5511)
 	ld a, [$d151]
 	and a
@@ -11730,7 +11713,6 @@ Functiond511: ; d511 (3:5511)
 	inc [hl]
 	ret
 
-; known jump sources: d4ae (3:54ae)
 Functiond536: ; d536 (3:5536)
 	ld a, [$d151]
 	and a
@@ -11763,7 +11745,6 @@ Functiond536: ; d536 (3:5536)
 	call Function278f
 	ret
 
-; known jump sources: d549 (3:5549)
 Functiond571: ; d571 (3:5571)
 	ld a, [$d152]
 	add $40
@@ -11785,7 +11766,6 @@ Functiond571: ; d571 (3:5571)
 .asm_d594
 	ret
 
-; known jump sources: d591 (3:5591)
 Functiond595: ; d595 (3:5595)
 	ld hl, $d194
 	ld a, [MapWidth]
@@ -11796,7 +11776,6 @@ Functiond595: ; d595 (3:5595)
 	inc [hl]
 	ret
 
-; known jump sources: d553 (3:5553)
 Functiond5a2: ; d5a2 (3:55a2)
 	ld a, [$d152]
 	sub $40
@@ -11818,7 +11797,6 @@ Functiond5a2: ; d5a2 (3:55a2)
 .asm_d5c5
 	ret
 
-; known jump sources: d5c2 (3:55c2)
 Functiond5c6: ; d5c6 (3:55c6)
 	ld hl, $d194
 	ld a, [MapWidth]
@@ -11831,7 +11809,6 @@ Functiond5c6: ; d5c6 (3:55c6)
 	dec [hl]
 	ret
 
-; known jump sources: d55d (3:555d)
 Functiond5d5: ; d5d5 (3:55d5)
 	ld a, [$d152]
 	ld e, a
@@ -11852,7 +11829,6 @@ Functiond5d5: ; d5d5 (3:55d5)
 .asm_d5f3
 	ret
 
-; known jump sources: d5f0 (3:55f0)
 Functiond5f4: ; d5f4 (3:55f4)
 	ld hl, $d194
 	ld a, [hl]
@@ -11862,7 +11838,6 @@ Functiond5f4: ; d5f4 (3:55f4)
 	dec [hl]
 	ret
 
-; known jump sources: d567 (3:5567)
 Functiond5fe: ; d5fe (3:55fe)
 	ld a, [$d152]
 	ld e, a
@@ -11883,7 +11858,6 @@ Functiond5fe: ; d5fe (3:55fe)
 .asm_d61c
 	ret
 
-; known jump sources: d619 (3:5619)
 Functiond61d: ; d61d (3:561d)
 	ld hl, $d194
 	ld a, [hl]
@@ -14073,7 +14047,6 @@ Functione3fd: ; e3fd
 	call Functione443
 	jp Functione43f
 
-; known jump sources: e3fd (3:63fd)
 Functione40a: ; e40a (3:640a)
 	ld a, [PartyCount] ; $dcd7
 	and a
@@ -14090,7 +14063,6 @@ UnknownText_0xe417: ; 0xe417
 	db "@"
 ; 0xe41c
 
-; known jump sources: e401 (3:6401)
 Functione41c: ; e41c (3:641c)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -14114,12 +14086,10 @@ UnknownText_0xe43a: ; 0xe43a
 	db "@"
 ; 0xe43f
 
-; known jump sources: e407 (3:6407)
 Functione43f: ; e43f (3:643f)
 	call Function2b3c
 	ret
 
-; known jump sources: e404 (3:6404)
 Functione443: ; e443 (3:6443)
 	ld hl, MenuDataHeader_0xe46f
 	call LoadMenuDataHeader
@@ -14168,7 +14138,6 @@ Strings_e47f: ; e47f
 	db "MOVE ", $e1, $e2, " W/O MAIL@"
 	db "SEE YA!@"
 
-; no known jump sources
 Jumptable_e4ba: ; e4ba (3:64ba)
 	dw Functione559
 	dw Functione4fe
@@ -14219,7 +14188,6 @@ UnknownText_0xe4f9: ; 0xe4f9
 	db "@"
 ; 0xe4fe
 
-; no known jump sources
 Functione4fe: ; e4fe (3:64fe)
 	call Function1d6e
 	callba Functione2391
@@ -14296,7 +14264,6 @@ Functione538: ; e538
 ; e559
 
 
-; no known jump sources
 Functione559: ; e559 (3:6559)
 	call Function1d6e
 	callba Functione2583
@@ -14327,7 +14294,6 @@ UnknownText_0xe57e: ; 0xe57e
 	db "@"
 ; 0xe583
 
-; no known jump sources
 Functione583: ; e583 (3:6583)
 	callba Functione35aa
 	and a
@@ -14564,7 +14530,6 @@ UnknownText_0xe71d: ; 0xe71d
 INCLUDE "items/item_effects.asm"
 
 
-; no known jump sources
 GetPokeBallWobble: ; f971 (3:7971)
 ; Returns whether a Poke Ball will wobble in the catch animation.
 ; Whether a Pokemon is caught is determined beforehand.
@@ -14716,7 +14681,6 @@ Function10026: ; 10026
 ; 10030
 
 
-; no known jump sources
 Jumptable_10030: ; 10030 (4:4030)
 	dw Function10046
 	dw Function10056
@@ -14731,7 +14695,6 @@ Jumptable_10030: ; 10030 (4:4030)
 	dw Function1087e
 
 
-; no known jump sources
 Function10046: ; 10046 (4:4046)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -14741,7 +14704,6 @@ Function10046: ; 10046 (4:4046)
 	call Function10a40
 	ret
 
-; no known jump sources
 Function10056: ; 10056 (4:4056)
 	xor a
 	ld [$cf65], a
@@ -14751,7 +14713,6 @@ Function10056: ; 10056 (4:4056)
 	call Function10866
 	ret
 
-; no known jump sources
 Function10067: ; 10067 (4:4067)
 	ld hl, MenuDataHeader_0x10a4f
 	call Function1d3c
@@ -14771,7 +14732,6 @@ Function10067: ; 10067 (4:4067)
 	call Function101c5
 	ret
 
-; no known jump sources
 Function10094: ; 10094 (4:4094)
 	ld a, $2
 	ld [$cf65], a
@@ -14781,7 +14741,6 @@ Function10094: ; 10094 (4:4094)
 	call Function10866
 	ret
 
-; no known jump sources
 Function100a6: ; 100a6 (4:40a6)
 	ld hl, MenuDataHeader_0x10a7f
 	call Function1d3c
@@ -14801,7 +14760,6 @@ Function100a6: ; 100a6 (4:40a6)
 	call Function101c5
 	ret
 
-; no known jump sources
 Function100d3: ; 100d3 (4:40d3)
 	ld a, $3
 	ld [$cf65], a
@@ -14813,7 +14771,6 @@ Function100d3: ; 100d3 (4:40d3)
 	call Function10866
 	ret
 
-; no known jump sources
 Function100e8: ; 100e8 (4:40e8)
 	callba Function2c76f
 	ld b, $5
@@ -14905,7 +14862,6 @@ Function10159: ; 10159
 	call Function10a40
 	ret
 
-; no known jump sources
 Function10186: ; 10186 (4:4186)
 	ld a, $1
 	ld [$cf65], a
@@ -14915,7 +14871,6 @@ Function10186: ; 10186 (4:4186)
 	call Function10866
 	ret
 
-; no known jump sources
 Function10198: ; 10198 (4:4198)
 	ld hl, MenuDataHeader_0x10aaf
 	call Function1d3c
@@ -14935,7 +14890,6 @@ Function10198: ; 10198 (4:4198)
 	call Function101c5
 	ret
 
-; known jump sources: 10090 (4:4090), 100cf (4:40cf), 101c1 (4:41c1)
 Function101c5: ; 101c5 (4:41c5)
 	callba _CheckTossableItem
 	ld a, [$d142]
@@ -15144,7 +15098,6 @@ Function10311: ; 10311
 	ret
 ; 1031f
 
-; no known jump sources
 Jumptable_1031f: ; 1031f (4:431f)
 	dw Function1032d
 	dw Function1032d
@@ -15155,18 +15108,15 @@ Jumptable_1031f: ; 1031f (4:431f)
 	dw Function10355
 ; 1035c
 
-; known jump sources: 1035c (4:435c)
 Function1032d: ; 1032d (4:432d)
 	ld hl, UnknownText_0x10af3
 	call Function10889
 	ret
 
-; no known jump sources
 Function10334: ; 10334 (4:4334)
 	call DoItemEffect
 	ret
 
-; no known jump sources
 Function10338: ; 10338 (4:4338)
 	ld a, [PartyCount] ; $dcd7
 	and a
@@ -15183,7 +15133,6 @@ Function10338: ; 10338 (4:4338)
 	call Function10889
 	ret
 
-; no known jump sources
 Function10355: ; 10355 (4:4355)
 	call DoItemEffect
 	ld a, [$d0ec]
@@ -15333,7 +15282,6 @@ Function103fd: ; 103fd
 	call Function10a40
 	ret
 
-; known jump sources: 10401 (4:4401)
 Function10486: ; 10486 (4:4486)
 	ld hl, UnknownText_0x10af8
 	call Function10889
@@ -15380,7 +15328,6 @@ Function104b9: ; 104b9
 ; 104c3
 
 
-; no known jump sources
 Jumptable_104c3: ; 104c3 (4:44c3)
 	dw Function104d9
 	dw Function104e9
@@ -15395,7 +15342,6 @@ Jumptable_104c3: ; 104c3 (4:44c3)
 	dw Function1087e
 
 
-; no known jump sources
 Function104d9: ; 104d9 (4:44d9)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -15405,7 +15351,6 @@ Function104d9: ; 104d9 (4:44d9)
 	call Function10a40
 	ret
 
-; no known jump sources
 Function104e9: ; 104e9 (4:44e9)
 	xor a
 	ld [$cf65], a
@@ -15415,7 +15360,6 @@ Function104e9: ; 104e9 (4:44e9)
 	call Function10866
 	ret
 
-; no known jump sources
 Function104fa: ; 104fa (4:44fa)
 	ld hl, MenuDataHeader_0x10a4f
 	call Function1d3c
@@ -15435,7 +15379,6 @@ Function104fa: ; 104fa (4:44fa)
 	call Function105d3
 	ret
 
-; no known jump sources
 Function10527: ; 10527 (4:4527)
 	ld a, $2
 	ld [$cf65], a
@@ -15445,7 +15388,6 @@ Function10527: ; 10527 (4:4527)
 	call Function10866
 	ret
 
-; no known jump sources
 Function10539: ; 10539 (4:4539)
 	ld hl, MenuDataHeader_0x10a7f
 	call Function1d3c
@@ -15465,7 +15407,6 @@ Function10539: ; 10539 (4:4539)
 	call Function105d3
 	ret
 
-; no known jump sources
 Function10566: ; 10566 (4:4566)
 	ld a, $3
 	ld [$cf65], a
@@ -15479,7 +15420,6 @@ Function10566: ; 10566 (4:4566)
 	call Function10866
 	ret
 
-; no known jump sources
 Function10581: ; 10581 (4:4581)
 	callba Function2c76f
 	ld b, $5
@@ -15490,7 +15430,6 @@ Function10581: ; 10581 (4:4581)
 	call Function105dc
 	ret
 
-; no known jump sources
 Function10594: ; 10594 (4:4594)
 	ld a, $1
 	ld [$cf65], a
@@ -15500,7 +15439,6 @@ Function10594: ; 10594 (4:4594)
 	call Function10866
 	ret
 
-; no known jump sources
 Function105a6: ; 105a6 (4:45a6)
 	ld hl, MenuDataHeader_0x10aaf
 	call Function1d3c
@@ -15520,12 +15458,10 @@ Function105a6: ; 105a6 (4:45a6)
 	call Function105d3
 	ret
 
-; known jump sources: 10523 (4:4523), 10562 (4:4562), 105cf (4:45cf)
 Function105d3: ; 105d3 (4:45d3)
 	callba CheckItemContext
 	ld a, [$d142]
 
-; known jump sources: 10590 (4:4590)
 Function105dc: ; 105dc (4:45dc)
 	and a
 	jr z, .asm_105e7
@@ -15593,7 +15529,6 @@ Function10629: ; 10629
 	rst JumpTable
 	ret
 
-; no known jump sources
 Jumptable_10637: ; 10637 (4:4637)
 	dw Function10645
 	dw Function10645
@@ -15604,13 +15539,11 @@ Jumptable_10637: ; 10637 (4:4637)
 	dw Function10671
 
 
-; known jump sources: 10678 (4:4678)
 Function10645: ; 10645 (4:4645)
 	ld hl, UnknownText_0x10af3
 	call Function10889
 	ret
 
-; no known jump sources
 Function1064c: ; 1064c (4:464c)
 	call DoItemEffect
 	ld a, [$d0ec]
@@ -15618,7 +15551,6 @@ Function1064c: ; 1064c (4:464c)
 	jr nz, asm_1066c
 	ret
 
-; no known jump sources
 Function10656: ; 10656 (4:4656)
 	call DoItemEffect
 	ld a, [$d0ec]
@@ -15634,7 +15566,6 @@ asm_1066c: ; 1066c (4:466c)
 	call WhiteBGMap
 	jr asm_1067e
 
-; no known jump sources
 Function10671: ; 10671 (4:4671)
 	call DoItemEffect
 	ld a, [$d0ec]
@@ -15703,7 +15634,6 @@ Function106c7: ; 106c7
 ; 106d1
 
 
-; no known jump sources
 Jumptable_106d1: ; 106d1 (4:46d1)
 	dw Function106d9
 	dw Function1073b
@@ -15711,7 +15641,6 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	dw Function10726
 
 
-; no known jump sources
 Function106d9: ; 106d9 (4:46d9)
 	xor a
 	call Function10762
@@ -15728,7 +15657,6 @@ Function106d9: ; 106d9 (4:46d9)
 	ld [$d0d9], a
 	ret
 
-; no known jump sources
 Function106ff: ; 106ff (4:46ff)
 	ld a, $2
 	call Function10762
@@ -15745,7 +15673,6 @@ Function106ff: ; 106ff (4:46ff)
 	ld [$d0da], a
 	ret
 
-; no known jump sources
 Function10726: ; 10726 (4:4726)
 	ld a, $3
 	call Function10762
@@ -15755,7 +15682,6 @@ Function10726: ; 10726 (4:4726)
 	ld [CurItem], a ; $d106
 	ret
 
-; no known jump sources
 Function1073b: ; 1073b (4:473b)
 	ld a, $1
 	call Function10762
@@ -15772,7 +15698,6 @@ Function1073b: ; 1073b (4:473b)
 	ld [$d0db], a
 	ret
 
-; known jump sources: 106da (4:46da), 10701 (4:4701), 10728 (4:4728), 1073d (4:473d), 10828 (4:4828), 1085b (4:485b)
 Function10762: ; 10762 (4:4762)
 	ld [$cf65], a
 	call Function10a36
@@ -15859,7 +15784,6 @@ Function107d7: ; 107d7
 ; 107e1
 
 
-; no known jump sources
 Jumptable_107e1: ; 107e1 (4:47e1)
 	dw Function107e9
 	dw Function1083b
@@ -15867,7 +15791,6 @@ Jumptable_107e1: ; 107e1 (4:47e1)
 	dw Function10826
 
 
-; no known jump sources
 Function107e9: ; 107e9 (4:47e9)
 	xor a
 	ld hl, MenuDataHeader_0x107ef
@@ -15892,7 +15815,6 @@ MenuData2_0x107f7: ; 0x107f7
 	dbw BANK(Function244c3), Function244c3
 ; 10807
 
-; no known jump sources
 Function10807: ; 10807 (4:4807)
 	ld a, $2
 	ld hl, MenuDataHeader_0x1080e
@@ -15917,7 +15839,6 @@ MenuData2_0x10816: ; 0x10816
 	dbw BANK(Function244c3), Function244c3
 ; 10826
 
-; no known jump sources
 Function10826: ; 10826 (4:4826)
 	ld a, $3
 	call Function10762
@@ -15927,7 +15848,6 @@ Function10826: ; 10826 (4:4826)
 	ld [CurItem], a ; $d106
 	ret
 
-; no known jump sources
 Function1083b: ; 1083b (4:483b)
 	ld a, $1
 	ld hl, MenuDataHeader_0x10842
@@ -15960,7 +15880,6 @@ Function1085a: ; 1085a (4:485a)
 	call Function350c
 	ret
 
-; known jump sources: 10063 (4:4063), 100a2 (4:40a2), 100e4 (4:40e4), 10194 (4:4194), 104f6 (4:44f6), 10535 (4:4535), 1057d (4:457d), 105a2 (4:45a2)
 Function10866: ; 10866 (4:4866)
 	ld hl, $cf63
 	inc [hl]
@@ -15977,7 +15896,6 @@ Function1086b: ; 1086b
 	ret
 ; 10874
 
-; no known jump sources
 Function10874: ; 10874 (4:4874)
 	ld hl, $cf63
 	set 7, [hl]
@@ -15985,7 +15903,6 @@ Function10874: ; 10874 (4:4874)
 	ld [$cf66], a
 	ret
 
-; no known jump sources
 Function1087e: ; 1087e (4:487e)
 	ld hl, $cf63
 	set 7, [hl]
@@ -15993,7 +15910,6 @@ Function1087e: ; 1087e (4:487e)
 	ld [$cf66], a
 	ret
 
-; known jump sources: 10330 (4:4330), 10351 (4:4351), 10489 (4:4489), 1057a (4:457a), 10648 (4:4648), 1092c (4:492c)
 Function10889: ; 10889 (4:4889)
 	ld a, [Options] ; $cfcc
 	push af
@@ -16004,7 +15920,6 @@ Function10889: ; 10889 (4:4889)
 	ld [Options], a ; $cfcc
 	ret
 
-; known jump sources: 10060 (4:4060), 1009f (4:409f), 100e1 (4:40e1), 1017f (4:417f), 10191 (4:4191), 10347 (4:4347), 1047f (4:447f), 104f3 (4:44f3), 10532 (4:4532), 10574 (4:4574), 1059f (4:459f), 10665 (4:4665), 1072b (4:472b), 1076b (4:476b), 1082b (4:482b)
 Function1089a: ; 1089a (4:489a)
 	call WaitBGMap
 
@@ -16045,7 +15960,6 @@ PackGFXPointers: ; 108cc
 	dw PackGFX + $f0 * 2
 ; 108d4
 
-; known jump sources: 1008c (4:408c), 100cb (4:40cb), 100f2 (4:40f2), 101bd (4:41bd), 1051f (4:451f), 1055e (4:455e), 1058b (4:458b), 105cb (4:45cb)
 Function108d4: ; 108d4 (4:48d4)
 	ld hl, $cf73
 	ld a, [$d0e3]
@@ -16233,7 +16147,6 @@ Function10a2a: ; 10a2a
 	ret
 ; 10a36
 
-; known jump sources: 1005a (4:405a), 10099 (4:4099), 100d8 (4:40d8), 1018b (4:418b), 104ed (4:44ed), 1052c (4:452c), 1056b (4:456b), 10599 (4:4599), 10765 (4:4765)
 Function10a36: ; 10a36 (4:4a36)
 	hlcoord 5, 2
 	ld bc, $a0f
@@ -16587,7 +16500,6 @@ Function11490: ; 11490
 ; 114a4
 
 
-; no known jump sources
 Function114a4:: ; 114a4 (4:54a4)
 	ld hl, $dc35
 	call Function115db
@@ -17085,7 +16997,6 @@ Function1171d: ; 1171d
 ; 1172e
 
 
-; no known jump sources
 Jumptable_1172e: ; 1172e (4:572e)
 	dw Function1173e
 	dw Function1178d
@@ -17097,7 +17008,6 @@ Jumptable_1172e: ; 1172e (4:572e)
 	dw Function1173e
 
 
-; no known jump sources
 Function1173e: ; 1173e (4:573e)
 	ld a, [CurPartySpecies] ; $d108
 	ld [$d265], a
@@ -17135,7 +17045,6 @@ Strings_11780: ; 11780
 	db "NICKNAME?@"
 ; 1178d
 
-; no known jump sources
 Function1178d: ; 1178d (4:578d)
 	callba GetPlayerIcon
 	call Function11847
@@ -17150,7 +17059,6 @@ String_117a3: ; 117a3
 	db "YOUR NAME?@"
 ; 117ae
 
-; no known jump sources
 Function117ae: ; 117ae (4:57ae)
 	ld de, SilverSpriteGFX
 	ld b, BANK(SilverSpriteGFX)
@@ -17166,7 +17074,6 @@ String_117c3: ; 117c3
 	db "RIVAL'S NAME?@"
 ; 117d1
 
-; no known jump sources
 Function117d1: ; 117d1 (4:57d1)
 	ld de, MomSpriteGFX
 	ld b, BANK(MomSpriteGFX)
@@ -17182,7 +17089,6 @@ String_117e6: ; 117e6
 	db "MOTHER'S NAME?@"
 ; 117f5
 
-; no known jump sources
 Function117f5: ; 117f5 (4:57f5)
 	ld de, PokeBallSpriteGFX
 	ld hl, $8000
@@ -17209,7 +17115,6 @@ String_11822: ; 11822
 	db "BOX NAME?@"
 ; 1182c
 
-; no known jump sources
 Function1182c: ; 1182c (4:582c)
 	hlcoord 3, 2
 	ld de, String_11839
@@ -17222,7 +17127,6 @@ String_11839: ; 11839
 	db "おともだち の なまえは?@"
 ; 11847
 
-; known jump sources: 11793 (4:5793), 117b3 (4:57b3), 117d6 (4:57d6)
 Function11847: ; 11847 (4:5847)
 	push de
 	ld hl, $8000
@@ -17255,25 +17159,21 @@ Function11847: ; 11847 (4:5847)
 	call Function3b2a
 	ret
 
-; known jump sources: 1177c (4:577c)
 Function1187b: ; 1187b (4:587b)
 	ld a, $a
 	hlcoord 5, 6
 	jr Function11890
 
-; known jump sources: 1179f (4:579f), 117bf (4:57bf), 117e2 (4:57e2), 11835 (4:5835)
 Function11882: ; 11882 (4:5882)
 	ld a, $7
 	hlcoord 5, 6
 	jr Function11890
 
-; known jump sources: 1181e (4:581e)
 Function11889: ; 11889 (4:5889)
 	ld a, $8
 	hlcoord 5, 4
 	jr Function11890
 
-; known jump sources: 11880 (4:5880), 11887 (4:5887), 1188e (4:588e)
 Function11890: ; 11890 (4:5890)
 	ld [$c6d3], a
 	ld a, l
@@ -17418,13 +17318,11 @@ Function11968: ; 11968
 ; 11977
 
 
-; no known jump sources
 Jumptable_11977: ; 11977 (4:5977)
 	dw Function1197b
 	dw Function119a1
 
 
-; no known jump sources
 Function1197b: ; 1197b (4:597b)
 	ld de, $5018
 	call Function1189c
@@ -17447,7 +17345,6 @@ Function1197b: ; 1197b (4:597b)
 	inc [hl]
 	ret
 
-; no known jump sources
 Function119a1: ; 119a1 (4:59a1)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -17511,14 +17408,12 @@ Function119a1: ; 119a1 (4:59a1)
 	call Function118ca
 	ret
 
-; known jump sources: 119b9 (4:59b9)
 Function11a0b: ; 11a0b (4:5a0b)
 	ld hl, EnemyDefLevel ; $c6d5
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
 
-; known jump sources: 11aa3 (4:5aa3), 11ac5 (4:5ac5)
 Function11a11: ; 11a11 (4:5a11)
 	ld hl, $d
 	add hl, bc
@@ -17551,7 +17446,6 @@ Function11a11: ; 11a11 (4:5a11)
 	xor a
 	ret
 
-; no known jump sources
 Function11a3b: ; 11a3b (4:5a3b)
 	call Function11a8b
 	ld hl, $d
@@ -17598,7 +17492,6 @@ Unknown_11a82: ; 11a82
 	db $00, $00, $00, $30, $30, $30, $60, $60, $60
 ; 11a8b
 
-; known jump sources: 11a3b (4:5a3b)
 Function11a8b: ; 11a8b (4:5a8b)
 	ld hl, $ffa9
 	ld a, [hl]
@@ -17701,11 +17594,9 @@ Function11a8b: ; 11a8b (4:5a8b)
 	inc [hl]
 	ret
 
-; known jump sources: 119cb (4:59cb)
 Function11b14: ; 11b14 (4:5b14)
 	ld a, [EnemySAtkLevel] ; $c6d7
 
-; known jump sources: 121af (4:61af)
 Function11b17: ; 11b17 (4:5b17)
 	ld a, [$c6d3]
 	ld c, a
@@ -17776,7 +17667,6 @@ Handakutens: ; 11ba7
 	db $ff
 ; 11bbc
 
-; known jump sources: 119e7 (4:59e7), 1208d (4:608d)
 Function11bbc: ; 11bbc (4:5bbc)
 	ld hl, PlayerEvaLevel ; $c6d2
 	ld a, [hl]
@@ -17792,7 +17682,6 @@ Function11bbc: ; 11bbc (4:5bbc)
 	ld [hl], $eb
 	ret
 
-; known jump sources: 11b23 (4:5b23), 11b2b (4:5b2b), 11bc3 (4:5bc3), 12071 (4:6071), 12098 (4:6098)
 Function11bd0: ; 11bd0 (4:5bd0)
 	push af
 	ld hl, PlayerSDefLevel ; $c6d0
@@ -17827,7 +17716,6 @@ Function11be0: ; 11be0
 ; 11bf7
 
 
-; known jump sources: 119eb (4:59eb), 120a1 (4:60a1)
 Function11bf7: ; 11bf7 (4:5bf7)
 	ld hl, PlayerSDefLevel ; $c6d0
 	ld a, [hli]
@@ -17849,7 +17737,6 @@ Function11bf7: ; 11bf7 (4:5bf7)
 	jr nz, .asm_11c01
 	ret
 
-; known jump sources: 119c8 (4:59c8), 12061 (4:6061)
 Function11c11: ; 11c11 (4:5c11)
 	ld hl, EnemyDefLevel ; $c6d5
 	ld c, [hl]
@@ -17987,7 +17874,6 @@ GFX_11e6d: ; 11e6d
 INCBIN "baserom.gbc", $11e6d, $11e75 - $11e6d
 ; 11e75
 
-; no known jump sources
 Function11e75: ; 11e75 (4:5e75)
 	ld hl, PlayerSDefLevel ; $c6d0
 	ld [hl], e
@@ -18012,7 +17898,6 @@ Function11e75: ; 11e75 (4:5e75)
 	ld [$FF00+$de], a
 	ret
 
-; known jump sources: 11e88 (4:5e88)
 Function11e9a: ; 11e9a (4:5e9a)
 	call WhiteBGMap
 	call DisableLCD
@@ -18059,7 +17944,6 @@ GFX_11ef4: ; 11ef4
 INCBIN "baserom.gbc",$11ef4,$11f74 - $11ef4
 ; 11f74
 
-; known jump sources: 11ecc (4:5ecc)
 Function11f74: ; 11f74 (4:5f74)
 	ld a, $21
 	ld [$c6d3], a
@@ -18070,7 +17954,6 @@ String_11f7a: ; 11f7a
 	db "メールを かいてね@"
 ; 11f84
 
-; known jump sources: 11ec5 (4:5ec5)
 Function11f84: ; 11f84 (4:5f84)
 	call WaitTop
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -18086,7 +17969,6 @@ Function11f84: ; 11f84 (4:5f84)
 	call ClearBox
 	ld de, String_121dd
 
-; known jump sources: 120b6 (4:60b6), 120bd (4:60bd)
 Function11fa9: ; 11fa9 (4:5fa9)
 	hlcoord 1, 7
 	ld b, $6
@@ -18106,7 +17988,6 @@ Function11fa9: ; 11fa9 (4:5fa9)
 	jr nz, .asm_11fae
 	ret
 
-; known jump sources: 11e8e (4:5e8e)
 Function11fc0: ; 11fc0 (4:5fc0)
 	call Functiona57
 	ld a, [$cf63]
@@ -18127,7 +18008,6 @@ Function11fc0: ; 11fc0 (4:5fc0)
 	scf
 	ret
 
-; known jump sources: 11fd3 (4:5fd3)
 Function11feb: ; 11feb (4:5feb)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -18144,7 +18024,6 @@ Function11feb: ; 11feb (4:5feb)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: 11fca (4:5fca)
 Function12008: ; 12008 (4:6008)
 	ld a, [$cf63]
 	ld e, a
@@ -18157,13 +18036,11 @@ Function12008: ; 12008 (4:6008)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_12017: ; 12017 (4:6017)
 	dw Function1201b
 	dw Function1203a
 
 
-; no known jump sources
 Function1201b: ; 1201b (4:601b)
 	ld de, $4810
 	ld a, $9
@@ -18182,7 +18059,6 @@ Function1201b: ; 1201b (4:601b)
 	inc [hl]
 	ret
 
-; no known jump sources
 Function1203a: ; 1203a (4:603a)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -18262,7 +18138,6 @@ Function1203a: ; 1203a (4:603a)
 	call Function11fa9
 	ret
 
-; no known jump sources
 Function120c1: ; 120c1 (4:60c1)
 	call Function1210c
 	ld hl, $d
@@ -18304,7 +18179,6 @@ Unknown_12102: ; 12102
 	db $00, $00, $00, $30, $30, $30, $60, $60, $60, $60
 ; 1210c
 
-; known jump sources: 120c1 (4:60c1)
 Function1210c: ; 1210c (4:610c)
 	ld hl, $ffa9
 	ld a, [hl]
@@ -18397,14 +18271,12 @@ Function1210c: ; 1210c (4:610c)
 	ld [hl], $5
 	ret
 
-; known jump sources: 12052 (4:6052)
 Function12185: ; 12185 (4:6185)
 	ld hl, EnemyDefLevel ; $c6d5
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
 
-; known jump sources: 12124 (4:6124), 12146 (4:6146)
 Function1218b: ; 1218b (4:618b)
 	ld hl, $d
 	add hl, bc
@@ -18430,7 +18302,6 @@ Function1218b: ; 1218b (4:618b)
 	xor a
 	ret
 
-; known jump sources: 12064 (4:6064)
 Function121ac: ; 121ac (4:61ac)
 	ld a, [EnemySAtkLevel] ; $c6d7
 	jp Function11b17
@@ -19662,7 +19533,6 @@ UnknownText_0x12a4f: ; 0x12a4f
 	db "@"
 ; 0x12a54
 
-; known jump sources: 12a3f (4:6a3f)
 Function12a54: ; 12a54 (4:6a54)
 	ld hl, UnknownText_0x12a5b
 	call Function1d67
@@ -20067,7 +19937,6 @@ Function12cdf: ; 12cdf
 ; 12cea
 
 
-; known jump sources: 12bf4 (4:6bf4), 12c16 (4:6c16)
 Function12cea: ; 12cea (4:6cea)
 	ld a, $1
 	ld [$d10c], a
@@ -20081,7 +19950,6 @@ Function12cf5: ; 12cf5
 ; 12cfe
 
 
-; known jump sources: 12c5c (4:6c5c)
 Function12cfe: ; 12cfe (4:6cfe)
 	ld de, DefaultFlypoint ; $d002
 	callba Function11e75
@@ -24339,7 +24207,6 @@ Function14a58: ; 14a58
 ; 14a83
 
 
-; no known jump sources
 Function14a83: ; 14a83 (5:4a83)
 	push de
 	ld hl, UnknownText_0x152a1
@@ -24911,7 +24778,6 @@ Function14e8b: ; 14e8b
 ; 14ea5
 
 
-; no known jump sources
 Function14ea5: ; 14ea5 (5:4ea5)
 	call Function15028
 	jr nz, .asm_14ed6
@@ -25060,7 +24926,6 @@ Function14faf: ; 14faf
 ; 14fd7
 
 
-; known jump sources: 14eaa (5:4eaa)
 Function14fd7: ; 14fd7 (5:4fd7)
 	ld a, $1
 	call GetSRAMBank
@@ -25096,13 +24961,11 @@ Function1500c: ; 1500c
 ; 15021
 
 
-; known jump sources: 14aa5 (5:4aa5), 14eb0 (5:4eb0), 14ee1 (5:4ee1)
 Function15021: ; 15021 (5:5021)
 	call Function150d8
 	call Function1517d
 	ret
 
-; known jump sources: 14ea5 (5:4ea5)
 Function15028: ; 15028 (5:5028)
 	ld hl, $a009
 	ld bc, $b7a
@@ -25120,7 +24983,6 @@ Function15028: ; 15028 (5:5028)
 	pop af
 	ret
 
-; known jump sources: 14edb (5:4edb)
 Function15046: ; 15046 (5:5046)
 	ld a, $0
 	call GetSRAMBank
@@ -25135,7 +24997,6 @@ Function15046: ; 15046 (5:5046)
 	call CloseSRAM
 	ret
 
-; known jump sources: 14ede (5:4ede)
 Function15067: ; 15067 (5:5067)
 	ld a, $0
 	call GetSRAMBank
@@ -25146,7 +25007,6 @@ Function15067: ; 15067 (5:5067)
 	call CloseSRAM
 	ret
 
-; known jump sources: 14ed6 (5:4ed6)
 Function1507c: ; 1507c (5:507c)
 	ld hl, $b209
 	ld bc, $b7a
@@ -25181,7 +25041,6 @@ Function1509a: ; 1509a
 ; 150b9
 
 
-; no known jump sources
 Function150b9: ; 150b9 (5:50b9)
 	ld a, $1
 	call GetSRAMBank
@@ -25289,7 +25148,6 @@ Function150f9: ; 150f9
 ; 1517d
 
 
-; known jump sources: 15024 (5:5024)
 Function1517d: ; 1517d (5:517d)
 	push hl
 	ld l, e
@@ -25978,7 +25836,6 @@ Function154f7: ; 154f7
 	call Functione4a
 	ret
 
-; known jump sources: 154f8 (5:54f8)
 Function1550c: ; 1550c (5:550c)
 	and a
 	ld hl, BikeFlags ; $dbf5
@@ -25989,7 +25846,6 @@ Function1550c: ; 1550c (5:550c)
 	scf
 	ret
 
-; known jump sources: 15502 (5:5502)
 Function1551a: ; 1551a (5:551a)
 	ld a, [PlayerState] ; $d95d
 	cp $0
@@ -26021,7 +25877,6 @@ Function1551a: ; 1551a (5:551a)
 	and a
 	ret
 
-; known jump sources: 154fd (5:54fd)
 Function1554e: ; 1554e (5:554e)
 	call Function1852
 	jr nz, .asm_15565
@@ -29847,7 +29702,6 @@ Function16e1d: ; 16e1d
 ; 16ebc
 
 
-; known jump sources: 16e89 (5:6e89)
 Function16ebc: ; 16ebc (5:6ebc)
 	ld a, [$df21]
 	and $f
@@ -29960,14 +29814,12 @@ Function16f5e:: ; 16f5e
 	jp Function2dcf
 ; 16f70
 
-; known jump sources: 16f64 (5:6f64)
 Function16f70: ; 16f70 (5:6f70)
 	ld de, PartySpecies ; $dcd8
 	ld hl, PartyMon1Happiness ; $dcfa
 	xor a
 	ld [CurPartyMon], a ; $d109
 
-; known jump sources: 17087 (5:7087)
 Function16f7a: ; 16f7a (5:6f7a)
 	ld a, [de]
 	inc de
@@ -30093,7 +29945,6 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld bc, $b
 	call CopyBytes
 
-; known jump sources: 16f85 (5:6f85), 16f8a (5:6f8a), 17072 (5:7072)
 Function1707d: ; 1707d (5:707d)
 	ld hl, CurPartyMon ; $d109
 	inc [hl]
@@ -30103,7 +29954,6 @@ Function1707d: ; 1707d (5:707d)
 	pop de
 	jp Function16f7a
 
-; known jump sources: 16f7e (5:6f7e)
 Function1708a: ; 1708a (5:708a)
 	ret
 ; 1708b (5:708b)
@@ -30391,7 +30241,6 @@ Function1720b: ; 1720b
 ; 17224
 
 
-; known jump sources: 172ca (5:72ca)
 Function17224: ; 17224 (5:7224)
 	push de
 	ld [CurPartySpecies], a ; $d108
@@ -30402,7 +30251,6 @@ Function17224: ; 17224 (5:7224)
 	pop de
 	predef_jump GetFrontpic
 
-; known jump sources: 172c2 (5:72c2)
 Function1723c: ; 1723c (5:723c)
 	push de
 	ld [CurPartySpecies], a ; $d108
@@ -30413,7 +30261,6 @@ Function1723c: ; 1723c (5:723c)
 	pop de
 	predef_jump Function5108b
 
-; known jump sources: 172df (5:72df), 17343 (5:7343)
 Function17254: ; 17254 (5:7254)
 	push af
 	call WaitTop
@@ -30436,7 +30283,6 @@ Function17254: ; 17254 (5:7254)
 	call Function32f9
 	jp WaitBGMap
 
-; known jump sources: 17301 (5:7301), 17312 (5:7312), 173eb (5:73eb), 1741a (5:741a)
 Function1727f: ; 1727f (5:727f)
 	push hl
 	push de
@@ -30448,7 +30294,6 @@ Function1727f: ; 1727f (5:727f)
 	pop hl
 	ret
 
-; known jump sources: 1709c (5:709c)
 Function1728f: ; 1728f (5:728f)
 	ld a, [$d265]
 	ld [$cf63], a
@@ -30537,14 +30382,12 @@ Function1728f: ; 1728f (5:728f)
 	ld [CurSpecies], a ; $cf60
 	ret
 
-; known jump sources: 17276 (5:7276)
 Function17363: ; 17363 (5:7363)
 	ld [PlayerHPPal], a ; $cd99
 	ld b, $b
 	ld c, $0
 	jp GetSGBLayout
 
-; known jump sources: 17322 (5:7322)
 Function1736d: ; 1736d (5:736d)
 	ld a, [$cf64]
 	dec a
@@ -30571,7 +30414,6 @@ EggHatchGFX: ; 17393
 INCBIN "baserom.gbc",$17393,$173b3 - $17393
 ; 173b3
 
-; known jump sources: 17336 (5:7336)
 Function173b3: ; 173b3 (5:73b3)
 	callba Function8cf53
 	ld hl, Unknown_173ef
@@ -30626,7 +30468,6 @@ Unknown_173ef: ; 173ef
 	db $ff
 ; 17418
 
-; known jump sources: 17346 (5:7346)
 Function17418: ; 17418 (5:7418)
 	ld c, $81
 .asm_1741a
@@ -30762,7 +30603,6 @@ INCLUDE "tilesets/data_2.asm"
 SECTION "bank8", ROMX, BANK[$8]
 
 
-; known jump sources: 200e8 (8:40e8), 200f9 (8:40f9), 20169 (8:4169)
 Function20000: ; 20000 (8:4000)
 	push hl
 	dec a
@@ -30795,7 +30635,6 @@ Unknown_20015: ; 20015
 	db $3c, $0f
 ; 20021
 
-; no known jump sources
 Function20021: ; 20021 (8:4021)
 	ld hl, UnknownText_0x20047
 	call PrintText
@@ -30828,7 +30667,6 @@ UnknownText_0x2004c: ; 0x2004c
 	db "@"
 ; 0x20051
 
-; known jump sources: 2003a (8:403a)
 Function20051: ; 20051 (8:4051)
 	ld a, $1
 	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
@@ -30884,7 +30722,6 @@ UnknownText_0x200b5: ; 0x200b5
 	db "@"
 ; 0x200ba
 
-; known jump sources: 20071 (8:4071), 200db (8:40db)
 Function200ba: ; 200ba (8:40ba)
 	call Function354b
 	ld c, a
@@ -30952,7 +30789,6 @@ Function200ba: ; 200ba (8:40ba)
 	xor a
 	ret
 
-; known jump sources: 20078 (8:4078), 2009f (8:409f), 200bf (8:40bf)
 Function2011f: ; 2011f (8:411f)
 	hlcoord 0, 5
 	ld b, $5
@@ -30986,7 +30822,6 @@ Function20160: ; 20160
 	ret
 ; 20168
 
-; known jump sources: 2014d (8:414d), 20156 (8:4156)
 Function20168: ; 20168 (8:4168)
 	push de
 	call Function20000
@@ -31195,7 +31030,6 @@ Function240db: ; 240db
 ; 2411a
 
 
-; known jump sources: 2408f (9:408f)
 Function2411a: ; 2411a (9:411a)
 	call Function1cc6
 	ld a, b
@@ -31958,7 +31792,6 @@ Function2454f: ; 2454f
 	jr nz, .asm_24561
 	ret
 
-; known jump sources: 24569 (9:4569)
 Function2457d: ; 2457d (9:457d)
 	ld hl, $1
 	add hl, bc
@@ -31991,7 +31824,6 @@ Function2457d: ; 2457d (9:457d)
 	scf
 	ret
 
-; known jump sources: 24564 (9:4564)
 Function245a7: ; 245a7 (9:45a7)
 	call Function18f5
 	ld a, $ff
@@ -32549,7 +32381,6 @@ Function248d5: ; 248d5
 ; 2490c
 
 
-; no known jump sources
 Function2490c: ; 2490c (9:490c)
 	ld a, [$d0e3]
 	and a
@@ -32632,7 +32463,6 @@ Function2490c: ; 2490c (9:490c)
 	ld [$d0e3], a
 	ret
 
-; known jump sources: 2492b (9:492b)
 Function249a7: ; 249a7 (9:49a7)
 	ld a, [$d0e3]
 	call Function24a5c
@@ -32658,7 +32488,6 @@ Function249a7: ; 249a7 (9:49a7)
 	scf
 	ret
 
-; known jump sources: 2492e (9:492e)
 Function249d1: ; 249d1 (9:49d1)
 	ld a, [$d0e3]
 	call Function24a5c
@@ -32727,7 +32556,6 @@ Function249d1: ; 249d1 (9:49d1)
 	ld [$d0e3], a
 	ret
 
-; known jump sources: 2494d (9:494d), 2497d (9:497d)
 Function24a40: ; 24a40 (9:4a40)
 	call Function24a5c
 	ld de, DefaultFlypoint ; $d002
@@ -32735,7 +32563,6 @@ Function24a40: ; 24a40 (9:4a40)
 	call CopyBytes
 	ret
 
-; known jump sources: 24972 (9:4972), 2499f (9:499f)
 Function24a4d: ; 24a4d (9:4a4d)
 	call Function24a5c
 	ld d, h
@@ -32745,7 +32572,6 @@ Function24a4d: ; 24a4d (9:4a4d)
 	call CopyBytes
 	ret
 
-; known jump sources: 2491d (9:491d), 2495f (9:495f), 2498f (9:498f), 249aa (9:49aa), 249b2 (9:49b2), 249d4 (9:49d4), 249dc (9:49dc), 249ed (9:49ed), 249f6 (9:49f6), 24a05 (9:4a05), 24a1b (9:4a1b), 24a2d (9:4a2d), 24a40 (9:4a40), 24a4d (9:4a4d), 24aa1 (9:4aa1)
 Function24a5c: ; 24a5c (9:4a5c)
 	push af
 	call Function24a80
@@ -32758,7 +32584,6 @@ Function24a5c: ; 24a5c (9:4a5c)
 	call AddNTimes
 	ret
 
-; known jump sources: 24958 (9:4958), 24988 (9:4988)
 Function24a6c: ; 24a6c (9:4a6c)
 	push hl
 	call Function24a80
@@ -32775,7 +32600,6 @@ Function24a6c: ; 24a6c (9:4a6c)
 	pop hl
 	ret
 
-; known jump sources: 24964 (9:4964), 24994 (9:4994), 24a26 (9:4a26), 24a46 (9:4a46), 24a55 (9:4a55), 24a5d (9:4a5d), 24a6d (9:4a6d), 24a98 (9:4a98)
 Function24a80: ; 24a80 (9:4a80)
 	push hl
 	ld a, [$cf94]
@@ -32795,7 +32619,6 @@ Unknown_24a91: ; 24a91
 	dw 0, 1, 2
 ; 24a97
 
-; known jump sources: 249bc (9:49bc), 249c6 (9:49c6)
 Function24a97: ; 24a97 (9:4a97)
 	push af
 	call Function24a80
@@ -32812,7 +32635,6 @@ Function24a97: ; 24a97 (9:4a97)
 	ld a, $1
 	ret
 
-; known jump sources: 2496c (9:496c), 24ab1 (9:4ab1)
 Function24aab: ; 24aab (9:4aab)
 	ld a, [hld]
 	ld [de], a
@@ -33842,7 +33664,6 @@ Function25105: ; 25105
 	ld [VramState], a ; $d0ed
 	ret
 
-; known jump sources: 25114 (9:5114)
 Function2513b: ; 2513b (9:513b)
 	call WhiteBGMap
 	call ClearSprites
@@ -33877,7 +33698,6 @@ Function2513b: ; 2513b (9:513b)
 	ld [hl], a
 	ret
 
-; known jump sources: 2512a (9:512a)
 Function2518e: ; 2518e (9:518e)
 	ld a, [$cf63]
 	ld e, a
@@ -33890,7 +33710,6 @@ Function2518e: ; 2518e (9:518e)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_2519d: ; 2519d (9:519d)
 	dw Function251b6
 	dw Function251d7
@@ -33901,19 +33720,16 @@ Jumptable_2519d: ; 2519d (9:519d)
 	dw Function251b0
 
 
-; known jump sources: 251d3 (9:51d3), 2521d (9:521d), 25275 (9:5275)
 Function251ab: ; 251ab (9:51ab)
 	ld hl, $cf63
 	inc [hl]
 	ret
 
-; no known jump sources
 Function251b0: ; 251b0 (9:51b0)
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 
-; no known jump sources
 Function251b6: ; 251b6 (9:51b6)
 	call ClearSprites
 	hlcoord 0, 8
@@ -33928,7 +33744,6 @@ Function251b6: ; 251b6 (9:51b6)
 	call Function251ab
 	ret
 
-; no known jump sources
 Function251d7: ; 251d7 (9:51d7)
 	call Function25415
 	ld hl, $ffa9
@@ -33951,7 +33766,6 @@ Function251e9: ; 251e9
 	ret
 ; 251f4
 
-; no known jump sources
 Function251f4: ; 251f4 (9:51f4)
 	call ClearSprites
 	hlcoord 0, 8
@@ -33970,7 +33784,6 @@ Function251f4: ; 251f4 (9:51f4)
 	call Function251ab
 	ret
 
-; no known jump sources
 Function25221: ; 25221 (9:5221)
 	ld hl, Unknown_254c9
 	call Function25438
@@ -34002,7 +33815,6 @@ Function25246: ; 25246
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function2524c: ; 2524c (9:524c)
 	call ClearSprites
 	hlcoord 0, 8
@@ -34021,7 +33833,6 @@ Function2524c: ; 2524c (9:524c)
 	call Function251ab
 	ret
 
-; no known jump sources
 Function25279: ; 25279 (9:5279)
 	ld hl, Unknown_254c9
 	call Function25438
@@ -34042,7 +33853,6 @@ Function25279: ; 25279 (9:5279)
 	ld [$cf63], a
 	ret
 
-; known jump sources: 25169 (9:5169)
 Function25299: ; 25299 (9:5299)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld d, $5
@@ -34087,7 +33897,6 @@ Tilemap_252fc: ; 252fc
 	db $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $26, $ff ; ____________>
 ; 2530a
 
-; known jump sources: 251d0 (9:51d0)
 Function2530a: ; 2530a (9:530a)
 	hlcoord 2, 10
 	ld de, String_2534c
@@ -34129,7 +33938,6 @@ Tilemap_25366: ; 25366
 	db $29, $2a, $2b, $2c, $2d, $ff
 ; 2536c
 
-; known jump sources: 2521a (9:521a), 25272 (9:5272)
 Function2536c: ; 2536c (9:536c)
 	hlcoord 2, 8
 	ld de, Tilemap_253a2
@@ -34167,7 +33975,6 @@ Tilemap_253a2: ; 253a2
 	db $79, $7a, $7b, $7c, $7d, $ff ; "BADGES"
 ; 253a8
 
-; known jump sources: 252b0 (9:52b0), 252da (9:52da), 25339 (9:5339), 25372 (9:5372), 253ae (9:53ae)
 Function253a8: ; 253a8 (9:53a8)
 	ld a, [de]
 	cp $ff
@@ -34176,7 +33983,6 @@ Function253a8: ; 253a8 (9:53a8)
 	inc de
 	jr Function253a8
 
-; known jump sources: 25171 (9:5171), 251be (9:51be), 251fc (9:51fc), 25254 (9:5254), 2529e (9:529e)
 Function253b0: ; 253b0 (9:53b0)
 	ld e, $14
 .asm_253b2
@@ -34229,7 +34035,6 @@ Function253b0: ; 253b0 (9:53b0)
 	jr nz, .asm_253ed
 	ret
 
-; known jump sources: 2537c (9:537c), 2538d (9:538d)
 Function253f4: ; 253f4 (9:53f4)
 	push de
 	push hl
@@ -34261,7 +34066,6 @@ Function253f4: ; 253f4 (9:53f4)
 	pop de
 	ret
 
-; known jump sources: 251d7 (9:51d7), 25330 (9:5330)
 Function25415: ; 25415 (9:5415)
 	hlcoord 11, 12
 	ld de, GameTimeHours ; $d4c4
@@ -34280,7 +34084,6 @@ Function25415: ; 25415 (9:5415)
 	ld [hl], a
 	ret
 
-; known jump sources: 25224 (9:5224), 2527c (9:527c)
 Function25438: ; 25438 (9:5438)
 	ld a, [$FF00+$9b]
 	and $7
@@ -34291,7 +34094,6 @@ Function25438: ; 25438 (9:5438)
 	ld [$cf64], a
 	jr Function25448
 
-; known jump sources: 2539e (9:539e), 25446 (9:5446)
 Function25448: ; 25448 (9:5448)
 	ld a, [hli]
 	ld e, a
@@ -34330,7 +34132,6 @@ Function25448: ; 25448 (9:5448)
 	jr nz, .asm_25453
 	ret
 
-; known jump sources: 2546e (9:546e)
 Function2547b: ; 2547b (9:547b)
 	ld a, [$cf65]
 	and $80
@@ -34721,7 +34522,6 @@ OakPCText4: ; 0x2674c
 	db "@"
 
 
-; no known jump sources
 Function26751: ; 26751 (9:6751)
 	ld a, $2
 	ld [$dc0f], a
@@ -34809,7 +34609,6 @@ Function26806: ; 26806
 	call CopyBytes
 	ret
 
-; known jump sources: 2680a (9:680a)
 Function26822: ; 26822 (9:6822)
 	ld hl, StringBuffer2 ; $d086
 	xor a
@@ -34819,7 +34618,6 @@ Function26822: ; 26822 (9:6822)
 	call ByteFill
 	ret
 
-; known jump sources: 26812 (9:6812), 2684d (9:684d)
 Function26830: ; 26830 (9:6830)
 	ld hl, StringBuffer2 ; $d086
 	inc [hl]
@@ -34829,7 +34627,6 @@ Function26830: ; 26830 (9:6830)
 	ld [hl], a
 	ret
 
-; known jump sources: 2680d (9:680d)
 Function2683a: ; 2683a (9:683a)
 	ld hl, Jumptable_26855
 .asm_2683d
@@ -35770,7 +35567,6 @@ Function26ef1: ; 26ef1
 ; 26ef5
 
 
-; no known jump sources
 Function26ef5: ; 26ef5 (9:6ef5)
 	ld a, c
 	call Function26f0c
@@ -39349,7 +39145,6 @@ Function29660: ; 29660
 	ret
 ; 29676
 
-; no known jump sources
 Function29676: ; 29676 (a:5676)
 	ld hl, $b
 	add hl, bc
@@ -39364,7 +39159,6 @@ Function29676: ; 29676 (a:5676)
 	jp [hl]
 ; 29686
 
-; no known jump sources
 Jumptable_29686: ; 29686 (a:5686)
 	dw Function2969a
 	dw Function296a4
@@ -39375,14 +39169,12 @@ Jumptable_29686: ; 29686 (a:5686)
 	dw Function296f2
 ; 2969a
 
-; known jump sources: 2969a (a:569a), 296ac (a:56ac), 296ba (a:56ba), 296da (a:56da), 296e8 (a:56e8)
 Function29694: ; 29694 (a:5694)
 	ld hl, $b
 	add hl, bc
 	inc [hl]
 	ret
 
-; no known jump sources
 Function2969a: ; 2969a (a:569a)
 	call Function29694
 	ld hl, $c
@@ -39390,7 +39182,6 @@ Function2969a: ; 2969a (a:569a)
 	ld [hl], $80
 	ret
 
-; no known jump sources
 Function296a4: ; 296a4 (a:56a4)
 	ld hl, $c
 	add hl, bc
@@ -39400,7 +39191,6 @@ Function296a4: ; 296a4 (a:56a4)
 	ret nz
 	call Function29694
 
-; no known jump sources
 Function296af: ; 296af (a:56af)
 	ld hl, $4
 	add hl, bc
@@ -39412,7 +39202,6 @@ Function296af: ; 296af (a:56af)
 .asm_296ba
 	call Function29694
 
-; no known jump sources
 Function296bd: ; 296bd (a:56bd)
 	ld hl, $5
 	add hl, bc
@@ -39427,7 +39216,6 @@ Function296bd: ; 296bd (a:56bd)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Function296cf: ; 296cf (a:56cf)
 	ld hl, $5
 	add hl, bc
@@ -39439,7 +39227,6 @@ Function296cf: ; 296cf (a:56cf)
 .asm_296da
 	call Function29694
 
-; no known jump sources
 Function296dd: ; 296dd (a:56dd)
 	ld hl, $4
 	add hl, bc
@@ -39455,7 +39242,6 @@ Function296dd: ; 296dd (a:56dd)
 	ld [hl], $80
 	ret
 
-; no known jump sources
 Function296f2: ; 296f2 (a:56f2)
 	ld hl, $c
 	add hl, bc
@@ -41898,7 +41684,6 @@ TrainerClassNames:: ; 2c1ef
 
 
 
-; no known jump sources
 Function2c41a: ; 2c41a (b:441a)
 ; More move AI.
 	ld a, c
@@ -42091,7 +41876,6 @@ Function2c541: ; 2c541
 	and a
 	ret
 
-; known jump sources: 2c424 (b:4424), 2c4cf (b:44cf), 2c4fc (b:44fc), 2c519 (b:4519), 2c522 (b:4522), 2c52b (b:452b), 2c53f (b:453f)
 Function2c545: ; 2c545 (b:4545)
 	xor a
 	ret
@@ -42266,7 +42050,6 @@ Function2c5f9: ; 2c5f9
 ; 2c642
 
 
-; no known jump sources
 Function2c642: ; 2c642 (b:4642)
 	ld de, OverworldMap ; $c800
 	ld a, $1
@@ -42325,7 +42108,6 @@ Function2c642: ; 2c642 (b:4642)
 	ld bc, $14
 	jp CopyBytes
 
-; known jump sources: 2c67d (b:467d), 2c685 (b:4685)
 Function2c6ac: ; 2c6ac (b:46ac)
 	push de
 	call Random
@@ -42387,7 +42169,6 @@ Function2c6ac: ; 2c6ac (b:46ac)
 	pop de
 	ret
 
-; no known jump sources
 Function2c708: ; 2c708 (b:4708)
 	ld a, c
 	cp $25
@@ -42398,7 +42179,6 @@ Function2c708: ; 2c708 (b:4708)
 	ld c, [hl]
 	ret
 
-; no known jump sources
 Function2c715: ; 2c715 (b:4715)
 	ld a, c
 	cp $25
@@ -42409,7 +42189,6 @@ Function2c715: ; 2c715 (b:4715)
 	ld c, [hl]
 	ret
 
-; known jump sources: 2c70b (b:470b), 2c718 (b:4718)
 Function2c722: ; 2c722 (b:4722)
 	ld c, $4
 	ret
@@ -42439,7 +42218,6 @@ Unknown_2c74a: ; 2c74a
 	db $24, $27
 ; 2c76f
 
-; no known jump sources
 Function2c76f: ; 2c76f (b:476f)
 	ld a, $1
 	ld [$FF00+$aa], a
@@ -42462,7 +42240,6 @@ Function2c76f: ; 2c76f (b:476f)
 	scf
 	ret
 
-; known jump sources: 2c793 (b:4793)
 Function2c798: ; 2c798 (b:4798)
 	ld a, [CurItem] ; $d106
 	ld c, a
@@ -42471,7 +42248,6 @@ Function2c798: ; 2c798 (b:4798)
 	ld [CurItem], a ; $d106
 	ret
 
-; known jump sources: 2c7b6 (b:47b6), 2cb0c (b:4b0c)
 Function2c7a7: ; 2c7a7 (b:47a7)
 	ld a, [CurItem] ; $d106
 	ld c, a
@@ -42480,7 +42256,6 @@ Function2c7a7: ; 2c7a7 (b:47a7)
 	ld [$d265], a
 	ret
 
-; known jump sources: 2c7cd (b:47cd)
 Function2c7b6: ; 2c7b6 (b:47b6)
 	call Function2c7a7
 	predef GetTMHMMove
@@ -42640,7 +42415,6 @@ UnknownText_0x2c8ce: ; 0x2c8ce
 	db "@"
 ; 0x2c8d3
 
-; known jump sources: 2c773 (b:4773)
 Function2c8d3: ; 2c8d3 (b:48d3)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -42674,7 +42448,6 @@ Function2c8d3: ; 2c8d3 (b:48d3)
 	ld [$cfaa], a
 	jr Function2c946
 
-; known jump sources: 2c95b (b:495b), 2c971 (b:4971), 2c9bb (b:49bb), 2c9ce (b:49ce)
 Function2c915: ; 2c915 (b:4915)
 	call Function2c9e2
 	call Function1bc9
@@ -42698,7 +42471,6 @@ Function2c915: ; 2c915 (b:4915)
 	bit 5, a
 	jp nz, Function2c9af
 
-; known jump sources: 2c913 (b:4913), 2c9c2 (b:49c2), 2c9df (b:49df)
 Function2c946: ; 2c946 (b:4946)
 	call Function2c98a
 	jp nc, Function2c9af
@@ -42717,7 +42489,6 @@ Function2c946: ; 2c946 (b:4946)
 	call PrintMoveDesc
 	jp Function2c915
 
-; known jump sources: 2c934 (b:4934)
 Function2c974: ; 2c974 (b:4974)
 	call Function2cad6
 	call Function2cb2a
@@ -42731,7 +42502,6 @@ Function2c974: ; 2c974 (b:4974)
 	cp b
 	jr z, asm_2c9a8
 
-; known jump sources: 2c946 (b:4946)
 Function2c98a: ; 2c98a (b:498a)
 	call Function2cab5
 	ld a, [$cfa9]
@@ -42752,23 +42522,19 @@ Function2c98a: ; 2c98a (b:498a)
 	cp $ff
 	ret
 
-; known jump sources: 2c939 (b:4939)
 Function2c9a5: ; 2c9a5 (b:49a5)
 	call Function2cad6
 
-; known jump sources: 2c988 (b:4988)
 asm_2c9a8: ; 2c9a8 (b:49a8)
 	ld a, $2
 	ld [$cf73], a
 	and a
 	ret
 
-; known jump sources: 2c93e (b:493e), 2c943 (b:4943), 2c949 (b:4949)
 Function2c9af: ; 2c9af (b:49af)
 	and a
 	ret
 
-; known jump sources: 2c92b (b:492b)
 Function2c9b1: ; 2c9b1 (b:49b1)
 	ld a, b
 	bit 7, a
@@ -42798,7 +42564,6 @@ Function2c9b1: ; 2c9b1 (b:49b1)
 	call Function2c9e2
 	jp Function2c946
 
-; known jump sources: 2c8d6 (b:48d6), 2c915 (b:4915), 2c9bf (b:49bf), 2c9dc (b:49dc)
 Function2c9e2: ; 2c9e2 (b:49e2)
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -42891,7 +42656,6 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 .asm_2ca85
 	ret
 
-; known jump sources: 2ca0c (b:4a0c), 2ca77 (b:4a77)
 Function2ca86: ; 2ca86 (b:4a86)
 	hlcoord 5, 0
 	ld bc, $28
@@ -42923,7 +42687,6 @@ String_2caae: ; 2caae
 	db "CANCEL@"
 ; 2cab5
 
-; known jump sources: 2c98a (b:498a), 2c9c5 (b:49c5), 2c9f5 (b:49f5)
 Function2cab5: ; 2cab5 (b:4ab5)
 	ld hl, TMsHMs ; $d859
 	ld a, [$d0e2]
@@ -42941,7 +42704,6 @@ Function2cab5: ; 2cab5 (b:4ab5)
 	dec c
 	ret
 
-; known jump sources: 2c9e7 (b:49e7)
 Function2caca: ; 2caca (b:4aca)
 	hlcoord 9, 3
 	push de
@@ -42950,7 +42712,6 @@ Function2caca: ; 2caca (b:4aca)
 	pop de
 	ret
 
-; known jump sources: 2c974 (b:4974), 2c9a5 (b:49a5)
 Function2cad6: ; 2cad6 (b:4ad6)
 	push de
 	ld de, SFX_READ_TEXT_2
@@ -42997,7 +42758,6 @@ Function2cafa: ; 2cafa
 	ret
 ; 2cb0c
 
-; known jump sources: 2c8b1 (b:48b1)
 Function2cb0c: ; 2cb0c (b:4b0c)
 	call Function2c7a7
 	ld a, [$d265]
@@ -43019,7 +42779,6 @@ Function2cb0c: ; 2cb0c (b:4b0c)
 	ld [$d0e2], a
 	ret
 
-; known jump sources: 2c977 (b:4977)
 Function2cb2a: ; 2cb2a (b:4b2a)
 	ld b, $0
 	ld c, $39
@@ -44151,7 +43910,6 @@ Function4010b: ; 4010b
 ; 40115
 
 
-; no known jump sources
 Jumptable_40115: ; 40115 (10:4115)
 	dw Function4013c
 	dw Function401ae
@@ -44169,19 +43927,16 @@ Jumptable_40115: ; 40115 (10:4115)
 	dw Function40136
 
 
-; known jump sources: 401aa (10:41aa), 40254 (10:4254), 4026f (10:426f), 403ba (10:43ba), 4046d (10:446d), 4055e (10:455e), 405db (10:45db)
 Function40131: ; 40131 (10:4131)
 	ld hl, $cf63
 	inc [hl]
 	ret
 
-; no known jump sources
 Function40136: ; 40136 (10:4136)
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 
-; no known jump sources
 Function4013c: ; 4013c (10:413c)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -44229,7 +43984,6 @@ Function4013c: ; 4013c (10:413c)
 	call Function40131
 	ret
 
-; no known jump sources
 Function401ae: ; 401ae (10:41ae)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -44291,7 +44045,6 @@ Function401ae: ; 401ae (10:41ae)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function40217: ; 40217 (10:4217)
 	call LowVolume
 	xor a
@@ -44318,7 +44071,6 @@ Function40217: ; 40217 (10:4217)
 	call Function40131
 	ret
 
-; no known jump sources
 Function40258: ; 40258 (10:4258)
 	ld de, Unknown_402e8
 	call Function4135a
@@ -44365,7 +44117,6 @@ Function40292: ; 40292
 	ret
 ; 402aa
 
-; no known jump sources
 Function402aa: ; 402aa (10:42aa)
 	call Function41401
 	xor a
@@ -44486,7 +44237,6 @@ Function4038d: ; 4038d
 	ret
 ; 4039d
 
-; no known jump sources
 Function4039d: ; 4039d (10:439d)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -44502,7 +44252,6 @@ Function4039d: ; 4039d (10:439d)
 	call Function40131
 	ret
 
-; no known jump sources
 Function403be: ; 403be (10:43be)
 	ld a, [$c7dc]
 	and a
@@ -44552,7 +44301,6 @@ Unknown_403fb: ; 403fb
 	dw $c56a
 ; 40405
 
-; no known jump sources
 Jumptable_40405: ; 40405 (10:4405)
 	dw Function4040d
 	dw Function40411
@@ -44560,17 +44308,14 @@ Jumptable_40405: ; 40405 (10:4405)
 	dw Function4043a
 ; 4040d
 
-; no known jump sources
 Function4040d: ; 4040d (10:440d)
 	ld b, $0
 	jr Function40417
 
-; no known jump sources
 Function40411: ; 40411 (10:4411)
 	ld b, $1
 	jr Function40417
 
-; no known jump sources
 Function40415: ; 40415 (10:4415)
 	ld b, $2
 Function40417: ; 40417 (10:4417)
@@ -44592,14 +44337,12 @@ Function40417: ; 40417 (10:4417)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function4043a: ; 4043a (10:443a)
 	call Function41401
 	ld a, $b
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function40443: ; 40443 (10:4443)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -44620,7 +44363,6 @@ Function40443: ; 40443 (10:4443)
 	call Function40131
 	ret
 
-; no known jump sources
 Function40471: ; 40471 (10:4471)
 	ld de, Unknown_4049e
 	call Function4135a
@@ -44709,7 +44451,6 @@ Function40501: ; 40501
 	ret
 ; 4050a
 
-; no known jump sources
 Function4050a: ; 4050a (10:450a)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -44745,7 +44486,6 @@ Function4050a: ; 4050a (10:450a)
 	call Function40131
 	ret
 
-; no known jump sources
 Function40562: ; 40562 (10:4562)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -44792,7 +44532,6 @@ Function40562: ; 40562 (10:4562)
 	ld [hWX], a ; $ff00+$d1
 	ret
 
-; no known jump sources
 Function405bd: ; 405bd (10:45bd)
 	call Function41a2c
 	call Function409f1
@@ -44807,7 +44546,6 @@ Function405bd: ; 405bd (10:45bd)
 	call Function40131
 	ret
 
-; no known jump sources
 Function405df: ; 405df (10:45df)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -44835,7 +44573,6 @@ Function405df: ; 405df (10:45df)
 .asm_4060f
 	ret
 
-; known jump sources: 405e7 (10:45e7)
 Function40610: ; 40610 (10:4610)
 	ld hl, $ffa9
 	ld a, [hl]
@@ -44881,12 +44618,10 @@ Function40610: ; 40610 (10:4610)
 	call DelayFrame
 	ret
 
-; known jump sources: 4063a (10:463a)
 Function40654: ; 40654 (10:4654)
 	ld c, $7f
 	jr asm_4065d
 
-; known jump sources: 405ca (10:45ca), 40640 (10:4640)
 Function40658: ; 40658 (10:4658)
 	ld a, [$c7dd]
 	ld c, $5a
@@ -44904,7 +44639,6 @@ asm_4065d: ; 4065d (10:465d)
 	ld [hl], c
 	ret
 
-; known jump sources: 4026b (10:426b)
 Function4066c: ; 4066c (10:466c)
 	ld a, [$c7d1]
 	ld [$c7e2], a
@@ -44952,7 +44686,6 @@ Function4066c: ; 4066c (10:466c)
 	and a
 	ret
 
-; known jump sources: 401c5 (10:41c5), 4056f (10:456f)
 Function406c5: ; 406c5 (10:46c5)
 	ld a, [$c7d3]
 	ld d, a
@@ -44976,7 +44709,6 @@ Function406c5: ; 406c5 (10:46c5)
 	jr nz, asm_40728
 	jr asm_4073d
 
-; known jump sources: 4068f (10:468f), 406d3 (10:46d3)
 Function406ea: ; 406ea (10:46ea)
 	ld hl, $c7d1
 	ld a, [hl]
@@ -44992,7 +44724,6 @@ Function406ea: ; 406ea (10:46ea)
 	dec [hl]
 	jr asm_4073f
 
-; known jump sources: 406a6 (10:46a6), 406d8 (10:46d8)
 Function406fe: ; 406fe (10:46fe)
 	ld hl, $c7d1
 	ld a, [hl]
@@ -45062,7 +44793,6 @@ Function40741: ; 40741
 ; 4074c
 
 
-; known jump sources: 40169 (10:4169)
 Function4074c: ; 4074c (10:474c)
 	hlcoord 0, 17
 	ld de, Unknown_407f2
@@ -45173,7 +44903,6 @@ Unknown_40867: ; 40867
 	db $3b, " PAGE AREA CRY PRNT", $ff
 ; 4087c
 
-; known jump sources: 403a3 (10:43a3)
 Function4087c: ; 4087c (10:487c)
 	call Function40aa6
 	hlcoord 0, 2
@@ -45211,7 +44940,6 @@ String_408e5: ; 408e5
 	db "UNOWN MODE@"
 ; 408f0
 
-; known jump sources: 40449 (10:4449)
 Function408f0: ; 408f0 (10:48f0)
 	call Function40aa6
 	hlcoord 0, 2
@@ -45252,7 +44980,6 @@ String_4094c: ; 4094c
 	db "BEGIN SEARCH!!", $4e, "CANCEL@"
 ; 40962
 
-; known jump sources: 40534 (10:4534)
 Function40962: ; 40962 (10:4962)
 	call Function40aa6
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -45290,7 +45017,6 @@ String_409ae: ; 409ae
 	db "    FOUND!@"
 ; 409cf
 
-; known jump sources: 40523 (10:4523), 4054e (10:454e)
 Function409cf: ; 409cf (10:49cf)
 	ld a, [$c7d5]
 	hlcoord 0, 14
@@ -45309,7 +45035,6 @@ Function409cf: ; 409cf (10:49cf)
 .asm_409f0
 	ret
 
-; known jump sources: 405c0 (10:45c0)
 Function409f1: ; 409f1 (10:49f1)
 	call Function40aa6
 	hlcoord 2, 1
@@ -45473,7 +45198,6 @@ Function40b06: ; 40b06
 ; 40b0f
 
 
-; known jump sources: 40160 (10:4160), 401a7 (10:41a7), 401cf (10:41cf), 4052b (10:452b), 40579 (10:4579)
 Function40b0f: ; 40b0f (10:4b0f)
 	ld a, [$c7d4]
 	cp $1
@@ -45517,7 +45241,6 @@ Function40b0f: ; 40b0f (10:4b0f)
 	call Function4143b
 	ret
 
-; known jump sources: 40b43 (10:4b43)
 Function40b55: ; 40b55 (10:4b55)
 	and a
 	ret z
@@ -45531,7 +45254,6 @@ Function40b55: ; 40b55 (10:4b55)
 	call PlaceString
 	ret
 
-; known jump sources: 40b57 (10:4b57)
 Function40b6a: ; 40b6a (10:4b6a)
 	ld a, [$c7d4]
 	cp $1
@@ -45547,7 +45269,6 @@ Function40b6a: ; 40b6a (10:4b6a)
 	pop hl
 	ret
 
-; known jump sources: 40b5e (10:4b5e)
 Function40b82: ; 40b82 (10:4b82)
 	call Function40bc4
 	jr nz, .asm_40b89
@@ -45558,7 +45279,6 @@ Function40b82: ; 40b82 (10:4b82)
 	ld [hli], a
 	ret
 
-; known jump sources: 40b5a (10:4b5a)
 Function40b8d: ; 40b8d (10:4b8d)
 	call Function40bd0
 	ret nz
@@ -45602,7 +45322,6 @@ Function40bb1: ; 40bb1
 ; 40bc4
 
 
-; known jump sources: 40b82 (10:4b82)
 Function40bc4: ; 40bc4 (10:4bc4)
 	push de
 	push hl
@@ -45639,14 +45358,12 @@ Function40bdc: ; 40bdc
 ; 40bf0
 
 
-; no known jump sources
 Jumptable_40bf0: ; 40bf0 (10:4bf0)
 	dw Function40bf6
 	dw Function40c08
 	dw Function40c30
 
 
-; no known jump sources
 Function40bf6: ; 40bf6 (10:4bf6)
 	ld de, NewPokedexOrder
 	ld hl, $c6d0
@@ -45660,7 +45377,6 @@ Function40bf6: ; 40bf6 (10:4bf6)
 	call Function40c18
 	ret
 
-; no known jump sources
 Function40c08: ; 40c08 (10:4c08)
 	ld hl, $c6d0
 	ld a, $1
@@ -45673,7 +45389,6 @@ Function40c08: ; 40c08 (10:4c08)
 	call Function40c18
 	ret
 
-; known jump sources: 40c04 (10:4c04), 40c14 (10:4c14)
 Function40c18: ; 40c18 (10:4c18)
 	ld hl, $c7ca
 	ld d, NUM_POKEMON
@@ -45779,7 +45494,6 @@ String_40ee4: ; 40ee4
 	db "in catching order.@"
 ; 40f08
 
-; known jump sources: 40424 (10:4424)
 Function40f08: ; 40f08 (10:4f08)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -45804,7 +45518,6 @@ String_40f32: ; 40f32
 	db "Changing modes.", $4e, "Please wait.@"
 ; 40f4f
 
-; known jump sources: 40477 (10:4477)
 Function40f4f: ; 40f4f (10:4f4f)
 	ld a, [$c7d8]
 	cp $2
@@ -45869,7 +45582,6 @@ Function40f84: ; 40f84
 	scf
 	ret
 
-; known jump sources: 40458 (10:4458), 4047a (10:447a)
 Function40fa8: ; 40fa8 (10:4fa8)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -45887,7 +45599,6 @@ Function40fa8: ; 40fa8 (10:4fa8)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: 409d5 (10:49d5), 409e8 (10:49e8), 40fbc (10:4fbc), 40fc5 (10:4fc5)
 Function40fcd: ; 40fcd (10:4fcd)
 	push hl
 	ld e, a
@@ -46046,7 +45757,6 @@ String_41126: ; 41126
 	db "was not found.@"
 ; 41148
 
-; known jump sources: 40190 (10:4190), 401c9 (10:41c9)
 Function41148: ; 41148 (10:5148)
 	ld a, [$c7d4]
 	cp $1
@@ -46055,7 +45765,6 @@ Function41148: ; 41148 (10:5148)
 	call Function4130e
 	ret
 
-; known jump sources: 4114d (10:514d), 41286 (10:5286)
 Function41157: ; 41157 (10:5157)
 	ld hl, Unknown_41167
 	ld a, [$c7d1]
@@ -46125,7 +45834,6 @@ Unknown_411c8: ; 411c8
 	db $ff
 ; 41229
 
-; known jump sources: 41150 (10:5150)
 Function41229: ; 41229 (10:5229)
 	ld hl, Unknown_41230
 	call Function412f1
@@ -46157,7 +45865,6 @@ Unknown_41230: ; 41230
 	db $ff
 ; 41281
 
-; known jump sources: 40551 (10:4551), 40573 (10:4573)
 Function41281: ; 41281 (10:5281)
 	ld a, [$c7d4]
 	cp $1
@@ -46196,7 +45903,6 @@ Unknown_41290: ; 41290
 	db $ff
 ; 412f1
 
-; known jump sources: 41163 (10:5163), 4122c (10:522c), 4128c (10:528c)
 Function412f1: ; 412f1 (10:52f1)
 	ld de, Sprites ; $c400
 .asm_412f4
@@ -46221,7 +45927,6 @@ Function412f1: ; 412f1 (10:52f1)
 	inc de
 	jr .asm_412f4
 
-; known jump sources: 41153 (10:5153)
 Function4130e: ; 4130e (10:530e)
 	push de
 	ld a, [$c7d2]
@@ -46267,7 +45972,6 @@ Function4130e: ; 4130e (10:530e)
 	ld [hl], $0
 	ret
 
-; known jump sources: 4022a (10:422a), 402b7 (10:42b7), 403a6 (10:43a6), 4044c (10:444c)
 Function4134f: ; 4134f (10:534f)
 	xor a
 	ld [$c7d8], a
@@ -46275,7 +45979,6 @@ Function4134f: ; 4134f (10:534f)
 	ld [$c7da], a
 	ret
 
-; known jump sources: 4025b (10:425b), 403cc (10:43cc), 40474 (10:4474)
 Function4135a: ; 4135a (10:535a)
 	ld a, [de]
 	ld b, a
@@ -46351,7 +46054,6 @@ Function4135a: ; 4135a (10:535a)
 	ld [$c7d8], a
 	jr .asm_413af
 
-; known jump sources: 41395 (10:5395), 413a6 (10:53a6), 413af (10:53af), 413c1 (10:53c1), 413e9 (10:53e9), 413ef (10:53ef)
 Function413d4: ; 413d4 (10:53d4)
 	ld a, [$c7d8]
 	add a
@@ -46363,7 +46065,6 @@ Function413d4: ; 413d4 (10:53d4)
 	ld l, a
 	ret
 
-; known jump sources: 41361 (10:5361)
 Function413e0: ; 413e0 (10:53e0)
 	ld hl, $c7da
 	ld a, [hl]
@@ -46378,7 +46079,6 @@ Function413e0: ; 413e0 (10:53e0)
 	ld [hl], $ed
 	ret
 
-; known jump sources: 41379 (10:5379)
 Function413f5: ; 413f5 (10:53f5)
 	ld hl, $c7d9
 	ld a, [hl]
@@ -46388,11 +46088,9 @@ Function413f5: ; 413f5 (10:53f5)
 	scf
 	ret
 
-; known jump sources: 40b27 (10:4b27), 40fb3 (10:4fb3)
 Function413fe: ; 413fe (10:53fe)
 	jp Functionfb8
 
-; known jump sources: 401eb (10:41eb), 401fe (10:41fe), 402aa (10:42aa), 403ea (10:43ea), 40431 (10:4431), 4043a (10:443a), 40495 (10:4495), 405a7 (10:45a7), 405eb (10:45eb)
 Function41401: ; 41401 (10:5401)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -46465,7 +46163,6 @@ Function4143b: ; 4143b
 ; 41478
 
 
-; known jump sources: 40224 (10:4224), 402ba (10:42ba)
 Function41478: ; 41478 (10:5478)
 	call Function40bb1
 
@@ -46593,7 +46290,6 @@ Function41a2c: ; 41a2c
 ; 41a58
 
 
-; known jump sources: 405c7 (10:45c7), 4063d (10:463d)
 Function41a58: ; 41a58 (10:5a58)
 	ld a, [UnownLetter] ; $d234
 	push af
@@ -46647,7 +46343,6 @@ Function41a7f: ; 41a7f
 ; 41ad7
 
 
-; known jump sources: 401d2 (10:41d2), 4052e (10:452e), 4057c (10:457c), 41af3 (10:5af3)
 Function41ad7: ; 41ad7 (10:5ad7)
 	ld a, $3
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -46655,7 +46350,6 @@ Function41ad7: ; 41ad7 (10:5ad7)
 	call DelayFrames
 	ret
 
-; known jump sources: 40517 (10:4517), 41af0 (10:5af0)
 Function41ae1: ; 41ae1 (10:5ae1)
 	ld a, $4
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -46663,7 +46357,6 @@ Function41ae1: ; 41ae1 (10:5ae1)
 	call DelayFrames
 	ret
 
-; known jump sources: 40163 (10:4163)
 Function41aeb: ; 41aeb (10:5aeb)
 	ld a, [hCGB] ; $ff00+$e6
 	and a
@@ -47906,7 +47599,6 @@ Function4456e: ; 4456e
 	ret
 ; 445c0
 
-; known jump sources: 44645 (11:4645)
 Function445c0: ; 445c0 (11:45c0)
 	ld a, $0
 	call GetSRAMBank
@@ -48120,7 +47812,6 @@ Function44725: ; 44725
 ; 44745
 
 
-; no known jump sources
 Function44745: ; 44745 (11:4745)
 	ld a, $0
 	call GetSRAMBank
@@ -48134,7 +47825,6 @@ Function44745: ; 44745 (11:4745)
 	call CopyBytes
 	jp CloseSRAM
 
-; no known jump sources
 Function44765: ; 44765 (11:4765)
 	ld a, $0
 	call GetSRAMBank
@@ -48474,7 +48164,6 @@ Function48000: ; 48000
 ; 4802f
 
 
-; known jump sources: 4a0e8 (12:60e8)
 Function4802f: ; 4802f (12:402f)
 	xor a
 	set 6, a
@@ -48597,14 +48286,12 @@ Function4802f: ; 4802f (12:402f)
 	push bc
 	jr asm_4815f
 
-; known jump sources: 48434 (12:4434), 48441 (12:4441)
 Function48157: ; 48157 (12:4157)
 	call Function1bd3
 	ld hl, $cfa9
 	ld b, [hl]
 	push bc
 
-; known jump sources: 48155 (12:4155)
 asm_4815f: ; 4815f (12:415f)
 	bit 0, a
 	jp nz, Function4820d
@@ -48627,7 +48314,6 @@ asm_4815f: ; 4815f (12:415f)
 	ld a, $ff
 	ret
 
-; known jump sources: 48144 (12:4144), 48377 (12:4377), 4840c (12:440c)
 Function48187: ; 48187 (12:4187)
 	ld a, [$d479]
 	bit 1, a
@@ -48693,7 +48379,6 @@ String_48202: ; 48202
 	db "Tell Later@"
 ; 4820d
 
-; known jump sources: 48161 (12:4161)
 Function4820d: ; 4820d (12:420d)
 	call Function1bee
 	ld hl, $cfa9
@@ -48746,7 +48431,6 @@ Function4820d: ; 4820d (12:420d)
 	xor a
 	ret
 
-; known jump sources: 48177 (12:4177)
 Function48272: ; 48272 (12:4272)
 	jp Function4840c
 ; 48275 (12:4275)
@@ -48755,14 +48439,12 @@ String_48275: ; 48275
 	db "Personal Info@"
 ; 48283
 
-; known jump sources: 4828d (12:428d), 48304 (12:4304), 4840f (12:440f), 4876f (12:476f), 488d3 (12:48d3)
 Function48283: ; 48283 (12:4283)
 	ld bc, $212
 	hlcoord 1, 15
 	call ClearBox
 	ret
 
-; known jump sources: 48222 (12:4222)
 asm_4828d: ; 4828d (12:428d)
 	call Function48283
 	hlcoord 1, 16
@@ -48815,7 +48497,6 @@ asm_4828d: ; 4828d (12:428d)
 	ld [$d003], a
 	jp Function4840c
 
-; known jump sources: 4822b (12:422b)
 Function48304: ; 48304 (12:4304)
 	call Function48283
 	hlcoord 1, 16
@@ -48873,7 +48554,6 @@ Function48304: ; 48304 (12:4304)
 	callba Function104148
 	jp Function4840c
 
-; known jump sources: 4834e (12:434e)
 Function48383: ; 48383 (12:4383)
 	push bc
 	push af
@@ -48911,7 +48591,6 @@ Function48383: ; 48383 (12:4383)
 	pop bc
 	ret
 
-; known jump sources: 4836c (12:436c)
 Function483bb: ; 483bb (12:43bb)
 	ld hl, $cf77
 	ld a, [hl]
@@ -48972,7 +48651,6 @@ Function483e8: ; 483e8
 	ret
 ; 4840c
 
-; known jump sources: 48272 (12:4272), 482d3 (12:42d3), 48301 (12:4301), 48380 (12:4380), 487e9 (12:47e9), 488e2 (12:48e2), 489e7 (12:49e7)
 Function4840c: ; 4840c (12:440c)
 	call Function48187
 	call Function48283
@@ -48998,7 +48676,6 @@ Function4840c: ; 4840c (12:440c)
 	call ClearBox
 	jp Function48157
 
-; known jump sources: 489f0 (12:49f0), 489fb (12:49fb), 48a04 (12:4a04), 48a16 (12:4a16), 48a1f (12:4a1f), 48a2a (12:4a2a), 48a33 (12:4a33)
 Function48444: ; 48444 (12:4444)
 	push bc
 	push af
@@ -49149,7 +48826,6 @@ Yamanashi: db "やまなしけん@" ; Yamanashi
 Wakayama:  db "わかやまけん@" ; Wakayama
 ; 48689
 
-; known jump sources: 48085 (12:4085)
 Function48689: ; 48689 (12:4689)
 	ld c, $7
 	call DelayFrames
@@ -49175,7 +48851,6 @@ Function48689: ; 48689 (12:4689)
 	call Function48cdc
 	ret
 
-; known jump sources: 4805a (12:405a), 4841b (12:441b)
 Function486bf: ; 486bf (12:46bf)
 	ld hl, $cfa1
 	ld a, [DefaultFlypoint] ; $d002
@@ -49244,7 +48919,6 @@ Function486bf: ; 486bf (12:46bf)
 	ld [hli], a
 	ret
 
-; known jump sources: 48192 (12:4192), 486db (12:46db), 486ee (12:46ee)
 Function48725: ; 48725 (12:4725)
 	ld a, [$d003]
 	bit 0, a
@@ -49261,7 +48935,6 @@ Function48725: ; 48725 (12:4725)
 	and a
 	ret
 
-; known jump sources: 4829f (12:429f), 48a40 (12:4a40)
 Function4873c: ; 4873c (12:473c)
 	ld hl, $cfa1
 	ld a, $4
@@ -49299,7 +48972,6 @@ Function4873c: ; 4873c (12:473c)
 	ld [hli], a
 	ret
 
-; known jump sources: 48226 (12:4226)
 Function4876f: ; 4876f (12:476f)
 	call Function48283
 	hlcoord 1, 16
@@ -49359,7 +49031,6 @@ Function4876f: ; 4876f (12:476f)
 	ld [$FF00+$aa], a
 	jp Function4840c
 
-; known jump sources: 48116 (12:4116), 487ba (12:47ba), 487e3 (12:47e3), 488aa (12:48aa)
 Function487ec: ; 487ec (12:47ec)
 	push hl
 	ld de, $d473
@@ -49373,7 +49044,6 @@ Function487ec: ; 487ec (12:47ec)
 	call PlaceString
 	ret
 
-; known jump sources: 487f0 (12:47f0)
 Function487ff: ; 487ff (12:47ff)
 	push hl
 	ld a, $7f
@@ -49390,7 +49060,6 @@ String_4880d: ; 4880d
 	db "@"
 ; 4880e
 
-; known jump sources: 487c9 (12:47c9)
 Function4880e: ; 4880e (12:480e)
 	ld a, [hJoyPressed] ; $ff00+$a7
 	and A_BUTTON
@@ -49485,14 +49154,12 @@ Function4880e: ; 4880e (12:480e)
 	and a
 	ret
 
-; known jump sources: 48819 (12:4819)
 Function488b4: ; 488b4 (12:48b4)
 	ld a, $0
 	and a
 	scf
 	ret
 
-; known jump sources: 48812 (12:4812)
 Function488b9: ; 488b9 (12:48b9)
 	ld a, [$d003]
 	set 1, a
@@ -49507,7 +49174,6 @@ INCBIN "baserom.gbc",$488c3,$488cb - $488c3
 GFX_488cb: ; 488cb
 INCBIN "baserom.gbc",$488cb,$488d3 - $488cb
 
-; known jump sources: 48230 (12:4230)
 Function488d3: ; 488d3 (12:48d3)
 	call Function48283
 	hlcoord 1, 16
@@ -49544,7 +49210,6 @@ Function488d3: ; 488d3 (12:48d3)
 	ld d, $0
 	ld b, $0
 
-; known jump sources: 48999 (12:4999)
 asm_48922: ; 48922 (12:4922)
 	push bc
 	call Functiona57
@@ -49597,13 +49262,11 @@ Function4895a: ; 4895a
 	ld b, $1
 	push bc
 
-; known jump sources: 48929 (12:4929), 4892e (12:492e), 48933 (12:4933)
 Function4896e: ; 4896e (12:496e)
 	pop bc
 	ld b, $0
 	push bc
 
-; known jump sources: 48951 (12:4951), 48958 (12:4958)
 asm_48972: ; 48972 (12:4972)
 	call Function48ab5
 	push af
@@ -49671,7 +49334,6 @@ asm_48972: ; 48972 (12:4972)
 	ld [$FF00+$aa], a
 	jp Function4840c
 
-; known jump sources: 4812e (12:412e), 48906 (12:4906), 489d8 (12:49d8), 48b47 (12:4b47), 48c04 (12:4c04)
 Function489ea: ; 489ea (12:49ea)
 	push de
 	ld a, [$d475]
@@ -49715,7 +49377,6 @@ String_48a38: ; 48a38
 	db "-@"
 ; 48a3a
 
-; known jump sources: 488df (12:48df)
 Function48a3a: ; 48a3a (12:4a3a)
 	ld hl, MenuDataHeader_0x48a9c
 	call LoadMenuDataHeader
@@ -49758,7 +49419,6 @@ Function48a3a: ; 48a3a (12:4a3a)
 	and a
 	ret
 
-; known jump sources: 48a72 (12:4a72), 48a96 (12:4a96)
 Function48a9a: ; 48a9a (12:4a9a)
 	scf
 	ret
@@ -49775,7 +49435,6 @@ String_48aa1: ; 48aa1
 ; 48ab5
 
 
-; known jump sources: 48972 (12:4972)
 Function48ab5: ; 48ab5 (12:4ab5)
 	ld a, [hJoyPressed] ; $ff00+$a7
 	and A_BUTTON
@@ -49952,7 +49611,6 @@ Function48ab5: ; 48ab5 (12:4ab5)
 	ld a, [hl]
 	and $f
 
-; known jump sources: 48bc2 (12:4bc2), 48bf6 (12:4bf6), 48bfe (12:4bfe)
 asm_48bc7: ; 48bc7 (12:4bc7)
 	hlcoord 11, 10
 	push af
@@ -49966,7 +49624,6 @@ asm_48bc7: ; 48bc7 (12:4bc7)
 	ld a, $f
 	jr Function48c00
 
-; known jump sources: 48b3c (12:4b3c)
 Function48bd7: ; 48bd7 (12:4bd7)
 	push de
 	hlcoord 10, 9
@@ -49998,7 +49655,6 @@ Function48bd7: ; 48bd7 (12:4bd7)
 	and $f
 	jr asm_48bc7
 
-; known jump sources: 48b8a (12:4b8a), 48bd5 (12:4bd5)
 Function48c00: ; 48c00 (12:4c00)
 	push af
 	hlcoord 11, 10
@@ -50009,17 +49665,14 @@ Function48c00: ; 48c00 (12:4c00)
 	ld a, b
 	ret
 
-; known jump sources: 48ac0 (12:4ac0)
 Function48c0d: ; 48c0d (12:4c0d)
 	xor a
 	and a
 
-; known jump sources: 48ab9 (12:4ab9)
 Function48c0f: ; 48c0f (12:4c0f)
 	scf
 	ret
 
-; known jump sources: 48991 (12:4991)
 Function48c11: ; 48c11 (12:4c11)
 	ld a, [DefaultFlypoint] ; $d002
 	bit 7, a
@@ -50057,7 +49710,6 @@ Function48c11: ; 48c11 (12:4c11)
 	ld [DefaultFlypoint], a ; $d002
 	ret
 
-; known jump sources: 48b80 (12:4b80)
 Function48c4d: ; 48c4d (12:4c4d)
 	swap a
 	and $f0
@@ -50070,7 +49722,6 @@ Function48c4d: ; 48c4d (12:4c4d)
 	ld [hl], a
 	ret
 
-; known jump sources: 48b85 (12:4b85)
 Function48c5a: ; 48c5a (12:4c5a)
 	push af
 	ld a, [hl]
@@ -50174,12 +49825,10 @@ Function48ca3: ; 48ca3
 	ret
 ; 48cda
 
-; no known jump sources
 Function48cda: ; 48cda (12:4cda)
 	ld h, d
 	ld l, e
 
-; known jump sources: 480cb (12:40cb), 482a9 (12:42a9), 48323 (12:4323), 486bb (12:46bb), 4878f (12:478f), 4888e (12:488e), 4889f (12:489f), 488f9 (12:48f9), 48a59 (12:4a59), 48b6b (12:4b6b), 48ba5 (12:4ba5), 48bdf (12:4bdf), 49f25 (12:5f25), 4a150 (12:6150), 4a2b3 (12:62b3), 4a4df (12:64df)
 Function48cdc: ; 48cdc (12:4cdc)
 	push bc
 	push hl
@@ -50208,7 +49857,6 @@ Function48cdc: ; 48cdc (12:4cdc)
 	jr nz, .asm_48ced
 	ret
 
-; known jump sources: 48cde (12:4cde)
 Function48cfd: ; 48cfd (12:4cfd)
 	push hl
 	ld a, $4
@@ -50239,7 +49887,6 @@ Function48cfd: ; 48cfd (12:4cfd)
 	ld [hl], $b
 	ret
 
-; known jump sources: 48d02 (12:4d02), 48d12 (12:4d12), 48d24 (12:4d24)
 Function48d2a: ; 48d2a (12:4d2a)
 	ld d, c
 .asm_48d2b
@@ -50248,7 +49895,6 @@ Function48d2a: ; 48d2a (12:4d2a)
 	jr nz, .asm_48d2b
 	ret
 
-; known jump sources: 4817d (12:417d), 4825f (12:425f)
 Function48d30: ; 48d30 (12:4d30)
 	ld hl, $d475
 	call Function48d4a
@@ -50256,7 +49902,6 @@ Function48d30: ; 48d30 (12:4d30)
 	call Function48d4a
 	ret
 
-; known jump sources: 48042 (12:4042)
 Function48d3d: ; 48d3d (12:4d3d)
 	ld hl, $d475
 	call Function48d94
@@ -50264,7 +49909,6 @@ Function48d3d: ; 48d3d (12:4d3d)
 	call Function48d94
 	ret
 
-; known jump sources: 48d33 (12:4d33), 48d39 (12:4d39)
 Function48d4a: ; 48d4a (12:4d4a)
 	inc hl
 	ld a, [hl]
@@ -50315,7 +49959,6 @@ Function48d4a: ; 48d4a (12:4d4a)
 	ld [hl], b
 	ret
 
-; known jump sources: 48d40 (12:4d40), 48d46 (12:4d46)
 Function48d94: ; 48d94 (12:4d94)
 	xor a
 	ld [$ffb3], a
@@ -50348,7 +49991,6 @@ Function48d94: ; 48d94 (12:4d94)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function48dcb: ; 48dcb (12:4dcb)
 	call Function48e14
 	call Function48e47
@@ -50391,7 +50033,6 @@ UnknownText_0x48e0f: ; 0x48e0f
 	db "@"
 ; 0x48e14
 
-; known jump sources: 48dcb (12:4dcb)
 Function48e14: ; 48e14 (12:4e14)
 	ld a, $10
 	ld [MusicFade], a ; $c2a7
@@ -50414,7 +50055,6 @@ Function48e14: ; 48e14 (12:4e14)
 	call ByteFill
 	ret
 
-; known jump sources: 48dce (12:4dce)
 Function48e47: ; 48e47 (12:4e47)
 	ld hl, Palette_48e5c
 	ld de, Unkn1Pals ; $d000
@@ -50432,7 +50072,6 @@ Palette_48e5c: ; 48e5c
 	RGB 00, 00, 00
 ; 48e64
 
-; known jump sources: 48dd1 (12:4dd1)
 Function48e64: ; 48e64 (12:4e64)
 	ld de, GFX_48e71
 	ld hl, $9000
@@ -50579,7 +50218,6 @@ MenuDataHeader_0x4930a: ; 0x4930a
 	db 17, 19 ; end coords
 ; 4930f
 
-; known jump sources: 480a0 (12:40a0), 48690 (12:4690)
 Function4930f: ; 4930f (12:530f)
 	ld a, b
 	cp $ff
@@ -50628,7 +50266,6 @@ Function49336: ; 49336
 ; 49346
 
 
-; known jump sources: 49371 (12:5371)
 Function49346: ; 49346 (12:5346)
 	ld hl, AttrMap ; $cdd9
 	ld bc, $168
@@ -50636,7 +50273,6 @@ Function49346: ; 49346 (12:5346)
 	call ByteFill
 	ret
 
-; known jump sources: 4936e (12:536e), 4a0af (12:60af)
 Function49351: ; 49351 (12:5351)
 	ld de, Unkn1Pals ; $d000
 	ld hl, Palette_493e1
@@ -50650,7 +50286,6 @@ Function49351: ; 49351 (12:5351)
 	call FarCopyWRAM
 	ret
 
-; known jump sources: 4a492 (12:6492)
 Function4936e: ; 4936e (12:536e)
 	call Function49351
 	call Function49346
@@ -50659,7 +50294,6 @@ Function4936e: ; 4936e (12:536e)
 	callba Function96a4
 	ret
 
-; known jump sources: 49374 (12:5374)
 Function49384: ; 49384 (12:5384)
 	ld hl, AttrMap ; $cdd9
 	ld bc, $401
@@ -50742,7 +50376,6 @@ Palette_49418: ; 49418
 	RGB 00, 00, 00
 ; 49420
 
-; no known jump sources
 Function49420:: ; 49420 (12:5420)
 	ld hl, Palette_496bd
 	ld de, Unkn1Pals + $30
@@ -51519,7 +51152,6 @@ INCBIN "gfx/special/celebi/3.2bpp"
 INCBIN "gfx/special/celebi/4.2bpp"
 
 
-; no known jump sources
 Function49aa2: ; 49aa2 (12:5aa2)
 	ld hl, $6
 	add hl, bc
@@ -51611,7 +51243,6 @@ Function49aa2: ; 49aa2 (12:5aa2)
 .asm_49b2f
 	ret
 
-; known jump sources: 49aaf (12:5aaf)
 Function49b30: ; 49b30 (12:5b30)
 	pop af
 	ld hl, $1
@@ -51620,7 +51251,6 @@ Function49b30: ; 49b30 (12:5b30)
 	call Function3b3c
 	ret
 
-; known jump sources: 49acc (12:5acc)
 Function49b3b: ; 49b3b (12:5b3b)
 	add $10
 	and $3f
@@ -51637,7 +51267,6 @@ Function49b3b: ; 49b3b (12:5b3b)
 	inc a
 	ret
 
-; known jump sources: 49b43 (12:5b43), 49b4a (12:5b4a)
 Function49b52: ; 49b52 (12:5b52)
 	ld e, a
 	ld a, d
@@ -52253,7 +51882,6 @@ String_0x4a062: ; 4a062
 
 
 
-; known jump sources: 49f16 (12:5f16), 49fb7 (12:5fb7)
 Function4a071: ; 4a071 (12:6071)
 	ld hl, $cfa1
 	ld a, $2
@@ -52281,7 +51909,6 @@ Function4a071: ; 4a071 (12:6071)
 	ld [hli], a
 	ret
 
-; known jump sources: 49f6d (12:5f6d)
 Function4a098: ; 4a098 (12:6098)
 	ld a, $2
 	call Function1ff8
@@ -52295,14 +51922,12 @@ Function4a098: ; 4a098 (12:6098)
 	pop bc
 	jp Function49f16
 
-; known jump sources: 49f72 (12:5f72)
 Function4a0b9: ; 4a0b9 (12:60b9)
 	ld a, $2
 	call Function1ff8
 	pop bc
 	jp Function4a4c4
 
-; known jump sources: 49f77 (12:5f77)
 Function4a0c2: ; 4a0c2 (12:60c2)
 	ld a, $2
 	call Function1ff8
@@ -52329,7 +51954,6 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	call DelayFrames
 	jr asm_4a111
 
-; known jump sources: 49f7c (12:5f7c)
 Function4a100: ; 4a100 (12:6100)
 	ld a, $2
 	call Function1ff8
@@ -52338,13 +51962,11 @@ Function4a100: ; 4a100 (12:6100)
 	call WhiteBGMap
 	call ClearTileMap
 
-; known jump sources: 4a0fe (12:60fe)
 asm_4a111: ; 4a111 (12:6111)
 	pop bc
 	call Functione5f
 	jp Function49f0a
 
-; known jump sources: 4a2c5 (12:62c5)
 Function4a118: ; 4a118 (12:6118)
 	ld hl, $cfa1
 	ld a, $1
@@ -52370,7 +51992,6 @@ Function4a118: ; 4a118 (12:6118)
 	ld [hli], a
 	ret
 
-; known jump sources: 4a108 (12:6108), 4a23a (12:623a)
 Function4a13b: ; 4a13b (12:613b)
 	call Function4a3a7
 	call Function4a492
@@ -52378,7 +51999,6 @@ Function4a13b: ; 4a13b (12:613b)
 	ld c, $a
 	call DelayFrames
 
-; known jump sources: 4a236 (12:6236)
 Function4a149: ; 4a149 (12:6149)
 	hlcoord 1, 2
 	ld b, $6
@@ -52411,14 +52031,12 @@ Function4a149: ; 4a149 (12:6149)
 	push bc
 	jr asm_4a19d
 
-; known jump sources: 4a1ec (12:61ec)
 Function4a195: ; 4a195 (12:6195)
 	call Function1bd3
 	ld hl, $cfa9
 	ld b, [hl]
 	push bc
 
-; known jump sources: 4a193 (12:6193)
 asm_4a19d: ; 4a19d (12:619d)
 	bit 0, a
 	jr nz, .asm_4a1a7
@@ -52469,7 +52087,6 @@ String_4a1ef: ; 4a1ef
 	next "もどる@"
 ; 4a20e
 
-; known jump sources: 4a1ad (12:61ad)
 Function4a20e: ; 4a20e (12:620e)
 	ld a, $1
 	call Function1ff8
@@ -52478,7 +52095,6 @@ Function4a20e: ; 4a20e (12:620e)
 	call DelayFrame
 	jr Function4a239
 
-; known jump sources: 4a1b2 (12:61b2)
 Function4a221: ; 4a221 (12:6221)
 	ld a, $1
 	call Function1ff8
@@ -52492,7 +52108,6 @@ Function4a221: ; 4a221 (12:6221)
 	pop bc
 	jp Function4a149
 
-; known jump sources: 4a21f (12:621f), 4a229 (12:6229)
 Function4a239: ; 4a239 (12:6239)
 	pop bc
 	jp Function4a13b
@@ -52510,7 +52125,6 @@ Strings_4a23d: ; 4a23d
 	db   "@"
 ; 4a28a
 
-; known jump sources: 4a226 (12:6226)
 Function4a28a: ; 4a28a (12:628a)
 	hlcoord 2, 3
 	ld bc, $601
@@ -52626,7 +52240,6 @@ MenuData2_0x4a36a: ; 0x4a36a
 	db "いいえ@"
 ; 0x4a373
 
-; known jump sources: 4a141 (12:6141), 4a1db (12:61db), 4a22b (12:622b)
 Function4a373: ; 4a373 (12:6373)
 	ld hl, $cfa1
 	ld a, $4
@@ -52663,7 +52276,6 @@ Function4a39a: ; 4a39a
 	ret
 ; 4a3a7
 
-; known jump sources: 48078 (12:4078), 49f0d (12:5f0d), 4a13b (12:613b), 4a4c7 (12:64c7)
 Function4a3a7: ; 4a3a7 (12:63a7)
 	call Function4a485
 Function4a3aa: ; 4a3aa
@@ -52756,7 +52368,6 @@ Function4a449: ; 4a449
 	ret
 ; 4a485
 
-; known jump sources: 4a0b2 (12:60b2), 4a3a7 (12:63a7)
 Function4a485: ; 4a485 (12:6485)
 	ld de, GFX_49c0c
 	ld hl, $9000
@@ -52764,7 +52375,6 @@ Function4a485: ; 4a485 (12:6485)
 	call Get2bpp
 	ret
 
-; known jump sources: 49f10 (12:5f10), 4a13e (12:613e), 4a4ca (12:64ca)
 Function4a492: ; 4a492 (12:6492)
 	call Function4936e
 	ret
@@ -52797,7 +52407,6 @@ MainMenu_MobileStudium: ; 4a496
 ; 4a4c4
 
 
-; known jump sources: 4a0bf (12:60bf), 4a6c2 (12:66c2)
 Function4a4c4: ; 4a4c4 (12:64c4)
 	call WhiteBGMap
 	call Function4a3a7
@@ -52850,14 +52459,12 @@ Function4a4c4: ; 4a4c4 (12:64c4)
 	push bc
 	jr asm_4a54d
 
-; known jump sources: 4a5c2 (12:65c2)
 Function4a545: ; 4a545 (12:6545)
 	call Function1bd3
 	ld hl, $cfa9
 	ld b, [hl]
 	push bc
 
-; known jump sources: 4a543 (12:6543)
 asm_4a54d: ; 4a54d (12:654d)
 	bit 0, a
 	jr nz, .asm_4a557
@@ -52908,7 +52515,6 @@ asm_4a54d: ; 4a54d (12:654d)
 	call PlaceString
 	jp Function4a5b0
 
-; known jump sources: 4a5ad (12:65ad)
 Function4a5b0: ; 4a5b0 (12:65b0)
 	call Function4a680
 	pop bc
@@ -52946,7 +52552,6 @@ Strings_4a5f6: ; 4a5f6
 	db "@"
 ; 4a680
 
-; known jump sources: 4a4cd (12:64cd), 4a5b0 (12:65b0)
 Function4a680: ; 4a680 (12:6680)
 	ld hl, $cfa1
 	ld a, $2
@@ -52978,7 +52583,6 @@ Function4a680: ; 4a680 (12:6680)
 	ld [hli], a
 	ret
 
-; known jump sources: 4a55d (12:655d), 4a562 (12:6562), 4a567 (12:6567), 4a56c (12:656c)
 Function4a6ab: ; 4a6ab (12:66ab)
 	ld a, $2
 	call Function1ff8
@@ -52990,7 +52594,6 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	call Functione5f
 	jp Function4a4c4
 
-; known jump sources: 49f07 (12:5f07), 49f93 (12:5f93)
 Function4a6c5: ; 4a6c5 (12:66c5)
 	ld a, $5
 	ld [MusicFade], a ; $c2a7
@@ -53002,7 +52605,6 @@ Function4a6c5: ; 4a6c5 (12:66c5)
 	call DelayFrames
 	ret
 
-; known jump sources: 4a292 (12:6292), 4a3b1 (12:63b1), 4a3b9 (12:63b9), 4a3c0 (12:63c0), 4a3c8 (12:63c8), 4a3d0 (12:63d0), 4a3d8 (12:63d8), 4a3e0 (12:63e0), 4a3eb (12:63eb), 4a3f3 (12:63f3), 4a3fb (12:63fb), 4a403 (12:6403), 4a40b (12:640b), 4a416 (12:6416), 4a41e (12:641e), 4a425 (12:6425), 4a42d (12:642d), 4a435 (12:6435), 4a43d (12:643d), 4a445 (12:6445), 4a6e5 (12:66e5)
 Function4a6d8: ; 4a6d8 (12:66d8)
 	push bc
 	push hl
@@ -54460,7 +54062,6 @@ Function4cf34: ; 4cf34
 ; 4cf45
 
 
-; no known jump sources
 Function4cf45: ; 4cf45 (13:4f45)
 	ld a, [hCGB] ; $ff00+$e6
 	and a
@@ -54497,7 +54098,6 @@ Function4cf45: ; 4cf45 (13:4f45)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: 4cf65 (13:4f65), 4cf6f (13:4f6f)
 Function4cf80: ; 4cf80 (13:4f80)
 	ld [hSPBuffer], sp ; $ffd9
 	ld sp, hl
@@ -55971,7 +55571,6 @@ Function4dbaf: ; 4dbaf
 ; 4dbb8
 
 
-; no known jump sources
 Function4dbb8: ; 4dbb8 (13:5bb8)
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartyMon1CaughtLevel ; $dcfc
@@ -56123,7 +55722,6 @@ Function4dc67: ; 4dc67
 ; 4dc7b
 
 
-; no known jump sources
 Function4dc7b: ; 4dc7b (13:5c7b)
 	ld a, [InLinkBattle] ; $c2dc
 	cp $4
@@ -56235,7 +55833,6 @@ StatsScreenPointerTable: ; 4dd2a
 ; 4dd3a
 
 
-; known jump sources: 4dcec (13:5cec)
 Function4dd3a: ; 4dd3a (13:5d3a)
 	ld hl, $cf64
 	bit 6, [hl]
@@ -56255,7 +55852,6 @@ Function4dd3a: ; 4dd3a (13:5d3a)
 	callba Function10402d
 	ret
 
-; known jump sources: 4dd97 (13:5d97), 4dd9d (13:5d9d), 4ddb3 (13:5db3), 4ddc2 (13:5dc2), 4dddd (13:5ddd), 4deda (13:5eda), 4dee0 (13:5ee0), 4dee6 (13:5ee6)
 Function4dd62: ; 4dd62 (13:5d62)
 	ld a, [$cf63]
 	and $80
@@ -56263,13 +55859,11 @@ Function4dd62: ; 4dd62 (13:5d62)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function4dd6c: ; 4dd6c (13:5d6c)
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 
-; no known jump sources
 Function4dd72: ; 4dd72 (13:5d72)
 	ld hl, $cf64
 	res 6, [hl]
@@ -56300,7 +55894,6 @@ EggStatsInit: ; 4dda1
 ; 0x4ddac
 
 
-; no known jump sources
 Function4ddac: ; 4ddac (13:5dac)
 	call Function4de2c
 	jr nc, .asm_4ddb7
@@ -56317,7 +55910,6 @@ Function4ddac: ; 4ddac (13:5dac)
 	call Function4dd62
 	ret
 
-; no known jump sources
 Function4ddc6: ; 4ddc6 (13:5dc6)
 	call Function4dfb6
 	ld hl, $cf64
@@ -56327,7 +55919,6 @@ Function4ddc6: ; 4ddc6 (13:5dc6)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function4ddd6: ; 4ddd6 (13:5dd6)
 	call Function4de2c
 	jr nc, .asm_4dde1
@@ -56338,7 +55929,6 @@ Function4ddd6: ; 4ddd6 (13:5dd6)
 	and $f3
 	jp Function4de54
 
-; no known jump sources
 Function4dde6: ; 4dde6 (13:5de6)
 	call IsSFXPlaying
 	ret nc
@@ -56347,7 +55937,6 @@ Function4dde6: ; 4dde6 (13:5de6)
 	ld [$cf63], a
 	ret
 
-; known jump sources: 4dd83 (13:5d83)
 Function4ddf2: ; 4ddf2 (13:5df2)
 	ld a, [MonType] ; $cf5f
 	cp $3
@@ -56373,7 +55962,6 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 	and a
 	ret
 
-; known jump sources: 4ddac (13:5dac), 4ddd6 (13:5dd6)
 Function4de2c: ; 4de2c (13:5e2c)
 	call GetJoypad
 	ld a, [MonType] ; $cf5f
@@ -56400,7 +55988,6 @@ Function4de2c: ; 4de2c (13:5e2c)
 	scf
 	ret
 
-; known jump sources: 4ddbd (13:5dbd), 4dde3 (13:5de3)
 Function4de54: ; 4de54 (13:5e54)
 	push af
 	ld a, [$cf64]
@@ -56488,13 +56075,11 @@ Function4de54: ; 4de54 (13:5e54)
 	call Function4dd62
 	ret
 
-; known jump sources: 4de5e (13:5e5e), 4debb (13:5ebb)
 Function4dee4: ; 4dee4 (13:5ee4)
 	ld h, $7
 	call Function4dd62
 	ret
 
-; known jump sources: 4dd8d (13:5d8d)
 Function4deea: ; 4deea (13:5eea)
 	call Function4df45
 	xor a
@@ -56532,7 +56117,6 @@ Function4deea: ; 4deea (13:5eea)
 	call Function4dfa6
 	ret
 
-; known jump sources: 4deea (13:5eea)
 Function4df45: ; 4df45 (13:5f45)
 	ld hl, TempMonHP ; $d130
 	ld a, [hli]
@@ -56550,7 +56134,6 @@ Function4df45: ; 4df45 (13:5f45)
 	call DelayFrame
 	ret
 
-; known jump sources: 4df26 (13:5f26)
 Function4df66: ; 4df66 (13:5f66)
 	push hl
 	callba GetGender
@@ -56584,7 +56167,6 @@ Function4df7f: ; 4df7f
 	ret
 ; 4df8f
 
-; known jump sources: 4df3b (13:5f3b), 4e348 (13:6348)
 Function4df8f: ; 4df8f (13:5f8f)
 	hlcoord 0, 7
 	ld b, 20
@@ -56595,7 +56177,6 @@ Function4df8f: ; 4df8f (13:5f8f)
 	jr nz, .asm_4df96
 	ret
 
-; known jump sources: 4df3e (13:5f3e)
 Function4df9b: ; 4df9b (13:5f9b)
 	hlcoord 12, 6
 	ld [hl], $71
@@ -56603,7 +56184,6 @@ Function4df9b: ; 4df9b (13:5f9b)
 	ld [hl], $ed
 	ret
 
-; known jump sources: 4df41 (13:5f41)
 Function4dfa6: ; 4dfa6 (13:5fa6)
 	ld bc, TempMonDVs ; $d123
 	callba CheckShininess
@@ -56612,7 +56192,6 @@ Function4dfa6: ; 4dfa6 (13:5fa6)
 	ld [hl], $3f
 	ret
 
-; known jump sources: 4ddc6 (13:5dc6)
 Function4dfb6: ; 4dfb6 (13:5fb6)
 	ld a, [CurBaseData] ; $d236 (aliases: BaseDexNo)
 	ld [$d265], a
@@ -56631,7 +56210,6 @@ Function4dfb6: ; 4dfb6 (13:5fb6)
 	call Function4e226
 	ret
 
-; known jump sources: 4dfc2 (13:5fc2)
 Function4dfda: ; 4dfda (13:5fda)
 	ld a, [$cf64]
 	and $3
@@ -56642,7 +56220,6 @@ Function4dfda: ; 4dfda (13:5fda)
 	call ClearBox
 	ret
 
-; known jump sources: 4dfc8 (13:5fc8)
 Function4dfed: ; 4dfed (13:5fed)
 	ld a, [$cf64]
 	and $3
@@ -56653,7 +56230,6 @@ Function4dfed: ; 4dfed (13:5fed)
 	set 5, [hl]
 	ret
 
-; known jump sources: 4dfc5 (13:5fc5)
 Function4e002: ; 4e002 (13:6002)
 	ld a, [$cf64]
 	and $3
@@ -56662,14 +56238,12 @@ Function4e002: ; 4e002 (13:6002)
 	rst JumpTable
 	ret
 
-; no known jump sources
 Jumptable_4e00d: ; 4e00d (13:600d)
 	dw Function4e013
 	dw Function4e147
 	dw Function4e1ae
 
 
-; no known jump sources
 Function4e013: ; 4e013 (13:6013)
 	hlcoord 0, 9
 	ld b, $0
@@ -56750,7 +56324,6 @@ Function4e013: ; 4e013 (13:6013)
 	ld [hl], $41
 	ret
 
-; known jump sources: 4e089 (13:6089)
 Function4e0d3: ; 4e0d3 (13:60d3)
 	ld a, [TempMonLevel] ; $d12d
 	push af
@@ -56764,7 +56337,6 @@ Function4e0d3: ; 4e0d3 (13:60d3)
 	ld [TempMonLevel], a ; $d12d
 	ret
 
-; known jump sources: 4e098 (13:6098)
 Function4e0e7: ; 4e0e7 (13:60e7)
 	ld a, [TempMonLevel] ; $d12d
 	cp MAX_LEVEL
@@ -56820,7 +56392,6 @@ String_4e142: ; 4e142
 	db "#RUS@"
 ; 4e147
 
-; no known jump sources
 Function4e147: ; 4e147 (13:6147)
 	ld de, String_4e1a0
 	hlcoord 0, 8
@@ -56845,7 +56416,6 @@ Function4e147: ; 4e147 (13:6147)
 	predef Function50c50
 	ret
 
-; known jump sources: 4e150 (13:6150)
 Function4e189: ; 4e189 (13:6189)
 	ld de, String_4e1a5
 	ld a, [TempMonItem] ; $d10f
@@ -56871,7 +56441,6 @@ String_4e1a9: ; 4e1a9
 	db "MOVE@"
 ; 4e1ae
 
-; no known jump sources
 Function4e1ae: ; 4e1ae (13:61ae)
 	call Function4e1cc
 	hlcoord 10, 8
@@ -56888,7 +56457,6 @@ Function4e1ae: ; 4e1ae (13:61ae)
 	predef Function50b7b
 	ret
 
-; known jump sources: 4e1ae (13:61ae)
 Function4e1cc: ; 4e1cc (13:61cc)
 	ld de, IDNoString
 	hlcoord 0, 9
@@ -56937,7 +56505,6 @@ OTString: ; 4e222
 ; 4e226
 
 
-; known jump sources: 4dfd6 (13:5fd6)
 Function4e226: ; 4e226 (13:6226)
 	ld hl, TempMonDVs ; $d123
 	predef GetUnownLetter
@@ -56961,7 +56528,6 @@ Function4e226: ; 4e226 (13:6226)
 	call PlayCry2
 	ret
 
-; known jump sources: 4e23f (13:623f), 4e249 (13:6249)
 Function4e253: ; 4e253 (13:6253)
 	ld hl, $cf64
 	set 5, [hl]
@@ -56978,7 +56544,6 @@ Function4e253: ; 4e253 (13:6253)
 	call Function378b
 	ret
 
-; known jump sources: 4e238 (13:6238)
 Function4e271: ; 4e271 (13:6271)
 	ld a, [CurPartySpecies] ; $d108
 	cp UNOWN
@@ -56993,7 +56558,6 @@ Function4e271: ; 4e271 (13:6271)
 	call Function4e289
 	ret
 
-; known jump sources: 4e27d (13:627d), 4e285 (13:6285)
 Function4e289: ; 4e289 (13:6289)
 	ld a, [CurPartySpecies] ; $d108
 	call IsAPokemon
@@ -57009,14 +56573,12 @@ Function4e289: ; 4e289 (13:6289)
 	set 6, [hl]
 	ret
 
-; known jump sources: 4e22e (13:622e), 4e497 (13:6497)
 Function4e2ad: ; 4e2ad (13:62ad)
 	ld a, [MonType] ; $cf5f
 	ld hl, Jumptable_4e2b5
 	rst JumpTable
 	ret
 
-; no known jump sources
 Jumptable_4e2b5: ; 4e2b5 (13:62b5)
 	dw Function4e2bf
 	dw Function4e2cf
@@ -57025,7 +56587,6 @@ Jumptable_4e2b5: ; 4e2b5 (13:62b5)
 	dw Function4e301
 
 
-; no known jump sources
 Function4e2bf: ; 4e2bf (13:62bf)
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartyMons ; $dcdf (aliases: PartyMon1, PartyMon1Species)
@@ -57035,12 +56596,10 @@ Function4e2bf: ; 4e2bf (13:62bf)
 	ld c, l
 	jr Function4e2f2
 
-; no known jump sources
 Function4e2cf: ; 4e2cf (13:62cf)
 	xor a
 	ret
 
-; no known jump sources
 Function4e2d1: ; 4e2d1 (13:62d1)
 	ld hl, sBoxMons
 	ld bc, $30
@@ -57056,12 +56615,10 @@ Function4e2d1: ; 4e2d1 (13:62d1)
 	pop af
 	ret
 
-; no known jump sources
 Function4e2ed: ; 4e2ed (13:62ed)
 	ld bc, TempMonSpecies ; $d10e (aliases: TempMon)
 	jr Function4e2f2
 
-; known jump sources: 4e2cd (13:62cd), 4e2e4 (13:62e4), 4e2f0 (13:62f0)
 Function4e2f2: ; 4e2f2 (13:62f2)
 	ld a, [CurPartySpecies] ; $d108
 	cp EGG
@@ -57073,7 +56630,6 @@ Function4e2f2: ; 4e2f2 (13:62f2)
 	scf
 	ret
 
-; no known jump sources
 Function4e301: ; 4e301 (13:6301)
 	ld a, $1
 	and a
@@ -57082,7 +56638,6 @@ Function4e305: ; 4e305 (13:6305)
 	xor a
 	ret
 
-; known jump sources: 4e290 (13:6290), 4e4b1 (13:64b1)
 Function4e307: ; 4e307 (13:6307)
 	nop
 	push hl
@@ -57195,7 +56750,6 @@ EggALotMoreTimeString: ; 0x4e46e
 ; 0x4e497
 
 
-; known jump sources: 4e3b0 (13:63b0)
 Function4e497: ; 4e497 (13:6497)
 	call Function4e2ad
 	ret nc
@@ -57222,7 +56776,6 @@ Function4e497: ; 4e497 (13:6497)
 	set 6, [hl]
 	ret
 
-; known jump sources: 4dfe0 (13:5fe0)
 Function4e4cd: ; 4e4cd (13:64cd)
 	hlcoord 13, 5
 	ld a, $36
@@ -57242,7 +56795,6 @@ Function4e4cd: ; 4e4cd (13:64cd)
 	jr z, Function4e4f7
 	hlcoord 17, 5
 
-; known jump sources: 4e4d2 (13:64d2), 4e4da (13:64da), 4e4e2 (13:64e2), 4e4ed (13:64ed), 4e4f2 (13:64f2)
 Function4e4f7: ; 4e4f7 (13:64f7)
 	push bc
 	ld [hli], a
@@ -57257,7 +56809,6 @@ Function4e4f7: ; 4e4f7 (13:64f7)
 	pop bc
 	ret
 
-; known jump sources: 4df1a (13:5f1a), 4e1f0 (13:61f0)
 Function4e505: ; 4e505 (13:6505)
 	ld de, StringBuffer1 ; $d073
 	ld bc, $b
@@ -57279,7 +56830,6 @@ Function4e505: ; 4e505 (13:6505)
 	pop de
 	ret
 
-; known jump sources: 4df17 (13:5f17), 4e1ed (13:61ed)
 Function4e528: ; 4e528 (13:6528)
 	ld a, [MonType] ; $cf5f
 	add a
@@ -57370,7 +56920,6 @@ Function4e56a: ; 4e56a (13:656a)
 	call CopyBytes
 	ret
 
-; known jump sources: 4e582 (13:6582)
 Function4e5b7: ; 4e5b7 (13:65b7)
 	ld hl, OTPartyMon1Species ; $d288 (aliases: OTPartyMon1)
 	ld [hl], $1
@@ -60502,7 +60051,6 @@ Function50f12:
 .asm_50f33
 	ret
 
-; known jump sources: 50f2a (14:4f2a), 50f30 (14:4f30)
 Function50f34: ; 50f34 (14:4f34)
 	push af
 	hlcoord 0, 1
@@ -60526,7 +60074,6 @@ Function50f34: ; 50f34 (14:4f34)
 	call WaitPlaySFX
 	ret
 
-; known jump sources: 50f24 (14:4f24)
 Function50f62: ; 50f62 (14:4f62)
 	push hl
 	push de
@@ -60624,11 +60171,9 @@ Function50f62: ; 50f62 (14:4f62)
 	pop hl
 	ret
 
-; known jump sources: 50fbc (14:4fbc), 50fde (14:4fde)
 Function51036: ; 51036 (14:5036)
 	ld de, DefaultFlypoint ; $d002
 
-; known jump sources: 50fca (14:4fca), 50fd1 (14:4fd1), 50fec (14:4fec), 50ff3 (14:4ff3)
 Function51039: ; 51039 (14:5039)
 	ld bc, $b
 	call CopyBytes
@@ -62242,7 +61787,6 @@ INCLUDE "engine/engine_flags.asm"
 
 
 
-; no known jump sources
 Function80648:: ; 80648 (20:4648)
 	ld a, c
 	cp NUM_VARS
@@ -62272,7 +61816,6 @@ Function80648:: ; 80648 (20:4648)
 	call _de_
 	ret
 
-; known jump sources: 80666 (20:4666), 806ec (20:46ec), 806f6 (20:46f6), 806fc (20:46fc)
 Function8066c: ; 8066c (20:466c)
 	ld de, StringBuffer2 ; $d086
 	ld [de], a
@@ -63943,7 +63486,6 @@ Function84022: ; 84022
 ; 84031
 
 
-; no known jump sources
 Jumptable_84031: ; 84031 (21:4031)
 	dw Function84077
 	dw Function84143
@@ -63967,19 +63509,16 @@ Jumptable_84031: ; 84031 (21:4031)
 	dw Function841b3
 
 
-; known jump sources: 8406d (21:406d), 8408d (21:408d), 840b9 (21:40b9), 840d7 (21:40d7), 840f7 (21:40f7), 84119 (21:4119), 8412a (21:412a), 8416e (21:416e), 84193 (21:4193), 841ac (21:41ac), 841b0 (21:41b0)
 Function84059: ; 84059 (21:4059)
 	ld hl, $cf63
 	inc [hl]
 	ret
 
-; known jump sources: 8413c (21:413c), 8413f (21:413f), 84197 (21:4197)
 Function8405e: ; 8405e (21:405e)
 	ld hl, $cf63
 	dec [hl]
 	ret
 
-; no known jump sources
 Function84063: ; 84063 (21:4063)
 	xor a
 	ld [$ca89], a
@@ -63987,18 +63526,15 @@ Function84063: ; 84063 (21:4063)
 	set 7, [hl]
 	ret
 
-; no known jump sources
 Function8406d: ; 8406d (21:406d)
 	call Function84059
 	ret
 
-; no known jump sources
 Function84071: ; 84071 (21:4071)
 	ld a, $1
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function84077: ; 84077 (21:4077)
 	call Function841fb
 	ld hl, Unknown_842b7
@@ -64014,7 +63550,6 @@ Function84077: ; 84077 (21:4077)
 	ld [$cbf8], a
 	ret
 
-; no known jump sources
 Function84099: ; 84099 (21:4099)
 	call Function841fb
 	ld hl, $ca81
@@ -64035,7 +63570,6 @@ Function84099: ; 84099 (21:4099)
 	ld [$cbf8], a
 	ret
 
-; known jump sources: 840a1 (21:40a1)
 Function840c5: ; 840c5 (21:40c5)
 	ld a, $6
 	ld [$cf63], a
@@ -64048,7 +63582,6 @@ Function840c5: ; 840c5 (21:40c5)
 	call Function841c3
 	ret
 
-; no known jump sources
 Function840de: ; 840de (21:40de)
 	call Function841fb
 	ld hl, Unknown_842bd
@@ -64065,7 +63598,6 @@ Function840de: ; 840de (21:40de)
 	ld [$cbf8], a
 	ret
 
-; no known jump sources
 Function84103: ; 84103 (21:4103)
 	call Function841fb
 	ld hl, Unknown_842b7
@@ -64079,7 +63611,6 @@ Function84103: ; 84103 (21:4103)
 	call Function841c3
 	ret
 
-; no known jump sources
 Function84120: ; 84120 (21:4120)
 	ld hl, $ca8b
 	inc [hl]
@@ -64091,7 +63622,6 @@ Function84120: ; 84120 (21:4120)
 	call Function84059
 	ret
 
-; no known jump sources
 Function8412e: ; 8412e (21:412e)
 	ld hl, $ca8b
 	inc [hl]
@@ -64106,7 +63636,6 @@ Function8412e: ; 8412e (21:412e)
 	call Function8405e
 	ret
 
-; no known jump sources
 Function84143: ; 84143 (21:4143)
 	ld a, [$c2d5]
 	and a
@@ -64138,7 +63667,6 @@ Function84143: ; 84143 (21:4143)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function84180: ; 84180 (21:4180)
 	ld a, [$c2d5]
 	and a
@@ -64159,7 +63687,6 @@ Function84180: ; 84180 (21:4180)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function841a1: ; 841a1 (21:41a1)
 	ld a, [$c2d5]
 	and a
@@ -64170,11 +63697,9 @@ Function841a1: ; 841a1 (21:41a1)
 	call Function84059
 	ret
 
-; no known jump sources
 Function841b0: ; 841b0 (21:41b0)
 	call Function84059
 
-; no known jump sources
 Function841b3: ; 841b3 (21:41b3)
 	ld a, [$c2d5]
 	and a
@@ -64186,7 +63711,6 @@ Function841b3: ; 841b3 (21:41b3)
 	ld [$cf63], a
 	ret
 
-; known jump sources: 84090 (21:4090), 840bc (21:40bc), 840da (21:40da), 840fa (21:40fa), 8411c (21:411c), 841c7 (21:41c7)
 Function841c3: ; 841c3 (21:41c3)
 	ld a, [$c2d5]
 	and a
@@ -64204,7 +63728,6 @@ Function841c3: ; 841c3 (21:41c3)
 	ld [rSC], a ; $ff00+$2
 	ret
 
-; known jump sources: 8407d (21:407d), 840a6 (21:40a6), 840cd (21:40cd), 840e4 (21:40e4), 84109 (21:4109)
 Function841e2: ; 841e2 (21:41e2)
 	ld a, [hli]
 	ld [$ca82], a
@@ -64220,7 +63743,6 @@ Function841e2: ; 841e2 (21:41e2)
 	ld [$ca87], a
 	ret
 
-; known jump sources: 84077 (21:4077), 84099 (21:4099), 840de (21:40de), 84103 (21:4103)
 Function841fb: ; 841fb (21:41fb)
 	xor a
 	ld hl, $ca82
@@ -64239,7 +63761,6 @@ Function841fb: ; 841fb (21:41fb)
 	call Function842ab
 	ret
 
-; known jump sources: 840b6 (21:40b6), 840f4 (21:40f4)
 Function84219: ; 84219 (21:4219)
 	ld hl, $0
 	ld bc, $4
@@ -64257,7 +63778,6 @@ Function84219: ; 84219 (21:4219)
 	ld [$ca87], a
 	ret
 
-; known jump sources: 84222 (21:4222), 84230 (21:4230), 84246 (21:4246)
 Function8423c: ; 8423c (21:423c)
 	ld a, [de]
 	inc de
@@ -64272,7 +63792,6 @@ Function8423c: ; 8423c (21:423c)
 	jr nz, Function8423c
 	ret
 
-; known jump sources: 840e7 (21:40e7)
 Function84249: ; 84249 (21:4249)
 	ld a, $1
 	ld [OverworldMap], a ; $c800
@@ -64284,7 +63803,6 @@ Function84249: ; 84249 (21:4249)
 	ld [$c803], a
 	ret
 
-; known jump sources: 840a9 (21:40a9)
 Function84260: ; 84260 (21:4260)
 	ld a, [$ca81]
 	xor $ff
@@ -64376,7 +63894,6 @@ Function842db:: ; 842db
 ; 842ea
 
 
-; no known jump sources
 Jumptable_842ea: ; 842ea (21:42ea)
 	dw Function8432f
 	dw Function84330
@@ -64412,52 +63929,44 @@ Jumptable_842ea: ; 842ea (21:42ea)
 	dw Function843b6
 
 
-; known jump sources: 84335 (21:4335), 8433f (21:433f), 84349 (21:4349), 84353 (21:4353), 8435d (21:435d), 84388 (21:4388), 84391 (21:4391), 8439b (21:439b), 843a4 (21:43a4), 843b2 (21:43b2), 843c5 (21:43c5), 843ce (21:43ce), 843d7 (21:43d7)
 Function8432a: ; 8432a (21:432a)
 	ld hl, $c2d5
 	inc [hl]
 	ret
 
-; no known jump sources
 Function8432f: ; 8432f (21:432f)
 	ret
 
-; no known jump sources
 Function84330: ; 84330 (21:4330)
 	ld a, $33
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function84339: ; 84339 (21:4339)
 	ld a, [$ca82]
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function84343: ; 84343 (21:4343)
 	ld a, [$ca83]
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function8434d: ; 8434d (21:434d)
 	ld a, [$ca84]
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function84357: ; 84357 (21:4357)
 	ld a, [$ca85]
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function84361: ; 84361 (21:4361)
 	ld hl, $ca8e
 	ld a, [hli]
@@ -64486,28 +63995,24 @@ Function84361: ; 84361 (21:4361)
 .asm_84388
 	call Function8432a
 
-; no known jump sources
 Function8438b: ; 8438b (21:438b)
 	ld a, [$ca86]
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function84395: ; 84395 (21:4395)
 	ld a, [$ca87]
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function8439f: ; 8439f (21:439f)
 	ld a, $0
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function843a8: ; 843a8 (21:43a8)
 	ld a, [rSB] ; $ff00+$1
 	ld [$ca88], a
@@ -64516,7 +64021,6 @@ Function843a8: ; 843a8 (21:43a8)
 	call Function8432a
 	ret
 
-; no known jump sources
 Function843b6: ; 843b6 (21:43b6)
 	ld a, [rSB] ; $ff00+$1
 	ld [$ca89], a
@@ -64524,28 +64028,24 @@ Function843b6: ; 843b6 (21:43b6)
 	ld [$c2d5], a
 	ret
 
-; no known jump sources
 Function843c0: ; 843c0 (21:43c0)
 	ld a, $f
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function843c9: ; 843c9 (21:43c9)
 	ld a, $0
 	call Function843db
 	call Function8432a
 	ret
 
-; no known jump sources
 Function843d2: ; 843d2 (21:43d2)
 	ld a, $8
 	call Function843db
 	call Function8432a
 	ret
 
-; known jump sources: 84332 (21:4332), 8433c (21:433c), 84346 (21:4346), 84350 (21:4350), 8435a (21:435a), 84384 (21:4384), 8438e (21:438e), 84398 (21:4398), 843a1 (21:43a1), 843af (21:43af), 843c2 (21:43c2), 843cb (21:43cb), 843d4 (21:43d4)
 Function843db: ; 843db (21:43db)
 	ld [rSB], a ; $ff00+$1
 	ld a, $1
@@ -64554,7 +64054,6 @@ Function843db: ; 843db (21:43db)
 	ld [rSC], a ; $ff00+$2
 	ret
 
-; no known jump sources
 Function843e6: ; 843e6 (21:43e6)
 	ld a, [rSB] ; $ff00+$1
 	ld [$ca89], a
@@ -64674,7 +64173,6 @@ Function8442c: ; 8442c
 	ret
 ; 844bc
 
-; no known jump sources
 Function844bc: ; 844bc (21:44bc)
 	ld a, [$cf65]
 	push af
@@ -64751,7 +64249,6 @@ Function844bc: ; 844bc (21:44bc)
 	ld [$cf65], a
 	ret
 
-; known jump sources: 844fa (21:44fa), 84512 (21:4512), 8452a (21:452a), 84542 (21:4542)
 Function84559: ; 84559 (21:4559)
 	call Function84742
 	call Function843f0
@@ -65151,7 +64648,6 @@ Unknown_84807: ; 84807
 	dw String_1dc34c
 ; 84817
 
-; known jump sources: 844f2 (21:44f2)
 Function84817: ; 84817 (21:4817)
 	xor a
 	ld [$d002], a
@@ -65189,7 +64685,6 @@ String_84865:
 	db "#MON LIST@"
 ; 8486f
 
-; known jump sources: 8450a (21:450a)
 Function8486f: ; 8486f (21:486f)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $168
@@ -65207,7 +64702,6 @@ Function8486f: ; 8486f (21:486f)
 	call Function848e7
 	ret
 
-; known jump sources: 84522 (21:4522)
 Function84893: ; 84893 (21:4893)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $168
@@ -65225,7 +64719,6 @@ Function84893: ; 84893 (21:4893)
 	call Function848e7
 	ret
 
-; known jump sources: 8453a (21:453a)
 Function848b7: ; 848b7 (21:48b7)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $168
@@ -65247,12 +64740,10 @@ Function848b7: ; 848b7 (21:48b7)
 	call Function848e7
 	ret
 
-; known jump sources: 84861 (21:4861), 8488f (21:488f), 848b3 (21:48b3), 848e3 (21:48e3)
 Function848e7: ; 848e7 (21:48e7)
 	ld a, [EndFlypoint] ; $d006
 	call GetSRAMBank
 
-; known jump sources: 8497e (21:497e)
 Function848ed: ; 848ed (21:48ed)
 	ld a, c
 	and a
@@ -65334,17 +64825,14 @@ Function848ed: ; 848ed (21:48ed)
 	inc de
 	jp Function848ed
 
-; known jump sources: 848f6 (21:48f6)
 Function84981: ; 84981 (21:4981)
 	ld a, $1
 	ld [$d003], a
 
-; known jump sources: 848ef (21:48ef)
 Function84986: ; 84986 (21:4986)
 	call CloseSRAM
 	ret
 
-; known jump sources: 84921 (21:4921)
 Function8498a: ; 8498a (21:498a)
 	push hl
 	ld a, [$d004]
@@ -65377,7 +64865,6 @@ Function8498a: ; 8498a (21:498a)
 	ld [hli], a
 	ret
 
-; known jump sources: 84859 (21:4859), 84887 (21:4887), 848ab (21:48ab), 848db (21:48db)
 Function849c6: ; 849c6 (21:49c6)
 	push hl
 	ld e, a
@@ -65392,7 +64879,6 @@ Function849c6: ; 849c6 (21:49c6)
 	pop hl
 	ret
 
-; known jump sources: 84837 (21:4837)
 Function849d7: ; 849d7 (21:49d7)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld a, $79
@@ -65407,7 +64893,6 @@ Function849d7: ; 849d7 (21:49d7)
 	ld [hl], a
 	ret
 
-; known jump sources: 84834 (21:4834), 8487d (21:487d), 848a1 (21:48a1), 848ce (21:48ce)
 Function849e9: ; 849e9 (21:49e9)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld de, $13
@@ -65422,7 +64907,6 @@ Function849e9: ; 849e9 (21:49e9)
 	jr nz, .asm_849f1
 	ret
 
-; known jump sources: 848d1 (21:48d1)
 Function849fc: ; 849fc (21:49fc)
 	hlcoord 0, 17
 	ld a, $7d
@@ -65437,7 +64921,6 @@ Function849fc: ; 849fc (21:49fc)
 	ld [hl], a
 	ret
 
-; known jump sources: 84826 (21:4826), 8487a (21:487a), 8489e (21:489e), 848c2 (21:48c2)
 Function84a0e: ; 84a0e (21:4a0e)
 	hlcoord 2, 0
 	ld c, $6
@@ -66800,25 +66283,21 @@ Function89160: ; 89160
 ; 89168
 
 
-; known jump sources: 89e63 (22:5e63), 8a166 (22:6166), 8a2e5 (22:62e5)
 Function89168: ; 89168 (22:5168)
 	ld hl, GameTimerPause ; $cfbc
 	set 7, [hl]
 	ret
 
-; known jump sources: 8a13b (22:613b)
 Function8916e: ; 8916e (22:516e)
 	ld hl, GameTimerPause ; $cfbc
 	res 7, [hl]
 	ret
 
-; known jump sources: 8a140 (22:6140)
 Function89174: ; 89174 (22:5174)
 	ld hl, GameTimerPause ; $cfbc
 	bit 7, [hl]
 	ret
 
-; known jump sources: 89e00 (22:5e00)
 Function8917a: ; 8917a (22:517a)
 	ld hl, DefaultFlypoint ; $d002
 	ld bc, $32
@@ -66826,7 +66305,6 @@ Function8917a: ; 8917a (22:517a)
 	call ByteFill
 	ret
 
-; known jump sources: 8a772 (22:6772), 8a782 (22:6782), 8aacc (22:6acc), 8ab1c (22:6b1c), 8b3aa (22:73aa)
 Function89185: ; 89185 (22:5185)
 	push de
 	push hl
@@ -66858,7 +66336,6 @@ Function89193: ; 89193
 ; 8919e
 
 
-; known jump sources: 8a46f (22:646f)
 Function8919e: ; 8919e (22:519e)
 	ld a, c
 	and a
@@ -66890,7 +66367,6 @@ Function891b8: ; 891b8
 ; 891ca
 
 
-; known jump sources: 891d4 (22:51d4)
 Function891ca: ; 891ca (22:51ca)
 	push bc
 	call Function891b8
@@ -66898,7 +66374,6 @@ Function891ca: ; 891ca (22:51ca)
 	pop bc
 	ret
 
-; known jump sources: 8a748 (22:6748)
 Function891d3: ; 891d3 (22:51d3)
 	push bc
 	call Function891ca
@@ -66955,7 +66430,6 @@ Function89215: ; 89215
 ; 8921f
 
 
-; known jump sources: 89a2a (22:5a2a)
 Function8921f: ; 8921f (22:521f)
 	push de
 	ld de, $14
@@ -66977,7 +66451,6 @@ Function8921f: ; 8921f (22:521f)
 	pop de
 	ret
 
-; known jump sources: 8a037 (22:6037), 8ab0c (22:6b0c)
 Function89235: ; 89235 (22:5235)
 	call Functiona36
 	call PlayClickSFX
@@ -66996,7 +66469,6 @@ Function89240: ; 89240
 ; 89245
 
 
-; known jump sources: 89e72 (22:5e72), 8a163 (22:6163), 8a2e2 (22:62e2)
 Function89245: ; 89245 (22:5245)
 	callba Function14ea5
 	ret c
@@ -67004,7 +66476,6 @@ Function89245: ; 89245 (22:5245)
 	and a
 	ret
 
-; known jump sources: 8a73a (22:673a), 8a8ba (22:68ba), 8a8ec (22:68ec), 8ab32 (22:6b32)
 Function89254: ; 89254 (22:5254)
 	ld bc, $d07
 	jr Function89261
@@ -67072,7 +66543,6 @@ MenuData2_0x892ab: ; 0x892ab
 	db "いいえ@"
 ; 0x892b4
 
-; known jump sources: 89313 (22:5313), 8a8f4 (22:68f4), 8b9ff (22:79ff)
 Function892b4: ; 892b4 (22:52b4)
 	call Function8931b
 
@@ -67126,7 +66596,6 @@ Function892b7: ; 892b7
 ; 89305
 
 
-; known jump sources: 8a301 (22:6301)
 Function89305: ; 89305 (22:5305)
 	xor a
 	ld [MenuSelection], a ; $cf74
@@ -67184,7 +66653,6 @@ Function89331: ; 89331
 ; 89346
 
 
-; known jump sources: 899b5 (22:59b5)
 Function89346: ; 89346 (22:5346)
 	ld h, b
 	ld l, c
@@ -67283,7 +66751,6 @@ Function8939a: ; 8939a
 ; 893b3
 
 
-; known jump sources: 893e5 (22:53e5)
 Function893b3: ; 893b3 (22:53b3)
 	call DisableLCD
 	call ClearSprites
@@ -67307,7 +66774,6 @@ Function893cc: ; 893cc
 ; 893e2
 
 
-; known jump sources: 89b2e (22:5b2e), 89e60 (22:5e60), 89ee4 (22:5ee4), 8a160 (22:6160), 8a265 (22:6265)
 Function893e2: ; 893e2 (22:53e2)
 	call Function89b1e
 	call Function893b3
@@ -67336,7 +66802,6 @@ GFX_8940b: ; 8940b
 INCBIN "baserom.gbc",$8940b,$8942b - $8940b
 ; 8942b
 
-; known jump sources: 893c2 (22:53c2)
 Function8942b: ; 8942b (22:542b)
 	ld de, $8020
 	ld hl, $61bf
@@ -67350,7 +66815,6 @@ Function8942b: ; 8942b (22:542b)
 	call FarCopyBytes
 	ret
 
-; known jump sources: 89b9c (22:5b9c), 89c4a (22:5c4a), 89fe1 (22:5fe1), 8a36a (22:636a), 8a370 (22:6370), 8a6b8 (22:66b8), 8a70a (22:670a), 8a726 (22:6726), 8a745 (22:6745), 8a90f (22:690f), 8aa52 (22:6a52), 8aa61 (22:6a61), 8aa69 (22:6a69), 8b563 (22:7563), 8b595 (22:7595), 8b5b8 (22:75b8), 8b5c9 (22:75c9), 8b610 (22:7610), 8b63d (22:763d)
 Function89448: ; 89448 (22:5448)
 	push af
 	ld hl, Sprites ; $c400
@@ -67363,7 +66827,6 @@ Function89448: ; 89448 (22:5448)
 	pop af
 	ret
 
-; known jump sources: 893c5 (22:53c5)
 Function89455: ; 89455 (22:5455)
 	ld hl, $61bf
 	ld de, $90c0
@@ -67400,7 +66863,6 @@ Function89481: ; 89481
 ; 89492
 
 
-; known jump sources: 8a002 (22:6002), 8aa34 (22:6a34), 8aaa9 (22:6aa9), 8ab47 (22:6b47)
 Function89492: ; 89492 (22:5492)
 	ld d, $0
 	ld a, [PlayerGender] ; $d472
@@ -67441,7 +66903,6 @@ Function894bb: ; 894bb
 ; 894ca
 
 
-; known jump sources: 8a005 (22:6005), 8aa37 (22:6a37), 8aaac (22:6aac), 8ab4a (22:6b4a)
 Function894ca: ; 894ca (22:54ca)
 	push bc
 	call Function894dc
@@ -67606,7 +67067,6 @@ Function8956f: ; 8956f
 ; 895c7
 
 
-; known jump sources: 894ce (22:54ce)
 Function895c7: ; 895c7 (22:55c7)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -67735,7 +67195,6 @@ Function8966c: ; 8966c
 ; 8967a
 
 
-; known jump sources: 89885 (22:5885)
 Function8967a: ; 8967a (22:567a)
 	push bc
 	call Function89688
@@ -68052,7 +67511,6 @@ Function897d5: ; 897d5
 ; 89807
 
 
-; known jump sources: 89fff (22:5fff), 8aa31 (22:6a31), 8aaa6 (22:6aa6), 8ab44 (22:6b44)
 Function89807: ; 89807 (22:5807)
 	ld hl, $5bef
 	ld a, [PlayerGender] ; $d472
@@ -68069,7 +67527,6 @@ Function89807: ; 89807 (22:5807)
 	call DelayFrame
 	ret
 
-; known jump sources: 89894 (22:5894)
 Function89829: ; 89829 (22:5829)
 	push bc
 	ld bc, $705
@@ -68124,7 +67581,6 @@ Function89856: ; 89856
 ; 8987f
 
 
-; known jump sources: 8a022 (22:6022), 8aa3a (22:6a3a), 8ab5c (22:6b5c)
 Function8987f: ; 8987f (22:587f)
 	call Function891b8
 	call Function895f2
@@ -68332,7 +67788,6 @@ Function8998b: ; 8998b
 ; 8999c
 
 
-; known jump sources: 8988e (22:588e)
 Function8999c: ; 8999c (22:599c)
 	ld de, PlayerName ; $d47d
 	call PlaceString
@@ -68348,7 +67803,6 @@ String_899ac: ; 899ac
 	db "の めいし@"
 ; 899b2
 
-; known jump sources: 89897 (22:5897)
 Function899b2: ; 899b2 (22:59b2)
 	ld bc, PlayerName ; $d47d
 	call Function89346
@@ -68362,7 +67816,6 @@ Function899b2: ; 899b2 (22:59b2)
 	call PlaceString
 	ret
 
-; known jump sources: 8989d (22:589d)
 Function899c9: ; 899c9 (22:59c9)
 	ld de, PlayerID ; $d47b
 	ld bc, $8205
@@ -68417,7 +67870,6 @@ Function89a0c: ; 89a0c
 ; 89a23
 
 
-; known jump sources: 8a729 (22:6729), 8a818 (22:6818), 8a8ac (22:68ac), 8a8fa (22:68fa), 8aab6 (22:6ab6), 8ab24 (22:6b24)
 Function89a23: ; 89a23 (22:5a23)
 	hlcoord 0, 11
 	ld b, $4
@@ -68425,7 +67877,6 @@ Function89a23: ; 89a23 (22:5a23)
 	call Function8921f
 	ret
 
-; known jump sources: 8a6ee (22:66ee), 8a80d (22:680d), 8aa3d (22:6a3d)
 Function89a2e: ; 89a2e (22:5a2e)
 	hlcoord 11, 12
 	ld b, $2
@@ -68585,7 +68036,6 @@ Function89ae6: ; 89ae6
 ; 89b00
 
 
-; known jump sources: 89b24 (22:5b24)
 Function89b00: ; 89b00 (22:5b00)
 	callba Function49351
 	ret
@@ -68605,13 +68055,11 @@ Function89b14: ; 89b14
 	ret
 ; 89b1e
 
-; known jump sources: 893e2 (22:53e2)
 Function89b1e: ; 89b1e (22:5b1e)
 	callba Function4a485
 	call Function89b00
 	ret
 
-; known jump sources: 8a24f (22:624f), 8a66d (22:666d), 8a9b5 (22:69b5), 8aba5 (22:6ba5)
 Function89b28: ; 89b28 (22:5b28)
 	call Function891de
 	call WhiteBGMap
@@ -68621,7 +68069,6 @@ Function89b28: ; 89b28 (22:5b28)
 	call Function32f9
 	ret
 
-; known jump sources: 8a182 (22:6182), 8a3c6 (22:63c6), 8a3d5 (22:63d5), 8a9d6 (22:69d6), 8b4bd (22:74bd)
 Function89b3b: ; 89b3b (22:5b3b)
 	call Function8923c
 	callba Function48cda
@@ -68676,7 +68123,6 @@ Function89b45: ; 89b45
 ; 89b78
 
 
-; known jump sources: 8b47a (22:747a)
 Function89b78: ; 89b78 (22:5b78)
 	push bc
 	ld a, [$d010]
@@ -68701,7 +68147,6 @@ Function89b78: ; 89b78 (22:5b78)
 	pop bc
 	ret
 
-; known jump sources: 8a6fb (22:66fb), 8aa43 (22:6a43)
 Function89b97: ; 89b97 (22:5b97)
 	call Function89c34
 	jr c, .asm_89ba0
@@ -68791,7 +68236,6 @@ Unknown_89c1f: ; 89c1f
 	db $ff
 ; 89c34
 
-; known jump sources: 89b97 (22:5b97), 89c44 (22:5c44)
 Function89c34: ; 89c34 (22:5c34)
 	push bc
 	ld a, [$d012]
@@ -68804,7 +68248,6 @@ Function89c34: ; 89c34 (22:5c34)
 	pop bc
 	ret
 
-; known jump sources: 8b481 (22:7481), 8b54e (22:754e), 8b5ff (22:75ff)
 Function89c44: ; 89c44 (22:5c44)
 	call Function89c34
 	jr c, .asm_89c4f
@@ -68835,7 +68278,6 @@ Function89c44: ; 89c44 (22:5c44)
 	ld [hli], a
 	ret
 
-; known jump sources: 8a6fe (22:66fe), 8aa46 (22:6a46)
 Function89c67: ; 89c67 (22:5c67)
 	call Function354b
 	ld b, $0
@@ -68912,7 +68354,6 @@ Unknown_89ccf: ; 89ccf
 	db 3, 0, 0, 0
 ; 89cdf
 
-; known jump sources: 8a50e (22:650e)
 Function89cdf: ; 89cdf (22:5cdf)
 	ld a, $10
 	add b
@@ -68951,7 +68392,6 @@ Function89cdf: ; 89cdf (22:5cdf)
 	jr nz, .asm_89cee
 	ret
 
-; known jump sources: 8a6c8 (22:66c8), 8ab89 (22:6b89)
 Function89d0d: ; 89d0d (22:5d0d)
 	call Function8923c
 	ld a, [rSVBK] ; $ff00+$70
@@ -68997,7 +68437,6 @@ Palette_89d56: ; 89d56
 	RGB 00, 00, 00
 ; 89d5e
 
-; known jump sources: 8a18b (22:618b), 8a9de (22:69de), 8b989 (22:7989)
 Function89d5e: ; 89d5e (22:5d5e)
 	push af
 	call Function1d3c
@@ -69010,7 +68449,6 @@ Function89d5e: ; 89d5e (22:5d5e)
 	set 7, [hl]
 	ret
 
-; known jump sources: 8a191 (22:6191)
 Function89d75: ; 89d75 (22:5d75)
 	push hl
 	call Function8923c
@@ -69019,7 +68457,6 @@ Function89d75: ; 89d75 (22:5d75)
 	pop hl
 	jr asm_89d90
 
-; known jump sources: 8a9e4 (22:69e4), 8b98f (22:798f)
 Function89d85: ; 89d85 (22:5d85)
 	push hl
 	call Function8923c
@@ -69027,7 +68464,6 @@ Function89d85: ; 89d85 (22:5d85)
 	call Function3238
 	pop hl
 
-; known jump sources: 89d83 (22:5d83), 89da5 (22:5da5)
 asm_89d90: ; 89d90 (22:5d90)
 	call Function8923c
 	push hl
@@ -69046,7 +68482,6 @@ asm_89d90: ; 89d90 (22:5d90)
 	and a
 	ret
 
-; known jump sources: 89d97 (22:5d97)
 Function89dab: ; 89dab (22:5dab)
 	call Function8923c
 	callba Function241ba
@@ -69077,7 +68512,6 @@ Function89dab: ; 89dab (22:5dab)
 	and a
 	ret
 
-; no known jump sources
 Function89de0: ; 89de0 (22:5de0)
 	call ClearSprites
 	call Function89e0a
@@ -69101,14 +68535,12 @@ Function89de0: ; 89de0 (22:5de0)
 	call Function8917a
 	ret
 
-; no known jump sources
 Jumptable_89e04: ; 89e04 (22:5e04)
 	dw Function8a62c
 	dw Function8a999
 	dw Function8ab93
 
 
-; known jump sources: 89de3 (22:5de3)
 Function89e0a: ; 89e0a (22:5e0a)
 	call Function89160
 	call Function8b3b0
@@ -69117,14 +68549,12 @@ Function89e0a: ; 89e0a (22:5e0a)
 	rst JumpTable
 	ret
 
-; no known jump sources
 Jumptable_89e18: ; 89e18 (22:5e18)
 	dw Function89e1e
 	dw Function8a116
 	dw Function8a2aa
 
 
-; no known jump sources
 Function89e1e: ; 89e1e (22:5e1e)
 	call Function89160
 	ld bc, $a037
@@ -69133,20 +68563,17 @@ Function89e1e: ; 89e1e (22:5e1e)
 	xor a
 	ld [$d02d], a
 
-; known jump sources: 89e3a (22:5e3a)
 asm_89e2e: ; 89e2e (22:5e2e)
 	ld a, [$d02d]
 	ld hl, Jumptable_89e3c
 	rst JumpTable
 	ret
 
-; known jump sources: 89e97 (22:5e97), 89ede (22:5ede), 89f67 (22:5f67), 89fea (22:5fea), 89ff3 (22:5ff3), 8a03a (22:603a), 8a049 (22:6049), 8a052 (22:6052), 8a09e (22:609e), 8a0e9 (22:60e9), 8a0f2 (22:60f2), 8a0ff (22:60ff)
 Function89e36: ; 89e36 (22:5e36)
 	ld hl, $d02d
 	inc [hl]
 	jr asm_89e2e
 
-; no known jump sources
 Jumptable_89e3c: ; 89e3c (22:5e3c)
 	dw Function89e6f
 	dw Function89fed
@@ -69164,7 +68591,6 @@ Jumptable_89e3c: ; 89e3c (22:5e3c)
 	dw Function89e68
 
 
-; no known jump sources
 Function89e58: ; 89e58 (22:5e58)
 	ld a, $1
 	call Function8a2fe
@@ -69174,14 +68600,12 @@ Function89e58: ; 89e58 (22:5e58)
 	and a
 	ret
 
-; no known jump sources
 Function89e68: ; 89e68 (22:5e68)
 	call Function891fe
 	ld a, $1
 	scf
 	ret
 
-; no known jump sources
 Function89e6f: ; 89e6f (22:5e6f)
 	call Function891de
 	call Function89245
@@ -69199,7 +68623,6 @@ Function89e6f: ; 89e6f (22:5e6f)
 	call Function32f9
 	jp Function89e36
 
-; known jump sources: 89e78 (22:5e78), 89ebf (22:5ebf)
 Function89e9a: ; 89e9a (22:5e9a)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -69221,7 +68644,6 @@ Palette_89eb1: ; 89eb1
 	RGB 00, 00, 00
 ; 89eb9
 
-; no known jump sources
 Function89eb9: ; 89eb9 (22:5eb9)
 	call Function891fe
 	call Function89ee1
@@ -69238,7 +68660,6 @@ Function89eb9: ; 89eb9 (22:5eb9)
 	call Function32f9
 	jp Function89e36
 
-; known jump sources: 89e75 (22:5e75), 89ebc (22:5ebc)
 Function89ee1: ; 89ee1 (22:5ee1)
 	call WhiteBGMap
 	call Function893e2
@@ -69249,7 +68670,6 @@ Function89ee1: ; 89ee1 (22:5ee1)
 	call Function8a53d
 	ret
 
-; no known jump sources
 Function89efd: ; 89efd (22:5efd)
 	ld hl, $d012
 	ld a, $ff
@@ -69325,7 +68745,6 @@ Function89efd: ; 89efd (22:5efd)
 	jr nz, .asm_89f60
 	jp Function89e36
 
-; known jump sources: 89f34 (22:5f34)
 Function89f6a: ; 89f6a (22:5f6a)
 	push af
 	ld de, $10
@@ -69337,7 +68756,6 @@ Function89f6a: ; 89f6a (22:5f6a)
 	pop af
 	ret
 
-; known jump sources: 89f52 (22:5f52)
 Function89f77: ; 89f77 (22:5f77)
 	push af
 	ld de, $10
@@ -69367,7 +68785,6 @@ Function89f77: ; 89f77 (22:5f77)
 	pop af
 	ret
 
-; known jump sources: 89f6e (22:5f6e), 89f7b (22:5f7b), 89fa8 (22:5fa8)
 Function89f9a: ; 89f9a (22:5f9a)
 	dec a
 	ld hl, Sprites ; $c400
@@ -69379,7 +68796,6 @@ Function89f9a: ; 89f9a (22:5f9a)
 	jr nz, .asm_89fa0
 	ret
 
-; known jump sources: 89f2b (22:5f2b)
 Function89fa5: ; 89fa5 (22:5fa5)
 	ld de, $10
 	call Function89f9a
@@ -69413,7 +68829,6 @@ Function89fa5: ; 89fa5 (22:5fa5)
 	jr nz, .asm_89faf
 	ret
 
-; no known jump sources
 Function89fce: ; 89fce (22:5fce)
 	call Function8a5b6
 	ld a, $5
@@ -69427,13 +68842,11 @@ Function89fce: ; 89fce (22:5fce)
 	call Function891ab
 	jp Function89e36
 
-; no known jump sources
 Function89fed: ; 89fed (22:5fed)
 	ld hl, UnknownText_0x8a102
 	call PrintText
 	jp Function89e36
 
-; no known jump sources
 Function89ff6: ; 89ff6 (22:5ff6)
 	call Function891fe
 	call WhiteBGMap
@@ -69460,7 +68873,6 @@ Function89ff6: ; 89ff6 (22:5ff6)
 	call Function89235
 	jp Function89e36
 
-; no known jump sources
 Function8a03d: ; 8a03d (22:603d)
 	ld hl, UnknownText_0x8a107
 	call Function89209
@@ -69468,13 +68880,11 @@ Function8a03d: ; 8a03d (22:603d)
 	call Function8920f
 	jp Function89e36
 
-; no known jump sources
 Function8a04c: ; 8a04c (22:604c)
 	ld hl, UnknownText_0x8a10c
 	call PrintText
 	jp Function89e36
 
-; no known jump sources
 Function8a055: ; 8a055 (22:6055)
 	ld c, $7
 	ld b, $4
@@ -69514,7 +68924,6 @@ Function8a055: ; 8a055 (22:6055)
 	call Function3238
 	jp Function89e36
 
-; known jump sources: 8a059 (22:6059), 8a081 (22:6081)
 Function8a0a1: ; 8a0a1 (22:60a1)
 	call Function8923c
 	push bc
@@ -69536,7 +68945,6 @@ Function8a0a1: ; 8a0a1 (22:60a1)
 	pop bc
 	ret
 
-; known jump sources: 8a0b0 (22:60b0)
 Function8a0c1: ; 8a0c1 (22:60c1)
 	push hl
 	ld bc, $939
@@ -69545,7 +68953,6 @@ Function8a0c1: ; 8a0c1 (22:60c1)
 	pop hl
 	ret
 
-; known jump sources: 8a05d (22:605d), 8a0a5 (22:60a5), 8a0de (22:60de)
 Function8a0c9: ; 8a0c9 (22:60c9)
 	push bc
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -69564,32 +68971,27 @@ Function8a0c9: ; 8a0c9 (22:60c9)
 	pop bc
 	ret
 
-; known jump sources: 8a065 (22:6065)
 Function8a0de: ; 8a0de (22:60de)
 	call Function8a0c9
 	ld de, $939
 	add hl, de
 	ret
 
-; no known jump sources
 Function8a0e6: ; 8a0e6 (22:60e6)
 	call Function8b539
 	jp Function89e36
 
-; no known jump sources
 Function8a0ec: ; 8a0ec (22:60ec)
 	ld hl, UnknownText_0x8a111
 	call PrintText
 	jp Function89e36
 
-; no known jump sources
 Function8a0f5: ; 8a0f5 (22:60f5)
 	call Function8b555
 	jp nc, Function8a0ff
 	ld hl, $d02d
 	inc [hl]
 
-; known jump sources: 8a0f8 (22:60f8)
 Function8a0ff: ; 8a0ff (22:60ff)
 	jp Function89e36
 ; 8a102 (22:6102)
@@ -69618,7 +69020,6 @@ UnknownText_0x8a111: ; 0x8a111
 	db "@"
 ; 0x8a116
 
-; no known jump sources
 Function8a116: ; 8a116 (22:6116)
 	ld a, $1
 	ld [$d030], a
@@ -69672,7 +69073,6 @@ MenuDataHeader_0x8a176: ; 0x8a176
 	db 06, 19 ; end coords
 ; 8a17b
 
-; known jump sources: 8a124 (22:6124)
 Function8a17b: ; 8a17b (22:617b)
 	decoord 14, 0
 	ld b, $5
@@ -69732,7 +69132,6 @@ Strings_8a1cc: ; 8a1cc
 ; 8a20d
 
 
-; known jump sources: 8a132 (22:6132), 8a2ca (22:62ca)
 Function8a20d: ; 8a20d (22:620d)
 	ld hl, UnknownText_0x8a232
 	call PrintText
@@ -69771,7 +69170,6 @@ UnknownText_0x8a23c: ; 0x8a23c
 	db "@"
 ; 0x8a241
 
-; known jump sources: 8a145 (22:6145), 8a2d2 (22:62d2)
 Function8a241: ; 8a241 (22:6241)
 	call Function1d6e
 	call Function891fe
@@ -69789,7 +69187,6 @@ Function8a241: ; 8a241 (22:6241)
 	and a
 	ret
 
-; known jump sources: 8a247 (22:6247)
 Function8a262: ; 8a262 (22:6262)
 	call WhiteBGMap
 	call Function893e2
@@ -69816,7 +69213,6 @@ Function8a262: ; 8a262 (22:6262)
 	call Function8b5e7
 	ret
 
-; no known jump sources
 Function8a2aa: ; 8a2aa (22:62aa)
 	ld hl, MenuDataHeader_0x8a2ef
 	call LoadMenuDataHeader
@@ -69869,7 +69265,6 @@ UnknownText_0x8a2f9: ; 0x8a2f9
 	db "@"
 ; 0x8a2fe
 
-; known jump sources: 89e5a (22:5e5a), 8a138 (22:6138), 8a226 (22:6226)
 Function8a2fe: ; 8a2fe (22:62fe)
 	call Function8a313
 	call Function89305
@@ -69880,7 +69275,6 @@ Function8a2fe: ; 8a2fe (22:62fe)
 	call CloseSRAM
 	ret
 
-; known jump sources: 8a2d9 (22:62d9), 8a2fe (22:62fe)
 Function8a313: ; 8a313 (22:6313)
 	ld c, a
 	call Function89160
@@ -69888,7 +69282,6 @@ Function8a313: ; 8a313 (22:6313)
 	ld [$a60b], a
 	ret
 
-; known jump sources: 89dea (22:5dea)
 Function8a31c: ; 8a31c (22:631c)
 	push bc
 	call Function8923c
@@ -69934,7 +69327,6 @@ Function8a31c: ; 8a31c (22:631c)
 	and a
 	ret
 
-; known jump sources: 8a363 (22:6363)
 Function8a383: ; 8a383 (22:6383)
 	callba Function241ba
 	ld a, c
@@ -69955,7 +69347,6 @@ Function8a383: ; 8a383 (22:6383)
 	call PlayClickSFX
 	ret
 
-; known jump sources: 8a34e (22:634e), 8a376 (22:6376)
 Function8a3a2: ; 8a3a2 (22:63a2)
 	ld a, [$cfa9]
 	dec a
@@ -69967,7 +69358,6 @@ Function8a3a2: ; 8a3a2 (22:63a2)
 	ld [MenuSelection], a ; $cf74
 	ret
 
-; known jump sources: 8a338 (22:6338)
 Function8a3b2: ; 8a3b2 (22:63b2)
 	ld a, $1
 	ld [MenuSelection], a ; $cf74
@@ -69990,7 +69380,6 @@ Function8a3b2: ; 8a3b2 (22:63b2)
 	call Function1d3c
 	ret
 
-; known jump sources: 8a3ba (22:63ba)
 Function8a3df: ; 8a3df (22:63df)
 	call Function89160
 	ld hl, $a603
@@ -70008,7 +69397,6 @@ Function8a3df: ; 8a3df (22:63df)
 	and a
 	ret
 
-; known jump sources: 8a3f3 (22:63f3), 8a3fb (22:63fb), 8a405 (22:6405)
 Function8a400: ; 8a400 (22:6400)
 	ld a, [de]
 	inc de
@@ -70054,7 +69442,6 @@ MenuData2_0x8a43d: ; 0x8a43d
 	db "やめる@"
 ; 0x8a453
 
-; known jump sources: 8a354 (22:6354)
 Function8a453: ; 8a453 (22:6453)
 	hlcoord 0, 12
 	ld b, $4
@@ -70089,7 +69476,6 @@ Strings_8a483: ; 8a483
 	next "せきがいせんで こうかん します@"
 ; 8a4d3
 
-; known jump sources: 8a357 (22:6357)
 Function8a4d3: ; 8a4d3 (22:64d3)
 	ld a, [MenuSelection] ; $cf74
 	cp $1
@@ -70110,7 +69496,6 @@ Function8a4d3: ; 8a4d3 (22:64d3)
 	call Function8a5a3
 	ret
 
-; known jump sources: 8a35a (22:635a), 8a3b7 (22:63b7)
 Function8a4fc: ; 8a4fc (22:64fc)
 	ld a, [MenuSelection] ; $cf74
 	cp $3
@@ -70127,7 +69512,6 @@ Function8a4fc: ; 8a4fc (22:64fc)
 	call Function8a515
 	ret
 
-; known jump sources: 8a511 (22:6511)
 Function8a515: ; 8a515 (22:6515)
 	ld hl, $d012
 	ld a, [hl]
@@ -70142,7 +69526,6 @@ Function8a515: ; 8a515 (22:6515)
 	ld [$d013], a
 	ret
 
-; known jump sources: 8a501 (22:6501)
 asm_8a529: ; 8a529 (22:6529)
 	ld hl, $d012
 	ld a, $3c
@@ -70155,7 +69538,6 @@ asm_8a529: ; 8a529 (22:6529)
 	call ByteFill
 	ret
 
-; known jump sources: 89ef9 (22:5ef9), 8a27a (22:627a), 8a32f (22:632f)
 Function8a53d: ; 8a53d (22:653d)
 	push hl
 	ld a, $15
@@ -70185,7 +69567,6 @@ Function8a53d: ; 8a53d (22:653d)
 	ld a, $27
 	ld c, $6
 
-; known jump sources: 8a545 (22:6545), 8a55a (22:655a), 8a56c (22:656c), 8a579 (22:6579)
 Function8a573: ; 8a573 (22:6573)
 	ld [hl], a
 	call Function8a584
@@ -70194,7 +69575,6 @@ Function8a573: ; 8a573 (22:6573)
 	jr nz, Function8a573
 	ret
 
-; known jump sources: 8a54c (22:654c), 8a565 (22:6565), 8a581 (22:6581)
 Function8a57c: ; 8a57c (22:657c)
 	ld [hl], a
 	call Function8a584
@@ -70202,7 +69582,6 @@ Function8a57c: ; 8a57c (22:657c)
 	jr nz, Function8a57c
 	ret
 
-; known jump sources: 8a551 (22:6551), 8a574 (22:6574), 8a57d (22:657d)
 Function8a584: ; 8a584 (22:6584)
 	push af
 	ld a, $4
@@ -70211,7 +69590,6 @@ Function8a584: ; 8a584 (22:6584)
 	pop af
 	ret
 
-; known jump sources: 89e7e (22:5e7e), 89ec5 (22:5ec5), 8a061 (22:6061), 8a087 (22:6087), 8a280 (22:6280), 8a335 (22:6335)
 Function8a58d: ; 8a58d (22:658d)
 	ld a, $2d
 	ld bc, $606
@@ -70231,7 +69609,6 @@ Function8a58d: ; 8a58d (22:658d)
 	jr nz, .asm_8a595
 	ret
 
-; known jump sources: 89e86 (22:5e86), 89e8e (22:5e8e), 89ecd (22:5ecd), 89ed5 (22:5ed5), 89fd6 (22:5fd6), 89fde (22:5fde), 8a06c (22:606c), 8a075 (22:6075), 8a08f (22:608f), 8a098 (22:6098), 8a288 (22:6288), 8a290 (22:6290), 8a4df (22:64df), 8a4e7 (22:64e7), 8a4f0 (22:64f0), 8a4f8 (22:64f8)
 Function8a5a3: ; 8a5a3 (22:65a3)
 	ld bc, $603
 	ld de, $14
@@ -70249,7 +69626,6 @@ Function8a5a3: ; 8a5a3 (22:65a3)
 	jr nz, .asm_8a5a9
 	ret
 
-; known jump sources: 893e8 (22:53e8), 89fce (22:5fce)
 Function8a5b6: ; 8a5b6 (22:65b6)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -70322,7 +69698,6 @@ Palette_8a624: ; 8a624
 	RGB 00, 00, 00
 ; 8a62c
 
-; no known jump sources
 Function8a62c: ; 8a62c (22:662c)
 	call Function1d6e
 	call Function891fe
@@ -70361,7 +69736,6 @@ Function8a62c: ; 8a62c (22:662c)
 	call Function89b28
 	ret
 
-; no known jump sources
 Jumptable_8a671: ; 8a671 (22:6671)
 	dw Function8a679
 	dw Function8a6cd
@@ -70369,7 +69743,6 @@ Jumptable_8a671: ; 8a671 (22:6671)
 	dw Function8a930
 
 
-; known jump sources: 8a6a9 (22:66a9), 8a6b0 (22:66b0)
 Function8a679: ; 8a679 (22:6679)
 	call Function891de
 	call WhiteBGMap
@@ -70399,26 +69772,22 @@ Function8a679: ; 8a679 (22:6679)
 	call Function89448
 	ret
 
-; no known jump sources
 Jumptable_8a6bc: ; 8a6bc (22:66bc)
 	dw Function8a6c0
 	dw Function8a6c5
 
 
-; no known jump sources
 Function8a6c0: ; 8a6c0 (22:66c0)
 	call PlayClickSFX
 	and a
 	ret
 
-; no known jump sources
 Function8a6c5: ; 8a6c5 (22:66c5)
 	call PlayClickSFX
 	call Function89d0d
 	scf
 	ret
 
-; no known jump sources
 Function8a6cd: ; 8a6cd (22:66cd)
 	call Function891de
 	call WhiteBGMap
@@ -70475,7 +69844,6 @@ Function8a6cd: ; 8a6cd (22:66cd)
 	call Function8b677
 	ret
 
-; no known jump sources
 Jumptable_8a74f: ; 8a74f (22:674f)
 	dw Function8a78c
 	dw Function8a7cb
@@ -70483,7 +69851,6 @@ Jumptable_8a74f: ; 8a74f (22:674f)
 	dw Function8a8a1
 
 
-; known jump sources: 8a6df (22:66df)
 Function8a757: ; 8a757 (22:6757)
 	call Function8939a
 	xor a
@@ -70492,7 +69859,6 @@ Function8a757: ; 8a757 (22:6757)
 	ld [$d012], a
 	ret
 
-; known jump sources: 8a71b (22:671b), 8a82e (22:682e), 8a8a4 (22:68a4)
 Function8a765: ; 8a765 (22:6765)
 	call Function8931b
 	push bc
@@ -70517,7 +69883,6 @@ Function8a765: ; 8a765 (22:6765)
 	scf
 	ret
 
-; no known jump sources
 Function8a78c: ; 8a78c (22:678c)
 	call Function891fe
 	ld de, DefaultFlypoint ; $d002
@@ -70545,7 +69910,6 @@ Function8a78c: ; 8a78c (22:678c)
 	and a
 	ret
 
-; no known jump sources
 Function8a7cb: ; 8a7cb (22:67cb)
 	ld a, [MenuSelection] ; $cf74
 	push af
@@ -70579,7 +69943,6 @@ Function8a7cb: ; 8a7cb (22:67cb)
 	and a
 	ret
 
-; no known jump sources
 Function8a818: ; 8a818 (22:6818)
 	call Function89a23
 	ld hl, DefaultFlypoint ; $d002
@@ -70641,7 +70004,6 @@ String_8a88b: ; 8a88b
 	next "かかれて いません!@"
 ; 8a8a1
 
-; no known jump sources
 Function8a8a1: ; 8a8a1 (22:68a1)
 	call Function89160
 	call Function8a765
@@ -70661,7 +70023,6 @@ Function8a8a1: ; 8a8a1 (22:68a1)
 	and a
 	ret
 
-; no known jump sources
 Function8a8c3: ; 8a8c3 (22:68c3)
 	call Function891de
 	call WhiteBGMap
@@ -70704,7 +70065,6 @@ String_8a926: ; 8a926
 	db "データ", $1f, "けしまし", $22, "@"
 ; 8a930
 
-; no known jump sources
 Function8a930: ; 8a930 (22:6930)
 	ld a, [MenuSelection] ; $cf74
 	push af
@@ -70760,7 +70120,6 @@ Function8a930: ; 8a930 (22:6930)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function8a999: ; 8a999 (22:6999)
 	ld hl, MenuDataHeader_0x8a9c9
 	call LoadMenuDataHeader
@@ -70786,7 +70145,6 @@ Function8a999: ; 8a999 (22:6999)
 	call Function8920f
 	ret
 
-; no known jump sources
 Jumptable_8a9c5: ; 8a9c5 (22:69c5)
 	dw Function8aa0a
 	dw Function8ab3b
@@ -70798,7 +70156,6 @@ MenuDataHeader_0x8a9c9: ; 0x8a9c9
 	db 11, 18 ; end coords
 ; 8a9ce
 
-; known jump sources: 8a9a1 (22:69a1)
 Function8a9ce: ; 8a9ce (22:69ce)
 	push bc
 	decoord 11, 4
@@ -70843,7 +70200,6 @@ Function8aa09: ; 8aa09
 	ret
 ; 8aa0a
 
-; no known jump sources
 Function8aa0a: ; 8aa0a (22:6a0a)
 	ld a, $1
 	ld [$d02f], a
@@ -70889,14 +70245,12 @@ Function8aa0a: ; 8aa0a (22:6a0a)
 	call Function89448
 	ret
 
-; no known jump sources
 Jumptable_8aa6d: ; 8aa6d (22:6a6d)
 	dw Function8aa73
 	dw Function8aab6
 	dw Function8ab11
 
 
-; no known jump sources
 Function8aa73: ; 8aa73 (22:6a73)
 	ld a, [MenuSelection] ; $cf74
 	ld e, a
@@ -70928,7 +70282,6 @@ Function8aa73: ; 8aa73 (22:6a73)
 	and a
 	ret
 
-; no known jump sources
 Function8aab6: ; 8aab6 (22:6ab6)
 	call Function89a23
 	ld hl, $d008
@@ -70968,7 +70321,6 @@ Function8ab00: ; 8ab00
 	and a
 	ret
 
-; known jump sources: 8aa64 (22:6a64)
 Function8ab11: ; 8ab11 (22:6b11)
 	call Function89160
 	ld hl, $a603
@@ -70991,7 +70343,6 @@ Function8ab11: ; 8ab11 (22:6b11)
 	and a
 	ret
 
-; known jump sources: 8ab74 (22:6b74)
 Function8ab3b: ; 8ab3b (22:6b3b)
 	call Function891fe
 	call WhiteBGMap
@@ -71015,7 +70366,6 @@ Function8ab3b: ; 8ab3b (22:6b3b)
 	jr c, Function8ab3b
 	ret
 
-; known jump sources: 8ab71 (22:6b71), 8ab84 (22:6b84)
 Function8ab77: ; 8ab77 (22:6b77)
 	call Function354b
 	bit 0, c
@@ -71033,7 +70383,6 @@ Function8ab77: ; 8ab77 (22:6b77)
 	and a
 	ret
 
-; no known jump sources
 Function8ab93: ; 8ab93 (22:6b93)
 	call WhiteBGMap
 	call Function1d6e
@@ -72362,7 +71711,6 @@ Function8b363: ; 8b363
 	ret
 ; 8b36c
 
-; known jump sources: 89e24 (22:5e24), 8a29a (22:629a), 8b3c2 (22:73c2), 8b45c (22:745c), 8b53c (22:753c), 8b5ea (22:75ea), 8b630 (22:7630)
 Function8b36c: ; 8b36c (22:736c)
 	push bc
 	ld h, b
@@ -72373,7 +71721,6 @@ Function8b36c: ; 8b36c (22:736c)
 	pop bc
 	ret
 
-; known jump sources: 8b429 (22:7429), 8b443 (22:7443)
 Function8b379: ; 8b379 (22:7379)
 	push bc
 	ld a, c
@@ -72387,7 +71734,6 @@ Function8b379: ; 8b379 (22:7379)
 	pop bc
 	ret
 
-; known jump sources: 8b3ff (22:73ff), 8b417 (22:7417), 8b420 (22:7420), 8b43b (22:743b), 8b454 (22:7454), 8b46b (22:746b)
 Function8b385: ; 8b385 (22:7385)
 	push bc
 	ld a, c
@@ -72401,7 +71747,6 @@ Function8b385: ; 8b385 (22:7385)
 	pop bc
 	ret
 
-; known jump sources: 8b3bd (22:73bd), 8b466 (22:7466)
 Function8b391: ; 8b391 (22:7391)
 	push bc
 	ld e, $0
@@ -72420,7 +71765,6 @@ Function8b391: ; 8b391 (22:7391)
 	pop bc
 	ret
 
-; known jump sources: 8b590 (22:7590), 8b61f (22:761f)
 Function8b3a4: ; 8b3a4 (22:73a4)
 	push de
 	push bc
@@ -72432,7 +71776,6 @@ Function8b3a4: ; 8b3a4 (22:73a4)
 	pop de
 	ret
 
-; known jump sources: 89e0d (22:5e0d)
 Function8b3b0: ; 8b3b0 (22:73b0)
 	ld bc, $a037
 	ld a, [$a60b]
@@ -72450,7 +71793,6 @@ Function8b3b0: ; 8b3b0 (22:73b0)
 	ld a, [$a60b]
 	ret
 
-; known jump sources: 8b4b4 (22:74b4), 8b4c8 (22:74c8)
 Function8b3cd: ; 8b3cd (22:73cd)
 	push de
 	push bc
@@ -72466,7 +71808,6 @@ Function8b3cd: ; 8b3cd (22:73cd)
 	pop de
 	ret
 
-; known jump sources: 8b489 (22:7489)
 Function8b3dd: ; 8b3dd (22:73dd)
 	push de
 	push bc
@@ -72551,7 +71892,6 @@ Function8b3dd: ; 8b3dd (22:73dd)
 	ld [$d010], a
 	ret
 
-; known jump sources: 8b55e (22:755e), 8b585 (22:7585), 8b60b (22:760b)
 Function8b45c: ; 8b45c (22:745c)
 	call Function8b36c
 	xor a
@@ -72580,7 +71920,6 @@ Function8b45c: ; 8b45c (22:745c)
 	scf
 	ret
 
-; known jump sources: 8a29d (22:629d), 8b471 (22:7471), 8b546 (22:7546), 8b569 (22:7569), 8b59b (22:759b), 8b5be (22:75be), 8b5f4 (22:75f4), 8b616 (22:7616)
 Function8b493: ; 8b493 (22:7493)
 	push bc
 	call Function8923c
@@ -72590,13 +71929,11 @@ Function8b493: ; 8b493 (22:7493)
 	rst JumpTable
 	ret
 
-; no known jump sources
 Jumptable_8b4a0: ; 8b4a0 (22:74a0)
 	dw Function8b4a4
 	dw Function8b4b8
 
 
-; no known jump sources
 Function8b4a4: ; 8b4a4 (22:74a4)
 	push bc
 	push de
@@ -72609,7 +71946,6 @@ Function8b4a4: ; 8b4a4 (22:74a4)
 	call Function8b3cd
 	ret
 
-; no known jump sources
 Function8b4b8: ; 8b4b8 (22:74b8)
 	push bc
 	push de
@@ -72622,7 +71958,6 @@ Function8b4b8: ; 8b4b8 (22:74b8)
 	call Function8b3cd
 	ret
 
-; known jump sources: 8b474 (22:7474), 8b4ae (22:74ae), 8b4c2 (22:74c2)
 Function8b4cc: ; 8b4cc (22:74cc)
 	push bc
 	ld hl, Unknown_8b529
@@ -72633,7 +71968,6 @@ Function8b4cc: ; 8b4cc (22:74cc)
 	pop bc
 	ret
 
-; known jump sources: 8b4a6 (22:74a6)
 Function8b4d8: ; 8b4d8 (22:74d8)
 	ld hl, Unknown_8b529
 	call Function8b50a
@@ -72650,7 +71984,6 @@ Function8b4d8: ; 8b4d8 (22:74d8)
 	ld l, a
 	ret
 
-; known jump sources: 8b4ba (22:74ba)
 Function8b4ea: ; 8b4ea (22:74ea)
 	ld hl, Unknown_8b529
 	call Function8b50a
@@ -72668,7 +72001,6 @@ Function8b4ea: ; 8b4ea (22:74ea)
 	ld d, a
 	ret
 
-; known jump sources: 8b47e (22:747e), 8b549 (22:7549), 8b5fa (22:75fa)
 Function8b4fd: ; 8b4fd (22:74fd)
 	ld hl, Unknown_8b529 + 4
 	call Function8b50a
@@ -72680,7 +72012,6 @@ Function8b4fd: ; 8b4fd (22:74fd)
 	ld d, a
 	ret
 
-; known jump sources: 8b4d0 (22:74d0), 8b4db (22:74db), 8b4ed (22:74ed), 8b500 (22:7500), 8b524 (22:7524)
 Function8b50a: ; 8b50a (22:750a)
 	ld a, [$d02e]
 	and a
@@ -72693,7 +72024,6 @@ Function8b50a: ; 8b50a (22:750a)
 	jr nz, .asm_8b513
 	ret
 
-; known jump sources: 8b477 (22:7477), 8b4b1 (22:74b1), 8b4c5 (22:74c5)
 Function8b518: ; 8b518 (22:7518)
 	push de
 	ld d, $0
@@ -72703,7 +72033,6 @@ Function8b518: ; 8b518 (22:7518)
 	pop de
 	ret
 
-; known jump sources: 8b497 (22:7497)
 Function8b521: ; 8b521 (22:7521)
 	ld hl, Unknown_8b529 + 7
 	call Function8b50a
@@ -72718,7 +72047,6 @@ Unknown_8b529: ; 8b529
 	db 1, 4, $48, $41, 0, 0
 ; 8b539
 
-; known jump sources: 8a0e6 (22:60e6)
 Function8b539: ; 8b539 (22:7539)
 	ld bc, $d017
 	call Function8b36c
@@ -72732,7 +72060,6 @@ Function8b539: ; 8b539 (22:7539)
 	call Function3238
 	ret
 
-; known jump sources: 8a0f5 (22:60f5), 8b57a (22:757a), 8b588 (22:7588)
 Function8b555: ; 8b555 (22:7555)
 	ld hl, UnknownText_0x8b5ce
 	call PrintText
@@ -72814,7 +72141,6 @@ UnknownText_0x8b5e2: ; 0x8b5e2
 	db "@"
 ; 0x8b5e7
 
-; known jump sources: 8a2a6 (22:62a6)
 Function8b5e7: ; 8b5e7 (22:75e7)
 	ld bc, $d013
 	call Function8b36c
@@ -72886,7 +72212,6 @@ Function8b651: ; 8b651
 	db "@"
 ; 8b664
 
-; known jump sources: 8b56f (22:756f)
 Function8b664: ; 8b664 (22:7664)
 	push bc
 	ld de, $4
@@ -73356,7 +72681,6 @@ Function8b94a: ; 8b94a
 ; 8b960
 
 
-; known jump sources: 8a656 (22:6656)
 Function8b960: ; 8b960 (22:7960)
 	ld hl, MenuDataHeader_0x8b9ac
 	call LoadMenuDataHeader
@@ -73389,7 +72713,6 @@ Function8b960: ; 8b960 (22:7960)
 	ld c, a
 	ret
 
-; known jump sources: 8b997 (22:7997)
 Function8b99f: ; 8b99f (22:799f)
 	ld hl, DefaultFlypoint ; $d002
 	dec a
@@ -73444,7 +72767,6 @@ MenuData2_0x8b9d2: ; 0x8b9d2
 	db "やめる@"     ; QUIT
 ; 0x8b9e9
 
-; known jump sources: 8b966 (22:7966)
 Function8b9e9: ; 8b9e9 (22:79e9)
 	call Function89160
 	call Function8931b
@@ -74054,7 +73376,6 @@ Function8c314: ; 8c314
 	jp [hl]
 ; 8c323
 
-; no known jump sources
 Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c365
 	dw Function8c5dc
@@ -74091,7 +73412,6 @@ Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c393
 
 
-; no known jump sources
 Function8c365: ; 8c365 (23:4365)
 	ld de, 0
 	ld a, [BattleMonLevel] ; $c639
@@ -74122,20 +73442,17 @@ Unknown_8c38f: ; 8c38f
 	db 16, 24
 ; 8c393
 
-; no known jump sources
 Function8c393: ; 8c393 (23:4393)
 	call ClearSprites
 	ld a, $80
 	ld [$cf63], a
 	ret
 
-; known jump sources: 8c3a1 (23:43a1), 8c3af (23:43af), 8c3f2 (23:43f2), 8c447 (23:4447), 8c582 (23:4582), 8c673 (23:4673)
 Function8c39c: ; 8c39c (23:439c)
 	ld hl, $cf63
 	inc [hl]
 	ret
 
-; no known jump sources
 Function8c3a1: ; 8c3a1 (23:43a1)
 	call Function8c39c
 	xor a
@@ -74143,14 +73460,12 @@ Function8c3a1: ; 8c3a1 (23:43a1)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; no known jump sources
 Function8c3ab: ; 8c3ab (23:43ab)
 	call Function8c3b3
 	ret nc
 	call Function8c39c
 	ret
 
-; known jump sources: 8c3ab (23:43ab)
 Function8c3b3: ; 8c3b3 (23:43b3)
 	ld a, [$d847]
 	cp $ff
@@ -74193,7 +73508,6 @@ Unknown_8c3db: ; 8c3db
 	db $01 ; 0001
 ; 8c3e8
 
-; no known jump sources
 Function8c3e8: ; 8c3e8 (23:43e8)
 	callba Function5602
 	ld a, $5
@@ -74210,7 +73524,6 @@ Function8c3e8: ; 8c3e8 (23:43e8)
 	ld [$cf65], a
 	ret
 
-; no known jump sources
 Function8c408: ; 8c408 (23:4408)
 	ld a, [$cf64]
 	cp $60
@@ -74222,7 +73535,6 @@ Function8c408: ; 8c408 (23:4408)
 	ld [$cf63], a
 	ret
 
-; known jump sources: 8c40f (23:440f)
 Function8c419: ; 8c419 (23:4419)
 	ld hl, $cf65
 	ld a, [hl]
@@ -74250,7 +73562,6 @@ Function8c419: ; 8c419 (23:4419)
 	jr nz, .asm_8c42b
 	ret
 
-; no known jump sources
 Function8c43d: ; 8c43d (23:443d)
 	callba Function5602
 	ld a, $5
@@ -74260,7 +73571,6 @@ Function8c43d: ; 8c43d (23:443d)
 	ld [$cf64], a
 	ret
 
-; no known jump sources
 Function8c44f: ; 8c44f (23:444f)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -74328,7 +73638,6 @@ ENDM
 	db $ff
 ; 8c4f5
 
-; known jump sources: 8c468 (23:4468)
 Function8c4f5: ; 8c4f5 (23:44f5)
 	ld a, [hli]
 	ld e, a
@@ -74390,7 +73699,6 @@ Unknown_8c55a: db 4, 1, 4, 0, 3, 1, 3, 0, 2, 1, 2, 0, 1, $ff
 Unknown_8c568: db 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 1, 0, 1, $ff
 ; 8c578
 
-; no known jump sources
 Function8c578: ; 8c578 (23:4578)
 	callba Function5602
 	ld a, $5
@@ -74402,7 +73710,6 @@ Function8c578: ; 8c578 (23:4578)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; no known jump sources
 Function8c58f: ; 8c58f (23:458f)
 	ld hl, $cf64
 	ld a, [hl]
@@ -74429,7 +73736,6 @@ Function8c58f: ; 8c58f (23:458f)
 	ld [$cf63], a
 	ret
 
-; known jump sources: 8c59a (23:459a), 8c5bd (23:45bd), 8c5d7 (23:45d7)
 Function8c5b8: ; 8c5b8 (23:45b8)
 	call Random
 	cp $12
@@ -74454,7 +73760,6 @@ Function8c5b8: ; 8c5b8 (23:45b8)
 	ld [hl], $ff
 	ret
 
-; no known jump sources
 Function8c5dc: ; 8c5dc (23:45dc)
 	ld a, [OtherTrainerClass] ; $d22f
 	and a
@@ -74545,12 +73850,10 @@ Function8c5dc: ; 8c5dc (23:45dc)
 	call DelayFrame
 	call Function8cf4f
 
-; known jump sources: 8c5e0 (23:45e0), 8c637 (23:4637)
 Function8c673: ; 8c673 (23:4673)
 	call Function8c39c
 	ret
 
-; known jump sources: 8c64f (23:464f)
 Function8c677: ; 8c677 (23:4677)
 	ld de, $d038
 	call Function8c698
@@ -74564,7 +73867,6 @@ Function8c677: ; 8c677 (23:4677)
 	call Function8c698
 	ld de, $d0f8
 
-; known jump sources: 8c67a (23:467a), 8c680 (23:4680), 8c686 (23:4686), 8c68c (23:468c), 8c692 (23:4692)
 Function8c698: ; 8c698 (23:4698)
 	push hl
 	ld bc, $8
@@ -74587,7 +73889,6 @@ Unknown_8c6a9: ; 8c6a9
 	RGB 31, 05, 05
 ; 8c6b1
 
-; known jump sources: 8c5fa (23:45fa)
 Function8c6b1: ; 8c6b1 (23:46b1)
 	ld a, [OtherTrainerClass] ; $d22f
 	ld de, Unknown_8c6b8
@@ -74626,7 +73927,6 @@ Function8c6ef: ; 8c6ef
 ; 8c6f7
 
 
-; known jump sources: 8c42e (23:442e)
 Function8c6f7: ; 8c6f7 (23:46f7)
 	and $3f
 	cp $20
@@ -74642,7 +73942,6 @@ Function8c6f7: ; 8c6f7 (23:46f7)
 	inc a
 	ret
 
-; known jump sources: 8c6fd (23:46fd), 8c704 (23:4704)
 Function8c70c: ; 8c70c (23:470c)
 	ld e, a
 	ld a, d
@@ -74670,7 +73969,6 @@ Unknown_8c728: ; 8c728
 	sine_wave $100
 ; 8c768
 
-; no known jump sources
 Function8c768: ; 8c768 (23:4768)
 	callba Function5602
 	ld de, Unknown_8c792
@@ -74713,7 +74011,6 @@ Unknown_8c792: ; 8c792
 	db $ff
 ; 8c7b7
 
-; known jump sources: 8c784 (23:4784)
 Function8c7b7: ; 8c7b7 (23:47b7)
 	ld a, $ff
 .asm_8c7b9
@@ -74912,7 +74209,6 @@ Function8ca0c: ; 8ca0c
 ; 8ca1b
 
 
-; no known jump sources
 Jumptable_8ca1b: ; 8ca1b (23:4a1b)
 	dw Function8ca23
 	dw Function8ca3c
@@ -74920,7 +74216,6 @@ Jumptable_8ca1b: ; 8ca1b (23:4a1b)
 	dw Function8ca64
 
 
-; no known jump sources
 Function8ca23: ; 8ca23 (23:4a23)
 	call Function8cad3
 	ld a, $17
@@ -74935,7 +74230,6 @@ Function8ca23: ; 8ca23 (23:4a23)
 	inc [hl]
 	ret
 
-; no known jump sources
 Function8ca3c: ; 8ca3c (23:4a3c)
 	call Function8ca8e
 	xor a
@@ -74952,14 +74246,12 @@ Function8ca3c: ; 8ca3c (23:4a3c)
 	inc [hl]
 	ret
 
-; no known jump sources
 Function8ca5c: ; 8ca5c (23:4a5c)
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld hl, $cf63
 	inc [hl]
 
-; no known jump sources
 Function8ca64: ; 8ca64 (23:4a64)
 	ld hl, $cf64
 	ld a, [hl]
@@ -74972,7 +74264,6 @@ Function8ca64: ; 8ca64 (23:4a64)
 	set 7, [hl]
 	ret
 
-; known jump sources: 8ca40 (23:4a40), 8ca45 (23:4a45), 8ca4a (23:4a4a), 8ca4f (23:4a4f)
 Function8ca73: ; 8ca73 (23:4a73)
 	push de
 	push af
@@ -74991,7 +74282,6 @@ Function8ca73: ; 8ca73 (23:4a73)
 	pop de
 	ret
 
-; known jump sources: 8ca3c (23:4a3c)
 Function8ca8e: ; 8ca8e (23:4a8e)
 	ld de, $0
 	ld a, [$d197]
@@ -75036,7 +74326,6 @@ Unknown_8cab3: ; 8cab3
 	db $68, $50
 ; 8cad3
 
-; known jump sources: 8ca23 (23:4a23)
 Function8cad3: ; 8cad3 (23:4ad3)
 	ld a, [PlayerDirection] ; $d4de
 	and $c
@@ -75129,7 +74418,6 @@ Function8cb33: ; 8cb33
 	call Function8cb82
 	ret
 
-; known jump sources: 8cb7e (23:4b7e)
 Function8cb82: ; 8cb82 (23:4b82)
 	ld hl, $c402
 	xor a
@@ -75148,7 +74436,6 @@ Function8cb82: ; 8cb82 (23:4b82)
 	call ByteFill
 	ret
 
-; known jump sources: 8caf8 (23:4af8), 8cb3e (23:4b3e)
 Function8cb9b: ; 8cb9b (23:4b9b)
 	callab Function8cf53
 	ld de, GFX_8c9cc
@@ -75168,7 +74455,6 @@ Function8cb9b: ; 8cb9b (23:4b9b)
 	ld [$cf63], a
 	ret
 
-; known jump sources: 8cb26 (23:4b26), 8cb72 (23:4b72)
 Function8cbc8: ; 8cbc8 (23:4bc8)
 	call Function8cbe6
 	ld hl, $cf64
@@ -75188,7 +74474,6 @@ Function8cbc8: ; 8cbc8 (23:4bc8)
 	set 7, [hl]
 	ret
 
-; known jump sources: 8cbc8 (23:4bc8)
 Function8cbe6: ; 8cbe6 (23:4be6)
 	ld hl, $cf65
 	ld a, [hl]
@@ -75871,7 +75156,6 @@ Function8d036: ; 8d036
 ; 8d03d
 
 
-; no known jump sources
 Function8d03d: ; 8d03d (23:503d)
 	ld hl, $c314
 	ld bc, $10
@@ -76246,7 +75530,6 @@ Function8d24b: ; 8d24b
 ; 8d25b
 
 
-; no known jump sources
 Jumptable_8d25b: ; 8d25b (23:525b)
 	dw Function8d2a1
 	dw Function8d2a2
@@ -76285,11 +75568,9 @@ Jumptable_8d25b: ; 8d25b (23:525b)
 	dw Function8d6ae
 
 
-; no known jump sources
 Function8d2a1: ; 8d2a1 (23:52a1)
 	ret
 
-; no known jump sources
 Function8d2a2: ; 8d2a2 (23:52a2)
 	ld a, [$cfa9]
 	ld hl, $0
@@ -76304,7 +75585,6 @@ Function8d2a2: ; 8d2a2 (23:52a2)
 	ld [hl], $0
 	ret
 
-; known jump sources: 8d2aa (23:52aa)
 Function8d2b9: ; 8d2b9 (23:52b9)
 	ld hl, $4
 	add hl, bc
@@ -76342,7 +75622,6 @@ Function8d2b9: ; 8d2b9 (23:52b9)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8d2ea: ; 8d2ea (23:52ea)
 	ld a, [$cfa9]
 	ld hl, $0
@@ -76359,7 +75638,6 @@ Function8d2ea: ; 8d2ea (23:52ea)
 	ld [hl], $18
 	ret
 
-; no known jump sources
 Function8d302: ; 8d302 (23:5302)
 	call Function8d6c5
 	jp [hl]
@@ -76422,7 +75700,6 @@ Function8d321: ; 8d321
 	ret
 ; 8d35a
 
-; no known jump sources
 Function8d35a: ; 8d35a (23:535a)
 	ld hl, $c
 	add hl, bc
@@ -76436,22 +75713,18 @@ Function8d35a: ; 8d35a (23:535a)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8d36c: ; 8d36c (23:536c)
 	callab Function11a3b
 	ret
 
-; no known jump sources
 Function8d373: ; 8d373 (23:5373)
 	callab Function120c1
 	ret
 
-; no known jump sources
 Function8d37a: ; 8d37a (23:537a)
 	callab Functione46ed
 	ret
 
-; no known jump sources
 Function8d381: ; 8d381 (23:5381)
 	ld hl, $c
 	add hl, bc
@@ -76496,7 +75769,6 @@ Function8d381: ; 8d381 (23:5381)
 	call Function8d036
 	ret
 
-; no known jump sources
 Function8d3c3: ; 8d3c3 (23:53c3)
 	ld hl, $c
 	add hl, bc
@@ -76563,12 +75835,10 @@ Function8d3c3: ; 8d3c3 (23:53c3)
 	call Function8d036
 	ret
 
-; no known jump sources
 Function8d422: ; 8d422 (23:5422)
 	callab Function9321d
 	ret
 
-; no known jump sources
 Function8d429: ; 8d429 (23:5429)
 	callab Function932ac
 	ld hl, $cf64
@@ -76580,7 +75850,6 @@ Function8d429: ; 8d429 (23:5429)
 	call Function8d120
 	ret
 
-; no known jump sources
 Function8d43e: ; 8d43e (23:543e)
 	ld hl, $b
 	add hl, bc
@@ -76611,22 +75880,18 @@ Function8d43e: ; 8d43e (23:543e)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8d46e: ; 8d46e (23:546e)
 	callab Functione00ed
 	ret
 
-; no known jump sources
 Function8d475: ; 8d475 (23:5475)
 	callab Function90d41
 	ret
 
-; no known jump sources
 Function8d47c: ; 8d47c (23:547c)
 	callab Functione21a1
 	ret
 
-; no known jump sources
 Function8d483: ; 8d483 (23:5483)
 	call Function8d6c5
 	jp [hl]
@@ -76746,7 +76011,6 @@ Function8d526: ; 8d526
 	ret
 ; 8d52a
 
-; no known jump sources
 Function8d52a: ; 8d52a (23:552a)
 	ld hl, $4
 	add hl, bc
@@ -76764,12 +76028,10 @@ Function8d52a: ; 8d52a (23:552a)
 	call Function8d036
 	ret
 
-; no known jump sources
 Function8d543: ; 8d543 (23:5543)
 	callab Function29676
 	ret
 
-; no known jump sources
 Function8d54a: ; 8d54a (23:554a)
 	ld hl, $c
 	add hl, bc
@@ -76801,12 +76063,10 @@ Function8d54a: ; 8d54a (23:554a)
 	call Function8d036
 	ret
 
-; no known jump sources
 Function8d578: ; 8d578 (23:5578)
 	callab Function91640
 	ret
 
-; no known jump sources
 Function8d57f: ; 8d57f (23:557f)
 	ld hl, $d
 	add hl, bc
@@ -76842,7 +76102,6 @@ Function8d57f: ; 8d57f (23:557f)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8d5b0: ; 8d5b0 (23:55b0)
 	ld hl, $5
 	add hl, bc
@@ -76878,7 +76137,6 @@ Function8d5b0: ; 8d5b0 (23:55b0)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8d5e2: ; 8d5e2 (23:55e2)
 	ld hl, $4
 	add hl, bc
@@ -76904,7 +76162,6 @@ Function8d5e2: ; 8d5e2 (23:55e2)
 	call Function8d036
 	ret
 
-; no known jump sources
 Function8d607: ; 8d607 (23:5607)
 	ld hl, $5
 	add hl, bc
@@ -76934,17 +76191,14 @@ Function8d607: ; 8d607 (23:5607)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8d630: ; 8d630 (23:5630)
 	callba Function108bc7
 	ret
 
-; no known jump sources
 Function8d637: ; 8d637 (23:5637)
 	callba Function108be0
 	ret
 
-; no known jump sources
 Function8d63e: ; 8d63e (23:563e)
 	ld a, [$cf65]
 	and a
@@ -76970,7 +76224,6 @@ Function8d63e: ; 8d63e (23:563e)
 	call Function8d120
 	ret
 
-; no known jump sources
 Function8d666: ; 8d666 (23:5666)
 	ld hl, $c
 	add hl, bc
@@ -76989,7 +76242,6 @@ Function8d666: ; 8d666 (23:5666)
 .asm_8d67f
 	ret
 
-; no known jump sources
 Function8d680: ; 8d680 (23:5680)
 	ld hl, $b
 	add hl, bc
@@ -77014,7 +76266,6 @@ Function8d680: ; 8d680 (23:5680)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8d6a2: ; 8d6a2 (23:56a2)
 	ld a, [$cf64]
 	cp $40
@@ -77023,7 +76274,6 @@ Function8d6a2: ; 8d6a2 (23:56a2)
 	call Function8d120
 	ret
 
-; no known jump sources
 Function8d6ae: ; 8d6ae (23:56ae)
 	ld hl, $5
 	add hl, bc
@@ -77032,17 +76282,14 @@ Function8d6ae: ; 8d6ae (23:56ae)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8d6b7: ; 8d6b7 (23:56b7)
 	callba Function11d0b6
 	ret
 
-; no known jump sources
 Function8d6be: ; 8d6be (23:56be)
 	callba Function49aa2
 	ret
 
-; known jump sources: 8d302 (23:5302), 8d483 (23:5483)
 Function8d6c5: ; 8d6c5 (23:56c5)
 	ld hl, [sp+$0]
 	ld e, [hl]
@@ -77068,12 +76315,10 @@ Function8d6d8: ; 8d6d8
 	ret
 ; 8d6de
 
-; known jump sources: 8d363 (23:5363), 8d39c (23:539c), 8d3d7 (23:53d7), 8d465 (23:5465), 8d561 (23:5561), 8d59d (23:559d), 8d658 (23:5658), 8d677 (23:5677), 8d68f (23:568f)
 Function8d6de: ; 8d6de (23:56de)
 	call Function8e72c
 	ret
 
-; known jump sources: 8d3a6 (23:53a6), 8d3e1 (23:53e1), 8d56b (23:556b), 8d5a7 (23:55a7), 8d5d9 (23:55d9), 8d5fa (23:55fa), 8d627 (23:5627), 8d699 (23:5699)
 Function8d6e2: ; 8d6e2 (23:56e2)
 	call Function8e72a
 	ret
@@ -78620,7 +77865,6 @@ Function8e849: ; 8e849
 ; 8e854
 
 
-; no known jump sources
 Jumptable_8e854: ; 8e854 (23:6854)
 	dw Function8e8d5
 	dw Function8e961
@@ -78631,14 +77875,12 @@ Jumptable_8e854: ; 8e854 (23:6854)
 	dw Function8e862
 
 
-; no known jump sources
 Function8e862: ; 8e862 (23:6862)
 	call Function8e908
 	call Function8e86c
 	call Function8e936
 	ret
 
-; known jump sources: 8e865 (23:6865)
 Function8e86c: ; 8e86c (23:686c)
 	push bc
 	ld a, [$ffb0]
@@ -78668,7 +77910,6 @@ Function8e86c: ; 8e86c (23:686c)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8e898: ; 8e898 (23:6898)
 	call Function8e8d5
 	ld hl, $2
@@ -78685,7 +77926,6 @@ Function8e898: ; 8e898 (23:6898)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function8e8b1: ; 8e8b1 (23:68b1)
 	call Function8e908
 	call Function8e936
@@ -78707,14 +77947,12 @@ Function8e8b1: ; 8e8b1 (23:68b1)
 	ld [$c609], a
 	ret
 
-; known jump sources: 8e898 (23:6898)
 Function8e8d5: ; 8e8d5 (23:68d5)
 	call Function8e908
 	call Function8e8df
 	call Function8e936
 	ret
 
-; known jump sources: 8e8d8 (23:68d8)
 Function8e8df: ; 8e8df (23:68df)
 	push bc
 	ld a, [$ffb0]
@@ -78742,7 +77980,6 @@ Function8e8df: ; 8e8df (23:68df)
 	ld [hl], a
 	ret
 
-; known jump sources: 8e862 (23:6862), 8e8b1 (23:68b1), 8e8d5 (23:68d5)
 Function8e908: ; 8e908 (23:6908)
 	ld a, [$c3b7]
 	push af
@@ -78771,7 +78008,6 @@ Function8e908: ; 8e908 (23:6908)
 	ld [hl], a
 	ret
 
-; known jump sources: 8e868 (23:6868), 8e8b4 (23:68b4), 8e8db (23:68db)
 Function8e936: ; 8e936 (23:6936)
 	push bc
 	ld a, [$ffb0]
@@ -78789,7 +78025,6 @@ Function8e936: ; 8e936 (23:6936)
 	ld [hl], a
 	ret
 
-; known jump sources: 8e93a (23:693a)
 Function8e94c: ; 8e94c (23:694c)
 	callba Function50117
 	call GetHPPal
@@ -78805,7 +78040,6 @@ Unknown_8e95e: ; 8e95e
 	db $00, $40, $80
 ; 8e961
 
-; no known jump sources
 Function8e961: ; 8e961 (23:6961)
 	ld a, [$d265]
 	call ReadMonMenuIcon
@@ -78820,7 +78054,6 @@ Function8e961: ; 8e961 (23:6961)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Function8e97d: ; 8e97d (23:697d)
 	ld a, [$d265]
 	call ReadMonMenuIcon
@@ -78836,7 +78069,6 @@ Function8e97d: ; 8e97d (23:697d)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Function8e99a: ; 8e99a (23:699a)
 	ld a, [$d265]
 	call ReadMonMenuIcon
@@ -78859,7 +78091,6 @@ GetSpeciesIcon: ; 8e9ac
 ; 8e9bc
 
 
-; no known jump sources
 Function8e9bc: ; 8e9bc (23:69bc)
 	push de
 	ld a, [$d265]
@@ -78881,7 +78112,6 @@ Function8e9cc: ; 8e9cc
 	ret
 ; 8e9db
 
-; known jump sources: 8e91c (23:691c), 8e9a8 (23:69a8)
 Function8e9db: ; 8e9db (23:69db)
 	ld a, [$c3b7]
 
@@ -79165,7 +78395,6 @@ Function90069: ; 90069
 ; 90074
 
 
-; no known jump sources
 Function90074:: ; 90074 (24:4074)
 	call CheckStandingOnEntrance
 	jr z, .asm_900a4
@@ -79194,12 +78423,10 @@ Function90074:: ; 90074 (24:4074)
 	xor a
 	ret
 
-; known jump sources: 90079 (24:4079)
 Function900a6: ; 900a6 (24:40a6)
 	callba Function11401
 	ret
 
-; known jump sources: 901b9 (24:41b9)
 Function900ad: ; 900ad (24:40ad)
 	push hl
 	push bc
@@ -79214,7 +78441,6 @@ Function900ad: ; 900ad (24:40ad)
 	pop hl
 	ret
 
-; known jump sources: 90091 (24:4091)
 Function900bf: ; 900bf (24:40bf)
 	ld a, [$d040]
 	and a
@@ -79236,7 +78462,6 @@ Function900bf: ; 900bf (24:40bf)
 	xor a
 	ret
 
-; known jump sources: 9008e (24:408e)
 Function900de: ; 900de (24:40de)
 	callba Functionc000
 	ld a, c
@@ -79284,7 +78509,6 @@ Function900de: ; 900de (24:40de)
 	jr nz, .asm_900f7
 	ret
 
-; no known jump sources
 Function90136:: ; 90136 (24:4136)
 	ld a, [$dc31]
 	and a
@@ -79332,7 +78556,6 @@ UnknownScript_0x90173: ; 0x90173
 	2jump UnknownScript_0x90241
 ; 0x90178
 
-; known jump sources: 90150 (24:4150)
 Function90178: ; 90178 (24:4178)
 	ld a, [$dc31]
 	dec a
@@ -79359,7 +78582,6 @@ Function90197: ; 90197
 	scf
 	ret
 
-; known jump sources: 9121b (24:521b)
 Function90199: ; 90199 (24:4199)
 	ld a, [InLinkBattle]
 	and a
@@ -79433,7 +78655,6 @@ UnknownScript_0x90209: ; 0x90209
 	return
 ; 0x9020d
 
-; known jump sources: 90097 (24:4097), 90158 (24:4158)
 Function9020d: ; 9020d (24:420d)
 	nop
 	nop
@@ -79506,7 +78727,6 @@ Function9026f: ; 9026f
 	ret
 ; 9027c
 
-; known jump sources: 9026f (24:426f), 90272 (24:4272)
 Function9027c: ; 9027c (24:427c)
 	call Function9033f
 	call Function90357
@@ -79517,7 +78737,6 @@ Function9027c: ; 9027c (24:427c)
 	call Function90292
 	ret
 
-; known jump sources: 90282 (24:4282), 9028e (24:428e)
 Function90292: ; 90292 (24:4292)
 	ld a, [$dbf9]
 	ld b, a
@@ -79566,7 +78785,6 @@ Function902c9: ; 902c9
 ; 902e3
 
 
-; no known jump sources
 Function902e3: ; 902e3 (24:42e3)
 	ld de, SFX_NO_SIGNAL
 	call PlaySFX
@@ -79649,7 +78867,6 @@ Function90357
 ; 90363
 
 
-; known jump sources: 90296 (24:4296)
 Function90363: ; 90363 (24:4363)
 	push bc
 	call Function90375
@@ -79673,7 +78890,6 @@ Function90375: ; 90375
 ; 90380
 
 
-; known jump sources: 90371 (24:4371), 9130b (24:530b)
 Function90380: ; 90380 (24:4380)
 	ld h, d
 	ld l, e
@@ -79682,7 +78898,6 @@ Function90380: ; 90380 (24:4380)
 	call Function903a9
 	ret
 
-; no known jump sources
 Function9038a: ; 9038a (24:438a)
 	ld a, c
 	call Function9039a
@@ -79709,7 +78924,6 @@ Function9039a: ; 9039a
 ; 903a9
 
 
-; known jump sources: 90386 (24:4386)
 Function903a9: ; 903a9 (24:43a9)
 	ld a, c
 	and a
@@ -79760,7 +78974,6 @@ String_90402: db "BIKE SHOP:@"
 String_9040d: db "BUENA:", $22, "   DISC JOCKEY@"
 ; 90423
 
-; known jump sources: 903ad (24:43ad)
 Function90423: ; 90423 (24:4423)
 	push hl
 	push bc
@@ -79769,7 +78982,6 @@ Function90423: ; 90423 (24:4423)
 	pop hl
 	ret
 
-; known jump sources: 903be (24:43be)
 Function9042e: ; 9042e (24:442e)
 	push hl
 	push bc
@@ -79917,7 +79129,6 @@ UnknownText_0x9066d: ; 0x9066d
 	db "@"
 ; 0x90672
 
-; no known jump sources
 Function90672: ; 90672 (24:4672)
 	ld a, [$ffaa]
 	push af
@@ -80028,7 +79239,6 @@ Function90672: ; 90672 (24:4672)
 	ld [$FF00+$aa], a
 	ret
 
-; known jump sources: 906ca (24:46ca), 9071b (24:471b), 90729 (24:4729), 90760 (24:4760), 9076e (24:476e)
 Function90783: ; 90783 (24:4783)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -80040,7 +79250,6 @@ Function90783: ; 90783 (24:4783)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: 90710 (24:4710)
 Function90795: ; 90795 (24:4795)
 	ld a, [hJoyPressed]
 	and A_BUTTON
@@ -80093,7 +79302,6 @@ Function90795: ; 90795 (24:4795)
 	scf
 	ret
 
-; known jump sources: 90705 (24:4705), 907d4 (24:47d4), 9088e (24:488e)
 Function907de: ; 907de (24:47de)
 	push hl
 	ld a, [$c61c]
@@ -80135,7 +79343,6 @@ Function907f1: ; 907f1
 	ret
 ; 90810
 
-; known jump sources: 90755 (24:4755)
 Function90810: ; 90810 (24:4810)
 	ld a, [hJoyPressed] ; $ff00+$a7
 	and $1
@@ -80183,7 +79390,6 @@ Function90810: ; 90810 (24:4810)
 	scf
 	ret
 
-; known jump sources: 9074a (24:474a), 9084f (24:484f), 908ac (24:48ac)
 Function90859: ; 90859 (24:4859)
 	ld de, $c626
 	call Function90867
@@ -80192,7 +79398,6 @@ Function90859: ; 90859 (24:4859)
 	call PlaceString
 	ret
 
-; known jump sources: 9085c (24:485c), 90b54 (24:4b54)
 Function90867: ; 90867 (24:4867)
 	push hl
 	ld a, " "
@@ -80631,7 +79836,6 @@ Function90b23: ; 90b23
 	ret
 ; 90b3e
 
-; known jump sources: 907e5 (24:47e5), 908c0 (24:48c0)
 Function90b3e: ; 90b3e (24:4b3e)
 	ld l, e
 	ld h, d
@@ -80648,7 +79852,6 @@ Function90b3e: ; 90b3e (24:4b3e)
 	call Function90867
 	ret
 
-; known jump sources: 90b41 (24:4b41)
 Function90b58: ; 90b58 (24:4b58)
 	ld a, c
 	cp 4
@@ -80673,7 +79876,6 @@ String_90b76: db "MORN@"
 String_90b7b: db "DAY@"
 ; 90b7f
 
-; known jump sources: 90b4b (24:4b4b)
 Function90b7f: ; 90b7f (24:4b7f)
 	ld a, c
 	or a
@@ -80734,7 +79936,6 @@ Function90b8d: ; 90b8d (24:4b8d)
 	call Function91492
 	ret
 
-; known jump sources: 90ba3 (24:4ba3)
 Function90bea: ; 90bea (24:4bea)
 	call WhiteBGMap
 	call ClearTileMap
@@ -80835,7 +80036,6 @@ FastShipGFX: ; 90cb2
 INCBIN "gfx/misc/fast_ship.2bpp"
 ; 90d32
 
-; known jump sources: 90c08 (24:4c08)
 Function90d32: ; 90d32 (24:4d32)
 	ld de, $2410
 	ld a, $d
@@ -80845,7 +80045,6 @@ Function90d32: ; 90d32 (24:4d32)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Function90d41: ; 90d41 (24:4d41)
 	ld hl, $cf64
 	ld e, [hl]
@@ -80880,7 +80079,6 @@ Function90d56: ; 90d56
 ; 90d70
 
 
-; known jump sources: 90c14 (24:4c14)
 Function90d70: ; 90d70 (24:4d70)
 	ld a, [MapGroup]
 	ld b, a
@@ -80911,7 +80109,6 @@ Function90d70: ; 90d70 (24:4d70)
 	ld [$c6d7], a
 	ret
 
-; known jump sources: 90c36 (24:4c36)
 Function90d9e: ; 90d9e (24:4d9e)
 	ld a, $0
 	ld [$cf63], a
@@ -80919,7 +80116,6 @@ Function90d9e: ; 90d9e (24:4d9e)
 	ld [$cf64], a
 	ret
 
-; known jump sources: 90c39 (24:4c39), 90f2d (24:4f2d), 90fcd (24:4fcd), 910f9 (24:50f9), 91164 (24:5164)
 Function90da8: ; 90da8 (24:4da8)
 	xor a
 	ld [hBGMapMode], a
@@ -80972,7 +80168,6 @@ Function90da8: ; 90da8 (24:4da8)
 	ld [$cf65], a
 	ret
 
-; known jump sources: 90de1 (24:4de1), 90def (24:4def)
 Function90e00: ; 90e00 (24:4e00)
 	ld a, [hCGB] ; $ff00+$e6
 	and a
@@ -81057,7 +80252,6 @@ Function90e82: ; 90e82
 	ret
 ; 90e98
 
-; known jump sources: 90e91 (24:4e91)
 Function90e98: ; 90e98 (24:4e98)
 	hlcoord 17, 1
 	ld a, $3c
@@ -81074,7 +80268,6 @@ Function90e98: ; 90e98 (24:4e98)
 	ld [hl], $3f
 	ret
 
-; known jump sources: 90dcb (24:4dcb)
 Function90eb0: ; 90eb0 (24:4eb0)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $8
@@ -81099,24 +80292,20 @@ Function90eb0: ; 90eb0 (24:4eb0)
 	call Function90ef7
 	ret
 
-; known jump sources: 90ecc (24:4ecc)
 Function90ee4: ; 90ee4 (24:4ee4)
 	hlcoord 2, 0
 	ld a, $40
 	jr Function90ef7
 
-; known jump sources: 90ed2 (24:4ed2)
 Function90eeb: ; 90eeb (24:4eeb)
 	hlcoord 4, 0
 	ld a, $44
 	jr Function90ef7
 
-; known jump sources: 90ed8 (24:4ed8)
 Function90ef2: ; 90ef2 (24:4ef2)
 	hlcoord 6, 0
 	ld a, $42
 
-; known jump sources: 90ee0 (24:4ee0), 90ee9 (24:4ee9), 90ef0 (24:4ef0)
 Function90ef7: ; 90ef7 (24:4ef7)
 	ld [hli], a
 	inc a
@@ -81129,7 +80318,6 @@ Function90ef7: ; 90ef7 (24:4ef7)
 	ld [hld], a
 	ret
 
-; known jump sources: 90bb6 (24:4bb6)
 Function90f04: ; 90f04 (24:4f04)
 	ld a, [$cf63]
 	ld e, a
@@ -81142,7 +80330,6 @@ Function90f04: ; 90f04 (24:4f04)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_90f13: ; 90f13 (24:4f13)
 	dw Function90f2d
 	dw Function90f3e
@@ -81159,7 +80346,6 @@ Jumptable_90f13: ; 90f13 (24:4f13)
 	dw Function91112
 
 
-; no known jump sources
 Function90f2d: ; 90f2d (24:4f2d)
 	call Function90da8
 	ld hl, UnknownText_0x914d3
@@ -81169,7 +80355,6 @@ Function90f2d: ; 90f2d (24:4f2d)
 	call Function91492
 	ret
 
-; no known jump sources
 Function90f3e: ; 90f3e (24:4f3e)
 	call Function90f7b
 	ld hl, $ffa9
@@ -81206,7 +80391,6 @@ Function90f3e: ; 90f3e (24:4f3e)
 	set 7, [hl]
 	ret
 
-; known jump sources: 90f3e (24:4f3e)
 Function90f7b: ; 90f7b (24:4f7b)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -81215,7 +80399,6 @@ Function90f7b: ; 90f7b (24:4f7b)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: 90e32 (24:4e32), 90f7e (24:4f7e)
 Function90f86: ; 90f86 (24:4f86)
 	hlcoord 3, 5
 	ld bc, $50e
@@ -81241,7 +80424,6 @@ UnknownText_0x90faf: ; 0x90faf
 	db "@"
 ; 0x90fb4
 
-; no known jump sources
 Function90fb4: ; 90fb4 (24:4fb4)
 	ld a, [$c6d8]
 	cp FAST_SHIP
@@ -81261,7 +80443,6 @@ Function90fb4: ; 90fb4 (24:4fb4)
 	call Function91492
 	ret
 
-; no known jump sources
 Function90fcd: ; 90fcd (24:4fcd)
 	call Function90da8
 	ld a, [$c6d8]
@@ -81276,12 +80457,10 @@ Function90fcd: ; 90fcd (24:4fcd)
 	inc [hl]
 	ret
 
-; no known jump sources
 Function90fe9: ; 90fe9 (24:4fe9)
 	call Function910e8
 	jr Function90ff2
 
-; no known jump sources
 Function90fee: ; 90fee (24:4fee)
 	ld d, $2e
 	ld e, $1
@@ -81326,7 +80505,6 @@ Function90ff2: ; 90ff2 (24:4ff2)
 	set 7, [hl]
 	ret
 
-; known jump sources: 91004 (24:5004)
 Function9102f: ; 9102f (24:502f)
 	ld hl, $ffa9
 	ld a, [hl]
@@ -81462,7 +80640,6 @@ Function910e8: ; 910e8
 ; 910f9
 
 
-; no known jump sources
 Function910f9: ; 910f9 (24:50f9)
 	call Function90da8
 	ld de, $2454
@@ -81476,7 +80653,6 @@ Function910f9: ; 910f9 (24:50f9)
 	inc [hl]
 	ret
 
-; no known jump sources
 Function91112: ; 91112 (24:5112)
 	ld hl, $ffa9
 	ld a, [hl]
@@ -81523,7 +80699,6 @@ Function91112: ; 91112 (24:5112)
 	set 7, [hl]
 	ret
 
-; no known jump sources
 Function91156: ; 91156 (24:5156)
 	ld hl, $cf63
 	inc [hl]
@@ -81537,7 +80712,6 @@ Function91156: ; 91156 (24:5156)
 	call PrintText
 	ret
 
-; no known jump sources
 Function91171: ; 91171 (24:5171)
 	ld hl, hJoyPressed
 	ld a, [hl]
@@ -81615,7 +80789,6 @@ Function91171: ; 91171 (24:5171)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function911eb: ; 911eb (24:51eb)
 	call Function2d05
 	and a
@@ -81670,7 +80843,6 @@ OutOfServiceAreaText: ; 0x91251
 	db "@"
 ; 0x91256
 
-; no known jump sources
 Function91256: ; 91256 (24:5256)
 	ld a, [hJoyPressed] ; $ff00+$a7
 	and $3
@@ -81682,7 +80854,6 @@ Function91256: ; 91256 (24:5256)
 	call PrintText
 	ret
 
-; known jump sources: 9118b (24:518b)
 Function9126d: ; 9126d (24:526d)
 	ld hl, $ffa9
 	ld a, [hl]
@@ -81739,7 +80910,6 @@ Function9126d: ; 9126d (24:526d)
 	call WaitBGMap
 	ret
 
-; known jump sources: 9122c (24:522c), 912a6 (24:52a6), 9131a (24:531a)
 Function912b7: ; 912b7 (24:52b7)
 	ld a, " "
 	hlcoord 1, 4
@@ -81757,7 +80927,6 @@ Function912b7: ; 912b7 (24:52b7)
 	ld [hl], "▶"
 	ret
 
-; known jump sources: 90e94 (24:4e94), 912b0 (24:52b0), 913d7 (24:53d7)
 Function912d8: ; 912d8 (24:52d8)
 	hlcoord 1, 3
 	ld b, $9
@@ -81828,7 +80997,6 @@ Function9131e: ; 9131e
 	ret
 ; 91342
 
-; known jump sources: 911db (24:51db)
 Function91342: ; 91342 (24:5342)
 	ld hl, $dc7c
 	ld a, [$c6d2] 
@@ -81972,7 +81140,6 @@ Function9141b: ; 9141b
 	ret
 ; 9141d
 
-; known jump sources: 91392 (24:5392), 913bc (24:53bc), 913cf (24:53cf)
 Function9141d: ; 9141d (24:541d)
 	push de
 	ld a, [de]
@@ -82045,7 +81212,6 @@ Function9146e: ; 9146e
 ; 91480
 
 
-; known jump sources: 90f71 (24:4f71), 91025 (24:5025), 9114c (24:514c), 911ac (24:51ac)
 Function91480: ; 91480 (24:5480)
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -82074,7 +81240,6 @@ Function91492: ; 91492
 ; 914ab
 
 
-; known jump sources: 9148e (24:548e)
 Function914ab: ; 914ab (24:54ab)
 	ld hl, $c324
 	ld bc, $90
@@ -82084,7 +81249,6 @@ Function914ab: ; 914ab (24:54ab)
 	ld [$c3b4], a
 	ret
 
-; known jump sources: 90e1d (24:4e1d), 90e75 (24:4e75), 90e85 (24:4e85)
 Function914bb: ; 914bb (24:54bb)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 .asm_914be
@@ -82137,11 +81301,9 @@ ClockTilemapRLE: ; 915db
 INCBIN "baserom.gbc",$915db,$9163e - $915db
 ; 9163e
 
-; known jump sources: 9110a (24:510a)
 Function9163e: ; 9163e (24:563e)
 	jr UpdateRadioStation
 
-; no known jump sources
 Function91640: ; 91640 (24:5640)
 	push bc
 	call Function9164e
@@ -82152,7 +81314,6 @@ Function91640: ; 91640 (24:5640)
 	ld [hl], a
 	ret
 
-; known jump sources: 91641 (24:5641)
 Function9164e: ; 9164e (24:564e)
 	ld hl, $ffa9
 	ld a, [hl]
@@ -82317,7 +81478,6 @@ Function91740: ; 91740
 	call NoRadioStation
 	ret
 
-; known jump sources: 916c9 (24:56c9), 916d8 (24:56d8), 916e0 (24:56e0), 916e8 (24:56e8), 916fa (24:56fa), 91709 (24:5709), 91718 (24:5718)
 Function91744: ; 91744 (24:5744)
 	ld a, [$c6d8]
 	cp FAST_SHIP
@@ -82344,7 +81504,6 @@ POKE_FLUTE_RADIO  EQU 8
 UNOWN_RADIO       EQU 9
 EVOLUTION_RADIO   EQU 10
 
-; known jump sources: 916d5 (24:56d5)
 Function91753: ; 91753 (24:5753)
 	xor a ; OAKS_POKEMON_TALK
 	ld [$d002], a 
@@ -82355,7 +81514,6 @@ Function91753: ; 91753 (24:5753)
 	ld de, OaksPkmnTalkName
 	ret
 
-; known jump sources: 916d2 (24:56d2)
 Function91766: ; 91766 (24:5766)
 	ld a, POKEDEX_SHOW
 	ld [$d002], a 
@@ -82367,7 +81525,6 @@ Function91766: ; 91766 (24:5766)
 	ld de, PokedexShowName
 	ret
 
-; known jump sources: 916dd (24:56dd)
 Function9177b: ; 9177b (24:577b)
 	ld a, POKEMON_MUSIC
 	ld [$d002], a 
@@ -82379,7 +81536,6 @@ Function9177b: ; 9177b (24:577b)
 	ld de, PokemonMusicName
 	ret
 
-; known jump sources: 916e5 (24:56e5)
 Function91790: ; 91790 (24:5790)
 	ld a, LUCKY_CHANNEL
 	ld [$d002], a 
@@ -82391,7 +81547,6 @@ Function91790: ; 91790 (24:5790)
 	ld de, LuckyChannelName
 	ret
 
-; known jump sources: 916ed (24:56ed)
 Function917a5: ; 917a5 (24:57a5)
 	ld a, BUENAS_PASSWORD
 	ld [$d002], a 
@@ -82411,7 +81566,6 @@ Function917a5: ; 917a5 (24:57a5)
 BuenasPasswordName:    db "BUENA'S PASSWORD@"
 NotBuenasPasswordName: db "@"
 
-; known jump sources: 916f7 (24:56f7)
 Function917d5: ; 917d5 (24:57d5)
 	ld a, UNOWN_RADIO
 	ld [$d002], a 
@@ -82423,7 +81577,6 @@ Function917d5: ; 917d5 (24:57d5)
 	ld de, UnknownStationName
 	ret
 
-; known jump sources: 91706 (24:5706)
 Function917ea: ; 917ea (24:57ea)
 	ld a, PLACES_AND_PEOPLE
 	ld [$d002], a 
@@ -82435,7 +81588,6 @@ Function917ea: ; 917ea (24:57ea)
 	ld de, PlacesAndPeopleName
 	ret
 
-; known jump sources: 91715 (24:5715)
 Function917ff: ; 917ff (24:57ff)
 	ld a, LETS_ALL_SING
 	ld [$d002], a 
@@ -82460,7 +81612,6 @@ Function91814: ; 91814
 	ret
 ; 91829
 
-; known jump sources: 91724 (24:5724)
 Function91829: ; 91829 (24:5829)
 	ld a, POKE_FLUTE_RADIO
 	ld [$d002], a 
@@ -82472,7 +81623,6 @@ Function91829: ; 91829 (24:5829)
 	ld de, PokeFluteStationName
 	ret
 
-; known jump sources: 9173d (24:573d)
 Function9183e: ; 9183e (24:583e)
 	ld a, EVOLUTION_RADIO
 	ld [$d002], a 
@@ -82488,7 +81638,6 @@ Function9183e: ; 9183e (24:583e)
 Function91853: ; 91853
 	ret
 
-; no known jump sources
 Function91854: ; 91854 (24:5854)
 	push de
 	ld a, e
@@ -82501,7 +81650,6 @@ Function91854: ; 91854 (24:5854)
 	call PlayMusic
 	ret
 
-; no known jump sources
 Function91868: ; 91868 (24:5868)
 	push de
 	ld a, $fe
@@ -82513,7 +81661,6 @@ Function91868: ; 91868 (24:5868)
 	call PlayMusic
 	ret
 
-; known jump sources: 9175f (24:575f), 91774 (24:5774), 91789 (24:5789), 9179e (24:579e), 917b3 (24:57b3), 917e3 (24:57e3), 917f8 (24:57f8), 9180d (24:580d), 91837 (24:5837), 9184c (24:584c)
 Function9187c: ; 9187c (24:587c)
 	ld [$c6d9], a 
 	ld a, l
@@ -82522,7 +81669,6 @@ Function9187c: ; 9187c (24:587c)
 	ld [$c6db], a
 	ret
 
-; known jump sources: 91682 (24:5682), 91740 (24:5740)
 NoRadioStation: ; 91888 (24:5888)
 	call NoRadioMusic
 	call NoRadioName
@@ -82534,7 +81680,6 @@ NoRadioStation: ; 91888 (24:5888)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: 91888 (24:5888)
 NoRadioMusic: ; 9189d (24:589d)
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -82542,7 +81687,6 @@ NoRadioMusic: ; 9189d (24:589d)
 	ld [$c6dc], a 
 	ret
 
-; known jump sources: 9188b (24:588b)
 NoRadioName: ; 918a9 (24:58a9)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -83911,7 +83055,6 @@ Function926c7:
 	res 2, [hl]
 	ret
 
-; known jump sources: 926cc (24:66cc)
 Function926f7: ; 926f7 (24:66f7)
 	call WhiteBGMap
 	call ClearTileMap
@@ -83975,7 +83118,6 @@ Function926f7: ; 926f7 (24:66f7)
 	ld [$d002], a
 	ret
 
-; known jump sources: 92771 (24:6771)
 Function9279b: ; 9279b (24:679b)
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -83988,7 +83130,6 @@ Function9279b: ; 9279b (24:679b)
 	call DmgToCgbObjPals
 	ret
 
-; known jump sources: 926d2 (24:66d2)
 Function927af: ; 927af (24:67af)
 	ld a, [$cf63]
 	bit 7, a
@@ -84007,7 +83148,6 @@ Function927af: ; 927af (24:67af)
 	scf
 	ret
 
-; known jump sources: 927c9 (24:67c9)
 Function927d3: ; 927d3 (24:67d3)
 	ret
 ; 927d4 (24:67d4)
@@ -84036,7 +83176,6 @@ Function927d4: ; 927d4
 	ret
 ; 927f8
 
-; known jump sources: 927c6 (24:67c6)
 Function927f8: ; 927f8 (24:67f8)
 	hlcoord 5, 1
 	ld de, Coins ; $d855
@@ -84087,7 +83226,6 @@ Function9282c: ; 9282c
 	ret
 ; 92844
 
-; known jump sources: 927b6 (24:67b6)
 Function92844: ; 92844 (24:6844)
 	ld a, [$cf63]
 	ld e, a
@@ -84102,7 +83240,6 @@ Function92844: ; 92844 (24:6844)
 ; 92853 (24:6853)
 
 
-; no known jump sources
 Jumptable_92853: ; 92853 (24:6853)
 	dw Function9287e
 	dw Function9288e
@@ -84125,13 +83262,11 @@ Jumptable_92853: ; 92853 (24:6853)
 	dw Function929f0
 
 
-; known jump sources: 9287e (24:687e), 92899 (24:6899), 928cf (24:68cf), 928dd (24:68dd), 928fa (24:68fa), 92907 (24:6907), 92924 (24:6924), 92931 (24:6931), 9294e (24:694e), 9295c (24:695c), 9295f (24:695f), 92963 (24:6963), 92983 (24:6983), 9299a (24:699a), 929a1 (24:69a1), 929d5 (24:69d5)
 Function92879: ; 92879 (24:6879)
 	ld hl, $cf63
 	inc [hl]
 	ret
 
-; no known jump sources
 Function9287e: ; 9287e (24:687e)
 	call Function92879
 	xor a
@@ -84141,7 +83276,6 @@ Function9287e: ; 9287e (24:687e)
 	ld [$c70d], a
 	ret
 
-; no known jump sources
 Function9288e: ; 9288e (24:688e)
 	call Function9307c
 	jr nc, .asm_92899
@@ -84167,7 +83301,6 @@ Function9288e: ; 9288e (24:688e)
 	call Function9331e
 	ret
 
-; no known jump sources
 Function928c6: ; 928c6 (24:68c6)
 	ld hl, $cf64
 	ld a, [hl]
@@ -84181,7 +83314,6 @@ Function928c6: ; 928c6 (24:68c6)
 	ld [hJoypadSum], a ; $ff00+$a5
 	ret
 
-; no known jump sources
 Function928d6: ; 928d6 (24:68d6)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
@@ -84191,7 +83323,6 @@ Function928d6: ; 928d6 (24:68d6)
 	call Function92a2b
 	ld [$c6d0], a
 
-; no known jump sources
 Function928e6: ; 928e6 (24:68e6)
 	ld a, [$c6d0]
 	cp $0
@@ -84205,7 +83336,6 @@ Function928e6: ; 928e6 (24:68e6)
 	xor a
 	ld [hJoypadSum], a ; $ff00+$a5
 
-; no known jump sources
 Function92900: ; 92900 (24:6900)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
@@ -84215,7 +83345,6 @@ Function92900: ; 92900 (24:6900)
 	call Function92a2e
 	ld [$c6e0], a
 
-; no known jump sources
 Function92910: ; 92910 (24:6910)
 	ld a, [$c6e0]
 	cp $0
@@ -84229,7 +83358,6 @@ Function92910: ; 92910 (24:6910)
 	xor a
 	ld [hJoypadSum], a ; $ff00+$a5
 
-; no known jump sources
 Function9292a: ; 9292a (24:692a)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
@@ -84239,7 +83367,6 @@ Function9292a: ; 9292a (24:692a)
 	call Function92a60
 	ld [$c6f0], a
 
-; no known jump sources
 Function9293a: ; 9293a (24:693a)
 	ld a, [$c6f0]
 	cp $0
@@ -84254,7 +83381,6 @@ Function9293a: ; 9293a (24:693a)
 	ld [hJoypadSum], a ; $ff00+$a5
 	ret
 
-; no known jump sources
 Function92955: ; 92955 (24:6955)
 	ld a, [$c70d]
 	cp $ff
@@ -84267,7 +83393,6 @@ Function92955: ; 92955 (24:6955)
 	ld a, $10
 	ld [$cf64], a
 
-; no known jump sources
 Function9296b: ; 9296b (24:696b)
 	ld hl, $cf64
 	ld a, [hl]
@@ -84287,7 +83412,6 @@ Function9296b: ; 9296b (24:696b)
 	call Function92879
 	ret
 
-; no known jump sources
 Function92987: ; 92987 (24:6987)
 	xor a
 	ld [$c70b], a
@@ -84300,12 +83424,10 @@ Function92987: ; 92987 (24:6987)
 	call Function92879
 	ret
 
-; no known jump sources
 Function9299e: ; 9299e (24:699e)
 	call Function93158
 	call Function92879
 
-; no known jump sources
 Function929a4: ; 929a4 (24:69a4)
 	ld hl, $cf64
 	ld a, [hl]
@@ -84343,7 +83465,6 @@ Function929a4: ; 929a4 (24:69a4)
 	call Function92879
 	ret
 
-; no known jump sources
 Function929d9: ; 929d9 (24:69d9)
 	call Function9304c
 	call Functiona80
@@ -84357,13 +83478,11 @@ Function929d9: ; 929d9 (24:69d9)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Function929f0: ; 929f0 (24:69f0)
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 
-; known jump sources: 928f7 (24:68f7), 92921 (24:6921), 9294b (24:694b)
 Function929f6: ; 929f6 (24:69f6)
 	push de
 	call Function92a12
@@ -84378,7 +83497,6 @@ Function929f6: ; 929f6 (24:69f6)
 	ld [de], a
 	ret
 
-; known jump sources: 929bf (24:69bf)
 Function92a04: ; 92a04 (24:6a04)
 	ld a, d
 	cp 9999 / $100
@@ -84392,7 +83510,6 @@ Function92a04: ; 92a04 (24:6a04)
 	and a
 	ret
 
-; known jump sources: 929f7 (24:69f7)
 Function92a12: ; 92a12 (24:6a12)
 	ld hl, $3
 	add hl, bc
@@ -84413,12 +83530,10 @@ Function92a12: ; 92a12 (24:6a12)
 	add hl, de
 	ret
 
-; known jump sources: 928e0 (24:68e0)
 Function92a2b: ; 92a2b (24:6a2b)
 	ld a, $7
 	ret
 
-; known jump sources: 9290a (24:690a)
 Function92a2e: ; 92a2e (24:6a2e)
 	ld a, [$c70a]
 	cp $2
@@ -84440,7 +83555,6 @@ Function92a2e: ; 92a2e (24:6a2e)
 	ld a, $8
 	ret
 
-; known jump sources: 92a3f (24:6a3f)
 Function92a51: ; 92a51 (24:6a51)
 	ld a, [$c700]
 	and a
@@ -84452,7 +83566,6 @@ Function92a51: ; 92a51 (24:6a51)
 	and a
 	ret
 
-; known jump sources: 92934 (24:6934)
 Function92a60: ; 92a60 (24:6a60)
 	ld a, [$c70b]
 	and a
@@ -84488,7 +83601,6 @@ Function92a60: ; 92a60 (24:6a60)
 	ld a, $9
 	ret
 
-; known jump sources: 9276e (24:676e)
 Function92a98: ; 92a98 (24:6a98)
 	ld bc, $c6d0
 	ld hl, $6
@@ -84543,7 +83655,6 @@ Function92a98: ; 92a98 (24:6a98)
 	call Function92af9
 	ret
 
-; known jump sources: 92ab5 (24:6ab5), 92ad5 (24:6ad5), 92af5 (24:6af5)
 Function92af9: ; 92af9 (24:6af9)
 	ld hl, $0
 	add hl, bc
@@ -84557,7 +83668,6 @@ Function92af9: ; 92af9 (24:6af9)
 	call Function92b53
 	ret
 
-; known jump sources: 927b9 (24:67b9)
 Function92b0f: ; 92b0f (24:6b0f)
 	ld bc, $c6d0
 	call Function92b22
@@ -84567,7 +83677,6 @@ Function92b0f: ; 92b0f (24:6b0f)
 	call Function92b22
 	ret
 
-; known jump sources: 92b12 (24:6b12), 92b18 (24:6b18), 92b1e (24:6b1e)
 Function92b22: ; 92b22 (24:6b22)
 	ld hl, $4
 	add hl, bc
@@ -84605,7 +83714,6 @@ Function92b22: ; 92b22 (24:6b22)
 	jr nz, .asm_92b49
 	ret
 
-; known jump sources: 92b0b (24:6b0b), 92b3e (24:6b3e)
 Function92b53: ; 92b53 (24:6b53)
 	ld hl, $8
 	add hl, bc
@@ -84638,7 +83746,6 @@ Function92b53: ; 92b53 (24:6b53)
 	ld [hl], a
 	ret
 
-; known jump sources: 92b71 (24:6b71)
 Function92b83: ; 92b83 (24:6b83)
 	ld hl, $6
 	add hl, bc
@@ -84696,7 +83803,6 @@ Unknown_92bce: ; 92bce
 	db 0, 1, 2, 3, 4, 5
 ; 92bd4
 
-; known jump sources: 92b2b (24:6b2b)
 Function92bd4: ; 92bd4 (24:6bd4)
 	ld hl, 0
 	add hl, bc
@@ -85473,7 +84579,6 @@ Function92fcf: ; 92fcf
 	ret
 ; 93002
 
-; known jump sources: 9289f (24:689f)
 Function93002: ; 93002 (24:7002)
 	ld a, [$c709]
 	and a
@@ -85518,7 +84623,6 @@ Unknown_93031: ; 93031
 	db $ff, $ff
 ; 9303f
 
-; known jump sources: 9289c (24:689c)
 Function9303f: ; 9303f (24:703f)
 	ld b, $14
 	ld a, [$c70a]
@@ -85528,7 +84632,6 @@ Function9303f: ; 9303f (24:703f)
 	jr z, asm_9305a
 	jr asm_9304e
 
-; known jump sources: 929d9 (24:69d9)
 Function9304c: ; 9304c (24:704c)
 	ld b, $23
 asm_9304e: ; 9304e (24:704e)
@@ -85544,7 +84647,6 @@ asm_9305a: ; 9305a (24:705a)
 asm_93066: ; 93066 (24:7066)
 	hlcoord 3, 6
 
-; known jump sources: 93051 (24:7051), 93057 (24:7057), 9305d (24:705d), 93063 (24:7063)
 Function93069: ; 93069 (24:7069)
 	ld a, b
 	ld [hl], a
@@ -85560,7 +84662,6 @@ Function93069: ; 93069 (24:7069)
 	ld [hl], a
 	ret
 
-; known jump sources: 9288e (24:688e), 930ab (24:70ab)
 Function9307c: ; 9307c (24:707c)
 	ld hl, UnknownText_0x930c7
 	call PrintText
@@ -85636,7 +84737,6 @@ MenuData2_0x930de: ; 0x930de
 	db " 1@"
 ; 0x930e9
 
-; known jump sources: 929df (24:69df)
 Function930e9: ; 930e9 (24:70e9)
 	ld hl, Coins ; $d855
 	ld a, [hli]
@@ -85673,7 +84773,6 @@ UnknownText_9311f: ; 9311f
 	TX_FAR UnknownText_0x1c5092
 	db "@"
 
-; known jump sources: 92993 (24:6993)
 Function93124: ; 93124 (24:7124)
 	ld a, [EffectFailed] ; $c70d
 	cp $ff
@@ -85707,7 +84806,6 @@ Function93124: ; 93124 (24:7124)
 	ld [hl], a
 	ret
 
-; known jump sources: 9299e (24:699e)
 Function93158: ; 93158 (24:7158)
 	ld a, [EffectFailed] ; $c70d
 	cp $ff
@@ -85828,7 +84926,6 @@ Function93214: ; 93214
 	ret
 ; 9321d
 
-; no known jump sources
 Function9321d: ; 9321d (24:721d)
 	ld hl, $b
 	add hl, bc
@@ -85842,14 +84939,12 @@ Function9321d: ; 9321d (24:721d)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_9322d: ; 9322d (24:722d)
 	dw Function93233
 	dw Function93259
 	dw Function93289
 
 
-; no known jump sources
 Function93233: ; 93233 (24:7233)
 	ld hl, $e
 	add hl, bc
@@ -85874,7 +84969,6 @@ Function93233: ; 93233 (24:7233)
 	add hl, bc
 	ld [hl], $0
 
-; no known jump sources
 Function93259: ; 93259 (24:7259)
 	ld hl, $c
 	add hl, bc
@@ -85903,7 +84997,6 @@ Function93259: ; 93259 (24:7259)
 	call Function9331e
 	ret
 
-; no known jump sources
 Function93289: ; 93289 (24:7289)
 	ld hl, $6
 	add hl, bc
@@ -85930,7 +85023,6 @@ Function93289: ; 93289 (24:7289)
 	ld [hSCY], a ; $ff00+$d0
 	ret
 
-; no known jump sources
 Function932ac: ; 932ac (24:72ac)
 	ld hl, $b
 	add hl, bc
@@ -85944,14 +85036,12 @@ Function932ac: ; 932ac (24:72ac)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_932bc: ; 932bc (24:72bc)
 	dw Function932c2
 	dw Function932e0
 	dw Function932fc
 
 
-; no known jump sources
 Function932c2: ; 932c2 (24:72c2)
 	ld hl, $4
 	add hl, bc
@@ -85971,7 +85061,6 @@ Function932c2: ; 932c2 (24:72c2)
 	ld a, $1
 	ld [$cf64], a
 
-; no known jump sources
 Function932e0: ; 932e0 (24:72e0)
 	ld a, [$cf64]
 	cp $2
@@ -85990,7 +85079,6 @@ Function932e0: ; 932e0 (24:72e0)
 	add hl, bc
 	ld [hl], $8
 
-; no known jump sources
 Function932fc: ; 932fc (24:72fc)
 	ld hl, $c
 	add hl, bc
@@ -86019,7 +85107,6 @@ Function93316: ; 93316
 	ret
 ; 9331e
 
-; known jump sources: 93285 (24:7285)
 Function9331e: ; 9331e (24:731e)
 	push de
 	ld e, a
@@ -86174,7 +85261,6 @@ Functionb8089: ; b8089
 ; b8098
 
 
-; no known jump sources
 Functionb8098:: ; b8098 (2e:4098)
 	ld hl, $c2da
 	ld a, [hl]
@@ -86221,7 +85307,6 @@ Functionb80d3: ; b80d3
 ; b80e1
 
 
-; known jump sources: b80aa (2e:40aa)
 Functionb80e1: ; b80e1 (2e:40e1)
 	ld a, [$c2d9]
 	ld e, a
@@ -86238,7 +85323,6 @@ Functionb80e1: ; b80e1 (2e:40e1)
 	call PlaceString
 	ret
 
-; known jump sources: b80eb (2e:40eb)
 Functionb8101: ; b8101 (2e:4101)
 	ld c, $0
 	push hl
@@ -86937,7 +86021,6 @@ Functionb8612: ; b8612
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_b863a: ; b863a (2e:463a)
 	dw Functionb8742
 	dw Functionb8a46
@@ -87029,7 +86112,6 @@ Jumptable_b863a: ; b863a (2e:463a)
 	dw Functionb8acc
 
 
-; known jump sources: b87e9 (2e:47e9), b87ef (2e:47ef), b8aa1 (2e:4aa1), b8aa9 (2e:4aa9), b8ab1 (2e:4ab1), b8ab9 (2e:4ab9), b8ac1 (2e:4ac1), b8ac9 (2e:4ac9), b8ad1 (2e:4ad1), b8e4f (2e:4e4f), b9226 (2e:5226)
 Functionb86ea: ; b86ea (2e:46ea)
 	ld [$d003], a
 	ld hl, $d00c
@@ -87072,7 +86154,6 @@ Functionb8718: ; b8718
 	ret
 ; b8728
 
-; no known jump sources
 Functionb8728: ; b8728 (2e:4728)
 	ld hl, $d004
 	ld a, [hl]
@@ -87088,7 +86169,6 @@ Functionb8728: ; b8728 (2e:4728)
 	call nz, Functionb8a0b
 	jp Functionb8a17
 
-; no known jump sources
 Functionb8742: ; b8742 (2e:4742)
 	ld a, $5
 	ld [$d006], a
@@ -87097,19 +86177,16 @@ Functionb8742: ; b8742 (2e:4742)
 	ld a, $b
 	jp Functionb9221
 
-; no known jump sources
 Functionb8752: ; b8752 (2e:4752)
 	ld hl, UnknownText_0xb8825
 	ld a, $c
 	jp Functionb9221
 
-; no known jump sources
 Functionb875a: ; b875a (2e:475a)
 	ld hl, UnknownText_0xb882a
 	ld a, $d
 	jp Functionb9221
 
-; known jump sources: b8769 (2e:4769)
 Functionb8762: ; b8762 (2e:4762)
 	call Random
 	and $1f
@@ -87213,13 +86290,11 @@ Unknown_b87f2: ; b87f2
 	map ROUTE_31
 ; b8810
 
-; no known jump sources
 Functionb8810: ; b8810 (2e:4810)
 	ld hl, UnknownText_0xb8834
 	ld a, $f
 	jp Functionb9221
 
-; no known jump sources
 Functionb8818: ; b8818 (2e:4818)
 	ld hl, UnknownText_0xb8839
 	ld a, $10
@@ -87262,7 +86337,6 @@ UnknownText_0xb8839: ; 0xb8839
 	db "@"
 ; 0xb883e
 
-; no known jump sources
 Functionb883e: ; b883e (2e:483e)
 	ld a, [CurPartySpecies]
 	ld [$d265], a
@@ -87278,7 +86352,6 @@ UnknownText_0xb884f: ; 0xb884f
 	db "@"
 ; 0xb8854
 
-; no known jump sources
 Functionb8854: ; b8854 (2e:4854)
 	call Random
 	and $f
@@ -87409,7 +86482,6 @@ UnknownText_0xb88d4: ; 0xb88d4
 	db "@"
 ; 0xb88d9
 
-; no known jump sources
 Functionb88d9: ; b88d9 (2e:48d9)
 	call Random
 	and $f
@@ -87548,7 +86620,6 @@ UnknownText_0xb8969: ; 0xb8969
 	db "@"
 ; 0xb896e
 
-; no known jump sources
 Functionb896e: ; b896e (2e:496e)
 	callba Function91868
 	ld hl, UnknownText_0xb8993
@@ -87573,7 +86644,6 @@ UnknownText_0xb8993: ; 0xb8993
 	db "@"
 ; 0xb8994
 
-; no known jump sources
 Functionb8994: ; b8994 (2e:4994)
 	ld hl, $d004
 	dec [hl]
@@ -87588,7 +86658,6 @@ String_b89a4:
 	db "#MON@"
 ; b89a9
 
-; no known jump sources
 Functionb89a9: ; b89a9 (2e:49a9)
 	ld hl, $d004
 	dec [hl]
@@ -87603,7 +86672,6 @@ String_b89b9:
 	db "#MON Channel@"
 ; b89c6
 
-; no known jump sources
 Functionb89c6: ; b89c6 (2e:49c6)
 	ld hl, $d004
 	dec [hl]
@@ -87618,7 +86686,6 @@ String_b89d6:
 	db "@"
 ; b89d7
 
-; no known jump sources
 Functionb89d7: ; b89d7 (2e:49d7)
 	ld hl, $d004
 	dec [hl]
@@ -87642,21 +86709,18 @@ UnknownText_0xb89ff: ; 0xb89ff
 	db "@"
 ; 0xb8a00
 
-; known jump sources: b89a1 (2e:49a1), b89b6 (2e:49b6), b89d3 (2e:49d3)
 Functionb8a00: ; b8a00 (2e:4a00)
 	ld [$d002], a
 	ld a, $64
 	ld [$d004], a
 	jp PlaceString
 
-; known jump sources: b873c (2e:473c)
 Functionb8a0b: ; b8a0b (2e:4a0b)
 	hlcoord 0, 15
 	decoord 0, 13
 	ld bc, $28
 	jp CopyBytes
 
-; known jump sources: b873f (2e:473f)
 Functionb8a17: ; b8a17 (2e:4a17)
 	hlcoord 1, 15
 	ld bc, $12
@@ -87667,7 +86731,6 @@ Functionb8a17: ; b8a17 (2e:4a17)
 	ld a, $7f
 	jp ByteFill
 
-; known jump sources: b8a7d (2e:4a7d)
 Functionb8a2d: ; b8a2d (2e:4a2d)
 	push hl
 	push de
@@ -87693,7 +86756,6 @@ Functionb8a2d: ; b8a2d (2e:4a2d)
 	db BANK(PokedexEntries4)
 ; b8a46
 
-; no known jump sources
 Functionb8a46: ; b8a46 (2e:4a46)
 	call Functionb91eb
 .asm_b8a49
@@ -87715,7 +86777,6 @@ Functionb8a46: ; b8a46 (2e:4a46)
 	ld a, $13
 	jp Functionb9221
 
-; no known jump sources
 Functionb8a6c: ; b8a6c (2e:4a6c)
 	ld a, [CurPartySpecies] ; $d108
 	dec a
@@ -87748,43 +86809,36 @@ Functionb8a6c: ; b8a6c (2e:4a6c)
 	ld a, $14
 	jp Functionb86ea
 
-; no known jump sources
 Functionb8aa4: ; b8aa4 (2e:4aa4)
 	call Functionb8ad4
 	ld a, $15
 	jp Functionb86ea
 
-; no known jump sources
 Functionb8aac: ; b8aac (2e:4aac)
 	call Functionb8ad4
 	ld a, $16
 	jp Functionb86ea
 
-; no known jump sources
 Functionb8ab4: ; b8ab4 (2e:4ab4)
 	call Functionb8ad4
 	ld a, $55
 	jp Functionb86ea
 
-; no known jump sources
 Functionb8abc: ; b8abc (2e:4abc)
 	call Functionb8ad4
 	ld a, $56
 	jp Functionb86ea
 
-; no known jump sources
 Functionb8ac4: ; b8ac4 (2e:4ac4)
 	call Functionb8ad4
 	ld a, $57
 	jp Functionb86ea
 
-; no known jump sources
 Functionb8acc: ; b8acc (2e:4acc)
 	call Functionb8ad4
 	ld a, $1
 	jp Functionb86ea
 
-; known jump sources: b8aa4 (2e:4aa4), b8aac (2e:4aac), b8ab4 (2e:4ab4), b8abc (2e:4abc), b8ac4 (2e:4ac4), b8acc (2e:4acc)
 Functionb8ad4: ; b8ad4 (2e:4ad4)
 	ld a, [$d26b]
 	ld l, a
@@ -87803,7 +86857,6 @@ Functionb8ad4: ; b8ad4 (2e:4ad4)
 	call Functionb8b11
 	ret
 
-; known jump sources: b8a82 (2e:4a82), b8ae1 (2e:4ae1)
 Functionb8af3: ; b8af3 (2e:4af3)
 	ld de, $d26d
 	ld bc, $13
@@ -87823,7 +86876,6 @@ Functionb8af3: ; b8af3 (2e:4af3)
 	ret z
 	jr .asm_b8b05
 
-; known jump sources: b8a90 (2e:4a90), b8aef (2e:4aef)
 Functionb8b11: ; b8b11 (2e:4b11)
 	ld d, a
 .asm_b8b12
@@ -87852,45 +86904,38 @@ UnknownText_0xb8b30: ; 0xb8b30
 	db "@"
 ; 0xb8b35
 
-; no known jump sources
 Functionb8b35: ; b8b35 (2e:4b35)
 	call Functionb8b90
 	ld hl, UnknownText_0xb8baa
 	ld a, $17
 	jp Functionb9221
 
-; no known jump sources
 Functionb8b40: ; b8b40 (2e:4b40)
 	ld hl, UnknownText_0xb8baf
 	ld a, $18
 	jp Functionb9221
 
-; no known jump sources
 Functionb8b48: ; b8b48 (2e:4b48)
 	ld hl, UnknownText_0xb8bb4
 	ld a, $19
 	jp Functionb9221
 
-; no known jump sources
 Functionb8b50: ; b8b50 (2e:4b50)
 	call Functionb8b90
 	ld hl, UnknownText_0xb8bb9
 	ld a, $1d
 	jp Functionb9221
 
-; no known jump sources
 Functionb8b5b: ; b8b5b (2e:4b5b)
 	ld hl, UnknownText_0xb8bbe
 	ld a, $19
 	jp Functionb9221
 
-; no known jump sources
 Functionb8b63: ; b8b63 (2e:4b63)
 	ld hl, UnknownText_0xb8bc3
 	ld a, $1a
 	jp Functionb9221
 
-; no known jump sources
 Functionb8b6b: ; b8b6b (2e:4b6b)
 	call GetWeekday
 	and 1
@@ -87901,7 +86946,6 @@ Functionb8b6b: ; b8b6b (2e:4b6b)
 	ld a, $1b
 	jp Functionb9221
 
-; no known jump sources
 Functionb8b7d: ; b8b7d (2e:4b7d)
 	call GetWeekday
 	and 1
@@ -87912,11 +86956,9 @@ Functionb8b7d: ; b8b7d (2e:4b7d)
 	ld a, $1c
 	jp Functionb9221
 
-; no known jump sources
 Functionb8b8f: ; b8b8f (2e:4b8f)
 	ret
 
-; known jump sources: b8b35 (2e:4b35), b8b50 (2e:4b50)
 Functionb8b90: ; b8b90 (2e:4b90)
 	call Function1052
 	call PrintText
@@ -87990,7 +87032,6 @@ UnknownText_0xb8bd7: ; 0xb8bd7
 	db "@"
 ; 0xb8bdc
 
-; no known jump sources
 Functionb8bdc: ; b8bdc (2e:4bdc)
 	call Functionb91eb
 	callab Functionc434
@@ -88001,43 +87042,36 @@ Functionb8bdc: ; b8bdc (2e:4bdc)
 	ld a, $1e
 	jp Functionb9221
 
-; no known jump sources
 Functionb8bf5: ; b8bf5 (2e:4bf5)
 	ld hl, UnknownText_0xb8c83
 	ld a, $1f
 	jp Functionb9221
 
-; no known jump sources
 Functionb8bfd: ; b8bfd (2e:4bfd)
 	ld hl, UnknownText_0xb8c88
 	ld a, $20
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c05: ; b8c05 (2e:4c05)
 	ld hl, UnknownText_0xb8c8d
 	ld a, $21
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c0d: ; b8c0d (2e:4c0d)
 	ld hl, UnknownText_0xb8c92
 	ld a, $22
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c15: ; b8c15 (2e:4c15)
 	ld hl, UnknownText_0xb8c97
 	ld a, $23
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c1d: ; b8c1d (2e:4c1d)
 	ld hl, UnknownText_0xb8c9c
 	ld a, $24
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c25: ; b8c25 (2e:4c25)
 	ld hl, StringBuffer1 ; $d073
 	ld de, $dc9f
@@ -88049,31 +87083,26 @@ Functionb8c25: ; b8c25 (2e:4c25)
 	ld a, $25
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c3e: ; b8c3e (2e:4c3e)
 	ld hl, UnknownText_0xb8ca6
 	ld a, $26
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c46: ; b8c46 (2e:4c46)
 	ld hl, UnknownText_0xb8c9c
 	ld a, $27
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c4e: ; b8c4e (2e:4c4e)
 	ld hl, UnknownText_0xb8ca1
 	ld a, $28
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c56: ; b8c56 (2e:4c56)
 	ld hl, UnknownText_0xb8cab
 	ld a, $29
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c5e: ; b8c5e (2e:4c5e)
 	ld hl, UnknownText_0xb8cb0
 	call Random
@@ -88084,13 +87113,11 @@ Functionb8c5e: ; b8c5e (2e:4c5e)
 .asm_b8c6b
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c6e: ; b8c6e (2e:4c6e)
 	ld hl, UnknownText_0xb8cb5
 	ld a, $2b
 	jp Functionb9221
 
-; no known jump sources
 Functionb8c76: ; b8c76 (2e:4c76)
 	ld hl, UnknownText_0xb8cba
 	ld a, $3
@@ -88175,20 +87202,17 @@ UnknownText_0xb8cba: ; 0xb8cba
 	db "@"
 ; 0xb8cbf
 
-; no known jump sources
 Functionb8cbf: ; b8cbf (2e:4cbf)
 	call Functionb91eb
 	ld hl, UnknownText_0xb8ce3
 	ld a, $2c
 	jp Functionb9221
 
-; no known jump sources
 Functionb8cca: ; b8cca (2e:4cca)
 	ld hl, UnknownText_0xb8ce8
 	ld a, $2d
 	jp Functionb9221
 
-; no known jump sources
 Functionb8cd2: ; b8cd2 (2e:4cd2)
 	ld hl, UnknownText_0xb8ced
 	call Random
@@ -88218,7 +87242,6 @@ UnknownText_0xb8ced: ; 0xb8ced
 	db "@"
 ; 0xb8cf2
 
-; known jump sources: b8cfa (2e:4cfa), b8d1e (2e:4d1e)
 Functionb8cf2: ; b8cf2 (2e:4cf2)
 	call Random
 	and $7f
@@ -88267,7 +87290,6 @@ UnknownText_0xb8d51: ; 0xb8d51
 	db "@"
 ; 0xb8d56
 
-; no known jump sources
 Functionb8d56: ; b8d56 (2e:4d56)
 	call Random
 	and $f
@@ -88407,7 +87429,6 @@ UnknownText_0xb8de8: ; 0xb8de8
 	db "@"
 ; 0xb8ded
 
-; known jump sources: b8df2 (2e:4df2)
 Functionb8ded: ; b8ded (2e:4ded)
 	call Random
 	cp $9
@@ -88446,7 +87467,6 @@ UnknownText_0xb8e23: ; 0xb8e23
 	db "@"
 ; 0xb8e28
 
-; no known jump sources
 Functionb8e28: ; b8e28 (2e:4e28)
 	call Random
 	and $f
@@ -88491,62 +87511,52 @@ Unknown_b8e52: ; b8e52
 	dw UnknownText_0xb8de8
 ; b8e72
 
-; no known jump sources
 Functionb8e72: ; b8e72 (2e:4e72)
 	call Functionb91eb
 	ld hl, UnknownText_0xb8ec5
 	ld a, $32
 	jp Functionb9221
 
-; no known jump sources
 Functionb8e7d: ; b8e7d (2e:4e7d)
 	ld hl, UnknownText_0xb8eca
 	ld a, $33
 	jp Functionb9221
 
-; no known jump sources
 Functionb8e85: ; b8e85 (2e:4e85)
 	ld hl, UnknownText_0xb8ecf
 	ld a, $34
 	jp Functionb9221
 
-; no known jump sources
 Functionb8e8d: ; b8e8d (2e:4e8d)
 	ld hl, UnknownText_0xb8ed4
 	ld a, $35
 	jp Functionb9221
 
-; no known jump sources
 Functionb8e95: ; b8e95 (2e:4e95)
 	ld hl, UnknownText_0xb8ed9
 	ld a, $36
 	jp Functionb9221
 
-; no known jump sources
 Functionb8e9d: ; b8e9d (2e:4e9d)
 	ld hl, UnknownText_0xb8ede
 	ld a, $37
 	jp Functionb9221
 
-; no known jump sources
 Functionb8ea5: ; b8ea5 (2e:4ea5)
 	ld hl, UnknownText_0xb8ee3
 	ld a, $38
 	jp Functionb9221
 
-; no known jump sources
 Functionb8ead: ; b8ead (2e:4ead)
 	ld hl, UnknownText_0xb8ee8
 	ld a, $39
 	jp Functionb9221
 
-; no known jump sources
 Functionb8eb5: ; b8eb5 (2e:4eb5)
 	ld hl, UnknownText_0xb8eed
 	ld a, $3a
 	jp Functionb9221
 
-; no known jump sources
 Functionb8ebd: ; b8ebd (2e:4ebd)
 	ld hl, UnknownText_0xb8ef2
 	ld a, $7
@@ -88613,28 +87623,24 @@ UnknownText_0xb8ef2: ; 0xb8ef2
 	db "@"
 ; 0xb8ef7
 
-; no known jump sources
 Functionb8ef7: ; b8ef7 (2e:4ef7)
 	call Functionb91eb
 	ld a, $1
 	ld [$d005], a
 	ret
 
-; no known jump sources
 Functionb8f00: ; b8f00 (2e:4f00)
 	call Functionb91eb
 	ld a, $1
 	ld [$d005], a
 	ret
 
-; no known jump sources
 Functionb8f09: ; b8f09 (2e:4f09)
 	call Functionb91eb
 	ld a, $1
 	ld [$d005], a
 	ret
 
-; known jump sources: b915e (2e:515e)
 Functionb8f12: ; b8f12 (2e:4f12)
 	call Functionb9169
 	jp nc, Functionb8f22
@@ -88643,7 +87649,6 @@ Functionb8f12: ; b8f12 (2e:4f12)
 	jp z, Functionb912a
 	jp Functionb90c5
 
-; known jump sources: b8f15 (2e:4f15)
 Functionb8f22: ; b8f22 (2e:4f22)
 	call Functionb91eb
 	ld a, [hBGMapMode] ; $ff00+$d4
@@ -88659,13 +87664,11 @@ Functionb8f22: ; b8f22 (2e:4f22)
 	ld a, $40
 	jp Functionb9221
 
-; no known jump sources
 Functionb8f3f: ; b8f3f (2e:4f3f)
 	ld hl, UnknownText_0xb9187
 	ld a, $41
 	jp Functionb9221
 
-; no known jump sources
 Functionb8f47: ; b8f47 (2e:4f47)
 	call Functionb9169
 	ld hl, UnknownText_0xb918c
@@ -88673,7 +87676,6 @@ Functionb8f47: ; b8f47 (2e:4f47)
 	ld a, $42
 	jp Functionb9221
 
-; no known jump sources
 Functionb8f55: ; b8f55 (2e:4f55)
 	call Functionb9169
 	jp c, Functionb90c5
@@ -88739,7 +87741,6 @@ Functionb8f8f: ; b8f8f
 ; b8fb8
 
 
-; no known jump sources
 Jumptable_b8fb8: ; b8fb8 (2e:4fb8)
 	dw Functionb8fc0
 	dw Functionb8fc7
@@ -88747,25 +87748,21 @@ Jumptable_b8fb8: ; b8fb8 (2e:4fb8)
 	dw Functionb8fde
 
 
-; no known jump sources
 Functionb8fc0: ; b8fc0 (2e:4fc0)
 	call Functionb8fd5
 	call GetPokemonName
 	ret
 
-; no known jump sources
 Functionb8fc7: ; b8fc7 (2e:4fc7)
 	call Functionb8fd5
 	call GetItemName
 	ret
 
-; no known jump sources
 Functionb8fce: ; b8fce (2e:4fce)
 	call Functionb8fd5
 	call GetMoveName
 	ret
 
-; known jump sources: b8fc0 (2e:4fc0), b8fc7 (2e:4fc7), b8fce (2e:4fce)
 Functionb8fd5: ; b8fd5 (2e:4fd5)
 	ld h, 0
 	ld l, c
@@ -88774,7 +87771,6 @@ Functionb8fd5: ; b8fd5 (2e:4fd5)
 	ld [$d265], a
 	ret
 
-; no known jump sources
 Functionb8fde: ; b8fde (2e:4fde)
 	ld a, c
 	and a
@@ -88825,19 +87821,16 @@ Unknown_b9072: db 1, 12, X_ATTACK, X_DEFEND, X_SPEED
 Unknown_b9077: db 3, 13, "#MON Talk@", "#MON Music@", "Lucky Channel@"
 ; b909c
 
-; no known jump sources
 Functionb909c: ; b909c (2e:509c)
 	ld hl, UnknownText_0xb9196
 	ld a, $44
 	jp Functionb9221
 
-; no known jump sources
 Functionb90a4: ; b90a4 (2e:50a4)
 	ld hl, UnknownText_0xb919b
 	ld a, $45
 	jp Functionb9221
 
-; no known jump sources
 Functionb90ac: ; b90ac (2e:50ac)
 	call Functionb9169
 	ld hl, UnknownText_0xb91a0
@@ -88845,7 +87838,6 @@ Functionb90ac: ; b90ac (2e:50ac)
 	ld a, $4
 	jp Functionb9221
 
-; known jump sources: b8f4d (2e:4f4d), b90b2 (2e:50b2)
 Functionb90b9: ; b90b9 (2e:50b9)
 	push hl
 	ld hl, $dc1f
@@ -88854,7 +87846,6 @@ Functionb90b9: ; b90b9 (2e:50b9)
 	ld a, $46
 	jp Functionb9221
 
-; known jump sources: b8f1f (2e:4f1f), b8f58 (2e:4f58)
 Functionb90c5: ; b90c5 (2e:50c5)
 	ld hl, $dc1f
 	res 7, [hl]
@@ -88862,73 +87853,61 @@ Functionb90c5: ; b90c5 (2e:50c5)
 	ld a, $47
 	jp Functionb9221
 
-; no known jump sources
 Functionb90d2: ; b90d2 (2e:50d2)
 	ld hl, UnknownText_0xb91a5
 	ld a, $48
 	jp Functionb9221
 
-; no known jump sources
 Functionb90da: ; b90da (2e:50da)
 	ld hl, UnknownText_0xb91aa
 	ld a, $49
 	jp Functionb9221
 
-; no known jump sources
 Functionb90e2: ; b90e2 (2e:50e2)
 	ld hl, UnknownText_0xb91af
 	ld a, $4a
 	jp Functionb9221
 
-; no known jump sources
 Functionb90ea: ; b90ea (2e:50ea)
 	ld hl, UnknownText_0xb91b4
 	ld a, $4b
 	jp Functionb9221
 
-; no known jump sources
 Functionb90f2: ; b90f2 (2e:50f2)
 	ld hl, UnknownText_0xb91b9
 	ld a, $4c
 	jp Functionb9221
 
-; no known jump sources
 Functionb90fa: ; b90fa (2e:50fa)
 	ld hl, UnknownText_0xb91be
 	ld a, $4d
 	jp Functionb9221
 
-; no known jump sources
 Functionb9102: ; b9102 (2e:5102)
 	ld hl, UnknownText_0xb91c3
 	ld a, $4e
 	jp Functionb9221
 
-; no known jump sources
 Functionb910a: ; b910a (2e:510a)
 	ld hl, UnknownText_0xb91c8
 	ld a, $4f
 	jp Functionb9221
 
-; no known jump sources
 Functionb9112: ; b9112 (2e:5112)
 	ld hl, UnknownText_0xb91cd
 	ld a, $50
 	jp Functionb9221
 
-; no known jump sources
 Functionb911a: ; b911a (2e:511a)
 	ld hl, UnknownText_0xb91d2
 	ld a, $51
 	jp Functionb9221
 
-; no known jump sources
 Functionb9122: ; b9122 (2e:5122)
 	ld hl, UnknownText_0xb91d2
 	ld a, $52
 	jp Functionb9221
 
-; known jump sources: b8f1c (2e:4f1c)
 Functionb912a: ; b912a (2e:512a)
 	ld a, [hBGMapMode] ; $ff00+$d4
 	push af
@@ -88946,7 +87925,6 @@ Functionb912a: ; b912a (2e:512a)
 	ld a, $53
 	jp Functionb9221
 
-; no known jump sources
 Functionb9152: ; b9152 (2e:5152)
 	ld a, $4
 	ld [$d002], a
@@ -88958,7 +87936,6 @@ Functionb9152: ; b9152 (2e:5152)
 	ld a, $53
 	jp Functionb9221
 
-; known jump sources: b8f12 (2e:4f12), b8f47 (2e:4f47), b8f55 (2e:4f55), b90ac (2e:50ac), b915b (2e:515b)
 Functionb9169: ; b9169 (2e:5169)
 	call UpdateTime
 	ld a, [hHours] ; $ff00+$94
@@ -89078,7 +88055,6 @@ UnknownText_0xb91d7: ; 0xb91d7
 	db "@"
 ; 0xb91dc
 
-; known jump sources: b87e4 (2e:47e4), b8a8b (2e:4a8b), b8aea (2e:4aea), b8e38 (2e:4e38), b9222 (2e:5222)
 Functionb91dc: ; b91dc (2e:51dc)
 	ld a, [hl]
 	cp $16 ; TX_FAR
@@ -89087,7 +88063,6 @@ Functionb91dc: ; b91dc (2e:51dc)
 	ld bc, $28
 	jp CopyBytes
 
-; known jump sources: b8747 (2e:4747), b8a46 (2e:4a46), b8bdc (2e:4bdc), b8cbf (2e:4cbf), b8e72 (2e:4e72), b8ef7 (2e:4ef7), b8f00 (2e:4f00), b8f09 (2e:4f09), b8f22 (2e:4f22)
 Functionb91eb: ; b91eb (2e:51eb)
 	ld a, [$d005]
 	and a
@@ -89121,7 +88096,6 @@ Unknown_b920b: ; b920b
 	dw MUSIC_LAKE_OF_RAGE_ROCKET_RADIO
 ; b9221
 
-; known jump sources: b874f (2e:474f), b8757 (2e:4757), b875f (2e:475f), b8815 (2e:4815), b881d (2e:481d), b884c (2e:484c), b8866 (2e:4866), b88fb (2e:48fb), b8a69 (2e:4a69), b8b3d (2e:4b3d), b8b45 (2e:4b45), b8b4d (2e:4b4d), b8b58 (2e:4b58), b8b60 (2e:4b60), b8b68 (2e:4b68), b8b7a (2e:4b7a), b8b8c (2e:4b8c), b8bf2 (2e:4bf2), b8bfa (2e:4bfa), b8c02 (2e:4c02), b8c0a (2e:4c0a), b8c12 (2e:4c12), b8c1a (2e:4c1a), b8c22 (2e:4c22), b8c3b (2e:4c3b), b8c43 (2e:4c43), b8c4b (2e:4c4b), b8c53 (2e:4c53), b8c5b (2e:4c5b), b8c6b (2e:4c6b), b8c73 (2e:4c73), b8c7b (2e:4c7b), b8cc7 (2e:4cc7), b8ccf (2e:4ccf), b8ce0 (2e:4ce0), b8d3b (2e:4d3b), b8d7a (2e:4d7a), b8e0e (2e:4e0e), b8e7a (2e:4e7a), b8e82 (2e:4e82), b8e8a (2e:4e8a), b8e92 (2e:4e92), b8e9a (2e:4e9a), b8ea2 (2e:4ea2), b8eaa (2e:4eaa), b8eb2 (2e:4eb2), b8eba (2e:4eba), b8ec2 (2e:4ec2), b8f3c (2e:4f3c), b8f44 (2e:4f44), b8f52 (2e:4f52), b8f8c (2e:4f8c), b90a1 (2e:50a1), b90a9 (2e:50a9), b90b6 (2e:50b6), b90c2 (2e:50c2), b90cf (2e:50cf), b90d7 (2e:50d7), b90df (2e:50df), b90e7 (2e:50e7), b90ef (2e:50ef), b90f7 (2e:50f7), b90ff (2e:50ff), b9107 (2e:5107), b910f (2e:510f), b9117 (2e:5117), b911f (2e:511f), b9127 (2e:5127), b914f (2e:514f), b9166 (2e:5166)
 Functionb9221: ; b9221 (2e:5221)
 	push af
 	call Functionb91dc
@@ -90629,7 +89603,6 @@ Unknown_e00ed:
 ; Graphics for an unused Game Corner
 ; game were meant to be here.
 
-; no known jump sources
 Functione00ed: ; e00ed (38:40ed)
 	ret
 ; e00ee (38:40ee)
@@ -90696,7 +89669,6 @@ Functione00ee: ; e00ee (38:40ee)
 	res 4, [hl]
 	ret
 
-; known jump sources: e0177 (38:4177)
 Functione0191: ; e0191 (38:4191)
 	ld a, [$cf63]
 	ld e, a
@@ -91156,7 +90128,6 @@ String_e04bc:
 	db "COIN@"
 ; e04c1
 
-; known jump sources: e0144 (38:4144)
 Functione04c1: ; e04c1 (38:44c1)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -91177,7 +90148,6 @@ Functione04c1: ; e04c1 (38:44c1)
 Functione04e5: ; e04e5
 	ld a, $29
 
-; known jump sources: e04f4 (38:44f4), e0c4d (38:4c4d), e0c58 (38:4c58), e0c63 (38:4c63), e0c6e (38:4c6e), e0c79 (38:4c79)
 Functione04e7: ; e04e7 (38:44e7)
 	push bc
 	push hl
@@ -91193,7 +90163,6 @@ Functione04e7: ; e04e7 (38:44e7)
 	jr nz, Functione04e7
 	ret
 
-; known jump sources: e04d8 (38:44d8), e0506 (38:4506)
 Functione04f7: ; e04f7 (38:44f7)
 	push bc
 	push hl
@@ -91237,7 +90206,6 @@ Functione0509: ; e0509
 	ret
 ; e0521
 
-; known jump sources: e0141 (38:4141)
 Functione0521: ; e0521 (38:4521)
 	ld de, $8f60
 	ld hl, $8f62
@@ -92209,7 +91177,6 @@ Unknown_e0c26: ; e0c26
 	db $08, $08, $00, $e0
 ; e0c37
 
-; known jump sources: e0147 (38:4147)
 Functione0c37: ; e0c37 (38:4c37)
 	ld a, [hCGB] ; $ff00+$e6
 	and a
@@ -93105,7 +92072,6 @@ INCBIN "baserom.gbc", $e1bab, $e1c9b - $e1bab
 LZ_e1c9b: ; e1c9b
 INCBIN "baserom.gbc", $e1c9b, $e1e5b - $e1c9b
 
-; no known jump sources
 Functione1e5b: ; e1e5b (38:5e5b)
 	call Functione1e67
 	call DelayFrame
@@ -93114,7 +92080,6 @@ Functione1e5b: ; e1e5b (38:5e5b)
 	jr nc, .asm_e1e61
 	ret
 
-; known jump sources: e1e5b (38:5e5b)
 Functione1e67: ; e1e67 (38:5e67)
 	call DisableLCD
 	ld b, $8
@@ -93151,7 +92116,6 @@ Functione1e67: ; e1e67 (38:5e67)
 	call Functioncf8
 	ret
 
-; known jump sources: e1e61 (38:5e61)
 Functione1ebb: ; e1ebb (38:5ebb)
 	ld a, [$cf63]
 	bit 7, a
@@ -93165,7 +92129,6 @@ Functione1ebb: ; e1ebb (38:5ebb)
 	scf
 	ret
 
-; known jump sources: e1ec2 (38:5ec2)
 Functione1ed2: ; e1ed2 (38:5ed2)
 	ld a, [$cf63]
 	ld e, a
@@ -93627,7 +92590,6 @@ Functione2183: ; e2183
 	ret
 ; e21a1
 
-; no known jump sources
 Functione21a1: ; e21a1 (38:61a1)
 	ld a, [$cf63]
 	cp $7
@@ -93719,7 +92681,6 @@ Functione21a1: ; e21a1 (38:61a1)
 LZ_e2221: ; e2221
 INCBIN "baserom.gbc",$e2221,$e2391 - $e2221
 
-; no known jump sources
 Functione2391: ; e2391 (38:6391)
 	ld hl, Options ; $cfcc
 	ld a, [hl]
@@ -93757,14 +92718,12 @@ Functione2391: ; e2391 (38:6391)
 	ld [Options], a ; $cfcc
 	ret
 
-; known jump sources: e23be (38:63be)
 Functione23d5: ; e23d5 (38:63d5)
 	ld a, [$cf63]
 	ld hl, Jumptable_e23df
 	call Functione33df
 	jp [hl]
 
-; no known jump sources
 Jumptable_e23df: ; e23df (38:63df)
 	dw Functione23e9
 	dw Functione241a
@@ -93773,7 +92732,6 @@ Jumptable_e23df: ; e23df (38:63df)
 	dw Functione2992
 
 
-; no known jump sources
 Functione23e9: ; e23e9 (38:63e9)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -93795,7 +92753,6 @@ Functione23e9: ; e23e9 (38:63e9)
 	call Functione298d
 	ret
 
-; no known jump sources
 Functione241a: ; e241a (38:641a)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -93838,7 +92795,6 @@ Functione241a: ; e241a (38:641a)
 	ld [$cf63], a
 	ret
 
-; no known jump sources
 Functione245d: ; e245d (38:645d)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -93854,7 +92810,6 @@ Functione245d: ; e245d (38:645d)
 	call Functione298d
 	ret
 
-; no known jump sources
 Functione247d: ; e247d (38:647d)
 	ld hl, BillsPCDepositMenuDataHeader
 	call Function1d3c
@@ -93875,7 +92830,6 @@ Functione247d: ; e247d (38:647d)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 BillsPCDepositJumptable: ; e24a1 (38:64a1)
 	dw BillsPCDepositFuncDeposit ; Deposit Pokemon
 	dw BillsPCDepositFuncStats ; Pokemon Stats
@@ -93883,7 +92837,6 @@ BillsPCDepositJumptable: ; e24a1 (38:64a1)
 	dw BillsPCDepositFuncCancel ; Cancel
 
 
-; no known jump sources
 BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 	call Functione2f18
 	jp c, BillsPCDepositFuncCancel
@@ -93900,7 +92853,6 @@ BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 	call Functione2a6e
 	ret
 
-; no known jump sources
 BillsPCDepositFuncStats: ; e24c8 (38:64c8)
 	call Function1d6e
 	call Functione2f7e
@@ -93912,7 +92864,6 @@ BillsPCDepositFuncStats: ; e24c8 (38:64c8)
 	call Functione33d0
 	ret
 
-; no known jump sources
 BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	call Functione2f18
 	jr c, BillsPCDepositFuncCancel
@@ -93952,7 +92903,6 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	ld [$cfa9], a
 	ret
 
-; known jump sources: e248c (38:648c), e24ac (38:64ac), e24e3 (38:64e3), e24e8 (38:64e8)
 BillsPCDepositFuncCancel: ; e2537 (38:6537)
 	ld a, $0
 	ld [$cf63], a
@@ -93992,7 +92942,6 @@ Functione2564: ; e2564
 	ret
 ; e2583
 
-; no known jump sources
 Functione2583: ; e2583 (38:6583)
 	ld hl, Options ; $cfcc
 	ld a, [hl]
@@ -94030,14 +92979,12 @@ Functione2583: ; e2583 (38:6583)
 	ld [Options], a ; $cfcc
 	ret
 
-; known jump sources: e25b1 (38:65b1)
 Functione25c8: ; e25c8 (38:65c8)
 	ld a, [$cf63]
 	ld hl, Jumptable_e25d2
 	call Functione33df
 	jp [hl]
 
-; no known jump sources
 Jumptable_e25d2: ; e25d2 (38:65d2)
 	dw Functione25dc
 	dw Functione2612
@@ -94046,7 +92993,6 @@ Jumptable_e25d2: ; e25d2 (38:65d2)
 	dw Functione2992
 
 
-; no known jump sources
 Functione25dc: ; e25dc (38:65dc)
 	ld a, $f
 	ld [$cb2e], a
@@ -94070,7 +93016,6 @@ Functione25dc: ; e25dc (38:65dc)
 	call Functione298d
 	ret
 
-; no known jump sources
 Functione2612: ; e2612 (38:6612)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -94114,7 +93059,6 @@ Functione2612: ; e2612 (38:6612)
 	ret
 ; e2655
 
-; no known jump sources
 Functione2655: ; e2655 (38:6655)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -94130,7 +93074,6 @@ Functione2655: ; e2655 (38:6655)
 	call Functione298d
 	ret
 
-; no known jump sources
 Functione2675: ; e2675 (38:6675)
 	ld hl, BillsPCWithdrawMenuDataHeader
 	call Function1d3c
@@ -94151,7 +93094,6 @@ Functione2675: ; e2675 (38:6675)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 BillsPCWithdrawJumptable: ; e2699 (38:6699) #mark
 	dw BillsPCWithdrawFuncWithdraw ; Withdraw
 	dw BillsPCWithdrawFuncStats ; Stats
@@ -94159,7 +93101,6 @@ BillsPCWithdrawJumptable: ; e2699 (38:6699) #mark
 	dw BillsPCWithdrawFuncCancel ; Cancel
 
 
-; no known jump sources
 BillsPCWithdrawFuncWithdraw: ; e26a1 (38:66a1)
 	call Functione2f18
 	jp c, BillsPCWithdrawFuncCancel
@@ -94176,7 +93117,6 @@ BillsPCWithdrawFuncWithdraw: ; e26a1 (38:66a1)
 	call Functione2a6e
 	ret
 
-; no known jump sources
 BillsPCWithdrawFuncStats: ; e26c0 (38:66c0)
 	call Function1d6e
 	call Functione2f7e
@@ -94188,7 +93128,6 @@ BillsPCWithdrawFuncStats: ; e26c0 (38:66c0)
 	call Functione33d0
 	ret
 
-; no known jump sources
 BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
 	ld a, [$cfa9]
 	push af
@@ -94226,7 +93165,6 @@ BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
 	ld [$cfa9], a
 	ret
 
-; known jump sources: e2684 (38:6684), e26a4 (38:66a4)
 BillsPCWithdrawFuncCancel: ; e272b (38:672b)
 	ld a, $0
 	ld [$cf63], a
@@ -94544,7 +93482,6 @@ Functione2903: ; e2903
 	ret
 ; e2963
 
-; known jump sources: e23aa (38:63aa), e259c (38:659c)
 Functione2963: ; e2963 (38:6963)
 	call WhiteBGMap
 	call ClearSprites
@@ -94563,19 +93500,16 @@ Functione2963: ; e2963 (38:6963)
 	ld [$cb2a], a
 	ret
 
-; known jump sources: e2416 (38:6416), e2479 (38:6479), e260e (38:660e), e2671 (38:6671)
 Functione298d: ; e298d (38:698d)
 	ld hl, $cf63
 	inc [hl]
 	ret
 
-; no known jump sources
 Functione2992: ; e2992 (38:6992)
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 
-; known jump sources: e2faa (38:6faa)
 Functione2998: ; e2998 (38:6998)
 	ld a, [$cb2d]
 	ld d, a
@@ -94595,7 +93529,6 @@ Functione2998: ; e2998 (38:6998)
 .asm_e29b2
 	jp Functione2a65
 
-; known jump sources: e2427 (38:6427), e261f (38:661f)
 Functione29b5: ; e29b5 (38:69b5)
 	ld hl, $ffa9
 	ld a, [$cb2d]
@@ -94725,13 +93658,11 @@ Functione2a56: ; e2a56
 	ld [hl], $0
 	jr Functione2a6c
 
-; known jump sources: e29b2 (38:69b2), e29cd (38:69cd), e2a27 (38:6a27), e2a35 (38:6a35)
 Functione2a65: ; e2a65 (38:6a65)
 	xor a
 	and a
 	ret
 
-; known jump sources: e2a20 (38:6a20), e2a2a (38:6a2a), e2a40 (38:6a40), e2a46 (38:6a46)
 Functione2a68: ; e2a68 (38:6a68)
 	ld a, $1
 	and a
@@ -94743,7 +93674,6 @@ Functione2a6c: ; e2a6c
 	ret
 ; e2a6e
 
-; known jump sources: e23f8 (38:63f8), e2471 (38:6471), e24c4 (38:64c4), e24f1 (38:64f1), e252f (38:652f), e25f0 (38:65f0), e2669 (38:6669), e26bc (38:66bc), e26e4 (38:66e4), e2723 (38:6723), e2f4c (38:6f4c), e2f6b (38:6f6b), e30e7 (38:70e7), e316d (38:716d)
 Functione2a6e: ; e2a6e (38:6a6e)
 	push de
 	hlcoord 0, 15
@@ -94899,7 +93829,6 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 	ld [hl], a
 	ret
 
-; known jump sources: e2afd (38:6afd), e2fb6 (38:6fb6)
 Functione2b6d: ; e2b6d (38:6b6d)
 	ld a, [$cb2b]
 	ld hl, $cb2a
@@ -95002,7 +93931,6 @@ Functione2b6d: ; e2b6d (38:6b6d)
 	call CloseSRAM
 	ret
 
-; known jump sources: e2400 (38:6400), e2432 (38:6432), e25f8 (38:65f8), e262a (38:662a)
 Functione2c2c: ; e2c2c (38:6c2c)
 	hlcoord 8, 2
 	lb bc, 10, 10
@@ -95046,7 +93974,6 @@ String_e2c67:
 	db "CANCEL@"
 ; e2c6e
 
-; known jump sources: e2c56 (38:6c56)
 Functione2c6e: ; e2c6e (38:6c6e)
 	ld a, [de]
 	and a
@@ -95156,7 +94083,6 @@ String_e2d2a:
 	db "-----@"
 ; e2d30
 
-; known jump sources: e23ef (38:63ef), e25e7 (38:65e7)
 Functione2d30: ; e2d30 (38:6d30)
 	xor a
 	ld hl, OverworldMap ; $c800
@@ -95269,7 +94195,6 @@ Functione2d30: ; e2d30 (38:6d30)
 	ld [$cb2c], a
 	ret
 
-; known jump sources: e2443 (38:6443), e2463 (38:6463), e24d4 (38:64d4), e263b (38:663b), e265b (38:665b), e26cc (38:66cc), e2ad8 (38:6ad8), e2fb0 (38:6fb0)
 Functione2def: ; e2def (38:6def)
 	ld a, [$cb2b]
 	ld hl, $cb2a
@@ -95283,7 +94208,6 @@ Functione2def: ; e2def (38:6def)
 	ld a, [hl]
 	ret
 
-; known jump sources: e2413 (38:6413), e242c (38:642c), e260b (38:660b), e2624 (38:6624)
 Functione2e01: ; e2e01 (38:6e01)
 	ld a, [$cb2c]
 	and a
@@ -95436,7 +94360,6 @@ Functione2ee5: ; e2ee5
 	ret
 ; e2f18
 
-; known jump sources: e24a9 (38:64a9), e24e0 (38:64e0), e26a1 (38:66a1)
 Functione2f18: ; e2f18 (38:6f18)
 	ld a, [$cb2e]
 	and a
@@ -95474,7 +94397,6 @@ Functione2f18: ; e2f18 (38:6f18)
 	scf
 	ret
 
-; known jump sources: e24e5 (38:64e5), e26dc (38:66dc)
 Functione2f5f: ; e2f5f (38:6f5f)
 	ld a, [CurPartySpecies] ; $d108
 	cp EGG
@@ -95492,7 +94414,6 @@ Functione2f5f: ; e2f5f (38:6f5f)
 	scf
 	ret
 
-; known jump sources: e24cb (38:64cb), e26c3 (38:66c3)
 Functione2f7e: ; e2f7e (38:6f7e)
 	call LowVolume
 	call Functione2fd6
@@ -95503,7 +94424,6 @@ Functione2f7e: ; e2f7e (38:6f7e)
 	call MaxVolume
 	ret
 
-; no known jump sources
 Functione2f95: ; e2f95 (38:6f95)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -95536,7 +94456,6 @@ Functione2f95: ; e2f95 (38:6f95)
 	ld [$cf73], a
 	ret
 
-; known jump sources: e2f81 (38:6f81), e2fcd (38:6fcd)
 Functione2fd6: ; e2fd6 (38:6fd6)
 	ld a, [$cb2b]
 	ld hl, $cb2a
@@ -95607,7 +94526,6 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 	callba Function5088b
 	ret
 
-; known jump sources: e24af (38:64af)
 Functione307c: ; e307c (38:707c)
 	ld a, [$cb2b]
 	ld hl, $cb2a
@@ -95659,7 +94577,6 @@ Functione307c: ; e307c (38:707c)
 	scf
 	ret
 
-; known jump sources: e26a7 (38:66a7)
 Functione30fa: ; e30fa (38:70fa)
 	ld a, [$cb2b]
 	ld hl, $cb2a
@@ -95714,7 +94631,6 @@ Functione30fa: ; e30fa (38:70fa)
 	scf
 	ret
 
-; known jump sources: e251b (38:651b), e270f (38:670f)
 Functione3180: ; e3180 (38:7180)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $f08
@@ -95959,7 +94875,6 @@ Functione3346: ; e3346
 	ret
 ; e3357
 
-; known jump sources: e2ff2 (38:6ff2), e3023 (38:7023), e3052 (38:7052)
 Functione3357: ; e3357 (38:7357)
 	ld a, [CurPartyMon] ; $d109
 	ld c, a
@@ -95969,7 +94884,6 @@ Functione3357: ; e3357 (38:7357)
 	ld [CurPartySpecies], a ; $d108
 	ret
 
-; known jump sources: e2ff8 (38:6ff8), e3029 (38:7029), e305b (38:705b)
 Functione3363: ; e3363 (38:7363)
 	ld bc, $b
 	ld a, [CurPartyMon] ; $d109
@@ -95979,7 +94893,6 @@ Functione3363: ; e3363 (38:7363)
 	call CopyBytes
 	ret
 
-; known jump sources: e2ffe (38:6ffe), e302f (38:702f), e3064 (38:7064)
 Functione3376: ; e3376 (38:7376)
 	ld bc, $b
 	ld a, [CurPartyMon] ; $d109
@@ -95989,7 +94902,6 @@ Functione3376: ; e3376 (38:7376)
 	call CopyBytes
 	ret
 
-; known jump sources: e306f (38:706f)
 Functione3389: ; e3389 (38:7389)
 	ld a, [CurPartyMon] ; $d109
 	call AddNTimes
@@ -95997,7 +94909,6 @@ Functione3389: ; e3389 (38:7389)
 	call CopyBytes
 	ret
 
-; known jump sources: e2b86 (38:6b86), e2c8b (38:6c8b), e2d4f (38:6d4f), e3049 (38:7049)
 Functione3396: ; e3396 (38:7396)
 	dec b
 	ld c, b
@@ -96032,7 +94943,6 @@ Unknown_e33a6: ; e33a6
 	dbw $03, $b9e0
 ; e33d0
 
-; known jump sources: e240d (38:640d), e246b (38:646b), e24dc (38:64dc), e2605 (38:6605), e2663 (38:6663), e26d4 (38:66d4)
 Functione33d0: ; e33d0 (38:73d0)
 	ld b, a
 	call GetSGBLayout
@@ -96042,7 +94952,6 @@ Functione33d0: ; e33d0 (38:73d0)
 	call Functioncf8
 	ret
 
-; known jump sources: e23db (38:63db), e25ce (38:65ce)
 Functione33df: ; e33df (38:73df)
 	ld e, a
 	ld d, $0
@@ -96053,7 +94962,6 @@ Functione33df: ; e33df (38:73df)
 	ld l, a
 	ret
 
-; known jump sources: e296c (38:696c), e2f8e (38:6f8e)
 Functione33e8: ; e33e8 (38:73e8)
 	call DisableLCD
 	ld hl, $9000
@@ -96097,7 +95005,6 @@ String_e3586: db "The party's full!@"
 String_e3597: db "No releasing EGGS!@"
 ; e35aa
 
-; no known jump sources
 Functione35aa: ; e35aa (38:75aa)
 	call Function1d6e
 	call Functione35e2
@@ -96124,7 +95031,6 @@ Functione35aa: ; e35aa (38:75aa)
 	call Function1c17
 	ret
 
-; known jump sources: e35ad (38:75ad), e372a (38:772a)
 Functione35e2: ; e35e2 (38:75e2)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -96169,7 +95075,6 @@ Functione3619: ; e3619
 	ret
 ; e3626
 
-; known jump sources: e36e7 (38:76e7), e375d (38:775d), e376e (38:776e)
 Functione3626: ; e3626 (38:7626)
 	ld bc, 9
 	ld hl, wBoxNames
@@ -96211,7 +95116,6 @@ String_e3668: ; e3668
 	db "@"
 ; e366c
 
-; known jump sources: e3717 (38:7717)
 Functione366c: ; e366c (38:766c)
 	ld a, [wCurBox]
 	ld c, a
@@ -96270,7 +95174,6 @@ Unknown_e36a5: ; e36a5
 	dbw $03, $b9e0
 ; e36cf
 
-; known jump sources: e35b3 (38:75b3)
 Functione36cf: ; e36cf (38:76cf)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld b, $2
@@ -96291,7 +95194,6 @@ String_e36f1: ; e36f1
 	db "CURRENT@"
 ; e36f9
 
-; known jump sources: e35d9 (38:75d9)
 Functione36f9: ; e36f9 (38:76f9)
 	ld hl, MenuDataHeader_0xe377b
 	call LoadMenuDataHeader
@@ -96379,7 +95281,6 @@ MenuData2_0xe3783: ; 0xe3783
 	db "QUIT@"
 ; 0xe379c
 
-; known jump sources: e35b6 (38:75b6)
 Functione379c: ; e379c (38:779c)
 	ld de, String_e37a1
 	jr Functione37e3
@@ -96389,7 +95290,6 @@ String_e37a1: ; e37a1
 	db "Choose a BOX.@"
 ; e37af
 
-; known jump sources: e35d6 (38:75d6)
 Functione37af: ; e37af (38:77af)
 	ld de, String_e37b4
 	jr Functione37e3
@@ -96399,7 +95299,6 @@ String_e37b4: ; e37b4
 	db "What's up?@"
 ; e37be
 
-; known jump sources: e372f (38:772f)
 Functione37be: ; e37be (38:77be)
 	ld de, String_e37d3
 	call Functione37e3
@@ -96415,7 +95314,6 @@ String_e37d3: ; e37d3
 	db "There's no #MON.@"
 ; e37e3
 
-; known jump sources: e379f (38:779f), e37b2 (38:77b2), e37c1 (38:77c1)
 Functione37e3: ; e37e3 (38:77e3)
 	push de
 	hlcoord 0, 14
@@ -97224,7 +96122,6 @@ Functione46dd: ; e46dd
 
 
 
-; no known jump sources
 Functione46ed: ; e46ed (39:46ed)
 	ld hl, $b
 	add hl, bc
@@ -97238,7 +96135,6 @@ Functione46ed: ; e46ed (39:46ed)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_e46fd: ; e46fd (39:46fd)
 	dw Functione4707
 	dw Functione470d
@@ -97247,14 +96143,12 @@ Jumptable_e46fd: ; e46fd (39:46fd)
 	dw Functione47ab
 
 
-; no known jump sources
 Functione4707: ; e4707 (39:4707)
 	ld hl, $b
 	add hl, bc
 	inc [hl]
 	ret
 
-; no known jump sources
 Functione470d: ; e470d (39:470d)
 	ld hl, $c
 	add hl, bc
@@ -97300,7 +96194,6 @@ Functione470d: ; e470d (39:470d)
 	call PlaySFX
 	ret
 
-; no known jump sources
 Functione4759: ; e4759 (39:4759)
 	ld hl, $d
 	add hl, bc
@@ -97320,7 +96213,6 @@ Functione4759: ; e4759 (39:4759)
 	call PlaySFX
 	ret
 
-; no known jump sources
 Functione4776: ; e4776 (39:4776)
 	ld hl, $d
 	add hl, bc
@@ -97354,7 +96246,6 @@ Functione4776: ; e4776 (39:4776)
 	inc [hl]
 	call Functione4687
 
-; no known jump sources
 Functione47ab: ; e47ab (39:47ab)
 	ret
 ; e47ac (39:47ac)
@@ -98606,7 +97497,6 @@ Unknown_e519c: ; e519c
 	RGB 31, 31, 31
 ; e51dc
 
-; known jump sources: e49e7 (39:49e7), e4b12 (39:4b12), e4b28 (39:4b28)
 Functione51dc: ; e51dc (39:51dc)
 	push de
 	ld a, $29
@@ -98647,7 +97537,6 @@ Functione51dc: ; e51dc (39:51dc)
 	call Function3b3c
 	ret
 
-; known jump sources: e49f5 (39:49f5), e4b20 (39:4b20), e4b37 (39:4b37), e4d19 (39:4d19), e4d2e (39:4d2e)
 Functione5223: ; e5223 (39:5223)
 	add a
 	add a
@@ -98751,7 +97640,6 @@ hue = hue + 1
 endr
 ; e5348
 
-; known jump sources: e5045 (39:5045)
 Functione5348: ; e5348 (39:5348)
 	and a
 	jr nz, .asm_e5350
@@ -98811,7 +97699,6 @@ Palette_e5395: ; e5395
 	RGB 31, 31, 31
 ; e539d
 
-; known jump sources: e5145 (39:5145)
 Functione539d: ; e539d (39:539d)
 	add a
 	add a
@@ -98879,7 +97766,6 @@ hue = hue + -1
 endr
 ; e541b
 
-; known jump sources: e4e84 (39:4e84), e4fc2 (39:4fc2)
 Functione541b: ; e541b (39:541b)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -98908,7 +97794,6 @@ Functione541b: ; e541b (39:541b)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; known jump sources: e4ee5 (39:4ee5)
 Functione5441: ; e5441 (39:5441)
 	ld a, [$cf64]
 	and $3
@@ -98921,7 +97806,6 @@ Functione5441: ; e5441 (39:5441)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: e505d (39:505d), e5446 (39:5446)
 Functione5451: ; e5451 (39:5451)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $168
@@ -98943,7 +97827,6 @@ Functione5451: ; e5451 (39:5451)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: e4c4f (39:4c4f)
 Functione546d: ; e546d (39:546d)
 	ld a, [$cf64]
 	cp $24
@@ -98970,13 +97853,11 @@ Functione546d: ; e546d (39:546d)
 Unknown_e5496: ; e5496
 INCBIN "baserom.gbc",$e5496,$e549e - $e5496
 
-; known jump sources: e49c8 (39:49c8), e4a5e (39:4a5e), e4ae9 (39:4ae9), e4bc5 (39:4bc5), e4cec (39:4cec), e4dec (39:4dec), e4ebe (39:4ebe), e4f59 (39:4f59), e5003 (39:5003), e511f (39:511f)
 Functione549e: ; e549e (39:549e)
 	ld a, $1
 	ld [hCGBPalUpdate], a ; $ff00+$e5
 	ret
 
-; known jump sources: e495b (39:495b), e49fd (39:49fd), e4a7a (39:4a7a), e4b3f (39:4b3f), e4c86 (39:4c86), e4d6d (39:4d6d), e4e40 (39:4e40), e4ef5 (39:4ef5), e4f7e (39:4f7e)
 Functione54a3: ; e54a3 (39:54a3)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -98994,7 +97875,6 @@ Functione54a3: ; e54a3 (39:54a3)
 	call DelayFrame
 	ret
 
-; known jump sources: e497e (39:497e), e4987 (39:4987), e4a20 (39:4a20), e4a9f (39:4a9f), e4aa8 (39:4aa8), e4b5e (39:4b5e), e4b74 (39:4b74), e4cab (39:4cab), e4d99 (39:4d99), e4e63 (39:4e63), e4e6c (39:4e6c), e4fa1 (39:4fa1), e4faa (39:4faa), e50de (39:50de)
 Functione54c2: ; e54c2 (39:54c2)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -99011,7 +97891,6 @@ Functione54c2: ; e54c2 (39:54c2)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; known jump sources: e4b6b (39:4b6b), e4d90 (39:4d90), e4f18 (39:4f18)
 Functione54de: ; e54de (39:54de)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -99028,7 +97907,6 @@ Functione54de: ; e54de (39:54de)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; known jump sources: e4971 (39:4971), e4990 (39:4990), e4a13 (39:4a13), e4a29 (39:4a29), e4a92 (39:4a92), e4ab1 (39:4ab1), e4b55 (39:4b55), e4b7d (39:4b7d), e4c9e (39:4c9e), e4cb4 (39:4cb4), e4d83 (39:4d83), e4da2 (39:4da2), e4e56 (39:4e56), e4e81 (39:4e81), e4f0b (39:4f0b), e4f21 (39:4f21), e4f94 (39:4f94), e4fbf (39:4fbf), e50d1 (39:50d1), e50e7 (39:50e7)
 Functione54fa: ; e54fa (39:54fa)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -99045,7 +97923,6 @@ Functione54fa: ; e54fa (39:54fa)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; known jump sources: e4a5b (39:4a5b), e4baf (39:4baf)
 Functione5516: ; e5516 (39:5516)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -99061,7 +97938,6 @@ Functione5516: ; e5516 (39:5516)
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	ret
 
-; known jump sources: e4a69 (39:4a69), e4bde (39:4bde)
 Functione552f: ; e552f (39:552f)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -100140,7 +99016,6 @@ Functionfba18: ; fba18
 ; fba2e
 
 
-; no known jump sources
 Functionfba2e: ; fba2e (3e:7a2e)
 	hlcoord 4, 15
 	ld bc, $c
@@ -100358,16 +99233,13 @@ Functionfbd54: ; fbd54
 	call ClearBox
 	jr Functionfbd91
 
-; no known jump sources
 Functionfbd69: ; fbd69 (3e:7d69)
 	callba BattleCommanda6
 	jr Functionfbd77
 
-; no known jump sources
 Functionfbd71: ; fbd71 (3e:7d71)
 	callba BattleCommanda7
 
-; known jump sources: fbd6f (3e:7d6f)
 Functionfbd77: ; fbd77 (3e:7d77)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -100388,13 +99260,11 @@ Functionfbd91: ; fbd91 (3e:7d91)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: fbd5c (3e:7d5c), fbd7f (3e:7d7f)
 Functionfbd96: ; fbd96 (3e:7d96)
 	hlcoord 12, 0
 	ld bc, $707
 	ret
 
-; known jump sources: fbd61 (3e:7d61), fbd85 (3e:7d85)
 Functionfbd9d: ; fbd9d (3e:7d9d)
 	hlcoord 2, 6
 	ld bc, $606
@@ -101346,7 +100216,6 @@ Functionfd099: ; fd099
 ; fd0a6
 
 
-; known jump sources: fd017 (3f:5017)
 Functionfd0a6: ; fd0a6 (3f:50a6)
 	call Functionfd117
 	ld de, $3
@@ -101388,7 +100257,6 @@ Functionfd0c3: ; fd0c3
 ; fd0eb
 
 
-; known jump sources: fd01a (3f:501a)
 Functionfd0eb: ; fd0eb (3f:50eb)
 	call Functionfd117
 	ld de, $6
@@ -102150,7 +101018,6 @@ Function10043a: ; 10043a
 ; 10044e
 
 
-; no known jump sources
 Jumptable_10044e: ; 10044e (40:444e)
 	dw Function10046a
 	dw Function10047c
@@ -103421,7 +102288,6 @@ Function100e84: ; 100e84
 ; 100e8c
 
 
-; no known jump sources
 Jumptable_100e8c: ; 100e8c (40:4e8c)
 	dw Function100ea2
 	dw Function100eae
@@ -103436,7 +102302,6 @@ Jumptable_100e8c: ; 100e8c (40:4e8c)
 	dw Function100ec4
 
 
-; no known jump sources
 Function100ea2: ; 100ea2 (40:4ea2)
 	call Function100dc0
 	ret nc
@@ -104230,7 +103095,6 @@ Function104110:: ; 104110
 	ei
 	ret
 
-; no known jump sources
 Function104148: ; 104148 (41:4148)
 	ld hl, $414e
 	jp Function104177
@@ -104270,7 +103134,6 @@ Function10419c: ; 10419c
 ; 10419d
 
 
-; known jump sources: 104043 (41:4043), 10405d (41:405d)
 Function10419d: ; 10419d (41:419d)
 	call Function10424e
 	ld a, $23
@@ -104282,7 +103145,6 @@ Function10419d: ; 10419d (41:419d)
 	jr nz, .asm_1041a4
 	ret
 
-; known jump sources: 104087 (41:4087), 104091 (41:4091)
 Function1041ad: ; 1041ad (41:41ad)
 	ld a, [$FF00+$d7]
 	ld d, a
@@ -104291,7 +103153,6 @@ Function1041ad: ; 1041ad (41:41ad)
 	ld c, $24
 	jr Function104209
 
-; known jump sources: 104136 (41:4136), 104140 (41:4140)
 Function1041b7: ; 1041b7 (41:41b7)
 	ld a, [$FF00+$d7]
 	ld d, a
@@ -104359,7 +103220,6 @@ asm_10420b:
 ; 10424e
 
 
-; known jump sources: 10419d (41:419d)
 Function10424e: ; 10424e (41:424e)
 	ld a, h
 	ld [rHDMA1], a ; $ff00+$51
@@ -104372,16 +103232,13 @@ Function10424e: ; 10424e (41:424e)
 	ld [rHDMA4], a ; $ff00+$54
 	ret
 
-; known jump sources: 104039 (41:4039), 104076 (41:4076), 104125 (41:4125)
 Function10425f: ; 10425f (41:425f)
 	ld c, $7f
 	jr asm_104265
 
-; known jump sources: 104053 (41:4053), 10406d (41:406d), 10411c (41:411c)
 Function104263: ; 104263 (41:4263)
 	ld c, $0
 
-; known jump sources: 104261 (41:4261)
 asm_104265: ; 104265 (41:4265)
 	ld a, [$ffaf]
 	push af
@@ -104527,7 +103384,6 @@ Function104303: ; 104303
 	call Function104209
 	ret
 
-; known jump sources: 10430f (41:430f), 104318 (41:4318)
 Function10433a: ; 10433a (41:433a)
 	ld b, $4
 .asm_10433c
@@ -104736,7 +103592,6 @@ Function1046c6: ; 1046c6
 	ld [MapNumber], a ; $dcb6
 	ret
 
-; known jump sources: 1046c6 (41:46c6)
 Function1046df: ; 1046df (41:46df)
 	call GetMapPermission
 	call CheckOutdoorMap
@@ -104765,7 +103620,6 @@ Function1046df: ; 1046df (41:46df)
 	ld [$dcab], a
 	ret
 
-; known jump sources: 1046c9 (41:46c9)
 Function104718: ; 104718 (41:4718)
 	call GetMapPermission
 	call CheckOutdoorMap
@@ -104807,7 +103661,6 @@ Function104750: ; 104750
 	call Function1047a3
 	ret
 
-; known jump sources: 104769 (41:4769)
 Function104770: ; 104770 (41:4770)
 	ld a, $98
 	ld [$d153], a
@@ -104832,7 +103685,6 @@ Function104770: ; 104770 (41:4770)
 	call ByteFill
 	ret
 
-; known jump sources: 10476c (41:476c)
 Function1047a3: ; 1047a3 (41:47a3)
 	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
 	call Function1047b4
@@ -104843,7 +103695,6 @@ Function1047a3: ; 1047a3 (41:47a3)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 
-; known jump sources: 1047a6 (41:47a6)
 Function1047b4: ; 1047b4 (41:47b4)
 	ld hl, $9800
 	ld c, $14
@@ -104900,7 +103751,6 @@ Function1047f0: ; 1047f0
 	ld [$d45b], a
 	ret
 
-; no known jump sources
 Function104820:: ; 104820 (41:4820)
 	ld a, [$d151]
 	cp $ff
@@ -105002,7 +103852,6 @@ Function10486d:: ; 10486d
 ; 1048ba
 
 
-; known jump sources: 1049ba (41:49ba)
 Function1048ba: ; 1048ba (41:48ba)
 	call ClearTileMap
 	call ClearSprites
@@ -105100,27 +103949,22 @@ Function1048ba: ; 1048ba (41:48ba)
 	ld hl, $4a1b
 	jr Function1049c5
 
-; known jump sources: 10490e (41:490e)
 Function1049af: ; 1049af (41:49af)
 	ld hl, $49fd
 	jr Function1049c5
 
-; known jump sources: 104913 (41:4913)
 Function1049b4: ; 1049b4 (41:49b4)
 	ld hl, $4a02
 	call PrintText
 	jp Function1048ba
 
-; known jump sources: 104933 (41:4933)
 Function1049bd: ; 1049bd (41:49bd)
 	ld hl, $4a07
 	jr Function1049c5
 
-; known jump sources: 10493a (41:493a)
 Function1049c2: ; 1049c2 (41:49c2)
 	ld hl, $4a0c
 
-; known jump sources: 104923 (41:4923), 10492c (41:492c), 10498e (41:498e), 1049ad (41:49ad), 1049b2 (41:49b2), 1049c0 (41:49c0)
 Function1049c5: ; 1049c5 (41:49c5)
 	call PrintText
 	ld a, $e3
@@ -105130,14 +103974,12 @@ Function1049c5: ; 1049c5 (41:49c5)
 
 INCBIN "baserom.gbc",$1049cd,$104a25 - $1049cd
 
-; known jump sources: 10491d (41:491d)
 Function104a25: ; 104a25 (41:4a25)
 	call Function105106
 	ld a, [$abe5]
 	cp $5
 	jp CloseSRAM
 
-; known jump sources: 104926 (41:4926)
 Function104a30: ; 104a30 (41:4a30)
 	call Function105106
 	ld a, [$c901]
@@ -105166,7 +104008,6 @@ Function104a30: ; 104a30 (41:4a30)
 .asm_104a53
 	jp CloseSRAM
 
-; known jump sources: 104944 (41:4944)
 Function104a56: ; 104a56 (41:4a56)
 	call Function105106
 	ld hl, $abe5
@@ -105183,7 +104024,6 @@ Function104a56: ; 104a56 (41:4a56)
 	ld [hl], a
 	jp CloseSRAM
 
-; known jump sources: 10494e (41:494e)
 Function104a71: ; 104a71 (41:4a71)
 	call Function105106
 	ld a, $1
@@ -105200,7 +104040,6 @@ Function104a71: ; 104a71 (41:4a71)
 	call CopyBytes
 	jp CloseSRAM
 
-; known jump sources: 1048e8 (41:48e8)
 Function104a95: ; 104a95 (41:4a95)
 	di
 	callba ClearChannels
@@ -105263,12 +104102,10 @@ Function104a95: ; 104a95 (41:4a95)
 	ld [$FF00+$bc], a
 	jp Function104bd0
 
-; known jump sources: 104c0d (41:4c0d)
 Function104b04: ; 104b04 (41:4b04)
 	call Function104b40
 	jp nz, Function104bd0
 
-; known jump sources: 104ac6 (41:4ac6)
 asm_104b0a: ; 104b0a (41:4b0a)
 	call Function104d38
 	jp nz, Function104bd0
@@ -105279,7 +104116,6 @@ asm_104b0a: ; 104b0a (41:4b0a)
 	call Function105033
 	jp Function104bd0
 
-; known jump sources: 104ab4 (41:4ab4), 104c15 (41:4c15)
 Function104b22: ; 104b22 (41:4b22)
 	call Function104b88
 	jp nz, Function104bd0
@@ -105292,14 +104128,12 @@ Function104b22: ; 104b22 (41:4b22)
 	call Function10502e
 	jp Function104bd0
 
-; known jump sources: 104b04 (41:4b04), 104b2e (41:4b2e)
 Function104b40: ; 104b40 (41:4b40)
 	ld hl, $ffb3
 	ld b, $1
 	call Function104d56
 	ret nz
 
-; known jump sources: 104ac0 (41:4ac0)
 Function104b49: ; 104b49 (41:4b49)
 	call Function105033
 	ld a, [$FF00+$bc]
@@ -105332,7 +104166,6 @@ Function104b49: ; 104b49 (41:4b49)
 	cp $6c
 	ret
 
-; known jump sources: 104b10 (41:4b10), 104b22 (41:4b22)
 Function104b88: ; 104b88 (41:4b88)
 	ld a, $96
 	ld [$ffb3], a
@@ -105369,7 +104202,6 @@ Function104b88: ; 104b88 (41:4b88)
 	cp $6c
 	ret
 
-; known jump sources: 104aa9 (41:4aa9), 104ac3 (41:4ac3), 104b01 (41:4b01), 104b07 (41:4b07), 104b0d (41:4b0d), 104b13 (41:4b13), 104b19 (41:4b19), 104b1f (41:4b1f), 104b25 (41:4b25), 104b2b (41:4b2b), 104b31 (41:4b31), 104b37 (41:4b37), 104b3d (41:4b3d), 104c0b (41:4c0b), 104c13 (41:4c13)
 Function104bd0: ; 104bd0 (41:4bd0)
 	nop
 	ld a, [$FF00+$bc]
@@ -105415,7 +104247,6 @@ Function104bd0: ; 104bd0 (41:4bd0)
 	pop af
 	ret
 
-; known jump sources: 1056ae (41:56ae)
 Function104c2d: ; 104c2d (41:4c2d)
 	di
 	callba ClearChannels
@@ -105453,7 +104284,6 @@ Function104c2d: ; 104c2d (41:4c2d)
 	call Function10502e
 	jp Function104d1c
 
-; known jump sources: 104c4e (41:4c4e), 104c78 (41:4c78)
 Function104c8a: ; 104c8a (41:4c8a)
 	ld hl, $ffb3
 	ld b, $1
@@ -105490,7 +104320,6 @@ Function104c8a: ; 104c8a (41:4c8a)
 	cp $6c
 	ret
 
-; known jump sources: 104c5a (41:4c5a), 104c6c (41:4c6c)
 Function104cd2: ; 104cd2 (41:4cd2)
 	ld a, $3c
 	ld [$ffb3], a
@@ -105528,7 +104357,6 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	cp $6c
 	ret
 
-; known jump sources: 104c41 (41:4c41), 104c51 (41:4c51), 104c57 (41:4c57), 104c5d (41:4c5d), 104c63 (41:4c63), 104c69 (41:4c69), 104c6f (41:4c6f), 104c75 (41:4c75), 104c7b (41:4c7b), 104c81 (41:4c81), 104c87 (41:4c87)
 Function104d1c: ; 104d1c (41:4d1c)
 	nop
 	ld a, [$FF00+$bc]
@@ -105544,14 +104372,12 @@ Function104d1c: ; 104d1c (41:4d1c)
 	pop af
 	ret
 
-; known jump sources: 104b55 (41:4b55), 104bb6 (41:4bb6), 104c9f (41:4c9f), 104d02 (41:4d02)
 Function104d32: ; 104d32 (41:4d32)
 	ld a, $80
 	ld [$FF00+$bc], a
 	and a
 	ret
 
-; known jump sources: 104b0a (41:4b0a), 104b34 (41:4b34), 104b5c (41:4b5c), 104bb9 (41:4bb9), 104c10 (41:4c10), 104c54 (41:4c54), 104c7e (41:4c7e), 104ca6 (41:4ca6), 104d05 (41:4d05)
 Function104d38: ; 104d38 (41:4d38)
 	call Function104d96
 	call Function104e46
@@ -105559,7 +104385,6 @@ Function104d38: ; 104d38 (41:4d38)
 	cp $6c
 	ret
 
-; known jump sources: 104b16 (41:4b16), 104b28 (41:4b28), 104b71 (41:4b71), 104b9d (41:4b9d), 104c08 (41:4c08), 104c60 (41:4c60), 104c72 (41:4c72), 104cbb (41:4cbb), 104ce7 (41:4ce7)
 Function104d43: ; 104d43 (41:4d43)
 	call Function104d96
 	call Function104dfe
@@ -105567,21 +104392,18 @@ Function104d43: ; 104d43 (41:4d43)
 	cp $6c
 	ret
 
-; known jump sources: 104b65 (41:4b65), 104b91 (41:4b91), 104bc4 (41:4bc4), 104caf (41:4caf), 104cdb (41:4cdb), 104d10 (41:4d10)
 Function104d4e: ; 104d4e (41:4d4e)
 	call Function104e93
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret
 
-; known jump sources: 104abb (41:4abb), 104b45 (41:4b45), 104b7c (41:4b7c), 104ba6 (41:4ba6), 104c8f (41:4c8f), 104cc6 (41:4cc6), 104cf0 (41:4cf0)
 Function104d56: ; 104d56 (41:4d56)
 	call Function104f57
 	ld a, [$FF00+$bc]
 	cp $6c
 	ret
 
-; known jump sources: 104a9c (41:4a9c), 104c34 (41:4c34)
 Function104d5e: ; 104d5e (41:4d5e)
 	call Function104d74
 	ld a, $4
@@ -105598,7 +104420,6 @@ Function104d5e: ; 104d5e (41:4d5e)
 	jr nz, .asm_104d6d
 	ret
 
-; known jump sources: 104d5e (41:4d5e), 10501a (41:501a)
 Function104d74: ; 104d74 (41:4d74)
 	xor a
 	ld [rTAC], a ; $ff00+$7
@@ -105611,7 +104432,6 @@ Function104d74: ; 104d74 (41:4d74)
 	ld [rTAC], a ; $ff00+$7
 	ret
 
-; known jump sources: 104fcf (41:4fcf)
 Function104d86: ; 104d86 (41:4d86)
 	xor a
 	ld [rTAC], a ; $ff00+$7
@@ -105623,7 +104443,6 @@ Function104d86: ; 104d86 (41:4d86)
 	ld [rTAC], a ; $ff00+$7
 	ret
 
-; known jump sources: 104a9f (41:4a9f), 104c37 (41:4c37), 104d38 (41:4d38), 104d43 (41:4d43), 104d68 (41:4d68)
 Function104d96: ; 104d96 (41:4d96)
 	ld a, $c0
 	call Function104e8c
@@ -105631,7 +104450,6 @@ Function104d96: ; 104d96 (41:4d96)
 	ld [$FF00+$bb], a
 	ret
 
-; known jump sources: 104c1b (41:4c1b), 104d20 (41:4d20)
 Function104da0: ; 104da0 (41:4da0)
 	xor a
 	call Function104e8c
@@ -105639,7 +104457,6 @@ Function104da0: ; 104da0 (41:4da0)
 	ld [rTAC], a ; $ff00+$7
 	ret
 
-; known jump sources: 104db3 (41:4db3), 104e0a (41:4e0a), 104e16 (41:4e16), 104e70 (41:4e70), 104e7c (41:4e7c), 104fbb (41:4fbb), 105022 (41:5022)
 Function104da9: ; 104da9 (41:4da9)
 	inc d
 	ret z
@@ -105653,7 +104470,6 @@ Function104da9: ; 104da9 (41:4da9)
 	or a
 	ret
 
-; known jump sources: 104dc1 (41:4dc1), 104e03 (41:4e03), 104e10 (41:4e10), 104e69 (41:4e69), 104e76 (41:4e76), 104fb3 (41:4fb3), 104fc3 (41:4fc3)
 Function104db7: ; 104db7 (41:4db7)
 	inc d
 	ret z
@@ -105667,7 +104483,6 @@ Function104db7: ; 104db7 (41:4db7)
 	or a
 	ret
 
-; known jump sources: 104e27 (41:4e27), 104e31 (41:4e31), 104e56 (41:4e56), 104e60 (41:4e60), 104edf (41:4edf), 104f39 (41:4f39)
 Function104dc5: ; 104dc5 (41:4dc5)
 	ld a, $c1
 	ld [$ff00+c], a
@@ -105680,7 +104495,6 @@ Function104dc5: ; 104dc5 (41:4dc5)
 	nop
 	jr .asm_104dc8
 
-; known jump sources: 104e22 (41:4e22), 104e2c (41:4e2c), 104e36 (41:4e36), 104e51 (41:4e51), 104e5b (41:4e5b), 104e65 (41:4e65), 104e84 (41:4e84), 104e9e (41:4e9e), 104eda (41:4eda), 104ee4 (41:4ee4), 104f3e (41:4f3e), 104f9b (41:4f9b), 10502a (41:502a)
 Function104dd1: ; 104dd1 (41:4dd1)
 	ld a, $c0
 	ld [$ff00+c], a
@@ -105693,7 +104507,6 @@ Function104dd1: ; 104dd1 (41:4dd1)
 	nop
 	jr .asm_104dd4
 
-; known jump sources: 104aa2 (41:4aa2), 104c3a (41:4c3a)
 Function104ddd: ; 104ddd (41:4ddd)
 	ld d, $0
 	ld e, d
@@ -105716,7 +104529,6 @@ Function104ddd: ; 104ddd (41:4ddd)
 	and b
 	jr nz, .asm_104de4
 
-; known jump sources: 104d46 (41:4d46)
 Function104dfe: ; 104dfe (41:4dfe)
 	ld c, $56
 	ld d, $0
@@ -105744,7 +104556,6 @@ Function104dfe: ; 104dfe (41:4dfe)
 	call Function104dd1
 	ret
 
-; known jump sources: 104df8 (41:4df8)
 asm_104e3a: ; 104e3a (41:4e3a)
 	call Random
 	ld e, a
@@ -105756,7 +104567,6 @@ asm_104e3a: ; 104e3a (41:4e3a)
 	or e
 	jr nz, .asm_104e41
 
-; known jump sources: 104d3b (41:4d3b)
 Function104e46: ; 104e46 (41:4e46)
 	ld a, $2
 	ld [$FF00+$bb], a
@@ -105789,14 +104599,12 @@ Function104e46: ; 104e46 (41:4e46)
 	ld [$FF00+$bc], a
 	ret
 
-; known jump sources: 104d98 (41:4d98), 104da1 (41:4da1)
 Function104e8c: ; 104e8c (41:4e8c)
 	ld [rRP], a ; $ff00+$56
 	ld a, $ff
 	ld [$FF00+$bc], a
 	ret
 
-; known jump sources: 104d4e (41:4d4e), 105030 (41:5030)
 Function104e93: ; 104e93 (41:4e93)
 	xor a
 	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
@@ -105834,7 +104642,6 @@ Function104e93: ; 104e93 (41:4e93)
 	pop hl
 	ret
 
-; known jump sources: 104eab (41:4eab), 104eb0 (41:4eb0), 104ec1 (41:4ec1), 104fa3 (41:4fa3)
 Function104ed6: ; 104ed6 (41:4ed6)
 	ld c, $56
 	ld d, $5
@@ -105905,28 +104712,24 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	call Function104dd1
 	ret
 
-; known jump sources: 104e06 (41:4e06), 104e0d (41:4e0d), 104e13 (41:4e13), 104e19 (41:4e19), 104e6c (41:4e6c), 104e73 (41:4e73), 104e79 (41:4e79), 104e7f (41:4e7f), 104fb6 (41:4fb6), 104fbe (41:4fbe), 104fc6 (41:4fc6), 105025 (41:5025)
 Function104f42: ; 104f42 (41:4f42)
 	ld a, [$FF00+$bc]
 	or $2
 	ld [$FF00+$bc], a
 	ret
 
-; known jump sources: 104f95 (41:4f95)
 Function104f49: ; 104f49 (41:4f49)
 	ld a, [$FF00+$bc]
 	or $1
 	ld [$FF00+$bc], a
 	ret
 
-; known jump sources: 104f6e (41:4f6e), 104f75 (41:4f75)
 Function104f50: ; 104f50 (41:4f50)
 	ld a, [$FF00+$bc]
 	or $80
 	ld [$FF00+$bc], a
 	ret
 
-; known jump sources: 104d56 (41:4d56), 105035 (41:5035)
 Function104f57: ; 104f57 (41:4f57)
 	xor a
 	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
@@ -105979,7 +104782,6 @@ Function104f57: ; 104f57 (41:4f57)
 	ld [hMathBuffer], a ; $ff00+$b8
 	ret
 
-; known jump sources: 104ec9 (41:4ec9), 104f63 (41:4f63), 104f78 (41:4f78), 104f88 (41:4f88)
 Function104faf: ; 104faf (41:4faf)
 	ld c, $56
 	ld d, $0
@@ -106059,17 +104861,14 @@ Function104faf: ; 104faf (41:4faf)
 	call Function104dd1
 	ret
 
-; known jump sources: 104b3a (41:4b3a), 104b69 (41:4b69), 104b95 (41:4b95), 104bc8 (41:4bc8), 104c84 (41:4c84), 104cb3 (41:4cb3), 104cdf (41:4cdf), 104d14 (41:4d14)
 Function10502e: ; 10502e (41:502e)
 	ld b, $0
 	jp Function104e93
 
-; known jump sources: 104b1c (41:4b1c), 104b49 (41:4b49), 104b80 (41:4b80), 104baa (41:4baa), 104c66 (41:4c66), 104c93 (41:4c93), 104cca (41:4cca), 104cf4 (41:4cf4)
 Function105033: ; 105033 (41:5033)
 	ld b, $0
 	jp Function104f57
 
-; known jump sources: 104ad6 (41:4ad6), 104de4 (41:4de4)
 Function105038: ; 105038 (41:5038)
 	ld a, $20
 	ld [rJOYP], a ; $ff00+$0
@@ -106101,7 +104900,6 @@ Function105038: ; 105038 (41:5038)
 	ld [rJOYP], a ; $ff00+$0
 	ret
 
-; known jump sources: 104974 (41:4974)
 Function105069: ; 105069 (41:5069)
 	call Function105106
 	ld d, $0
@@ -106124,7 +104922,6 @@ Function105069: ; 105069 (41:5069)
 	xor a
 	ret
 
-; no known jump sources
 Function105091: ; 105091 (41:5091)
 	call Function105106
 	ld c, $0
@@ -106187,7 +104984,6 @@ Function1050d9: ; 1050d9
 ; 1050ea
 
 
-; no known jump sources
 Function1050ea: ; 1050ea (41:50ea)
 	call Function105106
 	ld hl, $abe4
@@ -106199,7 +104995,6 @@ Function1050ea: ; 1050ea (41:50ea)
 	ld [de], a
 	jp CloseSRAM
 
-; known jump sources: 1048d8 (41:48d8), 104bfa (41:4bfa), 1056a3 (41:56a3)
 Function1050fb: ; 1050fb (41:50fb)
 	ld hl, $c850
 	xor a
@@ -106217,7 +105012,6 @@ Function105106: ; 105106
 ; 10510b
 
 
-; no known jump sources
 Function10510b: ; 10510b (41:510b)
 	ld a, $1
 	call GetSRAMBank
@@ -106263,7 +105057,6 @@ Function10510b: ; 10510b (41:510b)
 	ld [$ca00], a
 	jp CloseSRAM
 
-; known jump sources: 1048c3 (41:48c3)
 Function105153: ; 105153 (41:5153)
 	call WhiteBGMap
 	call DisableLCD
@@ -106355,7 +105148,6 @@ Function105153: ; 105153 (41:5153)
 	call Function32f9
 	ret
 
-; known jump sources: 10518f (41:518f), 1051d4 (41:51d4)
 Function10522e: ; 10522e (41:522e)
 	ld b, $5
 	jr asm_105238
@@ -106363,11 +105155,9 @@ Function10522e: ; 10522e (41:522e)
 
 INCBIN "baserom.gbc",$105232,$105236 - $105232
 
-; known jump sources: 105197 (41:5197), 10519f (41:519f)
 Function105236: ; 105236 (41:5236)
 	ld b, $10
 
-; known jump sources: 105230 (41:5230), 10523b (41:523b)
 asm_105238: ; 105238 (41:5238)
 	ld [hli], a
 	inc a
@@ -106375,21 +105165,17 @@ asm_105238: ; 105238 (41:5238)
 	jr nz, asm_105238
 	ret
 
-; known jump sources: 105200 (41:5200), 105208 (41:5208)
 Function10523e: ; 10523e (41:523e)
 	ld b, $9
 	jr asm_105248
 
-; known jump sources: 1051bc (41:51bc)
 Function105242: ; 105242 (41:5242)
 	ld b, $b
 	jr asm_105248
 
-; known jump sources: 1051b4 (41:51b4)
 Function105246: ; 105246 (41:5246)
 	ld b, $e
 
-; known jump sources: 105240 (41:5240), 105244 (41:5244), 10524e (41:524e)
 asm_105248: ; 105248 (41:5248)
 	ld [hl], a
 	ld de, $14
@@ -106398,7 +105184,6 @@ asm_105248: ; 105248 (41:5248)
 	jr nz, asm_105248
 	ret
 
-; known jump sources: 1051c4 (41:51c4), 1051cc (41:51cc), 1051f0 (41:51f0), 1051f8 (41:51f8)
 Function105251: ; 105251 (41:5251)
 	ld b, $10
 .asm_105253
@@ -106411,7 +105196,6 @@ MysteryGiftGFX:
 INCBIN "gfx/misc/mystery_gift.2bpp"
 
 
-; known jump sources: 105723 (41:5723)
 Function105688: ; 105688 (41:5688)
 	call ClearTileMap
 	call ClearSprites
@@ -106453,7 +105237,6 @@ Function105688: ; 105688 (41:5688)
 	ld hl, $5763
 	jr asm_105726
 
-; known jump sources: 1056c3 (41:56c3)
 Function1056eb: ; 1056eb (41:56eb)
 	ld c, $10
 .asm_1056ed
@@ -106485,20 +105268,17 @@ Function1056eb: ; 1056eb (41:56eb)
 	pop bc
 	jr .asm_1056ed
 
-; known jump sources: 1056bb (41:56bb)
 Function105712: ; 105712 (41:5712)
 	call Function105777
 	ld hl, $576d
 	jr asm_105726
 
-; known jump sources: 1056c0 (41:56c0)
 Function10571a: ; 10571a (41:571a)
 	call Function105777
 	ld hl, $5772
 	call PrintText
 	jp Function105688
 
-; known jump sources: 1056e4 (41:56e4), 1056e9 (41:56e9), 105718 (41:5718)
 asm_105726: ; 105726 (41:5726)
 	call PrintText
 	ld a, $e3
@@ -106508,7 +105288,6 @@ asm_105726: ; 105726 (41:5726)
 
 INCBIN "baserom.gbc",$10572e,$105777 - $10572e
 
-; known jump sources: 1056cb (41:56cb), 105712 (41:5712), 10571a (41:571a)
 Function105777: ; 105777 (41:5777)
 	call ClearSprites
 	call ClearTileMap
@@ -106519,7 +105298,6 @@ Function105777: ; 105777 (41:5777)
 	call Function32f9
 	ret
 
-; known jump sources: 1056a0 (41:56a0)
 Function10578c: ; 10578c (41:578c)
 	ld de, OverworldMap ; $c800
 	ld a, $1
@@ -106550,7 +105328,6 @@ Function10578c: ; 10578c (41:578c)
 	call CloseSRAM
 	ret
 
-; known jump sources: 105691 (41:5691)
 Function1057d7: ; 1057d7 (41:57d7)
 	call WhiteBGMap
 	call DisableLCD
@@ -106645,21 +105422,17 @@ Function1057d7: ; 1057d7 (41:57d7)
 	callba Function4930f
 	jp Function32f9
 
-; known jump sources: 10585e (41:585e)
 Function1058c6: ; 1058c6 (41:58c6)
 	ld b, $6
 	jr asm_1058d0
 
-; known jump sources: 105821 (41:5821)
 Function1058ca: ; 1058ca (41:58ca)
 	ld b, $b
 	jr asm_1058d0
 
-; known jump sources: 105829 (41:5829), 105831 (41:5831)
 Function1058ce: ; 1058ce (41:58ce)
 	ld b, $c
 
-; known jump sources: 1058c8 (41:58c8), 1058cc (41:58cc), 1058d3 (41:58d3)
 asm_1058d0: ; 1058d0 (41:58d0)
 	ld [hli], a
 	inc a
@@ -106667,21 +105440,17 @@ asm_1058d0: ; 1058d0 (41:58d0)
 	jr nz, asm_1058d0
 	ret
 
-; known jump sources: 10588a (41:588a), 105892 (41:5892)
 Function1058d6: ; 1058d6 (41:58d6)
 	ld b, $9
 	jr asm_1058e0
 
-; known jump sources: 105846 (41:5846)
 Function1058da: ; 1058da (41:58da)
 	ld b, $b
 	jr asm_1058e0
 
-; known jump sources: 10583e (41:583e)
 Function1058de: ; 1058de (41:58de)
 	ld b, $e
 
-; known jump sources: 1058d8 (41:58d8), 1058dc (41:58dc), 1058e6 (41:58e6)
 asm_1058e0: ; 1058e0 (41:58e0)
 	ld [hl], a
 	ld de, $14
@@ -106690,7 +105459,6 @@ asm_1058e0: ; 1058e0 (41:58e0)
 	jr nz, asm_1058e0
 	ret
 
-; known jump sources: 10584e (41:584e), 105856 (41:5856), 10587a (41:587a), 105882 (41:5882)
 Function1058e9: ; 1058e9 (41:58e9)
 	ld b, $10
 .asm_1058eb
@@ -107310,7 +106078,6 @@ Function106009: ; 106009
 ; 10602e
 
 
-; no known jump sources
 Function10602e: ; 10602e (41:602e)
 	ret
 ; 10602f (41:602f)
@@ -107370,7 +106137,6 @@ Function106079: ; 106079
 ; 10607f
 
 
-; no known jump sources
 Function10607f: ; 10607f (41:607f)
 	ret
 ; 106080 (41:6080)
@@ -107388,7 +106154,6 @@ Function106087: ; 106087
 ; 10608d
 
 
-; no known jump sources
 Function10608d: ; 10608d (41:608d)
 	ret
 ; 10608e (41:608e)
@@ -107421,7 +106186,6 @@ Function1060a3: ; 1060a3
 ; 1060a9
 
 
-; no known jump sources
 Function1060a9: ; 1060a9 (41:60a9)
 	ret
 ; 1060aa (41:60aa)
@@ -107637,7 +106401,6 @@ Function106187: ; 106187
 ; 10619d
 
 
-; no known jump sources
 Function10619d: ; 10619d (41:619d)
 	ld a, $1
 	call GetSRAMBank
@@ -107653,7 +106416,6 @@ Function10619d: ; 10619d (41:619d)
 
 INCBIN "baserom.gbc",$1061b3,$1061c0 - $1061b3
 
-; no known jump sources
 Function1061c0: ; 1061c0 (41:61c0)
 	ld a, $1
 	call GetSRAMBank
@@ -108154,7 +106916,6 @@ Function108b98: ; 108b98
 
 INCBIN "baserom.gbc",$108bbd,$108bc7 - $108bbd
 
-; no known jump sources
 Function108bc7: ; 108bc7 (42:4bc7)
 	ld a, [$cf64]
 	and a
@@ -108171,7 +106932,6 @@ Function108bc7: ; 108bc7 (42:4bc7)
 	callba Function8d036
 	ret
 
-; no known jump sources
 Function108be0: ; 108be0 (42:4be0)
 	ld hl, $5
 	add hl, bc
@@ -108964,7 +107724,6 @@ Function117656: ; 117656
 ; 11765d
 
 
-; no known jump sources
 Function11765d: ; 11765d (45:765d)
 	ld a, [$FF00+$aa]
 	push af
@@ -108975,7 +107734,6 @@ Function11765d: ; 11765d (45:765d)
 	ld [$FF00+$aa], a
 	ret
 
-; known jump sources: 117664 (45:7664)
 Function11766b: ; 11766b (45:766b)
 	call Function117699
 	ld a, [rSVBK] ; $ff00+$70
@@ -108997,7 +107755,6 @@ Function11766b: ; 11766b (45:766b)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; known jump sources: 11766b (45:766b)
 Function117699: ; 117699 (45:7699)
 	ld a, $5
 	call GetSRAMBank
@@ -109027,7 +107784,6 @@ Function117699: ; 117699 (45:7699)
 	callba Function8cf53
 	ret
 
-; known jump sources: 117675 (45:7675), 117707 (45:7707)
 Function1176ee: ; 1176ee (45:76ee)
 	call Functiona57
 	ld a, [$cd49]
@@ -109044,7 +107800,6 @@ Function1176ee: ; 1176ee (45:76ee)
 	call ClearSprites
 	ret
 
-; known jump sources: 1176f8 (45:76f8)
 Function117719: ; 117719 (45:7719)
 	ld a, [$cd49]
 	ld e, a
@@ -109057,7 +107812,6 @@ Function117719: ; 117719 (45:7719)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_117728: ; 117728 (45:7728)
 	dw Function117738
 	dw Function117764
@@ -109069,7 +107823,6 @@ Jumptable_117728: ; 117728 (45:7728)
 	dw Function1179a7
 
 
-; no known jump sources
 Function117738: ; 117738 (45:7738)
 	callba Function171ccd
 	ld de, $3018
@@ -109090,7 +107843,6 @@ Function117738: ; 117738 (45:7738)
 	ld [$cd23], a
 	jp Function117a0a
 
-; no known jump sources
 Function117764: ; 117764 (45:7764)
 	ld a, [$cd4a]
 	cp $10
@@ -109129,12 +107881,10 @@ Function117764: ; 117764 (45:7764)
 	jp nz, Function117837
 	ret
 
-; known jump sources: 117779 (45:7779), 117863 (45:7863)
 Function1177a5: ; 1177a5 (45:77a5)
 	callba Function171cf0
 	ret
 
-; known jump sources: 11777e (45:777e), 11786c (45:786c), 1178a7 (45:78a7)
 Function1177ac: ; 1177ac (45:77ac)
 	ld a, $2
 	ld [$cd4c], a
@@ -109142,7 +107892,6 @@ Function1177ac: ; 1177ac (45:77ac)
 	ld [$cd4d], a
 	ret
 
-; known jump sources: 11785b (45:785b)
 Function1177b7: ; 1177b7 (45:77b7)
 	ld a, $3
 	ld [$cd24], a
@@ -109155,7 +107904,6 @@ Function1177b7: ; 1177b7 (45:77b7)
 	ld [$cd49], a
 	ret
 
-; known jump sources: 117860 (45:7860)
 Function1177cb: ; 1177cb (45:77cb)
 	ld a, $80
 	ld [$cd49], a
@@ -109216,7 +107964,6 @@ asm_11780a: ; 11780a (45:780a)
 	ld a, $1
 	jr asm_117806
 
-; known jump sources: 11779b (45:779b)
 Function11782d: ; 11782d (45:782d)
 	ld a, [$cd4c]
 	and a
@@ -109225,7 +107972,6 @@ Function11782d: ; 11782d (45:782d)
 	ld [$cd4c], a
 	ret
 
-; known jump sources: 1177a1 (45:77a1)
 Function117837: ; 117837 (45:7837)
 	ld e, $d
 	ld a, [$cd4d]
@@ -109240,7 +107986,6 @@ Function117837: ; 117837 (45:7837)
 	ld [$cd4c], a
 	ret
 
-; known jump sources: 117783 (45:7783)
 Function11784c: ; 11784c (45:784c)
 	call PlayClickSFX
 	ld a, [$cd4d]
@@ -109292,7 +108037,6 @@ Function11784c: ; 11784c (45:784c)
 	ret nz
 	jp Function1177ac
 
-; no known jump sources
 Function1178aa: ; 1178aa (45:78aa)
 	ld hl, $79b5
 	call LoadMenuDataHeader
@@ -109316,7 +108060,6 @@ Function1178aa: ; 1178aa (45:78aa)
 	ld [$cd4e], a
 	jp Function117a0a
 
-; no known jump sources
 Function1178e8: ; 1178e8 (45:78e8)
 	ld a, [hJoyPressed] ; $ff00+$a7
 	cp $2
@@ -109366,7 +108109,6 @@ Function1178e8: ; 1178e8 (45:78e8)
 	call Function1c07
 	jp Function117a0a
 
-; no known jump sources
 Function117942: ; 117942 (45:7942)
 	call SpeechTextBox
 	hlcoord 1, 14
@@ -109388,7 +108130,6 @@ Function117942: ; 117942 (45:7942)
 	jr z, asm_11797e
 	call Function117a0a
 
-; no known jump sources
 Function117976: ; 117976 (45:7976)
 	ld hl, $cd4e
 	dec [hl]
@@ -109399,7 +108140,6 @@ asm_11797e: ; 11797e (45:797e)
 	ld [$cd49], a
 	ret
 
-; no known jump sources
 Function117984: ; 117984 (45:7984)
 	ld hl, $79b5
 	call LoadMenuDataHeader
@@ -109413,7 +108153,6 @@ Function117984: ; 117984 (45:7984)
 	ld [$cd4e], a
 	call Function117a0a
 
-; no known jump sources
 Function1179a7: ; 1179a7 (45:79a7)
 	ld hl, $cd4e
 	dec [hl]
@@ -109426,7 +108165,6 @@ Function1179a7: ; 1179a7 (45:79a7)
 
 INCBIN "baserom.gbc",$1179b5,$117a0a - $1179b5
 
-; known jump sources: 117761 (45:7761), 1177c2 (45:77c2), 1177d3 (45:77d3), 1178e5 (45:78e5), 117936 (45:7936), 11793f (45:793f), 117973 (45:7973), 1179a4 (45:79a4)
 Function117a0a: ; 117a0a (45:7a0a)
 	ld hl, $cd49
 	inc [hl]
@@ -110178,7 +108916,6 @@ Function1185c3: ; 1185c3
 
 INCBIN "baserom.gbc",$1185d2,$1186f5 - $1185d2
 
-; known jump sources: 1182b0 (46:42b0)
 Function1186f5: ; 1186f5 (46:46f5)
 	ld a, [$cf66]
 	ld e, a
@@ -110192,7 +108929,6 @@ Function1186f5: ; 1186f5 (46:46f5)
 	jp [hl]
 ; 118704 (46:4704)
 
-; no known jump sources
 Jumptable_118704: ; 118704 (46:4704)
 	dw Function11886a
 	dw Function118880
@@ -110230,7 +108966,6 @@ Jumptable_118704: ; 118704 (46:4704)
 
 INCBIN "baserom.gbc",$118744,$11878d - $118744
 
-; no known jump sources
 Function11878d: ; 11878d (46:478d)
 	ld a, [$c821]
 	bit 1, a
@@ -110297,7 +109032,6 @@ Function11878d: ; 11878d (46:478d)
 .asm_118803
 	ld a, $d3
 
-; known jump sources: 11945a (46:545a), 119573 (46:5573), 1195f5 (46:55f5)
 Function118805: ; 118805 (46:4805)
 	ld [$c300], a
 	xor a
@@ -110311,7 +109045,6 @@ Function118805: ; 118805 (46:4805)
 	ld [$cf66], a
 	ret
 
-; known jump sources: 1187aa (46:47aa)
 Function118821: ; 118821 (46:4821)
 	ld a, [$c319]
 	cp $3
@@ -110338,7 +109071,6 @@ Function118821: ; 118821 (46:4821)
 
 INCBIN "baserom.gbc",$11884c,$11886a - $11884c
 
-; no known jump sources
 Function11886a: ; 11886a (46:486a)
 	ld a, $1
 	jr .asm_11886f
@@ -110353,7 +109085,6 @@ INCBIN "baserom.gbc",$11886e,$11886f - $11886e
 	ld a, [$cd33]
 	ld [$cd45], a
 
-; no known jump sources
 Function118880: ; 118880 (46:4880)
 	call Function119ed8
 	ret c
@@ -110368,25 +109099,21 @@ Function118880: ; 118880 (46:4880)
 
 INCBIN "baserom.gbc",$118896,$1188b0 - $118896
 
-; no known jump sources
 Function1188b0: ; 1188b0 (46:48b0)
 	ld de, $c346
 	ld a, $c
 	jp Function119e2b
 
-; no known jump sources
 Function1188b8: ; 1188b8 (46:48b8)
 	ld de, $c3ac
 	ld a, $e
 	jp Function119e2b
 
-; no known jump sources
 Function1188c0: ; 1188c0 (46:48c0)
 	ld de, $c3cd
 	ld a, $10
 	jp Function119e2b
 
-; no known jump sources
 Function1188c8: ; 1188c8 (46:48c8)
 	ld a, $1
 	ld [$cd65], a
@@ -110404,7 +109131,6 @@ Function1188c8: ; 1188c8 (46:48c8)
 	ld a, $6
 	jp Function119e2b
 
-; known jump sources: 1188cd (46:48cd)
 Function1188e7: ; 1188e7 (46:48e7)
 	ld de, $c346
 	ld a, $5
@@ -110424,7 +109150,6 @@ Function1188e7: ; 1188e7 (46:48e7)
 	jr nz, .asm_1188fa
 	ret
 
-; no known jump sources
 Function118903: ; 118903 (46:4903)
 	ld a, [$c3f0]
 	ld [$c319], a
@@ -110438,7 +109163,6 @@ Function118903: ; 118903 (46:4903)
 
 INCBIN "baserom.gbc",$11891c,$118abc - $11891c
 
-; no known jump sources
 Function118abc: ; 118abc (46:4abc)
 	ld hl, $4c95
 	ld de, $cc60
@@ -110462,7 +109186,6 @@ INCBIN "baserom.gbc",$118ad0,$118b10 - $118ad0
 	ld a, $2a
 	jp Function119e2b
 
-; known jump sources: 118b1a (46:4b1a), 119657 (46:5657)
 Function118b24: ; 118b24 (46:4b24)
 	ld hl, $c346
 	ld a, $8
@@ -110510,7 +109233,6 @@ db $0
 
 INCBIN "baserom.gbc",$118d35,$118e39 - $118d35
 
-; known jump sources: 118e3b (46:4e3b), 119633 (46:5633)
 Function118e39: ; 118e39 (46:4e39)
 	ld a, [hli]
 	and a
@@ -110549,27 +109271,23 @@ Function118e39: ; 118e39 (46:4e39)
 	inc de
 	jr .asm_118e63
 
-; no known jump sources
 Function118e6d: ; 118e6d (46:4e6d)
 	xor a
 	ld [$cd65], a
 	ld a, $a
 	jp Function119e2b
 
-; no known jump sources
 Function118e76: ; 118e76 (46:4e76)
 	ld a, $c
 	ld [$cd3c], a
 	jp Function119e2e
 
-; no known jump sources
 Function118e7e: ; 118e7e (46:4e7e)
 	call Function119ed8
 	ret c
 	ld a, $36
 	jp Function119e2b
 
-; no known jump sources
 Function118e87: ; 118e87 (46:4e87)
 	call Function119ed8
 	ret c
@@ -110580,7 +109298,6 @@ Function118e87: ; 118e87 (46:4e87)
 
 INCBIN "baserom.gbc",$118e92,$119451 - $118e92
 
-; no known jump sources
 Function119451: ; 119451 (46:5451)
 	ld a, [$cd89]
 	and $1
@@ -110597,7 +109314,6 @@ Function119451: ; 119451 (46:5451)
 	ld a, [DefaultFlypoint] ; $d002
 	ld hl, $d003
 
-; known jump sources: 119562 (46:5562)
 Function119471: ; 119471 (46:5471)
 	push af
 	ld a, [hli]
@@ -110780,7 +109496,6 @@ Function119471: ; 119471 (46:5471)
 	call Function1195c4
 	ret
 
-; known jump sources: 1194a0 (46:54a0)
 Function119584: ; 119584 (46:5584)
 	ld a, [$c608]
 	ld b, a
@@ -110826,7 +109541,6 @@ Function119584: ; 119584 (46:5584)
 	and a
 	ret
 
-; known jump sources: 119580 (46:5580)
 Function1195c4: ; 1195c4 (46:55c4)
 	ld a, [hli]
 	ld c, a
@@ -110860,7 +109574,6 @@ Function1195c4: ; 1195c4 (46:55c4)
 	ld a, $d8
 	jp Function118805
 
-; no known jump sources
 Function1195f8: ; 1195f8 (46:55f8)
 	ld a, $11
 	ld [$cd3c], a
@@ -110873,7 +109586,6 @@ Function1195f8: ; 1195f8 (46:55f8)
 	call Function119e2e
 	jp Function119e2e
 
-; no known jump sources
 Function119612: ; 119612 (46:5612)
 	ld a, $14
 	ld [$cd3c], a
@@ -110885,7 +109597,6 @@ Function119612: ; 119612 (46:5612)
 	ld [$cd47], a
 	jp Function119e2e
 
-; no known jump sources
 Function119629: ; 119629 (46:5629)
 	call Function119ed8
 	ret c
@@ -110902,7 +109613,6 @@ Function119629: ; 119629 (46:5629)
 	ld [$cd47], a
 	call Function119e2e
 
-; no known jump sources
 Function119648: ; 119648 (46:5648)
 	call Function119ed8
 	ret c
@@ -110916,13 +109626,11 @@ Function119648: ; 119648 (46:5648)
 	ld a, $2a
 	jp Function119e2b
 
-; no known jump sources
 Function119665: ; 119665 (46:5665)
 	ld a, $1a
 	ld [$cd3c], a
 	call Function119e2e
 
-; no known jump sources
 Function11966d: ; 11966d (46:566d)
 	call Function119ed8
 	ret c
@@ -110932,13 +109640,11 @@ Function11966d: ; 11966d (46:566d)
 	ld [$c300], a
 	ret
 
-; no known jump sources
 Function11967d: ; 11967d (46:567d)
 	ld a, $18
 	ld [$cd3c], a
 	call Function119e2e
 
-; no known jump sources
 Function119685: ; 119685 (46:5685)
 	call Function119ed8
 	ret c
@@ -110948,7 +109654,6 @@ Function119685: ; 119685 (46:5685)
 	ld [$c300], a
 	ret
 
-; known jump sources: 119461 (46:5461)
 Function119694: ; 119694 (46:5694)
 	ld b, $0
 	ld hl, $56b8
@@ -110984,7 +109689,6 @@ Function119694: ; 119694 (46:5694)
 
 INCBIN "baserom.gbc",$1196b8,$1196cd - $1196b8
 
-; known jump sources: 119468 (46:5468)
 Function1196cd: ; 1196cd (46:56cd)
 	ld de, $c719
 	call Function1196de
@@ -110994,7 +109698,6 @@ Function1196cd: ; 1196cd (46:56cd)
 	ld [$cd4b], a
 	ret
 
-; known jump sources: 1196d0 (46:56d0), 1196d7 (46:56d7)
 Function1196de: ; 1196de (46:56de)
 	ld a, [de]
 	inc de
@@ -111015,7 +109718,6 @@ Function1196de: ; 1196de (46:56de)
 
 INCBIN "baserom.gbc",$1196f2,$119d93 - $1196f2
 
-; no known jump sources
 Function119d93: ; 119d93 (46:5d93)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -111059,7 +109761,6 @@ Function119d93: ; 119d93 (46:5d93)
 	scf
 	ret
 
-; no known jump sources
 Function119dd1: ; 119dd1 (46:5dd1)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -111115,11 +109816,9 @@ Function119dd1: ; 119dd1 (46:5dd1)
 	ret
 ; 119e2b (46:5e2b)
 
-; known jump sources: 118893 (46:4893), 1188b5 (46:48b5), 1188bd (46:48bd), 1188c5 (46:48c5), 1188e4 (46:48e4), 118b21 (46:4b21), 118e73 (46:4e73), 118e84 (46:4e84), 119662 (46:5662)
 Function119e2b: ; 119e2b (46:5e2b)
 	call Function3e32
 
-; known jump sources: 1187a7 (46:47a7), 118877 (46:4877), 118919 (46:4919), 118e7b (46:4e7b), 11960c (46:560c), 11960f (46:560f), 119626 (46:5626), 119645 (46:5645), 11966a (46:566a), 119682 (46:5682)
 Function119e2e: ; 119e2e (46:5e2e)
 	ld hl, $cf66
 	inc [hl]
@@ -111128,7 +109827,6 @@ Function119e2e: ; 119e2e (46:5e2e)
 
 INCBIN "baserom.gbc",$119e33,$119eb4 - $119e33
 
-; known jump sources: 1188d9 (46:48d9), 118b33 (46:4b33)
 Function119eb4: ; 119eb4 (46:5eb4)
 	xor a
 	ld [$c3cc], a
@@ -111141,7 +109839,6 @@ Function119eb4: ; 119eb4 (46:5eb4)
 	jr nz, .asm_119ebb
 	ret
 
-; known jump sources: 1188dc (46:48dc), 118b36 (46:4b36)
 Function119ec2: ; 119ec2 (46:5ec2)
 	ld a, $5
 	call GetSRAMBank
@@ -111157,7 +109854,6 @@ Function119ec2: ; 119ec2 (46:5ec2)
 	call CloseSRAM
 	ret
 
-; known jump sources: 118880 (46:4880), 118916 (46:4916), 118b17 (46:4b17), 118e7e (46:4e7e), 118e87 (46:4e87), 119629 (46:5629), 119648 (46:5648), 119654 (46:5654), 11966d (46:566d), 119685 (46:5685)
 Function119ed8: ; 119ed8 (46:5ed8)
 	ld a, [rSVBK] ; $ff00+$70
 	ld [$cd8c], a
@@ -111170,7 +109866,6 @@ Function119ed8: ; 119ed8 (46:5ed8)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; known jump sources: 119ee1 (46:5ee1)
 Function119eee: ; 119eee (46:5eee)
 	ld a, [$cd3c]
 	ld e, a
@@ -112453,7 +111148,6 @@ Function11c254: ; 11c254
 ; 11c277
 
 
-; known jump sources: 11c3c2 (47:43c2), 11c52c (47:452c), 11c658 (47:4658), 11cd20 (47:4d20), 11ce0b (47:4e0b)
 Function11c277: ; 11c277 (47:4277)
 	ld a, $7f
 	hlcoord 0, 6
@@ -112494,7 +111188,6 @@ Function11c2ac: ; 11c2ac
 ; 11c2bb
 
 
-; no known jump sources
 Jumptable_11c2bb: ; 11c2bb (47:42bb)
 	dw Function11c2e9
 	dw Function11c346
@@ -112521,7 +111214,6 @@ Jumptable_11c2bb: ; 11c2bb (47:42bb)
 	dw Function11ce2b
 
 
-; no known jump sources
 Function11c2e9: ; 11c2e9 (47:42e9)
 	ld de, $1a0d
 	ld a, $1d
@@ -112566,7 +111258,6 @@ Function11c2e9: ; 11c2e9 (47:42e9)
 	set 2, [hl]
 	jp Function11cfb5
 
-; no known jump sources
 Function11c346: ; 11c346 (47:4346)
 	ld a, $9
 	ld [$cd2d], a
@@ -112578,7 +111269,6 @@ Function11c346: ; 11c346 (47:4346)
 	call Function11cfce
 	jp Function11cfb5
 
-; no known jump sources
 Function11c35f: ; 11c35f (47:435f)
 	ld hl, $cd2f
 	inc [hl]
@@ -112593,7 +111283,6 @@ Function11c35f: ; 11c35f (47:435f)
 	ret nz
 	jp Function11cfb5
 
-; no known jump sources
 Function11c373: ; 11c373 (47:4373)
 	ld hl, $cd30
 	inc [hl]
@@ -112609,7 +111298,6 @@ Function11c373: ; 11c373 (47:4373)
 	call Function11c38a
 	jp Function11cfb5
 
-; known jump sources: 11c384 (47:4384), 11cbdd (47:4bdd)
 Function11c38a: ; 11c38a (47:438a)
 	ld hl, $4986
 	ld bc, $cd36
@@ -112652,7 +111340,6 @@ Function11c38a: ; 11c38a (47:438a)
 
 INCBIN "baserom.gbc",$11c3bc,$11c3c2 - $11c3bc
 
-; no known jump sources
 Function11c3c2: ; 11c3c2 (47:43c2)
 	call Function11c277
 	ld de, $4fbe
@@ -112670,7 +111357,6 @@ Function11c3c2: ; 11c3c2 (47:43c2)
 	res 0, [hl]
 	call Function11cfb5
 
-; no known jump sources
 Function11c3ed: ; 11c3ed (47:43ed)
 	ld hl, BGMapBuffer ; $cd20 (aliases: CreditsPos)
 	ld de, hJoypadPressed ; $ffa3
@@ -112786,7 +111472,6 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	ld [hl], a
 	ret
 
-; known jump sources: 11c472 (47:4472)
 Function11c4a5: ; 11c4a5 (47:44a5)
 	ld hl, $cd23
 	res 0, [hl]
@@ -112803,7 +111488,6 @@ Function11c4a5: ; 11c4a5 (47:44a5)
 	ld a, $15
 	ret
 
-; known jump sources: 11c3dd (47:43dd)
 Function11c4be: ; 11c4be (47:44be)
 	ld a, $1
 	ld hl, $ce51
@@ -112819,7 +111503,6 @@ Function11c4be: ; 11c4be (47:44be)
 
 INCBIN "baserom.gbc",$11c4db,$11c52c - $11c4db
 
-; no known jump sources
 Function11c52c: ; 11c52c (47:452c)
 	call Function11c277
 	call Function11c5f0
@@ -112828,7 +111511,6 @@ Function11c52c: ; 11c52c (47:452c)
 	res 1, [hl]
 	call Function11cfb5
 
-; no known jump sources
 Function11c53d: ; 11c53d (47:453d)
 	ld hl, $cd21
 	ld de, hJoypadPressed ; $ffa3
@@ -112967,7 +111649,6 @@ Function11c53d: ; 11c53d (47:453d)
 	ld [hl], a
 	ret
 
-; known jump sources: 11c52f (47:452f)
 Function11c5f0: ; 11c5f0 (47:45f0)
 	ld de, $5a52
 	ld bc, $463a
@@ -112996,7 +111677,6 @@ Function11c5f0: ; 11c5f0 (47:45f0)
 	call PlaceString
 	ret
 
-; known jump sources: 11c532 (47:4532), 11ce20 (47:4e20)
 Function11c618: ; 11c618 (47:4618)
 	ld a, $2
 	ld hl, $ce51
@@ -113008,7 +111688,6 @@ Function11c618: ; 11c618 (47:4618)
 
 INCBIN "baserom.gbc",$11c62a,$11c658 - $11c62a
 
-; no known jump sources
 Function11c658: ; 11c658 (47:4658)
 	call Function11c277
 	call Function11c770
@@ -113021,7 +111700,6 @@ Function11c658: ; 11c658 (47:4658)
 	res 3, [hl]
 	call Function11cfb5
 
-; no known jump sources
 Function11c675: ; 11c675 (47:4675)
 	ld hl, $cd25
 	ld de, hJoypadPressed ; $ffa3
@@ -113176,7 +111854,6 @@ Function11c675: ; 11c675 (47:4675)
 	ld [hl], a
 	ret
 
-; known jump sources: 11c65b (47:465b)
 Function11c770: ; 11c770 (47:4770)
 	xor a
 	ld [$cd25], a
@@ -113223,7 +111900,6 @@ Function11c770: ; 11c770 (47:4770)
 	ld [$cd28], a
 	jr .asm_11c79f
 
-; known jump sources: 11c667 (47:4667), 11c6c7 (47:46c7)
 Function11c7bc: ; 11c7bc (47:47bc)
 	ld bc, $4854
 	ld a, [$cd2b]
@@ -113343,7 +112019,6 @@ Function11c7bc: ; 11c7bc (47:47bc)
 
 INCBIN "baserom.gbc",$11c854,$11c86e - $11c854
 
-; known jump sources: 11c66a (47:466a), 11c6ca (47:46ca)
 Function11c86e: ; 11c86e (47:486e)
 	ld a, [$cd26]
 	and a
@@ -113402,7 +112077,6 @@ Function11c86e: ; 11c86e (47:486e)
 
 INCBIN "baserom.gbc",$11c8c7,$11c8f6 - $11c8c7
 
-; known jump sources: 11c6e6 (47:46e6)
 Function11c8f6: ; 11c8f6 (47:48f6)
 	ld a, [BGMapBuffer] ; $cd20 (aliases: CreditsPos)
 	call Function11c95d
@@ -113472,7 +112146,6 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	ld d, a
 	jr .asm_11c912
 
-; known jump sources: 11c8f9 (47:48f9), 11ca75 (47:4a75)
 Function11c95d: ; 11c95d (47:495d)
 	sla a
 	ld c, a
@@ -113509,7 +112182,6 @@ Function11c95d: ; 11c95d (47:495d)
 
 INCBIN "baserom.gbc",$11c986,$11c992 - $11c986
 
-; known jump sources: 11c6c4 (47:46c4)
 Function11c992: ; 11c992 (47:4992)
 	ld a, $8
 	hlcoord 2, 7
@@ -113527,7 +112199,6 @@ Function11c992: ; 11c992 (47:4992)
 	jr nz, .asm_11c997
 	ret
 
-; known jump sources: 11c664 (47:4664)
 Function11c9ab: ; 11c9ab (47:49ab)
 	ld a, $7
 	ld hl, $ce51
@@ -113536,12 +112207,10 @@ Function11c9ab: ; 11c9ab (47:49ab)
 	callba Function104061
 	ret
 
-; no known jump sources
 Function11c9bd: ; 11c9bd (47:49bd)
 	ld de, $4a38
 	call Function11ca7f
 
-; no known jump sources
 Function11c9c3: ; 11c9c3 (47:49c3)
 	ld hl, $cd2a
 	ld de, hJoypadPressed ; $ffa3
@@ -113585,7 +112254,6 @@ Function11c9c3: ; 11c9c3 (47:49c3)
 	inc [hl]
 	ret
 
-; known jump sources: 11ca9c (47:4a9c)
 Function11ca01: ; 11ca01 (47:4a01)
 	ld hl, $ce73
 	ld de, $14
@@ -113605,7 +112273,6 @@ Function11ca01: ; 11ca01 (47:4a01)
 	dec c
 	jr nz, .asm_11ca0a
 
-; known jump sources: 11ccfe (47:4cfe)
 Function11ca19: ; 11ca19 (47:4a19)
 	ld hl, $cec9
 	ld de, $14
@@ -113630,7 +112297,6 @@ Function11ca19: ; 11ca19 (47:4a19)
 
 INCBIN "baserom.gbc",$11ca38,$11ca5e - $11ca38
 
-; known jump sources: 11c9e2 (47:49e2)
 Function11ca5e: ; 11ca5e (47:4a5e)
 	xor a
 .asm_11ca5f
@@ -113642,7 +112308,6 @@ Function11ca5e: ; 11ca5e (47:4a5e)
 	jr nz, .asm_11ca5f
 	ret
 
-; known jump sources: 11c5ae (47:45ae), 11ca60 (47:4a60), 11cea7 (47:4ea7)
 Function11ca6a: ; 11ca6a (47:4a6a)
 	ld hl, $cd36
 	ld c, a
@@ -113657,7 +112322,6 @@ Function11ca6a: ; 11ca6a (47:4a6a)
 	call PlaceString
 	ret
 
-; known jump sources: 11c9c0 (47:49c0), 11cab0 (47:4ab0), 11cb63 (47:4b63)
 Function11ca7f: ; 11ca7f (47:4a7f)
 	push de
 	ld de, $4fc6
@@ -113678,12 +112342,10 @@ Function11ca7f: ; 11ca7f (47:4a7f)
 	call Function11cfb5
 	ret
 
-; no known jump sources
 Function11caad: ; 11caad (47:4aad)
 	ld de, $4b1c
 	call Function11ca7f
 
-; no known jump sources
 Function11cab3: ; 11cab3 (47:4ab3)
 	ld hl, $cd2a
 	ld de, hJoypadPressed ; $ffa3
@@ -113751,7 +112413,6 @@ Function11cab3: ; 11cab3 (47:4ab3)
 
 INCBIN "baserom.gbc",$11cb1c,$11cb52 - $11cb1c
 
-; no known jump sources
 Function11cb52: ; 11cb52 (47:4b52)
 	ld hl, $4c01
 	ld a, [$cfa9]
@@ -113768,7 +112429,6 @@ Function11cb52: ; 11cb52 (47:4b52)
 	ld d, a
 	call Function11ca7f
 
-; no known jump sources
 Function11cb66: ; 11cb66 (47:4b66)
 	ld hl, $cd2a
 	ld de, hJoypadPressed ; $ffa3
@@ -113859,7 +112519,6 @@ Function11cb66: ; 11cb66 (47:4b66)
 	inc [hl]
 	ret
 
-; no known jump sources
 Function11cbf5: ; 11cbf5 (47:4bf5)
 	call WaitSFX
 	ld hl, $cf64
@@ -113872,7 +112531,6 @@ Function11cbf5: ; 11cbf5 (47:4bf5)
 
 INCBIN "baserom.gbc",$11cc01,$11ccef - $11cc01
 
-; no known jump sources
 Function11ccef: ; 11ccef (47:4cef)
 	ld de, $4fc6
 	call Function11cfce
@@ -113882,7 +112540,6 @@ Function11ccef: ; 11ccef (47:4cef)
 	call Function11ca19
 	call Function11cfb5
 
-; no known jump sources
 Function11cd04: ; 11cd04 (47:4d04)
 	ld de, hJoypadPressed ; $ffa3
 	ld a, [de]
@@ -113895,7 +112552,6 @@ Function11cd04: ; 11cd04 (47:4d04)
 
 INCBIN "baserom.gbc",$11cd10,$11cd20 - $11cd10
 
-; no known jump sources
 Function11cd20: ; 11cd20 (47:4d20)
 	call Function11c277
 	ld de, $4fc6
@@ -113919,7 +112575,6 @@ Function11cd20: ; 11cd20 (47:4d20)
 	res 5, [hl]
 	call Function11cfb5
 
-; no known jump sources
 Function11cd54: ; 11cd54 (47:4d54)
 	ld hl, $cd2c
 	ld de, hJoypadPressed ; $ffa3
@@ -113975,7 +112630,6 @@ Function11cd54: ; 11cd54 (47:4d54)
 	call PlaceString
 	ret
 
-; known jump sources: 11cd49 (47:4d49)
 Function11cdaa: ; 11cdaa (47:4daa)
 	ld a, $2
 	ld hl, $ce51
@@ -113991,7 +112645,6 @@ Function11cdaa: ; 11cdaa (47:4daa)
 
 INCBIN "baserom.gbc",$11cdc7,$11ce0b - $11cdc7
 
-; no known jump sources
 Function11ce0b: ; 11ce0b (47:4e0b)
 	call Function11c277
 	hlcoord 1, 7
@@ -114005,7 +112658,6 @@ Function11ce0b: ; 11ce0b (47:4e0b)
 	res 2, [hl]
 	call Function11cfb5
 
-; no known jump sources
 Function11ce2b: ; 11ce2b (47:4e2b)
 	ld a, [CreditsTimer] ; $cd22
 	sla a
@@ -114096,7 +112748,6 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 
 INCBIN "baserom.gbc",$11ceb9,$11cfb5 - $11ceb9
 
-; known jump sources: 11c343 (47:4343), 11c35c (47:435c), 11c370 (47:4370), 11c387 (47:4387), 11c3ea (47:43ea), 11c53a (47:453a), 11c672 (47:4672), 11caa9 (47:4aa9), 11cd01 (47:4d01), 11cd51 (47:4d51), 11ce28 (47:4e28)
 Function11cfb5: ; 11cfb5 (47:4fb5)
 	ld hl, $cf63
 	inc [hl]
@@ -114105,7 +112756,6 @@ Function11cfb5: ; 11cfb5 (47:4fb5)
 
 INCBIN "baserom.gbc",$11cfba,$11cfce - $11cfba
 
-; known jump sources: 11c359 (47:4359), 11c36b (47:436b), 11c37f (47:437f), 11c44b (47:444b), 11ca83 (47:4a83), 11ca89 (47:4a89), 11cbb1 (47:4bb1), 11cbda (47:4bda), 11ccf2 (47:4cf2), 11cd26 (47:4d26), 11cd9f (47:4d9f)
 Function11cfce: ; 11cfce (47:4fce)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $14
@@ -114193,7 +112843,6 @@ Function11cfce: ; 11cfce (47:4fce)
 	ld [hl], a
 	ret
 
-; known jump sources: 11c3c8 (47:43c8), 11c661 (47:4661)
 Function11d035: ; 11d035 (47:5035)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $14
@@ -114290,7 +112939,6 @@ Function11d035: ; 11d035 (47:5035)
 	jr nz, .asm_11d0a4
 	ret
 
-; known jump sources: 11d05a (47:505a), 11d062 (47:5062), 11d06c (47:506c)
 Function11d0ac: ; 11d0ac (47:50ac)
 	ld a, [de]
 	dec a
@@ -114301,7 +112949,6 @@ Function11d0ac: ; 11d0ac (47:50ac)
 	jr nz, .asm_11d0b1
 	ret
 
-; no known jump sources
 Function11d0b6: ; 11d0b6 (47:50b6)
 	ld hl, $c
 	add hl, bc
@@ -114316,7 +112963,6 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_11d0c7: ; 11d0c7 (47:50c7)
 	dw Function11d0dd
 	dw Function11d0e9
@@ -114331,7 +112977,6 @@ Jumptable_11d0c7: ; 11d0c7 (47:50c7)
 	dw Function11d1fc
 
 
-; no known jump sources
 Function11d0dd: ; 11d0dd (47:50dd)
 	ld a, [BGMapBuffer] ; $cd20 (aliases: CreditsPos)
 	sla a
@@ -114339,7 +112984,6 @@ Function11d0dd: ; 11d0dd (47:50dd)
 	ld e, $1
 	jr asm_11d11e
 
-; no known jump sources
 Function11d0e9: ; 11d0e9 (47:50e9)
 	ld a, [$cd21]
 	sla a
@@ -114347,7 +112991,6 @@ Function11d0e9: ; 11d0e9 (47:50e9)
 	ld e, $2
 	jr asm_11d11e
 
-; no known jump sources
 Function11d0f5: ; 11d0f5 (47:50f5)
 	ld hl, $52be
 	ld a, [CreditsTimer] ; $cd22
@@ -114362,7 +113005,6 @@ Function11d0f5: ; 11d0f5 (47:50f5)
 	ld e, $4
 	jr asm_11d11e
 
-; no known jump sources
 Function11d10f: ; 11d10f (47:510f)
 	ld a, $27
 	call Function3b3c
@@ -114371,7 +113013,6 @@ Function11d10f: ; 11d10f (47:510f)
 	ld hl, $529e
 	ld e, $8
 
-; known jump sources: 11d0e7 (47:50e7), 11d0f3 (47:50f3), 11d10d (47:510d), 11d143 (47:5143), 11d154 (47:5154)
 asm_11d11e: ; 11d11e (47:511e)
 	push de
 	ld e, a
@@ -114391,7 +113032,6 @@ asm_11d11e: ; 11d11e (47:511e)
 	call Function11d2ee
 	ret
 
-; no known jump sources
 Function11d134: ; 11d134 (47:5134)
 	ld a, $27
 	call Function3b3c
@@ -114401,7 +113041,6 @@ Function11d134: ; 11d134 (47:5134)
 	ld e, $10
 	jr asm_11d11e
 
-; no known jump sources
 Function11d145: ; 11d145 (47:5145)
 	ld a, $27
 	call Function3b3c
@@ -114411,7 +113050,6 @@ Function11d145: ; 11d145 (47:5145)
 	ld e, $20
 	jr asm_11d11e
 
-; no known jump sources
 Function11d156: ; 11d156 (47:5156)
 	ld a, $2a
 	call Function3b3c
@@ -114430,7 +113068,6 @@ Function11d156: ; 11d156 (47:5156)
 	call Function11d2ee
 	ret
 
-; no known jump sources
 Function11d175: ; 11d175 (47:5175)
 	ld a, [$cd4d]
 	cp $4
@@ -114483,18 +113120,15 @@ Function11d175: ; 11d175 (47:5175)
 	call Function11d2ee
 	ret
 
-; no known jump sources
 Function11d1d1: ; 11d1d1 (47:51d1)
 	ld d, $98
 	ld a, $2c
 	jr asm_11d1db
 
-; no known jump sources
 Function11d1d7: ; 11d1d7 (47:51d7)
 	ld d, $10
 	ld a, $2b
 
-; known jump sources: 11d1d5 (47:51d5)
 asm_11d1db: ; 11d1db (47:51db)
 	push de
 	call Function3b3c
@@ -114516,7 +113150,6 @@ asm_11d1db: ; 11d1db (47:51db)
 	call Function11d2ee
 	ret
 
-; no known jump sources
 Function11d1fc: ; 11d1fc (47:51fc)
 	ld a, $26
 	call Function3b3c
@@ -114528,7 +113161,6 @@ Function11d1fc: ; 11d1fc (47:51fc)
 
 INCBIN "baserom.gbc",$11d208,$11d2ee - $11d208
 
-; known jump sources: 11d130 (47:5130), 11d171 (47:5171), 11d1ad (47:51ad), 11d1cd (47:51cd), 11d1f8 (47:51f8), 11d204 (47:5204)
 Function11d2ee: ; 11d2ee (47:52ee)
 	ld hl, $cd24
 	and [hl]
@@ -115291,7 +113923,6 @@ Function170687: ; 170687
 ; 170696
 
 
-; no known jump sources
 Jumptable_170696: ; 170696 (5c:4696)
 	dw Function17075f
 	dw Function170788
@@ -115327,7 +113958,6 @@ Jumptable_170696: ; 170696 (5c:4696)
 	dw Function170737
 
 
-; no known jump sources
 Function1706d6: ; 1706d6 (5c:46d6)
 	ld a, $1
 	call GetSRAMBank
@@ -115340,7 +113970,6 @@ Function1706d6: ; 1706d6 (5c:46d6)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function1706ee: ; 1706ee (5c:46ee)
 	ld a, $1
 	call GetSRAMBank
@@ -115369,7 +113998,6 @@ Function1706ee: ; 1706ee (5c:46ee)
 	ld [ScriptVar], a ; $c2dd
 	ret
 
-; no known jump sources
 Function17071b: ; 17071b (5c:471b)
 	ld a, $1
 	call GetSRAMBank
@@ -115378,7 +114006,6 @@ Function17071b: ; 17071b (5c:471b)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170729: ; 170729 (5c:4729)
 	ld a, $1
 	call GetSRAMBank
@@ -115387,12 +114014,10 @@ Function170729: ; 170729 (5c:4729)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170737: ; 170737 (5c:4737)
 	callba Function14dbb
 	ret
 
-; known jump sources: 17074f (5c:474f)
 Function17073e: ; 17073e (5c:473e)
 	call Random
 	ld a, [hRandomAdd] ; $ff00+$e1
@@ -115412,7 +114037,6 @@ Function17073e: ; 17073e (5c:473e)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function17075f: ; 17075f (5c:475f)
 	call Function17089a
 	ld a, [ScriptVar] ; $c2dd
@@ -115426,7 +114050,6 @@ Function17075f: ; 17075f (5c:475f)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170778: ; 170778 (5c:4778)
 	ld hl, $be45
 	ld a, $1
@@ -115436,7 +114059,6 @@ Function170778: ; 170778 (5c:4778)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170788: ; 170788 (5c:4788)
 	ld a, $1
 	call GetSRAMBank
@@ -115446,12 +114068,10 @@ Function170788: ; 170788 (5c:4788)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170799: ; 170799 (5c:4799)
 	ld c, $1
 	jr asm_17079f
 
-; no known jump sources
 Function17079d: ; 17079d (5c:479d)
 	ld c, $0
 asm_17079f: ; 17079f (5c:479f)
@@ -115462,7 +114082,6 @@ asm_17079f: ; 17079f (5c:479f)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function1707ac: ; 1707ac (5c:47ac)
 	ld a, $5
 	call GetSRAMBank
@@ -115504,7 +114123,6 @@ Function1707ac: ; 1707ac (5c:47ac)
 	ld a, $8
 	ld [ScriptVar], a ; $c2dd
 
-; no known jump sources
 Function1707f4: ; 1707f4 (5c:47f4)
 	ld a, $5
 	call GetSRAMBank
@@ -115515,7 +114133,6 @@ Function1707f4: ; 1707f4 (5c:47f4)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170807: ; 170807 (5c:4807)
 	call UpdateTime
 	ld a, $5
@@ -115527,7 +114144,6 @@ Function170807: ; 170807 (5c:4807)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function17081d: ; 17081d (5c:481d)
 	xor a
 	ld [ScriptVar], a ; $c2dd
@@ -115570,7 +114186,6 @@ Function17081d: ; 17081d (5c:481d)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170868: ; 170868 (5c:4868)
 	ld a, $1
 	call GetSRAMBank
@@ -115585,7 +114200,6 @@ Function170868: ; 170868 (5c:4868)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170881: ; 170881 (5c:4881)
 	ld a, $1
 	call GetSRAMBank
@@ -115618,14 +114232,12 @@ Function17089a: ; 17089a
 ; 1708b1
 
 
-; no known jump sources
 Function1708b1: ; 1708b1 (5c:48b1)
 	xor a
 	ld [MusicFade], a ; $c2a7
 	call MaxVolume
 	ret
 
-; no known jump sources
 Function1708b9: ; 1708b9 (5c:48b9)
 	ld a, $1
 	call GetSRAMBank
@@ -115634,7 +114246,6 @@ Function1708b9: ; 1708b9 (5c:48b9)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function1708c8: ; 1708c8 (5c:48c8)
 	call UpdateTime
 	ld a, $5
@@ -115654,7 +114265,6 @@ Function1708c8: ; 1708c8 (5c:48c8)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function1708f0: ; 1708f0 (5c:48f0)
 	xor a
 	ld [ScriptVar], a ; $c2dd
@@ -115696,7 +114306,6 @@ Function170923: ; 170923
 ; 17093c
 
 
-; no known jump sources
 Function17093c: ; 17093c (5c:493c)
 	xor a
 	ld [ScriptVar], a ; $c2dd
@@ -115769,7 +114378,6 @@ Function17093c: ; 17093c (5c:493c)
 String_1709a4: ; 1709a4
 	db "なぞナゾ@@"
 
-; no known jump sources
 Function1709aa: ; 1709aa (5c:49aa)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -115781,7 +114389,6 @@ Function1709aa: ; 1709aa (5c:49aa)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; no known jump sources
 Function1709bb: ; 1709bb (5c:49bb)
 	xor a
 	ld [ScriptVar], a ; $c2dd
@@ -115811,12 +114418,10 @@ Function1709bb: ; 1709bb (5c:49bb)
 
 INCBIN "baserom.gbc",$1709e7,$170a9c - $1709e7
 
-; no known jump sources
 Function170a9c: ; 170a9c (5c:4a9c)
 	ld c, $0
 	jr asm_170aa2
 
-; no known jump sources
 Function170aa0: ; 170aa0 (5c:4aa0)
 	ld c, $1
 asm_170aa2: ; 170aa2 (5c:4aa2)
@@ -115827,7 +114432,6 @@ asm_170aa2: ; 170aa2 (5c:4aa2)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170aaf: ; 170aaf (5c:4aaf)
 	ld a, $5
 	call GetSRAMBank
@@ -115836,7 +114440,6 @@ Function170aaf: ; 170aaf (5c:4aaf)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170abe: ; 170abe (5c:4abe)
 	call Function17089a
 	ld a, [ScriptVar] ; $c2dd
@@ -115850,7 +114453,6 @@ Function170abe: ; 170abe (5c:4abe)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170ad7: ; 170ad7 (5c:4ad7)
 	ld a, $1
 	call GetSRAMBank
@@ -115860,7 +114462,6 @@ Function170ad7: ; 170ad7 (5c:4ad7)
 	call CloseSRAM
 	ret
 
-; no known jump sources
 Function170ae8: ; 170ae8 (5c:4ae8)
 	ld a, $5
 	call GetSRAMBank
@@ -115881,7 +114482,6 @@ Function170ae8: ; 170ae8 (5c:4ae8)
 	ld [ScriptVar], a ; $c2dd
 	ret
 
-; no known jump sources
 Function170b16: ; 170b16 (5c:4b16)
 	ld a, $5
 	call GetSRAMBank
@@ -115980,7 +114580,6 @@ Function170c8b: ; 170c8b
 
 INCBIN "baserom.gbc",$170c98,$1719c8 - $170c98
 
-; no known jump sources
 Function1719c8: ; 1719c8 (5c:59c8)
 	ld a, [$FF00+$aa]
 	push af
@@ -115991,7 +114590,6 @@ Function1719c8: ; 1719c8 (5c:59c8)
 	ld [$FF00+$aa], a
 	ret
 
-; known jump sources: 1719cf (5c:59cf)
 Function1719d6: ; 1719d6 (5c:59d6)
 	callba Function1183cb
 	call Function1719ed
@@ -116004,7 +114602,6 @@ Function1719d6: ; 1719d6 (5c:59d6)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; known jump sources: 1719dc (5c:59dc)
 Function1719ed: ; 1719ed (5c:59ed)
 	xor a
 	ld [$cd49], a
@@ -116018,7 +114615,6 @@ Function1719ed: ; 1719ed (5c:59ed)
 	callba Function8cf53
 	ret
 
-; known jump sources: 1719e6 (5c:59e6), 171a2a (5c:5a2a)
 Function171a11: ; 171a11 (5c:5a11)
 	call Functiona57
 	ld a, [$cd49]
@@ -116033,7 +114629,6 @@ Function171a11: ; 171a11 (5c:5a11)
 	call ClearSprites
 	ret
 
-; known jump sources: 171a1b (5c:5a1b)
 Function171a36: ; 171a36 (5c:5a36)
 	ld a, [$cd49]
 	ld e, a
@@ -116046,7 +114641,6 @@ Function171a36: ; 171a36 (5c:5a36)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 Jumptable_171a45: ; 171a45 (5c:5a45)
 	dw Function171a95
 	dw Function171ac9
@@ -116062,7 +114656,6 @@ Jumptable_171a45: ; 171a45 (5c:5a45)
 	dw Function171c41
 
 
-; no known jump sources
 Function171a5d: ; 171a5d (5c:5a5d)
 	ld a, [$c821]
 	bit 1, a
@@ -116091,7 +114684,6 @@ Function171a5d: ; 171a5d (5c:5a5d)
 	ld [$cd49], a
 	ret
 
-; no known jump sources
 Function171a95: ; 171a95 (5c:5a95)
 	callba Function171ccd
 	hlcoord 2, 8
@@ -116102,7 +114694,6 @@ Function171a95: ; 171a95 (5c:5a95)
 
 INCBIN "baserom.gbc",$171aa7,$171ac9 - $171aa7
 
-; no known jump sources
 Function171ac9: ; 171ac9 (5c:5ac9)
 	ld de, $cd81
 	ld hl, $5c
@@ -116110,7 +114701,6 @@ Function171ac9: ; 171ac9 (5c:5ac9)
 	call Function3e32
 	jp Function171c66
 
-; no known jump sources
 Function171ad7: ; 171ad7 (5c:5ad7)
 	xor a
 	ld hl, $c608
@@ -116121,7 +114711,6 @@ Function171ad7: ; 171ad7 (5c:5ad7)
 	call Function3e32
 	jp Function171c66
 
-; no known jump sources
 Function171aec: ; 171aec (5c:5aec)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -116173,7 +114762,6 @@ Function171aec: ; 171aec (5c:5aec)
 	jr nz, .asm_171b1b
 	jp Function171c66
 
-; known jump sources: 171b29 (5c:5b29), 171b31 (5c:5b31), 171b49 (5c:5b49)
 Function171b42: ; 171b42 (5c:5b42)
 	ld a, [de]
 	inc de
@@ -116183,7 +114771,6 @@ Function171b42: ; 171b42 (5c:5b42)
 	ld [hli], a
 	jr Function171b42
 
-; no known jump sources
 Function171b4b: ; 171b4b (5c:5b4b)
 	ld de, $4010
 	ld a, $1d
@@ -116212,7 +114799,6 @@ Function171b4b: ; 171b4b (5c:5b4b)
 	ld [$cd24], a
 	jp Function171c66
 
-; no known jump sources
 Function171b85: ; 171b85 (5c:5b85)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -116229,7 +114815,6 @@ Function171b85: ; 171b85 (5c:5b85)
 	jr nz, asm_171baf
 	ret
 
-; known jump sources: 171b8b (5c:5b8b)
 Function171b9f: ; 171b9f (5c:5b9f)
 	ld a, $80
 	ld [$cd49], a
@@ -116251,7 +114836,6 @@ asm_171baf: ; 171baf (5c:5baf)
 	ld [$cd4a], a
 	ret
 
-; known jump sources: 171b91 (5c:5b91)
 Function171bbd: ; 171bbd (5c:5bbd)
 	call PlayClickSFX
 	ld a, $8
@@ -116260,7 +114844,6 @@ Function171bbd: ; 171bbd (5c:5bbd)
 	ld [$cd24], a
 	jp Function171c66
 
-; no known jump sources
 Function171bcc: ; 171bcc (5c:5bcc)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -116271,7 +114854,6 @@ Function171bcc: ; 171bcc (5c:5bcc)
 	jp nz, Function171beb
 	ret
 
-; known jump sources: 171bd2 (5c:5bd2)
 Function171bdc: ; 171bdc (5c:5bdc)
 	ld a, $4
 	ld [$cd23], a
@@ -116281,7 +114863,6 @@ Function171bdc: ; 171bdc (5c:5bdc)
 	dec [hl]
 	ret
 
-; known jump sources: 171bd8 (5c:5bd8)
 Function171beb: ; 171beb (5c:5beb)
 	ld a, $5
 	call GetSRAMBank
@@ -116309,7 +114890,6 @@ Function171beb: ; 171beb (5c:5beb)
 	ld [$cd4c], a
 	call Function171c66
 
-; no known jump sources
 Function171c2c: ; 171c2c (5c:5c2c)
 	ld hl, $cd4c
 	dec [hl]
@@ -116318,13 +114898,11 @@ Function171c2c: ; 171c2c (5c:5c2c)
 	call WhiteBGMap
 	jr asm_171c60
 
-; no known jump sources
 Function171c39: ; 171c39 (5c:5c39)
 	ld a, $28
 	ld [$cd4c], a
 	call Function171c66
 
-; no known jump sources
 Function171c41: ; 171c41 (5c:5c41)
 	ld hl, $cd4c
 	dec [hl]
@@ -116340,7 +114918,6 @@ asm_171c60: ; 171c60 (5c:5c60)
 	ld [$cd49], a
 	ret
 
-; known jump sources: 171a67 (5c:5a67), 171aa4 (5c:5aa4), 171ad4 (5c:5ad4), 171ae9 (5c:5ae9), 171b3f (5c:5b3f), 171b82 (5c:5b82), 171bc9 (5c:5bc9), 171c29 (5c:5c29), 171c3e (5c:5c3e)
 Function171c66: ; 171c66 (5c:5c66)
 	ld hl, $cd49
 	inc [hl]
@@ -116349,7 +114926,6 @@ Function171c66: ; 171c66 (5c:5c66)
 
 INCBIN "baserom.gbc",$171c6b,$171c87 - $171c6b
 
-; no known jump sources
 Function171c87: ; 171c87 (5c:5c87)
 	call DisableLCD
 	ld hl, $5db1
@@ -116376,7 +114952,6 @@ Function171c87: ; 171c87 (5c:5c87)
 	call PlaceString
 	ret
 
-; no known jump sources
 Function171ccd: ; 171ccd (5c:5ccd)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -116396,7 +114971,6 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; no known jump sources
 Function171cf0: ; 171cf0 (5c:5cf0)
 	xor a
 	hlcoord 4, 15
@@ -116423,7 +114997,6 @@ Function171cf0: ; 171cf0 (5c:5cf0)
 	ld de, $6e4e
 	jp PlaceString
 
-; no known jump sources
 Function171d2b: ; 171d2b (5c:5d2b)
 	call DisableLCD
 	ld hl, $5db1
@@ -116453,7 +115026,6 @@ Function171d2b: ; 171d2b (5c:5d2b)
 
 INCBIN "baserom.gbc",$171d71,$172e78 - $171d71
 
-; no known jump sources
 Function172e78: ; 172e78 (5c:6e78)
 	ld a, $7f
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -118721,7 +117293,6 @@ INCLUDE "tilesets/data_7.asm"
 
 INCBIN "baserom.gbc",$1dd6a9,$1dd6bb - $1dd6a9
 
-; no known jump sources
 Function1dd6bb: ; 1dd6bb (77:56bb)
 	ld a, b
 	cp $c
@@ -118848,7 +117419,6 @@ Function1ddf1c: ; 1ddf1c
 ; 1ddf26
 
 
-; no known jump sources
 Function1ddf26: ; 1ddf26 (77:5f26)
 	ld hl, $5f33
 	ld de, $9310
@@ -118869,7 +117439,6 @@ Function1de0d7: ; 1de0d7
 
 INCBIN "baserom.gbc",$1de0e1,$1de171 - $1de0e1
 
-; no known jump sources
 Function1de171: ; 1de171 (77:6171)
 	ld a, $32
 	hlcoord 0, 17
@@ -118912,7 +117481,6 @@ Function1de171: ; 1de171 (77:6171)
 .asm_1de1d0
 	ret
 
-; no known jump sources
 Function1de1d1: ; 1de1d1 (77:61d1)
 	ld a, $34
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)

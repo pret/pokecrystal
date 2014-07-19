@@ -269,7 +269,6 @@ Function109926: ; 109926
 ; 109937
 
 
-; no known jump sources
 Jumptable_109937: ; 109937 (42:5937)
 	dw ParseCredits
 	dw Function109951
@@ -286,13 +285,11 @@ Jumptable_109937: ; 109937 (42:5937)
 	dw Function109956
 
 
-; known jump sources: 109961 (42:5961), 109983 (42:5983), 1099a0 (42:59a0), 109a62 (42:5a62)
 Function109951: ; 109951 (42:5951)
 	ld hl, $cf63
 	inc [hl]
 	ret
 
-; no known jump sources
 Function109956: ; 109956 (42:5956)
 	ld hl, $cf63
 	ld a, [hl]
@@ -300,13 +297,11 @@ Function109956: ; 109956 (42:5956)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Function10995e: ; 10995e (42:595e)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	jp Function109951
 
-; no known jump sources
 Function109964: ; 109964 (42:5964)
 	call Function109bca
 	ld a, l
@@ -319,7 +314,6 @@ Function109964: ; 109964 (42:5964)
 	ld [$cf6b], a
 	jr Function10997b
 
-; known jump sources: 109979 (42:5979)
 Function10997b: ; 10997b (42:597b)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -327,7 +321,6 @@ Function10997b: ; 10997b (42:597b)
 	ld [$cf67], a
 	jp Function109951
 
-; known jump sources: 10998a (42:598a)
 Function109986: ; 109986 (42:5986)
 	ld a, [rLY] ; $ff00+$44
 	cp $30
@@ -342,7 +335,6 @@ Function109986: ; 109986 (42:5986)
 	call Function1099a3
 	jp Function109951
 
-; known jump sources: 109997 (42:5997), 10999d (42:599d)
 Function1099a3: ; 1099a3 (42:59a3)
 	ld c, $8
 .asm_1099a5
@@ -526,7 +518,6 @@ ParseCredits: ; 1099aa
 ; 109a95
 
 
-; known jump sources: 1098ac (42:58ac)
 Function109a95: ; 109a95 (42:5a95)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -571,7 +562,6 @@ Function109a95: ; 109a95 (42:5a95)
 	call Function3200
 	ret
 
-; known jump sources: 109af8 (42:5af8)
 Function109aff: ; 109aff (42:5aff)
 	ld b, $5
 .asm_109b01
@@ -600,7 +590,6 @@ Function109aff: ; 109aff (42:5aff)
 	jr nz, .asm_109b01
 	ret
 
-; known jump sources: 109ab7 (42:5ab7), 109abf (42:5abf)
 Function109b1d: ; 109b1d (42:5b1d)
 	ld c, $5
 .asm_109b1f
@@ -733,7 +722,6 @@ CreditsPalettes:
 	RGB 31, 31, 31
 ; 109bca
 
-; known jump sources: 10989e (42:589e), 109964 (42:5964)
 Function109bca: ; 109bca (42:5bca)
 	ld hl, $cf64
 	ld a, [hl]
@@ -784,14 +772,12 @@ CreditsMonsFrames: ; 109bf1
 	dw CreditsIgglybuffGFX + $300
 ; 109c11
 
-; known jump sources: 109a1b (42:5a1b)
 Function109c11: ; 109c11 (42:5c11)
 	ld a, $40
 	hlcoord 6, 9
 	call Function109c1c
 	hlcoord 6, 10
 
-; known jump sources: 109c16 (42:5c16)
 Function109c1c: ; 109c1c (42:5c1c)
 	ld c, $8
 .asm_109c1e

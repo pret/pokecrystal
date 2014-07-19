@@ -1,6 +1,5 @@
 ; BG effects for use in battle animations.
 
-; no known jump sources
 Functionc8000: ; c8000 (32:4000)
 	ld hl, $d3fa
 	ld e, $5
@@ -22,7 +21,6 @@ Functionc8000: ; c8000 (32:4000)
 	jr nz, .asm_c8005
 	ret
 
-; no known jump sources
 Functionc801a: ; c801a (32:401a)
 	ld hl, $d3fa
 	ld e, $5
@@ -51,14 +49,12 @@ Functionc801a: ; c801a (32:401a)
 	ld [hl], a
 	ret
 
-; known jump sources: c80c6 (32:40c6), c811c (32:411c), c8139 (32:4139), c814d (32:414d), c8164 (32:4164), c81e6 (32:41e6), c81ef (32:41ef), c822c (32:422c), c827d (32:427d), c8299 (32:4299), c82ea (32:42ea), c8377 (32:4377), c8437 (32:4437), c85ca (32:45ca), c85ff (32:45ff), c8d13 (32:4d13), c8dd0 (32:4dd0), c8e26 (32:4e26), c8e4e (32:4e4e), c8f15 (32:4f15)
 EndBattleBGEffect: ; c8043 (32:4043)
 	ld hl, 0
 	add hl, bc
 	ld [hl], 0
 	ret
 
-; known jump sources: c800d (32:400d)
 Functionc804a: ; c804a (32:404a)
 	ld hl, 0
 	add hl, bc
@@ -72,7 +68,6 @@ Functionc804a: ; c804a (32:404a)
 	ld l, a
 	jp [hl]
 
-; no known jump sources
 BattleBGEffects: ; c805a (32:405a)
 	dw BattleBGEffect_0
 	dw Functionc80eb
@@ -130,12 +125,10 @@ BattleBGEffects: ; c805a (32:405a)
 	dw Functionc8d3a
 
 
-; no known jump sources
 BattleBGEffect_0: ; c80c6 (32:40c6)
 	call EndBattleBGEffect
 	ret
 
-; known jump sources: c8b7d (32:4b7d), c8d80 (32:4d80), c8dd8 (32:4dd8)
 Functionc80ca: ; c80ca (32:40ca)
 	ld hl, $1
 	add hl, bc
@@ -148,7 +141,6 @@ Functionc80ca: ; c80ca (32:40ca)
 	ld l, a
 	ret
 
-; known jump sources: c81b3 (32:41b3), c8214 (32:4214), c8281 (32:4281), c82f5 (32:42f5), c83ed (32:43ed), c8545 (32:4545), c8599 (32:4599), c8607 (32:4607), c863f (32:463f), c8662 (32:4662), c8689 (32:4689), c8709 (32:4709), c8761 (32:4761), c87a7 (32:47a7), c8805 (32:4805), c8837 (32:4837), c88e7 (32:48e7), c8919 (32:4919), c892a (32:492a), c8964 (32:4964), c89b5 (32:49b5), c89ee (32:49ee), c8a3a (32:4a3a), c8acc (32:4acc), c8b05 (32:4b05), c8c61 (32:4c61), c8ca2 (32:4ca2)
 Functionc80d7: ; c80d7 (32:40d7)
 	pop de
 	ld hl, $1
@@ -162,14 +154,12 @@ Functionc80d7: ; c80d7 (32:40d7)
 	ld l, a
 	jp [hl]
 
-; known jump sources: c81c0 (32:41c0), c8230 (32:4230), c825a (32:425a), c829d (32:429d), c82c7 (32:42c7), c8302 (32:4302), c835c (32:435c), c841d (32:441d), c854e (32:454e), c85a2 (32:45a2), c8610 (32:4610), c8648 (32:4648), c866b (32:466b), c8698 (32:4698), c86cb (32:46cb), c8712 (32:4712), c876a (32:476a), c87b2 (32:47b2), c87db (32:47db), c8810 (32:4810), c8842 (32:4842), c8876 (32:4876), c8890 (32:4890), c88f6 (32:48f6), c8933 (32:4933), c896d (32:496d), c89be (32:49be), c89f7 (32:49f7), c8a49 (32:4a49), c8a84 (32:4a84), c8a96 (32:4a96), c8ad3 (32:4ad3), c8b0e (32:4b0e), c8c68 (32:4c68), c8cab (32:4cab), c8d8b (32:4d8b), c8dec (32:4dec), c8def (32:4def), c8df2 (32:4df2)
 Functionc80e5: ; c80e5 (32:40e5)
 	ld hl, $1
 	add hl, bc
 	inc [hl]
 	ret
 
-; no known jump sources
 Functionc80eb: ; c80eb (32:40eb)
 	ld de, .inverted
 	jp Functionc80fb
@@ -180,7 +170,6 @@ Functionc80eb: ; c80eb (32:40eb)
 	db %00011011 ; 0123
 ; c80f3
 
-; no known jump sources
 Functionc80f3: ; c80f3 (32:40f3)
 	ld de, .white
 	jp Functionc80fb
@@ -191,7 +180,6 @@ Functionc80f3: ; c80f3 (32:40f3)
 	db %00000000 ; 0000
 ; c80fb
 
-; known jump sources: c80ee (32:40ee), c80f6 (32:40f6)
 Functionc80fb: ; c80fb (32:40fb)
 	ld a, $1
 	ld [$d419], a
@@ -229,7 +217,6 @@ Functionc80fb: ; c80fb (32:40fb)
 	ld [$cfc7], a
 	ret
 
-; no known jump sources
 Functionc812d: ; c812d (32:412d)
 	ld de, Unknown_c813d
 	call Functionc8d57
@@ -245,7 +232,6 @@ Unknown_c813d:
 	db $e4, $e0, $d0, $ff
 ; c8141
 
-; no known jump sources
 Functionc8141: ; c8141 (32:4141)
 	ld de, Unknown_c8151
 	call Functionc8d57
@@ -261,7 +247,6 @@ Unknown_c8151:
 	db $e4, $f4, $f8, $ff
 ; c8155
 
-; no known jump sources
 Functionc8155: ; c8155 (32:4155)
 	ld de, Unknown_c8168
 	call Functionc8d57
@@ -278,7 +263,6 @@ Unknown_c8168:
 	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
 ; c8171
 
-; no known jump sources
 Functionc8171: ; c8171 (32:4171)
 	call Functionc9059
 	jr nz, .asm_c817b
@@ -300,7 +284,6 @@ Unknown_c8188:
 	db $f0, $c0, $fe
 ; c818b
 
-; no known jump sources
 Functionc818b: ; c818b (32:418b)
 	call Functionc9059
 	jr nz, .asm_c8195
@@ -322,7 +305,6 @@ Unknown_c81a2:
 	db $f0, $cc, $fe
 ; c81a5
 
-; no known jump sources
 Functionc81a5: ; c81a5 (32:41a5)
 	ld de, Unknown_c81af
 	call Functionc8d57
@@ -334,11 +316,9 @@ Unknown_c81af:
 	db $1b, $63, $87, $fe
 ; c81b3
 
-; no known jump sources
 Functionc81b3: ; c81b3 (32:41b3)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c81b6: ; c81b6 (32:41b6)
 	dw Functionc81c0
 	dw Functionc80e5
@@ -347,7 +327,6 @@ Jumptable_c81b6: ; c81b6 (32:41b6)
 	dw Functionc81e3
 
 
-; no known jump sources
 Functionc81c0: ; c81c0 (32:41c0)
 	call Functionc80e5
 	push bc
@@ -368,14 +347,12 @@ Functionc81c0: ; c81c0 (32:41c0)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-; no known jump sources
 Functionc81e3: ; c81e3 (32:41e3)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call EndBattleBGEffect
 	ret
 
-; no known jump sources
 Functionc81ea: ; c81ea (32:41ea)
 	call Functionc9042
 	jr z, .asm_c81f3
@@ -407,11 +384,9 @@ Unknown_c8210:
 	db $ff
 ; c8214
 
-; no known jump sources
 Functionc8214: ; c8214 (32:4214)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8217: ; c8217 (32:4217)
 	dw Functionc8223
 	dw Functionc825a
@@ -421,7 +396,6 @@ Jumptable_c8217: ; c8217 (32:4217)
 	dw Functionc827a
 
 
-; no known jump sources
 Functionc8223: ; c8223 (32:4223)
 	call Functionc9042
 	jr z, .asm_c8230
@@ -452,7 +426,6 @@ Functionc8223: ; c8223 (32:4223)
 	pop bc
 	ret
 
-; no known jump sources
 Functionc825a: ; c825a (32:425a)
 	call Functionc80e5
 	push bc
@@ -471,18 +444,15 @@ Functionc825a: ; c825a (32:425a)
 	pop bc
 	ret
 
-; no known jump sources
 Functionc827a: ; c827a (32:427a)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call EndBattleBGEffect
 	ret
 
-; no known jump sources
 Functionc8281: ; c8281 (32:4281)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8284: ; c8284 (32:4284)
 	dw Functionc8290
 	dw Functionc82c7
@@ -492,7 +462,6 @@ Jumptable_c8284: ; c8284 (32:4284)
 	dw Functionc82e7
 
 
-; no known jump sources
 Functionc8290: ; c8290 (32:4290)
 	call Functionc9042
 	jr z, .asm_c829d
@@ -523,7 +492,6 @@ Functionc8290: ; c8290 (32:4290)
 	pop bc
 	ret
 
-; no known jump sources
 Functionc82c7: ; c82c7 (32:42c7)
 	call Functionc80e5
 	push bc
@@ -542,23 +510,19 @@ Functionc82c7: ; c82c7 (32:42c7)
 	pop bc
 	ret
 
-; no known jump sources
 Functionc82e7: ; c82e7 (32:42e7)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call EndBattleBGEffect
 	ret
 
-; known jump sources: c8255 (32:4255), c82c2 (32:42c2)
 Functionc82ee: ; c82ee (32:42ee)
 	callab Functioncc9a1
 	ret
 
-; no known jump sources
 Functionc82f5: ; c82f5 (32:42f5)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c82f8: ; c82f8 (32:42f8)
 	dw Functionc8302
 	dw Functionc831d
@@ -567,7 +531,6 @@ Jumptable_c82f8: ; c82f8 (32:42f8)
 	dw Functionc8365
 
 
-; no known jump sources
 Functionc8302: ; c8302 (32:4302)
 	call Functionc80e5
 	call Functionc9038
@@ -587,7 +550,6 @@ Functionc8302: ; c8302 (32:4302)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc831d: ; c831d (32:431d)
 	ld hl, $2
 	add hl, bc
@@ -641,7 +603,6 @@ Functionc831d: ; c831d (32:431d)
 	dec [hl]
 	ret
 
-; no known jump sources
 Functionc8365: ; c8365 (32:4365)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -658,7 +619,6 @@ Functionc8365: ; c8365 (32:4365)
 	call EndBattleBGEffect
 	ret
 
-; no known jump sources
 Functionc837b: ; c837b (32:437b)
 	call Functionc9038
 	jr nz, .asm_c8385
@@ -689,7 +649,6 @@ Unknown_c839e:
 	db $ff
 ; c83a8
 
-; no known jump sources
 Functionc83a8: ; c83a8 (32:43a8)
 	call Functionc9038
 	jr nz, .asm_c83b2
@@ -728,11 +687,9 @@ Unknown_c83d7:
 	db $ff
 ; c83ed
 
-; known jump sources: c8208 (32:4208), c8390 (32:4390), c83bd (32:43bd)
 Functionc83ed: ; c83ed (32:43ed)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c83f0: ; c83f0 (32:43f0)
 	dw Functionc83fa
 	dw Functionc80e5
@@ -741,7 +698,6 @@ Jumptable_c83f0: ; c83f0 (32:43f0)
 	dw Functionc8434
 
 
-; known jump sources: c8428 (32:4428)
 Functionc83fa: ; c83fa (32:43fa)
 	ld hl, $3
 	add hl, bc
@@ -772,7 +728,6 @@ Functionc83fa: ; c83fa (32:43fa)
 	call Functionc843b
 	jr Functionc83fa
 
-; no known jump sources
 Functionc842a: ; c842a (32:442a)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -781,14 +736,12 @@ Functionc842a: ; c842a (32:442a)
 	ld [hl], $0
 	ret
 
-; known jump sources: c8410 (32:4410)
 Functionc8434: ; c8434 (32:4434)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call EndBattleBGEffect
 	ret
 
-; known jump sources: c8425 (32:4425)
 Functionc843b: ; c843b (32:443b)
 	push bc
 	inc hl
@@ -812,7 +765,6 @@ Functionc843b: ; c843b (32:443b)
 	pop bc
 	ret
 
-; known jump sources: c841a (32:441a)
 Functionc8458: ; c8458 (32:4458)
 	push bc
 	push hl
@@ -932,24 +884,20 @@ Unknown_c853c: ; c853c
 	db $06, $1b, $30
 ; c8545
 
-; no known jump sources
 Functionc8545: ; c8545 (32:4545)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8548: ; c8548 (32:4548)
 	dw Functionc854e
 	dw Functionc8557
 	dw Functionc8561
 
 
-; no known jump sources
 Functionc854e: ; c854e (32:454e)
 	call Functionc80e5
 	ld de, $202
 	call Functionc8f69
 
-; no known jump sources
 Functionc8557: ; c8557 (32:4557)
 	ld a, [hLCDStatCustom] ; $ff00+$c6
 	and a
@@ -959,12 +907,10 @@ Functionc8557: ; c8557 (32:4557)
 	pop bc
 	ret
 
-; no known jump sources
 Functionc8561: ; c8561 (32:4561)
 	call Functionc8f0a
 	ret
 
-; known jump sources: c855c (32:455c)
 Functionc8565: ; c8565 (32:4565)
 	ld hl, $d422
 	ld de, $d423
@@ -1005,18 +951,15 @@ Functionc8565: ; c8565 (32:4565)
 	jr c, .asm_c8580
 	ret
 
-; no known jump sources
 Functionc8599: ; c8599 (32:4599)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c859c: ; c859c (32:459c)
 	dw Functionc85a2
 	dw Functionc85ba
 	dw Functionc85be
 
 
-; no known jump sources
 Functionc85a2: ; c85a2 (32:45a2)
 	call Functionc80e5
 	call Functionc8eca
@@ -1030,17 +973,14 @@ Functionc85a2: ; c85a2 (32:45a2)
 	call Functionc8f2e
 	ret
 
-; no known jump sources
 Functionc85ba: ; c85ba (32:45ba)
 	call Functionc8fef
 	ret
 
-; no known jump sources
 Functionc85be: ; c85be (32:45be)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc85c2: ; c85c2 (32:45c2)
 	call Functionc8eca
 	ld a, $42
@@ -1048,7 +988,6 @@ Functionc85c2: ; c85c2 (32:45c2)
 	call EndBattleBGEffect
 	ret
 
-; no known jump sources
 Functionc85ce: ; c85ce (32:45ce)
 	ld hl, $3
 	add hl, bc
@@ -1082,23 +1021,19 @@ Functionc85ce: ; c85ce (32:45ce)
 	call EndBattleBGEffect
 	ret
 
-; no known jump sources
 Functionc8603: ; c8603 (32:4603)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8607: ; c8607 (32:4607)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c860a: ; c860a (32:460a)
 	dw Functionc8610
 	dw Functionc862e
 	dw Functionc863b
 
 
-; no known jump sources
 Functionc8610: ; c8610 (32:4610)
 	call Functionc80e5
 	call Functionc8eca
@@ -1115,7 +1050,6 @@ Functionc8610: ; c8610 (32:4610)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Functionc862e: ; c862e (32:462e)
 	ld hl, $3
 	add hl, bc
@@ -1126,23 +1060,19 @@ Functionc862e: ; c862e (32:462e)
 	call Functionc8fef
 	ret
 
-; no known jump sources
 Functionc863b: ; c863b (32:463b)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc863f: ; c863f (32:463f)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8642: ; c8642 (32:4642)
 	dw Functionc8648
 	dw Functionc865a
 	dw Functionc865e
 
 
-; no known jump sources
 Functionc8648: ; c8648 (32:4648)
 	call Functionc80e5
 	call Functionc8eca
@@ -1152,28 +1082,23 @@ Functionc8648: ; c8648 (32:4648)
 	call Functionc8f2e
 	ret
 
-; no known jump sources
 Functionc865a: ; c865a (32:465a)
 	call Functionc8fef
 	ret
 
-; no known jump sources
 Functionc865e: ; c865e (32:465e)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8662: ; c8662 (32:4662)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8665: ; c8665 (32:4665)
 	dw Functionc866b
 	dw Functionc8681
 	dw Functionc8685
 
 
-; no known jump sources
 Functionc866b: ; c866b (32:466b)
 	call Functionc80e5
 	call Functionc8eca
@@ -1186,21 +1111,17 @@ Functionc866b: ; c866b (32:466b)
 	call Functionc8f2e
 	ret
 
-; no known jump sources
 Functionc8681: ; c8681 (32:4681)
 	call Functionc8fef
 	ret
 
-; no known jump sources
 Functionc8685: ; c8685 (32:4685)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8689: ; c8689 (32:4689)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c868c: ; c868c (32:468c)
 	dw Functionc8698
 	dw Functionc86af
@@ -1210,7 +1131,6 @@ Jumptable_c868c: ; c868c (32:468c)
 	dw Functionc8705
 
 
-; no known jump sources
 Functionc8698: ; c8698 (32:4698)
 	call Functionc80e5
 	call Functionc8eca
@@ -1224,7 +1144,6 @@ Functionc8698: ; c8698 (32:4698)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Functionc86af: ; c86af (32:46af)
 	ld hl, $3
 	add hl, bc
@@ -1235,7 +1154,6 @@ Functionc86af: ; c86af (32:46af)
 	call Functionc86ea
 	ret
 
-; no known jump sources
 Functionc86bd: ; c86bd (32:46bd)
 	ld hl, $3
 	add hl, bc
@@ -1249,7 +1167,6 @@ asm_c86cb: ; c86cb (32:46cb)
 	call Functionc80e5
 	ret
 
-; no known jump sources
 Functionc86cf: ; c86cf (32:46cf)
 	ld hl, $2
 	add hl, bc
@@ -1266,11 +1183,9 @@ Functionc86cf: ; c86cf (32:46cf)
 	add $4
 	ld [hl], a
 
-; no known jump sources
 Functionc86e9: ; c86e9 (32:46e9)
 	ret
 
-; known jump sources: c86b9 (32:46b9), c86c7 (32:46c7), c86de (32:46de)
 Functionc86ea: ; c86ea (32:46ea)
 	ld e, a
 	xor $ff
@@ -1295,23 +1210,19 @@ Functionc86ea: ; c86ea (32:46ea)
 	ld [hl], e
 	ret
 
-; no known jump sources
 Functionc8705: ; c8705 (32:4705)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8709: ; c8709 (32:4709)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c870c: ; c870c (32:470c)
 	dw Functionc8712
 	dw Functionc8732
 	dw Functionc875d
 
 
-; no known jump sources
 Functionc8712: ; c8712 (32:4712)
 	call Functionc80e5
 	call Functionc8eca
@@ -1330,7 +1241,6 @@ Functionc8712: ; c8712 (32:4712)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Functionc8732: ; c8732 (32:4732)
 	ld a, [$FF00+$c8]
 	ld l, a
@@ -1364,23 +1274,19 @@ Functionc8732: ; c8732 (32:4732)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Functionc875d: ; c875d (32:475d)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8761: ; c8761 (32:4761)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8764: ; c8764 (32:4764)
 	dw Functionc876a
 	dw Functionc8781
 	dw Functionc87a3
 
 
-; no known jump sources
 Functionc876a: ; c876a (32:476a)
 	call Functionc80e5
 	call Functionc8eca
@@ -1394,7 +1300,6 @@ Functionc876a: ; c876a (32:476a)
 	ld [hl], $1
 	ret
 
-; no known jump sources
 Functionc8781: ; c8781 (32:4781)
 	ld hl, $3
 	add hl, bc
@@ -1419,16 +1324,13 @@ Functionc8781: ; c8781 (32:4781)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc87a3: ; c87a3 (32:47a3)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc87a7: ; c87a7 (32:47a7)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c87aa: ; c87aa (32:47aa)
 	dw Functionc87b2
 	dw Functionc87cf
@@ -1436,7 +1338,6 @@ Jumptable_c87aa: ; c87aa (32:47aa)
 	dw Functionc8801
 
 
-; no known jump sources
 Functionc87b2: ; c87b2 (32:47b2)
 	call Functionc80e5
 	call Functionc8eca
@@ -1453,7 +1354,6 @@ Functionc87b2: ; c87b2 (32:47b2)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Functionc87cf: ; c87cf (32:47cf)
 	ld hl, $3
 	add hl, bc
@@ -1466,7 +1366,6 @@ Functionc87cf: ; c87cf (32:47cf)
 	ld [hl], $10
 	call Functionc80e5
 
-; no known jump sources
 Functionc87de: ; c87de (32:47de)
 	ld a, [$FF00+$c7]
 	ld l, a
@@ -1493,16 +1392,13 @@ Functionc87de: ; c87de (32:47de)
 	inc [hl]
 	ret
 
-; no known jump sources
 Functionc8801: ; c8801 (32:4801)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8805: ; c8805 (32:4805)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8808: ; c8808 (32:4808)
 	dw Functionc8810
 	dw Functionc8869
@@ -1510,7 +1406,6 @@ Jumptable_c8808: ; c8808 (32:4808)
 	dw Functionc8833
 
 
-; no known jump sources
 Functionc8810: ; c8810 (32:4810)
 	call Functionc80e5
 	call Functionc8eca
@@ -1532,16 +1427,13 @@ Functionc8810: ; c8810 (32:4810)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc8833: ; c8833 (32:4833)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8837: ; c8837 (32:4837)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c883a: ; c883a (32:483a)
 	dw Functionc8842
 	dw Functionc8869
@@ -1549,7 +1441,6 @@ Jumptable_c883a: ; c883a (32:483a)
 	dw Functionc8865
 
 
-; no known jump sources
 Functionc8842: ; c8842 (32:4842)
 	call Functionc80e5
 	call Functionc8eca
@@ -1571,12 +1462,10 @@ Functionc8842: ; c8842 (32:4842)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc8865: ; c8865 (32:4865)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8869: ; c8869 (32:4869)
 	ld hl, $3
 	add hl, bc
@@ -1598,7 +1487,6 @@ Functionc8869: ; c8869 (32:4869)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc8888: ; c8888 (32:4888)
 	ld hl, $3
 	add hl, bc
@@ -1619,7 +1507,6 @@ Functionc8888: ; c8888 (32:4888)
 	ld [hl], a
 	ret
 
-; known jump sources: c8879 (32:4879), c8893 (32:4893)
 Functionc88a5: ; c88a5 (32:48a5)
 	push af
 	ld a, [FXAnimIDHi] ; $cfc3
@@ -1670,11 +1557,9 @@ Functionc88a5: ; c88a5 (32:48a5)
 	jr nz, .asm_c88e2
 	ret
 
-; no known jump sources
 Functionc88e7: ; c88e7 (32:48e7)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c88ea: ; c88ea (32:48ea)
 	dw Functionc88f6
 	dw Functionc8869
@@ -1682,12 +1567,10 @@ Jumptable_c88ea: ; c88ea (32:48ea)
 	dw Functionc88f2
 
 
-; no known jump sources
 Functionc88f2: ; c88f2 (32:48f2)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc88f6: ; c88f6 (32:48f6)
 	call Functionc80e5
 	call Functionc8eca
@@ -1709,11 +1592,9 @@ Functionc88f6: ; c88f6 (32:48f6)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc8919: ; c8919 (32:4919)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c891c: ; c891c (32:491c)
 	dw Functionc88f6
 	dw Functionc8869
@@ -1722,26 +1603,21 @@ Jumptable_c891c: ; c891c (32:491c)
 	dw Functionc8926
 
 
-; no known jump sources
 Functionc8926: ; c8926 (32:4926)
 	call Functionc8f0a
 
-; no known jump sources
 Functionc8929: ; c8929 (32:4929)
 	ret
 
-; no known jump sources
 Functionc892a: ; c892a (32:492a)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c892d: ; c892d (32:492d)
 	dw Functionc8933
 	dw Functionc894a
 	dw Functionc8960
 
 
-; no known jump sources
 Functionc8933: ; c8933 (32:4933)
 	call Functionc80e5
 	call Functionc8eca
@@ -1755,7 +1631,6 @@ Functionc8933: ; c8933 (32:4933)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Functionc894a: ; c894a (32:494a)
 	ld hl, $3
 	add hl, bc
@@ -1770,23 +1645,19 @@ Functionc894a: ; c894a (32:494a)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc8960: ; c8960 (32:4960)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8964: ; c8964 (32:4964)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8967: ; c8967 (32:4967)
 	dw Functionc896d
 	dw Functionc8985
 	dw Functionc89b1
 
 
-; no known jump sources
 Functionc896d: ; c896d (32:496d)
 	call Functionc80e5
 	call Functionc8eca
@@ -1802,7 +1673,6 @@ Functionc896d: ; c896d (32:496d)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc8985: ; c8985 (32:4985)
 	ld hl, $3
 	add hl, bc
@@ -1831,23 +1701,19 @@ Functionc8985: ; c8985 (32:4985)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc89b1: ; c89b1 (32:49b1)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc89b5: ; c89b5 (32:49b5)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c89b8: ; c89b8 (32:49b8)
 	dw Functionc89be
 	dw Functionc89ca
 	dw Functionc89da
 
 
-; no known jump sources
 Functionc89be: ; c89be (32:49be)
 	call Functionc80e5
 	call Functionc8eca
@@ -1855,7 +1721,6 @@ Functionc89be: ; c89be (32:49be)
 	call Functionc8ede
 	ret
 
-; no known jump sources
 Functionc89ca: ; c89ca (32:49ca)
 	ld hl, $3
 	add hl, bc
@@ -1868,7 +1733,6 @@ Functionc89ca: ; c89ca (32:49ca)
 	call Functionc8f2e
 	ret
 
-; no known jump sources
 Functionc89da: ; c89da (32:49da)
 	ld hl, $3
 	add hl, bc
@@ -1884,18 +1748,15 @@ Functionc89da: ; c89da (32:49da)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc89ee: ; c89ee (32:49ee)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c89f1: ; c89f1 (32:49f1)
 	dw Functionc89f7
 	dw Functionc8a14
 	dw Functionc8a36
 
 
-; no known jump sources
 Functionc89f7: ; c89f7 (32:49f7)
 	call Functionc80e5
 	call Functionc8eca
@@ -1912,7 +1773,6 @@ Functionc89f7: ; c89f7 (32:49f7)
 	ld [hl], $20
 	ret
 
-; no known jump sources
 Functionc8a14: ; c8a14 (32:4a14)
 	ld hl, $2
 	add hl, bc
@@ -1936,16 +1796,13 @@ Functionc8a14: ; c8a14 (32:4a14)
 	inc [hl]
 	ret
 
-; no known jump sources
 Functionc8a36: ; c8a36 (32:4a36)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8a3a: ; c8a3a (32:4a3a)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8a3d: ; c8a3d (32:4a3d)
 	dw Functionc8a49
 	dw Functionc8a6f
@@ -1955,7 +1812,6 @@ Jumptable_c8a3d: ; c8a3d (32:4a3d)
 	dw Functionc8aac
 
 
-; no known jump sources
 Functionc8a49: ; c8a49 (32:4a49)
 	call Functionc80e5
 	ld a, $e4
@@ -1980,11 +1836,9 @@ Functionc8a49: ; c8a49 (32:4a49)
 	add hl, bc
 	ld [hl], $0
 
-; no known jump sources
 Functionc8a6f: ; c8a6f (32:4a6f)
 	ret
 
-; no known jump sources
 Functionc8a70: ; c8a70 (32:4a70)
 	call Functionc8ab0
 	jr nc, .asm_c8a79
@@ -2000,7 +1854,6 @@ Functionc8a70: ; c8a70 (32:4a70)
 	call Functionc80e5
 	ret
 
-; no known jump sources
 Functionc8a88: ; c8a88 (32:4a88)
 	call Functionc8ab0
 	jr nc, .asm_c8a96
@@ -2014,7 +1867,6 @@ Functionc8a88: ; c8a88 (32:4a88)
 	call Functionc80e5
 	ret
 
-; known jump sources: c8a75 (32:4a75), c8a8d (32:4a8d)
 Functionc8a9a: ; c8a9a (32:4a9a)
 	ld e, a
 	ld a, [$FF00+$c7]
@@ -2031,12 +1883,10 @@ Functionc8a9a: ; c8a9a (32:4a9a)
 	jr nz, .asm_c8aa5
 	ret
 
-; no known jump sources
 Functionc8aac: ; c8aac (32:4aac)
 	call Functionc8f19
 	ret
 
-; known jump sources: c8a70 (32:4a70), c8a88 (32:4a88)
 Functionc8ab0: ; c8ab0 (32:4ab0)
 	ld hl, $3
 	add hl, bc
@@ -2058,17 +1908,14 @@ Unknown_c8ac7:
 	db $00, $40, $90, $e4, $ff
 ; c8acc
 
-; no known jump sources
 Functionc8acc: ; c8acc (32:4acc)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8acf: ; c8acf (32:4acf)
 	dw Functionc8ad3
 	dw Functionc8ae5
 
 
-; no known jump sources
 Functionc8ad3: ; c8ad3 (32:4ad3)
 	call Functionc80e5
 	call Functionc8eca
@@ -2079,7 +1926,6 @@ Functionc8ad3: ; c8ad3 (32:4ad3)
 	ld [hl], $40
 	ret
 
-; no known jump sources
 Functionc8ae5: ; c8ae5 (32:4ae5)
 	ld hl, $2
 	add hl, bc
@@ -2099,21 +1945,18 @@ Functionc8ae5: ; c8ae5 (32:4ae5)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8b00: ; c8b00 (32:4b00)
 	ld a, [hCGB] ; $ff00+$e6
 	and a
 	jr nz, asm_c8b7a
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8b08: ; c8b08 (32:4b08)
 	dw Functionc8b0e
 	dw Functionc8b22
 	dw Functionc8b60
 
 
-; no known jump sources
 Functionc8b0e: ; c8b0e (32:4b0e)
 	call Functionc80e5
 	ld a, $e4
@@ -2126,7 +1969,6 @@ Functionc8b0e: ; c8b0e (32:4b0e)
 	ld [$FF00+$c8], a
 	ret
 
-; no known jump sources
 Functionc8b22: ; c8b22 (32:4b22)
 	ld hl, $3
 	add hl, bc
@@ -2167,7 +2009,6 @@ Functionc8b22: ; c8b22 (32:4b22)
 	pop bc
 	ret
 
-; no known jump sources
 Functionc8b60: ; c8b60 (32:4b60)
 	call Functionc8f19
 	ld a, $e4
@@ -2175,7 +2016,6 @@ Functionc8b60: ; c8b60 (32:4b60)
 	ld [$cfc9], a
 	ret
 
-; known jump sources: c8b5b (32:4b5b)
 Functionc8b6c: ; c8b6c (32:4b6c)
 	ld hl, $d200
 .asm_c8b6f
@@ -2271,7 +2111,6 @@ Unknown_c8be0: ; c8be0
 	db $90, $f8
 ; c8be8
 
-; no known jump sources
 Functionc8be8: ; c8be8 (32:4be8)
 	ld de, Unknown_c8bef
 	call Functionc8d77
@@ -2282,7 +2121,6 @@ Unknown_c8bef: ; c8bef
 	db $e4, $6c, $fe
 ; c8bf2
 
-; no known jump sources
 Functionc8bf2: ; c8bf2 (32:4bf2)
 	ld de, Unknown_c8bf9
 	call Functionc8d77
@@ -2293,7 +2131,6 @@ Unknown_c8bf9: ; c8bf9
 	db $e4, $90, $40, $ff
 ; c8bfd
 
-; no known jump sources
 Functionc8bfd: ; c8bfd (32:4bfd)
 	ld de, Unknown_c8c04
 	call Functionc8d77
@@ -2304,7 +2141,6 @@ Unknown_c8c04: ; c8c04
 	db $e4, $f8, $fc, $ff
 ; c8c08
 
-; no known jump sources
 Functionc8c08: ; c8c08 (32:4c08)
 	ld de, Unknown_c8c0f
 	call Functionc8d77
@@ -2315,7 +2151,6 @@ Unknown_c8c0f: ; c8c0f
 	db $e4, $90, $40, $90, $fe
 ; c8c14
 
-; no known jump sources
 Functionc8c14: ; c8c14 (32:4c14)
 	ld de, Unknown_c8c1b
 	call Functionc8d77
@@ -2326,7 +2161,6 @@ Unknown_c8c1b: ; c8c1b
 	db $e4, $f8, $fc, $f8, $fe
 ; c8c20
 
-; no known jump sources
 Functionc8c20: ; c8c20 (32:4c20)
 	ld de, Unknown_c8c27
 	call Functionc8d77
@@ -2337,7 +2171,6 @@ Unknown_c8c27: ; c8c27
 	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
 ; c8c30
 
-; no known jump sources
 Functionc8c30: ; c8c30 (32:4c30)
 	ld de, Unknown_c8c37
 	call Functionc8d77
@@ -2348,7 +2181,6 @@ Unknown_c8c37:
 	db $e4, $fc, $e4, $00, $fe
 ; c8c3c
 
-; no known jump sources
 Functionc8c3c: ; c8c3c (32:4c3c)
 	ld de, Unknown_c8c43
 	call Functionc8d77
@@ -2359,7 +2191,6 @@ Unknown_c8c43:
 	db $e4, $90, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $90, $e4, $ff
 ; c8c55
 
-; no known jump sources
 Functionc8c55: ; c8c55 (32:4c55)
 	ld de, Unknown_c8c5c
 	call Functionc8d77
@@ -2370,17 +2201,14 @@ Unknown_c8c5c:
 	db $00, $40, $90, $e4, $ff
 ; c8c61
 
-; no known jump sources
 Functionc8c61: ; c8c61 (32:4c61)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8c64: ; c8c64 (32:4c64)
 	dw Functionc8c68
 	dw Functionc8c85
 
 
-; no known jump sources
 Functionc8c68: ; c8c68 (32:4c68)
 	call Functionc80e5
 	call Functionc8eca
@@ -2397,7 +2225,6 @@ Functionc8c68: ; c8c68 (32:4c68)
 	ld [hl], $20
 	ret
 
-; no known jump sources
 Functionc8c85: ; c8c85 (32:4c85)
 	ld hl, $3
 	add hl, bc
@@ -2419,18 +2246,15 @@ Functionc8c85: ; c8c85 (32:4c85)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8ca2: ; c8ca2 (32:4ca2)
 	call Functionc80d7 ;  ;  ; call does not return
 
-; no known jump sources
 Jumptable_c8ca5: ; c8ca5 (32:4ca5)
 	dw Functionc8cab
 	dw Functionc8cc3
 	dw Functionc8cdd
 
 
-; no known jump sources
 Functionc8cab: ; c8cab (32:4cab)
 	call Functionc80e5
 	call Functionc8eca
@@ -2445,7 +2269,6 @@ Functionc8cab: ; c8cab (32:4cab)
 	ld [hl], $0
 	ret
 
-; no known jump sources
 Functionc8cc3: ; c8cc3 (32:4cc3)
 	ld hl, $3
 	add hl, bc
@@ -2462,12 +2285,10 @@ Functionc8cc3: ; c8cc3 (32:4cc3)
 	ld [hl], a
 	ret
 
-; known jump sources: c8cca (32:4cca)
 Functionc8cdd: ; c8cdd (32:4cdd)
 	call Functionc8f0a
 	ret
 
-; no known jump sources
 Functionc8ce1: ; c8ce1 (32:4ce1)
 	call Functionc8d0b
 	jr c, .asm_c8cea
@@ -2485,7 +2306,6 @@ Functionc8ce1: ; c8ce1 (32:4ce1)
 	ld [$d314], a
 	ret
 
-; no known jump sources
 Functionc8cf9: ; c8cf9 (32:4cf9)
 	call Functionc8d0b
 	jr nc, .asm_c8cff
@@ -2494,7 +2314,6 @@ Functionc8cf9: ; c8cf9 (32:4cf9)
 	ld [hSCX], a ; $ff00+$cf
 	ret
 
-; no known jump sources
 Functionc8d02: ; c8d02 (32:4d02)
 	call Functionc8d0b
 	jr nc, .asm_c8d08
@@ -2503,7 +2322,6 @@ Functionc8d02: ; c8d02 (32:4d02)
 	ld [hSCY], a ; $ff00+$d0
 	ret
 
-; known jump sources: c8ce1 (32:4ce1), c8cf9 (32:4cf9), c8d02 (32:4d02)
 Functionc8d0b: ; c8d0b (32:4d0b)
 	ld hl, $1
 	add hl, bc
@@ -2540,7 +2358,6 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	and a
 	ret
 
-; no known jump sources
 Functionc8d3a: ; c8d3a (32:4d3a)
 	ld hl, $3
 	add hl, bc
@@ -2561,7 +2378,6 @@ Functionc8d3a: ; c8d3a (32:4d3a)
 	ld [hSCX], a ; $ff00+$cf
 	ret
 
-; known jump sources: c8130 (32:4130), c8144 (32:4144), c8158 (32:4158), c817e (32:417e), c8198 (32:4198), c81a8 (32:41a8)
 Functionc8d57: ; c8d57 (32:4d57)
 	ld hl, $1
 	add hl, bc
@@ -2586,7 +2402,6 @@ Functionc8d57: ; c8d57 (32:4d57)
 	call Functionc8eac
 	ret
 
-; known jump sources: c8beb (32:4beb), c8bf5 (32:4bf5), c8c00 (32:4c00), c8c0b (32:4c0b), c8c17 (32:4c17), c8c23 (32:4c23), c8c33 (32:4c33), c8c3f (32:4c3f), c8c58 (32:4c58)
 Functionc8d77: ; c8d77 (32:4d77)
 	ld a, [hCGB] ; $ff00+$e6
 	and a
@@ -2597,14 +2412,12 @@ Functionc8d77: ; c8d77 (32:4d77)
 	pop de
 	jp [hl]
 
-; no known jump sources
 Jumptable_c8d85: ; c8d85 (32:4d85)
 	dw Functionc8d8b
 	dw Functionc8daa
 	dw Functionc8dc9
 
 
-; no known jump sources
 Functionc8d8b: ; c8d8b (32:4d8b)
 	call Functionc80e5
 	ld a, $e4
@@ -2623,7 +2436,6 @@ Functionc8d8b: ; c8d8b (32:4d8b)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc8daa: ; c8daa (32:4daa)
 	ld hl, $2
 	add hl, bc
@@ -2647,7 +2459,6 @@ Functionc8daa: ; c8daa (32:4daa)
 	dec [hl]
 	ret
 
-; no known jump sources
 Functionc8dc9: ; c8dc9 (32:4dc9)
 	call Functionc8f19
 	ld a, $e4
@@ -2661,7 +2472,6 @@ asm_c8dd4: ; c8dd4 (32:4dd4)
 	pop de
 	jp [hl]
 
-; no known jump sources
 Jumptable_c8ddd: ; c8ddd (32:4ddd)
 	dw Functionc8de7
 	dw Functionc8e02
@@ -2670,7 +2480,6 @@ Jumptable_c8ddd: ; c8ddd (32:4ddd)
 	dw Functionc8e49
 
 
-; no known jump sources
 Functionc8de7: ; c8de7 (32:4de7)
 	call Functionc9038
 	jr nz, .asm_c8df2
@@ -2687,7 +2496,6 @@ Functionc8de7: ; c8de7 (32:4de7)
 	ld [hl], a
 	ret
 
-; no known jump sources
 Functionc8e02: ; c8e02 (32:4e02)
 	ld hl, $2
 	add hl, bc
@@ -2711,14 +2519,12 @@ Functionc8e02: ; c8e02 (32:4e02)
 	dec [hl]
 	ret
 
-; no known jump sources
 Functionc8e21: ; c8e21 (32:4e21)
 	ld a, $e4
 	call Functionc8e52
 	call EndBattleBGEffect
 	ret
 
-; no known jump sources
 Functionc8e2a: ; c8e2a (32:4e2a)
 	ld hl, $2
 	add hl, bc
@@ -2742,14 +2548,12 @@ Functionc8e2a: ; c8e2a (32:4e2a)
 	dec [hl]
 	ret
 
-; no known jump sources
 Functionc8e49: ; c8e49 (32:4e49)
 	ld a, $e4
 	call Functionc8e7f
 	call EndBattleBGEffect
 	ret
 
-; known jump sources: c8e17 (32:4e17), c8e23 (32:4e23)
 Functionc8e52: ; c8e52 (32:4e52)
 	ld h, a
 	ld a, [rSVBK] ; $ff00+$70
@@ -2777,7 +2581,6 @@ Functionc8e52: ; c8e52 (32:4e52)
 	ld [hCGBPalUpdate], a ; $ff00+$e5
 	ret
 
-; known jump sources: c8e3f (32:4e3f), c8e4b (32:4e4b)
 Functionc8e7f: ; c8e7f (32:4e7f)
 	ld h, a
 	ld a, [rSVBK] ; $ff00+$70
@@ -2805,14 +2608,12 @@ Functionc8e7f: ; c8e7f (32:4e7f)
 	ld [hCGBPalUpdate], a ; $ff00+$e5
 	ret
 
-; known jump sources: c8d73 (32:4d73), c8dba (32:4dba), c8e12 (32:4e12), c8e3a (32:4e3a)
 Functionc8eac: ; c8eac (32:4eac)
 	ld hl, $3
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
 
-; known jump sources: c8d65 (32:4d65)
 Functionc8eb2: ; c8eb2 (32:4eb2)
 	ld l, a
 	ld h, $0
@@ -2833,11 +2634,9 @@ Functionc8eb2: ; c8eb2 (32:4eb2)
 	scf
 	ret
 
-; known jump sources: c85a5 (32:45a5), c85c2 (32:45c2), c85fc (32:45fc), c8613 (32:4613), c864b (32:464b), c866e (32:466e), c869b (32:469b), c8715 (32:4715), c876d (32:476d), c87b5 (32:47b5), c8813 (32:4813), c8845 (32:4845), c88f9 (32:48f9), c8936 (32:4936), c8970 (32:4970), c89c1 (32:49c1), c89fa (32:49fa), c8ad6 (32:4ad6), c8c6b (32:4c6b), c8cae (32:4cae), c8f0f (32:4f0f), c8f2a (32:4f2a)
 Functionc8eca: ; c8eca (32:4eca)
 	xor a
 
-; known jump sources: c8a4e (32:4a4e), c8b13 (32:4b13), c8d90 (32:4d90)
 Functionc8ecb: ; c8ecb (32:4ecb)
 	ld hl, LYOverrides ; $d100
 	ld e, $99
@@ -2853,7 +2652,6 @@ Functionc8ecb: ; c8ecb (32:4ecb)
 	jr nz, .asm_c8ed9
 	ret
 
-; known jump sources: c85c7 (32:45c7), c8650 (32:4650), c8673 (32:4673), c86a0 (32:46a0), c871a (32:471a), c8772 (32:4772), c87ba (32:47ba), c8818 (32:4818), c88fe (32:48fe), c893b (32:493b), c8975 (32:4975), c89c6 (32:49c6), c8a53 (32:4a53), c8adb (32:4adb), c8c70 (32:4c70), c8d95 (32:4d95)
 Functionc8ede: ; c8ede (32:4ede)
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	call Functionc9038
@@ -2869,7 +2667,6 @@ Functionc8ede: ; c8ede (32:4ede)
 	ld [$FF00+$c8], a
 	ret
 
-; known jump sources: c884a (32:484a), c89ff (32:49ff)
 Functionc8ef4: ; c8ef4 (32:4ef4)
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	call Functionc9038
@@ -2885,7 +2682,6 @@ Functionc8ef4: ; c8ef4 (32:4ef4)
 	ld [$FF00+$c8], a
 	ret
 
-; known jump sources: c8561 (32:4561), c85be (32:45be), c8603 (32:4603), c863b (32:463b), c865e (32:465e), c8685 (32:4685), c8705 (32:4705), c875d (32:475d), c87a3 (32:47a3), c8801 (32:4801), c8833 (32:4833), c8865 (32:4865), c88f2 (32:48f2), c8926 (32:4926), c8960 (32:4960), c89b1 (32:49b1), c89ea (32:49ea), c8a36 (32:4a36), c8afc (32:4afc), c8c9e (32:4c9e), c8cdd (32:4cdd)
 Functionc8f0a: ; c8f0a (32:4f0a)
 	xor a
 	ld [$FF00+$c7], a
@@ -2896,7 +2692,6 @@ Functionc8f0a: ; c8f0a (32:4f0a)
 	call EndBattleBGEffect
 	ret
 
-; known jump sources: c8aac (32:4aac), c8b60 (32:4b60), c8dc9 (32:4dc9)
 Functionc8f19: ; c8f19 (32:4f19)
 	xor a
 	ld [hLCDStatCustom], a ; $ff00+$c6
@@ -2909,7 +2704,6 @@ Functionc8f19: ; c8f19 (32:4f19)
 	call Functionc8eca
 	ret
 
-; known jump sources: c85b6 (32:45b6), c8624 (32:4624), c8656 (32:4656), c867d (32:467d), c8724 (32:4724), c89d6 (32:49d6), c89e6 (32:49e6), c8af8 (32:4af8)
 Functionc8f2e: ; c8f2e (32:4f2e)
 	push bc
 	xor a
@@ -2945,7 +2739,6 @@ Functionc8f2e: ; c8f2e (32:4f2e)
 	pop bc
 	ret
 
-; known jump sources: c8554 (32:4554)
 Functionc8f69: ; c8f69 (32:4f69)
 	push bc
 	xor a
@@ -2974,7 +2767,6 @@ Functionc8f69: ; c8f69 (32:4f69)
 	pop bc
 	ret
 
-; known jump sources: c85f8 (32:45f8)
 Functionc8f9a: ; c8f9a (32:4f9a)
 	push bc
 	ld [$d41c], a
@@ -3024,7 +2816,6 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	and a
 	ret
 
-; known jump sources: c8fa6 (32:4fa6)
 Functionc8fe4: ; c8fe4 (32:4fe4)
 	ld a, [$FF00+$c7]
 	ld e, a
@@ -3034,7 +2825,6 @@ Functionc8fe4: ; c8fe4 (32:4fe4)
 	ld d, $0
 	ret
 
-; known jump sources: c85ba (32:45ba), c8637 (32:4637), c865a (32:465a), c8681 (32:4681)
 Functionc8fef: ; c8fef (32:4fef)
 	push bc
 	ld a, [$FF00+$c7]
@@ -3062,7 +2852,6 @@ Functionc8fef: ; c8fef (32:4fef)
 	pop bc
 	ret
 
-; known jump sources: c88b4 (32:48b4), c8954 (32:4954), c899d (32:499d), c8c9a (32:4c9a), c8cd1 (32:4cd1), c8dbf (32:4dbf)
 Functionc900b: ; c900b (32:500b)
 	push af
 	ld h, $d2
@@ -3078,7 +2867,6 @@ Functionc900b: ; c900b (32:500b)
 	jr nz, .asm_c9016
 	ret
 
-; known jump sources: c8790 (32:4790), c87f7 (32:47f7), c8a2c (32:4a2c)
 Functionc901b: ; c901b (32:501b)
 	push af
 	ld e, a
@@ -3104,7 +2892,6 @@ Functionc901b: ; c901b (32:501b)
 	jr nz, .asm_c9033
 	ret
 
-; known jump sources: c81c4 (32:41c4), c81f3 (32:41f3), c8234 (32:4234), c825e (32:425e), c82a1 (32:42a1), c82cb (32:42cb), c8305 (32:4305), c837b (32:437b), c83a8 (32:43a8), c8826 (32:4826), c8858 (32:4858), c890c (32:490c), c8b39 (32:4b39), c8de7 (32:4de7), c8ee0 (32:4ee0), c8ef6 (32:4ef6)
 Functionc9038: ; c9038 (32:5038)
 	ld hl, $2
 	add hl, bc
@@ -3113,7 +2900,6 @@ Functionc9038: ; c9038 (32:5038)
 	xor [hl]
 	ret
 
-; known jump sources: c81ea (32:41ea), c8223 (32:4223), c8290 (32:4290)
 Functionc9042: ; c9042 (32:5042)
 	ld hl, $2
 	add hl, bc
@@ -3129,20 +2915,17 @@ Functionc9042: ; c9042 (32:5042)
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 
-; known jump sources: c8171 (32:4171), c818b (32:418b)
 Functionc9059: ; c9059 (32:5059)
 	ld a, [hSGB] ; $ff00+$e7
 	and a
 	ret
 
-; known jump sources: c86d6 (32:46d6), c8951 (32:4951), c898c (32:498c), c8997 (32:4997), c8cce (32:4cce), c8d45 (32:4d45), c8f54 (32:4f54), c8f85 (32:4f85), c8fc2 (32:4fc2)
 Functionc905d: ; c905d (32:505d)
 	ld e, a
 	callab Functionce765
 	ld a, e
 	ret
 
-; known jump sources: c8a24 (32:4a24)
 Functionc9066: ; c9066 (32:5066)
 	ld e, a
 	callab Functionce76b

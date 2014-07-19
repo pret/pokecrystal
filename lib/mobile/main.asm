@@ -5,7 +5,6 @@ INCLUDE "gbhw.asm"
 
 SECTION "Main", ROMX
 
-; known jump sources: 110004 (44:4004), 111bdd (44:5bdd), 111bfd (44:5bfd), 111c0e (44:5c0e), 111c7d (44:5c7d), 111cbd (44:5cbd), 111cf4 (44:5cf4), 111d30 (44:5d30)
 Function110000: ; 110000 (44:4000)
 	ld a, [hli]
 	ld [de], a
@@ -54,7 +53,6 @@ Function11000f: ; 11000f
 	ret
 ; 110029
 
-; known jump sources: 111aa8 (44:5aa8), 111ad4 (44:5ad4)
 Function110029: ; 110029 (44:4029)
 	xor a
 	ld hl, $ca3a
@@ -62,7 +60,6 @@ Function110029: ; 110029 (44:4029)
 	ld [hl], a
 	ret
 
-; known jump sources: 3e5d (0:3e5d)
 Function110030:: ; 110030 (44:4030)
 	push de
 	ld a, [$c988]
@@ -141,7 +138,6 @@ Jumptable_110070: ; 110070
 	dw Function111540
 ; 1100b4
 
-; known jump sources: 110066 (44:4066), 111f07 (44:5f07)
 Function1100b4: ; 1100b4 (44:40b4)
 	push bc
 .asm_1100b5
@@ -368,7 +364,6 @@ Function110115: ; 110115
 	jp .asm_11015b
 ; 110226
 
-; known jump sources: 111f12 (44:5f12)
 Function110226: ; 110226 (44:4226)
 	ld a, $21
 
@@ -3412,7 +3407,6 @@ Function11162d: ; 11162d
 	ret
 ; 11164f
 
-; known jump sources: 111aab (44:5aab)
 Function11164f: ; 11164f (44:564f)
 	ld hl, $c815
 	xor a
@@ -3428,7 +3422,6 @@ Function11164f: ; 11164f (44:564f)
 	ld [hl], a
 	ret
 
-; known jump sources: 111895 (44:5895), 1118d6 (44:58d6)
 Function111664: ; 111664 (44:5664)
 	ld hl, $ca3a
 	ld a, [hli]
@@ -3453,7 +3446,6 @@ Function111664: ; 111664 (44:5664)
 	ld [hl], d
 	ret
 
-; known jump sources: 11198b (44:598b), 111996 (44:5996)
 Function111686: ; 111686 (44:5686)
 	xor a
 	ld [rTAC], a ; $ff00+$7
@@ -3499,7 +3491,6 @@ Function1116a9: ; 1116a9
 	ret
 ; 1116c5
 
-; known jump sources: 3e89 (0:3e89)
 Function1116c5:: ; 1116c5 (44:56c5)
 	ld a, [$c800]
 	rrca
@@ -3607,7 +3598,6 @@ Function1116c5:: ; 1116c5 (44:56c5)
 	xor a
 	ld [$c800], a
 
-; known jump sources: 111861 (44:5861)
 Function11177c: ; 11177c (44:577c)
 	ld hl, $c820
 	ld a, [hld]
@@ -3628,7 +3618,6 @@ Function11177c: ; 11177c (44:577c)
 	ld [hl], e
 	jp Function1118bc
 
-; known jump sources: 1116fc (44:56fc)
 Function111796: ; 111796 (44:5796)
 	ld b, $a
 	jr asm_1117a2
@@ -3638,7 +3627,6 @@ asm_11179a: ; 11179a (44:579a)
 	ld [hl], a
 	jp Function1118bc
 
-; known jump sources: 111701 (44:5701), 111706 (44:5706)
 Function1117a0: ; 1117a0 (44:57a0)
 	ld b, $3
 asm_1117a2: ; 1117a2 (44:57a2)
@@ -3678,7 +3666,6 @@ asm_1117a2: ; 1117a2 (44:57a2)
 	ld [hl], a
 	jp Function1118bc
 
-; known jump sources: 1116cd (44:56cd)
 Function1117e7: ; 1117e7 (44:57e7)
 	ld a, [$c80b]
 	or a
@@ -3758,7 +3745,6 @@ Function1117e7: ; 1117e7 (44:57e7)
 	ld [hl], a
 	jr Function1118bc
 
-; known jump sources: 1117ee (44:57ee)
 Function11186e: ; 11186e (44:586e)
 	call Function1118c2
 	ld a, $4
@@ -3774,7 +3760,6 @@ Function11186e: ; 11186e (44:586e)
 	inc [hl]
 	jr Function1118bc
 
-; known jump sources: 1117f2 (44:57f2)
 Function111884: ; 111884 (44:5884)
 	call Function1118c2
 	ld a, [$c80c]
@@ -3785,7 +3770,6 @@ Function111884: ; 111884 (44:5884)
 	inc [hl]
 	jr Function1118bc
 
-; known jump sources: 1117f5 (44:57f5)
 Function111892: ; 111892 (44:5892)
 	ld a, [rSB] ; $ff00+$1
 	ld c, a
@@ -3813,13 +3797,11 @@ Function111892: ; 111892 (44:5892)
 	ld [hli], a
 	inc [hl]
 
-; known jump sources: 1116c9 (44:56c9), 1116dd (44:56dd), 1116e2 (44:56e2), 1116ef (44:56ef), 111775 (44:5775), 111793 (44:5793), 11179d (44:579d), 1117bc (44:57bc), 1117e4 (44:57e4), 111814 (44:5814), 11183e (44:583e), 111844 (44:5844), 11186c (44:586c), 111874 (44:5874), 11187f (44:587f), 111882 (44:5882), 11188b (44:588b), 111890 (44:5890), 1118ab (44:58ab), 1118b2 (44:58b2), 1118b7 (44:58b7)
 Function1118bc: ; 1118bc (44:58bc)
 	ld hl, $c822
 	res 1, [hl]
 	ret
 
-; known jump sources: 11186e (44:586e), 111884 (44:5884)
 Function1118c2: ; 1118c2 (44:58c2)
 	ld a, [rSB] ; $ff00+$1
 	ld c, a
@@ -3838,7 +3820,6 @@ Function1118c2: ; 1118c2 (44:58c2)
 	inc [hl]
 	ret
 
-; known jump sources: 3ec1 (0:3ec1)
 Function1118de:: ; 1118de (44:58de)
 	ld a, [$c80b]
 	cp $4
@@ -3975,7 +3956,6 @@ Function1118de:: ; 1118de (44:58de)
 	ld [$c80f], a
 	jr .asm_1119a9
 
-; known jump sources: 11195a (44:595a)
 Function1119f0: ; 1119f0 (44:59f0)
 	ld a, $90
 	ld [$c81e], a
@@ -3988,7 +3968,6 @@ Function1119f0: ; 1119f0 (44:59f0)
 	ld [$c806], a
 	jp Function111b3b
 
-; known jump sources: 111950 (44:5950)
 Function111a0b: ; 111a0b (44:5a0b)
 	ld a, [hl]
 	cp $6
@@ -4008,7 +3987,6 @@ Function111a0b: ; 111a0b (44:5a0b)
 	call Function111f07
 	jp Function111b3b
 
-; known jump sources: 111931 (44:5931)
 Function111a2a: ; 111a2a (44:5a2a)
 	ld hl, $c80b
 	ld a, [hld]
@@ -4024,7 +4002,6 @@ Function111a2a: ; 111a2a (44:5a2a)
 asm_111a40: ; 111a40 (44:5a40)
 	ld a, $4b
 
-; known jump sources: 111abb (44:5abb), 111ac8 (44:5ac8), 111b1e (44:5b1e)
 Function111a42: ; 111a42 (44:5a42)
 	ld [rSB], a ; $ff00+$1
 	jp Function111b2e
@@ -4088,12 +4065,10 @@ asm_111a47: ; 111a47 (44:5a47)
 	ei
 	jp Function111b3b
 
-; known jump sources: 111a38 (44:5a38)
 Function111ab9: ; 111ab9 (44:5ab9)
 	ld a, $80
 	jr Function111a42
 
-; known jump sources: 111a3d (44:5a3d)
 Function111abd: ; 111abd (44:5abd)
 	ld a, [$c814]
 	or a
@@ -4149,7 +4124,6 @@ Function111abd: ; 111abd (44:5abd)
 	ld a, $f1
 	jp Function111a42
 
-; known jump sources: 11192c (44:592c)
 Function111b21: ; 111b21 (44:5b21)
 	ld hl, $c803
 	ld a, [hli]
@@ -4162,7 +4136,6 @@ Function111b21: ; 111b21 (44:5b21)
 	ld [hld], a
 	ld [hl], e
 
-; known jump sources: 111a44 (44:5a44)
 Function111b2e: ; 111b2e (44:5b2e)
 	ld hl, $c822
 	set 1, [hl]
@@ -4171,11 +4144,9 @@ Function111b2e: ; 111b2e (44:5b2e)
 	ld a, $83
 	ld [rSC], a ; $ff00+$2
 
-; known jump sources: 111904 (44:5904), 111924 (44:5924), 111939 (44:5939), 111940 (44:5940), 111945 (44:5945), 11197a (44:597a), 111981 (44:5981), 11198e (44:598e), 111999 (44:5999), 11199f (44:599f), 1119bb (44:59bb), 1119da (44:59da), 111a08 (44:5a08), 111a0e (44:5a0e), 111a27 (44:5a27), 111ab6 (44:5ab6)
 Function111b3b: ; 111b3b (44:5b3b)
 	ret
 
-; known jump sources: 1118e3 (44:58e3)
 Function111b3c: ; 111b3c (44:5b3c)
 	xor a
 	ld [$c819], a
@@ -4278,7 +4249,6 @@ Function111b3c: ; 111b3c (44:5b3c)
 	ld [$c807], a
 	ret
 
-; known jump sources: 111b90 (44:5b90)
 Function111c06: ; 111c06 (44:5c06)
 	ld de, $c872
 	ld hl, $ca40
@@ -4288,7 +4258,6 @@ Function111c06: ; 111c06 (44:5c06)
 	ld [$c807], a
 	ret
 
-; known jump sources: 111b76 (44:5b76)
 Function111c17: ; 111c17 (44:5c17)
 	ld a, [$ca3c]
 	cp $9f
@@ -4388,7 +4357,6 @@ Function111c17: ; 111c17 (44:5c17)
 	call Function110000
 	jr Function111d07
 
-; known jump sources: 111c3d (44:5c3d)
 Function111cc2: ; 111cc2 (44:5cc2)
 	xor a
 	cp d
@@ -4438,7 +4406,6 @@ Function111cc2: ; 111cc2 (44:5cc2)
 	jr nc, Function111d07
 	inc [hl]
 
-; known jump sources: 111c1c (44:5c1c), 111c27 (44:5c27), 111c34 (44:5c34), 111c6b (44:5c6b), 111c80 (44:5c80), 111c87 (44:5c87), 111cc0 (44:5cc0), 111cf1 (44:5cf1), 111d04 (44:5d04)
 Function111d07: ; 111d07 (44:5d07)
 	ld a, [$c822]
 	bit 4, a
@@ -4454,7 +4421,6 @@ Function111d07: ; 111d07 (44:5d07)
 	ld [$c807], a
 	ret
 
-; known jump sources: 111b7b (44:5b7b)
 Function111d23: ; 111d23 (44:5d23)
 	ld a, [$c829]
 	ld e, a
@@ -4467,7 +4433,6 @@ Function111d23: ; 111d23 (44:5d23)
 	ld [$c807], a
 	ret
 
-; known jump sources: 111ba2 (44:5ba2)
 Function111d39: ; 111d39 (44:5d39)
 	ld de, $ca3f
 	ld hl, Unknown_112006
@@ -4498,7 +4463,6 @@ Function111d39: ; 111d39 (44:5d39)
 	xor a
 	jr .asm_111d59
 
-; known jump sources: 111ba7 (44:5ba7), 111bac (44:5bac)
 Function111d65: ; 111d65 (44:5d65)
 	ld a, $3
 	ld [$c807], a
@@ -4506,7 +4470,6 @@ Function111d65: ; 111d65 (44:5d65)
 	set 4, [hl]
 	ret
 
-; known jump sources: 111b95 (44:5b95)
 Function111d70: ; 111d70 (44:5d70)
 	ld hl, $c822
 	bit 0, [hl]
@@ -4562,7 +4525,6 @@ Function111d70: ; 111d70 (44:5d70)
 	ld [$c807], a
 	ret
 
-; known jump sources: 111d81 (44:5d81), 111dca (44:5dca)
 Function111dd9: ; 111dd9 (44:5dd9)
 	cp $ff
 	jr z, .asm_111de7
@@ -4604,7 +4566,6 @@ Function111dd9: ; 111dd9 (44:5dd9)
 	ld b, $3
 	ret
 
-; known jump sources: 111d84 (44:5d84), 111dcd (44:5dcd)
 Function111e15: ; 111e15 (44:5e15)
 	ld a, b
 	and $7
@@ -4625,7 +4586,6 @@ Function111e28: ; 111e28
 	jp Function110029
 ; 111e2b
 
-; known jump sources: 111b69 (44:5b69)
 Function111e2b: ; 111e2b (44:5e2b)
 	ld a, [$c81e]
 	cp $ff
@@ -4741,7 +4701,6 @@ Function111e2b: ; 111e2b (44:5e2b)
 	ld [$c807], a
 	ret
 
-; known jump sources: 111b71 (44:5b71), 111e30 (44:5e30)
 Function111ef8: ; 111ef8 (44:5ef8)
 	ld a, [$c805]
 	ld [$c807], a
@@ -4751,12 +4710,10 @@ Function111ef8: ; 111ef8 (44:5ef8)
 Function111eff: ; 111eff
 	ld de, $000a
 
-; known jump sources: 1119b8 (44:59b8)
 Function111f02: ; 111f02 (44:5f02)
 	ld [$c81e], a
 	ld b, $5
 
-; known jump sources: 1119d7 (44:59d7), 111a00 (44:5a00), 111a24 (44:5a24), 111fe0 (44:5fe0), 111fef (44:5fef)
 Function111f07: ; 111f07 (44:5f07)
 	call Function1100b4
 	ret c
@@ -4857,7 +4814,6 @@ Function111f8d: ; 111f8d
 	ret
 ; 111f97
 
-; known jump sources: 111977 (44:5977)
 Function111f97: ; 111f97 (44:5f97)
 	ld hl, $c822
 	bit 0, [hl]
@@ -5001,7 +4957,6 @@ Unknown_11213d:
 	ascii "Content-Length: ", $0
 ; 11214e
 
-; known jump sources: 1118e6 (44:58e6)
 Function11214e: ; 11214e (44:614e)
 	ld a, [$c822]
 	bit 5, a

@@ -7,7 +7,6 @@ MobileAdapterGFX:
 INCBIN "gfx/misc/mobile_adapter.2bpp"
 
 
-; no known jump sources
 Function17a68f:: ; 17a68f (5e:668f)
 	call Function17a6a8
 	call Function17a751
@@ -24,7 +23,6 @@ Function17a68f:: ; 17a68f (5e:668f)
 	scf
 	ret
 
-; known jump sources: 17a68f (5e:668f)
 Function17a6a8: ; 17a6a8 (5e:66a8)
 	push de
 	push bc
@@ -56,7 +54,6 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	call DelayFrame
 	ret
 
-; known jump sources: 17a6ca (5e:66ca)
 Function17a6f5: ; 17a6f5 (5e:66f5)
 	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
 	ld c, $0
@@ -77,7 +74,6 @@ Function17a6f5: ; 17a6f5 (5e:66f5)
 	ld [$d08c], a
 	ret
 
-; known jump sources: 17a6fd (5e:66fd), 17a705 (5e:6705)
 Function17a713: ; 17a713 (5e:6713)
 	and $f
 	cp $a
@@ -91,7 +87,6 @@ Function17a713: ; 17a713 (5e:6713)
 	scf
 	ret
 
-; known jump sources: 17a6a0 (5e:66a0)
 Function17a721: ; 17a721 (5e:6721)
 	push de
 	ld h, d
@@ -128,7 +123,6 @@ Function17a721: ; 17a721 (5e:6721)
 	ld [de], a
 	ret
 
-; known jump sources: 17a692 (5e:6692)
 Function17a751: ; 17a751 (5e:6751)
 	xor a
 	ld [$d087], a
@@ -145,7 +139,6 @@ Function17a751: ; 17a751 (5e:6751)
 	jr z, .asm_17a755
 	ret
 
-; known jump sources: 17a75e (5e:675e)
 Function17a770: ; 17a770 (5e:6770)
 	ld a, [hOAMUpdate] ; $ff00+$d8
 	push af
@@ -157,7 +150,6 @@ Function17a770: ; 17a770 (5e:6770)
 	ld [hOAMUpdate], a ; $ff00+$d8
 	ret
 
-; known jump sources: 17a755 (5e:6755)
 Function17a781: ; 17a781 (5e:6781)
 	ld a, [$FF00+$aa]
 	push af
@@ -168,7 +160,6 @@ Function17a781: ; 17a781 (5e:6781)
 	ld [$FF00+$aa], a
 	ret
 
-; known jump sources: 17a761 (5e:6761)
 Function17a78f: ; 17a78f (5e:678f)
 	ld hl, $d088
 	bit 7, [hl]
@@ -183,14 +174,12 @@ Function17a78f: ; 17a78f (5e:678f)
 
 INCBIN "baserom.gbc",$17a7a6,$17a7ae - $17a7a6
 
-; known jump sources: 17a758 (5e:6758)
 Function17a7ae: ; 17a7ae (5e:67ae)
 	ld a, [$d087]
 	ld hl, $67b6
 	rst $28
 	ret
 
-; no known jump sources
 Jumptable_17a7b6: ; 17a7b6 (5e:67b6)
 	dw Function17a7c2
 	dw Function17a7cd
@@ -200,7 +189,6 @@ Jumptable_17a7b6: ; 17a7b6 (5e:67b6)
 	dw Function17a7f4
 
 
-; no known jump sources
 Function17a7c2: ; 17a7c2 (5e:67c2)
 	ld a, $4
 	call Function17aad3
@@ -208,7 +196,6 @@ Function17a7c2: ; 17a7c2 (5e:67c2)
 	ld [$d087], a
 	ret
 
-; no known jump sources
 Function17a7cd: ; 17a7cd (5e:67cd)
 	call Function17a83c
 	call Function17a8ae
@@ -216,7 +203,6 @@ Function17a7cd: ; 17a7cd (5e:67cd)
 	call Function17a848
 	ret
 
-; no known jump sources
 Function17a7d8: ; 17a7d8 (5e:67d8)
 	call Function17a83c
 	call Function17a848
@@ -231,7 +217,6 @@ Function17a7d8: ; 17a7d8 (5e:67d8)
 	ld [$d087], a
 	ret
 
-; no known jump sources
 Function17a7f4: ; 17a7f4 (5e:67f4)
 	ld hl, $d08b
 	dec [hl]
@@ -240,7 +225,6 @@ Function17a7f4: ; 17a7f4 (5e:67f4)
 	set 7, [hl]
 	ret
 
-; no known jump sources
 Function17a7ff: ; 17a7ff (5e:67ff)
 	ld hl, $d08b
 	dec [hl]
@@ -255,7 +239,6 @@ Function17a7ff: ; 17a7ff (5e:67ff)
 	set 7, [hl]
 	ret
 
-; no known jump sources
 Function17a81a: ; 17a81a (5e:681a)
 	call IsSFXPlaying
 	ret nc
@@ -273,7 +256,6 @@ Function17a81a: ; 17a81a (5e:681a)
 	ld [$d087], a
 	ret
 
-; known jump sources: 17a7cd (5e:67cd), 17a7d8 (5e:67d8)
 Function17a83c: ; 17a83c (5e:683c)
 	ld a, [$FF00+$a9]
 	and $f0
@@ -284,7 +266,6 @@ Function17a83c: ; 17a83c (5e:683c)
 	ld c, a
 	ret
 
-; known jump sources: 17a7d4 (5e:67d4), 17a7db (5e:67db)
 Function17a848: ; 17a848 (5e:6848)
 	ld a, c
 	and $60
@@ -353,7 +334,6 @@ Function17a848: ; 17a848 (5e:6848)
 	scf
 	ret
 
-; known jump sources: 17a7d0 (5e:67d0)
 Function17a8ae: ; 17a8ae (5e:68ae)
 	bit 1, c
 	jr nz, .asm_17a8bc
@@ -383,7 +363,6 @@ Function17a8ae: ; 17a8ae (5e:68ae)
 	scf
 	ret
 
-; known jump sources: 17a8d2 (5e:68d2)
 Function17a8de: ; 17a8de (5e:68de)
 	ld a, $2
 	call Function17aae0
@@ -418,7 +397,6 @@ Function17a8de: ; 17a8de (5e:68de)
 	call Function17aa88
 	ret
 
-; known jump sources: 17a90a (5e:690a)
 Function17a91e: ; 17a91e (5e:691e)
 	ld a, [$d08c]
 	cp $7
@@ -439,7 +417,6 @@ Function17a91e: ; 17a91e (5e:691e)
 	scf
 	ret
 
-; known jump sources: 17a8c4 (5e:68c4), 17a8fd (5e:68fd)
 Function17a943: ; 17a943 (5e:6943)
 	ld a, [$d08c]
 	and a
@@ -461,7 +438,6 @@ Function17a943: ; 17a943 (5e:6943)
 	xor a
 	ret
 
-; known jump sources: 17a8f1 (5e:68f1)
 Function17a964: ; 17a964 (5e:6964)
 	ld a, [$d08c]
 	cp $10
@@ -479,7 +455,6 @@ Function17a964: ; 17a964 (5e:6964)
 	scf
 	ret
 
-; known jump sources: 17a75b (5e:675b)
 Function17a97b: ; 17a97b (5e:697b)
 	hlcoord 1, 1
 	ld bc, $212
@@ -503,7 +478,6 @@ Function17a97b: ; 17a97b (5e:697b)
 .asm_17a99d
 	ret
 
-; known jump sources: 17a92f (5e:692f)
 Function17a99e: ; 17a99e (5e:699e)
 	hlcoord 0, 12
 	ld b, $4
@@ -517,7 +491,6 @@ Function17a99e: ; 17a99e (5e:699e)
 
 INCBIN "baserom.gbc",$17a9b2,$17a9cb - $17a9b2
 
-; known jump sources: 17a77a (5e:677a)
 Function17a9cb: ; 17a9cb (5e:69cb)
 	ld de, Sprites ; $c400
 	ld hl, $d088
@@ -531,7 +504,6 @@ Function17a9cb: ; 17a9cb (5e:69cb)
 	call Function17a9e3
 	ret
 
-; known jump sources: 17a9d5 (5e:69d5), 17a9df (5e:69df)
 Function17a9e3: ; 17a9e3 (5e:69e3)
 	ld a, $3
 	ld [$d08e], a
@@ -542,7 +514,6 @@ Function17a9e3: ; 17a9e3 (5e:69e3)
 	call Function17aa4a
 	ret
 
-; known jump sources: 17a9db (5e:69db)
 Function17a9f5: ; 17a9f5 (5e:69f5)
 	ld a, [$d08c]
 	cp $10
@@ -567,7 +538,6 @@ Function17a9f5: ; 17a9f5 (5e:69f5)
 	call Function17aa4a
 	ret
 
-; known jump sources: 17a9d8 (5e:69d8)
 Function17aa22: ; 17aa22 (5e:6a22)
 	ld a, $0
 	ld [$d08e], a
@@ -594,7 +564,6 @@ Function17aa22: ; 17aa22 (5e:6a22)
 	call Function17aa4a
 	ret
 
-; known jump sources: 17a9f1 (5e:69f1), 17aa1e (5e:6a1e), 17aa46 (5e:6a46)
 Function17aa4a: ; 17aa4a (5e:6a4a)
 	ld [$d08d], a
 	ld a, b
@@ -632,20 +601,17 @@ Function17aa4a: ; 17aa4a (5e:6a4a)
 
 INCBIN "baserom.gbc",$17aa72,$17aa88 - $17aa72
 
-; known jump sources: 17a8c7 (5e:68c7), 17a8f9 (5e:68f9), 17a900 (5e:6900), 17a90d (5e:690d), 17a91a (5e:691a)
 Function17aa88: ; 17aa88 (5e:6a88)
 	jr c, asm_17aa91
 	ld de, $20
 	call PlaySFX
 	ret
 
-; known jump sources: 17aa88 (5e:6a88)
 asm_17aa91: ; 17aa91 (5e:6a91)
 	ld de, $19
 	call PlaySFX
 	ret
 
-; known jump sources: 17a8c1 (5e:68c1), 17a8cf (5e:68cf), 17a907 (5e:6907), 17a911 (5e:6911)
 Function17aa98: ; 17aa98 (5e:6a98)
 	ld a, $5
 	ld [$d08b], a
@@ -655,7 +621,6 @@ Function17aa98: ; 17aa98 (5e:6a98)
 	set 7, [hl]
 	ret
 
-; known jump sources: 17aa9d (5e:6a9d)
 Function17aaa9: ; 17aaa9 (5e:6aa9)
 	ld a, $3
 	call Function17aae3
@@ -671,7 +636,6 @@ Function17aaa9: ; 17aaa9 (5e:6aa9)
 	call AddNTimes
 	ret
 
-; known jump sources: 17aaa0 (5e:6aa0)
 Function17aac3: ; 17aac3 (5e:6ac3)
 	ld a, $b
 	push hl
@@ -684,16 +648,13 @@ Function17aac3: ; 17aac3 (5e:6ac3)
 	ld [hli], a
 	ret
 
-; known jump sources: 17a878 (5e:6878), 17a87f (5e:687f), 17a886 (5e:6886), 17a88d (5e:688d), 17a894 (5e:6894), 17a89b (5e:689b), 17a8a2 (5e:68a2), 17a8a9 (5e:68a9)
 Function17aad0: ; 17aad0 (5e:6ad0)
 	call Function17aae0
 
-; known jump sources: 17a7c4 (5e:67c4), 17a8d9 (5e:68d9)
 Function17aad3: ; 17aad3 (5e:6ad3)
 	ld [$d089], a
 	ret
 
-; known jump sources: 17a8cc (5e:68cc), 17a904 (5e:6904), 17aae0 (5e:6ae0)
 Function17aad7: ; 17aad7 (5e:6ad7)
 	push af
 	ld a, [$d089]
@@ -701,11 +662,9 @@ Function17aad7: ; 17aad7 (5e:6ad7)
 	pop af
 	ret
 
-; known jump sources: 17a8e0 (5e:68e0), 17aa2a (5e:6a2a), 17aa35 (5e:6a35), 17aad0 (5e:6ad0)
 Function17aae0: ; 17aae0 (5e:6ae0)
 	call Function17aad7
 
-; known jump sources: 17aaab (5e:6aab), 17aab8 (5e:6ab8)
 Function17aae3: ; 17aae3 (5e:6ae3)
 	push af
 	ld a, [$d08a]
@@ -722,7 +681,6 @@ Function17aae3: ; 17aae3 (5e:6ae3)
 
 INCBIN "baserom.gbc",$17aaf7,$17aba0 - $17aaf7
 
-; known jump sources: 17a6cd (5e:66cd)
 Function17aba0: ; 17aba0 (5e:6ba0)
 	ld a, [rVBK] ; $ff00+$4f
 	push af
@@ -744,7 +702,6 @@ Function17aba0: ; 17aba0 (5e:6ba0)
 	call Get2bpp
 	ret
 
-; known jump sources: 17a6df (5e:66df)
 Function17abcf: ; 17abcf (5e:6bcf)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -771,7 +728,6 @@ Function17abcf: ; 17abcf (5e:6bcf)
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-; known jump sources: 17a6d6 (5e:66d6)
 Function17ac0c: ; 17ac0c (5e:6c0c)
 	call Function17ac1d
 	call Function17ac2a
@@ -781,7 +737,6 @@ Function17ac0c: ; 17ac0c (5e:6c0c)
 	call Function17ac46
 	ret
 
-; known jump sources: 17a7e3 (5e:67e3), 17a804 (5e:6804), 17a826 (5e:6826), 17ac0c (5e:6c0c)
 Function17ac1d: ; 17ac1d (5e:6c1d)
 	ld hl, $6cd5
 	decoord 0, 4
@@ -789,7 +744,6 @@ Function17ac1d: ; 17ac1d (5e:6c1d)
 	call CopyBytes
 	ret
 
-; known jump sources: 17a7e6 (5e:67e6), 17a807 (5e:6807), 17a829 (5e:6829), 17ac0f (5e:6c0f)
 Function17ac2a: ; 17ac2a (5e:6c2a)
 	ld hl, $6e3d
 	ld de, $ce29
@@ -807,7 +761,6 @@ Function17ac2a: ; 17ac2a (5e:6c2a)
 	jr nz, .asm_17ac3c
 	ret
 
-; known jump sources: 17a9a5 (5e:69a5), 17ac19 (5e:6c19)
 Function17ac46: ; 17ac46 (5e:6c46)
 	ld a, [$d088]
 	bit 4, a
