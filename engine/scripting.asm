@@ -844,6 +844,7 @@ Script_fruittree: ; 0x970ee
 Script_loadwilddata: ; 0x970fc
 ; script command 0xa0
 ; parameters:
+;     flag (SingleByteParam)
 ;     map_group (MapGroupParam)
 ;     map_id (MapIdParam)
 
