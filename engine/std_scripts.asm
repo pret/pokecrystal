@@ -399,24 +399,30 @@ UnknownScript_0xbc274: ; bc274
 	waitbutton
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0xbc375
+
+UnknownScript_0xbc2a9:
 	3writetext UnknownText_0x1b06b7
 	keeptextopen
-	2jump $42b6
+	2jump UnknownScript_0xbc2b6
 ; 0xbc2b1
 
 UnknownScript_0xbc2b1: ; 0xbc2b1
 	3writetext UnknownText_0x1b065b
 	keeptextopen
+
+UnknownScript_0xbc2b6:
 	checkevent $0308
-	iffalse $42c4
+	iffalse UnknownScript_0xbc2c4
 	3writetext UnknownText_0x1b06d9
 	closetext
 	special $0017
+UnknownScript_0xbc2c4:
 	special $0015
-	if_equal $0, $42d4
-	if_equal $2, $42d4
+	if_equal $0, UnknownScript_0xbc2d4
+	if_equal $2, UnknownScript_0xbc2d4
 	3writetext UnknownText_0x1b070d
 	closetext
+UnknownScript_0xbc2d4:
 	loadmovesprites
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE, $0
@@ -498,7 +504,7 @@ UnknownScript_0xbc375: ; 0xbc375
 	3writetext UnknownText_0x1b08cc
 	keeptextopen
 	setevent $0316
-	2jump $42a9
+	2jump UnknownScript_0xbc2a9
 ; 0xbc380
 
 UnknownScript_0xbc380: ; 0xbc380
@@ -943,7 +949,7 @@ UnknownScript_0xbc6e6: ; 0xbc6e6
 
 UnknownScript_0xbc6f0: ; 0xbc6f0
 	checkcode $17
-	if_equal $5, $4742
+	if_equal $5, UnknownScript_0xbc742
 	if_equal $7, UnknownScript_0xbc749
 	if_equal $b, UnknownScript_0xbc750
 	if_equal $d, UnknownScript_0xbc757
@@ -963,6 +969,8 @@ UnknownScript_0xbc6f0: ; 0xbc6f0
 	if_equal $21, UnknownScript_0xbc7b9
 	if_equal $22, UnknownScript_0xbc7c0
 	if_equal $23, UnknownScript_0xbc7c7
+
+UnknownScript_0xbc742:
 	3writetext UnknownText_0x1b0adb
 	closetext
 	loadmovesprites
@@ -1104,7 +1112,7 @@ UnknownScript_0xbc7c7: ; 0xbc7c7
 
 UnknownScript_0xbc7ce: ; 0xbc7ce
 	checkcode $17
-	if_equal $5, $4820
+	if_equal $5, UnknownScript_0xbc820
 	if_equal $7, UnknownScript_0xbc827
 	if_equal $b, UnknownScript_0xbc82e
 	if_equal $d, UnknownScript_0xbc835
@@ -1124,6 +1132,8 @@ UnknownScript_0xbc7ce: ; 0xbc7ce
 	if_equal $21, UnknownScript_0xbc897
 	if_equal $22, UnknownScript_0xbc89e
 	if_equal $23, UnknownScript_0xbc8a5
+
+UnknownScript_0xbc820:
 	3writetext UnknownText_0x1b0afd
 	closetext
 	loadmovesprites
@@ -1265,7 +1275,7 @@ UnknownScript_0xbc8a5: ; 0xbc8a5
 
 UnknownScript_0xbc8ac: ; 0xbc8ac
 	checkcode $17
-	if_equal $5, $48fe
+	if_equal $5, UnknownScript_0xbc8fe
 	if_equal $7, UnknownScript_0xbc905
 	if_equal $b, UnknownScript_0xbc90c
 	if_equal $d, UnknownScript_0xbc913
@@ -1285,6 +1295,8 @@ UnknownScript_0xbc8ac: ; 0xbc8ac
 	if_equal $21, UnknownScript_0xbc975
 	if_equal $22, UnknownScript_0xbc97c
 	if_equal $23, UnknownScript_0xbc983
+
+UnknownScript_0xbc8fe:
 	3writetext UnknownText_0x1b0b42
 	closetext
 	loadmovesprites
@@ -1426,7 +1438,7 @@ UnknownScript_0xbc983: ; 0xbc983
 
 UnknownScript_0xbc98a: ; 0xbc98a
 	checkcode $17
-	if_equal $5, $49d0
+	if_equal $5, UnknownScript_0xbc9d0
 	if_equal $7, UnknownScript_0xbc9d7
 	if_equal $b, UnknownScript_0xbc9de
 	if_equal $d, UnknownScript_0xbc9e5
@@ -1443,6 +1455,8 @@ UnknownScript_0xbc98a: ; 0xbc98a
 	if_equal $20, UnknownScript_0xbca32
 	if_equal $21, UnknownScript_0xbca39
 	if_equal $23, UnknownScript_0xbca40
+
+UnknownScript_0xbc9d0:
 	3writetext UnknownText_0x1b0b75
 	closetext
 	loadmovesprites
@@ -1563,13 +1577,15 @@ UnknownScript_0xbca40: ; 0xbca40
 
 UnknownScript_0xbca47: ; 0xbca47
 	checkcode $17
-	if_equal $d, $4a65
+	if_equal $d, UnknownScript_0xbca65
 	if_equal $10, UnknownScript_0xbca6b
 	if_equal $18, UnknownScript_0xbca71
 	if_equal $1c, UnknownScript_0xbca77
 	if_equal $1d, UnknownScript_0xbca7d
 	if_equal $21, UnknownScript_0xbca83
 	if_equal $22, UnknownScript_0xbca89
+
+UnknownScript_0xbca65:
 	3writetext UnknownText_0x1b1607
 	keeptextopen
 	end
@@ -1613,7 +1629,7 @@ UnknownScript_0xbca89: ; 0xbca89
 
 UnknownScript_0xbca8f: ; 0xbca8f
 	checkcode $17
-	if_equal $7, $4abd
+	if_equal $7, UnknownScript_0xbcabd
 	if_equal $d, UnknownScript_0xbcac4
 	if_equal $f, UnknownScript_0xbcacb
 	if_equal $10, UnknownScript_0xbcad2
@@ -1624,6 +1640,8 @@ UnknownScript_0xbca8f: ; 0xbca8f
 	if_equal $21, UnknownScript_0xbcaf5
 	if_equal $22, UnknownScript_0xbcafc
 	if_equal $23, UnknownScript_0xbcb03
+
+UnknownScript_0xbcabd:
 	3writetext UnknownText_0x1b0eff
 	closetext
 	loadmovesprites
@@ -1703,10 +1721,12 @@ UnknownScript_0xbcb03: ; 0xbcb03
 UnknownScript_0xbcb0a: ; 0xbcb0a
 	loadfont
 	checkcode $17
-	if_equal $7, $4b1d
+	if_equal $7, UnknownScript_0xbcb1d
 	if_equal $f, UnknownScript_0xbcb23
 	if_equal $20, UnknownScript_0xbcb29
 	if_equal $23, UnknownScript_0xbcb2f
+
+UnknownScript_0xbcb1d:
 	3writetext UnknownText_0x1b0f2f
 	keeptextopen
 	end
@@ -1732,7 +1752,7 @@ UnknownScript_0xbcb2f: ; 0xbcb2f
 
 UnknownScript_0xbcb35: ; 0xbcb35
 	checkcode $17
-	if_equal $6, $4b57
+	if_equal $6, UnknownScript_0xbcb57
 	if_equal $c, UnknownScript_0xbcb5c
 	if_equal $e, UnknownScript_0xbcb61
 	if_equal $12, UnknownScript_0xbcb66
@@ -1740,6 +1760,8 @@ UnknownScript_0xbcb35: ; 0xbcb35
 	if_equal $1a, UnknownScript_0xbcb70
 	if_equal $1f, UnknownScript_0xbcb75
 	if_equal $24, UnknownScript_0xbcb7a
+
+UnknownScript_0xbcb57:
 	3writetext UnknownText_0x1b0bb6
 	end
 ; 0xbcb5c
@@ -1781,7 +1803,7 @@ UnknownScript_0xbcb7a: ; 0xbcb7a
 
 UnknownScript_0xbcb7f: ; 0xbcb7f
 	checkcode $17
-	if_equal $6, $4ba1
+	if_equal $6, UnknownScript_0xbcba1
 	if_equal $c, UnknownScript_0xbcba6
 	if_equal $e, UnknownScript_0xbcbab
 	if_equal $12, UnknownScript_0xbcbb0
@@ -1789,6 +1811,8 @@ UnknownScript_0xbcb7f: ; 0xbcb7f
 	if_equal $1a, UnknownScript_0xbcbba
 	if_equal $1f, UnknownScript_0xbcbbf
 	if_equal $24, UnknownScript_0xbcbc4
+
+UnknownScript_0xbcba1:
 	3writetext UnknownText_0x1b0c37
 	end
 ; 0xbcba6
@@ -1830,7 +1854,7 @@ UnknownScript_0xbcbc4: ; 0xbcbc4
 
 UnknownScript_0xbcbc9: ; 0xbcbc9
 	3writetext UnknownText_0x1b09e1
-	playsound $0093
+	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	keeptextopen
 	end
@@ -1838,7 +1862,7 @@ UnknownScript_0xbcbc9: ; 0xbcbc9
 
 UnknownScript_0xbcbd3: ; 0xbcbd3
 	checkcode $17
-	if_equal $6, $4bf5
+	if_equal $6, UnknownScript_0xbcbf5
 	if_equal $c, UnknownScript_0xbcbfc
 	if_equal $e, UnknownScript_0xbcc03
 	if_equal $12, UnknownScript_0xbcc0a
@@ -1846,6 +1870,8 @@ UnknownScript_0xbcbd3: ; 0xbcbd3
 	if_equal $1a, UnknownScript_0xbcc18
 	if_equal $1f, UnknownScript_0xbcc1f
 	if_equal $24, UnknownScript_0xbcc26
+
+UnknownScript_0xbcbf5:
 	3writetext UnknownText_0x1b0c9b
 	closetext
 	loadmovesprites
@@ -1903,7 +1929,7 @@ UnknownScript_0xbcc26: ; 0xbcc26
 
 UnknownScript_0xbcc2d: ; 0xbcc2d
 	checkcode $17
-	if_equal $6, $4c4f
+	if_equal $6, UnknownScript_0xbcc4f
 	if_equal $c, UnknownScript_0xbcc56
 	if_equal $e, UnknownScript_0xbcc5d
 	if_equal $12, UnknownScript_0xbcc64
@@ -1911,6 +1937,8 @@ UnknownScript_0xbcc2d: ; 0xbcc2d
 	if_equal $1a, UnknownScript_0xbcc72
 	if_equal $1f, UnknownScript_0xbcc79
 	if_equal $24, UnknownScript_0xbcc80
+
+UnknownScript_0xbcc4f:
 	3writetext UnknownText_0x1b0ce0
 	closetext
 	loadmovesprites
@@ -1968,7 +1996,7 @@ UnknownScript_0xbcc80: ; 0xbcc80
 
 UnknownScript_0xbcc87: ; 0xbcc87
 	checkcode $17
-	if_equal $6, $4ca9
+	if_equal $6, UnknownScript_0xbcca9
 	if_equal $c, UnknownScript_0xbccb0
 	if_equal $e, UnknownScript_0xbccb7
 	if_equal $12, UnknownScript_0xbccbe
@@ -1976,6 +2004,8 @@ UnknownScript_0xbcc87: ; 0xbcc87
 	if_equal $1a, UnknownScript_0xbcccc
 	if_equal $1f, UnknownScript_0xbccd3
 	if_equal $24, UnknownScript_0xbccda
+
+UnknownScript_0xbcca9:
 	3writetext UnknownText_0x1b0d0b
 	closetext
 	loadmovesprites
@@ -2033,13 +2063,15 @@ UnknownScript_0xbccda: ; 0xbccda
 
 UnknownScript_0xbcce1: ; 0xbcce1
 	checkcode $17
-	if_equal $c, $4cff
+	if_equal $c, UnknownScript_0xbccff
 	if_equal $e, UnknownScript_0xbcd06
 	if_equal $12, UnknownScript_0xbcd0d
 	if_equal $15, UnknownScript_0xbcd14
 	if_equal $1a, UnknownScript_0xbcd1b
 	if_equal $1f, UnknownScript_0xbcd22
 	if_equal $24, UnknownScript_0xbcd29
+
+UnknownScript_0xbccff:
 	3writetext UnknownText_0x1b1409
 	closetext
 	loadmovesprites
@@ -2090,10 +2122,12 @@ UnknownScript_0xbcd29: ; 0xbcd29
 
 UnknownScript_0xbcd30: ; 0xbcd30
 	checkcode $17
-	if_equal $6, $4d42
+	if_equal $6, UnknownScript_0xbcd42
 	if_equal $15, UnknownScript_0xbcd48
 	if_equal $1a, UnknownScript_0xbcd4e
 	if_equal $1f, UnknownScript_0xbcd54
+
+UnknownScript_0xbcd42:
 	3writetext UnknownText_0x1b0d2c
 	keeptextopen
 	end
@@ -2119,11 +2153,13 @@ UnknownScript_0xbcd54: ; 0xbcd54
 
 UnknownScript_0xbcd5a: ; 0xbcd5a
 	checkcode $17
-	if_equal $6, $4d70
+	if_equal $6, UnknownScript_0xbcd70
 	if_equal $15, UnknownScript_0xbcd77
 	if_equal $1a, UnknownScript_0xbcd7e
 	if_equal $1f, UnknownScript_0xbcd85
 	if_equal $24, UnknownScript_0xbcd8c
+
+UnknownScript_0xbcd70:
 	3writetext UnknownText_0x1b0d69
 	closetext
 	loadmovesprites
@@ -2160,7 +2196,8 @@ UnknownScript_0xbcd8c: ; 0xbcd8c
 
 UnknownScript_0xbcd93: ; 0xbcd93
 	checkcode $17
-	if_equal $24, $4d99
+	if_equal $24, .ok
+.ok
 	loadfont
 	3writetext UnknownText_0xa6454
 	keeptextopen
@@ -2190,7 +2227,7 @@ UnknownScript_0xbcdaa: ; 0xbcdaa
 UnknownScript_0xbcdb9: ; 0xbcdb9
 	waitbutton
 	3writetext UnknownText_0x1b0648
-	playsound $0001
+	playsound SFX_ITEM
 	waitbutton
 	end
 ; 0xbcdc3
@@ -2198,7 +2235,7 @@ UnknownScript_0xbcdb9: ; 0xbcdb9
 UnknownScript_0xbcdc3: ; 0xbcdc3
 	waitbutton
 	3writetext UnknownText_0x1b0648
-	playsound $0096
+	playsound SFX_GET_EGG_FROM_DAYCARE_LADY
 	waitbutton
 	end
 ; 0xbcdcd
@@ -2218,6 +2255,8 @@ UnknownScript_0xbcdcd: ; 0xbcdcd
 
 UnknownScript_0xbcde0: ; 0xbcde0
 	3writetext UnknownText_0x1b07e3
+
+UnknownScript_0xbcde4: ; 0xbcde4
 	special $0050
 	loadmenudata MenuDataHeader_0xbce54
 	interpretmenu2
@@ -2235,10 +2274,10 @@ UnknownScript_0xbcdf7: ; 0xbcdf7
 	givecoins 50
 	takemoney $0, 1000
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	3writetext UnknownText_0x1b0830
 	closetext
-	2jump $4de4
+	2jump UnknownScript_0xbcde4
 ; 0xbce1b
 
 UnknownScript_0xbce1b: ; 0xbce1b
@@ -2249,10 +2288,10 @@ UnknownScript_0xbce1b: ; 0xbce1b
 	givecoins 500
 	takemoney $0, 10000
 	waitbutton
-	playsound $0022
+	playsound SFX_TRANSACTION
 	3writetext UnknownText_0x1b084f
 	closetext
-	2jump $4de4
+	2jump UnknownScript_0xbcde4
 ; 0xbce3f
 
 UnknownScript_0xbce3f: ; 0xbce3f
@@ -2298,8 +2337,8 @@ UnknownScript_0xbce7f: ; 0xbce7f
 	faceplayer
 	loadfont
 	special $0059
-	if_less_than $32, UnknownScript_0xbce9a
-	if_less_than $96, UnknownScript_0xbce93
+	if_less_than 50, UnknownScript_0xbce9a
+	if_less_than 150, UnknownScript_0xbce93
 	3writetext UnknownText_0x1b092a
 	closetext
 	loadmovesprites
@@ -2327,18 +2366,19 @@ MovementData_0xbcea1: ; bcea1
 	step_end
 ; bcea5
 
+
 UnusedPhoneScript: ; 0xbcea5
 	3writetext UnusedPhoneText
 	end
 
 MomPhoneScript: ; 0xbceaa
-	checkevent $0040
+	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue .bcec5
-	checkevent $0041 ; if dude talked to you, then you left home without talking to mom
+	checkevent EVENT_DUDE_TALKED_TO_YOU
 	iftrue MomPhoneLectureScript
-	checkevent $001f
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue MomPhoneNoGymQuestScript
-	checkevent $001a
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue MomPhoneNoPokedexScript
 	2jump MomPhoneNoPokemonScript
 
@@ -2380,13 +2420,13 @@ UnknownScript_0xbcee7: ; 0xbcee7
 	2jump UnknownScript_0xbcf37
 
 .violet ; 0xbcf15
-	displaylocation $7, 1 ; sprout tower
+	displaylocation SPROUT_TOWER, 1
 	2jump UnknownScript_0xbcedf
 .azalea ; 0xbcf1b
-	displaylocation $d, 1 ; slowpoke well
+	displaylocation SLOWPOKE_WELL, 1
 	2jump UnknownScript_0xbcedf
 .goldenrod ; 0xbcf21
-	displaylocation $11, 1 ; radio tower
+	displaylocation RADIO_TOWER, 1
 	2jump UnknownScript_0xbcedf
 
 UnknownScript_0xbcf27: ; 0xbcf27
@@ -2400,7 +2440,7 @@ UnknownScript_0xbcf2f: ; 0xbcf2f
 	2jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf37: ; 0xbcf37
-	checkflag $0008
+	checkflag ENGINE_MOM_SAVING_MONEY
 	iffalse UnknownScript_0xbcf49
 	checkmoney $1, 0
 	if_equal $0, UnknownScript_0xbcf55
@@ -2438,13 +2478,13 @@ UnknownScript_0xbcf79: ; 0xbcf79
 	2jump MomPhoneWontSaveMoneyScript
 
 MomPhoneSaveMoneyScript: ; 0xbcf87
-	setflag $0008
+	setflag ENGINE_MOM_SAVING_MONEY
 	3writetext UnknownText_0x1b4289
 	keeptextopen
 	2jump MomPhoneHangUpScript
 
 MomPhoneWontSaveMoneyScript: ; 0xbcf92
-	clearflag $0008
+	clearflag ENGINE_MOM_SAVING_MONEY
 	3writetext MomPhoneWontSaveMoneyText
 	keeptextopen
 	2jump MomPhoneHangUpScript
@@ -2466,8 +2506,8 @@ MomPhoneNoGymQuestScript: ; 0xbcfac
 	end
 
 MomPhoneLectureScript: ; 0xbcfb1
-	setevent $0040
-	setflag $0009
+	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
+	setflag ENGINE_DST
 	specialphonecall $0000
 	3writetext MomPhoneLectureText
 	yesorno
@@ -2519,22 +2559,22 @@ BillPhoneScript2: ; 0xbd007
 ElmPhoneScript1: ; 0xbd00d
 	checkcode $14
 	if_equal $1, .pokerus
-	checkevent $0055
+	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
 	iftrue .discovery
-	checkevent $002d
+	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iffalse .next
-	checkevent $0054
+	checkevent EVENT_TOGEPI_HATCHED
 	iftrue .egghatched
 .next
-	checkevent $002d
+	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue .eggunhatched
-	checkevent $0701
+	checkevent EVENT_ELMS_AIDE_IN_LAB
 	iftrue .assistant
-	checkevent $001f
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue .checkingegg
-	checkevent $0043
+	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	iftrue .stolen
-	checkevent $001e
+	checkevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	iftrue .sawmrpokemon
 	3writetext ElmPhoneStartText
 	end
@@ -2561,7 +2601,7 @@ ElmPhoneScript1: ; 0xbd00d
 
 .egghatched ; 0xbd061
 	3writetext ElmPhoneEggHatchedText
-	setevent $0077
+	setevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	end
 
 .discovery ; 0xbd069
@@ -2593,14 +2633,14 @@ ElmPhoneScript2: ; 0xbd081
 .disaster ; 0xbd09f
 	3writetext ElmPhoneDisasterText
 	specialphonecall $0000
-	setevent $0043
+	setevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	end
 
 .assistant ; 0xbd0aa
 	3writetext ElmPhoneEggAssistantText
 	specialphonecall $0000
-	clearevent $0700
-	setevent $0701
+	clearevent EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
+	setevent EVENT_ELMS_AIDE_IN_LAB
 	end
 
 .rocket ; 0xbd0b8
