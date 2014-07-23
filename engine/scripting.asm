@@ -2202,6 +2202,7 @@ Script_name: ; 0x97716
 ; parameters:
 ;     type (SingleByteParam)
 ;     id (SingleByteParam)
+;     memory (SingleByteParam)
 
 	call GetScriptByte
 	ld [$cf61], a
@@ -2216,6 +2217,9 @@ Unknown_9771c: ; 0x9771c
 
 Script_trainerclassname: ; 0x9772b
 ; script command 0xa6
+; parameters:
+;     id (SingleByteParam)
+;     memory (SingleByteParam)
 
 	ld a, $7
 	ld [$cf61], a
