@@ -79085,7 +79085,7 @@ Unknown_90627: ; 90627
 
 	dw Function90197
 	db $02
-	dbw $28, $4b09 ; XXX bike shop
+	dbw BANK(UnknownScript_0xa0b09), UnknownScript_0xa0b09 ; bike shop
 
 	dw Function90197
 	db $01
@@ -85144,8 +85144,8 @@ INCBIN "gfx/slots_3.2bpp.lz"
 
 SECTION "bank28", ROMX, BANK[$28]
 
-INCBIN "baserom.gbc",$a0000,$a0c28 - $a0000
-
+INCLUDE "engine/more_phone_scripts.asm"
+INCLUDE "engine/buena_scripts.asm"
 INCLUDE "text/buena.asm"
 
 
