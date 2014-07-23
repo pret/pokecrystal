@@ -89194,42 +89194,7 @@ SECTION "bank2F", ROMX, BANK[$2F]
 
 INCLUDE "engine/std_scripts.asm"
 
-INCBIN "baserom.gbc",$bd0d0,$be66a - $bd0d0
-
-UnknownScript_0xbe66a:: ; 0xbe66a
-	faceplayer
-	trainerstatus $2
-	iftrue UnknownScript_0xbe698
-	loadtrainerdata
-	playrammusic
-	2jump UnknownScript_0xbe68a
-; 0xbe675
-
-UnknownScript_0xbe675:: ; 0xbe675
-	loadtrainerdata
-	playrammusic
-	showemote $0, $fe, 30
-	3callasm Function831e
-	applymovement2 $d007
-	writepersonxy $fe
-	faceperson $0, $fe
-	2jump UnknownScript_0xbe68a
-; 0xbe68a
-
-UnknownScript_0xbe68a: ; 0xbe68a
-	loadfont
-	trainertext $0
-	closetext
-	loadmovesprites
-	loadtrainerdata
-	startbattle
-	returnafterbattle
-	trainerstatus $1
-	loadvar $d04d, $ff
-
-UnknownScript_0xbe698:
-	scripttalkafter
-; 0xbe699
+INCLUDE "engine/phone_scripts.asm"
 
 
 SECTION "bank30", ROMX, BANK[$30]
