@@ -18,7 +18,63 @@ Functiond0000: ; d0000
 	ret
 ; d001a
 
-INCBIN "baserom.gbc",$d001a,$d008e - $d001a
+Functiond001a: ; d001a
+	ld e, $2
+	ld d, $0
+	call Functiond008e
+	ret
+; d0022
+
+Functiond0022: ; d0022
+	ld e, $3
+	ld d, $0
+	call Functiond008e
+	ret
+; d002a
+
+Functiond002a: ; d002a
+	ld e, $4
+	ld d, $0
+	call Functiond008e
+	ret
+; d0032
+
+Functiond0032: ; d0032
+	ld e, $5
+	ld d, $0
+	call Functiond008e
+	ret
+; d003a
+
+Functiond003a: ; d003a
+	ld e, $6
+	ld d, $0
+	call Functiond008e
+	ret
+; d0042
+
+
+Unknown_d0042: ; d0042
+	dw Unknown_d0054
+	dw Unknown_d0058
+	dw Unknown_d005c
+	dw Unknown_d0064
+	dw Unknown_d006e
+	dw Unknown_d0076
+	dw Unknown_d0080
+	dw Unknown_d0088
+	dw Unknown_d008b
+
+Unknown_d0054: db 11, 5, 7, 0
+Unknown_d0058: db 11, 4, 7, 0
+Unknown_d005c: db 10, 4, 7, 2, 3, 6, 7, 0
+Unknown_d0064: db  6, 8, 6, 7, 2, 3, 9, 4, 7, 0
+Unknown_d006e: db  6, 7, 2, 3,10, 4, 7, 0
+Unknown_d0076: db  6, 7,10, 4, 7, 2, 3, 6, 7, 0
+Unknown_d0080: db 10, 4, 7, 2, 3, 6, 7, 0
+Unknown_d0088: db  4, 7, 0
+Unknown_d008b: db  6, 7, 0
+
 
 Functiond008e: ; d008e
 	call Functiond01c6
@@ -36,8 +92,8 @@ Functiond008e: ; d008e
 Functiond00a3: ; d00a3
 	push hl
 	ld c, e
-	ld b, $0
-	ld hl, $4042
+	ld b, 0
+	ld hl, Unknown_d0042
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -55,14 +111,14 @@ Functiond00b4: ; d00b4
 	ld [rSVBK], a
 	ld a, [$d168]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $d169
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, bc
 	ld a, [hl]
-	ld hl, $40da
+	ld hl, Jumptable_d00da
 	rst JumpTable
 	ld a, [$d168]
 	ld c, a
@@ -75,7 +131,7 @@ Functiond00b4: ; d00b4
 	ret
 ; d00da
 
-Tabled00da: ; d00da
+Jumptable_d00da: ; d00da
 	dw Functiond0171
 	dw Functiond0166
 	dw Functiond00f2
@@ -223,7 +279,7 @@ Functiond01a9: ; d01a9
 
 Functiond01c6: ; d01c6
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_d01d4
 	call IsAPokemon
 	jr c, .asm_d01d4
@@ -413,13 +469,13 @@ Functiond02e4: ; d02e4
 
 Functiond02ec: ; d02ec
 	ld a, [$d16b]
-	cp $c9
+	cp UNOWN
 	ret
 ; d02f2
 
 Functiond02f2: ; d02f2
 	ld a, [$d16b]
-	cp $fd
+	cp EGG
 	ret
 ; d02f8
 
@@ -485,18 +541,18 @@ Functiond033b: ; d033b
 Functiond0356: ; d0356
 	push hl
 	ld a, [$d171]
-	sub $5
+	sub 5
 	ld c, a
-	ld b, $0
-	ld hl, $4368
+	ld b, 0
+	ld hl, Unknown_d0368
 	add hl, bc
 	ld c, [hl]
-	ld b, $0
+	ld b, 0
 	pop hl
 	ret
 ; d0368
 
-INCBIN "baserom.gbc",$d0368,$d036b - $d0368
+Unknown_d0368: db 4, 5, 7
 
 Functiond036b: ; d036b
 	xor a
@@ -510,6 +566,7 @@ Functiond036b: ; d036b
 	ld a, b
 	and a
 	jr z, .asm_d038a
+
 	ld a, [$d177]
 	call GetFarByte
 	inc hl
@@ -532,13 +589,14 @@ Functiond0392: ; d0392
 	rrca
 	rrca
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $d188
 	add hl, de
 	ld b, [hl]
 	ld a, [$d187]
-	and $7
+	and 7
 	jr z, .asm_d03b0
+
 	ld c, a
 	ld a, b
 .asm_d03ab
@@ -551,7 +609,7 @@ Functiond0392: ; d0392
 	xor a
 	bit 0, b
 	jr z, .asm_d03b7
-	ld a, $1
+	ld a, 1
 
 .asm_d03b7
 	ld b, a
@@ -583,7 +641,7 @@ Functiond03cd: ; d03cd
 	jr nz, .asm_d03e8
 	ld a, [$d185]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	jr .asm_d03f3
 
@@ -594,34 +652,34 @@ Functiond03cd: ; d03cd
 	sub e
 	ld l, a
 	ld a, h
-	sbc $0
+	sbc 0
 	ld h, a
 
 .asm_d03f3
 	ret
 ; d03f4
 
-INCBIN "baserom.gbc",$d03f4,$d03f7 - $d03f4
+Unknown_d03f4: db 6, 5, 4
 
 Functiond03f7: ; d03f7
 	push af
 	ld a, [$d171]
-	cp $5
+	cp 5
 	jr z, .asm_d0405
-	cp $6
+	cp 6
 	jr z, .asm_d041a
 	pop af
 	ret
 
 .asm_d0405
 	pop af
-	cp $19
+	cp 5 * 5
 	jr nc, .asm_d0417
 	push hl
 	push de
-	ld hl, $442f
+	ld hl, Unknown_d042f
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	pop de
@@ -629,18 +687,18 @@ Functiond03f7: ; d03f7
 	ret
 
 .asm_d0417
-	add $18
+	add 24
 	ret
 
 .asm_d041a
 	pop af
-	cp $24
+	cp 6 * 6
 	jr nc, .asm_d042c
 	push hl
 	push de
-	ld hl, $4448
+	ld hl, Unknown_d0448
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	pop de
@@ -648,30 +706,45 @@ Functiond03f7: ; d03f7
 	ret
 
 .asm_d042c
-	add $d
+	add 13
 	ret
 ; d042f
 
-INCBIN "baserom.gbc",$d042f,$d046c - $d042f
+Unknown_d042f:
+	db  9, 10, 11, 12, 13
+	db 16, 17, 18, 19, 20
+	db 23, 24, 25, 26, 27
+	db 30, 31, 32, 33, 34
+	db 37, 38, 39, 40, 41
+
+Unknown_d0448:
+	db  8,  9, 10, 11, 12, 13
+	db 15, 16, 17, 18, 19, 20
+	db 22, 23, 24, 25, 26, 27
+	db 29, 30, 31, 32, 33, 34
+	db 36, 37, 38, 39, 40, 41
+	db 43, 44, 45, 46, 47, 48
+
 
 Functiond046c: ; d046c
 	ld hl, $d16f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$d171]
-	ld de, $0000
-	ld bc, $0006
-	cp $7
-	jr z, .asm_d048f
-	ld de, $0015
-	ld bc, $0019
-	cp $6
-	jr z, .asm_d048f
-	ld de, $0029
-	ld bc, $002d
 
+	ld a, [$d171]
+	ld de, 0
+	ld bc, 6
+	cp 7
+	jr z, .asm_d048f
+	ld de, 21
+	ld bc, 25
+	cp 6
+	jr z, .asm_d048f
+	ld de, 41
+	ld bc, 45
 .asm_d048f
+
 	ld a, [$c2c6]
 	and a
 	jr nz, .asm_d0497
@@ -713,13 +786,13 @@ Functiond04bd: ; d04bd
 	ld a, [$c2c6]
 	and a
 	jr nz, .asm_d04ce
-	ld de, $0001
-	ld bc, $0000
+	ld de, 1
+	ld bc, 0
 	jr .asm_d04d4
 
 .asm_d04ce
-	ld de, rIE
-	ld bc, $0006
+	ld de, -1
+	ld bc, 6
 
 .asm_d04d4
 	ld hl, $d16f
@@ -727,8 +800,8 @@ Functiond04bd: ; d04bd
 	ld h, [hl]
 	ld l, a
 	add hl, bc
-	ld c, $7
-	ld b, $7
+	ld c, 7
+	ld b, 7
 	ld a, [$d16e]
 .asm_d04e2
 	push bc
@@ -755,8 +828,8 @@ Functiond04f6: ; d04f6
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld b, $7
-	ld c, $7
+	ld b, 7
+	ld c, 7
 	call ClearBox
 	ret
 ; d0504
@@ -777,15 +850,15 @@ Functiond0504: ; d0504
 
 Functiond051b: ; d051b
 	call Functiond0551
-	ld b, $7
-	ld c, $7
+	ld b, 7
+	ld c, 7
 	ld de, $0014
 .asm_d0525
 	push bc
 	push hl
 .asm_d0527
 	ld a, [hl]
-	or $8
+	or 8
 	ld [hl], a
 	add hl, de
 	dec c
@@ -800,8 +873,8 @@ Functiond051b: ; d051b
 
 Functiond0536: ; d0536
 	call Functiond0551
-	ld b, $7
-	ld c, $7
+	ld b, 7
+	ld c, 7
 	ld de, $0014
 .asm_d0540
 	push bc
@@ -826,35 +899,36 @@ Functiond0551: ; d0551
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $0939
+	ld de, $939
 	add hl, de
 	ret
 ; d055c
 
 Functiond055c: ; d055c
 	call Functiond02f2
-	jr z, .asm_d0597
-	ld c, $34
+	jr z, .egg
+
+	ld c, BANK(UnownAnimations)
 	ld hl, UnownAnimationPointers
 	ld de, UnownAnimationExtraPointers
 	call Functiond02ec
 	jr z, .asm_d0576
-	ld c, $34
+	ld c, BANK(PicAnimations)
 	ld hl, AnimationPointers
 	ld de, AnimationExtraPointers
-
 .asm_d0576
+
 	ld a, [$d172]
 	and a
 	jr z, .asm_d057e
 	ld h, d
 	ld l, e
-
 .asm_d057e
+
 	ld a, [$d16d]
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, c
@@ -866,16 +940,16 @@ Functiond055c: ; d055c
 	ld [$d176], a
 	ret
 
-.asm_d0597
+.egg
 	ld hl, EggAnimation
-	ld c, $34
+	ld c, BANK(EggAnimation)
 	ld a, [$d172]
 	and a
 	jr z, .asm_d05a7
 	ld hl, EggAnimationExtra
-	ld c, $34
-
+	ld c, BANK(EggAnimationExtra)
 .asm_d05a7
+
 	ld a, c
 	ld [$d174], a
 	ld a, l
@@ -903,27 +977,28 @@ Functiond05b4: ; d05b4
 
 Functiond05ce: ; d05ce
 	call Functiond02f2
-	jr z, .asm_d0609
+	jr z, .egg
+
 	call Functiond02ec
-	ld b, $36
-	ld c, $36
-	ld hl, PikachuAnimationExtra
+	ld b, BANK(UnownFramesPointers)
+	ld c, BANK(UnownsFrames)
+	ld hl, UnownFramesPointers
 	jr z, .asm_d05ef
 	ld a, [$d16b]
-	cp $98
-	ld b, $35
-	ld c, $35
-	ld hl, $4000
+	cp 151 + 1
+	ld b, BANK(FramesPointers)
+	ld c, BANK(KantoFrames)
+	ld hl, FramesPointers
 	jr c, .asm_d05ef
-	ld c, $36
-
+	ld c, BANK(JohtoFrames)
 .asm_d05ef
 	ld a, c
 	ld [$d177], a
+
 	ld a, [$d16d]
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, b
@@ -934,9 +1009,9 @@ Functiond05ce: ; d05ce
 	ld [$d179], a
 	ret
 
-.asm_d0609
-	ld hl, $598b
-	ld c, $36
+.egg
+	ld hl, EggFrames
+	ld c, BANK(EggFrames)
 	ld a, c
 	ld [$d177], a
 	ld a, l
@@ -948,20 +1023,21 @@ Functiond05ce: ; d05ce
 
 Functiond061b: ; d061b
 	call Functiond02f2
-	jr z, .asm_d064a
+	jr z, .egg
+
 	call Functiond02ec
-	ld a, $34
+	ld a, BANK(UnownBitmasksPointers)
 	ld hl, UnownBitmasksPointers
 	jr z, .asm_d062f
-	ld a, $34
+	ld a, BANK(BitmasksPointers)
 	ld hl, BitmasksPointers
-
 .asm_d062f
 	ld [$d17a], a
+
 	ld a, [$d16d]
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [$d17a]
@@ -972,8 +1048,8 @@ Functiond061b: ; d061b
 	ld [$d17c], a
 	ret
 
-.asm_d064a
-	ld c, $34
+.egg
+	ld c, BANK(EggBitmasks)
 	ld hl, EggBitmasks
 	ld a, c
 	ld [$d17a], a
@@ -1010,7 +1086,7 @@ Functiond066e: ; d066e
 	predef Function5108b
 	pop hl
 	pop bc
-	ld d, $0
+	ld d, 0
 	ld e, c
 	call Functiond008e
 	xor a

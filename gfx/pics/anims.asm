@@ -1,3 +1,4 @@
+PicAnimations:
 BulbasaurAnimation:  INCLUDE "gfx/pics/bulbasaur/anim0.asm"
 IvysaurAnimation:    INCLUDE "gfx/pics/ivysaur/anim0.asm"
 VenusaurAnimation:   INCLUDE "gfx/pics/venusaur/anim0.asm"

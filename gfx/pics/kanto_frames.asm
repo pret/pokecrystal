@@ -1,3 +1,4 @@
+KantoFrames:
 BulbasaurFrames:  INCLUDE "gfx/pics/bulbasaur/frames.asm"
 IvysaurFrames:    INCLUDE "gfx/pics/ivysaur/frames.asm"
 VenusaurFrames:   INCLUDE "gfx/pics/venusaur/frames.asm"
