@@ -14656,16 +14656,16 @@ Pack: ; 10000
 	ld hl, Options
 	set 4, [hl]
 	call Function1068a
-.asm_10008
+.loop
 	call Functiona57
 	ld a, [$cf63]
 	bit 7, a
-	jr nz, .asm_1001a
+	jr nz, .done
 	call Function10026
 	call DelayFrame
-	jr .asm_10008
+	jr .loop
 
-.asm_1001a
+.done
 	ld a, [$cf65]
 	ld [$d0d6], a
 	ld hl, Options
@@ -22349,34 +22349,31 @@ root	set root+1
 SECTION "bank5", ROMX, BANK[$5]
 
 
-Function14000: ; 14000
-	ld a, $a
+StopRTC: ; 14000
+	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock
-	ld a, $c
+	ld a, RTC_DH
 	ld [MBC3SRamBank], a
 	ld a, [MBC3RTC]
-	set 6, a
+	set 6, a ; halt
 	ld [MBC3RTC], a
 	call CloseSRAM
 	ret
 ; 14019
 
-
-
-Function14019: ; 14019
-	ld a, $a
+StartRTC: ; 14019
+	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock
-	ld a, $c
+	ld a, RTC_DH
 	ld [MBC3SRamBank], a
 	ld a, [MBC3RTC]
-	res 6, a
+	res 6, a ; halt
 	ld [MBC3RTC], a
 	call CloseSRAM
 	ret
 ; 14032
-
 
 
 GetTimeOfDay:: ; 14032
@@ -22423,7 +22420,7 @@ Unknown_1404e: ; 1404e
 
 Function14056: ; 14056
 	call UpdateTime
-	ld hl, $d4ba
+	ld hl, wRTC
 	ld a, [CurDay]
 	ld [hli], a
 	ld a, [hHours]
@@ -22461,7 +22458,7 @@ StartClock:: ; 14089
 	call Function6d3
 
 .asm_14097
-	call Function14019
+	call StartRTC
 	ret
 ; 1409b
 
@@ -22489,7 +22486,7 @@ Function140ae: ; 140ae
 	and $20
 	jr z, .asm_140eb
 	call UpdateTime
-	ld a, [$d4ba]
+	ld a, [wRTC + 0]
 	ld b, a
 	ld a, [CurDay]
 	cp b
@@ -28108,7 +28105,7 @@ Function16433: ; 16433
 
 DSTChecks: ; 16439
 ; check the time; avoid changing DST if doing so would change the current day
-	ld a, [$d4c2]
+	ld a, [wDST]
 	bit 7, a
 	ld a, [hHours]
 	jr z, .asm_16447
@@ -28137,16 +28134,16 @@ DSTChecks: ; 16439
 .next
 	call Function164ea
 	bccoord 1, 14
-	ld a, [$d4c2]
+	ld a, [wDST]
 	bit 7, a
 	jr z, .asm_16497
 	ld hl, UnknownText_0x16508
 	call Function13e5
 	call YesNoBox
 	ret c
-	ld a, [$d4c2]
+	ld a, [wDST]
 	res 7, a
-	ld [$d4c2], a
+	ld [wDST], a
 	call Function164d1
 	call Function164ea
 	bccoord 1, 14
@@ -28159,9 +28156,9 @@ DSTChecks: ; 16439
 	call Function13e5
 	call YesNoBox
 	ret c
-	ld a, [$d4c2]
+	ld a, [wDST]
 	set 7, a
-	ld [$d4c2], a
+	ld [wDST], a
 	call Function164b9
 	call Function164ea
 	bccoord 1, 14
@@ -78388,9 +78385,9 @@ Function90069: ; 90069
 	rst Bankswitch
 
 	call PlaceString
+
 	pop af
 	rst Bankswitch
-
 	ret
 ; 90074
 
@@ -79691,9 +79688,9 @@ UnknownText_0x90a4f: ; 0x90a4f
 ; 0x90a54
 
 Function90a54: ; 90a54
-	ld a, [$d4c2]
+	ld a, [wDST]
 	set 7, a
-	ld [$d4c2], a
+	ld [wDST], a
 	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
@@ -79722,9 +79719,9 @@ UnknownText_0x90a83: ; 0x90a83
 ; 0x90a88
 
 Function90a88: ; 90a88
-	ld a, [$d4c2]
+	ld a, [wDST]
 	res 7, a
-	ld [$d4c2], a
+	ld [wDST], a
 	hlcoord 1, 14
 	ld bc, $0312
 	call ClearBox
@@ -79791,7 +79788,7 @@ UnknownText_0x90acc: ; 0x90acc
 	ld [hl], " "
 	inc hl
 
-	ld a, [$d4c2]
+	ld a, [wDST]
 	bit 7, a
 	jr z, .off
 
@@ -79985,7 +79982,7 @@ Function90c4e: ; 90c4e
 	call FarDecompress
 
 	ld hl, PokegearGFX
-	ld de, $9300
+	ld de, VTiles2 + $300
 	ld a, BANK(PokegearGFX)
 	call FarDecompress
 
@@ -80358,12 +80355,15 @@ Function90f2d: ; 90f2d (24:4f2d)
 Function90f3e: ; 90f3e (24:4f3e)
 	call Function90f7b
 	ld hl, $ffa9
+
 	ld a, [hl]
-	and $f
+	and A_BUTTON + B_BUTTON + START + SELECT
 	jr nz, .asm_90f75
+
 	ld a, [hl]
-	and $10
+	and D_RIGHT
 	ret z
+
 	ld a, [$d957]
 	bit 0, a
 	jr z, .asm_90f5a
@@ -80371,6 +80371,7 @@ Function90f3e: ; 90f3e (24:4f3e)
 	ld b, $1
 	jr .asm_90f71
 .asm_90f5a
+
 	ld a, [$d957]
 	bit 2, a
 	jr z, .asm_90f67
@@ -80378,14 +80379,18 @@ Function90f3e: ; 90f3e (24:4f3e)
 	ld b, $2
 	jr .asm_90f71
 .asm_90f67
+
 	ld a, [$d957]
 	bit 1, a
 	ret z
+
 	ld c, $b
 	ld b, $3
+
 .asm_90f71
 	call Function91480
 	ret
+
 .asm_90f75
 	ld hl, $cf63
 	set 7, [hl]
@@ -80401,7 +80406,7 @@ Function90f7b: ; 90f7b (24:4f7b)
 
 Function90f86: ; 90f86 (24:4f86)
 	hlcoord 3, 5
-	ld bc, $50e
+	lb bc, 5, 14
 	call ClearBox
 	ld a, [hHours] ; $ff00+$94
 	ld b, a
@@ -80419,7 +80424,6 @@ String_90fa8: db "ごぜん@"
 String_90fac: db "ごご@"
 
 UnknownText_0x90faf: ; 0x90faf
-	; @
 	text_jump UnknownText_0x1c5821
 	db "@"
 ; 0x90fb4
@@ -80598,7 +80602,7 @@ Function91098: ; 91098
 Function910b4: ; 910b4
 	push af
 	hlcoord 8, 0
-	ld bc, $020c
+	lb bc, 2, 12
 	call ClearBox
 	pop af
 	ld e, a
@@ -110334,7 +110338,7 @@ INCBIN "baserom.gbc",$11b479,$11b5e8 - $11b479
 Function11b5e8: ; 11b5e8
 	ld a, $0
 	call GetSRAMBank
-	ld hl, $d4ba
+	ld hl, wRTC
 	ld de, $c608
 	ld bc, $0004
 	call CopyBytes

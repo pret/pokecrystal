@@ -1248,8 +1248,11 @@ StartMinute:: ; d4b8
 StartSecond:: ; d4b9
 	ds 1
 
-	ds 9
-	
+wRTC:: ; d4ba
+	ds 8
+wDST:: ; d4c2
+	ds 1
+
 GameTimeCap:: ; d4c3
 	ds 1
 GameTimeHours:: ; d4c4
