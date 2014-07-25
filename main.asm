@@ -78392,23 +78392,30 @@ Function90069: ; 90069
 ; 90074
 
 
-Function90074:: ; 90074 (24:4074)
+CheckPhoneCall:: ; 90074 (24:4074)
+; Check if the phone is ringing in the overworld.
+
 	call CheckStandingOnEntrance
-	jr z, .asm_900a4
+	jr z, .no_call
+
 	call Function900a6
 	nop
-	jr nc, .asm_900a4
+	jr nc, .no_call
+
 	call Random
 	ld b, a
 	and $7f
 	cp b
-	jr nz, .asm_900a4
+	jr nz, .no_call
+
 	call Function2d05
 	and a
-	jr nz, .asm_900a4
+	jr nz, .no_call
+
 	call Function900de
 	call Function900bf
-	jr nc, .asm_900a4
+	jr nc, .no_call
+
 	ld e, a
 	call Function9020d
 	ld a, BANK(UnknownScript_0x90241)
@@ -78416,7 +78423,8 @@ Function90074:: ; 90074 (24:4074)
 	call CallScript
 	scf
 	ret
-.asm_900a4
+
+.no_call
 	xor a
 	ret
 
@@ -78676,13 +78684,14 @@ Function9020d: ; 9020d (24:420d)
 ; 90233 (24:4233)
 
 Unknown_90233: ; 90233
-	db $00, $00
-	db $24, $38
-	db $42, $4c
-	db $3c, $42
-	db $91, $16
-	db $65, $55
-	db $71, $50
+	db 0, 0
+	dbw BANK(UnknownScript_0x90238), UnknownScript_0x90238
+UnknownScript_0x90238:
+	2writetext UnknownText_0x9023c
+	end
+UnknownText_0x9023c:
+	text_jump UnknownText_0x1c5565
+	db "@"
 ; 90241
 
 UnknownScript_0x90241: ; 0x90241
