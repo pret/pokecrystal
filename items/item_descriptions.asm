@@ -1,23 +1,26 @@
-GetItemDescription: ; 0x1c8955
-	ld a, [$cf60]
+PrintItemDescription: ; 0x1c8955
+; Print the description for item [CurSpecies] at de.
+
+	ld a, [CurSpecies]
 	cp TM_01
-	jr c, .nomovedesc ; if not a TM, use a predefined string
-	ld [$d106], a
+	jr c, .not_a_tm
+
+	ld [CurItem], a
 	push de
-	callba Function2c7b6
+	callba GetTMHMItemMove
 	pop hl
 	ld a, [$d265]
-	ld [$cf60], a
+	ld [CurSpecies], a
 	predef PrintMoveDesc
 	ret
 
-.nomovedesc
+.not_a_tm
 	push de
 	ld hl, ItemDescriptions
-	ld a, [$cf60]
+	ld a, [CurSpecies]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld e, [hl]

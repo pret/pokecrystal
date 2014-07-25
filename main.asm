@@ -31701,7 +31701,7 @@ Function244c3: ; 0x244c3
 	cp $ff
 	ret z
 	decoord 1, 14
-	callba GetItemDescription
+	callba PrintItemDescription
 	ret
 ; 0x244e3
 
@@ -42253,7 +42253,7 @@ Function2c7a7: ; 2c7a7 (b:47a7)
 	ld [$d265], a
 	ret
 
-Function2c7b6: ; 2c7b6 (b:47b6)
+GetTMHMItemMove: ; 2c7b6 (b:47b6)
 	call Function2c7a7
 	predef GetTMHMMove
 	ret
@@ -42264,9 +42264,9 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	push af
 	res 4, [hl]
 	ld a, [CurItem] ; $d106
-	cp $bf
+	cp TM_01
 	jr c, .asm_2c7f5
-	call Function2c7b6
+	call GetTMHMItemMove
 	ld a, [$d265]
 	ld [$d262], a
 	call GetMoveName
