@@ -79014,49 +79014,49 @@ phone: MACRO
 	db  \1, \2 ; trainer
 	map \3     ; map
 	db  \4
-	dbw \5, \6 ; script 1
-	db  \7
-	dbw \8, \9 ; script 2
+	dbw BANK(\5), \5 ; script 1
+	db  \6
+	dbw BANK(\7), \7 ; script 2
 ENDM
 
-	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
-	phone 0, 1, KRISS_HOUSE_1F,                 $07, $2f, $4eaa, $00, $2f, $4ea5
-	phone 0, 2, OAKS_LAB,                       $00, $2f, $4ea5, $00, $2f, $4ea5
-	phone 0, 3, N_A,                            $07, $2f, $4fc5, $00, $2f, $5007
-	phone 0, 4, ELMS_LAB,                       $07, $2f, $500d, $00, $2f, $5081
-	phone SCHOOLBOY, JACK1, NATIONAL_PARK,      $07, $2f, $50d0, $07, $2f, $50fa
-	phone POKEFANF, BEVERLY1, NATIONAL_PARK,    $07, $2f, $513f, $07, $2f, $5158
-	phone SAILOR, HUEY1, OLIVINE_LIGHTHOUSE_2F, $07, $2f, $517c, $07, $2f, $51a9
-	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
-	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
-	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
-	phone COOLTRAINERM, GAVEN3, ROUTE_26,       $07, $2f, $51da, $07, $2f, $5204
-	phone COOLTRAINERF, BETH1, ROUTE_26,        $07, $2f, $523d, $07, $2f, $5267
-	phone BIRD_KEEPER, JOSE2, ROUTE_27,         $07, $2f, $5294, $07, $2f, $52cb
-	phone COOLTRAINERF, REENA1, ROUTE_27,       $07, $2f, $531c, $07, $2f, $5346
-	phone YOUNGSTER, JOEY1, ROUTE_30,           $07, $2f, $5373, $07, $2f, $53a0
-	phone BUG_CATCHER, WADE1, ROUTE_31,         $07, $2f, $53d1, $07, $2f, $5428
-	phone FISHER, RALPH1, ROUTE_32,             $07, $2f, $54d2, $07, $2f, $5509
-	phone PICNICKER, LIZ1, ROUTE_32,            $07, $2f, $5560, $07, $2f, $558d
-	phone HIKER, ANTHONY2, ROUTE_33,            $07, $2f, $5634, $07, $2f, $566b
-	phone CAMPER, TODD1, ROUTE_34,              $07, $2f, $56c1, $07, $2f, $56f5
-	phone PICNICKER, GINA1, ROUTE_34,           $07, $2f, $5743, $07, $2f, $5784
-	phone JUGGLER, IRWIN1, ROUTE_35,            $07, $2f, $57e7, $07, $2f, $57fd
-	phone BUG_CATCHER, ARNIE1, ROUTE_35,        $07, $2f, $5813, $07, $2f, $584a
-	phone SCHOOLBOY, ALAN1, ROUTE_36,           $07, $2f, $58a6, $07, $2f, $58dd
-	phone 0, 0, N_A,                            $00, $2f, $4ea5, $00, $2f, $4ea5
-	phone LASS, DANA1, ROUTE_38,                $07, $2f, $5930, $07, $2f, $5967
-	phone SCHOOLBOY, CHAD1, ROUTE_38,           $07, $2f, $59c6, $07, $2f, $59f0
-	phone POKEFANM, DEREK1, ROUTE_39,           $07, $2f, $5a35, $07, $2f, $5a6e
-	phone FISHER, TULLY1, ROUTE_42,             $07, $2f, $5aac, $07, $2f, $5ae3
-	phone POKEMANIAC, BRENT1, ROUTE_43,         $07, $2f, $5b36, $07, $2f, $5b60
-	phone PICNICKER, TIFFANY3, ROUTE_43,        $07, $2f, $5b99, $07, $2f, $5bd0
-	phone BIRD_KEEPER, VANCE1, ROUTE_44,        $07, $2f, $5c73, $07, $2f, $5c9d
-	phone FISHER, WILTON1, ROUTE_44,            $07, $2f, $5cce, $07, $2f, $5d05
-	phone BLACKBELT_T, KENJI3, ROUTE_45,        $07, $2f, $5d71, $07, $2f, $5d7d
-	phone HIKER, PARRY1, ROUTE_45,              $07, $2f, $5d89, $07, $2f, $5db3
-	phone PICNICKER, ERIN1, ROUTE_46,           $07, $2f, $5de4, $07, $2f, $5e0e
-	phone 0, 5, GOLDENROD_DEPT_STORE_ROOF,      $07, $28, $4b14, $07, $28, $4b26
+	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
+	phone 0, 1, KRISS_HOUSE_1F,                 7, MomPhoneScript, 0, UnusedPhoneScript
+	phone 0, 2, OAKS_LAB,                       0, UnusedPhoneScript, 0, UnusedPhoneScript
+	phone 0, 3, N_A,                            7, BillPhoneScript1, 0, BillPhoneScript2
+	phone 0, 4, ELMS_LAB,                       7, ElmPhoneScript1, 0, ElmPhoneScript2
+	phone SCHOOLBOY, JACK1, NATIONAL_PARK,      7, UnknownScript_0xbd0d0, 7, UnknownScript_0xbd0fa
+	phone POKEFANF, BEVERLY1, NATIONAL_PARK,    7, UnknownScript_0xbd13f, 7, UnknownScript_0xbd158
+	phone SAILOR, HUEY1, OLIVINE_LIGHTHOUSE_2F, 7, UnknownScript_0xbd17c, 7, UnknownScript_0xbd1a9
+	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
+	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
+	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
+	phone COOLTRAINERM, GAVEN3, ROUTE_26,       7, UnknownScript_0xbd1da, 7, UnknownScript_0xbd204
+	phone COOLTRAINERF, BETH1, ROUTE_26,        7, UnknownScript_0xbd23d, 7, UnknownScript_0xbd267
+	phone BIRD_KEEPER, JOSE2, ROUTE_27,         7, UnknownScript_0xbd294, 7, UnknownScript_0xbd2cb
+	phone COOLTRAINERF, REENA1, ROUTE_27,       7, UnknownScript_0xbd31c, 7, UnknownScript_0xbd346
+	phone YOUNGSTER, JOEY1, ROUTE_30,           7, UnknownScript_0xbd373, 7, UnknownScript_0xbd3a0
+	phone BUG_CATCHER, WADE1, ROUTE_31,         7, UnknownScript_0xbd3d1, 7, UnknownScript_0xbd428
+	phone FISHER, RALPH1, ROUTE_32,             7, UnknownScript_0xbd4d2, 7, UnknownScript_0xbd509
+	phone PICNICKER, LIZ1, ROUTE_32,            7, UnknownScript_0xbd560, 7, UnknownScript_0xbd58d
+	phone HIKER, ANTHONY2, ROUTE_33,            7, UnknownScript_0xbd634, 7, UnknownScript_0xbd66b
+	phone CAMPER, TODD1, ROUTE_34,              7, UnknownScript_0xbd6c1, 7, UnknownScript_0xbd6f5
+	phone PICNICKER, GINA1, ROUTE_34,           7, UnknownScript_0xbd743, 7, UnknownScript_0xbd784
+	phone JUGGLER, IRWIN1, ROUTE_35,            7, UnknownScript_0xbd7e7, 7, UnknownScript_0xbd7fd
+	phone BUG_CATCHER, ARNIE1, ROUTE_35,        7, UnknownScript_0xbd813, 7, UnknownScript_0xbd84a
+	phone SCHOOLBOY, ALAN1, ROUTE_36,           7, UnknownScript_0xbd8a6, 7, UnknownScript_0xbd8dd
+	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
+	phone LASS, DANA1, ROUTE_38,                7, UnknownScript_0xbd930, 7, UnknownScript_0xbd967
+	phone SCHOOLBOY, CHAD1, ROUTE_38,           7, UnknownScript_0xbd9c6, 7, UnknownScript_0xbd9f0
+	phone POKEFANM, DEREK1, ROUTE_39,           7, UnknownScript_0xbda35, 7, UnknownScript_0xbda6e
+	phone FISHER, TULLY1, ROUTE_42,             7, UnknownScript_0xbdaac, 7, UnknownScript_0xbdae3
+	phone POKEMANIAC, BRENT1, ROUTE_43,         7, UnknownScript_0xbdb36, 7, UnknownScript_0xbdb60
+	phone PICNICKER, TIFFANY3, ROUTE_43,        7, UnknownScript_0xbdb99, 7, UnknownScript_0xbdbd0
+	phone BIRD_KEEPER, VANCE1, ROUTE_44,        7, UnknownScript_0xbdc73, 7, UnknownScript_0xbdc9d
+	phone FISHER, WILTON1, ROUTE_44,            7, UnknownScript_0xbdcce, 7, UnknownScript_0xbdd05
+	phone BLACKBELT_T, KENJI3, ROUTE_45,        7, UnknownScript_0xbdd71, 7, UnknownScript_0xbdd7d
+	phone HIKER, PARRY1, ROUTE_45,              7, UnknownScript_0xbdd89, 7, UnknownScript_0xbddb3
+	phone PICNICKER, ERIN1, ROUTE_46,           7, UnknownScript_0xbdde4, 7, UnknownScript_0xbde0e
+	phone 0, 5, GOLDENROD_DEPT_STORE_ROOF,      7, UnknownScript_0xa0b14, 7, UnknownScript_0xa0b26
 ; 90627
 
 Unknown_90627: ; 90627
