@@ -480,7 +480,7 @@ Function3c314: ; 3c314
 	jp .asm_3c3f1
 
 .asm_3c34c
-	callab Function3846c
+	callab AI_Switch
 	call SetEnemyTurn
 	call SpikesDamage
 	jp Function3c3f3
@@ -5454,7 +5454,7 @@ Function3e3ad: ; 3e3ad
 ; 3e3ff
 
 Function3e3ff: ; 3e3ff
-	callab Function3846c
+	callab AI_Switch
 	call SetEnemyTurn
 	jp SpikesDamage
 ; 3e40b

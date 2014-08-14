@@ -1,37 +1,41 @@
 Function38000: ; 38000
 	and a
+
 	ld a, [IsInBattle]
 	dec a
 	ret z
+
 	ld a, [InLinkBattle]
 	and a
 	ret nz
+
 	callba Function3e8d1
 	ret nz
+
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, Function38041
+
 	ld a, [$c731]
 	and a
 	jr nz, Function38041
+
 	ld hl, TrainerClassAttributes + 5
 	ld a, [$cfc0]
 	and a
-	jr nz, .asm_38032
+	jr nz, .ok
 	ld a, [TrainerClass]
 	dec a
 	ld bc, 7
 	call AddNTimes
-
-.asm_38032
-	bit 0, [hl]
+.ok
+	bit SWITCH_OFTEN_F, [hl]
 	jp nz, Function38045
-	bit 1, [hl]
+	bit SWITCH_RARELY_F, [hl]
 	jp nz, Function38083
-	bit 2, [hl]
+	bit SWITCH_SOMETIMES_F, [hl]
 	jp nz, Function380c1
 	; fallthrough
-; 38041
 
 Function38041: ; 38041
 	call Function38105
@@ -43,32 +47,34 @@ Function38045: ; 38045
 	ld a, [$c717]
 	and $f0
 	jp z, Function38041
+
 	cp $10
-	jr nz, .asm_38061
+	jr nz, .not_10
 	call Random
 	cp $80
-	jr c, .asm_38077
+	jr c, .switch
 	jp Function38041
+.not_10
 
-.asm_38061
 	cp $20
-	jr nz, .asm_3806f
+	jr nz, .not_20
 	call Random
-	cp $c8
-	jr c, .asm_38077
+	cp 200
+	jr c, .switch
 	jp Function38041
+.not_20
 
-.asm_3806f
+	; $30
 	call Random
-	cp $a
+	cp 10
 	jp c, Function38041
 
-.asm_38077
+.switch
 	ld a, [$c717]
 	and $f
 	inc a
 	ld [$c718], a
-	jp Function3844b
+	jp AI_TrySwitch
 ; 38083
 
 Function38083: ; 38083
@@ -76,32 +82,34 @@ Function38083: ; 38083
 	ld a, [$c717]
 	and $f0
 	jp z, Function38041
+
 	cp $10
-	jr nz, .asm_3809f
+	jr nz, .not_10
 	call Random
-	cp $14
-	jr c, .asm_380b5
+	cp 20
+	jr c, .switch
 	jp Function38041
+.not_10
 
-.asm_3809f
 	cp $20
-	jr nz, .asm_380ad
+	jr nz, .not_20
 	call Random
-	cp $1e
-	jr c, .asm_380b5
+	cp 30
+	jr c, .switch
 	jp Function38041
+.not_20
 
-.asm_380ad
+	; $30
 	call Random
-	cp $c8
+	cp 200
 	jp c, Function38041
 
-.asm_380b5
+.switch
 	ld a, [$c717]
 	and $f
 	inc a
 	ld [$c718], a
-	jp Function3844b
+	jp AI_TrySwitch
 ; 380c1
 
 Function380c1: ; 380c1
@@ -109,32 +117,34 @@ Function380c1: ; 380c1
 	ld a, [$c717]
 	and $f0
 	jp z, Function38041
-	cp $10
-	jr nz, .asm_380dd
-	call Random
-	cp $32
-	jr c, .asm_380f3
-	jp Function38041
 
-.asm_380dd
+	cp $10
+	jr nz, .not_10
+	call Random
+	cp 50
+	jr c, .switch
+	jp Function38041
+.not_10
+
 	cp $20
-	jr nz, .asm_380eb
+	jr nz, .not_20
 	call Random
 	cp $80
-	jr c, .asm_380f3
+	jr c, .switch
 	jp Function38041
+.not_20
 
-.asm_380eb
+	; $30
 	call Random
-	cp $32
+	cp 50
 	jp c, Function38041
 
-.asm_380f3
+.switch
 	ld a, [$c717]
 	and $f
 	inc a
 	ld [$c718], a
-	jp Function3844b
+	jp AI_TrySwitch
 ; 380ff
 
 
@@ -204,16 +214,16 @@ Function38105: ; 38105
 	ld [de], a
 	inc a
 	ld [$c70f], a
-	ld hl, EnemySubStatus3 ; $c66f
+	ld hl, EnemySubStatus3
 	res SUBSTATUS_BIDE, [hl]
 	xor a
-	ld [EnemyFuryCutterCount], a ; $c680
+	ld [EnemyFuryCutterCount], a
 	ld [$c681], a
 	ld [$c72c], a
-	ld hl, EnemySubStatus4 ; $c670
+	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
-	ld [LastPlayerCounterMove], a ; $c6f9
+	ld [LastPlayerCounterMove], a
 	scf
 	ret
 
@@ -249,146 +259,144 @@ Function38170: ; 38170
 ; 38196
 
 Unknown_38196: ; 39196
-	dbw FULL_RESTORE, Function38208
-	dbw MAX_POTION,   Function38220
-	dbw HYPER_POTION, Function38284
-	dbw SUPER_POTION, Function38292
-	dbw POTION,       Function382a0
-	dbw X_ACCURACY,   Function382f9
-	dbw FULL_HEAL,    Function381be
-	dbw GUARD_SPEC,   Function38305
-	dbw DIRE_HIT,     Function38311
-	dbw X_ATTACK,     Function3831d
-	dbw X_DEFEND,     Function38329
-	dbw X_SPEED,      Function38335
-	dbw X_SPECIAL,    Function38341
+	dbw FULL_RESTORE, .FullRestore
+	dbw MAX_POTION,   .MaxPotion
+	dbw HYPER_POTION, .HyperPotion
+	dbw SUPER_POTION, .SuperPotion
+	dbw POTION,       .Potion
+	dbw X_ACCURACY,   .XAccuracy
+	dbw FULL_HEAL,    .FullHeal
+	dbw GUARD_SPEC,   .GuardSpec
+	dbw DIRE_HIT,     .DireHit
+	dbw X_ATTACK,     .XAttack
+	dbw X_DEFEND,     .XDefend
+	dbw X_SPEED,      .XSpeed
+	dbw X_SPECIAL,    .XSpecial
 	db $ff
 ; 381be
 
-Function381be: ; 381be
-	call Function381ca
-	jp c, Function38383
+.FullHeal: ; 381be
+	call .Status
+	jp c, .DontUse
 	call Function383a3
-	jp Function38385
+	jp .Use
 ; 381ca
 
-Function381ca: ; 381ca (e:41ca)
-	ld a, [EnemyMonStatus] ; $d214
+.Status: ; 381ca (e:41ca)
+	ld a, [EnemyMonStatus]
 	and a
-	jp z, Function38383
+	jp z, .DontUse
 
 	ld a, [bc]
-	bit 6, a
+	bit CONTEXT_USE_F, a
 	jr nz, .asm_381e7
 	ld a, [bc]
-	bit 4, a
-	jp nz, Function38385
+	bit ALWAYS_USE_F, a
+	jp nz, .Use
 	call Random
-	cp $32
-	jp c, Function38385
-	jp Function38383
+	cp 50
+	jp c, .Use
+	jp .DontUse
 
 .asm_381e7
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr z, .asm_381fd
-	ld a, [$c67c]
-	cp $4
+	ld a, [EnemyToxicCount]
+	cp 4
 	jr c, .asm_381fd
 	call Random
 	cp $80
-	jp c, Function38385
+	jp c, .Use
 .asm_381fd
 	ld a, [EnemyMonStatus]
 	and 1 << FRZ | SLP
-	jp z, Function38383
-	jp Function38385
+	jp z, .DontUse
+	jp .Use
 ; 38208
 
-Function38208: ; 38208
-	call Function3822c
-	jp nc, Function3821a
+.FullRestore: ; 38208
+	call .HealItem
+	jp nc, .asm_3821a
 	ld a, [bc]
-	bit 6, a
-	jp z, Function38383
-	call Function381ca
-	jp c, Function38383
+	bit CONTEXT_USE_F, a
+	jp z, .DontUse
+	call .Status
+	jp c, .DontUse
 
-Function3821a: ; 3821a (e:421a)
+.asm_3821a
 	call Function383b5
-	jp Function38385
+	jp .Use
 ; 38220
 
-Function38220: ; 38220
-	call Function3822c
-	jp c, Function38383
+.MaxPotion: ; 38220
+	call .HealItem
+	jp c, .DontUse
 	call Function383ae
-	jp Function38385
+	jp .Use
 
-Function3822c: ; 3822c (e:422c)
+.HealItem: ; 3822c (e:422c)
 	ld a, [bc]
-	bit 6, a
-	jr nz, Function38267
+	bit CONTEXT_USE_F, a
+	jr nz, .asm_38267
 	callab AICheckEnemyHalfHP
-	jp c, Function38383
+	jp c, .DontUse
 	ld a, [bc]
-	bit 5, a
-	jp nz, Function38254
+	bit UNKNOWN_USE_F, a
+	jp nz, .asm_38254
 	callab AICheckEnemyQuarterHP
-	jp nc, Function38281
+	jp nc, .asm_38281
 	call Random
 	cp $80
-	jp c, Function38281
-	jp Function38383
+	jp c, .asm_38281
+	jp .DontUse
 
-Function38254: ; 38254 (e:4254)
+.asm_38254: ; 38254 (e:4254)
 	callab AICheckEnemyQuarterHP
-	jp c, Function38383
+	jp c, .DontUse
 	call Random
-	cp $32
-	jp c, Function38383
-	jr Function38281
+	cp 50
+	jp c, .DontUse
+	jr .asm_38281
 
-Function38267: ; 38267 (e:4267)
+.asm_38267: ; 38267 (e:4267)
 	callab AICheckEnemyHalfHP
-	jp c, Function38383
+	jp c, .DontUse
 	callab AICheckEnemyQuarterHP
-	jp nc, Function38281
+	jp nc, .asm_38281
 	call Random
-	cp $32
-	jp nc, Function38383
+	cp 50
+	jp nc, .DontUse
 
-Function38281: ; 38281 (e:4281)
-	jp Function38385
+.asm_38281: ; 38281 (e:4281)
+	jp .Use
 ; 38284
 
-Function38284: ; 38284
-	call Function3822c
-	jp c, Function38383
+.HyperPotion: ; 38284
+	call .HealItem
+	jp c, .DontUse
 	ld b, 200
 	call Function383f4
-	jp Function38385
+	jp .Use
 ; 38292 (e:4292)
 
-Function38292: ; 38292
-	call Function3822c
-	jp c, Function38383
-
-Function38298: ; 38298
+.SuperPotion: ; 38292
+	call .HealItem
+	jp c, .DontUse
 	ld b, 50
 	call Function383ee
-	jp Function38385
+	jp .Use
 ; 382a0
 
-Function382a0: ; 382a0
-	call Function3822c
-	jp c, Function38383
+.Potion: ; 382a0
+	call .HealItem
+	jp c, .DontUse
 	ld b, 20
 	call Function383e8
-	jp Function38385
+	jp .Use
 ; 382ae
 
-Function382ae: ; 382ae
+.asm_382ae: ; 382ae
 	callab AICheckEnemyMaxHP
 	jr c, .asm_382e4
 	push bc
@@ -412,111 +420,111 @@ Function382ae: ; 382ae
 .asm_382d5
 	pop bc
 	ld a, [bc]
-	bit 5, a
-	jp z, Function38385
+	bit UNKNOWN_USE_F, a
+	jp z, .Use
 	call Random
 	cp $80
-	jp c, Function38385
+	jp c, .Use
 
 .asm_382e4
-	jp Function38383
+	jp .DontUse
 
 .asm_382e7
 	pop bc
 	ld a, [bc]
-	bit 5, a
-	jp z, Function38383
+	bit UNKNOWN_USE_F, a
+	jp z, .DontUse
 	call Random
-	cp $64
-	jp c, Function38385
-	jp Function38383
+	cp 100
+	jp c, .Use
+	jp .DontUse
 ; 382f9
 
-Function382f9: ; 382f9
-	call Function3834d
-	jp c, Function38383
+.XAccuracy: ; 382f9
+	call .XItem
+	jp c, .DontUse
 	call Function384f7
-	jp Function38385
+	jp .Use
 ; 38305
 
-Function38305: ; 38305
-	call Function3834d
-	jp c, Function38383
+.GuardSpec: ; 38305
+	call .XItem
+	jp c, .DontUse
 	call Function38504
-	jp Function38385
+	jp .Use
 ; 38311
 
-Function38311: ; 38311
-	call Function3834d
-	jp c, Function38383
+.DireHit: ; 38311
+	call .XItem
+	jp c, .DontUse
 	call Function38511
-	jp Function38385
+	jp .Use
 ; 3831d (e:431d)
 
-Function3831d: ; 3831d
-	call Function3834d
-	jp c, Function38383
+.XAttack: ; 3831d
+	call .XItem
+	jp c, .DontUse
 	call Function38541
-	jp Function38385
+	jp .Use
 ; 38329
 
-Function38329: ; 38329
-	call Function3834d
-	jp c, Function38383
+.XDefend: ; 38329
+	call .XItem
+	jp c, .DontUse
 	call Function38547
-	jp Function38385
+	jp .Use
 ; 38335
 
-Function38335: ; 38335
-	call Function3834d
-	jp c, Function38383
+.XSpeed: ; 38335
+	call .XItem
+	jp c, .DontUse
 	call Function3854d
-	jp Function38385
+	jp .Use
 ; 38341
 
-Function38341: ; 38341
-	call Function3834d
-	jp c, Function38383
+.XSpecial: ; 38341
+	call .XItem
+	jp c, .DontUse
 	call Function38553
-	jp Function38385
+	jp .Use
 ; 3834d
 
-Function3834d: ; 3834d (e:434d)
-	ld a, [EnemyTurnsTaken] ; $c6dc
+.XItem: ; 3834d (e:434d)
+	ld a, [EnemyTurnsTaken]
 	and a
 	jr nz, .asm_38372
 	ld a, [bc]
-	bit 4, a
-	jp nz, Function38385
+	bit ALWAYS_USE_F, a
+	jp nz, .Use
 	call Random
 	cp $80
-	jp c, Function38383
+	jp c, .DontUse
 	ld a, [bc]
-	bit 6, a
-	jp nz, Function38385
+	bit CONTEXT_USE_F, a
+	jp nz, .Use
 	call Random
 	cp $80
-	jp c, Function38383
-	jp Function38385
+	jp c, .DontUse
+	jp .Use
 .asm_38372
 	ld a, [bc]
-	bit 4, a
-	jp z, Function38383
+	bit ALWAYS_USE_F, a
+	jp z, .DontUse
 	call Random
-	cp $32
-	jp nc, Function38383
-	jp Function38385
+	cp 50
+	jp nc, .DontUse
+	jp .Use
 
-Function38383: ; 38383 (e:4383)
+.DontUse:
 	scf
 	ret
 
-Function38385: ; 38385 (e:4385)
+.Use:
 	and a
 	ret
 
 
-Function38387: ; 38387
+AIUpdateHUD: ; 38387
 	call UpdateEnemyMonInParty
 	callba UpdateEnemyHUD
 	ld a, $1
@@ -527,7 +535,7 @@ Function38387: ; 38387
 	ret
 ; 3839a
 
-Function3839a: ; 3839a
+AIUsedItemSound: ; 3839a
 	push de
 	ld de, SFX_FULL_HEAL
 	call PlaySFX
@@ -537,44 +545,45 @@ Function3839a: ; 3839a
 
 
 Function383a3: ; 383a3 (e:43a3)
-	call Function3839a
-	call Function384e0
+	call AIUsedItemSound
+	call AI_HealStatus
 	ld a, FULL_HEAL
 	jp Function38568
 
 Function383ae: ; 383ae (e:43ae)
-	ld a, $f
+	ld a, MAX_POTION
 	ld [$d1f1], a
 	jr asm_383c6
 
 Function383b5: ; 383b5 (e:43b5)
-	call Function384e0
-	ld a, $e
+	call AI_HealStatus
+	ld a, FULL_RESTORE
 	ld [$d1f1], a
-	ld hl, EnemySubStatus3 ; $c66f
+	ld hl, EnemySubStatus3
 	res SUBSTATUS_CONFUSED, [hl]
 	xor a
-	ld [EnemyConfuseCount], a ; $c67b
-asm_383c6: ; 383c6 (e:43c6)
+	ld [EnemyConfuseCount], a
+
+asm_383c6: ; 383c6
 	ld de, $d1ec
-	ld hl, EnemyMonHP + 1 ; $d217
+	ld hl, EnemyMonHP + 1
 	ld a, [hld]
 	ld [de], a
 	inc de
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld hl, EnemyMonMaxHP + 1 ; $d219
+	ld hl, EnemyMonMaxHP + 1
 	ld a, [hld]
 	ld [de], a
 	inc de
-	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
-	ld [EnemyMonHP + 1], a ; $d217
+	ld [Buffer1], a
+	ld [EnemyMonHP + 1], a
 	ld a, [hl]
 	ld [de], a
-	ld [Buffer2], a ; $d1eb (aliases: MovementType)
-	ld [EnemyMonHP], a ; $d216 (aliases: EnemyMonHP)
-	jr asm_38436
+	ld [Buffer2], a
+	ld [EnemyMonHP], a
+	jr Function38436
 ; 383e8 (e:43e8)
 
 Function383e8: ; 383e8
@@ -593,34 +602,34 @@ Function383f4: ; 383f4 (e:43f4)
 
 Function383f8: ; 383f8
 	ld [$d1f1], a
-	ld hl, EnemyMonHP + 1 ; $d217
+	ld hl, EnemyMonHP + 1
 	ld a, [hl]
 	ld [$d1ec], a
 	add b
 	ld [hld], a
 	ld [$d1ee], a
 	ld a, [hl]
-	ld [$d1ed], a
-	ld [$d1ef], a
+	ld [$d1ec + 1], a
+	ld [$d1ee + 1], a
 	jr nc, .asm_38415
 	inc a
 	ld [hl], a
-	ld [$d1ef], a
+	ld [$d1ee + 1], a
 .asm_38415
 	inc hl
 	ld a, [hld]
 	ld b, a
-	ld de, EnemyMonMaxHP + 1 ; $d219
+	ld de, EnemyMonMaxHP + 1
 	ld a, [de]
 	dec de
-	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
+	ld [Buffer1], a
 	sub b
 	ld a, [hli]
 	ld b, a
 	ld a, [de]
-	ld [Buffer2], a ; $d1eb (aliases: MovementType)
+	ld [Buffer2], a
 	sbc b
-	jr nc, asm_38436
+	jr nc, .asm_38436
 	inc de
 	ld a, [de]
 	dec de
@@ -629,17 +638,19 @@ Function383f8: ; 383f8
 	ld a, [de]
 	ld [hl], a
 	ld [$d1ef], a
-asm_38436: ; 38436 (e:4436)
+.asm_38436
+
+Function38436: ; 38436
 	call Function38571
 	hlcoord 2, 2
 	xor a
 	ld [$d10a], a
-	call Function3839a
+	call AIUsedItemSound
 	predef Functionc6e0
-	jp Function38387
+	jp AIUpdateHUD
 
 
-Function3844b: ; 3844b
+AI_TrySwitch: ; 3844b
 	ld a, [OTPartyCount]
 	ld c, a
 	ld hl, OTPartyMon1HP
@@ -651,7 +662,6 @@ Function3844b: ; 3844b
 	or b
 	jr z, .asm_3845b
 	inc d
-
 .asm_3845b
 	push bc
 	ld bc, PartyMon2 - PartyMon1
@@ -659,14 +669,15 @@ Function3844b: ; 3844b
 	pop bc
 	dec c
 	jr nz, .asm_38454
+
 	ld a, d
-	cp $2
-	jp nc, Function3846c
+	cp 2
+	jp nc, AI_Switch
 	and a
 	ret
 ; 3846c
 
-Function3846c: ; 3846c
+AI_Switch: ; 3846c
 	ld a, $1
 	ld [$c711], a
 	ld [$c70f], a
@@ -689,7 +700,6 @@ Function3846c: ; 3846c
 	jr c, .asm_384a3
 	ld hl, UnknownText_0x384d0
 	call PrintText
-
 .asm_384a3
 	ld a, $1
 	ld [$d264], a
@@ -714,13 +724,13 @@ UnknownText_0x384d0: ; 384d0
 ; 384d5
 
 Function384d5: ; 384d5
-	call Function3839a
-	call Function384e0
-	ld a, X_SPEED
+	call AIUsedItemSound
+	call AI_HealStatus
+	ld a, FULL_HEAL_RED
 	jp Function38568
 ; 384e0
 
-Function384e0: ; 384e0
+AI_HealStatus: ; 384e0
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
 	ld bc, PartyMon2 - PartyMon1
@@ -734,15 +744,15 @@ Function384e0: ; 384e0
 ; 384f7
 
 Function384f7: ; 384f7
-	call Function3839a
+	call AIUsedItemSound
 	ld hl, EnemySubStatus4
-	set SUBSTATUS_UNLEASH, [hl]
+	set SUBSTATUS_X_ACCURACY, [hl]
 	ld a, X_ACCURACY
 	jp Function38568
 ; 38504
 
 Function38504: ; 38504
-	call Function3839a
+	call AIUsedItemSound
 	ld hl, EnemySubStatus4
 	set SUBSTATUS_MIST, [hl]
 	ld a, GUARD_SPEC
@@ -750,7 +760,7 @@ Function38504: ; 38504
 ; 38511
 
 Function38511: ; 38511
-	call Function3839a
+	call AIUsedItemSound
 	ld hl, EnemySubStatus4
 	set SUBSTATUS_FOCUS_ENERGY, [hl]
 	ld a, DIRE_HIT
@@ -805,20 +815,20 @@ Function38553: ; 38553
 	ld b, SP_ATTACK
 	ld a, X_SPECIAL
 
-Function38557
+Function38557:
 	ld [$d1f1], a
 	push bc
 	call Function38571
 	pop bc
 	callba Function361ef
-	jp Function38387
+	jp AIUpdateHUD
 ; 38568
 
 
 Function38568: ; 38568
 	ld [$d1f1], a
 	call Function38571
-	jp Function38387
+	jp AIUpdateHUD
 ; 38571
 
 Function38571: ; 38571

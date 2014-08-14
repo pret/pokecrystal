@@ -1041,6 +1041,7 @@ BattleCommand04: ; 34555
 	ld bc, EnemyTurnsTaken
 
 .asm_34570
+
 ; If we've gotten this far, this counts as a turn.
 	ld a, [bc]
 	inc a
@@ -1052,7 +1053,7 @@ BattleCommand04: ; 34555
 	ret z
 
 	ld a, [de]
-	and %111 ; rollout | bide | ???
+	and 1 << SUBSTATUS_IN_LOOP | 1 << SUBSTATUS_RAMPAGE | 1 << SUBSTATUS_BIDE
 	ret nz
 
 	call .asm_345ad
@@ -1060,7 +1061,7 @@ BattleCommand04: ; 34555
 	and a
 	jp nz, EndMoveEffect
 
-; SubStatus5
+	; SubStatus5
 	inc de
 	inc de
 
@@ -1542,28 +1543,28 @@ Function347d3: ; 347d3
 .asm_347e7
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3482f ; 0x347ea $43
+	jr z, .asm_3482f
 	cp $fe
-	jr nz, .asm_347fb ; 0x347ee $b
+	jr nz, .asm_347fb
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
-	jr nz, .asm_3482f ; 0x347f7 $36
-	jr .asm_347e7 ; 0x347f9 $ec
+	jr nz, .asm_3482f
+	jr .asm_347e7
 .asm_347fb
 	cp d
-	jr nz, .asm_34807 ; 0x347fc $9
+	jr nz, .asm_34807
 	ld a, [hli]
 	cp b
-	jr z, .asm_3480b ; 0x34800 $9
+	jr z, .asm_3480b
 	cp c
-	jr z, .asm_3480b ; 0x34803 $6
-	jr .asm_34808 ; 0x34805 $1
+	jr z, .asm_3480b
+	jr .asm_34808
 .asm_34807
 	inc hl
 .asm_34808
 	inc hl
-	jr .asm_347e7 ; 0x34809 $dc
+	jr .asm_347e7
 .asm_3480b
 	xor a
 	ld [$ffb3], a
@@ -1572,17 +1573,18 @@ Function347d3: ; 347d3
 	ld a, [hli]
 	ld [$ffb6], a
 	ld a, [$d265]
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
-	ld a, $a
-	ld [$ffb7], a
+	ld a, 10
+	ld [hDivisor], a
 	push bc
-	ld b, $4
+	ld b, 4
 	call Divide
 	pop bc
 	ld a, [$ffb6]
 	ld [$d265], a
-	jr .asm_347e7 ; 0x3482d $b8
+	jr .asm_347e7
+
 .asm_3482f
 	pop bc
 	pop de
@@ -1613,7 +1615,7 @@ Function3484e: ; 3484e
 	push hl
 	push de
 	push bc
-	ld a, $a
+	ld a, 10
 	ld [$c716], a
 	ld hl, PlayerUsedMoves
 	ld a, [hl]
@@ -1795,24 +1797,26 @@ Function34939: ; 34939
 Function34941: ; 34941
 	xor a
 	ld [$c717], a
-	call Function349f4
+	call CountEnemyAliveMons
 	ret c
 
 	ld a, [EnemySubStatus1]
 	bit SUBSTATUS_PERISH, a
-	jr z, .asm_34986
+	jr z, .no_perish
 
 	ld a, [EnemyPerishCount]
 	cp 1
-	jr nz, .asm_34986
+	jr nz, .no_perish
 
-	call Function349f4
+	; Perish count is 1
+
+	call CountEnemyAliveMons
 	call Function34b77
 	call Function34b20
 	call Function34a85
 
 	ld a, e
-	cp $2
+	cp 2
 	jr nz, .asm_34971
 
 	ld a, [$c716]
@@ -1821,7 +1825,7 @@ Function34941: ; 34941
 	ret
 
 .asm_34971
-	call Function349f4
+	call CountEnemyAliveMons
 	sla c
 	sla c
 	ld b, $ff
@@ -1836,10 +1840,11 @@ Function34941: ; 34941
 	ld [$c717], a
 	ret
 
-.asm_34986
+.no_perish
+
 	call Function3484e
 	ld a, [$c716]
-	cp $b
+	cp 11
 	ret nc
 
 	ld a, [LastEnemyCounterMove]
@@ -1859,12 +1864,12 @@ Function34941: ; 34941
 
 	ld b, a
 	ld a, e
-	cp $2
+	cp 2
 	jr z, .asm_349be
 
 	call Function3484e
 	ld a, [$c716]
-	cp $a
+	cp 10
 	ret nc
 
 	ld a, b
@@ -1876,7 +1881,7 @@ Function34941: ; 34941
 	ld c, $10
 	call Function3484e
 	ld a, [$c716]
-	cp $a
+	cp 10
 	jr nc, .asm_349cc
 	ld c, $20
 
@@ -1889,10 +1894,10 @@ Function34941: ; 34941
 .asm_349d2
 	call Function3484e
 	ld a, [$c716]
-	cp $a
+	cp 10
 	ret nc
 
-	call Function349f4
+	call CountEnemyAliveMons
 	call Function34b77
 	call Function34b20
 	call Function34a85
@@ -1908,7 +1913,7 @@ Function34941: ; 34941
 ; 349f4
 
 
-Function349f4: ; 349f4
+CountEnemyAliveMons: ; 349f4
 	ld a, [OTPartyCount]
 	cp 2
 	jr c, .only_one
@@ -1964,7 +1969,7 @@ Function34a2a: ; 34a2a
 	ld hl, OTPartyMon1
 	ld a, [OTPartyCount]
 	ld b, a
-	ld c, $20
+	ld c, 1 << (PARTY_LENGTH - 1)
 	ld d, 0
 	xor a
 	ld [$c716], a
@@ -2027,8 +2032,8 @@ Function34a85: ; 34a85
 	ld a, [OTPartyCount]
 	ld e, a
 	ld hl, OTPartyMon1HP
-	ld b, $20
-	ld c, $0
+	ld b, 1 << (PARTY_LENGTH - 1)
+	ld c, 0
 .asm_34a91
 	ld a, [hli]
 	or [hl]
@@ -2061,9 +2066,9 @@ Function34aa7: ; 34aa7
 	ld a, $ff
 	ld [$c716], a
 	ld hl, OTPartyMon1Moves
-	ld b, $20
-	ld d, $0
-	ld e, $0
+	ld b, 1 << (PARTY_LENGTH - 1)
+	ld d, 0
+	ld e, 0
 .asm_34ab5
 	ld a, b
 	and c
@@ -2072,7 +2077,7 @@ Function34aa7: ; 34aa7
 	push hl
 	push bc
 	ld b, NUM_MOVES
-	ld c, $0
+	ld c, 0
 .asm_34abf
 	ld a, [hli]
 	and a
@@ -2090,14 +2095,14 @@ Function34aa7: ; 34aa7
 	ld hl, BattleMonType1
 	call Function347d3
 	ld a, [$d265]
-	cp $a
+	cp 10
 	jr c, .asm_34ae9
 
-	ld e, $1
-	cp $b
+	ld e, 1
+	cp 11
 	jr c, .asm_34ae9
 
-	ld e, $2
+	ld e, 2
 	jr .asm_34aef
 
 .asm_34ae9
@@ -2157,8 +2162,8 @@ Function34aa7: ; 34aa7
 Function34b20: ; 34b20
 	push bc
 	ld hl, OTPartySpecies
-	ld b, $20
-	ld c, $0
+	ld b, 1 << (PARTY_LENGTH - 1)
+	ld c, 0
 
 .asm_34b28
 	ld a, [hli]
@@ -2350,7 +2355,7 @@ BattleCommand09: ; 34d32
 	call .ThunderRain
 	ret z
 
-	call .UnleashedEnergy
+	call .XAccuracy
 	ret nz
 
 	; Perfect-accuracy moves
@@ -2545,11 +2550,10 @@ BattleCommand09: ; 34d32
 	ret
 
 
-.UnleashedEnergy
-; Return nz if unleashing energy from Bide.
+.XAccuracy
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
-	bit SUBSTATUS_UNLEASH, a
+	bit SUBSTATUS_X_ACCURACY, a
 	ret
 
 
@@ -6915,8 +6919,9 @@ BattleCommand21: ; 36671
 
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
-	bit 0, a
+	bit SUBSTATUS_BIDE, a
 	ret z
+
 	ld hl, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
@@ -6925,9 +6930,10 @@ BattleCommand21: ; 36671
 .asm_36684
 	dec [hl]
 	jr nz, .asm_366dc
+
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	res 0, [hl]
+	res SUBSTATUS_BIDE, [hl]
 
 	ld hl, UnleashedEnergyText
 	call StdBattleTextBox
@@ -6988,13 +6994,13 @@ BattleCommand22: ; 366e5
 	ld bc, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_366f6 ; 366ee $6
+	jr z, .asm_366f6
 	ld de, $c684
 	ld bc, EnemyRolloutCount
 .asm_366f6
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	set 0, [hl]
+	set SUBSTATUS_BIDE, [hl]
 	xor a
 	ld [de], a
 	inc de
@@ -7002,11 +7008,11 @@ BattleCommand22: ; 366e5
 	ld [wPlayerMoveStruct + MOVE_EFFECT], a
 	ld [wEnemyMoveStruct + MOVE_EFFECT], a
 	call BattleRandom
-	and $1
+	and 1
 	inc a
 	inc a
 	ld [bc], a
-	ld a, $1
+	ld a, 1
 	ld [$c689], a
 	call AnimateCurrentMove
 	jp EndMoveEffect
@@ -7219,7 +7225,7 @@ BattleCommand23: ; 3680f
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	jp .asm_36975
 .asm_36869
-	call Function349f4
+	call CountEnemyAliveMons
 	jr c, .asm_368ca ; 3686c $5c
 	ld a, [$c70f]
 	and a

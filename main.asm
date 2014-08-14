@@ -41681,201 +41681,203 @@ TrainerClassNames:: ; 2c1ef
 
 
 
-Function2c41a: ; 2c41a (b:441a)
-; More move AI.
+AI_Redundant: ; 2c41a
+; Check if move effect c will fail because it's already been used.
 	ld a, c
 	ld de, 3
-	ld hl, Unknown_2c42c
+	ld hl, .Moves
 	call IsInArray
-	jp nc, Function2c545
+	jp nc, .NotRedundant
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-; 2c42c (b:442c)
 
-Unknown_2c42c: ; 2c42c
-	dbw EFFECT_DREAM_EATER,  Function2c524
-	dbw EFFECT_HEAL,         Function2c539
-	dbw EFFECT_LIGHT_SCREEN, Function2c487
-	dbw EFFECT_MIST,         Function2c48d
-	dbw EFFECT_FOCUS_ENERGY, Function2c493
-	dbw EFFECT_CONFUSE,      Function2c499
-	dbw EFFECT_TRANSFORM,    Function2c4a5
-	dbw EFFECT_REFLECT,      Function2c4ab
-	dbw EFFECT_SUBSTITUTE,   Function2c4b1
-	dbw EFFECT_LEECH_SEED,   Function2c4b7
-	dbw EFFECT_DISABLE,      Function2c4bd
-	dbw EFFECT_ENCORE,       Function2c4c2
-	dbw EFFECT_SNORE,        Function2c4c8
-	dbw EFFECT_SLEEP_TALK,   Function2c4c8
-	dbw EFFECT_MEAN_LOOK,    Function2c4d1
-	dbw EFFECT_NIGHTMARE,    Function2c4d7
-	dbw EFFECT_SPIKES,       Function2c4e3
-	dbw EFFECT_FORESIGHT,    Function2c4e9
-	dbw EFFECT_PERISH_SONG,  Function2c4ef
-	dbw EFFECT_SANDSTORM,    Function2c4f5
-	dbw EFFECT_ATTRACT,      Function2c4fe
-	dbw EFFECT_SAFEGUARD,    Function2c50c
-	dbw EFFECT_RAIN_DANCE,   Function2c512
-	dbw EFFECT_SUNNY_DAY,    Function2c51b
-	dbw EFFECT_TELEPORT,     Function2c541
-	dbw EFFECT_MORNING_SUN,  Function2c539
-	dbw EFFECT_SYNTHESIS,    Function2c539
-	dbw EFFECT_MOONLIGHT,    Function2c539
-	dbw EFFECT_SWAGGER,      Function2c52d
-	dbw EFFECT_FUTURE_SIGHT, Function2c533
-	db $ff
-; 2c487
+.Moves: ; 2c42c
+	dbw EFFECT_DREAM_EATER,  .DreamEater
+	dbw EFFECT_HEAL,         .Heal
+	dbw EFFECT_LIGHT_SCREEN, .LightScreen
+	dbw EFFECT_MIST,         .Mist
+	dbw EFFECT_FOCUS_ENERGY, .FocusEnergy
+	dbw EFFECT_CONFUSE,      .Confuse
+	dbw EFFECT_TRANSFORM,    .Transform
+	dbw EFFECT_REFLECT,      .Reflect
+	dbw EFFECT_SUBSTITUTE,   .Substitute
+	dbw EFFECT_LEECH_SEED,   .LeechSeed
+	dbw EFFECT_DISABLE,      .Disable
+	dbw EFFECT_ENCORE,       .Encore
+	dbw EFFECT_SNORE,        .Snore
+	dbw EFFECT_SLEEP_TALK,   .SleepTalk
+	dbw EFFECT_MEAN_LOOK,    .MeanLook
+	dbw EFFECT_NIGHTMARE,    .Nightmare
+	dbw EFFECT_SPIKES,       .Spikes
+	dbw EFFECT_FORESIGHT,    .Foresight
+	dbw EFFECT_PERISH_SONG,  .PerishSong
+	dbw EFFECT_SANDSTORM,    .Sandstorm
+	dbw EFFECT_ATTRACT,      .Attract
+	dbw EFFECT_SAFEGUARD,    .Safeguard
+	dbw EFFECT_RAIN_DANCE,   .RainDance
+	dbw EFFECT_SUNNY_DAY,    .SunnyDay
+	dbw EFFECT_TELEPORT,     .Teleport
+	dbw EFFECT_MORNING_SUN,  .MorningSun
+	dbw EFFECT_SYNTHESIS,    .Synthesis
+	dbw EFFECT_MOONLIGHT,    .Moonlight
+	dbw EFFECT_SWAGGER,      .Swagger
+	dbw EFFECT_FUTURE_SIGHT, .FutureSight
+	db -1
 
-Function2c487: ; 2c487
-	ld a, [EnemyScreens] ; $c700
-	bit 3, a
+.LightScreen: ; 2c487
+	ld a, [EnemyScreens]
+	bit SCREENS_LIGHT_SCREEN, a
 	ret
 
-Function2c48d: ; 2c48d
-	ld a, [EnemySubStatus4] ; $c670
-	bit 1, a
-	ret
-
-Function2c493: ; 2c493
-	ld a, [EnemySubStatus4] ; $c670
-	bit 2, a
-	ret
-
-Function2c499: ; 2c499
-	ld a, [PlayerSubStatus3] ; $c66a
-	bit 7, a
-	ret nz
-	ld a, [PlayerScreens] ; $c6ff
-	bit 2, a
-	ret
-
-Function2c4a5: ; 2c4a5
-	ld a, [EnemySubStatus5] ; $c671
-	bit 3, a
-	ret
-
-Function2c4ab: ; 2c4ab
-	ld a, [EnemyScreens] ; $c700
-	bit 4, a
-	ret
-; 2c4b1 (b:44b1)
-
-Function2c4b1: ; 2c4b1
+.Mist: ; 2c48d
 	ld a, [EnemySubStatus4]
-	bit 4, a
+	bit SUBSTATUS_MIST, a
 	ret
 
-Function2c4b7: ; 2c4b7
-	ld a, [PlayerSubStatus4] ; $c66b
-	bit 7, a
+.FocusEnergy: ; 2c493
+	ld a, [EnemySubStatus4]
+	bit SUBSTATUS_FOCUS_ENERGY, a
 	ret
 
-Function2c4bd: ; 2c4bd
-	ld a, [PlayerDisableCount] ; $c675
+.Confuse: ; 2c499
+	ld a, [PlayerSubStatus3]
+	bit SUBSTATUS_CONFUSED, a
+	ret nz
+	ld a, [PlayerScreens]
+	bit SCREENS_SAFEGUARD, a
+	ret
+
+.Transform: ; 2c4a5
+	ld a, [EnemySubStatus5]
+	bit SUBSTATUS_TRANSFORMED, a
+	ret
+
+.Reflect: ; 2c4ab
+	ld a, [EnemyScreens]
+	bit SCREENS_REFLECT, a
+	ret
+
+.Substitute: ; 2c4b1
+	ld a, [EnemySubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	ret
+
+.LeechSeed: ; 2c4b7
+	ld a, [PlayerSubStatus4]
+	bit SUBSTATUS_LEECH_SEED, a
+	ret
+
+.Disable: ; 2c4bd
+	ld a, [PlayerDisableCount]
 	and a
 	ret
 
-Function2c4c2: ; 2c4c2
-	ld a, [PlayerSubStatus5] ; $c66c
-	bit 4, a
+.Encore: ; 2c4c2
+	ld a, [PlayerSubStatus5]
+	bit SUBSTATUS_ENCORED, a
 	ret
 
-Function2c4c8: ; 2c4c8
-	ld a, [EnemyMonStatus] ; $d214
-	and $7
-	jr z, Function2c541
-	jr Function2c545
+.Snore:
+.SleepTalk: ; 2c4c8
+	ld a, [EnemyMonStatus]
+	and SLP
+	jr z, .Redundant
+	jr .NotRedundant
 
-Function2c4d1: ; 2c4d1
-	ld a, [EnemySubStatus5] ; $c671
-	bit 7, a
+.MeanLook: ; 2c4d1
+	ld a, [EnemySubStatus5]
+	bit SUBSTATUS_CANT_RUN, a
 	ret
-; 2c4d7 (b:44d7)
 
-Function2c4d7: ; 2c4d7
+.Nightmare: ; 2c4d7
 	ld a, [BattleMonStatus]
 	and a
-	jr z, Function2c541
+	jr z, .Redundant
 	ld a, [PlayerSubStatus1]
-	bit 0, a
+	bit SUBSTATUS_NIGHTMARE, a
 	ret
 
-Function2c4e3: ; 2c4e3
-	ld a, [PlayerScreens] ; $c6ff
-	bit 0, a
+.Spikes: ; 2c4e3
+	ld a, [PlayerScreens]
+	bit SCREENS_SPIKES, a
 	ret
 
-Function2c4e9: ; 2c4e9
-	ld a, [PlayerSubStatus1] ; $c668
-	bit 3, a
+.Foresight: ; 2c4e9
+	ld a, [PlayerSubStatus1]
+	bit SUBSTATUS_IDENTIFIED, a
 	ret
 
-Function2c4ef: ; 2c4ef
-	ld a, [PlayerSubStatus1] ; $c668
-	bit 4, a
+.PerishSong: ; 2c4ef
+	ld a, [PlayerSubStatus1]
+	bit SUBSTATUS_PERISH, a
 	ret
 
-Function2c4f5: ; 2c4f5
-	ld a, [Weather] ; $c70a
-	cp $3
-	jr z, Function2c541
-	jr Function2c545
+.Sandstorm: ; 2c4f5
+	ld a, [Weather]
+	cp WEATHER_SANDSTORM
+	jr z, .Redundant
+	jr .NotRedundant
 
-Function2c4fe: ; 2c4fe
+.Attract: ; 2c4fe
 	callba Function377f5
-	jr c, Function2c541
-	ld a, [PlayerSubStatus1] ; $c668
-	bit 7, a
+	jr c, .Redundant
+	ld a, [PlayerSubStatus1]
+	bit SUBSTATUS_IN_LOVE, a
 	ret
 
-Function2c50c: ; 2c50c
-	ld a, [EnemyScreens] ; $c700
-	bit 2, a
+.Safeguard: ; 2c50c
+	ld a, [EnemyScreens]
+	bit SCREENS_SAFEGUARD, a
 	ret
 
-Function2c512: ; 2c512
-	ld a, [Weather] ; $c70a
-	cp $1
-	jr z, Function2c541
-	jr Function2c545
+.RainDance: ; 2c512
+	ld a, [Weather]
+	cp WEATHER_RAIN
+	jr z, .Redundant
+	jr .NotRedundant
 
-Function2c51b: ; 2c51b
-	ld a, [Weather] ; $c70a
-	cp $2
-	jr z, Function2c541
-	jr Function2c545
+.SunnyDay: ; 2c51b
+	ld a, [Weather]
+	cp WEATHER_SUN
+	jr z, .Redundant
+	jr .NotRedundant
 
-Function2c524: ; 2c524
-	ld a, [BattleMonStatus] ; $c63a
-	and $7
-	jr z, Function2c541
-	jr Function2c545
+.DreamEater: ; 2c524
+	ld a, [BattleMonStatus]
+	and SLP
+	jr z, .Redundant
+	jr .NotRedundant
 
-Function2c52d: ; 2c52d
-	ld a, [PlayerSubStatus3] ; $c66a
-	bit 7, a
+.Swagger: ; 2c52d
+	ld a, [PlayerSubStatus3]
+	bit SUBSTATUS_CONFUSED, a
 	ret
 
-Function2c533: ; 2c533
-	ld a, [EnemyScreens] ; $c700
+.FutureSight: ; 2c533
+	ld a, [EnemyScreens]
 	bit 5, a
 	ret
 
-Function2c539: ; 2c539
+.Heal:
+.MorningSun:
+.Synthesis:
+.Moonlight: ; 2c539
 	callba AICheckEnemyMaxHP
-	jr nc, Function2c545
+	jr nc, .NotRedundant
 
-Function2c541: ; 2c541
-	ld a, $1
+.Teleport:
+.Redundant: ; 2c541
+	ld a, 1
 	and a
 	ret
 
-Function2c545: ; 2c545 (b:4545)
+.NotRedundant: ; 2c545
 	xor a
 	ret
+
 
 Function2c547: ; 2c547
 	ld hl, UnknownText_0x2c5ef
@@ -47151,7 +47153,7 @@ AIChooseMove: ; 440ce
 	jr z, .asm_4415e
 
 	push bc
-	ld d, $e ; BANK(TrainerAI)
+	ld d, BANK(TrainerClassAttributes)
 	predef FlagPredef
 	ld d, c
 	pop bc
@@ -47182,6 +47184,7 @@ AIChooseMove: ; 440ce
 	ld de, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves
 .asm_44166
+	; If the enemy has no moves, this will infinite.
 	ld a, [de]
 	inc de
 	and a
@@ -47247,22 +47250,22 @@ AIChooseMove: ; 440ce
 
 
 AIScoringPointers: ; 441af
-	dw AIScoring_RedStatus
-	dw AIScoring_RedStatMods
-	dw AIScoring_RedSuperEffective
-	dw AIScoring_Offensive
-	dw AIScoring_Smart
-	dw AIScoring_Opportunist
-	dw AIScoring_Aggressive
-	dw AIScoring_Cautious
-	dw AIScoring_StatusImmunity
-	dw AIScoring_Risky
-	dw AIScoring_None
-	dw AIScoring_None
-	dw AIScoring_None
-	dw AIScoring_None
-	dw AIScoring_None
-	dw AIScoring_None
+	dw AI_Basic
+	dw AI_Setup
+	dw AI_Types
+	dw AI_Offensive
+	dw AI_Smart
+	dw AI_Opportunist
+	dw AI_Aggressive
+	dw AI_Cautious
+	dw AI_Status
+	dw AI_Risky
+	dw AI_None
+	dw AI_None
+	dw AI_None
+	dw AI_None
+	dw AI_None
+	dw AI_None
 ; 441cf
 
 
