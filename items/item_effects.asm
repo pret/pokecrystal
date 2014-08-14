@@ -213,7 +213,7 @@ ParkBall: ; e8a2
 	jp nz, Functionf7a0
 
 	ld a, [PartyCount]
-	cp 6
+	cp PARTY_LENGTH
 	jr nz, .asm_e8c0
 
 	ld a, $1
@@ -231,7 +231,7 @@ ParkBall: ; e8a2
 	call nz, Functionedfa
 
 	ld hl, Options
-	res 4, [hl]
+	res NO_TEXT_SCROLL, [hl]
 	ld hl, UsedItemText
 	call PrintText
 
@@ -323,15 +323,14 @@ ParkBall: ; e8a2
 	pop bc
 
 	ld a, b
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
 
 	ld a, [$ffb6]
 	and a
 	jr nz, .asm_e960
-	ld a, $1
-
+	ld a, 1
 .asm_e960
 	ld b, a
 	ld a, [EnemyMonStatus]
@@ -342,29 +341,40 @@ ParkBall: ; e8a2
 	ld c, 5
 	jr nz, .asm_e971
 	ld c, 0
-
 .asm_e971
 	ld a, b
 	add c
 	jr nc, .asm_e977
 	ld a, $ff
-
 .asm_e977
+
 	ld d, a
 	push de
-	ld a, [BattleMonItem]
-	callba GetItem
 
+	; BUG: callba overwrites a,
+	; and GetItem takes b anyway.
+
+	; This is probably the reason
+	; the HELD_CATCH_CHANCE effect
+	; is never used.
+
+	; Uncomment the line below to fix.
+
+	ld a, [BattleMonItem]
+;	ld b, a
+	callba GetItem
 	ld a, b
-	cp $46
+	cp HELD_CATCH_CHANCE
+
 	pop de
 	ld a, d
+
 	jr nz, .asm_e98e
 	add c
 	jr nc, .asm_e98e
 	ld a, $ff
-
 .asm_e98e
+
 	ld b, a
 	ld [Buffer1], a
 	call Random
@@ -383,13 +393,12 @@ ParkBall: ; e8a2
 	call DelayFrames
 
 	ld a, [CurItem]
-	cp $6
+	cp POKE_BALL + 1 ; Assumes Master/Ultra/Great come before
 	jr c, .asm_e9b0
-
 	ld a, POKE_BALL
-
 .asm_e9b0
 	ld [$c689], a
+
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
 	ld [FXAnimIDLo], a
@@ -417,8 +426,8 @@ ParkBall: ; e8a2
 	cp $4
 	ld hl, UnknownText_0xedc4
 	jp z, .asm_ebdc
-
 .asm_e9f5
+
 	ld hl, EnemyMonStatus
 	ld a, [hli]
 	push af
@@ -435,8 +444,8 @@ ParkBall: ; e8a2
 	ld hl, EnemySubStatus5
 	ld a, [hl]
 	push af
-	set 3, [hl]
-	bit 3, a
+	set SUBSTATUS_TRANSFORMED, [hl]
+	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .asm_ea13
 	jr .asm_ea1a
 
@@ -462,6 +471,7 @@ ParkBall: ; e8a2
 
 	pop af
 	ld [EnemySubStatus5], a
+
 	pop hl
 	pop af
 	ld [hl], a
@@ -473,8 +483,9 @@ ParkBall: ; e8a2
 	dec hl
 	pop af
 	ld [hl], a
+
 	ld hl, EnemySubStatus5
-	bit 3, [hl]
+	bit SUBSTATUS_TRANSFORMED, [hl]
 	jr nz, .asm_ea67
 	ld hl, $c735
 	ld de, EnemyMonMoves
@@ -485,15 +496,16 @@ ParkBall: ; e8a2
 	ld de, EnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-
 .asm_ea67
+
 	ld a, [EnemyMonSpecies]
 	ld [$c64e], a
 	ld [CurPartySpecies], a
 	ld [$d265], a
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	jp z, .asm_ebd9
+
 	callba Function10607f
 
 	ld hl, UnknownText_0xedc9
@@ -510,13 +522,13 @@ ParkBall: ; e8a2
 	ld a, [$d265]
 	dec a
 	call SetSeenAndCaughtMon
-
 	pop af
 	and a
 	jr nz, .asm_eab7
-	call Function2ead
 
+	call Function2ead
 	jr z, .asm_eab7
+
 	ld hl, UnknownText_0xedf0
 	call PrintText
 
@@ -528,16 +540,16 @@ ParkBall: ; e8a2
 
 .asm_eab7
 	ld a, [BattleType]
-	cp $6
+	cp BATTLETYPE_CONTEST
 	jp z, .asm_ebd1
-	cp $b
+	cp BATTLETYPE_CELEBI
 	jr nz, .asm_eac8
 	ld hl, $d0ee
 	set 6, [hl]
-
 .asm_eac8
+
 	ld a, [PartyCount]
-	cp 6
+	cp PARTY_LENGTH
 	jr z, .asm_eb3c
 
 	xor a
@@ -558,10 +570,10 @@ ParkBall: ; e8a2
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 
-	ld a, 200
+	ld a, FRIEND_BALL_HAPPINESS
 	ld [hl], a
-
 .asm_eaf8
+
 	ld hl, UnknownText_0xedf5
 	call PrintText
 
@@ -570,7 +582,6 @@ ParkBall: ; e8a2
 	call GetPokemonName
 
 	call YesNoBox
-
 	jp c, .asm_ebe2
 
 	ld a, [PartyCount]
@@ -609,7 +620,7 @@ ParkBall: ; e8a2
 	call GetSRAMBank
 
 	ld a, [$ad10]
-	cp $14
+	cp MONS_PER_BOX
 	jr nz, .asm_eb5b
 	ld hl, $d0ee
 	set 7, [hl]
@@ -618,7 +629,7 @@ ParkBall: ; e8a2
 	ld a, [CurItem]
 	cp FRIEND_BALL
 	jr nz, .asm_eb67
-	ld a, 200
+	ld a, FRIEND_BALL_HAPPINESS
 	ld [$ad41], a
 
 .asm_eb67
@@ -632,7 +643,6 @@ ParkBall: ; e8a2
 	call GetPokemonName
 
 	call YesNoBox
-
 	jr c, .asm_ebaf
 
 	xor a
@@ -692,23 +702,23 @@ ParkBall: ; e8a2
 	ret z
 	cp 2
 	ret z
-	cp 6
-	jr z, .asm_ec05
+	cp BATTLETYPE_CONTEST
+	jr z, .used_park_ball
 
 	ld a, [$c64e]
 	and a
-	jr z, .asm_ebfb
+	jr z, .toss
 
 	call WhiteBGMap
 	call ClearTileMap
 
-.asm_ebfb
+.toss
 	ld hl, NumItems
 	inc a
 	ld [$d10c], a
 	jp TossItem
 
-.asm_ec05
+.used_park_ball
 	ld hl, $dc79
 	dec [hl]
 	ret
@@ -716,29 +726,33 @@ ParkBall: ; e8a2
 
 
 Table_0xec0a: ; ec0a
-	dbw ULTRA_BALL, Function_0xec29
-	dbw GREAT_BALL, Function_0xec2f
-	dbw MOON_STONE, Function_0xec2f
-	dbw HEAVY_BALL, Function_0xec50
-	dbw LEVEL_BALL, Function_0xed8c
-	dbw LURE_BALL,  Function_0xeccc
-	dbw FAST_BALL,  Function_0xed68
-	dbw MOON_BALL,  Function_0xecdd
-	dbw LOVE_BALL,  Function_0xed12
-	dbw PARK_BALL,  Function_0xec2f
+; Note: SAFARI_BALL does not exist.
+	dbw ULTRA_BALL,  UltraBallChance
+	dbw GREAT_BALL,  GreatBallChance
+	dbw SAFARI_BALL, SafariBallChance
+	dbw HEAVY_BALL,  HeavyBallChance
+	dbw LEVEL_BALL,  LevelBallChance
+	dbw LURE_BALL,   LureBallChance
+	dbw FAST_BALL,   FastBallChance
+	dbw MOON_BALL,   MoonBallChance
+	dbw LOVE_BALL,   LoveBallChance
+	dbw PARK_BALL,   ParkBallChance
 	db $ff
 ; ec29
 
 
-Function_0xec29: ; ec29
+UltraBallChance: ; ec29
+; x2
 	sla b
 	ret nc
 	ld b, $ff
 	ret
 ; ec2f
 
-
-Function_0xec2f: ; ec2f
+GreatBallChance: ; ec2f
+ParkBallChance:
+SafariBallChance:
+; x1.5
 	ld a, b
 	srl a
 	add b
@@ -778,7 +792,7 @@ GLOBAL PokedexEntries4
 	db BANK(PokedexEntries4)
 ; ec50
 
-Function_0xec50: ; ec50
+HeavyBallChance: ; ec50
 	ld a, [EnemyMonSpecies]
 	ld hl, PokedexDataPointerTable
 	dec a
@@ -806,14 +820,11 @@ Function_0xec50: ; ec50
 	rr l
 	ld b, h
 	ld c, l
+
+	rept 4
 	srl b
 	rr c
-	srl b
-	rr c
-	srl b
-	rr c
-	srl b
-	rr c
+	endr
 	call .asm_ec99
 
 	srl b
@@ -869,34 +880,33 @@ Function_0xec50: ; ec50
 	ret
 
 .table_ecc4
-	db 8, 0
-	db 12, 20
-	db 16, 30
+	db   8,  0
+	db  12, 20
+	db  16, 30
 	db 255, 40
 ; eccc
 
 
-Function_0xeccc: ; eccc
+LureBallChance: ; eccc
 	ld a, [BattleType]
-	cp $4
+	cp BATTLETYPE_FISH
 	ret nz
+
 	ld a, b
 	add a
-	jr c, .asm_ecd9
+	jr c, .max
 
 	add b
-	jr nc, .asm_ecdb
-
-.asm_ecd9
+	jr nc, .done
+.max
 	ld a, $ff
-
-.asm_ecdb
+.done
 	ld b, a
 	ret
 ; ecdd
 
 
-Function_0xecdd: ; ecdd
+MoonBallChance: ; ecdd
 
 GLOBAL EvosAttacks
 GLOBAL EvosAttacksPointers
@@ -924,13 +934,17 @@ GLOBAL EvosAttacksPointers
 	inc hl
 	inc hl
 
-; It appears that Moon Stone's constant from Pokémon Red is used.
-; No Pokémon evolve with Burn Heal, so
-; Moon Balls always have a catch rate of 1x.
+	; It appears that Moon Stone's
+	; constant from Pokémon Red is used.
+
+	; No Pokémon evolve with Burn Heal,
+	; so Moon Balls always have
+	; a catch rate of 1x.
+
 	push bc
 	ld a, BANK(EvosAttacks)
 	call GetFarByte
-	cp MOON_STONE + 2 ; BURN_HEAL
+	cp MOON_STONE_RED ; BURN_HEAL
 	pop bc
 	ret nz
 
@@ -945,7 +959,7 @@ GLOBAL EvosAttacksPointers
 ; ed12
 
 
-Function_0xed12: ; ed12
+LoveBallChance: ; ed12
 	ld a, [TempEnemyMonSpecies]
 	ld c, a
 	ld a, [TempBattleMonSpecies]
@@ -1005,7 +1019,7 @@ Function_0xed12: ; ed12
 ; ed68
 
 
-Function_0xed68: ; ed68
+FastBallChance: ; ed68
 	ld a, [TempEnemyMonSpecies]
 	ld c, a
 	ld hl, FleeMons
@@ -1037,20 +1051,20 @@ Function_0xed68: ; ed68
 ; ed8c
 
 
-Function_0xed8c: ; ed8c
+LevelBallChance: ; ed8c
 	ld a, [BattleMonLevel]
 	ld c, a
 	ld a, [EnemyMonLevel]
 	cp c
 	ret nc
 	sla b
-	jr c, .asm_eda8
+	jr c, .max
 
 	srl c
 	cp c
 	ret nc
 	sla b
-	jr c, .asm_eda8
+	jr c, .max
 
 	srl c
 	cp c
@@ -1058,7 +1072,7 @@ Function_0xed8c: ; ed8c
 	sla b
 	ret nc
 
-.asm_eda8
+.max
 	ld b, $ff
 	ret
 ; edab
@@ -1810,7 +1824,7 @@ Functionf1db: ; f1db (3:71db)
 	pop de
 	ld a, [CurPartyMon] ; $d109
 	hlcoord 11, 0
-	ld bc, $28
+	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld a, $2
 	ld [$d10a], a
@@ -2242,9 +2256,9 @@ UnknownText_0xf47d: ; 0xf47d
 
 XAccuracy: ; f482
 	ld hl, PlayerSubStatus4
-	bit 0, [hl]
+	bit SUBSTATUS_X_ACCURACY, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
-	set 0, [hl]
+	set SUBSTATUS_X_ACCURACY, [hl]
 	jp Functionf789
 ; f48f
 

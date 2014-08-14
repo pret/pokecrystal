@@ -35987,13 +35987,13 @@ Unknown_271de: ; 271de
 	db HELD_HEAL_PARALYZE
 	db HELD_HEAL_STATUS
 	db $1e
-	db $1f
-	db $20
-	db $21
-	db $22
-	db $23
-	db $24
-	db $25
+	db HELD_ATTACK_UP
+	db HELD_DEFENSE_UP
+	db HELD_SPEED_UP
+	db HELD_SP_ATTACK_UP
+	db HELD_SP_DEFENSE_UP
+	db HELD_ACCURACY_UP
+	db HELD_EVASION_UP
 	db $26
 	db $47
 	db HELD_ESCAPE
