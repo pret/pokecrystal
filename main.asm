@@ -4763,7 +4763,7 @@ Function6219: ; 6219
 	ld [rSVBK], a
 	ld hl, rLCDC
 	res 2, [hl]
-	call Functionfdb
+	call ClearScreen
 	call Function3200
 	xor a
 	ld [hLCDStatCustom], a
@@ -8635,7 +8635,7 @@ _PrintNum:: ; c4c7
 .two
 	dec e
 	jr nz, .asm_c583
-	ld a, $f6
+	ld a, "0"
 	ld [$ffb3], a
 .asm_c583
 
@@ -8701,10 +8701,10 @@ _PrintNum:: ; c4c7
 .PrintDigit: ; c5cb (3:45cb)
 	dec e
 	jr nz, .ok
-	ld a, $f6
+	ld a, "0"
 	ld [$ffb3], a
 .ok
-	ld c, $0
+	ld c, 0
 .asm_c5d4
 	ld a, [$ffb7]
 	ld b, a
@@ -8721,7 +8721,7 @@ _PrintNum:: ; c4c7
 	cp b
 	jr nc, .asm_c5f6
 	ld a, [$ffb4]
-	or $0
+	or 0
 	jr z, .asm_c620
 	dec a
 	ld [$ffb4], a
@@ -8772,7 +8772,7 @@ _PrintNum:: ; c4c7
 	ld [hli], a
 	res 5, d
 .asm_c637
-	ld a, $f6
+	ld a, "0"
 	add c
 	ld [hl], a
 	ld [$ffb3], a
@@ -18719,7 +18719,7 @@ UnknownText_0x124f5: ; 0x124f5
 
 Function124fa: ; 124fa
 	call ClearPalettes
-	call Functionfdb
+	call ClearScreen
 	call Function3200
 	call HideSprites
 	call Function4f0
@@ -36020,7 +36020,7 @@ Function28000: ; 28000
 	call WhiteBGMap
 	ld c, $50
 	call DelayFrames
-	call Functionfdb
+	call ClearScreen
 	call ClearSprites
 	call Function1ad2
 	xor a
@@ -36028,7 +36028,7 @@ Function28000: ; 28000
 	ld [hSCY], a
 	ld c, $50
 	call DelayFrames
-	call Functionfdb
+	call ClearScreen
 	call Function1ad2
 	call Functione51
 	call Functione58
@@ -36437,7 +36437,7 @@ Function28177: ; 28177
 	jr nz, .asm_283a9
 	ld a, CAL
 	ld [OtherTrainerClass], a
-	call Functionfdb
+	call ClearScreen
 	callba Function4d354
 	ld hl, Options
 	ld a, [hl]
@@ -36512,7 +36512,7 @@ Function283b2: ; 283b2
 	bccoord 1, 14
 	call Function13e5
 	call Function4b6
-	call Functionfdb
+	call ClearScreen
 	ld b, $8
 	call GetSGBLayout
 	call Function3200
@@ -37209,7 +37209,7 @@ Function287d8: ; 287d8
 ; 287e3
 
 Function287e3: ; 287e3
-	call Functionfdb
+	call ClearScreen
 	call Function28ef8
 	callba Function16d673
 	xor a
@@ -37599,7 +37599,7 @@ Function28ade: ; 28ade
 
 Function28b22: ; 28b22
 	call Function4b6
-	call Functionfdb
+	call ClearScreen
 	ld b, $8
 	call GetSGBLayout
 	call Function3200
@@ -37936,7 +37936,7 @@ Function28b87: ; 28b87
 	dec a
 	ld [CurPartyMon], a
 	callab Function421d8
-	call Functionfdb
+	call ClearScreen
 	call Function28ef8
 	call Function28eff
 	callba Function4d354
@@ -47361,7 +47361,7 @@ Function4424d: ; 4424d
 	ld a, b
 	push af
 	hlcoord 9, 5
-	call Function13d4
+	call FarString
 	ld h, b
 	ld l, c
 	push de
@@ -47449,7 +47449,7 @@ Function4424d: ; 4424d
 	pop af
 	hlcoord 2, 11
 	push af
-	call Function13d4
+	call FarString
 	pop bc
 	ld a, [$cf65]
 	or a
@@ -47475,7 +47475,7 @@ Function4424d: ; 4424d
 	inc de
 	pop af
 	hlcoord 2, 11
-	call Function13d4
+	call FarString
 	ret
 ; 44331
 
@@ -50111,7 +50111,7 @@ INCBIN "gfx/misc/pack_f.w40.2bpp"
 Function4925b: ; 4925b
 	call FadeToMenu
 	call WhiteBGMap
-	call Functionfdb
+	call ClearScreen
 	call DelayFrame
 	ld b, $14
 	call GetSGBLayout
@@ -54537,7 +54537,7 @@ Function4d319: ; 4d319
 	ld a, [CurPartyMon]
 	inc a
 	ld [$cfa9], a
-	call Functionfdb
+	call ClearScreen
 	call WhiteBGMap
 	call MaxVolume
 	callba Function28ef8
@@ -64590,7 +64590,7 @@ Function84785: ; 84785
 	ld d, [hl]
 	hlcoord 1, 7
 	ld a, $77
-	call Function13d4
+	call FarString
 	hlcoord 2, 15
 	ld de, String_847f5
 	call PlaceString
@@ -64622,7 +64622,7 @@ Function847bd: ; 847bd
 	ld d, [hl]
 	hlcoord 4, 7
 	ld a, BANK(GBPrinterStrings)
-	call Function13d4
+	call FarString
 	hlcoord 4, 15
 	ld de, String_847f5
 	call PlaceString
@@ -107777,7 +107777,7 @@ Function1176ee: ; 1176ee (45:76ee)
 .asm_117709
 	callba Function8cf53
 	call WhiteBGMap
-	call Functionfdb
+	call ClearScreen
 	call ClearSprites
 	ret
 
@@ -111076,7 +111076,7 @@ Function11c1ca: ; 11c1ca
 	call Function11c254
 	call WhiteBGMap
 	call ClearSprites
-	call Functionfdb
+	call ClearScreen
 	call Function11d323
 	call Function32f9
 	call DisableLCD
@@ -113861,7 +113861,7 @@ Function1704e1: ; 1704e1
 Function1704f1: ; 1704f1
 	call WhiteBGMap
 	call ClearSprites
-	call Functionfdb
+	call ClearScreen
 .asm_1704fa
 	call Functiona57
 	ld a, [$cf63]
@@ -115476,7 +115476,7 @@ Function17d370: ; 17d370
 	ld [$cd6c], a
 	call WhiteBGMap
 	call ClearSprites
-	call Functionfdb
+	call ClearScreen
 	callba Function104061
 	call DisableLCD
 	ld hl, $8ee0
@@ -116346,16 +116346,16 @@ Function17f41d: ; 17f41d
 	push af
 	ld l, c
 	ld h, b
-	ld bc, $3b60
+	ld bc, -TileMap + $10000
 	add hl, bc
-	ld de, $ffec
+	ld de, -SCREEN_WIDTH
 	ld c, $1
 .asm_17f42c
 	ld a, h
 	and a
 	jr nz, .asm_17f435
 	ld a, l
-	cp $14
+	cp SCREEN_WIDTH
 	jr c, .asm_17f439
 
 .asm_17f435
@@ -116365,7 +116365,7 @@ Function17f41d: ; 17f41d
 
 .asm_17f439
 	ld hl, TileMap
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	ld a, c
 .asm_17f440
 	and a
@@ -116377,7 +116377,7 @@ Function17f41d: ; 17f41d
 .asm_17f447
 	pop af
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	pop de
 	and a
@@ -116398,7 +116398,7 @@ Function17f44f: ; 17f44f
 	ld l, c
 	ld h, b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	cp $50
@@ -116947,7 +116947,7 @@ Function1dc1b0: ; 1dc1b0
 	pop af
 	ld a, b
 	ld hl, $cb6d
-	call nz, Function13d4
+	call nz, FarString
 	ld hl, $caa3
 	ld [hl], $35
 	ld de, $0014
@@ -116997,7 +116997,7 @@ Function1dc213: ; 1dc213
 	pop af
 	ld hl, $caa5
 	ld a, b
-	call nz, Function13d4
+	call nz, FarString
 	ret
 ; 1dc26a
 
