@@ -40,7 +40,7 @@ dbbw: MACRO
 	ENDM
 
 dn: MACRO
-	db \1 << 4 + \2
+	db (\1) << 4 + (\2)
 	ENDM
 
 dt: MACRO ; three-byte (big-endian)
@@ -67,7 +67,7 @@ callba: MACRO ; bank, address
 
 
 lb: MACRO ; r, hi, lo
-	ld \1, \2 << 8 + \3
+	ld \1, (\2) << 8 + (\3)
 	ENDM
 
 
@@ -95,12 +95,12 @@ TX_FAR: MACRO
 	ENDM
 
 RGB: MACRO
-	dw ((\3 << 10) | (\2 << 5) | (\1))
+	dw (((\3) << 10) | ((\2) << 5) | (\1))
 	ENDM
 
 
 note: MACRO
-	db \1 << 4 + (\2 - 1)
+	db (\1) << 4 + ((\2) - 1)
 	ENDM
 
 ; pitch
@@ -192,7 +192,7 @@ x = 0
 	rept $20
 	; Round up.
 	dw (sin(x) + (sin(x) & $ff)) >> 8
-x = x + \1 * $40000
+x = x + (\1) * $40000
 	endr
 ENDM
 
