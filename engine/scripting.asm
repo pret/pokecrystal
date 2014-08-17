@@ -293,7 +293,7 @@ Script_special: ; 0x96e26
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	callba Functionc01b
+	callba Special
 	ret
 ; 0x96e35
 
@@ -844,6 +844,7 @@ Script_fruittree: ; 0x970ee
 Script_loadwilddata: ; 0x970fc
 ; script command 0xa0
 ; parameters:
+;     flag (SingleByteParam)
 ;     map_group (MapGroupParam)
 ;     map_id (MapIdParam)
 
@@ -2201,6 +2202,7 @@ Script_name: ; 0x97716
 ; parameters:
 ;     type (SingleByteParam)
 ;     id (SingleByteParam)
+;     memory (SingleByteParam)
 
 	call GetScriptByte
 	ld [$cf61], a
@@ -2215,6 +2217,9 @@ Unknown_9771c: ; 0x9771c
 
 Script_trainerclassname: ; 0x9772b
 ; script command 0xa6
+; parameters:
+;     id (SingleByteParam)
+;     memory (SingleByteParam)
 
 	ld a, $7
 	ld [$cf61], a

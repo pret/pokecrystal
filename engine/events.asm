@@ -509,26 +509,28 @@ Function968ec: ; 968ec
 Function9693a: ; 9693a
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_96964
+	jr nz, .nothing
+
 	ld hl, StatusFlags2
 	bit 2, [hl]
 	jr z, .asm_96951
+
 	callba Function114a4
-	jr c, .asm_96966
+	jr c, .elevator
 	xor a
 	ret
 
 .asm_96951
 	callba Function11452
 	callba Function114e7
-	callba Function90074
+	callba CheckPhoneCall
 	ret c
 
-.asm_96964
+.nothing
 	xor a
 	ret
 
-.asm_96966
+.elevator
 	ld a, BANK(UnknownScript_0x135f8)
 	ld hl, UnknownScript_0x135f8
 	call CallScript

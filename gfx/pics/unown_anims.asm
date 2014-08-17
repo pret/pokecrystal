@@ -1,3 +1,4 @@
+UnownAnimations:
 UnownAAnimation: INCLUDE "gfx/pics/unown_a/anim0.asm"
 UnownBAnimation: INCLUDE "gfx/pics/unown_b/anim0.asm"
 UnownCAnimation: INCLUDE "gfx/pics/unown_c/anim0.asm"

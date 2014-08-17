@@ -272,7 +272,6 @@ Function381be: ; 381be
 	jp Function38385
 ; 381ca
 
-; known jump sources: 381be (e:41be), 38214 (e:4214)
 Function381ca: ; 381ca (e:41ca)
 	ld a, [EnemyMonStatus] ; $d214
 	and a
@@ -315,7 +314,6 @@ Function38208: ; 38208
 	call Function381ca
 	jp c, Function38383
 
-; known jump sources: 3820b (e:420b)
 Function3821a: ; 3821a (e:421a)
 	call Function383b5
 	jp Function38385
@@ -327,7 +325,6 @@ Function38220: ; 38220
 	call Function383ae
 	jp Function38385
 
-; known jump sources: 38208 (e:4208), 38220 (e:4220), 38284 (e:4284)
 Function3822c: ; 3822c (e:422c)
 	ld a, [bc]
 	bit 6, a
@@ -484,7 +481,6 @@ Function38341: ; 38341
 	jp Function38385
 ; 3834d
 
-; known jump sources: 38311 (e:4311)
 Function3834d: ; 3834d (e:434d)
 	ld a, [EnemyTurnsTaken] ; $c6dc
 	and a
@@ -540,20 +536,17 @@ Function3839a: ; 3839a
 ; 383a3
 
 
-; known jump sources: 381c4 (e:41c4)
 Function383a3: ; 383a3 (e:43a3)
 	call Function3839a
 	call Function384e0
 	ld a, FULL_HEAL
 	jp Function38568
 
-; known jump sources: 38226 (e:4226)
 Function383ae: ; 383ae (e:43ae)
 	ld a, $f
 	ld [$d1f1], a
 	jr asm_383c6
 
-; known jump sources: 3821a (e:421a)
 Function383b5: ; 383b5 (e:43b5)
 	call Function384e0
 	ld a, $e
@@ -594,7 +587,6 @@ Function383ee: ; 383ee
 	ld b, 50
 	jr Function383f8
 
-; known jump sources: 3828c (e:428c)
 Function383f4: ; 383f4 (e:43f4)
 	ld a, HYPER_POTION
 	ld b, 200

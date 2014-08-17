@@ -1,3 +1,4 @@
+JohtoFrames:
 ChikoritaFrames:  INCLUDE "gfx/pics/chikorita/frames.asm"
 BayleefFrames:    INCLUDE "gfx/pics/bayleef/frames.asm"
 MeganiumFrames:   INCLUDE "gfx/pics/meganium/frames.asm"

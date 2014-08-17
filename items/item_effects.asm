@@ -1143,7 +1143,6 @@ UnknownText_0xedf5: ; 0xedf5
 	db "@"
 ; 0xedfa
 
-; known jump sources: e8c9 (3:68c9), f7a0 (3:77a0)
 Functionedfa: ; edfa (3:6dfa)
 	callba Function2715c
 	ret
@@ -1471,7 +1470,6 @@ Functionefd4: ; efd4
 ; efda
 
 
-; known jump sources: efb5 (3:6fb5), efd4 (3:6fd4)
 Functionefda: ; efda (3:6fda)
 	call Functionf30d
 	ld a, $1
@@ -1498,7 +1496,6 @@ Functionefda: ; efda (3:6fda)
 	ld a, $0
 	ret
 
-; known jump sources: efec (3:6fec)
 Functionf009: ; f009 (3:7009)
 	call Functionf2a6
 	jr nc, .asm_f01c
@@ -1514,7 +1511,6 @@ Functionf009: ; f009 (3:7009)
 	and a
 	ret
 
-; known jump sources: f156 (3:7156), f1c7 (3:71c7)
 Functionf01e: ; f01e (3:701e)
 	call Functionf2a6
 	ret nc
@@ -1526,7 +1522,6 @@ Functionf01e: ; f01e (3:701e)
 	ld [$c63d], a
 	ret
 
-; known jump sources: effa (3:6ffa), f153 (3:7153)
 Functionf030: ; f030 (3:7030)
 	call Functionf2a6
 	ret nc
@@ -1548,7 +1543,6 @@ Functionf030: ; f030 (3:7030)
 	pop bc
 	ret
 
-; known jump sources: efe0 (3:6fe0), f042 (3:7042)
 Functionf058: ; f058 (3:7058)
 	push hl
 	ld a, [CurItem] ; $d106
@@ -1590,13 +1584,11 @@ Table_f071: ; f071
 	db -1, 0, 0
 ; f09e
 
-; known jump sources: efc9 (3:6fc9), efd7 (3:6fd7), f0c5 (3:70c5), f0d3 (3:70d3), f141 (3:7141), f183 (3:7183), f189 (3:7189), f1a6 (3:71a6)
 Functionf09e: ; f09e (3:709e)
 	ld hl, Jumptable_f0a3
 	rst JumpTable
 	ret
 
-; no known jump sources
 Jumptable_f0a3: ; f0a3 (3:70a3)
 	dw Functionf2a2
 	dw Functionf299
@@ -1784,7 +1776,6 @@ Functionf192: ; f192
 ; f1a9
 
 
-; known jump sources: f186 (3:7186), f193 (3:7193)
 Functionf1a9: ; f1a9 (3:71a9)
 	ld b, 1
 	call Functionf1f9
@@ -1812,7 +1803,6 @@ Functionf1a9: ; f1a9 (3:71a9)
 	ld a, 0
 	ret
 
-; known jump sources: f117 (3:7117), f159 (3:7159), f1ca (3:71ca), f3f7 (3:73f7), f408 (3:7408)
 Functionf1db: ; f1db (3:71db)
 	push de
 	ld de, SFX_POTION
@@ -1826,7 +1816,6 @@ Functionf1db: ; f1db (3:71db)
 	ld [$d10a], a
 	predef_jump Functionc6e0
 
-; known jump sources: ee11 (3:6e11), ee3f (3:6e3f), ef16 (3:6f16), efaf (3:6faf), efce (3:6fce), f0ab (3:70ab), f0ca (3:70ca), f12a (3:712a), f1ab (3:71ab), f5c7 (3:75c7)
 Functionf1f9: ; f1f9 (3:71f9)
 	call Functionf20b
 	ret c
@@ -1843,7 +1832,6 @@ Functionf1f9: ; f1f9 (3:71f9)
 	and a
 	ret
 
-; known jump sources: f1f9 (3:71f9)
 Functionf20b: ; f20b (3:720b)
 	ld a, b
 	ld [PartyMenuActionText], a ; $d141
@@ -1857,7 +1845,6 @@ Functionf20b: ; f20b (3:720b)
 	pop hl
 	ret
 
-; known jump sources: f215 (3:7215), f41f (3:741f)
 Functionf21c: ; f21c (3:721c)
 	callba Function5004f
 	callba Function50405
@@ -1870,7 +1857,6 @@ Functionf21c: ; f21c (3:721c)
 	callba PartyMenuSelect
 	ret
 
-; known jump sources: ef6d (3:6f6d), f28a (3:728a), f40d (3:740d)
 Functionf24a: ; f24a (3:724a)
 	ld [PartyMenuActionText], a ; $d141
 	ld a, [CurPartySpecies] ; $d108
@@ -1894,7 +1880,6 @@ Functionf24a: ; f24a (3:724a)
 	ld [CurPartySpecies], a ; $d108
 	ret
 
-; known jump sources: f000 (3:7000), f11f (3:711f), f161 (3:7161), f1d2 (3:71d2)
 Functionf279: ; f279 (3:7279)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -1910,22 +1895,18 @@ Functionf279: ; f279 (3:7279)
 	call DelayFrames
 	jp Functiona80
 
-; known jump sources: f133 (3:7133)
 Functionf299: ; f299 (3:7299)
 	call WontHaveAnyEffectMessage
 	jr Functionf2a2
 
-; known jump sources: efb2 (3:6fb2), efd1 (3:6fd1), f0ae (3:70ae), f0cd (3:70cd), f12d (3:712d)
 Functionf29e: ; f29e (3:729e)
 	xor a
 	ld [$d0ec], a
 
-; known jump sources: f29c (3:729c)
 Functionf2a2: ; f2a2 (3:72a2)
 	call ClearPalettes
 	ret
 
-; known jump sources: f009 (3:7009), f01e (3:701e), f030 (3:7030)
 Functionf2a6: ; f2a6 (3:72a6)
 	ld a, [IsInBattle] ; $d22d (aliases: EnemyMonEnd)
 	and a
@@ -1942,14 +1923,12 @@ Functionf2a6: ; f2a6 (3:72a6)
 	xor a
 	ret
 
-; known jump sources: f114 (3:7114)
 Functionf2ba: ; f2ba (3:72ba)
 	call Functionf36f
 	srl d
 	rr e
 	jr asm_f2c6
 
-; known jump sources: f10f (3:710f), f148 (3:7148), f2f5 (3:72f5)
 Functionf2c3: ; f2c3 (3:72c3)
 	call Functionf36f
 asm_f2c6: ; f2c6 (3:72c6)
@@ -1960,7 +1939,6 @@ asm_f2c6: ; f2c6 (3:72c6)
 	ld [hl], e
 	jp Functionf328
 
-; known jump sources: f1c4 (3:71c4), f405 (3:7405)
 Functionf2d1: ; f2d1 (3:72d1)
 	ld a, $23
 	call GetPartyParamLocation
@@ -1990,7 +1968,6 @@ Functionf2d1: ; f2d1 (3:72d1)
 .asm_f2f8
 	ret
 
-; known jump sources: f3f3 (3:73f3)
 Functionf2f9: ; f2f9 (3:72f9)
 	ld a, $23
 	call GetPartyParamLocation
@@ -2008,7 +1985,6 @@ Functionf2f9: ; f2f9 (3:72f9)
 	call Functionf328
 	ret
 
-; known jump sources: efda (3:6fda), f0d6 (3:70d6), f130 (3:7130), f1b1 (3:71b1), f3ed (3:73ed), f402 (3:7402), f432 (3:7432)
 Functionf30d: ; f30d (3:730d)
 	push de
 	call Functionf35f
@@ -2019,7 +1995,6 @@ Functionf30d: ; f30d (3:730d)
 	pop de
 	ret
 
-; known jump sources: f136 (3:7136), f1b7 (3:71b7), f437 (3:7437)
 Functionf31b: ; f31b (3:731b)
 	call Functionf356
 	ld h, d
@@ -2031,7 +2006,6 @@ Functionf31b: ; f31b (3:731b)
 	sbc d
 	ret
 
-; known jump sources: f2ce (3:72ce), f2de (3:72de), f309 (3:7309)
 Functionf328: ; f328 (3:7328)
 	ld a, $22
 	call GetPartyParamLocation
@@ -2058,7 +2032,6 @@ Functionf33f: ; f33f
 	ret
 ; f348
 
-; known jump sources: f311 (3:7311)
 Functionf348: ; f348 (3:7348)
 	ld a, $22
 	call GetPartyParamLocation
@@ -2068,7 +2041,6 @@ Functionf348: ; f348 (3:7348)
 	ld [$d1ec], a
 	ret
 
-; known jump sources: f314 (3:7314), f31b (3:731b)
 Functionf356: ; f356 (3:7356)
 	ld a, [$d1ed]
 	ld d, a
@@ -2076,7 +2048,6 @@ Functionf356: ; f356 (3:7356)
 	ld e, a
 	ret
 
-; known jump sources: f30e (3:730e)
 Functionf35f: ; f35f (3:735f)
 	push hl
 	ld a, $24
@@ -2088,7 +2059,6 @@ Functionf35f: ; f35f (3:735f)
 	pop hl
 	ret
 
-; known jump sources: f2ba (3:72ba), f2c3 (3:72c3), f320 (3:7320)
 Functionf36f: ; f36f (3:736f)
 	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
 	ld d, a
@@ -2096,7 +2066,6 @@ Functionf36f: ; f36f (3:736f)
 	ld e, a
 	ret
 
-; known jump sources: f3f0 (3:73f0), f3fb (3:73fb)
 Functionf378: ; f378 (3:7378)
 	push bc
 	ld a, $24
@@ -2116,7 +2085,6 @@ Functionf378: ; f378 (3:7378)
 	pop bc
 	ret
 
-; known jump sources: f1c1 (3:71c1)
 Functionf395: ; f395 (3:7395)
 	push hl
 	ld a, [CurItem] ; $d106
@@ -2190,7 +2158,6 @@ Functionf3df: ; f3df (3:73df)
 	ld [$d0d8], a
 	ret
 
-; known jump sources: f3e4 (3:73e4), f448 (3:7448)
 Functionf419: ; f419 (3:7419)
 	push bc
 	ld a, $1
