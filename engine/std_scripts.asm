@@ -272,7 +272,7 @@ UnknownScript_0xbc1b8: ; 0xbc1b8
 ; 0xbc1bc
 
 UnknownScript_0xbc1bc: ; 0xbc1bc
-	3jump UnknownScript_0xcf5d
+	3jump AskRockSmashScript
 ; 0xbc1c0
 
 UnknownScript_0xbc1c0: ; 0xbc1c0

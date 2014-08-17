@@ -10332,6 +10332,7 @@ UnknownText_0xce78: ; 0xce78
 	db "@"
 ; 0xce7d
 
+
 Functionce7d: ; ce7d
 	call Functionce86
 	and $7f
@@ -10342,13 +10343,14 @@ Functionce7d: ; ce7d
 Functionce86: ; ce86
 	call GetFacingTileCoord
 	call CheckHeadbuttTreeTile
-	jr nz, .asm_ce97
-	ld hl, UnknownScript_0xcea7
+	jr nz, .no_tree
+
+	ld hl, HeadbuttFromMenuScript
 	call Function31cd
 	ld a, $81
 	ret
 
-.asm_ce97
+.no_tree
 	call Functionc779
 	ld a, $80
 	ret
@@ -10366,25 +10368,26 @@ UnknownText_0xcea2: ; 0xcea2
 	db "@"
 ; 0xcea7
 
-UnknownScript_0xcea7: ; 0xcea7
+HeadbuttFromMenuScript: ; 0xcea7
 	reloadmappart
 	special $0035
 
-UnknownScript_0xceab: ; 0xceab
+HeadbuttScript: ; 0xceab
 	3callasm GetPartyNick
 	2writetext UnknownText_0xce9d
+
 	reloadmappart
-	3callasm Function8c80a
-	3callasm Functionb81ea
-	iffalse UnknownScript_0xcec3
+	3callasm ShakeHeadbuttTree
+
+	3callasm TreeMonEncounter
+	iffalse .no_battle
 	loadmovesprites
 	battlecheck
 	startbattle
 	returnafterbattle
 	end
-; 0xcec3
 
-UnknownScript_0xcec3: ; 0xcec3
+.no_battle
 	2writetext UnknownText_0xcea2
 	closetext
 	loadmovesprites
@@ -10394,23 +10397,24 @@ UnknownScript_0xcec3: ; 0xcec3
 TryHeadbuttOW:: ; cec9
 	ld d, HEADBUTT
 	call CheckPartyMove
-	jr c, .asm_ceda
-	ld a, BANK(UnknownScript_0xcedc)
-	ld hl, UnknownScript_0xcedc
+	jr c, .no
+
+	ld a, BANK(AskHeadbuttScript)
+	ld hl, AskHeadbuttScript
 	call CallScript
 	scf
 	ret
 
-.asm_ceda
+.no
 	xor a
 	ret
 ; cedc
 
-UnknownScript_0xcedc: ; 0xcedc
+AskHeadbuttScript: ; 0xcedc
 	loadfont
 	2writetext UnknownText_0xcee6
 	yesorno
-	iftrue UnknownScript_0xceab
+	iftrue HeadbuttScript
 	loadmovesprites
 	end
 ; 0xcee6
@@ -10421,6 +10425,7 @@ UnknownText_0xcee6: ; 0xcee6
 	db "@"
 ; 0xceeb
 
+
 Functionceeb: ; ceeb
 	call Functioncef4
 	and $7f
@@ -10430,16 +10435,17 @@ Functionceeb: ; ceeb
 
 Functioncef4: ; cef4
 	call Functioncf0d
-	jr c, .asm_cf07
+	jr c, .no_rock
 	ld a, d
 	cp $18
-	jr nz, .asm_cf07
-	ld hl, UnknownScript_0xcf2e
+	jr nz, .no_rock
+
+	ld hl, RockSmashFromMenuScript
 	call Function31cd
 	ld a, $81
 	ret
 
-.asm_cf07
+.no_rock
 	call Functionc779
 	ld a, $80
 	ret
@@ -10448,6 +10454,7 @@ Functioncef4: ; cef4
 Functioncf0d: ; cf0d
 	callba CheckFacingObject
 	jr nc, .asm_cf2c
+
 	ld a, [$ffb0]
 	call Function1ae5
 	ld hl, $0001
@@ -10467,11 +10474,11 @@ Functioncf0d: ; cf0d
 	ret
 ; cf2e
 
-UnknownScript_0xcf2e: ; 0xcf2e
+RockSmashFromMenuScript: ; 0xcf2e
 	reloadmappart
 	special $0035
 
-UnknownScript_0xcf32: ; cf32
+RockSmashScript: ; cf32
 	3callasm GetPartyNick
 	2writetext UnknownText_0xcf58
 	loadmovesprites
@@ -10480,7 +10487,8 @@ UnknownScript_0xcf32: ; cf32
 	earthquake 84
 	applymovement2 MovementData_0xcf55
 	disappear $fe
-	3callasm Functionb8219
+
+	3callasm RockMonEncounter
 	copybytetovar $d22e
 	iffalse .done
 	battlecheck
@@ -10496,21 +10504,20 @@ MovementData_0xcf55: ; 0xcf55
 
 UnknownText_0xcf58: ; 0xcf58
 	text_jump UnknownText_0x1c08f0
-	db $50
+	db "@"
 ; 0xcf5d
 
-UnknownScript_0xcf5d: ; 0xcf5d
-	3callasm Functioncf7c
-	if_equal $1, UnknownScript_0xcf6f
+AskRockSmashScript: ; 0xcf5d
+	3callasm HasRockSmash
+	if_equal 1, .no
+
 	loadfont
 	2writetext UnknownText_0xcf77
 	yesorno
-	iftrue UnknownScript_0xcf32
+	iftrue RockSmashScript
 	loadmovesprites
 	end
-; 0xcf6f
-
-UnknownScript_0xcf6f: ; 0xcf6f
+.no
 	jumptext UnknownText_0xcf72
 ; 0xcf72
 
@@ -10526,17 +10533,18 @@ UnknownText_0xcf77: ; 0xcf77
 	db "@"
 ; 0xcf7c
 
-Functioncf7c: ; cf7c
+HasRockSmash: ; cf7c
 	ld d, ROCK_SMASH
 	call CheckPartyMove
-	jr nc, .asm_cf87
-	ld a, $1
-	jr .asm_cf8a
-.asm_cf87
+	jr nc, .yes
+.no
+	ld a, 1
+	jr .done
+.yes
 	xor a
-	jr .asm_cf8a
-.asm_cf8a
-	ld [ScriptVar], a ; $c2dd
+	jr .done
+.done
+	ld [ScriptVar], a
 	ret
 
 
@@ -10565,9 +10573,9 @@ Jumptable_cfa5: ; cfa5
 
 Functioncfaf: ; cfaf
 	ld a, [PlayerState]
-	cp $4
+	cp PLAYER_SURF
 	jr z, .asm_cfc4
-	cp $8
+	cp PLAYER_SURF_PIKA
 	jr z, .asm_cfc4
 	call GetFacingTileCoord
 	call GetTileCollision
@@ -10772,9 +10780,9 @@ Functiond0bc: ; d0bc
 	call Functiond121
 	jr c, .asm_d110
 	ld a, [PlayerState]
-	cp $0
+	cp PLAYER_NORMAL
 	jr z, .asm_d0ce
-	cp $1
+	cp PLAYER_BIKE
 	jr z, .asm_d0f7
 	jr .asm_d110
 
@@ -10877,7 +10885,8 @@ UnknownScript_0xd158: ; 0xd158
 	writecode $8, $0
 	2writetext UnknownText_0xd181
 	closetext
-UnknownScript_0xd163
+
+UnknownScript_0xd163:
 	loadmovesprites
 	special $0038
 	special $003c
@@ -10914,28 +10923,31 @@ UnknownText_0xd181: ; 0xd181
 	db "@"
 ; 0xd186
 
+
 TryCutOW:: ; d186
 	ld d, CUT
 	call CheckPartyMove
-	jr c, .asm_d19f
+	jr c, .cant_cut
+
 	ld de, ENGINE_HIVEBADGE
 	call CheckEngineFlag
-	jr c, .asm_d19f
-	ld a, BANK(UnknownScript_0xd1a9)
-	ld hl, UnknownScript_0xd1a9
+	jr c, .cant_cut
+
+	ld a, BANK(AskCutScript)
+	ld hl, AskCutScript
 	call CallScript
 	scf
 	ret
 
-.asm_d19f
-	ld a, BANK(UnknownScript_0xd1cd)
-	ld hl, UnknownScript_0xd1cd
+.cant_cut
+	ld a, BANK(CantCutScript)
+	ld hl, CantCutScript
 	call CallScript
 	scf
 	ret
 ; d1a9
 
-UnknownScript_0xd1a9: ; 0xd1a9
+AskCutScript: ; 0xd1a9
 	loadfont
 	2writetext UnknownText_0xd1c8
 	yesorno
@@ -10952,7 +10964,7 @@ Functiond1ba: ; d1ba
 	ld [ScriptVar], a
 	call Functionc7ce
 	ret c
-	ld a, $1
+	ld a, 1
 	ld [ScriptVar], a
 	ret
 ; d1c8
@@ -10962,7 +10974,7 @@ UnknownText_0xd1c8: ; 0xd1c8
 	db "@"
 ; 0xd1cd
 
-UnknownScript_0xd1cd: ; 0xd1cd
+CantCutScript: ; 0xd1cd
 	jumptext UnknownText_0xd1d0
 ; 0xd1d0
 
@@ -74059,7 +74071,7 @@ Function8c7e1: ; 8c7e1
 	ret
 ; 8c80a
 
-Function8c80a: ; 8c80a
+ShakeHeadbuttTree: ; 8c80a
 	callba Function8cf53
 	ld de, GFX_8c9cc
 	ld hl, VTiles1
@@ -74145,10 +74157,10 @@ Function8c913: ; 8c913
 ; 8c938
 
 Unknown_8c938: ; 8c938
-	dw $c570 ; ( 8, 10)
-	dw $c520 ; ( 8,  6)
-	dw $c546 ; ( 6,  8)
-	dw $c54a ; (10,  8)
+	dw TileMap +  8 + 10 * SCREEN_WIDTH
+	dw TileMap +  8 +  6 * SCREEN_WIDTH
+	dw TileMap +  6 +  8 * SCREEN_WIDTH
+	dw TileMap + 10 +  8 * SCREEN_WIDTH
 ; 8c940
 
 Function8c940: ; 8c940
@@ -74181,7 +74193,7 @@ Function8c96d: ; 8c96d
 	lb bc, BANK(GFX_8c9cc), 4
 	call Request2bpp
 	ld de, CutTreeGFX
-	ld hl, $8840
+	ld hl, VTiles1 + $40
 	lb bc, BANK(CutTreeGFX), 4
 	call Request2bpp
 	ret
@@ -81524,8 +81536,8 @@ Function91753: ; 91753 (24:5753)
 	xor a ; OAKS_POKEMON_TALK
 	ld [$d002], a 
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, OaksPkmnTalkName
 	ret
@@ -81535,8 +81547,8 @@ Function91766: ; 91766 (24:5766)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, PokedexShowName
 	ret
@@ -81546,8 +81558,8 @@ Function9177b: ; 9177b (24:577b)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, PokemonMusicName
 	ret
@@ -81557,8 +81569,8 @@ Function91790: ; 91790 (24:5790)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, LuckyChannelName
 	ret
@@ -81568,8 +81580,8 @@ Function917a5: ; 917a5 (24:57a5)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, NotBuenasPasswordName
 	ld a, [StatusFlags2] ; $d84d
@@ -81587,8 +81599,8 @@ Function917d5: ; 917d5 (24:57d5)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, UnknownStationName
 	ret
@@ -81598,8 +81610,8 @@ Function917ea: ; 917ea (24:57ea)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, PlacesAndPeopleName
 	ret
@@ -81609,8 +81621,8 @@ Function917ff: ; 917ff (24:57ff)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, LetsAllSingName
 	ret
@@ -81621,8 +81633,8 @@ Function91814: ; 91814
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, LetsAllSingName
 	ret
@@ -81633,8 +81645,8 @@ Function91829: ; 91829 (24:5829)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, PokeFluteStationName
 	ret
@@ -81644,8 +81656,8 @@ Function9183e: ; 9183e (24:583e)
 	ld [$d002], a 
 	xor a
 	ld [$d005], a 
-	ld a, BANK(Functionb8612)
-	ld hl, Functionb8612
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
 	call Function9187c
 	ld de, UnknownStationName
 	ret
@@ -85508,143 +85520,157 @@ Functionb81e2: ; b81e2
 	ret
 ; b81ea
 
-Functionb81ea: ; b81ea
+
+TreeMonEncounter: ; b81ea
 	callba Function1060ef
+
 	xor a
 	ld [$d22e], a
 	ld [CurPartyLevel], a
+
 	ld hl, TreeMonMaps
-	call GetTreeMonEncounterTable
-	jr nc, .asm_b8214
-	call LoadTreeMonData
-	jr nc, .asm_b8214
-	call Functionb83e5
-	jr nc, .asm_b8214
+	call GetTreeMonSet
+	jr nc, .no_battle
+
+	call GetTreeMons
+	jr nc, .no_battle
+
+	call GetTreeMon
+	jr nc, .no_battle
+
 	ld a, BATTLETYPE_TREE
 	ld [BattleType], a
-	ld a, $1
+	ld a, 1
 	ld [ScriptVar], a
 	ret
 
-.asm_b8214
+.no_battle
 	xor a
 	ld [ScriptVar], a
 	ret
 ; b8219
 
-Functionb8219: ; b8219
-; get a RockMon encounter
+RockMonEncounter: ; b8219
 
 	xor a
 	ld [$d22e], a
 	ld [CurPartyLevel], a
 
 	ld hl, RockMonMaps
-	call GetTreeMonEncounterTable
-	jr nc, .quit
+	call GetTreeMonSet
+	jr nc, .no_battle
 
-	call LoadTreeMonData
-	jr nc, .quit
+	call GetTreeMons
+	jr nc, .no_battle
 
 	ld a, 10
 	call RandomRange
 	cp 4
-	jr nc, .quit
+	jr nc, .no_battle
 
-	call Functionb841f
-	jr nc, .quit
+	call SelectTreeMon
+	jr nc, .no_battle
 
 	ret
 
-.quit
+.no_battle
 	xor a
 	ret
 ; b823e
 
 	db $05 ; ????
 
-GetTreeMonEncounterTable: ; b823f
-; Return carry and table id in a
-; if MapGroup and MapNumber are in table hl
+GetTreeMonSet: ; b823f
+; Return carry and treemon set in a
+; if the current map is in table hl.
 	ld a, [MapNumber]
 	ld e, a
 	ld a, [MapGroup]
 	ld d, a
 .loop
 	ld a, [hli]
-	cp $ff
-	jr z, .quit
+	cp -1
+	jr z, .not_in_table
+
 	cp d
 	jr nz, .skip2
+
 	ld a, [hli]
 	cp e
 	jr nz, .skip1
-	jr .end
+
+	jr .in_table
+
 .skip2
 	inc hl
 .skip1
 	inc hl
 	jr .loop
-.quit
+
+.not_in_table
 	xor a
 	ret
-.end
+
+.in_table
 	ld a, [hl]
 	scf
 	ret
 ; b825e
 
 TreeMonMaps: ; b825e
-	db GROUP_ROUTE_26, MAP_ROUTE_26, 4
-	db GROUP_ROUTE_27, MAP_ROUTE_27, 4
-	db GROUP_ROUTE_28, MAP_ROUTE_28, 0
-	db GROUP_ROUTE_29, MAP_ROUTE_29, 3
-	db GROUP_ROUTE_30, MAP_ROUTE_30, 3
-	db GROUP_ROUTE_31, MAP_ROUTE_31, 3
-	db GROUP_ROUTE_32, MAP_ROUTE_32, 4
-	db GROUP_ROUTE_33, MAP_ROUTE_33, 2
-	db GROUP_ROUTE_34, MAP_ROUTE_34, 3
-	db GROUP_ROUTE_35, MAP_ROUTE_35, 3
-	db GROUP_ROUTE_36, MAP_ROUTE_36, 3
-	db GROUP_ROUTE_37, MAP_ROUTE_37, 3
-	db GROUP_ROUTE_38, MAP_ROUTE_38, 3
-	db GROUP_ROUTE_39, MAP_ROUTE_39, 3
-	db GROUP_ROUTE_40, MAP_ROUTE_40, 0
-	db GROUP_ROUTE_41, MAP_ROUTE_41, 0
-	db GROUP_ROUTE_42, MAP_ROUTE_42, 2
-	db GROUP_ROUTE_43, MAP_ROUTE_43, 5
-	db GROUP_ROUTE_44, MAP_ROUTE_44, 1
-	db GROUP_ROUTE_45, MAP_ROUTE_45, 1
-	db GROUP_ROUTE_46, MAP_ROUTE_46, 1
-	db GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, 0
-	db GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 0
-	db GROUP_VIOLET_CITY, MAP_VIOLET_CITY, 0
-	db GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, 2
-	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, 0
-	db GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY, 0
-	db GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY, 0
-	db GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, 0
-	db GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN, 0
-	db GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE, 5
-	db GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY, 0
-	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE, 0
-	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST, 6
+treemon_map: macro
+	map \1
+	db  \2 ; treemon set
+endm
+	treemon_map ROUTE_26, 4
+	treemon_map ROUTE_27, 4
+	treemon_map ROUTE_28, 0
+	treemon_map ROUTE_29, 3
+	treemon_map ROUTE_30, 3
+	treemon_map ROUTE_31, 3
+	treemon_map ROUTE_32, 4
+	treemon_map ROUTE_33, 2
+	treemon_map ROUTE_34, 3
+	treemon_map ROUTE_35, 3
+	treemon_map ROUTE_36, 3
+	treemon_map ROUTE_37, 3
+	treemon_map ROUTE_38, 3
+	treemon_map ROUTE_39, 3
+	treemon_map ROUTE_40, 0
+	treemon_map ROUTE_41, 0
+	treemon_map ROUTE_42, 2
+	treemon_map ROUTE_43, 5
+	treemon_map ROUTE_44, 1
+	treemon_map ROUTE_45, 1
+	treemon_map ROUTE_46, 1
+	treemon_map NEW_BARK_TOWN, 0
+	treemon_map CHERRYGROVE_CITY, 0
+	treemon_map VIOLET_CITY, 0
+	treemon_map AZALEA_TOWN, 2
+	treemon_map CIANWOOD_CITY, 0
+	treemon_map GOLDENROD_CITY, 0
+	treemon_map OLIVINE_CITY, 0
+	treemon_map ECRUTEAK_CITY, 0
+	treemon_map MAHOGANY_TOWN, 0
+	treemon_map LAKE_OF_RAGE, 5
+	treemon_map BLACKTHORN_CITY, 0
+	treemon_map SILVER_CAVE_OUTSIDE, 0
+	treemon_map ILEX_FOREST, 6
 	db -1
 ; b82c5
 
 RockMonMaps: ; b82c5
-	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, 7
-	db GROUP_ROUTE_40, MAP_ROUTE_40, 7
-	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE, 7
-	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F, 7
+	treemon_map CIANWOOD_CITY, 7
+	treemon_map ROUTE_40, 7
+	treemon_map DARK_CAVE_VIOLET_ENTRANCE, 7
+	treemon_map SLOWPOKE_WELL_B1F, 7
 	db -1
 ; b82d2
 
-LoadTreeMonData: ; b82d2
-; Return TreeMon pointer a in hl
-; Return carry on success
+GetTreeMons: ; b82d2
+; Return the address of TreeMon table a in hl.
+; Return nc if table a doesn't exist.
 
-; only 7 tables
 	cp 8
 	jr nc, .quit
 
@@ -85653,7 +85679,7 @@ LoadTreeMonData: ; b82d2
 
 	ld e, a
 	ld d, 0
-	ld hl, TreeMonPointers
+	ld hl, TreeMons
 	add hl, de
 	add hl, de
 
@@ -85669,212 +85695,186 @@ LoadTreeMonData: ; b82d2
 	ret
 ; b82e8
 
-TreeMonPointers: ; b82e8
-; seems to point to "normal" tree encounter data
-; so only odd-numbered tables are used
-	dw TreeMons1  ; 0
-	dw TreeMons1  ; 1
-	dw TreeMons3  ; 2
-	dw TreeMons5  ; 3
-	dw TreeMons7  ; 4
-	dw TreeMons9  ; 5
-	dw TreeMons11 ; 6
-	dw RockMons   ; 7
-	dw TreeMons1  ; filler
-; b82fa
+TreeMons: ; b82e8
+	dw TreeMons1
+	dw TreeMons1
+	dw TreeMons2
+	dw TreeMons3
+	dw TreeMons4
+	dw TreeMons5
+	dw TreeMons6
+	dw RockMons
+	dw TreeMons1
 
-; structure: % species level
+; Two tables each (normal, rare).
+; Structure:
+;	db  %, species, level
 
 TreeMons1: ; b82fa
-	db 50, SPEAROW, 10
-	db 15, SPEAROW, 10
-	db 15, SPEAROW, 10
-	db 10, AIPOM, 10
-	db 5, AIPOM, 10
-	db 5, AIPOM, 10
-	db $ff ; end
-; b830d
+	db 50, SPEAROW,    10
+	db 15, SPEAROW,    10
+	db 15, SPEAROW,    10
+	db 10, AIPOM,      10
+	db  5, AIPOM,      10
+	db  5, AIPOM,      10
+	db -1
 
-TreeMons2 ; b830d
-; unused
-	db 50, SPEAROW, 10
-	db 15, HERACROSS, 10
-	db 15, HERACROSS, 10
-	db 10, AIPOM, 10
-	db 5, AIPOM, 10
-	db 5, AIPOM, 10
-	db $ff ; end
-; b8320
+	db 50, SPEAROW,    10
+	db 15, HERACROSS,  10
+	db 15, HERACROSS,  10
+	db 10, AIPOM,      10
+	db  5, AIPOM,      10
+	db  5, AIPOM,      10
+	db -1
 
-TreeMons3: ; b8320
-	db 50, SPEAROW, 10
-	db 15, EKANS, 10
-	db 15, SPEAROW, 10
-	db 10, AIPOM, 10
-	db 5, AIPOM, 10
-	db 5, AIPOM, 10
-	db $ff ; end
-; b8333
+TreeMons2: ; b8320
+	db 50, SPEAROW,    10
+	db 15, EKANS,      10
+	db 15, SPEAROW,    10
+	db 10, AIPOM,      10
+	db  5, AIPOM,      10
+	db  5, AIPOM,      10
+	db -1
 
-TreeMons4: ; b8333
-; unused
-	db 50, SPEAROW, 10
-	db 15, HERACROSS, 10
-	db 15, HERACROSS, 10
-	db 10, AIPOM, 10
-	db 5, AIPOM, 10
-	db 5, AIPOM, 10
-	db $ff ; end
-; b8346
+	db 50, SPEAROW,    10
+	db 15, HERACROSS,  10
+	db 15, HERACROSS,  10
+	db 10, AIPOM,      10
+	db  5, AIPOM,      10
+	db  5, AIPOM,      10
+	db -1
 
-TreeMons5: ; b8346
-	db 50, HOOTHOOT, 10
-	db 15, SPINARAK, 10
-	db 15, LEDYBA, 10
-	db 10, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db $ff ; end
-; b8359
+TreeMons3: ; b8346
+	db 50, HOOTHOOT,   10
+	db 15, SPINARAK,   10
+	db 15, LEDYBA,     10
+	db 10, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db -1
 
-TreeMons6: ; b8359
-; unused
-	db 50, HOOTHOOT, 10
-	db 15, PINECO, 10
-	db 15, PINECO, 10
-	db 10, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db $ff ; end
-; b836c
+	db 50, HOOTHOOT,   10
+	db 15, PINECO,     10
+	db 15, PINECO,     10
+	db 10, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db -1
 
-TreeMons7: ; b836c
-	db 50, HOOTHOOT, 10
-	db 15, EKANS, 10
-	db 15, HOOTHOOT, 10
-	db 10, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db $ff ; end
-; b837f
+TreeMons4: ; b836c
+	db 50, HOOTHOOT,   10
+	db 15, EKANS,      10
+	db 15, HOOTHOOT,   10
+	db 10, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db -1
 
-TreeMons8: ; b837f
-; unused
-	db 50, HOOTHOOT, 10
-	db 15, PINECO, 10
-	db 15, PINECO, 10
-	db 10, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db $ff ; end
-; b8392
+	db 50, HOOTHOOT,   10
+	db 15, PINECO,     10
+	db 15, PINECO,     10
+	db 10, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db -1
 
-TreeMons9: ; b8392
-	db 50, HOOTHOOT, 10
-	db 15, VENONAT, 10
-	db 15, HOOTHOOT, 10
-	db 10, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db $ff ; end
-; b83a5
+TreeMons5: ; b8392
+	db 50, HOOTHOOT,   10
+	db 15, VENONAT,    10
+	db 15, HOOTHOOT,   10
+	db 10, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db -1
 
-TreeMons10: ; b83a5
-; unused
-	db 50, HOOTHOOT, 10
-	db 15, PINECO, 10
-	db 15, PINECO, 10
-	db 10, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db 5, EXEGGCUTE, 10
-	db $ff ; end
-; b83b8
+	db 50, HOOTHOOT,   10
+	db 15, PINECO,     10
+	db 15, PINECO,     10
+	db 10, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db  5, EXEGGCUTE,  10
+	db -1
 
-TreeMons11: ; b83b8
-	db 50, HOOTHOOT, 10
-	db 15, PINECO, 10
-	db 15, PINECO, 10
-	db 10, NOCTOWL, 10
-	db 5, BUTTERFREE, 10
-	db 5, BEEDRILL, 10
-	db $ff ; end
-; b83cb
+TreeMons6: ; b83b8
+	db 50, HOOTHOOT,   10
+	db 15, PINECO,     10
+	db 15, PINECO,     10
+	db 10, NOCTOWL,    10
+	db  5, BUTTERFREE, 10
+	db  5, BEEDRILL,   10
+	db -1
 
-TreeMons12; b83cb
-; unused
-	db 50, HOOTHOOT, 10
-	db 15, CATERPIE, 10
-	db 15, WEEDLE, 10
-	db 10, HOOTHOOT, 10
-	db 5, METAPOD, 10
-	db 5, KAKUNA, 10
-	db $ff ; end
-; b83de
+	db 50, HOOTHOOT,   10
+	db 15, CATERPIE,   10
+	db 15, WEEDLE,     10
+	db 10, HOOTHOOT,   10
+	db  5, METAPOD,    10
+	db  5, KAKUNA,     10
+	db -1
 
 RockMons: ; b83de
-	db 90, KRABBY, 15
-	db 10, SHUCKLE, 15
-	db $ff ; end
+	db 90, KRABBY,     15
+	db 10, SHUCKLE,    15
+	db -1
 ; b83e5
 
-Functionb83e5: ; b83e5
+GetTreeMon: ; b83e5
 	push hl
-	call Functionb8443
+	call GetTreeScore
 	pop hl
 	and a
-	jr z, .asm_b83f6
-	cp $1
-	jr z, .asm_b8400
-	cp $2
-	jr z, .asm_b840b
+	jr z, .bad
+	cp 1
+	jr z, .good
+	cp 2
+	jr z, .rare
 	ret
 
-.asm_b83f6
+.bad
 	ld a, 10
 	call RandomRange
 	and a
-	jr nz, Functionb843b
-	jr Functionb841f
+	jr nz, NoTreeMon
+	jr SelectTreeMon
 
-.asm_b8400
+.good
 	ld a, 10
 	call RandomRange
 	cp 5
-	jr nc, Functionb843b
-	jr Functionb841f
+	jr nc, NoTreeMon
+	jr SelectTreeMon
 
-.asm_b840b
+.rare
 	ld a, 10
 	call RandomRange
 	cp 8
-	jr nc, Functionb843b
-	jr .asm_b8416
-
-.asm_b8416
+	jr nc, NoTreeMon
+	jr .skip
+.skip
 	ld a, [hli]
-	cp $ff
-	jr nz, .asm_b8416
-	call Functionb841f
+	cp -1
+	jr nz, .skip
+	call SelectTreeMon
 	ret
 ; b841f
 
-Functionb841f: ; b841f
-; Read a TreeMons table.
+SelectTreeMon: ; b841f
+; Read a TreeMons table and pick one monster at random.
 
 	ld a, 100
 	call RandomRange
-.asm_b8424
+.loop
 	sub [hl]
-	jr c, .asm_b842c
+	jr c, .ok
 	inc hl
 	inc hl
 	inc hl
-	jr .asm_b8424
+	jr .loop
 
-.asm_b842c
+.ok
 	ld a, [hli]
 	cp $ff
-	jr z, Functionb843b
+	jr z, NoTreeMon
 
 	ld a, [hli]
 	ld [$d22e], a
@@ -85883,58 +85883,60 @@ Functionb841f: ; b841f
 	scf
 	ret
 
-Functionb843b: ; b843b
+NoTreeMon: ; b843b
 	xor a
 	ld [$d22e], a
 	ld [CurPartyLevel], a
 	ret
 ; b8443
 
-Functionb8443: ; b8443
-	call Functionb8466
+GetTreeScore: ; b8443
+	call .CoordScore
 	ld [Buffer1], a
-	call Functionb849d
+	call .OTIDScore
 	ld [Buffer2], a
 	ld c, a
 	ld a, [Buffer1]
 	sub c
-	jr z, .asm_b8463
-	jr nc, .asm_b845a
-	add $a
+	jr z, .rare
+	jr nc, .ok
+	add 10
+.ok
+	cp 5
+	jr c, .good
 
-.asm_b845a
-	cp $5
-	jr c, .asm_b8460
+.bad
 	xor a
 	ret
 
-.asm_b8460
-	ld a, $1
+.good
+	ld a, 1
 	ret
 
-.asm_b8463
-	ld a, $2
+.rare
+	ld a, 2
 	ret
 ; b8466
 
-Functionb8466: ; b8466
+.CoordScore: ; b8466
 	call GetFacingTileCoord
-	ld hl, $0000
+	ld hl, 0
 	ld c, e
-	ld b, $0
+	ld b, 0
 	ld a, d
-	and a
-	jr z, .asm_b8477
 
-.asm_b8473
+	and a
+	jr z, .next
+.loop
 	add hl, bc
 	dec a
-	jr nz, .asm_b8473
+	jr nz, .loop
+.next
 
-.asm_b8477
 	add hl, bc
 	ld c, d
 	add hl, bc
+
 	ld a, h
 	ld [hDividend], a
 	ld a, l
@@ -85943,6 +85945,7 @@ Functionb8466: ; b8466
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
+
 	ld a, [hQuotient + 1]
 	ld [hDividend], a
 	ld a, [hQuotient + 2]
@@ -85951,11 +85954,12 @@ Functionb8466: ; b8466
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
+
 	ld a, [hQuotient + 3]
 	ret
 ; b849d
 
-Functionb849d: ; b849d
+.OTIDScore: ; b849d
 	ld a, [PlayerID]
 	ld [hDividend], a
 	ld a, [PlayerID + 1]
@@ -85968,26 +85972,29 @@ Functionb849d: ; b849d
 	ret
 ; b84b3
 
+
 Functionb84b3: ; b84b3
 	ld a, [rVBK]
 	push af
 	ld a, $1
 	ld [rVBK], a
+
 	ld de, FishingGFX
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_b84c7
 	ld de, KrisFishingGFX
-
 .asm_b84c7
+
 	ld hl, $8020
 	call Functionb84e3
 	ld hl, $8060
 	call Functionb84e3
 	ld hl, $80a0
 	call Functionb84e3
-	ld hl, $8fc0
+	ld hl, $9000 - $40
 	call Functionb84e3
+
 	pop af
 	ld [rVBK], a
 	ret
@@ -85998,7 +86005,7 @@ Functionb84e3: ; b84e3
 	push de
 	call Get2bpp
 	pop de
-	ld hl, $0020
+	ld hl, $20
 	add hl, de
 	ld d, h
 	ld e, l
@@ -86013,7 +86020,8 @@ KrisFishingGFX: ; b8582
 INCBIN "baserom.gbc",$b8582,$b8612 - $b8582
 ; b8612
 
-Functionb8612: ; b8612
+
+PlayRadioShow: ; b8612
 	ld a, [$d002] 
 	cp 8
 	jr nc, .ok
