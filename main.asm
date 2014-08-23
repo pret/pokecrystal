@@ -49847,7 +49847,7 @@ Function48cdc: ; 48cdc (12:4cdc)
 	call Function48cfd
 	pop hl
 	pop bc
-	ld de, $939
+	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
@@ -54575,7 +54575,7 @@ Function4d35b: ; 4d35b
 	call Function4d37e
 	pop hl
 	pop bc
-	ld de, $0939
+	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
@@ -66433,7 +66433,7 @@ Function8920f: ; 8920f
 Function89215: ; 89215
 	push hl
 	push bc
-	ld bc, $0939
+	ld bc, AttrMap - TileMap
 	add hl, bc
 	ld [hl], a
 	pop bc
@@ -68959,7 +68959,7 @@ Function8a0a1: ; 8a0a1 (22:60a1)
 
 Function8a0c1: ; 8a0c1 (22:60c1)
 	push hl
-	ld bc, $939
+	ld bc, AttrMap - TileMap
 	add hl, bc
 	ld a, [hl]
 	pop hl
@@ -68985,7 +68985,7 @@ Function8a0c9: ; 8a0c9 (22:60c9)
 
 Function8a0de: ; 8a0de (22:60de)
 	call Function8a0c9
-	ld de, $939
+	ld de, AttrMap - TileMap
 	add hl, de
 	ret
 
@@ -70837,7 +70837,7 @@ Function8ae68: ; 8ae68
 
 .asm_8aea5
 	call Function8af09
-	ld bc, $0939
+	ld bc, AttrMap - TileMap
 	add hl, bc
 	call Function8aee9
 	call Function3200
@@ -72367,7 +72367,7 @@ Function8b73e: ; 8b73e
 ; 8b744
 
 Function8b744: ; 8b744
-	ld de, $0939
+	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
@@ -85369,7 +85369,7 @@ Functionb8101: ; b8101 (2e:4101)
 
 
 Functionb8115: ; b8115
-	ld de, $0939
+	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
@@ -90058,7 +90058,7 @@ Functione03ec: ; e03ec
 	ld a, [hCGB]
 	and a
 	ret z
-	ld de, $0939
+	ld de, AttrMap - TileMap
 	add hl, de
 	ld a, [CurEnemyMoveNum]
 	and 3
@@ -113461,7 +113461,7 @@ Function16d61d: ; 16d61d
 	call Function16d640
 	pop hl
 	pop bc
-	ld de, $0939
+	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b

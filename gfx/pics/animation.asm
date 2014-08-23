@@ -899,7 +899,7 @@ Functiond0551: ; d0551
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $939
+	ld de, AttrMap - TileMap
 	add hl, de
 	ret
 ; d055c

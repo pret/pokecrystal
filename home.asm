@@ -2089,7 +2089,7 @@ INCLUDE "home/mobile.asm"
 Function3eea:: ; 3eea
 	push hl
 	push bc
-	ld de, $0939
+	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
@@ -2116,7 +2116,7 @@ Function3efd:: ; 3efd
 Function3f0d:: ; 3f0d
 	push hl
 	push bc
-	ld de, $0939
+	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
