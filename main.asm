@@ -18365,7 +18365,7 @@ String_121dd: ; 122dd
 
 String_1224f: ; 1224f
 	db "a b c d e f g h i j"
-	db "k l m n o p q r s t
+	db "k l m n o p q r s t"
 	db "u v w x y z   . - /"
 	db "'d 'l 'm 'r 's 't 'v & ( )"
 	db $72, " ", $73, " [ ] ' : ;      "
