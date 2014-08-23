@@ -117787,7 +117787,7 @@ INCBIN "baserom.gbc",$1f4000,$1f4003 - $1f4000
 Function1f4003: ; 1f4003
 	ld a, $6
 	call GetSRAMBank
-	ld hl, $4018
+	ld hl, MobileSave
 	ld de, $a000
 	ld bc, $1000
 	call CopyBytes
@@ -117795,7 +117795,9 @@ Function1f4003: ; 1f4003
 	ret
 ; 1f4018
 
-INCBIN "baserom.gbc",$1f4018,$1f636a - $1f4018
+MobileSave: INCBIN "misc/mobile_save.bin"
+
+INCBIN "baserom.gbc",$1f5018,$1f636a - $1f5018
 
 
 SECTION "bank7E", ROMX, BANK[$7E]
