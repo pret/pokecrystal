@@ -307,7 +307,7 @@ UnknownScript_0xbd0ef:
 	3jump UnknownScript_0xa08f8
 
 UnknownScript_0xbd0f3:
-	displaylocation $13, $2
+	displaylocation NATIONAL_PARK, $2
 	3jump UnknownScript_0xa0a2d
 
 UnknownScript_0xbd0fa:
@@ -331,7 +331,7 @@ UnknownScript_0xbd12a:
 	setflag ENGINE_87
 
 UnknownScript_0xbd12d:
-	displaylocation $13, $2
+	displaylocation NATIONAL_PARK, $2
 	setflag ENGINE_JACK
 	3jump UnknownScript_0xa0376
 
@@ -349,7 +349,7 @@ UnknownScript_0xbd13f:
 	3jump UnknownScript_0xa0900
 
 UnknownScript_0xbd151:
-	displaylocation $13, $2
+	displaylocation NATIONAL_PARK, $2
 	3jump UnknownScript_0xa0aa5
 
 UnknownScript_0xbd158:
@@ -365,7 +365,7 @@ UnknownScript_0xbd16e:
 
 UnknownScript_0xbd172:
 	setflag ENGINE_BEVERLY_HAS_NUGGET
-	displaylocation $13, $2
+	displaylocation NATIONAL_PARK, $2
 	3jump UnknownScript_0xa061e
 
 UnknownScript_0xbd17c:
@@ -385,7 +385,7 @@ UnknownScript_0xbd19b:
 	3jump UnknownScript_0xa0908
 
 UnknownScript_0xbd1a2:
-	displaylocation $1c, $2
+	displaylocation LIGHTHOUSE, $2
 	3jump UnknownScript_0xa0a32
 
 UnknownScript_0xbd1a9:
@@ -406,7 +406,7 @@ UnknownScript_0xbd1cd:
 	setflag ENGINE_88
 
 UnknownScript_0xbd1d0:
-	displaylocation $1c, $2
+	displaylocation LIGHTHOUSE, $2
 	setflag ENGINE_HUEY
 	3jump UnknownScript_0xa0376
 
@@ -426,7 +426,7 @@ UnknownScript_0xbd1f9:
 	3jump UnknownScript_0xa0910
 
 UnknownScript_0xbd1fd:
-	displaylocation $5b, $2
+	displaylocation ROUTE_26, $2
 	3jump UnknownScript_0xa0a37
 
 UnknownScript_0xbd204:
@@ -448,7 +448,7 @@ UnknownScript_0xbd22c:
 	setflag ENGINE_89
 
 UnknownScript_0xbd22f:
-	displaylocation $5b, $2
+	displaylocation ROUTE_26, $2
 	setflag ENGINE_GAVEN
 	3jump UnknownScript_0xa0376
 
@@ -471,7 +471,7 @@ UnknownScript_0xbd25c:
 	3jump UnknownScript_0xa0918
 
 UnknownScript_0xbd260:
-	displaylocation $5b, $2
+	displaylocation ROUTE_26, $2
 	3jump UnknownScript_0xa0a3c
 
 UnknownScript_0xbd267:
@@ -491,7 +491,7 @@ UnknownScript_0xbd287:
 	setflag ENGINE_8A
 
 UnknownScript_0xbd28a:
-	displaylocation $5b, $2
+	displaylocation ROUTE_26, $2
 	setflag ENGINE_BETH
 	3jump UnknownScript_0xa037e
 
@@ -513,11 +513,11 @@ UnknownScript_0xbd2b9:
 	3jump UnknownScript_0xa0920
 
 UnknownScript_0xbd2bd:
-	displaylocation $5c, $2
+	displaylocation ROUTE_27, $2
 	3jump UnknownScript_0xa0a41
 
 UnknownScript_0xbd2c4:
-	displaylocation $5c, $2
+	displaylocation ROUTE_27, $2
 	3jump UnknownScript_0xa0a41
 
 UnknownScript_0xbd2cb:
@@ -543,7 +543,7 @@ UnknownScript_0xbd301:
 	setflag ENGINE_8B
 
 UnknownScript_0xbd304:
-	displaylocation $5c, $2
+	displaylocation ROUTE_27, $2
 	setflag ENGINE_JOSE
 	3jump UnknownScript_0xa0376
 
@@ -552,7 +552,7 @@ UnknownScript_0xbd30e:
 
 UnknownScript_0xbd312:
 	setflag ENGINE_JOSE_HAS_STAR_PIECE
-	displaylocation $5c, $2
+	displaylocation ROUTE_27, $2
 	3jump UnknownScript_0xa05e6
 
 UnknownScript_0xbd31c:
@@ -571,7 +571,7 @@ UnknownScript_0xbd33b:
 	3jump UnknownScript_0xa0928
 
 UnknownScript_0xbd33f:
-	displaylocation $5c, $2
+	displaylocation ROUTE_27, $2
 	3jump UnknownScript_0xa0a46
 
 UnknownScript_0xbd346:
@@ -591,7 +591,7 @@ UnknownScript_0xbd366:
 	setflag ENGINE_8C
 
 UnknownScript_0xbd369:
-	displaylocation $5c, $2
+	displaylocation ROUTE_27, $2
 	setflag ENGINE_REENA
 	3jump UnknownScript_0xa037e
 
@@ -612,7 +612,7 @@ UnknownScript_0xbd392:
 	3jump UnknownScript_0xa0930
 
 UnknownScript_0xbd399:
-	displaylocation $4, $2
+	displaylocation ROUTE_30, $2
 	3jump UnknownScript_0xa0a4b
 
 UnknownScript_0xbd3a0:
@@ -633,7 +633,7 @@ UnknownScript_0xbd3c4:
 	setflag ENGINE_8D
 
 UnknownScript_0xbd3c7:
-	displaylocation $4, $2
+	displaylocation ROUTE_30, $2
 	setflag ENGINE_JOEY
 	3jump UnknownScript_0xa0376
 
@@ -668,11 +668,11 @@ UnknownScript_0xbd416:
 	3jump UnknownScript_0xa05a4
 
 UnknownScript_0xbd41a:
-	displaylocation $5, $2
+	displaylocation ROUTE_31, $2
 	3jump UnknownScript_0xa0a50
 
 UnknownScript_0xbd421:
-	displaylocation $5, $2
+	displaylocation ROUTE_31, $2
 	3jump UnknownScript_0xa0ab5
 
 UnknownScript_0xbd428:
@@ -713,7 +713,7 @@ UnknownScript_0xbd484:
 	setflag ENGINE_8E
 
 UnknownScript_0xbd487:
-	displaylocation $5, $2
+	displaylocation ROUTE_31, $2
 	setflag ENGINE_WADE
 	3jump UnknownScript_0xa0376
 
@@ -722,7 +722,7 @@ UnknownScript_0xbd491:
 
 UnknownScript_0xbd495:
 	setflag ENGINE_WADE_HAS_ITEM
-	displaylocation $5, $2
+	displaylocation ROUTE_31, $2
 	clearevent EVENT_WADE_HAS_BERRY
 	clearevent EVENT_WADE_HAS_PSNCUREBERRY
 	clearevent EVENT_WADE_HAS_PRZCUREBERRY
@@ -769,11 +769,11 @@ UnknownScript_0xbd4f1:
 	3jump UnknownScript_0xa0940
 
 UnknownScript_0xbd4fb:
-	displaylocation $8, $2
+	displaylocation ROUTE_32, $2
 	3jump UnknownScript_0xa0a55
 
 UnknownScript_0xbd502:
-	displaylocation $8, $2
+	displaylocation ROUTE_32, $2
 	3jump UnknownScript_0xa0af5
 
 UnknownScript_0xbd509:
@@ -797,7 +797,7 @@ UnknownScript_0xbd537:
 	setflag ENGINE_8F
 
 UnknownScript_0xbd53a:
-	displaylocation $8, $2
+	displaylocation ROUTE_32, $2
 	setflag ENGINE_RALPH
 	3jump UnknownScript_0xa0376
 
@@ -806,7 +806,7 @@ UnknownScript_0xbd544:
 	iftrue UnknownScript_0xbd55c
 	setflag ENGINE_SPECIAL_WILDDATA
 	pokenamemem QWILFISH, $1
-	displaylocation $8, $2
+	displaylocation ROUTE_32, $2
 	writebyte $1
 	special $0048
 	3jump UnknownScript_0xa05d6
@@ -831,7 +831,7 @@ UnknownScript_0xbd57f:
 	3jump UnknownScript_0xa0948
 
 UnknownScript_0xbd586:
-	displaylocation $8, $2
+	displaylocation ROUTE_32, $2
 	3jump UnknownScript_0xa0a5a
 
 UnknownScript_0xbd58d:
@@ -859,7 +859,7 @@ UnknownScript_0xbd5c3:
 	setflag ENGINE_90
 
 UnknownScript_0xbd5c6:
-	displaylocation $8, $2
+	displaylocation ROUTE_32, $2
 	setflag ENGINE_LIZ
 	3jump UnknownScript_0xa037e
 
@@ -935,11 +935,11 @@ UnknownScript_0xbd653:
 	3jump UnknownScript_0xa0950
 
 UnknownScript_0xbd65d:
-	displaylocation $b, $2
+	displaylocation ROUTE_33, $2
 	3jump UnknownScript_0xa0a5f
 
 UnknownScript_0xbd664:
-	displaylocation $b, $2
+	displaylocation ROUTE_33, $2
 	3jump UnknownScript_0xa0afa
 
 UnknownScript_0xbd66b:
@@ -963,7 +963,7 @@ UnknownScript_0xbd699:
 	setflag ENGINE_91
 
 UnknownScript_0xbd69c:
-	displaylocation $b, $2
+	displaylocation ROUTE_33, $2
 	setflag ENGINE_ANTHONY
 	3jump UnknownScript_0xa0376
 
@@ -973,7 +973,7 @@ UnknownScript_0xbd6a6:
 	setflag ENGINE_DUNSPARCE_SWARM
 	pokenamemem DUNSPARCE, $1
 	loadwilddata $0, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
-	displaylocation $2c, $2
+	displaylocation DARK_CAVE, $2
 	3jump UnknownScript_0xa05de
 
 UnknownScript_0xbd6bd:
@@ -997,7 +997,7 @@ UnknownScript_0xbd6e0:
 	3jump UnknownScript_0xa0958
 
 UnknownScript_0xbd6ea:
-	displaylocation $f, $2
+	displaylocation ROUTE_34, $2
 	3jump UnknownScript_0xa0a64
 
 UnknownScript_0xbd6f1:
@@ -1028,7 +1028,7 @@ UnknownScript_0xbd72b:
 	setflag ENGINE_92
 
 UnknownScript_0xbd72e:
-	displaylocation $f, $2
+	displaylocation ROUTE_34, $2
 	setflag ENGINE_TODD
 	3jump UnknownScript_0xa0376
 
@@ -1062,11 +1062,11 @@ UnknownScript_0xbd772:
 	3jump UnknownScript_0xa05c6
 
 UnknownScript_0xbd776:
-	displaylocation $f, $2
+	displaylocation ROUTE_34, $2
 	3jump UnknownScript_0xa0a69
 
 UnknownScript_0xbd77d:
-	displaylocation $f, $2
+	displaylocation ROUTE_34, $2
 	3jump UnknownScript_0xa0abd
 
 UnknownScript_0xbd784:
@@ -1100,7 +1100,7 @@ UnknownScript_0xbd7cc:
 	setflag ENGINE_93
 
 UnknownScript_0xbd7cf:
-	displaylocation $f, $2
+	displaylocation ROUTE_34, $2
 	setflag ENGINE_GINA
 	3jump UnknownScript_0xa037e
 
@@ -1109,7 +1109,7 @@ UnknownScript_0xbd7d9:
 
 UnknownScript_0xbd7dd:
 	setflag ENGINE_GINA_HAS_LEAF_STONE
-	displaylocation $f, $2
+	displaylocation ROUTE_34, $2
 	3jump UnknownScript_0xa061e
 
 UnknownScript_0xbd7e7:
@@ -1150,11 +1150,11 @@ UnknownScript_0xbd832:
 	3jump UnknownScript_0xa0968
 
 UnknownScript_0xbd83c:
-	displaylocation $12, $2
+	displaylocation ROUTE_35, $2
 	3jump UnknownScript_0xa0a6e
 
 UnknownScript_0xbd843:
-	displaylocation $12, $2
+	displaylocation ROUTE_35, $2
 	3jump UnknownScript_0xa0aff
 
 UnknownScript_0xbd84a:
@@ -1178,7 +1178,7 @@ UnknownScript_0xbd87a:
 	setflag ENGINE_94
 
 UnknownScript_0xbd87d:
-	displaylocation $12, $2
+	displaylocation ROUTE_35, $2
 	setflag ENGINE_ARNIE
 	3jump UnknownScript_0xa0376
 
@@ -1188,7 +1188,7 @@ UnknownScript_0xbd887:
 	setflag ENGINE_YANMA_SWARM
 	pokenamemem YANMA, $1
 	loadwilddata $1, GROUP_ROUTE_35, MAP_ROUTE_35
-	displaylocation $12, $2
+	displaylocation ROUTE_35, $2
 	3jump UnknownScript_0xa05ce
 
 UnknownScript_0xbd89e:
@@ -1215,11 +1215,11 @@ UnknownScript_0xbd8cb:
 	3jump UnknownScript_0xa0970
 
 UnknownScript_0xbd8cf:
-	displaylocation $14, $2
+	displaylocation ROUTE_36, $2
 	3jump UnknownScript_0xa0a73
 
 UnknownScript_0xbd8d6:
-	displaylocation $14, $2
+	displaylocation ROUTE_36, $2
 	3jump UnknownScript_0xa0ac5
 
 UnknownScript_0xbd8dd:
@@ -1249,13 +1249,13 @@ UnknownScript_0xbd919:
 	setflag ENGINE_95
 
 UnknownScript_0xbd91c:
-	displaylocation $14, $2
+	displaylocation ROUTE_36, $2
 	setflag ENGINE_ALAN
 	3jump UnknownScript_0xa0376
 
 UnknownScript_0xbd926:
 	setflag ENGINE_ALAN_HAS_FIRE_STONE
-	displaylocation $14, $2
+	displaylocation ROUTE_36, $2
 	3jump UnknownScript_0xa05e6
 
 UnknownScript_0xbd930:
@@ -1276,11 +1276,11 @@ UnknownScript_0xbd955:
 	3jump UnknownScript_0xa0978
 
 UnknownScript_0xbd959:
-	displaylocation $19, $2
+	displaylocation ROUTE_38, $2
 	3jump UnknownScript_0xa0a78
 
 UnknownScript_0xbd960:
-	displaylocation $19, $2
+	displaylocation ROUTE_38, $2
 	3jump UnknownScript_0xa0acd
 
 UnknownScript_0xbd967:
@@ -1312,7 +1312,7 @@ UnknownScript_0xbd9ab:
 	setflag ENGINE_96
 
 UnknownScript_0xbd9ae:
-	displaylocation $19, $2
+	displaylocation ROUTE_38, $2
 	setflag ENGINE_DANA
 	3jump UnknownScript_0xa037e
 
@@ -1321,7 +1321,7 @@ UnknownScript_0xbd9b8:
 
 UnknownScript_0xbd9bc:
 	setflag ENGINE_LIZ_HAS_THUNDERSTONE
-	displaylocation $19, $2
+	displaylocation ROUTE_38, $2
 	3jump UnknownScript_0xa061e
 
 UnknownScript_0xbd9c6:
@@ -1340,7 +1340,7 @@ UnknownScript_0xbd9e5:
 	3jump UnknownScript_0xa0980
 
 UnknownScript_0xbd9e9:
-	displaylocation $19, $2
+	displaylocation ROUTE_38, $2
 	3jump UnknownScript_0xa0a7d
 
 UnknownScript_0xbd9f0:
@@ -1364,7 +1364,7 @@ UnknownScript_0xbda20:
 	setflag ENGINE_97
 
 UnknownScript_0xbda23:
-	displaylocation $19, $2
+	displaylocation ROUTE_38, $2
 	setflag ENGINE_CHAD
 	3jump UnknownScript_0xa0376
 
@@ -1395,7 +1395,7 @@ UnknownScript_0xbda63:
 	3jump UnknownScript_0xa05a4
 
 UnknownScript_0xbda67:
-	displaylocation $1a, $2
+	displaylocation ROUTE_39, $2
 	3jump UnknownScript_0xa0ad5
 
 UnknownScript_0xbda6e:
@@ -1420,7 +1420,7 @@ UnknownScript_0xbda9e:
 
 UnknownScript_0xbdaa2:
 	setflag ENGINE_DEREK_HAS_NUGGET
-	displaylocation $1a, $2
+	displaylocation ROUTE_39, $2
 	3jump UnknownScript_0xa05e6
 
 UnknownScript_0xbdaac:
@@ -1441,11 +1441,11 @@ UnknownScript_0xbdad1:
 	3jump UnknownScript_0xa0990
 
 UnknownScript_0xbdad5:
-	displaylocation $22, $2
+	displaylocation ROUTE_42, $2
 	3jump UnknownScript_0xa0a82
 
 UnknownScript_0xbdadc:
-	displaylocation $22, $2
+	displaylocation ROUTE_42, $2
 	3jump UnknownScript_0xa0add
 
 UnknownScript_0xbdae3:
@@ -1475,13 +1475,13 @@ UnknownScript_0xbdb1f:
 	setflag ENGINE_98
 
 UnknownScript_0xbdb22:
-	displaylocation $22, $2
+	displaylocation ROUTE_42, $2
 	setflag ENGINE_TULLY
 	3jump UnknownScript_0xa0376
 
 UnknownScript_0xbdb2c:
 	setflag ENGINE_TULLY_HAS_WATER_STONE
-	displaylocation $22, $2
+	displaylocation ROUTE_42, $2
 	3jump UnknownScript_0xa05e6
 
 UnknownScript_0xbdb36:
@@ -1500,7 +1500,7 @@ UnknownScript_0xbdb55:
 	3jump UnknownScript_0xa0998
 
 UnknownScript_0xbdb59:
-	displaylocation $25, $2
+	displaylocation ROUTE_43, $2
 	3jump UnknownScript_0xa0a87
 
 UnknownScript_0xbdb60:
@@ -1522,7 +1522,7 @@ UnknownScript_0xbdb88:
 	setflag ENGINE_99
 
 UnknownScript_0xbdb8b:
-	displaylocation $25, $2
+	displaylocation ROUTE_43, $2
 	setflag ENGINE_BRENT
 	3jump UnknownScript_0xa0376
 
@@ -1547,11 +1547,11 @@ UnknownScript_0xbdbbe:
 	3jump UnknownScript_0xa09a0
 
 UnknownScript_0xbdbc2:
-	displaylocation $25, $2
+	displaylocation ROUTE_43, $2
 	3jump UnknownScript_0xa0a8c
 
 UnknownScript_0xbdbc9:
-	displaylocation $25, $2
+	displaylocation ROUTE_43, $2
 	3jump UnknownScript_0xa0ae5
 
 UnknownScript_0xbdbd0:
@@ -1583,7 +1583,7 @@ UnknownScript_0xbdc14:
 	setflag ENGINE_9A
 
 UnknownScript_0xbdc17:
-	displaylocation $25, $2
+	displaylocation ROUTE_43, $2
 	setflag ENGINE_TIFFANY
 	3jump UnknownScript_0xa037e
 
@@ -1625,7 +1625,7 @@ UnknownScript_0xbdc65:
 
 UnknownScript_0xbdc69:
 	setflag ENGINE_TIFFANY_HAS_PINK_BOW
-	displaylocation $25, $2
+	displaylocation ROUTE_43, $2
 	3jump UnknownScript_0xa061e
 
 UnknownScript_0xbdc73:
@@ -1644,7 +1644,7 @@ UnknownScript_0xbdc92:
 	3jump UnknownScript_0xa09a8
 
 UnknownScript_0xbdc96:
-	displaylocation $27, $2
+	displaylocation ROUTE_44, $2
 	3jump UnknownScript_0xa0a91
 
 UnknownScript_0xbdc9d:
@@ -1665,7 +1665,7 @@ UnknownScript_0xbdcc1:
 	setflag ENGINE_9B
 
 UnknownScript_0xbdcc4:
-	displaylocation $27, $2
+	displaylocation ROUTE_44, $2
 	setflag ENGINE_VANCE
 	3jump UnknownScript_0xa0376
 
@@ -1687,11 +1687,11 @@ UnknownScript_0xbdcf3:
 	3jump UnknownScript_0xa09b0
 
 UnknownScript_0xbdcf7:
-	displaylocation $27, $2
+	displaylocation ROUTE_44, $2
 	3jump UnknownScript_0xa0a96
 
 UnknownScript_0xbdcfe:
-	displaylocation $27, $2
+	displaylocation ROUTE_44, $2
 	3jump UnknownScript_0xa0aed
 
 UnknownScript_0xbdd05:
@@ -1715,13 +1715,13 @@ UnknownScript_0xbdd33:
 	setflag ENGINE_9C
 
 UnknownScript_0xbdd36:
-	displaylocation $27, $2
+	displaylocation ROUTE_44, $2
 	setflag ENGINE_WILTON
 	3jump UnknownScript_0xa0376
 
 UnknownScript_0xbdd40:
 	setflag ENGINE_WILTON_HAS_ITEM
-	displaylocation $27, $2
+	displaylocation ROUTE_44, $2
 	clearevent EVENT_WILTON_HAS_ULTRA_BALL
 	clearevent EVENT_WILTON_HAS_GREAT_BALL
 	clearevent EVENT_WILTON_HAS_POKE_BALL
@@ -1771,7 +1771,7 @@ UnknownScript_0xbdda8:
 	3jump UnknownScript_0xa09b8
 
 UnknownScript_0xbddac:
-	displaylocation $2b, $2
+	displaylocation ROUTE_45, $2
 	3jump UnknownScript_0xa0a9b
 
 UnknownScript_0xbddb3:
@@ -1792,7 +1792,7 @@ UnknownScript_0xbddd7:
 	setflag ENGINE_9D
 
 UnknownScript_0xbddda:
-	displaylocation $2b, $2
+	displaylocation ROUTE_45, $2
 	setflag ENGINE_PARRY
 	3jump UnknownScript_0xa0376
 
@@ -1812,7 +1812,7 @@ UnknownScript_0xbde03:
 	3jump UnknownScript_0xa09c0
 
 UnknownScript_0xbde07:
-	displaylocation $2d, $2
+	displaylocation ROUTE_46, $2
 	3jump UnknownScript_0xa0aa0
 
 UnknownScript_0xbde0e:
@@ -1833,7 +1833,7 @@ UnknownScript_0xbde32:
 	setflag ENGINE_9E
 
 UnknownScript_0xbde35:
-	displaylocation $2d, $2
+	displaylocation ROUTE_46, $2
 	setflag ENGINE_ERIN
 	3jump UnknownScript_0xa037e
 

@@ -127,7 +127,7 @@ PokeCenterNurseScript: ; bc09c
 	spriteface $fe, $2
 	pause 10
 	special $001b
-	playmusic $0000
+	playmusic MUSIC_NONE
 	writebyte $0
 	special $003e
 	pause 30
@@ -261,9 +261,9 @@ UnknownScript_0xbc1a9: ; 0xbc1a9
 ; 0xbc1af
 
 UnknownScript_0xbc1af: ; 0xbc1af
-	playsound $0008
+	playsound SFX_READ_TEXT_2
 	pause 15
-	playsound $0027
+	playsound SFX_ELEVATOR_END
 	end
 ; 0xbc1b8
 
@@ -941,7 +941,7 @@ UnknownScript_0xbc6e1: ; 0xbc6e1
 
 UnknownScript_0xbc6e6: ; 0xbc6e6
 	3writetext UnknownText_0x1b09c4
-	playsound $0093
+	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	keeptextopen
 	end
