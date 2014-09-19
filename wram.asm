@@ -116,26 +116,29 @@ channel_struct: MACRO
                       ds 1 ; c132
 ENDM
 
-SECTION "tiles0",VRAM[$8000],BANK[0]
+
+
+SECTION "CHR0", VRAM [$8000], BANK [0]
 VTiles0::
-SECTION "tiles1",VRAM[$8800],BANK[0]
+SECTION "CHR1", VRAM [$8800], BANK [0]
 VTiles1::
-SECTION "tiles2",VRAM[$9000],BANK[0]
+SECTION "CHR2", VRAM [$9000], BANK [0]
 VTiles2::
-SECTION "bgmap0",VRAM[$9800],BANK[0]
+SECTION "BG0",  VRAM [$9800], BANK [0]
 VBGMap0::
-SECTION "bgmap1",VRAM[$9C00],BANK[0]
+SECTION "BG1",  VRAM [$9C00], BANK [0]
 VBGMap1::
 
 
 
-SECTION "WRAMBank0",WRAM0[$c000]
+SECTION "Stack", WRAM0
+	ds $ff
+Stack::
+	ds 1
 
-SECTION "stack",WRAM0[$c0ff]
-Stack:: ds -$100 ; c0ff
 
+SECTION "Audio", WRAM0
 
-SECTION "audio",WRAM0[$c100]
 MusicPlaying:: ; c100
 ; nonzero if playing
 	ds 1
@@ -249,6 +252,9 @@ wMapMusic:: ; c2c0
 
 	ds 1
 
+
+SECTION "WRAM", WRAM0
+
 wLZAddress:: dw ; c2c2
 wLZBank::    db ; c2c4
 
@@ -274,8 +280,8 @@ InLinkBattle:: ; c2dc
 ScriptVar:: ; c2dd
 	ds 1
 
+	ds 28
 
-SECTION "tiles",WRAM0[$c2fa]
 TileDown:: ; c2fa
 	ds 1
 TileUp:: ; c2fb
@@ -294,19 +300,22 @@ TilePermissions:: ; c2fe
 ; bit 0: right
 	ds 1
 
-SECTION "icons",WRAM0[$c3b6]
+	ds 183
 
 CurIcon:: ; c3b6
 	ds 1
 
-SECTION "gfx",WRAM0[$c400]
+	ds 73
+
+
+SECTION "Sprites", WRAM0 [$c400]
 
 Sprites:: ; c400
 ; 4 bytes per sprite
 ; 40 sprites
 ; struct:
-;	y in pixels
-;	x in pixels
+;	y (px)
+;	x (px)
 ;	tile id
 ;	attributes:
 ;		bit 7: priority
@@ -318,11 +327,16 @@ Sprites:: ; c400
 	ds 4 * 40
 SpritesEnd::
 
+
+SECTION "Tilemap", WRAM0
+
 TileMap:: ; c4a0
 ; 20x18 grid of 8x8 tiles
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 TileMapEnd::
 
+
+SECTION "Battle", WRAM0
 
 wBattle::
 
@@ -333,16 +347,16 @@ EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
 
 BattleMon:: battle_struct BattleMon ; c62c
+
 	ds 10
 
-OTName:: ; c656
-	ds NAME_LENGTH
+OTName:: ds NAME_LENGTH ; c656
 
 	ds 2
 
 CurOTMon:: ; c663
 	ds 1
-	
+
 	ds 1
 
 TypeModifier:: ; c665
@@ -355,11 +369,11 @@ TypeModifier:: ; c665
 CriticalHit:: ; c666
 ; nonzero for a critical hit
 	ds 1
-	
+
 AttackMissed:: ; c667
 ; nonzero for a miss
 	ds 1
-	
+
 PlayerSubStatus1:: ; c668
 ; bit
 ; 7 attract
@@ -472,7 +486,7 @@ EnemyDamageTaken:: ; c684
 	ds 2
 
 	ds 3
-	
+
 	ds 1
 
 BattleScriptBuffer:: ; c68a
@@ -584,7 +598,7 @@ AlreadyFailed:: ; c6fb
 	ds 1
 
 	ds 3
-	
+
 PlayerScreens:: ; c6ff
 ; bit
 ; 4 reflect
@@ -662,21 +676,25 @@ BattleEnded:: ; c734
 wBattleEnd::
 ; c741
 
-SECTION "overworldmap",WRAM0[$c800]
+	ds 191
+
+
+SECTION "Overworld Map", WRAM0 [$c800]
 OverworldMap:: ; c800
 	ds 1300
 OverworldMapEnd::
-	
+
 	ds 12
 
-SECTION "gfx2",WRAM0[$cd20]
+
+SECTION "Video", WRAM0 [$cd20]
 CreditsPos::
 BGMapBuffer:: ; cd20
 	ds 2
 CreditsTimer:: ; cd22
 	ds 1
 	ds 37
-	
+
 BGMapPalBuffer:: ; cd48
 	ds 40
 
@@ -690,7 +708,7 @@ PlayerHPPal:: ; cd99
 	ds 1
 EnemyHPPal:: ; cd9a
 	ds 1
-	
+
 	ds 62
 
 AttrMap:: ; cdd9
@@ -702,7 +720,7 @@ AttrMap:: ; cdd9
 AttrMapEnd::
 
 	ds 30
-	
+
 MonType:: ; cf5f
 	ds 1
 
@@ -730,9 +748,8 @@ Requested1bppDest:: ; cf6f
 MenuSelection:: ; cf74
 	ds 1
 
+	ds 60
 
-
-SECTION "VBlank",WRAM0[$cfb1]
 OverworldDelay:: ; cfb1
 	ds 1
 TextDelayFrames:: ; cfb2
@@ -753,7 +770,8 @@ GameTimerPause:: ; cfbc
 ; bit 0
 	ds 1
 
-SECTION "Engine",WRAM0[$cfc2]
+	ds 5
+
 FXAnimID::
 FXAnimIDLo:: ; cfc2
 	ds 1
@@ -776,13 +794,13 @@ Options:: ; cfcc
 ; bit 6: battle style shift/set
 ; bit 7: battle scene off/on
 	ds 1
-	
+
 	ds 1
 
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
 	ds 1
-	
+
 	ds 1
 
 GBPrinter:: ; cfd0
@@ -799,12 +817,12 @@ Options2:: ; cfd1
 	ds 1
 
 	ds 46
-	
 
-SECTION "WRAMBank1",WRAMX[$d000],BANK[1]
+
+SECTION "WRAM 1", WRAMX, BANK [1]
 
 	ds 2
-	
+
 DefaultFlypoint:: ; d002
 	ds 1
 ; d003
@@ -888,7 +906,7 @@ CurItem:: ; d106
 	ds 1
 
 	ds 1
-	
+
 CurPartySpecies:: ; d108
 	ds 1
 
@@ -912,14 +930,14 @@ PartyMenuActionText:: ; d141
 CurPartyLevel:: ; d143
 	ds 1
 
+	ds 16
 
-SECTION "UsedSprites",WRAMX[$d154],BANK[1]
 UsedSprites:: ; d154
 	ds 32
 
-SECTION "map",WRAMX[$d19d],BANK[1]
+	ds 41
 
-; both are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
+; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d
 MapBorderBlock:: ; d19d
 	ds 1
@@ -1043,6 +1061,7 @@ TilesetPalettes:: ; d1e6
 ; bank 3f
 	ds 2
 
+
 EvolvableFlags:: ; d1e8
 	flag_array PARTY_LENGTH
 
@@ -1055,7 +1074,9 @@ MovementType::
 Buffer2:: ; d1eb
 	ds 1
 
-SECTION "BattleMons2",WRAMX[$d1fa],BANK[1]
+	ds 14
+
+
 LinkBattleRNs:: ; d1fa
 	ds 10
 
@@ -1074,7 +1095,7 @@ IsInBattle:: ; d22d
 ; 1: wild battle
 ; 2: trainer battle
 	ds 1
-	
+
 	ds 1
 
 OtherTrainerClass:: ; d22f
@@ -1163,14 +1184,15 @@ BaseTMHM:: ; d24e
 CurDamage:: ; d256
 	ds 2
 
-
-SECTION "TimeOfDay",WRAMX[$d269],BANK[1]
+	ds 17
 
 TimeOfDay:: ; d269
 	ds 1
 
+	ds 22
 
-SECTION "OTParty",WRAMX[$d280],BANK[1]
+
+SECTION "Enemy Party", WRAMX, BANK [1]
 
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
@@ -1220,7 +1242,8 @@ ScriptPos:: ; d43a
 ScriptDelay:: ; d44d
 	ds 1
 
-SECTION "Player",WRAMX[$d472],BANK[1]
+	ds 36
+
 PlayerGender:: ; d472
 ; bit 0:
 ;	0 male
@@ -1346,17 +1369,18 @@ ObjectStruct12:: ; d6b6
 	ds 40
 ; d6de
 
-SECTION "Objects",WRAMX[$d71e],BANK[1]
+	ds 64
+
 MapObjects:: ; d71e
 	ds OBJECT_LENGTH * NUM_OBJECTS
 
+	ds 16
 
-SECTION "VariableSprites",WRAMX[$d82e],BANK[1]
 VariableSprites:: ; d82e
 	ds $10
 
+	ds 3
 
-SECTION "Status",WRAMX[$d841],BANK[1]
 TimeOfDayPal:: ; d841
 	ds 1
 	ds 4
@@ -1365,7 +1389,7 @@ TimeOfDayPal:: ; d841
 	ds 1
 CurTimeOfDay:: ; d848
 	ds 1
-	
+
 	ds 3
 
 StatusFlags:: ; d84c
@@ -1383,42 +1407,42 @@ wMomSavingMoney:: ; d854
 
 Coins:: ; d855
 	ds 2
-	
+
 Badges::
 JohtoBadges:: ; d857
 	flag_array 8
 KantoBadges:: ; d858
 	flag_array 8
-	
-SECTION "Items",WRAMX[$d859],BANK[1]
+
+
 TMsHMs:: ; d859
-	ds 57
+	ds NUM_TMS + NUM_HMS
 TMsHMsEnd::
 
 NumItems:: ; d892
 	ds 1
 Items:: ; d893
-	ds 41
+	ds MAX_ITEMS * 2 + 1
 ItemsEnd::
 
 NumKeyItems:: ; d8bc
 	ds 1
 KeyItems:: ; d8bd
-	ds 26
+	ds MAX_KEY_ITEMS + 1
 KeyItemsEnd::
 
 NumBalls:: ; d8d7
 	ds 1
 Balls:: ; d8d8
-	ds 25
+	ds MAX_BALLS * 2 + 1
 BallsEnd::
 
 PCItems:: ; d8f1
-	ds 101
+	ds MAX_PC_ITEMS * 2 + 1
 PCItemsEnd::
 
+	ds 5
 
-SECTION "overworld",WRAMX[$d95b],BANK[1]
 WhichRegisteredItem:: ; d95b
 	ds 1
 RegisteredItem:: ; d95c
@@ -1427,7 +1451,8 @@ RegisteredItem:: ; d95c
 PlayerState:: ; d95d
 	ds 1
 
-SECTION "scriptram",WRAMX[$d962],BANK[1]
+	ds 4
+
 MooMooBerries:: ; d962
 	ds 1 ; how many berries fed to MooMoo
 UndergroundSwitchPositions:: ; d963
@@ -1435,7 +1460,10 @@ UndergroundSwitchPositions:: ; d963
 FarfetchdPosition:: ; d964
 	ds 1 ; which position the ilex farfetch'd is in
 
-SECTION "Map Triggers", WRAMX[$d972], BANK[1]
+	ds 13
+
+
+SECTION "Map Triggers", WRAMX, BANK [1]
 
 wPokecenter2FTrigger::                       ds 1 ; d972
 wTradeCenterTrigger::                        ds 1 ; d973
@@ -1517,8 +1545,12 @@ wMountMoonSquareTrigger::                    ds 1 ; d9be
 wMobileTradeRoomMobileTrigger::              ds 1 ; d9bf
 wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 
+	ds 49
 
-SECTION "Events",WRAMX[$da72],BANK[1]
+
+SECTION "Events", WRAMX, BANK [1]
+
+	ds 128
 
 EventFlags:: ; da72
 ;RoomDecorations:: ; dac6
@@ -1529,7 +1561,7 @@ EventFlags:: ; da72
 	flag_array 2000
 ; db6c
 
-SECTION "Boxes",WRAMX[$db72],BANK[1]
+	ds 6
 
 wCurBox:: ; db72
 	ds 1
@@ -1539,13 +1571,15 @@ wCurBox:: ; db72
 ; 8 chars + $50
 wBoxNames:: ds 9 * NUM_BOXES ; db75
 
-SECTION "bike", WRAMX[$dbf5],BANK[1]
+	ds 2
+
 BikeFlags:: ; dbf5
 ; bit 1: always on bike
 ; bit 2: downhill
 	ds 1
 
-SECTION "decorations", WRAMX[$dc0f],BANK[1]
+	ds 25
+
 ; Sprite id of each decoration
 Bed:: ; dc0f
 	ds 1
@@ -1564,21 +1598,24 @@ RightOrnament:: ; dc15
 BigDoll:: ; dc16
 	ds 1
 
-SECTION "fruittrees", WRAMX[$dc27],BANK[1]
+	ds 16
+
 FruitTreeFlags:: ; dc27
 	ds 1
 
-SECTION "steps", WRAMX[$dc73],BANK[1]
+	ds 75
+
 StepCount:: ; dc73
 	ds 1
 PoisonStepCount:: ; dc74
 	ds 1
 
-SECTION "Visited Spawn Points", WRAMX[$dca5],BANK[1]
+	ds 48
+
 VisitedSpawns:: ; dca5
 	flag_array 27
 
-SECTION "BackupMapInfo", WRAMX[$dcad],BANK[1]
+	ds 4
 
 ; used on maps like second floor pokécenter, which are reused, so we know which
 ; map to return to
@@ -1587,7 +1624,7 @@ BackupMapGroup:: ; dcad
 BackupMapNumber:: ; dcae
 	ds 1
 
-SECTION "PlayerMapInfo", WRAMX[$dcb4],BANK[1]
+	ds 5
 
 WarpNumber:: ; dcb4
 	ds 1
@@ -1600,7 +1637,10 @@ YCoord:: ; dcb7
 XCoord:: ; dcb8
 	ds 1 ; current x coordinate relative to top-left corner of current map
 
-SECTION "PlayerParty",WRAMX[$dcd7],BANK[1]
+	ds 30
+
+
+SECTION "Party", WRAMX, BANK [1]
 
 PartyCount:: ; dcd7
 	ds 1 ; number of Pokémon in party
@@ -1623,7 +1663,10 @@ PartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; de41
 PartyMonNicknamesEnd::
 
 
-SECTION "Pokedex", WRAMX[$de99], BANK[1]
+	ds 22
+
+
+SECTION "Pokedex", WRAMX, BANK [1]
 
 PokedexCaught:: ; de99
 	flag_array NUM_POKEMON
@@ -1639,6 +1682,9 @@ UnlockedUnowns:: ; def3
 	ds 1
 
 	ds 1
+
+
+SECTION "Daycare", WRAMX, BANK [1]
 
 wDaycareMan:: ; def5
 ; bit 7: active
@@ -1675,6 +1721,9 @@ wEggMon::  box_struct wEggMon ; df7b
 
 	ds 1
 
+
+SECTION "Misc Pokemon", WRAMX, BANK [1]
+
 wContestMon:: party_struct wContestMon ; df9c
 
 	ds 3
@@ -1694,7 +1743,7 @@ wRoamMon3:: roam_struct wRoamMon3 ; dfdd
 
 
 
-SECTION "WRAMBank5",WRAMX[$d000],BANK[5]
+SECTION "GBC Video", WRAMX, BANK [5]
 
 ; 8 4-color palettes
 Unkn1Pals:: ds 8 * 8 ; d000
@@ -1706,14 +1755,18 @@ LYOverrides:: ; d100
 	ds SCREEN_HEIGHT_PX
 LYOverridesEnd::
 
-	ds 112
+	ds $100 - SCREEN_HEIGHT_PX
 
 LYOverridesBackup:: ; d200
 	ds SCREEN_HEIGHT_PX
 LYOverridesBackupEnd::
 
+	ds $100 - SCREEN_HEIGHT_PX
 
-SECTION "Battle Animations", WRAMX[$d30a], BANK[5]
+
+SECTION "Battle Animations", WRAMX, BANK [5]
+
+	ds 10
 
 ActiveAnimObjects:: ; d30a
 	ds 4 * 40
@@ -1744,12 +1797,12 @@ BattleAnimTemps:: ; d419
 	ds 8
 
 
-SECTION "Scratch", SRAM, BANK[0]
+SECTION "Scratch", SRAM, BANK [0]
 
 
-SECTION "SRAM Bank 1", SRAM, BANK[1]
+SECTION "SRAM Bank 1", SRAM, BANK [1]
 
-SECTION "BoxMons", SRAM[$ad10], BANK[1]
+SECTION "BoxMons", SRAM [$ad10], BANK [1]
 
 sBoxCount::   ds 1 ; ad10
 sBoxSpecies:: ds MONS_PER_BOX ; ad11

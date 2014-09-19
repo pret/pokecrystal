@@ -250,7 +250,9 @@ HM_06         EQU $F8
 HM_07         EQU $F9
 HM_08         EQU $FA
 
-NUM_TMS EQU HM_01 - TM_01 - 2
+
+NUM_TMS EQU 50
+NUM_HMS EQU 7
 
 
 ; leftovers from red
