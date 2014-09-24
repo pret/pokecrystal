@@ -43,7 +43,7 @@ crystal: pokecrystal.gbc
 
 clean:
 	rm -f $(roms) $(all_obj)
-	find -iname '*.tx' -exec rm {} +
+	find . -iname '*.tx' -exec rm {} +
 
 baserom.gbc: ;
 	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
