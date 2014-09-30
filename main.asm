@@ -31170,7 +31170,7 @@ Function241d5: ; 241d5
 	call Function24329
 .asm_241d8
 	call Function2431a
-	call $402d ; This call jumps to the middle of an instruction.
+	call Function10402d ; BUG: This function is in a different bank.
 	call Function241fa
 	jr nc, .asm_241f9
 	call Function24270
@@ -38661,7 +38661,7 @@ Function292f6: ; 292f6
 	ld de, $c736
 	call PlaceString
 	ld hl, $c741
-	ld de, NULL
+	ld de, 0
 .asm_2931e
 	ld a, [hli]
 	cp $50
@@ -94686,7 +94686,7 @@ Functione31e7: ; e31e7
 	pop hl
 	ld a, [wCurBox]
 	push af
-	ld bc, NULL
+	ld bc, 0
 	ld a, [$cb31]
 	and a
 	jr nz, .asm_e3215

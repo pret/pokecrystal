@@ -649,14 +649,14 @@ Function327b:: ; 327b
 	ld sp, hl
 	ld a, [$ffd7]
 	ld h, a
-	ld l, $0
-	ld a, $12
+	ld l, 0
+	ld a, 18
 	ld [$ffd3], a
-	ld b, $2
-	ld c, $41
+	ld b, 1 << 1 ; not in v/hblank
+	ld c, rSTAT % $100
 
 .loop
-rept 10
+rept 20 / 2
 	pop de
 .loop\@
 	ld a, [$ff00+c]
@@ -668,7 +668,7 @@ rept 10
 	inc l
 endr
 
-	ld de, $000c
+	ld de, 32 - 20
 	add hl, de
 	ld a, [$ffd3]
 	dec a
@@ -848,13 +848,13 @@ GetName:: ; 33c3
 	push de
 
 	ld a, [$cf61]
-	cp 1 ; Pokemon names
+	cp PKMN_NAME
 	jr nz, .NotPokeName
 
 	ld a, [CurSpecies]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, 11
+	ld hl, PKMN_NAME_LENGTH
 	add hl, de
 	ld e, l
 	ld d, h
@@ -995,7 +995,7 @@ GetItemName:: ; 3468
 	jr nc, .TM
 
 	ld [CurSpecies], a
-	ld a, 4 ; Item names
+	ld a, ITEM_NAME
 	ld [$cf61], a
 	call GetName
 	jr .Copied
@@ -1047,9 +1047,9 @@ GetTMHMName:: ; 3487
 	ld a, c
 	jr c, .asm_34b9
 	sub NUM_TMS
+.asm_34b9
 
 ; Divide and mod by 10 to get the top and bottom digits respectively
-.asm_34b9
 	ld b, "0"
 .mod10
 	sub 10
@@ -1123,15 +1123,16 @@ IsHMMove:: ; 34e7
 
 GetMoveName:: ; 34f8
 	push hl
-; move name
-	ld a, $2 ; move names
+
+	ld a, MOVE_NAME
 	ld [$cf61], a
-; move id
-	ld a, [$d265]
+
+	ld a, [$d265] ; move id
 	ld [CurSpecies], a
 
 	call GetName
 	ld de, StringBuffer1
+
 	pop hl
 	ret
 ; 350c
@@ -1141,12 +1142,14 @@ Function350c:: ; 350c
 	call Function1c66
 	ld a, [hROMBank]
 	push af
-	ld a, $9
+
+	ld a, BANK(Function245af)
 	rst Bankswitch
 
 	call Function245af
 	call Function3524
 	call Function245cb
+
 	pop af
 	rst Bankswitch
 
@@ -1182,6 +1185,7 @@ Function352f:: ; 352f
 
 Function354b:: ; 354b
 	call DelayFrame
+
 	ld a, [$ffaa]
 	push af
 	ld a, $1
@@ -1189,11 +1193,12 @@ Function354b:: ; 354b
 	call Functiona57
 	pop af
 	ld [$ffaa], a
+
 	ld a, [$ffa9]
-	and $f0
+	and D_RIGHT + D_LEFT + D_UP + D_DOWN
 	ld c, a
 	ld a, [hJoyPressed]
-	and $f
+	and A_BUTTON + B_BUTTON + SELECT + START
 	or c
 	ld c, a
 	ret
@@ -1203,12 +1208,13 @@ Function354b:: ; 354b
 Function3567:: ; 3567
 	ld a, [hROMBank]
 	push af
+
 	call Function2c52
 	call Function3574
+
 	pop bc
 	ld a, b
 	rst Bankswitch
-
 	ret
 ; 3574
 
@@ -1218,6 +1224,7 @@ Function3574:: ; 3574
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_3597
+
 	ld l, a
 	push hl
 	call Function3599
@@ -1239,18 +1246,21 @@ Function3574:: ; 3574
 
 Function3599:: ; 3599
 	push de
+
 	ld hl, $0010
 	add hl, de
 	ld a, [hl]
 	ld hl, $0011
 	add hl, de
 	ld e, [hl]
-	sub $4
+
+	sub 4
 	ld d, a
 	ld a, e
-	sub $4
+	sub 4
 	ld e, a
 	call Function35b0
+
 	pop de
 	ret
 ; 35b0
@@ -1263,7 +1273,8 @@ Function35b0:: ; 35b0
 	ld a, [$dbfb]
 	and a
 	jr z, .asm_35d3
-.asm_35bc
+
+.loop
 	push af
 	ld a, [hl]
 	cp e
@@ -1280,11 +1291,11 @@ Function35b0:: ; 35b0
 	ld l, a
 	jr nc, .asm_35cf
 	inc h
-
 .asm_35cf
+
 	pop af
 	dec a
-	jr nz, .asm_35bc
+	jr nz, .loop
 
 .asm_35d3
 	and a
@@ -1343,8 +1354,8 @@ CheckTrainerBattle2:: ; 3600
 
 	ld a, [hROMBank]
 	push af
-	call Function2c52
 
+	call Function2c52
 	call CheckTrainerBattle
 
 	pop bc
@@ -1442,7 +1453,7 @@ CheckTrainerBattle:: ; 360d
 	ld a, b
 	ld [$d03f], a
 	ld a, c
-	ld [MartPointer], a
+	ld [$d040], a
 	jr Function367e
 ; 3674
 
@@ -1450,7 +1461,7 @@ Function3674:: ; 3674
 	ld a, $1
 	ld [$d03f], a
 	ld a, $ff
-	ld [MartPointer], a
+	ld [$d040], a
 
 Function367e:: ; 367e
 	call GetMapScriptHeaderBank
@@ -1585,12 +1596,12 @@ Function3718:: ; 3718
 	cp BATTLETYPE_CANLOSE
 	jr .asm_3724
 
-	ld hl, WalkingTile
+	ld hl, $d047
 	jr .asm_3731
 
 .asm_3724
 	ld a, [$d0ee]
-	ld hl, WalkingTile
+	ld hl, $d047
 	and $f
 	jr z, .asm_3731
 	ld hl, $d049
@@ -1750,7 +1761,7 @@ Function383d:: ; 383d
 Function3842:: ; 3842
 	ld [$d265], a
 	ld de, $d265
-	ld b,  %01000001 ; flags
+	ld b, 1 << 6 + 1
 	jp PrintNum
 ; 384d
 
@@ -1758,7 +1769,7 @@ Function3842:: ; 3842
 Function384d:: ; 384d
 	ld hl, $d25e
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ret
@@ -2105,8 +2116,8 @@ Function3eea:: ; 3eea
 Function3efd:: ; 3efd
 	push hl
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	ld b, 4
+	ld c, 18
 	call Function3f0d
 	pop hl
 	call PrintTextBoxText

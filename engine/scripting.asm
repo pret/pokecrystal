@@ -2123,11 +2123,10 @@ Script_pokenamemem: ; 0x976ae
 
 Unknown_976c0: ; 0x976c0
 	call GetScriptByte
-	cp $3
-	jr c, .asm_976c8
+	cp 3
+	jr c, .ok
 	xor a
-.asm_976c8
-; 976c8
+.ok
 
 Function976c8: ; 976c8
 	ld hl, StringBuffer3
