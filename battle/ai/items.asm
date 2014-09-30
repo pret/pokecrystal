@@ -14,11 +14,11 @@ Function38000: ; 38000
 
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
-	jr nz, Function38041
+	jr nz, DontSwitch
 
 	ld a, [$c731]
 	and a
-	jr nz, Function38041
+	jr nz, DontSwitch
 
 	ld hl, TrainerClassAttributes + 5
 	ld a, [$cfc0]
@@ -30,30 +30,30 @@ Function38000: ; 38000
 	call AddNTimes
 .ok
 	bit SWITCH_OFTEN_F, [hl]
-	jp nz, Function38045
+	jp nz, SwitchOften
 	bit SWITCH_RARELY_F, [hl]
-	jp nz, Function38083
+	jp nz, SwitchRarely
 	bit SWITCH_SOMETIMES_F, [hl]
-	jp nz, Function380c1
+	jp nz, SwitchSometimes
 	; fallthrough
 
-Function38041: ; 38041
-	call Function38105
+DontSwitch: ; 38041
+	call AI_TryItem
 	ret
 ; 38045
 
-Function38045: ; 38045
+SwitchOften: ; 38045
 	callab Function34941
 	ld a, [$c717]
 	and $f0
-	jp z, Function38041
+	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
 	cp $80
 	jr c, .switch
-	jp Function38041
+	jp DontSwitch
 .not_10
 
 	cp $20
@@ -61,13 +61,13 @@ Function38045: ; 38045
 	call Random
 	cp 200
 	jr c, .switch
-	jp Function38041
+	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
 	cp 10
-	jp c, Function38041
+	jp c, DontSwitch
 
 .switch
 	ld a, [$c717]
@@ -77,18 +77,18 @@ Function38045: ; 38045
 	jp AI_TrySwitch
 ; 38083
 
-Function38083: ; 38083
+SwitchRarely: ; 38083
 	callab Function34941
 	ld a, [$c717]
 	and $f0
-	jp z, Function38041
+	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
 	cp 20
 	jr c, .switch
-	jp Function38041
+	jp DontSwitch
 .not_10
 
 	cp $20
@@ -96,13 +96,13 @@ Function38083: ; 38083
 	call Random
 	cp 30
 	jr c, .switch
-	jp Function38041
+	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
 	cp 200
-	jp c, Function38041
+	jp c, DontSwitch
 
 .switch
 	ld a, [$c717]
@@ -112,18 +112,18 @@ Function38083: ; 38083
 	jp AI_TrySwitch
 ; 380c1
 
-Function380c1: ; 380c1
+SwitchSometimes: ; 380c1
 	callab Function34941
 	ld a, [$c717]
 	and $f0
-	jp z, Function38041
+	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
 	cp 50
 	jr c, .switch
-	jp Function38041
+	jp DontSwitch
 .not_10
 
 	cp $20
@@ -131,13 +131,13 @@ Function380c1: ; 380c1
 	call Random
 	cp $80
 	jr c, .switch
-	jp Function38041
+	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
 	cp 50
-	jp c, Function38041
+	jp c, DontSwitch
 
 .switch
 	ld a, [$c717]
@@ -155,17 +155,20 @@ Function380ff: ; 380ff
 ; 38105
 
 
-Function38105: ; 38105
+AI_TryItem: ; 38105
 	ld a, [$cfc0]
 	and a
 	ret nz
+
 	ld a, [$c650]
 	ld b, a
 	ld a, [$c651]
 	or b
 	ret z
-	call Function38170
+
+	call .IsHighestLevel
 	ret nc
+
 	ld a, [TrainerClass]
 	dec a
 	ld hl, TrainerClassAttributes + 5
@@ -173,92 +176,105 @@ Function38105: ; 38105
 	call AddNTimes
 	ld b, h
 	ld c, l
-	ld hl, Unknown_38196
+	ld hl, AI_Items
 	ld de, $c650
-.asm_3812c
+.loop
 	ld a, [hl]
 	and a
 	inc a
 	ret z
+
 	ld a, [de]
 	cp [hl]
-	jr z, .asm_3813f
+	jr z, .has_item
 	inc de
 	ld a, [de]
 	cp [hl]
-	jr z, .asm_3813f
+	jr z, .has_item
+
 	dec de
 	inc hl
 	inc hl
 	inc hl
-	jr .asm_3812c
+	jr .loop
 
-.asm_3813f
+.has_item
 	inc hl
+
 	push hl
 	push de
-	ld de, .asm_3814a
+	ld de, .callback
 	push de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-
-.asm_3814a
+.callback
 	pop de
 	pop hl
+
 	inc hl
 	inc hl
-	jr c, .asm_3812c
+	jr c, .loop
+
+.used_item
 	xor a
 	ld [de], a
 	inc a
 	ld [$c70f], a
+
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_BIDE, [hl]
+
 	xor a
 	ld [EnemyFuryCutterCount], a
 	ld [$c681], a
 	ld [$c72c], a
+
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
+
 	xor a
 	ld [LastPlayerCounterMove], a
+
 	scf
 	ret
 
 
-Function38170: ; 38170
+.IsHighestLevel: ; 38170
 	ld a, [OTPartyCount]
 	ld d, a
 	ld e, 0
 	ld hl, OTPartyMon1Level
 	ld bc, OTPartyMon2 - OTPartyMon1
-.asm_3817c
+.next
 	ld a, [hl]
 	cp e
-	jr c, .asm_38181
+	jr c, .ok
 	ld e, a
-.asm_38181
+.ok
 	add hl, bc
 	dec d
-	jr nz, .asm_3817c
+	jr nz, .next
 
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Level
 	call AddNTimes
 	ld a, [hl]
 	cp e
-	jr nc, .asm_38194
+	jr nc, .yes
+
+.no
 	and a
 	ret
 
-.asm_38194
+.yes
 	scf
 	ret
 ; 38196
 
-Unknown_38196: ; 39196
+
+AI_Items: ; 39196
 	dbw FULL_RESTORE, .FullRestore
 	dbw MAX_POTION,   .MaxPotion
 	dbw HYPER_POTION, .HyperPotion
@@ -837,7 +853,7 @@ Function38571: ; 38571
 	call GetItemName
 	ld hl, StringBuffer1
 	ld de, $d050
-	ld bc, $000d
+	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 	ld hl, UnknownText_0x3858c
 	jp PrintText
