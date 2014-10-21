@@ -389,6 +389,9 @@ AIScoring_Smart: ; 386be
 
 
 AIScoring_Sleep: ; 387e3
+; Greatly encourage sleep inducing moves if the enemy has either Dream Eater or Nightmare
+; 50% chance to greatly encourage sleep inducing moves otherwise
+
 	ld b, EFFECT_DREAM_EATER
 	call AIHasMove
 	jr c, .asm_387f0
@@ -413,16 +416,20 @@ AIScoring_LeechHit: ; 387f7
 	callab Function347c8
 	pop hl
 
+; 60% chance to discourage this move if not very effective
 	ld a, [$d265]
 	cp 10 ; 1.0
 	jr c, .asm_38815
 
+; Do nothing if effectiveness is neutral
 	ret z
+
+; Do nothing if the enemy's health is full	
 	call AICheckEnemyMaxHP
-
 	ret c
-	call Function39521
 
+; 80% chance to encourage this move otherwise	
+	call Function39521 
 	ret c
 	dec [hl]
 	ret
@@ -544,23 +551,30 @@ AIScoring_LockOn: ; 3881d
 
 
 AIScoring_Explosion: ; 388a6
+
+; Unless this is the enemy's last Pokemon...
 	push hl
 	callba Function349f4
 	pop hl
 	jr nc, .asm_388b7
 
+; ...greatly discourage this move unless this is the player's last Pokemon too
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
 	jr nz, .asm_388c6
 
 .asm_388b7
+; Greatly discourage this move if enemy's health is higher than 50%
 	call AICheckEnemyHalfHP
 	jr c, .asm_388c6
 
+; Do nothing if enemy's health is not higher than 25%
 	call AICheckEnemyQuarterHP
 	ret nc
 
+; If enemy's health is in-between 25% and 50%
+; over 90% chance to greatly discourage this move
 	call Random
 	cp 20
 	ret c
