@@ -1,5 +1,5 @@
 AIScoring_RedStatus: ; 38591
-; Don't use status-only moves if the player can't be statused.
+; Handle the AI of status-only moves and moves with special effects
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
@@ -19,15 +19,19 @@ AIScoring_RedStatus: ; 38591
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	ld c, a
 
+; Dismiss moves with special effects if they are
+; useless or not a good choice right now.
+; For example, healing moves, weather moves, Dream Eater...	
 	push hl
 	push de
 	push bc
-	callba Function2c41a
+	callba AISpecialEffects
 	pop bc
 	pop de
 	pop hl
 	jr nz, .discourage
 
+; Dismiss status-only moves if the player can't be statused.	
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	push hl
 	push de
@@ -45,6 +49,7 @@ AIScoring_RedStatus: ; 38591
 	and a
 	jr nz, .discourage
 
+; Dismiss Safeguard if it's already active	
 	ld a, [PlayerScreens]
 	bit SCREENS_SAFEGUARD, a
 	jr z, .checkmove
@@ -65,7 +70,9 @@ AIScoring_RedStatus: ; 38591
 
 
 AIScoring_RedStatMods: ; 385e0
-; Use stat-modifying moves on turn 1.
+; 50% chance to greatly encourage stat-up moves during enemy's first turn
+; 50% chance to greatly encourage stat-down moves during player's first turn
+; Almost 90% chance to greatly discourage stat-modifying moves otherwise
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
@@ -699,7 +706,7 @@ AIScoring_AlwaysHit: ; 38947
 ; ...or player's evasion level has been rasied three or more stages
 	ld a, [PlayerEvaLevel]
 	cp $a
-	ret c 
+	ret c
 
 .asm_38954
 	call Function39521
@@ -929,6 +936,7 @@ AIScoring_LeechSeed: ; 38a4e
 AIScoring_LightScreen:
 AIScoring_Reflect: ; 38a54
 ; Over 90% chance to discourage this move unless enemy's HP is full
+
 	call AICheckEnemyMaxHP
 	ret c
 	call Random
@@ -2956,7 +2964,9 @@ AIScoring_Opportunist: ; 39315
 
 
 AIScoring_Aggressive: ; 39369
-; Use whatever does the most damage.
+; Discourage all damaging moves but the one that does the most damage.
+; If no damaging move deals damage to the player (immune),
+; no move will be discouraged
 
 ; Figure out which attack does the most damage and put it in c.
 	ld hl, EnemyMonMoves
@@ -2984,6 +2994,7 @@ AIScoring_Aggressive: ; 39369
 	pop de
 	pop hl
 
+; Update current move if damage is highest so far
 	ld a, [CurDamage + 1]
 	cp e
 	ld a, [CurDamage]
@@ -3019,6 +3030,7 @@ AIScoring_Aggressive: ; 39369
 	cp EnemyMonMovesEnd - EnemyMonMoves + 1
 	jr z, .done
 
+; Ignore this move if it is the highest damaging one
 	cp c
 	ld a, [de]
 	inc de
@@ -3027,15 +3039,17 @@ AIScoring_Aggressive: ; 39369
 
 	call AIGetEnemyMove
 
+; Ignore this move if its power is 0 or 1	
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	cp 2
 	jr c, .checkmove2
 
+; Ignore this move if it is reckless	
 	push hl
 	push de
 	push bc
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	ld hl, .aggressivemoves
+	ld hl, .recklessmoves
 	ld de, 1
 	call IsInArray
 	pop bc
@@ -3043,13 +3057,14 @@ AIScoring_Aggressive: ; 39369
 	pop hl
 	jr c, .checkmove2
 
+; If we made it this far, discourage this move 	
 	inc [hl]
 	jr .checkmove2
 
 .done
 	ret
 
-.aggressivemoves
+.recklessmoves
 	db EFFECT_EXPLOSION
 	db EFFECT_RAMPAGE
 	db EFFECT_MULTI_HIT
@@ -3293,6 +3308,8 @@ AIDiscourageMove: ; 39503
 
 
 AIGetEnemyMove: ; 39508
+; Load attributes of move a into ram
+
 	push hl
 	push de
 	push bc

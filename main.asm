@@ -41681,11 +41681,13 @@ TrainerClassNames:: ; 2c1ef
 
 
 
-Function2c41a: ; 2c41a (b:441a)
-; More move AI.
+AISpecialEffects: ; 2c41a (b:441a)
+; Specific AI for certain move effects
+; Return z if the move is a good choice
+; Return nz if the move is a bad choice
 	ld a, c
 	ld de, 3
-	ld hl, Unknown_2c42c
+	ld hl, SpecialEffectMoves
 	call IsInArray
 	jp nc, Function2c545
 	inc hl
@@ -41695,7 +41697,7 @@ Function2c41a: ; 2c41a (b:441a)
 	jp [hl]
 ; 2c42c (b:442c)
 
-Unknown_2c42c: ; 2c42c
+SpecialEffectMoves: ; 2c42c
 	dbw EFFECT_DREAM_EATER,  Function2c524
 	dbw EFFECT_HEAL,         Function2c539
 	dbw EFFECT_LIGHT_SCREEN, Function2c487
@@ -47148,7 +47150,7 @@ AIChooseMove: ; 440ce
 
 	ld a, c
 	cp 16 ; up to 16 scoring layers
-	jr z, .asm_4415e
+	jr z, .DecrementScores
 
 	push bc
 	ld d, $e ; BANK(TrainerAI)
@@ -47177,27 +47179,36 @@ AIChooseMove: ; 440ce
 
 	jr .CheckLayer
 
-.asm_4415e
+; Decrement the scores of all moves one by one until one reaches 0
+; If the Pokemon has no moves, the game will loop indefinitely	
+.DecrementScores
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves
-.asm_44166
+	
+.DecrementNextScore
 	ld a, [de]
 	inc de
 	and a
-	jr z, .asm_4415e
+	jr z, .DecrementScores
 
+	; We are done whenever a score reaches 0
 	dec [hl]
-	jr z, .asm_44174
+	jr z, .PickLowestScoreMoves
 
+	; If we just decremented the fourth move's score, go back to the first move
 	inc hl
 	dec c
-	jr z, .asm_4415e
+	jr z, .DecrementScores
 
-	jr .asm_44166
+	jr .DecrementNextScore
 
-.asm_44174
+; In order to avoid bias towards the moves located first in memory, increment the scores
+; that were decremented one more time than the rest (in case there was a tie)
+; This means that the minimum score will be 1	
+.PickLowestScoreMoves
 	ld a, c
+	
 .asm_44175
 	inc [hl]
 	dec hl
@@ -47208,11 +47219,15 @@ AIChooseMove: ; 440ce
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, NUM_MOVES
+	
+; Give a score of 0 to a blank move	
 .asm_44184
 	ld a, [de]
 	and a
 	jr nz, .asm_44189
-	ld [hl], a
+	ld [hl], a 
+
+; Disregard the move if its score is not 1	
 .asm_44189
 	ld a, [hl]
 	dec a
@@ -47220,6 +47235,7 @@ AIChooseMove: ; 440ce
 	xor a
 	ld [hli], a
 	jr .asm_44193
+	
 .asm_44191
 	ld a, [de]
 	ld [hli], a
@@ -47228,7 +47244,8 @@ AIChooseMove: ; 440ce
 	dec c
 	jr nz, .asm_44184
 
-.asm_44197
+; Randomly choose one of the moves with a score of 1 	
+.ChooseMove
 	ld hl, Buffer1
 	call Random
 	and 3
@@ -47237,7 +47254,7 @@ AIChooseMove: ; 440ce
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_44197
+	jr z, .ChooseMove
 
 	ld [CurEnemyMove], a
 	ld a, c
