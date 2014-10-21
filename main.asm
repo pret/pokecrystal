@@ -41682,9 +41682,9 @@ TrainerClassNames:: ; 2c1ef
 
 
 AISpecialEffects: ; 2c41a (b:441a)
-; Specific AI for certain move effects
-; Return z if the move is a good choice
-; Return nz if the move is a bad choice
+; Specific AI for certain move effects.
+; Return z if the move is a good choice.
+; Return nz if the move is a bad choice.
 	ld a, c
 	ld de, 3
 	ld hl, SpecialEffectMoves
@@ -47179,8 +47179,8 @@ AIChooseMove: ; 440ce
 
 	jr .CheckLayer
 
-; Decrement the scores of all moves one by one until one reaches 0
-; If the Pokemon has no moves, the game will loop indefinitely	
+; Decrement the scores of all moves one by one until one reaches 0.
+; If the Pokemon has no moves, the game will loop indefinitely.
 .DecrementScores
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
@@ -47204,8 +47204,8 @@ AIChooseMove: ; 440ce
 	jr .DecrementNextScore
 
 ; In order to avoid bias towards the moves located first in memory, increment the scores
-; that were decremented one more time than the rest (in case there was a tie)
-; This means that the minimum score will be 1	
+; that were decremented one more time than the rest (in case there was a tie).
+; This means that the minimum score will be 1.
 .PickLowestScoreMoves
 	ld a, c
 	

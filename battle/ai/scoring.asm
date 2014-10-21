@@ -1,5 +1,5 @@
 AIScoring_RedStatus: ; 38591
-; Handle the AI of status-only moves and moves with special effects
+; Handle the AI of status-only moves and moves with special effects.
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
@@ -49,7 +49,7 @@ AIScoring_RedStatus: ; 38591
 	and a
 	jr nz, .discourage
 
-; Dismiss Safeguard if it's already active	
+; Dismiss Safeguard if it's already active.
 	ld a, [PlayerScreens]
 	bit SCREENS_SAFEGUARD, a
 	jr z, .checkmove
@@ -70,9 +70,9 @@ AIScoring_RedStatus: ; 38591
 
 
 AIScoring_RedStatMods: ; 385e0
-; 50% chance to greatly encourage stat-up moves during enemy's first turn
-; 50% chance to greatly encourage stat-down moves during player's first turn
-; Almost 90% chance to greatly discourage stat-modifying moves otherwise
+; 50% chance to greatly encourage stat-up moves during enemy's first turn.
+; 50% chance to greatly encourage stat-down moves during player's first turn.
+; Almost 90% chance to greatly discourage stat-modifying moves otherwise.
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
@@ -145,7 +145,10 @@ AIScoring_RedStatMods: ; 385e0
 
 
 AIScoring_RedSuperEffective: ; 38635
-; Use super-effective moves.
+; Dismiss any move that the player is immune to.
+; Encourage super-effective moves.
+; Discourage not very effective moves unless 
+; all damaging moves are of the same type.
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
@@ -234,7 +237,7 @@ AIScoring_RedSuperEffective: ; 38635
 
 
 AIScoring_Offensive: ; 386a2
-; Discourage non-damaging moves.
+; Greatly discourage non-damaging moves.
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
@@ -396,8 +399,8 @@ AIScoring_Smart: ; 386be
 
 
 AIScoring_Sleep: ; 387e3
-; Greatly encourage sleep inducing moves if the enemy has either Dream Eater or Nightmare
-; 50% chance to greatly encourage sleep inducing moves otherwise
+; Greatly encourage sleep inducing moves if the enemy has either Dream Eater or Nightmare.
+; 50% chance to greatly encourage sleep inducing moves otherwise.
 
 	ld b, EFFECT_DREAM_EATER
 	call AIHasMove
@@ -423,19 +426,19 @@ AIScoring_LeechHit: ; 387f7
 	callab Function347c8
 	pop hl
 
-; 60% chance to discourage this move if not very effective
+; 60% chance to discourage this move if not very effective.
 	ld a, [$d265]
 	cp 10 ; 1.0
 	jr c, .asm_38815
 
-; Do nothing if effectiveness is neutral
+; Do nothing if effectiveness is neutral.
 	ret z
 
-; Do nothing if enemy's HP is full	
+; Do nothing if enemy's HP is full.
 	call AICheckEnemyMaxHP
 	ret c
 
-; 80% chance to encourage this move otherwise	
+; 80% chance to encourage this move otherwise.	
 	call Function39521 
 	ret c
 	dec [hl]
@@ -565,23 +568,23 @@ AIScoring_Explosion: ; 388a6
 	pop hl
 	jr nc, .asm_388b7
 
-; ...greatly discourage this move unless this is the player's last Pokemon too
+; ...greatly discourage this move unless this is the player's last Pokemon too.
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
 	jr nz, .asm_388c6
 
 .asm_388b7
-; Greatly discourage this move if enemy's HP is above 50%
+; Greatly discourage this move if enemy's HP is above 50%.
 	call AICheckEnemyHalfHP
 	jr c, .asm_388c6
 
-; Do nothing if enemy's HP is below 25%
+; Do nothing if enemy's HP is below 25%.
 	call AICheckEnemyQuarterHP
 	ret nc
 
 ; If enemy's HP is between 25% and 50%,
-; over 90% chance to greatly discourage this move
+; over 90% chance to greatly discourage this move.
 	call Random
 	cp 20
 	ret c
@@ -595,8 +598,10 @@ AIScoring_Explosion: ; 388a6
 
 
 AIScoring_DreamEater: ; 388ca
+; 90% chance to greatly encourage this move.
+; The AIScoring_RedStatus layer will make sure that
+; Dream Eater is only used against sleeping targets.
 	call Random
-
 	cp $19
 	ret c
 	dec [hl]
@@ -698,12 +703,12 @@ AIScoring_EvasionUp: ; 388d4
 AIScoring_AlwaysHit: ; 38947
 ; 80% chance to greatly encourage this move if either...
 
-; ...enemy's accuracy level has been lowered three or more stages
+; ...enemy's accuracy level has been lowered three or more stages...
 	ld a, [EnemyAccLevel]
 	cp $5
 	jr c, .asm_38954
 
-; ...or player's evasion level has been rasied three or more stages
+; ...or player's evasion level has been rasied three or more stages.
 	ld a, [PlayerEvaLevel]
 	cp $a
 	ret c
@@ -877,7 +882,7 @@ AIScoring_Haze: ; 389f5
 
 
 AIScoring_Bide: ; 38a1e
-; 90% chance to discourage this move unless enemy's HP is full
+; 90% chance to discourage this move unless enemy's HP is full.
 
 	call AICheckEnemyMaxHP
 	ret c
@@ -924,7 +929,7 @@ AIScoring_Moonlight: ; 38a3a
 
 AIScoring_Toxic:
 AIScoring_LeechSeed: ; 38a4e
-; Discourage this move if player's HP is below 50%
+; Discourage this move if player's HP is below 50%.
 
 	call AICheckPlayerHalfHP
 	ret c
@@ -935,7 +940,7 @@ AIScoring_LeechSeed: ; 38a4e
 
 AIScoring_LightScreen:
 AIScoring_Reflect: ; 38a54
-; Over 90% chance to discourage this move unless enemy's HP is full
+; Over 90% chance to discourage this move unless enemy's HP is full.
 
 	call AICheckEnemyMaxHP
 	ret c
@@ -1634,6 +1639,7 @@ AIScoring_PriorityHit: ; 38d5a
 
 
 AIScoring_Thief: ; 38d93
+; Don't use Thief unless it's the only move available.
 	ld a, [hl]
 	add $1e
 	ld [hl], a
@@ -2272,24 +2278,32 @@ AIScoring_HiddenPower: ; 3909e
 	push hl
 	ld a, 1
 	ld [hBattleTurn], a
+	
+; Calculate Hidden Power's type and base power based on enemy's DVs.	
 	callab HiddenPowerDamage
 	callab Function347c8
 	pop hl
 
+; Discourage Hidden Power if not very effective.	
 	ld a, [$d265]
 	cp $a
 	jr c, .asm_390c9
-
+	
+; Discourage Hidden Power if its base power	is lower than 50.
 	ld a, d
 	cp 50
 	jr c, .asm_390c9
-
+	
+; Encourage Hidden Power if super-effective.	
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_390c7
-
+	
+; Encourage Hidden Power if its base power is 70.	
 	ld a, d
-	cp 70
+	cp 70	
+	
+; Do nothing if none of these conditions meet.	
 	ret c
 
 .asm_390c7
@@ -2677,6 +2691,7 @@ AICheckEnemyMaxHP: ; 39251
 
 AICheckMaxHP: ; 3925a
 ; Return carry if hp at de matches max hp at hl.
+
 	ld a, [de]
 	inc de
 	cp [hl]
@@ -2792,6 +2807,7 @@ AICheckPlayerQuarterHP: ; 392b3
 
 AIHasMove: ; 392ca
 ; Return carry if the enemy has move b.
+
 	push hl
 	ld hl, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves
@@ -2882,14 +2898,17 @@ Table_0x39301: ; 39301
 
 
 AIScoring_Opportunist: ; 39315
-; Don't use stall moves when the player's HP is low.
+; Discourage stall moves when the enemy's HP is low.
 
+; Do nothing if enemy's HP is above 50%.
 	call AICheckEnemyHalfHP
 	ret c
 
+; Discourage stall moves if enemy's HP is below 25%.	
 	call AICheckEnemyQuarterHP
 	jr nc, .asm_39322
-
+	
+; 50% chance to discourage stall moves if enemy's HP is between 25% and 50%.
 	call Function39527
 	ret c
 
@@ -3030,7 +3049,7 @@ AIScoring_Aggressive: ; 39369
 	cp EnemyMonMovesEnd - EnemyMonMoves + 1
 	jr z, .done
 
-; Ignore this move if it is the highest damaging one
+; Ignore this move if it is the highest damaging one.
 	cp c
 	ld a, [de]
 	inc de
@@ -3039,12 +3058,14 @@ AIScoring_Aggressive: ; 39369
 
 	call AIGetEnemyMove
 
-; Ignore this move if its power is 0 or 1	
+; Ignore this move if its power is 0 or 1.
+; Moves such as Seismic Toss, Hidden Power, 
+; Counter and Fissure have a base power of 1.	
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	cp 2
 	jr c, .checkmove2
 
-; Ignore this move if it is reckless	
+; Ignore this move if it is reckless.	
 	push hl
 	push de
 	push bc
@@ -3057,7 +3078,7 @@ AIScoring_Aggressive: ; 39369
 	pop hl
 	jr c, .checkmove2
 
-; If we made it this far, discourage this move 	
+; If we made it this far, discourage this move. 	
 	inc [hl]
 	jr .checkmove2
 
