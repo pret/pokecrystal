@@ -97,7 +97,7 @@ AIScoring_RedStatMods: ; 385e0
 	jr c, .statup
 
 ;	cp EFFECT_ATTACK_DOWN - 1
-	jr z, .checkmove
+	jr z, .checkmove ; ignore EFFECT_ALWAYS_HIT
 	cp EFFECT_EVASION_DOWN + 1
 	jr c, .statdown
 
@@ -107,7 +107,7 @@ AIScoring_RedStatMods: ; 385e0
 	jr c, .statup
 
 ;	cp EFFECT_ATTACK_DOWN_2 - 1
-	jr z, .checkmove
+	jr z, .checkmove ; ignore EFFECT_TRANSFROM
 	cp EFFECT_EVASION_DOWN_2 + 1
 	jr c, .statdown
 
@@ -438,7 +438,7 @@ AIScoring_LeechHit: ; 387f7
 	call AICheckEnemyMaxHP
 	ret c
 
-; 80% chance to encourage this move otherwise.	
+; 80% chance to encourage this move otherwise.
 	call Function39521 
 	ret c
 	dec [hl]
@@ -703,12 +703,12 @@ AIScoring_EvasionUp: ; 388d4
 AIScoring_AlwaysHit: ; 38947
 ; 80% chance to greatly encourage this move if either...
 
-; ...enemy's accuracy level has been lowered three or more stages...
+; ...enemy's accuracy level has been lowered three or more stages
 	ld a, [EnemyAccLevel]
 	cp $5
 	jr c, .asm_38954
 
-; ...or player's evasion level has been rasied three or more stages.
+; ...or player's evasion level has been raised three or more stages.
 	ld a, [PlayerEvaLevel]
 	cp $a
 	ret c
@@ -724,27 +724,36 @@ AIScoring_AlwaysHit: ; 38947
 
 
 AIScoring_MirrorMove: ; 3895b
+
+; If the player did not use any move last turn...
 	ld a, [LastEnemyCounterMove]
 	and a
 	jr nz, .asm_38968
 
-	call AICompareSpeed
+; ...do nothing if enemy is slower than player
+	call AICompareSpeed	
 	ret nc
-
+	
+; ...or dismiss this move if enemy is faster than player.
 	jp AIDiscourageMove
 
+; If the player did use a move last turn...
 .asm_38968
 	push hl
-	ld hl, Table_0x39301
+	ld hl, UsefulMoves
 	ld de, 1
 	call IsInArray
 	pop hl
+	
+; ...do nothing if he didn't use a useful move.
 	ret nc
 
+; If he did, 50% chance to encourage this move...
 	call Function39527
 	ret c
-
 	dec [hl]
+
+; ...and 90% chance to encourage this move again if the enemy is faster.
 	call AICompareSpeed
 	ret nc
 
@@ -910,6 +919,10 @@ AIScoring_Heal:
 AIScoring_MorningSun:
 AIScoring_Synthesis:
 AIScoring_Moonlight: ; 38a3a
+; 90% chance to greatly encourage this move if enemy's HP is below 25%.
+; Discourage this move if enemy's HP is higher than 50%.
+; Do nothing otherwise.
+
 	call AICheckEnemyQuarterHP
 	jr nc, .asm_38a45
 	call AICheckEnemyHalfHP
@@ -953,6 +966,9 @@ AIScoring_Reflect: ; 38a54
 
 
 AIScoring_Ohko: ; 38a60
+; Dismiss this move if player's level is higher than enemy's level
+; Otherwise, discourage this move is player's HP is below 50%.
+
 	ld a, [BattleMonLevel]
 	ld b, a
 	ld a, [EnemyMonLevel]
@@ -1055,13 +1071,17 @@ AIScoring_Unused2B: ; 38a9c
 
 
 AIScoring_Confuse: ; 38adb
+
+; 90% chance to discourage this move if player's HP is between 25% and 50%.
 	call AICheckPlayerHalfHP
 	ret c
 	call Random
 	cp $19
 	jr c, .asm_38ae7
 	inc [hl]
+	
 .asm_38ae7
+; Discourage again if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
 	ret c
 	inc [hl]
@@ -1100,6 +1120,9 @@ AIScoring_SpDefenseUp2: ; 38aed
 
 
 AIScoring_Fly: ; 38b12
+; Greatly encourage this move if the player is
+; flying or underground, and slower than the enemy.
+
 	ld a, [PlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
@@ -1113,6 +1136,8 @@ AIScoring_Fly: ; 38b12
 
 
 AIScoring_SuperFang: ; 38b20
+; Discourage this move if player's HP is below 25%.
+
 	call AICheckPlayerQuarterHP
 	ret c
 	inc [hl]
@@ -1121,8 +1146,13 @@ AIScoring_SuperFang: ; 38b20
 
 
 AIScoring_Paralyze: ; 38b26
+
+; 50% chance to discourage this move if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
 	jr nc, .asm_38b3a
+	
+; 80% chance to greatly encourage this move 
+; if enemy is slower than player and its HP is above 25%.	
 	call AICompareSpeed
 	ret c
 	call AICheckEnemyQuarterHP
@@ -1162,6 +1192,8 @@ AIScoring_SpeedDownHit: ; 38b40
 
 
 AIScoring_Substitute: ; 38b5c
+; Dismiss this move if enemy's HP is below 50%.
+
 	call AICheckEnemyHalfHP
 	ret c
 	jp AIDiscourageMove
@@ -1171,6 +1203,8 @@ AIScoring_Substitute: ; 38b5c
 AIScoring_HyperBeam: ; 38b63
 	call AICheckEnemyHalfHP
 	jr c, .asm_38b72
+	
+; 50% chance to encourage this move if enemy's HP is below 25%.	
 	call AICheckEnemyQuarterHP
 	ret c
 	call Function39527
@@ -1179,6 +1213,7 @@ AIScoring_HyperBeam: ; 38b63
 	ret
 
 .asm_38b72
+; If enemy's HP is above 50%, discourage this move at random
 	call Random
 	cp 40
 	ret c
@@ -1256,7 +1291,7 @@ AIScoring_Mimic: ; 38ba8
 .asm_38bd4
 	ld a, [LastEnemyCounterMove]
 	push hl
-	ld hl, Table_0x39301
+	ld hl, UsefulMoves
 	ld de, 1
 	call IsInArray
 
@@ -1640,6 +1675,7 @@ AIScoring_PriorityHit: ; 38d5a
 
 AIScoring_Thief: ; 38d93
 ; Don't use Thief unless it's the only move available.
+
 	ld a, [hl]
 	add $1e
 	ld [hl], a
@@ -1695,7 +1731,7 @@ AIScoring_Disable: ; 38dd1
 
 	push hl
 	ld a, [LastEnemyCounterMove]
-	ld hl, Table_0x39301
+	ld hl, UsefulMoves
 	ld de, 1
 	call IsInArray
 
@@ -2641,6 +2677,8 @@ AIScoring_Solarbeam: ; 3920b
 
 
 AIScoring_Thunder: ; 39225
+; 90% chance to discourage this move when it's raining.
+
 	ld a, [Weather]
 	cp WEATHER_SUN
 	ret nz
@@ -2655,6 +2693,8 @@ AIScoring_Thunder: ; 39225
 
 
 AICompareSpeed: ; 39233
+; Return carry if enemy is faster than player
+
 	push bc
 	ld a, [EnemyMonSpeed + 1]
 	ld b, a
@@ -2873,7 +2913,7 @@ AIHasMoveInArray: ; 392e6
 ; 39301
 
 
-Table_0x39301: ; 39301
+UsefulMoves: ; 39301
 	db DOUBLE_EDGE
 	db SING
 	db FLAMETHROWER
@@ -3034,12 +3074,13 @@ AIScoring_Aggressive: ; 39369
 	jr .checkmove
 
 .gotstrongestmove
+; Discourage moves that do less damage unless they're reckless too.
+
 ; Nothing we can do if no attacks did damage.
 	ld a, c
 	and a
 	jr z, .done
 
-; Discourage moves that do less damage unless they're reckless too.
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld b, 0
@@ -3121,7 +3162,7 @@ AIDamageCalc: ; 393e7
 
 
 AIScoring_Cautious: ; 39418
-; Don't use moves with residual effects after turn 1.
+; 90% chance to discourage moves with residual effects after enemy's turn 1.
 
 	ld a, [EnemyTurnsTaken]
 	and a
@@ -3178,7 +3219,7 @@ AIScoring_Cautious: ; 39418
 
 
 AIScoring_StatusImmunity: ; 39453
-; Don't use status moves that don't affect the player.
+; Dismiss status moves that don't affect the player.
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
@@ -3242,7 +3283,8 @@ AIScoring_StatusImmunity: ; 39453
 
 
 AIScoring_Risky: ; 394a9
-; Use any move that will KO the opponent.
+; Use any move that will KO the target.
+; Risky moves will often be an exception (see below).
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
@@ -3265,19 +3307,20 @@ AIScoring_Risky: ; 394a9
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
 	jr z, .nextmove
-
-; Don't use risky moves at max hp.
+	
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	ld de, 1
 	ld hl, .riskymoves
 	call IsInArray
 	jr nc, .checkko
 
+; Exclude risky moves if enemy's HP is full.	
 	call AICheckEnemyMaxHP
 	jr c, .nextmove
 
+; Otherwise, 80% chance to exclude them.	
 	call Random
-	cp 200 ; 1/5
+	cp 200 
 	jr c, .nextmove
 
 .checkko
