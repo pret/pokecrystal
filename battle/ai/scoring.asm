@@ -424,7 +424,7 @@ AIScoring_LeechHit: ; 387f7
 ; Do nothing if effectiveness is neutral
 	ret z
 
-; Do nothing if the enemy's health is full	
+; Do nothing if enemy's HP is full	
 	call AICheckEnemyMaxHP
 	ret c
 
@@ -565,15 +565,15 @@ AIScoring_Explosion: ; 388a6
 	jr nz, .asm_388c6
 
 .asm_388b7
-; Greatly discourage this move if enemy's health is higher than 50%
+; Greatly discourage this move if enemy's HP is above 50%
 	call AICheckEnemyHalfHP
 	jr c, .asm_388c6
 
-; Do nothing if enemy's health is not higher than 25%
+; Do nothing if enemy's HP is below 25%
 	call AICheckEnemyQuarterHP
 	ret nc
 
-; If enemy's health is in-between 25% and 50%
+; If enemy's HP is between 25% and 50%,
 ; over 90% chance to greatly discourage this move
 	call Random
 	cp 20
@@ -689,13 +689,17 @@ AIScoring_EvasionUp: ; 388d4
 
 
 AIScoring_AlwaysHit: ; 38947
+; 80% chance to greatly encourage this move if either...
+
+; ...enemy's accuracy level has been lowered three or more stages
 	ld a, [EnemyAccLevel]
 	cp $5
 	jr c, .asm_38954
 
+; ...or player's evasion level has been rasied three or more stages
 	ld a, [PlayerEvaLevel]
 	cp $a
-	ret c
+	ret c 
 
 .asm_38954
 	call Function39521
@@ -866,6 +870,8 @@ AIScoring_Haze: ; 389f5
 
 
 AIScoring_Bide: ; 38a1e
+; 90% chance to discourage this move unless enemy's HP is full
+
 	call AICheckEnemyMaxHP
 	ret c
 	call Random
@@ -911,6 +917,8 @@ AIScoring_Moonlight: ; 38a3a
 
 AIScoring_Toxic:
 AIScoring_LeechSeed: ; 38a4e
+; Discourage this move if player's HP is below 50%
+
 	call AICheckPlayerHalfHP
 	ret c
 	inc [hl]
@@ -920,6 +928,7 @@ AIScoring_LeechSeed: ; 38a4e
 
 AIScoring_LightScreen:
 AIScoring_Reflect: ; 38a54
+; Over 90% chance to discourage this move unless enemy's HP is full
 	call AICheckEnemyMaxHP
 	ret c
 	call Random
