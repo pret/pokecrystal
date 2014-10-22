@@ -126,7 +126,7 @@ AIScoring_RedStatMods: ; 385e0
 	jr nz, .discourage
 
 .encourage
-	call Function39527
+	call AIRandom2
 	jr c, .checkmove
 
 	dec [hl]
@@ -411,7 +411,7 @@ AIScoring_Sleep: ; 387e3
 	ret nc
 
 .asm_387f0
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	dec [hl]
@@ -439,7 +439,7 @@ AIScoring_LeechHit: ; 387f7
 	ret c
 
 ; 80% chance to encourage this move otherwise.
-	call Function39521 
+	call AIRandom1 
 	ret c
 	dec [hl]
 	ret
@@ -521,7 +521,7 @@ AIScoring_LockOn: ; 3881d
 
 .asm_3887a
 	pop hl
-	call Function39527
+	call AIRandom2
 	ret c
 
 	dec [hl]
@@ -654,13 +654,13 @@ AIScoring_EvasionUp: ; 388d4
 	jr nc, .asm_3890a
 
 ; If enemy's HP is above 50% but not full, 20% chance to greatly encourage this move.
-	call Function39521
+	call AIRandom1
 	jr c, .asm_388ef
 	jr .asm_38911
 
 .asm_3890a
 ; ...50% chance to greatly discourage this move.
-	call Function39527
+	call AIRandom2
 	jr c, .asm_38911
 
 .asm_3890f
@@ -717,7 +717,7 @@ AIScoring_EvasionUp: ; 388d4
 ; 50% chance to encourage this move.
 ; This would partly counter any previous discouragement.
 .asm_38941
-	call Function39527
+	call AIRandom2
 	ret c
 
 	dec [hl]
@@ -739,7 +739,7 @@ AIScoring_AlwaysHit: ; 38947
 	ret c
 
 .asm_38954
-	call Function39521
+	call AIRandom1
 
 	ret c
 	dec [hl]
@@ -774,7 +774,7 @@ AIScoring_MirrorMove: ; 3895b
 	ret nc
 
 ; If he did, 50% chance to encourage this move...
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 
@@ -832,13 +832,13 @@ AIScoring_AccuracyDown: ; 38985
 	jr nc, .asm_389b8
 
 ; If player's HP is above 50% but not full, 20% chance to greatly encourage this move.	
-	call Function39521
+	call AIRandom1
 	jr c, .asm_3899d
 	jr .asm_389bf
 
 ; ...50% chance to greatly discourage this move.	
 .asm_389b8
-	call Function39527
+	call AIRandom2
 	jr c, .asm_389bf
 
 .asm_389bd
@@ -890,7 +890,7 @@ AIScoring_AccuracyDown: ; 38985
 ; 50% chance to encourage this move.
 ; This would partly counter any previous discouragement.	
 .asm_389ef
-	call Function39527
+	call AIRandom2
 	ret c
 
 	dec [hl]
@@ -1024,7 +1024,7 @@ AIScoring_Reflect: ; 38a54
 
 AIScoring_Ohko: ; 38a60
 ; Dismiss this move if player's level is higher than enemy's level.
-; Otherwise, discourage this move is player's HP is below 50%.
+; Else, discourage this move is player's HP is below 50%.
 
 	ld a, [BattleMonLevel]
 	ld b, a
@@ -1041,10 +1041,13 @@ AIScoring_Ohko: ; 38a60
 AIScoring_Bind: ; 38a71
 ; Bind, Wrap, Fire Spin, Clamp
 
+; 50% chance to discourage this move if the player is already trapped.
 	ld a, [$c730]
 	and a
 	jr nz, .asm_38a8b
 
+; 50% chance to greatly encourage this move if player is either
+; badly poisoned, in love, identified, stuck in Rollout, or has a Nightmare.
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_38a91
@@ -1053,12 +1056,14 @@ AIScoring_Bind: ; 38a71
 	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ROLLOUT | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
 	jr nz, .asm_38a91
 
+; Else, 50% chance to greatly encourage this move if it's the player's Pokemon first turn.
 	ld a, [PlayerTurnsTaken]
 	and a
 	jr z, .asm_38a91
 
+; 50% chance to discourage this move otherwise.
 .asm_38a8b
-	call Function39527
+	call AIRandom2
 	ret c
 	inc [hl]
 	ret
@@ -1066,7 +1071,7 @@ AIScoring_Bind: ; 38a71
 .asm_38a91
 	call AICheckEnemyQuarterHP
 	ret nc
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1171,7 +1176,7 @@ AIScoring_SpDefenseUp2: ; 38aed
 	ret c
 
 .asm_38b09
-	call Function39521
+	call AIRandom1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1184,14 +1189,18 @@ AIScoring_SpDefenseUp2: ; 38aed
 
 
 AIScoring_Fly: ; 38b12
+; Fly, Dig
+
 ; Greatly encourage this move if the player is
 ; flying or underground, and slower than the enemy.
 
 	ld a, [PlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
+	
 	call AICompareSpeed
 	ret nc
+	
 	dec [hl]
 	dec [hl]
 	dec [hl]
@@ -1221,14 +1230,14 @@ AIScoring_Paralyze: ; 38b26
 	ret c
 	call AICheckEnemyQuarterHP
 	ret nc
-	call Function39521
+	call AIRandom1
 	ret c
 	dec [hl]
 	dec [hl]
 	ret
 
 .asm_38b3a
-	call Function39527
+	call AIRandom2
 	ret c
 	inc [hl]
 	ret
@@ -1278,7 +1287,7 @@ AIScoring_HyperBeam: ; 38b63
 ; 50% chance to encourage this move if enemy's HP is below 25%.	
 	call AICheckEnemyQuarterHP
 	ret c
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	ret
@@ -1289,7 +1298,7 @@ AIScoring_HyperBeam: ; 38b63
 	cp 40
 	ret c
 	inc [hl]
-	call Function39527
+	call AIRandom2
 	ret c
 	inc [hl]
 	ret
@@ -1302,7 +1311,7 @@ AIScoring_Rage: ; 38b7f
 	jr z, .asm_38b9b
 
 ; If enemy's Rage is building, 50% chance to encourage this move.	
-	call Function39527
+	call AIRandom2
 	jr c, .asm_38b8c
 	dec [hl]
 
@@ -1324,7 +1333,7 @@ AIScoring_Rage: ; 38b7f
 	jr nc, .asm_38ba6
 
 ; 50% chance to encourage this move otherwise.
-	call Function39521
+	call AIRandom1
 	ret nc
 	dec [hl]
 	ret
@@ -1357,7 +1366,7 @@ AIScoring_Mimic: ; 38ba8
 	jr c, .asm_38bef
 	jr z, .asm_38bd4
 
-	call Function39527
+	call AIRandom2
 	jr c, .asm_38bd4
 
 	dec [hl]
@@ -1371,7 +1380,7 @@ AIScoring_Mimic: ; 38ba8
 
 	pop hl
 	ret nc
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	ret
@@ -1605,7 +1614,7 @@ AIScoring_Spite: ; 38cd5
 	call AICompareSpeed
 	jp c, AIDiscourageMove
 
-	call Function39527
+	call AIRandom2
 	ret c
 	inc [hl]
 	ret
@@ -1715,7 +1724,7 @@ AIScoring_HealBell: ; 38d1f
 .ok
 	and 1 << FRZ | SLP
 	ret z
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1799,7 +1808,7 @@ AIScoring_Conversion2: ; 38d98
 	jr c, .asm_38dc9
 
 	ret z
-	call Function39527
+	call AIRandom2
 
 	ret c
 	dec [hl]
@@ -1881,7 +1890,7 @@ AIScoring_MeanLook: ; 38dfb
 	ret
 
 .asm_38e26
-	call Function39521
+	call AIRandom1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1922,7 +1931,7 @@ AIScoring_Nightmare: ; 38e4a
 ; The AIScoring_RedStatus layer will make sure that
 ; Dream Eater is only used against sleeping targets.
 
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	ret
@@ -1930,6 +1939,8 @@ AIScoring_Nightmare: ; 38e4a
 
 
 AIScoring_FlameWheel: ; 38e50
+; Use this move if the enemy is frozen.
+
 	ld a, [EnemyMonStatus]
 	bit FRZ, a
 	ret z
@@ -1967,7 +1978,7 @@ AIScoring_Curse: ; 38e5c
 	ld a, [BattleMonType2]
 	cp SPECIAL
 	ret nc
-	call Function39521
+	call AIRandom1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -2022,7 +2033,7 @@ AIScoring_Curse: ; 38e5c
 	ret nz
 
 .asm_38ecb
-	call Function39527
+	call AIRandom2
 
 	ret c
 	dec [hl]
@@ -2066,7 +2077,7 @@ AIScoring_Protect: ; 38ed2
 	jr c, .asm_38f14
 
 .asm_38f0d
-	call Function39521
+	call AIRandom1
 	ret c
 	dec [hl]
 	ret
@@ -2132,14 +2143,14 @@ AIScoring_PerishSong: ; 38f4a
 	pop hl
 	ret c
 
-	call Function39527
+	call AIRandom2
 	ret c
 
 	inc [hl]
 	ret
 
 .asm_38f6f
-	call Function39527
+	call AIRandom2
 	ret c
 
 	dec [hl]
@@ -2154,6 +2165,8 @@ AIScoring_PerishSong: ; 38f4a
 
 
 AIScoring_Sandstorm: ; 38f7a
+
+; Greatly discourage this move if the player is immune to Sandstorm damage.
 	ld a, [BattleMonType1]
 	push hl
 	ld hl, .SandstormImmuneTypes
@@ -2170,10 +2183,12 @@ AIScoring_Sandstorm: ; 38f7a
 	pop hl
 	jr c, .asm_38fa5
 
+; Discourage this move if player's HP is below 50%.
 	call AICheckPlayerHalfHP
 	jr nc, .asm_38fa6
 
-	call Function39527
+; 50% chance to encourage this move otherwise.
+	call AIRandom2
 	ret c
 
 	dec [hl]
@@ -2209,7 +2224,7 @@ AIScoring_Endure: ; 38fac
 	call AIHasMove
 	jr nc, .asm_38fcb
 
-	call Function39521
+	call AIRandom1
 	ret c
 
 	dec [hl]
@@ -2221,7 +2236,7 @@ AIScoring_Endure: ; 38fac
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	ret z
-	call Function39527
+	call AIRandom2
 
 	ret c
 	dec [hl]
@@ -2277,8 +2292,8 @@ AIScoring_Rollout: ; 38fef
 	bit PAR, a
 	jr nz, .asm_39020
 
-; 80% chance to discourage this move if the enemy's HP is below 25%, 
-; or if accuracy or evasion modifiers favor the player.	
+; 80% chance to discourage this move if the enemy's HP is below 25%,
+; or if accuracy or evasion modifiers favour the player.
 	call AICheckEnemyQuarterHP
 	jr nc, .asm_39020
 
@@ -2289,7 +2304,7 @@ AIScoring_Rollout: ; 38fef
 	cp 8
 	jr nc, .asm_39020
 
-; Otherwise, 80% chance to greatly encourage this move.	
+; Otherwise, 80% chance to greatly encourage this move.
 	call Random
 	cp 200
 	ret nc
@@ -2298,7 +2313,7 @@ AIScoring_Rollout: ; 38fef
 	ret
 
 .asm_39020
-	call Function39521
+	call AIRandom1
 	ret c
 	inc [hl]
 	ret
@@ -2314,7 +2329,7 @@ AIScoring_Attract: ; 39026
 	and a
 	jr z, .first_turn
 
-	call Function39521
+	call AIRandom1
 	ret c
 	inc [hl]
 	ret
@@ -2333,7 +2348,7 @@ AIScoring_Safeguard: ; 3903a
 
 	call AICheckPlayerHalfHP
 	ret c
-	call Function39521
+	call AIRandom1
 	ret c
 	inc [hl]
 	ret
@@ -2342,15 +2357,15 @@ AIScoring_Safeguard: ; 3903a
 
 AIScoring_Magnitude:
 AIScoring_Earthquake: ; 39044
-; Greatly encourage this move if the player is underground and the enemy is faster.
 
+; Greatly encourage this move if the player is underground and the enemy is faster.
 	ld a, [LastEnemyCounterMove]
 	cp DIG
 	ret nz
 
 	ld a, [PlayerSubStatus3]
 	bit SUBSTATUS_UNDERGROUND, a
-	jr z, .could_dig
+	jr z, .couldDig
 
 	call AICompareSpeed
 	ret nc
@@ -2358,14 +2373,13 @@ AIScoring_Earthquake: ; 39044
 	dec [hl]
 	ret
 
-; Try to predict if the player will use Dig this turn
-; even if the player doesn't know or can't learn it.	
-.could_dig	
+; Try to predict if the player will use Dig this turn.
+.couldDig	
 
 ; 50% chance to encourage this move if the enemy is slower than the player.
 	call AICompareSpeed
 	ret c
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	ret
@@ -2374,7 +2388,7 @@ AIScoring_Earthquake: ; 39044
 
 AIScoring_BatonPass: ; 39062
 ; Discourage this move if the player hasn't shown super-effective moves against the enemy.
-; Consider player's type(s) if its moves are unknown. 
+; Consider player's type(s) if its moves are unknown.
 
 	push hl
 	callab Function3484e
@@ -2388,15 +2402,18 @@ AIScoring_BatonPass: ; 39062
 
 
 AIScoring_Pursuit: ; 39072
+; 50% chance to greatly encourage this move if player's HP is below 25%.
+; 80% chance to discourage this move otherwise.
+
 	call AICheckPlayerQuarterHP
 	jr nc, .asm_3907d
-	call Function39521
+	call AIRandom1
 	ret c
 	inc [hl]
 	ret
 
 .asm_3907d
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	dec [hl]
@@ -2405,6 +2422,9 @@ AIScoring_Pursuit: ; 39072
 
 
 AIScoring_RapidSpin: ; 39084
+; 80% chance to greatly encourage this move if the enemy is
+; trapped (Bind effect), seeded, or scattered with spikes.
+
 	ld a, [$c731]
 	and a
 	jr nz, .asm_39097
@@ -2418,8 +2438,7 @@ AIScoring_RapidSpin: ; 39084
 	ret z
 
 .asm_39097
-	call Function39521
-
+	call AIRandom1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -2432,12 +2451,12 @@ AIScoring_HiddenPower: ; 3909e
 	ld a, 1
 	ld [hBattleTurn], a
 	
-; Calculate Hidden Power's type and base power based on enemy's DVs.	
+; Calculate Hidden Power's type and base power based on enemy's DVs.
 	callab HiddenPowerDamage
 	callab Function347c8
 	pop hl
 
-; Discourage Hidden Power if not very effective.	
+; Discourage Hidden Power if not very effective.
 	ld a, [$d265]
 	cp $a
 	jr c, .asm_390c9
@@ -2447,16 +2466,16 @@ AIScoring_HiddenPower: ; 3909e
 	cp 50
 	jr c, .asm_390c9
 	
-; Encourage Hidden Power if super-effective.	
+; Encourage Hidden Power if super-effective.
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_390c7
 	
-; Encourage Hidden Power if its base power is 70.	
+; Encourage Hidden Power if its base power is 70.
 	ld a, d
 	cp 70	
 	
-; Do nothing if none of these conditions meet.	
+; Do nothing if none of these conditions meet.
 	ret c
 
 .asm_390c7
@@ -2470,6 +2489,9 @@ AIScoring_HiddenPower: ; 3909e
 
 
 AIScoring_RainDance: ; 390cb
+
+; Greatly discourage this move if it would favour the player type-wise.
+; Particularly, if the player is a Water-type.
 	ld a, [BattleMonType1]
 	cp WATER
 	jr z, AIBadWeatherType
@@ -2504,6 +2526,9 @@ RainDanceMoves: ; 390e7
 
 
 AIScoring_SunnyDay: ; 390f3
+
+; Greatly discourage this move if it would favour the player type-wise.
+; Particularly, if the player is a Fire-type.
 	ld a, [BattleMonType1]
 	cp FIRE
 	jr z, AIBadWeatherType
@@ -2524,14 +2549,20 @@ AIScoring_SunnyDay: ; 390f3
 
 
 AIScoring_WeatherMove: ; 3910d
+; Rain Dance, Sunny Day
+
+; Greatly discourage this move if the enemy doesn't have
+; one of the useful Rain Dance or Sunny Day moves.
 	call AIHasMoveInArray
 	pop hl
 	jr nc, AIBadWeatherType
 
+; Greatly discourage this move if player's HP is below 50%.
 	call AICheckPlayerHalfHP
 	jr nc, AIBadWeatherType
 
-	call Function39527
+; 50% chance to encourage this move otherwise.
+	call AIRandom2
 	ret c
 
 	dec [hl]
@@ -2546,13 +2577,19 @@ AIBadWeatherType: ; 3911e
 ; 39122
 
 AIGoodWeatherType: ; 39122
+; Rain Dance, Sunny Day
+
+; Greatly encourage this move if it would disfavour the player type-wise and player's HP is above 50%...
 	call AICheckPlayerHalfHP
 	ret nc
 
+; ...as long as one of the following conditions meet:
+; It's the first turn of the player's Pokemon.
 	ld a, [PlayerTurnsTaken]
 	and a
 	jr z, .good
 
+; Or it's the first turn of the enemy's Pokemon.
 	ld a, [EnemyTurnsTaken]
 	and a
 	ret nz
@@ -2578,16 +2615,18 @@ SunnyDayMoves: ; 39134
 
 
 AIScoring_BellyDrum: ; 3913d
+; Dismiss this move if enemy's attack is higher than +2 or if enemy's HP is below 50%.
+; Else, discourage this move if enemy's HP is not full.
+
 	ld a, [EnemyAtkLevel]
 	cp $a
 	jr nc, .asm_3914d
 
 	call AICheckEnemyMaxHP
-
 	ret c
+	
 	inc [hl]
 	call AICheckEnemyHalfHP
-
 	ret c
 
 .asm_3914d
@@ -2602,19 +2641,23 @@ AIScoring_PsychUp: ; 39152
 	push hl
 	ld hl, EnemyAtkLevel
 	ld b, $8
-	ld c, $64
+	ld c, 100
 
+; Calculate the sum of all enemy's stat level modifiers. Add 100 first to prevent underflow.
+; Put the result in c. c will range between 58 and 142.
 .asm_3915a
 	ld a, [hli]
 	sub $7
-	add c
+	add c 
 	ld c, a
 	dec b
 	jr nz, .asm_3915a
 
+; Calculate the sum of all player's stat level modifiers. Add 100 first to prevent underflow.
+; Put the result in d. d will range between 58 and 142.	
 	ld hl, PlayerAtkLevel
 	ld b, $8
-	ld d, $64
+	ld d, 100
 
 .asm_39169
 	ld a, [hli]
@@ -2624,18 +2667,22 @@ AIScoring_PsychUp: ; 39152
 	dec b
 	jr nz, .asm_39169
 
+; Greatly discourage this move if enemy's stat levels are higher than player's (if c>=d).
 	ld a, c
 	sub d
 	pop hl
 	jr nc, .asm_39188
 
+; Else, 80% chance to encourage this move unless player's accuracy level is lower than -1...	
 	ld a, [PlayerAccLevel]
 	cp $6
 	ret c
+	
+; ...or enemy's evasion level is higher than +0.	
 	ld a, [EnemyEvaLevel]
 	cp $8
 	ret nc
-	call Function39521
+	call AIRandom1
 
 	ret c
 	dec [hl]
@@ -2715,25 +2762,29 @@ AIScoring_MirrorCoat: ; 3918b
 
 AIScoring_Twister:
 AIScoring_Gust: ; 391d5
+
+; Greatly encourage this move if the player is flying and the enemy is faster.
 	ld a, [LastEnemyCounterMove]
 	cp FLY
 	ret nz
 
 	ld a, [PlayerSubStatus3]
 	bit SUBSTATUS_FLYING, a
-	jr z, .asm_391e9
+	jr z, .couldFly
 
 	call AICompareSpeed
 	ret nc
-
 	dec [hl]
 	dec [hl]
 	ret
 
-.asm_391e9
+; Try to predict if the player will use Fly this turn.	
+.couldFly
+
+; 50% chance to encourage this move if the enemy is slower than the player.
 	call AICompareSpeed
 	ret c
-	call Function39527
+	call AIRandom2
 	ret c
 	dec [hl]
 	ret
@@ -2741,6 +2792,9 @@ AIScoring_Gust: ; 391d5
 
 
 AIScoring_FutureSight: ; 391f3
+; Greatly encourage this move if the player is
+; flying or underground, and slower than the enemy.
+
 	call AICompareSpeed
 	ret nc
 
@@ -2755,11 +2809,13 @@ AIScoring_FutureSight: ; 391f3
 
 
 AIScoring_Stomp: ; 39200
+; 80% chance to encourage this move if the player has used Minimize.
+
 	ld a, [$c6fe]
 	and a
 	ret z
 
-	call Function39521
+	call AIRandom1
 	ret c
 
 	dec [hl]
@@ -2768,6 +2824,9 @@ AIScoring_Stomp: ; 39200
 
 
 AIScoring_Solarbeam: ; 3920b
+; 80% chance to encourage this move when it's sunny.
+; 90% chance to discourage this move when it's raining.
+
 	ld a, [Weather]
 	cp WEATHER_SUN
 	jr z, .asm_3921e
@@ -2784,7 +2843,7 @@ AIScoring_Solarbeam: ; 3920b
 	ret
 
 .asm_3921e
-	call Function39521
+	call AIRandom1
 	ret c
 
 	dec [hl]
@@ -2794,7 +2853,7 @@ AIScoring_Solarbeam: ; 3920b
 
 
 AIScoring_Thunder: ; 39225
-; 90% chance to discourage this move when it's raining.
+; 90% chance to discourage this move when it's sunny.
 
 	ld a, [Weather]
 	cp WEATHER_SUN
@@ -2810,7 +2869,7 @@ AIScoring_Thunder: ; 39225
 
 
 AICompareSpeed: ; 39233
-; Return carry if enemy is faster than player
+; Return carry if enemy is faster than player.
 
 	push bc
 	ld a, [EnemyMonSpeed + 1]
@@ -3066,7 +3125,7 @@ AIScoring_Opportunist: ; 39315
 	jr nc, .asm_39322
 	
 ; 50% chance to discourage stall moves if enemy's HP is between 25% and 50%.
-	call Function39527
+	call AIRandom2
 	ret c
 
 .asm_39322
@@ -3279,7 +3338,7 @@ AIDamageCalc: ; 393e7
 
 
 AIScoring_Cautious: ; 39418
-; 90% chance to discourage moves with residual effects after enemy's turn 1.
+; 90% chance to discourage moves with residual effects after enemy's Pokemon first turn.
 
 	ld a, [EnemyTurnsTaken]
 	and a
@@ -3435,7 +3494,7 @@ AIScoring_Risky: ; 394a9
 	call AICheckEnemyMaxHP
 	jr c, .nextmove
 
-; Otherwise, 80% chance to exclude them.	
+; Else, 80% chance to exclude them.	
 	call Random
 	cp 200 
 	jr c, .nextmove
@@ -3510,14 +3569,14 @@ AIGetEnemyMove: ; 39508
 ; 39521
 
 
-Function39521: ; 39521
+AIRandom1: ; 39521
 	call Random
 	cp 50 ; 1/5
 	ret
 ; 39527
 
 
-Function39527: ; 39527
+AIRandom2: ; 39527
 	call Random
 	cp $80 ; 1/2
 	ret
