@@ -47180,7 +47180,7 @@ AIChooseMove: ; 440ce
 	jr .CheckLayer
 
 ; Decrement the scores of all moves one by one until one reaches 0.
-; If the Pokemon has no moves, the game will loop indefinitely.
+; If the Pokemon has no moves, the game goes into an endless loop.
 .DecrementScores
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
