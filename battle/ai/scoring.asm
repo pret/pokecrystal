@@ -70,8 +70,8 @@ AIScoring_RedStatus: ; 38591
 
 
 AIScoring_RedStatMods: ; 385e0
-; 50% chance to greatly encourage stat-up moves during enemy's first turn.
-; 50% chance to greatly encourage stat-down moves during player's first turn.
+; 50% chance to greatly encourage stat-up moves during the first turn of enemy's Pokemon.
+; 50% chance to greatly encourage stat-down moves during the first turn of player's Pokemon.
 ; Almost 90% chance to greatly discourage stat-modifying moves otherwise.
 
 	ld hl, Buffer1 - 1
@@ -561,6 +561,7 @@ AIScoring_LockOn: ; 3881d
 
 
 AIScoring_Explosion: ; 388a6
+; Selfdestruct, Explosion
 
 ; Unless this is the enemy's last Pokemon...
 	push hl
@@ -954,14 +955,16 @@ AIScoring_Bide: ; 38a1e
 
 
 AIScoring_Whirlwind: ; 38a2a
+; Whirlwind, Roar.
+
 ; Discourage this move if the player has not shown 
 ; a super-effective move against the enemy.
-; Consider player's type if its moves are unknown. 
+; Consider player's type(s) if its moves are unknown. 
 
 	push hl
 	callab Function3484e
 	ld a, [$c716]
-	cp $a
+	cp 10 ; neutral
 	pop hl
 	ret c
 	inc [hl]
@@ -1020,7 +1023,7 @@ AIScoring_Reflect: ; 38a54
 
 
 AIScoring_Ohko: ; 38a60
-; Dismiss this move if player's level is higher than enemy's level
+; Dismiss this move if player's level is higher than enemy's level.
 ; Otherwise, discourage this move is player's HP is below 50%.
 
 	ld a, [BattleMonLevel]
@@ -1036,6 +1039,8 @@ AIScoring_Ohko: ; 38a60
 
 
 AIScoring_Bind: ; 38a71
+; Bind, Wrap, Fire Spin, Clamp
+
 	ld a, [$c730]
 	and a
 	jr nz, .asm_38a8b
@@ -1144,15 +1149,20 @@ AIScoring_Confuse: ; 38adb
 
 
 AIScoring_SpDefenseUp2: ; 38aed
+
+; Discourage this move if enemy's HP is lower than 50%.
 	call AICheckEnemyHalfHP
 	jr nc, .asm_38b10
 
+; Discourage this move if enemy's special defense level is higher than +3.
 	ld a, [EnemySDefLevel]
 	cp $b
 	jr nc, .asm_38b10
+
+; 80% chance to greatly encourage this move if
+; enemy's Special Defense level is lower than +2, and the player is of a special type.
 	cp $9
 	ret nc
-
 	ld a, [BattleMonType1]
 	cp SPECIAL
 	jr nc, .asm_38b09
@@ -1226,6 +1236,13 @@ AIScoring_Paralyze: ; 38b26
 
 
 AIScoring_SpeedDownHit: ; 38b40
+; Icy Wind
+
+; Almost 90% chance to greatly encourage this move if the following conditions all meet:
+; Enemy's HP is higher than 25%.
+; It's the first turn of player's Pokemon.
+; Player is faster than enemy.
+
 	ld a, [wEnemyMoveStruct + MOVE_ANIM]
 	cp ICY_WIND
 	ret nz
@@ -1284,11 +1301,12 @@ AIScoring_Rage: ; 38b7f
 	bit SUBSTATUS_RAGE, a
 	jr z, .asm_38b9b
 
+; If enemy's Rage is building, 50% chance to encourage this move.	
 	call Function39527
 	jr c, .asm_38b8c
-
 	dec [hl]
 
+; Encourage this move based on Rage's counter.	
 .asm_38b8c
 	ld a, [$c72c]
 	cp $2
@@ -1301,9 +1319,11 @@ AIScoring_Rage: ; 38b7f
 	ret
 
 .asm_38b9b
+; If enemy's Rage is not building, discourage this move if enemy's HP is below 50%.
 	call AICheckEnemyHalfHP
 	jr nc, .asm_38ba6
 
+; 50% chance to encourage this move otherwise.
 	call Function39521
 	ret nc
 	dec [hl]
@@ -1463,7 +1483,7 @@ AIScoring_Encore: ; 38c3b
 .asm_38c68
 	push hl
 	ld a, [LastEnemyCounterMove]
-	ld hl, .table_38c85
+	ld hl, .encoremoves
 	ld de, 1
 	call IsInArray
 	pop hl
@@ -1483,7 +1503,7 @@ AIScoring_Encore: ; 38c3b
 	inc [hl]
 	ret
 
-.table_38c85
+.encoremoves
 	db SWORDS_DANCE
 	db WHIRLWIND
 	db LEER
@@ -1519,6 +1539,8 @@ AIScoring_Encore: ; 38c3b
 
 
 AIScoring_PainSplit: ; 38ca4
+; Discourage this move if [enemy's current HP * 2 > player's current HP].
+
 	push hl
 	ld hl, EnemyMonHP
 	ld b, [hl]
@@ -1540,6 +1562,9 @@ AIScoring_PainSplit: ; 38ca4
 
 AIScoring_Snore:
 AIScoring_SleepTalk: ; 38cba
+; Greatly encourage this move if enemy is fast asleep.
+; Greatly discourage this move otherwise.
+
 	ld a, [EnemyMonStatus]
 	and $7
 	cp $1
@@ -1559,6 +1584,9 @@ AIScoring_SleepTalk: ; 38cba
 
 
 AIScoring_DefrostOpponent: ; 38ccb
+; Greatly encourage this move if enemy is frozen.
+; No move has EFFECT_DEFROST_OPPONENT, so this layer is unused.
+
 	ld a, [EnemyMonStatus]
 	and $20
 	ret z
@@ -1635,6 +1663,8 @@ Function_0x38d16; 38d16
 AIScoring_DestinyBond:
 AIScoring_Reversal:
 AIScoring_SkullBash: ; 38d19
+; Discourage this move if enemy's HP is above 25%.
+
 	call AICheckEnemyQuarterHP
 	ret nc
 	inc [hl]
@@ -1643,6 +1673,10 @@ AIScoring_SkullBash: ; 38d19
 
 
 AIScoring_HealBell: ; 38d1f
+; Dismiss this move if none of the opponent's Pokemon is statused.
+; Encourage this move if the enemy is statused.
+; 50% chance to greatly encourage this move if the enemy is fast asleep or frozen.
+
 	push hl
 	ld a, [OTPartyCount]
 	ld b, a
@@ -1658,8 +1692,8 @@ AIScoring_HealBell: ; 38d1f
 
 	dec hl
 	dec hl
-	dec hl
-	ld a, [hl]
+	dec hl ; status
+	ld a, [hl] 
 	or c
 	ld c, a
 
@@ -1698,12 +1732,14 @@ AIScoring_HealBell: ; 38d1f
 
 AIScoring_PriorityHit: ; 38d5a
 	call AICompareSpeed
-
 	ret c
+	
+; Dismiss this move if the player is flying or underground.	
 	ld a, [PlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	jp nz, AIDiscourageMove
 
+; Greatly encourage this move if it will KO the player.	
 	ld a, $1
 	ld [hBattleTurn], a
 	push hl
@@ -1821,18 +1857,22 @@ AIScoring_MeanLook: ; 38dfb
 	pop hl
 	jp z, AIDiscourageMove
 
+; 80% chance to greatly encourage this move if the enemy is badly poisoned (weird).  	
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_38e26
 
+; 80% chance to greatly encourage this move if the player is either 
+; in love, identified, stuck in Rollout, or has a Nightmare.	
 	ld a, [PlayerSubStatus1]
 	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ROLLOUT | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
 	jr nz, .asm_38e26
 
+; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.	
 	push hl
 	callab Function3484e
 	ld a, [$c716]
-	cp $b
+	cp $b ; not very effective
 	pop hl
 	ret nc
 
@@ -1878,6 +1918,10 @@ AICheckLastPlayerMon: ; 38e2e
 
 
 AIScoring_Nightmare: ; 38e4a
+; 50% chance to encourage this move.
+; The AIScoring_RedStatus layer will make sure that
+; Dream Eater is only used against sleeping targets.
+
 	call Function39527
 	ret c
 	dec [hl]
@@ -2194,6 +2238,8 @@ AIScoring_Endure: ; 38fac
 
 
 AIScoring_FuryCutter: ; 38fdb
+; Encourage this move based on Fury Cutter's count.
+
 	ld a, [EnemyFuryCutterCount]
 	and a
 	jr z, .end
@@ -2211,12 +2257,14 @@ AIScoring_FuryCutter: ; 38fdb
 	dec [hl]
 
 .end
-
 	; fallthrough
 ; 38fef
 
 
 AIScoring_Rollout: ; 38fef
+; Rollout, Fury Cutter
+
+; 80% chance to discourage this move if the enemy is in love, confused, or paralyzed.
 	ld a, [EnemySubStatus1]
 	bit SUBSTATUS_IN_LOVE, a
 	jr nz, .asm_39020
@@ -2229,6 +2277,8 @@ AIScoring_Rollout: ; 38fef
 	bit PAR, a
 	jr nz, .asm_39020
 
+; 80% chance to discourage this move if the enemy's HP is below 25%, 
+; or if accuracy or evasion modifiers favor the player.	
 	call AICheckEnemyQuarterHP
 	jr nc, .asm_39020
 
@@ -2239,6 +2289,7 @@ AIScoring_Rollout: ; 38fef
 	cp 8
 	jr nc, .asm_39020
 
+; Otherwise, 80% chance to greatly encourage this move.	
 	call Random
 	cp 200
 	ret nc
@@ -2256,6 +2307,9 @@ AIScoring_Rollout: ; 38fef
 
 AIScoring_Swagger:
 AIScoring_Attract: ; 39026
+; 80% chance to encourage this move during the first turn of player's Pokemon.
+; 80% chance to discourage this move otherwise.
+
 	ld a, [PlayerTurnsTaken]
 	and a
 	jr z, .first_turn
@@ -2275,6 +2329,8 @@ AIScoring_Attract: ; 39026
 
 
 AIScoring_Safeguard: ; 3903a
+; 80% chance to discourage this move if player's HP is below 50%.
+
 	call AICheckPlayerHalfHP
 	ret c
 	call Function39521
@@ -2286,6 +2342,8 @@ AIScoring_Safeguard: ; 3903a
 
 AIScoring_Magnitude:
 AIScoring_Earthquake: ; 39044
+; Greatly encourage this move if the player is underground and the enemy is faster.
+
 	ld a, [LastEnemyCounterMove]
 	cp DIG
 	ret nz
@@ -2300,9 +2358,11 @@ AIScoring_Earthquake: ; 39044
 	dec [hl]
 	ret
 
-.could_dig
-	; Try to predict if the player
-	; will use Dig this turn.
+; Try to predict if the player will use Dig this turn
+; even if the player doesn't know or can't learn it.	
+.could_dig	
+
+; 50% chance to encourage this move if the enemy is slower than the player.
 	call AICompareSpeed
 	ret c
 	call Function39527
@@ -2313,10 +2373,13 @@ AIScoring_Earthquake: ; 39044
 
 
 AIScoring_BatonPass: ; 39062
+; Discourage this move if the player hasn't shown super-effective moves against the enemy.
+; Consider player's type(s) if its moves are unknown. 
+
 	push hl
 	callab Function3484e
 	ld a, [$c716]
-	cp 10 ; 1.0
+	cp 10 ; neutral
 	pop hl
 	ret c
 	inc [hl]
