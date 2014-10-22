@@ -612,17 +612,22 @@ AIScoring_DreamEater: ; 388ca
 
 
 AIScoring_EvasionUp: ; 388d4
+
+; Dismiss this move if enemy's evasion can't raise anymore.
 	ld a, [EnemyEvaLevel]
 	cp $d
 	jp nc, AIDiscourageMove
 
+; If enemy's HP is full...
 	call AICheckEnemyMaxHP
 	jr nc, .asm_388f2
 
+; ...greatly encourage this move if player is badly poisoned.
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_388ef
-
+	
+; ...70% chance to greatly encourage this move if player is not badly poisoned.
 	call Random
 	cp $b2
 	jr nc, .asm_38911
@@ -633,21 +638,27 @@ AIScoring_EvasionUp: ; 388d4
 	ret
 
 .asm_388f2
+
+; Greatly discourage this move if enemy's HP is below 25%.
 	call AICheckEnemyQuarterHP
 	jr nc, .asm_3890f
 
+; If enemy's HP is above 25% but not full, 4% chance to greatly encourage this move.
 	call Random
 	cp $a
 	jr c, .asm_388ef
 
+; If enemy's HP is between 25% and 50%,...
 	call AICheckEnemyHalfHP
 	jr nc, .asm_3890a
 
+; If enemy's HP is above 50% but not full, 20% chance to greatly encourage this move.
 	call Function39521
 	jr c, .asm_388ef
 	jr .asm_38911
 
 .asm_3890a
+; ...50% chance to greatly discourage this move.
 	call Function39527
 	jr c, .asm_38911
 
@@ -655,6 +666,11 @@ AIScoring_EvasionUp: ; 388d4
 	inc [hl]
 	inc [hl]
 
+; 30% chance to end up here if enemy's HP is full and player is not badly poisoned.	
+; 77% chance to end up here if enemy's HP is above 50% but not full.
+; 96% chance to end up here if enemy's HP is between 25% and 50%.
+; 100% chance to end up here if enemy's HP is below 25%.
+; In other words, we only end up here if the move has not been encouraged or dismissed.
 .asm_38911
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
@@ -664,12 +680,14 @@ AIScoring_EvasionUp: ; 388d4
 	bit SUBSTATUS_LEECH_SEED, a
 	jr nz, .asm_38941
 
+; Discourage this move if enemy's evasion level is higher than player's accuracy level.
 	ld a, [EnemyEvaLevel]
 	ld b, a
 	ld a, [PlayerAccLevel]
 	cp b
 	jr c, .asm_38936
 
+; Greatly encourage this move if the player is in the middle of Fury Cutter or Rollout.
 	ld a, [PlayerFuryCutterCount]
 	and a
 	jr nz, .asm_388ef
@@ -683,6 +701,9 @@ AIScoring_EvasionUp: ; 388d4
 	inc [hl]
 	ret
 
+; Player is badly poisoned.
+; 80% chance to greatly encourage this move.
+; This would counter any previous discouragement.
 .asm_38938
 	call Random
 	cp $50
@@ -691,6 +712,9 @@ AIScoring_EvasionUp: ; 388d4
 	dec [hl]
 	ret
 
+; Player is seeded.
+; 50% chance to encourage this move.
+; This would partly counter any previous discouragement.
 .asm_38941
 	call Function39527
 	ret c
@@ -767,16 +791,21 @@ AIScoring_MirrorMove: ; 3895b
 
 
 AIScoring_AccuracyDown: ; 38985
+
+; If player's HP is full...
 	call AICheckPlayerMaxHP
 	jr nc, .asm_389a0
 
+; ...and enemy's HP is above 50%...	
 	call AICheckEnemyHalfHP
 	jr nc, .asm_389a0
 
+; ...greatly encourage this move if player is badly poisoned.	
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_3899d
 
+; ...70% chance to greatly encourage this move if player is not badly poisoned.
 	call Random
 	cp $b2
 	jr nc, .asm_389bf
@@ -787,20 +816,26 @@ AIScoring_AccuracyDown: ; 38985
 	ret
 
 .asm_389a0
+
+; Greatly discourage this move if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
 	jr nc, .asm_389bd
 
+; If player's HP is above 25% but not full, 4% chance to greatly encourage this move.	
 	call Random
 	cp $a
 	jr c, .asm_3899d
 
+; If player's HP is between 25% and 50%,...	
 	call AICheckPlayerHalfHP
 	jr nc, .asm_389b8
 
+; If player's HP is above 50% but not full, 20% chance to greatly encourage this move.	
 	call Function39521
 	jr c, .asm_3899d
 	jr .asm_389bf
 
+; ...50% chance to greatly discourage this move.	
 .asm_389b8
 	call Function39527
 	jr c, .asm_389bf
@@ -809,6 +844,7 @@ AIScoring_AccuracyDown: ; 38985
 	inc [hl]
 	inc [hl]
 
+; We only end up here if the move has not been already encouraged.	
 .asm_389bf
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
@@ -818,12 +854,14 @@ AIScoring_AccuracyDown: ; 38985
 	bit SUBSTATUS_LEECH_SEED, a
 	jr nz, .asm_389ef
 
+; Discourage this move if enemy's evasion level is higher than player's accuracy level.	
 	ld a, [EnemyEvaLevel]
 	ld b, a
 	ld a, [PlayerAccLevel]
 	cp b
 	jr c, .asm_389e4
 
+; Greatly encourage this move if the player is in the middle of Fury Cutter or Rollout.	
 	ld a, [PlayerFuryCutterCount]
 	and a
 	jr nz, .asm_3899d
@@ -836,6 +874,9 @@ AIScoring_AccuracyDown: ; 38985
 	inc [hl]
 	ret
 
+; Player is badly poisoned.
+; 80% chance to greatly encourage this move.
+; This would counter any previous discouragement.	
 .asm_389e6
 	call Random
 	cp $50
@@ -844,6 +885,9 @@ AIScoring_AccuracyDown: ; 38985
 	dec [hl]
 	ret
 
+; Player is seeded.
+; 50% chance to encourage this move.
+; This would partly counter any previous discouragement.	
 .asm_389ef
 	call Function39527
 	ret c
@@ -854,6 +898,8 @@ AIScoring_AccuracyDown: ; 38985
 
 
 AIScoring_Haze: ; 389f5
+
+; 85% chance to encourage this move if any of enemy's stat levels is lower than -2.
 	push hl
 	ld hl, EnemyAtkLevel
 	ld c, $8
@@ -865,6 +911,7 @@ AIScoring_Haze: ; 389f5
 	jr c, .asm_38a12
 	jr .asm_389fb
 
+; 85% chance to encourage this move if any of player's stat levels is higher than +2.	
 .asm_38a05
 	ld hl, PlayerAtkLevel
 	ld c, $8
@@ -883,6 +930,9 @@ AIScoring_Haze: ; 389f5
 	dec [hl]
 	ret
 
+; Discourage this move if neither:
+; Any of enemy's stat levels is	lower than -2.
+; Any of player's stat levels is higher than +2.
 .asm_38a1b
 	pop hl
 	inc [hl]
@@ -904,6 +954,10 @@ AIScoring_Bide: ; 38a1e
 
 
 AIScoring_Whirlwind: ; 38a2a
+; Discourage this move if the player has not shown 
+; a super-effective move against the enemy.
+; Consider player's type if its moves are unknown. 
+
 	push hl
 	callab Function3484e
 	ld a, [$c716]
