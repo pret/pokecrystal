@@ -59442,11 +59442,13 @@ String_50bb5: ; 50bb5
 
 
 GetGender: ; 50bdd
-; Return the gender of a given monster in a.
+; Return the gender of a given monster (CurPartyMon/CurOTMon/CurWildMon).
+; When calling this function, a should be set to an appropriate MonType value.
 
-; 1: male
-; 0: female
-; c: genderless
+; return values:
+; a = 1: f = nc|nz; male
+; a = 0: f = nc|z;  female
+;        f = c:  genderless
 
 ; This is determined by comparing the Attack and Speed DVs
 ; with the species' gender ratio.
