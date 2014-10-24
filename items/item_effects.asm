@@ -734,14 +734,14 @@ BallMultiplierFunctionTable:
 ; which ball is used in a certain situation.
 	dbw ULTRA_BALL, UltraBallMultiplier
 	dbw GREAT_BALL, GreatBallMultiplier
-	dbw 8,          GreatBallMultiplier ; Safari Ball, leftover from RBY
+	dbw 8,          SafariBallMultiplier ; Safari Ball, leftover from RBY
 	dbw HEAVY_BALL, HeavyBallMultiplier
 	dbw LEVEL_BALL, LevelBallMultiplier
 	dbw LURE_BALL,  LureBallMultiplier
 	dbw FAST_BALL,  FastBallMultiplier
 	dbw MOON_BALL,  MoonBallMultiplier
 	dbw LOVE_BALL,  LoveBallMultiplier
-	dbw PARK_BALL,  GreatBallMultiplier
+	dbw PARK_BALL,  ParkBallMultiplier
 	db $ff
 
 UltraBallMultiplier:
@@ -751,7 +751,9 @@ UltraBallMultiplier:
 	ld b, $ff
 	ret
 
+SafariBallMultiplier:
 GreatBallMultiplier:
+ParkBallMultiplier:
 ; multiply catch rate by 1.5
 	ld a, b
 	srl a
@@ -944,7 +946,7 @@ GLOBAL EvosAttacksPointers
 	push bc
 	ld a, BANK(EvosAttacks)
 	call GetFarByte
-	cp MOON_STONE_RED ; BURN_HEAL (in Red)
+	cp MOON_STONE_RED ; BURN_HEAL
 	pop bc
 	ret nz
 
