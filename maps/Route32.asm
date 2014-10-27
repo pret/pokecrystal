@@ -12,8 +12,7 @@ Route32_MapScriptHeader: ; 0x19044f
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x190463
-; 0x190460
+	dbw 2, FriedaCallback
 
 UnknownScript_0x190460: ; 0x190460
 	end
@@ -27,17 +26,15 @@ UnknownScript_0x190462: ; 0x190462
 	end
 ; 0x190463
 
-UnknownScript_0x190463: ; 0x190463
+FriedaCallback:
 	checkcode $b
-	if_equal FRIDAY, UnknownScript_0x19046c
+	if_equal FRIDAY, .FriedaAppears
 	disappear $e
 	return
-; 0x19046c
 
-UnknownScript_0x19046c: ; 0x19046c
+.FriedaAppears
 	appear $e
 	return
-; 0x19046f
 
 CooltrainerMScript_0x19046f: ; 0x19046f
 	faceplayer
@@ -627,44 +624,41 @@ Bird_keeperPeterScript: ; 0x190731
 	end
 ; 0x190739
 
-LassScript_0x190739: ; 0x190739
+FriedaScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
-	iftrue UnknownScript_0x190767
+	iftrue FriedaFridayScript
 	checkcode $b
-	if_not_equal FRIDAY, UnknownScript_0x19076d
+	if_not_equal FRIDAY, FriedaNotFridayScript
 	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
-	iftrue UnknownScript_0x190754
-	2writetext UnknownText_0x1911c1
+	iftrue .MetFrieda
+	2writetext MeetFriedaText
 	keeptextopen
 	setevent EVENT_MET_FRIEDA_OF_FRIDAY
-UnknownScript_0x190754: ; 0x190754
-	2writetext UnknownText_0x191204
+.MetFrieda
+	2writetext FriedaGivesGiftText
 	keeptextopen
 	verbosegiveitem POISON_BARB, 1
-	iffalse UnknownScript_0x19076b
+	iffalse FriedaDoneScript
 	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
-	2writetext UnknownText_0x191222
+	2writetext FriedaGaveGiftText
 	closetext
 	loadmovesprites
 	end
-; 0x190767
 
-UnknownScript_0x190767: ; 0x190767
-	2writetext UnknownText_0x19129a
+FriedaFridayScript:
+	2writetext FriedaFridayText
 	closetext
-UnknownScript_0x19076b: ; 0x19076b
+FriedaDoneScript:
 	loadmovesprites
 	end
-; 0x19076d
 
-UnknownScript_0x19076d: ; 0x19076d
-	2writetext UnknownText_0x1912ff
+FriedaNotFridayScript:
+	2writetext FriedaNotFridayText
 	closetext
 	loadmovesprites
 	end
-; 0x190773
 
 ItemFragment_0x190773: ; 0x190773
 	db GREAT_BALL, 1
@@ -1100,7 +1094,7 @@ UnknownText_0x19118c: ; 0x19118c
 	done
 ; 0x1911c1
 
-UnknownText_0x1911c1: ; 0x1911c1
+MeetFriedaText:
 	text "FRIEDA: Yahoo!"
 	line "It's Friday!"
 
@@ -1109,15 +1103,13 @@ UnknownText_0x1911c1: ; 0x1911c1
 
 	para "Nice to meet you!"
 	done
-; 0x191204
 
-UnknownText_0x191204: ; 0x191204
+FriedaGivesGiftText:
 	text "Here's a POISON"
 	line "BARB for you!"
 	done
-; 0x191222
 
-UnknownText_0x191222: ; 0x191222
+FriedaGaveGiftText:
 	text "FRIEDA: Give it to"
 	line "a #MON that has"
 	cont "poison-type moves."
@@ -1130,9 +1122,8 @@ UnknownText_0x191222: ; 0x191222
 	line "how good it makes"
 	cont "poison moves!"
 	done
-; 0x19129a
 
-UnknownText_0x19129a: ; 0x19129a
+FriedaFridayText:
 	text "FRIEDA: Hiya! What"
 	line "day do you like?"
 
@@ -1142,16 +1133,14 @@ UnknownText_0x19129a: ; 0x19129a
 	para "Don't you think"
 	line "it's great too?"
 	done
-; 0x1912ff
 
-UnknownText_0x1912ff: ; 0x1912ff
+FriedaNotFridayText:
 	text "FRIEDA: Isn't it"
 	line "Friday today?"
 
 	para "It's so boring"
 	line "when it's not!"
 	done
-; 0x19133a
 
 UnknownText_0x19133a: ; 0x19133a
 	text "ROUTE 32"
@@ -1212,7 +1201,5 @@ Route32_MapEventHeader: ; 0x19138d
 	person_event SPRITE_FISHER, 74, 11, $6, $0, 255, 255, $0, 0, FisherScript_0x1904f2, $06fc
 	person_event SPRITE_POKE_BALL, 57, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x190773, $06b0
 	person_event SPRITE_FISHER, 17, 19, $9, $0, 255, 255, $0, 0, FisherScript_0x1904ce, $ffff
-	person_event SPRITE_LASS, 71, 16, $8, $0, 255, 255, $0, 0, LassScript_0x190739, $0758
+	person_event SPRITE_LASS, 71, 16, $8, $0, 255, 255, $0, 0, FriedaScript, $0758
 	person_event SPRITE_POKE_BALL, 34, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x190775, $06b1
-; 0x19148b
-

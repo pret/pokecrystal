@@ -9,25 +9,22 @@ BlackthornCity_MapScriptHeader: ; 0x1a46d0
 
 	dbw 5, UnknownScript_0x1a46d8
 
-	dbw 2, UnknownScript_0x1a46dc
-; 0x1a46d8
+	dbw 2, SantosCallback
 
 UnknownScript_0x1a46d8: ; 0x1a46d8
 	setflag $004b
 	return
 ; 0x1a46dc
 
-UnknownScript_0x1a46dc: ; 0x1a46dc
+SantosCallback:
 	checkcode $b
-	if_equal SATURDAY, UnknownScript_0x1a46e5
+	if_equal SATURDAY, .SantosAppears
 	disappear $9
 	return
-; 0x1a46e5
 
-UnknownScript_0x1a46e5: ; 0x1a46e5
+.SantosAppears
 	appear $9
 	return
-; 0x1a46e8
 
 SuperNerdScript_0x1a46e8: ; 0x1a46e8
 	faceplayer
@@ -94,44 +91,41 @@ CooltrainerFScript_0x1a4728: ; 0x1a4728
 	jumptextfaceplayer UnknownText_0x1a4b1e
 ; 0x1a472b
 
-YoungsterScript_0x1a472b: ; 0x1a472b
+SantosScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
-	iftrue UnknownScript_0x1a4759
+	iftrue SantosSaturdayScript
 	checkcode $b
-	if_not_equal SATURDAY, UnknownScript_0x1a475f
+	if_not_equal SATURDAY, SantosNotSaturdayScript
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
-	iftrue UnknownScript_0x1a4746
-	2writetext UnknownText_0x1a4a27
+	iftrue .MetSantos
+	2writetext MeetSantosText
 	keeptextopen
 	setevent EVENT_MET_SANTOS_OF_SATURDAY
-UnknownScript_0x1a4746: ; 0x1a4746
-	2writetext UnknownText_0x1a4a57
+.MetSantos
+	2writetext SantosGivesGiftText
 	keeptextopen
 	verbosegiveitem SPELL_TAG, 1
-	iffalse UnknownScript_0x1a475d
+	iffalse SantosDoneScript
 	setevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
-	2writetext UnknownText_0x1a4a6b
+	2writetext SantosGaveGiftText
 	closetext
 	loadmovesprites
 	end
-; 0x1a4759
 
-UnknownScript_0x1a4759: ; 0x1a4759
-	2writetext UnknownText_0x1a4ab6
+SantosSaturdayScript:
+	2writetext SantosSaturdayText
 	closetext
-UnknownScript_0x1a475d: ; 0x1a475d
+SantosDoneScript:
 	loadmovesprites
 	end
-; 0x1a475f
 
-UnknownScript_0x1a475f: ; 0x1a475f
-	2writetext UnknownText_0x1a4b00
+SantosNotSaturdayScript:
+	2writetext SantosNotSaturdayText
 	closetext
 	loadmovesprites
 	end
-; 0x1a4765
 
 MapBlackthornCitySignpost0Script: ; 0x1a4765
 	jumptext UnknownText_0x1a4b67
@@ -252,7 +246,7 @@ UnknownText_0x1a49f1: ; 0x1a49f1
 	done
 ; 0x1a4a27
 
-UnknownText_0x1a4a27: ; 0x1a4a27
+MeetSantosText:
 	text "SANTOS: …"
 
 	para "It's Saturday…"
@@ -260,14 +254,12 @@ UnknownText_0x1a4a27: ; 0x1a4a27
 	para "I'm SANTOS of"
 	line "Saturday…"
 	done
-; 0x1a4a57
 
-UnknownText_0x1a4a57: ; 0x1a4a57
+SantosGivesGiftText:
 	text "You can have this…"
 	done
-; 0x1a4a6b
 
-UnknownText_0x1a4a6b: ; 0x1a4a6b
+SantosGaveGiftText:
 	text "SANTOS: …"
 
 	para "SPELL TAG…"
@@ -278,9 +270,8 @@ UnknownText_0x1a4a6b: ; 0x1a4a6b
 	para "It will frighten"
 	line "you…"
 	done
-; 0x1a4ab6
 
-UnknownText_0x1a4ab6: ; 0x1a4ab6
+SantosSaturdayText:
 	text "SANTOS: …"
 
 	para "See you again on"
@@ -289,13 +280,11 @@ UnknownText_0x1a4ab6: ; 0x1a4ab6
 	para "I won't have any"
 	line "more gifts…"
 	done
-; 0x1a4b00
 
-UnknownText_0x1a4b00: ; 0x1a4b00
+SantosNotSaturdayText:
 	text "SANTOS: Today's"
 	line "not Saturday…"
 	done
-; 0x1a4b1e
 
 UnknownText_0x1a4b1e: ; 0x1a4b1e
 	text "Wow, you came"
@@ -386,7 +375,5 @@ BlackthornCity_MapEventHeader: ; 0x1a4c57
 	person_event SPRITE_BLACK_BELT, 35, 28, $5, $1, 255, 255, $90, 0, BlackBeltScript_0x1a470e, $ffff
 	person_event SPRITE_COOLTRAINER_F, 29, 13, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1a4722, $ffff
 	person_event SPRITE_YOUNGSTER, 19, 17, $5, $1, 255, 255, $0, 0, YoungsterScript_0x1a4725, $ffff
-	person_event SPRITE_YOUNGSTER, 24, 26, $6, $0, 255, 255, $0, 0, YoungsterScript_0x1a472b, $075d
+	person_event SPRITE_YOUNGSTER, 24, 26, $6, $0, 255, 255, $0, 0, SantosScript, $075d
 	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1a4728, $ffff
-; 0x1a4d1d
-

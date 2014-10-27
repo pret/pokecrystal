@@ -11,8 +11,7 @@ Route36_MapScriptHeader: ; 0x194000
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x19400f
-; 0x19400d
+	dbw 2, ArthurCallback
 
 UnknownScript_0x19400d: ; 0x19400d
 	end
@@ -22,17 +21,15 @@ UnknownScript_0x19400e: ; 0x19400e
 	end
 ; 0x19400f
 
-UnknownScript_0x19400f: ; 0x19400f
+ArthurCallback:
 	checkcode $b
-	if_equal THURSDAY, UnknownScript_0x194018
+	if_equal THURSDAY, .ArthurAppears
 	disappear $8
 	return
-; 0x194018
 
-UnknownScript_0x194018: ; 0x194018
+.ArthurAppears
 	appear $8
 	return
-; 0x19401b
 
 UnknownScript_0x19401b: ; 0x19401b
 	showemote $0, $0, 15
@@ -381,44 +378,41 @@ PsychicMarkScript: ; 0x1941f9
 	end
 ; 0x194201
 
-YoungsterScript_0x194201: ; 0x194201
+ArthurScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
-	iftrue UnknownScript_0x19422f
+	iftrue ArthurThursdayScript
 	checkcode $b
-	if_not_equal THURSDAY, UnknownScript_0x194235
+	if_not_equal THURSDAY, ArthurNotThursdayScript
 	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
-	iftrue UnknownScript_0x19421c
-	2writetext UnknownText_0x194800
+	iftrue .MetArthur
+	2writetext MeetArthurText
 	keeptextopen
 	setevent EVENT_MET_ARTHUR_OF_THURSDAY
-UnknownScript_0x19421c: ; 0x19421c
-	2writetext UnknownText_0x19482d
+.MetArthur
+	2writetext ArthurGivesGiftText
 	keeptextopen
 	verbosegiveitem HARD_STONE, 1
-	iffalse UnknownScript_0x194233
+	iffalse ArthurDoneScript
 	setevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
-	2writetext UnknownText_0x194847
+	2writetext ArthurGaveGiftText
 	closetext
 	loadmovesprites
 	end
-; 0x19422f
 
-UnknownScript_0x19422f: ; 0x19422f
-	2writetext UnknownText_0x1948aa
+ArthurThursdayScript:
+	2writetext ArthurThursdayText
 	closetext
-UnknownScript_0x194233: ; 0x194233
+ArthurDoneScript:
 	loadmovesprites
 	end
-; 0x194235
 
-UnknownScript_0x194235: ; 0x194235
-	2writetext UnknownText_0x1948f3
+ArthurNotThursdayScript:
+	2writetext ArthurNotThursdayText
 	closetext
 	loadmovesprites
 	end
-; 0x19423b
 
 MapRoute36Signpost2Script: ; 0x19423b
 	jumptext UnknownText_0x194924
@@ -678,22 +672,20 @@ UnknownText_0x1947aa: ; 0x1947aa
 	done
 ; 0x194800
 
-UnknownText_0x194800: ; 0x194800
+MeetArthurText:
 	text "ARTHUR: Who are"
 	line "you?"
 
 	para "I'm ARTHUR of"
 	line "Thursday."
 	done
-; 0x19482d
 
-UnknownText_0x19482d: ; 0x19482d
+ArthurGivesGiftText:
 	text "Here. You can have"
 	line "this."
 	done
-; 0x194847
 
-UnknownText_0x194847: ; 0x194847
+ArthurGaveGiftText:
 	text "ARTHUR: A #MON"
 	line "that uses rock-"
 
@@ -703,23 +695,20 @@ UnknownText_0x194847: ; 0x194847
 	para "It pumps up rock-"
 	line "type attacks."
 	done
-; 0x1948aa
 
-UnknownText_0x1948aa: ; 0x1948aa
+ArthurThursdayText:
 	text "ARTHUR: I'm ARTHUR"
 	line "of Thursday. I'm"
 
 	para "the second son out"
 	line "of seven children."
 	done
-; 0x1948f3
 
-UnknownText_0x1948f3: ; 0x1948f3
+ArthurNotThursdayText:
 	text "ARTHUR: Today's"
 	line "not Thursday. How"
 	cont "disappointing."
 	done
-; 0x194924
 
 UnknownText_0x194924: ; 0x194924
 	text "ROUTE 36"
@@ -796,8 +785,6 @@ Route36_MapEventHeader: ; 0x194a66
 	person_event SPRITE_LASS, 12, 55, $5, $2, 255, 255, $0, 0, LassScript_0x1940e0, $ffff
 	person_event SPRITE_FISHER, 13, 48, $8, $0, 255, 255, $0, 0, FisherScript_0x1940b9, $ffff
 	person_event SPRITE_FRUIT_TREE, 8, 25, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194247, $ffff
-	person_event SPRITE_YOUNGSTER, 10, 50, $2, $11, 255, 255, $0, 0, YoungsterScript_0x194201, $075a
+	person_event SPRITE_YOUNGSTER, 10, 50, $2, $11, 255, 255, $0, 0, ArthurScript, $075a
 	person_event SPRITE_LASS, 16, 37, $6, $0, 255, 255, $90, 0, LassScript_0x19408c, $0769
 	person_event SPRITE_SUICUNE, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b0
-; 0x194b19
-
