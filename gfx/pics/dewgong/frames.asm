@@ -35,6 +35,5 @@
 	db $49, $4a, $4b, $4c
 .frame9
 	db $08 ; bitmask
-	db $4d ; unused
-
+	db $4d
 ; 0xd5422

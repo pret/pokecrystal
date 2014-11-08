@@ -2,8 +2,7 @@
 	dw .frame2
 	dw .frame3
 	dw .frame4
-.frame5
-	db $3e, $62
+	dw .frame5
 .frame1
 	db $00 ; bitmask
 	db $19, $1a, $1b
@@ -17,5 +16,7 @@
 .frame4
 	db $03 ; bitmask
 	db $31, $1d
-	db $04, $1b ; unused
+.frame5
+	db $04 ; bitmask
+	db $1b
 ; 0xd6240

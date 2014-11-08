@@ -1,8 +1,8 @@
 	dw .frame1
 	dw .frame2
 	dw .frame3
-.frame4
-	db $ce, $5f, $d0, $5f
+	dw .frame4
+	dw .frame5
 .frame1
 	db $00 ; bitmask
 	db $31, $32, $33, $34, $35, $36, $37, $38, $39, $3a, $3b, $3c
@@ -12,5 +12,10 @@
 .frame3
 	db $01 ; bitmask
 	db $49, $4a
-	db $02, $4b, $02, $4b ; unused
-; 0xd5fce
+.frame4
+	db $02 ; bitmask
+	db $4b
+.frame5
+	db $02 ; bitmask
+	db $4b
+; 0xd5fd2

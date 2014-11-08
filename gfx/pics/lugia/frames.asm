@@ -39,6 +39,5 @@
 	db $5e, $59, $4f, $50, $54, $55
 .frame9
 	db $08 ; bitmask
-	db $5e, $59 ; unused
-
+	db $5e, $59
 ; 0xd98c4
