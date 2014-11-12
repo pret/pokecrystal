@@ -6,6 +6,7 @@ VirtualBox. Follow these steps:
 * [Download and install Vagrant](http://www.vagrantup.com/downloads.html)
 * Follow the instructions to [download and install VirtualBox](http://docs-v1.vagrantup.com/v1/docs/getting-started/)
 * Run these commands:
+
 ```
 	vagrant box add pokecrystal http://diyhpl.us/~bryan/irc/pokecrystal/pokecrystal.box
 	mkdir vagrantbox
@@ -15,7 +16,8 @@ VirtualBox. Follow these steps:
 	vagrant ssh -c "cd /vagrant && git clone git://github.com/kanzure/pokecrystal.git"
 	vagrant ssh -c "cd /vagrant/pokecrystal && git submodule init && git submodule update"
 	vagrant ssh
-	```
+	
+```
 
 Running "vagrant ssh" will give you a shell to type commands into for compiling
 the source code. The the "virtualbox" directory on the host appears as a shared
