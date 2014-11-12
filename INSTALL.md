@@ -13,7 +13,7 @@ VirtualBox. Follow these steps:
 	cd vagrantbox
 	vagrant init pokecrystal
 	vagrant up
-	vagrant ssh -c "cd /vagrant && git clone git://github.com/kanzure/pokecrystal.git"
+	vagrant ssh -c "cd /vagrant && git clone git://github.com/bradley-plus/pokecrystal.git"
 	vagrant ssh -c "cd /vagrant/pokecrystal && git submodule init && git submodule update"
 	vagrant ssh
 	
