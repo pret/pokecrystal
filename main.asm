@@ -117985,9 +117985,7 @@ Function1de2c5: ; 1de2c5
 
 PokegearGFX: ; 1de2e4
 INCBIN "gfx/misc/pokegear.2bpp.lz"
-; 1de5c7
-
-INCBIN "baserom.gbc",$1de5c7,$1de5c8 - $1de5c7
+; 1de5c8
 
 Function1de5c8: ; 1de5c8
 	ld c, $0
