@@ -117603,11 +117603,12 @@ String1dc559: ; 1dc559
 	db $73, "№.@"
 
 String1dc55d: ; 1dc55d
-	db "ATTACK", $4e
-	db "DEFENSE", $4e
-	db "SPCL.ATK", $4e
-	db "SPCL.DEF", $4e
-	db "SPEED@"
+	db   "ATTACK"
+	next "DEFENSE"
+	next "SPCL.ATK"
+	next "SPCL.DEF"
+	next "SPEED"
+	db   "@"
 
 String1dc584: ; 1dc584
 	db "------------@"
@@ -117623,7 +117624,21 @@ INCBIN "gfx/mobile/lv.1bpp"
 INCLUDE "tilesets/data_7.asm"
 
 
-INCBIN "baserom.gbc",$1dd6a9,$1dd6bb - $1dd6a9
+Function1dd6a9: ; 1dd6a9
+	ld a, b
+	ld b, c
+	ld c, a
+	push bc
+	push de
+	ld hl, [sp+$2]
+	ld d, h
+	ld e, l
+	pop hl
+	ld bc, $8205
+	call PrintNum
+	pop bc
+	ret
+; 1dd6bb
 
 Function1dd6bb: ; 1dd6bb (77:56bb)
 	ld a, b
@@ -117660,17 +117675,19 @@ Function1dd6bb: ; 1dd6bb (77:56bb)
 	ld bc, $8102
 	call PrintNum
 	pop bc
-	ld de, $56fc
+	ld de, String_1dd6fc
 	pop af
 	jr c, .asm_1dd6f7
-	ld de, $56ff
+	ld de, String_1dd6ff
 .asm_1dd6f7
 	inc hl
 	call PlaceString
 	ret
 ; 1dd6fc (77:56fc)
 
-INCBIN "baserom.gbc",$1dd6fc,$1dd702 - $1dd6fc
+String_1dd6fc: db "AM@"
+String_1dd6ff: db "PM@"
+; 1dd702
 
 Function1dd702: ; 1dd702
 	call Function1dd709
@@ -117683,23 +117700,23 @@ Function1dd709: ; 1dd709
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
-	ld hl, $5805
+	ld hl, LZ_1dd805
 	ld de, VTiles2
 	call Decompress
-	ld hl, $5c4b
+	ld hl, Tilemap_1ddc4b
 	ld de, TileMap
 	ld bc, $0168
 	call CopyBytes
-	ld de, $5760
+	ld de, String_1dd760
 	hlcoord 2, 5
 	call PlaceString
-	ld de, $5767
+	ld de, String_1dd767
 	hlcoord 15, 5
 	call PlaceString
 	ld de, PlayerName
 	hlcoord 9, 5
 	call PlaceString
-	ld de, $5768
+	ld de, String_1dd768
 	hlcoord 2, 8
 	call PlaceString
 	call EnableLCD
@@ -117711,21 +117728,34 @@ Function1dd709: ; 1dd709
 	ret
 ; 1dd760
 
-INCBIN "baserom.gbc",$1dd760,$1dd7ae - $1dd760
+String_1dd760:
+	db "PLAYER@"
+
+String_1dd767:
+	db "@"
+
+String_1dd768:
+	db   "This certifies"
+	next "that you have"
+	next "completed the"
+	next "new #DEX."
+	next "Congratulations!"
+	db   "@"
+; 1dd7ae
 
 Function1dd7ae: ; 1dd7ae
 	ld hl, TileMap
 	ld bc, $0168
 	ld a, $7f
 	call ByteFill
-	ld hl, $5db3
+	ld hl, Tilemap_1dddb3
 	ld de, TileMap
 	ld bc, $0168
 	call CopyBytes
-	ld de, $57fa
+	ld de, String_1dd7fa
 	hlcoord 8, 0
 	call PlaceString
-	ld de, $57f0
+	ld de, String_1dd7f0
 	hlcoord 3, 15
 	call PlaceString
 	hlcoord 12, 15
@@ -117740,36 +117770,48 @@ Function1dd7ae: ; 1dd7ae
 	ret
 ; 1dd7f0
 
-INCBIN "baserom.gbc",$1dd7f0,$1ddf1c - $1dd7f0
+String_1dd7f0: db "PLAY TIME@"
+String_1dd7fa: db "GAME FREAK@"
+; 1dd805
 
+LZ_1dd805: ; 1dd805
+INCBIN "baserom.gbc", $1dd805, $1ddc4b - $1dd805
+
+Tilemap_1ddc4b: ; 1ddc4b
+INCBIN "baserom.gbc", $1ddc4b, $1dddb3 - $1ddc4b
+
+Tilemap_1dddb3: ; 1dddb3
+INCBIN "baserom.gbc", $1dddb3, $1ddf1c - $1dddb3
 
 Function1ddf1c: ; 1ddf1c
-	ld hl, $5f33
+	ld hl, LZ_1ddf33
 	ld de, $9310
 	call Decompress
 	ret
 ; 1ddf26
 
-
 Function1ddf26: ; 1ddf26 (77:5f26)
-	ld hl, $5f33
+	ld hl, LZ_1ddf33
 	ld de, $9310
-	ld bc, $773a
+	lb bc, BANK(LZ_1ddf33), $3a
 	call Functione73
 	ret
 ; 1ddf33 (77:5f33)
 
+LZ_1ddf33: ; 1ddf33
 INCBIN "baserom.gbc",$1ddf33,$1de0d7 - $1ddf33
-
+; 1de0d7
 
 Function1de0d7: ; 1de0d7
-	ld hl, $60e1
+	ld hl, LZ_1de0e1
 	ld de, $a000
 	call Decompress
 	ret
 ; 1de0e1
 
+LZ_1de0e1: ; 1de0e1
 INCBIN "baserom.gbc",$1de0e1,$1de171 - $1de0e1
+; 1de171
 
 Function1de171: ; 1de171 (77:6171)
 	ld a, $32
@@ -117849,16 +117891,21 @@ Function1de1d1: ; 1de1d1 (77:61d1)
 	call Function1de27f
 	ld [hl], $68
 	hlcoord 0, 12
-	ld bc, $50b
+	lb bc, 5, 11
 	call ClearBox
-	ld de, $623c
+	ld de, String_1de23c
 	hlcoord 0, 12
 	call PlaceString
 	ret
 ; 1de23c (77:623c)
 
-INCBIN "baserom.gbc",$1de23c,$1de247 - $1de23c
-
+String_1de23c: ; 1de23c
+; At a glance, this is less coherent in the Japanese charset.
+	db "ESULTS"
+	db $4e
+	db $4e
+	db "D!@"
+; 1de247
 
 Function1de247: ; 1de247
 	ld a, [hBGMapAddress]
