@@ -1239,9 +1239,9 @@ CreditsStrings:
 .TakaoOhara:          db "    TAKAO OHARA@"           ; "おおはら たかお@"
 .YuichiroIto:         db "    YUICHIRO ITO@"          ; "いとう ゆういちろう@"
 .TakaoShimizu:        db "   TAKAO SHIMIZU@"          ; "しみず たかお@"
-.Planning:            db " SPECIAL PRODUCTION", $4e
-                      db "      PLANNING", $4e        ; "きかくかいはつぶ@"
-                      db " & DEVELOPMENT DEPT.@"
+.Planning:            db " SPECIAL PRODUCTION"
+                    next "      PLANNING"             ; "きかくかいはつぶ@"
+                    next " & DEVELOPMENT DEPT.@"
 .KeitaNakamura:       db "   KEITA NAKAMURA@"         ; "なかむら けいた@"
 .HirotakaUemura:      db "  HIROTAKA UEMURA@"         ; "うえむら ひろたか@"
 .HiroakiTamura:       db "   HIROAKI TAMURA@"         ; "たむら ひろあき@"
@@ -1266,9 +1266,9 @@ CreditsStrings:
 .TerukiMurakawa:      db "  TERUKI MURAKAWA@"
 .KazuyoshiOsawa:      db "  KAZUYOSHI OSAWA@"
 .KimikoNakamichi:     db "  KIMIKO NAKAMICHI@"
-.Staff:               db "      #MON", $4e            ; "ポケットモンスター", $4e
-                      db "  CRYSTAL VERSION", $4e     ; "  クりスタル バージョン", $4e
-                      db "       STAFF@"              ; "    スタッフ@"
+.Staff:               db "      #MON"                 ; "ポケットモンスター"
+                    next "  CRYSTAL VERSION"          ; "  クりスタル バージョン"
+                    next "       STAFF@"              ; "    スタッフ@"
 .Director:            db "      DIRECTOR@"            ; "エグゼクティブ ディレクター@"
 .CoDirector:          db "    CO-DIRECTOR@"           ; "ディレクター@"
 .Programmers:         db "    PROGRAMMERS@"           ; "プログラム@"
@@ -1300,10 +1300,11 @@ CreditsStrings:
 .PaadTesting:         db "    PAAD TESTING@"
 
 .Copyright:
-;  (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
-db $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c, $4e
-;  (C) 1  9  9  5 - 2  0  0  1    C  r  e  a  t  u  r  e  s      i  n  c .
-db $60,$61,$62,$63,$64,$65,$66, $6d, $6e, $6f, $70, $71, $72,  $7a, $7b, $7c, $4e
-;  (C) 1  9  9  5 - 2  0  0  1  G   A   M   E   F   R   E   A   K     i  n  c .
-db $60,$61,$62,$63,$64,$65,$66, $73, $74, $75, $76, $77, $78, $79,  $7a, $7b, $7c, "@"
+	;    (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
+	db   $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c
+	;    (C) 1  9  9  5 - 2  0  0  1    C  r  e  a  t  u  r  e  s      i  n  c .
+	next $60,$61,$62,$63,$64,$65,$66, $6d, $6e, $6f, $70, $71, $72,  $7a, $7b, $7c
+	;    (C) 1  9  9  5 - 2  0  0  1  G   A   M   E   F   R   E   A   K     i  n  c .
+	next $60,$61,$62,$63,$64,$65,$66, $73, $74, $75, $76, $77, $78, $79,  $7a, $7b, $7c
+	db "@"
 
