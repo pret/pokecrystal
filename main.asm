@@ -97840,7 +97840,11 @@ Functione546d: ; e546d (39:546d)
 ; e5496 (39:5496)
 
 Unknown_e5496: ; e5496
-INCBIN "baserom.gbc",$e5496,$e549e - $e5496
+	dw Unknown_e799d
+	dw Unknown_e79dd
+	dw Unknown_e7a1d
+	dw Unknown_e79dd
+; e549e
 
 Functione549e: ; e549e (39:549e)
 	ld a, $1
@@ -98072,7 +98076,12 @@ IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.2bpp.lz"
 ; e799d
 
-INCBIN "baserom.gbc", $e799d, $e7a5d - $e799d
+Unknown_e799d: ; e799d
+INCBIN "baserom.gbc", $e799d, $e79dd - $e799d
+Unknown_e79dd: ; e79dd
+INCBIN "baserom.gbc", $e79dd, $e7a1d - $e79dd
+Unknown_e7a1d: ; e7a1d
+INCBIN "baserom.gbc", $e7a1d, $e7a5d - $e7a1d
 
 GFX_e7a5d: ; e7a5d
 INCBIN "baserom.gbc", $e7a5d, $e7a6d - $e7a5d
@@ -98168,25 +98177,26 @@ INCBIN "baserom.gbc", $fb434, $fb449 - $fb434
 Functionfb449:: ; fb449
 	ld de, Font
 	ld hl, VTiles1
-	ld bc, Function3e80
+	lb bc, BANK(Font), $400 / 8
 	ld a, [rLCDC]
 	bit 7, a
 	jp z, Copy1bpp
+
 	ld de, Font
 	ld hl, VTiles1
-	ld bc, $3e20
+	lb bc, BANK(Font), $100 / 8
 	call Functionddc
-	ld de, $4300
-	ld hl, $8a00
-	ld bc, $3e20
+	ld de, Font + $100
+	ld hl, VTiles1 + $200
+	lb bc, BANK(Font), $100 / 8
 	call Functionddc
-	ld de, $4400
-	ld hl, $8c00
-	ld bc, $3e20
+	ld de, Font + $200
+	ld hl, VTiles1 + $400
+	lb bc, BANK(Font), $100 / 8
 	call Functionddc
-	ld de, $4500
-	ld hl, $8e00
-	ld bc, $3e20
+	ld de, Font + $300
+	ld hl, VTiles1 + $600
+	lb bc, BANK(Font), $100 / 8
 	call Functionddc
 	ret
 ; fb48a
@@ -99185,13 +99195,11 @@ Functionfbbdb: ; fbbdb
 	call PrintNum
 	ld [hl], $6f
 	inc hl
-	ld [hl], $50
+	ld [hl], "@"
 	ret
 ; fbbfc
 
 INCLUDE "battle/magikarp_length.asm"
-
-INCBIN "baserom.gbc",$fbccf,$fbcd2 - $fbccf
 
 Functionfbcd2: ; fbcd2
 	ld a, [$dfe8]
@@ -99199,12 +99207,16 @@ Functionfbcd2: ; fbcd2
 	ld a, [$dfe9]
 	ld [Buffer2], a
 	call Functionfbbdb
-	ld hl, $7ce8
+	ld hl, UnknownText_0xfbce8
 	call PrintText
 	ret
 ; fbce8
 
-INCBIN "baserom.gbc",$fbce8,$fbced - $fbce8
+UnknownText_0xfbce8: ; 0xfbce8
+	; "CURRENT RECORD"
+	text_jump UnknownText_0x1c123a
+	db "@"
+; 0xfbced
 
 INCLUDE "battle/hidden_power.asm"
 

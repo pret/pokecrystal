@@ -1,27 +1,24 @@
 CalcMagikarpLength: ; fbbfc
-; Return Magikarp's length (in mm) in MagikarpLength (big endian)
+; Return Magikarp's length (in mm) at MagikarpLength (big endian).
 ;
 ; input:
 ;   de: EnemyMonDVs
 ;   bc: PlayerID
 
-; This function is needlessly convoluted, and poorly commented.
-; Reading is discouraged.
+; This function is poorly commented.
 
 ; In short, it generates a value between 190 and 1786 using
 ; a Magikarp's DVs and its trainer ID. This value is further
-; scrutinized in GetEnemyMon to make longer Magikarp even rarer.
+; filtered in LoadEnemyMon to make longer Magikarp even rarer.
 
-; This is done by calculating the value using operands from
-; a conversion lookup table.
+; The value is generated from a lookup table.
+; The index is determined by the dv xored with the player's trainer id.
 
-; Our index is calculated by xoring DVs with the trainer ID:
+; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
-; bc = rrc(rrc(dvs)) xor rrc(id)
-
-; if bc < $a:     MagikarpLength = c + 190
-; if bc >= $ff00: MagikarpLength = c + 1370
-; else:           MagikarpLength = z*100 + (bc-x)/y
+; if bc < 10:     [MagikarpLength] = c + 190
+; if bc >= $ff00: [MagikarpLength] = c + 1370
+; else:           [MagikarpLength] = z * 100 + (bc - x) / y
 
 ; X, Y, and Z depend on the value of b as follows:
 
@@ -38,12 +35,10 @@ CalcMagikarpLength: ; fbbfc
 ; if b = 252-253:  x = 65210,  y =   5,  z = 13
 ; if b = 254:      x = 65410,  y =   2,  z = 14
 
-; These values represent arbitrary conversion points.
 
+	; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
-; b = rrcrrc(atkdefdv) xor rrc(id[0])
-	
-; id
+	; id
 	ld h, b
 	ld l, c
 	ld a, [hli]
@@ -51,123 +46,125 @@ CalcMagikarpLength: ; fbbfc
 	ld c, [hl]
 	rrc b
 	rrc c
-	
-; dvs
+
+	; dv
 	ld a, [de]
 	inc de
 	rrca
 	rrca
 	xor b
 	ld b, a
-	
-; c = rrcrrc(spdspcdv) xor rrc(id[1])
-	
+
 	ld a, [de]
 	rrca
 	rrca
 	xor c
 	ld c, a
-	
-; if bc < $000a:
+
+	; if bc < 10:
+	;     de = bc + 190
+	;     break
+
 	ld a, b
 	and a
-	jr nz, .loadtable
+	jr nz, .no
 	ld a, c
-	cp a, $a
-	jr nc, .loadtable
-	
-; de = hl = bc + $be
-	ld hl, $be
+	cp 10
+	jr nc, .no
+
+	ld hl, 190
 	add hl, bc
 	ld d, h
 	ld e, l
-	jr .endtable
-	
-.loadtable
-	ld hl, .MagikarpLengthTable
-	ld a, $02
+	jr .done
+
+.no
+
+	ld hl, .Lengths
+	ld a, 2
 	ld [$d265], a
-	
-.readtable
+
+.read
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call .BLessThanD
-	jr nc, .advancetable
-	
-; c = bc / [hl]
+	call .BCLessThanDE
+	jr nc, .next
+
+	; c = (bc - de) / [hl]
 	call .BCMinusDE
 	ld a, b
-	ld [$ffb3], a
+	ld [hDividend + 0], a
 	ld a, c
-	ld [$ffb4], a
+	ld [hDividend + 1], a
 	ld a, [hl]
-	ld [$ffb7], a
-	ld b, $02
+	ld [hDivisor], a
+	ld b, 2
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld c, a
-	
-; de = c + 100 * (2 + number of rows down the table)
+
+	; de = c + 100 * (2 + i)
 	xor a
-	ld [$ffb4], a
-	ld [$ffb5], a
-	ld a, $64
-	ld [$ffb6], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
+	ld a, 100
+	ld [hMultiplicand + 2], a
 	ld a, [$d265]
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
-	ld b, $00
-	ld a, [$ffb6]
+	ld b, 0
+	ld a, [hProduct + 3]
 	add c
 	ld e, a
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	adc b
 	ld d, a
-	jr .endtable
-	
-.advancetable
+	jr .done
+
+.next
 	inc hl ; align to next triplet
 	ld a, [$d265]
 	inc a
 	ld [$d265], a
-	cp a, $10
-	jr c, .readtable
-	
+	cp 16
+	jr c, .read
+
 	call .BCMinusDE
-	ld hl, $0640
+	ld hl, 1600
 	add hl, bc
 	ld d, h
 	ld e, l
-	
-.endtable
+
+.done
+	; hl = de * 10
 	ld h, d
 	ld l, e
 	add hl, hl
 	add hl, hl
 	add hl, de
-	add hl, hl ; hl = de * 10
-	
-	ld de, $ff02
-	ld a, $ff
-.loop
+	add hl, hl
+
+	; hl = hl / 254
+	ld de, -254
+	ld a, -1
+.div_254
 	inc a
-	add hl, de ; - 254
-	jr c, .loop
-	
-	ld d, $00
-	
-; mod $0c
-.modloop
-	cp a, $0c
-	jr c, .done
-	sub a, $0c
+	add hl, de
+	jr c, .div_254
+
+	; d, e = hl / 12, hl % 12
+	ld d, 0
+.mod_12
+	cp 12
+	jr c, .ok
+	sub 12
 	inc d
-	jr .modloop
-	
-.done
+	jr .mod_12
+.ok
 	ld e, a
+
 	ld hl, MagikarpLength
 	ld [hl], d
 	inc hl
@@ -175,22 +172,19 @@ CalcMagikarpLength: ; fbbfc
 	ret
 ; fbc9a
 
-.BLessThanD ; fbc9a
-; return carry if b < d
+.BCLessThanDE: ; fbc9a
+; Intention: Return bc < de.
+; Reality: Return b < d.
 	ld a, b
 	cp d
 	ret c
-	ret nc
-; fbc9e
-
-.CLessThanE ; fbc9e
-; unused
+	ret nc ; whoops
 	ld a, c
 	cp e
 	ret
 ; fbca1
 
-.BCMinusDE ; fbca1
+.BCMinusDE: ; fbca1
 ; bc -= de
 	ld a, c
 	sub e
@@ -201,20 +195,21 @@ CalcMagikarpLength: ; fbbfc
 	ret
 ; fbca8
 
-.MagikarpLengthTable ; fbca8
+.Lengths: ; fbca8
 ;	     ????, divisor
-	dwb $006e, $01
-	dwb $0136, $02
-	dwb $02c6, $04
-	dwb $0a96, $14
-	dwb $1e1e, $32
-	dwb $452e, $64
-	dwb $7fc6, $96
-	dwb $ba5e, $96
-	dwb $e16e, $64
-	dwb $f4f6, $32
-	dwb $fcc6, $14
-	dwb $feba, $05
-	dwb $ff82, $02
-; fbccf
+	dwb   110, 1
+	dwb   310, 2
+	dwb   710, 4
+	dwb  2710, 20
+	dwb  7710, 50
+	dwb 17710, 100
+	dwb 32710, 150
+	dwb 47710, 150
+	dwb 57710, 100
+	dwb 62710, 50
+	dwb 64710, 20
+	dwb 65210, 5
+	dwb 65410, 2
+	dwb 65510, 1 ; not used
+; fbcd2
 
