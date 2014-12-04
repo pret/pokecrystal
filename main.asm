@@ -100451,7 +100451,26 @@ Function100063: ; 100063
 	ret
 ; 100082
 
-INCBIN "baserom.gbc",$100082,$1000a4 - $100082
+Function100082: ; 100082
+	xor a
+	ld hl, OverworldMap
+	ld bc, 1300
+	call ByteFill
+	di
+	call DoubleSpeed
+	xor a
+	ld [rIF], a
+	ld a, 1 << VBLANK + 1 << LCD_STAT + 1 << TIMER + 1 << SERIAL
+	ld [rIE], a
+	xor a
+	ld [$ffde], a
+	ld [hLCDStatCustom], a
+	ld a, $1
+	ld [$ffc9], a
+	ld [$ffe9], a
+	ei
+	ret
+; 0x1000a4
 
 Function1000a4: ; 1000a4
 	di
@@ -100700,12 +100719,12 @@ Function100232: ; 100232
 ; 10024d
 
 String10024d: ; 10024d
-	db "つうしんを キャンセル しました@"
+	db   "つうしんを キャンセル しました@"
 ; 10025e
 
 String10025e: ; 10025e
-	db "おともだちと えらんだ へやが", $4e
-	db "ちがうようです@"
+	db   "おともだちと えらんだ へやが"
+	next "ちがうようです@"
 ; 100276
 
 Function100276: ; 100276
@@ -100804,7 +100823,10 @@ Function100320: ; 100320
 	ret
 ; 100327
 
-INCBIN "baserom.gbc",$100327,$10032e - $100327
+Function100327: ; 100327
+	callba Function10402d
+	ret
+; 100327
 
 
 Function10032e: ; 10032e
@@ -100832,8 +100854,6 @@ Function100337: ; 100337
 	scf
 	ret
 ; 10034d
-
-
 
 Function10034d: ; 10034d
 	ld a, [$c821]
@@ -100878,7 +100898,7 @@ Function10034d: ; 10034d
 
 Function100382: ; 100382
 	ld a, [$cd27]
-	ld hl, $444e
+	ld hl, Jumptable_10044e
 	rst JumpTable
 	ret
 ; 10038a
@@ -100906,8 +100926,14 @@ Function10039c: ; 10039c
 	ret
 ; 1003ab
 
-INCBIN "baserom.gbc",$1003ab,$1003ba - $1003ab
-
+Function1003ab: ; 1003ab
+	ld hl, $d000
+	ld de, $cc60
+	ld bc, $0054
+	ld a, $3
+	call FarCopyWRAM
+	ret
+; 1003ba
 
 Function1003ba: ; 1003ba
 	ld hl, $ccb4
@@ -101035,8 +101061,6 @@ Jumptable_10044e: ; 10044e (40:444e)
 	dw Function1004f4
 	dw Function1004a4
 
-
-
 Function10046a: ; 10046a
 	ld hl, BGMapPalBuffer
 	inc [hl]
@@ -101162,8 +101186,192 @@ Function100504: ; 100504
 	ret
 ; 100513
 
-INCBIN "baserom.gbc",$100513,$10062d - $100513
+Function100513: ; 100513
+	call Function3f7c
+	call Function1c89
+	call Function1c10
+	ld hl, $cfa5
+	set 7, [hl]
+	ret
+; 100522
 
+Function100522: ; 100522
+	ld a, [$cd28]
+	ld hl, Jumptable_10052a
+	rst JumpTable
+	ret
+; 10052a
+
+Jumptable_10052a: ; 10052a
+	dw Function100534
+	dw Function100545
+	dw Function100545
+	dw Function100545
+	dw Function10054d
+; 100534
+
+Function100534: ; 100534
+	call Function100513
+	call Function1ad2
+	call Function321c
+	ld a, [$cd28]
+	inc a
+	ld [$cd28], a
+	ret
+; 100545
+
+Function100545: ; 100545
+	ld a, [$cd28]
+	inc a
+	ld [$cd28], a
+	ret
+; 10054d
+
+Function10054d: ; 10054d
+	callba Function241ba
+	ld a, c
+	ld hl, $cfa8
+	and [hl]
+	ret z
+	call Function1ff8
+	bit 0, a
+	jr nz, .asm_100565
+	bit 1, a
+	jr nz, .asm_10056f
+	ret
+
+.asm_100565
+	ld a, [$cd28]
+	set 7, a
+	ld [$cd28], a
+	and a
+	ret
+
+.asm_10056f
+	ld a, [$cd28]
+	set 7, a
+	ld [$cd28], a
+	scf
+	ret
+; 100579
+
+Function100579: ; 100579
+	ld a, [$cd26]
+	ld hl, Jumptable_100581
+	rst JumpTable
+	ret
+; 100581
+
+Jumptable_100581: ; 100581
+	dw Function100585
+	dw Function100597
+; 100585
+
+Function100585: ; 100585
+	ld hl, MenuDataHeader_1005b2
+	call LoadMenuDataHeader
+	ld a, $0
+	ld [$cd28], a
+	ld a, [$cd26]
+	inc a
+	ld [$cd26], a
+
+Function100597: ; 100597
+	call Function100522
+	ld a, [$cd28]
+	bit 7, a
+	ret z
+	jr nc, .asm_1005a6
+	xor a
+	ld [$cfa9], a
+
+.asm_1005a6
+	call Function1c07
+	ld a, [$cd26]
+	set 7, a
+	ld [$cd26], a
+	ret
+; 1005b2
+
+MenuDataHeader_1005b2: ; 1005b2
+	db $40 ; flags
+	db 6, 14
+	db 10, 19
+	dw MenuData2_1005ba
+	db 1 ; default option
+
+MenuData2_1005ba:
+	db $c0 ; flags
+	db 2
+	db "はい@"
+	db "いいえ@"
+; 1005c3
+
+Function1005c3: ; 1005c3
+	ld a, [$cd26]
+	ld hl, Jumptable_1005cb
+	rst JumpTable
+	ret
+; 1005cb
+
+Jumptable_1005cb: ; 1005cb
+	dw Function1005cf
+	dw Function1005e1
+; 1005cf
+
+Function1005cf: ; 1005cf
+	ld hl, MenuDataHeader_1005fc
+	call LoadMenuDataHeader
+	ld a, $0
+	ld [$cd28], a
+	ld a, [$cd26]
+	inc a
+	ld [$cd26], a
+
+Function1005e1: ; 1005e1
+	call Function100522
+	ld a, [$cd28]
+	bit 7, a
+	ret z
+	jr nc, .asm_1005f0
+	xor a
+	ld [$cfa9], a
+.asm_1005f0
+	call Function1c07
+	ld a, [$cd26]
+	set 7, a
+	ld [$cd26], a
+	ret
+; 1005fc
+
+MenuDataHeader_1005fc: ; 1005fc
+	db $40 ; flags
+	db 6, 14
+	db 10, 19
+	dw MenuData2_100604
+	db 1 ; default option
+
+MenuData2_100604: ; 100604
+	db $c0 ; flags
+	db 2
+	db "かける@"
+	db "まつ@"
+; 10060d
+
+Function10060d: ; 10060d
+	ld hl, $c56b
+	ld b, $1
+	ld c, $b
+	call Function3eea
+	ld de, String_100621
+	ld hl, $c580
+	call PlaceString
+	ret
+; 100621
+
+String_100621: ; 100621
+	db "つうしんたいきちゅう!@"
+; 10062d
 
 Function10062d: ; 10062d
 	push bc
@@ -101190,8 +101398,8 @@ Function100641: ; 100641
 	ret
 ; 10064c
 
-INCBIN "baserom.gbc",$10064c,$10064e - $10064c
-
+Function10064c: ; 10064c
+	ld c, 1
 
 Function10064e: ; 10064e
 	ld hl, $cd46
@@ -101217,7 +101425,17 @@ Function10064e: ; 10064e
 	ret
 ; 100665
 
-INCBIN "baserom.gbc",$100665,$100675 - $100665
+Function100665: ; 100665
+	call UpdateTime
+	ld hl, $cd36
+	ld a, [hHours]
+	ld [hli], a
+	ld a, [hMinutes]
+	ld [hli], a
+	ld a, [hSeconds]
+	ld [hl], a
+	ret
+; 100675
 
 Function100675: ; 100675
 	ld hl, $cd2a
@@ -101239,9 +101457,10 @@ Function100681: ; 100681
 	push hl
 	call Function1006d3
 	pop hl
-
 .asm_100694
 	ld de, $cd32
+
+Function100697: ; 100697
 	ld a, [de]
 	and a
 	jr nz, .asm_1006bb
@@ -101342,7 +101561,80 @@ Function10070d: ; 10070d
 	ret
 ; 100720
 
-INCBIN "baserom.gbc",$100720,$10079c - $100720
+Function100720: ; 100720
+	xor a
+	ld [$cd6a], a
+	call UpdateTime
+	ld a, [hHours]
+	ld [$cd72], a
+	ld a, [hMinutes]
+	ld [$cd73], a
+	ld a, [hSeconds]
+	ld [$cd74], a
+	ld a, $4
+	ld hl, $a800
+	call GetSRAMBank
+	ld a, [hli]
+	ld [$cd6c], a
+	ld a, [hli]
+	ld [$cd6d], a
+	ld a, [hli]
+	ld [$cd6e], a
+	call CloseSRAM
+	ld a, [$cd6d]
+	ld [$cd6b], a
+	ret
+; 100754
+
+Function100754: ; 100754
+	call UpdateTime
+	ld a, [hHours]
+	ld [$cd72], a
+	ld a, [hMinutes]
+	ld [$cd73], a
+	ld a, [hSeconds]
+	ld [$cd74], a
+	ld a, [$cd6d]
+	ld [$cd6b], a
+	ld hl, $cd2a
+	res 6, [hl]
+	ret
+; 100772
+
+Function100772: ; 100772
+	push de
+	ld hl, $cd6c
+	ld a, [de]
+	cp [hl]
+	jr c, .asm_10079a
+	jr nz, .asm_10078c
+	inc hl
+	inc de
+	ld a, [de]
+	cp [hl]
+	jr c, .asm_10079a
+	jr nz, .asm_10078c
+	inc hl
+	inc de
+	ld a, [de]
+	cp [hl]
+	jr c, .asm_10079a
+	jr z, .asm_10079a
+
+.asm_10078c
+	pop hl
+	ld a, [hli]
+	ld [$cd6c], a
+	ld a, [hli]
+	ld [$cd6d], a
+	ld a, [hli]
+	ld [$cd6e], a
+	ret
+
+.asm_10079a
+	pop de
+	ret
+; 10079c
 
 
 Function10079c: ; 10079c
@@ -101451,7 +101743,46 @@ Function100826: ; 100826
 	ret
 ; 100846
 
-INCBIN "baserom.gbc",$100846,$1008a6 - $100846
+Function100846: ; 100846
+	ld hl, $cd2a
+	bit 5, [hl]
+	jr nz, .asm_10087c
+	ld a, [$cd6e]
+	ld c, a
+	ld a, $0
+	sub c
+	jr nc, .asm_100858
+	add $3c
+
+.asm_100858
+	ld [$d088], a
+	ld a, [$cd6d]
+	ld c, a
+	ld a, $a
+	sbc c
+	ld [$d087], a
+	xor a
+	ld [StringBuffer2], a
+	ld de, $488e
+	ld hl, $c5b9
+	call PlaceString
+	ld de, StringBuffer2
+	ld hl, $c5e4
+	call Function100697
+	ret
+
+.asm_10087c
+	ld de, $488e
+	ld hl, $c5b9
+	call PlaceString
+	ld h, b
+	ld l, c
+	ld de, $489f
+	call PlaceString
+	ret
+; 10088e
+
+INCBIN "baserom.gbc", $10088e, $1008a6 - $10088e
 
 Function1008a6: ; 1008a6
 	ld a, $4
