@@ -13,8 +13,7 @@ LakeofRage_MapScriptHeader: ; 0x70000
 
 	dbw 5, UnknownScript_0x70012
 
-	dbw 2, UnknownScript_0x70016
-; 0x70010
+	dbw 2, WesleyCallback
 
 UnknownScript_0x70010: ; 0x70010
 	end
@@ -29,17 +28,15 @@ UnknownScript_0x70012: ; 0x70012
 	return
 ; 0x70016
 
-UnknownScript_0x70016: ; 0x70016
+WesleyCallback:
 	checkcode $b
-	if_equal WEDNESDAY, UnknownScript_0x7001f
+	if_equal WEDNESDAY, .WesleyAppears
 	disappear $b
 	return
-; 0x7001f
 
-UnknownScript_0x7001f: ; 0x7001f
+.WesleyAppears
 	appear $b
 	return
-; 0x70022
 
 LanceScript_0x70022: ; 0x70022
 	checkevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
@@ -270,44 +267,41 @@ CooltrainerfLoisScript: ; 0x70106
 	end
 ; 0x7010e
 
-SuperNerdScript_0x7010e: ; 0x7010e
+WesleyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
-	iftrue UnknownScript_0x7013c
+	iftrue WesleyWednesdayScript
 	checkcode $b
-	if_not_equal WEDNESDAY, UnknownScript_0x70142
+	if_not_equal WEDNESDAY, WesleyNotWednesdayScript
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
-	iftrue UnknownScript_0x70129
-	2writetext UnknownText_0x70784
+	iftrue .MetWesley
+	2writetext MeetWesleyText
 	keeptextopen
 	setevent EVENT_MET_WESLEY_OF_WEDNESDAY
-UnknownScript_0x70129: ; 0x70129
-	2writetext UnknownText_0x707dd
+.MetWesley
+	2writetext WesleyGivesGiftText
 	keeptextopen
 	verbosegiveitem BLACKBELT, 1
-	iffalse UnknownScript_0x70140
+	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY
-	2writetext UnknownText_0x7080b
+	2writetext WesleyGaveGiftText
 	closetext
 	loadmovesprites
 	end
-; 0x7013c
 
-UnknownScript_0x7013c: ; 0x7013c
-	2writetext UnknownText_0x70844
+WesleyWednesdayScript:
+	2writetext WesleyWednesdayText
 	closetext
-UnknownScript_0x70140: ; 0x70140
+WesleyDoneScript:
 	loadmovesprites
 	end
-; 0x70142
 
-UnknownScript_0x70142: ; 0x70142
-	2writetext UnknownText_0x708a9
+WesleyNotWednesdayScript:
+	2writetext WesleyNotWednesdayText
 	closetext
 	loadmovesprites
 	end
-; 0x70148
 
 ItemFragment_0x70148: ; 0x70148
 	db ELIXER, 1
@@ -561,7 +555,7 @@ UnknownText_0x70752: ; 0x70752
 	done
 ; 0x70784
 
-UnknownText_0x70784: ; 0x70784
+MeetWesleyText:
 	text "WESLEY: Well, how"
 	line "do you do?"
 
@@ -571,23 +565,20 @@ UnknownText_0x70784: ; 0x70784
 	para "I'm WESLEY of"
 	line "Wednesday."
 	done
-; 0x707dd
 
-UnknownText_0x707dd: ; 0x707dd
+WesleyGivesGiftText:
 	text "Pleased to meet"
 	line "you. Please take a"
 	cont "souvenir."
 	done
-; 0x7080b
 
-UnknownText_0x7080b: ; 0x7080b
+WesleyGaveGiftText:
 	text "WESLEY: BLACKBELT"
 	line "beefs up the power"
 	cont "of fighting moves."
 	done
-; 0x70844
 
-UnknownText_0x70844: ; 0x70844
+WesleyWednesdayText:
 	text "WESLEY: Since you"
 	line "found me, you must"
 
@@ -597,14 +588,12 @@ UnknownText_0x70844: ; 0x70844
 	para "Or did you just"
 	line "get lucky?"
 	done
-; 0x708a9
 
-UnknownText_0x708a9: ; 0x708a9
+WesleyNotWednesdayText:
 	text "WESLEY: Today's"
 	line "not Wednesday."
 	cont "That's too bad."
 	done
-; 0x708d7
 
 UnknownText_0x708d7: ; 0x708d7
 	text "LAKE OF RAGE,"
@@ -650,8 +639,6 @@ LakeofRage_MapEventHeader: ; 0x70919
 	person_event SPRITE_COOLTRAINER_M, 19, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermAaron, $0735
 	person_event SPRITE_COOLTRAINER_F, 11, 40, $8, $0, 255, 255, $82, 0, TrainerCooltrainerfLois, $0735
 	person_event SPRITE_GYARADOS, 26, 22, $16, $0, 255, 255, $80, 0, GyaradosScript_0x70063, $0751
-	person_event SPRITE_SUPER_NERD, 8, 8, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x7010e, $075c
+	person_event SPRITE_SUPER_NERD, 8, 8, $6, $0, 255, 255, $0, 0, WesleyScript, $075c
 	person_event SPRITE_POKE_BALL, 14, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x70148, $0645
 	person_event SPRITE_POKE_BALL, 6, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7014a, $0646
-; 0x709de
-

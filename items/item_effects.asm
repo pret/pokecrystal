@@ -245,7 +245,7 @@ ParkBall: ; e8a2
 	jp z, .asm_e99c
 	ld a, [CurItem]
 	ld c, a
-	ld hl, Table_0xec0a
+	ld hl, BallMultiplierFunctionTable
 
 .asm_e8f2
 	ld a, [hli]
@@ -329,19 +329,23 @@ ParkBall: ; e8a2
 
 	ld a, [$ffb6]
 	and a
-	jr nz, .asm_e960
+	jr nz, .statuscheck
 	ld a, 1
-.asm_e960
+.statuscheck
+; This routine is buggy. It was intended that SLP and FRZ provide a higher
+; catch rate than BRN/PSN/PAR, which in turn provide a higher catch rate than
+; no status effect at all. But instead, it makes BRN/PSN/PAR provide no
+; benefit.
 	ld b, a
 	ld a, [EnemyMonStatus]
 	and 1 << FRZ | SLP
 	ld c, 10
-	jr nz, .asm_e971
+	jr nz, .addstatus
 	and a
 	ld c, 5
-	jr nz, .asm_e971
+	jr nz, .addstatus
 	ld c, 0
-.asm_e971
+.addstatus
 	ld a, b
 	add c
 	jr nc, .asm_e977
@@ -725,34 +729,32 @@ ParkBall: ; e8a2
 ; ec0a
 
 
-Table_0xec0a: ; ec0a
-; Note: SAFARI_BALL does not exist.
-	dbw ULTRA_BALL,  UltraBallChance
-	dbw GREAT_BALL,  GreatBallChance
-	dbw SAFARI_BALL, SafariBallChance
-	dbw HEAVY_BALL,  HeavyBallChance
-	dbw LEVEL_BALL,  LevelBallChance
-	dbw LURE_BALL,   LureBallChance
-	dbw FAST_BALL,   FastBallChance
-	dbw MOON_BALL,   MoonBallChance
-	dbw LOVE_BALL,   LoveBallChance
-	dbw PARK_BALL,   ParkBallChance
+BallMultiplierFunctionTable:
+; table of routines that increase or decrease the catch rate based on
+; which ball is used in a certain situation.
+	dbw ULTRA_BALL, UltraBallMultiplier
+	dbw GREAT_BALL, GreatBallMultiplier
+	dbw 8,          SafariBallMultiplier ; Safari Ball, leftover from RBY
+	dbw HEAVY_BALL, HeavyBallMultiplier
+	dbw LEVEL_BALL, LevelBallMultiplier
+	dbw LURE_BALL,  LureBallMultiplier
+	dbw FAST_BALL,  FastBallMultiplier
+	dbw MOON_BALL,  MoonBallMultiplier
+	dbw LOVE_BALL,  LoveBallMultiplier
+	dbw PARK_BALL,  ParkBallMultiplier
 	db $ff
-; ec29
 
-
-UltraBallChance: ; ec29
-; x2
+UltraBallMultiplier:
+; multiply catch rate by 2
 	sla b
 	ret nc
 	ld b, $ff
 	ret
-; ec2f
 
-GreatBallChance: ; ec2f
-ParkBallChance:
-SafariBallChance:
-; x1.5
+SafariBallMultiplier:
+GreatBallMultiplier:
+ParkBallMultiplier:
+; multiply catch rate by 1.5
 	ld a, b
 	srl a
 	add b
@@ -760,10 +762,8 @@ SafariBallChance:
 	ret nc
 	ld b, $ff
 	ret
-; ec38
 
-
-GetPokedexEntryBank: ; ec38
+GetPokedexEntryBank:
 	push hl
 	push de
 	ld a, [EnemyMonSpecies]
@@ -790,9 +790,13 @@ GLOBAL PokedexEntries4
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)
 	db BANK(PokedexEntries4)
-; ec50
 
-HeavyBallChance: ; ec50
+HeavyBallMultiplier:
+; subtract 20 from catch rate if weight < 102.4 kg
+; else add 0 to catch rate if weight < 204.8 kg
+; else add 20 to catch rate if weight < 307.2 kg
+; else add 30 to catch rate if weight < 409.6 kg
+; else add 40 to catch rate (never happens)
 	ld a, [EnemyMonSpecies]
 	ld hl, PokedexDataPointerTable
 	dec a
@@ -825,17 +829,18 @@ HeavyBallChance: ; ec50
 	srl b
 	rr c
 	endr
-	call .asm_ec99
+	call .subbc
 
 	srl b
 	rr c
-	call .asm_ec99
+	call .subbc
 
 	ld a, h
 	pop bc
-	jr .asm_eca4
+	jr .compare
 
-.asm_ec99
+.subbc
+	; subtract bc from hl
 	push bc
 	ld a, b
 	cpl
@@ -848,21 +853,21 @@ HeavyBallChance: ; ec50
 	pop bc
 	ret
 
-.asm_eca4
+.compare
 	ld c, a
-	cp $4
-	jr c, .asm_ecbc
+	cp 1024 >> 8 ; 102.4 kg
+	jr c, .lightmon
 
-	ld hl, .table_ecc4
-.asm_ecac
+	ld hl, .WeightsTable
+.lookup
 	ld a, c
 	cp [hl]
-	jr c, .asm_ecb4
+	jr c, .heavymon
 	inc hl
 	inc hl
-	jr .asm_ecac
+	jr .lookup
 
-.asm_ecb4
+.heavymon
 	inc hl
 	ld a, b
 	add [hl]
@@ -871,7 +876,7 @@ HeavyBallChance: ; ec50
 	ld b, $ff
 	ret
 
-.asm_ecbc
+.lightmon
 	ld a, b
 	sub 20
 	ld b, a
@@ -879,15 +884,15 @@ HeavyBallChance: ; ec50
 	ld b, $1
 	ret
 
-.table_ecc4
-	db   8,  0
-	db  12, 20
-	db  16, 30
-	db 255, 40
-; eccc
+.WeightsTable
+; weight factor, boost
+	db 2048 >> 8, 0
+	db 3072 >> 8, 20
+	db 4096 >> 8, 30
+	db 65280 >> 8, 40
 
-
-LureBallChance: ; eccc
+LureBallMultiplier:
+; multiply catch rate by 3 if this is a fishing rod battle
 	ld a, [BattleType]
 	cp BATTLETYPE_FISH
 	ret nz
@@ -903,10 +908,11 @@ LureBallChance: ; eccc
 .done
 	ld b, a
 	ret
-; ecdd
 
-
-MoonBallChance: ; ecdd
+MoonBallMultiplier:
+; This function is buggy.
+; Intent:  multiply catch rate by 4 if mon evolves with moon stone
+; Reality: no boost
 
 GLOBAL EvosAttacks
 GLOBAL EvosAttacksPointers
@@ -934,13 +940,9 @@ GLOBAL EvosAttacksPointers
 	inc hl
 	inc hl
 
-	; It appears that Moon Stone's
-	; constant from Pokémon Red is used.
-
-	; No Pokémon evolve with Burn Heal,
-	; so Moon Balls always have
-	; a catch rate of 1x.
-
+; Moon Stone's constant from Pokémon Red is used.
+; No Pokémon evolve with Burn Heal,
+; so Moon Balls always have a catch rate of 1×.
 	push bc
 	ld a, BANK(EvosAttacks)
 	call GetFarByte
@@ -956,16 +958,20 @@ GLOBAL EvosAttacksPointers
 	ld b, $ff
 .done
 	ret
-; ed12
 
+LoveBallMultiplier:
+; This function is buggy.
+; Intent:  multiply catch rate by 8 if mons are of same species, different sex
+; Reality: multiply catch rate by 8 if mons are of same species, same sex
 
-LoveBallChance: ; ed12
+	; does species match?
 	ld a, [TempEnemyMonSpecies]
 	ld c, a
 	ld a, [TempBattleMonSpecies]
 	cp c
 	ret nz
 
+	; check player mon species
 	push bc
 	ld a, [TempBattleMonSpecies]
 	ld [CurPartySpecies], a
@@ -974,52 +980,56 @@ LoveBallChance: ; ed12
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	callba GetGender
-	jr c, .asm_ed66
+	jr c, .done1 ; no effect on genderless
 
-	ld d, 0
-	jr nz, .asm_ed39
-	inc d
-.asm_ed39
+	ld d, 0 ; male
+	jr nz, .playermale
+	inc d   ; female
+.playermale
 
+	; check wild mon species
 	push de
 	ld a, [TempEnemyMonSpecies]
 	ld [CurPartySpecies], a
 	ld a, WILDMON
 	ld [MonType], a
 	callba GetGender
-	jr c, .asm_ed65
+	jr c, .done2 ; no effect on genderless
 
-	ld d, 0
-	jr nz, .asm_ed52
-	inc d
-.asm_ed52
+	ld d, 0 ; male
+	jr nz, .wildmale
+	inc d   ; female
+.wildmale
 
 	ld a, d
 	pop de
 	cp d
 	pop bc
-	ret nz
+	ret nz ; for the intended effect, this should be “ret z”
 
 	sla b
-	jr c, .asm_ed62
+	jr c, .max
 	sla b
-	jr c, .asm_ed62
+	jr c, .max
 	sla b
 	ret nc
-.asm_ed62
+.max
 	ld b, $ff
 	ret
 
-.asm_ed65
+.done2
 	pop de
 
-.asm_ed66
+.done1
 	pop bc
 	ret
-; ed68
 
-
-FastBallChance: ; ed68
+FastBallMultiplier:
+; This function is buggy.
+; Intent:  multiply catch rate by 4 if enemy mon is in one of the three
+;          FleeMons tables.
+; Reality: multiply catch rate by 4 if enemy mon is one of the first three in
+;          the first FleeMons table.
 	ld a, [TempEnemyMonSpecies]
 	ld c, a
 	ld hl, FleeMons
@@ -1033,7 +1043,7 @@ FastBallChance: ; ed68
 	cp -1
 	jr z, .next
 	cp c
-	jr nz, .next
+	jr nz, .next ; for the intended effect, this should be “jr nz, .loop”
 	sla b
 	jr c, .max
 
@@ -1048,35 +1058,34 @@ FastBallChance: ; ed68
 	dec d
 	jr nz, .loop
 	ret
-; ed8c
 
-
-LevelBallChance: ; ed8c
+LevelBallMultiplier:
+; multiply catch rate by 8 if player mon level / 4 > enemy mon level
+; multiply catch rate by 4 if player mon level / 2 > enemy mon level
+; multiply catch rate by 2 if player mon level > enemy mon level
 	ld a, [BattleMonLevel]
 	ld c, a
 	ld a, [EnemyMonLevel]
 	cp c
-	ret nc
+	ret nc ; if player is lower level, we're done here
 	sla b
 	jr c, .max
 
 	srl c
 	cp c
-	ret nc
+	ret nc ; if player/2 is lower level, we're done here
 	sla b
 	jr c, .max
 
 	srl c
 	cp c
-	ret nc
+	ret nc ; if player/4 is lower level, we're done here
 	sla b
 	ret nc
 
 .max
 	ld b, $ff
 	ret
-; edab
-
 
 UnknownText_0xedab: ; 0xedab
 	; It dodged the thrown BALL! This #MON can't be caught!

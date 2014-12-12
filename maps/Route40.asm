@@ -7,21 +7,18 @@ Route40_MapScriptHeader: ; 0x1a6160
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x1a6165
-; 0x1a6165
+	dbw 2, MonicaCallback
 
-UnknownScript_0x1a6165: ; 0x1a6165
+MonicaCallback:
 	clearevent $07cf
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x1a6171
+	if_equal MONDAY, .MonicaAppears
 	disappear $a
 	return
-; 0x1a6171
 
-UnknownScript_0x1a6171: ; 0x1a6171
+.MonicaAppears
 	appear $a
 	return
-; 0x1a6174
 
 TrainerSwimmerfElaine: ; 0x1a6174
 	; bit/flag number
@@ -161,44 +158,41 @@ StandingYoungsterScript_0x1a61d6: ; 0x1a61d6
 	jumptextfaceplayer UnknownText_0x1a6564
 ; 0x1a61d9
 
-BuenaScript_0x1a61d9: ; 0x1a61d9
+MonicaScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
-	iftrue UnknownScript_0x1a6207
+	iftrue MonicaMondayScript
 	checkcode $b
-	if_not_equal MONDAY, UnknownScript_0x1a620d
+	if_not_equal MONDAY, MonicaNotMondayScript
 	checkevent EVENT_MET_MONICA_OF_MONDAY
-	iftrue UnknownScript_0x1a61f4
-	2writetext UnknownText_0x1a6606
+	iftrue .MetMonica
+	2writetext MeetMonicaText
 	keeptextopen
 	setevent EVENT_MET_MONICA_OF_MONDAY
-UnknownScript_0x1a61f4: ; 0x1a61f4
-	2writetext UnknownText_0x1a6636
+.MetMonica
+	2writetext MonicaGivesGiftText
 	keeptextopen
 	verbosegiveitem SHARP_BEAK, 1
-	iffalse UnknownScript_0x1a620b
+	iffalse MonicaDoneScript
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
-	2writetext UnknownText_0x1a666c
+	2writetext MonicaGaveGiftText
 	closetext
 	loadmovesprites
 	end
-; 0x1a6207
 
-UnknownScript_0x1a6207: ; 0x1a6207
-	2writetext UnknownText_0x1a66dc
+MonicaMondayScript:
+	2writetext MonicaMondayText
 	closetext
-UnknownScript_0x1a620b: ; 0x1a620b
+MonicaDoneScript:
 	loadmovesprites
 	end
-; 0x1a620d
 
-UnknownScript_0x1a620d: ; 0x1a620d
-	2writetext UnknownText_0x1a6737
+MonicaNotMondayScript:
+	2writetext MonicaNotMondayText
 	closetext
 	loadmovesprites
 	end
-; 0x1a6213
 
 MapRoute40Signpost0Script: ; 0x1a6213
 	jumptext UnknownText_0x1a6767
@@ -384,22 +378,20 @@ UnknownText_0x1a6564: ; 0x1a6564
 	done
 ; 0x1a6606
 
-UnknownText_0x1a6606: ; 0x1a6606
+MeetMonicaText:
 	text "MONICA: Glad to"
 	line "meet you. I'm"
 
 	para "MONICA of Monday."
 	done
-; 0x1a6636
 
-UnknownText_0x1a6636: ; 0x1a6636
+MonicaGivesGiftText:
 	text "As a token of our"
 	line "friendship, I have"
 	cont "a gift for you!"
 	done
-; 0x1a666c
 
-UnknownText_0x1a666c: ; 0x1a666c
+MonicaGaveGiftText:
 	text "MONICA: It's an"
 	line "item that raises"
 
@@ -410,9 +402,8 @@ UnknownText_0x1a666c: ; 0x1a666c
 	line "bird #MON with"
 	cont "that item."
 	done
-; 0x1a66dc
 
-UnknownText_0x1a66dc: ; 0x1a66dc
+MonicaMondayText:
 	text "MONICA: My broth-"
 	line "ers and sisters"
 
@@ -422,14 +413,12 @@ UnknownText_0x1a66dc: ; 0x1a66dc
 	para "See if you could"
 	line "find them all!"
 	done
-; 0x1a6737
 
-UnknownText_0x1a6737: ; 0x1a6737
+MonicaNotMondayText:
 	text "MONICA: I don't"
 	line "think today is"
 	cont "Monday. How sad…"
 	done
-; 0x1a6767
 
 UnknownText_0x1a6767: ; 0x1a6767
 	text "ROUTE 40"
@@ -465,9 +454,7 @@ Route40_MapEventHeader: ; 0x1a678e
 	person_event SPRITE_ROCK, 13, 10, $18, $0, 255, 255, $0, 0, RockScript_0x1a6216, $ffff
 	person_event SPRITE_ROCK, 12, 11, $18, $0, 255, 255, $0, 0, RockScript_0x1a6216, $ffff
 	person_event SPRITE_LASS, 17, 15, $6, $0, 255, 255, $0, 0, LassScript_0x1a61c4, $ffff
-	person_event SPRITE_BUENA, 14, 12, $3, $0, 255, 255, $0, 0, BuenaScript_0x1a61d9, $075e
+	person_event SPRITE_BUENA, 14, 12, $3, $0, 255, 255, $0, 0, MonicaScript, $075e
 	person_event SPRITE_POKEFAN_M, 10, 11, $9, $0, 255, 255, $0, 0, PokefanMScript_0x1a61c7, $ffff
 	person_event SPRITE_LASS, 8, 17, $3, $0, 255, 255, $a0, 0, LassScript_0x1a61d3, $ffff
 	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, $3, $0, 255, 255, $90, 0, StandingYoungsterScript_0x1a61d6, $07cf
-; 0x1a683f
-

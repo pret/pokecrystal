@@ -11,8 +11,7 @@ Route29_MapScriptHeader: ; 0x1a0f4c
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x1a0f5b
-; 0x1a0f59
+	dbw 2, TuscanyCallback
 
 UnknownScript_0x1a0f59: ; 0x1a0f59
 	end
@@ -22,20 +21,19 @@ UnknownScript_0x1a0f5a: ; 0x1a0f5a
 	end
 ; 0x1a0f5b
 
-UnknownScript_0x1a0f5b: ; 0x1a0f5b
+TuscanyCallback:
 	checkflag $001b
-	iftrue UnknownScript_0x1a0f64
-UnknownScript_0x1a0f61: ; 0x1a0f61
+	iftrue .DoesTuscanyAppear
+
+.TuscanyDisappears
 	disappear $8
 	return
-; 0x1a0f64
 
-UnknownScript_0x1a0f64: ; 0x1a0f64
+.DoesTuscanyAppear
 	checkcode $b
-	if_not_equal TUESDAY, UnknownScript_0x1a0f61
+	if_not_equal TUESDAY, .TuscanyDisappears
 	appear $8
 	return
-; 0x1a0f6d
 
 UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	spriteface $2, $1
@@ -177,44 +175,41 @@ UnknownScript_0x1a1043: ; 0x1a1043
 	end
 ; 0x1a1049
 
-TeacherScript_0x1a1049: ; 0x1a1049
+TuscanyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
-	iftrue UnknownScript_0x1a1077
+	iftrue TuscanyTuesdayScript
 	checkcode $b
-	if_not_equal TUESDAY, UnknownScript_0x1a107d
+	if_not_equal TUESDAY, TuscanyNotTuesdayScript
 	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
-	iftrue UnknownScript_0x1a1064
-	2writetext UnknownText_0x1a13b2
+	iftrue .MetTuscany
+	2writetext MeetTuscanyText
 	keeptextopen
 	setevent EVENT_MET_TUSCANY_OF_TUESDAY
-UnknownScript_0x1a1064: ; 0x1a1064
-	2writetext UnknownText_0x1a142f
+.MetTuscany
+	2writetext TuscanyGivesGiftText
 	keeptextopen
 	verbosegiveitem PINK_BOW, 1
-	iffalse UnknownScript_0x1a107b
+	iffalse TuscanyDoneScript
 	setevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
-	2writetext UnknownText_0x1a146f
+	2writetext TuscanyGaveGiftText
 	closetext
 	loadmovesprites
 	end
-; 0x1a1077
 
-UnknownScript_0x1a1077: ; 0x1a1077
-	2writetext UnknownText_0x1a14e7
+TuscanyTuesdayScript:
+	2writetext TuscanyTuesdayText
 	closetext
-UnknownScript_0x1a107b: ; 0x1a107b
+TuscanyDoneScript:
 	loadmovesprites
 	end
-; 0x1a107d
 
-UnknownScript_0x1a107d: ; 0x1a107d
-	2writetext UnknownText_0x1a1559
+TuscanyNotTuesdayScript:
+	2writetext TuscanyNotTuesdayText
 	closetext
 	loadmovesprites
 	end
-; 0x1a1083
 
 MapRoute29Signpost0Script: ; 0x1a1083
 	jumptext UnknownText_0x1a158e
@@ -382,7 +377,7 @@ UnknownText_0x1a137c: ; 0x1a137c
 	done
 ; 0x1a13b2
 
-UnknownText_0x1a13b2: ; 0x1a13b2
+MeetTuscanyText:
 	text "TUSCANY: I do be-"
 	line "lieve that this is"
 
@@ -395,18 +390,16 @@ UnknownText_0x1a13b2: ; 0x1a13b2
 	para "I am TUSCANY of"
 	line "Tuesday."
 	done
-; 0x1a142f
 
-UnknownText_0x1a142f: ; 0x1a142f
+TuscanyGivesGiftText:
 	text "By way of intro-"
 	line "duction, please"
 
 	para "accept this gift,"
 	line "a PINK BOW."
 	done
-; 0x1a146f
 
-UnknownText_0x1a146f: ; 0x1a146f
+TuscanyGaveGiftText:
 	text "TUSCANY: Wouldn't"
 	line "you agree that it"
 	cont "is most adorable?"
@@ -417,9 +410,8 @@ UnknownText_0x1a146f: ; 0x1a146f
 	para "I am certain it"
 	line "will be of use."
 	done
-; 0x1a14e7
 
-UnknownText_0x1a14e7: ; 0x1a14e7
+TuscanyTuesdayText:
 	text "TUSCANY: Have you"
 	line "met MONICA, my"
 	cont "older sister?"
@@ -430,14 +422,12 @@ UnknownText_0x1a14e7: ; 0x1a14e7
 	para "I am the second of"
 	line "seven children."
 	done
-; 0x1a1559
 
-UnknownText_0x1a1559: ; 0x1a1559
+TuscanyNotTuesdayText:
 	text "TUSCANY: Today is"
 	line "not Tuesday. That"
 	cont "is unfortunate…"
 	done
-; 0x1a158e
 
 UnknownText_0x1a158e: ; 0x1a158e
 	text "ROUTE 29"
@@ -481,7 +471,5 @@ Route29_MapEventHeader: ; 0x1a15e4
 	person_event SPRITE_FRUIT_TREE, 6, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1089, $ffff
 	person_event SPRITE_FISHER, 7, 29, $7, $0, 255, 255, $90, 0, FisherScript_0x1a102e, $ffff
 	person_event SPRITE_COOLTRAINER_M, 8, 17, $6, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a1031, $ffff
-	person_event SPRITE_TEACHER, 16, 33, $3, $0, 255, 255, $0, 0, TeacherScript_0x1a1049, $0759
+	person_event SPRITE_TEACHER, 16, 33, $3, $0, 255, 255, $0, 0, TuscanyScript, $0759
 	person_event SPRITE_POKE_BALL, 6, 52, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a108b, $06ad
-; 0x1a1671
-

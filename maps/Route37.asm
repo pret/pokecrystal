@@ -7,20 +7,17 @@ Route37_MapScriptHeader: ; 0x1a8d72
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x1a8d77
-; 0x1a8d77
+	dbw 2, SunnyCallback
 
-UnknownScript_0x1a8d77: ; 0x1a8d77
+SunnyCallback:
 	checkcode $b
-	if_equal SUNDAY, UnknownScript_0x1a8d80
+	if_equal SUNDAY, .SunnyAppears
 	disappear $6
 	return
-; 0x1a8d80
 
-UnknownScript_0x1a8d80: ; 0x1a8d80
+.SunnyAppears
 	appear $6
 	return
-; 0x1a8d83
 
 TrainerTwinsAnnandanne1: ; 0x1a8d83
 	; bit/flag number
@@ -109,53 +106,48 @@ PsychicGregScript: ; 0x1a8db7
 	end
 ; 0x1a8dbf
 
-BugCatcherScript_0x1a8dbf: ; 0x1a8dbf
+SunnyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
-	iftrue UnknownScript_0x1a8dfa
+	iftrue SunnySundayScript
 	checkcode $b
-	if_not_equal SUNDAY, UnknownScript_0x1a8e00
+	if_not_equal SUNDAY, SunnyNotSundayScript
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
-	iftrue UnknownScript_0x1a8dda
-	2writetext UnknownText_0x1a8fc8
+	iftrue .MetSunny
+	2writetext MeetSunnyText
 	keeptextopen
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
-UnknownScript_0x1a8dda: ; 0x1a8dda
+.MetSunny
 	checkflag $0063
-	iftrue UnknownScript_0x1a8de7
-	2writetext UnknownText_0x1a9004
+	iftrue .Kris
+	2writetext SunnyGivesGiftText1
 	keeptextopen
-	2jump UnknownScript_0x1a8deb
-; 0x1a8de7
-
-UnknownScript_0x1a8de7: ; 0x1a8de7
-	2writetext UnknownText_0x1a902f
+	2jump .next
+.Kris
+	2writetext SunnyGivesGiftText2
 	keeptextopen
-UnknownScript_0x1a8deb: ; 0x1a8deb
+.next
 	verbosegiveitem MAGNET, 1
-	iffalse UnknownScript_0x1a8dfe
+	iffalse SunnyDoneScript
 	setevent EVENT_GOT_MAGNET_FROM_SUNNY
-	2writetext UnknownText_0x1a905a
+	2writetext SunnyGaveGiftText
 	closetext
 	loadmovesprites
 	end
-; 0x1a8dfa
 
-UnknownScript_0x1a8dfa: ; 0x1a8dfa
-	2writetext UnknownText_0x1a90fc
+SunnySundayScript:
+	2writetext SunnySundayText
 	closetext
-UnknownScript_0x1a8dfe: ; 0x1a8dfe
+SunnyDoneScript:
 	loadmovesprites
 	end
-; 0x1a8e00
 
-UnknownScript_0x1a8e00: ; 0x1a8e00
-	2writetext UnknownText_0x1a916e
+SunnyNotSundayScript:
+	2writetext SunnyNotSundayText
 	closetext
 	loadmovesprites
 	end
-; 0x1a8e06
 
 MapRoute37Signpost0Script: ; 0x1a8e06
 	jumptext UnknownText_0x1a9197
@@ -245,30 +237,27 @@ UnknownText_0x1a8f80: ; 0x1a8f80
 	done
 ; 0x1a8fc8
 
-UnknownText_0x1a8fc8: ; 0x1a8fc8
+MeetSunnyText:
 	text "SUNNY: Hi!"
 
 	para "I'm SUNNY of Sun-"
 	line "day, meaning it's"
 	cont "Sunday today!"
 	done
-; 0x1a9004
 
-UnknownText_0x1a9004: ; 0x1a9004
+SunnyGivesGiftText1:
 	text "I was told to give"
 	line "you this if I saw"
 	cont "you!"
 	done
-; 0x1a902f
 
-UnknownText_0x1a902f: ; 0x1a902f
+SunnyGivesGiftText2:
 	text "I was told to give"
 	line "you this if I saw"
 	cont "you!"
 	done
-; 0x1a905a
 
-UnknownText_0x1a905a: ; 0x1a905a
+SunnyGaveGiftText:
 	text "SUNNY: That thing…"
 
 	para "Um…"
@@ -290,9 +279,8 @@ UnknownText_0x1a905a: ; 0x1a905a
 	line "it powers up"
 	cont "electric moves!"
 	done
-; 0x1a90fc
 
-UnknownText_0x1a90fc: ; 0x1a90fc
+SunnySundayText:
 	text "SUNNY: My sisters"
 	line "and brothers are"
 	cont "MONICA, TUSCANY,"
@@ -302,14 +290,12 @@ UnknownText_0x1a90fc: ; 0x1a90fc
 	para "They're all older"
 	line "than me!"
 	done
-; 0x1a916e
 
-UnknownText_0x1a916e: ; 0x1a916e
+SunnyNotSundayText:
 	text "SUNNY: Isn't today"
 	line "Sunday?"
 	cont "Um… I forgot!"
 	done
-; 0x1a9197
 
 UnknownText_0x1a9197: ; 0x1a9197
 	text "ROUTE 37"
@@ -337,8 +323,6 @@ Route37_MapEventHeader: ; 0x1a91a1
 	person_event SPRITE_WEIRD_TREE, 16, 11, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne2, $ffff
 	person_event SPRITE_YOUNGSTER, 10, 10, $a, $0, 255, 255, $92, 1, TrainerPsychicGreg, $ffff
 	person_event SPRITE_FRUIT_TREE, 9, 17, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e09, $ffff
-	person_event SPRITE_BUG_CATCHER, 12, 20, $2, $11, 255, 255, $0, 0, BugCatcherScript_0x1a8dbf, $075b
+	person_event SPRITE_BUG_CATCHER, 12, 20, $2, $11, 255, 255, $0, 0, SunnyScript, $075b
 	person_event SPRITE_FRUIT_TREE, 9, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0b, $ffff
 	person_event SPRITE_FRUIT_TREE, 11, 19, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0d, $ffff
-; 0x1a920c
-
