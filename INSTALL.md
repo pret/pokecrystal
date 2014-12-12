@@ -3,7 +3,6 @@
 Dependencies:
 
 	sudo apt-get install make gcc bison git python python-setuptools
-	sudo easy_install pip
 
 The assembler used is [**rgbds**](https://github.com/bentley/rgbds).
 
@@ -19,9 +18,10 @@ Set up the repository.
 	cd pokecrystal
 	git submodule init
 	git submodule update
-	sudo pip install -r extras/requirements.txt
+	easy_install pypng
+	make pngs
 
-- Copy your Pokémon Crystal rom to the directory. Name it **baserom.gbc**.
+- Copy your Pokémon Crystal rom into `pokecrystal/`. Name it **baserom.gbc**.
 
 To build **pokecrystal.gbc**:
 
@@ -67,10 +67,10 @@ Then set up the repository. In the **Cygwin terminal**:
 	cd pokecrystal
 	git submodule init
 	git submodule update
-	easy_install pip
-	pip install -r extras/requirements.txt
+	easy_install pypng
+	make pngs
 
-- Copy your Pokémon Crystal rom to the directory. Name it **baserom.gbc**.
+- Copy your Pokémon Crystal rom into `C:\cygwin\home\<username>\pokecrystal`. Name it **baserom.gbc**.
 
 To build:
 
