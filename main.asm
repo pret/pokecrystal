@@ -116398,8 +116398,8 @@ Function17f220: ; 17f220
 	add hl, de
 	ld a, [hl]
 	ld e, a
-	ld d, $0
-	ld hl, $726e
+	ld d, 0
+	ld hl, .Genders
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -116419,7 +116419,9 @@ Function17f220: ; 17f220
 	ret
 ; 17f26e
 
-INCBIN "baserom.gbc",$17f26e,$17f27b - $17f26e
+.Genders: dw .Boy, .Girl
+.Boy:     db "Boy@"
+.Girl:    db "Girl@"
 
 Function17f27b: ; 17f27b
 	pop hl
@@ -117042,7 +117044,7 @@ Function17f5e4: ; 17f5e4
 	ld c, $10
 	call Function3eea
 	hlcoord 3, 2
-	ld de, $76dc
+	ld de, String_17f6dc
 	call PlaceString
 	call Function17ff3c
 	jr nc, .asm_17f632
@@ -117060,7 +117062,7 @@ Function17f5e4: ; 17f5e4
 	jr nc, .asm_17f679
 	ld e, a
 	ld d, $0
-	ld hl, $7706
+	ld hl, Table_17f706
 	add hl, de
 	add hl, de
 	ld a, [$c301]
@@ -117117,8 +117119,8 @@ Function17f5e4: ; 17f5e4
 .asm_17f684
 	sub $d0
 	ld e, a
-	ld d, $0
-	ld hl, $7699
+	ld d, 0
+	ld hl, Table_17f699
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -117130,7 +117132,26 @@ Function17f5e4: ; 17f5e4
 	ret
 ; 17f699
 
-INCBIN "baserom.gbc",$17f699,$17f6b7 - $17f699
+Table_17f699: ; 17f699
+	dw String_17fedf
+	dw String_17fdd9
+	dw String_17fdd9
+	dw String_17fe03
+	dw String_17fd84
+	dw String_17fe63
+	dw String_17fdb2
+	dw String_17fe4b
+	dw String_17fe03
+	dw String_17fe03
+	dw String_17fe03
+; 17f6af
+
+Palette_17f6af: ; 17f6af
+	RGB  5,  5, 16
+	RGB  8, 19, 28
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+; 17f6b7
 
 Function17f6b7: ; 17f6b7
 	ld a, [$c300]
@@ -117158,7 +117179,389 @@ Function17f6d8: ; 17f6d8
 	ret
 ; 17f6dc
 
-INCBIN "baserom.gbc",$17f6dc,$17ff23 - $17f6dc
+String_17f6dc: ; 17f6dc
+	db "つうしんエラー   ー@"
+; 17f6e8
+
+String_17f6e8: ; 17f6e8
+	db   "みていぎ", $25, "エラーです"
+	next "プログラム", $1f
+	next "かくにん してください"
+	db   "@"
+; 17f706
+
+Table_17f706:
+	dw Unknown_17f74e
+	dw Unknown_17f753
+	dw Unknown_17f758
+	dw Unknown_17f75d
+	dw Unknown_17f762
+	dw Unknown_17f767
+	dw Unknown_17f778
+	dw Unknown_17f77d
+	dw Unknown_17f782
+	dw Unknown_17f782
+	dw Unknown_17f782
+	dw Unknown_17f782
+	dw Unknown_17f782
+	dw Unknown_17f782
+	dw Unknown_17f782
+	dw Unknown_17f782
+	dw Unknown_17f782
+	dw Unknown_17f787
+	dw Unknown_17f78c
+	dw Unknown_17f791
+	dw Unknown_17f796
+	dw Unknown_17f79b
+	dw Unknown_17f7a0
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7a5
+	dw Unknown_17f7ea
+	dw Unknown_17f7ff
+	dw Unknown_17f844
+
+Unknown_17f74e: db 1
+	dbbw $0, $0, String_17f891
+
+Unknown_17f753: db 1
+	dbbw $0, $0, String_17f8d1
+
+Unknown_17f758: db 1
+	dbbw $0, $0, String_17f913
+
+Unknown_17f75d: db 1
+	dbbw $0, $0, String_17f8d1
+
+Unknown_17f762: db 1
+	dbbw $0, $0, String_17fa71
+
+Unknown_17f767: db 4
+	dbbw $0, $0, String_17f946
+	dbbw $1, $0, String_17f946
+	dbbw $2, $0, String_17f946
+	dbbw $3, $0, String_17f946
+
+Unknown_17f778: db 1
+	dbbw $0, $0, String_17f98e
+
+Unknown_17f77d: db 1
+	dbbw $0, $0, String_17f98e
+
+Unknown_17f782: db 1
+	dbbw $0, $0, String_17f98e
+
+Unknown_17f787: db 1
+	dbbw $0, $0, String_17f98e
+
+Unknown_17f78c: db 1
+	dbbw $0, $0, String_17f9d0
+
+Unknown_17f791: db 1
+	dbbw $0, $0, String_17fa14
+
+Unknown_17f796: db 1
+	dbbw $0, $0, String_17fcbf
+
+Unknown_17f79b: db 1
+	dbbw $0, $0, String_17fa71
+
+Unknown_17f7a0: db 1
+	dbbw $0, $0, String_17fbfe
+
+Unknown_17f7a5: db 17
+	dbbw $0, $0, String_17f98e
+	dbbw $21, $2, String_17fcbf
+	dbbw $21, $4, String_17fcbf
+	dbbw $50, $4, String_17faf9
+	dbbw $51, $4, String_17fcbf
+	dbbw $52, $4, String_17fcbf
+	dbbw $0, $5, String_17f98e
+	dbbw $1, $5, String_17f98e
+	dbbw $2, $5, String_17f98e
+	dbbw $3, $5, String_17f98e
+	dbbw $4, $5, String_17f98e
+	dbbw $50, $5, String_17faf9
+	dbbw $51, $5, String_17faf9
+	dbbw $52, $5, String_17fcbf
+	dbbw $53, $5, String_17faf9
+	dbbw $54, $5, String_17fcbf
+	dbbw $ff, $ff, String_17fcbf
+
+Unknown_17f7ea: db 5
+	dbbw $0, $0, String_17f98e
+	dbbw $2, $0, String_17fb2a
+	dbbw $3, $0, String_17fb6e
+	dbbw $4, $0, String_17f98e
+	dbbw $ff, $ff, String_17fcbf
+
+Unknown_17f7ff: db 17
+	dbbw $0, $0, String_17f98e
+	dbbw $1, $3, String_17f98e
+	dbbw $2, $3, String_17f98e
+	dbbw $0, $4, String_17f98e
+	dbbw $1, $4, String_17f98e
+	dbbw $3, $4, String_17fbb6
+	dbbw $4, $4, String_17fbb6
+	dbbw $5, $4, String_17f98e
+	dbbw $6, $4, String_17f98e
+	dbbw $7, $4, String_17f98e
+	dbbw $8, $4, String_17fbfe
+	dbbw $0, $5, String_17fa49
+	dbbw $1, $5, String_17f98e
+	dbbw $2, $5, String_17fa49
+	dbbw $3, $5, String_17fab0
+	dbbw $4, $5, String_17fa49
+	dbbw $ff, $ff, String_17fa49
+
+Unknown_17f844: db 19
+	dbbw $1, $1, String_17fc3e
+	dbbw $2, $1, String_17fc88
+	dbbw $3, $1, String_17fcff
+	dbbw $4, $1, String_17fd84
+	dbbw $5, $1, String_17fd84
+	dbbw $6, $1, String_17fd47
+	dbbw $1, $2, String_17fb6e
+	dbbw $2, $2, String_17f98e
+	dbbw $3, $2, String_17fd84
+	dbbw $4, $2, String_17f98e
+	dbbw $5, $2, String_17fa49
+	dbbw $6, $2, String_17fd84
+	dbbw $99, $2, String_17fc88
+	dbbw $1, $3, String_17fa49
+	dbbw $1, $4, String_17fa49
+	dbbw $2, $4, String_17fa49
+	dbbw $3, $4, String_17fa49
+	dbbw $4, $4, String_17fa49
+	dbbw $ff, $ff, String_17fa49
+
+String_17f891: ; 17f891
+	db   "モバイルアダプタが ただしく"
+	next "さしこまれていません"
+	next "とりあつかいせつめいしょを"
+	next "ごらんのうえ しっかりと"
+	next "さしこんで ください"
+	db   "@"
+
+String_17f8d1: ; 17f8d1
+	db   "でんわが うまく かけられないか"
+	next "でんわかいせんが こんでいるので"
+	next "つうしん できません"
+	next "しばらく まって"
+	next "かけなおして ください"
+	db   "@"
+
+String_17f913: ; 17f913
+	db   "でんわかいせんが こんでいるため"
+	next "でんわが かけられません"
+	next "しばらく まって"
+	next "かけなおして ください"
+	db   "@"
+
+String_17f946: ; 17f946
+	db   "モバイルアダプタの エラーです"
+	next "しばらく まって"
+	next "かけなおして ください"
+	next "なおらない ときは"
+	next "モバイルサポートセンターへ"
+	next "おといあわせください"
+	db   "@"
+
+String_17f98e: ; 17f98e
+	db   "つうしんエラーです"
+	next "しばらく まって"
+	next "かけなおして ください"
+	next "なおらない ときは"
+	next "モバイルサポートセンターへ"
+	next "おといあわせください"
+	db   "@"
+
+String_17f9d0: ; 17f9d0
+	db   "ログインパスワードか"
+	next "ログイン アイディーに"
+	next "まちがいがあります"
+	next "パスワードを かくにんして"
+	next "しばらく まって"
+	next "かけなおして ください"
+	db   "@"
+
+String_17fa14: ; 17fa14
+	db   "でんわが きれました"
+	next "とりあつかいせつめいしょを"
+	next "ごらんのうえ"
+	next "しばらく まって"
+	next "かけなおして ください"
+	db   "@"
+
+String_17fa49: ; 17fa49
+	db   "モバイルセンターの"
+	next "つうしんエラーです"
+	next "しばらくまって"
+	next "かけなおして ください"
+	db   "@"
+
+String_17fa71: ; 17fa71
+	db   "モバイルアダプタに"
+	next "とうろくされた じょうほうが"
+	next "ただしく ありません"
+	next "モバイルトレーナーで"
+	next "しょきとうろくを してください"
+	db   "@"
+
+String_17fab0: ; 17fab0
+	db   "モバイルセンターが"
+	next "こんでいて つながりません"
+	next "しばらくまって"
+	next "かけなおして ください"
+	next "くわしくは とりあつかい"
+	next "せつめいしょを ごらんください"
+	db   "@"
+
+String_17faf9: ; 17faf9
+	db   "あてさき メールアドレスに"
+	next "まちがいがあります"
+	next "ただしい メールアドレスを"
+	next "いれなおしてください"
+	db   "@"
+
+String_17fb2a: ; 17fb2a
+	db   "メールアドレスに"
+	next "まちがいが あります"
+	next "とりあつかいせつめいしょを"
+	next "ごらんのうえ"
+	next "モバイルトレーナーで"
+	next "しょきとうろくを してください"
+	db   "@"
+
+String_17fb6e: ; 17fb6e
+	db   "ログインパスワードに"
+	next "まちがいが あるか"
+	next "モバイルセンターの エラーです"
+	next "パスワードを かくにんして"
+	next "しばらく まって"
+	next "かけなおして ください"
+	db   "@"
+
+String_17fbb6: ; 17fbb6
+	db   "データの よみこみが できません"
+	next "しばらくまって"
+	next "かけなおして ください"
+	next "なおらない ときは"
+	next "モバイルサポートセンターへ"
+	next "おといあわせください"
+	db   "@"
+
+String_17fbfe: ; 17fbfe
+	db   "じかんぎれです"
+	next "でんわが きれました"
+	next "でんわを かけなおしてください"
+	next "くわしくは とりあつかい"
+	next "せつめいしょを ごらんください"
+	db   "@"
+
+String_17fc3e: ; 17fc3e
+	db   "ごりよう りょうきんの "
+	next "おしはらいが おくれたばあいには"
+	next "ごりようが できなくなります"
+	next "くわしくは とりあつかい"
+	next "せつめいしょを ごらんください"
+	db   "@"
+
+String_17fc88: ; 17fc88
+	db   "おきゃくさまの ごつごうにより"
+	next "ごりようできません"
+	next "くわしくは とりあつかい"
+	next "せつめいしょを ごらんください"
+	db   "@"
+
+String_17fcbf: ; 17fcbf
+	db   "でんわかいせんが こんでいるか"
+	next "モバイルセンターの エラーで"
+	next "つうしんが できません"
+	next "しばらく まって"
+	next "かけなおして ください"
+	db   "@"
+
+String_17fcff: ; 17fcff
+	db   "ごりよう りょうきんが"
+	next "じょうげんを こえているため"
+	next "こんげつは ごりようできません"
+	next "くわしくは とりあつかい"
+	next "せつめいしょを ごらんください"
+	db   "@"
+
+String_17fd47: ; 17fd47
+	db   "げんざい モバイルセンターの"
+	next "てんけんを しているので"
+	next "つうしんが できません"
+	next "しばらく まって"
+	next "かけなおして ください"
+	db   "@"
+
+String_17fd84: ; 17fd84
+	db   "データの よみこみが できません"
+	next "くわしくは とりあつかい"
+	next "せつめいしょを ごらんください"
+	db   "@"
+
+
+String_17fdb2: ; 17fdb2
+	db   "3ぷん いじょう なにも"
+	next "にゅうりょく しなかったので"
+	next "でんわが きれました"
+	db   "@"
+
+String_17fdd9: ; 17fdd9
+	db   "つうしんが うまく"
+	next "できませんでした"
+	next "もういちど はじめから"
+	next "やりなおしてください"
+	db   "@"
+
+String_17fe03: ; 17fe03
+	db   "データの よみこみが できません"
+	next "しばらくまって"
+	next "かけなおして ください"
+	next "なおらない ときは"
+	next "モバイルサポートセンターへ"
+	next "おといあわせください"
+	db   "@"
+
+String_17fe4b: ; 17fe4b
+	db   "まちじかんが ながいので"
+	next "でんわが きれました"
+	db   "@"
+
+String_17fe63: ; 17fe63
+	db   "あいての モバイルアダプタと"
+	next "タイプが ちがいます"
+	next "くわしくは とりあつかい"
+	next "せつめいしょを ごらんください"
+	db   "@"
+
+String_17fe9a: ; 17fe9a ; unreferenced
+	db   "ポケモンニュースが"
+	next "あたらしくなっているので"
+	next "レポートを おくれません"
+	next "あたらしい ポケモンニュースの"
+	next "よみこみを さきに してください"
+	db   "@"
+
+String_17fedf: ; 17fedf
+	db   "つうしんの じょうきょうが"
+	next "よくないか かけるあいてが"
+	next "まちがっています"
+	next "もういちど かくにんをして"
+	next "でんわを かけなおして ください"
+	db   "@"
+; 17ff23
 
 Function17ff23: ; 17ff23
 	ld a, [hJoyPressed]
@@ -117181,7 +117584,7 @@ Function17ff3c: ; 17ff3c
 	cp $d0
 	ret c
 	hlcoord 10, 2
-	ld de, $7f68
+	ld de, String_17ff68
 	call PlaceString
 	ld a, [$c300]
 	push af
@@ -117198,7 +117601,9 @@ Function17ff3c: ; 17ff3c
 	ret
 ; 17ff68
 
-INCBIN "baserom.gbc",$17ff68,$17ff6c - $17ff68
+String_17ff68: ; 17ff68
+	db "101@"
+; 17ff6c
 
 
 
