@@ -16944,11 +16944,11 @@ Function116b7: ; 0x116b7
 ; 0x116c1
 
 Function116c1: ; 116c1
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, EnemyAtkLevel
+	ld hl, $c6d4
 	ld [hl], b
 	ld hl, Options
 	ld a, [hl]
@@ -16995,7 +16995,7 @@ Function116f8: ; 116f8
 ; 1171d
 
 Function1171d: ; 1171d
-	ld a, [EnemyAtkLevel]
+	ld a, [$c6d4]
 	and 7
 	ld e, a
 	ld d, 0
@@ -17189,16 +17189,16 @@ Function11889: ; 11889 (4:5889)
 Function11890: ; 11890 (4:5890)
 	ld [$c6d3], a
 	ld a, l
-	ld [EnemySDefLevel], a ; $c6d8
+	ld [$c6d8], a ; $c6d8
 	ld a, h
-	ld [EnemyAccLevel], a ; $c6d9
+	ld [$c6d9], a ; $c6d9
 	ret
 
 
 Function1189c: ; 1189c
 	push bc
 	push af
-	ld a, [EnemyAtkLevel]
+	ld a, [$c6d4]
 	sub $3
 	ld b, a
 	pop af
@@ -17221,11 +17221,11 @@ Function118a8: ; 118a8
 
 .asm_118c4
 	call ClearBox
-	ld de, $5da2
+	ld de, NameInputUpper
 Function118ca: ; 118ca
 	call Function1189c
 	jr nz, .asm_118d5
-	ld hl, $0055
+	ld hl, BoxNameInputLower - NameInputLower
 	add hl, de
 	ld d, h
 	ld e, l
@@ -17302,11 +17302,11 @@ Function11940: ; 11940
 .asm_1194e
 	ld bc, $0112
 	call ClearBox
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, EnemySDefLevel
+	ld hl, $c6d8
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -17344,7 +17344,7 @@ Function1197b: ; 1197b (4:597b)
 	ld a, $2
 	call Function3b2a
 	ld a, c
-	ld [EnemyDefLevel], a ; $c6d5
+	ld [$c6d5], a ; $c6d5
 	ld a, b
 	ld [$c6d6], a
 	ld hl, $1
@@ -17384,7 +17384,7 @@ Function119a1: ; 119a1 (4:59a1)
 	call Function11b14
 	ret nc
 .asm_119cf
-	ld hl, EnemyDefLevel ; $c6d5
+	ld hl, $c6d5 ; $c6d5
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -17409,19 +17409,19 @@ Function119a1: ; 119a1 (4:59a1)
 .asm_119f4
 	ld hl, $cf64
 	ld a, [hl]
-	xor $1
+	xor 1
 	ld [hl], a
 	jr z, .asm_11a04
-	ld de, $5ce7
+	ld de, NameInputLower
 	call Function118ca
 	ret
 .asm_11a04
-	ld de, $5da2
+	ld de, NameInputUpper
 	call Function118ca
 	ret
 
 Function11a0b: ; 11a0b (4:5a0b)
-	ld hl, EnemyDefLevel ; $c6d5
+	ld hl, $c6d5 ; $c6d5
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -17607,23 +17607,23 @@ Function11a8b: ; 11a8b (4:5a8b)
 	ret
 
 Function11b14: ; 11b14 (4:5b14)
-	ld a, [EnemySAtkLevel] ; $c6d7
+	ld a, [$c6d7] ; $c6d7
 
 Function11b17: ; 11b17 (4:5b17)
 	ld a, [$c6d3]
 	ld c, a
-	ld a, [PlayerEvaLevel] ; $c6d2
+	ld a, [$c6d2] ; $c6d2
 	cp c
 	ret nc
 
-	ld a, [EnemySAtkLevel] ; $c6d7
+	ld a, [$c6d7] ; $c6d7
 
 Function11b23: ; 11b23
 	call Function11bd0
 	ld [hl], a
 
 Function11b27: ; 11b27
-	ld hl, PlayerEvaLevel ; $c6d2
+	ld hl, $c6d2 ; $c6d2
 	inc [hl]
 	call Function11bd0
 	ld a, [hl]
@@ -17638,11 +17638,11 @@ Function11b27: ; 11b27
 ; 11b39 (4:5b39)
 
 Function11b39: ; 11b39
-	ld a, [PlayerEvaLevel]
+	ld a, [$c6d2]
 	and a
 	ret z
 	push hl
-	ld hl, PlayerEvaLevel
+	ld hl, $c6d2
 	dec [hl]
 	call Function11bd0
 	ld c, [hl]
@@ -17680,7 +17680,7 @@ Handakutens: ; 11ba7
 ; 11bbc
 
 Function11bbc: ; 11bbc (4:5bbc)
-	ld hl, PlayerEvaLevel ; $c6d2
+	ld hl, $c6d2 ; $c6d2
 	ld a, [hl]
 	and a
 	ret z
@@ -17696,11 +17696,11 @@ Function11bbc: ; 11bbc (4:5bbc)
 
 Function11bd0: ; 11bd0 (4:5bd0)
 	push af
-	ld hl, PlayerSDefLevel ; $c6d0
+	ld hl, $c6d0
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [PlayerEvaLevel] ; $c6d2
+	ld a, [$c6d2] ; $c6d2
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -17709,7 +17709,7 @@ Function11bd0: ; 11bd0 (4:5bd0)
 ; 11be0
 
 Function11be0: ; 11be0
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -17729,7 +17729,7 @@ Function11be0: ; 11be0
 
 
 Function11bf7: ; 11bf7 (4:5bf7)
-	ld hl, PlayerSDefLevel ; $c6d0
+	ld hl, $c6d0
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -17750,7 +17750,7 @@ Function11bf7: ; 11bf7 (4:5bf7)
 	ret
 
 Function11c11: ; 11c11 (4:5c11)
-	ld hl, EnemyDefLevel ; $c6d5
+	ld hl, $c6d5 ; $c6d5
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -17788,7 +17788,7 @@ Function11c11: ; 11c11 (4:5c11)
 .asm_11c4b
 	add hl, de
 	ld a, [hl]
-	ld [EnemySAtkLevel], a ; $c6d7
+	ld [$c6d7], a ; $c6d7
 	ret
 
 
@@ -17832,7 +17832,7 @@ Function11c51: ; 11c51
 	ld [$cf63], a
 	ld [$cf64], a
 	ld [hBGMapMode], a
-	ld [PlayerEvaLevel], a
+	ld [$c6d2], a
 	ld a, $7
 	ld [hWX], a
 	ret
@@ -17887,7 +17887,7 @@ INCBIN "baserom.gbc", $11e6d, $11e75 - $11e6d
 ; 11e75
 
 Function11e75: ; 11e75 (4:5e75)
-	ld hl, PlayerSDefLevel ; $c6d0
+	ld hl, $c6d0
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -17942,7 +17942,7 @@ Function11e9a: ; 11e9a (4:5e9a)
 	ld a, $e4
 	call Functioncf8
 	call Function11be0
-	ld hl, PlayerSDefLevel ; $c6d0
+	ld hl, $c6d0
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -18026,7 +18026,7 @@ Function11feb: ; 11feb (4:5feb)
 	hlcoord 1, 1
 	ld bc, $412
 	call ClearBox
-	ld hl, PlayerSDefLevel ; $c6d0
+	ld hl, $c6d0
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -18058,7 +18058,7 @@ Function1201b: ; 1201b (4:601b)
 	ld a, $9
 	call Function3b2a
 	ld a, c
-	ld [EnemyDefLevel], a ; $c6d5
+	ld [$c6d5], a ; $c6d5
 	ld a, b
 	ld [$c6d6], a
 	ld hl, $1
@@ -18097,7 +18097,7 @@ Function1203a: ; 1203a (4:603a)
 	call Function11c11
 	call Function121ac
 	jr c, .asm_1207a
-	ld hl, PlayerEvaLevel ; $c6d2
+	ld hl, $c6d2 ; $c6d2
 	ld a, [hl]
 	cp $10
 	ret nz
@@ -18108,7 +18108,7 @@ Function1203a: ; 1203a (4:603a)
 	ld [hl], $4e
 	ret
 .asm_1207a
-	ld hl, EnemyDefLevel ; $c6d5
+	ld hl, $c6d5 ; $c6d5
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -18121,7 +18121,7 @@ Function1203a: ; 1203a (4:603a)
 	ret
 .asm_1208d
 	call Function11bbc
-	ld hl, PlayerEvaLevel ; $c6d2
+	ld hl, $c6d2 ; $c6d2
 	ld a, [hl]
 	cp $10
 	ret nz
@@ -18284,7 +18284,7 @@ Function1210c: ; 1210c (4:610c)
 	ret
 
 Function12185: ; 12185 (4:6185)
-	ld hl, EnemyDefLevel ; $c6d5
+	ld hl, $c6d5 ; $c6d5
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -18315,25 +18315,25 @@ Function1218b: ; 1218b (4:618b)
 	ret
 
 Function121ac: ; 121ac (4:61ac)
-	ld a, [EnemySAtkLevel] ; $c6d7
+	ld a, [$c6d7] ; $c6d7
 	jp Function11b17
 ; 121b2 (4:61b2)
 
 Function121b2: ; 121b2
-	ld a, [PlayerEvaLevel]
+	ld a, [$c6d2]
 	and a
 	ret z
 	cp $11
 	jr nz, .asm_121c3
 	push hl
-	ld hl, PlayerEvaLevel
+	ld hl, $c6d2
 	dec [hl]
 	dec [hl]
 	jr .asm_121c8
 
 .asm_121c3
 	push hl
-	ld hl, PlayerEvaLevel
+	ld hl, $c6d2
 	dec [hl]
 
 .asm_121c8
@@ -36113,7 +36113,7 @@ Function2805d: ; 2805d
 	ld a, $fe
 	ld [de], a
 	ld hl, $c608
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 	ld bc, $00c8
 	call Function75f
 	xor a
@@ -36135,7 +36135,7 @@ Function2805d: ; 2805d
 	ld de, OverworldMap
 	ld bc, $01a2
 	call Function2879e
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 	ld hl, $c813
 	ld c, $2
 .asm_280fe
@@ -36256,7 +36256,7 @@ Function28177: ; 28177
 	ld a, $fe
 	ld [de], a
 	ld hl, $c608
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 	ld bc, $00c8
 	call Function75f
 	ld a, [InLinkBattle]
@@ -36280,7 +36280,7 @@ Function28177: ; 28177
 	ld de, OverworldMap
 	ld bc, $01b9
 	call Function2879e
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 	ld hl, $c813
 	ld c, $2
 .asm_28224
@@ -37819,7 +37819,7 @@ Function28b87: ; 28b87
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [PlayerSDefLevel], a
+	ld [$c6d0], a
 	push af
 	ld a, [DefaultFlypoint]
 	ld hl, PartyMonOT
@@ -37859,7 +37859,7 @@ Function28b87: ; 28b87
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [PlayerLightScreenCount], a
+	ld [$c702], a
 	ld a, [$d003]
 	ld hl, OTPartyMonOT
 	call SkipNames
@@ -38068,8 +38068,8 @@ Function28f24: ; 28f24
 	ld hl, $c6e7
 	ld de, $c719
 	call Function297ff
-	ld hl, PlayerSDefLevel
-	ld de, PlayerLightScreenCount
+	ld hl, $c6d0
+	ld de, $c702
 	call Function29814
 	ld de, .data_28f3f
 	jr Function28fa1
@@ -38118,8 +38118,8 @@ Function28f63: ; 28f63
 	ld hl, $c719
 	ld de, $c6e7
 	call Function297ff
-	ld hl, PlayerLightScreenCount
-	ld de, PlayerSDefLevel
+	ld hl, $c702
+	ld de, $c6d0
 	call Function29814
 	ld de, .data_28f7e
 	jr Function28fa1
@@ -38245,19 +38245,19 @@ Function28fdb: ; 28fdb
 	callba Function4d7fd
 	call EnableLCD
 	call Function2982b
-	ld a, [PlayerSDefLevel]
+	ld a, [$c6d0]
 	ld hl, $c6fd
 	ld de, VTiles0
 	call Function29491
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	ld hl, $c72f
 	ld de, $8310
 	call Function29491
-	ld a, [PlayerSDefLevel]
-	ld de, PlayerAccLevel
+	ld a, [$c6d0]
+	ld de, $c6d1
 	call Function294a9
-	ld a, [PlayerLightScreenCount]
-	ld de, PlayerReflectCount
+	ld a, [$c702]
+	ld de, $c703
 	call Function294a9
 	call Function297ed
 	ret
@@ -38831,7 +38831,7 @@ Function2940c: ; 2940c
 
 Function2942e: ; 2942e
 	call Function2951f
-	ld a, [PlayerSDefLevel]
+	ld a, [$c6d0]
 	ld [CurPartySpecies], a
 	ld a, [$c6fd]
 	ld [TempMonDVs], a
@@ -38843,7 +38843,7 @@ Function2942e: ; 2942e
 	call DmgToCgbBGPals
 	call Function294bb
 
-	ld a, [PlayerSDefLevel]
+	ld a, [$c6d0]
 	call GetCryIndex
 	jr c, .asm_2945d
 	ld e, c
@@ -38857,7 +38857,7 @@ Function2942e: ; 2942e
 
 Function29461: ; 29461
 	call Function29549
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	ld [CurPartySpecies], a
 	ld a, [$c72f]
 	ld [TempMonDVs], a
@@ -38964,20 +38964,20 @@ Function2950c: ; 2950c
 
 Function29516: ; 29516
 	call Function29114
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	cp $fd
 	ret
 ; 2951f
 
 Function2951f: ; 2951f
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 	ld a, [de]
 	cp $fd
 	jr z, Function295a1
 	call Function29573
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 	call Function295e3
-	ld de, PlayerAccLevel
+	ld de, $c6d1
 	call Function295ef
 	ld a, [$c701]
 	ld de, $c6f2
@@ -38989,14 +38989,14 @@ Function2951f: ; 2951f
 ; 29549
 
 Function29549: ; 29549
-	ld de, PlayerLightScreenCount
+	ld de, $c702
 	ld a, [de]
 	cp $fd
 	jr z, Function295a1
 	call Function29573
-	ld de, PlayerLightScreenCount
+	ld de, $c702
 	call Function295e3
-	ld de, PlayerReflectCount
+	ld de, $c703
 	call Function295ef
 	ld a, [$c733]
 	ld de, $c724
@@ -45230,7 +45230,7 @@ Function40b0f: ; 40b0f (10:4b0f)
 	ld a, [$c7d0]
 	ld e, a
 	ld d, $0
-	ld hl, PlayerSDefLevel ; $c6d0
+	ld hl, $c6d0
 	add hl, de
 	ld e, l
 	ld d, h
@@ -45327,7 +45327,7 @@ Function40bb1: ; 40bb1
 	add [hl]
 	ld e, a
 	ld d, $0
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	add hl, de
 	ld a, [hl]
 	ld [$d265], a
@@ -45360,7 +45360,7 @@ Function40bd0: ; 40bd0
 
 
 Function40bdc: ; 40bdc
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld bc, $100
 	xor a
 	call ByteFill
@@ -55051,7 +55051,7 @@ FlagPredef: ; 4d7c1
 ; 4d7fd
 
 Function4d7fd: ; 4d7fd
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	ld hl, $c72f
 	ld de, VTiles2
 	push de
@@ -55067,11 +55067,11 @@ Function4d7fd: ; 4d7fd
 ; 4d81e
 
 Function4d81e: ; 4d81e
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	call IsAPokemon
 	ret c
 	callba Function29549
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	ld [CurPartySpecies], a
 	ld a, [$c72f]
 	ld [TempMonDVs], a
@@ -55082,7 +55082,7 @@ Function4d81e: ; 4d81e
 	ld a, $e4
 	call DmgToCgbBGPals
 	callba Function294c0
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	ld [CurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0
@@ -81936,11 +81936,11 @@ Function91a53: ; 91a53
 	ld a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	jr nz, .asm_91a7f
-	ld a, [EnemyEvaLevel]
+	ld a, [$c6da]
 	ld l, a
 	ld a, [$c6db]
 	ld h, a
-	ld a, [EnemyAccLevel]
+	ld a, [$c6d9]
 	and a
 	jr z, .asm_91a7a
 	rst FarCall
@@ -83116,7 +83116,7 @@ Function926f7: ; 926f7 (24:66f7)
 	ld b, $5
 	call GetSGBLayout
 	callab Function8cf53
-	ld hl, PlayerSDefLevel ; $c6d0
+	ld hl, $c6d0
 	ld bc, $48
 	xor a
 	call ByteFill
@@ -83139,7 +83139,7 @@ Function926f7: ; 926f7 (24:66f7)
 	ld hl, rLCDC ; $ff40
 	set 2, [hl]
 	call EnableLCD
-	ld hl, PlayerSDefLevel ; $c6d0
+	ld hl, $c6d0
 	ld bc, $64
 	xor a
 	call ByteFill
@@ -89883,7 +89883,7 @@ Functione02da: ; e02da
 	ld a, [$c6e8]
 	ld e, a
 	ld d, $0
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	add hl, de
 	add hl, de
 	ld a, [$cf66]
@@ -89960,11 +89960,11 @@ Functione0360: ; e0360
 ; e0366
 
 Functione0366: ; e0366
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld bc, $0018
 	xor a
 	call ByteFill
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 	ld c, $17
 .asm_e0375
 	call Random
@@ -91402,7 +91402,7 @@ Functione124e: ; e124e
 	ld d, $0
 	add hl, de
 	ld e, [hl]
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	add hl, de
 	ld a, [hl]
 	and a
@@ -91759,7 +91759,7 @@ Functione1463: ; e1463
 ; e1475
 
 Functione1475: ; e1475
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld a, [$cf65]
 	ld e, a
 	ld d, $0
@@ -91785,7 +91785,7 @@ INCBIN "baserom.gbc", $e148f, $e14a0 - $e148f
 
 Functione14a0: ; e14a0
 	ld hl, Unknown_e14b5
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 	ld c, $24
 .asm_e14a8
 	ld a, [de]
@@ -92181,7 +92181,7 @@ Functione1efb: ; e1efb
 	inc [hl]
 	xor a
 	ld [$c708], a
-	ld hl, PlayerReflectCount
+	ld hl, $c703
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -92206,18 +92206,18 @@ Functione1f1c: ; e1f1c
 	ld a, $c
 	call Function3b2a
 	ld a, $5
-	ld [PlayerLightScreenCount], a
+	ld [$c702], a
 	ld hl, $cf63
 	inc [hl]
 	ret
 ; e1f42
 
 Functione1f42: ; e1f42
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	hlcoord 17, 0
 	add $f6
 	ld [hl], a
-	ld hl, PlayerLightScreenCount
+	ld hl, $c702
 	ld a, [hl]
 	and a
 	jr nz, .asm_e1f58
@@ -92239,7 +92239,7 @@ Functione1f61: ; e1f61
 	dec a
 	ld e, a
 	ld d, $0
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	add hl, de
 	ld a, [hl]
 	cp $ff
@@ -92267,7 +92267,7 @@ Functione1f8b: ; e1f8b
 	ret z
 	ld e, a
 	ld d, $0
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	add hl, de
 	ld a, [hl]
 	cp $ff
@@ -92316,7 +92316,7 @@ Functione1fcc: ; e1fcc
 	push hl
 	ld e, a
 	ld d, $0
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	add hl, de
 	ld a, [hl]
 	pop hl
@@ -92358,16 +92358,16 @@ Functione2010: ; e2010
 	ld a, [EnemyScreens]
 	ld e, a
 	ld d, $0
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	add hl, de
 	ld [hl], $ff
 	ld a, [$c701]
 	ld e, a
 	ld d, $0
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	add hl, de
 	ld [hl], $ff
-	ld hl, PlayerReflectCount
+	ld hl, $c703
 .asm_e2044
 	ld a, [hli]
 	and a
@@ -92431,7 +92431,7 @@ UnknownText_0xe2098: ; 0xe2098
 ; 0xe209d
 
 Functione209d: ; e209d
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld bc, $002d
 	xor a
 	call ByteFill
@@ -92458,7 +92458,7 @@ Functione209d: ; e209d
 	ld b, [hl]
 	call Functione20e5
 	ld c, $5
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld b, $2d
 .asm_e20db
 	ld a, [hl]
@@ -92475,7 +92475,7 @@ Functione209d: ; e209d
 
 Functione20e5: ; e20e5
 	push hl
-	ld de, PlayerSDefLevel
+	ld de, $c6d0
 .asm_e20e9
 	call Random
 	and $3f
@@ -105681,12 +105681,12 @@ Function10578c: ; 10578c (41:578c)
 Function1057d7: ; 1057d7 (41:57d7)
 	call WhiteBGMap
 	call DisableLCD
-	ld hl, $5930
+	ld hl, MysteryGiftJP_GFX
 	ld de, $9000
 	ld a, $41
 	ld bc, $400
 	call FarCopyBytes
-	ld hl, $5d30
+	ld hl, MysteryGiftJP_GFX + $400
 	ld de, $8000
 	ld a, $41
 	ld bc, $80
@@ -105763,7 +105763,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	hlcoord 17, 15
 	ld [hl], $3e
 	ld de, Sprites ; $c400
-	ld hl, $58f0
+	ld hl, OAM_1058f0
 	ld bc, $40
 	call CopyBytes
 	call EnableLCD
@@ -105818,9 +105818,11 @@ Function1058e9: ; 1058e9 (41:58e9)
 	ret
 ; 1058f0 (41:58f0)
 
+OAM_1058f0: ; 1058f0
 INCBIN "baserom.gbc",$1058f0,$105930 - $1058f0
 
 ; japanese mystery gift gfx
+MysteryGiftJP_GFX: ; 105930
 INCBIN "gfx/misc/mystery_gift_jp.2bpp"
 
 
@@ -107110,11 +107112,11 @@ Function108157: ; 108157
 	ld [hli], a
 	ld [hl], $0
 	call DelayFrame
-	ld a, [PlayerSDefLevel]
-	ld de, PlayerAccLevel
+	ld a, [$c6d0]
+	ld de, $c6d1
 	call Function108239
-	ld a, [PlayerLightScreenCount]
-	ld de, PlayerReflectCount
+	ld a, [$c702]
+	ld de, $c703
 	call Function108239
 	xor a
 	call Function108b98
@@ -110504,7 +110506,7 @@ Function11ad1b: ; 11ad1b
 	ld a, BANK(Function8e83f)
 	ld e, $5
 	rst FarCall
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld bc, $0115
 	xor a
 	call ByteFill
@@ -110922,7 +110924,7 @@ Function11b6b4: ; 11b6b4
 
 Function11b7e5: ; 11b7e5
 	ld a, [$c60d]
-	ld [PlayerLightScreenCount], a
+	ld [$c702], a
 	ld [CurPartySpecies], a
 	ld a, [$cd81]
 	ld [$c74e], a
@@ -111606,7 +111608,7 @@ Function11c1ca: ; 11c1ca
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld de, LYOverrides
 	ld bc, $100
 	call CopyBytes
