@@ -107901,9 +107901,9 @@ Function114243:: ; 114243
 INCBIN "baserom.gbc",$11425c,$115d99 - $11425c
 
 Function115d99: ; 115d99
-	ld de, $601a
+	ld de, GFX_11601a
 	ld hl, $8600
-	ld bc, $4514
+	lb bc, BANK(GFX_11601a), $14
 	call Get2bpp
 	xor a
 	ld [$c305], a
@@ -108017,7 +108017,10 @@ Function115e2b: ; 115e2b
 	ret
 ; 115e59
 
-INCBIN "baserom.gbc",$115e59,$11615a - $115e59
+INCBIN "baserom.gbc",$115e59,$11601a - $115e59
+
+GFX_11601a:: ; 11601a
+INCBIN "baserom.gbc",$11601a,$11615a - $11601a
 
 Function11615a: ; 11615a
 	xor a

@@ -172,12 +172,16 @@ Function17a78f: ; 17a78f (5e:678f)
 	ret
 ; 17a7a6 (5e:67a6)
 
-INCBIN "baserom.gbc",$17a7a6,$17a7ae - $17a7a6
+Function17a7a6: ; 17a7a6
+	ld a, [$d087]
+	inc a
+	ld [$d087], a
+	ret
 
 Function17a7ae: ; 17a7ae (5e:67ae)
 	ld a, [$d087]
-	ld hl, $67b6
-	rst $28
+	ld hl, Jumptable_17a7b6
+	rst JumpTable
 	ret
 
 Jumptable_17a7b6: ; 17a7b6 (5e:67b6)
@@ -484,12 +488,16 @@ Function17a99e: ; 17a99e (5e:699e)
 	ld c, $12
 	call Function17ac46
 	hlcoord 2, 14
-	ld de, $69b2
+	ld de, String_17a9b2
 	call PlaceString
 	ret
 ; 17a9b2 (5e:69b2)
 
-INCBIN "baserom.gbc",$17a9b2,$17a9cb - $17a9b2
+String_17a9b2: ; 17a9b2
+	db   "でんわばんごうが ただしく"
+	next "はいって いません!"
+	db   "@"
+; 17a9cb
 
 Function17a9cb: ; 17a9cb (5e:69cb)
 	ld de, Sprites ; $c400
@@ -507,7 +515,7 @@ Function17a9cb: ; 17a9cb (5e:69cb)
 Function17a9e3: ; 17a9e3 (5e:69e3)
 	ld a, $3
 	ld [$d08e], a
-	ld hl, $6a77
+	ld hl, Unknown_17aa77
 	ld b, $8
 	ld c, $8
 	ld a, $5
@@ -533,7 +541,7 @@ Function17a9f5: ; 17a9f5 (5e:69f5)
 	add $18
 	ld b, a
 	ld c, $11
-	ld hl, $6a72
+	ld hl, Unknown_17aa72
 	ld a, $4
 	call Function17aa4a
 	ret
@@ -560,7 +568,7 @@ Function17aa22: ; 17aa22 (5e:6a22)
 	ld b, a
 	pop de
 	ld a, $0
-	ld hl, $6a77
+	ld hl, Unknown_17aa77
 	call Function17aa4a
 	ret
 
@@ -599,16 +607,27 @@ Function17aa4a: ; 17aa4a (5e:6a4a)
 	ret
 ; 17aa72 (5e:6a72)
 
-INCBIN "baserom.gbc",$17aa72,$17aa88 - $17aa72
+Unknown_17aa72: ; 17aa72
+	db 1
+	db 0, 0, 0, 0
+; 17aa77
+
+Unknown_17aa77: ; 17aa77
+	db 4
+	db 0, 0, 0, 0
+	db 0, 8, 1, 0
+	db 8, 0, 2, 0
+	db 8, 8, 3, 0
+; 17aa88
 
 Function17aa88: ; 17aa88 (5e:6a88)
 	jr c, asm_17aa91
-	ld de, $20
+	ld de, SFX_SWITCH_POKEMON
 	call PlaySFX
 	ret
 
 asm_17aa91: ; 17aa91 (5e:6a91)
-	ld de, $19
+	ld de, SFX_WRONG
 	call PlaySFX
 	ret
 
@@ -669,7 +688,7 @@ Function17aae3: ; 17aae3 (5e:6ae3)
 	push af
 	ld a, [$d08a]
 	ld bc, $d
-	ld hl, $6af7
+	ld hl, Unknown_17aaf7
 	call AddNTimes
 	pop af
 	ld c, a
@@ -679,7 +698,21 @@ Function17aae3: ; 17aae3 (5e:6ae3)
 	ret
 ; 17aaf7 (5e:6af7)
 
-INCBIN "baserom.gbc",$17aaf7,$17aba0 - $17aaf7
+Unknown_17aaf7: ; 17aaf7
+	db $0, $0, $1, $6, $5, $9, $3, $2, $1, $2, $1, $2, $4
+	db $0, $0, $2, $9, $5, $a, $4, $0, $2, $a, $a, $3, $5
+	db $0, $0, $3, $c, $5, $b, $5, $1, $0, $1, $0, $4, $0
+	db $0, $0, $4, $6, $8, $0, $6, $5, $4, $5, $1, $5, $7
+	db $0, $0, $5, $9, $8, $1, $7, $3, $5, $0, $2, $6, $8
+	db $0, $0, $6, $c, $8, $2, $8, $4, $3, $1, $3, $7, $3
+	db $0, $0, $7, $6, $b, $3, $9, $8, $7, $8, $4, $8, $a
+	db $0, $0, $8, $9, $b, $4, $a, $6, $8, $3, $5, $9, $b
+	db $0, $0, $9, $c, $b, $5, $b, $7, $6, $4, $6, $a, $6
+	db $0, $0,$f2, $6, $e, $6, $0, $c, $a, $c, $7, $c, $0
+	db $0, $0, $0, $9, $e, $7, $1, $9, $b, $6, $8, $1, $1
+	db $0, $0,$f1, $c, $e, $8, $2, $a, $c, $7, $c, $2, $c
+	db $0, $0,$f0,$10, $e, $c, $c, $b, $9, $b, $9, $b, $9
+; 17aba0
 
 Function17aba0: ; 17aba0 (5e:6ba0)
 	ld a, [rVBK] ; $ff00+$4f
@@ -687,18 +720,18 @@ Function17aba0: ; 17aba0 (5e:6ba0)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, $9000
-	ld de, $6fa5
-	ld bc, $5e80
+	ld de, GFX_17afa5
+	lb bc, BANK(GFX_17afa5), $80
 	call Get2bpp
 	pop af
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, $8000
-	ld de, $7465
-	ld bc, $5e05
+	ld de, GFX_17afa5 + $4c0
+	lb bc, BANK(GFX_17afa5), 5
 	call Get2bpp
 	ld hl, $8050
-	ld de, $601a
-	ld bc, $4504
+	ld de, GFX_11601a
+	lb bc, BANK(GFX_11601a), 4
 	call Get2bpp
 	ret
 
@@ -712,7 +745,7 @@ Function17abcf: ; 17abcf (5e:6bcf)
 	ld bc, $30
 	call CopyBytes
 	ld hl, $6c95
-	ld de, MartPointer ; $d040 (aliases: Unkn2Pals)
+	ld de, Unkn2Pals
 	ld bc, $40
 	call CopyBytes
 	ld hl, $74b5
@@ -738,14 +771,14 @@ Function17ac0c: ; 17ac0c (5e:6c0c)
 	ret
 
 Function17ac1d: ; 17ac1d (5e:6c1d)
-	ld hl, $6cd5
+	ld hl, Tilemap_17acd5
 	decoord 0, 4
 	ld bc, $118
 	call CopyBytes
 	ret
 
 Function17ac2a: ; 17ac2a (5e:6c2a)
-	ld hl, $6e3d
+	ld hl, Tilemap_17ae3d
 	ld de, $ce29
 	ld bc, $118
 	call CopyBytes
@@ -772,6 +805,17 @@ Function17ac46: ; 17ac46 (5e:6c46)
 	ret
 ; 17ac55 (5e:6c55)
 
-INCBIN "baserom.gbc",$17ac55,$17b629 - $17ac55
+Palette_17ac55: ; 17ac55
+INCBIN "baserom.gbc",$17ac55,$17ac95 - $17ac55
 
+Palette_17ac95: ; 17ac95
+INCBIN "baserom.gbc",$17ac95,$17acd5 - $17ac95
 
+Tilemap_17acd5: ; 17acd5
+INCBIN "baserom.gbc",$17acd5,$17ae3d - $17acd5
+
+Tilemap_17ae3d: ; 17ae3d
+INCBIN "baserom.gbc",$17ae3d,$17afa5 - $17ae3d
+
+GFX_17afa5: ; 17afa5
+INCBIN "baserom.gbc",$17afa5,$17b7a5 - $17afa5
