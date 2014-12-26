@@ -107042,7 +107042,16 @@ Function108016: ; 108016
 	jp Function108089
 ; 108021
 
-INCBIN "baserom.gbc",$108021,$108089 - $108021
+INCBIN "baserom.gbc", $108021, $10804d - $108021
+
+Function10804d: ; 10804d
+	ld a, $0
+	ld [$cf65], a
+	ld de, $4058
+	jp Function108089
+; 108058
+
+INCBIN "baserom.gbc", $108058, $108089 - $108058
 
 Function108089: ; 108089
 	ld hl, BattleEnded
@@ -110777,7 +110786,139 @@ Function11b65a: ; 11b65a
 	jp [hl]
 ; 11b669
 
-INCBIN "baserom.gbc",$11b669,$11b7e5 - $11b669
+INCBIN "baserom.gbc", $11b669, $11b6b4 - $11b669
+
+Function11b6b4: ; 11b6b4
+	ld a, $5
+	call GetSRAMBank
+	ld a, [$cd30]
+	ld [$c708], a
+	ld a, [$cd31]
+	ld [$c709], a
+	ld a, $8
+	ld [BGMapBuffer], a
+	ld a, $c7
+	ld [$cd21], a
+	ld a, $d
+	ld [CreditsTimer], a
+	ld a, $c6
+	ld [$cd23], a
+	ld a, $3d
+	ld [$cd24], a
+	ld a, $c6
+	ld [$cd25], a
+	ld a, $42
+	ld [$cd26], a
+	ld a, $c6
+	ld [$cd27], a
+	ld a, $47
+	ld [$cd28], a
+	ld a, $c6
+	ld [$cd29], a
+	ld a, $46
+	ld [$c628], a
+	ld de, $c63d
+	ld c, $5
+	callba Function17d073
+	jr nc, .asm_11b70f
+	callba Function17d187
+
+.asm_11b70f
+	ld de, $c63d
+	ld bc, $0105
+	callba Function17d1e1
+	jr nc, .asm_11b723
+	callba Function17d187
+
+.asm_11b723
+	ld de, $c642
+	ld c, $5
+	callba Function17d073
+	jr nc, .asm_11b736
+	callba Function17d199
+
+.asm_11b736
+	ld de, $c642
+	ld bc, $0105
+	callba Function17d1e1
+	jr nc, .asm_11b74a
+	callba Function17d199
+
+.asm_11b74a
+	ld de, $c647
+	ld c, $21
+	callba Function17d073
+	jr nc, .asm_11b75d
+	callba Function17d1ab
+
+.asm_11b75d
+	ld de, $c647
+	ld bc, $0221
+	callba Function17d1e1
+	jr c, .asm_11b770
+	ld a, b
+	cp $2
+	jr nz, .asm_11b776
+
+.asm_11b770
+	callba Function17d1ab
+
+.asm_11b776
+	ld de, $c668
+	ld c, $5
+	callba Function17d073
+	jr nc, .asm_11b789
+	callba Function17d1c9
+
+.asm_11b789
+	ld de, $c668
+	ld bc, $0105
+	callba Function17d1e1
+	jr nc, .asm_11b79d
+	callba Function17d1c9
+
+.asm_11b79d
+	ld a, [$c60e]
+	cp $ff
+	jr nz, .asm_11b7a8
+	xor a
+	ld [$c60e], a
+
+.asm_11b7a8
+	ld a, [$cd31]
+	ld [$c60d], a
+	ld [CurSpecies], a
+	call GetBaseData
+
+	ld hl, $c62c
+	ld a, [hl]
+	cp MIN_LEVEL
+	ld a, MIN_LEVEL
+	jr c, .asm_11b7c5
+	ld a, [hl]
+	cp MAX_LEVEL
+	jr c, .asm_11b7c6
+	ld a, MAX_LEVEL
+.asm_11b7c5
+	ld [hl], a
+.asm_11b7c6
+	ld [CurPartyLevel], a
+
+	ld hl, $c617
+	ld de, $c631
+	ld b, $1
+	ld a, $c
+	call Predef
+	ld de, $c631
+	ld hl, $c62f
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hl], a
+	call Function11b98f
+	ret
+; 11b7e5
 
 Function11b7e5: ; 11b7e5
 	ld a, [$c60d]
@@ -114746,11 +114887,11 @@ Function1709bb: ; 1709bb (5c:49bb)
 	call GetSRAMBank
 	ld a, [$a800]
 	call CloseSRAM
-	cp $6
+	cp 6
 	jr nc, .asm_1709da
 	ld e, a
-	ld d, $0
-	ld hl, $49e7
+	ld d, 0
+	ld hl, Jumptable_1709e7
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -114766,7 +114907,106 @@ Function1709bb: ; 1709bb (5c:49bb)
 	ret
 ; 1709e7 (5c:49e7)
 
-INCBIN "baserom.gbc",$1709e7,$170a9c - $1709e7
+Jumptable_1709e7: ; 1709e7
+	dw Function170a00
+	dw Function170a00
+	dw Function1709f3
+	dw Function1709f3
+	dw Function170a01
+	dw Function170a33
+; 1709f3
+
+Function1709f3: ; 1709f3
+	ld a, $5
+	call GetSRAMBank
+	ld a, $1
+	ld [$a800], a
+	call CloseSRAM
+
+Function170a00: ; 170a00
+	ret
+; 170a01
+
+Function170a01: ; 170a01
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $b023
+	ld de, $c608
+	ld bc, $0069
+	call CopyBytes
+	ld a, [$a825]
+	ld [$cd30], a
+	ld a, [$a826]
+	ld [$cd31], a
+	call CloseSRAM
+	callba Function11b6b4
+	callba Function17d0f3
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+; 170a33
+
+Function170a33: ; 170a33
+	ld a, $0
+	call GetSRAMBank
+	ld hl, wRTC
+	ld de, $c608
+	ld bc, $0004
+	call CopyBytes
+	call CloseSRAM
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $b08c
+	ld de, $c608
+	ld c, $4
+.asm_170a54
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr nz, .asm_170a78
+	inc hl
+	dec c
+	jr nz, .asm_170a54
+	call CloseSRAM
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+	call GetMapTrigger
+	ld a, d
+	or e
+	jr z, .asm_170a72
+	ld a, [de]
+	and a
+	ret nz
+
+.asm_170a72
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+
+.asm_170a78
+	call CloseSRAM
+	ld a, $5
+	call GetSRAMBank
+	xor a
+	ld [$a800], a
+	call CloseSRAM
+	ld [ScriptVar], a
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+	call GetMapTrigger
+	ld a, d
+	or e
+	jr z, .asm_170a9b
+	xor a
+	ld [de], a
+
+.asm_170a9b
+	ret
+; 170a9c
 
 Function170a9c: ; 170a9c (5c:4a9c)
 	ld c, $0
@@ -115634,7 +115874,110 @@ Function17d0b3: ; 17d0b3
 	ret
 ; 17d0f3
 
-INCBIN "baserom.gbc",$17d0f3,$17d1e1 - $17d0f3
+Function17d0f3: ; 17d0f3
+	ld a, [$c60d]
+	ld [$c702], a
+	ld [CurPartySpecies], a
+	ld a, [$cd81]
+	ld [$c74e], a
+	ld hl, $c63d
+	ld de, $c724
+	ld bc, $0005
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	ld a, [$c613]
+	ld [$c731], a
+	ld a, [$c614]
+	ld [$c732], a
+	ld hl, $c622
+	ld a, [hli]
+	ld [$c72f], a
+	ld a, [hl]
+	ld [$c730], a
+	ld bc, $c60d
+	callba GetCaughtGender
+	ld a, c
+	ld [$c733], a
+	call SpeechTextBox
+	call FadeToMenu
+	callba Function10804d
+	callba Function17d1f1
+	ld a, $1
+	ld [$d1e9], a
+	ld a, $2
+	ld [InLinkBattle], a
+	callba Function421d8
+	xor a
+	ld [InLinkBattle], a
+	callba Function14a58
+	ld a, $5
+	call GetSRAMBank
+	ld a, $5
+	ld [$a800], a
+	call CloseSRAM
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+	call GetMapTrigger
+	ld a, d
+	or e
+	jr z, .asm_17d180
+	ld a, $1
+	ld [de], a
+
+.asm_17d180
+	call Function2b3c
+	call RestartMapMusic
+	ret
+; 17d187
+
+Function17d187: ; 17d187
+	ld hl, $5194
+	ld de, $c63d
+	ld bc, $0005
+	call CopyBytes
+	ret
+; 17d194
+
+INCBIN "baserom.gbc", $17d194, $17d199 - $17d194
+
+Function17d199: ; 17d199
+	ld hl, $51a6
+	ld de, $c642
+	ld bc, $0005
+	call CopyBytes
+	ret
+; 17d1a6
+
+INCBIN "baserom.gbc", $17d1a6, $17d1ab - $17d1a6
+
+Function17d1ab: ; 17d1ab
+	ld a, $50
+	ld hl, $c647
+	ld bc, $0021
+	call ByteFill
+	ld hl, $51c3
+	ld de, $c647
+	ld bc, $0006
+	call CopyBytes
+	ret
+; 17d1c3
+
+INCBIN "baserom.gbc", $17d1c3, $17d1c9 - $17d1c3
+
+Function17d1c9: ; 17d1c9
+	ld a, $50
+	ld de, $c668
+	ld bc, $0005
+	call ByteFill
+	ld hl, $5194
+	ld de, $c668
+	ld bc, $0005
+	call CopyBytes
+	ret
+; 17d1e1
 
 Function17d1e1: ; 17d1e1
 .asm_17d1e1
