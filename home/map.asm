@@ -2142,7 +2142,7 @@ GetAnyMapBank:: ; 2c31
 Function2c3d:: ; 2c3d
 	ld a, [hROMBank]
 	push af
-	ld a, $25
+	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
 	call GetMapHeaderPointer
 	ld de, $d198
