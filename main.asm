@@ -24386,7 +24386,7 @@ Function14b89: ; 14b89
 ; 14baf
 
 Function14baf: ; 14baf
-	ld b, $5
+	ld b, BANK(UnknownText_0x15283)
 	call Function269a
 	call Function1d58
 	lb bc, 0, 7
@@ -35658,11 +35658,11 @@ Function26f69: ; 26f69
 	call IsInArray
 	jr c, .asm_26f7d
 	ld de, UnknownScript_0x26fb8
-	ld b, $9
+	ld b, BANK(UnknownScript_0x26fb8)
 	ret
 
 .asm_26f7d
-	ld b, $9
+	ld b, BANK(UnknownScript_0x26f91)
 	inc hl
 	ld a, [hli]
 	ld d, [hl]
@@ -82071,9 +82071,9 @@ Function91af3: ; 91af3
 .asm_91b4e
 	ld a, [DefaultFlypoint]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
-	ld de, $5c5f
+	ld de, Flypoints + 1
 	add hl, de
 	ld a, [hl]
 
