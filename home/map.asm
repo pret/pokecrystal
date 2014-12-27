@@ -134,14 +134,14 @@ Function2198:: ; 2198
 	ld a, [de]
 	and a
 	jr nz, .asm_21b2
-	ld a, [$d19d]
+	ld a, [MapBorderBlock]
 
 .asm_21b2
 	ld e, l
 	ld d, h
 	add a
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
@@ -153,18 +153,11 @@ Function2198:: ; 2198
 	ld h, a
 
 rept 3
+rept 4
 	ld a, [hli]
 	ld [de], a
 	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
+endr
 
 	ld a, e
 	add 20
@@ -174,18 +167,11 @@ rept 3
 .next\@
 endr
 
+rept 4
 	ld a, [hli]
 	ld [de], a
 	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
+endr
 
 	pop hl
 	ld de, $0004
@@ -449,7 +435,7 @@ Function234f:: ; 234f
 ; 235c
 
 Function235c:: ; 235c
-	ld de, $d19d
+	ld de, MapHeader
 	ld c, $c
 .asm_2361
 	ld a, [hli]
@@ -654,12 +640,12 @@ Function2457:: ; 2457
 ; 2471
 
 Function2471:: ; 2471
-	ld hl, $d4fe
-	ld bc, $01e0
+	ld hl, ObjectStruct1
+	ld bc, 40 * 12
 	xor a
 	call ByteFill
-	ld hl, $d4fe
-	ld de, $0028
+	ld hl, ObjectStruct1
+	ld de, 40
 	ld c, $c
 	xor a
 .asm_2484
@@ -1757,7 +1743,7 @@ Function2a3c:: ; 2a3c
 	add hl, hl
 	ld a, [TilesetCollisionAddress]
 	ld c, a
-	ld a, [$d1e1]
+	ld a, [TilesetCollisionAddress + 1]
 	ld b, a
 	add hl, bc
 	rr d
