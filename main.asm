@@ -105410,9 +105410,9 @@ Function10510b: ; 10510b (41:510b)
 Function105153: ; 105153 (41:5153)
 	call WhiteBGMap
 	call DisableLCD
-	ld hl, $5258
+	ld hl, MysteryGiftGFX
 	ld de, $9000
-	ld a, $41
+	ld a, BANK(MysteryGiftGFX)
 	ld bc, $430
 	call FarCopyBytes
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -105542,7 +105542,7 @@ Function105251: ; 105251 (41:5251)
 	jr nz, .asm_105253
 	ret
 
-MysteryGiftGFX:
+MysteryGiftGFX: ; 105258
 INCBIN "gfx/misc/mystery_gift.2bpp"
 
 
@@ -105552,7 +105552,7 @@ Function105688: ; 105688 (41:5688)
 	call WaitBGMap
 	call Function1057d7
 	hlcoord 3, 8
-	ld de, $572e
+	ld de, String_10572e
 	call PlaceString
 	call WaitBGMap
 	call Function10578c
@@ -105576,15 +105576,15 @@ Function105688: ; 105688 (41:5688)
 	ld c, $3c
 	call DelayFrames
 	call Function105777
-	ld hl, $575e
+	ld hl, Text_10575e
 	call PrintText
 	ld de, $c850
 	callba Function8ac70
 	ld a, c
 	ld [$d265], a
-	ld hl, $5768
+	ld hl, Text_105768
 	jr c, asm_105726
-	ld hl, $5763
+	ld hl, Text_105763
 	jr asm_105726
 
 Function1056eb: ; 1056eb (41:56eb)
@@ -105620,12 +105620,12 @@ Function1056eb: ; 1056eb (41:56eb)
 
 Function105712: ; 105712 (41:5712)
 	call Function105777
-	ld hl, $576d
+	ld hl, Text_10576d
 	jr asm_105726
 
 Function10571a: ; 10571a (41:571a)
 	call Function105777
-	ld hl, $5772
+	ld hl, Text_105772
 	call PrintText
 	jp Function105688
 
@@ -105636,7 +105636,34 @@ asm_105726: ; 105726 (41:5726)
 	ret
 ; 10572e (41:572e)
 
-INCBIN "baserom.gbc",$10572e,$105777 - $10572e
+String_10572e: ; 10572e
+	db   "エーボタン", $1f, "おすと"
+	next "つうしん",   $4a, "おこなわれるよ!"
+	next "ビーボタン", $1f, "おすと"
+	next "つうしん",   $1f, "ちゅうし します"
+	db   "@"
+; 10575e
+
+Text_10575e: ; 10575e
+	text_jump UnknownText_0x1c051a
+	db "@"
+
+Text_105763: ; 105763
+	text_jump UnknownText_0x1c0531
+	db "@"
+
+Text_105768: ; 105768
+	text_jump UnknownText_0x1c0555
+	db "@"
+
+Text_10576d: ; 10576d
+	text_jump UnknownText_0x1c0573
+	db "@"
+
+Text_105772: ; 105772
+	text_jump UnknownText_0x1c0591
+	db "@"
+; 105777
 
 Function105777: ; 105777 (41:5777)
 	call ClearSprites
@@ -105683,12 +105710,12 @@ Function1057d7: ; 1057d7 (41:57d7)
 	call DisableLCD
 	ld hl, MysteryGiftJP_GFX
 	ld de, $9000
-	ld a, $41
+	ld a, BANK(MysteryGiftJP_GFX)
 	ld bc, $400
 	call FarCopyBytes
 	ld hl, MysteryGiftJP_GFX + $400
 	ld de, $8000
-	ld a, $41
+	ld a, BANK(MysteryGiftJP_GFX)
 	ld bc, $80
 	call FarCopyBytes
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -106994,43 +107021,47 @@ Function106462: ; 106462
 INCBIN "baserom.gbc",$106463,$106464 - $106463
 
 Function106464:: ; 106464
-	ld de, $5214
+	ld de, GFX_f9214
 	ld hl, $9600
-	ld bc, $3e01
+	lb bc, BANK(GFX_f9214), 1
 	call Get2bpp
-	ld de, $5424
+	ld de, GFX_f9424
 	ld hl, $9610
-	ld bc, $3e01
+	lb bc, BANK(GFX_f9424), 1
 	call Get2bpp
-	ld de, $6514
+	ld de, GFX_106514
 	ld hl, $9620
-	ld c, $9
-	ld b, $41
+	ld c, 9
+	ld b, BANK(GFX_106514)
 	call Get2bpp
 	ld de, $40b0
 	ld hl, $96b0
-	ld b, $f
+	ld b, $f ; XXX no graphics at 0f:40b0
 	call Get2bpp
 	callba Functionfb4cc
 	ret
 ; 10649b
 
-INCBIN "baserom.gbc",$10649b,$106594 - $10649b
+INCBIN "baserom.gbc",$10649b,$106514 - $10649b
+
+GFX_106514:
+INCBIN "baserom.gbc",$106514,$106594 - $106514
 
 
 Function106594:: ; 106594
-	ld de, $65ad
+	ld de, GFX_1065ad
 	ld hl, VTiles1
-	ld bc, $4180
+	lb bc, BANK(GFX_1065ad), $80
 	call Get2bpp
-	ld de, $6dad
+	ld de, GFX_1065ad + $800
 	ld hl, $97f0
-	ld bc, $4101
+	lb bc, BANK(GFX_1065ad), 1
 	call Get2bpp
 	ret
 ; 1065ad
 
-INCBIN "baserom.gbc",$1065ad,$106dbc - $1065ad
+GFX_1065ad:
+INCBIN "baserom.gbc",$1065ad,$106dbd - $1065ad
 
 
 SECTION "bank42", ROMX, BANK[$42]
