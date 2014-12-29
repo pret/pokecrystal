@@ -103344,18 +103344,34 @@ INCBIN "baserom.gbc",$103898,$10389d - $103898
 SECTION "bank41", ROMX, BANK[$41]
 
 Function104000:: ; 104000
-	ld hl, $4006
+	ld hl, Function104006
 	jp Function104177
 ; 104006
 
-INCBIN "baserom.gbc",$104006,$10402d - $104006
-
+Function104006: ; 104006
+	ld de, AttrMap
+	ld hl, $d400
+	call Function104263
+	ld de, SpritesEnd
+	ld hl, Unkn1Pals
+	call Function10425f
+	ld a, $0
+	ld [rVBK], a
+	ld hl, Unkn1Pals
+	call Function10419d
+	ld a, $1
+	ld [rVBK], a
+	ld hl, $d400
+	call Function10419d
+	ret
+; 10402d
 
 Function10402d:: ; 10402d
-	ld hl, $4033
+	ld hl, Function104033
 	jp Function104177
 ; 104033
 
+Function104033: ; 104033
 	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld hl, Unkn1Pals ; $d000
 	call Function10425f
@@ -103364,12 +103380,14 @@ Function10402d:: ; 10402d
 	ld hl, Unkn1Pals ; $d000
 	call Function10419d
 	ret
+; 104047
 
 Function104047: ; 104047
-	ld hl, $404d
+	ld hl, Function10404d
 	jp Function104177
 ; 10404d
 
+Function10404d: ; 10404d
 	ld de, AttrMap ; $cdd9
 	ld hl, $d400
 	call Function104263
@@ -103378,13 +103396,14 @@ Function104047: ; 104047
 	ld hl, $d400
 	call Function10419d
 	ret
-
+; 104061
 
 Function104061:: ; 104061
-	ld hl, $4067
+	ld hl, Function104067
 	jp Function104177
 ; 104067
 
+Function104067: ; 104067
 	ld de, AttrMap ; $cdd9
 	ld hl, $d400
 	call Function104263
@@ -103410,18 +103429,81 @@ Function104061:: ; 104061
 
 Function104099: ; 104099
 	ld hl, Function104061
-	ld hl, $40a2
+	ld hl, Function1040a2
 	jp Function104177
 ; 1040a2
 
-INCBIN "baserom.gbc",$1040a2,$104110 - $1040a2
+Function1040a2: ; 1040a2
+	ld de, AttrMap
+	ld hl, $d400
+	call Function104263
+	ld de, SpritesEnd
+	ld hl, Unkn1Pals
+	call Function10425f
+	call DelayFrame
+	di
+	ld a, [rVBK]
+	push af
+	ld a, $1
+	ld [rVBK], a
+	ld hl, $d400
+	call Function1041c1
+	ld a, $0
+	ld [rVBK], a
+	ld hl, Unkn1Pals
+	call Function1041c1
+	pop af
+	ld [rVBK], a
+	ei
+	ret
+; 1040d4
 
+Function1040d4: ; 1040d4
+	ld hl, Function1040da
+	jp Function104177
+; 1040da
+
+Function1040da: ; 1040da
+	ld a, $1
+	ld [rVBK], a
+	ld a, $3
+	ld [rSVBK], a
+	ld de, $d800
+	ld a, [$ffd7]
+	ld [rHDMA1], a
+	ld a, [hBGMapAddress]
+	ld [rHDMA2], a
+	ld a, d
+	ld [rHDMA3], a
+	ld a, e
+	ld [rHDMA4], a
+	ld a, $23
+	ld [hDMATransfer], a
+	call Function1041a4
+	ret
+; 1040fb
+
+Function1040fb: ; 1040fb
+	ld hl, Function104101
+	jp Function104177
+; 104101
+
+Function104101: ; 104101
+	ld a, $1
+	ld [rVBK], a
+	ld a, $3
+	ld [rSVBK], a
+	ld hl, $d800
+	call Function10419d
+	ret
+; 104110
 
 Function104110:: ; 104110
-	ld hl, $4116
+	ld hl, Function104116
 	jp Function104177
 ; 104116
 
+Function104116: ; 104116
 	ld de, AttrMap ; $cdd9
 	ld hl, $d400
 	call Function104263
@@ -103444,14 +103526,31 @@ Function104110:: ; 104110
 	ld [rVBK], a ; $ff00+$4f
 	ei
 	ret
+; 104148
 
 Function104148: ; 104148 (41:4148)
-	ld hl, $414e
+	ld hl, Function10414e
 	jp Function104177
 ; 10414e (41:414e)
 
-INCBIN "baserom.gbc",$10414e,$104177 - $10414e
-
+Function10414e: ; 10414e
+	ld de, AttrMap
+	ld hl, $d400
+	call Function104263
+	ld c, $ff
+	ld de, SpritesEnd
+	ld hl, Unkn1Pals
+	call Function104265
+	ld a, $1
+	ld [rVBK], a
+	ld hl, $d400
+	call Function1041ad
+	ld a, $0
+	ld [rVBK], a
+	ld hl, Unkn1Pals
+	call Function1041ad
+	ret
+; 104177
 
 Function104177: ; 104177
 	ld a, [hBGMapMode]
@@ -103488,6 +103587,8 @@ Function10419d: ; 10419d (41:419d)
 	call Function10424e
 	ld a, $23
 	ld [hDMATransfer], a ; $ff00+$e8
+
+Function1041a4: ; 104a14
 .asm_1041a4
 	call DelayFrame
 	ld a, [hDMATransfer] ; $ff00+$e8
@@ -103509,11 +103610,58 @@ Function1041b7: ; 1041b7 (41:41b7)
 	ld a, [hBGMapAddress] ; $ff00+$d6
 	ld e, a
 	ld c, $24
-	jr .asm_104205
+	jr asm_104205
 ; 1041c1 (41:41c1)
 
-INCBIN "baserom.gbc",$1041c1,$104205 - $1041c1
-.asm_104205
+Function1041c1: ; 1041c1
+	ld a, [$ffd7]
+	ld d, a
+	ld a, [hBGMapAddress]
+	ld e, a
+	ld c, $24
+	ld a, h
+	ld [rHDMA1], a
+	ld a, l
+	and $f0
+	ld [rHDMA2], a
+	ld a, d
+	and $1f
+	ld [rHDMA3], a
+	ld a, e
+	and $f0
+	ld [rHDMA4], a
+	ld a, c
+	dec c
+	or $80
+	ld b, a
+	ld a, $7f
+	sub c
+	ld d, a
+.asm_1041e4
+	ld a, [rLY]
+	cp d
+	jr nc, .asm_1041e4
+.asm_1041e9
+	ld a, [rSTAT]
+	and $3
+	jr z, .asm_1041e9
+	ld a, b
+	ld [rHDMA5], a
+	ld a, [rLY]
+	inc c
+	ld hl, rLY
+.asm_1041f8
+	cp [hl]
+	jr z, .asm_1041f8
+	ld a, [hl]
+	dec c
+	jr nz, .asm_1041f8
+	ld hl, rHDMA5
+	res 7, [hl]
+	ret
+; 104205
+
+asm_104205:
 	ld b, $7b
 	jr asm_10420b
 
@@ -103584,12 +103732,12 @@ Function10424e: ; 10424e (41:424e)
 
 Function10425f: ; 10425f (41:425f)
 	ld c, $7f
-	jr asm_104265
+	jr Function104265
 
 Function104263: ; 104263 (41:4263)
 	ld c, $0
 
-asm_104265: ; 104265 (41:4265)
+Function104265: ; 104265 (41:4265)
 	ld a, [$ffaf]
 	push af
 	ld a, c
