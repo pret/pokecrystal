@@ -929,7 +929,7 @@ Functionc8565: ; c8565 (32:4565)
 	ld hl, $d422
 	ld bc, $0
 .asm_c8580
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	cp e
 	jr nc, .asm_c858b
 	push hl
@@ -966,9 +966,9 @@ Functionc85a2: ; c85a2 (32:45a2)
 	ld a, $42
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	xor a
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld a, $5e
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld de, $202
 	call Functionc8f2e
 	ret
@@ -1040,9 +1040,9 @@ Functionc8610: ; c8610 (32:4610)
 	ld a, $43
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	xor a
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld a, $5f
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld de, $605
 	call Functionc8f2e
 	ld hl, $3
@@ -1136,9 +1136,9 @@ Functionc8698: ; c8698 (32:4698)
 	call Functionc8eca
 	ld a, $43
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $2
 	add hl, bc
 	ld [hl], $0
@@ -1192,9 +1192,9 @@ Functionc86ea: ; c86ea (32:46ea)
 	inc a
 	ld d, a
 	ld h, $d2
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld l, a
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	sub l
 	srl a
 	push af
@@ -1234,7 +1234,7 @@ Functionc8712: ; c8712 (32:4712)
 	ld d, $2
 	call Functionc8f2e
 	ld h, $d2
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	ld l, a
 	ld [hl], $0
 	dec l
@@ -1242,7 +1242,7 @@ Functionc8712: ; c8712 (32:4712)
 	ret
 
 Functionc8732: ; c8732 (32:4732)
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	ld l, a
 	ld h, $d2
 	ld e, l
@@ -1252,11 +1252,11 @@ Functionc8732: ; c8732 (32:4732)
 	ld a, [de]
 	dec de
 	ld [hld], a
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	cp l
 	jr nz, .asm_c873a
 	ld [hl], $90
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	ld l, a
 	ld a, [hl]
 	cp $1
@@ -1292,9 +1292,9 @@ Functionc876a: ; c876a (32:476a)
 	call Functionc8eca
 	ld a, $42
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $2
 	add hl, bc
 	ld [hl], $1
@@ -1343,9 +1343,9 @@ Functionc87b2: ; c87b2 (32:47b2)
 	call Functionc8eca
 	ld a, $42
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $2
 	add hl, bc
 	ld [hl], $2
@@ -1367,9 +1367,9 @@ Functionc87cf: ; c87cf (32:47cf)
 	call Functionc80e5
 
 Functionc87de: ; c87de (32:47de)
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld l, a
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	sub l
 	dec a
 	ld hl, $2
@@ -1411,9 +1411,9 @@ Functionc8810: ; c8810 (32:4810)
 	call Functionc8eca
 	ld a, $43
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -1446,9 +1446,9 @@ Functionc8842: ; c8842 (32:4842)
 	call Functionc8eca
 	ld a, $43
 	call Functionc8ef4
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -1519,16 +1519,16 @@ Functionc88a5: ; c88a5 (32:48a5)
 	pop af
 	jp Functionc900b
 .asm_c88b7
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld d, a
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	sub d
 	ld d, a
 	ld h, LYOverridesBackup / $100
 	ld a, [hSCY] ; $ff00+$d0
 	or a
 	jr nz, .asm_c88d0
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	or a
 	jr z, .asm_c88d6
 	dec a
@@ -1536,14 +1536,14 @@ Functionc88a5: ; c88a5 (32:48a5)
 	ld [hl], $0
 	jr .asm_c88d6
 .asm_c88d0
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	dec a
 	ld l, a
 	ld [hl], $0
 .asm_c88d6
 	ld a, [hSCY] ; $ff00+$d0
 	ld l, a
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	sub l
 	jr nc, .asm_c88e0
 	xor a
@@ -1576,9 +1576,9 @@ Functionc88f6: ; c88f6 (32:48f6)
 	call Functionc8eca
 	ld a, $43
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -1623,9 +1623,9 @@ Functionc8933: ; c8933 (32:4933)
 	call Functionc8eca
 	ld a, $43
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -1663,9 +1663,9 @@ Functionc896d: ; c896d (32:496d)
 	call Functionc8eca
 	ld a, $43
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	xor a
 	ld hl, $2
 	add hl, bc
@@ -1762,9 +1762,9 @@ Functionc89f7: ; c89f7 (32:49f7)
 	call Functionc8eca
 	ld a, $42
 	call Functionc8ef4
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $2
 	add hl, bc
 	ld [hl], $1
@@ -1818,14 +1818,14 @@ Functionc8a49: ; c8a49 (32:4a49)
 	call Functionc8ecb
 	ld a, $47
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
-	ld a, [$FF00+$c7]
+	ld [$ffc8], a
+	ld a, [$ffc7]
 	ld l, a
 	ld h, $d2
 .asm_c8a60
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	cp l
 	jr z, .asm_c8a69
 	xor a
@@ -1848,9 +1848,9 @@ Functionc8a70: ; c8a70 (32:4a70)
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	inc a
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	call Functionc80e5
 	ret
 
@@ -1858,7 +1858,7 @@ Functionc8a88: ; c8a88 (32:4a88)
 	call Functionc8ab0
 	jr nc, .asm_c8a96
 	call Functionc8a9a
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	dec a
 	ld l, a
 	ld [hl], e
@@ -1869,9 +1869,9 @@ Functionc8a88: ; c8a88 (32:4a88)
 
 Functionc8a9a: ; c8a9a (32:4a9a)
 	ld e, a
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld l, a
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	sub l
 	srl a
 	ld h, $d2
@@ -1964,9 +1964,9 @@ Functionc8b0e: ; c8b0e (32:4b0e)
 	ld a, $47
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	xor a
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld a, $60
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ret
 
 Functionc8b22: ; c8b22 (32:4b22)
@@ -2214,9 +2214,9 @@ Functionc8c68: ; c8c68 (32:4c68)
 	call Functionc8eca
 	ld a, $43
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $2
 	add hl, bc
 	ld [hl], $1
@@ -2261,9 +2261,9 @@ Functionc8cab: ; c8cab (32:4cab)
 	ld a, $43
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	xor a
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld a, $37
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -2424,9 +2424,9 @@ Functionc8d8b: ; c8d8b (32:4d8b)
 	call Functionc8ecb
 	ld a, $47
 	call Functionc8ede
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	inc a
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ld hl, $3
 	add hl, bc
 	ld a, [hl]
@@ -2662,9 +2662,9 @@ Functionc8ede: ; c8ede (32:4ede)
 	ld de, $2f5e
 .asm_c8eed
 	ld a, d
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld a, e
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ret
 
 Functionc8ef4: ; c8ef4 (32:4ef4)
@@ -2677,15 +2677,15 @@ Functionc8ef4: ; c8ef4 (32:4ef4)
 	ld de, $2d5e
 .asm_c8f03
 	ld a, d
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld a, e
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ret
 
 Functionc8f0a: ; c8f0a (32:4f0a)
 	xor a
-	ld [$FF00+$c7], a
-	ld [$FF00+$c8], a
+	ld [$ffc7], a
+	ld [$ffc8], a
 	call Functionc8eca
 	xor a
 	ld [hLCDStatCustom], a ; $ff00+$c6
@@ -2699,8 +2699,8 @@ Functionc8f19: ; c8f19 (32:4f19)
 	ld [rBGP], a ; $ff00+$47
 	ld [$cfc7], a
 	ld [$cfc9], a
-	ld [$FF00+$c7], a
-	ld [$FF00+$c8], a
+	ld [$ffc7], a
+	ld [$ffc8], a
 	call Functionc8eca
 	ret
 
@@ -2716,10 +2716,10 @@ Functionc8f2e: ; c8f2e (32:4f2e)
 	ld [$d41c], a
 	ld bc, $d200
 .asm_c8f43
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	cp c
 	jr nc, .asm_c8f58
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	cp c
 	jr c, .asm_c8f58
 	ld a, [$d41b]
@@ -2793,14 +2793,14 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	call Functionc905d
 	ld e, a
 	pop hl
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	cp c
 	jr c, .asm_c8fcf
 	ld a, e
 	ld [bc], a
 	inc bc
 .asm_c8fcf
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	cp l
 	jr nc, .asm_c8fd6
 	ld [hl], e
@@ -2817,7 +2817,7 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	ret
 
 Functionc8fe4: ; c8fe4 (32:4fe4)
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld e, a
 	ld a, [$d419]
 	add e
@@ -2827,13 +2827,13 @@ Functionc8fe4: ; c8fe4 (32:4fe4)
 
 Functionc8fef: ; c8fef (32:4fef)
 	push bc
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld l, a
 	inc a
 	ld e, a
 	ld h, $d2
 	ld d, h
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	sub l
 	and a
 	jr z, .asm_c9009
@@ -2855,9 +2855,9 @@ Functionc8fef: ; c8fef (32:4fef)
 Functionc900b: ; c900b (32:500b)
 	push af
 	ld h, $d2
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld l, a
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	sub l
 	ld d, a
 	pop af
@@ -2870,14 +2870,14 @@ Functionc900b: ; c900b (32:500b)
 Functionc901b: ; c901b (32:501b)
 	push af
 	ld e, a
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld l, a
-	ld a, [$FF00+$c8]
+	ld a, [$ffc8]
 	sub l
 	sub e
 	ld d, a
 	ld h, $d2
-	ld a, [$FF00+$c7]
+	ld a, [$ffc7]
 	ld l, a
 	ld a, $90
 .asm_c902c

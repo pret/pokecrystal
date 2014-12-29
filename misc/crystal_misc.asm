@@ -151,13 +151,13 @@ Function17a770: ; 17a770 (5e:6770)
 	ret
 
 Function17a781: ; 17a781 (5e:6781)
-	ld a, [$FF00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	call Functiona57
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	ret
 
 Function17a78f: ; 17a78f (5e:678f)
@@ -261,7 +261,7 @@ Function17a81a: ; 17a81a (5e:681a)
 	ret
 
 Function17a83c: ; 17a83c (5e:683c)
-	ld a, [$FF00+$a9]
+	ld a, [$ffa9]
 	and $f0
 	ld c, a
 	ld a, [hJoyPressed] ; $ff00+$a7

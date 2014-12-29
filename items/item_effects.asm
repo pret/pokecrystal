@@ -2091,19 +2091,19 @@ Functionf36f: ; f36f (3:736f)
 
 Functionf378: ; f378 (3:7378)
 	push bc
-	ld a, $24
+	ld a, PartyMon1MaxHP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld [hDividend + 0], a
 	ld a, [hl]
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld a, $5
-	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
-	ld b, $2
+	ld [hDividend + 1], a
+	ld a, 5
+	ld [hDivisor], a
+	ld b, 2
 	call Divide
-	ld a, [$FF00+$b5]
+	ld a, [hQuotient + 1]
 	ld d, a
-	ld a, [$FF00+$b6]
+	ld a, [hQuotient + 2]
 	ld e, a
 	pop bc
 	ret
@@ -2153,6 +2153,7 @@ Tablef3af: ; f3af
 ; f3df
 
 Functionf3df: ; f3df (3:73df)
+; Softboiled/Milk Drink in the field
 	ld a, [$d0d8]
 	dec a
 	ld b, a

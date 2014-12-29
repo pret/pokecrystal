@@ -1696,9 +1696,9 @@ Functioncd677: ; cd677 (33:5677)
 	ld a, $42
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	ld a, $58
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld a, $5e
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	ret
 
 Functioncd687: ; cd687 (33:5687)
@@ -1712,7 +1712,7 @@ Functioncd687: ; cd687 (33:5687)
 	jr nc, .asm_cd69b
 	call Functionce72c
 	xor a
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ret
 .asm_cd69b
 	dec a
@@ -1730,7 +1730,7 @@ Functioncd687: ; cd687 (33:5687)
 	add [hl]
 	sub $10
 	ret c
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld hl, $9
 	add hl, bc
 	ld a, [hl]
@@ -1753,8 +1753,8 @@ Functioncd6c6: ; cd6c6 (33:56c6)
 	jr c, asm_cd6da
 	xor a
 	ld [hLCDStatCustom], a ; $ff00+$c6
-	ld [$FF00+$c7], a
-	ld [$FF00+$c8], a
+	ld [$ffc7], a
+	ld [$ffc8], a
 
 Functioncd6d6: ; cd6d6 (33:56d6)
 	call Functioncc9bd
@@ -1765,7 +1765,7 @@ asm_cd6da: ; cd6da (33:56da)
 	ld [hl], a
 	sub $10
 	ret c
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ret
 
 Functioncd6e3: ; cd6e3 (33:56e3)

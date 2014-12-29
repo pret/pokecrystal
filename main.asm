@@ -17891,23 +17891,23 @@ Function11e75: ; 11e75 (4:5e75)
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, [$FF00+$de]
+	ld a, [$ffde]
 	push af
 	xor a
-	ld [$FF00+$de], a
-	ld a, [$FF00+$aa]
+	ld [$ffde], a
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	call Function11e9a
 	call DelayFrame
 .asm_11e8e
 	call Function11fc0
 	jr nc, .asm_11e8e
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	pop af
-	ld [$FF00+$de], a
+	ld [$ffde], a
 	ret
 
 Function11e9a: ; 11e9a (4:5e9a)
@@ -33660,7 +33660,7 @@ Function25105: ; 25105
 	ld a, [$cf63]
 	bit 7, a
 	jr nz, .asm_25132
-	ld a, [$FF00+$a9]
+	ld a, [$ffa9]
 	and $2
 	jr nz, .asm_25132
 	call Function2518e
@@ -33889,7 +33889,7 @@ Function25299: ; 25299 (9:5299)
 	hlcoord 14, 1
 	ld bc, $507
 	xor a
-	ld [$FF00+$ad], a
+	ld [$ffad], a
 	predef FillBox
 	ret
 ; 252ec (9:52ec)
@@ -34084,7 +34084,7 @@ Function25415: ; 25415 (9:5415)
 	ld de, GameTimeMinutes ; $d4c6
 	ld bc, $8102
 	call PrintNum
-	ld a, [$FF00+$9b]
+	ld a, [$ff9b]
 	and $1f
 	ret nz
 	hlcoord 15, 12
@@ -34094,7 +34094,7 @@ Function25415: ; 25415 (9:5415)
 	ret
 
 Function25438: ; 25438 (9:5438)
-	ld a, [$FF00+$9b]
+	ld a, [$ff9b]
 	and $7
 	ret nz
 	ld a, [$cf64]
@@ -42233,10 +42233,10 @@ Unknown_2c74a: ; 2c74a
 
 Function2c76f: ; 2c76f (b:476f)
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	call Function2c8d3
 	ld a, $0
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	ret nc
 	call Function1bee
 	call WaitBGMap
@@ -49007,10 +49007,10 @@ Function4876f: ; 4876f (12:476f)
 	call PlaceString
 	ld hl, MenuDataHeader_0x48509
 	call LoadMenuDataHeader
-	ld a, [$FF00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	hlcoord 10, 5
 	ld b, $1
 	ld c, $8
@@ -49056,7 +49056,7 @@ Function4876f: ; 4876f (12:476f)
 	hlcoord 11, 6
 	call Function487ec
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	jp Function4840c
 
 Function487ec: ; 487ec (12:47ec)
@@ -49211,10 +49211,10 @@ Function488d3: ; 488d3 (12:48d3)
 	jp c, Function4840c
 	ld hl, MenuDataHeader_0x4850e
 	call LoadMenuDataHeader
-	ld a, [$FF00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	hlcoord 10, 9
 	ld b, $1
 	ld c, $8
@@ -49359,7 +49359,7 @@ asm_48972: ; 48972 (12:4972)
 	ld bc, $108
 	call ClearBox
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	jp Function4840c
 
 Function489ea: ; 489ea (12:49ea)
@@ -49956,7 +49956,7 @@ Function48d4a: ; 48d4a (12:4d4a)
 	ld [hld], a
 	xor a
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld [$FF00+$b5], a
+	ld [$ffb5], a
 	ld a, [hl]
 	srl a
 	srl a
@@ -49968,13 +49968,13 @@ Function48d4a: ; 48d4a (12:4d4a)
 	ld a, [hli]
 	and $f
 	add b
-	ld [$FF00+$b6], a
+	ld [$ffb6], a
 	ld a, 100
 	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
 	call Multiply
-	ld a, [$FF00+$b5]
+	ld a, [$ffb5]
 	ld b, a
-	ld a, [$FF00+$b6]
+	ld a, [$ffb6]
 	ld c, a
 	ld e, [hl]
 	add e
@@ -50008,7 +50008,7 @@ Function48d94: ; 48d94 (12:4d94)
 	sla b
 	or b
 	ld [hld], a
-	ld a, [$FF00+$b6]
+	ld a, [$ffb6]
 	ld c, 10
 	call SimpleDivide
 	sla b
@@ -54098,10 +54098,10 @@ Function4cf45: ; 4cf45 (13:4f45)
 	push af
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, [$FF00+$de]
+	ld a, [$ffde]
 	push af
 	xor a
-	ld [$FF00+$de], a
+	ld [$ffde], a
 .asm_4cf57
 	ld a, [rLY] ; $ff00+$44
 	cp $60
@@ -54121,7 +54121,7 @@ Function4cf45: ; 4cf45 (13:4f45)
 	jr c, .asm_4cf72
 	ei
 	pop af
-	ld [$FF00+$de], a
+	ld [$ffde], a
 	pop af
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
@@ -54129,11 +54129,11 @@ Function4cf45: ; 4cf45 (13:4f45)
 Function4cf80: ; 4cf80 (13:4f80)
 	ld [hSPBuffer], sp ; $ffd9
 	ld sp, hl
-	ld a, [$FF00+$d7]
+	ld a, [$ffd7]
 	ld h, a
 	ld l, $0
 	ld a, $12
-	ld [$FF00+$d3], a
+	ld [$ffd3], a
 	ld b, $2
 	ld c, $41
 .asm_4cf91
@@ -54229,13 +54229,13 @@ Function4cf80: ; 4cf80 (13:4f80)
 	inc l
 	ld de, $c
 	add hl, de
-	ld a, [$FF00+$d3]
+	ld a, [$ffd3]
 	dec a
-	ld [$FF00+$d3], a
+	ld [$ffd3], a
 	jr nz, .asm_4cf91
 	ld a, [hSPBuffer] ; $ff00+$d9
 	ld l, a
-	ld a, [$FF00+$da]
+	ld a, [$ffda]
 	ld h, a
 	ld sp, hl
 	ret
@@ -56374,11 +56374,11 @@ Function4e0e7: ; 4e0e7 (13:60e7)
 	callba Function50e47
 	ld hl, $d118
 	ld hl, $d118
-	ld a, [$FF00+$b6]
+	ld a, [$ffb6]
 	sub [hl]
 	dec hl
 	ld [$d1ec], a
-	ld a, [$FF00+$b5]
+	ld a, [$ffb5]
 	sbc [hl]
 	dec hl
 	ld [Buffer2], a ; $d1eb (aliases: MovementType)
@@ -64217,7 +64217,7 @@ Function844bc: ; 844bc (21:44bc)
 	ld a, c
 	ld [MovementBuffer], a ; $d007
 	xor a
-	ld [$FF00+$ac], a
+	ld [$ffac], a
 	ld [$d003], a
 	call Function8474c
 	ld a, [rIE] ; $ff00+$ff
@@ -64268,7 +64268,7 @@ Function844bc: ; 844bc (21:44bc)
 	call Function84559
 .asm_84545
 	pop af
-	ld [$FF00+$9e], a
+	ld [$ff9e], a
 	call Function84411
 	xor a
 	ld [rIF], a ; $ff00+$f
@@ -73546,9 +73546,9 @@ Function8c3e8: ; 8c3e8 (23:43e8)
 	ld a, $43
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	xor a
-	ld [$FF00+$c7], a
+	ld [$ffc7], a
 	ld a, $90
-	ld [$FF00+$c8], a
+	ld [$ffc8], a
 	xor a
 	ld [$cf64], a
 	ld [$cf65], a
@@ -79275,7 +79275,7 @@ Function90672: ; 90672 (24:4672)
 	call PrintText
 	call Functiona80
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	ret
 
 Function90783: ; 90783 (24:4783)
@@ -92697,12 +92697,12 @@ Functione2391: ; e2391 (38:6391)
 	push af
 	xor a
 	ld [VramState], a ; $d0ed
-	ld a, [$FF00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	xor a
-	ld [$FF00+$de], a
+	ld [$ffde], a
 	call Functione2963
 	xor a
 	ld [$cb2e], a
@@ -92718,7 +92718,7 @@ Functione2391: ; e2391 (38:6391)
 .asm_e23c6
 	call ClearSprites
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	pop af
 	ld [VramState], a ; $d0ed
 	pop af
@@ -92958,12 +92958,12 @@ Functione2583: ; e2583 (38:6583)
 	push af
 	xor a
 	ld [VramState], a ; $d0ed
-	ld a, [$FF00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	xor a
-	ld [$FF00+$de], a
+	ld [$ffde], a
 	call Functione2963
 	ld a, $f
 	ld [$cb2e], a
@@ -92979,7 +92979,7 @@ Functione2583: ; e2583 (38:6583)
 .asm_e25b9
 	call ClearSprites
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	pop af
 	ld [VramState], a ; $d0ed
 	pop af
@@ -99272,7 +99272,7 @@ Functionfbd77: ; fbd77 (3e:7d77)
 	call Functionfbd9d
 	ld a, $31
 .asm_fbd8a
-	ld [$FF00+$ad], a
+	ld [$ffad], a
 	predef FillBox
 Functionfbd91: ; fbd91 (3e:7d91)
 	ld a, $1
@@ -100240,11 +100240,11 @@ Functionfd0a6: ; fd0a6 (3f:50a6)
 	ld de, $3
 	add hl, de
 	ld a, [hli]
-	ld [$FF00+$c3], a
+	ld [$ffc3], a
 	ld a, [hli]
-	ld [$FF00+$c4], a
+	ld [$ffc4], a
 	ld a, [hli]
-	ld [$FF00+$c5], a
+	ld [$ffc5], a
 	ld de, $d851
 	ld bc, $ffc3
 	callba Function15ffa
@@ -103597,7 +103597,7 @@ Function1041a4: ; 104a14
 	ret
 
 Function1041ad: ; 1041ad (41:41ad)
-	ld a, [$FF00+$d7]
+	ld a, [$ffd7]
 	ld d, a
 	ld a, [hBGMapAddress] ; $ff00+$d6
 	ld e, a
@@ -103605,7 +103605,7 @@ Function1041ad: ; 1041ad (41:41ad)
 	jr Function104209
 
 Function1041b7: ; 1041b7 (41:41b7)
-	ld a, [$FF00+$d7]
+	ld a, [$ffd7]
 	ld d, a
 	ld a, [hBGMapAddress] ; $ff00+$d6
 	ld e, a
@@ -103723,7 +103723,7 @@ Function10424e: ; 10424e (41:424e)
 	ld [rHDMA1], a ; $ff00+$51
 	ld a, l
 	ld [rHDMA2], a ; $ff00+$52
-	ld a, [$FF00+$d7]
+	ld a, [$ffd7]
 	and $1f
 	ld [rHDMA3], a ; $ff00+$53
 	ld a, [hBGMapAddress] ; $ff00+$d6
@@ -104218,7 +104218,7 @@ Function1047cf: ; 1047cf
 	call LoadTilesetHeader
 	call Function2821
 	xor a
-	ld [$FF00+$de], a
+	ld [$ffde], a
 	xor a
 	ld [hTileAnimFrame], a ; $ff00+$df
 	callba Function14168
@@ -104545,12 +104545,12 @@ Function104a95: ; 104a95 (41:4a95)
 .asm_104a9f
 	call Function104d96
 	call Function104ddd
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $10
 	jp z, Function104bd0
 	cp $6c
 	jr nz, .asm_104a9f
-	ld a, [$FF00+$bb]
+	ld a, [$ffbb]
 	cp $2
 	jr z, Function104b22
 	ld hl, $ffb3
@@ -104593,11 +104593,11 @@ Function104a95: ; 104a95 (41:4a95)
 	jr z, .asm_104a9f
 	or a
 	jr nz, .asm_104a9f
-	ld a, [$FF00+$c4]
+	ld a, [$ffc4]
 	bit 1, a
 	jr z, .asm_104ad5
 	ld a, $10
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	jp Function104bd0
 
 Function104b04: ; 104b04 (41:4b04)
@@ -104634,7 +104634,7 @@ Function104b40: ; 104b40 (41:4b40)
 
 Function104b49: ; 104b49 (41:4b49)
 	call Function105033
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret nz
 	ld a, [$ffb3]
@@ -104649,7 +104649,7 @@ Function104b49: ; 104b49 (41:4b49)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret nz
 	call Function104d43
@@ -104660,7 +104660,7 @@ Function104b49: ; 104b49 (41:4b49)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret
 
@@ -104672,7 +104672,7 @@ Function104b88: ; 104b88 (41:4b88)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret nz
 	call Function104d43
@@ -104682,7 +104682,7 @@ Function104b88: ; 104b88 (41:4b88)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret nz
 	ld a, [$ffb3]
@@ -104696,13 +104696,13 @@ Function104b88: ; 104b88 (41:4b88)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret
 
 Function104bd0: ; 104bd0 (41:4bd0)
 	nop
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $10
 	jr z, .asm_104c18
 	cp $6c
@@ -104721,7 +104721,7 @@ Function104bd0: ; 104bd0 (41:4bd0)
 	call Function1050fb
 	ld a, $26
 	ld [$ca02], a
-	ld a, [$FF00+$bb]
+	ld a, [$ffbb]
 	cp $2
 	jr z, .asm_104c10
 	call Function104d43
@@ -104732,7 +104732,7 @@ Function104bd0: ; 104bd0 (41:4bd0)
 	jr nz, Function104bd0
 	jp Function104b22
 .asm_104c18
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	push af
 	call Function104da0
 	xor a
@@ -104752,12 +104752,12 @@ Function104c2d: ; 104c2d (41:4c2d)
 .asm_104c37
 	call Function104d96
 	call Function104ddd
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $10
 	jp z, Function104d1c
 	cp $6c
 	jr nz, .asm_104c37
-	ld a, [$FF00+$bb]
+	ld a, [$ffbb]
 	cp $2
 	jr z, .asm_104c6c
 	call Function104c8a
@@ -104788,7 +104788,7 @@ Function104c8a: ; 104c8a (41:4c8a)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret nz
 	ld a, [$ffb3]
@@ -104803,7 +104803,7 @@ Function104c8a: ; 104c8a (41:4c8a)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret nz
 	call Function104d43
@@ -104814,7 +104814,7 @@ Function104c8a: ; 104c8a (41:4c8a)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret
 
@@ -104826,7 +104826,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret nz
 	call Function104d43
@@ -104836,7 +104836,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret nz
 	ld a, [$ffb3]
@@ -104851,13 +104851,13 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret
 
 Function104d1c: ; 104d1c (41:4d1c)
 	nop
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	push af
 	call Function104da0
 	xor a
@@ -104872,33 +104872,33 @@ Function104d1c: ; 104d1c (41:4d1c)
 
 Function104d32: ; 104d32 (41:4d32)
 	ld a, $80
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	and a
 	ret
 
 Function104d38: ; 104d38 (41:4d38)
 	call Function104d96
 	call Function104e46
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret
 
 Function104d43: ; 104d43 (41:4d43)
 	call Function104d96
 	call Function104dfe
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret
 
 Function104d4e: ; 104d4e (41:4d4e)
 	call Function104e93
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret
 
 Function104d56: ; 104d56 (41:4d56)
 	call Function104f57
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	cp $6c
 	ret
 
@@ -104945,7 +104945,7 @@ Function104d96: ; 104d96 (41:4d96)
 	ld a, $c0
 	call Function104e8c
 	ld a, $1
-	ld [$FF00+$bb], a
+	ld [$ffbb], a
 	ret
 
 Function104da0: ; 104da0 (41:4da0)
@@ -105009,16 +105009,16 @@ Function104ddd: ; 104ddd (41:4ddd)
 	ld d, $0
 	ld e, d
 	ld a, $1
-	ld [$FF00+$bb], a
+	ld [$ffbb], a
 .asm_104de4
 	call Function105038
 	ld b, $2
 	ld c, $56
-	ld a, [$FF00+$c4]
+	ld a, [$ffc4]
 	bit 1, a
 	jr z, .asm_104df6
 	ld a, $10
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	ret
 .asm_104df6
 	bit 0, a
@@ -105041,7 +105041,7 @@ Function104dfe: ; 104dfe (41:4dfe)
 	call Function104da9
 	jp z, Function104f42
 	ld a, $6c
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	ld d, $3d
 	call Function104dd1
 	ld d, $5
@@ -105067,7 +105067,7 @@ asm_104e3a: ; 104e3a (41:4e3a)
 
 Function104e46: ; 104e46 (41:4e46)
 	ld a, $2
-	ld [$FF00+$bb], a
+	ld [$ffbb], a
 	ld c, $56
 	ld d, $0
 	ld e, d
@@ -105094,13 +105094,13 @@ Function104e46: ; 104e46 (41:4e46)
 	ld d, $3d
 	call Function104dd1
 	ld a, $6c
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	ret
 
 Function104e8c: ; 104e8c (41:4e8c)
 	ld [rRP], a ; $ff00+$56
 	ld a, $ff
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	ret
 
 Function104e93: ; 104e93 (41:4e93)
@@ -105125,7 +105125,7 @@ Function104e93: ; 104e93 (41:4e93)
 	ld a, [hDivisor] ; $ff00+$b7 (aliases: hMultiplier)
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, [hMathBuffer] ; $ff00+$b8
-	ld [$FF00+$b5], a
+	ld [$ffb5], a
 	push hl
 	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
@@ -105135,7 +105135,7 @@ Function104e93: ; 104e93 (41:4e93)
 	call Function104faf
 	ld a, [hQuotient] ; $ff00+$b4 (aliases: hMultiplicand)
 	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
-	ld a, [$FF00+$b5]
+	ld a, [$ffb5]
 	ld [hMathBuffer], a ; $ff00+$b8
 	pop hl
 	ret
@@ -105157,7 +105157,7 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	inc b
 	jr z, .asm_104f2e
 	ld a, $8
-	ld [$FF00+$b6], a
+	ld [$ffb6], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hDivisor] ; $ff00+$b7 (aliases: hMultiplier)
@@ -105192,10 +105192,10 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	db $76 ;halt (prevents rgbasm from putting in an extra nop)
 	nop
 .asm_104f25
-	ld a, [$FF00+$b6]
+	ld a, [$ffb6]
 	dec a
 	jr z, .asm_104eee
-	ld [$FF00+$b6], a
+	ld [$ffb6], a
 	jr .asm_104f02
 .asm_104f2e
 	ld a, $fe
@@ -105211,21 +105211,21 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	ret
 
 Function104f42: ; 104f42 (41:4f42)
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	or $2
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	ret
 
 Function104f49: ; 104f49 (41:4f49)
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	or $1
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	ret
 
 Function104f50: ; 104f50 (41:4f50)
-	ld a, [$FF00+$bc]
+	ld a, [$ffbc]
 	or $80
-	ld [$FF00+$bc], a
+	ld [$ffbc], a
 	ret
 
 Function104f57: ; 104f57 (41:4f57)
@@ -105237,8 +105237,8 @@ Function104f57: ; 104f57 (41:4f57)
 	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
 	call Function104faf
-	ld a, [$FF00+$b5]
-	ld [$FF00+$ba], a
+	ld a, [$ffb5]
+	ld [$ffba], a
 	ld b, a
 	pop hl
 	pop af
@@ -105295,13 +105295,13 @@ Function104faf: ; 104faf (41:4faf)
 	cpl
 	ld b, a
 	xor a
-	ld [$FF00+$c5], a
+	ld [$ffc5], a
 	call Function104d86
 .asm_104fd2
 	inc b
 	jr z, .asm_10501a
 	ld a, $8
-	ld [$FF00+$b6], a
+	ld [$ffb6], a
 .asm_104fd9
 	ld d, $0
 .asm_104fdb
@@ -105318,10 +105318,10 @@ Function104faf: ; 104faf (41:4faf)
 	bit 1, a
 	jr nz, .asm_104fe5
 .asm_104fed
-	ld a, [$FF00+$c5]
+	ld a, [$ffc5]
 	ld d, a
 	ld a, [rTIMA] ; $ff00+$5
-	ld [$FF00+$c5], a
+	ld [$ffc5], a
 	sub d
 	cp $12
 	jr c, .asm_104ffd
@@ -105330,9 +105330,9 @@ Function104faf: ; 104faf (41:4faf)
 .asm_104ffd
 	res 0, e
 .asm_104fff
-	ld a, [$FF00+$b6]
+	ld a, [$ffb6]
 	dec a
-	ld [$FF00+$b6], a
+	ld [$ffb6], a
 	jr z, .asm_10500b
 	ld a, e
 	rlca
@@ -105388,12 +105388,12 @@ Function105038: ; 105038 (41:5038)
 	and $f
 	or b
 	ld c, a
-	ld a, [$FF00+$c3]
+	ld a, [$ffc3]
 	xor c
 	and c
-	ld [$FF00+$c4], a
+	ld [$ffc4], a
 	ld a, c
-	ld [$FF00+$c3], a
+	ld [$ffc3], a
 	ld a, $30
 	ld [rJOYP], a ; $ff00+$0
 	ret
@@ -108268,13 +108268,13 @@ Function117656: ; 117656
 
 
 Function11765d: ; 11765d (45:765d)
-	ld a, [$FF00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	call Function11766b
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	ret
 
 Function11766b: ; 11766b (45:766b)
@@ -115355,13 +115355,13 @@ Function170c8b: ; 170c8b
 INCBIN "baserom.gbc",$170c98,$1719c8 - $170c98
 
 Function1719c8: ; 1719c8 (5c:59c8)
-	ld a, [$FF00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	call Function1719d6
 	pop af
-	ld [$FF00+$aa], a
+	ld [$ffaa], a
 	ret
 
 Function1719d6: ; 1719d6 (5c:59d6)
