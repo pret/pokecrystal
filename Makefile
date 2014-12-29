@@ -18,9 +18,7 @@ lib/mobile/main.o \
 home.o \
 audio.o \
 maps_crystal.o \
-engine/events.o \
-engine/scripting_crystal.o \
-engine/events_2.o \
+engine/events_crystal.o \
 engine/credits_crystal.o \
 data/egg_moves_crystal.o \
 data/evos_attacks_crystal.o \

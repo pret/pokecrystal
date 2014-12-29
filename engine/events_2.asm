@@ -1,9 +1,5 @@
-INCLUDE "includes.asm"
-
-
 ; More overworld event handling.
 
-SECTION "Events 2", ROMX, BANK[EVENTS]
 
 Function97c28:: ; 97c28
 	ld hl, StatusFlags2

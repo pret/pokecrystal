@@ -1120,3 +1120,5 @@ UnknownScript_0x96c4f: ; 96c4f
 	end
 ; 96c56
 
+INCLUDE "engine/scripting.asm"
+INCLUDE "engine/events_2.asm"

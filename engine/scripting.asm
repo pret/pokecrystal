@@ -1,9 +1,4 @@
-INCLUDE "includes.asm"
-
 ; Event scripting commands.
-
-
-SECTION "Event Scripting", ROMX, BANK[EVENTS]
 
 
 Function96c56:: ; 96c56
@@ -13,7 +8,6 @@ Function96c56:: ; 96c56
 	pop af
 	ret
 ; 96c5e
-
 
 ScriptEvents:: ; 96c5e
 	call StartScript
