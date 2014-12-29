@@ -3,7 +3,7 @@ INCLUDE "includes.asm"
 
 SECTION "Misc Crystal", ROMX, BANK[MISC_CRYSTAL]
 
-MobileAdapterGFX:
+MobileAdapterGFX::
 INCBIN "gfx/misc/mobile_adapter.2bpp"
 
 
@@ -817,5 +817,5 @@ INCBIN "baserom.gbc",$17acd5,$17ae3d - $17acd5
 Tilemap_17ae3d: ; 17ae3d
 INCBIN "baserom.gbc",$17ae3d,$17afa5 - $17ae3d
 
-GFX_17afa5: ; 17afa5
+GFX_17afa5:: ; 17afa5
 INCBIN "baserom.gbc",$17afa5,$17b7a5 - $17afa5

@@ -7977,7 +7977,7 @@ SpecialsPointers: ; c029
 	dbw BANK(Function71ac), Function71ac
 	dbw BANK(Function2a4ab), Function2a4ab
 	dbw BANK(Function2a51f), Function2a51f
-	dbw BANK(Function2a567), Function2a567
+	dbw BANK(RandomPhoneMon), RandomPhoneMon
 	dbw BANK(Function14209), Function14209
 	dbw BANK(Functionfb841), Functionfb841
 	dbw BANK(SpecialSnorlaxAwake),SpecialSnorlaxAwake
@@ -14051,7 +14051,7 @@ Functione3de: ; e3de
 	pop hl
 	ld de, StringBuffer1
 	call InitName
-	ld a, $4
+	ld a, $4 ; XXX could this be in bank 4 in pokered?
 	ld hl, Function2b4d
 	rst FarCall
 	ret
@@ -41079,80 +41079,86 @@ Function2a51f: ; 2a51f
 	jp CopyBytes
 ; 2a567
 
-Function2a567: ; 2a567
+RandomPhoneMon: ; 2a567
+; Get a random monster owned by the trainer who's calling.
 	callba Function90439
-	ld hl, $5999
+	ld hl, TrainerGroups
 	ld a, d
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
-	ld a, $e
+	ld a, BANK(TrainerGroups)
 	call GetFarHalfword
-.asm_2a57c
+
+.skip_trainer
 	dec e
-	jr z, .asm_2a58b
-.asm_2a57f
-	ld a, $e
+	jr z, .skipped
+.skip
+	ld a, BANK(Trainers)
 	call GetFarByte
 	inc hl
-	cp $ff
-	jr nz, .asm_2a57f
-	jr .asm_2a57c
+	cp -1
+	jr nz, .skip
+	jr .skip_trainer
+.skipped
 
-.asm_2a58b
-	ld a, $e
+.skip_name
+	ld a, BANK(Trainers)
 	call GetFarByte
 	inc hl
-	cp $50
-	jr nz, .asm_2a58b
-	ld a, $e
-	call GetFarByte
-	inc hl
-	ld bc, $0002
-	cp $0
-	jr z, .asm_2a5b3
-	ld bc, $0006
-	cp $1
-	jr z, .asm_2a5b3
-	ld bc, $0003
-	cp $2
-	jr z, .asm_2a5b3
-	ld bc, $0007
+	cp "@"
+	jr nz, .skip_name
 
-.asm_2a5b3
-	ld e, $0
+	ld a, BANK(Trainers)
+	call GetFarByte
+	inc hl
+	ld bc, 2
+	cp 0
+	jr z, .got_mon_length
+	ld bc, 2 + NUM_MOVES
+	cp 1
+	jr z, .got_mon_length
+	ld bc, 2 + 1
+	cp 2
+	jr z, .got_mon_length
+	ld bc, 2 + 1 + NUM_MOVES
+.got_mon_length
+
+	ld e, 0
 	push hl
-.asm_2a5b6
+.count_mon
 	inc e
 	add hl, bc
-	ld a, $e
+	ld a, BANK(Trainers)
 	call GetFarByte
-	cp $ff
-	jr nz, .asm_2a5b6
+	cp -1
+	jr nz, .count_mon
 	pop hl
-.asm_2a5c2
-	call Random
-	and $7
-	cp e
-	jr nc, .asm_2a5c2
-	inc a
-.asm_2a5cb
-	dec a
-	jr z, .asm_2a5d1
-	add hl, bc
-	jr .asm_2a5cb
 
-.asm_2a5d1
-	inc hl
-	ld a, $e
+.rand
+	call Random
+	and 7
+	cp e
+	jr nc, .rand
+
+	inc a
+.get_mon
+	dec a
+	jr z, .got_mon
+	add hl, bc
+	jr .get_mon
+.got_mon
+
+	inc hl ; species
+	ld a, BANK(Trainers)
 	call GetFarByte
 	ld [$d265], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	jp CopyBytes
 ; 2a5e9
 
@@ -46293,15 +46299,15 @@ Function41a2c: ; 41a2c
 	call GetSRAMBank
 	ld hl, UnownFont
 	ld de, $a188
-	ld bc, $0270
+	ld bc, $270
 	ld a, BANK(UnownFont)
 	call FarCopyBytes
 	ld hl, $a188
-	ld bc, $01b0
+	ld bc, $1b0
 	call Function41504
 	ld de, $a188
 	ld hl, $9400
-	lb bc, $10, $1b
+	lb bc, BANK(Function41a2c), $1b
 	call Request2bpp
 	call CloseSRAM
 	ret
@@ -64624,7 +64630,7 @@ Function84785: ; 84785
 	inc hl
 	ld d, [hl]
 	hlcoord 1, 7
-	ld a, $77
+	ld a, BANK(GBPrinterStrings)
 	call FarString
 	hlcoord 2, 15
 	ld de, String_847f5
@@ -66839,14 +66845,14 @@ INCBIN "baserom.gbc",$8940b,$8942b - $8940b
 
 Function8942b: ; 8942b (22:542b)
 	ld de, $8020
-	ld hl, $61bf
+	ld hl, MobileAdapterGFX + $7d0
 	ld bc, $80
-	ld a, $5e
+	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ld de, $80a0
-	ld hl, $664f
+	ld hl, MobileAdapterGFX + $c60
 	ld bc, $40
-	ld a, $5e
+	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
 
@@ -66863,23 +66869,23 @@ Function89448: ; 89448 (22:5448)
 	ret
 
 Function89455: ; 89455 (22:5455)
-	ld hl, $61bf
+	ld hl, MobileAdapterGFX + $7d0
 	ld de, $90c0
 	ld bc, $490
-	ld a, $5e
+	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
 
 Function89464: ; 89464
-	ld hl, $59ef
+	ld hl, MobileAdapterGFX
 	ld de, VTiles2
-	ld bc, $0200
-	ld a, $5e
+	ld bc, $200
+	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
-	ld hl, $604f
+	ld hl, MobileAdapterGFX + $660
 	ld de, $9200
-	ld bc, $0170
-	ld a, $5e
+	ld bc, $170
+	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
 ; 89481
@@ -67547,16 +67553,16 @@ Function897d5: ; 897d5
 
 
 Function89807: ; 89807 (22:5807)
-	ld hl, $5bef
+	ld hl, MobileAdapterGFX + $200
 	ld a, [PlayerGender] ; $d472
 	bit 0, a
 	jr z, .asm_89814
-	ld hl, $5e1f
+	ld hl, MobileAdapterGFX + $200 + $230
 .asm_89814
 	call DisableLCD
 	ld de, $9370
 	ld bc, $230
-	ld a, $5e
+	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	call EnableLCD
 	call DelayFrame
@@ -72277,20 +72283,20 @@ Function8b677: ; 8b677
 ; 8b690
 
 Function8b690: ; 8b690
-	ld hl, $74b9
+	ld hl, GFX_17afa5 + $514
 	ld de, VTiles2
-	ld bc, $0160
-	ld a, $5e
+	ld bc, $160
+	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
-	ld hl, $7609
+	ld hl, GFX_17afa5 + $514 + $160 - $10
 	ld de, $9610
-	ld bc, $0010
-	ld a, $5e
+	ld bc, $10
+	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
-	ld hl, $7619
+	ld hl, GFX_17afa5 + $514 + $160
 	ld de, $8ee0
-	ld bc, $0010
-	ld a, $5e
+	ld bc, $10
+	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
 	ret
 ; 8b6bb

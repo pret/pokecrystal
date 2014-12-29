@@ -1,3 +1,4 @@
+Trainers:
 
 ; All trainers follow a basic structure:
 	; Name
