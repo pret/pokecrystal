@@ -3,7 +3,7 @@
 
 Function547:: ; 547
 	ld a, [hLCDStatCustom]
-	cp rSCX & $ff
+	cp rSCX - $ff00
 	ret nz
 	ld c, a
 	ld a, [LYOverrides]

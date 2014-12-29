@@ -32,7 +32,7 @@ Function4000:: ; 4000
 ; 4031
 
 LoadPushOAM:: ; 4031
-	ld c, hPushOAM & $ff
+	ld c, hPushOAM - $ff00
 	ld b, PushOAMEnd - PushOAM
 	ld hl, PushOAM
 .loop
@@ -3941,21 +3941,26 @@ Function5bae: ; 5bae
 	ld [Coins], a
 	ld [Coins + 1], a
 
+START_MONEY EQU 3000
+
+IF START_MONEY / $10000
+	ld a, START_MONEY / $10000
+ENDC
 	ld [Money], a
-	ld a, 3000 >> 8
+	ld a, START_MONEY / $100 % $100
 	ld [Money + 1], a
-	ld a, 3000 & $ff
+	ld a, START_MONEY % $100
 	ld [Money + 2], a
 
 	xor a
 	ld [$dc17], a
 
 	ld hl, $dc19
-	ld [hl], $0
+	ld [hl], 2300 / $10000
 	inc hl
-	ld [hl], $8
+	ld [hl], 2300 / $100 % $100
 	inc hl
-	ld [hl], $fc
+	ld [hl], 2300 % $100
 
 	call Function5ce9
 
@@ -57533,7 +57538,7 @@ Function4e980: ; 4e980
 	ld a, $5
 	ld [rSVBK], a
 	call Function4e998
-	ld a, rSCX & $ff
+	ld a, rSCX - $ff00
 	ld [hLCDStatCustom], a
 	call Function4e9ab
 	xor a

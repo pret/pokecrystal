@@ -183,7 +183,7 @@ Function109847:: ; 109847
 	xor a
 	call ByteFill
 
-	ld a, rSCX & $ff
+	ld a, rSCX - $ff00
 	ld [hLCDStatCustom], a
 
 	call GetCreditsPalette
