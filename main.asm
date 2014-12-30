@@ -66179,11 +66179,11 @@ Function8833e: ; 8833e
 ; 88365 (22:4365)
 
 ChrisCardPic: ; 88365
-INCBIN "gfx/misc/chris.5x7.2bpp"
+INCBIN "gfx/misc/chris_card.5x7.2bpp"
 ; 88595
 
 KrisCardPic: ; 88595
-INCBIN "gfx/misc/kris.5x7.2bpp"
+INCBIN "gfx/misc/kris_card.5x7.2bpp"
 ; 887c5
 
 CardGFX: ; 887c5
