@@ -103944,7 +103944,8 @@ Function101724: ; 101724
 	ret
 ; 10173a
 
-INCBIN "baserom.gbc", $10173a, $10173b - $10173a
+Unknown_10173a:
+	db $50
 
 Function10173b: ; 10173b
 	push bc
@@ -103952,7 +103953,7 @@ Function10173b: ; 10173b
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$573a]
+	ld a, [Unknown_10173a]
 	ld c, a
 	ld b, $0
 	pop af
@@ -103990,11 +103991,11 @@ Function10176f: ; 10176f
 ; 10177b
 
 Function10177b: ; 10177b
-	ld a, [$573a]
+	ld a, [Unknown_10173a]
 	ld c, a
 	ld b, $0
 	ld a, [$cd3a]
-	ld hl, NULL
+	ld hl, $0000
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -106847,7 +106848,7 @@ Function102cee: ; 102cee
 	sub c
 	ret z
 	ld bc, $002f
-	ld hl, NULL
+	ld hl, $0000
 	call AddNTimes
 	push hl
 	ld a, [$cf63]
@@ -107538,7 +107539,7 @@ Function10343c: ; 10343c
 	call Function1034e0
 
 .asm_10345f
-	ld bc, NULL
+	ld bc, $0000
 	call Function10350f
 	ld bc, $0001
 	call Function103487
