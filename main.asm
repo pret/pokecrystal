@@ -34743,7 +34743,7 @@ Function268b5: ; 268b5
 ; 268bd
 
 Function268bd: ; 268bd
-	ld hl, $68c5
+	ld hl, Unknown_268c5
 	ld c, 1
 	jp Function2689b
 ; 268c5
@@ -34983,7 +34983,7 @@ Function26a02: ; 26a02
 	ld de, $0002
 	add hl, de
 	ld a, [hl]
-	ld hl, $6a12
+	ld hl, Jumptable_26a12
 	rst JumpTable
 	ret
 ; 26a12
@@ -69122,7 +69122,7 @@ Function8a17b: ; 8a17b (22:617b)
 	ld hl, MenuDataHeader_0x8a19a
 	ld a, [$d030]
 	call Function89d5e
-	ld hl, $61b0
+	ld hl, Function8a1b0
 	call Function89d75
 	jr nc, .asm_8a198
 	ld a, $0
@@ -69164,12 +69164,15 @@ Function8a1b0: ; 8a1b0
 
 Strings_8a1cc: ; 8a1cc
 	db   "めいし", $25, "せいりと へんしゅうを"
-	next "おこないます@"
+	next "おこないます"
+	db   "@"
 
 	db   "めいしフ,ルダー", $25, "めいしと"
-	next "あんしょうばんごう", $1f, "けします@"
+	next "あんしょうばんごう", $1f, "けします"
+	db   "@"
 
-	db   "まえ", $25, "がめん", $1d, "もどります@"
+	db   "まえ", $25, "がめん", $1d, "もどります"
+	db   "@"
 ; 8a20d
 
 
@@ -87091,7 +87094,7 @@ Functionb8bdc: ; b8bdc (2e:4bdc)
 	jr nc, .asm_b8bed
 	callab Functionc422
 .asm_b8bed
-	ld hl, $4c7e
+	ld hl, UnknownText_0xb8c7e
 	ld a, $1e
 	jp Functionb9221
 
@@ -99154,7 +99157,7 @@ Functionfbb32: ; fbb32
 	call CalcMagikarpLength
 	call Functionfbbdb
 	callba Function105f33
-	ld hl, $7ba9
+	ld hl, UnknownText_0xfbba9
 	call PrintText
 	ld hl, Buffer1
 	ld de, $dfe8
@@ -102474,7 +102477,7 @@ Function100d22: ; 100d22
 ; 100d67
 
 Function100d67: ; 100d67
-	ld hl, $4d88
+	ld hl, MenuDataHeader_100d88
 	call Function1d3c
 	xor a
 	ld [hBGMapMode], a
@@ -102489,8 +102492,20 @@ Function100d67: ; 100d67
 	ret
 ; 100d88
 
-INCBIN "baserom.gbc",$100d88,$100da5 - $100d88
+MenuDataHeader_100d88: ; 100d88
+	db 0 ; flags
+	db 11, 11 ; start coords
+	db 17, 19 ; end coords
+	dw MenuData2_100d90
+	db 1 ; default option
 
+MenuData2_100d90: ; 100d90
+	db $c0 ; flags
+	db 3
+	db "いれかえる@"
+	db "つよさをみる@"
+	db "キャンセル@"
+; 100da5
 
 Function100da5: ; 100da5
 	ld hl, $cd2a
@@ -102532,7 +102547,7 @@ Function100dc0: ; 100dc0
 ; 100dd2
 
 Function100dd2: ; 100dd2
-	ld a, $1e
+	ld a, 30
 	ld [OverworldDelay], a
 	ret
 ; 100dd8
@@ -102561,15 +102576,15 @@ Function100dd8: ; 100dd8
 Function100dfd: ; 100dfd
 	ld a, [OverworldDelay]
 	ld c, a
-	ld a, $1e
+	ld a, 30
 	sub c
 	ld c, a
-	ld b, $3
+	ld b, 3
 	push bc
 	callba Function10062d
 	pop bc
 	jr c, .asm_100e2b
-	ld b, $1
+	ld b, 1
 	call Function10079c
 	jr c, .asm_100e2b
 	call Function1009f3
@@ -102589,15 +102604,15 @@ Function100dfd: ; 100dfd
 Function100e2d: ; 100e2d
 	ld a, [OverworldDelay]
 	ld c, a
-	ld a, $1e
+	ld a, 30
 	sub c
 	ld c, a
-	ld b, $3
+	ld b, 3
 	push bc
 	callba Function10062d
 	pop bc
 	jr c, .asm_100e61
-	ld b, $1
+	ld b, 1
 	call Function10079c
 	jr c, .asm_100e61
 	call Function1009f3
@@ -102711,7 +102726,426 @@ Function100ed4: ; 100ed4
 	ret
 ; 100edf
 
-INCBIN "baserom.gbc",$100edf,$1011f1 - $100edf
+Function100edf: ; 100edf
+	ld hl, Unknown_100fc0
+	ld c, 1
+	jr asm_100f02
+
+Function100ee6: ; 100ee6
+	ld hl, Unknown_100fc0
+	ld c, 2
+	jr asm_100f02
+
+Function100eed: ; 100eed
+	ld hl, Unknown_100feb
+	ld c, 1
+	jr asm_100f02
+
+Function100ef4: ; 100ef4
+	ld hl, Unknown_100ff3
+	ld c, 1
+	jr asm_100f02
+
+Function100efb: ; 100efb
+	ld hl, Unknown_10102c
+	ld c, 1
+	jr asm_100f02
+
+asm_100f02:
+	ld a, c
+	ld [StringBuffer2], a
+	ld a, e
+	ld [$d087], a
+	ld a, d
+	ld [$d088], a
+	xor a
+	ld [$d08a], a
+	ld [$d08b], a
+.asm_100f15
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_100f34
+	ld [$d089], a
+	push hl
+	inc hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Function100f3d
+	pop hl
+	ld de, $0007
+	add hl, de
+	jr .asm_100f15
+
+.asm_100f34
+	ld a, [$d08a]
+	ld c, a
+	ld a, [$d08b]
+	ld b, a
+	ret
+; 100f3d
+
+Function100f3d: ; 100f3d
+	ld a, [StringBuffer2]
+	cp $2
+	jr z, .asm_100f61
+	cp $1
+	jr z, .asm_100f77
+	cp $3
+	jr z, .asm_100f4d
+	ret
+
+.asm_100f4d
+	ld a, [$d087]
+	ld l, a
+	ld a, [$d088]
+	ld h, a
+	call Function100f8d
+	ld a, l
+	ld [$d087], a
+	ld a, h
+	ld [$d088], a
+	ret
+
+.asm_100f61
+	ld d, h
+	ld e, l
+	ld a, [$d087]
+	ld l, a
+	ld a, [$d088]
+	ld h, a
+	call Function100f8d
+	ld a, l
+	ld [$d087], a
+	ld a, h
+	ld [$d088], a
+	ret
+
+.asm_100f77
+	ld h, d
+	ld l, e
+	ld a, [$d087]
+	ld e, a
+	ld a, [$d088]
+	ld d, a
+	call Function100f8d
+	ld a, e
+	ld [$d087], a
+	ld a, d
+	ld [$d088], a
+	ret
+; 100f8d
+
+Function100f8d: ; 100f8d
+	push hl
+	ld a, [$d08a]
+	ld l, a
+	ld a, [$d08b]
+	ld h, a
+	add hl, bc
+	ld a, l
+	ld [$d08a], a
+	ld a, h
+	ld [$d08b], a
+	pop hl
+	ld a, [$d089]
+	bit 7, a
+	res 7, a
+	jr z, .asm_100fb6
+	and a
+	jr nz, .asm_100fb0
+	call CopyBytes
+	ret
+
+.asm_100fb0
+	and $7f
+	call FarCopyWRAM
+	ret
+
+.asm_100fb6
+	call GetSRAMBank
+	call CopyBytes
+	call CloseSRAM
+	ret
+; 100fc0
+
+Unknown_100fc0: ; 100fc0
+	dbwww $80, PlayerName, NAME_LENGTH, $d26b
+	dbwww $80, PartyCount, 1 + PARTY_LENGTH + 1, OTPartyCount
+	dbwww $80, PlayerID, 2, $d276
+	dbwww $80, PartyMons, $30 * PARTY_LENGTH, OTPartyMons
+	dbwww $80, PartyMonOT, NAME_LENGTH * PARTY_LENGTH, OTPartyMonOT
+	dbwww $80, PartyMonNicknames, PKMN_NAME_LENGTH * PARTY_LENGTH, OTPartyMonNicknames
+	db -1
+
+Unknown_100feb: ; 100feb
+	dbwww $00, $a600, $2f * PARTY_LENGTH, NULL
+	db -1
+
+Unknown_100ff3: ; 100ff3
+	dbwww $80, $dc41, 1, NULL
+	dbwww $80, PlayerName, NAME_LENGTH, NULL
+	dbwww $80, PlayerName, NAME_LENGTH, NULL
+	dbwww $80, PlayerID, 2, NULL
+	dbwww $80, $d84a, 2, NULL
+	dbwww $80, PlayerGender, 1, NULL
+	dbwww $04, $a603, 8, NULL
+	dbwww $04, $a007, $30, NULL
+	db -1
+
+Unknown_10102c: ; 10102c
+	dbwww $80, $d26b, 11, NULL
+	dbwww $80, $d276, 2, NULL
+	dbwww $80, OTPartyMonNicknames, PKMN_NAME_LENGTH * PARTY_LENGTH, NULL
+	dbwww $80, OTPartyMonOT, NAME_LENGTH * PARTY_LENGTH, NULL
+	dbwww $80, OTPartyMons, $30 * PARTY_LENGTH, NULL
+	db -1
+; 10104f
+
+Function101050: ; 101050
+	call Function10107d
+	ld a, [OTPartyCount]
+	ld hl, $c608
+	ld hl, $c608
+	ld bc, $01b3
+	call Function1010de
+	ld hl, $c7bb
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld a, $7
+	call GetSRAMBank
+	ld hl, $c608
+	ld de, $a001
+	ld bc, $01b5
+	call CopyBytes
+	call CloseSRAM
+	ret
+; 10107d
+
+Function10107d: ; 10107d
+	xor a
+	ld hl, $c608
+	ld bc, $01b5
+	call ByteFill
+	ld hl, $d26b
+	ld de, $c608
+	ld bc, $000b
+	call CopyBytes
+	ld hl, $d271
+	ld a, [hli]
+	ld [$c613], a
+	ld a, [hl]
+	ld [$c614], a
+	ld hl, OTPartyMonNicknames
+	ld de, $c615
+	ld bc, $000b
+	call Function1010cd
+	ld hl, OTPartyMonOT
+	ld de, $c657
+	ld bc, $000b
+	call Function1010cd
+	ld hl, OTPartyMon1Species
+	ld de, $c699
+	ld bc, $0030
+	call Function1010cd
+	ld a, $50
+	ld [$c7b9], a
+	ld a, $33
+	ld [$c7ba], a
+	ret
+; 1010cd
+
+Function1010cd: ; 1010cd
+	push hl
+	ld hl, 0
+	ld a, [OTPartyCount]
+	call AddNTimes
+	ld b, h
+	ld c, l
+	pop hl
+	call CopyBytes
+	ret
+; 1010de
+
+Function1010de: ; 1010de
+	push hl
+	push bc
+	ld de, 0
+.asm_1010e3
+	ld a, [hli]
+	add e
+	ld e, a
+	ld a, d
+	adc 0
+	ld d, a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_1010e3
+	pop bc
+	pop hl
+	ret
+; 1010f2
+
+Function1010f2: ; 1010f2
+	xor a
+	ld hl, StringBuffer2
+	ld bc, $0009
+	call ByteFill
+	ld hl, $dc5c
+	ld de, PartyCount
+	call Function101145
+	ld hl, $dc5c
+	ld de, PartyMon1Species
+	call Function10117c
+	ld hl, $dc5c
+	ld de, PartyMonOT
+	call Function101181
+	ld hl, $dc5c
+	ld de, PartyMonNicknames
+	call Function101181
+	ld hl, $cd75
+	ld de, OTPartyCount
+	call Function101145
+	ld hl, $cd75
+	ld de, OTPartyMon1Species
+	call Function10117c
+	ld hl, $cd75
+	ld de, OTPartyMonOT
+	call Function101181
+	ld hl, $cd75
+	ld de, OTPartyMonNicknames
+	call Function101181
+	ret
+; 101145
+
+Function101145: ; 101145
+	push de
+	ld bc, $d08c
+	xor a
+.asm_10114a
+	push af
+	call Function101168
+	ld [bc], a
+	inc bc
+	pop af
+	inc a
+	cp $3
+	jr nz, .asm_10114a
+	pop de
+	ld a, $3
+	ld [de], a
+	inc de
+	ld hl, $d08c
+	ld bc, $0003
+	call CopyBytes
+	ld a, $ff
+	ld [de], a
+	ret
+; 101168
+
+Function101168: ; 101168
+	push hl
+	add l
+	ld l, a
+	ld a, h
+	adc $0
+	ld h, a
+	ld a, [hl]
+	pop hl
+	push de
+	inc de
+	add e
+	ld e, a
+	ld a, d
+	adc $0
+	ld d, a
+	ld a, [de]
+	pop de
+	ret
+; 10117c
+
+Function10117c: ; 10117c
+	ld bc, $0030
+	jr asm_101184
+
+Function101181: ; 101181
+	ld bc, $000b
+
+asm_101184:
+	ld a, $c608 % $100
+	ld [StringBuffer2], a
+	ld a, $c608 / $100
+	ld [$d087], a
+	ld a, c
+	ld [$d088], a
+	ld a, b
+	ld [$d089], a
+	ld a, e
+	ld [$d08a], a
+	ld a, d
+	ld [$d08b], a
+	ld a, $3
+.asm_1011a0
+	push af
+	ld a, [hli]
+	push hl
+	push af
+	call Function1011df
+	call Function1011e8
+	pop af
+	call AddNTimes
+	ld a, [StringBuffer2]
+	ld e, a
+	ld a, [$d087]
+	ld d, a
+	call CopyBytes
+	ld a, e
+	ld [StringBuffer2], a
+	ld a, d
+	ld [$d087], a
+	pop hl
+	pop af
+	dec a
+	jr nz, .asm_1011a0
+	call Function1011e8
+	ld a, 3
+	ld hl, 0
+	call AddNTimes
+	ld b, h
+	ld c, l
+	call Function1011df
+	ld d, h
+	ld e, l
+	ld hl, $c608
+	call CopyBytes
+	ret
+; 1011df
+
+Function1011df: ; 1011df
+	ld a, [$d08a]
+	ld l, a
+	ld a, [$d08b]
+	ld h, a
+	ret
+; 1011e8
+
+Function1011e8: ; 1011e8
+	ld a, [$d088]
+	ld c, a
+	ld a, [$d089]
+	ld b, a
+	ret
+; 1011f1
 
 Function1011f1: ; 1011f1
 	ld a, $4
@@ -102744,16 +103178,16 @@ Function101220: ; 101220
 ; 101225
 
 Function101225: ; 101225
-	ld d, $1
-	ld e, $40
-	ld bc, $5297
+	ld d, 1
+	ld e, BANK(Unknown_101297)
+	ld bc, Unknown_101297
 	call Function100000
 	jr Function10123d
 
 Function101231: ; 101231
-	ld d, $2
-	ld e, $40
-	ld bc, $5297
+	ld d, 2
+	ld e, BANK(Unknown_101297)
+	ld bc, Unknown_101297
 	call Function100000
 	jr Function10123d
 
@@ -102827,6 +103261,7 @@ Function10127e: ; 10127e
 	ret
 ; 101297
 
+Unknown_101297: ; 101297
 INCBIN "baserom.gbc",$101297,$1013aa - $101297
 
 Function1013aa: ; 1013aa

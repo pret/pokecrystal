@@ -258,8 +258,8 @@ Function109926: ; 109926
 	ld a, [$cf63]
 	and $f
 	ld e, a
-	ld d, $0
-	ld hl, $5937
+	ld d, 0
+	ld hl, Jumptable_109937
 	add hl, de
 	add hl, de
 	ld a, [hli]

@@ -39,6 +39,11 @@ dbbw: MACRO
 	dw \3
 	ENDM
 
+dbwww: MACRO
+	db \1
+	dw \2, \3, \4
+	ENDM
+
 dn: MACRO
 	db (\1) << 4 + (\2)
 	ENDM
