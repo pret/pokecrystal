@@ -106912,8 +106912,7 @@ Function102d48: ; 102d48
 	ld bc, $0030
 	ld hl, PartyMon1DVs
 	call AddNTimes
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	callba Functionfba18
 	ld a, [$def4]
 	and a
@@ -112107,15 +112106,13 @@ Function1081ca: ; 1081ca
 Function1081e9: ; 1081e9
 	push de
 	push af
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	ld a, $3c
-	call Predef
+	predef GetFrontpic
 	ret
 ; 108201
 
@@ -115875,8 +115872,7 @@ Function11b6b4: ; 11b6b4
 	ld hl, $c617
 	ld de, $c631
 	ld b, $1
-	ld a, $c
-	call Predef
+	predef Functione167
 	ld de, $c631
 	ld hl, $c62f
 	ld a, [de]
