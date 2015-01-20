@@ -35,7 +35,7 @@ _PlayBattleAnim: ; cc0e4
 	ld c, 3
 
 .asm_cc0ff
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 
@@ -43,7 +43,7 @@ _PlayBattleAnim: ; cc0e4
 	call Functioncc11c
 
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 
 	ld a, $1
 	ld [hBGMapMode], a

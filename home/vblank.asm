@@ -12,27 +12,23 @@ VBlank:: ; 283
 	push bc
 	push de
 	push hl
-	
-; get vblank type
-	ld a, [$ff9e]
-	and $7
-	
-; get fn pointer
+
+	ld a, [hVBlank]
+	and 7
+
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, .VBlanks
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
-; down to business
+
 	call _hl_
-	
-; since this is called once per frame
+
 	call GameTimer
-	
+
 	pop hl
 	pop de
 	pop bc
@@ -41,14 +37,14 @@ VBlank:: ; 283
 ; 2a1
 
 .VBlanks ; 2a1
-	dw VBlank0 ; 0
-	dw VBlank1 ; 1
-	dw VBlank2 ; 2
-	dw VBlank3 ; 3
-	dw VBlank4 ; 4
-	dw VBlank5 ; 5
-	dw VBlank6 ; 6
-	dw VBlank0 ; 7
+	dw VBlank0
+	dw VBlank1
+	dw VBlank2
+	dw VBlank3
+	dw VBlank4
+	dw VBlank5
+	dw VBlank6
+	dw VBlank0 ; just in case
 ; 2b1
 
 
@@ -66,117 +62,91 @@ VBlank0:: ; 2b1
 ; joypad
 ; sound
 
-; inc frame counter
+	; inc frame counter
 	ld hl, $ff9b
 	inc [hl]
-	
-; advance rng
+
+	; advance random variables
 	ld a, [rDIV]
 	ld b, a
 	ld a, [hRandomAdd]
 	adc b
 	ld [hRandomAdd], a
-	
+
 	ld a, [rDIV]
 	ld b, a
 	ld a, [hRandomSub]
 	sbc b
 	ld [hRandomSub], a
-	
-; save bank
-	ld a, [hROMBank] ; current bank
-	ld [$ff8a], a
-	
-; scroll x
+
+	ld a, [hROMBank]
+	ld [hROMBankBackup], a
+
 	ld a, [hSCX]
 	ld [rSCX], a
-; scroll y
 	ld a, [hSCY]
 	ld [rSCY], a
-; window y
 	ld a, [hWY]
 	ld [rWY], a
-; window x + 7
 	ld a, [hWX]
 	ld [rWX], a
-	
-; some time management is in order
-; only have time for one of these during vblank
-	
-; bg map buffer has priority
+
+	; There's only time to call one of these in one vblank.
+	; Calls are in order of priority.
+
 	call UpdateBGMapBuffer
-	jr c, .doneframeaction
-	
-; then pals
+	jr c, .done
 	call UpdatePalsIfCGB
-	jr c, .doneframeaction
-	
-; dma transfer
+	jr c, .done
 	call DMATransfer
-	jr c, .doneframeaction
-	
-; bg map
+	jr c, .done
 	call UpdateBGMap
-	
-; these have their own timing checks
+
+	; These have their own timing checks.
+
 	call Serve2bppRequest
 	call Serve1bppRequest
 	call AnimateTileset
-	
-.doneframeaction
-; oam update off?
+
+.done
+
 	ld a, [hOAMUpdate]
 	and a
-	jr nz, .vblankoccurred
-	
-; update oam by dma transfer
+	jr nz, .done_oam
 	call hPushOAM
-;	@PushOAM:
-;		ld a, Sprites >> 8
-;		ld [rDMA], a
-;		ld a, $28
-;	.loop
-;		dec a
-;		jr nz, .loop
-;		ret
+.done_oam
 
 
-; vblank-sensitive operations are done
-	
-.vblankoccurred
-; tell other fns vblank happened
+	; vblank-sensitive operations are done
+
 	xor a
 	ld [VBlankOccurred], a
-	
-; dec OverworldDelay until 0
+
 	ld a, [OverworldDelay]
 	and a
-	jr z, .textdelay
+	jr z, .ok
 	dec a
 	ld [OverworldDelay], a
-	
-.textdelay
-; dec text delay counter until 0
+.ok
+
 	ld a, [TextDelayFrames]
 	and a
-	jr z, .joypad
+	jr z, .ok2
 	dec a
 	ld [TextDelayFrames], a
-	
-.joypad
+.ok2
+
 	call Joypad
-	
-; update sound
+
 	ld a, BANK(_UpdateSound)
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 	call _UpdateSound
-	ld a, [$ff8a]
-	rst Bankswitch ; restore bank
-	
-; 
+	ld a, [hROMBankBackup]
+	rst Bankswitch
+
 	ld a, [hSeconds]
 	ld [$ffe3], a
-	
+
 	ret
 ; 325
 
@@ -184,20 +154,16 @@ VBlank0:: ; 2b1
 VBlank2:: ; 325
 ; sound only
 
-; save bank
 	ld a, [hROMBank]
-	ld [$ff8a], a
-	
-; update sound
+	ld [hROMBankBackup], a
+
 	ld a, BANK(_UpdateSound)
-	rst Bankswitch ; bankswitch
-	call _UpdateSound
-	
-; restore bank
-	ld a, [$ff8a]
 	rst Bankswitch
-	
-; tell other fns vblank happened
+	call _UpdateSound
+
+	ld a, [hROMBankBackup]
+	rst Bankswitch
+
 	xor a
 	ld [VBlankOccurred], a
 	ret
@@ -212,77 +178,60 @@ VBlank1:: ; 337
 ; oam
 ; sound / lcd stat
 
-; save bank
 	ld a, [hROMBank]
-	ld [$ff8a], a
-	
-; scroll x
+	ld [hROMBankBackup], a
+
 	ld a, [hSCX]
 	ld [rSCX], a
-	
-; scroll y
 	ld a, [hSCY]
 	ld [rSCY], a
-	
-; time-sensitive fns
+
 	call UpdatePals
-	jr c, .vblankoccurred
-	
-; these have their own timing checks
+	jr c, .done
+
 	call UpdateBGMap
 	call Serve2bppRequest@VBlank
-; update oam by dma transfer
+
 	call hPushOAM
-;	@PushOAM:
-;		ld a, Sprites >> 8
-;		ld [rDMA], a
-;		ld a, $28
-;	.loop
-;		dec a
-;		jr nz, .loop
-;		ret
-	
-.vblankoccurred
-; tell other fns vblank happened
+.done
+
 	xor a
 	ld [VBlankOccurred], a
-	
-; get requested ints
+
+	; get requested ints
 	ld a, [rIF]
 	ld b, a
-; discard requested ints
+	; discard requested ints
 	xor a
 	ld [rIF], a
-; enable lcd stat
+	; enable lcd stat
 	ld a, %10 ; lcd stat
 	ld [rIE], a
-; rerequest serial int if applicable (still disabled)
-; request lcd stat
+	; rerequest serial int if applicable (still disabled)
+	; request lcd stat
 	ld a, b
 	and %1000 ; serial
 	or %10 ; lcd stat
 	ld [rIF], a
-	
+
 	ei
-; update sound
 	ld a, BANK(_UpdateSound)
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 	call _UpdateSound
-; restore bank
-	ld a, [$ff8a]
+	ld a, [hROMBankBackup]
 	rst Bankswitch
 	di
-	
-; get requested ints
+
+	; get requested ints
 	ld a, [rIF]
 	ld b, a
-; discard requested ints
+	; discard requested ints
 	xor a
 	ld [rIF], a
-; enable ints besides joypad
+	; enable ints besides joypad
 	ld a, %1111 ; serial timer lcdstat vblank
 	ld [rIE], a
-; rerequest ints
+	; rerequest ints
 	ld a, b
 	ld [rIF], a
 	ret
@@ -292,21 +241,18 @@ VBlank1:: ; 337
 UpdatePals:: ; 37f
 ; update pals for either dmg or cgb
 
-; check cgb
 	ld a, [hCGB]
 	and a
 	jp nz, UpdateCGBPals
-	
-; update gb pals
+
+	; update gb pals
 	ld a, [$cfc7]
 	ld [rBGP], a
-	
 	ld a, [$cfc8]
 	ld [rOBP0], a
-	
 	ld a, [$cfc9]
 	ld [rOBP1], a
-	
+
 	and a
 	ret
 ; 396
@@ -320,77 +266,58 @@ VBlank3:: ; 396
 ; oam
 ; sound / lcd stat
 
-; save bank
 	ld a, [hROMBank]
-	ld [$ff8a], a
-	
-; scroll x
+	ld [hROMBankBackup], a
+
 	ld a, [hSCX]
 	ld [rSCX], a
-; scroll y
 	ld a, [hSCY]
 	ld [rSCY], a
-	
-; any pals to update?
+
 	ld a, [hCGBPalUpdate]
 	and a
 	call nz, ForceUpdateCGBPals
-	jr c, .vblankoccurred
-; else
+	jr c, .done
+
 	call UpdateBGMap
 	call Serve2bppRequest@VBlank
-	
-; update oam by dma transfer
+
 	call hPushOAM
-;	@PushOAM:
-;		ld a, Sprites >> 8
-;		ld [rDMA], a
-;		ld a, $28
-;	.loop
-;		dec a
-;		jr nz, .loop
-;		ret
-	
-.vblankoccurred
-; tell other fns vblank happened
+.done
+
 	xor a
 	ld [VBlankOccurred], a
-	
-; save int flag
+
 	ld a, [rIF]
 	push af
-; reset ints
 	xor a
 	ld [rIF], a
-; force lcdstat int during sound update
 	ld a, %10 ; lcd stat
 	ld [rIE], a
 	ld [rIF], a
-	
+
 	ei
-; update sound
 	ld a, BANK(_UpdateSound)
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 	call _UpdateSound
-; restore bank
-	ld a, [$ff8a]
+	ld a, [hROMBankBackup]
 	rst Bankswitch
 	di
-	
-; request lcdstat
+
+	; request lcdstat
 	ld a, [rIF]
 	ld b, a
-; and any other ints
+	; and any other ints
 	pop af
 	or b
 	ld b, a
-; reset ints
+	; reset ints
 	xor a
 	ld [rIF], a
-; enable ints besides joypad
+	; enable ints besides joypad
 	ld a, %1111 ; serial timer lcdstat vblank
 	ld [rIE], a
-; request ints
+	; request ints
 	ld a, b
 	ld [rIF], a
 	ret
@@ -405,40 +332,26 @@ VBlank4:: ; 3df
 ; serial
 ; sound
 
-; save bank
 	ld a, [hROMBank]
-	ld [$ff8a], a
-	
+	ld [hROMBankBackup], a
+
 	call UpdateBGMap
 	call Serve2bppRequest
-	
-; update oam by dma transfer
+
 	call hPushOAM
-;	@PushOAM:
-;		ld a, Sprites >> 8
-;		ld [rDMA], a
-;		ld a, $28
-;	.loop
-;		dec a
-;		jr nz, .loop
-;		ret
-	
-; update joypad
+
 	call Joypad
-	
-; tell other fns vblank happened
+
 	xor a
 	ld [VBlankOccurred], a
-	
-; handshake
+
 	call AskSerial
-	
-; update sound
+
 	ld a, BANK(_UpdateSound)
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 	call _UpdateSound
-; restore bank
-	ld a, [$ff8a]
+
+	ld a, [hROMBankBackup]
 	rst Bankswitch
 	ret
 ; 400
@@ -452,52 +365,42 @@ VBlank5:: ; 400
 ; joypad
 ; 
 
-; save bank
 	ld a, [hROMBank]
-	ld [$ff8a], a
-	
-; scroll x
+	ld [hROMBankBackup], a
+
 	ld a, [hSCX]
 	ld [rSCX], a
-	
-; if we can update pals, skip this part
+
 	call UpdatePalsIfCGB
-	jr c, .vblankoccurred
-	
+	jr c, .done
+
 	call UpdateBGMap
 	call Serve2bppRequest
-	
-.vblankoccurred
-; tell other fns vblank happened
+.done
+
 	xor a
 	ld [VBlankOccurred], a
-	
-; joypad
+
 	call Joypad
-	
-; discard requested ints
+
 	xor a
 	ld [rIF], a
-; enable lcd stat
 	ld a, %10 ; lcd stat
 	ld [rIE], a
-; request lcd stat
+	; request lcd stat
 	ld [rIF], a
-	
+
 	ei
-; update sound
 	ld a, BANK(_UpdateSound)
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 	call _UpdateSound
-; restore bank
-	ld a, [$ff8a]
+	ld a, [hROMBankBackup]
 	rst Bankswitch
 	di
-	
-; discard requested ints
+
 	xor a
 	ld [rIF], a
-; enable ints besides joypad
+	; enable ints besides joypad
 	ld a, %1111 ; serial timer lcdstat vblank
 	ld [rIE], a
 	ret
@@ -510,32 +413,29 @@ VBlank6:: ; 436
 ; dma transfer
 ; sound
 
-; save bank
 	ld a, [hROMBank]
-	ld [$ff8a], a
-	
-; inc frame counter
+	ld [hROMBankBackup], a
+
+	; inc frame counter
 	ld hl, $ff9b
 	inc [hl]
-	
+
 	call UpdateCGBPals
-	jr c, .vblankoccurred
-	
+	jr c, .done
+
 	call Serve2bppRequest
 	call Serve1bppRequest
 	call DMATransfer
-	
-.vblankoccurred
-; tell other fns vblank happened
+.done
+
 	xor a
 	ld [VBlankOccurred], a
-	
-; update sound
+
 	ld a, BANK(_UpdateSound)
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 	call _UpdateSound
-; restore bank
-	ld a, [$ff8a]
+
+	ld a, [hROMBankBackup]
 	rst Bankswitch
 	ret
 ; 45a

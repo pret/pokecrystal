@@ -188,10 +188,10 @@ Function109847:: ; 109847
 
 	call GetCreditsPalette
 	call Function32f9
-	ld a, [$ff9e]
+	ld a, [hVBlank]
 	push af
 	ld a, $5
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ld a, $1
 	ld [$ffaa], a
 	xor a
@@ -215,7 +215,7 @@ Function109847:: ; 109847
 	ld [hLCDStatCustom], a
 	ld [hBGMapAddress], a
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	pop af
 	ld [rSVBK], a
 	ret

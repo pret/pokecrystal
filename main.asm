@@ -36515,7 +36515,7 @@ Function283b2: ; 283b2
 	xor a
 	ld [hld], a
 	ld [hl], a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	push de
 	hlcoord 0, 12
 	ld b, $4
@@ -39695,7 +39695,7 @@ Function29c7b: ; 29c7b
 	ld c, $28
 	call DelayFrames
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	inc a
 	ld [InLinkBattle], a
 	ret
@@ -39744,7 +39744,7 @@ Function29c92: ; 29c92
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ld [InLinkBattle], a
 	ret
 ; 29ce8
@@ -39860,12 +39860,12 @@ Function29d92: ; 29d92
 	ld [hl], a
 	call WaitBGMap
 	ld a, $2
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call DelayFrame
 	call DelayFrame
 	call Function29e0c
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ld a, [ScriptVar]
 	and a
 	ret nz
@@ -39882,7 +39882,7 @@ Function29dba: ; 29dba
 	ld [hl], a
 	call WaitBGMap
 	ld a, $2
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call DelayFrame
 	call DelayFrame
 	call Function29e0c
@@ -39916,7 +39916,7 @@ Function29dba: ; 29dba
 
 .asm_29e08
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ret
 ; 29e0c
 
@@ -40019,7 +40019,7 @@ Function29e82: ; 29e82
 	inc a
 	ld [InLinkBattle], a
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -40037,7 +40037,7 @@ Function29eaf: ; 29eaf
 	callab Function28000
 	call Function2ee4
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ret
 ; 29ec4
 
@@ -40048,7 +40048,7 @@ Function29ec4: ; 29ec4
 	callab Function28000
 	call Function2ee4
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ret
 ; 29ed9
 
@@ -40059,7 +40059,7 @@ Function29ed9: ; 29ed9
 	callab Function28000
 	call Function2ee4
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ret
 ; 29eee
 
@@ -40096,7 +40096,7 @@ Function29f17: ; 29f17
 	ld [$cf56], a
 	ld [$cf57], a
 	ld a, $2
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call DelayFrame
 	call DelayFrame
 .asm_29f29
@@ -40114,7 +40114,7 @@ Function29f17: ; 29f17
 
 .asm_29f40
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ld a, b
 	and $f
 	ret
@@ -64171,7 +64171,7 @@ Function8442c: ; 8442c
 	ld a, $e4
 	call DmgToCgbBGPals
 	call DelayFrame
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $4
@@ -64196,7 +64196,7 @@ Function8442c: ; 8442c
 
 .asm_8449d
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call Function84411
 	xor a
 	ld [rIF], a
@@ -64237,7 +64237,7 @@ Function844bc: ; 844bc (21:44bc)
 	ld [rIF], a ; $ff00+$f
 	ld a, $9
 	ld [rIE], a ; $ff00+$ff
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $4
@@ -64279,7 +64279,7 @@ Function844bc: ; 844bc (21:44bc)
 	call Function84559
 .asm_84545
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call Function84411
 	xor a
 	ld [rIF], a ; $ff00+$f
@@ -64307,7 +64307,7 @@ Function84560: ; 84560
 	ld [rIF], a
 	ld a, $9
 	ld [rIE], a
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $4
@@ -64343,7 +64343,7 @@ Function84560: ; 84560
 
 .asm_845c0
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call Function84411
 	call Function30b4
 	xor a
@@ -64377,7 +64377,7 @@ Function845db: ; 845db
 	ld [hBGMapMode], a
 	ld a, $13
 	call Function84419
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $4
@@ -64385,7 +64385,7 @@ Function845db: ; 845db
 	ld [$cf65], a
 	call Function843f0
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call Function84411
 	call Function84735
 	xor a
@@ -64414,7 +64414,7 @@ Function8461a: ; 8461a
 	callba Function1dc381
 	ld a, $10
 	call Function84419
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $4
@@ -64438,7 +64438,7 @@ Function8461a: ; 8461a
 
 .asm_84671
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call Function84411
 	call Function84735
 	xor a
@@ -64464,7 +64464,7 @@ Function84688: ; 84688
 	ld [rIF], a
 	ld a, $9
 	ld [rIE], a
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $4
@@ -64492,7 +64492,7 @@ Function84688: ; 84688
 
 .asm_846e2
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call Function84411
 	xor a
 	ld [rIF], a
@@ -73282,7 +73282,7 @@ Function8c20f: ; 8c20f
 	ld a, [rOBP1]
 	ld [$cfc9], a
 	call DelayFrame
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $1
@@ -73317,7 +73317,7 @@ Function8c20f: ; 8c20f
 	ld a, $1
 	ld [rSVBK], a
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call DelayFrame
 	ret
 ; 8c26d
@@ -74572,7 +74572,7 @@ Function8cc04: ; 8cc04
 	ld a, [hSCY]
 	push af
 	call Function8ccc9
-	ld hl, $ff9e
+	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $1
@@ -74595,7 +74595,7 @@ Function8cc04: ; 8cc04
 
 .asm_8cc6b
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call WhiteBGMap
 	xor a
 	ld [hLCDStatCustom], a
@@ -96304,7 +96304,7 @@ Functione48ac: ; e48ac
 	ld [rSVBK], a
 	ld a, [$ffaa]
 	push af
-	ld a, [$ff9e]
+	ld a, [hVBlank]
 	push af
 	call Functione4901
 
@@ -96337,7 +96337,7 @@ Functione48bc: ; e48bc
 	ld a, $90
 	ld [hWY], a
 	pop af
-	ld [$ff9e], a
+	ld [hVBlank], a
 	pop af
 	ld [$ffaa], a
 	pop af
@@ -96347,7 +96347,7 @@ Functione48bc: ; e48bc
 
 Functione4901: ; e4901
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ld a, $1
 	ld [$ffaa], a
 	xor a
@@ -100510,7 +100510,7 @@ Function1000a4: ; 1000a4
 	ld [$ffc9], a
 	ld [$ffe9], a
 	xor a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call NormalSpeed
 	xor a
 	ld [rIF], a
@@ -101857,20 +101857,20 @@ Function1008a6: ; 1008a6
 Function1008e0: ; 1008e0
 	ld a, [hBGMapMode]
 	ld b, a
-	ld a, [$ff9e]
+	ld a, [hVBlank]
 	ld c, a
 	push bc
 	xor a
 	ld [hBGMapMode], a
 	ld a, $3
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call Function100970
 	call Function100902
 	call Function100989
 	call DelayFrame
 	pop bc
 	ld a, c
-	ld [$ff9e], a
+	ld [hVBlank], a
 	ld a, b
 	ld [hBGMapMode], a
 	ret
@@ -114136,7 +114136,7 @@ Function118452: ; 118452
 	xor a
 	ld [$ffc9], a
 	ld [$ffe9], a
-	ld [$ff9e], a
+	ld [hVBlank], a
 	call NormalSpeed
 	xor a
 	ld [rIF], a
