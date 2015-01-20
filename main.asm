@@ -13616,7 +13616,7 @@ Functione134: ; e134
 	ld a, $1f
 	call GetPartyParamLocation
 	ld a, [hl]
-	ld [$001f], a
+	ld [$001f], a ; wow
 	ld a, $0
 	call GetPartyParamLocation
 	ld a, [hl]
