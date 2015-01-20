@@ -1,3 +1,29 @@
+map: MACRO
+; This is a silly hack to get around an rgbds bug.
+
+; Ideally:
+;	db GROUP_\1, MAP_\1
+
+\1\@  EQUS "GROUP_\1"
+\1\@2 EQUS "MAP_\1"
+	db \1\@, \1\@2
+ENDM
+
+roam_map: MACRO
+; A map and an arbitrary number of some more maps.
+
+	map \1
+	db  \2
+
+	rept \2
+	map \3
+	shift
+	endr
+
+	db 0
+ENDM
+
+
 person_event: macro
 	db \1 ; sprite
 	db \2 ; y
