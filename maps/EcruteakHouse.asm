@@ -81,14 +81,14 @@ SageScript_0x98062: ; 0x98062
 	iftrue UnknownScript_0x9807c
 	checkflag $001e
 	iftrue UnknownScript_0x98076
-	2writetext UnknownText_0x980d1
+	writetext UnknownText_0x980d1
 	closetext
 	loadmovesprites
 	end
 ; 0x98076
 
 UnknownScript_0x98076: ; 0x98076
-	2writetext UnknownText_0x98131
+	writetext UnknownText_0x98131
 	closetext
 	loadmovesprites
 	end
@@ -101,14 +101,14 @@ UnknownScript_0x9807c: ; 0x9807c
 	iftrue UnknownScript_0x980aa
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98093
-	2writetext UnknownText_0x981a4
+	writetext UnknownText_0x981a4
 	closetext
 	loadmovesprites
 	end
 ; 0x98093
 
 UnknownScript_0x98093: ; 0x98093
-	2writetext UnknownText_0x98250
+	writetext UnknownText_0x98250
 	closetext
 	loadmovesprites
 	dotrigger $1
@@ -119,14 +119,14 @@ UnknownScript_0x98093: ; 0x98093
 ; 0x980a4
 
 UnknownScript_0x980a4: ; 0x980a4
-	2writetext UnknownText_0x9837e
+	writetext UnknownText_0x9837e
 	closetext
 	loadmovesprites
 	end
 ; 0x980aa
 
 UnknownScript_0x980aa: ; 0x980aa
-	2writetext UnknownText_0x98391
+	writetext UnknownText_0x98391
 	closetext
 	loadmovesprites
 	end
@@ -137,14 +137,14 @@ SageScript_0x980b0: ; 0x980b0
 	loadfont
 	checkevent EVENT_GOT_CLEAR_BELL
 	iftrue UnknownScript_0x980be
-	2writetext UnknownText_0x9840b
+	writetext UnknownText_0x9840b
 	closetext
 	loadmovesprites
 	end
 ; 0x980be
 
 UnknownScript_0x980be: ; 0x980be
-	2writetext UnknownText_0x9846f
+	writetext UnknownText_0x9846f
 	closetext
 	loadmovesprites
 	end

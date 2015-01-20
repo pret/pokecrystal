@@ -12,20 +12,20 @@ GrannyScript_0x7b394: ; 0x7b394
 	checkevent EVENT_GOT_TM37_SANDSTORM
 	iftrue UnknownScript_0x7b3b7
 	special $0059
-	2writetext UnknownText_0x7b3c6
+	writetext UnknownText_0x7b3c6
 	keeptextopen
 	if_greater_than $95, UnknownScript_0x7b3aa
-	2jump UnknownScript_0x7b3bd
+	jump UnknownScript_0x7b3bd
 ; 0x7b3aa
 
 UnknownScript_0x7b3aa: ; 0x7b3aa
-	2writetext UnknownText_0x7b42b
+	writetext UnknownText_0x7b42b
 	keeptextopen
 	verbosegiveitem TM_37, 1
 	iffalse UnknownScript_0x7b3bb
 	setevent EVENT_GOT_TM37_SANDSTORM
 UnknownScript_0x7b3b7: ; 0x7b3b7
-	2writetext UnknownText_0x7b48f
+	writetext UnknownText_0x7b48f
 	closetext
 UnknownScript_0x7b3bb: ; 0x7b3bb
 	loadmovesprites
@@ -33,7 +33,7 @@ UnknownScript_0x7b3bb: ; 0x7b3bb
 ; 0x7b3bd
 
 UnknownScript_0x7b3bd: ; 0x7b3bd
-	2writetext UnknownText_0x7b51f
+	writetext UnknownText_0x7b51f
 	closetext
 	loadmovesprites
 	end

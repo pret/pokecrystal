@@ -28,7 +28,7 @@ CooltrainerFScript_0x19645f: ; 0x19645f
 JanineImpersonatorScript_0x196462: ; 0x196462
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x19652e
+	writetext UnknownText_0x19652e
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x196486
@@ -36,7 +36,7 @@ JanineImpersonatorScript_0x196462: ; 0x196462
 	variablesprite $c, $a
 	special $005e
 	loadfont
-	2writetext UnknownText_0x19654e
+	writetext UnknownText_0x19654e
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x196486

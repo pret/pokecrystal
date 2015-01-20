@@ -29,7 +29,7 @@ TrainerSageNico: ; 0x18477c
 SageNicoScript: ; 0x184788
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1847ff
+	writetext UnknownText_0x1847ff
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerSageEdmond: ; 0x184790
 SageEdmondScript: ; 0x18479c
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18486f
+	writetext UnknownText_0x18486f
 	closetext
 	loadmovesprites
 	end

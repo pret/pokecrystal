@@ -29,7 +29,7 @@ TrainerBird_keeperHank: ; 0x1ae1d0
 Bird_keeperHankScript: ; 0x1ae1dc
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ae258
+	writetext UnknownText_0x1ae258
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerPicnickerHope: ; 0x1ae1e4
 PicnickerHopeScript: ; 0x1ae1f0
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ae320
+	writetext UnknownText_0x1ae320
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerPicnickerSharon: ; 0x1ae1f8
 PicnickerSharonScript: ; 0x1ae204
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ae369
+	writetext UnknownText_0x1ae369
 	closetext
 	loadmovesprites
 	end

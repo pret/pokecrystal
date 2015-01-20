@@ -22,7 +22,7 @@ UnknownScript_0x1a0873: ; 0x1a0873
 	spriteface $a, $2
 	showemote $0, $a, 15
 	applymovement $a, MovementData_0x1a0a66
-	2jump UnknownScript_0x1a088c
+	jump UnknownScript_0x1a088c
 ; 0x1a0881
 
 UnknownScript_0x1a0881: ; 0x1a0881
@@ -32,9 +32,9 @@ UnknownScript_0x1a0881: ; 0x1a0881
 UnknownScript_0x1a088c: ; 0x1a088c
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x1a0a6b
+	writetext UnknownText_0x1a0a6b
 	keeptextopen
-	2writetext UnknownText_0x1a0a71
+	writetext UnknownText_0x1a0a71
 	closetext
 	loadmovesprites
 	dotrigger $1
@@ -68,7 +68,7 @@ TrainerPsychicGilbert: ; 0x1a089f
 PsychicGilbertScript: ; 0x1a08ab
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a0dd2
+	writetext UnknownText_0x1a0dd2
 	closetext
 	loadmovesprites
 	end
@@ -106,26 +106,26 @@ Bird_keeperJose2Script: ; 0x1a08bf
 	iftrue UnknownScript_0x1a0963
 	checkevent $026f
 	iftrue UnknownScript_0x1a08e8
-	2writetext UnknownText_0x1a0e42
+	writetext UnknownText_0x1a0e42
 	keeptextopen
 	setevent $026f
-	2call UnknownScript_0x1a0957
-	2jump UnknownScript_0x1a08eb
+	scall UnknownScript_0x1a0957
+	jump UnknownScript_0x1a08eb
 ; 0x1a08e8
 
 UnknownScript_0x1a08e8: ; 0x1a08e8
-	2call UnknownScript_0x1a095b
+	scall UnknownScript_0x1a095b
 UnknownScript_0x1a08eb: ; 0x1a08eb
 	askforphonenumber $d
 	if_equal $1, UnknownScript_0x1a096b
 	if_equal $2, UnknownScript_0x1a0967
 	trainertotext BIRD_KEEPER, JOSE2, $0
-	2call UnknownScript_0x1a095f
-	2jump UnknownScript_0x1a0963
+	scall UnknownScript_0x1a095f
+	jump UnknownScript_0x1a0963
 ; 0x1a08ff
 
 UnknownScript_0x1a08ff: ; 0x1a08ff
-	2call UnknownScript_0x1a096f
+	scall UnknownScript_0x1a096f
 	winlosstext Bird_keeperJose2BeatenText, $0000
 	copybytetovar $d9f7
 	if_equal $2, UnknownScript_0x1a0916
@@ -164,15 +164,15 @@ UnknownScript_0x1a093c: ; 0x1a093c
 ; 0x1a0945
 
 UnknownScript_0x1a0945: ; 0x1a0945
-	2call UnknownScript_0x1a0973
+	scall UnknownScript_0x1a0973
 	verbosegiveitem STAR_PIECE, 1
 	iffalse UnknownScript_0x1a0954
 	clearflag $007e
-	2jump UnknownScript_0x1a0963
+	jump UnknownScript_0x1a0963
 ; 0x1a0954
 
 UnknownScript_0x1a0954: ; 0x1a0954
-	2jump UnknownScript_0x1a0977
+	jump UnknownScript_0x1a0977
 ; 0x1a0957
 
 UnknownScript_0x1a0957: ; 0x1a0957
@@ -243,7 +243,7 @@ TrainerCooltrainermBlake: ; 0x1a097b
 CooltrainermBlakeScript: ; 0x1a0987
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a0b0b
+	writetext UnknownText_0x1a0b0b
 	closetext
 	loadmovesprites
 	end
@@ -272,7 +272,7 @@ TrainerCooltrainermBrian: ; 0x1a098f
 CooltrainermBrianScript: ; 0x1a099b
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a0bac
+	writetext UnknownText_0x1a0bac
 	closetext
 	loadmovesprites
 	end
@@ -308,26 +308,26 @@ CooltrainerfReena1Script: ; 0x1a09af
 	iftrue UnknownScript_0x1a0a3b
 	checkevent $0271
 	iftrue UnknownScript_0x1a09d2
-	2writetext UnknownText_0x1a0c35
+	writetext UnknownText_0x1a0c35
 	keeptextopen
 	setevent $0271
-	2call UnknownScript_0x1a0a2f
-	2jump UnknownScript_0x1a09d5
+	scall UnknownScript_0x1a0a2f
+	jump UnknownScript_0x1a09d5
 ; 0x1a09d2
 
 UnknownScript_0x1a09d2: ; 0x1a09d2
-	2call UnknownScript_0x1a0a33
+	scall UnknownScript_0x1a0a33
 UnknownScript_0x1a09d5: ; 0x1a09d5
 	askforphonenumber $e
 	if_equal $1, UnknownScript_0x1a0a43
 	if_equal $2, UnknownScript_0x1a0a3f
 	trainertotext COOLTRAINERF, REENA1, $0
-	2call UnknownScript_0x1a0a37
-	2jump UnknownScript_0x1a0a3b
+	scall UnknownScript_0x1a0a37
+	jump UnknownScript_0x1a0a3b
 ; 0x1a09e9
 
 UnknownScript_0x1a09e9: ; 0x1a09e9
-	2call UnknownScript_0x1a0a47
+	scall UnknownScript_0x1a0a47
 	winlosstext CooltrainerfReena1BeatenText, $0000
 	copybytetovar $d9f8
 	if_equal $2, UnknownScript_0x1a0a00
@@ -423,7 +423,7 @@ TrainerCooltrainerfMegan: ; 0x1a0a4b
 CooltrainerfMeganScript: ; 0x1a0a57
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a0cce
+	writetext UnknownText_0x1a0cce
 	closetext
 	loadmovesprites
 	end

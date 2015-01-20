@@ -17,7 +17,7 @@ FishingGuruScript_0x19a6ae: ; 0x19a6ae
 	iftrue UnknownScript_0x19a6d7
 	checkevent $0038
 	iftrue UnknownScript_0x19a6d1
-	2writetext UnknownText_0x19a72e
+	writetext UnknownText_0x19a72e
 	closetext
 	loadmovesprites
 	setevent $0038
@@ -25,14 +25,14 @@ FishingGuruScript_0x19a6ae: ; 0x19a6ae
 ; 0x19a6d1
 
 UnknownScript_0x19a6d1: ; 0x19a6d1
-	2writetext UnknownText_0x19a84d
+	writetext UnknownText_0x19a84d
 	closetext
 	loadmovesprites
 	end
 ; 0x19a6d7
 
 UnknownScript_0x19a6d7: ; 0x19a6d7
-	2writetext UnknownText_0x19a890
+	writetext UnknownText_0x19a890
 	closetext
 	loadmovesprites
 	setevent $0039
@@ -43,21 +43,21 @@ UnknownScript_0x19a6e0: ; 0x19a6e0
 	writebyte MAGIKARP
 	special $0042
 	iffalse UnknownScript_0x19a6d7
-	2writetext UnknownText_0x19a93e
+	writetext UnknownText_0x19a93e
 	closetext
 	special $0019
 	if_equal $0, UnknownScript_0x19a71c
 	if_equal $1, UnknownScript_0x19a722
 	if_equal $2, UnknownScript_0x19a716
-	2jump UnknownScript_0x19a6fe
+	jump UnknownScript_0x19a6fe
 ; 0x19a6fe
 
 UnknownScript_0x19a6fe: ; 0x19a6fe
-	2writetext UnknownText_0x19a977
+	writetext UnknownText_0x19a977
 	keeptextopen
 	verbosegiveitem ELIXER, 1
 	iffalse UnknownScript_0x19a711
-	2writetext UnknownText_0x19a9c3
+	writetext UnknownText_0x19a9c3
 	closetext
 	loadmovesprites
 	clearevent $003a
@@ -71,21 +71,21 @@ UnknownScript_0x19a711: ; 0x19a711
 ; 0x19a716
 
 UnknownScript_0x19a716: ; 0x19a716
-	2writetext UnknownText_0x19aa01
+	writetext UnknownText_0x19aa01
 	closetext
 	loadmovesprites
 	end
 ; 0x19a71c
 
 UnknownScript_0x19a71c: ; 0x19a71c
-	2writetext UnknownText_0x19aa5c
+	writetext UnknownText_0x19aa5c
 	closetext
 	loadmovesprites
 	end
 ; 0x19a722
 
 UnknownScript_0x19a722: ; 0x19a722
-	2writetext UnknownText_0x19aa79
+	writetext UnknownText_0x19aa79
 	closetext
 	loadmovesprites
 	end

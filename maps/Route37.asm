@@ -42,7 +42,7 @@ TrainerTwinsAnnandanne1: ; 0x1a8d83
 TwinsAnnandanne1Script: ; 0x1a8d8f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a8e62
+	writetext UnknownText_0x1a8e62
 	closetext
 	loadmovesprites
 	end
@@ -71,7 +71,7 @@ TrainerTwinsAnnandanne2: ; 0x1a8d97
 TwinsAnnandanne2Script: ; 0x1a8da3
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a8eec
+	writetext UnknownText_0x1a8eec
 	closetext
 	loadmovesprites
 	end
@@ -100,7 +100,7 @@ TrainerPsychicGreg: ; 0x1a8dab
 PsychicGregScript: ; 0x1a8db7
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a8f80
+	writetext UnknownText_0x1a8f80
 	closetext
 	loadmovesprites
 	end
@@ -115,36 +115,36 @@ SunnyScript:
 	if_not_equal SUNDAY, SunnyNotSundayScript
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue .MetSunny
-	2writetext MeetSunnyText
+	writetext MeetSunnyText
 	keeptextopen
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 .MetSunny
 	checkflag $0063
 	iftrue .Kris
-	2writetext SunnyGivesGiftText1
+	writetext SunnyGivesGiftText1
 	keeptextopen
-	2jump .next
+	jump .next
 .Kris
-	2writetext SunnyGivesGiftText2
+	writetext SunnyGivesGiftText2
 	keeptextopen
 .next
 	verbosegiveitem MAGNET, 1
 	iffalse SunnyDoneScript
 	setevent EVENT_GOT_MAGNET_FROM_SUNNY
-	2writetext SunnyGaveGiftText
+	writetext SunnyGaveGiftText
 	closetext
 	loadmovesprites
 	end
 
 SunnySundayScript:
-	2writetext SunnySundayText
+	writetext SunnySundayText
 	closetext
 SunnyDoneScript:
 	loadmovesprites
 	end
 
 SunnyNotSundayScript:
-	2writetext SunnyNotSundayText
+	writetext SunnyNotSundayText
 	closetext
 	loadmovesprites
 	end

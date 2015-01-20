@@ -25,20 +25,20 @@ GentlemanScript_0x7ee6c: ; 0x7ee6c
 	iftrue .UnknownScript_0x7ee8e
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .UnknownScript_0x7ee80
-	2writetext UnknownText_0x7effb
+	writetext UnknownText_0x7effb
 	closetext
 	loadmovesprites
 	end
 ; 0x7ee80
 
 .UnknownScript_0x7ee80: ; 0x7ee80
-	2writetext UnknownText_0x7f0a1
+	writetext UnknownText_0x7f0a1
 	keeptextopen
 	stringtotext .expncardname, $1
-	2call .UnknownScript_0x7ee94
+	scall .UnknownScript_0x7ee94
 	setflag $0003
 .UnknownScript_0x7ee8e ; 0x7ee8e
-	2writetext UnknownText_0x7f141
+	writetext UnknownText_0x7f141
 	closetext
 	loadmovesprites
 	end
@@ -58,14 +58,14 @@ SuperNerdScript_0x7eea2: ; 0x7eea2
 	loadfont
 	checkflag $0003
 	iftrue UnknownScript_0x7eeb0
-	2writetext UnknownText_0x7f193
+	writetext UnknownText_0x7f193
 	closetext
 	loadmovesprites
 	end
 ; 0x7eeb0
 
 UnknownScript_0x7eeb0: ; 0x7eeb0
-	2writetext UnknownText_0x7f248
+	writetext UnknownText_0x7f248
 	closetext
 	loadmovesprites
 	end

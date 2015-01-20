@@ -41,7 +41,7 @@ UnknownScript_0x198018: ; 0x198018
 	appear $b
 	applymovement $b, MovementData_0x198134
 	spriteface $0, $0
-	2jump UnknownScript_0x198049
+	jump UnknownScript_0x198049
 ; 0x198034
 
 UnknownScript_0x198034: ; 0x198034
@@ -55,7 +55,7 @@ UnknownScript_0x198034: ; 0x198034
 UnknownScript_0x198049: ; 0x198049
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x19814d
+	writetext UnknownText_0x19814d
 	closetext
 	loadmovesprites
 	setevent $06bf
@@ -69,7 +69,7 @@ UnknownScript_0x198049: ; 0x198049
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x198091
+	jump UnknownScript_0x198091
 ; 0x198071
 
 UnknownScript_0x198071: ; 0x198071
@@ -79,7 +79,7 @@ UnknownScript_0x198071: ; 0x198071
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x198091
+	jump UnknownScript_0x198091
 ; 0x198081
 
 UnknownScript_0x198081: ; 0x198081
@@ -89,13 +89,13 @@ UnknownScript_0x198081: ; 0x198081
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x198091
+	jump UnknownScript_0x198091
 ; 0x198091
 
 UnknownScript_0x198091: ; 0x198091
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
-	2writetext UnknownText_0x198233
+	writetext UnknownText_0x198233
 	closetext
 	loadmovesprites
 	spriteface $0, $2
@@ -121,14 +121,14 @@ GrampsScript_0x1980b1: ; 0x1980b1
 	loadfont
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x1980bf
-	2writetext UnknownText_0x19841b
+	writetext UnknownText_0x19841b
 	closetext
 	loadmovesprites
 	end
 ; 0x1980bf
 
 UnknownScript_0x1980bf: ; 0x1980bf
-	2writetext UnknownText_0x198473
+	writetext UnknownText_0x198473
 	closetext
 	loadmovesprites
 	end
@@ -144,9 +144,9 @@ YoungsterScript_0x1980c8: ; 0x1980c8
 
 SlowpokeScript_0x1980cb: ; 0x1980cb
 	loadfont
-	2writetext UnknownText_0x1985b0
+	writetext UnknownText_0x1985b0
 	pause 60
-	2writetext UnknownText_0x1985c3
+	writetext UnknownText_0x1985c3
 	cry SLOWPOKE
 	closetext
 	loadmovesprites
@@ -157,7 +157,7 @@ WoosterScript: ; 0x1980da
 ; unused
 	faceplayer
 	loadfont
-	2writetext WoosterText
+	writetext WoosterText
 	cry QUAGSIRE
 	closetext
 	loadmovesprites
@@ -167,12 +167,12 @@ WoosterScript: ; 0x1980da
 UnknownScript_0x1980e5: ; 0x1980e5
 	applymovement $0, MovementData_0x198148
 	loadfont
-	2writetext UnknownText_0x1985df
+	writetext UnknownText_0x1985df
 	keeptextopen
 	spriteface $d, $3
-	2writetext UnknownText_0x19860b
+	writetext UnknownText_0x19860b
 	keeptextopen
-	2writetext UnknownText_0x198628
+	writetext UnknownText_0x198628
 	closetext
 	verbosegiveitem GS_BALL, 1
 	spriteface $d, $2
@@ -187,7 +187,7 @@ UnknownScript_0x1980e5: ; 0x1980e5
 KurtOutsideScript_0x19810c: ; 0x19810c
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x198628
+	writetext UnknownText_0x198628
 	closetext
 	spriteface $d, $2
 	loadmovesprites

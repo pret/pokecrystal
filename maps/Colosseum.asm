@@ -63,7 +63,7 @@ MapColosseumSignpost1Script: ; 0x193493
 
 ChrisScript_0x193499: ; 0x193499
 	loadfont
-	2writetext UnknownText_0x1934a0
+	writetext UnknownText_0x1934a0
 	closetext
 	loadmovesprites
 	end

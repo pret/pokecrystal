@@ -11,7 +11,7 @@ TwinScript_0x9cc76: ; 0x9cc76
 	loadfont
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cc87
-	2writetext UnknownText_0x9cd2e
+	writetext UnknownText_0x9cd2e
 	closetext
 	loadmovesprites
 	spriteface $2, $3
@@ -19,7 +19,7 @@ TwinScript_0x9cc76: ; 0x9cc76
 ; 0x9cc87
 
 UnknownScript_0x9cc87: ; 0x9cc87
-	2writetext UnknownText_0x9cd5a
+	writetext UnknownText_0x9cd5a
 	closetext
 	loadmovesprites
 	spriteface $2, $3
@@ -31,7 +31,7 @@ TwinScript_0x9cc90: ; 0x9cc90
 	loadfont
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cca1
-	2writetext UnknownText_0x9cd2e
+	writetext UnknownText_0x9cd2e
 	closetext
 	loadmovesprites
 	spriteface $3, $2
@@ -39,7 +39,7 @@ TwinScript_0x9cc90: ; 0x9cc90
 ; 0x9cca1
 
 UnknownScript_0x9cca1: ; 0x9cca1
-	2writetext UnknownText_0x9cd5a
+	writetext UnknownText_0x9cd5a
 	closetext
 	loadmovesprites
 	spriteface $3, $2
@@ -50,11 +50,11 @@ TaurosScript_0x9ccaa: ; 0x9ccaa
 	loadfont
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cd25
-	2writetext UnknownText_0x9cd70
+	writetext UnknownText_0x9cd70
 	writebyte MILTANK
 	special $005f
 	keeptextopen
-	2writetext UnknownText_0x9cd80
+	writetext UnknownText_0x9cd80
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
 	iftrue UnknownScript_0x9ccc6
 	closetext
@@ -64,7 +64,7 @@ TaurosScript_0x9ccaa: ; 0x9ccaa
 
 UnknownScript_0x9ccc6: ; 0x9ccc6
 	keeptextopen
-	2writetext UnknownText_0x9cda2
+	writetext UnknownText_0x9cda2
 	yesorno
 	iffalse UnknownScript_0x9cd1f
 	checkitem BERRY
@@ -76,25 +76,25 @@ UnknownScript_0x9ccc6: ; 0x9ccc6
 	if_equal $3, UnknownScript_0x9ccf0
 	if_equal $5, UnknownScript_0x9ccfa
 	if_equal $7, UnknownScript_0x9cd04
-	2writetext UnknownText_0x9cdbc
+	writetext UnknownText_0x9cdbc
 	closetext
 	loadmovesprites
 	end
 ; 0x9ccf0
 
 UnknownScript_0x9ccf0: ; 0x9ccf0
-	2writetext UnknownText_0x9cdbc
+	writetext UnknownText_0x9cdbc
 	keeptextopen
-	2writetext UnknownText_0x9cdd8
+	writetext UnknownText_0x9cdd8
 	closetext
 	loadmovesprites
 	end
 ; 0x9ccfa
 
 UnknownScript_0x9ccfa: ; 0x9ccfa
-	2writetext UnknownText_0x9cdbc
+	writetext UnknownText_0x9cdbc
 	keeptextopen
-	2writetext UnknownText_0x9cdfc
+	writetext UnknownText_0x9cdfc
 	closetext
 	loadmovesprites
 	end
@@ -102,11 +102,11 @@ UnknownScript_0x9ccfa: ; 0x9ccfa
 
 UnknownScript_0x9cd04: ; 0x9cd04
 	playmusic MUSIC_HEAL
-	2writetext UnknownText_0x9cdbc
+	writetext UnknownText_0x9cdbc
 	pause 60
 	keeptextopen
 	special $003d
-	2writetext UnknownText_0x9ce1b
+	writetext UnknownText_0x9ce1b
 	closetext
 	loadmovesprites
 	setevent EVENT_HEALED_MOOMOO
@@ -114,21 +114,21 @@ UnknownScript_0x9cd04: ; 0x9cd04
 ; 0x9cd19
 
 UnknownScript_0x9cd19: ; 0x9cd19
-	2writetext UnknownText_0x9ce3c
+	writetext UnknownText_0x9ce3c
 	closetext
 	loadmovesprites
 	end
 ; 0x9cd1f
 
 UnknownScript_0x9cd1f: ; 0x9cd1f
-	2writetext UnknownText_0x9ce4f
+	writetext UnknownText_0x9ce4f
 	closetext
 	loadmovesprites
 	end
 ; 0x9cd25
 
 UnknownScript_0x9cd25: ; 0x9cd25
-	2writetext UnknownText_0x9cd92
+	writetext UnknownText_0x9cd92
 	cry MILTANK
 	closetext
 	loadmovesprites

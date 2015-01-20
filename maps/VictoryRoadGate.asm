@@ -20,18 +20,18 @@ UnknownScript_0x9b9fc: ; 0x9b9fc
 
 UnknownScript_0x9b9fd: ; 0x9b9fd
 	spriteface $0, $2
-	2jump UnknownScript_0x9ba04
+	jump UnknownScript_0x9ba04
 ; 0x9ba03
 
 OfficerScript_0x9ba03: ; 0x9ba03
 	faceplayer
 UnknownScript_0x9ba04: ; 0x9ba04
 	loadfont
-	2writetext UnknownText_0x9ba29
+	writetext UnknownText_0x9ba29
 	keeptextopen
 	checkcode $7
 	if_greater_than $7, UnknownScript_0x9ba19
-	2writetext UnknownText_0x9ba5f
+	writetext UnknownText_0x9ba5f
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x9ba27
@@ -39,7 +39,7 @@ UnknownScript_0x9ba04: ; 0x9ba04
 ; 0x9ba19
 
 UnknownScript_0x9ba19: ; 0x9ba19
-	2writetext UnknownText_0x9bab4
+	writetext UnknownText_0x9bab4
 	closetext
 	loadmovesprites
 	dotrigger $1

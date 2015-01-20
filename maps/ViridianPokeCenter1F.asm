@@ -15,14 +15,14 @@ CooltrainerMScript_0x9b693: ; 0x9b693
 	loadfont
 	checkevent $0775
 	iftrue UnknownScript_0x9b6a1
-	2writetext UnknownText_0x9b6ad
+	writetext UnknownText_0x9b6ad
 	closetext
 	loadmovesprites
 	end
 ; 0x9b6a1
 
 UnknownScript_0x9b6a1: ; 0x9b6a1
-	2writetext UnknownText_0x9b6f5
+	writetext UnknownText_0x9b6f5
 	closetext
 	loadmovesprites
 	end

@@ -23,11 +23,11 @@ UnknownScript_0x18d023: ; 0x18d023
 	applymovement $0, MovementData_0x18d2bf
 	applymovement $2, MovementData_0x18d2c7
 	loadfont
-	2writetext UnknownText_0x18d2ea
+	writetext UnknownText_0x18d2ea
 	keeptextopen
 UnknownScript_0x18d030: ; 0x18d030
 	setevent $0001
-	2writetext UnknownText_0x18d3bc
+	writetext UnknownText_0x18d3bc
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d215
 	interpretmenu2
@@ -40,7 +40,7 @@ UnknownScript_0x18d030: ; 0x18d030
 
 UnknownScript_0x18d049: ; 0x18d049
 	setevent $0002
-	2writetext UnknownText_0x18d3d3
+	writetext UnknownText_0x18d3d3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d234
 	interpretmenu2
@@ -50,7 +50,7 @@ UnknownScript_0x18d049: ; 0x18d049
 	if_equal $3, UnknownScript_0x18d0cb
 UnknownScript_0x18d061: ; 0x18d061
 	setevent $0003
-	2writetext UnknownText_0x18d3f3
+	writetext UnknownText_0x18d3f3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d258
 	interpretmenu2
@@ -60,7 +60,7 @@ UnknownScript_0x18d061: ; 0x18d061
 	if_equal $3, UnknownScript_0x18d0a9
 UnknownScript_0x18d079: ; 0x18d079
 	setevent $0004
-	2writetext UnknownText_0x18d420
+	writetext UnknownText_0x18d420
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d283
 	interpretmenu2
@@ -70,7 +70,7 @@ UnknownScript_0x18d079: ; 0x18d079
 	if_equal $3, UnknownScript_0x18d0a9
 UnknownScript_0x18d091: ; 0x18d091
 	setevent $0005
-	2writetext UnknownText_0x18d44a
+	writetext UnknownText_0x18d44a
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d2a5
 	interpretmenu2
@@ -81,7 +81,7 @@ UnknownScript_0x18d091: ; 0x18d091
 UnknownScript_0x18d0a9: ; 0x18d0a9
 	checkevent $0005
 	iftrue UnknownScript_0x18d100
-	2writetext UnknownText_0x18d82d
+	writetext UnknownText_0x18d82d
 	keeptextopen
 	checkevent $0004
 	iftrue UnknownScript_0x18d091
@@ -95,12 +95,12 @@ UnknownScript_0x18d0cb: ; 0x18d0cb
 	loadmovesprites
 	spriteface $2, $2
 	loadfont
-	2writetext UnknownText_0x18d7f6
+	writetext UnknownText_0x18d7f6
 	closetext
 	loadmovesprites
 	spriteface $2, $0
 	loadfont
-	2writetext UnknownText_0x18d816
+	writetext UnknownText_0x18d816
 	closetext
 	loadmovesprites
 	setevent $00c1
@@ -116,7 +116,7 @@ UnknownScript_0x18d0cb: ; 0x18d0cb
 	checkevent $0001
 	iftrue UnknownScript_0x18d030
 UnknownScript_0x18d100: ; 0x18d100
-	2writetext UnknownText_0x18d47c
+	writetext UnknownText_0x18d47c
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
@@ -131,34 +131,34 @@ UnknownScript_0x18d100: ; 0x18d100
 	spriteface $0, $2
 	spriteface $2, $2
 	loadfont
-	2writetext UnknownText_0x18d916
+	writetext UnknownText_0x18d916
 	closetext
 	loadmovesprites
 	special $006a
 	applymovement $5, MovementData_0x18d2da
 	loadfont
-	2writetext UnknownText_0x18d974
+	writetext UnknownText_0x18d974
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x18d2dd
 	loadfont
-	2writetext UnknownText_0x18d983
+	writetext UnknownText_0x18d983
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x18d2c9
 	spriteface $5, $1
 	loadfont
-	2writetext UnknownText_0x18d520
+	writetext UnknownText_0x18d520
 	closetext
 	loadmovesprites
 	showemote $0, $5, 15
 	loadfont
-	2writetext UnknownText_0x18d9ae
+	writetext UnknownText_0x18d9ae
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x18d2e0
 	loadfont
-	2writetext UnknownText_0x18d9bf
+	writetext UnknownText_0x18d9bf
 	closetext
 	setflag $0022
 	playsound SFX_GET_BADGE
@@ -167,9 +167,9 @@ UnknownScript_0x18d100: ; 0x18d100
 	specialphonecall $8
 	dotrigger $1
 	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
-	2writetext UnknownText_0x18d9f2
+	writetext UnknownText_0x18d9f2
 	keeptextopen
-	2writetext UnknownText_0x18da0b
+	writetext UnknownText_0x18da0b
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x18d2ce
@@ -177,11 +177,11 @@ UnknownScript_0x18d100: ; 0x18d100
 	applymovement $2, MovementData_0x18d2d1
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x18d5a3
+	writetext UnknownText_0x18d5a3
 	closetext
 	loadmovesprites
 	loadfont
-	2writetext UnknownText_0x18dab4
+	writetext UnknownText_0x18dab4
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x18d2e3
@@ -203,18 +203,18 @@ ElderScript_0x18d1a5: ; 0x18d1a5
 	iffalse UnknownScript_0x18d1c5
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue UnknownScript_0x18d1f3
-	2writetext UnknownText_0x18d724
+	writetext UnknownText_0x18d724
 	closetext
 	loadmovesprites
 	end
 ; 0x18d1c5
 
 UnknownScript_0x18d1c5: ; 0x18d1c5
-	2writetext UnknownText_0x18d604
+	writetext UnknownText_0x18d604
 	closetext
 	checkcode $1
 	if_equal $6, UnknownScript_0x18d1ed
-	2writetext UnknownText_0x18d697
+	writetext UnknownText_0x18d697
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	givepoke DRATINI, 15, 0, 0
@@ -222,35 +222,35 @@ UnknownScript_0x18d1c5: ; 0x18d1c5
 	special $0094
 	setevent $00bd
 	setevent $0006
-	2writetext UnknownText_0x18d6ca
+	writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites
 	end
 ; 0x18d1ed
 
 UnknownScript_0x18d1ed: ; 0x18d1ed
-	2writetext UnknownText_0x18d6ac
+	writetext UnknownText_0x18d6ac
 	closetext
 	loadmovesprites
 	end
 ; 0x18d1f3
 
 UnknownScript_0x18d1f3: ; 0x18d1f3
-	2writetext UnknownText_0x18d782
+	writetext UnknownText_0x18d782
 	closetext
 	loadmovesprites
 	end
 ; 0x18d1f9
 
 UnknownScript_0x18d1f9: ; 0x18d1f9
-	2writetext UnknownText_0x18d5e5
+	writetext UnknownText_0x18d5e5
 	closetext
 	loadmovesprites
 	end
 ; 0x18d1ff
 
 UnknownScript_0x18d1ff: ; 0x18d1ff
-	2writetext UnknownText_0x18d6ca
+	writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites
 	end
@@ -259,7 +259,7 @@ UnknownScript_0x18d1ff: ; 0x18d1ff
 ElderScript_0x18d205: ; 0x18d205
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x18d840
+	writetext UnknownText_0x18d840
 	closetext
 	loadmovesprites
 	end
@@ -268,7 +268,7 @@ ElderScript_0x18d205: ; 0x18d205
 ElderScript_0x18d20d: ; 0x18d20d
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x18d8b1
+	writetext UnknownText_0x18d8b1
 	closetext
 	loadmovesprites
 	end

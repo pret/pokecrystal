@@ -29,7 +29,7 @@ TrainerPokemaniacLarry: ; 0x59b9c
 PokemaniacLarryScript: ; 0x59ba8
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x59d31
+	writetext UnknownText_0x59d31
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerHikerRussell: ; 0x59bb0
 HikerRussellScript: ; 0x59bbc
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x59c6c
+	writetext UnknownText_0x59c6c
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerHikerDaniel: ; 0x59bc4
 HikerDanielScript: ; 0x59bd0
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x59dc9
+	writetext UnknownText_0x59dc9
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerFirebreatherBill: ; 0x59bd8
 FirebreatherBillScript: ; 0x59be4
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x59e6f
+	writetext UnknownText_0x59e6f
 	closetext
 	loadmovesprites
 	end
@@ -145,7 +145,7 @@ TrainerFirebreatherRay: ; 0x59bec
 FirebreatherRayScript: ; 0x59bf8
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x59efc
+	writetext UnknownText_0x59efc
 	closetext
 	loadmovesprites
 	end

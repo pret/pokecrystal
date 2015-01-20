@@ -29,7 +29,7 @@ TrainerBird_keeperToby: ; 0x1a1d0e
 Bird_keeperTobyScript: ; 0x1a1d1a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a1f86
+	writetext UnknownText_0x1a1f86
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerSailorHarry: ; 0x1a1d22
 SailorHarryScript: ; 0x1a1d2e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a220c
+	writetext UnknownText_0x1a220c
 	closetext
 	loadmovesprites
 	end
@@ -96,26 +96,26 @@ LassDana1Script: ; 0x1a1d42
 	iftrue UnknownScript_0x1a1e17
 	checkevent $0289
 	iftrue UnknownScript_0x1a1d6b
-	2writetext UnknownText_0x1a20ec
+	writetext UnknownText_0x1a20ec
 	keeptextopen
 	setevent $0289
-	2call UnknownScript_0x1a1e0b
-	2jump UnknownScript_0x1a1d6e
+	scall UnknownScript_0x1a1e0b
+	jump UnknownScript_0x1a1d6e
 ; 0x1a1d6b
 
 UnknownScript_0x1a1d6b: ; 0x1a1d6b
-	2call UnknownScript_0x1a1e0f
+	scall UnknownScript_0x1a1e0f
 UnknownScript_0x1a1d6e: ; 0x1a1d6e
 	askforphonenumber $1a
 	if_equal $1, UnknownScript_0x1a1e1f
 	if_equal $2, UnknownScript_0x1a1e1b
 	trainertotext LASS, DANA1, $0
-	2call UnknownScript_0x1a1e13
-	2jump UnknownScript_0x1a1e17
+	scall UnknownScript_0x1a1e13
+	jump UnknownScript_0x1a1e17
 ; 0x1a1d82
 
 UnknownScript_0x1a1d82: ; 0x1a1d82
-	2call UnknownScript_0x1a1e23
+	scall UnknownScript_0x1a1e23
 	winlosstext LassDana1BeatenText, $0000
 	copybytetovar $da03
 	if_equal $4, UnknownScript_0x1a1da1
@@ -180,16 +180,16 @@ UnknownScript_0x1a1ded: ; 0x1a1ded
 ; 0x1a1df6
 
 UnknownScript_0x1a1df6: ; 0x1a1df6
-	2call UnknownScript_0x1a1e27
+	scall UnknownScript_0x1a1e27
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1a1e08
 	clearflag $0082
 	setevent $0102
-	2jump UnknownScript_0x1a1e17
+	jump UnknownScript_0x1a1e17
 ; 0x1a1e08
 
 UnknownScript_0x1a1e08: ; 0x1a1e08
-	2jump UnknownScript_0x1a1e2b
+	jump UnknownScript_0x1a1e2b
 ; 0x1a1e0b
 
 UnknownScript_0x1a1e0b: ; 0x1a1e0b
@@ -267,26 +267,26 @@ SchoolboyChad1Script: ; 0x1a1e3b
 	iftrue UnknownScript_0x1a1ef5
 	checkevent $028b
 	iftrue UnknownScript_0x1a1e5e
-	2writetext UnknownText_0x1a200e
+	writetext UnknownText_0x1a200e
 	keeptextopen
 	setevent $028b
-	2call UnknownScript_0x1a1ee9
-	2jump UnknownScript_0x1a1e61
+	scall UnknownScript_0x1a1ee9
+	jump UnknownScript_0x1a1e61
 ; 0x1a1e5e
 
 UnknownScript_0x1a1e5e: ; 0x1a1e5e
-	2call UnknownScript_0x1a1eed
+	scall UnknownScript_0x1a1eed
 UnknownScript_0x1a1e61: ; 0x1a1e61
 	askforphonenumber $1b
 	if_equal $1, UnknownScript_0x1a1efd
 	if_equal $2, UnknownScript_0x1a1ef9
 	trainertotext SCHOOLBOY, CHAD1, $0
-	2call UnknownScript_0x1a1ef1
-	2jump UnknownScript_0x1a1ef5
+	scall UnknownScript_0x1a1ef1
+	jump UnknownScript_0x1a1ef5
 ; 0x1a1e75
 
 UnknownScript_0x1a1e75: ; 0x1a1e75
-	2call UnknownScript_0x1a1f01
+	scall UnknownScript_0x1a1f01
 	winlosstext SchoolboyChad1BeatenText, $0000
 	copybytetovar $da04
 	if_equal $4, UnknownScript_0x1a1e94
@@ -408,7 +408,7 @@ TrainerBeautyValerie: ; 0x1a1f05
 BeautyValerieScript: ; 0x1a1f11
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a2185
+	writetext UnknownText_0x1a2185
 	closetext
 	loadmovesprites
 	end
@@ -437,7 +437,7 @@ TrainerBeautyOlivia: ; 0x1a1f19
 BeautyOliviaScript: ; 0x1a1f25
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a229a
+	writetext UnknownText_0x1a229a
 	closetext
 	loadmovesprites
 	end

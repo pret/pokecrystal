@@ -34,7 +34,7 @@ UnknownScript_0x190013: ; 0x190013
 	applymovement $0, MovementData_0x1900a7
 	stopfollow
 	spriteface $0, $3
-	2call UnknownScript_0x19002f
+	scall UnknownScript_0x19002f
 	applymovement $2, MovementData_0x1900ad
 	end
 ; 0x19002e
@@ -44,13 +44,13 @@ PokefanMScript_0x19002e: ; 0x19002e
 UnknownScript_0x19002f: ; 0x19002f
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x190039
-	2call UnknownScript_0x190040
+	scall UnknownScript_0x190040
 	end
 ; 0x190039
 
 UnknownScript_0x190039: ; 0x190039
 	loadfont
-	2writetext UnknownText_0x1901a6
+	writetext UnknownText_0x1901a6
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ UnknownScript_0x190039: ; 0x190039
 
 UnknownScript_0x190040: ; 0x190040
 	loadfont
-	2writetext UnknownText_0x1900b0
+	writetext UnknownText_0x1900b0
 	special $0051
 	yesorno
 	iffalse UnknownScript_0x190072
@@ -70,28 +70,28 @@ UnknownScript_0x190040: ; 0x190040
 	playsound SFX_TRANSACTION
 	takemoney $0, 300
 	special $0051
-	2writetext UnknownText_0x19014a
+	writetext UnknownText_0x19014a
 	closetext
 	loadmovesprites
 	end
 ; 0x19006c
 
 UnknownScript_0x19006c: ; 0x19006c
-	2writetext UnknownText_0x19015b
+	writetext UnknownText_0x19015b
 	closetext
 	loadmovesprites
 	end
 ; 0x190072
 
 UnknownScript_0x190072: ; 0x190072
-	2writetext UnknownText_0x190178
+	writetext UnknownText_0x190178
 	closetext
 	loadmovesprites
 	end
 ; 0x190078
 
 UnknownScript_0x190078: ; 0x190078
-	2writetext UnknownText_0x190188
+	writetext UnknownText_0x190188
 	closetext
 	loadmovesprites
 	end
@@ -102,14 +102,14 @@ GrampsScript_0x19007e: ; 0x19007e
 	loadfont
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19008c
-	2writetext UnknownText_0x1901e5
+	writetext UnknownText_0x1901e5
 	closetext
 	loadmovesprites
 	end
 ; 0x19008c
 
 UnknownScript_0x19008c: ; 0x19008c
-	2writetext UnknownText_0x19021d
+	writetext UnknownText_0x19021d
 	closetext
 	loadmovesprites
 	end

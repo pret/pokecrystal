@@ -15,14 +15,14 @@ FishingGuruScript_0x191606: ; 0x191606
 	loadfont
 	checkevent EVENT_FOUGHT_SNORLAX
 	iftrue UnknownScript_0x191614
-	2writetext UnknownText_0x191620
+	writetext UnknownText_0x191620
 	closetext
 	loadmovesprites
 	end
 ; 0x191614
 
 UnknownScript_0x191614: ; 0x191614
-	2writetext UnknownText_0x191698
+	writetext UnknownText_0x191698
 	closetext
 	loadmovesprites
 	end

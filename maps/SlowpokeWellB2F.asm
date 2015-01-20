@@ -11,7 +11,7 @@ GymGuyScript_0x5ad0b: ; 0x5ad0b
 	loadfont
 	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 	iftrue UnknownScript_0x5ad22
-	2writetext UnknownText_0x5ad2a
+	writetext UnknownText_0x5ad2a
 	keeptextopen
 	verbosegiveitem KINGS_ROCK, 1
 	iffalse UnknownScript_0x5ad20
@@ -22,7 +22,7 @@ UnknownScript_0x5ad20: ; 0x5ad20
 ; 0x5ad22
 
 UnknownScript_0x5ad22: ; 0x5ad22
-	2writetext UnknownText_0x5adf2
+	writetext UnknownText_0x5adf2
 	closetext
 	loadmovesprites
 	end

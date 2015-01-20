@@ -98,7 +98,7 @@ MapRuinsofAlphAerodactylChamberSignpost3Script: ; 0x58e27
 
 MapRuinsofAlphAerodactylChamberSignpost4Script: ; 0x58e2a
 	loadfont
-	2writetext UnknownText_0x58e4f
+	writetext UnknownText_0x58e4f
 	writebyte $1
 	special $0087
 	loadmovesprites
@@ -109,7 +109,7 @@ MapRuinsofAlphAerodactylChamberSignpost5Script: ; 0x58e35
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58e46
 	loadfont
-	2writetext UnknownText_0x58e81
+	writetext UnknownText_0x58e81
 	writebyte $1
 	special $0087
 	loadmovesprites
@@ -118,7 +118,7 @@ MapRuinsofAlphAerodactylChamberSignpost5Script: ; 0x58e35
 
 UnknownScript_0x58e46: ; 0x58e46
 	loadfont
-	2writetext UnknownText_0x58ea2
+	writetext UnknownText_0x58ea2
 	closetext
 	loadmovesprites
 	end

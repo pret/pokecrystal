@@ -27,13 +27,13 @@ UnknownScript_0x5800f: ; 0x5800f
 	iftrue UnknownScript_0x5802c
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x5801e
-	2jump UnknownScript_0x5802c
+	jump UnknownScript_0x5802c
 ; 0x5801e
 
 UnknownScript_0x5801e: ; 0x5801e
 	checkcode $e
 	if_greater_than $2, UnknownScript_0x58027
-	2jump UnknownScript_0x5802c
+	jump UnknownScript_0x5802c
 ; 0x58027
 
 UnknownScript_0x58027: ; 0x58027
@@ -51,20 +51,20 @@ UnknownScript_0x5802c: ; 0x5802c
 UnknownScript_0x58031: ; 0x58031
 	spriteface $3, $1
 	spriteface $0, $0
-	2jump UnknownScript_0x58044
+	jump UnknownScript_0x58044
 ; 0x5803a
 
 UnknownScript_0x5803a: ; 0x5803a
 	spriteface $3, $2
 	spriteface $0, $3
-	2jump UnknownScript_0x58044
+	jump UnknownScript_0x58044
 ; 0x58043
 
 ScientistScript_0x58043: ; 0x58043
 	faceplayer
 UnknownScript_0x58044: ; 0x58044
 	loadfont
-	2writetext UnknownText_0x580c7
+	writetext UnknownText_0x580c7
 	closetext
 	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -84,10 +84,10 @@ FisherScript_0x58061: ; 0x58061
 	checkevent $00bc
 	iftrue UnknownScript_0x58070
 	setevent $00bc
-	2writetext UnknownText_0x583a4
+	writetext UnknownText_0x583a4
 	keeptextopen
 UnknownScript_0x58070: ;0x58070
-	2writetext UnknownText_0x58420
+	writetext UnknownText_0x58420
 	closetext
 	loadmovesprites
 	end
@@ -96,7 +96,7 @@ UnknownScript_0x58070: ;0x58070
 YoungsterScript_0x58076: ; 0x58076
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x58449
+	writetext UnknownText_0x58449
 	closetext
 	loadmovesprites
 	end
@@ -105,7 +105,7 @@ YoungsterScript_0x58076: ; 0x58076
 YoungsterScript_0x5807e: ; 0x5807e
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5848e
+	writetext UnknownText_0x5848e
 	closetext
 	loadmovesprites
 	spriteface $6, $1
@@ -135,7 +135,7 @@ TrainerPsychicNathan: ; 0x58089
 PsychicNathanScript: ; 0x58095
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5830e
+	writetext UnknownText_0x5830e
 	closetext
 	loadmovesprites
 	end
@@ -165,7 +165,7 @@ TrainerSuperNerdStan: ; 0x5809d
 UnknownScript_0x580a9: ; 0x580a9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x58250
+	writetext UnknownText_0x58250
 	closetext
 	loadmovesprites
 	end

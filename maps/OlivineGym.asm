@@ -11,7 +11,7 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	loadfont
 	checkevent EVENT_BEAT_JASMINE
 	iftrue UnknownScript_0x9c159
-	2writetext UnknownText_0x9c1b9
+	writetext UnknownText_0x9c1b9
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x9c2bb, $0000
@@ -20,28 +20,28 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	returnafterbattle
 	setevent EVENT_BEAT_JASMINE
 	loadfont
-	2writetext UnknownText_0x9c33a
+	writetext UnknownText_0x9c33a
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001f
 	checkcode $7
-	2call UnknownScript_0x9c178
+	scall UnknownScript_0x9c178
 UnknownScript_0x9c159: ; 0x9c159
 	checkevent EVENT_GOT_TM23_IRON_TAIL
 	iftrue UnknownScript_0x9c172
-	2writetext UnknownText_0x9c354
+	writetext UnknownText_0x9c354
 	keeptextopen
 	verbosegiveitem TM_23, 1
 	iffalse UnknownScript_0x9c176
 	setevent EVENT_GOT_TM23_IRON_TAIL
-	2writetext UnknownText_0x9c3a5
+	writetext UnknownText_0x9c3a5
 	closetext
 	loadmovesprites
 	end
 ; 0x9c172
 
 UnknownScript_0x9c172: ; 0x9c172
-	2writetext UnknownText_0x9c3d1
+	writetext UnknownText_0x9c3d1
 	closetext
 UnknownScript_0x9c176: ; 0x9c176
 	loadmovesprites
@@ -69,7 +69,7 @@ OlivineGymGuyScript: ; 0x9c187
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iffalse .OlivineGymGuyPreScript
 	loadfont
-	2writetext OlivineGymGuyText
+	writetext OlivineGymGuyText
 	closetext
 	loadmovesprites
 	end
@@ -77,7 +77,7 @@ OlivineGymGuyScript: ; 0x9c187
 
 .OlivineGymGuyWinScript
 	loadfont
-	2writetext OlivineGymGuyWinText
+	writetext OlivineGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -85,7 +85,7 @@ OlivineGymGuyScript: ; 0x9c187
 
 .OlivineGymGuyPreScript
 	loadfont
-	2writetext OlivineGymGuyPreText
+	writetext OlivineGymGuyPreText
 	closetext
 	loadmovesprites
 	end

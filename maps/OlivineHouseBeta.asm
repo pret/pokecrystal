@@ -12,7 +12,7 @@ TeacherScript_0x9c58f: ; 0x9c58f
 
 RhydonScript_0x9c592: ; 0x9c592
 	loadfont
-	2writetext UnknownText_0x9c5f0
+	writetext UnknownText_0x9c5f0
 	cry RHYDON
 	closetext
 	loadmovesprites

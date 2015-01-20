@@ -29,7 +29,7 @@ TrainerFirebreatherOtis: ; 0x1adf65
 FirebreatherOtisScript: ; 0x1adf71
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1adff7
+	writetext UnknownText_0x1adff7
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerYoungsterWarren: ; 0x1adf79
 YoungsterWarrenScript: ; 0x1adf85
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ae051
+	writetext UnknownText_0x1ae051
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerYoungsterJimmy: ; 0x1adf8d
 YoungsterJimmyScript: ; 0x1adf99
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ae0a9
+	writetext UnknownText_0x1ae0a9
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerFirebreatherBurt: ; 0x1adfa1
 FirebreatherBurtScript: ; 0x1adfad
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ae118
+	writetext UnknownText_0x1ae118
 	closetext
 	loadmovesprites
 	end

@@ -11,13 +11,13 @@ GrannyScript_0x18b634: ; 0x18b634
 	loadfont
 	checkevent EVENT_GOT_CLEANSE_TAG
 	iftrue UnknownScript_0x18b649
-	2writetext UnknownText_0x18b655
+	writetext UnknownText_0x18b655
 	keeptextopen
 	verbosegiveitem CLEANSE_TAG, 1
 	iffalse UnknownScript_0x18b64d
 	setevent EVENT_GOT_CLEANSE_TAG
 UnknownScript_0x18b649: ; 0x18b649
-	2writetext UnknownText_0x18b6a7
+	writetext UnknownText_0x18b6a7
 	closetext
 UnknownScript_0x18b64d: ; 0x18b64d
 	loadmovesprites

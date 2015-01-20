@@ -9,7 +9,7 @@ Route26HealSpeechHouse_MapScriptHeader: ; 0x7b123
 TeacherScript_0x7b125: ; 0x7b125
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x7b14d
+	writetext UnknownText_0x7b14d
 	closetext
 	loadmovesprites
 	special $0030
@@ -21,7 +21,7 @@ TeacherScript_0x7b125: ; 0x7b125
 	special $0032
 	special $003d
 	loadfont
-	2writetext UnknownText_0x7b18b
+	writetext UnknownText_0x7b18b
 	closetext
 	loadmovesprites
 	end

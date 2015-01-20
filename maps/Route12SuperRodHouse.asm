@@ -11,23 +11,23 @@ FishingGuruScript_0x7f484: ; 0x7f484
 	loadfont
 	checkevent EVENT_GOT_SUPER_ROD
 	iftrue UnknownScript_0x7f4a0
-	2writetext UnknownText_0x7f4af
+	writetext UnknownText_0x7f4af
 	yesorno
 	iffalse UnknownScript_0x7f4a6
-	2writetext UnknownText_0x7f52f
+	writetext UnknownText_0x7f52f
 	keeptextopen
 	verbosegiveitem SUPER_ROD, 1
 	iffalse UnknownScript_0x7f4aa
 	setevent EVENT_GOT_SUPER_ROD
 UnknownScript_0x7f4a0: ; 0x7f4a0
-	2writetext UnknownText_0x7f57c
+	writetext UnknownText_0x7f57c
 	closetext
 	loadmovesprites
 	end
 ; 0x7f4a6
 
 UnknownScript_0x7f4a6: ; 0x7f4a6
-	2writetext UnknownText_0x7f5ec
+	writetext UnknownText_0x7f5ec
 	closetext
 UnknownScript_0x7f4aa: ; 0x7f4aa
 	loadmovesprites

@@ -19,13 +19,13 @@ TeacherScript_0x5c008: ; 0x5c008
 	loadfont
 	checkevent EVENT_GOT_QUICK_CLAW
 	iftrue UnknownScript_0x5c01d
-	2writetext UnknownText_0x5c265
+	writetext UnknownText_0x5c265
 	keeptextopen
 	verbosegiveitem QUICK_CLAW, 1
 	iffalse UnknownScript_0x5c021
 	setevent EVENT_GOT_QUICK_CLAW
 UnknownScript_0x5c01d: ; 0x5c01d
-	2writetext UnknownText_0x5c30d
+	writetext UnknownText_0x5c30d
 	closetext
 UnknownScript_0x5c021: ; 0x5c021
 	loadmovesprites
@@ -47,7 +47,7 @@ TeacherScript_0x5c029: ; 0x5c029
 GrowlitheScript_0x5c02c: ; 0x5c02c
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5c416
+	writetext UnknownText_0x5c416
 	cry PERSIAN
 	closetext
 	loadmovesprites
@@ -57,7 +57,7 @@ GrowlitheScript_0x5c02c: ; 0x5c02c
 GameboyKidScript_0x5c037: ; 0x5c037
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5c42a
+	writetext UnknownText_0x5c42a
 	closetext
 	loadmovesprites
 	spriteface $e, $0
@@ -94,26 +94,26 @@ SchoolboyJack1Script: ; 0x5c04e
 	iftrue UnknownScript_0x5c108
 	checkevent $025f
 	iftrue UnknownScript_0x5c071
-	2writetext UnknownText_0x5c4f3
+	writetext UnknownText_0x5c4f3
 	keeptextopen
 	setevent $025f
-	2call UnknownScript_0x5c0fc
-	2jump UnknownScript_0x5c074
+	scall UnknownScript_0x5c0fc
+	jump UnknownScript_0x5c074
 ; 0x5c071
 
 UnknownScript_0x5c071: ; 0x5c071
-	2call UnknownScript_0x5c100
+	scall UnknownScript_0x5c100
 UnknownScript_0x5c074: ; 0x5c074
 	askforphonenumber $5
 	if_equal $1, UnknownScript_0x5c110
 	if_equal $2, UnknownScript_0x5c10c
 	trainertotext SCHOOLBOY, JACK1, $0
-	2call UnknownScript_0x5c104
-	2jump UnknownScript_0x5c108
+	scall UnknownScript_0x5c104
+	jump UnknownScript_0x5c108
 ; 0x5c088
 
 UnknownScript_0x5c088: ; 0x5c088
-	2call UnknownScript_0x5c114
+	scall UnknownScript_0x5c114
 	winlosstext SchoolboyJack1BeatenText, $0000
 	copybytetovar $d9f2
 	if_equal $4, UnknownScript_0x5c0a7
@@ -235,7 +235,7 @@ TrainerPokefanmWilliam: ; 0x5c118
 PokefanmWilliamScript: ; 0x5c124
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5c645
+	writetext UnknownText_0x5c645
 	closetext
 	loadmovesprites
 	end
@@ -273,38 +273,38 @@ PokefanfBeverly1Script: ; 0x5c138
 	iffalse UnknownScript_0x5c189
 	checkevent EVENT_SHOWED_BEVERLY_MARILL
 	iftrue UnknownScript_0x5c160
-	2writetext UnknownText_0x5c5bd
+	writetext UnknownText_0x5c5bd
 	keeptextopen
 	setevent EVENT_SHOWED_BEVERLY_MARILL
-	2call UnknownScript_0x5c18f
-	2jump UnknownScript_0x5c163
+	scall UnknownScript_0x5c18f
+	jump UnknownScript_0x5c163
 ; 0x5c160
 
 UnknownScript_0x5c160: ; 0x5c160
-	2call UnknownScript_0x5c193
+	scall UnknownScript_0x5c193
 UnknownScript_0x5c163: ; 0x5c163
 	askforphonenumber $6
 	if_equal $1, UnknownScript_0x5c1a3
 	if_equal $2, UnknownScript_0x5c19f
 	trainertotext POKEFANF, BEVERLY1, $0
-	2call UnknownScript_0x5c197
-	2jump UnknownScript_0x5c19b
+	scall UnknownScript_0x5c197
+	jump UnknownScript_0x5c19b
 ; 0x5c177
 
 UnknownScript_0x5c177: ; 0x5c177
-	2call UnknownScript_0x5c1a7
+	scall UnknownScript_0x5c1a7
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x5c186
 	clearflag $007d
-	2jump UnknownScript_0x5c19b
+	jump UnknownScript_0x5c19b
 ; 0x5c186
 
 UnknownScript_0x5c186: ; 0x5c186
-	2jump UnknownScript_0x5c1ab
+	jump UnknownScript_0x5c1ab
 ; 0x5c189
 
 UnknownScript_0x5c189: ; 0x5c189
-	2writetext UnknownText_0x5c68a
+	writetext UnknownText_0x5c68a
 	closetext
 	loadmovesprites
 	end
@@ -373,7 +373,7 @@ TrainerLassKrise: ; 0x5c1af
 LassKriseScript: ; 0x5c1bb
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5c71d
+	writetext UnknownText_0x5c71d
 	closetext
 	loadmovesprites
 	end

@@ -32,7 +32,7 @@ UnknownScript_0x184947: ; 0x184947
 	applymovement $0, MovementData_0x184a1d
 	applymovement $8, MovementData_0x184a22
 	loadfont
-	2writetext UnknownText_0x184a27
+	writetext UnknownText_0x184a27
 	closetext
 	loadmovesprites
 	showemote $0, $8, 15
@@ -41,12 +41,12 @@ UnknownScript_0x184947: ; 0x184947
 	applymovement $8, MovementData_0x184a24
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x184aec
+	writetext UnknownText_0x184aec
 	closetext
 	loadmovesprites
 	spriteface $8, $1
 	loadfont
-	2writetext UnknownText_0x184bc8
+	writetext UnknownText_0x184bc8
 	pause 15
 	loadmovesprites
 	playsound SFX_WARP_TO
@@ -65,7 +65,7 @@ SageLiScript: ; 0x1849a6
 	loadfont
 	checkevent EVENT_GOT_HM05_FLASH
 	iftrue UnknownScript_0x1849d1
-	2writetext SageLiSeenText
+	writetext SageLiSeenText
 	closetext
 	loadmovesprites
 	winlosstext SageLiBeatenText, $0000
@@ -73,19 +73,19 @@ SageLiScript: ; 0x1849a6
 	startbattle
 	returnafterbattle
 	loadfont
-	2writetext UnknownText_0x184cc2
+	writetext UnknownText_0x184cc2
 	keeptextopen
 	verbosegiveitem HM_05, 1
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
-	2writetext UnknownText_0x184d13
+	writetext UnknownText_0x184d13
 	closetext
 	loadmovesprites
 	end
 ; 0x1849d1
 
 UnknownScript_0x1849d1: ; 0x1849d1
-	2writetext UnknownText_0x184d88
+	writetext UnknownText_0x184d88
 	closetext
 	loadmovesprites
 	end
@@ -114,7 +114,7 @@ TrainerSageJin: ; 0x1849d7
 SageJinScript: ; 0x1849e3
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x184dfa
+	writetext UnknownText_0x184dfa
 	closetext
 	loadmovesprites
 	end
@@ -143,7 +143,7 @@ TrainerSageTroy: ; 0x1849eb
 SageTroyScript: ; 0x1849f7
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x184ea4
+	writetext UnknownText_0x184ea4
 	closetext
 	loadmovesprites
 	end
@@ -172,7 +172,7 @@ TrainerSageNeal: ; 0x1849ff
 SageNealScript: ; 0x184a0b
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x184f12
+	writetext UnknownText_0x184f12
 	closetext
 	loadmovesprites
 	end

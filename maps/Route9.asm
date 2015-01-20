@@ -29,7 +29,7 @@ TrainerCamperDean: ; 0x1aaf27
 CamperDeanScript: ; 0x1aaf33
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1aafd9
+	writetext UnknownText_0x1aafd9
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerPicnickerHeidi: ; 0x1aaf3b
 PicnickerHeidiScript: ; 0x1aaf47
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ab07c
+	writetext UnknownText_0x1ab07c
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerCamperSid: ; 0x1aaf4f
 CamperSidScript: ; 0x1aaf5b
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ab0f6
+	writetext UnknownText_0x1ab0f6
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerPicnickerEdna: ; 0x1aaf63
 PicnickerEdnaScript: ; 0x1aaf6f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ab15f
+	writetext UnknownText_0x1ab15f
 	closetext
 	loadmovesprites
 	end
@@ -145,7 +145,7 @@ TrainerHikerTim: ; 0x1aaf77
 HikerTimScript: ; 0x1aaf83
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ab210
+	writetext UnknownText_0x1ab210
 	closetext
 	loadmovesprites
 	end
@@ -174,7 +174,7 @@ TrainerHikerSidney: ; 0x1aaf8b
 HikerSidneyScript: ; 0x1aaf97
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ab278
+	writetext UnknownText_0x1ab278
 	closetext
 	loadmovesprites
 	end

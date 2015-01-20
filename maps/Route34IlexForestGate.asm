@@ -35,7 +35,7 @@ UnknownScript_0x62d3d: ; 0x62d3d
 	stopfollow
 	spriteface $0, $0
 	loadfont
-	2writetext UnknownText_0x62e41
+	writetext UnknownText_0x62e41
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x62d9a
@@ -50,13 +50,13 @@ TeacherScript_0x62d63: ; 0x62d63
 	iftrue UnknownScript_0x62d84
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
 	iftrue UnknownScript_0x62d7e
-	2writetext UnknownText_0x62d9d
+	writetext UnknownText_0x62d9d
 	keeptextopen
 	verbosegiveitem TM_12, 1
 	iffalse UnknownScript_0x62d82
 	setevent EVENT_GOT_TM12_SWEET_SCENT
 UnknownScript_0x62d7e: ; 0x62d7e
-	2writetext UnknownText_0x62df6
+	writetext UnknownText_0x62df6
 	closetext
 UnknownScript_0x62d82: ; 0x62d82
 	loadmovesprites
@@ -64,7 +64,7 @@ UnknownScript_0x62d82: ; 0x62d82
 ; 0x62d84
 
 UnknownScript_0x62d84: ; 0x62d84
-	2writetext UnknownText_0x62e41
+	writetext UnknownText_0x62e41
 	keeptextopen
 	loadmovesprites
 	end
@@ -72,7 +72,7 @@ UnknownScript_0x62d84: ; 0x62d84
 
 ButterfreeScript_0x62d8a: ; 0x62d8a
 	loadfont
-	2writetext UnknownText_0x62e83
+	writetext UnknownText_0x62e83
 	cry BUTTERFREE
 	closetext
 	loadmovesprites

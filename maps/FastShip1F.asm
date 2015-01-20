@@ -51,14 +51,14 @@ SailorScript_0x75160: ; 0x75160
 	iftrue UnknownScript_0x7517a
 	checkevent $002f
 	iftrue UnknownScript_0x75174
-	2writetext UnknownText_0x7523b
+	writetext UnknownText_0x7523b
 	closetext
 	loadmovesprites
 	end
 ; 0x75174
 
 UnknownScript_0x75174: ; 0x75174
-	2writetext UnknownText_0x7529b
+	writetext UnknownText_0x7529b
 	closetext
 	loadmovesprites
 	end
@@ -67,10 +67,10 @@ UnknownScript_0x75174: ; 0x75174
 UnknownScript_0x7517a: ; 0x7517a
 	checkevent $002f
 	iftrue UnknownScript_0x7519c
-	2writetext UnknownText_0x754be
+	writetext UnknownText_0x754be
 	closetext
 	loadmovesprites
-	2call UnknownScript_0x751b8
+	scall UnknownScript_0x751b8
 	playsound SFX_EXIT_BUILDING
 	special $002e
 	waitbutton
@@ -81,10 +81,10 @@ UnknownScript_0x7517a: ; 0x7517a
 ; 0x7519c
 
 UnknownScript_0x7519c: ; 0x7519c
-	2writetext UnknownText_0x7548d
+	writetext UnknownText_0x7548d
 	closetext
 	loadmovesprites
-	2call UnknownScript_0x751b8
+	scall UnknownScript_0x751b8
 	playsound SFX_EXIT_BUILDING
 	special $002e
 	waitbutton
@@ -113,14 +113,14 @@ SailorScript_0x751d0: ; 0x751d0
 	loadfont
 	checkevent $0030
 	iftrue UnknownScript_0x751de
-	2writetext UnknownText_0x752f9
+	writetext UnknownText_0x752f9
 	closetext
 	loadmovesprites
 	end
 ; 0x751de
 
 UnknownScript_0x751de: ; 0x751de
-	2writetext UnknownText_0x7534f
+	writetext UnknownText_0x7534f
 	closetext
 	loadmovesprites
 	end
@@ -141,7 +141,7 @@ UnknownScript_0x751eb: ; 0x751eb
 	applymovement $0, MovementData_0x7522e
 	applymovement $5, MovementData_0x75220
 	loadfont
-	2writetext UnknownText_0x75412
+	writetext UnknownText_0x75412
 	closetext
 	loadmovesprites
 	spriteface $0, $3

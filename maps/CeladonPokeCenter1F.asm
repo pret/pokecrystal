@@ -25,14 +25,14 @@ PharmacistScript_0x71e2b: ; 0x71e2b
 SuperNerdScript_0x71e2e: ; 0x71e2e
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x71f22
+	writetext UnknownText_0x71f22
 	keeptextopen
 	writebyte SUICUNE
 	special $0097
 	iffalse UnknownScript_0x71e46
 	special $0096
 	iftrue UnknownScript_0x71e48
-	2writetext UnknownText_0x7201a
+	writetext UnknownText_0x7201a
 	closetext
 UnknownScript_0x71e46: ; 0x71e46
 	loadmovesprites
@@ -40,13 +40,13 @@ UnknownScript_0x71e46: ; 0x71e46
 ; 0x71e48
 
 UnknownScript_0x71e48: ; 0x71e48
-	2writetext UnknownText_0x71f65
+	writetext UnknownText_0x71f65
 	closetext
 	loadmovesprites
 	checkcode $9
 	if_equal $1, UnknownScript_0x71e5a
 	applymovement $6, MovementData_0x71e6b
-	2jump UnknownScript_0x71e5e
+	jump UnknownScript_0x71e5e
 ; 0x71e5a
 
 UnknownScript_0x71e5a: ; 0x71e5a

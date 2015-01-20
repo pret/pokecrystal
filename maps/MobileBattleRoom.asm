@@ -33,11 +33,11 @@ MapMobileBattleRoomSignpost0Script: ; 0x1935da
 	iffalse UnknownScript_0x193624
 	if_equal $1, UnknownScript_0x1935f4
 	if_equal $2, UnknownScript_0x19360d
-	2jump UnknownScript_0x193624
+	jump UnknownScript_0x193624
 ; 0x1935f4
 
 UnknownScript_0x1935f4: ; 0x1935f4
-	2writetext UnknownText_0x193644
+	writetext UnknownText_0x193644
 	pause 20
 	loadmovesprites
 	special $002e
@@ -54,7 +54,7 @@ UnknownScript_0x19360d: ; 0x19360d
 	iftrue UnknownScript_0x193624
 UnknownScript_0x193619: ; 0x193619
 	special $00a2
-	2writetext UnknownText_0x193626
+	writetext UnknownText_0x193626
 	closetext
 	reloadmappart
 	special $0081

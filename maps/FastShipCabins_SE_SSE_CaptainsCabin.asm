@@ -15,14 +15,14 @@ CaptainScript_0x75ea7: ; 0x75ea7
 	loadfont
 	checkevent $0030
 	iftrue UnknownScript_0x75eb5
-	2writetext UnknownText_0x76012
+	writetext UnknownText_0x76012
 	closetext
 	loadmovesprites
 	end
 ; 0x75eb5
 
 UnknownScript_0x75eb5: ; 0x75eb5
-	2writetext UnknownText_0x76064
+	writetext UnknownText_0x76064
 	closetext
 	loadmovesprites
 	end
@@ -31,12 +31,12 @@ UnknownScript_0x75eb5: ; 0x75eb5
 TwinScript_0x75ebb: ; 0x75ebb
 	spriteface $5, $3
 	loadfont
-	2writetext UnknownText_0x761e0
+	writetext UnknownText_0x761e0
 	closetext
 	loadmovesprites
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x7621f
+	writetext UnknownText_0x7621f
 	closetext
 	loadmovesprites
 	special $0030
@@ -55,26 +55,26 @@ TwinScript_0x75ebb: ; 0x75ebb
 	checkflag $0063
 	iftrue UnknownScript_0x75f03
 	loadfont
-	2writetext UnknownText_0x76284
+	writetext UnknownText_0x76284
 	closetext
 	loadmovesprites
-	2jump UnknownScript_0x75f09
+	jump UnknownScript_0x75f09
 ; 0x75f03
 
 UnknownScript_0x75f03: ; 0x75f03
 	loadfont
-	2writetext UnknownText_0x762c6
+	writetext UnknownText_0x762c6
 	closetext
 	loadmovesprites
 UnknownScript_0x75f09: ; 0x75f09
 	spriteface $5, $0
 	applymovement $3, MovementData_0x76010
 	loadfont
-	2writetext UnknownText_0x76143
+	writetext UnknownText_0x76143
 	keeptextopen
 	setevent $072b
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
-	2jump UnknownScript_0x75f37
+	jump UnknownScript_0x75f37
 ; 0x75f1f
 
 GentlemanScript_0x75f1f: ; 0x75f1f
@@ -84,7 +84,7 @@ GentlemanScript_0x75f1f: ; 0x75f1f
 	iftrue UnknownScript_0x75f67
 	checkevent $0732
 	iftrue UnknownScript_0x75f58
-	2writetext UnknownText_0x760ae
+	writetext UnknownText_0x760ae
 	closetext
 	loadmovesprites
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
@@ -92,7 +92,7 @@ GentlemanScript_0x75f1f: ; 0x75f1f
 ; 0x75f37
 
 UnknownScript_0x75f37: ; 0x75f37
-	2writetext UnknownText_0x7619b
+	writetext UnknownText_0x7619b
 	keeptextopen
 	verbosegiveitem METAL_COAT, 1
 	iffalse UnknownScript_0x75f44
@@ -103,7 +103,7 @@ UnknownScript_0x75f44: ; 0x75f44
 	playsound SFX_ELEVATOR_END
 	pause 30
 	loadfont
-	2writetext UnknownText_0x76645
+	writetext UnknownText_0x76645
 	closetext
 	setevent $0031
 	setevent $0032
@@ -112,7 +112,7 @@ UnknownScript_0x75f44: ; 0x75f44
 ; 0x75f58
 
 UnknownScript_0x75f58: ; 0x75f58
-	2writetext UnknownText_0x7619b
+	writetext UnknownText_0x7619b
 	keeptextopen
 	verbosegiveitem METAL_COAT, 1
 	iffalse UnknownScript_0x75f65
@@ -123,7 +123,7 @@ UnknownScript_0x75f65: ; 0x75f65
 ; 0x75f67
 
 UnknownScript_0x75f67: ; 0x75f67
-	2writetext UnknownText_0x761be
+	writetext UnknownText_0x761be
 	closetext
 	loadmovesprites
 	end
@@ -132,7 +132,7 @@ UnknownScript_0x75f67: ; 0x75f67
 TwinScript_0x75f6d: ; 0x75f6d
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x7630d
+	writetext UnknownText_0x7630d
 	closetext
 	loadmovesprites
 	end
@@ -161,7 +161,7 @@ TrainerPokefanmColin: ; 0x75f75
 PokefanmColinScript: ; 0x75f81
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7635b
+	writetext UnknownText_0x7635b
 	closetext
 	loadmovesprites
 	end
@@ -190,7 +190,7 @@ TrainerTwinsMegandpeg1: ; 0x75f89
 TwinsMegandpeg1Script: ; 0x75f95
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x763c2
+	writetext UnknownText_0x763c2
 	closetext
 	loadmovesprites
 	end
@@ -219,7 +219,7 @@ TrainerTwinsMegandpeg2: ; 0x75f9d
 TwinsMegandpeg2Script: ; 0x75fa9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76428
+	writetext UnknownText_0x76428
 	closetext
 	loadmovesprites
 	end
@@ -248,7 +248,7 @@ TrainerPsychicRodney: ; 0x75fb1
 PsychicRodneyScript: ; 0x75fbd
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76497
+	writetext UnknownText_0x76497
 	closetext
 	loadmovesprites
 	end
@@ -277,7 +277,7 @@ TrainerPokefanmJeremy: ; 0x75fc5
 PokefanmJeremyScript: ; 0x75fd1
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7651c
+	writetext UnknownText_0x7651c
 	closetext
 	loadmovesprites
 	end
@@ -306,7 +306,7 @@ TrainerPokefanfGeorgia: ; 0x75fd9
 PokefanfGeorgiaScript: ; 0x75fe5
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76596
+	writetext UnknownText_0x76596
 	closetext
 	loadmovesprites
 	end
@@ -335,7 +335,7 @@ TrainerSupernerdShawn: ; 0x75fed
 SupernerdShawnScript: ; 0x75ff9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7660f
+	writetext UnknownText_0x7660f
 	closetext
 	loadmovesprites
 	end

@@ -10,24 +10,24 @@ FisherScript_0x68a5c: ; 0x68a5c
 	applymovement $2, MovementData_0x68b2d
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x68b3b
+	writetext UnknownText_0x68b3b
 	yesorno
 	iffalse UnknownScript_0x68a70
-	2writetext UnknownText_0x68bbd
+	writetext UnknownText_0x68bbd
 	yesorno
 	iffalse UnknownScript_0x68a7d
 UnknownScript_0x68a70: ; 0x68a70
-	2writetext UnknownText_0x68c51
+	writetext UnknownText_0x68c51
 	yesorno
 	iffalse UnknownScript_0x68a7d
-	2writetext UnknownText_0x68c7b
+	writetext UnknownText_0x68c7b
 	closetext
 	loadmovesprites
 	end
 ; 0x68a7d
 
 UnknownScript_0x68a7d: ; 0x68a7d
-	2writetext UnknownText_0x68d31
+	writetext UnknownText_0x68d31
 	closetext
 	loadmovesprites
 	end
@@ -40,7 +40,7 @@ YoungsterScript_0x68a83: ; 0x68a83
 GameboyKidScript_0x68a86: ; 0x68a86
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x68dda
+	writetext UnknownText_0x68dda
 	closetext
 	loadmovesprites
 	spriteface $4, $0
@@ -50,7 +50,7 @@ GameboyKidScript_0x68a86: ; 0x68a86
 GameboyKidScript_0x68a91: ; 0x68a91
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x68e07
+	writetext UnknownText_0x68e07
 	closetext
 	loadmovesprites
 	spriteface $5, $0
@@ -63,7 +63,7 @@ YoungsterScript_0x68a9c: ; 0x68a9c
 
 MapEarlsPokemonAcademySignpost3Script: ; 0x68a9f
 	loadfont
-	2writetext UnknownText_0x68eb2
+	writetext UnknownText_0x68eb2
 UnknownScript_0x68aa3: ; 0x68aa3
 	loadmenudata MenuDataHeader_0x68ae1
 	interpretmenu
@@ -78,33 +78,33 @@ UnknownScript_0x68aa3: ; 0x68aa3
 ; 0x68abe
 
 UnknownScript_0x68abe: ; 0x68abe
-	2writetext UnknownText_0x68efe
+	writetext UnknownText_0x68efe
 	closetext
-	2jump UnknownScript_0x68aa3
+	jump UnknownScript_0x68aa3
 ; 0x68ac5
 
 UnknownScript_0x68ac5: ; 0x68ac5
-	2writetext UnknownText_0x68f80
+	writetext UnknownText_0x68f80
 	closetext
-	2jump UnknownScript_0x68aa3
+	jump UnknownScript_0x68aa3
 ; 0x68acc
 
 UnknownScript_0x68acc: ; 0x68acc
-	2writetext UnknownText_0x68fe2
+	writetext UnknownText_0x68fe2
 	closetext
-	2jump UnknownScript_0x68aa3
+	jump UnknownScript_0x68aa3
 ; 0x68ad3
 
 UnknownScript_0x68ad3: ; 0x68ad3
-	2writetext UnknownText_0x69055
+	writetext UnknownText_0x69055
 	closetext
-	2jump UnknownScript_0x68aa3
+	jump UnknownScript_0x68aa3
 ; 0x68ada
 
 UnknownScript_0x68ada: ; 0x68ada
-	2writetext UnknownText_0x690cb
+	writetext UnknownText_0x690cb
 	closetext
-	2jump UnknownScript_0x68aa3
+	jump UnknownScript_0x68aa3
 ; 0x68ae1
 
 
@@ -136,16 +136,16 @@ UnknownText_0x68af2: ; 0x68af2
 
 PokedexScript_0x68b0b: ; 0x68b0b
 	loadfont
-	2writetext UnknownText_0x69136
+	writetext UnknownText_0x69136
 	yesorno
 	iffalse UnknownScript_0x68b25
-	2writetext UnknownText_0x69197
+	writetext UnknownText_0x69197
 	yesorno
 	iffalse UnknownScript_0x68b25
-	2writetext UnknownText_0x69207
+	writetext UnknownText_0x69207
 	yesorno
 	iffalse UnknownScript_0x68b25
-	2writetext UnknownText_0x69287
+	writetext UnknownText_0x69287
 	closetext
 UnknownScript_0x68b25: ; 0x68b25
 	loadmovesprites

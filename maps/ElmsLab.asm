@@ -56,18 +56,18 @@ UnknownScript_0x78b8c: ; 0x78b8c
 	showemote $0, $2, 15
 	spriteface $2, $3
 	loadfont
-	2writetext UnknownText_0x78fb6
+	writetext UnknownText_0x78fb6
 UnknownScript_0x78b9b: ; 0x78b9b
 	yesorno
 	iftrue UnknownScript_0x78ba5
-	2writetext UnknownText_0x7911a
-	2jump UnknownScript_0x78b9b
+	writetext UnknownText_0x7911a
+	jump UnknownScript_0x78b9b
 ; 0x78ba5
 
 UnknownScript_0x78ba5: ; 0x78ba5
-	2writetext UnknownText_0x790fa
+	writetext UnknownText_0x790fa
 	keeptextopen
-	2writetext UnknownText_0x7913a
+	writetext UnknownText_0x7913a
 	closetext
 	loadmovesprites
 	playsound SFX_GLASS_TING
@@ -75,12 +75,12 @@ UnknownScript_0x78ba5: ; 0x78ba5
 	showemote $0, $2, 10
 	spriteface $2, $0
 	loadfont
-	2writetext UnknownText_0x791ae
+	writetext UnknownText_0x791ae
 	closetext
 	loadmovesprites
 	loadfont
 	spriteface $2, $3
-	2writetext UnknownText_0x791df
+	writetext UnknownText_0x791df
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x78fa0
@@ -88,7 +88,7 @@ UnknownScript_0x78ba5: ; 0x78ba5
 	applymovement $2, MovementData_0x78fa2
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x792ff
+	writetext UnknownText_0x792ff
 	closetext
 	dotrigger $1
 	loadmovesprites
@@ -120,7 +120,7 @@ UnknownScript_0x78bfa: ; 0x78bfa
 	writebyte TOGETIC
 	special $0043
 	iftrue ShowElmTogepiScript
-	2writetext UnknownText_0x79a40
+	writetext UnknownText_0x79a40
 	closetext
 	loadmovesprites
 	end
@@ -133,7 +133,7 @@ UnknownScript_0x78c22: ; 0x78c22
 	writebyte TOGETIC
 	special $0043
 	iftrue ShowElmTogepiScript
-	2jump UnknownScript_0x78c41
+	jump UnknownScript_0x78c41
 ; 0x78c35
 
 UnknownScript_0x78c35: ; 0x78c35
@@ -152,7 +152,7 @@ UnknownScript_0x78c41: ; 0x78c41
 	iftrue ElmAfterTheftScript
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue ElmDescribesMrPokemonScript
-	2writetext UnknownText_0x79375
+	writetext UnknownText_0x79375
 	closetext
 	loadmovesprites
 	end
@@ -161,7 +161,7 @@ UnknownScript_0x78c41: ; 0x78c41
 LabTryToLeaveScript: ; 0x78c65
 	spriteface $2, $0
 	loadfont
-	2writetext LabWhereGoingText
+	writetext LabWhereGoingText
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x78f70
@@ -178,16 +178,16 @@ CyndaquilPokeBallScript: ; 0x78c73
 	closetext
 	pokepicyesorno
 	loadfont
-	2writetext TakeCyndaquilText
+	writetext TakeCyndaquilText
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear $4
 	setevent EVENT_GOT_CYNDAQUIL_FROM_ELM
-	2writetext ChoseStarterText
+	writetext ChoseStarterText
 	keeptextopen
 	waitbutton
 	pokenamemem CYNDAQUIL, $0
-	2writetext ReceivedStarterText
+	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
@@ -196,7 +196,7 @@ CyndaquilPokeBallScript: ; 0x78c73
 	checkcode $9
 	if_equal $3, ElmDirectionsScript
 	applymovement $0, AfterCyndaquilMovement
-	2jump ElmDirectionsScript
+	jump ElmDirectionsScript
 ; 0x78cb5
 
 TotodilePokeBallScript: ; 0x78cb5
@@ -209,23 +209,23 @@ TotodilePokeBallScript: ; 0x78cb5
 	closetext
 	pokepicyesorno
 	loadfont
-	2writetext TakeTotodileText
+	writetext TakeTotodileText
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear $5
 	setevent EVENT_GOT_TOTODILE_FROM_ELM
-	2writetext ChoseStarterText
+	writetext ChoseStarterText
 	keeptextopen
 	waitbutton
 	pokenamemem TOTODILE, $0
-	2writetext ReceivedStarterText
+	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
 	givepoke TOTODILE, 5, BERRY, 0
 	loadmovesprites
 	applymovement $0, AfterTotodileMovement
-	2jump ElmDirectionsScript
+	jump ElmDirectionsScript
 ; 0x78cf1
 
 ChikoritaPokeBallScript: ; 0x78cf1
@@ -238,27 +238,27 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	closetext
 	pokepicyesorno
 	loadfont
-	2writetext TakeChikoritaText
+	writetext TakeChikoritaText
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear $6
 	setevent EVENT_GOT_CHIKORITA_FROM_ELM
-	2writetext ChoseStarterText
+	writetext ChoseStarterText
 	keeptextopen
 	waitbutton
 	pokenamemem CHIKORITA, $0
-	2writetext ReceivedStarterText
+	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
 	givepoke CHIKORITA, 5, BERRY, 0
 	loadmovesprites
 	applymovement $0, AfterChikoritaMovement
-	2jump ElmDirectionsScript
+	jump ElmDirectionsScript
 ; 0x78d2d
 
 DidntChooseStarterScript: ; 0x78d2d
-	2writetext DidntChooseStarterText
+	writetext DidntChooseStarterText
 	closetext
 	loadmovesprites
 	end
@@ -267,24 +267,24 @@ DidntChooseStarterScript: ; 0x78d2d
 ElmDirectionsScript: ; 0x78d33
 	spriteface $0, $1
 	loadfont
-	2writetext ElmDirectionsText1
+	writetext ElmDirectionsText1
 	closetext
 	loadmovesprites
 	addcellnum $4
 	loadfont
-	2writetext GotElmsNumberText
+	writetext GotElmsNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	closetext
 	loadmovesprites
 	spriteface $2, $2
 	loadfont
-	2writetext ElmDirectionsText2
+	writetext ElmDirectionsText2
 	closetext
 	loadmovesprites
 	spriteface $2, $0
 	loadfont
-	2writetext ElmDirectionsText3
+	writetext ElmDirectionsText3
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
@@ -295,7 +295,7 @@ ElmDirectionsScript: ; 0x78d33
 ; 0x78d67
 
 ElmDescribesMrPokemonScript: ; 0x78d67
-	2writetext ElmDescribesMrPokemonText
+	writetext ElmDescribesMrPokemonText
 	closetext
 	loadmovesprites
 	end
@@ -303,7 +303,7 @@ ElmDescribesMrPokemonScript: ; 0x78d67
 
 LookAtElmPokeBallScript: ; 0x78d6d
 	loadfont
-	2writetext ElmPokeBallText
+	writetext ElmPokeBallText
 	closetext
 	loadmovesprites
 	end
@@ -313,14 +313,14 @@ MapElmsLabSignpost0Script: ; 0x78d74
 	loadfont
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x78d81
-	2writetext UnknownText_0x79690
+	writetext UnknownText_0x79690
 	closetext
 	loadmovesprites
 	end
 ; 0x78d81
 
 UnknownScript_0x78d81: ; 0x78d81
-	2writetext UnknownText_0x796aa
+	writetext UnknownText_0x796aa
 	yesorno
 	iftrue UnknownScript_0x78d8a
 	loadmovesprites
@@ -346,27 +346,27 @@ ElmAfterTheftDoneScript: ; 0x78d9f
 ; 0x78da2
 
 ElmAfterTheftScript: ; 0x78da2
-	2writetext ElmAfterTheftText1
+	writetext ElmAfterTheftText1
 	checkitem MYSTERY_EGG
 	iffalse ElmAfterTheftDoneScript
 	keeptextopen
-	2writetext ElmAfterTheftText2
+	writetext ElmAfterTheftText2
 	closetext
 	takeitem MYSTERY_EGG, 1
-	2call ElmJumpBackScript1
-	2writetext ElmAfterTheftText3
+	scall ElmJumpBackScript1
+	writetext ElmAfterTheftText3
 	closetext
-	2call ElmJumpBackScript2
-	2writetext ElmAfterTheftText4
+	scall ElmJumpBackScript2
+	writetext ElmAfterTheftText4
 	keeptextopen
-	2writetext ElmAfterTheftText5
+	writetext ElmAfterTheftText5
 	keeptextopen
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag $0010
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
 	clearevent $0715
 	setevent $0714
-	2writetext ElmAfterTheftText6
+	writetext ElmAfterTheftText6
 	closetext
 	loadmovesprites
 	dotrigger $6
@@ -374,43 +374,43 @@ ElmAfterTheftScript: ; 0x78da2
 ; 0x78ddc
 
 ElmStudyingEggScript: ; 0x78ddc
-	2writetext ElmStudyingEggText
+	writetext ElmStudyingEggText
 	closetext
 	loadmovesprites
 	end
 ; 0x78de2
 
 ElmAideHasEggScript: ; 0x78de2
-	2writetext ElmAideHasEggText
+	writetext ElmAideHasEggText
 	closetext
 	loadmovesprites
 	end
 ; 0x78de8
 
 ElmWaitingEggHatchScript: ; 0x78de8
-	2writetext ElmWaitingEggHatchText
+	writetext ElmWaitingEggHatchText
 	closetext
 	loadmovesprites
 	end
 ; 0x78dee
 
 ShowElmTogepiScript: ; 0x78dee
-	2writetext ShowElmTogepiText1
+	writetext ShowElmTogepiText1
 	closetext
 	loadmovesprites
 	showemote $0, $2, 15
 	setevent EVENT_SHOWED_TOGEPI_TO_ELM
 	loadfont
-	2writetext ShowElmTogepiText2
+	writetext ShowElmTogepiText2
 	keeptextopen
-	2writetext ShowElmTogepiText3
+	writetext ShowElmTogepiText3
 	keeptextopen
 UnknownScript_0x78e03: ; 0x78e03
-	2writetext ElmGiveEverstoneText1
+	writetext ElmGiveEverstoneText1
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x78e1a
-	2writetext ElmGiveEverstoneText2
+	writetext ElmGiveEverstoneText2
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_EVERSTONE_FROM_ELM
@@ -418,7 +418,7 @@ UnknownScript_0x78e03: ; 0x78e03
 ; 0x78e16
 
 UnknownScript_0x78e16: ; 0x78e16
-	2writetext UnknownText_0x79c37
+	writetext UnknownText_0x79c37
 	closetext
 UnknownScript_0x78e1a: ; 0x78e1a
 	loadmovesprites
@@ -426,12 +426,12 @@ UnknownScript_0x78e1a: ; 0x78e1a
 ; 0x78e1c
 
 ElmGiveMasterBallScript: ; 0x78e1c
-	2writetext ElmGiveMasterBallText1
+	writetext ElmGiveMasterBallText1
 	keeptextopen
 	verbosegiveitem MASTER_BALL, 1
 	iffalse .notdone
 	setevent EVENT_GOT_MASTER_BALL_FROM_ELM
-	2writetext ElmGiveMasterBallText2
+	writetext ElmGiveMasterBallText2
 	closetext
 .notdone
 	loadmovesprites
@@ -439,11 +439,11 @@ ElmGiveMasterBallScript: ; 0x78e1c
 ; 0x78e2f
 
 ElmGiveTicketScript: ; 0x78e2f
-	2writetext ElmGiveTicketText1
+	writetext ElmGiveTicketText1
 	keeptextopen
 	verbosegiveitem S_S_TICKET, 1
 	setevent EVENT_GOT_SS_TICKET_FROM_ELM
-	2writetext ElmGiveTicketText2
+	writetext ElmGiveTicketText2
 	closetext
 	loadmovesprites
 	end
@@ -496,7 +496,7 @@ UnknownScript_0x78e79: ; 0x78e79
 UnknownScript_0x78e7f: ; 0x78e7f
 	applymovement $3, MovementData_0x78f7e
 	spriteface $0, $0
-	2call UnknownScript_0x78e9d
+	scall UnknownScript_0x78e9d
 	applymovement $3, MovementData_0x78f87
 	end
 ; 0x78e8e
@@ -504,17 +504,17 @@ UnknownScript_0x78e7f: ; 0x78e7f
 UnknownScript_0x78e8e: ; 0x78e8e
 	applymovement $3, MovementData_0x78f82
 	spriteface $0, $0
-	2call UnknownScript_0x78e9d
+	scall UnknownScript_0x78e9d
 	applymovement $3, MovementData_0x78f8b
 	end
 ; 0x78e9d
 
 UnknownScript_0x78e9d: ; 0x78e9d
 	loadfont
-	2writetext UnknownText_0x79f38
+	writetext UnknownText_0x79f38
 	keeptextopen
 	verbosegiveitem POTION, 1
-	2writetext UnknownText_0x79f65
+	writetext UnknownText_0x79f65
 	closetext
 	loadmovesprites
 	dotrigger $2
@@ -524,7 +524,7 @@ UnknownScript_0x78e9d: ; 0x78e9d
 UnknownScript_0x78ead: ; 0x78ead
 	applymovement $3, MovementData_0x78f7e
 	spriteface $0, $0
-	2call UnknownScript_0x78ecb
+	scall UnknownScript_0x78ecb
 	applymovement $3, MovementData_0x78f87
 	end
 ; 0x78ebc
@@ -532,19 +532,19 @@ UnknownScript_0x78ead: ; 0x78ead
 UnknownScript_0x78ebc: ; 0x78ebc
 	applymovement $3, MovementData_0x78f82
 	spriteface $0, $0
-	2call UnknownScript_0x78ecb
+	scall UnknownScript_0x78ecb
 	applymovement $3, MovementData_0x78f8b
 	end
 ; 0x78ecb
 
 UnknownScript_0x78ecb: ; 0x78ecb
 	loadfont
-	2writetext UnknownText_0x7a078
+	writetext UnknownText_0x7a078
 	keeptextopen
 	itemtotext POKE_BALL, $1
-	2call UnknownScript_0x78ee2
+	scall UnknownScript_0x78ee2
 	giveitem POKE_BALL, $5
-	2writetext UnknownText_0x7a09a
+	writetext UnknownText_0x7a09a
 	keeptextopen
 	itemnotify
 	loadmovesprites
@@ -566,28 +566,28 @@ ElmsAideScript: ; 0x78ee6
 	iftrue UnknownScript_0x78f06
 	checkevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	iftrue UnknownScript_0x78f00
-	2writetext UnknownText_0x79f65
+	writetext UnknownText_0x79f65
 	closetext
 	loadmovesprites
 	end
 ; 0x78f00
 
 UnknownScript_0x78f00: ; 0x78f00
-	2writetext UnknownText_0x79f95
+	writetext UnknownText_0x79f95
 	closetext
 	loadmovesprites
 	end
 ; 0x78f06
 
 UnknownScript_0x78f06: ; 0x78f06
-	2writetext UnknownText_0x7a09a
+	writetext UnknownText_0x7a09a
 	closetext
 	loadmovesprites
 	end
 ; 0x78f0c
 
 UnknownScript_0x78f0c: ; 0x78f0c
-	2writetext UnknownText_0x79c65
+	writetext UnknownText_0x79c65
 	closetext
 	loadmovesprites
 	end
@@ -602,10 +602,10 @@ MeetCopScript: ; 0x78f16
 CopScript: ; 0x78f1a
 	spriteface $7, $2
 	loadfont
-	2writetext UnknownText_0x7a0f0
+	writetext UnknownText_0x7a0f0
 	keeptextopen
 	special $0024
-	2writetext UnknownText_0x7a1c0
+	writetext UnknownText_0x7a1c0
 	closetext
 	loadmovesprites
 	applymovement $7, MovementData_0x78f78
@@ -620,18 +620,18 @@ MapElmsLabSignpost14Script: ; 0x78f33
 	iftrue UnknownScript_0x78f49
 	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	iftrue UnknownScript_0x78f43
-	2jump UnknownScript_0x78f49
+	jump UnknownScript_0x78f49
 ; 0x78f43
 
 UnknownScript_0x78f43: ; 0x78f43
-	2writetext UnknownText_0x7a231
+	writetext UnknownText_0x7a231
 	closetext
 	loadmovesprites
 	end
 ; 0x78f49
 
 UnknownScript_0x78f49: ; 0x78f49
-	2writetext UnknownText_0x7a1fd
+	writetext UnknownText_0x7a1fd
 	closetext
 	loadmovesprites
 	end

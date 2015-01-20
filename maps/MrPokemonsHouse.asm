@@ -23,32 +23,32 @@ UnknownScript_0x196e56: ; 0x196e56
 	showemote $0, $2, 15
 	spriteface $2, $0
 	loadfont
-	2writetext UnknownText_0x196f66
+	writetext UnknownText_0x196f66
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x196f5a
 	loadfont
-	2writetext UnknownText_0x196fa8
+	writetext UnknownText_0x196fa8
 	keeptextopen
 	waitbutton
 	giveitem MYSTERY_EGG, $1
-	2writetext UnknownText_0x196fd2
+	writetext UnknownText_0x196fd2
 	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
-	2writetext UnknownText_0x196feb
+	writetext UnknownText_0x196feb
 	keeptextopen
 	spriteface $2, $3
-	2writetext UnknownText_0x197092
+	writetext UnknownText_0x197092
 	keeptextopen
 	spriteface $2, $0
 	spriteface $3, $2
-	2writetext UnknownText_0x1970b7
+	writetext UnknownText_0x1970b7
 	closetext
 	loadmovesprites
-	2jump UnknownScript_0x196ec9
+	jump UnknownScript_0x196ec9
 ; 0x196e97
 
 GentlemanScript_0x196e97: ; 0x196e97
@@ -58,31 +58,31 @@ GentlemanScript_0x196e97: ; 0x196e97
 	iftrue UnknownScript_0x196eb0
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196eaa
-	2writetext UnknownText_0x197134
+	writetext UnknownText_0x197134
 	closetext
 	loadmovesprites
 	end
 ; 0x196eaa
 
 UnknownScript_0x196eaa: ; 0x196eaa
-	2writetext UnknownText_0x19714a
+	writetext UnknownText_0x19714a
 	closetext
 	loadmovesprites
 	end
 ; 0x196eb0
 
 UnknownScript_0x196eb0: ; 0x196eb0
-	2writetext UnknownText_0x197476
+	writetext UnknownText_0x197476
 	yesorno
 	iffalse UnknownScript_0x196ec3
 	verbosegiveitem EXP_SHARE, 1
 	iffalse UnknownScript_0x196ec7
 	takeitem RED_SCALE, 1
-	2jump UnknownScript_0x196eaa
+	jump UnknownScript_0x196eaa
 ; 0x196ec3
 
 UnknownScript_0x196ec3: ; 0x196ec3
-	2writetext UnknownText_0x19750d
+	writetext UnknownText_0x19750d
 	closetext
 UnknownScript_0x196ec7: ; 0x196ec7
 	loadmovesprites
@@ -94,14 +94,14 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	applymovement $3, MovementData_0x196f5d
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x197185
+	writetext UnknownText_0x197185
 	keeptextopen
 	waitbutton
-	2writetext UnknownText_0x1973cc
+	writetext UnknownText_0x1973cc
 	playsound SFX_ITEM
 	waitbutton
 	setflag $000b
-	2writetext UnknownText_0x1973de
+	writetext UnknownText_0x1973de
 	closetext
 	loadmovesprites
 	spriteface $0, $0
@@ -113,7 +113,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	pause 15
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x1970ed
+	writetext UnknownText_0x1970ed
 	closetext
 	loadmovesprites
 	special $0030
@@ -125,7 +125,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	special $0032
 	special $003d
 	loadfont
-	2writetext UnknownText_0x197134
+	writetext UnknownText_0x197134
 	closetext
 	loadmovesprites
 	setevent $06bd

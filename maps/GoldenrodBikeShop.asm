@@ -15,28 +15,28 @@ ClerkScript_0x54750: ; 0x54750
 	loadfont
 	checkevent EVENT_GOT_BICYCLE
 	iftrue UnknownScript_0x54775
-	2writetext UnknownText_0x54787
+	writetext UnknownText_0x54787
 	yesorno
 	iffalse UnknownScript_0x5477b
-	2writetext UnknownText_0x547f8
+	writetext UnknownText_0x547f8
 	keeptextopen
 	waitbutton
 	giveitem BICYCLE, $1
-	2writetext UnknownText_0x54848
+	writetext UnknownText_0x54848
 	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
 	setflag $0014
 	setevent EVENT_GOT_BICYCLE
 UnknownScript_0x54775: ; 0x54775
-	2writetext UnknownText_0x5485f
+	writetext UnknownText_0x5485f
 	closetext
 	loadmovesprites
 	end
 ; 0x5477b
 
 UnknownScript_0x5477b: ; 0x5477b
-	2writetext UnknownText_0x54898
+	writetext UnknownText_0x54898
 	closetext
 	loadmovesprites
 	end

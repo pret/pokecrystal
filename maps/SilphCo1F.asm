@@ -15,13 +15,13 @@ OfficerScript_0x18abe8: ; 0x18abe8
 	loadfont
 	checkevent EVENT_GOT_UP_GRADE
 	iftrue UnknownScript_0x18abfd
-	2writetext UnknownText_0x18ac36
+	writetext UnknownText_0x18ac36
 	keeptextopen
 	verbosegiveitem UP_GRADE, 1
 	iffalse UnknownScript_0x18ac01
 	setevent EVENT_GOT_UP_GRADE
 UnknownScript_0x18abfd: ; 0x18abfd
-	2writetext UnknownText_0x18aca8
+	writetext UnknownText_0x18aca8
 	closetext
 UnknownScript_0x18ac01: ; 0x18ac01
 	loadmovesprites

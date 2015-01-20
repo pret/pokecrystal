@@ -42,14 +42,14 @@ LanceScript_0x70022: ; 0x70022
 	checkevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	iftrue UnknownScript_0x70057
 	loadfont
-	2writetext UnknownText_0x70157
+	writetext UnknownText_0x70157
 	keeptextopen
 	faceplayer
-	2writetext UnknownText_0x701b4
+	writetext UnknownText_0x701b4
 	yesorno
 	iffalse UnknownScript_0x7004e
 UnknownScript_0x70035: ; 0x70035
-	2writetext UnknownText_0x702c6
+	writetext UnknownText_0x702c6
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
@@ -62,7 +62,7 @@ UnknownScript_0x70035: ; 0x70035
 ; 0x7004e
 
 UnknownScript_0x7004e: ; 0x7004e
-	2writetext UnknownText_0x70371
+	writetext UnknownText_0x70371
 	closetext
 	loadmovesprites
 	setevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
@@ -72,15 +72,15 @@ UnknownScript_0x7004e: ; 0x7004e
 UnknownScript_0x70057: ; 0x70057
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x703a5
+	writetext UnknownText_0x703a5
 	yesorno
 	iffalse UnknownScript_0x7004e
-	2jump UnknownScript_0x70035
+	jump UnknownScript_0x70035
 ; 0x70063
 
 GyaradosScript_0x70063: ; 0x70063
 	loadfont
-	2writetext UnknownText_0x703cb
+	writetext UnknownText_0x703cb
 	pause 15
 	cry GYARADOS
 	loadmovesprites
@@ -94,7 +94,7 @@ UnknownScript_0x7007a: ; 0x7007a
 	loadfont
 	giveitem RED_SCALE, $1
 	waitbutton
-	2writetext UnknownText_0x703df
+	writetext UnknownText_0x703df
 	playsound SFX_ITEM
 	waitbutton
 	itemnotify
@@ -109,14 +109,14 @@ GrampsScript_0x7008e: ; 0x7008e
 	loadfont
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
-	2writetext UnknownText_0x703f8
+	writetext UnknownText_0x703f8
 	closetext
 	loadmovesprites
 	end
 ; 0x7009c
 
 UnknownScript_0x7009c: ; 0x7009c
-	2writetext UnknownText_0x70421
+	writetext UnknownText_0x70421
 	closetext
 	loadmovesprites
 	end
@@ -136,7 +136,7 @@ MapLakeofRageSignpost0Script: ; 0x700a8
 
 MapLakeofRageSignpost1Script: ; 0x700ab
 	loadfont
-	2writetext UnknownText_0x70903
+	writetext UnknownText_0x70903
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x700b8
 	closetext
@@ -174,7 +174,7 @@ TrainerFisherAndre: ; 0x700be
 FisherAndreScript: ; 0x700ca
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7058f
+	writetext UnknownText_0x7058f
 	closetext
 	loadmovesprites
 	end
@@ -203,7 +203,7 @@ TrainerFisherRaymond: ; 0x700d2
 FisherRaymondScript: ; 0x700de
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x70611
+	writetext UnknownText_0x70611
 	closetext
 	loadmovesprites
 	end
@@ -232,7 +232,7 @@ TrainerCooltrainermAaron: ; 0x700e6
 CooltrainermAaronScript: ; 0x700f2
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7069c
+	writetext UnknownText_0x7069c
 	closetext
 	loadmovesprites
 	end
@@ -261,7 +261,7 @@ TrainerCooltrainerfLois: ; 0x700fa
 CooltrainerfLoisScript: ; 0x70106
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x70752
+	writetext UnknownText_0x70752
 	closetext
 	loadmovesprites
 	end
@@ -276,29 +276,29 @@ WesleyScript:
 	if_not_equal WEDNESDAY, WesleyNotWednesdayScript
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
-	2writetext MeetWesleyText
+	writetext MeetWesleyText
 	keeptextopen
 	setevent EVENT_MET_WESLEY_OF_WEDNESDAY
 .MetWesley
-	2writetext WesleyGivesGiftText
+	writetext WesleyGivesGiftText
 	keeptextopen
 	verbosegiveitem BLACKBELT, 1
 	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY
-	2writetext WesleyGaveGiftText
+	writetext WesleyGaveGiftText
 	closetext
 	loadmovesprites
 	end
 
 WesleyWednesdayScript:
-	2writetext WesleyWednesdayText
+	writetext WesleyWednesdayText
 	closetext
 WesleyDoneScript:
 	loadmovesprites
 	end
 
 WesleyNotWednesdayScript:
-	2writetext WesleyNotWednesdayText
+	writetext WesleyNotWednesdayText
 	closetext
 	loadmovesprites
 	end

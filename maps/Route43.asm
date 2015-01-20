@@ -45,7 +45,7 @@ TrainerCamperSpencer: ; 0x19d061
 CamperSpencerScript: ; 0x19d06d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19d57e
+	writetext UnknownText_0x19d57e
 	closetext
 	loadmovesprites
 	end
@@ -74,7 +74,7 @@ TrainerPokemaniacBen: ; 0x19d075
 PokemaniacBenScript: ; 0x19d081
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19d2d2
+	writetext UnknownText_0x19d2d2
 	closetext
 	loadmovesprites
 	end
@@ -110,26 +110,26 @@ PokemaniacBrent1Script: ; 0x19d095
 	iftrue UnknownScript_0x19d138
 	checkevent $0291
 	iftrue UnknownScript_0x19d0b8
-	2writetext UnknownText_0x19d359
+	writetext UnknownText_0x19d359
 	keeptextopen
 	setevent $0291
-	2call UnknownScript_0x19d12c
-	2jump UnknownScript_0x19d0bb
+	scall UnknownScript_0x19d12c
+	jump UnknownScript_0x19d0bb
 ; 0x19d0b8
 
 UnknownScript_0x19d0b8: ; 0x19d0b8
-	2call UnknownScript_0x19d130
+	scall UnknownScript_0x19d130
 UnknownScript_0x19d0bb: ; 0x19d0bb
 	askforphonenumber $1e
 	if_equal $1, UnknownScript_0x19d140
 	if_equal $2, UnknownScript_0x19d13c
 	trainertotext POKEMANIAC, BRENT1, $0
-	2call UnknownScript_0x19d134
-	2jump UnknownScript_0x19d138
+	scall UnknownScript_0x19d134
+	jump UnknownScript_0x19d138
 ; 0x19d0cf
 
 UnknownScript_0x19d0cf: ; 0x19d0cf
-	2call UnknownScript_0x19d144
+	scall UnknownScript_0x19d144
 	winlosstext PokemaniacBrent1BeatenText, $0000
 	copybytetovar $da07
 	if_equal $3, UnknownScript_0x19d0ea
@@ -238,7 +238,7 @@ TrainerPokemaniacRon: ; 0x19d148
 PokemaniacRonScript: ; 0x19d154
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19d3f8
+	writetext UnknownText_0x19d3f8
 	closetext
 	loadmovesprites
 	end
@@ -267,7 +267,7 @@ TrainerFisherMarvin: ; 0x19d15c
 FisherMarvinScript: ; 0x19d168
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19d4d3
+	writetext UnknownText_0x19d4d3
 	closetext
 	loadmovesprites
 	end
@@ -307,26 +307,26 @@ PicnickerTiffany3Script: ; 0x19d17c
 	iffalse UnknownScript_0x19d233
 	checkevent EVENT_SHOWED_TIFFANY_CLEFAIRY
 	iftrue UnknownScript_0x19d1aa
-	2writetext UnknownText_0x19d618
+	writetext UnknownText_0x19d618
 	keeptextopen
 	setevent EVENT_SHOWED_TIFFANY_CLEFAIRY
-	2call UnknownScript_0x19d239
-	2jump UnknownScript_0x19d1ad
+	scall UnknownScript_0x19d239
+	jump UnknownScript_0x19d1ad
 ; 0x19d1aa
 
 UnknownScript_0x19d1aa: ; 0x19d1aa
-	2call UnknownScript_0x19d23d
+	scall UnknownScript_0x19d23d
 UnknownScript_0x19d1ad: ; 0x19d1ad
 	askforphonenumber $1f
 	if_equal $1, UnknownScript_0x19d24d
 	if_equal $2, UnknownScript_0x19d249
 	trainertotext PICNICKER, TIFFANY3, $0
-	2call UnknownScript_0x19d241
-	2jump UnknownScript_0x19d245
+	scall UnknownScript_0x19d241
+	jump UnknownScript_0x19d245
 ; 0x19d1c1
 
 UnknownScript_0x19d1c1: ; 0x19d1c1
-	2call UnknownScript_0x19d251
+	scall UnknownScript_0x19d251
 	winlosstext PicnickerTiffany3BeatenText, $0000
 	copybytetovar $da08
 	if_equal $3, UnknownScript_0x19d1dc
@@ -378,20 +378,20 @@ UnknownScript_0x19d215: ; 0x19d215
 ; 0x19d21e
 
 UnknownScript_0x19d21e: ; 0x19d21e
-	2call UnknownScript_0x19d255
+	scall UnknownScript_0x19d255
 	verbosegiveitem PINK_BOW, 1
 	iffalse UnknownScript_0x19d230
 	clearflag $0085
 	setevent $0104
-	2jump UnknownScript_0x19d245
+	jump UnknownScript_0x19d245
 ; 0x19d230
 
 UnknownScript_0x19d230: ; 0x19d230
-	2jump UnknownScript_0x19d259
+	jump UnknownScript_0x19d259
 ; 0x19d233
 
 UnknownScript_0x19d233: ; 0x19d233
-	2writetext UnknownText_0x19d64b
+	writetext UnknownText_0x19d64b
 	closetext
 	loadmovesprites
 	end

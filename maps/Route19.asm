@@ -46,7 +46,7 @@ TrainerSwimmerfDawn: ; 0x19e9fd
 SwimmerfDawnScript: ; 0x19ea09
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19ebad
+	writetext UnknownText_0x19ebad
 	closetext
 	loadmovesprites
 	end
@@ -75,7 +75,7 @@ TrainerSwimmermHarold: ; 0x19ea11
 SwimmermHaroldScript: ; 0x19ea1d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19eab4
+	writetext UnknownText_0x19eab4
 	closetext
 	loadmovesprites
 	end
@@ -104,7 +104,7 @@ TrainerSwimmermJerome: ; 0x19ea25
 SwimmermJeromeScript: ; 0x19ea31
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19ec7e
+	writetext UnknownText_0x19ec7e
 	closetext
 	loadmovesprites
 	end
@@ -133,7 +133,7 @@ TrainerSwimmermTucker: ; 0x19ea39
 SwimmermTuckerScript: ; 0x19ea45
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19eb3b
+	writetext UnknownText_0x19eb3b
 	closetext
 	loadmovesprites
 	end
@@ -144,14 +144,14 @@ FisherScript_0x19ea4d: ; 0x19ea4d
 	loadfont
 	checkevent $00d7
 	iftrue UnknownScript_0x19ea5b
-	2writetext UnknownText_0x19ecaf
+	writetext UnknownText_0x19ecaf
 	closetext
 	loadmovesprites
 	end
 ; 0x19ea5b
 
 UnknownScript_0x19ea5b: ; 0x19ea5b
-	2writetext UnknownText_0x19ed24
+	writetext UnknownText_0x19ed24
 	closetext
 	loadmovesprites
 	end
@@ -162,14 +162,14 @@ FisherScript_0x19ea61: ; 0x19ea61
 	loadfont
 	checkevent $00d7
 	iftrue UnknownScript_0x19ea6f
-	2writetext UnknownText_0x19ed45
+	writetext UnknownText_0x19ed45
 	closetext
 	loadmovesprites
 	end
 ; 0x19ea6f
 
 UnknownScript_0x19ea6f: ; 0x19ea6f
-	2writetext UnknownText_0x19ed7d
+	writetext UnknownText_0x19ed7d
 	closetext
 	loadmovesprites
 	end

@@ -45,7 +45,7 @@ UnknownScript_0x185c0d: ; 0x185c0d
 	showemote $0, $3, 15
 	applymovement $3, MovementData_0x185cd3
 	loadfont
-	2writetext UnknownText_0x185ecc
+	writetext UnknownText_0x185ecc
 	closetext
 	loadmovesprites
 	moveperson $3, $9, $e
@@ -63,7 +63,7 @@ UnknownScript_0x185c25: ; 0x185c25
 	applymovement $4, MovementData_0x185ccf
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x185cd9
+	writetext UnknownText_0x185cd9
 	closetext
 	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
@@ -76,7 +76,7 @@ UnknownScript_0x185c25: ; 0x185c25
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x185c80
+	jump UnknownScript_0x185c80
 ; 0x185c60
 
 UnknownScript_0x185c60: ; 0x185c60
@@ -86,7 +86,7 @@ UnknownScript_0x185c60: ; 0x185c60
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x185c80
+	jump UnknownScript_0x185c80
 ; 0x185c70
 
 UnknownScript_0x185c70: ; 0x185c70
@@ -96,13 +96,13 @@ UnknownScript_0x185c70: ; 0x185c70
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x185c80
+	jump UnknownScript_0x185c80
 ; 0x185c80
 
 UnknownScript_0x185c80: ; 0x185c80
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
-	2writetext UnknownText_0x185de2
+	writetext UnknownText_0x185de2
 	closetext
 	loadmovesprites
 	dotrigger $2
@@ -120,7 +120,7 @@ UnknownScript_0x185c80: ; 0x185c80
 	playsound SFX_KINESIS
 	showemote $0, $4, 20
 	loadfont
-	2writetext UnknownText_0x185e75
+	writetext UnknownText_0x185e75
 	closetext
 	loadmovesprites
 	setevent $0332

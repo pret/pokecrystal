@@ -15,7 +15,7 @@ ScientistScript_0x694cc: ; 0x694cc
 	loadfont
 	checkevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x6953a
-	2writetext UnknownText_0x69555
+	writetext UnknownText_0x69555
 UnknownScript_0x694d7: ; 0x694d7
 	yesorno
 	iffalse UnknownScript_0x69531
@@ -23,12 +23,12 @@ UnknownScript_0x694d7: ; 0x694d7
 	if_equal $6, UnknownScript_0x6952b
 	giveegg TOGEPI, 5
 	stringtotext .eggname, $1
-	2call UnknownScript_0x69527
+	scall UnknownScript_0x69527
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
 	clearevent EVENT_TOGEPI_HATCHED
 	domaptrigger GROUP_ROUTE_32, MAP_ROUTE_32, $1
-	2writetext UnknownText_0x695c5
+	writetext UnknownText_0x695c5
 	closetext
 	loadmovesprites
 	checkcode $9
@@ -60,14 +60,14 @@ UnknownScript_0x69527: ; 0x69527
 ; 0x6952b
 
 UnknownScript_0x6952b: ; 0x6952b
-	2writetext UnknownText_0x69693
+	writetext UnknownText_0x69693
 	closetext
 	loadmovesprites
 	end
 ; 0x69531
 
 UnknownScript_0x69531: ; 0x69531
-	2writetext UnknownText_0x696f2
+	writetext UnknownText_0x696f2
 	closetext
 	loadmovesprites
 	setevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
@@ -75,8 +75,8 @@ UnknownScript_0x69531: ; 0x69531
 ; 0x6953a
 
 UnknownScript_0x6953a: ; 0x6953a
-	2writetext UnknownText_0x69712
-	2jump UnknownScript_0x694d7
+	writetext UnknownText_0x69712
+	jump UnknownScript_0x694d7
 ; 0x69540
 
 GameboyKidScript_0x69540: ; 0x69540

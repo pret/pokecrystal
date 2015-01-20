@@ -29,7 +29,7 @@ TrainerBird_keeperDenis: ; 0x60982
 Bird_keeperDenisScript: ; 0x6098e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x60ac3
+	writetext UnknownText_0x60ac3
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerSailorErnest: ; 0x60996
 SailorErnestScript: ; 0x609a2
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x60a1f
+	writetext UnknownText_0x60a1f
 	closetext
 	loadmovesprites
 	end

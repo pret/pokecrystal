@@ -15,14 +15,14 @@ TeacherScript_0x199982: ; 0x199982
 	loadfont
 	checkflag $0013
 	iftrue UnknownScript_0x199990
-	2writetext UnknownText_0x199a0e
+	writetext UnknownText_0x199a0e
 	closetext
 	loadmovesprites
 	end
 ; 0x199990
 
 UnknownScript_0x199990: ; 0x199990
-	2writetext UnknownText_0x199a3d
+	writetext UnknownText_0x199a3d
 	closetext
 	loadmovesprites
 	end

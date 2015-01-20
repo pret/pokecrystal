@@ -46,47 +46,47 @@ UnknownScript_0x198908: ; 0x198908
 PokefanMScript_0x198909: ; 0x198909
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x199042
+	writetext UnknownText_0x199042
 	yesorno
 	iffalse UnknownScript_0x19899a
 	special $004f
-	2writetext UnknownText_0x199090
+	writetext UnknownText_0x199090
 	yesorno
 	iffalse UnknownScript_0x1989a0
 	checkcoins 4000
 	if_equal $2, UnknownScript_0x1989dd
-	2writetext UnknownText_0x1990ce
+	writetext UnknownText_0x1990ce
 	loadmenudata MenuDataHeader_0x198967
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x19893a
 	if_equal $2, UnknownScript_0x198949
 	if_equal $3, UnknownScript_0x198958
-	2jump UnknownScript_0x1989d7
+	jump UnknownScript_0x1989d7
 ; 0x19893a
 
 UnknownScript_0x19893a: ; 0x19893a
 	writebyte $1
-	2writetext UnknownText_0x1991cf
+	writetext UnknownText_0x1991cf
 	special $0083
 	if_equal $0, UnknownScript_0x1989a6
-	2jump UnknownScript_0x1989d7
+	jump UnknownScript_0x1989d7
 ; 0x198949
 
 UnknownScript_0x198949: ; 0x198949
 	writebyte $2
-	2writetext UnknownText_0x1991cf
+	writetext UnknownText_0x1991cf
 	special $0083
 	if_equal $0, UnknownScript_0x1989a6
-	2jump UnknownScript_0x1989d7
+	jump UnknownScript_0x1989d7
 ; 0x198958
 
 UnknownScript_0x198958: ; 0x198958
 	writebyte $3
-	2writetext UnknownText_0x1991cf
+	writetext UnknownText_0x1991cf
 	special $0083
 	if_equal $0, UnknownScript_0x1989a6
-	2jump UnknownScript_0x1989d7
+	jump UnknownScript_0x1989d7
 ; 0x198967
 
 
@@ -109,33 +109,33 @@ MenuData2_0x19896f: ; 0x19896f
 
 
 UnknownScript_0x19899a: ; 0x19899a
-	2writetext UnknownText_0x1990b4
+	writetext UnknownText_0x1990b4
 	closetext
 	loadmovesprites
 	end
 ; 0x1989a0
 
 UnknownScript_0x1989a0: ; 0x1989a0
-	2writetext UnknownText_0x199107
+	writetext UnknownText_0x199107
 	closetext
 	loadmovesprites
 	end
 ; 0x1989a6
 
 UnknownScript_0x1989a6: ; 0x1989a6
-	2writetext UnknownText_0x19913a
+	writetext UnknownText_0x19913a
 	keeptextopen
 	takecoins 4000
 	waitbutton
 	playsound SFX_TRANSACTION
 	special $004f
-	2writetext UnknownText_0x19918b
+	writetext UnknownText_0x19918b
 	closetext
 	loadmovesprites
 	checkcode $9
 	if_equal $2, UnknownScript_0x1989c6
 	applymovement $10, MovementData_0x198a5f
-	2jump UnknownScript_0x1989ca
+	jump UnknownScript_0x1989ca
 ; 0x1989c6
 
 UnknownScript_0x1989c6: ; 0x1989c6
@@ -150,14 +150,14 @@ UnknownScript_0x1989ca: ; 0x1989ca
 ; 0x1989d7
 
 UnknownScript_0x1989d7: ; 0x1989d7
-	2writetext UnknownText_0x1991a4
+	writetext UnknownText_0x1991a4
 	closetext
 	loadmovesprites
 	end
 ; 0x1989dd
 
 UnknownScript_0x1989dd: ; 0x1989dd
-	2writetext UnknownText_0x1991ac
+	writetext UnknownText_0x1991ac
 	closetext
 	loadmovesprites
 	end
@@ -176,14 +176,14 @@ CooltrainerFScript_0x1989e9: ; 0x1989e9
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1989f7
-	2writetext UnknownText_0x198ae6
+	writetext UnknownText_0x198ae6
 	closetext
 	loadmovesprites
 	end
 ; 0x1989f7
 
 UnknownScript_0x1989f7: ; 0x1989f7
-	2writetext UnknownText_0x198b2d
+	writetext UnknownText_0x198b2d
 	closetext
 	loadmovesprites
 	end
@@ -194,14 +194,14 @@ CooltrainerFScript_0x1989fd: ; 0x1989fd
 	loadfont
 	checkflag $0000
 	iftrue UnknownScript_0x198a0b
-	2writetext UnknownText_0x198b73
+	writetext UnknownText_0x198b73
 	closetext
 	loadmovesprites
 	end
 ; 0x198a0b
 
 UnknownScript_0x198a0b: ; 0x198a0b
-	2writetext UnknownText_0x198c14
+	writetext UnknownText_0x198c14
 	closetext
 	loadmovesprites
 	end
@@ -221,10 +221,10 @@ GrampsScript_0x198a17: ; 0x198a17
 
 RocketScript_0x198a1a: ; 0x198a1a
 	loadfont
-	2writetext UnknownText_0x198d0d
+	writetext UnknownText_0x198d0d
 	keeptextopen
 	faceplayer
-	2writetext UnknownText_0x198d2a
+	writetext UnknownText_0x198d2a
 	closetext
 	loadmovesprites
 	spriteface $9, $1

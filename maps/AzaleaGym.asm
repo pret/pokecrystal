@@ -11,7 +11,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	loadfont
 	checkevent EVENT_BEAT_BUGSY
 	iftrue UnknownScript_0x18ec48
-	2writetext UnknownText_0x18ed0b
+	writetext UnknownText_0x18ed0b
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x18edae, $0000
@@ -20,12 +20,12 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	returnafterbattle
 	setevent EVENT_BEAT_BUGSY
 	loadfont
-	2writetext UnknownText_0x18ee14
+	writetext UnknownText_0x18ee14
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001c
 	checkcode $7
-	2call UnknownScript_0x18ec73
+	scall UnknownScript_0x18ec73
 UnknownScript_0x18ec48: ; 0x18ec48
 	checkevent EVENT_GOT_TM49_FURY_CUTTER
 	iftrue UnknownScript_0x18ec6d
@@ -33,19 +33,19 @@ UnknownScript_0x18ec48: ; 0x18ec48
 	setevent EVENT_BEAT_BUG_CATCHER_BENNY
 	setevent EVENT_BEAT_BUG_CATCHER_AL
 	setevent EVENT_BEAT_BUG_CATCHER_JOSH
-	2writetext UnknownText_0x18ee2b
+	writetext UnknownText_0x18ee2b
 	keeptextopen
 	verbosegiveitem TM_49, 1
 	iffalse UnknownScript_0x18ec71
 	setevent EVENT_GOT_TM49_FURY_CUTTER
-	2writetext UnknownText_0x18eefa
+	writetext UnknownText_0x18eefa
 	closetext
 	loadmovesprites
 	end
 ; 0x18ec6d
 
 UnknownScript_0x18ec6d: ; 0x18ec6d
-	2writetext UnknownText_0x18ef98
+	writetext UnknownText_0x18ef98
 	closetext
 UnknownScript_0x18ec71: ; 0x18ec71
 	loadmovesprites
@@ -89,7 +89,7 @@ TrainerTwinsAmyandmay1: ; 0x18ec82
 TwinsAmyandmay1Script: ; 0x18ec8e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18f1fc
+	writetext UnknownText_0x18f1fc
 	closetext
 	loadmovesprites
 	end
@@ -118,7 +118,7 @@ TrainerTwinsAmyandmay2: ; 0x18ec96
 TwinsAmyandmay2Script: ; 0x18eca2
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18f269
+	writetext UnknownText_0x18f269
 	closetext
 	loadmovesprites
 	end
@@ -147,7 +147,7 @@ TrainerBug_catcherBug_catcher_benny: ; 0x18ecaa
 Bug_catcherBug_catcher_bennyScript: ; 0x18ecb6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18f053
+	writetext UnknownText_0x18f053
 	closetext
 	loadmovesprites
 	end
@@ -176,7 +176,7 @@ TrainerBug_catcherAl: ; 0x18ecbe
 Bug_catcherAlScript: ; 0x18ecca
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18f0d3
+	writetext UnknownText_0x18f0d3
 	closetext
 	loadmovesprites
 	end
@@ -205,7 +205,7 @@ TrainerBug_catcherJosh: ; 0x18ecd2
 Bug_catcherJoshScript: ; 0x18ecde
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18f17e
+	writetext UnknownText_0x18f17e
 	closetext
 	loadmovesprites
 	end
@@ -216,14 +216,14 @@ AzaleaGymGuyScript: ; 0x18ece6
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .AzaleaGymGuyWinScript
 	loadfont
-	2writetext AzaleaGymGuyText
+	writetext AzaleaGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .AzaleaGymGuyWinScript
 	loadfont
-	2writetext AzaleaGymGuyWinText
+	writetext AzaleaGymGuyWinText
 	closetext
 	loadmovesprites
 	end

@@ -25,14 +25,14 @@ FisherScript_0x18a48c: ; 0x18a48c
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18a49a
-	2writetext UnknownText_0x18a5d3
+	writetext UnknownText_0x18a5d3
 	closetext
 	loadmovesprites
 	end
 ; 0x18a49a
 
 UnknownScript_0x18a49a: ; 0x18a49a
-	2writetext UnknownText_0x18a62e
+	writetext UnknownText_0x18a62e
 	closetext
 	loadmovesprites
 	end

@@ -37,13 +37,13 @@ UnknownScript_0x98e64: ; 0x98e64
 	spriteface $6, $0
 	pause 10
 	loadfont
-	2writetext UnknownText_0x98ed8
+	writetext UnknownText_0x98ed8
 	keeptextopen
-	2jump UnknownScript_0x98e95
+	jump UnknownScript_0x98e95
 ; 0x98e95
 
 UnknownScript_0x98e95: ; 0x98e95
-	2writetext UnknownText_0x98f22
+	writetext UnknownText_0x98f22
 	closetext
 	loadmovesprites
 	spriteface $0, $0

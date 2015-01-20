@@ -11,13 +11,13 @@ FishingGuruScript_0x18a77a: ; 0x18a77a
 	loadfont
 	checkevent EVENT_GOT_TM29_PSYCHIC
 	iftrue UnknownScript_0x18a78f
-	2writetext UnknownText_0x18a798
+	writetext UnknownText_0x18a798
 	keeptextopen
 	verbosegiveitem TM_29, 1
 	iffalse UnknownScript_0x18a793
 	setevent EVENT_GOT_TM29_PSYCHIC
 UnknownScript_0x18a78f: ; 0x18a78f
-	2writetext UnknownText_0x18a7bb
+	writetext UnknownText_0x18a7bb
 	closetext
 UnknownScript_0x18a793: ; 0x18a793
 	loadmovesprites

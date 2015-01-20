@@ -19,7 +19,7 @@ TeacherScript_0x5535d: ; 0x5535d
 	iffalse UnknownScript_0x5539c
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x554c2
+	writetext UnknownText_0x554c2
 	keeptextopen
 	verbosegiveitem SQUIRTBOTTLE, 1
 	setevent EVENT_GOT_SQUIRTBOTTLE
@@ -32,7 +32,7 @@ TeacherScript_0x5535d: ; 0x5535d
 UnknownScript_0x5538f: ; 0x5538f
 	spriteface $2, $2
 	loadfont
-	2writetext UnknownText_0x5552e
+	writetext UnknownText_0x5552e
 	closetext
 	loadmovesprites
 	end
@@ -57,7 +57,7 @@ LassScript_0x553a2: ; 0x553a2
 	iftrue UnknownScript_0x553c5
 	checkevent EVENT_GOT_SQUIRTBOTTLE
 	iftrue UnknownScript_0x553bf
-	2writetext UnknownText_0x55561
+	writetext UnknownText_0x55561
 	closetext
 	loadmovesprites
 	setevent $00ba
@@ -67,14 +67,14 @@ LassScript_0x553a2: ; 0x553a2
 ; 0x553bf
 
 UnknownScript_0x553bf: ; 0x553bf
-	2writetext UnknownText_0x555e6
+	writetext UnknownText_0x555e6
 	closetext
 	loadmovesprites
 	end
 ; 0x553c5
 
 UnknownScript_0x553c5: ; 0x553c5
-	2writetext UnknownText_0x55604
+	writetext UnknownText_0x55604
 	closetext
 	loadmovesprites
 	end

@@ -15,13 +15,13 @@ FishingGuruScript_0x69b55: ; 0x69b55
 	loadfont
 	checkevent EVENT_GOT_OLD_ROD
 	iftrue UnknownScript_0x69b7a
-	2writetext UnknownText_0x69b83
+	writetext UnknownText_0x69b83
 	yesorno
 	iffalse UnknownScript_0x69b74
-	2writetext UnknownText_0x69be8
+	writetext UnknownText_0x69be8
 	keeptextopen
 	verbosegiveitem OLD_ROD, 1
-	2writetext UnknownText_0x69c1b
+	writetext UnknownText_0x69c1b
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_OLD_ROD
@@ -29,14 +29,14 @@ FishingGuruScript_0x69b55: ; 0x69b55
 ; 0x69b74
 
 UnknownScript_0x69b74: ; 0x69b74
-	2writetext UnknownText_0x69c6c
+	writetext UnknownText_0x69c6c
 	closetext
 	loadmovesprites
 	end
 ; 0x69b7a
 
 UnknownScript_0x69b7a: ; 0x69b7a
-	2writetext UnknownText_0x69c8d
+	writetext UnknownText_0x69c8d
 	closetext
 	loadmovesprites
 	end

@@ -15,7 +15,7 @@ GrampsScript_0x189538: ; 0x189538
 	iftrue UnknownScript_0x1896c0
 	checkevent EVENT_MET_BILLS_GRANDPA
 	iftrue UnknownScript_0x189553
-	2writetext UnknownText_0x1896ce
+	writetext UnknownText_0x1896ce
 	keeptextopen
 	setevent EVENT_MET_BILLS_GRANDPA
 UnknownScript_0x189553: ; 0x189553
@@ -29,101 +29,101 @@ UnknownScript_0x189553: ; 0x189553
 	iftrue UnknownScript_0x189652
 	checkevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
 	iftrue UnknownScript_0x18963b
-	2writetext UnknownText_0x1898c0
+	writetext UnknownText_0x1898c0
 	keeptextopen
-	2writetext UnknownText_0x189732
+	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
-	2call UnknownScript_0x1896a5
+	scall UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
 	if_not_equal LICKITUNG, UnknownScript_0x1896c6
-	2call UnknownScript_0x1896b0
+	scall UnknownScript_0x1896b0
 	setevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
-	2jump UnknownScript_0x18963b
+	jump UnknownScript_0x18963b
 ; 0x189592
 
 UnknownScript_0x189592: ; 0x189592
-	2writetext UnknownText_0x1898ff
+	writetext UnknownText_0x1898ff
 	keeptextopen
-	2writetext UnknownText_0x189732
+	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
-	2call UnknownScript_0x1896a5
+	scall UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
 	if_not_equal ODDISH, UnknownScript_0x1896c6
-	2call UnknownScript_0x1896b0
+	scall UnknownScript_0x1896b0
 	setevent EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
-	2jump UnknownScript_0x189652
+	jump UnknownScript_0x189652
 ; 0x1895b3
 
 UnknownScript_0x1895b3: ; 0x1895b3
-	2writetext UnknownText_0x189953
+	writetext UnknownText_0x189953
 	keeptextopen
-	2writetext UnknownText_0x189732
+	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
-	2call UnknownScript_0x1896a5
+	scall UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
 	if_not_equal STARYU, UnknownScript_0x1896c6
-	2call UnknownScript_0x1896b0
+	scall UnknownScript_0x1896b0
 	setevent EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
-	2jump UnknownScript_0x189669
+	jump UnknownScript_0x189669
 ; 0x1895d4
 
 UnknownScript_0x1895d4: ; 0x1895d4
 	checkver
 	iftrue UnknownScript_0x1895f9
-	2writetext UnknownText_0x1899fe
+	writetext UnknownText_0x1899fe
 	keeptextopen
-	2writetext UnknownText_0x189732
+	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
-	2call UnknownScript_0x1896a5
+	scall UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
 	if_not_equal GROWLITHE, UnknownScript_0x1896c6
-	2call UnknownScript_0x1896b0
+	scall UnknownScript_0x1896b0
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
-	2jump UnknownScript_0x189680
+	jump UnknownScript_0x189680
 ; 0x1895f9
 
 UnknownScript_0x1895f9: ; 0x1895f9
-	2writetext UnknownText_0x189a57
+	writetext UnknownText_0x189a57
 	keeptextopen
-	2writetext UnknownText_0x189732
+	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
-	2call UnknownScript_0x1896a5
+	scall UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
 	if_not_equal VULPIX, UnknownScript_0x1896c6
-	2call UnknownScript_0x1896b0
+	scall UnknownScript_0x1896b0
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
-	2jump UnknownScript_0x189680
+	jump UnknownScript_0x189680
 ; 0x18961a
 
 UnknownScript_0x18961a: ; 0x18961a
-	2writetext UnknownText_0x189ab1
+	writetext UnknownText_0x189ab1
 	keeptextopen
-	2writetext UnknownText_0x189732
+	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
-	2call UnknownScript_0x1896a5
+	scall UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
 	if_not_equal PICHU, UnknownScript_0x1896c6
-	2call UnknownScript_0x1896b0
+	scall UnknownScript_0x1896b0
 	setevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
-	2jump UnknownScript_0x189697
+	jump UnknownScript_0x189697
 ; 0x18963b
 
 UnknownScript_0x18963b: ; 0x18963b
 	checkevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x189592
-	2call UnknownScript_0x1896b5
+	scall UnknownScript_0x1896b5
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
@@ -135,7 +135,7 @@ UnknownScript_0x18963b: ; 0x18963b
 UnknownScript_0x189652: ; 0x189652
 	checkevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x1895b3
-	2call UnknownScript_0x1896b5
+	scall UnknownScript_0x1896b5
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
@@ -147,7 +147,7 @@ UnknownScript_0x189652: ; 0x189652
 UnknownScript_0x189669: ; 0x189669
 	checkevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x1895d4
-	2call UnknownScript_0x1896b5
+	scall UnknownScript_0x1896b5
 	verbosegiveitem WATER_STONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
@@ -159,7 +159,7 @@ UnknownScript_0x189669: ; 0x189669
 UnknownScript_0x189680: ; 0x189680
 	checkevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x18961a
-	2call UnknownScript_0x1896b5
+	scall UnknownScript_0x1896b5
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
@@ -169,7 +169,7 @@ UnknownScript_0x189680: ; 0x189680
 ; 0x189697
 
 UnknownScript_0x189697: ; 0x189697
-	2call UnknownScript_0x1896b5
+	scall UnknownScript_0x1896b5
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
@@ -178,46 +178,46 @@ UnknownScript_0x189697: ; 0x189697
 ; 0x1896a5
 
 UnknownScript_0x1896a5: ; 0x1896a5
-	2writetext UnknownText_0x189760
+	writetext UnknownText_0x189760
 	keeptextopen
 	end
 ; 0x1896aa
 
 UnknownScript_0x1896aa: ; 0x1896aa
-	2writetext UnknownText_0x189784
+	writetext UnknownText_0x189784
 	closetext
 	loadmovesprites
 	end
 ; 0x1896b0
 
 UnknownScript_0x1896b0: ; 0x1896b0
-	2writetext UnknownText_0x1897a6
+	writetext UnknownText_0x1897a6
 	keeptextopen
 	end
 ; 0x1896b5
 
 UnknownScript_0x1896b5: ; 0x1896b5
-	2writetext UnknownText_0x1897e1
+	writetext UnknownText_0x1897e1
 	keeptextopen
 	end
 ; 0x1896ba
 
 UnknownScript_0x1896ba: ; 0x1896ba
-	2writetext UnknownText_0x18980e
+	writetext UnknownText_0x18980e
 	closetext
 	loadmovesprites
 	end
 ; 0x1896c0
 
 UnknownScript_0x1896c0: ; 0x1896c0
-	2writetext UnknownText_0x18982a
+	writetext UnknownText_0x18982a
 	closetext
 	loadmovesprites
 	end
 ; 0x1896c6
 
 UnknownScript_0x1896c6: ; 0x1896c6
-	2writetext UnknownText_0x189891
+	writetext UnknownText_0x189891
 	closetext
 	loadmovesprites
 	end

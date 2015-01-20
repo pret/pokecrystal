@@ -1,32 +1,32 @@
 FruitTreeScript:: ; 44000
-	3callasm GetCurTreeFruit
+	callasm GetCurTreeFruit
 	loadfont
 	copybytetovar CurFruit
 	itemtotext $0, $0
-	2writetext FruitBearingTreeText
+	writetext FruitBearingTreeText
 	keeptextopen
-	3callasm TryResetFruitTrees
-	3callasm CheckFruitTree
+	callasm TryResetFruitTrees
+	callasm CheckFruitTree
 	iffalse .fruit
-	2writetext NothingHereText
+	writetext NothingHereText
 	closetext
-	2jump .end
+	jump .end
 
 .fruit
-	2writetext HeyItsFruitText
+	writetext HeyItsFruitText
 	copybytetovar CurFruit
 	giveitem $ff, 1
 	iffalse .packisfull
 	keeptextopen
-	2writetext ObtainedFruitText
-	3callasm PickedFruitTree
+	writetext ObtainedFruitText
+	callasm PickedFruitTree
 	specialsound
 	itemnotify
-	2jump .end
+	jump .end
 
 .packisfull
 	keeptextopen
-	2writetext FruitPackIsFullText
+	writetext FruitPackIsFullText
 	closetext
 
 .end

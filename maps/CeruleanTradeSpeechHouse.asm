@@ -16,7 +16,7 @@ GrampsScript_0x188136: ; 0x188136
 
 RhydonScript_0x188139: ; 0x188139
 	loadfont
-	2writetext UnknownText_0x18819c
+	writetext UnknownText_0x18819c
 	cry KANGASKHAN
 	closetext
 	loadmovesprites
@@ -25,7 +25,7 @@ RhydonScript_0x188139: ; 0x188139
 
 ZubatScript_0x188143: ; 0x188143
 	loadfont
-	2writetext UnknownText_0x1881b5
+	writetext UnknownText_0x1881b5
 	cry ZUBAT
 	closetext
 	loadmovesprites

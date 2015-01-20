@@ -16,7 +16,7 @@ TeacherScript_0x1a2eea: ; 0x1a2eea
 
 JigglypuffScript_0x1a2eed: ; 0x1a2eed
 	loadfont
-	2writetext UnknownText_0x1a2f5d
+	writetext UnknownText_0x1a2f5d
 	cry JIGGLYPUFF
 	closetext
 	loadmovesprites

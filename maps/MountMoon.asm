@@ -27,7 +27,7 @@ UnknownScript_0x7408e: ; 0x7408e
 	applymovement $2, MovementData_0x740f9
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x74105
+	writetext UnknownText_0x74105
 	closetext
 	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
@@ -40,7 +40,7 @@ UnknownScript_0x7408e: ; 0x7408e
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x740e3
+	jump UnknownScript_0x740e3
 ; 0x740c3
 
 UnknownScript_0x740c3: ; 0x740c3
@@ -50,7 +50,7 @@ UnknownScript_0x740c3: ; 0x740c3
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x740e3
+	jump UnknownScript_0x740e3
 ; 0x740d3
 
 UnknownScript_0x740d3: ; 0x740d3
@@ -60,13 +60,13 @@ UnknownScript_0x740d3: ; 0x740d3
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x740e3
+	jump UnknownScript_0x740e3
 ; 0x740e3
 
 UnknownScript_0x740e3: ; 0x740e3
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
-	2writetext UnknownText_0x741fa
+	writetext UnknownText_0x741fa
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x740fd

@@ -11,41 +11,41 @@ BillScript_0x54be4: ; 0x54be4
 	loadfont
 	checkevent EVENT_GOT_EEVEE
 	iftrue UnknownScript_0x54c1f
-	2writetext UnknownText_0x54c74
+	writetext UnknownText_0x54c74
 	yesorno
 	iffalse UnknownScript_0x54c19
-	2writetext UnknownText_0x54d3f
+	writetext UnknownText_0x54d3f
 	keeptextopen
 	waitbutton
 	checkcode $1
 	if_equal $6, UnknownScript_0x54c13
-	2writetext UnknownText_0x54dae
+	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	givepoke EEVEE, 20, 0, 0
 	setevent EVENT_GOT_EEVEE
-	2writetext UnknownText_0x54dc1
+	writetext UnknownText_0x54dc1
 	closetext
 	loadmovesprites
 	end
 ; 0x54c13
 
 UnknownScript_0x54c13: ; 0x54c13
-	2writetext UnknownText_0x54e02
+	writetext UnknownText_0x54e02
 	closetext
 	loadmovesprites
 	end
 ; 0x54c19
 
 UnknownScript_0x54c19: ; 0x54c19
-	2writetext UnknownText_0x54e2d
+	writetext UnknownText_0x54e2d
 	closetext
 	loadmovesprites
 	end
 ; 0x54c1f
 
 UnknownScript_0x54c1f: ; 0x54c1f
-	2writetext UnknownText_0x54e42
+	writetext UnknownText_0x54e42
 	closetext
 	loadmovesprites
 	end
@@ -56,14 +56,14 @@ PokefanFScript_0x54c25: ; 0x54c25
 	loadfont
 	checkevent $0712
 	iffalse UnknownScript_0x54c33
-	2writetext UnknownText_0x54ea8
+	writetext UnknownText_0x54ea8
 	closetext
 	loadmovesprites
 	end
 ; 0x54c33
 
 UnknownScript_0x54c33: ; 0x54c33
-	2writetext UnknownText_0x54f4e
+	writetext UnknownText_0x54f4e
 	closetext
 	loadmovesprites
 	end
@@ -74,34 +74,34 @@ TwinScript_0x54c39: ; 0x54c39
 	loadfont
 	checkcellnum $3
 	iftrue UnknownScript_0x54c58
-	2writetext UnknownText_0x54f9e
+	writetext UnknownText_0x54f9e
 	askforphonenumber $3
 	if_equal $1, UnknownScript_0x54c64
 	if_equal $2, UnknownScript_0x54c5e
 	waitbutton
 	addcellnum $3
-	2writetext UnknownText_0x54fd9
+	writetext UnknownText_0x54fd9
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	keeptextopen
 UnknownScript_0x54c58: ;0x54c58
-	2writetext UnknownText_0x55069
+	writetext UnknownText_0x55069
 	closetext
 	loadmovesprites
 	end
 ; 0x54c5e
 
 UnknownScript_0x54c5e: ; 0x54c5e
-	2writetext UnknownText_0x54ff3
+	writetext UnknownText_0x54ff3
 	closetext
 	loadmovesprites
 	end
 ; 0x54c64
 
 UnknownScript_0x54c64: ; 0x54c64
-	2writetext UnknownText_0x55046
+	writetext UnknownText_0x55046
 	keeptextopen
-	2jump UnknownScript_0x54c5e
+	jump UnknownScript_0x54c5e
 ; 0x54c6b
 
 MapGoldenrodBillsHouseSignpost1Script: ; 0x54c6b

@@ -38,7 +38,7 @@ TrainerPokefanmCarter: ; 0x1ad486
 PokefanmCarterScript: ; 0x1ad492
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad508
+	writetext UnknownText_0x1ad508
 	closetext
 	loadmovesprites
 	end
@@ -67,7 +67,7 @@ TrainerBird_keeperRoy: ; 0x1ad49a
 Bird_keeperRoyScript: ; 0x1ad4a6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad5a4
+	writetext UnknownText_0x1ad5a4
 	closetext
 	loadmovesprites
 	end
@@ -96,7 +96,7 @@ TrainerPokefanmTrevor: ; 0x1ad4ae
 PokefanmTrevorScript: ; 0x1ad4ba
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad660
+	writetext UnknownText_0x1ad660
 	closetext
 	loadmovesprites
 	end

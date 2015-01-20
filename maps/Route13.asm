@@ -29,7 +29,7 @@ TrainerPokefanmAlex: ; 0x1a2432
 PokefanmAlexScript: ; 0x1a243e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a24e3
+	writetext UnknownText_0x1a24e3
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerPokefanmJoshua: ; 0x1a2446
 PokefanmJoshuaScript: ; 0x1a2452
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a254f
+	writetext UnknownText_0x1a254f
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerBird_keeperPerry: ; 0x1a245a
 Bird_keeperPerryScript: ; 0x1a2466
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a25db
+	writetext UnknownText_0x1a25db
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerBird_keeperBret: ; 0x1a246e
 Bird_keeperBretScript: ; 0x1a247a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a2662
+	writetext UnknownText_0x1a2662
 	closetext
 	loadmovesprites
 	end
@@ -145,7 +145,7 @@ TrainerHikerKenny: ; 0x1a2482
 HikerKennyScript: ; 0x1a248e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a26c2
+	writetext UnknownText_0x1a26c2
 	closetext
 	loadmovesprites
 	end

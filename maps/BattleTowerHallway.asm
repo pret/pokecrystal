@@ -21,8 +21,8 @@ UnknownScript_0x9f5c0: ; 0x9f5c0
 
 UnknownScript_0x9f5c1: ; 0x9f5c1
 	follow $2, $0
-	3callasm Function_0x9f5cb
-	2jump UnknownScript_0x9f5dc
+	callasm Function_0x9f5cb
+	jump UnknownScript_0x9f5dc
 ; 0x9f5cb
 
 
@@ -51,33 +51,33 @@ UnknownScript_0x9f5dc: ; 0x9f5dc
 	if_equal $9, UnknownScript_0x9f618
 	if_equal $a, UnknownScript_0x9f618
 	applymovement $2, MovementData_0x9e57a
-	2jump UnknownScript_0x9f61f
+	jump UnknownScript_0x9f61f
 ; 0x9f603
 
 UnknownScript_0x9f603: ; 0x9f603
 	applymovement $2, MovementData_0x9e57c
-	2jump UnknownScript_0x9f61f
+	jump UnknownScript_0x9f61f
 ; 0x9f60a
 
 UnknownScript_0x9f60a: ; 0x9f60a
 	applymovement $2, MovementData_0x9e586
-	2jump UnknownScript_0x9f61f
+	jump UnknownScript_0x9f61f
 ; 0x9f611
 
 UnknownScript_0x9f611: ; 0x9f611
 	applymovement $2, MovementData_0x9e584
-	2jump UnknownScript_0x9f61f
+	jump UnknownScript_0x9f61f
 ; 0x9f618
 
 UnknownScript_0x9f618: ; 0x9f618
 	applymovement $2, MovementData_0x9e582
-	2jump UnknownScript_0x9f61f
+	jump UnknownScript_0x9f61f
 ; 0x9f61f
 
 UnknownScript_0x9f61f: ; 0x9f61f
 	faceperson $0, $2
 	loadfont
-	2writetext UnknownText_0x9ec26
+	writetext UnknownText_0x9ec26
 	closetext
 	loadmovesprites
 	stopfollow

@@ -19,21 +19,21 @@ FisherScript_0x1a83bb: ; 0x1a83bb
 	applymovement $2, MovementData_0x1a8465
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x1a8473
+	writetext UnknownText_0x1a8473
 	yesorno
 	iffalse UnknownScript_0x1a83d1
-	2jump UnknownScript_0x1a83cb
+	jump UnknownScript_0x1a83cb
 ; 0x1a83cb
 
 UnknownScript_0x1a83cb: ; 0x1a83cb
-	2writetext UnknownText_0x1a84ac
+	writetext UnknownText_0x1a84ac
 	closetext
 	loadmovesprites
 	end
 ; 0x1a83d1
 
 UnknownScript_0x1a83d1: ; 0x1a83d1
-	2writetext UnknownText_0x1a84cb
+	writetext UnknownText_0x1a84cb
 	closetext
 	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -44,7 +44,7 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	stopfollow
 	special $003d
 	loadfont
-	2writetext UnknownText_0x1a84f9
+	writetext UnknownText_0x1a84f9
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x1a8465

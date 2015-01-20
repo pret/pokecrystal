@@ -31,7 +31,7 @@ UnknownScript_0x19eea0: ; 0x19eea0
 	pause 10
 	applymovement $2, MovementData_0x19efed
 	loadfont
-	2writetext UnknownText_0x19f006
+	writetext UnknownText_0x19f006
 	closetext
 	loadmovesprites
 	spriteface $0, $0
@@ -58,7 +58,7 @@ UnknownScript_0x19eee0: ; 0x19eee0
 	pause 10
 	applymovement $2, MovementData_0x19eff4
 	loadfont
-	2writetext UnknownText_0x19f006
+	writetext UnknownText_0x19f006
 	closetext
 	loadmovesprites
 	spriteface $0, $1
@@ -95,7 +95,7 @@ TrainerSchoolboyDudley: ; 0x19ef20
 SchoolboyDudleyScript: ; 0x19ef2c
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19f1b5
+	writetext UnknownText_0x19f1b5
 	closetext
 	loadmovesprites
 	end
@@ -124,7 +124,7 @@ TrainerLassEllen: ; 0x19ef34
 LassEllenScript: ; 0x19ef40
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19f208
+	writetext UnknownText_0x19f208
 	closetext
 	loadmovesprites
 	end
@@ -153,7 +153,7 @@ TrainerSchoolboyJoe: ; 0x19ef48
 SchoolboyJoeScript: ; 0x19ef54
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19f25c
+	writetext UnknownText_0x19f25c
 	closetext
 	loadmovesprites
 	end
@@ -182,7 +182,7 @@ TrainerLassLaura: ; 0x19ef5c
 LassLauraScript: ; 0x19ef68
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19f2a6
+	writetext UnknownText_0x19f2a6
 	closetext
 	loadmovesprites
 	end
@@ -211,7 +211,7 @@ TrainerCamperLloyd: ; 0x19ef70
 CamperLloydScript: ; 0x19ef7c
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19f2f8
+	writetext UnknownText_0x19f2f8
 	closetext
 	loadmovesprites
 	end
@@ -240,7 +240,7 @@ TrainerLassShannon: ; 0x19ef84
 LassShannonScript: ; 0x19ef90
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19f35b
+	writetext UnknownText_0x19f35b
 	closetext
 	loadmovesprites
 	end
@@ -269,7 +269,7 @@ TrainerSupernerdPat: ; 0x19ef98
 SupernerdPatScript: ; 0x19efa4
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19f41a
+	writetext UnknownText_0x19f41a
 	closetext
 	loadmovesprites
 	end
@@ -282,13 +282,13 @@ CooltrainerMScript_0x19efac: ; 0x19efac
 	iftrue UnknownScript_0x19efda
 	checkevent EVENT_CLEARED_NUGGET_BRIDGE
 	iftrue UnknownScript_0x19efc7
-	2writetext UnknownText_0x19f43b
+	writetext UnknownText_0x19f43b
 	keeptextopen
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x19efde
 	setevent EVENT_CLEARED_NUGGET_BRIDGE
 UnknownScript_0x19efc7: ; 0x19efc7
-	2writetext UnknownText_0x19f49d
+	writetext UnknownText_0x19f49d
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x19f4fd, $0000
@@ -298,7 +298,7 @@ UnknownScript_0x19efc7: ; 0x19efc7
 	setevent $0558
 	loadfont
 UnknownScript_0x19efda: ; 0x19efda
-	2writetext UnknownText_0x19f520
+	writetext UnknownText_0x19f520
 	closetext
 UnknownScript_0x19efde: ; 0x19efde
 	loadmovesprites

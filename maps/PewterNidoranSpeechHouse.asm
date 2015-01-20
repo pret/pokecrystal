@@ -12,7 +12,7 @@ SuperNerdScript_0x1a2807: ; 0x1a2807
 
 GrowlitheScript_0x1a280a: ; 0x1a280a
 	loadfont
-	2writetext UnknownText_0x1a2825
+	writetext UnknownText_0x1a2825
 	cry NIDORAN_M
 	closetext
 	loadmovesprites

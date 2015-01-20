@@ -25,7 +25,7 @@ UnknownScript_0x181454: ; 0x181454
 	stopfollow
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x1814a6
+	writetext UnknownText_0x1814a6
 	closetext
 	loadmovesprites
 	spriteface $2, $1

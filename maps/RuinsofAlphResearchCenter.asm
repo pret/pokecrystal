@@ -47,16 +47,16 @@ UnknownScript_0x59192: ; 0x59192
 	pause 30
 	spriteface $4, $0
 	loadfont
-	2writetext UnknownText_0x59278
+	writetext UnknownText_0x59278
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x59274
 	loadfont
-	2writetext UnknownText_0x592fa
+	writetext UnknownText_0x592fa
 	playsound SFX_ITEM
 	waitbutton
 	setflag $000c
-	2writetext UnknownText_0x59311
+	writetext UnknownText_0x59311
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x59276
@@ -70,14 +70,14 @@ ScientistScript_0x591d1: ; 0x591d1
 	loadfont
 	checkcode $e
 	if_equal 26, UnknownScript_0x591df
-	2writetext UnknownText_0x59311
+	writetext UnknownText_0x59311
 	closetext
 	loadmovesprites
 	end
 ; 0x591df
 
 UnknownScript_0x591df: ; 0x591df
-	2writetext UnknownText_0x5935f
+	writetext UnknownText_0x5935f
 	closetext
 	loadmovesprites
 	end
@@ -92,28 +92,28 @@ ScientistScript_0x591e5: ; 0x591e5
 	iftrue UnknownScript_0x59205
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x591ff
-	2writetext UnknownText_0x593ed
+	writetext UnknownText_0x593ed
 	closetext
 	loadmovesprites
 	end
 ; 0x591ff
 
 UnknownScript_0x591ff: ; 0x591ff
-	2writetext UnknownText_0x59478
+	writetext UnknownText_0x59478
 	closetext
 	loadmovesprites
 	end
 ; 0x59205
 
 UnknownScript_0x59205: ; 0x59205
-	2writetext UnknownText_0x59445
+	writetext UnknownText_0x59445
 	closetext
 	loadmovesprites
 	end
 ; 0x5920b
 
 UnknownScript_0x5920b: ; 0x5920b
-	2writetext UnknownText_0x594cb
+	writetext UnknownText_0x594cb
 	closetext
 	loadmovesprites
 	clearevent $078f
@@ -127,21 +127,21 @@ ScientistScript_0x59214: ; 0x59214
 	if_equal 26, UnknownScript_0x5922e
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
-	2writetext UnknownText_0x5954f
+	writetext UnknownText_0x5954f
 	closetext
 	loadmovesprites
 	end
 ; 0x59228
 
 UnknownScript_0x59228: ; 0x59228
-	2writetext UnknownText_0x595cb
+	writetext UnknownText_0x595cb
 	closetext
 	loadmovesprites
 	end
 ; 0x5922e
 
 UnknownScript_0x5922e: ; 0x5922e
-	2writetext UnknownText_0x59769
+	writetext UnknownText_0x59769
 	closetext
 	loadmovesprites
 	end
@@ -154,14 +154,14 @@ MapRuinsofAlphResearchCenterSignpost1Script: ; 0x59234
 	checkcode $e
 	if_equal 26, UnknownScript_0x59247
 UnknownScript_0x59241: ; 0x59241
-	2writetext UnknownText_0x597b6
+	writetext UnknownText_0x597b6
 	closetext
 	loadmovesprites
 	end
 ; 0x59247
 
 UnknownScript_0x59247: ; 0x59247
-	2writetext UnknownText_0x597d9
+	writetext UnknownText_0x597d9
 	closetext
 	loadmovesprites
 	end
@@ -174,14 +174,14 @@ MapRuinsofAlphResearchCenterSignpost2Script: ; 0x5924d
 	checkcode $e
 	if_equal 26, UnknownScript_0x59260
 UnknownScript_0x5925a: ; 0x5925a
-	2writetext UnknownText_0x5980e
+	writetext UnknownText_0x5980e
 	closetext
 	loadmovesprites
 	end
 ; 0x59260
 
 UnknownScript_0x59260: ; 0x59260
-	2writetext UnknownText_0x5982d
+	writetext UnknownText_0x5982d
 	closetext
 	special $0027
 	loadmovesprites

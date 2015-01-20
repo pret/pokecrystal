@@ -9148,10 +9148,10 @@ UnknownScript_0xc7fe: ; c7fe
 	special $0035
 
 UnknownScript_0xc802: ; 0xc802
-	3callasm GetPartyNick
-	2writetext UnknownText_0xc7c4
+	callasm GetPartyNick
+	writetext UnknownText_0xc7c4
 	reloadmappart
-	3callasm Functionc810
+	callasm Functionc810
 	loadmovesprites
 	end
 ; 0xc810
@@ -9303,8 +9303,8 @@ Functionc8e0: ; c8e0
 UnknownScript_0xc8e6: ; 0xc8e6
 	reloadmappart
 	special $0035
-	2writetext UnknownText_0xc8f3
-	3callasm Function8c7e1
+	writetext UnknownText_0xc8f3
+	callasm Function8c7e1
 	loadmovesprites
 	end
 ; 0xc8f3
@@ -9404,11 +9404,11 @@ UnknownScript_0xc983: ; c983
 	special $0035
 
 UsedSurfScript: ; c986
-	2writetext UsedSurfText ; "used SURF!"
+	writetext UsedSurfText ; "used SURF!"
 	closetext
 	loadmovesprites
 
-	3callasm Functionc9a2 ; empty function
+	callasm Functionc9a2 ; empty function
 
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -9546,7 +9546,7 @@ TrySurfOW:: ; c9e7
 
 AskSurfScript: ; ca2c
 	loadfont
-	2writetext AskSurfText
+	writetext AskSurfText
 	yesorno
 	iftrue UsedSurfScript
 	loadmovesprites
@@ -9634,17 +9634,17 @@ Functionca9d: ; ca9d
 
 UnknownScript_0xcaa3: ; 0xcaa3
 	reloadmappart
-	3callasm HideSprites
+	callasm HideSprites
 	special $0035
-	3callasm Function8caed
-	3call UnknownScript_0x122c1
+	callasm Function8caed
+	farscall UnknownScript_0x122c1
 	special $0000
-	3callasm Function154f1
+	callasm Function154f1
 	writecode $8, $0
 	newloadmap $fc
-	3callasm Function8cb33
+	callasm Function8cb33
 	special $003b
-	3callasm Functioncacb
+	callasm Functioncacb
 	end
 ; 0xcacb
 
@@ -9703,14 +9703,14 @@ UnknownScript_0xcb1c: ; 0xcb1c
 	special $0035
 
 UnknownScript_0xcb20: ; 0xcb20
-	3callasm GetPartyNick
-	2writetext UnknownText_0xcb51
+	callasm GetPartyNick
+	writetext UnknownText_0xcb51
 	closetext
 	loadmovesprites
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement $0, WaterfallStep
-	3callasm Functioncb38
+	callasm Functioncb38
 	iffalse .loop
 	end
 ; 0xcb38
@@ -9771,7 +9771,7 @@ UnknownText_0xcb81: ; 0xcb81
 
 UnknownScript_0xcb86: ; 0xcb86
 	loadfont
-	2writetext UnknownText_0xcb90
+	writetext UnknownText_0xcb90
 	yesorno
 	iftrue UnknownScript_0xcb20
 	loadmovesprites
@@ -9892,21 +9892,21 @@ UnknownText_0xcc26: ; 0xcc26
 UnknownScript_0xcc2b: ; 0xcc2b
 	reloadmappart
 	special $0035
-	2writetext UnknownText_0xcc21
-	2jump UnknownScript_0xcc3c
+	writetext UnknownText_0xcc21
+	jump UnknownScript_0xcc3c
 ; 0xcc35
 
 UnknownScript_0xcc35: ; 0xcc35
 	reloadmappart
 	special $0035
-	2writetext UnknownText_0xcc1c
+	writetext UnknownText_0xcc1c
 
 UnknownScript_0xcc3c: ; 0xcc3c
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
-	3call UnknownScript_0x122c1
+	farscall UnknownScript_0x122c1
 	special $0000
 	writecode $8, $0
 	newloadmap $f5
@@ -9998,13 +9998,13 @@ UnknownText_0xccb6: ; 0xccb6
 UnknownScript_0xccbb: ; 0xccbb
 	reloadmappart
 	special $0035
-	2writetext UnknownText_0xccb1
+	writetext UnknownText_0xccb1
 	pause 60
 	reloadmappart
 	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcce1
-	3call UnknownScript_0x122c1
+	farscall UnknownScript_0x122c1
 	special $0000
 	writecode $8, $0
 	newloadmap $f4
@@ -10085,12 +10085,12 @@ UnknownScript_0xcd29: ; 0xcd29
 	special $0035
 
 UnknownScript_0xcd2d: ; 0xcd2d
-	3callasm Functioncd12
-	2writetext UnknownText_0xcd41
+	callasm Functioncd12
+	writetext UnknownText_0xcd41
 	copybytetovar $d1ef
 	cry $0000
 	pause 3
-	2writetext UnknownText_0xcd46
+	writetext UnknownText_0xcd46
 	loadmovesprites
 	end
 ; 0xcd41
@@ -10106,10 +10106,10 @@ UnknownText_0xcd46: ; 0xcd46
 ; 0xcd4b
 
 UnknownScript_0xcd4b: ; 0xcd4b
-	3callasm Functioncd78
+	callasm Functioncd78
 	iffalse UnknownScript_0xcd5f
 	if_equal $1, UnknownScript_0xcd59
-	2jump UnknownScript_0xcd5c
+	jump UnknownScript_0xcd5c
 ; 0xcd59
 
 UnknownScript_0xcd59: ; 0xcd59
@@ -10122,7 +10122,7 @@ UnknownScript_0xcd5c: ; 0xcd5c
 
 UnknownScript_0xcd5f: ; 0xcd5f
 	loadfont
-	2writetext UnknownText_0xcd69
+	writetext UnknownText_0xcd69
 	yesorno
 	iftrue UnknownScript_0xcd2d
 	loadmovesprites
@@ -10265,10 +10265,10 @@ UnknownScript_0xce0b: ; 0xce0b
 	special $0035
 
 UnknownScript_0xce0f: ; 0xce0f
-	3callasm GetPartyNick
-	2writetext UnknownText_0xcdd9
+	callasm GetPartyNick
+	writetext UnknownText_0xcdd9
 	reloadmappart
-	3callasm Functionce1d
+	callasm Functionce1d
 	loadmovesprites
 	end
 ; 0xce1d
@@ -10325,7 +10325,7 @@ UnknownText_0xce69: ; 0xce69
 
 UnknownScript_0xce6e: ; 0xce6e
 	loadfont
-	2writetext UnknownText_0xce78
+	writetext UnknownText_0xce78
 	yesorno
 	iftrue UnknownScript_0xce0f
 	loadmovesprites
@@ -10378,13 +10378,13 @@ HeadbuttFromMenuScript: ; 0xcea7
 	special $0035
 
 HeadbuttScript: ; 0xceab
-	3callasm GetPartyNick
-	2writetext UnknownText_0xce9d
+	callasm GetPartyNick
+	writetext UnknownText_0xce9d
 
 	reloadmappart
-	3callasm ShakeHeadbuttTree
+	callasm ShakeHeadbuttTree
 
-	3callasm TreeMonEncounter
+	callasm TreeMonEncounter
 	iffalse .no_battle
 	loadmovesprites
 	battlecheck
@@ -10393,7 +10393,7 @@ HeadbuttScript: ; 0xceab
 	end
 
 .no_battle
-	2writetext UnknownText_0xcea2
+	writetext UnknownText_0xcea2
 	closetext
 	loadmovesprites
 	end
@@ -10417,7 +10417,7 @@ TryHeadbuttOW:: ; cec9
 
 AskHeadbuttScript: ; 0xcedc
 	loadfont
-	2writetext UnknownText_0xcee6
+	writetext UnknownText_0xcee6
 	yesorno
 	iftrue HeadbuttScript
 	loadmovesprites
@@ -10484,8 +10484,8 @@ RockSmashFromMenuScript: ; 0xcf2e
 	special $0035
 
 RockSmashScript: ; cf32
-	3callasm GetPartyNick
-	2writetext UnknownText_0xcf58
+	callasm GetPartyNick
+	writetext UnknownText_0xcf58
 	loadmovesprites
 	special $003b
 	playsound SFX_STRENGTH
@@ -10493,7 +10493,7 @@ RockSmashScript: ; cf32
 	applymovement2 MovementData_0xcf55
 	disappear $fe
 
-	3callasm RockMonEncounter
+	callasm RockMonEncounter
 	copybytetovar $d22e
 	iffalse .done
 	battlecheck
@@ -10513,11 +10513,11 @@ UnknownText_0xcf58: ; 0xcf58
 ; 0xcf5d
 
 AskRockSmashScript: ; 0xcf5d
-	3callasm HasRockSmash
+	callasm HasRockSmash
 	if_equal 1, .no
 
 	loadfont
-	2writetext UnknownText_0xcf77
+	writetext UnknownText_0xcf77
 	yesorno
 	iftrue RockSmashScript
 	loadmovesprites
@@ -10652,28 +10652,28 @@ Functiond010: ; d010
 ; d01e
 
 UnknownScript_0xd01e: ; 0xd01e
-	2call UnknownScript_0xd07c
-	2writetext UnknownText_0xd0a9
-	2jump UnknownScript_0xd02d
+	scall UnknownScript_0xd07c
+	writetext UnknownText_0xd0a9
+	jump UnknownScript_0xd02d
 ; 0xd027
 
 UnknownScript_0xd027: ; 0xd027
-	2call UnknownScript_0xd07c
-	2writetext UnknownText_0xd0a9
+	scall UnknownScript_0xd07c
+	writetext UnknownText_0xd0a9
 
 UnknownScript_0xd02d: ; 0xd02d
 	loademote $8
-	3callasm Functiond095
+	callasm Functiond095
 	loadmovesprites
 	end
 ; 0xd035
 
 UnknownScript_0xd035: ; 0xd035
-	2call UnknownScript_0xd07c
-	3callasm Functiond06c
+	scall UnknownScript_0xd07c
+	callasm Functiond06c
 	iffalse UnknownScript_0xd046
 	applymovement $0, MovementData_0xd062
-	2jump UnknownScript_0xd04a
+	jump UnknownScript_0xd04a
 ; 0xd046
 
 UnknownScript_0xd046: ; 0xd046
@@ -10682,8 +10682,8 @@ UnknownScript_0xd046: ; 0xd046
 UnknownScript_0xd04a: ; 0xd04a
 	pause 40
 	applymovement $0, MovementData_0xd069
-	2writetext UnknownText_0xd0a4
-	3callasm Functiond095
+	writetext UnknownText_0xd0a4
+	callasm Functiond095
 	loadmovesprites
 	battlecheck
 	startbattle
@@ -10734,7 +10734,7 @@ UnknownScript_0xd07c: ; 0xd07c
 	loadvar $ffd4, $0
 	special $0035
 	loademote $9
-	3callasm Functionb84b3
+	callasm Functionb84b3
 	loademote $0
 	applymovement $0, MovementData_0xd093
 	pause 40
@@ -10868,7 +10868,7 @@ UnknownScript_0xd13e: ; 0xd13e
 	reloadmappart
 	special $0035
 	writecode $8, $1
-	2writetext UnknownText_0xd17c
+	writetext UnknownText_0xd17c
 	closetext
 	loadmovesprites
 	special $0038
@@ -10888,7 +10888,7 @@ UnknownScript_0xd158: ; 0xd158
 	reloadmappart
 	special $0035
 	writecode $8, $0
-	2writetext UnknownText_0xd181
+	writetext UnknownText_0xd181
 	closetext
 
 UnknownScript_0xd163:
@@ -10900,11 +10900,11 @@ UnknownScript_0xd163:
 
 UnknownScript_0xd16b: ; 0xd16b
 	writecode $8, $0
-	2jump UnknownScript_0xd163
+	jump UnknownScript_0xd163
 ; 0xd171
 
 UnknownScript_0xd171: ; 0xd171
-	2writetext UnknownText_0xd177
+	writetext UnknownText_0xd177
 	closetext
 	loadmovesprites
 	end
@@ -10954,10 +10954,10 @@ TryCutOW:: ; d186
 
 AskCutScript: ; 0xd1a9
 	loadfont
-	2writetext UnknownText_0xd1c8
+	writetext UnknownText_0xd1c8
 	yesorno
 	iffalse .script_d1b8
-	3callasm Functiond1ba
+	callasm Functiond1ba
 	iftrue UnknownScript_0xc802
 .script_d1b8
 	loadmovesprites
@@ -18387,11 +18387,11 @@ UnknownScript_0x122c1: ; 0x122c1
 ; 0x122ce
 
 UnknownScript_0x122ce:: ; 0x122ce
-	3callasm Function122f8
+	callasm Function122f8
 	iffalse UnknownScript_0x122e3
 	disappear $fe
 	loadfont
-	2writetext UnknownText_0x122ee
+	writetext UnknownText_0x122ee
 	playsound SFX_ITEM
 	pause 60
 	itemnotify
@@ -18401,9 +18401,9 @@ UnknownScript_0x122ce:: ; 0x122ce
 
 UnknownScript_0x122e3: ; 0x122e3
 	loadfont
-	2writetext UnknownText_0x122ee
+	writetext UnknownText_0x122ee
 	closetext
-	2writetext UnknownText_0x122f3
+	writetext UnknownText_0x122f3
 	closetext
 	loadmovesprites
 	end
@@ -18701,25 +18701,25 @@ Function124a3: ; 124a3
 ; 124c1
 
 UnknownScript_0x124c1:: ; 0x124c1
-	3callasm Function1250a
-	2jump UnknownScript_0x124ce
+	callasm Function1250a
+	jump UnknownScript_0x124ce
 ; 0x124c8
 
 UnknownScript_0x124c8:: ; 0x124c8
 	refreshscreen $0
-	3callasm Function124fa
+	callasm Function124fa
 
 UnknownScript_0x124ce: ; 0x124ce
-	2writetext UnknownText_0x124f5
+	writetext UnknownText_0x124f5
 	closetext
 	special $002e
 	pause 40
 	special $001b
 	checkflag $0011
 	iftrue .script_64f2
-	3callasm HalveMoney
-	3callasm Function12527
-	3call UnknownScript_0x122c1
+	callasm HalveMoney
+	callasm Function12527
+	farscall UnknownScript_0x122c1
 	special $0000
 	newloadmap $f1
 	resetfuncs
@@ -18888,8 +18888,8 @@ Function12599: ; 12599
 UnknownScript_0x125ad: ; 0x125ad
 	reloadmappart
 	special $0035
-	3callasm Function12599
-	2writetext UnknownText_0x125c3
+	callasm Function12599
+	writetext UnknownText_0x125c3
 	loadmovesprites
 	end
 ; 0x125ba
@@ -18897,7 +18897,7 @@ UnknownScript_0x125ad: ; 0x125ad
 UnknownScript_0x125ba: ; 0x125ba
 	reloadmappart
 	special $0035
-	2writetext UnknownText_0x125c8
+	writetext UnknownText_0x125c8
 	loadmovesprites
 	end
 ; 0x125c3
@@ -21356,15 +21356,15 @@ UnknownScript_0x135eb:: ; 0x135eb
 UnknownScript_0x135f8:: ; 0x135f8
 	playsound SFX_ELEVATOR_END
 	loadfont
-	2writetext UnknownText_0x1360f
+	writetext UnknownText_0x1360f
 	closetext
-	2jump UnknownScript_0x1360b
+	jump UnknownScript_0x1360b
 ; 0x13603
 
 UnknownScript_0x13603: ; 0x13603
 	playsound SFX_ELEVATOR_END
 	loadfont
-	2writetext UnknownText_0x13614
+	writetext UnknownText_0x13614
 	closetext
 
 UnknownScript_0x1360b: ; 0x1360b
@@ -21386,7 +21386,7 @@ UnknownText_0x13614: ; 0x13614
 
 UnknownScript_0x13619:: ; 0x13619
 	loadfont
-	2writetext UnknownText_0x13620
+	writetext UnknownText_0x13620
 	closetext
 	loadmovesprites
 	end
@@ -21402,18 +21402,18 @@ UnknownScript_0x13625:: ; 0x13625
 	loadfont
 	copybytetovar Unkn2Pals
 	itemtotext $0, $0
-	2writetext UnknownText_0x13645
+	writetext UnknownText_0x13645
 	giveitem $ff, $1
 	iffalse UnknownScript_0x1363e
-	3callasm Function1364f
+	callasm Function1364f
 	specialsound
 	itemnotify
-	2jump UnknownScript_0x13643
+	jump UnknownScript_0x13643
 ; 0x1363e
 
 UnknownScript_0x1363e: ; 0x1363e
 	keeptextopen
-	2writetext UnknownText_0x1364a
+	writetext UnknownText_0x1364a
 	closetext
 
 UnknownScript_0x13643: ; 13643
@@ -21478,11 +21478,11 @@ Function1365b:: ; 1365b
 	dbw $97, $0009 ; tv
 	dbw $9d, $0008 ; window
 	dbw $9f, $0005 ; incense burner
-	dbw $ff ; end
+	db $ff ; end
 ; 1369a
 
 UnknownScript_0x1369a: ; 0x1369a
-	2jump $d03f
+	jump $d03f
 ; 0x1369d
 
 
@@ -35685,7 +35685,7 @@ Unknown_26f84: ; 26f84
 
 UnknownScript_0x26f91: ; 0x26f91
 	loadfont
-	2writetext UnknownText_0x26f9b
+	writetext UnknownText_0x26f9b
 	closetext
 	special $0026
 	loadmovesprites
@@ -58763,16 +58763,16 @@ Function50658: ; 50658
 ; 50669
 
 UnknownScript_0x50669: ; 50669
-	3callasm Function50658
+	callasm Function50658
 	loadfont
-	3callasm Function5067b
+	callasm Function5067b
 	iffalse UnknownScript_0x50677
 	loadmovesprites
 	end
 ; 50677
 
 UnknownScript_0x50677: ; 50677
-	3jump UnknownScript_0x124c8
+	farjump UnknownScript_0x124c8
 ; 5067b
 
 Function5067b: ; 5067b
@@ -58826,10 +58826,10 @@ Function506bc: ; 506bc
 UnknownScript_0x506c8: ; 0x506c8
 	reloadmappart
 	special $0035
-	3callasm GetPartyNick
-	2writetext UnknownText_0x50726
+	callasm GetPartyNick
+	writetext UnknownText_0x50726
 	closetext
-	3callasm Function506ef
+	callasm Function506ef
 	iffalse UnknownScript_0x506e9
 	checkflag $0011
 	iftrue UnknownScript_0x506e5
@@ -58840,11 +58840,11 @@ UnknownScript_0x506c8: ; 0x506c8
 ; 0x506e5
 
 UnknownScript_0x506e5: ; 0x506e5
-	3jump UnknownScript_0x135eb
+	farjump UnknownScript_0x135eb
 ; 0x506e9
 
 UnknownScript_0x506e9: ; 0x506e9
-	2writetext UnknownText_0x5072b
+	writetext UnknownText_0x5072b
 	closetext
 	loadmovesprites
 	end
@@ -58903,9 +58903,9 @@ _Squirtbottle: ; 50730
 UnknownScript_0x5073c: ; 0x5073c
 	reloadmappart
 	special $0035
-	3callasm Function50753
+	callasm Function50753
 	iffalse UnknownScript_0x5074b
-	3jump WateredWeirdTreeScript
+	farjump WateredWeirdTreeScript
 ; 0x5074b
 
 UnknownScript_0x5074b: ; 0x5074b
@@ -58981,7 +58981,7 @@ _CardKey: ; 50779
 
 UnknownScript_0x507af: ; 0x507af
 	loadmovesprites
-	3jump MapRadioTower3FSignpost2Script
+	farjump MapRadioTower3FSignpost2Script
 ; 0x507b4
 
 
@@ -59016,7 +59016,7 @@ _BasementKey: ; 507b4
 
 UnknownScript_0x507e1: ; 0x507e1
 	loadmovesprites
-	3jump MapWarehouseEntranceSignpost0Script
+	farjump MapWarehouseEntranceSignpost0Script
 ; 0x507e6
 
 
@@ -59080,7 +59080,7 @@ UnknownScript_0x50821: ; 0x50821
 	special $002e
 	special $0031
 	waitbutton
-	2writetext UnknownText_0x50845
+	writetext UnknownText_0x50845
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	closetext
@@ -78605,7 +78605,7 @@ Function90136:: ; 90136 (24:4136)
 
 UnknownScript_0x90173: ; 0x90173
 	pause 30
-	2jump UnknownScript_0x90241
+	jump UnknownScript_0x90241
 ; 0x90178
 
 Function90178: ; 90178 (24:4178)
@@ -78698,12 +78698,12 @@ Function90199: ; 90199 (24:4199)
 ; 90205 (24:4205)
 
 UnknownScript_0x90205: ; 0x90205
-	2ptcall $d002
+	ptcall $d002
 	return
 ; 0x90209
 
 UnknownScript_0x90209: ; 0x90209
-	2call UnknownScript_0x90657
+	scall UnknownScript_0x90657
 	return
 ; 0x9020d
 
@@ -78734,7 +78734,7 @@ Unknown_90233: ; 90233
 	db 0, 0
 	dbw BANK(UnknownScript_0x90238), UnknownScript_0x90238
 UnknownScript_0x90238:
-	2writetext UnknownText_0x9023c
+	writetext UnknownText_0x9023c
 	end
 UnknownText_0x9023c:
 	text_jump UnknownText_0x1c5565
@@ -78743,18 +78743,18 @@ UnknownText_0x9023c:
 
 UnknownScript_0x90241: ; 0x90241
 	refreshscreen $0
-	3callasm Function9026f
-	2ptcall $d048
+	callasm Function9026f
+	ptcall $d048
 	closetext
-	3callasm Function902eb
+	callasm Function902eb
 	loadmovesprites
-	3callasm Function113e5
+	callasm Function113e5
 	end
 ; 0x90255
 
 UnknownScript_0x90255:: ; 0x90255
-	3callasm Function9025c
-	2jump UnknownScript_0x90241
+	callasm Function9025c
+	jump UnknownScript_0x90241
 ; 0x9025c
 
 Function9025c: ; 9025c
@@ -78763,9 +78763,9 @@ Function9025c: ; 9025c
 ; 90261
 
 UnknownScript_0x90261: ; 0x90261
-	3callasm Function9026a
+	callasm Function9026a
 	pause 30
-	2jump UnknownScript_0x90241
+	jump UnknownScript_0x90241
 ; 0x9026a
 
 Function9026a: ; 9026a
@@ -79150,7 +79150,7 @@ Unknown_90627: ; 90627
 ; 90657
 
 UnknownScript_0x90657: ; 0x90657
-	2writetext UnknownText_0x9065b
+	writetext UnknownText_0x9065b
 	end
 ; 0x9065b
 
@@ -79161,7 +79161,7 @@ UnknownText_0x9065b: ; 0x9065b
 ; 0x90660
 
 UnknownScript_0x90660: ; 0x90660
-	2writetext UnknownText_0x90664
+	writetext UnknownText_0x90664
 	end
 ; 0x90664
 
@@ -79172,7 +79172,7 @@ UnknownText_0x90664: ; 0x90664
 ; 0x90669
 
 UnknownScript_0x90669: ; 0x90669
-	2writetext UnknownText_0x9066d
+	writetext UnknownText_0x9066d
 	end
 ; 0x9066d
 
@@ -100156,8 +100156,8 @@ Functionfcfec:: ; fcfec
 ; fd00f
 
 UnknownScript_0xfd00f: ; 0xfd00f
-	3callasm Functionfd017
-	3jump UnknownScript_0x90241
+	callasm Functionfd017
+	farjump UnknownScript_0x90241
 ; 0xfd017
 
 Functionfd017: ; fd017
@@ -100303,18 +100303,18 @@ Functionfd0eb: ; fd0eb (3f:50eb)
 ; fd0fd (3f:50fd)
 
 UnknownScript_0xfd0fd: ; 0xfd0fd
-	2writetext UnknownText_0xfd1b1
-	2writetext UnknownText_0xfd1b6
-	2writetext UnknownText_0xfd1bb
-	2writetext UnknownText_0xfd1c0
+	writetext UnknownText_0xfd1b1
+	writetext UnknownText_0xfd1b6
+	writetext UnknownText_0xfd1bb
+	writetext UnknownText_0xfd1c0
 	end
 ; 0xfd10a
 
 UnknownScript_0xfd10a: ; 0xfd10a
-	2writetext UnknownText_0xfd1b1
-	2writetext UnknownText_0xfd1c5
-	2writetext UnknownText_0xfd1bb
-	2writetext UnknownText_0xfd1ca
+	writetext UnknownText_0xfd1b1
+	writetext UnknownText_0xfd1c5
+	writetext UnknownText_0xfd1bb
+	writetext UnknownText_0xfd1ca
 	end
 ; 0xfd117
 
@@ -113822,6 +113822,11 @@ Function117cdd: ; 0x117cdd
 
 SECTION "bank46", ROMX, BANK[$46]
 
+; This section should be part of a dedicated mobile object.
+; Until then, undo the existing charmap.
+
+	charmap " ", $20 ; revert to ascii
+
 Function118000: ; 118000
 	ld a, $1
 	ld [$cd38], a
@@ -114532,29 +114537,23 @@ Function118b24: ; 118b24 (46:4b24)
 INCBIN "baserom.gbc",$118b42,$118ba5 - $118b42
 
 ExchangeDownloadURL: ; 0x118ba5
-	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt"
-
-db $0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt", 0
 
 BattleDownloadURL: ; 0x118bf7
-	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/battle/index.txt"
-
-db $0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/battle/index.txt", 0
 
 NewsDownloadURL: ; 0x118c47
-	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/news/index.txt"
-
-db $0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/news/index.txt", 0
 
 MenuDownloadURL: ; 0x118c95
-	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/POKESTA/menu.cgb"
-
-db $0
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/POKESTA/menu.cgb", 0
 
 IndexDownloadURL: ; 0x118ce4
-	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt"
+	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
-db $0
+
+SECTION "bank46_2", ROMX, BANK[$46]
+; A hack to use ascii above.
 
 INCBIN "baserom.gbc",$118d35,$118e39 - $118d35
 

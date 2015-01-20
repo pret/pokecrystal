@@ -12,7 +12,7 @@ GrannyScript_0x195949: ; 0x195949
 
 EkansScript_0x19594c: ; 0x19594c
 	loadfont
-	2writetext UnknownText_0x1959ee
+	writetext UnknownText_0x1959ee
 	cry DRATINI
 	closetext
 	loadmovesprites

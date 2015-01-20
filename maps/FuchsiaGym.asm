@@ -12,7 +12,7 @@ JanineScript_0x195db9: ; 0x195db9
 	applymovement $2, MovementData_0x195f27
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x195f35
+	writetext UnknownText_0x195f35
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x195fa1, $0000
@@ -30,11 +30,11 @@ JanineScript_0x195db9: ; 0x195db9
 	variablesprite $a, $27
 	special $005e
 	loadfont
-	2writetext UnknownText_0x195feb
+	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0027
-	2jump UnknownScript_0x195e02
+	jump UnknownScript_0x195e02
 ; 0x195e00
 
 UnknownScript_0x195e00: ; 0x195e00
@@ -43,13 +43,13 @@ UnknownScript_0x195e00: ; 0x195e00
 UnknownScript_0x195e02: ; 0x195e02
 	checkevent EVENT_GOT_TM06_TOXIC
 	iftrue UnknownScript_0x195e15
-	2writetext UnknownText_0x196002
+	writetext UnknownText_0x196002
 	keeptextopen
 	verbosegiveitem TM_06, 1
 	iffalse UnknownScript_0x195e15
 	setevent EVENT_GOT_TM06_TOXIC
 UnknownScript_0x195e15: ; 0x195e15
-	2writetext UnknownText_0x196074
+	writetext UnknownText_0x196074
 	closetext
 	loadmovesprites
 	end
@@ -67,7 +67,7 @@ UnknownScript_0x195e2c: ; 0x195e2c
 	loadfont
 	checkevent $0517
 	iftrue UnknownScript_0x195e4f
-	2writetext UnknownText_0x1960e6
+	writetext UnknownText_0x1960e6
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x196126, $0000
@@ -86,7 +86,7 @@ UnknownScript_0x195e4a: ; 0x195e4a
 ; 0x195e4f
 
 UnknownScript_0x195e4f: ; 0x195e4f
-	2writetext UnknownText_0x196139
+	writetext UnknownText_0x196139
 	closetext
 	loadmovesprites
 	end
@@ -104,7 +104,7 @@ UnknownScript_0x195e66: ; 0x195e66
 	loadfont
 	checkevent $051a
 	iftrue UnknownScript_0x195e89
-	2writetext UnknownText_0x196166
+	writetext UnknownText_0x196166
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x19617b, $0000
@@ -123,7 +123,7 @@ UnknownScript_0x195e84: ; 0x195e84
 ; 0x195e89
 
 UnknownScript_0x195e89: ; 0x195e89
-	2writetext UnknownText_0x196199
+	writetext UnknownText_0x196199
 	closetext
 	loadmovesprites
 	end
@@ -141,7 +141,7 @@ UnknownScript_0x195ea0: ; 0x195ea0
 	loadfont
 	checkevent $0482
 	iftrue UnknownScript_0x195ec3
-	2writetext UnknownText_0x1961bb
+	writetext UnknownText_0x1961bb
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1961f1, $0000
@@ -160,7 +160,7 @@ UnknownScript_0x195ebe: ; 0x195ebe
 ; 0x195ec3
 
 UnknownScript_0x195ec3: ; 0x195ec3
-	2writetext UnknownText_0x19620c
+	writetext UnknownText_0x19620c
 	closetext
 	loadmovesprites
 	end
@@ -178,7 +178,7 @@ UnknownScript_0x195eda: ; 0x195eda
 	loadfont
 	checkevent $041e
 	iftrue UnknownScript_0x195efd
-	2writetext UnknownText_0x196228
+	writetext UnknownText_0x196228
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x19624a, $0000
@@ -197,7 +197,7 @@ UnknownScript_0x195ef8: ; 0x195ef8
 ; 0x195efd
 
 UnknownScript_0x195efd: ; 0x195efd
-	2writetext UnknownText_0x19626b
+	writetext UnknownText_0x19626b
 	closetext
 	loadmovesprites
 	end
@@ -208,13 +208,13 @@ FuchsiaGymGuyScript: ; 0x195f03
 	loadfont
 	checkevent EVENT_BEAT_JANINE
 	iftrue .FuchsiaGymGuyWinScript
-	2writetext FuchsiaGymGuyText
+	writetext FuchsiaGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .FuchsiaGymGuyWinScript
-	2writetext FuchsiaGymGuyWinText
+	writetext FuchsiaGymGuyWinText
 	closetext
 	loadmovesprites
 	end

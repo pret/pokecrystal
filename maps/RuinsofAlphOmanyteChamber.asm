@@ -99,7 +99,7 @@ MapRuinsofAlphOmanyteChamberSignpost3Script: ; 0x58c66
 
 MapRuinsofAlphOmanyteChamberSignpost4Script: ; 0x58c69
 	loadfont
-	2writetext UnknownText_0x58c8e
+	writetext UnknownText_0x58c8e
 	writebyte $2
 	special $0087
 	loadmovesprites
@@ -110,7 +110,7 @@ MapRuinsofAlphOmanyteChamberSignpost5Script: ; 0x58c74
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58c85
 	loadfont
-	2writetext UnknownText_0x58cc0
+	writetext UnknownText_0x58cc0
 	writebyte $2
 	special $0087
 	loadmovesprites
@@ -119,7 +119,7 @@ MapRuinsofAlphOmanyteChamberSignpost5Script: ; 0x58c74
 
 UnknownScript_0x58c85: ; 0x58c85
 	loadfont
-	2writetext UnknownText_0x58ce1
+	writetext UnknownText_0x58ce1
 	closetext
 	loadmovesprites
 	end

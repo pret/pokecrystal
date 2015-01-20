@@ -23,14 +23,14 @@ YoungsterScript_0x7e6a9: ; 0x7e6a9
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x7e6b7
-	2writetext UnknownText_0x7e779
+	writetext UnknownText_0x7e779
 	closetext
 	loadmovesprites
 	end
 ; 0x7e6b7
 
 UnknownScript_0x7e6b7: ; 0x7e6b7
-	2writetext UnknownText_0x7e7ed
+	writetext UnknownText_0x7e7ed
 	closetext
 	loadmovesprites
 	end

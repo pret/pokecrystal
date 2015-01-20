@@ -51,7 +51,7 @@ MapTimeCapsuleSignpost1Script: ; 0x193514
 
 ChrisScript_0x19351a: ; 0x19351a
 	loadfont
-	2writetext UnknownText_0x193521
+	writetext UnknownText_0x193521
 	closetext
 	loadmovesprites
 	end

@@ -11,7 +11,7 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	loadfont
 	checkflag $0026
 	iftrue UnknownScript_0x72a9b
-	2writetext UnknownText_0x72b28
+	writetext UnknownText_0x72b28
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x72c3e, $0000
@@ -24,20 +24,20 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	setevent EVENT_BEAT_BEAUTY_JULIA
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
 	loadfont
-	2writetext UnknownText_0x72c96
+	writetext UnknownText_0x72c96
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0026
 UnknownScript_0x72a9b: ; 0x72a9b
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
 	iftrue UnknownScript_0x72aae
-	2writetext UnknownText_0x72cb0
+	writetext UnknownText_0x72cb0
 	keeptextopen
 	verbosegiveitem TM_19, 1
 	iffalse UnknownScript_0x72aae
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
 UnknownScript_0x72aae: ; 0x72aae
-	2writetext UnknownText_0x72d8f
+	writetext UnknownText_0x72d8f
 	closetext
 	loadmovesprites
 	end
@@ -66,7 +66,7 @@ TrainerLassMichelle: ; 0x72ab4
 LassMichelleScript: ; 0x72ac0
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x72e30
+	writetext UnknownText_0x72e30
 	closetext
 	loadmovesprites
 	end
@@ -95,7 +95,7 @@ TrainerPicnickerTanya: ; 0x72ac8
 PicnickerTanyaScript: ; 0x72ad4
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x72e8e
+	writetext UnknownText_0x72e8e
 	closetext
 	loadmovesprites
 	end
@@ -124,7 +124,7 @@ TrainerBeautyJulia: ; 0x72adc
 BeautyJuliaScript: ; 0x72ae8
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x72f01
+	writetext UnknownText_0x72f01
 	closetext
 	loadmovesprites
 	end
@@ -153,7 +153,7 @@ TrainerTwinsJoandzoe1: ; 0x72af0
 TwinsJoandzoe1Script: ; 0x72afc
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x72f70
+	writetext UnknownText_0x72f70
 	closetext
 	loadmovesprites
 	end
@@ -182,7 +182,7 @@ TrainerTwinsJoandzoe2: ; 0x72b04
 TwinsJoandzoe2Script: ; 0x72b10
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x72fc0
+	writetext UnknownText_0x72fc0
 	closetext
 	loadmovesprites
 	end

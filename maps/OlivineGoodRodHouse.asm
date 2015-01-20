@@ -11,13 +11,13 @@ FishingGuruScript_0x9c71b: ; 0x9c71b
 	loadfont
 	checkevent EVENT_GOT_GOOD_ROD
 	iftrue UnknownScript_0x9c740
-	2writetext UnknownText_0x9c749
+	writetext UnknownText_0x9c749
 	yesorno
 	iffalse UnknownScript_0x9c73a
-	2writetext UnknownText_0x9c7db
+	writetext UnknownText_0x9c7db
 	keeptextopen
 	verbosegiveitem GOOD_ROD, 1
-	2writetext UnknownText_0x9c807
+	writetext UnknownText_0x9c807
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_GOOD_ROD
@@ -25,14 +25,14 @@ FishingGuruScript_0x9c71b: ; 0x9c71b
 ; 0x9c73a
 
 UnknownScript_0x9c73a: ; 0x9c73a
-	2writetext UnknownText_0x9c84c
+	writetext UnknownText_0x9c84c
 	closetext
 	loadmovesprites
 	end
 ; 0x9c740
 
 UnknownScript_0x9c740: ; 0x9c740
-	2writetext UnknownText_0x9c87f
+	writetext UnknownText_0x9c87f
 	closetext
 	loadmovesprites
 	end

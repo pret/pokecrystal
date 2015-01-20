@@ -1,3 +1,12 @@
+INCLUDE "macros/event.asm"
+INCLUDE "macros/sound.asm"
+INCLUDE "macros/text.asm"
+INCLUDE "macros/charmap.asm"
+INCLUDE "macros/move_effect.asm"
+INCLUDE "macros/move_anim.asm"
+INCLUDE "macros/movement.asm"
+INCLUDE "macros/map.asm"
+
 
 text   EQUS "db $00," ; Start writing text.
 next   EQUS "db $4e," ; Move a line down.
@@ -107,6 +116,18 @@ RGB: MACRO
 note: MACRO
 	db (\1) << 4 + ((\2) - 1)
 	ENDM
+
+sound: macro
+	db \1 ; duration
+	db \2 ; intensity
+	dw \3 ; frequency
+	endm
+
+noise: macro
+	db \1 ; duration
+	db \2 ; intensity
+	db \3 ; frequency
+	endm
 
 ; pitch
 __ EQU 0

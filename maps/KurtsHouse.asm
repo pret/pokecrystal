@@ -40,7 +40,7 @@ KurtScript_0x18e178: ; 0x18e178
 	iftrue UnknownScript_0x18e1cc
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18e1bf
-	2writetext UnknownText_0x18e473
+	writetext UnknownText_0x18e473
 	closetext
 	loadmovesprites
 	special $006a
@@ -69,7 +69,7 @@ UnknownScript_0x18e1ab: ; 0x18e1ab
 ; 0x18e1bf
 
 UnknownScript_0x18e1bf: ; 0x18e1bf
-	2writetext UnknownText_0x18e615
+	writetext UnknownText_0x18e615
 	keeptextopen
 	verbosegiveitem LURE_BALL, 1
 	iffalse UnknownScript_0x18e2b2
@@ -98,7 +98,7 @@ UnknownScript_0x18e202: ; 0x18e202
 	iftrue UnknownScript_0x18e212
 	checkevent $0002
 	iftrue UnknownScript_0x18e212
-	2writetext UnknownText_0x18e6c9
+	writetext UnknownText_0x18e6c9
 	closetext
 UnknownScript_0x18e212: ; 0x18e212
 	checkitem RED_APRICORN
@@ -124,14 +124,14 @@ UnknownScript_0x18e212: ; 0x18e212
 ; 0x18e243
 
 UnknownScript_0x18e243: ; 0x18e243
-	2writetext UnknownText_0x18e6c9
+	writetext UnknownText_0x18e6c9
 	closetext
 	loadmovesprites
 	end
 ; 0x18e249
 
 UnknownScript_0x18e249: ; 0x18e249
-	2writetext UnknownText_0x18e736
+	writetext UnknownText_0x18e736
 	keeptextopen
 	setevent $0002
 	special $0056
@@ -143,51 +143,51 @@ UnknownScript_0x18e249: ; 0x18e249
 	if_equal $63, UnknownScript_0x18e28d
 	if_equal $65, UnknownScript_0x18e293
 	setevent $0258
-	2jump UnknownScript_0x18e299
+	jump UnknownScript_0x18e299
 ; 0x18e275
 
 UnknownScript_0x18e275: ; 0x18e275
 	setevent $0259
-	2jump UnknownScript_0x18e299
+	jump UnknownScript_0x18e299
 ; 0x18e27b
 
 UnknownScript_0x18e27b: ; 0x18e27b
 	setevent $025a
-	2jump UnknownScript_0x18e299
+	jump UnknownScript_0x18e299
 ; 0x18e281
 
 UnknownScript_0x18e281: ; 0x18e281
 	setevent $025b
-	2jump UnknownScript_0x18e299
+	jump UnknownScript_0x18e299
 ; 0x18e287
 
 UnknownScript_0x18e287: ; 0x18e287
 	setevent $025c
-	2jump UnknownScript_0x18e299
+	jump UnknownScript_0x18e299
 ; 0x18e28d
 
 UnknownScript_0x18e28d: ; 0x18e28d
 	setevent $025d
-	2jump UnknownScript_0x18e299
+	jump UnknownScript_0x18e299
 ; 0x18e293
 
 UnknownScript_0x18e293: ; 0x18e293
 	setevent $025e
-	2jump UnknownScript_0x18e299
+	jump UnknownScript_0x18e299
 ; 0x18e299
 
 UnknownScript_0x18e299: ; 0x18e299
 	setevent $0000
 	setflag $0050
 UnknownScript_0x18e29f: ; 0x18e29f
-	2writetext UnknownText_0x18e779
+	writetext UnknownText_0x18e779
 	closetext
 	loadmovesprites
 	end
 ; 0x18e2a5
 
 UnknownScript_0x18e2a5: ; 0x18e2a5
-	2writetext UnknownText_0x18e7bc
+	writetext UnknownText_0x18e7bc
 	closetext
 	loadmovesprites
 	end
@@ -196,7 +196,7 @@ UnknownScript_0x18e2a5: ; 0x18e2a5
 UnknownScript_0x18e2ab: ; 0x18e2ab
 	setevent $0001
 UnknownScript_0x18e2ae: ; 0x18e2ae
-	2writetext UnknownText_0x18e82a
+	writetext UnknownText_0x18e82a
 	closetext
 UnknownScript_0x18e2b2: ; 0x18e2b2
 	loadmovesprites
@@ -206,85 +206,85 @@ UnknownScript_0x18e2b2: ; 0x18e2b2
 UnknownScript_0x18e2b4: ; 0x18e2b4
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
-	2writetext UnknownText_0x18e7fb
+	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LEVEL_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2c4: ; 0x18e2c4
 	clearevent $0258
-	2jump UnknownScript_0x18e2ab
+	jump UnknownScript_0x18e2ab
 ; 0x18e2ca
 
 UnknownScript_0x18e2ca: ; 0x18e2ca
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
-	2writetext UnknownText_0x18e7fb
+	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LURE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2da: ; 0x18e2da
 	clearevent $0259
-	2jump UnknownScript_0x18e2ab
+	jump UnknownScript_0x18e2ab
 ; 0x18e2e0
 
 UnknownScript_0x18e2e0: ; 0x18e2e0
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
-	2writetext UnknownText_0x18e7fb
+	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 MOON_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2f0: ; 0x18e2f0
 	clearevent $025a
-	2jump UnknownScript_0x18e2ab
+	jump UnknownScript_0x18e2ab
 ; 0x18e2f6
 
 UnknownScript_0x18e2f6: ; 0x18e2f6
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
-	2writetext UnknownText_0x18e7fb
+	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 FRIEND_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e306: ; 0x18e306
 	clearevent $025b
-	2jump UnknownScript_0x18e2ab
+	jump UnknownScript_0x18e2ab
 ; 0x18e30c
 
 UnknownScript_0x18e30c: ; 0x18e30c
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
-	2writetext UnknownText_0x18e7fb
+	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 FAST_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e31c: ; 0x18e31c
 	clearevent $025c
-	2jump UnknownScript_0x18e2ab
+	jump UnknownScript_0x18e2ab
 ; 0x18e322
 
 UnknownScript_0x18e322: ; 0x18e322
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
-	2writetext UnknownText_0x18e7fb
+	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 HEAVY_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e332: ; 0x18e332
 	clearevent $025d
-	2jump UnknownScript_0x18e2ab
+	jump UnknownScript_0x18e2ab
 ; 0x18e338
 
 UnknownScript_0x18e338: ; 0x18e338
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
-	2writetext UnknownText_0x18e7fb
+	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LOVE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e348: ; 0x18e348
 	clearevent $025e
-	2jump UnknownScript_0x18e2ab
+	jump UnknownScript_0x18e2ab
 ; 0x18e34e
 
 UnknownScript_0x18e34e: ; 0x18e34e
@@ -292,7 +292,7 @@ UnknownScript_0x18e34e: ; 0x18e34e
 	iftrue UnknownScript_0x18e368
 	checkitem GS_BALL
 	iffalse UnknownScript_0x18e202
-	2writetext UnknownText_0x18e8ab
+	writetext UnknownText_0x18e8ab
 	closetext
 	loadmovesprites
 	setevent $00bf
@@ -304,16 +304,16 @@ UnknownScript_0x18e34e: ; 0x18e34e
 UnknownScript_0x18e368: ; 0x18e368
 	checkflag $0050
 	iffalse UnknownScript_0x18e378
-	2writetext UnknownText_0x18e934
+	writetext UnknownText_0x18e934
 	closetext
-	2writetext UnknownText_0x18e949
+	writetext UnknownText_0x18e949
 	closetext
 	loadmovesprites
 	end
 ; 0x18e378
 
 UnknownScript_0x18e378: ; 0x18e378
-	2writetext UnknownText_0x18e95c
+	writetext UnknownText_0x18e95c
 	closetext
 	loadmovesprites
 	setevent $00c0
@@ -327,7 +327,7 @@ UnknownScript_0x18e378: ; 0x18e378
 	spriteface $0, $0
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e466
-	2jump UnknownScript_0x18e3ac
+	jump UnknownScript_0x18e3ac
 ; 0x18e3a2
 
 UnknownScript_0x18e3a2: ; 0x18e3a2
@@ -352,7 +352,7 @@ KurtScript_0x18e3bd: ; 0x18e3bd
 UnknownScript_0x18e3c5: ; 0x18e3c5
 	checkevent $00bb
 	iffalse UnknownScript_0x18e3d4
-	2writetext UnknownText_0x18e7d8
+	writetext UnknownText_0x18e7d8
 	closetext
 	loadmovesprites
 	spriteface $5, $1
@@ -360,7 +360,7 @@ UnknownScript_0x18e3c5: ; 0x18e3c5
 ; 0x18e3d4
 
 UnknownScript_0x18e3d4: ; 0x18e3d4
-	2writetext UnknownText_0x18e863
+	writetext UnknownText_0x18e863
 	closetext
 	loadmovesprites
 	spriteface $5, $1
@@ -369,10 +369,10 @@ UnknownScript_0x18e3d4: ; 0x18e3d4
 ; 0x18e3e0
 
 UnknownScript_0x18e3e0: ; 0x18e3e0
-	2writetext UnknownText_0x18e934
+	writetext UnknownText_0x18e934
 	closetext
 	spriteface $5, $1
-	2writetext UnknownText_0x18e949
+	writetext UnknownText_0x18e949
 	closetext
 	loadmovesprites
 	end
@@ -393,7 +393,7 @@ TwinScript_0x18e3ed: ; 0x18e3ed
 	checkevent $06fa
 	iftrue UnknownScript_0x18e420
 	loadfont
-	2writetext UnknownText_0x18e9b5
+	writetext UnknownText_0x18e9b5
 	closetext
 	loadmovesprites
 	end
@@ -401,7 +401,7 @@ TwinScript_0x18e3ed: ; 0x18e3ed
 
 UnknownScript_0x18e419: ; 0x18e419
 	loadfont
-	2writetext UnknownText_0x18ea0f
+	writetext UnknownText_0x18ea0f
 	closetext
 	loadmovesprites
 	end
@@ -409,7 +409,7 @@ UnknownScript_0x18e419: ; 0x18e419
 
 UnknownScript_0x18e420: ; 0x18e420
 	loadfont
-	2writetext UnknownText_0x18e9f1
+	writetext UnknownText_0x18e9f1
 	closetext
 	loadmovesprites
 	end
@@ -417,7 +417,7 @@ UnknownScript_0x18e420: ; 0x18e420
 
 UnknownScript_0x18e427: ; 0x18e427
 	loadfont
-	2writetext UnknownText_0x18ea55
+	writetext UnknownText_0x18ea55
 	closetext
 	loadmovesprites
 	end
@@ -429,7 +429,7 @@ UnknownScript_0x18e42f: ; 0x18e42f
 	loadfont
 	checkevent $00bf
 	iftrue UnknownScript_0x18e43f
-	2writetext UnknownText_0x18eab2
+	writetext UnknownText_0x18eab2
 	closetext
 	loadmovesprites
 	spriteface $6, $3
@@ -437,7 +437,7 @@ UnknownScript_0x18e42f: ; 0x18e42f
 ; 0x18e43f
 
 UnknownScript_0x18e43f: ; 0x18e43f
-	2writetext UnknownText_0x18eb14
+	writetext UnknownText_0x18eb14
 	closetext
 	loadmovesprites
 	spriteface $6, $3
@@ -446,7 +446,7 @@ UnknownScript_0x18e43f: ; 0x18e43f
 
 UnknownScript_0x18e448: ; 0x18e448
 	loadfont
-	2writetext UnknownText_0x18eafc
+	writetext UnknownText_0x18eafc
 	closetext
 	loadmovesprites
 	end
@@ -455,7 +455,7 @@ UnknownScript_0x18e448: ; 0x18e448
 SlowpokeScript_0x18e44f: ; 0x18e44f
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x18eb56
+	writetext UnknownText_0x18eb56
 	cry SLOWPOKE
 	closetext
 	loadmovesprites

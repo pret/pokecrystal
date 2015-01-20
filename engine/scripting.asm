@@ -572,8 +572,8 @@ Function96f76: ; 96f76
 ; 96f77
 
 GiveItemScript: ; 96f77
-	3callasm Function96f76
-	2writetext ReceivedItemText
+	callasm Function96f76
+	writetext ReceivedItemText
 	iffalse .Full
 	waitbutton
 	specialsound

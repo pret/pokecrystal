@@ -11,7 +11,7 @@ PokefanMScript_0x9ceb4: ; 0x9ceb4
 	loadfont
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cec5
-	2writetext UnknownText_0x9cf38
+	writetext UnknownText_0x9cf38
 	closetext
 	loadmovesprites
 	setevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
@@ -21,7 +21,7 @@ PokefanMScript_0x9ceb4: ; 0x9ceb4
 UnknownScript_0x9cec5: ; 0x9cec5
 	checkitem MOOMOO_MILK
 	iftrue UnknownScript_0x9cf08
-	2writetext UnknownText_0x9cfe1
+	writetext UnknownText_0x9cfe1
 	special $0051
 	yesorno
 	iffalse UnknownScript_0x9cf02
@@ -33,7 +33,7 @@ UnknownScript_0x9cec5: ; 0x9cec5
 	special $0051
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x9d05d
+	writetext UnknownText_0x9d05d
 	keeptextopen
 	itemnotify
 	loadmovesprites
@@ -41,28 +41,28 @@ UnknownScript_0x9cec5: ; 0x9cec5
 ; 0x9cef6
 
 UnknownScript_0x9cef6: ; 0x9cef6
-	2writetext UnknownText_0x9d07c
+	writetext UnknownText_0x9d07c
 	closetext
 	loadmovesprites
 	end
 ; 0x9cefc
 
 UnknownScript_0x9cefc: ; 0x9cefc
-	2writetext UnknownText_0x9d09d
+	writetext UnknownText_0x9d09d
 	closetext
 	loadmovesprites
 	end
 ; 0x9cf02
 
 UnknownScript_0x9cf02: ; 0x9cf02
-	2writetext UnknownText_0x9d0b7
+	writetext UnknownText_0x9d0b7
 	closetext
 	loadmovesprites
 	end
 ; 0x9cf08
 
 UnknownScript_0x9cf08: ; 0x9cf08
-	2writetext UnknownText_0x9d0dc
+	writetext UnknownText_0x9d0dc
 	closetext
 	loadmovesprites
 	end
@@ -75,20 +75,20 @@ PokefanFScript_0x9cf0e: ; 0x9cf0e
 	iftrue UnknownScript_0x9cf2f
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cf22
-	2writetext UnknownText_0x9d0f6
+	writetext UnknownText_0x9d0f6
 	closetext
 	loadmovesprites
 	end
 ; 0x9cf22
 
 UnknownScript_0x9cf22: ; 0x9cf22
-	2writetext UnknownText_0x9d156
+	writetext UnknownText_0x9d156
 	keeptextopen
 	verbosegiveitem TM_13, 1
 	iffalse UnknownScript_0x9cf33
 	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 UnknownScript_0x9cf2f: ; 0x9cf2f
-	2writetext UnknownText_0x9d1c7
+	writetext UnknownText_0x9d1c7
 	closetext
 UnknownScript_0x9cf33: ; 0x9cf33
 	loadmovesprites

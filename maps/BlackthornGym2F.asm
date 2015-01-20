@@ -35,24 +35,24 @@ StoneTable_0x195730: ; 0x195730
 
 UnknownScript_0x19573d: ; 0x19573d
 	disappear 4
-	2jump UnknownScript_0x19574c
+	jump UnknownScript_0x19574c
 ; 0x195742
 
 UnknownScript_0x195742: ; 0x195742
 	disappear 5
-	2jump UnknownScript_0x19574c
+	jump UnknownScript_0x19574c
 ; 0x195747
 
 UnknownScript_0x195747: ; 0x195747
 	disappear 6
-	2jump UnknownScript_0x19574c
+	jump UnknownScript_0x19574c
 ; 0x19574c
 
 UnknownScript_0x19574c: ; 0x19574c
 	pause 30
-	2call UnknownScript_0x195758
+	scall UnknownScript_0x195758
 	loadfont
-	2writetext UnknownText_0x1958a5
+	writetext UnknownText_0x1958a5
 	closetext
 	loadmovesprites
 	end
@@ -92,7 +92,7 @@ TrainerCooltrainermCody: ; 0x195761
 CooltrainermCodyScript: ; 0x19576d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1957d5
+	writetext UnknownText_0x1957d5
 	closetext
 	loadmovesprites
 	end
@@ -121,7 +121,7 @@ TrainerCooltrainerfFran: ; 0x195775
 CooltrainerfFranScript: ; 0x195781
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x195883
+	writetext UnknownText_0x195883
 	closetext
 	loadmovesprites
 	end

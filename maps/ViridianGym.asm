@@ -11,7 +11,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 	loadfont
 	checkflag $002a
 	iftrue UnknownScript_0x9aa51
-	2writetext UnknownText_0x9aa7b
+	writetext UnknownText_0x9aa7b
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x9abae, $0000
@@ -20,18 +20,18 @@ BlueScript_0x9aa26: ; 0x9aa26
 	returnafterbattle
 	setevent EVENT_BEAT_BLUE
 	loadfont
-	2writetext UnknownText_0x9ac0f
+	writetext UnknownText_0x9ac0f
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $002a
-	2writetext UnknownText_0x9ac27
+	writetext UnknownText_0x9ac27
 	closetext
 	loadmovesprites
 	end
 ; 0x9aa51
 
 UnknownScript_0x9aa51: ; 0x9aa51
-	2writetext UnknownText_0x9acab
+	writetext UnknownText_0x9acab
 	closetext
 	loadmovesprites
 	end
@@ -42,13 +42,13 @@ ViridianGymGuyScript: ; 0x9aa57
 	loadfont
 	checkevent EVENT_BEAT_BLUE
 	iftrue .ViridianGymGuyWinScript
-	2writetext ViridianGymGuyText
+	writetext ViridianGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .ViridianGymGuyWinScript
-	2writetext ViridianGymGuyWinText
+	writetext ViridianGymGuyWinText
 	closetext
 	loadmovesprites
 	end

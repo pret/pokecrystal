@@ -15,25 +15,25 @@ UnknownScript_0x78005: ; 0x78005
 	iftrue UnknownScript_0x78014
 	clearevent $06e5
 	setevent $06e6
-	2jump UnknownScript_0x7801d
+	jump UnknownScript_0x7801d
 ; 0x78014
 
 UnknownScript_0x78014: ; 0x78014
 	setevent $06e5
 	clearevent $06e6
-	2jump UnknownScript_0x7801d
+	jump UnknownScript_0x7801d
 ; 0x7801d
 
 UnknownScript_0x7801d: ; 0x7801d
 	checkflag $0006
 	iffalse UnknownScript_0x78029
 	clearevent $06e7
-	2jump UnknownScript_0x7802f
+	jump UnknownScript_0x7802f
 ; 0x78029
 
 UnknownScript_0x78029: ; 0x78029
 	setevent $06e7
-	2jump UnknownScript_0x7802f
+	jump UnknownScript_0x7802f
 ; 0x7802f
 
 UnknownScript_0x7802f: ; 0x7802f
@@ -118,26 +118,26 @@ CamperTodd1Script: ; 0x7807d
 	iftrue UnknownScript_0x78143
 	checkevent $027d
 	iftrue UnknownScript_0x780a6
-	2writetext UnknownText_0x784f0
+	writetext UnknownText_0x784f0
 	keeptextopen
 	setevent $027d
-	2call UnknownScript_0x78137
-	2jump UnknownScript_0x780a9
+	scall UnknownScript_0x78137
+	jump UnknownScript_0x780a9
 ; 0x780a6
 
 UnknownScript_0x780a6: ; 0x780a6
-	2call UnknownScript_0x7813b
+	scall UnknownScript_0x7813b
 UnknownScript_0x780a9: ; 0x780a9
 	askforphonenumber $14
 	if_equal $1, UnknownScript_0x7814b
 	if_equal $2, UnknownScript_0x78147
 	trainertotext CAMPER, TODD1, $0
-	2call UnknownScript_0x7813f
-	2jump UnknownScript_0x78143
+	scall UnknownScript_0x7813f
+	jump UnknownScript_0x78143
 ; 0x780bd
 
 UnknownScript_0x780bd: ; 0x780bd
-	2call UnknownScript_0x7814f
+	scall UnknownScript_0x7814f
 	winlosstext CamperTodd1BeatenText, $0000
 	copybytetovar $d9fe
 	if_equal $4, UnknownScript_0x780dc
@@ -202,7 +202,7 @@ UnknownScript_0x78128: ; 0x78128
 ; 0x78131
 
 UnknownScript_0x78131: ; 0x78131
-	2writetext UnknownText_0x78532
+	writetext UnknownText_0x78532
 	closetext
 	loadmovesprites
 	end
@@ -275,26 +275,26 @@ PicnickerGina1Script: ; 0x7815f
 	iftrue UnknownScript_0x78234
 	checkevent $027f
 	iftrue UnknownScript_0x78188
-	2writetext UnknownText_0x785b8
+	writetext UnknownText_0x785b8
 	keeptextopen
 	setevent $027f
-	2call UnknownScript_0x78228
-	2jump UnknownScript_0x7818b
+	scall UnknownScript_0x78228
+	jump UnknownScript_0x7818b
 ; 0x78188
 
 UnknownScript_0x78188: ; 0x78188
-	2call UnknownScript_0x7822c
+	scall UnknownScript_0x7822c
 UnknownScript_0x7818b: ; 0x7818b
 	askforphonenumber $15
 	if_equal $1, UnknownScript_0x7823c
 	if_equal $2, UnknownScript_0x78238
 	trainertotext PICNICKER, GINA1, $0
-	2call UnknownScript_0x78230
-	2jump UnknownScript_0x78234
+	scall UnknownScript_0x78230
+	jump UnknownScript_0x78234
 ; 0x7819f
 
 UnknownScript_0x7819f: ; 0x7819f
-	2call UnknownScript_0x78240
+	scall UnknownScript_0x78240
 	winlosstext PicnickerGina1BeatenText, $0000
 	copybytetovar $d9ff
 	if_equal $4, UnknownScript_0x781be
@@ -359,16 +359,16 @@ UnknownScript_0x7820a: ; 0x7820a
 ; 0x78213
 
 UnknownScript_0x78213: ; 0x78213
-	2call UnknownScript_0x78244
+	scall UnknownScript_0x78244
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x78225
 	clearflag $0080
 	setevent $0100
-	2jump UnknownScript_0x78234
+	jump UnknownScript_0x78234
 ; 0x78225
 
 UnknownScript_0x78225: ; 0x78225
-	2jump UnknownScript_0x78248
+	jump UnknownScript_0x78248
 ; 0x78228
 
 UnknownScript_0x78228: ; 0x78228
@@ -424,7 +424,7 @@ OfficerScript_0x7824c: ; 0x7824c
 	checkevent $0546
 	iftrue UnknownScript_0x78270
 	playmusic MUSIC_OFFICER_ENCOUNTER
-	2writetext UnknownText_0x785e4
+	writetext UnknownText_0x785e4
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x78609, $0000
@@ -437,14 +437,14 @@ OfficerScript_0x7824c: ; 0x7824c
 ; 0x78270
 
 UnknownScript_0x78270: ; 0x78270
-	2writetext UnknownText_0x78624
+	writetext UnknownText_0x78624
 	closetext
 	loadmovesprites
 	end
 ; 0x78276
 
 UnknownScript_0x78276: ; 0x78276
-	2writetext UnknownText_0x7866a
+	writetext UnknownText_0x7866a
 	closetext
 	loadmovesprites
 	end
@@ -473,7 +473,7 @@ TrainerYoungsterSamuel: ; 0x7827c
 YoungsterSamuelScript: ; 0x78288
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x783d8
+	writetext UnknownText_0x783d8
 	closetext
 	loadmovesprites
 	end
@@ -502,7 +502,7 @@ TrainerYoungsterIan: ; 0x78290
 YoungsterIanScript: ; 0x7829c
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x78469
+	writetext UnknownText_0x78469
 	closetext
 	loadmovesprites
 	end
@@ -531,7 +531,7 @@ TrainerPokefanmBrandon: ; 0x782a4
 PokefanmBrandonScript: ; 0x782b0
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x786fc
+	writetext UnknownText_0x786fc
 	closetext
 	loadmovesprites
 	end
@@ -562,14 +562,14 @@ CooltrainerfIreneScript: ; 0x782c4
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782d2
-	2writetext UnknownText_0x7877f
+	writetext UnknownText_0x7877f
 	closetext
 	loadmovesprites
 	end
 ; 0x782d2
 
 UnknownScript_0x782d2: ; 0x782d2
-	2writetext UnknownText_0x787ad
+	writetext UnknownText_0x787ad
 	closetext
 	loadmovesprites
 	end
@@ -600,14 +600,14 @@ CooltrainerfJennScript: ; 0x782e4
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782f2
-	2writetext UnknownText_0x78836
+	writetext UnknownText_0x78836
 	closetext
 	loadmovesprites
 	end
 ; 0x782f2
 
 UnknownScript_0x782f2: ; 0x782f2
-	2writetext UnknownText_0x78866
+	writetext UnknownText_0x78866
 	closetext
 	loadmovesprites
 	end
@@ -638,13 +638,13 @@ CooltrainerfKateScript: ; 0x78304
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
-	2writetext UnknownText_0x788e2
+	writetext UnknownText_0x788e2
 	keeptextopen
 	verbosegiveitem SOFT_SAND, 1
 	iffalse UnknownScript_0x7831d
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
 UnknownScript_0x78319: ; 0x78319
-	2writetext UnknownText_0x7892b
+	writetext UnknownText_0x7892b
 	closetext
 UnknownScript_0x7831d: ; 0x7831d
 	loadmovesprites

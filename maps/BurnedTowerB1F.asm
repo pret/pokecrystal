@@ -101,13 +101,13 @@ UnknownScript_0x18616b: ; 0x18616b
 SuperNerdScript_0x186212: ; 0x186212
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x18626a
+	writetext UnknownText_0x18626a
 	closetext
 	loadmovesprites
 	checkcode $9
 	if_equal $1, UnknownScript_0x186226
 	applymovement $a, MovementData_0x186263
-	2jump UnknownScript_0x18622a
+	jump UnknownScript_0x18622a
 ; 0x186226
 
 UnknownScript_0x186226: ; 0x186226

@@ -8,7 +8,7 @@ CherrygroveEvolutionSpeechHouse_MapScriptHeader: ; 0x196cb0
 
 YoungsterScript_0x196cb2: ; 0x196cb2
 	loadfont
-	2writetext UnknownText_0x196cc3
+	writetext UnknownText_0x196cc3
 	closetext
 	loadmovesprites
 	end
@@ -16,7 +16,7 @@ YoungsterScript_0x196cb2: ; 0x196cb2
 
 LassScript_0x196cb9: ; 0x196cb9
 	loadfont
-	2writetext UnknownText_0x196cfc
+	writetext UnknownText_0x196cfc
 	closetext
 	loadmovesprites
 	end

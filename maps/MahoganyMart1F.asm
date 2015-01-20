@@ -45,7 +45,7 @@ PharmacistScript_0x6c367: ; 0x6c367
 ; 0x6c375
 
 UnknownScript_0x6c375: ; 0x6c375
-	2writetext UnknownText_0x6c46b
+	writetext UnknownText_0x6c46b
 	closetext
 	loadmovesprites
 	end
@@ -56,14 +56,14 @@ BlackBeltScript_0x6c37b: ; 0x6c37b
 	loadfont
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue UnknownScript_0x6c389
-	2writetext UnknownText_0x6c494
+	writetext UnknownText_0x6c494
 	closetext
 	loadmovesprites
 	end
 ; 0x6c389
 
 UnknownScript_0x6c389: ; 0x6c389
-	2writetext UnknownText_0x6c501
+	writetext UnknownText_0x6c501
 	closetext
 	loadmovesprites
 	end
@@ -72,7 +72,7 @@ UnknownScript_0x6c389: ; 0x6c389
 UnknownScript_0x6c38f: ; 0x6c38f
 	pause 15
 	loadfont
-	2writetext UnknownText_0x6c52a
+	writetext UnknownText_0x6c52a
 	pause 15
 	loadmovesprites
 	playsound SFX_TACKLE
@@ -83,7 +83,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	pause 15
 	applymovement $4, MovementData_0x6c407
 	loadfont
-	2writetext UnknownText_0x6c549
+	writetext UnknownText_0x6c549
 	closetext
 	loadmovesprites
 	follow $4, $0
@@ -92,7 +92,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	applymovement $4, MovementData_0x6c40e
 	stopfollow
 	loadfont
-	2writetext UnknownText_0x6c59e
+	writetext UnknownText_0x6c59e
 	closetext
 	showemote $0, $2, 10
 	playsound SFX_UNKNOWN_2A
@@ -102,7 +102,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	spriteface $4, $2
 	loadfont
-	2writetext UnknownText_0x6c5ba
+	writetext UnknownText_0x6c5ba
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x6c412

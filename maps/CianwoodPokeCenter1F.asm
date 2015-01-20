@@ -19,14 +19,14 @@ CianwoodGymGuyScript: ; 0x9dbd5
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .CianwoodGymGuyWinScript
 	loadfont
-	2writetext CianwoodGymGuyText
+	writetext CianwoodGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .CianwoodGymGuyWinScript
 	loadfont
-	2writetext CianwoodGymGuyWinText
+	writetext CianwoodGymGuyWinText
 	closetext
 	loadmovesprites
 	end

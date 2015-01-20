@@ -11,12 +11,12 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	loadfont
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x9d656
-	2writetext UnknownText_0x9d6f9
+	writetext UnknownText_0x9d6f9
 	closetext
 	loadmovesprites
 	spriteface $2, $3
 	loadfont
-	2writetext UnknownText_0x9d76f
+	writetext UnknownText_0x9d76f
 	closetext
 	loadmovesprites
 	applymovement $7, MovementData_0x9d6f3
@@ -26,7 +26,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	pause 30
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x9d78a
+	writetext UnknownText_0x9d78a
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x9d7f6, $0000
@@ -35,12 +35,12 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	returnafterbattle
 	setevent EVENT_BEAT_CHUCK
 	loadfont
-	2writetext UnknownText_0x9d835
+	writetext UnknownText_0x9d835
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0020
 	checkcode $7
-	2call UnknownScript_0x9d681
+	scall UnknownScript_0x9d681
 UnknownScript_0x9d656: ; 0x9d656
 	checkevent EVENT_GOT_TM01_DYNAMICPUNCH
 	iftrue UnknownScript_0x9d67b
@@ -48,19 +48,19 @@ UnknownScript_0x9d656: ; 0x9d656
 	setevent EVENT_BEAT_BLACKBELT_LAO
 	setevent EVENT_BEAT_BLACKBELT_NOB
 	setevent EVENT_BEAT_BLACKBELT_LUNG
-	2writetext UnknownText_0x9d84d
+	writetext UnknownText_0x9d84d
 	keeptextopen
 	verbosegiveitem TM_01, 1
 	iffalse UnknownScript_0x9d67f
 	setevent EVENT_GOT_TM01_DYNAMICPUNCH
-	2writetext UnknownText_0x9d8da
+	writetext UnknownText_0x9d8da
 	closetext
 	loadmovesprites
 	end
 ; 0x9d67b
 
 UnknownScript_0x9d67b: ; 0x9d67b
-	2writetext UnknownText_0x9d930
+	writetext UnknownText_0x9d930
 	closetext
 UnknownScript_0x9d67f: ; 0x9d67f
 	loadmovesprites
@@ -104,7 +104,7 @@ TrainerBlackbeltYoshi: ; 0x9d690
 BlackbeltYoshiScript: ; 0x9d69c
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9d9fa
+	writetext UnknownText_0x9d9fa
 	closetext
 	loadmovesprites
 	end
@@ -133,7 +133,7 @@ TrainerBlackbeltLao: ; 0x9d6a4
 BlackbeltLaoScript: ; 0x9d6b0
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9da61
+	writetext UnknownText_0x9da61
 	closetext
 	loadmovesprites
 	end
@@ -162,7 +162,7 @@ TrainerBlackbeltNob: ; 0x9d6b8
 BlackbeltNobScript: ; 0x9d6c4
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9dac0
+	writetext UnknownText_0x9dac0
 	closetext
 	loadmovesprites
 	end
@@ -191,7 +191,7 @@ TrainerBlackbeltLung: ; 0x9d6cc
 BlackbeltLungScript: ; 0x9d6d8
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9db14
+	writetext UnknownText_0x9db14
 	closetext
 	loadmovesprites
 	end

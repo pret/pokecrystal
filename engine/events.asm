@@ -929,13 +929,13 @@ CheckMenuOW: ; 96b30
 
 
 StartMenuScript: ; 96b58
-	3callasm StartMenu
-	2jump StartMenuCallback
+	callasm StartMenu
+	jump StartMenuCallback
 ; 96b5f
 
 SelectMenuScript: ; 96b5f
-	3callasm SelectMenu
-	2jump SelectMenuCallback
+	callasm SelectMenu
+	jump SelectMenuCallback
 ; 96b66
 
 StartMenuCallback:
@@ -947,11 +947,11 @@ SelectMenuCallback: ; 96b66
 ; 96b72
 
 .Script ; 96b72
-	2ptjump $d0e8
+	ptjump $d0e8
 ; 96b75
 
 .Asm ; 96b75
-	2ptcallasm $d0e8
+	ptcallasm $d0e8
 	end
 ; 96b79
 
@@ -1081,7 +1081,7 @@ UnknownScript_0x96c2e: ; 96c2e
 ; 96c2f
 
 UnknownScript_0x96c2f: ; 96c2f
-	3callasm Function16f5e
+	callasm Function16f5e
 	end
 ; 96c34
 
@@ -1096,7 +1096,7 @@ FallIntoMapScript: ; 96c38
 	playsound SFX_KINESIS
 	applymovement $0, MovementData_0x96c48
 	playsound SFX_STRENGTH
-	2call UnknownScript_0x96c4a
+	scall UnknownScript_0x96c4a
 	end
 ; 96c48
 
@@ -1116,7 +1116,7 @@ UnknownScript_0x96c4d: ; 96c4d
 
 UnknownScript_0x96c4f: ; 96c4f
 	deactivatefacing $3
-	3callasm Function96706
+	callasm Function96706
 	end
 ; 96c56
 

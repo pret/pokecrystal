@@ -61,7 +61,7 @@ UnknownScript_0x192887: ; 0x192887
 UnknownScript_0x19288d: ; 0x19288d
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x19312f
+	writetext UnknownText_0x19312f
 	closetext
 	loadmovesprites
 	end
@@ -70,7 +70,7 @@ UnknownScript_0x19288d: ; 0x19288d
 UnknownScript_0x192895: ; 0x192895
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x19315f
+	writetext UnknownText_0x19315f
 	closetext
 	loadmovesprites
 	end
@@ -80,69 +80,69 @@ LinkReceptionistScript_0x19289d: ; 0x19289d
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x19288d
 	loadfont
-	2writetext UnknownText_0x192e3a
+	writetext UnknownText_0x192e3a
 	yesorno
 	iffalse UnknownScript_0x19291d
 	special $00a0
 	iffalse UnknownScript_0x1928be
-	2writetext UnknownText_0x192d7e
+	writetext UnknownText_0x192d7e
 	special $008c
 	iffalse UnknownScript_0x19291d
 	if_equal $1, UnknownScript_0x19291f
 UnknownScript_0x1928be: ; 0x1928be
 	special $0001
-	2writetext UnknownText_0x192f67
+	writetext UnknownText_0x192f67
 	special $0002
 	iffalse UnknownScript_0x1928f6
-	2writetext UnknownText_0x192f34
+	writetext UnknownText_0x192f34
 	yesorno
 	iffalse UnknownScript_0x192917
 	special $0004
 	iffalse UnknownScript_0x192917
-	2writetext UnknownText_0x192f67
+	writetext UnknownText_0x192f67
 	special $0003
 	iffalse UnknownScript_0x192911
 	copybytetovar $cf51
 	iffalse UnknownScript_0x1928fe
 	special $0005
 	iffalse UnknownScript_0x192909
-	2writetext UnknownText_0x19306b
+	writetext UnknownText_0x19306b
 	closetext
 	loadmovesprites
-	2call UnknownScript_0x192b04
+	scall UnknownScript_0x192b04
 	warpcheck
 	end
 ; 0x1928f6
 
 UnknownScript_0x1928f6: ; 0x1928f6
 	special $0008
-	2writetext UnknownText_0x192f19
+	writetext UnknownText_0x192f19
 	loadmovesprites
 	end
 ; 0x1928fe
 
 UnknownScript_0x1928fe: ; 0x1928fe
 	special $0006
-	2writetext UnknownText_0x193029
+	writetext UnknownText_0x193029
 	special $0007
 	loadmovesprites
 	end
 ; 0x192909
 
 UnknownScript_0x192909: ; 0x192909
-	2writetext UnknownText_0x19304a
+	writetext UnknownText_0x19304a
 	special $0007
 	loadmovesprites
 	end
 ; 0x192911
 
 UnknownScript_0x192911: ; 0x192911
-	2writetext UnknownText_0x192f75
-	2jump UnknownScript_0x19291a
+	writetext UnknownText_0x192f75
+	jump UnknownScript_0x19291a
 ; 0x192917
 
 UnknownScript_0x192917: ; 0x192917
-	2writetext UnknownText_0x192fd1
+	writetext UnknownText_0x192fd1
 UnknownScript_0x19291a: ; 0x19291a
 	special $0008
 UnknownScript_0x19291d: ; 0x19291d
@@ -151,9 +151,9 @@ UnknownScript_0x19291d: ; 0x19291d
 ; 0x19291f
 
 UnknownScript_0x19291f: ; 0x19291f
-	2call UnknownScript_0x19292b
+	scall UnknownScript_0x19292b
 	iftrue UnknownScript_0x19292a
-	2call UnknownScript_0x19294a
+	scall UnknownScript_0x19294a
 	warpcheck
 	end
 ; 0x19292a
@@ -163,13 +163,13 @@ UnknownScript_0x19292a: ; 0x19292a
 ; 0x19292b
 
 UnknownScript_0x19292b: ; 0x19292b
-	2writetext UnknownText_0x192f34
+	writetext UnknownText_0x192f34
 	yesorno
 	iffalse UnknownScript_0x192943
 	special $0004
 	iffalse UnknownScript_0x192943
 	special $007f
-	2writetext UnknownText_0x19306b
+	writetext UnknownText_0x19306b
 	closetext
 	loadmovesprites
 	writebyte $0
@@ -177,7 +177,7 @@ UnknownScript_0x19292b: ; 0x19292b
 ; 0x192943
 
 UnknownScript_0x192943: ; 0x192943
-	2writetext UnknownText_0x192fd1
+	writetext UnknownText_0x192fd1
 	loadmovesprites
 	writebyte $1
 	end
@@ -193,69 +193,69 @@ LinkReceptionistScript_0x192952: ; 0x192952
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x192895
 	loadfont
-	2writetext UnknownText_0x192de0
+	writetext UnknownText_0x192de0
 	yesorno
 	iffalse UnknownScript_0x1929d2
 	special $00a0
 	iffalse UnknownScript_0x192973
-	2writetext UnknownText_0x192d39
+	writetext UnknownText_0x192d39
 	special $008c
 	iffalse UnknownScript_0x1929d2
 	if_equal $1, UnknownScript_0x1929d4
 UnknownScript_0x192973: ; 0x192973
 	special $0009
-	2writetext UnknownText_0x192f67
+	writetext UnknownText_0x192f67
 	special $0002
 	iffalse UnknownScript_0x1929ab
-	2writetext UnknownText_0x192f34
+	writetext UnknownText_0x192f34
 	yesorno
 	iffalse UnknownScript_0x1929cc
 	special $0004
 	iffalse UnknownScript_0x1929cc
-	2writetext UnknownText_0x192f67
+	writetext UnknownText_0x192f67
 	special $0003
 	iffalse UnknownScript_0x1929c6
 	copybytetovar $cf51
 	iffalse UnknownScript_0x1929b3
 	special $0005
 	iffalse UnknownScript_0x1929be
-	2writetext UnknownText_0x19306b
+	writetext UnknownText_0x19306b
 	closetext
 	loadmovesprites
-	2call UnknownScript_0x192b04
+	scall UnknownScript_0x192b04
 	warpcheck
 	end
 ; 0x1929ab
 
 UnknownScript_0x1929ab: ; 0x1929ab
 	special $0008
-	2writetext UnknownText_0x192f19
+	writetext UnknownText_0x192f19
 	loadmovesprites
 	end
 ; 0x1929b3
 
 UnknownScript_0x1929b3: ; 0x1929b3
 	special $0006
-	2writetext UnknownText_0x193029
+	writetext UnknownText_0x193029
 	special $0007
 	loadmovesprites
 	end
 ; 0x1929be
 
 UnknownScript_0x1929be: ; 0x1929be
-	2writetext UnknownText_0x19304a
+	writetext UnknownText_0x19304a
 	special $0007
 	loadmovesprites
 	end
 ; 0x1929c6
 
 UnknownScript_0x1929c6: ; 0x1929c6
-	2writetext UnknownText_0x192f75
-	2jump UnknownScript_0x1929cf
+	writetext UnknownText_0x192f75
+	jump UnknownScript_0x1929cf
 ; 0x1929cc
 
 UnknownScript_0x1929cc: ; 0x1929cc
-	2writetext UnknownText_0x192fd1
+	writetext UnknownText_0x192fd1
 UnknownScript_0x1929cf: ; 0x1929cf
 	special $0008
 UnknownScript_0x1929d2: ; 0x1929d2
@@ -264,11 +264,11 @@ UnknownScript_0x1929d2: ; 0x1929d2
 ; 0x1929d4
 
 UnknownScript_0x1929d4: ; 0x1929d4
-	2call UnknownScript_0x192a05
+	scall UnknownScript_0x192a05
 	iffalse UnknownScript_0x1929e5
-	2call UnknownScript_0x1929e6
+	scall UnknownScript_0x1929e6
 	iftrue UnknownScript_0x1929e5
-	2call UnknownScript_0x19294a
+	scall UnknownScript_0x19294a
 	warpcheck
 	end
 ; 0x1929e5
@@ -278,13 +278,13 @@ UnknownScript_0x1929e5: ; 0x1929e5
 ; 0x1929e6
 
 UnknownScript_0x1929e6: ; 0x1929e6
-	2writetext UnknownText_0x192f34
+	writetext UnknownText_0x192f34
 	yesorno
 	iffalse UnknownScript_0x1929fe
 	special $00a1
 	iffalse UnknownScript_0x1929fe
 	special $007f
-	2writetext UnknownText_0x19306b
+	writetext UnknownText_0x19306b
 	closetext
 	loadmovesprites
 	writebyte $0
@@ -292,7 +292,7 @@ UnknownScript_0x1929e6: ; 0x1929e6
 ; 0x1929fe
 
 UnknownScript_0x1929fe: ; 0x1929fe
-	2writetext UnknownText_0x192fd1
+	writetext UnknownText_0x192fd1
 	loadmovesprites
 	writebyte $1
 	end
@@ -304,11 +304,11 @@ UnknownScript_0x192a05: ; 0x192a05
 	if_equal $1, UnknownScript_0x192a22
 	if_equal $2, UnknownScript_0x192a22
 	if_equal $3, UnknownScript_0x192a1a
-	2jump UnknownScript_0x192a1e
+	jump UnknownScript_0x192a1e
 ; 0x192a1a
 
 UnknownScript_0x192a1a: ; 0x192a1a
-	2writetext UnknownText_0x1932bc
+	writetext UnknownText_0x1932bc
 	closetext
 UnknownScript_0x192a1e: ; 0x192a1e
 	loadmovesprites
@@ -324,7 +324,7 @@ UnknownScript_0x192a22: ; 0x192a22
 UnknownScript_0x192a25: ; 0x192a25
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x193100
+	writetext UnknownText_0x193100
 	closetext
 	loadmovesprites
 	end
@@ -338,28 +338,28 @@ LinkReceptionistScript_0x192a2d: ; 0x192a2d
 	special $000a
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x192e9f
+	writetext UnknownText_0x192e9f
 	yesorno
 	iffalse UnknownScript_0x192aa2
 	special $000b
 	if_equal $1, UnknownScript_0x192aa7
 	if_equal $2, UnknownScript_0x192aac
 	if_equal $3, UnknownScript_0x192ab1
-	2writetext UnknownText_0x192f67
+	writetext UnknownText_0x192f67
 	special $0002
 	iffalse UnknownScript_0x192a91
-	2writetext UnknownText_0x192f34
+	writetext UnknownText_0x192f34
 	yesorno
 	iffalse UnknownScript_0x192a9f
 	special $0004
 	iffalse UnknownScript_0x192a9f
-	2writetext UnknownText_0x192f67
+	writetext UnknownText_0x192f67
 	special $0003
 	iffalse UnknownScript_0x192a99
 	copybytetovar $cf51
 	iffalse UnknownScript_0x192a84
 	special $0005
-	2writetext UnknownText_0x19304a
+	writetext UnknownText_0x19304a
 	special $0007
 	loadmovesprites
 	end
@@ -367,28 +367,28 @@ LinkReceptionistScript_0x192a2d: ; 0x192a2d
 
 UnknownScript_0x192a84: ; 0x192a84
 	special $000c
-	2writetext UnknownText_0x19306b
+	writetext UnknownText_0x19306b
 	closetext
 	loadmovesprites
-	2call UnknownScript_0x192bc4
+	scall UnknownScript_0x192bc4
 	warpcheck
 	end
 ; 0x192a91
 
 UnknownScript_0x192a91: ; 0x192a91
 	special $0008
-	2writetext UnknownText_0x192f19
+	writetext UnknownText_0x192f19
 	loadmovesprites
 	end
 ; 0x192a99
 
 UnknownScript_0x192a99: ; 0x192a99
-	2writetext UnknownText_0x192f75
-	2jump UnknownScript_0x192aa2
+	writetext UnknownText_0x192f75
+	jump UnknownScript_0x192aa2
 ; 0x192a9f
 
 UnknownScript_0x192a9f: ; 0x192a9f
-	2writetext UnknownText_0x192fd1
+	writetext UnknownText_0x192fd1
 UnknownScript_0x192aa2: ; 0x192aa2
 	special $0008
 	loadmovesprites
@@ -396,26 +396,26 @@ UnknownScript_0x192aa2: ; 0x192aa2
 ; 0x192aa7
 
 UnknownScript_0x192aa7: ; 0x192aa7
-	2writetext UnknownText_0x19308b
+	writetext UnknownText_0x19308b
 	loadmovesprites
 	end
 ; 0x192aac
 
 UnknownScript_0x192aac: ; 0x192aac
-	2writetext UnknownText_0x1930a8
+	writetext UnknownText_0x1930a8
 	loadmovesprites
 	end
 ; 0x192ab1
 
 UnknownScript_0x192ab1: ; 0x192ab1
-	2writetext UnknownText_0x1930cf
+	writetext UnknownText_0x1930cf
 	loadmovesprites
 	end
 ; 0x192ab6
 
 UnknownScript_0x192ab6: ; 0x192ab6
 	special $0008
-	2call UnknownScript_0x192b50
+	scall UnknownScript_0x192b50
 	dotrigger $0
 	domaptrigger GROUP_TRADE_CENTER, MAP_TRADE_CENTER, $0
 	end
@@ -423,7 +423,7 @@ UnknownScript_0x192ab6: ; 0x192ab6
 
 UnknownScript_0x192ac3: ; 0x192ac3
 	special $0080
-	2call UnknownScript_0x192ad0
+	scall UnknownScript_0x192ad0
 	dotrigger $0
 	domaptrigger GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE, $0
 	end
@@ -438,7 +438,7 @@ UnknownScript_0x192ad0: ; 0x192ad0
 
 UnknownScript_0x192add: ; 0x192add
 	special $0008
-	2call UnknownScript_0x192b8a
+	scall UnknownScript_0x192b8a
 	dotrigger $0
 	domaptrigger GROUP_COLOSSEUM, MAP_COLOSSEUM, $0
 	end
@@ -446,7 +446,7 @@ UnknownScript_0x192add: ; 0x192add
 
 UnknownScript_0x192aea: ; 0x192aea
 	special $0080
-	2call UnknownScript_0x192af7
+	scall UnknownScript_0x192af7
 	dotrigger $0
 	domaptrigger GROUP_MOBILE_BATTLE_ROOM, MAP_MOBILE_BATTLE_ROOM, $0
 	end
@@ -471,13 +471,13 @@ UnknownScript_0x192b12: ; 0x192b12
 	applymovement2 MovementData_0x192cd8
 	applymovement $0, MovementData_0x192ce2
 	loadfont
-	2writetext UnknownText_0x193266
+	writetext UnknownText_0x193266
 	closetext
 	loadmovesprites
 	applymovement2 MovementData_0x192cdc
 	spriteface $0, $2
 	loadfont
-	2writetext UnknownText_0x193278
+	writetext UnknownText_0x193278
 	closetext
 	loadmovesprites
 	playsound SFX_TINGLE
@@ -488,7 +488,7 @@ UnknownScript_0x192b12: ; 0x192b12
 	setflag $009f
 	special $0038
 	loadfont
-	2writetext UnknownText_0x19329a
+	writetext UnknownText_0x19329a
 	closetext
 	loadmovesprites
 	showemote $0, $0, 15
@@ -573,13 +573,13 @@ UnknownScript_0x192bec: ; 0x192bec
 	if_equal $2, UnknownScript_0x192c0a
 	applymovement2 MovementData_0x192d33
 	applymovement $0, MovementData_0x192d2d
-	2jump UnknownScript_0x192c11
+	jump UnknownScript_0x192c11
 ; 0x192c00
 
 UnknownScript_0x192c00: ; 0x192c00
 	applymovement2 MovementData_0x192d36
 	applymovement $0, MovementData_0x192d2f
-	2jump UnknownScript_0x192c11
+	jump UnknownScript_0x192c11
 ; 0x192c0a
 
 UnknownScript_0x192c0a: ; 0x192c0a
@@ -587,7 +587,7 @@ UnknownScript_0x192c0a: ; 0x192c0a
 	applymovement $0, MovementData_0x192d31
 UnknownScript_0x192c11: ; 0x192c11
 	loadfont
-	2writetext UnknownText_0x193266
+	writetext UnknownText_0x193266
 	closetext
 	loadmovesprites
 	checkcode $9
@@ -595,7 +595,7 @@ UnknownScript_0x192c11: ; 0x192c11
 	spriteface $0, $2
 UnknownScript_0x192c20: ; 0x192c20
 	loadfont
-	2writetext UnknownText_0x193278
+	writetext UnknownText_0x193278
 	closetext
 	loadmovesprites
 	playsound SFX_TINGLE
@@ -607,7 +607,7 @@ UnknownScript_0x192c20: ; 0x192c20
 	setflag $009f
 	special $0038
 	loadfont
-	2writetext UnknownText_0x19329a
+	writetext UnknownText_0x19329a
 	closetext
 	loadmovesprites
 	showemote $0, $0, 15
@@ -622,7 +622,7 @@ UnknownScript_0x192c4e: ; 0x192c4e
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cf9
 	applymovement $4, MovementData_0x192d01
-	2jump UnknownScript_0x192c8c
+	jump UnknownScript_0x192c8c
 ; 0x192c66
 
 UnknownScript_0x192c66: ; 0x192c66
@@ -655,10 +655,10 @@ OfficerScript_0x192c9a: ; 0x192c9a
 	loadfont
 	checkevent $0711
 	iftrue UnknownScript_0x192cb8
-	2writetext UnknownText_0x193190
+	writetext UnknownText_0x193190
 	yesorno
 	iffalse UnknownScript_0x192cc4
-	2writetext UnknownText_0x1931c4
+	writetext UnknownText_0x1931c4
 	keeptextopen
 	waitbutton
 	special $0012
@@ -666,21 +666,21 @@ OfficerScript_0x192c9a: ; 0x192c9a
 	itemnotify
 	setevent $0711
 UnknownScript_0x192cb8: ; 0x192cb8
-	2writetext UnknownText_0x1931d2
+	writetext UnknownText_0x1931d2
 	closetext
 	loadmovesprites
 	end
 ; 0x192cbe
 
 UnknownScript_0x192cbe: ; 0x192cbe
-	2writetext UnknownText_0x1931ef
+	writetext UnknownText_0x1931ef
 	closetext
 	loadmovesprites
 	end
 ; 0x192cc4
 
 UnknownScript_0x192cc4: ; 0x192cc4
-	2writetext UnknownText_0x19324d
+	writetext UnknownText_0x19324d
 	closetext
 	loadmovesprites
 	end

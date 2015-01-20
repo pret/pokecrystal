@@ -57,7 +57,7 @@ WeirdTreeScript_0x19403c: ; 0x19403c
 
 UnknownScript_0x19404a: ; 0x19404a
 	loadfont
-	2writetext UnknownText_0x19426b
+	writetext UnknownText_0x19426b
 	yesorno
 	iffalse UnknownScript_0x194079
 	loadmovesprites
@@ -66,14 +66,14 @@ UnknownScript_0x19404a: ; 0x19404a
 
 WateredWeirdTreeScript:: ; 0x194053
 	loadfont
-	2writetext UnknownText_0x194290
+	writetext UnknownText_0x194290
 	closetext
 	loadmovesprites
 	waitbutton
 	playsound SFX_SANDSTORM
 	applymovement $4, MovementData_0x194249
 	loadfont
-	2writetext UnknownText_0x1942aa
+	writetext UnknownText_0x1942aa
 	closetext
 	loadmovesprites
 	loadpokedata SUDOWOODO, 20
@@ -107,7 +107,7 @@ LassScript_0x19408c: ; 0x19408c
 	checkevent $00ba
 	iftrue UnknownScript_0x1940b3
 	setevent $00b9
-	2writetext UnknownText_0x1942f1
+	writetext UnknownText_0x1942f1
 	closetext
 	loadmovesprites
 	clearevent $0768
@@ -125,7 +125,7 @@ UnknownScript_0x1940ac: ; 0x1940ac
 ; 0x1940b3
 
 UnknownScript_0x1940b3: ; 0x1940b3
-	2writetext UnknownText_0x1943ed
+	writetext UnknownText_0x1943ed
 	closetext
 	loadmovesprites
 	end
@@ -138,20 +138,20 @@ FisherScript_0x1940b9: ; 0x1940b9
 	iftrue UnknownScript_0x1940da
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940cd
-	2writetext UnknownText_0x19446f
+	writetext UnknownText_0x19446f
 	closetext
 	loadmovesprites
 	end
 ; 0x1940cd
 
 UnknownScript_0x1940cd: ; 0x1940cd
-	2writetext UnknownText_0x1944d0
+	writetext UnknownText_0x1944d0
 	keeptextopen
 	verbosegiveitem TM_08, 1
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da: ; 0x1940da
-	2writetext UnknownText_0x19452c
+	writetext UnknownText_0x19452c
 	closetext
 UnknownScript_0x1940de: ; 0x1940de
 	loadmovesprites
@@ -163,14 +163,14 @@ LassScript_0x1940e0: ; 0x1940e0
 	loadfont
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940ee
-	2writetext UnknownText_0x194626
+	writetext UnknownText_0x194626
 	closetext
 	loadmovesprites
 	end
 ; 0x1940ee
 
 UnknownScript_0x1940ee: ; 0x1940ee
-	2writetext UnknownText_0x19469e
+	writetext UnknownText_0x19469e
 	closetext
 	loadmovesprites
 	end
@@ -208,26 +208,26 @@ SchoolboyAlan1Script: ; 0x194100
 	iftrue UnknownScript_0x1941d5
 	checkevent $0285
 	iftrue UnknownScript_0x194129
-	2writetext UnknownText_0x1947aa
+	writetext UnknownText_0x1947aa
 	keeptextopen
 	setevent $0285
-	2call UnknownScript_0x1941c9
-	2jump UnknownScript_0x19412c
+	scall UnknownScript_0x1941c9
+	jump UnknownScript_0x19412c
 ; 0x194129
 
 UnknownScript_0x194129: ; 0x194129
-	2call UnknownScript_0x1941cd
+	scall UnknownScript_0x1941cd
 UnknownScript_0x19412c: ; 0x19412c
 	askforphonenumber $18
 	if_equal $1, UnknownScript_0x1941dd
 	if_equal $2, UnknownScript_0x1941d9
 	trainertotext SCHOOLBOY, ALAN1, $0
-	2call UnknownScript_0x1941d1
-	2jump UnknownScript_0x1941d5
+	scall UnknownScript_0x1941d1
+	jump UnknownScript_0x1941d5
 ; 0x194140
 
 UnknownScript_0x194140: ; 0x194140
-	2call UnknownScript_0x1941e1
+	scall UnknownScript_0x1941e1
 	winlosstext SchoolboyAlan1BeatenText, $0000
 	copybytetovar $da02
 	if_equal $4, UnknownScript_0x19415f
@@ -292,16 +292,16 @@ UnknownScript_0x1941ab: ; 0x1941ab
 ; 0x1941b4
 
 UnknownScript_0x1941b4: ; 0x1941b4
-	2call UnknownScript_0x1941e5
+	scall UnknownScript_0x1941e5
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1941c6
 	clearflag $0081
 	setevent $0101
-	2jump UnknownScript_0x1941d5
+	jump UnknownScript_0x1941d5
 ; 0x1941c6
 
 UnknownScript_0x1941c6: ; 0x1941c6
-	2jump UnknownScript_0x1941e9
+	jump UnknownScript_0x1941e9
 ; 0x1941c9
 
 UnknownScript_0x1941c9: ; 0x1941c9
@@ -372,7 +372,7 @@ TrainerPsychicMark: ; 0x1941ed
 PsychicMarkScript: ; 0x1941f9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19471e
+	writetext UnknownText_0x19471e
 	closetext
 	loadmovesprites
 	end
@@ -387,29 +387,29 @@ ArthurScript:
 	if_not_equal THURSDAY, ArthurNotThursdayScript
 	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
 	iftrue .MetArthur
-	2writetext MeetArthurText
+	writetext MeetArthurText
 	keeptextopen
 	setevent EVENT_MET_ARTHUR_OF_THURSDAY
 .MetArthur
-	2writetext ArthurGivesGiftText
+	writetext ArthurGivesGiftText
 	keeptextopen
 	verbosegiveitem HARD_STONE, 1
 	iffalse ArthurDoneScript
 	setevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
-	2writetext ArthurGaveGiftText
+	writetext ArthurGaveGiftText
 	closetext
 	loadmovesprites
 	end
 
 ArthurThursdayScript:
-	2writetext ArthurThursdayText
+	writetext ArthurThursdayText
 	closetext
 ArthurDoneScript:
 	loadmovesprites
 	end
 
 ArthurNotThursdayScript:
-	2writetext ArthurNotThursdayText
+	writetext ArthurNotThursdayText
 	closetext
 	loadmovesprites
 	end

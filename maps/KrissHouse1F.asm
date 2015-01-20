@@ -29,34 +29,34 @@ UnknownScript_0x7a4db: ; 0x7a4db
 	checkevent $0000
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
-	2jump UnknownScript_0x7a4f6
+	jump UnknownScript_0x7a4f6
 ; 0x7a4f2
 
 UnknownScript_0x7a4f2: ; 0x7a4f2
 	applymovement $2, MovementData_0x7a5fe
 UnknownScript_0x7a4f6: ; 0x7a4f6
 	loadfont
-	2writetext UnknownText_0x7a604
+	writetext UnknownText_0x7a604
 	keeptextopen
 	stringtotext GearName, $1
-	2call UnknownScript_0x7a57e
+	scall UnknownScript_0x7a57e
 	setflag $0004
 	setflag $0002
 	addcellnum $1
 	dotrigger $1
 	setevent $06c7
 	clearevent $06c8
-	2writetext UnknownText_0x7a6bd
+	writetext UnknownText_0x7a6bd
 	keeptextopen
 	special $0025
 UnknownScript_0x7a519: ; 0x7a519
-	2writetext UnknownText_0x7a742
+	writetext UnknownText_0x7a742
 	yesorno
 	iffalse UnknownScript_0x7a52a
 	special $00a6
 	yesorno
 	iffalse UnknownScript_0x7a519
-	2jump UnknownScript_0x7a531
+	jump UnknownScript_0x7a531
 ; 0x7a52a
 
 UnknownScript_0x7a52a: ; 0x7a52a
@@ -64,43 +64,43 @@ UnknownScript_0x7a52a: ; 0x7a52a
 	yesorno
 	iffalse UnknownScript_0x7a519
 UnknownScript_0x7a531: ; 0x7a531
-	2writetext UnknownText_0x7a763
+	writetext UnknownText_0x7a763
 	yesorno
 	iffalse UnknownScript_0x7a542
-	2jump UnknownScript_0x7a53b
+	jump UnknownScript_0x7a53b
 ; 0x7a53b
 
 UnknownScript_0x7a53b: ; 0x7a53b
-	2writetext UnknownText_0x7a7cb
+	writetext UnknownText_0x7a7cb
 	keeptextopen
-	2jump UnknownScript_0x7a549
+	jump UnknownScript_0x7a549
 ; 0x7a542
 
 UnknownScript_0x7a542: ; 0x7a542
-	2writetext UnknownText_0x7a807
+	writetext UnknownText_0x7a807
 	keeptextopen
-	2jump UnknownScript_0x7a549
+	jump UnknownScript_0x7a549
 ; 0x7a549
 
 UnknownScript_0x7a549: ; 0x7a549
-	2writetext UnknownText_0x7a850
+	writetext UnknownText_0x7a850
 	closetext
 	loadmovesprites
 	checkevent $0000
 	iftrue UnknownScript_0x7a55d
 	checkevent $0001
 	iffalse UnknownScript_0x7a564
-	2jump UnknownScript_0x7a56b
+	jump UnknownScript_0x7a56b
 ; 0x7a55d
 
 UnknownScript_0x7a55d: ; 0x7a55d
 	applymovement $2, MovementData_0x7a600
-	2jump UnknownScript_0x7a56b
+	jump UnknownScript_0x7a56b
 ; 0x7a564
 
 UnknownScript_0x7a564: ; 0x7a564
 	applymovement $2, MovementData_0x7a602
-	2jump UnknownScript_0x7a56b
+	jump UnknownScript_0x7a56b
 ; 0x7a56b
 
 UnknownScript_0x7a56b: ; 0x7a56b
@@ -111,7 +111,7 @@ UnknownScript_0x7a56b: ; 0x7a56b
 
 UnknownScript_0x7a572: ; 0x7a572
 	playmusic MUSIC_MOM
-	2jump UnknownScript_0x7a4f6
+	jump UnknownScript_0x7a4f6
 ; 0x7a578
 
 GearName: ; 0x7a578
@@ -137,21 +137,21 @@ MomScript_0x7a582: ; 0x7a582
 	iftrue UnknownScript_0x7a5b5
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7a5a9
-	2writetext UnknownText_0x7a8b5
+	writetext UnknownText_0x7a8b5
 	closetext
 	loadmovesprites
 	end
 ; 0x7a5a9
 
 UnknownScript_0x7a5a9: ; 0x7a5a9
-	2writetext UnknownText_0x7a8e5
+	writetext UnknownText_0x7a8e5
 	closetext
 	loadmovesprites
 	end
 ; 0x7a5af
 
 UnknownScript_0x7a5af: ; 0x7a5af
-	2writetext UnknownText_0x7a957
+	writetext UnknownText_0x7a957
 	closetext
 	loadmovesprites
 	end
@@ -177,25 +177,25 @@ PokefanFScript_0x7a5c1: ; 0x7a5c1
 	checktime $4
 	iftrue UnknownScript_0x7a5e0
 UnknownScript_0x7a5d2: ; 0x7a5d2
-	2writetext UnknownText_0x7a97d
+	writetext UnknownText_0x7a97d
 	keeptextopen
-	2jump UnknownScript_0x7a5e7
+	jump UnknownScript_0x7a5e7
 ; 0x7a5d9
 
 UnknownScript_0x7a5d9: ; 0x7a5d9
-	2writetext UnknownText_0x7a99c
+	writetext UnknownText_0x7a99c
 	keeptextopen
-	2jump UnknownScript_0x7a5e7
+	jump UnknownScript_0x7a5e7
 ; 0x7a5e0
 
 UnknownScript_0x7a5e0: ; 0x7a5e0
-	2writetext UnknownText_0x7a9b4
+	writetext UnknownText_0x7a9b4
 	keeptextopen
-	2jump UnknownScript_0x7a5e7
+	jump UnknownScript_0x7a5e7
 ; 0x7a5e7
 
 UnknownScript_0x7a5e7: ; 0x7a5e7
-	2writetext UnknownText_0x7a9d3
+	writetext UnknownText_0x7a9d3
 	closetext
 	loadmovesprites
 	spriteface $6, $3

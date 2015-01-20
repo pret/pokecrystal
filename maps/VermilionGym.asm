@@ -11,7 +11,7 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	loadfont
 	checkflag $0025
 	iftrue UnknownScript_0x1920d9
-	2writetext UnknownText_0x192142
+	writetext UnknownText_0x192142
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x192238, $0000
@@ -23,18 +23,18 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	setevent EVENT_BEAT_GUITARIST_VINCENT
 	setevent EVENT_BEAT_JUGGLER_HORTON
 	loadfont
-	2writetext UnknownText_0x192277
+	writetext UnknownText_0x192277
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0025
-	2writetext UnknownText_0x192291
+	writetext UnknownText_0x192291
 	closetext
 	loadmovesprites
 	end
 ; 0x1920d9
 
 UnknownScript_0x1920d9: ; 0x1920d9
-	2writetext UnknownText_0x192303
+	writetext UnknownText_0x192303
 	closetext
 	loadmovesprites
 	end
@@ -63,7 +63,7 @@ TrainerGentlemanGregory: ; 0x1920df
 GentlemanGregoryScript: ; 0x1920eb
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1923b0
+	writetext UnknownText_0x1923b0
 	closetext
 	loadmovesprites
 	end
@@ -92,7 +92,7 @@ TrainerGuitaristVincent: ; 0x1920f3
 GuitaristVincentScript: ; 0x1920ff
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19244b
+	writetext UnknownText_0x19244b
 	closetext
 	loadmovesprites
 	end
@@ -121,7 +121,7 @@ TrainerJugglerHorton: ; 0x192107
 JugglerHortonScript: ; 0x192113
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1924d6
+	writetext UnknownText_0x1924d6
 	closetext
 	loadmovesprites
 	end
@@ -132,13 +132,13 @@ VermilionGymGuyScript: ; 0x19211b
 	loadfont
 	checkevent EVENT_BEAT_LTSURGE
 	iftrue .VermilionGymGuyWinScript
-	2writetext VermilionGymGuyText
+	writetext VermilionGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .VermilionGymGuyWinScript
-	2writetext VermilionGymGuyWinText
+	writetext VermilionGymGuyWinText
 	closetext
 	loadmovesprites
 	end

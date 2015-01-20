@@ -13,21 +13,21 @@ BlackBeltScript_0x18dd1a: ; 0x18dd1a
 	iftrue UnknownScript_0x18dd34
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18dd2e
-	2writetext UnknownText_0x18dd74
+	writetext UnknownText_0x18dd74
 	closetext
 	loadmovesprites
 	end
 ; 0x18dd2e
 
 UnknownScript_0x18dd2e: ; 0x18dd2e
-	2writetext UnknownText_0x18ddfd
+	writetext UnknownText_0x18ddfd
 	closetext
 	loadmovesprites
 	end
 ; 0x18dd34
 
 UnknownScript_0x18dd34: ; 0x18dd34
-	2writetext UnknownText_0x18de73
+	writetext UnknownText_0x18de73
 	closetext
 	loadmovesprites
 	end
@@ -40,14 +40,14 @@ YoungsterScript_0x18dd3a: ; 0x18dd3a
 	iftrue UnknownScript_0x18dd5d
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x18dd4e
-	2writetext UnknownText_0x18dee0
+	writetext UnknownText_0x18dee0
 	closetext
 	loadmovesprites
 	end
 ; 0x18dd4e
 
 UnknownScript_0x18dd4e: ; 0x18dd4e
-	2writetext UnknownText_0x18df25
+	writetext UnknownText_0x18df25
 	keeptextopen
 	verbosegiveitem CHARCOAL, 1
 	iffalse UnknownScript_0x18dd61
@@ -57,7 +57,7 @@ UnknownScript_0x18dd4e: ; 0x18dd4e
 ; 0x18dd5d
 
 UnknownScript_0x18dd5d: ; 0x18dd5d
-	2writetext UnknownText_0x18df93
+	writetext UnknownText_0x18df93
 	closetext
 UnknownScript_0x18dd61: ; 0x18dd61
 	loadmovesprites
@@ -67,7 +67,7 @@ UnknownScript_0x18dd61: ; 0x18dd61
 MoltresScript_0x18dd63: ; 0x18dd63
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x18dfe5
+	writetext UnknownText_0x18dfe5
 	cry FARFETCH_D
 	closetext
 	loadmovesprites

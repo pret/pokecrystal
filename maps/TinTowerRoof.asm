@@ -15,7 +15,7 @@ UnknownScript_0x77230: ; 0x77230
 	iftrue UnknownScript_0x77241
 	checkitem RAINBOW_WING
 	iftrue UnknownScript_0x7723e
-	2jump UnknownScript_0x77241
+	jump UnknownScript_0x77241
 ; 0x7723e
 
 UnknownScript_0x7723e: ; 0x7723e
@@ -31,7 +31,7 @@ UnknownScript_0x77241: ; 0x77241
 HoOhScript_0x77244: ; 0x77244
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x77260
+	writetext UnknownText_0x77260
 	cry HO_OH
 	pause 15
 	loadmovesprites

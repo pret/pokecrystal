@@ -34,7 +34,7 @@ UnknownScript_0x56c19: ;0x56c19
 PokefanMScript_0x56c1a: ; 0x56c1a
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5718a
+	writetext UnknownText_0x5718a
 	closetext
 	loadmovesprites
 	spriteface $d, $3
@@ -48,11 +48,11 @@ ClerkScript_0x56c25: ; 0x56c25
 ReceptionistScript_0x56c28: ; 0x56c28
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x56e50
+	writetext UnknownText_0x56e50
 	closetext
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56cc3
-	2writetext UnknownText_0x56e8b
+	writetext UnknownText_0x56e8b
 UnknownScript_0x56c36: ; 056c36
 	special $004f
 	loadmenudata MenuDataHeader_0x56cc9
@@ -61,47 +61,47 @@ UnknownScript_0x56c36: ; 056c36
 	if_equal $1, UnknownScript_0x56c4d
 	if_equal $2, UnknownScript_0x56c69
 	if_equal $3, UnknownScript_0x56c85
-	2jump UnknownScript_0x56cbd
+	jump UnknownScript_0x56cbd
 ; 0x56c4d
 
 UnknownScript_0x56c4d: ; 0x56c4d
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
 	itemtotext TM_25, $0
-	2call UnknownScript_0x56ca1
+	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	giveitem TM_25, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
-	2jump UnknownScript_0x56ca6
+	jump UnknownScript_0x56ca6
 ; 0x56c69
 
 UnknownScript_0x56c69: ; 0x56c69
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
 	itemtotext TM_14, $0
-	2call UnknownScript_0x56ca1
+	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	giveitem TM_14, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
-	2jump UnknownScript_0x56ca6
+	jump UnknownScript_0x56ca6
 ; 0x56c85
 
 UnknownScript_0x56c85: ; 0x56c85
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
 	itemtotext TM_38, $0
-	2call UnknownScript_0x56ca1
+	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	giveitem TM_38, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
-	2jump UnknownScript_0x56ca6
+	jump UnknownScript_0x56ca6
 ; 0x56ca1
 
 UnknownScript_0x56ca1: ; 0x56ca1
-	2writetext UnknownText_0x56ea8
+	writetext UnknownText_0x56ea8
 	yesorno
 	end
 ; 0x56ca6
@@ -109,34 +109,34 @@ UnknownScript_0x56ca1: ; 0x56ca1
 UnknownScript_0x56ca6: ; 0x56ca6
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x56ebd
+	writetext UnknownText_0x56ebd
 	closetext
-	2jump UnknownScript_0x56c36
+	jump UnknownScript_0x56c36
 ; 0x56cb1
 
 UnknownScript_0x56cb1: ; 0x56cb1
-	2writetext UnknownText_0x56ecb
+	writetext UnknownText_0x56ecb
 	closetext
 	loadmovesprites
 	end
 ; 0x56cb7
 
 UnknownScript_0x56cb7: ; 0x56cb7
-	2writetext UnknownText_0x56ee8
+	writetext UnknownText_0x56ee8
 	closetext
 	loadmovesprites
 	end
 ; 0x56cbd
 
 UnknownScript_0x56cbd: ; 0x56cbd
-	2writetext UnknownText_0x56f09
+	writetext UnknownText_0x56f09
 	closetext
 	loadmovesprites
 	end
 ; 0x56cc3
 
 UnknownScript_0x56cc3: ; 0x56cc3
-	2writetext UnknownText_0x56f35
+	writetext UnknownText_0x56f35
 	closetext
 	loadmovesprites
 	end
@@ -164,12 +164,12 @@ MenuData2_0x56cd1: ; 0x56cd1
 ReceptionistScript_0x56d01: ; 0x56d01
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x56e50
+	writetext UnknownText_0x56e50
 	closetext
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56cc3
 UnknownScript_0x56d0c: ; 0x56d0c
-	2writetext UnknownText_0x56e8b
+	writetext UnknownText_0x56e8b
 	special $004f
 	loadmenudata MenuDataHeader_0x56db0
 	interpretmenu2
@@ -177,7 +177,7 @@ UnknownScript_0x56d0c: ; 0x56d0c
 	if_equal $1, UnknownScript_0x56d26
 	if_equal $2, UnknownScript_0x56d54
 	if_equal $3, UnknownScript_0x56d82
-	2jump UnknownScript_0x56cbd
+	jump UnknownScript_0x56cbd
 ; 0x56d26
 
 UnknownScript_0x56d26: ; 0x56d26
@@ -186,17 +186,17 @@ UnknownScript_0x56d26: ; 0x56d26
 	checkcode $1
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem ABRA, $0
-	2call UnknownScript_0x56ca1
+	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x56ebd
+	writetext UnknownText_0x56ebd
 	closetext
 	writebyte ABRA
 	special $0039
 	givepoke ABRA, 5, 0, 0
 	takecoins 100
-	2jump UnknownScript_0x56d0c
+	jump UnknownScript_0x56d0c
 ; 0x56d54
 
 UnknownScript_0x56d54: ; 0x56d54
@@ -205,17 +205,17 @@ UnknownScript_0x56d54: ; 0x56d54
 	checkcode $1
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem CUBONE, $0
-	2call UnknownScript_0x56ca1
+	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x56ebd
+	writetext UnknownText_0x56ebd
 	closetext
 	writebyte CUBONE
 	special $0039
 	givepoke CUBONE, 15, 0, 0
 	takecoins 800
-	2jump UnknownScript_0x56d0c
+	jump UnknownScript_0x56d0c
 ; 0x56d82
 
 UnknownScript_0x56d82: ; 0x56d82
@@ -224,17 +224,17 @@ UnknownScript_0x56d82: ; 0x56d82
 	checkcode $1
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem WOBBUFFET, $0
-	2call UnknownScript_0x56ca1
+	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x56ebd
+	writetext UnknownText_0x56ebd
 	closetext
 	writebyte WOBBUFFET
 	special $0039
 	givepoke WOBBUFFET, 15, 0, 0
 	takecoins 1500
-	2jump UnknownScript_0x56d0c
+	jump UnknownScript_0x56d0c
 ; 0x56db0
 
 
@@ -259,7 +259,7 @@ MenuData2_0x56db8: ; 0x56db8
 PharmacistScript_0x56df1: ; 0x56df1
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x56f55
+	writetext UnknownText_0x56f55
 	closetext
 	loadmovesprites
 	spriteface $fe, $2
@@ -269,7 +269,7 @@ PharmacistScript_0x56df1: ; 0x56df1
 PokefanMScript_0x56dfc: ; 0x56dfc
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x56f9e
+	writetext UnknownText_0x56f9e
 	closetext
 	loadmovesprites
 	spriteface $7, $3
@@ -279,7 +279,7 @@ PokefanMScript_0x56dfc: ; 0x56dfc
 CooltrainerMScript_0x56e07: ; 0x56e07
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x56ff4
+	writetext UnknownText_0x56ff4
 	closetext
 	loadmovesprites
 	spriteface $8, $2
@@ -289,7 +289,7 @@ CooltrainerMScript_0x56e07: ; 0x56e07
 PokefanFScript_0x56e12: ; 0x56e12
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5702b
+	writetext UnknownText_0x5702b
 	closetext
 	loadmovesprites
 	spriteface $9, $3
@@ -303,7 +303,7 @@ CooltrainerFScript_0x56e1d: ; 0x56e1d
 GentlemanScript_0x56e20: ; 0x56e20
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x570b1
+	writetext UnknownText_0x570b1
 	closetext
 	loadmovesprites
 	spriteface $b, $3

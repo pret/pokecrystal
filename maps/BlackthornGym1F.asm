@@ -33,7 +33,7 @@ ClairScript_0x194e24: ; 0x194e24
 	iftrue UnknownScript_0x194e69
 	checkevent EVENT_BEAT_CLAIR
 	iftrue UnknownScript_0x194e63
-	2writetext UnknownText_0x194efa
+	writetext UnknownText_0x194efa
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x194fd6, $0000
@@ -42,7 +42,7 @@ ClairScript_0x194e24: ; 0x194e24
 	returnafterbattle
 	setevent EVENT_BEAT_CLAIR
 	loadfont
-	2writetext UnknownText_0x19500e
+	writetext UnknownText_0x19500e
 	closetext
 	loadmovesprites
 	setevent EVENT_BEAT_COOLTRAINERM_PAUL
@@ -57,7 +57,7 @@ ClairScript_0x194e24: ; 0x194e24
 ; 0x194e63
 
 UnknownScript_0x194e63: ; 0x194e63
-	2writetext UnknownText_0x195162
+	writetext UnknownText_0x195162
 	closetext
 	loadmovesprites
 	end
@@ -66,30 +66,30 @@ UnknownScript_0x194e63: ; 0x194e63
 UnknownScript_0x194e69: ; 0x194e69
 	checkevent EVENT_GOT_TM24_DRAGONBREATH
 	iftrue UnknownScript_0x194e94
-	2writetext UnknownText_0x195196
+	writetext UnknownText_0x195196
 	keeptextopen
 	giveitem TM_24, $1
 	iffalse UnknownScript_0x194e8e
 	itemtotext TM_24, $0
-	2writetext UnknownText_0x1951bf
+	writetext UnknownText_0x1951bf
 	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
-	2writetext UnknownText_0x1951d1
+	writetext UnknownText_0x1951d1
 	keeptextopen
-	2jump UnknownScript_0x194e94
+	jump UnknownScript_0x194e94
 ; 0x194e8e
 
 UnknownScript_0x194e8e: ; 0x194e8e
-	2writetext UnknownText_0x19524f
+	writetext UnknownText_0x19524f
 	closetext
 	loadmovesprites
 	end
 ; 0x194e94
 
 UnknownScript_0x194e94: ; 0x194e94
-	2writetext UnknownText_0x195272
+	writetext UnknownText_0x195272
 	closetext
 	loadmovesprites
 	end
@@ -118,7 +118,7 @@ TrainerCooltrainermPaul: ; 0x194e9a
 CooltrainermPaulScript: ; 0x194ea6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1953f1
+	writetext UnknownText_0x1953f1
 	closetext
 	loadmovesprites
 	end
@@ -147,7 +147,7 @@ TrainerCooltrainermMike: ; 0x194eae
 CooltrainermMikeScript: ; 0x194eba
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x195467
+	writetext UnknownText_0x195467
 	closetext
 	loadmovesprites
 	end
@@ -176,7 +176,7 @@ TrainerCooltrainerfLola: ; 0x194ec2
 CooltrainerfLolaScript: ; 0x194ece
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x195516
+	writetext UnknownText_0x195516
 	closetext
 	loadmovesprites
 	end
@@ -187,13 +187,13 @@ BlackthornGymGuyScript: ; 0x194ed6
 	loadfont
 	checkevent EVENT_BEAT_CLAIR
 	iftrue .BlackthornGymGuyWinScript
-	2writetext BlackthornGymGuyText
+	writetext BlackthornGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .BlackthornGymGuyWinScript
-	2writetext BlackthornGymGuyWinText
+	writetext BlackthornGymGuyWinText
 	closetext
 	loadmovesprites
 	end

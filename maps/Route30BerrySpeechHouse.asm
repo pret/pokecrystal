@@ -11,13 +11,13 @@ PokefanMScript_0x196d64: ; 0x196d64
 	loadfont
 	checkevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 	iftrue UnknownScript_0x196d79
-	2writetext UnknownText_0x196d82
+	writetext UnknownText_0x196d82
 	keeptextopen
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x196d7d
 	setevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 UnknownScript_0x196d79: ; 0x196d79
-	2writetext UnknownText_0x196dec
+	writetext UnknownText_0x196dec
 	closetext
 UnknownScript_0x196d7d: ; 0x196d7d
 	loadmovesprites

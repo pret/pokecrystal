@@ -10,14 +10,14 @@ YoungsterScript_0x1a1673: ; 0x1a1673
 	waitbutton
 	playmusic MUSIC_JOHTO_TRAINER_BATTLE
 	loadfont
-	2writetext UnknownText_0x1a1806
+	writetext UnknownText_0x1a1806
 	pause 30
 	loadmovesprites
 	playsound SFX_TACKLE
 	applymovement $8, MovementData_0x1a17fe
 	loadfont
 	faceplayer
-	2writetext UnknownText_0x1a181c
+	writetext UnknownText_0x1a181c
 	closetext
 	spriteface $2, $1
 	loadmovesprites
@@ -57,26 +57,26 @@ YoungsterJoey1Script: ; 0x1a16a6
 	iftrue UnknownScript_0x1a178f
 	checkevent $0273
 	iftrue UnknownScript_0x1a16c9
-	2writetext UnknownText_0x1a18c2
+	writetext UnknownText_0x1a18c2
 	keeptextopen
 	setevent $0273
-	2call UnknownScript_0x1a1783
-	2jump UnknownScript_0x1a16cc
+	scall UnknownScript_0x1a1783
+	jump UnknownScript_0x1a16cc
 ; 0x1a16c9
 
 UnknownScript_0x1a16c9: ; 0x1a16c9
-	2call UnknownScript_0x1a1787
+	scall UnknownScript_0x1a1787
 UnknownScript_0x1a16cc: ; 0x1a16cc
 	askforphonenumber $f
 	if_equal $1, UnknownScript_0x1a1797
 	if_equal $2, UnknownScript_0x1a1793
 	trainertotext YOUNGSTER, JOEY1, $0
-	2call UnknownScript_0x1a178b
-	2jump UnknownScript_0x1a178f
+	scall UnknownScript_0x1a178b
+	jump UnknownScript_0x1a178f
 ; 0x1a16e0
 
 UnknownScript_0x1a16e0: ; 0x1a16e0
-	2call UnknownScript_0x1a179b
+	scall UnknownScript_0x1a179b
 	winlosstext YoungsterJoey1BeatenText, $0000
 	copybytetovar $d9f9
 	if_equal $4, UnknownScript_0x1a16ff
@@ -141,11 +141,11 @@ UnknownScript_0x1a174b: ; 0x1a174b
 	iftrue UnknownScript_0x1a176f
 	checkevent $0266
 	iftrue UnknownScript_0x1a176e
-	2call UnknownScript_0x1a17a6
+	scall UnknownScript_0x1a17a6
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1a179f
 	setevent $0266
-	2jump UnknownScript_0x1a178f
+	jump UnknownScript_0x1a178f
 ; 0x1a176e
 
 UnknownScript_0x1a176e: ; 0x1a176e
@@ -154,13 +154,13 @@ UnknownScript_0x1a176e: ; 0x1a176e
 
 UnknownScript_0x1a176f: ; 0x1a176f
 	loadfont
-	2writetext UnknownText_0x1a1bc0
+	writetext UnknownText_0x1a1bc0
 	closetext
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1a179f
 	clearevent EVENT_JOEY_HP_UP
 	setevent $0266
-	2jump UnknownScript_0x1a178f
+	jump UnknownScript_0x1a178f
 ; 0x1a1783
 
 UnknownScript_0x1a1783: ; 0x1a1783
@@ -232,7 +232,7 @@ TrainerYoungsterMikey: ; 0x1a17aa
 YoungsterMikeyScript: ; 0x1a17b6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a197d
+	writetext UnknownText_0x1a197d
 	closetext
 	loadmovesprites
 	end
@@ -261,7 +261,7 @@ TrainerBug_catcherDon: ; 0x1a17be
 Bug_catcherDonScript: ; 0x1a17ca
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a1a1c
+	writetext UnknownText_0x1a1a1c
 	closetext
 	loadmovesprites
 	end
@@ -272,14 +272,14 @@ YoungsterScript_0x1a17d2: ; 0x1a17d2
 	loadfont
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x1a17e0
-	2writetext UnknownText_0x1a1a6a
+	writetext UnknownText_0x1a1a6a
 	closetext
 	loadmovesprites
 	end
 ; 0x1a17e0
 
 UnknownScript_0x1a17e0: ; 0x1a17e0
-	2writetext UnknownText_0x1a1a94
+	writetext UnknownText_0x1a1a94
 	closetext
 	loadmovesprites
 	end

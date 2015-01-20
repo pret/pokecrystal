@@ -42,26 +42,26 @@ HikerAnthony2Script: ; 0x1ac011
 	iftrue UnknownScript_0x1ac0d7
 	checkevent $027b
 	iftrue UnknownScript_0x1ac03a
-	2writetext UnknownText_0x1ac153
+	writetext UnknownText_0x1ac153
 	keeptextopen
 	setevent $027b
-	2call UnknownScript_0x1ac0cb
-	2jump UnknownScript_0x1ac03d
+	scall UnknownScript_0x1ac0cb
+	jump UnknownScript_0x1ac03d
 ; 0x1ac03a
 
 UnknownScript_0x1ac03a: ; 0x1ac03a
-	2call UnknownScript_0x1ac0cf
+	scall UnknownScript_0x1ac0cf
 UnknownScript_0x1ac03d: ; 0x1ac03d
 	askforphonenumber $13
 	if_equal $1, UnknownScript_0x1ac0df
 	if_equal $2, UnknownScript_0x1ac0db
 	trainertotext HIKER, ANTHONY2, $0
-	2call UnknownScript_0x1ac0d3
-	2jump UnknownScript_0x1ac0d7
+	scall UnknownScript_0x1ac0d3
+	jump UnknownScript_0x1ac0d7
 ; 0x1ac051
 
 UnknownScript_0x1ac051: ; 0x1ac051
-	2call UnknownScript_0x1ac0e3
+	scall UnknownScript_0x1ac0e3
 	winlosstext HikerAnthony2BeatenText, $0000
 	copybytetovar $d9fd
 	if_equal $4, UnknownScript_0x1ac070
@@ -126,7 +126,7 @@ UnknownScript_0x1ac0bc: ; 0x1ac0bc
 ; 0x1ac0c5
 
 UnknownScript_0x1ac0c5: ; 0x1ac0c5
-	2writetext UnknownText_0x1ac180
+	writetext UnknownText_0x1ac180
 	closetext
 	loadmovesprites
 	end

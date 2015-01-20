@@ -33,21 +33,21 @@ SuperNerdScript_0x1a46e8: ; 0x1a46e8
 	iftrue UnknownScript_0x1a4702
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a46fc
-	2writetext UnknownText_0x1a477a
+	writetext UnknownText_0x1a477a
 	closetext
 	loadmovesprites
 	end
 ; 0x1a46fc
 
 UnknownScript_0x1a46fc: ; 0x1a46fc
-	2writetext UnknownText_0x1a47f3
+	writetext UnknownText_0x1a47f3
 	closetext
 	loadmovesprites
 	end
 ; 0x1a4702
 
 UnknownScript_0x1a4702: ; 0x1a4702
-	2writetext UnknownText_0x1a4865
+	writetext UnknownText_0x1a4865
 	closetext
 	loadmovesprites
 	end
@@ -66,14 +66,14 @@ BlackBeltScript_0x1a470e: ; 0x1a470e
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a471c
-	2writetext UnknownText_0x1a494a
+	writetext UnknownText_0x1a494a
 	closetext
 	loadmovesprites
 	end
 ; 0x1a471c
 
 UnknownScript_0x1a471c: ; 0x1a471c
-	2writetext UnknownText_0x1a4983
+	writetext UnknownText_0x1a4983
 	closetext
 	loadmovesprites
 	end
@@ -100,29 +100,29 @@ SantosScript:
 	if_not_equal SATURDAY, SantosNotSaturdayScript
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue .MetSantos
-	2writetext MeetSantosText
+	writetext MeetSantosText
 	keeptextopen
 	setevent EVENT_MET_SANTOS_OF_SATURDAY
 .MetSantos
-	2writetext SantosGivesGiftText
+	writetext SantosGivesGiftText
 	keeptextopen
 	verbosegiveitem SPELL_TAG, 1
 	iffalse SantosDoneScript
 	setevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
-	2writetext SantosGaveGiftText
+	writetext SantosGaveGiftText
 	closetext
 	loadmovesprites
 	end
 
 SantosSaturdayScript:
-	2writetext SantosSaturdayText
+	writetext SantosSaturdayText
 	closetext
 SantosDoneScript:
 	loadmovesprites
 	end
 
 SantosNotSaturdayScript:
-	2writetext SantosNotSaturdayText
+	writetext SantosNotSaturdayText
 	closetext
 	loadmovesprites
 	end

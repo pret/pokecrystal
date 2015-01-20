@@ -63,7 +63,7 @@ UnknownScript_0x180053: ; 0x180053
 	applymovement $5, MovementData_0x180164
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface $0, $3
-	2jump UnknownScript_0x1800ce
+	jump UnknownScript_0x1800ce
 ; 0x180094
 
 UnknownScript_0x180094: ; 0x180094
@@ -87,7 +87,7 @@ UnknownScript_0x180094: ; 0x180094
 	spriteface $0, $2
 UnknownScript_0x1800ce: ; 0x1800ce
 	loadfont
-	2writetext UnknownText_0x1801f5
+	writetext UnknownText_0x1801f5
 	closetext
 	loadmovesprites
 	setevent $077b
@@ -101,7 +101,7 @@ UnknownScript_0x1800ce: ; 0x1800ce
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x180113
+	jump UnknownScript_0x180113
 ; 0x1800f3
 
 UnknownScript_0x1800f3: ; 0x1800f3
@@ -111,7 +111,7 @@ UnknownScript_0x1800f3: ; 0x1800f3
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x180113
+	jump UnknownScript_0x180113
 ; 0x180103
 
 UnknownScript_0x180103: ; 0x180103
@@ -121,13 +121,13 @@ UnknownScript_0x180103: ; 0x180103
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x180113
+	jump UnknownScript_0x180113
 ; 0x180113
 
 UnknownScript_0x180113: ; 0x180113
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
-	2writetext UnknownText_0x1802a4
+	writetext UnknownText_0x1802a4
 	closetext
 	loadmovesprites
 	spriteface $0, $0
@@ -158,10 +158,10 @@ CooltrainerMScript_0x180136: ; 0x180136
 GrampsScript_0x180139: ; 0x180139
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x180335
+	writetext UnknownText_0x180335
 	yesorno
 	iffalse UnknownScript_0x180154
-	2writetext UnknownText_0x1803e7
+	writetext UnknownText_0x1803e7
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
@@ -172,7 +172,7 @@ GrampsScript_0x180139: ; 0x180139
 ; 0x180154
 
 UnknownScript_0x180154: ; 0x180154
-	2writetext UnknownText_0x180411
+	writetext UnknownText_0x180411
 	closetext
 	loadmovesprites
 	end
@@ -180,7 +180,7 @@ UnknownScript_0x180154: ; 0x180154
 
 JynxScript_0x18015a: ; 0x18015a
 	loadfont
-	2writetext UnknownText_0x180433
+	writetext UnknownText_0x180433
 	cry ABRA
 	closetext
 	loadmovesprites

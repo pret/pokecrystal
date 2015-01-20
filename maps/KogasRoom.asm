@@ -54,7 +54,7 @@ KogaScript_0x18075a: ; 0x18075a
 	loadfont
 	checkevent $05b9
 	iftrue UnknownScript_0x180788
-	2writetext UnknownText_0x180793
+	writetext UnknownText_0x180793
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1808a9, $0000
@@ -63,7 +63,7 @@ KogaScript_0x18075a: ; 0x18075a
 	returnafterbattle
 	setevent $05b9
 	loadfont
-	2writetext UnknownText_0x1808ca
+	writetext UnknownText_0x1808ca
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
@@ -76,7 +76,7 @@ KogaScript_0x18075a: ; 0x18075a
 ; 0x180788
 
 UnknownScript_0x180788: ; 0x180788
-	2writetext UnknownText_0x1808ca
+	writetext UnknownText_0x1808ca
 	closetext
 	loadmovesprites
 	end

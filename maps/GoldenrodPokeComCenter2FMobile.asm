@@ -20,7 +20,7 @@ ScientistScript_0x625d7: ; 0x625d7
 
 MapGoldenrodPokeComCenter2FMobileSignpost0Script: ; 0x625da
 	loadfont
-	2writetext UnknownText_0x627ee
+	writetext UnknownText_0x627ee
 	closetext
 UnknownScript_0x625df: ; 0x625df
 	reloadmappart
@@ -29,21 +29,21 @@ UnknownScript_0x625df: ; 0x625df
 	writebackup
 	if_equal $1, UnknownScript_0x625f0
 	if_equal $2, UnknownScript_0x625f8
-	2jump UnknownScript_0x62600
+	jump UnknownScript_0x62600
 ; 0x625f0
 
 UnknownScript_0x625f0: ; 0x625f0
 	loadfont
-	2writetext UnknownText_0x62828
+	writetext UnknownText_0x62828
 	closetext
-	2jump UnknownScript_0x625df
+	jump UnknownScript_0x625df
 ; 0x625f8
 
 UnknownScript_0x625f8: ; 0x625f8
 	loadfont
-	2writetext UnknownText_0x628f4
+	writetext UnknownText_0x628f4
 	closetext
-	2jump UnknownScript_0x625df
+	jump UnknownScript_0x625df
 ; 0x62600
 
 UnknownScript_0x62600: ; 0x62600
@@ -71,7 +71,7 @@ MenuData2_0x6260a: ; 0x6260a
 
 MapGoldenrodPokeComCenter2FMobileSignpost1Script: ; 0x62624
 	loadfont
-	2writetext UnknownText_0x62989
+	writetext UnknownText_0x62989
 	closetext
 UnknownScript_0x62629: ; 0x62629
 	reloadmappart
@@ -80,21 +80,21 @@ UnknownScript_0x62629: ; 0x62629
 	writebackup
 	if_equal $1, UnknownScript_0x6263a
 	if_equal $2, UnknownScript_0x62642
-	2jump UnknownScript_0x6264a
+	jump UnknownScript_0x6264a
 ; 0x6263a
 
 UnknownScript_0x6263a: ; 0x6263a
 	loadfont
-	2writetext UnknownText_0x629ae
+	writetext UnknownText_0x629ae
 	closetext
-	2jump UnknownScript_0x62629
+	jump UnknownScript_0x62629
 ; 0x62642
 
 UnknownScript_0x62642: ; 0x62642
 	loadfont
-	2writetext UnknownText_0x62a5a
+	writetext UnknownText_0x62a5a
 	closetext
-	2jump UnknownScript_0x62629
+	jump UnknownScript_0x62629
 ; 0x6264a
 
 UnknownScript_0x6264a: ; 0x6264a

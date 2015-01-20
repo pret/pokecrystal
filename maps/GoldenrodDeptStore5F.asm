@@ -29,13 +29,13 @@ ClerkScript_0x5609c: ; 0x5609c
 	iftrue UnknownScript_0x560ad
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x560c2
-	2jump UnknownScript_0x560b6
+	jump UnknownScript_0x560b6
 ; 0x560ad
 
 UnknownScript_0x560ad: ; 0x560ad
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x560c8
-	2jump UnknownScript_0x560bc
+	jump UnknownScript_0x560bc
 ; 0x560b6
 
 UnknownScript_0x560b6: ; 0x560b6
@@ -70,15 +70,15 @@ ReceptionistScript_0x560ce: ; 0x560ce
 	checkflag $005b
 	iftrue UnknownScript_0x56112
 	special $0059
-	2writetext UnknownText_0x56143
+	writetext UnknownText_0x56143
 	keeptextopen
 	if_greater_than $95, UnknownScript_0x560ee
 	if_greater_than $31, UnknownScript_0x560fd
-	2jump UnknownScript_0x56103
+	jump UnknownScript_0x56103
 ; 0x560ee
 
 UnknownScript_0x560ee: ; 0x560ee
-	2writetext UnknownText_0x5615a
+	writetext UnknownText_0x5615a
 	keeptextopen
 	verbosegiveitem TM_27, 1
 	iffalse UnknownScript_0x56116
@@ -88,14 +88,14 @@ UnknownScript_0x560ee: ; 0x560ee
 ; 0x560fd
 
 UnknownScript_0x560fd: ; 0x560fd
-	2writetext UnknownText_0x561a6
+	writetext UnknownText_0x561a6
 	closetext
 	loadmovesprites
 	end
 ; 0x56103
 
 UnknownScript_0x56103: ; 0x56103
-	2writetext UnknownText_0x561d8
+	writetext UnknownText_0x561d8
 	keeptextopen
 	verbosegiveitem TM_21, 1
 	iffalse UnknownScript_0x56116
@@ -105,7 +105,7 @@ UnknownScript_0x56103: ; 0x56103
 ; 0x56112
 
 UnknownScript_0x56112: ; 0x56112
-	2writetext UnknownText_0x56202
+	writetext UnknownText_0x56202
 	closetext
 UnknownScript_0x56116: ; 0x56116
 	loadmovesprites
@@ -117,7 +117,7 @@ TwinScript_0x56118: ; 0x56118
 	loadfont
 	special $0066
 	if_not_equal $2, UnknownScript_0x5612a
-	2writetext UnknownText_0x56241
+	writetext UnknownText_0x56241
 	closetext
 	loadmovesprites
 	special $0013
@@ -125,7 +125,7 @@ TwinScript_0x56118: ; 0x56118
 ; 0x5612a
 
 UnknownScript_0x5612a: ; 0x5612a
-	2writetext UnknownText_0x56279
+	writetext UnknownText_0x56279
 	closetext
 	loadmovesprites
 	end

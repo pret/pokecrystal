@@ -19,14 +19,14 @@ GymGuyScript_0x188bda: ; 0x188bda
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188be8
-	2writetext UnknownText_0x188c26
+	writetext UnknownText_0x188c26
 	closetext
 	loadmovesprites
 	end
 ; 0x188be8
 
 UnknownScript_0x188be8: ; 0x188be8
-	2writetext UnknownText_0x188c9e
+	writetext UnknownText_0x188c9e
 	closetext
 	loadmovesprites
 	end

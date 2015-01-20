@@ -17,7 +17,7 @@ ReceptionistScript_0x72120: ; 0x72120
 PokefanMScript_0x72123: ; 0x72123
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x72215
+	writetext UnknownText_0x72215
 	closetext
 	loadmovesprites
 	spriteface $4, $2
@@ -27,7 +27,7 @@ PokefanMScript_0x72123: ; 0x72123
 TeacherScript_0x7212e: ; 0x7212e
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x72242
+	writetext UnknownText_0x72242
 	closetext
 	loadmovesprites
 	spriteface $5, $3
@@ -37,7 +37,7 @@ TeacherScript_0x7212e: ; 0x7212e
 FishingGuruScript_0x72139: ; 0x72139
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x72295
+	writetext UnknownText_0x72295
 	closetext
 	loadmovesprites
 	spriteface $6, $3
@@ -49,18 +49,18 @@ FisherScript_0x72144: ; 0x72144
 	loadfont
 	checkevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 	iftrue .UnknownScript_0x72169
-	2writetext UnknownText_0x722dc
+	writetext UnknownText_0x722dc
 	keeptextopen
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7217b
 	checkcoins 9998
 	if_equal $0, UnknownScript_0x72184
 	stringtotext .coinname, $1
-	2call .UnknownScript_0x72172
+	scall .UnknownScript_0x72172
 	givecoins 18
 	setevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 .UnknownScript_0x72169 ; 0x72169
-	2writetext UnknownText_0x72345
+	writetext UnknownText_0x72345
 	closetext
 	loadmovesprites
 	spriteface $fe, $2
@@ -77,7 +77,7 @@ FisherScript_0x72144: ; 0x72144
 ; 0x7217b
 
 UnknownScript_0x7217b: ; 0x7217b
-	2writetext UnknownText_0x7238a
+	writetext UnknownText_0x7238a
 	closetext
 	loadmovesprites
 	spriteface $fe, $2
@@ -85,7 +85,7 @@ UnknownScript_0x7217b: ; 0x7217b
 ; 0x72184
 
 UnknownScript_0x72184: ; 0x72184
-	2writetext UnknownText_0x723d9
+	writetext UnknownText_0x723d9
 	closetext
 	loadmovesprites
 	spriteface $fe, $2
@@ -99,7 +99,7 @@ CeladonGymGuyScript: ; 0x7218d
 GrampsScript_0x72190: ; 0x72190
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x724ad
+	writetext UnknownText_0x724ad
 	closetext
 	loadmovesprites
 	spriteface $a, $2
@@ -145,7 +145,7 @@ MapCeladonGameCornerSignpost32Script: ; 0x721c0
 
 MapCeladonGameCornerSignpost9Script: ; 0x721c3
 	loadfont
-	2writetext UnknownText_0x72567
+	writetext UnknownText_0x72567
 	closetext
 	special $002b
 	loadmovesprites

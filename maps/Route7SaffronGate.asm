@@ -11,14 +11,14 @@ OfficerScript_0x73518: ; 0x73518
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x73526
-	2writetext UnknownText_0x7352c
+	writetext UnknownText_0x7352c
 	closetext
 	loadmovesprites
 	end
 ; 0x73526
 
 UnknownScript_0x73526: ; 0x73526
-	2writetext UnknownText_0x73592
+	writetext UnknownText_0x73592
 	closetext
 	loadmovesprites
 	end

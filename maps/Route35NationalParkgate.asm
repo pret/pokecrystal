@@ -69,20 +69,20 @@ UnknownScript_0x6a1d1: ; 0x6a1d1
 	checkcode $11
 	addvar $1
 	RAM2MEM $0
-	2writetext UnknownText_0x6a79a
+	writetext UnknownText_0x6a79a
 	yesorno
 	iffalse UnknownScript_0x6a1ee
-	2writetext UnknownText_0x6a7db
+	writetext UnknownText_0x6a7db
 	closetext
 	loadmovesprites
 	jumpstd $0016
 ; 0x6a1ee
 
 UnknownScript_0x6a1ee: ; 0x6a1ee
-	2writetext UnknownText_0x6a823
+	writetext UnknownText_0x6a823
 	closetext
 	loadmovesprites
-	2call UnknownScript_0x6a261
+	scall UnknownScript_0x6a261
 	playsound SFX_ENTER_DOOR
 	special $002e
 	waitbutton
@@ -100,8 +100,8 @@ OfficerScript_0x6a204: ; 0x6a204
 	loadfont
 	checkflag $0051
 	iftrue UnknownScript_0x6a2c1
-	2call UnknownScript_0x6a2de
-	2writetext UnknownText_0x6a2eb
+	scall UnknownScript_0x6a2de
+	writetext UnknownText_0x6a2eb
 	yesorno
 	iffalse UnknownScript_0x6a2a3
 	checkcode $1
@@ -111,16 +111,16 @@ OfficerScript_0x6a204: ; 0x6a204
 UnknownScript_0x6a234: ; 0x6a234
 	setflag $0011
 	special $003c
-	2writetext UnknownText_0x6a39d
+	writetext UnknownText_0x6a39d
 	keeptextopen
-	2writetext UnknownText_0x6a3c7
+	writetext UnknownText_0x6a3c7
 	playsound SFX_ITEM
 	waitbutton
-	2writetext UnknownText_0x6a3e2
+	writetext UnknownText_0x6a3e2
 	closetext
 	loadmovesprites
 	special $0018
-	2call UnknownScript_0x6a261
+	scall UnknownScript_0x6a261
 	playsound SFX_ENTER_DOOR
 	special $002e
 	waitbutton
@@ -150,58 +150,58 @@ UnknownScript_0x6a271: ; 0x6a271
 UnknownScript_0x6a27d: ; 6a27d
 	special $005a
 	if_equal $1, UnknownScript_0x6a2bb
-	2writetext UnknownText_0x6a4c6
+	writetext UnknownText_0x6a4c6
 	yesorno
 	iffalse UnknownScript_0x6a2a9
 	special $0016
 	iftrue UnknownScript_0x6a2af
 	setevent $0308
-	2writetext UnknownText_0x6a537
+	writetext UnknownText_0x6a537
 	keeptextopen
-	2writetext UnknownText_0x6a56b
+	writetext UnknownText_0x6a56b
 	playsound SFX_GOT_SAFARI_BALLS
 	waitbutton
 	keeptextopen
-	2jump UnknownScript_0x6a234
+	jump UnknownScript_0x6a234
 ; 0x6a2a3
 
 UnknownScript_0x6a2a3: ; 0x6a2a3
-	2writetext UnknownText_0x6a5dc
+	writetext UnknownText_0x6a5dc
 	closetext
 	loadmovesprites
 	end
 ; 0x6a2a9
 
 UnknownScript_0x6a2a9: ; 0x6a2a9
-	2writetext UnknownText_0x6a597
+	writetext UnknownText_0x6a597
 	closetext
 	loadmovesprites
 	end
 ; 0x6a2af
 
 UnknownScript_0x6a2af: ; 0x6a2af
-	2writetext UnknownText_0x6a608
+	writetext UnknownText_0x6a608
 	closetext
 	loadmovesprites
 	end
 ; 0x6a2b5
 
 UnknownScript_0x6a2b5: ; 0x6a2b5
-	2writetext UnknownText_0x6a67c
+	writetext UnknownText_0x6a67c
 	closetext
 	loadmovesprites
 	end
 ; 0x6a2bb
 
 UnknownScript_0x6a2bb: ; 0x6a2bb
-	2writetext UnknownText_0x6a71f
+	writetext UnknownText_0x6a71f
 	closetext
 	loadmovesprites
 	end
 ; 0x6a2c1
 
 UnknownScript_0x6a2c1: ; 0x6a2c1
-	2writetext UnknownText_0x6a84f
+	writetext UnknownText_0x6a84f
 	closetext
 	loadmovesprites
 	end
@@ -216,7 +216,7 @@ OfficerScript_0x6a2ca: ; 0x6a2ca
 	loadfont
 	checkflag $0051
 	iftrue UnknownScript_0x6a2c1
-	2writetext UnknownText_0x6a894
+	writetext UnknownText_0x6a894
 	closetext
 	loadmovesprites
 	end

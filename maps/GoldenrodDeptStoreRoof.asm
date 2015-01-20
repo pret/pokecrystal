@@ -52,7 +52,7 @@ PokefanFScript_0x56746: ; 0x56746
 FisherScript_0x56749: ; 0x56749
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x567d2
+	writetext UnknownText_0x567d2
 	closetext
 	loadmovesprites
 	spriteface $4, $1
@@ -65,12 +65,12 @@ TwinScript_0x56754: ; 0x56754
 
 SuperNerdScript_0x56757: ; 0x56757
 	loadfont
-	2writetext UnknownText_0x56867
+	writetext UnknownText_0x56867
 	closetext
 	loadmovesprites
 	spriteface $6, $1
 	loadfont
-	2writetext UnknownText_0x56871
+	writetext UnknownText_0x56871
 	closetext
 	loadmovesprites
 	spriteface $6, $3

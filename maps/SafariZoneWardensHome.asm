@@ -11,7 +11,7 @@ LassScript_0x1965c6: ; 0x1965c6
 	loadfont
 	checkevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	iftrue UnknownScript_0x1965d7
-	2writetext UnknownText_0x1965e6
+	writetext UnknownText_0x1965e6
 	closetext
 	loadmovesprites
 	setevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
@@ -19,7 +19,7 @@ LassScript_0x1965c6: ; 0x1965c6
 ; 0x1965d7
 
 UnknownScript_0x1965d7: ; 0x1965d7
-	2writetext UnknownText_0x196691
+	writetext UnknownText_0x196691
 	closetext
 	loadmovesprites
 	end

@@ -54,7 +54,7 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	appear $c
 	applymovement $c, MovementData_0x1a00e7
 	loadfont
-	2writetext UnknownText_0x1a0433
+	writetext UnknownText_0x1a0433
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1a05a1, $0000
@@ -65,7 +65,7 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	returnafterbattle
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x1a05c3
+	writetext UnknownText_0x1a05c3
 	closetext
 	loadmovesprites
 	applymovement $c, MovementData_0x1a00ec
@@ -83,26 +83,26 @@ PokefanFScript_0x1a0084: ; 0x1a0084
 	loadfont
 	checkevent EVENT_GOT_HM02_FLY
 	iftrue UnknownScript_0x1a00ad
-	2writetext UnknownText_0x1a00f1
+	writetext UnknownText_0x1a00f1
 	keeptextopen
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x1a009c
-	2writetext UnknownText_0x1a0163
+	writetext UnknownText_0x1a0163
 	closetext
 	loadmovesprites
 	end
 ; 0x1a009c
 
 UnknownScript_0x1a009c: ; 0x1a009c
-	2writetext UnknownText_0x1a01e3
+	writetext UnknownText_0x1a01e3
 	keeptextopen
 	verbosegiveitem HM_02, 1
 	iffalse UnknownScript_0x1a00b1
 	setevent EVENT_GOT_HM02_FLY
-	2writetext UnknownText_0x1a021d
+	writetext UnknownText_0x1a021d
 	keeptextopen
 UnknownScript_0x1a00ad: ; 0x1a00ad
-	2writetext UnknownText_0x1a0277
+	writetext UnknownText_0x1a0277
 	closetext
 UnknownScript_0x1a00b1: ; 0x1a00b1
 	loadmovesprites

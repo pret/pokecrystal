@@ -67,7 +67,7 @@ UnknownScript_0x985a3: ; 0x985a3
 	stopfollow
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x98712
+	writetext UnknownText_0x98712
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x98625
@@ -97,7 +97,7 @@ TrainerSageGaku: ; 0x985c6
 
 SageGakuScript: ; 0x985d2
 	loadfont
-	2writetext UnknownText_0x98938
+	writetext UnknownText_0x98938
 	closetext
 	loadmovesprites
 	end
@@ -125,7 +125,7 @@ TrainerSageMasa: ; 0x985d9
 
 SageMasaScript: ; 0x985e5
 	loadfont
-	2writetext UnknownText_0x98a35
+	writetext UnknownText_0x98a35
 	closetext
 	loadmovesprites
 	end
@@ -157,9 +157,9 @@ SageKojiScript: ; 0x985f8
 	pause 10
 	showemote $0, $7, 20
 	loadfont
-	2writetext UnknownText_0x98c6c
+	writetext UnknownText_0x98c6c
 	keeptextopen
-	2writetext UnknownText_0x98cac
+	writetext UnknownText_0x98cac
 	closetext
 	loadmovesprites
 	applymovement $7, MovementData_0x98628
@@ -171,7 +171,7 @@ SageKojiScript: ; 0x985f8
 
 UnknownScript_0x9861b: ; 0x9861b
 	loadfont
-	2writetext UnknownText_0x98db5
+	writetext UnknownText_0x98db5
 	closetext
 	loadmovesprites
 	end

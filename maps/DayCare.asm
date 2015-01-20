@@ -29,17 +29,17 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	loadfont
 	checkevent EVENT_GOT_ODD_EGG
 	iftrue UnknownScript_0x62fbd
-	2writetext UnknownText_0x630ce
+	writetext UnknownText_0x630ce
 	keeptextopen
 	loadmovesprites
 	checkcode $1
 	if_equal $6, UnknownScript_0x62fb6
 	special $007d
 	loadfont
-	2writetext UnknownText_0x631ae
+	writetext UnknownText_0x631ae
 	playsound SFX_KEY_ITEM
 	waitbutton
-	2writetext UnknownText_0x631c3
+	writetext UnknownText_0x631c3
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_ODD_EGG
@@ -48,7 +48,7 @@ GrampsScript_0x62f8f: ; 0x62f8f
 
 UnknownScript_0x62fb6: ; 0x62fb6
 	loadfont
-	2writetext UnknownText_0x63237
+	writetext UnknownText_0x63237
 	closetext
 	loadmovesprites
 	end
@@ -73,7 +73,7 @@ GrannyScript_0x62fc3: ; 0x62fc3
 ; 0x62fd1
 
 UnknownScript_0x62fd1: ; 0x62fd1
-	2writetext UnknownText_0x62fda
+	writetext UnknownText_0x62fda
 	closetext
 	loadmovesprites
 	end

@@ -136,7 +136,7 @@ TrainerSupernerdEric: ; 0x7c0e2
 SupernerdEricScript: ; 0x7c0ee
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7c36c
+	writetext UnknownText_0x7c36c
 	closetext
 	loadmovesprites
 	end
@@ -165,7 +165,7 @@ TrainerSupernerdTeru: ; 0x7c0f6
 SupernerdTeruScript: ; 0x7c102
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7c410
+	writetext UnknownText_0x7c410
 	closetext
 	loadmovesprites
 	end
@@ -194,7 +194,7 @@ TrainerPokemaniacIssac: ; 0x7c10a
 PokemaniacIssacScript: ; 0x7c116
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7c498
+	writetext UnknownText_0x7c498
 	closetext
 	loadmovesprites
 	end
@@ -223,7 +223,7 @@ TrainerPokemaniacDonald: ; 0x7c11e
 PokemaniacDonaldScript: ; 0x7c12a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7c52f
+	writetext UnknownText_0x7c52f
 	closetext
 	loadmovesprites
 	end
@@ -234,7 +234,7 @@ GrannyScript_0x7c132: ; 0x7c132
 	checkcode $b
 	if_equal SUNDAY, UnknownScript_0x7c140
 	if_equal SATURDAY, UnknownScript_0x7c140
-	2jump UnknownScript_0x7c300
+	jump UnknownScript_0x7c300
 ; 0x7c140
 
 UnknownScript_0x7c140: ; 0x7c140
@@ -249,7 +249,7 @@ GrampsScript_0x7c146: ; 0x7c146
 	iftrue UnknownScript_0x7c300
 	checkcode $b
 	if_equal MONDAY, UnknownScript_0x7c156
-	2jump UnknownScript_0x7c300
+	jump UnknownScript_0x7c300
 ; 0x7c156
 
 UnknownScript_0x7c156: ; 0x7c156
@@ -266,19 +266,19 @@ SuperNerdScript_0x7c161: ; 0x7c161
 	if_equal TUESDAY, UnknownScript_0x7c173
 	if_equal THURSDAY, UnknownScript_0x7c173
 	if_equal SATURDAY, UnknownScript_0x7c173
-	2jump UnknownScript_0x7c300
+	jump UnknownScript_0x7c300
 ; 0x7c173
 
 UnknownScript_0x7c173: ; 0x7c173
 	checkflag $005a
 	iftrue UnknownScript_0x7c208
 	special $0051
-	2writetext UnknownText_0x7c5f9
+	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse UnknownScript_0x7c1fc
 	checkmoney $0, 500
 	if_equal $2, UnknownScript_0x7c202
-	2writetext UnknownText_0x7c69a
+	writetext UnknownText_0x7c69a
 	keeptextopen
 	special $0061
 	if_equal $0, UnknownScript_0x7c1fc
@@ -286,34 +286,34 @@ UnknownScript_0x7c173: ; 0x7c173
 	setflag $005a
 	if_equal $2, UnknownScript_0x7c1a9
 	if_equal $3, UnknownScript_0x7c1b5
-	2jump UnknownScript_0x7c1c1
+	jump UnknownScript_0x7c1c1
 ; 0x7c1a9
 
 UnknownScript_0x7c1a9: ; 0x7c1a9
 	setevent $0000
 	clearevent $0001
 	clearevent $0002
-	2jump UnknownScript_0x7c1cd
+	jump UnknownScript_0x7c1cd
 ; 0x7c1b5
 
 UnknownScript_0x7c1b5: ; 0x7c1b5
 	clearevent $0000
 	setevent $0001
 	clearevent $0002
-	2jump UnknownScript_0x7c1cd
+	jump UnknownScript_0x7c1cd
 ; 0x7c1c1
 
 UnknownScript_0x7c1c1: ; 0x7c1c1
 	clearevent $0000
 	clearevent $0001
 	setevent $0002
-	2jump UnknownScript_0x7c1cd
+	jump UnknownScript_0x7c1cd
 ; 0x7c1cd
 
 UnknownScript_0x7c1cd: ; 0x7c1cd
 	takemoney $0, 500
 	special $0051
-	2writetext UnknownText_0x7c6b8
+	writetext UnknownText_0x7c6b8
 	closetext
 	loadmovesprites
 	special $002e
@@ -322,31 +322,31 @@ UnknownScript_0x7c1cd: ; 0x7c1cd
 	special $0031
 	special $003d
 	loadfont
-	2writetext UnknownText_0x7c6d8
+	writetext UnknownText_0x7c6d8
 	closetext
 	checkevent $0000
 	iftrue UnknownScript_0x7c2bb
 	checkevent $0001
 	iftrue UnknownScript_0x7c2c4
-	2jump UnknownScript_0x7c2cd
+	jump UnknownScript_0x7c2cd
 ; 0x7c1fc
 
 UnknownScript_0x7c1fc: ; 0x7c1fc
-	2writetext UnknownText_0x7c6ea
+	writetext UnknownText_0x7c6ea
 	closetext
 	loadmovesprites
 	end
 ; 0x7c202
 
 UnknownScript_0x7c202: ; 0x7c202
-	2writetext UnknownText_0x7c709
+	writetext UnknownText_0x7c709
 	closetext
 	loadmovesprites
 	end
 ; 0x7c208
 
 UnknownScript_0x7c208: ; 0x7c208
-	2writetext UnknownText_0x7c72b
+	writetext UnknownText_0x7c72b
 	closetext
 	loadmovesprites
 	end
@@ -358,19 +358,19 @@ SuperNerdScript_0x7c20e: ; 0x7c20e
 	if_equal SUNDAY, UnknownScript_0x7c220
 	if_equal WEDNESDAY, UnknownScript_0x7c220
 	if_equal FRIDAY, UnknownScript_0x7c220
-	2jump UnknownScript_0x7c300
+	jump UnknownScript_0x7c300
 ; 0x7c220
 
 UnknownScript_0x7c220: ; 0x7c220
 	checkflag $005a
 	iftrue UnknownScript_0x7c2b5
 	special $0051
-	2writetext UnknownText_0x7c75c
+	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse UnknownScript_0x7c2a9
 	checkmoney $0, 300
 	if_equal $2, UnknownScript_0x7c2af
-	2writetext UnknownText_0x7c7f1
+	writetext UnknownText_0x7c7f1
 	keeptextopen
 	special $0062
 	if_equal $0, UnknownScript_0x7c2a9
@@ -378,34 +378,34 @@ UnknownScript_0x7c220: ; 0x7c220
 	setflag $005a
 	if_equal $2, UnknownScript_0x7c256
 	if_equal $3, UnknownScript_0x7c262
-	2jump UnknownScript_0x7c26e
+	jump UnknownScript_0x7c26e
 ; 0x7c256
 
 UnknownScript_0x7c256: ; 0x7c256
 	setevent $0000
 	clearevent $0001
 	clearevent $0002
-	2jump UnknownScript_0x7c27a
+	jump UnknownScript_0x7c27a
 ; 0x7c262
 
 UnknownScript_0x7c262: ; 0x7c262
 	clearevent $0000
 	setevent $0001
 	clearevent $0002
-	2jump UnknownScript_0x7c27a
+	jump UnknownScript_0x7c27a
 ; 0x7c26e
 
 UnknownScript_0x7c26e: ; 0x7c26e
 	clearevent $0000
 	clearevent $0001
 	setevent $0002
-	2jump UnknownScript_0x7c27a
+	jump UnknownScript_0x7c27a
 ; 0x7c27a
 
 UnknownScript_0x7c27a: ; 0x7c27a
 	takemoney $0, 300
 	special $0051
-	2writetext UnknownText_0x7c80e
+	writetext UnknownText_0x7c80e
 	closetext
 	loadmovesprites
 	special $002e
@@ -414,38 +414,38 @@ UnknownScript_0x7c27a: ; 0x7c27a
 	special $0031
 	special $003d
 	loadfont
-	2writetext UnknownText_0x7c82a
+	writetext UnknownText_0x7c82a
 	closetext
 	checkevent $0000
 	iftrue UnknownScript_0x7c2bb
 	checkevent $0001
 	iftrue UnknownScript_0x7c2c4
-	2jump UnknownScript_0x7c2cd
+	jump UnknownScript_0x7c2cd
 ; 0x7c2a9
 
 UnknownScript_0x7c2a9: ; 0x7c2a9
-	2writetext UnknownText_0x7c842
+	writetext UnknownText_0x7c842
 	closetext
 	loadmovesprites
 	end
 ; 0x7c2af
 
 UnknownScript_0x7c2af: ; 0x7c2af
-	2writetext UnknownText_0x7c85b
+	writetext UnknownText_0x7c85b
 	closetext
 	loadmovesprites
 	end
 ; 0x7c2b5
 
 UnknownScript_0x7c2b5: ; 0x7c2b5
-	2writetext UnknownText_0x7c87b
+	writetext UnknownText_0x7c87b
 	closetext
 	loadmovesprites
 	end
 ; 0x7c2bb
 
 UnknownScript_0x7c2bb: ; 0x7c2bb
-	2writetext UnknownText_0x7c8bf
+	writetext UnknownText_0x7c8bf
 	special $0064
 	closetext
 	loadmovesprites
@@ -453,7 +453,7 @@ UnknownScript_0x7c2bb: ; 0x7c2bb
 ; 0x7c2c4
 
 UnknownScript_0x7c2c4: ; 0x7c2c4
-	2writetext UnknownText_0x7c8dc
+	writetext UnknownText_0x7c8dc
 	special $0064
 	closetext
 	loadmovesprites
@@ -461,7 +461,7 @@ UnknownScript_0x7c2c4: ; 0x7c2c4
 ; 0x7c2cd
 
 UnknownScript_0x7c2cd: ; 0x7c2cd
-	2writetext UnknownText_0x7c8ee
+	writetext UnknownText_0x7c8ee
 	special $0064
 	closetext
 	loadmovesprites
@@ -474,7 +474,7 @@ MapWarehouseEntranceSignpost0Script:: ; 0x7c2d6
 	iftrue UnknownScript_0x7c2fa
 	checkitem BASEMENT_KEY
 	iftrue UnknownScript_0x7c2e8
-	2writetext UnknownText_0x7c5b0
+	writetext UnknownText_0x7c5b0
 	closetext
 	loadmovesprites
 	end
@@ -482,7 +482,7 @@ MapWarehouseEntranceSignpost0Script:: ; 0x7c2d6
 
 UnknownScript_0x7c2e8: ; 0x7c2e8
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x7c5d6
+	writetext UnknownText_0x7c5d6
 	closetext
 	loadmovesprites
 	changeblock $12, $6, $2e
@@ -493,14 +493,14 @@ UnknownScript_0x7c2e8: ; 0x7c2e8
 ; 0x7c2fa
 
 UnknownScript_0x7c2fa: ; 0x7c2fa
-	2writetext UnknownText_0x7c5c3
+	writetext UnknownText_0x7c5c3
 	closetext
 	loadmovesprites
 	end
 ; 0x7c300
 
 UnknownScript_0x7c300: ; 0x7c300
-	2writetext UnknownText_0x7c904
+	writetext UnknownText_0x7c904
 	closetext
 	loadmovesprites
 	end

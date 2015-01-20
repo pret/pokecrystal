@@ -25,14 +25,14 @@ MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
 	iftrue UnknownScript_0x7ad27
 	playmusic MUSIC_POKEMON_TALK
 	loadfont
-	2writetext UnknownText_0x7ae3b
+	writetext UnknownText_0x7ae3b
 	pause 45
-	2writetext UnknownText_0x7ae6c
+	writetext UnknownText_0x7ae6c
 	pause 45
-	2writetext UnknownText_0x7ae7b
+	writetext UnknownText_0x7ae7b
 	pause 45
 	musicfadeout $003c, $10
-	2writetext UnknownText_0x7ae9b
+	writetext UnknownText_0x7ae9b
 	pause 45
 	loadmovesprites
 	setevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
@@ -45,7 +45,7 @@ UnknownScript_0x7ad24: ; 0x7ad24
 
 UnknownScript_0x7ad27: ; 0x7ad27
 	loadfont
-	2writetext UnknownText_0x7ae9b
+	writetext UnknownText_0x7ae9b
 	pause 45
 	loadmovesprites
 	end

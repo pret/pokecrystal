@@ -10,7 +10,7 @@ RocketScript_0x1adbfa: ; 0x1adbfa
 	faceplayer
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x1adc2e
+	writetext UnknownText_0x1adc2e
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1add67, $ffff
@@ -20,10 +20,10 @@ RocketScript_0x1adbfa: ; 0x1adbfa
 	returnafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x1addc0
+	writetext UnknownText_0x1addc0
 	keeptextopen
 	special $006a
-	2writetext UnknownText_0x1adee1
+	writetext UnknownText_0x1adee1
 	closetext
 	loadmovesprites
 	special $0030

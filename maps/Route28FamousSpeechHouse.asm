@@ -18,7 +18,7 @@ CooltrainerFScript_0x1ae658: ; 0x1ae658
 	loadfont
 	checkevent EVENT_GOT_TM47_STEEL_WING
 	iftrue UnknownScript_0x1ae66f
-	2writetext UnknownText_0x1ae682
+	writetext UnknownText_0x1ae682
 	keeptextopen
 	verbosegiveitem TM_47, 1
 	iffalse UnknownScript_0x1ae66d
@@ -29,7 +29,7 @@ UnknownScript_0x1ae66d: ; 0x1ae66d
 ; 0x1ae66f
 
 UnknownScript_0x1ae66f: ; 0x1ae66f
-	2writetext UnknownText_0x1ae6f0
+	writetext UnknownText_0x1ae6f0
 	closetext
 	loadmovesprites
 	end
@@ -37,7 +37,7 @@ UnknownScript_0x1ae66f: ; 0x1ae66f
 
 MoltresScript_0x1ae675: ; 0x1ae675
 	loadfont
-	2writetext UnknownText_0x1ae752
+	writetext UnknownText_0x1ae752
 	cry FEAROW
 	closetext
 	loadmovesprites

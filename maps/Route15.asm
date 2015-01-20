@@ -29,7 +29,7 @@ TrainerTeacherColette: ; 0x1aa569
 TeacherColetteScript: ; 0x1aa575
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1aa60d
+	writetext UnknownText_0x1aa60d
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerTeacherHillary: ; 0x1aa57d
 TeacherHillaryScript: ; 0x1aa589
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1aa6ca
+	writetext UnknownText_0x1aa6ca
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerSchoolboyKipp: ; 0x1aa591
 SchoolboyKippScript: ; 0x1aa59d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1aa740
+	writetext UnknownText_0x1aa740
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerSchoolboyTommy: ; 0x1aa5a5
 SchoolboyTommyScript: ; 0x1aa5b1
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1aa7bc
+	writetext UnknownText_0x1aa7bc
 	closetext
 	loadmovesprites
 	end
@@ -145,7 +145,7 @@ TrainerSchoolboyJohnny: ; 0x1aa5b9
 SchoolboyJohnnyScript: ; 0x1aa5c5
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1aa84a
+	writetext UnknownText_0x1aa84a
 	closetext
 	loadmovesprites
 	end
@@ -174,7 +174,7 @@ TrainerSchoolboyBilly: ; 0x1aa5cd
 SchoolboyBillyScript: ; 0x1aa5d9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1aa8b0
+	writetext UnknownText_0x1aa8b0
 	closetext
 	loadmovesprites
 	end

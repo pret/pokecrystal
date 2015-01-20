@@ -28,7 +28,7 @@ GrampsScript_0x18c00f: ; 0x18c00f
 	loadfont
 	checkevent EVENT_GOT_SILVER_WING
 	iftrue UnknownScript_0x18c023
-	2writetext UnknownText_0x18c0c6
+	writetext UnknownText_0x18c0c6
 	keeptextopen
 	verbosegiveitem SILVER_WING, 1
 	setevent EVENT_GOT_SILVER_WING
@@ -37,7 +37,7 @@ GrampsScript_0x18c00f: ; 0x18c00f
 ; 0x18c023
 
 UnknownScript_0x18c023: ; 0x18c023
-	2writetext UnknownText_0x18c1aa
+	writetext UnknownText_0x18c1aa
 	closetext
 	loadmovesprites
 	end

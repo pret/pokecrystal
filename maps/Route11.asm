@@ -29,7 +29,7 @@ TrainerYoungsterOwen: ; 0x68002
 YoungsterOwenScript: ; 0x6800e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x680b2
+	writetext UnknownText_0x680b2
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerYoungsterJason: ; 0x68016
 YoungsterJasonScript: ; 0x68022
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6814a
+	writetext UnknownText_0x6814a
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerPsychicHerman: ; 0x6802a
 PsychicHermanScript: ; 0x68036
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6817b
+	writetext UnknownText_0x6817b
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerPsychicFidel: ; 0x6803e
 PsychicFidelScript: ; 0x6804a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x681ec
+	writetext UnknownText_0x681ec
 	closetext
 	loadmovesprites
 	end

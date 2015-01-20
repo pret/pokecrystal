@@ -25,13 +25,13 @@ GrampsScript_0x1aa986: ; 0x1aa986
 
 MachopScript_0x1aa989: ; 0x1aa989
 	loadfont
-	2writetext UnknownText_0x1aaaca
+	writetext UnknownText_0x1aaaca
 	cry MACHOP
 	closetext
 	loadmovesprites
 	earthquake 30
 	loadfont
-	2writetext UnknownText_0x1aaae2
+	writetext UnknownText_0x1aaae2
 	closetext
 	loadmovesprites
 	end
@@ -45,14 +45,14 @@ BigSnorlaxScript_0x1aa99e: ; 0x1aa99e
 	loadfont
 	special $0060
 	iftrue UnknownScript_0x1aa9ab
-	2writetext UnknownText_0x1aab64
+	writetext UnknownText_0x1aab64
 	closetext
 	loadmovesprites
 	end
 ; 0x1aa9ab
 
 UnknownScript_0x1aa9ab: ; 0x1aa9ab
-	2writetext UnknownText_0x1aab84
+	writetext UnknownText_0x1aab84
 	pause 15
 	cry SNORLAX
 	loadmovesprites
@@ -74,34 +74,34 @@ PokefanMScript_0x1aa9c2: ; 0x1aa9c2
 	if_equal $10, UnknownScript_0x1aa9ea
 	if_greater_than $d, UnknownScript_0x1aa9e4
 	if_greater_than $9, UnknownScript_0x1aa9de
-	2writetext UnknownText_0x1aabc8
+	writetext UnknownText_0x1aabc8
 	closetext
 	loadmovesprites
 	end
 ; 0x1aa9de
 
 UnknownScript_0x1aa9de: ; 0x1aa9de
-	2writetext UnknownText_0x1aac2b
+	writetext UnknownText_0x1aac2b
 	closetext
 	loadmovesprites
 	end
 ; 0x1aa9e4
 
 UnknownScript_0x1aa9e4: ; 0x1aa9e4
-	2writetext UnknownText_0x1aac88
+	writetext UnknownText_0x1aac88
 	closetext
 	loadmovesprites
 	end
 ; 0x1aa9ea
 
 UnknownScript_0x1aa9ea: ; 0x1aa9ea
-	2writetext UnknownText_0x1aacf3
+	writetext UnknownText_0x1aacf3
 	keeptextopen
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1aa9fb
 	setevent $00e2
 UnknownScript_0x1aa9f7: ; 0x1aa9f7
-	2writetext UnknownText_0x1aad4a
+	writetext UnknownText_0x1aad4a
 	closetext
 UnknownScript_0x1aa9fb: ; 0x1aa9fb
 	loadmovesprites

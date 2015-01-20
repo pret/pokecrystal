@@ -19,14 +19,14 @@ TeacherScript_0x5d701: ; 0x5d701
 	loadfont
 	checkflag $0013
 	iftrue UnknownScript_0x5d70f
-	2writetext UnknownText_0x5d956
+	writetext UnknownText_0x5d956
 	closetext
 	loadmovesprites
 	end
 ; 0x5d70f
 
 UnknownScript_0x5d70f: ; 0x5d70f
-	2writetext UnknownText_0x5d983
+	writetext UnknownText_0x5d983
 	closetext
 	loadmovesprites
 	end
@@ -34,7 +34,7 @@ UnknownScript_0x5d70f: ; 0x5d70f
 
 JigglypuffScript_0x5d715: ; 0x5d715
 	loadfont
-	2writetext UnknownText_0x5d9b6
+	writetext UnknownText_0x5d9b6
 	cry JIGGLYPUFF
 	closetext
 	loadmovesprites
@@ -72,7 +72,7 @@ TrainerGruntM4: ; 0x5d725
 GruntM4Script: ; 0x5d731
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5db07
+	writetext UnknownText_0x5db07
 	closetext
 	loadmovesprites
 	end
@@ -101,7 +101,7 @@ TrainerGruntM5: ; 0x5d739
 GruntM5Script: ; 0x5d745
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5db99
+	writetext UnknownText_0x5db99
 	closetext
 	loadmovesprites
 	end
@@ -130,7 +130,7 @@ TrainerGruntM6: ; 0x5d74d
 GruntM6Script: ; 0x5d759
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5dc00
+	writetext UnknownText_0x5dc00
 	closetext
 	loadmovesprites
 	end
@@ -159,7 +159,7 @@ TrainerGruntF2: ; 0x5d761
 GruntF2Script: ; 0x5d76d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5dcd0
+	writetext UnknownText_0x5dcd0
 	closetext
 	loadmovesprites
 	end
@@ -183,10 +183,10 @@ BuenaScript_0x5d775: ; 0x5d775
 	checkcode $18
 	if_equal $1e, UnknownScript_0x5d87f
 	playmusic MUSIC_BUENAS_PASSWORD
-	2writetext UnknownText_0x5de35
+	writetext UnknownText_0x5de35
 	special $00a3
 	iffalse UnknownScript_0x5d81e
-	2writetext UnknownText_0x5de84
+	writetext UnknownText_0x5de84
 	closetext
 	loadmovesprites
 	spriteface $b, $3
@@ -196,7 +196,7 @@ BuenaScript_0x5d775: ; 0x5d775
 UnknownScript_0x5d7be: ; 0x5d7be
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x5dedd
+	writetext UnknownText_0x5dedd
 	closetext
 	loadmovesprites
 	spriteface $b, $0
@@ -205,7 +205,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	loadmovesprites
 	iffalse UnknownScript_0x5d845
 	loadfont
-	2writetext UnknownText_0x5dfc1
+	writetext UnknownText_0x5dfc1
 	closetext
 	loadmovesprites
 	checkcode $18
@@ -217,7 +217,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	pause 20
 	spriteface $b, $3
 	loadfont
-	2writetext UnknownText_0x5e054
+	writetext UnknownText_0x5e054
 	closetext
 	loadmovesprites
 	special $006a
@@ -229,12 +229,12 @@ UnknownScript_0x5d7be: ; 0x5d7be
 ; 0x5d800
 
 UnknownScript_0x5d800: ; 0x5d800
-	2writetext UnknownText_0x5dcf4
+	writetext UnknownText_0x5dcf4
 	keeptextopen
 	setevent EVENT_MET_BUENA
 	verbosegiveitem BLUE_CARD, 1
 UnknownScript_0x5d80a: ; 0x5d80a
-	2writetext UnknownText_0x5de10
+	writetext UnknownText_0x5de10
 	closetext
 	loadmovesprites
 	checkcellnum $25
@@ -247,7 +247,7 @@ UnknownScript_0x5d81a: ; 0x5d81a
 ; 0x5d81e
 
 UnknownScript_0x5d81e: ; 0x5d81e
-	2writetext UnknownText_0x5df29
+	writetext UnknownText_0x5df29
 	closetext
 	loadmovesprites
 	spriteface $b, $3
@@ -258,7 +258,7 @@ UnknownScript_0x5d81e: ; 0x5d81e
 ; 0x5d82f
 
 UnknownScript_0x5d82f: ; 0x5d82f
-	2writetext UnknownText_0x5df6c
+	writetext UnknownText_0x5df6c
 	closetext
 	loadmovesprites
 	checkcellnum $25
@@ -274,13 +274,13 @@ UnknownScript_0x5d83f: ; 0x5d83f
 UnknownScript_0x5d845: ; 0x5d845
 	setflag $0060
 	loadfont
-	2writetext UnknownText_0x5e01c
+	writetext UnknownText_0x5e01c
 	closetext
 	loadmovesprites
 	spriteface $b, $3
 	pause 20
 	loadfont
-	2writetext UnknownText_0x5e054
+	writetext UnknownText_0x5e054
 	closetext
 	loadmovesprites
 	spriteface $b, $3
@@ -291,14 +291,14 @@ UnknownScript_0x5d845: ; 0x5d845
 ; 0x5d865
 
 UnknownScript_0x5d865: ; 0x5d865
-	2writetext UnknownText_0x5e0c2
+	writetext UnknownText_0x5e0c2
 	closetext
 	loadmovesprites
 	end
 ; 0x5d86b
 
 UnknownScript_0x5d86b: ; 0x5d86b
-	2writetext UnknownText_0x5e192
+	writetext UnknownText_0x5e192
 	closetext
 	loadmovesprites
 	checkcellnum $25
@@ -311,7 +311,7 @@ UnknownScript_0x5d87b: ; 0x5d87b
 ; 0x5d87f
 
 UnknownScript_0x5d87f: ; 0x5d87f
-	2writetext UnknownText_0x5e0f1
+	writetext UnknownText_0x5e0f1
 	closetext
 	loadmovesprites
 	checkcellnum $25
@@ -324,7 +324,7 @@ UnknownScript_0x5d88f: ; 0x5d88f
 ; 0x5d893
 
 UnknownScript_0x5d893: ; 0x5d893
-	2writetext UnknownText_0x5e131
+	writetext UnknownText_0x5e131
 	closetext
 	loadmovesprites
 	checkcellnum $25
@@ -349,22 +349,22 @@ UnknownScript_0x5d8a4: ; 0x5d8a4
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	loadfont
-	2writetext UnknownText_0x5e1ee
-	2jump UnknownScript_0x5d8d0
+	writetext UnknownText_0x5e1ee
+	jump UnknownScript_0x5d8d0
 ; 0x5d8cc
 
 UnknownScript_0x5d8cc: ; 0x5d8cc
 	loadfont
-	2writetext UnknownText_0x5e2bf
+	writetext UnknownText_0x5e2bf
 UnknownScript_0x5d8d0: ; 0x5d8d0
 	askforphonenumber $25
 	if_equal $1, UnknownScript_0x5d8f6
 	if_equal $2, UnknownScript_0x5d8ed
-	2writetext UnknownText_0x5e2f3
+	writetext UnknownText_0x5e2f3
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	keeptextopen
-	2writetext UnknownText_0x5e310
+	writetext UnknownText_0x5e310
 	closetext
 	loadmovesprites
 	spriteface $b, $3
@@ -373,7 +373,7 @@ UnknownScript_0x5d8d0: ; 0x5d8d0
 ; 0x5d8ed
 
 UnknownScript_0x5d8ed: ; 0x5d8ed
-	2writetext UnknownText_0x5e33c
+	writetext UnknownText_0x5e33c
 	closetext
 	loadmovesprites
 	spriteface $b, $3
@@ -381,7 +381,7 @@ UnknownScript_0x5d8ed: ; 0x5d8ed
 ; 0x5d8f6
 
 UnknownScript_0x5d8f6: ; 0x5d8f6
-	2writetext UnknownText_0x5e35e
+	writetext UnknownText_0x5e35e
 	closetext
 	loadmovesprites
 	spriteface $b, $3
@@ -394,7 +394,7 @@ ReceptionistScript_0x5d8ff: ; 0x5d8ff
 	loadfont
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d90f
-	2writetext UnknownText_0x5e392
+	writetext UnknownText_0x5e392
 	keeptextopen
 	special SPECIAL_BUENA_PRIZE
 	loadmovesprites
@@ -402,7 +402,7 @@ ReceptionistScript_0x5d8ff: ; 0x5d8ff
 ; 0x5d90f
 
 UnknownScript_0x5d90f: ; 0x5d90f
-	2writetext UnknownText_0x5e3d8
+	writetext UnknownText_0x5e3d8
 	keeptextopen
 	loadmovesprites
 	end

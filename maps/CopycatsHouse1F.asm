@@ -15,14 +15,14 @@ PokefanFScript_0x18ad16: ; 0x18ad16
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18ad24
-	2writetext UnknownText_0x18ad95
+	writetext UnknownText_0x18ad95
 	closetext
 	loadmovesprites
 	end
 ; 0x18ad24
 
 UnknownScript_0x18ad24: ; 0x18ad24
-	2writetext UnknownText_0x18add3
+	writetext UnknownText_0x18add3
 	closetext
 	loadmovesprites
 	end
@@ -30,7 +30,7 @@ UnknownScript_0x18ad24: ; 0x18ad24
 
 ClefairyScript_0x18ad2a: ; 0x18ad2a
 	loadfont
-	2writetext UnknownText_0x18ae4b
+	writetext UnknownText_0x18ae4b
 	cry BLISSEY
 	closetext
 	loadmovesprites

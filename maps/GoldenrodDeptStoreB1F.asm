@@ -15,12 +15,12 @@ GoldenrodDeptStoreB1F_MapScriptHeader: ; 0x7d779
 UnknownScript_0x7d781: ; 0x7d781
 	checkevent $004a
 	iftrue UnknownScript_0x7d78a
-	2jump UnknownScript_0x7d791
+	jump UnknownScript_0x7d791
 ; 0x7d78a
 
 UnknownScript_0x7d78a: ; 0x7d78a
 	changeblock $10, $4, $d
-	2jump UnknownScript_0x7d791
+	jump UnknownScript_0x7d791
 ; 0x7d791
 
 UnknownScript_0x7d791: ; 0x7d791
@@ -61,7 +61,7 @@ BlackBeltScript_0x7d7b6: ; 0x7d7b6
 
 MachopScript_0x7d7b9: ; 0x7d7b9
 	loadfont
-	2writetext UnknownText_0x7d8bb
+	writetext UnknownText_0x7d8bb
 	cry MACHOKE
 	closetext
 	loadmovesprites
