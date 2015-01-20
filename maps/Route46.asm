@@ -29,7 +29,7 @@ TrainerCamperTed: ; 0x1a9680
 CamperTedScript: ; 0x1a968c
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a9851
+	writetext UnknownText_0x1a9851
 	closetext
 	loadmovesprites
 	end
@@ -65,26 +65,26 @@ PicnickerErin1Script: ; 0x1a96a0
 	iftrue UnknownScript_0x1a975b
 	checkevent $029d
 	iftrue UnknownScript_0x1a96c3
-	2writetext UnknownText_0x1a98c6
+	writetext UnknownText_0x1a98c6
 	keeptextopen
 	setevent $029d
-	2call UnknownScript_0x1a974f
-	2jump UnknownScript_0x1a96c6
+	scall UnknownScript_0x1a974f
+	jump UnknownScript_0x1a96c6
 ; 0x1a96c3
 
 UnknownScript_0x1a96c3: ; 0x1a96c3
-	2call UnknownScript_0x1a9753
+	scall UnknownScript_0x1a9753
 UnknownScript_0x1a96c6: ; 0x1a96c6
 	askforphonenumber $24
 	if_equal $1, UnknownScript_0x1a9763
 	if_equal $2, UnknownScript_0x1a975f
 	trainertotext PICNICKER, ERIN1, $0
-	2call UnknownScript_0x1a9757
-	2jump UnknownScript_0x1a975b
+	scall UnknownScript_0x1a9757
+	jump UnknownScript_0x1a975b
 ; 0x1a96da
 
 UnknownScript_0x1a96da: ; 0x1a96da
-	2call UnknownScript_0x1a9767
+	scall UnknownScript_0x1a9767
 	winlosstext PicnickerErin1BeatenText, $0000
 	copybytetovar $da0d
 	if_equal $2, UnknownScript_0x1a96f1
@@ -123,11 +123,11 @@ UnknownScript_0x1a9717: ; 0x1a9717
 	iftrue UnknownScript_0x1a973b
 	checkevent $0269
 	iftrue UnknownScript_0x1a973a
-	2call UnknownScript_0x1a9772
+	scall UnknownScript_0x1a9772
 	verbosegiveitem CALCIUM, 1
 	iffalse UnknownScript_0x1a976b
 	setevent $0269
-	2jump UnknownScript_0x1a975b
+	jump UnknownScript_0x1a975b
 ; 0x1a973a
 
 UnknownScript_0x1a973a: ; 0x1a973a
@@ -136,13 +136,13 @@ UnknownScript_0x1a973a: ; 0x1a973a
 
 UnknownScript_0x1a973b: ; 0x1a973b
 	loadfont
-	2writetext UnknownText_0x1a9927
+	writetext UnknownText_0x1a9927
 	closetext
 	verbosegiveitem CALCIUM, 1
 	iffalse UnknownScript_0x1a976b
 	clearevent EVENT_ERIN_CALCIUM
 	setevent $0269
-	2jump UnknownScript_0x1a975b
+	jump UnknownScript_0x1a975b
 ; 0x1a974f
 
 UnknownScript_0x1a974f: ; 0x1a974f
@@ -214,7 +214,7 @@ TrainerHikerBailey: ; 0x1a9776
 HikerBaileyScript: ; 0x1a9782
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a97e8
+	writetext UnknownText_0x1a97e8
 	closetext
 	loadmovesprites
 	end

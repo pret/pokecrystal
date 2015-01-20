@@ -47,7 +47,7 @@ SailorScript_0x74dc4: ; 0x74dc4
 	loadfont
 	checkevent $0000
 	iftrue UnknownScript_0x74e1a
-	2writetext UnknownText_0x74f06
+	writetext UnknownText_0x74f06
 	closetext
 	loadmovesprites
 	spriteface $2, $0
@@ -79,7 +79,7 @@ SailorScript_0x74dc4: ; 0x74dc4
 ; 0x74e1a
 
 UnknownScript_0x74e1a: ; 0x74e1a
-	2writetext UnknownText_0x74f31
+	writetext UnknownText_0x74f31
 	closetext
 	loadmovesprites
 	end
@@ -99,23 +99,23 @@ UnknownScript_0x74e20: ; 0x74e20
 	if_equal THURSDAY, UnknownScript_0x74e7c
 	if_equal FRIDAY, UnknownScript_0x74e7c
 	if_equal SATURDAY, UnknownScript_0x74e7c
-	2writetext UnknownText_0x74f4d
+	writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e8d
-	2writetext UnknownText_0x74f8b
+	writetext UnknownText_0x74f8b
 	keeptextopen
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74e68
-	2writetext UnknownText_0x74fc2
+	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
 	setevent $0001
 	applymovement $0, MovementData_0x74ef8
-	2jump SailorScript_0x74dc4
+	jump SailorScript_0x74dc4
 ; 0x74e68
 
 UnknownScript_0x74e68: ; 0x74e68
-	2writetext UnknownText_0x74ff2
+	writetext UnknownText_0x74ff2
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x74ef5
@@ -123,7 +123,7 @@ UnknownScript_0x74e68: ; 0x74e68
 ; 0x74e72
 
 UnknownScript_0x74e72: ; 0x74e72
-	2writetext UnknownText_0x75059
+	writetext UnknownText_0x75059
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x74ef5
@@ -131,7 +131,7 @@ UnknownScript_0x74e72: ; 0x74e72
 ; 0x74e7c
 
 UnknownScript_0x74e7c: ; 0x74e7c
-	2writetext UnknownText_0x75080
+	writetext UnknownText_0x75080
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x74ef5
@@ -143,14 +143,14 @@ UnknownScript_0x74e86: ; 0x74e86
 ; 0x74e87
 
 UnknownScript_0x74e87: ; 0x74e87
-	2writetext UnknownText_0x74fa7
+	writetext UnknownText_0x74fa7
 	closetext
 	loadmovesprites
 	end
 ; 0x74e8d
 
 UnknownScript_0x74e8d: ; 0x74e8d
-	2writetext UnknownText_0x74fa7
+	writetext UnknownText_0x74fa7
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x74ef5
@@ -168,37 +168,37 @@ SailorScript_0x74e97: ; 0x74e97
 	if_equal THURSDAY, UnknownScript_0x74ee0
 	if_equal FRIDAY, UnknownScript_0x74ee0
 	if_equal SATURDAY, UnknownScript_0x74ee0
-	2writetext UnknownText_0x74f4d
+	writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e87
-	2writetext UnknownText_0x74f8b
+	writetext UnknownText_0x74f8b
 	keeptextopen
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74ed4
-	2writetext UnknownText_0x74fc2
+	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
 	setevent $0001
 	applymovement $0, MovementData_0x74efe
-	2jump SailorScript_0x74dc4
+	jump SailorScript_0x74dc4
 ; 0x74ed4
 
 UnknownScript_0x74ed4: ; 0x74ed4
-	2writetext UnknownText_0x74ff2
+	writetext UnknownText_0x74ff2
 	closetext
 	loadmovesprites
 	end
 ; 0x74eda
 
 UnknownScript_0x74eda: ; 0x74eda
-	2writetext UnknownText_0x75059
+	writetext UnknownText_0x75059
 	closetext
 	loadmovesprites
 	end
 ; 0x74ee0
 
 UnknownScript_0x74ee0: ; 0x74ee0
-	2writetext UnknownText_0x75080
+	writetext UnknownText_0x75080
 	closetext
 	loadmovesprites
 	end
@@ -207,7 +207,7 @@ UnknownScript_0x74ee0: ; 0x74ee0
 SuperNerdScript_0x74ee6: ; 0x74ee6
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x750a6
+	writetext UnknownText_0x750a6
 	closetext
 	loadmovesprites
 	end

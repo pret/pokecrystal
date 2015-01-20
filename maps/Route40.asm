@@ -43,7 +43,7 @@ TrainerSwimmerfElaine: ; 0x1a6174
 SwimmerfElaineScript: ; 0x1a6180
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a637b
+	writetext UnknownText_0x1a637b
 	closetext
 	loadmovesprites
 	end
@@ -72,7 +72,7 @@ TrainerSwimmerfPaula: ; 0x1a6188
 SwimmerfPaulaScript: ; 0x1a6194
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a63f5
+	writetext UnknownText_0x1a63f5
 	closetext
 	loadmovesprites
 	end
@@ -101,7 +101,7 @@ TrainerSwimmermSimon: ; 0x1a619c
 SwimmermSimonScript: ; 0x1a61a8
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6282
+	writetext UnknownText_0x1a6282
 	closetext
 	loadmovesprites
 	end
@@ -130,7 +130,7 @@ TrainerSwimmermRandall: ; 0x1a61b0
 SwimmermRandallScript: ; 0x1a61bc
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a62fa
+	writetext UnknownText_0x1a62fa
 	closetext
 	loadmovesprites
 	end
@@ -167,29 +167,29 @@ MonicaScript:
 	if_not_equal MONDAY, MonicaNotMondayScript
 	checkevent EVENT_MET_MONICA_OF_MONDAY
 	iftrue .MetMonica
-	2writetext MeetMonicaText
+	writetext MeetMonicaText
 	keeptextopen
 	setevent EVENT_MET_MONICA_OF_MONDAY
 .MetMonica
-	2writetext MonicaGivesGiftText
+	writetext MonicaGivesGiftText
 	keeptextopen
 	verbosegiveitem SHARP_BEAK, 1
 	iffalse MonicaDoneScript
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
-	2writetext MonicaGaveGiftText
+	writetext MonicaGaveGiftText
 	closetext
 	loadmovesprites
 	end
 
 MonicaMondayScript:
-	2writetext MonicaMondayText
+	writetext MonicaMondayText
 	closetext
 MonicaDoneScript:
 	loadmovesprites
 	end
 
 MonicaNotMondayScript:
-	2writetext MonicaNotMondayText
+	writetext MonicaNotMondayText
 	closetext
 	loadmovesprites
 	end

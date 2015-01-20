@@ -27,13 +27,13 @@ UnknownScript_0x188dc5: ; 0x188dc5
 	spriteface $3, $0
 	spriteface $4, $0
 	loadfont
-	2writetext UnknownText_0x188f22
+	writetext UnknownText_0x188f22
 	closetext
 	loadmovesprites
 	spriteface $2, $2
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x188f7f
+	writetext UnknownText_0x188f7f
 	closetext
 	loadmovesprites
 	spriteface $0, $0
@@ -49,21 +49,21 @@ OfficerScript_0x188df5: ; 0x188df5
 	iftrue UnknownScript_0x188e0f
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue UnknownScript_0x188e09
-	2writetext UnknownText_0x188ee0
+	writetext UnknownText_0x188ee0
 	closetext
 	loadmovesprites
 	end
 ; 0x188e09
 
 UnknownScript_0x188e09: ; 0x188e09
-	2writetext UnknownText_0x188f7f
+	writetext UnknownText_0x188f7f
 	closetext
 	loadmovesprites
 	end
 ; 0x188e0f
 
 UnknownScript_0x188e0f: ; 0x188e0f
-	2writetext UnknownText_0x188fa2
+	writetext UnknownText_0x188fa2
 	closetext
 	loadmovesprites
 	end
@@ -74,14 +74,14 @@ GymGuyScript_0x188e15: ; 0x188e15
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e23
-	2writetext UnknownText_0x188fcf
+	writetext UnknownText_0x188fcf
 	closetext
 	loadmovesprites
 	end
 ; 0x188e23
 
 UnknownScript_0x188e23: ; 0x188e23
-	2writetext UnknownText_0x189038
+	writetext UnknownText_0x189038
 	closetext
 	loadmovesprites
 	end
@@ -92,14 +92,14 @@ GymGuyScript_0x188e29: ; 0x188e29
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e37
-	2writetext UnknownText_0x189079
+	writetext UnknownText_0x189079
 	closetext
 	loadmovesprites
 	end
 ; 0x188e37
 
 UnknownScript_0x188e37: ; 0x188e37
-	2writetext UnknownText_0x1890ef
+	writetext UnknownText_0x1890ef
 	closetext
 	loadmovesprites
 	end
@@ -110,14 +110,14 @@ OfficerScript_0x188e3d: ; 0x188e3d
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e4b
-	2writetext UnknownText_0x18910e
+	writetext UnknownText_0x18910e
 	closetext
 	loadmovesprites
 	end
 ; 0x188e4b
 
 UnknownScript_0x188e4b: ; 0x188e4b
-	2writetext UnknownText_0x18917f
+	writetext UnknownText_0x18917f
 	closetext
 	loadmovesprites
 	end
@@ -128,14 +128,14 @@ GymGuyScript_0x188e51: ; 0x188e51
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e5f
-	2writetext UnknownText_0x1891c2
+	writetext UnknownText_0x1891c2
 	closetext
 	loadmovesprites
 	end
 ; 0x188e5f
 
 UnknownScript_0x188e5f: ; 0x188e5f
-	2writetext UnknownText_0x189225
+	writetext UnknownText_0x189225
 	closetext
 	loadmovesprites
 	end
@@ -150,7 +150,7 @@ FisherScript_0x188e65: ; 0x188e65
 	iftrue UnknownScript_0x188e93
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue UnknownScript_0x188e8d
-	2writetext UnknownText_0x189264
+	writetext UnknownText_0x189264
 	closetext
 	loadmovesprites
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
@@ -162,14 +162,14 @@ FisherScript_0x188e65: ; 0x188e65
 ; 0x188e8d
 
 UnknownScript_0x188e8d: ; 0x188e8d
-	2writetext UnknownText_0x189308
+	writetext UnknownText_0x189308
 	closetext
 	loadmovesprites
 	end
 ; 0x188e93
 
 UnknownScript_0x188e93: ; 0x188e93
-	2writetext UnknownText_0x18936e
+	writetext UnknownText_0x18936e
 	keeptextopen
 	takeitem MACHINE_PART, 1
 	setevent EVENT_RETURNED_MACHINE_PART
@@ -181,12 +181,12 @@ UnknownScript_0x188e93: ; 0x188e93
 UnknownScript_0x188eac: ; 0x188eac
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue UnknownScript_0x188ec5
-	2writetext UnknownText_0x1893c4
+	writetext UnknownText_0x1893c4
 	keeptextopen
 	verbosegiveitem TM_07, 1
 	iffalse UnknownScript_0x188ec3
 	setevent EVENT_GOT_TM07_ZAP_CANNON
-	2writetext UnknownText_0x1893f4
+	writetext UnknownText_0x1893f4
 	closetext
 UnknownScript_0x188ec3: ; 0x188ec3
 	loadmovesprites
@@ -194,7 +194,7 @@ UnknownScript_0x188ec3: ; 0x188ec3
 ; 0x188ec5
 
 UnknownScript_0x188ec5: ; 0x188ec5
-	2writetext UnknownText_0x189475
+	writetext UnknownText_0x189475
 	closetext
 	loadmovesprites
 	end

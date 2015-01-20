@@ -32,20 +32,20 @@ UnknownScript_0x1a8016: ; 0x1a8016
 	playmusic MUSIC_MOM
 	spriteface $2, $2
 	loadfont
-	2writetext UnknownText_0x1a8134
+	writetext UnknownText_0x1a8134
 	closetext
 	loadmovesprites
 	spriteface $0, $3
 	applymovement $2, MovementData_0x1a80d4
 	loadfont
-	2writetext UnknownText_0x1a813e
+	writetext UnknownText_0x1a813e
 	closetext
 	loadmovesprites
 	follow $2, $0
 	applymovement $2, MovementData_0x1a80e0
 	stopfollow
 	loadfont
-	2writetext UnknownText_0x1a815e
+	writetext UnknownText_0x1a815e
 	closetext
 	loadmovesprites
 	special $003d
@@ -56,21 +56,21 @@ UnknownScript_0x1a8041: ; 0x1a8041
 	playmusic MUSIC_MOM
 	spriteface $2, $2
 	loadfont
-	2writetext UnknownText_0x1a8134
+	writetext UnknownText_0x1a8134
 	closetext
 	loadmovesprites
 	spriteface $0, $3
 	applymovement $2, MovementData_0x1a80d9
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x1a813e
+	writetext UnknownText_0x1a813e
 	closetext
 	loadmovesprites
 	follow $2, $0
 	applymovement $2, MovementData_0x1a80e6
 	stopfollow
 	loadfont
-	2writetext UnknownText_0x1a815e
+	writetext UnknownText_0x1a815e
 	closetext
 	loadmovesprites
 	special $003d
@@ -86,28 +86,28 @@ TeacherScript_0x1a806f: ; 0x1a806f
 	iftrue UnknownScript_0x1a808f
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x1a8089
-	2writetext UnknownText_0x1a80f7
+	writetext UnknownText_0x1a80f7
 	closetext
 	loadmovesprites
 	end
 ; 0x1a8089
 
 UnknownScript_0x1a8089: ; 0x1a8089
-	2writetext UnknownText_0x1a81c4
+	writetext UnknownText_0x1a81c4
 	closetext
 	loadmovesprites
 	end
 ; 0x1a808f
 
 UnknownScript_0x1a808f: ; 0x1a808f
-	2writetext UnknownText_0x1a81f2
+	writetext UnknownText_0x1a81f2
 	closetext
 	loadmovesprites
 	end
 ; 0x1a8095
 
 UnknownScript_0x1a8095: ; 0x1a8095
-	2writetext UnknownText_0x1a8236
+	writetext UnknownText_0x1a8236
 	closetext
 	loadmovesprites
 	end
@@ -119,12 +119,12 @@ FisherScript_0x1a809b: ; 0x1a809b
 
 SilverScript_0x1a809e: ; 0x1a809e
 	loadfont
-	2writetext UnknownText_0x1a82a6
+	writetext UnknownText_0x1a82a6
 	closetext
 	loadmovesprites
 	spriteface $4, $2
 	loadfont
-	2writetext UnknownText_0x1a82cd
+	writetext UnknownText_0x1a82cd
 	closetext
 	loadmovesprites
 	follow $0, $4

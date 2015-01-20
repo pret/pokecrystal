@@ -24,7 +24,7 @@ UnknownScript_0x58f6d: ; 0x58f6d
 
 UnknownScript_0x58f6e: ; 0x58f6e
 	loadfont
-	2writetext UnknownText_0x58f89
+	writetext UnknownText_0x58f89
 	closetext
 	loadmovesprites
 	dotrigger $0

@@ -27,7 +27,7 @@ UnknownScript_0x733f3: ; 0x733f3
 	showemote $0, $2, 15
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x73496
+	writetext UnknownText_0x73496
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x73405

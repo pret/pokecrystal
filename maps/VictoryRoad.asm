@@ -26,7 +26,7 @@ UnknownScript_0x74492: ; 0x74492
 	pause 15
 	appear $2
 	applymovement $2, MovementData_0x74539
-	2call UnknownScript_0x744d4
+	scall UnknownScript_0x744d4
 	applymovement $2, MovementData_0x7454c
 	disappear $2
 	dotrigger $1
@@ -41,7 +41,7 @@ UnknownScript_0x744b5: ; 0x744b5
 	pause 15
 	appear $2
 	applymovement $2, MovementData_0x74542
-	2call UnknownScript_0x744d4
+	scall UnknownScript_0x744d4
 	applymovement $2, MovementData_0x74555
 	disappear $2
 	dotrigger $1
@@ -53,7 +53,7 @@ UnknownScript_0x744d4: ; 0x744d4
 	spriteface $0, $0
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x7455f
+	writetext UnknownText_0x7455f
 	closetext
 	loadmovesprites
 	setevent $06c2
@@ -67,7 +67,7 @@ UnknownScript_0x744d4: ; 0x744d4
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x7451f
+	jump UnknownScript_0x7451f
 ; 0x744ff
 
 UnknownScript_0x744ff: ; 0x744ff
@@ -77,7 +77,7 @@ UnknownScript_0x744ff: ; 0x744ff
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x7451f
+	jump UnknownScript_0x7451f
 ; 0x7450f
 
 UnknownScript_0x7450f: ; 0x7450f
@@ -87,13 +87,13 @@ UnknownScript_0x7450f: ; 0x7450f
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x7451f
+	jump UnknownScript_0x7451f
 ; 0x7451f
 
 UnknownScript_0x7451f: ; 0x7451f
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
-	2writetext UnknownText_0x746ce
+	writetext UnknownText_0x746ce
 	closetext
 	loadmovesprites
 	end

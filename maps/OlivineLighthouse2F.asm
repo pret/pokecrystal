@@ -29,7 +29,7 @@ TrainerGentlemanAlfred: ; 0x5af71
 GentlemanAlfredScript: ; 0x5af7d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5b13e
+	writetext UnknownText_0x5b13e
 	closetext
 	loadmovesprites
 	end
@@ -66,23 +66,23 @@ SailorHuey1Script: ; 0x5af91
 	checkevent $0263
 	iftrue UnknownScript_0x5afb0
 	setevent $0263
-	2call UnknownScript_0x5b053
-	2jump UnknownScript_0x5afb3
+	scall UnknownScript_0x5b053
+	jump UnknownScript_0x5afb3
 ; 0x5afb0
 
 UnknownScript_0x5afb0: ; 0x5afb0
-	2call UnknownScript_0x5b057
+	scall UnknownScript_0x5b057
 UnknownScript_0x5afb3: ; 0x5afb3
 	askforphonenumber $7
 	if_equal $1, UnknownScript_0x5b067
 	if_equal $2, UnknownScript_0x5b063
 	trainertotext SAILOR, HUEY1, $0
-	2call UnknownScript_0x5b05b
-	2jump UnknownScript_0x5b05f
+	scall UnknownScript_0x5b05b
+	jump UnknownScript_0x5b05f
 ; 0x5afc7
 
 UnknownScript_0x5afc7: ; 0x5afc7
-	2call UnknownScript_0x5b06b
+	scall UnknownScript_0x5b06b
 	winlosstext SailorHuey1BeatenText, $0000
 	copybytetovar $d9f4
 	if_equal $3, UnknownScript_0x5afe2
@@ -134,11 +134,11 @@ UnknownScript_0x5b01b: ; 0x5b01b
 	iftrue UnknownScript_0x5b03f
 	checkevent $0265
 	iftrue UnknownScript_0x5b03e
-	2call UnknownScript_0x5b076
+	scall UnknownScript_0x5b076
 	verbosegiveitem PROTEIN, 1
 	iffalse UnknownScript_0x5b06f
 	setevent $0265
-	2jump UnknownScript_0x5b05f
+	jump UnknownScript_0x5b05f
 ; 0x5b03e
 
 UnknownScript_0x5b03e: ; 0x5b03e
@@ -147,13 +147,13 @@ UnknownScript_0x5b03e: ; 0x5b03e
 
 UnknownScript_0x5b03f: ; 0x5b03f
 	loadfont
-	2writetext UnknownText_0x5b1b6
+	writetext UnknownText_0x5b1b6
 	closetext
 	verbosegiveitem PROTEIN, 1
 	iffalse UnknownScript_0x5b06f
 	clearevent EVENT_HUEY_PROTEIN
 	setevent $0265
-	2jump UnknownScript_0x5b05f
+	jump UnknownScript_0x5b05f
 ; 0x5b053
 
 UnknownScript_0x5b053: ; 0x5b053

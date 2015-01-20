@@ -10,53 +10,53 @@ TeacherScript_0x54953: ; 0x54953
 	faceplayer
 	loadfont
 	special $0059
-	2writetext UnknownText_0x549a3
+	writetext UnknownText_0x549a3
 	keeptextopen
 	if_greater_than $f9, UnknownScript_0x54973
 	if_greater_than $c7, UnknownScript_0x54979
 	if_greater_than $95, UnknownScript_0x5497f
 	if_greater_than $63, UnknownScript_0x54985
 	if_greater_than $31, UnknownScript_0x5498b
-	2jump UnknownScript_0x54991
+	jump UnknownScript_0x54991
 ; 0x54973
 
 UnknownScript_0x54973: ; 0x54973
-	2writetext UnknownText_0x549fc
+	writetext UnknownText_0x549fc
 	closetext
 	loadmovesprites
 	end
 ; 0x54979
 
 UnknownScript_0x54979: ; 0x54979
-	2writetext UnknownText_0x54a2c
+	writetext UnknownText_0x54a2c
 	closetext
 	loadmovesprites
 	end
 ; 0x5497f
 
 UnknownScript_0x5497f: ; 0x5497f
-	2writetext UnknownText_0x54a5a
+	writetext UnknownText_0x54a5a
 	closetext
 	loadmovesprites
 	end
 ; 0x54985
 
 UnknownScript_0x54985: ; 0x54985
-	2writetext UnknownText_0x54a8e
+	writetext UnknownText_0x54a8e
 	closetext
 	loadmovesprites
 	end
 ; 0x5498b
 
 UnknownScript_0x5498b: ; 0x5498b
-	2writetext UnknownText_0x54a9f
+	writetext UnknownText_0x54a9f
 	closetext
 	loadmovesprites
 	end
 ; 0x54991
 
 UnknownScript_0x54991: ; 0x54991
-	2writetext UnknownText_0x54ad1
+	writetext UnknownText_0x54ad1
 	closetext
 	loadmovesprites
 	end

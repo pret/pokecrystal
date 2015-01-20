@@ -13,24 +13,24 @@ JasmineScript_0x60b91: ; 0x60b91
 	iftrue UnknownScript_0x60bab
 	checkevent $0037
 	iftrue UnknownScript_0x60ba5
-	2writetext UnknownText_0x60c81
+	writetext UnknownText_0x60c81
 	keeptextopen
 	setevent $0037
 UnknownScript_0x60ba5: ; 0x60ba5
-	2writetext UnknownText_0x60d64
+	writetext UnknownText_0x60d64
 	closetext
 	loadmovesprites
 	end
 ; 0x60bab
 
 UnknownScript_0x60bab: ; 0x60bab
-	2writetext UnknownText_0x60d99
+	writetext UnknownText_0x60d99
 	yesorno
 	iffalse UnknownScript_0x60c25
-	2writetext UnknownText_0x60dc3
+	writetext UnknownText_0x60dc3
 	keeptextopen
 	takeitem SECRETPOTION, 1
-	2writetext UnknownText_0x60dea
+	writetext UnknownText_0x60dea
 	closetext
 	loadmovesprites
 	spriteface $2, $3
@@ -38,7 +38,7 @@ UnknownScript_0x60bab: ; 0x60bab
 	spriteface $3, $2
 	loadfont
 	playmusic MUSIC_HEAL
-	2writetext UnknownText_0x60e44
+	writetext UnknownText_0x60e44
 	pause 60
 	keeptextopen
 	loadmovesprites
@@ -48,7 +48,7 @@ UnknownScript_0x60bab: ; 0x60bab
 	pause 10
 	special $0031
 	loadfont
-	2writetext UnknownText_0x60f3d
+	writetext UnknownText_0x60f3d
 	closetext
 	loadmovesprites
 	spriteface $3, $3
@@ -61,7 +61,7 @@ UnknownScript_0x60bab: ; 0x60bab
 	pause 10
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x60e6c
+	writetext UnknownText_0x60e6c
 	closetext
 	loadmovesprites
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
@@ -87,14 +87,14 @@ UnknownScript_0x60c1e: ; 0x60c1e
 ; 0x60c25
 
 UnknownScript_0x60c25: ; 0x60c25
-	2writetext UnknownText_0x60edf
+	writetext UnknownText_0x60edf
 	closetext
 	loadmovesprites
 	spriteface $2, $3
 	pause 15
 	spriteface $3, $2
 	loadfont
-	2writetext UnknownText_0x60ef1
+	writetext UnknownText_0x60ef1
 	closetext
 	loadmovesprites
 	end
@@ -109,18 +109,18 @@ MonsterScript_0x60c3a: ; 0x60c3a
 	loadfont
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue UnknownScript_0x60c51
-	2writetext UnknownText_0x60f03
+	writetext UnknownText_0x60f03
 	writebyte AMPHAROS
 	special $005f
 	keeptextopen
-	2writetext UnknownText_0x60f19
+	writetext UnknownText_0x60f19
 	closetext
 	loadmovesprites
 	end
 ; 0x60c51
 
 UnknownScript_0x60c51: ; 0x60c51
-	2writetext UnknownText_0x60f3d
+	writetext UnknownText_0x60f3d
 	cry AMPHAROS
 	closetext
 	loadmovesprites

@@ -36,26 +36,26 @@ Bird_keeperVance1Script: ; 0x19d830
 	iftrue UnknownScript_0x19d8eb
 	checkevent $0295
 	iftrue UnknownScript_0x19d853
-	2writetext UnknownText_0x19dbf3
+	writetext UnknownText_0x19dbf3
 	keeptextopen
 	setevent $0295
-	2call UnknownScript_0x19d8df
-	2jump UnknownScript_0x19d856
+	scall UnknownScript_0x19d8df
+	jump UnknownScript_0x19d856
 ; 0x19d853
 
 UnknownScript_0x19d853: ; 0x19d853
-	2call UnknownScript_0x19d8e3
+	scall UnknownScript_0x19d8e3
 UnknownScript_0x19d856: ; 0x19d856
 	askforphonenumber $20
 	if_equal $1, UnknownScript_0x19d8f3
 	if_equal $2, UnknownScript_0x19d8ef
 	trainertotext BIRD_KEEPER, VANCE1, $0
-	2call UnknownScript_0x19d8e7
-	2jump UnknownScript_0x19d8eb
+	scall UnknownScript_0x19d8e7
+	jump UnknownScript_0x19d8eb
 ; 0x19d86a
 
 UnknownScript_0x19d86a: ; 0x19d86a
-	2call UnknownScript_0x19d8f7
+	scall UnknownScript_0x19d8f7
 	winlosstext Bird_keeperVance1BeatenText, $0000
 	copybytetovar $da09
 	if_equal $2, UnknownScript_0x19d881
@@ -94,11 +94,11 @@ UnknownScript_0x19d8a7: ; 0x19d8a7
 	iftrue UnknownScript_0x19d8cb
 	checkevent $0267
 	iftrue UnknownScript_0x19d8ca
-	2call UnknownScript_0x19d90a
+	scall UnknownScript_0x19d90a
 	verbosegiveitem CARBOS, 1
 	iffalse UnknownScript_0x19d903
 	setevent $0267
-	2jump UnknownScript_0x19d8eb
+	jump UnknownScript_0x19d8eb
 ; 0x19d8ca
 
 UnknownScript_0x19d8ca: ; 0x19d8ca
@@ -107,13 +107,13 @@ UnknownScript_0x19d8ca: ; 0x19d8ca
 
 UnknownScript_0x19d8cb: ; 0x19d8cb
 	loadfont
-	2writetext UnknownText_0x19dc67
+	writetext UnknownText_0x19dc67
 	closetext
 	verbosegiveitem CARBOS, 1
 	iffalse UnknownScript_0x19d903
 	clearevent EVENT_VANCE_CARBOS
 	setevent $0267
-	2jump UnknownScript_0x19d8eb
+	jump UnknownScript_0x19d8eb
 ; 0x19d8df
 
 UnknownScript_0x19d8df: ; 0x19d8df
@@ -195,7 +195,7 @@ TrainerPsychicPhil: ; 0x19d90e
 PsychicPhilScript: ; 0x19d91a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19dcfc
+	writetext UnknownText_0x19dcfc
 	closetext
 	loadmovesprites
 	end
@@ -233,26 +233,26 @@ FisherWilton1Script: ; 0x19d92e
 	iftrue UnknownScript_0x19d8eb
 	checkevent $0297
 	iftrue UnknownScript_0x19d957
-	2writetext UnknownText_0x19daa8
+	writetext UnknownText_0x19daa8
 	keeptextopen
 	setevent $0297
-	2call UnknownScript_0x19d8df
-	2jump UnknownScript_0x19d95a
+	scall UnknownScript_0x19d8df
+	jump UnknownScript_0x19d95a
 ; 0x19d957
 
 UnknownScript_0x19d957: ; 0x19d957
-	2call UnknownScript_0x19d8e3
+	scall UnknownScript_0x19d8e3
 UnknownScript_0x19d95a: ; 0x19d95a
 	askforphonenumber $21
 	if_equal $1, UnknownScript_0x19d8f3
 	if_equal $2, UnknownScript_0x19d8ef
 	trainertotext FISHER, WILTON1, $0
-	2call UnknownScript_0x19d8e7
-	2jump UnknownScript_0x19d8eb
+	scall UnknownScript_0x19d8e7
+	jump UnknownScript_0x19d8eb
 ; 0x19d96e
 
 UnknownScript_0x19d96e: ; 0x19d96e
-	2call UnknownScript_0x19d8f7
+	scall UnknownScript_0x19d8f7
 	winlosstext FisherWilton1BeatenText, $0000
 	copybytetovar $da0a
 	if_equal $2, UnknownScript_0x19d985
@@ -291,7 +291,7 @@ UnknownScript_0x19d9ab: ; 0x19d9ab
 ; 0x19d9b4
 
 UnknownScript_0x19d9b4: ; 0x19d9b4
-	2call UnknownScript_0x19d8fb
+	scall UnknownScript_0x19d8fb
 	checkevent EVENT_WILTON_HAS_ULTRA_BALL
 	iftrue UnknownScript_0x19d9c9
 	checkevent EVENT_WILTON_HAS_GREAT_BALL
@@ -301,13 +301,13 @@ UnknownScript_0x19d9b4: ; 0x19d9b4
 UnknownScript_0x19d9c9: ; 0x19d9c9
 	verbosegiveitem ULTRA_BALL, 1
 	iffalse UnknownScript_0x19d9e7
-	2jump UnknownScript_0x19d9e1
+	jump UnknownScript_0x19d9e1
 ; 0x19d9d2
 
 UnknownScript_0x19d9d2: ; 0x19d9d2
 	verbosegiveitem GREAT_BALL, 1
 	iffalse UnknownScript_0x19d9e7
-	2jump UnknownScript_0x19d9e1
+	jump UnknownScript_0x19d9e1
 ; 0x19d9db
 
 UnknownScript_0x19d9db: ; 0x19d9db
@@ -315,11 +315,11 @@ UnknownScript_0x19d9db: ; 0x19d9db
 	iffalse UnknownScript_0x19d9e7
 UnknownScript_0x19d9e1: ; 0x19d9e1
 	clearflag $0086
-	2jump UnknownScript_0x19d8eb
+	jump UnknownScript_0x19d8eb
 ; 0x19d9e7
 
 UnknownScript_0x19d9e7: ; 0x19d9e7
-	2jump UnknownScript_0x19d8ff
+	jump UnknownScript_0x19d8ff
 ; 0x19d9ea
 
 TrainerFisherEdgar: ; 0x19d9ea
@@ -345,7 +345,7 @@ TrainerFisherEdgar: ; 0x19d9ea
 FisherEdgarScript: ; 0x19d9f6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19db6f
+	writetext UnknownText_0x19db6f
 	closetext
 	loadmovesprites
 	end
@@ -374,7 +374,7 @@ TrainerCooltrainerfCybil: ; 0x19d9fe
 CooltrainerfCybilScript: ; 0x19da0a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19df4d
+	writetext UnknownText_0x19df4d
 	closetext
 	loadmovesprites
 	end
@@ -403,7 +403,7 @@ TrainerPokemaniacZach: ; 0x19da12
 PokemaniacZachScript: ; 0x19da1e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19dd7e
+	writetext UnknownText_0x19dd7e
 	closetext
 	loadmovesprites
 	end
@@ -432,7 +432,7 @@ TrainerCooltrainermAllen: ; 0x19da26
 CooltrainermAllenScript: ; 0x19da32
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19de66
+	writetext UnknownText_0x19de66
 	closetext
 	loadmovesprites
 	end

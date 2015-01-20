@@ -54,7 +54,7 @@ WillScript_0x1804f8: ; 0x1804f8
 	loadfont
 	checkevent $05b8
 	iftrue UnknownScript_0x180526
-	2writetext UnknownText_0x180531
+	writetext UnknownText_0x180531
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x18062c, $0000
@@ -63,7 +63,7 @@ WillScript_0x1804f8: ; 0x1804f8
 	returnafterbattle
 	setevent $05b8
 	loadfont
-	2writetext UnknownText_0x180644
+	writetext UnknownText_0x180644
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
@@ -76,7 +76,7 @@ WillScript_0x1804f8: ; 0x1804f8
 ; 0x180526
 
 UnknownScript_0x180526: ; 0x180526
-	2writetext UnknownText_0x180644
+	writetext UnknownText_0x180644
 	closetext
 	loadmovesprites
 	end

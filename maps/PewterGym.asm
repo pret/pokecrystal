@@ -11,7 +11,7 @@ BrockScript_0x1a2864: ; 0x1a2864
 	loadfont
 	checkflag $0023
 	iftrue UnknownScript_0x1a2892
-	2writetext UnknownText_0x1a28d0
+	writetext UnknownText_0x1a28d0
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1a29bb, $0000
@@ -21,18 +21,18 @@ BrockScript_0x1a2864: ; 0x1a2864
 	setevent EVENT_BEAT_BROCK
 	setevent EVENT_BEAT_CAMPER_JERRY
 	loadfont
-	2writetext UnknownText_0x1a2a3d
+	writetext UnknownText_0x1a2a3d
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0023
-	2writetext UnknownText_0x1a2a57
+	writetext UnknownText_0x1a2a57
 	closetext
 	loadmovesprites
 	end
 ; 0x1a2892
 
 UnknownScript_0x1a2892: ; 0x1a2892
-	2writetext UnknownText_0x1a2ada
+	writetext UnknownText_0x1a2ada
 	closetext
 	loadmovesprites
 	end
@@ -61,7 +61,7 @@ TrainerCamperJerry: ; 0x1a2898
 CamperJerryScript: ; 0x1a28a4
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a2c0f
+	writetext UnknownText_0x1a2c0f
 	closetext
 	loadmovesprites
 	end
@@ -72,13 +72,13 @@ PewterGymGuyScript: ; 0x1a28ac
 	loadfont
 	checkevent EVENT_BEAT_BROCK
 	iftrue .PewterGymGuyWinScript
-	2writetext PewterGymGuyText
+	writetext PewterGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .PewterGymGuyWinScript
-	2writetext PewterGymGuyWinText
+	writetext PewterGymGuyWinText
 	closetext
 	loadmovesprites
 	end

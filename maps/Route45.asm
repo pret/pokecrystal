@@ -35,22 +35,22 @@ BlackbeltKenji3Script: ; 0x19e0ad
 	checkevent $0299
 	iftrue UnknownScript_0x19e0cd
 	special $0095
-	2writetext UnknownText_0x19e5e2
+	writetext UnknownText_0x19e5e2
 	closetext
 	setevent $0299
-	2call UnknownScript_0x19e11b
-	2jump UnknownScript_0x19e0d0
+	scall UnknownScript_0x19e11b
+	jump UnknownScript_0x19e0d0
 ; 0x19e0cd
 
 UnknownScript_0x19e0cd: ; 0x19e0cd
-	2call UnknownScript_0x19e11f
+	scall UnknownScript_0x19e11f
 UnknownScript_0x19e0d0: ; 0x19e0d0
 	askforphonenumber $22
 	if_equal $1, UnknownScript_0x19e12f
 	if_equal $2, UnknownScript_0x19e12b
 	trainertotext BLACKBELT_T, KENJI3, $0
-	2call UnknownScript_0x19e123
-	2jump UnknownScript_0x19e127
+	scall UnknownScript_0x19e123
+	jump UnknownScript_0x19e127
 ; 0x19e0e4
 
 UnknownScript_0x19e0e4: ; 0x19e0e4
@@ -62,30 +62,30 @@ UnknownScript_0x19e0e4: ; 0x19e0e4
 	iftrue UnknownScript_0x19e112
 	checkevent $026a
 	iffalse UnknownScript_0x19e127
-	2call UnknownScript_0x19e137
+	scall UnknownScript_0x19e137
 	verbosegiveitem PP_UP, 1
 	iffalse UnknownScript_0x19e118
 	clearevent $026a
 	special $0095
-	2jump UnknownScript_0x19e127
+	jump UnknownScript_0x19e127
 ; 0x19e10c
 
 UnknownScript_0x19e10c: ; 0x19e10c
-	2writetext UnknownText_0x19e634
+	writetext UnknownText_0x19e634
 	closetext
 	loadmovesprites
 	end
 ; 0x19e112
 
 UnknownScript_0x19e112: ; 0x19e112
-	2writetext UnknownText_0x19e66c
+	writetext UnknownText_0x19e66c
 	closetext
 	loadmovesprites
 	end
 ; 0x19e118
 
 UnknownScript_0x19e118: ; 0x19e118
-	2jump UnknownScript_0x19e13b
+	jump UnknownScript_0x19e13b
 ; 0x19e11b
 
 UnknownScript_0x19e11b: ; 0x19e11b
@@ -167,7 +167,7 @@ TrainerHikerErik: ; 0x19e14a
 HikerErikScript: ; 0x19e156
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19e301
+	writetext UnknownText_0x19e301
 	closetext
 	loadmovesprites
 	end
@@ -196,7 +196,7 @@ TrainerHikerMichael: ; 0x19e15e
 HikerMichaelScript: ; 0x19e16a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19e3b1
+	writetext UnknownText_0x19e3b1
 	closetext
 	loadmovesprites
 	end
@@ -232,26 +232,26 @@ HikerParry3Script: ; 0x19e17e
 	iftrue UnknownScript_0x19e127
 	checkevent $029b
 	iftrue UnknownScript_0x19e1a1
-	2writetext UnknownText_0x19e434
+	writetext UnknownText_0x19e434
 	keeptextopen
 	setevent $029b
-	2call UnknownScript_0x19e11b
-	2jump UnknownScript_0x19e1a4
+	scall UnknownScript_0x19e11b
+	jump UnknownScript_0x19e1a4
 ; 0x19e1a1
 
 UnknownScript_0x19e1a1: ; 0x19e1a1
-	2call UnknownScript_0x19e11f
+	scall UnknownScript_0x19e11f
 UnknownScript_0x19e1a4: ; 0x19e1a4
 	askforphonenumber $23
 	if_equal $1, UnknownScript_0x19e12f
 	if_equal $2, UnknownScript_0x19e12b
 	trainertotext HIKER, PARRY1, $0
-	2call UnknownScript_0x19e123
-	2jump UnknownScript_0x19e127
+	scall UnknownScript_0x19e123
+	jump UnknownScript_0x19e127
 ; 0x19e1b8
 
 UnknownScript_0x19e1b8: ; 0x19e1b8
-	2call UnknownScript_0x19e133
+	scall UnknownScript_0x19e133
 	winlosstext HikerParry3BeatenText, $0000
 	copybytetovar $da0c
 	if_equal $2, UnknownScript_0x19e1cf
@@ -290,11 +290,11 @@ UnknownScript_0x19e1f5: ; 0x19e1f5
 	iftrue UnknownScript_0x19e219
 	checkevent $0268
 	iftrue UnknownScript_0x19e218
-	2call UnknownScript_0x19e146
+	scall UnknownScript_0x19e146
 	verbosegiveitem IRON, 1
 	iffalse UnknownScript_0x19e13f
 	setevent $0268
-	2jump UnknownScript_0x19e127
+	jump UnknownScript_0x19e127
 ; 0x19e218
 
 UnknownScript_0x19e218: ; 0x19e218
@@ -303,13 +303,13 @@ UnknownScript_0x19e218: ; 0x19e218
 
 UnknownScript_0x19e219: ; 0x19e219
 	loadfont
-	2writetext UnknownText_0x19e52c
+	writetext UnknownText_0x19e52c
 	closetext
 	verbosegiveitem IRON, 1
 	iffalse UnknownScript_0x19e13f
 	clearevent EVENT_PARRY_IRON
 	setevent $0268
-	2jump UnknownScript_0x19e127
+	jump UnknownScript_0x19e127
 ; 0x19e22d
 
 TrainerHikerTimothy: ; 0x19e22d
@@ -335,7 +335,7 @@ TrainerHikerTimothy: ; 0x19e22d
 HikerTimothyScript: ; 0x19e239
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19e4f1
+	writetext UnknownText_0x19e4f1
 	closetext
 	loadmovesprites
 	end
@@ -364,7 +364,7 @@ TrainerCooltrainermRyan: ; 0x19e241
 CooltrainermRyanScript: ; 0x19e24d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19e70d
+	writetext UnknownText_0x19e70d
 	closetext
 	loadmovesprites
 	end
@@ -393,7 +393,7 @@ TrainerCooltrainerfKelly: ; 0x19e255
 CooltrainerfKellyScript: ; 0x19e261
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19e7d1
+	writetext UnknownText_0x19e7d1
 	closetext
 	loadmovesprites
 	end
@@ -404,7 +404,7 @@ YoungsterScript_0x19e269: ; 0x19e269
 	loadfont
 	checkevent $05c3
 	iftrue UnknownScript_0x19e285
-	2writetext UnknownText_0x19e87f
+	writetext UnknownText_0x19e87f
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x19e899, $0000
@@ -417,14 +417,14 @@ YoungsterScript_0x19e269: ; 0x19e269
 ; 0x19e285
 
 UnknownScript_0x19e285: ; 0x19e285
-	2writetext UnknownText_0x19e8bb
+	writetext UnknownText_0x19e8bb
 	closetext
 	loadmovesprites
 	end
 ; 0x19e28b
 
 UnknownScript_0x19e28b: ; 0x19e28b
-	2writetext UnknownText_0x19e830
+	writetext UnknownText_0x19e830
 	closetext
 	loadmovesprites
 	end

@@ -29,7 +29,7 @@ TrainerBird_keeperBryan: ; 0x19c8af
 Bird_keeperBryanScript: ; 0x19c8bb
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19cc87
+	writetext UnknownText_0x19cc87
 	closetext
 	loadmovesprites
 	end
@@ -63,22 +63,22 @@ JugglerIrwin1Script: ; 0x19c8cf
 	iftrue UnknownScript_0x19c90f
 	checkevent $0281
 	iftrue UnknownScript_0x19c8ec
-	2writetext UnknownText_0x19cd5a
+	writetext UnknownText_0x19cd5a
 	keeptextopen
 	setevent $0281
-	2call UnknownScript_0x19c903
-	2jump UnknownScript_0x19c8ef
+	scall UnknownScript_0x19c903
+	jump UnknownScript_0x19c8ef
 ; 0x19c8ec
 
 UnknownScript_0x19c8ec: ; 0x19c8ec
-	2call UnknownScript_0x19c907
+	scall UnknownScript_0x19c907
 UnknownScript_0x19c8ef: ; 0x19c8ef
 	askforphonenumber $16
 	if_equal $1, UnknownScript_0x19c917
 	if_equal $2, UnknownScript_0x19c913
 	trainertotext JUGGLER, IRWIN1, $0
-	2call UnknownScript_0x19c90b
-	2jump UnknownScript_0x19c90f
+	scall UnknownScript_0x19c90b
+	jump UnknownScript_0x19c90f
 ; 0x19c903
 
 UnknownScript_0x19c903: ; 0x19c903
@@ -139,7 +139,7 @@ TrainerCamperIvan: ; 0x19c91f
 CamperIvanScript: ; 0x19c92b
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19cac4
+	writetext UnknownText_0x19cac4
 	closetext
 	loadmovesprites
 	end
@@ -168,7 +168,7 @@ TrainerCamperElliot: ; 0x19c933
 CamperElliotScript: ; 0x19c93f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19cb47
+	writetext UnknownText_0x19cb47
 	closetext
 	loadmovesprites
 	end
@@ -197,7 +197,7 @@ TrainerPicnickerBrooke: ; 0x19c947
 PicnickerBrookeScript: ; 0x19c953
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19cbba
+	writetext UnknownText_0x19cbba
 	closetext
 	loadmovesprites
 	end
@@ -226,7 +226,7 @@ TrainerPicnickerKim: ; 0x19c95b
 PicnickerKimScript: ; 0x19c967
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19cc21
+	writetext UnknownText_0x19cc21
 	closetext
 	loadmovesprites
 	end
@@ -264,26 +264,26 @@ Bug_catcherArnie1Script: ; 0x19c97b
 	iftrue UnknownScript_0x19c90f
 	checkevent $0283
 	iftrue UnknownScript_0x19c9a4
-	2writetext UnknownText_0x19cdf6
+	writetext UnknownText_0x19cdf6
 	keeptextopen
 	setevent $0283
-	2call UnknownScript_0x19c903
-	2jump UnknownScript_0x19c9a7
+	scall UnknownScript_0x19c903
+	jump UnknownScript_0x19c9a7
 ; 0x19c9a4
 
 UnknownScript_0x19c9a4: ; 0x19c9a4
-	2call UnknownScript_0x19c907
+	scall UnknownScript_0x19c907
 UnknownScript_0x19c9a7: ; 0x19c9a7
 	askforphonenumber $17
 	if_equal $1, UnknownScript_0x19c917
 	if_equal $2, UnknownScript_0x19c913
 	trainertotext BUG_CATCHER, ARNIE1, $0
-	2call UnknownScript_0x19c90b
-	2jump UnknownScript_0x19c90f
+	scall UnknownScript_0x19c90b
+	jump UnknownScript_0x19c90f
 ; 0x19c9bb
 
 UnknownScript_0x19c9bb: ; 0x19c9bb
-	2call UnknownScript_0x19c91b
+	scall UnknownScript_0x19c91b
 	winlosstext Bug_catcherArnie1BeatenText, $0000
 	copybytetovar $da01
 	if_equal $4, UnknownScript_0x19c9da
@@ -348,7 +348,7 @@ UnknownScript_0x19ca26: ; 0x19ca26
 ; 0x19ca2f
 
 UnknownScript_0x19ca2f: ; 0x19ca2f
-	2writetext UnknownText_0x19ce38
+	writetext UnknownText_0x19ce38
 	closetext
 	loadmovesprites
 	end
@@ -377,7 +377,7 @@ TrainerFirebreatherWalt: ; 0x19ca35
 FirebreatherWaltScript: ; 0x19ca41
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19cebc
+	writetext UnknownText_0x19cebc
 	closetext
 	loadmovesprites
 	end
@@ -391,7 +391,7 @@ OfficerScript_0x19ca49: ; 0x19ca49
 	checkevent $0547
 	iftrue UnknownScript_0x19ca6d
 	playmusic MUSIC_OFFICER_ENCOUNTER
-	2writetext UnknownText_0x19ceea
+	writetext UnknownText_0x19ceea
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x19cf06, $0000
@@ -404,14 +404,14 @@ OfficerScript_0x19ca49: ; 0x19ca49
 ; 0x19ca6d
 
 UnknownScript_0x19ca6d: ; 0x19ca6d
-	2writetext UnknownText_0x19cf0f
+	writetext UnknownText_0x19cf0f
 	closetext
 	loadmovesprites
 	end
 ; 0x19ca73
 
 UnknownScript_0x19ca73: ; 0x19ca73
-	2writetext UnknownText_0x19cf56
+	writetext UnknownText_0x19cf56
 	closetext
 	loadmovesprites
 	end

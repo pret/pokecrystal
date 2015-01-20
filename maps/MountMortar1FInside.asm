@@ -29,7 +29,7 @@ TrainerPokemaniacMiller: ; 0x7de51
 PokemaniacMillerScript: ; 0x7de5d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7debd
+	writetext UnknownText_0x7debd
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerSupernerdMarkus: ; 0x7de65
 SupernerdMarkusScript: ; 0x7de71
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7df97
+	writetext UnknownText_0x7df97
 	closetext
 	loadmovesprites
 	end

@@ -46,37 +46,37 @@ UnknownScript_0x190470: ; 0x190470
 	iffalse UnknownScript_0x19049f
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x19048f
-	2writetext UnknownText_0x1907ab
+	writetext UnknownText_0x1907ab
 	closetext
 	loadmovesprites
 	end
 ; 0x190489
 
 UnknownScript_0x190489: ; 0x190489
-	2writetext UnknownText_0x190820
+	writetext UnknownText_0x190820
 	closetext
 	loadmovesprites
 	end
 ; 0x19048f
 
 UnknownScript_0x19048f: ; 0x19048f
-	2writetext UnknownText_0x190925
+	writetext UnknownText_0x190925
 	keeptextopen
 	verbosegiveitem MIRACLE_SEED, 1
 	iffalse UnknownScript_0x1904a9
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
-	2jump UnknownScript_0x1904a5
+	jump UnknownScript_0x1904a5
 ; 0x19049f
 
 UnknownScript_0x19049f: ; 0x19049f
-	2writetext UnknownText_0x1908b0
+	writetext UnknownText_0x1908b0
 	closetext
 	loadmovesprites
 	end
 ; 0x1904a5
 
 UnknownScript_0x1904a5: ; 0x1904a5
-	2writetext UnknownText_0x190a15
+	writetext UnknownText_0x190a15
 	closetext
 UnknownScript_0x1904a9: ; 0x1904a9
 	loadmovesprites
@@ -87,14 +87,14 @@ UnknownScript_0x1904ab: ; 0x1904ab
 	spriteface $9, $2
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x190790
+	writetext UnknownText_0x190790
 	closetext
 	loadmovesprites
 	follow $0, $9
 	applymovement $0, MovementData_0x190789
 	stopfollow
 	spriteface $0, $0
-	2call UnknownScript_0x190470
+	scall UnknownScript_0x190470
 	applymovement $9, MovementData_0x19078c
 	applymovement $9, MovementData_0x19078e
 	end
@@ -105,13 +105,13 @@ FisherScript_0x1904ce: ; 0x1904ce
 	loadfont
 	checkevent EVENT_GOT_TM05_ROAR
 	iftrue UnknownScript_0x1904e3
-	2writetext UnknownText_0x191133
+	writetext UnknownText_0x191133
 	keeptextopen
 	verbosegiveitem TM_05, 1
 	iffalse UnknownScript_0x1904e7
 	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3: ; 0x1904e3
-	2writetext UnknownText_0x19118c
+	writetext UnknownText_0x19118c
 	closetext
 UnknownScript_0x1904e7: ; 0x1904e7
 	loadmovesprites
@@ -121,7 +121,7 @@ UnknownScript_0x1904e7: ; 0x1904e7
 UnknownScript_0x1904e9: ; 0x1904e9
 	spriteface $b, $0
 	spriteface $0, $1
-	2jump UnknownScript_0x1904f3
+	jump UnknownScript_0x1904f3
 ; 0x1904f2
 
 FisherScript_0x1904f2: ; 0x1904f2
@@ -129,17 +129,17 @@ FisherScript_0x1904f2: ; 0x1904f2
 UnknownScript_0x1904f3: ; 0x1904f3
 	dotrigger $2
 	loadfont
-	2writetext UnknownText_0x190a59
+	writetext UnknownText_0x190a59
 	yesorno
 	iffalse UnknownScript_0x190503
-	2writetext UnknownText_0x190acf
+	writetext UnknownText_0x190acf
 	closetext
 	loadmovesprites
 	end
 ; 0x190503
 
 UnknownScript_0x190503: ; 0x190503
-	2writetext UnknownText_0x190afc
+	writetext UnknownText_0x190afc
 	closetext
 	loadmovesprites
 	end
@@ -168,7 +168,7 @@ TrainerCamperRoland: ; 0x190509
 CamperRolandScript: ; 0x190515
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x190faa
+	writetext UnknownText_0x190faa
 	closetext
 	loadmovesprites
 	end
@@ -197,7 +197,7 @@ TrainerFisherJustin: ; 0x19051d
 FisherJustinScript: ; 0x190529
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x190b4e
+	writetext UnknownText_0x190b4e
 	closetext
 	loadmovesprites
 	end
@@ -235,26 +235,26 @@ FisherRalph1Script: ; 0x19053d
 	iftrue UnknownScript_0x190603
 	checkevent $0277
 	iftrue UnknownScript_0x190566
-	2writetext UnknownText_0x190bf8
+	writetext UnknownText_0x190bf8
 	keeptextopen
 	setevent $0277
-	2call UnknownScript_0x1905f7
-	2jump UnknownScript_0x190569
+	scall UnknownScript_0x1905f7
+	jump UnknownScript_0x190569
 ; 0x190566
 
 UnknownScript_0x190566: ; 0x190566
-	2call UnknownScript_0x1905fb
+	scall UnknownScript_0x1905fb
 UnknownScript_0x190569: ; 0x190569
 	askforphonenumber $11
 	if_equal $1, UnknownScript_0x19060b
 	if_equal $2, UnknownScript_0x190607
 	trainertotext FISHER, RALPH1, $0
-	2call UnknownScript_0x1905ff
-	2jump UnknownScript_0x190603
+	scall UnknownScript_0x1905ff
+	jump UnknownScript_0x190603
 ; 0x19057d
 
 UnknownScript_0x19057d: ; 0x19057d
-	2call UnknownScript_0x19060f
+	scall UnknownScript_0x19060f
 	winlosstext FisherRalph1BeatenText, $0000
 	copybytetovar $d9fb
 	if_equal $4, UnknownScript_0x19059c
@@ -319,7 +319,7 @@ UnknownScript_0x1905e8: ; 0x1905e8
 ; 0x1905f1
 
 UnknownScript_0x1905f1: ; 0x1905f1
-	2writetext UnknownText_0x190c37
+	writetext UnknownText_0x190c37
 	closetext
 	loadmovesprites
 	end
@@ -383,7 +383,7 @@ TrainerFisherHenry: ; 0x190613
 FisherHenryScript: ; 0x19061f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x190df2
+	writetext UnknownText_0x190df2
 	closetext
 	loadmovesprites
 	end
@@ -419,26 +419,26 @@ PicnickerLiz1Script: ; 0x190633
 	iftrue UnknownScript_0x1906ed
 	checkevent $0279
 	iftrue UnknownScript_0x190656
-	2writetext UnknownText_0x191060
+	writetext UnknownText_0x191060
 	keeptextopen
 	setevent $0279
-	2call UnknownScript_0x1906e1
-	2jump UnknownScript_0x190659
+	scall UnknownScript_0x1906e1
+	jump UnknownScript_0x190659
 ; 0x190656
 
 UnknownScript_0x190656: ; 0x190656
-	2call UnknownScript_0x1906e5
+	scall UnknownScript_0x1906e5
 UnknownScript_0x190659: ; 0x190659
 	askforphonenumber $12
 	if_equal $1, UnknownScript_0x1906f5
 	if_equal $2, UnknownScript_0x1906f1
 	trainertotext PICNICKER, LIZ1, $0
-	2call UnknownScript_0x1906e9
-	2jump UnknownScript_0x1906ed
+	scall UnknownScript_0x1906e9
+	jump UnknownScript_0x1906ed
 ; 0x19066d
 
 UnknownScript_0x19066d: ; 0x19066d
-	2call UnknownScript_0x1906f9
+	scall UnknownScript_0x1906f9
 	winlosstext PicnickerLiz1BeatenText, $0000
 	copybytetovar $d9fc
 	if_equal $4, UnknownScript_0x19068c
@@ -560,7 +560,7 @@ TrainerYoungsterAlbert: ; 0x1906fd
 YoungsterAlbertScript: ; 0x190709
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x190e82
+	writetext UnknownText_0x190e82
 	closetext
 	loadmovesprites
 	end
@@ -589,7 +589,7 @@ TrainerYoungsterGordon: ; 0x190711
 YoungsterGordonScript: ; 0x19071d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x190f49
+	writetext UnknownText_0x190f49
 	closetext
 	loadmovesprites
 	end
@@ -618,7 +618,7 @@ TrainerBird_keeperPeter: ; 0x190725
 Bird_keeperPeterScript: ; 0x190731
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1910d4
+	writetext UnknownText_0x1910d4
 	closetext
 	loadmovesprites
 	end
@@ -633,29 +633,29 @@ FriedaScript:
 	if_not_equal FRIDAY, FriedaNotFridayScript
 	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue .MetFrieda
-	2writetext MeetFriedaText
+	writetext MeetFriedaText
 	keeptextopen
 	setevent EVENT_MET_FRIEDA_OF_FRIDAY
 .MetFrieda
-	2writetext FriedaGivesGiftText
+	writetext FriedaGivesGiftText
 	keeptextopen
 	verbosegiveitem POISON_BARB, 1
 	iffalse FriedaDoneScript
 	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
-	2writetext FriedaGaveGiftText
+	writetext FriedaGaveGiftText
 	closetext
 	loadmovesprites
 	end
 
 FriedaFridayScript:
-	2writetext FriedaFridayText
+	writetext FriedaFridayText
 	closetext
 FriedaDoneScript:
 	loadmovesprites
 	end
 
 FriedaNotFridayScript:
-	2writetext FriedaNotFridayText
+	writetext FriedaNotFridayText
 	closetext
 	loadmovesprites
 	end

@@ -50,7 +50,7 @@ UnknownScript_0x185050: ; 0x185050
 	special $0097
 	iftrue UnknownScript_0x185065
 	appear $3
-	2jump UnknownScript_0x185067
+	jump UnknownScript_0x185067
 ; 0x185065
 
 UnknownScript_0x185065: ; 0x185065
@@ -60,7 +60,7 @@ UnknownScript_0x185067: ; 0x185067
 	special $0097
 	iftrue UnknownScript_0x185074
 	appear $4
-	2jump UnknownScript_0x185076
+	jump UnknownScript_0x185076
 ; 0x185074
 
 UnknownScript_0x185074: ; 0x185074
@@ -160,7 +160,7 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	moveperson $8, $b, $d
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x185203
+	writetext UnknownText_0x185203
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x1851f1
@@ -202,7 +202,7 @@ SageScript_0x185188: ; 0x185188
 	iftrue UnknownScript_0x1851b6
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x1851b0
-	2writetext UnknownText_0x185629
+	writetext UnknownText_0x185629
 	keeptextopen
 	verbosegiveitem RAINBOW_WING, 1
 	loadmovesprites
@@ -216,14 +216,14 @@ SageScript_0x185188: ; 0x185188
 	loadmovesprites
 	loadfont
 UnknownScript_0x1851b0: ; 0x1851b0
-	2writetext UnknownText_0x18564a
+	writetext UnknownText_0x18564a
 	closetext
 	loadmovesprites
 	end
 ; 0x1851b6
 
 UnknownScript_0x1851b6: ; 0x1851b6
-	2writetext UnknownText_0x185803
+	writetext UnknownText_0x185803
 	closetext
 	loadmovesprites
 	end

@@ -30,39 +30,39 @@ UnknownScript_0x19c00f: ; 0x19c00f
 GrampsScript_0x19c013: ; 0x19c013
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x19c1e3
+	writetext UnknownText_0x19c1e3
 	yesorno
 	iffalse UnknownScript_0x19c0a4
-	2jump UnknownScript_0x19c01f
+	jump UnknownScript_0x19c01f
 ; 0x19c01f
 
 UnknownScript_0x19c01f: ; 0x19c01f
-	2writetext UnknownText_0x19c26f
+	writetext UnknownText_0x19c26f
 	closetext
 	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, $0
 	applymovement $2, MovementData_0x19c195
 	loadfont
-	2writetext UnknownText_0x19c285
+	writetext UnknownText_0x19c285
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c19b
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x19c304
+	writetext UnknownText_0x19c304
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1a3
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x19c359
+	writetext UnknownText_0x19c359
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1ac
 	spriteface $0, $2
 	loadfont
-	2writetext UnknownText_0x19c3a7
+	writetext UnknownText_0x19c3a7
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1b6
@@ -71,14 +71,14 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	spriteface $2, $2
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x19c3ec
+	writetext UnknownText_0x19c3ec
 	keeptextopen
 	stringtotext .mapcardname, $1
-	2call .UnknownScript_0x19c097
+	scall .UnknownScript_0x19c097
 	setflag $0001
-	2writetext UnknownText_0x19c438
+	writetext UnknownText_0x19c438
 	keeptextopen
-	2writetext UnknownText_0x19c451
+	writetext UnknownText_0x19c451
 	closetext
 	loadmovesprites
 	stopfollow
@@ -100,7 +100,7 @@ UnknownScript_0x19c01f: ; 0x19c01f
 ; 0x19c0a4
 
 UnknownScript_0x19c0a4: ; 0x19c0a4
-	2writetext UnknownText_0x19c49f
+	writetext UnknownText_0x19c49f
 	closetext
 	loadmovesprites
 	end
@@ -120,7 +120,7 @@ UnknownScript_0x19c0ae: ; 0x19c0ae
 	spriteface $0, $3
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x19c4e2
+	writetext UnknownText_0x19c4e2
 	closetext
 	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
@@ -135,7 +135,7 @@ UnknownScript_0x19c0ae: ; 0x19c0ae
 	reloadmapmusic
 	reloadmap
 	iftrue UnknownScript_0x19c11a
-	2jump UnknownScript_0x19c126
+	jump UnknownScript_0x19c126
 ; 0x19c0ee
 
 UnknownScript_0x19c0ee: ; 0x19c0ee
@@ -147,7 +147,7 @@ UnknownScript_0x19c0ee: ; 0x19c0ee
 	reloadmapmusic
 	reloadmap
 	iftrue UnknownScript_0x19c11a
-	2jump UnknownScript_0x19c126
+	jump UnknownScript_0x19c126
 ; 0x19c104
 
 UnknownScript_0x19c104: ; 0x19c104
@@ -159,22 +159,22 @@ UnknownScript_0x19c104: ; 0x19c104
 	reloadmapmusic
 	reloadmap
 	iftrue UnknownScript_0x19c11a
-	2jump UnknownScript_0x19c126
+	jump UnknownScript_0x19c126
 ; 0x19c11a
 
 UnknownScript_0x19c11a: ; 0x19c11a
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
-	2writetext UnknownText_0x19c608
+	writetext UnknownText_0x19c608
 	closetext
 	loadmovesprites
-	2jump UnknownScript_0x19c12f
+	jump UnknownScript_0x19c12f
 ; 0x19c126
 
 UnknownScript_0x19c126: ; 0x19c126
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
-	2writetext UnknownText_0x19c59e
+	writetext UnknownText_0x19c59e
 	closetext
 	loadmovesprites
 UnknownScript_0x19c12f: ; 0x19c12f
@@ -194,14 +194,14 @@ TeacherScript_0x19c146: ; 0x19c146
 	loadfont
 	checkflag $0001
 	iftrue UnknownScript_0x19c154
-	2writetext UnknownText_0x19c650
+	writetext UnknownText_0x19c650
 	closetext
 	loadmovesprites
 	end
 ; 0x19c154
 
 UnknownScript_0x19c154: ; 0x19c154
-	2writetext UnknownText_0x19c6a8
+	writetext UnknownText_0x19c6a8
 	closetext
 	loadmovesprites
 	end
@@ -212,14 +212,14 @@ YoungsterScript_0x19c15a: ; 0x19c15a
 	loadfont
 	checkflag $000b
 	iftrue UnknownScript_0x19c168
-	2writetext UnknownText_0x19c6d6
+	writetext UnknownText_0x19c6d6
 	closetext
 	loadmovesprites
 	end
 ; 0x19c168
 
 UnknownScript_0x19c168: ; 0x19c168
-	2writetext UnknownText_0x19c701
+	writetext UnknownText_0x19c701
 	closetext
 	loadmovesprites
 	end
@@ -230,13 +230,13 @@ FisherScript_0x19c16e: ; 0x19c16e
 	loadfont
 	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 	iftrue UnknownScript_0x19c183
-	2writetext UnknownText_0x19c766
+	writetext UnknownText_0x19c766
 	keeptextopen
 	verbosegiveitem MYSTIC_WATER, 1
 	iffalse UnknownScript_0x19c187
 	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 UnknownScript_0x19c183: ; 0x19c183
-	2writetext UnknownText_0x19c7c1
+	writetext UnknownText_0x19c7c1
 	closetext
 UnknownScript_0x19c187: ; 0x19c187
 	loadmovesprites

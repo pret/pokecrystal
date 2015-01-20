@@ -29,7 +29,7 @@ TrainerBikerDwayne: ; 0x6c002
 BikerDwayneScript: ; 0x6c00e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6c0c8
+	writetext UnknownText_0x6c0c8
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerBikerHarris: ; 0x6c016
 BikerHarrisScript: ; 0x6c022
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6c143
+	writetext UnknownText_0x6c143
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerBikerZeke: ; 0x6c02a
 BikerZekeScript: ; 0x6c036
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6c1a3
+	writetext UnknownText_0x6c1a3
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerSupernerdSam: ; 0x6c03e
 SupernerdSamScript: ; 0x6c04a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6c219
+	writetext UnknownText_0x6c219
 	closetext
 	loadmovesprites
 	end
@@ -145,7 +145,7 @@ TrainerSupernerdTom: ; 0x6c052
 SupernerdTomScript: ; 0x6c05e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6c27e
+	writetext UnknownText_0x6c27e
 	closetext
 	loadmovesprites
 	end

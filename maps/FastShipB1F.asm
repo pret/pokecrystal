@@ -53,7 +53,7 @@ SailorScript_0x76767: ; 0x76767
 	iftrue UnknownScript_0x7678d
 	checkevent $0034
 	iftrue UnknownScript_0x76787
-	2writetext UnknownText_0x7687b
+	writetext UnknownText_0x7687b
 	closetext
 	loadmovesprites
 	setevent $0034
@@ -62,14 +62,14 @@ SailorScript_0x76767: ; 0x76767
 ; 0x76787
 
 UnknownScript_0x76787: ; 0x76787
-	2writetext UnknownText_0x76907
+	writetext UnknownText_0x76907
 	closetext
 	loadmovesprites
 	end
 ; 0x7678d
 
 UnknownScript_0x7678d: ; 0x7678d
-	2writetext UnknownText_0x7692e
+	writetext UnknownText_0x7692e
 	checkevent $0032
 	iffalse UnknownScript_0x76799
 	closetext
@@ -79,14 +79,14 @@ UnknownScript_0x7678d: ; 0x7678d
 
 UnknownScript_0x76799: ; 0x76799
 	keeptextopen
-	2writetext UnknownText_0x7696d
+	writetext UnknownText_0x7696d
 	closetext
 	loadmovesprites
 	end
 ; 0x767a0
 
 UnknownScript_0x767a0: ; 0x767a0
-	2writetext UnknownText_0x7699d
+	writetext UnknownText_0x7699d
 	closetext
 	loadmovesprites
 	end
@@ -115,7 +115,7 @@ TrainerSailorJeff: ; 0x767a6
 SailorJeffScript: ; 0x767b2
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76a38
+	writetext UnknownText_0x76a38
 	closetext
 	loadmovesprites
 	end
@@ -144,7 +144,7 @@ TrainerPicnickerDebra: ; 0x767ba
 PicnickerDebraScript: ; 0x767c6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76a99
+	writetext UnknownText_0x76a99
 	closetext
 	loadmovesprites
 	end
@@ -173,7 +173,7 @@ TrainerJugglerFritz: ; 0x767ce
 JugglerFritzScript: ; 0x767da
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76b02
+	writetext UnknownText_0x76b02
 	closetext
 	loadmovesprites
 	end
@@ -202,7 +202,7 @@ TrainerSailorGarrett: ; 0x767e2
 SailorGarrettScript: ; 0x767ee
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76b7a
+	writetext UnknownText_0x76b7a
 	closetext
 	loadmovesprites
 	end
@@ -231,7 +231,7 @@ TrainerFisherJonah: ; 0x767f6
 FisherJonahScript: ; 0x76802
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76c22
+	writetext UnknownText_0x76c22
 	closetext
 	loadmovesprites
 	end
@@ -260,7 +260,7 @@ TrainerBlackbeltWai: ; 0x7680a
 BlackbeltWaiScript: ; 0x76816
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76c9e
+	writetext UnknownText_0x76c9e
 	closetext
 	loadmovesprites
 	end
@@ -289,7 +289,7 @@ TrainerSailorKenneth: ; 0x7681e
 SailorKennethScript: ; 0x7682a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76d5f
+	writetext UnknownText_0x76d5f
 	closetext
 	loadmovesprites
 	end
@@ -318,7 +318,7 @@ TrainerTeacherShirley: ; 0x76832
 TeacherShirleyScript: ; 0x7683e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76de1
+	writetext UnknownText_0x76de1
 	closetext
 	loadmovesprites
 	end
@@ -347,7 +347,7 @@ TrainerSchoolboyNate: ; 0x76846
 SchoolboyNateScript: ; 0x76852
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76e3d
+	writetext UnknownText_0x76e3d
 	closetext
 	loadmovesprites
 	end
@@ -376,7 +376,7 @@ TrainerSchoolboyRicky: ; 0x7685a
 SchoolboyRickyScript: ; 0x76866
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x76eb6
+	writetext UnknownText_0x76eb6
 	closetext
 	loadmovesprites
 	end

@@ -16,7 +16,7 @@ LassScript_0x9ae3d: ; 0x9ae3d
 
 MoltresScript_0x9ae40: ; 0x9ae40
 	loadfont
-	2writetext UnknownText_0x9aefe
+	writetext UnknownText_0x9aefe
 	cry SPEAROW
 	closetext
 	loadmovesprites
@@ -25,7 +25,7 @@ MoltresScript_0x9ae40: ; 0x9ae40
 
 GrowlitheScript_0x9ae4a: ; 0x9ae4a
 	loadfont
-	2writetext UnknownText_0x9af10
+	writetext UnknownText_0x9af10
 	cry RATTATA
 	closetext
 	loadmovesprites

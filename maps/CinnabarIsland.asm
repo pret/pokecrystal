@@ -18,7 +18,7 @@ UnknownScript_0x1ac9ac: ; 0x1ac9ac
 BlueScript_0x1ac9b0: ; 0x1ac9b0
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x1ac9d2
+	writetext UnknownText_0x1ac9d2
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO

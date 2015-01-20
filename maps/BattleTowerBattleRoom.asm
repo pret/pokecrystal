@@ -45,7 +45,7 @@ UnknownScript_0x9f425: ; 0x9f425
 	applymovement $3, MovementData_0x9e59c
 	applymovement $0, MovementData_0x9e5a7
 	loadfont
-	2writetext UnknownText_0x9ee92
+	writetext UnknownText_0x9ee92
 	closetext
 	loadmovesprites
 	playmusic MUSIC_HEAL
@@ -55,18 +55,18 @@ UnknownScript_0x9f425: ; 0x9f425
 	special $0031
 	special $003d
 	loadfont
-	2writetext UnknownText_0x9eebc
+	writetext UnknownText_0x9eebc
 	yesorno
 	iffalse UnknownScript_0x9f483
 UnknownScript_0x9f477: ; 0x9f477
 	loadmovesprites
 	applymovement $0, MovementData_0x9e5a9
 	applymovement $3, MovementData_0x9e5a1
-	2jump UnknownScript_0x9f425
+	jump UnknownScript_0x9f425
 ; 0x9f483
 
 UnknownScript_0x9f483: ; 0x9f483
-	2writetext UnknownText_0x9ef5e
+	writetext UnknownText_0x9ef5e
 	yesorno
 	iffalse UnknownScript_0x9f4a3
 	writebyte $7
@@ -80,7 +80,7 @@ UnknownScript_0x9f483: ; 0x9f483
 	special $002e
 	special $007e
 UnknownScript_0x9f4a3: ; 0x9f4a3
-	2writetext UnknownText_0x9efbf
+	writetext UnknownText_0x9efbf
 	yesorno
 	iffalse UnknownScript_0x9f477
 	writebyte $4
@@ -91,7 +91,7 @@ UnknownScript_0x9f4a3: ; 0x9f4a3
 	special $002e
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	loadfont
-	2jump UnknownScript_0x9e4b0
+	jump UnknownScript_0x9e4b0
 ; 0x9f4c2
 
 UnknownScript_0x9f4c2: ; 0x9f4c2
@@ -101,7 +101,7 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 	writebyte $4
 	special $0086
 	loadfont
-	2writetext UnknownText_0x9ea49
+	writetext UnknownText_0x9ea49
 	closetext
 	loadmovesprites
 	end
@@ -113,15 +113,15 @@ UnknownScript_0x9f4d9: ; 0x9f4d9
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
 	loadfont
-	2writetext UnknownText_0x9eaef
-	2jump UnknownScript_0x9e47a
+	writetext UnknownText_0x9eaef
+	jump UnknownScript_0x9e47a
 ; 0x9f4eb
 
 UnknownScript_0x9f4eb: ; 0x9f4eb
 	writebyte $4
 	special $0086
 	loadfont
-	2writetext UnknownText_0x9f0c1
+	writetext UnknownText_0x9f0c1
 	closetext
 	loadmovesprites
 	end
@@ -133,8 +133,8 @@ UnknownScript_0x9f4f7: ; 0x9f4f7
 	writebyte $6
 	special $0086
 	loadfont
-	2writetext UnknownText_0x9ea49
-	2writetext UnknownText_0x9ec09
+	writetext UnknownText_0x9ea49
+	writetext UnknownText_0x9ec09
 	closetext
 	loadmovesprites
 	end

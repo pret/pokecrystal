@@ -29,7 +29,7 @@ TrainerSwimmermSeth: ; 0x1ac814
 SwimmermSethScript: ; 0x1ac820
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ac873
+	writetext UnknownText_0x1ac873
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerSwimmerfNikki: ; 0x1ac828
 SwimmerfNikkiScript: ; 0x1ac834
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ac8f1
+	writetext UnknownText_0x1ac8f1
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerFisherArnold: ; 0x1ac83c
 FisherArnoldScript: ; 0x1ac848
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ac95c
+	writetext UnknownText_0x1ac95c
 	closetext
 	loadmovesprites
 	end

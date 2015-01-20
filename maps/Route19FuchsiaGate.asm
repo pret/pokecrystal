@@ -11,14 +11,14 @@ OfficerScript_0x1ab3f6: ; 0x1ab3f6
 	loadfont
 	checkevent $00d7
 	iftrue UnknownScript_0x1ab404
-	2writetext UnknownText_0x1ab40a
+	writetext UnknownText_0x1ab40a
 	closetext
 	loadmovesprites
 	end
 ; 0x1ab404
 
 UnknownScript_0x1ab404: ; 0x1ab404
-	2writetext UnknownText_0x1ab48a
+	writetext UnknownText_0x1ab48a
 	closetext
 	loadmovesprites
 	end

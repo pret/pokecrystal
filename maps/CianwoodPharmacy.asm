@@ -20,15 +20,15 @@ PharmacistScript_0x9df9e: ; 0x9df9e
 	iftrue UnknownScript_0x9dfc4
 	checkevent $0037
 	iffalse UnknownScript_0x9dfc4
-	2writetext UnknownText_0x9dfcd
+	writetext UnknownText_0x9dfcd
 	keeptextopen
 	giveitem SECRETPOTION, $1
-	2writetext UnknownText_0x9e056
+	writetext UnknownText_0x9e056
 	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
-	2writetext UnknownText_0x9e070
+	writetext UnknownText_0x9e070
 	closetext
 	loadmovesprites
 	end

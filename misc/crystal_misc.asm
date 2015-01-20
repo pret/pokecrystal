@@ -740,22 +740,22 @@ Function17abcf: ; 17abcf (5e:6bcf)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $6c55
+	ld hl, Palette_17ac55
 	ld de, Unkn1Pals ; $d000
 	ld bc, $30
 	call CopyBytes
-	ld hl, $6c95
+	ld hl, Palette_17ac95
 	ld de, Unkn2Pals
 	ld bc, $40
 	call CopyBytes
-	ld hl, $74b5
+	ld hl, GFX_17afa5 + $510
 	ld de, $d048
 	ld bc, $10
 	call CopyBytes
-	ld hl, $7471
+	ld hl, Palette_b471
 	ld de, $d058
 	ld bc, $8
-	ld a, $2
+	ld a, BANK(Palette_b471)
 	call FarCopyBytes
 	pop af
 	ld [rSVBK], a ; $ff00+$70

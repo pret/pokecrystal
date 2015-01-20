@@ -11,19 +11,19 @@ FisherScript_0x19a527: ; 0x19a527
 	loadfont
 	checkevent EVENT_GOT_TM10_HIDDEN_POWER
 	iftrue UnknownScript_0x19a542
-	2writetext UnknownText_0x19a54b
+	writetext UnknownText_0x19a54b
 	keeptextopen
 	verbosegiveitem TM_10, 1
 	iffalse UnknownScript_0x19a546
 	setevent EVENT_GOT_TM10_HIDDEN_POWER
-	2writetext UnknownText_0x19a5de
+	writetext UnknownText_0x19a5de
 	closetext
 	loadmovesprites
 	end
 ; 0x19a542
 
 UnknownScript_0x19a542: ; 0x19a542
-	2writetext UnknownText_0x19a673
+	writetext UnknownText_0x19a673
 	closetext
 UnknownScript_0x19a546: ; 0x19a546
 	loadmovesprites

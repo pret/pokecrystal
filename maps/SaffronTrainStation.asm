@@ -18,19 +18,19 @@ OfficerScript_0x18a81e: ; 0x18a81e
 	loadfont
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x18a82c
-	2writetext UnknownText_0x18a8a9
+	writetext UnknownText_0x18a8a9
 	closetext
 	loadmovesprites
 	end
 ; 0x18a82c
 
 UnknownScript_0x18a82c: ; 0x18a82c
-	2writetext UnknownText_0x18a8dd
+	writetext UnknownText_0x18a8dd
 	yesorno
 	iffalse UnknownScript_0x18a85c
 	checkitem PASS
 	iffalse UnknownScript_0x18a856
-	2writetext UnknownText_0x18a917
+	writetext UnknownText_0x18a917
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x18a88f
@@ -50,14 +50,14 @@ MovementData_0x18a854: ; 0x18a854
 ; 0x18a856
 
 UnknownScript_0x18a856: ; 0x18a856
-	2writetext UnknownText_0x18a956
+	writetext UnknownText_0x18a956
 	closetext
 	loadmovesprites
 	end
 ; 0x18a85c
 
 UnknownScript_0x18a85c: ; 0x18a85c
-	2writetext UnknownText_0x18a978
+	writetext UnknownText_0x18a978
 	closetext
 	loadmovesprites
 	end
@@ -68,7 +68,7 @@ UnknownScript_0x18a862: ; 0x18a862
 	applymovement $0, MovementData_0x18a8a1
 	applymovement $2, MovementData_0x18a894
 	loadfont
-	2writetext UnknownText_0x18a993
+	writetext UnknownText_0x18a993
 	closetext
 	loadmovesprites
 	end
@@ -79,14 +79,14 @@ GymGuyScript_0x18a875: ; 0x18a875
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18a883
-	2writetext UnknownText_0x18a9ca
+	writetext UnknownText_0x18a9ca
 	closetext
 	loadmovesprites
 	end
 ; 0x18a883
 
 UnknownScript_0x18a883: ; 0x18a883
-	2writetext UnknownText_0x18aa61
+	writetext UnknownText_0x18aa61
 	closetext
 	loadmovesprites
 	end

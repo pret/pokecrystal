@@ -33,7 +33,7 @@ SailorScript_0x748c0: ; 0x748c0
 	loadfont
 	checkevent $0000
 	iftrue UnknownScript_0x74919
-	2writetext UnknownText_0x74a55
+	writetext UnknownText_0x74a55
 	closetext
 	loadmovesprites
 	spriteface $2, $0
@@ -67,7 +67,7 @@ UnknownScript_0x7490a: ; 0x7490a
 ; 0x74919
 
 UnknownScript_0x74919: ; 0x74919
-	2writetext UnknownText_0x74a80
+	writetext UnknownText_0x74a80
 	closetext
 	loadmovesprites
 	end
@@ -90,23 +90,23 @@ UnknownScript_0x7491f: ; 0x7491f
 	if_equal WEDNESDAY, UnknownScript_0x74981
 	if_equal THURSDAY, UnknownScript_0x74981
 UnknownScript_0x7494e: ; 0x7494e
-	2writetext UnknownText_0x74a9c
+	writetext UnknownText_0x74a9c
 	yesorno
 	iffalse UnknownScript_0x74992
-	2writetext UnknownText_0x74ada
+	writetext UnknownText_0x74ada
 	keeptextopen
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x7496d
-	2writetext UnknownText_0x74b11
+	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
 	setevent $0001
 	applymovement $0, MovementData_0x74a37
-	2jump SailorScript_0x748c0
+	jump SailorScript_0x748c0
 ; 0x7496d
 
 UnknownScript_0x7496d: ; 0x7496d
-	2writetext UnknownText_0x74b41
+	writetext UnknownText_0x74b41
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x74a34
@@ -114,7 +114,7 @@ UnknownScript_0x7496d: ; 0x7496d
 ; 0x74977
 
 UnknownScript_0x74977: ; 0x74977
-	2writetext UnknownText_0x74ba8
+	writetext UnknownText_0x74ba8
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x74a34
@@ -122,7 +122,7 @@ UnknownScript_0x74977: ; 0x74977
 ; 0x74981
 
 UnknownScript_0x74981: ; 0x74981
-	2writetext UnknownText_0x74bce
+	writetext UnknownText_0x74bce
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x74a34
@@ -134,14 +134,14 @@ UnknownScript_0x7498b: ; 0x7498b
 ; 0x7498c
 
 UnknownScript_0x7498c: ; 0x7498c
-	2writetext UnknownText_0x74af6
+	writetext UnknownText_0x74af6
 	closetext
 	loadmovesprites
 	end
 ; 0x74992
 
 UnknownScript_0x74992: ; 0x74992
-	2writetext UnknownText_0x74af6
+	writetext UnknownText_0x74af6
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x74a34
@@ -162,44 +162,44 @@ SailorScript_0x7499c: ; 0x7499c
 	if_equal WEDNESDAY, UnknownScript_0x749f8
 	if_equal THURSDAY, UnknownScript_0x749f8
 UnknownScript_0x749c0: ; 0x749c0
-	2writetext UnknownText_0x74a9c
+	writetext UnknownText_0x74a9c
 	yesorno
 	iffalse UnknownScript_0x7498c
-	2writetext UnknownText_0x74ada
+	writetext UnknownText_0x74ada
 	keeptextopen
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x749ec
-	2writetext UnknownText_0x74b11
+	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
 	setevent $0001
 	checkcode $9
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f
-	2jump SailorScript_0x748c0
+	jump SailorScript_0x748c0
 ; 0x749e5
 
 UnknownScript_0x749e5: ; 0x749e5
 	applymovement $0, MovementData_0x74a49
-	2jump SailorScript_0x748c0
+	jump SailorScript_0x748c0
 ; 0x749ec
 
 UnknownScript_0x749ec: ; 0x749ec
-	2writetext UnknownText_0x74b41
+	writetext UnknownText_0x74b41
 	closetext
 	loadmovesprites
 	end
 ; 0x749f2
 
 UnknownScript_0x749f2: ; 0x749f2
-	2writetext UnknownText_0x74ba8
+	writetext UnknownText_0x74ba8
 	closetext
 	loadmovesprites
 	end
 ; 0x749f8
 
 UnknownScript_0x749f8: ; 0x749f8
-	2writetext UnknownText_0x74bce
+	writetext UnknownText_0x74bce
 	closetext
 	loadmovesprites
 	end
@@ -212,7 +212,7 @@ SailorScript_0x749fe: ; 0x749fe
 FishingGuruScript_0x74a01: ; 0x74a01
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x74bf4
+	writetext UnknownText_0x74bf4
 	closetext
 	loadmovesprites
 	spriteface $5, $1
@@ -222,7 +222,7 @@ FishingGuruScript_0x74a01: ; 0x74a01
 FishingGuruScript_0x74a0c: ; 0x74a0c
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x74c35
+	writetext UnknownText_0x74c35
 	closetext
 	loadmovesprites
 	spriteface $6, $1
@@ -232,7 +232,7 @@ FishingGuruScript_0x74a0c: ; 0x74a0c
 YoungsterScript_0x74a17: ; 0x74a17
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x74c76
+	writetext UnknownText_0x74c76
 	closetext
 	loadmovesprites
 	spriteface $7, $0
@@ -242,7 +242,7 @@ YoungsterScript_0x74a17: ; 0x74a17
 CooltrainerFScript_0x74a22: ; 0x74a22
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x74ca2
+	writetext UnknownText_0x74ca2
 	closetext
 	loadmovesprites
 	spriteface $8, $0

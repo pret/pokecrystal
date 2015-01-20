@@ -13,32 +13,32 @@ GentlemanScript_0x1917e9: ; 0x1917e9
 	iftrue UnknownScript_0x191815
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT_BUT_BAG_WAS_FULL
 	iftrue UnknownScript_0x191802
-	2writetext UnknownText_0x191881
+	writetext UnknownText_0x191881
 	yesorno
 	iffalse UnknownScript_0x19181b
-	2writetext UnknownText_0x191911
+	writetext UnknownText_0x191911
 	keeptextopen
 UnknownScript_0x191802: ; 0x191802
-	2writetext UnknownText_0x191a3d
+	writetext UnknownText_0x191a3d
 	keeptextopen
 	verbosegiveitem RARE_CANDY, 1
 	iffalse UnknownScript_0x19181f
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
-	2writetext UnknownText_0x191a72
+	writetext UnknownText_0x191a72
 	closetext
 	loadmovesprites
 	end
 ; 0x191815
 
 UnknownScript_0x191815: ; 0x191815
-	2writetext UnknownText_0x191ae0
+	writetext UnknownText_0x191ae0
 	closetext
 	loadmovesprites
 	end
 ; 0x19181b
 
 UnknownScript_0x19181b: ; 0x19181b
-	2writetext UnknownText_0x191b38
+	writetext UnknownText_0x191b38
 	closetext
 UnknownScript_0x19181f: ; 0x19181f
 	loadmovesprites
@@ -56,14 +56,14 @@ FisherScript_0x191824: ; 0x191824
 	iftrue UnknownScript_0x19185f
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x191838
-	2writetext UnknownText_0x191ba0
+	writetext UnknownText_0x191ba0
 	closetext
 	loadmovesprites
 	end
 ; 0x191838
 
 UnknownScript_0x191838: ; 0x191838
-	2writetext UnknownText_0x191bff
+	writetext UnknownText_0x191bff
 	checkevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	iftrue UnknownScript_0x191844
 	closetext
@@ -73,13 +73,13 @@ UnknownScript_0x191838: ; 0x191838
 
 UnknownScript_0x191844: ; 0x191844
 	keeptextopen
-	2writetext UnknownText_0x191c5a
+	writetext UnknownText_0x191c5a
 	keeptextopen
 	waitbutton
 	giveitem LOST_ITEM, $1
 	iffalse UnknownScript_0x191865
 	disappear $6
-	2writetext UnknownText_0x191d0a
+	writetext UnknownText_0x191d0a
 	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
@@ -89,14 +89,14 @@ UnknownScript_0x191844: ; 0x191844
 ; 0x19185f
 
 UnknownScript_0x19185f: ; 0x19185f
-	2writetext UnknownText_0x191d1e
+	writetext UnknownText_0x191d1e
 	closetext
 	loadmovesprites
 	end
 ; 0x191865
 
 UnknownScript_0x191865: ; 0x191865
-	2writetext UnknownText_0x191d58
+	writetext UnknownText_0x191d58
 	closetext
 	loadmovesprites
 	end
@@ -112,7 +112,7 @@ FairyScript_0x19186e: ; 0x19186e
 
 OddishScript_0x191871: ; 0x191871
 	loadfont
-	2writetext UnknownText_0x191de9
+	writetext UnknownText_0x191de9
 	cry BAYLEEF
 	closetext
 	loadmovesprites

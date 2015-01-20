@@ -2368,23 +2368,23 @@ Function110f07: ; 110f07
 ; 110fad
 
 URIPrefix: ; 0x110fad
-	ascii "http://"
+	db "http://"
 URIPrefixEnd
 
 HTTPDownloadURL: ; 0x110fb4
-	ascii "gameboy.datacenter.ne.jp/cgb/download"
+	db "gameboy.datacenter.ne.jp/cgb/download"
 HTTPDownloadURLEnd
 
 HTTPUploadURL: ; 0x110fd9
-	ascii "gameboy.datacenter.ne.jp/cgb/upload"
+	db "gameboy.datacenter.ne.jp/cgb/upload"
 HTTPUploadURLEnd
 
 HTTPUtilityURL: ; 0x110ffc
-	ascii "gameboy.datacenter.ne.jp/cgb/utility"
+	db "gameboy.datacenter.ne.jp/cgb/utility"
 HTTPUtilityURLEnd
 
 HTTPRankingURL: ; 0x111020
-	ascii "gameboy.datacenter.ne.jp/cgb/ranking"
+	db "gameboy.datacenter.ne.jp/cgb/ranking"
 HTTPRankingURLEnd
 
 Function111044: ; 111044
@@ -4920,41 +4920,41 @@ Unknown_112089: ; 112089
 INCBIN "baserom.gbc", $112089, $11209e - $112089
 
 Unknown_11209e:
-	ascii "HELO ", $0
+	db "HELO ", 0
 Unknown_1120a4:
-	ascii "MAIL FROM:<", $0
+	db "MAIL FROM:<", 0
 Unknown_1120b0:
-	ascii "RCPT TO:<", $0
+	db "RCPT TO:<", 0
 Unknown_1120ba:
-	ascii "DATA", $d, "\n", $0
+	db "DATA", $d, "\n", 0
 Unknown_1120c1:
-	ascii "QUIT", $d, "\n", $0
+	db "QUIT", $d, "\n", 0
 Unknown_1120c8:
-	ascii "USER ", $0
+	db "USER ", 0
 Unknown_1120ce:
-	ascii "PASS ", $0
+	db "PASS ", 0
 Unknown_1120d4:
-	ascii "STAT", $d, "\n", $0
+	db "STAT", $d, "\n", 0
 Unknown_1120db:
-	ascii "LIST 00000", $d, "\n", $0
+	db "LIST 00000", $d, "\n", 0
 Unknown_1120e8:
-	ascii "RETR 00000", $d, "\n", $0
+	db "RETR 00000", $d, "\n", 0
 Unknown_1120f5:
-	ascii "DELE 00000", $d, "\n", $0
+	db "DELE 00000", $d, "\n", 0
 Unknown_112102:
-	ascii "TOP 00000 0", $d, "\n", $0
+	db "TOP 00000 0", $d, "\n", 0
 Unknown_112110:
-	ascii "GET ", $0
+	db "GET ", 0
 Unknown_112115:
-	ascii " HTTP/1.0", $d, "\n", $0
+	db " HTTP/1.0", $d, "\n", 0
 Unknown_112121:
-	ascii "User-Agent: CGB-", $0
+	db "User-Agent: CGB-", 0
 Unknown_112132:
-	ascii $d, "\n", $d, "\n", $0
+	db $d, "\n", $d, "\n", 0
 Unknown_112137:
-	ascii "POST ", $0
+	db "POST ", 0
 Unknown_11213d:
-	ascii "Content-Length: ", $0
+	db "Content-Length: ", 0
 ; 11214e
 
 Function11214e: ; 11214e (44:614e)
@@ -7308,7 +7308,7 @@ Function112fd5: ; 112fd5
 ; 113001
 
 Unknown_113001: ; 113001
-	ascii "date: ", $0
+	db "date: ", 0
 ; 113008
 
 Function113008: ; 113008
@@ -7802,17 +7802,17 @@ Function11329d: ; 11329d
 ; 1132a6
 
 Unknown_1132a6:
-	ascii "Gb-Status: ", $0
+	db "Gb-Status: ", 0
 Unknown_1132b2:
-	ascii "Gb-Auth-ID: ", $0
+	db "Gb-Auth-ID: ", 0
 Unknown_1132bf:
-	ascii "WWW-Authenticate: GB00 name=", $22, $0
+	db "WWW-Authenticate: GB00 name=", $22, 0
 Unknown_1132dd:
-	ascii "Content-Type: application/x-cgb", $d, "\n", $0
+	db "Content-Type: application/x-cgb", $d, "\n", 0
 Unknown_1132ff:
-	ascii "URI-header: ", $0
+	db "URI-header: ", 0
 Unknown_11330c:
-	ascii "Location: ", $0
+	db "Location: ", 0
 ; 113317
 
 Function113317: ; 113317
@@ -7865,7 +7865,7 @@ Function113317: ; 113317
 ; 113372
 
 Unknown_113372: ; 113372
-	ascii "Content-Length: 0", $d, "\n", $0
+	db "Content-Length: 0", $d, "\n", 0
 ; 113386
 
 Function113386: ; 113386
@@ -9017,7 +9017,7 @@ Function113a40: ; 113a40
 ; 113a55
 
 Unknown_113a55: ; 113a55
-	ascii "Authorization: GB00 name=", $22, $0
+	db "Authorization: GB00 name=", $22, 0
 ; 113a70
 
 INCBIN "baserom.gbc", $113a70, $113b70 - $113a70

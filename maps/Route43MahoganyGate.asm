@@ -11,14 +11,14 @@ OfficerScript_0x19ab0b: ; 0x19ab0b
 	loadfont
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19ab19
-	2writetext UnknownText_0x19ab1f
+	writetext UnknownText_0x19ab1f
 	closetext
 	loadmovesprites
 	end
 ; 0x19ab19
 
 UnknownScript_0x19ab19: ; 0x19ab19
-	2writetext UnknownText_0x19ab65
+	writetext UnknownText_0x19ab65
 	closetext
 	loadmovesprites
 	end

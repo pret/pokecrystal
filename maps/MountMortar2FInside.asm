@@ -29,7 +29,7 @@ TrainerSupernerdHugh: ; 0x7e0ca
 SupernerdHughScript: ; 0x7e0d6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7e10e
+	writetext UnknownText_0x7e10e
 	closetext
 	loadmovesprites
 	end

@@ -29,7 +29,7 @@ TrainerBird_keeperBoris: ; 0x1acf31
 Bird_keeperBorisScript: ; 0x1acf3d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1acfa5
+	writetext UnknownText_0x1acfa5
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerBird_keeperBob: ; 0x1acf45
 Bird_keeperBobScript: ; 0x1acf51
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad00d
+	writetext UnknownText_0x1ad00d
 	closetext
 	loadmovesprites
 	end

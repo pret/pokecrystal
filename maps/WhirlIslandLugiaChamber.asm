@@ -15,7 +15,7 @@ UnknownScript_0x18c504: ; 0x18c504
 	iftrue UnknownScript_0x18c515
 	checkitem SILVER_WING
 	iftrue UnknownScript_0x18c512
-	2jump UnknownScript_0x18c515
+	jump UnknownScript_0x18c515
 ; 0x18c512
 
 UnknownScript_0x18c512: ; 0x18c512
@@ -31,7 +31,7 @@ UnknownScript_0x18c515: ; 0x18c515
 LugiaScript_0x18c518: ; 0x18c518
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x18c531
+	writetext UnknownText_0x18c531
 	cry LUGIA
 	pause 15
 	loadmovesprites

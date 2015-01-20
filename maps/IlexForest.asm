@@ -93,14 +93,14 @@ YoungsterScript_0x6eb7b: ; 0x6eb7b
 	loadfont
 	checkevent $0029
 	iftrue UnknownScript_0x6eb89
-	2writetext UnknownText_0x6ef5c
+	writetext UnknownText_0x6ef5c
 	closetext
 	loadmovesprites
 	end
 ; 0x6eb89
 
 UnknownScript_0x6eb89: ; 0x6eb89
-	2writetext UnknownText_0x6f019
+	writetext UnknownText_0x6f019
 	closetext
 	loadmovesprites
 	end
@@ -121,9 +121,9 @@ BirdScript_0x6eb8f: ; 0x6eb8f
 UnknownScript_0x6ebba: ; 0x6ebba
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x6f06f
+	writetext UnknownText_0x6f06f
 	keeptextopen
-	2writetext UnknownText_0x6f086
+	writetext UnknownText_0x6f086
 	cry FARFETCH_D
 	closetext
 	loadmovesprites
@@ -136,7 +136,7 @@ UnknownScript_0x6ebba: ; 0x6ebba
 ; 0x6ebd9
 
 UnknownScript_0x6ebd9: ; 0x6ebd9
-	2call UnknownScript_0x6eda1
+	scall UnknownScript_0x6eda1
 	if_equal $0, UnknownScript_0x6ebf1
 	applymovement $2, MovementData_0x6ee95
 	moveperson $2, $14, $18
@@ -156,7 +156,7 @@ UnknownScript_0x6ebf1: ; 0x6ebf1
 ; 0x6ec02
 
 UnknownScript_0x6ec02: ; 0x6ec02
-	2call UnknownScript_0x6eda1
+	scall UnknownScript_0x6eda1
 	if_equal $2, UnknownScript_0x6ec1a
 	applymovement $2, MovementData_0x6eea4
 	moveperson $2, $1d, $16
@@ -176,7 +176,7 @@ UnknownScript_0x6ec1a: ; 0x6ec1a
 ; 0x6ec2b
 
 UnknownScript_0x6ec2b: ; 0x6ec2b
-	2call UnknownScript_0x6eda1
+	scall UnknownScript_0x6eda1
 	if_equal $1, UnknownScript_0x6ec43
 	applymovement $2, MovementData_0x6eeb1
 	moveperson $2, $1c, $1f
@@ -196,7 +196,7 @@ UnknownScript_0x6ec43: ; 0x6ec43
 ; 0x6ec54
 
 UnknownScript_0x6ec54: ; 0x6ec54
-	2call UnknownScript_0x6eda1
+	scall UnknownScript_0x6eda1
 	if_equal $1, UnknownScript_0x6ec85
 	if_equal $2, UnknownScript_0x6ec74
 	if_equal $3, UnknownScript_0x6ec96
@@ -236,7 +236,7 @@ UnknownScript_0x6ec96: ; 0x6ec96
 ; 0x6eca7
 
 UnknownScript_0x6eca7: ; 0x6eca7
-	2call UnknownScript_0x6eda1
+	scall UnknownScript_0x6eda1
 	if_equal $3, UnknownScript_0x6ecbf
 	applymovement $2, MovementData_0x6eee6
 	moveperson $2, $16, $1f
@@ -256,7 +256,7 @@ UnknownScript_0x6ecbf: ; 0x6ecbf
 ; 0x6ecd0
 
 UnknownScript_0x6ecd0: ; 0x6ecd0
-	2call UnknownScript_0x6eda1
+	scall UnknownScript_0x6eda1
 	if_equal $0, UnknownScript_0x6ecfd
 	if_equal $2, UnknownScript_0x6ecec
 	applymovement $2, MovementData_0x6eef8
@@ -286,7 +286,7 @@ UnknownScript_0x6ecfd: ; 0x6ecfd
 ; 0x6ed0e
 
 UnknownScript_0x6ed0e: ; 0x6ed0e
-	2call UnknownScript_0x6eda1
+	scall UnknownScript_0x6eda1
 	if_equal $1, UnknownScript_0x6ed3f
 	if_equal $2, UnknownScript_0x6ed3f
 	if_equal $3, UnknownScript_0x6ed2e
@@ -317,7 +317,7 @@ UnknownScript_0x6ed3f: ; 0x6ed3f
 ; 0x6ed50
 
 UnknownScript_0x6ed50: ; 0x6ed50
-	2call UnknownScript_0x6eda1
+	scall UnknownScript_0x6eda1
 	if_equal $0, UnknownScript_0x6ed85
 	if_equal $3, UnknownScript_0x6ed74
 	applymovement $2, MovementData_0x6ef23
@@ -352,7 +352,7 @@ UnknownScript_0x6ed85: ; 0x6ed85
 UnknownScript_0x6ed96: ; 0x6ed96
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x6f086
+	writetext UnknownText_0x6f086
 	cry FARFETCH_D
 	closetext
 	loadmovesprites
@@ -362,7 +362,7 @@ UnknownScript_0x6ed96: ; 0x6ed96
 UnknownScript_0x6eda1: ; 0x6eda1
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x6f086
+	writetext UnknownText_0x6f086
 	cry FARFETCH_D
 	closetext
 	loadmovesprites
@@ -375,11 +375,11 @@ BlackBeltScript_0x6edae: ; 0x6edae
 	loadfont
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x6edd8
-	2writetext UnknownText_0x6f099
+	writetext UnknownText_0x6f099
 	keeptextopen
 	verbosegiveitem HM_01, 1
 	setevent EVENT_GOT_HM01_CUT
-	2writetext UnknownText_0x6f141
+	writetext UnknownText_0x6f141
 	closetext
 	loadmovesprites
 	setevent $06e9
@@ -392,7 +392,7 @@ BlackBeltScript_0x6edae: ; 0x6edae
 ; 0x6edd8
 
 UnknownScript_0x6edd8: ; 0x6edd8
-	2writetext UnknownText_0x6f1c0
+	writetext UnknownText_0x6f1c0
 	closetext
 	loadmovesprites
 	end
@@ -403,13 +403,13 @@ RockerScript_0x6edde: ; 0x6edde
 	loadfont
 	checkevent EVENT_GOT_TM02_HEADBUTT
 	iftrue UnknownScript_0x6edf3
-	2writetext UnknownText_0x6f21b
+	writetext UnknownText_0x6f21b
 	keeptextopen
 	verbosegiveitem TM_02, 1
 	iffalse UnknownScript_0x6edf7
 	setevent EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3: ; 0x6edf3
-	2writetext UnknownText_0x6f26d
+	writetext UnknownText_0x6f26d
 	closetext
 UnknownScript_0x6edf7: ; 0x6edf7
 	loadmovesprites
@@ -439,7 +439,7 @@ TrainerBug_catcherWayne: ; 0x6edf9
 Bug_catcherWayneScript: ; 0x6ee05
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6f571
+	writetext UnknownText_0x6f571
 	closetext
 	loadmovesprites
 	end
@@ -493,7 +493,7 @@ MapIlexForestSignpost0Script: ; 0x6ee24
 MapIlexForestSignpost4Script: ; 0x6ee27
 	checkevent $00c0
 	iftrue UnknownScript_0x6ee30
-	2jump UnknownScript_0x6ee35
+	jump UnknownScript_0x6ee35
 ; 0x6ee30
 
 UnknownScript_0x6ee30: ; 0x6ee30
@@ -505,7 +505,7 @@ UnknownScript_0x6ee35: ; 0x6ee35
 
 UnknownScript_0x6ee38: ; 0x6ee38
 	loadfont
-	2writetext UnknownText_0x6f394
+	writetext UnknownText_0x6f394
 	yesorno
 	iftrue UnknownScript_0x6ee42
 	loadmovesprites
@@ -518,7 +518,7 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	setevent $07a4
 	disappear $8
 	clearevent $06eb
-	2writetext UnknownText_0x6f43b
+	writetext UnknownText_0x6f43b
 	closetext
 	loadmovesprites
 	pause 20
@@ -539,7 +539,7 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	appear $7
 	applymovement $7, MovementData_0x6ef4e
 	loadfont
-	2writetext UnknownText_0x6f452
+	writetext UnknownText_0x6f452
 	closetext
 	loadmovesprites
 	applymovement $7, MovementData_0x6ef53

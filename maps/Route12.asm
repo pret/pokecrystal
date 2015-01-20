@@ -29,7 +29,7 @@ TrainerFisherKyle: ; 0x1a6fb5
 FisherKyleScript: ; 0x1a6fc1
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a7238
+	writetext UnknownText_0x1a7238
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerFisherMartin: ; 0x1a6fc9
 FisherMartinScript: ; 0x1a6fd5
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a704c
+	writetext UnknownText_0x1a704c
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerFisherStephen: ; 0x1a6fdd
 FisherStephenScript: ; 0x1a6fe9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a70d4
+	writetext UnknownText_0x1a70d4
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerFisherBarney: ; 0x1a6ff1
 FisherBarneyScript: ; 0x1a6ffd
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a716d
+	writetext UnknownText_0x1a716d
 	closetext
 	loadmovesprites
 	end

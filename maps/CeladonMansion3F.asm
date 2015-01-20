@@ -9,7 +9,7 @@ CeladonMansion3F_MapScriptHeader: ; 0x7166e
 CooltrainerMScript_0x71670: ; 0x71670
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x716ce
+	writetext UnknownText_0x716ce
 	checkcode $5
 	if_greater_than $f8, UnknownScript_0x7167e
 	closetext
@@ -19,13 +19,13 @@ CooltrainerMScript_0x71670: ; 0x71670
 
 UnknownScript_0x7167e: ; 0x7167e
 	keeptextopen
-	2writetext UnknownText_0x71725
+	writetext UnknownText_0x71725
 	playsound SFX_DEX_FANFARE_230_PLUS
 	waitbutton
-	2writetext UnknownText_0x71760
+	writetext UnknownText_0x71760
 	keeptextopen
 	special $006b
-	2writetext UnknownText_0x71763
+	writetext UnknownText_0x71763
 	closetext
 	loadmovesprites
 	setevent EVENT_ENABLE_DIPLOMA_PRINTING
@@ -37,14 +37,14 @@ GymGuyScript_0x71696: ; 0x71696
 	loadfont
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue UnknownScript_0x716a4
-	2writetext UnknownText_0x717b4
+	writetext UnknownText_0x717b4
 	closetext
 	loadmovesprites
 	end
 ; 0x716a4
 
 UnknownScript_0x716a4: ; 0x716a4
-	2writetext UnknownText_0x717d8
+	writetext UnknownText_0x717d8
 	yesorno
 	iffalse UnknownScript_0x716b0
 	special $006c
@@ -53,14 +53,14 @@ UnknownScript_0x716a4: ; 0x716a4
 ; 0x716b0
 
 UnknownScript_0x716b0: ; 0x716b0
-	2writetext UnknownText_0x71830
+	writetext UnknownText_0x71830
 	closetext
 	loadmovesprites
 	end
 ; 0x716b6
 
 UnknownScript_0x716b6: ; 0x716b6
-	2writetext UnknownText_0x71863
+	writetext UnknownText_0x71863
 	closetext
 	loadmovesprites
 	end

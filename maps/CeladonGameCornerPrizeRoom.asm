@@ -17,11 +17,11 @@ PharmacistScript_0x726ec: ; 0x726ec
 MapCeladonGameCornerPrizeRoomSignpost0Script: ; 0x726ef
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x7293e
+	writetext UnknownText_0x7293e
 	closetext
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7278a
-	2writetext UnknownText_0x72974
+	writetext UnknownText_0x72974
 UnknownScript_0x726fd: ; 0x726fd
 	special $004f
 	loadmenudata MenuDataHeader_0x72790
@@ -30,47 +30,47 @@ UnknownScript_0x726fd: ; 0x726fd
 	if_equal $1, UnknownScript_0x72714
 	if_equal $2, UnknownScript_0x72730
 	if_equal $3, UnknownScript_0x7274c
-	2jump UnknownScript_0x72784
+	jump UnknownScript_0x72784
 ; 0x72714
 
 UnknownScript_0x72714: ; 0x72714
 	checkcoins 1500
 	if_equal $2, UnknownScript_0x72778
 	itemtotext TM_32, $0
-	2call UnknownScript_0x72768
+	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	giveitem TM_32, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 1500
-	2jump UnknownScript_0x7276d
+	jump UnknownScript_0x7276d
 ; 0x72730
 
 UnknownScript_0x72730: ; 0x72730
 	checkcoins 3500
 	if_equal $2, UnknownScript_0x72778
 	itemtotext TM_29, $0
-	2call UnknownScript_0x72768
+	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	giveitem TM_29, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 3500
-	2jump UnknownScript_0x7276d
+	jump UnknownScript_0x7276d
 ; 0x7274c
 
 UnknownScript_0x7274c: ; 0x7274c
 	checkcoins 7500
 	if_equal $2, UnknownScript_0x72778
 	itemtotext TM_15, $0
-	2call UnknownScript_0x72768
+	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	giveitem TM_15, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 7500
-	2jump UnknownScript_0x7276d
+	jump UnknownScript_0x7276d
 ; 0x72768
 
 UnknownScript_0x72768: ; 0x72768
-	2writetext UnknownText_0x72991
+	writetext UnknownText_0x72991
 	yesorno
 	end
 ; 0x7276d
@@ -78,34 +78,34 @@ UnknownScript_0x72768: ; 0x72768
 UnknownScript_0x7276d: ; 0x7276d
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x729ad
+	writetext UnknownText_0x729ad
 	closetext
-	2jump UnknownScript_0x726fd
+	jump UnknownScript_0x726fd
 ; 0x72778
 
 UnknownScript_0x72778: ; 0x72778
-	2writetext UnknownText_0x729bb
+	writetext UnknownText_0x729bb
 	closetext
 	loadmovesprites
 	end
 ; 0x7277e
 
 UnknownScript_0x7277e: ; 0x7277e
-	2writetext UnknownText_0x729d8
+	writetext UnknownText_0x729d8
 	closetext
 	loadmovesprites
 	end
 ; 0x72784
 
 UnknownScript_0x72784: ; 0x72784
-	2writetext UnknownText_0x729f2
+	writetext UnknownText_0x729f2
 	closetext
 	loadmovesprites
 	end
 ; 0x7278a
 
 UnknownScript_0x7278a: ; 0x7278a
-	2writetext UnknownText_0x72a14
+	writetext UnknownText_0x72a14
 	closetext
 	loadmovesprites
 	end
@@ -133,12 +133,12 @@ MenuData2_0x72798: ; 0x72798
 MapCeladonGameCornerPrizeRoomSignpost1Script: ; 0x727c8
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x7293e
+	writetext UnknownText_0x7293e
 	closetext
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7278a
 UnknownScript_0x727d3: ; 0x727d3
-	2writetext UnknownText_0x72974
+	writetext UnknownText_0x72974
 	special $004f
 	loadmenudata MenuDataHeader_0x72877
 	interpretmenu2
@@ -146,7 +146,7 @@ UnknownScript_0x727d3: ; 0x727d3
 	if_equal $1, UnknownScript_0x727ed
 	if_equal $2, UnknownScript_0x7281b
 	if_equal $3, UnknownScript_0x72849
-	2jump UnknownScript_0x72784
+	jump UnknownScript_0x72784
 ; 0x727ed
 
 UnknownScript_0x727ed: ; 0x727ed
@@ -155,17 +155,17 @@ UnknownScript_0x727ed: ; 0x727ed
 	checkcode $1
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem PIKACHU, $0
-	2call UnknownScript_0x72768
+	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x729ad
+	writetext UnknownText_0x729ad
 	closetext
 	writebyte PIKACHU
 	special $0039
 	givepoke PIKACHU, 25, 0, 0
 	takecoins 2222
-	2jump UnknownScript_0x727d3
+	jump UnknownScript_0x727d3
 ; 0x7281b
 
 UnknownScript_0x7281b: ; 0x7281b
@@ -174,17 +174,17 @@ UnknownScript_0x7281b: ; 0x7281b
 	checkcode $1
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem PORYGON, $0
-	2call UnknownScript_0x72768
+	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x729ad
+	writetext UnknownText_0x729ad
 	closetext
 	writebyte PORYGON
 	special $0039
 	givepoke PORYGON, 15, 0, 0
 	takecoins 5555
-	2jump UnknownScript_0x727d3
+	jump UnknownScript_0x727d3
 ; 0x72849
 
 UnknownScript_0x72849: ; 0x72849
@@ -193,17 +193,17 @@ UnknownScript_0x72849: ; 0x72849
 	checkcode $1
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem LARVITAR, $0
-	2call UnknownScript_0x72768
+	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	waitbutton
 	playsound SFX_TRANSACTION
-	2writetext UnknownText_0x729ad
+	writetext UnknownText_0x729ad
 	closetext
 	writebyte LARVITAR
 	special $0039
 	givepoke LARVITAR, 40, 0, 0
 	takecoins 8888
-	2jump UnknownScript_0x727d3
+	jump UnknownScript_0x727d3
 ; 0x72877
 
 

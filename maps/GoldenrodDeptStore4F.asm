@@ -25,7 +25,7 @@ BugCatcherScript_0x55ef4: ; 0x55ef4
 GameboyKidScript_0x55ef7: ; 0x55ef7
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x55f74
+	writetext UnknownText_0x55f74
 	closetext
 	loadmovesprites
 	spriteface $5, $0

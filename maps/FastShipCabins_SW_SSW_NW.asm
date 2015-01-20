@@ -29,7 +29,7 @@ TrainerFirebreatherLyle: ; 0x75a4f
 FirebreatherLyleScript: ; 0x75a5b
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x75b52
+	writetext UnknownText_0x75b52
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerBug_catcherKen: ; 0x75a63
 Bug_catcherKenScript: ; 0x75a6f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x75bd5
+	writetext UnknownText_0x75bd5
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerBeautyCassie: ; 0x75a77
 BeautyCassieScript: ; 0x75a83
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x75c43
+	writetext UnknownText_0x75c43
 	closetext
 	loadmovesprites
 	end
@@ -118,7 +118,7 @@ GuitaristClydeScript: ; 0x75a97
 	special $00a0
 	iftrue UnknownScript_0x75aa5
 	loadfont
-	2writetext UnknownText_0x75d65
+	writetext UnknownText_0x75d65
 	closetext
 	loadmovesprites
 	end
@@ -126,7 +126,7 @@ GuitaristClydeScript: ; 0x75a97
 
 UnknownScript_0x75aa5: ; 0x75aa5
 	loadfont
-	2writetext UnknownText_0x75cfe
+	writetext UnknownText_0x75cfe
 	closetext
 	loadmovesprites
 	end
@@ -134,7 +134,7 @@ UnknownScript_0x75aa5: ; 0x75aa5
 
 MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	loadfont
-	2writetext UnknownText_0x75da4
+	writetext UnknownText_0x75da4
 	closetext
 	loadmovesprites
 	special $0030
@@ -146,7 +146,7 @@ MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	special $003d
 	special $0032
 	loadfont
-	2writetext UnknownText_0x75dc1
+	writetext UnknownText_0x75dc1
 	closetext
 	loadmovesprites
 	checkevent $0031
@@ -165,7 +165,7 @@ UnknownScript_0x75ae2: ; 0x75ae2
 	checkevent $002f
 	iftrue UnknownScript_0x75af7
 	loadfont
-	2writetext UnknownText_0x75e0f
+	writetext UnknownText_0x75e0f
 	closetext
 	loadmovesprites
 	setevent $0031
@@ -174,7 +174,7 @@ UnknownScript_0x75ae2: ; 0x75ae2
 
 UnknownScript_0x75af7: ; 0x75af7
 	loadfont
-	2writetext UnknownText_0x75dde
+	writetext UnknownText_0x75dde
 	closetext
 	loadmovesprites
 	setevent $0031

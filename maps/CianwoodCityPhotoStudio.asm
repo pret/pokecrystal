@@ -9,10 +9,10 @@ CianwoodCityPhotoStudio_MapScriptHeader: ; 0x9e0de
 FishingGuruScript_0x9e0e0: ; 0x9e0e0
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x9e0f9
+	writetext UnknownText_0x9e0f9
 	yesorno
 	iffalse UnknownScript_0x9e0f3
-	2writetext UnknownText_0x9e142
+	writetext UnknownText_0x9e142
 	closetext
 	special $0068
 	closetext
@@ -21,7 +21,7 @@ FishingGuruScript_0x9e0e0: ; 0x9e0e0
 ; 0x9e0f3
 
 UnknownScript_0x9e0f3: ; 0x9e0f3
-	2writetext UnknownText_0x9e156
+	writetext UnknownText_0x9e156
 	closetext
 	loadmovesprites
 	end

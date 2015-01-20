@@ -27,13 +27,13 @@ UnknownScript_0x60011: ; 0x60011
 	spriteface $2, $1
 	showemote $0, $2, 15
 	loadfont
-	2writetext UnknownText_0x60128
+	writetext UnknownText_0x60128
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x60109
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x60147
+	writetext UnknownText_0x60147
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x60223, $0000
@@ -42,7 +42,7 @@ UnknownScript_0x60011: ; 0x60011
 	startbattle
 	returnafterbattle
 	loadfont
-	2writetext UnknownText_0x60246
+	writetext UnknownText_0x60246
 	keeptextopen
 	verbosegiveitem BASEMENT_KEY, 1
 	loadmovesprites
@@ -56,14 +56,14 @@ GentlemanScript_0x60046: ; 0x60046
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x60054
-	2writetext UnknownText_0x60246
+	writetext UnknownText_0x60246
 	closetext
 	loadmovesprites
 	end
 ; 0x60054
 
 UnknownScript_0x60054: ; 0x60054
-	2writetext UnknownText_0x60824
+	writetext UnknownText_0x60824
 	closetext
 	loadmovesprites
 	end
@@ -92,7 +92,7 @@ TrainerExecutivef1: ; 0x6005a
 Executivef1Script: ; 0x60066
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x60358
+	writetext UnknownText_0x60358
 	closetext
 	loadmovesprites
 	end
@@ -103,7 +103,7 @@ UnknownScript_0x6006e: ; 0x6006e
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, $3
 	loadfont
-	2writetext UnknownText_0x603d1
+	writetext UnknownText_0x603d1
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x604f3, $0000
@@ -112,7 +112,7 @@ UnknownScript_0x6006e: ; 0x6006e
 	startbattle
 	returnafterbattle
 	loadfont
-	2writetext UnknownText_0x6050e
+	writetext UnknownText_0x6050e
 	closetext
 	loadmovesprites
 	special $0030
@@ -140,17 +140,17 @@ UnknownScript_0x6006e: ; 0x6006e
 	applymovement $2, MovementData_0x6010f
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x605b2
+	writetext UnknownText_0x605b2
 	keeptextopen
 	verbosegiveitem CLEAR_BELL, 1
-	2writetext UnknownText_0x6062c
+	writetext UnknownText_0x6062c
 	closetext
 	loadmovesprites
 	dotrigger $2
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent $0761
-	2jump UnknownScript_0x600f1
+	jump UnknownScript_0x600f1
 ; 0x600f1
 
 UnknownScript_0x600f1: ; 0x600f1

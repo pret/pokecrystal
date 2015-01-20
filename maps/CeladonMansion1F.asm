@@ -12,7 +12,7 @@ GrannyScript_0x713ef: ; 0x713ef
 
 GrowlitheScript_0x713f2: ; 0x713f2
 	loadfont
-	2writetext UnknownText_0x71470
+	writetext UnknownText_0x71470
 	cry MEOWTH
 	closetext
 	loadmovesprites
@@ -21,7 +21,7 @@ GrowlitheScript_0x713f2: ; 0x713f2
 
 ClefairyScript_0x713fc: ; 0x713fc
 	loadfont
-	2writetext UnknownText_0x7147f
+	writetext UnknownText_0x7147f
 	cry CLEFAIRY
 	closetext
 	loadmovesprites
@@ -30,7 +30,7 @@ ClefairyScript_0x713fc: ; 0x713fc
 
 GrowlitheScript_0x71406: ; 0x71406
 	loadfont
-	2writetext UnknownText_0x71496
+	writetext UnknownText_0x71496
 	cry NIDORAN_F
 	closetext
 	loadmovesprites

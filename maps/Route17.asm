@@ -39,7 +39,7 @@ TrainerBikerCharles: ; 0x1ad0b2
 BikerCharlesScript: ; 0x1ad0be
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad293
+	writetext UnknownText_0x1ad293
 	closetext
 	loadmovesprites
 	end
@@ -68,7 +68,7 @@ TrainerBikerRiley: ; 0x1ad0c6
 BikerRileyScript: ; 0x1ad0d2
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad13b
+	writetext UnknownText_0x1ad13b
 	closetext
 	loadmovesprites
 	end
@@ -97,7 +97,7 @@ TrainerBikerJoel: ; 0x1ad0da
 BikerJoelScript: ; 0x1ad0e6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad196
+	writetext UnknownText_0x1ad196
 	closetext
 	loadmovesprites
 	end
@@ -126,7 +126,7 @@ TrainerBikerGlenn: ; 0x1ad0ee
 BikerGlennScript: ; 0x1ad0fa
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad225
+	writetext UnknownText_0x1ad225
 	closetext
 	loadmovesprites
 	end

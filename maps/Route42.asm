@@ -63,26 +63,26 @@ FisherTully1Script: ; 0x1a923f
 	iftrue UnknownScript_0x1a92fd
 	checkevent $028f
 	iftrue UnknownScript_0x1a9268
-	2writetext UnknownText_0x1a93ab
+	writetext UnknownText_0x1a93ab
 	keeptextopen
 	setevent $028f
-	2call UnknownScript_0x1a92f1
-	2jump UnknownScript_0x1a926b
+	scall UnknownScript_0x1a92f1
+	jump UnknownScript_0x1a926b
 ; 0x1a9268
 
 UnknownScript_0x1a9268: ; 0x1a9268
-	2call UnknownScript_0x1a92f5
+	scall UnknownScript_0x1a92f5
 UnknownScript_0x1a926b: ; 0x1a926b
 	askforphonenumber $1d
 	if_equal $1, UnknownScript_0x1a9305
 	if_equal $2, UnknownScript_0x1a9301
 	trainertotext FISHER, TULLY1, $0
-	2call UnknownScript_0x1a92f9
-	2jump UnknownScript_0x1a92fd
+	scall UnknownScript_0x1a92f9
+	jump UnknownScript_0x1a92fd
 ; 0x1a927f
 
 UnknownScript_0x1a927f: ; 0x1a927f
-	2call UnknownScript_0x1a9309
+	scall UnknownScript_0x1a9309
 	winlosstext FisherTully1BeatenText, $0000
 	copybytetovar $da06
 	if_equal $3, UnknownScript_0x1a929a
@@ -134,16 +134,16 @@ UnknownScript_0x1a92d3: ; 0x1a92d3
 ; 0x1a92dc
 
 UnknownScript_0x1a92dc: ; 0x1a92dc
-	2call UnknownScript_0x1a930d
+	scall UnknownScript_0x1a930d
 	verbosegiveitem WATER_STONE, 1
 	iffalse UnknownScript_0x1a92ee
 	clearflag $0084
 	setevent $0103
-	2jump UnknownScript_0x1a92fd
+	jump UnknownScript_0x1a92fd
 ; 0x1a92ee
 
 UnknownScript_0x1a92ee: ; 0x1a92ee
-	2jump UnknownScript_0x1a9311
+	jump UnknownScript_0x1a9311
 ; 0x1a92f1
 
 UnknownScript_0x1a92f1: ; 0x1a92f1
@@ -214,7 +214,7 @@ TrainerPokemaniacShane: ; 0x1a9315
 PokemaniacShaneScript: ; 0x1a9321
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a94d6
+	writetext UnknownText_0x1a94d6
 	closetext
 	loadmovesprites
 	end
@@ -243,7 +243,7 @@ TrainerHikerBenjamin: ; 0x1a9329
 HikerBenjaminScript: ; 0x1a9335
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a943f
+	writetext UnknownText_0x1a943f
 	closetext
 	loadmovesprites
 	end

@@ -51,7 +51,7 @@ LanceScript_0x6dffc: ; 0x6dffc
 	pause 20
 	applymovement $2, MovementData_0x6e12a
 	loadfont
-	2writetext UnknownText_0x6e179
+	writetext UnknownText_0x6e179
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x6e12c
@@ -69,7 +69,7 @@ UnknownScript_0x6e019: ; 0x6e019
 	spriteface $0, $2
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x6e267
+	writetext UnknownText_0x6e267
 	closetext
 	loadmovesprites
 	playsound SFX_TACKLE
@@ -87,7 +87,7 @@ RocketScript_0x6e048: ; 0x6e048
 
 UnknownScript_0x6e04b: ; 0x6e04b
 	applymovement $0, MovementData_0x6e133
-	2jump UnknownScript_0x6e056
+	jump UnknownScript_0x6e056
 ; 0x6e052
 
 UnknownScript_0x6e052: ; 0x6e052
@@ -98,7 +98,7 @@ UnknownScript_0x6e056: ; 0x6e056
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, $0
 	loadfont
-	2writetext UnknownText_0x6e400
+	writetext UnknownText_0x6e400
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x6e142
@@ -109,7 +109,7 @@ UnknownScript_0x6e056: ; 0x6e056
 	returnafterbattle
 	setevent $0574
 	loadfont
-	2writetext UnknownText_0x6e548
+	writetext UnknownText_0x6e548
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x6e144
@@ -122,7 +122,7 @@ UnknownScript_0x6e056: ; 0x6e056
 
 MoltresScript_0x6e091: ; 0x6e091
 	loadfont
-	2writetext UnknownText_0x6e585
+	writetext UnknownText_0x6e585
 	closetext
 	loadmovesprites
 	setevent EVENT_LEARNED_HAIL_GIOVANNI
@@ -152,7 +152,7 @@ TrainerGruntF5: ; 0x6e09b
 GruntF5Script: ; 0x6e0a7
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6e611
+	writetext UnknownText_0x6e611
 	closetext
 	loadmovesprites
 	setevent $0301
@@ -182,7 +182,7 @@ TrainerGruntM28: ; 0x6e0b2
 GruntM28Script: ; 0x6e0be
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6e737
+	writetext UnknownText_0x6e737
 	closetext
 	loadmovesprites
 	setevent $0302
@@ -212,7 +212,7 @@ TrainerScientistRoss: ; 0x6e0c9
 ScientistRossScript: ; 0x6e0d5
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6e822
+	writetext UnknownText_0x6e822
 	closetext
 	loadmovesprites
 	end
@@ -241,7 +241,7 @@ TrainerScientistMitch: ; 0x6e0dd
 ScientistMitchScript: ; 0x6e0e9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6e90a
+	writetext UnknownText_0x6e90a
 	closetext
 	loadmovesprites
 	end
@@ -259,18 +259,18 @@ MapTeamRocketBaseB3FSignpost1Script: ; 0x6e0f5
 	iffalse UnknownScript_0x6e105
 	checkevent $0302
 	iffalse UnknownScript_0x6e105
-	2jump UnknownScript_0x6e10b
+	jump UnknownScript_0x6e10b
 ; 0x6e105
 
 UnknownScript_0x6e105: ; 0x6e105
-	2writetext UnknownText_0x6e970
+	writetext UnknownText_0x6e970
 	closetext
 	loadmovesprites
 	end
 ; 0x6e10b
 
 UnknownScript_0x6e10b: ; 0x6e10b
-	2writetext UnknownText_0x6e9a3
+	writetext UnknownText_0x6e9a3
 	closetext
 	playsound SFX_ENTER_DOOR
 	changeblock $a, $8, $7

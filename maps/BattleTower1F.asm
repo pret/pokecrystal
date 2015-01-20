@@ -21,7 +21,7 @@ UnknownScript_0x9e39d: ; 0x9e39d
 	if_equal $3, UnknownScript_0x9e3d1
 	if_equal $4, UnknownScript_0x9e3d1
 	loadfont
-	2writetext UnknownText_0x9f037
+	writetext UnknownText_0x9f037
 	closetext
 	loadmovesprites
 	priorityjump UnknownScript_0x9e44e
@@ -45,10 +45,10 @@ UnknownScript_0x9e3d3: ; 0x9e3d3
 
 MapBattleTower1FSignpost0Script: ; 0x9e3d4
 	loadfont
-	2writetext UnknownText_0x9ed3c
+	writetext UnknownText_0x9ed3c
 	yesorno
 	iffalse UnknownScript_0x9e3e0
-	2writetext UnknownText_0x9ed72
+	writetext UnknownText_0x9ed72
 	closetext
 UnknownScript_0x9e3e0: ; 0x9e3e0
 	loadmovesprites
@@ -60,21 +60,21 @@ ReceptionistScript_0x9e3e2: ; 0x9e3e2
 	special $0086
 	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
 	loadfont
-	2writetext UnknownText_0x9e5ab
+	writetext UnknownText_0x9e5ab
 	keeptextopen
 	writebyte $0
 	special $0086
 	if_not_equal $0, UnknownScript_0x9e3fc
-	2jump UnknownScript_0x9e49e
+	jump UnknownScript_0x9e49e
 ; 0x9e3fc
 
 UnknownScript_0x9e3fc: ; 0x9e3fc
-	2writetext UnknownText_0x9e5ea
+	writetext UnknownText_0x9e5ea
 	writebyte $1
 	special $0088
 	if_equal $1, UnknownScript_0x9e40f
 	if_equal $2, UnknownScript_0x9e4a5
-	2jump UnknownScript_0x9e4b0
+	jump UnknownScript_0x9e4b0
 ; 0x9e40f
 
 UnknownScript_0x9e40f: ; 0x9e40f
@@ -82,7 +82,7 @@ UnknownScript_0x9e40f: ; 0x9e40f
 	special $0086
 	special $007c
 	if_not_equal $0, UnknownScript_0x9e4bb
-	2writetext UnknownText_0x9ef1f
+	writetext UnknownText_0x9ef1f
 	yesorno
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $0
@@ -96,12 +96,12 @@ UnknownScript_0x9e40f: ; 0x9e40f
 	if_not_equal $0, UnknownScript_0x9e550
 	writebyte $11
 	special $0086
-	2writetext UnknownText_0x9e60a
+	writetext UnknownText_0x9e60a
 	closetext
 	loadmovesprites
 	writebyte $1e
 	special $0086
-	2jump UnknownScript_0x9e454
+	jump UnknownScript_0x9e454
 ; 0x9e44e
 
 UnknownScript_0x9e44e: ; 0x9e44e
@@ -133,7 +133,7 @@ UnknownScript_0x9e47a: ; 0x9e47a
 	if_equal $12, UnknownScript_0x9e498
 	itemtotext $0, $1
 	giveitem $ff, $5
-	2writetext UnknownText_0x9eb7e
+	writetext UnknownText_0x9eb7e
 	writebyte $1d
 	special $0086
 	loadmovesprites
@@ -141,26 +141,26 @@ UnknownScript_0x9e47a: ; 0x9e47a
 ; 0x9e498
 
 UnknownScript_0x9e498: ; 0x9e498
-	2writetext UnknownText_0x9eb94
+	writetext UnknownText_0x9eb94
 	closetext
 	loadmovesprites
 	end
 ; 0x9e49e
 
 UnknownScript_0x9e49e: ; 0x9e49e
-	2writetext UnknownText_0x9ec3d
+	writetext UnknownText_0x9ec3d
 	yesorno
 	iffalse UnknownScript_0x9e4a8
 UnknownScript_0x9e4a5: ; 0x9e4a5
-	2writetext UnknownText_0x9e886
+	writetext UnknownText_0x9e886
 UnknownScript_0x9e4a8: ; 0x9e4a8
 	writebyte $1
 	special $0086
-	2jump UnknownScript_0x9e3fc
+	jump UnknownScript_0x9e3fc
 ; 0x9e4b0
 
 UnknownScript_0x9e4b0: ; 0x9e4b0
-	2writetext UnknownText_0x9ec09
+	writetext UnknownText_0x9ec09
 	closetext
 	loadmovesprites
 	end
@@ -180,7 +180,7 @@ UnknownScript_0x9e4bb: ; 0x9e4bb
 
 
 UnknownScript_0x9e4be: ; 0x9e4be
-	2writetext UnknownText_0x9ef1f
+	writetext UnknownText_0x9ef1f
 	yesorno
 	iffalse UnknownScript_0x9e3fc
 	special $0004
@@ -190,9 +190,9 @@ UnknownScript_0x9e4be: ; 0x9e4be
 	special $0075
 	if_equal $a, UnknownScript_0x9e3fc
 	if_not_equal $0, UnknownScript_0x9e550
-	2writetext UnknownText_0x9e9eb
+	writetext UnknownText_0x9e9eb
 	spriteface $2, $2
-	2writetext UnknownText_0x9ea1b
+	writetext UnknownText_0x9ea1b
 	closetext
 	spriteface $2, $0
 	loadmovesprites
@@ -211,16 +211,16 @@ UnknownScript_0x9e4ea: ; 0x9e4ea
 	writebyte $5
 	special $0086
 	if_equal $0, UnknownScript_0x9e512
-	2writetext UnknownText_0x9ecb0
-	2jump UnknownScript_0x9e515
+	writetext UnknownText_0x9ecb0
+	jump UnknownScript_0x9e515
 ; 0x9e512
 
 UnknownScript_0x9e512: ; 0x9e512
-	2writetext UnknownText_0x9ec6d
+	writetext UnknownText_0x9ec6d
 UnknownScript_0x9e515: ; 0x9e515
 	yesorno
 	iffalse UnknownScript_0x9e3fc
-	2writetext UnknownText_0x9ef79
+	writetext UnknownText_0x9ef79
 	yesorno
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $0
@@ -231,27 +231,27 @@ UnknownScript_0x9e515: ; 0x9e515
 	special $0086
 	writebyte $12
 	special $0086
-	2writetext UnknownText_0x9e60a
+	writetext UnknownText_0x9e60a
 	closetext
-	2jump UnknownScript_0x9e44e
+	jump UnknownScript_0x9e44e
 ; 0x9e53b
 
 UnknownScript_0x9e53b: ; 0x9e53b
-	2writetext UnknownText_0x9f076
+	writetext UnknownText_0x9f076
 	closetext
-	2jump UnknownScript_0x9e4b0
+	jump UnknownScript_0x9e4b0
 ; 0x9e542
 
 UnknownScript_0x9e542: ; 0x9e542
-	2writetext UnknownText_0x9f1e5
+	writetext UnknownText_0x9f1e5
 	closetext
-	2jump UnknownScript_0x9e3fc
+	jump UnknownScript_0x9e3fc
 ; 0x9e549
 
 UnknownScript_0x9e549: ; 0x9e549
-	2writetext UnknownText_0x9f217
+	writetext UnknownText_0x9f217
 	closetext
-	2jump UnknownScript_0x9e3fc
+	jump UnknownScript_0x9e3fc
 ; 0x9e550
 
 UnknownScript_0x9e550: ; 0x9e550
@@ -262,15 +262,15 @@ UnknownScript_0x9e550: ; 0x9e550
 
 UnknownScript_0x9e555: ; 0x9e555
 	loadfont
-	2writetext UnknownText_0x9ee18
+	writetext UnknownText_0x9ee18
 	closetext
-	2jump UnknownScript_0x9e4b0
+	jump UnknownScript_0x9e4b0
 ; 0x9e55d
 
 YoungsterScript_0x9e55d: ; 0x9e55d
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x9f264
+	writetext UnknownText_0x9f264
 	closetext
 	loadmovesprites
 	spriteface $3, $3

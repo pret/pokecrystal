@@ -11,24 +11,24 @@ PharmacistScript_0x71afd: ; 0x71afd
 	loadfont
 	checkevent EVENT_GOT_TM03_CURSE
 	iftrue UnknownScript_0x71b21
-	2writetext UnknownText_0x71b27
+	writetext UnknownText_0x71b27
 	keeptextopen
 	checktime $4
 	iftrue UnknownScript_0x71b14
-	2writetext UnknownText_0x71b4a
+	writetext UnknownText_0x71b4a
 	closetext
 	loadmovesprites
 	end
 ; 0x71b14
 
 UnknownScript_0x71b14: ; 0x71b14
-	2writetext UnknownText_0x71ba3
+	writetext UnknownText_0x71ba3
 	keeptextopen
 	verbosegiveitem TM_03, 1
 	iffalse UnknownScript_0x71b25
 	setevent EVENT_GOT_TM03_CURSE
 UnknownScript_0x71b21: ; 0x71b21
-	2writetext UnknownText_0x71db3
+	writetext UnknownText_0x71db3
 	closetext
 UnknownScript_0x71b25: ; 0x71b25
 	loadmovesprites

@@ -25,18 +25,18 @@ UnknownScript_0x1883de: ; 0x1883de
 	applymovement $2, MovementData_0x1884eb
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x1884fb
+	writetext UnknownText_0x1884fb
 	closetext
 	loadmovesprites
 	showemote $0, $2, 15
 	applymovement $2, MovementData_0x1884f7
 	loadfont
-	2writetext UnknownText_0x188574
+	writetext UnknownText_0x188574
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x1884f5
 	loadfont
-	2writetext UnknownText_0x1885a5
+	writetext UnknownText_0x1885a5
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x1884e8
@@ -61,7 +61,7 @@ MistyScript_0x188432: ; 0x188432
 	loadfont
 	checkflag $0024
 	iftrue UnknownScript_0x188460
-	2writetext UnknownText_0x188674
+	writetext UnknownText_0x188674
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x18870c, $0000
@@ -73,12 +73,12 @@ MistyScript_0x188432: ; 0x188432
 	setevent EVENT_BEAT_SWIMMERF_BRIANA
 	setevent EVENT_BEAT_SWIMMERM_PARKER
 	loadfont
-	2writetext UnknownText_0x188768
+	writetext UnknownText_0x188768
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0024
 UnknownScript_0x188460: ; 0x188460
-	2writetext UnknownText_0x188782
+	writetext UnknownText_0x188782
 	closetext
 	loadmovesprites
 	end
@@ -107,7 +107,7 @@ TrainerSwimmerfDiana: ; 0x188466
 SwimmerfDianaScript: ; 0x188472
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x188856
+	writetext UnknownText_0x188856
 	closetext
 	loadmovesprites
 	end
@@ -136,7 +136,7 @@ TrainerSwimmerfBriana: ; 0x18847a
 SwimmerfBrianaScript: ; 0x188486
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1888c0
+	writetext UnknownText_0x1888c0
 	closetext
 	loadmovesprites
 	end
@@ -165,7 +165,7 @@ TrainerSwimmermParker: ; 0x18848e
 SwimmermParkerScript: ; 0x18849a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x188943
+	writetext UnknownText_0x188943
 	closetext
 	loadmovesprites
 	end
@@ -176,13 +176,13 @@ CeruleanGymGuyScript: ; 0x1884a2
 	loadfont
 	checkevent EVENT_BEAT_MISTY
 	iftrue .CeruleanGymGuyWinScript
-	2writetext CeruleanGymGuyText
+	writetext CeruleanGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .CeruleanGymGuyWinScript
-	2writetext CeruleanGymGuyWinText
+	writetext CeruleanGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -198,7 +198,7 @@ MapCeruleanGymSignpost1Script: ; 0x1884b9
 	checkevent $076f
 	iffalse UnknownScript_0x1884d3
 	loadfont
-	2writetext UnknownText_0x188610
+	writetext UnknownText_0x188610
 	closetext
 	loadmovesprites
 	end
@@ -208,7 +208,7 @@ MapCeruleanGymSignpost2Script: ; 0x1884c6
 	checkevent $076f
 	iffalse UnknownScript_0x1884d3
 	loadfont
-	2writetext UnknownText_0x188642
+	writetext UnknownText_0x188642
 	closetext
 	loadmovesprites
 	end

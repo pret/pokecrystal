@@ -20,14 +20,14 @@ CooltrainerMScript_0x184009: ; 0x184009
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x184017
-	2writetext UnknownText_0x1840bc
+	writetext UnknownText_0x1840bc
 	closetext
 	loadmovesprites
 	end
 ; 0x184017
 
 UnknownScript_0x184017: ; 0x184017
-	2writetext UnknownText_0x184144
+	writetext UnknownText_0x184144
 	closetext
 	loadmovesprites
 	end
@@ -39,7 +39,7 @@ SuperNerdScript_0x18401d: ; 0x18401d
 
 SlowpokeScript_0x184020: ; 0x184020
 	loadfont
-	2writetext UnknownText_0x1841e9
+	writetext UnknownText_0x1841e9
 	cry SLOWBRO
 	closetext
 	loadmovesprites
@@ -49,21 +49,21 @@ SlowpokeScript_0x184020: ; 0x184020
 CooltrainerFScript_0x18402a: ; 0x18402a
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x1841fa
+	writetext UnknownText_0x1841fa
 	closetext
 	loadmovesprites
 	spriteface $5, $2
 	loadfont
-	2writetext UnknownText_0x184229
+	writetext UnknownText_0x184229
 	closetext
 	loadmovesprites
 	loadfont
-	2writetext UnknownText_0x1841e9
+	writetext UnknownText_0x1841e9
 	cry SLOWBRO
 	closetext
 	loadmovesprites
 	loadfont
-	2writetext UnknownText_0x18424b
+	writetext UnknownText_0x18424b
 	closetext
 	loadmovesprites
 	end
@@ -77,14 +77,14 @@ FisherScript_0x18404a: ; 0x18404a
 	checkevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	iftrue UnknownScript_0x18405e
 UnknownScript_0x184058: ; 0x184058
-	2writetext UnknownText_0x18424e
+	writetext UnknownText_0x18424e
 	closetext
 	loadmovesprites
 	end
 ; 0x18405e
 
 UnknownScript_0x18405e: ; 0x18405e
-	2writetext UnknownText_0x184275
+	writetext UnknownText_0x184275
 	closetext
 	loadmovesprites
 	end
@@ -93,7 +93,7 @@ UnknownScript_0x18405e: ; 0x18405e
 YoungsterScript_0x184064: ; 0x184064
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x1842a9
+	writetext UnknownText_0x1842a9
 	closetext
 	loadmovesprites
 	checkevent $00fa
@@ -122,7 +122,7 @@ UnknownScript_0x184072: ; 0x184072
 	showemote $0, $7, 15
 	spriteface $7, $2
 	loadfont
-	2writetext UnknownText_0x1842ee
+	writetext UnknownText_0x1842ee
 	closetext
 	loadmovesprites
 	end

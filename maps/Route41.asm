@@ -29,7 +29,7 @@ TrainerSwimmerfKaylee: ; 0x1a6841
 SwimmerfKayleeScript: ; 0x1a684d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6c7f
+	writetext UnknownText_0x1a6c7f
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerSwimmerfSusie: ; 0x1a6855
 SwimmerfSusieScript: ; 0x1a6861
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6d11
+	writetext UnknownText_0x1a6d11
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerSwimmerfDenise: ; 0x1a6869
 SwimmerfDeniseScript: ; 0x1a6875
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6d79
+	writetext UnknownText_0x1a6d79
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerSwimmerfKara: ; 0x1a687d
 SwimmerfKaraScript: ; 0x1a6889
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6e58
+	writetext UnknownText_0x1a6e58
 	closetext
 	loadmovesprites
 	end
@@ -145,7 +145,7 @@ TrainerSwimmerfWendy: ; 0x1a6891
 SwimmerfWendyScript: ; 0x1a689d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6ec2
+	writetext UnknownText_0x1a6ec2
 	closetext
 	loadmovesprites
 	end
@@ -174,7 +174,7 @@ TrainerSwimmermCharlie: ; 0x1a68a5
 SwimmermCharlieScript: ; 0x1a68b1
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a696e
+	writetext UnknownText_0x1a696e
 	closetext
 	loadmovesprites
 	end
@@ -203,7 +203,7 @@ TrainerSwimmermGeorge: ; 0x1a68b9
 SwimmermGeorgeScript: ; 0x1a68c5
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a69d4
+	writetext UnknownText_0x1a69d4
 	closetext
 	loadmovesprites
 	end
@@ -232,7 +232,7 @@ TrainerSwimmermBerke: ; 0x1a68cd
 SwimmermBerkeScript: ; 0x1a68d9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6aa4
+	writetext UnknownText_0x1a6aa4
 	closetext
 	loadmovesprites
 	end
@@ -261,7 +261,7 @@ TrainerSwimmermKirk: ; 0x1a68e1
 SwimmermKirkScript: ; 0x1a68ed
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6b6c
+	writetext UnknownText_0x1a6b6c
 	closetext
 	loadmovesprites
 	end
@@ -290,7 +290,7 @@ TrainerSwimmermMathew: ; 0x1a68f5
 SwimmermMathewScript: ; 0x1a6901
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a6bed
+	writetext UnknownText_0x1a6bed
 	closetext
 	loadmovesprites
 	end

@@ -29,7 +29,7 @@ TrainerCooltrainermJake: ; 0x1a4d1f
 CooltrainermJakeScript: ; 0x1a4d2b
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a4f08
+	writetext UnknownText_0x1a4f08
 	closetext
 	loadmovesprites
 	end
@@ -65,26 +65,26 @@ CooltrainermGaven3Script: ; 0x1a4d3f
 	iftrue UnknownScript_0x1a4dcb
 	checkevent $026b
 	iftrue UnknownScript_0x1a4d62
-	2writetext UnknownText_0x1a4fe4
+	writetext UnknownText_0x1a4fe4
 	keeptextopen
 	setevent $026b
-	2call UnknownScript_0x1a4dbf
-	2jump UnknownScript_0x1a4d65
+	scall UnknownScript_0x1a4dbf
+	jump UnknownScript_0x1a4d65
 ; 0x1a4d62
 
 UnknownScript_0x1a4d62: ; 0x1a4d62
-	2call UnknownScript_0x1a4dc3
+	scall UnknownScript_0x1a4dc3
 UnknownScript_0x1a4d65: ; 0x1a4d65
 	askforphonenumber $b
 	if_equal $1, UnknownScript_0x1a4dd3
 	if_equal $2, UnknownScript_0x1a4dcf
 	trainertotext COOLTRAINERM, GAVEN3, $0
-	2call UnknownScript_0x1a4dc7
-	2jump UnknownScript_0x1a4dcb
+	scall UnknownScript_0x1a4dc7
+	jump UnknownScript_0x1a4dcb
 ; 0x1a4d79
 
 UnknownScript_0x1a4d79: ; 0x1a4d79
-	2call UnknownScript_0x1a4dd7
+	scall UnknownScript_0x1a4dd7
 	winlosstext CooltrainermGaven3BeatenText, $0000
 	copybytetovar $d9f5
 	if_equal $2, UnknownScript_0x1a4d90
@@ -180,7 +180,7 @@ TrainerCooltrainerfJoyce: ; 0x1a4ddb
 CooltrainerfJoyceScript: ; 0x1a4de7
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a50d7
+	writetext UnknownText_0x1a50d7
 	closetext
 	loadmovesprites
 	end
@@ -216,26 +216,26 @@ CooltrainerfBeth1Script: ; 0x1a4dfb
 	iftrue UnknownScript_0x1a4e87
 	checkevent $026d
 	iftrue UnknownScript_0x1a4e1e
-	2writetext UnknownText_0x1a51d9
+	writetext UnknownText_0x1a51d9
 	keeptextopen
 	setevent $026d
-	2call UnknownScript_0x1a4e7b
-	2jump UnknownScript_0x1a4e21
+	scall UnknownScript_0x1a4e7b
+	jump UnknownScript_0x1a4e21
 ; 0x1a4e1e
 
 UnknownScript_0x1a4e1e: ; 0x1a4e1e
-	2call UnknownScript_0x1a4e7f
+	scall UnknownScript_0x1a4e7f
 UnknownScript_0x1a4e21: ; 0x1a4e21
 	askforphonenumber $c
 	if_equal $1, UnknownScript_0x1a4e8f
 	if_equal $2, UnknownScript_0x1a4e8b
 	trainertotext COOLTRAINERF, BETH1, $0
-	2call UnknownScript_0x1a4e83
-	2jump UnknownScript_0x1a4e87
+	scall UnknownScript_0x1a4e83
+	jump UnknownScript_0x1a4e87
 ; 0x1a4e35
 
 UnknownScript_0x1a4e35: ; 0x1a4e35
-	2call UnknownScript_0x1a4e93
+	scall UnknownScript_0x1a4e93
 	winlosstext CooltrainerfBeth1BeatenText, $0000
 	copybytetovar $d9f6
 	if_equal $2, UnknownScript_0x1a4e4c
@@ -331,7 +331,7 @@ TrainerPsychicRichard: ; 0x1a4e97
 PsychicRichardScript: ; 0x1a4ea3
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a5278
+	writetext UnknownText_0x1a5278
 	closetext
 	loadmovesprites
 	end
@@ -360,7 +360,7 @@ TrainerFisherScott: ; 0x1a4eab
 FisherScottScript: ; 0x1a4eb7
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a5326
+	writetext UnknownText_0x1a5326
 	closetext
 	loadmovesprites
 	end

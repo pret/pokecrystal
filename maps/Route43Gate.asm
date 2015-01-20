@@ -52,23 +52,23 @@ UnknownScript_0x19abea: ; 0x19abea
 	showemote $0, $3, 15
 	applymovement $3, MovementData_0x19aca4
 	loadfont
-	2writetext UnknownText_0x19acd2
+	writetext UnknownText_0x19acd2
 	keeptextopen
 	checkmoney $0, 999
 	if_equal $0, UnknownScript_0x19ac12
-	2jump UnknownScript_0x19ac1d
+	jump UnknownScript_0x19ac1d
 ; 0x19ac12
 
 UnknownScript_0x19ac12: ; 0x19ac12
 	takemoney $0, 1000
-	2writetext UnknownText_0x19ad0a
-	2jump UnknownScript_0x19ac28
+	writetext UnknownText_0x19ad0a
+	jump UnknownScript_0x19ac28
 ; 0x19ac1d
 
 UnknownScript_0x19ac1d: ; 0x19ac1d
 	takemoney $0, 1000
-	2writetext UnknownText_0x19ad20
-	2jump UnknownScript_0x19ac28
+	writetext UnknownText_0x19ad20
+	jump UnknownScript_0x19ac28
 ; 0x19ac28
 
 UnknownScript_0x19ac28: ; 0x19ac28
@@ -88,23 +88,23 @@ UnknownScript_0x19ac38: ; 0x19ac38
 	showemote $0, $4, 15
 	applymovement $4, MovementData_0x19acc7
 	loadfont
-	2writetext UnknownText_0x19acd2
+	writetext UnknownText_0x19acd2
 	keeptextopen
 	checkmoney $0, 999
 	if_equal $0, UnknownScript_0x19ac5c
-	2jump UnknownScript_0x19ac67
+	jump UnknownScript_0x19ac67
 ; 0x19ac5c
 
 UnknownScript_0x19ac5c: ; 0x19ac5c
 	takemoney $0, 1000
-	2writetext UnknownText_0x19ad0a
-	2jump UnknownScript_0x19ac72
+	writetext UnknownText_0x19ad0a
+	jump UnknownScript_0x19ac72
 ; 0x19ac67
 
 UnknownScript_0x19ac67: ; 0x19ac67
 	takemoney $0, 1000
-	2writetext UnknownText_0x19ad20
-	2jump UnknownScript_0x19ac72
+	writetext UnknownText_0x19ad20
+	jump UnknownScript_0x19ac72
 ; 0x19ac72
 
 UnknownScript_0x19ac72: ; 0x19ac72
@@ -126,7 +126,7 @@ OfficerScript_0x19ac85: ; 0x19ac85
 	loadfont
 	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
 	iftrue UnknownScript_0x19ac9c
-	2writetext UnknownText_0x19ad9b
+	writetext UnknownText_0x19ad9b
 	keeptextopen
 	verbosegiveitem TM_36, 1
 	iffalse UnknownScript_0x19aca0
@@ -136,7 +136,7 @@ OfficerScript_0x19ac85: ; 0x19ac85
 ; 0x19ac9c
 
 UnknownScript_0x19ac9c: ; 0x19ac9c
-	2writetext UnknownText_0x19ae2d
+	writetext UnknownText_0x19ae2d
 	closetext
 UnknownScript_0x19aca0: ; 0x19aca0
 	loadmovesprites

@@ -9,7 +9,7 @@ CeladonCafe_MapScriptHeader: ; 0x73047
 SuperNerdScript_0x73049: ; 0x73049
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x730de
+	writetext UnknownText_0x730de
 	closetext
 	loadmovesprites
 	end
@@ -17,12 +17,12 @@ SuperNerdScript_0x73049: ; 0x73049
 
 FisherScript_0x73051: ; 0x73051
 	loadfont
-	2writetext UnknownText_0x73129
+	writetext UnknownText_0x73129
 	closetext
 	loadmovesprites
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x7313a
+	writetext UnknownText_0x7313a
 	closetext
 	loadmovesprites
 	spriteface $3, $2
@@ -31,12 +31,12 @@ FisherScript_0x73051: ; 0x73051
 
 FisherScript_0x73062: ; 0x73062
 	loadfont
-	2writetext UnknownText_0x7316a
+	writetext UnknownText_0x7316a
 	closetext
 	loadmovesprites
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x73178
+	writetext UnknownText_0x73178
 	closetext
 	loadmovesprites
 	spriteface $4, $3
@@ -45,12 +45,12 @@ FisherScript_0x73062: ; 0x73062
 
 FisherScript_0x73073: ; 0x73073
 	loadfont
-	2writetext UnknownText_0x731ae
+	writetext UnknownText_0x731ae
 	closetext
 	loadmovesprites
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x731bd
+	writetext UnknownText_0x731bd
 	closetext
 	loadmovesprites
 	spriteface $5, $3
@@ -61,12 +61,12 @@ TeacherScript_0x73084: ; 0x73084
 	checkitem COIN_CASE
 	iftrue UnknownScript_0x7309a
 	loadfont
-	2writetext UnknownText_0x73201
+	writetext UnknownText_0x73201
 	closetext
 	loadmovesprites
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x73212
+	writetext UnknownText_0x73212
 	closetext
 	loadmovesprites
 	spriteface $6, $2
@@ -75,12 +75,12 @@ TeacherScript_0x73084: ; 0x73084
 
 UnknownScript_0x7309a: ; 0x7309a
 	loadfont
-	2writetext UnknownText_0x73254
+	writetext UnknownText_0x73254
 	closetext
 	loadmovesprites
 	spriteface $6, $3
 	loadfont
-	2writetext UnknownText_0x73278
+	writetext UnknownText_0x73278
 	closetext
 	loadmovesprites
 	spriteface $6, $2
@@ -98,7 +98,7 @@ MapCeladonCafeSignpost1Script: ; 0x730b0
 	iffalse UnknownScript_0x730cd
 	loadfont
 	itemtotext LEFTOVERS, $0
-	2writetext UnknownText_0x732e7
+	writetext UnknownText_0x732e7
 	playsound SFX_ITEM
 	waitbutton
 	itemnotify
@@ -110,9 +110,9 @@ MapCeladonCafeSignpost1Script: ; 0x730b0
 UnknownScript_0x730cd: ; 0x730cd
 	loadfont
 	itemtotext LEFTOVERS, $0
-	2writetext UnknownText_0x732e7
+	writetext UnknownText_0x732e7
 	keeptextopen
-	2writetext UnknownText_0x732f7
+	writetext UnknownText_0x732f7
 	closetext
 	loadmovesprites
 	end

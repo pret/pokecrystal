@@ -54,7 +54,7 @@ KarenScript_0x180bee: ; 0x180bee
 	loadfont
 	checkevent EVENT_BEAT_ELITE_4_KAREN
 	iftrue UnknownScript_0x180c1c
-	2writetext UnknownText_0x180c27
+	writetext UnknownText_0x180c27
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x180cf8, $0000
@@ -63,7 +63,7 @@ KarenScript_0x180bee: ; 0x180bee
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
 	loadfont
-	2writetext UnknownText_0x180d29
+	writetext UnknownText_0x180d29
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
@@ -76,7 +76,7 @@ KarenScript_0x180bee: ; 0x180bee
 ; 0x180c1c
 
 UnknownScript_0x180c1c: ; 0x180c1c
-	2writetext UnknownText_0x180d29
+	writetext UnknownText_0x180d29
 	closetext
 	loadmovesprites
 	end

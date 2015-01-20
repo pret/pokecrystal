@@ -93,7 +93,7 @@ UnknownScript_0x7ca80: ; 0x7ca80
 	waitbutton
 	applymovement $c, MovementData_0x7ce87
 	spriteface $0, $3
-	2call UnknownScript_0x7cad4
+	scall UnknownScript_0x7cad4
 	applymovement $c, MovementData_0x7ce92
 	playsound SFX_EXIT_BUILDING
 	disappear $c
@@ -113,7 +113,7 @@ UnknownScript_0x7caaa: ; 0x7caaa
 	waitbutton
 	applymovement $c, MovementData_0x7ce8c
 	spriteface $0, $3
-	2call UnknownScript_0x7cad4
+	scall UnknownScript_0x7cad4
 	applymovement $c, MovementData_0x7ce97
 	playsound SFX_EXIT_BUILDING
 	disappear $c
@@ -131,7 +131,7 @@ UnknownScript_0x7cad4: ; 0x7cad4
 UnknownScript_0x7cae1: ; 0x7cae1
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
-	2writetext UnknownText_0x7ce9d
+	writetext UnknownText_0x7ce9d
 	closetext
 	loadmovesprites
 	setevent $06c1
@@ -145,7 +145,7 @@ UnknownScript_0x7cae1: ; 0x7cae1
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x7cb29
+	jump UnknownScript_0x7cb29
 ; 0x7cb09
 
 UnknownScript_0x7cb09: ; 0x7cb09
@@ -155,7 +155,7 @@ UnknownScript_0x7cb09: ; 0x7cb09
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x7cb29
+	jump UnknownScript_0x7cb29
 ; 0x7cb19
 
 UnknownScript_0x7cb19: ; 0x7cb19
@@ -165,13 +165,13 @@ UnknownScript_0x7cb19: ; 0x7cb19
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	2jump UnknownScript_0x7cb29
+	jump UnknownScript_0x7cb29
 ; 0x7cb29
 
 UnknownScript_0x7cb29: ; 0x7cb29
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
-	2writetext UnknownText_0x7cfc2
+	writetext UnknownText_0x7cfc2
 	closetext
 	loadmovesprites
 	end
@@ -200,7 +200,7 @@ TrainerGruntM11: ; 0x7cb33
 GruntM11Script: ; 0x7cb3f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7d290
+	writetext UnknownText_0x7d290
 	closetext
 	loadmovesprites
 	end
@@ -229,7 +229,7 @@ TrainerGruntM25: ; 0x7cb47
 GruntM25Script: ; 0x7cb53
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7d347
+	writetext UnknownText_0x7d347
 	closetext
 	loadmovesprites
 	end
@@ -258,7 +258,7 @@ TrainerBurglarDuncan: ; 0x7cb5b
 BurglarDuncanScript: ; 0x7cb67
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7d3cf
+	writetext UnknownText_0x7d3cf
 	closetext
 	loadmovesprites
 	end
@@ -287,7 +287,7 @@ TrainerBurglarEddie: ; 0x7cb6f
 BurglarEddieScript: ; 0x7cb7b
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7d45b
+	writetext UnknownText_0x7d45b
 	closetext
 	loadmovesprites
 	end
@@ -316,7 +316,7 @@ TrainerGruntM13: ; 0x7cb83
 GruntM13Script: ; 0x7cb8f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7d51f
+	writetext UnknownText_0x7d51f
 	closetext
 	loadmovesprites
 	end
@@ -345,7 +345,7 @@ TrainerGruntF3: ; 0x7cb97
 GruntF3Script: ; 0x7cba3
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7d5e6
+	writetext UnknownText_0x7d5e6
 	closetext
 	loadmovesprites
 	end
@@ -353,92 +353,92 @@ GruntF3Script: ; 0x7cba3
 
 MapUndergroundPathSwitchRoomEntrancesSignpost0Script: ; 0x7cbab
 	loadfont
-	2writetext UnknownText_0x7d554
+	writetext UnknownText_0x7d554
 	keeptextopen
 	checkevent EVENT_SWITCH_1
 	iftrue UnknownScript_0x7cbcb
-	2writetext UnknownText_0x7d617
+	writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	copybytetovar UndergroundSwitchPositions
 	addvar $1
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_1
-	2jump UnknownScript_0x7cc8d
+	jump UnknownScript_0x7cc8d
 ; 0x7cbcb
 
 UnknownScript_0x7cbcb: ; 0x7cbcb
-	2writetext UnknownText_0x7d62d
+	writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	copybytetovar UndergroundSwitchPositions
 	addvar -1
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_1
-	2jump UnknownScript_0x7cc8d
+	jump UnknownScript_0x7cc8d
 ; 0x7cbe0
 
 MapUndergroundPathSwitchRoomEntrancesSignpost1Script: ; 0x7cbe0
 	loadfont
-	2writetext UnknownText_0x7d643
+	writetext UnknownText_0x7d643
 	keeptextopen
 	checkevent EVENT_SWITCH_2
 	iftrue UnknownScript_0x7cc00
-	2writetext UnknownText_0x7d617
+	writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	copybytetovar UndergroundSwitchPositions
 	addvar $2
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_2
-	2jump UnknownScript_0x7cc8d
+	jump UnknownScript_0x7cc8d
 ; 0x7cc00
 
 UnknownScript_0x7cc00: ; 0x7cc00
-	2writetext UnknownText_0x7d62d
+	writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	copybytetovar UndergroundSwitchPositions
 	addvar -2
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_2
-	2jump UnknownScript_0x7cc8d
+	jump UnknownScript_0x7cc8d
 ; 0x7cc15
 
 MapUndergroundPathSwitchRoomEntrancesSignpost2Script: ; 0x7cc15
 	loadfont
-	2writetext UnknownText_0x7d65a
+	writetext UnknownText_0x7d65a
 	keeptextopen
 	checkevent EVENT_SWITCH_3
 	iftrue UnknownScript_0x7cc35
-	2writetext UnknownText_0x7d617
+	writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	copybytetovar UndergroundSwitchPositions
 	addvar $3
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_3
-	2jump UnknownScript_0x7cc8d
+	jump UnknownScript_0x7cc8d
 ; 0x7cc35
 
 UnknownScript_0x7cc35: ; 0x7cc35
-	2writetext UnknownText_0x7d62d
+	writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	copybytetovar UndergroundSwitchPositions
 	addvar -3
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_3
-	2jump UnknownScript_0x7cc8d
+	jump UnknownScript_0x7cc8d
 ; 0x7cc4a
 
 MapUndergroundPathSwitchRoomEntrancesSignpost3Script: ; 0x7cc4a
 	loadfont
-	2writetext UnknownText_0x7d671
+	writetext UnknownText_0x7d671
 	keeptextopen
 	checkevent EVENT_EMERGENCY_SWITCH
 	iftrue UnknownScript_0x7cc70
-	2writetext UnknownText_0x7d617
+	writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	writebyte $7
@@ -447,11 +447,11 @@ MapUndergroundPathSwitchRoomEntrancesSignpost3Script: ; 0x7cc4a
 	setevent EVENT_SWITCH_1
 	setevent EVENT_SWITCH_2
 	setevent EVENT_SWITCH_3
-	2jump UnknownScript_0x7cc8d
+	jump UnknownScript_0x7cc8d
 ; 0x7cc70
 
 UnknownScript_0x7cc70: ; 0x7cc70
-	2writetext UnknownText_0x7d62d
+	writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	writebyte $0
@@ -460,7 +460,7 @@ UnknownScript_0x7cc70: ; 0x7cc70
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3
-	2jump UnknownScript_0x7cc8d
+	jump UnknownScript_0x7cc8d
 ; 0x7cc8b
 
 UnknownScript_0x7cc8b: ; 0x7cc8b
@@ -480,17 +480,17 @@ UnknownScript_0x7cc8d: ; 0x7cc8d
 	if_equal $7, UnknownScript_0x7cd79
 UnknownScript_0x7ccb0: ; 0x7ccb0
 	playsound SFX_ENTER_DOOR
-	2call UnknownScript_0x7ce11
-	2call UnknownScript_0x7ce19
-	2call UnknownScript_0x7ce21
-	2call UnknownScript_0x7ce29
-	2call UnknownScript_0x7ce31
-	2call UnknownScript_0x7ce39
-	2call UnknownScript_0x7ce41
-	2call UnknownScript_0x7ce4d
-	2call UnknownScript_0x7ce59
-	2call UnknownScript_0x7ce65
-	2call UnknownScript_0x7ce71
+	scall UnknownScript_0x7ce11
+	scall UnknownScript_0x7ce19
+	scall UnknownScript_0x7ce21
+	scall UnknownScript_0x7ce29
+	scall UnknownScript_0x7ce31
+	scall UnknownScript_0x7ce39
+	scall UnknownScript_0x7ce41
+	scall UnknownScript_0x7ce4d
+	scall UnknownScript_0x7ce59
+	scall UnknownScript_0x7ce65
+	scall UnknownScript_0x7ce71
 	reloadmappart
 	loadmovesprites
 	end
@@ -498,13 +498,13 @@ UnknownScript_0x7ccb0: ; 0x7ccb0
 
 UnknownScript_0x7ccd7: ; 0x7ccd7
 	playsound SFX_ENTER_DOOR
-	2call UnknownScript_0x7cda5
-	2call UnknownScript_0x7cdd5
-	2call UnknownScript_0x7cdf9
-	2call UnknownScript_0x7ce39
-	2call UnknownScript_0x7ce4d
-	2call UnknownScript_0x7ce59
-	2call UnknownScript_0x7ce71
+	scall UnknownScript_0x7cda5
+	scall UnknownScript_0x7cdd5
+	scall UnknownScript_0x7cdf9
+	scall UnknownScript_0x7ce39
+	scall UnknownScript_0x7ce4d
+	scall UnknownScript_0x7ce59
+	scall UnknownScript_0x7ce71
 	reloadmappart
 	loadmovesprites
 	end
@@ -512,13 +512,13 @@ UnknownScript_0x7ccd7: ; 0x7ccd7
 
 UnknownScript_0x7ccf2: ; 0x7ccf2
 	playsound SFX_ENTER_DOOR
-	2call UnknownScript_0x7cdad
-	2call UnknownScript_0x7cde1
-	2call UnknownScript_0x7cded
-	2call UnknownScript_0x7ce31
-	2call UnknownScript_0x7ce41
-	2call UnknownScript_0x7ce65
-	2call UnknownScript_0x7ce71
+	scall UnknownScript_0x7cdad
+	scall UnknownScript_0x7cde1
+	scall UnknownScript_0x7cded
+	scall UnknownScript_0x7ce31
+	scall UnknownScript_0x7ce41
+	scall UnknownScript_0x7ce65
+	scall UnknownScript_0x7ce71
 	reloadmappart
 	loadmovesprites
 	end
@@ -526,13 +526,13 @@ UnknownScript_0x7ccf2: ; 0x7ccf2
 
 UnknownScript_0x7cd0d: ; 0x7cd0d
 	playsound SFX_ENTER_DOOR
-	2call UnknownScript_0x7cdb5
-	2call UnknownScript_0x7cdd5
-	2call UnknownScript_0x7cdf9
-	2call UnknownScript_0x7ce29
-	2call UnknownScript_0x7ce4d
-	2call UnknownScript_0x7ce59
-	2call UnknownScript_0x7ce71
+	scall UnknownScript_0x7cdb5
+	scall UnknownScript_0x7cdd5
+	scall UnknownScript_0x7cdf9
+	scall UnknownScript_0x7ce29
+	scall UnknownScript_0x7ce4d
+	scall UnknownScript_0x7ce59
+	scall UnknownScript_0x7ce71
 	reloadmappart
 	loadmovesprites
 	end
@@ -540,13 +540,13 @@ UnknownScript_0x7cd0d: ; 0x7cd0d
 
 UnknownScript_0x7cd28: ; 0x7cd28
 	playsound SFX_ENTER_DOOR
-	2call UnknownScript_0x7cdbd
-	2call UnknownScript_0x7cde1
-	2call UnknownScript_0x7cded
-	2call UnknownScript_0x7ce21
-	2call UnknownScript_0x7ce41
-	2call UnknownScript_0x7ce65
-	2call UnknownScript_0x7ce71
+	scall UnknownScript_0x7cdbd
+	scall UnknownScript_0x7cde1
+	scall UnknownScript_0x7cded
+	scall UnknownScript_0x7ce21
+	scall UnknownScript_0x7ce41
+	scall UnknownScript_0x7ce65
+	scall UnknownScript_0x7ce71
 	reloadmappart
 	loadmovesprites
 	end
@@ -554,13 +554,13 @@ UnknownScript_0x7cd28: ; 0x7cd28
 
 UnknownScript_0x7cd43: ; 0x7cd43
 	playsound SFX_ENTER_DOOR
-	2call UnknownScript_0x7cdc5
-	2call UnknownScript_0x7cdd5
-	2call UnknownScript_0x7cdf9
-	2call UnknownScript_0x7ce19
-	2call UnknownScript_0x7ce4d
-	2call UnknownScript_0x7ce59
-	2call UnknownScript_0x7ce71
+	scall UnknownScript_0x7cdc5
+	scall UnknownScript_0x7cdd5
+	scall UnknownScript_0x7cdf9
+	scall UnknownScript_0x7ce19
+	scall UnknownScript_0x7ce4d
+	scall UnknownScript_0x7ce59
+	scall UnknownScript_0x7ce71
 	reloadmappart
 	loadmovesprites
 	end
@@ -568,13 +568,13 @@ UnknownScript_0x7cd43: ; 0x7cd43
 
 UnknownScript_0x7cd5e: ; 0x7cd5e
 	playsound SFX_ENTER_DOOR
-	2call UnknownScript_0x7cdcd
-	2call UnknownScript_0x7cde1
-	2call UnknownScript_0x7cded
-	2call UnknownScript_0x7ce05
-	2call UnknownScript_0x7ce11
-	2call UnknownScript_0x7ce41
-	2call UnknownScript_0x7ce65
+	scall UnknownScript_0x7cdcd
+	scall UnknownScript_0x7cde1
+	scall UnknownScript_0x7cded
+	scall UnknownScript_0x7ce05
+	scall UnknownScript_0x7ce11
+	scall UnknownScript_0x7ce41
+	scall UnknownScript_0x7ce65
 	reloadmappart
 	loadmovesprites
 	end
@@ -582,17 +582,17 @@ UnknownScript_0x7cd5e: ; 0x7cd5e
 
 UnknownScript_0x7cd79: ; 0x7cd79
 	playsound SFX_ENTER_DOOR
-	2call UnknownScript_0x7ce11
-	2call UnknownScript_0x7ce19
-	2call UnknownScript_0x7cdb5
-	2call UnknownScript_0x7ce29
-	2call UnknownScript_0x7cdc5
-	2call UnknownScript_0x7cdcd
-	2call UnknownScript_0x7ce41
-	2call UnknownScript_0x7cde1
-	2call UnknownScript_0x7cded
-	2call UnknownScript_0x7ce65
-	2call UnknownScript_0x7ce05
+	scall UnknownScript_0x7ce11
+	scall UnknownScript_0x7ce19
+	scall UnknownScript_0x7cdb5
+	scall UnknownScript_0x7ce29
+	scall UnknownScript_0x7cdc5
+	scall UnknownScript_0x7cdcd
+	scall UnknownScript_0x7ce41
+	scall UnknownScript_0x7cde1
+	scall UnknownScript_0x7cded
+	scall UnknownScript_0x7ce65
+	scall UnknownScript_0x7ce05
 	reloadmappart
 	loadmovesprites
 	writebyte $6

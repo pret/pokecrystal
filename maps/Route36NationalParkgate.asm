@@ -69,15 +69,15 @@ UnknownScript_0x6ab47: ; 0x6ab47
 	checkcode $11
 	addvar $1
 	RAM2MEM $0
-	2writetext UnknownText_0x6b284
+	writetext UnknownText_0x6b284
 	yesorno
 	iffalse UnknownScript_0x6ab76
-	2writetext UnknownText_0x6b2c5
+	writetext UnknownText_0x6b2c5
 	closetext
 	loadmovesprites
 	special $0030
 	special $0033
-	2call UnknownScript_0x6ab8c
+	scall UnknownScript_0x6ab8c
 	disappear $2
 	appear $d
 	applymovement $0, MovementData_0x6add1
@@ -87,7 +87,7 @@ UnknownScript_0x6ab47: ; 0x6ab47
 ; 0x6ab76
 
 UnknownScript_0x6ab76: ; 0x6ab76
-	2writetext UnknownText_0x6b300
+	writetext UnknownText_0x6b300
 	closetext
 	loadmovesprites
 	spriteface $0, $2
@@ -153,8 +153,8 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	loadfont
 	checkflag $0051
 	iftrue UnknownScript_0x6ac91
-	2call UnknownScript_0x6ad02
-	2writetext UnknownText_0x6add5
+	scall UnknownScript_0x6ad02
+	writetext UnknownText_0x6add5
 	yesorno
 	iffalse UnknownScript_0x6ac73
 	checkcode $1
@@ -164,13 +164,13 @@ OfficerScript_0x6abe0: ; 0x6abe0
 UnknownScript_0x6ac10: ; 0x6ac10
 	setflag $0011
 	special $003c
-	2writetext UnknownText_0x6ae87
+	writetext UnknownText_0x6ae87
 	keeptextopen
 	waitbutton
-	2writetext UnknownText_0x6aeb1
+	writetext UnknownText_0x6aeb1
 	playsound SFX_ITEM
 	waitbutton
-	2writetext UnknownText_0x6aecc
+	writetext UnknownText_0x6aecc
 	closetext
 	loadmovesprites
 	setflag $0011
@@ -192,51 +192,51 @@ UnknownScript_0x6ac41: ; 0x6ac41
 UnknownScript_0x6ac4d: ; 0x6ac4d
 	special $005a
 	if_equal $1, UnknownScript_0x6ac8b
-	2writetext UnknownText_0x6afb0
+	writetext UnknownText_0x6afb0
 	yesorno
 	iffalse UnknownScript_0x6ac79
 	special $0016
 	iftrue UnknownScript_0x6ac7f
 	setevent $0308
-	2writetext UnknownText_0x6b021
+	writetext UnknownText_0x6b021
 	keeptextopen
-	2writetext UnknownText_0x6b055
+	writetext UnknownText_0x6b055
 	playsound SFX_GOT_SAFARI_BALLS
 	waitbutton
 	keeptextopen
-	2jump UnknownScript_0x6ac10
+	jump UnknownScript_0x6ac10
 ; 0x6ac73
 
 UnknownScript_0x6ac73: ; 0x6ac73
-	2writetext UnknownText_0x6b0c6
+	writetext UnknownText_0x6b0c6
 	closetext
 	loadmovesprites
 	end
 ; 0x6ac79
 
 UnknownScript_0x6ac79: ; 0x6ac79
-	2writetext UnknownText_0x6b081
+	writetext UnknownText_0x6b081
 	closetext
 	loadmovesprites
 	end
 ; 0x6ac7f
 
 UnknownScript_0x6ac7f: ; 0x6ac7f
-	2writetext UnknownText_0x6b0f2
+	writetext UnknownText_0x6b0f2
 	closetext
 	loadmovesprites
 	end
 ; 0x6ac85
 
 UnknownScript_0x6ac85: ; 0x6ac85
-	2writetext UnknownText_0x6b166
+	writetext UnknownText_0x6b166
 	closetext
 	loadmovesprites
 	end
 ; 0x6ac8b
 
 UnknownScript_0x6ac8b: ; 0x6ac8b
-	2writetext UnknownText_0x6b209
+	writetext UnknownText_0x6b209
 	closetext
 	loadmovesprites
 	end
@@ -251,14 +251,14 @@ UnknownScript_0x6ac91: ; 0x6ac91
 	iftrue UnknownScript_0x6accd
 	checkevent $0316
 	iftrue UnknownScript_0x6acdc
-	2writetext UnknownText_0x6b32b
+	writetext UnknownText_0x6b32b
 	closetext
 	loadmovesprites
 	end
 ; 0x6acaf
 
 UnknownScript_0x6acaf: ; 0x6acaf
-	2writetext UnknownText_0x6b97f
+	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem SUN_STONE, 1
 	iffalse UnknownScript_0x6aceb
@@ -268,7 +268,7 @@ UnknownScript_0x6acaf: ; 0x6acaf
 ; 0x6acbe
 
 UnknownScript_0x6acbe: ; 0x6acbe
-	2writetext UnknownText_0x6b97f
+	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x6aceb
@@ -278,7 +278,7 @@ UnknownScript_0x6acbe: ; 0x6acbe
 ; 0x6accd
 
 UnknownScript_0x6accd: ; 0x6accd
-	2writetext UnknownText_0x6b97f
+	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem GOLD_BERRY, 1
 	iffalse UnknownScript_0x6aceb
@@ -288,7 +288,7 @@ UnknownScript_0x6accd: ; 0x6accd
 ; 0x6acdc
 
 UnknownScript_0x6acdc: ; 0x6acdc
-	2writetext UnknownText_0x6b97f
+	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x6aceb
@@ -298,7 +298,7 @@ UnknownScript_0x6acdc: ; 0x6acdc
 ; 0x6aceb
 
 UnknownScript_0x6aceb: ; 0x6aceb
-	2writetext UnknownText_0x6b910
+	writetext UnknownText_0x6b910
 	closetext
 	loadmovesprites
 	end
@@ -313,7 +313,7 @@ OfficerScript_0x6acf4: ; 0x6acf4
 	loadfont
 	checkflag $0051
 	iftrue UnknownScript_0x6ac91
-	2writetext UnknownText_0x6b370
+	writetext UnknownText_0x6b370
 	closetext
 	loadmovesprites
 	end
@@ -329,14 +329,14 @@ YoungsterScript_0x6ad06: ; 0x6ad06
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6ad14
-	2writetext UnknownText_0x6b399
+	writetext UnknownText_0x6b399
 	closetext
 	loadmovesprites
 	end
 ; 0x6ad14
 
 UnknownScript_0x6ad14: ; 0x6ad14
-	2writetext UnknownText_0x6b3c4
+	writetext UnknownText_0x6b3c4
 	closetext
 	loadmovesprites
 	end
@@ -347,14 +347,14 @@ YoungsterScript_0x6ad1a: ; 0x6ad1a
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6ad28
-	2writetext UnknownText_0x6b40f
+	writetext UnknownText_0x6b40f
 	closetext
 	loadmovesprites
 	end
 ; 0x6ad28
 
 UnknownScript_0x6ad28: ; 0x6ad28
-	2writetext UnknownText_0x6b440
+	writetext UnknownText_0x6b440
 	closetext
 	loadmovesprites
 	end
@@ -365,14 +365,14 @@ RockerScript_0x6ad2e: ; 0x6ad2e
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6ad3c
-	2writetext UnknownText_0x6b462
+	writetext UnknownText_0x6b462
 	closetext
 	loadmovesprites
 	end
 ; 0x6ad3c
 
 UnknownScript_0x6ad3c: ; 0x6ad3c
-	2writetext UnknownText_0x6b496
+	writetext UnknownText_0x6b496
 	closetext
 	loadmovesprites
 	end
@@ -383,14 +383,14 @@ PokefanMScript_0x6ad42: ; 0x6ad42
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6ad50
-	2writetext UnknownText_0x6b4da
+	writetext UnknownText_0x6b4da
 	closetext
 	loadmovesprites
 	end
 ; 0x6ad50
 
 UnknownScript_0x6ad50: ; 0x6ad50
-	2writetext UnknownText_0x6b50a
+	writetext UnknownText_0x6b50a
 	closetext
 	loadmovesprites
 	end
@@ -401,14 +401,14 @@ YoungsterScript_0x6ad56: ; 0x6ad56
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6ad64
-	2writetext UnknownText_0x6b54e
+	writetext UnknownText_0x6b54e
 	closetext
 	loadmovesprites
 	end
 ; 0x6ad64
 
 UnknownScript_0x6ad64: ; 0x6ad64
-	2writetext UnknownText_0x6b57c
+	writetext UnknownText_0x6b57c
 	closetext
 	loadmovesprites
 	end
@@ -419,14 +419,14 @@ YoungsterScript_0x6ad6a: ; 0x6ad6a
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6ad78
-	2writetext UnknownText_0x6b5b0
+	writetext UnknownText_0x6b5b0
 	closetext
 	loadmovesprites
 	end
 ; 0x6ad78
 
 UnknownScript_0x6ad78: ; 0x6ad78
-	2writetext UnknownText_0x6b5dd
+	writetext UnknownText_0x6b5dd
 	closetext
 	loadmovesprites
 	end
@@ -437,14 +437,14 @@ LassScript_0x6ad7e: ; 0x6ad7e
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6ad8c
-	2writetext UnknownText_0x6b64b
+	writetext UnknownText_0x6b64b
 	closetext
 	loadmovesprites
 	end
 ; 0x6ad8c
 
 UnknownScript_0x6ad8c: ; 0x6ad8c
-	2writetext UnknownText_0x6b698
+	writetext UnknownText_0x6b698
 	closetext
 	loadmovesprites
 	end
@@ -455,14 +455,14 @@ YoungsterScript_0x6ad92: ; 0x6ad92
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6ada0
-	2writetext UnknownText_0x6b6b8
+	writetext UnknownText_0x6b6b8
 	closetext
 	loadmovesprites
 	end
 ; 0x6ada0
 
 UnknownScript_0x6ada0: ; 0x6ada0
-	2writetext UnknownText_0x6b6e9
+	writetext UnknownText_0x6b6e9
 	closetext
 	loadmovesprites
 	end
@@ -473,14 +473,14 @@ YoungsterScript_0x6ada6: ; 0x6ada6
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6adb4
-	2writetext UnknownText_0x6b71b
+	writetext UnknownText_0x6b71b
 	closetext
 	loadmovesprites
 	end
 ; 0x6adb4
 
 UnknownScript_0x6adb4: ; 0x6adb4
-	2writetext UnknownText_0x6b740
+	writetext UnknownText_0x6b740
 	closetext
 	loadmovesprites
 	end
@@ -491,14 +491,14 @@ YoungsterScript_0x6adba: ; 0x6adba
 	loadfont
 	checkevent $0000
 	iffalse UnknownScript_0x6adc8
-	2writetext UnknownText_0x6b76f
+	writetext UnknownText_0x6b76f
 	closetext
 	loadmovesprites
 	end
 ; 0x6adc8
 
 UnknownScript_0x6adc8: ; 0x6adc8
-	2writetext UnknownText_0x6b7af
+	writetext UnknownText_0x6b7af
 	closetext
 	loadmovesprites
 	end

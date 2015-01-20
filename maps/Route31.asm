@@ -53,26 +53,26 @@ Bug_catcherWade1Script: ; 0x1a5453
 	iftrue UnknownScript_0x1a5558
 	checkevent $0275
 	iftrue UnknownScript_0x1a547c
-	2writetext UnknownText_0x1a5671
+	writetext UnknownText_0x1a5671
 	closetext
 	setevent $0275
-	2call UnknownScript_0x1a554c
-	2jump UnknownScript_0x1a547f
+	scall UnknownScript_0x1a554c
+	jump UnknownScript_0x1a547f
 ; 0x1a547c
 
 UnknownScript_0x1a547c: ; 0x1a547c
-	2call UnknownScript_0x1a5550
+	scall UnknownScript_0x1a5550
 UnknownScript_0x1a547f: ; 0x1a547f
 	askforphonenumber $10
 	if_equal $1, UnknownScript_0x1a5560
 	if_equal $2, UnknownScript_0x1a555c
 	trainertotext BUG_CATCHER, WADE1, $0
-	2call UnknownScript_0x1a5554
-	2jump UnknownScript_0x1a5558
+	scall UnknownScript_0x1a5554
+	jump UnknownScript_0x1a5558
 ; 0x1a5493
 
 UnknownScript_0x1a5493: ; 0x1a5493
-	2call UnknownScript_0x1a5564
+	scall UnknownScript_0x1a5564
 	winlosstext Bug_catcherWade1BeatenText, $0000
 	copybytetovar $d9fa
 	if_equal $4, UnknownScript_0x1a54b2
@@ -137,7 +137,7 @@ UnknownScript_0x1a54fe: ; 0x1a54fe
 ; 0x1a5507
 
 UnknownScript_0x1a5507: ; 0x1a5507
-	2call UnknownScript_0x1a5568
+	scall UnknownScript_0x1a5568
 	checkevent EVENT_WADE_HAS_BERRY
 	iftrue UnknownScript_0x1a5522
 	checkevent EVENT_WADE_HAS_PSNCUREBERRY
@@ -149,19 +149,19 @@ UnknownScript_0x1a5507: ; 0x1a5507
 UnknownScript_0x1a5522: ; 0x1a5522
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x1a5549
-	2jump UnknownScript_0x1a5543
+	jump UnknownScript_0x1a5543
 ; 0x1a552b
 
 UnknownScript_0x1a552b: ; 0x1a552b
 	verbosegiveitem PSNCUREBERRY, 1
 	iffalse UnknownScript_0x1a5549
-	2jump UnknownScript_0x1a5543
+	jump UnknownScript_0x1a5543
 ; 0x1a5534
 
 UnknownScript_0x1a5534: ; 0x1a5534
 	verbosegiveitem PRZCUREBERRY, 1
 	iffalse UnknownScript_0x1a5549
-	2jump UnknownScript_0x1a5543
+	jump UnknownScript_0x1a5543
 ; 0x1a553d
 
 UnknownScript_0x1a553d: ; 0x1a553d
@@ -169,11 +169,11 @@ UnknownScript_0x1a553d: ; 0x1a553d
 	iffalse UnknownScript_0x1a5549
 UnknownScript_0x1a5543: ; 0x1a5543
 	clearflag $007f
-	2jump UnknownScript_0x1a5558
+	jump UnknownScript_0x1a5558
 ; 0x1a5549
 
 UnknownScript_0x1a5549: ; 0x1a5549
-	2jump UnknownScript_0x1a556c
+	jump UnknownScript_0x1a556c
 ; 0x1a554c
 
 UnknownScript_0x1a554c: ; 0x1a554c
@@ -228,30 +228,30 @@ FisherScript_0x1a5570: ; 0x1a5570
 	iftrue UnknownScript_0x1a55af
 	checkevent EVENT_GOT_KENYA
 	iftrue UnknownScript_0x1a5584
-	2writetext UnknownText_0x1a56d9
+	writetext UnknownText_0x1a56d9
 	closetext
 	loadmovesprites
 	end
 ; 0x1a5584
 
 UnknownScript_0x1a5584: ; 0x1a5584
-	2writetext UnknownText_0x1a5761
+	writetext UnknownText_0x1a5761
 	keeptextopen
 	checkpokeitem ReceivedSpearowMailText
 	if_equal $0, UnknownScript_0x1a55b5
 	if_equal $2, UnknownScript_0x1a55c1
 	if_equal $3, UnknownScript_0x1a55bb
 	if_equal $4, UnknownScript_0x1a55c7
-	2writetext UnknownText_0x1a5790
+	writetext UnknownText_0x1a5790
 	keeptextopen
-	2writetext UnknownText_0x1a57ba
+	writetext UnknownText_0x1a57ba
 	keeptextopen
 	setevent EVENT_GAVE_KENYA
 	verbosegiveitem TM_50, 1
 	iffalse UnknownScript_0x1a55b3
 	setevent EVENT_GOT_TM50_NIGHTMARE
 UnknownScript_0x1a55af: ; 0x1a55af
-	2writetext UnknownText_0x1a5896
+	writetext UnknownText_0x1a5896
 	closetext
 UnknownScript_0x1a55b3: ; 0x1a55b3
 	loadmovesprites
@@ -259,28 +259,28 @@ UnknownScript_0x1a55b3: ; 0x1a55b3
 ; 0x1a55b5
 
 UnknownScript_0x1a55b5: ; 0x1a55b5
-	2writetext UnknownText_0x1a5921
+	writetext UnknownText_0x1a5921
 	closetext
 	loadmovesprites
 	end
 ; 0x1a55bb
 
 UnknownScript_0x1a55bb: ; 0x1a55bb
-	2writetext UnknownText_0x1a5939
+	writetext UnknownText_0x1a5939
 	closetext
 	loadmovesprites
 	end
 ; 0x1a55c1
 
 UnknownScript_0x1a55c1: ; 0x1a55c1
-	2writetext UnknownText_0x1a5972
+	writetext UnknownText_0x1a5972
 	closetext
 	loadmovesprites
 	end
 ; 0x1a55c7
 
 UnknownScript_0x1a55c7: ; 0x1a55c7
-	2writetext UnknownText_0x1a5991
+	writetext UnknownText_0x1a5991
 	closetext
 	loadmovesprites
 	end

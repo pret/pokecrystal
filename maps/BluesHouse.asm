@@ -11,7 +11,7 @@ DaisyScript_0x19b0d0: ; 0x19b0d0
 	loadfont
 	checkcode $a
 	if_equal $f, UnknownScript_0x19b0de
-	2writetext UnknownText_0x19b130
+	writetext UnknownText_0x19b130
 	closetext
 	loadmovesprites
 	end
@@ -20,16 +20,16 @@ DaisyScript_0x19b0d0: ; 0x19b0d0
 UnknownScript_0x19b0de: ; 0x19b0de
 	checkflag $005c
 	iftrue UnknownScript_0x19b11e
-	2writetext UnknownText_0x19b1b6
+	writetext UnknownText_0x19b1b6
 	yesorno
 	iffalse UnknownScript_0x19b124
-	2writetext UnknownText_0x19b244
+	writetext UnknownText_0x19b244
 	closetext
 	special $0063
 	if_equal $0, UnknownScript_0x19b124
 	if_equal $1, UnknownScript_0x19b12a
 	setflag $005c
-	2writetext UnknownText_0x19b266
+	writetext UnknownText_0x19b266
 	closetext
 	loadmovesprites
 	special $002e
@@ -38,31 +38,31 @@ UnknownScript_0x19b0de: ; 0x19b0de
 	special $0031
 	special $003d
 	loadfont
-	2writetext UnknownText_0x19b296
+	writetext UnknownText_0x19b296
 	special $0064
 	keeptextopen
-	2writetext UnknownText_0x19b2aa
+	writetext UnknownText_0x19b2aa
 	closetext
 	loadmovesprites
 	end
 ; 0x19b11e
 
 UnknownScript_0x19b11e: ; 0x19b11e
-	2writetext UnknownText_0x19b2fa
+	writetext UnknownText_0x19b2fa
 	closetext
 	loadmovesprites
 	end
 ; 0x19b124
 
 UnknownScript_0x19b124: ; 0x19b124
-	2writetext UnknownText_0x19b334
+	writetext UnknownText_0x19b334
 	closetext
 	loadmovesprites
 	end
 ; 0x19b12a
 
 UnknownScript_0x19b12a: ; 0x19b12a
-	2writetext UnknownText_0x19b377
+	writetext UnknownText_0x19b377
 	closetext
 	loadmovesprites
 	end

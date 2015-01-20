@@ -10,7 +10,7 @@ RedScript_0x18c603: ; 0x18c603
 	special $006a
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x18c637
+	writetext UnknownText_0x18c637
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x18c63c, UnknownText_0x18c63c
@@ -20,7 +20,7 @@ RedScript_0x18c603: ; 0x18c603
 	returnafterbattle
 	special $006a
 	loadfont
-	2writetext UnknownText_0x18c63f
+	writetext UnknownText_0x18c63f
 	closetext
 	loadmovesprites
 	special $0030

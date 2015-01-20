@@ -42,7 +42,7 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	spriteface $0, $2
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
-	2writetext UnknownText_0x1a10df
+	writetext UnknownText_0x1a10df
 	yesorno
 	iffalse UnknownScript_0x1a0fd9
 	loadmovesprites
@@ -53,7 +53,7 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface $2, $1
 	loadfont
-	2writetext UnknownText_0x1a114d
+	writetext UnknownText_0x1a114d
 	closetext
 	loadmovesprites
 	dotrigger $0
@@ -68,7 +68,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	spriteface $0, $2
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
-	2writetext UnknownText_0x1a10df
+	writetext UnknownText_0x1a10df
 	yesorno
 	iffalse UnknownScript_0x1a0fe5
 	loadmovesprites
@@ -79,7 +79,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface $2, $1
 	loadfont
-	2writetext UnknownText_0x1a114d
+	writetext UnknownText_0x1a114d
 	closetext
 	loadmovesprites
 	dotrigger $0
@@ -88,7 +88,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 ; 0x1a0fd9
 
 UnknownScript_0x1a0fd9: ; 0x1a0fd9
-	2writetext UnknownText_0x1a1197
+	writetext UnknownText_0x1a1197
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x1a109a
@@ -97,7 +97,7 @@ UnknownScript_0x1a0fd9: ; 0x1a0fd9
 ; 0x1a0fe5
 
 UnknownScript_0x1a0fe5: ; 0x1a0fe5
-	2writetext UnknownText_0x1a1197
+	writetext UnknownText_0x1a1197
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x1a10a1
@@ -114,14 +114,14 @@ CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	iftrue UnknownScript_0x1a101c
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x1a101c
-	2writetext UnknownText_0x1a11e3
+	writetext UnknownText_0x1a11e3
 	yesorno
 	iffalse UnknownScript_0x1a1022
 	loadmovesprites
 	loadpokedata RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
 	loadfont
-	2writetext UnknownText_0x1a114d
+	writetext UnknownText_0x1a114d
 	closetext
 	loadmovesprites
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
@@ -129,14 +129,14 @@ CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 ; 0x1a101c
 
 UnknownScript_0x1a101c: ; 0x1a101c
-	2writetext UnknownText_0x1a10a7
+	writetext UnknownText_0x1a10a7
 	closetext
 	loadmovesprites
 	end
 ; 0x1a1022
 
 UnknownScript_0x1a1022: ; 0x1a1022
-	2writetext UnknownText_0x1a1197
+	writetext UnknownText_0x1a1197
 	closetext
 	loadmovesprites
 	end
@@ -162,14 +162,14 @@ CooltrainerMScript_0x1a1031: ; 0x1a1031
 	checktime $4
 	iftrue UnknownScript_0x1a1043
 UnknownScript_0x1a103d: ; 0x1a103d
-	2writetext UnknownText_0x1a134c
+	writetext UnknownText_0x1a134c
 	closetext
 	loadmovesprites
 	end
 ; 0x1a1043
 
 UnknownScript_0x1a1043: ; 0x1a1043
-	2writetext UnknownText_0x1a137c
+	writetext UnknownText_0x1a137c
 	closetext
 	loadmovesprites
 	end
@@ -184,29 +184,29 @@ TuscanyScript:
 	if_not_equal TUESDAY, TuscanyNotTuesdayScript
 	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
 	iftrue .MetTuscany
-	2writetext MeetTuscanyText
+	writetext MeetTuscanyText
 	keeptextopen
 	setevent EVENT_MET_TUSCANY_OF_TUESDAY
 .MetTuscany
-	2writetext TuscanyGivesGiftText
+	writetext TuscanyGivesGiftText
 	keeptextopen
 	verbosegiveitem PINK_BOW, 1
 	iffalse TuscanyDoneScript
 	setevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
-	2writetext TuscanyGaveGiftText
+	writetext TuscanyGaveGiftText
 	closetext
 	loadmovesprites
 	end
 
 TuscanyTuesdayScript:
-	2writetext TuscanyTuesdayText
+	writetext TuscanyTuesdayText
 	closetext
 TuscanyDoneScript:
 	loadmovesprites
 	end
 
 TuscanyNotTuesdayScript:
-	2writetext TuscanyNotTuesdayText
+	writetext TuscanyNotTuesdayText
 	closetext
 	loadmovesprites
 	end

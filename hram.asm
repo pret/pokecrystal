@@ -1,5 +1,6 @@
 hPushOAM           EQU $ff80
 
+hROMBankBackup     EQU $ff8a
 hBuffer            EQU $ff8b
 
 hRTCDayHi          EQU $ff8d
@@ -15,6 +16,7 @@ hMinutes           EQU $ff96
 hSeconds           EQU $ff98
 
 hROMBank           EQU $ff9d
+hVBlank            EQU $ff9e
 
 hJoypadReleased    EQU $ffa2
 hJoypadPressed     EQU $ffa3

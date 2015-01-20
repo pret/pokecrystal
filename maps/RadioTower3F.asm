@@ -31,14 +31,14 @@ GymGuyScript_0x5e556: ; 0x5e556
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5e564
-	2writetext UnknownText_0x5e682
+	writetext UnknownText_0x5e682
 	closetext
 	loadmovesprites
 	end
 ; 0x5e564
 
 UnknownScript_0x5e564: ; 0x5e564
-	2writetext UnknownText_0x5e6eb
+	writetext UnknownText_0x5e6eb
 	closetext
 	loadmovesprites
 	end
@@ -53,25 +53,25 @@ CooltrainerFScript_0x5e56a: ; 0x5e56a
 	iftrue UnknownScript_0x5e58a
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e584
-	2writetext UnknownText_0x5e754
+	writetext UnknownText_0x5e754
 	closetext
 	loadmovesprites
 	end
 ; 0x5e584
 
 UnknownScript_0x5e584: ; 0x5e584
-	2writetext UnknownText_0x5e7cb
+	writetext UnknownText_0x5e7cb
 	closetext
 	loadmovesprites
 	end
 ; 0x5e58a
 
 UnknownScript_0x5e58a: ; 0x5e58a
-	2writetext UnknownText_0x5e7e2
+	writetext UnknownText_0x5e7e2
 	keeptextopen
 	verbosegiveitem TM_11, 1
 	iffalse UnknownScript_0x5e5a1
-	2writetext UnknownText_0x5e821
+	writetext UnknownText_0x5e821
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
@@ -79,7 +79,7 @@ UnknownScript_0x5e58a: ; 0x5e58a
 ; 0x5e59d
 
 UnknownScript_0x5e59d: ; 0x5e59d
-	2writetext UnknownText_0x5e85c
+	writetext UnknownText_0x5e85c
 	closetext
 UnknownScript_0x5e5a1: ; 0x5e5a1
 	loadmovesprites
@@ -109,7 +109,7 @@ TrainerGruntM7: ; 0x5e5a3
 GruntM7Script: ; 0x5e5af
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5e8d0
+	writetext UnknownText_0x5e8d0
 	closetext
 	loadmovesprites
 	end
@@ -138,7 +138,7 @@ TrainerGruntM8: ; 0x5e5b7
 GruntM8Script: ; 0x5e5c3
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5e944
+	writetext UnknownText_0x5e944
 	closetext
 	loadmovesprites
 	end
@@ -167,7 +167,7 @@ TrainerGruntM9: ; 0x5e5cb
 GruntM9Script: ; 0x5e5d7
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5e9d0
+	writetext UnknownText_0x5e9d0
 	closetext
 	loadmovesprites
 	end
@@ -196,7 +196,7 @@ TrainerScientistMarc: ; 0x5e5df
 ScientistMarcScript: ; 0x5e5eb
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5ea61
+	writetext UnknownText_0x5ea61
 	closetext
 	loadmovesprites
 	end
@@ -204,7 +204,7 @@ ScientistMarcScript: ; 0x5e5eb
 
 MapRadioTower3FSignpost2Script:: ; 0x5e5f3
 	loadfont
-	2writetext UnknownText_0x5eaa4
+	writetext UnknownText_0x5eaa4
 	closetext
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e603
@@ -216,7 +216,7 @@ UnknownScript_0x5e603: ; 0x5e603
 ; 0x5e605
 
 UnknownScript_0x5e605: ; 0x5e605
-	2writetext UnknownText_0x5eabc
+	writetext UnknownText_0x5eabc
 	closetext
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR

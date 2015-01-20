@@ -24,7 +24,7 @@ MortyScript_0x99d58: ; 0x99d58
 	loadfont
 	checkevent EVENT_BEAT_MORTY
 	iftrue UnknownScript_0x99d8c
-	2writetext UnknownText_0x99e65
+	writetext UnknownText_0x99e65
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x9a00a, $0000
@@ -33,12 +33,12 @@ MortyScript_0x99d58: ; 0x99d58
 	returnafterbattle
 	setevent EVENT_BEAT_MORTY
 	loadfont
-	2writetext UnknownText_0x9a043
+	writetext UnknownText_0x9a043
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001e
 	checkcode $7
-	2call UnknownScript_0x99db7
+	scall UnknownScript_0x99db7
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
 	setevent $0766
 	setevent $0767
@@ -49,19 +49,19 @@ UnknownScript_0x99d8c: ; 0x99d8c
 	setevent EVENT_BEAT_SAGE_PING
 	setevent EVENT_BEAT_MEDIUM_MARTHA
 	setevent EVENT_BEAT_MEDIUM_GRACE
-	2writetext UnknownText_0x9a059
+	writetext UnknownText_0x9a059
 	keeptextopen
 	verbosegiveitem TM_30, 1
 	iffalse UnknownScript_0x99db5
 	setevent EVENT_GOT_TM30_SHADOW_BALL
-	2writetext UnknownText_0x9a0ec
+	writetext UnknownText_0x9a0ec
 	closetext
 	loadmovesprites
 	end
 ; 0x99db1
 
 UnknownScript_0x99db1: ; 0x99db1
-	2writetext UnknownText_0x9a145
+	writetext UnknownText_0x9a145
 	closetext
 UnknownScript_0x99db5: ; 0x99db5
 	loadmovesprites
@@ -86,7 +86,7 @@ UnknownScript_0x99dc6: ; 0x99dc6
 	applymovement $0, MovementData_0x99e5d
 	applymovement $8, MovementData_0x99e63
 	loadfont
-	2writetext UnknownText_0x9a49c
+	writetext UnknownText_0x9a49c
 	closetext
 	loadmovesprites
 	follow $0, $8
@@ -122,7 +122,7 @@ TrainerSageJeffrey: ; 0x99de9
 SageJeffreyScript: ; 0x99df5
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9a263
+	writetext UnknownText_0x9a263
 	closetext
 	loadmovesprites
 	end
@@ -151,7 +151,7 @@ TrainerSagePing: ; 0x99dfd
 SagePingScript: ; 0x99e09
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9a2b7
+	writetext UnknownText_0x9a2b7
 	closetext
 	loadmovesprites
 	end
@@ -180,7 +180,7 @@ TrainerMediumMartha: ; 0x99e11
 MediumMarthaScript: ; 0x99e1d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9a318
+	writetext UnknownText_0x9a318
 	closetext
 	loadmovesprites
 	end
@@ -209,7 +209,7 @@ TrainerMediumGrace: ; 0x99e25
 MediumGraceScript: ; 0x99e31
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9a38a
+	writetext UnknownText_0x9a38a
 	closetext
 	loadmovesprites
 	end
@@ -220,13 +220,13 @@ EcruteakGymGuyScript: ; 0x99e39
 	loadfont
 	checkevent EVENT_BEAT_MORTY
 	iftrue .EcruteakGymGuyWinScript
-	2writetext EcruteakGymGuyText
+	writetext EcruteakGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .EcruteakGymGuyWinScript
-	2writetext EcruteakGymGuyWinText
+	writetext EcruteakGymGuyWinText
 	closetext
 	loadmovesprites
 	end

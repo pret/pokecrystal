@@ -18,17 +18,17 @@ UnknownScript_0x1a9a48: ; 0x1a9a48
 GrampsScript_0x1a9a4c: ; 0x1a9a4c
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x1a9aa5
+	writetext UnknownText_0x1a9aa5
 	yesorno
 	iffalse UnknownScript_0x1a9a5b
-	2writetext UnknownText_0x1a9b6f
+	writetext UnknownText_0x1a9b6f
 	closetext
 	loadmovesprites
 	end
 ; 0x1a9a5b
 
 UnknownScript_0x1a9a5b: ; 0x1a9a5b
-	2writetext UnknownText_0x1a9bb7
+	writetext UnknownText_0x1a9bb7
 	closetext
 	loadmovesprites
 	end
@@ -39,14 +39,14 @@ GrampsScript_0x1a9a61: ; 0x1a9a61
 	loadfont
 	checkevent $0775
 	iftrue UnknownScript_0x1a9a6f
-	2writetext UnknownText_0x1a9c11
+	writetext UnknownText_0x1a9c11
 	closetext
 	loadmovesprites
 	end
 ; 0x1a9a6f
 
 UnknownScript_0x1a9a6f: ; 0x1a9a6f
-	2writetext UnknownText_0x1a9c7e
+	writetext UnknownText_0x1a9c7e
 	closetext
 	loadmovesprites
 	end
@@ -57,13 +57,13 @@ FisherScript_0x1a9a75: ; 0x1a9a75
 	loadfont
 	checkevent EVENT_GOT_TM42_DREAM_EATER
 	iftrue UnknownScript_0x1a9a8a
-	2writetext UnknownText_0x1a9cc4
+	writetext UnknownText_0x1a9cc4
 	keeptextopen
 	verbosegiveitem TM_42, 1
 	iffalse UnknownScript_0x1a9a8e
 	setevent EVENT_GOT_TM42_DREAM_EATER
 UnknownScript_0x1a9a8a: ; 0x1a9a8a
-	2writetext UnknownText_0x1a9d86
+	writetext UnknownText_0x1a9d86
 	closetext
 UnknownScript_0x1a9a8e: ; 0x1a9a8e
 	loadmovesprites

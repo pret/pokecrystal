@@ -11,22 +11,22 @@ CooltrainerMScript_0x9a5fb: ; 0x9a5fb
 	loadfont
 	checkevent EVENT_GOT_ITEMFINDER
 	iftrue UnknownScript_0x9a614
-	2writetext UnknownText_0x9a63c
+	writetext UnknownText_0x9a63c
 	yesorno
 	iffalse UnknownScript_0x9a61a
-	2writetext UnknownText_0x9a6b5
+	writetext UnknownText_0x9a6b5
 	keeptextopen
 	verbosegiveitem ITEMFINDER, 1
 	setevent EVENT_GOT_ITEMFINDER
 UnknownScript_0x9a614: ; 0x9a614
-	2writetext UnknownText_0x9a70e
+	writetext UnknownText_0x9a70e
 	closetext
 	loadmovesprites
 	end
 ; 0x9a61a
 
 UnknownScript_0x9a61a: ; 0x9a61a
-	2writetext UnknownText_0x9a805
+	writetext UnknownText_0x9a805
 	closetext
 	loadmovesprites
 	end
@@ -34,7 +34,7 @@ UnknownScript_0x9a61a: ; 0x9a61a
 
 PokedexScript_0x9a620: ; 0x9a620
 	loadfont
-	2writetext UnknownText_0x9a826
+	writetext UnknownText_0x9a826
 	yesorno
 	iftrue UnknownScript_0x9a62a
 	loadmovesprites
@@ -42,7 +42,7 @@ PokedexScript_0x9a620: ; 0x9a620
 ; 0x9a62a
 
 UnknownScript_0x9a62a: ; 0x9a62a
-	2writetext UnknownText_0x9a84c
+	writetext UnknownText_0x9a84c
 	yesorno
 	iftrue UnknownScript_0x9a633
 	loadmovesprites
@@ -50,7 +50,7 @@ UnknownScript_0x9a62a: ; 0x9a62a
 ; 0x9a633
 
 UnknownScript_0x9a633: ; 0x9a633
-	2writetext UnknownText_0x9a902
+	writetext UnknownText_0x9a902
 	closetext
 	loadmovesprites
 	end

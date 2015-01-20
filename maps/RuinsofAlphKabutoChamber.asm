@@ -105,10 +105,10 @@ ScientistScript_0x587a8: ; 0x587a8
 	iftrue UnknownScript_0x587c9
 	checkevent $02a1
 	iffalse UnknownScript_0x587c0
-	2writetext UnknownText_0x589b8
+	writetext UnknownText_0x589b8
 	keeptextopen
 UnknownScript_0x587c0: ; 0x587c0
-	2writetext UnknownText_0x588f5
+	writetext UnknownText_0x588f5
 	closetext
 	loadmovesprites
 	spriteface $3, $1
@@ -116,14 +116,14 @@ UnknownScript_0x587c0: ; 0x587c0
 ; 0x587c9
 
 UnknownScript_0x587c9: ; 0x587c9
-	2writetext UnknownText_0x5897c
+	writetext UnknownText_0x5897c
 	closetext
 	loadmovesprites
 	end
 ; 0x587cf
 
 UnknownScript_0x587cf: ; 0x587cf
-	2writetext UnknownText_0x594cb
+	writetext UnknownText_0x594cb
 	closetext
 	loadmovesprites
 	end
@@ -139,7 +139,7 @@ MapRuinsofAlphKabutoChamberSignpost3Script: ; 0x587d8
 
 MapRuinsofAlphKabutoChamberSignpost4Script: ; 0x587db
 	loadfont
-	2writetext UnknownText_0x58aa7
+	writetext UnknownText_0x58aa7
 	writebyte $0
 	special $0087
 	loadmovesprites
@@ -150,7 +150,7 @@ MapRuinsofAlphKabutoChamberSignpost5Script: ; 0x587e6
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587f7
 	loadfont
-	2writetext UnknownText_0x58ad9
+	writetext UnknownText_0x58ad9
 	writebyte $0
 	special $0087
 	loadmovesprites
@@ -159,7 +159,7 @@ MapRuinsofAlphKabutoChamberSignpost5Script: ; 0x587e6
 
 UnknownScript_0x587f7: ; 0x587f7
 	loadfont
-	2writetext UnknownText_0x58afa
+	writetext UnknownText_0x58afa
 	closetext
 	loadmovesprites
 	end

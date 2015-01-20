@@ -16,7 +16,7 @@ PokefanFScript_0x18804d: ; 0x18804d
 
 DiglettScript_0x188050: ; 0x188050
 	loadfont
-	2writetext UnknownText_0x1880e7
+	writetext UnknownText_0x1880e7
 	cry DIGLETT
 	closetext
 	loadmovesprites

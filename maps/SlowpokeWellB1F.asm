@@ -33,7 +33,7 @@ TrainerGruntM29: ; 0x5a5d8
 GruntM29Script: ; 0x5a5e4
 	talkaftercancel
 	loadfont
-	2writetext TrainerGruntM29SlowpokeProfitText
+	writetext TrainerGruntM29SlowpokeProfitText
 	closetext
 	loadmovesprites
 	end
@@ -61,7 +61,7 @@ TrainerGruntM1: ; 0x5a5ec
 
 GruntM1Script: ; 0x5a5f8
 	loadfont
-	2writetext TrainerGruntM1WhenTalkText
+	writetext TrainerGruntM1WhenTalkText
 	closetext
 	loadmovesprites
 	special $0030
@@ -78,7 +78,7 @@ GruntM1Script: ; 0x5a5f8
 	applymovement $8, KurtSlowpokeWellVictoryMovementData
 	spriteface $0, $3
 	loadfont
-	2writetext KurtLeaveSlowpokeWellText
+	writetext KurtLeaveSlowpokeWellText
 	closetext
 	loadmovesprites
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
@@ -123,7 +123,7 @@ TrainerGruntM2: ; 0x5a659
 GruntM2Script: ; 0x5a665
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5aaf2
+	writetext UnknownText_0x5aaf2
 	closetext
 	loadmovesprites
 	end
@@ -152,7 +152,7 @@ TrainerGruntF1: ; 0x5a66d
 GruntF1Script: ; 0x5a679
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5ab8d
+	writetext UnknownText_0x5ab8d
 	closetext
 	loadmovesprites
 	end
@@ -162,7 +162,7 @@ SlowpokeScript_0x5a681: ; 0x5a681
 	faceplayer
 	loadfont
 	cry SLOWPOKE
-	2writetext UnknownText_0x5abcb
+	writetext UnknownText_0x5abcb
 	yesorno
 	iftrue UnknownScript_0x5a68f
 	loadmovesprites
@@ -170,7 +170,7 @@ SlowpokeScript_0x5a681: ; 0x5a681
 ; 0x5a68f
 
 UnknownScript_0x5a68f: ; 0x5a68f
-	2writetext UnknownText_0x5ac09
+	writetext UnknownText_0x5ac09
 	closetext
 	loadmovesprites
 	end
@@ -179,7 +179,7 @@ UnknownScript_0x5a68f: ; 0x5a68f
 SlowpokeScript_0x5a695: ; 0x5a695
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5ac61
+	writetext UnknownText_0x5ac61
 	cry SLOWPOKE
 	closetext
 	loadmovesprites

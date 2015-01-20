@@ -29,7 +29,7 @@ TrainerLassConnie1: ; 0x5b4ea
 LassConnie1Script: ; 0x5b4f6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5b63c
+	writetext UnknownText_0x5b63c
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerSailorKent: ; 0x5b4fe
 SailorKentScript: ; 0x5b50a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5b584
+	writetext UnknownText_0x5b584
 	closetext
 	loadmovesprites
 	end

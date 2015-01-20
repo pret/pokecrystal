@@ -8,13 +8,13 @@ Route26DayofWeekSiblingsHouse_MapScriptHeader: ; 0x7b1e2
 
 PokedexScript_0x7b1e4: ; 0x7b1e4
 	loadfont
-	2writetext UnknownText_0x7b1f9
+	writetext UnknownText_0x7b1f9
 	yesorno
 	iffalse UnknownText_0x7b1f7
-	2writetext UnknownText_0x7b222
+	writetext UnknownText_0x7b222
 	yesorno
 	iffalse UnknownText_0x7b1f7
-	2writetext UnknownText_0x7b2b9
+	writetext UnknownText_0x7b2b9
 	closetext
 UnknownText_0x7b1f7: ; 0x7b1f7
 	loadmovesprites

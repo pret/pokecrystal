@@ -17,43 +17,43 @@ OakScript_0x19b3c8: ; 0x19b3c8
 	iftrue UnknownScript_0x19b3ea
 	checkevent $00e1
 	iftrue UnknownScript_0x19b3dd
-	2writetext UnknownText_0x19b427
+	writetext UnknownText_0x19b427
 	keeptextopen
 	setevent $00e1
 UnknownScript_0x19b3dd: ; 0x19b3dd
 	checkcode $7
 	if_equal $10, UnknownScript_0x19b3f7
 	if_equal $8, UnknownScript_0x19b401
-	2jump UnknownScript_0x19b408
+	jump UnknownScript_0x19b408
 ; 0x19b3ea
 
 UnknownScript_0x19b3ea: ; 0x19b3ea
-	2writetext UnknownText_0x19b4a2
+	writetext UnknownText_0x19b4a2
 	closetext
 	special $0065
-	2writetext UnknownText_0x19b4c8
+	writetext UnknownText_0x19b4c8
 	closetext
 	loadmovesprites
 	end
 ; 0x19b3f7
 
 UnknownScript_0x19b3f7: ; 0x19b3f7
-	2writetext UnknownText_0x19b4fc
+	writetext UnknownText_0x19b4fc
 	keeptextopen
 	setevent $074f
-	2jump UnknownScript_0x19b3ea
+	jump UnknownScript_0x19b3ea
 ; 0x19b401
 
 UnknownScript_0x19b401: ; 0x19b401
-	2writetext UnknownText_0x19b6a2
+	writetext UnknownText_0x19b6a2
 	keeptextopen
-	2jump UnknownScript_0x19b3ea
+	jump UnknownScript_0x19b3ea
 ; 0x19b408
 
 UnknownScript_0x19b408: ; 0x19b408
-	2writetext UnknownText_0x19b73c
+	writetext UnknownText_0x19b73c
 	keeptextopen
-	2jump UnknownScript_0x19b3ea
+	jump UnknownScript_0x19b3ea
 ; 0x19b40f
 
 ScientistScript_0x19b40f: ; 0x19b40f

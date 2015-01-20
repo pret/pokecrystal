@@ -21,7 +21,7 @@ FisherScript_0x1a9f43: ; 0x1a9f43
 
 PoliwagScript_0x1a9f46: ; 0x1a9f46
 	loadfont
-	2writetext UnknownText_0x1a9fcb
+	writetext UnknownText_0x1a9fcb
 	cry POLIWRATH
 	closetext
 	loadmovesprites

@@ -25,7 +25,7 @@ UnknownScript_0x6c65b: ; 0x6c65b
 SecurityCamera1a: ; 0x6c65e
 	checkevent EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
@@ -34,15 +34,15 @@ SecurityCamera1a: ; 0x6c65e
 	appear $2
 	spriteface $0, $2
 	applymovement $2, SecurityCameraMovement1
-	2call TrainerCameraGrunt1
+	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
 	applymovement $2, SecurityCameraMovement1
-	2call TrainerCameraGrunt2
+	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_1
 	end
@@ -51,7 +51,7 @@ SecurityCamera1a: ; 0x6c65e
 SecurityCamera1b: ; 0x6c6a7
 	checkevent EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
@@ -60,15 +60,15 @@ SecurityCamera1b: ; 0x6c6a7
 	appear $2
 	spriteface $0, $2
 	applymovement $2, SecurityCameraMovement1
-	2call TrainerCameraGrunt1
+	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
 	applymovement $2, SecurityCameraMovement1
-	2call TrainerCameraGrunt2
+	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_1
 	end
@@ -77,7 +77,7 @@ SecurityCamera1b: ; 0x6c6a7
 SecurityCamera2a: ; 0x6c6f0
 	checkevent EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
@@ -86,16 +86,16 @@ SecurityCamera2a: ; 0x6c6f0
 	appear $2
 	spriteface $0, $2
 	applymovement $2, SecurityCameraMovement2
-	2call TrainerCameraGrunt1
+	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $c, $5
 	appear $2
 	applymovement $2, SecurityCameraMovement3
-	2call TrainerCameraGrunt2
+	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_2
 	end
@@ -104,7 +104,7 @@ SecurityCamera2a: ; 0x6c6f0
 SecurityCamera2b: ; 0x6c73c
 	checkevent EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
@@ -113,16 +113,16 @@ SecurityCamera2b: ; 0x6c73c
 	appear $2
 	spriteface $0, $2
 	applymovement $2, SecurityCameraMovement4
-	2call TrainerCameraGrunt1
+	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $c, $5
 	appear $2
 	applymovement $2, SecurityCameraMovement5
-	2call TrainerCameraGrunt2
+	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_2
 	end
@@ -131,7 +131,7 @@ SecurityCamera2b: ; 0x6c73c
 SecurityCamera3a: ; 0x6c788
 	checkevent EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
@@ -140,16 +140,16 @@ SecurityCamera3a: ; 0x6c788
 	appear $2
 	spriteface $0, $2
 	applymovement $2, SecurityCameraMovement1
-	2call TrainerCameraGrunt1
+	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $b
 	appear $2
 	applymovement $2, SecurityCameraMovement6
-	2call TrainerCameraGrunt2
+	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_3
 	end
@@ -158,7 +158,7 @@ SecurityCamera3a: ; 0x6c788
 SecurityCamera3b: ; 0x6c7d4
 	checkevent EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
@@ -167,16 +167,16 @@ SecurityCamera3b: ; 0x6c7d4
 	appear $2
 	spriteface $0, $2
 	applymovement $2, SecurityCameraMovement1
-	2call TrainerCameraGrunt1
+	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $c
 	appear $2
 	applymovement $2, SecurityCameraMovement7
-	2call TrainerCameraGrunt2
+	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_3
 	end
@@ -185,7 +185,7 @@ SecurityCamera3b: ; 0x6c7d4
 SecurityCamera4: ; 0x6c820
 	checkevent EVENT_SECURITY_CAMERA_4
 	iftrue NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
@@ -194,16 +194,16 @@ SecurityCamera4: ; 0x6c820
 	appear $2
 	spriteface $0, $2
 	applymovement $2, SecurityCameraMovement1
-	2call TrainerCameraGrunt1
+	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $b
 	appear $2
 	applymovement $2, SecurityCameraMovement8
-	2call TrainerCameraGrunt2
+	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_4
 	end
@@ -212,7 +212,7 @@ SecurityCamera4: ; 0x6c820
 SecurityCamera5: ; 0x6c86c
 	checkevent EVENT_SECURITY_CAMERA_5
 	iftrue NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	checkevent $06da
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
@@ -221,16 +221,16 @@ SecurityCamera5: ; 0x6c86c
 	appear $2
 	spriteface $0, $2
 	applymovement $2, SecurityCameraMovement1
-	2call TrainerCameraGrunt1
+	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
-	2call PlaySecurityCameraSounds
+	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $e, $10
 	appear $2
 	applymovement $2, SecurityCameraMovement9
-	2call TrainerCameraGrunt2
+	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_5
 	end
@@ -242,7 +242,7 @@ NoSecurityCamera: ; 0x6c8b8
 
 TrainerCameraGrunt1: ; 0x6c8b9
 	loadfont
-	2writetext CameraGrunt1SeenText
+	writetext CameraGrunt1SeenText
 	closetext
 	loadmovesprites
 	winlosstext CameraGrunt1BeatenText, $0000
@@ -256,7 +256,7 @@ TrainerCameraGrunt1: ; 0x6c8b9
 
 TrainerCameraGrunt2: ; 0x6c8ce
 	loadfont
-	2writetext CameraGrunt2SeenText
+	writetext CameraGrunt2SeenText
 	closetext
 	loadmovesprites
 	winlosstext CameraGrunt2BeatenText, $0000
@@ -286,7 +286,7 @@ PlaySecurityCameraSounds: ; 0x6c8e3
 ExplodingTrap1: ; 0x6c900
 	checkevent EVENT_EXPLODING_TRAP_1
 	iftrue NoExplodingTrap
-	2call KoffingExplodingTrap
+	scall KoffingExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_1
 	end
@@ -294,7 +294,7 @@ ExplodingTrap1: ; 0x6c900
 ExplodingTrap2: ; 0x6c90e
 	checkevent EVENT_EXPLODING_TRAP_2
 	iftrue NoExplodingTrap
-	2call VoltorbExplodingTrap
+	scall VoltorbExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_2
 	end
@@ -302,7 +302,7 @@ ExplodingTrap2: ; 0x6c90e
 ExplodingTrap3: ; 0x6c91c
 	checkevent EVENT_EXPLODING_TRAP_3
 	iftrue NoExplodingTrap
-	2call GeodudeExplodingTrap
+	scall GeodudeExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_3
 	end
@@ -310,7 +310,7 @@ ExplodingTrap3: ; 0x6c91c
 ExplodingTrap4: ; 0x6c92a
 	checkevent EVENT_EXPLODING_TRAP_4
 	iftrue NoExplodingTrap
-	2call VoltorbExplodingTrap
+	scall VoltorbExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_4
 	end
@@ -318,7 +318,7 @@ ExplodingTrap4: ; 0x6c92a
 ExplodingTrap5: ; 0x6c938
 	checkevent EVENT_EXPLODING_TRAP_5
 	iftrue NoExplodingTrap
-	2call GeodudeExplodingTrap
+	scall GeodudeExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_5
 	end
@@ -326,7 +326,7 @@ ExplodingTrap5: ; 0x6c938
 ExplodingTrap6: ; 0x6c946
 	checkevent EVENT_EXPLODING_TRAP_6
 	iftrue NoExplodingTrap
-	2call KoffingExplodingTrap
+	scall KoffingExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_6
 	end
@@ -334,7 +334,7 @@ ExplodingTrap6: ; 0x6c946
 ExplodingTrap7: ; 0x6c954
 	checkevent EVENT_EXPLODING_TRAP_7
 	iftrue NoExplodingTrap
-	2call VoltorbExplodingTrap
+	scall VoltorbExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_7
 	end
@@ -342,7 +342,7 @@ ExplodingTrap7: ; 0x6c954
 ExplodingTrap8: ; 0x6c962
 	checkevent EVENT_EXPLODING_TRAP_8
 	iftrue NoExplodingTrap
-	2call KoffingExplodingTrap
+	scall KoffingExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_8
 	end
@@ -350,7 +350,7 @@ ExplodingTrap8: ; 0x6c962
 ExplodingTrap9: ; 0x6c970
 	checkevent EVENT_EXPLODING_TRAP_9
 	iftrue NoExplodingTrap
-	2call KoffingExplodingTrap
+	scall KoffingExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_9
 	end
@@ -358,7 +358,7 @@ ExplodingTrap9: ; 0x6c970
 ExplodingTrap10: ; 0x6c97e
 	checkevent EVENT_EXPLODING_TRAP_10
 	iftrue NoExplodingTrap
-	2call VoltorbExplodingTrap
+	scall VoltorbExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_10
 	end
@@ -366,7 +366,7 @@ ExplodingTrap10: ; 0x6c97e
 ExplodingTrap11: ; 0x6c98c
 	checkevent EVENT_EXPLODING_TRAP_11
 	iftrue NoExplodingTrap
-	2call GeodudeExplodingTrap
+	scall GeodudeExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_11
 	end
@@ -374,7 +374,7 @@ ExplodingTrap11: ; 0x6c98c
 ExplodingTrap12: ; 0x6c99a
 	checkevent EVENT_EXPLODING_TRAP_12
 	iftrue NoExplodingTrap
-	2call GeodudeExplodingTrap
+	scall GeodudeExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_12
 	end
@@ -382,7 +382,7 @@ ExplodingTrap12: ; 0x6c99a
 ExplodingTrap13: ; 0x6c9a8
 	checkevent EVENT_EXPLODING_TRAP_13
 	iftrue NoExplodingTrap
-	2call GeodudeExplodingTrap
+	scall GeodudeExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_13
 	end
@@ -390,7 +390,7 @@ ExplodingTrap13: ; 0x6c9a8
 ExplodingTrap14: ; 0x6c9b6
 	checkevent EVENT_EXPLODING_TRAP_14
 	iftrue NoExplodingTrap
-	2call KoffingExplodingTrap
+	scall KoffingExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_14
 	end
@@ -398,7 +398,7 @@ ExplodingTrap14: ; 0x6c9b6
 ExplodingTrap15: ; 0x6c9c4
 	checkevent EVENT_EXPLODING_TRAP_15
 	iftrue NoExplodingTrap
-	2call VoltorbExplodingTrap
+	scall VoltorbExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_15
 	end
@@ -406,7 +406,7 @@ ExplodingTrap15: ; 0x6c9c4
 ExplodingTrap16: ; 0x6c9d2
 	checkevent EVENT_EXPLODING_TRAP_16
 	iftrue NoExplodingTrap
-	2call KoffingExplodingTrap
+	scall KoffingExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_16
 	end
@@ -414,7 +414,7 @@ ExplodingTrap16: ; 0x6c9d2
 ExplodingTrap17: ; 0x6c9e0
 	checkevent EVENT_EXPLODING_TRAP_17
 	iftrue NoExplodingTrap
-	2call VoltorbExplodingTrap
+	scall VoltorbExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_17
 	end
@@ -422,7 +422,7 @@ ExplodingTrap17: ; 0x6c9e0
 ExplodingTrap18: ; 0x6c9ee
 	checkevent EVENT_EXPLODING_TRAP_18
 	iftrue NoExplodingTrap
-	2call GeodudeExplodingTrap
+	scall GeodudeExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_18
 	end
@@ -430,7 +430,7 @@ ExplodingTrap18: ; 0x6c9ee
 ExplodingTrap19: ; 0x6c9fc
 	checkevent EVENT_EXPLODING_TRAP_19
 	iftrue NoExplodingTrap
-	2call GeodudeExplodingTrap
+	scall GeodudeExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_19
 	end
@@ -438,7 +438,7 @@ ExplodingTrap19: ; 0x6c9fc
 ExplodingTrap20: ; 0x6ca0a
 	checkevent EVENT_EXPLODING_TRAP_20
 	iftrue NoExplodingTrap
-	2call VoltorbExplodingTrap
+	scall VoltorbExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_20
 	end
@@ -446,7 +446,7 @@ ExplodingTrap20: ; 0x6ca0a
 ExplodingTrap21: ; 0x6ca18
 	checkevent EVENT_EXPLODING_TRAP_21
 	iftrue NoExplodingTrap
-	2call KoffingExplodingTrap
+	scall KoffingExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_21
 	end
@@ -454,7 +454,7 @@ ExplodingTrap21: ; 0x6ca18
 ExplodingTrap22: ; 0x6ca26
 	checkevent EVENT_EXPLODING_TRAP_22
 	iftrue NoExplodingTrap
-	2call VoltorbExplodingTrap
+	scall VoltorbExplodingTrap
 	returnafterbattle
 	setevent EVENT_EXPLODING_TRAP_22
 	end
@@ -516,7 +516,7 @@ TrainerScientistJed: ; 0x6ca6e
 ScientistJedScript: ; 0x6ca7a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6cc16
+	writetext UnknownText_0x6cc16
 	closetext
 	loadmovesprites
 	end
@@ -545,7 +545,7 @@ TrainerGruntM16: ; 0x6ca82
 GruntM16Script: ; 0x6ca8e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6cd1b
+	writetext UnknownText_0x6cd1b
 	closetext
 	loadmovesprites
 	end
@@ -563,7 +563,7 @@ MapTeamRocketBaseB1FSignpost0Script: ; 0x6ca9c
 	loadfont
 	checkevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	iftrue UnknownScript_0x6cabe
-	2writetext UnknownText_0x6cdad
+	writetext UnknownText_0x6cdad
 	playsound SFX_TALLY
 	closetext
 	loadmovesprites
@@ -577,7 +577,7 @@ MapTeamRocketBaseB1FSignpost0Script: ; 0x6ca9c
 ; 0x6cabe
 
 UnknownScript_0x6cabe: ; 0x6cabe
-	2writetext UnknownText_0x6cdd0
+	writetext UnknownText_0x6cdd0
 	closetext
 	loadmovesprites
 	end

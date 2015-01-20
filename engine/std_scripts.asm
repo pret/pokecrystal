@@ -68,59 +68,59 @@ PokeCenterNurseScript: ; bc09c
 	checktime $4
 	iftrue .nite
 ; If somehow it's not a time of day at all, we skip the introduction
-	2jump .heal
+	jump .heal
 
 .morn
 ; Different text if we're in the com center
 	checkevent $032a
 	iftrue .morn_comcenter
 ; Good morning! Welcome to ...
-	3writetext UnknownText_0x1b0000
+	farwritetext UnknownText_0x1b0000
 	keeptextopen
-	2jump .heal
+	jump .heal
 .morn_comcenter
 ; Good morning! This is the ...
-	3writetext UnknownText_0x1b008a
+	farwritetext UnknownText_0x1b008a
 	keeptextopen
-	2jump .heal
+	jump .heal
 
 .day
 ; Different text if we're in the com center
 	checkevent $032a
 	iftrue .day_comcenter
 ; Hello! Welcome to ...
-	3writetext UnknownText_0x1b002b
+	farwritetext UnknownText_0x1b002b
 	keeptextopen
-	2jump .heal
+	jump .heal
 .day_comcenter
 ; Hello! This is the ...
-	3writetext UnknownText_0x1b00d6
+	farwritetext UnknownText_0x1b00d6
 	keeptextopen
-	2jump .heal
+	jump .heal
 
 .nite
 ; Different text if we're in the com center
 	checkevent $032a
 	iftrue .nite_comcenter
 ; Good evening! You're out late. ...
-	3writetext UnknownText_0x1b004f
+	farwritetext UnknownText_0x1b004f
 	keeptextopen
-	2jump .heal
+	jump .heal
 .nite_comcenter
 ; Good to see you working so late. ...
-	3writetext UnknownText_0x1b011b
+	farwritetext UnknownText_0x1b011b
 	keeptextopen
-	2jump .heal
+	jump .heal
 
 .heal
 ; If we come back, don't welcome us to the com center again
 	clearevent $032a
 ; Ask if you want to heal
-	3writetext UnknownText_0x1b017a
+	farwritetext UnknownText_0x1b017a
 	yesorno
 	iffalse .end
 ; Go ahead and heal
-	3writetext UnknownText_0x1b01bd
+	farwritetext UnknownText_0x1b01bd
 	pause 20
 	special $009d
 ; Turn to the machine
@@ -145,11 +145,11 @@ PokeCenterNurseScript: ; bc09c
 	iftrue .pokerus
 .done
 ; Thank you for waiting. ...
-	3writetext UnknownText_0x1b01d7
+	farwritetext UnknownText_0x1b01d7
 	pause 20
 .end
 ; We hope to see you again.
-	3writetext UnknownText_0x1b020b
+	farwritetext UnknownText_0x1b020b
 ; Curtsy
 	spriteface $fe, $1
 	pause 10
@@ -167,13 +167,13 @@ PokeCenterNurseScript: ; bc09c
 	checkevent $032a
 	iftrue .pokerus_comcenter
 ; Your Pokemon appear to be infected ...
-	3writetext UnknownText_0x1b0241
+	farwritetext UnknownText_0x1b0241
 	closetext
 	loadmovesprites
-	2jump .endpokerus
+	jump .endpokerus
 .pokerus_comcenter
 ; Your Pokemon appear to be infected ...
-	3writetext UnknownText_0x1b02d6
+	farwritetext UnknownText_0x1b02d6
 	closetext
 	loadmovesprites
 .endpokerus
@@ -185,32 +185,32 @@ PokeCenterNurseScript: ; bc09c
 ; bc162
 
 UnknownScript_0xbc162: ; 0xbc162
-	3jumptext UnknownText_0x1b035a
+	farjumptext UnknownText_0x1b035a
 ; 0xbc166
 
 UnknownScript_0xbc166: ; 0xbc166
-	3jumptext UnknownText_0x1b0378
+	farjumptext UnknownText_0x1b0378
 ; 0xbc16a
 
 UnknownScript_0xbc16a: ; 0xbc16a
-	3jumptext UnknownText_0x1b03a3
+	farjumptext UnknownText_0x1b03a3
 ; 0xbc16e
 
 UnknownScript_0xbc16e: ; 0xbc16e
-	3jumptext UnknownText_0x1b03d9
+	farjumptext UnknownText_0x1b03d9
 ; 0xbc172
 
 UnknownScript_0xbc172: ; 0xbc172
-	3jumptext UnknownText_0x1b0448
+	farjumptext UnknownText_0x1b0448
 ; 0xbc176
 
 UnknownScript_0xbc176: ; 0xbc176
-	3jumptext UnknownText_0x1b0472
+	farjumptext UnknownText_0x1b0472
 ; 0xbc17a
 
 UnknownScript_0xbc17a: ; 0xbc17a
 	loadfont
-	3writetext UnknownText_0x1b048d
+	farwritetext UnknownText_0x1b048d
 	closetext
 	special $0026
 	loadmovesprites
@@ -218,19 +218,19 @@ UnknownScript_0xbc17a: ; 0xbc17a
 ; 0xbc185
 
 UnknownScript_0xbc185: ; 0xbc185
-	3jumptext UnknownText_0x1b04a0
+	farjumptext UnknownText_0x1b04a0
 ; 0xbc189
 
 UnknownScript_0xbc189: ; 0xbc189
 	loadfont
-	3writetext UnknownText_0x1b04be
+	farwritetext UnknownText_0x1b04be
 	closetext
 	loadmovesprites
 	end
 ; 0xbc191
 
 UnknownScript_0xbc191: ; 0xbc191
-	3jumptext UnknownText_0x1b04c9
+	farjumptext UnknownText_0x1b04c9
 ; 0xbc195
 
 UnknownScript_0xbc195: ; 0xbc195
@@ -250,7 +250,7 @@ UnknownScript_0xbc19d: ; 0xbc19d
 ; 0xbc1a5
 
 UnknownScript_0xbc1a5: ; 0xbc1a5
-	3jumptext UnknownText_0x1b0526
+	farjumptext UnknownText_0x1b0526
 ; 0xbc1a9
 
 UnknownScript_0xbc1a9: ; 0xbc1a9
@@ -268,19 +268,19 @@ UnknownScript_0xbc1af: ; 0xbc1af
 ; 0xbc1b8
 
 UnknownScript_0xbc1b8: ; 0xbc1b8
-	3jump UnknownScript_0xcd4b
+	farjump UnknownScript_0xcd4b
 ; 0xbc1bc
 
 UnknownScript_0xbc1bc: ; 0xbc1bc
-	3jump AskRockSmashScript
+	farjump AskRockSmashScript
 ; 0xbc1c0
 
 UnknownScript_0xbc1c0: ; 0xbc1c0
-	3jumptext UnknownText_0x1b057f
+	farjumptext UnknownText_0x1b057f
 ; 0xbc1c4
 
 UnknownScript_0xbc1c4: ; 0xbc1c4
-	3jumptext UnknownText_0x1b059c
+	farjumptext UnknownText_0x1b059c
 ; 0xbc1c8
 
 UnknownScript_0xbc1c8: ; 0xbc1c8
@@ -372,7 +372,7 @@ UnknownScript_0xbc242: ; 0xbc242
 
 UnknownScript_0xbc25c: ; 0xbc25c
 	special $0034
-	2call UnknownScript_0xbc380
+	scall UnknownScript_0xbc380
 	setevent $0747
 	clearevent $0748
 	setevent $02d2
@@ -387,40 +387,40 @@ UnknownScript_0xbc274: ; bc274
 	clearevent $0315
 	clearevent $0316
 	loadfont
-	3writetext UnknownText_0x1b05bf
+	farwritetext UnknownText_0x1b05bf
 	closetext
 	special $0014
 	RAM2MEM $0
 	if_equal $1, UnknownScript_0xbc31e
 	if_equal $2, UnknownScript_0xbc332
 	if_equal $3, UnknownScript_0xbc343
-	3writetext UnknownText_0x1b0681
+	farwritetext UnknownText_0x1b0681
 	keeptextopen
 	waitbutton
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0xbc375
 
 UnknownScript_0xbc2a9:
-	3writetext UnknownText_0x1b06b7
+	farwritetext UnknownText_0x1b06b7
 	keeptextopen
-	2jump UnknownScript_0xbc2b6
+	jump UnknownScript_0xbc2b6
 ; 0xbc2b1
 
 UnknownScript_0xbc2b1: ; 0xbc2b1
-	3writetext UnknownText_0x1b065b
+	farwritetext UnknownText_0x1b065b
 	keeptextopen
 
 UnknownScript_0xbc2b6:
 	checkevent $0308
 	iffalse UnknownScript_0xbc2c4
-	3writetext UnknownText_0x1b06d9
+	farwritetext UnknownText_0x1b06d9
 	closetext
 	special $0017
 UnknownScript_0xbc2c4:
 	special $0015
 	if_equal $0, UnknownScript_0xbc2d4
 	if_equal $2, UnknownScript_0xbc2d4
-	3writetext UnknownText_0x1b070d
+	farwritetext UnknownText_0x1b070d
 	closetext
 UnknownScript_0xbc2d4:
 	loadmovesprites
@@ -454,57 +454,57 @@ UnknownScript_0xbc2d4:
 UnknownScript_0xbc31e: ; 0xbc31e
 	setevent $0000
 	itemtotext SUN_STONE, $1
-	3writetext UnknownText_0x1b0621
+	farwritetext UnknownText_0x1b0621
 	closetext
 	verbosegiveitem SUN_STONE, 1
 	iffalse UnknownScript_0xbc354
-	2jump UnknownScript_0xbc2b1
+	jump UnknownScript_0xbc2b1
 ; 0xbc332
 
 UnknownScript_0xbc332: ; 0xbc332
 	itemtotext EVERSTONE, $1
-	3writetext UnknownText_0x1b0621
+	farwritetext UnknownText_0x1b0621
 	closetext
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0xbc35f
-	2jump UnknownScript_0xbc2b1
+	jump UnknownScript_0xbc2b1
 ; 0xbc343
 
 UnknownScript_0xbc343: ; 0xbc343
 	itemtotext GOLD_BERRY, $1
-	3writetext UnknownText_0x1b0621
+	farwritetext UnknownText_0x1b0621
 	closetext
 	verbosegiveitem GOLD_BERRY, 1
 	iffalse UnknownScript_0xbc36a
-	2jump UnknownScript_0xbc2b1
+	jump UnknownScript_0xbc2b1
 ; 0xbc354
 
 UnknownScript_0xbc354: ; 0xbc354
-	3writetext UnknownText_0x1b08cc
+	farwritetext UnknownText_0x1b08cc
 	keeptextopen
 	setevent $0313
-	2jump UnknownScript_0xbc2b1
+	jump UnknownScript_0xbc2b1
 ; 0xbc35f
 
 UnknownScript_0xbc35f: ; 0xbc35f
-	3writetext UnknownText_0x1b08cc
+	farwritetext UnknownText_0x1b08cc
 	keeptextopen
 	setevent $0314
-	2jump UnknownScript_0xbc2b1
+	jump UnknownScript_0xbc2b1
 ; 0xbc36a
 
 UnknownScript_0xbc36a: ; 0xbc36a
-	3writetext UnknownText_0x1b08cc
+	farwritetext UnknownText_0x1b08cc
 	keeptextopen
 	setevent $0315
-	2jump UnknownScript_0xbc2b1
+	jump UnknownScript_0xbc2b1
 ; 0xbc375
 
 UnknownScript_0xbc375: ; 0xbc375
-	3writetext UnknownText_0x1b08cc
+	farwritetext UnknownText_0x1b08cc
 	keeptextopen
 	setevent $0316
-	2jump UnknownScript_0xbc2a9
+	jump UnknownScript_0xbc2a9
 ; 0xbc380
 
 UnknownScript_0xbc380: ; 0xbc380
@@ -716,102 +716,102 @@ UnknownScript_0xbc574: ; 0xbc574
 	if_equal $23, UnknownScript_0xbc628
 
 UnknownScript_0xbc5c9: ; bc5c9
-	3writetext UnknownText_0x1b09fe
+	farwritetext UnknownText_0x1b09fe
 	end
 ; 0xbc5ce
 
 UnknownScript_0xbc5ce: ; 0xbc5ce
-	3writetext UnknownText_0x1b0d9f
+	farwritetext UnknownText_0x1b0d9f
 	end
 ; 0xbc5d3
 
 UnknownScript_0xbc5d3: ; 0xbc5d3
-	3writetext UnknownText_0x1b102e
+	farwritetext UnknownText_0x1b102e
 	end
 ; 0xbc5d8
 
 UnknownScript_0xbc5d8: ; 0xbc5d8
-	3writetext UnknownText_0x1b142d
+	farwritetext UnknownText_0x1b142d
 	end
 ; 0xbc5dd
 
 UnknownScript_0xbc5dd: ; 0xbc5dd
-	3writetext UnknownText_0x1b1800
+	farwritetext UnknownText_0x1b1800
 	end
 ; 0xbc5e2
 
 UnknownScript_0xbc5e2: ; 0xbc5e2
-	3writetext UnknownText_0x1b1a71
+	farwritetext UnknownText_0x1b1a71
 	end
 ; 0xbc5e7
 
 UnknownScript_0xbc5e7: ; 0xbc5e7
-	3writetext UnknownText_0x1b1cd5
+	farwritetext UnknownText_0x1b1cd5
 	end
 ; 0xbc5ec
 
 UnknownScript_0xbc5ec: ; 0xbc5ec
-	3writetext UnknownText_0xa4000
+	farwritetext UnknownText_0xa4000
 	end
 ; 0xbc5f1
 
 UnknownScript_0xbc5f1: ; 0xbc5f1
-	3writetext UnknownText_0xa41c0
+	farwritetext UnknownText_0xa41c0
 	end
 ; 0xbc5f6
 
 UnknownScript_0xbc5f6: ; 0xbc5f6
-	3writetext UnknownText_0xa4642
+	farwritetext UnknownText_0xa4642
 	end
 ; 0xbc5fb
 
 UnknownScript_0xbc5fb: ; 0xbc5fb
-	3writetext UnknownText_0xa4829
+	farwritetext UnknownText_0xa4829
 	end
 ; 0xbc600
 
 UnknownScript_0xbc600: ; 0xbc600
-	3writetext UnknownText_0xa4a31
+	farwritetext UnknownText_0xa4a31
 	end
 ; 0xbc605
 
 UnknownScript_0xbc605: ; 0xbc605
-	3writetext UnknownText_0xa4ed4
+	farwritetext UnknownText_0xa4ed4
 	end
 ; 0xbc60a
 
 UnknownScript_0xbc60a: ; 0xbc60a
-	3writetext UnknownText_0xa50d5
+	farwritetext UnknownText_0xa50d5
 	end
 ; 0xbc60f
 
 UnknownScript_0xbc60f: ; 0xbc60f
-	3writetext UnknownText_0xa52e2
+	farwritetext UnknownText_0xa52e2
 	end
 ; 0xbc614
 
 UnknownScript_0xbc614: ; 0xbc614
-	3writetext UnknownText_0xa5545
+	farwritetext UnknownText_0xa5545
 	end
 ; 0xbc619
 
 UnknownScript_0xbc619: ; 0xbc619
-	3writetext UnknownText_0xa5937
+	farwritetext UnknownText_0xa5937
 	end
 ; 0xbc61e
 
 UnknownScript_0xbc61e: ; 0xbc61e
-	3writetext UnknownText_0xa5bc4
+	farwritetext UnknownText_0xa5bc4
 	end
 ; 0xbc623
 
 UnknownScript_0xbc623: ; 0xbc623
-	3writetext UnknownText_0xa5dc6
+	farwritetext UnknownText_0xa5dc6
 	end
 ; 0xbc628
 
 UnknownScript_0xbc628: ; 0xbc628
-	3writetext UnknownText_0xa600c
+	farwritetext UnknownText_0xa600c
 	end
 ; 0xbc62d
 
@@ -840,107 +840,107 @@ UnknownScript_0xbc62d: ; 0xbc62d
 	if_equal $23, UnknownScript_0xbc6e1
 
 UnknownScript_0xbc682: ; bc682
-	3writetext UnknownText_0x1b0a82
+	farwritetext UnknownText_0x1b0a82
 	end
 ; 0xbc687
 
 UnknownScript_0xbc687: ; 0xbc687
-	3writetext UnknownText_0x1b0e2c
+	farwritetext UnknownText_0x1b0e2c
 	end
 ; 0xbc68c
 
 UnknownScript_0xbc68c: ; 0xbc68c
-	3writetext UnknownText_0x1b10d3
+	farwritetext UnknownText_0x1b10d3
 	end
 ; 0xbc691
 
 UnknownScript_0xbc691: ; 0xbc691
-	3writetext UnknownText_0x1b14e4
+	farwritetext UnknownText_0x1b14e4
 	end
 ; 0xbc696
 
 UnknownScript_0xbc696: ; 0xbc696
-	3writetext UnknownText_0x1b187b
+	farwritetext UnknownText_0x1b187b
 	end
 ; 0xbc69b
 
 UnknownScript_0xbc69b: ; 0xbc69b
-	3writetext UnknownText_0x1b1b1d
+	farwritetext UnknownText_0x1b1b1d
 	end
 ; 0xbc6a0
 
 UnknownScript_0xbc6a0: ; 0xbc6a0
-	3writetext UnknownText_0x1b1d85
+	farwritetext UnknownText_0x1b1d85
 	end
 ; 0xbc6a5
 
 UnknownScript_0xbc6a5: ; 0xbc6a5
-	3writetext UnknownText_0xa40a9
+	farwritetext UnknownText_0xa40a9
 	end
 ; 0xbc6aa
 
 UnknownScript_0xbc6aa: ; 0xbc6aa
-	3writetext UnknownText_0xa426a
+	farwritetext UnknownText_0xa426a
 	end
 ; 0xbc6af
 
 UnknownScript_0xbc6af: ; 0xbc6af
-	3writetext UnknownText_0xa470b
+	farwritetext UnknownText_0xa470b
 	end
 ; 0xbc6b4
 
 UnknownScript_0xbc6b4: ; 0xbc6b4
-	3writetext UnknownText_0xa48fc
+	farwritetext UnknownText_0xa48fc
 	end
 ; 0xbc6b9
 
 UnknownScript_0xbc6b9: ; 0xbc6b9
-	3writetext UnknownText_0xa4b03
+	farwritetext UnknownText_0xa4b03
 	end
 ; 0xbc6be
 
 UnknownScript_0xbc6be: ; 0xbc6be
-	3writetext UnknownText_0xa4fc8
+	farwritetext UnknownText_0xa4fc8
 	end
 ; 0xbc6c3
 
 UnknownScript_0xbc6c3: ; 0xbc6c3
-	3writetext UnknownText_0xa5175
+	farwritetext UnknownText_0xa5175
 	end
 ; 0xbc6c8
 
 UnknownScript_0xbc6c8: ; 0xbc6c8
-	3writetext UnknownText_0xa5383
+	farwritetext UnknownText_0xa5383
 	end
 ; 0xbc6cd
 
 UnknownScript_0xbc6cd: ; 0xbc6cd
-	3writetext UnknownText_0xa5621
+	farwritetext UnknownText_0xa5621
 	end
 ; 0xbc6d2
 
 UnknownScript_0xbc6d2: ; 0xbc6d2
-	3writetext UnknownText_0xa59bc
+	farwritetext UnknownText_0xa59bc
 	end
 ; 0xbc6d7
 
 UnknownScript_0xbc6d7: ; 0xbc6d7
-	3writetext UnknownText_0xa5c4b
+	farwritetext UnknownText_0xa5c4b
 	end
 ; 0xbc6dc
 
 UnknownScript_0xbc6dc: ; 0xbc6dc
-	3writetext UnknownText_0xa5e63
+	farwritetext UnknownText_0xa5e63
 	end
 ; 0xbc6e1
 
 UnknownScript_0xbc6e1: ; 0xbc6e1
-	3writetext UnknownText_0xa6076
+	farwritetext UnknownText_0xa6076
 	end
 ; 0xbc6e6
 
 UnknownScript_0xbc6e6: ; 0xbc6e6
-	3writetext UnknownText_0x1b09c4
+	farwritetext UnknownText_0x1b09c4
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	keeptextopen
@@ -971,140 +971,140 @@ UnknownScript_0xbc6f0: ; 0xbc6f0
 	if_equal $23, UnknownScript_0xbc7c7
 
 UnknownScript_0xbc742:
-	3writetext UnknownText_0x1b0adb
+	farwritetext UnknownText_0x1b0adb
 	closetext
 	loadmovesprites
 	end
 ; 0xbc749
 
 UnknownScript_0xbc749: ; 0xbc749
-	3writetext UnknownText_0x1b0e89
+	farwritetext UnknownText_0x1b0e89
 	closetext
 	loadmovesprites
 	end
 ; 0xbc750
 
 UnknownScript_0xbc750: ; 0xbc750
-	3writetext UnknownText_0x1b1136
+	farwritetext UnknownText_0x1b1136
 	closetext
 	loadmovesprites
 	end
 ; 0xbc757
 
 UnknownScript_0xbc757: ; 0xbc757
-	3writetext UnknownText_0x1b1553
+	farwritetext UnknownText_0x1b1553
 	closetext
 	loadmovesprites
 	end
 ; 0xbc75e
 
 UnknownScript_0xbc75e: ; 0xbc75e
-	3writetext UnknownText_0x1b18d7
+	farwritetext UnknownText_0x1b18d7
 	closetext
 	loadmovesprites
 	end
 ; 0xbc765
 
 UnknownScript_0xbc765: ; 0xbc765
-	3writetext UnknownText_0x1b1b8e
+	farwritetext UnknownText_0x1b1b8e
 	closetext
 	loadmovesprites
 	end
 ; 0xbc76c
 
 UnknownScript_0xbc76c: ; 0xbc76c
-	3writetext UnknownText_0x1b1db9
+	farwritetext UnknownText_0x1b1db9
 	closetext
 	loadmovesprites
 	end
 ; 0xbc773
 
 UnknownScript_0xbc773: ; 0xbc773
-	3writetext UnknownText_0xa40f8
+	farwritetext UnknownText_0xa40f8
 	closetext
 	loadmovesprites
 	end
 ; 0xbc77a
 
 UnknownScript_0xbc77a: ; 0xbc77a
-	3writetext UnknownText_0xa42ab
+	farwritetext UnknownText_0xa42ab
 	closetext
 	loadmovesprites
 	end
 ; 0xbc781
 
 UnknownScript_0xbc781: ; 0xbc781
-	3writetext UnknownText_0xa4730
+	farwritetext UnknownText_0xa4730
 	closetext
 	loadmovesprites
 	end
 ; 0xbc788
 
 UnknownScript_0xbc788: ; 0xbc788
-	3writetext UnknownText_0xa494d
+	farwritetext UnknownText_0xa494d
 	closetext
 	loadmovesprites
 	end
 ; 0xbc78f
 
 UnknownScript_0xbc78f: ; 0xbc78f
-	3writetext UnknownText_0xa4b47
+	farwritetext UnknownText_0xa4b47
 	closetext
 	loadmovesprites
 	end
 ; 0xbc796
 
 UnknownScript_0xbc796: ; 0xbc796
-	3writetext UnknownText_0xa502e
+	farwritetext UnknownText_0xa502e
 	closetext
 	loadmovesprites
 	end
 ; 0xbc79d
 
 UnknownScript_0xbc79d: ; 0xbc79d
-	3writetext UnknownText_0xa51ac
+	farwritetext UnknownText_0xa51ac
 	closetext
 	loadmovesprites
 	end
 ; 0xbc7a4
 
 UnknownScript_0xbc7a4: ; 0xbc7a4
-	3writetext UnknownText_0xa53de
+	farwritetext UnknownText_0xa53de
 	closetext
 	loadmovesprites
 	end
 ; 0xbc7ab
 
 UnknownScript_0xbc7ab: ; 0xbc7ab
-	3writetext UnknownText_0xa5666
+	farwritetext UnknownText_0xa5666
 	closetext
 	loadmovesprites
 	end
 ; 0xbc7b2
 
 UnknownScript_0xbc7b2: ; 0xbc7b2
-	3writetext UnknownText_0xa5a28
+	farwritetext UnknownText_0xa5a28
 	closetext
 	loadmovesprites
 	end
 ; 0xbc7b9
 
 UnknownScript_0xbc7b9: ; 0xbc7b9
-	3writetext UnknownText_0xa5c8e
+	farwritetext UnknownText_0xa5c8e
 	closetext
 	loadmovesprites
 	end
 ; 0xbc7c0
 
 UnknownScript_0xbc7c0: ; 0xbc7c0
-	3writetext UnknownText_0xa5ea8
+	farwritetext UnknownText_0xa5ea8
 	closetext
 	loadmovesprites
 	end
 ; 0xbc7c7
 
 UnknownScript_0xbc7c7: ; 0xbc7c7
-	3writetext UnknownText_0xa60b5
+	farwritetext UnknownText_0xa60b5
 	closetext
 	loadmovesprites
 	end
@@ -1134,140 +1134,140 @@ UnknownScript_0xbc7ce: ; 0xbc7ce
 	if_equal $23, UnknownScript_0xbc8a5
 
 UnknownScript_0xbc820:
-	3writetext UnknownText_0x1b0afd
+	farwritetext UnknownText_0x1b0afd
 	closetext
 	loadmovesprites
 	end
 ; 0xbc827
 
 UnknownScript_0xbc827: ; 0xbc827
-	3writetext UnknownText_0x1b0ea2
+	farwritetext UnknownText_0x1b0ea2
 	closetext
 	loadmovesprites
 	end
 ; 0xbc82e
 
 UnknownScript_0xbc82e: ; 0xbc82e
-	3writetext UnknownText_0x1b117b
+	farwritetext UnknownText_0x1b117b
 	closetext
 	loadmovesprites
 	end
 ; 0xbc835
 
 UnknownScript_0xbc835: ; 0xbc835
-	3writetext UnknownText_0x1b1584
+	farwritetext UnknownText_0x1b1584
 	closetext
 	loadmovesprites
 	end
 ; 0xbc83c
 
 UnknownScript_0xbc83c: ; 0xbc83c
-	3writetext UnknownText_0x1b1908
+	farwritetext UnknownText_0x1b1908
 	closetext
 	loadmovesprites
 	end
 ; 0xbc843
 
 UnknownScript_0xbc843: ; 0xbc843
-	3writetext UnknownText_0x1b1bd2
+	farwritetext UnknownText_0x1b1bd2
 	closetext
 	loadmovesprites
 	end
 ; 0xbc84a
 
 UnknownScript_0xbc84a: ; 0xbc84a
-	3writetext UnknownText_0x1b1df4
+	farwritetext UnknownText_0x1b1df4
 	closetext
 	loadmovesprites
 	end
 ; 0xbc851
 
 UnknownScript_0xbc851: ; 0xbc851
-	3writetext UnknownText_0xa4126
+	farwritetext UnknownText_0xa4126
 	closetext
 	loadmovesprites
 	end
 ; 0xbc858
 
 UnknownScript_0xbc858: ; 0xbc858
-	3writetext UnknownText_0xa42f2
+	farwritetext UnknownText_0xa42f2
 	closetext
 	loadmovesprites
 	end
 ; 0xbc85f
 
 UnknownScript_0xbc85f: ; 0xbc85f
-	3writetext UnknownText_0xa4794
+	farwritetext UnknownText_0xa4794
 	closetext
 	loadmovesprites
 	end
 ; 0xbc866
 
 UnknownScript_0xbc866: ; 0xbc866
-	3writetext UnknownText_0xa498a
+	farwritetext UnknownText_0xa498a
 	closetext
 	loadmovesprites
 	end
 ; 0xbc86d
 
 UnknownScript_0xbc86d: ; 0xbc86d
-	3writetext UnknownText_0xa4b87
+	farwritetext UnknownText_0xa4b87
 	closetext
 	loadmovesprites
 	end
 ; 0xbc874
 
 UnknownScript_0xbc874: ; 0xbc874
-	3writetext UnknownText_0xa505f
+	farwritetext UnknownText_0xa505f
 	closetext
 	loadmovesprites
 	end
 ; 0xbc87b
 
 UnknownScript_0xbc87b: ; 0xbc87b
-	3writetext UnknownText_0xa51ee
+	farwritetext UnknownText_0xa51ee
 	closetext
 	loadmovesprites
 	end
 ; 0xbc882
 
 UnknownScript_0xbc882: ; 0xbc882
-	3writetext UnknownText_0xa5412
+	farwritetext UnknownText_0xa5412
 	closetext
 	loadmovesprites
 	end
 ; 0xbc889
 
 UnknownScript_0xbc889: ; 0xbc889
-	3writetext UnknownText_0xa56b6
+	farwritetext UnknownText_0xa56b6
 	closetext
 	loadmovesprites
 	end
 ; 0xbc890
 
 UnknownScript_0xbc890: ; 0xbc890
-	3writetext UnknownText_0xa5a5a
+	farwritetext UnknownText_0xa5a5a
 	closetext
 	loadmovesprites
 	end
 ; 0xbc897
 
 UnknownScript_0xbc897: ; 0xbc897
-	3writetext UnknownText_0xa5cc5
+	farwritetext UnknownText_0xa5cc5
 	closetext
 	loadmovesprites
 	end
 ; 0xbc89e
 
 UnknownScript_0xbc89e: ; 0xbc89e
-	3writetext UnknownText_0xa5ed6
+	farwritetext UnknownText_0xa5ed6
 	closetext
 	loadmovesprites
 	end
 ; 0xbc8a5
 
 UnknownScript_0xbc8a5: ; 0xbc8a5
-	3writetext UnknownText_0xa60e2
+	farwritetext UnknownText_0xa60e2
 	closetext
 	loadmovesprites
 	end
@@ -1297,140 +1297,140 @@ UnknownScript_0xbc8ac: ; 0xbc8ac
 	if_equal $23, UnknownScript_0xbc983
 
 UnknownScript_0xbc8fe:
-	3writetext UnknownText_0x1b0b42
+	farwritetext UnknownText_0x1b0b42
 	closetext
 	loadmovesprites
 	end
 ; 0xbc905
 
 UnknownScript_0xbc905: ; 0xbc905
-	3writetext UnknownText_0x1b0ebc
+	farwritetext UnknownText_0x1b0ebc
 	closetext
 	loadmovesprites
 	end
 ; 0xbc90c
 
 UnknownScript_0xbc90c: ; 0xbc90c
-	3writetext UnknownText_0x1b11c4
+	farwritetext UnknownText_0x1b11c4
 	closetext
 	loadmovesprites
 	end
 ; 0xbc913
 
 UnknownScript_0xbc913: ; 0xbc913
-	3writetext UnknownText_0x1b15b6
+	farwritetext UnknownText_0x1b15b6
 	closetext
 	loadmovesprites
 	end
 ; 0xbc91a
 
 UnknownScript_0xbc91a: ; 0xbc91a
-	3writetext UnknownText_0x1b1936
+	farwritetext UnknownText_0x1b1936
 	closetext
 	loadmovesprites
 	end
 ; 0xbc921
 
 UnknownScript_0xbc921: ; 0xbc921
-	3writetext UnknownText_0x1b1c06
+	farwritetext UnknownText_0x1b1c06
 	closetext
 	loadmovesprites
 	end
 ; 0xbc928
 
 UnknownScript_0xbc928: ; 0xbc928
-	3writetext UnknownText_0x1b1e50
+	farwritetext UnknownText_0x1b1e50
 	closetext
 	loadmovesprites
 	end
 ; 0xbc92f
 
 UnknownScript_0xbc92f: ; 0xbc92f
-	3writetext UnknownText_0xa4158
+	farwritetext UnknownText_0xa4158
 	closetext
 	loadmovesprites
 	end
 ; 0xbc936
 
 UnknownScript_0xbc936: ; 0xbc936
-	3writetext UnknownText_0xa434a
+	farwritetext UnknownText_0xa434a
 	closetext
 	loadmovesprites
 	end
 ; 0xbc93d
 
 UnknownScript_0xbc93d: ; 0xbc93d
-	3writetext UnknownText_0xa47eb
+	farwritetext UnknownText_0xa47eb
 	closetext
 	loadmovesprites
 	end
 ; 0xbc944
 
 UnknownScript_0xbc944: ; 0xbc944
-	3writetext UnknownText_0xa49bd
+	farwritetext UnknownText_0xa49bd
 	closetext
 	loadmovesprites
 	end
 ; 0xbc94b
 
 UnknownScript_0xbc94b: ; 0xbc94b
-	3writetext UnknownText_0xa4bcd
+	farwritetext UnknownText_0xa4bcd
 	closetext
 	loadmovesprites
 	end
 ; 0xbc952
 
 UnknownScript_0xbc952: ; 0xbc952
-	3writetext UnknownText_0xa508c
+	farwritetext UnknownText_0xa508c
 	closetext
 	loadmovesprites
 	end
 ; 0xbc959
 
 UnknownScript_0xbc959: ; 0xbc959
-	3writetext UnknownText_0xa5216
+	farwritetext UnknownText_0xa5216
 	closetext
 	loadmovesprites
 	end
 ; 0xbc960
 
 UnknownScript_0xbc960: ; 0xbc960
-	3writetext UnknownText_0xa5446
+	farwritetext UnknownText_0xa5446
 	closetext
 	loadmovesprites
 	end
 ; 0xbc967
 
 UnknownScript_0xbc967: ; 0xbc967
-	3writetext UnknownText_0xa56e2
+	farwritetext UnknownText_0xa56e2
 	closetext
 	loadmovesprites
 	end
 ; 0xbc96e
 
 UnknownScript_0xbc96e: ; 0xbc96e
-	3writetext UnknownText_0xa5aa6
+	farwritetext UnknownText_0xa5aa6
 	closetext
 	loadmovesprites
 	end
 ; 0xbc975
 
 UnknownScript_0xbc975: ; 0xbc975
-	3writetext UnknownText_0xa5cfa
+	farwritetext UnknownText_0xa5cfa
 	closetext
 	loadmovesprites
 	end
 ; 0xbc97c
 
 UnknownScript_0xbc97c: ; 0xbc97c
-	3writetext UnknownText_0xa5f06
+	farwritetext UnknownText_0xa5f06
 	closetext
 	loadmovesprites
 	end
 ; 0xbc983
 
 UnknownScript_0xbc983: ; 0xbc983
-	3writetext UnknownText_0xa6144
+	farwritetext UnknownText_0xa6144
 	closetext
 	loadmovesprites
 	end
@@ -1457,119 +1457,119 @@ UnknownScript_0xbc98a: ; 0xbc98a
 	if_equal $23, UnknownScript_0xbca40
 
 UnknownScript_0xbc9d0:
-	3writetext UnknownText_0x1b0b75
+	farwritetext UnknownText_0x1b0b75
 	closetext
 	loadmovesprites
 	end
 ; 0xbc9d7
 
 UnknownScript_0xbc9d7: ; 0xbc9d7
-	3writetext UnknownText_0x1b0edc
+	farwritetext UnknownText_0x1b0edc
 	closetext
 	loadmovesprites
 	end
 ; 0xbc9de
 
 UnknownScript_0xbc9de: ; 0xbc9de
-	3writetext UnknownText_0x1b11fe
+	farwritetext UnknownText_0x1b11fe
 	closetext
 	loadmovesprites
 	end
 ; 0xbc9e5
 
 UnknownScript_0xbc9e5: ; 0xbc9e5
-	3writetext UnknownText_0x1b15d5
+	farwritetext UnknownText_0x1b15d5
 	closetext
 	loadmovesprites
 	end
 ; 0xbc9ec
 
 UnknownScript_0xbc9ec: ; 0xbc9ec
-	3writetext UnknownText_0x1b1954
+	farwritetext UnknownText_0x1b1954
 	closetext
 	loadmovesprites
 	end
 ; 0xbc9f3
 
 UnknownScript_0xbc9f3: ; 0xbc9f3
-	3writetext UnknownText_0x1b1c32
+	farwritetext UnknownText_0x1b1c32
 	closetext
 	loadmovesprites
 	end
 ; 0xbc9fa
 
 UnknownScript_0xbc9fa: ; 0xbc9fa
-	3writetext UnknownText_0x1b1e98
+	farwritetext UnknownText_0x1b1e98
 	closetext
 	loadmovesprites
 	end
 ; 0xbca01
 
 UnknownScript_0xbca01: ; 0xbca01
-	3writetext UnknownText_0xa418d
+	farwritetext UnknownText_0xa418d
 	closetext
 	loadmovesprites
 	end
 ; 0xbca08
 
 UnknownScript_0xbca08: ; 0xbca08
-	3writetext UnknownText_0xa4382
+	farwritetext UnknownText_0xa4382
 	closetext
 	loadmovesprites
 	end
 ; 0xbca0f
 
 UnknownScript_0xbca0f: ; 0xbca0f
-	3writetext UnknownText_0xa49fc
+	farwritetext UnknownText_0xa49fc
 	closetext
 	loadmovesprites
 	end
 ; 0xbca16
 
 UnknownScript_0xbca16: ; 0xbca16
-	3writetext UnknownText_0xa4bec
+	farwritetext UnknownText_0xa4bec
 	closetext
 	loadmovesprites
 	end
 ; 0xbca1d
 
 UnknownScript_0xbca1d: ; 0xbca1d
-	3writetext UnknownText_0xa50b1
+	farwritetext UnknownText_0xa50b1
 	closetext
 	loadmovesprites
 	end
 ; 0xbca24
 
 UnknownScript_0xbca24: ; 0xbca24
-	3writetext UnknownText_0xa548c
+	farwritetext UnknownText_0xa548c
 	closetext
 	loadmovesprites
 	end
 ; 0xbca2b
 
 UnknownScript_0xbca2b: ; 0xbca2b
-	3writetext UnknownText_0xa571e
+	farwritetext UnknownText_0xa571e
 	closetext
 	loadmovesprites
 	end
 ; 0xbca32
 
 UnknownScript_0xbca32: ; 0xbca32
-	3writetext UnknownText_0xa5ada
+	farwritetext UnknownText_0xa5ada
 	closetext
 	loadmovesprites
 	end
 ; 0xbca39
 
 UnknownScript_0xbca39: ; 0xbca39
-	3writetext UnknownText_0xa5d1d
+	farwritetext UnknownText_0xa5d1d
 	closetext
 	loadmovesprites
 	end
 ; 0xbca40
 
 UnknownScript_0xbca40: ; 0xbca40
-	3writetext UnknownText_0xa6175
+	farwritetext UnknownText_0xa6175
 	closetext
 	loadmovesprites
 	end
@@ -1586,43 +1586,43 @@ UnknownScript_0xbca47: ; 0xbca47
 	if_equal $22, UnknownScript_0xbca89
 
 UnknownScript_0xbca65:
-	3writetext UnknownText_0x1b1607
+	farwritetext UnknownText_0x1b1607
 	keeptextopen
 	end
 ; 0xbca6b
 
 UnknownScript_0xbca6b: ; 0xbca6b
-	3writetext UnknownText_0x1b1c57
+	farwritetext UnknownText_0x1b1c57
 	keeptextopen
 	end
 ; 0xbca71
 
 UnknownScript_0xbca71: ; 0xbca71
-	3writetext UnknownText_0xa4c24
+	farwritetext UnknownText_0xa4c24
 	keeptextopen
 	end
 ; 0xbca77
 
 UnknownScript_0xbca77: ; 0xbca77
-	3writetext UnknownText_0xa523a
+	farwritetext UnknownText_0xa523a
 	keeptextopen
 	end
 ; 0xbca7d
 
 UnknownScript_0xbca7d: ; 0xbca7d
-	3writetext UnknownText_0xa54e3
+	farwritetext UnknownText_0xa54e3
 	keeptextopen
 	end
 ; 0xbca83
 
 UnknownScript_0xbca83: ; 0xbca83
-	3writetext UnknownText_0xa5d4d
+	farwritetext UnknownText_0xa5d4d
 	keeptextopen
 	end
 ; 0xbca89
 
 UnknownScript_0xbca89: ; 0xbca89
-	3writetext UnknownText_0xa5f37
+	farwritetext UnknownText_0xa5f37
 	keeptextopen
 	end
 ; 0xbca8f
@@ -1642,77 +1642,77 @@ UnknownScript_0xbca8f: ; 0xbca8f
 	if_equal $23, UnknownScript_0xbcb03
 
 UnknownScript_0xbcabd:
-	3writetext UnknownText_0x1b0eff
+	farwritetext UnknownText_0x1b0eff
 	closetext
 	loadmovesprites
 	end
 ; 0xbcac4
 
 UnknownScript_0xbcac4: ; 0xbcac4
-	3writetext UnknownText_0x1b164d
+	farwritetext UnknownText_0x1b164d
 	closetext
 	loadmovesprites
 	end
 ; 0xbcacb
 
 UnknownScript_0xbcacb: ; 0xbcacb
-	3writetext UnknownText_0x1b1978
+	farwritetext UnknownText_0x1b1978
 	closetext
 	loadmovesprites
 	end
 ; 0xbcad2
 
 UnknownScript_0xbcad2: ; 0xbcad2
-	3writetext UnknownText_0x1b1c91
+	farwritetext UnknownText_0x1b1c91
 	closetext
 	loadmovesprites
 	end
 ; 0xbcad9
 
 UnknownScript_0xbcad9: ; 0xbcad9
-	3writetext UnknownText_0xa4c47
+	farwritetext UnknownText_0xa4c47
 	closetext
 	loadmovesprites
 	end
 ; 0xbcae0
 
 UnknownScript_0xbcae0: ; 0xbcae0
-	3writetext UnknownText_0xa52a0
+	farwritetext UnknownText_0xa52a0
 	closetext
 	loadmovesprites
 	end
 ; 0xbcae7
 
 UnknownScript_0xbcae7: ; 0xbcae7
-	3writetext UnknownText_0xa5513
+	farwritetext UnknownText_0xa5513
 	closetext
 	loadmovesprites
 	end
 ; 0xbcaee
 
 UnknownScript_0xbcaee: ; 0xbcaee
-	3writetext UnknownText_0xa5aff
+	farwritetext UnknownText_0xa5aff
 	closetext
 	loadmovesprites
 	end
 ; 0xbcaf5
 
 UnknownScript_0xbcaf5: ; 0xbcaf5
-	3writetext UnknownText_0xa5d9a
+	farwritetext UnknownText_0xa5d9a
 	closetext
 	loadmovesprites
 	end
 ; 0xbcafc
 
 UnknownScript_0xbcafc: ; 0xbcafc
-	3writetext UnknownText_0xa5faa
+	farwritetext UnknownText_0xa5faa
 	closetext
 	loadmovesprites
 	end
 ; 0xbcb03
 
 UnknownScript_0xbcb03: ; 0xbcb03
-	3writetext UnknownText_0xa61c9
+	farwritetext UnknownText_0xa61c9
 	closetext
 	loadmovesprites
 	end
@@ -1727,25 +1727,25 @@ UnknownScript_0xbcb0a: ; 0xbcb0a
 	if_equal $23, UnknownScript_0xbcb2f
 
 UnknownScript_0xbcb1d:
-	3writetext UnknownText_0x1b0f2f
+	farwritetext UnknownText_0x1b0f2f
 	keeptextopen
 	end
 ; 0xbcb23
 
 UnknownScript_0xbcb23: ; 0xbcb23
-	3writetext UnknownText_0x1b19be
+	farwritetext UnknownText_0x1b19be
 	keeptextopen
 	end
 ; 0xbcb29
 
 UnknownScript_0xbcb29: ; 0xbcb29
-	3writetext UnknownText_0xa5b3f
+	farwritetext UnknownText_0xa5b3f
 	keeptextopen
 	end
 ; 0xbcb2f
 
 UnknownScript_0xbcb2f: ; 0xbcb2f
-	3writetext UnknownText_0xa6200
+	farwritetext UnknownText_0xa6200
 	keeptextopen
 	end
 ; 0xbcb35
@@ -1762,42 +1762,42 @@ UnknownScript_0xbcb35: ; 0xbcb35
 	if_equal $24, UnknownScript_0xbcb7a
 
 UnknownScript_0xbcb57:
-	3writetext UnknownText_0x1b0bb6
+	farwritetext UnknownText_0x1b0bb6
 	end
 ; 0xbcb5c
 
 UnknownScript_0xbcb5c: ; 0xbcb5c
-	3writetext UnknownText_0x1b1239
+	farwritetext UnknownText_0x1b1239
 	end
 ; 0xbcb61
 
 UnknownScript_0xbcb61: ; 0xbcb61
-	3writetext UnknownText_0x1b1690
+	farwritetext UnknownText_0x1b1690
 	end
 ; 0xbcb66
 
 UnknownScript_0xbcb66: ; 0xbcb66
-	3writetext UnknownText_0x1b1ebe
+	farwritetext UnknownText_0x1b1ebe
 	end
 ; 0xbcb6b
 
 UnknownScript_0xbcb6b: ; 0xbcb6b
-	3writetext UnknownText_0xa4405
+	farwritetext UnknownText_0xa4405
 	end
 ; 0xbcb70
 
 UnknownScript_0xbcb70: ; 0xbcb70
-	3writetext UnknownText_0xa4c8c
+	farwritetext UnknownText_0xa4c8c
 	end
 ; 0xbcb75
 
 UnknownScript_0xbcb75: ; 0xbcb75
-	3writetext UnknownText_0xa574a
+	farwritetext UnknownText_0xa574a
 	end
 ; 0xbcb7a
 
 UnknownScript_0xbcb7a: ; 0xbcb7a
-	3writetext UnknownText_0xa6295
+	farwritetext UnknownText_0xa6295
 	end
 ; 0xbcb7f
 
@@ -1813,47 +1813,47 @@ UnknownScript_0xbcb7f: ; 0xbcb7f
 	if_equal $24, UnknownScript_0xbcbc4
 
 UnknownScript_0xbcba1:
-	3writetext UnknownText_0x1b0c37
+	farwritetext UnknownText_0x1b0c37
 	end
 ; 0xbcba6
 
 UnknownScript_0xbcba6: ; 0xbcba6
-	3writetext UnknownText_0x1b1314
+	farwritetext UnknownText_0x1b1314
 	end
 ; 0xbcbab
 
 UnknownScript_0xbcbab: ; 0xbcbab
-	3writetext UnknownText_0x1b1710
+	farwritetext UnknownText_0x1b1710
 	end
 ; 0xbcbb0
 
 UnknownScript_0xbcbb0: ; 0xbcbb0
-	3writetext UnknownText_0x1b1f4e
+	farwritetext UnknownText_0x1b1f4e
 	end
 ; 0xbcbb5
 
 UnknownScript_0xbcbb5: ; 0xbcbb5
-	3writetext UnknownText_0xa44db
+	farwritetext UnknownText_0xa44db
 	end
 ; 0xbcbba
 
 UnknownScript_0xbcbba: ; 0xbcbba
-	3writetext UnknownText_0xa4d36
+	farwritetext UnknownText_0xa4d36
 	end
 ; 0xbcbbf
 
 UnknownScript_0xbcbbf: ; 0xbcbbf
-	3writetext UnknownText_0xa57e3
+	farwritetext UnknownText_0xa57e3
 	end
 ; 0xbcbc4
 
 UnknownScript_0xbcbc4: ; 0xbcbc4
-	3writetext UnknownText_0xa6316
+	farwritetext UnknownText_0xa6316
 	end
 ; 0xbcbc9
 
 UnknownScript_0xbcbc9: ; 0xbcbc9
-	3writetext UnknownText_0x1b09e1
+	farwritetext UnknownText_0x1b09e1
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
 	keeptextopen
@@ -1872,56 +1872,56 @@ UnknownScript_0xbcbd3: ; 0xbcbd3
 	if_equal $24, UnknownScript_0xbcc26
 
 UnknownScript_0xbcbf5:
-	3writetext UnknownText_0x1b0c9b
+	farwritetext UnknownText_0x1b0c9b
 	closetext
 	loadmovesprites
 	end
 ; 0xbcbfc
 
 UnknownScript_0xbcbfc: ; 0xbcbfc
-	3writetext UnknownText_0x1b1392
+	farwritetext UnknownText_0x1b1392
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc03
 
 UnknownScript_0xbcc03: ; 0xbcc03
-	3writetext UnknownText_0x1b1755
+	farwritetext UnknownText_0x1b1755
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc0a
 
 UnknownScript_0xbcc0a: ; 0xbcc0a
-	3writetext UnknownText_0x1b1faa
+	farwritetext UnknownText_0x1b1faa
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc11
 
 UnknownScript_0xbcc11: ; 0xbcc11
-	3writetext UnknownText_0xa451d
+	farwritetext UnknownText_0xa451d
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc18
 
 UnknownScript_0xbcc18: ; 0xbcc18
-	3writetext UnknownText_0xa4d72
+	farwritetext UnknownText_0xa4d72
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc1f
 
 UnknownScript_0xbcc1f: ; 0xbcc1f
-	3writetext UnknownText_0xa5820
+	farwritetext UnknownText_0xa5820
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc26
 
 UnknownScript_0xbcc26: ; 0xbcc26
-	3writetext UnknownText_0xa6359
+	farwritetext UnknownText_0xa6359
 	closetext
 	loadmovesprites
 	end
@@ -1939,56 +1939,56 @@ UnknownScript_0xbcc2d: ; 0xbcc2d
 	if_equal $24, UnknownScript_0xbcc80
 
 UnknownScript_0xbcc4f:
-	3writetext UnknownText_0x1b0ce0
+	farwritetext UnknownText_0x1b0ce0
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc56
 
 UnknownScript_0xbcc56: ; 0xbcc56
-	3writetext UnknownText_0x1b13af
+	farwritetext UnknownText_0x1b13af
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc5d
 
 UnknownScript_0xbcc5d: ; 0xbcc5d
-	3writetext UnknownText_0x1b178a
+	farwritetext UnknownText_0x1b178a
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc64
 
 UnknownScript_0xbcc64: ; 0xbcc64
-	3writetext UnknownText_0x1b1fdd
+	farwritetext UnknownText_0x1b1fdd
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc6b
 
 UnknownScript_0xbcc6b: ; 0xbcc6b
-	3writetext UnknownText_0xa4542
+	farwritetext UnknownText_0xa4542
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc72
 
 UnknownScript_0xbcc72: ; 0xbcc72
-	3writetext UnknownText_0xa4dcd
+	farwritetext UnknownText_0xa4dcd
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc79
 
 UnknownScript_0xbcc79: ; 0xbcc79
-	3writetext UnknownText_0xa5842
+	farwritetext UnknownText_0xa5842
 	closetext
 	loadmovesprites
 	end
 ; 0xbcc80
 
 UnknownScript_0xbcc80: ; 0xbcc80
-	3writetext UnknownText_0xa638c
+	farwritetext UnknownText_0xa638c
 	closetext
 	loadmovesprites
 	end
@@ -2006,56 +2006,56 @@ UnknownScript_0xbcc87: ; 0xbcc87
 	if_equal $24, UnknownScript_0xbccda
 
 UnknownScript_0xbcca9:
-	3writetext UnknownText_0x1b0d0b
+	farwritetext UnknownText_0x1b0d0b
 	closetext
 	loadmovesprites
 	end
 ; 0xbccb0
 
 UnknownScript_0xbccb0: ; 0xbccb0
-	3writetext UnknownText_0x1b13e4
+	farwritetext UnknownText_0x1b13e4
 	closetext
 	loadmovesprites
 	end
 ; 0xbccb7
 
 UnknownScript_0xbccb7: ; 0xbccb7
-	3writetext UnknownText_0x1b17ba
+	farwritetext UnknownText_0x1b17ba
 	closetext
 	loadmovesprites
 	end
 ; 0xbccbe
 
 UnknownScript_0xbccbe: ; 0xbccbe
-	3writetext UnknownText_0x1b1ffa
+	farwritetext UnknownText_0x1b1ffa
 	closetext
 	loadmovesprites
 	end
 ; 0xbccc5
 
 UnknownScript_0xbccc5: ; 0xbccc5
-	3writetext UnknownText_0xa4573
+	farwritetext UnknownText_0xa4573
 	closetext
 	loadmovesprites
 	end
 ; 0xbcccc
 
 UnknownScript_0xbcccc: ; 0xbcccc
-	3writetext UnknownText_0xa4e01
+	farwritetext UnknownText_0xa4e01
 	closetext
 	loadmovesprites
 	end
 ; 0xbccd3
 
 UnknownScript_0xbccd3: ; 0xbccd3
-	3writetext UnknownText_0xa5881
+	farwritetext UnknownText_0xa5881
 	closetext
 	loadmovesprites
 	end
 ; 0xbccda
 
 UnknownScript_0xbccda: ; 0xbccda
-	3writetext UnknownText_0xa63cc
+	farwritetext UnknownText_0xa63cc
 	closetext
 	loadmovesprites
 	end
@@ -2072,49 +2072,49 @@ UnknownScript_0xbcce1: ; 0xbcce1
 	if_equal $24, UnknownScript_0xbcd29
 
 UnknownScript_0xbccff:
-	3writetext UnknownText_0x1b1409
+	farwritetext UnknownText_0x1b1409
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd06
 
 UnknownScript_0xbcd06: ; 0xbcd06
-	3writetext UnknownText_0x1b17de
+	farwritetext UnknownText_0x1b17de
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd0d
 
 UnknownScript_0xbcd0d: ; 0xbcd0d
-	3writetext UnknownText_0x1b201f
+	farwritetext UnknownText_0x1b201f
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd14
 
 UnknownScript_0xbcd14: ; 0xbcd14
-	3writetext UnknownText_0xa4595
+	farwritetext UnknownText_0xa4595
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd1b
 
 UnknownScript_0xbcd1b: ; 0xbcd1b
-	3writetext UnknownText_0xa4e21
+	farwritetext UnknownText_0xa4e21
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd22
 
 UnknownScript_0xbcd22: ; 0xbcd22
-	3writetext UnknownText_0xa58a3
+	farwritetext UnknownText_0xa58a3
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd29
 
 UnknownScript_0xbcd29: ; 0xbcd29
-	3writetext UnknownText_0xa63f1
+	farwritetext UnknownText_0xa63f1
 	closetext
 	loadmovesprites
 	end
@@ -2128,25 +2128,25 @@ UnknownScript_0xbcd30: ; 0xbcd30
 	if_equal $1f, UnknownScript_0xbcd54
 
 UnknownScript_0xbcd42:
-	3writetext UnknownText_0x1b0d2c
+	farwritetext UnknownText_0x1b0d2c
 	keeptextopen
 	end
 ; 0xbcd48
 
 UnknownScript_0xbcd48: ; 0xbcd48
-	3writetext UnknownText_0xa45c9
+	farwritetext UnknownText_0xa45c9
 	keeptextopen
 	end
 ; 0xbcd4e
 
 UnknownScript_0xbcd4e: ; 0xbcd4e
-	3writetext UnknownText_0xa4e4c
+	farwritetext UnknownText_0xa4e4c
 	keeptextopen
 	end
 ; 0xbcd54
 
 UnknownScript_0xbcd54: ; 0xbcd54
-	3writetext UnknownText_0xa58d5
+	farwritetext UnknownText_0xa58d5
 	keeptextopen
 	end
 ; 0xbcd5a
@@ -2160,35 +2160,35 @@ UnknownScript_0xbcd5a: ; 0xbcd5a
 	if_equal $24, UnknownScript_0xbcd8c
 
 UnknownScript_0xbcd70:
-	3writetext UnknownText_0x1b0d69
+	farwritetext UnknownText_0x1b0d69
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd77
 
 UnknownScript_0xbcd77: ; 0xbcd77
-	3writetext UnknownText_0xa4603
+	farwritetext UnknownText_0xa4603
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd7e
 
 UnknownScript_0xbcd7e: ; 0xbcd7e
-	3writetext UnknownText_0xa4e8f
+	farwritetext UnknownText_0xa4e8f
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd85
 
 UnknownScript_0xbcd85: ; 0xbcd85
-	3writetext UnknownText_0xa5914
+	farwritetext UnknownText_0xa5914
 	closetext
 	loadmovesprites
 	end
 ; 0xbcd8c
 
 UnknownScript_0xbcd8c: ; 0xbcd8c
-	3writetext UnknownText_0xa6411
+	farwritetext UnknownText_0xa6411
 	closetext
 	loadmovesprites
 	end
@@ -2199,7 +2199,7 @@ UnknownScript_0xbcd93: ; 0xbcd93
 	if_equal $24, .ok
 .ok
 	loadfont
-	3writetext UnknownText_0xa6454
+	farwritetext UnknownText_0xa6454
 	keeptextopen
 	end
 ; 0xbcda0
@@ -2207,7 +2207,7 @@ UnknownScript_0xbcd93: ; 0xbcd93
 UnknownScript_0xbcda0: ; 0xbcda0
 	mapnametotext $0
 	loadfont
-	3writetext UnknownText_0x1b074e
+	farwritetext UnknownText_0x1b074e
 	closetext
 	loadmovesprites
 	end
@@ -2216,9 +2216,9 @@ UnknownScript_0xbcda0: ; 0xbcda0
 UnknownScript_0xbcdaa: ; 0xbcdaa
 	mapnametotext $0
 	loadfont
-	3writetext UnknownText_0x1b074e
+	farwritetext UnknownText_0x1b074e
 	keeptextopen
-	3writetext UnknownText_0x1b075c
+	farwritetext UnknownText_0x1b075c
 	closetext
 	loadmovesprites
 	end
@@ -2226,7 +2226,7 @@ UnknownScript_0xbcdaa: ; 0xbcdaa
 
 UnknownScript_0xbcdb9: ; 0xbcdb9
 	waitbutton
-	3writetext UnknownText_0x1b0648
+	farwritetext UnknownText_0x1b0648
 	playsound SFX_ITEM
 	waitbutton
 	end
@@ -2234,7 +2234,7 @@ UnknownScript_0xbcdb9: ; 0xbcdb9
 
 UnknownScript_0xbcdc3: ; 0xbcdc3
 	waitbutton
-	3writetext UnknownText_0x1b0648
+	farwritetext UnknownText_0x1b0648
 	playsound SFX_GET_EGG_FROM_DAYCARE_LADY
 	waitbutton
 	end
@@ -2243,18 +2243,18 @@ UnknownScript_0xbcdc3: ; 0xbcdc3
 UnknownScript_0xbcdcd: ; 0xbcdcd
 	faceplayer
 	loadfont
-	3writetext UnknownText_0x1b077f
+	farwritetext UnknownText_0x1b077f
 	keeptextopen
 	checkitem COIN_CASE
 	iftrue UnknownScript_0xbcde0
-	3writetext UnknownText_0x1b079c
+	farwritetext UnknownText_0x1b079c
 	closetext
 	loadmovesprites
 	end
 ; 0xbcde0
 
 UnknownScript_0xbcde0: ; 0xbcde0
-	3writetext UnknownText_0x1b07e3
+	farwritetext UnknownText_0x1b07e3
 
 UnknownScript_0xbcde4: ; 0xbcde4
 	special $0050
@@ -2263,7 +2263,7 @@ UnknownScript_0xbcde4: ; 0xbcde4
 	writebackup
 	if_equal $1, UnknownScript_0xbcdf7
 	if_equal $2, UnknownScript_0xbce1b
-	2jump UnknownScript_0xbce4d
+	jump UnknownScript_0xbce4d
 ; 0xbcdf7
 
 UnknownScript_0xbcdf7: ; 0xbcdf7
@@ -2275,9 +2275,9 @@ UnknownScript_0xbcdf7: ; 0xbcdf7
 	takemoney $0, 1000
 	waitbutton
 	playsound SFX_TRANSACTION
-	3writetext UnknownText_0x1b0830
+	farwritetext UnknownText_0x1b0830
 	closetext
-	2jump UnknownScript_0xbcde4
+	jump UnknownScript_0xbcde4
 ; 0xbce1b
 
 UnknownScript_0xbce1b: ; 0xbce1b
@@ -2289,27 +2289,27 @@ UnknownScript_0xbce1b: ; 0xbce1b
 	takemoney $0, 10000
 	waitbutton
 	playsound SFX_TRANSACTION
-	3writetext UnknownText_0x1b084f
+	farwritetext UnknownText_0x1b084f
 	closetext
-	2jump UnknownScript_0xbcde4
+	jump UnknownScript_0xbcde4
 ; 0xbce3f
 
 UnknownScript_0xbce3f: ; 0xbce3f
-	3writetext UnknownText_0x1b086f
+	farwritetext UnknownText_0x1b086f
 	closetext
 	loadmovesprites
 	end
 ; 0xbce46
 
 UnknownScript_0xbce46: ; 0xbce46
-	3writetext UnknownText_0x1b088c
+	farwritetext UnknownText_0x1b088c
 	closetext
 	loadmovesprites
 	end
 ; 0xbce4d
 
 UnknownScript_0xbce4d: ; 0xbce4d
-	3writetext UnknownText_0x1b08ad
+	farwritetext UnknownText_0x1b08ad
 	closetext
 	loadmovesprites
 	end
@@ -2339,21 +2339,21 @@ UnknownScript_0xbce7f: ; 0xbce7f
 	special $0059
 	if_less_than 50, UnknownScript_0xbce9a
 	if_less_than 150, UnknownScript_0xbce93
-	3writetext UnknownText_0x1b092a
+	farwritetext UnknownText_0x1b092a
 	closetext
 	loadmovesprites
 	end
 ; 0xbce93
 
 UnknownScript_0xbce93: ; 0xbce93
-	3writetext UnknownText_0x1b0954
+	farwritetext UnknownText_0x1b0954
 	closetext
 	loadmovesprites
 	end
 ; 0xbce9a
 
 UnknownScript_0xbce9a: ; 0xbce9a
-	3writetext UnknownText_0x1b0989
+	farwritetext UnknownText_0x1b0989
 	closetext
 	loadmovesprites
 	end

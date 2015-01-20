@@ -25,7 +25,7 @@ YoungsterScript_0x7117d: ; 0x7117d
 
 MapCeladonDeptStore6FSignpost5Script: ; 0x71180
 	loadfont
-	2writetext UnknownText_0x71250
+	writetext UnknownText_0x71250
 UnknownScript_0x71184: ; 0x71184
 	special $0051
 	loadmenudata MenuDataHeader_0x71203
@@ -45,7 +45,7 @@ UnknownScript_0x7119a: ; 0x7119a
 	iffalse UnknownScript_0x711fc
 	takemoney $0, 200
 	itemtotext FRESH_WATER, $0
-	2jump UnknownScript_0x711e8
+	jump UnknownScript_0x711e8
 ; 0x711b4
 
 UnknownScript_0x711b4: ; 0x711b4
@@ -55,7 +55,7 @@ UnknownScript_0x711b4: ; 0x711b4
 	iffalse UnknownScript_0x711fc
 	takemoney $0, 300
 	itemtotext SODA_POP, $0
-	2jump UnknownScript_0x711e8
+	jump UnknownScript_0x711e8
 ; 0x711ce
 
 UnknownScript_0x711ce: ; 0x711ce
@@ -65,28 +65,28 @@ UnknownScript_0x711ce: ; 0x711ce
 	iffalse UnknownScript_0x711fc
 	takemoney $0, 350
 	itemtotext LEMONADE, $0
-	2jump UnknownScript_0x711e8
+	jump UnknownScript_0x711e8
 ; 0x711e8
 
 UnknownScript_0x711e8: ; 0x711e8
 	pause 10
 	playsound SFX_ENTER_DOOR
-	2writetext UnknownText_0x71274
+	writetext UnknownText_0x71274
 	keeptextopen
 	itemnotify
-	2jump UnknownScript_0x71184
+	jump UnknownScript_0x71184
 ; 0x711f5
 
 UnknownScript_0x711f5: ; 0x711f5
-	2writetext UnknownText_0x7128e
+	writetext UnknownText_0x7128e
 	closetext
-	2jump UnknownScript_0x71184
+	jump UnknownScript_0x71184
 ; 0x711fc
 
 UnknownScript_0x711fc: ; 0x711fc
-	2writetext UnknownText_0x712a7
+	writetext UnknownText_0x712a7
 	closetext
-	2jump UnknownScript_0x71184
+	jump UnknownScript_0x71184
 ; 0x71203
 
 

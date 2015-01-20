@@ -3,36 +3,36 @@ UnknownScript_0xa0b14:
 	iftrue UnknownScript_0xa0b73
 	checkcode $a
 	if_greater_than $11, UnknownScript_0xa0b4b
-	2call UnknownScript_0xa0b32
-	2jump UnknownScript_0xa0c0e
+	scall UnknownScript_0xa0b32
+	jump UnknownScript_0xa0c0e
 
 UnknownScript_0xa0b26:
 	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	iftrue UnknownScript_0xa0b73
-	2call UnknownScript_0xa0b4f
-	2jump UnknownScript_0xa0b77
+	scall UnknownScript_0xa0b4f
+	jump UnknownScript_0xa0b77
 
 UnknownScript_0xa0b32:
 	checktime $1
 	iftrue UnknownScript_0xa0b41
 	checktime $2
 	iftrue UnknownScript_0xa0b46
-	2writetext UnknownText_0xa0d42
+	writetext UnknownText_0xa0d42
 	keeptextopen
 	end
 
 UnknownScript_0xa0b41:
-	2writetext UnknownText_0xa0c28
+	writetext UnknownText_0xa0c28
 	keeptextopen
 	end
 
 UnknownScript_0xa0b46:
-	2writetext UnknownText_0xa0c72
+	writetext UnknownText_0xa0c72
 	keeptextopen
 	end
 
 UnknownScript_0xa0b4b:
-	2writetext UnknownText_0xa0caf
+	writetext UnknownText_0xa0caf
 	end
 
 UnknownScript_0xa0b4f:
@@ -42,34 +42,34 @@ UnknownScript_0xa0b4f:
 	iftrue UnknownScript_0xa0b64
 	checktime $2
 	iftrue UnknownScript_0xa0b69
-	2writetext UnknownText_0xa0e29
+	writetext UnknownText_0xa0e29
 	keeptextopen
 	end
 
 UnknownScript_0xa0b64:
-	2writetext UnknownText_0xa0d96
+	writetext UnknownText_0xa0d96
 	keeptextopen
 	end
 
 UnknownScript_0xa0b69:
-	2writetext UnknownText_0xa0dcf
+	writetext UnknownText_0xa0dcf
 	keeptextopen
 	end
 
 UnknownScript_0xa0b6e:
-	2writetext UnknownText_0xa0e01
+	writetext UnknownText_0xa0e01
 	keeptextopen
 	end
 
 UnknownScript_0xa0b73:
-	2writetext UnknownText_0xa0e5e
+	writetext UnknownText_0xa0e5e
 	end
 
 UnknownScript_0xa0b77:
 	checkevent $0044
 	iftrue UnknownScript_0xa0b82
 	random $b
-	2jump UnknownScript_0xa0b84
+	jump UnknownScript_0xa0b84
 
 UnknownScript_0xa0b82:
 	random $e
@@ -91,59 +91,59 @@ UnknownScript_0xa0b84:
 	if_equal $d, UnknownScript_0xa0c0a
 
 UnknownScript_0xa0bbc:
-	2writetext UnknownText_0xa0efb
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa0efb
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bc2:
-	2writetext UnknownText_0xa0fcf
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa0fcf
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bc8:
-	2writetext UnknownText_0xa109d
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa109d
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bce:
-	2writetext UnknownText_0xa1143
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa1143
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bd4:
-	2writetext UnknownText_0xa1244
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa1244
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bda:
-	2writetext UnknownText_0xa1318
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa1318
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0be0:
-	2writetext UnknownText_0xa13d8
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa13d8
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0be6:
-	2writetext UnknownText_0xa1488
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa1488
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bec:
-	2writetext UnknownText_0xa15de
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa15de
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bf2:
-	2writetext UnknownText_0xa1717
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa1717
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bf8:
-	2writetext UnknownText_0xa183d
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa183d
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0bfe:
-	2writetext UnknownText_0xa19b1
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa19b1
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0c04:
-	2writetext UnknownText_0xa1ac0
-	2jump UnknownScript_0xa0c0d
+	writetext UnknownText_0xa1ac0
+	jump UnknownScript_0xa0c0d
 
 UnknownScript_0xa0c0a:
-	2writetext UnknownText_0xa1bed
+	writetext UnknownText_0xa1bed
 
 UnknownScript_0xa0c0d:
 	end
@@ -155,14 +155,14 @@ UnknownScript_0xa0c0e:
 	if_equal $2, UnknownScript_0xa0c24
 
 UnknownScript_0xa0c1c:
-	2writetext UnknownText_0xa1c88
+	writetext UnknownText_0xa1c88
 	end
 
 UnknownScript_0xa0c20:
-	2writetext UnknownText_0xa1d5f
+	writetext UnknownText_0xa1d5f
 	end
 
 UnknownScript_0xa0c24:
-	2writetext UnknownText_0xa1e2f
+	writetext UnknownText_0xa1e2f
 	end
 ; a0c28

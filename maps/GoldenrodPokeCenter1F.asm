@@ -28,12 +28,12 @@ UnknownScript_0x60f9e: ; 0x60f9e
 	applymovement $3, MovementData_0x6105a
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x622f0
+	writetext UnknownText_0x622f0
 	closetext
 	verbosegiveitem GS_BALL, 1
 	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	2writetext UnknownText_0x62359
+	writetext UnknownText_0x62359
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x61060
@@ -62,12 +62,12 @@ UnknownScript_0x60fe3: ; 0x60fe3
 	applymovement $3, MovementData_0x61065
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x622f0
+	writetext UnknownText_0x622f0
 	closetext
 	verbosegiveitem GS_BALL, 1
 	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	2writetext UnknownText_0x62359
+	writetext UnknownText_0x62359
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x6106c
@@ -89,27 +89,27 @@ LassScript_0x61021: ; 0x61021
 PokefanFScript_0x61024: ; 0x61024
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x623fb
+	writetext UnknownText_0x623fb
 	closetext
-	2writetext UnknownText_0x6248c
+	writetext UnknownText_0x6248c
 	yesorno
 	iffalse UnknownScript_0x6104b
 	takeitem EON_MAIL, 1
 	iffalse UnknownScript_0x6104b
-	2writetext UnknownText_0x62549
+	writetext UnknownText_0x62549
 	closetext
-	2writetext UnknownText_0x624a4
+	writetext UnknownText_0x624a4
 	closetext
 	verbosegiveitem REVIVE, 1
 	iffalse UnknownScript_0x61051
-	2writetext UnknownText_0x624e9
+	writetext UnknownText_0x624e9
 	closetext
 	loadmovesprites
 	end
 ; 0x6104b
 
 UnknownScript_0x6104b: ; 0x6104b
-	2writetext UnknownText_0x62509
+	writetext UnknownText_0x62509
 	closetext
 	loadmovesprites
 	end
@@ -117,7 +117,7 @@ UnknownScript_0x6104b: ; 0x6104b
 
 UnknownScript_0x61051: ; 0x61051
 	giveitem EON_MAIL, $1
-	2writetext UnknownText_0x6252a
+	writetext UnknownText_0x6252a
 	closetext
 	loadmovesprites
 	end

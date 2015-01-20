@@ -18,7 +18,7 @@ BlaineScript_0x1ab4fb: ; 0x1ab4fb
 	loadfont
 	checkflag $0029
 	iftrue UnknownScript_0x1ab52b
-	2writetext UnknownText_0x1ab548
+	writetext UnknownText_0x1ab548
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1ab646, $0000
@@ -30,18 +30,18 @@ UnknownScript_0x1ab516: ; 0x1ab516
 	returnafterbattle
 	setevent $04cb
 	loadfont
-	2writetext UnknownText_0x1ab683
+	writetext UnknownText_0x1ab683
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0029
-	2writetext UnknownText_0x1ab69d
+	writetext UnknownText_0x1ab69d
 	closetext
 	loadmovesprites
 	end
 ; 0x1ab52b
 
 UnknownScript_0x1ab52b: ; 0x1ab52b
-	2writetext UnknownText_0x1ab71c
+	writetext UnknownText_0x1ab71c
 	closetext
 	loadmovesprites
 	end
@@ -52,14 +52,14 @@ SeafoamGymGuyScript: ; 0x1ab531
 	loadfont
 	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	iftrue .TalkedToSeafoamGymGuyScript
-	2writetext SeafoamGymGuyWinText
+	writetext SeafoamGymGuyWinText
 	closetext
 	loadmovesprites
 	setevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	end
 
 .TalkedToSeafoamGymGuyScript
-	2writetext SeafoamGymGuyWinText2
+	writetext SeafoamGymGuyWinText2
 	closetext
 	loadmovesprites
 	end

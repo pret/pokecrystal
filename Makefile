@@ -8,7 +8,6 @@ PYTHON := python
 poketools := extras/pokemontools
 gfx       := $(PYTHON) $(poketools)/gfx.py
 includes  := $(PYTHON) $(poketools)/scan_includes.py
-pre       := $(PYTHON) prequeue.py
 
 
 crystal_obj := \
@@ -48,14 +47,11 @@ baserom.gbc: ;
 
 
 %.asm: ;
-%.tx: %.asm ; $(eval txq += $<) @rm -f $@
-
-$(all_obj): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_dep))
-	@$(pre) $(txq);        $(eval txq :=)
+$(all_obj): $$*.asm $$($$*_dep)
 	@$(gfx) 2bpp $(2bppq); $(eval 2bppq :=)
 	@$(gfx) 1bpp $(1bppq); $(eval 1bppq :=)
-	@$(gfx) lz $(lzq);     $(eval lzq   :=)
-	rgbasm -o $@ $*.tx
+	@$(gfx) lz   $(lzq);   $(eval lzq   :=)
+	rgbasm -o $@ $<
 
 pokecrystal.gbc: $(crystal_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^

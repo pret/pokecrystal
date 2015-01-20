@@ -29,7 +29,7 @@ TrainerBird_keeperTheo: ; 0x5b23d
 Bird_keeperTheoScript: ; 0x5b249
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5b2df
+	writetext UnknownText_0x5b2df
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerGentlemanPreston: ; 0x5b251
 GentlemanPrestonScript: ; 0x5b25d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5b457
+	writetext UnknownText_0x5b457
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerSailorTerrell: ; 0x5b265
 SailorTerrellScript: ; 0x5b271
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5b384
+	writetext UnknownText_0x5b384
 	closetext
 	loadmovesprites
 	end

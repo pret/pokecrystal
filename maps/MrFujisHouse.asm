@@ -16,7 +16,7 @@ LassScript_0x7e8cd: ; 0x7e8cd
 
 RhydonScript_0x7e8d0: ; 0x7e8d0
 	loadfont
-	2writetext UnknownText_0x7e9b6
+	writetext UnknownText_0x7e9b6
 	cry PSYDUCK
 	closetext
 	loadmovesprites
@@ -25,7 +25,7 @@ RhydonScript_0x7e8d0: ; 0x7e8d0
 
 GrowlitheScript_0x7e8da: ; 0x7e8da
 	loadfont
-	2writetext UnknownText_0x7e9c9
+	writetext UnknownText_0x7e9c9
 	cry NIDORINO
 	closetext
 	loadmovesprites
@@ -34,7 +34,7 @@ GrowlitheScript_0x7e8da: ; 0x7e8da
 
 MoltresScript_0x7e8e4: ; 0x7e8e4
 	loadfont
-	2writetext UnknownText_0x7e9da
+	writetext UnknownText_0x7e9da
 	cry PIDGEY
 	closetext
 	loadmovesprites

@@ -17,7 +17,7 @@ LassScript_0x693ec: ; 0x693ec
 BirdScript_0x693ef: ; 0x693ef
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x6947c
+	writetext UnknownText_0x6947c
 	cry PIDGEY
 	closetext
 	loadmovesprites

@@ -45,7 +45,7 @@ UnknownScript_0x6cf90: ; 0x6cf90
 
 UnknownScript_0x6cf95: ; 0x6cf95
 	moveperson $4, $9, $d
-	2jump UnknownScript_0x6cfac
+	jump UnknownScript_0x6cfac
 ; 0x6cf9c
 
 UnknownScript_0x6cf9c: ; 0x6cf9c
@@ -57,7 +57,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	appear $3
 	appear $2
 	loadfont
-	2writetext UnknownText_0x6d2ad
+	writetext UnknownText_0x6d2ad
 	closetext
 	loadmovesprites
 	spriteface $0, $0
@@ -68,7 +68,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	spriteface $0, $1
 	applymovement $2, MovementData_0x6d22f
 	loadfont
-	2writetext UnknownText_0x6d2c3
+	writetext UnknownText_0x6d2c3
 	closetext
 	loadmovesprites
 	cry DRAGONITE
@@ -81,13 +81,13 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	appear $4
 	applymovement $4, MovementData_0x6d244
 	loadfont
-	2writetext UnknownText_0x6d38c
+	writetext UnknownText_0x6d38c
 	closetext
 	loadmovesprites
 	spriteface $0, $3
 	applymovement $3, MovementData_0x6d241
 	loadfont
-	2writetext UnknownText_0x6d3bd
+	writetext UnknownText_0x6d3bd
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x6d24a
@@ -103,7 +103,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	returnafterbattle
 	setevent $0570
 	loadfont
-	2writetext UnknownText_0x6d4c6
+	writetext UnknownText_0x6d4c6
 	closetext
 	loadmovesprites
 	special $0030
@@ -119,13 +119,13 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	clearevent $06d6
 	spriteface $4, $0
 	loadfont
-	2writetext UnknownText_0x6d5d8
+	writetext UnknownText_0x6d5d8
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x6d250
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x6d64e
+	writetext UnknownText_0x6d64e
 	closetext
 	loadmovesprites
 	follow $4, $0
@@ -133,7 +133,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	stopfollow
 	applymovement $4, MovementData_0x6d258
 	loadfont
-	2writetext UnknownText_0x6d6cf
+	writetext UnknownText_0x6d6cf
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x6d267
@@ -147,7 +147,7 @@ UnknownScript_0x6d075: ; 0x6d075
 
 UnknownScript_0x6d07a: ; 0x6d07a
 	loadfont
-	2writetext UnknownText_0x6d7ea
+	writetext UnknownText_0x6d7ea
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x6d278
@@ -156,7 +156,7 @@ UnknownScript_0x6d07a: ; 0x6d07a
 
 UnknownScript_0x6d085: ; 0x6d085
 	spriteface $0, $1
-	2jump UnknownScript_0x6d091
+	jump UnknownScript_0x6d091
 ; 0x6d08b
 
 UnknownScript_0x6d08b: ; 0x6d08b
@@ -164,7 +164,7 @@ UnknownScript_0x6d08b: ; 0x6d08b
 	spriteface $4, $2
 UnknownScript_0x6d091: ; 0x6d091
 	loadfont
-	2writetext UnknownText_0x6da97
+	writetext UnknownText_0x6da97
 	closetext
 	loadmovesprites
 	special $002e
@@ -173,7 +173,7 @@ UnknownScript_0x6d091: ; 0x6d091
 	special $001b
 	special $0031
 	loadfont
-	2writetext UnknownText_0x6daf7
+	writetext UnknownText_0x6daf7
 	closetext
 	loadmovesprites
 	dotrigger $1
@@ -214,7 +214,7 @@ TrainerGruntM17: ; 0x6d0c5
 GruntM17Script: ; 0x6d0d1
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6db88
+	writetext UnknownText_0x6db88
 	closetext
 	loadmovesprites
 	end
@@ -243,7 +243,7 @@ TrainerGruntM18: ; 0x6d0d9
 GruntM18Script: ; 0x6d0e5
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6dc1a
+	writetext UnknownText_0x6dc1a
 	closetext
 	loadmovesprites
 	end
@@ -272,7 +272,7 @@ TrainerGruntM19: ; 0x6d0ed
 GruntM19Script: ; 0x6d0f9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x6dcd1
+	writetext UnknownText_0x6dcd1
 	closetext
 	loadmovesprites
 	end
@@ -294,7 +294,7 @@ VoltorbScript_0x6d101: ; 0x6d101
 	returnafterbattle
 	special $003c
 	applymovement $0, MovementData_0x6d28c
-	2jump UnknownScript_0x6d184
+	jump UnknownScript_0x6d184
 ; 0x6d12c
 
 VoltorbScript_0x6d12c: ; 0x6d12c
@@ -313,7 +313,7 @@ VoltorbScript_0x6d12c: ; 0x6d12c
 	returnafterbattle
 	special $003c
 	applymovement $0, MovementData_0x6d299
-	2jump UnknownScript_0x6d184
+	jump UnknownScript_0x6d184
 ; 0x6d157
 
 VoltorbScript_0x6d157: ; 0x6d157
@@ -332,7 +332,7 @@ VoltorbScript_0x6d157: ; 0x6d157
 	returnafterbattle
 	special $003c
 	applymovement $0, MovementData_0x6d2a4
-	2jump UnknownScript_0x6d184
+	jump UnknownScript_0x6d184
 ; 0x6d182
 
 UnknownScript_0x6d182: ; 0x6d182
@@ -346,16 +346,16 @@ UnknownScript_0x6d184: ; 0x6d184
 	applymovement $4, MovementData_0x6d27a
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x6d809
+	writetext UnknownText_0x6d809
 	keeptextopen
 	verbosegiveitem HM_06, 1
 	setevent EVENT_GOT_HM06_WHIRLPOOL
-	2writetext UnknownText_0x6d8f8
+	writetext UnknownText_0x6d8f8
 	closetext
 	loadmovesprites
 	spriteface $4, $0
 	loadfont
-	2writetext UnknownText_0x6d994
+	writetext UnknownText_0x6d994
 	closetext
 	loadmovesprites
 	spriteface $0, $0
@@ -386,14 +386,14 @@ MapTeamRocketBaseB2FSignpost1Script: ; 0x6d1db
 	loadfont
 	checkevent EVENT_LEARNED_HAIL_GIOVANNI
 	iftrue UnknownScript_0x6d1e8
-	2writetext UnknownText_0x6dd39
+	writetext UnknownText_0x6dd39
 	closetext
 	loadmovesprites
 	end
 ; 0x6d1e8
 
 UnknownScript_0x6d1e8: ; 0x6d1e8
-	2writetext UnknownText_0x6dd6b
+	writetext UnknownText_0x6dd6b
 	closetext
 	playsound SFX_ENTER_DOOR
 	changeblock $e, $c, $7
@@ -408,14 +408,14 @@ MapTeamRocketBaseB2FSignpost21Script: ; 0x6d1fa
 	loadfont
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x6d207
-	2writetext UnknownText_0x6dda7
+	writetext UnknownText_0x6dda7
 	closetext
 	loadmovesprites
 	end
 ; 0x6d207
 
 UnknownScript_0x6d207: ; 0x6d207
-	2writetext UnknownText_0x6de03
+	writetext UnknownText_0x6de03
 	closetext
 	loadmovesprites
 	end

@@ -26,14 +26,14 @@ CooltrainerMScript_0x19681d: ; 0x19681d
 	loadfont
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x19682b
-	2writetext UnknownText_0x196834
+	writetext UnknownText_0x196834
 	closetext
 	loadmovesprites
 	end
 ; 0x19682b
 
 UnknownScript_0x19682b: ; 0x19682b
-	2writetext UnknownText_0x196873
+	writetext UnknownText_0x196873
 	closetext
 	loadmovesprites
 	end

@@ -190,7 +190,7 @@ Function8b4d: ; 8b4d
 	ld a, [hSGB]
 	and a
 	ret z
-	ld hl, $5c26
+	ld hl, PalPacket_9c26
 	jp Function9809
 
 .asm_8b5c
@@ -206,7 +206,7 @@ Function8b67: ; 8b67
 	ld a, [hSGB]
 	and a
 	ret z
-	ld hl, $5c36
+	ld hl, PalPacket_9c36
 	jp Function9809
 
 .asm_8b76
@@ -2155,6 +2155,7 @@ Palettes_b469: ; b469
 	RGB 31, 07, 01
 	RGB 00, 00, 00
 
+Palette_b471::
 	RGB 28, 31, 16
 	RGB 31, 19, 10
 	RGB 10, 09, 31

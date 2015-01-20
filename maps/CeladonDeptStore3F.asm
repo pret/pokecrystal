@@ -21,7 +21,7 @@ YoungsterScript_0x70d31: ; 0x70d31
 GameboyKidScript_0x70d34: ; 0x70d34
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x70d86
+	writetext UnknownText_0x70d86
 	closetext
 	loadmovesprites
 	spriteface $4, $0
@@ -31,7 +31,7 @@ GameboyKidScript_0x70d34: ; 0x70d34
 GameboyKidScript_0x70d3f: ; 0x70d3f
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x70dc7
+	writetext UnknownText_0x70dc7
 	closetext
 	loadmovesprites
 	spriteface $5, $0

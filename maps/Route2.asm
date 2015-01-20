@@ -29,7 +29,7 @@ TrainerBug_catcherRob: ; 0x1ac2bc
 Bug_catcherRobScript: ; 0x1ac2c8
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ac34d
+	writetext UnknownText_0x1ac34d
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerBug_catcherEd: ; 0x1ac2d0
 Bug_catcherEdScript: ; 0x1ac2dc
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ac3cf
+	writetext UnknownText_0x1ac3cf
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerBug_catcherDoug: ; 0x1ac2e4
 Bug_catcherDougScript: ; 0x1ac2f0
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ac423
+	writetext UnknownText_0x1ac423
 	closetext
 	loadmovesprites
 	end

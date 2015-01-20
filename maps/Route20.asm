@@ -38,7 +38,7 @@ TrainerSwimmerfNicole: ; 0x1acd29
 SwimmerfNicoleScript: ; 0x1acd35
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1acd93
+	writetext UnknownText_0x1acd93
 	closetext
 	loadmovesprites
 	end
@@ -67,7 +67,7 @@ TrainerSwimmerfLori: ; 0x1acd3d
 SwimmerfLoriScript: ; 0x1acd49
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ace15
+	writetext UnknownText_0x1ace15
 	closetext
 	loadmovesprites
 	end
@@ -96,7 +96,7 @@ TrainerSwimmermCameron: ; 0x1acd51
 SwimmermCameronScript: ; 0x1acd5d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ace8b
+	writetext UnknownText_0x1ace8b
 	closetext
 	loadmovesprites
 	end

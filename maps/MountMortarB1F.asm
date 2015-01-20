@@ -13,7 +13,7 @@ BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	iftrue UnknownScript_0x7e231
 	checkevent $04a9
 	iftrue UnknownScript_0x7e217
-	2writetext UnknownText_0x7e24d
+	writetext UnknownText_0x7e24d
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x7e2a9, $0000
@@ -23,25 +23,25 @@ BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	setevent $04a9
 	loadfont
 UnknownScript_0x7e217: ; 0x7e217
-	2writetext UnknownText_0x7e2c0
+	writetext UnknownText_0x7e2c0
 	keeptextopen
 	waitbutton
 	checkcode $1
 	if_equal $6, UnknownScript_0x7e237
-	2writetext UnknownText_0x7e355
+	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	givepoke TYROGUE, 10, 0, 0
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 UnknownScript_0x7e231: ; 0x7e231
-	2writetext UnknownText_0x7e36a
+	writetext UnknownText_0x7e36a
 	closetext
 	loadmovesprites
 	end
 ; 0x7e237
 
 UnknownScript_0x7e237: ; 0x7e237
-	2writetext UnknownText_0x7e3df
+	writetext UnknownText_0x7e3df
 	closetext
 	loadmovesprites
 	end

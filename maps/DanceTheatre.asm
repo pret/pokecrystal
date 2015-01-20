@@ -29,7 +29,7 @@ TrainerKimono_girlNaoko2: ; 0x99462
 Kimono_girlNaoko2Script: ; 0x9946e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x99579
+	writetext UnknownText_0x99579
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerKimono_girlSayo: ; 0x99476
 Kimono_girlSayoScript: ; 0x99482
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x9960b
+	writetext UnknownText_0x9960b
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerKimono_girlZuki: ; 0x9948a
 Kimono_girlZukiScript: ; 0x99496
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x99688
+	writetext UnknownText_0x99688
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerKimono_girlKuni: ; 0x9949e
 Kimono_girlKuniScript: ; 0x994aa
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x99714
+	writetext UnknownText_0x99714
 	closetext
 	loadmovesprites
 	end
@@ -145,7 +145,7 @@ TrainerKimono_girlMiki: ; 0x994b2
 Kimono_girlMikiScript: ; 0x994be
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x997a8
+	writetext UnknownText_0x997a8
 	closetext
 	loadmovesprites
 	end
@@ -154,7 +154,7 @@ Kimono_girlMikiScript: ; 0x994be
 GentlemanScript_0x994c6: ; 0x994c6
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x9980a
+	writetext UnknownText_0x9980a
 	keeptextopen
 	checkevent EVENT_GOT_HM03_SURF
 	iftrue UnknownScript_0x99515
@@ -168,38 +168,38 @@ GentlemanScript_0x994c6: ; 0x994c6
 	iffalse UnknownScript_0x994f3
 	checkevent EVENT_BEAT_KIMONO_GIRL_MIKI
 	iffalse UnknownScript_0x994f3
-	2jump UnknownScript_0x99505
+	jump UnknownScript_0x99505
 ; 0x994f3
 
 UnknownScript_0x994f3: ; 0x994f3
 	checkflag $0063
 	iftrue UnknownScript_0x994ff
-	2writetext UnknownText_0x99891
+	writetext UnknownText_0x99891
 	closetext
 	loadmovesprites
 	end
 ; 0x994ff
 
 UnknownScript_0x994ff: ; 0x994ff
-	2writetext UnknownText_0x998d4
+	writetext UnknownText_0x998d4
 	closetext
 	loadmovesprites
 	end
 ; 0x99505
 
 UnknownScript_0x99505: ; 0x99505
-	2writetext UnknownText_0x9991a
+	writetext UnknownText_0x9991a
 	keeptextopen
 	verbosegiveitem HM_03, 1
 	setevent EVENT_GOT_HM03_SURF
-	2writetext UnknownText_0x9999b
+	writetext UnknownText_0x9999b
 	closetext
 	loadmovesprites
 	end
 ; 0x99515
 
 UnknownScript_0x99515: ; 0x99515
-	2writetext UnknownText_0x999d5
+	writetext UnknownText_0x999d5
 	closetext
 	loadmovesprites
 	end
@@ -207,7 +207,7 @@ UnknownScript_0x99515: ; 0x99515
 
 RhydonScript_0x9951b: ; 0x9951b
 	loadfont
-	2writetext UnknownText_0x99a0a
+	writetext UnknownText_0x99a0a
 	cry RHYDON
 	closetext
 	loadmovesprites

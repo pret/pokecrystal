@@ -99,7 +99,7 @@ MapRuinsofAlphHoOhChamberSignpost3Script: ; 0x585ea
 
 MapRuinsofAlphHoOhChamberSignpost4Script: ; 0x585ed
 	loadfont
-	2writetext UnknownText_0x58612
+	writetext UnknownText_0x58612
 	writebyte $3
 	special $0087
 	loadmovesprites
@@ -110,7 +110,7 @@ MapRuinsofAlphHoOhChamberSignpost5Script: ; 0x585f8
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue UnknownScript_0x58609
 	loadfont
-	2writetext UnknownText_0x58644
+	writetext UnknownText_0x58644
 	writebyte $3
 	special $0087
 	loadmovesprites
@@ -119,7 +119,7 @@ MapRuinsofAlphHoOhChamberSignpost5Script: ; 0x585f8
 
 UnknownScript_0x58609: ; 0x58609
 	loadfont
-	2writetext UnknownText_0x58665
+	writetext UnknownText_0x58665
 	closetext
 	loadmovesprites
 	end

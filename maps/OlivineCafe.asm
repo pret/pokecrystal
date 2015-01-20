@@ -11,12 +11,12 @@ SailorScript_0x9c8c1: ; 0x9c8c1
 	loadfont
 	checkevent EVENT_GOT_HM04_STRENGTH
 	iftrue UnknownScript_0x9c8d3
-	2writetext UnknownText_0x9c8df
+	writetext UnknownText_0x9c8df
 	keeptextopen
 	verbosegiveitem HM_04, 1
 	setevent EVENT_GOT_HM04_STRENGTH
 UnknownScript_0x9c8d3: ; 0x9c8d3
-	2writetext UnknownText_0x9c965
+	writetext UnknownText_0x9c965
 	closetext
 	loadmovesprites
 	end

@@ -9,7 +9,7 @@ NationalParkBugContest_MapScriptHeader: ; 0x5c8ea
 YoungsterScript_0x5c8ec: ; 0x5c8ec
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5c94c
+	writetext UnknownText_0x5c94c
 	closetext
 	loadmovesprites
 	end
@@ -18,7 +18,7 @@ YoungsterScript_0x5c8ec: ; 0x5c8ec
 YoungsterScript_0x5c8f4: ; 0x5c8f4
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5c973
+	writetext UnknownText_0x5c973
 	closetext
 	loadmovesprites
 	end
@@ -27,7 +27,7 @@ YoungsterScript_0x5c8f4: ; 0x5c8f4
 RockerScript_0x5c8fc: ; 0x5c8fc
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5c9a3
+	writetext UnknownText_0x5c9a3
 	closetext
 	loadmovesprites
 	end
@@ -36,7 +36,7 @@ RockerScript_0x5c8fc: ; 0x5c8fc
 PokefanMScript_0x5c904: ; 0x5c904
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5c9cc
+	writetext UnknownText_0x5c9cc
 	closetext
 	loadmovesprites
 	end
@@ -45,7 +45,7 @@ PokefanMScript_0x5c904: ; 0x5c904
 YoungsterScript_0x5c90c: ; 0x5c90c
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5ca15
+	writetext UnknownText_0x5ca15
 	closetext
 	loadmovesprites
 	end
@@ -54,7 +54,7 @@ YoungsterScript_0x5c90c: ; 0x5c90c
 YoungsterScript_0x5c914: ; 0x5c914
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5ca52
+	writetext UnknownText_0x5ca52
 	closetext
 	loadmovesprites
 	end
@@ -63,7 +63,7 @@ YoungsterScript_0x5c914: ; 0x5c914
 LassScript_0x5c91c: ; 0x5c91c
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5ca8f
+	writetext UnknownText_0x5ca8f
 	closetext
 	loadmovesprites
 	end
@@ -72,7 +72,7 @@ LassScript_0x5c91c: ; 0x5c91c
 YoungsterScript_0x5c924: ; 0x5c924
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5cac8
+	writetext UnknownText_0x5cac8
 	closetext
 	loadmovesprites
 	end
@@ -81,7 +81,7 @@ YoungsterScript_0x5c924: ; 0x5c924
 YoungsterScript_0x5c92c: ; 0x5c92c
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5cb25
+	writetext UnknownText_0x5cb25
 	closetext
 	loadmovesprites
 	end
@@ -90,7 +90,7 @@ YoungsterScript_0x5c92c: ; 0x5c92c
 YoungsterScript_0x5c934: ; 0x5c934
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x5cb64
+	writetext UnknownText_0x5cb64
 	closetext
 	loadmovesprites
 	end

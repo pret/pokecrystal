@@ -45,7 +45,7 @@ UnknownScript_0x18c8b5: ; 0x18c8b5
 UnknownScript_0x18c8b8: ; 0x18c8b8
 	appear $3
 	loadfont
-	2writetext UnknownText_0x18c9b8
+	writetext UnknownText_0x18c9b8
 	pause 30
 	loadmovesprites
 	showemote $0, $0, 15
@@ -53,26 +53,26 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	playmusic MUSIC_CLAIR
 	applymovement $3, MovementData_0x18c9ae
 	loadfont
-	2writetext UnknownText_0x18c9bf
+	writetext UnknownText_0x18c9bf
 	keeptextopen
 	giveitem TM_24, $1
 	iffalse UnknownScript_0x18c8f4
 	itemtotext TM_24, $0
-	2writetext UnknownText_0x18c9fb
+	writetext UnknownText_0x18c9fb
 	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
-	2writetext UnknownText_0x18ca0d
+	writetext UnknownText_0x18ca0d
 	keeptextopen
-	2writetext UnknownText_0x18caf1
+	writetext UnknownText_0x18caf1
 	closetext
 	loadmovesprites
-	2jump UnknownScript_0x18c8f9
+	jump UnknownScript_0x18c8f9
 ; 0x18c8f4
 
 UnknownScript_0x18c8f4: ; 0x18c8f4
-	2writetext UnknownText_0x18ca8b
+	writetext UnknownText_0x18ca8b
 	closetext
 	loadmovesprites
 UnknownScript_0x18c8f9: ; 0x18c8f9
@@ -108,7 +108,7 @@ TrainerCooltrainermDarin: ; 0x18c90a
 CooltrainermDarinScript: ; 0x18c916
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18cd82
+	writetext UnknownText_0x18cd82
 	closetext
 	loadmovesprites
 	end
@@ -137,7 +137,7 @@ TrainerCooltrainerfCara: ; 0x18c91e
 CooltrainerfCaraScript: ; 0x18c92a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18ce11
+	writetext UnknownText_0x18ce11
 	closetext
 	loadmovesprites
 	end
@@ -166,7 +166,7 @@ TrainerTwinsLeaandpia1: ; 0x18c932
 TwinsLeaandpia1Script: ; 0x18c93e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18ced3
+	writetext UnknownText_0x18ced3
 	closetext
 	loadmovesprites
 	end
@@ -195,7 +195,7 @@ TrainerTwinsLeaandpia2: ; 0x18c946
 TwinsLeaandpia2Script: ; 0x18c952
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18cf0f
+	writetext UnknownText_0x18cf0f
 	closetext
 	loadmovesprites
 	end
@@ -207,7 +207,7 @@ PokeBallScript_0x18c95a: ; 0x18c95a
 	disappear $2
 	loadfont
 	itemtotext DRAGON_FANG, $0
-	2writetext UnknownText_0x18cf41
+	writetext UnknownText_0x18cf41
 	playsound SFX_ITEM
 	waitbutton
 	itemnotify
@@ -218,9 +218,9 @@ PokeBallScript_0x18c95a: ; 0x18c95a
 UnknownScript_0x18c970: ; 0x18c970
 	loadfont
 	itemtotext DRAGON_FANG, $0
-	2writetext UnknownText_0x18cf41
+	writetext UnknownText_0x18cf41
 	keeptextopen
-	2writetext UnknownText_0x18cf51
+	writetext UnknownText_0x18cf51
 	closetext
 	loadmovesprites
 	end
@@ -232,7 +232,7 @@ SilverScript_0x18c97e: ; 0x18c97e
 	loadfont
 	checkevent $0000
 	iftrue UnknownScript_0x18c995
-	2writetext UnknownText_0x18cc83
+	writetext UnknownText_0x18cc83
 	closetext
 	loadmovesprites
 	setevent $0000
@@ -241,7 +241,7 @@ SilverScript_0x18c97e: ; 0x18c97e
 ; 0x18c995
 
 UnknownScript_0x18c995: ; 0x18c995
-	2writetext UnknownText_0x18cd2d
+	writetext UnknownText_0x18cd2d
 	closetext
 	loadmovesprites
 	special $003d

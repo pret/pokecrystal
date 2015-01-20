@@ -29,7 +29,7 @@ TrainerPokefanmRex: ; 0x1ad929
 PokefanmRexScript: ; 0x1ad935
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ad9ff
+	writetext UnknownText_0x1ad9ff
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerPokefanmAllan: ; 0x1ad93d
 PokefanmAllanScript: ; 0x1ad949
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ada88
+	writetext UnknownText_0x1ada88
 	closetext
 	loadmovesprites
 	end

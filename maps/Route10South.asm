@@ -29,7 +29,7 @@ TrainerHikerJim: ; 0x1ae3f6
 HikerJimScript: ; 0x1ae402
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ae43b
+	writetext UnknownText_0x1ae43b
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerPokefanmRobert: ; 0x1ae40a
 PokefanmRobertScript: ; 0x1ae416
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ae4a9
+	writetext UnknownText_0x1ae4a9
 	closetext
 	loadmovesprites
 	end

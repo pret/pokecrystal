@@ -23,14 +23,14 @@ TeacherScript_0x196976: ; 0x196976
 	loadfont
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196984
-	2writetext UnknownText_0x1969f1
+	writetext UnknownText_0x1969f1
 	closetext
 	loadmovesprites
 	end
 ; 0x196984
 
 UnknownScript_0x196984: ; 0x196984
-	2writetext UnknownText_0x196a46
+	writetext UnknownText_0x196a46
 	closetext
 	loadmovesprites
 	end

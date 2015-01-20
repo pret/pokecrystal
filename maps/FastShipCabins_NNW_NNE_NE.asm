@@ -29,7 +29,7 @@ TrainerCooltrainermSean: ; 0x75579
 CooltrainermSeanScript: ; 0x75585
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7567b
+	writetext UnknownText_0x7567b
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerCooltrainerfCarol: ; 0x7558d
 CooltrainerfCarolScript: ; 0x75599
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x756f7
+	writetext UnknownText_0x756f7
 	closetext
 	loadmovesprites
 	end
@@ -87,7 +87,7 @@ TrainerPokemaniacEthan: ; 0x755a1
 PokemaniacEthanScript: ; 0x755ad
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7574b
+	writetext UnknownText_0x7574b
 	closetext
 	loadmovesprites
 	end
@@ -116,7 +116,7 @@ TrainerHikerNoland: ; 0x755b5
 HikerNolandScript: ; 0x755c1
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x757d4
+	writetext UnknownText_0x757d4
 	closetext
 	loadmovesprites
 	end
@@ -145,7 +145,7 @@ TrainerGentlemanEdward: ; 0x755c9
 GentlemanEdwardScript: ; 0x755d5
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x75937
+	writetext UnknownText_0x75937
 	closetext
 	loadmovesprites
 	end
@@ -174,7 +174,7 @@ TrainerBurglarCorey: ; 0x755dd
 BurglarCoreyScript: ; 0x755e9
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x75996
+	writetext UnknownText_0x75996
 	closetext
 	loadmovesprites
 	end
@@ -184,7 +184,7 @@ SailorScript_0x755f1: ; 0x755f1
 	playmusic MUSIC_HIKER_ENCOUNTER
 	faceplayer
 	loadfont
-	2writetext UnknownText_0x75812
+	writetext UnknownText_0x75812
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x75897, $0000
@@ -194,7 +194,7 @@ SailorScript_0x755f1: ; 0x755f1
 	special $001b
 	setevent $057d
 	loadfont
-	2writetext UnknownText_0x758b1
+	writetext UnknownText_0x758b1
 	closetext
 	loadmovesprites
 	setevent $0033

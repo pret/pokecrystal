@@ -29,7 +29,7 @@ TrainerSchoolboyDanny: ; 0x1ac556
 SchoolboyDannyScript: ; 0x1ac562
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ac5d7
+	writetext UnknownText_0x1ac5d7
 	closetext
 	loadmovesprites
 	end
@@ -58,7 +58,7 @@ TrainerCooltrainerfQuinn: ; 0x1ac56a
 CooltrainerfQuinnScript: ; 0x1ac576
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1ac640
+	writetext UnknownText_0x1ac640
 	closetext
 	loadmovesprites
 	end

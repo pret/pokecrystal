@@ -8,7 +8,7 @@ Route39_MapScriptHeader: ; 0x1a5af3
 
 TaurosScript_0x1a5af5: ; 0x1a5af5
 	loadfont
-	2writetext UnknownText_0x1a5bf9
+	writetext UnknownText_0x1a5bf9
 	cry MILTANK
 	closetext
 	loadmovesprites
@@ -47,38 +47,38 @@ PokefanmDerek1Script: ; 0x1a5b0b
 	iffalse UnknownScript_0x1a5b5c
 	checkevent EVENT_SHOWED_DEREK_PIKACHU
 	iftrue UnknownScript_0x1a5b33
-	2writetext UnknownText_0x1a5cf8
+	writetext UnknownText_0x1a5cf8
 	keeptextopen
 	setevent EVENT_SHOWED_DEREK_PIKACHU
-	2call UnknownScript_0x1a5b62
-	2jump UnknownScript_0x1a5b36
+	scall UnknownScript_0x1a5b62
+	jump UnknownScript_0x1a5b36
 ; 0x1a5b33
 
 UnknownScript_0x1a5b33: ; 0x1a5b33
-	2call UnknownScript_0x1a5b66
+	scall UnknownScript_0x1a5b66
 UnknownScript_0x1a5b36: ; 0x1a5b36
 	askforphonenumber $1c
 	if_equal $1, UnknownScript_0x1a5b76
 	if_equal $2, UnknownScript_0x1a5b72
 	trainertotext POKEFANM, DEREK1, $0
-	2call UnknownScript_0x1a5b6a
-	2jump UnknownScript_0x1a5b6e
+	scall UnknownScript_0x1a5b6a
+	jump UnknownScript_0x1a5b6e
 ; 0x1a5b4a
 
 UnknownScript_0x1a5b4a: ; 0x1a5b4a
-	2call UnknownScript_0x1a5b7a
+	scall UnknownScript_0x1a5b7a
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x1a5b59
 	clearflag $0083
-	2jump UnknownScript_0x1a5b6e
+	jump UnknownScript_0x1a5b6e
 ; 0x1a5b59
 
 UnknownScript_0x1a5b59: ; 0x1a5b59
-	2jump UnknownScript_0x1a5b7e
+	jump UnknownScript_0x1a5b7e
 ; 0x1a5b5c
 
 UnknownScript_0x1a5b5c: ; 0x1a5b5c
-	2writetext UnknownText_0x1a5dec
+	writetext UnknownText_0x1a5dec
 	closetext
 	loadmovesprites
 	end
@@ -147,7 +147,7 @@ TrainerPokefanfRuth: ; 0x1a5b82
 PokefanfRuthScript: ; 0x1a5b8e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a5db2
+	writetext UnknownText_0x1a5db2
 	closetext
 	loadmovesprites
 	end
@@ -176,7 +176,7 @@ TrainerSailorEugene: ; 0x1a5b96
 SailorEugeneScript: ; 0x1a5ba2
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a5c4d
+	writetext UnknownText_0x1a5c4d
 	closetext
 	loadmovesprites
 	end
@@ -205,7 +205,7 @@ TrainerPsychicNorman: ; 0x1a5baa
 PsychicNormanScript: ; 0x1a5bb6
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x1a5e57
+	writetext UnknownText_0x1a5e57
 	closetext
 	loadmovesprites
 	end
@@ -218,7 +218,7 @@ PokefanFScript_0x1a5bbe: ; 0x1a5bbe
 	iffalse UnknownScript_0x1a5be5
 	checkevent $05c2
 	iftrue UnknownScript_0x1a5bdf
-	2writetext UnknownText_0x1a5ee8
+	writetext UnknownText_0x1a5ee8
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1a5f17, $0000
@@ -231,14 +231,14 @@ PokefanFScript_0x1a5bbe: ; 0x1a5bbe
 ; 0x1a5bdf
 
 UnknownScript_0x1a5bdf: ; 0x1a5bdf
-	2writetext UnknownText_0x1a5f31
+	writetext UnknownText_0x1a5f31
 	closetext
 	loadmovesprites
 	end
 ; 0x1a5be5
 
 UnknownScript_0x1a5be5: ; 0x1a5be5
-	2writetext UnknownText_0x1a5ec4
+	writetext UnknownText_0x1a5ec4
 	closetext
 	loadmovesprites
 	end

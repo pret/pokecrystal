@@ -54,7 +54,7 @@ TrainerGruntM24: ; 0x7d983
 GruntM24Script: ; 0x7d98f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7da48
+	writetext UnknownText_0x7da48
 	closetext
 	loadmovesprites
 	end
@@ -83,7 +83,7 @@ TrainerGruntM14: ; 0x7d997
 GruntM14Script: ; 0x7d9a3
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7db01
+	writetext UnknownText_0x7db01
 	closetext
 	loadmovesprites
 	end
@@ -112,7 +112,7 @@ TrainerGruntM15: ; 0x7d9ab
 GruntM15Script: ; 0x7d9b7
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x7db8e
+	writetext UnknownText_0x7db8e
 	closetext
 	loadmovesprites
 	end
@@ -123,17 +123,17 @@ GentlemanScript_0x7d9bf: ; 0x7d9bf
 	loadfont
 	checkevent $004a
 	iftrue UnknownScript_0x7d9de
-	2writetext UnknownText_0x7dbc6
+	writetext UnknownText_0x7dbc6
 	keeptextopen
 	verbosegiveitem CARD_KEY, 1
 	setevent $004a
 	setevent $0304
 	clearevent $0305
 	clearevent $0306
-	2writetext UnknownText_0x7dc5b
+	writetext UnknownText_0x7dc5b
 	keeptextopen
 UnknownScript_0x7d9de: ; 0x7d9de
-	2writetext UnknownText_0x7dc8d
+	writetext UnknownText_0x7dc8d
 	closetext
 	loadmovesprites
 	end

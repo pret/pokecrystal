@@ -45,7 +45,7 @@ TrainerSageChow: ; 0x18450a
 SageChowScript: ; 0x184516
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x184583
+	writetext UnknownText_0x184583
 	closetext
 	loadmovesprites
 	end

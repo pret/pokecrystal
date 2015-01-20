@@ -11,7 +11,7 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	loadfont
 	checkflag $0028
 	iftrue UnknownScript_0x189c65
-	2writetext UnknownText_0x189cdf
+	writetext UnknownText_0x189cdf
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x189df4, $0000
@@ -24,18 +24,18 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	setevent EVENT_BEAT_PSYCHIC_FRANKLIN
 	setevent EVENT_BEAT_PSYCHIC_JARED
 	loadfont
-	2writetext UnknownText_0x189e95
+	writetext UnknownText_0x189e95
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0028
-	2writetext UnknownText_0x189ead
+	writetext UnknownText_0x189ead
 	closetext
 	loadmovesprites
 	end
 ; 0x189c65
 
 UnknownScript_0x189c65: ; 0x189c65
-	2writetext UnknownText_0x189f6c
+	writetext UnknownText_0x189f6c
 	closetext
 	loadmovesprites
 	end
@@ -64,7 +64,7 @@ TrainerMediumRebecca: ; 0x189c6b
 MediumRebeccaScript: ; 0x189c77
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18a034
+	writetext UnknownText_0x18a034
 	closetext
 	loadmovesprites
 	end
@@ -93,7 +93,7 @@ TrainerPsychicFranklin: ; 0x189c7f
 PsychicFranklinScript: ; 0x189c8b
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18a0a6
+	writetext UnknownText_0x18a0a6
 	closetext
 	loadmovesprites
 	end
@@ -122,7 +122,7 @@ TrainerMediumDoris: ; 0x189c93
 MediumDorisScript: ; 0x189c9f
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18a136
+	writetext UnknownText_0x18a136
 	closetext
 	loadmovesprites
 	end
@@ -151,7 +151,7 @@ TrainerPsychicJared: ; 0x189ca7
 PsychicJaredScript: ; 0x189cb3
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x18a1b3
+	writetext UnknownText_0x18a1b3
 	closetext
 	loadmovesprites
 	end
@@ -162,13 +162,13 @@ SaffronGymGuyScript: ; 0x189cbb
 	loadfont
 	checkevent EVENT_BEAT_SABRINA
 	iftrue .SaffronGymGuyWinScript
-	2writetext SaffronGymGuyText
+	writetext SaffronGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .SaffronGymGuyWinScript
-	2writetext SaffronGymGuyWinText
+	writetext SaffronGymGuyWinText
 	closetext
 	loadmovesprites
 	end

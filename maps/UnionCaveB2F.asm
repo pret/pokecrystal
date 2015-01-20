@@ -59,7 +59,7 @@ TrainerCooltrainermNick: ; 0x5a32e
 CooltrainermNickScript: ; 0x5a33a
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5a3f0
+	writetext UnknownText_0x5a3f0
 	closetext
 	loadmovesprites
 	end
@@ -88,7 +88,7 @@ TrainerCooltrainerfGwen: ; 0x5a342
 CooltrainerfGwenScript: ; 0x5a34e
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5a488
+	writetext UnknownText_0x5a488
 	closetext
 	loadmovesprites
 	end
@@ -117,7 +117,7 @@ TrainerCooltrainerfEmma: ; 0x5a356
 CooltrainerfEmmaScript: ; 0x5a362
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5a52b
+	writetext UnknownText_0x5a52b
 	closetext
 	loadmovesprites
 	end

@@ -54,7 +54,7 @@ BrunoScript_0x1809c5: ; 0x1809c5
 	loadfont
 	checkevent $05ba
 	iftrue UnknownScript_0x1809f3
-	2writetext UnknownText_0x1809fe
+	writetext UnknownText_0x1809fe
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x180b23, $0000
@@ -63,7 +63,7 @@ BrunoScript_0x1809c5: ; 0x1809c5
 	returnafterbattle
 	setevent $05ba
 	loadfont
-	2writetext UnknownText_0x180b3c
+	writetext UnknownText_0x180b3c
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
@@ -76,7 +76,7 @@ BrunoScript_0x1809c5: ; 0x1809c5
 ; 0x1809f3
 
 UnknownScript_0x1809f3: ; 0x1809f3
-	2writetext UnknownText_0x180b3c
+	writetext UnknownText_0x180b3c
 	closetext
 	loadmovesprites
 	end

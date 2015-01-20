@@ -17,18 +17,18 @@ TeacherScript_0x5eb85: ; 0x5eb85
 	iftrue UnknownScript_0x5ebac
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5eb99
-	2writetext UnknownText_0x5ec68
+	writetext UnknownText_0x5ec68
 	closetext
 	loadmovesprites
 	end
 ; 0x5eb99
 
 UnknownScript_0x5eb99: ; 0x5eb99
-	2writetext UnknownText_0x5ecab
+	writetext UnknownText_0x5ecab
 	keeptextopen
 	verbosegiveitem PINK_BOW, 1
 	iffalse UnknownScript_0x5ebb0
-	2writetext UnknownText_0x5ecef
+	writetext UnknownText_0x5ecef
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_PINK_BOW_FROM_MARY
@@ -36,7 +36,7 @@ UnknownScript_0x5eb99: ; 0x5eb99
 ; 0x5ebac
 
 UnknownScript_0x5ebac: ; 0x5ebac
-	2writetext UnknownText_0x5ed2c
+	writetext UnknownText_0x5ed2c
 	closetext
 UnknownScript_0x5ebb0: ; 0x5ebb0
 	loadmovesprites
@@ -45,7 +45,7 @@ UnknownScript_0x5ebb0: ; 0x5ebb0
 
 GrowlitheScript_0x5ebb2: ; 0x5ebb2
 	loadfont
-	2writetext UnknownText_0x5ed66
+	writetext UnknownText_0x5ed66
 	cry MEOWTH
 	closetext
 	loadmovesprites
@@ -75,7 +75,7 @@ TrainerGruntM10: ; 0x5ebbc
 GruntM10Script: ; 0x5ebc8
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5ede2
+	writetext UnknownText_0x5ede2
 	closetext
 	loadmovesprites
 	end
@@ -104,7 +104,7 @@ TrainerExecutivem2: ; 0x5ebd0
 Executivem2Script: ; 0x5ebdc
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5ee69
+	writetext UnknownText_0x5ee69
 	closetext
 	loadmovesprites
 	end
@@ -133,7 +133,7 @@ TrainerGruntF4: ; 0x5ebe4
 GruntF4Script: ; 0x5ebf0
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5ef31
+	writetext UnknownText_0x5ef31
 	closetext
 	loadmovesprites
 	end
@@ -162,7 +162,7 @@ TrainerScientistRich: ; 0x5ebf8
 ScientistRichScript: ; 0x5ec04
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5efcb
+	writetext UnknownText_0x5efcb
 	closetext
 	loadmovesprites
 	end

@@ -11,7 +11,7 @@ PryceScript_0x199a9e: ; 0x199a9e
 	loadfont
 	checkevent EVENT_BEAT_PRYCE
 	iftrue UnknownScript_0x199ac8
-	2writetext UnknownText_0x199b8d
+	writetext UnknownText_0x199b8d
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x199cb3, $0000
@@ -20,12 +20,12 @@ PryceScript_0x199a9e: ; 0x199a9e
 	returnafterbattle
 	setevent EVENT_BEAT_PRYCE
 	loadfont
-	2writetext UnknownText_0x199d3b
+	writetext UnknownText_0x199d3b
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0021
 	checkcode $7
-	2call UnknownScript_0x199af6
+	scall UnknownScript_0x199af6
 UnknownScript_0x199ac8: ; 0x199ac8
 	checkevent EVENT_GOT_TM16_ICY_WIND
 	iftrue UnknownScript_0x199af0
@@ -34,19 +34,19 @@ UnknownScript_0x199ac8: ; 0x199ac8
 	setevent EVENT_BEAT_BOARDER_RONALD
 	setevent EVENT_BEAT_BOARDER_BRAD
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
-	2writetext UnknownText_0x199d55
+	writetext UnknownText_0x199d55
 	keeptextopen
 	verbosegiveitem TM_16, 1
 	iffalse UnknownScript_0x199af4
 	setevent EVENT_GOT_TM16_ICY_WIND
-	2writetext UnknownText_0x199def
+	writetext UnknownText_0x199def
 	closetext
 	loadmovesprites
 	end
 ; 0x199af0
 
 UnknownScript_0x199af0: ; 0x199af0
-	2writetext UnknownText_0x199e59
+	writetext UnknownText_0x199e59
 	closetext
 UnknownScript_0x199af4: ; 0x199af4
 	loadmovesprites
@@ -90,7 +90,7 @@ TrainerSkierRoxanne: ; 0x199b05
 SkierRoxanneScript: ; 0x199b11
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19a116
+	writetext UnknownText_0x19a116
 	closetext
 	loadmovesprites
 	end
@@ -119,7 +119,7 @@ TrainerSkierClarissa: ; 0x199b19
 SkierClarissaScript: ; 0x199b25
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19a18f
+	writetext UnknownText_0x19a18f
 	closetext
 	loadmovesprites
 	end
@@ -148,7 +148,7 @@ TrainerBoarderRonald: ; 0x199b2d
 BoarderRonaldScript: ; 0x199b39
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x199f2d
+	writetext UnknownText_0x199f2d
 	closetext
 	loadmovesprites
 	end
@@ -177,7 +177,7 @@ TrainerBoarderBrad: ; 0x199b41
 BoarderBradScript: ; 0x199b4d
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x199fdd
+	writetext UnknownText_0x199fdd
 	closetext
 	loadmovesprites
 	end
@@ -206,7 +206,7 @@ TrainerBoarderDouglas: ; 0x199b55
 BoarderDouglasScript: ; 0x199b61
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x19a047
+	writetext UnknownText_0x19a047
 	closetext
 	loadmovesprites
 	end
@@ -217,13 +217,13 @@ MahoganyGymGuyScript: ; 0x199b69
 	loadfont
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .MahoganyGymGuyWinScript
-	2writetext MahoganyGymGuyText
+	writetext MahoganyGymGuyText
 	closetext
 	loadmovesprites
 	end
 
 .MahoganyGymGuyWinScript
-	2writetext MahoganyGymGuyWinText
+	writetext MahoganyGymGuyWinText
 	closetext
 	loadmovesprites
 	end

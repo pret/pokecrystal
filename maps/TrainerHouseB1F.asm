@@ -18,29 +18,29 @@ UnknownScript_0x9b38b: ; 0x9b38b
 	loadfont
 	checkflag $0057
 	iftrue UnknownScript_0x9b3f7
-	2writetext UnknownText_0x9b420
+	writetext UnknownText_0x9b420
 	keeptextopen
 	special $0067
 	iffalse UnknownScript_0x9b3a6
 	trainertotext CAL, CAL2, $0
-	2jump UnknownScript_0x9b3aa
+	jump UnknownScript_0x9b3aa
 ; 0x9b3a6
 
 UnknownScript_0x9b3a6: ; 0x9b3a6
 	trainertotext CAL, CAL3, $0
 UnknownScript_0x9b3aa: ; 0x9b3aa
-	2writetext UnknownText_0x9b46a
+	writetext UnknownText_0x9b46a
 	keeptextopen
-	2writetext UnknownText_0x9b487
+	writetext UnknownText_0x9b487
 	yesorno
 	iffalse UnknownScript_0x9b3ed
 	setflag $0057
-	2writetext UnknownText_0x9b4a2
+	writetext UnknownText_0x9b4a2
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x9b401
 	loadfont
-	2writetext UnknownText_0x9b587
+	writetext UnknownText_0x9b587
 	closetext
 	loadmovesprites
 	special $0067
@@ -63,7 +63,7 @@ UnknownScript_0x9b3e8: ; 0x9b3e8
 ; 0x9b3ed
 
 UnknownScript_0x9b3ed: ; 0x9b3ed
-	2writetext UnknownText_0x9b4d6
+	writetext UnknownText_0x9b4d6
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x9b41d
@@ -71,7 +71,7 @@ UnknownScript_0x9b3ed: ; 0x9b3ed
 ; 0x9b3f7
 
 UnknownScript_0x9b3f7: ; 0x9b3f7
-	2writetext UnknownText_0x9b51d
+	writetext UnknownText_0x9b51d
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x9b41d

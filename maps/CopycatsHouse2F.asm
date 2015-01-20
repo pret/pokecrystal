@@ -15,7 +15,7 @@ UnknownScript_0x18ae9f: ; 0x18ae9f
 	iftrue UnknownScript_0x18aeac
 	disappear $7
 	appear $2
-	2jump UnknownScript_0x18aeb0
+	jump UnknownScript_0x18aeb0
 ; 0x18aeac
 
 UnknownScript_0x18aeac: ; 0x18aeac
@@ -38,7 +38,7 @@ CopycatScript_0x18aeb1: ; 0x18aeb1
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
 	variablesprite $b, $1
-	2jump UnknownScript_0x18aedc
+	jump UnknownScript_0x18aedc
 ; 0x18aed4
 
 UnknownScript_0x18aed4: ; 0x18aed4
@@ -52,19 +52,19 @@ UnknownScript_0x18aedc: ; 0x18aedc
 	loadfont
 	checkflag $0063
 	iftrue UnknownScript_0x18aef2
-	2writetext UnknownText_0x18afda
-	2jump UnknownScript_0x18aef5
+	writetext UnknownText_0x18afda
+	jump UnknownScript_0x18aef5
 ; 0x18aef2
 
 UnknownScript_0x18aef2: ; 0x18aef2
-	2writetext UnknownText_0x18b316
+	writetext UnknownText_0x18b316
 UnknownScript_0x18aef5: ; 0x18aef5
 	closetext
 	loadmovesprites
 	checkflag $0063
 	iftrue UnknownScript_0x18af04
 	applymovement $2, MovementData_0x18afd0
-	2jump UnknownScript_0x18af08
+	jump UnknownScript_0x18af08
 ; 0x18af04
 
 UnknownScript_0x18af04: ; 0x18af04
@@ -74,7 +74,7 @@ UnknownScript_0x18af08: ; 0x18af08
 	variablesprite $b, $28
 	special $005e
 	loadfont
-	2writetext UnknownText_0x18b028
+	writetext UnknownText_0x18b028
 	closetext
 	loadmovesprites
 	end
@@ -84,19 +84,19 @@ UnknownScript_0x18af16: ; 0x18af16
 	loadfont
 	checkflag $0063
 	iftrue UnknownScript_0x18af23
-	2writetext UnknownText_0x18b064
-	2jump UnknownScript_0x18af26
+	writetext UnknownText_0x18b064
+	jump UnknownScript_0x18af26
 ; 0x18af23
 
 UnknownScript_0x18af23: ; 0x18af23
-	2writetext UnknownText_0x18b366
+	writetext UnknownText_0x18b366
 UnknownScript_0x18af26: ; 0x18af26
 	closetext
 	loadmovesprites
 	checkflag $0063
 	iftrue UnknownScript_0x18af35
 	applymovement $2, MovementData_0x18afd0
-	2jump UnknownScript_0x18af39
+	jump UnknownScript_0x18af39
 ; 0x18af35
 
 UnknownScript_0x18af35: ; 0x18af35
@@ -106,7 +106,7 @@ UnknownScript_0x18af39: ; 0x18af39
 	variablesprite $b, $28
 	special $005e
 	loadfont
-	2writetext UnknownText_0x18b116
+	writetext UnknownText_0x18b116
 	closetext
 	loadmovesprites
 	setevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
@@ -115,23 +115,23 @@ UnknownScript_0x18af39: ; 0x18af39
 
 UnknownScript_0x18af4a: ; 0x18af4a
 	loadfont
-	2writetext UnknownText_0x18b17f
+	writetext UnknownText_0x18b17f
 	keeptextopen
 	takeitem LOST_ITEM, 1
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent $0773
-	2jump UnknownScript_0x18af5c
+	jump UnknownScript_0x18af5c
 ; 0x18af5b
 
 UnknownScript_0x18af5b: ; 0x18af5b
 	loadfont
 UnknownScript_0x18af5c: ; 0x18af5c
-	2writetext UnknownText_0x18b1e2
+	writetext UnknownText_0x18b1e2
 	keeptextopen
 	verbosegiveitem PASS, 1
 	iffalse UnknownScript_0x18afba
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
-	2writetext UnknownText_0x18b214
+	writetext UnknownText_0x18b214
 	closetext
 	loadmovesprites
 	end
@@ -143,7 +143,7 @@ UnknownScript_0x18af6f: ; 0x18af6f
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
 	variablesprite $b, $1
-	2jump UnknownScript_0x18af88
+	jump UnknownScript_0x18af88
 ; 0x18af80
 
 UnknownScript_0x18af80: ; 0x18af80
@@ -155,19 +155,19 @@ UnknownScript_0x18af88: ; 0x18af88
 	loadfont
 	checkflag $0063
 	iftrue UnknownScript_0x18af98
-	2writetext UnknownText_0x18b298
-	2jump UnknownScript_0x18af9b
+	writetext UnknownText_0x18b298
+	jump UnknownScript_0x18af9b
 ; 0x18af98
 
 UnknownScript_0x18af98: ; 0x18af98
-	2writetext UnknownText_0x18b415
+	writetext UnknownText_0x18b415
 UnknownScript_0x18af9b: ; 0x18af9b
 	closetext
 	loadmovesprites
 	checkflag $0063
 	iftrue UnknownScript_0x18afaa
 	applymovement $2, MovementData_0x18afd0
-	2jump UnknownScript_0x18afae
+	jump UnknownScript_0x18afae
 ; 0x18afaa
 
 UnknownScript_0x18afaa: ; 0x18afaa
@@ -177,7 +177,7 @@ UnknownScript_0x18afae: ; 0x18afae
 	variablesprite $b, $28
 	special $005e
 	loadfont
-	2writetext UnknownText_0x18b2f5
+	writetext UnknownText_0x18b2f5
 	closetext
 UnknownScript_0x18afba: ; 0x18afba
 	loadmovesprites
@@ -186,10 +186,10 @@ UnknownScript_0x18afba: ; 0x18afba
 
 MoltresScript_0x18afbc: ; 0x18afbc
 	loadfont
-	2writetext UnknownText_0x18b476
+	writetext UnknownText_0x18b476
 	cry DODRIO
 	keeptextopen
-	2writetext UnknownText_0x18b489
+	writetext UnknownText_0x18b489
 	closetext
 	loadmovesprites
 	end

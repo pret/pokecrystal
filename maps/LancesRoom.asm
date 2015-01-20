@@ -51,7 +51,7 @@ UnknownScript_0x180e53: ; 0x180e53
 UnknownScript_0x180e6a: ; 0x180e6a
 	special $006a
 	applymovement $0, MovementData_0x180f38
-	2jump LanceScript_0x180e7b
+	jump LanceScript_0x180e7b
 ; 0x180e74
 
 UnknownScript_0x180e74: ; 0x180e74
@@ -60,7 +60,7 @@ UnknownScript_0x180e74: ; 0x180e74
 LanceScript_0x180e7b: ; 0x180e7b
 	spriteface $2, $2
 	loadfont
-	2writetext UnknownText_0x180f67
+	writetext UnknownText_0x180f67
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1810a4, $0000
@@ -71,7 +71,7 @@ LanceScript_0x180e7b: ; 0x180e7b
 	returnafterbattle
 	setevent EVENT_BEAT_CHAMPION_LANCE
 	loadfont
-	2writetext UnknownText_0x181132
+	writetext UnknownText_0x181132
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
@@ -88,7 +88,7 @@ LanceScript_0x180e7b: ; 0x180e7b
 	appear $3
 	applymovement $3, MovementData_0x180f41
 	loadfont
-	2writetext UnknownText_0x1811dd
+	writetext UnknownText_0x1811dd
 	closetext
 	loadmovesprites
 	appear $4
@@ -99,19 +99,19 @@ LanceScript_0x180e7b: ; 0x180e7b
 	spriteface $4, $1
 	spriteface $2, $2
 	loadfont
-	2writetext UnknownText_0x18121b
+	writetext UnknownText_0x18121b
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x180f4c
 	spriteface $0, $2
 	loadfont
-	2writetext UnknownText_0x18134b
+	writetext UnknownText_0x18134b
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x180f4f
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x18137b
+	writetext UnknownText_0x18137b
 	closetext
 	loadmovesprites
 	follow $2, $0
@@ -127,7 +127,7 @@ LanceScript_0x180e7b: ; 0x180e7b
 	applymovement $3, MovementData_0x180f57
 	showemote $0, $3, 15
 	loadfont
-	2writetext UnknownText_0x1813c5
+	writetext UnknownText_0x1813c5
 	pause 30
 	loadmovesprites
 	applymovement $3, MovementData_0x180f5b
