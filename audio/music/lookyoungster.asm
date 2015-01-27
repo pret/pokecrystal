@@ -61,9 +61,7 @@ Music_LookYoungster_branch_f66ea: ; f66ea
 	loopchannel 0, Music_LookYoungster_branch_f66ea
 ; f670e
 
-
-INCBIN "baserom.gbc", $f670e, $f670f - $f670e
-
+	db $ff
 
 Music_LookYoungster_Ch2: ; f670f
 	stereopanning $f0
@@ -162,9 +160,7 @@ Music_LookYoungster_branch_f672f: ; f672f
 	loopchannel 0, Music_LookYoungster_branch_f672f
 ; f6783
 
-
-INCBIN "baserom.gbc", $f6783, $f6784 - $f6783
-
+	db $ff
 
 Music_LookYoungster_Ch3: ; f6784
 	stereopanning $ff
@@ -300,8 +296,6 @@ Music_LookYoungster_branch_f67ae: ; f67ae
 	loopchannel 0, Music_LookYoungster_branch_f67ae
 ; f6810
 
-
-INCBIN "baserom.gbc", $f6810, $f6811 - $f6810
-
+	db $ff
 
 

@@ -4,9 +4,7 @@ Music_LavenderTown: ; ef72f
 	dbw $02, Music_LavenderTown_Ch3
 ; ef738
 
-
-INCBIN "baserom.gbc", $ef738, $ef739 - $ef738
-
+	db $3
 
 Music_LavenderTown_Ch1: ; ef739
 	tempo 160
