@@ -108521,10 +108521,11 @@ Function1042d6: ; 1042d6
 ; 104303
 
 Function104303: ; 104303
-	ld hl, $4309
+	ld hl, Function104309
 	jp Function104177
 ; 104309
 
+Function104309:
 	ld hl, Unkn1Pals ; $d000
 	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
 	call Function10433a
@@ -109019,7 +109020,7 @@ Function1048ba: ; 1048ba (41:48ba)
 	call WaitBGMap
 	call Function105153
 	hlcoord 3, 8
-	ld de, $49cd
+	ld de, String_1049cd
 	call PlaceString
 	call WaitBGMap
 	callba Function2c642
@@ -109046,7 +109047,7 @@ Function1048ba: ; 1048ba (41:48ba)
 	pop de
 	hlcoord 2, 8
 	ld a, d
-	ld de, $49fd
+	ld de, UnknownText_0x1049fd
 	cp $10
 	jp z, Function1049af
 	cp $6c
@@ -109055,10 +109056,10 @@ Function1048ba: ; 1048ba (41:48ba)
 	cp $3
 	jr z, .asm_10492f
 	call Function104a25
-	ld hl, $4a11
+	ld hl, UnknownText_0x104a11
 	jp nc, Function1049c5
 	call Function104a30
-	ld hl, $4a16
+	ld hl, UnknownText_0x104a16
 	jp c, Function1049c5
 .asm_10492f
 	ld a, [$c962]
@@ -109095,7 +109096,7 @@ Function1048ba: ; 1048ba (41:48ba)
 	ld de, StringBuffer1 ; $d073
 	ld bc, $d
 	call CopyBytes
-	ld hl, $4a20
+	ld hl, UnknownText_0x104a20
 	jr Function1049c5
 .asm_104990
 	call Function105106
@@ -109107,24 +109108,24 @@ Function1048ba: ; 1048ba (41:48ba)
 	ld [$d265], a
 	call CloseSRAM
 	call GetItemName
-	ld hl, $4a1b
+	ld hl, UnknownText_0x104a1b
 	jr Function1049c5
 
 Function1049af: ; 1049af (41:49af)
-	ld hl, $49fd
+	ld hl, UnknownText_0x1049fd
 	jr Function1049c5
 
 Function1049b4: ; 1049b4 (41:49b4)
-	ld hl, $4a02
+	ld hl, UnknownText_0x104a02
 	call PrintText
 	jp Function1048ba
 
 Function1049bd: ; 1049bd (41:49bd)
-	ld hl, $4a07
+	ld hl, UnknownText_0x104a07
 	jr Function1049c5
 
 Function1049c2: ; 1049c2 (41:49c2)
-	ld hl, $4a0c
+	ld hl, UnknownText_0x104a0c
 
 Function1049c5: ; 1049c5 (41:49c5)
 	call PrintText
@@ -109133,7 +109134,53 @@ Function1049c5: ; 1049c5 (41:49c5)
 	ret
 ; 1049cd (41:49cd)
 
-INCBIN "baserom.gbc",$1049cd,$104a25 - $1049cd
+String_1049cd: ; 1049cd
+	db   "Press A to"
+	next "link IR-Device"
+	next "Press B to"
+	next "cancel it."
+	db   "@"
+; 1049fd
+
+UnknownText_0x1049fd: ; 1049fd
+	text_jump UnknownText_0x1c0436
+	db "@"
+; 104a02
+
+UnknownText_0x104a02: ; 104a02
+	text_jump UnknownText_0x1c0454
+	db "@"
+; 104a07
+
+UnknownText_0x104a07: ; 104a07
+	text_jump UnknownText_0x1c046a
+	db "@"
+; 104a0c
+
+UnknownText_0x104a0c: ; 104a0c
+	text_jump UnknownText_0x1c048e
+	db "@"
+; 104a11
+
+UnknownText_0x104a11: ; 104a11
+	text_jump UnknownText_0x1c04a7
+	db "@"
+; 104a16
+
+UnknownText_0x104a16: ; 104a16
+	text_jump UnknownText_0x1c04c6
+	db "@"
+; 104a1b
+
+UnknownText_0x104a1b: ; 104a1b
+	text_jump UnknownText_0x1c04e9
+	db "@"
+; 104a20
+
+UnknownText_0x104a20: ; 104a20
+	text_jump UnknownText_0x1c04fa
+	db "@"
+; 104a25
 
 Function104a25: ; 104a25 (41:4a25)
 	call Function105106
@@ -110314,7 +110361,9 @@ Function10522e: ; 10522e (41:522e)
 	jr asm_105238
 ; 105232 (41:5232)
 
-INCBIN "baserom.gbc",$105232,$105236 - $105232
+Function105232: ; unreferenced
+	ld b, 6
+	jr asm_105238
 
 Function105236: ; 105236 (41:5236)
 	ld b, $10
@@ -111016,11 +111065,7 @@ UpdateUsedMoves: ; 105ed0
 
 
 
-Mobile_HallOfFame2:: ; 0x105ef6
-	ret
-; 105ef7
-
-Function105ef7: ; 105ef7
+Mobile_HallOfFame2:: mobile ; 0x105ef6
 	ld a, $5
 	call GetSRAMBank
 	ld hl, GameTimeHours
@@ -111044,11 +111089,7 @@ Function105ef7: ; 105ef7
 	ret
 ; 105f33
 
-Function105f33: ; 105f33
-	ret
-; 105f34
-
-Function105f34: ; 105f34
+Function105f33: mobile ; 105f33
 	ld a, $5
 	call GetSRAMBank
 	ld de, Buffer1
@@ -111110,11 +111151,7 @@ Function105f34: ; 105f34
 	ret
 ; 105f79
 
-Function105f79: ; 105f79
-	ret
-; 105f7a
-
-Function105f7a: ; 105f7a
+Function105f79: mobile ; 105f79
 	ld a, $5
 	call GetSRAMBank
 	ld a, [hProduct]
@@ -111143,11 +111180,7 @@ Function105f7a: ; 105f7a
 	ret
 ; 105f9f
 
-Function105f9f: ; 105f9f
-	ret
-; 105fa0
-
-Function105fa0: ; 105fa0
+Function105f9f: mobile ; 105f9f
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a070
@@ -111184,11 +111217,7 @@ Function105fa0: ; 105fa0
 	ret
 ; 105fd0
 
-Function105fd0: ; 105fd0
-	ret
-; 105fd1
-
-Function105fd1: ; 105fd1
+Function105fd0: mobile ; 105fd0
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a06f
@@ -111200,11 +111229,7 @@ Function105fd1: ; 105fd1
 	ret
 ; 105fe3
 
-Function105fe3: ; 105fe3
-	ret
-; 105fe4
-
-Function105fe4: ; 105fe4
+Function105fe3: mobile ; 105fe3
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a076
@@ -111232,12 +111257,7 @@ Function105fe4: ; 105fe4
 	ret
 ; 106008
 
-
-Function106008: ; 106008
-	ret
-; 106009
-
-Function106009: ; 106009
+Function106008: mobile ; 106008
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a07a
@@ -111267,214 +111287,144 @@ Function106009: ; 106009
 	ret
 ; 10602e
 
+Function10602e: mobile ; 10602e (41:602e)
+	ld hl, $a010
+	jp Function106117
 
-Function10602e: ; 10602e (41:602e)
-	ret
-; 10602f (41:602f)
+Function106035: mobile ; 106035
+	ld a, $5
+	call GetSRAMBank
+	ld a, [$aa8d]
+	and a
+	call CloseSRAM
+	ret nz
+	ld hl, $a014
+	jp Function106123
 
-INCBIN "baserom.gbc",$10602f,$106049 - $10602f
+Function106049: mobile ; 106049
+	ld hl, $a018
+	jp Function10611d
 
-Function106049: ; 106049
-	ret
-; 10604a (41:604a)
-
-INCBIN "baserom.gbc",$10604a,$106050 - $10604a
-
-
-Function106050: ; 106050
-	ret
-; 106051
-
-Function106051: ; 106051
+Function106050: mobile ; 106050
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	ret z
 	ld hl, $a01b
 	jp Function10611d
-; 10605d
 
-
-Function10605d: ; 10605d
-	ret
-; 10605e
-
-Function10605e: ; 10605e
+Function10605d: mobile ; 10605d
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	ret z
 	ld hl, $a01e
 	jp Function10611d
-; 10606a
 
-
-Function10606a: ; 10606a
-	ret
-; 10606b
-
-Function10606b: ; 10606b
+Function10606a: mobile ; 10606a
 	ld hl, $a021
 	jp Function10611d
-; 106071
 
-INCBIN "baserom.gbc",$106071,$106078 - $106071
+Function106071: mobile ; 106071
+	ld hl, $a024
+	jp Function10611d
 
-Mobile_HallOfFame:: ; 0x106078
-	ret
-
-Function106079: ; 106079
+Mobile_HallOfFame:: mobile ; 0x106078
 	ld hl, $a027
 	jp Function10611d
-; 10607f
 
+Function10607f: mobile ; 10607f (41:607f)
+	ld hl, $a02a
+	jp Function10611d
 
-Function10607f: ; 10607f (41:607f)
-	ret
-; 106080 (41:6080)
-
-INCBIN "baserom.gbc",$106080,$106086 - $106080
-
-
-Function106086: ; 106086
-	ret
-; 106087
-
-Function106087: ; 106087
+Function106086: mobile ; 106086
 	ld hl, $a02d
 	jp Function10611d
-; 10608d
 
+Function10608d: mobile ; 10608d (41:608d)
+	ld hl, $a030
+	jp Function10611d
 
-Function10608d: ; 10608d (41:608d)
-	ret
-; 10608e (41:608e)
-
-INCBIN "baserom.gbc",$10608e,$106094 - $10608e
-
-
-Function106094: ; 106094
-	ret
-; 106095
-
-Function106095: ; 106095
+Function106094: mobile ; 106094
 	ld hl, $a033
 	jp Function10611d
-; 10609b
 
-Function10609b: ; 10609b
-	ret
-; 10609c (41:609c)
+Function10609b: mobile ; 10609b
+	ld hl, $a036
+	jp Function10611d
 
-INCBIN "baserom.gbc",$10609c,$1060a2 - $10609c
-
-Function1060a2: ; 1060a2
-	ret
-; 1060a3
-
-Function1060a3: ; 1060a3
+Function1060a2: mobile ; 1060a2
 	ld hl, $a039
 	jp Function10611d
-; 1060a9
 
+Function1060a9: mobile ; 1060a9 (41:60a9)
+	ld hl, $a03c
+	jr Function10611d
 
-Function1060a9: ; 1060a9 (41:60a9)
-	ret
-; 1060aa (41:60aa)
+Function1060af: mobile ; 1060af
+	ld hl, $a03f
+	jr Function10611d
 
-INCBIN "baserom.gbc",$1060aa,$1060af - $1060aa
+Function1060b5: mobile ; 1060b5
+	ld hl, $a042
+	jr Function10611d
 
-Function1060af: ; 1060af
-	ret
-; 1060b0
+Function1060bb: mobile ; 1060bb
+	ld hl, $a045
+	jr Function10611d
 
-INCBIN "baserom.gbc",$1060b0,$1060b5 - $1060b0
+Function1060c1: mobile ; 1060c1
+	ld hl, $a048
+	jr Function10611d
 
-Function1060b5: ; 1060b5
-	ret
-; 1060b6
+Function1060c7: mobile ; 1060c7
+	ld hl, $a04b
+	jr Function10611d
 
-INCBIN "baserom.gbc",$1060b6,$1060bb - $1060b6
+Function1060cd: mobile ; 1060cd
+	ld hl, $a04e
+	jr Function106123
 
-Function1060bb: ; 1060bb
-	ret
-; 1060bc
+Function1060d3: mobile ; 1060d3
+	ld hl, $a051
+	jr Function10611d
 
-INCBIN "baserom.gbc",$1060bc,$1060c1 - $1060bc
+Function1060d9: mobile ; 1060df
+	ld hl, $a054
+	jr Function10611d
 
-Function1060c1: ; 1060c1
-	ret
-; 1060c2
+Function1060df: mobile ; 1060df
+	ld hl, $a057
+	jr Function10611d
 
-INCBIN "baserom.gbc",$1060c2,$1060c7 - $1060c2
+Function1060e5: mobile ; 1060e5
+	ld a, [hBattleTurn]
+	and a
+	ret nz
+	ld hl, $a05a
+	jr Function10611d
 
-Function1060c7: ; 1060c7
-	ret
-; 1060c8 (41:60c8)
+Function1060ef: mobile ; 1060ef
+	ld hl, $a05d
+	jr Function10611d
 
-INCBIN "baserom.gbc",$1060c8,$1060cd - $1060c8
+Function1060f5: mobile ; 1060f5
+	ld hl, $a060
+	jr Function10611d
 
-Function1060cd: ; 1060cd
-	ret
-; 1060ce
+Function1060fb: mobile ; 1060fb
+	ld hl, $a063
+	jr Function10611d
 
-INCBIN "baserom.gbc",$1060ce,$1060d3 - $1060ce
-
-
-Function1060d3: ; 1060d3
-	ret
-; 1060d4
-
-INCBIN "baserom.gbc",$1060d4,$1060df - $1060d4
-
-
-Function1060df: ; 1060df
-	ret
-; 1060e0
-
-INCBIN "baserom.gbc",$1060e0,$1060e5 - $1060e0
-
-Function1060e5: ; 1060e5
-	ret
-; 1060e6 (41:60e6)
-
-INCBIN "baserom.gbc", $1060e6, $1060ef - $1060e6
-
-Function1060ef: ; 1060ef
-	ret
-; 1060f0
-
-INCBIN "baserom.gbc", $1060f0, $1060fb - $1060f0
-
-
-Function1060fb: ; 1060fb
-	ret
-; 1060fc
-
-INCBIN "baserom.gbc",$1060fc,$106101 - $1060fc
-
-
-Function106101: ; 106101
-	ret
-; 106102
-
-Function106102: ; 106102
+Function106101: mobile ; 106101
 	ld hl, $a066
 	jr Function10611d
 ; 106107
 
-Function106107: ; 106107
-	ret
-; 106108
-
-Function106108: ; 106108
+Function106107: mobile ; 106107
 	ld hl, $a069
 	jr Function10611d
 ; 10610d
 
-Function10610d: ; 10610d
-	ret
-; 10610e
-
-Function10610e: ; 10610e
+Function10610d: mobile ; 10610d
 	ld a, [hBattleTurn]
 	and a
 	ret nz
@@ -111540,7 +111490,13 @@ Function10612d: ; 10612d
 	ret
 ; 106155
 
-INCBIN "baserom.gbc",$106155,$106162 - $106155
+Function106155: mobile ; 106155
+	ld a, $5
+	call GetSRAMBank
+	call Function106162
+	call CloseSRAM
+	ret
+; 106162
 
 Function106162: ; 106162
 	push de
@@ -111604,7 +111560,17 @@ Function10619d: ; 10619d (41:619d)
 	ret
 ; 1061b3 (41:61b3)
 
-INCBIN "baserom.gbc",$1061b3,$1061c0 - $1061b3
+Function1061b3: ; 1061b3
+	call Function10616e
+	ld hl, $a081
+	ld a, d
+	cp [hl]
+	ret nz
+	inc hl
+	ld a, e
+	cp [hl]
+	ret
+; 1061c0
 
 Function1061c0: ; 1061c0 (41:61c0)
 	ld a, $1
@@ -111615,7 +111581,22 @@ Function1061c0: ; 1061c0 (41:61c0)
 	ret
 ; 1061cd (41:61cd)
 
-INCBIN "baserom.gbc",$1061cd,$1061ef - $1061cd
+Function1061cd: ; 1061cd
+	ld hl, $a001
+	ld bc, $0082
+	xor a
+	call ByteFill
+	ld hl, $a07d
+	ld a, $3
+	ld [hli], a
+	ld [hl], $e8
+	call Function106162
+	ld hl, $a001
+	ld de, $a084
+	ld bc, $0082
+	call CopyBytes
+	ret
+; 1061ef
 
 
 Function1061ef:: ; 1061ef
@@ -111656,30 +111637,30 @@ Function1061ef:: ; 1061ef
 	ld a, b
 	ld [$ffbc], a
 	ld a, c
-	cp $2
+	cp 2
 	jr z, .asm_10626a
-	ld de, $62ae
-	cp $3
+	ld de, ._2
+	cp 3
 	jr z, .asm_106256
-	ld de, $62aa
-	cp $4
+	ld de, ._3
+	cp 4
 	jr z, .asm_106256
-	ld de, $62a6
-	cp $5
+	ld de, ._4
+	cp 5
 	jr z, .asm_106256
-	ld de, $62a2
-	cp $6
+	ld de, ._5
+	cp 6
 	jr z, .asm_106256
-	ld de, $629e
-	cp $7
+	ld de, ._6
+	cp 7
 	jr z, .asm_106256
-	ld de, $629a
-	cp $8
+	ld de, ._7
+	cp 8
 	jr z, .asm_106256
-	ld de, $6296
-	cp $9
+	ld de, ._8
+	cp 9
 	jr z, .asm_106256
-	ld de, $6292
+	ld de, ._9
 
 .asm_106256
 	inc de
@@ -111700,12 +111681,12 @@ Function1061ef:: ; 1061ef
 	jr nz, .asm_10625b
 
 .asm_10626a
-	ld c, $0
+	ld c, 0
 	ld a, [$ffb6]
 .asm_10626e
-	cp $a
+	cp 10
 	jr c, .asm_106277
-	sub $a
+	sub 10
 	inc c
 	jr .asm_10626e
 
@@ -111719,13 +111700,13 @@ Function1061ef:: ; 1061ef
 	jr .asm_106288
 
 .asm_106284
-	ld a, $f6
+	ld a, "0"
 	add c
 	ld [hl], a
 
 .asm_106288
 	call Function1062ff
-	ld a, $f6
+	ld a, "0"
 	add b
 	ld [hli], a
 	pop de
@@ -111733,8 +111714,15 @@ Function1061ef:: ; 1061ef
 	ret
 ; 106292
 
-INCBIN "baserom.gbc",$106292,$1062b2 - $106292
-
+._9	dd 1000000000
+._8	dd 100000000
+._7	dd 10000000
+._6	dd 1000000
+._5	dd 100000
+._4	dd 10000
+._3	dd 1000
+._2	dd 100
+; 1062b2
 
 Function1062b2: ; 1062b2
 	ld c, $0

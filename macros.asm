@@ -8,6 +8,8 @@ INCLUDE "macros/movement.asm"
 INCLUDE "macros/map.asm"
 INCLUDE "macros/predef.asm"
 INCLUDE "macros/rst.asm"
+INCLUDE "macros/mobile.asm"
+
 
 
 RGB: MACRO
@@ -46,15 +48,24 @@ dn: MACRO
 	endr
 	ENDM
 
+dx: MACRO
+x = 8 * ((\1) - 1)
+	rept \1
+	db ((\2) >> x) & $ff
+x = x + -8
+	endr
+	ENDM
+
 dt: MACRO ; three-byte (big-endian)
-	db ((\1) >> 16) & $ff
-	db ((\1) >> 8)  & $ff
-	db (\1)         & $ff
+	dx 3, \1
+	ENDM
+
+dd: MACRO ; four-byte (big-endian)
+	dx 4, \1
 	ENDM
 
 bigdw: MACRO ; big-endian word
-	db (\1) / $100
-	db (\1) % $100
+	dx 2, \1
 	ENDM
 
 
