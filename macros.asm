@@ -90,6 +90,14 @@ coord: MACRO
 	ld \1, TileMap + SCREEN_WIDTH * (\3) + (\2)
 	ENDM
 
+dwcoord: MACRO
+	rept _NARG / 2
+	dw TileMap + SCREEN_WIDTH * (\2) + (\1)
+	shift
+	shift
+	endr
+	ENDM
+
 
 ; pic animations
 frame: MACRO

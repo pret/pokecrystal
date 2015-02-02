@@ -17341,7 +17341,7 @@ Jumptable_11977: ; 11977 (4:5977)
 
 
 Function1197b: ; 1197b (4:597b)
-	ld de, $5018
+	lb de, $50, $18
 	call Function1189c
 	jr nz, .asm_11985
 	ld d, $40
@@ -17365,30 +17365,32 @@ Function1197b: ; 1197b (4:597b)
 Function119a1: ; 119a1 (4:59a1)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $1
-	jr nz, .asm_119b9
+	and A_BUTTON
+	jr nz, .a
 	ld a, [hl]
-	and $2
-	jr nz, .asm_119e7
+	and B_BUTTON
+	jr nz, .b
 	ld a, [hl]
-	and $8
-	jr nz, .asm_119cf
+	and START
+	jr nz, .start
 	ld a, [hl]
-	and $4
-	jr nz, .asm_119f4
+	and SELECT
+	jr nz, .select
 	ret
-.asm_119b9
+
+.a
 	call Function11a0b
 	cp $1
-	jr z, .asm_119f4
+	jr z, .select
 	cp $2
-	jr z, .asm_119e7
+	jr z, .b
 	cp $3
 	jr z, .asm_119eb
 	call Function11c11
 	call Function11b14
 	ret nc
-.asm_119cf
+
+.start
 	ld hl, $c6d5 ; $c6d5
 	ld c, [hl]
 	inc hl
@@ -17403,15 +17405,18 @@ Function119a1: ; 119a1 (4:59a1)
 	ret nz
 	inc [hl]
 	ret
-.asm_119e7
+
+.b
 	call Function11bbc
 	ret
+
 .asm_119eb
 	call Function11bf7
 	ld hl, $cf63
 	set 7, [hl]
 	ret
-.asm_119f4
+
+.select
 	ld hl, $cf64
 	ld a, [hl]
 	xor 1
@@ -17420,6 +17425,7 @@ Function119a1: ; 119a1 (4:59a1)
 	ld de, NameInputLower
 	call Function118ca
 	ret
+
 .asm_11a04
 	ld de, NameInputUpper
 	call Function118ca
@@ -17512,19 +17518,19 @@ Unknown_11a82: ; 11a82
 Function11a8b: ; 11a8b (4:5a8b)
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
-	jr nz, .asm_11b02
+	and D_UP
+	jr nz, .up
 	ld a, [hl]
-	and $80
-	jr nz, .asm_11ae9
+	and D_DOWN
+	jr nz, .down
 	ld a, [hl]
-	and $20
-	jr nz, .asm_11ac5
+	and D_LEFT
+	jr nz, .left
 	ld a, [hl]
-	and $10
-	jr nz, .asm_11aa3
+	and D_RIGHT
+	jr nz, .right
 	ret
-.asm_11aa3
+.right
 	call Function11a11
 	and a
 	jr nz, .asm_11ab7
@@ -17550,7 +17556,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 	add hl, bc
 	ld [hl], a
 	ret
-.asm_11ac5
+.left
 	call Function11a11
 	and a
 	jr nz, .asm_11ad8
@@ -17578,7 +17584,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 	add hl, bc
 	ld [hl], a
 	ret
-.asm_11ae9
+.down
 	ld hl, $d
 	add hl, bc
 	ld a, [hl]
@@ -17596,7 +17602,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 .asm_11aff
 	ld [hl], $0
 	ret
-.asm_11b02
+.up
 	ld hl, $d
 	add hl, bc
 	ld a, [hl]
@@ -18059,7 +18065,7 @@ Jumptable_12017: ; 12017 (4:6017)
 
 
 Function1201b: ; 1201b (4:601b)
-	ld de, $4810
+	lb de, $48, $10
 	ld a, $9
 	call Function3b2a
 	ld a, c
@@ -18079,29 +18085,30 @@ Function1201b: ; 1201b (4:601b)
 Function1203a: ; 1203a (4:603a)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $1
-	jr nz, .asm_12052
+	and A_BUTTON
+	jr nz, .a
 	ld a, [hl]
-	and $2
-	jr nz, .asm_1208d
+	and B_BUTTON
+	jr nz, .b
 	ld a, [hl]
-	and $8
-	jr nz, .asm_1207a
+	and START
+	jr nz, .start
 	ld a, [hl]
-	and $4
-	jr nz, .asm_120aa
+	and SELECT
+	jr nz, .select
 	ret
-.asm_12052
+
+.a
 	call Function12185
 	cp $1
-	jr z, .asm_120aa
+	jr z, .select
 	cp $2
-	jr z, .asm_1208d
+	jr z, .b
 	cp $3
 	jr z, .asm_120a1
 	call Function11c11
 	call Function121ac
-	jr c, .asm_1207a
+	jr c, .start
 	ld hl, $c6d2 ; $c6d2
 	ld a, [hl]
 	cp $10
@@ -18112,7 +18119,8 @@ Function1203a: ; 1203a (4:603a)
 	dec hl
 	ld [hl], $4e
 	ret
-.asm_1207a
+
+.start
 	ld hl, $c6d5 ; $c6d5
 	ld c, [hl]
 	inc hl
@@ -18124,7 +18132,8 @@ Function1203a: ; 1203a (4:603a)
 	add hl, bc
 	ld [hl], $5
 	ret
-.asm_1208d
+
+.b
 	call Function11bbc
 	ld hl, $c6d2 ; $c6d2
 	ld a, [hl]
@@ -18136,12 +18145,14 @@ Function1203a: ; 1203a (4:603a)
 	inc hl
 	ld [hl], $4e
 	ret
+
 .asm_120a1
 	call Function11bf7
 	ld hl, $cf63
 	set 7, [hl]
 	ret
-.asm_120aa
+
+.select
 	ld hl, $cf64
 	ld a, [hl]
 	xor $1
@@ -18199,19 +18210,19 @@ Unknown_12102: ; 12102
 Function1210c: ; 1210c (4:610c)
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
-	jr nz, .asm_12178
+	and D_UP
+	jr nz, .up
 	ld a, [hl]
-	and $80
-	jr nz, .asm_1216a
+	and D_DOWN
+	jr nz, .down
 	ld a, [hl]
-	and $20
-	jr nz, .asm_12146
+	and D_LEFT
+	jr nz, .left
 	ld a, [hl]
-	and $10
-	jr nz, .asm_12124
+	and D_RIGHT
+	jr nz, .right
 	ret
-.asm_12124
+.right
 	call Function1218b
 	and a
 	jr nz, .asm_12138
@@ -18237,7 +18248,7 @@ Function1210c: ; 1210c (4:610c)
 	add hl, bc
 	ld [hl], a
 	ret
-.asm_12146
+.left
 	call Function1218b
 	and a
 	jr nz, .asm_12159
@@ -18265,7 +18276,7 @@ Function1210c: ; 1210c (4:610c)
 	add hl, bc
 	ld [hl], a
 	ret
-.asm_1216a
+.down
 	ld hl, $d
 	add hl, bc
 	ld a, [hl]
@@ -18276,7 +18287,7 @@ Function1210c: ; 1210c (4:610c)
 .asm_12175
 	ld [hl], $0
 	ret
-.asm_12178
+.up
 	ld hl, $d
 	add hl, bc
 	ld a, [hl]
@@ -20464,7 +20475,7 @@ Function12fd5: ; 12fd5
 	ld bc, $0512
 	call ClearBox
 	hlcoord 1, 12
-	ld de, $716b
+	ld de, String_1316b
 	call PlaceString
 	jp .asm_12ff2
 .asm_13038: ; 13038
@@ -31175,7 +31186,7 @@ Function241d5: ; 241d5
 	call Function24329
 .asm_241d8
 	call Function2431a
-	call Function10402d ; BUG: This function is in a different bank.
+	call Function10402d ; BUG: This function is in another bank.
 	call Function241fa
 	jr nc, .asm_241f9
 	call Function24270
@@ -31199,7 +31210,7 @@ Function241fa: ; 241fa
 	ret c
 	ld c, $1
 	ld b, $3
-	call $462d ; So does this one.
+	call Function10062d ; BUG: This function is in another bank.
 	ret c
 	callba Function100337
 	ret c
@@ -38392,7 +38403,7 @@ Function2913c: ; 2913c
 	ld a, [$c74d]
 	ld [$d265], a
 	ld a, $2
-	ld de, $4c94
+	lb de, $4c, $94
 	ld b, $4
 
 Function2914e: ; 2914e
@@ -39110,7 +39121,7 @@ Function29611: ; 29611
 ; 2961b
 
 Function2961b: ; 2961b
-	ld de, $5458
+	lb de, $54, $58
 	ld a, $e
 	call Function3b2a
 	call Function29114
@@ -39120,7 +39131,7 @@ Function2961b: ; 2961b
 ; 2962c
 
 Function2962c: ; 2962c
-	ld de, $5458
+	lb de, $54, $58
 	ld a, $e
 	call Function3b2a
 	ld hl, $000b
@@ -39136,7 +39147,7 @@ Function2962c: ; 2962c
 ; 29649
 
 Function29649: ; 29649
-	ld de, $5458
+	lb de, $54, $58
 	ld a, $f
 	call Function3b2a
 	call Function29114
@@ -39150,7 +39161,7 @@ Function29649: ; 29649
 Function29660: ; 29660
 	ld a, $e4
 	call Functioncf8
-	ld de, $2858
+	lb de, $28, $58
 	ld a, $10
 	call Function3b2a
 	call Function29114
@@ -43971,7 +43982,7 @@ Function4013c: ; 4013c (10:413c)
 	call ByteFill
 	callba Function1de171
 	hlcoord 0, 17
-	ld de, $47f2
+	ld de, Unknown_407f2
 	call Function40acd
 	ld a, $7
 	ld [$c7d3], a
@@ -44000,7 +44011,7 @@ Function4013c: ; 4013c (10:413c)
 	call Function41148
 	callba Function1de171
 	hlcoord 0, 17
-	ld de, $47f2
+	ld de, Unknown_407f2
 	call Function40acd
 	ld a, $7
 	ld [$c7d3], a
@@ -44011,17 +44022,17 @@ Function4013c: ; 4013c (10:413c)
 Function401ae: ; 401ae (10:41ae)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $2
-	jr nz, .asm_40211
+	and B_BUTTON
+	jr nz, .b
 	ld a, [hl]
-	and $1
-	jr nz, .asm_401d9
+	and A_BUTTON
+	jr nz, .a
 	ld a, [hl]
-	and $4
-	jr nz, .asm_401eb
+	and SELECT
+	jr nz, .select
 	ld a, [hl]
-	and $8
-	jr nz, .asm_401fe
+	and START
+	jr nz, .start
 	call Function406c5
 	ret nc
 	call Function41148
@@ -44032,7 +44043,7 @@ Function401ae: ; 401ae (10:41ae)
 	call Function41af7
 	ret
 
-.asm_401d9
+.a
 	call Function40bb1
 	call Function40bd0
 	ret z
@@ -44042,7 +44053,7 @@ Function401ae: ; 401ae (10:41ae)
 	ld [$cf64], a
 	ret
 
-.asm_401eb
+.select
 	call Function41401
 	ld a, $7
 	ld [$cf63], a
@@ -44053,7 +44064,7 @@ Function401ae: ; 401ae (10:41ae)
 	call DelayFrame
 	ret
 
-.asm_401fe
+.start
 	call Function41401
 	ld a, $5
 	ld [$cf63], a
@@ -44064,7 +44075,7 @@ Function401ae: ; 401ae (10:41ae)
 	call DelayFrame
 	ret
 
-.asm_40211
+.b
 	ld a, $d
 	ld [$cf63], a
 	ret
@@ -44100,23 +44111,23 @@ Function40258: ; 40258 (10:4258)
 	call Function4135a
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $2
-	jr nz, .asm_4027d
+	and B_BUTTON
+	jr nz, .b
 	ld a, [hl]
-	and $1
-	jr nz, .asm_40273
+	and A_BUTTON
+	jr nz, .a
 	call Function4066c
 	ret nc
 	call Function40131
 	ret
 
-.asm_40273
+.a
 	ld a, [$c7d8]
 	ld hl, Jumptable_402f2
 	call Function41432
 	jp [hl]
 
-.asm_4027d
+.b
 	ld a, [LastVolume] ; $c2b4
 	and a
 	jr z, .asm_40288
@@ -44394,10 +44405,10 @@ Function40471: ; 40471 (10:4471)
 	call c, Function40fa8
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $a
+	and START | B_BUTTON
 	jr nz, .asm_40495
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_4048b
 	ret
 
@@ -44513,10 +44524,10 @@ Function4050a: ; 4050a (10:450a)
 Function40562: ; 40562 (10:4562)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_40595
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_40583
 	call Function406c5
 	ret nc
@@ -44600,14 +44611,14 @@ Function405df: ; 405df (10:45df)
 Function40610: ; 40610 (10:4610)
 	ld hl, $ffa9
 	ld a, [hl]
-	and $10
-	jr nz, .asm_4061e
+	and D_RIGHT
+	jr nz, .right
 	ld a, [hl]
-	and $20
-	jr nz, .asm_4062d
+	and D_LEFT
+	jr nz, .left
 	ret
 
-.asm_4061e
+.right
 	ld a, [$c7de]
 	ld e, a
 	ld hl, $c7dd
@@ -44619,7 +44630,7 @@ Function40610: ; 40610 (10:4610)
 	inc [hl]
 	jr .asm_40635
 
-.asm_4062d
+.left
 	ld hl, $c7dd
 	ld a, [hl]
 	and a
@@ -44670,14 +44681,15 @@ Function4066c: ; 4066c (10:466c)
 	ld [$c7e3], a
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
-	jr nz, .asm_40687
+	and D_UP
+	jr nz, .up
 	ld a, [hl]
-	and $80
-	jr nz, .asm_4069e
+	and D_DOWN
+	jr nz, .down
 	and a
 	ret
-.asm_40687
+
+.up
 	ld a, [$c7d3]
 	ld d, a
 	ld a, [$c7d2]
@@ -44687,8 +44699,9 @@ Function4066c: ; 4066c (10:466c)
 	call Function40bb1
 	call Function40bd0
 	jr nz, .asm_406b5
-	jr .asm_40687
-.asm_4069e
+	jr .up
+
+.down
 	ld a, [$c7d3]
 	ld d, a
 	ld a, [$c7d2]
@@ -44698,10 +44711,12 @@ Function4066c: ; 4066c (10:466c)
 	call Function40bb1
 	call Function40bd0
 	jr nz, .asm_406b5
-	jr .asm_4069e
+	jr .down
+
 .asm_406b5
 	scf
 	ret
+
 .asm_406b7
 	ld a, [$c7e2]
 	ld [$c7d1], a
@@ -44717,10 +44732,10 @@ Function406c5: ; 406c5 (10:46c5)
 	ld e, a
 	ld hl, $ffa9
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, Function406ea
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, Function406fe
 	ld a, d
 	cp e
@@ -44826,7 +44841,7 @@ Function4074c: ; 4074c (10:474c)
 	ld bc, $168
 	call ByteFill
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
-	ld bc, $707
+	lb bc, 7, 7
 	call Function40ad5
 	hlcoord 0, 9
 	ld bc, $607
@@ -44835,7 +44850,7 @@ Function4074c: ; 4074c (10:474c)
 	ld de, Unknown_407e1
 	call Function40acd
 	ld hl, PokedexSeen ; $deb9 (aliases: EndPokedexSeen)
-	ld b, $20
+	ld b, EndPokedexSeen - PokedexSeen
 	call CountSetBits
 	ld de, $d265
 	hlcoord 5, 12
@@ -44845,7 +44860,7 @@ Function4074c: ; 4074c (10:474c)
 	ld de, Unknown_407e6
 	call Function40acd
 	ld hl, PokedexCaught ; $de99
-	ld b, $20
+	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	ld de, $d265
 	hlcoord 5, 15
@@ -44930,10 +44945,10 @@ Unknown_40867: ; 40867
 Function4087c: ; 4087c (10:487c)
 	call Function40aa6
 	hlcoord 0, 2
-	ld bc, $812
+	lb bc, 8, 18
 	call Function40ad5
 	hlcoord 0, 12
-	ld bc, $412
+	lb bc, 4, 18
 	call Function40ad5
 	hlcoord 0, 1
 	ld de, Unknown_408b2
@@ -44967,7 +44982,7 @@ String_408e5: ; 408e5
 Function408f0: ; 408f0 (10:48f0)
 	call Function40aa6
 	hlcoord 0, 2
-	ld bc, $e12
+	lb bc, 14, 18
 	call Function40ad5
 	hlcoord 0, 1
 	ld de, Unknown_4092a
@@ -44996,21 +45011,24 @@ Unknown_40935: ; 40935
 ; 40940
 
 String_40940: ; 40940
-	db "TYPE1", $4e
-	db "TYPE2@"
+	db   "TYPE1"
+	next "TYPE2"
+	db   "@"
 ; 4094c
 
 String_4094c: ; 4094c
-	db "BEGIN SEARCH!!", $4e, "CANCEL@"
+	db   "BEGIN SEARCH!!"
+	next "CANCEL"
+	db   "@"
 ; 40962
 
 Function40962: ; 40962 (10:4962)
 	call Function40aa6
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
-	ld bc, $707
+	lb bc, 7, 7
 	call Function40ad5
 	hlcoord 0, 11
-	ld bc, $512
+	lb bc, 5, 18
 	call Function40ad5
 	hlcoord 1, 12
 	ld de, String_409ae
@@ -45036,9 +45054,10 @@ Function40962: ; 40962 (10:4962)
 ; 409ae (10:49ae)
 
 String_409ae: ; 409ae
-	db "SEARCH RESULTS", $4e
-	db "  TYPE", $4e
-	db "    FOUND!@"
+	db   "SEARCH RESULTS"
+	next "  TYPE"
+	next "    FOUND!"
+	db   "@"
 ; 409cf
 
 Function409cf: ; 409cf (10:49cf)
@@ -45062,10 +45081,10 @@ Function409cf: ; 409cf (10:49cf)
 Function409f1: ; 409f1 (10:49f1)
 	call Function40aa6
 	hlcoord 2, 1
-	ld bc, $a0d
+	lb bc, 10, 13
 	call Function40ad5
 	hlcoord 2, 14
-	ld bc, $10d
+	lb bc, 1, 13
 	call Function40ad5
 	hlcoord 2, 15
 	ld [hl], $3d
@@ -45073,11 +45092,11 @@ Function409f1: ; 409f1 (10:49f1)
 	ld [hl], $3e
 	hlcoord 6, 5
 	call Function40ab5
-	ld de, $0
-	ld b, $0
-	ld c, $1a
+	ld de, 0
+	ld b, 0
+	ld c, 26
 .asm_40a1d
-	ld hl, EndPokedexSeen ; $ded9 (aliases: UnownDex)
+	ld hl, UnownDex
 	add hl, de
 	ld a, [hl]
 	and a
@@ -45105,32 +45124,32 @@ Function409f1: ; 409f1 (10:49f1)
 ; 40a3e (10:4a3e)
 
 Unknown_40a3e: ; 40a3e
-	dw $c580, $c57f
-	dw $c56c, $c56b
-	dw $c558, $c557
-	dw $c544, $c543
-	dw $c530, $c52f
-	dw $c51c, $c51b
-	dw $c508, $c507
-	dw $c4f4, $c4f3
-	dw $c4e0, $c4cb
-	dw $c4e1, $c4cd
-	dw $c4e2, $c4ce
-	dw $c4e3, $c4cf
-	dw $c4e4, $c4d0
-	dw $c4e5, $c4d1
-	dw $c4e6, $c4d2
-	dw $c4e7, $c4d3
-	dw $c4e8, $c4d4
-	dw $c4e9, $c4d5
-	dw $c4ea, $c4d7
-	dw $c4fe, $c4ff
-	dw $c512, $c513
-	dw $c526, $c527
-	dw $c53a, $c53b
-	dw $c54e, $c54f
-	dw $c562, $c563
-	dw $c576, $c577
+	dwcoord   4,11,   3,11
+	dwcoord   4,10,   3,10
+	dwcoord   4, 9,   3, 9
+	dwcoord   4, 8,   3, 8
+	dwcoord   4, 7,   3, 7
+	dwcoord   4, 6,   3, 6
+	dwcoord   4, 5,   3, 5
+	dwcoord   4, 4,   3, 4
+	dwcoord   4, 3,   3, 2
+	dwcoord   5, 3,   5, 2
+	dwcoord   6, 3,   6, 2
+	dwcoord   7, 3,   7, 2
+	dwcoord   8, 3,   8, 2
+	dwcoord   9, 3,   9, 2
+	dwcoord  10, 3,  10, 2
+	dwcoord  11, 3,  11, 2
+	dwcoord  12, 3,  12, 2
+	dwcoord  13, 3,  13, 2
+	dwcoord  14, 3,  15, 2
+	dwcoord  14, 4,  15, 4
+	dwcoord  14, 5,  15, 5
+	dwcoord  14, 6,  15, 6
+	dwcoord  14, 7,  15, 7
+	dwcoord  14, 8,  15, 8
+	dwcoord  14, 9,  15, 9
+	dwcoord  14,10,  15,10
 ; 40aa6
 
 Function40aa6: ; 40aa6
@@ -45285,7 +45304,7 @@ Function40b6a: ; 40b6a (10:4b6a)
 	ret
 .asm_40b72
 	push hl
-	ld de, $ffec
+	ld de, -20
 	add hl, de
 	ld de, $d265
 	ld bc, $8103
@@ -51442,7 +51461,7 @@ MainMenu: ; 49cdc
 	jr c, .quit
 	call ClearTileMap
 	ld a, [MenuSelection]
-	ld hl, Label49d60
+	ld hl, Jumptable_49d60
 	rst JumpTable
 	jr MainMenu
 
@@ -51474,7 +51493,7 @@ MainMenuText: ; 49d24
 	db "MOBILE@"
 	db "MOBILE STUDIUM@"
 
-Label49d60: ; 0x49d60
+Jumptable_49d60: ; 0x49d60
 	dw MainMenu_Continue
 	dw MainMenu_NewGame
 	dw MainMenu_Options
@@ -103195,12 +103214,12 @@ Function10123d: ; 10123d
 	xor a
 	ld [ScriptVar], a
 	ld a, c
-	ld hl, Table101247
+	ld hl, Jumptable_101247
 	rst JumpTable
 	ret
 ; 101247
 
-Table101247: ; 101247
+Jumptable_101247: ; 101247
 	dw Function101251
 	dw Function10127d
 	dw Function10127c
@@ -103211,7 +103230,7 @@ Table101247: ; 101247
 Function101251: ; 101251
 	call Function1ad2
 	call ResetWindow
-	ld hl, $61f4
+	ld hl, UnknownText_0x1021f4
 	call Function1021e0
 	call Function1020ea
 	ret c
@@ -103220,7 +103239,7 @@ Function101251: ; 101251
 ; 101265
 
 Function101265: ; 101265
-	ld hl, $61ef
+	ld hl, UnknownText_0x1021ef
 	call Function1021e0
 	ret
 ; 10126c
@@ -103228,7 +103247,7 @@ Function101265: ; 101265
 Function10126c: ; 10126c
 	call Function1ad2
 	callba Script_reloadmappart
-	ld hl, $61f4
+	ld hl, UnknownText_0x1021f4
 	call Function1021e0
 	ret
 ; 10127c
@@ -104106,7 +104125,7 @@ Function101826: ; 101826
 	jr .asm_101869
 
 .asm_101833
-	ld hl, $586f
+	ld hl, Unknown_10186f
 	ld de, $ccb4
 	call Function1013f5
 	ld a, [$cd25]
@@ -104117,10 +104136,10 @@ Function101826: ; 101826
 .asm_101844
 	callba Function103654
 	ld a, c
-	ld hl, $5882
+	ld hl, Unknown_101882
 	cp $1
 	jr z, .asm_10185b
-	ld hl, $5895
+	ld hl, Unknown_101895
 	cp $2
 	jr z, .asm_10185b
 	jr .asm_101869
@@ -104139,7 +104158,29 @@ Function101826: ; 101826
 	ret
 ; 10186f
 
-INCBIN "baserom.gbc", $10186f, $1018a8 - $10186f
+
+SECTION "ascii 10186f", ROMX, BANK[$40]
+
+	charmap " ", $20 ; revert to ascii
+
+Unknown_10186f:
+	db .end - @
+	db $19, $73, $09, $13, "trade_crystal"
+.end	db 0
+
+Unknown_101882:
+	db .end - @
+	db $19, $67, $10, $01, "free__crystal"
+.end	db 0
+
+Unknown_101895:
+	db .end - @
+	db $19, $67, $10, $01, "limit_crystal"
+.end	db 0
+; 1018a8
+
+
+SECTION "bank40_2", ROMX, BANK[$40]
 
 Function1018a8: ; 1018a8
 	ld hl, $ccb5
@@ -104324,7 +104365,7 @@ Function1019ee: ; 1019ee
 	ld a, $5
 	ld [rSVBK], a
 	ld bc, $dc0d
-	ld de, Plant
+	ld de, $dc11
 	callba Function4e929
 	pop af
 	ld [rSVBK], a
@@ -104355,7 +104396,7 @@ Function101a21: ; 101a21
 	ld a, $1
 	ld [$c2d7], a
 	callba Function3f4dd
-	callba BattleCore
+	callba Function3c000
 	callba Function3f759
 	xor a
 	ld [$c2d7], a
@@ -104685,7 +104726,11 @@ Function101cbc: ; 101cbc
 	ret
 ; 101cc2
 
-INCBIN "baserom.gbc", $101cc2, $101cc8 - $101cc2
+Function101cc2: ; 101cc2 ; unreferenced
+	ld a, $2
+	ld [$cd2b], a
+	ret
+; 101cc8
 
 Function101cc8: ; 101cc8
 	ld a, $1
@@ -104800,8 +104845,8 @@ Function101d6b: ; 101d6b
 
 Function101d7b: ; 101d7b
 	callba Function10138b
-	ld b, $0
-	ld hl, $5d8d
+	ld b, 0
+	ld hl, Unknown_101d8d
 	add hl, bc
 	ld c, [hl]
 	ld a, c
@@ -104809,7 +104854,9 @@ Function101d7b: ; 101d7b
 	ret
 ; 101d8d
 
-INCBIN "baserom.gbc", $101d8d, $101d95 - $101d8d
+Unknown_101d8d: ; 101d8d
+	db $15, $15, $1f, $1f, $0c, $12, $3a, $3a
+; 101d95
 
 Function101d95: ; 101d95
 	call Function101ee2
@@ -104960,7 +105007,21 @@ Function101e64: ; 101e64
 	ret
 ; 101e82
 
-INCBIN "baserom.gbc", $101e82, $101e98 - $101e82
+Function101e82: ; 101e82 ; unreferenced
+	call Function101ecc
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 101e8d
+
+Function101e8d: ; 101e8d ; unreferenced
+	call Function101ed3
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 101e98
 
 Function101e98: ; 101e98
 	call ClearSprites
@@ -105011,11 +105072,11 @@ Function101ed3: ; 101ed3
 ; 101ee2
 
 Function101ee2: ; 101ee2
-	ld e, $0
+	ld e, 0
 
 Function101ee4: ; 101ee4
-	ld d, $0
-	ld hl, $5ef5
+	ld d, 0
+	ld hl, Unknown_101ef5
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -105025,7 +105086,77 @@ Function101ee4: ; 101ee4
 	ret
 ; 101ef5
 
-INCBIN "baserom.gbc",$101ef5,$10202c - $101ef5
+Unknown_101ef5: ; 101ef5
+	dw String_101f13
+	dw String_101f14
+	dw String_101f32
+	dw String_101f4f
+	dw String_101f69
+	dw String_101f81
+	dw String_101f93
+	dw String_101faa
+	dw String_101fc5
+	dw String_101fd2
+	dw String_101fe1
+	dw String_101fef
+	dw String_102000
+	dw String_10200c
+	dw String_102014
+
+String_101f13: ; 101f13
+	db "@"
+
+String_101f14: ; 101f14
+	db   "モバイルアダプタを つかって"
+	next "おともだちと つうしんします@"
+
+String_101f32: ; 101f32
+	db   "でんわを かけるひとには"
+	next "つうわりょうきんが かかります@"
+
+String_101f4f: ; 101f4f
+	db   "モバイルアダプタの じゅんびは"
+	next "できて いますか?@"
+
+String_101f69: ; 101f69
+	db   "あなたが おともだちに"
+	next "でんわを かけますか?@"
+
+String_101f81: ; 101f81
+	db   "めいしフ,ルダーを"
+	next "つかいますか?@"
+
+String_101f93: ; 101f93
+	db   "でんわばんごうを にゅうりょく"
+	next "してください@"
+
+String_101faa: ; 101faa
+	db   "それでは おともだちからの"
+	next "でんわを おまちします…@"
+
+String_101fc5: ; 101fc5
+	next "に でんわを かけます@"
+
+String_101fd2: ; 101fd2
+	next "に でんわを かけています@"
+
+String_101fe1: ; 101fe1
+	db   "でんわが つながりました!@"
+
+String_101fef: ; 101fef
+	db   "つうわを"
+	next "しゅうりょう します…@"
+
+String_102000: ; 102000
+	db   "つうしん しゅうりょう@"
+
+String_10200c: ; 10200c
+	db   "つうわ じかん@"
+
+String_102014: ; 102014
+	db   "それでは つうしんの"
+	next "せっていを してください@"
+; 10202c
 
 Function10202c: ; 10202c
 	callba Function115d99
@@ -105221,14 +105352,14 @@ Function102112: ; 102112
 Function102142: ; 102142
 	call Function10218d
 	call Function102180
-	ld hl, $61d1
+	ld hl, UnknownText_0x1021d1
 	call Function1d4f
-	ld de, $0090
+	ld de, SFX_LEVEL_UP
 	call PlaySFX
 	call Functiona36
 	call Function1c07
 	call Function10219f
-	ld hl, $61d6
+	ld hl, UnknownText_0x1021d6
 	call Function1d4f
 	call YesNoBox
 	call Function1c07
@@ -105237,7 +105368,7 @@ Function102142: ; 102142
 	jr c, .asm_10217c
 	call Function10218d
 	call Function102180
-	ld hl, $61db
+	ld hl, UnknownText_0x1021db
 	call PrintText
 
 .asm_10217c
@@ -105287,7 +105418,18 @@ Function1021b8: ; 1021b8
 	ret
 ; 1021d1
 
-INCBIN "baserom.gbc",$1021d1,$1021e0 - $1021d1
+UnknownText_0x1021d1: ; 1021d1
+	text_jump UnknownText_0x1bd19a
+	db "@"
+
+UnknownText_0x1021d6: ; 1021d1
+	text_jump UnknownText_0x1bd1ba
+	db "@"
+
+UnknownText_0x1021db: ; 1021d1
+	text_jump UnknownText_0x1bd1dd
+	db "@"
+; 1021e0
 
 Function1021e0: ; 1021e0
 	call Function1d4f
@@ -105296,7 +105438,18 @@ Function1021e0: ; 1021e0
 	ret
 ; 1021ea
 
-INCBIN "baserom.gbc", $1021ea, $1021f9 - $1021ea
+UnknownText_0x1021ea: ; 1021ea
+	text_jump UnknownText_0x1bd201
+	db "@"
+
+UnknownText_0x1021ef:
+	text_jump UnknownText_0x1bd211
+	db "@"
+
+UnknownText_0x1021f4:
+	text_jump UnknownText_0x1bd223
+	db "@"
+; 1021f9
 
 Function1021f9: ; 1021f9
 	call Function102233
@@ -105413,7 +105566,7 @@ Function102298: ; 102298
 	ld hl, $cd4b
 	set 7, [hl]
 	ret nz
-	ld de, $0027
+	ld de, SFX_ELEVATOR_END
 	call PlaySFX
 	jr .asm_1022c1
 
@@ -105432,7 +105585,7 @@ Function102298: ; 102298
 ; 1022ca
 
 Function1022ca: ; 1022ca
-	ld a, $1e
+	ld a, 30
 	ld [OverworldDelay], a
 	ret
 ; 1022d0
@@ -105445,7 +105598,7 @@ Function1022d0: ; 1022d0
 	call Function102298
 	ld a, [OverworldDelay]
 	ld c, a
-	ld a, $1e
+	ld a, 30
 	sub c
 	ld c, a
 	ld b, $3
@@ -105665,7 +105818,14 @@ Function10246a: ; 10246a
 	ret
 ; 102480
 
-INCBIN "baserom.gbc", $102480, $10248d - $102480
+Function102480: ; 102480
+	ld c, $32
+	call DelayFrames
+	ld a, [$cd49]
+	inc a
+	ld [$cd49], a
+	ret
+; 10248d
 
 Function10248d: ; 10248d
 	ld a, [$cd49]
@@ -105674,7 +105834,17 @@ Function10248d: ; 10248d
 	ret
 ; 102496
 
-INCBIN "baserom.gbc", $102496, $1024a8 - $102496
+Function102496: ; 102496
+	ld hl, $cd4e
+	dec [hl]
+	ret nz
+	ld a, $0
+	ld [$cd4a], a
+	ld a, [$cd49]
+	inc a
+	ld [$cd49], a
+	ret
+; 1024a8
 
 Function1024a8: ; 1024a8
 	callba Function1009f3
@@ -105717,7 +105887,7 @@ Function1024de: ; 1024de
 	dec [hl]
 	jr z, .asm_1024e9
 	ld a, [hJoyPressed]
-	and $3
+	and A_BUTTON | B_BUTTON
 	ret z
 
 .asm_1024e9
@@ -106173,13 +106343,15 @@ Function1027eb: ; 1027eb
 	ld d, h
 	ld e, l
 	callba Function16d61d
-	ld de, $6804
+	ld de, String_102804
 	ld hl, $c5e2
 	call PlaceString
 	ret
 ; 102804
 
-INCBIN "baserom.gbc", $102804, $102814 - $102804
+String_102804: ; 102804
+	db "STATS     TRADE@"
+; 102814
 
 Function102814: ; 102814
 	ld a, [$cfa9]
@@ -106354,7 +106526,7 @@ Jumptable_10292f: ; 10292f
 ; 102933
 
 Function102933: ; 102933
-	ld hl, $69bb
+	ld hl, MenuDataHeader_1029bb
 	call LoadMenuDataHeader
 	call Function102e07
 	ld a, $32
@@ -106439,7 +106611,13 @@ Function1029af: ; 1029af
 	ret
 ; 1029bb
 
-INCBIN "baserom.gbc", $1029bb, $1029c3 - $1029bb
+MenuDataHeader_1029bb: ; 1029bb
+	db $40 ; flags
+	db 10, 3 ; start coords
+	db 12, 15 ; end coords
+	dw NULL
+	db 1 ; default option
+; 1029c3
 
 Function1029c3: ; 1029c3
 	ld a, [$cd4a]
@@ -106461,12 +106639,12 @@ Function1029cf: ; 1029cf
 	ld d, h
 	ld e, l
 	callba Function16d61d
-	ld de, $6a26
+	ld de, String_102a26
 	ld hl, $c54c
 	call PlaceString
 	ld hl, $cd4b
 	set 1, [hl]
-	ld de, $6a33
+	ld de, Unknown_102a33
 	call Function1bb1
 	ld a, [$cd4a]
 	inc a
@@ -106500,7 +106678,14 @@ Function1029fe: ; 1029fe
 	ret
 ; 102a26
 
-INCBIN "baserom.gbc", $102a26, $102a3b - $102a26
+String_102a26: ; 102a26
+	db   "TRADE"
+	next "CANCEL"
+	db   "@"
+; 102a33
+
+Unknown_102a33:
+INCBIN "baserom.gbc", $102a33, $102a3b - $102a33
 
 Function102a3b: ; 102a3b
 	ld a, [$cd30]
@@ -106632,7 +106817,7 @@ Function102b4e: ; 102b4e
 	ld [MonType], a
 	ld a, [$cfa9]
 	push af
-	ld de, $6b73
+	ld de, Unknown_102b73
 	call Function1bb1
 	pop af
 	ld [$cfa9], a
@@ -106641,14 +106826,23 @@ Function102b4e: ; 102b4e
 	ret
 ; 102b68
 
-INCBIN "baserom.gbc", $102b68, $102b7b - $102b68
+Function102b68: ; 102b68 ; unreferenced
+	xor a
+	ld hl, $cf71
+	ld bc, $0010
+	call ByteFill
+	ret
+; 102b73
+
+Unknown_102b73:
+INCBIN "baserom.gbc", $102b73, $102b7b - $102b73
 
 Function102b7b: ; 102b7b
 	xor a
 	ld [MonType], a
 	ld a, [$cfa9]
 	push af
-	ld de, $6b94
+	ld de, Unknown_102b94
 	call Function1bb1
 	pop af
 	ld [$cfa9], a
@@ -106657,6 +106851,7 @@ Function102b7b: ; 102b7b
 	ret
 ; 102b94
 
+Unknown_102b94:
 INCBIN "baserom.gbc", $102b94, $102b9c - $102b94
 
 Function102b9c: ; 102b9c
@@ -106702,16 +106897,16 @@ Function102bdc: ; 102bdc
 	add hl, bc
 	ld a, [hl]
 	pop hl
-	cp $fd
+	cp EGG
 	jr z, .asm_102bfa
 	cp [hl]
 	jr nz, .asm_102c05
 
 .asm_102bfa
-	ld bc, $001f
+	ld bc, OTPartyMon1Level - OTPartyMon1
 	add hl, bc
 	ld a, [hl]
-	cp $65
+	cp MAX_LEVEL + 1
 	jr nc, .asm_102c05
 	and a
 	ret
@@ -106754,8 +106949,8 @@ Function102c2e: ; 102c2e
 ; 102c3b
 
 Function102c3b: ; 102c3b
-	ld hl, PartyMon1Species
-	ld de, OTPartyMon1Species
+	ld hl, PartyMon1
+	ld de, OTPartyMon1
 	ld bc, $0030
 	call Function102c71
 	ret
@@ -106888,29 +107083,29 @@ Function102d3e: ; 102d3e
 Function102d48: ; 102d48
 	ld a, [$cd4c]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, PartyCount
 	add hl, de
 	ld a, [hl]
 	ld [$d265], a
-	cp $fd
+	cp EGG
 	jr z, .asm_102d6d
 	dec a
 	call SetSeenAndCaughtMon
 	ld a, [$cd4c]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1Happiness
 	call AddNTimes
-	ld [hl], $46
+	ld [hl], BASE_HAPPINESS
 
 .asm_102d6d
 	ld a, [$d265]
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_102d98
 	ld a, [$cd4c]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld hl, PartyMon1DVs
 	call AddNTimes
 	predef GetUnownLetter
@@ -106999,22 +107194,26 @@ Function102e07: ; 102e07
 	callba Function16d61d
 
 .asm_102e28
-	ld de, $6e32
+	ld de, String_102e32
 	ld hl, $c580
 	call PlaceString
 	ret
 ; 102e32
 
-INCBIN "baserom.gbc", $102e32, $102e3e - $102e32
+String_102e32: ; 102e32
+	db "Waiting...!@"
+; 102e3e
 
 Function102e3e: ; 102e3e
-	ld de, $6e48
+	ld de, String_102e48
 	ld hl, $c5fe
 	call PlaceString
 	ret
 ; 102e48
 
-INCBIN "baserom.gbc", $102e48, $102e4f - $102e48
+String_102e48: ; 102e48
+	db "CANCEL@"
+; 102e4f
 
 Function102e4f: ; 102e4f
 	callba Function16d42e
@@ -107088,62 +107287,76 @@ Function102ea8: ; 102ea8
 	ld a, [hl]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $6ee2
+	ld hl, UnknownText_0x102ee2
 	call PrintTextBoxText
 	ret
 ; 102ee2
 
-INCBIN "baserom.gbc", $102ee2, $102ee7 - $102ee2
+UnknownText_0x102ee2: ; 102ee2
+	text_jump UnknownText_0x1bd286
+	db "@"
 
 Function102ee7: ; 102ee7
 	call Function102dc3
-	ld de, $6ef4
+	ld de, String_102ef4
 	ld hl, $c5b9
 	call PlaceString
 	ret
 ; 102ef4
 
-INCBIN "baserom.gbc", $102ef4, $102f15 - $102ef4
+String_102ef4: ; 102ef4
+	db   "Too bad! The trade"
+	next "was canceled!"
+	db   "@"
+; 102f15
 
 Function102f15: ; 102f15
 	call Function102dc3
-	ld de, $6f22
+	ld de, String_102f22
 	ld hl, $c5b9
 	call PlaceString
 	ret
 ; 102f22
 
-INCBIN "baserom.gbc", $102f22, $102f32 - $102f22
+String_102f22: ; 102f22
+	db "こうかんを キャンセルしました@"
+; 102f32
 
 Function102f32: ; 102f32
 	call Function102dc3
-	ld de, $6f3f
+	ld de, String_102f3f
 	ld hl, $c5b9
 	call PlaceString
 	ret
 ; 102f3f
 
-INCBIN "baserom.gbc", $102f3f, $102f50 - $102f3f
+String_102f3f: ; 102f3f
+	db "Trade completed!@"
+; 102f50
 
 Function102f50: ; 102f50
 	call Function102dc3
-	ld de, $6f5d
+	ld de, String_102f5d
 	ld hl, $c5b9
 	call PlaceString
 	ret
 ; 102f5d
 
-INCBIN "baserom.gbc", $102f5d, $102f6d - $102f5d
+String_102f5d: ; 102f5d
+	db "しょうしょう おまち ください@"
+; 102f6d
 
 Function102f6d: ; 102f6d
 	call Function102dc3
-	ld de, $6f7a
+	ld de, String_102f7a
 	ld hl, $c5b9
 	call PlaceString
 	ret
 ; 102f7a
 
-INCBIN "baserom.gbc", $102f7a, $102f85 - $102f7a
+String_102f7a: ; 102f7a
+	db "しゅうりょう します@"
+; 102f85
 
 Function102f85: ; 102f85
 	ld a, [$d003]
@@ -107155,48 +107368,68 @@ Function102f85: ; 102f85
 	ld [$d265], a
 	call GetPokemonName
 	call Function102dc3
-	ld de, $6fb2
+	ld de, String_102fb2
 	ld hl, $c5b9
 	call PlaceString
 	ld de, StringBuffer1
 	ld hl, $c5c5
 	call PlaceString
-	ld de, $6fcc
+	ld de, String_102fcc
 	call PlaceString
 	ret
 ; 102fb2
 
-INCBIN "baserom.gbc", $102fb2, $102fce - $102fb2
+String_102fb2: ; 102fb2
+	db   "あいてがわ", $4a, "えらんだ "
+	next "いじょう", $4a, "あるようです!!"
+	db   "@"
+; 102fcc
+
+String_102fcc: ; 102fcc
+	db "に@"
+; 102fce
 
 Function102fce: ; 102fce
 	call Function102dc3
-	ld de, $6fdb
+	ld de, String_102fdb
 	ld hl, $c5b9
 	call PlaceString
 	ret
 ; 102fdb
 
-INCBIN "baserom.gbc", $102fdb, $102ff5 - $102fdb
+String_102fdb: ; 102fdb
+	db   "あいてがわ", $25, "せんたくに"
+	next "いじょう", $4a, "あるようです!!"
+	done
+; 102ff5
 
 Function102ff5: ; 102ff5
 	call Function102dc3
-	ld de, $7002
+	ld de, String_103002
 	ld hl, $c5b9
 	call PlaceString
 	ret
 ; 103002
 
-INCBIN "baserom.gbc", $103002, $103021 - $103002
+String_103002: ; 103002
+	db   "その#を こうかんすると"
+	next "せんとう できなく なっちゃうよ!"
+	db   "@"
+; 103021
 
 Function103021: ; 103021
 	call Function102dc3
-	ld de, $702e
+	ld de, String_10302e
 	ld hl, $c5b9
 	call PlaceString
 	ret
 ; 10302e
 
-INCBIN "baserom.gbc", $10302e, $10304f - $10302e
+String_10302e: ; 10302e
+	db   "あいてが ちゅうしを えらんだので"
+	next "こうかんを ちゅうし します"
+	db   "@"
+; 10304f
 
 Function10304f: ; 10304f
 	xor a
@@ -107290,11 +107523,11 @@ Function103094: ; 103094
 Function1030cd: ; 1030cd
 	ld a, [$cf44]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld bc, $7112
+	ld bc, Unknown_103112
 	add hl, bc
 	ld b, $30
 	ld c, $8
@@ -107306,18 +107539,21 @@ Function1030cd: ; 1030cd
 	ld a, $0
 	jr z, .asm_1030eb
 	ld a, $5
-
 .asm_1030eb
+
 	add [hl]
 	inc hl
 	push hl
+
 	add a
 	add a
-	add $7a
+
+	add Unknown_10327a % $100
 	ld l, a
-	ld a, $72
-	adc $0
+	ld a, Unknown_10327a / $100
+	adc 0
 	ld h, a
+
 	ld a, b
 	add [hl]
 	inc hl
@@ -107343,7 +107579,90 @@ Function1030cd: ; 1030cd
 	ret
 ; 103112
 
-INCBIN "baserom.gbc", $103112, $103302 - $103112
+Unknown_103112: ; 103112
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $01, $00, $00, $00, $00, $00, $00, $00
+	db $02, $01, $00, $00, $00, $00, $00, $00
+	db $03, $02, $01, $00, $00, $00, $00, $00
+	db $04, $03, $02, $01, $00, $00, $00, $00
+	db $04, $04, $03, $02, $01, $00, $00, $00
+	db $04, $04, $04, $03, $02, $01, $00, $00
+	db $04, $04, $04, $04, $03, $02, $01, $00
+	db $04, $04, $04, $04, $04, $03, $02, $01
+	db $04, $04, $04, $04, $04, $04, $03, $02
+	db $04, $04, $04, $04, $04, $04, $04, $03
+	db $04, $04, $04, $04, $04, $04, $04, $04
+	db $04, $04, $04, $04, $04, $04, $04, $04
+	db $04, $04, $04, $04, $04, $04, $04, $04
+	db $04, $04, $04, $04, $04, $04, $04, $04
+	db $04, $04, $04, $04, $04, $04, $04, $04
+	db $04, $04, $04, $04, $04, $04, $04, $04
+	db $04, $04, $04, $04, $04, $04, $04, $04
+	db $04, $04, $04, $04, $04, $04, $04, $04
+	db $03, $04, $04, $04, $04, $04, $04, $04
+	db $02, $03, $04, $04, $04, $04, $04, $04
+	db $01, $02, $03, $04, $04, $04, $04, $04
+	db $00, $01, $02, $03, $04, $04, $04, $04
+	db $00, $00, $01, $02, $03, $04, $04, $04
+	db $00, $00, $00, $01, $02, $03, $04, $04
+	db $00, $00, $00, $00, $01, $02, $03, $04
+	db $00, $00, $00, $00, $00, $01, $02, $03
+	db $00, $00, $00, $00, $00, $00, $01, $02
+	db $00, $00, $00, $00, $00, $00, $00, $01
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+; 10327a
+
+Unknown_10327a: ; 10327a
+	db $00, $00, $00, $00
+	db $00, $00, $01, $00
+	db $00, $00, $02, $00
+	db $00, $00, $03, $00
+	db $00, $00, $01, $01
+	db $00, $00, $00, $00
+	db $00, $00, $01, $02
+	db $00, $00, $02, $02
+	db $00, $00, $03, $02
+	db $00, $00, $01, $03
+	db $00, $00, $00, $00
+	db $00, $00, $00, $00
+	db $00, $00, $00, $00
+	db $00, $00, $00, $00
+	db $00, $00, $40, $00
+	db $e0, $00, $e0, $00
+	db $e0, $00, $e0, $00
+	db $e0, $00, $40, $00
+	db $00, $00, $00, $40
+	db $00, $e0, $00, $e0
+	db $00, $e0, $00, $e0
+	db $00, $e0, $00, $40
+	db $00, $00, $40, $40
+	db $e0, $e0, $e0, $e0
+	db $e0, $e0, $e0, $e0
+	db $e0, $e0, $40, $40
+	db $00, $00, $ff, $1f
+	db $f4, $1b, $8d, $42
+	db $00, $00, $67, $45
+	db $00, $00, $00, $00
+	db $00, $00, $1f, $13
+	db $99, $01, $ff, $10
+	db $00, $00, $19, $00
+	db $00, $00, $00, $00
+; 103302
 
 Function103302: ; 103302
 	call Function103309
@@ -107444,20 +107763,20 @@ Function1033af: ; 1033af
 	call GetJoypad
 	ld a, [hJoyPressed]
 	bit 5, a
-	jr nz, .asm_103412
+	jr nz, .left
 	bit 4, a
-	jr nz, .asm_103412
+	jr nz, .right
 	bit 1, a
-	jr nz, .asm_1033f1
+	jr nz, .b
 	bit 0, a
-	jr nz, .asm_1033fa
+	jr nz, .a
 	bit 6, a
-	jr nz, .asm_1033cd
+	jr nz, .up
 	bit 7, a
-	jr nz, .asm_1033de
+	jr nz, .down
 	ret
 
-.asm_1033cd
+.up
 	ld a, [$d1f0]
 	dec a
 	ld [$d1f0], a
@@ -107467,7 +107786,7 @@ Function1033af: ; 1033af
 	ld [$d1f0], a
 	ret
 
-.asm_1033de
+.down
 	ld a, [$d1f0]
 	inc a
 	ld [$d1f0], a
@@ -107479,17 +107798,17 @@ Function1033af: ; 1033af
 	ld [$d1f0], a
 	ret
 
-.asm_1033f1
+.b
 	call PlayClickSFX
 	ld hl, Buffer2
 	set 7, [hl]
 	ret
 
-.asm_1033fa
+.a
 	ld a, [$d1f3]
 	cp $3
 	jr nz, .asm_103412
-	ld de, $0022
+	ld de, SFX_TRANSACTION
 	call PlaySFX
 	ld hl, Buffer2
 	set 7, [hl]
@@ -107497,11 +107816,13 @@ Function1033af: ; 1033af
 	set 6, [hl]
 	ret
 
+.left
+.right
 .asm_103412
 	ld a, [$d1f3]
 	cp $3
 	ret z
-	ld de, $0011
+	ld de, SFX_PUSH_BUTTON
 	call PlaySFX
 	ld bc, $0008
 	call Function10350f
@@ -107619,7 +107940,7 @@ Function1034e0: ; 1034e0
 	push hl
 	call ClearBox
 	pop hl
-	ld bc, $0939
+	ld bc, AttrMap - TileMap
 	add hl, bc
 	pop bc
 	ld a, $6
@@ -107632,14 +107953,14 @@ Function1034f1: ; 1034f1
 	ld [$d1f2], a
 
 Function1034f7: ; 10134f7
-	ld hl, SpritesEnd
+	ld hl, TileMap
 	add hl, bc
 	ld a, [$d1ef]
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	call AddNTimes
 	ld a, [$d1f2]
 	dec a
-	ld bc, $0028
+	ld bc, 40
 	call AddNTimes
 	ret
 ; 10350f
@@ -107647,7 +107968,7 @@ Function1034f7: ; 10134f7
 Function10350f: ; 10350f
 	ld a, [$d1f3]
 	push bc
-	ld hl, $7522
+	ld hl, Unknown_103522
 	ld bc, $0009
 	call AddNTimes
 	pop bc
@@ -107658,12 +107979,47 @@ Function10350f: ; 10350f
 	ret
 ; 103522
 
-INCBIN "baserom.gbc", $103522, $1035c6 - $103522
+Unknown_103522: ; 103522
+	dw String_103546
+	dw String_103598
+	dw String_1035a0
+	dw String_10355f
+	db $1
+	dw String_10354f
+	dw String_1035a8
+	dw String_1035b1
+	dw String_103571
+	db $2
+	dw String_103557
+	dw String_1035ba
+	dw String_1035bd
+	dw String_103585
+	db $4
+	dw String_103545
+	dw String_1035c1
+	dw String_1035c1
+	dw String_103545
+
+String_103545: db "@"
+String_103546: db "せんとう アニメ@"
+String_10354f: db "でんわばんごう@"
+String_103557: db "めいしこうかん@"
+String_10355f: db "でんわを かけるひとが きめられる@"
+String_103571: db "でんわばんごうの にゅうりょくのしかた@"
+String_103585: db "あたらしいめいしが あれば こうかん@"
+String_103598: db "とばして みる@"
+String_1035a0: db "じっくり みる@"
+String_1035a8: db "めいしからえらぶ@"
+String_1035b1: db "すうじで いれる@"
+String_1035ba: db "する@"
+String_1035bd: db "しない@"
+String_1035c1: db "けってい@"
+; 1035c6
 
 Function1035c6: ; 1035c6
 	callba Function10138b
-	ld b, $0
-	ld hl, $75d7
+	ld b, 0
+	ld hl, Unknown_1035d7
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -107672,10 +108028,48 @@ Function1035c6: ; 1035c6
 	ret
 ; 1035d7
 
-INCBIN "baserom.gbc", $1035d7, $103612 - $1035d7
+Unknown_1035d7: ; 1035d7
+	dw Unknown_1035e7
+	dw Unknown_1035f3
+	dw Unknown_103608
+	dw Unknown_103608
+	dw Unknown_1035fe
+
+	dw Function103612
+	dw Function103612
+	dw Function103612
+
+Unknown_1035e7: ; 1035e7
+	dwcoord 0, 6
+	db $12, $07, $07
+	dw .this
+.this
+	db 4, 2, 1, 0, 3
+
+Unknown_1035f3: ; 1035f3
+	dwcoord 0, 7
+	db $12, $06, $09
+	dw .this
+.this
+	db 3, 2, 1, 3
+
+Unknown_1035fe: ; 1035fe
+	dwcoord 0, 9
+	db $12, $04, $0b
+	dw .this
+.this
+	db 2, 0, 3
+
+Unknown_103608: ; 103608
+	dwcoord 0, 9
+	db $12, $04, $0b
+	dw .this
+.this
+	db 2, 2, 3
+; 103612
 
 Function103612: ; 103612
-	ld hl, $7640
+	ld hl, MenuDataHeader_103640
 	call LoadMenuDataHeader
 	ld a, [$dc40]
 	and $f
@@ -107701,7 +108095,19 @@ Function103612: ; 103612
 	ret
 ; 103640
 
-INCBIN "baserom.gbc", $103640, $103654 - $103640
+MenuDataHeader_103640: ; 103640
+	db $40 ; flags
+	db  6, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_103648
+	db 1 ; default option
+
+MenuData2_103648: ; 103648
+	db $80 ; flags
+	db 2
+	db "モバイル@"
+	db "ケーブル@"
+; 103654
 
 Function103654: ; 103654
 	callba Function10632f
@@ -107723,7 +108129,7 @@ Function10366e: ; 10366e
 	callba Function10632f
 	bit 7, c
 	jr z, .asm_10369b
-	ld hl, $775d
+	ld hl, UnknownText_0x10375d
 	call PrintText
 	call YesNoBox
 	jr c, .asm_103696
@@ -107747,7 +108153,7 @@ Function10366e: ; 10366e
 	bit 7, [hl]
 	set 7, [hl]
 	jr nz, .asm_1036b5
-	ld hl, $7762
+	ld hl, UnknownText_0x103762
 	call PrintText
 	call YesNoBox
 	jr c, .asm_1036b5
@@ -107757,7 +108163,7 @@ Function10366e: ; 10366e
 .asm_1036b5
 	call Function103700
 	jr c, .asm_1036f4
-	ld hl, $7747
+	ld hl, MenuDataHeader_103747
 	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07
@@ -107794,7 +108200,7 @@ Function10366e: ; 10366e
 ; 1036f9
 
 Function1036f9: ; 1036f9
-	ld hl, $7767
+	ld hl, UnknownText_0x103767
 	call PrintText
 	ret
 ; 103700
@@ -107819,32 +108225,74 @@ Function103700: ; 103700
 	jr .asm_10373c
 
 .asm_103724
-	ld hl, $776c
+	ld hl, UnknownText_0x10376c
 	call PrintText
 	and a
 	ret
 
 .asm_10372c
-	ld hl, $7771
+	ld hl, UnknownText_0x103771
 	call PrintText
 	and a
 	ret
 
 .asm_103734
-	ld hl, $7776
+	ld hl, UnknownText_0x103776
 	call PrintText
 	and a
 	ret
 
 .asm_10373c
-	ld hl, $777b
+	ld hl, UnknownText_0x10377b
 	call PrintText
 	call Functiona36
 	scf
 	ret
 ; 103747
 
-INCBIN "baserom.gbc",$103747,$103780 - $103747
+MenuDataHeader_103747: ; 103747
+	db $40 ; flags
+	db  5, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_10374f
+	db 1 ; default option
+
+MenuData2_10374f: ; 10374f
+	db $c0 ; flags
+	db 3
+	db "はい@"
+	db "やめる@"
+	db "せつめい@"
+; 10375d
+
+UnknownText_0x10375d: ; 0x10375d
+	text_jump UnknownText_0x1c422a
+	db "@"
+; 0x103762
+UnknownText_0x103762: ; 0x103762
+	text_jump UnknownText_0x1c4275
+	db "@"
+; 0x103767
+UnknownText_0x103767: ; 0x103767
+	text_jump UnknownText_0x1c4298
+	db "@"
+; 0x10376c
+UnknownText_0x10376c: ; 0x10376c
+	text_jump UnknownText_0x1c439c
+	db "@"
+; 0x103771
+UnknownText_0x103771: ; 0x103771
+	text_jump UnknownText_0x1c43dc
+	db "@"
+; 0x103776
+UnknownText_0x103776: ; 0x103776
+	text_jump UnknownText_0x1c4419
+	db "@"
+; 0x10377b
+UnknownText_0x10377b: ; 0x10377b
+	text_jump UnknownText_0x1c445a
+	db "@"
+; 0x103780
 
 Function103780: ; 103780
 	ld a, [$d265]
@@ -107894,7 +108342,7 @@ Function1037c2: ; 1037c2
 	ld a, [$dc5f]
 	and a
 	jr z, .asm_1037de
-	ld hl, $77e6
+	ld hl, UnknownText_0x1037e6
 	call PrintText
 	call YesNoBox
 	jr c, .asm_1037de
@@ -107909,15 +108357,18 @@ Function1037c2: ; 1037c2
 	ret
 ; 1037e6
 
-INCBIN "baserom.gbc",$1037e6,$1037eb - $1037e6
+UnknownText_0x1037e6: ; 0x1037e6
+	text_jump UnknownText_0x1c449c
+	db "@"
+; 0x1037eb
 
 Function1037eb: ; 1037eb
 	call Function103823
 	jr nc, .asm_103807
-	ld hl, $7819
+	ld hl, UnknownText_0x103819
 	call PrintText
 	call Functiona36
-	ld hl, $781e
+	ld hl, UnknownText_0x10381e
 	call PrintText
 	call Functiona36
 	xor a
@@ -107938,7 +108389,15 @@ Function1037eb: ; 1037eb
 	ret
 ; 103819
 
-INCBIN "baserom.gbc",$103819,$103823 - $103819
+UnknownText_0x103819: ; 0x103819
+	text_jump UnknownText_0x1c44c0
+	db "@"
+; 0x10381e
+
+UnknownText_0x10381e: ; 0x10381e
+	text_jump UnknownText_0x1c44e7
+	db "@"
+; 0x103823
 
 Function103823: ; 103823
 	callba Function10632f
@@ -107966,7 +108425,7 @@ Function10383c: ; 10383c
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ld hl, $7876
+	ld hl, UnknownText_0x103876
 	call PrintText
 	call Functiona36
 	callba Script_reloadmappart
@@ -107986,7 +108445,10 @@ Function10383c: ; 10383c
 	ret
 ; 103876
 
-INCBIN "baserom.gbc",$103876,$10387b - $103876
+UnknownText_0x103876: ; 0x103876
+	text_jump UnknownText_0x1c4508
+	db "@"
+; 0x10387b
 
 Function10387b: ; 10387b
 	callba Function10632f
@@ -107995,13 +108457,16 @@ Function10387b: ; 10387b
 	callba Function1008a6
 	ld a, c
 	ld [StringBuffer2], a
-	ld hl, $7898
+	ld hl, UnknownText_0x103898
 	call PrintText
 	call Functiona36
 	ret
 ; 103898
 
-INCBIN "baserom.gbc",$103898,$10389d - $103898
+UnknownText_0x103898: ; 0x103898
+	text_jump UnknownText_0x1c4525
+	db "@"
+; 0x10389d
 
 
 SECTION "bank41", ROMX, BANK[$41]
@@ -123089,24 +123554,28 @@ String_1dc289: next "  TRANSMITTING...@"
 String_1dc29c: next "    PRINTING...@"
 String_1dc2ad:
 	db   " Printer Error 1"
-	db   $4e
+	next ""
 	next "Check the Game Boy"
-	next "Printer Manual.@"
+	next "Printer Manual."
+	db   "@"
 String_1dc2e2:
 	db   " Printer Error 2"
-	db   $4e
+	next ""
 	next "Check the Game Boy"
-	next "Printer Manual.@"
+	next "Printer Manual."
+	db   "@"
 String_1dc317:
 	db   " Printer Error 3"
-	db   $4e
+	next ""
 	next "Check the Game Boy"
-	next "Printer Manual.@"
+	next "Printer Manual."
+	db   "@"
 String_1dc34c:
 	db   " Printer Error 4"
-	db   $4e
+	next ""
 	next "Check the Game Boy"
-	next "Printer Manual.@"
+	next "Printer Manual."
+	db   "@"
 ; 1dc381
 
 Function1dc381: ; 1dc381
