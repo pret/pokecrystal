@@ -101814,7 +101814,7 @@ Function100846: ; 100846
 	ld [$d087], a
 	xor a
 	ld [StringBuffer2], a
-	ld de, $488e
+	ld de, String_10088e
 	ld hl, $c5b9
 	call PlaceString
 	ld de, StringBuffer2
@@ -101823,17 +101823,24 @@ Function100846: ; 100846
 	ret
 
 .asm_10087c
-	ld de, $488e
+	ld de, String_10088e
 	ld hl, $c5b9
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld de, $489f
+	ld de, String_10089f
 	call PlaceString
 	ret
 ; 10088e
 
-INCBIN "baserom.gbc", $10088e, $1008a6 - $10088e
+String_10088e: ; 10088e
+	db   "モバイルたいせん できる"
+	next "じかん@"
+; 10089f
+
+String_10089f: ; 10089f
+	db " むせいげん@"
+; 1008a6
 
 Function1008a6: ; 1008a6
 	ld a, $4
@@ -102008,7 +102015,7 @@ Function1009d2: ; 1009d2
 	ld [rVBK], a
 	ld hl, $d800
 	ld de, VBGMap0
-	ld bc, $0324
+	lb bc, $3, $24
 	call Get2bpp
 	pop af
 	ld [rVBK], a
@@ -102019,8 +102026,8 @@ Function1009d2: ; 1009d2
 
 Function1009f3: ; 1009f3
 	ld a, [hJoyDown]
-	and $5
-	cp $5
+	and SELECT + A_BUTTON
+	cp SELECT + A_BUTTON
 	jr nz, .asm_100a07
 	ld hl, $cd2a
 	set 4, [hl]
@@ -102059,7 +102066,7 @@ Function100a2e: ; 100a2e
 	jr nz, .asm_100a48
 	ld a, [CurPlayerMove]
 	ld b, $e
-	cp $a5
+	cp STRUGGLE
 	jr z, .asm_100a4f
 	ld b, $d
 	cp $ff
@@ -102147,7 +102154,7 @@ Function100a87: ; 100a87
 ; 100acf
 
 Function100acf: ; 100acf
-	ld de, $4b0a
+	ld de, Unknown_100b0a
 	ld hl, $ccb5
 	ld a, [$d431]
 	ld [hli], a
@@ -102165,7 +102172,7 @@ Function100acf: ; 100acf
 ; 100ae7
 
 Function100ae7: ; 100ae7
-	ld de, $4b0a
+	ld de, Unknown_100b0a
 	ld hl, $cc62
 .asm_100aed
 	ld a, [de]
@@ -102190,8 +102197,17 @@ Function100ae7: ; 100ae7
 	ret
 ; 100b0a
 
-INCBIN "baserom.gbc",$100b0a,$100b12 - $100b0a
 
+SECTION "tetsuji", ROMX, BANK[$40]
+
+	charmap " ", $20 ; revert to ascii
+
+Unknown_100b0a: ; 100b0a
+	db "tetsuji", 0
+; 100b12
+
+
+SECTION "bank40_2", ROMX, BANK[$40]
 
 Function100b12: ; 100b12
 	call Function100dd8
@@ -103457,7 +103473,28 @@ Function1013dd: ; 1013dd
 	ret
 ; 1013e1
 
-INCBIN "baserom.gbc", $1013e1, $1013f5 - $1013e1
+Function1013e1: ; 1013e1 ; unreferenced
+	push de
+	inc de
+	ld b, a
+	ld c, $0
+.asm_1013e6
+	inc c
+	ld a, [hli]
+	ld [de], a
+	inc de
+	and a
+	jr z, .asm_1013f1
+	dec b
+	jr nz, .asm_1013e6
+	scf
+
+.asm_1013f1
+	pop de
+	ld a, c
+	ld [de], a
+	ret
+; 1013f5
 
 Function1013f5: ; 1013f5
 	ld a, [hli]
@@ -103473,7 +103510,12 @@ Function1013f5: ; 1013f5
 	ret
 ; 101400
 
-INCBIN "baserom.gbc", $101400, $101406 - $101400
+Function101400: ; 101400 ; unreferenced
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr nz, asm_101416
+	inc hl
 
 Function101406: ; 101406
 	ld c, a
@@ -103482,7 +103524,7 @@ Function101406: ; 101406
 	ld a, [de]
 	inc de
 	cp [hl]
-	jr nz, .asm_101416
+	jr nz, asm_101416
 	inc hl
 	dec bc
 	ld a, b
@@ -103491,7 +103533,7 @@ Function101406: ; 101406
 	and a
 	ret
 
-.asm_101416
+asm_101416
 	scf
 	ret
 ; 101418
@@ -103499,8 +103541,8 @@ Function101406: ; 101406
 Function101418: ; 101418
 	call GetJoypad
 	ld a, [hJoyDown]
-	and $5
-	cp $5
+	and SELECT + A_BUTTON
+	cp SELECT + A_BUTTON
 	jr z, .asm_101425
 	xor a
 	ret
@@ -103656,7 +103698,14 @@ Function101507: ; 101507
 	ret
 ; 10151d
 
-INCBIN "baserom.gbc", $10151d, $10152a - $10151d
+Function10151d: ; 10151d ; unreferenced
+	ld a, $34
+	call Function3e32
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 10152a
 
 Function10152a: ; 10152a
 	ld a, $36
@@ -103844,7 +103893,12 @@ Function101663: ; 101663
 	ret
 ; 101674
 
-INCBIN "baserom.gbc", $101674, $10167d - $101674
+Function101674: ; 101674 ; unreferenced
+	ld a, $5
+	ld hl, $dc00
+	call Function101635
+	ret
+; 10167d
 
 Function10167d: ; 10167d
 	ld a, $0
@@ -104180,7 +104234,7 @@ Unknown_101895:
 ; 1018a8
 
 
-SECTION "bank40_2", ROMX, BANK[$40]
+SECTION "bank40_3", ROMX, BANK[$40]
 
 Function1018a8: ; 1018a8
 	ld hl, $ccb5
