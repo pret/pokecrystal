@@ -9335,7 +9335,7 @@ Function3fbd6: ; 3fbd6
 	call ByteFill
 	ld de, $d000
 	ld hl, VBGMap0
-	ld bc, $0f40
+	lb bc, BANK(Function3fbd6), $40
 	call Request2bpp
 	pop af
 	ld [rSVBK], a
