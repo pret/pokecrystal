@@ -112323,20 +112323,230 @@ Function10630f: ; 10630f
 	ret
 ; 106314
 
-INCBIN "baserom.gbc",$106314,$10632f - $106314
+Function106314: mobile ; 106314
+	ld a, $4
+	call GetSRAMBank
+	ld a, c
+	cpl
+	ld [$b000], a
+	call CloseSRAM
+	ld a, $7
+	call GetSRAMBank
+	ld a, c
+	ld [$a800], a
+	call CloseSRAM
+	ret
+; 10632f
 
 Function10632f: ; 10632f
 	or a
-	ret
-; 106331
+	mobile
 
-INCBIN "baserom.gbc",$106331,$106462 - $106331
+	ld a, $4
+	call GetSRAMBank
+	ld a, [$b000]
+	cpl
+	ld b, a
+	call CloseSRAM
+	ld a, $7
+	call GetSRAMBank
+	ld a, [$a800]
+	ld c, a
+	call CloseSRAM
+	ld a, c
+	cp b
+	jr nz, .asm_106359
+	and a
+	jr z, .asm_106359
+	and $8f
+	cp c
+	jr nz, .asm_106359
+	ld c, a
+	scf
+	ret
+
+.asm_106359
+	xor a
+	ld c, a
+	ret
+; 10635c
+
+Function10635c: ; 10635c
+	ld a, [$cd25]
+	bit 7, a
+	ret nz
+	ld a, [$cd25]
+	ld hl, Jumptable_10636a
+	rst JumpTable
+	ret
+; 10636a
+
+Jumptable_10636a: ; 10636a
+	dw Function10637c
+	dw Function106392
+	dw Function1063cc
+	dw Function1063d8
+	dw Function1063e5
+	dw Function1063f3
+	dw Function106403
+	dw Function106442
+	dw Function106453
+; 10637c
+
+Function10637c: ; 10637c
+	ld de, $cd30
+	ld hl, $0041
+	ld bc, $0041
+	ld a, $40
+	call Function3e32
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 106392
+
+Function106392: ; 106392
+	xor a
+	ld [$cf64], a
+	ld a, [$c821]
+	bit 1, a
+	jr nz, .asm_1063a2
+	bit 0, a
+	jr z, .asm_1063bf
+	ret
+
+.asm_1063a2
+	call Function10632f
+	ld a, c
+	and a
+	jr nz, .asm_1063b4
+	ld a, $b
+	ld [$cf64], a
+	ld a, $7
+	ld [$cd25], a
+	ret
+
+.asm_1063b4
+	ld a, $7
+	ld [$cf64], a
+	ld a, $7
+	ld [$cd25], a
+	ret
+
+.asm_1063bf
+	ld a, $1
+	ld [$cf64], a
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 1063cc
+
+Function1063cc: ; 1063cc
+	ld a, $78
+	ld [$cd42], a
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+
+Function1063d8: ; 1063d8
+	ld hl, $cd42
+	dec [hl]
+	ret nz
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 1063e5
+
+Function1063e5: ; 1063e5
+	ld a, [$cf64]
+	cp $3
+	ret nz
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 1063f3
+
+Function1063f3: ; 1063f3
+	ld de, $cd31
+	ld a, $32
+	call Function3e32
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 106403
+
+Function106403: ; 106403
+	ld a, [$c821]
+	bit 1, a
+	jr nz, .asm_106426
+	bit 0, a
+	jr z, .asm_10640f
+	ret
+
+.asm_10640f
+	ld a, [$cd31]
+	and $80
+	ld c, a
+	ld a, [$cd30]
+	or c
+	inc a
+	ld c, a
+	call Function106314
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+
+.asm_106426
+	call Function10632f
+	ld a, c
+	and a
+	jr z, .asm_106435
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+
+.asm_106435
+	ld c, $0
+	call Function106314
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+	ret
+; 106442
+
+Function106442: ; 106442
+	ld a, $36
+	call Function3e32
+	xor a
+	ld [$ffe9], a
+	ld [$ffc9], a
+	ld a, [$cd25]
+	inc a
+	ld [$cd25], a
+
+Function106453: ; 106453
+	ld a, [$cd25]
+	set 7, a
+	ld [$cd25], a
+	nop
+	ld a, $4
+	ld [$cf64], a
+	ret
+; 106462
 
 Function106462: ; 106462
 	ret
 ; 106463
 
-INCBIN "baserom.gbc",$106463,$106464 - $106463
+Function106463: ; 106463
+	ret
+; 106464
 
 Function106464:: ; 106464
 	ld de, GFX_f9214
@@ -112360,7 +112570,83 @@ Function106464:: ; 106464
 	ret
 ; 10649b
 
-INCBIN "baserom.gbc",$10649b,$106514 - $10649b
+Function10649b: ; 10649b
+	ld a, [TextBoxFrame]
+	and $7
+	ld bc, $0030
+	ld hl, Frames
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, $9790
+	ld c, $6
+	ld b, BANK(Frames)
+	call Function1064c3
+	ld hl, $97f0
+	ld de, GFX_f9204
+	ld c, $1
+	ld b, BANK(GFX_f9204)
+	call Function1064c3
+	ret
+; 1064c3
+
+Function1064c3: ; 1064c3
+	ld a, [rSVBK]
+	push af
+	ld a, $6
+	ld [rSVBK], a
+	push bc
+	push hl
+	ld hl, Function3f88
+	ld a, b
+	rst FarCall
+	pop hl
+	pop bc
+	pop af
+	ld [rSVBK], a
+	jr asm_1064ed
+
+Function1064d8: ; 1064d8
+	ld a, [rSVBK]
+	push af
+	ld a, $6
+	ld [rSVBK], a
+	push bc
+	push hl
+	ld hl, Function3f9f
+	ld a, b
+	rst FarCall
+	pop hl
+	pop bc
+	pop af
+	ld [rSVBK], a
+	jr asm_1064ed
+
+asm_1064ed
+	ld de, Unkn1Pals
+	ld b, $0
+	ld a, [rSVBK]
+	push af
+	ld a, $6
+	ld [rSVBK], a
+	ld a, [rVBK]
+	push af
+	ld a, $1
+	ld [rVBK], a
+	call Get2bpp
+	pop af
+	ld [rVBK], a
+	pop af
+	ld [rSVBK], a
+	ret
+; 10650a
+
+Function10650a: ; 10650a
+	ld de, GFX_f9214 + $20
+	lb bc, BANK(GFX_f9214), $11
+	call Get2bpp
+	ret
+; 106514
 
 GFX_106514:
 INCBIN "baserom.gbc",$106514,$106594 - $106514
