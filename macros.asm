@@ -139,3 +139,11 @@ x = 0
 x = x + (\1) * $40000
 	endr
 ENDM
+
+
+bcd: MACRO
+	rept _NARG
+	dn ((\1) % 100) / 10, (\1) % 10
+	shift
+	endr
+ENDM

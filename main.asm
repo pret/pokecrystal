@@ -113673,7 +113673,15 @@ Function115d99: ; 115d99
 	ret
 ; 115dc3
 
-INCBIN "baserom.gbc",$115dc3,$115dd3 - $115dc3
+Function115dc3: ; 115dc3
+	xor a
+	ld [$c305], a
+	ld a, $a0
+	ld hl, $c47c
+	ld bc, $0020
+	call ByteFill
+	ret
+; 115dd3
 
 Function115dd3: ; 115dd3
 	ld a, [$c305]
@@ -114927,7 +114935,17 @@ Function1183cb: ; 1183cb
 	ret
 ; 118440
 
-INCBIN "baserom.gbc",$118440,$118452 - $118440
+Function118440: ; 118440
+	push af
+	ld a, $5
+	call GetSRAMBank
+	ld a, [$bfff]
+	inc a
+	ld [$bfff], a
+	call CloseSRAM
+	pop af
+	ret
+; 118452
 
 Function118452: ; 118452
 	di
@@ -115293,11 +115311,12 @@ Function118abc: ; 118abc (46:4abc)
 	call CopyBytes
 	ld de, Unkn1Pals ; $d000
 	ld bc, $1000
-	jr .asm_118b10
+	jr Function118b10
 ; 118ad0 (46:4ad0)
 
 INCBIN "baserom.gbc",$118ad0,$118b10 - $118ad0
-.asm_118b10
+
+Function118b10:
 	push de
 	push bc
 	ld a, $8
@@ -115327,7 +115346,17 @@ Function118b24: ; 118b24 (46:4b24)
 	ret
 ; 118b42 (46:4b42)
 
-INCBIN "baserom.gbc",$118b42,$118ba5 - $118b42
+INCBIN "baserom.gbc", $118b42, $118b9a - $118b42
+
+Function118b9a: ; 118b9a
+	ld a, h
+	cp $e0
+	ret c
+	ld a, $d3
+	call Function118805
+	and a
+	ret
+; 118ba5
 
 ExchangeDownloadURL: ; 0x118ba5
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt", 0
@@ -115344,9 +115373,6 @@ MenuDownloadURL: ; 0x118c95
 IndexDownloadURL: ; 0x118ce4
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
-
-SECTION "bank46_2", ROMX, BANK[$46]
-; A hack to use ascii above.
 
 INCBIN "baserom.gbc",$118d35,$118e39 - $118d35
 
@@ -115413,7 +115439,178 @@ Function118e87: ; 118e87 (46:4e87)
 	ret
 ; 118e92 (46:4e92)
 
-INCBIN "baserom.gbc",$118e92,$119451 - $118e92
+Function118e92: ; 118e92
+	call Function118440
+	call Function1191d3
+	ld a, [$cd53]
+	ld l, a
+	ld a, [$cd54]
+	ld h, a
+	ld de, $cc60
+	call Function1191ad
+	ret c
+	ld de, $d800
+	ld bc, $0800
+	jp Function118b10
+; 118eb0
+
+Function118eb0: ; 118eb0
+	call Function118440
+	ld hl, $d802
+	ld de, BGMapBuffer
+	ld bc, $000c
+	call CopyBytes
+	call Function1192cc
+	ret c
+	jp Function119e2e
+; 118ec6
+
+Function118ec6: ; 118ec6
+	call Function118440
+	call SpeechTextBox
+	ld hl, $d80e
+	ld de, $c320
+	ld bc, $0026
+	call CopyBytes
+	xor a
+	ld [$c31f], a
+	ld a, $20
+	ld [$c31b], a
+	ld a, $c3
+	ld [$c31c], a
+	ld hl, $c5b9
+	ld a, l
+	ld [$c31d], a
+	ld a, h
+	ld [$c31e], a
+	ld a, $2
+	ld [$c31a], a
+	ld a, $1d
+	ld [$cd3c], a
+	ld a, $24
+	ld [$cd45], a
+	ld a, $11
+	ld [$cd46], a
+	ld a, $1c
+	ld [$cd47], a
+	jp Function119e2e
+; 118f0d
+
+INCBIN "baserom.gbc", $118f0d, $1191ad - $118f0d
+
+Function1191ad: ; 1191ad
+	push bc
+	ld c, $0
+	ld a, $5
+	ld [rSVBK], a
+.asm_1191b4
+	ld a, [hli]
+	ld [de], a
+	inc de
+	and a
+	jr z, .asm_1191cc
+	inc c
+	ld a, c
+	cp $a6
+	jr c, .asm_1191b4
+	ld a, $da
+	call Function118805
+	ld a, $3
+	ld [rSVBK], a
+	pop bc
+	scf
+	ret
+
+.asm_1191cc
+	ld a, $3
+	ld [rSVBK], a
+	pop bc
+	and a
+	ret
+; 1191d3
+
+Function1191d3: ; 1191d3
+	ld hl, $d102
+	ld a, l
+	ld [$cd53], a
+	ld a, h
+	ld [$cd54], a
+	call Function11920f
+	ld a, l
+	ld [$cd51], a
+	ld a, [$cd4a]
+	ld a, h
+	ld [$cd52], a
+	call Function11920f
+	ld a, l
+	ld [$cd55], a
+	ld a, [$cd4a]
+	ld a, h
+	ld [$cd56], a
+	call Function11920f
+	ld a, [$cd49]
+	ld a, l
+	ld [$cd57], a
+	ld a, [$cd4a]
+	ld a, h
+	ld [$cd58], a
+	call Function11920f
+	ret
+; 11920f
+
+Function11920f: ; 11920f
+.asm_11920f
+	call Function118b9a
+	ret nc
+	ld a, [hli]
+	cp $d
+	jr nz, .asm_11920f
+	ld a, [hli]
+	cp $a
+	jr nz, .asm_11920f
+	dec hl
+	xor a
+	ld [hld], a
+	ld [hli], a
+	inc hl
+	ret
+; 119223
+
+INCBIN "baserom.gbc", $119223, $1192cc - $119223
+
+Function1192cc: ; 1192cc
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $aa73
+	ld de, $c608
+	ld bc, $000c
+	call CopyBytes
+	call CloseSRAM
+	ld hl, $c608
+	ld de, BGMapBuffer
+	ld c, $c
+.asm_1192e8
+	ld a, [de]
+	inc de
+	ld b, a
+	ld a, [hli]
+	cp b
+	jr nz, .asm_1192fe
+	dec c
+	jr nz, .asm_1192e8
+	ld a, $1f
+	ld [$cd3c], a
+	ld a, $27
+	ld [$cf66], a
+	scf
+	ret
+
+.asm_1192fe
+	and a
+	ret
+; 119300
+
+INCBIN "baserom.gbc", $119300, $119451 - $119300
 
 Function119451: ; 119451 (46:5451)
 	ld a, [$cd89]
@@ -115772,8 +115969,8 @@ Function119685: ; 119685 (46:5685)
 	ret
 
 Function119694: ; 119694 (46:5694)
-	ld b, $0
-	ld hl, $56b8
+	ld b, 0
+	ld hl, Unknown_1196b8
 .asm_119699
 	ld de, $c708
 	ld a, [de]
@@ -115804,7 +116001,15 @@ Function119694: ; 119694 (46:5694)
 	ret
 ; 1196b8 (46:56b8)
 
-INCBIN "baserom.gbc",$1196b8,$1196cd - $1196b8
+Unknown_1196b8: ; 1196b8
+	db "Mon"
+	db "Tue"
+	db "Wed"
+	db "Thu"
+	db "Fri"
+	db "Sat"
+	db "Sun"
+; 1196cd
 
 Function1196cd: ; 1196cd (46:56cd)
 	ld de, $c719
@@ -115833,7 +116038,174 @@ Function1196de: ; 1196de (46:56de)
 	ret
 ; 1196f2 (46:56f2)
 
-INCBIN "baserom.gbc",$1196f2,$119d93 - $1196f2
+Function1196f2: ; 1196f2
+	ld hl, DefaultFlypoint
+.asm_1196f5
+	call Function118b9a
+	ret nc
+	ld a, [hli]
+	cp $d
+	jr nz, .asm_1196f5
+	ld a, [hl]
+	cp $a
+	jr nz, .asm_1196f5
+	xor a
+	ld [hld], a
+	ld [hli], a
+	ld a, l
+	ld [$cd5b], a
+	ld a, h
+	ld [$cd5c], a
+	inc hl
+	ld e, l
+	ld d, h
+	ld a, [de]
+	inc de
+	cp $d
+	jr nz, .asm_119722
+	ld a, [de]
+	inc de
+	cp $a
+	jr nz, .asm_119722
+	ld a, $b
+	jp Function118805
+
+.asm_119722
+	call Random
+	ld c, $0
+	ld b, c
+.asm_119728
+	call Function119798
+	ld a, d
+	cp $ff
+	jr nz, .asm_119735
+	ld a, e
+	cp $ff
+	jr z, .asm_11974c
+
+.asm_119735
+	ld a, [hRandomSub]
+	cp d
+	jr c, .asm_11974c
+	jr z, .asm_11973e
+	jr .asm_119745
+
+.asm_11973e
+	ld a, [hRandomAdd]
+	cp e
+	jr c, .asm_11974c
+	jr z, .asm_11974c
+
+.asm_119745
+	inc bc
+	ld a, c
+	or b
+	jr z, .asm_119770
+	jr .asm_119728
+
+.asm_11974c
+	ld a, [$cd5b]
+	ld l, a
+	ld a, [$cd5c]
+	ld h, a
+.asm_119754
+	ld a, [hld]
+	cp $58
+	jr nz, .asm_119754
+	ld d, $0
+.asm_11975b
+	inc d
+	ld a, [hld]
+	cp $58
+	jr z, .asm_11975b
+	inc hl
+	inc hl
+	ld a, d
+	dec a
+	jr z, .asm_11978e
+	dec a
+	jr z, .asm_119785
+	dec a
+	jr z, .asm_11977e
+	dec a
+	jr z, .asm_119775
+
+.asm_119770
+	ld a, $d3
+	jp Function118805
+
+.asm_119775
+	ld a, b
+	and $f0
+	swap a
+	call Function1197bf
+	ld [hli], a
+
+.asm_11977e
+	ld a, b
+	and $f
+	call Function1197bf
+	ld [hli], a
+
+.asm_119785
+	ld a, c
+	and $f0
+	swap a
+	call Function1197bf
+	ld [hli], a
+
+.asm_11978e
+	ld a, c
+	and $f
+	call Function1197bf
+	ld [hli], a
+	jp Function119e2e
+; 119798
+
+Function119798: ; 119798
+	ld d, $0
+	ld e, d
+	call Function1197b4
+	swap a
+	or d
+	ld d, a
+	call Function1197b4
+	or d
+	ld d, a
+	call Function1197b4
+	swap a
+	or e
+	ld e, a
+	call Function1197b4
+	or e
+	ld e, a
+	ret
+; 1197b4
+
+Function1197b4: ; 1197b4
+	ld a, [hli]
+	cp $61
+	jr nc, .asm_1197bc
+	sub $30
+	ret
+
+.asm_1197bc
+	sub $57
+	ret
+; 1197bf
+
+Function1197bf: ; 1197bf
+	cp $a
+	jr nc, .asm_1197c6
+	add $30
+	ret
+
+.asm_1197c6
+	add $57
+	ret
+; 1197c9
+
+INCBIN "baserom.gbc", $1197c9, $119d93 - $1197c9
 
 Function119d93: ; 119d93 (46:5d93)
 	ld a, [rSVBK] ; $ff00+$70
@@ -115942,7 +116314,114 @@ Function119e2e: ; 119e2e (46:5e2e)
 	ret
 ; 119e33 (46:5e33)
 
-INCBIN "baserom.gbc",$119e33,$119eb4 - $119e33
+Unknown_119e33: ; 119e33
+	db "X-Game-code:\n"
+	db "X-Game-result:\n"
+; 119e4f
+
+SECTION "bank46_2", ROMX, BANK[$46]
+; A hack to use ascii above.
+
+Function119e4f: ; 119e4f
+	push bc
+	ld hl, LYOverrides
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+.asm_119e57
+	ld a, [de]
+	cp [hl]
+	jr z, .asm_119e64
+.asm_119e5b
+	inc hl
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_119e57
+.asm_119e61
+	pop bc
+	scf
+	ret
+
+.asm_119e64
+	push de
+.asm_119e65
+	ld a, [de]
+	inc de
+	cp $a
+	jr z, .asm_119e7a
+	cp [hl]
+	jr nz, .asm_119e77
+	inc hl
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_119e65
+	pop de
+	jr .asm_119e61
+
+.asm_119e77
+	pop de
+	jr .asm_119e5b
+
+.asm_119e7a
+	pop de
+	pop bc
+	inc hl
+	ld de, $d880
+.asm_119e80
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp $d
+	jr z, .asm_119e8c
+	dec c
+	jr nz, .asm_119e80
+	scf
+	ret
+
+.asm_119e8c
+	and a
+	ret
+; 119e8e
+
+Function119e8e: ; 119e8e
+	cp $60
+	jr c, .asm_119e95
+	sub $57
+	ret
+
+.asm_119e95
+	sub $30
+	ret
+; 119e98
+
+Function119e98: ; 119e98
+	ld a, $2
+.asm_119e9a
+	push af
+	ld a, [bc]
+	dec bc
+	call Function119e8e
+	or [hl]
+	ld [hl], a
+	ld a, [bc]
+	dec bc
+	call Function119e8e
+	rlca
+	rlca
+	rlca
+	rlca
+	or [hl]
+	ld [hl], a
+	inc hl
+	pop af
+	dec a
+	and a
+	jr nz, .asm_119e9a
+	ret
+; 119eb4
 
 Function119eb4: ; 119eb4 (46:5eb4)
 	xor a
@@ -115986,8 +116465,8 @@ Function119ed8: ; 119ed8 (46:5ed8)
 Function119eee: ; 119eee (46:5eee)
 	ld a, [$cd3c]
 	ld e, a
-	ld d, $0
-	ld hl, $5efd
+	ld d, 0
+	ld hl, Jumptable_119efd
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -115996,13 +116475,1193 @@ Function119eee: ; 119eee (46:5eee)
 	jp [hl]
 ; 119efd (46:5efd)
 
-INCBIN "baserom.gbc",$119efd,$11a8fa - $119efd
+Jumptable_119efd: ; 119efd
+	dw Function119f3f
+	dw Function119f45
+	dw Function119f56
+	dw Function119f76
+	dw Function119f98
+	dw Function11a113
+	dw Function11a129
+	dw Function11a131
+	dw Function11a13d
+	dw Function11a14b
+	dw Function11a16d
+	dw Function11a192
+	dw Function11a2e6
+	dw Function11a302
+	dw Function11a33a
+	dw Function11a207
+	dw Function11a235
+	dw Function11a357
+	dw Function11a36b
+	dw Function11a38d
+	dw Function11a3c5
+	dw Function11a3d9
+	dw Function11a3f9
+	dw Function11a41b
+	dw Function11a452
+	dw Function11a47a
+	dw Function11a488
+	dw Function11a49e
+	dw Function11a4db
+	dw Function11a4e8
+	dw Function11a4fe
+	dw Function11a466
+	dw Function11a47a
+; 119f3f
+
+Function119f3f: ; 119f3f
+	call Function11a5b9
+	jp Function11a5b0
+; 119f45
+
+Function119f45: ; 119f45
+	ld hl, $c4cc
+	ld de, String_11a661
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 119f56
+
+Function119f56: ; 119f56
+	ld a, [$cd44]
+	and a
+	jr z, .asm_119f62
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_119f62
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6aa
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 119f76
+
+Function119f76: ; 119f76
+	ld a, [$cd44]
+	and a
+	jr z, .asm_119f82
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_119f82
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a679
+	call PlaceString
+	call Function11a5f5
+	xor a
+	ld [$cd44], a
+	jp Function11a5b0
+; 119f98
+
+Function119f98: ; 119f98
+	call Function11a536
+	ret c
+	call PlayClickSFX
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_119fef
+	call Function1c07
+	call Function11a63c
+	xor a
+	ld [ScriptVar], a
+	call Function11a00e
+	ld a, [ScriptVar]
+	and a
+	jr z, .asm_119fd4
+	call Function1c07
+	callba Function104061
+	callba Function115dc3
+	ld a, [$cd33]
+	ld [$cf66], a
+	ld a, $a
+	ld [$c300], a
+	scf
+	ret
+
+.asm_119fd4
+	ld hl, $c4cc
+	ld de, String_11a692
+	call PlaceString
+	ld a, $1
+	ld [$c30d], a
+	ld a, $1
+	ld [$c314], a
+	callba Function104061
+	and a
+	ret
+
+.asm_119fef
+	call Function1c07
+	call Function1c07
+	callba Function104061
+	ld a, [$cd45]
+	ld [$cf66], a
+	callba Function115dc3
+	ld a, $a
+	ld [$c300], a
+	scf
+	ret
+; 11a00e
+
+Function11a00e: ; 11a00e
+	ld a, $5
+	call GetSRAMBank
+	ld a, [$aa4b]
+	and a
+	jr z, .asm_11a02a
+	ld a, [$aa4c]
+	call CloseSRAM
+	and a
+	ret nz
+	ld a, $5
+	call GetSRAMBank
+	xor a
+	ld [$aa4b], a
+
+.asm_11a02a
+	call CloseSRAM
+	ld a, [BGMapPalBuffer]
+	and a
+	jr z, .asm_11a039
+	dec a
+	jr z, .asm_11a081
+	jp Function11a0ca
+
+.asm_11a039
+	ld a, $3
+	ld [rSVBK], a
+	ld hl, $c608
+	ld de, $d800
+	ld bc, $00f6
+	call CopyBytes
+	ld a, $1
+	ld [rSVBK], a
+	call FadeToMenu
+	callba Function11765d
+	call Function11a9ce
+	ld a, $3
+	ld [rSVBK], a
+	ld hl, $d800
+	ld de, $c608
+	ld bc, $00f6
+	call CopyBytes
+	ld a, $1
+	ld [rSVBK], a
+	callba Function115d99
+	ld c, $0
+	callba Function115e18
+	ld a, $1
+	ld [$c305], a
+	ret
+
+.asm_11a081
+	xor a
+	ld [$cf83], a
+	ld [$cf82], a
+	ld a, $13
+	ld [$cf85], a
+	ld a, $5
+	ld [$cf84], a
+	call Function1c00
+	callba Function11765d
+	callba Function117ab4
+	callba Function106462
+	callba Function106464
+	call Function1c07
+	callba Function104061
+	callba Function115d99
+	ld c, $0
+	callba Function115e18
+	ld a, $1
+	ld [$c305], a
+	ret
+; 11a0ca
+
+Function11a0ca: ; 11a0ca
+	xor a
+	ld [$cf83], a
+	ld [$cf82], a
+	ld a, $13
+	ld [$cf85], a
+	ld a, $11
+	ld [$cf84], a
+	call Function1c00
+	callba Function11765d
+	callba Function17d3f6
+	callba Function106462
+	callba Function106464
+	call Function1c07
+	callba Function104061
+	callba Function115d99
+	ld c, $0
+	callba Function115e18
+	ld a, $1
+	ld [$c305], a
+	ret
+; 11a113
+
+Function11a113: ; 11a113
+	call Function11a63c
+	ld c, $1
+	callba Function115e18
+	ld hl, $c4cc
+	ld de, String_11a6c8
+	call PlaceString
+	and a
+	ret
+; 11a129
+
+Function11a129: ; 11a129
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a131
+
+Function11a131: ; 11a131
+	ld hl, $cd44
+	dec [hl]
+	ret nz
+	ld a, [$cd3c]
+	inc a
+	ld [$cd3c], a
+
+Function11a13d:
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6d2
+	call PlaceString
+	and a
+	ret
+; 11a14b
+
+Function11a14b: ; 11a14b
+	ld hl, $cd85
+	ld a, [hl]
+	cp $f3
+	jr nz, .asm_11a155
+	and a
+	ret
+
+.asm_11a155
+	call Function11a1d6
+	ret c
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6f1
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a16d
+
+Function11a16d: ; 11a16d
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a179
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_11a179
+	call Function11a63c
+	call Function11a1e6
+	ld hl, $c4cc
+	ld de, $c346
+	call PlaceString
+	call Function11a5f5
+	xor a
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a192
+
+Function11a192: ; 11a192
+	call Function11a536
+	ret c
+	call PlayClickSFX
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_11a1b6
+	call Function1c07
+	callba Function104061
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6d2
+	call PlaceString
+	and a
+	ret
+
+.asm_11a1b6
+	call Function1c07
+	callba Function104061
+	ld a, [$cd45]
+	ld [$cf66], a
+	ld [$cd80], a
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6d2
+	call PlaceString
+	scf
+	ret
+; 11a1d6
+
+Function11a1d6: ; 11a1d6
+	ld a, [$cd85]
+	cp $50
+	jr nz, .asm_11a1e4
+	ld a, $d3
+	call Function118805
+	scf
+	ret
+
+.asm_11a1e4
+	and a
+	ret
+; 11a1e6
+
+Function11a1e6: ; 11a1e6
+	ld hl, String_11a706
+	ld de, $c346
+	call Function11a1ff
+	ld hl, $cd85
+	call Function11a1ff
+	ld hl, String_11a70b
+	call Function11a1ff
+	ld a, $50
+	ld [de], a
+	ret
+; 11a1ff
+
+Function11a1ff: ; 11a1ff
+.asm_11a1ff
+	ld a, [hli]
+	cp $50
+	ret z
+	ld [de], a
+	inc de
+	jr .asm_11a1ff
+; 11a207
+
+Function11a207: ; 11a207
+	ld hl, MenuDataHeader_11a2de
+	call LoadMenuDataHeader
+	call Function1cbb
+	call Function1cfd
+	call Function321c
+	ld hl, $c550
+	ld de, String_11a2cf
+	call PlaceString
+	ld hl, $c578
+	ld de, String_11a2d3
+	call PlaceString
+	ld hl, $c54f
+	ld a, $ed
+	ld [hl], a
+	xor a
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a235
+
+Function11a235: ; 11a235
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and A_BUTTON
+	jr nz, .asm_11a28f
+	ld a, [hl]
+	and B_BUTTON
+	jr nz, .asm_11a2c1
+	ld a, [hl]
+	and D_UP
+	jr nz, .asm_11a251
+	ld a, [hl]
+	and D_DOWN
+	jr nz, .asm_11a270
+.asm_11a24c
+	call Function11a9f0
+	scf
+	ret
+
+.asm_11a251
+	xor a
+	ld [$cd8a], a
+	ld [$cd8b], a
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a24c
+	xor a
+	ld [$cd44], a
+	ld hl, $c54f
+	ld a, $ed
+	ld [hl], a
+	ld hl, $c577
+	ld a, $7f
+	ld [hl], a
+	jr .asm_11a24c
+
+.asm_11a270
+	xor a
+	ld [$cd8a], a
+	ld [$cd8b], a
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_11a24c
+	inc a
+	ld [$cd44], a
+	ld hl, $c54f
+	ld a, $7f
+	ld [hl], a
+	ld hl, $c577
+	ld a, $ed
+	ld [hl], a
+	jr .asm_11a24c
+
+.asm_11a28f
+	xor a
+	ld [$cd8a], a
+	ld [$cd8b], a
+	call PlayClickSFX
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_11a2c4
+	call Function1c07
+	callba Function104061
+	ld a, [$cd46]
+	cp $0
+	jr z, .asm_11a2b4
+	ld a, [$cd47]
+	jr .asm_11a2b7
+
+.asm_11a2b4
+	ld a, [$cd33]
+
+.asm_11a2b7
+	ld [$cf66], a
+	ld a, $a
+	ld [$c300], a
+	scf
+	ret
+
+.asm_11a2c1
+	call PlayClickSFX
+
+.asm_11a2c4
+	call Function1c07
+	callba Function104061
+	and a
+	ret
+; 11a2cf
+
+String_11a2cf: ; 11a2cf
+	db "YES@"
+; 11a2d3
+
+String_11a2d3: ; 11a2d3
+	db "NO@"
+; 11a2d6
+
+MenuDataHeader_11a2d6: ; 11a2d6
+	db $40 ; flags
+	db  6, 14 ; start coords
+	db 10, 19 ; end coords
+	dw NULL
+	db 0 ; default option
+; 11a2de
+
+MenuDataHeader_11a2de: ; 11a2de
+	db $40 ; flags
+	db  7, 14 ; start coords
+	db 11, 19 ; end coords
+	dw NULL
+	db 0 ; default option
+; 11a2e6
+
+Function11a2e6: ; 11a2e6
+	call Function11a63c
+	ld c, $2
+	callba Function115e18
+	ld hl, $c4cc
+	ld de, String_11a71e
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a302
+
+Function11a302: ; 11a302
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a30e
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_11a30e
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a72a
+	call PlaceString
+	ld hl, $c4f9
+	ld de, $cd68
+	ld bc, $8102
+	call PrintNum
+	ld hl, $c4fe
+	ld de, $cd67
+	ld bc, $8102
+	call PrintNum
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a33a
+
+Function11a33a: ; 11a33a
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a346
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_11a346
+	call Function1c07
+	callba Function104061
+	callba Function115dc3
+	and a
+	ret
+; 11a357
+
+Function11a357: ; 11a357
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a743
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a36b
+
+Function11a36b: ; 11a36b
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a377
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_11a377
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a755
+	call PlaceString
+	call Function11a5f5
+	xor a
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a38d
+
+Function11a38d: ; 11a38d
+	call Function11a536
+	ret c
+	call PlayClickSFX
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_11a3b1
+	call Function1c07
+	callba Function104061
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6d2
+	call PlaceString
+	and a
+	ret
+
+.asm_11a3b1
+	call Function1c07
+	callba Function104061
+	ld a, [$cd45]
+	ld [$cf66], a
+	ld [$cd80], a
+	scf
+	ret
+; 11a3c5
+
+Function11a3c5: ; 11a3c5
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a762
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a3d9
+
+Function11a3d9: ; 11a3d9
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a3e5
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_11a3e5
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a779
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a3f9
+
+Function11a3f9: ; 11a3f9
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a405
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_11a405
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a755
+	call PlaceString
+	call Function11a5f5
+	xor a
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a41b
+
+Function11a41b: ; 11a41b
+	call Function11a536
+	ret c
+	call PlayClickSFX
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_11a43f
+	call Function1c07
+	callba Function104061
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6d2
+	call PlaceString
+	and a
+	ret
+
+.asm_11a43f
+	call Function1c07
+	callba Function104061
+	ld a, $1c
+	ld [$cf66], a
+	ld [$cd80], a
+	scf
+	ret
+; 11a452
+
+Function11a452: ; 11a452
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a791
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a466
+
+Function11a466: ; 11a466
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a7c1
+	call PlaceString
+	ld a, $80
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a47a
+
+Function11a47a: ; 11a47a
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a486
+	dec a
+	ld [$cd44], a
+	scf
+	ret
+
+.asm_11a486
+	and a
+	ret
+; 11a488
+
+Function11a488: ; 11a488
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a7ac
+	call PlaceString
+	call Function11a5f5
+	xor a
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a49e
+
+Function11a49e: ; 11a49e
+	call Function11a536
+	ret c
+	call PlayClickSFX
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_11a4c7
+	call Function1c07
+	callba Function104061
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6d2
+	call PlaceString
+	ld a, $14
+	ld [$cf66], a
+	and a
+	ret
+
+.asm_11a4c7
+	call Function1c07
+	callba Function104061
+	ld a, [$cd46]
+	ld [$cf66], a
+	ld [$cd80], a
+	scf
+	ret
+; 11a4db
+
+Function11a4db: ; 11a4db
+	call Function11a63c
+	ld de, String_11a6db
+	ld hl, $c4cc
+	call PlaceString
+	ret
+; 11a4e8
+
+Function11a4e8: ; 11a4e8
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a7d7
+	call PlaceString
+	call Function11a5f5
+	xor a
+	ld [$cd44], a
+	jp Function11a5b0
+; 11a4fe
+
+Function11a4fe: ; 11a4fe
+	call Function11a536
+	ret c
+	call PlayClickSFX
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_11a522
+	call Function1c07
+	callba Function104061
+	call Function11a63c
+	ld hl, $c4cc
+	ld de, String_11a6d2
+	call PlaceString
+	and a
+	ret
+
+.asm_11a522
+	call Function1c07
+	callba Function104061
+	ld a, [$cd45]
+	ld [$cf66], a
+	ld [$cd80], a
+	scf
+	ret
+; 11a536
+
+Function11a536: ; 11a536
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and $1
+	jr nz, .asm_11a5a7
+	ld a, [hl]
+	and $2
+	jr nz, .asm_11a5a2
+	ld a, [hl]
+	and $40
+	jr nz, .asm_11a564
+	ld a, [hl]
+	and $80
+	jr nz, .asm_11a583
+.asm_11a54d
+	ld a, [$cd3c]
+	cp $4
+	jr z, .asm_11a562
+	call Function11a9f0
+	jr nz, .asm_11a562
+	call Function1c07
+	callba Function104061
+
+.asm_11a562
+	scf
+	ret
+
+.asm_11a564
+	xor a
+	ld [$cd8a], a
+	ld [$cd8b], a
+	ld a, [$cd44]
+	and a
+	jr z, .asm_11a54d
+	xor a
+	ld [$cd44], a
+	ld hl, $c53b
+	ld a, $ed
+	ld [hl], a
+	ld hl, $c563
+	ld a, $7f
+	ld [hl], a
+	jr .asm_11a54d
+
+.asm_11a583
+	xor a
+	ld [$cd8a], a
+	ld [$cd8b], a
+	ld a, [$cd44]
+	and a
+	jr nz, .asm_11a54d
+	inc a
+	ld [$cd44], a
+	ld hl, $c53b
+	ld a, $7f
+	ld [hl], a
+	ld hl, $c563
+	ld a, $ed
+	ld [hl], a
+	jr .asm_11a54d
+
+.asm_11a5a2
+	ld a, $1
+	ld [$cd44], a
+
+.asm_11a5a7
+	xor a
+	ld [$cd8a], a
+	ld [$cd8b], a
+	and a
+	ret
+; 11a5b0
+
+Function11a5b0: ; 11a5b0
+	ld a, [$cd3c]
+	inc a
+	ld [$cd3c], a
+	scf
+	ret
+; 11a5b9
+
+Function11a5b9: ; 11a5b9
+	xor a
+	ld [$cf83], a
+	ld [$cf82], a
+	ld a, $13
+	ld [$cf85], a
+	ld a, $5
+	ld [$cf84], a
+	call Function1c00
+	ld hl, AttrMap
+	ld b, $6
+	ld c, $14
+	ld hl, SpritesEnd
+	ld b, $4
+	ld c, $12
+	call Function3eea
+	callba Function104061
+	call Function1ad2
+	ld c, $0
+	callba Function115e18
+	ld a, $1
+	ld [$c305], a
+	ret
+; 11a5f5
+
+Function11a5f5: ; 11a5f5
+	ld a, $e
+	ld [$cf83], a
+	ld a, $13
+	ld [$cf85], a
+	ld a, $6
+	ld [$cf82], a
+	ld a, $a
+	ld [$cf84], a
+	call Function1c00
+	ld hl, $ce5f
+	ld b, $5
+	ld c, $6
+	ld hl, $c526
+	ld b, $3
+	ld c, $4
+	call Function3eea
+	ld hl, $c53c
+	ld de, String_11a2cf
+	call PlaceString
+	ld hl, $c564
+	ld de, String_11a2d3
+	call PlaceString
+	ld hl, $c53b
+	ld a, $ed
+	ld [hl], a
+	callba Function104061
+	ret
+; 11a63c
+
+Function11a63c: ; 11a63c
+	ld hl, $c4b8
+	ld de, String_11a7f4
+	call PlaceString
+	ld hl, $c4cc
+	ld de, String_11a7f4
+	call PlaceString
+	ld hl, $c4e0
+	ld de, String_11a7f4
+	call PlaceString
+	ld hl, $c4f4
+	ld de, String_11a7f4
+	call PlaceString
+	ret
+; 11a661
+
+String_11a661: ; 11a661
+	db   "これから モバイルセンターに"
+	next "でんわ", $1f, "かけます@"
+; 11a679
+
+String_11a679: ; 11a679
+	db   "モバイルアダプタ", $25, "じゅんびは"
+	next "できて いますか?@"
+; 11a692
+
+String_11a692: ; 11a692
+	db   "でんわ", $1f, "かけています"
+	next "しばらく おまちください@"
+; 11a6aa
+
+String_11a6aa: ; 11a6aa
+	db   "でんわをかけると つうわりょう"
+	next "せつぞくりょう", $4a, "かかります@"
+; 11a6c8
+
+String_11a6c8: ; 11a6c8
+	db   "せつぞく しました@"
+; 11a6d2
+
+String_11a6d2: ; 11a6d2
+	db   "つうしん ちゅう@"
+; 11a6db
+
+String_11a6db: ; 11a6db
+	db   "つうしん ちゅう"
+	next "セレクト エーでちゅうし@"
+; 11a6f1
+
+String_11a6f1: ; 11a6f1
+	db   "この サービスには"
+	next "つうわりょう", $25, "ほかに@"
+; 11a706
+
+String_11a706: ; 11a706
+	db   "おかね", $4a, "@"
+; 11a70b
+
+String_11a70b: ; 11a70b
+	db   "えん"
+	next "かかります よろしい ですか?@"
+; 11a71e
+
+String_11a71e: ; 11a71e
+	db   "つうしん しゅうりょう@"
+; 11a72a
+
+String_11a72a: ; 11a72a
+	db   "つないだ じかん"
+	next "  やく   ふん   びょう@"
+; 11a743
+
+String_11a743: ; 11a743
+	db   "もっていない データが"
+	next "あります!@"
+; 11a755
+
+String_11a755: ; 11a755
+	db   "データ", $1f, "よみこみますか?@"
+; 11a762
+
+String_11a762: ; 11a762
+	db   "おなじ データ", $1f, "よみこんだ"
+	next "こと", $4a, "ありますが@"
+; 11a779
+
+String_11a779: ; 11a779
+	db   "そのデータ", $24, "なくなっているか"
+	next "こわれて います@"
+; 11a791
+
+String_11a791: ; 11a791
+	db   "もっている データと"
+	next "おなじデータしか ありません!@"
+; 11a7ac
+
+String_11a7ac: ; 11a7ac
+	db   "データ", $25, "よみこみを"
+	next "ちゅうし しますか?@"
+; 11a7c1
+
+String_11a7c1: ; 11a7c1
+	db   "あたらしい ニュースは"
+	next "ありません でした@"
+; 11a7d7
+
+String_11a7d7: ; 11a7d7
+	db   "あたらしいニュース", $4a, "あります"
+	next "ニュース", $1f, "よみこみますか?@"
+; 11a7f4
+
+String_11a7f4: ; 11a7f4
+	db   "               @"
+; 11a804
+
+MenuDataHeader_11a804: ; 11a804
+	db $40 ; flags
+	db  0,  0 ; start coords
+	db  5, 19 ; end coords
+	dw NULL
+	db 0 ; default option
+; 11a80c
+
+Function11a80c: ; 11a80c
+	ld de, hDivisor
+	ld bc, hDividend
+	ld hl, Unknown_11a89a
+	call Function11a88c
+	ld bc, hQuotient
+	ld hl, Unknown_11a8ba
+	call Function11a88c
+	ld bc, $ffb5
+	ld hl, Unknown_11a8da
+	call Function11a88c
+	xor a
+	ld b, a
+	ld a, [hDivisor]
+	and $f
+	ld e, a
+	ld a, [$ffb9]
+	and $f
+	call Function11a884
+	ld e, a
+	ld a, [$ffbb]
+	and $f
+	call Function11a884
+	ld [$cd62], a
+	ld e, b
+	xor a
+	ld b, a
+	ld a, [hDivisor]
+	and $f0
+	swap a
+	call Function11a884
+	ld e, a
+	ld a, [$ffb9]
+	and $f0
+	swap a
+	call Function11a884
+	ld e, a
+	ld a, [$ffbb]
+	and $f0
+	swap a
+	call Function11a884
+	ld [$cd63], a
+	ld e, b
+	xor a
+	ld b, a
+	ld a, [hMathBuffer]
+	and $f
+	call Function11a884
+	ld e, a
+	ld a, [$ffba]
+	and $f
+	call Function11a884
+	ld e, a
+	ld a, [$ffbc]
+	and $f
+	call Function11a884
+	ld [$cd64], a
+	ret
+; 11a884
+
+Function11a884: ; 11a884
+	add e
+	cp $a
+	ret c
+	sub $a
+	inc b
+	ret
+; 11a88c
+
+Function11a88c: ; 11a88c
+	ld a, [bc]
+	sla a
+	ld c, a
+	xor a
+	ld b, a
+	add hl, bc
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc de
+	ret
+; 11a89a
+
+Unknown_11a89a: ; 11a89a
+x = 0
+rept 16
+	bcd x % 100, x / 100
+x = x + 1
+endr
+
+Unknown_11a8ba: ; 11a8ba
+x = 0
+rept 16
+	bcd x % 100, x / 100
+x = x + 16
+endr
+
+Unknown_11a8da: ; 11a8da
+x = 0
+rept 16
+	bcd x % 100, x / 100
+x = x + 256
+endr
+; 11a8fa
 
 Function11a8fa: ; 11a8fa
 	ld a, [$c31a]
 	ld e, a
-	ld d, $0
-	ld hl, $6909
+	ld d, 0
+	ld hl, Jumptable_11a909
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -116011,7 +117670,170 @@ Function11a8fa: ; 11a8fa
 	jp [hl]
 ; 11a909
 
-INCBIN "baserom.gbc",$11a909,$11aa13 - $11a909
+Jumptable_11a909: ; 11a909
+	dw Function11a970
+	dw Function11a90f
+	dw Function11a971
+; 11a90f
+
+Function11a90f: ; 11a90f
+	ld a, $1
+	ld [rSVBK], a
+	call SpeechTextBox
+	ld a, $50
+	ld hl, $c320
+	ld bc, $008c
+	call ByteFill
+	ld a, [$c31b]
+	ld l, a
+	ld a, [$c31c]
+	ld h, a
+	ld de, $c320
+.asm_11a92c
+	ld a, [hli]
+	cp $57
+	jr z, .asm_11a94f
+	cp $0
+	jr z, .asm_11a92c
+	cp $50
+	jr z, .asm_11a92c
+	cp $1
+	jr z, .asm_11a941
+	ld [de], a
+	inc de
+	jr .asm_11a92c
+
+.asm_11a941
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+.asm_11a945
+	ld a, [bc]
+	inc bc
+	cp $50
+	jr z, .asm_11a92c
+	ld [de], a
+	inc de
+	jr .asm_11a945
+
+.asm_11a94f
+	xor a
+	ld [$c31f], a
+	ld a, $20
+	ld [$c31b], a
+	ld a, $c3
+	ld [$c31c], a
+	ld hl, $c5b9
+	ld a, l
+	ld [$c31d], a
+	ld a, h
+	ld [$c31e], a
+	ld hl, $c31a
+	inc [hl]
+	ld a, $3
+	ld [rSVBK], a
+
+Function11a970:
+	ret
+; 11a971
+
+Function11a971: ; 11a971
+	ld hl, $c31f
+	ld a, [hJoyDown]
+	and a
+	jr nz, .asm_11a97f
+	ld a, [hl]
+	and a
+	jr z, .asm_11a97f
+	dec [hl]
+	ret
+
+.asm_11a97f
+	ld a, [Options]
+	and $7
+	ld [hl], a
+	ld hl, $cd8d
+	ld a, [$c31b]
+	ld e, a
+	ld a, [$c31c]
+	ld d, a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, e
+	ld [$c31b], a
+	ld a, d
+	ld [$c31c], a
+	ld a, $50
+	ld [hl], a
+	ld a, [$c31d]
+	ld l, a
+	ld a, [$c31e]
+	ld h, a
+	ld de, $cd8d
+	call PlaceString
+	ld a, c
+	ld [$c31d], a
+	ld a, b
+	ld [$c31e], a
+	ld a, [$cd8d]
+	cp $50
+	jr nz, .asm_11a9bf
+	xor a
+	ld [$c31a], a
+
+.asm_11a9bf
+	ret
+; 11a9c0
+
+Function11a9c0: ; 11a9c0
+	ld a, l
+	ld [$c31b], a
+	ld a, h
+	ld [$c31c], a
+	ld a, $1
+	ld [$c31a], a
+	ret
+; 11a9ce
+
+Function11a9ce: ; 11a9ce
+	call WhiteBGMap
+	call Function2bae
+	call Function1d7d
+	callba Function106462
+	callba Function106464
+	call Functiond90
+	callba Function2b5c
+	call Function1ad2
+	ret
+; 11a9f0
+
+Function11a9f0: ; 11a9f0
+	ld a, $1
+	and a
+	ret
+; 11a9f4
+
+Function11a9f4: ; 11a9f4
+	ld a, [$cd8a]
+	ld l, a
+	ld a, [$cd8b]
+	ld h, a
+	inc hl
+	ld a, l
+	ld [$cd8a], a
+	ld a, h
+	ld [$cd8b], a
+	ld de, $d5d0
+	add hl, de
+	bit 7, h
+	ret nz
+	ld a, $d6
+	call Function118805
+	and a
+	ret
+; 11aa13
 
 UnknownText_0x11aa13: ; 0x11aa13
 	text "SAVE FILE will be"
@@ -116280,16 +118102,739 @@ Function11ad1b: ; 11ad1b
 
 Function11ad6e: ; 11ad6e
 	ld a, [$cf63]
-	ld hl, $6d78
+	ld hl, Jumptable_11ad78
 	call Function11b239
 	jp [hl]
 ; 11ad78
 
-INCBIN "baserom.gbc",$11ad78,$11b239 - $11ad78
+Jumptable_11ad78: ; 11ad78
+	dw Function11b082
+	dw Function11b0ff
+	dw Function11ad95
+	dw Function11adc4
+	dw Function11ae4e
+	dw Function11ae98
+	dw Function11ad8f
+	dw Function11af04
+	dw Function11af4e
+; 11ad8a
+
+Function11ad8a: ; 11ad8a
+	ld hl, $cf63
+	inc [hl]
+	ret
+; 11ad8f
+
+Function11ad8f: ; 11ad8f
+	ld hl, $cf63
+	set 7, [hl]
+	ret
+; 11ad95
+
+Function11ad95: ; 11ad95
+	ld hl, $6e38
+	call LoadMenuDataHeader
+	call Function1cbb
+	ld hl, $c59c
+	ld de, $6e40
+	call PlaceString
+	ld hl, $ceab
+	ld bc, $0808
+	call Function11afd6
+	callba Function104061
+	call Function11ad8a
+	ld a, $1
+	ld [$cfa9], a
+	ld hl, $6fcc
+	call Function11afb7
+
+Function11adc4:
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and a
+	ret z
+	ld a, [hl]
+	and $40
+	jr nz, .asm_11ade6
+	ld a, [hl]
+	and $80
+	jr nz, .asm_11aded
+	ld a, [hl]
+	and $1
+	jr nz, .asm_11ae06
+	ld a, [hl]
+	and $2
+	ret z
+	call PlayClickSFX
+	xor a
+	ld [$cf63], a
+	jr .asm_11ae2e
+
+.asm_11ade6
+	ld a, [$cfa9]
+	dec a
+	ret z
+	jr .asm_11adf4
+
+.asm_11aded
+	ld a, [$cfa9]
+	inc a
+	cp $4
+	ret z
+
+.asm_11adf4
+	push af
+	ld hl, $6fcc
+	call Function11afbb
+	pop af
+	ld [$cfa9], a
+	ld hl, $6fcc
+	call Function11afb7
+	ret
+
+.asm_11ae06
+	call PlayClickSFX
+	ld a, [$cfa9]
+	dec a
+	ld hl, $cd30
+	ld [hl], a
+	and a
+	jr z, .asm_11ae28
+	ld hl, $c5ba
+	ld a, [$cfa9]
+	cp $2
+	jr z, .asm_11ae23
+	call Function11b272
+	jr .asm_11ae2b
+
+.asm_11ae23
+	call Function11b267
+	jr .asm_11ae2b
+
+.asm_11ae28
+	ld a, $3
+	ld [hl], a
+
+.asm_11ae2b
+	call Function11ad8a
+
+.asm_11ae2e
+	call Function1c07
+	callba Function104061
+	ret
+; 11ae38
+
+INCBIN "baserom.gbc", $11ae38, $11ae4e - $11ae38
+
+Function11ae4e: ; 11ae4e
+	ld hl, $6fe8
+	call LoadMenuDataHeader
+	call Function1cbb
+	ld hl, $c5c2
+	ld de, $6ff0
+	call PlaceString
+	ld hl, $7013
+	call LoadMenuDataHeader
+	call Function1cbb
+	ld hl, $c550
+	ld de, $701b
+	call PlaceString
+	ld hl, $ce73
+	ld bc, $0506
+	call Function11afd6
+	ld hl, $ced2
+	ld bc, $060b
+	call Function11afd6
+	callba Function104061
+	call Function11ad8a
+	ld a, $1
+	ld [$cfa9], a
+	ld hl, $6fd2
+	call Function11afb7
+
+Function11ae98:
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and a
+	ret z
+	ld a, [hl]
+	and $40
+	jr nz, .asm_11aec1
+	ld a, [hl]
+	and $80
+	jr nz, .asm_11aec8
+	ld a, [hl]
+	and $1
+	jr nz, .asm_11aee1
+	ld a, [hl]
+	and $2
+	ret z
+	call PlayClickSFX
+.asm_11aeb4
+	ld hl, $c5ba
+	ld a, $7f
+	ld [hl], a
+	ld a, $1
+	ld [$cf63], a
+	jr .asm_11aef7
+
+.asm_11aec1
+	ld a, [$cfa9]
+	dec a
+	ret z
+	jr .asm_11aecf
+
+.asm_11aec8
+	ld a, [$cfa9]
+	inc a
+	cp $3
+	ret z
+
+.asm_11aecf
+	push af
+	ld hl, $6fd2
+	call Function11afbb
+	pop af
+	ld [$cfa9], a
+	ld hl, $6fd2
+	call Function11afb7
+	ret
+
+.asm_11aee1
+	call PlayClickSFX
+	ld a, [$cfa9]
+	cp $2
+	jr z, .asm_11aeb4
+	ld a, [$cd4b]
+	ld [ScriptVar], a
+	call Function11b022
+	call Function11ad8a
+
+.asm_11aef7
+	call Function1c07
+	call Function1c07
+	callba Function104061
+	ret
+; 11af04
+
+Function11af04: ; 11af04
+	ld hl, $6fe8
+	call LoadMenuDataHeader
+	call Function1cbb
+	ld hl, $c5c2
+	ld de, $7003
+	call PlaceString
+	ld hl, $7013
+	call LoadMenuDataHeader
+	call Function1cbb
+	ld hl, $c550
+	ld de, $701b
+	call PlaceString
+	ld hl, $ce73
+	ld bc, $0506
+	call Function11afd6
+	ld hl, $ced2
+	ld bc, $060b
+	call Function11afd6
+	callba Function104061
+	call Function11ad8a
+	ld a, $2
+	ld [$cfa9], a
+	ld hl, $6fd2
+	call Function11afb7
+
+Function11af4e:
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and a
+	ret z
+	ld a, [hl]
+	and $40
+	jr nz, .asm_11af77
+	ld a, [hl]
+	and $80
+	jr nz, .asm_11af7e
+	ld a, [hl]
+	and $1
+	jr nz, .asm_11af97
+	ld a, [hl]
+	and $2
+	ret z
+	call PlayClickSFX
+.asm_11af6a
+	ld hl, $c5ba
+	ld a, $7f
+	ld [hl], a
+	ld a, $1
+	ld [$cf63], a
+	jr .asm_11afaa
+
+.asm_11af77
+	ld a, [$cfa9]
+	dec a
+	ret z
+	jr .asm_11af85
+
+.asm_11af7e
+	ld a, [$cfa9]
+	inc a
+	cp $3
+	ret z
+
+.asm_11af85
+	push af
+	ld hl, $6fd2
+	call Function11afbb
+	pop af
+	ld [$cfa9], a
+	ld hl, $6fd2
+	call Function11afb7
+	ret
+
+.asm_11af97
+	call PlayClickSFX
+	ld a, [$cfa9]
+	cp $2
+	jr z, .asm_11af6a
+	ld a, $6
+	ld [$cf63], a
+	xor a
+	ld [ScriptVar], a
+
+.asm_11afaa
+	call Function1c07
+	call Function1c07
+	callba Function104061
+	ret
+; 11afb7
+
+Function11afb7: ; 11afb7
+	ld e, $ed
+	jr asm_11afbd
+
+Function11afbb:
+	ld e, $7f
+
+asm_11afbd:
+	ld a, [$cfa9]
+	dec a
+	ld c, a
+	ld b, $0
+	add hl, bc
+	add hl, bc
+	ld a, e
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld [de], a
+	ret
+; 11afcc
+
+INCBIN "baserom.gbc", $11afcc, $11afd6 - $11afcc
+
+Function11afd6: ; 11afd6
+	ld de, $0014
+	ld a, $3
+.asm_11afdb
+	push bc
+	push hl
+.asm_11afdd
+	ld [hli], a
+	dec c
+	jr nz, .asm_11afdd
+	pop hl
+	add hl, de
+	pop bc
+	dec b
+	jr nz, .asm_11afdb
+	ret
+; 11afe8
+
+INCBIN "baserom.gbc", $11afe8, $11b022 - $11afe8
+
+Function11b022: ; 11b022
+	ld a, [$cd2e]
+	and a
+	jr z, .asm_11b02e
+	ld hl, StringBuffer3
+	call Function11b03d
+
+.asm_11b02e
+	ld a, [$cd30]
+	and a
+	ret z
+	cp $3
+	ret z
+	ld hl, StringBuffer4
+	call Function11b03d
+	ret
+; 11b03d
+
+Function11b03d: ; 11b03d
+	push hl
+	push af
+	ld c, $1
+.asm_11b041
+	ld a, [hli]
+	cp $ef
+	jr z, .asm_11b051
+	cp $f5
+	jr z, .asm_11b051
+	cp $50
+	jr z, .asm_11b055
+	inc c
+	jr .asm_11b041
+
+.asm_11b051
+	dec hl
+	ld a, $50
+	ld [hli], a
+
+.asm_11b055
+	dec hl
+	push hl
+	ld e, $4
+	ld d, $0
+	add hl, de
+	ld e, l
+	ld d, h
+	pop hl
+.asm_11b05f
+	ld a, [hld]
+	ld [de], a
+	dec de
+	dec c
+	jr nz, .asm_11b05f
+	pop af
+	pop de
+	cp $1
+	jr nz, .asm_11b070
+	ld hl, $707a
+	jr .asm_11b073
+
+.asm_11b070
+	ld hl, $707e
+
+.asm_11b073
+	ld bc, $0004
+	call CopyBytes
+	ret
+; 11b07a
+
+INCBIN "baserom.gbc", $11b07a, $11b082 - $11b07a
+
+Function11b082: ; 11b082
+	call Function11b242
+	ld a, $7
+	ld [$c7d3], a
+	call Function11b099
+	call Function11b295
+	call Function11b275
+	call Function32f9
+	jp Function11ad8a
+; 11b099
+
+Function11b099: ; 11b099
+	ld c, $6
+	ld hl, $c4bf
+	ld a, [$c7d3]
+	add a
+	ld b, a
+	xor a
+	call Function11b236
+	ld a, [$c7d0]
+	ld e, a
+	ld d, $0
+	ld hl, $c6d0
+	add hl, de
+	ld e, l
+	ld d, h
+	ld hl, $c4d3
+	ld a, [$c7d3]
+.asm_11b0b9
+	push af
+	ld a, [de]
+	ld [$d265], a
+	push de
+	push hl
+	call Function11b0cf
+	pop hl
+	ld de, $0028
+	add hl, de
+	pop de
+	inc de
+	pop af
+	dec a
+	jr nz, .asm_11b0b9
+	ret
+; 11b0cf
+
+Function11b0cf: ; 11b0cf
+	and a
+	ret z
+	call Function11b0ec
+	ret c
+	call Function11b0e1
+	push hl
+	call GetPokemonName
+	pop hl
+	call PlaceString
+	ret
+; 11b0e1
+
+Function11b0e1: ; 11b0e1
+	call Function11b21e
+	jr nz, .asm_11b0e8
+	inc hl
+	ret
+
+.asm_11b0e8
+	ld a, $1
+	ld [hli], a
+	ret
+; 11b0ec
+
+Function11b0ec: ; 11b0ec
+	call Function11b22a
+	ret nz
+	inc hl
+	ld de, $70f9
+	call PlaceString
+	scf
+	ret
+; 11b0f9
+
+INCBIN "baserom.gbc", $11b0f9, $11b0ff - $11b0f9
+
+Function11b0ff: ; 11b0ff
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and $2
+	jr nz, .asm_11b141
+	ld a, [hl]
+	and $1
+	jr nz, .asm_11b131
+	call Function11b175
+	jr nc, .asm_11b125
+	ld a, [$cd4c]
+	inc a
+	and $3
+	ld [$cd4c], a
+	xor a
+	ld [hBGMapMode], a
+	call Function11b099
+	ld a, $1
+	ld [hBGMapMode], a
+	ret
+
+.asm_11b125
+	ld a, [$cd4c]
+	and a
+	ret z
+	inc a
+	and $3
+	ld [$cd4c], a
+	ret
+
+.asm_11b131
+	call Function11b20b
+	call Function11b22a
+	jr z, .asm_11b13d
+	ld a, $1
+	jr .asm_11b148
+
+.asm_11b13d
+	ld a, $2
+	jr .asm_11b148
+
+.asm_11b141
+	ld hl, $cf63
+	ld a, $7
+	ld [hl], a
+	ret
+
+.asm_11b148
+	call PlayClickSFX
+	ld [$cd4b], a
+	and a
+	jr z, .asm_11b16c
+	ld a, [$cf65]
+	cp $0
+	jr z, .asm_11b163
+	cp $fe
+	jr z, .asm_11b167
+	cp $ff
+	jr z, .asm_11b16b
+	jp Function11ad8a
+
+.asm_11b163
+	ld a, $1
+	jr .asm_11b16c
+
+.asm_11b167
+	ld a, $2
+	jr .asm_11b16c
+
+.asm_11b16b
+	xor a
+
+.asm_11b16c
+	ld [$cd30], a
+	ld a, $4
+	ld [$cf63], a
+	ret
+; 11b175
+
+Function11b175: ; 11b175
+	ld a, [$c7d3]
+	ld d, a
+	ld a, [$c7d2]
+	ld e, a
+	ld hl, $ffa9
+	ld a, [hl]
+	and $40
+	jr nz, .asm_11b19a
+	ld a, [hl]
+	and $80
+	jr nz, .asm_11b1ae
+	ld a, d
+	cp e
+	jr nc, .asm_11b1ed
+	ld a, [hl]
+	and $20
+	jr nz, .asm_11b1c6
+	ld a, [hl]
+	and $10
+	jr nz, .asm_11b1d8
+	jr .asm_11b1ed
+
+.asm_11b19a
+	ld hl, $c7d1
+	ld a, [hl]
+	and a
+	jr z, .asm_11b1a4
+	dec [hl]
+	jr .asm_11b1ef
+
+.asm_11b1a4
+	ld hl, $c7d0
+	ld a, [hl]
+	and a
+	jr z, .asm_11b1ed
+	dec [hl]
+	jr .asm_11b1ef
+
+.asm_11b1ae
+	ld hl, $c7d1
+	ld a, [hl]
+	inc a
+	cp e
+	jr nc, .asm_11b1ed
+	cp d
+	jr nc, .asm_11b1bc
+	inc [hl]
+	jr .asm_11b1ef
+
+.asm_11b1bc
+	ld hl, $c7d0
+	add [hl]
+	cp e
+	jr nc, .asm_11b1ed
+	inc [hl]
+	jr .asm_11b1ef
+
+.asm_11b1c6
+	ld hl, $c7d0
+	ld a, [hl]
+	and a
+	jr z, .asm_11b1ed
+	cp d
+	jr nc, .asm_11b1d4
+	xor a
+	ld [hl], a
+	jr .asm_11b1ef
+
+.asm_11b1d4
+	sub d
+	ld [hl], a
+	jr .asm_11b1ef
+
+.asm_11b1d8
+	ld hl, $c7d0
+	ld a, d
+	add a
+	add [hl]
+	jr c, .asm_11b1e3
+	cp e
+	jr c, .asm_11b1e8
+
+.asm_11b1e3
+	ld a, e
+	sub d
+	ld [hl], a
+	jr .asm_11b1ef
+
+.asm_11b1e8
+	ld a, [hl]
+	add d
+	ld [hl], a
+	jr .asm_11b1ef
+
+.asm_11b1ed
+	and a
+	ret
+
+.asm_11b1ef
+	call Function11b295
+	call Function11b275
+	scf
+	ret
+; 11b1f7
+
+INCBIN "baserom.gbc", $11b1f7, $11b20b - $11b1f7
+
+Function11b20b: ; 11b20b
+	ld a, [$c7d1]
+	ld hl, $c7d0
+	add [hl]
+	ld e, a
+	ld d, $0
+	ld hl, $c6d0
+	add hl, de
+	ld a, [hl]
+	ld [$d265], a
+	ret
+; 11b21e
+
+Function11b21e: ; 11b21e
+	push de
+	push hl
+	ld a, [$d265]
+	dec a
+	call CheckCaughtMon
+	pop hl
+	pop de
+	ret
+; 11b22a
+
+Function11b22a: ; 11b22a
+	push de
+	push hl
+	ld a, [$d265]
+	dec a
+	call CheckSeenMon
+	pop hl
+	pop de
+	ret
+; 11b236
+
+Function11b236: ; 11b236
+	jp $0fb8
+; 11b239
 
 Function11b239: ; 11b239
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -116298,7 +118843,125 @@ Function11b239: ; 11b239
 	ret
 ; 11b242
 
-INCBIN "baserom.gbc",$11b242,$11b314 - $11b242
+Function11b242: ; 11b242
+	ld hl, $c4f3
+	ld de, StringBuffer3
+	call PlaceString
+	xor a
+	ld [MonType], a
+	callba GetGender
+	ld hl, $c4f1
+	ld a, [CurPartySpecies]
+	ld bc, $cd2f
+	ld [bc], a
+	dec bc
+	jr c, asm_11b26a
+	jr z, asm_11b26f
+	ld a, $1
+	ld [bc], a
+
+Function11b267:
+	ld [hl], $ef
+	ret
+
+asm_11b26a
+	xor a
+	ld [bc], a
+	ld [hl], $7f
+	ret
+
+asm_11b26f
+	ld a, $2
+	ld [bc], a
+
+Function11b272:
+	ld [hl], $f5
+	ret
+; 11b275
+
+Function11b275: ; 11b275
+	call Function11b279
+	ret
+; 11b279
+
+Function11b279: ; 11b279
+	ld a, [$d265]
+	ld [CurSpecies], a
+	call Function11b22a
+	jr z, .asm_11b28f
+	call GetBaseData
+	ld a, [BaseGender]
+	ld [$cf65], a
+	jr .asm_11b294
+
+.asm_11b28f
+	ld a, $ff
+	ld [$cf65], a
+
+.asm_11b294
+	ret
+; 11b295
+
+Function11b295: ; 11b295
+	ld hl, $c5a8
+	ld de, $7308
+	call PlaceString
+	ld hl, $c5bc
+	ld de, $7308
+	call PlaceString
+	call Function11b20b
+	call Function11b22a
+	jr z, .asm_11b2d1
+	ld a, [$c608]
+	ld c, a
+	ld a, [$c609]
+	ld b, a
+	ld hl, $0007
+	add hl, bc
+	xor a
+	ld [hl], a
+	ld hl, $0003
+	add hl, bc
+	ld e, [hl]
+	callba Function8e9bc
+	ld hl, $c5bc
+	push hl
+	call GetPokemonName
+	jr .asm_11b2e7
+
+.asm_11b2d1
+	ld a, [$c608]
+	ld c, a
+	ld a, [$c609]
+	ld b, a
+	ld hl, $0007
+	add hl, bc
+	ld a, $50
+	ld [hl], a
+	ld hl, $c5a8
+	push hl
+	ld de, $730e
+
+.asm_11b2e7
+	ld a, $6
+	ld bc, StringBuffer4
+.asm_11b2ec
+	push af
+	ld a, [de]
+	ld [bc], a
+	inc de
+	inc bc
+	pop af
+	dec a
+	and a
+	jr nz, .asm_11b2ec
+	pop hl
+	ld de, StringBuffer4
+	call PlaceString
+	ret
+; 11b2fe
+
+INCBIN "baserom.gbc", $11b2fe, $11b314 - $11b2fe
 
 Function11b314: ; 11b314
 	call Function11b31b
@@ -116997,8 +119660,8 @@ Function11c000:: ; 11c000
 	ld a, [hl]
 	dec a
 	ld e, a
-	ld d, $0
-	ld hl, $72f0
+	ld d, 0
+	ld hl, Unknown_11f2f0
 	add hl, de
 	ld a, [hl]
 	and a
@@ -117010,7 +119673,7 @@ Function11c000:: ; 11c000
 	sub $19
 
 .asm_11c021
-	ld hl, $7332
+	ld hl, Unknown_11f332
 	jr .asm_11c033
 
 .asm_11c026
@@ -117021,10 +119684,10 @@ Function11c000:: ; 11c000
 	sub $f
 
 .asm_11c030
-	ld hl, $73ce
+	ld hl, Unknown_11f3ce
 
 .asm_11c033
-	ld b, $0
+	ld b, 0
 	dec c
 	jr nz, .asm_11c03d
 	ld [$d200], a
@@ -117044,7 +119707,7 @@ Function11c000:: ; 11c000
 	ld l, c
 	pop af
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -117262,7 +119925,7 @@ Function11c156: ; 11c156
 	ld a, d
 	and a
 	jr z, .asm_11c19c
-	ld hl, $5aac
+	ld hl, Unknown_11daac
 	dec d
 	sla d
 	ld c, d
@@ -117586,17 +120249,19 @@ Function11c38a: ; 11c38a (47:438a)
 	ret
 ; 11c3bc (47:43bc)
 
-INCBIN "baserom.gbc",$11c3bc,$11c3c2 - $11c3bc
+String_11c3bc: ; 11c3bc
+	db "ーーーーー@"
+; 11c3c2
 
 Function11c3c2: ; 11c3c2 (47:43c2)
 	call Function11c277
-	ld de, $4fbe
+	ld de, Unknown_11cfbe
 	call Function11d035
 	hlcoord 1, 7
-	ld de, $44db
+	ld de, String_11c4db
 	call PlaceString
 	hlcoord 1, 16
-	ld de, $451b
+	ld de, String_11c51b
 	call PlaceString
 	call Function11c4be
 	ld hl, $cd23
@@ -117660,7 +120325,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	jr nz, .asm_11c440
 	and a
 	jr z, .asm_11c460
-	ld de, $4fba
+	ld de, Unknown_11cfba
 	call Function11cfce
 	decoord 1, 2
 	ld bc, $cd36
@@ -117749,7 +120414,17 @@ Function11c4be: ; 11c4be (47:44be)
 	ret
 ; 11c4db (47:44db)
 
-INCBIN "baserom.gbc",$11c4db,$11c52c - $11c4db
+String_11c4db: ; 11c4db
+	db   "6つのことば", $1f, "くみあわせます"
+	next "かえたいところ", $1f, "えらぶと でてくる"
+	next "ことばのグループから いれかえたい"
+	next "たんご", $1f, "えらんでください"
+	db   "@"
+; 11c51b
+
+String_11c51b: ; 11c51b
+	db "ぜんぶけす やめる   けってい@"
+; 11c52c
 
 Function11c52c: ; 11c52c (47:452c)
 	call Function11c277
@@ -117896,10 +120571,11 @@ Function11c53d: ; 11c53d (47:453d)
 .asm_11c5ee
 	ld [hl], a
 	ret
+; 11c5f0
 
 Function11c5f0: ; 11c5f0 (47:45f0)
-	ld de, $5a52
-	ld bc, $463a
+	ld de, Strings_11da52
+	ld bc, Unknown_11c63a
 	ld a, $f
 .asm_11c5f8
 	push af
@@ -117921,7 +120597,7 @@ Function11c5f0: ; 11c5f0 (47:45f0)
 	dec a
 	jr nz, .asm_11c5f8
 	hlcoord 1, 17
-	ld de, $462a
+	ld de, String_11c62a
 	call PlaceString
 	ret
 
@@ -117934,12 +120610,32 @@ Function11c618: ; 11c618 (47:4618)
 	ret
 ; 11c62a (47:462a)
 
-INCBIN "baserom.gbc",$11c62a,$11c658 - $11c62a
+String_11c62a: ; 11c62a
+	db "けす    モード   やめる@"
+; 11c63a
+
+Unknown_11c63a: ; 11c63a
+	dwcoord  1,  7
+	dwcoord  7,  7
+	dwcoord 13,  7
+	dwcoord  1,  9
+	dwcoord  7,  9
+	dwcoord 13,  9
+	dwcoord  1, 11
+	dwcoord  7, 11
+	dwcoord 13, 11
+	dwcoord  1, 13
+	dwcoord  7, 13
+	dwcoord 13, 13
+	dwcoord  1, 15
+	dwcoord  7, 15
+	dwcoord 13, 15
+; 11c658
 
 Function11c658: ; 11c658 (47:4658)
 	call Function11c277
 	call Function11c770
-	ld de, $4fc2
+	ld de, Unknown_11cfc2
 	call Function11d035
 	call Function11c9ab
 	call Function11c7bc
@@ -117952,17 +120648,18 @@ Function11c675: ; 11c675 (47:4675)
 	ld hl, $cd25
 	ld de, hJoypadPressed ; $ffa3
 	ld a, [de]
-	and $1
-	jr nz, .asm_11c6e6
+	and A_BUTTON
+	jr nz, .a
 	ld a, [de]
-	and $2
-	jr nz, .asm_11c6f0
+	and B_BUTTON
+	jr nz, .b
 	ld a, [de]
-	and $8
-	jr nz, .asm_11c69e
+	and START
+	jr nz, .start
 	ld a, [de]
-	and $4
-	jr z, .asm_11c6ce
+	and SELECT
+	jr z, .select
+
 	ld a, [$cd26]
 	and a
 	ret z
@@ -117972,7 +120669,8 @@ Function11c675: ; 11c675 (47:4675)
 .asm_11c699
 	ld [$cd26], a
 	jr .asm_11c6c4
-.asm_11c69e
+
+.start
 	ld hl, $cd28
 	ld a, [$cd26]
 	add $c
@@ -117998,27 +120696,29 @@ Function11c675: ; 11c675 (47:4675)
 	call Function11c7bc
 	call Function11c86e
 	ret
-.asm_11c6ce
+
+.select
 	ld de, $ffa9
 	ld a, [de]
-	and $40
+	and D_UP
 	jr nz, .asm_11c708
 	ld a, [de]
-	and $80
+	and D_DOWN
 	jr nz, .asm_11c731
 	ld a, [de]
-	and $20
+	and D_LEFT
 	jr nz, .asm_11c746
 	ld a, [de]
-	and $10
+	and D_RIGHT
 	jr nz, .asm_11c755
 	ret
-.asm_11c6e6
+
+.a
 	call Function11c8f6
 	ld a, $4
 	ld [$cd35], a
 	jr .asm_11c6fc
-.asm_11c6f0
+.b
 	ld a, [$cd2b]
 	and a
 	jr nz, .asm_11c6fa
@@ -118115,9 +120815,9 @@ Function11c770: ; 11c770 (47:4770)
 	jr z, .asm_11c799
 	dec a
 	sla a
-	ld hl, $7220
+	ld hl, Unknown_11f220
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hli]
 	ld [$cd28], a
@@ -118141,7 +120841,7 @@ Function11c770: ; 11c770 (47:4770)
 	ld hl, $c6a8
 	ld a, [CreditsTimer] ; $cd22
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld a, [hl]
@@ -118149,7 +120849,7 @@ Function11c770: ; 11c770 (47:4770)
 	jr .asm_11c79f
 
 Function11c7bc: ; 11c7bc (47:47bc)
-	ld bc, $4854
+	ld bc, Unknown_11c854
 	ld a, [$cd2b]
 	and a
 	jr nz, .asm_11c814
@@ -118265,7 +120965,21 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	ret
 ; 11c854 (47:4854)
 
-INCBIN "baserom.gbc",$11c854,$11c86e - $11c854
+Unknown_11c854: ; 11c854
+	dwcoord  2,  8
+	dwcoord  8,  8
+	dwcoord 14,  8
+	dwcoord  2, 10
+	dwcoord  8, 10
+	dwcoord 14, 10
+	dwcoord  2, 12
+	dwcoord  8, 12
+	dwcoord 14, 12
+	dwcoord  2, 14
+	dwcoord  8, 14
+	dwcoord 14, 14
+	dw -1
+; 11c86e
 
 Function11c86e: ; 11c86e (47:486e)
 	ld a, [$cd26]
@@ -118323,7 +121037,30 @@ Function11c86e: ; 11c86e (47:486e)
 	ret
 ; 11c8c7 (47:48c7)
 
-INCBIN "baserom.gbc",$11c8c7,$11c8f6 - $11c8c7
+Function11c8c7: ; 11c8c7
+	inc a
+	push af
+	and $f
+	ld [hDividend], a
+	pop af
+	and $f0
+	swap a
+	ld [hQuotient], a
+	xor a
+	ld [$ffb5], a
+	push hl
+	callba Function11a80c
+	pop hl
+	ld a, [$cd63]
+	add $f6
+	ld [hli], a
+	ld a, [$cd62]
+	add $f6
+	ld [hli], a
+	ret
+; 11c8ec
+
+INCBIN "baserom.gbc", $11c8ec, $11c8f6 - $11c8ec
 
 Function11c8f6: ; 11c8f6 (47:48f6)
 	ld a, [BGMapBuffer] ; $cd20 (aliases: CreditsPos)
@@ -118456,7 +121193,7 @@ Function11c9ab: ; 11c9ab (47:49ab)
 	ret
 
 Function11c9bd: ; 11c9bd (47:49bd)
-	ld de, $4a38
+	ld de, String_11ca38
 	call Function11ca7f
 
 Function11c9c3: ; 11c9c3 (47:49c3)
@@ -118543,7 +121280,15 @@ Function11ca19: ; 11ca19 (47:4a19)
 	ret
 ; 11ca38 (47:4a38)
 
-INCBIN "baserom.gbc",$11ca38,$11ca5e - $11ca38
+String_11ca38: ; 11ca38
+	db   "とうろくちゅう", $25, "あいさつ", $1f, "ぜんぶ"
+	next "けしても よろしいですか?@"
+; 11ca57
+
+String_11ca57: ; 11ca57
+	db   "はい"
+	next "いいえ@"
+; 11ca5e
 
 Function11ca5e: ; 11ca5e (47:4a5e)
 	xor a
@@ -118566,21 +121311,21 @@ Function11ca6a: ; 11ca6a (47:4a6a)
 	inc hl
 	ld [hl], b
 	call Function11c95d
-	ld de, $43bc
+	ld de, String_11c3bc
 	call PlaceString
 	ret
 
 Function11ca7f: ; 11ca7f (47:4a7f)
 	push de
-	ld de, $4fc6
+	ld de, Unknown_11cfc6
 	call Function11cfce
-	ld de, $4fca
+	ld de, Unknown_11cfca
 	call Function11cfce
 	hlcoord 1, 14
 	pop de
 	call PlaceString
 	hlcoord 16, 8
-	ld de, $4a57
+	ld de, String_11ca57
 	call PlaceString
 	call Function11ca01
 	ld a, $1
@@ -118662,7 +121407,7 @@ Function11cab3: ; 11cab3 (47:4ab3)
 INCBIN "baserom.gbc",$11cb1c,$11cb52 - $11cb1c
 
 Function11cb52: ; 11cb52 (47:4b52)
-	ld hl, $4c01
+	ld hl, Unknown_11cc01
 	ld a, [$cfa9]
 .asm_11cb58
 	dec a
@@ -118720,9 +121465,9 @@ Function11cb66: ; 11cb66 (47:4b66)
 	jr nz, .asm_11cba2
 	call CloseSRAM
 	call PlayClickSFX
-	ld de, $4fc6
+	ld de, Unknown_11cfc6
 	call Function11cfce
-	ld hl, $4c7e
+	ld hl, Unknown_11cc7e
 	ld a, [$cfa9]
 .asm_11cbba
 	dec a
@@ -118746,7 +121491,7 @@ Function11cb66: ; 11cb66 (47:4b66)
 .asm_11cbd4
 	call PlayClickSFX
 .asm_11cbd7
-	ld de, $4fba
+	ld de, Unknown_11cfba
 	call Function11cfce
 	call Function11c38a
 	ld hl, $cd24
@@ -118777,13 +121522,57 @@ Function11cbf5: ; 11cbf5 (47:4bf5)
 	ret
 ; 11cc01 (47:4c01)
 
-INCBIN "baserom.gbc",$11cc01,$11ccef - $11cc01
+Unknown_11cc01: ; 11cc01
+	dw String_11cc09
+	dw String_11cc23
+	dw String_11cc42
+	dw String_11cc60
+
+String_11cc09: ; 11cc09
+	db   "じこしょうかい は"
+	next "この あいさつで いいですか?@"
+
+String_11cc23: ; 11cc23
+	db   "たいせん ", $4a, "はじまるとき は"
+	next "この あいさつで いいですか?@"
+
+String_11cc42: ; 11cc42
+	db   "たいせん ", $1d, "かったとき は"
+	next "この あいさつで いいですか?@"
+
+String_11cc60: ; 11cc60
+	db   "たいせん ", $1d, "まけたとき は"
+	next "この あいさつで いいですか?@"
+; 11cc7e
+
+Unknown_11cc7e: ; 11cc7e
+	dw String_11cc86
+	dw String_11cc9d
+	dw String_11ccb9
+	dw String_11ccd4
+
+String_11cc86: ; 11cc86
+	db   "じこしょうかい の"
+	next "あいさつ", $1f, "とうろくした!@"
+
+String_11cc9d: ; 11cc9d
+	db   "たいせん ", $4a, "はじまるとき の"
+	next "あいさつ", $1f, "とうろくした!@"
+
+String_11ccb9: ; 11ccb9
+	db   "たいせん ", $1d, "かったとき の"
+	next "あいさつ", $1f, "とうろくした!@"
+
+String_11ccd4: ; 11ccd4
+	db   "たいせん ", $1d, "まけたとき の"
+	next "あいさつ", $1f, "とうろくした!@"
+; 11ccef
 
 Function11ccef: ; 11ccef (47:4cef)
-	ld de, $4fc6
+	ld de, Unknown_11cfc6
 	call Function11cfce
 	hlcoord 1, 14
-	ld de, $4d10
+	ld de, String_11cd10
 	call PlaceString
 	call Function11ca19
 	call Function11cfb5
@@ -118798,25 +121587,27 @@ Function11cd04: ; 11cd04 (47:4d04)
 	ret
 ; 11cd10 (47:4d10)
 
-INCBIN "baserom.gbc",$11cd10,$11cd20 - $11cd10
+String_11cd10: ; 11cd10
+	db "なにか ことば", $1f, "いれてください@"
+; 11cd20
 
 Function11cd20: ; 11cd20 (47:4d20)
 	call Function11c277
-	ld de, $4fc6
+	ld de, Unknown_11cfc6
 	call Function11cfce
 	hlcoord 1, 14
 	ld a, [$cd2b]
 	ld [$cd2c], a
 	and a
 	jr nz, .asm_11cd3a
-	ld de, $4dc7
+	ld de, String_11cdc7
 	jr .asm_11cd3d
 .asm_11cd3a
-	ld de, $4dd9
+	ld de, String_11cdd9
 .asm_11cd3d
 	call PlaceString
 	hlcoord 4, 8
-	ld de, $4df5
+	ld de, String_11cdf5
 	call PlaceString
 	call Function11cdaa
 	ld hl, $cd24
@@ -118827,18 +121618,19 @@ Function11cd54: ; 11cd54 (47:4d54)
 	ld hl, $cd2c
 	ld de, hJoypadPressed ; $ffa3
 	ld a, [de]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_11cd6f
 	ld a, [de]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_11cd73
 	ld a, [de]
-	and $40
+	and D_UP
 	jr nz, .asm_11cd8b
 	ld a, [de]
-	and $80
+	and D_DOWN
 	jr nz, .asm_11cd94
 	ret
+
 .asm_11cd6f
 	ld a, [hl]
 	ld [$cd2b], a
@@ -118848,6 +121640,7 @@ Function11cd54: ; 11cd54 (47:4d54)
 	jr nz, .asm_11cd7d
 	ld a, $6
 	jr .asm_11cd7f
+
 .asm_11cd7d
 	ld a, $15
 .asm_11cd7f
@@ -118856,22 +121649,24 @@ Function11cd54: ; 11cd54 (47:4d54)
 	set 5, [hl]
 	call PlayClickSFX
 	ret
+
 .asm_11cd8b
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
-	ld de, $4dc7
+	ld de, String_11cdc7
 	jr .asm_11cd9b
+
 .asm_11cd94
 	ld a, [hl]
 	and a
 	ret nz
 	inc [hl]
-	ld de, $4dd9
+	ld de, String_11cdd9
 .asm_11cd9b
 	push de
-	ld de, $4fc6
+	ld de, Unknown_11cfc6
 	call Function11cfce
 	pop de
 	hlcoord 1, 14
@@ -118891,15 +121686,28 @@ Function11cdaa: ; 11cdaa (47:4daa)
 	ret
 ; 11cdc7 (47:4dc7)
 
-INCBIN "baserom.gbc",$11cdc7,$11ce0b - $11cdc7
+String_11cdc7: ; 11cdc7
+	db   "ことば", $1f, "しゅるいべつに"
+	next "えらべます@"
+; 11cdd9
+
+String_11cdd9: ; 11cdd9
+	db   "ことば", $1f, "アイウエォ の"
+	next "じゅんばんで ひょうじ します@"
+; 11cdf5
+
+String_11cdf5: ; 11cdf5
+	db "しゅるいべつ モード"
+	next "アイウエォ  モード@"
+; 11ce0b
 
 Function11ce0b: ; 11ce0b (47:4e0b)
 	call Function11c277
 	hlcoord 1, 7
-	ld de, $4f79
+	ld de, String_11cf79
 	call PlaceString
 	hlcoord 1, 17
-	ld de, $462a
+	ld de, String_11c62a
 	call PlaceString
 	call Function11c618
 	ld hl, $cd24
@@ -118911,37 +121719,41 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	sla a
 	sla a
 	ld c, a
-	ld b, $0
-	ld hl, $4eb9
+	ld b, 0
+	ld hl, Unknown_11ceb9
 	add hl, bc
+
 	ld de, hJoypadPressed ; $ffa3
 	ld a, [de]
-	and $8
-	jr nz, .asm_11ce78
+	and START
+	jr nz, .start
 	ld a, [de]
-	and $4
-	jr nz, .asm_11ce86
+	and SELECT
+	jr nz, .select
 	ld a, [de]
-	and $1
-	jr nz, .asm_11ce68
+	and A_BUTTON
+	jr nz, .a
 	ld a, [de]
-	and $2
-	jr nz, .asm_11ce82
+	and B_BUTTON
+	jr nz, .b
+
 	ld de, $ffa9
 	ld a, [de]
-	and $40
-	jr nz, .asm_11ceb1
+	and D_UP
+	jr nz, .up
 	ld a, [de]
-	and $80
-	jr nz, .asm_11ceaf
+	and D_DOWN
+	jr nz, .down
 	ld a, [de]
-	and $20
-	jr nz, .asm_11ceae
+	and D_LEFT
+	jr nz, .left
 	ld a, [de]
-	and $10
-	jr nz, .asm_11ceb0
+	and D_RIGHT
+	jr nz, .right
+
 	ret
-.asm_11ce68
+
+.a
 	ld a, [CreditsTimer] ; $cd22
 	cp $2d
 	jr c, .asm_11ce92
@@ -118949,24 +121761,27 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	jr z, .asm_11cea4
 	dec a
 	jr z, .asm_11ce96
-	jr .asm_11ce82
-.asm_11ce78
+	jr .b
+
+.start
 	ld hl, $cd24
 	set 0, [hl]
 	ld a, $8
 	ld [BGMapBuffer], a ; $cd20 (aliases: CreditsPos)
-.asm_11ce82
+.b
 	ld a, $4
 	jr .asm_11ce98
-.asm_11ce86
+.select
 	ld a, [$cd2b]
 	xor $1
 	ld [$cd2b], a
 	ld a, $6
 	jr .asm_11ce98
+
 .asm_11ce92
 	ld a, $8
 	jr .asm_11ce98
+
 .asm_11ce96
 	ld a, $13
 .asm_11ce98
@@ -118980,13 +121795,14 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	call Function11ca6a
 	call PlayClickSFX
 	ret
-.asm_11ceae
+
+.left
 	inc hl
-.asm_11ceaf
+.down
 	inc hl
-.asm_11ceb0
+.right
 	inc hl
-.asm_11ceb1
+.up
 	ld a, [hl]
 	cp $ff
 	ret z
@@ -118994,7 +121810,65 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ret
 ; 11ceb9 (47:4eb9)
 
-INCBIN "baserom.gbc",$11ceb9,$11cfb5 - $11ceb9
+Unknown_11ceb9: ; 11ceb9
+	; up left down right
+	db $ff, $01, $05, $ff
+	db $ff, $02, $06, $00
+	db $ff, $03, $07, $01
+	db $ff, $04, $08, $02
+	db $ff, $14, $09, $03
+	db $00, $06, $0a, $ff
+	db $01, $07, $0b, $05
+	db $02, $08, $0c, $06
+	db $03, $09, $0d, $07
+	db $04, $19, $0e, $08
+	db $05, $0b, $0f, $ff
+	db $06, $0c, $10, $0a
+	db $07, $0d, $11, $0b
+	db $08, $0e, $12, $0c
+	db $09, $1e, $13, $0d
+	db $0a, $10, $2d, $ff
+	db $0b, $11, $2d, $0f
+	db $0c, $12, $2d, $10
+	db $0d, $13, $2d, $11
+	db $0e, $26, $2d, $12
+	db $ff, $15, $19, $04
+	db $ff, $16, $1a, $14
+	db $ff, $17, $1b, $15
+	db $ff, $18, $1c, $16
+	db $ff, $23, $1d, $17
+	db $14, $1a, $1e, $09
+	db $15, $1b, $1f, $19
+	db $16, $1c, $20, $1a
+	db $17, $1d, $21, $1b
+	db $18, $2b, $22, $1c
+	db $19, $1f, $26, $0e
+	db $1a, $20, $27, $1e
+	db $1b, $21, $28, $1f
+	db $1c, $22, $29, $20
+	db $1d, $2c, $2a, $21
+	db $ff, $24, $2b, $18
+	db $ff, $25, $2b, $23
+	db $ff, $ff, $2b, $24
+	db $1e, $27, $2e, $13
+	db $1f, $28, $2e, $26
+	db $20, $29, $2e, $27
+	db $21, $2a, $2e, $28
+	db $22, $ff, $2e, $29
+	db $23, $ff, $2c, $1d
+	db $2b, $ff, $2f, $22
+	db $0f, $2e, $ff, $ff
+	db $26, $2f, $ff, $2d
+	db $2c, $ff, $ff, $2e
+; 11cf79
+
+String_11cf79: ; 11cf79
+	db   "あいうえお なにぬねの や ゆ よ"
+	next "かきくけこ はひふへほ わ"
+	next "さしすせそ まみむめも そのた"
+	next "たちつてと らりるれろ"
+	db   "@"
+; 11cfb5
 
 Function11cfb5: ; 11cfb5 (47:4fb5)
 	ld hl, $cf63
@@ -119002,7 +121876,26 @@ Function11cfb5: ; 11cfb5 (47:4fb5)
 	ret
 ; 11cfba (47:4fba)
 
-INCBIN "baserom.gbc",$11cfba,$11cfce - $11cfba
+Unknown_11cfba:
+	db  0,  0 ; start coords
+	db 20,  6 ; end coords
+
+Unknown_11cfbe:
+	db  0, 14 ; start coords
+	db 20,  4 ; end coords
+
+Unknown_11cfc2:
+	db  0,  6 ; start coords
+	db 20, 10 ; end coords
+
+Unknown_11cfc6:
+	db  0, 12 ; start coords
+	db 20,  6 ; end coords
+
+Unknown_11cfca:
+	db 14,  7 ; start coords
+	db  6,  5 ; end coords
+; 11cfce
 
 Function11cfce: ; 11cfce (47:4fce)
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -119021,7 +121914,7 @@ Function11cfce: ; 11cfce (47:4fce)
 .asm_11cfe0
 	pop af
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	push hl
 	ld a, $79
@@ -119228,19 +122121,19 @@ Jumptable_11d0c7: ; 11d0c7 (47:50c7)
 Function11d0dd: ; 11d0dd (47:50dd)
 	ld a, [BGMapBuffer] ; $cd20 (aliases: CreditsPos)
 	sla a
-	ld hl, $5208
+	ld hl, Unknown_11d208
 	ld e, $1
 	jr asm_11d11e
 
 Function11d0e9: ; 11d0e9 (47:50e9)
 	ld a, [$cd21]
 	sla a
-	ld hl, $521a
+	ld hl, Unknown_11d21a
 	ld e, $2
 	jr asm_11d11e
 
 Function11d0f5: ; 11d0f5 (47:50f5)
-	ld hl, $52be
+	ld hl, Unknown_11d2be
 	ld a, [CreditsTimer] ; $cd22
 	ld e, a
 	ld d, $0
@@ -119249,7 +122142,7 @@ Function11d0f5: ; 11d0f5 (47:50f5)
 	call Function3b3c
 	ld a, [CreditsTimer] ; $cd22
 	sla a
-	ld hl, $523e
+	ld hl, Unknown_11d23e
 	ld e, $4
 	jr asm_11d11e
 
@@ -119258,7 +122151,7 @@ Function11d10f: ; 11d10f (47:510f)
 	call Function3b3c
 	ld a, [$cd25]
 	sla a
-	ld hl, $529e
+	ld hl, Unknown_11d29e
 	ld e, $8
 
 asm_11d11e: ; 11d11e (47:511e)
@@ -119285,7 +122178,7 @@ Function11d134: ; 11d134 (47:5134)
 	call Function3b3c
 	ld a, [$cd2a]
 	sla a
-	ld hl, $52b6
+	ld hl, Unknown_11d2b6
 	ld e, $10
 	jr asm_11d11e
 
@@ -119294,7 +122187,7 @@ Function11d145: ; 11d145 (47:5145)
 	call Function3b3c
 	ld a, [$cd2c]
 	sla a
-	ld hl, $52ba
+	ld hl, Unknown_11d2ba
 	ld e, $20
 	jr asm_11d11e
 
@@ -119407,7 +122300,20 @@ Function11d1fc: ; 11d1fc (47:51fc)
 	ret
 ; 11d208 (47:5208)
 
-INCBIN "baserom.gbc",$11d208,$11d2ee - $11d208
+Unknown_11d208: ; 11d208
+INCBIN "baserom.gbc",$11d208,$11d21a - $11d208
+Unknown_11d21a: ; 11d21a
+INCBIN "baserom.gbc",$11d21a,$11d23e - $11d21a
+Unknown_11d23e: ; 11d23e
+INCBIN "baserom.gbc",$11d23e,$11d29e - $11d23e
+Unknown_11d29e: ; 11d29e
+INCBIN "baserom.gbc",$11d29e,$11d2b6 - $11d29e
+Unknown_11d2b6: ; 11d2b6
+INCBIN "baserom.gbc",$11d2b6,$11d2ba - $11d2b6
+Unknown_11d2ba: ; 11d2ba
+INCBIN "baserom.gbc",$11d2ba,$11d2be - $11d2ba
+Unknown_11d2be: ; 11d2be
+INCBIN "baserom.gbc",$11d2be,$11d2ee - $11d2be
 
 Function11d2ee: ; 11d2ee (47:52ee)
 	ld hl, $cd24
@@ -119453,7 +122359,7 @@ Function11d323: ; 11d323
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $533a
+	ld hl, Palette_11d33a
 	ld de, Unkn1Pals
 	ld bc, $0080
 	call CopyBytes
@@ -119462,7 +122368,72 @@ Function11d323: ; 11d323
 	ret
 ; 11d33a
 
-INCBIN "baserom.gbc",$11d33a,$11d3ba - $11d33a
+Palette_11d33a:
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 31, 16, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 23, 17, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+; 11d3ba
 
 Function11d3ba: ; 11d3ba
 	ld a, [rSVBK]
@@ -119631,8 +122602,8 @@ Function11d4aa: ; 11d4aa
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, $5aac
-	ld bc, $7220
+	ld hl, Unknown_11daac
+	ld bc, Unknown_11f220
 	xor a
 	ld [$cd2d], a
 	inc a
@@ -119658,7 +122629,7 @@ Function11d4aa: ; 11d4aa
 	ld e, a
 	ld a, [hl]
 	ld d, a
-	ld hl, Unkn1Pals
+	ld hl, $d000
 	add hl, de
 	ld a, [$cd2d]
 	ld [hli], a
@@ -119686,7 +122657,830 @@ Function11d4aa: ; 11d4aa
 	ret
 ; 11d4fe
 
-INCBIN "baserom.gbc",$11d4fe,$11f686 - $11d4fe
+
+INCBIN "baserom.gbc",$11d4fe,$11da52 - $11d4fe
+
+Strings_11da52: ; 11da52
+	db "ポケモン@@"
+	db "タイプ@@@"
+	db "あいさつ@@"
+	db "ひと@@@@"
+	db "バトル@@@"
+	db "こえ@@@@"
+	db "かいわ@@@"
+	db "きもち@@@"
+	db "じょうたい@"
+	db "せいかつ@@"
+	db "しゅみ@@@"
+	db "こうどう@@"
+	db "じかん@@@"
+	db "むすび@@@"
+	db "あれこれ@@"
+; 11daac
+
+Unknown_11daac: ; 11daac
+	dw Unknown_11dac8
+	dw Unknown_11db58
+	dw Unknown_11dc78
+	dw Unknown_11dea0
+	dw Unknown_11e0c8
+	dw Unknown_11e2d8
+	dw Unknown_11e4e8
+	dw Unknown_11e710
+	dw Unknown_11e920
+	dw Unknown_11ea58
+	dw Unknown_11eb90
+	dw Unknown_11edb8
+	dw Unknown_11eef0
+	dw Unknown_11f100
+
+Unknown_11dac8: ; 11dac8
+	db "あく@@@", $26, $0, $0
+	db "いわ@@@", $aa, $0, $0
+	db "エスパー@", $da, $0, $0
+	db "かくとう@", $4e, $1, $0
+	db "くさ@@@", $ba, $1, $0
+	db "ゴースト@", $e4, $1, $0
+	db "こおり@@", $e6, $1, $0
+	db "じめん@@", $68, $2, $0
+	db "タイプ@@", $e8, $2, $0
+	db "でんき@@", $8e, $3, $0
+	db "どく@@@", $ae, $3, $0
+	db "ドラゴン@", $bc, $3, $0
+	db "ノーマル@", $22, $4, $0
+	db "はがね@@", $36, $4, $0
+	db "ひこう@@", $5e, $4, $0
+	db "ほのお@@", $b2, $4, $0
+	db "みず@@@", $f4, $4, $0
+	db "むし@@@", $12, $5, $0
+
+Unknown_11db58: ; 11db58
+	db "ありがと@", $58, $0, $0
+	db "ありがとう", $5a, $0, $0
+	db "いくぜ!@", $80, $0, $0
+	db "いくよ!@", $82, $0, $0
+	db "いくわよ!", $84, $0, $0
+	db "いやー@@", $a6, $0, $0
+	db "おっす@@", $a, $1, $0
+	db "おはつです", $22, $1, $0
+	db "おめでとう", $2a, $1, $0
+	db "ごめん@@", $f8, $1, $0
+	db "ごめんよ@", $fa, $1, $0
+	db "こらっ@@", $fc, $1, $0
+	db "こんちは!", $a, $2, $0
+	db "こんにちは", $10, $2, $0
+	db "さようなら", $28, $2, $0
+	db "サンキュー", $2e, $2, $0
+	db "さんじょう", $30, $2, $0
+	db "しっけい@", $48, $2, $0
+	db "しつれい@", $4c, $2, $0
+	db "じゃーね@", $6c, $2, $0
+	db "すいません", $8c, $2, $0
+	db "それじゃ@", $ca, $2, $0
+	db "どうも@@", $a6, $3, $0
+	db "なんじゃ@", $ee, $3, $0
+	db "ハーイ@@", $2c, $4, $0
+	db "はいはい@", $32, $4, $0
+	db "バイバイ@", $34, $4, $0
+	db "へイ@@@", $8a, $4, $0
+	db "またね@@", $de, $4, $0
+	db "もしもし@", $32, $5, $0
+	db "やあ@@@", $3e, $5, $0
+	db "やっほー@", $4e, $5, $0
+	db "よう@@@", $62, $5, $0
+	db "ようこそ@", $64, $5, $0
+	db "よろしく@", $80, $5, $0
+	db "らっしゃい", $94, $5, $0
+
+Unknown_11dc78: ; 11dc78
+	db "あいて@@", $1c, $0, $0
+	db "あたし@@", $36, $0, $0
+	db "あなた@@", $40, $0, $0
+	db "あなたが@", $42, $0, $0
+	db "あなたに@", $44, $0, $0
+	db "あなたの@", $46, $0, $0
+	db "あなたは@", $48, $0, $0
+	db "あなたを@", $4a, $0, $0
+	db "おかあさん", $e8, $0, $0
+	db "おじいさん", $fc, $0, $0
+	db "おじさん@", $2, $1, $0
+	db "おとうさん", $e, $1, $0
+	db "おとこのこ", $10, $1, $0
+	db "おとな@@", $14, $1, $0
+	db "おにいさん", $16, $1, $0
+	db "おねえさん", $18, $1, $0
+	db "おばあさん", $1c, $1, $0
+	db "おばさん@", $20, $1, $0
+	db "おれさま@", $34, $1, $0
+	db "おんなのこ", $3a, $1, $0
+	db "ガール@@", $40, $1, $0
+	db "かぞく@@", $52, $1, $0
+	db "かのじょ@", $72, $1, $0
+	db "かれ@@@", $7c, $1, $0
+	db "きみ@@@", $9a, $1, $0
+	db "きみが@@", $9c, $1, $0
+	db "きみに@@", $9e, $1, $0
+	db "きみの@@", $a0, $1, $0
+	db "きみは@@", $a2, $1, $0
+	db "きみを@@", $a4, $1, $0
+	db "ギャル@@", $ae, $1, $0
+	db "きょうだい", $b2, $1, $0
+	db "こども@@", $f0, $1, $0
+	db "じぶん@@", $54, $2, $0
+	db "じぶんが@", $56, $2, $0
+	db "じぶんに@", $58, $2, $0
+	db "じぶんの@", $5a, $2, $0
+	db "じぶんは@", $5c, $2, $0
+	db "じぶんを@", $5e, $2, $0
+	db "だれ@@@", $18, $3, $0
+	db "だれか@@", $1a, $3, $0
+	db "だれが@@", $1c, $3, $0
+	db "だれに@@", $1e, $3, $0
+	db "だれの@@", $20, $3, $0
+	db "だれも@@", $22, $3, $0
+	db "だれを@@", $24, $3, $0
+	db "ちゃん@@", $38, $3, $0
+	db "ともだち@", $b8, $3, $0
+	db "なかま@@", $d4, $3, $0
+	db "ひと@@@", $62, $4, $0
+	db "ボーイ@@", $98, $4, $0
+	db "ボク@@@", $a0, $4, $0
+	db "ボクが@@", $a2, $4, $0
+	db "ボクに@@", $a4, $4, $0
+	db "ボクの@@", $a6, $4, $0
+	db "ボクは@@", $a8, $4, $0
+	db "ボクを@@", $aa, $4, $0
+	db "みんな@@", $4, $5, $0
+	db "みんなが@", $6, $5, $0
+	db "みんなに@", $8, $5, $0
+	db "みんなの@", $a, $5, $0
+	db "みんなは@", $c, $5, $0
+	db "ライバル@", $8a, $5, $0
+	db "わたし@@", $c2, $5, $0
+	db "わたしが@", $c4, $5, $0
+	db "わたしに@", $c6, $5, $0
+	db "わたしの@", $c8, $5, $0
+	db "わたしは@", $ca, $5, $0
+	db "わたしを@", $cc, $5, $0
+
+Unknown_11dea0: ; 11dea0
+	db "あいしょう", $18, $0, $0
+	db "いけ!@@", $88, $0, $0
+	db "いちばん@", $96, $0, $0
+	db "かくご@@", $4c, $1, $0
+	db "かたせて@", $54, $1, $0
+	db "かち@@@", $56, $1, $0
+	db "かつ@@@", $58, $1, $0
+	db "かった@@", $60, $1, $0
+	db "かったら@", $62, $1, $0
+	db "かって@@", $64, $1, $0
+	db "かてない@", $66, $1, $0
+	db "かてる@@", $68, $1, $0
+	db "かなわない", $70, $1, $0
+	db "きあい@@", $84, $1, $0
+	db "きめた@@", $a8, $1, $0
+	db "きりふだ@", $b6, $1, $0
+	db "くらえ@@", $c2, $1, $0
+	db "こい!@@", $da, $1, $0
+	db "こうげき@", $e0, $1, $0
+	db "こうさん@", $e2, $1, $0
+	db "こんじょう", $8, $2, $0
+	db "さいのう@", $16, $2, $0
+	db "さくせん@", $1a, $2, $0
+	db "さばき@@", $22, $2, $0
+	db "しょうぶ@", $7e, $2, $0
+	db "しょうり@", $80, $2, $0
+	db "せめ@@@", $b4, $2, $0
+	db "センス@@", $b6, $2, $0
+	db "たいせん@", $e6, $2, $0
+	db "たたかい@", $f6, $2, $0
+	db "ちから@@", $32, $3, $0
+	db "チャレンジ", $36, $3, $0
+	db "つよい@@", $58, $3, $0
+	db "つよすぎ@", $5a, $3, $0
+	db "つらい@@", $5c, $3, $0
+	db "つらかった", $5e, $3, $0
+	db "てかげん@", $6c, $3, $0
+	db "てき@@@", $6e, $3, $0
+	db "てんさい@", $90, $3, $0
+	db "でんせつ@", $94, $3, $0
+	db "トレーナー", $c6, $3, $0
+	db "にげ@@@", $4, $4, $0
+	db "ぬるい@@", $10, $4, $0
+	db "ねらう@@", $16, $4, $0
+	db "バトル@@", $4a, $4, $0
+	db "ファイト@", $72, $4, $0
+	db "ふっかつ@", $78, $4, $0
+	db "ポイント@", $94, $4, $0
+	db "ポケモン@", $ac, $4, $0
+	db "ほんき@@", $bc, $4, $0
+	db "まいった!", $c4, $4, $0
+	db "まけ@@@", $c8, $4, $0
+	db "まけたら@", $ca, $4, $0
+	db "まけて@@", $cc, $4, $0
+	db "まける@@", $ce, $4, $0
+	db "まもり@@", $ea, $4, $0
+	db "みかた@@", $f2, $4, $0
+	db "みとめない", $fe, $4, $0
+	db "みとめる@", $0, $5, $0
+	db "むてき@@", $16, $5, $0
+	db "もらった!", $3c, $5, $0
+	db "よゆう@@", $7a, $5, $0
+	db "よわい@@", $82, $5, $0
+	db "よわすぎ@", $84, $5, $0
+	db "らくしょう", $8e, $5, $0
+	db "りーダー@", $9e, $5, $0
+	db "ルール@@", $a0, $5, $0
+	db "レべル@@", $a6, $5, $0
+	db "わざ@@@", $be, $5, $0
+
+Unknown_11e0c8: ; 11e0c8
+	db "!@@@@", $0, $0, $0
+	db "!!@@@", $2, $0, $0
+	db "!?@@@", $4, $0, $0
+	db "?@@@@", $6, $0, $0
+	db "…@@@@", $8, $0, $0
+	db "…!@@@", $a, $0, $0
+	db "………@@", $c, $0, $0
+	db "ー@@@@", $e, $0, $0
+	db "ーーー@@", $10, $0, $0
+	db "あーあ@@", $14, $0, $0
+	db "あーん@@", $16, $0, $0
+	db "あははー@", $52, $0, $0
+	db "あら@@@", $54, $0, $0
+	db "いえ@@@", $72, $0, $0
+	db "イエス@@", $74, $0, $0
+	db "うう@@@", $ac, $0, $0
+	db "うーん@@", $ae, $0, $0
+	db "うおー!@", $b0, $0, $0
+	db "うおりゃー", $b2, $0, $0
+	db "うひょー@", $bc, $0, $0
+	db "うふふ@@", $be, $0, $0
+	db "うわー@@", $ca, $0, $0
+	db "うわーん@", $cc, $0, $0
+	db "ええ@@@", $d2, $0, $0
+	db "えー@@@", $d4, $0, $0
+	db "えーん@@", $d6, $0, $0
+	db "えへへ@@", $dc, $0, $0
+	db "おいおい@", $e0, $0, $0
+	db "おお@@@", $e2, $0, $0
+	db "おっと@@", $c, $1, $0
+	db "がーん@@", $42, $1, $0
+	db "キャー@@", $aa, $1, $0
+	db "ギャー@@", $ac, $1, $0
+	db "ぐふふふふ", $bc, $1, $0
+	db "げっ@@@", $ce, $1, $0
+	db "しくしく@", $3e, $2, $0
+	db "ちえっ@@", $2e, $3, $0
+	db "てへ@@@", $86, $3, $0
+	db "ノー@@@", $20, $4, $0
+	db "はあー@@", $2a, $4, $0
+	db "はい@@@", $30, $4, $0
+	db "はっはっは", $48, $4, $0
+	db "ひいー@@", $56, $4, $0
+	db "ひゃあ@@", $6a, $4, $0
+	db "ふっふっふ", $7c, $4, $0
+	db "ふにゃ@@", $7e, $4, $0
+	db "ププ@@@", $80, $4, $0
+	db "ふふん@@", $82, $4, $0
+	db "ふん@@@", $88, $4, $0
+	db "へっへっへ", $8e, $4, $0
+	db "へへー@@", $90, $4, $0
+	db "ほーほほほ", $9c, $4, $0
+	db "ほら@@@", $b6, $4, $0
+	db "まあ@@@", $c0, $4, $0
+	db "むきー!!", $10, $5, $0
+	db "むふー@@", $18, $5, $0
+	db "むふふ@@", $1a, $5, $0
+	db "むむ@@@", $1c, $5, $0
+	db "よーし@@", $6a, $5, $0
+	db "よし!@@", $72, $5, $0
+	db "ラララ@@", $98, $5, $0
+	db "わーい@@", $ac, $5, $0
+	db "わーん!!", $b0, $5, $0
+	db "ワォ@@@", $b2, $5, $0
+	db "わっ!!@", $ce, $5, $0
+	db "わははは!", $d0, $5, $0
+
+Unknown_11e2d8: ; 11e2d8
+	db "あのね@@", $50, $0, $0
+	db "あんまり@", $6e, $0, $0
+	db "いじわる@", $8e, $0, $0
+	db "うそ@@@", $b6, $0, $0
+	db "うむ@@@", $c4, $0, $0
+	db "おーい@@", $e4, $0, $0
+	db "おすすめ@", $6, $1, $0
+	db "おばかさん", $1e, $1, $0
+	db "かなり@@", $6e, $1, $0
+	db "から@@@", $7a, $1, $0
+	db "きぶん@@", $98, $1, $0
+	db "けど@@@", $d6, $1, $0
+	db "こそ@@@", $ea, $1, $0
+	db "こと@@@", $ee, $1, $0
+	db "さあ@@@", $12, $2, $0
+	db "さっぱり@", $1e, $2, $0
+	db "さて@@@", $20, $2, $0
+	db "じゅうぶん", $72, $2, $0
+	db "すぐ@@@", $94, $2, $0
+	db "すごく@@", $98, $2, $0
+	db "すこしは@", $9a, $2, $0
+	db "すっっごい", $a0, $2, $0
+	db "ぜーんぜん", $b0, $2, $0
+	db "ぜったい@", $b2, $2, $0
+	db "それで@@", $ce, $2, $0
+	db "だけ@@@", $f2, $2, $0
+	db "だって@@", $fc, $2, $0
+	db "たぶん@@", $6, $3, $0
+	db "たら@@@", $14, $3, $0
+	db "ちょー@@", $3a, $3, $0
+	db "ちょっと@", $3c, $3, $0
+	db "ったら@@", $4e, $3, $0
+	db "って@@@", $50, $3, $0
+	db "ていうか@", $62, $3, $0
+	db "でも@@@", $88, $3, $0
+	db "どうしても", $9c, $3, $0
+	db "とうぜん@", $a0, $3, $0
+	db "どうぞ@@", $a2, $3, $0
+	db "とりあえず", $be, $3, $0
+	db "なあ@@@", $cc, $3, $0
+	db "なんて@@", $f4, $3, $0
+	db "なんでも@", $fc, $3, $0
+	db "なんとか@", $fe, $3, $0
+	db "には@@@", $8, $4, $0
+	db "バッチり@", $46, $4, $0
+	db "ばりばり@", $52, $4, $0
+	db "ほど@@@", $b0, $4, $0
+	db "ほんと@@", $be, $4, $0
+	db "まさに@@", $d0, $4, $0
+	db "マジ@@@", $d2, $4, $0
+	db "マジで@@", $d4, $4, $0
+	db "まったく@", $e4, $4, $0
+	db "まで@@@", $e6, $4, $0
+	db "まるで@@", $ec, $4, $0
+	db "ムード@@", $e, $5, $0
+	db "むしろ@@", $14, $5, $0
+	db "めちゃ@@", $24, $5, $0
+	db "めっぽう@", $28, $5, $0
+	db "もう@@@", $2c, $5, $0
+	db "モード@@", $2e, $5, $0
+	db "もっと@@", $36, $5, $0
+	db "もはや@@", $38, $5, $0
+	db "やっと@@", $4a, $5, $0
+	db "やっぱり@", $4c, $5, $0
+	db "より@@@", $7c, $5, $0
+	db "れば@@@", $a4, $5, $0
+
+Unknown_11e4e8: ; 11e4e8
+	db "あいたい@", $1a, $0, $0
+	db "あそびたい", $32, $0, $0
+	db "いきたい@", $7c, $0, $0
+	db "うかれて@", $b4, $0, $0
+	db "うれしい@", $c6, $0, $0
+	db "うれしさ@", $c8, $0, $0
+	db "エキサイト", $d8, $0, $0
+	db "えらい@@", $de, $0, $0
+	db "おかしい@", $ec, $0, $0
+	db "ォッケー@", $8, $1, $0
+	db "かえりたい", $48, $1, $0
+	db "がっくし@", $5a, $1, $0
+	db "かなしい@", $6c, $1, $0
+	db "がんばって", $80, $1, $0
+	db "きがしない", $86, $1, $0
+	db "きがする@", $88, $1, $0
+	db "ききたい@", $8a, $1, $0
+	db "きになる@", $90, $1, $0
+	db "きのせい@", $96, $1, $0
+	db "きらい@@", $b4, $1, $0
+	db "くやしい@", $be, $1, $0
+	db "くやしさ@", $c0, $1, $0
+	db "さみしい@", $24, $2, $0
+	db "ざんねん@", $32, $2, $0
+	db "しあわせ@", $36, $2, $0
+	db "したい@@", $44, $2, $0
+	db "したくない", $46, $2, $0
+	db "しまった@", $64, $2, $0
+	db "しょんぼり", $82, $2, $0
+	db "すき@@@", $92, $2, $0
+	db "だいきらい", $da, $2, $0
+	db "たいくつ@", $dc, $2, $0
+	db "だいじ@@", $de, $2, $0
+	db "だいすき@", $e4, $2, $0
+	db "たいへん@", $ea, $2, $0
+	db "たのしい@", $0, $3, $0
+	db "たのしすぎ", $2, $3, $0
+	db "たべたい@", $8, $3, $0
+	db "ダメダメ@", $e, $3, $0
+	db "たりない@", $16, $3, $0
+	db "ちくしょー", $34, $3, $0
+	db "どうしよう", $9e, $3, $0
+	db "ドキドキ@", $ac, $3, $0
+	db "ナイス@@", $d0, $3, $0
+	db "のみたい@", $26, $4, $0
+	db "びっくり@", $60, $4, $0
+	db "ふあん@@", $74, $4, $0
+	db "ふらふら@", $86, $4, $0
+	db "ほしい@@", $ae, $4, $0
+	db "ボロボロ@", $b8, $4, $0
+	db "まだまだ@", $e0, $4, $0
+	db "まてない@", $e8, $4, $0
+	db "まんぞく@", $f0, $4, $0
+	db "みたい@@", $f8, $4, $0
+	db "めずらしい", $22, $5, $0
+	db "メラメラ@", $2a, $5, $0
+	db "やだ@@@", $46, $5, $0
+	db "やったー@", $48, $5, $0
+	db "やばい@@", $50, $5, $0
+	db "やばすぎる", $52, $5, $0
+	db "やられた@", $54, $5, $0
+	db "やられて@", $56, $5, $0
+	db "よかった@", $6e, $5, $0
+	db "ラブラブ@", $96, $5, $0
+	db "ロマン@@", $a8, $5, $0
+	db "ろんがい@", $aa, $5, $0
+	db "わから@@", $b4, $5, $0
+	db "わかり@@", $b6, $5, $0
+	db "わくわく@", $ba, $5, $0
+
+Unknown_11e710: ; 11e710
+	db "あつい@@", $38, $0, $0
+	db "あった@@", $3a, $0, $0
+	db "あり@@@", $56, $0, $0
+	db "ある@@@", $5e, $0, $0
+	db "あわてて@", $6a, $0, $0
+	db "いい@@@", $70, $0, $0
+	db "いか@@@", $76, $0, $0
+	db "イカス@@", $78, $0, $0
+	db "いきおい@", $7a, $0, $0
+	db "いける@@", $8a, $0, $0
+	db "いじょう@", $8c, $0, $0
+	db "いそがしい", $90, $0, $0
+	db "いっしょに", $9a, $0, $0
+	db "いっぱい@", $9c, $0, $0
+	db "いない@@", $a0, $0, $0
+	db "いや@@@", $a4, $0, $0
+	db "いる@@@", $a8, $0, $0
+	db "うまい@@", $c0, $0, $0
+	db "うまく@@", $c2, $0, $0
+	db "おおきい@", $e6, $0, $0
+	db "おくれ@@", $f2, $0, $0
+	db "おしい@@", $fa, $0, $0
+	db "おもしろい", $2c, $1, $0
+	db "おもしろく", $2e, $1, $0
+	db "かっこいい", $5c, $1, $0
+	db "かわいい@", $7e, $1, $0
+	db "かんぺき@", $82, $1, $0
+	db "けっこう@", $d0, $1, $0
+	db "げんき@@", $d8, $1, $0
+	db "こわい@@", $6, $2, $0
+	db "さいこう@", $14, $2, $0
+	db "さむい@@", $26, $2, $0
+	db "さわやか@", $2c, $2, $0
+	db "しかたない", $38, $2, $0
+	db "すごい@@", $96, $2, $0
+	db "すごすぎ@", $9c, $2, $0
+	db "すてき@@", $a4, $2, $0
+	db "たいした@", $e0, $2, $0
+	db "だいじょぶ", $e2, $2, $0
+	db "たかい@@", $ec, $2, $0
+	db "ただしい@", $f8, $2, $0
+	db "だめ@@@", $c, $3, $0
+	db "ちいさい@", $2c, $3, $0
+	db "ちがう@@", $30, $3, $0
+	db "つかれ@@", $48, $3, $0
+	db "とくい@@", $b0, $3, $0
+	db "とまらない", $b6, $3, $0
+	db "ない@@@", $ce, $3, $0
+	db "なかった@", $d2, $3, $0
+	db "なし@@@", $d8, $3, $0
+	db "なって@@", $dc, $3, $0
+	db "はやい@@", $50, $4, $0
+	db "ひかる@@", $5a, $4, $0
+	db "ひくい@@", $5c, $4, $0
+	db "ひどい@@", $64, $4, $0
+	db "ひとりで@", $66, $4, $0
+	db "ひま@@@", $68, $4, $0
+	db "ふそく@@", $76, $4, $0
+	db "へた@@@", $8c, $4, $0
+	db "まちがって", $e2, $4, $0
+	db "やさしい@", $42, $5, $0
+	db "よく@@@", $70, $5, $0
+	db "よわって@", $86, $5, $0
+	db "らく@@@", $8c, $5, $0
+	db "らしい@@", $90, $5, $0
+	db "わるい@@", $d4, $5, $0
+
+Unknown_11e920: ; 11e920
+	db "アルバイト", $64, $0, $0
+	db "うち@@@", $ba, $0, $0
+	db "おかね@@", $ee, $0, $0
+	db "おこづかい", $f4, $0, $0
+	db "おふろ@@", $24, $1, $0
+	db "がっこう@", $5e, $1, $0
+	db "きねん@@", $92, $1, $0
+	db "グループ@", $c6, $1, $0
+	db "ゲット@@", $d2, $1, $0
+	db "こうかん@", $de, $1, $0
+	db "しごと@@", $40, $2, $0
+	db "しゅぎょう", $74, $2, $0
+	db "じゅぎょう", $76, $2, $0
+	db "じゅく@@", $78, $2, $0
+	db "しんか@@", $88, $2, $0
+	db "ずかん@@", $90, $2, $0
+	db "せいかつ@", $ae, $2, $0
+	db "せんせい@", $b8, $2, $0
+	db "センター@", $ba, $2, $0
+	db "タワー@@", $28, $3, $0
+	db "つうしん@", $40, $3, $0
+	db "テスト@@", $7e, $3, $0
+	db "テレビ@@", $8c, $3, $0
+	db "でんわ@@", $96, $3, $0
+	db "どうぐ@@", $9a, $3, $0
+	db "トレード@", $c4, $3, $0
+	db "なまえ@@", $e8, $3, $0
+	db "ニュース@", $a, $4, $0
+	db "にんき@@", $c, $4, $0
+	db "パーティー", $2e, $4, $0
+	db "べんきょう", $92, $4, $0
+	db "マシン@@", $d6, $4, $0
+	db "めいし@@", $1e, $5, $0
+	db "メッセージ", $26, $5, $0
+	db "もようがえ", $3a, $5, $0
+	db "ゆめ@@@", $5a, $5, $0
+	db "ようちえん", $66, $5, $0
+	db "ラジォ@@", $92, $5, $0
+	db "ワールド@", $ae, $5, $0
+
+Unknown_11ea58: ; 11ea58
+	db "アイドル@", $1e, $0, $0
+	db "アニメ@@", $4c, $0, $0
+	db "うた@@@", $b8, $0, $0
+	db "えいが@@", $d0, $0, $0
+	db "おかし@@", $ea, $0, $0
+	db "おしゃべり", $4, $1, $0
+	db "おままごと", $28, $1, $0
+	db "おもちゃ@", $30, $1, $0
+	db "おんがく@", $38, $1, $0
+	db "カード@@", $3e, $1, $0
+	db "かいもの@", $46, $1, $0
+	db "グルメ@@", $c8, $1, $0
+	db "ゲーム@@", $cc, $1, $0
+	db "ざっし@@", $1c, $2, $0
+	db "さんぽ@@", $34, $2, $0
+	db "じてんしゃ", $50, $2, $0
+	db "しゅみ@@", $7a, $2, $0
+	db "スポーツ@", $a8, $2, $0
+	db "ダイエット", $d8, $2, $0
+	db "たからもの", $f0, $2, $0
+	db "たび@@@", $4, $3, $0
+	db "ダンス@@", $2a, $3, $0
+	db "つり@@@", $60, $3, $0
+	db "デート@@", $6a, $3, $0
+	db "でんしゃ@", $92, $3, $0
+	db "ぬいぐるみ", $e, $4, $0
+	db "パソコン@", $3e, $4, $0
+	db "はな@@@", $4c, $4, $0
+	db "ヒーロー@", $58, $4, $0
+	db "ひるね@@", $6e, $4, $0
+	db "ヒロイン@", $70, $4, $0
+	db "ぼうけん@", $96, $4, $0
+	db "ボード@@", $9a, $4, $0
+	db "ボール@@", $9e, $4, $0
+	db "ほん@@@", $ba, $4, $0
+	db "マンガ@@", $ee, $4, $0
+	db "やくそく@", $40, $5, $0
+	db "やすみ@@", $44, $5, $0
+	db "よてい@@", $74, $5, $0
+
+Unknown_11eb90: ; 11eb90
+	db "あう@@@", $20, $0, $0
+	db "あきらめ@", $24, $0, $0
+	db "あげる@@", $28, $0, $0
+	db "あせる@@", $2e, $0, $0
+	db "あそび@@", $30, $0, $0
+	db "あそぶ@@", $34, $0, $0
+	db "あつめ@@", $3e, $0, $0
+	db "あるき@@", $60, $0, $0
+	db "あるく@@", $62, $0, $0
+	db "いく@@@", $7e, $0, $0
+	db "いけ@@@", $86, $0, $0
+	db "おき@@@", $f0, $0, $0
+	db "おこり@@", $f6, $0, $0
+	db "おこる@@", $f8, $0, $0
+	db "おしえ@@", $fe, $0, $0
+	db "おしえて@", $0, $1, $0
+	db "おねがい@", $1a, $1, $0
+	db "おぼえ@@", $26, $1, $0
+	db "かえる@@", $4a, $1, $0
+	db "がまん@@", $74, $1, $0
+	db "きく@@@", $8c, $1, $0
+	db "きたえ@@", $8e, $1, $0
+	db "きめ@@@", $a6, $1, $0
+	db "くる@@@", $c4, $1, $0
+	db "さがし@@", $18, $2, $0
+	db "さわぎ@@", $2a, $2, $0
+	db "した@@@", $42, $2, $0
+	db "しって@@", $4a, $2, $0
+	db "して@@@", $4e, $2, $0
+	db "しない@@", $52, $2, $0
+	db "しまう@@", $60, $2, $0
+	db "じまん@@", $66, $2, $0
+	db "しらない@", $84, $2, $0
+	db "しる@@@", $86, $2, $0
+	db "しんじて@", $8a, $2, $0
+	db "する@@@", $aa, $2, $0
+	db "たべる@@", $a, $3, $0
+	db "つかう@@", $42, $3, $0
+	db "つかえ@@", $44, $3, $0
+	db "つかって@", $46, $3, $0
+	db "できない@", $70, $3, $0
+	db "できる@@", $72, $3, $0
+	db "でない@@", $84, $3, $0
+	db "でる@@@", $8a, $3, $0
+	db "なげる@@", $d6, $3, $0
+	db "なやみ@@", $ea, $3, $0
+	db "ねられ@@", $18, $4, $0
+	db "ねる@@@", $1a, $4, $0
+	db "のがし@@", $24, $4, $0
+	db "のむ@@@", $28, $4, $0
+	db "はしり@@", $3a, $4, $0
+	db "はしる@@", $3c, $4, $0
+	db "はたらき@", $40, $4, $0
+	db "はたらく@", $42, $4, $0
+	db "はまって@", $4e, $4, $0
+	db "ぶつけ@@", $7a, $4, $0
+	db "ほめ@@@", $b4, $4, $0
+	db "みせて@@", $f6, $4, $0
+	db "みて@@@", $fc, $4, $0
+	db "みる@@@", $2, $5, $0
+	db "めざす@@", $20, $5, $0
+	db "もって@@", $34, $5, $0
+	db "ゆずる@@", $58, $5, $0
+	db "ゆるす@@", $5c, $5, $0
+	db "ゆるせ@@", $5e, $5, $0
+	db "られない@", $9a, $5, $0
+	db "られる@@", $9c, $5, $0
+	db "わかる@@", $b8, $5, $0
+	db "わすれ@@", $c0, $5, $0
+
+Unknown_11edb8: ; 11edb8
+	db "あき@@@", $22, $0, $0
+	db "あさ@@@", $2a, $0, $0
+	db "あした@@", $2c, $0, $0
+	db "いちにち@", $94, $0, $0
+	db "いつか@@", $98, $0, $0
+	db "いつも@@", $9e, $0, $0
+	db "いま@@@", $a2, $0, $0
+	db "えいえん@", $ce, $0, $0
+	db "おととい@", $12, $1, $0
+	db "おわり@@", $36, $1, $0
+	db "かようび@", $78, $1, $0
+	db "きのう@@", $94, $1, $0
+	db "きょう@@", $b0, $1, $0
+	db "きんようび", $b8, $1, $0
+	db "げつようび", $d4, $1, $0
+	db "このあと@", $f4, $1, $0
+	db "このまえ@", $f6, $1, $0
+	db "こんど@@", $c, $2, $0
+	db "じかん@@", $3c, $2, $0
+	db "じゅうねん", $70, $2, $0
+	db "すいようび", $8e, $2, $0
+	db "スタート@", $9e, $2, $0
+	db "ずっと@@", $a2, $2, $0
+	db "ストップ@", $a6, $2, $0
+	db "そのうち@", $c4, $2, $0
+	db "ついに@@", $3e, $3, $0
+	db "つぎ@@@", $4a, $3, $0
+	db "どようび@", $ba, $3, $0
+	db "なつ@@@", $da, $3, $0
+	db "にちようび", $6, $4, $0
+	db "はじめ@@", $38, $4, $0
+	db "はる@@@", $54, $4, $0
+	db "ひる@@@", $6c, $4, $0
+	db "ふゆ@@@", $84, $4, $0
+	db "まいにち@", $c6, $4, $0
+	db "もくようび", $30, $5, $0
+	db "よなか@@", $76, $5, $0
+	db "よる@@@", $7e, $5, $0
+	db "らいしゅう", $88, $5, $0
+
+Unknown_11eef0: ; 11eef0
+	db "いたします", $92, $0, $0
+	db "おります@", $32, $1, $0
+	db "か!?@@", $3c, $1, $0
+	db "かい?@@", $44, $1, $0
+	db "かしら?@", $50, $1, $0
+	db "かな?@@", $6a, $1, $0
+	db "かも@@@", $76, $1, $0
+	db "くれ@@@", $ca, $1, $0
+	db "ございます", $e8, $1, $0
+	db "しがち@@", $3a, $2, $0
+	db "します@@", $62, $2, $0
+	db "じゃ@@@", $6a, $2, $0
+	db "じゃん@@", $6e, $2, $0
+	db "しよう@@", $7c, $2, $0
+	db "ぜ!@@@", $ac, $2, $0
+	db "ぞ!@@@", $bc, $2, $0
+	db "た@@@@", $d4, $2, $0
+	db "だ@@@@", $d6, $2, $0
+	db "だからね@", $ee, $2, $0
+	db "だぜ@@@", $f4, $2, $0
+	db "だった@@", $fa, $2, $0
+	db "だね@@@", $fe, $2, $0
+	db "だよ@@@", $10, $3, $0
+	db "だよねー!", $12, $3, $0
+	db "だわ@@@", $26, $3, $0
+	db "ッス@@@", $4c, $3, $0
+	db "ってかんじ", $52, $3, $0
+	db "っぱなし@", $54, $3, $0
+	db "つもり@@", $56, $3, $0
+	db "ていない@", $64, $3, $0
+	db "ている@@", $66, $3, $0
+	db "でーす!@", $68, $3, $0
+	db "でした@@", $74, $3, $0
+	db "でしょ?@", $76, $3, $0
+	db "でしょー!", $78, $3, $0
+	db "です@@@", $7a, $3, $0
+	db "ですか?@", $7c, $3, $0
+	db "ですよ@@", $80, $3, $0
+	db "ですわ@@", $82, $3, $0
+	db "どうなの?", $a4, $3, $0
+	db "どうよ?@", $a8, $3, $0
+	db "とかいって", $aa, $3, $0
+	db "なの@@@", $e0, $3, $0
+	db "なのか@@", $e2, $3, $0
+	db "なのだ@@", $e4, $3, $0
+	db "なのよ@@", $e6, $3, $0
+	db "なんだね@", $f2, $3, $0
+	db "なんです@", $f8, $3, $0
+	db "なんてね@", $fa, $3, $0
+	db "ね@@@@", $12, $4, $0
+	db "ねー@@@", $14, $4, $0
+	db "の@@@@", $1c, $4, $0
+	db "の?@@@", $1e, $4, $0
+	db "ばっかり@", $44, $4, $0
+	db "まーす!@", $c2, $4, $0
+	db "ます@@@", $d8, $4, $0
+	db "ますわ@@", $da, $4, $0
+	db "ません@@", $dc, $4, $0
+	db "みたいな@", $fa, $4, $0
+	db "よ!@@@", $60, $5, $0
+	db "よー@@@", $68, $5, $0
+	db "よーん@@", $6c, $5, $0
+	db "よね@@@", $78, $5, $0
+	db "るよ@@@", $a2, $5, $0
+	db "わけ@@@", $bc, $5, $0
+	db "わよ!@@", $d2, $5, $0
+
+Unknown_11f100: ; 11f100
+	db "ああ@@@", $12, $0, $0
+	db "あっち@@", $3c, $0, $0
+	db "あの@@@", $4e, $0, $0
+	db "ありゃ@@", $5c, $0, $0
+	db "あれ@@@", $66, $0, $0
+	db "あれは@@", $68, $0, $0
+	db "あんな@@", $6c, $0, $0
+	db "こう@@@", $dc, $1, $0
+	db "こっち@@", $ec, $1, $0
+	db "この@@@", $f2, $1, $0
+	db "こりゃ@@", $fe, $1, $0
+	db "これ@@@", $0, $2, $0
+	db "これだ!@", $2, $2, $0
+	db "これは@@", $4, $2, $0
+	db "こんな@@", $e, $2, $0
+	db "そう@@@", $be, $2, $0
+	db "そっち@@", $c0, $2, $0
+	db "その@@@", $c2, $2, $0
+	db "そりゃ@@", $c6, $2, $0
+	db "それ@@@", $c8, $2, $0
+	db "それだ!@", $cc, $2, $0
+	db "それは@@", $d0, $2, $0
+	db "そんな@@", $d2, $2, $0
+	db "どう@@@", $98, $3, $0
+	db "どっち@@", $b2, $3, $0
+	db "どの@@@", $b4, $3, $0
+	db "どりゃ@@", $c0, $3, $0
+	db "どれ@@@", $c2, $3, $0
+	db "どれを@@", $c8, $3, $0
+	db "どんな@@", $ca, $3, $0
+	db "なに@@@", $de, $3, $0
+	db "なんか@@", $ec, $3, $0
+	db "なんだ@@", $f0, $3, $0
+	db "なんで@@", $f6, $3, $0
+	db "なんなんだ", $0, $4, $0
+	db "なんの@@", $2, $4, $0
+; 11f220
+
+Unknown_11f220:
+INCBIN "baserom.gbc",$11f220,$11f2f0 - $11f220
+
+Unknown_11f2f0:
+INCBIN "baserom.gbc",$11f2f0,$11f332 - $11f2f0
+
+Unknown_11f332:
+INCBIN "baserom.gbc",$11f332,$11f3ce - $11f332
+
+Unknown_11f3ce:
+INCBIN "baserom.gbc",$11f3ce,$11f686 - $11f3ce
 
 
 
@@ -121988,7 +125782,46 @@ Function17d370: ; 17d370
 	ret
 ; 17d3f6
 
-INCBIN "baserom.gbc",$17d3f6,$17d45a - $17d3f6
+Function17d3f6: ; 17d3f6
+	call WhiteBGMap
+	call ClearSprites
+	call ClearScreen
+	callba Function104061
+	call DisableLCD
+	ld hl, $8ee0
+	ld de, $c608
+	ld bc, $0010
+	call CopyBytes
+	ld a, $1
+	ld [rVBK], a
+	ld hl, $66fe
+	ld de, VTiles1
+	ld bc, $0480
+	call CopyBytes
+	xor a
+	ld hl, $97f0
+	ld bc, $0010
+	call ByteFill
+	ld hl, $c608
+	ld de, $8ee0
+	ld bc, $0010
+	call CopyBytes
+	xor a
+	ld [rVBK], a
+	call EnableLCD
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld hl, $6ff6
+	ld de, Unkn1Pals
+	ld bc, $0040
+	call CopyBytes
+	call Function32f9
+	pop af
+	ld [rSVBK], a
+	ret
+; 17d45a
 
 Function17d45a: ; 17d45a
 .asm_17d45a
