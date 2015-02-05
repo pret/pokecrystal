@@ -46302,7 +46302,7 @@ INCBIN "baserom.gbc",$4150e,$416b0 - $4150e
 ; 416b0
 
 PokedexSlowpokeLZ: ; 416b0
-INCBIN "baserom.gbc",$416b0,$41a24 - $416b0
+INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 
 Function41a24: ; 41a24
 	ld a, [hCGB]
@@ -51903,39 +51903,40 @@ Function49f16: ; 49f16
 
 
 MobileString1: ; 49fcc
-	db "めいしフ,ルダー", $4e
-	db "あいさつ", $4e
-	db "プロフィール", $4e
-	db "せ", $1e, "い", $4e
-	db "もどる@"
+	db   "めいしフ,ルダー"
+	next "あいさつ"
+	next "プロフィール"
+	next "せ", $1e, "い"
+	next "もどる"
+	db   "@"
 ; 49fe9
 
 
 MobileStrings2:
 
 String_0x49fe9: ; 49fe9
-	db "めいし", $1f, "つくったり", $4e
-	db "ほぞんしておける フ,ルダーです@"
+	db   "めいし", $1f, "つくったり"
+	next "ほぞんしておける フ,ルダーです@"
 ; 4a004
 
 String_0x4a004: ; 4a004
-	db "モバイルたいせんや じぶんのめいしで", $4e
-	db "つかう あいさつ", $1f, "つくります@"
+	db   "モバイルたいせんや じぶんのめいしで"
+	next "つかう あいさつ", $1f, "つくります@"
 ; 4a026
 
 String_0x4a026: ; 4a026
-	db "あなた", $25, "じゅうしょや ねんれいの", $4e
-	db "せ", $1e, "い", $1f, "かえられます@"
+	db   "あなた", $25, "じゅうしょや ねんれいの"
+	next "せ", $1e, "い", $1f, "かえられます@"
 ; 4a042
 
 String_0x4a042: ; 4a042
-	db "モバイルセンター", $1d, "せつぞくするとき", $4e
-	db "ひつような こと", $1f, "きめます@"
+	db  "モバイルセンター", $1d, "せつぞくするとき"
+	next "ひつような こと", $1f, "きめます@"
 ; 4a062
 
 String_0x4a062: ; 4a062
-	db "まえ", $25, "がめん ", $1d, "もどります", $4e
-	db "@"
+	db   "まえ", $25, "がめん ", $1d, "もどります"
+	next "@"
 ; 4a071
 
 
@@ -122681,7 +122682,15 @@ Function11c075: ; 11c075
 	ret
 ; 11c082
 
-INCBIN "baserom.gbc",$11c082,$11c08f - $11c082
+Function11c082: ; 11c082
+	push de
+	ld a, c
+	call Function11c254
+	pop de
+	ld bc, $cd36
+	call Function11c0c6
+	ret
+; 11c08f
 
 Function11c08f: ; 11c08f
 	ld l, e
@@ -122937,11 +122946,11 @@ Function11c1ca: ; 11c1ca
 	call Function11d323
 	call Function32f9
 	call DisableLCD
-	ld hl, $567e
+	ld hl, GFX_11d67e
 	ld de, VTiles2
-	ld bc, $0060
+	ld bc, $60
 	call CopyBytes
-	ld hl, $56de
+	ld hl, LZ_11d6de
 	ld de, VTiles0
 	call Decompress
 	call EnableLCD
@@ -123987,7 +123996,17 @@ Function11c8c7: ; 11c8c7
 	ret
 ; 11c8ec
 
-INCBIN "baserom.gbc", $11c8ec, $11c8f6 - $11c8ec
+String_11c8ec: ; 11c8ec
+	db "ぺージ@"
+; 11c8f0
+
+String_11c8f0: ; 11c8f0
+	db "まえ@"
+; 11c8f3
+
+String_11c8f3: ; 11c8f3
+	db "つぎ@"
+; 11c8f6
 
 Function11c8f6: ; 11c8f6 (47:48f6)
 	ld a, [BGMapBuffer] ; $cd20 (aliases: CreditsPos)
@@ -124061,8 +124080,8 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 Function11c95d: ; 11c95d (47:495d)
 	sla a
 	ld c, a
-	ld b, $0
-	ld hl, $4986
+	ld b, 0
+	ld hl, Unknown_11c986
 	add hl, bc
 	ld a, [hli]
 	ld c, a
@@ -124079,7 +124098,7 @@ Function11c95d: ; 11c95d (47:495d)
 	dec c
 	jr nz, .asm_11c972
 	dec hl
-	ld bc, $ffec
+	ld bc, -20
 	add hl, bc
 	ld a, $5
 	ld c, a
@@ -124092,7 +124111,14 @@ Function11c95d: ; 11c95d (47:495d)
 	ret
 ; 11c986 (47:4986)
 
-INCBIN "baserom.gbc",$11c986,$11c992 - $11c986
+Unknown_11c986:
+	dwcoord  1,  2
+	dwcoord  7,  2
+	dwcoord 13,  2
+	dwcoord  1,  4
+	dwcoord  7,  4
+	dwcoord 13,  4
+; 11c992
 
 Function11c992: ; 11c992 (47:4992)
 	ld a, $8
@@ -124263,7 +124289,7 @@ Function11ca7f: ; 11ca7f (47:4a7f)
 	ret
 
 Function11caad: ; 11caad (47:4aad)
-	ld de, $4b1c
+	ld de, String_11cb1c
 	call Function11ca7f
 
 Function11cab3: ; 11cab3 (47:4ab3)
@@ -124295,7 +124321,7 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ld a, $ff
 	ld [$cd35], a
 	hlcoord 1, 14
-	ld de, $4b31
+	ld de, String_11cb31
 	call PlaceString
 	ld a, $1
 	ld [$cd2a], a
@@ -124331,7 +124357,15 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ret
 ; 11cb1c (47:4b1c)
 
-INCBIN "baserom.gbc",$11cb1c,$11cb52 - $11cb1c
+String_11cb1c: ; 11cb1c
+	db   "あいさつ", $25, "とうろく", $1f, "ちゅうし"
+	next "しますか?@"
+; 11cb31
+
+String_11cb31: ; 11cb31
+	db   "とうろくちゅう", $25, "あいさつ", $24, "ほぞん"
+	next "されません", $4a, "よろしい ですか?@"
+; 11cb52
 
 Function11cb52: ; 11cb52 (47:4b52)
 	ld hl, Unknown_11cc01
@@ -125585,7 +125619,107 @@ Function11d4aa: ; 11d4aa
 ; 11d4fe
 
 
-INCBIN "baserom.gbc",$11d4fe,$11da52 - $11d4fe
+Unknown_11d4fe:
+	dw Unknown_11d558
+	dw Unknown_11d55f
+	dw Unknown_11d565
+	dw Unknown_11d56c
+	dw Unknown_11d574
+	dw Unknown_11d57f
+	dw Unknown_11d58e
+	dw Unknown_11d598
+	dw Unknown_11d59f
+	dw Unknown_11d5a3
+	dw Unknown_11d5b2
+	dw Unknown_11d5bb
+	dw Unknown_11d5c0
+	dw Unknown_11d5c8
+	dw Unknown_11d5cb
+	dw Unknown_11d5cd
+	dw Unknown_11d5d1
+	dw Unknown_11d5d4
+	dw Unknown_11d5d6
+	dw Unknown_11d5dc
+	dw Unknown_11d5e7
+	dw Unknown_11d5ea
+	dw Unknown_11d5f7
+	dw Unknown_11d5f9
+	dw Unknown_11d5fc
+	dw Unknown_11d5fe
+	dw Unknown_11d60e
+	dw Unknown_11d61d
+	dw Unknown_11d62e
+	dw Unknown_11d636
+	dw Unknown_11d63e
+	dw Unknown_11d649
+	dw Unknown_11d64e
+	dw Unknown_11d651
+	dw Unknown_11d656
+	dw Unknown_11d65a
+	dw Unknown_11d660
+	dw Unknown_11d662
+	dw Unknown_11d665
+	dw Unknown_11d66d
+	dw Unknown_11d671
+	dw Unknown_11d674
+	dw Unknown_11d678
+	dw Unknown_11d67a
+	dw Unknown_11d67d
+
+Unknown_11d558: db $17, $18, $77, $a8, $9f, $c9, $ff
+Unknown_11d55f: db $85, $4a, $a7, $dd, $5f, $ff
+Unknown_11d565: db $3b, $b9, $46, $47, $c2, $dc, $ff
+Unknown_11d56c: db $e3, $be, $c4, $6b, $ef, $7d, $f4, $ff
+Unknown_11d574: db $a0, $a2, $e0, $39, $a1, $ea, $15, $16, $8b, $8a, $ff
+Unknown_11d57f: db $3a, $44, $95, $7f, $8f, $8c, $8d, $ed, $8, $9, $53, $68, $69, $73, $ff
+Unknown_11d58e: db $c0, $a, $82, $4e, $26, $cb, $b6, $e6, $63, $ff
+Unknown_11d598: db $2c, $cc, $cf, $62, $d2, $a9, $ff
+Unknown_11d59f: db $3f, $5e, $80, $ff
+Unknown_11d5a3: db $81, $51, $5c, $5d, $43, $e, $36, $e7, $13, $37, $2a, $4c, $4b, $30, $ff
+Unknown_11d5b2: db $6f, $f7, $de, $6a, $91, $87, $1b, $1c, $ff
+Unknown_11d5bb: db $75, $5a, $86, $57, $ff
+Unknown_11d5c0: db $f5, $79, $7b, $29, $f, $61, $60, $ff
+Unknown_11d5c8: db $7, $fb, $ff
+Unknown_11d5cb: db $ca, $ff
+Unknown_11d5cd: db $33, $74, $66, $ff
+Unknown_11d5d1: db $98, $aa, $ff
+Unknown_11d5d4: db $d5, $ff
+Unknown_11d5d6: db $32, $df, $e1, $e4, $b5, $ff
+Unknown_11d5dc: db $54, $55, $eb, $6d, $49, $b0, $af, $76, $b, $e8, $ff
+Unknown_11d5e7: db $2b, $67, $ff
+Unknown_11d5ea: db $22, $1f, $20, $1d, $1e, $21, $34, $d7, $3d, $ba, $3e, $3c, $ff
+Unknown_11d5f7: db $c3, $ff
+Unknown_11d5f9: db $b1, $b2, $ff
+Unknown_11d5fc: db $ce, $ff
+Unknown_11d5fe: db $56, $d0, $9d, $94, $c, $d4, $bb, $f2, $2e, $2f, $d3, $7a, $ec, $5b, $f8, $ff
+Unknown_11d60e: db $ad, $d, $19, $24, $12, $11, $ac, $23, $4, $78, $9b, $bf, $d8, $64, $ff
+Unknown_11d61d: db $92, $88, $41, $7e, $cd, $28, $2, $1, $3, $8e, $f0, $ae, $c5, $90, $27, $d1, $ff
+Unknown_11d62e: db $99, $58, $59, $d6, $e5, $35, $6c, $ff
+Unknown_11d636: db $fa, $a3, $10, $4d, $bc, $89, $e9, $ff
+Unknown_11d63e: db $db, $da, $9c, $45, $6e, $b7, $b8, $65, $38, $e2, $ff
+Unknown_11d649: db $93, $97, $96, $f1, $ff
+Unknown_11d64e: db $c8, $ee, $ff
+Unknown_11d651: db $9a, $84, $48, $b3, $ff
+Unknown_11d656: db $b4, $31, $72, $ff
+Unknown_11d65a: db $c7, $50, $4f, $c6, $c1, $ff
+Unknown_11d660: db $40, $ff
+Unknown_11d662: db $f6, $a4, $ff
+Unknown_11d665: db $f3, $1a, $71, $14, $83, $2d, $ab, $ff
+Unknown_11d66d: db $5, $6, $d9, $ff
+Unknown_11d671: db $7c, $f9, $ff
+Unknown_11d674: db $52, $a6, $a5, $ff
+Unknown_11d678: db $25, $ff
+Unknown_11d67a: db $bd, $9e, $42
+Unknown_11d67d: db $ff
+; 11d67e
+
+GFX_11d67e:
+INCBIN "gfx/pokedex/select_start.2bpp"
+; 11d6de
+
+LZ_11d6de:
+INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
+; 11da52
 
 Strings_11da52: ; 11da52
 	db "ポケモン@@"
@@ -126413,25 +126547,33 @@ INCBIN "baserom.gbc",$11f3ce,$11f686 - $11f3ce
 
 SECTION "bank5B", ROMX, BANK[$5B]
 
-INCBIN "baserom.gbc",$16c000,$16d421 - $16c000
+INCBIN "baserom.gbc",$16c000,$16cfc1 - $16c000
+
+GFX_16cfc1:
+INCBIN "baserom.gbc",$16cfc1,$16d421 - $16cfc1
 
 Function16d421: ; 16d421
-	ld de, $4fc1
+	ld de, GFX_16cfc1
 	ld hl, VTiles2
-	ld bc, $5b46
+	lb bc, BANK(GFX_16cfc1), $46
 	call Get2bpp
 	ret
 ; 16d42e
 
 Function16d42e: ; 16d42e
-	ld hl, $5465
+	ld hl, Tilemap_16d465
 	ld de, TileMap
 	ld bc, $0168
 	call CopyBytes
 	ret
 ; 16d43b
 
-INCBIN "baserom.gbc",$16d43b,$16d61d - $16d43b
+INCBIN "baserom.gbc",$16d43b,$16d465 - $16d43b
+
+Tilemap_16d465:
+INCBIN "baserom.gbc",$16d465,$16d5cd - $16d465
+
+INCBIN "baserom.gbc",$16d5cd,$16d61d - $16d5cd
 
 Function16d61d: ; 16d61d
 	ld h, d
