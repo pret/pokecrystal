@@ -4,9 +4,7 @@ Music_VermilionCity: ; eb676
 	dbw $02, Music_VermilionCity_Ch3
 ; eb67f
 
-
-INCBIN "baserom.gbc", $eb67f, $eb680 - $eb67f
-
+	db $3
 
 Music_VermilionCity_Ch1: ; eb680
 	stereopanning $f

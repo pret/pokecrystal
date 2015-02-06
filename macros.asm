@@ -6,31 +6,18 @@ INCLUDE "macros/move_effect.asm"
 INCLUDE "macros/move_anim.asm"
 INCLUDE "macros/movement.asm"
 INCLUDE "macros/map.asm"
+INCLUDE "macros/predef.asm"
+INCLUDE "macros/rst.asm"
+INCLUDE "macros/mobile.asm"
 
 
-text   EQUS "db $00," ; Start writing text.
-next   EQUS "db $4e," ; Move a line down.
-line   EQUS "db $4f," ; Start writing at the bottom line.
-para   EQUS "db $51," ; Start a new paragraph.
-cont   EQUS "db $55," ; Scroll to the next line.
-done   EQUS "db $57"  ; End a text box.
-prompt EQUS "db $58"  ; Prompt the player to end a text box (initiating some other event).
 
-; Pokedex text commands are only used with pokered.
-; They are included for compatibility.
-page   EQUS "db $50,"     ; Start a new Pokedex page.
-dex    EQUS "db $e8, $50" ; End a Pokedex entry.
+RGB: MACRO
+	dw ((\3) << 10) + ((\2) << 5) + (\1)
+	ENDM
 
 
 percent EQUS "* $ff / 100"
-
-; macros require rst vectors to be defined
-FarCall    EQU $08
-Bankswitch EQU $10
-JumpTable  EQU $28
-
-
-NONE       EQU 0
 
 
 dwb: MACRO
@@ -54,29 +41,31 @@ dbwww: MACRO
 	ENDM
 
 dn: MACRO
+	rept _NARG / 2
 	db (\1) << 4 + (\2)
+	shift
+	shift
+	endr
+	ENDM
+
+dx: MACRO
+x = 8 * ((\1) - 1)
+	rept \1
+	db ((\2) >> x) & $ff
+x = x + -8
+	endr
 	ENDM
 
 dt: MACRO ; three-byte (big-endian)
-	db (\1 >> 16) & $ff
-	db (\1 >> 8) & $ff
-	db \1 & $ff
+	dx 3, \1
+	ENDM
+
+dd: MACRO ; four-byte (big-endian)
+	dx 4, \1
 	ENDM
 
 bigdw: MACRO ; big-endian word
-	dw ((\1)/$100) + (((\1)&$ff)*$100)
-	ENDM
-
-callab: MACRO ; address, bank
-	ld hl, \1
-	ld a, BANK(\1)
-	rst FarCall
-	ENDM
-
-callba: MACRO ; bank, address
-	ld a, BANK(\1)
-	ld hl, \1
-	rst FarCall
+	dx 2, \1
 	ENDM
 
 
@@ -85,76 +74,28 @@ lb: MACRO ; r, hi, lo
 	ENDM
 
 
-; Constant enumeration
-
-const_def: MACRO
-const_value SET 0
-ENDM
-
-const: MACRO
-\1 EQU const_value
-const_value SET const_value + 1
-ENDM
-
-
-TX_RAM: MACRO
-	db 1
-	dw \1
-	ENDM
-
-TX_FAR: MACRO
-	db $16
-	dw \1
-	db BANK(\1)
-	ENDM
-
-RGB: MACRO
-	dw (((\3) << 10) | ((\2) << 5) | (\1))
-	ENDM
-
-
-note: MACRO
-	db (\1) << 4 + ((\2) - 1)
-	ENDM
-
-sound: macro
-	db \1 ; duration
-	db \2 ; intensity
-	dw \3 ; frequency
-	endm
-
-noise: macro
-	db \1 ; duration
-	db \2 ; intensity
-	db \3 ; frequency
-	endm
-
-; pitch
-__ EQU 0
-C_ EQU 1
-C# EQU 2
-D_ EQU 3
-D# EQU 4
-E_ EQU 5
-F_ EQU 6
-F# EQU 7
-G_ EQU 8
-G# EQU 9
-A_ EQU 10
-A# EQU 11
-B_ EQU 12
-
-
 bccoord: MACRO
-	ld bc, TileMap + SCREEN_WIDTH * (\2) + (\1)
+	coord bc, \1, \2
 	ENDM
-	
+
 decoord: MACRO
-	ld de, TileMap + SCREEN_WIDTH * (\2) + (\1)
+	coord de, \1, \2
 	ENDM
 
 hlcoord: MACRO
-	ld hl, TileMap + SCREEN_WIDTH * (\2) + (\1)
+	coord hl, \1, \2
+	ENDM
+
+coord: MACRO
+	ld \1, TileMap + SCREEN_WIDTH * (\3) + (\2)
+	ENDM
+
+dwcoord: MACRO
+	rept _NARG / 2
+	dw TileMap + SCREEN_WIDTH * (\2) + (\1)
+	shift
+	shift
+	endr
 	ENDM
 
 
@@ -176,38 +117,15 @@ endanim: MACRO
 	ENDM
 
 
-; maps
+; Constant enumeration
 
-map: MACRO
-; This is a really silly hack to get around an rgbds bug.
-
-; Ideally:
-;	db GROUP_\1, MAP_\1
-
-\1\@  EQUS "GROUP_\1"
-\1\@2 EQUS "MAP_\1"
-	db \1\@, \1\@2
+const_def: MACRO
+const_value SET 0
 ENDM
 
-roam_map: MACRO
-; A map and an arbitrary number of some more maps.
-
-	map \1
-	db \2
-
-IF \2 > 0
-	map \3
-ENDC
-IF \2 > 1
-	map \4
-ENDC
-IF \2 > 2
-	map \5
-ENDC
-IF \2 > 3
-	map \6
-ENDC
-	db 0
+const: MACRO
+\1 EQU const_value
+const_value SET const_value + 1
 ENDM
 
 
@@ -223,24 +141,9 @@ x = x + (\1) * $40000
 ENDM
 
 
-add_predef: MACRO
-\1Predef::
-	dw \1
-	db BANK(\1)
-ENDM
-
-predef_id: MACRO
-; Some functions load the predef id
-; without immediately calling Predef.
-	ld a, (\1Predef - PredefPointers) / 3
-ENDM
-
-predef: MACRO
-	predef_id \1
-	call Predef
-ENDM
-
-predef_jump: MACRO
-	predef_id \1
-	jp Predef
+bcd: MACRO
+	rept _NARG
+	dn ((\1) % 100) / 10, (\1) % 10
+	shift
+	endr
 ENDM

@@ -4,9 +4,7 @@ Music_KantoTrainerBattle: ; ec9fa
 	dbw $02, Music_KantoTrainerBattle_Ch3
 ; eca03
 
-
-INCBIN "baserom.gbc", $eca03, $eca04 - $eca03
-
+	db $3
 
 Music_KantoTrainerBattle_Ch1: ; eca04
 	tempo 114

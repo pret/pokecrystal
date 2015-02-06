@@ -1,3 +1,35 @@
+note: MACRO
+	dn (\1), (\2) - 1
+	ENDM
+
+sound: macro
+	db \1 ; duration
+	db \2 ; intensity
+	dw \3 ; frequency
+	endm
+
+noise: macro
+	db \1 ; duration
+	db \2 ; intensity
+	db \3 ; frequency
+	endm
+
+; pitch
+__ EQU 0
+C_ EQU 1
+C# EQU 2
+D_ EQU 3
+D# EQU 4
+E_ EQU 5
+F_ EQU 6
+F# EQU 7
+G_ EQU 8
+G# EQU 9
+A_ EQU 10
+A# EQU 11
+B_ EQU 12
+
+
 octave: macro
 	db $d8 - (\1)
 	endm

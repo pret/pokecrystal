@@ -3,9 +3,7 @@ Music_PostCredits: ; cfd9e
 	dbw $01, Music_PostCredits_Ch2
 ; cfda4
 
-
-INCBIN "baserom.gbc", $cfda4, $cfda5 - $cfda4
-
+	db $2
 
 Music_PostCredits_Ch1: ; cfda5
 	tempo 271

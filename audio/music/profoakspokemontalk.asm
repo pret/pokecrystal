@@ -4,9 +4,7 @@ Music_ProfOaksPokemonTalk: ; f4c9f
 	dbw $02, Music_ProfOaksPokemonTalk_Ch3
 ; f4ca8
 
-
-INCBIN "baserom.gbc", $f4ca8, $f4ca9 - $f4ca8
-
+	db $3
 
 Music_ProfOaksPokemonTalk_Ch1: ; f4ca9
 	tempo 164

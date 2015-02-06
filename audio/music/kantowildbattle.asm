@@ -4,9 +4,7 @@ Music_KantoWildBattle: ; ed06d
 	dbw $02, Music_KantoWildBattle_Ch3
 ; ed076
 
-
-INCBIN "baserom.gbc", $ed076, $ed077 - $ed076
-
+	db $3
 
 Music_KantoWildBattle_Ch1: ; ed077
 	tempo 112

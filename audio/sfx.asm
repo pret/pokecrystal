@@ -1088,9 +1088,7 @@ Sfx_RegisterPhoneNumber_Ch5: ; f0dd3
 	endchannel
 ; f0def
 
-
-INCBIN "baserom.gbc", $f0def, $f0df0 - $f0def
-
+	db $df
 
 Sfx_RegisterPhoneNumber_Ch6: ; f0df0
 	togglesfx
@@ -1115,9 +1113,7 @@ Sfx_RegisterPhoneNumber_Ch6: ; f0df0
 	endchannel
 ; f0e07
 
-
-INCBIN "baserom.gbc", $f0e07, $f0e08 - $f0e07
-
+	db $df
 
 Sfx_RegisterPhoneNumber_Ch7: ; f0e08
 	togglesfx
@@ -1139,9 +1135,7 @@ Sfx_RegisterPhoneNumber_Ch7: ; f0e08
 	endchannel
 ; f0e1b
 
-
-INCBIN "baserom.gbc", $f0e1b, $f0e1c - $f0e1b
-
+	db $df
 
 Sfx_RegisterPhoneNumber_Ch8: ; f0e1c
 	togglesfx
@@ -1153,9 +1147,7 @@ Sfx_RegisterPhoneNumber_Ch8: ; f0e1c
 	endchannel
 ; f0e25
 
-
-INCBIN "baserom.gbc", $f0e25, $f0e26 - $f0e25
-
+	db $df
 
 Sfx_3RdPlace: ; f0e26
 	dbw $84, Sfx_3RdPlace_Ch5
@@ -1181,9 +1173,7 @@ Sfx_3RdPlace_Ch5: ; f0e2f
 	endchannel
 ; f0e44
 
-
-INCBIN "baserom.gbc", $f0e44, $f0e45 - $f0e44
-
+	db $df
 
 Sfx_3RdPlace_Ch6: ; f0e45
 	togglesfx
@@ -1201,9 +1191,7 @@ Sfx_3RdPlace_Ch6: ; f0e45
 	endchannel
 ; f0e55
 
-
-INCBIN "baserom.gbc", $f0e55, $f0e56 - $f0e55
-
+	db $df
 
 Sfx_3RdPlace_Ch7: ; f0e56
 	togglesfx
@@ -1221,9 +1209,7 @@ Sfx_3RdPlace_Ch7: ; f0e56
 	endchannel
 ; f0e65
 
-
-INCBIN "baserom.gbc", $f0e65, $f0e66 - $f0e65
-
+	db $df
 
 Sfx_GetEggFromDaycareLady: ; f0e66
 Sfx_GetEggFromDaycareMan: ; f0e66
@@ -1265,9 +1251,7 @@ Sfx_GetEggFromDaycareMan_Ch5: ; f0e72
 	endchannel
 ; f0e9a
 
-
-INCBIN "baserom.gbc", $f0e9a, $f0e9b - $f0e9a
-
+	db $df
 
 Sfx_GetEggFromDaycareLady_Ch6: ; f0e9b
 Sfx_GetEggFromDaycareMan_Ch6: ; f0e9b
@@ -1298,9 +1282,7 @@ Sfx_GetEggFromDaycareMan_Ch6: ; f0e9b
 	endchannel
 ; f0ebd
 
-
-INCBIN "baserom.gbc", $f0ebd, $f0ebe - $f0ebd
-
+	db $df
 
 Sfx_GetEggFromDaycareLady_Ch7: ; f0ebe
 Sfx_GetEggFromDaycareMan_Ch7: ; f0ebe
@@ -1321,9 +1303,7 @@ Sfx_GetEggFromDaycareMan_Ch7: ; f0ebe
 	endchannel
 ; f0ecf
 
-
-INCBIN "baserom.gbc", $f0ecf, $f0ed0 - $f0ecf
-
+	db $df
 
 Sfx_GetEggFromDaycareLady_Ch8: ; f0ed0
 Sfx_GetEggFromDaycareMan_Ch8: ; f0ed0
@@ -1337,9 +1317,7 @@ Sfx_GetEggFromDaycareMan_Ch8: ; f0ed0
 	endchannel
 ; f0edb
 
-
-INCBIN "baserom.gbc", $f0edb, $f0edc - $f0edb
-
+	db $df
 
 Sfx_MoveDeleted: ; f0edc
 	dbw $c4, Sfx_MoveDeleted_Ch5
@@ -1377,9 +1355,7 @@ Sfx_MoveDeleted_Ch5: ; f0ee8
 	endchannel
 ; f0f0c
 
-
-INCBIN "baserom.gbc", $f0f0c, $f0f0d - $f0f0c
-
+	db $df
 
 Sfx_MoveDeleted_Ch6: ; f0f0d
 	togglesfx
@@ -1416,9 +1392,7 @@ Sfx_MoveDeleted_Ch6: ; f0f0d
 	endchannel
 ; f0f36
 
-
-INCBIN "baserom.gbc", $f0f36, $f0f37 - $f0f36
-
+	db $df
 
 Sfx_MoveDeleted_Ch7: ; f0f37
 	togglesfx
@@ -1446,9 +1420,7 @@ Sfx_MoveDeleted_Ch7: ; f0f37
 	endchannel
 ; f0f52
 
-
-INCBIN "baserom.gbc", $f0f52, $f0f53 - $f0f52
-
+	db $df
 
 Sfx_MoveDeleted_Ch8: ; f0f53
 	togglesfx
@@ -1461,9 +1433,7 @@ Sfx_MoveDeleted_Ch8: ; f0f53
 	endchannel
 ; f0f5d
 
-
-INCBIN "baserom.gbc", $f0f5d, $f0f5e - $f0f5d
-
+	db $df
 
 Sfx_2ndPlace: ; f0f5e
 	dbw $c4, Sfx_2ndPlace_Ch5
@@ -1505,9 +1475,7 @@ Sfx_2ndPlace_Ch5: ; f0f6a
 	endchannel
 ; f0f91
 
-
-INCBIN "baserom.gbc", $f0f91, $f0f92 - $f0f91
-
+	db $df
 
 Sfx_2ndPlace_Ch6: ; f0f92
 	togglesfx
@@ -1532,9 +1500,7 @@ Sfx_2ndPlace_Ch6: ; f0f92
 	endchannel
 ; f0fac
 
-
-INCBIN "baserom.gbc", $f0fac, $f0fad - $f0fac
-
+	db $df
 
 Sfx_2ndPlace_Ch7: ; f0fad
 	togglesfx
@@ -1573,9 +1539,7 @@ Sfx_2ndPlace_Ch7: ; f0fad
 	endchannel
 ; f0fd1
 
-
-INCBIN "baserom.gbc", $f0fd1, $f0fd2 - $f0fd1
-
+	db $df
 
 Sfx_2ndPlace_Ch8: ; f0fd2
 	togglesfx
@@ -1591,9 +1555,7 @@ Sfx_2ndPlace_branch_f0fd7: ; f0fd7
 	endchannel
 ; f0fe1
 
-
-INCBIN "baserom.gbc", $f0fe1, $f0fe2 - $f0fe1
-
+	db $df
 
 Sfx_1stPlace: ; f0fe2
 	dbw $c4, Sfx_1stPlace_Ch5
@@ -1642,9 +1604,7 @@ Sfx_1stPlace_Ch5: ; f0fee
 	endchannel
 ; f101f
 
-
-INCBIN "baserom.gbc", $f101f, $f1020 - $f101f
-
+	db $df
 
 Sfx_1stPlace_Ch6: ; f1020
 	togglesfx
@@ -1669,9 +1629,7 @@ Sfx_1stPlace_Ch6: ; f1020
 	endchannel
 ; f103c
 
-
-INCBIN "baserom.gbc", $f103c, $f103d - $f103c
-
+	db $df
 
 Sfx_1stPlace_Ch7: ; f103d
 	togglesfx
@@ -1696,9 +1654,7 @@ Sfx_1stPlace_Ch7: ; f103d
 	endchannel
 ; f1053
 
-
-INCBIN "baserom.gbc", $f1053, $f1054 - $f1053
-
+	db $df
 
 Sfx_1stPlace_Ch8: ; f1054
 	togglesfx
@@ -1720,9 +1676,7 @@ Sfx_1stPlace_Ch8: ; f1054
 	endchannel
 ; f1068
 
-
-INCBIN "baserom.gbc", $f1068, $f1069 - $f1068
-
+	db $df
 
 Sfx_ChooseACard: ; f1069
 	dbw $c4, Sfx_ChooseACard_Ch5
@@ -1776,9 +1730,7 @@ Sfx_ChooseACard_Ch5: ; f1075
 	endchannel
 ; f10a8
 
-
-INCBIN "baserom.gbc", $f10a8, $f10a9 - $f10a8
-
+	db $df
 
 Sfx_ChooseACard_Ch6: ; f10a9
 	togglesfx
@@ -1811,9 +1763,7 @@ Sfx_ChooseACard_Ch6: ; f10a9
 	endchannel
 ; f10c8
 
-
-INCBIN "baserom.gbc", $f10c8, $f10c9 - $f10c8
-
+	db $df
 
 Sfx_ChooseACard_Ch7: ; f10c9
 	togglesfx
@@ -1850,9 +1800,7 @@ Sfx_ChooseACard_Ch7: ; f10c9
 	endchannel
 ; f10eb
 
-
-INCBIN "baserom.gbc", $f10eb, $f10ec - $f10eb
-
+	db $df
 
 Sfx_ChooseACard_Ch8: ; f10ec
 	togglesfx
@@ -1878,9 +1826,7 @@ Sfx_ChooseACard_Ch8: ; f10ec
 	endchannel
 ; f1103
 
-
-INCBIN "baserom.gbc", $f1103, $f1104 - $f1103
-
+	db $df
 
 Sfx_GetTm: ; f1104
 	dbw $c4, Sfx_GetTm_Ch5
@@ -1914,9 +1860,7 @@ Sfx_GetTm_Ch5: ; f1110
 	endchannel
 ; f1130
 
-
-INCBIN "baserom.gbc", $f1130, $f1131 - $f1130
-
+	db $df
 
 Sfx_GetTm_Ch6: ; f1131
 	togglesfx
@@ -1940,9 +1884,7 @@ Sfx_GetTm_Ch6: ; f1131
 	endchannel
 ; f114b
 
-
-INCBIN "baserom.gbc", $f114b, $f114c - $f114b
-
+	db $df
 
 Sfx_GetTm_Ch7: ; f114c
 	togglesfx
@@ -1974,9 +1916,7 @@ Sfx_GetTm_Ch7: ; f114c
 	endchannel
 ; f1169
 
-
-INCBIN "baserom.gbc", $f1169, $f116a - $f1169
-
+	db $df
 
 Sfx_GetTm_Ch8: ; f116a
 	togglesfx
@@ -1997,9 +1937,7 @@ Sfx_GetTm_Ch8: ; f116a
 	endchannel
 ; f117c
 
-
-INCBIN "baserom.gbc", $f117c, $f117d - $f117c
-
+	db $df
 
 Sfx_GetBadge: ; f117d
 	dbw $c4, Sfx_GetBadge_Ch5
@@ -2028,9 +1966,7 @@ Sfx_GetBadge_Ch5: ; f1189
 	endchannel
 ; f11a9
 
-
-INCBIN "baserom.gbc", $f11a9, $f11aa - $f11a9
-
+	db $df
 
 Sfx_GetBadge_branch_f11aa: ; f11aa
 	note __, 5
@@ -2103,9 +2039,7 @@ Sfx_GetBadge_Ch6: ; f11be
 	endchannel
 ; f11f4
 
-
-INCBIN "baserom.gbc", $f11f4, $f11f5 - $f11f4
-
+	db $df
 
 Sfx_GetBadge_Ch7: ; f11f5
 	togglesfx
@@ -2145,9 +2079,7 @@ Sfx_GetBadge_Ch7: ; f11f5
 	endchannel
 ; f121a
 
-
-INCBIN "baserom.gbc", $f121a, $f121b - $f121a
-
+	db $df
 
 Sfx_GetBadge_Ch8: ; f121b
 	togglesfx
@@ -2174,9 +2106,7 @@ Sfx_GetBadge_branch_f1220: ; f1220
 	endchannel
 ; f1235
 
-
-INCBIN "baserom.gbc", $f1235, $f1236 - $f1235
-
+	db $df
 
 Sfx_QuitSlots: ; f1236
 	dbw $c4, Sfx_QuitSlots_Ch5
@@ -2216,9 +2146,7 @@ Sfx_QuitSlots_Ch5: ; f1242
 	endchannel
 ; f1265
 
-
-INCBIN "baserom.gbc", $f1265, $f1266 - $f1265
-
+	db $df
 
 Sfx_QuitSlots_Ch6: ; f1266
 	togglesfx
@@ -2246,9 +2174,7 @@ Sfx_QuitSlots_Ch6: ; f1266
 	endchannel
 ; f1282
 
-
-INCBIN "baserom.gbc", $f1282, $f1283 - $f1282
-
+	db $df
 
 Sfx_QuitSlots_Ch7: ; f1283
 	togglesfx
@@ -2280,9 +2206,7 @@ Sfx_QuitSlots_Ch7: ; f1283
 	endchannel
 ; f12a0
 
-
-INCBIN "baserom.gbc", $f12a0, $f12a1 - $f12a0
-
+	db $df
 
 Sfx_QuitSlots_Ch8: ; f12a1
 	togglesfx
@@ -2303,9 +2227,7 @@ Sfx_QuitSlots_Ch8: ; f12a1
 	endchannel
 ; f12b3
 
-
-INCBIN "baserom.gbc", $f12b3, $f12b4 - $f12b3
-
+	db $df
 
 Sfx_Protect: ; f12b4
 	dbw $44, Sfx_Protect_Ch5
@@ -3259,9 +3181,7 @@ Sfx_DexFanfareLessThan20_Ch5: ; f1884
 	endchannel
 ; f189a
 
-
-INCBIN "baserom.gbc", $f189a, $f189b - $f189a
-
+	db $df
 
 Sfx_DexFanfareLessThan20_Ch6: ; f189b
 	togglesfx
@@ -3281,9 +3201,7 @@ Sfx_DexFanfareLessThan20_Ch6: ; f189b
 	endchannel
 ; f18ac
 
-
-INCBIN "baserom.gbc", $f18ac, $f18ad - $f18ac
-
+	db $df
 
 Sfx_DexFanfareLessThan20_Ch7: ; f18ad
 	togglesfx
@@ -3312,9 +3230,7 @@ Sfx_DexFanfareLessThan20_Ch7: ; f18ad
 	endchannel
 ; f18c7
 
-
-INCBIN "baserom.gbc", $f18c7, $f18c8 - $f18c7
-
+	db $df
 
 Sfx_DexFanfareLessThan20_Ch8: ; f18c8
 	togglesfx
@@ -3326,9 +3242,7 @@ Sfx_DexFanfareLessThan20_Ch8: ; f18c8
 	endchannel
 ; f18d1
 
-
-INCBIN "baserom.gbc", $f18d1, $f18d2 - $f18d1
-
+	db $df
 
 Sfx_DexFanfare140169: ; f18d2
 	dbw $c4, Sfx_DexFanfare140169_Ch5
@@ -3365,9 +3279,7 @@ Sfx_DexFanfare140169_Ch5: ; f18de
 	endchannel
 ; f1900
 
-
-INCBIN "baserom.gbc", $f1900, $f1901 - $f1900
-
+	db $df
 
 Sfx_DexFanfare140169_Ch6: ; f1901
 	togglesfx
@@ -3394,9 +3306,7 @@ Sfx_DexFanfare140169_Ch6: ; f1901
 	endchannel
 ; f191d
 
-
-INCBIN "baserom.gbc", $f191d, $f191e - $f191d
-
+	db $df
 
 Sfx_DexFanfare140169_Ch7: ; f191e
 	togglesfx
@@ -3431,9 +3341,7 @@ Sfx_DexFanfare140169_Ch7: ; f191e
 	endchannel
 ; f193e
 
-
-INCBIN "baserom.gbc", $f193e, $f193f - $f193e
-
+	db $df
 
 Sfx_DexFanfare140169_Ch8: ; f193f
 	togglesfx
@@ -3451,9 +3359,7 @@ Sfx_DexFanfare140169_branch_f1945: ; f1945
 	endchannel
 ; f1950
 
-
-INCBIN "baserom.gbc", $f1950, $f1951 - $f1950
-
+	db $df
 
 Sfx_DexFanfare170199: ; f1951
 	dbw $c4, Sfx_DexFanfare170199_Ch5
@@ -3490,9 +3396,7 @@ Sfx_DexFanfare170199_Ch5: ; f195d
 	endchannel
 ; f1981
 
-
-INCBIN "baserom.gbc", $f1981, $f1982 - $f1981
-
+	db $df
 
 Sfx_DexFanfare170199_Ch6: ; f1982
 	togglesfx
@@ -3521,9 +3425,7 @@ Sfx_DexFanfare170199_Ch6: ; f1982
 	endchannel
 ; f19a2
 
-
-INCBIN "baserom.gbc", $f19a2, $f19a3 - $f19a2
-
+	db $df
 
 Sfx_DexFanfare170199_Ch7: ; f19a3
 	togglesfx
@@ -3552,9 +3454,7 @@ Sfx_DexFanfare170199_Ch7: ; f19a3
 	endchannel
 ; f19bf
 
-
-INCBIN "baserom.gbc", $f19bf, $f19c0 - $f19bf
-
+	db $df
 
 Sfx_DexFanfare170199_Ch8: ; f19c0
 	togglesfx
@@ -3577,9 +3477,7 @@ Sfx_DexFanfare170199_Ch8: ; f19c0
 	endchannel
 ; f19d5
 
-
-INCBIN "baserom.gbc", $f19d5, $f19d6 - $f19d5
-
+	db $fd
 
 Sfx_DexFanfare200229: ; f19d6
 	dbw $c4, Sfx_DexFanfare200229_Ch5
@@ -3614,9 +3512,7 @@ Sfx_DexFanfare200229_Ch5: ; f19e2
 	endchannel
 ; f1a03
 
-
-INCBIN "baserom.gbc", $f1a03, $f1a04 - $f1a03
-
+	db $df
 
 Sfx_DexFanfare200229_Ch6: ; f1a04
 	togglesfx
@@ -3640,9 +3536,7 @@ Sfx_DexFanfare200229_Ch6: ; f1a04
 	endchannel
 ; f1a1e
 
-
-INCBIN "baserom.gbc", $f1a1e, $f1a1f - $f1a1e
-
+	db $df
 
 Sfx_DexFanfare200229_Ch7: ; f1a1f
 	togglesfx
@@ -3687,9 +3581,7 @@ Sfx_DexFanfare200229_Ch7: ; f1a1f
 	endchannel
 ; f1a49
 
-
-INCBIN "baserom.gbc", $f1a49, $f1a4a - $f1a49
-
+	db $df
 
 Sfx_DexFanfare200229_Ch8: ; f1a4a
 	togglesfx
@@ -3719,9 +3611,7 @@ Sfx_DexFanfare200229_Ch8: ; f1a4a
 	endchannel
 ; f1a65
 
-
-INCBIN "baserom.gbc", $f1a65, $f1a66 - $f1a65
-
+	db $df
 
 Sfx_DexFanfare230Plus: ; f1a66
 	dbw $c4, Sfx_DexFanfare230Plus_Ch5
@@ -3777,9 +3667,7 @@ Sfx_DexFanfare230Plus_Ch5: ; f1a72
 	endchannel
 ; f1ab1
 
-
-INCBIN "baserom.gbc", $f1ab1, $f1ab2 - $f1ab1
-
+	db $df
 
 Sfx_DexFanfare230Plus_Ch6: ; f1ab2
 	togglesfx
@@ -3815,9 +3703,7 @@ Sfx_DexFanfare230Plus_Ch6: ; f1ab2
 	endchannel
 ; f1ad9
 
-
-INCBIN "baserom.gbc", $f1ad9, $f1ada - $f1ad9
-
+	db $df
 
 Sfx_DexFanfare230Plus_Ch7: ; f1ada
 	togglesfx
@@ -3867,9 +3753,7 @@ Sfx_DexFanfare230Plus_Ch7: ; f1ada
 	endchannel
 ; f1b0b
 
-
-INCBIN "baserom.gbc", $f1b0b, $f1b0c - $f1b0b
-
+	db $df
 
 Sfx_DexFanfare230Plus_Ch8: ; f1b0c
 	togglesfx
@@ -3906,9 +3790,7 @@ Sfx_DexFanfare230Plus_branch_f1b2b: ; f1b2b
 	endchannel
 ; f1b32
 
-
-INCBIN "baserom.gbc", $f1b32, $f1b33 - $f1b32
-
+	db $df
 
 Sfx_NotVeryEffective: ; f1b33
 	dbw $07, Sfx_NotVeryEffective_Ch8

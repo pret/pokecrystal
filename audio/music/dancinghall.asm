@@ -4,9 +4,7 @@ Music_DancingHall: ; ef9bc
 	dbw $02, Music_DancingHall_Ch3
 ; ef9c5
 
-
-INCBIN "baserom.gbc", $ef9c5, $ef9c6 - $ef9c5
-
+	db $3
 
 Music_DancingHall_Ch1: ; ef9c6
 	tempo 208

@@ -4,9 +4,7 @@ Music_LookKimonoGirl: ; f79b8
 	dbw $02, Music_LookKimonoGirl_Ch3
 ; f79c1
 
-
-INCBIN "baserom.gbc", $f79c1, $f79c2 - $f79c1
-
+	db $3
 
 Music_LookKimonoGirl_Ch1: ; f79c2
 	tempo 160

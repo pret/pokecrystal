@@ -4,9 +4,7 @@ Music_Route1: ; ec000
 	dbw $02, Music_Route1_Ch3
 ; ec009
 
-
-INCBIN "baserom.gbc", $ec009, $ec00a - $ec009
-
+	db $3
 
 Music_Route1_Ch1: ; ec00a
 	stereopanning $f

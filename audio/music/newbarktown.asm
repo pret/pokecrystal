@@ -4,9 +4,7 @@ Music_NewBarkTown: ; eb2d3
 	dbw $02, Music_NewBarkTown_Ch3
 ; eb2dc
 
-
-INCBIN "baserom.gbc", $eb2dc, $eb2dd - $eb2dc
-
+	db $3
 
 Music_NewBarkTown_Ch1: ; eb2dd
 	tempo 187
