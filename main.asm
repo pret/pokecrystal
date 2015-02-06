@@ -125620,6 +125620,9 @@ Function11d4aa: ; 11d4aa
 
 
 Unknown_11d4fe:
+; Pokemon sorted by kana.
+; Notably, Rhydon is missing.
+
 	dw Unknown_11d558
 	dw Unknown_11d55f
 	dw Unknown_11d565
@@ -127916,7 +127919,112 @@ Function170121: ; 170121
 	ret
 ; 170139
 
-INCBIN "baserom.gbc",$170139,$170215 - $170139
+Function170139: ; 170139
+	ld a, $5
+	call GetSRAMBank
+	ld de, $aa41
+	ld h, $0
+	ld l, h
+	ld bc, $03e8
+	call Function17020c
+	ld bc, $0064
+	call Function17020c
+	ld bc, $000a
+	call Function17020c
+	ld a, [de]
+	ld c, a
+	ld b, $0
+	add hl, bc
+	call CloseSRAM
+	ld a, h
+	ld [$c608], a
+	ld a, l
+	ld [$c609], a
+	ld hl, $c628
+	ld a, [PlayerID]
+	ld [hli], a
+	ld a, [$d47c]
+	ld [hli], a
+	ld a, [$d84a]
+	ld [hli], a
+	ld a, [$d84b]
+	ld [hli], a
+	ld e, l
+	ld d, h
+	ld hl, PlayerName
+	ld bc, $0005
+	call CopyBytes
+	ld bc, PlayerID
+	ld de, PlayerGender
+	callba Function4e929
+	ld de, $c631
+	ld a, c
+	ld [de], a
+	inc de
+	ld a, $df
+	ld [$cd49], a
+	ld a, $dc
+	ld [$cd4a], a
+	ld a, $41
+	ld [$cd4b], a
+	ld a, $de
+	ld [$cd4c], a
+	ld a, $3
+.asm_1701ac
+	push af
+	ld a, [$cd49]
+	ld l, a
+	ld a, [$cd4a]
+	ld h, a
+	ld bc, $0030
+	call CopyBytes
+	ld a, l
+	ld [$cd49], a
+	ld a, h
+	ld [$cd4a], a
+	ld a, [$cd4b]
+	ld l, a
+	ld a, [$cd4c]
+	ld h, a
+	ld bc, $0006
+	call CopyBytes
+	ld a, l
+	ld [$cd4b], a
+	ld a, h
+	ld [$cd4c], a
+	pop af
+	dec a
+	jr nz, .asm_1701ac
+	ld a, $4
+	call GetSRAMBank
+	ld hl, $a013
+	ld bc, $0024
+	call CopyBytes
+	call CloseSRAM
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $a894
+	ld bc, $0006
+	call CopyBytes
+	ld hl, $c608
+	ld de, $a948
+	ld bc, $00f6
+	call CopyBytes
+	call CloseSRAM
+	ret
+; 17020c
+
+Function17020c: ; 17020c
+	ld a, [de]
+	inc de
+	and a
+	ret z
+.asm_170210
+	add hl, bc
+	dec a
+	jr nz, .asm_170210
+	ret
+; 170215
 
 Function170215: ; 170215
 	xor a
@@ -127951,8 +128059,8 @@ Function17022c: ; 17022c
 Function17023a: ; 17023a
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $4249
+	ld d, 0
+	ld hl, Jumptable_170249
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -127961,7 +128069,275 @@ Function17023a: ; 17023a
 	jp [hl]
 ; 170249
 
-INCBIN "baserom.gbc", $170249, $17042c - $170249
+Jumptable_170249: ; 170249
+	dw Function17024d
+	dw Function1704c9
+; 17024d
+
+Function17024d: ; 17024d
+	ld a, [Options]
+	push af
+	ld hl, Options
+	set 6, [hl]
+	ld a, [$cfc0]
+	push af
+	or $1
+	ld [$cfc0], a
+	xor a
+	ld [InLinkBattle], a
+	callba Function1060a2
+	callba Functionc658
+	call Function1702b7
+	call Function170bf7
+	ld a, $16
+	call Predef
+	callba Function1500c
+	callba Functionc658
+	ld a, [$d0ee]
+	ld [ScriptVar], a
+	and a
+	jr nz, .asm_1702a9
+	ld a, $1
+	call GetSRAMBank
+	ld a, [$be46]
+	ld [$cf64], a
+	call CloseSRAM
+	ld hl, StringBuffer3
+	ld a, [$cf64]
+	add $f7
+	ld [hli], a
+	ld a, $50
+	ld [hl], a
+
+.asm_1702a9
+	pop af
+	ld [$cfc0], a
+	pop af
+	ld [Options], a
+	ld a, $1
+	ld [$cf63], a
+	ret
+; 1702b7
+
+Function1702b7: ; 1702b7
+	call Function1704a2
+	ld de, $c643
+	ld c, $b
+	callba Function17d073
+	jr nc, .asm_1702db
+	ld a, [$c613]
+	ld [$d265], a
+	call GetPokemonName
+	ld l, e
+	ld h, d
+	ld de, $c643
+	ld bc, $000b
+	call CopyBytes
+
+.asm_1702db
+	ld de, $c67e
+	ld c, $b
+	callba Function17d073
+	jr nc, .asm_1702fc
+	ld a, [$c64e]
+	ld [$d265], a
+	call GetPokemonName
+	ld l, e
+	ld h, d
+	ld de, $c67e
+	ld bc, $000b
+	call CopyBytes
+
+.asm_1702fc
+	ld de, $c6b9
+	ld c, $b
+	callba Function17d073
+	jr nc, .asm_17031d
+	ld a, [$c689]
+	ld [$d265], a
+	call GetPokemonName
+	ld l, e
+	ld h, d
+	ld de, $c6b9
+	ld bc, $000b
+	call CopyBytes
+
+.asm_17031d
+	ld a, $50
+	ld [$c64d], a
+	ld [$c688], a
+	ld [$c6c3], a
+	call Function170c98
+	ld de, $c608
+	ld c, $a
+	callba Function17d073
+	jr nc, .asm_17033d
+	ld hl, String_170426
+	jr .asm_170340
+
+.asm_17033d
+	ld hl, $c608
+
+.asm_170340
+	ld de, $d26b
+	ld bc, $000a
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	ld hl, $c612
+	ld a, [hli]
+	ld [OtherTrainerClass], a
+	ld a, $ea
+	ld [BGMapBuffer], a
+	ld a, $d3
+	ld [$cd21], a
+	ld de, OTPartyMon1Species
+	ld bc, OTPartyCount
+	ld a, $3
+	ld [bc], a
+	inc bc
+.asm_170367
+	push af
+	ld a, [hl]
+	ld [bc], a
+	inc bc
+	push bc
+	ld bc, $0030
+	call CopyBytes
+	push de
+	ld a, [BGMapBuffer]
+	ld e, a
+	ld a, [$cd21]
+	ld d, a
+	ld bc, $000b
+	call CopyBytes
+	ld a, e
+	ld [BGMapBuffer], a
+	ld a, d
+	ld [$cd21], a
+	pop de
+	pop bc
+	pop af
+	dec a
+	and a
+	jr nz, .asm_170367
+	ld a, $ff
+	ld [bc], a
+	ret
+; 170394
+
+Function170394: ; 170394
+	ld hl, $c613
+	ld d, $3
+.asm_170399
+	push de
+	push hl
+	ld b, h
+	ld c, l
+	ld a, [hl]
+	and a
+	jr z, .asm_1703b1
+	cp $ff
+	jr z, .asm_1703b1
+	cp $fe
+	jr z, .asm_1703b1
+	cp $fd
+	jr z, .asm_1703b1
+	cp $fc
+	jr nz, .asm_1703b4
+
+.asm_1703b1
+	ld a, $eb
+	ld [hl], a
+
+.asm_1703b4
+	ld [CurSpecies], a
+	call GetBaseData
+	ld a, $5
+	call GetSRAMBank
+	ld a, [$b2fb]
+	call CloseSRAM
+	ld e, a
+	ld hl, $001f
+	add hl, bc
+	ld a, [hl]
+	cp $2
+	ld a, $2
+	jr c, .asm_1703d6
+	ld a, [hl]
+	cp e
+	jr c, .asm_1703d7
+	ld a, e
+
+.asm_1703d6
+	ld [hl], a
+
+.asm_1703d7
+	ld [CurPartyLevel], a
+	ld hl, $0002
+	add hl, bc
+	ld d, $3
+	ld a, [hli]
+	and a
+	jr z, .asm_1703ea
+	cp $fc
+	jr nc, .asm_1703ea
+	jr .asm_1703f4
+
+.asm_1703ea
+	dec hl
+	ld a, $1
+	ld [hli], a
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	jr .asm_1703ff
+
+.asm_1703f4
+	ld a, [hl]
+	cp $fc
+	jr c, .asm_1703fb
+	ld [hl], $0
+
+.asm_1703fb
+	inc hl
+	dec d
+	jr nz, .asm_1703f4
+
+.asm_1703ff
+	ld hl, $0024
+	add hl, bc
+	ld d, h
+	ld e, l
+	push hl
+	push de
+	ld hl, $000a
+	add hl, bc
+	ld b, $1
+	ld a, $c
+	call Predef
+	pop de
+	pop hl
+	dec de
+	dec de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	pop hl
+	ld bc, $003b
+	add hl, bc
+	pop de
+	dec d
+	jp nz, .asm_170399
+	ret
+; 170426
+
+String_170426: ; 170426
+	db "CHRIS@"
+; 17042c
 
 Function17042c: ; 17042c
 	ld hl, OTPartyMon2ID
@@ -127979,10 +128355,10 @@ Function17042c: ; 17042c
 	cp $f
 	jr nc, .asm_17045b
 	push hl
-	ld hl, $4470
+	ld hl, Unknown_170470
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	pop hl
@@ -128018,7 +128394,54 @@ Function17042c: ; 17042c
 	ret
 ; 170470
 
-INCBIN "baserom.gbc", $170470, $1704e1 - $170470
+Unknown_170470:
+	db $12, $24, $45, $45, $42, $42, $45, $42, $27, $27, $45, $27, $42, $24
+
+Unknown_17047e:
+INCBIN "baserom.gbc", $17047e, $1704a2 - $17047e
+; 1704a2
+
+Function1704a2: ; 1704a2
+	ld a, [rSVBK]
+	push af
+	ld a, $3
+	ld [rSVBK], a
+	ld hl, LYOverrides
+	ld de, $c608
+	ld bc, $00e0
+	call CopyBytes
+	pop af
+	ld [rSVBK], a
+	ld a, $1
+	call GetSRAMBank
+	ld a, $2
+	ld [$be45], a
+	ld hl, $be46
+	inc [hl]
+	call CloseSRAM
+Function1704c9:
+	ret
+; 1704ca
+
+Function1704ca: ; 1704ca
+	ld a, [$be46]
+	cp $7
+	jr c, .asm_1704d3
+	ld a, $6
+
+.asm_1704d3
+	ld hl, $afce
+	ld de, -$e0
+.asm_1704d9
+	and a
+	jr z, .asm_1704e0
+	add hl, de
+	dec a
+	jr .asm_1704d9
+
+.asm_1704e0
+	ret
+; 1704e1
 
 Function1704e1: ; 1704e1
 	call SpeechTextBox
@@ -128049,8 +128472,8 @@ Function1704f1: ; 1704f1
 Function170510: ; 170510
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $451f
+	ld d, 0
+	ld hl, Jumptable_17051f
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -128059,7 +128482,241 @@ Function170510: ; 170510
 	jp [hl]
 ; 17051f
 
-INCBIN "baserom.gbc",$17051f,$170687 - $17051f
+Jumptable_17051f: ; 17051f
+	dw Function170525
+	dw Function170571
+	dw Function170577
+; 170525
+
+Function170525: ; 170525
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $a89c
+	ld de, StringBuffer3
+	ld bc, $0016
+	call CopyBytes
+	ld hl, $a8b2
+	ld de, $c608
+	ld bc, $0096
+	call CopyBytes
+	call CloseSRAM
+	ld hl, $c4b5
+	ld de, StringBuffer3
+	call PlaceString
+	ld hl, $c4dd
+	ld de, String_170676
+	call PlaceString
+	ld hl, $c4e0
+	ld de, StringBuffer4
+	call PlaceString
+	ld hl, $c4e4
+	ld de, String_17067a
+	call PlaceString
+	call Function1705b7
+	call Function1705f0
+	jr Function1705b2
+
+Function170571:
+	call Function32f9
+	call Function1705b2
+
+Function170577:
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and $1
+	jr nz, .asm_1705ac
+	ld a, [hl]
+	and $2
+	jr nz, .asm_1705ac
+	ld a, [hl]
+	and $40
+	jr nz, .asm_17058f
+	ld a, [hl]
+	and $80
+	jr nz, .asm_17059d
+	ret
+
+.asm_17058f
+	ld a, [$cf64]
+	and a
+	ret z
+	sub $f
+	ld [$cf64], a
+	call Function1705f0
+	ret
+
+.asm_17059d
+	ld a, [$cf64]
+	cp $3c
+	ret z
+	add $f
+	ld [$cf64], a
+	call Function1705f0
+	ret
+
+.asm_1705ac
+	ld hl, $cf63
+	set 7, [hl]
+	ret
+
+Function1705b2:
+	ld hl, $cf63
+	inc [hl]
+	ret
+; 1705b7
+
+Function1705b7: ; 1705b7
+	ld hl, $c4f0
+	ld a, $79
+	ld [hli], a
+	ld c, $12
+.asm_1705bf
+	ld a, $7a
+	ld [hli], a
+	dec c
+	jr nz, .asm_1705bf
+	ld a, $7b
+	ld [hli], a
+	ld de, $0014
+	ld c, $c
+.asm_1705cd
+	ld a, $7c
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .asm_1705cd
+	ld a, $7d
+	ld [hli], a
+	ld c, $12
+.asm_1705d9
+	ld a, $7a
+	ld [hli], a
+	dec c
+	jr nz, .asm_1705d9
+	ld a, $7e
+	ld [hl], a
+	ld de, $ffec
+	add hl, de
+	ld c, $c
+.asm_1705e8
+	ld a, $7c
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .asm_1705e8
+	ret
+; 1705f0
+
+Function1705f0: ; 1705f0
+	call Function17064b
+	call Function17065d
+	ld a, $50
+	ld [$cd4e], a
+	ld hl, $c608
+	ld a, [$cf64]
+	ld c, a
+	xor a
+	ld b, a
+	add hl, bc
+	push hl
+	pop bc
+	ld hl, $c519
+	ld a, $6
+.asm_17060c
+	push af
+	push hl
+	ld a, $3
+.asm_170610
+	push af
+	ld de, $cd49
+	ld a, [bc]
+	and a
+	jr z, .asm_170625
+	ld a, $5
+.asm_17061a
+	push af
+	ld a, [bc]
+	ld [de], a
+	inc bc
+	inc de
+	pop af
+	dec a
+	jr nz, .asm_17061a
+	jr .asm_170631
+
+.asm_170625
+	ld a, $5
+.asm_170627
+	push af
+	ld a, $e3
+	ld [de], a
+	inc de
+	inc bc
+	pop af
+	dec a
+	jr nz, .asm_170627
+
+.asm_170631
+	ld de, $cd49
+	push bc
+	call PlaceString
+	ld de, $0006
+	add hl, de
+	pop bc
+	pop af
+	dec a
+	jr nz, .asm_170610
+	pop hl
+	ld de, $0028
+	add hl, de
+	pop af
+	dec a
+	jr nz, .asm_17060c
+	ret
+; 17064b
+
+Function17064b: ; 17064b
+	ld hl, $c505
+	xor a
+	ld b, $c
+.asm_170651
+	ld c, $12
+.asm_170653
+	ld [hli], a
+	dec c
+	jr nz, .asm_170653
+	inc hl
+	inc hl
+	dec b
+	jr nz, .asm_170651
+	ret
+; 17065d
+
+Function17065d: ; 17065d
+	ld a, [$cf64]
+	and a
+	jr z, .asm_170669
+	ld hl, $c516
+	ld a, $61
+	ld [hl], a
+
+.asm_170669
+	ld a, [$cf64]
+	cp $3c
+	ret z
+	ld hl, $c5f2
+	ld a, $ee
+	ld [hl], a
+	ret
+; 170676
+
+String_170676: ; 170676
+	db "ルーム@"
+; 17067a
+
+String_17067a: ; 17067a
+	db "れきだいりーダーいちらん@"
+; 170687
 
 Function170687: ; 170687
 	ld a, [ScriptVar]
@@ -128766,7 +129423,7 @@ Function170b44: ; 170b44
 	ld b, $0
 	pop af
 	ld [rSVBK], a
-	ld hl, $4b90
+	ld hl, Unknown_170b90
 	add hl, bc
 	ld a, [hl]
 	ld [$cd49], a
@@ -128795,6 +129452,7 @@ Function170b44: ; 170b44
 	ret
 ; 170b90
 
+Unknown_170b90:
 INCBIN "baserom.gbc",$170b90,$170bd2 - $170b90
 
 Function170bd2: ; 170bd2
@@ -128826,7 +129484,119 @@ Function170be4: ; 170be4
 	ret
 ; 170bf7
 
-INCBIN "baserom.gbc", $170bf7, $170c8b - $170bf7
+Function170bf7: ; 170bf7
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $a89a
+	xor a
+	ld [hli], a
+	ld [hl], a
+	call CloseSRAM
+	ret
+; 170c06
+
+Function170c06: ; 170c06
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $a894
+	ld a, [$d0ee]
+	and a
+	jr nz, .asm_170c15
+	inc [hl]
+
+.asm_170c15
+	inc hl
+	inc hl
+	ld a, [$a89b]
+	add [hl]
+	ld [hld], a
+	ld a, [$a89a]
+	adc [hl]
+	ld [hli], a
+	jr nc, .asm_170c27
+	ld a, $ff
+	ld [hld], a
+	ld [hli], a
+
+.asm_170c27
+	inc hl
+	push hl
+	ld de, 0
+	xor a
+	ld [$d265], a
+.asm_170c30
+	ld hl, PartyMon1HP
+	ld a, [$d265]
+	call GetPartyLocation
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	inc hl
+	inc hl
+	ld a, [hld]
+	sub c
+	ld c, a
+	ld a, [hl]
+	sbc b
+	ld b, a
+	push de
+	pop hl
+	add hl, bc
+	push hl
+	pop de
+	jr c, .asm_170c58
+	ld a, [$d265]
+	inc a
+	ld [$d265], a
+	cp $3
+	jr c, .asm_170c30
+	jr .asm_170c5b
+
+.asm_170c58
+	ld de, -1
+
+.asm_170c5b
+	pop hl
+	inc hl
+	ld a, e
+	add [hl]
+	ld [hld], a
+	ld a, d
+	adc [hl]
+	ld [hli], a
+	jr nc, .asm_170c69
+	ld a, $ff
+	ld [hld], a
+	ld [hli], a
+
+.asm_170c69
+	inc hl
+	push hl
+	ld b, $0
+	ld c, $0
+.asm_170c6f
+	ld hl, PartyMon1HP
+	ld a, b
+	push bc
+	call GetPartyLocation
+	pop bc
+	ld a, [hli]
+	or [hl]
+	jr nz, .asm_170c7d
+	inc c
+
+.asm_170c7d
+	inc b
+	ld a, b
+	cp $3
+	jr c, .asm_170c6f
+	pop hl
+	ld a, [hl]
+	add c
+	ld [hl], a
+	call CloseSRAM
+	ret
+; 170c8b
 
 Function170c8b: ; 170c8b
 	ld hl, LastPlayerCounterMove
@@ -128840,7 +129610,97 @@ Function170c8b: ; 170c8b
 	ret
 ; 170c98
 
-INCBIN "baserom.gbc",$170c98,$1719c8 - $170c98
+Function170c98: ; 170c98
+	ld c, $3
+	ld hl, $c615
+.asm_170c9d
+	push hl
+	ld a, [hl]
+	cp $fc
+	jr c, .asm_170ca6
+	ld a, $1
+	ld [hl], a
+
+.asm_170ca6
+	inc hl
+	ld b, $3
+.asm_170ca9
+	ld a, [hl]
+	and a
+	jr z, .asm_170cb1
+	cp $fc
+	jr c, .asm_170cb9
+
+.asm_170cb1
+	xor a
+	ld [hl], a
+	inc hl
+	dec b
+	jr nz, .asm_170cb1
+	jr .asm_170cbd
+
+.asm_170cb9
+	inc hl
+	dec b
+	jr nz, .asm_170ca9
+
+.asm_170cbd
+	pop hl
+	ld de, $003b
+	add hl, de
+	dec c
+	jr nz, .asm_170c9d
+	ret
+; 170cc6
+
+Function170cc6: ; 170cc6
+	ld a, [rSVBK]
+	push af
+	ld a, $6
+	ld [rSVBK], a
+	ld hl, LZ_170d16
+	ld de, $d000
+	call Decompress
+	ld a, $1
+	ld [rVBK], a
+	ld de, $d000
+	ld hl, VTiles0
+	lb bc, $6, $c1
+	call Get2bpp
+	xor a
+	ld [rVBK], a
+	ld hl, LZ_1715a4
+	ld de, $d000
+	call Decompress
+	ld de, Unkn1Pals
+	ld hl, VTiles0
+	lb bc, $6, $53
+	call Get2bpp
+	pop af
+	ld [rSVBK], a
+	ret
+; 170d02
+
+Function170d02: ; 170d02
+	ld a, $1
+	ld [rVBK], a
+	ld de, GFX_171848
+	ld hl, $8c10
+	lb bc, BANK(GFX_171848), $18
+	call Get2bpp
+	xor a
+	ld [rVBK], a
+	ret
+; 170d16
+
+LZ_170d16:
+INCBIN "baserom.gbc", $170d16, $1715a4 - $170d16
+
+LZ_1715a4:
+INCBIN "baserom.gbc", $1715a4, $171848 - $1715a4
+
+GFX_171848:
+INCBIN "baserom.gbc", $171848, $1719c8 - $171848
 
 Function1719c8: ; 1719c8 (5c:59c8)
 	ld a, [$ffaa]
@@ -128949,12 +129809,17 @@ Function171a5d: ; 171a5d (5c:5a5d)
 Function171a95: ; 171a95 (5c:5a95)
 	callba Function171ccd
 	hlcoord 2, 8
-	ld de, $5aa7
+	ld de, String_171aa7
 	call PlaceString
 	jp Function171c66
 ; 171aa7 (5c:5aa7)
 
-INCBIN "baserom.gbc",$171aa7,$171ac9 - $171aa7
+String_171aa7: ; 171aa7
+	db   "モバイルアダプタに"
+	next "せつぞく しています"
+	next "しばらく おまちください"
+	db   "@"
+; 171ac9
 
 Function171ac9: ; 171ac9 (5c:5ac9)
 	ld de, $cd81
@@ -129034,21 +129899,21 @@ Function171b42: ; 171b42 (5c:5b42)
 	jr Function171b42
 
 Function171b4b: ; 171b4b (5c:5b4b)
-	ld de, $4010
+	lb de, $40, $10
 	ld a, $1d
 	call Function3b2a
 	ld hl, $c
 	add hl, bc
 	ld a, $8
 	ld [hl], a
-	ld de, $4098
+	lb de, $40, $98
 	ld a, $1d
 	call Function3b2a
 	ld hl, $c
 	add hl, bc
 	ld a, $9
 	ld [hl], a
-	ld de, $8a70
+	lb de, $8a, $70
 	ld a, $1d
 	call Function3b2a
 	ld hl, $c
@@ -129131,13 +129996,13 @@ Function171beb: ; 171beb (5c:5beb)
 	ld a, [$cd4a]
 	ld [$aa4a], a
 	call CloseSRAM
-	ld hl, $5c6b
+	ld hl, MenuDataHeader_171c6b
 	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
 	callba Function104061
 	hlcoord 1, 14
-	ld de, $5c73
+	ld de, String_171c73
 	call PlaceString
 	ld a, [$cd4a]
 	cp $2
@@ -129186,31 +130051,42 @@ Function171c66: ; 171c66 (5c:5c66)
 	ret
 ; 171c6b (5c:5c6b)
 
-INCBIN "baserom.gbc",$171c6b,$171c87 - $171c6b
+MenuDataHeader_171c6b: ; 171c6b
+	db $40 ; flags
+	db 12,  0 ; start coords
+	db 17, 19 ; end coords
+	dw NULL
+	db 0 ; default option
+; 171c73
+
+String_171c73: ; 171c73
+	db   "モバイルセンターを けってい"
+	next "しました@"
+; 171c87
 
 Function171c87: ; 171c87 (5c:5c87)
 	call DisableLCD
-	ld hl, $5db1
+	ld hl, GFX_171db1
 	ld de, $9000
 	ld bc, $6e0
 	call CopyBytes
-	ld hl, $6abd
+	ld hl, LZ_172abd
 	ld de, $8000
 	call Decompress
 	call EnableLCD
-	ld hl, $6491
+	ld hl, Tilemap_172491
 	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $168
 	call CopyBytes
-	ld hl, $67ed
+	ld hl, Attrmap_1727ed
 	ld de, AttrMap ; $cdd9
 	ld bc, $168
 	call CopyBytes
 	hlcoord 3, 2
-	ld de, $6e31
+	ld de, String_172e31
 	call PlaceString
 	hlcoord 3, 16
-	ld de, $6e3f
+	ld de, String_172e3f
 	call PlaceString
 	ret
 
@@ -129219,7 +130095,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $5d71
+	ld hl, Palette_171d71
 	ld de, Unkn1Pals ; $d000
 	ld bc, $40
 	call CopyBytes
@@ -129243,50 +130119,81 @@ Function171cf0: ; 171cf0 (5c:5cf0)
 	ld [$cd4b], a
 	and a
 	jr nz, .asm_171d16
-	ld hl, $651d
+	ld hl, Tilemap_17251d
 	decoord 0, 7
 	ld bc, $8c
 	call CopyBytes
 	hlcoord 3, 16
-	ld de, $6e3f
+	ld de, String_172e3f
 	jp PlaceString
 .asm_171d16
-	ld hl, $65f9
+	ld hl, Tilemap_1725f9
 	decoord 0, 7
 	ld bc, $8c
 	call CopyBytes
 	hlcoord 3, 16
-	ld de, $6e4e
+	ld de, String_172e4e
 	jp PlaceString
 
 Function171d2b: ; 171d2b (5c:5d2b)
 	call DisableLCD
-	ld hl, $5db1
+	ld hl, GFX_171db1
 	ld de, $9000
 	ld bc, $6e0
 	call CopyBytes
-	ld hl, $6abd
+	ld hl, LZ_172abd
 	ld de, $8000
 	call Decompress
 	call EnableLCD
-	ld hl, $6685
+	ld hl, Tilemap_172685
 	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $168
 	call CopyBytes
-	ld hl, $6955
+	ld hl, Attrmap_172955
 	ld de, AttrMap ; $cdd9
 	ld bc, $168
 	call CopyBytes
 	hlcoord 2, 2
-	ld de, $6e5d
+	ld de, String_172e5d
 	call PlaceString
 	hlcoord 14, 16
-	ld de, $6e58
+	ld de, String_172e58
 	call PlaceString
 	ret
 ; 171d71 (5c:5d71)
 
-INCBIN "baserom.gbc",$171d71,$172e78 - $171d71
+Palette_171d71:
+INCBIN "baserom.gbc", $171d71, $171db1 - $171d71
+GFX_171db1:
+INCBIN "baserom.gbc", $171db1, $172491 - $171db1
+Tilemap_172491:
+INCBIN "baserom.gbc", $172491, $17251d - $172491
+Tilemap_17251d:
+INCBIN "baserom.gbc", $17251d, $1725f9 - $17251d
+Tilemap_1725f9:
+INCBIN "baserom.gbc", $1725f9, $172685 - $1725f9
+Tilemap_172685:
+INCBIN "baserom.gbc", $172685, $1727ed - $172685
+Attrmap_1727ed:
+INCBIN "baserom.gbc", $1727ed, $172955 - $1727ed
+Attrmap_172955:
+INCBIN "baserom.gbc", $172955, $172abd - $172955
+LZ_172abd:
+INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
+
+String_172e31: ; 172e31
+	db "パスワード", $1f, "いれてください@"
+String_172e3f: ; 172e3f
+	db "きりかえ やめる  けってい@"
+String_172e4e: ; 172e4e
+	db "きりかえ やめる  "
+String_172e58:
+	db "けってい@"
+String_172e5d: ; 172e5d
+	db "せつぞくする モバイルセンターを"
+	next "えらんで ください@"
+; 172e78
+
 
 Function172e78: ; 172e78 (5c:6e78)
 	ld a, $7f
@@ -129298,16 +130205,16 @@ Function172e78: ; 172e78 (5c:6e78)
 	ld bc, $168
 	call ByteFill
 	call DisableLCD
-	ld hl, $6f1f
+	ld hl, GFX_172f1f
 	ld de, $9000
 	ld bc, $610
 	call CopyBytes
 	call EnableLCD
-	ld hl, $73af
+	ld hl, Tilemap_1733af
 	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
 	ld bc, $168
 	call CopyBytes
-	ld hl, $7517
+	ld hl, Attrmap_173517
 	ld de, AttrMap ; $cdd9
 	ld bc, $168
 	call CopyBytes
@@ -129319,11 +130226,11 @@ Function172eb9:
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $6edf
+	ld hl, Palette_172edf
 	ld de, Unkn1Pals ; $d000
 	ld bc, $40
 	call CopyBytes
-	ld hl, $6edf
+	ld hl, Palette_172edf
 	ld de, BGPals ; $d080
 	ld bc, $40
 	call CopyBytes
@@ -129333,7 +130240,17 @@ Function172eb9:
 	ret
 ; 172edf (5c:6edf)
 
-INCBIN "baserom.gbc",$172edf,$17367f - $172edf
+Palette_172edf:
+INCBIN "baserom.gbc",$172edf,$172f1f - $172edf
+
+GFX_172f1f:
+INCBIN "baserom.gbc",$172f1f,$1733af - $172f1f
+
+Tilemap_1733af:
+INCBIN "baserom.gbc",$1733af,$173517 - $1733af
+
+Attrmap_173517:
+INCBIN "baserom.gbc",$173517,$17367f - $173517
 
 
 SECTION "bank5D", ROMX, BANK[$5D]
@@ -129606,23 +130523,25 @@ Function17d0f3: ; 17d0f3
 ; 17d187
 
 Function17d187: ; 17d187
-	ld hl, $5194
+	ld hl, Unknown_17d194
 	ld de, $c63d
 	ld bc, $0005
 	call CopyBytes
 	ret
 ; 17d194
 
+Unknown_17d194:
 INCBIN "baserom.gbc", $17d194, $17d199 - $17d194
 
 Function17d199: ; 17d199
-	ld hl, $51a6
+	ld hl, Unknown_17d1a6
 	ld de, $c642
 	ld bc, $0005
 	call CopyBytes
 	ret
 ; 17d1a6
 
+Unknown_17d1a6:
 INCBIN "baserom.gbc", $17d1a6, $17d1ab - $17d1a6
 
 Function17d1ab: ; 17d1ab
@@ -129630,13 +130549,14 @@ Function17d1ab: ; 17d1ab
 	ld hl, $c647
 	ld bc, $0021
 	call ByteFill
-	ld hl, $51c3
+	ld hl, Unknown_17d1c3
 	ld de, $c647
 	ld bc, $0006
 	call CopyBytes
 	ret
 ; 17d1c3
 
+Unknown_17d1c3:
 INCBIN "baserom.gbc", $17d1c3, $17d1c9 - $17d1c3
 
 Function17d1c9: ; 17d1c9
@@ -129644,7 +130564,7 @@ Function17d1c9: ; 17d1c9
 	ld de, $c668
 	ld bc, $0005
 	call ByteFill
-	ld hl, $5194
+	ld hl, Unknown_17d194
 	ld de, $c668
 	ld bc, $0005
 	call CopyBytes
@@ -129704,13 +130624,13 @@ Function17d224: ; 17d224
 	jr nz, .asm_17d234
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, $526a
+	ld hl, MenuDataHeader_17d26a
 	jr .asm_17d23c
 
 .asm_17d234
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, $528f
+	ld hl, MenuDataHeader_17d28f
 
 .asm_17d23c
 	call LoadMenuDataHeader
@@ -129745,7 +130665,36 @@ Function17d246: ; 17d246
 	ret
 ; 17d26a
 
-INCBIN "baserom.gbc",$17d26a,$17d2b6 - $17d26a
+MenuDataHeader_17d26a: ; 17d26a
+	db $40 ; flags
+	db  0,  0 ; start coords
+	db  9, 14 ; end coords
+	dw MenuData2_17d272
+	db 1 ; default option
+
+MenuData2_17d272: ; 17d272
+	db $a0 ; flags
+	db 4
+	db "ニュース", $1f, "よみこむ@"
+	db "ニュース", $1f, "みる@"
+	db "せつめい@"
+	db "やめる@"
+; 17d28f
+
+MenuDataHeader_17d28f: ; 17d28f
+	db $40 ; flags
+	db  0,  0 ; start coords
+	db  7, 14 ; end coords
+	dw MenuData2_17d297
+	db 1 ; default option
+
+MenuData2_17d297: ; 17d297
+	db $a0 ; flags
+	db 3
+	db "Challenge@"
+	db "Explanation@"
+	db "Cancel@"
+; 17d2b6
 
 Function17d2b6: ; 17d2b6
 	call Function17d2c0
