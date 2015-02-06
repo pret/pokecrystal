@@ -113973,14 +113973,14 @@ Jumptable_117728: ; 117728 (45:7728)
 
 Function117738: ; 117738 (45:7738)
 	callba Function171ccd
-	ld de, $3018
+	lb de, $30, $18
 	ld a, $1d
 	call Function3b2a
 	ld hl, $c
 	add hl, bc
 	ld a, $6
 	ld [hl], a
-	ld de, $4820
+	lb de, $48, $20
 	ld a, $1d
 	call Function3b2a
 	ld hl, $c
@@ -114156,10 +114156,10 @@ Function11784c: ; 11784c (45:784c)
 	ld a, [$cd4b]
 	and a
 	jr nz, .asm_117880
-	ld hl, $7a0f
+	ld hl, Unknown_117a0f
 	jr .asm_117883
 .asm_117880
-	ld hl, $7a47
+	ld hl, Unknown_117a47
 .asm_117883
 	push de
 	ld a, [$cd4c]
@@ -114186,23 +114186,23 @@ Function11784c: ; 11784c (45:784c)
 	jp Function1177ac
 
 Function1178aa: ; 1178aa (45:78aa)
-	ld hl, $79b5
+	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
-	ld hl, $79bd
+	ld hl, MenuDataHeader_1179bd
 	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
 	callba Function104061
 	hlcoord 16, 8
-	ld de, $79c5
+	ld de, String_1179c5
 	call PlaceString
 	hlcoord 15, 10
 	ld a, $ed
 	ld [hl], a
 	hlcoord 1, 14
-	ld de, $79cc
+	ld de, String_1179cc
 	call PlaceString
 	ld a, $1
 	ld [$cd4e], a
@@ -114260,7 +114260,7 @@ Function1178e8: ; 1178e8 (45:78e8)
 Function117942: ; 117942 (45:7942)
 	call SpeechTextBox
 	hlcoord 1, 14
-	ld de, $79f7
+	ld de, String_1179f7
 	call PlaceString
 	ld a, $1e
 	ld [$cd4e], a
@@ -114289,13 +114289,13 @@ asm_11797e: ; 11797e (45:797e)
 	ret
 
 Function117984: ; 117984 (45:7984)
-	ld hl, $79b5
+	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
 	callba Function104061
 	hlcoord 1, 14
-	ld de, $79e1
+	ld de, String_1179e1
 	call PlaceString
 	ld a, $1e
 	ld [$cd4e], a
@@ -114311,7 +114311,41 @@ Function1179a7: ; 1179a7 (45:79a7)
 	ret
 ; 1179b5 (45:79b5)
 
-INCBIN "baserom.gbc",$1179b5,$117a0a - $1179b5
+MenuDataHeader_1179b5: ; 1179b5
+	db $40 ; flags
+	db 12,  0 ; start coords
+	db 17, 19 ; end coords
+	dw NULL
+	db 0 ; default option
+; 1179bd
+
+MenuDataHeader_1179bd: ; 1179bd
+	db $40 ; flags
+	db  7, 14 ; start coords
+	db 11, 19 ; end coords
+	dw NULL
+	db 0 ; default option
+; 1179c5
+
+String_1179c5: ; 1179c5
+	db   "はい"
+	next "いいえ@"
+; 1179cc
+
+String_1179cc: ; 1179cc
+	db   "こ", $25, "パスワード", $1f, "ほぞんして"
+	line "おきますか?@"
+; 1179e1
+
+String_1179e1: ; 1179e1
+	db   "パスワード", $4a, "にゅうりょく"
+	line "されていません!@"
+; 1179f7
+
+String_1179f7: ; 1179f7
+	db   "ログインパスワード", $1f, "ほぞん"
+	line "しました@"
+; 117a0a
 
 Function117a0a: ; 117a0a (45:7a0a)
 	ld hl, $cd49
@@ -114319,7 +114353,12 @@ Function117a0a: ; 117a0a (45:7a0a)
 	ret
 ; 117a0f (45:7a0f)
 
-INCBIN "baserom.gbc",$117a0f,$117a7f - $117a0f
+Unknown_117a0f:
+INCBIN "data/mobile/ascii-alpha.txt"
+
+Unknown_117a47:
+INCBIN "data/mobile/ascii-sym.txt"
+; 117a7f
 
 
 ; everything from here to the end of the bank is related to the
@@ -114626,8 +114665,9 @@ Data117cc4: ; 0x117cc4
 	db $40, $07, $0e, $0b, $13, $00, $00, $00 ; XXX what is this
 
 YesNo117ccc: ; 0x117ccc
-	db "はい", $4e ; Yes
-	db "いいえ@"   ; No
+	db   "はい"
+	next "いいえ"
+	db   "@"
 
 MobileStadiumEntryText: ; 0x117cd3
 	TX_FAR _MobileStadiumEntryText
