@@ -112940,15 +112940,13 @@ Function1081e9: ; 1081e9
 Function108201: ; 108201
 	push de
 	push af
-	ld a, $2d
-	call Predef
+	predef GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	ld a, $3e
-	call Predef
+	predef Function5108b
 	ret
 ; 108219
 
@@ -112957,8 +112955,7 @@ Function108219: ; 108219
 	ld hl, $c4cf
 	ld d, $0
 	ld e, $3
-	ld a, $47
-	call Predef
+	predef Functiond008e
 	ret
 ; 108229
 
@@ -112967,8 +112964,7 @@ Function108229: ; 108229
 	ld hl, $c4cf
 	ld d, $0
 	ld e, $3
-	ld a, $46
-	call Predef
+	predef Functiond00a3
 	ret
 ; 108239
 
@@ -113881,8 +113877,7 @@ asm_108966
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	call WaitBGMap
 	ret
 ; 10898a
@@ -113896,8 +113891,7 @@ Function10898a: ; 10898a
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	call WaitBGMap
 	ret
 ; 1089a8
@@ -130613,8 +130607,7 @@ Function11b483: ; 11b483
 	pop de
 	push de
 	ld b, $1
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop de
 	ld h, d
 	ld l, e
@@ -136868,8 +136861,7 @@ Function17024d: ; 17024d
 	callba Functionc658
 	call Function1702b7
 	call Function170bf7
-	ld a, $16
-	call Predef
+	predef StartBattle
 	callba Function1500c
 	callba Functionc658
 	ld a, [$d0ee]
@@ -137094,8 +137086,7 @@ Function170394: ; 170394
 	ld hl, $000a
 	add hl, bc
 	ld b, $1
-	ld a, $c
-	call Predef
+	predef Functione167
 	pop de
 	pop hl
 	dec de
@@ -140516,8 +140507,7 @@ Function17d98b: ; 17d98b
 	ld de, TileMap
 	add hl, de
 	ld bc, $0707
-	ld a, $13
-	call Predef
+	predef FillBox
 	pop af
 	ld [rSVBK], a
 	call Function17e349
@@ -141319,8 +141309,7 @@ Function17ded9: ; 17ded9
 	ld [MonType], a
 	push hl
 	push bc
-	ld a, $6
-	call Predef
+	predef Functiond88c
 	callba Function4db49
 	pop bc
 	pop hl
@@ -141491,8 +141480,7 @@ Function17ded9: ; 17ded9
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, $5
-	call Predef
+	predef FillPP
 	pop hl
 	pop bc
 	jp asm_17e0ee
@@ -141606,8 +141594,7 @@ Function17e026: ; 17e026
 	push hl
 	ld hl, sBoxMon1Moves
 	ld de, sBoxMon1PP
-	ld a, $5
-	call Predef
+	predef FillPP
 	call CloseSRAM
 	pop hl
 	pop bc
