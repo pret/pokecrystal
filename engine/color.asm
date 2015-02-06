@@ -253,8 +253,9 @@ Function8bbd: ; 8bbd
 	ld a, [TrainerClass]
 	call Function976b
 	ld a, e
-	jr .asm_8bd7
+	jr asm_8bd7
 
+Function8bc6:
 	ld a, [CurPartySpecies]
 	call Function97ee
 	ld a, e
@@ -265,8 +266,9 @@ Function8bbd: ; 8bbd
 	inc hl
 	inc hl
 	inc hl
-
 .asm_8bd7
+
+asm_8bd7
 	push hl
 	ld hl, Unkn1Pals
 	ld de, $0008
