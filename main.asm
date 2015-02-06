@@ -134438,51 +134438,51 @@ Unknown_11d4fe:
 	dw Unknown_11d67a
 	dw Unknown_11d67d
 
-Unknown_11d558: db $17, $18, $77, $a8, $9f, $c9, $ff
-Unknown_11d55f: db $85, $4a, $a7, $dd, $5f, $ff
-Unknown_11d565: db $3b, $b9, $46, $47, $c2, $dc, $ff
-Unknown_11d56c: db $e3, $be, $c4, $6b, $ef, $7d, $f4, $ff
-Unknown_11d574: db $a0, $a2, $e0, $39, $a1, $ea, $15, $16, $8b, $8a, $ff
-Unknown_11d57f: db $3a, $44, $95, $7f, $8f, $8c, $8d, $ed, $8, $9, $53, $68, $69, $73, $ff
-Unknown_11d58e: db $c0, $a, $82, $4e, $26, $cb, $b6, $e6, $63, $ff
-Unknown_11d598: db $2c, $cc, $cf, $62, $d2, $a9, $ff
-Unknown_11d59f: db $3f, $5e, $80, $ff
-Unknown_11d5a3: db $81, $51, $5c, $5d, $43, $e, $36, $e7, $13, $37, $2a, $4c, $4b, $30, $ff
-Unknown_11d5b2: db $6f, $f7, $de, $6a, $91, $87, $1b, $1c, $ff
-Unknown_11d5bb: db $75, $5a, $86, $57, $ff
-Unknown_11d5c0: db $f5, $79, $7b, $29, $f, $61, $60, $ff
-Unknown_11d5c8: db $7, $fb, $ff
-Unknown_11d5cb: db $ca, $ff
-Unknown_11d5cd: db $33, $74, $66, $ff
-Unknown_11d5d1: db $98, $aa, $ff
-Unknown_11d5d4: db $d5, $ff
-Unknown_11d5d6: db $32, $df, $e1, $e4, $b5, $ff
-Unknown_11d5dc: db $54, $55, $eb, $6d, $49, $b0, $af, $76, $b, $e8, $ff
-Unknown_11d5e7: db $2b, $67, $ff
-Unknown_11d5ea: db $22, $1f, $20, $1d, $1e, $21, $34, $d7, $3d, $ba, $3e, $3c, $ff
-Unknown_11d5f7: db $c3, $ff
-Unknown_11d5f9: db $b1, $b2, $ff
-Unknown_11d5fc: db $ce, $ff
-Unknown_11d5fe: db $56, $d0, $9d, $94, $c, $d4, $bb, $f2, $2e, $2f, $d3, $7a, $ec, $5b, $f8, $ff
-Unknown_11d60e: db $ad, $d, $19, $24, $12, $11, $ac, $23, $4, $78, $9b, $bf, $d8, $64, $ff
-Unknown_11d61d: db $92, $88, $41, $7e, $cd, $28, $2, $1, $3, $8e, $f0, $ae, $c5, $90, $27, $d1, $ff
-Unknown_11d62e: db $99, $58, $59, $d6, $e5, $35, $6c, $ff
-Unknown_11d636: db $fa, $a3, $10, $4d, $bc, $89, $e9, $ff
-Unknown_11d63e: db $db, $da, $9c, $45, $6e, $b7, $b8, $65, $38, $e2, $ff
-Unknown_11d649: db $93, $97, $96, $f1, $ff
-Unknown_11d64e: db $c8, $ee, $ff
-Unknown_11d651: db $9a, $84, $48, $b3, $ff
-Unknown_11d656: db $b4, $31, $72, $ff
-Unknown_11d65a: db $c7, $50, $4f, $c6, $c1, $ff
-Unknown_11d660: db $40, $ff
-Unknown_11d662: db $f6, $a4, $ff
-Unknown_11d665: db $f3, $1a, $71, $14, $83, $2d, $ab, $ff
-Unknown_11d66d: db $5, $6, $d9, $ff
-Unknown_11d671: db $7c, $f9, $ff
-Unknown_11d674: db $52, $a6, $a5, $ff
-Unknown_11d678: db $25, $ff
-Unknown_11d67a: db $bd, $9e, $42
-Unknown_11d67d: db $ff
+Unknown_11d558:	db EKANS, ARBOK, SEAKING, ARIADOS, CROCONAW, UNOWN, $ff
+Unknown_11d55f:	db EEVEE, GEODUDE, SPINARAK, PILOSWINE, ONIX, $ff
+Unknown_11d565:	db ARCANINE, SUDOWOODO, WEEPINBELL, VICTREEBEL, WOOPER, SWINUB, $ff
+Unknown_11d56c:	db SKARMORY, AIPOM, ESPEON, HITMONCHAN, ELEKID, ELECTABUZZ, ENTEI, $ff
+Unknown_11d574:	db FERALIGATR, FURRET, OCTILLERY, PRIMEAPE, SENTRET, STANTLER, SPEAROW, FEAROW, OMASTAR, OMANYTE, $ff
+Unknown_11d57f:	db GROWLITHE, MACHAMP, DRAGONITE, PINSIR, SNORLAX, KABUTO, KABUTOPS, HITMONTOP, WARTORTLE, BLASTOISE, FARFETCH_D, CUBONE, MAROWAK, KANGASKHAN, $ff
+Unknown_11d58e:	db SUNFLORA, CATERPIE, GYARADOS, RAPIDASH, NINETALES, GIRAFARIG, BELLOSSOM, KINGDRA, KINGLER, $ff
+Unknown_11d598:	db GLOOM, PINECO, GLIGAR, KRABBY, GRANBULL, CROBAT, $ff
+Unknown_11d59f:	db ABRA, GENGAR, TAUROS, $ff
+Unknown_11d5a3:	db MAGIKARP, MAGNEMITE, GASTLY, HAUNTER, MACHOKE, KAKUNA, PSYDUCK, PHANPY, RATTATA, GOLDUCK, GOLBAT, GOLEM, GRAVELER, VENONAT, $ff
+Unknown_11d5b2:	db RHYHORN, PUPITAR, CORSOLA, HITMONLEE, ZAPDOS, JOLTEON, SANDSHREW, SANDSLASH, $ff
+Unknown_11d5bb:	db SEADRA, SHELLDER, VAPOREON, DEWGONG, $ff
+Unknown_11d5c0:	db SUICUNE, STARMIE, SCYTHER, ZUBAT, BEEDRILL, HYPNO, DROWZEE, $ff
+Unknown_11d5c8:	db SQUIRTLE, CELEBI, $ff
+Unknown_11d5cb:	db WOBBUFFET, $ff
+Unknown_11d5cd:	db DUGTRIO, HORSEA, EXEGGCUTE, $ff
+Unknown_11d5d1:	db CHIKORITA, CHINCHOU, $ff
+Unknown_11d5d4:	db SHUCKLE, $ff
+Unknown_11d5d6:	db DIGLETT, REMORAID, DELIBIRD, HOUNDOUR, AMPHAROS, $ff
+Unknown_11d5dc:	db DODUO, DODRIO, SMEARGLE, KOFFING, TENTACRUEL, TOGETIC, TOGEPI, GOLDEEN, METAPOD, DONPHAN, $ff
+Unknown_11d5e7:	db ODDISH, EXEGGUTOR, $ff
+Unknown_11d5ea:	db NIDOKING, NIDOQUEEN, NIDORAN_M, NIDORAN_F, NIDORINA, NIDORINO, MEOWTH, SNEASEL, POLIWHIRL, POLITOED, POLIWRATH, POLIWAG, $ff
+Unknown_11d5f7:	db QUAGSIRE, $ff
+Unknown_11d5f9:	db NATU, XATU, $ff
+Unknown_11d5fc:	db DUNSPARCE, $ff
+Unknown_11d5fe:	db SEEL, STEELIX, TYPHLOSION, DRAGONAIR, BUTTERFREE, SCIZOR, HOPPIP, BLISSEY, PARAS, PARASECT, QWILFISH, MR__MIME, TYROGUE, CLOYSTER, TYRANITAR, $ff
+Unknown_11d60e:	db CLEFFA, WEEDLE, PIKACHU, CLEFABLE, PIDGEOT, PIDGEOTTO, PICHU, CLEFAIRY, CHARMANDER, STARYU, CYNDAQUIL, SUNKERN, TEDDIURSA, VOLTORB, $ff
+Unknown_11d61d:	db MOLTRES, FLAREON, ALAKAZAM, MAGMAR, FORRETRESS, WIGGLYTUFF, IVYSAUR, BULBASAUR, VENUSAUR, AERODACTYL, MAGBY, IGGLYBUFF, UMBREON, ARTICUNO, JIGGLYPUFF, SNUBBULL, $ff
+Unknown_11d62e:	db BAYLEEF, GRIMER, MUK, HERACROSS, HOUNDOOM, PERSIAN, LICKITUNG, $ff
+Unknown_11d636:	db HO_OH, HOOTHOOT, PIDGEY, PONYTA, SKIPLOOM, PORYGON, PORYGON2, $ff
+Unknown_11d63e:	db MAGCARGO, SLUGMA, QUILAVA, BELLSPROUT, WEEZING, MARILL, AZUMARILL, ELECTRODE, MANKEY, MANTINE, $ff
+Unknown_11d649:	db DRATINI, MEW, MEWTWO, MILTANK, $ff
+Unknown_11d64e:	db MISDREAVUS, SMOOCHUM, $ff
+Unknown_11d651:	db MEGANIUM, DITTO, TENTACOOL, MAREEP, $ff
+Unknown_11d656:	db FLAAFFY, VENOMOTH, TANGELA, $ff
+Unknown_11d65a:	db SLOWKING, SLOWBRO, SLOWPOKE, MURKROW, YANMA, $ff
+Unknown_11d660:	db KADABRA, $ff
+Unknown_11d662:	db LARVITAR, NOCTOWL, $ff
+Unknown_11d665:	db RAIKOU, RAICHU, CHANSEY, RATICATE, LAPRAS, VILEPLUME, LANTURN, $ff
+Unknown_11d66d:	db CHARMELEON, CHARIZARD, URSARING, $ff
+Unknown_11d671:	db JYNX, LUGIA, $ff
+Unknown_11d674:	db MAGNETON, LEDIAN, LEDYBA, $ff
+Unknown_11d678:	db VULPIX, $ff
+Unknown_11d67a:	db JUMPLUFF, TOTODILE, MACHOP
+Unknown_11d67d:	db $ff
 ; 11d67e
 
 GFX_11d67e:
