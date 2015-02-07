@@ -98224,7 +98224,22 @@ Footprints: ; f9434
 INCBIN "gfx/misc/footprints.w128.1bpp"
 ; fb434
 
-INCBIN "baserom.gbc", $fb434, $fb449 - $fb434
+Unknown_fb434:
+	db 0
+
+Functionfb435: ; 4b435
+	ld a, [Unknown_fb434]
+	and a
+	jp nz, Functionddc
+	jp Get1bpp
+; fb43f
+
+Functionfb43f: ; fb43f
+	ld a, [Unknown_fb434]
+	and a
+	jp nz, Functiondc9
+	jp Get2bpp
+; fb449
 
 Functionfb449:: ; fb449
 	ld de, Font
