@@ -89109,139 +89109,139 @@ Functionb991e: ; b991e
 ; b9926
 
 Unknown_b9926: ; b9926
-INCBIN "baserom.gbc", $b9926, $b992e - $b9926
+INCBIN "gfx/unknown/0b9926.1bpp"
 
 Unknown_b992e: ; b992e
-INCBIN "baserom.gbc", $b992e, $b9936 - $b992e
+INCBIN "gfx/unknown/0b992e.1bpp"
 
 Unknown_b9936: ; b9936
-INCBIN "baserom.gbc", $b9936, $b993e - $b9936
+INCBIN "gfx/unknown/0b9936.1bpp"
 
 Unknown_b993e: ; b993e
-INCBIN "baserom.gbc", $b993e, $b9946 - $b993e
+INCBIN "gfx/unknown/0b993e.1bpp"
 
 Unknown_b9946: ; b9946
-INCBIN "baserom.gbc", $b9946, $b994e - $b9946
+INCBIN "gfx/unknown/0b9946.1bpp"
 
 Unknown_b994e: ; b994e
-INCBIN "baserom.gbc", $b994e, $b995e - $b994e
+INCBIN "gfx/unknown/0b994e.1bpp"
 
 Unknown_b995e: ; b995e
-INCBIN "baserom.gbc", $b995e, $b9966 - $b995e
+INCBIN "gfx/unknown/0b995e.1bpp"
 
 Unknown_b9966: ; b9966
-INCBIN "baserom.gbc", $b9966, $b996e - $b9966
+INCBIN "gfx/unknown/0b9966.1bpp"
 
 Unknown_b996e: ; b996e
-INCBIN "baserom.gbc", $b996e, $b9976 - $b996e
+INCBIN "gfx/unknown/0b996e.1bpp"
 
 Unknown_b9976: ; b9976
-INCBIN "baserom.gbc", $b9976, $b997e - $b9976
+INCBIN "gfx/unknown/0b9976.1bpp"
 
 Unknown_b997e: ; b997e
-INCBIN "baserom.gbc", $b997e, $b998e - $b997e
+INCBIN "gfx/unknown/0b997e.1bpp"
 
 Unknown_b998e: ; b998e
-INCBIN "baserom.gbc", $b998e, $b9996 - $b998e
+INCBIN "gfx/unknown/0b998e.1bpp"
 
 Unknown_b9996: ; b9996
-INCBIN "baserom.gbc", $b9996, $b99c6 - $b9996
+INCBIN "gfx/unknown/0b9996.1bpp"
 
 MailDratiniGFX: ; b99c6
-INCBIN "gfx/unknown/0b99c6.2bpp"
+INCBIN "gfx/unknown/0b99c6.1bpp"
 
 MailPoliwagGFX: ; b99f6
-INCBIN "gfx/unknown/0b99f6.2bpp"
+INCBIN "gfx/unknown/0b99f6.1bpp"
 
 MailLaprasGFX: ; b9a26
-INCBIN "gfx/unknown/0b9a26.2bpp"
+INCBIN "gfx/unknown/0b9a26.1bpp"
 
 MailPikaGFX: ; b9a56
-INCBIN "gfx/unknown/0b9a56.2bpp"
+INCBIN "gfx/unknown/0b9a56.1bpp"
 
 MailDittoGFX: ; b9a86
-INCBIN "gfx/unknown/0b9a86.2bpp"
+INCBIN "gfx/unknown/0b9a86.1bpp"
 
 MailMewGFX: ; b9ab6
-INCBIN "gfx/unknown/0b9ab6.2bpp"
+INCBIN "gfx/unknown/0b9ab6.1bpp"
 
 MailDragoniteGFX: ; b9b46
-INCBIN "gfx/unknown/0b9b46.2bpp"
+INCBIN "gfx/unknown/0b9b46.1bpp"
 
 MailSentretGFX: ; b9bce
-INCBIN "gfx/unknown/0b9bce.2bpp"
+INCBIN "gfx/unknown/0b9bce.1bpp"
 
 Unknown_b9bee: ; b9bee
-INCBIN "baserom.gbc", $b9bee, $b9bfe - $b9bee
+INCBIN "gfx/unknown/0b9bee.1bpp"
 
 Unknown_b9bfe: ; b9bfe
-INCBIN "baserom.gbc", $b9bfe, $b9c1e - $b9bfe
+INCBIN "gfx/unknown/0b9bfe.1bpp"
 
 MailOddishGFX: ; b9c1e
-INCBIN "gfx/unknown/0b9c1e.2bpp"
+INCBIN "gfx/unknown/0b9c1e.1bpp"
 
 Unknown_b9c3e: ; b9c3e
-INCBIN "baserom.gbc", $b9c3e, $b9c5e - $b9c3e
+INCBIN "gfx/unknown/0b9c3e.1bpp"
 
 Unknown_b9c5e: ; b9c5e
-INCBIN "baserom.gbc", $b9c5e, $b9c7e - $b9c5e
+INCBIN "gfx/unknown/0b9c5e.1bpp"
 
 Unknown_b9c7e: ; b9c7e
-INCBIN "baserom.gbc", $b9c7e, $b9c96 - $b9c7e
+INCBIN "gfx/unknown/0b9c7e.1bpp"
 
 Unknown_b9c96: ; b9c96
-INCBIN "baserom.gbc", $b9c96, $b9c9e - $b9c96
+INCBIN "gfx/unknown/0b9c96.1bpp"
 
 Unknown_b9c9e: ; b9c9e
-INCBIN "baserom.gbc", $b9c9e, $b9cbe - $b9c9e
+INCBIN "gfx/unknown/0b9c9e.1bpp"
 
 Unknown_b9cbe: ; b9cbe
-INCBIN "baserom.gbc", $b9cbe, $b9cde - $b9cbe
+INCBIN "gfx/unknown/0b9cbe.1bpp"
 
 Unknown_b9cde: ; b9cde
-INCBIN "baserom.gbc", $b9cde, $b9cfe - $b9cde
+INCBIN "gfx/unknown/0b9cde.1bpp"
 
 Unknown_b9cfe: ; b9cfe
-INCBIN "baserom.gbc", $b9cfe, $b9d16 - $b9cfe
+INCBIN "gfx/unknown/0b9cfe.1bpp"
 
 MailCloudGFX: ; b9d16
-INCBIN "gfx/unknown/0b9d16.2bpp"
+INCBIN "gfx/unknown/0b9d16.1bpp"
 
 Unknown_b9d26: ; b9d26
-INCBIN "baserom.gbc", $b9d26, $b9d3e - $b9d26
+INCBIN "gfx/unknown/0b9d26.1bpp"
 
 Unknown_b9d3e: ; b9d3e
-INCBIN "baserom.gbc", $b9d3e, $b9d46 - $b9d3e
+INCBIN "gfx/unknown/0b9d3e.1bpp"
 
 Unknown_b9d46: ; b9d46
-INCBIN "baserom.gbc", $b9d46, $b9d76 - $b9d46
+INCBIN "gfx/unknown/0b9d46.1bpp"
 
 Unknown_b9d76: ; b9d76
-INCBIN "baserom.gbc", $b9d76, $b9d86 - $b9d76
+INCBIN "gfx/unknown/0b9d76.1bpp"
 
 Unknown_b9d86: ; b9d86
-INCBIN "baserom.gbc", $b9d86, $b9db6 - $b9d86
+INCBIN "gfx/unknown/0b9d86.1bpp"
 
 Unknown_b9db6: ; b9db6
-INCBIN "baserom.gbc", $b9db6, $b9dc6 - $b9db6
+INCBIN "gfx/unknown/0b9db6.1bpp"
 
 Unknown_b9dc6: ; b9dc6
-INCBIN "baserom.gbc", $b9dc6, $b9dce - $b9dc6
+INCBIN "gfx/unknown/0b9dc6.1bpp"
 
 Unknown_b9dce: ; b9dce
-INCBIN "baserom.gbc", $b9dce, $b9df6 - $b9dce
+INCBIN "gfx/unknown/0b9dce.1bpp"
 
 Unknown_b9df6: ; b9df6
-INCBIN "baserom.gbc", $b9df6, $b9e06 - $b9df6
+INCBIN "gfx/unknown/0b9df6.1bpp"
 
 Unknown_b9e06: ; b9e06
-INCBIN "baserom.gbc", $b9e06, $b9e26 - $b9e06
+INCBIN "gfx/unknown/0b9e06.1bpp"
 
 Unknown_b9e26: ; b9e26
-INCBIN "baserom.gbc", $b9e26, $b9e4e - $b9e26
+INCBIN "gfx/unknown/0b9e26.1bpp"
 
 Unknown_b9e4e: ; b9e4e
-INCBIN "baserom.gbc", $b9e4e, $b9e76 - $b9e4e
+INCBIN "gfx/unknown/0b9e4e.1bpp"
 
 
 ItemIsMail: ; b9e76
@@ -89669,11 +89669,11 @@ Functione00ee: ; e00ee (38:40ee)
 	ld hl, LZ_e0cdb
 	ld de, $8000
 	call Decompress
-	ld hl, Unknown_e0cf6
+	ld hl, GFX_e0cf6
 	ld de, $8ef0
 	ld bc, $10
 	call CopyBytes
-	ld hl, Unknown_e0d06
+	ld hl, GFX_e0d06
 	ld de, $8f50
 	ld bc, $10
 	call CopyBytes
@@ -91309,11 +91309,11 @@ Palette_e0c93: ; e0c93
 LZ_e0cdb: ; e0cdb
 INCBIN "gfx/unknown/0e0cdb.2bpp.lz"
 
-Unknown_e0cf6: ; e0cf6
-INCBIN "baserom.gbc", $e0cf6, $e0d06 - $e0cf6
+GFX_e0cf6: ; e0cf6
+INCBIN "gfx/unknown/0e0cf6.2bpp"
 
-Unknown_e0d06: ; e0d06
-INCBIN "baserom.gbc", $e0d06, $e0d16 - $e0d06
+GFX_e0d06: ; e0d06
+INCBIN "gfx/unknown/0e0d06.2bpp"
 
 LZ_e0d16: ; e0d16
 INCBIN "gfx/unknown/0e0d16.2bpp.lz"
@@ -97892,10 +97892,10 @@ Functione546d: ; e546d (39:546d)
 ; e5496 (39:5496)
 
 Unknown_e5496: ; e5496
-	dw Unknown_e799d
-	dw Unknown_e79dd
-	dw Unknown_e7a1d
-	dw Unknown_e79dd
+	dw GFX_e799d
+	dw GFX_e79dd
+	dw GFX_e7a1d
+	dw GFX_e79dd
 ; e549e
 
 Functione549e: ; e549e (39:549e)
@@ -98128,12 +98128,12 @@ IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.2bpp.lz"
 ; e799d
 
-Unknown_e799d: ; e799d
-INCBIN "baserom.gbc", $e799d, $e79dd - $e799d
-Unknown_e79dd: ; e79dd
-INCBIN "baserom.gbc", $e79dd, $e7a1d - $e79dd
-Unknown_e7a1d: ; e7a1d
-INCBIN "baserom.gbc", $e7a1d, $e7a5d - $e7a1d
+GFX_e799d: ; e799d
+INCBIN "gfx/unknown/0e799d.2bpp"
+GFX_e79dd: ; e79dd
+INCBIN "gfx/unknown/0e79dd.2bpp"
+GFX_e7a1d: ; e7a1d
+INCBIN "gfx/unknown/0e7a1d.2bpp"
 
 GFX_e7a5d: ; e7a5d
 INCBIN "gfx/unknown/0e7a5d.2bpp"
@@ -145114,15 +145114,17 @@ Function1de5c8: ; 1de5c8
 	ret
 ; 1de5e6
 
-GFX_1de5e6: ; 1de5e6
 ; The regular font.
-INCBIN "baserom.gbc",$1de5e6,$1de9e6 - $1de5e6
-GFX_1de9e6: ; 1de9e6
+GFX_1de5e6: ; 1de5e6
+INCBIN "gfx/unknown/1de5e6.2bpp"
+
 ; An extended font.
-INCBIN "baserom.gbc",$1de9e6,$1dede6 - $1de9e6
-GFX_1dede6: ; 1dede6
+GFX_1de9e6: ; 1de9e6
+INCBIN "gfx/unknown/1de9e6.2bpp"
+
 ; An even more extended font.
-INCBIN "baserom.gbc",$1dede6,$1df1e6 - $1dede6
+GFX_1dede6: ; 1dede6
+INCBIN "gfx/unknown/1dede6.2bpp"
 
 Function1df1e6: ; 1df1e6
 	ld b, $21
