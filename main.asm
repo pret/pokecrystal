@@ -17850,11 +17850,11 @@ Function11c51: ; 11c51
 ; 11cb7
 
 GFX_11cb7: ; 11cb7
-INCBIN "baserom.gbc", $11cb7, $11cc7 - $11cb7
+INCBIN "gfx/unknown/011cb7.2bpp"
 ; 11cc7
 
 GFX_11cc7: ; 11cc7
-INCBIN "baserom.gbc", $11cc7, $11ce7 - $11cc7
+INCBIN "gfx/unknown/011cc7.2bpp"
 ; 11ce7
 
 NameInputLower:
@@ -17886,15 +17886,15 @@ BoxNameInputUpper:
 ; 11e5d
 
 GFX_11e5d: ; 11e5d
-INCBIN "baserom.gbc",$11e5d,$11e65 - $11e5d
+INCBIN "gfx/unknown/011e5d.2bpp"
 ; 11e6d
 
 GFX_11e65:
-INCBIN "baserom.gbc",$11e65,$11e6d - $11e65
+INCBIN "gfx/unknown/011e65.2bpp"
 ; 11e6d
 
 GFX_11e6d: ; 11e6d
-INCBIN "baserom.gbc", $11e6d, $11e75 - $11e6d
+INCBIN "gfx/unknown/011e6d.2bpp"
 ; 11e75
 
 Function11e75: ; 11e75 (4:5e75)
@@ -17964,7 +17964,7 @@ Function11e9a: ; 11e9a (4:5e9a)
 ; 11ef4 (4:5ef4)
 
 GFX_11ef4: ; 11ef4
-INCBIN "baserom.gbc",$11ef4,$11f74 - $11ef4
+INCBIN "gfx/unknown/011ef4.2bpp"
 ; 11f74
 
 Function11f74: ; 11f74 (4:5f74)
@@ -18586,7 +18586,7 @@ Unknown_123dc: ; 123dc
 ; 123fc
 
 GFX_123fc: ; 123fc
-INCBIN "baserom.gbc", $123fc, $1241c - $123fc
+INCBIN "gfx/unknown/0123fc.2bpp"
 ; 1241c
 
 Unknown_1241c: ; 1241c
@@ -30436,7 +30436,7 @@ Function1736d: ; 1736d (5:736d)
 ; 17393 (5:7393)
 
 EggHatchGFX: ; 17393
-INCBIN "baserom.gbc",$17393,$173b3 - $17393
+INCBIN "gfx/unknown/017393.2bpp"
 ; 173b3
 
 Function173b3: ; 173b3 (5:73b3)
@@ -40144,7 +40144,7 @@ Function29f47: ; 29f47
 ; 29f54
 
 GFX_29f54: ; 29f54
-INCBIN "baserom.gbc", $29f54, $29fe4 - $29f54
+INCBIN "gfx/unknown/029f54.2bpp"
 ; 29fe4
 
 Function29fe4: ; 29fe4
@@ -46298,7 +46298,7 @@ Function41504: ; 41504
 ; 4150e
 
 PokedexLZ: ; 4150e
-INCBIN "baserom.gbc",$4150e,$416b0 - $4150e
+INCBIN "gfx/unknown/04150e.2bpp.lz"
 ; 416b0
 
 PokedexSlowpokeLZ: ; 416b0
@@ -49227,10 +49227,10 @@ Function488b9: ; 488b9 (12:48b9)
 ; 488c3 (12:48c3)
 
 GFX_488c3: ; 488c3
-INCBIN "baserom.gbc",$488c3,$488cb - $488c3
+INCBIN "gfx/unknown/0488c3.2bpp"
 
 GFX_488cb: ; 488cb
-INCBIN "baserom.gbc",$488cb,$488d3 - $488cb
+INCBIN "gfx/unknown/0488cb.2bpp"
 
 Function488d3: ; 488d3 (12:48d3)
 	call Function48283
@@ -50139,7 +50139,7 @@ Function48e64: ; 48e64 (12:4e64)
 ; 48e71 (12:4e71)
 
 GFX_48e71: ; 48e71
-INCBIN "baserom.gbc",$48e71,$48e81 - $48e71
+INCBIN "gfx/unknown/048e71.2bpp"
 
 
 Function48e81: ; 48e81
@@ -51439,7 +51439,7 @@ Function49bf9: ; 49bf9
 ; 49c0c
 
 GFX_49c0c: ; 49c0c
-INCBIN "baserom.gbc",$49c0c,$49cdc - $49c0c
+INCBIN "gfx/unknown/049c0c.2bpp"
 ; 49cdc
 
 MainMenu: ; 49cdc
@@ -66860,7 +66860,7 @@ Function893fe: ; 893fe
 ; 8940b
 
 GFX_8940b: ; 8940b
-INCBIN "baserom.gbc",$8940b,$8942b - $8940b
+INCBIN "gfx/unknown/08940b.2bpp"
 ; 8942b
 
 Function8942b: ; 8942b (22:542b)
@@ -73424,7 +73424,7 @@ Function8c2cf: ; 8c2cf
 ; 8c2f4
 
 GFX_8c2f4: ; 8c2f4
-INCBIN "baserom.gbc",$8c2f4,$8c314 - $8c2f4
+INCBIN "gfx/unknown/08c2f4.2bpp"
 
 
 Function8c314: ; 8c314
@@ -74179,7 +74179,7 @@ ShakeHeadbuttTree: ; 8c80a
 ; 8c893
 
 HeadbuttTreeGFX: ; 8c893
-INCBIN "baserom.gbc", $8c893, $8c913 - $8c893
+INCBIN "gfx/unknown/08c893.2bpp"
 ; 8c913
 
 Function8c913: ; 8c913
@@ -74252,11 +74252,11 @@ Function8c96d: ; 8c96d
 ; 8c98c
 
 CutTreeGFX: ; c898c
-INCBIN "baserom.gbc", $8c98c, $8c9cc - $8c98c
+INCBIN "gfx/unknown/08c98c.2bpp"
 ; c89cc
 
 GFX_8c9cc: ; 8c9cc
-INCBIN "baserom.gbc", $8c9cc, $8ca0c - $8c9cc
+INCBIN "gfx/unknown/08c9cc.2bpp"
 ; 8ca0c
 
 Function8ca0c: ; 8ca0c
@@ -77865,9 +77865,9 @@ Function8e7c6: ; 8e7c6
 ; 8e7f4
 
 GFX_8e7f4: ; 8e7f4
-INCBIN "baserom.gbc",$8e7f4,$8e804 - $8e7f4
+INCBIN "gfx/unknown/08e7f4.2bpp"
 GFX_8e804: ; 8e804
-INCBIN "baserom.gbc",$8e804,$8e814 - $8e804
+INCBIN "gfx/unknown/08e804.2bpp"
 
 Function8e814: ; 8e814
 	push hl
@@ -79591,11 +79591,11 @@ UnknownText_0x908f6: ; 0x908f6
 ; 0x908fb
 
 GFX_908fb: ; 908fb
-INCBIN "baserom.gbc", $908fb, $90903 - $908fb
+INCBIN "gfx/unknown/0908fb.2bpp"
 GFX_90903: ; 90903
-INCBIN "baserom.gbc",$90903,$9090b - $90903
+INCBIN "gfx/unknown/090903.2bpp"
 GFX_9090b: ; 9090b
-INCBIN "baserom.gbc",$9090b,$90913 - $9090b
+INCBIN "gfx/unknown/09090b.2bpp"
 ; 90913
 
 Function90913: ; 90913
@@ -82970,11 +82970,11 @@ INCBIN "gfx/misc/kanto.bin"
 
 
 GFX_922d1: ; 922d1
-INCBIN "baserom.gbc", $922d1, $922e1 - $922d1
+INCBIN "gfx/unknown/0922d1.2bpp"
 GFX_922e1: ; 922e1
-INCBIN "baserom.gbc", $922e1, $92301 - $922e1
+INCBIN "gfx/unknown/0922e1.2bpp"
 GFX_92301: ; 92301
-INCBIN "baserom.gbc", $92301, $92311 - $92301
+INCBIN "gfx/unknown/092301.2bpp"
 
 Function92311: ; 92311
 	xor a
@@ -86065,11 +86065,11 @@ Functionb84e3: ; b84e3
 ; b84f2
 
 FishingGFX: ; b84f2
-INCBIN "baserom.gbc",$b84f2,$b8582 - $b84f2
+INCBIN "gfx/unknown/0b84f2.2bpp"
 ; b8582
 
 KrisFishingGFX: ; b8582
-INCBIN "baserom.gbc",$b8582,$b8612 - $b8582
+INCBIN "gfx/unknown/0b8582.2bpp"
 ; b8612
 
 
@@ -89148,28 +89148,28 @@ Unknown_b9996: ; b9996
 INCBIN "baserom.gbc", $b9996, $b99c6 - $b9996
 
 MailDratiniGFX: ; b99c6
-INCBIN "baserom.gbc", $b99c6, $b99f6 - $b99c6
+INCBIN "gfx/unknown/0b99c6.2bpp"
 
 MailPoliwagGFX: ; b99f6
-INCBIN "baserom.gbc", $b99f6, $b9a26 - $b99f6
+INCBIN "gfx/unknown/0b99f6.2bpp"
 
 MailLaprasGFX: ; b9a26
-INCBIN "baserom.gbc", $b9a26, $b9a56 - $b9a26
+INCBIN "gfx/unknown/0b9a26.2bpp"
 
 MailPikaGFX: ; b9a56
-INCBIN "baserom.gbc", $b9a56, $b9a86 - $b9a56
+INCBIN "gfx/unknown/0b9a56.2bpp"
 
 MailDittoGFX: ; b9a86
-INCBIN "baserom.gbc", $b9a86, $b9ab6 - $b9a86
+INCBIN "gfx/unknown/0b9a86.2bpp"
 
 MailMewGFX: ; b9ab6
-INCBIN "baserom.gbc", $b9ab6, $b9b46 - $b9ab6
+INCBIN "gfx/unknown/0b9ab6.2bpp"
 
 MailDragoniteGFX: ; b9b46
-INCBIN "baserom.gbc", $b9b46, $b9bce - $b9b46
+INCBIN "gfx/unknown/0b9b46.2bpp"
 
 MailSentretGFX: ; b9bce
-INCBIN "baserom.gbc", $b9bce, $b9bee - $b9bce
+INCBIN "gfx/unknown/0b9bce.2bpp"
 
 Unknown_b9bee: ; b9bee
 INCBIN "baserom.gbc", $b9bee, $b9bfe - $b9bee
@@ -89178,7 +89178,7 @@ Unknown_b9bfe: ; b9bfe
 INCBIN "baserom.gbc", $b9bfe, $b9c1e - $b9bfe
 
 MailOddishGFX: ; b9c1e
-INCBIN "baserom.gbc", $b9c1e, $b9c3e - $b9c1e
+INCBIN "gfx/unknown/0b9c1e.2bpp"
 
 Unknown_b9c3e: ; b9c3e
 INCBIN "baserom.gbc", $b9c3e, $b9c5e - $b9c3e
@@ -89205,7 +89205,7 @@ Unknown_b9cfe: ; b9cfe
 INCBIN "baserom.gbc", $b9cfe, $b9d16 - $b9cfe
 
 MailCloudGFX: ; b9d16
-INCBIN "baserom.gbc", $b9d16, $b9d26 - $b9d16
+INCBIN "gfx/unknown/0b9d16.2bpp"
 
 Unknown_b9d26: ; b9d26
 INCBIN "baserom.gbc", $b9d26, $b9d3e - $b9d26
@@ -91307,7 +91307,7 @@ Palette_e0c93: ; e0c93
 ; e0cdb
 
 LZ_e0cdb: ; e0cdb
-INCBIN "baserom.gbc", $e0cdb, $e0cf6 - $e0cdb
+INCBIN "gfx/unknown/0e0cdb.2bpp.lz"
 
 Unknown_e0cf6: ; e0cf6
 INCBIN "baserom.gbc", $e0cf6, $e0d06 - $e0cf6
@@ -91316,10 +91316,10 @@ Unknown_e0d06: ; e0d06
 INCBIN "baserom.gbc", $e0d06, $e0d16 - $e0d06
 
 LZ_e0d16: ; e0d16
-INCBIN "baserom.gbc", $e0d16, $e0ea8 - $e0d16
+INCBIN "gfx/unknown/0e0d16.2bpp.lz"
 
 LZ_e0ea8: ; e0ea8
-INCBIN "baserom.gbc", $e0ea8, $e110c - $e0ea8
+INCBIN "gfx/unknown/0e0ea8.2bpp.lz"
 
 Unknown_e110c: ; e110c
 	db $ef, $15, $27, $2a, $2a, $06, $27, $2a, $2a, $06, $27
@@ -92069,7 +92069,7 @@ Unknown_e1703: ; e1703
 ; e1723
 
 GFX_e1723: ; e1723
-INCBIN "baserom.gbc", $e1723, $e17a3 - $e1723
+INCBIN "gfx/unknown/0e1723.2bpp"
 
 Functione17a3: ; e17a3
 	ld a, [ScriptVar]
@@ -92096,22 +92096,22 @@ Unknown_e17bd: ; e17bd
 ; e17c5
 
 GFX_e17c5: ; e17c5
-INCBIN "baserom.gbc", $e17c5, $e1805 - $e17c5
+INCBIN "gfx/unknown/0e17c5.2bpp"
 
 LZ_e1805: ; e1805
-INCBIN "baserom.gbc", $e1805, $e18ab - $e1805
+INCBIN "gfx/unknown/0e1805.2bpp.lz"
 
 LZ_e18ab: ; e18ab
-INCBIN "baserom.gbc", $e18ab, $e19fb - $e18ab
+INCBIN "gfx/unknown/0e18ab.2bpp.lz"
 
 LZ_e19fb: ; e19fb
-INCBIN "baserom.gbc", $e19fb, $e1bab - $e19fb
+INCBIN "gfx/unknown/0e19fb.2bpp.lz"
 
 LZ_e1bab: ; e1bab
-INCBIN "baserom.gbc", $e1bab, $e1c9b - $e1bab
+INCBIN "gfx/unknown/0e1bab.2bpp.lz"
 
 LZ_e1c9b: ; e1c9b
-INCBIN "baserom.gbc", $e1c9b, $e1e5b - $e1c9b
+INCBIN "gfx/unknown/0e1c9b.2bpp.lz"
 
 Functione1e5b: ; e1e5b (38:5e5b)
 	call Functione1e67
@@ -92720,7 +92720,7 @@ Functione21a1: ; e21a1 (38:61a1)
 ; e2221 (38:6221)
 
 LZ_e2221: ; e2221
-INCBIN "baserom.gbc",$e2221,$e2391 - $e2221
+INCBIN "gfx/unknown/0e2221.2bpp.lz"
 
 Functione2391: ; e2391 (38:6391)
 	ld hl, Options ; $cfcc
@@ -98136,7 +98136,7 @@ Unknown_e7a1d: ; e7a1d
 INCBIN "baserom.gbc", $e7a1d, $e7a5d - $e7a1d
 
 GFX_e7a5d: ; e7a5d
-INCBIN "baserom.gbc", $e7a5d, $e7a6d - $e7a5d
+INCBIN "gfx/unknown/0e7a5d.2bpp"
 
 
 
@@ -98166,26 +98166,26 @@ INCBIN "gfx/frames/9.1bpp"
 ; TODO: Various misc graphics here.
 
 GFX_f89b0: ; f89b0
-INCBIN "baserom.gbc", $f89b0, $f8a90 - $f89b0
+INCBIN "gfx/unknown/0f89b0.2bpp"
 ; f8a90
 
 ShinyIcon: ; f8a90
 INCBIN "gfx/stats/shiny.2bpp"
 
 GFX_f8aa0: ; f8aa0
-INCBIN "baserom.gbc", $f8aa0, $f8ac0 - $f8aa0
+INCBIN "gfx/unknown/0f8aa0.2bpp"
 ; f8ac0
 
 GFX_f8ac0: ; f8ac0
-INCBIN "baserom.gbc", $f8ac0, $f8ae0 - $f8ac0
+INCBIN "gfx/unknown/0f8ac0.2bpp"
 ; f8ae0
 
 GFX_f8ae0: ; f8ae0
-INCBIN "baserom.gbc", $f8ae0, $f8b10 - $f8ae0
+INCBIN "gfx/unknown/0f8ae0.2bpp"
 ; f8b10
 
 GFX_f8b10: ; f8b10
-INCBIN "baserom.gbc", $f8b10, $f8ba0 - $f8b10
+INCBIN "gfx/unknown/0f8b10.2bpp"
 ; f8ba0
 
 TownMapGFX: ; f8ba0
@@ -98193,31 +98193,31 @@ INCBIN "gfx/misc/town_map.2bpp.lz"
 ; f8ea4
 
 GFX_f8ea4: ; f8ea4
-INCBIN "baserom.gbc", $f8ea4, $f8f24 - $f8ea4
+INCBIN "gfx/unknown/0f8ea4.2bpp"
 ; f8f24
 
 GFX_f8f24: ; f8f24
-INCBIN "baserom.gbc", $f8f24, $f8f34 - $f8f24
+INCBIN "gfx/unknown/0f8f24.2bpp"
 ; f8f34
 
 GFX_f8f34: ; f8f34
-INCBIN "baserom.gbc", $f8f34, $f9204 - $f8f34
+INCBIN "gfx/unknown/0f8f34.2bpp"
 ; f9204
 
 GFX_f9204: ; f9204
-INCBIN "baserom.gbc", $f9204, $f9214 - $f9204
+INCBIN "gfx/unknown/0f9204.2bpp"
 ; f9214
 
 GFX_f9214: ; f9214
-INCBIN "baserom.gbc", $f9214, $f9344 - $f9214
+INCBIN "gfx/unknown/0f9214.2bpp"
 ; f9344
 
 GFX_f9344: ; f9344
-INCBIN "baserom.gbc", $f9344, $f9424 - $f9344
+INCBIN "gfx/unknown/0f9344.2bpp"
 ; f9424
 
 GFX_f9424: ; f9424
-INCBIN "baserom.gbc", $f9424, $f9434 - $f9424
+INCBIN "gfx/unknown/0f9424.2bpp"
 ; f9434
 
 Footprints: ; f9434
@@ -99231,7 +99231,7 @@ Functionfbbae: ; fbbae
 ; fbbbb
 
 GFX_fbbbb: ; fbbb
-INCBIN "baserom.gbc",$fbbbb,$fbbdb - $fbbbb
+INCBIN "gfx/unknown/0fbbbb.2bpp"
 ; fbbdb
 
 Functionfbbdb: ; fbbdb
@@ -112650,7 +112650,7 @@ Function10650a: ; 10650a
 ; 106514
 
 GFX_106514:
-INCBIN "baserom.gbc",$106514,$106594 - $106514
+INCBIN "gfx/unknown/106514.2bpp"
 
 
 Function106594:: ; 106594
@@ -112666,7 +112666,7 @@ Function106594:: ; 106594
 ; 1065ad
 
 GFX_1065ad:
-INCBIN "baserom.gbc",$1065ad,$106dbd - $1065ad
+INCBIN "gfx/unknown/1065ad.2bpp"
 
 
 SECTION "bank42", ROMX, BANK[$42]
@@ -114453,16 +114453,16 @@ Function108d07: ; 108d07
 ; 108d27
 
 LZ_108d27:
-INCBIN "baserom.gbc", $108d27, $108da7 - $108d27
+INCBIN "gfx/unknown/108d27.2bpp.lz"
 
 LZ_108da7:
-INCBIN "baserom.gbc", $108da7, $108fe7 - $108da7
+INCBIN "gfx/unknown/108da7.2bpp.lz"
 
 LZ_108fe7:
-INCBIN "baserom.gbc", $108fe7, $1090a7 - $108fe7
+INCBIN "gfx/unknown/108fe7.2bpp.lz"
 
 LZ_1090a7:
-INCBIN "baserom.gbc", $1090a7, $1090f7 - $1090a7
+INCBIN "gfx/unknown/1090a7.2bpp.lz"
 
 Palette_1090f7:
 INCBIN "baserom.gbc", $1090f7, $109107 - $1090f7
@@ -114477,9 +114477,9 @@ Palette_109187:
 INCBIN "baserom.gbc", $109187, $1091c7 - $109187
 
 GFX_1091c7:
-INCBIN "baserom.gbc", $1091c7, $1092c7 - $1091c7
+INCBIN "gfx/unknown/1091c7.2bpp"
 GFX_1092c7:
-INCBIN "baserom.gbc", $1092c7, $1093c7 - $1092c7
+INCBIN "gfx/unknown/1092c7.2bpp"
 
 Palette_1093c7:
 INCBIN "baserom.gbc", $1093c7, $109407 - $1093c7
@@ -120629,7 +120629,7 @@ Unknown_116005: ; 116005
 ; 11601a
 
 GFX_11601a:: ; 11601a
-INCBIN "baserom.gbc",$11601a,$11615a - $11601a
+INCBIN "gfx/unknown/11601a.2bpp"
 
 Function11615a: ; 11615a
 	xor a
@@ -135537,7 +135537,7 @@ Function16c15c: ; 16c15c
 ; 16c173
 
 GFX_16c173:
-INCBIN "baserom.gbc", $16c173, $16c633 - $16c173
+INCBIN "gfx/unknown/16c173.2bpp"
 
 Tilemap_16c633:
 INCBIN "baserom.gbc", $16c633, $16c79b - $16c633
@@ -136149,7 +136149,7 @@ Function16cc90: ; 16cc90
 ; 16cca3
 
 GFX_16cca3:
-INCBIN "baserom.gbc", $16cca3, $16cfa3 - $16cca3
+INCBIN "gfx/unknown/16cca3.2bpp"
 
 Unknown_16cfa3:
 	RGB 31, 31, 31
@@ -136176,7 +136176,7 @@ Unknown_16cfb9:
 ; 16cfc1
 
 GFX_16cfc1:
-INCBIN "baserom.gbc",$16cfc1,$16d421 - $16cfc1
+INCBIN "gfx/unknown/16cfc1.2bpp"
 
 Function16d421: ; 16d421
 	ld de, GFX_16cfc1
@@ -138472,13 +138472,13 @@ Function170d02: ; 170d02
 ; 170d16
 
 LZ_170d16:
-INCBIN "baserom.gbc", $170d16, $1715a4 - $170d16
+INCBIN "gfx/unknown/170d16.2bpp.lz"
 
 LZ_1715a4:
-INCBIN "baserom.gbc", $1715a4, $171848 - $1715a4
+INCBIN "gfx/unknown/1715a4.2bpp.lz"
 
 GFX_171848:
-INCBIN "baserom.gbc", $171848, $1719c8 - $171848
+INCBIN "gfx/unknown/171848.2bpp"
 
 Function1719c8: ; 1719c8 (5c:59c8)
 	ld a, [$ffaa]
@@ -138943,7 +138943,7 @@ Function171d2b: ; 171d2b (5c:5d2b)
 Palette_171d71:
 INCBIN "baserom.gbc", $171d71, $171db1 - $171d71
 GFX_171db1:
-INCBIN "baserom.gbc", $171db1, $172491 - $171db1
+INCBIN "gfx/unknown/171db1.2bpp"
 Tilemap_172491:
 INCBIN "baserom.gbc", $172491, $17251d - $172491
 Tilemap_17251d:
@@ -139022,7 +139022,7 @@ Palette_172edf:
 INCBIN "baserom.gbc",$172edf,$172f1f - $172edf
 
 GFX_172f1f:
-INCBIN "baserom.gbc",$172f1f,$1733af - $172f1f
+INCBIN "gfx/unknown/172f1f.2bpp"
 
 Tilemap_1733af:
 INCBIN "baserom.gbc",$1733af,$173517 - $1733af
@@ -142641,7 +142641,7 @@ PokemonNewsGFX: ; 17e6fe
 INCBIN "gfx/mobile/pokemon_news.2bpp"
 
 GFX_17eb7e:
-INCBIN "baserom.gbc", $17eb7e, $17eb8e - $17eb7e
+INCBIN "gfx/unknown/17eb7e.2bpp"
 
 TileAttrmap_17eb8e:
 INCBIN "baserom.gbc", $17eb8e, $17eff6 - $17eb8e
@@ -144831,7 +144831,7 @@ String_1dd7fa: db "GAME FREAK@"
 ; 1dd805
 
 LZ_1dd805: ; 1dd805
-INCBIN "baserom.gbc", $1dd805, $1ddc4b - $1dd805
+INCBIN "gfx/unknown/1dd805.2bpp.lz"
 
 Tilemap_1ddc4b: ; 1ddc4b
 INCBIN "baserom.gbc", $1ddc4b, $1dddb3 - $1ddc4b
@@ -144855,7 +144855,7 @@ Function1ddf26: ; 1ddf26 (77:5f26)
 ; 1ddf33 (77:5f33)
 
 LZ_1ddf33: ; 1ddf33
-INCBIN "baserom.gbc",$1ddf33,$1de0d7 - $1ddf33
+INCBIN "gfx/unknown/1ddf33.2bpp.lz"
 ; 1de0d7
 
 Function1de0d7: ; 1de0d7
@@ -144866,7 +144866,7 @@ Function1de0d7: ; 1de0d7
 ; 1de0e1
 
 LZ_1de0e1: ; 1de0e1
-INCBIN "baserom.gbc",$1de0e1,$1de171 - $1de0e1
+INCBIN "gfx/unknown/1de0e1.2bpp.lz"
 ; 1de171
 
 Function1de171: ; 1de171 (77:6171)
