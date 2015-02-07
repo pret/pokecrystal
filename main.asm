@@ -145813,7 +145813,7 @@ INCBIN "baserom.gbc",$1f4000,$1f4003 - $1f4000
 Function1f4003: ; 1f4003
 	ld a, $6
 	call GetSRAMBank
-	ld hl, MobileSave
+	ld hl, Unknown_1f4018
 	ld de, $a000
 	ld bc, $1000
 	call CopyBytes
@@ -145821,9 +145821,36 @@ Function1f4003: ; 1f4003
 	ret
 ; 1f4018
 
-MobileSave: INCBIN "misc/mobile_save.bin"
+Unknown_1f4018:
+INCBIN "baserom.gbc", $1f4018, $1f4dbe - $1f4018
 
-INCBIN "baserom.gbc",$1f5018,$1f636a - $1f5018
+Function1f4dbe: ; 1f4dbe
+	ld a, $6
+	call GetSRAMBank
+	ld hl, Unknown_1f4dd3
+	ld de, $a000
+	ld bc, $1000
+	call CopyBytes
+	call CloseSRAM
+	ret
+; 1f4dd3
+
+Unknown_1f4dd3:
+INCBIN "baserom.gbc", $1f4dd3, $1f5d9f - $1f4dd3
+
+Function1f5d9f: ; 1f5d9f
+	ld a, $6
+	call GetSRAMBank
+	ld hl, Unknown_1f5db4
+	ld de, $a000
+	ld bc, $1000
+	call CopyBytes
+	call CloseSRAM
+	ret
+; 1f5db4
+
+Unknown_1f5db4:
+INCBIN "baserom.gbc", $1f5db4, $1f636a - $1f5db4
 
 
 SECTION "bank7E", ROMX, BANK[$7E]
