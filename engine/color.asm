@@ -899,7 +899,7 @@ Function97ee: ; 97ee
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld bc, $68ce
+	ld bc, PokemonPalettes
 	add hl, bc
 	ret
 ; 97f9

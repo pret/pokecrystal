@@ -81,7 +81,7 @@ Function110030:: ; 110030 (44:4030)
 	ld [$c988], a
 	ld a, [hl]
 	pop de
-	ld hl, $3e60
+	ld hl, Function3e60
 	push hl
 	ld h, a
 	ld a, [$c988]

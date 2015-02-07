@@ -1226,11 +1226,11 @@ UnknownScript_0xbd8dd:
 	trainertotext SCHOOLBOY, 3, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_ALAN
-	iftrue $5915
+	iftrue UnknownScript_0xbd915
 	checkflag ENGINE_95
-	iftrue $5915
+	iftrue UnknownScript_0xbd915
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
-	iftrue $5915
+	iftrue UnknownScript_0xbd915
 	farscall UnknownScript_0xbde42
 	if_equal $0, UnknownScript_0xbd91c
 	checkevent $0101
@@ -1287,11 +1287,11 @@ UnknownScript_0xbd967:
 	trainertotext LASS, 10, $0
 	farscall UnknownScript_0xbe41e
 	checkflag ENGINE_DANA
-	iftrue $599f
+	iftrue UnknownScript_0xbd99f
 	checkflag ENGINE_96
-	iftrue $599f
+	iftrue UnknownScript_0xbd99f
 	checkflag ENGINE_LIZ_HAS_THUNDERSTONE
-	iftrue $599f
+	iftrue UnknownScript_0xbd99f
 	farscall UnknownScript_0xbde42
 	if_equal $0, UnknownScript_0xbd9ae
 	checkevent $0102
@@ -1452,11 +1452,11 @@ UnknownScript_0xbdae3:
 	trainertotext FISHER, 7, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_TULLY
-	iftrue $5b1b
+	iftrue UnknownScript_0xbdb1b
 	checkflag ENGINE_98
-	iftrue $5b1b
+	iftrue UnknownScript_0xbdb1b
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
-	iftrue $5b1b
+	iftrue UnknownScript_0xbdb1b
 	farscall UnknownScript_0xbde42
 	if_equal $0, UnknownScript_0xbdb22
 	checkevent $0103
@@ -1560,11 +1560,11 @@ UnknownScript_0xbdbd0:
 	if_equal $0, UnknownScript_0xbdc21
 	farscall UnknownScript_0xbe41e
 	checkflag ENGINE_TIFFANY
-	iftrue $5c10
+	iftrue UnknownScript_0xbdc10
 	checkflag ENGINE_9A
-	iftrue $5c10
+	iftrue UnknownScript_0xbdc10
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
-	iftrue $5c10
+	iftrue UnknownScript_0xbdc10
 	farscall UnknownScript_0xbde42
 	if_equal $0, UnknownScript_0xbdc17
 	checkevent $0104

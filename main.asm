@@ -29559,9 +29559,9 @@ UnownDexVacantString:
 ; 16d9c
 
 UnownDexATile: ; 16d9c
-	INCBIN "baserom.gbc", $16d9c, $16da4 - $16d9c
+INCBIN "gfx/unknown/016d9c.1bpp"
 UnownDexBTile: ; 16da4
-	INCBIN "baserom.gbc", $16da4, $16dac - $16da4
+INCBIN "gfx/unknown/016da4.1bpp"
 ; 16dac
 
 Function16dac: ; 16dac
@@ -63039,7 +63039,7 @@ Function81f1d: ; 81f1d
 	ld [rJOYP], a
 	ld a, $30
 	ld [rJOYP], a
-	ld de, $1b58
+	ld de, 7000
 .asm_81f51
 	nop
 	nop
@@ -107224,9 +107224,9 @@ Function102dc3: ; 102dc3
 
 Function102dd3: ; 102dd3
 	call DisableLCD
-	ld de, $72a2
+	ld de, GFX_1032a2
 	ld hl, VTiles0
-	ld bc, $4004
+	lb bc, BANK(GFX_1032a2), 4
 	call Get2bpp
 	callba Function16d421
 	call EnableLCD
@@ -107234,7 +107234,7 @@ Function102dd3: ; 102dd3
 ; 102dec
 
 Function102dec: ; 102dec
-	ld hl, $72e2
+	ld hl, Unknown_1032e2
 	ld de, Unkn2Pals
 	ld bc, $0020
 	ld a, $5
@@ -107708,22 +107708,11 @@ Unknown_10327a: ; 10327a
 	db $00, $00, $02, $02
 	db $00, $00, $03, $02
 	db $00, $00, $01, $03
-	db $00, $00, $00, $00
-	db $00, $00, $00, $00
-	db $00, $00, $00, $00
-	db $00, $00, $00, $00
-	db $00, $00, $40, $00
-	db $e0, $00, $e0, $00
-	db $e0, $00, $e0, $00
-	db $e0, $00, $40, $00
-	db $00, $00, $00, $40
-	db $00, $e0, $00, $e0
-	db $00, $e0, $00, $e0
-	db $00, $e0, $00, $40
-	db $00, $00, $40, $40
-	db $e0, $e0, $e0, $e0
-	db $e0, $e0, $e0, $e0
-	db $e0, $e0, $40, $40
+
+GFX_1032a2:
+INCBIN "gfx/unknown/1032a2.2bpp"
+
+Unknown_1032e2:
 	db $00, $00, $ff, $1f
 	db $f4, $1b, $8d, $42
 	db $00, $00, $67, $45

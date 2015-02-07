@@ -444,7 +444,7 @@ ParseCredits: ; 1099aa
 	xor a
 	ld [$cf64], a ; frame
 	call GetCreditsPalette
-	call $32f9 ; update hw pal registers
+	call Function32f9 ; update hw pal registers
 	jr .loop
 	
 .clear
@@ -481,7 +481,7 @@ ParseCredits: ; 1099aa
 	ld [$ffd4], a
 	
 .done
-	jp $5951
+	jp Function109951
 	
 .end
 ; Stop execution.

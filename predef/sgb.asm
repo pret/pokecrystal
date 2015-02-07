@@ -91,7 +91,7 @@ Function86b4: ; 86b4
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld de, $68be
+	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
 	ld [$cdb2], a
