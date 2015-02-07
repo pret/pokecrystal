@@ -806,16 +806,78 @@ Function17ac46: ; 17ac46 (5e:6c46)
 ; 17ac55 (5e:6c55)
 
 Palette_17ac55: ; 17ac55
-INCBIN "baserom.gbc",$17ac55,$17ac95 - $17ac55
+	RGB  0,  0,  0
+	RGB  9, 10, 25
+	RGB 16, 19, 31
+	RGB 31, 31, 31
+	RGB  5, 11,  9
+	RGB  7, 14, 12
+	RGB 17, 24, 22
+	RGB 28, 31, 31
+	RGB  0,  0,  0
+	RGB  3,  0, 10
+	RGB  3,  3, 16
+	RGB  6,  8, 25
+	RGB  5, 11,  9
+	RGB 28, 31, 31
+	RGB  7, 14, 12
+	RGB 17, 24, 22
+	RGB  0,  0,  0
+	RGB  5,  2, 16
+	RGB  8,  8, 26
+	RGB 13,  9, 17
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
 
 Palette_17ac95: ; 17ac95
-INCBIN "baserom.gbc",$17ac95,$17acd5 - $17ac95
+	RGB 31, 31, 31
+	RGB  4,  3,  3
+	RGB 31, 13,  0
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31,  0,  0
+	RGB 16,  3,  0
+	RGB 28, 19, 11
+	RGB 31, 31, 31
+	RGB 31, 16,  0
+	RGB  9,  6,  4
+	RGB 31, 16,  0
+	RGB 31, 24,  0
+	RGB 31, 18,  6
+	RGB  0,  3,  0
+	RGB  0,  9,  0
+	RGB  0, 12,  0
+	RGB  0, 16,  0
+	RGB  0, 22,  0
+	RGB  0, 25,  0
+	RGB  0, 27,  0
+	RGB  0, 31,  0
+	RGB  3, 31,  0
+	RGB  8, 31,  0
+	RGB 14, 31,  0
+	RGB 16, 31,  0
+	RGB 22, 31,  0
+	RGB 27, 31,  0
+	RGB 31, 31,  0
 
 Tilemap_17acd5: ; 17acd5
-INCBIN "baserom.gbc",$17acd5,$17ae3d - $17acd5
+INCBIN "gfx/unknown/17acd5.tilemap"
 
 Tilemap_17ae3d: ; 17ae3d
-INCBIN "baserom.gbc",$17ae3d,$17afa5 - $17ae3d
+INCBIN "gfx/unknown/17ae3d.tilemap"
 
 GFX_17afa5:: ; 17afa5
-INCBIN "baserom.gbc",$17afa5,$17b7a5 - $17afa5
+INCBIN "gfx/unknown/17afa5.2bpp"

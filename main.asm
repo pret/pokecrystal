@@ -96456,11 +96456,11 @@ IntroScene1: ; e495b (39:495b)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e65ad
+	ld hl, Palette_365ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e65ad
+	ld hl, Palette_365ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -96529,11 +96529,11 @@ IntroScene3: ; e49fd (39:49fd)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e5edd
+	ld hl, Palette_e5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e5edd
+	ld hl, Palette_e5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -96594,11 +96594,11 @@ IntroScene5: ; e4a7a (39:4a7a)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e65ad
+	ld hl, Palette_365ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e65ad
+	ld hl, Palette_365ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -96691,11 +96691,11 @@ IntroScene7: ; e4b3f (39:4b3f)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e5edd
+	ld hl, Palette_e5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e5edd
+	ld hl, Palette_e5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -96841,11 +96841,11 @@ IntroScene11: ; e4c86 (39:4c86)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e65ad
+	ld hl, Palette_365ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e65ad
+	ld hl, Palette_365ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -96965,11 +96965,11 @@ IntroScene13: ; e4d6d (39:4d6d)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e5edd
+	ld hl, Palette_e5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e5edd
+	ld hl, Palette_e5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -97074,11 +97074,11 @@ IntroScene15: ; e4e40 (39:4e40)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e77dd
+	ld hl, Palette_e77dd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e77dd
+	ld hl, Palette_e77dd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -97148,11 +97148,11 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e6d6d
+	ld hl, Palette_e6d6d
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e6d6d
+	ld hl, Palette_e6d6d
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -97222,11 +97222,11 @@ IntroScene19: ; e4f7e (39:4f7e)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e77dd
+	ld hl, Palette_e77dd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e77dd
+	ld hl, Palette_e77dd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -97390,11 +97390,11 @@ IntroScene26: ; e50bb (39:50bb)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unknown_e679d
+	ld hl, Palette_e679d
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, Unknown_e679d
+	ld hl, Palette_e679d
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -98032,8 +98032,71 @@ IntroTilemap003: ; e5ecd
 INCBIN "gfx/intro/003.tilemap.lz"
 ; e5edd
 
-Unknown_e5edd: ; e5edd
-INCBIN "baserom.gbc", $e5edd, $e5f5d - $e5edd
+Palette_e5edd: ; e5edd
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB  0,  4,  5
+	RGB  1,  8,  5
+	RGB  4, 12,  9
+	RGB 24, 12,  9
+	RGB  0,  4,  5
+	RGB  9,  6,  8
+	RGB  8, 16,  5
+	RGB  5, 10,  4
+	RGB 31, 31, 31
+	RGB  9,  6,  8
+	RGB 18,  9,  9
+	RGB 13,  8,  9
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB  2,  5, 22
+	RGB  1,  5, 12
+	RGB 31, 31, 31
+	RGB 31, 10, 25
+	RGB 31, 21,  0
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 21, 31
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
 
 IntroUnownsGFX: ; e5f5d
 INCBIN "gfx/intro/unowns.2bpp.lz"
@@ -98067,8 +98130,71 @@ IntroTilemap007: ; e655d
 INCBIN "gfx/intro/007.tilemap.lz"
 ; e65ad
 
-Unknown_e65ad: ; e65ad
-INCBIN "baserom.gbc", $e65ad, $e662d - $e65ad
+Palette_365ad: ; e65ad
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 10,  0, 10
+	RGB 19,  0, 19
+	RGB 31,  0, 31
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
 
 IntroCrystalUnownsGFX: ; e662d
 INCBIN "gfx/intro/crystal_unowns.2bpp.lz"
@@ -98082,8 +98208,71 @@ IntroTilemap015: ; e676d
 INCBIN "gfx/intro/015.tilemap.lz"
 ; e679d
 
-Unknown_e679d: ; e679d
-INCBIN "baserom.gbc", $e679d, $e681d - $e679d
+Palette_e679d: ; e679d
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
 
 IntroSuicuneCloseGFX: ; e681d
 INCBIN "gfx/intro/suicune_close.2bpp.lz"
@@ -98097,8 +98286,71 @@ IntroTilemap011: ; e6d0d
 INCBIN "gfx/intro/011.tilemap.lz"
 ; e6d6d
 
-Unknown_e6d6d: ; e6d6d
-INCBIN "baserom.gbc", $e6d6d, $e6ded - $e6d6d
+Palette_e6d6d: ; e6d6d
+	RGB 24, 12,  9
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 24, 12,  9
+	RGB 31, 31, 31
+	RGB  8,  9, 31
+	RGB  0,  0,  0
+	RGB 24, 12,  9
+	RGB 12, 20, 31
+	RGB 19,  8, 31
+	RGB  0,  0,  0
+	RGB 12, 20, 31
+	RGB  8,  9, 31
+	RGB 19,  8, 31
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 12, 20, 31
+	RGB  8,  9, 31
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
 
 IntroSuicuneJumpGFX: ; e6ded
 INCBIN "gfx/intro/suicune_jump.2bpp.lz"
@@ -98124,8 +98376,71 @@ IntroTilemap013: ; e778d
 INCBIN "gfx/intro/013.tilemap.lz"
 ; e77dd
 
-Unknown_e77dd: ; e77dd
-INCBIN "baserom.gbc", $e77dd, $e785d - $e77dd
+Palette_e77dd: ; e77dd
+	RGB 24, 12,  9
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 24, 12,  9
+	RGB 31, 31, 31
+	RGB  8,  9, 31
+	RGB  0,  0,  0
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 24, 12,  9
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 12,  0, 31
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 21,  9,  0
+	RGB 21,  9,  0
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
 
 IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.2bpp.lz"
