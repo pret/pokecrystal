@@ -10882,7 +10882,9 @@ UnknownScript_0xd14e: ; 0xd14e
 	end
 ; 0xd156
 
-INCBIN "baserom.gbc", $d156, $d158 - $d156
+Functiond156: ; unreferenced
+	nop
+	ret
 
 UnknownScript_0xd158: ; 0xd158
 	reloadmappart
@@ -51082,6 +51084,7 @@ Function49856: ; 49856
 	ret
 ; 4985a
 
+Unknown_4985a: ; unreferenced
 INCBIN "baserom.gbc",$4985a,$4989a - $4985a
 
 Function4989a: ; 4989a
@@ -81372,13 +81375,13 @@ INCBIN "gfx/misc/pokegear_sprites.2bpp.lz"
 ; 9150d
 
 RadioTilemapRLE: ; 9150d
-INCBIN "baserom.gbc",$9150d,$9158a - $9150d
+INCBIN "gfx/unknown/09150d.tilemap.rle"
 
 PhoneTilemapRLE: ; 9158a
-INCBIN "baserom.gbc",$9158a,$915db - $9158a
+INCBIN "gfx/unknown/09158a.tilemap.rle"
 
 ClockTilemapRLE: ; 915db
-INCBIN "baserom.gbc",$915db,$9163e - $915db
+INCBIN "gfx/unknown/0915db.tilemap.rle"
 ; 9163e
 
 Function9163e: ; 9163e (24:563e)
@@ -114469,16 +114472,116 @@ LZ_1090a7:
 INCBIN "gfx/unknown/1090a7.tilemap.lz"
 
 Palette_1090f7:
-INCBIN "baserom.gbc", $1090f7, $109107 - $1090f7
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB 31,  0, 25
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB  9, 19, 31
+	RGB  0,  0,  0
 
 Palette_109107:
-INCBIN "baserom.gbc", $109107, $109147 - $109107
+	RGB 18, 31, 15
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 15,  1
+	RGB 14, 14, 31
+	RGB 12,  9, 31
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 14, 14, 31
+	RGB 12,  9, 31
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 31,  7,  9
+	RGB 18,  0,  1
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 15,  1
+	RGB 18,  0, 30
+	RGB  9,  0, 17
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 18,  0, 30
+	RGB  9,  0, 17
+	RGB  0,  0,  0
 
 Palette_109147:
-INCBIN "baserom.gbc", $109147, $109187 - $109147
+	RGB 31, 31, 31
+	RGB 31, 31, 12
+	RGB 31, 13, 12
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31, 23, 15
+	RGB 31, 18,  7
+	RGB 31, 15,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31,  0, 25
+	RGB 31,  0, 25
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  9, 19, 31
+	RGB  9, 19, 31
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
 
 Palette_109187:
-INCBIN "baserom.gbc", $109187, $1091c7 - $109187
+	RGB 31, 31, 31
+	RGB 31, 31, 12
+	RGB 31, 13, 12
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31, 23, 15
+	RGB 31, 18,  7
+	RGB 31, 15,  0
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  9, 19, 31
+	RGB  9, 19, 31
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31,  0, 25
+	RGB 31,  0, 25
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
 
 GFX_1091c7:
 INCBIN "gfx/unknown/1091c7.2bpp"
@@ -114486,7 +114589,38 @@ GFX_1092c7:
 INCBIN "gfx/unknown/1092c7.2bpp"
 
 Palette_1093c7:
-INCBIN "baserom.gbc", $1093c7, $109407 - $1093c7
+	RGB 18, 31, 15
+	RGB  4, 13, 31
+	RGB  0,  0, 31
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 31, 31,  0
+	RGB 31, 15,  0
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB  9, 24,  0
+	RGB  2, 16,  0
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 31,  7,  9
+	RGB 18,  0,  1
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 28,  5, 31
+	RGB 17,  0, 17
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB  9,  9,  9
+	RGB  4,  4,  4
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 31, 13, 21
+	RGB 27,  7, 12
+	RGB  0,  0,  0
+	RGB 18, 31, 15
+	RGB 21, 20, 20
+	RGB 14, 14, 31
+	RGB  0,  0,  0
 
 IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.2bpp.lz"
@@ -122589,10 +122723,44 @@ Unknown_1172e9: ; 1172e9
 ; 11730e
 
 Palette_11730e:
-INCBIN "baserom.gbc", $11730e, $11734e - $11730e
+	RGB 31, 31, 31
+	RGB  7,  5,  4
+	RGB 31, 28,  4
+	RGB 31,  5,  5
+	RGB 31, 31, 31
+	RGB  7,  5,  4
+	RGB 31, 23,  0
+	RGB 31, 28,  4
+	RGB 31, 31, 31
+	RGB 16, 19, 31
+	RGB 17, 31, 31
+	RGB 31, 31, 31
+	RGB  5,  5,  5
+	RGB  7,  5,  4
+	RGB 31, 28,  4
+	RGB 19, 11,  6
+	RGB 31, 31, 31
+	RGB  3, 15, 31
+	RGB  4, 25, 25
+	RGB  0,  7, 12
+	RGB 31, 31, 31
+	RGB  0, 16,  0
+	RGB  0, 16,  0
+	RGB  0, 16,  0
+	RGB  4, 11, 22
+	RGB  0, 16,  0
+	RGB  0, 16,  0
+	RGB  0, 16,  0
+	RGB 22, 11,  8
+	RGB  0, 16,  0
+	RGB  0, 16,  0
+	RGB  0, 16,  0
 
 Palette_11734e:
-INCBIN "baserom.gbc", $11734e, $117356 - $11734e
+	RGB 31, 30, 30
+	RGB  2,  0,  0
+	RGB 10,  9,  9
+	RGB 15, 14, 14
 
 Unknown_117356:
 INCBIN "baserom.gbc", $117356, $117656 - $117356
@@ -135544,10 +135712,10 @@ GFX_16c173:
 INCBIN "gfx/unknown/16c173.2bpp"
 
 Tilemap_16c633:
-INCBIN "baserom.gbc", $16c633, $16c79b - $16c633
+INCBIN "gfx/unknown/16c633.tilemap"
 
 Tilemap_16c79b:
-INCBIN "baserom.gbc", $16c79b, $16c903 - $16c79b
+INCBIN "gfx/unknown/16c79b.tilemap"
 
 Unknown_16c903:
 	RGB 31, 31, 31
@@ -136215,13 +136383,13 @@ Function16d43b: ; 16d43b
 ; 16d465
 
 Tilemap_16d465:
-INCBIN "baserom.gbc",$16d465,$16d5cd - $16d465
+INCBIN "gfx/unknown/16d465.tilemap"
 
 Tilemap_16d5cd:
-INCBIN "baserom.gbc",$16d5cd,$16d5f5 - $16d5cd
+INCBIN "gfx/unknown/16d5cd.tilemap"
 
 Tilemap_16d5f5:
-INCBIN "baserom.gbc",$16d5f5,$16d61d - $16d5f5
+INCBIN "gfx/unknown/16d5f5.tilemap"
 
 Function16d61d: ; 16d61d
 	ld h, d
@@ -138945,21 +139113,52 @@ Function171d2b: ; 171d2b (5c:5d2b)
 ; 171d71 (5c:5d71)
 
 Palette_171d71:
-INCBIN "baserom.gbc", $171d71, $171db1 - $171d71
+	RGB  0,  0,  0
+	RGB  3,  0,  0
+	RGB  5,  0,  0
+	RGB 31, 31, 29
+	RGB  0,  2, 10
+	RGB  2, 10, 21
+	RGB  0,  0,  0
+	RGB 10, 26, 31
+	RGB  0,  0,  0
+	RGB  0,  7,  8
+	RGB 31,  8,  0
+	RGB  1, 17, 15
+	RGB 31, 16,  0
+	RGB 31, 22,  0
+	RGB 31, 27,  0
+	RGB 31, 31,  0
+	RGB 31, 18,  6
+	RGB  0,  3,  0
+	RGB  0,  9,  0
+	RGB  0, 12,  0
+	RGB  0, 16,  0
+	RGB  0, 22,  0
+	RGB  0, 25,  0
+	RGB  0, 27,  0
+	RGB  5,  5, 16
+	RGB  8, 19, 28
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31, 31, 29
+	RGB 21, 21, 20
+	RGB 11, 11, 10
+	RGB  0,  0,  0
 GFX_171db1:
 INCBIN "gfx/unknown/171db1.2bpp"
 Tilemap_172491:
-INCBIN "baserom.gbc", $172491, $17251d - $172491
+INCBIN "gfx/unknown/172491.tilemap"
 Tilemap_17251d:
-INCBIN "baserom.gbc", $17251d, $1725f9 - $17251d
+INCBIN "gfx/unknown/17251d.tilemap"
 Tilemap_1725f9:
-INCBIN "baserom.gbc", $1725f9, $172685 - $1725f9
+INCBIN "gfx/unknown/1725f9.tilemap"
 Tilemap_172685:
-INCBIN "baserom.gbc", $172685, $1727ed - $172685
+INCBIN "gfx/unknown/172685.tilemap"
 Attrmap_1727ed:
-INCBIN "baserom.gbc", $1727ed, $172955 - $1727ed
+INCBIN "gfx/unknown/1727ed.attrmap"
 Attrmap_172955:
-INCBIN "baserom.gbc", $172955, $172abd - $172955
+INCBIN "gfx/unknown/172955.attrmap"
 LZ_172abd:
 INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 
@@ -139023,16 +139222,47 @@ Function172eb9:
 ; 172edf (5c:6edf)
 
 Palette_172edf:
-INCBIN "baserom.gbc",$172edf,$172f1f - $172edf
+	RGB  5, 12, 17
+	RGB 31, 31, 31
+	RGB 18, 25, 28
+	RGB 10, 17, 21
+	RGB  6, 13, 18
+	RGB 31, 31, 31
+	RGB 20, 26, 28
+	RGB 12, 19, 23
+	RGB  3, 10, 16
+	RGB 31, 31, 31
+	RGB  6, 13, 18
+	RGB 20, 26, 28
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  5,  5, 16
+	RGB  8, 19, 28
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
 
 GFX_172f1f:
 INCBIN "gfx/unknown/172f1f.2bpp"
 
 Tilemap_1733af:
-INCBIN "baserom.gbc",$1733af,$173517 - $1733af
+INCBIN "gfx/unknown/1733af.tilemap"
 
 Attrmap_173517:
-INCBIN "baserom.gbc",$173517,$17367f - $173517
+INCBIN "gfx/unknown/173517.attrmap"
 
 
 SECTION "bank5D", ROMX, BANK[$5D]
@@ -142648,10 +142878,41 @@ GFX_17eb7e:
 INCBIN "gfx/unknown/17eb7e.2bpp"
 
 TileAttrmap_17eb8e:
-INCBIN "baserom.gbc", $17eb8e, $17eff6 - $17eb8e
+INCBIN "gfx/unknown/17eb8e.attrmap"
 
 Palette_17eff6:
-INCBIN "baserom.gbc", $17eff6, $17f036 - $17eff6
+	RGB 24,  9,  8
+	RGB  4,  9, 18
+	RGB 18, 18, 12
+	RGB  0,  0,  0
+	RGB 24, 24, 18
+	RGB 18, 18, 12
+	RGB  4,  9, 18
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 23, 11, 10
+	RGB 13,  6,  5
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 15, 25,  5
+	RGB 10, 20,  0
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20, 28, 20
+	RGB 10, 18, 15
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 22, 22, 12
+	RGB 17, 12,  5
+	RGB  0,  0,  0
+	RGB  5,  5, 16
+	RGB  8, 19, 28
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 27, 24,  0
+	RGB 24, 16,  3
+	RGB  0,  0,  0
 
 
 Function17f036:: ; 17f036
@@ -144838,10 +145099,10 @@ LZ_1dd805: ; 1dd805
 INCBIN "gfx/unknown/1dd805.2bpp.lz"
 
 Tilemap_1ddc4b: ; 1ddc4b
-INCBIN "baserom.gbc", $1ddc4b, $1dddb3 - $1ddc4b
+INCBIN "gfx/unknown/1ddc4b.tilemap"
 
 Tilemap_1dddb3: ; 1dddb3
-INCBIN "baserom.gbc", $1dddb3, $1ddf1c - $1dddb3
+INCBIN "gfx/unknown/1dddb3.tilemap"
 
 Function1ddf1c: ; 1ddf1c
 	ld hl, LZ_1ddf33
