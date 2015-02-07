@@ -114459,10 +114459,10 @@ LZ_108da7:
 INCBIN "gfx/unknown/108da7.2bpp.lz"
 
 LZ_108fe7:
-INCBIN "gfx/unknown/108fe7.2bpp.lz"
+INCBIN "gfx/unknown/108fe7.tilemap.lz"
 
 LZ_1090a7:
-INCBIN "gfx/unknown/1090a7.2bpp.lz"
+INCBIN "gfx/unknown/1090a7.tilemap.lz"
 
 Palette_1090f7:
 INCBIN "baserom.gbc", $1090f7, $109107 - $1090f7
