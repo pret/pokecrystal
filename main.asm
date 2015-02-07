@@ -145861,6 +145861,8 @@ INCLUDE "data/odd_eggs.asm"
 
 SECTION "bank7F", ROMX, BANK[$7F]
 
-SECTION "stadium2",ROMX[$8000-$220],BANK[$7F]
-INCBIN "baserom.gbc",$1ffde0,$200000 - $1ffde0
+
+SECTION "stadium2", ROMX[$8000-$220], BANK[$7F]
+
+INCBIN "misc/stadium2.bin"
 
