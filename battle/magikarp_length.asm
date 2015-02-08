@@ -82,7 +82,7 @@ CalcMagikarpLength: ; fbbfc
 
 	ld hl, .Lengths
 	ld a, 2
-	ld [$d265], a
+	ld [wd265], a
 
 .read
 	ld a, [hli]
@@ -111,7 +111,7 @@ CalcMagikarpLength: ; fbbfc
 	ld [hMultiplicand + 1], a
 	ld a, 100
 	ld [hMultiplicand + 2], a
-	ld a, [$d265]
+	ld a, [wd265]
 	ld [hMultiplier], a
 	call Multiply
 	ld b, 0
@@ -125,9 +125,9 @@ CalcMagikarpLength: ; fbbfc
 
 .next
 	inc hl ; align to next triplet
-	ld a, [$d265]
+	ld a, [wd265]
 	inc a
-	ld [$d265], a
+	ld [wd265], a
 	cp 16
 	jr c, .read
 

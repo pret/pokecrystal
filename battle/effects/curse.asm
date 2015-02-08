@@ -40,7 +40,7 @@ BattleCommand54: ; 37588
 ; Raise Attack and Defense, and lower Speed.
 
 	ld a, $1
-	ld [$c689], a
+	ld [wc689], a
 	call AnimateCurrentMove
 	ld a, $2
 	call Function36532

@@ -2,7 +2,7 @@
 
 
 Functioncc9a1: ; cc9a1 (33:49a1)
-	ld hl, $d30a
+	ld hl, OTPartyMon3HP
 	ld e, $a
 .asm_cc9a6
 	ld a, [hl]
@@ -17,7 +17,7 @@ Functioncc9a1: ; cc9a1 (33:49a1)
 .asm_cc9b3
 	ld c, l
 	ld b, h
-	ld hl, $d40e
+	ld hl, wd40e
 	inc [hl]
 	call Functioncc9c4
 	ret
@@ -32,7 +32,7 @@ Functioncc9bd: ; cc9bd
 
 
 Functioncc9c4: ; cc9c4 (33:49c4)
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	ld e, a
 	ld d, 0
 	ld hl, BattleAnimObjects
@@ -46,7 +46,7 @@ Functioncc9c4: ; cc9c4 (33:49c4)
 	ld d, h
 	ld hl, $0
 	add hl, bc
-	ld a, [$d40e]
+	ld a, [wd40e]
 	ld [hli], a
 	ld a, [de]
 	inc de
@@ -66,14 +66,14 @@ Functioncc9c4: ; cc9c4 (33:49c4)
 	ld a, [de]
 	call Functionccb31
 	ld [hli], a
-	ld a, [$d41a]
+	ld a, [BattleAnimTemps + 1]
 	ld [hli], a
-	ld a, [$d41b]
+	ld a, [BattleAnimTemps + 2]
 	ld [hli], a
 	xor a
 	ld [hli], a
 	ld [hli], a
-	ld a, [$d41c]
+	ld a, [BattleAnimTemps + 3]
 	ld [hli], a
 	xor a
 	ld [hli], a
@@ -94,35 +94,35 @@ Functioncca09: ; cca09
 	cp $fc
 	jp z, .asm_ccaa2
 	push af
-	ld hl, $d419
-	ld a, [$d420]
+	ld hl, BattleAnimTemps
+	ld a, [BattleAnimTemps + 7]
 	xor [hl]
 	and $e0
 	ld [hl], a
 	pop af
 	push bc
 	call Functionce83c
-	ld a, [$d41b]
+	ld a, [BattleAnimTemps + 2]
 	add [hl]
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	inc hl
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$d418]
+	ld a, [wd418]
 	ld e, a
 	ld d, $c4
 .asm_cca3c
-	ld a, [$d41d]
+	ld a, [BattleAnimTemps + 4]
 	ld b, a
-	ld a, [$d41f]
+	ld a, [BattleAnimTemps + 6]
 	add b
 	ld b, a
 	push hl
 	ld a, [hl]
-	ld hl, $d419
+	ld hl, BattleAnimTemps
 	bit 6, [hl]
 	jr z, .asm_cca53
 	add $8
@@ -135,14 +135,14 @@ Functioncca09: ; cca09
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [$d41c]
+	ld a, [BattleAnimTemps + 3]
 	ld b, a
-	ld a, [$d41e]
+	ld a, [BattleAnimTemps + 5]
 	add b
 	ld b, a
 	push hl
 	ld a, [hl]
-	ld hl, $d419
+	ld hl, BattleAnimTemps
 	bit 5, [hl]
 	jr z, .asm_cca6f
 	add $8
@@ -155,13 +155,13 @@ Functioncca09: ; cca09
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [$d41b]
+	ld a, [BattleAnimTemps + 2]
 	add $31
 	add [hl]
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	ld b, a
 	ld a, [hl]
 	xor b
@@ -171,14 +171,14 @@ Functioncca09: ; cca09
 	and $10
 	or b
 	ld b, a
-	ld a, [$d421]
+	ld a, [BattleAnimTemps + 8]
 	and $f
 	or b
 	ld [de], a
 	inc hl
 	inc de
 	ld a, e
-	ld [$d418], a
+	ld [wd418], a
 	cp $a0
 	jr nc, .asm_ccaa7
 	dec c
@@ -204,36 +204,36 @@ Functionccaaa: ; ccaaa
 	add hl, bc
 	ld a, [hl]
 	and $80
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	xor a
-	ld [$d420], a
+	ld [BattleAnimTemps + 7], a
 	ld hl, $0005
 	add hl, bc
 	ld a, [hl]
-	ld [$d421], a
+	ld [BattleAnimTemps + 8], a
 	ld hl, $0002
 	add hl, bc
 	ld a, [hl]
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld hl, $0006
 	add hl, bc
 	ld a, [hli]
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	ld a, [hli]
-	ld [$d41c], a
+	ld [BattleAnimTemps + 3], a
 	ld a, [hli]
-	ld [$d41d], a
+	ld [BattleAnimTemps + 4], a
 	ld a, [hli]
-	ld [$d41e], a
+	ld [BattleAnimTemps + 5], a
 	ld a, [hli]
-	ld [$d41f], a
+	ld [BattleAnimTemps + 6], a
 	ld a, [hBattleTurn]
 	and a
 	ret z
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	bit 0, [hl]
 	ret z
 	ld hl, $0007
@@ -242,10 +242,10 @@ Functionccaaa: ; ccaaa
 	ld d, a
 	ld a, $b4
 	sub d
-	ld [$d41c], a
+	ld [BattleAnimTemps + 3], a
 	ld a, [hli]
 	ld d, a
-	ld a, [$d41a]
+	ld a, [BattleAnimTemps + 1]
 	cp $ff
 	jr nz, .asm_ccb09
 	ld a, $28
@@ -275,11 +275,11 @@ Functionccaaa: ; ccaaa
 	pop af
 
 .asm_ccb26
-	ld [$d41d], a
+	ld [BattleAnimTemps + 4], a
 	ld a, [hli]
 	xor $ff
 	inc a
-	ld [$d41e], a
+	ld [BattleAnimTemps + 5], a
 	ret
 ; ccb31
 
@@ -287,7 +287,7 @@ Functionccaaa: ; ccaaa
 Functionccb31: ; ccb31 (33:4b31)
 	push hl
 	push bc
-	ld hl, $d300
+	ld hl, wd300
 	ld b, a
 	ld c, $5
 .asm_ccb39
@@ -950,7 +950,7 @@ Functioncd249: ; cd249 (33:5249)
 	push af
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
-	ld a, [CurItem] ; $d106
+	ld a, [CurItem] ; CurItem
 	ld e, a
 	pop af
 	ld [rSVBK], a ; $ff00+$70
@@ -3894,7 +3894,7 @@ Functionce29f: ; ce29f (33:629f)
 	ld hl, $f
 	add hl, bc
 	and [hl]
-	ld [$cfc8], a
+	ld [wcfc8], a
 	ret
 ; ce2c4 (33:62c4)
 
@@ -4853,7 +4853,7 @@ Functionce7d1: ; ce7d1
 	ld a, [hl]
 	and $c0
 	srl a
-	ld [$d420], a
+	ld [BattleAnimTemps + 7], a
 	pop af
 	ret
 

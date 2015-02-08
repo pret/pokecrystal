@@ -4,14 +4,14 @@ Function1f8000: ; 1f8000
 	ld a, $3
 	ld [rSVBK], a
 	xor a
-	ld hl, $d100
+	ld hl, wd100
 	ld bc, $00e0
 	call ByteFill
 	ld a, $ff
-	ld [$d10c], a
-	ld [$d147], a
-	ld [$d182], a
-	ld de, $d100
+	ld [wd10c], a
+	ld [wd147], a
+	ld [wd182], a
+	ld de, wd100
 	ld a, [hRandomAdd]
 	ld b, a
 .asm_1f8022
@@ -99,22 +99,22 @@ Function1f8081: ; 1f8081
 	ld b, a
 	ld a, [hld]
 	ld c, a
-	ld a, [$d10b]
+	ld a, [wd10b]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [$d10c]
+	ld a, [wd10c]
 	cp c
 	jr z, .asm_1f8089
-	ld a, [$d146]
+	ld a, [wd146]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [$d147]
+	ld a, [wd147]
 	cp c
 	jr z, .asm_1f8089
-	ld a, [$d181]
+	ld a, [wd181]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [$d182]
+	ld a, [wd182]
 	cp c
 	jr z, .asm_1f8089
 	ld a, [$be51]
@@ -138,13 +138,13 @@ Function1f8081: ; 1f8081
 
 	ld bc, $3b
 	call CopyBytes
-	ld a, [$d265]
+	ld a, [wd265]
 	push af
 	push de
 	ld hl, -$3b
 	add hl, de
 	ld a, [hl]
-	ld [$d265], a
+	ld [wd265], a
 	ld bc, $0030
 	add hl, bc
 	push hl
@@ -156,7 +156,7 @@ Function1f8081: ; 1f8081
 	call CopyBytes
 	pop de
 	pop af
-	ld [$d265], a
+	ld [wd265], a
 	pop bc
 	dec c
 	jp nz, .loop
@@ -167,11 +167,11 @@ Function1f8081: ; 1f8081
 	ld [$be55], a
 	ld a, [$be53]
 	ld [$be56], a
-	ld a, [$d10b]
+	ld a, [wd10b]
 	ld [$be51], a
-	ld a, [$d146]
+	ld a, [wd146]
 	ld [$be52], a
-	ld a, [$d181]
+	ld a, [wd181]
 	ld [$be53], a
 	call CloseSRAM
 	ret

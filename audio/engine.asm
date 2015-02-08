@@ -40,7 +40,7 @@ _SoundRestart:: ; e8000
 
 	ld hl, Channel1 ; start of channel data
 	ld de, $01bf ; length of area to clear (entire sound wram area)
-.clearchannels ; clear $c101-$c2bf
+.clearchannels ; clear Channel1-$c2bf
 	xor a
 	ld [hli], a
 	dec de
@@ -129,15 +129,15 @@ _UpdateSound:: ; e805c
 	ld hl, Channel1DutyCycle - Channel1
 	add hl, bc
 	ld a, [hli]
-	ld [$c292], a
+	ld [wc292], a
 	; intensity
 	ld a, [hli]
-	ld [$c293], a
+	ld [wc293], a
 	; frequency
 	ld a, [hli]
-	ld [$c294], a
+	ld [wc294], a
 	ld a, [hl]
-	ld [$c295], a
+	ld [wc295], a
 	;
 	call Functione8466 ; handle vibrato and other things
 	call HandleNoise
@@ -151,16 +151,16 @@ _UpdateSound:: ; e805c
 	jr nc, .next
 	; are any sfx channels active?
 	; if so, mute
-	ld hl, $c1cc ; Channel5Flags
+	ld hl, Channel5Flags
 	bit 0, [hl]
 	jr nz, .restnote
-	ld hl, $c1fe ; Channel6Flags
+	ld hl, Channel6Flags
 	bit 0, [hl]
 	jr nz, .restnote
-	ld hl, $c230 ; Channel7Flags
+	ld hl, Channel7Flags
 	bit 0, [hl]
 	jr nz, .restnote
-	ld hl, $c262 ; Channel8Flags
+	ld hl, Channel8Flags
 	bit 0, [hl]
 	jr z, .next
 .restnote
@@ -261,14 +261,14 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e8184
 	jr .asm_e8175
 .asm_e816b
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR13], a
-	ld a, [$c295]
+	ld a, [wc295]
 	ld [rNR14], a
 .asm_e8175
 	bit 0, [hl]
 	ret z
-	ld a, [$c292]
+	ld a, [wc292]
 	ld d, a
 	ld a, [rNR11]
 	and a, $3f ; sound length
@@ -276,13 +276,13 @@ UpdateChannels: ; e8125
 	ld [rNR11], a
 	ret
 .asm_e8184
-	ld a, [$c292]
+	ld a, [wc292]
 	ld d, a
 	ld a, [rNR11]
 	and a, $3f ; sound length
 	or d
 	ld [rNR11], a
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR13], a
 	ret
 .ch1rest
@@ -293,15 +293,15 @@ UpdateChannels: ; e8125
 	call ClearChannel
 	ret
 .asm_e81a2
-	ld hl, $c292
+	ld hl, wc292
 	ld a, $3f ; sound length
 	or [hl]
 	ld [rNR11], a
-	ld a, [$c293]
+	ld a, [wc293]
 	ld [rNR12], a
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR13], a
-	ld a, [$c295]
+	ld a, [wc295]
 	or a, $80
 	ld [rNR14], a
 	ret
@@ -318,7 +318,7 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e81e6
 	bit 0, [hl]
 	ret z
-	ld a, [$c292]
+	ld a, [wc292]
 	ld d, a
 	ld a, [rNR21]
 	and a, $3f ; sound length
@@ -326,19 +326,19 @@ UpdateChannels: ; e8125
 	ld [rNR21], a
 	ret
 .asm_e81db ; unused
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR23], a
-	ld a, [$c295]
+	ld a, [wc295]
 	ld [rNR24], a
 	ret
 .asm_e81e6
-	ld a, [$c292]
+	ld a, [wc292]
 	ld d, a
 	ld a, [rNR21]
 	and a, $3f ; sound length
 	or d
 	ld [rNR21], a
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR23], a
 	ret
 .ch2rest
@@ -349,15 +349,15 @@ UpdateChannels: ; e8125
 	call ClearChannel
 	ret
 .asm_e8204
-	ld hl, $c292
+	ld hl, wc292
 	ld a, $3f ; sound length
 	or [hl]
 	ld [rNR21], a
-	ld a, [$c293]
+	ld a, [wc293]
 	ld [rNR22], a
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR23], a
-	ld a, [$c295]
+	ld a, [wc295]
 	or a, $80 ; initial (restart)
 	ld [rNR24], a
 	ret
@@ -374,13 +374,13 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e823a
 	ret
 .asm_e822f ; unused
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR33], a
-	ld a, [$c295]
+	ld a, [wc295]
 	ld [rNR34], a
 	ret
 .asm_e823a
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR33], a
 	ret
 .ch3rest
@@ -398,15 +398,15 @@ UpdateChannels: ; e8125
 	call .asm_e8268
 	ld a, $80
 	ld [rNR30], a
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR33], a
-	ld a, [$c295]
+	ld a, [wc295]
 	or a, $80
 	ld [rNR34], a
 	ret
 .asm_e8268
 	push hl
-	ld a, [$c293]
+	ld a, [wc293]
 	and a, $0f ; only 0-9 are valid
 	ld l, a
 	ld h, $00
@@ -453,7 +453,7 @@ UpdateChannels: ; e8125
 	ld a, [hli]
 	ld [$ff3f], a
 	pop hl
-	ld a, [$c293]
+	ld a, [wc293]
 	and a, $f0
 	sla a
 	ld [rNR32], a
@@ -469,7 +469,7 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e82d4
 	ret
 .asm_e82c1 ; unused
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR43], a
 	ret
 .ch4rest
@@ -482,9 +482,9 @@ UpdateChannels: ; e8125
 .asm_e82d4
 	ld a, $3f ; sound length
 	ld [rNR41], a
-	ld a, [$c293]
+	ld a, [wc293]
 	ld [rNR42], a
-	ld a, [$c294]
+	ld a, [wc294]
 	ld [rNR43], a
 	ld a, $80
 	ld [rNR44], a
@@ -493,16 +493,16 @@ UpdateChannels: ; e8125
 
 _CheckSFX: ; e82e7
 ; return carry if any sfx channels are active
-	ld hl, $c1cc ; Channel5Flags
+	ld hl, Channel5Flags
 	bit 0, [hl]
 	jr nz, .sfxon
-	ld hl, $c1fe ; Channel6Flags
+	ld hl, Channel6Flags
 	bit 0, [hl]
 	jr nz, .sfxon
-	ld hl, $c230 ; Channel7Flags
+	ld hl, Channel7Flags
 	bit 0, [hl]
 	jr nz, .sfxon
-	ld hl, $c262 ; Channel8Flags
+	ld hl, Channel8Flags
 	bit 0, [hl]
 	jr nz, .sfxon
 	and a
@@ -692,7 +692,7 @@ LoadNote: ; e83d1
 	ld hl, Channel1NoteDuration - Channel1
 	add hl, bc
 	ld a, [hl]
-	ld hl, $c297 ; ????
+	ld hl, wc297 ; ????
 	sub [hl]
 	jr nc, .ok
 	ld a, $01
@@ -771,7 +771,7 @@ LoadNote: ; e83d1
 	ld d, a
 .asm_e843e
 	push bc
-	ld hl, $c297
+	ld hl, wc297
 	ld b, $00 ; loop count
 .loop
 	inc b
@@ -806,7 +806,7 @@ LoadNote: ; e83d1
 
 Functione8466: ; e8466
 ; handle vibrato and other things
-; unknowns: $c292, $c294
+; unknowns: wc292, $c294
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	bit 2, [hl]
@@ -818,7 +818,7 @@ Functione8466: ; e8466
 	rlca
 	ld [hl], a
 	and a, $c0
-	ld [$c292], a
+	ld [wc292], a
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	set 0, [hl]
@@ -832,14 +832,14 @@ Functione8466: ; e8466
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $c294
+	ld hl, wc294
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $c294
+	ld hl, wc294
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -880,7 +880,7 @@ Functione8466: ; e8466
 	or [hl]
 	ld [hl], a
 	; ????
-	ld a, [$c294]
+	ld a, [wc294]
 	ld e, a
 	; toggle vibrato up/down
 	ld hl, Channel1Flags3 - Channel1
@@ -912,7 +912,7 @@ Functione8466: ; e8466
 	jr nc, .asm_e84ef
 	ld a, $ff
 .asm_e84ef
-	ld [$c294], a
+	ld [wc294], a
 	;
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
@@ -1038,7 +1038,7 @@ HandleNoise: ; e858c
 	bit 2, a ; sfx
 	jr nz, .next
 	; is ch8 on? (noise)
-	ld hl, $c262 ; Channel8Flags
+	ld hl, Channel8Flags
 	bit 0, [hl] ; on?
 	jr z, .next
 	; is ch8 playing noise?
@@ -1046,11 +1046,11 @@ HandleNoise: ; e858c
 	ret nz ; quit if so
 	;
 .next
-	ld a, [$c2a2]
+	ld a, [wc2a2]
 	and a
 	jr z, ReadNoiseSample
 	dec a
-	ld [$c2a2], a
+	ld [wc2a2], a
 	ret
 ; e85af
 
@@ -1081,15 +1081,15 @@ ReadNoiseSample: ; e85af
 
 	and $f
 	inc a
-	ld [$c2a2], a
+	ld [wc2a2], a
 	ld a, [de]
 	inc de
-	ld [$c293], a
+	ld [wc293], a
 	ld a, [de]
 	inc de
-	ld [$c294], a
+	ld [wc294], a
 	xor a
-	ld [$c295], a
+	ld [wc295], a
 
 	ld hl, NoiseSampleAddress
 	ld [hl], e
@@ -1218,10 +1218,10 @@ RestoreVolume: ; e8679
 	cp a, $04
 	ret nz
 	xor a
-	ld hl, $c222
+	ld hl, Channel6CryPitch
 	ld [hli], a
 	ld [hl], a
-	ld hl, $c286
+	ld hl, Channel8CryPitch
 	ld [hli], a
 	ld [hl], a
 	ld a, [LastVolume]
@@ -1279,7 +1279,7 @@ GetNoiseSample: ; e86c5
 	ld a, [CurChannel]
 	bit 2, a ; are we in a sfx channel?
 	jr nz, .sfx
-	ld hl, $c262 ; Channel8Flags
+	ld hl, Channel8Flags
 	bit 0, [hl] ; is ch8 on? (noise)
 	ret nz
 	ld a, [MusicNoiseSampleSet]
@@ -1315,7 +1315,7 @@ GetNoiseSample: ; e86c5
 	ld [NoiseSampleAddressHi], a
 	; clear ????
 	xor a
-	ld [$c2a2], a
+	ld [wc2a2], a
 	ret
 ; e870f
 
@@ -1608,8 +1608,8 @@ MusicEE; e883e
 	and a, $03 ; ch0-3
 	ld e, a
 	ld d, $00
-	; hl = $c2b8 + channel id
-	ld hl, $c2b8
+	; hl = wc2b8 + channel id
+	ld hl, wc2b8
 	add hl, de
 	; if set, jump
 	ld a, [hl]
@@ -1652,7 +1652,7 @@ MusicF9: ; e886d
 ; seems to be unused
 ; params: 0
 	ld a, $01
-	ld [$c2b5], a
+	ld [wc2b5], a
 	ret
 ; e8873
 
@@ -1729,7 +1729,7 @@ MusicE0: ; e88bd
 ; ????
 ; params: 2
 	call GetMusicByte
-	ld [$c297], a
+	ld [wc297], a
 	call GetMusicByte
 	ld d, a
 	and a, $0f
@@ -2350,14 +2350,14 @@ _PlayMusic:: ; e8b30
 	dec a
 	jr nz, .loop
 	xor a
-	ld [$c2b5], a
-	ld [$c2b8], a
-	ld [$c2b9], a
-	ld [$c2ba], a
-	ld [$c2bb], a
+	ld [wc2b5], a
+	ld [wc2b8], a
+	ld [wc2b9], a
+	ld [wc2ba], a
+	ld [wc2bb], a
 	ld [NoiseSampleAddressLo], a
 	ld [NoiseSampleAddressHi], a
-	ld [$c2a2], a
+	ld [wc2a2], a
 	ld [MusicNoiseSampleSet], a
 	call MusicOn
 	ret
@@ -2432,7 +2432,7 @@ _PlayCryHeader:: ; e8b79
 	ld [hl], a
 .start
 	call StartChannel
-	ld a, [$c2bc]
+	ld a, [wc2bc]
 	and a
 	jr z, .next
 	
@@ -2479,7 +2479,7 @@ _PlayCryHeader:: ; e8b79
 _PlaySFX:: ; e8c04
 ; clear channels if they aren't already
 	call MusicOff
-	ld hl, $c1cc ; Channel5Flags
+	ld hl, Channel5Flags
 	bit 0, [hl] ; ch5 on?
 	jr z, .ch6
 	res 0, [hl] ; turn it off
@@ -2495,7 +2495,7 @@ _PlaySFX:: ; e8c04
 	ld [SoundInput], a ; global sound off
 	ld [rNR10], a ; sweep = 0
 .ch6
-	ld hl, $c1fe ; ch6 on?
+	ld hl, Channel6Flags
 	bit 0, [hl]
 	jr z, .ch7
 	res 0, [hl] ; turn it off
@@ -2508,7 +2508,7 @@ _PlaySFX:: ; e8c04
 	ld a, $80
 	ld [rNR24], a ; restart sound (freq hi = 0)
 .ch7
-	ld hl, $c230 ; ch7 on?
+	ld hl, Channel7Flags
 	bit 0, [hl]
 	jr z, .ch8
 	res 0, [hl] ; turn it off
@@ -2522,7 +2522,7 @@ _PlaySFX:: ; e8c04
 	ld a, $80
 	ld [rNR34], a ; restart sound (freq hi = 0)
 .ch8
-	ld hl, $c262 ; ch8 on?
+	ld hl, Channel8Flags
 	bit 0, [hl]
 	jr z, .chscleared
 	res 0, [hl] ; turn it off
@@ -2631,7 +2631,7 @@ PlayStereoSFX:: ; e8ca6
 	call GetLRTracks
 	add hl, de
 	ld a, [hl]
-	ld hl, $c2bc
+	ld hl, wc2bc
 	and [hl]
 	
 	ld hl, Channel1Tracks - Channel1
@@ -2647,7 +2647,7 @@ PlayStereoSFX:: ; e8ca6
 	jr c, .asm_e8d0c
 	
 ; ch3-4
-	ld a, [$c2be]
+	ld a, [wc2be]
 	
 	ld hl, $002e ; $c12f - Channel1
 	add hl, bc

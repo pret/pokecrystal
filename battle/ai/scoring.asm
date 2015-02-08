@@ -179,7 +179,7 @@ AI_Types: ; 38635
 	pop bc
 	pop hl
 
-	ld a, [$d265]
+	ld a, [wd265]
 	and a
 	jr z, .immune
 	cp 10 ; 1.0
@@ -431,7 +431,7 @@ AI_Smart_LeechHit: ; 387f7
 	pop hl
 
 ; 60% chance to discourage this move if not very effective.
-	ld a, [$d265]
+	ld a, [wd265]
 	cp 10 ; 1.0
 	jr c, .asm_38815
 
@@ -509,7 +509,7 @@ AI_Smart_LockOn: ; 3881d
 	push hl
 	push bc
 	callba Function347c8
-	ld a, [$d265]
+	ld a, [wd265]
 	cp $a
 	pop bc
 	pop hl
@@ -969,7 +969,7 @@ AI_Smart_Whirlwind: ; 38a2a
 
 	push hl
 	callab Function3484e
-	ld a, [$c716]
+	ld a, [wc716]
 	cp 10 ; neutral
 	pop hl
 	ret c
@@ -1048,7 +1048,7 @@ AI_Smart_Bind: ; 38a71
 ; Bind, Wrap, Fire Spin, Clamp
 
 ; 50% chance to discourage this move if the player is already trapped.
-	ld a, [$c730]
+	ld a, [wc730]
 	and a
 	jr nz, .asm_38a8b
 
@@ -1325,11 +1325,11 @@ AI_Smart_Rage: ; 38b7f
 
 ; Encourage this move based on Rage's counter.	
 .asm_38b8c
-	ld a, [$c72c]
+	ld a, [wc72c]
 	cp $2
 	ret c
 	dec [hl]
-	ld a, [$c72c]
+	ld a, [wc72c]
 	cp $3
 	ret c
 	dec [hl]
@@ -1368,7 +1368,7 @@ AI_Smart_Mimic: ; 38ba8
 	ld [hBattleTurn], a
 	callab Function347c8
 
-	ld a, [$d265]
+	ld a, [wd265]
 	cp $a
 	pop hl
 	jr c, .asm_38bef
@@ -1489,7 +1489,7 @@ AI_Smart_Encore: ; 38c3b
 	predef Function347d3
 
 	pop hl
-	ld a, [$d265]
+	ld a, [wd265]
 	cp $a
 	jr nc, .asm_38c68
 
@@ -1811,7 +1811,7 @@ AI_Smart_Conversion2: ; 38d98
 
 	callab Function347c8
 
-	ld a, [$d265]
+	ld a, [wd265]
 	cp $a
 	pop hl
 	jr c, .asm_38dc9
@@ -1888,7 +1888,7 @@ AI_Smart_MeanLook: ; 38dfb
 ; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.	
 	push hl
 	callab Function3484e
-	ld a, [$c716]
+	ld a, [wc716]
 	cp $b ; not very effective
 	pop hl
 	ret nc
@@ -2051,7 +2051,7 @@ AI_Smart_Curse: ; 38e5c
 
 
 AI_Smart_Protect: ; 38ed2
-	ld a, [$c681]
+	ld a, [EnemyProtectCount]
 	and a
 	jr nz, .asm_38f13
 
@@ -2146,7 +2146,7 @@ AI_Smart_PerishSong: ; 38f4a
 
 	push hl
 	callab Function3484e
-	ld a, [$c716]
+	ld a, [wc716]
 	cp 10 ; 1.0
 	pop hl
 	ret c
@@ -2218,7 +2218,7 @@ AI_Smart_Sandstorm: ; 38f7a
 
 
 AI_Smart_Endure: ; 38fac
-	ld a, [$c681]
+	ld a, [EnemyProtectCount]
 	and a
 	jr nz, .asm_38fd8
 
@@ -2404,7 +2404,7 @@ AI_Smart_BatonPass: ; 39062
 
 	push hl
 	callab Function3484e
-	ld a, [$c716]
+	ld a, [wc716]
 	cp 10 ; neutral
 	pop hl
 	ret c
@@ -2437,7 +2437,7 @@ AI_Smart_RapidSpin: ; 39084
 ; 80% chance to greatly encourage this move if the enemy is
 ; trapped (Bind effect), seeded, or scattered with spikes.
 
-	ld a, [$c731]
+	ld a, [wc731]
 	and a
 	jr nz, .asm_39097
 
@@ -2470,7 +2470,7 @@ AI_Smart_HiddenPower: ; 3909e
 	pop hl
 
 ; Discourage Hidden Power if not very effective.
-	ld a, [$d265]
+	ld a, [wd265]
 	cp 10
 	jr c, .bad
 
@@ -2480,7 +2480,7 @@ AI_Smart_HiddenPower: ; 3909e
 	jr c, .bad
 
 ; Encourage Hidden Power if super-effective.
-	ld a, [$d265]
+	ld a, [wd265]
 	cp 11
 	jr nc, .good
 
@@ -2825,7 +2825,7 @@ AI_Smart_FutureSight: ; 391f3
 AI_Smart_Stomp: ; 39200
 ; 80% chance to encourage this move if the player has used Minimize.
 
-	ld a, [$c6fe]
+	ld a, [wc6fe]
 	and a
 	ret z
 
@@ -3463,7 +3463,7 @@ AI_Status: ; 39453
 	pop bc
 	pop hl
 
-	ld a, [$d265]
+	ld a, [wd265]
 	and a
 	jr nz, .checkmove
 

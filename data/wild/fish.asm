@@ -122,7 +122,7 @@ GetFishGroupHeader: ; 9245b
 ; Return fishing encounter group header d in de.
 
 	push hl
-	ld hl, $dc1e
+	ld hl, wdc1e
 	bit 2, [hl]
 	pop hl
 	jr z, .end
@@ -141,14 +141,14 @@ GetFishGroupHeader: ; 9245b
 	ret
 	
 .group11
-	ld a, [$dfce]
+	ld a, [wdfce]
 	cp 1
 	jr nz, .end
 	ld d, 6
 	jr .end
 	
 .group12
-	ld a, [$dfce]
+	ld a, [wdfce]
 	cp 2
 	jr nz, .end
 	ld d, 7

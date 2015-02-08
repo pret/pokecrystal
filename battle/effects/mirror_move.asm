@@ -24,7 +24,7 @@ BattleCommand1b: ; 373c9
 .use
 	ld a, b
 	ld [hl], a
-	ld [$d265], a
+	ld [wd265], a
 
 	push af
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -40,11 +40,11 @@ BattleCommand1b: ; 373c9
 	call Function34548
 	jr nz, .done
 
-	ld a, [$c689]
+	ld a, [wc689]
 	push af
 	call BattleCommand0a
 	pop af
-	ld [$c689], a
+	ld [wc689], a
 
 .done
 	call BattleCommandaa

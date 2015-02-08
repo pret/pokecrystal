@@ -21,7 +21,7 @@ BattleCommand50: ; 37492
 
 ; Can't steal mail.
 
-	ld [$d265], a
+	ld [wd265], a
 	ld d, a
 	callba ItemIsMail
 	ret c
@@ -45,7 +45,7 @@ BattleCommand50: ; 37492
 	ld [de], a
 
 	call .playeritem
-	ld a, [$d265]
+	ld a, [wd265]
 	ld [hl], a
 	ld [de], a
 	jr .stole
@@ -69,7 +69,7 @@ BattleCommand50: ; 37492
 
 ; Can't steal mail!
 
-	ld [$d265], a
+	ld [wd265], a
 	ld d, a
 	callba ItemIsMail
 	ret c
@@ -87,7 +87,7 @@ BattleCommand50: ; 37492
 	ld [de], a
 
 	call .enemyitem
-	ld a, [$d265]
+	ld a, [wd265]
 	ld [hl], a
 	ld [de], a
 

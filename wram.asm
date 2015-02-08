@@ -132,6 +132,7 @@ VBGMap1::
 
 
 SECTION "Stack", WRAM0
+wc000::
 	ds $ff
 Stack::
 	ds 1
@@ -156,12 +157,12 @@ Channel7:: channel_struct Channel7 ; c22d
 Channel8:: channel_struct Channel8 ; c25f
 
 	ds 1 ; c291
-	ds 1 ; c292
-	ds 1 ; c293
-	ds 1 ; c294
-	ds 1 ; c295
-	ds 1 ; c296
-	ds 1 ; c297
+wc292:: ds 1
+wc293:: ds 1
+wc294:: ds 1
+wc295:: ds 1
+wc296:: ds 1
+wc297:: ds 1
 
 CurMusicByte:: ; c298
 	ds 1
@@ -201,7 +202,7 @@ NoiseSampleAddressLo:: ; c2a0
 	ds 1
 NoiseSampleAddressHi:: ; c2a1
 	ds 1
-; noise delay? ; c2a2
+wc2a2:: ; noise delay? ; c2a2
 	ds 1
 ; c2a3
 	ds 1
@@ -223,8 +224,10 @@ MusicFade:: ; c2a7
 MusicFadeCount:: ; c2a8
 	ds 1
 MusicFadeID::
+wc2a9::
 MusicFadeIDLo:: ; c2a9
 	ds 1
+wc2aa::
 MusicFadeIDHi:: ; c2aa
 	ds 1
 	ds 5
@@ -234,23 +237,29 @@ CryLength:: ; c2b2
 	ds 2
 LastVolume:: ; c2b4
 	ds 1
-	ds 1
+wc2b5:: ds 1
 SFXPriority:: ; c2b6
 ; if nonzero, turn off music when playing sfx
 	ds 1
-	ds 6
+	ds 1
+wc2b8:: ds 1
+wc2b9:: ds 1
+wc2ba:: ds 1
+wc2bb:: ds 1
+wc2bc:: ds 1
 CryTracks:: ; c2bd
 ; plays only in left or right track depending on what side the monster is on
 ; both tracks active outside of battle
 	ds 1
-	ds 1
+wc2be:: ds 1
 CurSFX:: ; c2bf
 ; id of sfx currently playing
 	ds 1
+wc2c0::
 wMapMusic:: ; c2c0
 	ds 1
 
-	ds 1
+wc2c1:: ds 1
 
 
 SECTION "WRAM", WRAM0
@@ -258,8 +267,9 @@ SECTION "WRAM", WRAM0
 wLZAddress:: dw ; c2c2
 wLZBank::    db ; c2c4
 
-	ds 2
+	ds 1
 
+wc2c6:: ds 1
 InputType:: ; c2c7
 	ds 1
 AutoInputAddress:: ; c2c8
@@ -269,8 +279,17 @@ AutoInputBank:: ; c2ca
 AutoInputLength:: ; c2cb
 	ds 1
 
-	ds 16
-
+wc2cc:: ds 1
+wc2cd:: ds 1
+wc2ce:: ds 2
+wc2d0:: ds 4
+wc2d4:: ds 1
+wc2d5:: ds 1
+wc2d6:: ds 1
+wc2d7:: ds 1
+wc2d8:: ds 1
+wc2d9:: ds 1
+wc2da:: ds 2
 InLinkBattle:: ; c2dc
 ; 0 not in link battle
 ; 1 link battle
@@ -280,7 +299,23 @@ InLinkBattle:: ; c2dc
 ScriptVar:: ; c2dd
 	ds 1
 
-	ds 28
+wc2de:: ds 1
+wc2df:: ds 3
+wc2e2:: ds 1
+wc2e3:: ds 3
+wc2e6:: ds 4
+wc2ea:: ds 1
+wc2eb:: ds 1
+wc2ec:: ds 4
+wc2f0:: ds 1
+wc2f1:: ds 1
+wc2f2:: ds 1
+wc2f3:: ds 1
+wc2f4:: ds 1
+wc2f5:: ds 1
+wc2f6:: ds 1
+wc2f7:: ds 1
+wc2f8:: ds 2
 
 TileDown:: ; c2fa
 	ds 1
@@ -300,12 +335,79 @@ TilePermissions:: ; c2fe
 ; bit 0: right
 	ds 1
 
-	ds 183
+	ds 1
+wc300:: ds 1
+wc301:: ds 1
+wc302:: ds 1
+wc303:: ds 2
+wc305:: ds 1
+wc306:: ds 1
+wc307:: ds 1
+wc308:: ds 1
+wc309:: ds 1
+wc30a:: ds 1
+wc30b:: ds 1
+wc30c:: ds 1
+wc30d:: ds 1
+wc30e:: ds 1
+wc30f:: ds 1
+wc310:: ds 1
+wc311:: ds 1
+wc312:: ds 1
+wc313:: ds 1
+wc314:: ds 1
+wc315:: ds 1
+wc316:: ds 1
+wc317:: ds 1
+wc318:: ds 1
+wc319:: ds 1
+wc31a:: ds 1
+wc31b:: ds 1
+wc31c:: ds 1
+wc31d:: ds 1
+wc31e:: ds 1
+wc31f:: ds 1
+wc320:: ds 4
+wc324:: ds 34
+wc346:: ds 94
+wc3a4:: ds 8
+wc3ac:: ds 8
+wc3b4:: ds 1
+wc3b5:: ds 1
 
 CurIcon:: ; c3b6
 	ds 1
 
-	ds 73
+
+wc3b7:: ds 1
+wc3b8:: ds 1
+wc3b9:: ds 1
+wc3ba:: ds 1
+wc3bb:: ds 1
+wc3bc:: ds 1
+wc3bd:: ds 1
+wc3be:: ds 1
+wc3bf:: ds 1
+wc3c0:: ds 12
+wc3cc:: ds 1
+wc3cd:: ds 31
+wc3ec:: ds 1
+wc3ed:: ds 1
+wc3ee:: ds 1
+wc3ef:: ds 1
+wc3f0:: ds 1
+wc3f1:: ds 1
+wc3f2:: ds 1
+wc3f3:: ds 1
+wc3f4:: ds 1
+wc3f5:: ds 1
+wc3f6:: ds 1
+wc3f7:: ds 1
+wc3f8:: ds 1
+wc3f9:: ds 1
+wc3fa:: ds 1
+wc3fb:: ds 1
+wc3fc:: ds 4
 
 
 SECTION "Sprites", WRAM0 [$c400]
@@ -340,25 +442,34 @@ SECTION "Battle", WRAM0
 
 wBattle::
 
+wc608::
 wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
+wc60f::
 wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
-
+wc616::
 EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
 
 BattleMon:: battle_struct BattleMon ; c62c
 
-	ds 10
+wc64c::
+	ds 1
 
+wc64d:: ds 1
+wc64e:: ds 2
+wc650:: ds 1
+wc651:: ds 1
+wc652:: ds 4
+wc656::
 OTName:: ds NAME_LENGTH ; c656
 
 	ds 2
 
+wc663::
 CurOTMon:: ; c663
 	ds 1
 
-	ds 1
-
+wc664:: ds 1
 TypeModifier:: ; c665
 ; >10: super-effective
 ;  10: normal
@@ -374,6 +485,7 @@ AttackMissed:: ; c667
 ; nonzero for a miss
 	ds 1
 
+wc668::
 PlayerSubStatus1:: ; c668
 ; bit
 ; 7 attract
@@ -471,6 +583,7 @@ EnemyToxicCount:: ; c67c
 	ds 1
 EnemyDisableCount:: ; c67d
 	ds 1
+wc67e::
 EnemyEncoreCount:: ; c67e
 	ds 1
 EnemyPerishCount:: ; c67f
@@ -485,17 +598,17 @@ PlayerDamageTaken:: ; c682
 EnemyDamageTaken:: ; c684
 	ds 2
 
-	ds 3
-
-	ds 1
-
+wc686:: ds 2
+wc688:: ds 1
+wc689:: ds 1
+wc68a::
 BattleScriptBuffer:: ; c68a
 	ds 40
 
 BattleScriptBufferLoc:: ; c6b2
 	ds 2
 
-	ds 2
+wc6b4:: ds 2
 
 PlayerStats:: ; c6b6
 	ds 10
@@ -514,35 +627,45 @@ PlayerSpdLevel:: ; c6ce
 	ds 1
 PlayerSAtkLevel:: ; c6cf
 	ds 1
+wc6d0::
 PlayerSDefLevel:: ; c6d0
 	ds 1
+wc6d1::
 PlayerAccLevel:: ; c6d1
 	ds 1
+wc6d2::
 PlayerEvaLevel:: ; c6d2
 	ds 1
 ; c6d3
-	ds 1
+wc6d3:: ds 1
+wc6d4::
 PlayerStatLevelsEnd::
 
 EnemyStatLevels:: ; c6d4
 ; 07 neutral
 EnemyAtkLevel:: ; c6d4
 	ds 1
+wc6d5::
 EnemyDefLevel:: ; c6d5
 	ds 1
+wc6d6::
 EnemySpdLevel:: ; c6d6
 	ds 1
+wc6d7::
 EnemySAtkLevel:: ; c6d7
 	ds 1
+wc6d8::
 EnemySDefLevel:: ; c6d8
 	ds 1
+wc6d9::
 EnemyAccLevel:: ; c6d9
 	ds 1
+wc6da::
 EnemyEvaLevel:: ; c6da
 	ds 1
-; c6db
-	ds 1
 
+wc6db:: ds 1
+wc6dc::
 EnemyTurnsTaken:: ; c6dc
 	ds 1
 PlayerTurnsTaken:: ; c6dd
@@ -552,11 +675,11 @@ PlayerTurnsTaken:: ; c6dd
 
 PlayerSubstituteHP:: ; c6df
 	ds 1
+wc6e0::
 EnemySubstituteHP:: ; c6e0
 	ds 1
 
-	ds 2
-
+wc6e1:: ds 2
 CurPlayerMove:: ; c6e3
 	ds 1
 CurEnemyMove:: ; c6e4
@@ -566,17 +689,21 @@ LinkBattleRNCount:: ; c6e5
 ; how far through the prng stream
 	ds 1
 
-	ds 3
-
+wc6e6:: ds 1
+wc6e7:: ds 1
+wc6e8:: ds 1
+wc6e9::
 CurEnemyMoveNum:: ; c6e9
 	ds 1
 
-	ds 2
-
+wc6ea:: ds 1
+wc6eb:: ds 1
 wPayDayMoney:: ds 3 ; c6ec
 
-	ds 5
+	ds 1
 
+wc6f0:: ds 2
+wc6f2:: ds 2
 AlreadyDisobeyed:: ; c6f4
 	ds 1
 
@@ -584,21 +711,24 @@ DisabledMove:: ; c6f5
 	ds 1
 EnemyDisabledMove:: ; c6f6
 	ds 1
-	ds 1
+wc6f7:: ds 1
 
 ; exists so you can't counter on switch
 LastEnemyCounterMove:: ; c6f8
 	ds 1
+wc6f9::
 LastPlayerCounterMove:: ; c6f9
 	ds 1
 
-	ds 1
+wc6fa:: ds 1
 
 AlreadyFailed:: ; c6fb
 	ds 1
 
-	ds 3
-
+wc6fc:: ds 1
+wc6fd:: ds 1
+wc6fe:: ds 1
+wc6ff::
 PlayerScreens:: ; c6ff
 ; bit
 ; 4 reflect
@@ -607,28 +737,34 @@ PlayerScreens:: ; c6ff
 ; 0 spikes
 	ds 1
 
+wc700::
 EnemyScreens:: ; c700
 ; see PlayerScreens
 	ds 1
 
+wc701::
 PlayerSafeguardCount:: ; c701
 	ds 1
+wc702::
 PlayerLightScreenCount:: ; c702
 	ds 1
+wc703::
 PlayerReflectCount:: ; c703
 	ds 1
 
-	ds 1
-
+wc704:: ds 1
+wc705::
 EnemySafeguardCount:: ; c705
 	ds 1
+wc706::
 EnemyLightScreenCount:: ; c706
 	ds 1
 EnemyReflectCount:: ; c707
 	ds 1
 
-	ds 2
-
+wc708:: ds 1
+wc709:: ds 1
+wc70a::
 Weather:: ; c70a
 ; 00 normal
 ; 01 rain
@@ -639,68 +775,353 @@ Weather:: ; c70a
 ; 06 sandstorm subsided
 	ds 1
 
+wc70b::
 WeatherCount:: ; c70b
 ; # turns remaining
 	ds 1
 
+wc70c::
 LoweredStat:: ; c70c
 	ds 1
+wc70d::
 EffectFailed:: ; c70d
 	ds 1
+wc70e::
 FailedMessage:: ; c70e
 	ds 1
 
-	ds 1
-
+wc70f:: ds 1
+wc710::
 wPlayerIsSwitching:: ds 1 ; c710
+wc711::
 wEnemyIsSwitching::  ds 1 ; c711
 
+wc712::
 PlayerUsedMoves:: ; c712
 ; add a move that has been used once by the player
 ; added in order of use
 	ds 4
 
-	ds 5
-
+wc716:: ds 1
+wc717:: ds 1
+wc718:: ds 1
+wc719:: ds 1
+wc71a:: ds 1
 LastPlayerMove:: ; c71b
 	ds 1
 LastEnemyMove:: ; c71c
 	ds 1
 
-	ds 23
-
+wc71d:: ds 1
+wc71e:: ds 1
+wc71f:: ds 1
+wc720:: ds 4
+wc724:: ds 3
+wc727:: ds 2
+wc729:: ds 2
+wc72b:: ds 1
+wc72c:: ds 1
+wc72d:: ds 1
+wc72e:: ds 1
+wc72f:: ds 1
+wc730:: ds 1
+wc731:: ds 1
+wc732:: ds 1
+wc733:: ds 1
+wc734::
 BattleEnded:: ; c734
 	ds 1
 
-	ds 12
+wc735:: ds 1
+wc736:: ds 3
+wc739:: ds 4
+wc73d:: ds 1
+wc73e:: ds 1
+wc73f:: ds 1
+wc740:: ds 1
+wc741::
 wBattleEnd::
 ; c741
 
-	ds 191
+	ds 11
+wc74c:: ds 1
+wc74d:: ds 1
+wc74e:: ds 107
+wc7b9:: ds 1
+wc7ba:: ds 1
+wc7bb:: ds 15
+wc7ca:: ds 6
+wc7d0:: ds 1
+wc7d1:: ds 1
+wc7d2:: ds 1
+wc7d3:: ds 1
+wc7d4:: ds 1
+wc7d5:: ds 1
+wc7d6:: ds 1
+wc7d7:: ds 1
+wc7d8:: ds 1
+wc7d9:: ds 1
+wc7da:: ds 1
+wc7db:: ds 1
+wc7dc:: ds 1
+wc7dd:: ds 1
+wc7de:: ds 1
+wc7df:: ds 1
+wc7e0:: ds 1
+wc7e1:: ds 1
+wc7e2:: ds 1
+wc7e3:: ds 1
+wc7e4:: ds 28
 
 
 SECTION "Overworld Map", WRAM0 [$c800]
+
+wc800::
 OverworldMap:: ; c800
-	ds 1300
+; too lazy to reconcile these labels
+;	ds 1300
+
+	ds 1
+wc801:: ds 1
+wc802:: ds 1
+wc803:: ds 4
+wc807:: ds 9
+wc810:: ds 3
+wc813:: ds 5
+wc818:: ds 8
+wc820:: ds 1
+wc821:: ds 15
+wc830:: ds 16
+wc840:: ds 16
+wc850:: ds 16
+wc860:: ds 16
+wc870:: ds 16
+wc880:: ds 16
+wc890:: ds 16
+wc8a0:: ds 16
+wc8b0:: ds 16
+wc8c0:: ds 16
+wc8d0:: ds 16
+wc8e0:: ds 16
+wc8f0:: ds 16
+wc900:: ds 1
+wc901:: ds 1
+wc902:: ds 1
+wc903:: ds 12
+wc90f:: ds 1
+wc910:: ds 1
+wc911:: ds 1
+wc912:: ds 14
+wc920:: ds 16
+wc930:: ds 16
+wc940:: ds 16
+wc950:: ds 16
+wc960:: ds 2
+wc962:: ds 14
+wc970:: ds 16
+wc980:: ds 16
+wc990:: ds 16
+wc9a0:: ds 16
+wc9b0:: ds 16
+wc9c0:: ds 16
+wc9d0:: ds 16
+wc9e0:: ds 16
+wc9f0:: ds 4
+wc9f4:: ds 5
+wc9f9:: ds 7
+wca00:: ds 1
+wca01:: ds 1
+wca02:: ds 14
+wca10:: ds 16
+wca20:: ds 16
+wca30:: ds 16
+wca40:: ds 16
+wca50:: ds 16
+wca60:: ds 16
+wca70:: ds 16
+wca80:: ds 1
+wca81:: ds 1
+wca82:: ds 1
+wca83:: ds 1
+wca84:: ds 1
+wca85:: ds 1
+wca86:: ds 1
+wca87:: ds 1
+wca88:: ds 1
+wca89:: ds 1
+wca8a:: ds 1
+wca8b:: ds 1
+wca8c:: ds 1
+wca8d:: ds 1
+wca8e:: ds 1
+wca8f:: ds 1
+wca90:: ds 16
+wcaa0:: ds 3
+wcaa3:: ds 2
+wcaa5:: ds 11
+wcab0:: ds 5
+wcab5:: ds 10
+wcabf:: ds 1
+wcac0:: ds 9
+wcac9:: ds 7
+wcad0:: ds 16
+wcae0:: ds 16
+wcaf0:: ds 16
+wcb00:: ds 8
+wcb08:: ds 6
+wcb0e:: ds 5
+wcb13:: ds 9
+wcb1c:: ds 14
+wcb2a:: ds 1
+wcb2b:: ds 1
+wcb2c:: ds 1
+wcb2d:: ds 1
+wcb2e:: ds 1
+wcb2f:: ds 1
+wcb30:: ds 1
+wcb31:: ds 1
+wcb32:: ds 19
+wcb45:: ds 20
+wcb59:: ds 20
+wcb6d:: ds 1
+wcb6e:: ds 22
+wcb84:: ds 100
+wcbe8:: ds 1
+wcbe9:: ds 1
+wcbea:: ds 14
+wcbf8:: ds 2
+wcbfa:: ds 1
+wcbfb:: ds 79
+wcc4a:: ds 22
+wcc60:: ds 1
+wcc61:: ds 1
+wcc62:: ds 2
+wcc64:: ds 1
+wcc65:: ds 57
+wcc9e:: ds 22
+wccb4:: ds 1
+wccb5:: ds 3
+wccb8:: ds 1
+wccb9:: ds 1
+wccba:: ds 90
 OverworldMapEnd::
 
 	ds 12
 
-
 SECTION "Video", WRAM0 [$cd20]
 CreditsPos::
 BGMapBuffer:: ; cd20
-	ds 2
+	ds 1
+wcd21:: ds 1
+wcd22::
 CreditsTimer:: ; cd22
 	ds 1
-	ds 37
+
+wcd23:: ds 1
+wcd24:: ds 1
+wcd25:: ds 1
+wcd26:: ds 1
+wcd27:: ds 1
+wcd28:: ds 1
+wcd29:: ds 1
+wcd2a:: ds 1
+wcd2b:: ds 1
+wcd2c:: ds 1
+wcd2d:: ds 1
+wcd2e:: ds 1
+wcd2f:: ds 1
+wcd30:: ds 1
+wcd31:: ds 1
+wcd32:: ds 1
+wcd33:: ds 1
+wcd34:: ds 1
+wcd35:: ds 1
+wcd36:: ds 2
+wcd38:: ds 1
+wcd39:: ds 1
+wcd3a:: ds 1
+wcd3b:: ds 1
+wcd3c:: ds 1
+wcd3d:: ds 1
+wcd3e:: ds 1
+wcd3f:: ds 1
+wcd40:: ds 1
+wcd41:: ds 1
+wcd42:: ds 1
+wcd43:: ds 1
+wcd44:: ds 1
+wcd45:: ds 1
+wcd46:: ds 1
+wcd47:: ds 1
 
 BGMapPalBuffer:: ; cd48
-	ds 40
+	ds 1 ; 40
+
+wcd49:: ds 1
+wcd4a:: ds 1
+wcd4b:: ds 1
+wcd4c:: ds 1
+wcd4d:: ds 1
+wcd4e:: ds 1
+wcd4f:: ds 1
+wcd50:: ds 1
+wcd51:: ds 1
+wcd52:: ds 1
+wcd53:: ds 1
+wcd54:: ds 1
+wcd55:: ds 1
+wcd56:: ds 1
+wcd57:: ds 1
+wcd58:: ds 1
+wcd59:: ds 1
+wcd5a:: ds 1
+wcd5b:: ds 1
+wcd5c:: ds 1
+wcd5d:: ds 1
+wcd5e:: ds 1
+wcd5f:: ds 1
+wcd60:: ds 2
+wcd62:: ds 1
+wcd63:: ds 1
+wcd64:: ds 1
+wcd65:: ds 1
+wcd66:: ds 1
+wcd67:: ds 1
+wcd68:: ds 1
+wcd69:: ds 1
+wcd6a:: ds 1
+wcd6b:: ds 1
+wcd6c:: ds 1
+wcd6d:: ds 1
+wcd6e:: ds 1
+wcd6f:: ds 1
 
 BGMapBufferPtrs:: ; cd70
 ; 20 bg map addresses (16x8 tiles)
-	ds 40
+	ds 1 ; 40
+
+wcd71:: ds 1
+wcd72:: ds 1
+wcd73:: ds 1
+wcd74:: ds 1
+wcd75:: ds 2
+wcd77:: ds 1
+wcd78:: ds 1
+wcd79:: ds 1
+wcd7a:: ds 2
+wcd7c:: ds 3
+wcd7f:: ds 1
+wcd80:: ds 1
+wcd81:: ds 1
+wcd82:: ds 1
+wcd83:: ds 1
+wcd84:: ds 1
+wcd85:: ds 4
+wcd89:: ds 1
+wcd8a:: ds 1
+wcd8b:: ds 1
+wcd8c:: ds 1
+wcd8d:: ds 11
 
 SGBPredef:: ; cd98
 	ds 1
@@ -709,7 +1130,9 @@ PlayerHPPal:: ; cd99
 EnemyHPPal:: ; cd9a
 	ds 1
 
-	ds 62
+wcd9b:: ds 6
+wcda1:: ds 8
+wcda9:: ds 48
 
 AttrMap:: ; cdd9
 ; 20x18 grid of palettes for 8x8 tiles
@@ -719,7 +1142,18 @@ AttrMap:: ; cdd9
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 AttrMapEnd::
 
-	ds 30
+	ds 1
+
+wcf42:: ds 2
+wcf44:: ds 1
+wcf45:: ds 12
+wcf51:: ds 1
+wcf52:: ds 4
+wcf56:: ds 1
+wcf57:: ds 4
+wcf5b:: ds 1
+wcf5c:: ds 1
+wcf5d:: ds 2
 
 MonType:: ; cf5f
 	ds 1
@@ -727,7 +1161,11 @@ MonType:: ; cf5f
 CurSpecies:: ; cf60
 	ds 1
 
-	ds 6
+wcf61:: ds 2
+wcf63:: ds 1
+wcf64:: ds 1
+wcf65:: ds 1
+wcf66:: ds 1
 
 Requested2bpp:: ; cf67
 	ds 1
@@ -743,12 +1181,48 @@ Requested1bppSource:: ; cf6d
 Requested1bppDest:: ; cf6f
 	ds 2
 
-	ds 3
-
+wcf71:: ds 1
+wcf72:: ds 1
+wcf73:: ds 1
 MenuSelection:: ; cf74
 	ds 1
 
-	ds 60
+wcf75:: ds 1
+wcf76:: ds 1
+wcf77:: ds 1
+wcf78:: ds 9
+wcf81:: ds 1
+wcf82:: ds 1
+wcf83:: ds 1
+wcf84:: ds 1
+wcf85:: ds 1
+wcf86:: ds 1
+wcf87:: ds 1
+wcf88:: ds 2
+wcf8a:: ds 7
+wcf91:: ds 1
+wcf92:: ds 1
+wcf93:: ds 1
+wcf94:: ds 1
+wcf95:: ds 1
+wcf96:: ds 1
+wcf97:: ds 1
+wcf98:: ds 3
+wcf9b:: ds 3
+wcf9e:: ds 3
+wcfa1:: ds 1
+wcfa2:: ds 1
+wcfa3:: ds 1
+wcfa4:: ds 1
+wcfa5:: ds 1
+wcfa6:: ds 1
+wcfa7:: ds 1
+wcfa8:: ds 1
+wcfa9:: ds 1
+wcfaa:: ds 1
+wcfab:: ds 1
+wcfac:: ds 1
+wcfad:: ds 4
 
 OverworldDelay:: ; cfb1
 	ds 1
@@ -764,13 +1238,17 @@ PredefTemp:: ; cfb5
 PredefAddress:: ; cfb7
 	ds 2
 
-	ds 3
+	ds 2
 
+wcfbb:: ds 1
 GameTimerPause:: ; cfbc
 ; bit 0
 	ds 1
 
-	ds 5
+	ds 1
+
+wcfbe:: ds 2
+wcfc0:: ds 2
 
 FXAnimID::
 FXAnimIDLo:: ; cfc2
@@ -778,12 +1256,16 @@ FXAnimIDLo:: ; cfc2
 FXAnimIDHi:: ; cfc3
 	ds 1
 
-	ds 2
+wcfc4:: ds 1
+wcfc5:: ds 1
 
 TileAnimationTimer:: ; cfc6
 	ds 1
 
-	ds 5
+wcfc7:: ds 1
+wcfc8:: ds 1
+wcfc9:: ds 1
+wcfca:: ds 2
 
 Options:: ; cfcc
 ; bit 0-2: number of frames to delay when printing text
@@ -795,7 +1277,7 @@ Options:: ; cfcc
 ; bit 7: battle scene off/on
 	ds 1
 
-	ds 1
+wcfcd:: ds 1
 
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
@@ -816,39 +1298,81 @@ Options2:: ; cfd1
 ; bit 1: menu account off/on
 	ds 1
 
-	ds 46
+	ds 2
+wcfd4:: ds 1
+wcfd5:: ds 1
+wcfd6:: ds 1
+wcfd7:: ds 1
+
+	ds 40
 
 
 SECTION "WRAM 1", WRAMX, BANK [1]
 
-	ds 2
-
+wd000:: ds 1
+wd001:: ds 1
+wd002::
 DefaultFlypoint:: ; d002
 	ds 1
-; d003
-	ds 1
-; d004
-	ds 1
+wd003:: ds 1
+wd004:: ds 1
+wd005::
 StartFlypoint:: ; d005
 	ds 1
+wd006::
 EndFlypoint:: ; d006
 	ds 1
 
+wd007::
 MovementBuffer:: ; d007
+	ds 1
 
-	ds 55
+wd008:: ds 2
+wd00a:: ds 1
+wd00b:: ds 1
+wd00c:: ds 1
+wd00d:: ds 1
+wd00e:: ds 1
+wd00f:: ds 1
+wd010:: ds 1
+wd011:: ds 1
+wd012:: ds 1
+wd013:: ds 1
+wd014:: ds 2
+wd016:: ds 1
+wd017:: ds 1
+wd018:: ds 1
+wd019:: ds 1
+wd01a:: ds 6
+wd020:: ds 3
+wd023:: ds 5
+wd028:: ds 2
+wd02a:: ds 3
+wd02d:: ds 1
+wd02e:: ds 1
+wd02f:: ds 1
+wd030:: ds 1
+wd031:: ds 1
+wd032:: ds 1
+wd033:: ds 1
+wd034:: ds 2
+wd036:: ds 2
+wd038:: ds 6
 
 MenuItemsList::
 CurFruitTree::
 CurInput::
 EngineBuffer1:: ; d03e
 	ds 1
+wd03f::
 CurFruit:: ; d03f
 	ds 1
 
+wd040::
 MartPointer:: ; d040
-	ds 2
+	ds 1
 
+wd041:: ds 1
 MovementAnimation:: ; d042
 	ds 1
 
@@ -865,27 +1389,53 @@ WalkingY:: ; d046
 WalkingTile:: ; d047
 	ds 1
 
-	ds 43
+wd048:: ds 6
+wd04e:: ds 2
+wd050:: ds 10
+wd05a:: ds 12
+wd066:: ds 10
+wd070:: ds 3
 
 StringBuffer1:: ; d073
 	ds 19
+
 StringBuffer2:: ; d086
 	ds 19
+
 StringBuffer3:: ; d099
 	ds 19
+
 StringBuffer4:: ; d0ac
 	ds 19
+
 StringBuffer5:: ; d0bf
 	ds 19
 
-	ds 2
+wd0d2:: ds 2
 
 CurBattleMon:: ; d0d4
 	ds 1
 CurMoveNum:: ; d0d5
 	ds 1
 
-	ds 23
+wd0d6:: ds 1
+wd0d7:: ds 1
+wd0d8:: ds 1
+wd0d9:: ds 1
+wd0da:: ds 1
+wd0db:: ds 1
+wd0dc:: ds 1
+wd0dd:: ds 2
+wd0df:: ds 1
+wd0e0:: ds 1
+wd0e1:: ds 1
+wd0e2:: ds 1
+wd0e3:: ds 1
+wd0e4:: ds 4
+wd0e8:: ds 1
+wd0e9:: ds 2
+wd0eb:: ds 1
+wd0ec:: ds 1
 
 VramState:: ; d0ed
 ; bit 0: overworld sprite updating on/off
@@ -894,18 +1444,27 @@ VramState:: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
-	ds 2
-
+wd0ee:: ds 1
+wd0ef:: ds 1
+wd0f0::
 CurMart:: ; d0f0
-	ds 16
-CurMartEnd::
+	; ds 16
+	ds 1
+wd0f1:: ds 1
+wd0f2:: ds 14
 
-	ds 6
+wd100:: ds 1
+
+wd101:: ds 1
+wd102:: ds 1
+wd103:: ds 1
+wd104:: ds 1
+wd105:: ds 1
 
 CurItem:: ; d106
 	ds 1
 
-	ds 1
+wd107:: ds 1
 
 CurPartySpecies:: ; d108
 	ds 1
@@ -916,26 +1475,60 @@ CurPartyMon:: ; d109
 ; 0-5
 	ds 1
 
-	ds 4
+wd10a:: ds 1
+wd10b:: ds 1
+wd10c:: ds 1
+wd10d:: ds 1
 
 TempMon::
 	party_struct TempMon
 
-	ds 3
+wd13e:: ds 1
+
+wd13f:: ds 2
 
 PartyMenuActionText:: ; d141
 	ds 1
-	ds 1
+
+wd142:: ds 1
 
 CurPartyLevel:: ; d143
 	ds 1
 
-	ds 16
+wd144:: ds 2
+wd146:: ds 1
+wd147:: ds 1
+wd148:: ds 1
+wd149:: ds 1
+wd14a:: ds 1
+wd14b:: ds 1
+wd14c:: ds 1
+wd14d:: ds 1
+wd14e:: ds 1
+wd14f:: ds 1
+wd150:: ds 1
+wd151:: ds 1
+wd152:: ds 1
+wd153:: ds 1
 
 UsedSprites:: ; d154
 	ds 32
+; d174
 
-	ds 41
+	ds 13
+wd181:: ds 1
+wd182:: ds 1
+	ds 14
+
+wd191:: ds 1
+wd192:: ds 1
+wd193:: ds 1
+wd194:: ds 1
+wd195:: ds 1
+wd196:: ds 1
+wd197:: ds 2
+wd199:: ds 1
+wd19a:: ds 3
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d
@@ -1061,12 +1654,11 @@ TilesetPalettes:: ; d1e6
 ; bank 3f
 	ds 2
 
-
 EvolvableFlags:: ; d1e8
 	flag_array PARTY_LENGTH
 
-	ds 1
-
+wd1e9:: ds 1
+wd1ea::
 MagikarpLength::
 Buffer1:: ; d1ea
 	ds 1
@@ -1074,8 +1666,17 @@ MovementType::
 Buffer2:: ; d1eb
 	ds 1
 
-	ds 14
-
+wd1ec:: ds 1
+wd1ed:: ds 1
+wd1ee:: ds 1
+wd1ef:: ds 1
+wd1f0:: ds 1
+wd1f1:: ds 1
+wd1f2:: ds 1
+wd1f3:: ds 1
+wd1f4:: ds 1
+wd1f5:: ds 1
+wd1f6:: ds 4
 
 LinkBattleRNs:: ; d1fa
 	ds 10
@@ -1096,8 +1697,7 @@ IsInBattle:: ; d22d
 ; 2: trainer battle
 	ds 1
 
-	ds 1
-
+wd22e:: ds 1
 OtherTrainerClass:: ; d22f
 ; class (Youngster, Bug Catcher, etc.) of opposing trainer
 ; 0 if opponent is a wild Pokémon, not a trainer
@@ -1124,7 +1724,7 @@ OtherTrainerID:: ; d231
 ; (Joey, Mikey, Albert, etc.)
 	ds 1
 
-	ds 1
+wd232:: ds 1
 
 TrainerClass:: ; d233
 	ds 1
@@ -1132,7 +1732,7 @@ TrainerClass:: ; d233
 UnownLetter:: ; d234
 	ds 1
 
-	ds 1
+wd235:: ds 1
 
 CurBaseData:: ; d236
 BaseDexNo:: ; d236
@@ -1184,12 +1784,27 @@ BaseTMHM:: ; d24e
 CurDamage:: ; d256
 	ds 2
 
-	ds 17
+	ds 2
+wd25a:: ds 3
+wd25d:: ds 1
+wd25e:: ds 4
+wd262:: ds 1
+wd263:: ds 1
+wd264:: ds 1
+wd265:: ds 1
+wd266:: ds 1
+wd267:: ds 1
+wd268:: ds 1
 
 TimeOfDay:: ; d269
 	ds 1
 
-	ds 22
+	ds 1
+wd26b:: ds 1
+wd26c:: ds 1
+wd26d:: ds 4
+wd271:: ds 5
+wd276:: ds 10
 
 
 SECTION "Enemy Party", WRAMX, BANK [1]
@@ -1212,10 +1827,10 @@ OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea
 
 	ds 4
 
+wd430::
 wBattleAction:: ds 1 ; d430
 
-	ds 1
-
+wd431:: ds 1
 MapStatus:: ; d432
 	ds 1
 MapEventStatus:: ; d433
@@ -1242,14 +1857,30 @@ ScriptPos:: ; d43a
 ScriptDelay:: ; d44d
 	ds 1
 
-	ds 36
+	ds 11
+
+wd459:: ds 2
+wd45b:: ds 1
+wd45c:: ds 8
+wd464:: ds 1
+wd465:: ds 1
+wd466:: ds 6
+wd46c:: ds 1
+wd46d:: ds 5
 
 PlayerGender:: ; d472
 ; bit 0:
 ;	0 male
 ;	1 female
 	ds 1
-	ds 8
+wd473:: ds 1
+wd474:: ds 1
+wd475:: ds 1
+wd476:: ds 1
+wd477:: ds 1
+wd478:: ds 1
+wd479:: ds 2
+
 PlayerID:: ; d47b
 	ds 2
 
@@ -1259,7 +1890,8 @@ RivalName::  ds NAME_LENGTH ; d493
 RedsName::   ds NAME_LENGTH ; d49e
 GreensName:: ds NAME_LENGTH ; d4a9
 
-	ds 2
+wd4b4:: ds 1
+wd4b5:: ds 1
 
 ; init time set at newgame
 StartDay:: ; d4b6
@@ -1292,7 +1924,12 @@ GameTimeFrames:: ; d4c8
 CurDay:: ; d4cb
 	ds 1
 
-	ds 10
+	ds 1
+wd4cd:: ds 1
+wd4ce:: ds 1
+wd4cf:: ds 1
+wd4d0:: ds 1
+wd4d1:: ds 5
 
 
 ObjectStructs::
@@ -1319,7 +1956,7 @@ PlayerAction:: ; d4e1
 ; 4 spinning
 ; 6 fishing
 	ds 1
-	ds 1
+wd4e2:: ds 1
 PlayerFacing:: ; d4e3
 	ds 1
 StandingTile:: ; d4e4
@@ -1374,24 +2011,26 @@ ObjectStruct12:: ; d6b6
 MapObjects:: ; d71e
 	ds OBJECT_LENGTH * NUM_OBJECTS
 
-	ds 16
+wd81e:: ds NUM_OBJECTS
 
 VariableSprites:: ; d82e
 	ds $10
 
-	ds 3
+wd83e:: ds 3
 
 TimeOfDayPal:: ; d841
 	ds 1
 	ds 4
 ; d846
-	ds 1
-	ds 1
+wd846:: ds 1
+wd847:: ds 1
 CurTimeOfDay:: ; d848
 	ds 1
 
-	ds 3
+	ds 1
 
+wd84a:: ds 1
+wd84b:: ds 1
 StatusFlags:: ; d84c
 	ds 1
 StatusFlags2:: ; d84d
@@ -1400,8 +2039,10 @@ StatusFlags2:: ; d84d
 Money:: ; d84e
 	ds 3
 
+wd851::
 wMomsMoney:: ; d851
 	ds 3
+wd854::
 wMomSavingMoney:: ; d854
 	ds 1
 
@@ -1441,8 +2082,11 @@ PCItems:: ; d8f1
 	ds MAX_PC_ITEMS * 2 + 1
 PCItemsEnd::
 
-	ds 5
+	ds 1
 
+wd957:: ds 1
+wd958:: ds 1
+wd959:: ds 2
 WhichRegisteredItem:: ; d95b
 	ds 1
 RegisteredItem:: ; d95c
@@ -1451,8 +2095,8 @@ RegisteredItem:: ; d95c
 PlayerState:: ; d95d
 	ds 1
 
-	ds 4
-
+wd95e:: ds 2
+wd960:: ds 2
 MooMooBerries:: ; d962
 	ds 1 ; how many berries fed to MooMoo
 UndergroundSwitchPositions:: ; d963
@@ -1550,7 +2194,9 @@ wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 
 SECTION "Events", WRAMX, BANK [1]
 
-	ds 128
+	ds 14
+
+wda00:: ds 114
 
 EventFlags:: ; da72
 ;RoomDecorations:: ; dac6
@@ -1578,15 +2224,33 @@ BikeFlags:: ; dbf5
 ; bit 2: downhill
 	ds 1
 
-	ds 25
+	ds 3
+
+wdbf9:: ds 7
+wdc00:: ds 1
+wdc01:: ds 1
+wdc02:: ds 1
+wdc03:: ds 1
+wdc04:: ds 1
+wdc05:: ds 1
+wdc06:: ds 1
+wdc07:: ds 2
+wdc09:: ds 1
+wdc0a:: ds 1
+wdc0b:: ds 2
+wdc0d:: ds 1
+wdc0e:: ds 1
 
 ; Sprite id of each decoration
+wdc0f::
 Bed:: ; dc0f
 	ds 1
 Carpet:: ; dc10
 	ds 1
+wdc11::
 Plant:: ; dc11
 	ds 1
+wdc12::
 Poster:: ; dc12
 	ds 1
 Console:: ; dc13
@@ -1598,24 +2262,69 @@ RightOrnament:: ; dc15
 BigDoll:: ; dc16
 	ds 1
 
-	ds 16
+wdc17:: ds 1
+wdc18:: ds 1
+wdc19:: ds 1
+wdc1a:: ds 1
+wdc1b:: ds 1
+wdc1c:: ds 2
+wdc1e:: ds 1
+wdc1f:: ds 1
+wdc20:: ds 1
+wdc21:: ds 1
+wdc22:: ds 1
+wdc23:: ds 1
+wdc24:: ds 2
+wdc26:: ds 1
 
 FruitTreeFlags:: ; dc27
 	ds 1
 
-	ds 75
+	ds 5
+
+wdc2d:: ds 4
+wdc31:: ds 4
+wdc35:: ds 5
+wdc3a:: ds 1
+wdc3b:: ds 5
+wdc40:: ds 1
+wdc41:: ds 1
+wdc42:: ds 8
+wdc4a:: ds 1
+wdc4b:: ds 1
+wdc4c:: ds 4
+wdc50:: ds 4
+wdc54:: ds 4
+wdc58:: ds 2
+wdc5a:: ds 1
+wdc5b:: ds 1
+wdc5c:: ds 3
+wdc5f:: ds 1
+wdc60:: ds 19
 
 StepCount:: ; dc73
 	ds 1
 PoisonStepCount:: ; dc74
 	ds 1
 
-	ds 48
+	ds 2
+wdc77:: ds 2
+wdc79:: ds 1
+wdc7a:: ds 2
+wdc7c:: ds 33
+wdc9d:: ds 2
+wdc9f:: ds 1
+wdca0:: ds 1
+wdca1:: ds 3
+wdca4:: ds 1
 
 VisitedSpawns:: ; dca5
 	flag_array 27
 
-	ds 4
+wdca9:: ds 1
+wdcaa:: ds 1
+wdcab:: ds 1
+wdcac:: ds 1
 
 ; used on maps like second floor pokécenter, which are reused, so we know which
 ; map to return to
@@ -1624,7 +2333,10 @@ BackupMapGroup:: ; dcad
 BackupMapNumber:: ; dcae
 	ds 1
 
-	ds 5
+	ds 3
+
+wdcb2:: ds 1
+wdcb3:: ds 1
 
 WarpNumber:: ; dcb4
 	ds 1
@@ -1681,7 +2393,7 @@ UnownDex:: ; ded9
 UnlockedUnowns:: ; def3
 	ds 1
 
-	ds 1
+wdef4:: ds 1
 
 
 SECTION "Daycare", WRAMX, BANK [1]
@@ -1719,14 +2431,17 @@ wEggNick:: ds PKMN_NAME_LENGTH ; df65
 wEggOT::   ds NAME_LENGTH ; df70
 wEggMon::  box_struct wEggMon ; df7b
 
-	ds 1
+wdf9b:: ds 1
 
 
 SECTION "Misc Pokemon", WRAMX, BANK [1]
 
+wdf9c::
 wContestMon:: party_struct wContestMon ; df9c
 
-	ds 3
+wdfcc:: ds 1
+wdfcd:: ds 1
+wdfce:: ds 1
 
 roam_struct: MACRO
 \1Species::   db
@@ -1740,6 +2455,20 @@ ENDM
 wRoamMon1:: roam_struct wRoamMon1 ; dfcf
 wRoamMon2:: roam_struct wRoamMon2 ; dfd6
 wRoamMon3:: roam_struct wRoamMon3 ; dfdd
+
+wdfe4:: ds 1
+wdfe5:: ds 1
+wdfe6:: ds 1
+wdfe7:: ds 1
+wdfe8:: ds 1
+wdfe9:: ds 1
+	ds 1
+	ds 1
+wdfec:: ds 1
+	ds 3
+
+	ds 5
+wdff5::
 
 
 
@@ -1766,7 +2495,7 @@ LYOverridesBackupEnd::
 
 SECTION "Battle Animations", WRAMX, BANK [5]
 
-	ds 10
+wd300:: ds 10
 
 ActiveAnimObjects:: ; d30a
 	ds 4 * 40
@@ -1776,7 +2505,7 @@ ActiveAnimObjects:: ; d30a
 ActiveBGEffects:: ; d3fa
 	ds 4 * 5
 
-	ds 1
+wd40e:: ds 1
 
 BattleAnimFlags:: ; d40f
 	ds 1
@@ -1792,9 +2521,11 @@ BattleAnimVar:: ; d416
 	ds 1
 BattleAnimByte:: ; d417
 	ds 1
-	ds 1
+wd418:: ds 1
 BattleAnimTemps:: ; d419
 	ds 8
+	ds 1
+wd422:: ds $40
 
 
 SECTION "Scratch", SRAM, BANK [0]

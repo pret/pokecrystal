@@ -16,12 +16,12 @@ Function38000: ; 38000
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, DontSwitch
 
-	ld a, [$c731]
+	ld a, [wc731]
 	and a
 	jr nz, DontSwitch
 
 	ld hl, TrainerClassAttributes + 5
-	ld a, [$cfc0]
+	ld a, [wcfc0]
 	and a
 	jr nz, .ok
 	ld a, [TrainerClass]
@@ -44,7 +44,7 @@ DontSwitch: ; 38041
 
 SwitchOften: ; 38045
 	callab Function34941
-	ld a, [$c717]
+	ld a, [wc717]
 	and $f0
 	jp z, DontSwitch
 
@@ -70,16 +70,16 @@ SwitchOften: ; 38045
 	jp c, DontSwitch
 
 .switch
-	ld a, [$c717]
+	ld a, [wc717]
 	and $f
 	inc a
-	ld [$c718], a
+	ld [wc718], a
 	jp AI_TrySwitch
 ; 38083
 
 SwitchRarely: ; 38083
 	callab Function34941
-	ld a, [$c717]
+	ld a, [wc717]
 	and $f0
 	jp z, DontSwitch
 
@@ -105,16 +105,16 @@ SwitchRarely: ; 38083
 	jp c, DontSwitch
 
 .switch
-	ld a, [$c717]
+	ld a, [wc717]
 	and $f
 	inc a
-	ld [$c718], a
+	ld [wc718], a
 	jp AI_TrySwitch
 ; 380c1
 
 SwitchSometimes: ; 380c1
 	callab Function34941
-	ld a, [$c717]
+	ld a, [wc717]
 	and $f0
 	jp z, DontSwitch
 
@@ -140,10 +140,10 @@ SwitchSometimes: ; 380c1
 	jp c, DontSwitch
 
 .switch
-	ld a, [$c717]
+	ld a, [wc717]
 	and $f
 	inc a
-	ld [$c718], a
+	ld [wc718], a
 	jp AI_TrySwitch
 ; 380ff
 
@@ -156,13 +156,13 @@ Function380ff: ; 380ff
 
 
 AI_TryItem: ; 38105
-	ld a, [$cfc0]
+	ld a, [wcfc0]
 	and a
 	ret nz
 
-	ld a, [$c650]
+	ld a, [wc650]
 	ld b, a
-	ld a, [$c651]
+	ld a, [wc651]
 	or b
 	ret z
 
@@ -177,7 +177,7 @@ AI_TryItem: ; 38105
 	ld b, h
 	ld c, l
 	ld hl, AI_Items
-	ld de, $c650
+	ld de, wc650
 .loop
 	ld a, [hl]
 	and a
@@ -221,15 +221,15 @@ AI_TryItem: ; 38105
 	xor a
 	ld [de], a
 	inc a
-	ld [$c70f], a
+	ld [wc70f], a
 
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_BIDE, [hl]
 
 	xor a
 	ld [EnemyFuryCutterCount], a
-	ld [$c681], a
-	ld [$c72c], a
+	ld [EnemyProtectCount], a
+	ld [wc72c], a
 
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
@@ -545,7 +545,7 @@ AIUpdateHUD: ; 38387
 	callba UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
-	ld hl, $c6e6
+	ld hl, wc6e6
 	dec [hl]
 	scf
 	ret
@@ -568,20 +568,20 @@ Function383a3: ; 383a3 (e:43a3)
 
 Function383ae: ; 383ae (e:43ae)
 	ld a, MAX_POTION
-	ld [$d1f1], a
+	ld [wd1f1], a
 	jr asm_383c6
 
 Function383b5: ; 383b5 (e:43b5)
 	call AI_HealStatus
 	ld a, FULL_RESTORE
-	ld [$d1f1], a
+	ld [wd1f1], a
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_CONFUSED, [hl]
 	xor a
 	ld [EnemyConfuseCount], a
 
 asm_383c6: ; 383c6
-	ld de, $d1ec
+	ld de, wd1ec
 	ld hl, EnemyMonHP + 1
 	ld a, [hld]
 	ld [de], a
@@ -617,20 +617,20 @@ Function383f4: ; 383f4 (e:43f4)
 	ld b, 200
 
 Function383f8: ; 383f8
-	ld [$d1f1], a
+	ld [wd1f1], a
 	ld hl, EnemyMonHP + 1
 	ld a, [hl]
-	ld [$d1ec], a
+	ld [wd1ec], a
 	add b
 	ld [hld], a
-	ld [$d1ee], a
+	ld [wd1ee], a
 	ld a, [hl]
-	ld [$d1ec + 1], a
-	ld [$d1ee + 1], a
+	ld [wd1ec + 1], a
+	ld [wd1ee + 1], a
 	jr nc, .asm_38415
 	inc a
 	ld [hl], a
-	ld [$d1ee + 1], a
+	ld [wd1ee + 1], a
 .asm_38415
 	inc hl
 	ld a, [hld]
@@ -650,17 +650,17 @@ Function383f8: ; 383f8
 	ld a, [de]
 	dec de
 	ld [hld], a
-	ld [$d1ee], a
+	ld [wd1ee], a
 	ld a, [de]
 	ld [hl], a
-	ld [$d1ef], a
+	ld [wd1ef], a
 .asm_38436
 
 Function38436: ; 38436
 	call Function38571
 	hlcoord 2, 2
 	xor a
-	ld [$d10a], a
+	ld [wd10a], a
 	call AIUsedItemSound
 	predef Functionc6e0
 	jp AIUpdateHUD
@@ -695,8 +695,8 @@ AI_TrySwitch: ; 3844b
 
 AI_Switch: ; 3846c
 	ld a, $1
-	ld [$c711], a
-	ld [$c70f], a
+	ld [wEnemyIsSwitching], a
+	ld [wc70f], a
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
@@ -718,7 +718,7 @@ AI_Switch: ; 3846c
 	call PrintText
 .asm_384a3
 	ld a, $1
-	ld [$d264], a
+	ld [wd264], a
 	callab NewEnemyMonStatus
 	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
@@ -726,7 +726,7 @@ AI_Switch: ; 3846c
 	callba Function3d4e1
 	callba Function3d57a
 	xor a
-	ld [$d264], a
+	ld [wd264], a
 	ld a, [InLinkBattle]
 	and a
 	ret nz
@@ -832,7 +832,7 @@ Function38553: ; 38553
 	ld a, X_SPECIAL
 
 Function38557:
-	ld [$d1f1], a
+	ld [wd1f1], a
 	push bc
 	call Function38571
 	pop bc
@@ -842,17 +842,17 @@ Function38557:
 
 
 Function38568: ; 38568
-	ld [$d1f1], a
+	ld [wd1f1], a
 	call Function38571
 	jp AIUpdateHUD
 ; 38571
 
 Function38571: ; 38571
-	ld a, [$d1f1]
-	ld [$d265], a
+	ld a, [wd1f1]
+	ld [wd265], a
 	call GetItemName
 	ld hl, StringBuffer1
-	ld de, $d050
+	ld de, wd050
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 	ld hl, UnknownText_0x3858c

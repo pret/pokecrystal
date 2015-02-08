@@ -1,7 +1,7 @@
 ; BG effects for use in battle animations.
 
 Functionc8000: ; c8000 (32:4000)
-	ld hl, $d3fa
+	ld hl, ActiveBGEffects
 	ld e, $5
 .asm_c8005
 	ld a, [hl]
@@ -22,7 +22,7 @@ Functionc8000: ; c8000 (32:4000)
 	ret
 
 Functionc801a: ; c801a (32:401a)
-	ld hl, $d3fa
+	ld hl, ActiveBGEffects
 	ld e, $5
 .asm_c801f
 	ld a, [hl]
@@ -39,13 +39,13 @@ Functionc801a: ; c801a (32:401a)
 	ld b, h
 	ld hl, $0
 	add hl, bc
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	ld [hli], a
-	ld a, [$d41a]
+	ld a, [BattleAnimTemps + 1]
 	ld [hli], a
-	ld a, [$d41b]
+	ld a, [BattleAnimTemps + 2]
 	ld [hli], a
-	ld a, [$d41c]
+	ld a, [BattleAnimTemps + 3]
 	ld [hl], a
 	ret
 
@@ -182,7 +182,7 @@ Functionc80f3: ; c80f3 (32:40f3)
 
 Functionc80fb: ; c80fb (32:40fb)
 	ld a, $1
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld hl, $1
 	add hl, bc
 	ld a, [hl]
@@ -214,14 +214,14 @@ Functionc80fb: ; c80fb (32:40fb)
 	ld h, 0
 	add hl, de
 	ld a, [hl]
-	ld [$cfc7], a
+	ld [wcfc7], a
 	ret
 
 Functionc812d: ; c812d (32:412d)
 	ld de, Unknown_c813d
 	call Functionc8d57
 	jr c, .asm_c8139
-	ld [$cfc7], a
+	ld [wcfc7], a
 	ret
 .asm_c8139
 	call EndBattleBGEffect
@@ -236,7 +236,7 @@ Functionc8141: ; c8141 (32:4141)
 	ld de, Unknown_c8151
 	call Functionc8d57
 	jr c, .asm_c814d
-	ld [$cfc7], a
+	ld [wcfc7], a
 	ret
 .asm_c814d
 	call EndBattleBGEffect
@@ -251,8 +251,8 @@ Functionc8155: ; c8155 (32:4155)
 	ld de, Unknown_c8168
 	call Functionc8d57
 	jr c, .asm_c8164
-	ld [$cfc7], a
-	ld [$cfc9], a
+	ld [wcfc7], a
+	ld [wcfc9], a
 	ret
 .asm_c8164
 	call EndBattleBGEffect
@@ -272,7 +272,7 @@ Functionc8171: ; c8171 (32:4171)
 	ld de, Unknown_c8188
 .asm_c817e
 	call Functionc8d57
-	ld [$cfc8], a
+	ld [wcfc8], a
 	ret
 ; c8185 (32:4185)
 
@@ -293,7 +293,7 @@ Functionc818b: ; c818b (32:418b)
 	ld de, Unknown_c81a2
 .asm_c8198
 	call Functionc8d57
-	ld [$cfc8], a
+	ld [wcfc8], a
 	ret
 ; c819f (32:419f)
 
@@ -308,7 +308,7 @@ Unknown_c81a2:
 Functionc81a5: ; c81a5 (32:41a5)
 	ld de, Unknown_c81af
 	call Functionc8d57
-	ld [$cfc7], a
+	ld [wcfc7], a
 	ret
 ; c81af (32:41af)
 
@@ -367,9 +367,9 @@ Functionc81ea: ; c81ea (32:41ea)
 	ld de, Unknown_c820c
 .asm_c8200
 	ld a, e
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld a, d
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	call Functionc83ed
 	ret
 ; c820c (32:420c)
@@ -399,7 +399,7 @@ Jumptable_c8217: ; c8217 (32:4217)
 Functionc8223: ; c8223 (32:4223)
 	call Functionc9042
 	jr z, .asm_c8230
-	ld hl, $d40e
+	ld hl, wd40e
 	inc [hl]
 	call EndBattleBGEffect
 	ret
@@ -409,19 +409,19 @@ Functionc8223: ; c8223 (32:4223)
 	call Functionc9038
 	jr nz, .asm_c8242
 	ld a, $b8
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, $84
 	jr .asm_c8249
 .asm_c8242
 	ld a, $b9
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, $30
 .asm_c8249
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld a, $40
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	xor a
-	ld [$d41c], a
+	ld [BattleAnimTemps + 3], a
 	call Functionc82ee
 	pop bc
 	ret
@@ -465,7 +465,7 @@ Jumptable_c8284: ; c8284 (32:4284)
 Functionc8290: ; c8290 (32:4290)
 	call Functionc9042
 	jr z, .asm_c829d
-	ld hl, $d40e
+	ld hl, wd40e
 	inc [hl]
 	call EndBattleBGEffect
 	ret
@@ -475,19 +475,19 @@ Functionc8290: ; c8290 (32:4290)
 	call Functionc9038
 	jr nz, .asm_c82af
 	ld a, $ba
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, $84
 	jr .asm_c82b6
 .asm_c82af
 	ld a, $bb
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, $30
 .asm_c82b6
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld a, $40
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	xor a
-	ld [$d41c], a
+	ld [BattleAnimTemps + 3], a
 	call Functionc82ee
 	pop bc
 	ret
@@ -628,9 +628,9 @@ Functionc837b: ; c837b (32:437b)
 	ld de, Unknown_c8394
 .asm_c8388
 	ld a, e
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld a, d
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	call Functionc83ed
 	ret
 ; c8394 (32:4394)
@@ -658,9 +658,9 @@ Functionc83a8: ; c83a8 (32:43a8)
 	ld de, Unknown_c83c1
 .asm_c83b5
 	ld a, e
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld a, d
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	call Functionc83ed
 	ret
 ; c83c1 (32:43c1)
@@ -704,9 +704,9 @@ Functionc83fa: ; c83fa (32:43fa)
 	ld e, [hl]
 	ld d, $0
 	inc [hl]
-	ld a, [$d41a]
+	ld a, [BattleAnimTemps + 1]
 	ld l, a
-	ld a, [$d41b]
+	ld a, [BattleAnimTemps + 2]
 	ld h, a
 	add hl, de
 	add hl, de
@@ -788,7 +788,7 @@ Functionc8458: ; c8458 (32:4458)
 	pop hl
 	inc hl
 	ld a, [hli]
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	push de
 	ld e, [hl]
 	ld d, 0
@@ -802,7 +802,7 @@ Functionc8458: ; c8458 (32:4458)
 .asm_c8484
 	push bc
 	push hl
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	ld b, a
 .asm_c848a
 	ld a, [de]
@@ -912,8 +912,8 @@ Functionc8561: ; c8561 (32:4561)
 	ret
 
 Functionc8565: ; c8565 (32:4565)
-	ld hl, $d422
-	ld de, $d423
+	ld hl, wd422
+	ld de, wd422 + 1
 	ld c, $3f
 	ld a, [hl]
 	push af
@@ -925,8 +925,8 @@ Functionc8565: ; c8565 (32:4565)
 	jr nz, .asm_c856f
 	pop af
 	ld [hl], a
-	ld de, $d200
-	ld hl, $d422
+	ld de, LYOverridesBackup
+	ld hl, wd422
 	ld bc, $0
 .asm_c8580
 	ld a, [$ffc7]
@@ -1006,7 +1006,7 @@ Functionc85ce: ; c85ce (32:45ce)
 	ld hl, $1
 	add hl, bc
 	ld a, [hl]
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld hl, $2
 	add hl, bc
 	ld a, [hl]
@@ -1509,10 +1509,10 @@ Functionc8888: ; c8888 (32:4888)
 
 Functionc88a5: ; c88a5 (32:48a5)
 	push af
-	ld a, [FXAnimIDHi] ; $cfc3
+	ld a, [FXAnimIDHi] ; FXAnimIDHi
 	or a
 	jr nz, .asm_c88b3
-	ld a, [FXAnimIDLo] ; $cfc2
+	ld a, [FXAnimIDLo] ; FXAnimID
 	cp ROLLOUT
 	jr z, .asm_c88b7
 .asm_c88b3
@@ -1990,7 +1990,7 @@ Functionc8b22: ; c8b22 (32:4b22)
 	ld hl, Unknown_c8bd8
 	add hl, de
 	ld a, [hli]
-	ld [$cfc9], a
+	ld [wcfc9], a
 	ld d, a
 	ld e, [hl]
 	ld bc, $2f30
@@ -2001,7 +2001,7 @@ Functionc8b22: ; c8b22 (32:4b22)
 	ld d, [hl]
 	inc hl
 	ld a, [hl]
-	ld [$cfc9], a
+	ld [wcfc9], a
 	ld e, a
 	ld bc, $3728
 .asm_c8b5b
@@ -2012,12 +2012,12 @@ Functionc8b22: ; c8b22 (32:4b22)
 Functionc8b60: ; c8b60 (32:4b60)
 	call Functionc8f19
 	ld a, $e4
-	ld [$cfc7], a
-	ld [$cfc9], a
+	ld [wcfc7], a
+	ld [wcfc9], a
 	ret
 
 Functionc8b6c: ; c8b6c (32:4b6c)
-	ld hl, $d200
+	ld hl, LYOverridesBackup
 .asm_c8b6f
 	ld [hl], d
 	inc hl
@@ -2303,7 +2303,7 @@ Functionc8ce1: ; c8ce1 (32:4ce1)
 	ld [hSCY], a ; $ff00+$d0
 	xor $ff
 	inc a
-	ld [$d314], a
+	ld [OTPartyMon3SpclAtk], a
 	ret
 
 Functionc8cf9: ; c8cf9 (32:4cf9)
@@ -2563,13 +2563,13 @@ Functionc8e52: ; c8e52 (32:4e52)
 	ld a, h
 	push bc
 	push af
-	ld hl, BGPals ; $d080
-	ld de, Unkn1Pals ; $d000
+	ld hl, BGPals ; BGPals
+	ld de, Unkn1Pals ; wd000
 	ld b, a
 	ld c, $1
 	call CopyPals
-	ld hl, $d0c8
-	ld de, $d048
+	ld hl, OBPals + 8
+	ld de, Unkn2Pals + 8
 	pop af
 	ld b, a
 	ld c, $1
@@ -2590,13 +2590,13 @@ Functionc8e7f: ; c8e7f (32:4e7f)
 	ld a, h
 	push bc
 	push af
-	ld hl, $d088
-	ld de, $d008
+	ld hl, BGPals + 8
+	ld de, Unkn1Pals + 8
 	ld b, a
 	ld c, $1
 	call CopyPals
-	ld hl, OBPals ; $d0c0
-	ld de, Unkn2Pals ; $d040
+	ld hl, OBPals ; OBPals
+	ld de, Unkn2Pals ; wd040
 	pop af
 	ld b, a
 	ld c, $1
@@ -2638,7 +2638,7 @@ Functionc8eca: ; c8eca (32:4eca)
 	xor a
 
 Functionc8ecb: ; c8ecb (32:4ecb)
-	ld hl, LYOverrides ; $d100
+	ld hl, LYOverrides ; wd100
 	ld e, $99
 .asm_c8ed0
 	ld [hli], a
@@ -2697,8 +2697,8 @@ Functionc8f19: ; c8f19 (32:4f19)
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	ld a, $e4
 	ld [rBGP], a ; $ff00+$47
-	ld [$cfc7], a
-	ld [$cfc9], a
+	ld [wcfc7], a
+	ld [wcfc9], a
 	ld [$ffc7], a
 	ld [$ffc8], a
 	call Functionc8eca
@@ -2707,14 +2707,14 @@ Functionc8f19: ; c8f19 (32:4f19)
 Functionc8f2e: ; c8f2e (32:4f2e)
 	push bc
 	xor a
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, e
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld a, d
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	ld a, $80
-	ld [$d41c], a
-	ld bc, $d200
+	ld [BattleAnimTemps + 3], a
+	ld bc, LYOverridesBackup
 .asm_c8f43
 	ld a, [$ffc7]
 	cp c
@@ -2722,18 +2722,18 @@ Functionc8f2e: ; c8f2e (32:4f2e)
 	ld a, [$ffc8]
 	cp c
 	jr c, .asm_c8f58
-	ld a, [$d41b]
+	ld a, [BattleAnimTemps + 2]
 	ld d, a
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	call Functionc905d
 	ld [bc], a
 .asm_c8f58
 	inc bc
-	ld a, [$d41a]
-	ld hl, $d419
+	ld a, [BattleAnimTemps + 1]
+	ld hl, BattleAnimTemps
 	add [hl]
 	ld [hl], a
-	ld hl, $d41c
+	ld hl, BattleAnimTemps + 3
 	dec [hl]
 	jr nz, .asm_c8f43
 	pop bc
@@ -2742,26 +2742,26 @@ Functionc8f2e: ; c8f2e (32:4f2e)
 Functionc8f69: ; c8f69 (32:4f69)
 	push bc
 	xor a
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, e
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld a, d
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	ld a, $40
-	ld [$d41c], a
-	ld bc, $d422
+	ld [BattleAnimTemps + 3], a
+	ld bc, wd422
 .asm_c8f7e
-	ld a, [$d41b]
+	ld a, [BattleAnimTemps + 2]
 	ld d, a
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	call Functionc905d
 	ld [bc], a
 	inc bc
-	ld a, [$d41a]
-	ld hl, $d419
+	ld a, [BattleAnimTemps + 1]
+	ld hl, BattleAnimTemps
 	add [hl]
 	ld [hl], a
-	ld hl, $d41c
+	ld hl, BattleAnimTemps + 3
 	dec [hl]
 	jr nz, .asm_c8f7e
 	pop bc
@@ -2769,26 +2769,26 @@ Functionc8f69: ; c8f69 (32:4f69)
 
 Functionc8f9a: ; c8f9a (32:4f9a)
 	push bc
-	ld [$d41c], a
+	ld [BattleAnimTemps + 3], a
 	ld a, e
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	ld a, d
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	call Functionc8fe4
-	ld hl, $d200
+	ld hl, LYOverridesBackup
 	add hl, de
 	ld c, l
 	ld b, h
 .asm_c8faf
-	ld a, [$d41c]
+	ld a, [BattleAnimTemps + 3]
 	and a
 	jr z, .asm_c8fe1
 	dec a
-	ld [$d41c], a
+	ld [BattleAnimTemps + 3], a
 	push af
-	ld a, [$d41b]
+	ld a, [BattleAnimTemps + 2]
 	ld d, a
-	ld a, [$d41a]
+	ld a, [BattleAnimTemps + 1]
 	push hl
 	call Functionc905d
 	ld e, a
@@ -2806,9 +2806,9 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	ld [hl], e
 	dec hl
 .asm_c8fd6
-	ld a, [$d41a]
+	ld a, [BattleAnimTemps + 1]
 	add $4
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	pop af
 	jr .asm_c8faf
 .asm_c8fe1
@@ -2819,7 +2819,7 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 Functionc8fe4: ; c8fe4 (32:4fe4)
 	ld a, [$ffc7]
 	ld e, a
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	add e
 	ld e, a
 	ld d, $0
@@ -2907,11 +2907,11 @@ Functionc9042: ; c9042 (32:5042)
 	and $1
 	xor [hl]
 	jr nz, .asm_c9053
-	ld a, [EnemySubStatus3] ; $c66f
+	ld a, [EnemySubStatus3] ; EnemySubStatus3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 .asm_c9053
-	ld a, [PlayerSubStatus3] ; $c66a
+	ld a, [PlayerSubStatus3] ; PlayerSubStatus3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 

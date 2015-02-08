@@ -77,7 +77,7 @@ Functioncc11c: ; cc11c
 	call BattleAnimRestoreHuds
 
 .asm_cc141
-	ld a, [$cfca]
+	ld a, [wcfca]
 	and a
 	jr z, .asm_cc15f
 
@@ -135,7 +135,7 @@ Functioncc163: ; cc163
 	call BattleAnimDelayFrame
 
 .asm_cc196
-	ld a, [$d40f]
+	ld a, [BattleAnimFlags]
 	bit 0, a
 	jr z, .playframe
 
@@ -191,13 +191,13 @@ BattleAnimRequestPals: ; cc1e2
 
 	ld a, [rBGP]
 	ld b, a
-	ld a, [$cfc7]
+	ld a, [wcfc7]
 	cp b
 	call nz, Functioncc91a
 
 	ld a, [rOBP0]
 	ld b, a
-	ld a, [$cfc8]
+	ld a, [wcfc8]
 	cp b
 	call nz, Functioncc94b
 	ret
@@ -255,7 +255,7 @@ Functioncc220: ; cc220
 
 Functioncc23d: ; cc23d
 
-	ld a, [$d40f]
+	ld a, [BattleAnimFlags]
 	bit 3, a
 	jr z, .asm_cc254
 
@@ -291,12 +291,12 @@ Functioncc25f: ; cc25f
 ; cc267
 
 Functioncc267: ; cc267
-	ld a, [$d412]
+	ld a, [BattleAnimDuration]
 	and a
 	jr z, .asm_cc273
 
 	dec a
-	ld [$d412], a
+	ld [BattleAnimDuration], a
 	and a
 	ret
 
@@ -313,7 +313,7 @@ Functioncc275: ; cc275
 	jr nz, .asm_cc286
 
 ; Return from a subroutine.
-	ld hl, $d40f
+	ld hl, BattleAnimFlags
 	bit 1, [hl]
 	jr nz, .asm_cc28e
 
@@ -324,7 +324,7 @@ Functioncc275: ; cc275
 	cp $d0
 	jr nc, .asm_cc28e
 
-	ld [$d412], a
+	ld [BattleAnimDuration], a
 	ret
 
 .asm_cc28e
@@ -334,8 +334,8 @@ Functioncc275: ; cc275
 ; cc293
 
 Functioncc293: ; cc293
-; Execute battle animation command in [$d417].
-	ld a, [$d417]
+; Execute battle animation command in [BattleAnimByte].
+	ld a, [BattleAnimByte]
 	sub $d0
 
 	ld e, a
@@ -409,13 +409,13 @@ BattleAnimCmd_ED: ; cc304 (33:4304)
 	ret
 
 BattleAnimCmd_FF: ; cc305 (33:4305)
-	ld hl, $d40f
+	ld hl, BattleAnimFlags
 	res 1, [hl]
-	ld hl, $d413
+	ld hl, BattleAnimParent
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -427,20 +427,20 @@ BattleAnimCmd_FE: ; cc317 (33:4317)
 	call GetBattleAnimByte
 	ld d, a
 	push de
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $d413
+	ld hl, BattleAnimParent
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	pop de
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $d40f
+	ld hl, BattleAnimFlags
 	set 1, [hl]
 	ret
 
@@ -449,7 +449,7 @@ BattleAnimCmd_FC: ; cc339 (33:4339)
 	ld e, a
 	call GetBattleAnimByte
 	ld d, a
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -457,16 +457,16 @@ BattleAnimCmd_FC: ; cc339 (33:4339)
 
 BattleAnimCmd_FD: ; cc348 (33:4348)
 	call GetBattleAnimByte
-	ld hl, $d40f
+	ld hl, BattleAnimFlags
 	bit 2, [hl]
 	jr nz, .asm_cc35b
 	and a
 	jr z, .asm_cc363
 	dec a
 	set 2, [hl]
-	ld [$d415], a
+	ld [BattleAnimLoops], a
 .asm_cc35b
-	ld hl, $d415
+	ld hl, BattleAnimLoops
 	ld a, [hl]
 	and a
 	jr z, .asm_cc372
@@ -476,15 +476,15 @@ BattleAnimCmd_FD: ; cc348 (33:4348)
 	ld e, a
 	call GetBattleAnimByte
 	ld d, a
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 .asm_cc372
-	ld hl, $d40f
+	ld hl, BattleAnimFlags
 	res 2, [hl]
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -496,7 +496,7 @@ BattleAnimCmd_FD: ; cc348 (33:4348)
 	ret
 
 BattleAnimCmd_EF: ; cc383 (33:4383)
-	ld hl, $c689
+	ld hl, wc689
 	ld a, [hl]
 	and a
 	jr z, .asm_cc39a
@@ -506,14 +506,14 @@ BattleAnimCmd_EF: ; cc383 (33:4383)
 	ld e, a
 	call GetBattleAnimByte
 	ld d, a
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 
 .asm_cc39a
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -526,21 +526,21 @@ BattleAnimCmd_EF: ; cc383 (33:4383)
 
 BattleAnimCmd_F9: ; cc3a6 (33:43a6)
 	call GetBattleAnimByte
-	ld [$d416], a
+	ld [BattleAnimVar], a
 	ret
 
 BattleAnimCmd_FA: ; cc3ad (33:43ad)
-	ld hl, $d416
+	ld hl, BattleAnimVar
 	inc [hl]
 	ret
 
 BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 	call GetBattleAnimByte
-	ld hl, $d416
+	ld hl, BattleAnimVar
 	cp [hl]
 	jr z, .jump
 
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -556,7 +556,7 @@ BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 	ld e, a
 	call GetBattleAnimByte
 	ld d, a
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -564,11 +564,11 @@ BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 
 BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 	call GetBattleAnimByte
-	ld hl, $c689
+	ld hl, wc689
 	cp [hl]
 	jr z, .jump
 
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -584,7 +584,7 @@ BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 	ld e, a
 	call GetBattleAnimByte
 	ld d, a
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -593,11 +593,11 @@ BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 BattleAnimCmd_EE: ; cc3fa (33:43fa)
 	call GetBattleAnimByte
 	ld e, a
-	ld a, [$c689]
+	ld a, [wc689]
 	and e
 	jr nz, .jump
 
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -612,7 +612,7 @@ BattleAnimCmd_EE: ; cc3fa (33:43fa)
 	ld e, a
 	call GetBattleAnimByte
 	ld d, a
-	ld hl, $d410
+	ld hl, BattleAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -620,41 +620,41 @@ BattleAnimCmd_EE: ; cc3fa (33:43fa)
 
 BattleAnimCmd_D0: ; cc41f (33:441f)
 	call GetBattleAnimByte
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	call GetBattleAnimByte
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	call GetBattleAnimByte
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	call GetBattleAnimByte
-	ld [$d41c], a
+	ld [BattleAnimTemps + 3], a
 	call Functioncc9a1
 	ret
 
 BattleAnimCmd_F0: ; cc43b (33:443b)
 	call GetBattleAnimByte
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	call GetBattleAnimByte
-	ld [$d41a], a
+	ld [BattleAnimTemps + 1], a
 	call GetBattleAnimByte
-	ld [$d41b], a
+	ld [BattleAnimTemps + 2], a
 	call GetBattleAnimByte
-	ld [$d41c], a
+	ld [BattleAnimTemps + 3], a
 	call Functionccb4f
 	ret
 
 BattleAnimCmd_F1: ; cc457 (33:4457)
 	call GetBattleAnimByte
-	ld [$cfc7], a
+	ld [wcfc7], a
 	ret
 
 BattleAnimCmd_F2: ; cc45e (33:445e)
 	call GetBattleAnimByte
-	ld [$cfc8], a
+	ld [wcfc8], a
 	ret
 
 BattleAnimCmd_F3: ; cc465 (33:4465)
 	call GetBattleAnimByte
-	ld [$cfc9], a
+	ld [wcfc9], a
 	ret
 
 BattleAnimCmd_DF: ; cc46c (33:446c)
@@ -664,11 +664,11 @@ BattleAnimCmd_DF: ; cc46c (33:446c)
 	jr z, .asm_cc475
 	ld a, $f0
 .asm_cc475
-	ld [$cfc8], a
+	ld [wcfc8], a
 	ret
 
 BattleAnimCmd_E5: ; cc479 (33:4479)
-	ld hl, $d30a
+	ld hl, OTPartyMon3HP
 	ld a, $a0
 .asm_cc47e
 	ld [hl], $0
@@ -682,19 +682,19 @@ BattleAnimCmd_D2:
 BattleAnimCmd_D3:
 BattleAnimCmd_D4:
 BattleAnimCmd_D5: ; cc485 (33:4485)
-	ld a, [$d417]
+	ld a, [BattleAnimByte]
 	and $f
 	ld c, a
-	ld hl, $d300
+	ld hl, wd300
 	xor a
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 .asm_cc492
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	cp $4f
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	ld [hli], a
 	push bc
 	push hl
@@ -706,11 +706,11 @@ BattleAnimCmd_D5: ; cc485 (33:4485)
 	add hl, hl
 	ld de, $8310
 	add hl, de
-	ld a, [$d417]
+	ld a, [BattleAnimByte]
 	call Functionce846
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	add c
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	pop hl
 	pop bc
 	dec c
@@ -720,12 +720,12 @@ BattleAnimCmd_D5: ; cc485 (33:4485)
 BattleAnimCmd_D6: ; cc4c0 (33:44c0)
 	call GetBattleAnimByte
 	ld e, $a
-	ld bc, $d30a
+	ld bc, OTPartyMon3HP
 .asm_cc4c8
 	ld hl, $0
 	add hl, bc
 	ld d, [hl]
-	ld a, [$d417]
+	ld a, [BattleAnimByte]
 	cp d
 	jr z, .asm_cc4dd
 	ld hl, $18
@@ -744,12 +744,12 @@ BattleAnimCmd_D6: ; cc4c0 (33:44c0)
 BattleAnimCmd_D8: ; cc4e3 (33:44e3)
 	call GetBattleAnimByte
 	ld e, $5
-	ld bc, $d3fa
+	ld bc, ActiveBGEffects
 .asm_cc4eb
 	ld hl, $0
 	add hl, bc
 	ld d, [hl]
-	ld a, [$d417]
+	ld a, [BattleAnimByte]
 	cp d
 	jr z, .asm_cc500
 	ld hl, $4
@@ -768,12 +768,12 @@ BattleAnimCmd_D8: ; cc4e3 (33:44e3)
 BattleAnimCmd_D7: ; cc506 (33:4506)
 	call GetBattleAnimByte
 	ld e, $a
-	ld bc, $d30a
+	ld bc, OTPartyMon3HP
 .asm_cc50e
 	ld hl, $0
 	add hl, bc
 	ld d, [hl]
-	ld a, [$d417]
+	ld a, [BattleAnimByte]
 	cp d
 	jr z, .asm_cc523
 	ld hl, $18
@@ -792,7 +792,7 @@ BattleAnimCmd_D7: ; cc506 (33:4506)
 
 BattleAnimCmd_D9: ; cc52c (33:452c)
 
-	ld hl, $d300
+	ld hl, wd300
 .asm_cc52f
 	ld a, [hl]
 	and a
@@ -814,12 +814,12 @@ BattleAnimCmd_D9: ; cc52c (33:452c)
 	ld hl, $8730
 	ld de, $9060
 	ld a, $70
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, $7
 	call Functioncc561
 	ld de, $9310
 	ld a, $60
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, $6
 	call Functioncc561
 	ret
@@ -831,7 +831,7 @@ Functioncc561: ; cc561 (33:4561)
 	ld bc, $3301
 	call Request2bpp
 	pop de
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	ld l, a
 	ld h, $0
 	add hl, de
@@ -847,7 +847,7 @@ Functioncc561: ; cc561 (33:4561)
 
 BattleAnimCmd_DA: ; cc57e (33:457e)
 
-	ld hl, $d300
+	ld hl, wd300
 .asm_cc581
 	ld a, [hl]
 	and a
@@ -869,12 +869,12 @@ BattleAnimCmd_DA: ; cc57e (33:457e)
 	ld hl, $8660
 	ld de, $9050
 	ld a, $70
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, $7
 	call Functioncc5b3
 	ld de, $9310
 	ld a, $60
-	ld [$d419], a
+	ld [BattleAnimTemps], a
 	ld a, $6
 	call Functioncc5b3
 	ret
@@ -886,7 +886,7 @@ Functioncc5b3: ; cc5b3 (33:45b3)
 	ld bc, $3302
 	call Request2bpp
 	pop de
-	ld a, [$d419]
+	ld a, [BattleAnimTemps]
 	ld l, a
 	ld h, $0
 	add hl, de
@@ -903,7 +903,7 @@ Functioncc5b3: ; cc5b3 (33:45b3)
 BattleAnimCmd_DB: ; cc5d0 (33:45d0)
 	callab GetPokeBallWobble
 	ld a, c
-	ld [$d416], a
+	ld [BattleAnimVar], a
 	ret
 
 BattleAnimCmd_E7: ; cc5db (33:45db)
@@ -914,32 +914,32 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	push af
 	ld a, 1
 	ld [rSVBK], a ; $ff00+$70
-	ld a, [CurPartySpecies] ; $d108
+	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
 
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
 	jr z, .player
 
-	ld a, [TempBattleMonSpecies] ; $d205
-	ld [CurPartySpecies], a ; $d108
-	ld hl, BattleMonDVs ; $c632
+	ld a, [TempBattleMonSpecies] ; TempBattleMonSpecies
+	ld [CurPartySpecies], a ; CurPartySpecies
+	ld hl, BattleMonDVs ; BattleMonDVs
 	predef GetUnownLetter
 	ld de, $8000
 	predef GetFrontpic
 	jr .done
 
 .player
-	ld a, [TempEnemyMonSpecies] ; $d204
-	ld [CurPartySpecies], a ; $d108
-	ld hl, EnemyMonDVs ; $d20c
+	ld a, [TempEnemyMonSpecies] ; TempEnemyMonSpecies
+	ld [CurPartySpecies], a ; CurPartySpecies
+	ld hl, EnemyMonDVs ; EnemyMonDVs
 	predef GetUnownLetter
 	ld de, $8000
 	predef GetBackpic
 
 .done
 	pop af
-	ld [CurPartySpecies], a ; $d108
+	ld [CurPartySpecies], a ; CurPartySpecies
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ret
@@ -1116,7 +1116,7 @@ BattleAnimCmd_DE: ; cc750 (33:4750)
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
 
-	ld a, [CurPartySpecies] ; $d108
+	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
@@ -1130,7 +1130,7 @@ BattleAnimCmd_DE: ; cc750 (33:4750)
 
 .done
 	pop af
-	ld [CurPartySpecies], a ; $d108
+	ld [CurPartySpecies], a ; CurPartySpecies
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ret
@@ -1140,31 +1140,31 @@ BattleAnimCmd_E6: ; cc776 (33:4776)
 	push af
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
-	ld a, [CurPartySpecies] ; $d108
+	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
 
-	ld a, [$c689]
-	ld [CurPartySpecies], a ; $d108
+	ld a, [wc689]
+	ld [CurPartySpecies], a ; CurPartySpecies
 
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
 	jr z, .player
 
-	ld hl, BattleMonDVs ; $c632
+	ld hl, BattleMonDVs ; BattleMonDVs
 	predef GetUnownLetter
 	ld de, $9000
 	predef GetFrontpic
 	jr .done
 
 .player
-	ld hl, EnemyMonDVs ; $d20c
+	ld hl, EnemyMonDVs ; EnemyMonDVs
 	predef GetUnownLetter
 	ld de, $9310
 	predef GetBackpic
 
 .done
 	pop af
-	ld [CurPartySpecies], a ; $d108
+	ld [CurPartySpecies], a ; CurPartySpecies
 	ld b, $1
 	call GetSGBLayout
 	pop af
@@ -1182,7 +1182,7 @@ BattleAnimCmd_E4: ; cc7bf (33:47bf)
 	ret
 
 BattleAnimCmd_F4: ; cc7c4 (33:47c4)
-	ld hl, $d40f
+	ld hl, BattleAnimFlags
 	set 3, [hl]
 	ret
 
@@ -1200,17 +1200,17 @@ BattleAnimCmd_E0: ; cc7cd (33:47cd)
 	ld e, a
 	srl a
 	srl a
-	ld [$c2be], a
+	ld [wc2be], a
 	call Functioncc7fc
 	and 3
-	ld [CryTracks], a ; $c2bd
+	ld [CryTracks], a ; CryTracks
 
 	ld e, a
 	ld d, 0
 	ld hl, Datacc7f8
 	add hl, de
 	ld a, [hl]
-	ld [$c2bc], a
+	ld [wc2bc], a
 
 	call GetBattleAnimByte
 	ld e, a
@@ -1258,14 +1258,14 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 	jr nz, .enemy
 
 	ld a, $f0
-	ld [CryTracks], a ; $c2bd
-	ld a, [BattleMonSpecies] ; $c62c
+	ld [CryTracks], a ; CryTracks
+	ld a, [BattleMonSpecies] ; BattleMonSpecies
 	jr .asm_cc834
 
 .enemy
 	ld a, $0f
-	ld [CryTracks], a ; $c2bd
-	ld a, [EnemyMonSpecies] ; $d206
+	ld [CryTracks], a ; CryTracks
+	ld a, [EnemyMonSpecies] ; EnemyMon
 
 .asm_cc834
 	push hl
@@ -1293,18 +1293,18 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
-	ld hl, CryLength ; $c2b2
+	ld hl, CryLength ; CryLength
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, bc
 
 	ld a, l
-	ld [CryLength], a ; $c2b2
+	ld [CryLength], a ; CryLength
 	ld a, h
 	ld [CryLength + 1], a
 	ld a, 1
-	ld [$c2bc], a
+	ld [wc2bc], a
 
 	callab _PlayCryHeader
 
@@ -1324,7 +1324,7 @@ Datacc871: ; cc871
 
 
 Functioncc881: ; cc881
-	ld a, [$cfca]
+	ld a, [wcfca]
 	cp $1
 	jr z, .asm_cc88b
 	cp $4
@@ -1360,17 +1360,17 @@ BattleAnimAssignPals: ; cc8a4
 	ld a, $f0
 
 .asm_cc8b2
-	ld [$cfc8], a
+	ld [wcfc8], a
 	ld a, $e4
-	ld [$cfc7], a
-	ld [$cfc9], a
+	ld [wcfc7], a
+	ld [wcfc9], a
 	ret
 
 .asm_cc8be
 	ld a, $e4
-	ld [$cfc7], a
-	ld [$cfc8], a
-	ld [$cfc9], a
+	ld [wcfc7], a
+	ld [wcfc8], a
+	ld [wcfc9], a
 	call DmgToCgbBGPals
 	ld de, $e4e4
 	call DmgToCgbObjPals
@@ -1403,9 +1403,9 @@ Functioncc8d3: ; cc8d3
 Functioncc8f6: ; cc8f6
 	call WaitTop
 	ld a, $e4
-	ld [$cfc7], a
-	ld [$cfc8], a
-	ld [$cfc9], a
+	ld [wcfc7], a
+	ld [wcfc8], a
+	ld [wcfc9], a
 	call DmgToCgbBGPals
 	ld de, $e4e4
 	call DmgToCgbObjPals
@@ -1427,13 +1427,13 @@ Functioncc91a: ; cc91a
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $d080
-	ld de, $d000
+	ld hl, BGPals
+	ld de, wd000
 	ld a, [rBGP]
 	ld b, a
 	ld c, $7
 	call CopyPals
-	ld hl, $d0c0
+	ld hl, OBPals
 	ld de, MartPointer
 	ld a, [rBGP]
 	ld b, a
@@ -1455,8 +1455,8 @@ Functioncc94b: ; cc94b
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $d0d0
-	ld de, $d050
+	ld hl, OBPals + $10
+	ld de, Unkn2Pals + $10
 	ld a, [rOBP0]
 	ld b, a
 	ld c, $2
@@ -1470,8 +1470,8 @@ Functioncc94b: ; cc94b
 
 Functioncc96e: ; cc96e
 	ld a, $0
-	ld [$d418], a
-	ld hl, $d30a
+	ld [wd418], a
+	ld hl, OTPartyMon3HP
 	ld e, $a
 .asm_cc978
 	ld a, [hl]
@@ -1492,7 +1492,7 @@ Functioncc96e: ; cc96e
 	add hl, bc
 	dec e
 	jr nz, .asm_cc978
-	ld a, [$d418]
+	ld a, [wd418]
 	ld l, a
 	ld h, $c4
 .asm_cc997

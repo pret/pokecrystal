@@ -74,20 +74,16 @@ lb: MACRO ; r, hi, lo
 	ENDM
 
 
-bccoord: MACRO
-	coord bc, \1, \2
-	ENDM
-
-decoord: MACRO
-	coord de, \1, \2
-	ENDM
-
-hlcoord: MACRO
-	coord hl, \1, \2
-	ENDM
+bccoord equs "coord bc,"
+decoord equs "coord de,"
+hlcoord equs "coord hl,"
 
 coord: MACRO
+	if _NARG < 4
 	ld \1, TileMap + SCREEN_WIDTH * (\3) + (\2)
+	else
+	ld \1, \4 + SCREEN_WIDTH * (\3) + (\2)
+	endc
 	ENDM
 
 dwcoord: MACRO

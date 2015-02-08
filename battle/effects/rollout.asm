@@ -44,7 +44,7 @@ BattleCommand5c: ; 37734
 	and a
 	jr nz, .asm_37750
 	ld a, 1
-	ld [$c73e], a
+	ld [wc73e], a
 
 .asm_37750
 	ld a, [AttackMissed]

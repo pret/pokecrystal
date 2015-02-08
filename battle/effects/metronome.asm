@@ -5,11 +5,11 @@ BattleCommand34: ; 37418
 	call Function34548
 	jr nz, .asm_3742b
 
-	ld a, [$c689]
+	ld a, [wc689]
 	push af
 	call BattleCommand0a
 	pop af
-	ld [$c689], a
+	ld [wc689], a
 
 .asm_3742b
 	call Function37e36

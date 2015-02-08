@@ -43,44 +43,44 @@ GiveOddEgg: ; 1fb4b6
 	ld a, OddEgg2 - OddEgg1
 	call AddNTimes
 
-	ld de, $c608
+	ld de, wEnemyMoveStruct
 	ld bc, $0046
 	call CopyBytes
 
 	ld a, EGG_TICKET
 	ld [CurItem], a
 	ld a, $1
-	ld [$d10c], a
+	ld [wd10c], a
 	ld a, $ff
-	ld [$d107], a
+	ld [wd107], a
 	ld hl, NumItems
 	call TossItem
 
 	ld a, EGG
-	ld [$cd2a], a
+	ld [wcd2a], a
 
-	ld a, $cd29 % $100
-	ld [$cd20], a
-	ld a, $cd29 / $100
-	ld [$cd21], a
-	ld a, $c608 % $100
-	ld [$cd22], a
-	ld a, $c608 / $100
-	ld [$cd23], a
+	ld a, wcd29 % $100
+	ld [CreditsPos], a
+	ld a, wcd29 / $100
+	ld [wcd21], a
+	ld a, wEnemyMoveStruct % $100
+	ld [wcd22], a
+	ld a, wEnemyMoveStruct / $100
+	ld [wcd23], a
 
 	ld hl, .Odd
-	ld de, $cd2b
+	ld de, wcd2b
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-	ld a, $cd2b % $100
-	ld [$cd24], a
-	ld a, $cd2b / $100
-	ld [$cd25], a
-	ld a, $c638 % $100
-	ld [$cd26], a
-	ld a, $c638 / $100
-	ld [$cd27], a
+	ld a, wcd2b % $100
+	ld [wcd24], a
+	ld a, wcd2b / $100
+	ld [wcd25], a
+	ld a, BattleMonHappiness % $100
+	ld [wcd26], a
+	ld a, BattleMonHappiness / $100
+	ld [wcd27], a
 	callba Function11b98f
 	ret
 ; 1fb546
