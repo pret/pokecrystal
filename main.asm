@@ -17789,7 +17789,7 @@ Function11c11: ; 11c11 (4:5c11)
 	srl a
 	srl a
 	ld d, a
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $14
 .asm_11c43
 	ld a, d
@@ -17981,7 +17981,7 @@ String_11f7a: ; 11f7a
 
 Function11f84: ; 11f84 (4:5f84)
 	call WaitTop
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $78
 	ld a, $60
 	call ByteFill
@@ -30293,7 +30293,7 @@ Function17254: ; 17254 (5:7254)
 	call WaitTop
 	push hl
 	push bc
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	ld a, $7f
 	call ByteFill
@@ -33881,7 +33881,7 @@ Function25279: ; 25279 (9:5279)
 	ret
 
 Function25299: ; 25299 (9:5299)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld d, $5
 	call Function253b0
 	hlcoord 2, 2
@@ -37416,7 +37416,7 @@ Function28926: ; 28926
 
 .asm_28946
 	ld a, $7f
-	ld [$c5eb], a
+	ld [TileMap + 11 + 16 * SCREEN_WIDTH], a
 	ld a, $13
 	ld [$cfa8], a
 	ld a, $1
@@ -37448,7 +37448,7 @@ Function28926: ; 28926
 
 .asm_2898d
 	ld a, $7f
-	ld [$c5e1], a
+	ld [TileMap + 1 + 16 * SCREEN_WIDTH], a
 	ld a, $23
 	ld [$cfa8], a
 	ld a, $1
@@ -37594,7 +37594,7 @@ Function28ac9: ; 28ac9
 Function28ade: ; 28ade
 .asm_28ade
 	ld a, $ed
-	ld [$c5fd], a
+	ld [TileMap + 9 + 17 * SCREEN_WIDTH], a
 .asm_28ae3
 	call Functiona57
 	ld a, [$ffa9]
@@ -37604,7 +37604,7 @@ Function28ade: ; 28ade
 	jr nz, .asm_28b0b
 	push af
 	ld a, $7f
-	ld [$c5fd], a
+	ld [TileMap + 9 + 17 * SCREEN_WIDTH], a
 	pop af
 	bit 6, a
 	jr z, .asm_28b03
@@ -37619,7 +37619,7 @@ Function28ade: ; 28ade
 
 .asm_28b0b
 	ld a, $ec
-	ld [$c5fd], a
+	ld [TileMap + 9 + 17 * SCREEN_WIDTH], a
 	ld a, $f
 	ld [$cf56], a
 	callba Function16d6ce
@@ -44182,10 +44182,10 @@ Function402aa: ; 402aa (10:42aa)
 
 Unknown_402e8: ; 402e8
 	dw $0430
-	dw $c5f5
-	dw $c5fa
-	dw $c5ff
-	dw $c603
+	dwcoord 1, 17
+	dwcoord 6, 17
+	dwcoord 11, 17
+	dwcoord 15, 17
 ; 402f2
 
 Jumptable_402f2: ; 402f2
@@ -44325,17 +44325,17 @@ Function403be: ; 403be (10:43be)
 
 Unknown_403f3: ; 403f3
 	dw $03c0
-	dw $c4f2
-	dw $c51a
-	dw $c542
+	dwcoord 2, 4
+	dwcoord 2, 6
+	dwcoord 2, 8
 ; 403fb
 
 Unknown_403fb: ; 403fb
 	dw $04c0
-	dw $c4f2
-	dw $c51a
-	dw $c542
-	dw $c56a
+	dwcoord 2, 4
+	dwcoord 2, 6
+	dwcoord 2, 8
+	dwcoord 2, 10
 ; 40405
 
 Jumptable_40405: ; 40405 (10:4405)
@@ -44429,10 +44429,10 @@ Function40471: ; 40471 (10:4471)
 
 Unknown_4049e: ; 4049e
 	dw $04c0
-	dw $c4f2
-	dw $c51a
-	dw $c5a6
-	dw $c5ce
+	dwcoord 2, 4
+	dwcoord 2, 6
+	dwcoord 2, 13
+	dwcoord 2, 15
 ; 404a8
 
 Jumptable_404a8: ; 404a8
@@ -44839,10 +44839,10 @@ Function4074c: ; 4074c (10:474c)
 	ld de, Unknown_407f2
 	call Function40acd
 	ld a, $32
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	call ByteFill
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	lb bc, 7, 7
 	call Function40ad5
 	hlcoord 0, 9
@@ -45026,7 +45026,7 @@ String_4094c: ; 4094c
 
 Function40962: ; 40962 (10:4962)
 	call Function40aa6
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	lb bc, 7, 7
 	call Function40ad5
 	hlcoord 0, 11
@@ -48274,7 +48274,7 @@ Function4802f: ; 4802f (12:402f)
 	ld b, $1
 	call Function4930f
 	call WhiteBGMap
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld b, $2
 	ld c, $14
 	call ClearBox
@@ -48892,7 +48892,7 @@ Function48689: ; 48689 (12:4689)
 	ld b, $1
 	call Function4930f
 	call WhiteBGMap
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld b, $4
 	ld c, $14
 	call ClearBox
@@ -50105,7 +50105,7 @@ Function48e14: ; 48e14 (12:4e14)
 	call WhiteBGMap
 	call Function48000
 	call Functione5f
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	ld a, $0
 	call ByteFill
@@ -52341,7 +52341,7 @@ Function4a39a: ; 4a39a
 Function4a3a7: ; 4a3a7 (12:63a7)
 	call Function4a485
 Function4a3aa: ; 4a3aa
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $301
 	xor a
 	call Function4a6d8
@@ -54147,7 +54147,7 @@ Function4cf45: ; 4cf45 (13:4f45)
 	call Function4cf80
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	call Function4cf80
 .asm_4cf72
 	ld a, [rLY] ; $ff00+$44
@@ -56596,13 +56596,13 @@ Function4e253: ; 4e253 (13:6253)
 	ld a, [CurPartySpecies] ; $d108
 	cp UNOWN
 	jr z, .asm_4e266
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	call Function3786
 	ret
 .asm_4e266
 	xor a
 	ld [$c2c6], a
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	call Function378b
 	ret
 
@@ -56627,7 +56627,7 @@ Function4e289: ; 4e289 (13:6289)
 	call Function4e307
 	ld de, $9000
 	predef Function5108b
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld d, $0
 	ld e, $2
 	predef Functiond00a3
@@ -56738,19 +56738,19 @@ EggStatsScreen: ; 4e33a
 	call GetSGBLayout
 	call Function4df8f
 	ld de, EggString
-	hlcoord 8, 1 ; $c4bc
+	hlcoord 8, 1
 	call PlaceString
 	ld de, IDNoString
-	hlcoord 8, 3 ; $c4e4
+	hlcoord 8, 3
 	call PlaceString
 	ld de, OTString
-	hlcoord 8, 5 ; $c50c
+	hlcoord 8, 5
 	call PlaceString
 	ld de, FiveQMarkString
-	hlcoord 11, 3 ; $c4e7
+	hlcoord 11, 3
 	call PlaceString
 	ld de, FiveQMarkString
-	hlcoord 11, 5 ; $c50f
+	hlcoord 11, 5
 	call PlaceString
 	ld a, [TempMonHappiness] ; egg status
 	ld de, EggSoonString
@@ -56764,7 +56764,7 @@ EggStatsScreen: ; 4e33a
 	jr c, .picked
 	ld de, EggALotMoreTimeString
 .picked
-	hlcoord 1, 9 ; $c555
+	hlcoord 1, 9
 	call PlaceString
 	ld hl, $cf64
 	set 5, [hl]
@@ -56831,7 +56831,7 @@ Function4e497: ; 4e497 (13:6497)
 	ld de, $9000
 	predef Function5108b
 	pop de
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld d, $0
 	predef Functiond00a3
 	ld hl, $cf64
@@ -64750,7 +64750,7 @@ String_84865:
 ; 8486f
 
 Function8486f: ; 8486f (21:486f)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	ld a, $7f
 	call ByteFill
@@ -64767,7 +64767,7 @@ Function8486f: ; 8486f (21:486f)
 	ret
 
 Function84893: ; 84893 (21:4893)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	ld a, $7f
 	call ByteFill
@@ -64784,7 +64784,7 @@ Function84893: ; 84893 (21:4893)
 	ret
 
 Function848b7: ; 848b7 (21:48b7)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	ld a, $7f
 	call ByteFill
@@ -64944,7 +64944,7 @@ Function849c6: ; 849c6 (21:49c6)
 	ret
 
 Function849d7: ; 849d7 (21:49d7)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld a, $79
 	ld [hli], a
 	ld a, $7a
@@ -64958,7 +64958,7 @@ Function849d7: ; 849d7 (21:49d7)
 	ret
 
 Function849e9: ; 849e9 (21:49e9)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld de, $13
 	ld c, $12
 .asm_849f1
@@ -69019,7 +69019,7 @@ Function8a0c1: ; 8a0c1 (22:60c1)
 
 Function8a0c9: ; 8a0c9 (22:60c9)
 	push bc
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld de, $14
 	ld a, b
 	and a
@@ -72108,9 +72108,9 @@ Function8b521: ; 8b521 (22:7521)
 ; 8b529 (22:7529)
 
 Unknown_8b529: ; 8b529
-	dw $c506
+	dwcoord 2, 5
 	db 1, 4, $20, $49, 0, 1
-	dw $c4f7
+	dwcoord 7, 4
 	db 1, 4, $48, $41, 0, 0
 ; 8b539
 
@@ -74066,15 +74066,19 @@ Function8c768: ; 8c768 (23:4768)
 ; 8c792 (23:4792)
 
 Unknown_8c792: ; 8c792
-	dbbw  4,  2, $c548 ; (8, 8)
-	dbbw  6,  4, $c533 ; (7, 7)
-	dbbw  8,  6, $c51e ; (6, 6)
-	dbbw 10,  8, $c509 ; (5, 5)
-	dbbw 12, 10, $c4f4 ; (4, 4)
-	dbbw 14, 12, $c4df ; (3, 3)
-	dbbw 16, 14, $c4ca ; (2, 2)
-	dbbw 18, 16, $c4b5 ; (1, 1)
-	dbbw 20, 18, $c4a0 ; (0, 0)
+macro_8c792: macro
+	db \1, \2
+	dwcoord \3, \4
+endm
+	macro_8c792  4,  2,  8, 8
+	macro_8c792  6,  4,  7, 7
+	macro_8c792  8,  6,  6, 6
+	macro_8c792 10,  8,  5, 5
+	macro_8c792 12, 10,  4, 4
+	macro_8c792 14, 12,  3, 3
+	macro_8c792 16, 14,  2, 2
+	macro_8c792 18, 16,  1, 1
+	macro_8c792 20, 18,  0, 0
 	db $ff
 ; 8c7b7
 
@@ -79318,7 +79322,7 @@ Function90672: ; 90672 (24:4672)
 Function90783: ; 90783 (24:4783)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	xor a
 	call ByteFill
@@ -80345,7 +80349,7 @@ Function90e98: ; 90e98 (24:4e98)
 	ret
 
 Function90eb0: ; 90eb0 (24:4eb0)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $8
 	ld a, $4f
 	call ByteFill
@@ -80363,7 +80367,7 @@ Function90eb0: ; 90eb0 (24:4eb0)
 	ld a, [de]
 	bit 1, a
 	call nz, Function90ef2
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld a, $46
 	call Function90ef7
 	ret
@@ -81251,7 +81255,7 @@ Function9141d: ; 9141d (24:541d)
 ; 9143f (24:543f)
 
 Unknown_9143f: ; 9143f
-	dw $c522
+	dwcoord 10, 6
 	db 3
 	db   "CALL"
 	next "DELETE"
@@ -81266,7 +81270,7 @@ Jumptable_91455: ; 91455
 ; 9145b
 
 Unknown_9145b: ; 9145b
-	dw $c54a
+	dwcoord 10, 8
 	db 2
 	db   "CALL"
 	next "CANCEL"
@@ -81333,7 +81337,7 @@ Function914ab: ; 914ab (24:54ab)
 	ret
 
 Function914bb: ; 914bb (24:54bb)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 .asm_914be
 	ld a, [de]
 	cp $ff
@@ -83170,7 +83174,7 @@ Function926f7: ; 926f7 (24:66f7)
 	ld de, $9250
 	call Decompress
 	ld hl, SlotsTilemap
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	ld bc, 20 * 12
 	call CopyBytes
 	ld hl, rLCDC ; $ff40
@@ -84943,13 +84947,13 @@ UnknownText_0x931b9: ; 0x931b9
 Function931ba: ; 931ba
 	ld a, [EffectFailed]
 	add $25
-	ld [$c5a6], a
+	ld [TileMap + 2 + 13 * SCREEN_WIDTH], a
 	inc a
-	ld [$c5ba], a
+	ld [TileMap + 2 + 14 * SCREEN_WIDTH], a
 	inc a
-	ld [$c5a7], a
+	ld [TileMap + 3 + 13 * SCREEN_WIDTH], a
 	inc a
-	ld [$c5bb], a
+	ld [TileMap + 3 + 14 * SCREEN_WIDTH], a
 	hlcoord 18, 17
 	ld [hl], $ee
 	ld hl, UnknownText_0x931db
@@ -90175,7 +90179,7 @@ String_e04bc:
 Functione04c1: ; e04c1 (38:44c1)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	ld a, $29
 	call ByteFill
@@ -92141,7 +92145,7 @@ Functione1e67: ; e1e67 (38:5e67)
 	ld hl, $c300
 	ld [hli], a
 	ld [hl], $0
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	xor a
 	call ByteFill
@@ -94587,7 +94591,7 @@ Functione307c: ; e307c (38:707c)
 	callba Functione039
 	ld a, [CurPartySpecies] ; $d108
 	call PlayCry
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $f08
 	call ClearBox
 	hlcoord 8, 14
@@ -94641,7 +94645,7 @@ Functione30fa: ; e30fa (38:70fa)
 	callba Functione039
 	ld a, [CurPartySpecies] ; $d108
 	call PlayCry
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $f08
 	call ClearBox
 	hlcoord 8, 14
@@ -94676,7 +94680,7 @@ Functione30fa: ; e30fa (38:70fa)
 	ret
 
 Functione3180: ; e3180 (38:7180)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $f08
 	call ClearBox
 	hlcoord 8, 14
@@ -95078,7 +95082,7 @@ Functione35aa: ; e35aa (38:75aa)
 Functione35e2: ; e35e2 (38:75e2)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	ld a, $7f
 	call ByteFill
@@ -95219,7 +95223,7 @@ Unknown_e36a5: ; e36a5
 ; e36cf
 
 Functione36cf: ; e36cf (38:76cf)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld b, $2
 	ld c, $12
 	call TextBox
@@ -97816,7 +97820,7 @@ Functione541b: ; e541b (39:541b)
 	ld a, $6
 	ld [rSVBK], a ; $ff00+$70
 	ld hl, Unkn1Pals ; $d000
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	ld b, $12
 .asm_e542a
 	ld c, $14
@@ -97851,7 +97855,7 @@ Functione5441: ; e5441 (39:5441)
 	ret
 
 Functione5451: ; e5451 (39:5451)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 .asm_e5457
 	ld a, [hl]
@@ -108877,7 +108881,7 @@ Function10402d:: ; 10402d
 ; 104033
 
 Function104033: ; 104033
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	ld hl, Unkn1Pals ; $d000
 	call Function10425f
 	ld a, $0
@@ -108912,7 +108916,7 @@ Function104067: ; 104067
 	ld de, AttrMap ; $cdd9
 	ld hl, $d400
 	call Function104263
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	ld hl, Unkn1Pals ; $d000
 	call Function10425f
 	call DelayFrame
@@ -109012,7 +109016,7 @@ Function104116: ; 104116
 	ld de, AttrMap ; $cdd9
 	ld hl, $d400
 	call Function104263
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	ld hl, Unkn1Pals ; $d000
 	call Function10425f
 	call DelayFrame
@@ -109369,7 +109373,7 @@ Function104303: ; 104303
 
 Function104309:
 	ld hl, Unkn1Pals ; $d000
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	call Function10433a
 	ld hl, BGPals ; $d080
 	ld de, AttrMap ; $cdd9
@@ -109690,7 +109694,7 @@ Function104770: ; 104770 (41:4770)
 	ret
 
 Function1047a3: ; 1047a3 (41:47a3)
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	call Function1047b4
 	ld a, [hCGB] ; $ff00+$e6
 	and a
@@ -111115,14 +111119,14 @@ Function105153: ; 105153 (41:5153)
 	ld a, BANK(MysteryGiftGFX)
 	ld bc, $430
 	call FarCopyBytes
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld a, $42
 	ld bc, $168
 	call ByteFill
 	hlcoord 3, 7
 	ld bc, $90f
 	call ClearBox
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld a, $0
 	ld [hli], a
 	inc a
@@ -111420,14 +111424,14 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld a, BANK(MysteryGiftJP_GFX)
 	ld bc, $80
 	call FarCopyBytes
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld a, $3f
 	ld bc, $168
 	call ByteFill
 	hlcoord 3, 7
 	ld bc, $90f
 	call ClearBox
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld a, $0
 	ld [hli], a
 	inc a
@@ -134115,7 +134119,7 @@ Unknown_11cfca:
 ; 11cfce
 
 Function11cfce: ; 11cfce (47:4fce)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $14
 	ld a, [de]
 	inc de
@@ -134202,7 +134206,7 @@ Function11cfce: ; 11cfce (47:4fce)
 	ret
 
 Function11d035: ; 11d035 (47:5035)
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $14
 	ld a, [de]
 	inc de
@@ -139340,7 +139344,7 @@ Function171c87: ; 171c87 (5c:5c87)
 	call Decompress
 	call EnableLCD
 	ld hl, Tilemap_172491
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_1727ed
@@ -139411,7 +139415,7 @@ Function171d2b: ; 171d2b (5c:5d2b)
 	call Decompress
 	call EnableLCD
 	ld hl, Tilemap_172685
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_172955
@@ -139493,7 +139497,7 @@ String_172e5d: ; 172e5d
 
 Function172e78: ; 172e78 (5c:6e78)
 	ld a, $7f
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	call ByteFill
 	ld a, $7
@@ -139507,7 +139511,7 @@ Function172e78: ; 172e78 (5c:6e78)
 	call CopyBytes
 	call EnableLCD
 	ld hl, Tilemap_1733af
-	ld de, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld de, TileMap
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_173517
@@ -145458,7 +145462,7 @@ Function1de171: ; 1de171 (77:6171)
 	ld bc, $f0b
 	call ClearBox
 	ld a, $34
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $b
 	call ByteFill
 	ld a, $39
@@ -145493,7 +145497,7 @@ Function1de171: ; 1de171 (77:6171)
 
 Function1de1d1: ; 1de1d1 (77:61d1)
 	ld a, $34
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $b
 	call ByteFill
 	ld a, $39

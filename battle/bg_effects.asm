@@ -822,12 +822,12 @@ Functionc8458: ; c8458 (32:4458)
 ; c849c (32:449c)
 
 Unknown_c849c: ; c849c
-	dw $c51a ; ( 2,  6)
-	dw $c543 ; ( 3,  8)
-	dw $c56c ; ( 4, 10)
-	dw $c4ac ; (12,  0)
-	dw $c4d5 ; (13,  2)
-	dw $c4fe ; (14,  4)
+	dwcoord  2,  6
+	dwcoord  3,  8
+	dwcoord  4, 10
+	dwcoord 12,  0
+	dwcoord 13,  2
+	dwcoord 14,  4
 ; c84a8
 
 Unknown_c84a8: ; c84a8
