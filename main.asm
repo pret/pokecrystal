@@ -101744,12 +101744,12 @@ MenuData2_100604: ; 100604
 ; 10060d
 
 Function10060d: ; 10060d
-	ld hl, $c56b
+	hlcoord 3, 10
 	ld b, $1
 	ld c, $b
 	call Function3eea
 	ld de, String_100621
-	ld hl, $c580
+	hlcoord 4, 11
 	call PlaceString
 	ret
 ; 100621
@@ -102149,16 +102149,16 @@ Function100846: ; 100846
 	xor a
 	ld [StringBuffer2], a
 	ld de, String_10088e
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld de, StringBuffer2
-	ld hl, $c5e4
+	hlcoord 4, 16
 	call Function100697
 	ret
 
 .asm_10087c
 	ld de, String_10088e
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -105565,7 +105565,7 @@ Function102048: ; 102048
 ; 10204c
 
 Function10204c: ; 10204c
-	ld hl, $c4cb
+	hlcoord 3, 2
 	ld c, $10
 	ld de, $cd53
 .asm_102054
@@ -106567,7 +106567,7 @@ Jumptable_1026da: ; 1026da
 
 Function1026de: ; 1026de
 	call Function1bf7
-	ld hl, $c5fd
+	hlcoord 9, 17
 	ld [hl], $ed
 	ld a, [$cd4a]
 	inc a
@@ -106588,7 +106588,7 @@ Function1026f3: ; 1026f3
 	ret
 
 .asm_102702
-	ld hl, $c5fd
+	hlcoord 9, 17
 	ld [hl], $7f
 	ld a, $1
 	ld [$cfa9], a
@@ -106597,7 +106597,7 @@ Function1026f3: ; 1026f3
 	ret
 
 .asm_102712
-	ld hl, $c5fd
+	hlcoord 9, 17
 	ld [hl], $7f
 	ld a, [OTPartyCount]
 	ld [$cfa9], a
@@ -106606,7 +106606,7 @@ Function1026f3: ; 1026f3
 	ret
 
 .asm_102723
-	ld hl, $c5fd
+	hlcoord 9, 17
 	ld [hl], $ec
 	ld hl, $cd4b
 	set 3, [hl]
@@ -106653,9 +106653,9 @@ Function102770: ; 102770
 	ld [$cd4a], a
 
 Function102775: ; 102775
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld [hl], $ed
-	ld hl, $c5eb
+	hlcoord 11, 16
 	ld [hl], $7f
 	ld hl, $cd4b
 	set 2, [hl]
@@ -106680,9 +106680,9 @@ Function10278c: ; 10278c
 	ld [$cd4a], a
 
 Function1027a0: ; 1027a0
-	ld hl, $c5e1
+	hlcoord 1, 16
 	ld [hl], $7f
-	ld hl, $c5eb
+	hlcoord 11, 16
 	ld [hl], $ed
 	ld hl, $cd4b
 	set 2, [hl]
@@ -106725,14 +106725,14 @@ asm_1027e2:
 ; 1027eb
 
 Function1027eb: ; 1027eb
-	ld hl, $c5b8
+	hlcoord 0, 14
 	ld b, $2
 	ld c, $12
 	ld d, h
 	ld e, l
 	callba Function16d61d
 	ld de, String_102804
-	ld hl, $c5e2
+	hlcoord 2, 16
 	call PlaceString
 	ret
 ; 102804
@@ -107021,14 +107021,14 @@ Jumptable_1029cb: ; 1029cb
 
 Function1029cf: ; 1029cf
 	call Function1d6e
-	ld hl, $c536
+	hlcoord 10, 7
 	ld b, $3
 	ld c, $8
 	ld d, h
 	ld e, l
 	callba Function16d61d
 	ld de, String_102a26
-	ld hl, $c54c
+	hlcoord 12, 8
 	call PlaceString
 	ld hl, $cd4b
 	set 1, [hl]
@@ -107245,7 +107245,7 @@ INCBIN "baserom.gbc", $102b94, $102b9c - $102b94
 Function102b9c: ; 102b9c
 	ld a, [$cd4d]
 	dec a
-	ld hl, $c55a
+	hlcoord 6, 9
 	ld bc, $0014
 	call AddNTimes
 	ld [hl], $ec
@@ -107531,7 +107531,7 @@ Function102db7: ; 102db7
 ; 102dc3
 
 Function102dc3: ; 102dc3
-	ld hl, $c590
+	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
 	ld d, h
@@ -107564,7 +107564,7 @@ Function102dec: ; 102dec
 ; 102e07
 
 Function102e07: ; 102e07
-	ld hl, $c56b
+	hlcoord 3, 10
 	ld b, $1
 	ld c, $b
 	ld a, [IsInBattle]
@@ -107574,7 +107574,7 @@ Function102e07: ; 102e07
 	jr .asm_102e28
 
 .asm_102e19
-	ld hl, $c56b
+	hlcoord 3, 10
 	ld b, $1
 	ld c, $b
 	ld d, h
@@ -107583,7 +107583,7 @@ Function102e07: ; 102e07
 
 .asm_102e28
 	ld de, String_102e32
-	ld hl, $c580
+	hlcoord 4, 11
 	call PlaceString
 	ret
 ; 102e32
@@ -107594,7 +107594,7 @@ String_102e32: ; 102e32
 
 Function102e3e: ; 102e3e
 	ld de, String_102e48
-	ld hl, $c5fe
+	hlcoord 10, 17
 	call PlaceString
 	ret
 ; 102e48
@@ -107607,19 +107607,19 @@ Function102e4f: ; 102e4f
 	callba Function16d42e
 	callba Function49797
 	ld de, PlayerName
-	ld hl, $c4a4
+	hlcoord 4, 0
 	call PlaceString
 	ld a, $14
 	ld [bc], a
 	ld de, $d26b
-	ld hl, $c544
+	hlcoord 4, 8
 	call PlaceString
 	ld a, $14
 	ld [bc], a
-	ld hl, $c4bb
+	hlcoord 7, 1
 	ld de, PartySpecies
 	call Function102e86
-	ld hl, $c55b
+	hlcoord 7, 9
 	ld de, OTPartySpecies
 	call Function102e86
 	ret
@@ -107687,7 +107687,7 @@ UnknownText_0x102ee2: ; 102ee2
 Function102ee7: ; 102ee7
 	call Function102dc3
 	ld de, String_102ef4
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 ; 102ef4
@@ -107701,7 +107701,7 @@ String_102ef4: ; 102ef4
 Function102f15: ; 102f15
 	call Function102dc3
 	ld de, String_102f22
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 ; 102f22
@@ -107713,7 +107713,7 @@ String_102f22: ; 102f22
 Function102f32: ; 102f32
 	call Function102dc3
 	ld de, String_102f3f
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 ; 102f3f
@@ -107725,7 +107725,7 @@ String_102f3f: ; 102f3f
 Function102f50: ; 102f50
 	call Function102dc3
 	ld de, String_102f5d
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 ; 102f5d
@@ -107737,7 +107737,7 @@ String_102f5d: ; 102f5d
 Function102f6d: ; 102f6d
 	call Function102dc3
 	ld de, String_102f7a
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 ; 102f7a
@@ -107757,10 +107757,10 @@ Function102f85: ; 102f85
 	call GetPokemonName
 	call Function102dc3
 	ld de, String_102fb2
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ld de, StringBuffer1
-	ld hl, $c5c5
+	hlcoord 13, 14
 	call PlaceString
 	ld de, String_102fcc
 	call PlaceString
@@ -107780,7 +107780,7 @@ String_102fcc: ; 102fcc
 Function102fce: ; 102fce
 	call Function102dc3
 	ld de, String_102fdb
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 ; 102fdb
@@ -107794,7 +107794,7 @@ String_102fdb: ; 102fdb
 Function102ff5: ; 102ff5
 	call Function102dc3
 	ld de, String_103002
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 ; 103002
@@ -107808,7 +107808,7 @@ String_103002: ; 103002
 Function103021: ; 103021
 	call Function102dc3
 	ld de, String_10302e
-	ld hl, $c5b9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 ; 10302e
@@ -108265,13 +108265,13 @@ Function103487: ; 103487
 ; 103490
 
 Function103490: ; 103490
-	ld hl, $c5cc
+	hlcoord 0, 15
 	ld c, $14
 	ld b, $3
 	call Function1034e0
 	ld bc, $0006
 	call Function10350f
-	ld hl, $c5e1
+	hlcoord 1, 16
 	call PlaceString
 	ret
 ; 1034a7
@@ -113274,7 +113274,7 @@ Function108201: ; 108201
 
 Function108219: ; 108219
 	ld [CurPartySpecies], a
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld d, $0
 	ld e, $3
 	predef Functiond008e
@@ -113283,7 +113283,7 @@ Function108219: ; 108219
 
 Function108229: ; 108229
 	ld [CurPartySpecies], a
-	ld hl, $c4cf
+	hlcoord 7, 2
 	ld d, $0
 	ld e, $3
 	predef Functiond00a3
@@ -114195,7 +114195,7 @@ asm_108966
 	call Request2bpp
 	call WaitTop
 	call Function108ac8
-	ld hl, $c4cf
+	hlcoord 7, 2
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
@@ -114209,7 +114209,7 @@ Function10898a: ; 10898a
 	call Function1081e9
 	call WaitTop
 	call Function108ac8
-	ld hl, $c4cf
+	hlcoord 7, 2
 	xor a
 	ld [$ffad], a
 	ld bc, $0707
@@ -114259,11 +114259,11 @@ asm_1089fc
 	call Function108ac8
 	ld a, $9c
 	ld [$ffd7], a
-	ld hl, $c4a5
+	hlcoord 5, 0
 	ld b, $6
 	ld c, $9
 	call TextBox
-	ld hl, $c4ce
+	hlcoord 6, 2
 	ld de, String_108a1d
 	call PlaceString
 	call Function108a87
@@ -114282,11 +114282,11 @@ Function108a33: ; 108a33
 	call Function108ac8
 	ld a, $9c
 	ld [$ffd7], a
-	ld hl, $c4a5
+	hlcoord 5, 0
 	ld b, $6
 	ld c, $9
 	call TextBox
-	ld hl, $c4f7
+	hlcoord 7, 4
 	ld de, String_108a54
 	call PlaceString
 	call Function108a87
@@ -114302,11 +114302,11 @@ Function108a5b: ; 108a5b
 	call Function108ac8
 	ld a, $9c
 	ld [$ffd7], a
-	ld hl, $c4a4
+	hlcoord 4, 0
 	ld b, $6
 	ld c, $a
 	call TextBox
-	ld hl, $c4a5
+	hlcoord 5, 0
 	ld de, String_108a79
 	call PlaceString
 	ret
@@ -114329,14 +114329,14 @@ Function108a87: ; 108a87
 ; 108a92
 
 Function108a92: ; 108a92
-	ld hl, $c4a9
+	hlcoord 9, 0
 	ld bc, $8103
 	call PrintNum
 	ret
 ; 108a9c
 
 Function108a9c: ; 108a9c
-	ld hl, $c4cd
+	hlcoord 5, 2
 	call PlaceString
 	ret
 ; 108aa3
@@ -114348,7 +114348,7 @@ Function108aa3: ; 108aa3
 
 .asm_108aa8
 	push af
-	ld hl, $c4f8
+	hlcoord 8, 4
 	call PlaceString
 	inc bc
 	pop af
@@ -114366,7 +114366,7 @@ Unknown_108abb: ; 108abb
 ; 108abe
 
 Function108abe: ; 108abe
-	ld hl, $c520
+	hlcoord 8, 6
 	ld bc, $8205
 	call PrintNum
 	ret
@@ -125210,10 +125210,10 @@ Function118936:
 	call Function119e2e
 
 Function118982:
-	ld hl, $c54d
+	hlcoord 13, 8
 	ld de, String_119d07
 	call PlaceString
-	ld hl, $c575
+	hlcoord 13, 10
 	ld de, String_119d07
 	call PlaceString
 	ld a, [$cd4b]
@@ -125254,7 +125254,7 @@ Function118982:
 	ld [bc], a
 	pop af
 	ld [rSVBK], a
-	ld hl, $c561
+	hlcoord 13, 9
 	call PlaceString
 	ld hl, hJoyPressed
 	ld a, [hl]
@@ -125808,7 +125808,7 @@ Function118ec6: ; 118ec6
 	ld [$c31b], a
 	ld a, $c3
 	ld [$c31c], a
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld a, l
 	ld [$c31d], a
 	ld a, h
@@ -128285,7 +128285,7 @@ Function119f3f: ; 119f3f
 ; 119f45
 
 Function119f45: ; 119f45
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a661
 	call PlaceString
 	ld a, $80
@@ -128304,7 +128304,7 @@ Function119f56: ; 119f56
 
 .asm_119f62
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6aa
 	call PlaceString
 	ld a, $80
@@ -128323,7 +128323,7 @@ Function119f76: ; 119f76
 
 .asm_119f82
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a679
 	call PlaceString
 	call Function11a5f5
@@ -128358,7 +128358,7 @@ Function119f98: ; 119f98
 	ret
 
 .asm_119fd4
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a692
 	call PlaceString
 	ld a, $1
@@ -128483,7 +128483,7 @@ Function11a113: ; 11a113
 	call Function11a63c
 	ld c, $1
 	callba Function115e18
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6c8
 	call PlaceString
 	and a
@@ -128506,7 +128506,7 @@ Function11a131: ; 11a131
 
 Function11a13d:
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6d2
 	call PlaceString
 	and a
@@ -128525,7 +128525,7 @@ Function11a14b: ; 11a14b
 	call Function11a1d6
 	ret c
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6f1
 	call PlaceString
 	ld a, $80
@@ -128545,7 +128545,7 @@ Function11a16d: ; 11a16d
 .asm_11a179
 	call Function11a63c
 	call Function11a1e6
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, $c346
 	call PlaceString
 	call Function11a5f5
@@ -128564,7 +128564,7 @@ Function11a192: ; 11a192
 	call Function1c07
 	callba Function104061
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6d2
 	call PlaceString
 	and a
@@ -128577,7 +128577,7 @@ Function11a192: ; 11a192
 	ld [$cf66], a
 	ld [$cd80], a
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6d2
 	call PlaceString
 	scf
@@ -128627,13 +128627,13 @@ Function11a207: ; 11a207
 	call Function1cbb
 	call Function1cfd
 	call Function321c
-	ld hl, $c550
+	hlcoord 16, 8
 	ld de, String_11a2cf
 	call PlaceString
-	ld hl, $c578
+	hlcoord 16, 10
 	ld de, String_11a2d3
 	call PlaceString
-	ld hl, $c54f
+	hlcoord 15, 8
 	ld a, $ed
 	ld [hl], a
 	xor a
@@ -128669,10 +128669,10 @@ Function11a235: ; 11a235
 	jr z, .asm_11a24c
 	xor a
 	ld [$cd44], a
-	ld hl, $c54f
+	hlcoord 15, 8
 	ld a, $ed
 	ld [hl], a
-	ld hl, $c577
+	hlcoord 15, 10
 	ld a, $7f
 	ld [hl], a
 	jr .asm_11a24c
@@ -128686,10 +128686,10 @@ Function11a235: ; 11a235
 	jr nz, .asm_11a24c
 	inc a
 	ld [$cd44], a
-	ld hl, $c54f
+	hlcoord 15, 8
 	ld a, $7f
 	ld [hl], a
-	ld hl, $c577
+	hlcoord 15, 10
 	ld a, $ed
 	ld [hl], a
 	jr .asm_11a24c
@@ -128758,7 +128758,7 @@ Function11a2e6: ; 11a2e6
 	call Function11a63c
 	ld c, $2
 	callba Function115e18
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a71e
 	call PlaceString
 	ld a, $80
@@ -128777,14 +128777,14 @@ Function11a302: ; 11a302
 
 .asm_11a30e
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a72a
 	call PlaceString
-	ld hl, $c4f9
+	hlcoord 9, 4
 	ld de, $cd68
 	ld bc, $8102
 	call PrintNum
-	ld hl, $c4fe
+	hlcoord 14, 4
 	ld de, $cd67
 	ld bc, $8102
 	call PrintNum
@@ -128812,7 +128812,7 @@ Function11a33a: ; 11a33a
 
 Function11a357: ; 11a357
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a743
 	call PlaceString
 	ld a, $80
@@ -128831,7 +128831,7 @@ Function11a36b: ; 11a36b
 
 .asm_11a377
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a755
 	call PlaceString
 	call Function11a5f5
@@ -128850,7 +128850,7 @@ Function11a38d: ; 11a38d
 	call Function1c07
 	callba Function104061
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6d2
 	call PlaceString
 	and a
@@ -128868,7 +128868,7 @@ Function11a38d: ; 11a38d
 
 Function11a3c5: ; 11a3c5
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a762
 	call PlaceString
 	ld a, $80
@@ -128887,7 +128887,7 @@ Function11a3d9: ; 11a3d9
 
 .asm_11a3e5
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a779
 	call PlaceString
 	ld a, $80
@@ -128906,7 +128906,7 @@ Function11a3f9: ; 11a3f9
 
 .asm_11a405
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a755
 	call PlaceString
 	call Function11a5f5
@@ -128925,7 +128925,7 @@ Function11a41b: ; 11a41b
 	call Function1c07
 	callba Function104061
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6d2
 	call PlaceString
 	and a
@@ -128943,7 +128943,7 @@ Function11a41b: ; 11a41b
 
 Function11a452: ; 11a452
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a791
 	call PlaceString
 	ld a, $80
@@ -128953,7 +128953,7 @@ Function11a452: ; 11a452
 
 Function11a466: ; 11a466
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a7c1
 	call PlaceString
 	ld a, $80
@@ -128977,7 +128977,7 @@ Function11a47a: ; 11a47a
 
 Function11a488: ; 11a488
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a7ac
 	call PlaceString
 	call Function11a5f5
@@ -128996,7 +128996,7 @@ Function11a49e: ; 11a49e
 	call Function1c07
 	callba Function104061
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6d2
 	call PlaceString
 	ld a, $14
@@ -129017,14 +129017,14 @@ Function11a49e: ; 11a49e
 Function11a4db: ; 11a4db
 	call Function11a63c
 	ld de, String_11a6db
-	ld hl, $c4cc
+	hlcoord 4, 2
 	call PlaceString
 	ret
 ; 11a4e8
 
 Function11a4e8: ; 11a4e8
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a7d7
 	call PlaceString
 	call Function11a5f5
@@ -129043,7 +129043,7 @@ Function11a4fe: ; 11a4fe
 	call Function1c07
 	callba Function104061
 	call Function11a63c
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a6d2
 	call PlaceString
 	and a
@@ -129095,10 +129095,10 @@ Function11a536: ; 11a536
 	jr z, .asm_11a54d
 	xor a
 	ld [$cd44], a
-	ld hl, $c53b
+	hlcoord 15, 7
 	ld a, $ed
 	ld [hl], a
-	ld hl, $c563
+	hlcoord 15, 9
 	ld a, $7f
 	ld [hl], a
 	jr .asm_11a54d
@@ -129112,10 +129112,10 @@ Function11a536: ; 11a536
 	jr nz, .asm_11a54d
 	inc a
 	ld [$cd44], a
-	ld hl, $c53b
+	hlcoord 15, 7
 	ld a, $7f
 	ld [hl], a
-	ld hl, $c563
+	hlcoord 15, 9
 	ld a, $ed
 	ld [hl], a
 	jr .asm_11a54d
@@ -129178,17 +129178,17 @@ Function11a5f5: ; 11a5f5
 	ld hl, $ce5f
 	ld b, $5
 	ld c, $6
-	ld hl, $c526
+	hlcoord 14, 6
 	ld b, $3
 	ld c, $4
 	call Function3eea
-	ld hl, $c53c
+	hlcoord 16, 7
 	ld de, String_11a2cf
 	call PlaceString
-	ld hl, $c564
+	hlcoord 16, 9
 	ld de, String_11a2d3
 	call PlaceString
-	ld hl, $c53b
+	hlcoord 15, 7
 	ld a, $ed
 	ld [hl], a
 	callba Function104061
@@ -129196,16 +129196,16 @@ Function11a5f5: ; 11a5f5
 ; 11a63c
 
 Function11a63c: ; 11a63c
-	ld hl, $c4b8
+	hlcoord 4, 1
 	ld de, String_11a7f4
 	call PlaceString
-	ld hl, $c4cc
+	hlcoord 4, 2
 	ld de, String_11a7f4
 	call PlaceString
-	ld hl, $c4e0
+	hlcoord 4, 3
 	ld de, String_11a7f4
 	call PlaceString
-	ld hl, $c4f4
+	hlcoord 4, 4
 	ld de, String_11a7f4
 	call PlaceString
 	ret
@@ -129492,7 +129492,7 @@ Function11a90f: ; 11a90f
 	ld [$c31b], a
 	ld a, $c3
 	ld [$c31c], a
-	ld hl, $c5b9
+	hlcoord 1, 14
 	ld a, l
 	ld [$c31d], a
 	ld a, h
@@ -129903,7 +129903,7 @@ Function11ad95: ; 11ad95
 	ld hl, MenuDataHeader_11ae38
 	call LoadMenuDataHeader
 	call Function1cbb
-	ld hl, $c59c
+	hlcoord 12, 12
 	ld de, String_11ae40
 	call PlaceString
 	ld hl, $ceab
@@ -129968,7 +129968,7 @@ Function11adc4:
 	ld [hl], a
 	and a
 	jr z, .asm_11ae28
-	ld hl, $c5ba
+	hlcoord 2, 14
 	ld a, [$cfa9]
 	cp $2
 	jr z, .asm_11ae23
@@ -130011,13 +130011,13 @@ Function11ae4e: ; 11ae4e
 	ld hl, MenuDataHeader_11afe8
 	call LoadMenuDataHeader
 	call Function1cbb
-	ld hl, $c5c2
+	hlcoord 10, 14
 	ld de, String_11aff0
 	call PlaceString
 	ld hl, MenuDataHeader_11b013
 	call LoadMenuDataHeader
 	call Function1cbb
-	ld hl, $c550
+	hlcoord 16, 8
 	ld de, String_11b01b
 	call PlaceString
 	ld hl, $ce73
@@ -130052,7 +130052,7 @@ Function11ae98:
 	ret z
 	call PlayClickSFX
 .asm_11aeb4
-	ld hl, $c5ba
+	hlcoord 2, 14
 	ld a, $7f
 	ld [hl], a
 	ld a, $1
@@ -130102,13 +130102,13 @@ Function11af04: ; 11af04
 	ld hl, MenuDataHeader_11afe8
 	call LoadMenuDataHeader
 	call Function1cbb
-	ld hl, $c5c2
+	hlcoord 10, 14
 	ld de, String_11b003
 	call PlaceString
 	ld hl, MenuDataHeader_11b013
 	call LoadMenuDataHeader
 	call Function1cbb
-	ld hl, $c550
+	hlcoord 16, 8
 	ld de, String_11b01b
 	call PlaceString
 	ld hl, $ce73
@@ -130143,7 +130143,7 @@ Function11af4e:
 	ret z
 	call PlayClickSFX
 .asm_11af6a
-	ld hl, $c5ba
+	hlcoord 2, 14
 	ld a, $7f
 	ld [hl], a
 	ld a, $1
@@ -130355,7 +130355,7 @@ Function11b082: ; 11b082
 
 Function11b099: ; 11b099
 	ld c, $6
-	ld hl, $c4bf
+	hlcoord 11, 1
 	ld a, [$c7d3]
 	add a
 	ld b, a
@@ -130368,7 +130368,7 @@ Function11b099: ; 11b099
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $c4d3
+	hlcoord 11, 2
 	ld a, [$c7d3]
 .asm_11b0b9
 	push af
@@ -130681,13 +130681,13 @@ Function11b239: ; 11b239
 ; 11b242
 
 Function11b242: ; 11b242
-	ld hl, $c4f3
+	hlcoord 3, 4
 	ld de, StringBuffer3
 	call PlaceString
 	xor a
 	ld [MonType], a
 	callba GetGender
-	ld hl, $c4f1
+	hlcoord 1, 4
 	ld a, [CurPartySpecies]
 	ld bc, $cd2f
 	ld [bc], a
@@ -130740,10 +130740,10 @@ Function11b279: ; 11b279
 ; 11b295
 
 Function11b295: ; 11b295
-	ld hl, $c5a8
+	hlcoord 4, 13
 	ld de, String_11b308
 	call PlaceString
-	ld hl, $c5bc
+	hlcoord 4, 14
 	ld de, String_11b308
 	call PlaceString
 	call Function11b20b
@@ -130761,7 +130761,7 @@ Function11b295: ; 11b295
 	add hl, bc
 	ld e, [hl]
 	callba Function8e9bc
-	ld hl, $c5bc
+	hlcoord 4, 14
 	push hl
 	call GetPokemonName
 	jr .asm_11b2e7
@@ -130775,7 +130775,7 @@ Function11b295: ; 11b295
 	add hl, bc
 	ld a, $50
 	ld [hl], a
-	ld hl, $c5a8
+	hlcoord 4, 13
 	push hl
 	ld de, String_11b30e
 
@@ -136005,7 +136005,7 @@ Function16c145: ; 16c145
 	xor a
 	call ByteFill
 	ld hl, Tilemap_16c633
-	ld de, $c4b4
+	decoord 0, 1
 	ld bc, $0154
 	call CopyBytes
 	ret
@@ -136568,10 +136568,10 @@ Function16cc41: ; 16cc41
 ; 16cc49
 
 Function16cc49: ; 16cc49
-	ld hl, $c5d0
+	hlcoord 4, 15
 	ld a, $80
 	call Function16cc5a
-	ld hl, $c5e4
+	hlcoord 4, 16
 	ld a, $90
 	call Function16cc5a
 	ret
@@ -137765,16 +137765,16 @@ Function170525: ; 170525
 	ld bc, $0096
 	call CopyBytes
 	call CloseSRAM
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld de, StringBuffer3
 	call PlaceString
-	ld hl, $c4dd
+	hlcoord 1, 3
 	ld de, String_170676
 	call PlaceString
-	ld hl, $c4e0
+	hlcoord 4, 3
 	ld de, StringBuffer4
 	call PlaceString
-	ld hl, $c4e4
+	hlcoord 8, 3
 	ld de, String_17067a
 	call PlaceString
 	call Function1705b7
@@ -137831,7 +137831,7 @@ Function1705b2:
 ; 1705b7
 
 Function1705b7: ; 1705b7
-	ld hl, $c4f0
+	hlcoord 0, 4
 	ld a, $79
 	ld [hli], a
 	ld c, $12
@@ -137885,7 +137885,7 @@ Function1705f0: ; 1705f0
 	add hl, bc
 	push hl
 	pop bc
-	ld hl, $c519
+	hlcoord 1, 6
 	ld a, $6
 .asm_17060c
 	push af
@@ -137941,7 +137941,7 @@ Function1705f0: ; 1705f0
 ; 17064b
 
 Function17064b: ; 17064b
-	ld hl, $c505
+	hlcoord 1, 5
 	xor a
 	ld b, $c
 .asm_170651
@@ -137961,7 +137961,7 @@ Function17065d: ; 17065d
 	ld a, [$cf64]
 	and a
 	jr z, .asm_170669
-	ld hl, $c516
+	hlcoord 18, 5
 	ld a, $61
 	ld [hl], a
 
@@ -137969,7 +137969,7 @@ Function17065d: ; 17065d
 	ld a, [$cf64]
 	cp $3c
 	ret z
-	ld hl, $c5f2
+	hlcoord 18, 16
 	ld a, $ee
 	ld [hl], a
 	ret
