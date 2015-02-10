@@ -685,7 +685,7 @@ BattleAnimCmd_D5: ; cc485 (33:4485)
 	ld a, [BattleAnimByte]
 	and $f
 	ld c, a
-	ld hl, wd300
+	ld hl, w5_d300
 	xor a
 	ld [BattleAnimTemps], a
 .asm_cc492
@@ -792,7 +792,7 @@ BattleAnimCmd_D7: ; cc506 (33:4506)
 
 BattleAnimCmd_D9: ; cc52c (33:452c)
 
-	ld hl, wd300
+	ld hl, w5_d300
 .asm_cc52f
 	ld a, [hl]
 	and a
@@ -847,7 +847,7 @@ Functioncc561: ; cc561 (33:4561)
 
 BattleAnimCmd_DA: ; cc57e (33:457e)
 
-	ld hl, wd300
+	ld hl, w5_d300
 .asm_cc581
 	ld a, [hl]
 	and a
@@ -1470,7 +1470,7 @@ Functioncc94b: ; cc94b
 
 Functioncc96e: ; cc96e
 	ld a, $0
-	ld [wd418], a
+	ld [w5_d418], a
 	ld hl, OTPartyMon3HP
 	ld e, $a
 .asm_cc978
@@ -1492,7 +1492,7 @@ Functioncc96e: ; cc96e
 	add hl, bc
 	dec e
 	jr nz, .asm_cc978
-	ld a, [wd418]
+	ld a, [w5_d418]
 	ld l, a
 	ld h, $c4
 .asm_cc997

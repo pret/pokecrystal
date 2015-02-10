@@ -399,7 +399,7 @@ Jumptable_c8217: ; c8217 (32:4217)
 Functionc8223: ; c8223 (32:4223)
 	call Functionc9042
 	jr z, .asm_c8230
-	ld hl, wd40e
+	ld hl, w5_d40e
 	inc [hl]
 	call EndBattleBGEffect
 	ret
@@ -465,7 +465,7 @@ Jumptable_c8284: ; c8284 (32:4284)
 Functionc8290: ; c8290 (32:4290)
 	call Functionc9042
 	jr z, .asm_c829d
-	ld hl, wd40e
+	ld hl, w5_d40e
 	inc [hl]
 	call EndBattleBGEffect
 	ret
@@ -912,8 +912,8 @@ Functionc8561: ; c8561 (32:4561)
 	ret
 
 Functionc8565: ; c8565 (32:4565)
-	ld hl, wd422
-	ld de, wd422 + 1
+	ld hl, w5_d422
+	ld de, w5_d422 + 1
 	ld c, $3f
 	ld a, [hl]
 	push af
@@ -926,7 +926,7 @@ Functionc8565: ; c8565 (32:4565)
 	pop af
 	ld [hl], a
 	ld de, LYOverridesBackup
-	ld hl, wd422
+	ld hl, w5_d422
 	ld bc, $0
 .asm_c8580
 	ld a, [$ffc7]
@@ -2749,7 +2749,7 @@ Functionc8f69: ; c8f69 (32:4f69)
 	ld [BattleAnimTemps + 2], a
 	ld a, $40
 	ld [BattleAnimTemps + 3], a
-	ld bc, wd422
+	ld bc, w5_d422
 .asm_c8f7e
 	ld a, [BattleAnimTemps + 2]
 	ld d, a

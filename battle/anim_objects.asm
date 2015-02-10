@@ -17,7 +17,7 @@ Functioncc9a1: ; cc9a1 (33:49a1)
 .asm_cc9b3
 	ld c, l
 	ld b, h
-	ld hl, wd40e
+	ld hl, w5_d40e
 	inc [hl]
 	call Functioncc9c4
 	ret
@@ -46,7 +46,7 @@ Functioncc9c4: ; cc9c4 (33:49c4)
 	ld d, h
 	ld hl, $0
 	add hl, bc
-	ld a, [wd40e]
+	ld a, [w5_d40e]
 	ld [hli], a
 	ld a, [de]
 	inc de
@@ -111,7 +111,7 @@ Functioncca09: ; cca09
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd418]
+	ld a, [w5_d418]
 	ld e, a
 	ld d, $c4
 .asm_cca3c
@@ -178,7 +178,7 @@ Functioncca09: ; cca09
 	inc hl
 	inc de
 	ld a, e
-	ld [wd418], a
+	ld [w5_d418], a
 	cp $a0
 	jr nc, .asm_ccaa7
 	dec c
@@ -287,7 +287,7 @@ Functionccaaa: ; ccaaa
 Functionccb31: ; ccb31 (33:4b31)
 	push hl
 	push bc
-	ld hl, wd300
+	ld hl, w5_d300
 	ld b, a
 	ld c, $5
 .asm_ccb39

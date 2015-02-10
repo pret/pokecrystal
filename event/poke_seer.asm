@@ -44,7 +44,7 @@ SpecialPokeSeer: ; 4f0bc
 
 
 SeerAction: ; 4f0ee
-	ld a, [$d002]
+	ld a, [wd002]
 	ld hl, SeerActions
 	rst JumpTable
 	ret
@@ -100,14 +100,14 @@ ReadCaughtData: ; 4f134
 	ld a, PartyMon1CaughtData - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [$d03b], a
+	ld [wd03b], a
 	ld a, [hld]
-	ld [$d03c], a
+	ld [wd03b + 1], a
 	or [hl]
 	jr z, .asm_4f170
 
 	ld a, 1
-	ld [$d002], a
+	ld [wd002], a
 
 	ld a, PartyMon1ID - PartyMon1
 	call GetPartyParamLocation
@@ -120,7 +120,7 @@ ReadCaughtData: ; 4f134
 	jr nz, .asm_4f15f
 
 	ld a, 0
-	ld [$d002], a
+	ld [wd002], a
 
 .asm_4f15f
 	call GetCaughtLevel
@@ -133,7 +133,7 @@ ReadCaughtData: ; 4f134
 
 .asm_4f170
 	ld a, 2
-	ld [$d002], a
+	ld [wd002], a
 	ret
 ; 4f176
 
@@ -142,7 +142,7 @@ GetCaughtName: ; 4f176
 	ld hl, PartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	call AddNTimes
-	ld de, $d003
+	ld de, wd003
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ret
@@ -150,12 +150,12 @@ GetCaughtName: ; 4f176
 
 GetCaughtLevel: ; 4f18c
 	ld a, "@"
-	ld hl, $d036
+	ld hl, wd036
 	ld bc, 4
 	call ByteFill
 
 	; caught level
-	ld a, [$d03b]
+	ld a, [wd03b]
 	and $3f
 	jr z, .unknown
 	cp 1 ; hatched from an egg
@@ -163,15 +163,15 @@ GetCaughtLevel: ; 4f18c
 	ld a, 5 ; egg hatch level
 
 .print
-	ld [$d03a], a
-	ld hl, $d036
-	ld de, $d03a
+	ld [wd038 + 2], a
+	ld hl, wd036
+	ld de, wd038 + 2
 	ld bc, $4103
 	call PrintNum
 	ret
 
 .unknown
-	ld de, $d036
+	ld de, wd036
 	ld hl, .unknown_level
 	ld bc, 4
 	call CopyBytes
@@ -183,7 +183,7 @@ GetCaughtLevel: ; 4f18c
 ; 4f1c5
 
 GetCaughtTime: ; 4f1c5
-	ld a, [$d03b]
+	ld a, [wd03b]
 	and $c0
 	jr z, .none
 
@@ -194,13 +194,13 @@ GetCaughtTime: ; 4f1c5
 	call GetNthString
 	ld d, h
 	ld e, l
-	ld hl, $d01f
+	ld hl, wd01f
 	call CopyName2
 	and a
 	ret
 
 .none
-	ld de, $d01f
+	ld de, wd01f
 	call UnknownCaughtData
 	ret
 ; 4f1e6
@@ -223,7 +223,7 @@ UnknownCaughtData: ; 4f1f8
 ; 4f20a
 
 GetCaughtLocation: ; 4f20a
-	ld a, [$d03c]
+	ld a, [wd03b + 1]
 	and $7f
 	jr z, .asm_4f22e
 	cp $7f
@@ -233,25 +233,25 @@ GetCaughtLocation: ; 4f20a
 	ld e, a
 	callba GetLandmarkName
 	ld hl, StringBuffer1
-	ld de, $d00e
+	ld de, wd00e
 	ld bc, $0011
 	call CopyBytes
 	and a
 	ret
 
 .asm_4f22e
-	ld de, $d00e
+	ld de, wd00e
 	jp UnknownCaughtData
 
 .asm_4f234
 	ld a, $4
-	ld [$d002], a
+	ld [wd002], a
 	scf
 	ret
 
 .asm_4f23b
 	ld a, $3
-	ld [$d002], a
+	ld [wd002], a
 	scf
 	ret
 ; 4f242
@@ -261,17 +261,17 @@ GetCaughtOT: ; 4f242
 	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
 	call AddNTimes
-	ld de, $d02a
+	ld de, wd02a
 	ld bc, $000b
 	call CopyBytes
 	ld hl, .male
-	ld a, [$d03c]
+	ld a, [wd03b + 1]
 	bit 7, a
 	jr z, .asm_4f264
 	ld hl, .female
 
 .asm_4f264
-	ld de, $d035
+	ld de, wd034 + 1
 	ld a, "@"
 	ld [de], a
 	ret
@@ -359,7 +359,7 @@ SeerCancelText: ; 0x4f2af
 SeerAdvice: ; 4f2b4
 	ld a, PartyMon1Level - PartyMon1
 	call GetPartyParamLocation
-	ld a, [$d03a]
+	ld a, [wd038 + 2]
 	ld c, a
 	ld a, [hl]
 	sub c

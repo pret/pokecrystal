@@ -109,10 +109,10 @@ Functiond00b4: ; d00b4
 	push af
 	ld a, $2
 	ld [rSVBK], a
-	ld a, [$d168]
+	ld a, [w2_d168]
 	ld c, a
 	ld b, 0
-	ld hl, $d169
+	ld hl, w2_d169
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -120,7 +120,7 @@ Functiond00b4: ; d00b4
 	ld a, [hl]
 	ld hl, Jumptable_d00da
 	rst JumpTable
-	ld a, [$d168]
+	ld a, [w2_d168]
 	ld c, a
 	pop af
 	ld [rSVBK], a
@@ -148,18 +148,18 @@ Jumptable_d00da: ; d00da
 
 Functiond00f2: ; d00f2
 	ld a, $12
-	ld [$d181], a
-	ld a, [$d168]
+	ld [w2_d181], a
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 
 Functiond00fe: ; d00fe
-	ld hl, $d181
+	ld hl, w2_d181
 	dec [hl]
 	ret nz
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d010b
 
@@ -168,9 +168,9 @@ Functiond010b: ; d010b
 	ld b, $0
 	call Functiond0228
 	call Functiond0504
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d011d
 
@@ -179,9 +179,9 @@ Functiond011d: ; d011d
 	ld b, $4
 	call Functiond0228
 	call Functiond0504
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d012f
 
@@ -190,76 +190,76 @@ Functiond012f: ; d012f
 	ld b, $0
 	call Functiond0228
 	call Functiond0504
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d0141
 
 Functiond0141: ; d0141
 	call Functiond0250
-	ld a, [$d17e]
+	ld a, [w2_d17e]
 	bit 7, a
 	ret z
 	call Functiond04bd
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d0155
 
 Functiond0155: ; d0155
 	call Functiond0250
-	ld a, [$d17e]
+	ld a, [w2_d17e]
 	bit 7, a
 	ret z
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d0166
 
 Functiond0166: ; d0166
 	call Functiond01a9
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d0171
 
 Functiond0171: ; d0171
 	call Functiond01a9
-	ld hl, $d168
+	ld hl, w2_d168
 	set 7, [hl]
 	ret
 ; d017a
 
 Functiond017a: ; d017a
-	ld a, [$d16b]
+	ld a, [w2_d16b]
 	call _PlayCry
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d0188
 
 Functiond0188: ; d0188
-	ld a, [$d16b]
+	ld a, [w2_d16b]
 	call PlayCry2
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d0196
 
 Functiond0196: ; d0196
 	ld a, $f
 	ld [CryTracks], a
-	ld a, [$d16b]
+	ld a, [w2_d16b]
 	call PlayStereoCry2
-	ld a, [$d168]
+	ld a, [w2_d168]
 	inc a
-	ld [$d168], a
+	ld [w2_d168], a
 	ret
 ; d01a9
 
@@ -299,7 +299,7 @@ Functiond01d6: ; d01d6
 	push bc
 	push de
 	push hl
-	ld hl, $d168
+	ld hl, w2_d168
 	ld bc, $0029
 	xor a
 	call ByteFill
@@ -307,28 +307,28 @@ Functiond01d6: ; d01d6
 	pop de
 	pop bc
 	ld a, c
-	ld [$d169], a
+	ld [w2_d169], a
 	ld a, b
-	ld [$d16a], a
+	ld [w2_d16a], a
 	ld a, l
-	ld [$d16f], a
+	ld [w2_d16f], a
 	ld a, h
-	ld [$d170], a
+	ld [w2_d170], a
 	ld a, d
-	ld [$d16e], a
+	ld [w2_d16e], a
 	ld a, $1
 	ld hl, CurPartySpecies
 	call GetFarWRAMByte
-	ld [$d16b], a
+	ld [w2_d16b], a
 	ld a, $1
 	ld hl, UnownLetter
 	call GetFarWRAMByte
-	ld [$d16c], a
+	ld [w2_d16c], a
 	call Functiond065c
-	ld [$d16d], a
+	ld [w2_d16d], a
 	call Functiond05b4
 	ld a, c
-	ld [$d171], a
+	ld [w2_d171], a
 	pop af
 	ld [rSVBK], a
 	ret
@@ -340,15 +340,15 @@ Functiond0228: ; d0228
 	ld a, $2
 	ld [rSVBK], a
 	push bc
-	ld hl, $d172
+	ld hl, w2_d172
 	ld bc, $001f
 	xor a
 	call ByteFill
 	pop bc
 	ld a, b
-	ld [$d173], a
+	ld [w2_d172 + 1], a
 	ld a, c
-	ld [$d172], a
+	ld [w2_d172], a
 	call Functiond055c
 	call Functiond05ce
 	call Functiond061b
@@ -362,7 +362,7 @@ Functiond0250: ; d0250
 	ld [hBGMapMode], a
 
 Functiond0253: ; d0253
-	ld a, [$d17e]
+	ld a, [w2_d17e]
 	and $7f
 	ld hl, Tabled025d
 	rst JumpTable
@@ -376,7 +376,7 @@ Tabled025d: ; d025d
 
 Functiond0261: ; d0261
 	call Functiond02f8
-	ld a, [$d182]
+	ld a, [w2_d182]
 	cp $ff
 	jr z, Functiond02a8
 	cp $fe
@@ -384,40 +384,40 @@ Functiond0261: ; d0261
 	cp $fd
 	jr z, Functiond0296
 	call Functiond02c8
-	ld a, [$d183]
+	ld a, [w2_d183]
 	call Functiond02ae
-	ld [$d181], a
+	ld [w2_d181], a
 	call Functiond02dc
 
 Functiond0282: ; d0282
-	ld a, [$d181]
+	ld a, [w2_d181]
 	dec a
-	ld [$d181], a
+	ld [w2_d181], a
 	ret nz
 	call Functiond02e4
 	ret
 ; d028e
 
 Functiond028e: ; d028e
-	ld a, [$d183]
-	ld [$d17f], a
+	ld a, [w2_d183]
+	ld [w2_d17f], a
 	jr Functiond0253
 ; d0296
 
 Functiond0296: ; d0296
-	ld a, [$d17f]
+	ld a, [w2_d17f]
 	and a
 	ret z
 	dec a
-	ld [$d17f], a
+	ld [w2_d17f], a
 	ret z
-	ld a, [$d183]
-	ld [$d17d], a
+	ld a, [w2_d183]
+	ld [w2_d17d], a
 	jr Functiond0253
 ; d02a8
 
 Functiond02a8: ; d02a8
-	ld hl, $d17e
+	ld hl, w2_d17e
 	set 7, [hl]
 	ret
 ; d02ae
@@ -426,7 +426,7 @@ Functiond02ae: ; d02ae
 	ld c, a
 	ld b, $0
 	ld hl, $0000
-	ld a, [$d173]
+	ld a, [w2_d173]
 	call AddNTimes
 	ld a, h
 	swap a
@@ -442,7 +442,7 @@ Functiond02ae: ; d02ae
 
 Functiond02c8: ; d02c8
 	call Functiond04bd
-	ld a, [$d182]
+	ld a, [w2_d182]
 	and a
 	ret z
 	call Functiond031b
@@ -454,70 +454,70 @@ Functiond02c8: ; d02c8
 ; d02dc
 
 Functiond02dc: ; d02dc
-	ld a, [$d17e]
+	ld a, [w2_d17e]
 	inc a
-	ld [$d17e], a
+	ld [w2_d17e], a
 	ret
 ; d02e4
 
 Functiond02e4: ; d02e4
-	ld a, [$d17e]
+	ld a, [w2_d17e]
 	dec a
-	ld [$d17e], a
+	ld [w2_d17e], a
 	ret
 ; d02ec
 
 Functiond02ec: ; d02ec
-	ld a, [$d16b]
+	ld a, [w2_d16b]
 	cp UNOWN
 	ret
 ; d02f2
 
 Functiond02f2: ; d02f2
-	ld a, [$d16b]
+	ld a, [w2_d16b]
 	cp EGG
 	ret
 ; d02f8
 
 Functiond02f8: ; d02f8
 	push hl
-	ld a, [$d17d]
+	ld a, [w2_d17d]
 	ld e, a
 	ld d, $0
-	ld hl, $d175
+	ld hl, w2_d175
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	add hl, de
-	ld a, [$d174]
+	ld a, [w2_d174]
 	call GetFarHalfword
 	ld a, l
-	ld [$d182], a
+	ld [w2_d182], a
 	ld a, h
-	ld [$d183], a
-	ld hl, $d17d
+	ld [w2_d183], a
+	ld hl, w2_d17d
 	inc [hl]
 	pop hl
 	ret
 ; d031b
 
 Functiond031b: ; d031b
-	ld a, [$d182]
+	ld a, [w2_d182]
 	dec a
 	ld c, a
 	ld b, $0
-	ld hl, $d178
+	ld hl, w2_d178
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, bc
 	add hl, bc
-	ld a, [$d177]
+	ld a, [w2_d177]
 	call GetFarHalfword
-	ld a, [$d177]
+	ld a, [w2_d177]
 	call GetFarByte
-	ld [$d180], a
+	ld [w2_d180], a
 	inc hl
 	ret
 ; d033b
@@ -525,22 +525,22 @@ Functiond031b: ; d031b
 Functiond033b: ; d033b
 	call Functiond0356
 	push bc
-	ld hl, $d17b
+	ld hl, w2_d17b
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$d180]
+	ld a, [w2_d180]
 	call AddNTimes
 	pop bc
-	ld de, $d188
-	ld a, [$d17a]
+	ld de, w2_d188
+	ld a, [w2_d17a]
 	call FarCopyBytes
 	ret
 ; d0356
 
 Functiond0356: ; d0356
 	push hl
-	ld a, [$d171]
+	ld a, [w2_d171]
 	sub 5
 	ld c, a
 	ld b, 0
@@ -556,9 +556,9 @@ Unknown_d0368: db 4, 5, 7
 
 Functiond036b: ; d036b
 	xor a
-	ld [$d187], a
-	ld [$d186], a
-	ld [$d185], a
+	ld [w2_d187], a
+	ld [w2_d186], a
+	ld [w2_d185], a
 .asm_d0375
 	push hl
 	call Functiond0392
@@ -567,7 +567,7 @@ Functiond036b: ; d036b
 	and a
 	jr z, .asm_d038a
 
-	ld a, [$d177]
+	ld a, [w2_d177]
 	call GetFarByte
 	inc hl
 	push hl
@@ -583,17 +583,17 @@ Functiond036b: ; d036b
 ; d0392
 
 Functiond0392: ; d0392
-	ld a, [$d187]
+	ld a, [w2_d187]
 	and $f8
 	rrca
 	rrca
 	rrca
 	ld e, a
 	ld d, 0
-	ld hl, $d188
+	ld hl, w2_d188
 	add hl, de
 	ld b, [hl]
-	ld a, [$d187]
+	ld a, [w2_d187]
 	and 7
 	jr z, .asm_d03b0
 
@@ -613,7 +613,7 @@ Functiond0392: ; d0392
 
 .asm_d03b7
 	ld b, a
-	ld hl, $d187
+	ld hl, w2_d187
 	inc [hl]
 	ret
 ; d03bd
@@ -624,7 +624,7 @@ Functiond03bd: ; d03bd
 	pop af
 	push hl
 	call Functiond03f7
-	ld hl, $d16e
+	ld hl, w2_d16e
 	add [hl]
 	pop hl
 	ld [hl], a
@@ -633,20 +633,20 @@ Functiond03bd: ; d03bd
 
 Functiond03cd: ; d03cd
 	call Functiond046c
-	ld a, [$d186]
+	ld a, [w2_d186]
 	ld bc, $0014
 	call AddNTimes
-	ld a, [$c2c6]
+	ld a, [wc2c6]
 	and a
 	jr nz, .asm_d03e8
-	ld a, [$d185]
+	ld a, [w2_d185]
 	ld e, a
 	ld d, 0
 	add hl, de
 	jr .asm_d03f3
 
 .asm_d03e8
-	ld a, [$d185]
+	ld a, [w2_d185]
 	ld e, a
 	ld a, l
 	sub e
@@ -663,7 +663,7 @@ Unknown_d03f4: db 6, 5, 4
 
 Functiond03f7: ; d03f7
 	push af
-	ld a, [$d171]
+	ld a, [w2_d171]
 	cp 5
 	jr z, .asm_d0405
 	cp 6
@@ -727,12 +727,12 @@ Unknown_d0448:
 
 
 Functiond046c: ; d046c
-	ld hl, $d16f
+	ld hl, w2_d16f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
-	ld a, [$d171]
+	ld a, [w2_d171]
 	ld de, 0
 	ld bc, 6
 	cp 7
@@ -745,7 +745,7 @@ Functiond046c: ; d046c
 	ld bc, 45
 .asm_d048f
 
-	ld a, [$c2c6]
+	ld a, [wc2c6]
 	and a
 	jr nz, .asm_d0497
 	add hl, de
@@ -757,20 +757,20 @@ Functiond046c: ; d046c
 ; d0499
 
 Functiond0499: ; d0499
-	ld a, [$d186]
+	ld a, [w2_d186]
 	inc a
-	ld [$d186], a
+	ld [w2_d186], a
 	ld c, a
-	ld a, [$d171]
+	ld a, [w2_d171]
 	cp c
 	jr nz, .asm_d04bb
 	xor a
-	ld [$d186], a
-	ld a, [$d185]
+	ld [w2_d186], a
+	ld a, [w2_d185]
 	inc a
-	ld [$d185], a
+	ld [w2_d185], a
 	ld c, a
-	ld a, [$d171]
+	ld a, [w2_d171]
 	cp c
 	jr nz, .asm_d04bb
 	scf
@@ -783,7 +783,7 @@ Functiond0499: ; d0499
 
 Functiond04bd: ; d04bd
 	call Functiond04f6
-	ld a, [$c2c6]
+	ld a, [wc2c6]
 	and a
 	jr nz, .asm_d04ce
 	ld de, 1
@@ -795,14 +795,14 @@ Functiond04bd: ; d04bd
 	ld bc, 6
 
 .asm_d04d4
-	ld hl, $d16f
+	ld hl, w2_d16f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, bc
 	ld c, 7
 	ld b, 7
-	ld a, [$d16e]
+	ld a, [w2_d16e]
 .asm_d04e2
 	push bc
 	push hl
@@ -824,7 +824,7 @@ Functiond04bd: ; d04bd
 ; d04f6
 
 Functiond04f6: ; d04f6
-	ld hl, $d16f
+	ld hl, w2_d16f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -895,7 +895,7 @@ Functiond0536: ; d0536
 ; d0551
 
 Functiond0551: ; d0551
-	ld hl, $d16f
+	ld hl, w2_d16f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -918,32 +918,32 @@ Functiond055c: ; d055c
 	ld de, AnimationExtraPointers
 .asm_d0576
 
-	ld a, [$d172]
+	ld a, [w2_d172]
 	and a
 	jr z, .asm_d057e
 	ld h, d
 	ld l, e
 .asm_d057e
 
-	ld a, [$d16d]
+	ld a, [w2_d16d]
 	dec a
 	ld e, a
 	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, c
-	ld [$d174], a
+	ld [w2_d174], a
 	call GetFarHalfword
 	ld a, l
-	ld [$d175], a
+	ld [w2_d175], a
 	ld a, h
-	ld [$d176], a
+	ld [w2_d176], a
 	ret
 
 .egg
 	ld hl, EggAnimation
 	ld c, BANK(EggAnimation)
-	ld a, [$d172]
+	ld a, [w2_d172]
 	and a
 	jr z, .asm_d05a7
 	ld hl, EggAnimationExtra
@@ -951,11 +951,11 @@ Functiond055c: ; d055c
 .asm_d05a7
 
 	ld a, c
-	ld [$d174], a
+	ld [w2_d174], a
 	ld a, l
-	ld [$d175], a
+	ld [w2_d175], a
 	ld a, h
-	ld [$d176], a
+	ld [w2_d176], a
 	ret
 ; d05b4
 
@@ -984,7 +984,7 @@ Functiond05ce: ; d05ce
 	ld c, BANK(UnownsFrames)
 	ld hl, UnownFramesPointers
 	jr z, .asm_d05ef
-	ld a, [$d16b]
+	ld a, [w2_d16b]
 	cp 151 + 1
 	ld b, BANK(FramesPointers)
 	ld c, BANK(KantoFrames)
@@ -993,9 +993,9 @@ Functiond05ce: ; d05ce
 	ld c, BANK(JohtoFrames)
 .asm_d05ef
 	ld a, c
-	ld [$d177], a
+	ld [w2_d177], a
 
-	ld a, [$d16d]
+	ld a, [w2_d16d]
 	dec a
 	ld e, a
 	ld d, 0
@@ -1004,20 +1004,20 @@ Functiond05ce: ; d05ce
 	ld a, b
 	call GetFarHalfword
 	ld a, l
-	ld [$d178], a
+	ld [w2_d178], a
 	ld a, h
-	ld [$d179], a
+	ld [w2_d179], a
 	ret
 
 .egg
 	ld hl, EggFrames
 	ld c, BANK(EggFrames)
 	ld a, c
-	ld [$d177], a
+	ld [w2_d177], a
 	ld a, l
-	ld [$d178], a
+	ld [w2_d178], a
 	ld a, h
-	ld [$d179], a
+	ld [w2_d179], a
 	ret
 ; d061b
 
@@ -1032,48 +1032,48 @@ Functiond061b: ; d061b
 	ld a, BANK(BitmasksPointers)
 	ld hl, BitmasksPointers
 .asm_d062f
-	ld [$d17a], a
+	ld [w2_d17a], a
 
-	ld a, [$d16d]
+	ld a, [w2_d16d]
 	dec a
 	ld e, a
 	ld d, 0
 	add hl, de
 	add hl, de
-	ld a, [$d17a]
+	ld a, [w2_d17a]
 	call GetFarHalfword
 	ld a, l
-	ld [$d17b], a
+	ld [w2_d17b], a
 	ld a, h
-	ld [$d17c], a
+	ld [w2_d17c], a
 	ret
 
 .egg
 	ld c, BANK(EggBitmasks)
 	ld hl, EggBitmasks
 	ld a, c
-	ld [$d17a], a
+	ld [w2_d17a], a
 	ld a, l
-	ld [$d17b], a
+	ld [w2_d17b], a
 	ld a, h
-	ld [$d17c], a
+	ld [w2_d17c], a
 	ret
 ; d065c
 
 Functiond065c: ; d065c
 	call Functiond02ec
 	jr z, .asm_d0665
-	ld a, [$d16b]
+	ld a, [w2_d16b]
 	ret
 
 .asm_d0665
-	ld a, [$d16c]
+	ld a, [w2_d16c]
 	ret
 ; d0669
 
 Functiond0669: ; d0669
 	ld a, $1
-	ld [$c2c6], a
+	ld [wc2c6], a
 
 Functiond066e: ; d066e
 	call Functiond01c6
@@ -1090,12 +1090,12 @@ Functiond066e: ; d066e
 	ld e, c
 	call Functiond008e
 	xor a
-	ld [$c2c6], a
+	ld [wc2c6], a
 	ret
 
 .asm_d068c
 	xor a
-	ld [$c2c6], a
+	ld [wc2c6], a
 	inc a
 	ld [CurPartySpecies], a
 	ret

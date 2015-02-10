@@ -3118,7 +3118,7 @@ UnknownScript_0xbe675:: ; 0xbe675
 	playrammusic
 	showemote $0, $fe, 30
 	callasm Function831e
-	applymovement2 $d007
+	applymovement2 MovementBuffer
 	writepersonxy $fe
 	faceperson $0, $fe
 	jump UnknownScript_0xbe68a
@@ -3133,7 +3133,7 @@ UnknownScript_0xbe68a: ; 0xbe68a
 	startbattle
 	returnafterbattle
 	trainerstatus $1
-	loadvar $d04d, $ff
+	loadvar wd04d, $ff
 
 UnknownScript_0xbe698:
 	scripttalkafter

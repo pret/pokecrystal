@@ -281,7 +281,8 @@ AutoInputLength:: ; c2cb
 
 wc2cc:: ds 1
 wc2cd:: ds 1
-wc2ce:: ds 2
+wc2ce:: ds 1
+wc2cf:: ds 1
 wc2d0:: ds 4
 wc2d4:: ds 1
 wc2d5:: ds 1
@@ -1357,7 +1358,8 @@ wd032:: ds 1
 wd033:: ds 1
 wd034:: ds 2
 wd036:: ds 2
-wd038:: ds 6
+wd038:: ds 3
+wd03b:: ds 3
 
 MenuItemsList::
 CurFruitTree::
@@ -1389,7 +1391,9 @@ WalkingY:: ; d046
 WalkingTile:: ; d047
 	ds 1
 
-wd048:: ds 6
+wd048:: ds 3
+wd04b:: ds 2
+wd04d:: ds 1
 wd04e:: ds 2
 wd050:: ds 10
 wd05a:: ds 12
@@ -1853,12 +1857,16 @@ ScriptBank:: ; d439
 ScriptPos:: ; d43a
 	ds 2
 
-	ds 17
+wd43c:: ds 1
+wd43d:: ds 16
 
 ScriptDelay:: ; d44d
 	ds 1
 
-	ds 4
+wd44e:: ds 1
+wd44f:: ds 1
+wd450:: ds 1
+wd451:: ds 1
 wd452:: ds 1
 wd453:: ds 1
 wd454:: ds 1
@@ -2479,6 +2487,44 @@ wdfec:: ds 1
 wdff5::
 
 
+SECTION "Pic Animations", WRAMX, BANK [2]
+
+w2_d000:: ds $168
+
+w2_d168:: ds 1
+w2_d169:: ds 1
+w2_d16a:: ds 1
+w2_d16b:: ds 1
+w2_d16c:: ds 1
+w2_d16d:: ds 1
+w2_d16e:: ds 1
+w2_d16f:: ds 1
+w2_d170:: ds 1
+w2_d171:: ds 1
+w2_d172:: ds 1
+w2_d173:: ds 1
+w2_d174:: ds 1
+w2_d175:: ds 1
+w2_d176:: ds 1
+w2_d177:: ds 1
+w2_d178:: ds 1
+w2_d179:: ds 1
+w2_d17a:: ds 1
+w2_d17b:: ds 1
+w2_d17c:: ds 1
+w2_d17d:: ds 1
+w2_d17e:: ds 1
+w2_d17f:: ds 1
+w2_d180:: ds 1
+w2_d181:: ds 1
+w2_d182:: ds 1
+w2_d183:: ds 1
+w2_d184:: ds 1
+w2_d185:: ds 1
+w2_d186:: ds 1
+w2_d187:: ds 1
+w2_d188:: ds 1
+
 
 SECTION "GBC Video", WRAMX, BANK [5]
 
@@ -2503,7 +2549,7 @@ LYOverridesBackupEnd::
 
 SECTION "Battle Animations", WRAMX, BANK [5]
 
-wd300:: ds 10
+w5_d300:: ds 10
 
 ActiveAnimObjects:: ; d30a
 	ds 4 * 40
@@ -2513,7 +2559,7 @@ ActiveAnimObjects:: ; d30a
 ActiveBGEffects:: ; d3fa
 	ds 4 * 5
 
-wd40e:: ds 1
+w5_d40e:: ds 1
 
 BattleAnimFlags:: ; d40f
 	ds 1
@@ -2529,11 +2575,11 @@ BattleAnimVar:: ; d416
 	ds 1
 BattleAnimByte:: ; d417
 	ds 1
-wd418:: ds 1
+w5_d418:: ds 1
 BattleAnimTemps:: ; d419
 	ds 8
 	ds 1
-wd422:: ds $40
+w5_d422:: ds $40
 
 
 SECTION "Scratch", SRAM, BANK [0]
