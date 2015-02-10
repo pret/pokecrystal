@@ -273,7 +273,7 @@ UnknownText_0x5ceba: ; 0x5ceba
 UnknownText_0x5cf3a: ; 0x5cf3a
 	text "This week's ID"
 	line "number is @"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "."
 	done
 ; 0x5cf5a

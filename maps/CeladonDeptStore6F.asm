@@ -126,7 +126,7 @@ UnknownText_0x71274: ; 0x71274
 	text "Clang!"
 
 	para "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	db $0
 	line "popped out."
 	done

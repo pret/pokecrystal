@@ -139,7 +139,7 @@ UnknownScript_0x780a9: ; 0x780a9
 UnknownScript_0x780bd: ; 0x780bd
 	scall UnknownScript_0x7814f
 	winlosstext CamperTodd1BeatenText, $0000
-	copybytetovar $d9fe
+	copybytetovar wd9fe
 	if_equal $4, UnknownScript_0x780dc
 	if_equal $3, UnknownScript_0x780e2
 	if_equal $2, UnknownScript_0x780e8
@@ -161,7 +161,7 @@ UnknownScript_0x780f4: ; 0x780f4
 	loadtrainer CAMPER, TODD1
 	startbattle
 	returnafterbattle
-	loadvar $d9fe, $1
+	loadvar wd9fe, $1
 	clearflag $0070
 	end
 ; 0x78101
@@ -170,7 +170,7 @@ UnknownScript_0x78101: ; 0x78101
 	loadtrainer CAMPER, TODD2
 	startbattle
 	returnafterbattle
-	loadvar $d9fe, $2
+	loadvar wd9fe, $2
 	clearflag $0070
 	end
 ; 0x7810e
@@ -179,7 +179,7 @@ UnknownScript_0x7810e: ; 0x7810e
 	loadtrainer CAMPER, TODD3
 	startbattle
 	returnafterbattle
-	loadvar $d9fe, $3
+	loadvar wd9fe, $3
 	clearflag $0070
 	end
 ; 0x7811b
@@ -188,7 +188,7 @@ UnknownScript_0x7811b: ; 0x7811b
 	loadtrainer CAMPER, TODD4
 	startbattle
 	returnafterbattle
-	loadvar $d9fe, $4
+	loadvar wd9fe, $4
 	clearflag $0070
 	end
 ; 0x78128
@@ -296,7 +296,7 @@ UnknownScript_0x7818b: ; 0x7818b
 UnknownScript_0x7819f: ; 0x7819f
 	scall UnknownScript_0x78240
 	winlosstext PicnickerGina1BeatenText, $0000
-	copybytetovar $d9ff
+	copybytetovar wd9ff
 	if_equal $4, UnknownScript_0x781be
 	if_equal $3, UnknownScript_0x781c4
 	if_equal $2, UnknownScript_0x781ca
@@ -318,7 +318,7 @@ UnknownScript_0x781d6: ; 0x781d6
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	returnafterbattle
-	loadvar $d9ff, $1
+	loadvar wd9ff, $1
 	clearflag $0071
 	end
 ; 0x781e3
@@ -327,7 +327,7 @@ UnknownScript_0x781e3: ; 0x781e3
 	loadtrainer PICNICKER, GINA2
 	startbattle
 	returnafterbattle
-	loadvar $d9ff, $2
+	loadvar wd9ff, $2
 	clearflag $0071
 	end
 ; 0x781f0
@@ -336,7 +336,7 @@ UnknownScript_0x781f0: ; 0x781f0
 	loadtrainer PICNICKER, GINA3
 	startbattle
 	returnafterbattle
-	loadvar $d9ff, $3
+	loadvar wd9ff, $3
 	clearflag $0071
 	end
 ; 0x781fd
@@ -345,7 +345,7 @@ UnknownScript_0x781fd: ; 0x781fd
 	loadtrainer PICNICKER, GINA4
 	startbattle
 	returnafterbattle
-	loadvar $d9ff, $4
+	loadvar wd9ff, $4
 	clearflag $0071
 	end
 ; 0x7820a

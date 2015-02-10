@@ -87,7 +87,7 @@ UnknownText_0x549a3: ; 0x549a3
 
 	para "Oh? Let me see"
 	line "your @"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "…"
 	done
 ; 0x549fc

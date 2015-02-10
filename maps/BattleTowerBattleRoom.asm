@@ -37,7 +37,7 @@ UnknownScript_0x9f425: ; 0x9f425
 	special $002e
 	reloadmap
 	if_not_equal $0, UnknownScript_0x9f4c2
-	copybytetovar $cf64
+	copybytetovar wcf64
 	if_equal $7, UnknownScript_0x9f4d9
 	applymovement $2, MovementData_0x9e597
 	warpsound

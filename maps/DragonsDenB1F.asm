@@ -503,7 +503,7 @@ UnknownText_0x18cf0f: ; 0x18cf0f
 UnknownText_0x18cf41: ; 0x18cf41
 	text $52, " found"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "!"
 	done
 ; 0x18cf51

@@ -117,7 +117,7 @@ UnknownScript_0x1a1d6e: ; 0x1a1d6e
 UnknownScript_0x1a1d82: ; 0x1a1d82
 	scall UnknownScript_0x1a1e23
 	winlosstext LassDana1BeatenText, $0000
-	copybytetovar $da03
+	copybytetovar wda03
 	if_equal $4, UnknownScript_0x1a1da1
 	if_equal $3, UnknownScript_0x1a1da7
 	if_equal $2, UnknownScript_0x1a1dad
@@ -139,7 +139,7 @@ UnknownScript_0x1a1db9: ; 0x1a1db9
 	loadtrainer LASS, DANA1
 	startbattle
 	returnafterbattle
-	loadvar $da03, $1
+	loadvar wda03, $1
 	clearflag $0074
 	end
 ; 0x1a1dc6
@@ -148,7 +148,7 @@ UnknownScript_0x1a1dc6: ; 0x1a1dc6
 	loadtrainer LASS, DANA2
 	startbattle
 	returnafterbattle
-	loadvar $da03, $2
+	loadvar wda03, $2
 	clearflag $0074
 	end
 ; 0x1a1dd3
@@ -157,7 +157,7 @@ UnknownScript_0x1a1dd3: ; 0x1a1dd3
 	loadtrainer LASS, DANA3
 	startbattle
 	returnafterbattle
-	loadvar $da03, $3
+	loadvar wda03, $3
 	clearflag $0074
 	end
 ; 0x1a1de0
@@ -166,7 +166,7 @@ UnknownScript_0x1a1de0: ; 0x1a1de0
 	loadtrainer LASS, DANA4
 	startbattle
 	returnafterbattle
-	loadvar $da03, $4
+	loadvar wda03, $4
 	clearflag $0074
 	end
 ; 0x1a1ded
@@ -288,7 +288,7 @@ UnknownScript_0x1a1e61: ; 0x1a1e61
 UnknownScript_0x1a1e75: ; 0x1a1e75
 	scall UnknownScript_0x1a1f01
 	winlosstext SchoolboyChad1BeatenText, $0000
-	copybytetovar $da04
+	copybytetovar wda04
 	if_equal $4, UnknownScript_0x1a1e94
 	if_equal $3, UnknownScript_0x1a1e9a
 	if_equal $2, UnknownScript_0x1a1ea0
@@ -310,7 +310,7 @@ UnknownScript_0x1a1eac: ; 0x1a1eac
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	returnafterbattle
-	loadvar $da04, $1
+	loadvar wda04, $1
 	clearflag $0075
 	end
 ; 0x1a1eb9
@@ -319,7 +319,7 @@ UnknownScript_0x1a1eb9: ; 0x1a1eb9
 	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
 	returnafterbattle
-	loadvar $da04, $2
+	loadvar wda04, $2
 	clearflag $0075
 	end
 ; 0x1a1ec6
@@ -328,7 +328,7 @@ UnknownScript_0x1a1ec6: ; 0x1a1ec6
 	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
 	returnafterbattle
-	loadvar $da04, $3
+	loadvar wda04, $3
 	clearflag $0075
 	end
 ; 0x1a1ed3
@@ -337,7 +337,7 @@ UnknownScript_0x1a1ed3: ; 0x1a1ed3
 	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
 	returnafterbattle
-	loadvar $da04, $4
+	loadvar wda04, $4
 	clearflag $0075
 	end
 ; 0x1a1ee0

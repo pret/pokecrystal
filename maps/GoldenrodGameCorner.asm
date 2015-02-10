@@ -359,7 +359,7 @@ UnknownText_0x56e8b: ; 0x56e8b
 ; 0x56ea8
 
 UnknownText_0x56ea8: ; 0x56ea8
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "."
 	line "Is that right?"
 	done

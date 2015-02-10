@@ -531,7 +531,7 @@ UnknownText_0x9eb45: ; 0x9eb45
 UnknownText_0x9eb7e: ; 0x9eb7e
 	db $0, $52, " got five", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "!@"
 	sound0x0F
 	text_waitbutton
@@ -654,7 +654,7 @@ UnknownText_0x9ee92: ; 0x9ee92
 UnknownText_0x9eebc: ; 0x9eebc
 	text "Next up, opponent"
 	line "no.@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text ". Ready?"
 	done
 ; 0x9eee0
@@ -770,7 +770,7 @@ UnknownText_0x9f1e5: ; 0x9f1e5
 ; 0x9f217
 
 UnknownText_0x9f217: ; 0x9f217
-	text_from_ram $cd49
+	text_from_ram wcd49
 	text " may not"
 	line "enter a BATTLE"
 	cont "ROOM under L70."

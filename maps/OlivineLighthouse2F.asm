@@ -84,7 +84,7 @@ UnknownScript_0x5afb3: ; 0x5afb3
 UnknownScript_0x5afc7: ; 0x5afc7
 	scall UnknownScript_0x5b06b
 	winlosstext SailorHuey1BeatenText, $0000
-	copybytetovar $d9f4
+	copybytetovar wd9f4
 	if_equal $3, UnknownScript_0x5afe2
 	if_equal $2, UnknownScript_0x5afe8
 	if_equal $1, UnknownScript_0x5afee
@@ -102,7 +102,7 @@ UnknownScript_0x5aff4: ; 0x5aff4
 	loadtrainer SAILOR, HUEY1
 	startbattle
 	returnafterbattle
-	loadvar $d9f4, $1
+	loadvar wd9f4, $1
 	clearflag $0066
 	end
 ; 0x5b001
@@ -111,7 +111,7 @@ UnknownScript_0x5b001: ; 0x5b001
 	loadtrainer SAILOR, HUEY2
 	startbattle
 	returnafterbattle
-	loadvar $d9f4, $2
+	loadvar wd9f4, $2
 	clearflag $0066
 	end
 ; 0x5b00e
@@ -120,7 +120,7 @@ UnknownScript_0x5b00e: ; 0x5b00e
 	loadtrainer SAILOR, HUEY3
 	startbattle
 	returnafterbattle
-	loadvar $d9f4, $3
+	loadvar wd9f4, $3
 	clearflag $0066
 	end
 ; 0x5b01b

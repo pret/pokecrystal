@@ -262,7 +262,7 @@ UnknownText_0x72974: ; 0x72974
 UnknownText_0x72991: ; 0x72991
 	text "OK, so you wanted"
 	line "a @"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "?"
 	done
 ; 0x729ad

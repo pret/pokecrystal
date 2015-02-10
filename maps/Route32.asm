@@ -256,7 +256,7 @@ UnknownScript_0x190569: ; 0x190569
 UnknownScript_0x19057d: ; 0x19057d
 	scall UnknownScript_0x19060f
 	winlosstext FisherRalph1BeatenText, $0000
-	copybytetovar $d9fb
+	copybytetovar wd9fb
 	if_equal $4, UnknownScript_0x19059c
 	if_equal $3, UnknownScript_0x1905a2
 	if_equal $2, UnknownScript_0x1905a8
@@ -278,7 +278,7 @@ UnknownScript_0x1905b4: ; 0x1905b4
 	loadtrainer FISHER, RALPH1
 	startbattle
 	returnafterbattle
-	loadvar $d9fb, $1
+	loadvar wd9fb, $1
 	clearflag $006d
 	end
 ; 0x1905c1
@@ -287,7 +287,7 @@ UnknownScript_0x1905c1: ; 0x1905c1
 	loadtrainer FISHER, RALPH2
 	startbattle
 	returnafterbattle
-	loadvar $d9fb, $2
+	loadvar wd9fb, $2
 	clearflag $006d
 	end
 ; 0x1905ce
@@ -296,7 +296,7 @@ UnknownScript_0x1905ce: ; 0x1905ce
 	loadtrainer FISHER, RALPH3
 	startbattle
 	returnafterbattle
-	loadvar $d9fb, $3
+	loadvar wd9fb, $3
 	clearflag $006d
 	end
 ; 0x1905db
@@ -305,7 +305,7 @@ UnknownScript_0x1905db: ; 0x1905db
 	loadtrainer FISHER, RALPH4
 	startbattle
 	returnafterbattle
-	loadvar $d9fb, $4
+	loadvar wd9fb, $4
 	clearflag $006d
 	end
 ; 0x1905e8
@@ -440,7 +440,7 @@ UnknownScript_0x190659: ; 0x190659
 UnknownScript_0x19066d: ; 0x19066d
 	scall UnknownScript_0x1906f9
 	winlosstext PicnickerLiz1BeatenText, $0000
-	copybytetovar $d9fc
+	copybytetovar wd9fc
 	if_equal $4, UnknownScript_0x19068c
 	if_equal $3, UnknownScript_0x190692
 	if_equal $2, UnknownScript_0x190698
@@ -462,7 +462,7 @@ UnknownScript_0x1906a4: ; 0x1906a4
 	loadtrainer PICNICKER, LIZ1
 	startbattle
 	returnafterbattle
-	loadvar $d9fc, $1
+	loadvar wd9fc, $1
 	clearflag $006e
 	end
 ; 0x1906b1
@@ -471,7 +471,7 @@ UnknownScript_0x1906b1: ; 0x1906b1
 	loadtrainer PICNICKER, LIZ2
 	startbattle
 	returnafterbattle
-	loadvar $d9fc, $2
+	loadvar wd9fc, $2
 	clearflag $006e
 	end
 ; 0x1906be
@@ -480,7 +480,7 @@ UnknownScript_0x1906be: ; 0x1906be
 	loadtrainer PICNICKER, LIZ3
 	startbattle
 	returnafterbattle
-	loadvar $d9fc, $3
+	loadvar wd9fc, $3
 	clearflag $006e
 	end
 ; 0x1906cb
@@ -489,7 +489,7 @@ UnknownScript_0x1906cb: ; 0x1906cb
 	loadtrainer PICNICKER, LIZ4
 	startbattle
 	returnafterbattle
-	loadvar $d9fc, $4
+	loadvar wd9fc, $4
 	clearflag $006e
 	end
 ; 0x1906d8

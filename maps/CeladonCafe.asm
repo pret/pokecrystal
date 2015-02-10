@@ -214,7 +214,7 @@ UnknownText_0x73285: ; 0x73285
 UnknownText_0x732e7: ; 0x732e7
 	text $52, " found"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "!"
 	done
 ; 0x732f7

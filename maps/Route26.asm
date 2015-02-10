@@ -86,7 +86,7 @@ UnknownScript_0x1a4d65: ; 0x1a4d65
 UnknownScript_0x1a4d79: ; 0x1a4d79
 	scall UnknownScript_0x1a4dd7
 	winlosstext CooltrainermGaven3BeatenText, $0000
-	copybytetovar $d9f5
+	copybytetovar wd9f5
 	if_equal $2, UnknownScript_0x1a4d90
 	if_equal $1, UnknownScript_0x1a4d96
 	if_equal $0, UnknownScript_0x1a4d9c
@@ -100,7 +100,7 @@ UnknownScript_0x1a4d9c: ; 0x1a4d9c
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	returnafterbattle
-	loadvar $d9f5, $1
+	loadvar wd9f5, $1
 	clearflag $0067
 	end
 ; 0x1a4da9
@@ -109,7 +109,7 @@ UnknownScript_0x1a4da9: ; 0x1a4da9
 	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
 	returnafterbattle
-	loadvar $d9f5, $2
+	loadvar wd9f5, $2
 	clearflag $0067
 	end
 ; 0x1a4db6
@@ -237,7 +237,7 @@ UnknownScript_0x1a4e21: ; 0x1a4e21
 UnknownScript_0x1a4e35: ; 0x1a4e35
 	scall UnknownScript_0x1a4e93
 	winlosstext CooltrainerfBeth1BeatenText, $0000
-	copybytetovar $d9f6
+	copybytetovar wd9f6
 	if_equal $2, UnknownScript_0x1a4e4c
 	if_equal $1, UnknownScript_0x1a4e52
 	if_equal $0, UnknownScript_0x1a4e58
@@ -251,7 +251,7 @@ UnknownScript_0x1a4e58: ; 0x1a4e58
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	returnafterbattle
-	loadvar $d9f6, $1
+	loadvar wd9f6, $1
 	clearflag $0068
 	end
 ; 0x1a4e65
@@ -260,7 +260,7 @@ UnknownScript_0x1a4e65: ; 0x1a4e65
 	loadtrainer COOLTRAINERF, BETH2
 	startbattle
 	returnafterbattle
-	loadvar $d9f6, $2
+	loadvar wd9f6, $2
 	clearflag $0068
 	end
 ; 0x1a4e72

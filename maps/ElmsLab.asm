@@ -984,7 +984,7 @@ ChoseStarterText: ; 0x79487
 ReceivedStarterText: ; 0x794ad
 	text $52, " received"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "!"
 	done
 ; 0x794c0

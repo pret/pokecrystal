@@ -63,7 +63,7 @@ UnknownScript_0x1ac03d: ; 0x1ac03d
 UnknownScript_0x1ac051: ; 0x1ac051
 	scall UnknownScript_0x1ac0e3
 	winlosstext HikerAnthony2BeatenText, $0000
-	copybytetovar $d9fd
+	copybytetovar wd9fd
 	if_equal $4, UnknownScript_0x1ac070
 	if_equal $3, UnknownScript_0x1ac076
 	if_equal $2, UnknownScript_0x1ac07c
@@ -85,7 +85,7 @@ UnknownScript_0x1ac088: ; 0x1ac088
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	returnafterbattle
-	loadvar $d9fd, $1
+	loadvar wd9fd, $1
 	clearflag $006f
 	end
 ; 0x1ac095
@@ -94,7 +94,7 @@ UnknownScript_0x1ac095: ; 0x1ac095
 	loadtrainer HIKER, ANTHONY1
 	startbattle
 	returnafterbattle
-	loadvar $d9fd, $2
+	loadvar wd9fd, $2
 	clearflag $006f
 	end
 ; 0x1ac0a2
@@ -103,7 +103,7 @@ UnknownScript_0x1ac0a2: ; 0x1ac0a2
 	loadtrainer HIKER, ANTHONY3
 	startbattle
 	returnafterbattle
-	loadvar $d9fd, $3
+	loadvar wd9fd, $3
 	clearflag $006f
 	end
 ; 0x1ac0af
@@ -112,7 +112,7 @@ UnknownScript_0x1ac0af: ; 0x1ac0af
 	loadtrainer HIKER, ANTHONY4
 	startbattle
 	returnafterbattle
-	loadvar $d9fd, $4
+	loadvar wd9fd, $4
 	clearflag $006f
 	end
 ; 0x1ac0bc

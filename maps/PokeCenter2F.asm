@@ -102,7 +102,7 @@ UnknownScript_0x1928be: ; 0x1928be
 	writetext UnknownText_0x192f67
 	special $0003
 	iffalse UnknownScript_0x192911
-	copybytetovar $cf51
+	copybytetovar wcf51
 	iffalse UnknownScript_0x1928fe
 	special $0005
 	iffalse UnknownScript_0x192909
@@ -215,7 +215,7 @@ UnknownScript_0x192973: ; 0x192973
 	writetext UnknownText_0x192f67
 	special $0003
 	iffalse UnknownScript_0x1929c6
-	copybytetovar $cf51
+	copybytetovar wcf51
 	iffalse UnknownScript_0x1929b3
 	special $0005
 	iffalse UnknownScript_0x1929be
@@ -356,7 +356,7 @@ LinkReceptionistScript_0x192a2d: ; 0x192a2d
 	writetext UnknownText_0x192f67
 	special $0003
 	iffalse UnknownScript_0x192a99
-	copybytetovar $cf51
+	copybytetovar wcf51
 	iffalse UnknownScript_0x192a84
 	special $0005
 	writetext UnknownText_0x19304a
@@ -1028,7 +1028,7 @@ UnknownText_0x19307c: ; 0x19307c
 
 UnknownText_0x19308b: ; 0x19308b
 	text "Sorry--@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0
 	line "can't be taken."
 	prompt
@@ -1037,10 +1037,10 @@ UnknownText_0x19308b: ; 0x19308b
 UnknownText_0x1930a8: ; 0x1930a8
 	text "You can't take the"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text " with a"
 	cont "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "."
 	prompt
 ; 0x1930cf
@@ -1048,7 +1048,7 @@ UnknownText_0x1930a8: ; 0x1930a8
 UnknownText_0x1930cf: ; 0x1930cf
 	text "You can't take the"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text " that"
 	cont "has MAIL with you."
 	prompt

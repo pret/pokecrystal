@@ -253,7 +253,7 @@ UnknownScript_0x19e1a4: ; 0x19e1a4
 UnknownScript_0x19e1b8: ; 0x19e1b8
 	scall UnknownScript_0x19e133
 	winlosstext HikerParry3BeatenText, $0000
-	copybytetovar $da0c
+	copybytetovar wda0c
 	if_equal $2, UnknownScript_0x19e1cf
 	if_equal $1, UnknownScript_0x19e1d5
 	if_equal $0, UnknownScript_0x19e1db
@@ -267,7 +267,7 @@ UnknownScript_0x19e1db: ; 0x19e1db
 	loadtrainer HIKER, PARRY3
 	startbattle
 	returnafterbattle
-	loadvar $da0c, $1
+	loadvar wda0c, $1
 	clearflag $007b
 	end
 ; 0x19e1e8
@@ -276,7 +276,7 @@ UnknownScript_0x19e1e8: ; 0x19e1e8
 	loadtrainer HIKER, PARRY1
 	startbattle
 	returnafterbattle
-	loadvar $da0c, $2
+	loadvar wda0c, $2
 	clearflag $007b
 	end
 ; 0x19e1f5

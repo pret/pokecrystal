@@ -193,10 +193,10 @@ UnknownText_0x6113b: ; 0x6113b
 	line "to trade your"
 
 	para "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text " for"
 	line "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	text "."
 
 	para "We'll have to hold"
@@ -214,7 +214,7 @@ UnknownText_0x611c9: ; 0x611c9
 	line "to trade your"
 
 	para "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text " for a"
 	line "#MON that you"
 	cont "have never seen."

@@ -763,21 +763,21 @@ UnknownText_0x7c87b: ; 0x7c87b
 ; 0x7c8bf
 
 UnknownText_0x7c8bf: ; 0x7c8bf
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text " looks a"
 	line "little happier."
 	done
 ; 0x7c8dc
 
 UnknownText_0x7c8dc: ; 0x7c8dc
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text " looks"
 	line "happy."
 	done
 ; 0x7c8ee
 
 UnknownText_0x7c8ee: ; 0x7c8ee
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text " looks"
 	line "delighted!"
 	done

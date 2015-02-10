@@ -57,7 +57,7 @@ UnknownScript_0x19d856: ; 0x19d856
 UnknownScript_0x19d86a: ; 0x19d86a
 	scall UnknownScript_0x19d8f7
 	winlosstext Bird_keeperVance1BeatenText, $0000
-	copybytetovar $da09
+	copybytetovar wda09
 	if_equal $2, UnknownScript_0x19d881
 	if_equal $1, UnknownScript_0x19d887
 	if_equal $0, UnknownScript_0x19d88d
@@ -71,7 +71,7 @@ UnknownScript_0x19d88d: ; 0x19d88d
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
 	returnafterbattle
-	loadvar $da09, $1
+	loadvar wda09, $1
 	clearflag $0079
 	end
 ; 0x19d89a
@@ -80,7 +80,7 @@ UnknownScript_0x19d89a: ; 0x19d89a
 	loadtrainer BIRD_KEEPER, VANCE2
 	startbattle
 	returnafterbattle
-	loadvar $da09, $2
+	loadvar wda09, $2
 	clearflag $0079
 	end
 ; 0x19d8a7
@@ -254,7 +254,7 @@ UnknownScript_0x19d95a: ; 0x19d95a
 UnknownScript_0x19d96e: ; 0x19d96e
 	scall UnknownScript_0x19d8f7
 	winlosstext FisherWilton1BeatenText, $0000
-	copybytetovar $da0a
+	copybytetovar wda0a
 	if_equal $2, UnknownScript_0x19d985
 	if_equal $1, UnknownScript_0x19d98b
 	if_equal $0, UnknownScript_0x19d991
@@ -268,7 +268,7 @@ UnknownScript_0x19d991: ; 0x19d991
 	loadtrainer FISHER, WILTON1
 	startbattle
 	returnafterbattle
-	loadvar $da0a, $1
+	loadvar wda0a, $1
 	clearflag $007a
 	end
 ; 0x19d99e
@@ -277,7 +277,7 @@ UnknownScript_0x19d99e: ; 0x19d99e
 	loadtrainer FISHER, WILTON2
 	startbattle
 	returnafterbattle
-	loadvar $da0a, $2
+	loadvar wda0a, $2
 	clearflag $007a
 	end
 ; 0x19d9ab

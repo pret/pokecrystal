@@ -113,7 +113,7 @@ UnknownText_0x19b266: ; 0x19b266
 ; 0x19b296
 
 UnknownText_0x19b296: ; 0x19b296
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text " looks"
 	line "content."
 	done

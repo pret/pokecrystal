@@ -127,7 +127,7 @@ UnknownScript_0x1a08eb: ; 0x1a08eb
 UnknownScript_0x1a08ff: ; 0x1a08ff
 	scall UnknownScript_0x1a096f
 	winlosstext Bird_keeperJose2BeatenText, $0000
-	copybytetovar $d9f7
+	copybytetovar wd9f7
 	if_equal $2, UnknownScript_0x1a0916
 	if_equal $1, UnknownScript_0x1a091c
 	if_equal $0, UnknownScript_0x1a0922
@@ -141,7 +141,7 @@ UnknownScript_0x1a0922: ; 0x1a0922
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	returnafterbattle
-	loadvar $d9f7, $1
+	loadvar wd9f7, $1
 	clearflag $0069
 	end
 ; 0x1a092f
@@ -150,7 +150,7 @@ UnknownScript_0x1a092f: ; 0x1a092f
 	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
 	returnafterbattle
-	loadvar $d9f7, $2
+	loadvar wd9f7, $2
 	clearflag $0069
 	end
 ; 0x1a093c
@@ -329,7 +329,7 @@ UnknownScript_0x1a09d5: ; 0x1a09d5
 UnknownScript_0x1a09e9: ; 0x1a09e9
 	scall UnknownScript_0x1a0a47
 	winlosstext CooltrainerfReena1BeatenText, $0000
-	copybytetovar $d9f8
+	copybytetovar wd9f8
 	if_equal $2, UnknownScript_0x1a0a00
 	if_equal $1, UnknownScript_0x1a0a06
 	if_equal $0, UnknownScript_0x1a0a0c
@@ -343,7 +343,7 @@ UnknownScript_0x1a0a0c: ; 0x1a0a0c
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	returnafterbattle
-	loadvar $d9f8, $1
+	loadvar wd9f8, $1
 	clearflag $006a
 	end
 ; 0x1a0a19
@@ -352,7 +352,7 @@ UnknownScript_0x1a0a19: ; 0x1a0a19
 	loadtrainer COOLTRAINERF, REENA2
 	startbattle
 	returnafterbattle
-	loadvar $d9f8, $2
+	loadvar wd9f8, $2
 	clearflag $006a
 	end
 ; 0x1a0a26

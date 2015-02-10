@@ -217,10 +217,10 @@ UnknownText_0x19aabc: ; 0x19aabc
 	text "CURRENT RECORD"
 
 	para "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text " caught by"
 	line "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db "@@"
 ; 0x19aae2
 

@@ -116,7 +116,7 @@ UnknownText_0x564cb: ; 0x564cb
 UnknownText_0x564ef: ; 0x564ef
 	text "Clang! A can of"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text $55
 	db "popped out!"
 	done

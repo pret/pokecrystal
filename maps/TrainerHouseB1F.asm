@@ -129,7 +129,7 @@ UnknownText_0x9b420: ; 0x9b420
 ; 0x9b46a
 
 UnknownText_0x9b46a: ; 0x9b46a
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text " is your"
 	line "opponent today."
 	done

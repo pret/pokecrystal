@@ -2209,9 +2209,36 @@ wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 
 SECTION "Events", WRAMX, BANK [1]
 
-	ds 14
+wd9f2:: ds 1
+	ds 1
+wd9f4:: ds 1
+wd9f5:: ds 1
+wd9f6:: ds 1
+wd9f7:: ds 1
+wd9f8:: ds 1
+wd9f9:: ds 1
+wd9fa:: ds 1
+wd9fb:: ds 1
+wd9fc:: ds 1
+wd9fd:: ds 1
+wd9fe:: ds 1
+wd9ff:: ds 1
 
-wda00:: ds 114
+wda00:: ds 1
+wda01:: ds 1
+wda02:: ds 1
+wda03:: ds 1
+wda04:: ds 1
+wda05:: ds 1
+wda06:: ds 1
+wda07:: ds 1
+wda08:: ds 1
+wda09:: ds 1
+wda0a:: ds 1
+wda0b:: ds 1
+wda0c:: ds 1
+wda0d:: ds 1
+	ds 100
 
 EventFlags:: ; da72
 ;RoomDecorations:: ; dac6
@@ -2532,6 +2559,13 @@ w2_d185:: ds 1
 w2_d186:: ds 1
 w2_d187:: ds 1
 w2_d188:: ds 1
+
+
+SECTION "WRAM 3", WRAMX, BANK [3]
+
+	ds $800
+
+w3_d800:: ds 1
 
 
 SECTION "GBC Video", WRAMX, BANK [5]

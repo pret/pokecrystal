@@ -131,7 +131,7 @@ UnknownScript_0x19d0bb: ; 0x19d0bb
 UnknownScript_0x19d0cf: ; 0x19d0cf
 	scall UnknownScript_0x19d144
 	winlosstext PokemaniacBrent1BeatenText, $0000
-	copybytetovar $da07
+	copybytetovar wda07
 	if_equal $3, UnknownScript_0x19d0ea
 	if_equal $2, UnknownScript_0x19d0f0
 	if_equal $1, UnknownScript_0x19d0f6
@@ -149,7 +149,7 @@ UnknownScript_0x19d0fc: ; 0x19d0fc
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
 	returnafterbattle
-	loadvar $da07, $1
+	loadvar wda07, $1
 	clearflag $0077
 	end
 ; 0x19d109
@@ -158,7 +158,7 @@ UnknownScript_0x19d109: ; 0x19d109
 	loadtrainer POKEMANIAC, BRENT2
 	startbattle
 	returnafterbattle
-	loadvar $da07, $2
+	loadvar wda07, $2
 	clearflag $0077
 	end
 ; 0x19d116
@@ -167,7 +167,7 @@ UnknownScript_0x19d116: ; 0x19d116
 	loadtrainer POKEMANIAC, BRENT3
 	startbattle
 	returnafterbattle
-	loadvar $da07, $3
+	loadvar wda07, $3
 	clearflag $0077
 	end
 ; 0x19d123
@@ -328,7 +328,7 @@ UnknownScript_0x19d1ad: ; 0x19d1ad
 UnknownScript_0x19d1c1: ; 0x19d1c1
 	scall UnknownScript_0x19d251
 	winlosstext PicnickerTiffany3BeatenText, $0000
-	copybytetovar $da08
+	copybytetovar wda08
 	if_equal $3, UnknownScript_0x19d1dc
 	if_equal $2, UnknownScript_0x19d1e2
 	if_equal $1, UnknownScript_0x19d1e8
@@ -346,7 +346,7 @@ UnknownScript_0x19d1ee: ; 0x19d1ee
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	returnafterbattle
-	loadvar $da08, $1
+	loadvar wda08, $1
 	clearflag $0078
 	end
 ; 0x19d1fb
@@ -355,7 +355,7 @@ UnknownScript_0x19d1fb: ; 0x19d1fb
 	loadtrainer PICNICKER, TIFFANY1
 	startbattle
 	returnafterbattle
-	loadvar $da08, $2
+	loadvar wda08, $2
 	clearflag $0078
 	end
 ; 0x19d208
@@ -364,7 +364,7 @@ UnknownScript_0x19d208: ; 0x19d208
 	loadtrainer PICNICKER, TIFFANY2
 	startbattle
 	returnafterbattle
-	loadvar $da08, $3
+	loadvar wda08, $3
 	clearflag $0078
 	end
 ; 0x19d215

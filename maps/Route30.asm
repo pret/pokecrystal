@@ -78,7 +78,7 @@ UnknownScript_0x1a16cc: ; 0x1a16cc
 UnknownScript_0x1a16e0: ; 0x1a16e0
 	scall UnknownScript_0x1a179b
 	winlosstext YoungsterJoey1BeatenText, $0000
-	copybytetovar $d9f9
+	copybytetovar wd9f9
 	if_equal $4, UnknownScript_0x1a16ff
 	if_equal $3, UnknownScript_0x1a1705
 	if_equal $2, UnknownScript_0x1a170b
@@ -100,7 +100,7 @@ UnknownScript_0x1a1717: ; 0x1a717
 	loadtrainer YOUNGSTER, JOEY1
 	startbattle
 	returnafterbattle
-	loadvar $d9f9, $1
+	loadvar wd9f9, $1
 	clearflag $006b
 	end
 ; 0x1a1724
@@ -109,7 +109,7 @@ UnknownScript_0x1a1724: ; 0x1a1724
 	loadtrainer YOUNGSTER, JOEY2
 	startbattle
 	returnafterbattle
-	loadvar $d9f9, $2
+	loadvar wd9f9, $2
 	clearflag $006b
 	end
 ; 0x1a1731
@@ -118,7 +118,7 @@ UnknownScript_0x1a1731: ; 0x1a1731
 	loadtrainer YOUNGSTER, JOEY3
 	startbattle
 	returnafterbattle
-	loadvar $d9f9, $3
+	loadvar wd9f9, $3
 	clearflag $006b
 	end
 ; 0x1a173e
@@ -127,7 +127,7 @@ UnknownScript_0x1a173e: ; 0x1a173e
 	loadtrainer YOUNGSTER, JOEY4
 	startbattle
 	returnafterbattle
-	loadvar $d9f9, $4
+	loadvar wd9f9, $4
 	clearflag $006b
 	end
 ; 0x1a174b

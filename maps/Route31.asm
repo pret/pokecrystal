@@ -74,7 +74,7 @@ UnknownScript_0x1a547f: ; 0x1a547f
 UnknownScript_0x1a5493: ; 0x1a5493
 	scall UnknownScript_0x1a5564
 	winlosstext Bug_catcherWade1BeatenText, $0000
-	copybytetovar $d9fa
+	copybytetovar wd9fa
 	if_equal $4, UnknownScript_0x1a54b2
 	if_equal $3, UnknownScript_0x1a54b8
 	if_equal $2, UnknownScript_0x1a54be
@@ -96,7 +96,7 @@ UnknownScript_0x1a54ca: ; 0x1a54ca
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	returnafterbattle
-	loadvar $d9fa, $1
+	loadvar wd9fa, $1
 	clearflag $006c
 	end
 ; 0x1a54d7
@@ -105,7 +105,7 @@ UnknownScript_0x1a54d7: ; 0x1a54d7
 	loadtrainer BUG_CATCHER, WADE2
 	startbattle
 	returnafterbattle
-	loadvar $d9fa, $2
+	loadvar wd9fa, $2
 	clearflag $006c
 	end
 ; 0x1a54e4
@@ -114,7 +114,7 @@ UnknownScript_0x1a54e4: ; 0x1a54e4
 	loadtrainer BUG_CATCHER, WADE3
 	startbattle
 	returnafterbattle
-	loadvar $d9fa, $3
+	loadvar wd9fa, $3
 	clearflag $006c
 	end
 ; 0x1a54f1
@@ -123,7 +123,7 @@ UnknownScript_0x1a54f1: ; 0x1a54f1
 	loadtrainer BUG_CATCHER, WADE4
 	startbattle
 	returnafterbattle
-	loadvar $d9fa, $4
+	loadvar wd9fa, $4
 	clearflag $006c
 	end
 ; 0x1a54fe

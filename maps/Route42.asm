@@ -84,7 +84,7 @@ UnknownScript_0x1a926b: ; 0x1a926b
 UnknownScript_0x1a927f: ; 0x1a927f
 	scall UnknownScript_0x1a9309
 	winlosstext FisherTully1BeatenText, $0000
-	copybytetovar $da06
+	copybytetovar wda06
 	if_equal $3, UnknownScript_0x1a929a
 	if_equal $2, UnknownScript_0x1a92a0
 	if_equal $1, UnknownScript_0x1a92a6
@@ -102,7 +102,7 @@ UnknownScript_0x1a92ac: ; 0x1a92ac
 	loadtrainer FISHER, TULLY1
 	startbattle
 	returnafterbattle
-	loadvar $da06, $1
+	loadvar wda06, $1
 	clearflag $0076
 	end
 ; 0x1a92b9
@@ -111,7 +111,7 @@ UnknownScript_0x1a92b9: ; 0x1a92b9
 	loadtrainer FISHER, TULLY2
 	startbattle
 	returnafterbattle
-	loadvar $da06, $2
+	loadvar wda06, $2
 	clearflag $0076
 	end
 ; 0x1a92c6
@@ -120,7 +120,7 @@ UnknownScript_0x1a92c6: ; 0x1a92c6
 	loadtrainer FISHER, TULLY3
 	startbattle
 	returnafterbattle
-	loadvar $da06, $3
+	loadvar wda06, $3
 	clearflag $0076
 	end
 ; 0x1a92d3

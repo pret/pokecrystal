@@ -32,7 +32,7 @@ Function_0x9f5cb: ; 0x9f5cb
 
 	ld a, 3
 	ld [rSVBK], a
-	ld a, [$d800]
+	ld a, [w3_d800]
 	ld [ScriptVar], a
 
 	pop af

@@ -285,7 +285,7 @@ UnknownScript_0x19c9a7: ; 0x19c9a7
 UnknownScript_0x19c9bb: ; 0x19c9bb
 	scall UnknownScript_0x19c91b
 	winlosstext Bug_catcherArnie1BeatenText, $0000
-	copybytetovar $da01
+	copybytetovar wda01
 	if_equal $4, UnknownScript_0x19c9da
 	if_equal $3, UnknownScript_0x19c9e0
 	if_equal $2, UnknownScript_0x19c9e6
@@ -307,7 +307,7 @@ UnknownScript_0x19c9f2: ; 0x19c9f2
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	returnafterbattle
-	loadvar $da01, $1
+	loadvar wda01, $1
 	clearflag $0072
 	end
 ; 0x19c9ff
@@ -316,7 +316,7 @@ UnknownScript_0x19c9ff: ; 0x19c9ff
 	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
 	returnafterbattle
-	loadvar $da01, $2
+	loadvar wda01, $2
 	clearflag $0072
 	end
 ; 0x19ca0c
@@ -325,7 +325,7 @@ UnknownScript_0x19ca0c: ; 0x19ca0c
 	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
 	returnafterbattle
-	loadvar $da01, $3
+	loadvar wda01, $3
 	clearflag $0072
 	end
 ; 0x19ca19
@@ -334,7 +334,7 @@ UnknownScript_0x19ca19: ; 0x19ca19
 	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
 	returnafterbattle
-	loadvar $da01, $4
+	loadvar wda01, $4
 	clearflag $0072
 	end
 ; 0x19ca26

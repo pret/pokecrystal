@@ -229,7 +229,7 @@ UnknownScript_0x19412c: ; 0x19412c
 UnknownScript_0x194140: ; 0x194140
 	scall UnknownScript_0x1941e1
 	winlosstext SchoolboyAlan1BeatenText, $0000
-	copybytetovar $da02
+	copybytetovar wda02
 	if_equal $4, UnknownScript_0x19415f
 	if_equal $3, UnknownScript_0x194165
 	if_equal $2, UnknownScript_0x19416b
@@ -251,7 +251,7 @@ UnknownScript_0x194177: ; 0x194177
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	returnafterbattle
-	loadvar $da02, $1
+	loadvar wda02, $1
 	clearflag $0073
 	end
 ; 0x194184
@@ -260,7 +260,7 @@ UnknownScript_0x194184: ; 0x194184
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	returnafterbattle
-	loadvar $da02, $2
+	loadvar wda02, $2
 	clearflag $0073
 	end
 ; 0x194191
@@ -269,7 +269,7 @@ UnknownScript_0x194191: ; 0x194191
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	returnafterbattle
-	loadvar $da02, $3
+	loadvar wda02, $3
 	clearflag $0073
 	end
 ; 0x19419e
@@ -278,7 +278,7 @@ UnknownScript_0x19419e: ; 0x19419e
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	returnafterbattle
-	loadvar $da02, $4
+	loadvar wda02, $4
 	clearflag $0073
 	end
 ; 0x1941ab

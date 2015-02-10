@@ -262,7 +262,7 @@ UnknownText_0x189784: ; 0x189784
 UnknownText_0x1897a6: ; 0x1897a6
 	text "Ah, so that is"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "?"
 
 	para "Isn't it cute!"

@@ -86,7 +86,7 @@ UnknownScript_0x1a96c6: ; 0x1a96c6
 UnknownScript_0x1a96da: ; 0x1a96da
 	scall UnknownScript_0x1a9767
 	winlosstext PicnickerErin1BeatenText, $0000
-	copybytetovar $da0d
+	copybytetovar wda0d
 	if_equal $2, UnknownScript_0x1a96f1
 	if_equal $1, UnknownScript_0x1a96f7
 	if_equal $0, UnknownScript_0x1a96fd
@@ -100,7 +100,7 @@ UnknownScript_0x1a96fd: ; 0x1a96fd
 	loadtrainer PICNICKER, ERIN1
 	startbattle
 	returnafterbattle
-	loadvar $da0d, $1
+	loadvar wda0d, $1
 	clearflag $007c
 	end
 ; 0x1a970a
@@ -109,7 +109,7 @@ UnknownScript_0x1a970a: ; 0x1a970a
 	loadtrainer PICNICKER, ERIN2
 	startbattle
 	returnafterbattle
-	loadvar $da0d, $2
+	loadvar wda0d, $2
 	clearflag $007c
 	end
 ; 0x1a9717

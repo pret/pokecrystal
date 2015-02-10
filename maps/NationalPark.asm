@@ -115,7 +115,7 @@ UnknownScript_0x5c074: ; 0x5c074
 UnknownScript_0x5c088: ; 0x5c088
 	scall UnknownScript_0x5c114
 	winlosstext SchoolboyJack1BeatenText, $0000
-	copybytetovar $d9f2
+	copybytetovar wd9f2
 	if_equal $4, UnknownScript_0x5c0a7
 	if_equal $3, UnknownScript_0x5c0ad
 	if_equal $2, UnknownScript_0x5c0b3
@@ -137,7 +137,7 @@ UnknownScript_0x5c0bf: ; 0x5c0bf
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	returnafterbattle
-	loadvar $d9f2, $1
+	loadvar wd9f2, $1
 	clearflag $0065
 	end
 ; 0x5c0cc
@@ -146,7 +146,7 @@ UnknownScript_0x5c0cc: ; 0x5c0cc
 	loadtrainer SCHOOLBOY, JACK2
 	startbattle
 	returnafterbattle
-	loadvar $d9f2, $2
+	loadvar wd9f2, $2
 	clearflag $0065
 	end
 ; 0x5c0d9
@@ -155,7 +155,7 @@ UnknownScript_0x5c0d9: ; 0x5c0d9
 	loadtrainer SCHOOLBOY, JACK3
 	startbattle
 	returnafterbattle
-	loadvar $d9f2, $3
+	loadvar wd9f2, $3
 	clearflag $0065
 	end
 ; 0x5c0e6
@@ -164,7 +164,7 @@ UnknownScript_0x5c0e6: ; 0x5c0e6
 	loadtrainer SCHOOLBOY, JACK4
 	startbattle
 	returnafterbattle
-	loadvar $d9f2, $4
+	loadvar wd9f2, $4
 	clearflag $0065
 	end
 ; 0x5c0f3
