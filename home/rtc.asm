@@ -2,7 +2,7 @@ RTC:: ; 46f
 ; update time and time-sensitive palettes
 
 ; rtc enabled?
-	ld a, [$c2ce]
+	ld a, [wc2ce]
 	cp 0
 	ret z
 	

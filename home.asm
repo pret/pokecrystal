@@ -67,7 +67,7 @@ INCLUDE "home/flag.asm"
 
 
 Function2ebb:: ; 2ebb
-	ld a, [$c2cc]
+	ld a, [wc2cc]
 	bit 1, a
 	ret z
 	ld a, [hJoyDown]
@@ -88,7 +88,7 @@ Function2ec8:: ; 2ec8
 
 Function2ecb:: ; 2ecb
 	push hl
-	ld hl, $c2cc
+	ld hl, wc2cc
 	bit 1, [hl]
 	pop hl
 	ret
@@ -103,13 +103,13 @@ Function2ed3:: ; 0x2ed3
 	res 0, a
 	ld [VramState], a
 	ld a, $0
-	ld [$c2ce], a
+	ld [wc2ce], a
 	ret
 ; 0x2ee4
 
 Function2ee4:: ; 2ee4
 	ld a, $1
-	ld [$c2ce], a
+	ld [wc2ce], a
 	ld a, [VramState]
 	set 0, a
 	ld [VramState], a
@@ -218,7 +218,7 @@ Function309d:: ; 309d
 	ld a, 2
 	ld [rSVBK], a
 	ld hl, TileMap
-	ld de, $d000
+	ld de, wd000
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
@@ -240,7 +240,7 @@ Function30bf:: ; 30bf
 	push af
 	ld a, 2
 	ld [rSVBK], a
-	ld hl, $d000
+	ld hl, wd000
 	ld de, TileMap
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
@@ -323,15 +323,15 @@ PrintLetterDelay:: ; 313d
 ; 	mid:  3 frames
 ; 	slow: 5 frames
 
-; $cfcf[!0] and A or B override text speed with a one-frame delay.
-; Options[4] and $cfcf[!1] disable the delay.
+; TextBoxFrame + 1[!0] and A or B override text speed with a one-frame delay.
+; Options[4] and TextBoxFrame + 1[!1] disable the delay.
 
 	ld a, [Options]
 	bit NO_TEXT_SCROLL, a
 	ret nz
 
 ; non-scrolling text?
-	ld a, [$cfcf]
+	ld a, [TextBoxFrame + 1]
 	bit 1, a
 	ret z
 
@@ -348,7 +348,7 @@ PrintLetterDelay:: ; 313d
 	ld [hl], a
 
 ; force fast scroll?
-	ld a, [$cfcf]
+	ld a, [TextBoxFrame + 1]
 	bit 0, a
 	jr z, .fast
 
@@ -367,7 +367,7 @@ PrintLetterDelay:: ; 313d
 	call GetJoypad
 
 ; input override
-	ld a, [$c2d7]
+	ld a, [wc2d7]
 	and a
 	jr nz, .wait
 
@@ -482,16 +482,16 @@ CallPointerAt:: ; 31be
 
 
 Function31cd:: ; 31cd
-; Push pointer hl in the current bank to $d0e8.
+; Push pointer hl in the current bank to wd0e8.
 	ld a, [hROMBank]
 
 Function31cf:: ; 31cf
-; Push pointer a:hl to $d0e8.
-	ld [$d0e8], a
+; Push pointer a:hl to wd0e8.
+	ld [wd0e8], a
 	ld a, l
-	ld [$d0e9], a
+	ld [wd0e9], a
 	ld a, h
-	ld [$d0ea], a
+	ld [wd0e9 + 1], a
 	ret
 ; 31db
 
@@ -578,7 +578,7 @@ Function321c:: ; 321c
 	and a
 	jr z, .dmg
 
-	ld a, [$c2ce]
+	ld a, [wc2ce]
 	cp 0
 	jr z, .dmg
 
@@ -789,7 +789,7 @@ GetHPPal:: ; 3353
 
 CountSetBits:: ; 0x335f
 ; Count the number of set bits in b bytes starting from hl.
-; Return in a, c and [$d265].
+; Return in a, c and [wd265].
 
 	ld c, 0
 .next
@@ -809,7 +809,7 @@ CountSetBits:: ; 0x335f
 	jr nz, .next
 
 	ld a, c
-	ld [$d265], a
+	ld [wd265], a
 	ret
 ; 0x3376
 
@@ -839,7 +839,7 @@ NamesPointers:: ; 33ab
 ; 33c3
 
 GetName:: ; 33c3
-; Return name CurSpecies from name list $cf61 in StringBuffer1.
+; Return name CurSpecies from name list wcf61 in StringBuffer1.
 
 	ld a, [hROMBank]
 	push af
@@ -847,12 +847,12 @@ GetName:: ; 33c3
 	push bc
 	push de
 
-	ld a, [$cf61]
+	ld a, [wcf61]
 	cp PKMN_NAME
 	jr nz, .NotPokeName
 
 	ld a, [CurSpecies]
-	ld [$d265], a
+	ld [wd265], a
 	call GetPokemonName
 	ld hl, PKMN_NAME_LENGTH
 	add hl, de
@@ -861,7 +861,7 @@ GetName:: ; 33c3
 	jr .done
 
 .NotPokeName
-	ld a, [$cf61]
+	ld a, [wcf61]
 	dec a
 	ld e, a
 	ld d, 0
@@ -885,9 +885,9 @@ GetName:: ; 33c3
 
 .done
 	ld a, e
-	ld [$d102], a
+	ld [wd102], a
 	ld a, d
-	ld [$d103], a
+	ld [wd103], a
 
 	pop de
 	pop bc
@@ -946,7 +946,7 @@ GetBasePokemonName:: ; 3420
 
 
 GetPokemonName:: ; 343b
-; Get Pokemon name $d265.
+; Get Pokemon name wd265.
 
 	ld a, [hROMBank]
 	push af
@@ -955,7 +955,7 @@ GetPokemonName:: ; 343b
 	rst Bankswitch
 
 ; Each name is ten characters
-	ld a, [$d265]
+	ld a, [wd265]
 	dec a
 	ld d, 0
 	ld e, a
@@ -985,18 +985,18 @@ GetPokemonName:: ; 343b
 
 
 GetItemName:: ; 3468
-; Get item name $d265.
+; Get item name wd265.
 
 	push hl
 	push bc
-	ld a, [$d265]
+	ld a, [wd265]
 
 	cp TM_01
 	jr nc, .TM
 
 	ld [CurSpecies], a
 	ld a, ITEM_NAME
-	ld [$cf61], a
+	ld [wcf61], a
 	call GetName
 	jr .Copied
 .TM
@@ -1010,12 +1010,12 @@ GetItemName:: ; 3468
 
 
 GetTMHMName:: ; 3487
-; Get TM/HM name by item id $d265.
+; Get TM/HM name by item id wd265.
 
 	push hl
 	push de
 	push bc
-	ld a, [$d265]
+	ld a, [wd265]
 	push af
 
 ; TM/HM prefix
@@ -1037,7 +1037,7 @@ GetTMHMName:: ; 3487
 
 ; TM/HM number
 	push de
-	ld a, [$d265]
+	ld a, [wd265]
 	ld c, a
 	callab GetTMHMNumber
 	pop de
@@ -1075,7 +1075,7 @@ GetTMHMName:: ; 3487
 	ld [de], a
 
 	pop af
-	ld [$d265], a
+	ld [wd265], a
 	pop bc
 	pop de
 	pop hl
@@ -1125,9 +1125,9 @@ GetMoveName:: ; 34f8
 	push hl
 
 	ld a, MOVE_NAME
-	ld [$cf61], a
+	ld [wcf61], a
 
-	ld a, [$d265] ; move id
+	ld a, [wd265] ; move id
 	ld [CurSpecies], a
 
 	call GetName
@@ -1153,7 +1153,7 @@ Function350c:: ; 350c
 	pop af
 	rst Bankswitch
 
-	ld a, [$cf73]
+	ld a, [wcf73]
 	ret
 ; 3524
 
@@ -1165,16 +1165,16 @@ Function3524:: ; 3524
 ; 352f
 
 Function352f:: ; 352f
-	ld a, [$cf82]
+	ld a, [wcf82]
 	dec a
 	ld b, a
-	ld a, [$cf84]
+	ld a, [wcf84]
 	sub b
 	ld d, a
-	ld a, [$cf83]
+	ld a, [wcf83]
 	dec a
 	ld c, a
-	ld a, [$cf85]
+	ld a, [wcf85]
 	sub c
 	ld e, a
 	push de
@@ -1266,11 +1266,11 @@ Function3599:: ; 3599
 ; 35b0
 
 Function35b0:: ; 35b0
-	ld hl, $dbfc
+	ld hl, wdbf9 + 3
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$dbfb]
+	ld a, [wdbf9 + 2]
 	and a
 	jr z, .asm_35d3
 
@@ -1304,7 +1304,7 @@ Function35b0:: ; 35b0
 .asm_35d5
 	pop af
 	ld d, a
-	ld a, [$dbfb]
+	ld a, [wdbf9 + 2]
 	sub d
 	inc a
 	scf
@@ -1451,17 +1451,17 @@ CheckTrainerBattle:: ; 360d
 	pop af
 	ld [$ffe0], a
 	ld a, b
-	ld [$d03f], a
+	ld [CurFruit], a
 	ld a, c
-	ld [$d040], a
+	ld [wd040], a
 	jr Function367e
 ; 3674
 
 Function3674:: ; 3674
 	ld a, $1
-	ld [$d03f], a
+	ld [CurFruit], a
 	ld a, $ff
-	ld [$d040], a
+	ld [wd040], a
 
 Function367e:: ; 367e
 	call GetMapScriptHeaderBank
@@ -1472,12 +1472,12 @@ Function367e:: ; 367e
 	add hl, bc
 	ld a, [EngineBuffer1]
 	call GetFarHalfword
-	ld de, $d041
+	ld de, wd041
 	ld bc, $000d
 	ld a, [EngineBuffer1]
 	call FarCopyBytes
 	xor a
-	ld [$d04d], a
+	ld [wd04d], a
 	scf
 	ret
 ; 36a5
@@ -1596,15 +1596,15 @@ Function3718:: ; 3718
 	cp BATTLETYPE_CANLOSE
 	jr .asm_3724
 
-	ld hl, $d047
+	ld hl, WalkingTile
 	jr .asm_3731
 
 .asm_3724
-	ld a, [$d0ee]
-	ld hl, $d047
+	ld a, [wd0ee]
+	ld hl, WalkingTile
 	and $f
 	jr z, .asm_3731
-	ld hl, $d049
+	ld hl, wd048 + 1
 
 .asm_3731
 	ld a, [hli]
@@ -1702,7 +1702,7 @@ DrawHPBar:: ; 3750
 
 Function3786:: ; 3786
 	ld a, $1
-	ld [$c2c6], a
+	ld [wc2c6], a
 
 Function378b:: ; 378b
 	ld a, [CurPartySpecies]
@@ -1718,12 +1718,12 @@ Function378b:: ; 378b
 	lb bc, 7, 7
 	predef FillBox
 	xor a
-	ld [$c2c6], a
+	ld [wc2c6], a
 	ret
 
 .not_pokemon
 	xor a
-	ld [$c2c6], a
+	ld [wc2c6], a
 	inc a
 	ld [CurPartySpecies], a
 	ret
@@ -1759,15 +1759,15 @@ Function383d:: ; 383d
 ; 3842
 
 Function3842:: ; 3842
-	ld [$d265], a
-	ld de, $d265
+	ld [wd265], a
+	ld de, wd265
 	ld b, 1 << 6 + 1
 	jp PrintNum
 ; 384d
 
 
 Function384d:: ; 384d
-	ld hl, $d25e
+	ld hl, wd25e
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -2057,13 +2057,13 @@ Function3b0c:: ; 3b0c
 
 Function3b2a:: ; 3b2a
 
-	ld [$c3b8], a
+	ld [wc3b8], a
 	ld a, [hROMBank]
 	push af
 
 	ld a, BANK(Function8cfd6)
 	rst Bankswitch
-	ld a, [$c3b8]
+	ld a, [wc3b8]
 
 	call Function8cfd6
 
@@ -2076,13 +2076,13 @@ Function3b2a:: ; 3b2a
 
 Function3b3c:: ; 3b3c
 
-	ld [$c3b8], a
+	ld [wc3b8], a
 	ld a, [hROMBank]
 	push af
 
 	ld a, BANK(Function8d120)
 	rst Bankswitch
-	ld a, [$c3b8]
+	ld a, [wc3b8]
 
 	call Function8d120
 
@@ -2226,7 +2226,7 @@ Function3f7c:: ; 3f7c
 ; 3f88
 
 Function3f88:: ; 3f88
-	ld hl, $d000
+	ld hl, wd000
 	ld b, $0
 .asm_3f8d
 	push bc
@@ -2247,7 +2247,7 @@ Function3f88:: ; 3f88
 ; 3f9f
 
 Function3f9f:: ; 3f9f
-	ld hl, $d000
+	ld hl, wd000
 .asm_3fa2
 	push bc
 	ld c, $8

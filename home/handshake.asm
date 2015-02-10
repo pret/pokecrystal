@@ -1,15 +1,15 @@
 AskSerial:: ; 2063
 ; send out a handshake while serial int is off
-	ld a, [$c2d4]
+	ld a, [wc2d4]
 	bit 0, a
 	ret z
 	
-	ld a, [$c2d5]
+	ld a, [wc2d5]
 	and a
 	ret nz
 	
 ; once every 6 frames
-	ld hl, $ca8a
+	ld hl, wca8a
 	inc [hl]
 	ld a, [hl]
 	cp 6
@@ -19,7 +19,7 @@ AskSerial:: ; 2063
 	ld [hl], a
 	
 	ld a, $c
-	ld [$c2d5], a
+	ld [wc2d5], a
 	
 ; handshake
 	ld a, $88

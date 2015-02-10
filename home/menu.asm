@@ -7,16 +7,16 @@ LoadMenuDataHeader:: ; 0x1d35
 	ret
 
 Function1d3c:: ; 0x1d3c
-	ld de, $cf81
+	ld de, wcf81
 	ld bc, $0010
 	call CopyBytes
 	ld a, [hROMBank]
-	ld [$cf8a], a
+	ld [wcf8a], a
 	ret
 ; 0x1d4b
 
 Function1d4b:: ; 1d4b
-	ld [$cf88], a
+	ld [wcf88], a
 	ret
 ; 1d4f
 
@@ -79,7 +79,7 @@ Function1d81:: ; 0x1d81
 	call Function1c89
 	call Function321c
 	call Function1c66
-	ld a, [$cf91]
+	ld a, [wcf91]
 	bit 7, a
 	jr z, .asm_1da7 ; 0x1d98 $d
 	call Function1c10
@@ -99,7 +99,7 @@ Function1dab:: ; 1dab
 	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c17
-	ld a, [$cfa9]
+	ld a, [wcfa9]
 	ret
 ; 1db8
 
@@ -107,7 +107,7 @@ Function1db8:: ; 0x1db8
 	push hl
 	push bc
 	push af
-	ld hl, $cf86
+	ld hl, wcf86
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -148,13 +148,13 @@ _YesNoBox:: ; 1dd9
 
 .asm_1de9
 	ld a, b
-	ld [$cf83], a
+	ld [wcf83], a
 	add $5
-	ld [$cf85], a
+	ld [wcf85], a
 	ld a, c
-	ld [$cf82], a
+	ld [wcf82], a
 	add $4
-	ld [$cf84], a
+	ld [wcf84], a
 	call Function1c00
 
 Function1dfe:: ; 1dfe
@@ -165,7 +165,7 @@ Function1dfe:: ; 1dfe
 	call Function1c17
 	pop af
 	jr c, .asm_1e16
-	ld a, [$cfa9]
+	ld a, [wcfa9]
 	cp 2 ; no
 	jr z, .asm_1e16
 	and a
@@ -173,7 +173,7 @@ Function1dfe:: ; 1dfe
 
 .asm_1e16
 	ld a, $2
-	ld [$cfa9], a
+	ld [wcfa9], a
 	scf
 	ret
 ; 1e1d
@@ -203,24 +203,24 @@ Function1e35:: ; 1e35
 	push de
 	call Function1d3c
 	pop de
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld h, a
-	ld a, [$cf85]
+	ld a, [wcf85]
 	sub h
 	ld h, a
 	ld a, d
-	ld [$cf83], a
+	ld [wcf83], a
 	add h
-	ld [$cf85], a
-	ld a, [$cf82]
+	ld [wcf85], a
+	ld a, [wcf82]
 	ld l, a
-	ld a, [$cf84]
+	ld a, [wcf84]
 	sub l
 	ld l, a
 	ld a, e
-	ld [$cf82], a
+	ld [wcf82], a
 	add l
-	ld [$cf84], a
+	ld [wcf84], a
 	ret
 ; 1e5d
 
@@ -238,7 +238,7 @@ SetUpMenu:: ; 1e70
 	call MenuFunc_1e7f ; ???
 	call MenuWriteText
 	call Function1eff ; set up selection pointer
-	ld hl, $cfa5
+	ld hl, wcfa5
 	set 7, [hl]
 	ret
 
@@ -266,27 +266,27 @@ MenuWriteText:: ; 0x1e8c
 ; 0x1ea6
 
 Function1ea6:: ; 1ea6
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld c, a
-	ld a, [$cf85]
+	ld a, [wcf85]
 	sub c
 	ld c, a
-	ld a, [$cf92]
+	ld a, [wcf92]
 	add a
 	inc a
 	ld b, a
-	ld a, [$cf82]
+	ld a, [wcf82]
 	add b
-	ld [$cf84], a
+	ld [wcf84], a
 	ret
 ; 1ebd
 
 Function1ebd:: ; 1ebd
-	ld hl, $cf93
+	ld hl, wcf93
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$cf76]
+	ld a, [wcf76]
 	and a
 	jr z, .asm_1ed3
 	ld b, a
@@ -302,7 +302,7 @@ Function1ebd:: ; 1ebd
 	ld d, h
 	ld e, l
 	ld a, [hl]
-	ld [$cf92], a
+	ld [wcf92], a
 	ret
 ; 1eda
 
@@ -320,7 +320,7 @@ Function1eda:: ; 1eda
 	push hl
 	ld d, h
 	ld e, l
-	ld hl, $cf95
+	ld hl, wcf95
 	call Function1efb
 	pop hl
 	ld de, $0028
@@ -338,14 +338,14 @@ Function1efb:: ; 1efb
 
 Function1eff:: ; 1eff
 	call Function1c10
-	ld hl, $cfa8
-	ld a, [$cf91]
+	ld hl, wcfa8
+	ld a, [wcf91]
 	bit 3, a
 	jr z, .asm_1f0e
 	set 3, [hl]
 
 .asm_1f0e
-	ld a, [$cf91]
+	ld a, [wcf91]
 	bit 2, a
 	jr z, .asm_1f19
 	set 5, [hl]
@@ -358,14 +358,14 @@ Function1eff:: ; 1eff
 
 Function1f1a:: ; 1f1a
 	call Function1bd3
-	ld hl, $cfa8
+	ld hl, wcfa8
 	and [hl]
 	jr Function1f2a
 ; 1f23
 
 Function1f23:: ; 1f23
 	xor a
-	ld [$cf73], a
+	ld [wcf73], a
 	call Function1bc9
 ; 1f2a
 
@@ -381,39 +381,39 @@ Function1f2a:: ; 1f2a
 	bit 5, a
 	jr nz, .asm_1f4b
 	xor a
-	ld [$cf73], a
+	ld [wcf73], a
 	jr .asm_1f57
 
 .asm_1f44
 	ld a, $10
-	ld [$cf73], a
+	ld [wcf73], a
 	jr .asm_1f57
 
 .asm_1f4b
 	ld a, $20
-	ld [$cf73], a
+	ld [wcf73], a
 	jr .asm_1f57
 
 .asm_1f52
 	ld a, $1
-	ld [$cf73], a
+	ld [wcf73], a
 
 .asm_1f57
 	call Function1ebd
-	ld a, [$cfa9]
+	ld a, [wcfa9]
 	ld l, a
 	ld h, $0
 	add hl, de
 	ld a, [hl]
 	ld [MenuSelection], a
-	ld a, [$cfa9]
-	ld [$cf88], a
+	ld a, [wcfa9]
+	ld [wcf88], a
 	and a
 	ret
 
 .asm_1f6d
 	ld a, $2
-	ld [$cf73], a
+	ld [wcf73], a
 	ld a, $ff
 	ld [MenuSelection], a
 	scf
@@ -422,7 +422,7 @@ Function1f2a:: ; 1f2a
 
 Function1f79:: ; 1f79
 	push de
-	ld hl, $cf97
+	ld hl, wcf97
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -471,7 +471,7 @@ Function1fa7:: ; 1fa7
 Function1fb1:: ; 1fb1
 	ld e, a
 	ld d, $0
-	ld hl, $cf97
+	ld hl, wcf97
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -483,13 +483,13 @@ Function1fb1:: ; 1fb1
 ; 1fbf
 
 Function1fbf:: ; 1fbf
-	ld hl, $cf71
+	ld hl, wcf71
 	call Function1ff0
-	ld hl, $cf81
+	ld hl, wcf81
 	call Function1ff0
-	ld hl, $cf91
+	ld hl, wcf91
 	call Function1ff0
-	ld hl, $cfa1
+	ld hl, wcfa1
 	call Function1ff0
 	ld a, [rSVBK]
 	push af
@@ -500,9 +500,9 @@ Function1fbf:: ; 1fbf
 	ld [hld], a
 	ld [hld], a
 	ld a, l
-	ld [$cf71], a
+	ld [wcf71], a
 	ld a, h
-	ld [$cf72], a
+	ld [wcf72], a
 	pop af
 	ld [rSVBK], a
 	ret
@@ -519,7 +519,7 @@ Function1ff8:: ; 1ff8
 	push af
 	and $3
 	jr z, .asm_2007
-	ld hl, $cf81
+	ld hl, wcf81
 	bit 3, [hl]
 	jr nz, .asm_2007
 	call PlayClickSFX
@@ -561,25 +561,25 @@ Function201c:: ; 201c
 
 Function202a:: ; 202a
 	ld a, [hROMBank]
-	ld [$cf94], a
+	ld [wcf94], a
 	callba Function2400e
-	ld a, [$cf88]
+	ld a, [wcf88]
 	ret
 ; 2039
 
 Function2039:: ; 2039
 	ld a, [hROMBank]
-	ld [$cf94], a
+	ld [wcf94], a
 	callba Function24022
-	ld a, [$cf88]
+	ld a, [wcf88]
 	ret
 ; 2048
 
 Function2048:: ; 2048
 	ld a, [hROMBank]
-	ld [$cf94], a
+	ld [wcf94], a
 	callba Function2403c
-	ld a, [$cf88]
+	ld a, [wcf88]
 	ret
 ; 2057
 

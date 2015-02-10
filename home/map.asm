@@ -1,7 +1,7 @@
 ; Functions dealing with rendering and interacting with maps.
 
 Function210f:: ; 210f
-	ld hl, $c7e8
+	ld hl, wc7e8
 	ld bc, $0018
 	ld a, $0
 	call ByteFill
@@ -10,7 +10,7 @@ Function210f:: ; 210f
 
 Function211b:: ; 211b
 	push hl
-	ld hl, $dbf7
+	ld hl, BikeFlags + 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -30,14 +30,14 @@ GetCurrentMapTrigger:: ; 212a
 	ld a, [MapNumber]
 	ld c, a
 	xor a
-	ld [$dbf7], a
-	ld [$dbf8], a
+	ld [BikeFlags + 2], a
+	ld [BikeFlags + 3], a
 	call GetMapTrigger
 	ret c
 	ld a, e
-	ld [$dbf7], a
+	ld [BikeFlags + 2], a
 	ld a, d
-	ld [$dbf8], a
+	ld [BikeFlags + 3], a
 	xor a
 	ret
 ; 2147
@@ -116,11 +116,11 @@ Function217a:: ; 217a
 ; 2198
 
 Function2198:: ; 2198
-	ld a, [$d194]
+	ld a, [wd194]
 	ld e, a
-	ld a, [$d195]
+	ld a, [wd195]
 	ld d, a
-	ld hl, $c608
+	ld hl, wEnemyMoveStruct
 	ld b, $5
 
 .asm_21a5
@@ -250,11 +250,11 @@ Function2266:: ; 2266
 	ld a, [MapX]
 	sub $4
 	ld d, a
-	ld a, [$dbfb]
+	ld a, [wdbfb]
 	and a
 	ret z
 	ld c, a
-	ld hl, $dbfc
+	ld hl, wdbfc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -286,7 +286,7 @@ Function2266:: ; 2266
 	pop hl
 	call Function22a3
 	ret nc
-	ld a, [$dbfb]
+	ld a, [wdbfb]
 	inc a
 	sub c
 	ld c, a
@@ -316,7 +316,7 @@ Function22a7:: ; 22a7
 
 Function22b4:: ; 22b4
 	push bc
-	ld hl, $dbfc
+	ld hl, wdbfc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -329,22 +329,22 @@ Function22b4:: ; 22b4
 	ld a, [hli]
 	cp $ff
 	jr nz, .asm_22d0
-	ld hl, $dcac
+	ld hl, wdcac
 	ld a, [hli]
 
 .asm_22d0
 	pop bc
-	ld [$d146], a
+	ld [wd146], a
 	ld a, [hli]
-	ld [$d147], a
+	ld [wd147], a
 	ld a, [hli]
-	ld [$d148], a
+	ld [wd148], a
 	ld a, c
-	ld [$d149], a
+	ld [wd149], a
 	ld a, [MapGroup]
-	ld [$d14a], a
+	ld [wd14a], a
 	ld a, [MapNumber]
-	ld [$d14b], a
+	ld [wd14b], a
 	scf
 	ret
 ; 22ee
@@ -500,11 +500,11 @@ GetMapConnection:: ; 23a3
 Function23ac:: ; 23ac
 	ld a, [hli]
 	ld c, a
-	ld [$dc07], a
+	ld [wdc07], a
 	ld a, l
-	ld [$dc08], a
+	ld [wdc07 + 1], a
 	ld a, h
-	ld [$dc09], a
+	ld [wdc09], a
 	ld a, c
 	and a
 	ret z
@@ -516,11 +516,11 @@ Function23ac:: ; 23ac
 Function23c3:: ; 23c3
 	ld a, [hli]
 	ld c, a
-	ld [$dc0a], a
+	ld [wdc0a], a
 	ld a, l
-	ld [$dc0b], a
+	ld [wdc0b], a
 	ld a, h
-	ld [$dc0c], a
+	ld [wdc0b + 1], a
 	ld a, c
 	and a
 	ret z
@@ -532,11 +532,11 @@ Function23c3:: ; 23c3
 Function23da:: ; 23da
 	ld a, [hli]
 	ld c, a
-	ld [$dbfb], a
+	ld [wdbfb], a
 	ld a, l
-	ld [$dbfc], a
+	ld [wdbfc], a
 	ld a, h
-	ld [$dbfd], a
+	ld [wdbfd], a
 	ld a, c
 	and a
 	ret z
@@ -548,11 +548,11 @@ Function23da:: ; 23da
 Function23f1:: ; 23f1
 	ld a, [hli]
 	ld c, a
-	ld [$dbfe], a
+	ld [wdbfe], a
 	ld a, l
-	ld [$dbff], a
+	ld [wdbff], a
 	ld a, h
-	ld [$dc00], a
+	ld [wdc00], a
 	ld a, c
 	and a
 	ret z
@@ -564,11 +564,11 @@ Function23f1:: ; 23f1
 Function2408:: ; 2408
 	ld a, [hli]
 	ld c, a
-	ld [$dc01], a
+	ld [wdc01], a
 	ld a, l
-	ld [$dc02], a
+	ld [wdc02], a
 	ld a, h
-	ld [$dc03], a
+	ld [wdc03], a
 	ld a, c
 	and a
 	ret z
@@ -581,17 +581,17 @@ Function241f:: ; 241f
 	push hl
 	call Function2471
 	pop de
-	ld hl, $d72e
+	ld hl, MapObjects + OBJECT_LENGTH
 	ld a, [de]
 	inc de
-	ld [$dc04], a
+	ld [wdc04], a
 	ld a, e
-	ld [$dc05], a
+	ld [wdc05], a
 	ld a, d
-	ld [$dc06], a
-	ld a, [$dc04]
+	ld [wdc06], a
+	ld a, [wdc04]
 	call Function2457
-	ld a, [$dc04]
+	ld a, [wdc04]
 	ld c, a
 	ld a, $10
 	sub c
@@ -688,11 +688,11 @@ Function248a:: ; 248a
 ; 24ba
 
 Function24ba:: ; 24ba
-	ld a, [$d149]
-	ld [$dcac], a
-	ld a, [$d14a]
+	ld a, [wd149]
+	ld [wdcac], a
+	ld a, [wd14a]
 	ld [BackupMapGroup], a
-	ld a, [$d14b]
+	ld a, [wd14b]
 	ld [BackupMapNumber], a
 	ret
 ; 24cd
@@ -939,7 +939,7 @@ FillEastConnectionStrip:: ; 25f6
 ; 261b
 
 Function261b:: ; 261b
-	ld [$d432], a
+	ld [MapStatus], a
 	ret
 ; 261f
 
@@ -989,11 +989,11 @@ Function263b:: ; 263b
 ; 2653
 
 Function2653:: ; 2653
-	ld a, [$dc0a]
+	ld a, [wdc0a]
 	ld c, a
 	and a
 	ret z
-	ld hl, $dc0b
+	ld hl, wdc0b
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1161,7 +1161,7 @@ Function2707:: ; 2707
 	ld a, [hConnectionStripLength]
 	ld e, a
 	ld d, $0
-	ld hl, $d81e
+	ld hl, wd81e
 	add hl, de
 	ld a, [hl]
 	ret
@@ -1171,7 +1171,7 @@ Function2712:: ; 2712
 	ld a, [hConnectionStripLength]
 	ld e, a
 	ld d, $0
-	ld hl, $d81e
+	ld hl, wd81e
 	add hl, de
 	ld [hl], $ff
 	ret
@@ -1181,7 +1181,7 @@ Function271e:: ; 271e
 	ld a, [hConnectionStripLength]
 	ld e, a
 	ld d, $0
-	ld hl, $d81e
+	ld hl, wd81e
 	add hl, de
 	ld [hl], $0
 	ret
@@ -1194,9 +1194,9 @@ Function272a:: ; 272a
 	call Function27b7
 	ld c, $28
 	call Functiondbd
-	ld a, [$d152]
+	ld a, [wd152]
 	ld e, a
-	ld a, [$d153]
+	ld a, [wd153]
 	ld d, a
 	call Function27d3
 	ld a, $1
@@ -1210,9 +1210,9 @@ Function2748:: ; 2748
 	call Function27b7
 	ld c, $28
 	call Functiondbd
-	ld a, [$d152]
+	ld a, [wd152]
 	ld l, a
-	ld a, [$d153]
+	ld a, [wd153]
 	ld h, a
 	ld bc, $0200
 	add hl, bc
@@ -1233,9 +1233,9 @@ Function2771:: ; 2771
 	call Function27c0
 	ld c, $24
 	call Functiondbd
-	ld a, [$d152]
+	ld a, [wd152]
 	ld e, a
-	ld a, [$d153]
+	ld a, [wd153]
 	ld d, a
 	call Function27f8
 	ld a, $1
@@ -1249,7 +1249,7 @@ Function278f:: ; 278f
 	call Function27c0
 	ld c, $24
 	call Functiondbd
-	ld a, [$d152]
+	ld a, [wd152]
 	ld e, a
 	and $e0
 	ld b, a
@@ -1258,7 +1258,7 @@ Function278f:: ; 278f
 	and $1f
 	or b
 	ld e, a
-	ld a, [$d153]
+	ld a, [wd153]
 	ld d, a
 	call Function27f8
 	ld a, $1
@@ -1376,9 +1376,9 @@ Function2821:: ; 2821
 	ld a, $6
 	ld [rSVBK], a
 	ld a, e
-	ld de, $d000
+	ld de, w6_d000
 	call FarDecompress
-	ld hl, $d000
+	ld hl, w6_d000
 	ld de, VTiles2
 	ld bc, $0600
 	call CopyBytes
@@ -1386,7 +1386,7 @@ Function2821:: ; 2821
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $d600
+	ld hl, w6_d600
 	ld de, VTiles2
 	ld bc, $0600
 	call CopyBytes
@@ -1394,7 +1394,7 @@ Function2821:: ; 2821
 	ld [rVBK], a
 	pop af
 	ld [rSVBK], a
-	ld a, [$d199]
+	ld a, [wd199]
 	cp $1
 	jr z, .asm_286f
 	cp $2
@@ -1413,11 +1413,11 @@ Function2821:: ; 2821
 ; 2879
 
 Function2879:: ; 2879
-	ld hl, $d194
+	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $dcb9
+	ld de, XCoord + 1
 	ld c, $5
 	ld b, $6
 .asm_2886
@@ -1442,15 +1442,15 @@ Function2879:: ; 2879
 ; 289d
 
 Function289d:: ; 289d
-	ld hl, $d194
+	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $dcb9
+	ld de, XCoord + 1
 	ld a, [MapWidth]
 	add $6
 	ld [hConnectionStripLength], a
-	ld a, [$d151]
+	ld a, [wd151]
 	and a
 	jr z, .asm_28cb
 	cp $1
@@ -1462,7 +1462,7 @@ Function289d:: ; 289d
 	ret
 
 .asm_28c0
-	ld de, $dcbf
+	ld de, wdcbf
 	ld a, [hConnectionStripLength]
 	ld c, a
 	ld b, $0
@@ -1470,7 +1470,7 @@ Function289d:: ; 289d
 	jr .asm_28ce
 
 .asm_28cb
-	ld de, $dcb9
+	ld de, XCoord + 1
 
 .asm_28ce
 	ld b, $6
@@ -1478,12 +1478,12 @@ Function289d:: ; 289d
 	jr Function28f7
 
 .asm_28d4
-	ld de, $dcba
+	ld de, XCoord + 2
 	inc hl
 	jr .asm_28dd
 
 .asm_28da
-	ld de, $dcb9
+	ld de, XCoord + 1
 
 .asm_28dd
 	ld b, $5
@@ -1492,14 +1492,14 @@ Function289d:: ; 289d
 
 
 Function28e3:: ; 28e3
-	ld hl, $d194
+	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [MapWidth]
 	add $6
 	ld [hConnectionStripLength], a
-	ld de, $dcb9
+	ld de, XCoord + 1
 	ld b, $6
 	ld c, $5
 
@@ -1771,7 +1771,7 @@ Function2a66:: ; 2a66
 	add $6
 	ld c, a
 	ld b, $0
-	ld hl, $c801
+	ld hl, wc801
 	add hl, bc
 	ld a, e
 	srl a
@@ -1806,7 +1806,7 @@ CheckFacingSign:: ; 2a8b
 	ld a, e
 	sub 4
 	ld e, a
-	ld a, [$dc01]
+	ld a, [wdc01]
 	and a
 	ret z
 	ld c, a
@@ -1821,7 +1821,7 @@ CheckFacingSign:: ; 2a8b
 ; 2aaa
 
 Function2aaa:: ; 2aaa
-	ld hl, $dc02
+	ld hl, wdc02
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1859,7 +1859,7 @@ Function2aaa:: ; 2aaa
 ; 2ad4
 
 Function2ad4:: ; 2ad4
-	ld a, [$dbfe]
+	ld a, [wdbfe]
 	and a
 	ret z
 	ld c, a
@@ -1874,7 +1874,7 @@ Function2ad4:: ; 2ad4
 ; 2ae7
 
 Function2ae7:: ; 2ae7
-	ld hl, $dbff
+	ld hl, wdbff
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1969,7 +1969,7 @@ Function2b5c:: ; 2b5c
 Function2b74:: ; 0x2b74
 	push af
 	ld a, $1
-	ld [$c2ce], a
+	ld [wc2ce], a
 	call WhiteBGMap
 	call ClearSprites
 	call Function2bae
@@ -2131,7 +2131,7 @@ Function2c3d:: ; 2c3d
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
 	call GetMapHeaderPointer
-	ld de, $d198
+	ld de, wd197 + 1
 	ld bc, $0005
 	call CopyBytes
 	pop af
@@ -2335,7 +2335,7 @@ LoadTilesetHeader:: ; 2d27
 
 	ld hl, Tilesets
 	ld bc, Tileset01 - Tileset00
-	ld a, [$d199]
+	ld a, [wd199]
 	call AddNTimes
 
 	ld de, TilesetBank

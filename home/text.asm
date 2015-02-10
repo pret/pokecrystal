@@ -661,13 +661,13 @@ Diacritic:: ; 13c6
 
 Function13c7:: ; 13c7
 	ld a, "▼"
-	ld [$c606], a
+	ld [TileMap + 18 + 17 * SCREEN_WIDTH], a
 	ret
 ; 13cd
 
 Function13cd:: ; 13cd
-	ld a, [$c605]
-	ld [$c606], a
+	ld a, [TileMap + 17 + 17 * SCREEN_WIDTH]
+	ld [TileMap + 18 + 17 * SCREEN_WIDTH], a
 	ret
 ; 13d4
 
@@ -694,15 +694,15 @@ Function13e0:: ; 13e0
 
 
 Function13e5:: ; 13e5
-	ld a, [$cfcf]
+	ld a, [TextBoxFrame + 1]
 	push af
 	set 1, a
-	ld [$cfcf], a
+	ld [TextBoxFrame + 1], a
 
 	call Function13f6
 
 	pop af
-	ld [$cfcf], a
+	ld [TextBoxFrame + 1], a
 	ret
 ; 13f6
 
@@ -850,10 +850,10 @@ Text_03:: ; 1480
 ; [$03][addr]
 
 	ld a, [hli]
-	ld [$d0e6], a
+	ld [wd0e4 + 2], a
 	ld c, a
 	ld a, [hli]
-	ld [$d0e6 + 1], a
+	ld [wd0e4 + 2 + 1], a
 	ld b, a
 	ret
 ; 148b

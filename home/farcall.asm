@@ -33,18 +33,18 @@ ReturnFarCall:: ; 2d6e
 ; To do this, we can pop to bc instead of af.
 	
 	ld a, b
-	ld [$cfb9], a
+	ld [PredefAddress + 2], a
 	ld a, c
-	ld [$cfba], a
+	ld [PredefAddress + 3], a
 	
 ; Restore the working bank.
 	pop bc
 	ld a, b
 	rst Bankswitch
 	
-	ld a, [$cfb9]
+	ld a, [PredefAddress + 2]
 	ld b, a
-	ld a, [$cfba]
+	ld a, [PredefAddress + 3]
 	ld c, a
 	ret
 ; 2d82

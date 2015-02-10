@@ -21,7 +21,7 @@ Function1c30:: ; 0x1c30
 
 Function1c47:: ; 0x1c47
 	ld b, $10
-	ld de, $cf81
+	ld de, wcf81
 .asm_1c4c
 	ld a, [hld]
 	ld [de], a
@@ -31,14 +31,14 @@ Function1c47:: ; 0x1c47
 	ret
 
 Function1c53:: ; 0x1c53
-	ld a, [$cf82]
+	ld a, [wcf82]
 	ld b, a
-	ld a, [$cf84]
+	ld a, [wcf84]
 	sub b
 	ld b, a
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld c, a
-	ld a, [$cf85]
+	ld a, [wcf85]
 	sub c
 	ld c, a
 	ret
@@ -49,11 +49,11 @@ Function1c66:: ; 1c66
 	push de
 	push bc
 	push af
-	ld hl, $cf86
+	ld hl, wcf86
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $cf91
+	ld de, wcf91
 	ld bc, $0010
 	call CopyBytes
 	pop af
@@ -64,7 +64,7 @@ Function1c66:: ; 1c66
 ; 1c7e
 
 Function1c7e:: ; 1c7e
-	ld hl, $cf71
+	ld hl, wcf71
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -77,7 +77,7 @@ Function1c7e:: ; 1c7e
 
 Function1c89:: ; 1c89
 	call Function1c66
-	ld hl, $cf86
+	ld hl, wcf86
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -96,7 +96,7 @@ Function1c89:: ; 1c89
 	pop bc
 	dec b
 	jr nz, .asm_1c9c
-	ld a, [$cf91]
+	ld a, [wcf91]
 	bit 4, a
 	ret z
 	call Function1cfd
@@ -117,19 +117,19 @@ Function1cbb:: ; 1cbb
 ; 1cc6
 
 Function1cc6:: ; 1cc6
-	ld a, [$cf82]
+	ld a, [wcf82]
 	ld b, a
 	inc b
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld c, a
 	inc c
-	ld a, [$cf91]
+	ld a, [wcf91]
 	bit 6, a
 	jr nz, .asm_1cd8
 	inc b
 
 .asm_1cd8
-	ld a, [$cf91]
+	ld a, [wcf91]
 	bit 7, a
 	jr z, .asm_1ce0
 	inc c
@@ -160,9 +160,9 @@ Function1cf1:: ; 1cf1
 
 
 Function1cfd:: ; 1cfd
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld c, a
-	ld a, [$cf82]
+	ld a, [wcf82]
 	ld b, a
 ; 1d05
 
@@ -190,9 +190,9 @@ GetTileCoord:: ; 1d05
 ; 1d19
 
 Function1d19:: ; 1d19
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld c, a
-	ld a, [$cf82]
+	ld a, [wcf82]
 	ld b, a
 
 GetAttrCoord:: ; 1d21

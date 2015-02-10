@@ -275,7 +275,7 @@ Function3a90:: ; 3a90
 	ld l, a
 	ld a, d
 	ld h, a
-	ld de, $d00c
+	ld de, wd00c
 	ld bc, $0028
 	call CopyBytes
 	pop af

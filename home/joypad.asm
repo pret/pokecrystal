@@ -28,12 +28,12 @@ Joypad:: ; 935
 ; hJoypadSum: pressed so far
 
 ; Any of these three bits can be used to disable input.
-	ld a, [$cfbe]
+	ld a, [wcfbe]
 	and %11010000
 	ret nz
 	
 ; If we're saving, input is disabled.
-	ld a, [$c2cd]
+	ld a, [wc2cd]
 	and a
 	ret nz
 	
@@ -365,7 +365,7 @@ Functiona80:: ; a80
 	ld [$ffb0], a
 .asm_a8d
 	push hl
-	ld hl, $c606
+	hlcoord 18, 17
 	call Functionb06
 	pop hl
 	call Functiona57
@@ -438,10 +438,10 @@ Functionaf5:: ; af5
 	jr .asm_b02
 
 .asm_aff
-	ld a, [$c605]
+	ld a, [TileMap + 17 + 17 * SCREEN_WIDTH]
 
 .asm_b02
-	ld [$c606], a
+	ld [TileMap + 18 + 17 * SCREEN_WIDTH], a
 	ret
 ; b06
 

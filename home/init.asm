@@ -10,7 +10,7 @@ Reset:: ; 150
 	ld [rIE], a
 	ei
 
-	ld hl, $cfbe
+	ld hl, wcfbe
 	set 7, [hl]
 
 	ld c, 32

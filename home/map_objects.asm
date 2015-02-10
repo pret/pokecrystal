@@ -18,7 +18,7 @@ GetSpritePalette:: ; 17ff
 Function180e:: ; 180e
 	push hl
 	push bc
-	ld hl, $d156
+	ld hl, UsedSprites + 2
 	ld c, $1f
 	ld b, a
 	ld a, [hConnectionStripLength]
@@ -32,12 +32,12 @@ Function180e:: ; 180e
 	inc hl
 	dec c
 	jr nz, .asm_181d
-	ld a, [$d155]
+	ld a, [UsedSprites + 1]
 	scf
 	jr .asm_1833
 
 .asm_182b
-	ld a, [$d155]
+	ld a, [UsedSprites + 1]
 	jr .asm_1833
 
 .asm_1830
@@ -359,18 +359,18 @@ Function1967:: ; 1967
 ; 1985
 
 Function1985:: ; 1985
-	ld hl, $d4cd
+	ld hl, wd4cd
 	cp [hl]
 	jr z, .asm_1990
-	ld hl, $d4ce
+	ld hl, wd4ce
 	cp [hl]
 	ret nz
 
 .asm_1990
 	callba Function581f
 	ld a, $ff
-	ld [$d4cd], a
-	ld [$d4ce], a
+	ld [wd4cd], a
+	ld [wd4ce], a
 	ret
 ; 199f
 
@@ -411,11 +411,11 @@ Function19b8:: ; 19b8
 	cp $d
 	ret nc
 	ld b, a
-	ld a, [$d4cd]
+	ld a, [wd4cd]
 	cp b
 	jr nz, .asm_19de
 	ld a, $ff
-	ld [$d4cd], a
+	ld [wd4cd], a
 
 .asm_19de
 	ld a, b
@@ -427,14 +427,14 @@ Function19b8:: ; 19b8
 
 
 Function19e9:: ; 19e9
-	ld [$c2e2], a
+	ld [wc2e2], a
 	ld a, [hROMBank]
-	ld [$c2e3], a
+	ld [wc2e3], a
 	ld a, l
-	ld [$c2e4], a
+	ld [wc2e3 + 1], a
 	ld a, h
-	ld [$c2e5], a
-	ld a, [$c2e2]
+	ld [wc2e3 + 2], a
+	ld a, [wc2e2]
 	call Function18de
 	ret c
 	ld hl, $0003

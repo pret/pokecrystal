@@ -246,11 +246,11 @@ UpdatePals:: ; 37f
 	jp nz, UpdateCGBPals
 
 	; update gb pals
-	ld a, [$cfc7]
+	ld a, [wcfc7]
 	ld [rBGP], a
-	ld a, [$cfc8]
+	ld a, [wcfc8]
 	ld [rOBP0], a
-	ld a, [$cfc9]
+	ld a, [wcfc9]
 	ld [rOBP1], a
 
 	and a

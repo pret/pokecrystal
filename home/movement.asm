@@ -1,9 +1,9 @@
 Function1b1e:: ; 1b1e
-	ld [$d003], a
+	ld [wd003], a
 	xor a
 	ld [DefaultFlypoint], a
 	ld a, $0
-	ld [$d004], a
+	ld [wd004], a
 	ld a, $7
 	ld [StartFlypoint], a
 	ld a, $d0
@@ -122,7 +122,7 @@ Function1b92:: ; 1b92
 Function1bb1:: ; 1bb1
 	push hl
 	push bc
-	ld hl, $cfa1
+	ld hl, wcfa1
 	ld b, $8
 .asm_1bb8
 	ld a, [de]
@@ -171,7 +171,7 @@ Function1bdd:: ; 1bdd
 ; 1bee
 
 Function1bee:: ; 1bee
-	ld hl, $cfac
+	ld hl, wcfac
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -180,7 +180,7 @@ Function1bee:: ; 1bee
 ; 1bf7
 
 Function1bf7:: ; 1bf7
-	ld hl, $cfac
+	ld hl, wcfac
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

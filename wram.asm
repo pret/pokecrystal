@@ -872,7 +872,8 @@ wc7e0:: ds 1
 wc7e1:: ds 1
 wc7e2:: ds 1
 wc7e3:: ds 1
-wc7e4:: ds 28
+wc7e4:: ds 4
+wc7e8:: ds 24
 
 
 SECTION "Overworld Map", WRAM0 [$c800]
@@ -2241,7 +2242,12 @@ BikeFlags:: ; dbf5
 
 	ds 3
 
-wdbf9:: ds 7
+wdbf9:: ds 2
+wdbfb:: ds 1
+wdbfc:: ds 1
+wdbfd:: ds 1
+wdbfe:: ds 1
+wdbff:: ds 1
 wdc00:: ds 1
 wdc01:: ds 1
 wdc02:: ds 1
@@ -2365,7 +2371,9 @@ YCoord:: ; dcb7
 XCoord:: ; dcb8
 	ds 1 ; current x coordinate relative to top-left corner of current map
 
-	ds 30
+	ds 6
+wdcbf:: ds 1
+	ds 23
 
 
 SECTION "Party", WRAMX, BANK [1]
@@ -2580,6 +2588,12 @@ BattleAnimTemps:: ; d419
 	ds 8
 	ds 1
 w5_d422:: ds $40
+
+
+SECTION "WRAM 6", WRAMX, BANK [6]
+
+w6_d000:: ds $600
+w6_d600:: ds $600
 
 
 SECTION "Scratch", SRAM, BANK [0]

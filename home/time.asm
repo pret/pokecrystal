@@ -191,17 +191,17 @@ Function658:: ; 658
 	xor a
 	ld [StringBuffer2], a
 	ld a, $0
-	ld [$d089], a
+	ld [StringBuffer2 + 3], a
 	jr Function677
 
 Function663:: ; 663
 	call UpdateTime
 	ld a, [hHours]
-	ld [$d087], a
+	ld [StringBuffer2 + 1], a
 	ld a, [hMinutes]
-	ld [$d088], a
+	ld [StringBuffer2 + 2], a
 	ld a, [hSeconds]
-	ld [$d089], a
+	ld [StringBuffer2 + 3], a
 	jr Function677
 
 Function677:: ; 677

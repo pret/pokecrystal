@@ -10,7 +10,7 @@ Serial:: ; 6ef
 	and a
 	jr nz, .asm_71c
 
-	ld a, [$c2d4]
+	ld a, [wc2d4]
 	bit 0, a
 	jr nz, .asm_721
 
@@ -147,7 +147,7 @@ Function78a:: ; 78a
 	jr z, .asm_7c0
 	call .asm_825
 	push hl
-	ld hl, $cf5c
+	ld hl, wcf5c
 	inc [hl]
 	jr nz, .asm_7b7
 	dec hl
@@ -164,13 +164,13 @@ Function78a:: ; 78a
 	and $f
 	cp $8
 	jr nz, .asm_79b
-	ld a, [$cf5d]
+	ld a, [wcf5d]
 	dec a
-	ld [$cf5d], a
+	ld [wcf5d], a
 	jr nz, .asm_79b
-	ld a, [$cf5e]
+	ld a, [wcf5d + 1]
 	dec a
-	ld [$cf5e], a
+	ld [wcf5d + 1], a
 	jr nz, .asm_79b
 	ld a, [$ffcb]
 	cp $1
@@ -187,9 +187,9 @@ Function78a:: ; 78a
 	and $f
 	sub $8
 	jr nz, .asm_7f8
-	ld [$cf5d], a
+	ld [wcf5d], a
 	ld a, $50
-	ld [$cf5e], a
+	ld [wcf5d + 1], a
 
 .asm_7f8
 	ld a, [hSerialReceive]
@@ -198,7 +198,7 @@ Function78a:: ; 78a
 	call Function82b
 	jr z, .asm_813
 	push hl
-	ld hl, $cf5c
+	ld hl, wcf5c
 	ld a, [hl]
 	dec a
 	ld [hld], a
@@ -232,7 +232,7 @@ Function78a:: ; 78a
 
 Function82b:: ; 82b
 	push hl
-	ld hl, $cf5b
+	ld hl, wcf5b
 	ld a, [hli]
 	or [hl]
 	pop hl
@@ -241,14 +241,14 @@ Function82b:: ; 82b
 
 Function833:: ; 833
 	dec a
-	ld [$cf5b], a
-	ld [$cf5c], a
+	ld [wcf5b], a
+	ld [wcf5c], a
 	ret
 ; 83b
 
 Function83b:: ; 83b
-	ld hl, $cf56
-	ld de, $cf51
+	ld hl, wcf56
+	ld de, wcf51
 	ld c, $2
 	ld a, $1
 	ld [$ffcc], a
@@ -290,14 +290,14 @@ Function871:: ; 871
 
 Function87d:: ; 87d
 	ld a, $ff
-	ld [$cf52], a
+	ld [wcf52], a
 .asm_882
 	call Function8c1
 	call DelayFrame
 	call Function82b
 	jr z, .asm_89e
 	push hl
-	ld hl, $cf5c
+	ld hl, wcf5c
 	dec [hl]
 	jr nz, .asm_89d
 	dec hl
@@ -311,7 +311,7 @@ Function87d:: ; 87d
 	pop hl
 
 .asm_89e
-	ld a, [$cf52]
+	ld a, [wcf52]
 	inc a
 	jr z, .asm_882
 	ld b, $a
@@ -326,8 +326,8 @@ Function87d:: ; 87d
 	call Function908
 	dec b
 	jr nz, .asm_8b1
-	ld a, [$cf52]
-	ld [$cf51], a
+	ld a, [wcf52]
+	ld [wcf51], a
 	ret
 ; 8c1
 
@@ -346,7 +346,7 @@ Function8c1:: ; 8c1
 
 .asm_8d7
 	call Function8f3
-	ld a, [$cf56]
+	ld a, [wcf56]
 	add b
 	ld [hSerialSend], a
 	ld a, [$ffcb]
@@ -365,15 +365,15 @@ Function8c1:: ; 8c1
 
 Function8f3:: ; 8f3
 	ld a, [hSerialReceive]
-	ld [$cf51], a
+	ld [wcf51], a
 	and $f0
 	cp b
 	ret nz
 	xor a
 	ld [hSerialReceive], a
-	ld a, [$cf51]
+	ld a, [wcf51]
 	and $f
-	ld [$cf52], a
+	ld [wcf52], a
 	ret
 ; 908
 

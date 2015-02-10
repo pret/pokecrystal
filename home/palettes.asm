@@ -175,8 +175,8 @@ Functioncf8:: ; cf8
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $d0c0
-	ld de, MartPointer
+	ld hl, OBPals
+	ld de, Unkn2Pals
 	ld a, [rOBP0]
 	ld b, a
 	ld c, $1
@@ -207,8 +207,8 @@ Functiond24:: ; d24
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $d0c8
-	ld de, $d048
+	ld hl, OBPals + 8
+	ld de, Unkn2Pals + 8
 	ld a, [rOBP1]
 	ld b, a
 	ld c, $1

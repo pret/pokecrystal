@@ -399,7 +399,7 @@ EnterMapMusic:: ; 3d03
 	push af
 
 	xor a
-	ld [$c2c1], a
+	ld [wc2c1], a
 	ld de, MUSIC_BICYCLE
 	ld a, [PlayerState]
 	cp PLAYER_BIKE
@@ -424,7 +424,7 @@ EnterMapMusic:: ; 3d03
 ; 3d2f
 
 Function3d2f:: ; 3d2f
-	ld a, [$c2c1]
+	ld a, [wc2c1]
 	and a
 	jr z, RestartMapMusic
 	xor a
@@ -433,7 +433,7 @@ Function3d2f:: ; 3d2f
 	call PlayMusic
 	call DelayFrame
 	xor a
-	ld [$c2c1], a
+	ld [wc2c1], a
 	ret
 ; 3d47
 
@@ -509,16 +509,16 @@ Function3d9f:: ; 3d9f
 ; upper center of the screen.
 ; Unreferenced.
 	ld a, $20
-	ld [$c498], a
-	ld [$c49c], a
+	ld [Sprites + $98], a
+	ld [Sprites + $9c], a
 	ld a, $50
-	ld [$c499], a
+	ld [Sprites + $99], a
 	ld a, $58
-	ld [$c49d], a
+	ld [Sprites + $9d], a
 	xor a
-	ld [$c49b], a
-	ld [$c49f], a
-	ld a, [$c296]
+	ld [Sprites + $9b], a
+	ld [Sprites + $9f], a
+	ld a, [wc296]
 	cp $64
 	jr nc, .max
 	add 1
@@ -527,17 +527,17 @@ Function3d9f:: ; 3d9f
 	swap a
 	and $f
 	add "0"
-	ld [$c49a], a
+	ld [Sprites + $9a], a
 	ld a, b
 	and $f
 	add "0"
-	ld [$c49e], a
+	ld [Sprites + $9e], a
 	ret
 
 .max
 	ld a, "9"
-	ld [$c49a], a
-	ld [$c49e], a
+	ld [Sprites + $9a], a
+	ld [Sprites + $9e], a
 	ret
 ; 3dde
 
@@ -564,7 +564,7 @@ CheckSFX:: ; 3dde
 
 Function3dfe:: ; 3dfe
 	xor a
-	ld [$c1cc], a
+	ld [Channel5Flags], a
 	ld [SoundInput], a
 	ld [rNR10], a
 	ld [rNR11], a
