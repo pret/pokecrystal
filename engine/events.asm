@@ -131,8 +131,8 @@ StartMap: ; 96724
 
 EnterMap: ; 9673e
 	xor a
-	ld [$d453], a
-	ld [$d454], a
+	ld [wd453], a
+	ld [wd454], a
 	call Function968d1
 	callba RunMapSetupScript
 	call Function966cb
@@ -252,7 +252,7 @@ Function967e1: ; 967e1
 ; 967f4
 
 Function967f4: ; 967f4
-	ld a, [$d150]
+	ld a, [wd150]
 	bit 5, a
 	jr z, .asm_96806
 	bit 6, a
@@ -273,7 +273,7 @@ Function967f4: ; 967f4
 ; 96812
 
 Function96812: ; 96812
-	ld hl, $d150
+	ld hl, wd150
 	bit 6, [hl]
 	ret z
 
@@ -328,7 +328,7 @@ PlayerEvents: ; 9681f
 	jr z, .asm_96865
 
 	xor a
-	ld [$c2da], a
+	ld [wc2da], a
 
 .asm_96865
 	scf
@@ -420,7 +420,7 @@ CheckTileEvent: ; 96874
 
 
 Function968c7:: ; 968c7
-	ld hl, $d452
+	ld hl, wd452
 	ld a, [hl]
 	and a
 	ret z
@@ -432,7 +432,7 @@ Function968c7:: ; 968c7
 
 Function968d1: ; 968d1
 	ld a, 5
-	ld [$d452], a
+	ld [wd452], a
 	ret
 ; 968d7
 
@@ -441,11 +441,11 @@ Function968d7: ; 968d7
 ; 968d8
 
 Function968d8: ; 968d8
-	ld a, [$d452]
+	ld a, [wd452]
 	cp 2
 	ret nc
 	ld a, 2
-	ld [$d452], a
+	ld [wd452], a
 	ret
 ; 968e4
 
@@ -457,7 +457,7 @@ Function968e4: ; 968e4
 ; 968ec
 
 Function968ec: ; 968ec
-	ld a, [$dc07]
+	ld a, [wdc07]
 	and a
 	jr z, .asm_96938
 
@@ -468,7 +468,7 @@ Function968ec: ; 968ec
 
 	ld e, a
 	ld d, 0
-	ld hl, $dc08
+	ld hl, wdc07 + 1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -492,11 +492,11 @@ Function968ec: ; 968ec
 	bit 3, [hl]
 	jr z, .asm_96938
 
-	ld hl, $d44f
+	ld hl, ScriptDelay + 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$d44e]
+	ld a, [ScriptDelay + 1]
 	call CallScript
 	scf
 	ret
@@ -750,7 +750,7 @@ TryReadSign: ; 96a38
 
 .read
 	call PlayTalkObject
-	ld hl, $d041
+	ld hl, wd041
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -811,7 +811,7 @@ TryReadSign: ; 96a38
 
 
 CheckSignFlag: ; 96ad8
-	ld hl, $d041
+	ld hl, wd041
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -947,11 +947,11 @@ SelectMenuCallback: ; 96b66
 ; 96b72
 
 .Script ; 96b72
-	ptjump $d0e8
+	ptjump wd0e8
 ; 96b75
 
 .Asm ; 96b75
-	ptcallasm $d0e8
+	ptcallasm wd0e8
 	end
 ; 96b79
 
@@ -1021,11 +1021,11 @@ Function96bd3: ; 96bd3
 ; 96bd7
 
 Function96bd7: ; 96bd7
-	ld a, [$dca1]
+	ld a, [wdca1]
 	and a
 	ret z
 	dec a
-	ld [$dca1], a
+	ld [wdca1], a
 	ret nz
 	ld a, BANK(UnknownScript_0x13619)
 	ld hl, UnknownScript_0x13619

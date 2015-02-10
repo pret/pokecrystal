@@ -82,20 +82,20 @@ Function8aa4: ; 8aa4
 	push de
 	push bc
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	pop bc
 	pop de
 	ld a, c
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, b
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, e
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, d
-	ld [$cdaf], a
-	ld hl, $cda9
+	ld [wcda9 + 6], a
+	ld hl, wcda9
 	call Function9809
 	ld hl, BlkPacket_9a86
 	call Function9809
@@ -112,8 +112,8 @@ Function8ad1: ; 8ad1
 ; 8ade
 
 Function8ade: ; 8ade
-	ld hl, $cd9b
-	ld a, [$cda9]
+	ld hl, wcd9b
+	ld a, [wcda9]
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -130,9 +130,9 @@ Function8ade: ; 8ade
 
 .asm_8af7
 	push de
-	ld hl, $cdb3
+	ld hl, wcda9 + 10
 	ld bc, $0006
-	ld a, [$cda9]
+	ld a, [wcda9]
 	call AddNTimes
 	pop de
 	ld [hl], e
@@ -143,7 +143,7 @@ Function8b07: ; 8b07
 	call CheckCGB
 	ret z
 	ld hl, Palette8b2f
-	ld de, $d000
+	ld de, Unkn1Pals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -225,20 +225,20 @@ Function8b81: ; 8b81
 	ld a, c
 	push af
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	pop af
 	call Function9775
 	ld a, [hli]
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, [hli]
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, [hli]
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, [hl]
-	ld [$cdaf], a
-	ld hl, $cda9
+	ld [wcda9 + 6], a
+	ld hl, wcda9
 	jp Function9809
 
 .asm_8bb2
@@ -311,7 +311,7 @@ Function8bec: ; 8bec
 	ld b, $0
 	add hl, bc
 	ld bc, $0604
-	ld a, [$c705]
+	ld a, [EnemySafeguardCount]
 	and $3
 	call Function9663
 	call Function323d
@@ -342,7 +342,7 @@ Function8c1d: ; 8c1d
 ; 8c43
 
 Function8c43: ; 8c43
-	ld a, [$d10a]
+	ld a, [wd10a]
 	and a
 	jr z, .asm_8c52
 	cp $1
@@ -352,11 +352,11 @@ Function8c43: ; 8c43
 	ret
 
 .asm_8c52
-	ld de, $d092
+	ld de, BGPals + $10 + 2
 	jr .asm_8c5a
 
 .asm_8c57
-	ld de, $d09a
+	ld de, BGPals + $18 + 2
 
 .asm_8c5a
 	ld l, c
@@ -375,7 +375,7 @@ Function8c43: ; 8c43
 .asm_8c70
 	ld e, c
 	inc e
-	ld hl, $cdf8
+	hlcoord 11, 1, AttrMap
 	ld bc, $0028
 	ld a, [CurPartyMon]
 .asm_8c7b
@@ -406,10 +406,10 @@ Function8c8a: ; 8c8a
 	ld [rSVBK], a
 	ld a, [hli]
 	ld [Unkn1Pals], a
-	ld [$d010], a
+	ld [wd010], a
 	ld a, [hl]
-	ld [$d001], a
-	ld [$d011], a
+	ld [wd001], a
+	ld [wd011], a
 	pop af
 	ld [rSVBK], a
 	call Function96a4
@@ -429,28 +429,28 @@ Function8cb4: ; 8cb4
 	jr nz, .asm_8cf0
 	push hl
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	pop hl
 	inc hl
 	inc hl
 	ld a, [hli]
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, [hli]
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, [hli]
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, [hli]
-	ld [$cdaf], a
-	ld hl, $cda9
+	ld [wcda9 + 6], a
+	ld hl, wcda9
 	call Function9809
 	ld hl, BlkPacket_9a86
 	call Function9809
 	ret
 
 .asm_8cf0
-	ld de, $d000
+	ld de, Unkn1Pals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -536,7 +536,7 @@ Palette_9608: ; 9608
 
 
 Function9610: ; 9610
-	ld de, $d000
+	ld de, Unkn1Pals
 	ld c, $4
 
 Function9615: ; 9615
@@ -635,7 +635,7 @@ Function9673: ; 9673
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $d000
+	ld hl, Unkn1Pals
 	ld c, $8
 .asm_9683
 	ld a, $ff
@@ -669,8 +669,8 @@ Function9699: ; 9699
 ; 96a4
 
 Function96a4: ; 96a4
-	ld hl, $d000
-	ld de, $d080
+	ld hl, Unkn1Pals
+	ld de, BGPals
 	ld bc, $0080
 	ld a, $5
 	call FarCopyWRAM
@@ -722,8 +722,8 @@ Function96b3: ; 96b3
 ; 96f3
 
 Function96f3: ; 96f3
-	ld hl, $cd9b
-	ld a, [$cda9]
+	ld hl, wcd9b
+	ld a, [wcda9]
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -732,9 +732,9 @@ Function96f3: ; 96f3
 	ld a, [de]
 	inc a
 	ld e, a
-	ld hl, $ce0c
+	hlcoord 11, 2, AttrMap
 	ld bc, $0028
-	ld a, [$cda9]
+	ld a, [wcda9]
 .asm_970b
 	and a
 	jr z, .asm_9712
@@ -784,7 +784,7 @@ Function973a: ; 973a
 Function974b: ; 974b
 	and a
 	jp nz, Function97f9
-	ld a, [$d45b]
+	ld a, [wd45b]
 	bit 2, a
 	jr nz, .asm_9760
 	ld a, [PlayerGender]
@@ -835,7 +835,7 @@ Function977a: ; 977a
 	dec c
 	jr nz, .asm_9787
 	ld hl, Palettes_979c
-	ld de, $d050
+	ld de, wd050
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
@@ -920,13 +920,13 @@ Function97f9: ; 97f9
 ; 9809
 
 Function9809: ; 9809
-	ld a, [$cfbe]
+	ld a, [wcfbe]
 	push af
 	set 7, a
-	ld [$cfbe], a
+	ld [wcfbe], a
 	call Function981a
 	pop af
-	ld [$cfbe], a
+	ld [wcfbe], a
 	ret
 ; 981a
 
@@ -976,10 +976,10 @@ Function9853: ; 9853
 	call CheckCGB
 	ret nz
 	di
-	ld a, [$cfbe]
+	ld a, [wcfbe]
 	push af
 	set 7, a
-	ld [$cfbe], a
+	ld [wcfbe], a
 	xor a
 	ld [rJOYP], a
 	ld [hSGB], a
@@ -999,7 +999,7 @@ Function9853: ; 9853
 
 .asm_988a
 	pop af
-	ld [$cfbe], a
+	ld [wcfbe], a
 	ei
 	ret
 ; 9890
@@ -1040,9 +1040,9 @@ Function9890:: ; 9890
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $d000
+	ld hl, Unkn1Pals
 	call Function98df
-	ld hl, $d080
+	ld hl, BGPals
 	call Function98df
 	pop af
 	ld [rSVBK], a
@@ -1942,7 +1942,7 @@ INCLUDE "gfx/trainers/palette_pointers.asm"
 Functionb1de: ; b1de
 	callba Function494ac
 	jr c, .asm_b230
-	ld a, [$d19a]
+	ld a, [wd19a]
 	and 7
 	ld e, a
 	ld d, 0
@@ -2006,7 +2006,7 @@ Functionb1de: ; b1de
 	ld bc, $0040
 	ld a, $5
 	call FarCopyWRAM
-	ld a, [$d19a]
+	ld a, [wd19a]
 	cp 1
 	jr z, .asm_b253
 	cp 2
@@ -2031,7 +2031,7 @@ Functionb1de: ; b1de
 	inc hl
 
 .asm_b26d
-	ld de, $d032
+	ld de, wd032
 	ld bc, $0004
 	ld a, $5
 	call FarCopyWRAM

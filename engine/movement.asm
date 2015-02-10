@@ -242,7 +242,7 @@ Function51db: ; 51db
 
 Movement_remove_person: ; 51fd
 	call Function4357
-	ld hl, $d4cd
+	ld hl, wd4cd
 	ld a, [hConnectionStripLength]
 	cp [hl]
 	jr nz, .asm_520a
@@ -737,7 +737,7 @@ Function5412: ; 5412
 	call Function5556
 
 .asm_5430
-	ld hl, $d4cf
+	ld hl, wd4cf
 	ld a, [hConnectionStripLength]
 	cp [hl]
 	jr z, .asm_543f
@@ -760,7 +760,7 @@ Function5446: ; 5446
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $4
-	ld hl, $d4cf
+	ld hl, wd4cf
 	ld a, [hConnectionStripLength]
 	cp [hl]
 	jr z, .asm_5461
@@ -783,7 +783,7 @@ Function5468: ; 5468
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $1
-	ld hl, $d4cf
+	ld hl, wd4cf
 	ld a, [hConnectionStripLength]
 	cp [hl]
 	jr z, .asm_5483
@@ -812,7 +812,7 @@ Function548a: ; 548a
 	add hl, bc
 	ld [hl], $2
 	call Function5529
-	ld hl, $d4cf
+	ld hl, wd4cf
 	ld a, [hConnectionStripLength]
 	cp [hl]
 	jr z, .asm_54b1

@@ -124,7 +124,7 @@ Function109847:: ; 109847
 	jr z, .asm_10984f
 	ld a, $40
 .asm_10984f
-	ld [$cf63], a
+	ld [wcf63], a
 
 	ld a, [rSVBK]
 	push af
@@ -135,7 +135,7 @@ Function109847:: ; 109847
 	call ClearTileMap
 	call ClearSprites
 
-	ld hl, $ca00
+	ld hl, wca00
 	ld c, $80
 	ld de, $ff00
 
@@ -163,9 +163,9 @@ Function109847:: ; 109847
 	call Request2bpp
 
 	ld a, $ff
-	ld [$cf64], a
+	ld [wcf64], a
 	xor a
-	ld [$cf65], a
+	ld [wcf65], a
 
 	call Function109bca
 	ld e, l
@@ -176,7 +176,7 @@ Function109847:: ; 109847
 
 	call Function109a95
 	xor a
-	ld [$cf66], a
+	ld [wcf66], a
 
 	ld hl, LYOverrides
 	ld bc, $100
@@ -197,7 +197,7 @@ Function109847:: ; 109847
 	xor a
 	ld [hBGMapMode], a
 	ld [CreditsPos], a
-	ld [$cd21], a
+	ld [wcd21], a
 	ld [CreditsTimer], a
 
 .asm_1098de
@@ -225,7 +225,7 @@ Function1098fd: ; 1098fd
 	ld a, [hJoypadDown]
 	and $1
 	ret z
-	ld a, [$cf63]
+	ld a, [wcf63]
 	bit 7, a
 	ret
 ; 109908
@@ -234,7 +234,7 @@ Function109908: ; 109908
 	ld a, [hJoypadDown]
 	and $2
 	ret z
-	ld a, [$cf63]
+	ld a, [wcf63]
 	bit 6, a
 	ret z
 	ld hl, CreditsPos
@@ -255,7 +255,7 @@ Function109908: ; 109908
 ; 109926
 
 Function109926: ; 109926
-	ld a, [$cf63]
+	ld a, [wcf63]
 	and $f
 	ld e, a
 	ld d, 0
@@ -286,12 +286,12 @@ Jumptable_109937: ; 109937 (42:5937)
 
 
 Function109951: ; 109951 (42:5951)
-	ld hl, $cf63
+	ld hl, wcf63
 	inc [hl]
 	ret
 
 Function109956: ; 109956 (42:5956)
-	ld hl, $cf63
+	ld hl, wcf63
 	ld a, [hl]
 	and $f0
 	ld [hl], a
@@ -305,33 +305,33 @@ Function10995e: ; 10995e (42:595e)
 Function109964: ; 109964 (42:5964)
 	call Function109bca
 	ld a, l
-	ld [$cf68], a
+	ld [Requested2bppSource], a
 	ld a, h
-	ld [$cf69], a
+	ld [Requested2bppSource + 1], a
 	ld a, $0
-	ld [$cf6a], a
+	ld [Requested2bppDest], a
 	ld a, $90
-	ld [$cf6b], a
+	ld [Requested2bppDest + 1], a
 	jr Function10997b
 
 Function10997b: ; 10997b (42:597b)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $8
-	ld [$cf67], a
+	ld [Requested2bpp], a
 	jp Function109951
 
 Function109986: ; 109986 (42:5986)
 	ld a, [rLY] ; $ff00+$44
 	cp $30
 	jr c, Function109986
-	ld a, [$cf66]
+	ld a, [wcf66]
 	dec a
 	dec a
-	ld [$cf66], a
-	ld hl, $d11f
+	ld [wcf66], a
+	ld hl, LYOverrides + $1f
 	call Function1099a3
-	ld hl, $d187
+	ld hl, LYOverrides + $87
 	call Function1099a3
 	jp Function109951
 
@@ -346,7 +346,7 @@ Function1099a3: ; 1099a3 (42:59a3)
 
 
 ParseCredits: ; 1099aa
-	ld hl, $cf63
+	ld hl, wcf63
 	bit 7, [hl]
 	jp nz, .done
 	
@@ -440,9 +440,9 @@ ParseCredits: ; 1099aa
 .scene
 ; Update the scene number and corresponding palette.
 	call .get
-	ld [$cf65], a ; scene
+	ld [wcf65], a ; scene
 	xor a
-	ld [$cf64], a ; frame
+	ld [wcf64], a ; frame
 	call GetCreditsPalette
 	call Function32f9 ; update hw pal registers
 	jr .loop
@@ -450,7 +450,7 @@ ParseCredits: ; 1099aa
 .clear
 ; Clear the banner.
 	ld a, $ff
-	ld [$cf64], a ; frame
+	ld [wcf64], a ; frame
 	jr .loop
 	
 .music
@@ -485,14 +485,14 @@ ParseCredits: ; 1099aa
 	
 .end
 ; Stop execution.
-	ld hl, $cf63
+	ld hl, wcf63
 	set 7, [hl]
 	ld a, $20
-	ld [$c2a7], a
-	ld a, $5c
-	ld [$c2a9], a
-	ld a, $00
-	ld [$c2aa], a
+	ld [MusicFade], a
+	ld a, MUSIC_POST_CREDITS % $100
+	ld [MusicFadeID], a
+	ld a, MUSIC_POST_CREDITS / $100
+	ld [MusicFadeIDHi], a
 	ret
 
 .get
@@ -524,7 +524,7 @@ Function109a95: ; 109a95 (42:5a95)
 	ld a, $c
 	ld [hBGMapAddress], a ; $ff00+$d6
 	ld a, $28
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld bc, $168
 	call ByteFill
 	ld a, $7f
@@ -537,19 +537,19 @@ Function109a95: ; 109a95 (42:5a95)
 	hlcoord 0, 17
 	ld a, $20
 	call Function109b1d
-	ld hl, AttrMap ; $cdd9
+	ld hl, AttrMap
 	ld bc, $50
 	xor a
 	call ByteFill
-	ld hl, $ce29
+	hlcoord 0, 4, AttrMap
 	ld bc, $14
 	ld a, $1
 	call ByteFill
-	ld hl, $ce3d
+	hlcoord 0, 5, AttrMap
 	ld bc, $f0
 	ld a, $2
 	call ByteFill
-	ld hl, $cf2d
+	hlcoord 0, 17, AttrMap
 	ld bc, $14
 	ld a, $1
 	call ByteFill
@@ -557,7 +557,7 @@ Function109a95: ; 109a95 (42:5a95)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld [hBGMapAddress], a ; $ff00+$d6
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	call Function109aff
 	call Function3200
 	ret
@@ -617,7 +617,7 @@ GetCreditsPalette: ; 109b2c
 	
 .GetPalAddress
 ; Each set of palette data is 24 bytes long.
-	ld a, [$cf65] ; scene
+	ld a, [wcf65] ; scene
 	and 3
 	add a
 	add a ; * 8
@@ -635,20 +635,20 @@ GetCreditsPalette: ; 109b2c
 	
 	push af
 	push hl
-	add $d000 % $100
+	add Unkn1Pals % $100
 	ld e, a
 	ld a, 0
-	adc $d000 / $100
+	adc Unkn1Pals / $100
 	ld d, a
 	ld bc, 24
 	call CopyBytes
 	
 	pop hl
 	pop af
-	add $d080 % $100
+	add BGPals % $100
 	ld e, a
 	ld a, 0
-	adc $d080 / $100
+	adc BGPals / $100
 	ld d, a
 	ld bc, 24
 	call CopyBytes
@@ -723,7 +723,7 @@ CreditsPalettes:
 ; 109bca
 
 Function109bca: ; 109bca (42:5bca)
-	ld hl, $cf64
+	ld hl, wcf64
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_109bed
@@ -733,7 +733,7 @@ Function109bca: ; 109bca (42:5bca)
 	inc a
 	and 3
 	ld [hl], a
-	ld a, [$cf65]
+	ld a, [wcf65]
 	and 3
 	add a
 	add a
@@ -749,7 +749,7 @@ Function109bca: ; 109bca (42:5bca)
 	ret
 
 .asm_109bed
-	ld hl, $ca00
+	ld hl, wca00
 	ret
 ; 109bf1 (42:5bf1)
 

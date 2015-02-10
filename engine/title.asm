@@ -9,7 +9,7 @@ _TitleScreen: ; 10ed67
 	ld [hBGMapMode], a
 	
 ; Reset timing variables
-	ld hl, $cf63
+	ld hl, wcf63
 	ld [hli], a ; cf63 ; Scene?
 	ld [hli], a ; cf64
 	ld [hli], a ; cf65 ; Timer lo
@@ -144,12 +144,12 @@ _TitleScreen: ; 10ed67
 	
 ; Update palette colors
 	ld hl, TitleScreenPalettes
-	ld de, $d000
+	ld de, Unkn1Pals
 	ld bc, $0080
 	call CopyBytes
 	
 	ld hl, TitleScreenPalettes
-	ld de, $d080
+	ld de, BGPals
 	ld bc, $0080
 	call CopyBytes
 	

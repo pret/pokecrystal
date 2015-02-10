@@ -69,21 +69,21 @@ Table8d7a: ; 8d7a
 
 Function8db8: ; 8db8
 	ld hl, PalPacket_9c66 + 1
-	ld de, $d000
+	ld de, Unkn1Pals
 	ld c, $4
 	call Function9615
 	ld hl, PalPacket_9c66 + 1
-	ld de, $d020
+	ld de, Unkn1Pals + $20
 	ld c, $4
 	call Function9615
 	ld hl, PalPacket_9c66 + 1
-	ld de, MartPointer
+	ld de, Unkn2Pals
 	ld c, $2
 	call Function9615
 	jr Function8e23
 
 Function8ddb: ; 8ddb
-	ld de, $d000
+	ld de, Unkn1Pals
 	call Function9729
 	push hl
 	call Function9643
@@ -108,7 +108,7 @@ Function8ddb: ; 8ddb
 	call Function9643
 	ld hl, Palettes_a8ca
 	call Function9643
-	ld de, MartPointer
+	ld de, Unkn2Pals
 	pop hl
 	call Function9643
 	pop hl
@@ -123,11 +123,11 @@ Function8e23: ; 8e23
 	ld bc, $0168
 	ld a, $2
 	call ByteFill
-	ld hl, $ce29
+	hlcoord 0, 4, AttrMap
 	ld bc, $080a
 	ld a, $0
 	call Function9663
-	ld hl, $cde3
+	hlcoord 10, 0, AttrMap
 	ld bc, $070a
 	ld a, $1
 	call Function9663
@@ -135,20 +135,20 @@ Function8e23: ; 8e23
 	ld bc, $040a
 	ld a, $2
 	call Function9663
-	ld hl, $ce6f
+	hlcoord 10, 7, AttrMap
 	ld bc, $050a
 	ld a, $3
 	call Function9663
-	ld hl, $cebf
+	hlcoord 10, 11, AttrMap
 	ld bc, $0109
 	ld a, $4
 	call Function9663
-	ld hl, $cec9
+	hlcoord 0, 12, AttrMap
 	ld bc, $0078
 	ld a, $7
 	call ByteFill
 	ld hl, Palettes_979c
-	ld de, $d050
+	ld de, Unkn2Pals + $10
 	ld bc, $0030
 	ld a, $5
 	call FarCopyWRAM
@@ -166,7 +166,7 @@ Function8e8b: ; 8e8b
 	ld hl, Palette_b309
 
 .asm_8e93
-	ld de, $d038
+	ld de, wd038
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -180,7 +180,7 @@ Function8e9f: ; 8e9f
 	ld hl, Palette_b309
 
 .asm_8ead
-	ld de, $d000
+	ld de, Unkn1Pals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -198,7 +198,7 @@ Function8eb9: ; 8eb9
 	ld hl, Palettes_b729
 
 .asm_8ec8
-	ld de, $d000
+	ld de, Unkn1Pals
 	ld bc, $0030
 	ld a, $5
 	call FarCopyWRAM
@@ -209,8 +209,8 @@ Function8eb9: ; 8eb9
 ; 8edb
 
 Function8edb: ; 8edb
-	ld de, $d000
-	ld a, [$cda1]
+	ld de, Unkn1Pals
+	ld a, [wcda1]
 	ld l, a
 	ld h, $0
 	add hl, hl
@@ -225,7 +225,7 @@ Function8edb: ; 8edb
 	ld hl, Palettes_a8ca
 	call Function9643
 	ld hl, Palette8f52
-	ld de, $d018
+	ld de, wd018
 	ld bc, $0018
 	ld a, $5
 	call FarCopyWRAM
@@ -234,19 +234,19 @@ Function8edb: ; 8edb
 	ld bc, $0814
 	ld a, $1
 	call Function9663
-	ld hl, $cf23
+	hlcoord 10, 16, AttrMap
 	ld bc, $000a
 	ld a, $2
 	call ByteFill
-	ld hl, $ce4a
+	hlcoord 13, 5, AttrMap
 	ld bc, $0202
 	ld a, $3
 	call Function9663
-	ld hl, $ce4c
+	hlcoord 15, 5, AttrMap
 	ld bc, $0202
 	ld a, $4
 	call Function9663
-	ld hl, $ce4e
+	hlcoord 17, 5, AttrMap
 	ld bc, $0202
 	ld a, $5
 	call Function9663
@@ -300,13 +300,13 @@ Function8f70: ; 8f70
 
 .asm_8f90
 	call Function9699
-	ld hl, $cdee
+	hlcoord 1, 1, AttrMap
 	ld bc, $0707
 	ld a, $1
 	call Function9663
 	call Function971a
 	ld hl, Palette8fc2
-	ld de, $d078
+	ld de, Unkn2Pals + $38
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -349,7 +349,7 @@ Function8fca: ; 8fca
 
 .asm_8fed
 	call Function9699
-	ld hl, $ce2a
+	hlcoord 1, 4, AttrMap
 	ld bc, $0707
 	ld a, $1
 	call Function9663
@@ -372,7 +372,7 @@ Function9009: ; 9009
 
 .asm_901a
 	call Function9699
-	ld hl, $cdee
+	hlcoord 1, 1, AttrMap
 	ld bc, $0707
 	ld a, $1
 	call Function9663
@@ -400,7 +400,7 @@ Function903e: ; 903e
 	call Function9775
 	call Function9643
 	call Function9699
-	ld hl, $ce44
+	hlcoord 7, 5, AttrMap
 	ld bc, $0707
 	ld a, $1
 	call Function9663
@@ -419,43 +419,43 @@ Function906e: ; 906e
 	ld a, $5
 	call FarCopyWRAM
 	call Function9699
-	ld hl, $ce01
+	hlcoord 0, 2, AttrMap
 	ld bc, $0a03
 	ld a, $2
 	call Function9663
-	ld hl, $ce12
+	hlcoord 17, 2, AttrMap
 	ld bc, $0a03
 	ld a, $2
 	call Function9663
-	ld hl, $ce29
+	hlcoord 0, 4, AttrMap
 	ld bc, $0603
 	ld a, $3
 	call Function9663
-	ld hl, $ce3a
+	hlcoord 17, 4, AttrMap
 	ld bc, $0603
 	ld a, $3
 	call Function9663
-	ld hl, $ce51
+	hlcoord 0, 6, AttrMap
 	ld bc, $0203
 	ld a, $4
 	call Function9663
-	ld hl, $ce62
+	hlcoord 17, 6, AttrMap
 	ld bc, $0203
 	ld a, $4
 	call Function9663
-	ld hl, $ce05
+	hlcoord 4, 2, AttrMap
 	ld bc, $020c
 	ld a, $1
 	call Function9663
-	ld hl, $ce04
+	hlcoord 3, 2, AttrMap
 	ld bc, $0a01
 	ld a, $1
 	call Function9663
-	ld hl, $ce11
+	hlcoord 16, 2, AttrMap
 	ld bc, $0a01
 	ld a, $1
 	call Function9663
-	ld hl, $cec9
+	hlcoord 0, 12, AttrMap
 	ld bc, $0078
 	ld a, $7
 	call ByteFill
@@ -474,7 +474,7 @@ Function90f8: ; 90f8
 	ld a, $3c
 	call Function9625
 	call Function9630
-	ld hl, $ce51
+	hlcoord 0, 6, AttrMap
 	ld bc, $0c14
 	ld a, $1
 	call Function9663
@@ -620,7 +620,7 @@ Function91e4: ; 91e4
 	call Function974b
 	call Function9643
 	ld hl, Palettes_979c
-	ld de, $d050
+	ld de, Unkn2Pals + $10
 	ld bc, $0030
 	ld a, $5
 	call FarCopyWRAM
@@ -723,7 +723,7 @@ Function9289: ; 9289
 
 .asm_92e3
 	call ByteFill
-	ld hl, $cdfb
+	hlcoord 14, 1, AttrMap
 	ld bc, $0705
 	ld a, [PlayerGender]
 	and a
@@ -733,33 +733,33 @@ Function9289: ; 9289
 
 .asm_92f6
 	call Function9663
-	ld hl, $cdff
+	hlcoord 18, 1, AttrMap
 	ld [hl], $1
-	ld hl, $ceb7
+	hlcoord 2, 11, AttrMap
 	ld bc, $0204
 	ld a, $1
 	call Function9663
-	ld hl, $cebb
+	hlcoord 6, 11, AttrMap
 	ld bc, $0204
 	ld a, $2
 	call Function9663
-	ld hl, $cebf
+	hlcoord 10, 11, AttrMap
 	ld bc, $0204
 	ld a, $3
 	call Function9663
-	ld hl, $cec3
+	hlcoord 14, 11, AttrMap
 	ld bc, $0204
 	ld a, $4
 	call Function9663
-	ld hl, $cef3
+	hlcoord 2, 14, AttrMap
 	ld bc, $0204
 	ld a, $5
 	call Function9663
-	ld hl, $cef7
+	hlcoord 6, 14, AttrMap
 	ld bc, $0204
 	ld a, $6
 	call Function9663
-	ld hl, $cefb
+	hlcoord 10, 14, AttrMap
 	ld bc, $0204
 	ld a, $7
 	call Function9663
@@ -767,7 +767,7 @@ Function9289: ; 9289
 	and a
 	push af
 	jr z, .asm_935d
-	ld hl, $ceff
+	hlcoord 14, 14, AttrMap
 	ld bc, $0204
 	ld a, $1
 	call Function9663
@@ -780,7 +780,7 @@ Function9289: ; 9289
 
 .asm_9363
 	ld a, c
-	ld hl, $cdff
+	hlcoord 18, 1, AttrMap
 	ld [hl], a
 	call Function96b3
 	call Function96a4
@@ -803,7 +803,7 @@ Function9373: ; 9373
 	add hl, bc
 	call Function9643
 	call Function9699
-	ld hl, $cdf8
+	hlcoord 11, 1, AttrMap
 	ld bc, $0209
 	ld a, $1
 	call Function9663
@@ -863,19 +863,19 @@ Function93d3: ; 93d3
 	ld bc, $010a
 	ld a, $1
 	call Function9663
-	ld hl, $cde3
+	hlcoord 10, 0, AttrMap
 	ld bc, $010a
 	ld a, $2
 	call Function9663
-	ld hl, $ce08
+	hlcoord 7, 2, AttrMap
 	ld bc, $0901
 	ld a, $3
 	call Function9663
-	ld hl, $ce65
+	hlcoord 0, 7, AttrMap
 	ld bc, $0305
 	ld a, $4
 	call Function9663
-	ld hl, $ce15
+	hlcoord 0, 3, AttrMap
 	ld bc, $0305
 	ld a, $5
 	call Function9663
@@ -944,7 +944,7 @@ Function9499: ; 9499
 	call Function91c8
 	ld de, $0014
 	ld hl, AttrMap
-	ld a, [$cf82]
+	ld a, [wcf82]
 .asm_94a5
 	and a
 	jr z, .asm_94ac
@@ -953,19 +953,19 @@ Function9499: ; 9499
 	jr .asm_94a5
 
 .asm_94ac
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld e, a
 	ld d, $0
 	add hl, de
-	ld a, [$cf82]
+	ld a, [wcf82]
 	ld b, a
-	ld a, [$cf84]
+	ld a, [wcf84]
 	inc a
 	sub b
 	ld b, a
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld c, a
-	ld a, [$cf85]
+	ld a, [wcf85]
 	sub c
 	inc a
 	ld c, a
@@ -979,11 +979,11 @@ Function94d0: ; 94d0
 	ld hl, PalPacket_9ba6 + 1
 	call Function9610
 	call Function9699
-	ld hl, $ce29
+	hlcoord 0, 4, AttrMap
 	ld bc, $0a14
 	ld a, $2
 	call Function9663
-	ld hl, $ce51
+	hlcoord 0, 6, AttrMap
 	ld bc, $0614
 	ld a, $1
 	call Function9663
@@ -1003,7 +1003,7 @@ Function94fa: ; 94fa
 	ld de, Unkn2Pals
 	call Function9630
 	ld hl, Palette_9521
-	ld de, $d048
+	ld de, Unkn2Pals + 8
 	call Function9630
 	call Function9699
 	call Function96b3
@@ -1048,7 +1048,7 @@ Function9555: ; 9555
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
-	ld de, $d078
+	ld de, Unkn2Pals + $38
 	ld a, $1c
 	call Function9625
 	call Function9630
@@ -1076,15 +1076,15 @@ Function9591: ; 9591
 	call FarCopyWRAM
 	call Function96a4
 	call Function9699
-	ld hl, $ce68
+	hlcoord 3, 7, AttrMap
 	ld bc, $080e
 	ld a, $1
 	call Function9663
-	ld hl, $ce3e
+	hlcoord 1, 5, AttrMap
 	ld bc, $0112
 	ld a, $1
 	call Function9663
-	ld hl, $cf1a
+	hlcoord 1, 16, AttrMap
 	ld bc, $0112
 	ld a, $1
 	call Function9663
@@ -1092,7 +1092,7 @@ Function9591: ; 9591
 	ld bc, $1102
 	ld a, $1
 	call Function9663
-	ld hl, $ce4f
+	hlcoord 18, 5, AttrMap
 	ld bc, $0c01
 	ld a, $1
 	call Function9663

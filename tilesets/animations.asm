@@ -104,7 +104,7 @@ Tileset01Anim: ; 0xfc0a3
 TilesetAnimfc0d7: ; 0xfc0d7
 ;	   param, function
 	dw $9030, WriteTileToBuffer
-	dw $cf41, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw $9030, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -119,7 +119,7 @@ TilesetAnimfc0d7: ; 0xfc0d7
 TilesetAnimfc103: ; 0xfc103
 ;	   param, function
 	dw $9140, WriteTileToBuffer
-	dw $cf41, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw $9140, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -162,15 +162,15 @@ Tileset15Anim: ; 0xfc15f
 TilesetAnimfc17f: ; 0xfc17f
 ;	   param, function
 	dw $9530, WriteTileToBuffer
-	dw $cf41, ScrollTileDown
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw $9530, WriteTileFromBuffer
 	dw $9030, WriteTileToBuffer
-	dw $cf41, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw $9030, WriteTileFromBuffer
 	dw $9530, WriteTileToBuffer
-	dw $cf41, ScrollTileDown
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw $9530, WriteTileFromBuffer
 	dw NULL,  DoneTileAnimation
 ; 0xfc1af
@@ -178,17 +178,17 @@ TilesetAnimfc17f: ; 0xfc17f
 TilesetAnimfc1af: ; 0xfc1af
 ;	   param, function
 	dw $9540, WriteTileToBuffer
-	dw $cf41, ScrollTileDown
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw $9540, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw $9030, WriteTileToBuffer
-	dw $cf41, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw $9030, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw $9540, WriteTileToBuffer
-	dw $cf41, ScrollTileDown
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw $9540, WriteTileFromBuffer
 	dw NULL,  DoneTileAnimation
 ; 0xfc1e7
@@ -198,7 +198,7 @@ Tileset30Anim: ; 0xfc1e7
 ;	   param, function
 	dw $9140, WriteTileToBuffer
 	dw NULL,  Functionfc71e
-	dw $cf41, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw NULL,  Functionfc71e
 	dw $9140, WriteTileFromBuffer
 	dw NULL,  Functionfc71e
@@ -206,11 +206,11 @@ Tileset30Anim: ; 0xfc1e7
 	dw NULL,  Functionfc71e
 	dw $9400, WriteTileToBuffer
 	dw NULL,  Functionfc71e
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  Functionfc71e
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  Functionfc71e
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  Functionfc71e
 	dw $9400, WriteTileFromBuffer
 	dw NULL,  Functionfc71e
@@ -221,7 +221,7 @@ Tileset29Anim: ; 0xfc233
 ;	   param, function
 	dw $9350, WriteTileToBuffer
 	dw NULL,  Functionfc71e
-	dw $cf41, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw NULL,  Functionfc71e
 	dw $9350, WriteTileFromBuffer
 	dw NULL,  Functionfc71e
@@ -229,11 +229,11 @@ Tileset29Anim: ; 0xfc233
 	dw NULL,  Functionfc71e
 	dw $9310, WriteTileToBuffer
 	dw NULL,  Functionfc71e
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  Functionfc71e
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  Functionfc71e
-	dw $cf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  Functionfc71e
 	dw $9310, WriteTileFromBuffer
 	dw NULL,  Functionfc71e
@@ -262,7 +262,7 @@ Tileset23Anim: ; 0xfc27f
 
 TilesetAnimfc2bf: ; 0xfc2bf
 	dw $94f0, WriteTileToBuffer
-	dw $cf41, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw $94f0, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -873,14 +873,14 @@ AnimateWhirlpoolTile: ; fc678
 	
 	
 WriteTileFromBuffer: ; fc696
-; Write tiledata at $cf41 to de.
-; $cf41 is loaded to sp for WriteTile.
+; Write tiledata at wcf41 to de.
+; wcf41 is loaded to sp for WriteTile.
 
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
 	
-	ld hl, $cf41
+	ld hl, wcf41
 	ld sp, hl
 	
 	ld h, d
@@ -890,7 +890,7 @@ WriteTileFromBuffer: ; fc696
 	
 	
 WriteTileToBuffer: ; fc6a2
-; Write tiledata de to $cf41.
+; Write tiledata de to wcf41.
 ; de is loaded to sp for WriteTile.
 
 	ld hl, [sp+0]
@@ -901,7 +901,7 @@ WriteTileToBuffer: ; fc6a2
 	ld l, e
 	ld sp, hl
 	
-	ld hl, $cf41
+	ld hl, wcf41
 	
 	; fallthrough
 
@@ -971,7 +971,7 @@ TileAnimationPalette: ; fc6d7
 	jr z, .color2
 	
 .color1
-	ld hl, $d01a ; pal 3 color 1
+	ld hl, Unkn1Pals + $1a ; pal 3 color 1
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -979,7 +979,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 	
 .color0
-	ld hl, $d018 ; pal 3 color 0
+	ld hl, Unkn1Pals + $18 ; pal 3 color 0
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -987,7 +987,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 	
 .color2
-	ld hl, $d01c ; pal 3 color 2
+	ld hl, Unkn1Pals + $1c ; pal 3 color 2
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -1023,11 +1023,11 @@ Functionfc71e: ; fc71e
 	ld a, [$ff9b]
 	and 2
 	jr nz, .asm_fc743
-	ld hl, $d020
+	ld hl, Unkn1Pals + $20
 	jr .asm_fc746
 
 .asm_fc743
-	ld hl, $d022
+	ld hl, Unkn1Pals + $22
 
 .asm_fc746
 	ld a, [hli]

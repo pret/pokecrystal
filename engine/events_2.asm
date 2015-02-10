@@ -9,19 +9,19 @@ Function97c28:: ; 97c28
 ; 97c30
 
 Function97c30:: ; 97c30
-	ld a, [$d45c]
+	ld a, [wd45c]
 	and a
 	ret z
-	ld hl, $d45e
+	ld hl, wd45c + 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$d45d]
+	ld a, [wd45c + 1]
 	call CallScript
 	scf
 	push af
 	xor a
-	ld hl, $d45c
+	ld hl, wd45c
 	ld bc, 8
 	call ByteFill
 	pop af
@@ -29,7 +29,7 @@ Function97c30:: ; 97c30
 ; 97c4f
 
 Function97c4f:: ; 97c4f
-	ld hl, $d45c
+	ld hl, wd45c
 	ld a, [hl]
 	and a
 	ret nz
@@ -146,7 +146,7 @@ Function97cfd:: ; 97cfd
 	ld hl, StatusFlags
 	bit 5, [hl]
 	jr nz, .asm_97d21
-	ld a, [$d19a]
+	ld a, [wd19a]
 	cp $4
 	jr z, .asm_97d17
 	cp $7
@@ -196,7 +196,7 @@ Function97d31:: ; 97d31
 
 ; Species
 	ld a, [hli]
-	ld [$d22e], a
+	ld [wd22e], a
 
 ; Min level
 	ld a, [hli]
@@ -278,7 +278,7 @@ Function97db5: ; 97db5
 	call Function2d05
 	and a
 	jr nz, .asm_97df7
-	ld hl, $dca2
+	ld hl, wdca1 + 1
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
@@ -298,13 +298,13 @@ Function97db5: ; 97db5
 	ld a, d
 	cp $4
 	jr c, .asm_97df7
-	ld a, [$dc31]
+	ld a, [wdc31]
 	and a
 	jr nz, .asm_97df7
 	ld a, $6
-	ld [$dc31], a
+	ld [wdc31], a
 	xor a
-	ld [$dc32], a
+	ld [wdc31 + 1], a
 	ld hl, StatusFlags2
 	res 4, [hl]
 	scf
@@ -316,7 +316,7 @@ Function97db5: ; 97db5
 ; 97df9
 
 Function97df9:: ; 97df9
-	ld hl, $d6de
+	ld hl, wd6de
 	ld de, $0006
 	ld c, $4
 	xor a
@@ -329,7 +329,7 @@ Function97df9:: ; 97df9
 ; 97e08
 
 Function97e08:: ; 97e08
-	ld hl, $d6de
+	ld hl, wd6de
 	xor a
 .asm_97e0c
 	ld [hConnectionStripLength], a
@@ -353,7 +353,7 @@ Function97e08:: ; 97e08
 ; 97e25
 
 Function97e25: ; 97e25
-	ld hl, $d6de
+	ld hl, wd6de
 	ld bc, 6
 	call AddNTimes
 	ld b, h
@@ -379,7 +379,7 @@ Function97e31:: ; 97e31
 ; 97e45
 
 Function97e45: ; 97e45
-	ld hl, $d6de
+	ld hl, wd6de
 	ld de, $0006
 	ld c, $4
 .asm_97e4d
@@ -400,7 +400,7 @@ Function97e45: ; 97e45
 ; 97e5c
 
 Function97e5c:: ; 97e5c
-	ld hl, $d6de
+	ld hl, wd6de
 	ld de, $0006
 	ld c, $4
 .asm_97e64
@@ -560,7 +560,7 @@ Function97f0a: ; 97f0a
 	ld hl, $0002
 	add hl, bc
 	ld a, [hl]
-	ld [$d173], a
+	ld [wd173], a
 	ret
 ; 97f1b
 
@@ -572,13 +572,13 @@ Function97f1b: ; 97f1b
 	ld hl, $0003
 	add hl, bc
 	ld a, [hl]
-	ld [$d173], a
+	ld [wd173], a
 	ret
 ; 97f2c
 
 Function97f2c: ; 97f2c
 	ld a, $7f
-	ld [$d173], a
+	ld [wd173], a
 	ld hl, $0005
 	add hl, bc
 	ld [hl], 0
@@ -587,7 +587,7 @@ Function97f2c: ; 97f2c
 
 Function97f38: ; 97f38
 	push bc
-	ld bc, $d4d6
+	ld bc, PlayerStruct
 	call GetSpriteDirection
 	and a
 	pop bc
@@ -595,7 +595,7 @@ Function97f38: ; 97f38
 ; 97f42
 
 Function97f42: ; 97f42
-	ld de, $d4d6
+	ld de, PlayerStruct
 	ld a, $d
 .asm_97f47
 	push af

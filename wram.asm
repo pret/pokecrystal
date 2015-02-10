@@ -1142,8 +1142,7 @@ AttrMap:: ; cdd9
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 AttrMapEnd::
 
-	ds 1
-
+wcf41:: ds 1
 wcf42:: ds 2
 wcf44:: ds 1
 wcf45:: ds 12
@@ -1343,7 +1342,8 @@ wd016:: ds 1
 wd017:: ds 1
 wd018:: ds 1
 wd019:: ds 1
-wd01a:: ds 6
+wd01a:: ds 5
+wd01f:: ds 1
 wd020:: ds 3
 wd023:: ds 5
 wd028:: ds 2
@@ -1480,6 +1480,7 @@ wd10b:: ds 1
 wd10c:: ds 1
 wd10d:: ds 1
 
+wd10e::
 TempMon::
 	party_struct TempMon
 
@@ -1512,9 +1513,9 @@ wd152:: ds 1
 wd153:: ds 1
 
 UsedSprites:: ; d154
-	ds 32
-; d174
+	ds 31 ; 64
 
+wd173:: ds 1
 	ds 13
 wd181:: ds 1
 wd182:: ds 1
@@ -1857,7 +1858,11 @@ ScriptPos:: ; d43a
 ScriptDelay:: ; d44d
 	ds 1
 
-	ds 11
+	ds 4
+wd452:: ds 1
+wd453:: ds 1
+wd454:: ds 1
+	ds 4
 
 wd459:: ds 2
 wd45b:: ds 1
@@ -2006,6 +2011,7 @@ ObjectStruct12:: ; d6b6
 	ds 40
 ; d6de
 
+wd6de::
 	ds 64
 
 MapObjects:: ; d71e
@@ -2217,7 +2223,8 @@ wCurBox:: ; db72
 ; 8 chars + $50
 wBoxNames:: ds 9 * NUM_BOXES ; db75
 
-	ds 2
+wdbf3:: ds 1
+	ds 1
 
 BikeFlags:: ; dbf5
 ; bit 1: always on bike
@@ -2284,7 +2291,8 @@ FruitTreeFlags:: ; dc27
 
 wdc2d:: ds 4
 wdc31:: ds 4
-wdc35:: ds 5
+wdc35:: ds 4
+wdc39:: ds 1
 wdc3a:: ds 1
 wdc3b:: ds 5
 wdc40:: ds 1

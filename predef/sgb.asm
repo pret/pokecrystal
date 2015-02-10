@@ -68,7 +68,7 @@ Function86b4: ; 86b4
 	ld hl, BlkPacket_9aa6
 	call Function9809
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	ld a, [PlayerHPPal]
@@ -79,13 +79,13 @@ Function86b4: ; 86b4
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, [hli]
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, [hli]
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, [hl]
-	ld [$cdaf], a
+	ld [wcda9 + 6], a
 	ld a, [EnemyHPPal]
 	ld l, a
 	ld h, $0
@@ -94,37 +94,37 @@ Function86b4: ; 86b4
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
-	ld [$cdb2], a
+	ld [wcda9 + 9], a
 	ld a, [hli]
-	ld [$cdb3], a
+	ld [wcda9 + 10], a
 	ld a, [hli]
-	ld [$cdb4], a
+	ld [wcda9 + 11], a
 	ld a, [hl]
-	ld [$cdb5], a
+	ld [wcda9 + 12], a
 	ld hl, PalPacket_9cf6
-	ld de, $cdb9
+	ld de, wcda9 + $10
 	ld bc, $0010
 	call CopyBytes
 	call Function9729
 	ld a, [hli]
-	ld [$cdbc], a
+	ld [wcda9 + $13], a
 	ld a, [hli]
-	ld [$cdbd], a
+	ld [wcda9 + $14], a
 	ld a, [hli]
-	ld [$cdbe], a
+	ld [wcda9 + $15], a
 	ld a, [hl]
-	ld [$cdbf], a
+	ld [wcda9 + $16], a
 	call Function973a
 	ld a, [hli]
-	ld [$cdc2], a
+	ld [wcda9 + $19], a
 	ld a, [hli]
-	ld [$cdc3], a
+	ld [wcda9 + $1a], a
 	ld a, [hli]
-	ld [$cdc4], a
+	ld [wcda9 + $1b], a
 	ld a, [hl]
-	ld [$cdc5], a
-	ld hl, $cda9
-	ld de, $cdb9
+	ld [wcda9 + $1c], a
+	ld hl, wcda9
+	ld de, wcda9 + $10
 	ld a, $1
 	ld [SGBPredef], a
 	ret
@@ -132,17 +132,17 @@ Function86b4: ; 86b4
 
 Function873c: ; 873c
 	ld hl, PalPacket_9bd6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
-	ld hl, $cdaa
+	ld hl, wcda9 + 1
 	ld [hl], $10
 	inc hl
 	inc hl
 	ld a, [PlayerHPPal]
 	add $2f
 	ld [hl], a
-	ld hl, $cda9
+	ld hl, wcda9
 	ld de, BlkPacket_9ad6
 	ret
 ; 875c
@@ -155,10 +155,10 @@ Function875c: ; 875c
 
 Function8763: ; 8763
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
-	ld a, [$cda1]
+	ld a, [wcda1]
 	ld l, a
 	ld h, $0
 	add hl, hl
@@ -166,41 +166,41 @@ Function8763: ; 8763
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, [hli]
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, [hli]
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, [hl]
-	ld [$cdaf], a
+	ld [wcda9 + 6], a
 	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
+	ld bc, wd10e + 21
 	call Function974b
 	ld a, [hli]
-	ld [$cdb2], a
+	ld [wcda9 + 9], a
 	ld a, [hli]
-	ld [$cdb3], a
+	ld [wcda9 + 10], a
 	ld a, [hli]
-	ld [$cdb4], a
+	ld [wcda9 + 11], a
 	ld a, [hl]
-	ld [$cdb5], a
-	ld hl, $cda9
+	ld [wcda9 + 12], a
+	ld hl, wcda9
 	ld de, BlkPacket_9ac6
 	ret
 ; 87ab
 
 Function87ab: ; 87ab
 	ld hl, PalPacket_9c56
-	ld de, $cdaa
+	ld de, wcda9 + 1
 	ret
 ; 87b2
 
 Function87b2: ; 87b2
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
-	ld hl, $cdac
+	ld hl, wcda9 + 3
 	ld [hl], $9f
 	inc hl
 	ld [hl], $2a
@@ -211,24 +211,24 @@ Function87b2: ; 87b2
 	ld a, [CurPartySpecies]
 	call Function9775
 	ld a, [hli]
-	ld [$cdb2], a
+	ld [wcda9 + 9], a
 	ld a, [hli]
-	ld [$cdb3], a
+	ld [wcda9 + 10], a
 	ld a, [hli]
-	ld [$cdb4], a
+	ld [wcda9 + 11], a
 	ld a, [hl]
-	ld [$cdb5], a
-	ld hl, $cda9
+	ld [wcda9 + 12], a
+	ld hl, wcda9
 	ld de, BlkPacket_9ae6
 	ret
 ; 87e9
 
 Function87e9: ; 87e9
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
-	ld hl, $cdac
+	ld hl, wcda9 + 3
 	ld [hl], $9f
 	inc hl
 	ld [hl], $2a
@@ -237,17 +237,17 @@ Function87e9: ; 87e9
 	inc hl
 	ld [hl], $19
 	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
+	ld bc, wd10e + 21
 	call Function974b
 	ld a, [hli]
-	ld [$cdb2], a
+	ld [wcda9 + 9], a
 	ld a, [hli]
-	ld [$cdb3], a
+	ld [wcda9 + 10], a
 	ld a, [hli]
-	ld [$cdb4], a
+	ld [wcda9 + 11], a
 	ld a, [hl]
-	ld [$cdb5], a
-	ld hl, $cda9
+	ld [wcda9 + 12], a
+	ld hl, wcda9
 	ld de, BlkPacket_9ae6
 	ret
 ; 8823
@@ -260,10 +260,10 @@ Function8823: ; 8823
 
 Function882a: ; 882a
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
-	ld hl, $cdac
+	ld hl, wcda9 + 3
 	ld [hl], $9f
 	inc hl
 	ld [hl], $2a
@@ -271,7 +271,7 @@ Function882a: ; 882a
 	ld [hl], $5a
 	inc hl
 	ld [hl], $19
-	ld hl, $cda9
+	ld hl, wcda9
 	ld de, BlkPacket_9a86
 	ret
 ; 884b
@@ -355,11 +355,11 @@ Function889e: ; 889e
 
 Function88b1: ; 88b1
 	ld hl, PalPacket_9bd6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	call Function8a0c
-	ld hl, $cdaa
+	ld hl, wcda9 + 1
 	ld [hld], a
 	ld de, BlkPacket_9a86
 	ld a, $9
@@ -370,14 +370,14 @@ Function88b1: ; 88b1
 Function88cd: ; 88cd
 	push bc
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	pop bc
 	ld a, c
 	and a
 	jr z, .asm_88ef
-	ld hl, $cdac
+	ld hl, wcda9 + 3
 	ld [hl], $e7
 	inc hl
 	ld [hl], $1c
@@ -397,16 +397,16 @@ Function88cd: ; 88cd
 	ld a, [PlayerHPPal]
 	call Function974b
 	ld a, [hli]
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, [hli]
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, [hli]
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, [hl]
-	ld [$cdaf], a
+	ld [wcda9 + 6], a
 
 .asm_8913
-	ld hl, $cda9
+	ld hl, wcda9
 	ld de, BlkPacket_9a86
 	ret
 ; 891a
@@ -425,37 +425,37 @@ Function8921: ; 8921
 
 Function8928: ; 8928
 	ld hl, PalPacket_9bd6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	ld hl, BlkPacket_9a86
-	ld de, $cdb9
+	ld de, wcda9 + $10
 	ld bc, $0010
 	call CopyBytes
 	call Function8a0c
-	ld hl, $cdaa
+	ld hl, wcda9 + 1
 	ld [hl], a
-	ld hl, $cdac
+	ld hl, wcda9 + 3
 	ld [hl], $2e
-	ld hl, $cdbc
+	ld hl, wcda9 + $13
 	ld a, $5
 	ld [hli], a
-	ld a, [$cf83]
+	ld a, [wcf83]
 	ld [hli], a
-	ld a, [$cf82]
+	ld a, [wcf82]
 	ld [hli], a
-	ld a, [$cf85]
+	ld a, [wcf85]
 	ld [hli], a
-	ld a, [$cf84]
+	ld a, [wcf84]
 	ld [hl], a
-	ld hl, $cda9
-	ld de, $cdb9
+	ld hl, wcda9
+	ld de, wcda9 + $10
 	ret
 ; 8969
 
 Function8969: ; 8969
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	ld a, [CurPartySpecies]
@@ -466,7 +466,7 @@ Function8969: ; 8969
 	add hl, hl
 	ld de, PokemonPalettes
 	add hl, de
-	ld a, [$cf65]
+	ld a, [wcf65]
 	and 3
 	sla a
 	sla a
@@ -474,14 +474,14 @@ Function8969: ; 8969
 	ld b, 0
 	add hl, bc
 	ld a, [hli]
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, [hli]
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, [hli]
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, [hl]
-	ld [$cdaf], a
-	ld hl, $cda9
+	ld [wcda9 + 6], a
+	ld hl, wcda9
 	ld de, BlkPacket_9a86
 	ret
 ; 89a6
@@ -494,21 +494,21 @@ Function89a6: ; 89a6
 
 Function89ad: ; 89ad
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
+	ld bc, wd10e + 21
 	call Function974b
 	ld a, [hli]
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, [hli]
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, [hli]
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, [hl]
-	ld [$cdaf], a
-	ld hl, $cda9
+	ld [wcda9 + 6], a
+	ld hl, wcda9
 	ld de, BlkPacket_9a86
 	ret
 ; 89d9
@@ -521,21 +521,21 @@ Function89d9: ; 89d9
 
 Function89e0: ; 89e0
 	ld hl, PalPacket_9ce6
-	ld de, $cda9
+	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
 	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
+	ld bc, wd10e + 21
 	call Function9764
 	ld a, [hli]
-	ld [$cdac], a
+	ld [wcda9 + 3], a
 	ld a, [hli]
-	ld [$cdad], a
+	ld [wcda9 + 4], a
 	ld a, [hli]
-	ld [$cdae], a
+	ld [wcda9 + 5], a
 	ld a, [hl]
-	ld [$cdaf], a
-	ld hl, $cda9
+	ld [wcda9 + 6], a
+	ld hl, wcda9
 	ld de, BlkPacket_9a86
 	ret
 ; 8a0c
@@ -548,7 +548,7 @@ Function8a0c: ; 8a0c
 	ret
 
 .asm_8a16
-	ld a, [$d19a]
+	ld a, [wd19a]
 	cp $2
 	jr z, .asm_8a39
 	cp $4

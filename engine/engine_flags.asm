@@ -3,43 +3,43 @@
 	; location, bit
 
 	; pokegear
-	dwb $d957, %00000010 ; radio card       ; $0
-	dwb $d957, %00000001 ; map card
-	dwb $d957, %00000100 ; phone card
-	dwb $d957, %00001000 ; expn card
-	dwb $d957, %10000000 ; on/off
-	
+	dwb wd957, %00000010 ; radio card       ; $0
+	dwb wd957, %00000001 ; map card
+	dwb wd957, %00000100 ; phone card
+	dwb wd957, %00001000 ; expn card
+	dwb wd957, %10000000 ; on/off
+
 	;   wDaycareMan, %10000000 ; daycare 1 on
 	dwb wDaycareMan, %01000000 ; monster 1 and 2 are compatible
 	;   wDaycareMan, %00100000 ; egg is ready
 	dwb wDaycareMan, %00000001 ; monster 1 in daycare
-	
+
 	;   wDaycareLady, %10000000 = daycare 2 on
 	dwb wDaycareLady, %00000001 ; monster 2 in daycare
-	
-	dwb $d854, %00000001 ; mom saving money ; $8
-	dwb $d854, %10000000 ; dst
-	
-	dwb $dc39, %00000001
-	
-	dwb $d84c, %00000001 ; pokedex
-	dwb $d84c, %00000010 ; unown dex
-	dwb $d84c, %00001000 ; pokerus
-	dwb $d84c, %00010000 ; rocket signal on ch20
-	dwb $d84c, %01000000 ; credits skip
-	dwb $d84c, %10000000 ; bug contest on   ; $10
-	dwb $d84d, %00000100 ; bug contest timer
-	dwb $d84d, %00000010 ; rockets in radio tower
-	dwb $d84d, %00000001 ; bike shop call enabled (1024 bike steps reqd)
-	dwb $d84d, %00010000
-	dwb $d84d, %00100000 ; give pokerus; berry -> berry juice when trading?
-	dwb $d84d, %01000000
-	dwb $d84d, %10000000 ; rockets in mahogany
-	
-	dwb $dbf5, %00000001 ; strength active  ; $18
-	dwb $dbf5, %00000010 ; always on bike (cant surf)
-	dwb $dbf5, %00000100 ; downhill (cycling road)
-	
+
+	dwb wMomSavingMoney, %00000001 ; mom saving money ; $8
+	dwb wMomSavingMoney, %10000000 ; dst
+
+	dwb wdc39, %00000001
+
+	dwb StatusFlags, %00000001 ; pokedex
+	dwb StatusFlags, %00000010 ; unown dex
+	dwb StatusFlags, %00001000 ; pokerus
+	dwb StatusFlags, %00010000 ; rocket signal on ch20
+	dwb StatusFlags, %01000000 ; credits skip
+	dwb StatusFlags, %10000000 ; bug contest on   ; $10
+	dwb StatusFlags2, %00000100 ; bug contest timer
+	dwb StatusFlags2, %00000010 ; rockets in radio tower
+	dwb StatusFlags2, %00000001 ; bike shop call enabled (1024 bike steps reqd)
+	dwb StatusFlags2, %00010000
+	dwb StatusFlags2, %00100000 ; give pokerus; berry -> berry juice when trading?
+	dwb StatusFlags2, %01000000
+	dwb StatusFlags2, %10000000 ; rockets in mahogany
+
+	dwb BikeFlags, %00000001 ; strength active  ; $18
+	dwb BikeFlags, %00000010 ; always on bike (cant surf)
+	dwb BikeFlags, %00000100 ; downhill (cycling road)
+
 	dwb JohtoBadges, %00000001 ; zephyrbadge
 	dwb JohtoBadges, %00000010 ; hivebadge
 	dwb JohtoBadges, %00000100 ; plainbadge
@@ -48,7 +48,7 @@
 	dwb JohtoBadges, %00100000 ; stormbadge ; $20
 	dwb JohtoBadges, %01000000 ; glacierbadge
 	dwb JohtoBadges, %10000000 ; risingbadge
-	
+
 	dwb KantoBadges, %00000001 ; boulderbadge
 	dwb KantoBadges, %00000010 ; cascadebadge
 	dwb KantoBadges, %00000100 ; thunderbadge
@@ -57,7 +57,7 @@
 	dwb KantoBadges, %00100000 ; marshbadge ; $28
 	dwb KantoBadges, %01000000 ; volcanobadge
 	dwb KantoBadges, %10000000 ; earthbadge
-	
+
 	; unown sets
 	dwb UnlockedUnowns, %00000001 ; 1
 	dwb UnlockedUnowns, %00000010 ; 2
@@ -67,7 +67,7 @@
 	dwb UnlockedUnowns, %00100000 ; 6       ; $30
 	dwb UnlockedUnowns, %01000000 ; 7
 	dwb UnlockedUnowns, %10000000 ; 8
-	
+
 	; fly
 	dwb VisitedSpawns, %00000001 ; your house
 	dwb VisitedSpawns, %00000010 ; viridian pokecenter
@@ -96,103 +96,103 @@
 	dwb VisitedSpawns + 3, %00000010 ; blackthorn
 	dwb VisitedSpawns + 3, %00000100 ; silver cave
 	dwb VisitedSpawns + 3, %00010000 ; unused
-	
-	dwb $dc9d, %00000001 ; lucky number show
-	dwb $d84d, %00001000
-	
-	dwb $dc1e, %00000001 ; kurt making balls  ; $50
-	dwb $dc1e, %00000010
-	dwb $dc1e, %00000100 ; special wilddata?
-	dwb $dc1e, %00001000 ; time capsule (24h wait)
-	dwb $dc1e, %00010000 ; all fruit trees
-	dwb $dc1e, %00100000 ; shuckle given
-	dwb $dc1e, %01000000 ; goldenrod underground merchant closed
-	dwb $dc1e, %10000000 ; fought in trainer hall today
-	
-	dwb $dc1f, %00000001 ; mt moon square clefairy  ; $58
-	dwb $dc1f, %00000010 ; union cave lapras
-	dwb $dc1f, %00000100 ; goldenrod underground haircut used
-	dwb $dc1f, %00001000 ; goldenrod mall happiness event floor05 person07
-	dwb $dc1f, %00010000 ; tea in blues house
-	dwb $dc1f, %00100000 ; indigo plateau rival fight
-	dwb $dc1f, %01000000
-	dwb $dc1f, %10000000
-	
-	dwb $dc20, %00000001 ; $60
-	dwb $dc20, %00000010 ; goldenrod dept store sale is on
-	
-	dwb $cfbc, %10000000 ; $62
-	
+
+	dwb wdc9d, %00000001 ; lucky number show
+	dwb StatusFlags2, %00001000
+
+	dwb wdc1e, %00000001 ; kurt making balls  ; $50
+	dwb wdc1e, %00000010
+	dwb wdc1e, %00000100 ; special wilddata?
+	dwb wdc1e, %00001000 ; time capsule (24h wait)
+	dwb wdc1e, %00010000 ; all fruit trees
+	dwb wdc1e, %00100000 ; shuckle given
+	dwb wdc1e, %01000000 ; goldenrod underground merchant closed
+	dwb wdc1e, %10000000 ; fought in trainer hall today
+
+	dwb wdc1f, %00000001 ; mt moon square clefairy  ; $58
+	dwb wdc1f, %00000010 ; union cave lapras
+	dwb wdc1f, %00000100 ; goldenrod underground haircut used
+	dwb wdc1f, %00001000 ; goldenrod mall happiness event floor05 person07
+	dwb wdc1f, %00010000 ; tea in blues house
+	dwb wdc1f, %00100000 ; indigo plateau rival fight
+	dwb wdc1f, %01000000
+	dwb wdc1f, %10000000
+
+	dwb wdc20, %00000001 ; $60
+	dwb wdc20, %00000010 ; goldenrod dept store sale is on
+
+	dwb GameTimerPause, %10000000 ; $62
+
 	dwb PlayerGender, %00000001 ; player is female
-	
-	dwb $dbf3, %00000100 ; have gs ball after kurt examined it
-	
+
+	dwb wdbf3, %00000100 ; have gs ball after kurt examined it
+
 	; rematches
-	dwb $dc4c, %00000001 ; jack
-	dwb $dc4c, %00000010 ; huey
-	dwb $dc4c, %00000100 ; gaven
-	dwb $dc4c, %00001000 ; beth  ; $68
-	dwb $dc4c, %00010000 ; jose
-	dwb $dc4c, %00100000 ; reena
-	dwb $dc4c, %01000000 ; joey
-	dwb $dc4c, %10000000 ; wade
-	dwb $dc4d, %00000001 ; ralph
-	dwb $dc4d, %00000010 ; liz
-	dwb $dc4d, %00000100 ; anthony
-	dwb $dc4d, %00001000 ; todd  ; $70
-	dwb $dc4d, %00010000 ; gina
-	dwb $dc4d, %00100000 ; arnie
-	dwb $dc4d, %01000000 ; alan
-	dwb $dc4d, %10000000 ; dana
-	dwb $dc4e, %00000001 ; chad
-	dwb $dc4e, %00000010 ; tully
-	dwb $dc4e, %00000100 ; brent
-	dwb $dc4e, %00001000 ; tiffany  ; $78
-	dwb $dc4e, %00010000 ; vance
-	dwb $dc4e, %00100000 ; wilton
-	dwb $dc4e, %01000000 ; parry
-	dwb $dc4e, %10000000 ; erin
-	
-	dwb $dc50, %00000001 ; beverly has nugget
-	dwb $dc50, %00000010 ; jose has star piece
-	dwb $dc50, %00000100 ; wade has item (see bittable1 $032b-e)
-	dwb $dc50, %00001000 ; gina has leaf stone  ; $80
-	dwb $dc50, %00010000 ; alan has fire stone
-	dwb $dc50, %00100000 ; liz has thunderstone
-	dwb $dc50, %01000000 ; derek has nugget
-	dwb $dc50, %10000000 ; tully has water stone
-	
-	dwb $dc51, %00000001 ; tiffany has pink bow
-	dwb $dc51, %00000010 ; wilton has item (see bittable1 $032f-31)
-	
-	dwb $dc54, %00000001
-	dwb $dc54, %00000010  ; $88
-	dwb $dc54, %00000100
-	dwb $dc54, %00001000
-	dwb $dc54, %00010000
-	dwb $dc54, %00100000
-	dwb $dc54, %01000000
-	dwb $dc54, %10000000
-	
-	dwb $dc55, %00000001
-	dwb $dc55, %00000010  ; $90
-	dwb $dc55, %00000100
-	dwb $dc55, %00001000
-	dwb $dc55, %00010000
-	dwb $dc55, %00100000
-	dwb $dc55, %01000000
-	dwb $dc55, %10000000
-	
-	dwb $dc56, %00000001
-	dwb $dc56, %00000010  ; $98
-	dwb $dc56, %00000100
-	dwb $dc56, %00001000
-	dwb $dc56, %00010000
-	dwb $dc56, %00100000
-	dwb $dc56, %01000000
-	dwb $dc56, %10000000
-	
-	dwb $d45b, %00000100 ; female player has been transformed into male
-	
-	dwb $dc20, %00000100 ; dunsparce swarm   ; $a0
-	dwb $dc20, %00001000 ; yanma swarm
+	dwb wdc4c, %00000001 ; jack
+	dwb wdc4c, %00000010 ; huey
+	dwb wdc4c, %00000100 ; gaven
+	dwb wdc4c, %00001000 ; beth  ; $68
+	dwb wdc4c, %00010000 ; jose
+	dwb wdc4c, %00100000 ; reena
+	dwb wdc4c, %01000000 ; joey
+	dwb wdc4c, %10000000 ; wade
+	dwb wdc4c + 1, %00000001 ; ralph
+	dwb wdc4c + 1, %00000010 ; liz
+	dwb wdc4c + 1, %00000100 ; anthony
+	dwb wdc4c + 1, %00001000 ; todd  ; $70
+	dwb wdc4c + 1, %00010000 ; gina
+	dwb wdc4c + 1, %00100000 ; arnie
+	dwb wdc4c + 1, %01000000 ; alan
+	dwb wdc4c + 1, %10000000 ; dana
+	dwb wdc4c + 2, %00000001 ; chad
+	dwb wdc4c + 2, %00000010 ; tully
+	dwb wdc4c + 2, %00000100 ; brent
+	dwb wdc4c + 2, %00001000 ; tiffany  ; $78
+	dwb wdc4c + 2, %00010000 ; vance
+	dwb wdc4c + 2, %00100000 ; wilton
+	dwb wdc4c + 2, %01000000 ; parry
+	dwb wdc4c + 2, %10000000 ; erin
+
+	dwb wdc50, %00000001 ; beverly has nugget
+	dwb wdc50, %00000010 ; jose has star piece
+	dwb wdc50, %00000100 ; wade has item (see bittable1 $032b-e)
+	dwb wdc50, %00001000 ; gina has leaf stone  ; $80
+	dwb wdc50, %00010000 ; alan has fire stone
+	dwb wdc50, %00100000 ; liz has thunderstone
+	dwb wdc50, %01000000 ; derek has nugget
+	dwb wdc50, %10000000 ; tully has water stone
+
+	dwb wdc50 + 1, %00000001 ; tiffany has pink bow
+	dwb wdc50 + 1, %00000010 ; wilton has item (see bittable1 $032f-31)
+
+	dwb wdc54, %00000001
+	dwb wdc54, %00000010  ; $88
+	dwb wdc54, %00000100
+	dwb wdc54, %00001000
+	dwb wdc54, %00010000
+	dwb wdc54, %00100000
+	dwb wdc54, %01000000
+	dwb wdc54, %10000000
+
+	dwb wdc54 + 1, %00000001
+	dwb wdc54 + 1, %00000010  ; $90
+	dwb wdc54 + 1, %00000100
+	dwb wdc54 + 1, %00001000
+	dwb wdc54 + 1, %00010000
+	dwb wdc54 + 1, %00100000
+	dwb wdc54 + 1, %01000000
+	dwb wdc54 + 1, %10000000
+
+	dwb wdc54 + 2, %00000001
+	dwb wdc54 + 2, %00000010  ; $98
+	dwb wdc54 + 2, %00000100
+	dwb wdc54 + 2, %00001000
+	dwb wdc54 + 2, %00010000
+	dwb wdc54 + 2, %00100000
+	dwb wdc54 + 2, %01000000
+	dwb wdc54 + 2, %10000000
+
+	dwb wd45b, %00000100 ; female player has been transformed into male
+
+	dwb wdc20, %00000100 ; dunsparce swarm   ; $a0
+	dwb wdc20, %00001000 ; yanma swarm
