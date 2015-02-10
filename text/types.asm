@@ -79,9 +79,9 @@ PrintType: ; 50953
 
 
 GetTypeName: ; 50964
-; Copy the name of type [$d265] to StringBuffer1.
+; Copy the name of type [wd265] to StringBuffer1.
 
-	ld a, [$d265]
+	ld a, [wd265]
 	ld hl, TypeNames
 	ld e, a
 	ld d, 0

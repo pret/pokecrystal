@@ -9,7 +9,7 @@ PrintItemDescription: ; 0x1c8955
 	push de
 	callba GetTMHMItemMove
 	pop hl
-	ld a, [$d265]
+	ld a, [wd265]
 	ld [CurSpecies], a
 	predef PrintMoveDesc
 	ret

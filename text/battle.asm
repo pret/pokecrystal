@@ -1,15 +1,15 @@
 BattleText_0x80730: ; 0x80730
 	text $52, " picked up"
 	line "¥@"
-	deciram $c6ec, $36
+	deciram wPayDayMoney, $36
 	text "!"
 	prompt
 ; 0x80746
 
 WildPokemonAppearedText: ; 0x80746
 	text "Wild @"
-	text_from_ram $c616
-	db $0
+	text_from_ram EnemyMonNick
+	text ""
 	line "appeared!"
 	prompt
 ; 0x8075c
@@ -17,14 +17,14 @@ WildPokemonAppearedText: ; 0x80746
 HookedPokemonAttackedText: ; 0x8075c
 	text "The hooked"
 	line "@"
-	text_from_ram $c616
+	text_from_ram EnemyMonNick
 	text $55
 	db "attacked!"
 	prompt
 ; 0x80778
 
 PokemonFellFromTreeText: ; 0x80778
-	text_from_ram $c616
+	text_from_ram EnemyMonNick
 	text " fell"
 	line "out of the tree!"
 	prompt
@@ -32,8 +32,8 @@ PokemonFellFromTreeText: ; 0x80778
 
 WildCelebiAppearedText: ; 0x80793
 	text "Wild @"
-	text_from_ram $c616
-	db $0
+	text_from_ram EnemyMonNick
+	text ""
 	line "appeared!"
 	prompt
 ; 0x807a9
@@ -46,16 +46,16 @@ WantsToBattleText:: ; 0x807a9
 
 BattleText_0x807bd: ; 0x807bd
 	text "Wild @"
-	text_from_ram $c616
-	db $0
+	text_from_ram EnemyMonNick
+	text ""
 	line "fled!"
 	prompt
 ; 0x807cf
 
 BattleText_0x807cf: ; 0x807cf
 	text "Enemy @"
-	text_from_ram $c616
-	db $0
+	text_from_ram EnemyMonNick
+	text ""
 	line "fled!"
 	prompt
 ; 0x807e2
@@ -99,7 +99,7 @@ SandstormHitsText: ; 0x8084d
 PerishCountText: ; 0x80864
 	text $5a, "'s"
 	line "PERISH count is @"
-	deciram $d265, $11
+	deciram wd265, $11
 	text "!"
 	prompt
 ; 0x80880
@@ -186,16 +186,16 @@ BattleText_0x8098f: ; 0x8098f
 
 BattleText_0x809a8: ; 0x809a8
 	text "Enemy @"
-	text_from_ram $c616
-	db $0
+	text_from_ram EnemyMonNick
+	text ""
 	line "fainted!"
 	prompt
 ; 0x809be
 
 BattleText_0x809be: ; 0x809be
 	text $52, " got ¥@"
-	deciram $c686, $36
-	db $0
+	deciram wc686, $36
+	text ""
 	line "for winning!"
 	prompt
 ; 0x809da
@@ -214,8 +214,8 @@ TiedAgainstText: ; 0x809eb
 
 BattleText_0x809fc: ; 0x809fc
 	text $52, " got ¥@"
-	deciram $c686, $36
-	db $0
+	deciram wc686, $36
+	text ""
 	line "for winning!"
 	cont "Sent some to MOM!"
 	prompt
@@ -239,8 +239,8 @@ BattleText_0x80a4f: ; 0x80a4f
 ; 0x80a75
 
 BattleText_0x80a75: ; 0x80a75
-	text_from_ram $c621
-	db $0
+	text_from_ram BattleMonNick
+	text ""
 	line "fainted!"
 	prompt
 ; 0x80a83
@@ -267,7 +267,7 @@ BattleText_0x80aca: ; 0x80aca
 	text $3f
 	line "is about to use"
 	cont "@"
-	text_from_ram $c616
+	text_from_ram EnemyMonNick
 	text "."
 
 	para "Will ", $52
@@ -279,7 +279,7 @@ BattleText_0x80af8: ; 0x80af8
 	text $3f
 	line "sent out"
 	cont "@"
-	text_from_ram $c616
+	text_from_ram EnemyMonNick
 	text "!"
 	done
 ; 0x80b0b
@@ -358,15 +358,15 @@ BattleText_0x80bf3: ; 0x80bf3
 ; 0x80c0d
 
 BattleText_0x80c0d: ; 0x80c0d
-	text_from_ram $c621
-	db $0
+	text_from_ram BattleMonNick
+	text ""
 	line "is already out."
 	prompt
 ; 0x80c22
 
 BattleText_0x80c22: ; 0x80c22
-	text_from_ram $c621
-	db $0
+	text_from_ram BattleMonNick
+	text ""
 	line "can't be recalled!"
 	prompt
 ; 0x80c39
@@ -384,8 +384,8 @@ BattleText_0x80c5b: ; 0x80c5b
 ; 0x80c72
 
 BattleText_0x80c72: ; 0x80c72
-	text_from_ram $c621
-	db $0
+	text_from_ram BattleMonNick
+	text ""
 	line "has no moves left!"
 	done
 ; 0x80c8a
@@ -398,30 +398,30 @@ BattleText_0x80c8a: ; 0x80c8a
 
 BattleText_0x80c9c: ; 0x80c9c
 	text_from_ram StringBuffer1
-	db $0, " grew to", $4f
-	db "level @"
-	deciram $d143, $13
-	db $0, "!@"
+	text " grew to"
+	line "level @"
+	deciram CurPartyLevel, $13
+	text "!@"
 	sound0
-	db $50
+	db "@"
 ; 0x80cb9
 
 BattleText_0x80cb9: ; 0x80cb9
-	db $50
+	db "@"
 ; 0x80cba
 
 BattleText_0x80cba: ; 0x80cba
 	text "Wild @"
-	text_from_ram $c616
-	db $0
+	text_from_ram EnemyMonNick
+	text ""
 	line "is eating!"
 	prompt
 ; 0x80cd1
 
 BattleText_0x80cd1: ; 0x80cd1
 	text "Wild @"
-	text_from_ram $c616
-	db $0
+	text_from_ram EnemyMonNick
+	text ""
 	line "is angry!"
 	prompt
 ; 0x80ce7
@@ -603,42 +603,42 @@ DisabledMoveText: ; 0x80f02
 ; 0x80f19
 
 LoafingAroundText: ; 0x80f19
-	text_from_ram $c621
+	text_from_ram BattleMonNick
 	text " is"
 	line "loafing around."
 	prompt
 ; 0x80f31
 
 BeganToNapText: ; 0x80f31
-	text_from_ram $c621
+	text_from_ram BattleMonNick
 	text " began"
 	line "to nap!"
 	prompt
 ; 0x80f44
 
 WontObeyText: ; 0x80f44
-	text_from_ram $c621
+	text_from_ram BattleMonNick
 	text " won't"
 	line "obey!"
 	prompt
 ; 0x80f54
 
 TurnedAwayText: ; 0x80f54
-	text_from_ram $c621
+	text_from_ram BattleMonNick
 	text " turned"
 	line "away!"
 	prompt
 ; 0x80f66
 
 IgnoredOrdersText: ; 0x80f66
-	text_from_ram $c621
+	text_from_ram BattleMonNick
 	text " ignored"
 	line "orders!"
 	prompt
 ; 0x80f7b
 
 IgnoredSleepingText: ; 0x80f7b
-	text_from_ram $c621
+	text_from_ram BattleMonNick
 	text " ignored"
 	line "orders…sleeping!"
 	prompt
@@ -654,7 +654,7 @@ HasNoPPLeftText: ; 0x80fba
 	text $5a
 	line "has no PP left for"
 	cont "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "!"
 	prompt
 ; 0x80fd7
@@ -784,14 +784,15 @@ SpiteEffectText: ; 0x8117f
 	text_from_ram StringBuffer1
 	text " was"
 	cont "reduced by @"
-	deciram $d265, $11
+	deciram wd265, $11
 	text "!"
 	prompt
 ; 0x811a0
 
 BellChimedText: ; 0x811a0
-	db $0, "A bell chimed!", $4f
-	db $58
+	text "A bell chimed!"
+	line ""
+	prompt
 ; 0x811b1
 
 FellAsleepText: ; 0x811b1
@@ -857,7 +858,7 @@ WasFrozenText: ; 0x8125d
 WontRiseAnymoreText: ; 0x81272
 	text $5a, "'s"
 	line "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text " won't"
 	cont "rise anymore!"
 	prompt
@@ -866,7 +867,7 @@ WontRiseAnymoreText: ; 0x81272
 WontDropAnymoreText: ; 0x8128f
 	text $59, "'s"
 	line "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text " won't"
 	cont "drop anymore!"
 	prompt
@@ -892,14 +893,14 @@ BlownAwayText: ; 0x812d2
 
 PlayerHitTimesText: ; 0x812e5
 	text "Hit @"
-	deciram $c682, $11
+	deciram PlayerDamageTaken, $11
 	text " times!"
 	prompt
 ; 0x812f8
 
 EnemyHitTimesText: ; 0x812f8
 	text "Hit @"
-	deciram $c684, $11
+	deciram EnemyDamageTaken, $11
 	text " times!"
 	prompt
 ; 0x8130b
@@ -1207,7 +1208,7 @@ SafeguardProtectText: ; 0x81733
 
 MagnitudeText: ; 0x81751
 	text "Magnitude @"
-	deciram $d265, $11
+	deciram wd265, $11
 	text "!"
 	prompt
 ; 0x81764

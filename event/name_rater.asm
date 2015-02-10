@@ -22,7 +22,7 @@ NameRater: ; fb6ed
 	xor a
 	ld [MonType], a
 	ld a, [CurPartySpecies]
-	ld [$d265], a
+	ld [wd265], a
 	ld [CurSpecies], a
 	call GetBaseData
 	ld b, 0
