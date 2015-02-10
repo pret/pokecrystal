@@ -45,68 +45,68 @@ UnknownText_0x1bc089: ; 0x1bc089
 ; 0x1bc0a2
 
 UnknownText_0x1bc0a2: ; 0x1bc0a2
-	text_from_ram $d073
-	db $0
+	text_from_ram StringBuffer1
+	text ""
 	line "recovered @"
-	deciram $d1f3, $23
+	deciram wd1f3, $23
 	text "HP!"
 	done
 ; 0x1bc0bb
 
 UnknownText_0x1bc0bb: ; 0x1bc0bb
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "'s"
 	line "cured of poison."
 	done
 ; 0x1bc0d2
 
 UnknownText_0x1bc0d2: ; 0x1bc0d2
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "'s"
 	line "rid of paralysis."
 	done
 ; 0x1bc0ea
 
 UnknownText_0x1bc0ea: ; 0x1bc0ea
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "'s"
 	line "burn was healed."
 	done
 ; 0x1bc101
 
 UnknownText_0x1bc101: ; 0x1bc101
-	text_from_ram $d073
-	db $0
+	text_from_ram StringBuffer1
+	text ""
 	line "was defrosted."
 	done
 ; 0x1bc115
 
 UnknownText_0x1bc115: ; 0x1bc115
-	text_from_ram $d073
-	db $0
+	text_from_ram StringBuffer1
+	text ""
 	line "woke up."
 	done
 ; 0x1bc123
 
 UnknownText_0x1bc123: ; 0x1bc123
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "'s"
 	line "health returned."
 	done
 ; 0x1bc13a
 
 UnknownText_0x1bc13a: ; 0x1bc13a
-	text_from_ram $d073
-	db $0
+	text_from_ram StringBuffer1
+	text ""
 	line "is revitalized."
 	done
 ; 0x1bc14f
 
 UnknownText_0x1bc14f: ; 0x1bc14f
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text " grew to"
 	line "level @"
-	deciram $d143, $13
+	deciram CurPartyLevel, $13
 	text "!@"
 	sound0
 	text_waitbutton
@@ -118,7 +118,7 @@ UnknownText_0x1bc16d: ; 0x1bc16d
 ; 0x1bc16e
 
 UnknownText_0x1bc16e: ; 0x1bc16e
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text " came"
 	line "to its senses."
 	done
@@ -324,7 +324,7 @@ UnknownText_0x1bc4b2: ; 0x1bc4b2
 UnknownText_0x1bc4d7: ; 0x1bc4d7
 	text "Put away the"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "."
 	prompt
 ; 0x1bc4ec
@@ -338,7 +338,7 @@ UnknownText_0x1bc4ec: ; 0x1bc4ec
 UnknownText_0x1bc509: ; 0x1bc509
 	text "Set up the"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "."
 	prompt
 ; 0x1bc51c
@@ -346,11 +346,11 @@ UnknownText_0x1bc509: ; 0x1bc509
 UnknownText_0x1bc51c: ; 0x1bc51c
 	text "Put away the"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text $51
 	db "and set up the"
 	line "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	text "."
 	prompt
 ; 0x1bc546
@@ -387,7 +387,7 @@ UnknownText_0x1bc5b3: ; 0x1bc5b3
 UnknownText_0x1bc5d7: ; 0x1bc5d7
 	text "It's an adorable"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "."
 	done
 ; 0x1bc5ef
@@ -436,27 +436,28 @@ UnknownText_0x1bc6c7: ; 0x1bc6c7
 ; 0x1bc6e9
 
 UnknownText_0x1bc6e9: ; 0x1bc6e9
-	text_from_ram $c6d1
+	text_from_ram wc6d1
 	text " was"
 	line "sent to @"
-	text_from_ram $c719
+	text_from_ram wc719
 	text "."
 	done
 ; 0x1bc701
 
 UnknownText_0x1bc701: ; 0x1bc701
-	db $0, $57
+	text ""
+	done
 ; 0x1bc703
 
 UnknownText_0x1bc703: ; 0x1bc703
-	text_from_ram $c719
+	text_from_ram wc719
 	text " bids"
 	line "farewell to"
 	done
 ; 0x1bc719
 
 UnknownText_0x1bc719: ; 0x1bc719
-	text_from_ram $c703
+	text_from_ram wc703
 	text "."
 	done
 ; 0x1bc71f
@@ -464,35 +465,35 @@ UnknownText_0x1bc719: ; 0x1bc719
 UnknownText_0x1bc71f: ; 0x1bc71f
 	text "Take good care of"
 	line "@"
-	text_from_ram $c703
+	text_from_ram wc703
 	text "."
 	done
 ; 0x1bc739
 
 UnknownText_0x1bc739: ; 0x1bc739
 	text "For @"
-	text_from_ram $c6e7
+	text_from_ram wc6e7
 	text "'s"
 	line "@"
-	text_from_ram $c6d1
+	text_from_ram wc6d1
 	text ","
 	done
 ; 0x1bc74c
 
 UnknownText_0x1bc74c: ; 0x1bc74c
-	text_from_ram $c719
+	text_from_ram wc719
 	text " sends"
 	line "@"
-	text_from_ram $c703
+	text_from_ram wc703
 	text "."
 	done
 ; 0x1bc75e
 
 UnknownText_0x1bc75e: ; 0x1bc75e
-	text_from_ram $c719
+	text_from_ram wc719
 	text " will"
 	line "trade @"
-	text_from_ram $c703
+	text_from_ram wc703
 	db "@"
 ; 0x1bc773
 
@@ -502,19 +503,19 @@ UnknownText_0x1bc773: ; 0x1bc773
 
 UnknownText_0x1bc774: ; 0x1bc774
 	text "for @"
-	text_from_ram $c6e7
+	text_from_ram wc6e7
 	text "'s"
 	line "@"
-	text_from_ram $c6d1
+	text_from_ram wc6d1
 	text "."
 	done
 ; 0x1bc787
 
 UnknownText_0x1bc787: ; 0x1bc787
-	text_from_ram $c6e7
+	text_from_ram wc6e7
 	text " will"
 	line "trade @"
-	text_from_ram $c6d1
+	text_from_ram wc6d1
 	db "@"
 ; 0x1bc79c
 
@@ -524,19 +525,19 @@ UnknownText_0x1bc79c: ; 0x1bc79c
 
 UnknownText_0x1bc79d: ; 0x1bc79d
 	text "for @"
-	text_from_ram $c719
+	text_from_ram wc719
 	text "'s"
 	line "@"
-	text_from_ram $c703
+	text_from_ram wc703
 	text "."
 	done
 ; 0x1bc7b0
 
 UnknownText_0x1bc7b0: ; 0x1bc7b0
-	text_from_ram $c6e7
+	text_from_ram wc6e7
 	text "'s"
 	line "@"
-	text_from_ram $c6d1
+	text_from_ram wc6d1
 	text " trade…"
 	done
 ; 0x1bc7c3
@@ -544,16 +545,16 @@ UnknownText_0x1bc7b0: ; 0x1bc7b0
 UnknownText_0x1bc7c3: ; 0x1bc7c3
 	text "Take good care of"
 	line "@"
-	text_from_ram $c703
+	text_from_ram wc703
 	text "."
 	done
 ; 0x1bc7dd
 
 UnknownText_0x1bc7dd: ; 0x1bc7dd
-	text_from_ram $c6e7
+	text_from_ram wc6e7
 	text "'s"
 	line "@"
-	text_from_ram $c6d1
+	text_from_ram wc6d1
 	text " trade…"
 	done
 ; 0x1bc7f0
@@ -561,40 +562,40 @@ UnknownText_0x1bc7dd: ; 0x1bc7dd
 UnknownText_0x1bc7f0: ; 0x1bc7f0
 	text "Take good care of"
 	line "@"
-	text_from_ram $c703
+	text_from_ram wc703
 	text "."
 	done
 ; 0x1bc80a
 
 UnknownText_0x1bc80a: ; 0x1bc80a
-	text_from_ram $c703
+	text_from_ram wc703
 	text " came"
 	line "back!"
 	done
 ; 0x1bc81a
 
 UnknownText_0x1bc81a: ; 0x1bc81a
-	db $0
+	text ""
 	line "MARY: PROF.OAK'S"
 	done
 ; 0x1bc82d
 
 UnknownText_0x1bc82d: ; 0x1bc82d
-	db $0
+	text ""
 	line "#MON TALK!"
 	done
 ; 0x1bc83a
 
 UnknownText_0x1bc83a: ; 0x1bc83a
-	db $0
+	text ""
 	line "With me, MARY!"
 	done
 ; 0x1bc84b
 
 UnknownText_0x1bc84b: ; 0x1bc84b
-	db $0
+	text ""
 	line "OAK: @"
-	text_from_ram $d050
+	text_from_ram wd050
 	db "@"
 ; 0x1bc857
 
@@ -603,215 +604,215 @@ UnknownText_0x1bc857: ; 0x1bc857
 ; 0x1bc858
 
 UnknownText_0x1bc858: ; 0x1bc858
-	db $0
+	text ""
 	line "may be seen around"
 	done
 ; 0x1bc86d
 
 UnknownText_0x1bc86d: ; 0x1bc86d
-	db $0
+	text ""
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "."
 	done
 ; 0x1bc876
 
 UnknownText_0x1bc876: ; 0x1bc876
-	db $0
+	text ""
 	line "MARY: @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "'s"
 	done
 ; 0x1bc885
 
 UnknownText_0x1bc885: ; 0x1bc885
-	db $0
+	text ""
 	line "sweet and adorably"
 	done
 ; 0x1bc89a
 
 UnknownText_0x1bc89a: ; 0x1bc89a
-	db $0
+	text ""
 	line "wiggly and slickly"
 	done
 ; 0x1bc8af
 
 UnknownText_0x1bc8af: ; 0x1bc8af
-	db $0
+	text ""
 	line "aptly named and"
 	done
 ; 0x1bc8c1
 
 UnknownText_0x1bc8c1: ; 0x1bc8c1
-	db $0
+	text ""
 	line "undeniably kind of"
 	done
 ; 0x1bc8d6
 
 UnknownText_0x1bc8d6: ; 0x1bc8d6
-	db $0
+	text ""
 	line "so, so unbearably"
 	done
 ; 0x1bc8ea
 
 UnknownText_0x1bc8ea: ; 0x1bc8ea
-	db $0
+	text ""
 	line "wow, impressively"
 	done
 ; 0x1bc8fe
 
 UnknownText_0x1bc8fe: ; 0x1bc8fe
-	db $0
+	text ""
 	line "almost poisonously"
 	done
 ; 0x1bc913
 
 UnknownText_0x1bc913: ; 0x1bc913
-	db $0
+	text ""
 	line "ooh, so sensually"
 	done
 ; 0x1bc927
 
 UnknownText_0x1bc927: ; 0x1bc927
-	db $0
+	text ""
 	line "so mischievously"
 	done
 ; 0x1bc93a
 
 UnknownText_0x1bc93a: ; 0x1bc93a
-	db $0
+	text ""
 	line "so very topically"
 	done
 ; 0x1bc94e
 
 UnknownText_0x1bc94e: ; 0x1bc94e
-	db $0
+	text ""
 	line "sure addictively"
 	done
 ; 0x1bc961
 
 UnknownText_0x1bc961: ; 0x1bc961
-	db $0
+	text ""
 	line "looks in water is"
 	done
 ; 0x1bc975
 
 UnknownText_0x1bc975: ; 0x1bc975
-	db $0
+	text ""
 	line "evolution must be"
 	done
 ; 0x1bc989
 
 UnknownText_0x1bc989: ; 0x1bc989
-	db $0
+	text ""
 	line "provocatively"
 	done
 ; 0x1bc999
 
 UnknownText_0x1bc999: ; 0x1bc999
-	db $0
+	text ""
 	line "so flipped out and"
 	done
 ; 0x1bc9ae
 
 UnknownText_0x1bc9ae: ; 0x1bc9ae
-	db $0
+	text ""
 	line "heart-meltingly"
 	done
 ; 0x1bc9c0
 
 UnknownText_0x1bc9c0: ; 0x1bc9c0
-	db $0
+	text ""
 	line "cute."
 	done
 ; 0x1bc9c8
 
 UnknownText_0x1bc9c8: ; 0x1bc9c8
-	db $0
+	text ""
 	line "weird."
 	done
 ; 0x1bc9d1
 
 UnknownText_0x1bc9d1: ; 0x1bc9d1
-	db $0
+	text ""
 	line "pleasant."
 	done
 ; 0x1bc9dd
 
 UnknownText_0x1bc9dd: ; 0x1bc9dd
-	db $0
+	text ""
 	line "bold, sort of."
 	done
 ; 0x1bc9ee
 
 UnknownText_0x1bc9ee: ; 0x1bc9ee
-	db $0
+	text ""
 	line "frightening."
 	done
 ; 0x1bc9fd
 
 UnknownText_0x1bc9fd: ; 0x1bc9fd
-	db $0
+	text ""
 	line "suave & debonair!"
 	done
 ; 0x1bca11
 
 UnknownText_0x1bca11: ; 0x1bca11
-	db $0
+	text ""
 	line "powerful."
 	done
 ; 0x1bca1d
 
 UnknownText_0x1bca1d: ; 0x1bca1d
-	db $0
+	text ""
 	line "exciting."
 	done
 ; 0x1bca29
 
 UnknownText_0x1bca29: ; 0x1bca29
-	db $0
+	text ""
 	line "groovy!"
 	done
 ; 0x1bca33
 
 UnknownText_0x1bca33: ; 0x1bca33
-	db $0
+	text ""
 	line "inspiring."
 	done
 ; 0x1bca40
 
 UnknownText_0x1bca40: ; 0x1bca40
-	db $0
+	text ""
 	line "friendly."
 	done
 ; 0x1bca4c
 
 UnknownText_0x1bca4c: ; 0x1bca4c
-	db $0
+	text ""
 	line "hot, hot, hot!"
 	done
 ; 0x1bca5d
 
 UnknownText_0x1bca5d: ; 0x1bca5d
-	db $0
+	text ""
 	line "stimulating."
 	done
 ; 0x1bca6c
 
 UnknownText_0x1bca6c: ; 0x1bca6c
-	db $0
+	text ""
 	line "guarded."
 	done
 ; 0x1bca77
 
 UnknownText_0x1bca77: ; 0x1bca77
-	db $0
+	text ""
 	line "lovely."
 	done
 ; 0x1bca81
 
 UnknownText_0x1bca81: ; 0x1bca81
-	db $0
+	text ""
 	line "speedy."
 	done
 ; 0x1bca8b
@@ -822,9 +823,9 @@ UnknownText_0x1bca8b: ; 0x1bca8b
 ; 0x1bca91
 
 UnknownText_0x1bca91: ; 0x1bca91
-	db $0
+	text ""
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db "@"
 ; 0x1bca98
 
@@ -833,37 +834,37 @@ UnknownText_0x1bca98: ; 0x1bca98
 ; 0x1bca99
 
 UnknownText_0x1bca99: ; 0x1bca99
-	db $0
+	text ""
 	line "BEN: #MON MUSIC"
 	done
 ; 0x1bcaab
 
 UnknownText_0x1bcaab: ; 0x1bcaab
-	db $0
+	text ""
 	line "CHANNEL!"
 	done
 ; 0x1bcab6
 
 UnknownText_0x1bcab6: ; 0x1bcab6
-	db $0
+	text ""
 	line "It's me, DJ BEN!"
 	done
 ; 0x1bcac8
 
 UnknownText_0x1bcac8: ; 0x1bcac8
-	db $0
+	text ""
 	line "FERN: #MUSIC!"
 	done
 ; 0x1bcad8
 
 UnknownText_0x1bcad8: ; 0x1bcad8
-	db $0
+	text ""
 	line "With DJ FERN!"
 	done
 ; 0x1bcae8
 
 UnknownText_0x1bcae8: ; 0x1bcae8
-	db $0
+	text ""
 	line "Today's @"
 	current_day
 	text ","
@@ -871,134 +872,134 @@ UnknownText_0x1bcae8: ; 0x1bcae8
 ; 0x1bcaf6
 
 UnknownText_0x1bcaf6: ; 0x1bcaf6
-	db $0
+	text ""
 	line "so let us jam to"
 	done
 ; 0x1bcb09
 
 UnknownText_0x1bcb09: ; 0x1bcb09
-	db $0
+	text ""
 	line "so chill out to"
 	done
 ; 0x1bcb1b
 
 UnknownText_0x1bcb1b: ; 0x1bcb1b
-	db $0
+	text ""
 	line "#MON March!"
 	done
 ; 0x1bcb29
 
 UnknownText_0x1bcb29: ; 0x1bcb29
-	db $0
+	text ""
 	line "#MON Lullaby!"
 	done
 ; 0x1bcb39
 
 UnknownText_0x1bcb39: ; 0x1bcb39
-	db $0
+	text ""
 	line "REED: Yeehaw! How"
 	done
 ; 0x1bcb4d
 
 UnknownText_0x1bcb4d: ; 0x1bcb4d
-	db $0
+	text ""
 	line "y'all doin' now?"
 	done
 ; 0x1bcb60
 
 UnknownText_0x1bcb60: ; 0x1bcb60
-	db $0
+	text ""
 	line "Whether you're up"
 	done
 ; 0x1bcb73
 
 UnknownText_0x1bcb73: ; 0x1bcb73
-	db $0
+	text ""
 	line "or way down low,"
 	done
 ; 0x1bcb86
 
 UnknownText_0x1bcb86: ; 0x1bcb86
-	db $0
+	text ""
 	line "don't you miss the"
 	done
 ; 0x1bcb9a
 
 UnknownText_0x1bcb9a: ; 0x1bcb9a
-	db $0
+	text ""
 	line "LUCKY NUMBER SHOW!"
 	done
 ; 0x1bcbaf
 
 UnknownText_0x1bcbaf: ; 0x1bcbaf
-	db $0
+	text ""
 	line "This week's Lucky"
 	done
 ; 0x1bcbc2
 
 UnknownText_0x1bcbc2: ; 0x1bcbc2
-	db $0
+	text ""
 	line "Number is @"
 	interpret_data
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "!"
 	done
 ; 0x1bcbd6
 
 UnknownText_0x1bcbd6: ; 0x1bcbd6
-	db $0
+	text ""
 	line "I'll repeat that!"
 	done
 ; 0x1bcbe9
 
 UnknownText_0x1bcbe9: ; 0x1bcbe9
-	db $0
+	text ""
 	line "Match it and go to"
 	done
 ; 0x1bcbfe
 
 UnknownText_0x1bcbfe: ; 0x1bcbfe
-	db $0
+	text ""
 	line "the RADIO TOWER!"
 	done
 ; 0x1bcc11
 
 UnknownText_0x1bcc11: ; 0x1bcc11
-	db $0
+	text ""
 	line "…Repeating myself"
 	done
 ; 0x1bcc25
 
 UnknownText_0x1bcc25: ; 0x1bcc25
-	db $0
+	text ""
 	line "gets to be a drag…"
 	done
 ; 0x1bcc3a
 
 UnknownText_0x1bcc3a: ; 0x1bcc3a
-	db $0
+	text ""
 	line "PLACES AND PEOPLE!"
 	done
 ; 0x1bcc4f
 
 UnknownText_0x1bcc4f: ; 0x1bcc4f
-	db $0
+	text ""
 	line "Brought to you by"
 	done
 ; 0x1bcc63
 
 UnknownText_0x1bcc63: ; 0x1bcc63
-	db $0
+	text ""
 	line "me, DJ LILY!"
 	done
 ; 0x1bcc72
 
 UnknownText_0x1bcc72: ; 0x1bcc72
-	db $0
+	text ""
 	line "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text " @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db "@"
 ; 0x1bcc7f
 
@@ -1007,105 +1008,105 @@ UnknownText_0x1bcc7f: ; 0x1bcc7f
 ; 0x1bcc80
 
 UnknownText_0x1bcc80: ; 0x1bcc80
-	db $0
+	text ""
 	line "is cute."
 	done
 ; 0x1bcc8b
 
 UnknownText_0x1bcc8b: ; 0x1bcc8b
-	db $0
+	text ""
 	line "is sort of lazy."
 	done
 ; 0x1bcc9e
 
 UnknownText_0x1bcc9e: ; 0x1bcc9e
-	db $0
+	text ""
 	line "is always happy."
 	done
 ; 0x1bccb1
 
 UnknownText_0x1bccb1: ; 0x1bccb1
-	db $0
+	text ""
 	line "is quite noisy."
 	done
 ; 0x1bccc3
 
 UnknownText_0x1bccc3: ; 0x1bccc3
-	db $0
+	text ""
 	line "is precocious."
 	done
 ; 0x1bccd4
 
 UnknownText_0x1bccd4: ; 0x1bccd4
-	db $0
+	text ""
 	line "is somewhat bold."
 	done
 ; 0x1bcce8
 
 UnknownText_0x1bcce8: ; 0x1bcce8
-	db $0
+	text ""
 	line "is too picky!"
 	done
 ; 0x1bccf8
 
 UnknownText_0x1bccf8: ; 0x1bccf8
-	db $0
+	text ""
 	line "is sort of OK."
 	done
 ; 0x1bcd09
 
 UnknownText_0x1bcd09: ; 0x1bcd09
-	db $0
+	text ""
 	line "is just so-so."
 	done
 ; 0x1bcd1a
 
 UnknownText_0x1bcd1a: ; 0x1bcd1a
-	db $0
+	text ""
 	line "is actually great."
 	done
 ; 0x1bcd2f
 
 UnknownText_0x1bcd2f: ; 0x1bcd2f
-	db $0
+	text ""
 	line "is just my type."
 	done
 ; 0x1bcd42
 
 UnknownText_0x1bcd42: ; 0x1bcd42
-	db $0
+	text ""
 	line "is so cool, no?"
 	done
 ; 0x1bcd54
 
 UnknownText_0x1bcd54: ; 0x1bcd54
-	db $0
+	text ""
 	line "is inspiring!"
 	done
 ; 0x1bcd64
 
 UnknownText_0x1bcd64: ; 0x1bcd64
-	db $0
+	text ""
 	line "is kind of weird."
 	done
 ; 0x1bcd78
 
 UnknownText_0x1bcd78: ; 0x1bcd78
-	db $0
+	text ""
 	line "is right for me?"
 	done
 ; 0x1bcd8b
 
 UnknownText_0x1bcd8b: ; 0x1bcd8b
-	db $0
+	text ""
 	line "is definitely odd!"
 	done
 ; 0x1bcda0
 
 UnknownText_0x1bcda0: ; 0x1bcda0
-	db $0
+	text ""
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db "@"
 ; 0x1bcda7
 
@@ -1114,43 +1115,43 @@ UnknownText_0x1bcda7: ; 0x1bcda7
 ; 0x1bcda8
 
 UnknownText_0x1bcda8: ; 0x1bcda8
-	db $0
+	text ""
 	line "… …Ahem, we are"
 	done
 ; 0x1bcdba
 
 UnknownText_0x1bcdba: ; 0x1bcdba
-	db $0
+	text ""
 	line "TEAM ROCKET!"
 	done
 ; 0x1bcdc9
 
 UnknownText_0x1bcdc9: ; 0x1bcdc9
-	db $0
+	text ""
 	line "After three years"
 	done
 ; 0x1bcddd
 
 UnknownText_0x1bcddd: ; 0x1bcddd
-	db $0
+	text ""
 	line "of preparation, we"
 	done
 ; 0x1bcdf2
 
 UnknownText_0x1bcdf2: ; 0x1bcdf2
-	db $0
+	text ""
 	line "have risen again"
 	done
 ; 0x1bce05
 
 UnknownText_0x1bce05: ; 0x1bce05
-	db $0
+	text ""
 	line "from the ashes!"
 	done
 ; 0x1bce17
 
 UnknownText_0x1bce17: ; 0x1bce17
-	db $0
+	text ""
 	line "GIOVANNI! @"
 	interpret_data
 	text "Can you"
@@ -1158,7 +1159,7 @@ UnknownText_0x1bce17: ; 0x1bce17
 ; 0x1bce2e
 
 UnknownText_0x1bce2e: ; 0x1bce2e
-	db $0
+	text ""
 	line "hear?@"
 	interpret_data
 	text " We did it!"
@@ -1166,7 +1167,7 @@ UnknownText_0x1bce2e: ; 0x1bce2e
 ; 0x1bce44
 
 UnknownText_0x1bce44: ; 0x1bce44
-	db $0
+	text ""
 	line "@"
 	interpret_data
 	text "Where is our boss?"
@@ -1174,7 +1175,7 @@ UnknownText_0x1bce44: ; 0x1bce44
 ; 0x1bce5c
 
 UnknownText_0x1bce5c: ; 0x1bce5c
-	db $0
+	text ""
 	line "@"
 	interpret_data
 	text "Is he listening?"
@@ -1182,93 +1183,93 @@ UnknownText_0x1bce5c: ; 0x1bce5c
 ; 0x1bce72
 
 UnknownText_0x1bce72: ; 0x1bce72
-	db $0
+	text ""
 	line "BUENA: BUENA here!"
 	done
 ; 0x1bce87
 
 UnknownText_0x1bce87: ; 0x1bce87
-	db $0
+	text ""
 	line "Today's password!"
 	done
 ; 0x1bce9a
 
 UnknownText_0x1bce9a: ; 0x1bce9a
-	db $0
+	text ""
 	line "Let me think… It's"
 	done
 ; 0x1bceae
 
 UnknownText_0x1bceae: ; 0x1bceae
-	db $0
+	text ""
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "!"
 	done
 ; 0x1bceb7
 
 UnknownText_0x1bceb7: ; 0x1bceb7
-	db $0
+	text ""
 	line "Don't forget it!"
 	done
 ; 0x1bcec9
 
 UnknownText_0x1bcec9: ; 0x1bcec9
-	db $0
+	text ""
 	line "I'm in GOLDENROD's"
 	done
 ; 0x1bcedc
 
 UnknownText_0x1bcedc: ; 0x1bcedc
-	db $0
+	text ""
 	line "RADIO TOWER!"
 	done
 ; 0x1bceeb
 
 UnknownText_0x1bceeb: ; 0x1bceeb
-	db $0
+	text ""
 	line "BUENA: Oh my…"
 	done
 ; 0x1bcefb
 
 UnknownText_0x1bcefb: ; 0x1bcefb
-	db $0
+	text ""
 	line "It's midnight! I"
 	done
 ; 0x1bcf0d
 
 UnknownText_0x1bcf0d: ; 0x1bcf0d
-	db $0
+	text ""
 	line "have to shut down!"
 	done
 ; 0x1bcf22
 
 UnknownText_0x1bcf22: ; 0x1bcf22
-	db $0
+	text ""
 	line "Thanks for tuning"
 	done
 ; 0x1bcf36
 
 UnknownText_0x1bcf36: ; 0x1bcf36
-	db $0
+	text ""
 	line "in to the end! But"
 	done
 ; 0x1bcf4b
 
 UnknownText_0x1bcf4b: ; 0x1bcf4b
-	db $0
+	text ""
 	line "don't stay up too"
 	done
 ; 0x1bcf5e
 
 UnknownText_0x1bcf5e: ; 0x1bcf5e
-	db $0
+	text ""
 	line "late! Presented to"
 	done
 ; 0x1bcf73
 
 UnknownText_0x1bcf73: ; 0x1bcf73
-	db $0
+	text ""
 	line "you by DJ BUENA!"
 	done
 ; 0x1bcf86
@@ -1284,7 +1285,7 @@ UnknownText_0x1bcf96: ; 0x1bcf96
 ; 0x1bcf99
 
 UnknownText_0x1bcf99: ; 0x1bcf99
-	db $0
+	text ""
 	line $57
 ; 0x1bcf9c
 
@@ -1292,7 +1293,7 @@ UnknownText_0x1bcf9c: ; 0x1bcf9c
 	text $3f
 	line "withdrew"
 	cont "@"
-	text_from_ram $c616
+	text_from_ram EnemyMonNick
 	text "!"
 	prompt
 ; 0x1bcfaf
@@ -1300,10 +1301,10 @@ UnknownText_0x1bcf9c: ; 0x1bcf9c
 UnknownText_0x1bcfaf: ; 0x1bcfaf
 	text $3f
 	line "used @"
-	text_from_ram $d050
+	text_from_ram wd050
 	text $55
 	db "on @"
-	text_from_ram $c616
+	text_from_ram EnemyMonNick
 	text "!"
 	prompt
 ; 0x1bcfc7
@@ -1322,8 +1323,8 @@ UnknownText_0x1bcfe5: ; 0x1bcfe5
 
 UnknownText_0x1bd009: ; 0x1bd009
 	text "The @"
-	text_from_ram $d073
-	db $0
+	text_from_ram StringBuffer1
+	text ""
 	line "was put in the"
 	cont "PACK."
 	done
@@ -1354,7 +1355,7 @@ UnknownText_0x1bd05e: ; 0x1bd05e
 UnknownText_0x1bd07f: ; 0x1bd07f
 	text "Will you play with"
 	line "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "?"
 	done
 ; 0x1bd09a
@@ -1374,7 +1375,7 @@ UnknownText_0x1bd0bd: ; 0x1bd0bd
 UnknownText_0x1bd0d8: ; 0x1bd0d8
 	text "The compatibility"
 	line "is @"
-	deciram $d265, $13
+	deciram wd265, $13
 	text "."
 	cont "Should they breed?"
 	done
@@ -1394,7 +1395,7 @@ UnknownText_0x1bd11c: ; 0x1bd11c
 UnknownText_0x1bd131: ; 0x1bd131
 	text "Test event"
 	line "@"
-	deciram $d086, $12
+	deciram StringBuffer2, $12
 	text "?"
 	done
 ; 0x1bd145
@@ -1433,7 +1434,7 @@ UnknownText_0x1bd188: ; 0x1bd188
 UnknownText_0x1bd19a: ; 0x1bd19a
 	text "A new CARD arrived"
 	line "from @"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "."
 	done
 ; 0x1bd1ba
@@ -1445,10 +1446,10 @@ UnknownText_0x1bd1ba: ; 0x1bd1ba
 ; 0x1bd1dd
 
 UnknownText_0x1bd1dd: ; 0x1bd1dd
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "'s CARD was"
 	line "listed as no.@"
-	deciram $d073, $12
+	deciram StringBuffer1, $12
 	text "."
 	prompt
 ; 0x1bd201
@@ -1488,10 +1489,10 @@ UnknownText_0x1bd266: ; 0x1bd266
 
 UnknownText_0x1bd286: ; 0x1bd286
 	text "Trading @"
-	text_from_ram $d086
-	db $0
+	text_from_ram StringBuffer2
+	text ""
 	line "for @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "…"
 	done
 ; 0x1bd2a0
@@ -1529,7 +1530,7 @@ UnknownText_0x1bd308: ; 0x1bd308
 UnknownText_0x1bd321: ; 0x1bd321
 	text $52, " found"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "!"
 	done
 ; 0x1bd331
@@ -1543,10 +1544,10 @@ UnknownText_0x1bd331: ; 0x1bd331
 UnknownText_0x1bd34b: ; 0x1bd34b
 	text "I just saw some"
 	line "rare @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text " in"
 	cont "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "."
 
 	para "I'll call you if I"
@@ -1562,10 +1563,10 @@ UnknownText_0x1bd39e: ; 0x1bd39e
 ; 0x1bd3be
 
 UnknownText_0x1bd3be: ; 0x1bd3be
-	text_from_ram $d47d
+	text_from_ram PlayerName
 	text " received"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "!@"
 	sound0x0F
 	text_waitbutton
@@ -1594,12 +1595,12 @@ UnknownText_0x1bd407: ; 0x1bd407
 ; 0x1bd429
 
 UnknownText_0x1bd429: ; 0x1bd429
-	db $0, $52, " traded"
+	text $52, " traded"
 	line "@"
-	text_from_ram $d050
+	text_from_ram wd050
 	text " for", $55
 	db "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text ".@"
 	db "@"
 ; 0x1bd445
@@ -1618,12 +1619,12 @@ UnknownText_0x1bd449: ; 0x1bd449
 	text "I collect #MON."
 	line "Do you have"
 	cont "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "?"
 
 	para "Want to trade it"
 	line "for my @"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "?"
 	done
 ; 0x1bd48c
@@ -1637,7 +1638,7 @@ UnknownText_0x1bd48c: ; 0x1bd48c
 UnknownText_0x1bd4aa: ; 0x1bd4aa
 	text "Huh? That's not"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text ". "
 	cont "What a letdown…"
 	done
@@ -1646,7 +1647,7 @@ UnknownText_0x1bd4aa: ; 0x1bd4aa
 UnknownText_0x1bd4d2: ; 0x1bd4d2
 	text "Yay! I got myself"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "!"
 	cont "Thanks!"
 	done
@@ -1655,7 +1656,7 @@ UnknownText_0x1bd4d2: ; 0x1bd4d2
 UnknownText_0x1bd4f4: ; 0x1bd4f4
 	text "Hi, how's my old"
 	line "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text " doing?"
 	done
 ; 0x1bd512
@@ -1666,12 +1667,12 @@ UnknownText_0x1bd512: ; 0x1bd512
 
 	para "If you have"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text ", would"
 
 	para "you trade it for"
 	line "my @"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "?"
 	done
 ; 0x1bd565
@@ -1688,7 +1689,7 @@ UnknownText_0x1bd565: ; 0x1bd565
 UnknownText_0x1bd5a1: ; 0x1bd5a1
 	text "You don't have"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "? That's"
 	cont "too bad, then."
 	done
@@ -1699,33 +1700,33 @@ UnknownText_0x1bd5cc: ; 0x1bd5cc
 
 	para "I finally got"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "."
 	done
 ; 0x1bd5f4
 
 UnknownText_0x1bd5f4: ; 0x1bd5f4
 	text "Hi! The @"
-	text_from_ram $d050
-	db $0
+	text_from_ram wd050
+	text ""
 	line "you traded me is"
 	cont "doing great!"
 	done
 ; 0x1bd621
 
 UnknownText_0x1bd621: ; 0x1bd621
-	text_from_ram $d050
+	text_from_ram wd050
 	text "'s cute,"
 	line "but I don't have"
 
 	para "it. Do you have"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "?"
 
 	para "Want to trade it"
 	line "for my @"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text "?"
 	done
 ; 0x1bd673
@@ -1739,7 +1740,7 @@ UnknownText_0x1bd673: ; 0x1bd673
 UnknownText_0x1bd696: ; 0x1bd696
 	text "That's not"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "."
 
 	para "Please trade with"
@@ -1751,7 +1752,7 @@ UnknownText_0x1bd6cd: ; 0x1bd6cd
 	text "Wow! Thank you!"
 	line "I always wanted"
 	cont "@"
-	text_from_ram $d050
+	text_from_ram wd050
 	text "!"
 	done
 ; 0x1bd6f5
@@ -1759,12 +1760,12 @@ UnknownText_0x1bd6cd: ; 0x1bd6cd
 UnknownText_0x1bd6f5: ; 0x1bd6f5
 	text "How is that"
 	line "@"
-	text_from_ram $d086
+	text_from_ram StringBuffer2
 	text " I"
 	cont "traded you doing?"
 
 	para "Your @"
-	text_from_ram $d050
+	text_from_ram wd050
 	text "'s"
 	line "so cute!"
 	done
@@ -1918,7 +1919,8 @@ UnknownText_0x1bda90: ; 0x1bda90
 ; 0x1bdaa7
 
 UnknownText_0x1bdaa7: ; 0x1bdaa7
-	db $0, $57
+	text ""
+	done
 ; 0x1bdaa9
 
 UnknownText_0x1bdaa9: ; 0x1bdaa9
@@ -2011,7 +2013,7 @@ UnknownText_0x1bdcff: ; 0x1bdcff
 UnknownText_0x1bdd30: ; 0x1bdd30
 	text "OK. I'll raise"
 	line "your @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "."
 	prompt
 ; 0x1bdd4b
@@ -2026,26 +2028,26 @@ UnknownText_0x1bdd64: ; 0x1bdd64
 	text "Are we geniuses or"
 	line "what? Want to see"
 	cont "your @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "?"
 	done
 ; 0x1bdd96
 
 UnknownText_0x1bdd96: ; 0x1bdd96
 	text "Your @"
-	text_from_ram $d073
-	db $0
+	text_from_ram StringBuffer1
+	text ""
 	line "has grown a lot."
 
 	para "By level, it's"
 	line "grown by @"
-	deciram $d087, $13
+	deciram StringBuffer2 + 1, $13
 	text "."
 
 	para "If you want your"
 	line "#MON back, it"
 	cont "will cost ¥@"
-	deciram $d088, $34
+	deciram StringBuffer2 + 2, $34
 	text "."
 	done
 ; 0x1bde04
@@ -2059,7 +2061,7 @@ UnknownText_0x1bde04: ; 0x1bde04
 UnknownText_0x1bde1f: ; 0x1bde1f
 	text $52, " got back"
 	line "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text "."
 	prompt
 ; 0x1bde32
@@ -2067,7 +2069,7 @@ UnknownText_0x1bde1f: ; 0x1bde1f
 UnknownText_0x1bde32: ; 0x1bde32
 	text "Huh? Back already?"
 	line "Your @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	text $51
 	db "needs a little"
 	line "more time with us."

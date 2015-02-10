@@ -261,11 +261,11 @@ UnknownText_0x1b05bf: ; 0x1b05bf
 
 UnknownText_0x1b0621: ; 0x1b0621
 	text $52, ", the No.@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	db $0
 	line "finisher, wins"
 	cont "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	text "!"
 	done
 ; 0x1b0648
@@ -273,7 +273,7 @@ UnknownText_0x1b0621: ; 0x1b0621
 UnknownText_0x1b0648: ; 0x1b0648
 	text $52, " received"
 	line "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	text "."
 	done
 ; 0x1b065b
@@ -316,7 +316,7 @@ UnknownText_0x1b070d: ; 0x1b070d
 ; 0x1b074e
 
 UnknownText_0x1b074e: ; 0x1b074e
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	db $0
 	line "#MON GYM"
 	done
@@ -324,7 +324,7 @@ UnknownText_0x1b074e: ; 0x1b074e
 
 UnknownText_0x1b075c: ; 0x1b075c
 	text "LEADER: @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, $51
 	db "WINNING TRAINERS:"
 	line $52, $57
@@ -426,7 +426,7 @@ UnknownText_0x1b0989: ; 0x1b0989
 UnknownText_0x1b09c4: ; 0x1b09c4
 	text $52, " registered"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "'s number."
 	done
 ; 0x1b09e1
@@ -434,7 +434,7 @@ UnknownText_0x1b09c4: ; 0x1b09c4
 UnknownText_0x1b09e1: ; 0x1b09e1
 	text $52, " registered"
 	line "@"
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	text "'s number."
 	done
 ; 0x1b09fe
@@ -672,7 +672,7 @@ UnknownText_0x1b102e: ; 0x1b102e
 	line "again when I heal"
 
 	para "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	text " and the"
 	line "rest of my team."
 	done
@@ -686,7 +686,7 @@ UnknownText_0x1b10d3: ; 0x1b10d3
 	line "again when I heal"
 
 	para "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	text " and the"
 	line "rest of my team."
 	done
@@ -793,7 +793,7 @@ UnknownText_0x1b1409: ; 0x1b1409
 
 UnknownText_0x1b142d: ; 0x1b142d
 	text "If my @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0
 	line "sees anything"
 
