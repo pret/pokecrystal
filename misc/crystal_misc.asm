@@ -30,7 +30,7 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	ld bc, $a
 	xor a
 	call ByteFill
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
+	ld hl, Buffer1
 	ld bc, $10
 	ld a, $ff
 	call ByteFill
@@ -55,7 +55,7 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	ret
 
 Function17a6f5: ; 17a6f5 (5e:66f5)
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
+	ld hl, Buffer1
 	ld c, $0
 	ld b, $8
 .asm_17a6fc
@@ -95,7 +95,7 @@ Function17a721: ; 17a721 (5e:6721)
 	ld a, $ff
 	call ByteFill
 	pop de
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
+	ld hl, Buffer1
 	ld b, $8
 .asm_17a732
 	ld c, $0
@@ -429,7 +429,7 @@ Function17a943: ; 17a943 (5e:6943)
 	ld [$d08c], a
 	ld c, a
 	ld b, $0
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
+	ld hl, Buffer1
 	add hl, bc
 	ld [hl], $ff
 	ld a, $2
@@ -450,7 +450,7 @@ Function17a964: ; 17a964 (5e:6964)
 	ld b, $0
 	inc a
 	ld [$d08c], a
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
+	ld hl, Buffer1
 	add hl, bc
 	ld [hl], e
 	and a
@@ -464,7 +464,7 @@ Function17a97b: ; 17a97b (5e:697b)
 	ld bc, $212
 	call ClearBox
 	hlcoord 3, 2
-	ld de, Buffer1 ; $d1ea (aliases: MagikarpLength)
+	ld de, Buffer1
 	ld a, [$d08c]
 	and a
 	ret z
@@ -645,7 +645,7 @@ Function17aaa9: ; 17aaa9 (5e:6aa9)
 	call Function17aae3
 	ld c, a
 	ld b, $0
-	ld hl, AttrMap ; $cdd9
+	ld hl, AttrMap ; AttrMap + 0 + 0 * SCREEN_WIDTH
 	add hl, bc
 	push hl
 	ld a, $4
@@ -764,7 +764,7 @@ Function17abcf: ; 17abcf (5e:6bcf)
 Function17ac0c: ; 17ac0c (5e:6c0c)
 	call Function17ac1d
 	call Function17ac2a
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld hl, TileMap
 	ld b, $2
 	ld c, $12
 	call Function17ac46
@@ -779,10 +779,10 @@ Function17ac1d: ; 17ac1d (5e:6c1d)
 
 Function17ac2a: ; 17ac2a (5e:6c2a)
 	ld hl, Tilemap_17ae3d
-	ld de, $ce29
+	decoord 0, 4, AttrMap
 	ld bc, $118
 	call CopyBytes
-	ld hl, $ce29
+	hlcoord 0, 4, AttrMap
 	ld bc, $118
 .asm_17ac3c
 	ld a, [hl]
