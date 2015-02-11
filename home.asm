@@ -218,7 +218,7 @@ Function309d:: ; 309d
 	ld a, 2
 	ld [rSVBK], a
 	ld hl, TileMap
-	ld de, wd000
+	ld de, w2_d000
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
@@ -240,7 +240,7 @@ Function30bf:: ; 30bf
 	push af
 	ld a, 2
 	ld [rSVBK], a
-	ld hl, wd000
+	ld hl, w2_d000
 	ld de, TileMap
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
@@ -2226,7 +2226,7 @@ Function3f7c:: ; 3f7c
 ; 3f88
 
 Function3f88:: ; 3f88
-	ld hl, wd000
+	ld hl, w6_d000
 	ld b, $0
 .asm_3f8d
 	push bc
@@ -2247,7 +2247,7 @@ Function3f88:: ; 3f88
 ; 3f9f
 
 Function3f9f:: ; 3f9f
-	ld hl, wd000
+	ld hl, w6_d000
 .asm_3fa2
 	push bc
 	ld c, $8

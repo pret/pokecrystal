@@ -8449,7 +8449,7 @@ Function3f568: ; 3f568
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, wd000
+	ld hl, w6_d000
 	ld bc, $400
 	ld a, $2
 	call ByteFill
@@ -8457,7 +8457,7 @@ Function3f568: ; 3f568
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld de, wd000
+	ld de, w6_d000
 	ld hl, VBGMap0
 	ld bc, $0f40
 	call Request2bpp
@@ -9329,11 +9329,11 @@ Function3fbd6: ; 3fbd6
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, wd000
+	ld hl, w6_d000
 	ld bc, $400
 	ld a, $7f
 	call ByteFill
-	ld de, wd000
+	ld de, w6_d000
 	ld hl, VBGMap0
 	lb bc, BANK(Function3fbd6), $40
 	call Request2bpp

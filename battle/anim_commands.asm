@@ -1428,13 +1428,13 @@ Functioncc91a: ; cc91a
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, BGPals
-	ld de, wd000
+	ld de, Unkn1Pals
 	ld a, [rBGP]
 	ld b, a
 	ld c, $7
 	call CopyPals
 	ld hl, OBPals
-	ld de, MartPointer
+	ld de, Unkn2Pals
 	ld a, [rBGP]
 	ld b, a
 	ld c, $2

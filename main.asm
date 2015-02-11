@@ -5235,16 +5235,16 @@ Function64db: ; 64db
 	ld a, $6
 	ld [rSVBK], a
 	ld a, $60
-	ld hl, wd000
+	ld hl, w6_d000
 	ld bc, $400
 	call ByteFill
-	ld a, $d0
+	ld a, w6_d000 / $100
 	ld [rHDMA1], a
-	ld a, $0
+	ld a, w6_d000 % $100
 	ld [rHDMA2], a
-	ld a, $18
+	ld a, ($9800 % $8000) / $100
 	ld [rHDMA3], a
-	ld a, $0
+	ld a, ($9800 % $8000) % $100
 	ld [rHDMA4], a
 	ld a, $3f
 	ld [hDMATransfer], a
@@ -29508,7 +29508,7 @@ Function16cff: ; 16cff
 	ld [rSVBK], a
 	ld a, $0
 	call GetSRAMBank
-	ld de, Unkn1Pals
+	ld de, w6_d000
 	ld hl, $a000
 	ld a, [hROMBank]
 	ld b, a
@@ -57457,12 +57457,12 @@ Function4e906: ; 4e906
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, wd000
+	ld hl, w6_d000
 	ld bc, $400
 	ld a, $7f
 	call ByteFill
 	ld hl, VBGMap0
-	ld de, wd000
+	ld de, w6_d000
 	ld b, $0
 	ld c, $40
 	call Request2bpp
@@ -60336,15 +60336,15 @@ _GetFrontpic: ; 510a5
 	ld a, $6
 	ld [rSVBK], a
 	ld a, b
-	ld de, wd000 + $800
+	ld de, w6_d000 + $800
 	call FarDecompress
 	pop bc
-	ld hl, wd000
-	ld de, wd000 + $800
+	ld hl, w6_d000
+	ld de, w6_d000 + $800
 	call Function512ab
 	pop hl
 	push hl
-	ld de, wd000
+	ld de, w6_d000
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -60387,7 +60387,7 @@ Function51103: ; 51103
 	ld a, $1
 	ld [rVBK], a
 	push hl
-	ld de, wd000
+	ld de, w6_d000
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -60401,15 +60401,15 @@ Function51103: ; 51103
 	call GetFarWRAMByte
 	pop hl
 	and $f
-	ld de, wd000 + $800 + 5 * 5 * $10
+	ld de, w6_d000 + $800 + 5 * 5 * $10
 	ld c, 5 * 5
 	cp 5
 	jr z, .asm_5113b
-	ld de, wd000 + $800 + 6 * 6 * $10
+	ld de, w6_d000 + $800 + 6 * 6 * $10
 	ld c, 6 * 6
 	cp 6
 	jr z, .asm_5113b
-	ld de, wd000 + $800 + 7 * 7 * $10
+	ld de, w6_d000 + $800 + 7 * 7 * $10
 	ld c, 7 * 7
 .asm_5113b
 
@@ -60418,7 +60418,7 @@ Function51103: ; 51103
 	call Function5114f
 	pop bc
 	pop hl
-	ld de, wd000
+	ld de, w6_d000
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -60428,7 +60428,7 @@ Function51103: ; 51103
 ; 5114f
 
 Function5114f: ; 5114f
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	swap c
 	ld a, c
 	and $f
@@ -60487,14 +60487,14 @@ GetBackpic: ; 5116c
 	inc hl
 	ld a, d
 	call GetFarHalfword
-	ld de, wd000
+	ld de, w6_d000
 	pop af
 	call FarDecompress
-	ld hl, wd000
+	ld hl, w6_d000
 	ld c, 6 * 6
 	call Function5127c
 	pop hl
-	ld de, wd000
+	ld de, w6_d000
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -60593,10 +60593,10 @@ GetTrainerPic: ; 5120d
 	ld a, BANK(TrainerPicPointers)
 	call GetFarHalfword
 	pop af
-	ld de, wd000
+	ld de, w6_d000
 	call FarDecompress
 	pop hl
-	ld de, wd000
+	ld de, w6_d000
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -60622,10 +60622,10 @@ DecompressPredef: ; 5125d
 	push de
 	push bc
 	ld a, b
-	ld de, wd000
+	ld de, w6_d000
 	call FarDecompress
 	pop bc
-	ld de, wd000
+	ld de, w6_d000
 	pop hl
 	ld a, [hROMBank]
 	ld b, a
@@ -73058,12 +73058,12 @@ Function8c0c1: ; 8c0c1
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wd000
+	ld hl, Unkn1Pals
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, wd008
+	ld hl, Unkn1Pals + 8
 	ld c, $6
 .asm_8c0d4
 	ld a, e
@@ -73408,7 +73408,7 @@ Function8c2cf: ; 8c2cf
 	ld a, $6
 	ld [rSVBK], a
 	push hl
-	ld hl, wd000
+	ld hl, w6_d000
 	ld bc, $28 * $10
 .asm_8c2dd
 	ld [hl], $ff
@@ -73418,7 +73418,7 @@ Function8c2cf: ; 8c2cf
 	or b
 	jr nz, .asm_8c2dd
 	pop hl
-	ld de, wd000
+	ld de, w6_d000
 	ld b, BANK(Function8c2cf) ; BANK(@)
 	ld c, $28
 	call Request2bpp
@@ -96024,15 +96024,15 @@ Functione45e8: ; e45e8
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, IntroLogoGFX
-	ld de, wd000
+	ld de, w6_d000
 	ld a, BANK(IntroLogoGFX)
 	call FarDecompress
 	ld hl, VTiles0
-	ld de, wd000
+	ld de, w6_d000
 	ld bc, $0180
 	call Request2bpp
 	ld hl, VTiles1
-	ld de, wd000 + $800
+	ld de, w6_d000 + $800
 	ld bc, $0180
 	call Request2bpp
 	pop af
@@ -100501,7 +100501,7 @@ Functionfcfec:: ; fcfec
 	and a
 	ret nz
 	xor a
-	ld [wd000 + $c18], a
+	ld [wdc18], a
 	call Functionfd044
 	ret nc
 	call Functionfd0c3
@@ -100521,7 +100521,7 @@ UnknownScript_0xfd00f: ; 0xfd00f
 Functionfd017: ; fd017
 	call Functionfd0a6
 	call Functionfd0eb
-	ld a, [wd000 + $c18]
+	ld a, [wdc18]
 	and a
 	jr nz, .asm_fd027
 	ld hl, wdc17
@@ -100594,7 +100594,7 @@ Functionfd044: ; fd044
 	ld a, 5
 	call RandomRange
 	inc a
-	ld [wd000 + $c18], a
+	ld [wdc18], a
 	scf
 	ret
 ; fd099
@@ -100678,7 +100678,7 @@ UnknownScript_0xfd10a: ; 0xfd10a
 
 
 Functionfd117: ; fd117
-	ld a, [wd000 + $c18]
+	ld a, [wdc18]
 	and a
 	jr z, .asm_fd123
 	dec a
@@ -108860,18 +108860,18 @@ Function104000:: ; 104000
 
 Function104006: ; 104006
 	ld de, AttrMap
-	ld hl, $d400
+	ld hl, w6_d000 + $400
 	call Function104263
-	ld de, SpritesEnd
-	ld hl, Unkn1Pals
+	ld de, TileMap
+	ld hl, w6_d000
 	call Function10425f
 	ld a, $0
 	ld [rVBK], a
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function10419d
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $d400
+	ld hl, w6_d000 + $400
 	call Function10419d
 	ret
 ; 10402d
@@ -108883,11 +108883,11 @@ Function10402d:: ; 10402d
 
 Function104033: ; 104033
 	ld de, TileMap
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function10425f
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function10419d
 	ret
 ; 104047
@@ -108918,7 +108918,7 @@ Function104067: ; 104067
 	ld hl, $d400
 	call Function104263
 	ld de, TileMap
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function10425f
 	call DelayFrame
 	di
@@ -108930,7 +108930,7 @@ Function104067: ; 104067
 	call Function1041ad
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function1041ad
 	pop af
 	ld [rVBK], a ; $ff00+$4f
@@ -108947,8 +108947,8 @@ Function1040a2: ; 1040a2
 	ld de, AttrMap
 	ld hl, $d400
 	call Function104263
-	ld de, SpritesEnd
-	ld hl, Unkn1Pals
+	ld de, TileMap
+	ld hl, w6_d000
 	call Function10425f
 	call DelayFrame
 	di
@@ -108960,7 +108960,7 @@ Function1040a2: ; 1040a2
 	call Function1041c1
 	ld a, $0
 	ld [rVBK], a
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function1041c1
 	pop af
 	ld [rVBK], a
@@ -109018,7 +109018,7 @@ Function104116: ; 104116
 	ld hl, $d400
 	call Function104263
 	ld de, TileMap
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function10425f
 	call DelayFrame
 	di
@@ -109030,7 +109030,7 @@ Function104116: ; 104116
 	call Function1041b7
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function1041b7
 	pop af
 	ld [rVBK], a ; $ff00+$4f
@@ -109048,8 +109048,8 @@ Function10414e: ; 10414e
 	ld hl, $d400
 	call Function104263
 	ld c, $ff
-	ld de, SpritesEnd
-	ld hl, Unkn1Pals
+	ld de, TileMap
+	ld hl, w6_d000
 	call Function104265
 	ld a, $1
 	ld [rVBK], a
@@ -109057,7 +109057,7 @@ Function10414e: ; 10414e
 	call Function1041ad
 	ld a, $0
 	ld [rVBK], a
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	call Function1041ad
 	ret
 ; 104177
@@ -109292,7 +109292,7 @@ Function104284:: ; 104284
 	ld c, l
 	ld h, d
 	ld l, e
-	ld de, wd000
+	ld de, w6_d000
 	call FarCopyBytes
 	pop hl
 	pop bc
@@ -109301,7 +109301,7 @@ Function104284:: ; 104284
 	pop bc
 	ld d, h
 	ld e, l
-	ld hl, wd000
+	ld hl, w6_d000
 	call Function104209
 	pop af
 	ld [rSVBK], a
@@ -109351,7 +109351,7 @@ Function1042d6: ; 1042d6
 	ld b, h
 	ld h, d
 	ld l, e
-	ld de, wd000
+	ld de, w6_d000
 	call Functiondef
 	pop hl
 	pop bc
@@ -109360,7 +109360,7 @@ Function1042d6: ; 1042d6
 	pop bc
 	ld d, h
 	ld e, l
-	ld hl, wd000
+	ld hl, w6_d000
 	call Function104209
 	pop af
 	ld [rSVBK], a
@@ -109373,22 +109373,22 @@ Function104303: ; 104303
 ; 104309
 
 Function104309:
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	ld de, TileMap
 	call Function10433a
-	ld hl, BGPals
+	ld hl, w6_d000 + $80
 	ld de, AttrMap
 	call Function10433a
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld c, $8
-	ld hl, BGPals
+	ld hl, w6_d000 + $80
 	ld de, $9c00
 	call Function104209
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld c, $8
-	ld hl, Unkn1Pals
+	ld hl, w6_d000
 	ld de, $9c00
 	call Function104209
 	ret
@@ -112951,7 +112951,7 @@ Function1064d8: ; 1064d8
 	jr asm_1064ed
 
 asm_1064ed
-	ld de, Unkn1Pals
+	ld de, w6_d000
 	ld b, $0
 	ld a, [rSVBK]
 	push af
@@ -121163,7 +121163,7 @@ Function1161d5: ; 1161d5
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, Unknown_117356
-	ld de, wd000
+	ld de, w6_d000
 	ld bc, $0300
 	call CopyBytes
 	di

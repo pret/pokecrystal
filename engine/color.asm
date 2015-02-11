@@ -406,10 +406,10 @@ Function8c8a: ; 8c8a
 	ld [rSVBK], a
 	ld a, [hli]
 	ld [Unkn1Pals], a
-	ld [wd010], a
+	ld [Unkn1Pals + 8 * 2], a
 	ld a, [hl]
-	ld [wd001], a
-	ld [wd011], a
+	ld [Unkn1Pals + 1], a
+	ld [Unkn1Pals + 8 * 2 + 1], a
 	pop af
 	ld [rSVBK], a
 	call Function96a4
@@ -835,7 +835,7 @@ Function977a: ; 977a
 	dec c
 	jr nz, .asm_9787
 	ld hl, Palettes_979c
-	ld de, wd050
+	ld de, Unkn2Pals + 8 * 2
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
@@ -2031,7 +2031,7 @@ Functionb1de: ; b1de
 	inc hl
 
 .asm_b26d
-	ld de, wd032
+	ld de, Unkn1Pals + 8 * 6 + 2
 	ld bc, $0004
 	ld a, $5
 	call FarCopyWRAM

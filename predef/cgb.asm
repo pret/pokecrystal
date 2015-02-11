@@ -166,7 +166,7 @@ Function8e8b: ; 8e8b
 	ld hl, Palette_b309
 
 .asm_8e93
-	ld de, wd038
+	ld de, Unkn1Pals + 8 * 7
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -225,7 +225,7 @@ Function8edb: ; 8edb
 	ld hl, Palettes_a8ca
 	call Function9643
 	ld hl, Palette8f52
-	ld de, wd018
+	ld de, Unkn1Pals + 8 * 3
 	ld bc, $0018
 	ld a, $5
 	call FarCopyWRAM
