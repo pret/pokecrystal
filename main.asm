@@ -13615,26 +13615,26 @@ Functione039: ; e039
 ; e134
 
 Functione134: ; e134
-	ld a, $1f
+	ld a, PartyMon1Level - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
-	ld [$001f], a ; wow
-	ld a, $0
+	ld [PartyMon1Level - PartyMon1], a ; wow
+	ld a, PartyMon1Species - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
 	ld [CurSpecies], a
 	call GetBaseData
-	ld a, $24
+	ld a, PartyMon1MaxHP - PartyMon1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
 	push de
-	ld a, $a
+	ld a, PartyMon1Exp + 2 - PartyMon1
 	call GetPartyParamLocation
 	ld b, $1
 	call Functione167
 	pop de
-	ld a, $22
+	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [de]
 	inc de
@@ -20301,7 +20301,7 @@ UnknownText_0x12f00: ; 0x12f00
 ; 0x12f05
 
 Function12f05: ; 12f05
-	ld a, $24
+	ld a, PartyMon1MaxHP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [hProduct], a
@@ -20311,7 +20311,7 @@ Function12f05: ; 12f05
 	ld [hMultiplier], a
 	ld b, $2
 	call Divide
-	ld a, $23
+	ld a, PartyMon1HP + 1 - PartyMon1
 	call GetPartyParamLocation
 	ld a, [$ffb6]
 	sub [hl]
@@ -33120,11 +33120,11 @@ Function24dd4: ; 24dd4
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .asm_24e03
-	ld a, $2
+	ld a, PartyMon1Moves - PartyMon1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld c, $4
+	ld c, NUM_MOVES
 .asm_24ded
 	push bc
 	push de
@@ -33155,7 +33155,7 @@ Function24dd4: ; 24dd4
 	and a
 	jr nz, .asm_24e2f
 	push hl
-	ld a, $1
+	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	ld d, [hl]
 	callba ItemIsMail
@@ -37974,17 +37974,17 @@ Function28b87: ; 28b87
 	ld b, $1
 	pop af
 	ld c, a
-	cp $97
+	cp MEW
 	jr z, .asm_28e49
 	ld a, [CurPartySpecies]
-	cp $97
+	cp MEW
 	jr z, .asm_28e49
 	ld b, $2
 	ld a, c
-	cp $fb
+	cp CELEBI
 	jr z, .asm_28e49
 	ld a, [CurPartySpecies]
-	cp $fb
+	cp CELEBI
 	jr z, .asm_28e49
 	ld b, $0
 
@@ -47620,7 +47620,7 @@ INCLUDE "data/pokedex/entry_pointers.asm"
 
 
 Function4456e: ; 4456e
-	ld a, $1
+	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	ld d, [hl]
 	callba ItemIsMail
@@ -47646,7 +47646,7 @@ Function4456e: ; 4456e
 	xor a
 	ld bc, $002f
 	call ByteFill
-	ld a, $1
+	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	ld [hl], $0
 	ld hl, $a834
@@ -58745,34 +58745,39 @@ Function505da:: ; 505da
 ; 5062e
 
 Function5062e: ; 5062e
-	ld a, $20
+	ld a, PartyMon1Status - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
-	and $8
+	and 1 << PSN
 	ret z
-	ld a, $22
+
+	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+
 	or c
 	ret z
+
 	dec bc
 	ld [hl], c
 	dec hl
 	ld [hl], b
+
 	ld a, b
 	or c
-	jr nz, .asm_50654
-	ld a, $20
+	jr nz, .not_fainted
+
+	ld a, PartyMon1Status - PartyMon1
 	call GetPartyParamLocation
-	ld [hl], $0
-	ld c, $2
+	ld [hl], 0
+	ld c, 2
 	scf
 	ret
 
-.asm_50654
-	ld c, $1
+.not_fainted
+	ld c, 1
 	scf
 	ret
 ; 50658
@@ -70785,7 +70790,7 @@ Function8adef: ; 8adef
 	dec a
 	ld [CurPartyMon], a
 	push bc
-	ld a, $1
+	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	pop bc
 	ld a, [hl]

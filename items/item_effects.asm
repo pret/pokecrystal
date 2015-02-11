@@ -1380,7 +1380,7 @@ RareCandy: ; ef14
 	callba Function50e47
 
 	pop de
-	ld a, $8
+	ld a, PartyMon1Exp - PartyMon1
 	call GetPartyParamLocation
 
 	ld a, [hMultiplicand]
@@ -1390,7 +1390,7 @@ RareCandy: ; ef14
 	ld a, [$ffb6]
 	ld [hl], a
 
-	ld a, $24
+	ld a, PartyMon1MaxHP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld b, a
@@ -1398,7 +1398,7 @@ RareCandy: ; ef14
 	push bc
 	call Functionee8c
 
-	ld a, $25
+	ld a, PartyMon1MaxHP + 1 - PartyMon1
 	call GetPartyParamLocation
 
 	pop bc
@@ -1498,7 +1498,7 @@ Functionefda: ; efda (3:6fda)
 	ld a, $1
 	ret z
 	call Functionf058
-	ld a, $20
+	ld a, PartyMon1Status - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
 	and c
@@ -1537,7 +1537,7 @@ Functionf009: ; f009 (3:7009)
 Functionf01e: ; f01e (3:701e)
 	call Functionf2a6
 	ret nc
-	ld a, $22
+	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [BattleMonHP], a
@@ -1955,7 +1955,7 @@ Functionf2ba: ; f2ba (3:72ba)
 Functionf2c3: ; f2c3 (3:72c3)
 	call Functionf36f
 asm_f2c6: ; f2c6 (3:72c6)
-	ld a, $22
+	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld [hl], d
 	inc hl
@@ -1963,7 +1963,7 @@ asm_f2c6: ; f2c6 (3:72c6)
 	jp Functionf328
 
 Functionf2d1: ; f2d1 (3:72d1)
-	ld a, $23
+	ld a, PartyMon1HP + 1 - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
 	add e
@@ -1973,11 +1973,11 @@ Functionf2d1: ; f2d1 (3:72d1)
 	ld [hl], a
 	jr c, .asm_f2f5
 	call Functionf328
-	ld a, $23
+	ld a, PartyMon1HP + 1 - PartyMon1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, $25
+	ld a, PartyMon1MaxHP + 1 - PartyMon1
 	call GetPartyParamLocation
 	ld a, [de]
 	sub [hl]
@@ -1992,7 +1992,7 @@ Functionf2d1: ; f2d1 (3:72d1)
 	ret
 
 Functionf2f9: ; f2f9 (3:72f9)
-	ld a, $23
+	ld a, PartyMon1HP + 1 - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
 	sub e
@@ -2030,7 +2030,7 @@ Functionf31b: ; f31b (3:731b)
 	ret
 
 Functionf328: ; f328 (3:7328)
-	ld a, $22
+	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [wd1ef], a
@@ -2056,7 +2056,7 @@ Functionf33f: ; f33f
 ; f348
 
 Functionf348: ; f348 (3:7348)
-	ld a, $22
+	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [wd1ed], a
@@ -2073,7 +2073,7 @@ Functionf356: ; f356 (3:7356)
 
 Functionf35f: ; f35f (3:735f)
 	push hl
-	ld a, $24
+	ld a, PartyMon1MaxHP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [Buffer2], a
