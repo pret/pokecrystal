@@ -22,7 +22,7 @@ UnknownScript_0x7408d: ; 0x7408d
 UnknownScript_0x7408e: ; 0x7408e
 	spriteface $0, $3
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	applymovement $2, MovementData_0x740f9
 	playmusic MUSIC_RIVAL_ENCOUNTER

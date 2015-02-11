@@ -16,7 +16,7 @@ UnknownScript_0x7eaf1: ; 0x7eaf1
 GentlemanScript_0x7eaf2: ; 0x7eaf2
 	faceplayer
 	loadfont
-	special $0057
+	special SpecialNameRater
 	closetext
 	loadmovesprites
 	end

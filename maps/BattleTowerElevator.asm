@@ -24,7 +24,7 @@ UnknownScript_0x9f568: ; 0x9f568
 	applymovement $2, MovementData_0x9f58f
 	applymovement $0, MovementData_0x9f592
 	writebyte $a
-	special $0086
+	special Function170687
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitbutton

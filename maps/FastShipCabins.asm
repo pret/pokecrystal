@@ -39,15 +39,15 @@ TwinScript_0x75ebb: ; 0x75ebb
 	writetext UnknownText_0x7621f
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	disappear $5
 	applymovement $0, MovementData_0x76004
 	moveperson $4, $3, $13
 	appear $4
 	spriteface $0, $1
 	spriteface $4, $1
-	special $0032
+	special Function8c0ab
 	spriteface $3, $0
 	showemote $0, $3, 15
 	applymovement $4, MovementData_0x7600c

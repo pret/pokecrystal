@@ -58,7 +58,7 @@ UnknownScript_0x180053: ; 0x180053
 	appear $5
 	spriteface $0, $0
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	applymovement $5, MovementData_0x180164
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -80,7 +80,7 @@ UnknownScript_0x180094: ; 0x180094
 	appear $5
 	spriteface $0, $0
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	applymovement $5, MovementData_0x18016b
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -165,7 +165,7 @@ GrampsScript_0x180139: ; 0x180139
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
-	special $002e
+	special Function8c084
 	waitbutton
 	warp GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $d, $6
 	end

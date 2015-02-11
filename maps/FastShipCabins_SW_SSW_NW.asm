@@ -115,7 +115,7 @@ TrainerGuitaristClyde: ; 0x75a8b
 
 GuitaristClydeScript: ; 0x75a97
 	talkaftercancel
-	special $00a0
+	special Function10630f
 	iftrue UnknownScript_0x75aa5
 	loadfont
 	writetext UnknownText_0x75d65
@@ -137,14 +137,14 @@ MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	writetext UnknownText_0x75da4
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
-	special $009d
-	special $001b
+	special Function8c0b6
+	special Functiond91
+	special Function1060a2
+	special Functionc658
 	playmusic MUSIC_HEAL
 	pause 60
-	special $003d
-	special $0032
+	special RestartMapMusic
+	special Function8c0ab
 	loadfont
 	writetext UnknownText_0x75dc1
 	closetext

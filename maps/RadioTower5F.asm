@@ -115,12 +115,12 @@ UnknownScript_0x6006e: ; 0x6006e
 	writetext UnknownText_0x6050e
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	disappear $3
 	disappear $4
 	pause 15
-	special $0032
+	special Function8c0ab
 	setevent $0571
 	setevent EVENT_CLEARED_RADIO_TOWER
 	clearflag $0013
@@ -133,7 +133,7 @@ UnknownScript_0x6006e: ; 0x6006e
 	clearevent $06d0
 	setevent $06e3
 	clearevent $06e4
-	special $003c
+	special PlayMapMusic
 	disappear $2
 	moveperson $2, $c, $0
 	appear $2

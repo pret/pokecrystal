@@ -28,7 +28,7 @@ JanineScript_0x195db9: ; 0x195db9
 	variablesprite $8, $28
 	variablesprite $9, $28
 	variablesprite $a, $27
-	special $005e
+	special Function14209
 	loadfont
 	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
@@ -61,7 +61,7 @@ FuschiaGym1Script_0x195e1b: ; 0x195e1b
 	applymovement $3, MovementData_0x195f27
 	faceplayer
 	variablesprite $7, $28
-	special $005e
+	special Function14209
 UnknownScript_0x195e2c: ; 0x195e2c
 	faceplayer
 	loadfont
@@ -98,7 +98,7 @@ FuschiaGym2Script_0x195e55: ; 0x195e55
 	applymovement $4, MovementData_0x195f27
 	faceplayer
 	variablesprite $8, $28
-	special $005e
+	special Function14209
 UnknownScript_0x195e66: ; 0x195e66
 	faceplayer
 	loadfont
@@ -135,7 +135,7 @@ FuschiaGym3Script_0x195e8f: ; 0x195e8f
 	applymovement $5, MovementData_0x195f27
 	faceplayer
 	variablesprite $9, $28
-	special $005e
+	special Function14209
 UnknownScript_0x195ea0: ; 0x195ea0
 	faceplayer
 	loadfont
@@ -172,7 +172,7 @@ FuschiaGym4Script_0x195ec9: ; 0x195ec9
 	applymovement $6, MovementData_0x195f27
 	faceplayer
 	variablesprite $a, $27
-	special $005e
+	special Function14209
 UnknownScript_0x195eda: ; 0x195eda
 	faceplayer
 	loadfont

@@ -24,7 +24,7 @@ UnknownScript_0x9f421: ; 0x9f421
 	applymovement $0, MovementData_0x9e58c
 UnknownScript_0x9f425: ; 0x9f425
 	writebyte $2
-	special $007a
+	special Function170b44
 	appear $2
 	warpsound
 	waitbutton
@@ -33,8 +33,8 @@ UnknownScript_0x9f425: ; 0x9f425
 	storetext 1
 	keeptextopen
 	loadmovesprites
-	special $0077
-	special $002e
+	special Function170215
+	special Function8c084
 	reloadmap
 	if_not_equal $0, UnknownScript_0x9f4c2
 	copybytetovar wcf64
@@ -49,11 +49,11 @@ UnknownScript_0x9f425: ; 0x9f425
 	closetext
 	loadmovesprites
 	playmusic MUSIC_HEAL
-	special $002e
-	special $00a4
+	special Function8c084
+	special Function1047eb
 	pause 60
-	special $0031
-	special $003d
+	special Function8c079
+	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x9eebc
 	yesorno
@@ -70,25 +70,25 @@ UnknownScript_0x9f483: ; 0x9f483
 	yesorno
 	iffalse UnknownScript_0x9f4a3
 	writebyte $7
-	special $0086
+	special Function170687
 	writebyte $1f
-	special $0086
+	special Function170687
 	writebyte $3
-	special $0086
+	special Function170687
 	playsound SFX_SAVE
 	waitbutton
-	special $002e
-	special $007e
+	special Function8c084
+	special Reset
 UnknownScript_0x9f4a3: ; 0x9f4a3
 	writetext UnknownText_0x9efbf
 	yesorno
 	iffalse UnknownScript_0x9f477
 	writebyte $4
-	special $0086
+	special Function170687
 	writebyte $6
-	special $0086
+	special Function170687
 	loadmovesprites
-	special $002e
+	special Function8c084
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	loadfont
 	jump UnknownScript_0x9e4b0
@@ -96,10 +96,10 @@ UnknownScript_0x9f4a3: ; 0x9f4a3
 
 UnknownScript_0x9f4c2: ; 0x9f4c2
 	pause 60
-	special $002f
+	special Function8c092
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	writebyte $4
-	special $0086
+	special Function170687
 	loadfont
 	writetext UnknownText_0x9ea49
 	closetext
@@ -109,7 +109,7 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 
 UnknownScript_0x9f4d9: ; 0x9f4d9
 	pause 60
-	special $002f
+	special Function8c092
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
 	loadfont
@@ -119,7 +119,7 @@ BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
 
 UnknownScript_0x9f4eb: ; 0x9f4eb
 	writebyte $4
-	special $0086
+	special Function170687
 	loadfont
 	writetext UnknownText_0x9f0c1
 	closetext
@@ -129,9 +129,9 @@ UnknownScript_0x9f4eb: ; 0x9f4eb
 
 UnknownScript_0x9f4f7: ; 0x9f4f7
 	writebyte $4
-	special $0086
+	special Function170687
 	writebyte $6
-	special $0086
+	special Function170687
 	loadfont
 	writetext UnknownText_0x9ea49
 	writetext UnknownText_0x9ec09

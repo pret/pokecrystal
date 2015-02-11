@@ -24,7 +24,7 @@ UnknownScript_0x1933ed: ; 0x1933ed
 ; 0x1933ee
 
 UnknownScript_0x1933ee: ; 0x1933ee
-	special $0010
+	special Function29f47
 	iffalse UnknownScript_0x1933f9
 	disappear $3
 	appear $2
@@ -44,7 +44,7 @@ UnknownScript_0x1933fe: ; 0x1933fe
 ; 0x193405
 
 MapTradeCenterSignpost1Script: ; 0x193405
-	special $000d
+	special Function29ec4
 	newloadmap $f8
 	end
 ; 0x19340b

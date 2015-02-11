@@ -22,15 +22,15 @@ RocketScript_0x1adbfa: ; 0x1adbfa
 	loadfont
 	writetext UnknownText_0x1addc0
 	keeptextopen
-	special $006a
+	special Functionc48f
 	writetext UnknownText_0x1adee1
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	disappear $2
 	pause 25
-	special $0032
+	special Function8c0ab
 	playmapmusic
 	end
 ; 0x1adc2e

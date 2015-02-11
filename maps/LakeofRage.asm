@@ -146,7 +146,7 @@ MapLakeofRageSignpost1Script: ; 0x700ab
 
 UnknownScript_0x700b8: ; 0x700b8
 	keeptextopen
-	special $001a
+	special Functionfbcd2
 	loadmovesprites
 	end
 ; 0x700be

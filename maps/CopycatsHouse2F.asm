@@ -46,7 +46,7 @@ UnknownScript_0x18aed4: ; 0x18aed4
 	faceplayer
 	variablesprite $b, $60
 UnknownScript_0x18aedc: ; 0x18aedc
-	special $005e
+	special Function14209
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18af16
 	loadfont
@@ -72,7 +72,7 @@ UnknownScript_0x18af04: ; 0x18af04
 UnknownScript_0x18af08: ; 0x18af08
 	faceplayer
 	variablesprite $b, $28
-	special $005e
+	special Function14209
 	loadfont
 	writetext UnknownText_0x18b028
 	closetext
@@ -104,7 +104,7 @@ UnknownScript_0x18af35: ; 0x18af35
 UnknownScript_0x18af39: ; 0x18af39
 	faceplayer
 	variablesprite $b, $28
-	special $005e
+	special Function14209
 	loadfont
 	writetext UnknownText_0x18b116
 	closetext
@@ -151,7 +151,7 @@ UnknownScript_0x18af80: ; 0x18af80
 	faceplayer
 	variablesprite $b, $60
 UnknownScript_0x18af88: ; 0x18af88
-	special $005e
+	special Function14209
 	loadfont
 	checkflag $0063
 	iftrue UnknownScript_0x18af98
@@ -175,7 +175,7 @@ UnknownScript_0x18afaa: ; 0x18afaa
 UnknownScript_0x18afae: ; 0x18afae
 	faceplayer
 	variablesprite $b, $28
-	special $005e
+	special Function14209
 	loadfont
 	writetext UnknownText_0x18b2f5
 	closetext

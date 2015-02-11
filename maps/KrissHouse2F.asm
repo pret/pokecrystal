@@ -17,7 +17,7 @@ UnknownScript_0x7abb3: ; 0x7abb3
 ; 0x7abb4
 
 UnknownScript_0x7abb4: ; 0x7abb4
-	special $004a
+	special Function27043
 	setevent $0007
 	checkevent $0036
 	iftrue UnknownScript_0x7abc4
@@ -30,7 +30,7 @@ UnknownScript_0x7abc4: ; 0x7abc4
 ; 0x7abc5
 
 UnknownScript_0x7abc5: ; 0x7abc5
-	special $0049
+	special Function26feb
 	return
 ; 0x7abc9
 
@@ -103,7 +103,7 @@ MapKrissHouse2FSignpost3Script: ; 0x7ac12
 
 MapKrissHouse2FSignpost0Script: ; 0x7ac15
 	loadfont
-	special $001d
+	special Functionc2e7
 	iftrue UnknownScript_0x7ac1e
 	loadmovesprites
 	end

@@ -49,13 +49,13 @@ UnknownScript_0x180e53: ; 0x180e53
 ; 0x180e6a
 
 UnknownScript_0x180e6a: ; 0x180e6a
-	special $006a
+	special Functionc48f
 	applymovement $0, MovementData_0x180f38
 	jump LanceScript_0x180e7b
 ; 0x180e74
 
 UnknownScript_0x180e74: ; 0x180e74
-	special $006a
+	special Functionc48f
 	applymovement $0, MovementData_0x180f3c
 LanceScript_0x180e7b: ; 0x180e7b
 	spriteface $2, $2
@@ -131,7 +131,7 @@ LanceScript_0x180e7b: ; 0x180e7b
 	pause 30
 	loadmovesprites
 	applymovement $3, MovementData_0x180f5b
-	special $002e
+	special Function8c084
 	pause 15
 	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
 	end

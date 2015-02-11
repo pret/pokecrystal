@@ -7,7 +7,7 @@ SilverCaveRoom3_MapScriptHeader: ; 0x18c601
 ; 0x18c603
 
 RedScript_0x18c603: ; 0x18c603
-	special $006a
+	special Functionc48f
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18c637
@@ -18,18 +18,18 @@ RedScript_0x18c603: ; 0x18c603
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	special $006a
+	special Functionc48f
 	loadfont
 	writetext UnknownText_0x18c63f
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	disappear $2
 	pause 15
-	special $0032
+	special Function8c0ab
 	pause 30
-	special $001b
+	special Functionc658
 	refreshscreen $0
 	credits
 	end

@@ -41,11 +41,11 @@ UnknownScript_0x19a6d7: ; 0x19a6d7
 
 UnknownScript_0x19a6e0: ; 0x19a6e0
 	writebyte MAGIKARP
-	special $0042
+	special Functionc276
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
 	closetext
-	special $0019
+	special Functionfbb32
 	if_equal $0, UnknownScript_0x19a71c
 	if_equal $1, UnknownScript_0x19a722
 	if_equal $2, UnknownScript_0x19a716

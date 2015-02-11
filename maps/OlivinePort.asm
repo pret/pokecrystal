@@ -43,7 +43,7 @@ SailorScript_0x748c0: ; 0x748c0
 	waitbutton
 	applymovement $0, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
-	special $002e
+	special Function8c084
 	waitbutton
 	checkevent $0030
 	iffalse UnknownScript_0x7490a

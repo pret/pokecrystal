@@ -12,14 +12,14 @@ TeacherScript_0x7b125: ; 0x7b125
 	writetext UnknownText_0x7b14d
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
-	special $009d
+	special Function8c0b6
+	special Functiond91
+	special Function1060a2
 	playmusic MUSIC_HEAL
-	special $001b
+	special Functionc658
 	pause 60
-	special $0032
-	special $003d
+	special Function8c0ab
+	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7b18b
 	closetext

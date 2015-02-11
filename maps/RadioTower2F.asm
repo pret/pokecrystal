@@ -184,7 +184,7 @@ BuenaScript_0x5d775: ; 0x5d775
 	if_equal $1e, UnknownScript_0x5d87f
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
-	special $00a3
+	special Function4ae12
 	iffalse UnknownScript_0x5d81e
 	writetext UnknownText_0x5de84
 	closetext
@@ -201,7 +201,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	loadmovesprites
 	spriteface $b, $0
 	refreshscreen $0
-	special SPECIAL_BUENAS_PASSWORD
+	special SpecialBuenasPassword
 	loadmovesprites
 	iffalse UnknownScript_0x5d845
 	loadfont
@@ -220,9 +220,9 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	writetext UnknownText_0x5e054
 	closetext
 	loadmovesprites
-	special $006a
+	special Functionc48f
 	pause 20
-	special $003d
+	special RestartMapMusic
 	checkcode $18
 	if_equal $1e, UnknownScript_0x5d8a4
 	end
@@ -251,9 +251,9 @@ UnknownScript_0x5d81e: ; 0x5d81e
 	closetext
 	loadmovesprites
 	spriteface $b, $3
-	special $006a
+	special Functionc48f
 	pause 20
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x5d82f
 
@@ -284,9 +284,9 @@ UnknownScript_0x5d845: ; 0x5d845
 	closetext
 	loadmovesprites
 	spriteface $b, $3
-	special $006a
+	special Functionc48f
 	pause 20
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x5d865
 
@@ -396,7 +396,7 @@ ReceptionistScript_0x5d8ff: ; 0x5d8ff
 	iffalse UnknownScript_0x5d90f
 	writetext UnknownText_0x5e392
 	keeptextopen
-	special SPECIAL_BUENA_PRIZE
+	special SpecialBuenaPrize
 	loadmovesprites
 	end
 ; 0x5d90f

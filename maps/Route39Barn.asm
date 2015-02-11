@@ -52,7 +52,7 @@ TaurosScript_0x9ccaa: ; 0x9ccaa
 	iftrue UnknownScript_0x9cd25
 	writetext UnknownText_0x9cd70
 	writebyte MILTANK
-	special $005f
+	special Functionfb841
 	keeptextopen
 	writetext UnknownText_0x9cd80
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
@@ -105,7 +105,7 @@ UnknownScript_0x9cd04: ; 0x9cd04
 	writetext UnknownText_0x9cdbc
 	pause 60
 	keeptextopen
-	special $003d
+	special RestartMapMusic
 	writetext UnknownText_0x9ce1b
 	closetext
 	loadmovesprites

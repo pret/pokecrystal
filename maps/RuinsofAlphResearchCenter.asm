@@ -61,7 +61,7 @@ UnknownScript_0x59192: ; 0x59192
 	loadmovesprites
 	applymovement $4, MovementData_0x59276
 	dotrigger $0
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x591d1
 
@@ -183,7 +183,7 @@ UnknownScript_0x5925a: ; 0x5925a
 UnknownScript_0x59260: ; 0x59260
 	writetext UnknownText_0x5982d
 	closetext
-	special $0027
+	special Functionc2cd
 	loadmovesprites
 	end
 ; 0x59269

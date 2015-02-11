@@ -9,7 +9,7 @@ GoldenrodNameRatersHouse_MapScriptHeader: ; 0x5577a
 GentlemanScript_0x5577c: ; 0x5577c
 	faceplayer
 	loadfont
-	special $0057
+	special SpecialNameRater
 	closetext
 	loadmovesprites
 	end

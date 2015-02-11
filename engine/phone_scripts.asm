@@ -381,7 +381,7 @@ UnknownScript_0xbd17c:
 	iftrue UnknownScript_0xbd1cd
 
 UnknownScript_0xbd19b:
-	special $005d
+	special RandomPhoneMon
 	farjump UnknownScript_0xa0908
 
 UnknownScript_0xbd1a2:
@@ -608,7 +608,7 @@ UnknownScript_0xbd373:
 	iftrue UnknownScript_0xbd3c4
 
 UnknownScript_0xbd392:
-	special $005d
+	special RandomPhoneMon
 	farjump UnknownScript_0xa0930
 
 UnknownScript_0xbd399:
@@ -808,7 +808,7 @@ UnknownScript_0xbd544:
 	pokenamemem QWILFISH, $1
 	displaylocation ROUTE_32, $2
 	writebyte $1
-	special $0048
+	special Functionc3fc
 	farjump UnknownScript_0xa05d6
 
 UnknownScript_0xbd55c:
@@ -827,7 +827,7 @@ UnknownScript_0xbd560:
 	iftrue UnknownScript_0xbd5c3
 
 UnknownScript_0xbd57f:
-	special $005d
+	special RandomPhoneMon
 	farjump UnknownScript_0xa0948
 
 UnknownScript_0xbd586:
@@ -3079,7 +3079,7 @@ UnknownScript_0xbe61c:
 	end
 
 UnknownScript_0xbe622:
-	special $005d
+	special RandomPhoneMon
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbe636
 	farwritetext UnknownText_0x1b518b

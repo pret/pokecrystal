@@ -11,7 +11,7 @@ NurseScript_0x18820f: ; 0x18820f
 ; 0x188212
 
 SuperNerdScript_0x188212: ; 0x188212
-	special $00a0
+	special Function10630f
 	iftrue UnknownScript_0x18821b
 	jumptextfaceplayer UnknownText_0x188221
 ; 0x18821b

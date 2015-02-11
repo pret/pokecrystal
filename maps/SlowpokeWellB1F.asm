@@ -64,14 +64,14 @@ GruntM1Script: ; 0x5a5f8
 	writetext TrainerGruntM1WhenTalkText
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	disappear $2
 	disappear $3
 	disappear $4
 	disappear $5
 	pause 15
-	special $0032
+	special Function8c0ab
 	disappear $8
 	moveperson $8, $b, $6
 	appear $8
@@ -93,8 +93,8 @@ GruntM1Script: ; 0x5a5f8
 	clearevent $06f9
 	clearevent $06fd
 	clearevent $073e
-	special $002e
-	special $001b
+	special Function8c084
+	special Functionc658
 	pause 15
 	warp GROUP_KURTS_HOUSE, MAP_KURTS_HOUSE, $3, $3
 	end

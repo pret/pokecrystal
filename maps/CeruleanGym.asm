@@ -49,7 +49,7 @@ UnknownScript_0x1883de: ; 0x1883de
 	domaptrigger GROUP_ROUTE_25, MAP_ROUTE_25, $1
 	domaptrigger GROUP_POWER_PLANT, MAP_POWER_PLANT, $0
 	waitbutton
-	special $003d
+	special RestartMapMusic
 	pause 15
 	spriteface $0, $0
 	pause 15

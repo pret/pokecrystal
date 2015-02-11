@@ -55,7 +55,7 @@ UnknownScript_0x185c0d: ; 0x185c0d
 
 UnknownScript_0x185c25: ; 0x185c25
 	showemote $0, $4, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	spriteface $4, $3
 	pause 15
@@ -107,7 +107,7 @@ UnknownScript_0x185c80: ; 0x185c80
 	loadmovesprites
 	dotrigger $2
 	setevent $06c5
-	special $006a
+	special Functionc48f
 	pause 15
 	earthquake 50
 	showemote $0, $0, 15

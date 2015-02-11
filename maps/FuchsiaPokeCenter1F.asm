@@ -34,7 +34,7 @@ JanineImpersonatorScript_0x196462: ; 0x196462
 	applymovement $5, MovementData_0x196486
 	faceplayer
 	variablesprite $c, $a
-	special $005e
+	special Function14209
 	loadfont
 	writetext UnknownText_0x19654e
 	closetext
@@ -42,7 +42,7 @@ JanineImpersonatorScript_0x196462: ; 0x196462
 	applymovement $5, MovementData_0x196486
 	faceplayer
 	variablesprite $c, $28
-	special $005e
+	special Function14209
 	end
 ; 0x196486
 

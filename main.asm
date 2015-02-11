@@ -4202,176 +4202,176 @@ Special:: ; c01b
 	ret
 ; c029
 
-SpecialsPointers: ; c029
-	dbw BANK(Function97c28), Function97c28
-	dbw BANK(Function29ce8), Function29ce8
-	dbw BANK(Function29d11), Function29d11
-	dbw BANK(Function29d92), Function29d92
-	dbw BANK(Function29e66), Function29e66
-	dbw BANK(Function29e82), Function29e82
-	dbw BANK(Function29efa), Function29efa
-	dbw BANK(Function29eee), Function29eee
-	dbw BANK(Function29c92), Function29c92
-	dbw BANK(Function29cf1), Function29cf1
-	dbw BANK(Function29cfa), Function29cfa
-	dbw BANK(Function29bfb), Function29bfb
-	dbw BANK(Function29c7b), Function29c7b
-	dbw BANK(Function29ec4), Function29ec4
-	dbw BANK(Function29ed9), Function29ed9
-	dbw BANK(Function29eaf), Function29eaf
-	dbw BANK(Function29f47), Function29f47
-	dbw BANK(Functionc2f6), Functionc2f6
-	dbw BANK(Functionc309), Functionc309
-	dbw BANK(Function1050b9), Function1050b9
-	dbw BANK(Functionc34a), Functionc34a
-	dbw BANK(Function4d9e5), Function4d9e5
-	dbw BANK(Function13a12), Function13a12
-	dbw BANK(Function13a31), Function13a31
-	dbw BANK(Function135db), Function135db
-	dbw BANK(Functionfbb32), Functionfbb32
-	dbw BANK(Functionfbcd2), Functionfbcd2
-	dbw BANK(Functionc658), Functionc658
-	dbw BANK(Function1559a), Function1559a
-	dbw BANK(Functionc2e7), Functionc2e7
-	dbw BANK(Function166d6), Function166d6
-	dbw BANK(Function1672a), Function1672a
-	dbw BANK(Function16936), Function16936
-	dbw BANK(Function2c547), Function2c547
-	dbw BANK(Function16218), Function16218
-	dbw BANK(Function8cc04), Function8cc04
-	dbw BANK(SpecialNameRival), SpecialNameRival
-	dbw BANK(Function90913), Function90913
-	dbw BANK(Functionc2c0), Functionc2c0
-	dbw BANK(Functionc2cd), Functionc2cd
-	dbw BANK(Functionc355), Functionc355
-	dbw BANK(Functionc360), Functionc360
-	dbw BANK(Functionc373), Functionc373
-	dbw BANK(Functionc380), Functionc380
-	dbw BANK(Functionc38d), Functionc38d
-	dbw BANK(Functionc3db), Functionc3db
-	dbw BANK(Function8c084), Function8c084
-	dbw BANK(Function8c092), Function8c092
-	dbw BANK(Function8c0b6), Function8c0b6
-	dbw BANK(Function8c079), Function8c079
-	dbw BANK(Function8c0ab), Function8c0ab
-	dbw BANK(Functiond91), Functiond91
-	dbw BANK(WhiteBGMap), WhiteBGMap
-	dbw BANK(UpdateTimePals), UpdateTimePals
-	dbw BANK(ClearTileMap), ClearTileMap
-	dbw BANK(Function1ad2), Function1ad2
-	dbw BANK(Functione4a), Functione4a
-	dbw BANK(Functionc230), Functionc230
-	dbw BANK(SpecialSeenMon), SpecialSeenMon
-	dbw BANK(WaitSFX),WaitSFX
-	dbw BANK(PlayMapMusic), PlayMapMusic
-	dbw BANK(RestartMapMusic), RestartMapMusic
-	dbw BANK(Function12324), Function12324
-	dbw BANK(Function8379), Function8379
-	dbw BANK(Functionc25a), Functionc25a
-	dbw BANK(Functionc268), Functionc268
-	dbw BANK(Functionc276), Functionc276
-	dbw BANK(Functionc284), Functionc284
-	dbw BANK(Functionc3ef), Functionc3ef
-	dbw BANK(Function17421), Function17421
-	dbw BANK(Function17440), Function17440
-	dbw BANK(Function139a8), Function139a8
-	dbw BANK(Functionc3fc), Functionc3fc
-	dbw BANK(Function26feb), Function26feb
-	dbw BANK(Function27043), Function27043
-	dbw BANK(SpecialGiveShuckle), SpecialGiveShuckle
-	dbw BANK(SpecialReturnShuckle), SpecialReturnShuckle
-	dbw BANK(Function73f7), Function73f7
-	dbw BANK(SpecialCheckPokerus),SpecialCheckPokerus
-	dbw BANK(Function24b25), Function24b25
-	dbw BANK(Function24b4e), Function24b4e
-	dbw BANK(Function24ae8), Function24ae8
-	dbw BANK(Function4d87a), Function4d87a
-	dbw BANK(Functionc434), Functionc434
-	dbw BANK(Functionc422), Functionc422
-	dbw BANK(Function4d9d3), Function4d9d3
-	dbw BANK(Function88018), Function88018
-	dbw BANK(SpecialNameRater), SpecialNameRater
-	dbw BANK(Functionc2da), Functionc2da
-	dbw BANK(Function718d), Function718d
-	dbw BANK(Function71ac), Function71ac
-	dbw BANK(Function2a4ab), Function2a4ab
-	dbw BANK(Function2a51f), Function2a51f
-	dbw BANK(RandomPhoneMon), RandomPhoneMon
-	dbw BANK(Function14209), Function14209
-	dbw BANK(Functionfb841), Functionfb841
-	dbw BANK(SpecialSnorlaxAwake),SpecialSnorlaxAwake
-	dbw BANK(Function7413), Function7413
-	dbw BANK(Function7418), Function7418
-	dbw BANK(Function741d), Function741d
-	dbw BANK(Functionc472), Functionc472
-	dbw BANK(ProfOaksPCBoot), ProfOaksPCBoot
-	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
-	dbw BANK(SpecialTrainerHouse),SpecialTrainerHouse
-	dbw BANK(Function16dc7), Function16dc7
-	dbw BANK(InitRoamMons), InitRoamMons
-	dbw BANK(Functionc48f), Functionc48f
-	dbw BANK(Functionc49f), Functionc49f
-	dbw BANK(Functionc4ac), Functionc4ac
-	dbw BANK(Function11ac3e), Function11ac3e
-	dbw BANK(Function11b444), Function11b444
-	dbw BANK(Function11b5e8), Function11b5e8
-	dbw BANK(Function11b7e5), Function11b7e5
-	dbw BANK(Function11b879), Function11b879
-	dbw BANK(Function11b920), Function11b920
-	dbw BANK(Function11b93b), Function11b93b
-	dbw BANK(Function1700b0), Function1700b0
-	dbw BANK(Function1700ba), Function1700ba
-	dbw BANK(Function170114), Function170114
-	dbw BANK(Function170215), Function170215
-	dbw BANK(Function1704e1), Function1704e1
-	dbw BANK(Function17021d), Function17021d
-	dbw BANK(Function170b44), Function170b44
-	dbw BANK(Function11ba38), Function11ba38
-	dbw BANK(Function170bd3), Function170bd3
-	dbw BANK(Function117656), Function117656
-	dbw BANK(Reset), Reset
-	dbw BANK(Function1011f1), Function1011f1
-	dbw BANK(Function101220), Function101220
-	dbw BANK(Function101225), Function101225
-	dbw BANK(Function101231), Function101231
-	dbw BANK(Function4925b), Function4925b
-	dbw BANK(Function8adef), Function8adef
-	dbw BANK(Function11c1ab), Function11c1ab
-	dbw BANK(Function170687), Function170687
-	dbw BANK(Function8ae68), Function8ae68
-	dbw BANK(Function17d224), Function17d224
-	dbw BANK(Function17d2b6), Function17d2b6
-	dbw BANK(Function17d2ce), Function17d2ce
-	dbw BANK(Function17f53d), Function17f53d
-	dbw BANK(Function103612), Function103612
-	dbw BANK(SpecialHoOhChamber),SpecialHoOhChamber
-	dbw BANK(Function102142), Function102142
-	dbw BANK(Function4989a), Function4989a
-	dbw BANK(Function49bf9), Function49bf9
-	dbw BANK(SpecialPokeSeer), SpecialPokeSeer
-	dbw BANK(SpecialBuenasPassword), SpecialBuenasPassword
-	dbw BANK(SpecialBuenaPrize), SpecialBuenaPrize
-	dbw BANK(SpecialDratini),SpecialDratini
-	dbw BANK(Function11485), Function11485
-	dbw BANK(SpecialBeastsCheck),SpecialBeastsCheck
-	dbw BANK(SpecialMonCheck),SpecialMonCheck
-	dbw BANK(Functionc225), Functionc225
-	dbw BANK(Function170bd2), Function170bd2
-	dbw BANK(Function10366e), Function10366e
-	dbw BANK(Function1037eb), Function1037eb
-	dbw BANK(Function10383c), Function10383c
-	dbw BANK(Function1060a2), Function1060a2
-	dbw BANK(Function14168), Function14168
-	dbw BANK(Function1037c2), Function1037c2
-	dbw BANK(Function10630f), Function10630f
-	dbw BANK(Function103780), Function103780
-	dbw BANK(Function10387b), Function10387b
-	dbw BANK(Function4ae12), Function4ae12
-	dbw BANK(Function1047eb), Function1047eb
-	dbw BANK(Function4a927), Function4a927
-	dbw BANK(Function90a54), Function90a54
-	dbw BANK(Function90a88), Function90a88
-	dbw BANK(SpecialNone), SpecialNone
+SpecialsPointers:: ; c029
+	add_special Function97c28
+	add_special Function29ce8
+	add_special Function29d11
+	add_special Function29d92
+	add_special Function29e66
+	add_special Function29e82
+	add_special Function29efa
+	add_special Function29eee
+	add_special Function29c92
+	add_special Function29cf1
+	add_special Function29cfa
+	add_special Function29bfb
+	add_special Function29c7b
+	add_special Function29ec4
+	add_special Function29ed9
+	add_special Function29eaf
+	add_special Function29f47
+	add_special Functionc2f6
+	add_special Functionc309
+	add_special Function1050b9
+	add_special Functionc34a
+	add_special Function4d9e5
+	add_special Function13a12
+	add_special Function13a31
+	add_special Function135db
+	add_special Functionfbb32
+	add_special Functionfbcd2
+	add_special Functionc658
+	add_special Function1559a
+	add_special Functionc2e7
+	add_special Function166d6
+	add_special Function1672a
+	add_special Function16936
+	add_special Function2c547
+	add_special Function16218
+	add_special Function8cc04
+	add_special SpecialNameRival
+	add_special Function90913
+	add_special Functionc2c0
+	add_special Functionc2cd
+	add_special Functionc355
+	add_special Functionc360
+	add_special Functionc373
+	add_special Functionc380
+	add_special Functionc38d
+	add_special Functionc3db
+	add_special Function8c084
+	add_special Function8c092
+	add_special Function8c0b6
+	add_special Function8c079
+	add_special Function8c0ab
+	add_special Functiond91
+	add_special WhiteBGMap
+	add_special UpdateTimePals
+	add_special ClearTileMap
+	add_special Function1ad2
+	add_special Functione4a
+	add_special Functionc230
+	add_special SpecialSeenMon
+	add_special WaitSFX
+	add_special PlayMapMusic
+	add_special RestartMapMusic
+	add_special Function12324
+	add_special Function8379
+	add_special Functionc25a
+	add_special Functionc268
+	add_special Functionc276
+	add_special Functionc284
+	add_special Functionc3ef
+	add_special Function17421
+	add_special Function17440
+	add_special Function139a8
+	add_special Functionc3fc
+	add_special Function26feb
+	add_special Function27043
+	add_special SpecialGiveShuckle
+	add_special SpecialReturnShuckle
+	add_special Function73f7
+	add_special SpecialCheckPokerus
+	add_special Function24b25
+	add_special Function24b4e
+	add_special Function24ae8
+	add_special Function4d87a
+	add_special Functionc434
+	add_special Functionc422
+	add_special Function4d9d3
+	add_special Function88018
+	add_special SpecialNameRater
+	add_special Functionc2da
+	add_special Function718d
+	add_special Function71ac
+	add_special Function2a4ab
+	add_special Function2a51f
+	add_special RandomPhoneMon
+	add_special Function14209
+	add_special Functionfb841
+	add_special SpecialSnorlaxAwake
+	add_special Function7413
+	add_special Function7418
+	add_special Function741d
+	add_special Functionc472
+	add_special ProfOaksPCBoot
+	add_special SpecialGameboyCheck
+	add_special SpecialTrainerHouse
+	add_special Function16dc7
+	add_special InitRoamMons
+	add_special Functionc48f
+	add_special Functionc49f
+	add_special Functionc4ac
+	add_special Function11ac3e
+	add_special Function11b444
+	add_special Function11b5e8
+	add_special Function11b7e5
+	add_special Function11b879
+	add_special Function11b920
+	add_special Function11b93b
+	add_special Function1700b0
+	add_special Function1700ba
+	add_special Function170114
+	add_special Function170215
+	add_special Function1704e1
+	add_special Function17021d
+	add_special Function170b44
+	add_special Function11ba38
+	add_special Function170bd3
+	add_special Function117656
+	add_special Reset
+	add_special Function1011f1
+	add_special Function101220
+	add_special Function101225
+	add_special Function101231
+	add_special Function4925b
+	add_special Function8adef
+	add_special Function11c1ab
+	add_special Function170687
+	add_special Function8ae68
+	add_special Function17d224
+	add_special Function17d2b6
+	add_special Function17d2ce
+	add_special Function17f53d
+	add_special Function103612
+	add_special SpecialHoOhChamber
+	add_special Function102142
+	add_special Function4989a
+	add_special Function49bf9
+	add_special SpecialPokeSeer
+	add_special SpecialBuenasPassword
+	add_special SpecialBuenaPrize
+	add_special SpecialDratini
+	add_special Function11485
+	add_special SpecialBeastsCheck
+	add_special SpecialMonCheck
+	add_special Functionc225
+	add_special Function170bd2
+	add_special Function10366e
+	add_special Function1037eb
+	add_special Function10383c
+	add_special Function1060a2
+	add_special Function14168
+	add_special Function1037c2
+	add_special Function10630f
+	add_special Function103780
+	add_special Function10387b
+	add_special Function4ae12
+	add_special Function1047eb
+	add_special Function4a927
+	add_special Function90a54
+	add_special Function90a88
+	add_special SpecialNone
 ; c224
 
 SpecialNone: ; c224
@@ -5464,7 +5464,7 @@ Functionc7ce: ; c7ce
 
 UnknownScript_0xc7fe: ; c7fe
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 
 UnknownScript_0xc802: ; 0xc802
 	callasm GetPartyNick
@@ -5621,7 +5621,7 @@ Functionc8e0: ; c8e0
 
 UnknownScript_0xc8e6: ; 0xc8e6
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	writetext UnknownText_0xc8f3
 	callasm Function8c7e1
 	loadmovesprites
@@ -5720,7 +5720,7 @@ Functionc97a: ; c97a (3:497a)
 ; c983 (3:4983)
 
 UnknownScript_0xc983: ; c983
-	special $0035
+	special UpdateTimePals
 
 UsedSurfScript: ; c986
 	writetext UsedSurfText ; "used SURF!"
@@ -5732,10 +5732,10 @@ UsedSurfScript: ; c986
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
 
-	special SPECIAL_UPDATESPRITETILES
-	special SPECIAL_BIKESURFMUSIC
+	special Functione4a
+	special PlayMapMusic
 ; step into the water
-	special SPECIAL_LOADFACESTEP ; (slow_step_x, step_end)
+	special Function8379 ; (slow_step_x, step_end)
 	applymovement 0, MovementBuffer ; PLAYER, MovementBuffer
 	end
 ; c9a2
@@ -5954,15 +5954,15 @@ Functionca9d: ; ca9d
 UnknownScript_0xcaa3: ; 0xcaa3
 	reloadmappart
 	callasm HideSprites
-	special $0035
+	special UpdateTimePals
 	callasm Function8caed
 	farscall UnknownScript_0x122c1
-	special $0000
+	special Function97c28
 	callasm Function154f1
 	writecode $8, $0
 	newloadmap $fc
 	callasm Function8cb33
-	special $003b
+	special WaitSFX
 	callasm Functioncacb
 	end
 ; 0xcacb
@@ -6019,7 +6019,7 @@ Functioncb07: ; cb07
 
 UnknownScript_0xcb1c: ; 0xcb1c
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 
 UnknownScript_0xcb20: ; 0xcb20
 	callasm GetPartyNick
@@ -6210,14 +6210,14 @@ UnknownText_0xcc26: ; 0xcc26
 
 UnknownScript_0xcc2b: ; 0xcc2b
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	writetext UnknownText_0xcc21
 	jump UnknownScript_0xcc3c
 ; 0xcc35
 
 UnknownScript_0xcc35: ; 0xcc35
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	writetext UnknownText_0xcc1c
 
 UnknownScript_0xcc3c: ; 0xcc3c
@@ -6226,7 +6226,7 @@ UnknownScript_0xcc3c: ; 0xcc3c
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
-	special $0000
+	special Function97c28
 	writecode $8, $0
 	newloadmap $f5
 	playsound SFX_WARP_FROM
@@ -6316,7 +6316,7 @@ UnknownText_0xccb6: ; 0xccb6
 
 UnknownScript_0xccbb: ; 0xccbb
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	writetext UnknownText_0xccb1
 	pause 60
 	reloadmappart
@@ -6324,7 +6324,7 @@ UnknownScript_0xccbb: ; 0xccbb
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcce1
 	farscall UnknownScript_0x122c1
-	special $0000
+	special Function97c28
 	writecode $8, $0
 	newloadmap $f4
 	playsound SFX_WARP_FROM
@@ -6401,7 +6401,7 @@ Functioncd1d: ; cd1d
 
 UnknownScript_0xcd29: ; 0xcd29
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 
 UnknownScript_0xcd2d: ; 0xcd2d
 	callasm Functioncd12
@@ -6581,7 +6581,7 @@ Functioncdde: ; cdde
 
 UnknownScript_0xce0b: ; 0xce0b
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 
 UnknownScript_0xce0f: ; 0xce0f
 	callasm GetPartyNick
@@ -6694,7 +6694,7 @@ UnknownText_0xcea2: ; 0xcea2
 
 HeadbuttFromMenuScript: ; 0xcea7
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 
 HeadbuttScript: ; 0xceab
 	callasm GetPartyNick
@@ -6800,13 +6800,13 @@ Functioncf0d: ; cf0d
 
 RockSmashFromMenuScript: ; 0xcf2e
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 
 RockSmashScript: ; cf32
 	callasm GetPartyNick
 	writetext UnknownText_0xcf58
 	loadmovesprites
-	special $003b
+	special WaitSFX
 	playsound SFX_STRENGTH
 	earthquake 84
 	applymovement2 MovementData_0xcf55
@@ -7051,7 +7051,7 @@ Functiond06c: ; d06c
 UnknownScript_0xd07c: ; 0xd07c
 	reloadmappart
 	loadvar $ffd4, $0
-	special $0035
+	special UpdateTimePals
 	loademote $9
 	callasm Functionb84b3
 	loademote $0
@@ -7185,19 +7185,19 @@ Functiond121: ; d121
 
 UnknownScript_0xd13e: ; 0xd13e
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	writecode $8, $1
 	writetext UnknownText_0xd17c
 	closetext
 	loadmovesprites
-	special $0038
+	special Functione4a
 	end
 ; 0xd14e
 
 UnknownScript_0xd14e: ; 0xd14e
 	writecode $8, $1
 	loadmovesprites
-	special $0038
+	special Functione4a
 	end
 ; 0xd156
 
@@ -7207,15 +7207,15 @@ Functiond156: ; unreferenced
 
 UnknownScript_0xd158: ; 0xd158
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	writecode $8, $0
 	writetext UnknownText_0xd181
 	closetext
 
 UnknownScript_0xd163:
 	loadmovesprites
-	special $0038
-	special $003c
+	special Functione4a
+	special PlayMapMusic
 	end
 ; 0xd16b
 
@@ -13026,7 +13026,7 @@ UnknownScript_0x122c1: ; 0x122c1
 	checkflag $0011
 	iffalse .script_122cd
 	setflag $0051
-	special $0017
+	special Function13a31
 .script_122cd
 	end
 ; 0x122ce
@@ -13357,15 +13357,15 @@ UnknownScript_0x124c8:: ; 0x124c8
 UnknownScript_0x124ce: ; 0x124ce
 	writetext UnknownText_0x124f5
 	closetext
-	special $002e
+	special Function8c084
 	pause 40
-	special $001b
+	special Functionc658
 	checkflag $0011
 	iftrue .script_64f2
 	callasm HalveMoney
 	callasm Function12527
 	farscall UnknownScript_0x122c1
-	special $0000
+	special Function97c28
 	newloadmap $f1
 	resetfuncs
 
@@ -13532,7 +13532,7 @@ Function12599: ; 12599
 
 UnknownScript_0x125ad: ; 0x125ad
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	callasm Function12599
 	writetext UnknownText_0x125c3
 	loadmovesprites
@@ -13541,7 +13541,7 @@ UnknownScript_0x125ad: ; 0x125ad
 
 UnknownScript_0x125ba: ; 0x125ba
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	writetext UnknownText_0x125c8
 	loadmovesprites
 	end
@@ -29740,7 +29740,7 @@ UnknownScript_0x26f91: ; 0x26f91
 	loadfont
 	writetext UnknownText_0x26f9b
 	closetext
-	special $0026
+	special Functionc2c0
 	loadmovesprites
 	end
 ; 0x26f9b
@@ -50057,7 +50057,7 @@ Function506bc: ; 506bc
 
 UnknownScript_0x506c8: ; 0x506c8
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	callasm GetPartyNick
 	writetext UnknownText_0x50726
 	closetext
@@ -50134,7 +50134,7 @@ _Squirtbottle: ; 50730
 
 UnknownScript_0x5073c: ; 0x5073c
 	reloadmappart
-	special $0035
+	special UpdateTimePals
 	callasm Function50753
 	iffalse UnknownScript_0x5074b
 	farjump WateredWeirdTreeScript
@@ -50302,15 +50302,15 @@ CheckAnyFaintedMon: ; 507fb
 ; 50821
 
 UnknownScript_0x50821: ; 0x50821
-	special $001b
+	special Functionc658
 	reloadmappart
 	playsound SFX_WARP_TO
-	special $002e
-	special $0031
-	special $002e
-	special $0031
-	special $002e
-	special $0031
+	special Function8c084
+	special Function8c079
+	special Function8c084
+	special Function8c079
+	special Function8c084
+	special Function8c079
 	waitbutton
 	writetext UnknownText_0x50845
 	playsound SFX_CAUGHT_MON

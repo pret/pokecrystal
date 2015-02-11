@@ -42,11 +42,11 @@ UnknownScript_0x60bab: ; 0x60bab
 	pause 60
 	keeptextopen
 	loadmovesprites
-	special $003d
+	special RestartMapMusic
 	cry AMPHAROS
-	special $002e
+	special Function8c084
 	pause 10
-	special $0031
+	special Function8c079
 	loadfont
 	writetext UnknownText_0x60f3d
 	closetext
@@ -111,7 +111,7 @@ MonsterScript_0x60c3a: ; 0x60c3a
 	iftrue UnknownScript_0x60c51
 	writetext UnknownText_0x60f03
 	writebyte AMPHAROS
-	special $005f
+	special Functionfb841
 	keeptextopen
 	writetext UnknownText_0x60f19
 	closetext
@@ -124,10 +124,10 @@ UnknownScript_0x60c51: ; 0x60c51
 	cry AMPHAROS
 	closetext
 	loadmovesprites
-	special $002e
-	special $0031
-	special $002e
-	special $0031
+	special Function8c084
+	special Function8c079
+	special Function8c084
+	special Function8c079
 	end
 ; 0x60c66
 

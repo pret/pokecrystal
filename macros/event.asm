@@ -80,10 +80,18 @@ callasm: macro
 	dw \1
 	endm
 
+
 special: macro
 	db $0f
-	dw \1 ; predefined_script
+	dw (\1Special - SpecialsPointers) / 3
 	endm
+
+add_special: MACRO
+\1Special::
+	db BANK(\1)
+	dw \1
+ENDM
+
 
 ptcallasm: macro
 	db $10

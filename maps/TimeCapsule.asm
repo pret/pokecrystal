@@ -24,7 +24,7 @@ UnknownScript_0x1934fc: ; 0x1934fc
 ; 0x1934fd
 
 UnknownScript_0x1934fd: ; 0x1934fd
-	special $0010
+	special Function29f47
 	iffalse UnknownScript_0x193508
 	disappear $3
 	appear $2
@@ -44,7 +44,7 @@ UnknownScript_0x19350d: ; 0x19350d
 ; 0x193514
 
 MapTimeCapsuleSignpost1Script: ; 0x193514
-	special $000f
+	special Function29eaf
 	newloadmap $f8
 	end
 ; 0x19351a

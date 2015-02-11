@@ -12,7 +12,7 @@ NurseScript_0x60f91: ; 0x60f91
 
 UnknownScript_0x60f94: ; 0x60f94
 	writebyte $b
-	special $0086
+	special Function170687
 	if_equal $b, UnknownScript_0x60f9e
 	end
 ; 0x60f9e
@@ -37,7 +37,7 @@ UnknownScript_0x60f9e: ; 0x60f9e
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x61060
-	special $003d
+	special RestartMapMusic
 	disappear $3
 	playsound SFX_EXIT_BUILDING
 UnknownScript_0x60fd8: ; 0x60fd8
@@ -46,7 +46,7 @@ UnknownScript_0x60fd8: ; 0x60fd8
 
 UnknownScript_0x60fd9: ; 0x60fd9
 	writebyte $b
-	special $0086
+	special Function170687
 	if_equal $b, UnknownScript_0x60fe3
 	end
 ; 0x60fe3
@@ -71,7 +71,7 @@ UnknownScript_0x60fe3: ; 0x60fe3
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x6106c
-	special $003d
+	special RestartMapMusic
 	disappear $3
 	playsound SFX_EXIT_BUILDING
 UnknownScript_0x6101d: ; 0x6101d

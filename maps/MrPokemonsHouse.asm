@@ -109,21 +109,21 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	playsound SFX_EXIT_BUILDING
 	disappear $3
 	waitbutton
-	special $003d
+	special RestartMapMusic
 	pause 15
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x1970ed
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	playmusic MUSIC_HEAL
-	special $009d
-	special $001b
+	special Function1060a2
+	special Functionc658
 	pause 60
-	special $0032
-	special $003d
+	special Function8c0ab
+	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x197134
 	closetext

@@ -71,7 +71,7 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	applymovement $c, MovementData_0x1a00ec
 	disappear $c
 	pause 20
-	special $006a
+	special Functionc48f
 	playmapmusic
 	pause 10
 UnknownScript_0x1a0083: ; 0x1a0083

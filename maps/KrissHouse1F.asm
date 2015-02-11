@@ -48,19 +48,19 @@ UnknownScript_0x7a4f6: ; 0x7a4f6
 	clearevent $06c8
 	writetext UnknownText_0x7a6bd
 	keeptextopen
-	special $0025
+	special Function90913
 UnknownScript_0x7a519: ; 0x7a519
 	writetext UnknownText_0x7a742
 	yesorno
 	iffalse UnknownScript_0x7a52a
-	special $00a6
+	special Function90a54
 	yesorno
 	iffalse UnknownScript_0x7a519
 	jump UnknownScript_0x7a531
 ; 0x7a52a
 
 UnknownScript_0x7a52a: ; 0x7a52a
-	special $00a7
+	special Function90a88
 	yesorno
 	iffalse UnknownScript_0x7a519
 UnknownScript_0x7a531: ; 0x7a531
@@ -104,7 +104,7 @@ UnknownScript_0x7a564: ; 0x7a564
 ; 0x7a56b
 
 UnknownScript_0x7a56b: ; 0x7a56b
-	special $003d
+	special RestartMapMusic
 	spriteface $2, $2
 	end
 ; 0x7a572
@@ -161,7 +161,7 @@ UnknownScript_0x7a5b5: ; 0x7a5b5
 	setevent $0076
 UnknownScript_0x7a5b8: ; 0x7a5b8
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	special $0022
+	special Function16218
 	closetext
 	loadmovesprites
 	end

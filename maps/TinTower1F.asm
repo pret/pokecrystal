@@ -30,7 +30,7 @@ UnknownScript_0x18502f: ; 0x18502f
 	iftrue UnknownScript_0x185047
 	checkevent $0044
 	iffalse UnknownScript_0x185050
-	special $0096
+	special SpecialBeastsCheck
 	iffalse UnknownScript_0x185050
 	clearevent $07c5
 	setevent $07b6
@@ -47,7 +47,7 @@ UnknownScript_0x185050: ; 0x185050
 	iftrue UnknownScript_0x185077
 	appear $2
 	writebyte RAIKOU
-	special $0097
+	special SpecialMonCheck
 	iftrue UnknownScript_0x185065
 	appear $3
 	jump UnknownScript_0x185067
@@ -57,7 +57,7 @@ UnknownScript_0x185065: ; 0x185065
 	disappear $3
 UnknownScript_0x185067: ; 0x185067
 	writebyte ENTEI
-	special $0097
+	special SpecialMonCheck
 	iftrue UnknownScript_0x185074
 	appear $4
 	jump UnknownScript_0x185076
@@ -90,7 +90,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	applymovement $0, MovementData_0x1851cb
 	pause 15
 	writebyte RAIKOU
-	special $0097
+	special SpecialMonCheck
 	iftrue UnknownScript_0x1850b6
 	applymovement $3, MovementData_0x1851d0
 	spriteface $0, $2
@@ -103,7 +103,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	waitbutton
 UnknownScript_0x1850b6: ; 0x1850b6
 	writebyte ENTEI
-	special $0097
+	special SpecialMonCheck
 	iftrue UnknownScript_0x1850d7
 	applymovement $4, MovementData_0x1851da
 	spriteface $0, $3
@@ -167,7 +167,7 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	playsound SFX_EXIT_BUILDING
 	disappear $5
 	waitbutton
-	special $006a
+	special Functionc48f
 	pause 20
 	playmapmusic
 	end

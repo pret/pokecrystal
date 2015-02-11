@@ -96,8 +96,8 @@ UnknownScript_0x19407b: ; 0x19407b
 	applymovement $4, MovementData_0x19424b
 	disappear $4
 	variablesprite $4, $26
-	special $005e
-	special $009e
+	special Function14209
+	special Function14168
 	end
 ; 0x19408c
 

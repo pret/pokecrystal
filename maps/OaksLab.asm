@@ -30,7 +30,7 @@ UnknownScript_0x19b3dd: ; 0x19b3dd
 UnknownScript_0x19b3ea: ; 0x19b3ea
 	writetext UnknownText_0x19b4a2
 	closetext
-	special $0065
+	special ProfOaksPCBoot
 	writetext UnknownText_0x19b4c8
 	closetext
 	loadmovesprites

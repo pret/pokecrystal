@@ -115,10 +115,10 @@ UnknownScript_0x78bfa: ; 0x78bfa
 	checkevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	iffalse UnknownScript_0x78c35
 	writebyte TOGEPI
-	special $0043
+	special Functionc284
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special $0043
+	special Functionc284
 	iftrue ShowElmTogepiScript
 	writetext UnknownText_0x79a40
 	closetext
@@ -128,10 +128,10 @@ UnknownScript_0x78bfa: ; 0x78bfa
 
 UnknownScript_0x78c22: ; 0x78c22
 	writebyte TOGEPI
-	special $0043
+	special Functionc284
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special $0043
+	special Functionc284
 	iftrue ShowElmTogepiScript
 	jump UnknownScript_0x78c41
 ; 0x78c35
@@ -328,13 +328,13 @@ UnknownScript_0x78d81: ; 0x78d81
 ; 0x78d8a
 
 UnknownScript_0x78d8a: ; 0x78d8a
-	special $009d
-	special $001b
+	special Function1060a2
+	special Functionc658
 	playmusic MUSIC_NONE
 	writebyte $1
-	special $003e
+	special Function12324
 	pause 30
-	special $003d
+	special RestartMapMusic
 	loadmovesprites
 	end
 ; 0x78d9f
@@ -604,7 +604,7 @@ CopScript: ; 0x78f1a
 	loadfont
 	writetext UnknownText_0x7a0f0
 	keeptextopen
-	special $0024
+	special SpecialNameRival
 	writetext UnknownText_0x7a1c0
 	closetext
 	loadmovesprites

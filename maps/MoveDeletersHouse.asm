@@ -9,7 +9,7 @@ MoveDeletersHouse_MapScriptHeader: ; 0x195cb2
 SuperNerdScript_0x195cb4: ; 0x195cb4
 	faceplayer
 	loadfont
-	special $0021
+	special Function2c547
 	closetext
 	loadmovesprites
 	end

@@ -86,7 +86,7 @@ TeacherScript_0x7ca7d: ; 0x7ca7d
 UnknownScript_0x7ca80: ; 0x7ca80
 	spriteface $0, $3
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear $c
@@ -106,7 +106,7 @@ UnknownScript_0x7ca80: ; 0x7ca80
 UnknownScript_0x7caaa: ; 0x7caaa
 	spriteface $0, $3
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear $c

@@ -11,7 +11,7 @@ GrannyScript_0x7b394: ; 0x7b394
 	loadfont
 	checkevent EVENT_GOT_TM37_SANDSTORM
 	iftrue UnknownScript_0x7b3b7
-	special $0059
+	special Function718d
 	writetext UnknownText_0x7b3c6
 	keeptextopen
 	if_greater_than $95, UnknownScript_0x7b3aa

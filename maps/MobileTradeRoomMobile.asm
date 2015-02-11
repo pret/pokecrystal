@@ -27,11 +27,11 @@ UnknownScript_0x19357b: ; 0x19357b
 
 MapMobileTradeRoomMobileSignpost0Script: ; 0x193582
 	refreshscreen $0
-	special $009f
+	special Function1037c2
 	writetext UnknownText_0x193591
 	closetext
 	reloadmappart
-	special $0082
+	special Function101231
 	loadmovesprites
 	end
 ; 0x193591
