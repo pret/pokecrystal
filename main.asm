@@ -29611,9 +29611,9 @@ Function2805d: ; 2805d
 	ld [de], a
 	ld hl, wc813
 	call Function2868a
-	ld a, $a8
+	ld a, OTPartyMonOT % $100
 	ld [wd102], a
-	ld a, $d3
+	ld a, OTPartyMonOT / $100
 	ld [wd103], a
 	ld de, MUSIC_NONE
 	call PlayMusic
