@@ -7630,7 +7630,7 @@ Function3ee3b: ; 3ee3b
 	call TextBox
 	hlcoord 11, 1
 	ld bc, $0004
-	predef Function50b7b
+	predef PrintTempMonStats
 	ld c, $1e
 	call DelayFrames
 	call Functiona80

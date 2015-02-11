@@ -1431,7 +1431,7 @@ RareCandy: ; ef14
 
 	hlcoord 11, 1
 	ld bc, $0004
-	predef Function50b7b
+	predef PrintTempMonStats
 
 	call Functiona80
 

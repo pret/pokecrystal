@@ -7801,7 +7801,7 @@ PredefPointers:: ; 856b
 	add_predef StatsScreenInit
 	add_predef DrawPlayerHP
 	add_predef DrawEnemyHP
-	add_predef Function50b7b ; $28
+	add_predef PrintTempMonStats ; $28
 	add_predef GetTypeName
 	add_predef PrintMoveType
 	add_predef PrintType
@@ -56517,7 +56517,7 @@ Function4e1ae: ; 4e1ae (13:61ae)
 	jr nz, .asm_4e1bb
 	hlcoord 11, 8
 	ld bc, $6
-	predef Function50b7b
+	predef PrintTempMonStats
 	ret
 
 Function4e1cc: ; 4e1cc (13:61cc)
@@ -59438,40 +59438,40 @@ DrawHP: ; 50b10
 ; 50b7b
 
 
-Function50b7b: ; 50b7b
-; Print a monster's stats on level up.
+PrintTempMonStats: ; 50b7b
+; Print TempMon's stats at hl, with spacing bc.
 	push bc
 	push hl
-	ld de, String_50bb5
+	ld de, .StatNames
 	call PlaceString
 	pop hl
 	pop bc
 	add hl, bc
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld de, TempMonAttack
 	ld bc, $0203
-	call Function50bab
+	call .PrintStat
 	ld de, TempMonDefense
-	call Function50bab
+	call .PrintStat
 	ld de, TempMonSpclAtk
-	call Function50bab
+	call .PrintStat
 	ld de, TempMonSpclDef
-	call Function50bab
+	call .PrintStat
 	ld de, TempMonSpeed
 	jp PrintNum
 ; 50bab
 
-Function50bab: ; 50bab
+.PrintStat: ; 50bab
 	push hl
 	call PrintNum
 	pop hl
-	ld de, $0028
+	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	ret
 ; 50bb5
 
-String_50bb5: ; 50bb5
+.StatNames: ; 50bb5
 	db   "ATTACK"
 	next "DEFENSE"
 	next "SPCL.ATK"
