@@ -1010,7 +1010,7 @@ OverworldMapEnd::
 
 	ds 12
 
-SECTION "Video", WRAM0 [$cd20]
+SECTION "Video", WRAM0
 CreditsPos::
 BGMapBuffer:: ; cd20
 	ds 1
