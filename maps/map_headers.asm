@@ -1,11 +1,3 @@
-map_header: MACRO
-	; label, tileset, permission, location, music, time of day, fishing group
-\1_MapHeader:
-	db BANK(\1_SecondMapHeader), \2, \3
-	dw \1_SecondMapHeader
-	db \4, \5, \6, \7
-ENDM
-
 
 MapGroupPointers:: ; 0x94000
 ; pointers to the first map header of each map group
