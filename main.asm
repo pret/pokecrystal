@@ -93010,8 +93010,7 @@ Function104da9: ; 104da9 (41:4da9)
 	ret z
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	ld a, [$ff00+c]
 	bit 1, a
 	jr z, Function104da9
@@ -93023,8 +93022,7 @@ Function104db7: ; 104db7 (41:4db7)
 	ret z
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	ld a, [$ff00+c]
 	bit 1, a
 	jr nz, Function104db7
@@ -93039,8 +93037,7 @@ Function104dc5: ; 104dc5 (41:4dc5)
 	ret z
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	jr .asm_104dc8
 
 Function104dd1: ; 104dd1 (41:4dd1)
@@ -93051,8 +93048,7 @@ Function104dd1: ; 104dd1 (41:4dd1)
 	ret z
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	jr .asm_104dd4
 
 Function104ddd: ; 104ddd (41:4ddd)
@@ -93219,8 +93215,7 @@ Function104ed6: ; 104ed6 (41:4ed6)
 .asm_104f02
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	ld a, $c1
 	ld [rRP], a ; $ff00+$56
 	ld d, $1
@@ -93239,8 +93234,7 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	jr z, .asm_104f25
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 .asm_104f25
 	ld a, [$ffb6]
 	dec a
@@ -93252,8 +93246,7 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	ld [rTMA], a ; $ff00+$6
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	ld d, $5
 	call Function104dc5
 	ld d, $11
