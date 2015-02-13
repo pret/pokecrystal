@@ -1778,7 +1778,7 @@ Function40f08: ; 40f08 (10:4f08)
 	hlcoord 0, 12
 	ld bc, $412
 	call Function40ad5
-	ld de, $4f32
+	ld de, String_40f32
 	hlcoord 1, 14
 	call PlaceString
 	ld a, $1
