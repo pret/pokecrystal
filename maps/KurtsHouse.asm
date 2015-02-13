@@ -43,7 +43,7 @@ KurtScript_0x18e178: ; 0x18e178
 	writetext UnknownText_0x18e473
 	closetext
 	loadmovesprites
-	special $006a
+	special Functionc48f
 	setevent $06fa
 	checkcode $9
 	if_equal $1, UnknownScript_0x18e1ab
@@ -53,7 +53,7 @@ KurtScript_0x18e178: ; 0x18e178
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	waitbutton
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x18e1ab
 
@@ -64,7 +64,7 @@ UnknownScript_0x18e1ab: ; 0x18e1ab
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	waitbutton
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x18e1bf
 
@@ -134,7 +134,7 @@ UnknownScript_0x18e249: ; 0x18e249
 	writetext UnknownText_0x18e736
 	keeptextopen
 	setevent $0002
-	special $0056
+	special Function88018
 	if_equal $0, UnknownScript_0x18e2a5
 	if_equal $59, UnknownScript_0x18e275
 	if_equal $5c, UnknownScript_0x18e27b
@@ -319,7 +319,7 @@ UnknownScript_0x18e378: ; 0x18e378
 	setevent $00c0
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	clearevent $00bf
-	special $006a
+	special Functionc48f
 	pause 20
 	showemote $0, $2, 30
 	checkcode $9
@@ -339,7 +339,7 @@ UnknownScript_0x18e3ac: ; 0x18e3ac
 	disappear $2
 	clearevent $07a4
 	waitbutton
-	special $003d
+	special RestartMapMusic
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $2
 	end
 ; 0x18e3bd

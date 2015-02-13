@@ -42,7 +42,7 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	spriteface $0, $1
 	applymovement $2, MovementData_0x1a8465
 	stopfollow
-	special $003d
+	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x1a84f9
 	closetext

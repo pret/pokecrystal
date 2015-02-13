@@ -72,7 +72,7 @@ UnknownScript_0x7517a: ; 0x7517a
 	loadmovesprites
 	scall UnknownScript_0x751b8
 	playsound SFX_EXIT_BUILDING
-	special $002e
+	special Function8c084
 	waitbutton
 	setevent $072b
 	domaptrigger GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $1
@@ -86,7 +86,7 @@ UnknownScript_0x7519c: ; 0x7519c
 	loadmovesprites
 	scall UnknownScript_0x751b8
 	playsound SFX_EXIT_BUILDING
-	special $002e
+	special Function8c084
 	waitbutton
 	setevent $072a
 	domaptrigger GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $1

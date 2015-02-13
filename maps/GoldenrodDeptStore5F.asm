@@ -69,7 +69,7 @@ ReceptionistScript_0x560ce: ; 0x560ce
 	if_not_equal SUNDAY, UnknownScript_0x56112
 	checkflag $005b
 	iftrue UnknownScript_0x56112
-	special $0059
+	special Function718d
 	writetext UnknownText_0x56143
 	keeptextopen
 	if_greater_than $95, UnknownScript_0x560ee
@@ -115,12 +115,12 @@ UnknownScript_0x56116: ; 0x56116
 TwinScript_0x56118: ; 0x56118
 	faceplayer
 	loadfont
-	special $0066
+	special SpecialGameboyCheck
 	if_not_equal $2, UnknownScript_0x5612a
 	writetext UnknownText_0x56241
 	closetext
 	loadmovesprites
-	special $0013
+	special Function1050b9
 	end
 ; 0x5612a
 

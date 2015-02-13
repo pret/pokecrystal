@@ -23,7 +23,7 @@ MapCeladonGameCornerPrizeRoomSignpost0Script: ; 0x726ef
 	iffalse UnknownScript_0x7278a
 	writetext UnknownText_0x72974
 UnknownScript_0x726fd: ; 0x726fd
-	special $004f
+	special Function24b25
 	loadmenudata MenuDataHeader_0x72790
 	interpretmenu2
 	writebackup
@@ -139,7 +139,7 @@ MapCeladonGameCornerPrizeRoomSignpost1Script: ; 0x727c8
 	iffalse UnknownScript_0x7278a
 UnknownScript_0x727d3: ; 0x727d3
 	writetext UnknownText_0x72974
-	special $004f
+	special Function24b25
 	loadmenudata MenuDataHeader_0x72877
 	interpretmenu2
 	writebackup
@@ -162,7 +162,7 @@ UnknownScript_0x727ed: ; 0x727ed
 	writetext UnknownText_0x729ad
 	closetext
 	writebyte PIKACHU
-	special $0039
+	special Functionc230
 	givepoke PIKACHU, 25, 0, 0
 	takecoins 2222
 	jump UnknownScript_0x727d3
@@ -181,7 +181,7 @@ UnknownScript_0x7281b: ; 0x7281b
 	writetext UnknownText_0x729ad
 	closetext
 	writebyte PORYGON
-	special $0039
+	special Functionc230
 	givepoke PORYGON, 15, 0, 0
 	takecoins 5555
 	jump UnknownScript_0x727d3
@@ -200,7 +200,7 @@ UnknownScript_0x72849: ; 0x72849
 	writetext UnknownText_0x729ad
 	closetext
 	writebyte LARVITAR
-	special $0039
+	special Functionc230
 	givepoke LARVITAR, 40, 0, 0
 	takecoins 8888
 	jump UnknownScript_0x727d3

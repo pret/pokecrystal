@@ -16,7 +16,7 @@ RockerScript_0x9d278: ; 0x9d278
 	writetext UnknownText_0x9d303
 	yesorno
 	iffalse UnknownScript_0x9d2b6
-	special SPECIAL_GIVESHUCKLE
+	special SpecialGiveShuckle
 	iffalse UnknownScript_0x9d2b0
 	writetext UnknownText_0x9d3ed
 	keeptextopen
@@ -56,7 +56,7 @@ UnknownScript_0x9d2bc: ; 0x9d2bc
 	writetext UnknownText_0x9d470
 	yesorno
 	iffalse UnknownScript_0x9d2ee
-	special $004c
+	special SpecialReturnShuckle
 	if_equal $0, UnknownScript_0x9d2df
 	if_equal $1, UnknownScript_0x9d2ee
 	if_equal $3, UnknownScript_0x9d2e5

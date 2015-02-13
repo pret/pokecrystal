@@ -43,7 +43,7 @@ SuperNerdScript_0x1aa99b: ; 0x1aa99b
 
 BigSnorlaxScript_0x1aa99e: ; 0x1aa99e
 	loadfont
-	special $0060
+	special SpecialSnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
 	writetext UnknownText_0x1aab64
 	closetext

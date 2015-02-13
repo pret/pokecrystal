@@ -31,7 +31,7 @@ UnknownScript_0x193476: ; 0x193476
 ; 0x193477
 
 UnknownScript_0x193477: ; 0x193477
-	special $0010
+	special Function29f47
 	iffalse UnknownScript_0x193482
 	disappear $3
 	appear $2
@@ -56,7 +56,7 @@ UnknownScript_0x19348c: ; 0x19348c
 ; 0x193493
 
 MapColosseumSignpost1Script: ; 0x193493
-	special $000e
+	special Function29ed9
 	newloadmap $f8
 	end
 ; 0x193499

@@ -134,7 +134,7 @@ UnknownScript_0x18d100: ; 0x18d100
 	writetext UnknownText_0x18d916
 	closetext
 	loadmovesprites
-	special $006a
+	special Functionc48f
 	applymovement $5, MovementData_0x18d2da
 	loadfont
 	writetext UnknownText_0x18d974
@@ -163,7 +163,7 @@ UnknownScript_0x18d100: ; 0x18d100
 	setflag $0022
 	playsound SFX_GET_BADGE
 	waitbutton
-	special $003d
+	special RestartMapMusic
 	specialphonecall $8
 	dotrigger $1
 	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
@@ -219,7 +219,7 @@ UnknownScript_0x18d1c5: ; 0x18d1c5
 	waitbutton
 	givepoke DRATINI, 15, 0, 0
 	checkevent $00c1
-	special $0094
+	special SpecialDratini
 	setevent $00bd
 	setevent $0006
 	writetext UnknownText_0x18d6ca

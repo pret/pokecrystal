@@ -1,1357 +1,281 @@
-map_header_2: MACRO
-; label, map, border block, connections
-\1_SecondMapHeader::
-	db \3
-\2\@HEIGHT EQUS "\2_HEIGHT"
-\2\@WIDTH  EQUS "\2_WIDTH"
-	db \2\@HEIGHT, \2\@WIDTH
-	db BANK(\1_BlockData)
-	dw \1_BlockData
-	db BANK(\1_MapScriptHeader)
-	dw \1_MapScriptHeader
-	dw \1_MapEventHeader
-	db \4
-ENDM
 
 	map_header_2 NewBarkTown, NEW_BARK_TOWN, $5, WEST | EAST ; 0x94dd8
-
-	; WEST to Route 29
-	map ROUTE_29
-	dw (Route29_BlockData + ROUTE_29_WIDTH - 3) ; strip pointer
-	dw $c830 ; strip destination
-	db 9, ROUTE_29_WIDTH ; (connection strip length, connected map width)
-	db 0, ((ROUTE_29_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 59) ; window
-
-	; EAST to Route 27
-	map ROUTE_27
-	dw (Route27_BlockData) ; strip pointer
-	dw $c83d ; strip destination
-	db 9, ROUTE_27_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_27_WIDTH) ; window
-; 0x94dfc
+	connection west, ROUTE_29, Route29, 0, 0, 9, NEW_BARK_TOWN
+	connection east, ROUTE_27, Route27, 0, 0, 9, NEW_BARK_TOWN
 
 	map_header_2 CherrygroveCity, CHERRYGROVE_CITY, $35, NORTH | EAST ; 0x94dfc
-
-	; NORTH to Route 30
-	map ROUTE_30
-	dw (Route30_BlockData + (ROUTE_30_HEIGHT * ROUTE_30_WIDTH) - (ROUTE_30_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 261) ; strip destination
-	db 10, ROUTE_30_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_30_HEIGHT * 2) - 1), 246 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_30_HEIGHT * 6) + (ROUTE_30_HEIGHT * ROUTE_30_WIDTH))) ; window
-
-	; EAST to Route 29
-	map ROUTE_29
-	dw (Route29_BlockData) ; strip pointer
-	dw $c865 ; strip destination
-	db 9, ROUTE_29_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_29_WIDTH) ; window
-; 0x94e20
+	connection north, ROUTE_30, Route30, 5, 0, 10, CHERRYGROVE_CITY
+	connection east, ROUTE_29, Route29, 0, 0, 9, CHERRYGROVE_CITY
 
 	map_header_2 VioletCity, VIOLET_CITY, $5, SOUTH | WEST | EAST ; 0x94e20
-
-	; SOUTH to Route 32
-	map ROUTE_32
-	dw (Route32_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((VIOLET_CITY_HEIGHT + 3) * (VIOLET_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_32_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_32_WIDTH) ; window
-
-	; WEST to Route 36
-	map ROUTE_36
-	dw (Route36_BlockData + ROUTE_36_WIDTH - 3) ; strip pointer
-	dw $c84e ; strip destination
-	db 9, ROUTE_36_WIDTH ; (connection strip length, connected map width)
-	db 0, ((ROUTE_36_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 59) ; window
-
-	; EAST to Route 31
-	map ROUTE_31
-	dw (Route31_BlockData) ; strip pointer
-	dw $c94f ; strip destination
-	db 9, ROUTE_31_WIDTH ; (connection strip length, connected map width)
-	db 238, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_31_WIDTH) ; window
-; 0x94e50
+	connection south, ROUTE_32, Route32, 0, 0, 10, VIOLET_CITY
+	connection west, ROUTE_36, Route36, 0, 0, 9, VIOLET_CITY
+	connection east, ROUTE_31, Route31, 9, 0, 9, VIOLET_CITY
 
 	map_header_2 AzaleaTown, AZALEA_TOWN, $5, WEST | EAST ; 0x94e50
-
-	; WEST to Route 34
-	map ROUTE_34
-	dw (Route34_BlockData + (((ROUTE_34_HEIGHT - AZALEA_TOWN_HEIGHT) * ROUTE_34_WIDTH) - (ROUTE_34_WIDTH * 3) + (ROUTE_34_WIDTH - 1) - 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 12, ROUTE_34_WIDTH ; (connection strip length, connected map width)
-	db 36, ((ROUTE_34_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Route 33
-	map ROUTE_33
-	dw (Route33_BlockData) ; strip pointer
-	dw $c865 ; strip destination
-	db 9, ROUTE_33_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_33_WIDTH) ; window
-; 0x94e74
+	connection west, ROUTE_34, Route34, -3, 15, 12, AZALEA_TOWN
+	connection east, ROUTE_33, Route33, 0, 0, 9, AZALEA_TOWN
 
 	map_header_2 CianwoodCity, CIANWOOD_CITY, $35, EAST ; 0x94e74
-
-	; EAST to Route 41
-	map ROUTE_41
-	dw (Route41_BlockData) ; strip pointer
-	dw $c851 ; strip destination
-	db 27, ROUTE_41_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_41_WIDTH) ; window
-; 0x94e8c
+	connection east, ROUTE_41, Route41, 0, 0, 27, CIANWOOD_CITY
 
 	map_header_2 GoldenrodCity, GOLDENROD_CITY, $35, NORTH | SOUTH ; 0x94e8c
-
-	; NORTH to Route 35
-	map ROUTE_35
-	dw (Route35_BlockData + (ROUTE_35_HEIGHT * ROUTE_35_WIDTH) - (ROUTE_35_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 261) ; strip destination
-	db 10, ROUTE_35_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_35_HEIGHT * 2) - 1), 246 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_35_HEIGHT * 6) + (ROUTE_35_HEIGHT * ROUTE_35_WIDTH))) ; window
-
-	; SOUTH to Route 34
-	map ROUTE_34
-	dw (Route34_BlockData) ; strip pointer
-	dw ($C703 + 261 + ((GOLDENROD_CITY_HEIGHT + 3) * (GOLDENROD_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_34_WIDTH ; (connection strip length, connected map width)
-	db 0, 246 ; yoffset, xoffset
-	dw ($C807 + ROUTE_34_WIDTH) ; window
-; 0x94eb0
+	connection north, ROUTE_35, Route35, 5, 0, 10, GOLDENROD_CITY
+	connection south, ROUTE_34, Route34, 5, 0, 10, GOLDENROD_CITY
 
 	map_header_2 OlivineCity, OLIVINE_CITY, $35, NORTH | WEST ; 0x94eb0
-
-	; NORTH to Route 39
-	map ROUTE_39
-	dw (Route39_BlockData + (ROUTE_39_HEIGHT * ROUTE_39_WIDTH) - (ROUTE_39_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 261) ; strip destination
-	db 10, ROUTE_39_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_39_HEIGHT * 2) - 1), 246 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_39_HEIGHT * 6) + (ROUTE_39_HEIGHT * ROUTE_39_WIDTH))) ; window
-
-	; WEST to Route 40
-	map ROUTE_40
-	dw (Route40_BlockData + ROUTE_40_WIDTH - 3) ; strip pointer
-	dw $c938 ; strip destination
-	db 12, ROUTE_40_WIDTH ; (connection strip length, connected map width)
-	db 238, ((ROUTE_40_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-; 0x94ed4
+	connection north, ROUTE_39, Route39, 5, 0, 10, OLIVINE_CITY
+	connection west, ROUTE_40, Route40, 9, 0, 12, OLIVINE_CITY
 
 	map_header_2 EcruteakCity, ECRUTEAK_CITY, $5, SOUTH | WEST | EAST ; 0x94ed4
-
-	; SOUTH to Route 37
-	map ROUTE_37
-	dw (Route37_BlockData) ; strip pointer
-	dw ($C703 + 261 + ((ECRUTEAK_CITY_HEIGHT + 3) * (ECRUTEAK_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_37_WIDTH ; (connection strip length, connected map width)
-	db 0, 246 ; yoffset, xoffset
-	dw ($C807 + ROUTE_37_WIDTH) ; window
-
-	; WEST to Route 38
-	map ROUTE_38
-	dw (Route38_BlockData + ROUTE_38_WIDTH - 3) ; strip pointer
-	dw $c8d0 ; strip destination
-	db 9, ROUTE_38_WIDTH ; (connection strip length, connected map width)
-	db 246, ((ROUTE_38_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to Route 42
-	map ROUTE_42
-	dw (Route42_BlockData) ; strip pointer
-	dw $c94f ; strip destination
-	db 9, ROUTE_42_WIDTH ; (connection strip length, connected map width)
-	db 238, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_42_WIDTH) ; window
-; 0x94f04
+	connection south, ROUTE_37, Route37, 5, 0, 10, ECRUTEAK_CITY
+	connection west, ROUTE_38, Route38, 5, 0, 9, ECRUTEAK_CITY
+	connection east, ROUTE_42, Route42, 9, 0, 9, ECRUTEAK_CITY
 
 	map_header_2 MahoganyTown, MAHOGANY_TOWN, $71, NORTH | WEST | EAST ; 0x94f04
-
-	; NORTH to Route 43
-	map ROUTE_43
-	dw (Route43_BlockData + (ROUTE_43_HEIGHT * ROUTE_43_WIDTH) - (ROUTE_43_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, ROUTE_43_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_43_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_43_HEIGHT * 6) + (ROUTE_43_HEIGHT * ROUTE_43_WIDTH))) ; window
-
-	; WEST to Route 42
-	map ROUTE_42
-	dw (Route42_BlockData + ROUTE_42_WIDTH - 3) ; strip pointer
-	dw $c830 ; strip destination
-	db 9, ROUTE_42_WIDTH ; (connection strip length, connected map width)
-	db 0, ((ROUTE_42_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 59) ; window
-
-	; EAST to Route 44
-	map ROUTE_44
-	dw (Route44_BlockData) ; strip pointer
-	dw $c83d ; strip destination
-	db 9, ROUTE_44_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_44_WIDTH) ; window
-; 0x94f34
+	connection north, ROUTE_43, Route43, 0, 0, 10, MAHOGANY_TOWN
+	connection west, ROUTE_42, Route42, 0, 0, 9, MAHOGANY_TOWN
+	connection east, ROUTE_44, Route44, 0, 0, 9, MAHOGANY_TOWN
 
 	map_header_2 LakeofRage, LAKE_OF_RAGE, $5, SOUTH ; 0x94f34
-
-	; SOUTH to Route 43
-	map ROUTE_43
-	dw (Route43_BlockData) ; strip pointer
-	dw ($C703 + 261 + ((LAKE_OF_RAGE_HEIGHT + 3) * (LAKE_OF_RAGE_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_43_WIDTH ; (connection strip length, connected map width)
-	db 0, 246 ; yoffset, xoffset
-	dw ($C807 + ROUTE_43_WIDTH) ; window
-; 0x94f4c
+	connection south, ROUTE_43, Route43, 5, 0, 10, LAKE_OF_RAGE
 
 	map_header_2 BlackthornCity, BLACKTHORN_CITY, $71, SOUTH | WEST ; 0x94f4c
-
-	; SOUTH to Route 45
-	map ROUTE_45
-	dw (Route45_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((BLACKTHORN_CITY_HEIGHT + 3) * (BLACKTHORN_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_45_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_45_WIDTH) ; window
-
-	; WEST to Route 44
-	map ROUTE_44
-	dw (Route44_BlockData + ROUTE_44_WIDTH - 3) ; strip pointer
-	dw $c938 ; strip destination
-	db 9, ROUTE_44_WIDTH ; (connection strip length, connected map width)
-	db 238, ((ROUTE_44_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 59) ; window
-; 0x94f70
+	connection south, ROUTE_45, Route45, 0, 0, 10, BLACKTHORN_CITY
+	connection west, ROUTE_44, Route44, 9, 0, 9, BLACKTHORN_CITY
 
 	map_header_2 SilverCaveOutside, SILVER_CAVE_OUTSIDE, $2c, EAST ; 0x94f70
-
-	; EAST to Route 28
-	map ROUTE_28
-	dw (Route28_BlockData) ; strip pointer
-	dw $c94f ; strip destination
-	db 9, ROUTE_28_WIDTH ; (connection strip length, connected map width)
-	db 238, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_28_WIDTH) ; window
-; 0x94f88
+	connection east, ROUTE_28, Route28, 9, 0, 9, SILVER_CAVE_OUTSIDE
 
 	map_header_2 Route26, ROUTE_26, $5, WEST ; 0x94f88
-
-	; WEST to Route 27
-	map ROUTE_27
-	dw (Route27_BlockData + ROUTE_27_WIDTH - 3) ; strip pointer
-	dw $cb00 ; strip destination
-	db 9, ROUTE_27_WIDTH ; (connection strip length, connected map width)
-	db 166, ((ROUTE_27_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 79) ; window
-; 0x94fa0
+	connection west, ROUTE_27, Route27, 45, 0, 9, ROUTE_26
 
 	map_header_2 Route27, ROUTE_27, $35, WEST | EAST ; 0x94fa0
-
-	; WEST to New Bark Town
-	map NEW_BARK_TOWN
-	dw (NewBarkTown_BlockData + NEW_BARK_TOWN_WIDTH - 3) ; strip pointer
-	dw $c88a ; strip destination
-	db 9, NEW_BARK_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, ((NEW_BARK_TOWN_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Route 26
-	map ROUTE_26
-	dw (Route26_BlockData + ((ROUTE_26_HEIGHT - 12) * ROUTE_26_WIDTH)) ; strip pointer
-	dw $c82b ; strip destination
-	db 12, ROUTE_26_WIDTH ; (connection strip length, connected map width)
-	db 90, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_26_WIDTH) ; window
-; 0x94fc4
+	connection west, NEW_BARK_TOWN, NewBarkTown, 0, 0, 9, ROUTE_27
+	connection east, ROUTE_26, Route26, -3, 42, 12, ROUTE_27
 
 	map_header_2 Route28, ROUTE_28, $2c, WEST ; 0x94fc4
-
-	; WEST to Silver Cave Outside
-	map SILVER_CAVE_OUTSIDE
-	dw (SilverCaveOutside_BlockData + (((SILVER_CAVE_OUTSIDE_HEIGHT - ROUTE_28_HEIGHT) * SILVER_CAVE_OUTSIDE_WIDTH) - (SILVER_CAVE_OUTSIDE_WIDTH * 3) + (SILVER_CAVE_OUTSIDE_WIDTH - 1) - 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 12, SILVER_CAVE_OUTSIDE_WIDTH ; (connection strip length, connected map width)
-	db 18, ((SILVER_CAVE_OUTSIDE_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-; 0x94fdc
+	connection west, SILVER_CAVE_OUTSIDE, SilverCaveOutside, -3, 6, 12, ROUTE_28
 
 	map_header_2 Route29, ROUTE_29, $5, NORTH | WEST | EAST ; 0x94fdc
-
-	; NORTH to Route 46
-	map ROUTE_46
-	dw (Route46_BlockData + (ROUTE_46_HEIGHT * ROUTE_46_WIDTH) - (ROUTE_46_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 266) ; strip destination
-	db 10, ROUTE_46_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_46_HEIGHT * 2) - 1), 236 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_46_HEIGHT * 6) + (ROUTE_46_HEIGHT * ROUTE_46_WIDTH))) ; window
-
-	; WEST to Cherrygrove City
-	map CHERRYGROVE_CITY
-	dw (CherrygroveCity_BlockData + CHERRYGROVE_CITY_WIDTH - 3) ; strip pointer
-	dw $c86c ; strip destination
-	db 9, CHERRYGROVE_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, ((CHERRYGROVE_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to New Bark Town
-	map NEW_BARK_TOWN
-	dw (NewBarkTown_BlockData) ; strip pointer
-	dw $c88d ; strip destination
-	db 9, NEW_BARK_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + NEW_BARK_TOWN_WIDTH) ; window
-; 0x9500c
+	connection north, ROUTE_46, Route46, 10, 0, 10, ROUTE_29
+	connection west, CHERRYGROVE_CITY, CherrygroveCity, 0, 0, 9, ROUTE_29
+	connection east, NEW_BARK_TOWN, NewBarkTown, 0, 0, 9, ROUTE_29
 
 	map_header_2 Route30, ROUTE_30, $5, NORTH | SOUTH ; 0x9500c
-
-	; NORTH to Route 31
-	map ROUTE_31
-	dw (Route31_BlockData + ((ROUTE_31_HEIGHT - 3) * ROUTE_31_WIDTH) + 7) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 13, ROUTE_31_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_31_HEIGHT * 2) - 1), 20 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_31_HEIGHT * 6) + (ROUTE_31_HEIGHT * ROUTE_31_WIDTH))) ; window
-
-	; SOUTH to Cherrygrove City
-	map CHERRYGROVE_CITY
-	dw (CherrygroveCity_BlockData + ((10 - 16 + ROUTE_30_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_30_HEIGHT + 3) * (ROUTE_30_WIDTH + 6))) ; strip destination
-	db 16, CHERRYGROVE_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, 10 ; yoffset, xoffset
-	dw ($C807 + CHERRYGROVE_CITY_WIDTH) ; window
-; 0x95030
+	connection north, ROUTE_31, Route31, -3, 7, 13, ROUTE_30
+	connection south, CHERRYGROVE_CITY, CherrygroveCity, -3, 2, 16, ROUTE_30
 
 	map_header_2 Route31, ROUTE_31, $5, SOUTH | WEST ; 0x95030
-
-	; SOUTH to Route 30
-	map ROUTE_30
-	dw (Route30_BlockData) ; strip pointer
-	dw ($C703 + 266 + ((ROUTE_31_HEIGHT + 3) * (ROUTE_31_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_30_WIDTH ; (connection strip length, connected map width)
-	db 0, 236 ; yoffset, xoffset
-	dw ($C807 + ROUTE_30_WIDTH) ; window
-
-	; WEST to Violet City
-	map VIOLET_CITY
-	dw (VioletCity_BlockData + (((VIOLET_CITY_HEIGHT - ROUTE_31_HEIGHT) * VIOLET_CITY_WIDTH) - (VIOLET_CITY_WIDTH * 3) + (VIOLET_CITY_WIDTH - 1) - 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 12, VIOLET_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, ((VIOLET_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-; 0x95054
+	connection south, ROUTE_30, Route30, 10, 0, 10, ROUTE_31
+	connection west, VIOLET_CITY, VioletCity, -3, 6, 12, ROUTE_31
 
 	map_header_2 Route32, ROUTE_32, $5, NORTH | SOUTH ; 0x95054
-
-	; NORTH to Violet City
-	map VIOLET_CITY
-	dw (VioletCity_BlockData + (VIOLET_CITY_HEIGHT * VIOLET_CITY_WIDTH) - (VIOLET_CITY_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 13, VIOLET_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((VIOLET_CITY_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((VIOLET_CITY_HEIGHT * 6) + (VIOLET_CITY_HEIGHT * VIOLET_CITY_WIDTH))) ; window
-
-	; SOUTH to Route 33
-	map ROUTE_33
-	dw (Route33_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_32_HEIGHT + 3) * (ROUTE_32_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_33_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_33_WIDTH) ; window
-; 0x95078
+	connection north, VIOLET_CITY, VioletCity, 0, 0, 13, ROUTE_32
+	connection south, ROUTE_33, Route33, 0, 0, 10, ROUTE_32
 
 	map_header_2 Route33, ROUTE_33, $5, NORTH | WEST ; 0x95078
-
-	; NORTH to Route 32
-	map ROUTE_32
-	dw (Route32_BlockData + (ROUTE_32_HEIGHT * ROUTE_32_WIDTH) - (ROUTE_32_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, ROUTE_32_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_32_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_32_HEIGHT * 6) + (ROUTE_32_HEIGHT * ROUTE_32_WIDTH))) ; window
-
-	; WEST to Azalea Town
-	map AZALEA_TOWN
-	dw (AzaleaTown_BlockData + AZALEA_TOWN_WIDTH - 3) ; strip pointer
-	dw $c830 ; strip destination
-	db 9, AZALEA_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, ((AZALEA_TOWN_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-; 0x9509c
+	connection north, ROUTE_32, Route32, 0, 0, 10, ROUTE_33
+	connection west, AZALEA_TOWN, AzaleaTown, 0, 0, 9, ROUTE_33
 
 	map_header_2 Route34, ROUTE_34, $5, NORTH | EAST ; 0x9509c
-
-	; NORTH to Goldenrod City
-	map GOLDENROD_CITY
-	dw (GoldenrodCity_BlockData + GOLDENROD_CITY_WIDTH + 10 + (16 * GOLDENROD_CITY_HEIGHT) - 16) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 16, GOLDENROD_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((GOLDENROD_CITY_HEIGHT * 2) - 1), 10 ; yoffset, xoffset
-	dw ($C801 + ((GOLDENROD_CITY_HEIGHT * 6) + (GOLDENROD_CITY_HEIGHT * GOLDENROD_CITY_WIDTH))) ; window
-
-	; EAST to Azalea Town
-	map AZALEA_TOWN
-	dw (AzaleaTown_BlockData) ; strip pointer
-	dw $c95d ; strip destination
-	db 9, AZALEA_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 220, 0 ; yoffset, xoffset
-	dw ($C807 + AZALEA_TOWN_WIDTH) ; window
-; 0x950c0
+	connection north, GOLDENROD_CITY, GoldenrodCity, -3, 2, 16, ROUTE_34
+	connection east, AZALEA_TOWN, AzaleaTown, 18, 0, 9, ROUTE_34
 
 	map_header_2 Route35, ROUTE_35, $5, NORTH | SOUTH ; 0x950c0
-
-	; NORTH to Route 36
-	map ROUTE_36
-	dw (Route36_BlockData + (ROUTE_36_HEIGHT * ROUTE_36_WIDTH) - (ROUTE_36_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 13, ROUTE_36_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_36_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_36_HEIGHT * 6) + (ROUTE_36_HEIGHT * ROUTE_36_WIDTH))) ; window
-
-	; SOUTH to Goldenrod City
-	map GOLDENROD_CITY
-	dw (GoldenrodCity_BlockData + ((10 - 16 + ROUTE_35_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_35_HEIGHT + 3) * (ROUTE_35_WIDTH + 6))) ; strip destination
-	db 16, GOLDENROD_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, 10 ; yoffset, xoffset
-	dw ($C807 + GOLDENROD_CITY_WIDTH) ; window
-; 0x950e4
+	connection north, ROUTE_36, Route36, 0, 0, 13, ROUTE_35
+	connection south, GOLDENROD_CITY, GoldenrodCity, -3, 2, 16, ROUTE_35
 
 	map_header_2 Route36, ROUTE_36, $5, NORTH | SOUTH | EAST ; 0x950e4
-
-	; NORTH to Route 37
-	map ROUTE_37
-	dw (Route37_BlockData + (ROUTE_37_HEIGHT * ROUTE_37_WIDTH) - (ROUTE_37_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 266) ; strip destination
-	db 10, ROUTE_37_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_37_HEIGHT * 2) - 1), 236 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_37_HEIGHT * 6) + (ROUTE_37_HEIGHT * ROUTE_37_WIDTH))) ; window
-
-	; SOUTH to Route 35
-	map ROUTE_35
-	dw (Route35_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_36_HEIGHT + 3) * (ROUTE_36_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_35_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_35_WIDTH) ; window
-
-	; EAST to Violet City
-	map VIOLET_CITY
-	dw (VioletCity_BlockData) ; strip pointer
-	dw $c88d ; strip destination
-	db 12, VIOLET_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + VIOLET_CITY_WIDTH) ; window
-; 0x95114
+	connection north, ROUTE_37, Route37, 10, 0, 10, ROUTE_36
+	connection south, ROUTE_35, Route35, 0, 0, 10, ROUTE_36
+	connection east, VIOLET_CITY, VioletCity, 0, 0, 12, ROUTE_36
 
 	map_header_2 Route37, ROUTE_37, $5, NORTH | SOUTH ; 0x95114
-
-	; NORTH to Ecruteak City
-	map ECRUTEAK_CITY
-	dw (EcruteakCity_BlockData + ECRUTEAK_CITY_WIDTH + 10 + (16 * ECRUTEAK_CITY_HEIGHT) - 16) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 16, ECRUTEAK_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((ECRUTEAK_CITY_HEIGHT * 2) - 1), 10 ; yoffset, xoffset
-	dw ($C801 + ((ECRUTEAK_CITY_HEIGHT * 6) + (ECRUTEAK_CITY_HEIGHT * ECRUTEAK_CITY_WIDTH))) ; window
-
-	; SOUTH to Route 36
-	map ROUTE_36
-	dw (Route36_BlockData + ((20 - 16 + ROUTE_37_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_37_HEIGHT + 3) * (ROUTE_37_WIDTH + 6))) ; strip destination
-	db 16, ROUTE_36_WIDTH ; (connection strip length, connected map width)
-	db 0, 20 ; yoffset, xoffset
-	dw ($C807 + ROUTE_36_WIDTH) ; window
-; 0x95138
+	connection north, ECRUTEAK_CITY, EcruteakCity, -3, 2, 16, ROUTE_37
+	connection south, ROUTE_36, Route36, -3, 7, 16, ROUTE_37
 
 	map_header_2 Route38, ROUTE_38, $5, WEST | EAST ; 0x95138
-
-	; WEST to Route 39
-	map ROUTE_39
-	dw (Route39_BlockData + ROUTE_39_WIDTH - 3) ; strip pointer
-	dw $c84e ; strip destination
-	db 12, ROUTE_39_WIDTH ; (connection strip length, connected map width)
-	db 0, ((ROUTE_39_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Ecruteak City
-	map ECRUTEAK_CITY
-	dw (EcruteakCity_BlockData + ((100 - (ECRUTEAK_CITY_WIDTH * 4)) * 2)) ; strip pointer
-	dw $c817 ; strip destination
-	db 15, ECRUTEAK_CITY_WIDTH ; (connection strip length, connected map width)
-	db 10, 0 ; yoffset, xoffset
-	dw ($C807 + ECRUTEAK_CITY_WIDTH) ; window
-; 0x9515c
+	connection west, ROUTE_39, Route39, 0, 0, 12, ROUTE_38
+	connection east, ECRUTEAK_CITY, EcruteakCity, -3, 2, 15, ROUTE_38
 
 	map_header_2 Route39, ROUTE_39, $5, SOUTH | EAST ; 0x9515c
-
-	; SOUTH to Olivine City
-	map OLIVINE_CITY
-	dw (OlivineCity_BlockData + ((10 - 16 + ROUTE_39_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_39_HEIGHT + 3) * (ROUTE_39_WIDTH + 6))) ; strip destination
-	db 16, OLIVINE_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, 10 ; yoffset, xoffset
-	dw ($C807 + OLIVINE_CITY_WIDTH) ; window
-
-	; EAST to Route 38
-	map ROUTE_38
-	dw (Route38_BlockData) ; strip pointer
-	dw $c83d ; strip destination
-	db 9, ROUTE_38_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_38_WIDTH) ; window
-; 0x95180
+	connection south, OLIVINE_CITY, OlivineCity, -3, 2, 16, ROUTE_39
+	connection east, ROUTE_38, Route38, 0, 0, 9, ROUTE_39
 
 	map_header_2 Route40, ROUTE_40, $35, SOUTH | EAST ; 0x95180
-
-	; SOUTH to Route 41
-	map ROUTE_41
-	dw (Route41_BlockData + (((30 - 13 + ROUTE_40_WIDTH) / 2) - 1)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_40_HEIGHT + 3) * (ROUTE_40_WIDTH + 6))) ; strip destination
-	db 13, ROUTE_41_WIDTH ; (connection strip length, connected map width)
-	db 0, 30 ; yoffset, xoffset
-	dw ($C807 + ROUTE_41_WIDTH) ; window
-
-	; EAST to Olivine City
-	map OLIVINE_CITY
-	dw (OlivineCity_BlockData + ((OLIVINE_CITY_HEIGHT - 12) * OLIVINE_CITY_WIDTH)) ; strip pointer
-	dw $c80d ; strip destination
-	db 12, OLIVINE_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, 0 ; yoffset, xoffset
-	dw ($C807 + OLIVINE_CITY_WIDTH) ; window
-; 0x951a4
+	connection south, ROUTE_41, Route41, -3, 12, 13, ROUTE_40
+	connection east, OLIVINE_CITY, OlivineCity, -3, 6, 12, ROUTE_40
 
 	map_header_2 Route41, ROUTE_41, $35, NORTH | WEST ; 0x951a4
-
-	; NORTH to Route 40
-	map ROUTE_40
-	dw (Route40_BlockData + (ROUTE_40_HEIGHT * ROUTE_40_WIDTH) - (ROUTE_40_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 271) ; strip destination
-	db 10, ROUTE_40_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_40_HEIGHT * 2) - 1), 226 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_40_HEIGHT * 6) + (ROUTE_40_HEIGHT * ROUTE_40_WIDTH))) ; window
-
-	; WEST to Cianwood City
-	map CIANWOOD_CITY
-	dw (CianwoodCity_BlockData + CIANWOOD_CITY_WIDTH - 3) ; strip pointer
-	dw $c85d ; strip destination
-	db 27, CIANWOOD_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, ((CIANWOOD_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 29) ; window
-; 0x951c8
+	connection north, ROUTE_40, Route40, 15, 0, 10, ROUTE_41
+	connection west, CIANWOOD_CITY, CianwoodCity, 0, 0, 27, ROUTE_41
 
 	map_header_2 Route42, ROUTE_42, $5, WEST | EAST ; 0x951c8
-
-	; WEST to Ecruteak City
-	map ECRUTEAK_CITY
-	dw (EcruteakCity_BlockData + (((ECRUTEAK_CITY_HEIGHT - ROUTE_42_HEIGHT) * ECRUTEAK_CITY_WIDTH) - (ECRUTEAK_CITY_WIDTH * 3) + (ECRUTEAK_CITY_WIDTH - 1) - 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 12, ECRUTEAK_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, ((ECRUTEAK_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to Mahogany Town
-	map MAHOGANY_TOWN
-	dw (MahoganyTown_BlockData) ; strip pointer
-	dw $c88d ; strip destination
-	db 9, MAHOGANY_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + MAHOGANY_TOWN_WIDTH) ; window
-; 0x951ec
+	connection west, ECRUTEAK_CITY, EcruteakCity, -3, 6, 12, ROUTE_42
+	connection east, MAHOGANY_TOWN, MahoganyTown, 0, 0, 9, ROUTE_42
 
 	map_header_2 Route43, ROUTE_43, $5, NORTH | SOUTH ; 0x951ec
-
-	; NORTH to Lake of Rage
-	map LAKE_OF_RAGE
-	dw (LakeofRage_BlockData + LAKE_OF_RAGE_WIDTH + 10 + (16 * LAKE_OF_RAGE_HEIGHT) - 16) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 16, LAKE_OF_RAGE_WIDTH ; (connection strip length, connected map width)
-	db ((LAKE_OF_RAGE_HEIGHT * 2) - 1), 10 ; yoffset, xoffset
-	dw ($C801 + ((LAKE_OF_RAGE_HEIGHT * 6) + (LAKE_OF_RAGE_HEIGHT * LAKE_OF_RAGE_WIDTH))) ; window
-
-	; SOUTH to Mahogany Town
-	map MAHOGANY_TOWN
-	dw (MahoganyTown_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_43_HEIGHT + 3) * (ROUTE_43_WIDTH + 6))) ; strip destination
-	db 10, MAHOGANY_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + MAHOGANY_TOWN_WIDTH) ; window
-; 0x95210
+	connection north, LAKE_OF_RAGE, LakeofRage, -3, 2, 16, ROUTE_43
+	connection south, MAHOGANY_TOWN, MahoganyTown, 0, 0, 10, ROUTE_43
 
 	map_header_2 Route44, ROUTE_44, $71, WEST | EAST ; 0x95210
-
-	; WEST to Mahogany Town
-	map MAHOGANY_TOWN
-	dw (MahoganyTown_BlockData + MAHOGANY_TOWN_WIDTH - 3) ; strip pointer
-	dw $c86c ; strip destination
-	db 9, MAHOGANY_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, ((MAHOGANY_TOWN_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Blackthorn City
-	map BLACKTHORN_CITY
-	dw (BlackthornCity_BlockData + ((BLACKTHORN_CITY_HEIGHT - 12) * BLACKTHORN_CITY_WIDTH)) ; strip pointer
-	dw $c821 ; strip destination
-	db 12, BLACKTHORN_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, 0 ; yoffset, xoffset
-	dw ($C807 + BLACKTHORN_CITY_WIDTH) ; window
-; 0x95234
+	connection west, MAHOGANY_TOWN, MahoganyTown, 0, 0, 9, ROUTE_44
+	connection east, BLACKTHORN_CITY, BlackthornCity, -3, 6, 12, ROUTE_44
 
 	map_header_2 Route45, ROUTE_45, $71, NORTH | WEST ; 0x95234
-
-	; NORTH to Blackthorn City
-	map BLACKTHORN_CITY
-	dw (BlackthornCity_BlockData + (BLACKTHORN_CITY_HEIGHT * BLACKTHORN_CITY_WIDTH) - (BLACKTHORN_CITY_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 13, BLACKTHORN_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((BLACKTHORN_CITY_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((BLACKTHORN_CITY_HEIGHT * 6) + (BLACKTHORN_CITY_HEIGHT * BLACKTHORN_CITY_WIDTH))) ; window
-
-	; WEST to Route 46
-	map ROUTE_46
-	dw (Route46_BlockData + ROUTE_46_WIDTH - 3) ; strip pointer
-	dw $ca70 ; strip destination
-	db 12, ROUTE_46_WIDTH ; (connection strip length, connected map width)
-	db 184, ((ROUTE_46_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-; 0x95258
+	connection north, BLACKTHORN_CITY, BlackthornCity, 0, 0, 13, ROUTE_45
+	connection west, ROUTE_46, Route46, 36, 0, 12, ROUTE_45
 
 	map_header_2 Route46, ROUTE_46, $5, SOUTH | EAST ; 0x95258
-
-	; SOUTH to Route 29
-	map ROUTE_29
-	dw (Route29_BlockData + ((20 - 16 + ROUTE_46_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_46_HEIGHT + 3) * (ROUTE_46_WIDTH + 6))) ; strip destination
-	db 16, ROUTE_29_WIDTH ; (connection strip length, connected map width)
-	db 0, 20 ; yoffset, xoffset
-	dw ($C807 + ROUTE_29_WIDTH) ; window
-
-	; EAST to Route 45
-	map ROUTE_45
-	dw (Route45_BlockData + ((ROUTE_45_HEIGHT - 12) * ROUTE_45_WIDTH)) ; strip pointer
-	dw $c80d ; strip destination
-	db 12, ROUTE_45_WIDTH ; (connection strip length, connected map width)
-	db 72, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_45_WIDTH) ; window
-; 0x9527c
+	connection south, ROUTE_29, Route29, -3, 7, 16, ROUTE_46
+	connection east, ROUTE_45, Route45, -3, 33, 12, ROUTE_46
 
 	map_header_2 PewterCity, PEWTER_CITY, $f, SOUTH | EAST ; 0x9527c
-
-	; SOUTH to Route 2
-	map ROUTE_2
-	dw (Route2_BlockData) ; strip pointer
-	dw ($C703 + 261 + ((PEWTER_CITY_HEIGHT + 3) * (PEWTER_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_2_WIDTH ; (connection strip length, connected map width)
-	db 0, 246 ; yoffset, xoffset
-	dw ($C807 + ROUTE_2_WIDTH) ; window
-
-	; EAST to Route 3
-	map ROUTE_3
-	dw (Route3_BlockData) ; strip pointer
-	dw $c8e7 ; strip destination
-	db 9, ROUTE_3_WIDTH ; (connection strip length, connected map width)
-	db 246, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_3_WIDTH) ; window
-; 0x952a0
+	connection south, ROUTE_2, Route2, 5, 0, 10, PEWTER_CITY
+	connection east, ROUTE_3, Route3, 5, 0, 9, PEWTER_CITY
 
 	map_header_2 Route2, ROUTE_2, $f, NORTH | SOUTH ; 0x952a0
-
-	; NORTH to Pewter City
-	map PEWTER_CITY
-	dw (PewterCity_BlockData + PEWTER_CITY_WIDTH + 10 + (16 * PEWTER_CITY_HEIGHT) - 16) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 16, PEWTER_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((PEWTER_CITY_HEIGHT * 2) - 1), 10 ; yoffset, xoffset
-	dw ($C801 + ((PEWTER_CITY_HEIGHT * 6) + (PEWTER_CITY_HEIGHT * PEWTER_CITY_WIDTH))) ; window
-
-	; SOUTH to Viridian City
-	map VIRIDIAN_CITY
-	dw (ViridianCity_BlockData + ((10 - 16 + ROUTE_2_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_2_HEIGHT + 3) * (ROUTE_2_WIDTH + 6))) ; strip destination
-	db 16, VIRIDIAN_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, 10 ; yoffset, xoffset
-	dw ($C807 + VIRIDIAN_CITY_WIDTH) ; window
-; 0x952c4
+	connection north, PEWTER_CITY, PewterCity, -3, 2, 16, ROUTE_2
+	connection south, VIRIDIAN_CITY, ViridianCity, -3, 2, 16, ROUTE_2
 
 	map_header_2 ViridianCity, VIRIDIAN_CITY, $f, NORTH | SOUTH | WEST ; 0x952c4
-
-	; NORTH to Route 2
-	map ROUTE_2
-	dw (Route2_BlockData + (ROUTE_2_HEIGHT * ROUTE_2_WIDTH) - (ROUTE_2_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 261) ; strip destination
-	db 10, ROUTE_2_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_2_HEIGHT * 2) - 1), 246 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_2_HEIGHT * 6) + (ROUTE_2_HEIGHT * ROUTE_2_WIDTH))) ; window
-
-	; SOUTH to Route 1
-	map ROUTE_1
-	dw (Route1_BlockData) ; strip pointer
-	dw ($C703 + 266 + ((VIRIDIAN_CITY_HEIGHT + 3) * (VIRIDIAN_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_1_WIDTH ; (connection strip length, connected map width)
-	db 0, 236 ; yoffset, xoffset
-	dw ($C807 + ROUTE_1_WIDTH) ; window
-
-	; WEST to Route 22
-	map ROUTE_22
-	dw (Route22_BlockData + ROUTE_22_WIDTH - 3) ; strip pointer
-	dw $c8b6 ; strip destination
-	db 9, ROUTE_22_WIDTH ; (connection strip length, connected map width)
-	db 248, ((ROUTE_22_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-; 0x952f4
+	connection north, ROUTE_2, Route2, 5, 0, 10, VIRIDIAN_CITY
+	connection south, ROUTE_1, Route1, 10, 0, 10, VIRIDIAN_CITY
+	connection west, ROUTE_22, Route22, 4, 0, 9, VIRIDIAN_CITY
 
 	map_header_2 Route22, ROUTE_22, $2c, EAST ; 0x952f4
-
-	; EAST to Viridian City
-	map VIRIDIAN_CITY
-	dw (ViridianCity_BlockData + 100 - (VIRIDIAN_CITY_WIDTH * 4)) ; strip pointer
-	dw $c817 ; strip destination
-	db 15, VIRIDIAN_CITY_WIDTH ; (connection strip length, connected map width)
-	db 8, 0 ; yoffset, xoffset
-	dw ($C807 + VIRIDIAN_CITY_WIDTH) ; window
-; 0x9530c
+	connection east, VIRIDIAN_CITY, ViridianCity, -3, 1, 15, ROUTE_22
 
 	map_header_2 Route1, ROUTE_1, $f, NORTH | SOUTH ; 0x9530c
-
-	; NORTH to Viridian City
-	map VIRIDIAN_CITY
-	dw (ViridianCity_BlockData + ((VIRIDIAN_CITY_HEIGHT - 3) * VIRIDIAN_CITY_WIDTH) + 7) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 13, VIRIDIAN_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((VIRIDIAN_CITY_HEIGHT * 2) - 1), 20 ; yoffset, xoffset
-	dw ($C801 + ((VIRIDIAN_CITY_HEIGHT * 6) + (VIRIDIAN_CITY_HEIGHT * VIRIDIAN_CITY_WIDTH))) ; window
-
-	; SOUTH to Pallet Town
-	map PALLET_TOWN
-	dw (PalletTown_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_1_HEIGHT + 3) * (ROUTE_1_WIDTH + 6))) ; strip destination
-	db 10, PALLET_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + PALLET_TOWN_WIDTH) ; window
-; 0x95330
+	connection north, VIRIDIAN_CITY, ViridianCity, -3, 7, 13, ROUTE_1
+	connection south, PALLET_TOWN, PalletTown, 0, 0, 10, ROUTE_1
 
 	map_header_2 PalletTown, PALLET_TOWN, $f, NORTH | SOUTH ; 0x95330
-
-	; NORTH to Route 1
-	map ROUTE_1
-	dw (Route1_BlockData + (ROUTE_1_HEIGHT * ROUTE_1_WIDTH) - (ROUTE_1_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, ROUTE_1_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_1_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_1_HEIGHT * 6) + (ROUTE_1_HEIGHT * ROUTE_1_WIDTH))) ; window
-
-	; SOUTH to Route 21
-	map ROUTE_21
-	dw (Route21_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((PALLET_TOWN_HEIGHT + 3) * (PALLET_TOWN_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_21_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_21_WIDTH) ; window
-; 0x95354
+	connection north, ROUTE_1, Route1, 0, 0, 10, PALLET_TOWN
+	connection south, ROUTE_21, Route21, 0, 0, 10, PALLET_TOWN
 
 	map_header_2 Route21, ROUTE_21, $43, NORTH | SOUTH ; 0x95354
-
-	; NORTH to Pallet Town
-	map PALLET_TOWN
-	dw (PalletTown_BlockData + (PALLET_TOWN_HEIGHT * PALLET_TOWN_WIDTH) - (PALLET_TOWN_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, PALLET_TOWN_WIDTH ; (connection strip length, connected map width)
-	db ((PALLET_TOWN_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((PALLET_TOWN_HEIGHT * 6) + (PALLET_TOWN_HEIGHT * PALLET_TOWN_WIDTH))) ; window
-
-	; SOUTH to Cinnabar Island
-	map CINNABAR_ISLAND
-	dw (CinnabarIsland_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_21_HEIGHT + 3) * (ROUTE_21_WIDTH + 6))) ; strip destination
-	db 10, CINNABAR_ISLAND_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + CINNABAR_ISLAND_WIDTH) ; window
-; 0x95378
+	connection north, PALLET_TOWN, PalletTown, 0, 0, 10, ROUTE_21
+	connection south, CINNABAR_ISLAND, CinnabarIsland, 0, 0, 10, ROUTE_21
 
 	map_header_2 CinnabarIsland, CINNABAR_ISLAND, $43, NORTH | EAST ; 0x95378
-
-	; NORTH to Route 21
-	map ROUTE_21
-	dw (Route21_BlockData + (ROUTE_21_HEIGHT * ROUTE_21_WIDTH) - (ROUTE_21_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, ROUTE_21_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_21_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_21_HEIGHT * 6) + (ROUTE_21_HEIGHT * ROUTE_21_WIDTH))) ; window
-
-	; EAST to Route 20
-	map ROUTE_20
-	dw (Route20_BlockData) ; strip pointer
-	dw $c83d ; strip destination
-	db 9, ROUTE_20_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_20_WIDTH) ; window
-; 0x9539c
+	connection north, ROUTE_21, Route21, 0, 0, 10, CINNABAR_ISLAND
+	connection east, ROUTE_20, Route20, 0, 0, 9, CINNABAR_ISLAND
 
 	map_header_2 Route20, ROUTE_20, $43, WEST | EAST ; 0x9539c
-
-	; WEST to Cinnabar Island
-	map CINNABAR_ISLAND
-	dw (CinnabarIsland_BlockData + CINNABAR_ISLAND_WIDTH - 3) ; strip pointer
-	dw $c86c ; strip destination
-	db 9, CINNABAR_ISLAND_WIDTH ; (connection strip length, connected map width)
-	db 0, ((CINNABAR_ISLAND_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Route 19
-	map ROUTE_19
-	dw (Route19_BlockData + ((ROUTE_19_HEIGHT - 12) * ROUTE_19_WIDTH)) ; strip pointer
-	dw $c821 ; strip destination
-	db 12, ROUTE_19_WIDTH ; (connection strip length, connected map width)
-	db 18, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_19_WIDTH) ; window
-; 0x953c0
+	connection west, CINNABAR_ISLAND, CinnabarIsland, 0, 0, 9, ROUTE_20
+	connection east, ROUTE_19, Route19, -3, 6, 12, ROUTE_20
 
 	map_header_2 Route19, ROUTE_19, $43, NORTH | WEST ; 0x953c0
-
-	; NORTH to Fuchsia City
-	map FUCHSIA_CITY
-	dw (FuchsiaCity_BlockData + (FUCHSIA_CITY_HEIGHT * FUCHSIA_CITY_WIDTH) - (FUCHSIA_CITY_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 13, FUCHSIA_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((FUCHSIA_CITY_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((FUCHSIA_CITY_HEIGHT * 6) + (FUCHSIA_CITY_HEIGHT * FUCHSIA_CITY_WIDTH))) ; window
-
-	; WEST to Route 20
-	map ROUTE_20
-	dw (Route20_BlockData + ROUTE_20_WIDTH - 3) ; strip pointer
-	dw $c8c0 ; strip destination
-	db 9, ROUTE_20_WIDTH ; (connection strip length, connected map width)
-	db 238, ((ROUTE_20_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 59) ; window
-; 0x953e4
+	connection north, FUCHSIA_CITY, FuchsiaCity, 0, 0, 13, ROUTE_19
+	connection west, ROUTE_20, Route20, 9, 0, 9, ROUTE_19
 
 	map_header_2 FuchsiaCity, FUCHSIA_CITY, $f, SOUTH | WEST | EAST ; 0x953e4
-
-	; SOUTH to Route 19
-	map ROUTE_19
-	dw (Route19_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((FUCHSIA_CITY_HEIGHT + 3) * (FUCHSIA_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_19_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_19_WIDTH) ; window
-
-	; WEST to Route 18
-	map ROUTE_18
-	dw (Route18_BlockData + ROUTE_18_WIDTH - 3) ; strip pointer
-	dw $c904 ; strip destination
-	db 9, ROUTE_18_WIDTH ; (connection strip length, connected map width)
-	db 242, ((ROUTE_18_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Route 15
-	map ROUTE_15
-	dw (Route15_BlockData) ; strip pointer
-	dw $c94f ; strip destination
-	db 9, ROUTE_15_WIDTH ; (connection strip length, connected map width)
-	db 238, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_15_WIDTH) ; window
-; 0x95414
+	connection south, ROUTE_19, Route19, 0, 0, 10, FUCHSIA_CITY
+	connection west, ROUTE_18, Route18, 7, 0, 9, FUCHSIA_CITY
+	connection east, ROUTE_15, Route15, 9, 0, 9, FUCHSIA_CITY
 
 	map_header_2 Route18, ROUTE_18, $43, WEST | EAST ; 0x95414
-
-	; WEST to Route 17
-	map ROUTE_17
-	dw (Route17_BlockData + ((ROUTE_17_HEIGHT - 10) * ROUTE_17_WIDTH) + 7) ; strip pointer
-	dw $c800 ; strip destination
-	db 10, ROUTE_17_WIDTH ; (connection strip length, connected map width)
-	db 76, ((ROUTE_17_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Fuchsia City
-	map FUCHSIA_CITY
-	dw (FuchsiaCity_BlockData + ((FUCHSIA_CITY_HEIGHT - 14) * FUCHSIA_CITY_WIDTH)) ; strip pointer
-	dw $c80d ; strip destination
-	db 14, FUCHSIA_CITY_WIDTH ; (connection strip length, connected map width)
-	db 14, 0 ; yoffset, xoffset
-	dw ($C807 + FUCHSIA_CITY_WIDTH) ; window
-; 0x95438
+	connection west, ROUTE_17, Route17, -3, 35, 10, ROUTE_18
+	connection east, FUCHSIA_CITY, FuchsiaCity, -3, 4, 14, ROUTE_18
 
 	map_header_2 Route17, ROUTE_17, $43, NORTH | EAST ; 0x95438
-
-	; NORTH to Route 16
-	map ROUTE_16
-	dw (Route16_BlockData + (ROUTE_16_HEIGHT * ROUTE_16_WIDTH) - (ROUTE_16_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, ROUTE_16_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_16_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_16_HEIGHT * 6) + (ROUTE_16_HEIGHT * ROUTE_16_WIDTH))) ; window
-
-	; EAST to Route 18
-	map ROUTE_18
-	dw (Route18_BlockData) ; strip pointer
-	dw $ca9d ; strip destination
-	db 9, ROUTE_18_WIDTH ; (connection strip length, connected map width)
-	db 180, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_18_WIDTH) ; window
-; 0x9545c
+	connection north, ROUTE_16, Route16, 0, 0, 10, ROUTE_17
+	connection east, ROUTE_18, Route18, 38, 0, 9, ROUTE_17
 
 	map_header_2 Route16, ROUTE_16, $f, SOUTH | EAST ; 0x9545c
-
-	; SOUTH to Route 17
-	map ROUTE_17
-	dw (Route17_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_16_HEIGHT + 3) * (ROUTE_16_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_17_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_17_WIDTH) ; window
-
-	; EAST to Celadon City
-	map CELADON_CITY
-	dw (CeladonCity_BlockData + ((CELADON_CITY_HEIGHT - 12) * CELADON_CITY_WIDTH)) ; strip pointer
-	dw $c80d ; strip destination
-	db 12, CELADON_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, 0 ; yoffset, xoffset
-	dw ($C807 + CELADON_CITY_WIDTH) ; window
-; 0x95480
+	connection south, ROUTE_17, Route17, 0, 0, 10, ROUTE_16
+	connection east, CELADON_CITY, CeladonCity, -3, 6, 12, ROUTE_16
 
 	map_header_2 CeladonCity, CELADON_CITY, $f, WEST | EAST ; 0x95480
-
-	; WEST to Route 16
-	map ROUTE_16
-	dw (Route16_BlockData + ROUTE_16_WIDTH - 3) ; strip pointer
-	dw $c938 ; strip destination
-	db 9, ROUTE_16_WIDTH ; (connection strip length, connected map width)
-	db 238, ((ROUTE_16_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Route 7
-	map ROUTE_7
-	dw (Route7_BlockData) ; strip pointer
-	dw $c8e7 ; strip destination
-	db 9, ROUTE_7_WIDTH ; (connection strip length, connected map width)
-	db 246, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_7_WIDTH) ; window
-; 0x954a4
+	connection west, ROUTE_16, Route16, 9, 0, 9, CELADON_CITY
+	connection east, ROUTE_7, Route7, 5, 0, 9, CELADON_CITY
 
 	map_header_2 Route7, ROUTE_7, $f, WEST | EAST ; 0x954a4
-
-	; WEST to Celadon City
-	map CELADON_CITY
-	dw (CeladonCity_BlockData + 21 + (CELADON_CITY_HEIGHT * 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 15, CELADON_CITY_WIDTH ; (connection strip length, connected map width)
-	db 10, ((CELADON_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to Saffron City
-	map SAFFRON_CITY
-	dw (SaffronCity_BlockData + ((SAFFRON_CITY_HEIGHT - 12) * SAFFRON_CITY_WIDTH)) ; strip pointer
-	dw $c80d ; strip destination
-	db 12, SAFFRON_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, 0 ; yoffset, xoffset
-	dw ($C807 + SAFFRON_CITY_WIDTH) ; window
-; 0x954c8
+	connection west, CELADON_CITY, CeladonCity, -3, 2, 15, ROUTE_7
+	connection east, SAFFRON_CITY, SaffronCity, -3, 6, 12, ROUTE_7
 
 	map_header_2 Route15, ROUTE_15, $f, WEST | EAST ; 0x954c8
-
-	; WEST to Fuchsia City
-	map FUCHSIA_CITY
-	dw (FuchsiaCity_BlockData + (((FUCHSIA_CITY_HEIGHT - ROUTE_15_HEIGHT) * FUCHSIA_CITY_WIDTH) - (FUCHSIA_CITY_WIDTH * 3) + (FUCHSIA_CITY_WIDTH - 1) - 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 12, FUCHSIA_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, ((FUCHSIA_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to Route 14
-	map ROUTE_14
-	dw (Route14_BlockData + ((ROUTE_14_HEIGHT - 12) * ROUTE_14_WIDTH)) ; strip pointer
-	dw $c817 ; strip destination
-	db 12, ROUTE_14_WIDTH ; (connection strip length, connected map width)
-	db 18, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_14_WIDTH) ; window
-; 0x954ec
+	connection west, FUCHSIA_CITY, FuchsiaCity, -3, 6, 12, ROUTE_15
+	connection east, ROUTE_14, Route14, -3, 6, 12, ROUTE_15
 
 	map_header_2 Route14, ROUTE_14, $43, NORTH | WEST ; 0x954ec
-
-	; NORTH to Route 13
-	map ROUTE_13
-	dw (Route13_BlockData + (ROUTE_13_HEIGHT * ROUTE_13_WIDTH) - (ROUTE_13_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 13, ROUTE_13_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_13_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_13_HEIGHT * 6) + (ROUTE_13_HEIGHT * ROUTE_13_WIDTH))) ; window
-
-	; WEST to Route 15
-	map ROUTE_15
-	dw (Route15_BlockData + ROUTE_15_WIDTH - 3) ; strip pointer
-	dw $c8c0 ; strip destination
-	db 9, ROUTE_15_WIDTH ; (connection strip length, connected map width)
-	db 238, ((ROUTE_15_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-; 0x95510
+	connection north, ROUTE_13, Route13, 0, 0, 13, ROUTE_14
+	connection west, ROUTE_15, Route15, 9, 0, 9, ROUTE_14
 
 	map_header_2 Route13, ROUTE_13, $43, NORTH | SOUTH ; 0x95510
-
-	; NORTH to Route 12
-	map ROUTE_12
-	dw (Route12_BlockData + (ROUTE_12_HEIGHT * ROUTE_12_WIDTH) - (ROUTE_12_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 276) ; strip destination
-	db 10, ROUTE_12_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_12_HEIGHT * 2) - 1), 216 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_12_HEIGHT * 6) + (ROUTE_12_HEIGHT * ROUTE_12_WIDTH))) ; window
-
-	; SOUTH to Route 14
-	map ROUTE_14
-	dw (Route14_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_13_HEIGHT + 3) * (ROUTE_13_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_14_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_14_WIDTH) ; window
-; 0x95534
+	connection north, ROUTE_12, Route12, 20, 0, 10, ROUTE_13
+	connection south, ROUTE_14, Route14, 0, 0, 10, ROUTE_13
 
 	map_header_2 Route12, ROUTE_12, $43, NORTH | SOUTH | WEST ; 0x95534
-
-	; NORTH to Lavender Town
-	map LAVENDER_TOWN
-	dw (LavenderTown_BlockData + (LAVENDER_TOWN_HEIGHT * LAVENDER_TOWN_WIDTH) - (LAVENDER_TOWN_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, LAVENDER_TOWN_WIDTH ; (connection strip length, connected map width)
-	db ((LAVENDER_TOWN_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((LAVENDER_TOWN_HEIGHT * 6) + (LAVENDER_TOWN_HEIGHT * LAVENDER_TOWN_WIDTH))) ; window
-
-	; SOUTH to Route 13
-	map ROUTE_13
-	dw (Route13_BlockData + (((40 - 13 + ROUTE_12_WIDTH) / 2) - 1)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_12_HEIGHT + 3) * (ROUTE_12_WIDTH + 6))) ; strip destination
-	db 13, ROUTE_13_WIDTH ; (connection strip length, connected map width)
-	db 0, 40 ; yoffset, xoffset
-	dw ($C807 + ROUTE_13_WIDTH) ; window
-
-	; WEST to Route 11
-	map ROUTE_11
-	dw (Route11_BlockData + ROUTE_11_WIDTH - 3) ; strip pointer
-	dw $c8c0 ; strip destination
-	db 9, ROUTE_11_WIDTH ; (connection strip length, connected map width)
-	db 238, ((ROUTE_11_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-; 0x95564
+	connection north, LAVENDER_TOWN, LavenderTown, 0, 0, 10, ROUTE_12
+	connection south, ROUTE_13, Route13, -3, 17, 13, ROUTE_12
+	connection west, ROUTE_11, Route11, 9, 0, 9, ROUTE_12
 
 	map_header_2 Route11, ROUTE_11, $f, WEST | EAST ; 0x95564
-
-	; WEST to Vermilion City
-	map VERMILION_CITY
-	dw (VermilionCity_BlockData + VERMILION_CITY_WIDTH - 3) ; strip pointer
-	dw $c84e ; strip destination
-	db 12, VERMILION_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, ((VERMILION_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to Route 12
-	map ROUTE_12
-	dw (Route12_BlockData + 100 - (ROUTE_12_WIDTH * 4)) ; strip pointer
-	dw $c817 ; strip destination
-	db 15, ROUTE_12_WIDTH ; (connection strip length, connected map width)
-	db 18, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_12_WIDTH) ; window
-; 0x95588
+	connection west, VERMILION_CITY, VermilionCity, 0, 0, 12, ROUTE_11
+	connection east, ROUTE_12, Route12, -3, 6, 15, ROUTE_11
 
 	map_header_2 LavenderTown, LAVENDER_TOWN, $2c, NORTH | SOUTH | WEST ; 0x95588
-
-	; NORTH to Route 10 South
-	map ROUTE_10_SOUTH
-	dw (Route10South_BlockData + (ROUTE_10_SOUTH_HEIGHT * ROUTE_10_SOUTH_WIDTH) - (ROUTE_10_SOUTH_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, ROUTE_10_SOUTH_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_10_SOUTH_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_10_SOUTH_HEIGHT * 6) + (ROUTE_10_SOUTH_HEIGHT * ROUTE_10_SOUTH_WIDTH))) ; window
-
-	; SOUTH to Route 12
-	map ROUTE_12
-	dw (Route12_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((LAVENDER_TOWN_HEIGHT + 3) * (LAVENDER_TOWN_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_12_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_12_WIDTH) ; window
-
-	; WEST to Route 8
-	map ROUTE_8
-	dw (Route8_BlockData + ROUTE_8_WIDTH - 3) ; strip pointer
-	dw $c830 ; strip destination
-	db 9, ROUTE_8_WIDTH ; (connection strip length, connected map width)
-	db 0, ((ROUTE_8_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-; 0x955b8
+	connection north, ROUTE_10_SOUTH, Route10South, 0, 0, 10, LAVENDER_TOWN
+	connection south, ROUTE_12, Route12, 0, 0, 10, LAVENDER_TOWN
+	connection west, ROUTE_8, Route8, 0, 0, 9, LAVENDER_TOWN
 
 	map_header_2 VermilionCity, VERMILION_CITY, $43, NORTH | EAST ; 0x955b8
-
-	; NORTH to Route 6
-	map ROUTE_6
-	dw (Route6_BlockData + (ROUTE_6_HEIGHT * ROUTE_6_WIDTH) - (ROUTE_6_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 261) ; strip destination
-	db 10, ROUTE_6_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_6_HEIGHT * 2) - 1), 246 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_6_HEIGHT * 6) + (ROUTE_6_HEIGHT * ROUTE_6_WIDTH))) ; window
-
-	; EAST to Route 11
-	map ROUTE_11
-	dw (Route11_BlockData) ; strip pointer
-	dw $c865 ; strip destination
-	db 9, ROUTE_11_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_11_WIDTH) ; window
-; 0x955dc
+	connection north, ROUTE_6, Route6, 5, 0, 10, VERMILION_CITY
+	connection east, ROUTE_11, Route11, 0, 0, 9, VERMILION_CITY
 
 	map_header_2 Route6, ROUTE_6, $f, NORTH | SOUTH ; 0x955dc
-
-	; NORTH to Saffron City
-	map SAFFRON_CITY
-	dw (SaffronCity_BlockData + SAFFRON_CITY_WIDTH + 10 + (16 * SAFFRON_CITY_HEIGHT) - 16) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 16, SAFFRON_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((SAFFRON_CITY_HEIGHT * 2) - 1), 10 ; yoffset, xoffset
-	dw ($C801 + ((SAFFRON_CITY_HEIGHT * 6) + (SAFFRON_CITY_HEIGHT * SAFFRON_CITY_WIDTH))) ; window
-
-	; SOUTH to Vermilion City
-	map VERMILION_CITY
-	dw (VermilionCity_BlockData + ((10 - 16 + ROUTE_6_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_6_HEIGHT + 3) * (ROUTE_6_WIDTH + 6))) ; strip destination
-	db 16, VERMILION_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, 10 ; yoffset, xoffset
-	dw ($C807 + VERMILION_CITY_WIDTH) ; window
-; 0x95600
+	connection north, SAFFRON_CITY, SaffronCity, -3, 2, 16, ROUTE_6
+	connection south, VERMILION_CITY, VermilionCity, -3, 2, 16, ROUTE_6
 
 	map_header_2 SaffronCity, SAFFRON_CITY, $f, NORTH | SOUTH | WEST | EAST ; 0x95600
-
-	; NORTH to Route 5
-	map ROUTE_5
-	dw (Route5_BlockData + (ROUTE_5_HEIGHT * ROUTE_5_WIDTH) - (ROUTE_5_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 261) ; strip destination
-	db 10, ROUTE_5_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_5_HEIGHT * 2) - 1), 246 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_5_HEIGHT * 6) + (ROUTE_5_HEIGHT * ROUTE_5_WIDTH))) ; window
-
-	; SOUTH to Route 6
-	map ROUTE_6
-	dw (Route6_BlockData) ; strip pointer
-	dw ($C703 + 261 + ((SAFFRON_CITY_HEIGHT + 3) * (SAFFRON_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_6_WIDTH ; (connection strip length, connected map width)
-	db 0, 246 ; yoffset, xoffset
-	dw ($C807 + ROUTE_6_WIDTH) ; window
-
-	; WEST to Route 7
-	map ROUTE_7
-	dw (Route7_BlockData + ROUTE_7_WIDTH - 3) ; strip pointer
-	dw $c938 ; strip destination
-	db 9, ROUTE_7_WIDTH ; (connection strip length, connected map width)
-	db 238, ((ROUTE_7_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 19) ; window
-
-	; EAST to Route 8
-	map ROUTE_8
-	dw (Route8_BlockData) ; strip pointer
-	dw $c94f ; strip destination
-	db 9, ROUTE_8_WIDTH ; (connection strip length, connected map width)
-	db 238, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_8_WIDTH) ; window
-; 0x9563c
+	connection north, ROUTE_5, Route5, 5, 0, 10, SAFFRON_CITY
+	connection south, ROUTE_6, Route6, 5, 0, 10, SAFFRON_CITY
+	connection west, ROUTE_7, Route7, 9, 0, 9, SAFFRON_CITY
+	connection east, ROUTE_8, Route8, 9, 0, 9, SAFFRON_CITY
 
 	map_header_2 Route5, ROUTE_5, $f, NORTH | SOUTH ; 0x9563c
-
-	; NORTH to Cerulean City
-	map CERULEAN_CITY
-	dw (CeruleanCity_BlockData + CERULEAN_CITY_WIDTH + 10 + (16 * CERULEAN_CITY_HEIGHT) - 16) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 16, CERULEAN_CITY_WIDTH ; (connection strip length, connected map width)
-	db ((CERULEAN_CITY_HEIGHT * 2) - 1), 10 ; yoffset, xoffset
-	dw ($C801 + ((CERULEAN_CITY_HEIGHT * 6) + (CERULEAN_CITY_HEIGHT * CERULEAN_CITY_WIDTH))) ; window
-
-	; SOUTH to Saffron City
-	map SAFFRON_CITY
-	dw (SaffronCity_BlockData + ((10 - 16 + ROUTE_5_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_5_HEIGHT + 3) * (ROUTE_5_WIDTH + 6))) ; strip destination
-	db 16, SAFFRON_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, 10 ; yoffset, xoffset
-	dw ($C807 + SAFFRON_CITY_WIDTH) ; window
-; 0x95660
+	connection north, CERULEAN_CITY, CeruleanCity, -3, 2, 16, ROUTE_5
+	connection south, SAFFRON_CITY, SaffronCity, -3, 2, 16, ROUTE_5
 
 	map_header_2 CeruleanCity, CERULEAN_CITY, $f, NORTH | SOUTH | WEST | EAST ; 0x95660
-
-	; NORTH to Route 24
-	map ROUTE_24
-	dw (Route24_BlockData + (ROUTE_24_HEIGHT * ROUTE_24_WIDTH) - (ROUTE_24_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 262) ; strip destination
-	db 10, ROUTE_24_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_24_HEIGHT * 2) - 1), 244 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_24_HEIGHT * 6) + (ROUTE_24_HEIGHT * ROUTE_24_WIDTH))) ; window
-
-	; SOUTH to Route 5
-	map ROUTE_5
-	dw (Route5_BlockData) ; strip pointer
-	dw ($C703 + 261 + ((CERULEAN_CITY_HEIGHT + 3) * (CERULEAN_CITY_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_5_WIDTH ; (connection strip length, connected map width)
-	db 0, 246 ; yoffset, xoffset
-	dw ($C807 + ROUTE_5_WIDTH) ; window
-
-	; WEST to Route 4
-	map ROUTE_4
-	dw (Route4_BlockData + ROUTE_4_WIDTH - 3) ; strip pointer
-	dw $c8d0 ; strip destination
-	db 9, ROUTE_4_WIDTH ; (connection strip length, connected map width)
-	db 246, ((ROUTE_4_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to Route 9
-	map ROUTE_9
-	dw (Route9_BlockData) ; strip pointer
-	dw $c94f ; strip destination
-	db 9, ROUTE_9_WIDTH ; (connection strip length, connected map width)
-	db 238, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_9_WIDTH) ; window
-; 0x9569c
+	connection north, ROUTE_24, Route24, 6, 0, 10, CERULEAN_CITY
+	connection south, ROUTE_5, Route5, 5, 0, 10, CERULEAN_CITY
+	connection west, ROUTE_4, Route4, 5, 0, 9, CERULEAN_CITY
+	connection east, ROUTE_9, Route9, 9, 0, 9, CERULEAN_CITY
 
 	map_header_2 Route9, ROUTE_9, $2c, SOUTH | WEST ; 0x9569c
-
-	; SOUTH to Route 10 North
-	map ROUTE_10_NORTH
-	dw (Route10North_BlockData) ; strip pointer
-	dw ($C703 + 276 + ((ROUTE_9_HEIGHT + 3) * (ROUTE_9_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_10_NORTH_WIDTH ; (connection strip length, connected map width)
-	db 0, 216 ; yoffset, xoffset
-	dw ($C807 + ROUTE_10_NORTH_WIDTH) ; window
-
-	; WEST to Cerulean City
-	map CERULEAN_CITY
-	dw (CeruleanCity_BlockData + (((CERULEAN_CITY_HEIGHT - ROUTE_9_HEIGHT) * CERULEAN_CITY_WIDTH) - (CERULEAN_CITY_WIDTH * 3) + (CERULEAN_CITY_WIDTH - 1) - 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 12, CERULEAN_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, ((CERULEAN_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-; 0x956c0
+	connection south, ROUTE_10_NORTH, Route10North, 20, 0, 10, ROUTE_9
+	connection west, CERULEAN_CITY, CeruleanCity, -3, 6, 12, ROUTE_9
 
 	map_header_2 Route24, ROUTE_24, $2c, NORTH | SOUTH ; 0x956c0
-
-	; NORTH to Route 25
-	map ROUTE_25
-	dw (Route25_BlockData + (ROUTE_25_HEIGHT * ROUTE_25_WIDTH) - (ROUTE_25_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 13, ROUTE_25_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_25_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_25_HEIGHT * 6) + (ROUTE_25_HEIGHT * ROUTE_25_WIDTH))) ; window
-
-	; SOUTH to Cerulean City
-	map CERULEAN_CITY
-	dw (CeruleanCity_BlockData + ((12 - 16 + ROUTE_24_WIDTH) / 2)) ; strip pointer
-	dw ($C703 + 253 + ((ROUTE_24_HEIGHT + 3) * (ROUTE_24_WIDTH + 6))) ; strip destination
-	db 16, CERULEAN_CITY_WIDTH ; (connection strip length, connected map width)
-	db 0, 12 ; yoffset, xoffset
-	dw ($C807 + CERULEAN_CITY_WIDTH) ; window
-; 0x956e4
+	connection north, ROUTE_25, Route25, 0, 0, 13, ROUTE_24
+	connection south, CERULEAN_CITY, CeruleanCity, -3, 3, 16, ROUTE_24
 
 	map_header_2 Route25, ROUTE_25, $2c, SOUTH ; 0x956e4
-
-	; SOUTH to Route 24
-	map ROUTE_24
-	dw (Route24_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_25_HEIGHT + 3) * (ROUTE_25_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_24_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_24_WIDTH) ; window
-; 0x956fc
+	connection south, ROUTE_24, Route24, 0, 0, 10, ROUTE_25
 
 	map_header_2 Route3, ROUTE_3, $2c, WEST | EAST ; 0x956fc
-
-	; WEST to Pewter City
-	map PEWTER_CITY
-	dw (PewterCity_BlockData + 21 + (PEWTER_CITY_HEIGHT * 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 15, PEWTER_CITY_WIDTH ; (connection strip length, connected map width)
-	db 10, ((PEWTER_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to Route 4
-	map ROUTE_4
-	dw (Route4_BlockData) ; strip pointer
-	dw $c88d ; strip destination
-	db 9, ROUTE_4_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_4_WIDTH) ; window
-; 0x95720
+	connection west, PEWTER_CITY, PewterCity, -3, 2, 15, ROUTE_3
+	connection east, ROUTE_4, Route4, 0, 0, 9, ROUTE_3
 
 	map_header_2 Route4, ROUTE_4, $2c, WEST | EAST ; 0x95720
-
-	; WEST to Route 3
-	map ROUTE_3
-	dw (Route3_BlockData + ROUTE_3_WIDTH - 3) ; strip pointer
-	dw $c84e ; strip destination
-	db 9, ROUTE_3_WIDTH ; (connection strip length, connected map width)
-	db 0, ((ROUTE_3_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 59) ; window
-
-	; EAST to Cerulean City
-	map CERULEAN_CITY
-	dw (CeruleanCity_BlockData + ((100 - (CERULEAN_CITY_WIDTH * 4)) * 2)) ; strip pointer
-	dw $c817 ; strip destination
-	db 15, CERULEAN_CITY_WIDTH ; (connection strip length, connected map width)
-	db 10, 0 ; yoffset, xoffset
-	dw ($C807 + CERULEAN_CITY_WIDTH) ; window
-; 0x95744
+	connection west, ROUTE_3, Route3, 0, 0, 9, ROUTE_4
+	connection east, CERULEAN_CITY, CeruleanCity, -3, 2, 15, ROUTE_4
 
 	map_header_2 Route8, ROUTE_8, $2c, WEST | EAST ; 0x95744
-
-	; WEST to Saffron City
-	map SAFFRON_CITY
-	dw (SaffronCity_BlockData + (((SAFFRON_CITY_HEIGHT - ROUTE_8_HEIGHT) * SAFFRON_CITY_WIDTH) - (SAFFRON_CITY_WIDTH * 3) + (SAFFRON_CITY_WIDTH - 1) - 2)) ; strip pointer
-	dw $c800 ; strip destination
-	db 12, SAFFRON_CITY_WIDTH ; (connection strip length, connected map width)
-	db 18, ((SAFFRON_CITY_WIDTH * 2) - 1) ; yoffset, xoffset
-	dw ($C807 + 39) ; window
-
-	; EAST to Lavender Town
-	map LAVENDER_TOWN
-	dw (LavenderTown_BlockData) ; strip pointer
-	dw $c865 ; strip destination
-	db 9, LAVENDER_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + LAVENDER_TOWN_WIDTH) ; window
-; 0x95768
+	connection west, SAFFRON_CITY, SaffronCity, -3, 6, 12, ROUTE_8
+	connection east, LAVENDER_TOWN, LavenderTown, 0, 0, 9, ROUTE_8
 
 	map_header_2 Route10North, ROUTE_10_NORTH, $2c, NORTH | SOUTH ; 0x95768
-
-	; NORTH to Route 9
-	map ROUTE_9
-	dw (Route9_BlockData + ((ROUTE_9_HEIGHT - 3) * ROUTE_9_WIDTH) + 17) ; strip pointer
-	dw ($C703 + 253) ; strip destination
-	db 13, ROUTE_9_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_9_HEIGHT * 2) - 1), 40 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_9_HEIGHT * 6) + (ROUTE_9_HEIGHT * ROUTE_9_WIDTH))) ; window
-
-	; SOUTH to Route 10 South
-	map ROUTE_10_SOUTH
-	dw (Route10South_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_10_NORTH_HEIGHT + 3) * (ROUTE_10_NORTH_WIDTH + 6))) ; strip destination
-	db 10, ROUTE_10_SOUTH_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + ROUTE_10_SOUTH_WIDTH) ; window
-; 0x9578c
+	connection north, ROUTE_9, Route9, -3, 17, 13, ROUTE_10_NORTH
+	connection south, ROUTE_10_SOUTH, Route10South, 0, 0, 10, ROUTE_10_NORTH
 
 	map_header_2 Route10South, ROUTE_10_SOUTH, $2c, NORTH | SOUTH ; 0x9578c
-
-	; NORTH to Route 10 North
-	map ROUTE_10_NORTH
-	dw (Route10North_BlockData + (ROUTE_10_NORTH_HEIGHT * ROUTE_10_NORTH_WIDTH) - (ROUTE_10_NORTH_WIDTH * 3)) ; strip pointer
-	dw ($C703 + 256) ; strip destination
-	db 10, ROUTE_10_NORTH_WIDTH ; (connection strip length, connected map width)
-	db ((ROUTE_10_NORTH_HEIGHT * 2) - 1), 0 ; yoffset, xoffset
-	dw ($C801 + ((ROUTE_10_NORTH_HEIGHT * 6) + (ROUTE_10_NORTH_HEIGHT * ROUTE_10_NORTH_WIDTH))) ; window
-
-	; SOUTH to Lavender Town
-	map LAVENDER_TOWN
-	dw (LavenderTown_BlockData) ; strip pointer
-	dw ($C703 + 256 + ((ROUTE_10_SOUTH_HEIGHT + 3) * (ROUTE_10_SOUTH_WIDTH + 6))) ; strip destination
-	db 10, LAVENDER_TOWN_WIDTH ; (connection strip length, connected map width)
-	db 0, 0 ; yoffset, xoffset
-	dw ($C807 + LAVENDER_TOWN_WIDTH) ; window
-; 0x957b0
+	connection north, ROUTE_10_NORTH, Route10North, 0, 0, 10, ROUTE_10_SOUTH
+	connection south, LAVENDER_TOWN, LavenderTown, 0, 0, 10, ROUTE_10_SOUTH
 
 	map_header_2 Route23, ROUTE_23, $f, NONE ; 0x957b0
 	map_header_2 SproutTower1F, SPROUT_TOWER_1F, $0, NONE ; 0x957bc
@@ -1673,3 +597,4 @@ ENDM
 	map_header_2 Route30BerrySpeechHouse, ROUTE_30_BERRY_SPEECH_HOUSE, $0, NONE ; 0x9668c
 	map_header_2 MrPokemonsHouse, MR_POKEMONS_HOUSE, $0, NONE ; 0x96698
 	map_header_2 Route31VioletGate, ROUTE_31_VIOLET_GATE, $0, NONE ; 0x966a4
+

@@ -34,7 +34,7 @@ BlackbeltKenji3Script: ; 0x19e0ad
 	iftrue UnknownScript_0x19e0e4
 	checkevent $0299
 	iftrue UnknownScript_0x19e0cd
-	special $0095
+	special Function11485
 	writetext UnknownText_0x19e5e2
 	closetext
 	setevent $0299
@@ -66,7 +66,7 @@ UnknownScript_0x19e0e4: ; 0x19e0e4
 	verbosegiveitem PP_UP, 1
 	iffalse UnknownScript_0x19e118
 	clearevent $026a
-	special $0095
+	special Function11485
 	jump UnknownScript_0x19e127
 ; 0x19e10c
 

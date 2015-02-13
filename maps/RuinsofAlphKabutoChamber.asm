@@ -69,7 +69,7 @@ ReceptionistScript_0x58769: ; 0x58769
 MapRuinsofAlphKabutoChamberSignpost2Script: ; 0x5876c
 	refreshscreen $0
 	writebyte $0
-	special $0029
+	special Functionc360
 	loadmovesprites
 	iftrue UnknownScript_0x58778
 	end
@@ -141,7 +141,7 @@ MapRuinsofAlphKabutoChamberSignpost4Script: ; 0x587db
 	loadfont
 	writetext UnknownText_0x58aa7
 	writebyte $0
-	special $0087
+	special Function8ae68
 	loadmovesprites
 	end
 ; 0x587e6
@@ -152,7 +152,7 @@ MapRuinsofAlphKabutoChamberSignpost5Script: ; 0x587e6
 	loadfont
 	writetext UnknownText_0x58ad9
 	writebyte $0
-	special $0087
+	special Function8ae68
 	loadmovesprites
 	end
 ; 0x587f7

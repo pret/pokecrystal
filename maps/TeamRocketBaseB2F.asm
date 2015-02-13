@@ -106,15 +106,15 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	writetext UnknownText_0x6d4c6
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	disappear $2
 	disappear $3
 	disappear $c
 	disappear $d
 	disappear $e
 	pause 15
-	special $0032
+	special Function8c0ab
 	dotrigger $2
 	clearevent $06d6
 	spriteface $4, $0
@@ -167,11 +167,11 @@ UnknownScript_0x6d091: ; 0x6d091
 	writetext UnknownText_0x6da97
 	closetext
 	loadmovesprites
-	special $002e
-	special $009d
+	special Function8c084
+	special Function1060a2
 	playsound SFX_FULL_HEAL
-	special $001b
-	special $0031
+	special Functionc658
+	special Function8c079
 	loadfont
 	writetext UnknownText_0x6daf7
 	closetext
@@ -292,7 +292,7 @@ VoltorbScript_0x6d101: ; 0x6d101
 	checkevent $06e2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
-	special $003c
+	special PlayMapMusic
 	applymovement $0, MovementData_0x6d28c
 	jump UnknownScript_0x6d184
 ; 0x6d12c
@@ -311,7 +311,7 @@ VoltorbScript_0x6d12c: ; 0x6d12c
 	checkevent $06e2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
-	special $003c
+	special PlayMapMusic
 	applymovement $0, MovementData_0x6d299
 	jump UnknownScript_0x6d184
 ; 0x6d157
@@ -330,7 +330,7 @@ VoltorbScript_0x6d157: ; 0x6d157
 	checkevent $06e2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
-	special $003c
+	special PlayMapMusic
 	applymovement $0, MovementData_0x6d2a4
 	jump UnknownScript_0x6d184
 ; 0x6d182

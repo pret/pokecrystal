@@ -7366,7 +7366,7 @@ Function3ee3b: ; 3ee3b
 .asm_3ee89
 	push hl
 	push bc
-	ld a, $1c
+	ld a, PartyMon1PokerusStatus - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
 	and a
@@ -7630,7 +7630,7 @@ Function3ee3b: ; 3ee3b
 	call TextBox
 	hlcoord 11, 1
 	ld bc, $0004
-	predef Function50b7b
+	predef PrintTempMonStats
 	ld c, $1e
 	call DelayFrames
 	call Functiona80
@@ -7673,7 +7673,7 @@ Function3ee3b: ; 3ee3b
 	cp b
 	jr z, .asm_3f0d1
 	ld [CurPartyMon], a
-	ld a, $0
+	ld a, PartyMon1Species - PartyMon1
 	call GetPartyParamLocation
 	ld b, h
 	ld c, l

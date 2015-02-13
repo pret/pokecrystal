@@ -49,7 +49,7 @@ PokefanMScript_0x198909: ; 0x198909
 	writetext UnknownText_0x199042
 	yesorno
 	iffalse UnknownScript_0x19899a
-	special $004f
+	special Function24b25
 	writetext UnknownText_0x199090
 	yesorno
 	iffalse UnknownScript_0x1989a0
@@ -68,7 +68,7 @@ PokefanMScript_0x198909: ; 0x198909
 UnknownScript_0x19893a: ; 0x19893a
 	writebyte $1
 	writetext UnknownText_0x1991cf
-	special $0083
+	special Function4925b
 	if_equal $0, UnknownScript_0x1989a6
 	jump UnknownScript_0x1989d7
 ; 0x198949
@@ -76,7 +76,7 @@ UnknownScript_0x19893a: ; 0x19893a
 UnknownScript_0x198949: ; 0x198949
 	writebyte $2
 	writetext UnknownText_0x1991cf
-	special $0083
+	special Function4925b
 	if_equal $0, UnknownScript_0x1989a6
 	jump UnknownScript_0x1989d7
 ; 0x198958
@@ -84,7 +84,7 @@ UnknownScript_0x198949: ; 0x198949
 UnknownScript_0x198958: ; 0x198958
 	writebyte $3
 	writetext UnknownText_0x1991cf
-	special $0083
+	special Function4925b
 	if_equal $0, UnknownScript_0x1989a6
 	jump UnknownScript_0x1989d7
 ; 0x198967
@@ -128,7 +128,7 @@ UnknownScript_0x1989a6: ; 0x1989a6
 	takecoins 4000
 	waitbutton
 	playsound SFX_TRANSACTION
-	special $004f
+	special Function24b25
 	writetext UnknownText_0x19918b
 	closetext
 	loadmovesprites

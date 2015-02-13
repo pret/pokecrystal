@@ -23,7 +23,7 @@ YoungsterScript_0x1a1673: ; 0x1a1673
 	loadmovesprites
 	playsound SFX_TACKLE
 	applymovement $7, MovementData_0x1a1802
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x1a169a
 

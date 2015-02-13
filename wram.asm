@@ -4,7 +4,7 @@ flag_array: MACRO
 	ds ((\1) + 7) / 8
 ENDM
 
-box_struct_length EQU 32
+box_struct_length EQU 24 + NUM_MOVES * 2
 box_struct: MACRO
 \1Species::        db
 \1Item::           db
@@ -801,7 +801,7 @@ wc712::
 PlayerUsedMoves:: ; c712
 ; add a move that has been used once by the player
 ; added in order of use
-	ds 4
+	ds NUM_MOVES
 
 wc716:: ds 1
 wc717:: ds 1

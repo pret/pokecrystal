@@ -272,7 +272,7 @@ SuperNerdScript_0x7c161: ; 0x7c161
 UnknownScript_0x7c173: ; 0x7c173
 	checkflag $005a
 	iftrue UnknownScript_0x7c208
-	special $0051
+	special Function24ae8
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse UnknownScript_0x7c1fc
@@ -280,7 +280,7 @@ UnknownScript_0x7c173: ; 0x7c173
 	if_equal $2, UnknownScript_0x7c202
 	writetext UnknownText_0x7c69a
 	keeptextopen
-	special $0061
+	special Function7413
 	if_equal $0, UnknownScript_0x7c1fc
 	if_equal $1, UnknownScript_0x7c1fc
 	setflag $005a
@@ -312,15 +312,15 @@ UnknownScript_0x7c1c1: ; 0x7c1c1
 
 UnknownScript_0x7c1cd: ; 0x7c1cd
 	takemoney $0, 500
-	special $0051
+	special Function24ae8
 	writetext UnknownText_0x7c6b8
 	closetext
 	loadmovesprites
-	special $002e
+	special Function8c084
 	playmusic MUSIC_HEAL
 	pause 60
-	special $0031
-	special $003d
+	special Function8c079
+	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c6d8
 	closetext
@@ -364,7 +364,7 @@ SuperNerdScript_0x7c20e: ; 0x7c20e
 UnknownScript_0x7c220: ; 0x7c220
 	checkflag $005a
 	iftrue UnknownScript_0x7c2b5
-	special $0051
+	special Function24ae8
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse UnknownScript_0x7c2a9
@@ -372,7 +372,7 @@ UnknownScript_0x7c220: ; 0x7c220
 	if_equal $2, UnknownScript_0x7c2af
 	writetext UnknownText_0x7c7f1
 	keeptextopen
-	special $0062
+	special Function7418
 	if_equal $0, UnknownScript_0x7c2a9
 	if_equal $1, UnknownScript_0x7c2a9
 	setflag $005a
@@ -404,15 +404,15 @@ UnknownScript_0x7c26e: ; 0x7c26e
 
 UnknownScript_0x7c27a: ; 0x7c27a
 	takemoney $0, 300
-	special $0051
+	special Function24ae8
 	writetext UnknownText_0x7c80e
 	closetext
 	loadmovesprites
-	special $002e
+	special Function8c084
 	playmusic MUSIC_HEAL
 	pause 60
-	special $0031
-	special $003d
+	special Function8c079
+	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c82a
 	closetext
@@ -446,7 +446,7 @@ UnknownScript_0x7c2b5: ; 0x7c2b5
 
 UnknownScript_0x7c2bb: ; 0x7c2bb
 	writetext UnknownText_0x7c8bf
-	special $0064
+	special Functionc472
 	closetext
 	loadmovesprites
 	end
@@ -454,7 +454,7 @@ UnknownScript_0x7c2bb: ; 0x7c2bb
 
 UnknownScript_0x7c2c4: ; 0x7c2c4
 	writetext UnknownText_0x7c8dc
-	special $0064
+	special Functionc472
 	closetext
 	loadmovesprites
 	end
@@ -462,7 +462,7 @@ UnknownScript_0x7c2c4: ; 0x7c2c4
 
 UnknownScript_0x7c2cd: ; 0x7c2cd
 	writetext UnknownText_0x7c8ee
-	special $0064
+	special Functionc472
 	closetext
 	loadmovesprites
 	end

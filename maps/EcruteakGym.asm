@@ -92,7 +92,7 @@ UnknownScript_0x99dc6: ; 0x99dc6
 	follow $0, $8
 	applymovement $0, MovementData_0x99e5f
 	stopfollow
-	special $002e
+	special Function8c084
 	playsound SFX_ENTER_DOOR
 	waitbutton
 	warp GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, $6, $1b

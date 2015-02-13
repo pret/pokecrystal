@@ -84,7 +84,7 @@ UnknownScript_0x6a1ee: ; 0x6a1ee
 	loadmovesprites
 	scall UnknownScript_0x6a261
 	playsound SFX_ENTER_DOOR
-	special $002e
+	special Function8c084
 	waitbutton
 	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
@@ -106,11 +106,11 @@ OfficerScript_0x6a204: ; 0x6a204
 	iffalse UnknownScript_0x6a2a3
 	checkcode $1
 	if_greater_than $1, UnknownScript_0x6a271
-	special $0016
+	special Function13a12
 	clearevent $0308
 UnknownScript_0x6a234: ; 0x6a234
 	setflag $0011
-	special $003c
+	special PlayMapMusic
 	writetext UnknownText_0x6a39d
 	keeptextopen
 	writetext UnknownText_0x6a3c7
@@ -119,12 +119,12 @@ UnknownScript_0x6a234: ; 0x6a234
 	writetext UnknownText_0x6a3e2
 	closetext
 	loadmovesprites
-	special $0018
+	special Function135db
 	scall UnknownScript_0x6a261
 	playsound SFX_ENTER_DOOR
-	special $002e
+	special Function8c084
 	waitbutton
-	special $0047
+	special Function139a8
 	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 ; 0x6a261
@@ -148,12 +148,12 @@ UnknownScript_0x6a271: ; 0x6a271
 	if_equal $0, UnknownScript_0x6a2b5
 
 UnknownScript_0x6a27d: ; 6a27d
-	special $005a
+	special Function71ac
 	if_equal $1, UnknownScript_0x6a2bb
 	writetext UnknownText_0x6a4c6
 	yesorno
 	iffalse UnknownScript_0x6a2a9
-	special $0016
+	special Function13a12
 	iftrue UnknownScript_0x6a2af
 	setevent $0308
 	writetext UnknownText_0x6a537

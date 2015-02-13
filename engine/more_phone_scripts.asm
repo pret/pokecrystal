@@ -1,5 +1,5 @@
 UnknownScript_0xa0000:
-	special $005d
+	special RandomPhoneMon
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xa0013
 	farscall UnknownScript_0xbe51e
@@ -9,7 +9,7 @@ UnknownScript_0xa0013:
 	farjump UnknownScript_0xa002e
 
 UnknownScript_0xa0017:
-	special $005d
+	special RandomPhoneMon
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xa002a
 	farscall UnknownScript_0xbe5d0
@@ -27,7 +27,7 @@ UnknownScript_0xa0036:
 	farjump UnknownScript_0xa0055
 
 UnknownScript_0xa003e:
-	special $005c
+	special Function2a51f
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xa0051
 	farscall UnknownScript_0xa017a
@@ -37,7 +37,7 @@ UnknownScript_0xa0051:
 	farjump UnknownScript_0xa006c
 
 UnknownScript_0xa0055:
-	special $005c
+	special Function2a51f
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xa0068
 	farscall UnknownScript_0xa0226
@@ -851,7 +851,7 @@ UnknownScript_0xa059c:
 	farjump UnknownScript_0xa053a
 
 UnknownScript_0xa05a0:
-	special $005b
+	special Function2a4ab
 	end
 
 UnknownScript_0xa05a4:

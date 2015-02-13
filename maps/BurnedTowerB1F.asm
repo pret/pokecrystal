@@ -78,10 +78,10 @@ UnknownScript_0x18616b: ; 0x18616b
 	spriteface $0, $0
 	disappear $5
 	waitbutton
-	special $003d
+	special RestartMapMusic
 	dotrigger $1
 	setevent EVENT_RELEASED_THE_BEASTS
-	special $0069
+	special InitRoamMons
 	domaptrigger GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM, $1
 	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $1
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

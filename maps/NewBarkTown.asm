@@ -48,7 +48,7 @@ UnknownScript_0x1a8016: ; 0x1a8016
 	writetext UnknownText_0x1a815e
 	closetext
 	loadmovesprites
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x1a8041
 
@@ -73,7 +73,7 @@ UnknownScript_0x1a8041: ; 0x1a8041
 	writetext UnknownText_0x1a815e
 	closetext
 	loadmovesprites
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x1a806f
 

@@ -41,7 +41,7 @@ UnknownScript_0x19eea0: ; 0x19eea0
 	disappear $2
 	clearevent $076f
 	dotrigger $0
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x19eee0
 
@@ -68,7 +68,7 @@ UnknownScript_0x19eee0: ; 0x19eee0
 	disappear $2
 	clearevent $076f
 	dotrigger $0
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x19ef20
 

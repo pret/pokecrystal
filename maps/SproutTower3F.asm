@@ -21,7 +21,7 @@ UnknownScript_0x184946: ; 0x184946
 UnknownScript_0x184947: ; 0x184947
 	spriteface $0, $1
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
 	earthquake 79
@@ -50,13 +50,13 @@ UnknownScript_0x184947: ; 0x184947
 	pause 15
 	loadmovesprites
 	playsound SFX_WARP_TO
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	disappear $8
 	waitbutton
-	special $0032
+	special Function8c0ab
 	dotrigger $1
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x1849a6
 

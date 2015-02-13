@@ -28,9 +28,9 @@ SuperNerdScript_0x71e2e: ; 0x71e2e
 	writetext UnknownText_0x71f22
 	keeptextopen
 	writebyte SUICUNE
-	special $0097
+	special SpecialMonCheck
 	iffalse UnknownScript_0x71e46
-	special $0096
+	special SpecialBeastsCheck
 	iftrue UnknownScript_0x71e48
 	writetext UnknownText_0x7201a
 	closetext

@@ -14,7 +14,7 @@ FishingGuruScript_0x9e0e0: ; 0x9e0e0
 	iffalse UnknownScript_0x9e0f3
 	writetext UnknownText_0x9e142
 	closetext
-	special $0068
+	special Function16dc7
 	closetext
 	loadmovesprites
 	end

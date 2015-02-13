@@ -63,7 +63,7 @@ LanceScript_0x6dffc: ; 0x6dffc
 UnknownScript_0x6e019: ; 0x6e019
 	spriteface $0, $2
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	appear $a
 	applymovement $a, MovementData_0x6e164
 	spriteface $0, $2
@@ -77,7 +77,7 @@ UnknownScript_0x6e019: ; 0x6e019
 	applymovement $a, MovementData_0x6e16d
 	disappear $a
 	dotrigger $2
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x6e048
 

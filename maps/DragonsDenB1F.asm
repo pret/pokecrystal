@@ -77,9 +77,9 @@ UnknownScript_0x18c8f4: ; 0x18c8f4
 	loadmovesprites
 UnknownScript_0x18c8f9: ; 0x18c8f9
 	applymovement $3, MovementData_0x18c9b3
-	special $006a
+	special Functionc48f
 	pause 30
-	special $003d
+	special RestartMapMusic
 	disappear $3
 	dotrigger $0
 	end
@@ -236,7 +236,7 @@ SilverScript_0x18c97e: ; 0x18c97e
 	closetext
 	loadmovesprites
 	setevent $0000
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x18c995
 
@@ -244,7 +244,7 @@ UnknownScript_0x18c995: ; 0x18c995
 	writetext UnknownText_0x18cd2d
 	closetext
 	loadmovesprites
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x18c99e
 

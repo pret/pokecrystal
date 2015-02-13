@@ -77,7 +77,7 @@ UnknownScript_0x19ac28: ; 0x19ac28
 	applymovement $3, MovementData_0x19acaa
 	applymovement $4, MovementData_0x19acc1
 	dotrigger $1
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x19ac38
 
@@ -113,7 +113,7 @@ UnknownScript_0x19ac72: ; 0x19ac72
 	applymovement $4, MovementData_0x19accd
 	applymovement $3, MovementData_0x19acb5
 	dotrigger $1
-	special $003d
+	special RestartMapMusic
 	end
 ; 0x19ac82
 

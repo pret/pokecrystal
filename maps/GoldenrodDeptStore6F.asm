@@ -10,7 +10,7 @@ MapGoldenrodDeptStore6FSignpost5Script: ; 0x563f5
 	loadfont
 	writetext UnknownText_0x564cb
 UnknownScript_0x563f9: ; 0x563f9
-	special $0051
+	special Function24ae8
 	loadmenudata MenuDataHeader_0x56478
 	interpretmenu2
 	writebackup

@@ -36,7 +36,7 @@ UnknownScript_0x198018: ; 0x198018
 	moveperson $b, $b, $b
 	spriteface $0, $3
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x198134
@@ -47,7 +47,7 @@ UnknownScript_0x198018: ; 0x198018
 UnknownScript_0x198034: ; 0x198034
 	spriteface $0, $3
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x19813c

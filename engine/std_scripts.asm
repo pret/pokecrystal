@@ -122,16 +122,16 @@ PokeCenterNurseScript: ; bc09c
 ; Go ahead and heal
 	farwritetext UnknownText_0x1b01bd
 	pause 20
-	special $009d
+	special Function1060a2
 ; Turn to the machine
 	spriteface $fe, $2
 	pause 10
-	special $001b
+	special Functionc658
 	playmusic MUSIC_NONE
 	writebyte $0
-	special $003e
+	special Function12324
 	pause 30
-	special $003d
+	special RestartMapMusic
 	spriteface $fe, $0
 	pause 10
 ; Has Elm already phoned you about Pokerus?
@@ -141,7 +141,7 @@ PokeCenterNurseScript: ; bc09c
 	checkflag $000d
 	iftrue .done
 ; Check for Pokerus
-	special $004e ; SPECIAL_CHECKPOKERUS
+	special SpecialCheckPokerus ; SPECIAL_CHECKPOKERUS
 	iftrue .pokerus
 .done
 ; Thank you for waiting. ...
@@ -212,7 +212,7 @@ UnknownScript_0xbc17a: ; 0xbc17a
 	loadfont
 	farwritetext UnknownText_0x1b048d
 	closetext
-	special $0026
+	special Functionc2c0
 	loadmovesprites
 	end
 ; 0xbc185
@@ -236,7 +236,7 @@ UnknownScript_0xbc191: ; 0xbc191
 UnknownScript_0xbc195: ; 0xbc195
 	loadfont
 	writebyte $0
-	special $0028
+	special Functionc355
 	loadmovesprites
 	end
 ; 0xbc19d
@@ -244,7 +244,7 @@ UnknownScript_0xbc195: ; 0xbc195
 UnknownScript_0xbc19d: ; 0xbc19d
 	loadfont
 	writebyte $4
-	special $0028
+	special Functionc355
 	loadmovesprites
 	end
 ; 0xbc1a5
@@ -255,7 +255,7 @@ UnknownScript_0xbc1a5: ; 0xbc1a5
 
 UnknownScript_0xbc1a9: ; 0xbc1a9
 	loadfont
-	special $001c
+	special Function1559a
 	loadmovesprites
 	end
 ; 0xbc1af
@@ -371,7 +371,7 @@ UnknownScript_0xbc242: ; 0xbc242
 ; 0xbc25c
 
 UnknownScript_0xbc25c: ; 0xbc25c
-	special $0034
+	special WhiteBGMap
 	scall UnknownScript_0xbc380
 	setevent $0747
 	clearevent $0748
@@ -389,7 +389,7 @@ UnknownScript_0xbc274: ; bc274
 	loadfont
 	farwritetext UnknownText_0x1b05bf
 	closetext
-	special $0014
+	special Functionc34a
 	RAM2MEM $0
 	if_equal $1, UnknownScript_0xbc31e
 	if_equal $2, UnknownScript_0xbc332
@@ -415,9 +415,9 @@ UnknownScript_0xbc2b6:
 	iffalse UnknownScript_0xbc2c4
 	farwritetext UnknownText_0x1b06d9
 	closetext
-	special $0017
+	special Function13a31
 UnknownScript_0xbc2c4:
-	special $0015
+	special Function4d9e5
 	if_equal $0, UnknownScript_0xbc2d4
 	if_equal $2, UnknownScript_0xbc2d4
 	farwritetext UnknownText_0x1b070d
@@ -447,7 +447,7 @@ UnknownScript_0xbc2d4:
 	setevent $0728
 	setevent $0729
 	setflag $0051
-	special $003c
+	special PlayMapMusic
 	end
 ; 0xbc31e
 
@@ -692,7 +692,7 @@ UnknownScript_0xbc3db: ; 0xbc3db
 ; 0xbc574
 
 UnknownScript_0xbc574: ; 0xbc574
-	special $005d
+	special RandomPhoneMon
 	checkcode $17
 	if_equal $5, UnknownScript_0xbc5c9
 	if_equal $7, UnknownScript_0xbc5ce
@@ -816,7 +816,7 @@ UnknownScript_0xbc628: ; 0xbc628
 ; 0xbc62d
 
 UnknownScript_0xbc62d: ; 0xbc62d
-	special $005d
+	special RandomPhoneMon
 	checkcode $17
 	if_equal $5, UnknownScript_0xbc682
 	if_equal $7, UnknownScript_0xbc687
@@ -2257,7 +2257,7 @@ UnknownScript_0xbcde0: ; 0xbcde0
 	farwritetext UnknownText_0x1b07e3
 
 UnknownScript_0xbcde4: ; 0xbcde4
-	special $0050
+	special Function24b4e
 	loadmenudata MenuDataHeader_0xbce54
 	interpretmenu2
 	writebackup
@@ -2336,7 +2336,7 @@ MenuData2_0xbce5c: ; 0xbce5c
 UnknownScript_0xbce7f: ; 0xbce7f
 	faceplayer
 	loadfont
-	special $0059
+	special Function718d
 	if_less_than 50, UnknownScript_0xbce9a
 	if_less_than 150, UnknownScript_0xbce93
 	farwritetext UnknownText_0x1b092a

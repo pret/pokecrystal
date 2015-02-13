@@ -35,7 +35,7 @@ UnknownScript_0x189553: ; 0x189553
 	yesorno
 	iffalse UnknownScript_0x1896aa
 	scall UnknownScript_0x1896a5
-	special $004d
+	special Function73f7
 	iffalse UnknownScript_0x1896aa
 	if_not_equal LICKITUNG, UnknownScript_0x1896c6
 	scall UnknownScript_0x1896b0
@@ -50,7 +50,7 @@ UnknownScript_0x189592: ; 0x189592
 	yesorno
 	iffalse UnknownScript_0x1896aa
 	scall UnknownScript_0x1896a5
-	special $004d
+	special Function73f7
 	iffalse UnknownScript_0x1896aa
 	if_not_equal ODDISH, UnknownScript_0x1896c6
 	scall UnknownScript_0x1896b0
@@ -65,7 +65,7 @@ UnknownScript_0x1895b3: ; 0x1895b3
 	yesorno
 	iffalse UnknownScript_0x1896aa
 	scall UnknownScript_0x1896a5
-	special $004d
+	special Function73f7
 	iffalse UnknownScript_0x1896aa
 	if_not_equal STARYU, UnknownScript_0x1896c6
 	scall UnknownScript_0x1896b0
@@ -82,7 +82,7 @@ UnknownScript_0x1895d4: ; 0x1895d4
 	yesorno
 	iffalse UnknownScript_0x1896aa
 	scall UnknownScript_0x1896a5
-	special $004d
+	special Function73f7
 	iffalse UnknownScript_0x1896aa
 	if_not_equal GROWLITHE, UnknownScript_0x1896c6
 	scall UnknownScript_0x1896b0
@@ -97,7 +97,7 @@ UnknownScript_0x1895f9: ; 0x1895f9
 	yesorno
 	iffalse UnknownScript_0x1896aa
 	scall UnknownScript_0x1896a5
-	special $004d
+	special Function73f7
 	iffalse UnknownScript_0x1896aa
 	if_not_equal VULPIX, UnknownScript_0x1896c6
 	scall UnknownScript_0x1896b0
@@ -112,7 +112,7 @@ UnknownScript_0x18961a: ; 0x18961a
 	yesorno
 	iffalse UnknownScript_0x1896aa
 	scall UnknownScript_0x1896a5
-	special $004d
+	special Function73f7
 	iffalse UnknownScript_0x1896aa
 	if_not_equal PICHU, UnknownScript_0x1896c6
 	scall UnknownScript_0x1896b0

@@ -20,7 +20,7 @@ UnknownScript_0x9b38b: ; 0x9b38b
 	iftrue UnknownScript_0x9b3f7
 	writetext UnknownText_0x9b420
 	keeptextopen
-	special $0067
+	special SpecialTrainerHouse
 	iffalse UnknownScript_0x9b3a6
 	trainertotext CAL, CAL2, $0
 	jump UnknownScript_0x9b3aa
@@ -43,7 +43,7 @@ UnknownScript_0x9b3aa: ; 0x9b3aa
 	writetext UnknownText_0x9b587
 	closetext
 	loadmovesprites
-	special $0067
+	special SpecialTrainerHouse
 	iffalse UnknownScript_0x9b3dc
 	winlosstext UnknownText_0x9b578, $0000
 	setlasttalked $3

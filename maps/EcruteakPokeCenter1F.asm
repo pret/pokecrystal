@@ -62,7 +62,7 @@ NurseScript_0x98eb0: ; 0x98eb0
 ; 0x98eb3
 
 PokefanMScript_0x98eb3: ; 0x98eb3
-	special $00a0
+	special Function10630f
 	iftrue UnknownScript_0x98ebc
 	jumptextfaceplayer UnknownText_0x99155
 ; 0x98ebc

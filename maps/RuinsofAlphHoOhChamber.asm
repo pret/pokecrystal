@@ -15,7 +15,7 @@ RuinsofAlphHoOhChamber_MapScriptHeader: ; 0x58560
 ; 0x5856d
 
 UnknownScript_0x5856d: ; 0x5856d
-	special $008d
+	special SpecialHoOhChamber
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue UnknownScript_0x58577
 	end
@@ -63,7 +63,7 @@ UnknownScript_0x58596: ; 0x58596
 MapRuinsofAlphHoOhChamberSignpost2Script: ; 0x585ae
 	refreshscreen $0
 	writebyte $3
-	special $0029
+	special Functionc360
 	loadmovesprites
 	iftrue UnknownScript_0x585ba
 	end
@@ -101,7 +101,7 @@ MapRuinsofAlphHoOhChamberSignpost4Script: ; 0x585ed
 	loadfont
 	writetext UnknownText_0x58612
 	writebyte $3
-	special $0087
+	special Function8ae68
 	loadmovesprites
 	end
 ; 0x585f8
@@ -112,7 +112,7 @@ MapRuinsofAlphHoOhChamberSignpost5Script: ; 0x585f8
 	loadfont
 	writetext UnknownText_0x58644
 	writebyte $3
-	special $0087
+	special Function8ae68
 	loadmovesprites
 	end
 ; 0x58609

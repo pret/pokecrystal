@@ -9,7 +9,7 @@ PokeSeersHouse_MapScriptHeader: ; 0x9e36c
 SeerScript: ; 0x9e36e
 	faceplayer
 	loadfont
-	special SPECIAL_POKESEER
+	special SpecialPokeSeer
 	closetext
 	loadmovesprites
 	end

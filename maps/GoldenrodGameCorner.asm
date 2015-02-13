@@ -54,7 +54,7 @@ ReceptionistScript_0x56c28: ; 0x56c28
 	iffalse UnknownScript_0x56cc3
 	writetext UnknownText_0x56e8b
 UnknownScript_0x56c36: ; 056c36
-	special $004f
+	special Function24b25
 	loadmenudata MenuDataHeader_0x56cc9
 	interpretmenu2
 	writebackup
@@ -170,7 +170,7 @@ ReceptionistScript_0x56d01: ; 0x56d01
 	iffalse UnknownScript_0x56cc3
 UnknownScript_0x56d0c: ; 0x56d0c
 	writetext UnknownText_0x56e8b
-	special $004f
+	special Function24b25
 	loadmenudata MenuDataHeader_0x56db0
 	interpretmenu2
 	writebackup
@@ -193,7 +193,7 @@ UnknownScript_0x56d26: ; 0x56d26
 	writetext UnknownText_0x56ebd
 	closetext
 	writebyte ABRA
-	special $0039
+	special Functionc230
 	givepoke ABRA, 5, 0, 0
 	takecoins 100
 	jump UnknownScript_0x56d0c
@@ -212,7 +212,7 @@ UnknownScript_0x56d54: ; 0x56d54
 	writetext UnknownText_0x56ebd
 	closetext
 	writebyte CUBONE
-	special $0039
+	special Functionc230
 	givepoke CUBONE, 15, 0, 0
 	takecoins 800
 	jump UnknownScript_0x56d0c
@@ -231,7 +231,7 @@ UnknownScript_0x56d82: ; 0x56d82
 	writetext UnknownText_0x56ebd
 	closetext
 	writebyte WOBBUFFET
-	special $0039
+	special Functionc230
 	givepoke WOBBUFFET, 15, 0, 0
 	takecoins 1500
 	jump UnknownScript_0x56d0c
@@ -323,7 +323,7 @@ MapGoldenrodGameCornerSignpost17Script: ; 0x56e31
 	if_equal $0, MapGoldenrodGameCornerSignpost7Script
 	refreshscreen $0
 	writebyte $0
-	special $002a
+	special Functionc373
 	loadmovesprites
 	end
 ; 0x56e40
@@ -331,14 +331,14 @@ MapGoldenrodGameCornerSignpost17Script: ; 0x56e31
 MapGoldenrodGameCornerSignpost7Script: ; 0x56e40
 	refreshscreen $0
 	writebyte $1
-	special $002a
+	special Functionc373
 	loadmovesprites
 	end
 ; 0x56e49
 
 MapGoldenrodGameCornerSignpost29Script: ; 0x56e49
 	refreshscreen $0
-	special $002b
+	special Functionc380
 	loadmovesprites
 	end
 ; 0x56e50

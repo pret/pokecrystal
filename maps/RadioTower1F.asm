@@ -29,11 +29,11 @@ GentlemanScript_0x5cd3d: ; 0x5cd3d
 	loadfont
 	writetext UnknownText_0x5ceba
 	keeptextopen
-	special $0053
+	special Functionc434
 	iffalse UnknownScript_0x5cd4c
-	special $0054
+	special Functionc422
 UnknownScript_0x5cd4c: ; 0x5cd4c
-	special $0055
+	special Function4d9d3
 	checkflag $004e
 	iftrue UnknownScript_0x5cd84
 	writetext UnknownText_0x5cf3a
@@ -48,7 +48,7 @@ UnknownScript_0x5cd4c: ; 0x5cd4c
 	playsound SFX_DEX_FANFARE_20_49
 	waitbutton
 	keeptextopen
-	special $0052
+	special Function4d87a
 	loadmovesprites
 	applymovement $6, MovementData_0x5ce74
 	loadfont

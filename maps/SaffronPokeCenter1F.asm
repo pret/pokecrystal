@@ -11,7 +11,7 @@ NurseScript_0x18a47d: ; 0x18a47d
 ; 0x18a480
 
 TeacherScript_0x18a480: ; 0x18a480
-	special $00a0
+	special Function10630f
 	iftrue UnknownScript_0x18a489
 	jumptextfaceplayer UnknownText_0x18a4a3
 ; 0x18a489

@@ -27,7 +27,7 @@ MapCeladonDeptStore6FSignpost5Script: ; 0x71180
 	loadfont
 	writetext UnknownText_0x71250
 UnknownScript_0x71184: ; 0x71184
-	special $0051
+	special Function24ae8
 	loadmenudata MenuDataHeader_0x71203
 	interpretmenu2
 	writebackup

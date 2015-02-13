@@ -51,7 +51,7 @@ UnknownScript_0x78039: ; 0x78039
 GrampsScript_0x7803d: ; 0x7803d
 	faceplayer
 	loadfont
-	special $0020
+	special Function16936
 	closetext
 	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a
@@ -74,14 +74,14 @@ UnknownScript_0x7805b: ; 0x7805b
 
 DaycareMon1Script_0x78065: ; 0x78065
 	loadfont
-	special $0045
+	special Function17421
 	loadmovesprites
 	end
 ; 0x7806b
 
 DaycareMon2Script_0x7806b: ; 0x7806b
 	loadfont
-	special $0046
+	special Function17440
 	loadmovesprites
 	end
 ; 0x78071

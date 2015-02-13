@@ -82,7 +82,7 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	closetext
 	loadmovesprites
 	stopfollow
-	special $003d
+	special RestartMapMusic
 	spriteface $0, $1
 	applymovement $2, MovementData_0x19c1cb
 	playsound SFX_ENTER_DOOR
@@ -113,7 +113,7 @@ UnknownScript_0x19c0aa: ; 0x19c0aa
 UnknownScript_0x19c0ae: ; 0x19c0ae
 	spriteface $0, $3
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	appear $3
 	applymovement $3, MovementData_0x19c1ce
@@ -184,7 +184,7 @@ UnknownScript_0x19c12f: ; 0x19c12f
 	applymovement $3, MovementData_0x19c1da
 	disappear $3
 	dotrigger $0
-	special $001b
+	special Functionc658
 	playmapmusic
 	end
 ; 0x19c146

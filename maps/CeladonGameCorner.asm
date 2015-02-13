@@ -119,7 +119,7 @@ MapCeladonGameCornerSignpost35Script: ; 0x721a1
 	if_equal $0, MapCeladonGameCornerSignpost16Script
 	refreshscreen $0
 	writebyte $0
-	special $002a
+	special Functionc373
 	loadmovesprites
 	end
 ; 0x721b0
@@ -127,14 +127,14 @@ MapCeladonGameCornerSignpost35Script: ; 0x721a1
 MapCeladonGameCornerSignpost16Script: ; 0x721b0
 	refreshscreen $0
 	writebyte $1
-	special $002a
+	special Functionc373
 	loadmovesprites
 	end
 ; 0x721b9
 
 MapCeladonGameCornerSignpost11Script: ; 0x721b9
 	refreshscreen $0
-	special $002b
+	special Functionc380
 	loadmovesprites
 	end
 ; 0x721c0
@@ -147,7 +147,7 @@ MapCeladonGameCornerSignpost9Script: ; 0x721c3
 	loadfont
 	writetext UnknownText_0x72567
 	closetext
-	special $002b
+	special Functionc380
 	loadmovesprites
 	end
 ; 0x721cd

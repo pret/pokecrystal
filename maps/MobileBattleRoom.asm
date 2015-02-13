@@ -27,9 +27,9 @@ UnknownScript_0x1935d3: ; 0x1935d3
 
 MapMobileBattleRoomSignpost0Script: ; 0x1935da
 	refreshscreen $0
-	special $009f
+	special Function1037c2
 	if_equal $1, UnknownScript_0x193619
-	special $009b
+	special Function1037eb
 	iffalse UnknownScript_0x193624
 	if_equal $1, UnknownScript_0x1935f4
 	if_equal $2, UnknownScript_0x19360d
@@ -40,24 +40,24 @@ UnknownScript_0x1935f4: ; 0x1935f4
 	writetext UnknownText_0x193644
 	pause 20
 	loadmovesprites
-	special $002e
+	special Function8c084
 	playmusic MUSIC_HEAL
-	special $00a4
+	special Function1047eb
 	pause 60
-	special $0031
-	special $003d
+	special Function8c079
+	special RestartMapMusic
 	refreshscreen $0
 UnknownScript_0x19360d: ; 0x19360d
-	special $009d
-	special $001b
-	special $009c
+	special Function1060a2
+	special Functionc658
+	special Function10383c
 	iftrue UnknownScript_0x193624
 UnknownScript_0x193619: ; 0x193619
-	special $00a2
+	special Function10387b
 	writetext UnknownText_0x193626
 	closetext
 	reloadmappart
-	special $0081
+	special Function101225
 UnknownScript_0x193624: ; 0x193624
 	loadmovesprites
 	end

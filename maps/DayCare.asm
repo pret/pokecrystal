@@ -34,7 +34,7 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	loadmovesprites
 	checkcode $1
 	if_equal $6, UnknownScript_0x62fb6
-	special $007d
+	special Function117656
 	loadfont
 	writetext UnknownText_0x631ae
 	playsound SFX_KEY_ITEM
@@ -55,7 +55,7 @@ UnknownScript_0x62fb6: ; 0x62fb6
 ; 0x62fbd
 
 UnknownScript_0x62fbd: ; 0x62fbd
-	special $001e
+	special Function166d6
 	closetext
 	loadmovesprites
 	end
@@ -66,7 +66,7 @@ GrannyScript_0x62fc3: ; 0x62fc3
 	loadfont
 	checkflag $0005
 	iftrue UnknownScript_0x62fd1
-	special $001f
+	special Function1672a
 	closetext
 	loadmovesprites
 	end

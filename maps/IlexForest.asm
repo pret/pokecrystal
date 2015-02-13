@@ -523,18 +523,18 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	loadmovesprites
 	pause 20
 	showemote $0, $0, 20
-	special $006a
+	special Functionc48f
 	applymovement $0, MovementData_0x6ef58
 	pause 30
 	spriteface $0, $0
 	pause 20
 	clearflag $0064
-	special $008f
+	special Function4989a
 	loadpokedata CELEBI, 30
 	startbattle
 	returnafterbattle
 	pause 20
-	special $0090
+	special Function49bf9
 	iffalse UnknownScript_0x6ee8e
 	appear $7
 	applymovement $7, MovementData_0x6ef4e

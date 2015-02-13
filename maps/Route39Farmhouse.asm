@@ -22,7 +22,7 @@ UnknownScript_0x9cec5: ; 0x9cec5
 	checkitem MOOMOO_MILK
 	iftrue UnknownScript_0x9cf08
 	writetext UnknownText_0x9cfe1
-	special $0051
+	special Function24ae8
 	yesorno
 	iffalse UnknownScript_0x9cf02
 	checkmoney $0, 500
@@ -30,7 +30,7 @@ UnknownScript_0x9cec5: ; 0x9cec5
 	giveitem MOOMOO_MILK, $1
 	iffalse UnknownScript_0x9cefc
 	takemoney $0, 500
-	special $0051
+	special Function24ae8
 	waitbutton
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x9d05d

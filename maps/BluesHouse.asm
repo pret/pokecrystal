@@ -25,21 +25,21 @@ UnknownScript_0x19b0de: ; 0x19b0de
 	iffalse UnknownScript_0x19b124
 	writetext UnknownText_0x19b244
 	closetext
-	special $0063
+	special Function741d
 	if_equal $0, UnknownScript_0x19b124
 	if_equal $1, UnknownScript_0x19b12a
 	setflag $005c
 	writetext UnknownText_0x19b266
 	closetext
 	loadmovesprites
-	special $002e
+	special Function8c084
 	playmusic MUSIC_HEAL
 	pause 60
-	special $0031
-	special $003d
+	special Function8c079
+	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x19b296
-	special $0064
+	special Functionc472
 	keeptextopen
 	writetext UnknownText_0x19b2aa
 	closetext

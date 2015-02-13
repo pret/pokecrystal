@@ -15,7 +15,7 @@ RuinsofAlphOmanyteChamber_MapScriptHeader: ; 0x58bdc
 ; 0x58be9
 
 UnknownScript_0x58be9: ; 0x58be9
-	special $0084
+	special Function8adef
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58bf3
 	end
@@ -63,7 +63,7 @@ UnknownScript_0x58c12: ; 0x58c12
 MapRuinsofAlphOmanyteChamberSignpost2Script: ; 0x58c2a
 	refreshscreen $0
 	writebyte $1
-	special $0029
+	special Functionc360
 	loadmovesprites
 	iftrue UnknownScript_0x58c36
 	end
@@ -101,7 +101,7 @@ MapRuinsofAlphOmanyteChamberSignpost4Script: ; 0x58c69
 	loadfont
 	writetext UnknownText_0x58c8e
 	writebyte $2
-	special $0087
+	special Function8ae68
 	loadmovesprites
 	end
 ; 0x58c74
@@ -112,7 +112,7 @@ MapRuinsofAlphOmanyteChamberSignpost5Script: ; 0x58c74
 	loadfont
 	writetext UnknownText_0x58cc0
 	writebyte $2
-	special $0087
+	special Function8ae68
 	loadmovesprites
 	end
 ; 0x58c85

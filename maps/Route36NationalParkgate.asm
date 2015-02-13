@@ -75,14 +75,14 @@ UnknownScript_0x6ab47: ; 0x6ab47
 	writetext UnknownText_0x6b2c5
 	closetext
 	loadmovesprites
-	special $0030
-	special $0033
+	special Function8c0b6
+	special Functiond91
 	scall UnknownScript_0x6ab8c
 	disappear $2
 	appear $d
 	applymovement $0, MovementData_0x6add1
 	pause 15
-	special $0032
+	special Function8c0ab
 	jumpstd $0017
 ; 0x6ab76
 
@@ -92,7 +92,7 @@ UnknownScript_0x6ab76: ; 0x6ab76
 	loadmovesprites
 	spriteface $0, $2
 	playsound SFX_EXIT_BUILDING
-	special $002e
+	special Function8c084
 	waitbutton
 	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
@@ -139,7 +139,7 @@ UnknownScript_0x6abd4: ; 0x6abd4
 	iftrue UnknownScript_0x6abdc
 	appear $c
 UnknownScript_0x6abdc: ; 0x6abdc
-	special $0037
+	special Function1ad2
 	end
 ; 0x6abe0
 
@@ -159,11 +159,11 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	iffalse UnknownScript_0x6ac73
 	checkcode $1
 	if_greater_than $1, UnknownScript_0x6ac41
-	special $0016
+	special Function13a12
 	clearevent $0308
 UnknownScript_0x6ac10: ; 0x6ac10
 	setflag $0011
-	special $003c
+	special PlayMapMusic
 	writetext UnknownText_0x6ae87
 	keeptextopen
 	waitbutton
@@ -174,12 +174,12 @@ UnknownScript_0x6ac10: ; 0x6ac10
 	closetext
 	loadmovesprites
 	setflag $0011
-	special $0018
+	special Function135db
 	spriteface $0, $2
 	playsound SFX_EXIT_BUILDING
-	special $002e
+	special Function8c084
 	waitbutton
-	special $0047
+	special Function139a8
 	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 ; 0x6ac41
@@ -190,12 +190,12 @@ UnknownScript_0x6ac41: ; 0x6ac41
 	checkcode $10
 	if_equal $0, UnknownScript_0x6ac85
 UnknownScript_0x6ac4d: ; 0x6ac4d
-	special $005a
+	special Function71ac
 	if_equal $1, UnknownScript_0x6ac8b
 	writetext UnknownText_0x6afb0
 	yesorno
 	iffalse UnknownScript_0x6ac79
-	special $0016
+	special Function13a12
 	iftrue UnknownScript_0x6ac7f
 	setevent $0308
 	writetext UnknownText_0x6b021

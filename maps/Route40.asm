@@ -141,7 +141,7 @@ LassScript_0x1a61c4: ; 0x1a61c4
 ; 0x1a61c7
 
 PokefanMScript_0x1a61c7: ; 0x1a61c7
-	special $00a0
+	special Function10630f
 	iftrue UnknownScript_0x1a61d0
 	jumptextfaceplayer UnknownText_0x1a646a
 ; 0x1a61d0

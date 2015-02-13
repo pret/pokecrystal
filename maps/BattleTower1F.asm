@@ -12,10 +12,10 @@ BattleTower1F_MapScriptHeader: ; 0x9e393
 
 UnknownScript_0x9e39d: ; 0x9e39d
 	writebyte $9
-	special $0086
+	special Function170687
 	iffalse UnknownScript_0x9e3d1
 	writebyte $2
-	special $0086
+	special Function170687
 	if_equal $0, UnknownScript_0x9e3d1
 	if_equal $2, UnknownScript_0x9e3c4
 	if_equal $3, UnknownScript_0x9e3d1
@@ -34,9 +34,9 @@ UnknownScript_0x9e3c4: ; 0x9e3c4
 
 UnknownScript_0x9e3c7: ; 0x9e3c7
 	writebyte $4
-	special $0086
+	special Function170687
 	writebyte $6
-	special $0086
+	special Function170687
 UnknownScript_0x9e3d1: ; 0x9e3d1
 	dotrigger $1
 UnknownScript_0x9e3d3: ; 0x9e3d3
@@ -57,13 +57,13 @@ UnknownScript_0x9e3e0: ; 0x9e3e0
 
 ReceptionistScript_0x9e3e2: ; 0x9e3e2
 	writebyte $2
-	special $0086
+	special Function170687
 	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
 	loadfont
 	writetext UnknownText_0x9e5ab
 	keeptextopen
 	writebyte $0
-	special $0086
+	special Function170687
 	if_not_equal $0, UnknownScript_0x9e3fc
 	jump UnknownScript_0x9e49e
 ; 0x9e3fc
@@ -71,7 +71,7 @@ ReceptionistScript_0x9e3e2: ; 0x9e3e2
 UnknownScript_0x9e3fc: ; 0x9e3fc
 	writetext UnknownText_0x9e5ea
 	writebyte $1
-	special $0088
+	special Function17d224
 	if_equal $1, UnknownScript_0x9e40f
 	if_equal $2, UnknownScript_0x9e4a5
 	jump UnknownScript_0x9e4b0
@@ -79,35 +79,35 @@ UnknownScript_0x9e3fc: ; 0x9e3fc
 
 UnknownScript_0x9e40f: ; 0x9e40f
 	writebyte $1a
-	special $0086
-	special $007c
+	special Function170687
+	special Function170bd3
 	if_not_equal $0, UnknownScript_0x9e4bb
 	writetext UnknownText_0x9ef1f
 	yesorno
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $0
-	special $0004
+	special Function29e66
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $1
 	writebyte $1
-	special $0086
-	special $0074
+	special Function170687
+	special Function1700b0
 	if_equal $a, UnknownScript_0x9e3fc
 	if_not_equal $0, UnknownScript_0x9e550
 	writebyte $11
-	special $0086
+	special Function170687
 	writetext UnknownText_0x9e60a
 	closetext
 	loadmovesprites
 	writebyte $1e
-	special $0086
+	special Function170687
 	jump UnknownScript_0x9e454
 ; 0x9e44e
 
 UnknownScript_0x9e44e: ; 0x9e44e
 	loadmovesprites
 	writebyte $8
-	special $0086
+	special Function170687
 UnknownScript_0x9e454: ; 0x9e454
 	musicfadeout $0000, $8
 	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0
@@ -116,7 +116,7 @@ UnknownScript_0x9e454: ; 0x9e454
 	follow $2, $0
 	applymovement $2, MovementData_0x9e571
 	writebyte $a
-	special $0086
+	special Function170687
 	warpsound
 	disappear $2
 	stopfollow
@@ -127,15 +127,15 @@ UnknownScript_0x9e454: ; 0x9e454
 
 UnknownScript_0x9e47a: ; 0x9e47a
 	writebyte $1c
-	special $0086
+	special Function170687
 	writebyte $1b
-	special $0086
+	special Function170687
 	if_equal $12, UnknownScript_0x9e498
 	itemtotext $0, $1
 	giveitem $ff, $5
 	writetext UnknownText_0x9eb7e
 	writebyte $1d
-	special $0086
+	special Function170687
 	loadmovesprites
 	end
 ; 0x9e498
@@ -155,7 +155,7 @@ UnknownScript_0x9e4a5: ; 0x9e4a5
 	writetext UnknownText_0x9e886
 UnknownScript_0x9e4a8: ; 0x9e4a8
 	writebyte $1
-	special $0086
+	special Function170687
 	jump UnknownScript_0x9e3fc
 ; 0x9e4b0
 
@@ -167,7 +167,7 @@ UnknownScript_0x9e4b0: ; 0x9e4b0
 ; 0x9e4b6
 
 UnknownScript_0x9e4b6: ; 0x9e4b6
-	special $008b
+	special Function17f53d
 	loadmovesprites
 	end
 ; 0x9e4bb
@@ -183,11 +183,11 @@ UnknownScript_0x9e4be: ; 0x9e4be
 	writetext UnknownText_0x9ef1f
 	yesorno
 	iffalse UnknownScript_0x9e3fc
-	special $0004
+	special Function29e66
 	iffalse UnknownScript_0x9e3fc
 	writebyte $1
-	special $0086
-	special $0075
+	special Function170687
+	special Function1700ba
 	if_equal $a, UnknownScript_0x9e3fc
 	if_not_equal $0, UnknownScript_0x9e550
 	writetext UnknownText_0x9e9eb
@@ -201,15 +201,15 @@ UnknownScript_0x9e4be: ; 0x9e4be
 
 UnknownScript_0x9e4ea: ; 0x9e4ea
 	writebyte $18
-	special $0086
+	special Function170687
 	if_not_equal $0, UnknownScript_0x9e542
 	writebyte $19
-	special $0086
+	special Function170687
 	if_not_equal $0, UnknownScript_0x9e549
-	special $007c
+	special Function170bd3
 	if_not_equal $0, UnknownScript_0x9e4bb
 	writebyte $5
-	special $0086
+	special Function170687
 	if_equal $0, UnknownScript_0x9e512
 	writetext UnknownText_0x9ecb0
 	jump UnknownScript_0x9e515
@@ -224,13 +224,13 @@ UnknownScript_0x9e515: ; 0x9e515
 	yesorno
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $0
-	special $0004
+	special Function29e66
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $1
 	writebyte $6
-	special $0086
+	special Function170687
 	writebyte $12
-	special $0086
+	special Function170687
 	writetext UnknownText_0x9e60a
 	closetext
 	jump UnknownScript_0x9e44e
@@ -255,7 +255,7 @@ UnknownScript_0x9e549: ; 0x9e549
 ; 0x9e550
 
 UnknownScript_0x9e550: ; 0x9e550
-	special $008b
+	special Function17f53d
 	loadmovesprites
 	end
 ; 0x9e555

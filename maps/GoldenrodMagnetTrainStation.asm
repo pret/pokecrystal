@@ -36,7 +36,7 @@ UnknownScript_0x550fa: ; 0x550fa
 	applymovement $2, MovementData_0x55146
 	applymovement $0, MovementData_0x5514f
 	writebyte $0
-	special $0023
+	special Function8cc04
 	warpcheck
 	newloadmap $f9
 	applymovement $0, MovementData_0x55122

@@ -57,7 +57,7 @@ SailorScript_0x74dc4: ; 0x74dc4
 	waitbutton
 	applymovement $0, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
-	special $002e
+	special Function8c084
 	waitbutton
 	setevent $073a
 	clearevent $073b

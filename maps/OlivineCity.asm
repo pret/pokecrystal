@@ -30,7 +30,7 @@ UnknownScript_0x1a882f: ; 0x1a882f
 UnknownScript_0x1a8833: ; 0x1a8833
 	spriteface $0, $2
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	playsound SFX_ENTER_DOOR
 	appear $5
@@ -46,16 +46,16 @@ UnknownScript_0x1a8833: ; 0x1a8833
 	applymovement $5, MovementData_0x1a88db
 	dotrigger $1
 	disappear $5
-	special $003d
+	special RestartMapMusic
 	variablesprite $5, $31
-	special $005e
+	special Function14209
 	end
 ; 0x1a886b
 
 UnknownScript_0x1a886b: ; 0x1a886b
 	spriteface $0, $2
 	showemote $0, $0, 15
-	special $006a
+	special Functionc48f
 	pause 15
 	playsound SFX_ENTER_DOOR
 	appear $5
@@ -71,9 +71,9 @@ UnknownScript_0x1a886b: ; 0x1a886b
 	applymovement $5, MovementData_0x1a88e8
 	disappear $5
 	dotrigger $1
-	special $003d
+	special RestartMapMusic
 	variablesprite $5, $31
-	special $005e
+	special Function14209
 	end
 ; 0x1a88a3
 
