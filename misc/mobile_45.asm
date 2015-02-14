@@ -16333,7 +16333,11 @@ Function11c000:: ; 11c000
 	push af
 	ld a, $3
 	ld [rSVBK], a
+IF DEF(CRYSTAL11)
+	ld hl, wd10a
+ELSE
 	ld hl, wd105
+ENDC
 	ld a, [hl]
 	dec a
 	ld e, a
@@ -24067,7 +24071,11 @@ GFX_172f1f:
 INCBIN "gfx/unknown/172f1f.2bpp"
 
 Tilemap_1733af:
+IF DEF(CORRUPT_TILES)
+INCBIN "gfx/unknown/1733af_corrupt.tilemap"
+ELSE
 INCBIN "gfx/unknown/1733af.tilemap"
+ENDC
 
 Attrmap_173517:
 INCBIN "gfx/unknown/173517.attrmap"
