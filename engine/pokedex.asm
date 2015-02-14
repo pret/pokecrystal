@@ -314,7 +314,7 @@ Function401ae: ; 401ae (10:41ae)
 Function40217: ; 40217 (10:4217)
 	call LowVolume
 	xor a
-	ld [wcf65], a
+	ld [wPokedexStatus], a
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call ClearSprites
@@ -373,9 +373,9 @@ Function40258: ; 40258 (10:4258)
 ; 40292 (10:4292)
 
 Function40292: ; 40292
-	ld a, [wcf65]
+	ld a, [wPokedexStatus]
 	xor $1
-	ld [wcf65], a
+	ld [wPokedexStatus], a
 	call Function40bb1
 	ld [wc2d6], a
 	callba Function4424d
@@ -386,7 +386,7 @@ Function40292: ; 40292
 Function402aa: ; 402aa (10:42aa)
 	call Function41401
 	xor a
-	ld [wcf65], a
+	ld [wPokedexStatus], a
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function407fd

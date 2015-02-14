@@ -38165,7 +38165,7 @@ Function4424d: ; 4424d
 	push af
 	call FarString
 	pop bc
-	ld a, [wcf65]
+	ld a, [wPokedexStatus]
 	or a
 	ret z
 	push bc
@@ -89618,21 +89618,21 @@ Functionfb877: ; fb877
 	call ClearTileMap
 	call Function1ad2
 	call ClearSprites
-	ld a, [wcf65]
+	ld a, [wPokedexStatus]
 	push af
 	ld a, [hSCX]
 	add $5
 	ld [hSCX], a
 	xor a
-	ld [wcf65], a
+	ld [wPokedexStatus], a
 	callba Function41a7f
 	call Functiona80
 	ld a, $1
-	ld [wcf65], a
+	ld [wPokedexStatus], a
 	callba Function4424d
 	call Functiona80
 	pop af
-	ld [wcf65], a
+	ld [wPokedexStatus], a
 	call MaxVolume
 	call Function4b6
 	ld a, [hSCX]

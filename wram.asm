@@ -1165,6 +1165,7 @@ CurSpecies:: ; cf60
 wcf61:: ds 2
 wcf63:: ds 1
 wcf64:: ds 1
+wPokedexStatus::
 wcf65:: ds 1
 wcf66:: ds 1
 
