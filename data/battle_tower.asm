@@ -19,8 +19,13 @@ Function1f8000: ; 1f8000
 	ld a, [hRandomAdd]
 	add b
 	ld b, a
+IF DEF(CRYSTAL11)
+	and $7f
+	cp $46
+ELSE
 	and $1f
 	cp $15
+ENDC
 	jr nc, .asm_1f8022
 	ld b, a
 	ld a, $1

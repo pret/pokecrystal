@@ -10,6 +10,21 @@ gfx       := $(PYTHON) $(poketools)/gfx.py
 includes  := $(PYTHON) $(poketools)/scan_includes.py
 
 
+crystal11_obj := \
+wram11.o \
+crystal11.o \
+lib/mobile/main.o \
+home.o \
+audio.o \
+maps_crystal.o \
+engine/events_crystal.o \
+engine/credits_crystal.o \
+data/egg_moves_crystal.o \
+data/evos_attacks_crystal.o \
+data/pokedex/entries_crystal.o \
+misc/crystal_misc.o \
+gfx/pics.o
+
 crystal_obj := \
 wram.o \
 main.o \
@@ -25,7 +40,7 @@ data/pokedex/entries_crystal.o \
 misc/crystal_misc.o \
 gfx/pics.o
 
-all_obj := $(crystal_obj)
+all_obj := $(crystal_obj) crystal11.o wram11.o
 
 # object dependencies
 $(foreach obj, $(all_obj), \
@@ -52,6 +67,11 @@ $(all_obj): $$*.asm $$($$*_dep)
 	@$(gfx) 1bpp $(1bppq); $(eval 1bppq :=)
 	@$(gfx) lz   $(lzq);   $(eval lzq   :=)
 	rgbasm -o $@ $<
+
+pokecrystal11.gbc: $(crystal11_obj)
+	rgblink -n $*.sym -m $*.map -o $@ $^
+	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
+	cmp crystal11.gbc $@
 
 pokecrystal.gbc: $(crystal_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^

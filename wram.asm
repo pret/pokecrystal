@@ -872,7 +872,11 @@ wc7e0:: ds 1
 wc7e1:: ds 1
 wc7e2:: ds 1
 wc7e3:: ds 1
-wc7e4:: ds 4
+wc7e4:: ds 1
+IF DEF(CRYSTAL11)
+wPokedexStatus::
+ENDC
+	ds 3
 wc7e8:: ds 24
 
 
@@ -1165,7 +1169,9 @@ CurSpecies:: ; cf60
 wcf61:: ds 2
 wcf63:: ds 1
 wcf64:: ds 1
+IF !DEF(CRYSTAL11)
 wPokedexStatus::
+ENDC
 wcf65:: ds 1
 wcf66:: ds 1
 

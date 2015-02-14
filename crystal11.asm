@@ -1,0 +1,4 @@
+CRYSTAL11 = 1
+CORRUPT_TILES = 1
+
+INCLUDE "main.asm"
