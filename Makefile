@@ -1,7 +1,7 @@
 PYTHON := python
 
 .SUFFIXES:
-.SUFFIXES: .asm .tx .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
+.SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
 .PHONY: all clean crystal pngs
 .SECONDEXPANSION:
 
@@ -54,8 +54,7 @@ all: $(roms)
 crystal: pokecrystal.gbc
 
 clean:
-	rm -f $(roms) $(all_obj)
-	find . -iname '*.tx' -exec rm {} +
+	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 
 baserom.gbc: ;
 	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
