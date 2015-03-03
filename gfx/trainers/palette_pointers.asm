@@ -3,11 +3,12 @@ TrainerPalettes: ; b0ce
 
 PlayerPalette: ; b0ce
 ; The player's palette
-	RGB 25, 18, 12
-	RGB 22, 09, 05
+;	RGB 25, 18, 12
+;	RGB 22, 09, 05
+	INCLUDE "gfx/trainers/cal.pal"
 
 KrisPalette: ; b0d0
-; Apparently Kris uses Falkner's palette
+; Kris uses Falkner's palette
 ;	RGB 27, 17, 14
 ;	RGB 07, 05, 31
 
