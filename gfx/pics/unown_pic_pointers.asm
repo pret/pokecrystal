@@ -1,53 +1,53 @@
 
-	dbw BANK(UnownAFrontpic) - $36, UnownAFrontpic
-	dbw BANK(UnownABackpic)  - $36, UnownABackpic
-	dbw BANK(UnownBFrontpic) - $36, UnownBFrontpic
-	dbw BANK(UnownBBackpic)  - $36, UnownBBackpic
-	dbw BANK(UnownCFrontpic) - $36, UnownCFrontpic
-	dbw BANK(UnownCBackpic)  - $36, UnownCBackpic
-	dbw BANK(UnownDFrontpic) - $36, UnownDFrontpic
-	dbw BANK(UnownDBackpic)  - $36, UnownDBackpic
-	dbw BANK(UnownEFrontpic) - $36, UnownEFrontpic
-	dbw BANK(UnownEBackpic)  - $36, UnownEBackpic
-	dbw BANK(UnownFFrontpic) - $36, UnownFFrontpic
-	dbw BANK(UnownFBackpic)  - $36, UnownFBackpic
-	dbw BANK(UnownGFrontpic) - $36, UnownGFrontpic
-	dbw BANK(UnownGBackpic)  - $36, UnownGBackpic
-	dbw BANK(UnownHFrontpic) - $36, UnownHFrontpic
-	dbw BANK(UnownHBackpic)  - $36, UnownHBackpic
-	dbw BANK(UnownIFrontpic) - $36, UnownIFrontpic
-	dbw BANK(UnownIBackpic)  - $36, UnownIBackpic
-	dbw BANK(UnownJFrontpic) - $36, UnownJFrontpic
-	dbw BANK(UnownJBackpic)  - $36, UnownJBackpic
-	dbw BANK(UnownKFrontpic) - $36, UnownKFrontpic
-	dbw BANK(UnownKBackpic)  - $36, UnownKBackpic
-	dbw BANK(UnownLFrontpic) - $36, UnownLFrontpic
-	dbw BANK(UnownLBackpic)  - $36, UnownLBackpic
-	dbw BANK(UnownMFrontpic) - $36, UnownMFrontpic
-	dbw BANK(UnownMBackpic)  - $36, UnownMBackpic
-	dbw BANK(UnownNFrontpic) - $36, UnownNFrontpic
-	dbw BANK(UnownNBackpic)  - $36, UnownNBackpic
-	dbw BANK(UnownOFrontpic) - $36, UnownOFrontpic
-	dbw BANK(UnownOBackpic)  - $36, UnownOBackpic
-	dbw BANK(UnownPFrontpic) - $36, UnownPFrontpic
-	dbw BANK(UnownPBackpic)  - $36, UnownPBackpic
-	dbw BANK(UnownQFrontpic) - $36, UnownQFrontpic
-	dbw BANK(UnownQBackpic)  - $36, UnownQBackpic
-	dbw BANK(UnownRFrontpic) - $36, UnownRFrontpic
-	dbw BANK(UnownRBackpic)  - $36, UnownRBackpic
-	dbw BANK(UnownSFrontpic) - $36, UnownSFrontpic
-	dbw BANK(UnownSBackpic)  - $36, UnownSBackpic
-	dbw BANK(UnownTFrontpic) - $36, UnownTFrontpic
-	dbw BANK(UnownTBackpic)  - $36, UnownTBackpic
-	dbw BANK(UnownUFrontpic) - $36, UnownUFrontpic
-	dbw BANK(UnownUBackpic)  - $36, UnownUBackpic
-	dbw BANK(UnownVFrontpic) - $36, UnownVFrontpic
-	dbw BANK(UnownVBackpic)  - $36, UnownVBackpic
-	dbw BANK(UnownWFrontpic) - $36, UnownWFrontpic
-	dbw BANK(UnownWBackpic)  - $36, UnownWBackpic
-	dbw BANK(UnownXFrontpic) - $36, UnownXFrontpic
-	dbw BANK(UnownXBackpic)  - $36, UnownXBackpic
-	dbw BANK(UnownYFrontpic) - $36, UnownYFrontpic
-	dbw BANK(UnownYBackpic)  - $36, UnownYBackpic
-	dbw BANK(UnownZFrontpic) - $36, UnownZFrontpic
-	dbw BANK(UnownZBackpic)  - $36, UnownZBackpic
+	add_pic UnownAFrontpic
+	add_pic UnownABackpic
+	add_pic UnownBFrontpic
+	add_pic UnownBBackpic
+	add_pic UnownCFrontpic
+	add_pic UnownCBackpic
+	add_pic UnownDFrontpic
+	add_pic UnownDBackpic
+	add_pic UnownEFrontpic
+	add_pic UnownEBackpic
+	add_pic UnownFFrontpic
+	add_pic UnownFBackpic
+	add_pic UnownGFrontpic
+	add_pic UnownGBackpic
+	add_pic UnownHFrontpic
+	add_pic UnownHBackpic
+	add_pic UnownIFrontpic
+	add_pic UnownIBackpic
+	add_pic UnownJFrontpic
+	add_pic UnownJBackpic
+	add_pic UnownKFrontpic
+	add_pic UnownKBackpic
+	add_pic UnownLFrontpic
+	add_pic UnownLBackpic
+	add_pic UnownMFrontpic
+	add_pic UnownMBackpic
+	add_pic UnownNFrontpic
+	add_pic UnownNBackpic
+	add_pic UnownOFrontpic
+	add_pic UnownOBackpic
+	add_pic UnownPFrontpic
+	add_pic UnownPBackpic
+	add_pic UnownQFrontpic
+	add_pic UnownQBackpic
+	add_pic UnownRFrontpic
+	add_pic UnownRBackpic
+	add_pic UnownSFrontpic
+	add_pic UnownSBackpic
+	add_pic UnownTFrontpic
+	add_pic UnownTBackpic
+	add_pic UnownUFrontpic
+	add_pic UnownUBackpic
+	add_pic UnownVFrontpic
+	add_pic UnownVBackpic
+	add_pic UnownWFrontpic
+	add_pic UnownWBackpic
+	add_pic UnownXFrontpic
+	add_pic UnownXBackpic
+	add_pic UnownYFrontpic
+	add_pic UnownYBackpic
+	add_pic UnownZFrontpic
+	add_pic UnownZBackpic
