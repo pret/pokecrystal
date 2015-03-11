@@ -8314,7 +8314,7 @@ Functiond906: ; d906
 
 FillPP: ; da6d
 	push bc
-	ld b, $4
+	ld b, NUM_MOVES
 .asm_da70
 	ld a, [hli]
 	and a
@@ -8332,7 +8332,7 @@ FillPP: ; da6d
 	pop bc
 	pop de
 	pop hl
-	ld a, [StringBuffer1 + 5]
+	ld a, [StringBuffer1 + MOVE_PP]
 
 .asm_da8f
 	ld [de], a
@@ -16111,13 +16111,14 @@ Function13a47: ; 13a47
 	ld a, [hl]
 	and a
 	ret z
-	cp 6 + 1
-	jr c, .asm_13a54
-	ld a, 6
-	ld [hl], a
 
+	cp PARTY_LENGTH + 1
+	jr c, .asm_13a54
+	ld a, PARTY_LENGTH
+	ld [hl], a
 .asm_13a54
 	inc hl
+
 	ld b, a
 	ld c, 0
 .asm_13a58
@@ -16146,6 +16147,7 @@ Function13a47: ; 13a47
 	dec b
 	jr nz, .asm_13a58
 	ld [hl], $ff
+
 	ld hl, PartyMon1
 	ld a, [PartyCount]
 	ld d, a
@@ -16158,7 +16160,7 @@ Function13a47: ; 13a47
 	ld a, [hl]
 	and a
 	jr z, .asm_13a8f
-	cp $fc
+	cp NUM_POKEMON + 1
 	jr c, .asm_13a9c
 
 .asm_13a8f
@@ -16177,8 +16179,8 @@ Function13a47: ; 13a47
 	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [hl]
-	cp 2
-	ld a, 2
+	cp MIN_LEVEL
+	ld a, MIN_LEVEL
 	jr c, .asm_13ab4
 	ld a, [hl]
 	cp MAX_LEVEL
@@ -16193,7 +16195,7 @@ Function13a47: ; 13a47
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, $000a
+	ld hl, PartyMon1Exp + 2 - PartyMon1
 	add hl, bc
 	ld b, $1
 	predef Functione167
@@ -16204,6 +16206,7 @@ Function13a47: ; 13a47
 	inc e
 	dec d
 	jr nz, .asm_13a83
+
 	ld de, PartyMonNicknames
 	ld a, [PartyCount]
 	ld b, a
@@ -16216,6 +16219,7 @@ Function13a47: ; 13a47
 	pop hl
 	pop bc
 	jr nc, .asm_13b0e
+
 	push bc
 	push hl
 	ld hl, PartySpecies
@@ -16230,10 +16234,9 @@ Function13a47: ; 13a47
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-
 .asm_13b06
 	pop de
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop bc
 
@@ -16241,6 +16244,7 @@ Function13a47: ; 13a47
 	inc c
 	dec b
 	jr nz, .asm_13adc
+
 	ld de, PartyMonOT
 	ld a, [PartyCount]
 	ld b, a
@@ -16257,7 +16261,6 @@ Function13a47: ; 13a47
 	ld hl, PlayerName
 	ld bc, $000b
 	call CopyBytes
-
 .asm_13b34
 	pop bc
 	inc c
@@ -16273,9 +16276,8 @@ Function13a47: ; 13a47
 	ld a, [hl]
 	and a
 	jr z, .asm_13b4b
-	cp $fc
+	cp NUM_ATTACKS + 1
 	jr c, .asm_13b4d
-
 .asm_13b4b
 	ld [hl], POUND
 
@@ -22405,7 +22407,7 @@ Function16949: ; 16949
 	call YesNoBox
 	jr c, .asm_1697c
 	ld a, [PartyCount]
-	cp $6
+	cp PARTY_LENGTH
 	jr nc, .asm_16987
 	call Function169ac
 	ld hl, wDaycareMan
@@ -22472,7 +22474,7 @@ Function169ac: ; 169ac
 	ld [CurPartyLevel], a
 	ld hl, PartyCount
 	ld a, [hl]
-	cp $6
+	cp PARTY_LENGTH
 	jr nc, .asm_16a2f
 	inc a
 	ld [hl], a
@@ -22487,7 +22489,7 @@ Function169ac: ; 169ac
 	ld a, $ff
 	ld [hl], a
 	ld hl, PartyMonNicknames
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call Function16a31
 	ld hl, wEggNick
 	call CopyBytes
@@ -22510,10 +22512,10 @@ Function169ac: ; 169ac
 	call AddNTimes
 	ld b, h
 	ld c, l
-	ld hl, $0007
+	ld hl, PartyMon1ID + 1 - PartyMon1
 	add hl, bc
 	push hl
-	ld hl, $0024
+	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -22522,7 +22524,7 @@ Function169ac: ; 169ac
 	ld b, $0
 	predef Functione167
 	pop bc
-	ld hl, $0022
+	ld hl, PartyMon1HP - PartyMon1
 	add hl, bc
 	xor a
 	ld [hli], a
@@ -22610,21 +22612,22 @@ Function16a66: ; 16a66
 	ld [CurPartySpecies], a
 	callab GetPreEvolution
 	callab GetPreEvolution
-	ld a, $5
+	ld a, EGG_LEVEL
 	ld [CurPartyLevel], a
+
 	ld a, [CurPartySpecies]
-	cp $1d
+	cp NIDORAN_F
 	jr nz, .asm_16ae8
 	call Random
 	cp $80
-	ld a, $1d
+	ld a, NIDORAN_F
 	jr c, .asm_16ae8
-	ld a, $20
-
+	ld a, NIDORAN_M
 .asm_16ae8
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	ld [wEggMonSpecies], a
+
 	call GetBaseData
 	ld hl, wEggNick
 	ld de, String_16be0
@@ -23107,7 +23110,6 @@ Function16e1d: ; 16e1d
 	ld c, $fe
 	jr z, .asm_16e9f
 	ld c, $80
-
 .asm_16e9f
 	ld a, [wBreedMon1ID]
 	ld b, a
@@ -23261,25 +23263,30 @@ Function16f7a: ; 16f7a (5:6f7a)
 	and a
 	jp nz, Function1707d
 	ld [hl], $78
+
 	push de
+
 	callba Function4dbb8
 	callba Function10608d
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [hl]
 	ld [CurPartySpecies], a
 	dec a
 	call SetSeenAndCaughtMon
+
 	ld a, [CurPartySpecies]
-	cp $af
+	cp TOGEPI
 	jr nz, .asm_16fbf
 	ld de, $54
 	ld b, $1
 	call EventFlagAction
 .asm_16fbf
+
 	pop de
+
 	ld a, [CurPartySpecies]
 	dec de
 	ld [de], a
@@ -23291,45 +23298,45 @@ Function16f7a: ; 16f7a (5:6f7a)
 	call GetBaseData
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	push hl
-	ld bc, $24
+	ld bc, PartyMon1MaxHP - PartyMon1
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
 	push hl
-	ld bc, $1f
+	ld bc, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [hl]
 	ld [CurPartyLevel], a
 	pop hl
 	push hl
-	ld bc, $20
+	ld bc, PartyMon1Status - PartyMon1
 	add hl, bc
 	xor a
 	ld [hli], a
 	ld [hl], a
 	pop hl
 	push hl
-	ld bc, $a
+	ld bc, PartyMon1Exp + 2 - PartyMon1
 	add hl, bc
 	ld b, $0
 	predef Functione167
 	pop bc
-	ld hl, $24
+	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, $22
+	ld hl, PartyMon1HP - PartyMon1
 	add hl, bc
 	ld a, [de]
 	inc de
 	ld [hli], a
 	ld a, [de]
 	ld [hl], a
-	ld hl, $6
+	ld hl, PartyMon1ID - PartyMon1
 	add hl, bc
 	ld a, [PlayerID]
 	ld [hli], a
@@ -23347,7 +23354,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	call PrintText
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -23377,7 +23384,7 @@ Function1707d: ; 1707d (5:707d)
 	ld hl, CurPartyMon
 	inc [hl]
 	pop hl
-	ld de, $30
+	ld de, PartyMon2 - PartyMon1
 	add hl, de
 	pop de
 	jp Function16f7a
@@ -23434,13 +23441,13 @@ Function170bf: ; 170bf
 	call Function17197
 	ld d, h
 	ld e, l
-	ld b, $4
+	ld b, NUM_MOVES
 .asm_170c6
 	ld a, [de]
 	and a
 	jr z, .asm_170e3
 	ld hl, wEggMonMoves
-	ld c, $4
+	ld c, NUM_MOVES
 .asm_170cf
 	ld a, [de]
 	cp [hl]
@@ -33017,7 +33024,7 @@ TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
 
 Function29bfb: ; 29bfb
 	ld hl, PartySpecies
-	ld b, $6
+	ld b, PARTY_LENGTH
 .asm_29c00
 	ld a, [hli]
 	cp $ff
@@ -37352,7 +37359,7 @@ Function421f5: ; 421f5
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld bc, $0024
+	ld bc, PartyMon1MaxHP - PartyMon1
 	add hl, bc
 	ld a, [hli]
 	ld b, a
@@ -37451,7 +37458,7 @@ Function42414: ; 42414
 	cp "@"
 	jr nz, .asm_4242b
 	ld a, [CurPartyMon]
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	ld hl, PartyMonNicknames
 	call AddNTimes
 	push hl
@@ -37460,7 +37467,7 @@ Function42414: ; 42414
 	call GetPokemonName
 	ld hl, StringBuffer1
 	pop de
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	jp CopyBytes
 ; 42454
 
@@ -38138,7 +38145,7 @@ Function4424d: ; 4424d
 	ld d, h
 	ld e, l
 	hlcoord 11, 9
-	ld bc, ClearVRAM
+	ld bc, $0245
 	call PrintNum
 	pop de
 
@@ -38381,7 +38388,7 @@ Function44607: ; 44607
 	ld d, [hl]
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld [hl], d
 	call CloseSRAM
@@ -38421,6 +38428,7 @@ Function44654:: ; 44654
 	ld e, l
 	pop hl
 	pop bc
+
 	ld a, $20
 	ld [wd265], a
 .asm_44691
@@ -93010,8 +93018,7 @@ Function104da9: ; 104da9 (41:4da9)
 	ret z
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	ld a, [$ff00+c]
 	bit 1, a
 	jr z, Function104da9
@@ -93023,8 +93030,7 @@ Function104db7: ; 104db7 (41:4db7)
 	ret z
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	ld a, [$ff00+c]
 	bit 1, a
 	jr nz, Function104db7
@@ -93039,8 +93045,7 @@ Function104dc5: ; 104dc5 (41:4dc5)
 	ret z
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	jr .asm_104dc8
 
 Function104dd1: ; 104dd1 (41:4dd1)
@@ -93051,8 +93056,7 @@ Function104dd1: ; 104dd1 (41:4dd1)
 	ret z
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	jr .asm_104dd4
 
 Function104ddd: ; 104ddd (41:4ddd)
@@ -93219,8 +93223,7 @@ Function104ed6: ; 104ed6 (41:4ed6)
 .asm_104f02
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	ld a, $c1
 	ld [rRP], a ; $ff00+$56
 	ld d, $1
@@ -93239,8 +93242,7 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	jr z, .asm_104f25
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 .asm_104f25
 	ld a, [$ffb6]
 	dec a
@@ -93252,8 +93254,7 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	ld [rTMA], a ; $ff00+$6
 	xor a
 	ld [rIF], a ; $ff00+$f
-	db $76 ;halt (prevents rgbasm from putting in an extra nop)
-	nop
+	halt
 	ld d, $5
 	call Function104dc5
 	ld d, $11
