@@ -5648,17 +5648,22 @@ Jumptable_1161c7: ; 1161c7
 Function1161d5: ; 1161d5
 	ld a, [rSVBK]
 	push af
+
 	ld a, $6
 	ld [rSVBK], a
+
 	ld hl, Unknown_117356
 	ld de, w6_d000
 	ld bc, $0300
 	call CopyBytes
+
 	di
+
 .asm_1161e9
 	ld a, [rLY]
 	cp $91
 	jr nz, .asm_1161e9
+
 	ld a, $d0
 	ld [rHDMA1], a
 	ld a, $0
@@ -5669,6 +5674,7 @@ Function1161d5: ; 1161d5
 	ld [rHDMA4], a
 	ld a, $8
 	ld [rHDMA5], a
+
 	ld a, $d0
 	ld [rHDMA1], a
 	ld a, $80
@@ -5679,6 +5685,7 @@ Function1161d5: ; 1161d5
 	ld [rHDMA4], a
 	ld a, $8
 	ld [rHDMA5], a
+
 	ld a, $d1
 	ld [rHDMA1], a
 	ld a, $0
@@ -5689,8 +5696,10 @@ Function1161d5: ; 1161d5
 	ld [rHDMA4], a
 	ld a, $8
 	ld [rHDMA5], a
+
 	ld a, $1
 	ld [rVBK], a
+
 	ld a, $d1
 	ld [rHDMA1], a
 	ld a, $80
@@ -5701,6 +5710,7 @@ Function1161d5: ; 1161d5
 	ld [rHDMA4], a
 	ld a, $8
 	ld [rHDMA5], a
+
 	ld a, $d2
 	ld [rHDMA1], a
 	ld a, $0
@@ -5711,6 +5721,7 @@ Function1161d5: ; 1161d5
 	ld [rHDMA4], a
 	ld a, $8
 	ld [rHDMA5], a
+
 	ld a, $d2
 	ld [rHDMA1], a
 	ld a, $80
@@ -5721,11 +5732,15 @@ Function1161d5: ; 1161d5
 	ld [rHDMA4], a
 	ld a, $8
 	ld [rHDMA5], a
+
 	xor a
 	ld [rVBK], a
+
 	ei
+
 	pop af
 	ld [rSVBK], a
+
 	callba Function104061
 	ld a, $8
 	ld [MusicFade], a
@@ -7571,7 +7586,56 @@ Palette_11734e:
 	RGB 15, 14, 14
 
 Unknown_117356:
-INCBIN "baserom.gbc", $117356, $117656 - $117356
+	db $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9
+	db $c9, $c9, $c9, $c9, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c5, $c6, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
+	db $c2, $c2, $c6, $c5, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c3, $c4, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
+	db $c2, $c2, $c4, $c3, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c3, $c4, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
+	db $c2, $c2, $c4, $c3, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c3, $c4, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
+	db $c2, $c2, $c4, $c3, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c3, $c4, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
+	db $c2, $c2, $c4, $c3, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c3, $c4, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
+	db $c2, $c2, $c4, $c3, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c3, $c4, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
+	db $c2, $c2, $c4, $c3, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c3, $c4, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
+	db $c2, $c2, $c4, $c3, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c3, $c4, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $d8, $c2, $c2, $d8, $c2, $c2, $c2
+	db $c2, $c2, $c4, $c3, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c7, $c8, $ca, $cb, $cc, $cd, $ce, $c2, $cf, $d0, $d1, $d2, $d3, $c2, $d4, $d5
+	db $d6, $d7, $c8, $c7, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+	db $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9
+	db $c9, $c9, $c9, $c9, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
+
+	db $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f
+	db $8f, $8f, $8f, $8f, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $0f, $0f, $0f, $0f, $0f, $0f, $0f, $8f, $0f, $0f, $8f, $0f, $0f, $0f
+	db $0f, $0f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $8f, $8f, $8f, $8f, $8f, $0f, $8f, $8f, $8f, $8f, $8f, $0f, $8f, $8f
+	db $8f, $8f, $af, $af, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+	db $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f, $8f
+	db $8f, $8f, $8f, $8f, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08, $08
+; 117656
 
 
 SECTION "Mobile Stadium", ROMX, BANK[$45]
@@ -15347,14 +15411,16 @@ Function11b31b: ; 11b31b
 ; 11b350
 
 Unknown_11b350:
-INCBIN "baserom.gbc",$11b350,$11b36d - $11b350
+	db $1a, $5e, $1a, $66, $1a, $6e, $1a, $76, $1a, $7e, $1a, $86, $1a, $8e
+	db $22, $5e, $22, $66, $22, $6e, $22, $76, $22, $7e, $22, $86, $22, $8e
+	db $ff
 
 Unknown_11b36d:
-INCBIN "baserom.gbc",$11b36d,$11b37b - $11b36d
+	db $30, $31, $31, $31, $31, $31, $32, $40, $41, $41, $41, $41, $41, $42
 Unknown_11b37b:
-INCBIN "baserom.gbc",$11b37b,$11b389 - $11b37b
+	db $30, $31, $31, $39, $39, $39, $39, $40, $41, $41, $39, $39, $39, $39
 Unknown_11b389:
-INCBIN "baserom.gbc",$11b389,$11b397 - $11b389
+	db $39, $39, $39, $39, $39, $39, $39, $39, $39, $39, $39, $39, $39, $39
 
 Function11b397: ; 11b397
 	ld de, Sprites
@@ -16320,10 +16386,85 @@ Function11ba38: ; 11ba38
 ; 11ba44
 
 Unknown_11ba44:
-INCBIN "baserom.gbc",$11ba44,$11bb7d - $11ba44
+	db $47, $30, $0a, $0a, $0a, $0a, $0a, $56
+	db $46, $2f, $0a, $0a, $0a, $0a, $0a, $55
+	db $45, $3d, $0a, $0a, $0a, $0a, $0a, $54
+	db $44, $30, $0a, $0a, $0a, $0a, $0a, $53
+	db $43, $2f, $0a, $0a, $0a, $0a, $0a, $52
+	db $4a, $3d, $0a, $0a, $0a, $0a, $0a, $51
+	db $4a, $30, $0a, $0a, $0a, $0a, $0a, $50
+	db $4a, $2f, $0a, $0a, $0a, $0a, $0a, $4f
+	db $4a, $3d, $0a, $0a, $0a, $0a, $0a, $4e
+	db $4a, $30, $0a, $0a, $0a, $0a, $4d, $42
+	db $4a, $2f, $0a, $0a, $0a, $0a, $6b, $58
+	db $4a, $3d, $0a, $0a, $0a, $0a, $6a, $58
+	db $4a, $30, $0a, $0a, $0a, $0a, $69, $58
+	db $4a, $2f, $0a, $0a, $0a, $0a, $68, $58
+	db $4a, $3d, $0a, $0a, $0a, $66, $67, $58
+	db $4a, $30, $0a, $0a, $0a, $65, $0a, $58
+	db $4a, $2f, $0a, $0a, $0a, $64, $0a, $58
+	db $4a, $3d, $0a, $0a, $0a, $63, $0a, $58
+	db $4a, $30, $0a, $0a, $61, $62, $0a, $58
+	db $4a, $2f, $0a, $0a, $5f, $60, $0a, $58
+	db $4a, $3d, $0a, $61, $62, $0a, $0a, $58
+	db $4a, $30, $0a, $63, $0a, $0a, $0a, $58
+	db $4a, $2f, $69, $0a, $0a, $0a, $0a, $58
+	db $4a, $3d, $81, $0a, $0a, $0a, $0a, $58
+	db $4a, $30, $80, $0a, $0a, $0a, $0a, $58
+	db $4a, $2f, $7f, $0a, $0a, $0a, $0a, $58
+	db $4a, $3d, $0a, $0a, $0a, $0a, $0a, $58
+	db $4a, $30, $0a, $0a, $0a, $0a, $0a, $58
+	db $4a, $2f, $68, $87, $88, $89, $0a, $58
+	db $4a, $3d, $6e, $6f, $70, $75, $76, $58
+	db $4a, $30, $75, $76, $5c, $5d, $5e, $58
+	db $4a, $2f, $71, $72, $73, $74, $6d, $58
+	db $4a, $3d, $75, $76, $77, $8a, $8b, $58
+	db $4a, $30, $66, $67, $65, $0a, $6a, $58
+	db $4a, $2f, $83, $84, $0a, $83, $84, $58
+	db $4a, $3d, $0a, $85, $82, $84, $0a, $58
+	db $4a, $30, $41, $80, $40, $0a, $0a, $58
+	db $4a, $2f, $83, $0a, $0a, $0a, $0a, $58
+	db $4a, $3d, $40, $0a, $0a, $0a, $0a, $58
+	db $ff
 
 Unknown_11bb7d:
-INCBIN "baserom.gbc",$11bb7d,$11bc9e - $11bb7d
+	db $0a, $0a, $0a, $0a, $0a, $0a, $16, $00
+	db $78, $0a, $0a, $0a, $0a, $0a, $8c, $00
+	db $79, $0a, $0a, $0a, $0a, $0a, $8d, $00
+	db $7a, $0a, $0a, $0a, $0a, $0a, $8e, $00
+	db $7b, $0a, $0a, $0a, $0a, $0a, $8c, $00
+	db $7c, $0a, $0a, $0a, $0a, $0a, $8d, $00
+	db $7d, $0a, $0a, $0a, $0a, $0a, $8e, $00
+	db $2e, $7e, $0a, $0a, $0a, $0a, $8c, $00
+	db $2e, $80, $0a, $0a, $0a, $0a, $8d, $00
+	db $2e, $81, $0a, $0a, $0a, $0a, $8e, $00
+	db $2e, $82, $0a, $0a, $0a, $0a, $8c, $00
+	db $2e, $69, $0a, $0a, $0a, $0a, $8d, $00
+	db $2e, $6a, $0a, $0a, $0a, $0a, $8e, $00
+	db $2e, $6b, $0a, $0a, $0a, $0a, $8c, $00
+	db $2e, $0a, $68, $0a, $0a, $0a, $8d, $00
+	db $2e, $0a, $69, $0a, $0a, $0a, $8e, $00
+	db $2e, $0a, $0a, $6a, $0a, $0a, $8c, $00
+	db $2e, $0a, $0a, $6b, $0a, $0a, $8d, $00
+	db $2e, $0a, $0a, $0a, $80, $0a, $8e, $00
+	db $2e, $0a, $0a, $0a, $82, $0a, $8c, $00
+	db $2e, $0a, $0a, $0a, $6c, $0a, $8d, $00
+	db $2e, $0a, $0a, $0a, $0a, $83, $8e, $00
+	db $2e, $0a, $6b, $0a, $0a, $0a, $8c, $00
+	db $2e, $0a, $0a, $69, $0a, $0a, $8d, $00
+	db $2e, $0a, $0a, $6a, $0a, $0a, $8e, $00
+	db $2e, $0a, $0a, $0a, $68, $0a, $8c, $00
+	db $2e, $0a, $0a, $0a, $63, $0a, $8d, $00
+	db $2e, $0a, $0a, $61, $62, $0a, $8e, $00
+	db $2e, $0a, $0a, $0a, $5f, $60, $8c, $00
+	db $2e, $0a, $0a, $0a, $63, $0a, $8d, $00
+	db $2e, $0a, $0a, $0a, $0a, $69, $8c, $00
+	db $2e, $0a, $0a, $0a, $0a, $6b, $8d, $00
+	db $2e, $0a, $0a, $0a, $0a, $83, $8e, $00
+	db $2e, $0a, $0a, $0a, $0a, $86, $8c, $00
+	db $2e, $0a, $85, $0a, $0a, $0a, $8d, $00
+	db $2e, $0a, $0a, $84, $0a, $0a, $8e, $00
+	db $ff
 
 
 SECTION "bank47", ROMX, BANK[$47]
@@ -19015,19 +19156,133 @@ Function11d1fc: ; 11d1fc (47:51fc)
 ; 11d208 (47:5208)
 
 Unknown_11d208: ; 11d208
-INCBIN "baserom.gbc",$11d208,$11d21a - $11d208
+	db $0d, $1a
+	db $3d, $1a
+	db $6d, $1a
+	db $0d, $2a
+	db $3d, $2a
+	db $6d, $2a
+	db $0d, $8a
+	db $3d, $8a
+	db $6d, $8a
+
 Unknown_11d21a: ; 11d21a
-INCBIN "baserom.gbc",$11d21a,$11d23e - $11d21a
+	db $0d, $42
+	db $3d, $42
+	db $6d, $42
+	db $0d, $52
+	db $3d, $52
+	db $6d, $52
+	db $0d, $62
+	db $3d, $62
+	db $6d, $62
+	db $0d, $72
+	db $3d, $72
+	db $6d, $72
+	db $0d, $82
+	db $3d, $82
+	db $6d, $82
+	db $0d, $92
+	db $3d, $92
+	db $6d, $92
+
 Unknown_11d23e: ; 11d23e
-INCBIN "baserom.gbc",$11d23e,$11d29e - $11d23e
+	db $10, $48
+	db $18, $48
+	db $20, $48
+	db $28, $48
+	db $30, $48
+	db $10, $58
+	db $18, $58
+	db $20, $58
+	db $28, $58
+	db $30, $58
+	db $10, $68
+	db $18, $68
+	db $20, $68
+	db $28, $68
+	db $30, $68
+	db $10, $78
+	db $18, $78
+	db $20, $78
+	db $28, $78
+	db $30, $78
+	db $40, $48
+	db $48, $48
+	db $50, $48
+	db $58, $48
+	db $60, $48
+	db $40, $58
+	db $48, $58
+	db $50, $58
+	db $58, $58
+	db $60, $58
+	db $40, $68
+	db $48, $68
+	db $50, $68
+	db $58, $68
+	db $60, $68
+	db $70, $48
+	db $80, $48
+	db $90, $48
+	db $40, $78
+	db $48, $78
+	db $50, $78
+	db $58, $78
+	db $60, $78
+	db $70, $58
+	db $70, $68
+	db $0d, $92
+	db $3d, $92
+	db $6d, $92
+
 Unknown_11d29e: ; 11d29e
-INCBIN "baserom.gbc",$11d29e,$11d2b6 - $11d29e
+	db $10, $50
+	db $40, $50
+	db $70, $50
+	db $10, $60
+	db $40, $60
+	db $70, $60
+	db $10, $70
+	db $40, $70
+	db $70, $70
+	db $10, $80
+	db $40, $80
+	db $70, $80
+
 Unknown_11d2b6: ; 11d2b6
-INCBIN "baserom.gbc",$11d2b6,$11d2ba - $11d2b6
+	db $80, $50
+	db $80, $60
+
 Unknown_11d2ba: ; 11d2ba
-INCBIN "baserom.gbc",$11d2ba,$11d2be - $11d2ba
+	db $20, $50
+	db $20, $60
+
 Unknown_11d2be: ; 11d2be
-INCBIN "baserom.gbc",$11d2be,$11d2ee - $11d2be
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $28, $28
+	db $29, $26
+	db $26, $26
 
 Function11d2ee: ; 11d2ee (47:52ee)
 	ld hl, wcd24
@@ -20288,20 +20543,701 @@ Unknown_11f100: ; 11f100
 ; 11f220
 
 Unknown_11f220:
-INCBIN "baserom.gbc",$11f220,$11f23c - $11f220
+	db $12, $01, $24, $02
+	db $45, $05, $45, $05
+	db $42, $05, $42, $05
+	db $45, $05, $42, $05
+	db $27, $03, $27, $03
+	db $45, $05, $27, $03
+	db $42, $05, $24, $02
 
 Unknown_11f23c:
-INCBIN "baserom.gbc",$11f23c,$11f2f0 - $11f23c
+	db $12, $00, $2f, $00
+	db $70, $00, $1e, $00
+	db $ac, $00, $11, $00
+	db $ce, $00, $09, $00
+	db $e0, $00, $2e, $00
+	db $3c, $01, $24, $00
+	db $84, $01, $1b, $00
+	db $ba, $01, $09, $00
+	db $cc, $01, $07, $00
+	db $da, $01, $1c, $00
+	db $12, $02, $12, $00
+	db $36, $02, $2b, $00
+	db $8c, $02, $10, $00
+	db $ac, $02, $08, $00
+	db $bc, $02, $0c, $00
+	db $d4, $02, $2c, $00
+	db $2c, $03, $09, $00
+	db $3e, $03, $12, $00
+	db $62, $03, $1b, $00
+	db $98, $03, $1a, $00
+	db $cc, $03, $1c, $00
+	db $04, $04, $05, $00
+	db $0e, $04, $02, $00
+	db $12, $04, $05, $00
+	db $1c, $04, $07, $00
+	db $2a, $04, $16, $00
+	db $56, $04, $0e, $00
+	db $72, $04, $0c, $00
+	db $8a, $04, $05, $00
+	db $94, $04, $16, $00
+	db $c0, $04, $19, $00
+	db $f2, $04, $0e, $00
+	db $0e, $05, $08, $00
+	db $1e, $05, $07, $00
+	db $2c, $05, $09, $00
+	db $3e, $05, $0d, $00
+	db $58, $05, $04, $00
+	db $60, $05, $14, $00
+	db $88, $05, $0b, $00
+	db $9e, $05, $01, $00
+	db $a0, $05, $02, $00
+	db $a4, $05, $02, $00
+	db $a8, $05, $02, $00
+	db $ac, $05, $15, $00
+	db $00, $00, $09, $00
 
 Unknown_11f2f0:
-INCBIN "baserom.gbc",$11f2f0,$11f332 - $11f2f0
+	db $00, $01, $01, $00, $00, $01
+	db $00, $01, $00, $00, $01, $00
+	db $00, $01, $00, $00, $00, $01
+	db $00, $00, $01, $00, $00, $00
+	db $01, $01, $00, $01, $01, $00
+	db $00, $00, $01, $01, $01, $00
+	db $00, $00, $01, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $01, $00
+	db $01, $00, $01, $00, $00, $01
+	db $01, $01, $00, $00, $00, $01
+
 
 Unknown_11f332:
-INCBIN "baserom.gbc",$11f332,$11f3ce - $11f332
+	dw Unknown_11f338
+	dw Unknown_11f36a
+	dw Unknown_11f39c
+
+Unknown_11f338: ; 11f338
+	dw UnknownText_0x11f42e
+	dw UnknownText_0x11f43d
+	dw UnknownText_0x11f44c
+	dw UnknownText_0x11f45b
+	dw UnknownText_0x11f46a
+	dw UnknownText_0x11f479
+	dw UnknownText_0x11f488
+	dw UnknownText_0x11f497
+	dw UnknownText_0x11f4a6
+	dw UnknownText_0x11f4b5
+	dw UnknownText_0x11f4c4
+	dw UnknownText_0x11f4d3
+	dw UnknownText_0x11f4e2
+	dw UnknownText_0x11f4f1
+	dw UnknownText_0x11f500
+	dw UnknownText_0x11f50f
+	dw UnknownText_0x11f51e
+	dw UnknownText_0x11f52d
+	dw UnknownText_0x11f53c
+	dw UnknownText_0x11f54b
+	dw UnknownText_0x11f55a
+	dw UnknownText_0x11f569
+	dw UnknownText_0x11f578
+	dw UnknownText_0x11f587
+	dw UnknownText_0x11f596
+
+Unknown_11f36a: ; 11f36a
+	dw UnknownText_0x11f433
+	dw UnknownText_0x11f442
+	dw UnknownText_0x11f451
+	dw UnknownText_0x11f460
+	dw UnknownText_0x11f46f
+	dw UnknownText_0x11f47e
+	dw UnknownText_0x11f48d
+	dw UnknownText_0x11f49c
+	dw UnknownText_0x11f4ab
+	dw UnknownText_0x11f4ba
+	dw UnknownText_0x11f4c9
+	dw UnknownText_0x11f4d8
+	dw UnknownText_0x11f4e7
+	dw UnknownText_0x11f4f6
+	dw UnknownText_0x11f505
+	dw UnknownText_0x11f514
+	dw UnknownText_0x11f523
+	dw UnknownText_0x11f532
+	dw UnknownText_0x11f541
+	dw UnknownText_0x11f550
+	dw UnknownText_0x11f55f
+	dw UnknownText_0x11f56e
+	dw UnknownText_0x11f57d
+	dw UnknownText_0x11f58c
+	dw UnknownText_0x11f59b
+
+Unknown_11f39c: ; 11f39c
+	dw UnknownText_0x11f438
+	dw UnknownText_0x11f447
+	dw UnknownText_0x11f456
+	dw UnknownText_0x11f465
+	dw UnknownText_0x11f474
+	dw UnknownText_0x11f483
+	dw UnknownText_0x11f492
+	dw UnknownText_0x11f4a1
+	dw UnknownText_0x11f4b0
+	dw UnknownText_0x11f4bf
+	dw UnknownText_0x11f4ce
+	dw UnknownText_0x11f4dd
+	dw UnknownText_0x11f4ec
+	dw UnknownText_0x11f4fb
+	dw UnknownText_0x11f50a
+	dw UnknownText_0x11f519
+	dw UnknownText_0x11f528
+	dw UnknownText_0x11f537
+	dw UnknownText_0x11f546
+	dw UnknownText_0x11f555
+	dw UnknownText_0x11f564
+	dw UnknownText_0x11f573
+	dw UnknownText_0x11f582
+	dw UnknownText_0x11f591
+	dw UnknownText_0x11f5a0
+
 
 Unknown_11f3ce:
-INCBIN "baserom.gbc",$11f3ce,$11f686 - $11f3ce
+	dw Unknown_11f3d4
+	dw Unknown_11f3f2
+	dw Unknown_11f410
 
+Unknown_11f3d4: ; 11f3d4
+	dw UnknownText_0x11f5a5
+	dw UnknownText_0x11f5b4
+	dw UnknownText_0x11f5c3
+	dw UnknownText_0x11f5d2
+	dw UnknownText_0x11f5e1
+	dw UnknownText_0x11f5f0
+	dw UnknownText_0x11f5ff
+	dw UnknownText_0x11f60e
+	dw UnknownText_0x11f61d
+	dw UnknownText_0x11f62c
+	dw UnknownText_0x11f63b
+	dw UnknownText_0x11f64a
+	dw UnknownText_0x11f659
+	dw UnknownText_0x11f668
+	dw UnknownText_0x11f677
+
+Unknown_11f3f2: ; 11f3f2
+	dw UnknownText_0x11f5aa
+	dw UnknownText_0x11f5b9
+	dw UnknownText_0x11f5c8
+	dw UnknownText_0x11f5d7
+	dw UnknownText_0x11f5e6
+	dw UnknownText_0x11f5f5
+	dw UnknownText_0x11f604
+	dw UnknownText_0x11f613
+	dw UnknownText_0x11f622
+	dw UnknownText_0x11f631
+	dw UnknownText_0x11f640
+	dw UnknownText_0x11f64f
+	dw UnknownText_0x11f65e
+	dw UnknownText_0x11f66d
+	dw UnknownText_0x11f67c
+
+Unknown_11f410: ; 11f410
+	dw UnknownText_0x11f5af
+	dw UnknownText_0x11f5be
+	dw UnknownText_0x11f5cd
+	dw UnknownText_0x11f5dc
+	dw UnknownText_0x11f5eb
+	dw UnknownText_0x11f5fa
+	dw UnknownText_0x11f609
+	dw UnknownText_0x11f618
+	dw UnknownText_0x11f627
+	dw UnknownText_0x11f636
+	dw UnknownText_0x11f645
+	dw UnknownText_0x11f654
+	dw UnknownText_0x11f663
+	dw UnknownText_0x11f672
+	dw UnknownText_0x11f681
+
+
+UnknownText_0x11f42e: ; 0x11f42e
+	text_jump UnknownText_0x1ec000
+	db "@"
+
+UnknownText_0x11f433: ; 0x11f433
+	text_jump UnknownText_0x1ec03b
+	db "@"
+
+UnknownText_0x11f438: ; 0x11f438
+	text_jump UnknownText_0x1ec060
+	db "@"
+
+UnknownText_0x11f43d: ; 0x11f43d
+	text_jump UnknownText_0x1ec080
+	db "@"
+
+UnknownText_0x11f442: ; 0x11f442
+	text_jump UnknownText_0x1ec0a3
+	db "@"
+
+UnknownText_0x11f447: ; 0x11f447
+	text_jump UnknownText_0x1ec0c4
+	db "@"
+
+UnknownText_0x11f44c: ; 0x11f44c
+	text_jump UnknownText_0x1ec0e1
+	db "@"
+
+UnknownText_0x11f451: ; 0x11f451
+	text_jump UnknownText_0x1ec108
+	db "@"
+
+UnknownText_0x11f456: ; 0x11f456
+	text_jump UnknownText_0x1ec12a
+	db "@"
+
+UnknownText_0x11f45b: ; 0x11f45b
+	text_jump UnknownText_0x1ec14d
+	db "@"
+
+UnknownText_0x11f460: ; 0x11f460
+	text_jump UnknownText_0x1ec16f
+	db "@"
+
+UnknownText_0x11f465: ; 0x11f465
+	text_jump UnknownText_0x1ec190
+	db "@"
+
+UnknownText_0x11f46a: ; 0x11f46a
+	text_jump UnknownText_0x1ec1ae
+	db "@"
+
+UnknownText_0x11f46f: ; 0x11f46f
+	text_jump UnknownText_0x1ec1d0
+	db "@"
+
+UnknownText_0x11f474: ; 0x11f474
+	text_jump UnknownText_0x1ec1f4
+	db "@"
+
+UnknownText_0x11f479: ; 0x11f479
+	text_jump UnknownText_0x1ec216
+	db "@"
+
+UnknownText_0x11f47e: ; 0x11f47e
+	text_jump UnknownText_0x1ec238
+	db "@"
+
+UnknownText_0x11f483: ; 0x11f483
+	text_jump UnknownText_0x1ec259
+	db "@"
+
+UnknownText_0x11f488: ; 0x11f488
+	text_jump UnknownText_0x1ec27b
+	db "@"
+
+UnknownText_0x11f48d: ; 0x11f48d
+	text_jump UnknownText_0x1ec2a0
+	db "@"
+
+UnknownText_0x11f492: ; 0x11f492
+	text_jump UnknownText_0x1ec2c0
+	db "@"
+
+UnknownText_0x11f497: ; 0x11f497
+	text_jump UnknownText_0x1ec2d9
+	db "@"
+
+UnknownText_0x11f49c: ; 0x11f49c
+	text_jump UnknownText_0x1ec2fe
+	db "@"
+
+UnknownText_0x11f4a1: ; 0x11f4a1
+	text_jump UnknownText_0x1ec320
+	db "@"
+
+UnknownText_0x11f4a6: ; 0x11f4a6
+	text_jump UnknownText_0x1ec33f
+	db "@"
+
+UnknownText_0x11f4ab: ; 0x11f4ab
+	text_jump UnknownText_0x1ec36c
+	db "@"
+
+UnknownText_0x11f4b0: ; 0x11f4b0
+	text_jump UnknownText_0x1ec389
+	db "@"
+
+UnknownText_0x11f4b5: ; 0x11f4b5
+	text_jump UnknownText_0x1ec3ad
+	db "@"
+
+UnknownText_0x11f4ba: ; 0x11f4ba
+	text_jump UnknownText_0x1ec3c5
+	db "@"
+
+UnknownText_0x11f4bf: ; 0x11f4bf
+	text_jump UnknownText_0x1ec3e5
+	db "@"
+
+UnknownText_0x11f4c4: ; 0x11f4c4
+	text_jump UnknownText_0x1ec402
+	db "@"
+
+UnknownText_0x11f4c9: ; 0x11f4c9
+	text_jump UnknownText_0x1ec411
+	db "@"
+
+UnknownText_0x11f4ce: ; 0x11f4ce
+	text_jump UnknownText_0x1ec41f
+	db "@"
+
+UnknownText_0x11f4d3: ; 0x11f4d3
+	text_jump UnknownText_0x1ec42e
+	db "@"
+
+UnknownText_0x11f4d8: ; 0x11f4d8
+	text_jump UnknownText_0x1ec461
+	db "@"
+
+UnknownText_0x11f4dd: ; 0x11f4dd
+	text_jump UnknownText_0x1ec4a0
+	db "@"
+
+UnknownText_0x11f4e2: ; 0x11f4e2
+	text_jump UnknownText_0x1ec4d6
+	db "@"
+
+UnknownText_0x11f4e7: ; 0x11f4e7
+	text_jump UnknownText_0x1ec4f5
+	db "@"
+
+UnknownText_0x11f4ec: ; 0x11f4ec
+	text_jump UnknownText_0x1ec512
+	db "@"
+
+UnknownText_0x11f4f1: ; 0x11f4f1
+	text_jump UnknownText_0x1ec532
+	db "@"
+
+UnknownText_0x11f4f6: ; 0x11f4f6
+	text_jump UnknownText_0x1ec54b
+	db "@"
+
+UnknownText_0x11f4fb: ; 0x11f4fb
+	text_jump UnknownText_0x1ec565
+	db "@"
+
+UnknownText_0x11f500: ; 0x11f500
+	text_jump UnknownText_0x1ec580
+	db "@"
+
+UnknownText_0x11f505: ; 0x11f505
+	text_jump UnknownText_0x1ec59d
+	db "@"
+
+UnknownText_0x11f50a: ; 0x11f50a
+	text_jump UnknownText_0x1ec5b5
+	db "@"
+
+UnknownText_0x11f50f: ; 0x11f50f
+	text_jump UnknownText_0x1ec5d3
+	db "@"
+
+UnknownText_0x11f514: ; 0x11f514
+	text_jump UnknownText_0x1ec5ee
+	db "@"
+
+UnknownText_0x11f519: ; 0x11f519
+	text_jump UnknownText_0x1ec60d
+	db "@"
+
+UnknownText_0x11f51e: ; 0x11f51e
+	text_jump UnknownText_0x1ec631
+	db "@"
+
+UnknownText_0x11f523: ; 0x11f523
+	text_jump UnknownText_0x1ec651
+	db "@"
+
+UnknownText_0x11f528: ; 0x11f528
+	text_jump UnknownText_0x1ec68f
+	db "@"
+
+UnknownText_0x11f52d: ; 0x11f52d
+	text_jump UnknownText_0x1ec6b1
+	db "@"
+
+UnknownText_0x11f532: ; 0x11f532
+	text_jump UnknownText_0x1ec6d0
+	db "@"
+
+UnknownText_0x11f537: ; 0x11f537
+	text_jump UnknownText_0x1ec708
+	db "@"
+
+UnknownText_0x11f53c: ; 0x11f53c
+	text_jump UnknownText_0x1ec720
+	db "@"
+
+UnknownText_0x11f541: ; 0x11f541
+	text_jump UnknownText_0x1ec73e
+	db "@"
+
+UnknownText_0x11f546: ; 0x11f546
+	text_jump UnknownText_0x1ec75b
+	db "@"
+
+UnknownText_0x11f54b: ; 0x11f54b
+	text_jump UnknownText_0x1ec77f
+	db "@"
+
+UnknownText_0x11f550: ; 0x11f550
+	text_jump UnknownText_0x1ec798
+	db "@"
+
+UnknownText_0x11f555: ; 0x11f555
+	text_jump UnknownText_0x1ec7bb
+	db "@"
+
+UnknownText_0x11f55a: ; 0x11f55a
+	text_jump UnknownText_0x1ec7d8
+	db "@"
+
+UnknownText_0x11f55f: ; 0x11f55f
+	text_jump UnknownText_0x1ec818
+	db "@"
+
+UnknownText_0x11f564: ; 0x11f564
+	text_jump UnknownText_0x1ec837
+	db "@"
+
+UnknownText_0x11f569: ; 0x11f569
+	text_jump UnknownText_0x1ec858
+	db "@"
+
+UnknownText_0x11f56e: ; 0x11f56e
+	text_jump UnknownText_0x1ec876
+	db "@"
+
+UnknownText_0x11f573: ; 0x11f573
+	text_jump UnknownText_0x1ec898
+	db "@"
+
+UnknownText_0x11f578: ; 0x11f578
+	text_jump UnknownText_0x1ec8b1
+	db "@"
+
+UnknownText_0x11f57d: ; 0x11f57d
+	text_jump UnknownText_0x1ec8d5
+	db "@"
+
+UnknownText_0x11f582: ; 0x11f582
+	text_jump UnknownText_0x1ec8f0
+	db "@"
+
+UnknownText_0x11f587: ; 0x11f587
+	text_jump UnknownText_0x1ec911
+	db "@"
+
+UnknownText_0x11f58c: ; 0x11f58c
+	text_jump UnknownText_0x1ec928
+	db "@"
+
+UnknownText_0x11f591: ; 0x11f591
+	text_jump UnknownText_0x1ec949
+	db "@"
+
+UnknownText_0x11f596: ; 0x11f596
+	text_jump UnknownText_0x1ec969
+	db "@"
+
+UnknownText_0x11f59b: ; 0x11f59b
+	text_jump UnknownText_0x1ec986
+	db "@"
+
+UnknownText_0x11f5a0: ; 0x11f5a0
+	text_jump UnknownText_0x1ec99b
+	db "@"
+
+
+
+
+UnknownText_0x11f5a5: ; 0x11f5a5
+	text_jump UnknownText_0x1ec9bd
+	db "@"
+
+UnknownText_0x11f5aa: ; 0x11f5aa
+	text_jump UnknownText_0x1ec9d9
+	db "@"
+
+UnknownText_0x11f5af: ; 0x11f5af
+	text_jump UnknownText_0x1ec9f7
+	db "@"
+
+UnknownText_0x11f5b4: ; 0x11f5b4
+	text_jump UnknownText_0x1eca0a
+	db "@"
+
+UnknownText_0x11f5b9: ; 0x11f5b9
+	text_jump UnknownText_0x1eca2a
+	db "@"
+
+UnknownText_0x11f5be: ; 0x11f5be
+	text_jump UnknownText_0x1eca47
+	db "@"
+
+UnknownText_0x11f5c3: ; 0x11f5c3
+	text_jump UnknownText_0x1eca64
+	db "@"
+
+UnknownText_0x11f5c8: ; 0x11f5c8
+	text_jump UnknownText_0x1eca82
+	db "@"
+
+UnknownText_0x11f5cd: ; 0x11f5cd
+	text_jump UnknownText_0x1eca9d
+	db "@"
+
+UnknownText_0x11f5d2: ; 0x11f5d2
+	text_jump UnknownText_0x1ecabf
+	db "@"
+
+UnknownText_0x11f5d7: ; 0x11f5d7
+	text_jump UnknownText_0x1ecade
+	db "@"
+
+UnknownText_0x11f5dc: ; 0x11f5dc
+	text_jump UnknownText_0x1ecafa
+	db "@"
+
+UnknownText_0x11f5e1: ; 0x11f5e1
+	text_jump UnknownText_0x1ecb19
+	db "@"
+
+UnknownText_0x11f5e6: ; 0x11f5e6
+	text_jump UnknownText_0x1ecb37
+	db "@"
+
+UnknownText_0x11f5eb: ; 0x11f5eb
+	text_jump UnknownText_0x1ecb55
+	db "@"
+
+UnknownText_0x11f5f0: ; 0x11f5f0
+	text_jump UnknownText_0x1ecb70
+	db "@"
+
+UnknownText_0x11f5f5: ; 0x11f5f5
+	text_jump UnknownText_0x1ecb92
+	db "@"
+
+UnknownText_0x11f5fa: ; 0x11f5fa
+	text_jump UnknownText_0x1ecbb6
+	db "@"
+
+UnknownText_0x11f5ff: ; 0x11f5ff
+	text_jump UnknownText_0x1ecbd9
+	db "@"
+
+UnknownText_0x11f604: ; 0x11f604
+	text_jump UnknownText_0x1ecbf3
+	db "@"
+
+UnknownText_0x11f609: ; 0x11f609
+	text_jump UnknownText_0x1ecc15
+	db "@"
+
+UnknownText_0x11f60e: ; 0x11f60e
+	text_jump UnknownText_0x1ecc39
+	db "@"
+
+UnknownText_0x11f613: ; 0x11f613
+	text_jump UnknownText_0x1ecc55
+	db "@"
+
+UnknownText_0x11f618: ; 0x11f618
+	text_jump UnknownText_0x1ecc75
+	db "@"
+
+UnknownText_0x11f61d: ; 0x11f61d
+	text_jump UnknownText_0x1ecc92
+	db "@"
+
+UnknownText_0x11f622: ; 0x11f622
+	text_jump UnknownText_0x1ecca7
+	db "@"
+
+UnknownText_0x11f627: ; 0x11f627
+	text_jump UnknownText_0x1eccc1
+	db "@"
+
+UnknownText_0x11f62c: ; 0x11f62c
+	text_jump UnknownText_0x1eccd7
+	db "@"
+
+UnknownText_0x11f631: ; 0x11f631
+	text_jump UnknownText_0x1eccef
+	db "@"
+
+UnknownText_0x11f636: ; 0x11f636
+	text_jump UnknownText_0x1ecd0e
+	db "@"
+
+UnknownText_0x11f63b: ; 0x11f63b
+	text_jump UnknownText_0x1ecd2b
+	db "@"
+
+UnknownText_0x11f640: ; 0x11f640
+	text_jump UnknownText_0x1ecd4d
+	db "@"
+
+UnknownText_0x11f645: ; 0x11f645
+	text_jump UnknownText_0x1ecd6b
+	db "@"
+
+UnknownText_0x11f64a: ; 0x11f64a
+	text_jump UnknownText_0x1ecd8d
+	db "@"
+
+UnknownText_0x11f64f: ; 0x11f64f
+	text_jump UnknownText_0x1ecdaf
+	db "@"
+
+UnknownText_0x11f654: ; 0x11f654
+	text_jump UnknownText_0x1ecdcf
+	db "@"
+
+UnknownText_0x11f659: ; 0x11f659
+	text_jump UnknownText_0x1ecded
+	db "@"
+
+UnknownText_0x11f65e: ; 0x11f65e
+	text_jump UnknownText_0x1ece0d
+	db "@"
+
+UnknownText_0x11f663: ; 0x11f663
+	text_jump UnknownText_0x1ece2a
+	db "@"
+
+UnknownText_0x11f668: ; 0x11f668
+	text_jump UnknownText_0x1ece4b
+	db "@"
+
+UnknownText_0x11f66d: ; 0x11f66d
+	text_jump UnknownText_0x1ece70
+	db "@"
+
+UnknownText_0x11f672: ; 0x11f672
+	text_jump UnknownText_0x1ece8a
+	db "@"
+
+UnknownText_0x11f677: ; 0x11f677
+	text_jump UnknownText_0x1ecea8
+	db "@"
+
+UnknownText_0x11f67c: ; 0x11f67c
+	text_jump UnknownText_0x1ecec9
+	db "@"
+
+UnknownText_0x11f681: ; 0x11f681
+	text_jump UnknownText_0x1ecee8
+	db "@"
 
 
 SECTION "bank5B", ROMX, BANK[$5B]
@@ -23215,7 +24151,17 @@ Function170b44: ; 170b44
 ; 170b90
 
 Unknown_170b90:
-INCBIN "baserom.gbc",$170b90,$170bd2 - $170b90
+	db $12, $13, $14, $15, $18, $17
+	db $16, $19, $04, $05, $11, $01
+	db $1c, $1b, $21, $1e, $1a, $1d
+	db $1f, $3c, $20, $27, $27, $27
+	db $28, $0a, $23, $24, $2a, $2b
+	db $35, $40, $2a, $29, $22, $25
+	db $3a, $2b, $24, $49, $2b, $07
+	db $2c, $2d, $4a, $0d, $4b, $3a
+	db $2b, $41, $35, $27, $28, $27
+	db $36, $3e, $30, $2c, $2d, $3d
+	db $26, $2e, $06, $07, $43, $36
 
 Function170bd2: ; 170bd2
 	ret

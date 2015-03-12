@@ -105,7 +105,9 @@ Tileset20PalMap: ; 0x4caf5
 INCBIN "tilesets/20_palette_map.bin"
 ; 0x4cb65
 
-INCBIN "baserom.gbc", $4cb65, $4cbd5 - $4cb65
+UnusedPalMap1:
+INCBIN "tilesets/unused_palette_map_1.bin"
+; 4cbd5
 
 Tileset29PalMap: ; 0x4cbd5
 INCBIN "tilesets/29_palette_map.bin"
@@ -127,5 +129,6 @@ Tileset04PalMap: ; 0x4cd95
 INCBIN "tilesets/04_palette_map.bin"
 ; 0x4ce05
 
-INCBIN "baserom.gbc", $4ce05, $4ce1f - $4ce05
-
+UnusedPalMap2:
+INCBIN "tilesets/unused_palette_map_2.bin"
+; 4ce1f

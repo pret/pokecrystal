@@ -9,7 +9,7 @@ Function108000: ; 108000
 ; 10800b
 
 Unknown_10800b:
-INCBIN "baserom.gbc", $10800b, $108012 - $10800b
+	db $0d, $12, $10, $03, $06, $0f, $0c
 
 Function108012:
 	ld a, $80
@@ -24,7 +24,7 @@ asm_108018:
 ; 108021
 
 Unknown_108021:
-INCBIN "baserom.gbc", $108021, $108026 - $108021
+	db $11, $07, $08, $0e, $0c
 
 Function108026: ; 108026
 	ld a, $0
@@ -40,7 +40,7 @@ asm_10802c:
 ; 108035
 
 Unknown_108035:
-INCBIN "baserom.gbc", $108035, $10803d - $108035
+	db $01, $12, $02, $03, $05, $08, $0b, $0c
 
 Function10803d: ; 10803d
 	ld a, $0
@@ -50,7 +50,7 @@ Function10803d: ; 10803d
 ; 108048
 
 Unknown_108048:
-INCBIN "baserom.gbc", $108048, $10804d - $108048
+	db $11, $07, $08, $13, $0c
 
 Function10804d: ; 10804d
 	ld a, $0
@@ -60,7 +60,7 @@ Function10804d: ; 10804d
 ; 108058
 
 Unknown_108058:
-INCBIN "baserom.gbc", $108058, $10805b - $108058
+	db $11, $0e, $0c
 
 Function10805b: ; 10805b
 	ld hl, wc734

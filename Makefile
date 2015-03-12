@@ -1,4 +1,5 @@
 PYTHON := python
+MD5 := md5sum -c --quiet
 
 .SUFFIXES:
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
@@ -56,9 +57,8 @@ crystal: pokecrystal.gbc
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 
-baserom.gbc: ;
-	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
-
+compare: pokecrystal.gbc pokecrystal11.gbc
+	@$(MD5) roms.md5
 
 %.asm: ;
 $(all_obj): $$*.asm $$($$*_dep)
@@ -70,12 +70,10 @@ $(all_obj): $$*.asm $$($$*_dep)
 pokecrystal11.gbc: $(crystal11_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
-	cmp crystal11.gbc $@
 
 pokecrystal.gbc: $(crystal_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
-	cmp baserom.gbc $@
 
 
 pngs:

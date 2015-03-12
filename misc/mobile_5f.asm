@@ -93,11 +93,89 @@ INCBIN "gfx/mobile/select.2bpp"
 
 HaveWantMap: ; 17cb83
 ; Interleaved tile/palette map.
-INCBIN "baserom.gbc", $17cb83, $17cff3 - $17cb83
+INCBIN "gfx/mobile/havewant_map.bin"
 
 HaveWantPals: ; 17cff3
 ; BG and OBJ palettes.
-INCBIN "baserom.gbc", $17cff3, $17d073 - $17cff3
+	RGB  0,  0,  0
+	RGB 21, 21, 21
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+
+	RGB  0,  0,  0
+	RGB  4, 17, 29
+	RGB  6, 19, 31
+	RGB 31, 31, 31
+
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+
+	RGB  0,  0,  0
+	RGB  2, 13, 18
+	RGB  6, 19, 31
+	RGB 31, 31, 31
+
+	RGB  0,  0,  0
+	RGB 31,  5,  5
+	RGB 29, 21, 21
+	RGB 31, 31, 31
+
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+
+	RGB  0,  0,  0
+	RGB  4, 17, 29
+	RGB  6, 19, 31
+	RGB  2, 15, 27
+
+	RGB  0,  0,  0
+	RGB 28, 19, 18
+	RGB 25,  9,  0
+	RGB  0,  0,  0
+
+	RGB  0,  0,  0
+	RGB 31, 27, 27
+	RGB 31, 10,  4
+	RGB 29,  0,  0
+
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 26,  8, 23
+	RGB 22,  0, 16
+
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 20,  8, 31
+	RGB 15,  1, 26
+
+	RGB  0,  0,  0
+	RGB 31, 31, 31
+	RGB 17, 12, 31
+	RGB 12,  6, 31
+
+	RGB  0, 16,  0
+	RGB 11, 11, 14
+	RGB  5,  5,  7
+	RGB 31, 31, 31
+
+	RGB  0, 31,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+
+	RGB 16, 31,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
+	RGB  0,  0,  0
 
 
 Function17d073: ; 17d073
@@ -258,7 +336,8 @@ Function17d187: ; 17d187
 ; 17d194
 
 Unknown_17d194:
-INCBIN "baserom.gbc", $17d194, $17d199 - $17d194
+	db "クりス@@"
+; 17d198
 
 Function17d199: ; 17d199
 	ld hl, Unknown_17d1a6
@@ -269,7 +348,7 @@ Function17d199: ; 17d199
 ; 17d1a6
 
 Unknown_17d1a6:
-INCBIN "baserom.gbc", $17d1a6, $17d1ab - $17d1a6
+	db "?????"
 
 Function17d1ab: ; 17d1ab
 	ld a, $50
@@ -284,7 +363,8 @@ Function17d1ab: ; 17d1ab
 ; 17d1c3
 
 Unknown_17d1c3:
-INCBIN "baserom.gbc", $17d1c3, $17d1c9 - $17d1c3
+	db "こんにちは@"
+; 17d1c9
 
 Function17d1c9: ; 17d1c9
 	ld a, $50
