@@ -10,8 +10,6 @@
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
 	cd pokecrystal
 
-- Copy a Pokémon Crystal rom into `pokecrystal/`. Name it **baserom.gbc**. Eventually this will not be required.
-
 To build **pokecrystal.gbc**:
 
 	make
@@ -35,8 +33,6 @@ In the shell, run:
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
 	cd pokecrystal
 
-- Copy a Pokémon Crystal rom into `pokecrystal/`. Name it **baserom.gbc**. Eventually this will not be required.
-
 To build **pokecrystal.gbc**:
 
 	make
@@ -55,8 +51,6 @@ In the **Cygwin terminal**:
 
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
 	cd pokecrystal
-
-- Copy a Pokémon Crystal rom into `C:\cygwin\home\<username>\pokecrystal`. Name it **baserom.gbc**. Eventually this will not be required.
 
 To build:
 
@@ -91,7 +85,3 @@ ssh"):
 
 	cd /vagrant/pokecrystal
 	make
-
-To make the build work you will need to copy baserom.gbc into the "pokecrystal"
-directory inside the "virtualbox" directory on the host machine. Eventually
-this will not be required.
