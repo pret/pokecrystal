@@ -41747,7 +41747,14 @@ Function49856: ; 49856
 ; 4985a
 
 Unknown_4985a: ; unreferenced
-INCBIN "baserom.gbc",$4985a,$4989a - $4985a
+	db $ab, $03, $57, $24, $ac, $0e, $13, $32
+	db $be, $30, $5b, $4c, $47, $60, $ed, $f2
+	db $ab, $03, $55, $26, $aa, $0a, $13, $3a
+	db $be, $28, $33, $24, $6e, $71, $df, $b0
+	db $a8, $00, $e5, $e0, $9a, $fc, $f4, $2c
+	db $fe, $4c, $a3, $5e, $c6, $3a, $ab, $4d
+	db $a8, $00, $b5, $b0, $de, $e8, $fc, $1c
+	db $ba, $66, $f7, $0e, $ba, $5e, $43, $bd
 
 Function4989a: ; 4989a
 	call DelayFrame
@@ -51477,7 +51484,20 @@ INCLUDE "data/base_stats.asm"
 PokemonNames::
 INCLUDE "data/pokemon_names.asm"
 
-INCBIN "baserom.gbc",$53d84,$53d9c - $53d84
+Unknown_53d84: ; unreferenced
+	db $1a, $15
+	db $33, $16
+	db $4b, $17
+	db $62, $18
+	db $79, $19
+	db $90, $1a
+	db $a8, $1b
+	db $c4, $1c
+	db $e0, $1d
+	db $f6, $1e
+	db $ff, $1f
+	db $ff, $20
+; 53d9c
 
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
@@ -56372,7 +56392,7 @@ MenuDataHeader_0x8810d: ; 0x8810d
 	db 09, 06 ; start coords
 	db 12, 19 ; end coords
 
-INCBIN "baserom.gbc",$88112,$88116 - $88112
+	db 0, 0, -1, 0 ; XXX
 
 Function88116: ; 88116
 	call Function1cfd
@@ -82034,7 +82054,11 @@ Functione124e: ; e124e
 ; e126d
 
 Unknown_e126d: ; e126d
-INCBIN "baserom.gbc",$e126d,$e127d - $e126d
+	db $00, $01, $02, $03
+	db $04, $05, $06, $0b
+	db $0c, $11, $12, $17
+	db $18, $1d, $1e, $23
+; e127d
 
 Functione127d: ; e127d
 	call Functione128d
@@ -82400,7 +82424,12 @@ Functione1481: ; e1481
 ; e148f
 
 Unknown_e148f: ; e148f
-INCBIN "baserom.gbc", $e148f, $e14a0 - $e148f
+	db $e0
+	db $00, $03, $06, $09
+	db $24, $27, $2a, $2d
+	db $48, $4b, $4e, $51
+	db $6c, $6f, $72, $75
+; e14a0
 
 Functione14a0: ; e14a0
 	ld hl, Unknown_e14b5
@@ -82423,7 +82452,13 @@ Functione14a0: ; e14a0
 ; e14b5
 
 Unknown_e14b5: ; e14b5
-INCBIN "baserom.gbc", $e14b5, $e14d9 - $e14b5
+	db $00, $00, $00, $00, $00, $00
+	db $00, $01, $02, $03, $04, $00
+	db $00, $05, $06, $07, $08, $00
+	db $00, $09, $0a, $0b, $0c, $00
+	db $00, $0d, $0e, $0f, $10, $00
+	db $00, $00, $00, $00, $00, $00
+; e14d9
 
 Functione14d9: ; e14d9
 	call Functione1481
@@ -82467,13 +82502,73 @@ Functione14d9: ; e14d9
 ; e150f
 
 Unknown_e150f: ; e150f
-INCBIN "baserom.gbc",$e150f,$e1534 - $e150f
+	db $f4, $f4, $00, $00
+	db $f4, $fc, $01, $00
+	db $f4, $04, $02, $00
+	db $fc, $f4, $0c, $00
+	db $fc, $fc, $0d, $00
+	db $fc, $04, $0e, $00
+	db $04, $f4, $18, $00
+	db $04, $fc, $19, $00
+	db $04, $04, $1a, $00
+	db $ff
 
 Unknown_e1534: ; e1534
-INCBIN "baserom.gbc",$e1534,$e1559 - $e1534
+	db $f4, $f4, $00, $00
+	db $f4, $fc, $01, $00
+	db $f4, $04, $00, $20
+	db $fc, $f4, $02, $00
+	db $fc, $fc, $03, $00
+	db $fc, $04, $02, $20
+	db $04, $f4, $00, $40
+	db $04, $fc, $01, $40
+	db $04, $04, $00, $60
+	db $ff
 
 Unknown_e1559: ; e1559
-INCBIN "baserom.gbc",$e1559,$e1631 - $e1559
+
+macro_e1559: macro
+	db \1, \2
+	dwcoord \3, \4
+	db \5, \6
+endm
+
+	macro_e1559 $1c, $1c,  1,  0, $ee, $00
+	macro_e1559 $34, $1c,  4,  0, $ee, $00
+	macro_e1559 $4c, $1c,  7,  0, $ee, $00
+	macro_e1559 $64, $1c, 10,  0, $ee, $00
+	macro_e1559 $7c, $1c, 13,  0, $ee, $00
+	macro_e1559 $94, $1c, 16,  0, $ee, $00
+	macro_e1559 $1c, $34,  1,  3, $ee, $00
+	macro_e1559 $34, $34,  4,  3, $ef, $00
+	macro_e1559 $4c, $34,  7,  3, $ef, $00
+	macro_e1559 $64, $34, 10,  3, $ef, $00
+	macro_e1559 $7c, $34, 13,  3, $ef, $00
+	macro_e1559 $94, $34, 16,  3, $ee, $00
+	macro_e1559 $1c, $4c,  1,  6, $ee, $00
+	macro_e1559 $34, $4c,  4,  6, $ef, $00
+	macro_e1559 $4c, $4c,  7,  6, $ef, $00
+	macro_e1559 $64, $4c, 10,  6, $ef, $00
+	macro_e1559 $7c, $4c, 13,  6, $ef, $00
+	macro_e1559 $94, $4c, 16,  6, $ee, $00
+	macro_e1559 $1c, $64,  1,  9, $ee, $00
+	macro_e1559 $34, $64,  4,  9, $ef, $00
+	macro_e1559 $4c, $64,  7,  9, $ef, $00
+	macro_e1559 $64, $64, 10,  9, $ef, $00
+	macro_e1559 $7c, $64, 13,  9, $ef, $00
+	macro_e1559 $94, $64, 16,  9, $ee, $00
+	macro_e1559 $1c, $7c,  1, 12, $ee, $00
+	macro_e1559 $34, $7c,  4, 12, $ef, $00
+	macro_e1559 $4c, $7c,  7, 12, $ef, $00
+	macro_e1559 $64, $7c, 10, 12, $ef, $00
+	macro_e1559 $7c, $7c, 13, 12, $ef, $00
+	macro_e1559 $94, $7c, 16, 12, $ee, $00
+	macro_e1559 $1c, $94,  1, 15, $ee, $00
+	macro_e1559 $34, $94,  4, 15, $ee, $00
+	macro_e1559 $4c, $94,  7, 15, $ee, $00
+	macro_e1559 $64, $94, 10, 15, $ee, $00
+	macro_e1559 $7c, $94, 13, 15, $ee, $00
+	macro_e1559 $94, $94, 16, 15, $ee, $00
 
 Functione1631: ; e1631
 	ld hl, VTiles2
@@ -85888,7 +85983,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	ret
 ; e3778 (38:7778)
 
-INCBIN "baserom.gbc",$e3778,$e377b - $e3778
+	hlcoord 11, 7 ; XXX
 
 MenuDataHeader_0xe377b: ; 0xe377b
 	db $40 ; flags
@@ -91302,7 +91397,7 @@ Unknown_fd15e: ; fd15e
 	db $01, $86, $a0, $00, $59, $10, $02, $1a ; SNORLAX_DOLL
 ; fd1ae
 
-INCBIN "baserom.gbc", $fd1ae, $fd1b1 - $fd1ae
+	db 0, 0, 0 ; XXX
 
 UnknownText_0xfd1b1: ; 0xfd1b1
 	; Hi,  ! How are you?
@@ -91340,13 +91435,13 @@ UnknownText_0xfd1ca: ; 0xfd1ca
 	db "@"
 ; 0xfd1cf
 
-INCBIN "baserom.gbc", $fd1cf, $fd1d0 - $fd1cf
+	db 0 ; XXX
 
 Functionfd1d0: ; fd1d0
 	ret
 ; fd1d1
 
-INCBIN "baserom.gbc", $fd1d1, $fd1d2 - $fd1d1
+	ret ; XXX
 
 
 INCLUDE "misc/mobile_40.asm"
@@ -94047,7 +94142,22 @@ Function1058e9: ; 1058e9 (41:58e9)
 ; 1058f0 (41:58f0)
 
 OAM_1058f0: ; 1058f0
-INCBIN "baserom.gbc",$1058f0,$105930 - $1058f0
+	db $11, $34, $00, $00
+	db $11, $3c, $01, $00
+	db $11, $44, $02, $00
+	db $11, $4c, $03, $00
+	db $19, $34, $04, $00
+	db $19, $3c, $05, $00
+	db $19, $44, $06, $00
+	db $19, $4c, $07, $00
+	db $01, $5c, $00, $00
+	db $01, $64, $01, $00
+	db $01, $6c, $02, $00
+	db $01, $74, $03, $00
+	db $09, $5c, $04, $00
+	db $09, $64, $05, $00
+	db $09, $6c, $06, $00
+	db $09, $74, $07, $00
 
 ; japanese mystery gift gfx
 MysteryGiftJP_GFX: ; 105930
@@ -96414,12 +96524,12 @@ INCLUDE "text/battle_tower.asm"
 
 SECTION "bank7C", ROMX, BANK[$7C]
 
-INCBIN "baserom.gbc",$1f0000,$1f09d8 - $1f0000
+INCBIN "unknown/1f0000.bin"
 
 
 SECTION "bank7D", ROMX, BANK[$7D]
 
-INCBIN "baserom.gbc",$1f4000,$1f4003 - $1f4000
+	db $cc, $6b, $1e ; XXX
 
 Function1f4003: ; 1f4003
 	ld a, $6
@@ -96433,7 +96543,7 @@ Function1f4003: ; 1f4003
 ; 1f4018
 
 Unknown_1f4018:
-INCBIN "baserom.gbc", $1f4018, $1f4dbe - $1f4018
+INCBIN "unknown/1f4018.bin"
 
 Function1f4dbe: ; 1f4dbe
 	ld a, $6
@@ -96447,7 +96557,7 @@ Function1f4dbe: ; 1f4dbe
 ; 1f4dd3
 
 Unknown_1f4dd3:
-INCBIN "baserom.gbc", $1f4dd3, $1f5d9f - $1f4dd3
+INCBIN "unknown/1f4dd3.bin"
 
 Function1f5d9f: ; 1f5d9f
 	ld a, $6
@@ -96461,7 +96571,7 @@ Function1f5d9f: ; 1f5d9f
 ; 1f5db4
 
 Unknown_1f5db4:
-INCBIN "baserom.gbc", $1f5db4, $1f636a - $1f5db4
+INCBIN "unknown/1f5db4.bin"
 
 
 SECTION "bank7E", ROMX, BANK[$7E]
