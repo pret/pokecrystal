@@ -1980,8 +1980,7 @@ Function100c98: ; 100c98
 ; 100cad
 
 Unknown_100cad: ; 100cad
-INCBIN "baserom.gbc",$100cad,$100cb5 - $100cad
-
+	db $0a, $01, $ff, $01, $a0, $00, $20, $c3
 
 Function100cb5: ; 100cb5
 	call Function100dd8
@@ -6305,7 +6304,7 @@ String_102a26: ; 102a26
 ; 102a33
 
 Unknown_102a33:
-INCBIN "baserom.gbc", $102a33, $102a3b - $102a33
+	db $08, $0b, $02, $01, $80, $00, $20, $01
 
 Function102a3b: ; 102a3b
 	ld a, [wcd30]
@@ -6455,7 +6454,7 @@ Function102b68: ; 102b68 ; unreferenced
 ; 102b73
 
 Unknown_102b73:
-INCBIN "baserom.gbc", $102b73, $102b7b - $102b73
+	db $09, $06, $ff, $01, $a0, $00, $10, $c1
 
 Function102b7b: ; 102b7b
 	xor a
@@ -6472,7 +6471,7 @@ Function102b7b: ; 102b7b
 ; 102b94
 
 Unknown_102b94:
-INCBIN "baserom.gbc", $102b94, $102b9c - $102b94
+	db $01, $06, $ff, $01, $a0, $00, $10, $c1
 
 Function102b9c: ; 102b9c
 	ld a, [wcd4d]
