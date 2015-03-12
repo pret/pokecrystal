@@ -1,4 +1,5 @@
 PYTHON := python
+MD5 := md5sum -c --quiet
 
 .SUFFIXES:
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
@@ -56,6 +57,8 @@ crystal: pokecrystal.gbc
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 
+compare: pokecrystal.gbc pokecrystal11.gbc
+	@$(MD5) roms.md5
 
 %.asm: ;
 $(all_obj): $$*.asm $$($$*_dep)
