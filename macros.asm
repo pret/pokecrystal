@@ -1,3 +1,5 @@
+INCLUDE "macros/enum.asm"
+
 INCLUDE "macros/event.asm"
 INCLUDE "macros/sound.asm"
 INCLUDE "macros/text.asm"
@@ -112,17 +114,6 @@ endanim: MACRO
 	db $ff
 	ENDM
 
-
-; Constant enumeration
-
-const_def: MACRO
-const_value SET 0
-ENDM
-
-const: MACRO
-\1 EQU const_value
-const_value SET const_value + 1
-ENDM
 
 
 sine_wave: MACRO
