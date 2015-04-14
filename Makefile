@@ -62,9 +62,6 @@ compare: pokecrystal.gbc pokecrystal11.gbc
 
 %.asm: ;
 $(all_obj): $$*.asm $$($$*_dep)
-	@$(gfx) 2bpp $(2bppq); $(eval 2bppq :=)
-	@$(gfx) 1bpp $(1bppq); $(eval 1bppq :=)
-	@$(gfx) lz   $(lzq);   $(eval lzq   :=)
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
@@ -82,9 +79,9 @@ pngs:
 	find . -iname "*.lz"      -exec touch {} +
 	find . -iname "*.[12]bpp" -exec touch {} +
 
-%.2bpp: %.png ; $(eval 2bppq += $<) @rm -f $@
-%.1bpp: %.png ; $(eval 1bppq += $<) @rm -f $@
-%.lz:   %     ; $(eval lzq   += $<) @rm -f $@
+%.2bpp: %.png ; @$(gfx) 2bpp $<
+%.1bpp: %.png ; @$(gfx) 1bpp $<
+%.lz:   %     ; @$(gfx) lz $<
 
 
 %.pal: ;
