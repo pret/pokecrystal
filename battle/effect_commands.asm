@@ -90,8 +90,8 @@ DoMove: ; 3402c
 	ld [BattleScriptBufferLoc + 1], a
 	pop af
 
-; $fe is used to terminate branches without ending the read cycle.
-	cp $fe
+; endturn_command (-2) is used to terminate branches without ending the read cycle.
+	cp endturn_command
 	ret nc
 
 ; The rest of the commands (01-af) are read from BattleCommandPointers.
@@ -3918,7 +3918,7 @@ BattleCommanda1: ; 35461
 
 
 Function355b0: ; 355b0
-	ld b, $12 ; buildopponentrage
+	ld b, buildopponentrage_command
 	jp SkipToBattleCommand
 ; 355b5
 
@@ -6977,7 +6977,7 @@ BattleCommand21: ; 36671
 	ld a, BIDE
 	ld [hl], a
 
-	ld b, $22 ; unleashenergy
+	ld b, unleashenergy_command
 	jp SkipToBattleCommand
 
 .asm_366dc
@@ -7051,7 +7051,7 @@ BattleCommand3e: ; 3671a
 	inc de
 	ld [de], a
 .asm_3674c
-	ld b, $3d ; rampage
+	ld b, rampage_command
 	jp SkipToBattleCommand
 ; 36751
 
@@ -7707,7 +7707,7 @@ BattleCommand3a: ; 36b3a
 	res SUBSTATUS_CHARGED, [hl]
 	res SUBSTATUS_UNDERGROUND, [hl]
 	res SUBSTATUS_FLYING, [hl]
-	ld b, $39 ; charge
+	ld b, charge_command
 	jp SkipToBattleCommand
 ; 36b4d
 
@@ -7787,7 +7787,7 @@ BattleCommand39: ; 36b4d
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_SKULL_BASH
-	ld b, $fe ; endturn
+	ld b, endturn_command
 	jp z, SkipToBattleCommand
 	jp EndMoveEffect
 
@@ -10294,7 +10294,7 @@ BattleCommand9e: ; 37d02
 	ld a, [Weather]
 	cp WEATHER_SUN
 	ret nz
-	ld b, $39 ; charge
+	ld b, charge_command
 	jp SkipToBattleCommand
 ; 37d0d
 
@@ -10323,7 +10323,7 @@ BattleCommand9b: ; 37d0d
 	ld [CurDamage], a
 	ld a, [de]
 	ld [CurDamage + 1], a
-	ld b, $9c ; futuresight
+	ld b, futuresight_command
 	jp SkipToBattleCommand
 ; 37d34
 
