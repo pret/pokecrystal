@@ -30552,7 +30552,7 @@ Function28771: ; 28771
 	and a
 	ret z
 	push hl
-	ld hl, Unknown_28785
+	ld hl, .TimeCapsuleAlt
 .asm_28778
 	ld a, [hli]
 	and a
@@ -30568,10 +30568,11 @@ Function28771: ; 28771
 .asm_28783
 	pop hl
 	ret
-; 28785
 
-Unknown_28785: ; 28785
-; Alternate mappings for unused items.
+.TimeCapsuleAlt ; 28785
+; Pokémon traded from RBY do not have held items, so GSC usually interprets the
+; catch rate as an item. However, if the catch rate appears in this table, the
+; item associated with the table entry is used instead.
 	db ITEM_19, LEFTOVERS
 	db ITEM_2D, BITTER_BERRY
 	db ITEM_32, GOLD_BERRY
