@@ -54,26 +54,42 @@ Functiond003a: ; d003a
 ; d0042
 
 
-Unknown_d0042: ; d0042
-	dw Unknown_d0054
-	dw Unknown_d0058
-	dw Unknown_d005c
-	dw Unknown_d0064
-	dw Unknown_d006e
-	dw Unknown_d0076
-	dw Unknown_d0080
-	dw Unknown_d0088
-	dw Unknown_d008b
+POKEANIM: MACRO
+	rept _NARG
 
-Unknown_d0054: db 11, 5, 7, 0
-Unknown_d0058: db 11, 4, 7, 0
-Unknown_d005c: db 10, 4, 7, 2, 3, 6, 7, 0
-Unknown_d0064: db  6, 8, 6, 7, 2, 3, 9, 4, 7, 0
-Unknown_d006e: db  6, 7, 2, 3,10, 4, 7, 0
-Unknown_d0076: db  6, 7,10, 4, 7, 2, 3, 6, 7, 0
-Unknown_d0080: db 10, 4, 7, 2, 3, 6, 7, 0
-Unknown_d0088: db  4, 7, 0
-Unknown_d008b: db  6, 7, 0
+; Workaround for a bug where macro args can't come after the start of a symbol
+if !def(\1_POKEANIM)
+\1_POKEANIM equs "PokeAnim_\1_"
+endc
+
+	db (\1_POKEANIM - PokeAnim_SetupCommands) / 2
+	shift
+	endr
+
+	db (PokeAnim_Finish_ - PokeAnim_SetupCommands) / 2
+ENDM
+
+
+PokeAnims: ; d0042
+	dw .Slow
+	dw .Normal
+	dw .Menu
+	dw .Trade
+	dw .Evolve
+	dw .Hatch
+	dw .Unused ; same as .Menu
+	dw .Egg1
+	dw .Egg2
+
+.Slow:   POKEANIM Cry3, Setup2, Play
+.Normal: POKEANIM Cry3, Setup, Play
+.Menu:   POKEANIM Cry2, Setup, Play, SetWait, Wait, Extra, Play
+.Trade:  POKEANIM Extra, Play2, Extra, Play, SetWait, Wait, Cry, Setup, Play
+.Evolve: POKEANIM Extra, Play, SetWait, Wait, Cry2, Setup, Play
+.Hatch:  POKEANIM Extra, Play, Cry2, Setup, Play, SetWait, Wait, Extra, Play
+.Unused: POKEANIM Cry2, Setup, Play, SetWait, Wait, Extra, Play
+.Egg1:   POKEANIM Setup, Play
+.Egg2:   POKEANIM Extra, Play
 
 
 Functiond008e: ; d008e
@@ -93,7 +109,7 @@ Functiond00a3: ; d00a3
 	push hl
 	ld c, e
 	ld b, 0
-	ld hl, Unknown_d0042
+	ld hl, PokeAnims
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -118,7 +134,7 @@ Functiond00b4: ; d00b4
 	ld l, a
 	add hl, bc
 	ld a, [hl]
-	ld hl, Jumptable_d00da
+	ld hl, PokeAnim_SetupCommands
 	rst JumpTable
 	ld a, [w2_d168]
 	ld c, a
@@ -131,29 +147,32 @@ Functiond00b4: ; d00b4
 	ret
 ; d00da
 
-Jumptable_d00da: ; d00da
-	dw Functiond0171
-	dw Functiond0166
-	dw Functiond00f2
-	dw Functiond00fe
-	dw Functiond010b
-	dw Functiond011d
-	dw Functiond012f
-	dw Functiond0141
-	dw Functiond0155
-	dw Functiond017a
-	dw Functiond0188
-	dw Functiond0196
+PokeAnim_SetupCommands: ; d00da
+setup_command: macro
+\1_: dw \1
+endm
+	setup_command PokeAnim_Finish
+	setup_command PokeAnim_Nop
+	setup_command PokeAnim_SetWait
+	setup_command PokeAnim_Wait
+	setup_command PokeAnim_Setup
+	setup_command PokeAnim_Setup2
+	setup_command PokeAnim_Extra
+	setup_command PokeAnim_Play
+	setup_command PokeAnim_Play2
+	setup_command PokeAnim_Cry
+	setup_command PokeAnim_Cry2
+	setup_command PokeAnim_Cry3
 ; d00f2
 
-Functiond00f2: ; d00f2
+PokeAnim_SetWait: ; d00f2
 	ld a, $12
 	ld [w2_d181], a
 	ld a, [w2_d168]
 	inc a
 	ld [w2_d168], a
 
-Functiond00fe: ; d00fe
+PokeAnim_Wait: ; d00fe
 	ld hl, w2_d181
 	dec [hl]
 	ret nz
@@ -163,7 +182,7 @@ Functiond00fe: ; d00fe
 	ret
 ; d010b
 
-Functiond010b: ; d010b
+PokeAnim_Setup: ; d010b
 	ld c, $0
 	ld b, $0
 	call Functiond0228
@@ -174,7 +193,7 @@ Functiond010b: ; d010b
 	ret
 ; d011d
 
-Functiond011d: ; d011d
+PokeAnim_Setup2: ; d011d
 	ld c, $0
 	ld b, $4
 	call Functiond0228
@@ -185,7 +204,7 @@ Functiond011d: ; d011d
 	ret
 ; d012f
 
-Functiond012f: ; d012f
+PokeAnim_Extra: ; d012f
 	ld c, $1
 	ld b, $0
 	call Functiond0228
@@ -196,7 +215,7 @@ Functiond012f: ; d012f
 	ret
 ; d0141
 
-Functiond0141: ; d0141
+PokeAnim_Play: ; d0141
 	call Functiond0250
 	ld a, [w2_d17e]
 	bit 7, a
@@ -208,7 +227,7 @@ Functiond0141: ; d0141
 	ret
 ; d0155
 
-Functiond0155: ; d0155
+PokeAnim_Play2: ; d0155
 	call Functiond0250
 	ld a, [w2_d17e]
 	bit 7, a
@@ -219,7 +238,7 @@ Functiond0155: ; d0155
 	ret
 ; d0166
 
-Functiond0166: ; d0166
+PokeAnim_Nop: ; d0166
 	call Functiond01a9
 	ld a, [w2_d168]
 	inc a
@@ -227,14 +246,14 @@ Functiond0166: ; d0166
 	ret
 ; d0171
 
-Functiond0171: ; d0171
+PokeAnim_Finish: ; d0171
 	call Functiond01a9
 	ld hl, w2_d168
 	set 7, [hl]
 	ret
 ; d017a
 
-Functiond017a: ; d017a
+PokeAnim_Cry: ; d017a
 	ld a, [w2_d16b]
 	call _PlayCry
 	ld a, [w2_d168]
@@ -243,7 +262,7 @@ Functiond017a: ; d017a
 	ret
 ; d0188
 
-Functiond0188: ; d0188
+PokeAnim_Cry2: ; d0188
 	ld a, [w2_d16b]
 	call PlayCry2
 	ld a, [w2_d168]
@@ -252,7 +271,7 @@ Functiond0188: ; d0188
 	ret
 ; d0196
 
-Functiond0196: ; d0196
+PokeAnim_Cry3: ; d0196
 	ld a, $f
 	ld [CryTracks], a
 	ld a, [w2_d16b]
@@ -346,7 +365,7 @@ Functiond0228: ; d0228
 	call ByteFill
 	pop bc
 	ld a, b
-	ld [w2_d172 + 1], a
+	ld [w2_d173], a
 	ld a, c
 	ld [w2_d172], a
 	call Functiond055c
@@ -378,11 +397,11 @@ Functiond0261: ; d0261
 	call Functiond02f8
 	ld a, [w2_d182]
 	cp $ff
-	jr z, Functiond02a8
+	jr z, PokeAnim_End
 	cp $fe
-	jr z, Functiond028e
+	jr z, PokeAnim_SetRepeat
 	cp $fd
-	jr z, Functiond0296
+	jr z, PokeAnim_DoRepeat
 	call Functiond02c8
 	ld a, [w2_d183]
 	call Functiond02ae
@@ -398,13 +417,13 @@ Functiond0282: ; d0282
 	ret
 ; d028e
 
-Functiond028e: ; d028e
+PokeAnim_SetRepeat: ; d028e
 	ld a, [w2_d183]
 	ld [w2_d17f], a
 	jr Functiond0253
 ; d0296
 
-Functiond0296: ; d0296
+PokeAnim_DoRepeat: ; d0296
 	ld a, [w2_d17f]
 	and a
 	ret z
@@ -416,7 +435,7 @@ Functiond0296: ; d0296
 	jr Functiond0253
 ; d02a8
 
-Functiond02a8: ; d02a8
+PokeAnim_End: ; d02a8
 	ld hl, w2_d17e
 	set 7, [hl]
 	ret
