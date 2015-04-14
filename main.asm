@@ -15456,7 +15456,7 @@ Function1365b:: ; 1365b
 	call IsInArray
 	jr nc, .asm_1367f
 
-	ld a, $c ; jumpstd
+	ld a, jumpstd_command
 	ld [wd03f], a
 	inc hl
 	ld a, [hli]
