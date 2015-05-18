@@ -13218,7 +13218,7 @@ StartMenu:: ; 125cd
 	call .AppendMenuList
 .no_pack
 
-	ld hl, PokegearFlags
+	ld hl, wPokegearFlags
 	bit 7, [hl]
 	jr z, .no_pokegear
 	ld a, 7 ; pokegear
@@ -70956,7 +70956,7 @@ Function90eb0: ; 90eb0 (24:4eb0)
 	ld bc, $8
 	ld a, $4f
 	call ByteFill
-	ld de, PokegearFlags
+	ld de, wPokegearFlags
 	ld a, [de]
 	bit 0, a
 	call nz, Function90ee4
@@ -71046,7 +71046,7 @@ Function90f3e: ; 90f3e (24:4f3e)
 	and D_RIGHT
 	ret z
 
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 0, a
 	jr z, .asm_90f5a
 	ld c, $2
@@ -71054,7 +71054,7 @@ Function90f3e: ; 90f3e (24:4f3e)
 	jr .asm_90f71
 .asm_90f5a
 
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 2, a
 	jr z, .asm_90f67
 	ld c, $7
@@ -71062,7 +71062,7 @@ Function90f3e: ; 90f3e (24:4f3e)
 	jr .asm_90f71
 .asm_90f67
 
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 1, a
 	ret z
 
@@ -71165,7 +71165,7 @@ Function90ff2: ; 90ff2 (24:4ff2)
 	ret
 
 .right
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 2, a
 	jr z, .asm_91015
 	ld c, $7
@@ -71173,7 +71173,7 @@ Function90ff2: ; 90ff2 (24:4ff2)
 	jr .done
 
 .asm_91015
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 1, a
 	ret z
 	ld c, $b
@@ -71358,7 +71358,7 @@ Function91112: ; 91112 (24:5112)
 	ret
 
 .left
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 2, a
 	jr z, .asm_9113b
 	ld c, $7
@@ -71366,7 +71366,7 @@ Function91112: ; 91112 (24:5112)
 	jr .asm_9114c
 
 .asm_9113b
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 0, a
 	jr z, .asm_91148
 	ld c, $2
@@ -71417,7 +71417,7 @@ Function91171: ; 91171 (24:5171)
 	ret
 
 .left
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 0, a
 	jr z, .asm_9119c
 	ld c, $2
@@ -71429,7 +71429,7 @@ Function91171: ; 91171 (24:5171)
 	jr .asm_911ac
 
 .right
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 1, a
 	ret z
 	ld c, $b
@@ -72125,7 +72125,7 @@ RadioChannels:
 .PlacesAndPeople
 	call .InJohto
 	jr c, .NoSignal
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 3, a
 	jr z, .NoSignal
 	jp Function917ea
@@ -72133,7 +72133,7 @@ RadioChannels:
 .LetsAllSing
 	call .InJohto
 	jr c, .NoSignal
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 3, a
 	jr z, .NoSignal
 	jp Function917ff
@@ -72141,7 +72141,7 @@ RadioChannels:
 .PokeFluteRadio
 	call .InJohto
 	jr c, .NoSignal
-	ld a, [PokegearFlags]
+	ld a, [wPokegearFlags]
 	bit 3, a
 	jr z, .NoSignal
 	jp Function91829
