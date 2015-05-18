@@ -2106,7 +2106,7 @@ PCItemsEnd::
 
 	ds 1
 
-wd957:: ds 1
+wPokegearFlags:: ds 1
 wd958:: ds 1
 wd959:: ds 2
 WhichRegisteredItem:: ; d95b

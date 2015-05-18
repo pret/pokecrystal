@@ -3,11 +3,11 @@
 	; location, bit
 
 	; pokegear
-	dwb wd957, %00000010 ; radio card       ; $0
-	dwb wd957, %00000001 ; map card
-	dwb wd957, %00000100 ; phone card
-	dwb wd957, %00001000 ; expn card
-	dwb wd957, %10000000 ; on/off
+	dwb wPokegearFlags, %00000010 ; radio card       ; $0
+	dwb wPokegearFlags, %00000001 ; map card
+	dwb wPokegearFlags, %00000100 ; phone card
+	dwb wPokegearFlags, %00001000 ; expn card
+	dwb wPokegearFlags, %10000000 ; on/off
 
 	;   wDaycareMan, %10000000 ; daycare 1 on
 	dwb wDaycareMan, %01000000 ; monster 1 and 2 are compatible

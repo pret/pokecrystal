@@ -472,7 +472,7 @@ Script_loadmenudata: ; 0x96efa
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	ld de, $1d35
+	ld de, LoadMenuDataHeader
 	ld a, [ScriptBank]
 	call Function26b7
 	call Function1ad2

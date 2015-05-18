@@ -13218,7 +13218,7 @@ StartMenu:: ; 125cd
 	call .AppendMenuList
 .no_pack
 
-	ld hl, wd957
+	ld hl, wPokegearFlags
 	bit 7, [hl]
 	jr z, .no_pokegear
 	ld a, 7 ; pokegear
@@ -70956,7 +70956,7 @@ Function90eb0: ; 90eb0 (24:4eb0)
 	ld bc, $8
 	ld a, $4f
 	call ByteFill
-	ld de, wd957
+	ld de, wPokegearFlags
 	ld a, [de]
 	bit 0, a
 	call nz, Function90ee4
@@ -71046,7 +71046,7 @@ Function90f3e: ; 90f3e (24:4f3e)
 	and D_RIGHT
 	ret z
 
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 0, a
 	jr z, .asm_90f5a
 	ld c, $2
@@ -71054,7 +71054,7 @@ Function90f3e: ; 90f3e (24:4f3e)
 	jr .asm_90f71
 .asm_90f5a
 
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 2, a
 	jr z, .asm_90f67
 	ld c, $7
@@ -71062,7 +71062,7 @@ Function90f3e: ; 90f3e (24:4f3e)
 	jr .asm_90f71
 .asm_90f67
 
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 1, a
 	ret z
 
@@ -71165,7 +71165,7 @@ Function90ff2: ; 90ff2 (24:4ff2)
 	ret
 
 .right
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 2, a
 	jr z, .asm_91015
 	ld c, $7
@@ -71173,7 +71173,7 @@ Function90ff2: ; 90ff2 (24:4ff2)
 	jr .done
 
 .asm_91015
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 1, a
 	ret z
 	ld c, $b
@@ -71358,7 +71358,7 @@ Function91112: ; 91112 (24:5112)
 	ret
 
 .left
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 2, a
 	jr z, .asm_9113b
 	ld c, $7
@@ -71366,7 +71366,7 @@ Function91112: ; 91112 (24:5112)
 	jr .asm_9114c
 
 .asm_9113b
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 0, a
 	jr z, .asm_91148
 	ld c, $2
@@ -71417,7 +71417,7 @@ Function91171: ; 91171 (24:5171)
 	ret
 
 .left
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 0, a
 	jr z, .asm_9119c
 	ld c, $2
@@ -71429,7 +71429,7 @@ Function91171: ; 91171 (24:5171)
 	jr .asm_911ac
 
 .right
-	ld a, [wd957]
+	ld a, [wPokegearFlags]
 	bit 1, a
 	ret z
 	ld c, $b
@@ -72032,7 +72032,7 @@ Function9164e: ; 9164e (24:564e)
 UpdateRadioStation: ; 9166f (24:566f)
 	ld hl, wd958
 	ld d, [hl]
-	ld hl, Unknown_916ad
+	ld hl, RadioChannels
 .asm_91676
 	ld a, [hli]
 	cp $ff
@@ -72076,79 +72076,82 @@ Function916a1: ; 916a1
 	ret
 ; 916ad
 
-Unknown_916ad: ; 916ad
-	dbw 16, Function916c9
-	dbw 28, Function916d8
-	dbw 32, Function916e0
-	dbw 40, Function916e8
-	dbw 52, Function916f0
-	dbw 64, Function916fa
-	dbw 72, Function91709
-	dbw 78, Function91718
-	dbw 80, Function91727
-	db $ff
-; 916c9
 
-Function916c9: ; 916c9
-	call Function91744
-	jr nc, Function91740
+RadioChannels:
+; frequencies and the shows that play on them.
+; frequency value given here = 4 × ingame_frequency − 2
+	dbw 16, .PkmnTalkAndPokedexShow
+	dbw 28, .PokemonMusic
+	dbw 32, .LuckyChannel
+	dbw 40, .BuenasPassword
+	dbw 52, .RuinsOfAlphRadio
+	dbw 64, .PlacesAndPeople
+	dbw 72, .LetsAllSing
+	dbw 78, .PokeFluteRadio
+	dbw 80, .EvolutionRadio
+	db $ff
+
+.PkmnTalkAndPokedexShow
+; Pokédex Show in the morning
+; Oak's Pokémon Talk in the afternoon and evening
+	call .InJohto
+	jr nc, .NoSignal
 	ld a, [TimeOfDay]
 	and a
 	jp z, Function91766
 	jp Function91753
 
-Function916d8: ; 916d8
-	call Function91744
-	jr nc, Function91740
+.PokemonMusic
+	call .InJohto
+	jr nc, .NoSignal
 	jp Function9177b
 
-Function916e0: ; 916e0
-	call Function91744
-	jr nc, Function91740
+.LuckyChannel
+	call .InJohto
+	jr nc, .NoSignal
 	jp Function91790
 
-Function916e8: ; 916e8
-	call Function91744
-	jr nc, Function91740
+.BuenasPassword
+	call .InJohto
+	jr nc, .NoSignal
 	jp Function917a5
 
-Function916f0: ; 916f0
+.RuinsOfAlphRadio
 	ld a, [wc6d8]
 	cp RUINS_OF_ALPH
-	jr nz, Function91740
+	jr nz, .NoSignal
 	jp Function917d5
 
-Function916fa: ; 916fa
-	call Function91744
-	jr c, Function91740
-	ld a, [wd957]
+.PlacesAndPeople
+	call .InJohto
+	jr c, .NoSignal
+	ld a, [wPokegearFlags]
 	bit 3, a
-	jr z, Function91740
+	jr z, .NoSignal
 	jp Function917ea
 
-Function91709: ; 91709
-	call Function91744
-	jr c, Function91740
-	ld a, [wd957]
+.LetsAllSing
+	call .InJohto
+	jr c, .NoSignal
+	ld a, [wPokegearFlags]
 	bit 3, a
-	jr z, Function91740
+	jr z, .NoSignal
 	jp Function917ff
 
-Function91718: ; 91718
-	call Function91744
-	jr c, Function91740
-	ld a, [wd957]
+.PokeFluteRadio
+	call .InJohto
+	jr c, .NoSignal
+	ld a, [wPokegearFlags]
 	bit 3, a
-	jr z, Function91740
+	jr z, .NoSignal
 	jp Function91829
 
-Function91727: ; 91727
-; This station airs in the Lake of Rage
-; area when Rocket are still in Mahogany.
+.EvolutionRadio
+; This station airs in the Lake of Rage area when Rocket are still in Mahogany.
 
 	ld a, [StatusFlags]
 	bit 4, a
-	jr z, Function91740
+	jr z, .NoSignal
 
 	ld a, [wc6d8]
 	cp MAHOGANY_TOWN
@@ -72156,15 +72159,17 @@ Function91727: ; 91727
 	cp ROUTE_43
 	jr z, .ok
 	cp LAKE_OF_RAGE
-	jr nz, Function91740
+	jr nz, .NoSignal
 .ok
 	jp Function9183e
 
-Function91740: ; 91740
+.NoSignal
 	call NoRadioStation
 	ret
 
-Function91744: ; 91744 (24:5744)
+.InJohto
+; if in Johto or on the S.S. Aqua, set carry
+; otherwise clear carry
 	ld a, [wc6d8]
 	cp FAST_SHIP
 	jr z, .johto
@@ -77644,12 +77649,12 @@ Functionb8b8f: ; b8b8f (2e:4b8f)
 Functionb8b90: ; b8b90 (2e:4b90)
 	call Function1052
 	call PrintText
-	ld de, $51
+	ld de, MUSIC_POKEMON_MARCH
 	call GetWeekday
 	and 1
-	jr z, .asm_b8ba3
-	ld de, $50
-.asm_b8ba3
+	jr z, .done
+	ld de, MUSIC_POKEMON_LULLABY
+.done
 	callab Function91854
 	ret
 ; b8baa (2e:4baa)
@@ -78751,7 +78756,7 @@ Functionb91eb: ; b91eb (2e:51eb)
 	ret nz
 	call Function1052
 	call PrintText
-	ld hl, Unknown_b920b
+	ld hl, RadioChannelSongs
 	ld a, [wd002]
 	ld c, a
 	ld b, 0
@@ -78764,7 +78769,7 @@ Functionb91eb: ; b91eb (2e:51eb)
 	ret
 ; b920b (2e:520b)
 
-Unknown_b920b: ; b920b
+RadioChannelSongs: ; b920b
 	dw MUSIC_POKEMON_TALK
 	dw MUSIC_POKEMON_CENTER
 	dw MUSIC_TITLE
