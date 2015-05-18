@@ -1,68 +1,68 @@
 
-	dbw BANK(FalknerPic)          - $36, FalknerPic
-	dbw BANK(WhitneyPic)          - $36, WhitneyPic
-	dbw BANK(BugsyPic)            - $36, BugsyPic
-	dbw BANK(MortyPic)            - $36, MortyPic
-	dbw BANK(PrycePic)            - $36, PrycePic
-	dbw BANK(JasminePic)          - $36, JasminePic
-	dbw BANK(ChuckPic)            - $36, ChuckPic
-	dbw BANK(ClairPic)            - $36, ClairPic
-	dbw BANK(Rival1Pic)           - $36, Rival1Pic
-	dbw BANK(PokemonProfPic)      - $36, PokemonProfPic
-	dbw BANK(WillPic)             - $36, WillPic
-	dbw BANK(CalPic)              - $36, CalPic
-	dbw BANK(BrunoPic)            - $36, BrunoPic
-	dbw BANK(KarenPic)            - $36, KarenPic
-	dbw BANK(KogaPic)             - $36, KogaPic
-	dbw BANK(ChampionPic)         - $36, ChampionPic
-	dbw BANK(BrockPic)            - $36, BrockPic
-	dbw BANK(MistyPic)            - $36, MistyPic
-	dbw BANK(LtSurgePic)          - $36, LtSurgePic
-	dbw BANK(ScientistPic)        - $36, ScientistPic
-	dbw BANK(ErikaPic)            - $36, ErikaPic
-	dbw BANK(YoungsterPic)        - $36, YoungsterPic
-	dbw BANK(SchoolboyPic)        - $36, SchoolboyPic
-	dbw BANK(BirdKeeperPic)       - $36, BirdKeeperPic
-	dbw BANK(LassPic)             - $36, LassPic
-	dbw BANK(JaninePic)           - $36, JaninePic
-	dbw BANK(CooltrainermPic)     - $36, CooltrainermPic
-	dbw BANK(CooltrainerfPic)     - $36, CooltrainerfPic
-	dbw BANK(BeautyPic)           - $36, BeautyPic
-	dbw BANK(PokemaniacPic)       - $36, PokemaniacPic
-	dbw BANK(GruntmPic)           - $36, GruntmPic
-	dbw BANK(GentlemanPic)        - $36, GentlemanPic
-	dbw BANK(SkierPic)            - $36, SkierPic
-	dbw BANK(TeacherPic)          - $36, TeacherPic
-	dbw BANK(SabrinaPic)          - $36, SabrinaPic
-	dbw BANK(BugCatcherPic)       - $36, BugCatcherPic
-	dbw BANK(FisherPic)           - $36, FisherPic
-	dbw BANK(SwimmermPic)         - $36, SwimmermPic
-	dbw BANK(SwimmerfPic)         - $36, SwimmerfPic
-	dbw BANK(SailorPic)           - $36, SailorPic
-	dbw BANK(SuperNerdPic)        - $36, SuperNerdPic
-	dbw BANK(Rival2Pic)           - $36, Rival2Pic
-	dbw BANK(GuitaristPic)        - $36, GuitaristPic
-	dbw BANK(HikerPic)            - $36, HikerPic
-	dbw BANK(BikerPic)            - $36, BikerPic
-	dbw BANK(BlainePic)           - $36, BlainePic
-	dbw BANK(BurglarPic)          - $36, BurglarPic
-	dbw BANK(FirebreatherPic)     - $36, FirebreatherPic
-	dbw BANK(JugglerPic)          - $36, JugglerPic
-	dbw BANK(BlackbeltTPic)       - $36, BlackbeltTPic
-	dbw BANK(ExecutivemPic)       - $36, ExecutivemPic
-	dbw BANK(PsychicTPic)         - $36, PsychicTPic
-	dbw BANK(PicnickerPic)        - $36, PicnickerPic
-	dbw BANK(CamperPic)           - $36, CamperPic
-	dbw BANK(ExecutivefPic)       - $36, ExecutivefPic
-	dbw BANK(SagePic)             - $36, SagePic
-	dbw BANK(MediumPic)           - $36, MediumPic
-	dbw BANK(BoarderPic)          - $36, BoarderPic
-	dbw BANK(PokefanmPic)         - $36, PokefanmPic
-	dbw BANK(KimonoGirlPic)       - $36, KimonoGirlPic
-	dbw BANK(TwinsPic)            - $36, TwinsPic
-	dbw BANK(PokefanfPic)         - $36, PokefanfPic
-	dbw BANK(RedPic)              - $36, RedPic
-	dbw BANK(BluePic)             - $36, BluePic
-	dbw BANK(OfficerPic)          - $36, OfficerPic
-	dbw BANK(GruntfPic)           - $36, GruntfPic
-	dbw BANK(MysticalmanPic)      - $36, MysticalmanPic
+	add_pic FalknerPic
+	add_pic WhitneyPic
+	add_pic BugsyPic
+	add_pic MortyPic
+	add_pic PrycePic
+	add_pic JasminePic
+	add_pic ChuckPic
+	add_pic ClairPic
+	add_pic Rival1Pic
+	add_pic PokemonProfPic
+	add_pic WillPic
+	add_pic CalPic
+	add_pic BrunoPic
+	add_pic KarenPic
+	add_pic KogaPic
+	add_pic ChampionPic
+	add_pic BrockPic
+	add_pic MistyPic
+	add_pic LtSurgePic
+	add_pic ScientistPic
+	add_pic ErikaPic
+	add_pic YoungsterPic
+	add_pic SchoolboyPic
+	add_pic BirdKeeperPic
+	add_pic LassPic
+	add_pic JaninePic
+	add_pic CooltrainermPic
+	add_pic CooltrainerfPic
+	add_pic BeautyPic
+	add_pic PokemaniacPic
+	add_pic GruntmPic
+	add_pic GentlemanPic
+	add_pic SkierPic
+	add_pic TeacherPic
+	add_pic SabrinaPic
+	add_pic BugCatcherPic
+	add_pic FisherPic
+	add_pic SwimmermPic
+	add_pic SwimmerfPic
+	add_pic SailorPic
+	add_pic SuperNerdPic
+	add_pic Rival2Pic
+	add_pic GuitaristPic
+	add_pic HikerPic
+	add_pic BikerPic
+	add_pic BlainePic
+	add_pic BurglarPic
+	add_pic FirebreatherPic
+	add_pic JugglerPic
+	add_pic BlackbeltTPic
+	add_pic ExecutivemPic
+	add_pic PsychicTPic
+	add_pic PicnickerPic
+	add_pic CamperPic
+	add_pic ExecutivefPic
+	add_pic SagePic
+	add_pic MediumPic
+	add_pic BoarderPic
+	add_pic PokefanmPic
+	add_pic KimonoGirlPic
+	add_pic TwinsPic
+	add_pic PokefanfPic
+	add_pic RedPic
+	add_pic BluePic
+	add_pic OfficerPic
+	add_pic GruntfPic
+	add_pic MysticalmanPic
