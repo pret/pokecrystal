@@ -1465,9 +1465,9 @@ EarthquakeMovementEnd
 Script_loadpikachudata: ; 0x973f0
 ; script command 0x5a
 
-	ld a, $19
+	ld a, PIKACHU
 	ld [wd22e], a
-	ld a, $5
+	ld a, 5
 	ld [CurPartyLevel], a
 	ret
 ; 0x973fb
@@ -2214,7 +2214,7 @@ Script_trainerclassname: ; 0x9772b
 ;     id (SingleByteParam)
 ;     memory (SingleByteParam)
 
-	ld a, $7
+	ld a, TRAINER_NAME
 	ld [wcf61], a
 	jr Unknown_9771c ; 0x97730 $ea
 ; 0x97732
