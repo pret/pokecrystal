@@ -1,254 +1,255 @@
-NO_ITEM       EQU $00
-MASTER_BALL   EQU $01
-ULTRA_BALL    EQU $02
-BRIGHTPOWDER  EQU $03
-GREAT_BALL    EQU $04
-POKE_BALL     EQU $05
-TOWN_MAP      EQU $06
-BICYCLE       EQU $07
-MOON_STONE    EQU $08
-ANTIDOTE      EQU $09
-BURN_HEAL     EQU $0A
-ICE_HEAL      EQU $0B
-AWAKENING     EQU $0C
-PARLYZ_HEAL   EQU $0D
-FULL_RESTORE  EQU $0E
-MAX_POTION    EQU $0F
-HYPER_POTION  EQU $10
-SUPER_POTION  EQU $11
-POTION        EQU $12
-ESCAPE_ROPE   EQU $13
-REPEL         EQU $14
-MAX_ELIXER    EQU $15
-FIRE_STONE    EQU $16
-THUNDERSTONE  EQU $17
-WATER_STONE   EQU $18
-ITEM_19       EQU $19
-HP_UP         EQU $1A
-PROTEIN       EQU $1B
-IRON          EQU $1C
-CARBOS        EQU $1D
-LUCKY_PUNCH   EQU $1E
-CALCIUM       EQU $1F
-RARE_CANDY    EQU $20
-X_ACCURACY    EQU $21
-LEAF_STONE    EQU $22
-METAL_POWDER  EQU $23
-NUGGET        EQU $24
-POKE_DOLL     EQU $25
-FULL_HEAL     EQU $26
-REVIVE        EQU $27
-MAX_REVIVE    EQU $28
-GUARD_SPEC    EQU $29
-SUPER_REPEL   EQU $2A
-MAX_REPEL     EQU $2B
-DIRE_HIT      EQU $2C
-ITEM_2D       EQU $2D
-FRESH_WATER   EQU $2E
-SODA_POP      EQU $2F
-LEMONADE      EQU $30
-X_ATTACK      EQU $31
-ITEM_32       EQU $32
-X_DEFEND      EQU $33
-X_SPEED       EQU $34
-X_SPECIAL     EQU $35
-COIN_CASE     EQU $36
-ITEMFINDER    EQU $37
-POKE_FLUTE    EQU $38
-EXP_SHARE     EQU $39
-OLD_ROD       EQU $3A
-GOOD_ROD      EQU $3B
-SILVER_LEAF   EQU $3C
-SUPER_ROD     EQU $3D
-PP_UP         EQU $3E
-ETHER         EQU $3F
-MAX_ETHER     EQU $40
-ELIXER        EQU $41
-RED_SCALE     EQU $42
-SECRETPOTION  EQU $43
-S_S_TICKET    EQU $44
-MYSTERY_EGG   EQU $45
-CLEAR_BELL    EQU $46
-SILVER_WING   EQU $47
-MOOMOO_MILK   EQU $48
-QUICK_CLAW    EQU $49
-PSNCUREBERRY  EQU $4A
-GOLD_LEAF     EQU $4B
-SOFT_SAND     EQU $4C
-SHARP_BEAK    EQU $4D
-PRZCUREBERRY  EQU $4E
-BURNT_BERRY   EQU $4F
-ICE_BERRY     EQU $50
-POISON_BARB   EQU $51
-KINGS_ROCK    EQU $52
-BITTER_BERRY  EQU $53
-MINT_BERRY    EQU $54
-RED_APRICORN  EQU $55
-TINYMUSHROOM  EQU $56
-BIG_MUSHROOM  EQU $57
-SILVERPOWDER  EQU $58
-BLU_APRICORN  EQU $59
-ITEM_5A       EQU $5A
-AMULET_COIN   EQU $5B
-YLW_APRICORN  EQU $5C
-GRN_APRICORN  EQU $5D
-CLEANSE_TAG   EQU $5E
-MYSTIC_WATER  EQU $5F
-TWISTEDSPOON  EQU $60
-WHT_APRICORN  EQU $61
-BLACKBELT     EQU $62
-BLK_APRICORN  EQU $63
-ITEM_64       EQU $64
-PNK_APRICORN  EQU $65
-BLACKGLASSES  EQU $66
-SLOWPOKETAIL  EQU $67
-PINK_BOW      EQU $68
-STICK         EQU $69
-SMOKE_BALL    EQU $6A
-NEVERMELTICE  EQU $6B
-MAGNET        EQU $6C
-MIRACLEBERRY  EQU $6D
-PEARL         EQU $6E
-BIG_PEARL     EQU $6F
-EVERSTONE     EQU $70
-SPELL_TAG     EQU $71
-RAGECANDYBAR  EQU $72
-GS_BALL       EQU $73
-BLUE_CARD     EQU $74
-MIRACLE_SEED  EQU $75
-THICK_CLUB    EQU $76
-FOCUS_BAND    EQU $77
-ITEM_78       EQU $78
-ENERGYPOWDER  EQU $79
-ENERGY_ROOT   EQU $7A
-HEAL_POWDER   EQU $7B
-REVIVAL_HERB  EQU $7C
-HARD_STONE    EQU $7D
-LUCKY_EGG     EQU $7E
-CARD_KEY      EQU $7F
-MACHINE_PART  EQU $80
-EGG_TICKET    EQU $81
-LOST_ITEM     EQU $82
-STARDUST      EQU $83
-STAR_PIECE    EQU $84
-BASEMENT_KEY  EQU $85
-PASS          EQU $86
-ITEM_87       EQU $87
-ITEM_88       EQU $88
-ITEM_89       EQU $89
-CHARCOAL      EQU $8A
-BERRY_JUICE   EQU $8B
-SCOPE_LENS    EQU $8C
-ITEM_8D       EQU $8D
-ITEM_8E       EQU $8E
-METAL_COAT    EQU $8F
-DRAGON_FANG   EQU $90
-ITEM_91       EQU $91
-LEFTOVERS     EQU $92
-ITEM_93       EQU $93
-ITEM_94       EQU $94
-ITEM_95       EQU $95
-MYSTERYBERRY  EQU $96
-DRAGON_SCALE  EQU $97
-BERSERK_GENE  EQU $98
-ITEM_99       EQU $99
-ITEM_9A       EQU $9A
-ITEM_9B       EQU $9B
-SACRED_ASH    EQU $9C
-HEAVY_BALL    EQU $9D
-FLOWER_MAIL   EQU $9E
-LEVEL_BALL    EQU $9F
-LURE_BALL     EQU $A0
-FAST_BALL     EQU $A1
-ITEM_A2       EQU $A2
-LIGHT_BALL    EQU $A3
-FRIEND_BALL   EQU $A4
-MOON_BALL     EQU $A5
-LOVE_BALL     EQU $A6
-NORMAL_BOX    EQU $A7
-GORGEOUS_BOX  EQU $A8
-SUN_STONE     EQU $A9
-POLKADOT_BOW  EQU $AA
-ITEM_AB       EQU $AB
-UP_GRADE      EQU $AC
-BERRY         EQU $AD
-GOLD_BERRY    EQU $AE
-SQUIRTBOTTLE  EQU $AF
-ITEM_B0       EQU $B0
-PARK_BALL     EQU $B1
-RAINBOW_WING  EQU $B2
-ITEM_B3       EQU $B3
-BRICK_PIECE   EQU $B4
-SURF_MAIL     EQU $B5
-LITEBLUEMAIL  EQU $B6
-PORTRAITMAIL  EQU $B7
-LOVELY_MAIL   EQU $B8
-EON_MAIL      EQU $B9
-MORPH_MAIL    EQU $BA
-BLUESKY_MAIL  EQU $BB
-MUSIC_MAIL    EQU $BC
-MIRAGE_MAIL   EQU $BD
-ITEM_BE       EQU $BE
-TM_01         EQU $BF
-TM_02         EQU $C0
-TM_03         EQU $C1
-TM_04         EQU $C2
-ITEM_C3       EQU $C3
-TM_05         EQU $C4
-TM_06         EQU $C5
-TM_07         EQU $C6
-TM_08         EQU $C7
-TM_09         EQU $C8
-TM_10         EQU $C9
-TM_11         EQU $CA
-TM_12         EQU $CB
-TM_13         EQU $CC
-TM_14         EQU $CD
-TM_15         EQU $CE
-TM_16         EQU $CF
-TM_17         EQU $D0
-TM_18         EQU $D1
-TM_19         EQU $D2
-TM_20         EQU $D3
-TM_21         EQU $D4
-TM_22         EQU $D5
-TM_23         EQU $D6
-TM_24         EQU $D7
-TM_25         EQU $D8
-TM_26         EQU $D9
-TM_27         EQU $DA
-TM_28         EQU $DB
-ITEM_DC       EQU $DC
-TM_29         EQU $DD
-TM_30         EQU $DE
-TM_31         EQU $DF
-TM_32         EQU $E0
-TM_33         EQU $E1
-TM_34         EQU $E2
-TM_35         EQU $E3
-TM_36         EQU $E4
-TM_37         EQU $E5
-TM_38         EQU $E6
-TM_39         EQU $E7
-TM_40         EQU $E8
-TM_41         EQU $E9
-TM_42         EQU $EA
-TM_43         EQU $EB
-TM_44         EQU $EC
-TM_45         EQU $ED
-TM_46         EQU $EE
-TM_47         EQU $EF
-TM_48         EQU $F0
-TM_49         EQU $F1
-TM_50         EQU $F2
-HM_01         EQU $F3
-HM_02         EQU $F4
-HM_03         EQU $F5
-HM_04         EQU $F6
-HM_05         EQU $F7
-HM_06         EQU $F8
-HM_07         EQU $F9
-HM_08         EQU $FA
+	const_def
+	const NO_ITEM      ; $00
+	const MASTER_BALL  ; $01
+	const ULTRA_BALL   ; $02
+	const BRIGHTPOWDER ; $03
+	const GREAT_BALL   ; $04
+	const POKE_BALL    ; $05
+	const TOWN_MAP     ; $06
+	const BICYCLE      ; $07
+	const MOON_STONE   ; $08
+	const ANTIDOTE     ; $09
+	const BURN_HEAL    ; $0A
+	const ICE_HEAL     ; $0B
+	const AWAKENING    ; $0C
+	const PARLYZ_HEAL  ; $0D
+	const FULL_RESTORE ; $0E
+	const MAX_POTION   ; $0F
+	const HYPER_POTION ; $10
+	const SUPER_POTION ; $11
+	const POTION       ; $12
+	const ESCAPE_ROPE  ; $13
+	const REPEL        ; $14
+	const MAX_ELIXER   ; $15
+	const FIRE_STONE   ; $16
+	const THUNDERSTONE ; $17
+	const WATER_STONE  ; $18
+	const ITEM_19      ; $19
+	const HP_UP        ; $1A
+	const PROTEIN      ; $1B
+	const IRON         ; $1C
+	const CARBOS       ; $1D
+	const LUCKY_PUNCH  ; $1E
+	const CALCIUM      ; $1F
+	const RARE_CANDY   ; $20
+	const X_ACCURACY   ; $21
+	const LEAF_STONE   ; $22
+	const METAL_POWDER ; $23
+	const NUGGET       ; $24
+	const POKE_DOLL    ; $25
+	const FULL_HEAL    ; $26
+	const REVIVE       ; $27
+	const MAX_REVIVE   ; $28
+	const GUARD_SPEC   ; $29
+	const SUPER_REPEL  ; $2A
+	const MAX_REPEL    ; $2B
+	const DIRE_HIT     ; $2C
+	const ITEM_2D      ; $2D
+	const FRESH_WATER  ; $2E
+	const SODA_POP     ; $2F
+	const LEMONADE     ; $30
+	const X_ATTACK     ; $31
+	const ITEM_32      ; $32
+	const X_DEFEND     ; $33
+	const X_SPEED      ; $34
+	const X_SPECIAL    ; $35
+	const COIN_CASE    ; $36
+	const ITEMFINDER   ; $37
+	const POKE_FLUTE   ; $38
+	const EXP_SHARE    ; $39
+	const OLD_ROD      ; $3A
+	const GOOD_ROD     ; $3B
+	const SILVER_LEAF  ; $3C
+	const SUPER_ROD    ; $3D
+	const PP_UP        ; $3E
+	const ETHER        ; $3F
+	const MAX_ETHER    ; $40
+	const ELIXER       ; $41
+	const RED_SCALE    ; $42
+	const SECRETPOTION ; $43
+	const S_S_TICKET   ; $44
+	const MYSTERY_EGG  ; $45
+	const CLEAR_BELL   ; $46
+	const SILVER_WING  ; $47
+	const MOOMOO_MILK  ; $48
+	const QUICK_CLAW   ; $49
+	const PSNCUREBERRY ; $4A
+	const GOLD_LEAF    ; $4B
+	const SOFT_SAND    ; $4C
+	const SHARP_BEAK   ; $4D
+	const PRZCUREBERRY ; $4E
+	const BURNT_BERRY  ; $4F
+	const ICE_BERRY    ; $50
+	const POISON_BARB  ; $51
+	const KINGS_ROCK   ; $52
+	const BITTER_BERRY ; $53
+	const MINT_BERRY   ; $54
+	const RED_APRICORN ; $55
+	const TINYMUSHROOM ; $56
+	const BIG_MUSHROOM ; $57
+	const SILVERPOWDER ; $58
+	const BLU_APRICORN ; $59
+	const ITEM_5A      ; $5A
+	const AMULET_COIN  ; $5B
+	const YLW_APRICORN ; $5C
+	const GRN_APRICORN ; $5D
+	const CLEANSE_TAG  ; $5E
+	const MYSTIC_WATER ; $5F
+	const TWISTEDSPOON ; $60
+	const WHT_APRICORN ; $61
+	const BLACKBELT    ; $62
+	const BLK_APRICORN ; $63
+	const ITEM_64      ; $64
+	const PNK_APRICORN ; $65
+	const BLACKGLASSES ; $66
+	const SLOWPOKETAIL ; $67
+	const PINK_BOW     ; $68
+	const STICK        ; $69
+	const SMOKE_BALL   ; $6A
+	const NEVERMELTICE ; $6B
+	const MAGNET       ; $6C
+	const MIRACLEBERRY ; $6D
+	const PEARL        ; $6E
+	const BIG_PEARL    ; $6F
+	const EVERSTONE    ; $70
+	const SPELL_TAG    ; $71
+	const RAGECANDYBAR ; $72
+	const GS_BALL      ; $73
+	const BLUE_CARD    ; $74
+	const MIRACLE_SEED ; $75
+	const THICK_CLUB   ; $76
+	const FOCUS_BAND   ; $77
+	const ITEM_78      ; $78
+	const ENERGYPOWDER ; $79
+	const ENERGY_ROOT  ; $7A
+	const HEAL_POWDER  ; $7B
+	const REVIVAL_HERB ; $7C
+	const HARD_STONE   ; $7D
+	const LUCKY_EGG    ; $7E
+	const CARD_KEY     ; $7F
+	const MACHINE_PART ; $80
+	const EGG_TICKET   ; $81
+	const LOST_ITEM    ; $82
+	const STARDUST     ; $83
+	const STAR_PIECE   ; $84
+	const BASEMENT_KEY ; $85
+	const PASS         ; $86
+	const ITEM_87      ; $87
+	const ITEM_88      ; $88
+	const ITEM_89      ; $89
+	const CHARCOAL     ; $8A
+	const BERRY_JUICE  ; $8B
+	const SCOPE_LENS   ; $8C
+	const ITEM_8D      ; $8D
+	const ITEM_8E      ; $8E
+	const METAL_COAT   ; $8F
+	const DRAGON_FANG  ; $90
+	const ITEM_91      ; $91
+	const LEFTOVERS    ; $92
+	const ITEM_93      ; $93
+	const ITEM_94      ; $94
+	const ITEM_95      ; $95
+	const MYSTERYBERRY ; $96
+	const DRAGON_SCALE ; $97
+	const BERSERK_GENE ; $98
+	const ITEM_99      ; $99
+	const ITEM_9A      ; $9A
+	const ITEM_9B      ; $9B
+	const SACRED_ASH   ; $9C
+	const HEAVY_BALL   ; $9D
+	const FLOWER_MAIL  ; $9E
+	const LEVEL_BALL   ; $9F
+	const LURE_BALL    ; $A0
+	const FAST_BALL    ; $A1
+	const ITEM_A2      ; $A2
+	const LIGHT_BALL   ; $A3
+	const FRIEND_BALL  ; $A4
+	const MOON_BALL    ; $A5
+	const LOVE_BALL    ; $A6
+	const NORMAL_BOX   ; $A7
+	const GORGEOUS_BOX ; $A8
+	const SUN_STONE    ; $A9
+	const POLKADOT_BOW ; $AA
+	const ITEM_AB      ; $AB
+	const UP_GRADE     ; $AC
+	const BERRY        ; $AD
+	const GOLD_BERRY   ; $AE
+	const SQUIRTBOTTLE ; $AF
+	const ITEM_B0      ; $B0
+	const PARK_BALL    ; $B1
+	const RAINBOW_WING ; $B2
+	const ITEM_B3      ; $B3
+	const BRICK_PIECE  ; $B4
+	const SURF_MAIL    ; $B5
+	const LITEBLUEMAIL ; $B6
+	const PORTRAITMAIL ; $B7
+	const LOVELY_MAIL  ; $B8
+	const EON_MAIL     ; $B9
+	const MORPH_MAIL   ; $BA
+	const BLUESKY_MAIL ; $BB
+	const MUSIC_MAIL   ; $BC
+	const MIRAGE_MAIL  ; $BD
+	const ITEM_BE      ; $BE
+	const TM_01        ; $BF
+	const TM_02        ; $C0
+	const TM_03        ; $C1
+	const TM_04        ; $C2
+	const ITEM_C3      ; $C3
+	const TM_05        ; $C4
+	const TM_06        ; $C5
+	const TM_07        ; $C6
+	const TM_08        ; $C7
+	const TM_09        ; $C8
+	const TM_10        ; $C9
+	const TM_11        ; $CA
+	const TM_12        ; $CB
+	const TM_13        ; $CC
+	const TM_14        ; $CD
+	const TM_15        ; $CE
+	const TM_16        ; $CF
+	const TM_17        ; $D0
+	const TM_18        ; $D1
+	const TM_19        ; $D2
+	const TM_20        ; $D3
+	const TM_21        ; $D4
+	const TM_22        ; $D5
+	const TM_23        ; $D6
+	const TM_24        ; $D7
+	const TM_25        ; $D8
+	const TM_26        ; $D9
+	const TM_27        ; $DA
+	const TM_28        ; $DB
+	const ITEM_DC      ; $DC
+	const TM_29        ; $DD
+	const TM_30        ; $DE
+	const TM_31        ; $DF
+	const TM_32        ; $E0
+	const TM_33        ; $E1
+	const TM_34        ; $E2
+	const TM_35        ; $E3
+	const TM_36        ; $E4
+	const TM_37        ; $E5
+	const TM_38        ; $E6
+	const TM_39        ; $E7
+	const TM_40        ; $E8
+	const TM_41        ; $E9
+	const TM_42        ; $EA
+	const TM_43        ; $EB
+	const TM_44        ; $EC
+	const TM_45        ; $ED
+	const TM_46        ; $EE
+	const TM_47        ; $EF
+	const TM_48        ; $F0
+	const TM_49        ; $F1
+	const TM_50        ; $F2
+	const HM_01        ; $F3
+	const HM_02        ; $F4
+	const HM_03        ; $F5
+	const HM_04        ; $F6
+	const HM_05        ; $F7
+	const HM_06        ; $F8
+	const HM_07        ; $F9
+	const HM_08        ; $FA
 
 
 NUM_TMS EQU 50
@@ -271,61 +272,79 @@ TM_HM    EQU 4
 CANT_SELECT EQU 1 << 6
 CANT_TOSS   EQU 1 << 7
 
+
 ; held item effects
-HELD_BERRY          EQU $01
-HELD_LEFTOVERS      EQU $03
-HELD_RESTORE_PP     EQU $06
-HELD_CLEANSE_TAG    EQU $08
+	const_def
 
-HELD_HEAL_POISON    EQU $0a
-HELD_HEAL_FREEZE    EQU $0b
-HELD_HEAL_BURN      EQU $0c
-HELD_HEAL_SLEEP     EQU $0d
-HELD_HEAL_PARALYZE  EQU $0e
-HELD_HEAL_STATUS    EQU $0f
-HELD_HEAL_CONFUSION EQU $10
+	const HELD_NONE
+	const HELD_BERRY
+	const HELD_2
+	const HELD_LEFTOVERS
+	const HELD_4
+	const HELD_5
+	const HELD_RESTORE_PP
+	const HELD_7
+	const HELD_CLEANSE_TAG
 
-HELD_PREVENT_POISON   EQU $14
-HELD_PREVENT_BURN     EQU $15
-HELD_PREVENT_FREEZE   EQU $16
-HELD_PREVENT_SLEEP    EQU $17
-HELD_PREVENT_PARALYZE EQU $18
-HELD_PREVENT_CONFUSE  EQU $19
+const_value = 10
+	const HELD_HEAL_POISON
+	const HELD_HEAL_FREEZE
+	const HELD_HEAL_BURN
+	const HELD_HEAL_SLEEP
+	const HELD_HEAL_PARALYZE
+	const HELD_HEAL_STATUS
+	const HELD_HEAL_CONFUSION
 
-HELD_ATTACK_UP      EQU $1f
-HELD_DEFENSE_UP     EQU $20
-HELD_SPEED_UP       EQU $21
-HELD_SP_ATTACK_UP   EQU $22
-HELD_SP_DEFENSE_UP  EQU $23
-HELD_ACCURACY_UP    EQU $24
-HELD_EVASION_UP     EQU $25
+const_value = 20
+	const HELD_PREVENT_POISON
+	const HELD_PREVENT_BURN
+	const HELD_PREVENT_FREEZE
+	const HELD_PREVENT_SLEEP
+	const HELD_PREVENT_PARALYZE
+	const HELD_PREVENT_CONFUSE
 
-HELD_METAL_POWDER   EQU $2a
+const_value = 30
+	const HELD_30
+	const HELD_ATTACK_UP
+	const HELD_DEFENSE_UP
+	const HELD_SPEED_UP
+	const HELD_SP_ATTACK_UP
+	const HELD_SP_DEFENSE_UP
+	const HELD_ACCURACY_UP
+	const HELD_EVASION_UP
 
-HELD_NORMAL_BOOST   EQU $32
-HELD_FIGHTING_BOOST EQU $33
-HELD_FLYING_BOOST   EQU $34
-HELD_POISON_BOOST   EQU $35
-HELD_GROUND_BOOST   EQU $36
-HELD_ROCK_BOOST     EQU $37
-HELD_BUG_BOOST      EQU $38
-HELD_GHOST_BOOST    EQU $39
-HELD_FIRE_BOOST     EQU $3a
-HELD_WATER_BOOST    EQU $3b
-HELD_GRASS_BOOST    EQU $3c
-HELD_ELECTRIC_BOOST EQU $3d
-HELD_PSYCHIC_BOOST  EQU $3e
-HELD_ICE_BOOST      EQU $3f
-HELD_DRAGON_BOOST   EQU $40
-HELD_DARK_BOOST     EQU $41
-HELD_STEEL_BOOST    EQU $42
+const_value = 40
+	const HELD_40
+	const HELD_41
+	const HELD_METAL_POWDER
 
-HELD_CATCH_CHANCE   EQU $46
+const_value = 50
+	const HELD_NORMAL_BOOST
+	const HELD_FIGHTING_BOOST
+	const HELD_FLYING_BOOST
+	const HELD_POISON_BOOST
+	const HELD_GROUND_BOOST
+	const HELD_ROCK_BOOST
+	const HELD_BUG_BOOST
+	const HELD_GHOST_BOOST
+	const HELD_FIRE_BOOST
+	const HELD_WATER_BOOST
+	const HELD_GRASS_BOOST
+	const HELD_ELECTRIC_BOOST
+	const HELD_PSYCHIC_BOOST
+	const HELD_ICE_BOOST
+	const HELD_DRAGON_BOOST
+	const HELD_DARK_BOOST
+	const HELD_STEEL_BOOST
 
-HELD_ESCAPE         EQU $48
-HELD_CRITICAL_UP    EQU $49
-HELD_QUICK_CLAW     EQU $4a
-HELD_TRADE_EVOLVE   EQU $4b
-HELD_AMULET_COIN    EQU $4c
-HELD_BRIGHTPOWDER   EQU $4d
-HELD_FOCUS_BAND     EQU $4f
+const_value = 70
+	const HELD_CATCH_CHANCE
+	const HELD_71
+	const HELD_ESCAPE
+	const HELD_CRITICAL_UP
+	const HELD_QUICK_CLAW
+	const HELD_TRADE_EVOLVE
+	const HELD_AMULET_COIN
+	const HELD_BRIGHTPOWDER
+	const HELD_4E
+	const HELD_FOCUS_BAND
