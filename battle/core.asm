@@ -5743,7 +5743,7 @@ Function3e4bc: ; 3e4bc
 	jr .asm_3e613
 
 .asm_3e610
-	ld hl, Function3cc39
+	ld hl, BattleText_0x80c39
 
 .asm_3e613
 	call StdBattleTextBox
