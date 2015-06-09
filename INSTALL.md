@@ -1,5 +1,7 @@
 # Linux
 
+Note that this requires python2.7 for the moment.
+
 	sudo apt-get install make gcc bison git python python-setuptools
 
 	git clone git://github.com/bentley/rgbds.git
