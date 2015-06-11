@@ -2544,10 +2544,10 @@ Function3d02b: ; 3d02b
 	call Function3d099
 	call Function3d099
 	pop af
-	jr nc, .asm_3d07b
+	jr nc, .KeepItAll
 	ld a, [wMomSavingMoney]
 	and $7
-	jr z, .asm_3d07b
+	jr z, .KeepItAll
 	ld hl, SentToMomTexts
 	dec a
 	ld c, a
@@ -2559,8 +2559,8 @@ Function3d02b: ; 3d02b
 	ld l, a
 	jp StdBattleTextBox
 
-.asm_3d07b
-	ld hl, BattleText_0x809be
+.KeepItAll
+	ld hl, GotMoneyForWinningText
 	jp StdBattleTextBox
 ; 3d081
 
@@ -2598,9 +2598,9 @@ Function3d099: ; 3d099
 ; 3d0ab
 
 SentToMomTexts: ; 3d0ab
-	dw BattleText_0x809fc
-	dw BattleText_0x80a2a
-	dw BattleText_0x80a3d
+	dw SentSomeToMomText
+	dw SentHalfToMomText
+	dw SentAllToMomText
 ; 3d0b1
 
 

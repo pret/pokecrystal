@@ -192,13 +192,12 @@ BattleText_0x809a8: ; 0x809a8
 	prompt
 ; 0x809be
 
-BattleText_0x809be: ; 0x809be
+GotMoneyForWinningText:
 	text $52, " got ¥@"
 	deciram wc686, $36
 	text ""
 	line "for winning!"
 	prompt
-; 0x809da
 
 BattleText_0x809da: ; 0x809da
 	text $3f
@@ -212,24 +211,21 @@ TiedAgainstText: ; 0x809eb
 	prompt
 ; 0x809fc
 
-BattleText_0x809fc: ; 0x809fc
+SentSomeToMomText:
 	text $52, " got ¥@"
 	deciram wc686, $36
 	text ""
 	line "for winning!"
 	cont "Sent some to MOM!"
 	prompt
-; 0x80a2a
 
-BattleText_0x80a2a: ; 0x80a2a
+SentHalfToMomText:
 	text "Sent half to MOM!"
 	prompt
-; 0x80a3d
 
-BattleText_0x80a3d: ; 0x80a3d
+SentAllToMomText:
 	text "Sent all to MOM!"
 	prompt
-; 0x80a4f
 
 BattleText_0x80a4f: ; 0x80a4f
 	text $53, ": Huh? I"
