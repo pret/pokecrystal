@@ -1,56 +1,56 @@
 StdScripts:: ; bc000
-	dbw BANK(PokeCenterNurseScript), PokeCenterNurseScript
-	dbw BANK(UnknownScript_0xbc162), UnknownScript_0xbc162
-	dbw BANK(UnknownScript_0xbc166), UnknownScript_0xbc166
-	dbw BANK(UnknownScript_0xbc16a), UnknownScript_0xbc16a
-	dbw BANK(UnknownScript_0xbc16e), UnknownScript_0xbc16e
-	dbw BANK(UnknownScript_0xbc172), UnknownScript_0xbc172
-	dbw BANK(UnknownScript_0xbc176), UnknownScript_0xbc176
-	dbw BANK(UnknownScript_0xbc17a), UnknownScript_0xbc17a
-	dbw BANK(UnknownScript_0xbc185), UnknownScript_0xbc185
-	dbw BANK(UnknownScript_0xbc189), UnknownScript_0xbc189
-	dbw BANK(UnknownScript_0xbc191), UnknownScript_0xbc191
-	dbw BANK(UnknownScript_0xbc195), UnknownScript_0xbc195
-	dbw BANK(UnknownScript_0xbc19d), UnknownScript_0xbc19d
-	dbw BANK(UnknownScript_0xbc1a5), UnknownScript_0xbc1a5
-	dbw BANK(UnknownScript_0xbc1b8), UnknownScript_0xbc1b8
-	dbw BANK(UnknownScript_0xbc1bc), UnknownScript_0xbc1bc
-	dbw BANK(UnknownScript_0xbc1c0), UnknownScript_0xbc1c0
-	dbw BANK(UnknownScript_0xbc1c4), UnknownScript_0xbc1c4
-	dbw BANK(UnknownScript_0xbc23e), UnknownScript_0xbc23e
-	dbw BANK(UnknownScript_0xbc242), UnknownScript_0xbc242
-	dbw BANK(UnknownScript_0xbc1af), UnknownScript_0xbc1af
-	dbw BANK(UnknownScript_0xbc1c8), UnknownScript_0xbc1c8
-	dbw BANK(UnknownScript_0xbc25c), UnknownScript_0xbc25c
-	dbw BANK(UnknownScript_0xbc274), UnknownScript_0xbc274
-	dbw BANK(UnknownScript_0xbc3db), UnknownScript_0xbc3db
-	dbw BANK(UnknownScript_0xbc574), UnknownScript_0xbc574
-	dbw BANK(UnknownScript_0xbc62d), UnknownScript_0xbc62d
-	dbw BANK(UnknownScript_0xbc6e6), UnknownScript_0xbc6e6
-	dbw BANK(UnknownScript_0xbc6f0), UnknownScript_0xbc6f0
-	dbw BANK(UnknownScript_0xbc7ce), UnknownScript_0xbc7ce
-	dbw BANK(UnknownScript_0xbc8ac), UnknownScript_0xbc8ac
-	dbw BANK(UnknownScript_0xbc98a), UnknownScript_0xbc98a
-	dbw BANK(UnknownScript_0xbca47), UnknownScript_0xbca47
-	dbw BANK(UnknownScript_0xbca8f), UnknownScript_0xbca8f
-	dbw BANK(UnknownScript_0xbcb0a), UnknownScript_0xbcb0a
-	dbw BANK(UnknownScript_0xbcb35), UnknownScript_0xbcb35
-	dbw BANK(UnknownScript_0xbcb7f), UnknownScript_0xbcb7f
-	dbw BANK(UnknownScript_0xbcbc9), UnknownScript_0xbcbc9
-	dbw BANK(UnknownScript_0xbcbd3), UnknownScript_0xbcbd3
-	dbw BANK(UnknownScript_0xbcc2d), UnknownScript_0xbcc2d
-	dbw BANK(UnknownScript_0xbcc87), UnknownScript_0xbcc87
-	dbw BANK(UnknownScript_0xbcce1), UnknownScript_0xbcce1
-	dbw BANK(UnknownScript_0xbcd30), UnknownScript_0xbcd30
-	dbw BANK(UnknownScript_0xbcd5a), UnknownScript_0xbcd5a
-	dbw BANK(UnknownScript_0xbcd93), UnknownScript_0xbcd93
-	dbw BANK(UnknownScript_0xbcda0), UnknownScript_0xbcda0
-	dbw BANK(UnknownScript_0xbcdaa), UnknownScript_0xbcdaa
-	dbw BANK(UnknownScript_0xbcdb9), UnknownScript_0xbcdb9
-	dbw BANK(UnknownScript_0xbcdc3), UnknownScript_0xbcdc3
-	dbw BANK(UnknownScript_0xbc1a9), UnknownScript_0xbc1a9
-	dbw BANK(UnknownScript_0xbcdcd), UnknownScript_0xbcdcd
-	dbw BANK(UnknownScript_0xbce7f), UnknownScript_0xbce7f
+	dbw BANK(PokeCenterNurseScript), PokeCenterNurseScript ; $00
+	dbw BANK(BookcaseStandard1), BookcaseStandard1 ; $01
+	dbw BANK(BookcaseStandard2), BookcaseStandard2 ; $02
+	dbw BANK(BookcaseStandard3), BookcaseStandard3 ; $03
+	dbw BANK(BookcaseStandard4), BookcaseStandard4 ; $04
+	dbw BANK(UnknownScript_0xbc172), UnknownScript_0xbc172 ; $05
+	dbw BANK(UnknownScript_0xbc176), UnknownScript_0xbc176 ; $06
+	dbw BANK(UnknownScript_0xbc17a), UnknownScript_0xbc17a ; $07
+	dbw BANK(UnknownScript_0xbc185), UnknownScript_0xbc185 ; $08
+	dbw BANK(UnknownScript_0xbc189), UnknownScript_0xbc189 ; $09
+	dbw BANK(UnknownScript_0xbc191), UnknownScript_0xbc191 ; $0a
+	dbw BANK(RadioStandard1), RadioStandard1 ; $0b
+	dbw BANK(RadioStandard2), RadioStandard2 ; $0c
+	dbw BANK(TrashCanStandard), TrashCanStandard ; $0d
+	dbw BANK(StandardBoulderScript), StandardBoulderScript ; $0e
+	dbw BANK(StandardRockScript), StandardRockScript ; $0f
+	dbw BANK(StdPokecenterSign), StdPokecenterSign ; $10
+	dbw BANK(StdPokemartSign), StdPokemartSign ; $11
+	dbw BANK(StdGotSevenBadges), StdGotSevenBadges ; $12
+	dbw BANK(StdGotSixBadges), StdGotSixBadges ; $13
+	dbw BANK(DeptStoreElevatorButtonStd), DeptStoreElevatorButtonStd ; $14
+	dbw BANK(NationalParkContestStd), NationalParkContestStd ; $15
+	dbw BANK(NationalParkSouthGateContestStd), NationalParkSouthGateContestStd ; $16
+	dbw BANK(NationalParkNorthGateContestStd), NationalParkNorthGateContestStd ; $17
+	dbw BANK(StdInitializeEventFlags), StdInitializeEventFlags ; $18
+	dbw BANK(StdPhone_19), StdPhone_19 ; $19
+	dbw BANK(StdPhone_1a), StdPhone_1a ; $1a
+	dbw BANK(StdPhone_1b), StdPhone_1b ; $1b
+	dbw BANK(StdPhone_1c), StdPhone_1c ; $1c
+	dbw BANK(StdPhone_1d), StdPhone_1d ; $1d
+	dbw BANK(StdPhone_1e), StdPhone_1e ; $1e
+	dbw BANK(StdPhone_1f), StdPhone_1f ; $1f
+	dbw BANK(StdPhone_20), StdPhone_20 ; $20
+	dbw BANK(StdPhone_21), StdPhone_21 ; $21
+	dbw BANK(StdPhone_22), StdPhone_22 ; $22
+	dbw BANK(StdPhone_23), StdPhone_23 ; $23
+	dbw BANK(StdPhone_24), StdPhone_24 ; $24
+	dbw BANK(StdPhone_25), StdPhone_25 ; $25
+	dbw BANK(StdPhone_26), StdPhone_26 ; $26
+	dbw BANK(StdPhone_27), StdPhone_27 ; $27
+	dbw BANK(StdPhone_28), StdPhone_28 ; $28
+	dbw BANK(StdPhone_29), StdPhone_29 ; $29
+	dbw BANK(StdPhone_2a), StdPhone_2a ; $2a
+	dbw BANK(StdPhone_2b), StdPhone_2b ; $2b
+	dbw BANK(StdPhone_2c), StdPhone_2c ; $2c
+	dbw BANK(StdGymStatues_Before), StdGymStatues_Before ; $2d
+	dbw BANK(StdGymStatues_After), StdGymStatues_After ; $2e
+	dbw BANK(StdReceiveItem), StdReceiveItem ; $2f
+	dbw BANK(StdReceiveTogepiEgg), StdReceiveTogepiEgg ; $30
+	dbw BANK(UnknownScript_0xbc1a9), UnknownScript_0xbc1a9 ; $31
+	dbw BANK(StdGameCornerCoinVendor), StdGameCornerCoinVendor ; $32
+	dbw BANK(StdHappinessCheckNPC), StdHappinessCheckNPC ; $33
 ; bc09c
 
 PokeCenterNurseScript: ; bc09c
@@ -184,19 +184,19 @@ PokeCenterNurseScript: ; bc09c
 	end
 ; bc162
 
-UnknownScript_0xbc162: ; 0xbc162
+BookcaseStandard1: ; 0xbc162
 	farjumptext UnknownText_0x1b035a
 ; 0xbc166
 
-UnknownScript_0xbc166: ; 0xbc166
+BookcaseStandard2: ; 0xbc166
 	farjumptext UnknownText_0x1b0378
 ; 0xbc16a
 
-UnknownScript_0xbc16a: ; 0xbc16a
+BookcaseStandard3: ; 0xbc16a
 	farjumptext UnknownText_0x1b03a3
 ; 0xbc16e
 
-UnknownScript_0xbc16e: ; 0xbc16e
+BookcaseStandard4: ; 0xbc16e
 	farjumptext UnknownText_0x1b03d9
 ; 0xbc172
 
@@ -233,7 +233,7 @@ UnknownScript_0xbc191: ; 0xbc191
 	farjumptext UnknownText_0x1b04c9
 ; 0xbc195
 
-UnknownScript_0xbc195: ; 0xbc195
+RadioStandard1: ; 0xbc195
 	loadfont
 	writebyte $0
 	special Functionc355
@@ -241,7 +241,7 @@ UnknownScript_0xbc195: ; 0xbc195
 	end
 ; 0xbc19d
 
-UnknownScript_0xbc19d: ; 0xbc19d
+RadioStandard2: ; 0xbc19d
 	loadfont
 	writebyte $4
 	special Functionc355
@@ -249,7 +249,7 @@ UnknownScript_0xbc19d: ; 0xbc19d
 	end
 ; 0xbc1a5
 
-UnknownScript_0xbc1a5: ; 0xbc1a5
+TrashCanStandard: ; 0xbc1a5
 	farjumptext UnknownText_0x1b0526
 ; 0xbc1a9
 
@@ -260,30 +260,30 @@ UnknownScript_0xbc1a9: ; 0xbc1a9
 	end
 ; 0xbc1af
 
-UnknownScript_0xbc1af: ; 0xbc1af
+DeptStoreElevatorButtonStd: ; 0xbc1af
 	playsound SFX_READ_TEXT_2
 	pause 15
 	playsound SFX_ELEVATOR_END
 	end
 ; 0xbc1b8
 
-UnknownScript_0xbc1b8: ; 0xbc1b8
+StandardBoulderScript: ; 0xbc1b8
 	farjump UnknownScript_0xcd4b
 ; 0xbc1bc
 
-UnknownScript_0xbc1bc: ; 0xbc1bc
+StandardRockScript: ; 0xbc1bc
 	farjump AskRockSmashScript
 ; 0xbc1c0
 
-UnknownScript_0xbc1c0: ; 0xbc1c0
+StdPokecenterSign: ; 0xbc1c0
 	farjumptext UnknownText_0x1b057f
 ; 0xbc1c4
 
-UnknownScript_0xbc1c4: ; 0xbc1c4
+StdPokemartSign: ; 0xbc1c4
 	farjumptext UnknownText_0x1b059c
 ; 0xbc1c8
 
-UnknownScript_0xbc1c8: ; 0xbc1c8
+NationalParkContestStd: ; 0xbc1c8
 	checkcode $b
 	if_equal $1, UnknownScript_0xbc1e7
 	if_equal $2, UnknownScript_0xbc1ec
@@ -353,12 +353,12 @@ UnknownRawText_0xbc235: ; bc235
 	db "SATURDAY@"
 ; bc23e
 
-UnknownScript_0xbc23e: ; 0xbc23e
+StdGotSevenBadges: ; 0xbc23e
 	clearevent $06cd
 	end
 ; 0xbc242
 
-UnknownScript_0xbc242: ; 0xbc242
+StdGotSixBadges: ; 0xbc242
 	setflag $0013
 	setevent $06cf
 	setevent $06d1
@@ -370,7 +370,7 @@ UnknownScript_0xbc242: ; 0xbc242
 	end
 ; 0xbc25c
 
-UnknownScript_0xbc25c: ; 0xbc25c
+NationalParkSouthGateContestStd: ; 0xbc25c
 	special WhiteBGMap
 	scall UnknownScript_0xbc380
 	setevent $0747
@@ -379,7 +379,7 @@ UnknownScript_0xbc25c: ; 0xbc25c
 	warp GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE, $0, $4
 	applymovement $0, MovementData_0xbcea1
 
-UnknownScript_0xbc274: ; bc274
+NationalParkNorthGateContestStd: ; bc274
 	clearflag $0011
 	clearevent $02d2
 	clearevent $0313
@@ -551,7 +551,7 @@ UnknownScript_0xbc380: ; 0xbc380
 	end
 ; 0xbc3db
 
-UnknownScript_0xbc3db: ; 0xbc3db
+StdInitializeEventFlags: ; 0xbc3db
 	setevent $06cb
 	setevent $06ce
 	setevent $06cd
@@ -691,7 +691,7 @@ UnknownScript_0xbc3db: ; 0xbc3db
 	return
 ; 0xbc574
 
-UnknownScript_0xbc574: ; 0xbc574
+StdPhone_19: ; 0xbc574
 	special RandomPhoneMon
 	checkcode $17
 	if_equal $5, UnknownScript_0xbc5c9
@@ -815,7 +815,7 @@ UnknownScript_0xbc628: ; 0xbc628
 	end
 ; 0xbc62d
 
-UnknownScript_0xbc62d: ; 0xbc62d
+StdPhone_1a: ; 0xbc62d
 	special RandomPhoneMon
 	checkcode $17
 	if_equal $5, UnknownScript_0xbc682
@@ -939,7 +939,7 @@ UnknownScript_0xbc6e1: ; 0xbc6e1
 	end
 ; 0xbc6e6
 
-UnknownScript_0xbc6e6: ; 0xbc6e6
+StdPhone_1b: ; 0xbc6e6
 	farwritetext UnknownText_0x1b09c4
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
@@ -947,7 +947,7 @@ UnknownScript_0xbc6e6: ; 0xbc6e6
 	end
 ; 0xbc6f0
 
-UnknownScript_0xbc6f0: ; 0xbc6f0
+StdPhone_1c: ; 0xbc6f0
 	checkcode $17
 	if_equal $5, UnknownScript_0xbc742
 	if_equal $7, UnknownScript_0xbc749
@@ -1110,7 +1110,7 @@ UnknownScript_0xbc7c7: ; 0xbc7c7
 	end
 ; 0xbc7ce
 
-UnknownScript_0xbc7ce: ; 0xbc7ce
+StdPhone_1d: ; 0xbc7ce
 	checkcode $17
 	if_equal $5, UnknownScript_0xbc820
 	if_equal $7, UnknownScript_0xbc827
@@ -1273,7 +1273,7 @@ UnknownScript_0xbc8a5: ; 0xbc8a5
 	end
 ; 0xbc8ac
 
-UnknownScript_0xbc8ac: ; 0xbc8ac
+StdPhone_1e: ; 0xbc8ac
 	checkcode $17
 	if_equal $5, UnknownScript_0xbc8fe
 	if_equal $7, UnknownScript_0xbc905
@@ -1436,7 +1436,7 @@ UnknownScript_0xbc983: ; 0xbc983
 	end
 ; 0xbc98a
 
-UnknownScript_0xbc98a: ; 0xbc98a
+StdPhone_1f: ; 0xbc98a
 	checkcode $17
 	if_equal $5, UnknownScript_0xbc9d0
 	if_equal $7, UnknownScript_0xbc9d7
@@ -1575,7 +1575,7 @@ UnknownScript_0xbca40: ; 0xbca40
 	end
 ; 0xbca47
 
-UnknownScript_0xbca47: ; 0xbca47
+StdPhone_20: ; 0xbca47
 	checkcode $17
 	if_equal $d, UnknownScript_0xbca65
 	if_equal $10, UnknownScript_0xbca6b
@@ -1627,7 +1627,7 @@ UnknownScript_0xbca89: ; 0xbca89
 	end
 ; 0xbca8f
 
-UnknownScript_0xbca8f: ; 0xbca8f
+StdPhone_21: ; 0xbca8f
 	checkcode $17
 	if_equal $7, UnknownScript_0xbcabd
 	if_equal $d, UnknownScript_0xbcac4
@@ -1718,7 +1718,7 @@ UnknownScript_0xbcb03: ; 0xbcb03
 	end
 ; 0xbcb0a
 
-UnknownScript_0xbcb0a: ; 0xbcb0a
+StdPhone_22: ; 0xbcb0a
 	loadfont
 	checkcode $17
 	if_equal $7, UnknownScript_0xbcb1d
@@ -1750,7 +1750,7 @@ UnknownScript_0xbcb2f: ; 0xbcb2f
 	end
 ; 0xbcb35
 
-UnknownScript_0xbcb35: ; 0xbcb35
+StdPhone_23: ; 0xbcb35
 	checkcode $17
 	if_equal $6, UnknownScript_0xbcb57
 	if_equal $c, UnknownScript_0xbcb5c
@@ -1801,7 +1801,7 @@ UnknownScript_0xbcb7a: ; 0xbcb7a
 	end
 ; 0xbcb7f
 
-UnknownScript_0xbcb7f: ; 0xbcb7f
+StdPhone_24: ; 0xbcb7f
 	checkcode $17
 	if_equal $6, UnknownScript_0xbcba1
 	if_equal $c, UnknownScript_0xbcba6
@@ -1852,7 +1852,7 @@ UnknownScript_0xbcbc4: ; 0xbcbc4
 	end
 ; 0xbcbc9
 
-UnknownScript_0xbcbc9: ; 0xbcbc9
+StdPhone_25: ; 0xbcbc9
 	farwritetext UnknownText_0x1b09e1
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
@@ -1860,7 +1860,7 @@ UnknownScript_0xbcbc9: ; 0xbcbc9
 	end
 ; 0xbcbd3
 
-UnknownScript_0xbcbd3: ; 0xbcbd3
+StdPhone_26: ; 0xbcbd3
 	checkcode $17
 	if_equal $6, UnknownScript_0xbcbf5
 	if_equal $c, UnknownScript_0xbcbfc
@@ -1927,7 +1927,7 @@ UnknownScript_0xbcc26: ; 0xbcc26
 	end
 ; 0xbcc2d
 
-UnknownScript_0xbcc2d: ; 0xbcc2d
+StdPhone_27: ; 0xbcc2d
 	checkcode $17
 	if_equal $6, UnknownScript_0xbcc4f
 	if_equal $c, UnknownScript_0xbcc56
@@ -1994,7 +1994,7 @@ UnknownScript_0xbcc80: ; 0xbcc80
 	end
 ; 0xbcc87
 
-UnknownScript_0xbcc87: ; 0xbcc87
+StdPhone_28: ; 0xbcc87
 	checkcode $17
 	if_equal $6, UnknownScript_0xbcca9
 	if_equal $c, UnknownScript_0xbccb0
@@ -2061,7 +2061,7 @@ UnknownScript_0xbccda: ; 0xbccda
 	end
 ; 0xbcce1
 
-UnknownScript_0xbcce1: ; 0xbcce1
+StdPhone_29: ; 0xbcce1
 	checkcode $17
 	if_equal $c, UnknownScript_0xbccff
 	if_equal $e, UnknownScript_0xbcd06
@@ -2120,7 +2120,7 @@ UnknownScript_0xbcd29: ; 0xbcd29
 	end
 ; 0xbcd30
 
-UnknownScript_0xbcd30: ; 0xbcd30
+StdPhone_2a: ; 0xbcd30
 	checkcode $17
 	if_equal $6, UnknownScript_0xbcd42
 	if_equal $15, UnknownScript_0xbcd48
@@ -2151,7 +2151,7 @@ UnknownScript_0xbcd54: ; 0xbcd54
 	end
 ; 0xbcd5a
 
-UnknownScript_0xbcd5a: ; 0xbcd5a
+StdPhone_2b: ; 0xbcd5a
 	checkcode $17
 	if_equal $6, UnknownScript_0xbcd70
 	if_equal $15, UnknownScript_0xbcd77
@@ -2194,7 +2194,7 @@ UnknownScript_0xbcd8c: ; 0xbcd8c
 	end
 ; 0xbcd93
 
-UnknownScript_0xbcd93: ; 0xbcd93
+StdPhone_2c: ; 0xbcd93
 	checkcode $17
 	if_equal $24, .ok
 .ok
@@ -2204,7 +2204,7 @@ UnknownScript_0xbcd93: ; 0xbcd93
 	end
 ; 0xbcda0
 
-UnknownScript_0xbcda0: ; 0xbcda0
+StdGymStatues_Before: ; 0xbcda0
 	mapnametotext $0
 	loadfont
 	farwritetext UnknownText_0x1b074e
@@ -2213,7 +2213,7 @@ UnknownScript_0xbcda0: ; 0xbcda0
 	end
 ; 0xbcdaa
 
-UnknownScript_0xbcdaa: ; 0xbcdaa
+StdGymStatues_After: ; 0xbcdaa
 	mapnametotext $0
 	loadfont
 	farwritetext UnknownText_0x1b074e
@@ -2224,7 +2224,7 @@ UnknownScript_0xbcdaa: ; 0xbcdaa
 	end
 ; 0xbcdb9
 
-UnknownScript_0xbcdb9: ; 0xbcdb9
+StdReceiveItem: ; 0xbcdb9
 	waitbutton
 	farwritetext UnknownText_0x1b0648
 	playsound SFX_ITEM
@@ -2232,7 +2232,7 @@ UnknownScript_0xbcdb9: ; 0xbcdb9
 	end
 ; 0xbcdc3
 
-UnknownScript_0xbcdc3: ; 0xbcdc3
+StdReceiveTogepiEgg: ; 0xbcdc3
 	waitbutton
 	farwritetext UnknownText_0x1b0648
 	playsound SFX_GET_EGG_FROM_DAYCARE_LADY
@@ -2240,7 +2240,7 @@ UnknownScript_0xbcdc3: ; 0xbcdc3
 	end
 ; 0xbcdcd
 
-UnknownScript_0xbcdcd: ; 0xbcdcd
+StdGameCornerCoinVendor: ; 0xbcdcd
 	faceplayer
 	loadfont
 	farwritetext UnknownText_0x1b077f
@@ -2333,7 +2333,7 @@ MenuData2_0xbce5c: ; 0xbce5c
 ; 0xbce7f
 
 
-UnknownScript_0xbce7f: ; 0xbce7f
+StdHappinessCheckNPC: ; 0xbce7f
 	faceplayer
 	loadfont
 	special Function718d
