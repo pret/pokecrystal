@@ -7,7 +7,7 @@ BlackthornPokeCenter1F_MapScriptHeader: ; 0x195b77
 ; 0x195b79
 
 NurseScript_0x195b79: ; 0x195b79
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x195b7c
 
 GentlemanScript_0x195b7c: ; 0x195b7c

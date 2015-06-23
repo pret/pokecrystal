@@ -40,7 +40,7 @@ UnknownScript_0x7b3bd: ; 0x7b3bd
 ; 0x7b3c3
 
 MapRoute27SandstormHouseSignpost1Script: ; 0x7b3c3
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x7b3c6
 
 UnknownText_0x7b3c6: ; 0x7b3c6

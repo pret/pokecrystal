@@ -7,7 +7,7 @@ CeruleanPokeCenter1F_MapScriptHeader: ; 0x18820d
 ; 0x18820f
 
 NurseScript_0x18820f: ; 0x18820f
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x188212
 
 SuperNerdScript_0x188212: ; 0x188212

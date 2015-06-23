@@ -7,7 +7,7 @@ GoldenrodPokeCenter1F_MapScriptHeader: ; 0x60f8f
 ; 0x60f91
 
 NurseScript_0x60f91: ; 0x60f91
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x60f94
 
 UnknownScript_0x60f94: ; 0x60f94

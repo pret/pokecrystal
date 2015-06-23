@@ -7,7 +7,7 @@ SilverCavePokeCenter1F_MapScriptHeader: ; 0x1ae598
 ; 0x1ae59a
 
 NurseScript_0x1ae59a: ; 0x1ae59a
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x1ae59d
 
 GrannyScript_0x1ae59d: ; 0x1ae59d

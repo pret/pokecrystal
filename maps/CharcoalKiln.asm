@@ -69,7 +69,7 @@ FarfetchdScript:
 	end
 
 MapCharcoalKilnSignpost1Script: ; 0x18dd6e
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x18dd71
 
 MapCharcoalKilnSignpost2Script: ; 0x18dd71

@@ -81,11 +81,11 @@ UnknownScript_0x553c5: ; 0x553c5
 ; 0x553cb
 
 UnknownScript_0x553cb: ; 0x553cb
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x553ce
 
 UnknownScript_0x553ce: ; 0x553ce
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x553d1
 
 UnknownScript_0x553d1: ; 0x553d1

@@ -15,11 +15,11 @@ LassScript_0x9c63a: ; 0x9c63a
 ; 0x9c63d
 
 MapOlivinePunishmentSpeechHouseSignpost1Script: ; 0x9c63d
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x9c640
 
 MapOlivinePunishmentSpeechHouseSignpost0Script: ; 0x9c640
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x9c643
 
 UnknownText_0x9c643: ; 0x9c643

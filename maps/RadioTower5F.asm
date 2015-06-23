@@ -177,7 +177,7 @@ MapRadioTower5FSignpost2Script: ; 0x60103
 ; 0x60106
 
 MapRadioTower5FSignpost4Script: ; 0x60106
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x60109
 
 MovementData_0x60109: ; 0x60109

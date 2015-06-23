@@ -16,7 +16,7 @@ SuperNerdScript_0x195cb4: ; 0x195cb4
 ; 0x195cbc
 
 MapMoveDeletersHouseSignpost1Script: ; 0x195cbc
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x195cbf
 
 MoveDeletersHouse_MapEventHeader: ; 0x195cbf

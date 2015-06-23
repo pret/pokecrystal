@@ -210,7 +210,7 @@ GymGuyScript_0x188ecb: ; 0x188ecb
 ; 0x188ed2
 
 MapPowerPlantSignpost1Script: ; 0x188ed2
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x188ed5
 
 MovementData_0x188ed5: ; 0x188ed5

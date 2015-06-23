@@ -157,7 +157,7 @@ UnknownScript_0x68b27: ; 0x68b27
 ; 0x68b2a
 
 MapEarlsPokemonAcademySignpost1Script: ; 0x68b2a
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x68b2d
 
 MovementData_0x68b2d: ; 0x68b2d

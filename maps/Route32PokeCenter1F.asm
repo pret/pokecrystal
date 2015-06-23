@@ -7,7 +7,7 @@ Route32PokeCenter1F_MapScriptHeader: ; 0x69b50
 ; 0x69b52
 
 NurseScript_0x69b52: ; 0x69b52
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x69b55
 
 FishingGuruScript_0x69b55: ; 0x69b55

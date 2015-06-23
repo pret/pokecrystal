@@ -35,7 +35,7 @@ UnknownScript_0x7f4aa: ; 0x7f4aa
 ; 0x7f4ac
 
 UnknownScript_0x7f4ac: ; 0x7f4ac
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x7f4af
 
 UnknownText_0x7f4af: ; 0x7f4af

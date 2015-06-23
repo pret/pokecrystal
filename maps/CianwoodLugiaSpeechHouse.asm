@@ -19,7 +19,7 @@ TwinScript_0x9e1b6: ; 0x9e1b6
 ; 0x9e1b9
 
 MapCianwoodLugiaSpeechHouseSignpost1Script: ; 0x9e1b9
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x9e1bc
 
 UnknownText_0x9e1bc: ; 0x9e1bc

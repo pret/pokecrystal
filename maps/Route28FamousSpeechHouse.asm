@@ -45,7 +45,7 @@ MoltresScript_0x1ae675: ; 0x1ae675
 ; 0x1ae67f
 
 MapRoute28FamousSpeechHouseSignpost1Script: ; 0x1ae67f
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x1ae682
 
 UnknownText_0x1ae682: ; 0x1ae682

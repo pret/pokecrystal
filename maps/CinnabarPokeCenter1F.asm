@@ -7,7 +7,7 @@ CinnabarPokeCenter1F_MapScriptHeader: ; 0x1ab32a
 ; 0x1ab32c
 
 NurseScript_0x1ab32c: ; 0x1ab32c
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x1ab32f
 
 CooltrainerFScript_0x1ab32f: ; 0x1ab32f

@@ -23,7 +23,7 @@ GentlemanScript_0x7eaf2: ; 0x7eaf2
 ; 0x7eafa
 
 UnknownScript_0x7eafa: ; 0x7eafa
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x7eafd
 
 LavenderNameRater_MapEventHeader: ; 0x7eafd

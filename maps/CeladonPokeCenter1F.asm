@@ -7,7 +7,7 @@ CeladonPokeCenter1F_MapScriptHeader: ; 0x71e20
 ; 0x71e22
 
 NurseScript_0x71e22: ; 0x71e22
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x71e25
 
 GentlemanScript_0x71e25: ; 0x71e25

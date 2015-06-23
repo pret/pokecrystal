@@ -556,7 +556,7 @@ MapTeamRocketBaseB1FSignpost5Script: ; 0x6ca96
 ; 0x6ca99
 
 MapTeamRocketBaseB1FSignpost7Script: ; 0x6ca99
-	jumpstd $0004
+	jumpstd teamrocketoath
 ; 0x6ca9c
 
 MapTeamRocketBaseB1FSignpost0Script: ; 0x6ca9c

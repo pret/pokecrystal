@@ -105,7 +105,7 @@ UnknownScript_0x9d2fa: ; 0x9d2fa
 ; 0x9d300
 
 UnknownScript_0x9d300: ; 0x9d300
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x9d303
 
 UnknownText_0x9d303: ; 0x9d303

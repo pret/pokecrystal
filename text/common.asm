@@ -127,29 +127,26 @@ UnknownText_0x1b02d6: ; 0x1b02d6
 	done
 ; 0x1b035a
 
-UnknownText_0x1b035a: ; 0x1b035a
+DifficultBookshelfText:
 	text "It's full of"
 	line "difficult books."
 	done
-; 0x1b0378
 
-UnknownText_0x1b0378: ; 0x1b0378
+PictureBookshelfText:
 	text "A whole collection"
 	line "of #MON picture"
 	cont "books!"
 	done
-; 0x1b03a3
 
-UnknownText_0x1b03a3: ; 0x1b03a3
+MagazineBookshelfText:
 	text "#MON magazines…"
 	line "#MON PAL,"
 
 	para "#MON HANDBOOK,"
 	line "#MON GRAPH…"
 	done
-; 0x1b03d9
 
-UnknownText_0x1b03d9: ; 0x1b03d9
+TeamRocketOathText:
 	text "TEAM ROCKET OATH"
 
 	para "Steal #MON for"
@@ -162,46 +159,39 @@ UnknownText_0x1b03d9: ; 0x1b03d9
 	line "for the glory of"
 	cont "TEAM ROCKET!"
 	done
-; 0x1b0448
 
-UnknownText_0x1b0448: ; 0x1b0448
+IncenseBurnerText:
 	text "What is this?"
 
 	para "Oh, it's an"
 	line "incense burner!"
 	done
-; 0x1b0472
 
-UnknownText_0x1b0472: ; 0x1b0472
+MerchandiseShelfText:
 	text "Lots of #MON"
 	line "merchandise!"
 	done
-; 0x1b048d
 
-UnknownText_0x1b048d: ; 0x1b048d
+TownMapText:
 	text "It's the TOWN MAP."
 	done
-; 0x1b04a0
 
-UnknownText_0x1b04a0: ; 0x1b04a0
+WindowText:
 	text "My reflection!"
 	line "Lookin' good!"
 	done
-; 0x1b04be
 
-UnknownText_0x1b04be: ; 0x1b04be
+TVText:
 	text "It's a TV."
 	done
-; 0x1b04c9
 
-UnknownText_0x1b04c9: ; 0x1b04c9
+HomepageText:
 	text "#MON JOURNAL"
 	line "HOME PAGE…"
 
 	para "It hasn't been"
 	line "updated…"
 	done
-; 0x1b04f9
 
 UnknownText_0x1b04f9: ; 0x1b04f9
 	text "#MON RADIO!"

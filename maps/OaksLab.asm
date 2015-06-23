@@ -69,7 +69,7 @@ ScientistScript_0x19b415: ; 0x19b415
 ; 0x19b418
 
 MapOaksLabSignpost11Script: ; 0x19b418
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x19b41b
 
 MapOaksLabSignpost12Script: ; 0x19b41b

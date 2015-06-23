@@ -105,11 +105,11 @@ UnknownScript_0x54c64: ; 0x54c64
 ; 0x54c6b
 
 MapGoldenrodBillsHouseSignpost1Script: ; 0x54c6b
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x54c6e
 
 MapGoldenrodBillsHouseSignpost0Script: ; 0x54c6e
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x54c71
 
 MapGoldenrodBillsHouseSignpost2Script: ; 0x54c71

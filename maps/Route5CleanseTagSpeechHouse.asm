@@ -29,7 +29,7 @@ TeacherScript_0x18b64f: ; 0x18b64f
 ; 0x18b652
 
 MapRoute5CleanseTagSpeechHouseSignpost1Script: ; 0x18b652
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x18b655
 
 UnknownText_0x18b655: ; 0x18b655

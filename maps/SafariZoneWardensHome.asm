@@ -34,7 +34,7 @@ MapSafariZoneWardensHomeSignpost3Script: ; 0x1965e0
 ; 0x1965e3
 
 MapSafariZoneWardensHomeSignpost1Script: ; 0x1965e3
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x1965e6
 
 UnknownText_0x1965e6: ; 0x1965e6

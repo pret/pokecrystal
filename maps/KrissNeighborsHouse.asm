@@ -15,7 +15,7 @@ PokefanFScript_0x7acf1: ; 0x7acf1
 ; 0x7acf4
 
 MapKrissNeighborsHouseSignpost1Script: ; 0x7acf4
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x7acf7
 
 MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
@@ -40,7 +40,7 @@ MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
 ; 0x7ad24
 
 UnknownScript_0x7ad24: ; 0x7ad24
-	jumpstd $000b
+	jumpstd radio
 ; 0x7ad27
 
 UnknownScript_0x7ad27: ; 0x7ad27

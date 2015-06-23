@@ -141,7 +141,7 @@ UnknownScript_0x18012b: ; 0x18012b
 ; 0x18012c
 
 NurseScript_0x18012c: ; 0x18012c
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x18012f
 
 ClerkScript_0x18012f: ; 0x18012f

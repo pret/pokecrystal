@@ -15,7 +15,7 @@ MapVermilionHouseFishingSpeechHouseSignpost0Script: ; 0x191490
 ; 0x191493
 
 UnknownScript_0x191493: ; 0x191493
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x191496
 
 UnknownText_0x191496: ; 0x191496

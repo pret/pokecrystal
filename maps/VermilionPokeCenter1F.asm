@@ -7,7 +7,7 @@ VermilionPokeCenter1F_MapScriptHeader: ; 0x191601
 ; 0x191603
 
 NurseScript_0x191603: ; 0x191603
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x191606
 
 FishingGuruScript_0x191606: ; 0x191606

@@ -282,7 +282,7 @@ UnknownScript_0x6e10b: ; 0x6e10b
 ; 0x6e11d
 
 MapTeamRocketBaseB3FSignpost9Script: ; 0x6e11d
-	jumpstd $0004
+	jumpstd teamrocketoath
 ; 0x6e120
 
 ItemFragment_0x6e120: ; 0x6e120

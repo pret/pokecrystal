@@ -28,7 +28,7 @@ TeacherScript_0x7b125: ; 0x7b125
 ; 0x7b14a
 
 MapRoute26HealSpeechHouseSignpost1Script: ; 0x7b14a
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x7b14d
 
 UnknownText_0x7b14d: ; 0x7b14d

@@ -16,7 +16,7 @@ GentlemanScript_0x5577c: ; 0x5577c
 ; 0x55784
 
 MapGoldenrodNameRatersHouseSignpost1Script: ; 0x55784
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x55787
 
 MapGoldenrodNameRatersHouseSignpost2Script: ; 0x55787

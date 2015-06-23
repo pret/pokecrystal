@@ -421,7 +421,7 @@ MapRadioTower2FSignpost5Script: ; 0x5d91b
 ; 0x5d91e
 
 MapRadioTower2FSignpost4Script: ; 0x5d91e
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x5d921
 
 MovementData_0x5d921: ; 0x5d921

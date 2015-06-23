@@ -7,7 +7,7 @@ VioletPokeCenter1F_MapScriptHeader: ; 0x694c7
 ; 0x694c9
 
 NurseScript_0x694c9: ; 0x694c9
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x694cc
 
 ScientistScript_0x694cc: ; 0x694cc

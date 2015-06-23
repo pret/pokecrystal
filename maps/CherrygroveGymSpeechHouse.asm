@@ -15,7 +15,7 @@ BugCatcherScript_0x196ae4: ; 0x196ae4
 ; 0x196ae7
 
 MapCherrygroveGymSpeechHouseSignpost1Script: ; 0x196ae7
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x196aea
 
 UnknownText_0x196aea: ; 0x196aea

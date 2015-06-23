@@ -15,7 +15,7 @@ MapCeladonMansion2FSignpost1Script: ; 0x71533
 ; 0x71536
 
 MapCeladonMansion2FSignpost2Script: ; 0x71536
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x71539
 
 UnknownText_0x71539: ; 0x71539

@@ -7,7 +7,7 @@ OlivinePokeCenter1F_MapScriptHeader: ; 0x9c000
 ; 0x9c002
 
 NurseScript_0x9c002: ; 0x9c002
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x9c005
 
 FishingGuruScript_0x9c005: ; 0x9c005

@@ -20,11 +20,11 @@ RhydonScript_0x9c592: ; 0x9c592
 ; 0x9c59c
 
 MapOlivineHouseBetaSignpost0Script: ; 0x9c59c
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x9c59f
 
 MapOlivineHouseBetaSignpost1Script: ; 0x9c59f
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x9c5a2
 
 UnknownText_0x9c5a2: ; 0x9c5a2

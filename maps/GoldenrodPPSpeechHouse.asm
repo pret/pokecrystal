@@ -15,11 +15,11 @@ LassScript_0x5564d: ; 0x5564d
 ; 0x55650
 
 MapGoldenrodPPSpeechHouseSignpost1Script: ; 0x55650
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x55653
 
 MapGoldenrodPPSpeechHouseSignpost0Script: ; 0x55653
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x55656
 
 MapGoldenrodPPSpeechHouseSignpost2Script: ; 0x55656

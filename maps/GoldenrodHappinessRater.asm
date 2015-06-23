@@ -71,7 +71,7 @@ TwinScript_0x5499a: ; 0x5499a
 ; 0x5499d
 
 MapGoldenrodHappinessRaterSignpost1Script: ; 0x5499d
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x549a0
 
 MapGoldenrodHappinessRaterSignpost2Script: ; 0x549a0

@@ -7,7 +7,7 @@ SaffronPokeCenter1F_MapScriptHeader: ; 0x18a47b
 ; 0x18a47d
 
 NurseScript_0x18a47d: ; 0x18a47d
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x18a480
 
 TeacherScript_0x18a480: ; 0x18a480

@@ -37,7 +37,7 @@ MapRedsHouse1FSignpost2Script: ; 0x19aeba
 ; 0x19aebd
 
 MapRedsHouse1FSignpost1Script: ; 0x19aebd
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x19aec0
 
 UnknownText_0x19aec0: ; 0x19aec0

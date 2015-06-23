@@ -471,7 +471,7 @@ MapKurtsHouseSignpost6Script: ; 0x18e45d
 ; 0x18e460
 
 MapKurtsHouseSignpost5Script: ; 0x18e460
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x18e463
 
 MapKurtsHouseSignpost0Script: ; 0x18e463

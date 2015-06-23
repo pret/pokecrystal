@@ -96,7 +96,7 @@ UnknownScript_0x9cf33: ; 0x9cf33
 ; 0x9cf35
 
 MapRoute39FarmhouseSignpost1Script: ; 0x9cf35
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x9cf38
 
 UnknownText_0x9cf38: ; 0x9cf38

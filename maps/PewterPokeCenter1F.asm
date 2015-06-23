@@ -7,7 +7,7 @@ PewterPokeCenter1F_MapScriptHeader: ; 0x1a2ee5
 ; 0x1a2ee7
 
 NurseScript_0x1a2ee7: ; 0x1a2ee7
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x1a2eea
 
 TeacherScript_0x1a2eea: ; 0x1a2eea

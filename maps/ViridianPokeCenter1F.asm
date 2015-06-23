@@ -7,7 +7,7 @@ ViridianPokeCenter1F_MapScriptHeader: ; 0x9b68e
 ; 0x9b690
 
 NurseScript_0x9b690: ; 0x9b690
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x9b693
 
 CooltrainerMScript_0x9b693: ; 0x9b693

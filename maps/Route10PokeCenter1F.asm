@@ -7,7 +7,7 @@ Route10PokeCenter1F_MapScriptHeader: ; 0x188bd2
 ; 0x188bd4
 
 NurseScript_0x188bd4: ; 0x188bd4
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x188bd7
 
 GentlemanScript_0x188bd7: ; 0x188bd7

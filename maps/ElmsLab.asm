@@ -666,7 +666,7 @@ UnknownScript_0x78f61: ; 0x78f61
 ; 0x78f64
 
 MapElmsLabSignpost12Script: ; 0x78f64
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x78f67
 
 MovementData_0x78f67: ; 0x78f67

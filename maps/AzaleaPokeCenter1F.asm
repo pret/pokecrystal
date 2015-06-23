@@ -14,7 +14,7 @@ UnknownScript_0x18db27: ; 0x18db27
 ; 0x18db28
 
 NurseScript_0x18db28: ; 0x18db28
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x18db2b
 
 GentlemanScript_0x18db2b: ; 0x18db2b

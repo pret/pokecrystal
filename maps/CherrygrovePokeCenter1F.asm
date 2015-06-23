@@ -7,7 +7,7 @@ CherrygrovePokeCenter1F_MapScriptHeader: ; 0x19696b
 ; 0x19696d
 
 NurseScript_0x19696d: ; 0x19696d
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x196970
 
 FisherScript_0x196970: ; 0x196970

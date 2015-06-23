@@ -85,7 +85,7 @@ MapKrissHouse2FSignpost2Script: ; 0x7abda
 ; 0x7ac07
 
 UnknownScript_0x7ac07: ; 0x7ac07
-	jumpstd $000b
+	jumpstd radio
 ; 0x7ac0a
 
 UnknownScript_0x7ac0a: ; 0x7ac0a
@@ -98,7 +98,7 @@ UnknownScript_0x7ac0a: ; 0x7ac0a
 
 
 MapKrissHouse2FSignpost3Script: ; 0x7ac12
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x7ac15
 
 MapKrissHouse2FSignpost0Script: ; 0x7ac15

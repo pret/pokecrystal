@@ -1,16 +1,16 @@
 StdScripts:: ; bc000
 	dbw BANK(PokeCenterNurseScript), PokeCenterNurseScript
-	dbw BANK(UnknownScript_0xbc162), UnknownScript_0xbc162
-	dbw BANK(UnknownScript_0xbc166), UnknownScript_0xbc166
-	dbw BANK(UnknownScript_0xbc16a), UnknownScript_0xbc16a
-	dbw BANK(UnknownScript_0xbc16e), UnknownScript_0xbc16e
-	dbw BANK(UnknownScript_0xbc172), UnknownScript_0xbc172
-	dbw BANK(UnknownScript_0xbc176), UnknownScript_0xbc176
-	dbw BANK(UnknownScript_0xbc17a), UnknownScript_0xbc17a
-	dbw BANK(UnknownScript_0xbc185), UnknownScript_0xbc185
-	dbw BANK(UnknownScript_0xbc189), UnknownScript_0xbc189
-	dbw BANK(UnknownScript_0xbc191), UnknownScript_0xbc191
-	dbw BANK(UnknownScript_0xbc195), UnknownScript_0xbc195
+	dbw BANK(DifficultBookshelfScript), DifficultBookshelfScript
+	dbw BANK(PictureBookshelfScript), PictureBookshelfScript
+	dbw BANK(MagazineBookshelfScript), MagazineBookshelfScript
+	dbw BANK(TeamRocketOathScript), TeamRocketOathScript
+	dbw BANK(IncenseBurnerScript), IncenseBurnerScript
+	dbw BANK(MerchandiseShelfScript), MerchandiseShelfScript
+	dbw BANK(TownMapScript), TownMapScript
+	dbw BANK(WindowScript), WindowScript
+	dbw BANK(TVScript), TVScript
+	dbw BANK(HomepageScript), HomepageScript
+	dbw BANK(RadioScript), RadioScript
 	dbw BANK(UnknownScript_0xbc19d), UnknownScript_0xbc19d
 	dbw BANK(UnknownScript_0xbc1a5), UnknownScript_0xbc1a5
 	dbw BANK(UnknownScript_0xbc1b8), UnknownScript_0xbc1b8
@@ -184,62 +184,51 @@ PokeCenterNurseScript: ; bc09c
 	end
 ; bc162
 
-UnknownScript_0xbc162: ; 0xbc162
-	farjumptext UnknownText_0x1b035a
-; 0xbc166
+DifficultBookshelfScript:
+	farjumptext DifficultBookshelfText
 
-UnknownScript_0xbc166: ; 0xbc166
-	farjumptext UnknownText_0x1b0378
-; 0xbc16a
+PictureBookshelfScript:
+	farjumptext PictureBookshelfText
 
-UnknownScript_0xbc16a: ; 0xbc16a
-	farjumptext UnknownText_0x1b03a3
-; 0xbc16e
+MagazineBookshelfScript:
+	farjumptext MagazineBookshelfText
 
-UnknownScript_0xbc16e: ; 0xbc16e
-	farjumptext UnknownText_0x1b03d9
-; 0xbc172
+TeamRocketOathScript:
+	farjumptext TeamRocketOathText
 
-UnknownScript_0xbc172: ; 0xbc172
-	farjumptext UnknownText_0x1b0448
-; 0xbc176
+IncenseBurnerScript:
+	farjumptext IncenseBurnerText
 
-UnknownScript_0xbc176: ; 0xbc176
-	farjumptext UnknownText_0x1b0472
-; 0xbc17a
+MerchandiseShelfScript:
+	farjumptext MerchandiseShelfText
 
-UnknownScript_0xbc17a: ; 0xbc17a
+TownMapScript:
 	loadfont
-	farwritetext UnknownText_0x1b048d
+	farwritetext TownMapText
 	closetext
 	special Functionc2c0
 	loadmovesprites
 	end
-; 0xbc185
 
-UnknownScript_0xbc185: ; 0xbc185
-	farjumptext UnknownText_0x1b04a0
-; 0xbc189
+WindowScript:
+	farjumptext WindowText
 
-UnknownScript_0xbc189: ; 0xbc189
+TVScript:
 	loadfont
-	farwritetext UnknownText_0x1b04be
+	farwritetext TVText
 	closetext
 	loadmovesprites
 	end
-; 0xbc191
 
-UnknownScript_0xbc191: ; 0xbc191
-	farjumptext UnknownText_0x1b04c9
-; 0xbc195
+HomepageScript:
+	farjumptext HomepageText
 
-UnknownScript_0xbc195: ; 0xbc195
+RadioScript:
 	loadfont
 	writebyte $0
 	special Functionc355
 	loadmovesprites
 	end
-; 0xbc19d
 
 UnknownScript_0xbc19d: ; 0xbc19d
 	loadfont

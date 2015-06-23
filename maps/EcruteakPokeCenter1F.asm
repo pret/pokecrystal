@@ -58,7 +58,7 @@ UnknownScript_0x98e95: ; 0x98e95
 ; 0x98eb0
 
 NurseScript_0x98eb0: ; 0x98eb0
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x98eb3
 
 PokefanMScript_0x98eb3: ; 0x98eb3

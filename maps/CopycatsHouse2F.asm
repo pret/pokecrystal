@@ -202,7 +202,7 @@ BirdScript_0x18afca: ; 0x18afca
 ; 0x18afcd
 
 MapCopycatsHouse2FSignpost1Script: ; 0x18afcd
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x18afd0
 
 MovementData_0x18afd0: ; 0x18afd0

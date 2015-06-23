@@ -7,7 +7,7 @@ MahoganyPokeCenter1F_MapScriptHeader: ; 0x19a354
 ; 0x19a356
 
 NurseScript_0x19a356: ; 0x19a356
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x19a359
 
 PokefanMScript_0x19a359: ; 0x19a359

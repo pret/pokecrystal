@@ -96,7 +96,7 @@ UnknownScript_0x19a728: ; 0x19a728
 ; 0x19a72b
 
 MapLakeofRageMagikarpHouseSignpost1Script: ; 0x19a72b
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x19a72e
 
 UnknownText_0x19a72e: ; 0x19a72e

@@ -42,7 +42,7 @@ MapCeladonMansion1FSignpost0Script: ; 0x71410
 ; 0x71413
 
 MapCeladonMansion1FSignpost2Script: ; 0x71413
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x71416
 
 UnknownText_0x71416: ; 0x71416

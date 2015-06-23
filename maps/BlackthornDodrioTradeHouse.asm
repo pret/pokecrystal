@@ -16,7 +16,7 @@ LassScript_0x195a2a: ; 0x195a2a
 ; 0x195a31
 
 MapBlackthornDodrioTradeHouseSignpost1Script: ; 0x195a31
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x195a34
 
 BlackthornDodrioTradeHouse_MapEventHeader: ; 0x195a34

@@ -80,7 +80,7 @@ UnknownScript_0x62fd1: ; 0x62fd1
 ; 0x62fd7
 
 MapDayCareSignpost1Script: ; 0x62fd7
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x62fda
 
 UnknownText_0x62fda: ; 0x62fda

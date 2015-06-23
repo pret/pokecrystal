@@ -11,7 +11,7 @@ PokefanFScript_0x7ea47: ; 0x7ea47
 ; 0x7ea4a
 
 MapLavenderTownSpeechHouseSignpost1Script: ; 0x7ea4a
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x7ea4d
 
 UnknownText_0x7ea4d: ; 0x7ea4d

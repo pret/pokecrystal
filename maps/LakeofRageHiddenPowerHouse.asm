@@ -31,7 +31,7 @@ UnknownScript_0x19a546: ; 0x19a546
 ; 0x19a548
 
 MapLakeofRageHiddenPowerHouseSignpost1Script: ; 0x19a548
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x19a54b
 
 UnknownText_0x19a54b: ; 0x19a54b

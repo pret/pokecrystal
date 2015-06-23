@@ -16,7 +16,7 @@ FishingGuruScript_0x9c55c: ; 0x9c55c
 ; 0x9c563
 
 MapOlivineVoltorbHouseSignpost1Script: ; 0x9c563
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x9c566
 
 OlivineVoltorbHouse_MapEventHeader: ; 0x9c566

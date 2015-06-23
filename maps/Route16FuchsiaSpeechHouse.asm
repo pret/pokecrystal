@@ -11,7 +11,7 @@ SuperNerdScript_0x73373: ; 0x73373
 ; 0x73376
 
 MapRoute16FuchsiaSpeechHouseSignpost1Script: ; 0x73376
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x73379
 
 UnknownText_0x73379: ; 0x73379

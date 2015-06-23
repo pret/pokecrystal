@@ -15,7 +15,7 @@ YoungsterScript_0x191eba: ; 0x191eba
 ; 0x191ebd
 
 MapVermilionMagnetTrainSpeechHouseSignpost1Script: ; 0x191ebd
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x191ec0
 
 UnknownText_0x191ec0: ; 0x191ec0

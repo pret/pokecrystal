@@ -39,7 +39,7 @@ UnknownScript_0x9c740: ; 0x9c740
 ; 0x9c746
 
 UnknownScript_0x9c746: ; 0x9c746
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x9c749
 
 UnknownText_0x9c749: ; 0x9c749

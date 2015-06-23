@@ -25,7 +25,7 @@ UnknownScript_0x9b860: ; 0x9b860
 ; 0x9b862
 
 UnknownScript_0x9b862: ; 0x9b862
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x9b865
 
 UnknownText_0x9b865: ; 0x9b865

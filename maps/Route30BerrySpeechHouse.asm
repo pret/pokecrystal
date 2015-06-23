@@ -25,7 +25,7 @@ UnknownScript_0x196d7d: ; 0x196d7d
 ; 0x196d7f
 
 MapRoute30BerrySpeechHouseSignpost1Script: ; 0x196d7f
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x196d82
 
 UnknownText_0x196d82: ; 0x196d82

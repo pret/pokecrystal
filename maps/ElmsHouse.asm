@@ -19,7 +19,7 @@ MapElmsHouseSignpost0Script: ; 0x7aef1
 ; 0x7aef4
 
 MapElmsHouseSignpost2Script: ; 0x7aef4
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x7aef7
 
 UnknownText_0x7aef7: ; 0x7aef7

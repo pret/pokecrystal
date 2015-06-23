@@ -42,7 +42,7 @@ MoltresScript_0x7e8e4: ; 0x7e8e4
 ; 0x7e8ee
 
 MapMrFujisHouseSignpost1Script: ; 0x7e8ee
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x7e8f1
 
 UnknownText_0x7e8f1: ; 0x7e8f1

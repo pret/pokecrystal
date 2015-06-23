@@ -7,7 +7,7 @@ LavenderPokeCenter1F_MapScriptHeader: ; 0x7e69e
 ; 0x7e6a0
 
 NurseScript_0x7e6a0: ; 0x7e6a0
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x7e6a3
 
 GentlemanScript_0x7e6a3: ; 0x7e6a3

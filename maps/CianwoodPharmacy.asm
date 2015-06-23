@@ -41,7 +41,7 @@ UnknownScript_0x9dfc4: ; 0x9dfc4
 ; 0x9dfca
 
 MapCianwoodPharmacySignpost1Script: ; 0x9dfca
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x9dfcd
 
 UnknownText_0x9dfcd: ; 0x9dfcd

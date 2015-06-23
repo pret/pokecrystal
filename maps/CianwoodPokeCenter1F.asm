@@ -7,7 +7,7 @@ CianwoodPokeCenter1F_MapScriptHeader: ; 0x9dbcd
 ; 0x9dbcf
 
 NurseScript_0x9dbcf: ; 0x9dbcf
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x9dbd2
 
 LassScript_0x9dbd2: ; 0x9dbd2

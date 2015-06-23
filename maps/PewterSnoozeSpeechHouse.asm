@@ -11,7 +11,7 @@ GrampsScript_0x1a3059: ; 0x1a3059
 ; 0x1a305c
 
 MapPewterSnoozeSpeechHouseSignpost1Script: ; 0x1a305c
-	jumpstd $0002
+	jumpstd picturebookshelf
 ; 0x1a305f
 
 UnknownText_0x1a305f: ; 0x1a305f

@@ -11,7 +11,7 @@ GrampsScript_0x196c07: ; 0x196c07
 ; 0x196c0a
 
 MapGuideGentsHouseSignpost1Script: ; 0x196c0a
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x196c0d
 
 UnknownText_0x196c0d: ; 0x196c0d

@@ -14,7 +14,7 @@ UnknownScript_0x196458: ; 0x196458
 ; 0x196459
 
 NurseScript_0x196459: ; 0x196459
-	jumpstd $0000
+	jumpstd pokecenternurse
 ; 0x19645c
 
 CooltrainerMScript_0x19645c: ; 0x19645c

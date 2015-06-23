@@ -23,7 +23,7 @@ LassScript_0x196cb9: ; 0x196cb9
 ; 0x196cc0
 
 MapCherrygroveEvolutionSpeechHouseSignpost1Script: ; 0x196cc0
-	jumpstd $0003
+	jumpstd magazinebookshelf
 ; 0x196cc3
 
 UnknownText_0x196cc3: ; 0x196cc3

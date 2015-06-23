@@ -25,7 +25,7 @@ UnknownScript_0x18a793: ; 0x18a793
 ; 0x18a795
 
 MapMrPsychicsHouseSignpost1Script: ; 0x18a795
-	jumpstd $0001
+	jumpstd difficultbookshelf
 ; 0x18a798
 
 UnknownText_0x18a798: ; 0x18a798

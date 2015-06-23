@@ -15475,15 +15475,15 @@ Function1365b:: ; 1365b
 ; 13681
 
 .table1
-	dbw $91, $0003 ; bookshelf
+	dbw $91, magazinebookshelf
 .table2
 	dbw $93, $0031 ; pc
-	dbw $94, $000b ; radio
-	dbw $95, $0007 ; map
-	dbw $96, $0006 ; merchandise
-	dbw $97, $0009 ; tv
-	dbw $9d, $0008 ; window
-	dbw $9f, $0005 ; incense burner
+	dbw $94, radio
+	dbw $95, townmap
+	dbw $96, merchandiseshelf
+	dbw $97, tv
+	dbw $9d, window
+	dbw $9f, incenseburner
 	db $ff ; end
 ; 1369a
 
