@@ -386,7 +386,7 @@ FirebreatherWaltScript: ; 0x19ca41
 OfficerScript_0x19ca49: ; 0x19ca49
 	faceplayer
 	loadfont
-	checktime $4
+	checknite
 	iffalse UnknownScript_0x19ca73
 	checkevent $0547
 	iftrue UnknownScript_0x19ca6d

@@ -63,7 +63,7 @@ UnknownScript_0x7c082: ; 0x7c082
 
 UnknownScript_0x7c0a5: ; 0x7c0a5
 	disappear $7
-	checktime $1
+	checkmorn
 	iffalse UnknownScript_0x7c0ae
 	appear $7
 UnknownScript_0x7c0ae: ; 0x7c0ae
@@ -253,7 +253,7 @@ GrampsScript_0x7c146: ; 0x7c146
 ; 0x7c156
 
 UnknownScript_0x7c156: ; 0x7c156
-	checktime $1
+	checkmorn
 	iffalse UnknownScript_0x7c300
 	pokemart $2, $0000
 	loadmovesprites

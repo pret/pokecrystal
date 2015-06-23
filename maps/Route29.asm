@@ -157,9 +157,9 @@ FisherScript_0x1a102e: ; 0x1a102e
 CooltrainerMScript_0x1a1031: ; 0x1a1031
 	faceplayer
 	loadfont
-	checktime $2
+	checkday
 	iftrue UnknownScript_0x1a103d
-	checktime $4
+	checknite
 	iftrue UnknownScript_0x1a1043
 UnknownScript_0x1a103d: ; 0x1a103d
 	writetext UnknownText_0x1a134c

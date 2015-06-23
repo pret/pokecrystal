@@ -419,7 +419,7 @@ UnknownScript_0x78248: ; 0x78248
 OfficerScript_0x7824c: ; 0x7824c
 	faceplayer
 	loadfont
-	checktime $4
+	checknite
 	iffalse UnknownScript_0x78276
 	checkevent $0546
 	iftrue UnknownScript_0x78270

@@ -13,9 +13,9 @@ UnknownScript_0xa0b26:
 	jump UnknownScript_0xa0b77
 
 UnknownScript_0xa0b32:
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xa0b41
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xa0b46
 	writetext UnknownText_0xa0d42
 	keeptextopen
@@ -38,9 +38,9 @@ UnknownScript_0xa0b4b:
 UnknownScript_0xa0b4f:
 	checkcode $a
 	if_greater_than $11, UnknownScript_0xa0b6e
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xa0b64
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xa0b69
 	writetext UnknownText_0xa0e29
 	keeptextopen

@@ -13,7 +13,7 @@ PharmacistScript_0x71afd: ; 0x71afd
 	iftrue UnknownScript_0x71b21
 	writetext UnknownText_0x71b27
 	keeptextopen
-	checktime $4
+	checknite
 	iftrue UnknownScript_0x71b14
 	writetext UnknownText_0x71b4a
 	closetext

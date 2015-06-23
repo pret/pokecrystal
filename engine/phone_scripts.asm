@@ -146,9 +146,9 @@ MomPhoneLectureScript: ; 0xbcfb1
 	jump MomPhoneWontSaveMoneyScript
 
 BillPhoneScript1: ; 0xbcfc5
-	checktime $2
+	checkday
 	iftrue .daygreet
-	checktime $4
+	checknite
 	iftrue .nitegreet
 	farwritetext BillPhoneMornGreetingText
 	keeptextopen
@@ -300,7 +300,7 @@ UnknownScript_0xbd0d0:
 	iftrue UnknownScript_0xbd0ef
 	checkcode $b
 	if_not_equal $1, UnknownScript_0xbd0ef
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbd12a
 
 UnknownScript_0xbd0ef:
@@ -377,7 +377,7 @@ UnknownScript_0xbd17c:
 	iftrue UnknownScript_0xbd19b
 	checkcode $b
 	if_not_equal $3, UnknownScript_0xbd19b
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbd1cd
 
 UnknownScript_0xbd19b:
@@ -419,7 +419,7 @@ UnknownScript_0xbd1da:
 	iftrue UnknownScript_0xbd1f9
 	checkcode $b
 	if_not_equal $4, UnknownScript_0xbd1f9
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbd22c
 
 UnknownScript_0xbd1f9:
@@ -464,7 +464,7 @@ UnknownScript_0xbd23d:
 	iftrue UnknownScript_0xbd25c
 	checkcode $b
 	if_not_equal $5, UnknownScript_0xbd25c
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbd287
 
 UnknownScript_0xbd25c:
@@ -506,7 +506,7 @@ UnknownScript_0xbd294:
 	iftrue UnknownScript_0xbd2c4
 	checkcode $b
 	if_not_equal $6, UnknownScript_0xbd2b9
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbd301
 
 UnknownScript_0xbd2b9:
@@ -564,7 +564,7 @@ UnknownScript_0xbd31c:
 	iftrue UnknownScript_0xbd33b
 	checkcode $b
 	if_not_equal $0, UnknownScript_0xbd33b
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbd366
 
 UnknownScript_0xbd33b:
@@ -604,7 +604,7 @@ UnknownScript_0xbd373:
 	iftrue UnknownScript_0xbd392
 	checkcode $b
 	if_not_equal $1, UnknownScript_0xbd392
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbd3c4
 
 UnknownScript_0xbd392:
@@ -648,7 +648,7 @@ UnknownScript_0xbd3d1:
 	iftrue UnknownScript_0xbd421
 	checkcode $b
 	if_not_equal $2, UnknownScript_0xbd3f6
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbd484
 
 UnknownScript_0xbd3f6:
@@ -760,7 +760,7 @@ UnknownScript_0xbd4d2:
 	iftrue UnknownScript_0xbd4f1
 	checkcode $b
 	if_not_equal $3, UnknownScript_0xbd4f1
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbd537
 
 UnknownScript_0xbd4f1:
@@ -823,7 +823,7 @@ UnknownScript_0xbd560:
 	iftrue UnknownScript_0xbd57f
 	checkcode $b
 	if_not_equal $4, UnknownScript_0xbd57f
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbd5c3
 
 UnknownScript_0xbd57f:
@@ -926,7 +926,7 @@ UnknownScript_0xbd634:
 	iftrue UnknownScript_0xbd653
 	checkcode $b
 	if_not_equal $5, UnknownScript_0xbd653
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbd699
 
 UnknownScript_0xbd653:
@@ -988,7 +988,7 @@ UnknownScript_0xbd6c1:
 	iftrue UnknownScript_0xbd6e0
 	checkcode $b
 	if_not_equal $6, UnknownScript_0xbd6e0
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbd72b
 
 UnknownScript_0xbd6e0:
@@ -1050,7 +1050,7 @@ UnknownScript_0xbd743:
 	iftrue UnknownScript_0xbd77d
 	checkcode $b
 	if_not_equal $0, UnknownScript_0xbd768
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbd7cc
 
 UnknownScript_0xbd768:
@@ -1141,7 +1141,7 @@ UnknownScript_0xbd813:
 	iftrue UnknownScript_0xbd832
 	checkcode $b
 	if_not_equal $2, UnknownScript_0xbd832
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbd87a
 
 UnknownScript_0xbd832:
@@ -1208,7 +1208,7 @@ UnknownScript_0xbd8a6:
 	iftrue UnknownScript_0xbd8d6
 	checkcode $b
 	if_not_equal $3, UnknownScript_0xbd8cb
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbd919
 
 UnknownScript_0xbd8cb:
@@ -1269,7 +1269,7 @@ UnknownScript_0xbd930:
 	iftrue UnknownScript_0xbd960
 	checkcode $b
 	if_not_equal $4, UnknownScript_0xbd955
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbd9ab
 
 UnknownScript_0xbd955:
@@ -1333,7 +1333,7 @@ UnknownScript_0xbd9c6:
 	iftrue UnknownScript_0xbd9e5
 	checkcode $b
 	if_not_equal $5, UnknownScript_0xbd9e5
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbda20
 
 UnknownScript_0xbd9e5:
@@ -1434,7 +1434,7 @@ UnknownScript_0xbdaac:
 	iftrue UnknownScript_0xbdadc
 	checkcode $b
 	if_not_equal $0, UnknownScript_0xbdad1
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbdb1f
 
 UnknownScript_0xbdad1:
@@ -1493,7 +1493,7 @@ UnknownScript_0xbdb36:
 	iftrue UnknownScript_0xbdb55
 	checkcode $b
 	if_not_equal $1, UnknownScript_0xbdb55
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbdb88
 
 UnknownScript_0xbdb55:
@@ -1540,7 +1540,7 @@ UnknownScript_0xbdb99:
 	iftrue UnknownScript_0xbdbc9
 	checkcode $b
 	if_not_equal $2, UnknownScript_0xbdbbe
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbdc14
 
 UnknownScript_0xbdbbe:
@@ -1637,7 +1637,7 @@ UnknownScript_0xbdc73:
 	iftrue UnknownScript_0xbdc92
 	checkcode $b
 	if_not_equal $3, UnknownScript_0xbdc92
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbdcc1
 
 UnknownScript_0xbdc92:
@@ -1680,7 +1680,7 @@ UnknownScript_0xbdcce:
 	iftrue UnknownScript_0xbdcfe
 	checkcode $b
 	if_not_equal $4, UnknownScript_0xbdcf3
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xbdd33
 
 UnknownScript_0xbdcf3:
@@ -1764,7 +1764,7 @@ UnknownScript_0xbdd89:
 	iftrue UnknownScript_0xbdda8
 	checkcode $b
 	if_not_equal $5, UnknownScript_0xbdda8
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbddd7
 
 UnknownScript_0xbdda8:
@@ -1805,7 +1805,7 @@ UnknownScript_0xbdde4:
 	iftrue UnknownScript_0xbde03
 	checkcode $b
 	if_not_equal $6, UnknownScript_0xbde03
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbde32
 
 UnknownScript_0xbde03:
@@ -1858,9 +1858,9 @@ UnknownScript_0xbde4b:
 	end
 
 UnknownScript_0xbde4e:
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbdf22
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbdfec
 	checkcode $17
 	if_equal $5, UnknownScript_0xbdeaa
@@ -2231,9 +2231,9 @@ UnknownScript_0xbe0b0:
 	end
 
 UnknownScript_0xbe0b6:
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbe112
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbe164
 	checkcode $17
 	if_equal $6, UnknownScript_0xbe0e2
@@ -2388,9 +2388,9 @@ UnknownScript_0xbe1b0:
 	end
 
 UnknownScript_0xbe1b6:
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbe28a
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbe354
 	checkcode $17
 	if_equal $5, UnknownScript_0xbe212
@@ -2761,9 +2761,9 @@ UnknownScript_0xbe418:
 	end
 
 UnknownScript_0xbe41e:
-	checktime $2
+	checkday
 	iftrue UnknownScript_0xbe47a
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xbe4cc
 	checkcode $17
 	if_equal $6, UnknownScript_0xbe44a

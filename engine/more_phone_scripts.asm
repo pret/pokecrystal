@@ -1472,9 +1472,9 @@ UnknownScript_0xa0a00:
 	jump UnknownScript_0xa0484
 
 UnknownScript_0xa0a08:
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0xa0a1d
-	checktime $4
+	checknite
 	iftrue UnknownScript_0xa0a25
 	setevent $026a
 	farwritetext UnknownText_0x66f11

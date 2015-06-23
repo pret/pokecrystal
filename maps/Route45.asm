@@ -56,9 +56,9 @@ UnknownScript_0x19e0d0: ; 0x19e0d0
 UnknownScript_0x19e0e4: ; 0x19e0e4
 	checkcode $1a
 	if_not_equal $1, UnknownScript_0x19e127
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0x19e10c
-	checktime $4
+	checknite
 	iftrue UnknownScript_0x19e112
 	checkevent $026a
 	iffalse UnknownScript_0x19e127

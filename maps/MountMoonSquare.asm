@@ -34,7 +34,7 @@ UnknownScript_0x7709a: ; 0x7709a
 	iftrue UnknownScript_0x77117
 	checkcode $b
 	if_not_equal MONDAY, UnknownScript_0x77117
-	checktime $4
+	checknite
 	iffalse UnknownScript_0x77117
 	appear $2
 	appear $3

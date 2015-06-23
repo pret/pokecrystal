@@ -59,13 +59,13 @@ PokeCenterNurseScript: ; bc09c
 	loadfont
 ; The nurse has different text for:
 ; Morn
-	checktime $1
+	checkmorn
 	iftrue .morn
 ; Day
-	checktime $2
+	checkday
 	iftrue .day
 ; Nite
-	checktime $4
+	checknite
 	iftrue .nite
 ; If somehow it's not a time of day at all, we skip the introduction
 	jump .heal

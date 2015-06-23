@@ -170,11 +170,11 @@ UnknownScript_0x7a5b8: ; 0x7a5b8
 NeighborScript:
 	faceplayer
 	loadfont
-	checktime $1
+	checkmorn
 	iftrue .MornScript
-	checktime $2
+	checkday
 	iftrue .DayScript
-	checktime $4
+	checknite
 	iftrue .NiteScript
 
 .MornScript

@@ -214,7 +214,7 @@ PsychicNormanScript: ; 0x1a5bb6
 PokefanFScript_0x1a5bbe: ; 0x1a5bbe
 	faceplayer
 	loadfont
-	checktime $4
+	checknite
 	iffalse UnknownScript_0x1a5be5
 	checkevent $05c2
 	iftrue UnknownScript_0x1a5bdf
