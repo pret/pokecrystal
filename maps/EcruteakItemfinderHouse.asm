@@ -57,7 +57,7 @@ UnknownScript_0x9a633: ; 0x9a633
 ; 0x9a639
 
 MapEcruteakItemfinderHouseSignpost0Script: ; 0x9a639
-	jumpstd $000c
+	jumpstd radio2
 ; 0x9a63c
 
 UnknownText_0x9a63c: ; 0x9a63c

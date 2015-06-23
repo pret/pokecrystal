@@ -662,7 +662,7 @@ MapElmsLabSignpost15Script: ; 0x78f5e
 ; 0x78f61
 
 UnknownScript_0x78f61: ; 0x78f61
-	jumpstd $000d
+	jumpstd trashcan
 ; 0x78f64
 
 MapElmsLabSignpost12Script: ; 0x78f64

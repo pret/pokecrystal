@@ -483,7 +483,7 @@ MapIlexForestSignpostItem3: ; 0x6ee1e
 ; 0x6ee21
 
 UnknownScript_0x6ee21: ; 0x6ee21
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x6ee24
 
 MapIlexForestSignpost0Script: ; 0x6ee24

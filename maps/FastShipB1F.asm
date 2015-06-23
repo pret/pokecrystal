@@ -383,7 +383,7 @@ SchoolboyRickyScript: ; 0x76866
 ; 0x7686e
 
 MapFastShipB1FSignpost0Script: ; 0x7686e
-	jumpstd $000d
+	jumpstd trashcan
 ; 0x76871
 
 MovementData_0x76871: ; 0x76871

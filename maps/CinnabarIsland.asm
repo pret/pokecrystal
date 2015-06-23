@@ -37,7 +37,7 @@ MapCinnabarIslandSignpost2Script: ; 0x1ac9c7
 ; 0x1ac9ca
 
 MapCinnabarIslandSignpost0Script: ; 0x1ac9ca
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1ac9cd
 
 MapCinnabarIslandSignpostItem3: ; 0x1ac9cd

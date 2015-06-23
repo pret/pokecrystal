@@ -64,11 +64,11 @@ MapPewterCitySignpost4Script: ; 0x18c035
 ; 0x18c038
 
 MapPewterCitySignpost5Script: ; 0x18c038
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x18c03b
 
 MapPewterCitySignpost6Script: ; 0x18c03b
-	jumpstd $0011
+	jumpstd martsign
 ; 0x18c03e
 
 FruitTreeScript_0x18c03e: ; 0x18c03e

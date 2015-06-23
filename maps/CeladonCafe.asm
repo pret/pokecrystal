@@ -119,7 +119,7 @@ UnknownScript_0x730cd: ; 0x730cd
 ; 0x730db
 
 UnknownScript_0x730db: ; 0x730db
-	jumpstd $000d
+	jumpstd trashcan
 ; 0x730de
 
 UnknownText_0x730de: ; 0x730de

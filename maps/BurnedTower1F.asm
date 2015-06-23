@@ -138,7 +138,7 @@ MortyScript_0x185cbf: ; 0x185cbf
 ; 0x185cc2
 
 RockScript_0x185cc2: ; 0x185cc2
-	jumpstd $000f
+	jumpstd smashrock
 ; 0x185cc5
 
 MapBurnedTower1FSignpostItem0: ; 0x185cc5

@@ -342,7 +342,7 @@ SupernerdShawnScript: ; 0x75ff9
 ; 0x76001
 
 MapFastShipCabins_SE_SSE_CaptainsCabinSignpost0Script: ; 0x76001
-	jumpstd $000d
+	jumpstd trashcan
 ; 0x76004
 
 MovementData_0x76004: ; 0x76004

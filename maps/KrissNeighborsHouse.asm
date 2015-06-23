@@ -40,7 +40,7 @@ MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
 ; 0x7ad24
 
 UnknownScript_0x7ad24: ; 0x7ad24
-	jumpstd radio
+	jumpstd radio1
 ; 0x7ad27
 
 UnknownScript_0x7ad27: ; 0x7ad27

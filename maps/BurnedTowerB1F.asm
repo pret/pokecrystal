@@ -124,7 +124,7 @@ ItemFragment_0x186231: ; 0x186231
 ; 0x186233
 
 BoulderScript_0x186233: ; 0x186233
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x186236
 
 MovementData_0x186236: ; 0x186236

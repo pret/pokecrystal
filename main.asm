@@ -5785,7 +5785,7 @@ UnknownText_0xcd46: ; 0xcd46
 	db $50
 ; 0xcd4b
 
-UnknownScript_0xcd4b: ; 0xcd4b
+AskStrengthScript:
 	callasm Functioncd78
 	iffalse UnknownScript_0xcd5f
 	if_equal $1, UnknownScript_0xcd59
@@ -15478,7 +15478,7 @@ Function1365b:: ; 1365b
 	dbw $91, magazinebookshelf
 .table2
 	dbw $93, $0031 ; pc
-	dbw $94, radio
+	dbw $94, radio1
 	dbw $95, townmap
 	dbw $96, merchandiseshelf
 	dbw $97, tv

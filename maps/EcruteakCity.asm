@@ -92,11 +92,11 @@ MapEcruteakCitySignpost4Script: ; 0x1a404c
 ; 0x1a404f
 
 MapEcruteakCitySignpost5Script: ; 0x1a404f
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1a4052
 
 MapEcruteakCitySignpost6Script: ; 0x1a4052
-	jumpstd $0011
+	jumpstd martsign
 ; 0x1a4055
 
 MapEcruteakCitySignpostItem7: ; 0x1a4055

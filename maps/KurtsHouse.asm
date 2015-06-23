@@ -475,7 +475,7 @@ MapKurtsHouseSignpost5Script: ; 0x18e460
 ; 0x18e463
 
 MapKurtsHouseSignpost0Script: ; 0x18e463
-	jumpstd $000c
+	jumpstd radio2
 ; 0x18e466
 
 MovementData_0x18e466: ; 0x18e466

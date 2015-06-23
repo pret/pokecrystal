@@ -78,7 +78,7 @@ UnknownScript_0x7e504: ; 0x7e504
 
 
 BoulderScript_0x7e50a: ; 0x7e50a
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x7e50d
 
 ItemFragment_0x7e50d: ; 0x7e50d

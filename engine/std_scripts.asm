@@ -10,16 +10,16 @@ StdScripts:: ; bc000
 	dbw BANK(WindowScript), WindowScript
 	dbw BANK(TVScript), TVScript
 	dbw BANK(HomepageScript), HomepageScript
-	dbw BANK(RadioScript), RadioScript
-	dbw BANK(UnknownScript_0xbc19d), UnknownScript_0xbc19d
-	dbw BANK(UnknownScript_0xbc1a5), UnknownScript_0xbc1a5
-	dbw BANK(UnknownScript_0xbc1b8), UnknownScript_0xbc1b8
-	dbw BANK(UnknownScript_0xbc1bc), UnknownScript_0xbc1bc
-	dbw BANK(UnknownScript_0xbc1c0), UnknownScript_0xbc1c0
-	dbw BANK(UnknownScript_0xbc1c4), UnknownScript_0xbc1c4
+	dbw BANK(Radio1Script), Radio1Script
+	dbw BANK(Radio2Script), Radio2Script
+	dbw BANK(TrashCanScript), TrashCanScript
+	dbw BANK(StrengthBoulder), StrengthBoulder
+	dbw BANK(SmashRock), SmashRock
+	dbw BANK(PokeCenterSignScript), PokeCenterSignScript
+	dbw BANK(MartSignScript), MartSignScript
 	dbw BANK(UnknownScript_0xbc23e), UnknownScript_0xbc23e
 	dbw BANK(UnknownScript_0xbc242), UnknownScript_0xbc242
-	dbw BANK(UnknownScript_0xbc1af), UnknownScript_0xbc1af
+	dbw BANK(ElevatorButtonScript), ElevatorButtonScript
 	dbw BANK(UnknownScript_0xbc1c8), UnknownScript_0xbc1c8
 	dbw BANK(UnknownScript_0xbc25c), UnknownScript_0xbc25c
 	dbw BANK(UnknownScript_0xbc274), UnknownScript_0xbc274
@@ -223,24 +223,23 @@ TVScript:
 HomepageScript:
 	farjumptext HomepageText
 
-RadioScript:
+Radio1Script:
 	loadfont
 	writebyte $0
 	special Functionc355
 	loadmovesprites
 	end
 
-UnknownScript_0xbc19d: ; 0xbc19d
+Radio2Script:
+; Lucky Channel
 	loadfont
 	writebyte $4
 	special Functionc355
 	loadmovesprites
 	end
-; 0xbc1a5
 
-UnknownScript_0xbc1a5: ; 0xbc1a5
-	farjumptext UnknownText_0x1b0526
-; 0xbc1a9
+TrashCanScript: ; 0xbc1a5
+	farjumptext TrashCanText
 
 UnknownScript_0xbc1a9: ; 0xbc1a9
 	loadfont
@@ -249,28 +248,23 @@ UnknownScript_0xbc1a9: ; 0xbc1a9
 	end
 ; 0xbc1af
 
-UnknownScript_0xbc1af: ; 0xbc1af
+ElevatorButtonScript:
 	playsound SFX_READ_TEXT_2
 	pause 15
 	playsound SFX_ELEVATOR_END
 	end
-; 0xbc1b8
 
-UnknownScript_0xbc1b8: ; 0xbc1b8
-	farjump UnknownScript_0xcd4b
-; 0xbc1bc
+StrengthBoulder:
+	farjump AskStrengthScript
 
-UnknownScript_0xbc1bc: ; 0xbc1bc
+SmashRock:
 	farjump AskRockSmashScript
-; 0xbc1c0
 
-UnknownScript_0xbc1c0: ; 0xbc1c0
-	farjumptext UnknownText_0x1b057f
-; 0xbc1c4
+PokeCenterSignScript:
+	farjumptext PokeCenterSignText
 
-UnknownScript_0xbc1c4: ; 0xbc1c4
-	farjumptext UnknownText_0x1b059c
-; 0xbc1c8
+MartSignScript
+	farjumptext MartSignText
 
 UnknownScript_0xbc1c8: ; 0xbc1c8
 	checkcode $b

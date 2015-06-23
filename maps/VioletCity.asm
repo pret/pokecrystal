@@ -89,11 +89,11 @@ MapVioletCitySignpost3Script: ; 0x1a8418
 ; 0x1a841b
 
 MapVioletCitySignpost4Script: ; 0x1a841b
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1a841e
 
 MapVioletCitySignpost5Script: ; 0x1a841e
-	jumpstd $0011
+	jumpstd martsign
 ; 0x1a8421
 
 ItemFragment_0x1a8421: ; 0x1a8421

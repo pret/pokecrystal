@@ -187,7 +187,7 @@ SlowpokeScript_0x5a695: ; 0x5a695
 ; 0x5a6a0
 
 BoulderScript_0x5a6a0: ; 0x5a6a0
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x5a6a3
 
 ItemFragment_0x5a6a3: ; 0x5a6a3

@@ -23,7 +23,7 @@ ItemFragment_0x18c694: ; 0x18c694
 ; 0x18c696
 
 RockScript_0x18c696: ; 0x18c696
-	jumpstd $000f
+	jumpstd smashrock
 ; 0x18c699
 
 MapDarkCaveVioletEntranceSignpostItem0: ; 0x18c699

@@ -52,11 +52,11 @@ MapFuchsiaCitySignpost5Script: ; 0x194b3a
 ; 0x194b3d
 
 MapFuchsiaCitySignpost6Script: ; 0x194b3d
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x194b40
 
 MapFuchsiaCitySignpost7Script: ; 0x194b40
-	jumpstd $0011
+	jumpstd martsign
 ; 0x194b43
 
 FruitTreeScript_0x194b43: ; 0x194b43

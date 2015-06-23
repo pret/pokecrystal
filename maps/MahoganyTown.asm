@@ -136,7 +136,7 @@ MapMahoganyTownSignpost2Script: ; 0x19009e
 ; 0x1900a1
 
 MapMahoganyTownSignpost3Script: ; 0x1900a1
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1900a4
 
 MovementData_0x1900a4: ; 0x1900a4

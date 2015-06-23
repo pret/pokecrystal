@@ -65,7 +65,7 @@ SupernerdMarkusScript: ; 0x7de71
 ; 0x7de79
 
 BoulderScript_0x7de79: ; 0x7de79
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x7de7c
 
 ItemFragment_0x7de7c: ; 0x7de7c

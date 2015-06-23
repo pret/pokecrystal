@@ -91,11 +91,11 @@ MapViridianCitySignpost3Script: ; 0x1a9a9c
 ; 0x1a9a9f
 
 MapViridianCitySignpost4Script: ; 0x1a9a9f
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1a9aa2
 
 MapViridianCitySignpost5Script: ; 0x1a9aa2
-	jumpstd $0011
+	jumpstd martsign
 ; 0x1a9aa5
 
 UnknownText_0x1a9aa5: ; 0x1a9aa5

@@ -48,11 +48,11 @@ MapLavenderTownSignpost3Script: ; 0x1ad6f9
 ; 0x1ad6fc
 
 MapLavenderTownSignpost4Script: ; 0x1ad6fc
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1ad6ff
 
 MapLavenderTownSignpost5Script: ; 0x1ad6ff
-	jumpstd $0011
+	jumpstd martsign
 ; 0x1ad702
 
 UnknownText_0x1ad702: ; 0x1ad702

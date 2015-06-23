@@ -124,11 +124,11 @@ MapOlivineCitySignpost4Script: ; 0x1a88c9
 ; 0x1a88cc
 
 MapOlivineCitySignpost5Script: ; 0x1a88cc
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1a88cf
 
 MapOlivineCitySignpost6Script: ; 0x1a88cf
-	jumpstd $0011
+	jumpstd martsign
 ; 0x1a88d2
 
 MovementData_0x1a88d2: ; 0x1a88d2

@@ -146,11 +146,11 @@ MapCianwoodCitySignpost5Script: ; 0x1a00cb
 ; 0x1a00ce
 
 MapCianwoodCitySignpost2Script: ; 0x1a00ce
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1a00d1
 
 RockScript_0x1a00d1: ; 0x1a00d1
-	jumpstd $000f
+	jumpstd smashrock
 ; 0x1a00d4
 
 MapCianwoodCitySignpostItem6: ; 0x1a00d4

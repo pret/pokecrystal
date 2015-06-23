@@ -153,11 +153,11 @@ MapCeruleanCitySignpost5Script: ; 0x1840b0
 ; 0x1840b3
 
 MapCeruleanCitySignpost6Script: ; 0x1840b3
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1840b6
 
 MapCeruleanCitySignpost7Script: ; 0x1840b6
-	jumpstd $0011
+	jumpstd martsign
 ; 0x1840b9
 
 MapCeruleanCitySignpostItem8: ; 0x1840b9

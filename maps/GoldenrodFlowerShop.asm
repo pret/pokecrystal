@@ -89,7 +89,7 @@ UnknownScript_0x553ce: ; 0x553ce
 ; 0x553d1
 
 UnknownScript_0x553d1: ; 0x553d1
-	jumpstd $000c
+	jumpstd radio2
 ; 0x553d4
 
 UnknownText_0x553d4: ; 0x553d4

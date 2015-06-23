@@ -129,11 +129,11 @@ MapVermilionCitySignpost4Script: ; 0x1aaa09
 ; 0x1aaa0c
 
 MapVermilionCitySignpost5Script: ; 0x1aaa0c
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1aaa0f
 
 MapVermilionCitySignpost6Script: ; 0x1aaa0f
-	jumpstd $0011
+	jumpstd martsign
 ; 0x1aaa12
 
 MapVermilionCitySignpostItem7: ; 0x1aaa12

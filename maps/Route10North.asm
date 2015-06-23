@@ -11,7 +11,7 @@ MapRoute10NorthSignpost0Script: ; 0x1b2080
 ; 0x1b2083
 
 MapRoute10NorthSignpost1Script: ; 0x1b2083
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1b2086
 
 UnknownText_0x1b2086: ; 0x1b2086

@@ -92,7 +92,7 @@ MapMountMoonSquareSignpost1Script: ; 0x7711b
 ; 0x7711e
 
 RockScript_0x7711e: ; 0x7711e
-	jumpstd $000f
+	jumpstd smashrock
 ; 0x77121
 
 MovementData_0x77121: ; 0x77121

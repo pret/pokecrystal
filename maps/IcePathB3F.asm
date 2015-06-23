@@ -11,7 +11,7 @@ ItemFragment_0x7e66f: ; 0x7e66f
 ; 0x7e671
 
 RockScript_0x7e671: ; 0x7e671
-	jumpstd $000f
+	jumpstd smashrock
 ; 0x7e674
 
 IcePathB3F_MapEventHeader: ; 0x7e674

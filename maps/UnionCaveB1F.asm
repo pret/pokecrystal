@@ -131,7 +131,7 @@ ItemFragment_0x5a018: ; 0x5a018
 ; 0x5a01a
 
 BoulderScript_0x5a01a: ; 0x5a01a
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x5a01d
 
 HikerPhillipSeenText: ; 0x5a01d

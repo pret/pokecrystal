@@ -10,4 +10,10 @@
 	enum window
 	enum tv
 	enum homepage
-	enum radio
+	enum radio1
+	enum radio2
+	enum trashcan
+	enum strengthboulder
+	enum smashrock
+	enum pokecentersign
+	enum martsign

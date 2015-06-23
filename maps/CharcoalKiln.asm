@@ -73,7 +73,7 @@ MapCharcoalKilnSignpost1Script: ; 0x18dd6e
 ; 0x18dd71
 
 MapCharcoalKilnSignpost2Script: ; 0x18dd71
-	jumpstd $000c
+	jumpstd radio2
 ; 0x18dd74
 
 BossSlowpokeText:

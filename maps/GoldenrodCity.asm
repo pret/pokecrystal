@@ -296,7 +296,7 @@ MapGoldenrodCitySignpost9Script: ; 0x198a56
 ; 0x198a59
 
 MapGoldenrodCitySignpost10Script: ; 0x198a59
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x198a5c
 
 MapGoldenrodCitySignpost11Script: ; 0x198a5c

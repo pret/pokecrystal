@@ -681,7 +681,7 @@ MapRoute32Signpost2Script: ; 0x19077d
 ; 0x190780
 
 MapRoute32Signpost3Script: ; 0x190780
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x190783
 
 MapRoute32SignpostItem4: ; 0x190783

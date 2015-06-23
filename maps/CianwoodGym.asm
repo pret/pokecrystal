@@ -198,7 +198,7 @@ BlackbeltLungScript: ; 0x9d6d8
 ; 0x9d6e0
 
 BoulderScript_0x9d6e0: ; 0x9d6e0
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x9d6e3
 
 MapCianwoodGymSignpost1Script: ; 0x9d6e3

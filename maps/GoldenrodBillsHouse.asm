@@ -113,7 +113,7 @@ MapGoldenrodBillsHouseSignpost0Script: ; 0x54c6e
 ; 0x54c71
 
 MapGoldenrodBillsHouseSignpost2Script: ; 0x54c71
-	jumpstd $000c
+	jumpstd radio2
 ; 0x54c74
 
 UnknownText_0x54c74: ; 0x54c74

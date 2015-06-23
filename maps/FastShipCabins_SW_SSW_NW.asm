@@ -182,7 +182,7 @@ UnknownScript_0x75af7: ; 0x75af7
 ; 0x75b01
 
 MapFastShipCabins_SW_SSW_NWSignpost2Script: ; 0x75b01
-	jumpstd $000d
+	jumpstd trashcan
 ; 0x75b04
 
 FirebreatherLyleSeenText: ; 0x75b04

@@ -20,7 +20,7 @@ MapGoldenrodNameRatersHouseSignpost1Script: ; 0x55784
 ; 0x55787
 
 MapGoldenrodNameRatersHouseSignpost2Script: ; 0x55787
-	jumpstd $000c
+	jumpstd radio2
 ; 0x5578a
 
 INCLUDE "text/sweethoney.asm"

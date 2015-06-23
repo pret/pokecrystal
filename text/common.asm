@@ -201,11 +201,10 @@ UnknownText_0x1b04f9: ; 0x1b04f9
 	done
 ; 0x1b0526
 
-UnknownText_0x1b0526: ; 0x1b0526
+TrashCanText:
 	text "There's nothing in"
 	line "here…"
 	done
-; 0x1b053f
 
 UnknownText_0x1b053f: ; 0x1b053f
 	text "A #MON may be"
@@ -219,19 +218,17 @@ UnknownText_0x1b0561: ; 0x1b0561
 	done
 ; 0x1b057f
 
-UnknownText_0x1b057f: ; 0x1b057f
+PokeCenterSignText:
 	text "Heal Your #MON!"
 	line "#MON CENTER"
 	done
-; 0x1b059c
 
-UnknownText_0x1b059c: ; 0x1b059c
+MartSignText:
 	text "For All Your"
 	line "#MON Needs"
 
 	para "#MON MART"
 	done
-; 0x1b05bf
 
 UnknownText_0x1b05bf: ; 0x1b05bf
 	text "We will now judge"

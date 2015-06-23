@@ -148,11 +148,11 @@ MapBlackthornCitySignpost4Script: ; 0x1a4771
 ; 0x1a4774
 
 MapBlackthornCitySignpost6Script: ; 0x1a4774
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1a4777
 
 MapBlackthornCitySignpost5Script: ; 0x1a4777
-	jumpstd $0011
+	jumpstd martsign
 ; 0x1a477a
 
 UnknownText_0x1a477a: ; 0x1a477a

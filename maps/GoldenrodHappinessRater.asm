@@ -75,7 +75,7 @@ MapGoldenrodHappinessRaterSignpost1Script: ; 0x5499d
 ; 0x549a0
 
 MapGoldenrodHappinessRaterSignpost2Script: ; 0x549a0
-	jumpstd $000c
+	jumpstd radio2
 ; 0x549a3
 
 UnknownText_0x549a3: ; 0x549a3

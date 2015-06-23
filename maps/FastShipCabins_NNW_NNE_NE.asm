@@ -217,7 +217,7 @@ UnknownScript_0x75629: ; 0x75629
 ; 0x75634
 
 MapFastShipCabins_NNW_NNE_NESignpost2Script: ; 0x75634
-	jumpstd $000d
+	jumpstd trashcan
 ; 0x75637
 
 MovementData_0x75637: ; 0x75637

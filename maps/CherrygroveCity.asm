@@ -252,11 +252,11 @@ MapCherrygroveCitySignpost1Script: ; 0x19c18c
 ; 0x19c18f
 
 MapCherrygroveCitySignpost3Script: ; 0x19c18f
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x19c192
 
 MapCherrygroveCitySignpost2Script: ; 0x19c192
-	jumpstd $0011
+	jumpstd martsign
 ; 0x19c195
 
 MovementData_0x19c195: ; 0x19c195

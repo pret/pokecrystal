@@ -27,7 +27,7 @@ ItemFragment_0x18c418: ; 0x18c418
 ; 0x18c41a
 
 BoulderScript_0x18c41a: ; 0x18c41a
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x18c41d
 
 MapWhirlIslandB1FSignpostItem0: ; 0x18c41d

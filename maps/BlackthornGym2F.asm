@@ -66,7 +66,7 @@ UnknownScript_0x195758: ; 0x195758
 
 
 BoulderScript_0x19575e: ; 0x19575e
-	jumpstd $000e
+	jumpstd strengthboulder
 ; 0x195761
 
 TrainerCooltrainermCody: ; 0x195761

@@ -114,11 +114,11 @@ MapSaffronCitySignpost5Script: ; 0x199384
 ; 0x199387
 
 MapSaffronCitySignpost6Script: ; 0x199387
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x19938a
 
 MapSaffronCitySignpost7Script: ; 0x19938a
-	jumpstd $0011
+	jumpstd martsign
 ; 0x19938d
 
 UnknownText_0x19938d: ; 0x19938d

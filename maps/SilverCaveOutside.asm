@@ -16,7 +16,7 @@ UnknownScript_0x1b2047: ; 0x1b2047
 ; 0x1b204b
 
 MapSilverCaveOutsideSignpost0Script: ; 0x1b204b
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1b204e
 
 MapSilverCaveOutsideSignpost1Script: ; 0x1b204e

@@ -81,7 +81,7 @@ MapCeladonCitySignpost5Script: ; 0x1a9f74
 ; 0x1a9f77
 
 MapCeladonCitySignpost6Script: ; 0x1a9f77
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x1a9f7a
 
 MapCeladonCitySignpostItem7: ; 0x1a9f7a

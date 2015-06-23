@@ -23,7 +23,7 @@ MapGoldenrodPPSpeechHouseSignpost0Script: ; 0x55653
 ; 0x55656
 
 MapGoldenrodPPSpeechHouseSignpost2Script: ; 0x55656
-	jumpstd $000c
+	jumpstd radio2
 ; 0x55659
 
 UnknownText_0x55659: ; 0x55659

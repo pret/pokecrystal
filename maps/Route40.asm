@@ -199,7 +199,7 @@ MapRoute40Signpost0Script: ; 0x1a6213
 ; 0x1a6216
 
 RockScript_0x1a6216: ; 0x1a6216
-	jumpstd $000f
+	jumpstd smashrock
 ; 0x1a6219
 
 MapRoute40SignpostItem1: ; 0x1a6219

@@ -219,11 +219,11 @@ MapAzaleaTownSignpost7Script: ; 0x198126
 ; 0x198129
 
 MapAzaleaTownSignpost5Script: ; 0x198129
-	jumpstd $0010
+	jumpstd pokecentersign
 ; 0x19812c
 
 MapAzaleaTownSignpost6Script: ; 0x19812c
-	jumpstd $0011
+	jumpstd martsign
 ; 0x19812f
 
 FruitTreeScript_0x19812f: ; 0x19812f
