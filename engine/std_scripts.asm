@@ -274,73 +274,46 @@ UnknownScript_0xbc1c4: ; 0xbc1c4
 
 UnknownScript_0xbc1c8: ; 0xbc1c8
 	checkcode $b
-	if_equal $1, UnknownScript_0xbc1e7
-	if_equal $2, UnknownScript_0xbc1ec
-	if_equal $3, UnknownScript_0xbc1f1
-	if_equal $4, UnknownScript_0xbc1f6
-	if_equal $5, UnknownScript_0xbc1fb
-	if_equal $6, UnknownScript_0xbc200
-	stringtotext UnknownRawText_0xbc205, $0
+	if_equal MONDAY, .Monday
+	if_equal TUESDAY, .Tuesday
+	if_equal WEDNESDAY, .Wednesday
+	if_equal THURSDAY, .Thursday
+	if_equal FRIDAY, .Friday
+	if_equal SATURDAY, .Saturday
+	stringtotext .SundayText, 0
 	end
-; 0xbc1e7
-
-UnknownScript_0xbc1e7: ; 0xbc1e7
-	stringtotext UnknownRawText_0xbc20c, $0
+.Monday
+	stringtotext .MondayText, 0
 	end
-; 0xbc1ec
-
-UnknownScript_0xbc1ec: ; 0xbc1ec
-	stringtotext UnknownRawText_0xbc213, $0
+.Tuesday
+	stringtotext .TuesdayText, 0
 	end
-; 0xbc1f1
-
-UnknownScript_0xbc1f1: ; 0xbc1f1
-	stringtotext UnknownRawText_0xbc21b, $0
+.Wednesday
+	stringtotext .WednesdayText, 0
 	end
-; 0xbc1f6
-
-UnknownScript_0xbc1f6: ; 0xbc1f6
-	stringtotext UnknownRawText_0xbc225, $0
+.Thursday
+	stringtotext .ThursdayText, 0
 	end
-; 0xbc1fb
-
-UnknownScript_0xbc1fb: ; 0xbc1fb
-	stringtotext UnknownRawText_0xbc22e, $0
+.Friday
+	stringtotext .FridayText, 0
 	end
-; 0xbc200
-
-UnknownScript_0xbc200: ; 0xbc200
-	stringtotext UnknownRawText_0xbc235, $0
+.Saturday
+	stringtotext .SaturdayText, 0
 	end
-; 0xbc205
-
-UnknownRawText_0xbc205: ; bc205
+.SundayText
 	db "SUNDAY@"
-; bc20c
-
-UnknownRawText_0xbc20c: ; bc20c
+.MondayText
 	db "MONDAY@"
-; bc213
-
-UnknownRawText_0xbc213: ; bc213
+.TuesdayText
 	db "TUESDAY@"
-; bc21b
-
-UnknownRawText_0xbc21b: ; bc21b
+.WednesdayText
 	db "WEDNESDAY@"
-; bc225
-
-UnknownRawText_0xbc225: ; bc225
+.ThursdayText
 	db "THURSDAY@"
-; bc22e
-
-UnknownRawText_0xbc22e: ; bc22e
+.FridayText
 	db "FRIDAY@"
-; bc235
-
-UnknownRawText_0xbc235: ; bc235
+.SaturdayText
 	db "SATURDAY@"
-; bc23e
 
 UnknownScript_0xbc23e: ; 0xbc23e
 	clearevent $06cd
