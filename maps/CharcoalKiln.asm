@@ -4,36 +4,32 @@ CharcoalKiln_MapScriptHeader: ; 0x18dd18
 
 	; callback count
 	db 0
-; 0x18dd1a
 
-BlackBeltScript_0x18dd1a: ; 0x18dd1a
+BossScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_HM01_CUT
-	iftrue UnknownScript_0x18dd34
+	iftrue .GotCut
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iftrue UnknownScript_0x18dd2e
-	writetext UnknownText_0x18dd74
+	iftrue .SavedSlowpoke
+	writetext BossSlowpokeText
 	closetext
 	loadmovesprites
 	end
-; 0x18dd2e
 
-UnknownScript_0x18dd2e: ; 0x18dd2e
-	writetext UnknownText_0x18ddfd
+.SavedSlowpoke
+	writetext BossForestText
 	closetext
 	loadmovesprites
 	end
-; 0x18dd34
 
-UnknownScript_0x18dd34: ; 0x18dd34
-	writetext UnknownText_0x18de73
+.GotCut
+	writetext BossText
 	closetext
 	loadmovesprites
 	end
-; 0x18dd3a
 
-YoungsterScript_0x18dd3a: ; 0x18dd3a
+ApprenticeScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
@@ -44,7 +40,6 @@ YoungsterScript_0x18dd3a: ; 0x18dd3a
 	closetext
 	loadmovesprites
 	end
-; 0x18dd4e
 
 UnknownScript_0x18dd4e: ; 0x18dd4e
 	writetext UnknownText_0x18df25
@@ -64,15 +59,14 @@ UnknownScript_0x18dd61: ; 0x18dd61
 	end
 ; 0x18dd63
 
-MoltresScript_0x18dd63: ; 0x18dd63
+FarfetchdScript:
 	faceplayer
 	loadfont
-	writetext UnknownText_0x18dfe5
+	writetext FarfetchdText
 	cry FARFETCH_D
 	closetext
 	loadmovesprites
 	end
-; 0x18dd6e
 
 MapCharcoalKilnSignpost1Script: ; 0x18dd6e
 	jumpstd $0003
@@ -82,7 +76,7 @@ MapCharcoalKilnSignpost2Script: ; 0x18dd71
 	jumpstd $000c
 ; 0x18dd74
 
-UnknownText_0x18dd74: ; 0x18dd74
+BossSlowpokeText:
 	text "All the SLOWPOKE"
 	line "have disappeared"
 	cont "from the town."
@@ -95,9 +89,8 @@ UnknownText_0x18dd74: ; 0x18dd74
 	line "omen. We should"
 	cont "stay in."
 	done
-; 0x18ddfd
 
-UnknownText_0x18ddfd: ; 0x18ddfd
+BossForestText:
 	text "The SLOWPOKE have"
 	line "returned…"
 
@@ -108,9 +101,8 @@ UnknownText_0x18ddfd: ; 0x18ddfd
 	para "Where in the world"
 	line "is that lazy guy?"
 	done
-; 0x18de73
 
-UnknownText_0x18de73: ; 0x18de73
+BossText:
 	text "You chased off"
 	line "TEAM ROCKET and"
 
@@ -155,10 +147,9 @@ UnknownText_0x18df93: ; 0x18df93
 	done
 ; 0x18dfe5
 
-UnknownText_0x18dfe5: ; 0x18dfe5
+FarfetchdText:
 	text "FARFETCH'D: Kwaa!"
 	done
-; 0x18dff8
 
 CharcoalKiln_MapEventHeader: ; 0x18dff8
 	; filler
@@ -180,7 +171,6 @@ CharcoalKiln_MapEventHeader: ; 0x18dff8
 
 	; people-events
 	db 3
-	person_event SPRITE_BLACK_BELT, 7, 6, $3, $0, 255, 255, $0, 0, BlackBeltScript_0x18dd1a, $06f7
-	person_event SPRITE_YOUNGSTER, 7, 9, $2, $11, 255, 255, $0, 0, YoungsterScript_0x18dd3a, $06f6
-	person_event SPRITE_MOLTRES, 10, 9, $16, $22, 255, 255, $b0, 0, MoltresScript_0x18dd63, $06f5
-; 0x18e03e
+	person_event SPRITE_BLACK_BELT, 7, 6, $3, $0, 255, 255, $0, 0, BossScript, $06f7
+	person_event SPRITE_YOUNGSTER, 7, 9, $2, $11, 255, 255, $0, 0, ApprenticeScript, $06f6
+	person_event SPRITE_MOLTRES, 10, 9, $16, $22, 255, 255, $b0, 0, FarfetchdScript, $06f5
