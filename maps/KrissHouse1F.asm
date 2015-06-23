@@ -167,56 +167,49 @@ UnknownScript_0x7a5b8: ; 0x7a5b8
 	end
 ; 0x7a5c1
 
-PokefanFScript_0x7a5c1: ; 0x7a5c1
+NeighborScript:
 	faceplayer
 	loadfont
 	checktime $1
-	iftrue UnknownScript_0x7a5d2
+	iftrue .MornScript
 	checktime $2
-	iftrue UnknownScript_0x7a5d9
+	iftrue .DayScript
 	checktime $4
-	iftrue UnknownScript_0x7a5e0
-UnknownScript_0x7a5d2: ; 0x7a5d2
-	writetext UnknownText_0x7a97d
-	keeptextopen
-	jump UnknownScript_0x7a5e7
-; 0x7a5d9
+	iftrue .NiteScript
 
-UnknownScript_0x7a5d9: ; 0x7a5d9
-	writetext UnknownText_0x7a99c
+.MornScript
+	writetext NeighborMornIntroText
 	keeptextopen
-	jump UnknownScript_0x7a5e7
-; 0x7a5e0
+	jump .Main
 
-UnknownScript_0x7a5e0: ; 0x7a5e0
-	writetext UnknownText_0x7a9b4
+.DayScript
+	writetext NeighborDayIntroText
 	keeptextopen
-	jump UnknownScript_0x7a5e7
-; 0x7a5e7
+	jump .Main
 
-UnknownScript_0x7a5e7: ; 0x7a5e7
-	writetext UnknownText_0x7a9d3
+.NiteScript
+	writetext NeighborNiteIntroText
+	keeptextopen
+	jump .Main
+
+.Main
+	writetext NeighborText
 	closetext
 	loadmovesprites
 	spriteface $6, $3
 	end
-; 0x7a5f0
 
-MapKrissHouse1FSignpost3Script: ; 0x7a5f0
-	jumptext UnknownText_0x7aad0
-; 0x7a5f3
+TVScript:
+	jumptext TVText
 
-MapKrissHouse1FSignpost0Script: ; 0x7a5f3
-	jumptext UnknownText_0x7aa3a
-; 0x7a5f6
+StoveScript:
+	jumptext StoveText
 
-MapKrissHouse1FSignpost1Script: ; 0x7a5f6
-	jumptext UnknownText_0x7aa64
-; 0x7a5f9
+SinkScript:
+	jumptext SinkText
 
-MapKrissHouse1FSignpost2Script: ; 0x7a5f9
-	jumptext UnknownText_0x7aa91
-; 0x7a5fc
+FridgeScript:
+	jumptext FridgeText
 
 MovementData_0x7a5fc: ; 0x7a5fc
 	turn_head_right
@@ -356,29 +349,26 @@ UnknownText_0x7a957: ; 0x7a957
 	done
 ; 0x7a97d
 
-UnknownText_0x7a97d: ; 0x7a97d
+NeighborMornIntroText:
 	text "Good morning,"
 	line $14, "!"
 
 	para "I'm visiting!"
 	done
-; 0x7a99c
 
-UnknownText_0x7a99c: ; 0x7a99c
+NeighborDayIntroText:
 	text "Hello, ", $14, "!"
 	line "I'm visiting!"
 	done
-; 0x7a9b4
 
-UnknownText_0x7a9b4: ; 0x7a9b4
+NeighborNiteIntroText:
 	text "Good evening,"
 	line $14, "!"
 
 	para "I'm visiting!"
 	done
-; 0x7a9d3
 
-UnknownText_0x7a9d3: ; 0x7a9d3
+NeighborText:
 	text $14, ", have you"
 	line "heard?"
 
@@ -391,33 +381,29 @@ UnknownText_0x7a9d3: ; 0x7a9d3
 	para "She really loves"
 	line "#MON!"
 	done
-; 0x7aa3a
 
-UnknownText_0x7aa3a: ; 0x7aa3a
+StoveText:
 	text "Mom's specialty!"
 
 	para "CINNABAR VOLCANO"
 	line "BURGER!"
 	done
-; 0x7aa64
 
-UnknownText_0x7aa64: ; 0x7aa64
+SinkText:
 	text "The sink is spot-"
 	line "less. Mom likes it"
 	cont "clean."
 	done
-; 0x7aa91
 
-UnknownText_0x7aa91: ; 0x7aa91
+FridgeText:
 	text "Let's see what's"
 	line "in the fridge…"
 
 	para "FRESH WATER and"
 	line "tasty LEMONADE!"
 	done
-; 0x7aad0
 
-UnknownText_0x7aad0: ; 0x7aad0
+TVText:
 	text "There's a movie on"
 	line "TV: Stars dot the"
 
@@ -427,7 +413,6 @@ UnknownText_0x7aad0: ; 0x7aad0
 	para "I'd better get"
 	line "rolling too!"
 	done
-; 0x7ab31
 
 KrissHouse1F_MapEventHeader: ; 0x7ab31
 	; filler
@@ -446,10 +431,10 @@ KrissHouse1F_MapEventHeader: ; 0x7ab31
 
 	; signposts
 	db 4
-	signpost 1, 0, $0, MapKrissHouse1FSignpost0Script
-	signpost 1, 1, $0, MapKrissHouse1FSignpost1Script
-	signpost 1, 2, $0, MapKrissHouse1FSignpost2Script
-	signpost 1, 4, $0, MapKrissHouse1FSignpost3Script
+	signpost 1, 0, $0, StoveScript
+	signpost 1, 1, $0, SinkScript
+	signpost 1, 2, $0, FridgeScript
+	signpost 1, 4, $0, TVScript
 
 	; people-events
 	db 5
@@ -457,6 +442,6 @@ KrissHouse1F_MapEventHeader: ; 0x7ab31
 	person_event SPRITE_MOM, 6, 6, $7, $0, 255, 1, $0, 0, MomScript_0x7a582, $06c8
 	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 2, $0, 0, MomScript_0x7a582, $06c8
 	person_event SPRITE_MOM, 6, 4, $7, $0, 255, 4, $0, 0, MomScript_0x7a582, $06c8
-	person_event SPRITE_POKEFAN_F, 8, 8, $9, $0, 255, 255, $80, 0, PokefanFScript_0x7a5c1, $0792
+	person_event SPRITE_POKEFAN_F, 8, 8, $9, $0, 255, 255, $80, 0, NeighborScript, $0792
 ; 0x7abab
 
