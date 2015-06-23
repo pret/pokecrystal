@@ -8,5 +8,3 @@
 	page "because of all the"
 	next "honey it has"
 	next "absorbed.@"
-; 0x1d0a41
-

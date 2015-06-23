@@ -661,5 +661,3 @@ Music_AzaleaTown_branch_f5aea: ; f5aea
 	note F#, 2
 	loopchannel 0, Music_AzaleaTown_branch_f5aea
 ; f5b03
-
-

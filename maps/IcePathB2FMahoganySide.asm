@@ -59,4 +59,3 @@ IcePathB2FMahoganySide_MapEventHeader: ; 0x7e5cd
 	person_event SPRITE_POKE_BALL, 13, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a6, $068b
 	person_event SPRITE_POKE_BALL, 6, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a8, $068c
 ; 0x7e644
-

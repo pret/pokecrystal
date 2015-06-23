@@ -8,5 +8,3 @@
 	page "those fangs clamp"
 	next "down, the prey has"
 	next "no hope of escape.@"
-; 0x1cccf9
-

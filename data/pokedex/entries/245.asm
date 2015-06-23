@@ -8,5 +8,3 @@
 	page "always in search"
 	next "of a pure"
 	next "reservoir.@"
-; 0x1d169c
-

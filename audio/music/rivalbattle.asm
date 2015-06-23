@@ -867,5 +867,3 @@ Music_RivalBattle_branch_e9b65: ; e9b65
 	loopchannel 2, Music_RivalBattle_branch_e9b65
 	endchannel
 ; e9b6f
-
-

@@ -284,4 +284,3 @@ OlivineLighthouse2F_MapEventHeader: ; 0x5b1fd
 	person_event SPRITE_SAILOR, 7, 13, $9, $0, 255, 255, $92, 3, TrainerSailorHuey1, $ffff
 	person_event SPRITE_GENTLEMAN, 12, 21, $8, $0, 255, 255, $92, 3, TrainerGentlemanAlfred, $ffff
 ; 0x5b23b
-

@@ -8,5 +8,3 @@
 	page "the sea floor, and"
 	next "its body's center"
 	next "core flickers.@"
-; 0x1b9776
-

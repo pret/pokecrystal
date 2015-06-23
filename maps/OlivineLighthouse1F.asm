@@ -60,4 +60,3 @@ OlivineLighthouse1F_MapEventHeader: ; 0x5af36
 	person_event SPRITE_SAILOR, 6, 12, $6, $0, 255, 255, $0, 0, SailorScript_0x5ae67, $ffff
 	person_event SPRITE_POKEFAN_F, 13, 20, $4, $20, 255, 255, $0, 0, PokefanFScript_0x5ae6a, $ffff
 ; 0x5af6f
-

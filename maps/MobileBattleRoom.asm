@@ -95,6 +95,3 @@ MobileBattleRoom_MapEventHeader: ; 0x193673
 	; people-events
 	db 0
 ; 0x193688
-
-
-

@@ -3237,4 +3237,3 @@ Function97c20: ; 97c20
 .byte
 	db 0
 ; 97c28
-

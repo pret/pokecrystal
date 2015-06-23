@@ -68,4 +68,3 @@ BlackthornMart_MapEventHeader: ; 0x195b40
 	person_event SPRITE_COOLTRAINER_M, 10, 11, $5, $2, 255, 255, $0, 0, CooltrainerMScript_0x195a64, $ffff
 	person_event SPRITE_BLACK_BELT, 6, 9, $6, $0, 255, 255, $a0, 0, BlackBeltScript_0x195a67, $ffff
 ; 0x195b77
-

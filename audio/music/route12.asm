@@ -458,5 +458,3 @@ Music_Route12_branch_ec717: ; ec717
 	note C#, 1
 	endchannel
 ; ec720
-
-

@@ -8,5 +8,3 @@
 	page "as excellent"
 	next "protection from"
 	next "any attack.@"
-; 0x182392
-

@@ -69,4 +69,3 @@ LavenderMart_MapEventHeader: ; 0x7ec0e
 	person_event SPRITE_POKEFAN_M, 10, 10, $5, $2, 255, 255, $80, 0, PokefanMScript_0x7eb23, $ffff
 	person_event SPRITE_ROCKER, 6, 13, $3, $0, 255, 255, $0, 0, RockerScript_0x7eb26, $ffff
 ; 0x7ec45
-

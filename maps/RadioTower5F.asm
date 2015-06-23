@@ -497,4 +497,3 @@ RadioTower5F_MapEventHeader: ; 0x60906
 	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, RockerScript_0x600fb, $06d0
 	person_event SPRITE_POKE_BALL, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, $07cd
 ; 0x60980
-

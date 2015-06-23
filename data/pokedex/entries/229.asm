@@ -8,5 +8,3 @@
 	page "its mouth results"
 	next "from toxins burn-"
 	next "ing in its body.@"
-; 0x1d0fd1
-

@@ -819,5 +819,3 @@ Music_GameCorner_branch_ee10f: ; ee10f
 	note F#, 2
 	endchannel
 ; ee119
-
-

@@ -8,5 +8,3 @@
 	page "shock causes it to"
 	next "discharge energy"
 	next "spontaneously.@"
-; 0x1cd2bc
-

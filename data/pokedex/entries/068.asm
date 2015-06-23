@@ -8,5 +8,3 @@
 	page "can think, it can"
 	next "execute many"
 	next "punches at once.@"
-; 0x1b81a1
-

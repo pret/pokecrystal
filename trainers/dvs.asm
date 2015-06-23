@@ -90,4 +90,3 @@ TrainerClassDVs: ; 270d6
 	db $7E, $A8 ; gruntf
 	db $98, $88 ; mysticalman
 ; 2715c
-

@@ -98,4 +98,3 @@ ViridianPokeCenter1F_MapEventHeader: ; 0x9b7ef
 	person_event SPRITE_COOLTRAINER_F, 7, 9, $7, $0, 255, 255, $90, 0, CooltrainerFScript_0x9b6a7, $ffff
 	person_event SPRITE_BUG_CATCHER, 10, 5, $9, $0, 255, 255, $a0, 0, BugCatcherScript_0x9b6aa, $ffff
 ; 0x9b838
-

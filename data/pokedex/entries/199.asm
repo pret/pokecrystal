@@ -8,5 +8,3 @@
 	page "son into it. The"
 	next "poison makes it"
 	next "more intelligent.@"
-; 0x1d0301
-

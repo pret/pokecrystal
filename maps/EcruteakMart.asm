@@ -67,4 +67,3 @@ EcruteakMart_MapEventHeader: ; 0x99d12
 	person_event SPRITE_SUPER_NERD, 6, 9, $5, $1, 255, 255, $a0, 0, SuperNerdScript_0x99c42, $ffff
 	person_event SPRITE_GRANNY, 10, 10, $7, $0, 255, 255, $0, 0, GrannyScript_0x99c45, $ffff
 ; 0x99d49
-

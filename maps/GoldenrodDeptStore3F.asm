@@ -84,4 +84,3 @@ GoldenrodDeptStore3F_MapEventHeader: ; 0x55ea1
 	person_event SPRITE_SUPER_NERD, 9, 16, $a, $10, 255, 255, $80, 0, SuperNerdScript_0x55dc0, $ffff
 	person_event SPRITE_ROCKER, 9, 6, $4, $10, 255, 255, $0, 0, RockerScript_0x55dc3, $ffff
 ; 0x55ee7
-

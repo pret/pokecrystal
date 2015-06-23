@@ -118,4 +118,3 @@ FuchsiaPokeCenter1F_MapEventHeader: ; 0x19656e
 	person_event SPRITE_COOLTRAINER_F, 8, 5, $5, $1, 255, 255, $0, 0, CooltrainerFScript_0x19645f, $ffff
 	person_event SPRITE_JANINE_IMPERSONATOR, 7, 9, $6, $0, 255, 255, $90, 0, JanineImpersonatorScript_0x196462, $ffff
 ; 0x1965b7
-

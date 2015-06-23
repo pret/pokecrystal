@@ -8,5 +8,3 @@
 	page "food. This could"
 	next "be the reason it"
 	next "is extinct.@"
-; 0x1cc497
-

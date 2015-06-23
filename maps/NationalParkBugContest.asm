@@ -274,4 +274,3 @@ NationalParkBugContest_MapEventHeader: ; 0x5cc5d
 	person_event SPRITE_POKE_BALL, 16, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c945, $0658
 	person_event SPRITE_POKE_BALL, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c947, $0659
 ; 0x5cd27
-

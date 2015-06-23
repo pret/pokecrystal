@@ -559,4 +559,3 @@ RadioTower1F_MapEventHeader: ; 0x5d68e
 	person_event SPRITE_GENTLEMAN, 10, 12, $7, $0, 255, 255, $90, 0, GentlemanScript_0x5cd3d, $06cf
 	person_event SPRITE_COOLTRAINER_F, 10, 16, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x5cdd5, $06cf
 ; 0x5d6fb
-

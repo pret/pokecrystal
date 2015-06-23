@@ -8,5 +8,3 @@
 	page "It can even"
 	next "identify distant"
 	next "flowers in bloom.@"
-; 0x181bb4
-

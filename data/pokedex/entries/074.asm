@@ -8,5 +8,3 @@
 	page "each other in a"
 	next "contest to prove"
 	next "whose is harder.@"
-; 0x1b840c
-

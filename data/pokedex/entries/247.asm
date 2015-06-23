@@ -8,5 +8,3 @@
 	page "already has arms"
 	next "and legs under its"
 	next "solid shell.@"
-; 0x1d177b
-

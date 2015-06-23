@@ -194,4 +194,3 @@ GoldenrodDeptStore6F_MapEventHeader: ; 0x5664a
 	person_event SPRITE_LASS, 6, 14, $5, $1, 255, 255, $a0, 0, LassScript_0x564bf, $ffff
 	person_event SPRITE_SUPER_NERD, 6, 12, $7, $0, 255, 255, $80, 0, SuperNerdScript_0x564c2, $ffff
 ; 0x56697
-

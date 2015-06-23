@@ -633,4 +633,3 @@ CherrygroveCity_MapEventHeader: ; 0x19c829
 	person_event SPRITE_YOUNGSTER, 11, 27, $5, $1, 255, 255, $80, 0, YoungsterScript_0x19c15a, $ffff
 	person_event SPRITE_FISHER, 16, 11, $9, $0, 255, 255, $a0, 0, FisherScript_0x19c16e, $ffff
 ; 0x19c8ad
-

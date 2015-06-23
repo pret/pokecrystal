@@ -8,5 +8,3 @@
 	page "tasty flavor that"
 	next "oozes out of its"
 	next "tail.@"
-; 0x1b869d
-

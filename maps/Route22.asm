@@ -36,4 +36,3 @@ Route22_MapEventHeader: ; 0x7c028
 	; people-events
 	db 0
 ; 0x7c038
-

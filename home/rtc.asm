@@ -22,4 +22,3 @@ UpdateTimePals:: ; 485
 	callab _UpdateTimePals
 	ret
 ; 48c
-

@@ -45,4 +45,3 @@ Route38EcruteakGate_MapEventHeader: ; 0x9cc4d
 	db 1
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x9cbd7, $ffff
 ; 0x9cc74
-

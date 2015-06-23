@@ -8,5 +8,3 @@
 	page "faster than normal"
 	next "to duplicate that"
 	next "opponent exactly.@"
-; 0x1cc1b2
-

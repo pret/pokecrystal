@@ -8,5 +8,3 @@
 	page "demonstrate how"
 	next "ferociously its"
 	next "fire blazes.@"
-; 0x1ccba0
-

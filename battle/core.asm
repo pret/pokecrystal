@@ -9525,4 +9525,3 @@ BattleStartMessage: ; 3fc8b
 
 	ret
 ; 3fd26
-

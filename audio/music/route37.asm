@@ -436,5 +436,3 @@ Music_Route37_branch_eeb6b: ; eeb6b
 	note D#, 1
 	endchannel
 ; eeb75
-
-

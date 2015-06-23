@@ -8,5 +8,3 @@
 	page "long tongue to"
 	next "lick its body"
 	next "clean.@"
-; 0x1b9276
-

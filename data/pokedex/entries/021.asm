@@ -8,5 +8,3 @@
 	page "ceaselessly,"
 	next "making high-"
 	next "pitched cries.@"
-; 0x181f64
-

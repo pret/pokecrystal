@@ -511,4 +511,3 @@ GoldenrodGym_MapEventHeader: ; 0x546dd
 	person_event SPRITE_BUENA, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, $ffff
 	person_event SPRITE_GYM_GUY, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, $ffff
 ; 0x5474d
-

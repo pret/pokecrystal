@@ -36,4 +36,3 @@ _InitString:: ; 2efc
 	pop hl
 	ret
 ; 2f17
-

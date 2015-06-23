@@ -8,5 +8,3 @@
 	page "heat. The chill it"
 	next "causes makes the"
 	next "victims shake.@"
-; 0x1b8c98
-

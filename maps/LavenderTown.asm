@@ -155,4 +155,3 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 	person_event SPRITE_GRAMPS, 16, 18, $7, $0, 255, 255, $0, 0, GrampsScript_0x1ad6ea, $ffff
 	person_event SPRITE_YOUNGSTER, 15, 10, $5, $1, 255, 255, $a0, 1, YoungsterScript_0x1ad6ed, $ffff
 ; 0x1ad927
-

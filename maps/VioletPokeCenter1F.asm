@@ -256,4 +256,3 @@ VioletPokeCenter1F_MapEventHeader: ; 0x69935
 	person_event SPRITE_YOUNGSTER, 5, 12, $6, $0, 255, 255, $80, 0, YoungsterScript_0x69546, $ffff
 	person_event SPRITE_SCIENTIST, 7, 8, $6, $0, 255, 255, $90, 0, ScientistScript_0x694cc, $0700
 ; 0x6998b
-

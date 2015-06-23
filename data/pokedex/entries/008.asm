@@ -8,5 +8,3 @@
 	page "making it quite"
 	next "popular among"
 	next "older people.@"
-; 0x1819f9
-

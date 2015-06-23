@@ -254,4 +254,3 @@
 	db "TERU-SAMA@"
 	db "TERU-SAMA@"
 	db "?@"
-

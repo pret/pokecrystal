@@ -83,4 +83,3 @@ Route6SaffronGate_MapEventHeader: ; 0x192807
 	db 1
 	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x1926ea, $ffff
 ; 0x19282e
-

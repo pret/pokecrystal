@@ -110,4 +110,3 @@ GoldenrodDeptStore1F_MapEventHeader: ; 0x55b03
 	person_event SPRITE_BUG_CATCHER, 9, 9, $5, $1, 255, 255, $a0, 0, BugCatcherScript_0x5598a, $ffff
 	person_event SPRITE_GENTLEMAN, 9, 15, $2, $11, 255, 255, $0, 0, GentlemanScript_0x55984, $ffff
 ; 0x55b5b
-

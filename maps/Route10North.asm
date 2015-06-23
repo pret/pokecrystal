@@ -39,5 +39,3 @@ Route10North_MapEventHeader: ; 0x1b2099
 	; people-events
 	db 0
 ; 0x1b20b3
-
-

@@ -129,4 +129,3 @@ UpdateGameTimer:: ; 20ad
 	ld [GameTimeHours + 1], a
 	ret
 ; 210f
-

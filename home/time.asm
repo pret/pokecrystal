@@ -307,4 +307,3 @@ Function6e3:: ; 6e3
 	call CloseSRAM
 	ret
 ; 6ef
-

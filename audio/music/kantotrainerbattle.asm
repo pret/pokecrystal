@@ -1538,5 +1538,3 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note G_, 4
 	loopchannel 0, Music_KantoTrainerBattle_branch_ece5a
 ; ed06d
-
-

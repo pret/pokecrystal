@@ -777,4 +777,3 @@ KurtsHouse_MapEventHeader: ; 0x18eba8
 	person_event SPRITE_KURT, 7, 18, $7, $0, 255, 255, $0, 0, KurtScript_0x18e3bd, $073f
 	person_event SPRITE_TWIN, 8, 15, $9, $0, 255, 255, $0, 0, TwinScript_0x18e42e, $078d
 ; 0x18ec1c
-

@@ -23,4 +23,3 @@ ViridianPokeCenter2FBeta_MapEventHeader: ; 0x9b83a
 	; people-events
 	db 0
 ; 0x9b845
-

@@ -50,4 +50,3 @@ BattleCommand1b: ; 373c9
 	call BattleCommandaa
 	jp ResetTurn
 ; 37418
-

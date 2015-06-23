@@ -250,4 +250,3 @@ CeladonCafe_MapEventHeader: ; 0x73316
 	person_event SPRITE_FISHER, 6, 5, $9, $0, 255, 255, $0, 0, FisherScript_0x73073, $ffff
 	person_event SPRITE_TEACHER, 7, 8, $8, $0, 255, 255, $0, 0, TeacherScript_0x73084, $ffff
 ; 0x73371
-

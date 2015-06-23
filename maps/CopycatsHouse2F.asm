@@ -418,4 +418,3 @@ CopycatsHouse2F_MapEventHeader: ; 0x18b4f0
 	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, BirdScript_0x18afca, $ffff
 	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, CopycatScript_0x18aeb1, $06ef
 ; 0x18b553
-

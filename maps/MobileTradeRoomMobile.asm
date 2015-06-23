@@ -61,4 +61,3 @@ MobileTradeRoomMobile_MapEventHeader: ; 0x1935af
 	; people-events
 	db 0
 ; 0x1935c4
-

@@ -330,5 +330,3 @@ Music_NewBarkTown_branch_eb408: ; eb408
 	note E_, 1
 	loopchannel 0, Music_NewBarkTown_branch_eb408
 ; eb453
-
-

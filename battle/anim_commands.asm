@@ -1506,5 +1506,3 @@ Functioncc96e: ; cc96e
 .asm_cc9a0
 	ret
 ; cc9a1
-
-

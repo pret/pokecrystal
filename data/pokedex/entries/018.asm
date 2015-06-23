@@ -8,5 +8,3 @@
 	page "MAGIKARP, even"
 	next "while flying at"
 	next "3300 feet.@"
-; 0x181e3d
-

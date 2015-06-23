@@ -3680,4 +3680,3 @@ Function5ac2: ; 5ac2
 	dw ObjectStruct11
 	dw ObjectStruct12
 ; 5ae8
-

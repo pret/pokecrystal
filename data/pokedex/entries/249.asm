@@ -8,5 +8,3 @@
 	page "rms. It is said"
 	next "that LUGIA appears"
 	next "when storms start.@"
-; 0x1d185d
-

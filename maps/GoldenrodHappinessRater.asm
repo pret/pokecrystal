@@ -176,4 +176,3 @@ GoldenrodHappinessRater_MapEventHeader: ; 0x54b9c
 	person_event SPRITE_POKEFAN_M, 7, 9, $8, $0, 255, 255, $0, 0, PokefanMScript_0x54997, $ffff
 	person_event SPRITE_TWIN, 10, 9, $5, $1, 255, 255, $a0, 0, TwinScript_0x5499a, $ffff
 ; 0x54be2
-

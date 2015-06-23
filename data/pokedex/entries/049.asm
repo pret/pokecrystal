@@ -8,5 +8,3 @@
 	page "who touches them,"
 	next "making that person"
 	next "unable to stand.@"
-; 0x182b30
-

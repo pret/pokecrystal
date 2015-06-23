@@ -486,4 +486,3 @@ Music_MobileCenter_branch_179813: ; 179813
 	note C#, 1
 	loopchannel 0, Music_MobileCenter_branch_179813
 ; 17982d
-

@@ -294,5 +294,3 @@ Music_TinTower_branch_f694c: ; f694c
 	note F_, 2
 	loopchannel 0, Music_TinTower_branch_f694c
 ; f6974
-
-

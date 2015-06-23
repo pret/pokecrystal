@@ -127,5 +127,3 @@ CRIES                     EQU $3C
 ; misc.o
 
 MISC_CRYSTAL              EQU $5E
-
-

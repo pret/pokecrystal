@@ -105,4 +105,3 @@ AzaleaPokeCenter1F_MapEventHeader: ; 0x18dccf
 	person_event SPRITE_FISHING_GURU, 5, 10, $6, $0, 255, 255, $0, 0, FishingGuruScript_0x18db2e, $ffff
 	person_event SPRITE_POKEFAN_F, 8, 5, $2, $21, 255, 255, $0, 0, PokefanFScript_0x18db31, $ffff
 ; 0x18dd18
-

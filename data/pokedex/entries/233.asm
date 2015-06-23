@@ -8,5 +8,3 @@
 	page "technology. It"
 	next "may have unprog-"
 	next "rammed reactions.@"
-; 0x1d1174
-

@@ -87,4 +87,3 @@ CeruleanPokeCenter1F_MapEventHeader: ; 0x188386
 	person_event SPRITE_SUPER_NERD, 8, 12, $5, $1, 255, 255, $0, 0, SuperNerdScript_0x188212, $ffff
 	person_event SPRITE_GYM_GUY, 9, 5, $2, $11, 255, 255, $a0, 0, GymGuyScript_0x18821e, $ffff
 ; 0x1883c2
-

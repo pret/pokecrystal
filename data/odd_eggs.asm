@@ -481,4 +481,3 @@ OddEgg2:
 	bigdw 9 ; SAtk
 	bigdw 9 ; SDef
 	db "EGG@@@@@@@@"
-

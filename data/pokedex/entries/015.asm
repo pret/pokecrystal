@@ -8,5 +8,3 @@
 	page "then takes the"
 	next "victim back to its"
 	next "nest for food.@"
-; 0x181cfa
-

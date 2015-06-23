@@ -13,4 +13,3 @@ INCBIN "tilesets/35_metatiles.bin"
 Tileset36Meta: ; 0x1e0c00
 INCBIN "tilesets/36_metatiles.bin"
 ; 0x1e1000
-

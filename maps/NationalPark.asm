@@ -674,4 +674,3 @@ NationalPark_MapEventHeader: ; 0x5c806
 	person_event SPRITE_GAMEBOY_KID, 10, 30, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x5c037, $ffff
 	person_event SPRITE_POKE_BALL, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c1ce, $0659
 ; 0x5c8ea
-

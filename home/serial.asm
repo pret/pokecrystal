@@ -404,5 +404,3 @@ Function919:: ; 919
 	ld [rSC], a
 	ret
 ; 92e
-
-

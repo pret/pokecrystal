@@ -1028,4 +1028,3 @@ Route34_MapEventHeader: ; 0x78a7c
 	person_event SPRITE_COOLTRAINER_F, 55, 10, $7, $0, 255, 255, $82, 2, TrainerCooltrainerfKate, $ffff
 	person_event SPRITE_POKE_BALL, 34, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7832b, $07bc
 ; 0x78b5d
-

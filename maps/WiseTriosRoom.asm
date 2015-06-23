@@ -450,4 +450,3 @@ WiseTriosRoom_MapEventHeader: ; 0x98dea
 	person_event SPRITE_SAGE, 10, 8, $7, $0, 255, 255, $2, 2, TrainerSageMasa, $07ac
 	person_event SPRITE_SAGE, 8, 10, $8, $0, 255, 255, $2, 2, TrainerSageKoji, $07ac
 ; 0x98e55
-

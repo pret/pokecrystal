@@ -140,5 +140,3 @@ Music_LookOfficer_branch_ed8c8: ; ed8c8
 	note C#, 8
 	loopchannel 0, Music_LookOfficer_branch_ed8c8
 ; ed8dd
-
-

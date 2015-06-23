@@ -354,4 +354,3 @@ Route9_MapEventHeader: ; 0x1ab2c7
 	person_event SPRITE_POKEFAN_M, 7, 32, $9, $0, 255, 255, $b2, 2, TrainerHikerTim, $ffff
 	person_event SPRITE_POKEFAN_M, 19, 40, $9, $0, 255, 255, $b2, 4, TrainerHikerSidney, $ffff
 ; 0x1ab32a
-

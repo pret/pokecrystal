@@ -8,5 +8,3 @@
 	page "its small, poison-"
 	next "ous horn when"
 	next "attacked.@"
-; 0x1822b6
-

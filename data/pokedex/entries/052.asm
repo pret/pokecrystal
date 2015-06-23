@@ -8,5 +8,3 @@
 	page "object, the gold"
 	next "coin on its head"
 	next "shines too.@"
-; 0x182c78
-

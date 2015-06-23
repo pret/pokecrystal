@@ -30,5 +30,3 @@ Music_JohtoWildBattleNight_Ch3: ; f608f
 	notetype $c, $11
 	loopchannel 0, Music_JohtoWildBattleNight_branch_f5f94
 ; f6096
-
-

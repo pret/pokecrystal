@@ -8,5 +8,3 @@
 	page "shoots out bits of"
 	next "its shell when it"
 	next "sees action.@"
-; 0x1d0593
-

@@ -8,5 +8,3 @@
 	page "when it senses"
 	next "danger, even"
 	next "if it is asleep.@"
-; 0x18313c
-

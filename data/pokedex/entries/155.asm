@@ -8,5 +8,3 @@
 	page "when it is angry."
 	next "The flaring flames"
 	next "intimidate foes.@"
-; 0x1ccb33
-

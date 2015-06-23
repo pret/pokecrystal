@@ -1178,4 +1178,3 @@ PokeCenter2F_MapEventHeader: ; 0x19337f
 	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192a2d, $ffff
 	person_event SPRITE_OFFICER, 5, 5, $6, $0, 255, 255, $0, 0, OfficerScript_0x192c9a, $0711
 ; 0x1933dc
-

@@ -59,4 +59,3 @@ Route7_MapEventHeader: ; 0x1ad463
 	; people-events
 	db 0
 ; 0x1ad47d
-

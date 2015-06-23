@@ -8,5 +8,3 @@
 	page "day, then looks"
 	next "for food at night"
 	next "when it's cold.@"
-; 0x1b89a2
-

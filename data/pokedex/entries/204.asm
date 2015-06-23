@@ -8,5 +8,3 @@
 	page "to its body. The"
 	next "fluid hardens when"
 	next "it touches air.@"
-; 0x1d0524
-

@@ -50,4 +50,3 @@ Route23_MapEventHeader: ; 0x1ae579
 	; people-events
 	db 0
 ; 0x1ae598
-

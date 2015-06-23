@@ -186,6 +186,3 @@ SeafoamGym_MapEventHeader: ; 0x1ab865
 	person_event SPRITE_BLAINE, 6, 9, $6, $0, 255, 255, $b0, 0, BlaineScript_0x1ab4fb, $ffff
 	person_event SPRITE_GYM_GUY, 9, 10, $7, $0, 255, 255, $90, 0, SeafoamGymGuyScript, $0777
 ; 0x1ab88a
-
-
-

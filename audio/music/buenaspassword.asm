@@ -643,5 +643,3 @@ Music_BuenasPassword_branch_178424: ; 178424
 	note D_, 1
 	endchannel
 ; 17843b
-
-

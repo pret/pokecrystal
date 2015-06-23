@@ -692,4 +692,3 @@ Route43_MapEventHeader: ; 0x19d78c
 	person_event SPRITE_FRUIT_TREE, 30, 5, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19d266, $ffff
 	person_event SPRITE_POKE_BALL, 36, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x19d268, $06b5
 ; 0x19d822
-

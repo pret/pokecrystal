@@ -8,5 +8,3 @@
 	page "heads--even for a"
 	next "second--will get"
 	next "pecked severely.@"
-; 0x1b88bf
-

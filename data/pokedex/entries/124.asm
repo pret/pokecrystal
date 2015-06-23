@@ -8,5 +8,3 @@
 	page "which seems to"
 	next "have its own"
 	next "meaning.@"
-; 0x1b992a
-

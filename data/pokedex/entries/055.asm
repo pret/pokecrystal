@@ -8,5 +8,3 @@
 	page "rivers and lakes"
 	next "of which it is so"
 	next "fond.@"
-; 0x182dbd
-

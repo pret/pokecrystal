@@ -296,4 +296,3 @@ VictoryRoad_MapEventHeader: ; 0x74802
 	person_event SPRITE_POKE_BALL, 52, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452f, $06a6
 	person_event SPRITE_POKE_BALL, 42, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x74531, $06a7
 ; 0x748a2
-

@@ -52,4 +52,3 @@ ReturnFarCall:: ; 2d6e
 Function2d82:: ; 2d82
 	jp [hl]
 ; 2d83
-

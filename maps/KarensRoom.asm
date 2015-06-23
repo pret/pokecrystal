@@ -166,4 +166,3 @@ KarensRoom_MapEventHeader: ; 0x180e05
 	db 1
 	person_event SPRITE_KAREN, 11, 9, $6, $0, 255, 255, $80, 0, KarenScript_0x180bee, $ffff
 ; 0x180e2c
-

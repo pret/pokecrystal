@@ -8,5 +8,3 @@
 	page "area to announce"
 	next "that this is its"
 	next "territory.@"
-; 0x1d0f66
-

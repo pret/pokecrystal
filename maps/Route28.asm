@@ -41,4 +41,3 @@ Route28_MapEventHeader: ; 0x1a541d
 	; people-events
 	db 0
 ; 0x1a5437
-

@@ -673,5 +673,3 @@ Music_Route26_branch_ef2b0: ; ef2b0
 	note E_, 2
 	endchannel
 ; ef2d0
-
-

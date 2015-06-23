@@ -36,4 +36,3 @@ PokedexFlagAction:: ; 33a1
 	and a
 	ret
 ; 33ab
-

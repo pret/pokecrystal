@@ -3301,4 +3301,3 @@ Functionf969: ; f969
 	add hl, bc
 	ret
 ; f971
-

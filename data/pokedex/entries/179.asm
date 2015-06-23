@@ -8,5 +8,3 @@
 	page "to stay cool in"
 	next "summer and warm"
 	next "in winter.@"
-; 0x1cd5b8
-

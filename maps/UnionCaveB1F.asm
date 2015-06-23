@@ -259,4 +259,3 @@ UnionCaveB1F_MapEventHeader: ; 0x5a28e
 	person_event SPRITE_BOULDER, 14, 11, $19, $0, 255, 255, $0, 0, BoulderScript_0x5a01a, $ffff
 	person_event SPRITE_POKE_BALL, 27, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a018, $065f
 ; 0x5a308
-

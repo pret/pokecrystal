@@ -38,4 +38,3 @@ BattleCommand58: ; 376c2
 	call AnimateFailedMove
 	jp PrintButItFailed
 ; 376f8
-

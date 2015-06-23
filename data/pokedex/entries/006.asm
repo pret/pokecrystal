@@ -8,5 +8,3 @@
 	page "fire increases as"
 	next "it gains exper-"
 	next "ience in battle.@"
-; 0x181926
-

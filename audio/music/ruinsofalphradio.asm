@@ -77,5 +77,3 @@ Music_RuinsOfAlphRadio_branch_eee35: ; eee35
 	note __, 16
 	loopchannel 0, Music_RuinsOfAlphRadio_branch_eee35
 ; eee3e
-
-

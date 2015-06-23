@@ -159,4 +159,3 @@ NothingHereText: ; 440c9
 	text_jump _NothingHereText
 	db "@"
 ; 440ce
-

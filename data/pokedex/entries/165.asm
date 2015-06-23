@@ -8,5 +8,3 @@
 	page "fluid secreted by"
 	next "its feet indicates"
 	next "its location.@"
-; 0x1ccfa0
-

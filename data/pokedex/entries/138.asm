@@ -8,5 +8,3 @@
 	page "eating plankton."
 	next "Its fossils are"
 	next "sometimes found.@"
-; 0x1cc42e
-

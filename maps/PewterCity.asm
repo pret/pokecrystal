@@ -205,4 +205,3 @@ PewterCity_MapEventHeader: ; 0x18c2f5
 	person_event SPRITE_FRUIT_TREE, 7, 36, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x18c03e, $ffff
 	person_event SPRITE_FRUIT_TREE, 7, 34, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x18c040, $ffff
 ; 0x18c378
-

@@ -10683,4 +10683,3 @@ Function37ed5: ; 37ed5
 	pop hl
 	ret
 ; 37ee2
-

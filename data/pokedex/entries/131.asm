@@ -8,5 +8,3 @@
 	page "and provides a ve-"
 	next "ry comfortable way"
 	next "to get around.@"
-; 0x1cc13c
-

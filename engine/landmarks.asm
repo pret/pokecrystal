@@ -291,4 +291,3 @@ RegionCheck: ; 0x1caea1
 .kanto
 	ld e, 1
 	ret
-

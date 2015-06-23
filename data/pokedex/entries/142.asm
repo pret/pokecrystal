@@ -8,5 +8,3 @@
 	page "freely and"
 	next "fearlessly through"
 	next "the skies.@"
-; 0x1cc5cf
-

@@ -8,5 +8,3 @@
 	page "MURKROW and"
 	next "MEOWTH loot one"
 	next "another's stashes.@"
-; 0x1d0292
-

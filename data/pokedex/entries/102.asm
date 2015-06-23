@@ -8,5 +8,3 @@
 	page "bond between the"
 	next "six will make them"
 	next "rejoin instantly.@"
-; 0x1b8ff6
-

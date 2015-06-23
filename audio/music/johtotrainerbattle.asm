@@ -1346,5 +1346,3 @@ Music_JohtoTrainerBattle_branch_f66b4: ; f66b4
 	note A#, 2
 	endchannel
 ; f66c3
-
-

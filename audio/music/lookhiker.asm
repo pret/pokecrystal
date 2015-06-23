@@ -118,5 +118,3 @@ Music_LookHiker_branch_f749a: ; f749a
 	note G_, 2
 	loopchannel 0, Music_LookHiker_branch_f749a
 ; f74a2
-
-

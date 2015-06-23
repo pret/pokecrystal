@@ -8,5 +8,3 @@
 	page "adapt smoothly"
 	next "and perfectly to"
 	next "any environment.@"
-; 0x1cc224
-

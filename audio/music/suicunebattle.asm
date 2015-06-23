@@ -2058,5 +2058,3 @@ Music_SuicuneBattle_branch_179182: ; 179182
 	note E_, 2
 	loopchannel 0, Music_SuicuneBattle_branch_179182
 ; 17948b
-
-

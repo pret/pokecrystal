@@ -41,4 +41,3 @@ IcePath1F_MapEventHeader: ; 0x7e478
 	person_event SPRITE_POKE_BALL, 27, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e474, $0689
 	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e476, $07be
 ; 0x7e4b9
-

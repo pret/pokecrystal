@@ -8,5 +8,3 @@
 	page "the sand to"
 	next "protect itself"
 	next "when threatened.@"
-; 0x1821e7
-

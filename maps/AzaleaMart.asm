@@ -67,4 +67,3 @@ AzaleaMart_MapEventHeader: ; 0x18e118
 	person_event SPRITE_COOLTRAINER_M, 9, 6, $7, $0, 255, 255, $0, 0, CooltrainerMScript_0x18e047, $ffff
 	person_event SPRITE_BUG_CATCHER, 6, 11, $5, $2, 255, 255, $80, 0, BugCatcherScript_0x18e04a, $ffff
 ; 0x18e14f
-

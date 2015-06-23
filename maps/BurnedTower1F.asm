@@ -345,4 +345,3 @@ BurnedTower1F_MapEventHeader: ; 0x1860b2
 	person_event SPRITE_MORTY, 18, 18, $2, $11, 255, 255, $b0, 0, MortyScript_0x185cbf, $0764
 	person_event SPRITE_POKE_BALL, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ccb, $0656
 ; 0x186151
-

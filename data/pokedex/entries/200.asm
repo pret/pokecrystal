@@ -8,5 +8,3 @@
 	page "them by screaming"
 	next "loudly or appear-"
 	next "ing suddenly.@"
-; 0x1d0373
-

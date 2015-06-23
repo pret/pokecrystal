@@ -117,5 +117,3 @@ Music_LookLass_branch_ed81f: ; ed81f
 	note C#, 1
 	loopchannel 0, Music_LookLass_branch_ed81f
 ; ed82d
-
-

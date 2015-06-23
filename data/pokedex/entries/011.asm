@@ -8,5 +8,3 @@
 	page "only harden, so it"
 	next "remains motionless"
 	next "to avoid attack.@"
-; 0x181b45
-

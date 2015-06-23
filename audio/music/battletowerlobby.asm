@@ -311,5 +311,3 @@ Music_BattleTowerLobby_branch_179612: ; 179612
 	note F_, 4
 	loopchannel 0, Music_BattleTowerLobby_branch_179612
 ; 17961d
-
-

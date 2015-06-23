@@ -238,4 +238,3 @@ CeladonMansion3F_MapEventHeader: ; 0x719d5
 	person_event SPRITE_SUPER_NERD, 11, 4, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x716bc, $ffff
 	person_event SPRITE_FISHER, 8, 4, $7, $2, 255, 255, $80, 0, FisherScript_0x716bf, $ffff
 ; 0x71a37
-

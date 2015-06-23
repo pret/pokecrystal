@@ -72,4 +72,3 @@ VermilionHouseFishingSpeechHouse_MapEventHeader: ; 0x1915df
 	db 1
 	person_event SPRITE_FISHING_GURU, 8, 6, $6, $0, 255, 255, $a0, 0, FishingGuruScript_0x19148d, $ffff
 ; 0x191601
-

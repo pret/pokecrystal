@@ -480,4 +480,3 @@ Route39_MapEventHeader: ; 0x1a60ba
 	person_event SPRITE_FRUIT_TREE, 7, 13, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a5bf4, $ffff
 	person_event SPRITE_POKEFAN_F, 26, 8, $6, $0, 255, 255, $80, 0, PokefanFScript_0x1a5bbe, $ffff
 ; 0x1a6160
-

@@ -23,4 +23,3 @@ Route10PokeCenter2FBeta_MapEventHeader: ; 0x188dae
 	; people-events
 	db 0
 ; 0x188db9
-

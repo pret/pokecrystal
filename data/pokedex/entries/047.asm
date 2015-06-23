@@ -8,5 +8,3 @@
 	page "mushrooms on its"
 	next "back leave spores"
 	next "on the bug's egg.@"
-; 0x182a53
-

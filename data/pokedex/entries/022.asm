@@ -8,5 +8,3 @@
 	page "long reach, so it"
 	next "must be treated"
 	next "with caution.@"
-; 0x181fd4
-

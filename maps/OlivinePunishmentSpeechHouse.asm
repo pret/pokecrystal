@@ -64,4 +64,3 @@ OlivinePunishmentSpeechHouse_MapEventHeader: ; 0x9c6e5
 	person_event SPRITE_POKEFAN_M, 6, 5, $3, $0, 255, 255, $0, 0, PokefanMScript_0x9c637, $ffff
 	person_event SPRITE_LASS, 9, 9, $5, $2, 255, 255, $0, 0, LassScript_0x9c63a, $ffff
 ; 0x9c719
-

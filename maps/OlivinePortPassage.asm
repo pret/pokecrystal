@@ -41,4 +41,3 @@ OlivinePortPassage_MapEventHeader: ; 0x76fec
 	db 1
 	person_event SPRITE_POKEFAN_M, 5, 21, $8, $0, 255, 255, $0, 0, PokefanMScript_0x76fac, $0733
 ; 0x77018
-

@@ -8,5 +8,3 @@
 	page "from the south"
 	next "along with the"
 	next "spring.@"
-; 0x1cc761
-

@@ -8,5 +8,3 @@
 	page "parts, so it uses"
 	next "this move only as"
 	next "a last resort.@"
-; 0x1b8ad9
-

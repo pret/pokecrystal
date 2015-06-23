@@ -8,5 +8,3 @@
 	page "predicting its"
 	next "opponent's next"
 	next "move.@"
-; 0x1d01af
-

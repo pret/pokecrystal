@@ -450,4 +450,3 @@ PowerPlant_MapEventHeader: ; 0x1894b9
 	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, FisherScript_0x188e65, $ffff
 	person_event SPRITE_GYM_GUY, 9, 9, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188ecb, $ffff
 ; 0x189536
-

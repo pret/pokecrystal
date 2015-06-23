@@ -8,5 +8,3 @@
 	page "the next living"
 	next "thing that wanders"
 	next "close by.@"
-; 0x1b8c25
-

@@ -46,4 +46,3 @@ Route2Gate_MapEventHeader: ; 0x9b9ca
 	db 1
 	person_event SPRITE_SCIENTIST, 8, 10, $4, $20, 255, 255, $90, 0, ScientistScript_0x9b952, $ffff
 ; 0x9b9f1
-

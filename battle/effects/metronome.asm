@@ -59,4 +59,3 @@ MetronomeExcepts: ; 37454
 	db THIEF
 	db -1
 ; 37462
-

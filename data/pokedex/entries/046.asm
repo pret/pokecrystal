@@ -8,5 +8,3 @@
 	page "orders it to"
 	next "extract juice from"
 	next "tree trunks.@"
-; 0x1829e2
-

@@ -66,4 +66,3 @@ CeruleanPoliceStation_MapEventHeader: ; 0x1880fa
 	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $90, 0, PokefanFScript_0x18804d, $ffff
 	person_event SPRITE_DIGLETT, 9, 7, $16, $0, 255, 255, $b0, 0, DiglettScript_0x188050, $ffff
 ; 0x188131
-

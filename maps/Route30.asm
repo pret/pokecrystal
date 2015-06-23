@@ -534,4 +534,3 @@ Route30_MapEventHeader: ; 0x1a1c54
 	person_event SPRITE_COOLTRAINER_F, 17, 6, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x1a17e6, $ffff
 	person_event SPRITE_POKE_BALL, 39, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a17f5, $07b8
 ; 0x1a1d0c
-

@@ -677,4 +677,3 @@ Music_Route30_branch_efee1: ; efee1
 	notetype $c
 	endchannel
 ; efef5
-

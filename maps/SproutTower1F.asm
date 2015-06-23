@@ -156,4 +156,3 @@ SproutTower1F_MapEventHeader: ; 0x184703
 	person_event SPRITE_SAGE, 9, 7, $7, $0, 255, 255, $92, 4, TrainerSageChow, $ffff
 	person_event SPRITE_POKE_BALL, 11, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x18451e, $0647
 ; 0x18477a
-

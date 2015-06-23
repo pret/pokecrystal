@@ -414,5 +414,3 @@ Music_RocketTheme_branch_f7664: ; f7664
 	note F#, 2
 	endchannel
 ; f766d
-
-

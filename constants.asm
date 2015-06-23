@@ -23,4 +23,3 @@ INCLUDE "constants/animation_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
 INCLUDE "constants/pokemon_data_constants.asm"
 INCLUDE "constants/misc_constants.asm"
-

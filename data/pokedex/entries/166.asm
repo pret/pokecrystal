@@ -8,5 +8,3 @@
 	page "a big leaf and"
 	next "drifts off into"
 	next "a deep slumber.@"
-; 0x1cd012
-

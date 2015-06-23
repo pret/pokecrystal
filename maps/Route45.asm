@@ -738,4 +738,3 @@ Route45_MapEventHeader: ; 0x19e91b
 	person_event SPRITE_POKE_BALL, 37, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29c, $06bb
 	person_event SPRITE_YOUNGSTER, 74, 8, $3, $0, 255, 255, $a0, 0, YoungsterScript_0x19e269, $ffff
 ; 0x19e9d9
-

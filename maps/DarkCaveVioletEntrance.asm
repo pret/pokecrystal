@@ -60,4 +60,3 @@ DarkCaveVioletEntrance_MapEventHeader: ; 0x18c69c
 	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c692, $06a0
 	person_event SPRITE_POKE_BALL, 32, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c694, $07ce
 ; 0x18c71e
-

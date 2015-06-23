@@ -1555,4 +1555,3 @@ ElmsLab_MapEventHeader: ; 0x7a3de
 	person_event SPRITE_POKE_BALL, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, $0642
 	person_event SPRITE_OFFICER, 7, 9, $7, $0, 255, 255, $90, 0, CopScript, $0702
 ; 0x7a4cc
-

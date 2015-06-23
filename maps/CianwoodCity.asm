@@ -460,4 +460,3 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	person_event SPRITE_SUPER_NERD, 25, 15, $7, $0, 255, 255, $90, 0, ObjectEvent, $07ad
 	person_event SPRITE_SUICUNE, 18, 14, $1, $0, 255, 255, $90, 0, ObjectEvent, $07ae
 ; 0x1a0867
-

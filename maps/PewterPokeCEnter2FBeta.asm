@@ -23,4 +23,3 @@ PewterPokeCEnter2FBeta_MapEventHeader: ; 0x1a304c
 	; people-events
 	db 0
 ; 0x1a3057
-

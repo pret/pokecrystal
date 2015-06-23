@@ -65,4 +65,3 @@ CherrygroveEvolutionSpeechHouse_MapEventHeader: ; 0x196d2e
 	person_event SPRITE_LASS, 9, 7, $8, $0, 255, 255, $a0, 0, LassScript_0x196cb9, $ffff
 	person_event SPRITE_YOUNGSTER, 9, 6, $9, $0, 255, 255, $80, 0, YoungsterScript_0x196cb2, $ffff
 ; 0x196d62
-

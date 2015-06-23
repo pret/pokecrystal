@@ -334,4 +334,3 @@ EcruteakCity_MapEventHeader: ; 0x1a45fc
 	person_event SPRITE_YOUNGSTER, 18, 14, $2, $11, 255, 255, $80, 0, YoungsterScript_0x1a403d, $ffff
 	person_event SPRITE_GRAMPS, 11, 7, $2, $11, 255, 255, $a0, 0, GrampsScript_0x1a400f, $07a9
 ; 0x1a46d0
-

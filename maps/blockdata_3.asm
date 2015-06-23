@@ -351,4 +351,3 @@ BetaBlank_BlockData: ; 0xb1afa
 GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"
 ; 0xb1b42
-

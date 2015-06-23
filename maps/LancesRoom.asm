@@ -389,4 +389,3 @@ LancesRoom_MapEventHeader: ; 0x1813f4
 	person_event SPRITE_TEACHER, 11, 8, $7, $0, 255, 255, $a0, 0, ObjectEvent, $075f
 	person_event SPRITE_OAK, 11, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $075f
 ; 0x181445
-

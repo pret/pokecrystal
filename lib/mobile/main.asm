@@ -9634,4 +9634,3 @@ Function113f2d: ; 113f2d
 	ld [hl], a
 	ret
 ; 113f84
-

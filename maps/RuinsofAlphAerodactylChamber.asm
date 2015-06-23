@@ -196,4 +196,3 @@ RuinsofAlphAerodactylChamber_MapEventHeader: ; 0x58f22
 	; people-events
 	db 0
 ; 0x58f5f
-

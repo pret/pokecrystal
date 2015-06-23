@@ -433,4 +433,3 @@ SlowpokeWellB1F_MapEventHeader: ; 0x5ac84
 	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, BoulderScript_0x5a6a0, $ffff
 	person_event SPRITE_POKE_BALL, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, $0662
 ; 0x5ad09
-

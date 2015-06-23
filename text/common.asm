@@ -1199,4 +1199,3 @@ UnknownText_0x1b201f: ; 0x1b201f
 	line "get started now!"
 	done
 ; 0x1b2042
-

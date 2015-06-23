@@ -875,4 +875,3 @@ RadioTower2F_MapEventHeader: ; 0x5e481
 	person_event SPRITE_BUENA, 9, 18, $9, $0, 255, 255, $80, 0, BuenaScript_0x5d775, $ffff
 	person_event SPRITE_RECEPTIONIST, 11, 16, $9, $0, 255, 255, $a0, 0, ReceptionistScript_0x5d8ff, $06cf
 ; 0x5e53e
-

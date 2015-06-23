@@ -44,4 +44,3 @@ Route16FuchsiaSpeechHouse_MapEventHeader: ; 0x733bc
 	db 1
 	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x73373, $ffff
 ; 0x733e3
-

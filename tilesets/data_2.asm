@@ -59,4 +59,3 @@ Tileset24Coll: ; 0x1f21c
 Tileset30Coll: ; 0x1f21c
 INCBIN "tilesets/24_collision.bin"
 ; 0x1f31c
-

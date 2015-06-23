@@ -8,5 +8,3 @@
 	page "shimmer, this is a"
 	next "sign that it is"
 	next "ready to battle.@"
-; 0x1ccc14
-

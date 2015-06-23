@@ -319,4 +319,3 @@ Music_Printer_branch_f0823: ; f0823
 	note __, 1
 	loopchannel 0, Music_Printer_branch_f0823
 ; f0941
-

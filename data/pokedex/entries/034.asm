@@ -8,5 +8,3 @@
 	page "forcefully. Melee"
 	next "combat is its"
 	next "specialty.@"
-; 0x1824c8
-

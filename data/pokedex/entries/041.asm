@@ -8,5 +8,3 @@
 	page "from the ceilings"
 	next "of old buildings"
 	next "and caves.@"
-; 0x1827c4
-

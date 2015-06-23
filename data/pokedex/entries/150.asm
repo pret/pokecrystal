@@ -8,5 +8,3 @@
 	page "this #MON was"
 	next "created solely for"
 	next "battling.@"
-; 0x1cc915
-

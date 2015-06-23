@@ -8,5 +8,3 @@
 	page "more beautiful,"
 	next "with a more luxur-"
 	next "ious coat of fur.@"
-; 0x18260c
-

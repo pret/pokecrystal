@@ -269,4 +269,3 @@ ViridianCity_MapEventHeader: ; 0x1a9ec9
 	person_event SPRITE_FISHER, 27, 10, $6, $0, 255, 255, $80, 0, FisherScript_0x1a9a75, $ffff
 	person_event SPRITE_YOUNGSTER, 25, 21, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x1a9a90, $ffff
 ; 0x1a9f3a
-

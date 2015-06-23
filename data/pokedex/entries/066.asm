@@ -8,5 +8,3 @@
 	page "can even pick up a"
 	next "GRAVELER with"
 	next "ease.@"
-; 0x1b80cb
-

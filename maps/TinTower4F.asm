@@ -48,4 +48,3 @@ TinTower4F_MapEventHeader: ; 0x185a61
 	person_event SPRITE_POKE_BALL, 18, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a5a, $064d
 	person_event SPRITE_POKE_BALL, 16, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a5c, $064e
 ; 0x185aa7
-

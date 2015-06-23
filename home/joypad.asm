@@ -488,4 +488,3 @@ Functionb06:: ; b06
 	ld [hl], a
 	ret
 ; b40
-

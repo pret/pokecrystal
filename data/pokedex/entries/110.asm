@@ -8,5 +8,3 @@
 	page "body expands, and"
 	next "its insides smell"
 	next "much worse.@"
-; 0x1b935d
-

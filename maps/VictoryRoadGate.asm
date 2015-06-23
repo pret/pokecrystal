@@ -136,6 +136,3 @@ VictoryRoadGate_MapEventHeader: ; 0x9bb9b
 	person_event SPRITE_BLACK_BELT, 9, 11, $9, $0, 255, 255, $0, 0, BlackBeltScript_0x9ba21, $074f
 	person_event SPRITE_BLACK_BELT, 9, 16, $8, $0, 255, 255, $0, 0, BlackBeltScript_0x9ba24, $0750
 ; 0x9bbf8
-
-
-

@@ -8,5 +8,3 @@
 	page "sees. Turning your"
 	next "back on it is not"
 	next "recommended.@"
-; 0x1ccc84
-

@@ -21,4 +21,3 @@ BattleCommand57: ; 376a0
 .failed
 	jp Function37354
 ; 376c2
-

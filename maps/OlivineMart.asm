@@ -67,4 +67,3 @@ OlivineMart_MapEventHeader: ; 0x9cb9e
 	person_event SPRITE_COOLTRAINER_F, 6, 10, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x9cace, $ffff
 	person_event SPRITE_LASS, 10, 5, $8, $0, 255, 255, $0, 0, LassScript_0x9cad1, $ffff
 ; 0x9cbd5
-

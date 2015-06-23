@@ -238,4 +238,3 @@ ManiasHouse_MapEventHeader: ; 0x9d5f0
 	db 1
 	person_event SPRITE_ROCKER, 8, 6, $3, $0, 255, 255, $0, 0, RockerScript_0x9d278, $ffff
 ; 0x9d60d
-

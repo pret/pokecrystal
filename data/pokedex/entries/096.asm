@@ -8,5 +8,3 @@
 	page "is sleeping and"
 	next "what that person"
 	next "is dreaming about.@"
-; 0x1b8d80
-

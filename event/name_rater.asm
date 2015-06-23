@@ -233,4 +233,3 @@ UnknownText_0xfb83c: ; 0xfb83c
 	text_jump UnknownText_0x1c0272
 	db "@"
 ; 0xfb841
-

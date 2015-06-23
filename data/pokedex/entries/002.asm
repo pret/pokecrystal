@@ -8,5 +8,3 @@
 	page "The bulb gives off"
 	next "a pleasant aroma"
 	next "when it blooms.@"
-; 0x181773
-

@@ -102,4 +102,3 @@ CeladonDeptStore5F_MapEventHeader: ; 0x71110
 	person_event SPRITE_SAILOR, 8, 7, $2, $11, 255, 255, $90, 0, SailorScript_0x71017, $ffff
 	person_event SPRITE_TEACHER, 11, 5, $9, $0, 255, 255, $a0, 0, TeacherScript_0x7101a, $ffff
 ; 0x71170
-

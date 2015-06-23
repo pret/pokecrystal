@@ -8,5 +8,3 @@
 	page "leaves, slicing up"
 	next "any unlucky object"
 	next "nearby for food.@"
-; 0x1b826e
-

@@ -1038,5 +1038,3 @@ Music_RocketBattle_branch_ea033: ; ea033
 	note A_, 2
 	endchannel
 ; ea040
-
-

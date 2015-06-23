@@ -48,4 +48,3 @@ INCBIN "tilesets/20_metatiles.bin"
 Tileset20Coll: ; 0x1bcfe
 INCBIN "tilesets/20_collision.bin"
 ; 0x1bdfe
-

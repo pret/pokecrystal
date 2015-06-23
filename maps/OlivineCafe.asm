@@ -102,4 +102,3 @@ OlivineCafe_MapEventHeader: ; 0x9ca8e
 	person_event SPRITE_FISHING_GURU, 7, 11, $4, $10, 255, 255, $0, 0, FishingGuruScript_0x9c8d9, $ffff
 	person_event SPRITE_SAILOR, 10, 10, $7, $0, 255, 255, $0, 0, SailorScript_0x9c8dc, $ffff
 ; 0x9cac5
-

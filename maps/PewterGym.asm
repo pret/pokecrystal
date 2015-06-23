@@ -261,4 +261,3 @@ PewterGym_MapEventHeader: ; 0x1a2d88
 	person_event SPRITE_YOUNGSTER, 9, 6, $9, $0, 255, 255, $a2, 3, TrainerCamperJerry, $ffff
 	person_event SPRITE_GYM_GUY, 15, 10, $6, $0, 255, 255, $90, 1, PewterGymGuyScript, $ffff
 ; 0x1a2dc9
-

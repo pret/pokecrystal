@@ -132,4 +132,3 @@ KrissNeighborsHouse_MapEventHeader: ; 0x7aeb0
 	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, CooltrainerFScript_0x7acee, $ffff
 	person_event SPRITE_POKEFAN_F, 7, 9, $8, $0, 255, 255, $80, 0, PokefanFScript_0x7acf1, $0793
 ; 0x7aee9
-

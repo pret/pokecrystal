@@ -23,4 +23,3 @@ SECTION "Pokedex Entries 193-251", ROMX, BANK[POKEDEX_ENTRIES_4]
 
 PokedexEntries4::
 INCLUDE "data/pokedex/entries_4.asm"
-

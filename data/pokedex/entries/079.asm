@@ -8,5 +8,3 @@
 	page "even if its"
 	next "flavorful tail is"
 	next "bitten.@"
-; 0x1b8635
-

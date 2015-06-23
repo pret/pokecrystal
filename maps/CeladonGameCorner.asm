@@ -370,4 +370,3 @@ CeladonGameCorner_MapEventHeader: ; 0x725a4
 	person_event SPRITE_GYM_GUY, 7, 15, $6, $0, 255, 255, $80, 0, CeladonGymGuyScript, $ffff
 	person_event SPRITE_GRAMPS, 12, 6, $8, $0, 255, 255, $a0, 0, GrampsScript_0x72190, $ffff
 ; 0x726e7
-

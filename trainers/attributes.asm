@@ -422,4 +422,3 @@ TrainerClassAttributes: ; 3959c
 	dw CONTEXT_USE + SWITCH_SOMETIMES
 
 ; 39771
-

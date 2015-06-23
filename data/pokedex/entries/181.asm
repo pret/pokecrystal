@@ -8,5 +8,3 @@
 	page "can be seen from"
 	next "far away on the"
 	next "ocean's surface.@"
-; 0x1cd69a
-

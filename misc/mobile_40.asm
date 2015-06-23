@@ -8075,5 +8075,3 @@ UnknownText_0x103898: ; 0x103898
 	text_jump UnknownText_0x1c4525
 	db "@"
 ; 0x10389d
-
-

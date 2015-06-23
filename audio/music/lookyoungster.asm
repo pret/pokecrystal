@@ -297,5 +297,3 @@ Music_LookYoungster_branch_f67ae: ; f67ae
 ; f6810
 
 	db $ff
-
-

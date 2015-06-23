@@ -8,5 +8,3 @@
 	page "live anywhere. It"
 	next "also multiplies"
 	next "very quickly.@"
-; 0x181ea3
-

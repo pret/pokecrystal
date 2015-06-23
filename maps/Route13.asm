@@ -324,4 +324,3 @@ Route13_MapEventHeader: ; 0x1a27aa
 	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $82, 4, TrainerHikerKenny, $ffff
 	person_event SPRITE_POKEFAN_M, 10, 29, $9, $0, 255, 255, $82, 4, TrainerPokefanmAlex, $ffff
 ; 0x1a2805
-

@@ -309,4 +309,3 @@ MahoganyTown_MapEventHeader: ; 0x1903d8
 	person_event SPRITE_FISHER, 18, 10, $6, $0, 255, 255, $a0, 0, FisherScript_0x190092, $0757
 	person_event SPRITE_LASS, 12, 16, $6, $0, 255, 255, $0, 0, LassScript_0x190095, $0736
 ; 0x19044f
-

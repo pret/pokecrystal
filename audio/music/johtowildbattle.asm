@@ -588,5 +588,3 @@ Music_JohtoWildBattle_branch_f6055: ; f6055
 	loopchannel 4, Music_JohtoWildBattle_branch_f6055
 	endchannel
 ; f605c
-
-

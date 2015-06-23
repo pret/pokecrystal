@@ -8,5 +8,3 @@
 	page "the ring patterns"
 	next "on its body glow"
 	next "yellow.@"
-; 0x1d021e
-

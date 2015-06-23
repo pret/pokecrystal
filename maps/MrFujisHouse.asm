@@ -109,4 +109,3 @@ MrFujisHouse_MapEventHeader: ; 0x7e9ea
 	person_event SPRITE_GROWLITHE, 9, 9, $16, $0, 255, 255, $90, 0, GrowlitheScript_0x7e8da, $ffff
 	person_event SPRITE_MOLTRES, 7, 5, $16, $0, 255, 255, $b0, 0, MoltresScript_0x7e8e4, $ffff
 ; 0x7ea45
-

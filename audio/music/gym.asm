@@ -572,5 +572,3 @@ Music_Gym_branch_f4afa: ; f4afa
 	loopchannel 8, Music_Gym_branch_f4afa
 	loopchannel 0, Music_Gym_branch_f4ac7
 ; f4b0c
-
-

@@ -435,4 +435,3 @@ SaffronGym_MapEventHeader: ; 0x18a2c4
 	person_event SPRITE_YOUNGSTER, 8, 21, $a, $0, 255, 255, $92, 2, TrainerPsychicJared, $ffff
 	person_event SPRITE_GYM_GUY, 18, 13, $6, $0, 255, 255, $90, 0, SaffronGymGuyScript, $ffff
 ; 0x18a3bd
-

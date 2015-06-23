@@ -68,6 +68,3 @@ TinTowerRoof_MapEventHeader: ; 0x7726a
 	db 1
 	person_event SPRITE_HO_OH, 9, 13, $16, $0, 255, 255, $80, 0, HoOhScript_0x77244, $073c
 ; 0x77282
-
-
-

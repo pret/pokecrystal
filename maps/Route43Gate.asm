@@ -301,4 +301,3 @@ Route43Gate_MapEventHeader: ; 0x19ae5b
 	person_event SPRITE_ROCKET, 8, 6, $6, $0, 255, 255, $0, 0, RocketScript_0x19ac82, $06dc
 	person_event SPRITE_ROCKET, 8, 11, $7, $0, 255, 255, $0, 0, RocketScript_0x19ac82, $06dc
 ; 0x19ae9c
-

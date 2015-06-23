@@ -8,5 +8,3 @@
 	page "draws and gulps"
 	next "down more than ten"
 	next "ounces of blood.@"
-; 0x182836
-

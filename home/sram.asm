@@ -31,4 +31,3 @@ CloseSRAM:: ; 2fe1
 	pop af
 	ret
 ; 2fec
-

@@ -288,4 +288,3 @@ GoldenrodBillsHouse_MapEventHeader: ; 0x5509f
 	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, PokefanFScript_0x54c25, $ffff
 	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, TwinScript_0x54c39, $ffff
 ; 0x550e5
-

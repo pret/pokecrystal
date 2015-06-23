@@ -459,4 +459,3 @@ RuinsofAlphResearchCenter_MapEventHeader: ; 0x598d0
 	person_event SPRITE_SCIENTIST, 6, 9, $2, $12, 255, 255, $90, 0, ScientistScript_0x59214, $ffff
 	person_event SPRITE_SCIENTIST, 9, 6, $7, $0, 255, 255, $90, 0, ScientistScript_0x591d1, $0704
 ; 0x59916
-

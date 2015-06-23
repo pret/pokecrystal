@@ -1040,4 +1040,3 @@ TeruSama32Desc:
 
 TeruSama33Desc:
 	db   "?@"
-

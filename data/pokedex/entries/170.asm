@@ -8,5 +8,3 @@
 	page "sitive and neg-"
 	next "ative charges flo-"
 	next "wing through them.@"
-; 0x1cd1de
-

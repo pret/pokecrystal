@@ -8,5 +8,3 @@
 	page "has to chase them"
 	next "until the end of"
 	next "the world.@"
-; 0x182eaa
-

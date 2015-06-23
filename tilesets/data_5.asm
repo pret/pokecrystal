@@ -58,4 +58,3 @@ INCBIN "tilesets/16_metatiles.bin"
 Tileset16Coll: ; 0xb7da8
 INCBIN "tilesets/16_collision.bin"
 ; 0xb7ea8
-

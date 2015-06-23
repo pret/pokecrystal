@@ -8,5 +8,3 @@
 	page "#MON's body"
 	next "reflect bright"
 	next "light well.@"
-; 0x1d06e0
-

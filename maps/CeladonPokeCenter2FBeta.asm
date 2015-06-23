@@ -23,4 +23,3 @@ CeladonPokeCenter2FBeta_MapEventHeader: ; 0x72110
 	; people-events
 	db 0
 ; 0x7211b
-

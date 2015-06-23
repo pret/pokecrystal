@@ -8,5 +8,3 @@
 	page "its body to send"
 	next "electric waves"
 	next "into outer space.@"
-; 0x1b97ea
-

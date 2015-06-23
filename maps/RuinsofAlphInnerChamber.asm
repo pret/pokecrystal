@@ -143,4 +143,3 @@ RuinsofAlphInnerChamber_MapEventHeader: ; 0x59097
 	person_event SPRITE_TEACHER, 17, 18, $2, $11, 255, 255, $0, 0, TeacherScript_0x58f80, $0705
 	person_event SPRITE_GRAMPS, 23, 15, $7, $0, 255, 255, $b0, 0, GrampsScript_0x58f83, $0705
 ; 0x59173
-

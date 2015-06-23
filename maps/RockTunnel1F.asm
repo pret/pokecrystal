@@ -52,4 +52,3 @@ RockTunnel1F_MapEventHeader: ; 0x743bf
 	person_event SPRITE_POKE_BALL, 22, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x743b5, $077e
 	person_event SPRITE_POKE_BALL, 19, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x743b7, $077f
 ; 0x74407
-

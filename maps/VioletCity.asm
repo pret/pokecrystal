@@ -347,4 +347,3 @@ VioletCity_MapEventHeader: ; 0x1a8762
 	person_event SPRITE_POKE_BALL, 5, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8421, $0643
 	person_event SPRITE_POKE_BALL, 9, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8423, $0644
 ; 0x1a8820
-

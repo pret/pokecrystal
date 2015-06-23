@@ -8,5 +8,3 @@
 	page "people have made"
 	next "an effort to breed"
 	next "these #MON.@"
-; 0x1b87d7
-

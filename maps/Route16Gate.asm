@@ -90,4 +90,3 @@ Route16Gate_MapEventHeader: ; 0x734df
 	db 1
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x733ea, $ffff
 ; 0x73516
-

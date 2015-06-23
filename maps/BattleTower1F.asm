@@ -852,4 +852,3 @@ BattleTower1F_MapEventHeader: ; 0x9f3b4
 	person_event SPRITE_BUG_CATCHER, 7, 5, $2, $11, 255, 255, $90, 0, BugCatcherScript_0x9e56b, $ffff
 	person_event SPRITE_GRANNY, 7, 18, $4, $10, 255, 255, $0, 0, GrannyScript_0x9e56e, $ffff
 ; 0x9f40f
-

@@ -346,5 +346,3 @@ Music_VermilionCity_branch_eb7f5: ; eb7f5
 	note C#, 1
 	endchannel
 ; eb808
-
-

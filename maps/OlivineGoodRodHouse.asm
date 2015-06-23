@@ -107,4 +107,3 @@ OlivineGoodRodHouse_MapEventHeader: ; 0x9c8a2
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 6, $6, $0, 255, 255, $a0, 0, FishingGuruScript_0x9c71b, $ffff
 ; 0x9c8bf
-

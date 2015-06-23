@@ -184,4 +184,3 @@ CharcoalKiln_MapEventHeader: ; 0x18dff8
 	person_event SPRITE_YOUNGSTER, 7, 9, $2, $11, 255, 255, $0, 0, YoungsterScript_0x18dd3a, $06f6
 	person_event SPRITE_MOLTRES, 10, 9, $16, $22, 255, 255, $b0, 0, MoltresScript_0x18dd63, $06f5
 ; 0x18e03e
-

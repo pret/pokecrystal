@@ -8,5 +8,3 @@
 	page "in order to hide"
 	next "its fear from its"
 	next "opponent.@"
-; 0x1d074a
-

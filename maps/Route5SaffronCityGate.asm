@@ -41,4 +41,3 @@ Route5SaffronCityGate_MapEventHeader: ; 0x18b60b
 	db 1
 	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x18b5b9, $ffff
 ; 0x18b632
-

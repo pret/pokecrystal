@@ -212,4 +212,3 @@ CalcMagikarpLength: ; fbbfc
 	dwb 65410, 2
 	dwb 65510, 1 ; not used
 ; fbcd2
-

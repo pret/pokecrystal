@@ -8,5 +8,3 @@
 	page "level. No one"
 	next "knows what it's"
 	next "like underground.@"
-; 0x182c08
-

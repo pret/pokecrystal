@@ -347,4 +347,3 @@ NewBarkTown_MapEventHeader: ; 0x1a834d
 	person_event SPRITE_FISHER, 13, 16, $4, $10, 255, 255, $a0, 0, FisherScript_0x1a809b, $ffff
 	person_event SPRITE_SILVER, 6, 7, $9, $0, 255, 255, $0, 0, SilverScript_0x1a809e, $06bd
 ; 0x1a83b2
-

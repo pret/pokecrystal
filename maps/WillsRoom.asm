@@ -161,4 +161,3 @@ WillsRoom_MapEventHeader: ; 0x1806f9
 	db 1
 	person_event SPRITE_WILL, 11, 9, $6, $0, 255, 255, $80, 0, WillScript_0x1804f8, $ffff
 ; 0x18071b
-

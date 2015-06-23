@@ -519,5 +519,3 @@ Music_LavenderTown_branch_ef941: ; ef941
 	note F_, 2
 	loopchannel 0, Music_LavenderTown_branch_ef941
 ; ef9bc
-
-

@@ -316,6 +316,3 @@ OaksLab_MapEventHeader: ; 0x19ba33
 	person_event SPRITE_SCIENTIST, 13, 12, $4, $10, 255, 255, $90, 0, ScientistScript_0x19b412, $ffff
 	person_event SPRITE_SCIENTIST, 8, 5, $2, $11, 255, 255, $90, 0, ScientistScript_0x19b415, $ffff
 ; 0x19bac7
-
-
-

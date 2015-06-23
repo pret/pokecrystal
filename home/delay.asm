@@ -20,4 +20,3 @@ DelayFrames:: ; 468
 	jr nz, DelayFrames
 	ret
 ; 46f
-

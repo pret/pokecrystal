@@ -262,4 +262,3 @@ SaffronTrainStation_MapEventHeader: ; 0x18ab8d
 	person_event SPRITE_TEACHER, 15, 10, $9, $0, 255, 255, $0, 0, TeacherScript_0x18a889, $0772
 	person_event SPRITE_LASS, 14, 10, $7, $0, 255, 255, $a0, 0, LassScript_0x18a88c, $0772
 ; 0x18abe3
-

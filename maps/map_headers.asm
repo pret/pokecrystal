@@ -493,4 +493,3 @@ MapGroup26:
 	map_header Route30BerrySpeechHouse, $5, 3, ROUTE_30, MUSIC_CHERRYGROVE_CITY, 1, 1
 	map_header MrPokemonsHouse, $b, 3, ROUTE_30, MUSIC_CHERRYGROVE_CITY, 1, 1
 	map_header Route31VioletGate, $8, 6, ROUTE_31, MUSIC_ROUTE_30, 1, 1
-

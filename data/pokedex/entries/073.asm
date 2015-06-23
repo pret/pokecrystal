@@ -8,5 +8,3 @@
 	page "become like a net"
 	next "to entangle its"
 	next "prey.@"
-; 0x1b83a1
-

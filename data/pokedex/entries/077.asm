@@ -8,5 +8,3 @@
 	page "every day has made"
 	next "it a world-class"
 	next "jumper.@"
-; 0x1b855e
-

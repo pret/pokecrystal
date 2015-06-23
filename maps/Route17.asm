@@ -245,4 +245,3 @@ Route17_MapEventHeader: ; 0x1ad2c5
 	person_event SPRITE_BIKER, 57, 7, $a, $0, 255, 255, $b2, 3, TrainerBikerGlenn, $ffff
 	person_event SPRITE_BIKER, 84, 10, $9, $0, 255, 255, $b2, 4, TrainerBikerCharles, $ffff
 ; 0x1ad313
-

@@ -329,5 +329,3 @@ Music_LookBeauty_branch_eefa1: ; eefa1
 	note G_, 2
 	endchannel
 ; eefb2
-
-

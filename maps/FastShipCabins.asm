@@ -657,4 +657,3 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader: ; 0x76678
 	person_event SPRITE_POKEFAN_F, 9, 9, $9, $0, 255, 255, $82, 1, TrainerPokefanfGeorgia, $073b
 	person_event SPRITE_SUPER_NERD, 19, 5, $3, $0, 255, 255, $b2, 2, TrainerSupernerdShawn, $073a
 ; 0x76730
-

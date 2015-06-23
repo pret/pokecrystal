@@ -8,5 +8,3 @@
 	page "feelers to stab"
 	next "anything it"
 	next "touches.@"
-; 0x1b8337
-

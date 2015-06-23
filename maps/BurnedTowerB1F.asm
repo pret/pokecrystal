@@ -279,6 +279,3 @@ BurnedTowerB1F_MapEventHeader: ; 0x1863de
 	person_event SPRITE_POKE_BALL, 8, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x186231, $0657
 	person_event SPRITE_SUPER_NERD, 16, 14, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x186212, $07aa
 ; 0x18647f
-
-
-

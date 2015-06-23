@@ -8,5 +8,3 @@
 	page "much water as it"
 	next "can to match the"
 	next "opponent's size.@"
-; 0x1d0821
-

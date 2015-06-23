@@ -8,5 +8,3 @@
 	page "stored in the"
 	next "seeds on its back"
 	next "in order to grow.@"
-; 0x181702
-

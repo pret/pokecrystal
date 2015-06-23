@@ -25,4 +25,3 @@ Route6UndergroundEntrance_MapEventHeader: ; 0x192830
 	; people-events
 	db 0
 ; 0x192845
-

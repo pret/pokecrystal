@@ -67,4 +67,3 @@ VioletNicknameSpeechHouse_MapEventHeader: ; 0x69490
 	person_event SPRITE_LASS, 8, 10, $7, $0, 255, 255, $a0, 0, LassScript_0x693ec, $ffff
 	person_event SPRITE_BIRD, 6, 9, $5, $1, 255, 255, $b0, 0, BirdScript_0x693ef, $ffff
 ; 0x694c7
-

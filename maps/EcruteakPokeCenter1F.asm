@@ -244,4 +244,3 @@ EcruteakPokeCenter1F_MapEventHeader: ; 0x992dc
 	person_event SPRITE_GYM_GUY, 5, 11, $6, $0, 255, 255, $a0, 0, GymGuyScript_0x98ec2, $ffff
 	person_event SPRITE_BILL, 11, 4, $9, $0, 255, 255, $0, 0, ObjectEvent, $0713
 ; 0x99332
-

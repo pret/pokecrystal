@@ -474,4 +474,3 @@ TitleScreenPalettes:
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-

@@ -67,4 +67,3 @@ WhirlIslandLugiaChamber_MapEventHeader: ; 0x18c53a
 	db 1
 	person_event SPRITE_LUGIA, 9, 13, $16, $0, 255, 255, $90, 0, LugiaScript_0x18c518, $073d
 ; 0x18c552
-

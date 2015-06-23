@@ -82,4 +82,3 @@ RandomRange:: ; 2fb1
 	pop bc
 	ret
 ; 2fcb
-

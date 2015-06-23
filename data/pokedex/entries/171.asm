@@ -8,5 +8,3 @@
 	page "changed from a"
 	next "dorsal fin, to"
 	next "lure prey.@"
-; 0x1cd243
-

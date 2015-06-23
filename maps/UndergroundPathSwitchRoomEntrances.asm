@@ -1134,4 +1134,3 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader: ; 0x7d689
 	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7f, $0674
 	person_event SPRITE_SILVER, 7, 27, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c1
 ; 0x7d779
-

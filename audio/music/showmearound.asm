@@ -360,5 +360,3 @@ Music_ShowMeAround_branch_edd5e: ; edd5e
 	note F#, 2
 	endchannel
 ; edd6d
-
-

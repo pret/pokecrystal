@@ -25,4 +25,3 @@ RuinsofAlphKabutoWordRoom_MapEventHeader: ; 0x59b57
 	; people-events
 	db 0
 ; 0x59b6c
-

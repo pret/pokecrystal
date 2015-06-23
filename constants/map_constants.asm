@@ -1805,4 +1805,3 @@ OBJECT_30 EQU $1e
 OBJECT_31 EQU $1f
 OBJECT_32 EQU $20
 ; 33-39 are not used
-

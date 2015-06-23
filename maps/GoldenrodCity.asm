@@ -682,4 +682,3 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 	person_event SPRITE_ROCKET, 14, 35, $8, $0, 255, 255, $0, 0, RocketScript_0x198a38, $06ce
 	person_event SPRITE_POKEFAN_M, 26, 16, $3, $0, 255, 255, $80, 0, PokefanMScript_0x198909, $076a
 ; 0x199321
-

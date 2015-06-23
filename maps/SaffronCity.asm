@@ -343,4 +343,3 @@ SaffronCity_MapEventHeader: ; 0x19989c
 	person_event SPRITE_YOUNGSTER, 26, 39, $2, $11, 255, 255, $80, 0, YoungsterScript_0x19936f, $ffff
 	person_event SPRITE_LASS, 12, 23, $3, $0, 255, 255, $a0, 0, LassScript_0x199372, $ffff
 ; 0x19997d
-

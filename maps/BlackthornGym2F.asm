@@ -208,4 +208,3 @@ BlackthornGym2F_MapEventHeader: ; 0x1958c0
 	person_event SPRITE_BOULDER, 5, 10, $19, $0, 255, 255, $0, 0, BoulderScript_0x19575e, $ffff
 	person_event SPRITE_BOULDER, 18, 12, $19, $0, 255, 255, $0, 0, BoulderScript_0x19575e, $ffff
 ; 0x195947
-

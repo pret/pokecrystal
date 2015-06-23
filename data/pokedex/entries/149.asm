@@ -8,5 +8,3 @@
 	page "island where these"
 	next "gather. Only they"
 	next "live there.@"
-; 0x1cc8ae
-

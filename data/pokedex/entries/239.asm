@@ -8,5 +8,3 @@
 	page "flickers bluish-"
 	next "white when it is"
 	next "charging energy.@"
-; 0x1d140e
-

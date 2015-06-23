@@ -614,4 +614,3 @@ StandingYoungsterSprite: ; 14994
 	db $3 * $40, BANK(StandingYoungsterSpriteGFX)
 	db STANDING_SPRITE, PAL_OW_BLUE
 ; 1499a
-

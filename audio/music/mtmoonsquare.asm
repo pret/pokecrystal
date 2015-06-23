@@ -108,5 +108,3 @@ Music_MtMoonSquare_branch_f489b: ; f489b
 	loopchannel 2, Music_MtMoonSquare_branch_f489b
 	loopchannel 0, Music_MtMoonSquare_branch_f4862
 ; f48ae
-
-

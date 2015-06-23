@@ -450,4 +450,3 @@ OlivinePort_MapEventHeader: ; 0x74d18
 	person_event SPRITE_YOUNGSTER, 19, 8, $6, $0, 255, 255, $0, 0, YoungsterScript_0x74a17, $0738
 	person_event SPRITE_COOLTRAINER_F, 19, 15, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x74a22, $0738
 ; 0x74d90
-

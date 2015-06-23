@@ -1100,4 +1100,3 @@ TeamRocketBaseB2F_MapEventHeader: ; 0x6de44
 	person_event SPRITE_ROCKET, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, $06da
 	person_event SPRITE_POKE_BALL, 14, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6d20d, $066c
 ; 0x6dfd4
-

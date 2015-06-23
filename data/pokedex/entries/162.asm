@@ -8,5 +8,3 @@
 	page "deeper the nests"
 	next "go, the more maze-"
 	next "like they become.@"
-; 0x1cce58
-

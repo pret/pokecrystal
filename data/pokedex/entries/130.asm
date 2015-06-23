@@ -8,5 +8,3 @@
 	page "burning down any"
 	next "place it travels"
 	next "through.@"
-; 0x1cc0cd
-

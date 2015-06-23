@@ -83,4 +83,3 @@ DarkCaveBlackthornEntrance_MapEventHeader: ; 0x18c83d
 	person_event SPRITE_POKE_BALL, 28, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c73b, $06a1
 	person_event SPRITE_POKE_BALL, 26, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c73d, $06a2
 ; 0x18c874
-

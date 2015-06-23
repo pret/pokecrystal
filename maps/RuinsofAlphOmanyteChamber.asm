@@ -197,4 +197,3 @@ RuinsofAlphOmanyteChamber_MapEventHeader: ; 0x58d63
 	; people-events
 	db 0
 ; 0x58da0
-

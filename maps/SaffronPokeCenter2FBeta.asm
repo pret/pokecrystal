@@ -23,4 +23,3 @@ SaffronPokeCenter2FBeta_MapEventHeader: ; 0x18a76d
 	; people-events
 	db 0
 ; 0x18a778
-

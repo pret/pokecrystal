@@ -439,4 +439,3 @@ SproutTower3F_MapEventHeader: ; 0x184f8e
 	person_event SPRITE_POKE_BALL, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, $064a
 	person_event SPRITE_SILVER, 8, 14, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c4
 ; 0x18501a
-

@@ -145,5 +145,3 @@ Music_MainMenu_branch_f79a5: ; f79a5
 	note D_, 1
 	loopchannel 0, Music_MainMenu_branch_f79a5
 ; f79b8
-
-

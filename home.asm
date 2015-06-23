@@ -2266,4 +2266,3 @@ Function3f9f:: ; 3f9f
 	jr nz, .asm_3fa2
 	ret
 ; 3fb5
-

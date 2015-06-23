@@ -8,5 +8,3 @@
 	page "spouting flames"
 	next "hotter than a"
 	next "volcano's magma.@"
-; 0x1d1642
-

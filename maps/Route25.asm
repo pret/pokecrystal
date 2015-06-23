@@ -622,6 +622,3 @@ Route25_MapEventHeader: ; 0x19f58f
 	person_event SPRITE_COOLTRAINER_M, 12, 41, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x19efac, $ffff
 	person_event SPRITE_POKE_BALL, 8, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x19efe3, $078b
 ; 0x19f643
-
-
-

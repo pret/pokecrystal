@@ -231,4 +231,3 @@ Route35Goldenrodgate_MapEventHeader: ; 0x6a148
 	person_event SPRITE_POKEFAN_F, 8, 10, $4, $10, 255, 255, $90, 0, PokefanFScript_0x69dc6, $ffff
 	person_event SPRITE_FISHER, 6, 7, $3, $0, 255, 255, $a0, 0, FisherScript_0x69dda, $ffff
 ; 0x6a189
-

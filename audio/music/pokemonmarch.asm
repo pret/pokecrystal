@@ -467,5 +467,3 @@ Music_PokemonMarch_branch_f704c: ; f704c
 	note C#, 2
 	endchannel
 ; f7055
-
-

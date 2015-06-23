@@ -309,5 +309,3 @@ Music_DancingHall_branch_efae3: ; efae3
 	note D_, 1
 	loopchannel 0, Music_DancingHall_branch_efae3
 ; efb3e
-
-

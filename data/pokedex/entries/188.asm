@@ -8,5 +8,3 @@
 	page "hides in the shade"
 	next "of a tree to avoid"
 	next "getting wet.@"
-; 0x1cd998
-

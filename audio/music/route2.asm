@@ -526,5 +526,3 @@ Music_Route2_branch_edb17: ; edb17
 	note D#, 4
 	loopchannel 0, Music_Route2_branch_edaef
 ; edb29
-
-

@@ -73,4 +73,3 @@ CheckItem:: ; 2f79
 	pop hl
 	ret
 ; 2f8c
-

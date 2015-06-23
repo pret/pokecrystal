@@ -445,4 +445,3 @@ Route42_MapEventHeader: ; 0x1a95c9
 	person_event SPRITE_POKE_BALL, 12, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a934b, $06b4
 	person_event SPRITE_SUICUNE, 20, 30, $1, $0, 255, 255, $90, 0, ObjectEvent, $07af
 ; 0x1a967e
-

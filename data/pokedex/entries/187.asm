@@ -8,5 +8,3 @@
 	page "It may even float"
 	next "all the way to the"
 	next "next town.@"
-; 0x1cd928
-

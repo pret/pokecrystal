@@ -8,5 +8,3 @@
 	page "its momentum to"
 	next "swing from one"
 	next "branch to another.@"
-; 0x1cda87
-

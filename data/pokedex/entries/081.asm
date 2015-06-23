@@ -8,5 +8,3 @@
 	page "of its body cause"
 	next "it to become a"
 	next "strong magnet.@"
-; 0x1b870a
-

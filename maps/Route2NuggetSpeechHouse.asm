@@ -72,4 +72,3 @@ Route2NuggetSpeechHouse_MapEventHeader: ; 0x9b933
 	db 1
 	person_event SPRITE_FISHER, 8, 6, $4, $20, 255, 255, $90, 0, FisherScript_0x9b847, $ffff
 ; 0x9b950
-

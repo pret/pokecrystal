@@ -8,5 +8,3 @@
 	page "in order to gain"
 	next "the edge in every"
 	next "battle.@"
-; 0x1b8065
-

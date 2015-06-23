@@ -964,6 +964,3 @@ Route36NationalParkgate_MapEventHeader: ; 0x6b9ac
 	person_event SPRITE_YOUNGSTER, 10, 10, $7, $0, 255, 255, $90, 0, YoungsterScript_0x6adba, $0729
 	person_event SPRITE_OFFICER, 6, 7, $6, $0, 255, 255, $a0, 0, OfficerScript_0x6acf4, $0748
 ; 0x6ba67
-
-
-

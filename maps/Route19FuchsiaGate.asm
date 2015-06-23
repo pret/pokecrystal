@@ -68,4 +68,3 @@ Route19FuchsiaGate_MapEventHeader: ; 0x1ab4cd
 	db 1
 	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x1ab3f6, $ffff
 ; 0x1ab4f4
-

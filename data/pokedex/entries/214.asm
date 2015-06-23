@@ -8,5 +8,3 @@
 	page "nd an object that"
 	next "is 100 times its"
 	next "own weight.@"
-; 0x1d097a
-

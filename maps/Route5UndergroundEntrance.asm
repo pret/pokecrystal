@@ -39,4 +39,3 @@ Route5UndergroundEntrance_MapEventHeader: ; 0x18b595
 	db 1
 	person_event SPRITE_TEACHER, 6, 6, $2, $11, 255, 255, $a0, 0, TeacherScript_0x18b555, $ffff
 ; 0x18b5b7
-

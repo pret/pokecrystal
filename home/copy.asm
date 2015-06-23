@@ -416,4 +416,3 @@ Copy1bpp:: ; fa4
 	pop hl
 	jp FarCopyBytesDouble
 ; fb6
-

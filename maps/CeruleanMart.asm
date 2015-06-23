@@ -67,4 +67,3 @@ CeruleanMart_MapEventHeader: ; 0x188b9b
 	person_event SPRITE_COOLTRAINER_M, 10, 5, $6, $0, 255, 255, $a0, 0, CooltrainerMScript_0x188ac7, $ffff
 	person_event SPRITE_COOLTRAINER_F, 6, 11, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x188aca, $ffff
 ; 0x188bd2
-

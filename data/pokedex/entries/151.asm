@@ -8,5 +8,3 @@
 	page "research to see if"
 	next "it is the ancestor"
 	next "of all #MON.@"
-; 0x1cc988
-

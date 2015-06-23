@@ -780,5 +780,3 @@ Music_VioletCity_branch_f037a: ; f037a
 	note D#, 2
 	endchannel
 ; f0386
-
-

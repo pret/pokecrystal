@@ -8,5 +8,3 @@
 	page "around by bouncing"
 	next "on its soft,"
 	next "tender body.@"
-; 0x1cd396
-

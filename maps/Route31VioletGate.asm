@@ -50,6 +50,3 @@ Route31VioletGate_MapEventHeader: ; 0x19768c
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x197634, $ffff
 	person_event SPRITE_COOLTRAINER_F, 6, 5, $3, $0, 255, 255, $90, 0, CooltrainerFScript_0x197637, $ffff
 ; 0x1976c0
-
-
-

@@ -47,4 +47,3 @@ GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 	db 1
 	person_event SPRITE_GENTLEMAN, 8, 6, $6, $2, 255, 255, $0, 0, GentlemanScript_0x5577c, $ffff
 ; 0x5597f
-

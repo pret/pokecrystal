@@ -8,5 +8,3 @@
 	page "mysterious powers"
 	next "to drive away the"
 	next "enemy.@"
-; 0x1d04b0
-

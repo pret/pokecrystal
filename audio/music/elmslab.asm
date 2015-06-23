@@ -540,5 +540,3 @@ Music_ElmsLab_branch_ea2b9: ; ea2b9
 	note G_, 4
 	loopchannel 0, Music_ElmsLab_branch_ea2b9
 ; ea2be
-
-

@@ -131,4 +131,3 @@ GetFarWRAMWord:: ; 308d
 	ld [rSVBK], a
 	ret
 ; 309d
-

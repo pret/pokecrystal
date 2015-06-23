@@ -108,4 +108,3 @@ CeladonMansion1F_MapEventHeader: ; 0x714cc
 	person_event SPRITE_CLEFAIRY, 8, 7, $16, $0, 255, 255, $0, 0, ClefairyScript_0x713fc, $ffff
 	person_event SPRITE_GROWLITHE, 8, 8, $16, $2, 255, 255, $90, 0, GrowlitheScript_0x71406, $ffff
 ; 0x7152e
-

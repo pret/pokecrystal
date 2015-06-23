@@ -8,5 +8,3 @@
 	page "flight, a new set"
 	next "of wings grew on"
 	next "its hind legs.@"
-; 0x1cd165
-

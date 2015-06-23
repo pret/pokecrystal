@@ -197,4 +197,3 @@ RuinsofAlphHoOhChamber_MapEventHeader: ; 0x586e1
 	; people-events
 	db 0
 ; 0x5871e
-

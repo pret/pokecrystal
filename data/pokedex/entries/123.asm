@@ -8,5 +8,3 @@
 	page "its opponent does"
 	next "not even know what"
 	next "knocked it down.@"
-; 0x1b98c5
-

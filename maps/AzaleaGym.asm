@@ -502,6 +502,3 @@ AzaleaGym_MapEventHeader: ; 0x18f3cc
 	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay2, $ffff
 	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, AzaleaGymGuyScript, $ffff
 ; 0x18f441
-
-
-

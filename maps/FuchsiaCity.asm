@@ -183,4 +183,3 @@ FuchsiaCity_MapEventHeader: ; 0x194d67
 	person_event SPRITE_TEACHER, 18, 20, $2, $11, 255, 255, $80, 0, TeacherScript_0x194b28, $ffff
 	person_event SPRITE_FRUIT_TREE, 5, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194b43, $ffff
 ; 0x194e00
-

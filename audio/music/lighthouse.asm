@@ -312,5 +312,3 @@ Music_Lighthouse_branch_ee6b1: ; ee6b1
 	note A_, 2
 	loopchannel 0, Music_Lighthouse_branch_ee6b1
 ; ee6c5
-
-

@@ -103,4 +103,3 @@ VermilionPokeCenter1F_MapEventHeader: ; 0x191791
 	person_event SPRITE_SAILOR, 9, 10, $4, $10, 255, 255, $90, 0, SailorScript_0x19161a, $ffff
 	person_event SPRITE_BUG_CATCHER, 9, 5, $3, $0, 255, 255, $a0, 0, BugCatcherScript_0x19161d, $ffff
 ; 0x1917da
-

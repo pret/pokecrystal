@@ -8,5 +8,3 @@
 	page "avoid the sun."
 	next "It grows by bath-"
 	next "ing in moonlight.@"
-; 0x1828a6
-

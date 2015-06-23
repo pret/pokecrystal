@@ -8,5 +8,3 @@
 	page "anyone. It has a"
 	next "very strong com-"
 	next "petitive spirit.@"
-; 0x1d12c0
-

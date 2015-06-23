@@ -8,5 +8,3 @@
 	page "it spins its arms"
 	next "just before making"
 	next "contact.@"
-; 0x1b9210
-

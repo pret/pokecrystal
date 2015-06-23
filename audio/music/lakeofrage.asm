@@ -325,5 +325,3 @@ Music_LakeOfRage_branch_ee83b: ; ee83b
 	note D_, 1
 	loopchannel 0, Music_LakeOfRage_branch_ee83b
 ; ee852
-
-

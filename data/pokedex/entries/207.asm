@@ -8,5 +8,3 @@
 	page "gliding, it hops"
 	next "along the ground"
 	next "back to its nest.@"
-; 0x1d067c
-

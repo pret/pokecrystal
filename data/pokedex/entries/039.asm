@@ -8,5 +8,3 @@
 	page "Its gentle song"
 	next "puts anyone who"
 	next "hears it to sleep.@"
-; 0x1826e9
-

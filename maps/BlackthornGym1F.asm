@@ -497,4 +497,3 @@ BlackthornGym1F_MapEventHeader: ; 0x1956ae
 	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, $ffff
 	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, $ffff
 ; 0x195722
-

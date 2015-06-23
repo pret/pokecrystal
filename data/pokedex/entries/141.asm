@@ -8,5 +8,3 @@
 	page "compactly folding"
 	next "up its razor-sharp"
 	next "sickles.@"
-; 0x1cc576
-

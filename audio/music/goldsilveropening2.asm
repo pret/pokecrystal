@@ -220,5 +220,3 @@ Music_GoldSilverOpening2_branch_f73f8: ; f73f8
 	note C_, 16
 	endchannel
 ; f7411
-
-

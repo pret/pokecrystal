@@ -59,4 +59,3 @@ FuchsiaMart_MapEventHeader: ; 0x195d6e
 	person_event SPRITE_FISHER, 6, 7, $8, $0, 255, 255, $80, 0, FisherScript_0x195cef, $ffff
 	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x195cf2, $ffff
 ; 0x195da5
-

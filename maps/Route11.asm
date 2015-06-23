@@ -252,4 +252,3 @@ Route11_MapEventHeader: ; 0x68242
 	person_event SPRITE_YOUNGSTER, 10, 12, $a, $0, 255, 255, $92, 3, TrainerPsychicFidel, $ffff
 	person_event SPRITE_FRUIT_TREE, 6, 36, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x68055, $ffff
 ; 0x68293
-

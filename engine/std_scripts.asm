@@ -2365,4 +2365,3 @@ MovementData_0xbcea1: ; bcea1
 	turn_head_up
 	step_end
 ; bcea5
-

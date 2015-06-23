@@ -162,4 +162,3 @@ CinnabarIsland_MapEventHeader: ; 0x1accf4
 	db 1
 	person_event SPRITE_BLUE, 10, 13, $3, $0, 255, 255, $0, 0, BlueScript_0x1ac9b0, $0775
 ; 0x1acd20
-

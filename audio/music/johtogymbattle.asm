@@ -1030,5 +1030,3 @@ Music_JohtoGymBattle_branch_ea9b8: ; ea9b8
 	note D#, 2
 	endchannel
 ; ea9c1
-
-

@@ -573,4 +573,3 @@ Route41_MapEventHeader: ; 0x1a6f12
 	person_event SPRITE_SWIMMER_GIRL, 32, 48, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfKara, $ffff
 	person_event SPRITE_SWIMMER_GIRL, 54, 13, $a, $0, 255, 255, $a2, 2, TrainerSwimmerfWendy, $ffff
 ; 0x1a6fb3
-

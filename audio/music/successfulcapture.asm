@@ -24,5 +24,3 @@ Music_SuccessfulCapture_Ch3: ; f4626
 	notetype $c, $25
 	jumpchannel Music_SuccessfulCapture_branch_f45cf
 ; f462c
-
-

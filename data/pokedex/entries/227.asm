@@ -8,5 +8,3 @@
 	page "that people once"
 	next "used the feathers"
 	next "as swords.@"
-; 0x1d0eff
-

@@ -8,5 +8,3 @@
 	page "hardest object"
 	next "will melt into"
 	next "nothing.@"
-; 0x1b82d1
-

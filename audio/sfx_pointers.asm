@@ -210,4 +210,3 @@
 	dbw BANK(Sfx_4NoteDitty), Sfx_4NoteDitty
 	dbw BANK(Sfx_Twinkle), Sfx_Twinkle
 ; e94e9
-

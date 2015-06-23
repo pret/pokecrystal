@@ -305,4 +305,3 @@ CeladonCity_MapEventHeader: ; 0x1aa497
 	person_event SPRITE_TEACHER, 18, 10, $2, $22, 255, 255, $a0, 0, TeacherScript_0x1a9f5f, $ffff
 	person_event SPRITE_LASS, 26, 11, $4, $20, 255, 255, $80, 0, LassScript_0x1a9f62, $ffff
 ; 0x1aa567
-

@@ -8,5 +8,3 @@
 	page "day will pass"
 	next "before it will"
 	next "move again.@"
-; 0x1cd551
-

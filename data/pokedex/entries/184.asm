@@ -8,5 +8,3 @@
 	page "camouflage itself"
 	next "when it's in the"
 	next "water.@"
-; 0x1cd7d9
-

@@ -8,5 +8,3 @@
 	page "SUDOWOODO, not a"
 	next "tree. It hides"
 	next "from the rain.@"
-; 0x1cd84b
-

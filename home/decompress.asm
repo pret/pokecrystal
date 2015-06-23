@@ -341,4 +341,3 @@ LZ_LONG_HI   EQU %00000011
 	inc hl
 	jp .Main
 ; c2f
-

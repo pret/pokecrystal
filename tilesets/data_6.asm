@@ -73,4 +73,3 @@ Tileset35Coll: ; 0xdfc90
 Tileset36Coll: ; 0xdfc90
 INCBIN "tilesets/36_collision.bin"
 ; 0xdfd90
-

@@ -8,5 +8,3 @@
 	page "nutrients by"
 	next "swallowing a"
 	next "mouthful of sand.@"
-; 0x1b8e45
-

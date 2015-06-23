@@ -8,5 +8,3 @@
 	page "then sweeps across"
 	next "the land, shooting"
 	next "off electricity.@"
-; 0x1d15dd
-

@@ -8,5 +8,3 @@
 	page "MAROWAK. It gets"
 	next "its bones from"
 	next "those graves.@"
-; 0x1b913f
-

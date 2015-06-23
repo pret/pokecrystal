@@ -2586,4 +2586,3 @@ Function41a58: ; 41a58 (10:5a58)
 	pop af
 	ld [UnownLetter], a
 	ret
-

@@ -159,4 +159,3 @@ CianwoodPokeCenter1F_MapEventHeader: ; 0x9df4e
 	person_event SPRITE_GYM_GUY, 7, 9, $6, $0, 255, 255, $80, 0, CianwoodGymGuyScript, $ffff
 	person_event SPRITE_SUPER_NERD, 10, 12, $5, $1, 255, 255, $90, 0, SuperNerdScript_0x9dbea, $ffff
 ; 0x9df97
-

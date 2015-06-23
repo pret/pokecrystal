@@ -8,5 +8,3 @@
 	page "against the cold."
 	next "It loves iceberg-"
 	next "filled oceans.@"
-; 0x1b8934
-

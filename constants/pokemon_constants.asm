@@ -254,4 +254,3 @@ const_value set 1
 	const CELEBI
 
 EGG EQU 253
-

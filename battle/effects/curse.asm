@@ -95,4 +95,3 @@ BattleCommand54: ; 37588
 	ld hl, WontRiseAnymoreText
 	jp StdBattleTextBox
 ; 37618
-

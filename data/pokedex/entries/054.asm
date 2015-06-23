@@ -8,5 +8,3 @@
 	page "its sleeping brain"
 	next "cells happen to"
 	next "wake.@"
-; 0x182d55
-

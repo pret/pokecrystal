@@ -796,5 +796,3 @@ Music_ViridianCity_branch_f434b: ; f434b
 	note F#, 2
 	endchannel
 ; f435b
-
-

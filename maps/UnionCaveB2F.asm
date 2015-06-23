@@ -228,4 +228,3 @@ UnionCaveB2F_MapEventHeader: ; 0x5a57a
 	person_event SPRITE_POKE_BALL, 23, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36c, $0661
 	person_event SPRITE_SURF, 35, 15, $24, $11, 255, 255, $90, 0, SurfScript_0x5a31f, $0760
 ; 0x5a5d3
-

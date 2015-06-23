@@ -789,5 +789,3 @@ Music_ChampionBattle_branch_ead8e: ; ead8e
 	note E_, 2
 	endchannel
 ; ead99
-
-

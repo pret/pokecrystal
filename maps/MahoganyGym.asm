@@ -513,4 +513,3 @@ MahoganyGym_MapEventHeader: ; 0x19a2df
 	person_event SPRITE_ROCKER, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, $ffff
 	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, $ffff
 ; 0x19a354
-

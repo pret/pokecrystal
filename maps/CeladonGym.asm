@@ -400,4 +400,3 @@ CeladonGym_MapEventHeader: ; 0x72fdf
 	person_event SPRITE_TWIN, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe1, $ffff
 	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe2, $ffff
 ; 0x73047
-

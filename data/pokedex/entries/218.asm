@@ -8,5 +8,3 @@
 	page "than normal. If it"
 	next "cools off, its"
 	next "skin hardens.@"
-; 0x1d0b21
-

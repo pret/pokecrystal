@@ -95,4 +95,3 @@ CherrygrovePokeCenter1F_MapEventHeader: ; 0x196a96
 	person_event SPRITE_GENTLEMAN, 10, 12, $7, $0, 255, 255, $0, 0, GentlemanScript_0x196973, $ffff
 	person_event SPRITE_TEACHER, 10, 5, $9, $0, 255, 255, $a0, 0, TeacherScript_0x196976, $ffff
 ; 0x196adf
-

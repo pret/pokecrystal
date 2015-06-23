@@ -100,4 +100,3 @@ Route40BattleTowerGate_MapEventHeader: ; 0x9f81e
 	person_event SPRITE_ROCKER, 7, 7, $3, $0, 255, 255, $a0, 0, RockerScript_0x9f669, $07cf
 	person_event SPRITE_TWIN, 9, 11, $4, $10, 255, 255, $80, 0, TwinScript_0x9f66c, $ffff
 ; 0x9f852
-

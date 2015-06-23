@@ -876,4 +876,3 @@ TeamRocketBaseB1F_MapEventHeader: ; 0x6cdeb
 	person_event SPRITE_POKE_BALL, 19, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac6, $066a
 	person_event SPRITE_POKE_BALL, 16, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac8, $066b
 ; 0x6cf70
-

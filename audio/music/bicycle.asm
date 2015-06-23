@@ -519,5 +519,3 @@ Music_Bicycle_branch_ee34c: ; ee34c
 	note F_, 2
 	loopchannel 0, Music_Bicycle_branch_ee34b
 ; ee35e
-
-

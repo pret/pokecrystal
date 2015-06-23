@@ -172,4 +172,3 @@ Route34IlexForestGate_MapEventHeader: ; 0x62f20
 	person_event SPRITE_LASS, 8, 7, $4, $10, 255, 255, $a0, 0, LassScript_0x62d94, $06eb
 	person_event SPRITE_TEACHER, 11, 9, $7, $0, 255, 255, $90, 0, TeacherScript_0x62d63, $06ec
 ; 0x62f76
-

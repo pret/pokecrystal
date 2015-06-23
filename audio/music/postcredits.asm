@@ -265,4 +265,3 @@ Music_PostCredits_branch_cfe5a: ; cfe5a
 	note F_, 2
 	loopchannel 0, Music_PostCredits_branch_cfe5a
 ; cff04
-

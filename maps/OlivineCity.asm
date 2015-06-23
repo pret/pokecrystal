@@ -360,4 +360,3 @@ OlivineCity_MapEventHeader: ; 0x1a8cce
 	person_event SPRITE_SAILOR, 25, 21, $2, $11, 255, 255, $0, 0, SailorScript_0x1a88ba, $ffff
 	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c3
 ; 0x1a8d72
-

@@ -8,5 +8,3 @@
 	page "It uses them to"
 	next "try to identify"
 	next "unknown objects.@"
-; 0x1d1398
-

@@ -56,4 +56,3 @@ CeladonMansionRoof_MapEventHeader: ; 0x71ad4
 	db 1
 	person_event SPRITE_FISHER, 9, 11, $4, $10, 255, 255, $90, 0, FisherScript_0x71a39, $ffff
 ; 0x71afb
-

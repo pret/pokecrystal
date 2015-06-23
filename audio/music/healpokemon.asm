@@ -52,5 +52,3 @@ Music_HealPokemon_Ch3: ; f06d4
 	note __, 2
 	endchannel
 ; f06e1
-
-

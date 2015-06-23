@@ -59,4 +59,3 @@ SaffronMart_MapEventHeader: ; 0x18a444
 	person_event SPRITE_COOLTRAINER_M, 6, 11, $3, $0, 255, 255, $b0, 0, CooltrainerMScript_0x18a3c6, $ffff
 	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $1, 255, 255, $a0, 0, CooltrainerFScript_0x18a3c9, $ffff
 ; 0x18a47b
-

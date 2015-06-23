@@ -221,4 +221,3 @@ Function270:: ; 270
 	call CloseSRAM
 	ret
 ; 283
-

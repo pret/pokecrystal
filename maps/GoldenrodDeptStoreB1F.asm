@@ -149,4 +149,3 @@ GoldenrodDeptStoreB1F_MapEventHeader: ; 0x7d8ce
 	person_event SPRITE_BLACK_BELT, 17, 10, $5, $1, 255, 255, $90, 0, BlackBeltScript_0x7d7b6, $ffff
 	person_event SPRITE_MACHOP, 11, 11, $16, $0, 255, 255, $90, 0, MachopScript_0x7d7b9, $ffff
 ; 0x7d94b
-

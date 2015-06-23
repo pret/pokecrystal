@@ -40,4 +40,3 @@ MoveDeletersHouse_MapEventHeader: ; 0x195cbf
 	db 1
 	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x195cb4, $ffff
 ; 0x195ce6
-

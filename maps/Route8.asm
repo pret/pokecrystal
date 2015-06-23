@@ -301,4 +301,3 @@ Route8_MapEventHeader: ; 0x6c2e1
 	person_event SPRITE_SUPER_NERD, 16, 35, $a, $0, 255, 255, $b2, 4, TrainerSupernerdTom, $ffff
 	person_event SPRITE_FRUIT_TREE, 9, 37, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x6c06c, $ffff
 ; 0x6c349
-

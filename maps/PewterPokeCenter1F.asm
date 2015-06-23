@@ -93,4 +93,3 @@ PewterPokeCenter1F_MapEventHeader: ; 0x1a2ff4
 	person_event SPRITE_BUG_CATCHER, 7, 6, $6, $0, 255, 255, $90, 0, BugCatcherScript_0x1a2ef7, $ffff
 	person_event SPRITE_POKEFAN_M, 6, 11, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1a2efa, $ffff
 ; 0x1a304a
-

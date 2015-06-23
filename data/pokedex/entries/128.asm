@@ -8,5 +8,3 @@
 	page "bers of their herd"
 	next "in order to prove"
 	next "their strength.@"
-; 0x1b9adb
-

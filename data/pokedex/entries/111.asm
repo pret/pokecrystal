@@ -8,5 +8,3 @@
 	page "starts rushing, it"
 	next "forgets why it"
 	next "started.@"
-; 0x1b93c5
-

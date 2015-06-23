@@ -827,5 +827,3 @@ Function548a: ; 548a
 	ld [hl], $9
 	ret
 ; 54b8
-
-

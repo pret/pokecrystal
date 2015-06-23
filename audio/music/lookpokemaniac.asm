@@ -162,5 +162,3 @@ Music_LookPokemaniac_branch_ebe70: ; ebe70
 	note __, 1
 	endchannel
 ; ebeab
-
-

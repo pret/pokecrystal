@@ -139,4 +139,3 @@ CeladonMansionRoofHouse_MapEventHeader: ; 0x71e03
 	db 1
 	person_event SPRITE_PHARMACIST, 6, 7, $6, $20, 255, 255, $a0, 0, PharmacistScript_0x71afd, $ffff
 ; 0x71e20
-

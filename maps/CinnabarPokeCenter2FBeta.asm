@@ -23,4 +23,3 @@ CinnabarPokeCenter2FBeta_MapEventHeader: ; 0x1ab3e9
 	; people-events
 	db 0
 ; 0x1ab3f4
-

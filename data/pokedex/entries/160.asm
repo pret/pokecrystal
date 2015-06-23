@@ -8,5 +8,3 @@
 	page "enable it to move"
 	next "quickly, even on"
 	next "the ground.@"
-; 0x1ccd6b
-

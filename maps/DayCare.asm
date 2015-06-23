@@ -194,5 +194,3 @@ DayCare_MapEventHeader: ; 0x63250
 	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x62f8f, $06e5
 	person_event SPRITE_GRANNY, 7, 9, $8, $0, 255, 255, $80, 0, GrannyScript_0x62fc3, $ffff
 ; 0x6328e
-
-

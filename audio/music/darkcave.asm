@@ -490,5 +490,3 @@ Music_DarkCave_branch_ea4ee: ; ea4ee
 	note C#, 2
 	loopchannel 0, Music_DarkCave_branch_ea4ee
 ; ea50d
-
-

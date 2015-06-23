@@ -8,5 +8,3 @@
 	page "reaches it and"
 	next "remains virtually"
 	next "motionless there.@"
-; 0x1d0604
-

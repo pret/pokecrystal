@@ -25,4 +25,3 @@ RuinsofAlphHoOhWordRoom_MapEventHeader: ; 0x59b40
 	; people-events
 	db 0
 ; 0x59b55
-

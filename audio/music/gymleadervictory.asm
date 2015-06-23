@@ -428,5 +428,3 @@ Music_GymLeaderVictory_branch_f480b: ; f480b
 	loopchannel 3, Music_GymLeaderVictory_branch_f480b
 	endchannel
 ; f4815
-
-

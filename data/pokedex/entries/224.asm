@@ -8,5 +8,3 @@
 	page "steals the nesting"
 	next "holes of others to"
 	next "sleep in them.@"
-; 0x1d0db1
-

@@ -8,5 +8,3 @@
 	page "elastic legs to"
 	next "execute every"
 	next "known kick.@"
-; 0x1b91a4
-

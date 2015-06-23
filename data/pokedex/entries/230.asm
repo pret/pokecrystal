@@ -8,5 +8,3 @@
 	page "at which no other"
 	next "life forms can"
 	next "survive.@"
-; 0x1d1038
-

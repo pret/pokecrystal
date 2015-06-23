@@ -82,4 +82,3 @@ MahoganyRedGyaradosSpeechHouse_MapEventHeader: ; 0x199a72
 	person_event SPRITE_BLACK_BELT, 7, 6, $9, $0, 255, 255, $0, 0, BlackBeltScript_0x19997f, $ffff
 	person_event SPRITE_TEACHER, 9, 10, $4, $10, 255, 255, $90, 0, TeacherScript_0x199982, $ffff
 ; 0x199a9c
-

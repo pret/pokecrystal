@@ -78,4 +78,3 @@ CeruleanTradeSpeechHouse_MapEventHeader: ; 0x1881c9
 	person_event SPRITE_RHYDON, 6, 9, $16, $0, 255, 255, $b0, 0, RhydonScript_0x188139, $ffff
 	person_event SPRITE_ZUBAT, 10, 9, $16, $0, 255, 255, $0, 0, ZubatScript_0x188143, $ffff
 ; 0x18820d
-

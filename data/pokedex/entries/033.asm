@@ -8,5 +8,3 @@
 	page "offense as soon as"
 	next "it notices an"
 	next "attacker.@"
-; 0x182463
-

@@ -103,4 +103,3 @@ CeladonDeptStore1F_MapEventHeader: ; 0x70b60
 	person_event SPRITE_GENTLEMAN, 8, 15, $2, $11, 255, 255, $0, 0, GentlemanScript_0x709e3, $ffff
 	person_event SPRITE_TEACHER, 7, 9, $5, $1, 255, 255, $a0, 0, TeacherScript_0x709e6, $ffff
 ; 0x70bab
-

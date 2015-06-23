@@ -58,4 +58,3 @@ VermilionMart_MapEventHeader: ; 0x191ff8
 	person_event SPRITE_SUPER_NERD, 6, 9, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x191f85, $ffff
 	person_event SPRITE_BUENA, 10, 12, $5, $1, 255, 255, $a0, 0, BuenaScript_0x191f88, $ffff
 ; 0x19202f
-

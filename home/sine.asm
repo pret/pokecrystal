@@ -19,4 +19,3 @@ Sine:: ; 1b11
 	rst Bankswitch
 	ret
 ; 1b1e
-

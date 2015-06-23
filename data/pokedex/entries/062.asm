@@ -8,5 +8,3 @@
 	page "run on the surface"
 	next "of the water for a"
 	next "split second.@"
-; 0x1830d5
-

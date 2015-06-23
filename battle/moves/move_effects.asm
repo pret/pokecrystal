@@ -2237,7 +2237,3 @@ DefenseCurl:
 	statmessageuser
 	statupfailtext
 	endmove
-
-
-
-

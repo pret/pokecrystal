@@ -511,4 +511,3 @@ Route31_MapEventHeader: ; 0x1a5a79
 	person_event SPRITE_POKE_BALL, 9, 33, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a55fb, $06ae
 	person_event SPRITE_POKE_BALL, 19, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a55fd, $06af
 ; 0x1a5af3
-

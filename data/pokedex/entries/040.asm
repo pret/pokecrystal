@@ -8,5 +8,3 @@
 	page "good that anyone"
 	next "who feels it can't"
 	next "stop touching it.@"
-; 0x18275d
-

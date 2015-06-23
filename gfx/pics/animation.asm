@@ -1119,5 +1119,3 @@ Functiond066e: ; d066e
 	ld [CurPartySpecies], a
 	ret
 ; d0695
-
-

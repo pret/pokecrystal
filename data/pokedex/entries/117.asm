@@ -8,5 +8,3 @@
 	page "uses its toxic"
 	next "spikes to fend off"
 	next "the intruder.@"
-; 0x1b9626
-

@@ -8,5 +8,3 @@
 	page "electric currents"
 	next "to communicate"
 	next "their feelings.@"
-; 0x1b9994
-

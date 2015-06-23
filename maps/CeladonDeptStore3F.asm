@@ -126,4 +126,3 @@ CeladonDeptStore3F_MapEventHeader: ; 0x70eab
 	person_event SPRITE_GAMEBOY_KID, 5, 14, $6, $0, 255, 255, $90, 0, GameboyKidScript_0x70d3f, $ffff
 	person_event SPRITE_SUPER_NERD, 8, 17, $2, $11, 255, 255, $80, 0, SuperNerdScript_0x70d4a, $ffff
 ; 0x70f0b
-

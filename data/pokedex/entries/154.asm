@@ -8,5 +8,3 @@
 	page "if they were"
 	next "relaxing in a"
 	next "sunny forest.@"
-; 0x1ccabd
-

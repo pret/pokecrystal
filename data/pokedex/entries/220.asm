@@ -8,5 +8,3 @@
 	page "is so tough that"
 	next "even frozen ground"
 	next "poses no problem.@"
-; 0x1d0c01
-

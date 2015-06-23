@@ -8,5 +8,3 @@
 	page "er the swaying"
 	next "flames of its mane"
 	next "will become.@"
-; 0x1b85d3
-

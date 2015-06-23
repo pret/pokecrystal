@@ -227,4 +227,3 @@ callchannel: macro
 endchannel: macro
 	db $ff
 	endm
-

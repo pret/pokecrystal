@@ -539,4 +539,3 @@ CelebiShinyPalette:     INCLUDE "gfx/pics/celebi/shiny.pal"
 	RGB 17, 17, 17
 
 ; b0ce
-

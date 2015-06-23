@@ -1692,5 +1692,3 @@ Music_Credits_branch_1fa6d: ; 1fa6d
 	note D_, 1
 	endchannel
 ; 1fa8d
-
-

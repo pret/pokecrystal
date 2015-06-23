@@ -352,4 +352,3 @@ FastShip1F_MapEventHeader: ; 0x754f1
 	person_event SPRITE_SAILOR, 21, 26, $5, $2, 255, 255, $0, 0, SailorScript_0x751e4, $ffff
 	person_event SPRITE_GENTLEMAN, 10, 23, $9, $0, 255, 255, $0, 0, ObjectEvent, $072c
 ; 0x75577
-

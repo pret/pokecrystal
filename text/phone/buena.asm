@@ -548,4 +548,3 @@ UnknownText_0xa1e2f: ; 0xa1e2f
 	para "Please call again!"
 	done
 ; 0xa1eca
-

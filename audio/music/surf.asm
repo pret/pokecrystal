@@ -733,5 +733,3 @@ Music_Surf_branch_f54c8: ; f54c8
 	note __, 3
 	endchannel
 ; f54e8
-
-

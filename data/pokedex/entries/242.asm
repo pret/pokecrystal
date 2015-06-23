@@ -8,5 +8,3 @@
 	page "provides will make"
 	next "everyone around"
 	next "smile with joy.@"
-; 0x1d156b
-

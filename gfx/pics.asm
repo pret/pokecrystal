@@ -789,6 +789,3 @@ INCBIN "gfx/pics/unown_y/back.6x6.2bpp.lz"
 INCBIN "gfx/pics/unown_p/back.6x6.2bpp.lz"
 INCBIN "gfx/pics/unown_i/back.6x6.2bpp.lz"
 INCBIN "gfx/pics/unown_r/back.6x6.2bpp.lz"
-
-
-

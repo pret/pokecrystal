@@ -8,5 +8,3 @@
 	page "floor. It also has"
 	next "eyes on its back"
 	next "that glow.@"
-; 0x1cc507
-

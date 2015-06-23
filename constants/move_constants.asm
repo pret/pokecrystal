@@ -256,4 +256,3 @@
 const_value SET const_value + -1
 
 	const NUM_ATTACKS  ; $fb
-

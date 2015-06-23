@@ -8,5 +8,3 @@
 	page "itself by dipping"
 	next "its wound into"
 	next "lava.@"
-; 0x1b99fb
-

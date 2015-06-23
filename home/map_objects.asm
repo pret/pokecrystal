@@ -678,4 +678,3 @@ GetSpriteDirection:: ; 1b07
 	and $c
 	ret
 ; 1b0f
-

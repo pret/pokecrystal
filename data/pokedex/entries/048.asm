@@ -8,5 +8,3 @@
 	page "sleeps in a hole"
 	next "in a tree until"
 	next "night falls.@"
-; 0x182abf
-

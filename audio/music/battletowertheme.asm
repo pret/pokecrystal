@@ -695,5 +695,3 @@ Music_BattleTowerTheme_branch_178b76: ; 178b76
 	note C#, 1
 	endchannel
 ; 178b81
-
-

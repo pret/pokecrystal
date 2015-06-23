@@ -163,4 +163,3 @@ KrissHouse2F_MapEventHeader: ; 0x7ac99
 	person_event SPRITE_DOLL_2, 8, 9, $1, $0, 255, 255, $0, 0, Doll2Script_0x7abce, $0743
 	person_event SPRITE_BIG_DOLL, 5, 4, $21, $0, 255, 255, $0, 0, BigDollScript_0x7abd0, $0744
 ; 0x7acec
-

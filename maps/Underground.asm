@@ -38,4 +38,3 @@ Underground_MapEventHeader: ; 0x74399
 	; people-events
 	db 0
 ; 0x743b3
-

@@ -8,5 +8,3 @@
 	page "string, it waits"
 	next "motionlessly until"
 	next "it becomes dark.@"
-; 0x1cd083
-

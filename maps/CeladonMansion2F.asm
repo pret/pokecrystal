@@ -78,4 +78,3 @@ CeladonMansion2F_MapEventHeader: ; 0x71645
 	; people-events
 	db 0
 ; 0x7166e
-

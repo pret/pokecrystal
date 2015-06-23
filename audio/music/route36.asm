@@ -526,5 +526,3 @@ Music_Route36_branch_e9741: ; e9741
 	notetype $c
 	endchannel
 ; e974f
-
-

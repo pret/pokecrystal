@@ -508,4 +508,3 @@
 	dbw -1, -1 ; unused
 	add_pic EggPic
 	dbw -1, -1 ; unused
-

@@ -8,5 +8,3 @@
 	page "nearby POLIWAG and"
 	next "POLIWHIRL gather"
 	next "immediately.@"
-; 0x1cd8b5
-

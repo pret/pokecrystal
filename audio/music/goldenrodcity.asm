@@ -485,5 +485,3 @@ Music_GoldenrodCity_branch_eb66d: ; eb66d
 	note G_, 1
 	endchannel
 ; eb676
-
-

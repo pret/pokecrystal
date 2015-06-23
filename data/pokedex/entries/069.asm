@@ -8,5 +8,3 @@
 	page "immediately flings"
 	next "its vine at the"
 	next "object.@"
-; 0x1b81fd
-

@@ -110,5 +110,3 @@ Music_Mom_branch_f6c56: ; f6c56
 	note __, 1
 	loopchannel 0, Music_Mom_branch_f6c56
 ; f6c72
-
-

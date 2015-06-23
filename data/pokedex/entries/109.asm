@@ -8,5 +8,3 @@
 	page "ous gas, the gas"
 	next "swirling inside it"
 	next "can be seen.@"
-; 0x1b92ec
-

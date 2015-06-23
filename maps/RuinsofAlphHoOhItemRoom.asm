@@ -59,4 +59,3 @@ RuinsofAlphHoOhItemRoom_MapEventHeader: ; 0x59948
 	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5991c, $0796
 	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x5991e, $0797
 ; 0x599a0
-

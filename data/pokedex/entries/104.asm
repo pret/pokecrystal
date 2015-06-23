@@ -8,5 +8,3 @@
 	page "mother's skull,"
 	next "never revealing"
 	next "its true face.@"
-; 0x1b90d2
-

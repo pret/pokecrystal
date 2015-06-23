@@ -8,5 +8,3 @@
 	page "causes anyone who"
 	next "smells it to"
 	next "become energetic.@"
-; 0x1cca54
-

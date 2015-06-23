@@ -85,6 +85,3 @@ Route5CleanseTagSpeechHouse_MapEventHeader: ; 0x18b744
 	person_event SPRITE_GRANNY, 9, 6, $1f, $0, 255, 255, $b0, 0, GrannyScript_0x18b634, $ffff
 	person_event SPRITE_TEACHER, 7, 9, $8, $0, 255, 255, $80, 0, TeacherScript_0x18b64f, $ffff
 ; 0x18b778
-
-
-

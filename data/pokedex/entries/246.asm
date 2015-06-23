@@ -8,5 +8,3 @@
 	page "pupa after eating"
 	next "enough dirt to"
 	next "make a mountain.@"
-; 0x1d1709
-

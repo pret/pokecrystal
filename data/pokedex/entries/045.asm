@@ -8,5 +8,3 @@
 	page "into the air,"
 	next "turning the air"
 	next "yellow.@"
-; 0x18297f
-

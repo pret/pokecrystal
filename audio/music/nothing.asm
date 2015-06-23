@@ -11,4 +11,3 @@ Music_Nothing_Ch3: ; e91af
 Music_Nothing_Ch4: ; e91af
 	endchannel
 ; e91b0
-

@@ -346,4 +346,3 @@ CeruleanCity_MapEventHeader: ; 0x18445d
 	person_event SPRITE_FISHER, 30, 34, $5, $1, 255, 255, $80, 0, FisherScript_0x18404a, $ffff
 	person_event SPRITE_YOUNGSTER, 16, 10, $3, $1, 255, 255, $80, 0, YoungsterScript_0x184064, $ffff
 ; 0x1844fc
-

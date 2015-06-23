@@ -1185,5 +1185,3 @@ Music_SSAqua_branch_eb2c7: ; eb2c7
 	note C_, 2
 	endchannel
 ; eb2d3
-
-

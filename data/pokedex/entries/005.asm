@@ -8,5 +8,3 @@
 	page "intense flames,"
 	next "incinerating its"
 	next "surroundings.@"
-; 0x1818b3
-

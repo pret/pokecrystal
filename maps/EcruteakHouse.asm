@@ -332,4 +332,3 @@ EcruteakHouse_MapEventHeader: ; 0x98502
 	person_event SPRITE_SAGE, 13, 10, $2, $11, 255, 255, $0, 0, SageScript_0x980b0, $07b1
 	person_event SPRITE_GRAMPS, 15, 7, $2, $11, 255, 255, $0, 0, GrampsScript_0x980c4, $07b1
 ; 0x98565
-

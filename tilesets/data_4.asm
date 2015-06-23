@@ -57,4 +57,3 @@ INCBIN "tilesets/unused_30_metatiles.bin"
 UnusedTileset30Coll: ; 0x331f0
 INCBIN "tilesets/unused_30_collision.bin"
 ; 0x333f0
-

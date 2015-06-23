@@ -180,5 +180,3 @@ Music_LookSage_branch_ee430: ; ee430
 	note G#, 1
 	loopchannel 0, Music_LookSage_branch_ee430
 ; ee45f
-
-

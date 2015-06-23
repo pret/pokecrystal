@@ -8,5 +8,3 @@
 	page "body temperature"
 	next "can reach up to"
 	next "1700 degrees.@"
-; 0x1cc353
-

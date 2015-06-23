@@ -8,5 +8,3 @@
 	page "stout trees while"
 	next "waiting for its"
 	next "evolution.@"
-; 0x181c8a
-

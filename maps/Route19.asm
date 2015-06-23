@@ -352,4 +352,3 @@ Route19_MapEventHeader: ; 0x19ee31
 	person_event SPRITE_FISHER, 9, 13, $6, $0, 255, 255, $80, 1, FisherScript_0x19ea4d, $ffff
 	person_event SPRITE_FISHER, 9, 15, $5, $1, 255, 255, $90, 1, FisherScript_0x19ea61, $ffff
 ; 0x19ee94
-

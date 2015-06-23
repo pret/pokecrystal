@@ -8,5 +8,3 @@
 	page "skin, it can store"
 	next "lots of electric-"
 	next "ity in its fur.@"
-; 0x1cd626
-

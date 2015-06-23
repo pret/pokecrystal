@@ -141,5 +141,3 @@ Music_MtMoon_branch_edbc3: ; edbc3
 	note A#, 8
 	loopchannel 0, Music_MtMoon_branch_edbc3
 ; edbd8
-
-

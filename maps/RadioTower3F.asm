@@ -461,4 +461,3 @@ RadioTower3F_MapEventHeader: ; 0x5eb01
 	person_event SPRITE_ROCKET, 10, 20, $7, $0, 255, 255, $2, 3, TrainerGruntM9, $06ce
 	person_event SPRITE_SCIENTIST, 10, 13, $7, $0, 255, 255, $92, 5, TrainerScientistMarc, $06ce
 ; 0x5eb80
-

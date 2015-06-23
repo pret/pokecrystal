@@ -85,4 +85,3 @@ TimeCapsule_MapEventHeader: ; 0x193538
 	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x19351a, $0000
 	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x19351a, $0001
 ; 0x19356c
-

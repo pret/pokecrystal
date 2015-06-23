@@ -8,5 +8,3 @@
 	page "sticking its head"
 	next "out only when the"
 	next "sun isn't bright.@"
-; 0x182b9d
-

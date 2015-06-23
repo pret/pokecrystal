@@ -666,5 +666,3 @@ Music_NationalPark_branch_f57c8: ; f57c8
 	note D#, 1
 	loopchannel 0, Music_NationalPark_branch_f57bd
 ; f57e8
-
-

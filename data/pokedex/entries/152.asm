@@ -8,5 +8,3 @@
 	page "on its head to"
 	next "seek out warm"
 	next "places.@"
-; 0x1cc9e9
-

@@ -8,5 +8,3 @@
 	page "If attacked, it"
 	next "throws its food at"
 	next "the opponent.@"
-; 0x1d0e25
-

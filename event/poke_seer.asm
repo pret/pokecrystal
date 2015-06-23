@@ -448,5 +448,3 @@ GetCaughtGender: ; 4f301
 	ld c, 0
 	ret
 ; 4f31c
-
-

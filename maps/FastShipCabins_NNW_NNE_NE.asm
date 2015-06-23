@@ -421,4 +421,3 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader: ; 0x759ce
 	person_event SPRITE_GENTLEMAN, 34, 11, $3, $0, 255, 255, $92, 1, TrainerGentlemanEdward, $073a
 	person_event SPRITE_PHARMACIST, 34, 6, $7, $0, 255, 255, $a2, 4, TrainerBurglarCorey, $073b
 ; 0x75a4d
-

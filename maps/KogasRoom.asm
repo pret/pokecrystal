@@ -163,4 +163,3 @@ KogasRoom_MapEventHeader: ; 0x18095f
 	db 1
 	person_event SPRITE_KOGA, 11, 9, $6, $0, 255, 255, $90, 0, KogaScript_0x18075a, $ffff
 ; 0x180986
-

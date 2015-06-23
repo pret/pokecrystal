@@ -174,4 +174,3 @@ TrainerHouse1F_MapEventHeader: ; 0x9b31f
 	person_event SPRITE_YOUNGSTER, 12, 8, $5, $2, 255, 255, $80, 0, YoungsterScript_0x9af70, $ffff
 	person_event SPRITE_GENTLEMAN, 8, 6, $9, $0, 255, 255, $0, 0, GentlemanScript_0x9af73, $ffff
 ; 0x9b384
-

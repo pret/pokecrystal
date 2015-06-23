@@ -23,4 +23,3 @@ FuchsiaPokeCenter2FBeta_MapEventHeader: ; 0x1965b9
 	; people-events
 	db 0
 ; 0x1965c4
-

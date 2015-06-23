@@ -71,4 +71,3 @@ OlivinePokeCenter1F_MapEventHeader: ; 0x9c0e4
 	person_event SPRITE_FISHER, 7, 6, $6, $0, 255, 255, $a0, 0, FisherScript_0x9c008, $ffff
 	person_event SPRITE_TEACHER, 5, 11, $6, $0, 255, 255, $0, 0, TeacherScript_0x9c00b, $ffff
 ; 0x9c12d
-

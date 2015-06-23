@@ -107,4 +107,3 @@ LavenderPokeCenter1F_MapEventHeader: ; 0x7e872
 	person_event SPRITE_TEACHER, 7, 9, $6, $0, 255, 255, $a0, 0, TeacherScript_0x7e6a6, $ffff
 	person_event SPRITE_YOUNGSTER, 9, 5, $4, $10, 255, 255, $80, 0, YoungsterScript_0x7e6a9, $ffff
 ; 0x7e8bb
-

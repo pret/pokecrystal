@@ -68,4 +68,3 @@ CherrygroveGymSpeechHouse_MapEventHeader: ; 0x196bd1
 	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $0, 0, PokefanMScript_0x196ae1, $ffff
 	person_event SPRITE_BUG_CATCHER, 9, 9, $5, $1, 255, 255, $80, 0, BugCatcherScript_0x196ae4, $ffff
 ; 0x196c05
-

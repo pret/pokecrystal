@@ -426,4 +426,3 @@ CianwoodGym_MapEventHeader: ; 0x9db3e
 	person_event SPRITE_BOULDER, 11, 8, $19, $0, 255, 255, $0, 0, BoulderScript_0x9d6e0, $ffff
 	person_event SPRITE_BOULDER, 11, 9, $19, $0, 255, 255, $0, 0, BoulderScript_0x9d6e0, $ffff
 ; 0x9dbcd
-

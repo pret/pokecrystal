@@ -200,4 +200,3 @@ OlivineLighthouse3F_MapEventHeader: ; 0x5b481
 	person_event SPRITE_YOUNGSTER, 13, 7, $7, $0, 255, 255, $92, 3, TrainerBird_keeperTheo, $ffff
 	person_event SPRITE_POKE_BALL, 6, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x5b279, $0664
 ; 0x5b4e8
-

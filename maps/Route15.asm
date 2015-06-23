@@ -348,4 +348,3 @@ Route15_MapEventHeader: ; 0x1aa90a
 	person_event SPRITE_TEACHER, 14, 24, $a, $0, 255, 255, $82, 3, TrainerTeacherHillary, $ffff
 	person_event SPRITE_POKE_BALL, 9, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x1aa5e4, $078a
 ; 0x1aa97a
-

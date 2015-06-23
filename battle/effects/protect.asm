@@ -78,4 +78,3 @@ ProtectChance: ; 3762c
 	scf
 	ret
 ; 3766f
-

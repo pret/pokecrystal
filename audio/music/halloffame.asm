@@ -175,5 +175,3 @@ Music_HallOfFame_branch_f0677: ; f0677
 	note A#, 1
 	loopchannel 0, Music_HallOfFame_branch_f0677
 ; f0697
-
-

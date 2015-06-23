@@ -2049,5 +2049,3 @@ Item2Attributes:
 	db 0 ; can select + toss
 	db ITEM
 	db $00 ; can't use
-
-

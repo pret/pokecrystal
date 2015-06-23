@@ -8,5 +8,3 @@
 	page "#MON is certain"
 	next "to be within the"
 	next "immediate area.@"
-; 0x1cd32c
-

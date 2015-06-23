@@ -78,4 +78,3 @@ EnableLCD:: ; 58a
 	ld [rLCDC], a
 	ret
 ; 591
-

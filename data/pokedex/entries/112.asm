@@ -8,5 +8,3 @@
 	page "easily shatter"
 	next "even a diamond in"
 	next "the rough.@"
-; 0x1b942e
-

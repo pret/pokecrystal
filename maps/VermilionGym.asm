@@ -372,4 +372,3 @@ VermilionGym_MapEventHeader: ; 0x19263d
 	person_event SPRITE_SUPER_NERD, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, $ffff
 	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, $ffff
 ; 0x1926e3
-

@@ -438,4 +438,3 @@ FuchsiaGym_MapEventHeader: ; 0x196353
 	person_event SPRITE_FUSCHIA_GYM_4, 6, 8, $a, $0, 255, 255, $90, 0, FuschiaGym4Script_0x195ec9, $ffff
 	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 0, FuchsiaGymGuyScript, $ffff
 ; 0x1963bb
-

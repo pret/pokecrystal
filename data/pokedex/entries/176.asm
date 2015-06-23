@@ -8,5 +8,3 @@
 	page "stay up in the air"
 	next "as it tags along"
 	next "after its trainer.@"
-; 0x1cd47d
-

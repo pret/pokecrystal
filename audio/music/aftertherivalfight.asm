@@ -67,5 +67,3 @@ Music_AfterTheRivalFight_Ch4: ; f517a
 	note D_, 2
 	loopchannel 0, Music_AfterTheRivalFight_branch_f5118
 ; f518a
-
-

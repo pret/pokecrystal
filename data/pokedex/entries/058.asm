@@ -8,5 +8,3 @@
 	page "smell, it roars"
 	next "loudly to force"
 	next "out the intruder.@"
-; 0x182f1c
-

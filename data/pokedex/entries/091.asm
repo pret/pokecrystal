@@ -8,5 +8,3 @@
 	page "stab opponents."
 	next "They're even hard-"
 	next "er than its shell.@"
-; 0x1b8b4a
-

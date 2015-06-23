@@ -8,5 +8,3 @@
 	page "directions in"
 	next "order to detect"
 	next "danger right away.@"
-; 0x1823fd
-

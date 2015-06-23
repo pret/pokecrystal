@@ -59,4 +59,3 @@ RuinsofAlphKabutoItemRoom_MapEventHeader: ; 0x599d2
 	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x599a6, $079a
 	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x599a8, $079b
 ; 0x59a2a
-

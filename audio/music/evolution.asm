@@ -208,5 +208,3 @@ Music_Evolution_branch_f07f0: ; f07f0
 	note E_, 2
 	loopchannel 0, Music_Evolution_branch_f07f0
 ; f07fd
-
-

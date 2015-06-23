@@ -35,4 +35,3 @@ SECTION "rst28",ROM0[JumpTable]
 
 SECTION "rst38",ROM0[$38]
 	rst $38
-

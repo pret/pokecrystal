@@ -8,5 +8,3 @@
 	page "cles come out of"
 	next "the surface of its"
 	next "body.@"
-; 0x1831a2
-

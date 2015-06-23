@@ -639,4 +639,3 @@ SpecialTrainerHouse: ; 0xc4b9
 	ld a, [$abfd] ; XXX what is this memory location?
 	ld [ScriptVar], a
 	jp CloseSRAM
-

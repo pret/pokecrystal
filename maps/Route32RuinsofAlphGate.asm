@@ -71,4 +71,3 @@ Route32RuinsofAlphGate_MapEventHeader: ; 0x69b0f
 	person_event SPRITE_POKEFAN_M, 6, 12, $4, $10, 255, 255, $b0, 0, PokefanMScript_0x69a30, $ffff
 	person_event SPRITE_YOUNGSTER, 10, 5, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x69a33, $ffff
 ; 0x69b50
-

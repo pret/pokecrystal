@@ -8,5 +8,3 @@
 	page "opponent's timing,"
 	next "it presents its"
 	next "fancy kick moves.@"
-; 0x1d132b
-

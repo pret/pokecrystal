@@ -8,5 +8,3 @@
 	page "live underwater"
 	next "where there is"
 	next "less danger.@"
-; 0x183066
-

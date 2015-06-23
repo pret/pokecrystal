@@ -8,5 +8,3 @@
 	page "eyes, helping it"
 	next "spot attackers and"
 	next "food right away.@"
-; 0x1d0078
-

@@ -206,4 +206,3 @@ SFX_UNKNOWN_CB                  EQU $cb
 SFX_TWO_PC_BEEPS                EQU $cc
 SFX_4_NOTE_DITTY                EQU $cd
 SFX_TWINKLE                     EQU $ce
-

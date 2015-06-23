@@ -200,4 +200,3 @@ ViridianGym_MapEventHeader: ; 0x9ae04
 	person_event SPRITE_BLUE, 7, 9, $6, $0, 255, 255, $0, 0, BlueScript_0x9aa26, $0776
 	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, ViridianGymGuyScript, $0776
 ; 0x9ae38
-

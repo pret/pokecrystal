@@ -1710,4 +1710,3 @@ UnknownText_0x1c60d1: ; 0x1c60d1
 	line "a while."
 	prompt
 ; 0x1c611e
-

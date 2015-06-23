@@ -8,5 +8,3 @@
 	page "Flames will"
 	next "occasionally burst"
 	next "from its shell.@"
-; 0x1d0b8d
-

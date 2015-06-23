@@ -53,4 +53,3 @@ IlexForestAzaleaGate_MapEventHeader: ; 0x62cf4
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x62c7a, $ffff
 	person_event SPRITE_GRANNY, 7, 5, $6, $0, 255, 255, $b0, 0, GrannyScript_0x62c7d, $ffff
 ; 0x62d28
-

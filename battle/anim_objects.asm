@@ -6451,4 +6451,3 @@ ENDM
 	object_gfx NULL, 1
 	object_gfx NULL, 1
 ; cfd9e
-

@@ -78,4 +78,3 @@ CeladonDeptStore4F_MapEventHeader: ; 0x70fbc
 	person_event SPRITE_SUPER_NERD, 10, 11, $5, $1, 255, 255, $a0, 0, SuperNerdScript_0x70f15, $ffff
 	person_event SPRITE_YOUNGSTER, 6, 12, $7, $0, 255, 255, $0, 0, YoungsterScript_0x70f18, $ffff
 ; 0x71002
-

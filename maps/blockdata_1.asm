@@ -384,4 +384,3 @@ Route9_BlockData: ; 0xabde9
 Route22_BlockData: ; 0xabef7
 	INCBIN "maps/Route22.blk"
 ; 0xabfab
-

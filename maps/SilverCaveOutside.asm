@@ -55,4 +55,3 @@ SilverCaveOutside_MapEventHeader: ; 0x1b205f
 	; people-events
 	db 0
 ; 0x1b207e
-

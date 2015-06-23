@@ -672,4 +672,3 @@ Music_BugCatchingContest_branch_f7ee2: ; f7ee2
 	note D_, 2
 	endchannel
 ; f7ef3
-

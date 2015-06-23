@@ -100,4 +100,3 @@ KANTO_LANDMARK EQU const_value
 	const TOHJO_FALLS
 	const ROUTE_28
 	const FAST_SHIP
-

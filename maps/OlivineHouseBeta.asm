@@ -64,4 +64,3 @@ OlivineHouseBeta_MapEventHeader: ; 0x9c601
 	person_event SPRITE_TEACHER, 7, 6, $3, $0, 255, 255, $0, 0, TeacherScript_0x9c58f, $ffff
 	person_event SPRITE_RHYDON, 8, 10, $4, $20, 255, 255, $0, 0, RhydonScript_0x9c592, $ffff
 ; 0x9c635
-

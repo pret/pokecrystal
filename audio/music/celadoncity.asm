@@ -394,5 +394,3 @@ Music_CeladonCity_branch_f4510: ; f4510
 	note B_, 2
 	endchannel
 ; f4518
-
-

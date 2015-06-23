@@ -8,5 +8,3 @@
 	page "of its group, it"
 	next "becomes infuriated"
 	next "by its loneliness.@"
-; 0x182e39
-

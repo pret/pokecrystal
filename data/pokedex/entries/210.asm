@@ -8,5 +8,3 @@
 	page "opening its mouth"
 	next "wide to reveal its"
 	next "big fangs.@"
-; 0x1d07b1
-

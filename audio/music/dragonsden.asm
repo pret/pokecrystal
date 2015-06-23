@@ -178,5 +178,3 @@ Music_DragonsDen_branch_eedbd: ; eedbd
 	note F#, 4
 	loopchannel 0, Music_DragonsDen_branch_eedbd
 ; eedcb
-
-

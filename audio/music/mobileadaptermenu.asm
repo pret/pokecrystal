@@ -280,5 +280,3 @@ Music_MobileAdapterMenu_branch_178146: ; 178146
 	note A_, 4
 	endchannel
 ; 178153
-
-

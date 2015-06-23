@@ -8,5 +8,3 @@
 	page "playfully tangling"
 	next "their tails"
 	next "together.@"
-; 0x1b95b8
-

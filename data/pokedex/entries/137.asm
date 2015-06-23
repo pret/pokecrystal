@@ -8,5 +8,3 @@
 	page "research, it can"
 	next "perform only what"
 	next "is in its program.@"
-; 0x1cc3c1
-

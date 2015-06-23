@@ -61,4 +61,3 @@ Route43MahoganyGate_MapEventHeader: ; 0x19ab91
 	db 1
 	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x19ab0b, $ffff
 ; 0x19abb8
-

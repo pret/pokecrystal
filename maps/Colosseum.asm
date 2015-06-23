@@ -97,4 +97,3 @@ Colosseum_MapEventHeader: ; 0x1934b7
 	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x193499, $0000
 	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x193499, $0001
 ; 0x1934eb
-

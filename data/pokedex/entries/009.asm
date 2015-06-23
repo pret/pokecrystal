@@ -8,5 +8,3 @@
 	page "shooting water"
 	next "from the jets on"
 	next "its back.@"
-; 0x181a60
-

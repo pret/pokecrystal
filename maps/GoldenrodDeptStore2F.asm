@@ -133,4 +133,3 @@ GoldenrodDeptStore2F_MapEventHeader: ; 0x55d56
 	person_event SPRITE_COOLTRAINER_F, 6, 10, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x55b70, $ffff
 	person_event SPRITE_GENTLEMAN, 10, 6, $3, $0, 255, 255, $0, 0, GentlemanScript_0x55b73, $ffff
 ; 0x55db6
-

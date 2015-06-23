@@ -8,5 +8,3 @@
 	page "that they must"
 	next "have a variety of"
 	next "abilities.@"
-; 0x1d03dd
-

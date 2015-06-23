@@ -245,4 +245,3 @@ LakeofRageMagikarpHouse_MapEventHeader: ; 0x19aae2
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $0, 0, FishingGuruScript_0x19a6ae, $ffff
 ; 0x19ab09
-

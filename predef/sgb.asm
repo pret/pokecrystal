@@ -620,4 +620,3 @@ Function8a60: ; 8a60
 	pop hl
 	jp Function9809
 ; 8a68
-

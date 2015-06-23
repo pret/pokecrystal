@@ -476,4 +476,3 @@ CeruleanGym_MapEventHeader: ; 0x188a51
 	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, $0, 255, 255, $82, 3, TrainerSwimmermParker, $076f
 	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, CeruleanGymGuyScript, $076f
 ; 0x188abe
-

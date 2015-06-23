@@ -67,4 +67,3 @@ EcruteakLugiaSpeechHouse_MapEventHeader: ; 0x99431
 	person_event SPRITE_GRAMPS, 7, 6, $3, $0, 255, 255, $0, 0, GrampsScript_0x99334, $ffff
 	person_event SPRITE_YOUNGSTER, 8, 9, $8, $0, 255, 255, $0, 0, YoungsterScript_0x99337, $ffff
 ; 0x99460
-

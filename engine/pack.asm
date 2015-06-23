@@ -1689,4 +1689,3 @@ INCBIN "gfx/misc/pack_menu.2bpp"
 
 PackGFX:
 INCBIN "gfx/misc/pack.w40.2bpp"
-

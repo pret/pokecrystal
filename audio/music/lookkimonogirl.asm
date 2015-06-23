@@ -271,5 +271,3 @@ Music_LookKimonoGirl_branch_f7aec: ; f7aec
 	note E_, 8
 	loopchannel 0, Music_LookKimonoGirl_branch_f7aec
 ; f7b13
-
-

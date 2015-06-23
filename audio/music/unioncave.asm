@@ -264,5 +264,3 @@ Music_UnionCave_branch_f5da9: ; f5da9
 	loopchannel 0, Music_UnionCave_branch_f5da9
 	loopchannel 0, Music_UnionCave_branch_f5da9 ; unused
 ; f5dc5
-
-

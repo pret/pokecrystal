@@ -8,5 +8,3 @@
 	page "rivers. It search-"
 	next "es wide areas for"
 	next "food.@"
-; 0x181f03
-

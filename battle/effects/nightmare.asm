@@ -36,4 +36,3 @@ BattleCommand52: ; 37536
 	call AnimateFailedMove
 	jp PrintButItFailed
 ; 37563
-

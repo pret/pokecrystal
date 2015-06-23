@@ -441,5 +441,3 @@ Music_Clair_branch_1fc6e: ; 1fc6e
 	note G_, 1
 	endchannel
 ; 1fc87
-
-

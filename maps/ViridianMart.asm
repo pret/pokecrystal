@@ -58,4 +58,3 @@ ViridianMart_MapEventHeader: ; 0x9b657
 	person_event SPRITE_LASS, 6, 11, $5, $2, 255, 255, $0, 0, LassScript_0x9b5ee, $ffff
 	person_event SPRITE_COOLTRAINER_M, 10, 5, $7, $0, 255, 255, $0, 0, CooltrainerMScript_0x9b5f1, $ffff
 ; 0x9b68e
-

@@ -140,4 +140,3 @@ SaffronPokeCenter1F_MapEventHeader: ; 0x18a722
 	person_event SPRITE_FISHER, 10, 12, $8, $0, 255, 255, $80, 0, FisherScript_0x18a48c, $ffff
 	person_event SPRITE_YOUNGSTER, 8, 5, $3, $0, 255, 255, $90, 0, YoungsterScript_0x18a4a0, $ffff
 ; 0x18a76b
-

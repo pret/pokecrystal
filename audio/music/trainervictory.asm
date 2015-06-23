@@ -234,4 +234,3 @@ Music_TrainerVictory_branch_ebfb1: ; ebfb1
 	note B_, 2
 	endchannel
 ; ebfc3
-

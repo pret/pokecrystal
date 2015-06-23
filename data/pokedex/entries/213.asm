@@ -8,5 +8,3 @@
 	page "nesting and can be"
 	next "mixed with BERRIES"
 	next "to make a drink.@"
-; 0x1d0907
-

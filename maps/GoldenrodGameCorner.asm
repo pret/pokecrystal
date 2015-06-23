@@ -543,6 +543,3 @@ GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	person_event SPRITE_POKEFAN_M, 13, 6, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x56e2b, $ffff
 	person_event SPRITE_POKEFAN_M, 14, 21, $9, $0, 255, 255, $80, 0, PokefanMScript_0x56c1a, $076b
 ; 0x57322
-
-
-

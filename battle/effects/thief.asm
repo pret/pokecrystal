@@ -114,4 +114,3 @@ BattleCommand50: ; 37492
 	ld hl, EnemyMonItem
 	ret
 ; 37517
-

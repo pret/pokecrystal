@@ -270,4 +270,3 @@ GoldenrodDeptStore5F_MapEventHeader: ; 0x56386
 	person_event SPRITE_TWIN, 5, 13, $6, $0, 255, 255, $a0, 0, TwinScript_0x56118, $ffff
 	person_event SPRITE_RECEPTIONIST, 9, 11, $7, $0, 255, 255, $80, 0, ReceptionistScript_0x560ce, $0763
 ; 0x563f3
-

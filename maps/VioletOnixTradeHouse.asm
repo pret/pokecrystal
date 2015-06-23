@@ -52,4 +52,3 @@ VioletOnixTradeHouse_MapEventHeader: ; 0x69a01
 	person_event SPRITE_POKEFAN_M, 7, 6, $3, $0, 255, 255, $0, 0, PokefanMScript_0x6998d, $ffff
 	person_event SPRITE_YOUNGSTER, 9, 10, $4, $20, 255, 255, $80, 0, YoungsterScript_0x69990, $ffff
 ; 0x69a2b
-

@@ -59,6 +59,3 @@ Route2946Gate_MapEventHeader: ; 0x7b674
 	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x7b5bb, $ffff
 	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x7b5be, $ffff
 ; 0x7b6a8
-
-
-

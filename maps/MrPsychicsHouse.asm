@@ -70,4 +70,3 @@ MrPsychicsHouse_MapEventHeader: ; 0x18a7f0
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 9, $8, $0, 255, 255, $a0, 0, FishingGuruScript_0x18a77a, $ffff
 ; 0x18a817
-

@@ -8,5 +8,3 @@
 	page "trainers use them"
 	next "in place of"
 	next "clocks.@"
-; 0x1cceb9
-

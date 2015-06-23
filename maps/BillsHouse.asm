@@ -404,4 +404,3 @@ BillsHouse_MapEventHeader: ; 0x189b42
 	db 1
 	person_event SPRITE_GRAMPS, 7, 6, $7, $20, 255, 255, $90, 0, GrampsScript_0x189538, $ffff
 ; 0x189b5f
-

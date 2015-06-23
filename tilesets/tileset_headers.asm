@@ -295,4 +295,3 @@ Tileset36: ; 0x4d7b2
 	dw Tileset36PalMap
 
 ; 0x4d7c1
-

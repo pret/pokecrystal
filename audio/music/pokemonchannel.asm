@@ -234,5 +234,3 @@ Music_PokemonChannel_branch_ee54d: ; ee54d
 	note A#, 4
 	endchannel
 ; ee569
-
-

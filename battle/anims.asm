@@ -5307,4 +5307,3 @@ BattleAnim_WaterGun_branch_cbcd2: ; cbcd2
 	anim_wait 1
 	anim_ret
 ; cbcdd
-

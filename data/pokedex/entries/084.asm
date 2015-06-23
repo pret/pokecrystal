@@ -8,5 +8,3 @@
 	page "way. If it sees an"
 	next "enemy, it runs"
 	next "away at 60 mph.@"
-; 0x1b884a
-

@@ -329,4 +329,3 @@ UnionCave1F_MapEventHeader: ; 0x59f35
 	person_event SPRITE_POKE_BALL, 21, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c04, $065c
 	person_event SPRITE_POKE_BALL, 37, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c06, $065d
 ; 0x59fc4
-

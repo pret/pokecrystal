@@ -263,4 +263,3 @@ LavRadioTower1F_MapEventHeader: ; 0x7f3b9
 	person_event SPRITE_GENTLEMAN, 5, 13, $7, $0, 255, 255, $0, 0, GentlemanScript_0x7ee6c, $ffff
 	person_event SPRITE_SUPER_NERD, 10, 18, $9, $0, 255, 255, $0, 0, SuperNerdScript_0x7eea2, $ffff
 ; 0x7f414
-

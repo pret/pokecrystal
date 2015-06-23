@@ -8,5 +8,3 @@
 	page "fur create a"
 	next "constant sparking"
 	next "noise.@"
-; 0x1cc2ec
-

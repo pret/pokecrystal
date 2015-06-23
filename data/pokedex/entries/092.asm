@@ -8,5 +8,3 @@
 	page "weakening its prey"
 	next "by poisoning it"
 	next "through the skin.@"
-; 0x1b8bbd
-

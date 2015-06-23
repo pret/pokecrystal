@@ -8,5 +8,3 @@
 	page "by screeching and"
 	next "hitting the ground"
 	next "with its tail.@"
-; 0x1ccddd
-

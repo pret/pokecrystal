@@ -49,4 +49,3 @@ DiglettsCave_MapEventHeader: ; 0x74049
 	db 1
 	person_event SPRITE_POKEFAN_M, 35, 7, $6, $0, 255, 255, $0, 0, PokefanMScript_0x74002, $ffff
 ; 0x7407f
-

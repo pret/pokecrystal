@@ -36,4 +36,3 @@ IcePathB2FBlackthornSide_MapEventHeader: ; 0x7e64b
 	db 1
 	person_event SPRITE_POKE_BALL, 20, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e646, $068d
 ; 0x7e66d
-

@@ -100,4 +100,3 @@ CianwoodPharmacy_MapEventHeader: ; 0x9e0b7
 	db 1
 	person_event SPRITE_PHARMACIST, 7, 6, $6, $0, 255, 255, $80, 0, PharmacistScript_0x9df9e, $ffff
 ; 0x9e0de
-

@@ -91,4 +91,3 @@ Route26DayofWeekSiblingsHouse_MapEventHeader: ; 0x7b375
 	db 1
 	person_event SPRITE_POKEDEX, 7, 7, $1, $0, 255, 255, $0, 0, PokedexScript_0x7b1e4, $ffff
 ; 0x7b392
-

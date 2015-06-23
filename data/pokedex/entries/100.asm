@@ -8,5 +8,3 @@
 	page "that its compo-"
 	next "nents are not"
 	next "found in nature.@"
-; 0x1b8f19
-

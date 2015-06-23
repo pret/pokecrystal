@@ -73,4 +73,3 @@ BlackthornPokeCenter1F_MapEventHeader: ; 0x195c69
 	person_event SPRITE_TWIN, 8, 5, $3, $0, 255, 255, $a0, 0, TwinScript_0x195b7f, $ffff
 	person_event SPRITE_COOLTRAINER_M, 10, 11, $5, $1, 255, 255, $80, 0, CooltrainerMScript_0x195b82, $ffff
 ; 0x195cb2
-

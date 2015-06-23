@@ -8,5 +8,3 @@
 	page "into its mouth."
 	next "Its whole body is"
 	next "very coarse.@"
-; 0x1d0e8c
-

@@ -278,6 +278,3 @@ Route12_MapEventHeader: ; 0x1a72cf
 	person_event SPRITE_POKE_BALL, 47, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700b, $0788
 	person_event SPRITE_POKE_BALL, 55, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700d, $0789
 ; 0x1a7337
-
-
-

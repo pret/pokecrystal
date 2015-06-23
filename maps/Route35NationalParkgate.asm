@@ -509,4 +509,3 @@ Route35NationalParkgate_MapEventHeader: ; 0x6a9d2
 	person_event SPRITE_YOUNGSTER, 9, 10, $2, $11, 255, 255, $80, 0, YoungsterScript_0x6a2d8, $0734
 	person_event SPRITE_OFFICER, 7, 4, $9, $0, 255, 255, $a0, 0, OfficerScript_0x6a2ca, $0746
 ; 0x6aa18
-

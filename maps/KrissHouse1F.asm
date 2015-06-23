@@ -444,4 +444,3 @@ KrissHouse1F_MapEventHeader: ; 0x7ab31
 	person_event SPRITE_MOM, 6, 4, $7, $0, 255, 4, $0, 0, MomScript_0x7a582, $06c8
 	person_event SPRITE_POKEFAN_F, 8, 8, $9, $0, 255, 255, $80, 0, NeighborScript, $0792
 ; 0x7abab
-

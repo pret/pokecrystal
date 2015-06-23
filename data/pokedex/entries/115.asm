@@ -8,5 +8,3 @@
 	page "its pouch, it"
 	next "always sleeps"
 	next "standing up.@"
-; 0x1b9553
-

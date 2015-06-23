@@ -8,5 +8,3 @@
 	page "their nests in"
 	next "order to protect"
 	next "their offspring.@"
-; 0x1b9702
-

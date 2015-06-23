@@ -8,5 +8,3 @@
 	page "together, new"
 	next "poisons are"
 	next "created.@"
-; 0x1b89fc
-

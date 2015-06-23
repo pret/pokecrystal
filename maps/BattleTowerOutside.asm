@@ -167,5 +167,3 @@ BattleTowerOutside_MapEventHeader: ; 0x9fb5f
 	person_event SPRITE_SAILOR, 22, 16, $5, $1, 255, 255, $0, 0, SailorScript_0x9f865, $07cf
 	person_event SPRITE_LASS, 28, 16, $3, $0, 255, 255, $a0, 0, ObjectEvent, $ffff
 ; 0x9fbb2
-
-

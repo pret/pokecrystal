@@ -109,4 +109,3 @@ GetNthPartyMon: ; 0x8b1ce
 	scf
 	ret
 ; 8b1e1
-

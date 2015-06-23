@@ -110,4 +110,3 @@ ElmsHouse_MapEventHeader: ; 0x7b0ea
 	person_event SPRITE_TEACHER, 9, 5, $4, $10, 255, 255, $a0, 0, TeacherScript_0x7aeeb, $ffff
 	person_event SPRITE_BUG_CATCHER, 8, 9, $7, $0, 255, 255, $0, 0, BugCatcherScript_0x7aeee, $ffff
 ; 0x7b123
-

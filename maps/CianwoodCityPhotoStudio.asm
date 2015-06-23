@@ -70,4 +70,3 @@ CianwoodCityPhotoStudio_MapEventHeader: ; 0x9e191
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 6, $6, $0, 255, 255, $80, 0, FishingGuruScript_0x9e0e0, $ffff
 ; 0x9e1ae
-

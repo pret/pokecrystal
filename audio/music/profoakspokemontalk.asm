@@ -309,5 +309,3 @@ Music_ProfOaksPokemonTalk_branch_f4d95: ; f4d95
 	note __, 1
 	loopchannel 0, Music_ProfOaksPokemonTalk_branch_f4d95
 ; f4dea
-
-

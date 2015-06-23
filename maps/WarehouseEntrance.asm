@@ -831,4 +831,3 @@ WarehouseEntrance_MapEventHeader: ; 0x7c936
 	person_event SPRITE_SUPER_NERD, 19, 11, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x7c20e, $0755
 	person_event SPRITE_GRANNY, 25, 11, $8, $0, 255, 255, $b0, 0, GrannyScript_0x7c132, $0752
 ; 0x7c9e8
-

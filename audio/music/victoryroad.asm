@@ -203,5 +203,3 @@ Music_VictoryRoad_branch_f6d63: ; f6d63
 	note D#, 1
 	loopchannel 0, Music_VictoryRoad_branch_f6d63
 ; f6d79
-
-

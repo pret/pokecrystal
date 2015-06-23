@@ -8,5 +8,3 @@
 	page "likes to eat the"
 	next "new sprouts on"
 	next "the trees.@"
-; 0x1cd4e9
-

@@ -193,4 +193,3 @@ EcruteakItemfinderHouse_MapEventHeader: ; 0x9a9f5
 	person_event SPRITE_COOLTRAINER_M, 7, 6, $6, $0, 255, 255, $80, 0, CooltrainerMScript_0x9a5fb, $ffff
 	person_event SPRITE_POKEDEX, 7, 7, $1, $0, 255, 255, $0, 0, PokedexScript_0x9a620, $ffff
 ; 0x9aa24
-

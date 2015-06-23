@@ -484,4 +484,3 @@ AnimateTileset:: ; 17d3
 	rst Bankswitch
 	ret
 ; 17ff
-

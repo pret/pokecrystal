@@ -652,4 +652,3 @@ Route38_MapEventHeader: ; 0x1a23bb
 	person_event SPRITE_FRUIT_TREE, 14, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1f33, $ffff
 	person_event SPRITE_BUENA, 12, 9, $a, $0, 255, 255, $92, 1, TrainerBeautyOlivia, $ffff
 ; 0x1a2430
-

@@ -8,5 +8,3 @@
 	page "water, searching"
 	next "for their perfect"
 	next "mate.@"
-; 0x1b9690
-

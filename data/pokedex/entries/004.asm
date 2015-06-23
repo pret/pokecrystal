@@ -8,5 +8,3 @@
 	page "will burn vigor-"
 	next "ously, even if it"
 	next "gets a bit wet.@"
-; 0x18184a
-

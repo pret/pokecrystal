@@ -107,4 +107,3 @@ GoldenrodDeptStore4F_MapEventHeader: ; 0x56038
 	person_event SPRITE_BUG_CATCHER, 6, 11, $5, $1, 255, 255, $0, 0, BugCatcherScript_0x55ef4, $ffff
 	person_event SPRITE_GAMEBOY_KID, 5, 9, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x55ef7, $ffff
 ; 0x5608b
-

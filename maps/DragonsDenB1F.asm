@@ -547,4 +547,3 @@ DragonsDenB1F_MapEventHeader: ; 0x18cf73
 	person_event SPRITE_POKE_BALL, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, $07bf
 	person_event SPRITE_POKE_BALL, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, $07c0
 ; 0x18d014
-

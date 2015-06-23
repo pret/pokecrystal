@@ -100,5 +100,3 @@ Route28FamousSpeechHouse_MapEventHeader: ; 0x1ae762
 	person_event SPRITE_COOLTRAINER_F, 7, 6, $6, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1ae658, $ffff
 	person_event SPRITE_MOLTRES, 9, 10, $16, $0, 255, 255, $b0, 0, MoltresScript_0x1ae675, $ffff
 ; 0x1ae796
-
-

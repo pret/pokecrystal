@@ -107,4 +107,3 @@ PalletTown_MapEventHeader: ; 0x1ac7cf
 	person_event SPRITE_TEACHER, 12, 7, $2, $22, 255, 255, $0, 0, TeacherScript_0x1ac6d5, $ffff
 	person_event SPRITE_FISHER, 18, 16, $5, $2, 255, 255, $a0, 0, FisherScript_0x1ac6d8, $ffff
 ; 0x1ac812
-

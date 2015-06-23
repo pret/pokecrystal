@@ -617,5 +617,3 @@ Music_GoldSilverOpening_Ch3: ; f71c8
 	note __, 13
 	endchannel
 ; f7308
-
-

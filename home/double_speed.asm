@@ -28,4 +28,3 @@ SwitchSpeed:: ; 2ffd
 	stop ; rgbasm adds a nop after this instruction by default
 	ret
 ; 300b
-

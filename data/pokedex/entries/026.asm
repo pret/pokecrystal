@@ -8,5 +8,3 @@
 	page "to gather electri-"
 	next "city from the"
 	next "atmosphere.@"
-; 0x182184
-

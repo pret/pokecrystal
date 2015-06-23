@@ -8,5 +8,3 @@
 	page "clean water. They"
 	next "cannot survive in"
 	next "polluted water.@"
-; 0x1d0cd3
-

@@ -136,4 +136,3 @@ Route10South_MapEventHeader: ; 0x1ae504
 	person_event SPRITE_POKEFAN_M, 7, 21, $8, $0, 255, 255, $b2, 3, TrainerHikerJim, $ffff
 	person_event SPRITE_POKEFAN_M, 14, 12, $a, $0, 255, 255, $82, 3, TrainerPokefanmRobert, $ffff
 ; 0x1ae52e
-

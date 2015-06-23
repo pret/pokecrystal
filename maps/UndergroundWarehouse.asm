@@ -302,4 +302,3 @@ UndergroundWarehouse_MapEventHeader: ; 0x7dd84
 	person_event SPRITE_POKE_BALL, 13, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e6, $067a
 	person_event SPRITE_POKE_BALL, 5, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e8, $0655
 ; 0x7ddf4
-

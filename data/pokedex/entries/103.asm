@@ -8,5 +8,3 @@
 	page "heads. A head that"
 	next "drops off becomes"
 	next "an EXEGGCUTE.@"
-; 0x1b9068
-

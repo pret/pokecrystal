@@ -347,4 +347,3 @@ GyaradosIcon:     INCBIN "gfx/icon/gyarados.2bpp" ; 0x8fd0d
 SlowpokeIcon:     INCBIN "gfx/icon/slowpoke.2bpp" ; 0x8fd8d
 SudowoodoIcon:    INCBIN "gfx/icon/sudowoodo.2bpp" ; 0x8fe0d
 BigmonIcon:       INCBIN "gfx/icon/bigmon.2bpp" ; 0x8fe8d
-

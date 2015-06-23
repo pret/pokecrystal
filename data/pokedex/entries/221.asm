@@ -8,5 +8,3 @@
 	page "prevent it from"
 	next "slipping, even on"
 	next "icy ground.@"
-; 0x1d0c68
-

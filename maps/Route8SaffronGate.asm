@@ -40,4 +40,3 @@ Route8SaffronGate_MapEventHeader: ; 0x7f45b
 	db 1
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x7f416, $ffff
 ; 0x7f482
-

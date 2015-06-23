@@ -747,4 +747,3 @@ DragonShrine_MapEventHeader: ; 0x18dabc
 	person_event SPRITE_ELDER, 8, 11, $8, $0, 255, 255, $0, 0, ElderScript_0x18d20d, $0000
 	person_event SPRITE_CLAIR, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, $0790
 ; 0x18db00
-

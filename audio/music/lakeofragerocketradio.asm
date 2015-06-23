@@ -37,5 +37,3 @@ Music_LakeOfRageRocketRadio_Ch3: ; ef5e5
 	note __, 4
 	loopchannel 0, Music_LakeOfRageRocketRadio_branch_ef5c9
 ; ef5f0
-
-

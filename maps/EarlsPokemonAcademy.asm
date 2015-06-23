@@ -473,4 +473,3 @@ EarlsPokemonAcademy_MapEventHeader: ; 0x69375
 	person_event SPRITE_YOUNGSTER, 11, 8, $7, $0, 255, 255, $0, 0, YoungsterScript_0x68a9c, $ffff
 	person_event SPRITE_POKEDEX, 8, 6, $1, $0, 255, 255, $0, 0, PokedexScript_0x68b0b, $ffff
 ; 0x693e7
-

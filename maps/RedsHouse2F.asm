@@ -49,4 +49,3 @@ RedsHouse2F_MapEventHeader: ; 0x19b0b9
 	; people-events
 	db 0
 ; 0x19b0ce
-

@@ -192,4 +192,3 @@ GoldenrodFlowerShop_MapEventHeader: ; 0x5561e
 	person_event SPRITE_TEACHER, 8, 6, $9, $0, 255, 255, $0, 0, TeacherScript_0x5535d, $ffff
 	person_event SPRITE_LASS, 10, 9, $2, $11, 255, 255, $90, 0, LassScript_0x553a2, $0768
 ; 0x55648
-

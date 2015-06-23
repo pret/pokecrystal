@@ -82,4 +82,3 @@ SlowpokeWellB2F_MapEventHeader: ; 0x5ae40
 	person_event SPRITE_GYM_GUY, 8, 9, $2, $21, 255, 255, $0, 1, GymGuyScript_0x5ad0b, $ffff
 	person_event SPRITE_POKE_BALL, 9, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x5ad28, $0663
 ; 0x5ae65
-

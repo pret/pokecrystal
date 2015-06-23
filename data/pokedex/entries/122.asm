@@ -8,5 +8,3 @@
 	page "its fingers to"
 	next "solidify air into"
 	next "an invisible wall.@"
-; 0x1b9851
-

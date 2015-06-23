@@ -35,4 +35,3 @@ AskSerial:: ; 2063
 	
 	ret
 ; 208a
-

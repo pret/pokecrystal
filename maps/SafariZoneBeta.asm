@@ -24,4 +24,3 @@ SafariZoneBeta_MapEventHeader: ; 0x74476
 	; people-events
 	db 0
 ; 0x74486
-

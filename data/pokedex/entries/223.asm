@@ -8,5 +8,3 @@
 	page "its mouth, then"
 	next "use that force to"
 	next "swim backward.@"
-; 0x1d0d42
-

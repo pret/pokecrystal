@@ -8,5 +8,3 @@
 	page "appears wherever"
 	next "beautiful forests"
 	next "exist.@"
-; 0x1d1931
-

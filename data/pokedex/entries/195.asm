@@ -8,5 +8,3 @@
 	page "the river bottom"
 	next "as it swims but"
 	next "seems not to care.@"
-; 0x1d0155
-

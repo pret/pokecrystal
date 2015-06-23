@@ -81,4 +81,3 @@ GoldenrodDeptStoreElevator_MapEventHeader: ; 0x566fe
 	; people-events
 	db 0
 ; 0x56713
-

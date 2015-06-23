@@ -86,4 +86,3 @@ ViridianNicknameSpeechHouse_MapEventHeader: ; 0x9af21
 	person_event SPRITE_MOLTRES, 6, 9, $16, $2, 255, 255, $b0, 0, MoltresScript_0x9ae40, $ffff
 	person_event SPRITE_GROWLITHE, 7, 10, $16, $2, 255, 255, $90, 0, GrowlitheScript_0x9ae4a, $ffff
 ; 0x9af65
-

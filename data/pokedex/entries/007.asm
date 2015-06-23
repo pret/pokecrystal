@@ -8,5 +8,3 @@
 	page "inside its shell"
 	next "and sprays water"
 	next "from its mouth.@"
-; 0x181993
-

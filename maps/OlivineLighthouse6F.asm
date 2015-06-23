@@ -299,4 +299,3 @@ OlivineLighthouse6F_MapEventHeader: ; 0x60f53
 	person_event SPRITE_MONSTER, 12, 13, $6, $0, 255, 255, $b0, 0, MonsterScript_0x60c3a, $ffff
 	person_event SPRITE_POKE_BALL, 8, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x60c66, $0668
 ; 0x60f8f
-

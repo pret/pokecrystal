@@ -8,5 +8,3 @@
 	page "dynamite blasts"
 	next "fail to scratch"
 	next "its rugged hide.@"
-; 0x1b84f2
-

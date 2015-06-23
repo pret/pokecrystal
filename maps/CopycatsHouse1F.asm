@@ -98,4 +98,3 @@ CopycatsHouse1F_MapEventHeader: ; 0x18ae5e
 	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $a0, 0, PokefanFScript_0x18ad16, $ffff
 	person_event SPRITE_CLEFAIRY, 10, 10, $16, $0, 255, 255, $0, 0, ClefairyScript_0x18ad2a, $ffff
 ; 0x18ae9a
-

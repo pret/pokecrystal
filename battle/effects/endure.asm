@@ -15,4 +15,3 @@ BattleCommand5a: ; 3766f
 	ld hl, BracedItselfText
 	jp StdBattleTextBox
 ; 37683
-

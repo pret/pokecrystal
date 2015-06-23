@@ -194,4 +194,3 @@ Route14_MapEventHeader: ; 0x1ad6a1
 	person_event SPRITE_POKEFAN_M, 15, 10, $a, $0, 255, 255, $82, 3, TrainerPokefanmTrevor, $ffff
 	person_event SPRITE_TEACHER, 9, 11, $5, $1, 255, 255, $a0, 4, TeacherScript_0x1ad47f, $ffff
 ; 0x1ad6db
-

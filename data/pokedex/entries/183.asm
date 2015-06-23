@@ -8,5 +8,3 @@
 	page "can stay dry, even"
 	next "when it plays in"
 	next "the water.@"
-; 0x1cd771
-

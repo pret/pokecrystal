@@ -318,4 +318,3 @@ CeladonGameCornerPrizeRoom_MapEventHeader: ; 0x72a34
 	person_event SPRITE_GENTLEMAN, 6, 4, $6, $0, 255, 255, $80, 0, GentlemanScript_0x726e9, $ffff
 	person_event SPRITE_PHARMACIST, 8, 8, $4, $10, 255, 255, $a0, 0, PharmacistScript_0x726ec, $ffff
 ; 0x72a68
-

@@ -8,5 +8,3 @@
 	page "where it deftly"
 	next "uses its trunk to"
 	next "take a shower.@"
-; 0x1d10ac
-

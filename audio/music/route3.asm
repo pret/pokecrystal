@@ -508,5 +508,3 @@ Music_Route3_branch_ec4f0: ; ec4f0
 	note C#, 1
 	loopchannel 0, Music_Route3_branch_ec4f0
 ; ec506
-
-

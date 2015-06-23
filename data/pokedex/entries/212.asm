@@ -8,5 +8,3 @@
 	page "crush any hard"
 	next "object it gets a"
 	next "hold of into bits.@"
-; 0x1d088e
-

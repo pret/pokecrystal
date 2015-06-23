@@ -1177,5 +1177,3 @@ Music_TitleScreen_branch_ebd93: ; ebd93
 	note C_, 4
 	endchannel
 ; ebd9e
-
-

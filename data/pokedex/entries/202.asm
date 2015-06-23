@@ -8,5 +8,3 @@
 	page "a dark cave and"
 	next "only moves about"
 	next "at night.@"
-; 0x1d0446
-

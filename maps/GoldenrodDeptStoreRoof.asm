@@ -263,4 +263,3 @@ GoldenrodDeptStoreRoof_MapEventHeader: ; 0x56b6d
 	person_event SPRITE_TEACHER, 7, 9, $2, $11, 255, 255, $a0, 0, TeacherScript_0x5676d, $06f0
 	person_event SPRITE_BUG_CATCHER, 10, 5, $7, $0, 255, 255, $80, 0, BugCatcherScript_0x56770, $06f0
 ; 0x56bf4
-

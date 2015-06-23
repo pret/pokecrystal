@@ -318,4 +318,3 @@ RuinsofAlphKabutoChamber_MapEventHeader: ; 0x58b85
 	person_event SPRITE_RECEPTIONIST, 9, 9, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x58769, $074e
 	person_event SPRITE_SCIENTIST, 5, 7, $7, $0, 255, 255, $90, 0, ScientistScript_0x587a8, $ffff
 ; 0x58bdc
-

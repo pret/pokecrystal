@@ -8,5 +8,3 @@
 	page "tails is loaded"
 	next "with supernatural"
 	next "powers.@"
-; 0x182673
-

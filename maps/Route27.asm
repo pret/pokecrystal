@@ -655,4 +655,3 @@ Route27_MapEventHeader: ; 0x1a0ead
 	person_event SPRITE_POKE_BALL, 16, 57, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a64, $06ac
 	person_event SPRITE_FISHER, 14, 25, $3, $0, 255, 255, $0, 3, FisherScript_0x1a089c, $ffff
 ; 0x1a0f4c
-

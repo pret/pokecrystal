@@ -8,5 +8,3 @@
 	page "cover its body in"
 	next "order to annoy its"
 	next "opponent.@"
-; 0x1b94f6
-

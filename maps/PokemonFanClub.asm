@@ -347,4 +347,3 @@ PokemonFanClub_MapEventHeader: ; 0x191e4d
 	person_event SPRITE_FAIRY, 8, 6, $6, $0, 255, 255, $0, 0, FairyScript_0x19186e, $0774
 	person_event SPRITE_ODDISH, 7, 11, $16, $0, 255, 255, $a0, 0, OddishScript_0x191871, $ffff
 ; 0x191eb5
-

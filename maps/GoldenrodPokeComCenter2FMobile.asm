@@ -314,4 +314,3 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader: ; 0x62c32
 	person_event SPRITE_SCIENTIST, 31, 11, $7, $0, 255, 255, $90, 0, ScientistScript_0x625d4, $ffff
 	person_event SPRITE_SCIENTIST, 33, 11, $7, $0, 255, 255, $a0, 0, ScientistScript_0x625d7, $ffff
 ; 0x62c78
-

@@ -359,5 +359,3 @@ Music_PalletTown_branch_f4c2d: ; f4c2d
 	note A_, 8
 	loopchannel 0, Music_PalletTown_branch_f4c2d
 ; f4c9f
-
-

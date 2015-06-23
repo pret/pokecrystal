@@ -14,4 +14,3 @@ SECTION "serial",ROM0[$58]
 
 SECTION "joypad",ROM0[$60]
 	jp JoypadInt
-

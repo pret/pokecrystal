@@ -140,4 +140,3 @@ GoldenrodBikeShop_MapEventHeader: ; 0x54907
 	db 1
 	person_event SPRITE_CLERK, 6, 11, $8, $0, 255, 255, $80, 0, ClerkScript_0x54750, $ffff
 ; 0x54951
-

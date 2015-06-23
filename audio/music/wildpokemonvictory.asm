@@ -187,5 +187,3 @@ Music_WildPokemonVictory_branch_f45f4: ; f45f4
 	note C#, 2
 	endchannel
 ; f4602
-
-

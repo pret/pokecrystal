@@ -8,5 +8,3 @@
 	page "flower petals"
 	next "release a pleasant"
 	next "fragrance.@"
-; 0x1817db
-

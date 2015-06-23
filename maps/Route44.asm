@@ -709,4 +709,3 @@ Route44_MapEventHeader: ; 0x19dff6
 	person_event SPRITE_POKE_BALL, 8, 49, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da44, $06b7
 	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da46, $07bd
 ; 0x19e09f
-

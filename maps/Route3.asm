@@ -235,4 +235,3 @@ Route3_MapEventHeader: ; 0x1ae18a
 	person_event SPRITE_YOUNGSTER, 7, 20, $a, $0, 255, 255, $92, 1, TrainerYoungsterJimmy, $ffff
 	person_event SPRITE_FISHER, 9, 53, $a, $0, 255, 255, $82, 3, TrainerFirebreatherBurt, $ffff
 ; 0x1ae1ce
-

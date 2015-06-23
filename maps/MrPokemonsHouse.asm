@@ -429,4 +429,3 @@ MrPokemonsHouse_MapEventHeader: ; 0x1975ef
 	person_event SPRITE_GENTLEMAN, 9, 7, $9, $0, 255, 255, $0, 0, GentlemanScript_0x196e97, $ffff
 	person_event SPRITE_OAK, 9, 10, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c9
 ; 0x197632
-

@@ -47,4 +47,3 @@ MountMoonGiftShop_MapEventHeader: ; 0x771e7
 	person_event SPRITE_LASS, 10, 5, $5, $1, 255, 1, $0, 0, LassScript_0x771b0, $ffff
 	person_event SPRITE_LASS, 8, 9, $4, $10, 255, 2, $0, 0, LassScript_0x771b0, $ffff
 ; 0x7722b
-

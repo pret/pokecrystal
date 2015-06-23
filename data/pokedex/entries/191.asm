@@ -8,5 +8,3 @@
 	page "shake its leaves"
 	next "desperately at its"
 	next "attacker.@"
-; 0x1cdaef
-

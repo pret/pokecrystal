@@ -205,4 +205,3 @@ GoldenrodMagnetTrainStation_MapEventHeader: ; 0x5531f
 	person_event SPRITE_OFFICER, 13, 13, $6, $0, 255, 255, $0, 0, OfficerScript_0x550ec, $ffff
 	person_event SPRITE_GENTLEMAN, 18, 15, $2, $22, 255, 255, $0, 0, GentlemanScript_0x55143, $0749
 ; 0x5535b
-

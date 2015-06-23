@@ -82,4 +82,3 @@ WhirlIslandB1F_MapEventHeader: ; 0x18c426
 	person_event SPRITE_POKE_BALL, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, $0695
 	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, BoulderScript_0x18c41a, $ffff
 ; 0x18c4b6
-

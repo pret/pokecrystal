@@ -365,6 +365,3 @@ RadioTower4F_MapEventHeader: ; 0x5f01a
 	person_event SPRITE_ROCKET_GIRL, 8, 16, $9, $0, 255, 255, $82, 1, TrainerGruntF4, $06ce
 	person_event SPRITE_SCIENTIST, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, $06ce
 ; 0x5f099
-
-
-

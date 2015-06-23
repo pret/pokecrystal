@@ -8,5 +8,3 @@
 	page "objects. This is"
 	next "what makes its"
 	next "body so solid.@"
-; 0x1b8d0a
-

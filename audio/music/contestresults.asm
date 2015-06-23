@@ -176,5 +176,3 @@ Music_ContestResults_branch_efbed: ; efbed
 	note G_, 1
 	loopchannel 0, Music_ContestResults_branch_efbed
 ; efc01
-
-

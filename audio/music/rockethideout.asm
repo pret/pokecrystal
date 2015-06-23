@@ -311,5 +311,3 @@ Music_RocketHideout_branch_eecdb: ; eecdb
 	note A_, 4
 	endchannel
 ; eece8
-
-

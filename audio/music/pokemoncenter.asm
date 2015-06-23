@@ -412,5 +412,3 @@ Music_PokemonCenter_branch_ed792: ; ed792
 	note G_, 2
 	loopchannel 0, Music_PokemonCenter_branch_ed792
 ; ed79b
-
-

@@ -8,5 +8,3 @@
 	page "body brightens"
 	next "slightly, the"
 	next "weather changes.@"
-; 0x1cc843
-

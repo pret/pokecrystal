@@ -67,4 +67,3 @@ PewterMart_MapEventHeader: ; 0x1a2eae
 	person_event SPRITE_YOUNGSTER, 6, 13, $5, $2, 255, 255, $0, 0, YoungsterScript_0x1a2dd2, $ffff
 	person_event SPRITE_SUPER_NERD, 10, 10, $3, $0, 255, 255, $80, 0, SuperNerdScript_0x1a2dd5, $ffff
 ; 0x1a2ee5
-

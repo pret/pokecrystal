@@ -617,5 +617,3 @@ Music_LookMysticalMan_branch_1786df: ; 1786df
 	note D_, 1
 	endchannel
 ; 1786e8
-
-

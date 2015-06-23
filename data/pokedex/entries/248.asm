@@ -8,5 +8,3 @@
 	page "make the ground"
 	next "shake and moun-"
 	next "tains crumble.@"
-; 0x1d17e9
-

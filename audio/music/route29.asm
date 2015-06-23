@@ -524,5 +524,3 @@ Music_Route29_branch_f05b0: ; f05b0
 	note F_, 4
 	loopchannel 0, Music_Route29_branch_f05b0
 ; f05bf
-
-

@@ -8,5 +8,3 @@
 	page "rhythmically pull-"
 	next "ing up and down"
 	next "on its udders.@"
-; 0x1d14f7
-

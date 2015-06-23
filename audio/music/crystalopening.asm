@@ -362,5 +362,3 @@ Music_CrystalOpening_Ch4: ; 178810
 	note __, 16
 	endchannel
 ; 178889
-
-

@@ -359,4 +359,3 @@ VioletGym_MapEventHeader: ; 0x68a0c
 	person_event SPRITE_YOUNGSTER, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, $ffff
 	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, $ffff
 ; 0x68a5a
-

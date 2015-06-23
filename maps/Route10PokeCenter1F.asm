@@ -107,4 +107,3 @@ Route10PokeCenter1F_MapEventHeader: ; 0x188d63
 	person_event SPRITE_GYM_GUY, 6, 11, $3, $0, 255, 255, $a0, 0, GymGuyScript_0x188bda, $ffff
 	person_event SPRITE_COOLTRAINER_F, 7, 5, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x188bee, $ffff
 ; 0x188dac
-

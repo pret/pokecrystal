@@ -114,4 +114,3 @@ MountMortar2FInside_MapEventHeader: ; 0x7e184
 	person_event SPRITE_POKE_BALL, 9, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e8, $0685
 	person_event SPRITE_SUPER_NERD, 30, 17, $a, $0, 255, 255, $b2, 2, TrainerSupernerdHugh, $ffff
 ; 0x7e1f4
-

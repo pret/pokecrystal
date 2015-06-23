@@ -8,5 +8,3 @@
 	page "while keeping a"
 	next "sharp lookout for"
 	next "prey.@"
-; 0x181dd7
-

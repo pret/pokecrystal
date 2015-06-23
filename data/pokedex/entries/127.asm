@@ -8,5 +8,3 @@
 	page "on treetops or"
 	next "among roots where"
 	next "it is well hidden.@"
-; 0x1b9a6f
-

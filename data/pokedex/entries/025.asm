@@ -8,5 +8,3 @@
 	page "energy stored in"
 	next "the pouches in its"
 	next "cheeks.@"
-; 0x182117
-

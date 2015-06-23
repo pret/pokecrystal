@@ -385,4 +385,3 @@ RuinsofAlphOutside_MapEventHeader: ; 0x584c3
 	person_event SPRITE_YOUNGSTER, 15, 18, $2, $11, 255, 255, $b0, 0, YoungsterScript_0x58076, $078f
 	person_event SPRITE_YOUNGSTER, 12, 16, $7, $0, 255, 255, $80, 0, YoungsterScript_0x5807e, $078f
 ; 0x58560
-

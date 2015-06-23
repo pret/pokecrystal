@@ -49,4 +49,3 @@ GuideGentsHouse_MapEventHeader: ; 0x196c89
 	db 1
 	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x196c07, $06ff
 ; 0x196cb0
-

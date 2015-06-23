@@ -8,5 +8,3 @@
 	page "by the flapping of"
 	next "its wings causes"
 	next "summer storms.@"
-; 0x1cc706
-

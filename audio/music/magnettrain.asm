@@ -288,5 +288,3 @@ Music_MagnetTrain_branch_ef71e: ; ef71e
 	note G_, 2
 	endchannel
 ; ef72f
-
-

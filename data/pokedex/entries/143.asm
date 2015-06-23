@@ -8,5 +8,3 @@
 	page "eating moldy or"
 	next "rotten food will"
 	next "not affect it.@"
-; 0x1cc632
-

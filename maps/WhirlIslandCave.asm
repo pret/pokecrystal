@@ -24,4 +24,3 @@ WhirlIslandCave_MapEventHeader: ; 0x18c3ec
 	; people-events
 	db 0
 ; 0x18c3fc
-

@@ -8,5 +8,3 @@
 	page "attack, it raises"
 	next "the barbs that are"
 	next "all over its body.@"
-; 0x18232e
-

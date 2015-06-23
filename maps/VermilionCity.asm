@@ -341,4 +341,3 @@ VermilionCity_MapEventHeader: ; 0x1aae77
 	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, $0, 255, 255, $0, 0, BigSnorlaxScript_0x1aa99e, $0770
 	person_event SPRITE_POKEFAN_M, 16, 35, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1aa9c2, $ffff
 ; 0x1aaf25
-

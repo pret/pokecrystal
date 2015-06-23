@@ -102,4 +102,3 @@ Route12SuperRodHouse_MapEventHeader: ; 0x7f60b
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 9, $6, $0, 255, 255, $80, 0, FishingGuruScript_0x7f484, $ffff
 ; 0x7f628
-

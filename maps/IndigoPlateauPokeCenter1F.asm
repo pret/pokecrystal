@@ -352,4 +352,3 @@ IndigoPlateauPokeCenter1F_MapEventHeader: ; 0x180441
 	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, GrampsScript_0x180139, $077c
 	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, JynxScript_0x18015a, $077c
 ; 0x1804b9
-

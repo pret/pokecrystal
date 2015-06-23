@@ -283,4 +283,3 @@ step_shake: macro
 	db $55
 	db \1 ; displacement
 	endm
-

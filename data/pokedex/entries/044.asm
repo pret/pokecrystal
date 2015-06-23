@@ -8,5 +8,3 @@
 	page "its petals is so"
 	next "bad, it may make"
 	next "opponents faint.@"
-; 0x182918
-

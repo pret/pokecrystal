@@ -8,5 +8,3 @@
 	page "longer the effects"
 	next "of its hypnosis"
 	next "last.@"
-; 0x1b8ddd
-

@@ -8,5 +8,3 @@
 	page "attracted to its"
 	next "movement as it ran"
 	next "through prairies.@"
-; 0x182f91
-

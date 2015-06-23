@@ -87,4 +87,3 @@ CianwoodLugiaSpeechHouse_MapEventHeader: ; 0x9e32b
 	person_event SPRITE_LASS, 9, 10, $5, $1, 255, 255, $a0, 0, LassScript_0x9e1b3, $ffff
 	person_event SPRITE_TWIN, 6, 4, $7, $0, 255, 255, $90, 0, TwinScript_0x9e1b6, $ffff
 ; 0x9e36c
-

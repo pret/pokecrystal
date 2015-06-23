@@ -177,4 +177,3 @@ CeladonPokeCenter1F_MapEventHeader: ; 0x720b8
 	person_event SPRITE_COOLTRAINER_F, 10, 12, $5, $1, 255, 255, $a0, 0, CooltrainerFScript_0x71e28, $ffff
 	person_event SPRITE_SUPER_NERD, 7, 8, $6, $0, 255, 255, $90, 0, SuperNerdScript_0x71e2e, $07b7
 ; 0x7210e
-

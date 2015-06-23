@@ -57,4 +57,3 @@ CinnabarPokeCenter1F_MapEventHeader: ; 0x1ab3ab
 	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1ab32f, $ffff
 	person_event SPRITE_FISHER, 8, 6, $6, $0, 255, 255, $a0, 0, FisherScript_0x1ab332, $ffff
 ; 0x1ab3e7
-

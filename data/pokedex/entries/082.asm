@@ -8,5 +8,3 @@
 	page "resulting magnetic"
 	next "storm disrupts"
 	next "radio waves.@"
-; 0x1b876c
-

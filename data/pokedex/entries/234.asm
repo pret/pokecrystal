@@ -8,5 +8,3 @@
 	page "be ground into a"
 	next "powder that aids"
 	next "in sleeping.@"
-; 0x1d11e0
-

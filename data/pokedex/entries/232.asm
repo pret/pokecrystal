@@ -8,5 +8,3 @@
 	page "attack won't even"
 	next "leave a scratch on"
 	next "it.@"
-; 0x1d110c
-

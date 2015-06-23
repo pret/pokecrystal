@@ -8,5 +8,3 @@
 	page "scent of prey,"
 	next "then swallows the"
 	next "prey whole.@"
-; 0x18203d
-

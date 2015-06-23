@@ -158,4 +158,3 @@ BrunosRoom_MapEventHeader: ; 0x180b88
 	db 1
 	person_event SPRITE_BRUNO, 11, 9, $6, $0, 255, 255, $b0, 0, BrunoScript_0x1809c5, $ffff
 ; 0x180baf
-

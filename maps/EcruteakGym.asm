@@ -546,4 +546,3 @@ EcruteakGym_MapEventHeader: ; 0x9a4e9
 	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, $ffff
 	person_event SPRITE_GRAMPS, 18, 8, $6, $0, 255, 255, $a0, 0, ObjectEvent, $07a8
 ; 0x9a5f9
-

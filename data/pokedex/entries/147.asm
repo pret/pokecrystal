@@ -8,5 +8,3 @@
 	page "ing this process,"
 	next "it is protected by"
 	next "a rapid waterfall.@"
-; 0x1cc7dc
-

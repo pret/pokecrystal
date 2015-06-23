@@ -8,5 +8,3 @@
 	page "makes eerie sounds"
 	next "by expelling air"
 	next "from its mouth.@"
-; 0x1820ad
-

@@ -50,4 +50,3 @@ LavenderTownSpeechHouse_MapEventHeader: ; 0x7eac4
 	db 1
 	person_event SPRITE_POKEFAN_F, 7, 6, $7, $0, 255, 255, $90, 0, PokefanFScript_0x7ea47, $ffff
 ; 0x7eaeb
-

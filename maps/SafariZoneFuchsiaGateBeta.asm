@@ -26,4 +26,3 @@ SafariZoneFuchsiaGateBeta_MapEventHeader: ; 0x7445a
 	; people-events
 	db 0
 ; 0x74474
-

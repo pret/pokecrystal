@@ -8,5 +8,3 @@
 	page "swim, it blends"
 	next "with the water"
 	next "perfectly.@"
-; 0x1cc28b
-

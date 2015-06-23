@@ -8,5 +8,3 @@
 	page "shell is said to"
 	next "be filled with"
 	next "happiness.@"
-; 0x1cd402
-

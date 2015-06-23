@@ -8,5 +8,3 @@
 	page "among leaves that"
 	next "are the same color"
 	next "as its body.@"
-; 0x181ace
-

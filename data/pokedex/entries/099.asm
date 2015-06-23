@@ -8,5 +8,3 @@
 	page "in battle, the"
 	next "claw just gets in"
 	next "the way.@"
-; 0x1b8eb0
-

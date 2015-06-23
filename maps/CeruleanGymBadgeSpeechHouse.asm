@@ -35,4 +35,3 @@ CeruleanGymBadgeSpeechHouse_MapEventHeader: ; 0x18802b
 	db 1
 	person_event SPRITE_POKEFAN_M, 7, 6, $9, $0, 255, 255, $0, 0, PokefanMScript_0x188002, $ffff
 ; 0x188048
-

@@ -40,4 +40,3 @@ VermilionPortPassage_MapEventHeader: ; 0x7705a
 	db 1
 	person_event SPRITE_TEACHER, 5, 21, $8, $0, 255, 255, $0, 0, TeacherScript_0x7701a, $ffff
 ; 0x77086
-

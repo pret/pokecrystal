@@ -358,5 +358,3 @@ Music_LookRival_branch_f5118: ; f5118
 	note D_, 2
 	loopchannel 0, Music_LookRival_branch_f5118
 ; f5127
-
-

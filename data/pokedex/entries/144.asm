@@ -8,5 +8,3 @@
 	page "sky, it cools the"
 	next "air, causing snow"
 	next "to fall.@"
-; 0x1cc697
-

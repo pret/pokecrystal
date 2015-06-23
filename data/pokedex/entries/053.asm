@@ -8,5 +8,3 @@
 	page "side. It will tear"
 	next "apart its prey on"
 	next "a mere whim.@"
-; 0x182cee
-

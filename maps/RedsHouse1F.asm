@@ -106,4 +106,3 @@ RedsHouse1F_MapEventHeader: ; 0x19b017
 	db 1
 	person_event SPRITE_REDS_MOM, 7, 9, $8, $0, 255, 255, $0, 0, RedsMomScript_0x19aea3, $ffff
 ; 0x19b048
-

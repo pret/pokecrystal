@@ -339,4 +339,3 @@ FastShipCabins_SW_SSW_NW_MapEventHeader: ; 0x75e42
 	person_event SPRITE_BUENA, 30, 5, $a, $0, 255, 255, $92, 3, TrainerBeautyCassie, $073a
 	person_event SPRITE_ROCKER, 32, 7, $1e, $0, 255, 255, $82, 2, TrainerGuitaristClyde, $073b
 ; 0x75ea4
-

@@ -161,4 +161,3 @@ OlivineLighthouse5F_MapEventHeader: ; 0x60b20
 	person_event SPRITE_POKE_BALL, 19, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x609ac, $0666
 	person_event SPRITE_POKE_BALL, 17, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x609ae, $0667
 ; 0x60b8f
-

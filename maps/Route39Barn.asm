@@ -229,4 +229,3 @@ Route39Barn_MapEventHeader: ; 0x9ce7b
 	person_event SPRITE_TWIN, 7, 8, $8, $0, 255, 255, $a0, 0, TwinScript_0x9cc90, $ffff
 	person_event SPRITE_TAUROS, 7, 7, $16, $0, 255, 255, $0, 0, TaurosScript_0x9ccaa, $ffff
 ; 0x9ceb2
-

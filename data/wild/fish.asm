@@ -499,4 +499,3 @@ TimeFishGroups: ; 9266f
 	db TENTACOOL,  40 ; day
 
 ; 926c7
-

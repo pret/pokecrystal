@@ -8,5 +8,3 @@
 	page "nutritious eggs,"
 	next "but it rarely can"
 	next "be found.@"
-; 0x1b948c
-

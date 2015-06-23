@@ -207,4 +207,3 @@ Route4_MapEventHeader: ; 0x1ae3ab
 	person_event SPRITE_LASS, 10, 25, $9, $0, 255, 255, $a2, 4, TrainerPicnickerSharon, $ffff
 	person_event SPRITE_POKE_BALL, 7, 30, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ae20f, $0787
 ; 0x1ae3f4
-

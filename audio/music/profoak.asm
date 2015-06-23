@@ -321,5 +321,3 @@ Music_ProfOak_branch_f4f69: ; f4f69
 	note B_, 2
 	endchannel
 ; f4f79
-
-

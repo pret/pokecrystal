@@ -263,5 +263,3 @@ Music_BurnedTower_branch_f6be7: ; f6be7
 	note G_, 4
 	loopchannel 0, Music_BurnedTower_branch_f6be7
 ; f6bf2
-
-

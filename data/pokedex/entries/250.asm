@@ -8,5 +8,3 @@
 	page "trainer by shining"
 	next "its bright rain-"
 	next "bow-colored wings.@"
-; 0x1d18cc
-

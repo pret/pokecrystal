@@ -1080,6 +1080,3 @@ IlexForest_MapEventHeader: ; 0x6f5e7
 	person_event SPRITE_POKE_BALL, 11, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee14, $07ba
 	person_event SPRITE_POKE_BALL, 5, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee16, $07bb
 ; 0x6f6a4
-
-
-

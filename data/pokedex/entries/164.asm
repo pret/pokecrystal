@@ -8,5 +8,3 @@
 	page "It silently sneaks"
 	next "up on prey without"
 	next "being detected.@"
-; 0x1ccf2c
-

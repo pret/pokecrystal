@@ -8,5 +8,3 @@
 	page "climbing trees. It"
 	next "eats and sleeps in"
 	next "the treetops.@"
-; 0x1d0ab8
-

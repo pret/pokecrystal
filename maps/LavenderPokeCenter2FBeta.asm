@@ -23,4 +23,3 @@ LavenderPokeCenter2FBeta_MapEventHeader: ; 0x7e8bd
 	; people-events
 	db 0
 ; 0x7e8c8
-

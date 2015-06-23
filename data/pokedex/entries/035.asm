@@ -8,5 +8,3 @@
 	page "for some reason,"
 	next "on the night of a "
 	next "full moon.@"
-; 0x182530
-

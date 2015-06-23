@@ -169,5 +169,3 @@ SECTION "Cries", ROMX, BANK[CRIES]
 CryHeaders:: INCLUDE "audio/cry_headers.asm"
 
 INCLUDE "audio/cries.asm"
-
-

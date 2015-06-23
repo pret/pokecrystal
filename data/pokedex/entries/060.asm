@@ -8,5 +8,3 @@
 	page "through the skin."
 	next "It looks clearer"
 	next "after it eats.@"
-; 0x182ffd
-

@@ -480,4 +480,3 @@ DanceTheatre_MapEventHeader: ; 0x99baa
 	person_event SPRITE_COOLTRAINER_M, 14, 14, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x99525, $ffff
 	person_event SPRITE_GRANNY, 10, 7, $7, $0, 255, 255, $0, 0, GrannyScript_0x99528, $ffff
 ; 0x99c39
-

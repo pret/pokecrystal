@@ -1658,4 +1658,3 @@ UnknownScript_0xa0b09:
 	clearflag ENGINE_14
 	specialphonecall $0000
 	end
-

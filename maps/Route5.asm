@@ -66,4 +66,3 @@ Route5_MapEventHeader: ; 0x1adbc7
 	db 1
 	person_event SPRITE_POKEFAN_M, 20, 21, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1adb19, $0771
 ; 0x1adbf8
-

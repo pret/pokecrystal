@@ -698,4 +698,3 @@ FastShipB1F_MapEventHeader: ; 0x76ee9
 	person_event SPRITE_YOUNGSTER, 13, 18, $3, $0, 255, 255, $92, 1, TrainerSchoolboyNate, $073b
 	person_event SPRITE_YOUNGSTER, 15, 18, $a, $0, 255, 255, $92, 1, TrainerSchoolboyRicky, $073b
 ; 0x76faa
-

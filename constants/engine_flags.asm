@@ -160,4 +160,3 @@ ENGINE_9E                                    EQU $9e
 ENGINE_KRIS_IN_CABLE_CLUB                    EQU $9f
 ENGINE_DUNSPARCE_SWARM                       EQU $a0
 ENGINE_YANMA_SWARM                           EQU $a1
-

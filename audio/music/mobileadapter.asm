@@ -668,4 +668,3 @@ Music_MobileAdapter_branch_1ff60: ; 1ff60
 	note D_, 1
 	endchannel
 ; 1ff6c
-

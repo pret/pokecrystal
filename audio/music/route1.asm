@@ -651,5 +651,3 @@ Music_Route1_branch_ec20c: ; ec20c
 	note __, 3
 	loopchannel 0, Music_Route1_branch_ec20c
 ; ec2ca
-
-

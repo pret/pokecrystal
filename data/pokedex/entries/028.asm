@@ -8,5 +8,3 @@
 	page "then attacks its"
 	next "enemies from"
 	next "above.@"
-; 0x18224b
-

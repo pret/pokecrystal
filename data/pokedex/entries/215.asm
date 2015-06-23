@@ -8,5 +8,3 @@
 	page "of darkness,"
 	next "waiting to attack"
 	next "its prey.@"
-; 0x1d09da
-

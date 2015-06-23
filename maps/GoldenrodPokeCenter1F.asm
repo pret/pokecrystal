@@ -905,4 +905,3 @@ GoldenrodPokeCenter1F_MapEventHeader: ; 0x62564
 	person_event SPRITE_LASS, 8, 5, $5, $1, 255, 255, $0, 0, LassScript_0x61021, $ffff
 	person_event SPRITE_POKEFAN_F, 9, 11, $6, $0, 255, 255, $b0, 0, PokefanFScript_0x61024, $ffff
 ; 0x625cf
-

@@ -96,4 +96,3 @@ BattleCommand5c: ; 37734
 .asm_37790
 	ret
 ; 37791
-

@@ -358,4 +358,3 @@ VermilionPort_MapEventHeader: ; 0x750e3
 	person_event SPRITE_SAILOR, 15, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x74e97, $ffff
 	person_event SPRITE_SUPER_NERD, 15, 15, $5, $2, 255, 255, $0, 0, SuperNerdScript_0x74ee6, $ffff
 ; 0x75127
-

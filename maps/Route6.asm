@@ -155,4 +155,3 @@ Route6_MapEventHeader: ; 0x1adadb
 	person_event SPRITE_POKEFAN_M, 16, 13, $9, $0, 255, 255, $82, 0, TrainerPokefanmRex, $ffff
 	person_event SPRITE_POKEFAN_M, 16, 14, $8, $0, 255, 255, $82, 0, TrainerPokefanmAllan, $ffff
 ; 0x1adb17
-

@@ -241,4 +241,3 @@ anim_call: macro
 anim_ret: macro
 	db $ff
 	endm
-

@@ -93,4 +93,3 @@ Function2e31:: ; 2e31
 	ld [hOAMUpdate], a
 	ret
 ; 2e4e
-

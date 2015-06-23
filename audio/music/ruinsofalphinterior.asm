@@ -48,5 +48,3 @@ Music_RuinsOfAlphInterior_branch_ebdd7: ; ebdd7
 	note __, 10
 	loopchannel 0, Music_RuinsOfAlphInterior_branch_ebdd7
 ; ebde1
-
-

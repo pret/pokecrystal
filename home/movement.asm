@@ -218,4 +218,3 @@ Function1c23:: ; 0x1c23
 	call Function1c30
 	ret
 ; 0x1c30
-

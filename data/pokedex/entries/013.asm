@@ -8,5 +8,3 @@
 	page "It uses this toxic"
 	next "barb to protect"
 	next "itself.@"
-; 0x181c23
-

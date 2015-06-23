@@ -480,5 +480,3 @@ Music_RocketTheme_branch_f78de: ; f78de
 	callchannel Music_RocketTheme_branch_f765c
 	loopchannel 0, Music_RocketTheme_branch_f78c3
 ; f78fd
-
-

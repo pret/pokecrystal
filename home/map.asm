@@ -2348,4 +2348,3 @@ LoadTilesetHeader:: ; 2d27
 	pop hl
 	ret
 ; 2d43
-

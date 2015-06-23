@@ -589,4 +589,3 @@ TinTower1F_MapEventHeader: ; 0x18598c
 	person_event SPRITE_SAGE, 5, 13, $6, $0, 255, 255, $0, 0, SageScript_0x185188, $07c5
 	person_event SPRITE_SAGE, 6, 18, $5, $1, 255, 255, $0, 0, SageScript_0x1851bc, $07c5
 ; 0x185a23
-

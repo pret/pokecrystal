@@ -614,5 +614,3 @@ Music_KantoGymBattle_branch_ec9e5: ; ec9e5
 	note F_, 2
 	loopchannel 0, Music_KantoGymBattle_branch_ec965
 ; ec9fa
-
-

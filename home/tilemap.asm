@@ -216,4 +216,3 @@ GetAttrCoord:: ; 1d21
 	add hl, bc
 	ret
 ; 1d35
-

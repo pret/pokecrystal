@@ -8,5 +8,3 @@
 	page "wanders in search"
 	next "of food after"
 	next "darkness falls.@"
-; 0x1cd0f5
-

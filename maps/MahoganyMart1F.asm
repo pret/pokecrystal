@@ -268,4 +268,3 @@ MahoganyMart1F_MapEventHeader: ; 0x6c5fb
 	person_event SPRITE_DRAGON, 10, 7, $8, $0, 255, 255, $0, 0, ObjectEvent, $06d5
 	person_event SPRITE_GRANNY, 7, 5, $9, $0, 255, 255, $0, 0, GrannyScript_0x6c3ee, $0736
 ; 0x6c651
-

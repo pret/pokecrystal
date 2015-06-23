@@ -39,4 +39,3 @@ AnimObj37GFX: INCBIN "gfx/fx/037.2bpp.lz"
 AnimObj38GFX: INCBIN "gfx/fx/038.2bpp.lz"
 AnimObj39GFX: INCBIN "gfx/fx/039.2bpp.lz"
 ; 8640e
-

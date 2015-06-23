@@ -8,5 +8,3 @@
 	page "when many appear,"
 	next "it heralds a"
 	next "volcanic eruption.@"
-; 0x1d1482
-

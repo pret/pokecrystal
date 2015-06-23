@@ -8,5 +8,3 @@
 	page "#MON's face"
 	next "become more vivid"
 	next "and lively.@"
-; 0x1cdb51
-

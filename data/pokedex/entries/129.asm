@@ -8,5 +8,3 @@
 	page "along rivers when"
 	next "there are strong"
 	next "currents.@"
-; 0x1cc065
-

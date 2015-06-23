@@ -97,4 +97,3 @@ SoulHouse_MapEventHeader: ; 0x7ee1d
 	person_event SPRITE_LASS, 9, 6, $7, $0, 255, 255, $90, 0, LassScript_0x7ec4d, $ffff
 	person_event SPRITE_GRANNY, 7, 5, $7, $0, 255, 255, $90, 0, GrannyScript_0x7ec50, $ffff
 ; 0x7ee61
-

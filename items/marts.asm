@@ -440,4 +440,3 @@ DefaultMart: ; 16214
 	db POTION
 	db $ff
 ; 16218
-

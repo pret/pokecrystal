@@ -8,5 +8,3 @@
 	page "But this also"
 	next "makes it more"
 	next "likely to explode.@"
-; 0x1b8f84
-

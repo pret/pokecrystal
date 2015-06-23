@@ -64,4 +64,3 @@ BlackthornDragonSpeechHouse_MapEventHeader: ; 0x1959fe
 	person_event SPRITE_GRANNY, 7, 6, $3, $0, 255, 255, $0, 0, GrannyScript_0x195949, $ffff
 	person_event SPRITE_EKANS, 9, 9, $16, $0, 255, 255, $90, 0, EkansScript_0x19594c, $ffff
 ; 0x195a28
-

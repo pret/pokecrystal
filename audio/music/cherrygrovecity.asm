@@ -308,5 +308,3 @@ Music_CherrygroveCity_branch_f5c4d: ; f5c4d
 	note G_, 2
 	loopchannel 0, Music_CherrygroveCity_branch_f5c4d
 ; f5c60
-
-

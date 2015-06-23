@@ -40,4 +40,3 @@ OlivineVoltorbHouse_MapEventHeader: ; 0x9c566
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $80, 0, FishingGuruScript_0x9c55c, $ffff
 ; 0x9c58d
-

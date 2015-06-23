@@ -245,5 +245,3 @@ Music_SproutTower_branch_f6a7f: ; f6a7f
 	note F#, 4
 	loopchannel 0, Music_SproutTower_branch_f6a7f
 ; f6a99
-
-

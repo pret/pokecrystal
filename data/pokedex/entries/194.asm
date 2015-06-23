@@ -8,5 +8,3 @@
 	page "it barehanded will"
 	next "cause a shooting"
 	next "pain.@"
-; 0x1d00dd
-

@@ -672,5 +672,3 @@ Music_EcruteakCity_branch_ef569: ; ef569
 	note B_, 1
 	endchannel
 ; ef5b1
-
-

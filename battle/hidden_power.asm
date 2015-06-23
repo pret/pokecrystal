@@ -109,4 +109,3 @@ HiddenPowerDamage: ; fbced
 	ld d, a
 	ret
 ; fbd54
-

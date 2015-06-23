@@ -597,4 +597,3 @@
 	map_header_2 Route30BerrySpeechHouse, ROUTE_30_BERRY_SPEECH_HOUSE, $0, NONE ; 0x9668c
 	map_header_2 MrPokemonsHouse, MR_POKEMONS_HOUSE, $0, NONE ; 0x96698
 	map_header_2 Route31VioletGate, ROUTE_31_VIOLET_GATE, $0, NONE ; 0x966a4
-

@@ -8,5 +8,3 @@
 	page "muscles become"
 	next "thicker after"
 	next "every battle.@"
-; 0x1b8133
-

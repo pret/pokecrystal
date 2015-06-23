@@ -68,4 +68,3 @@ SilverCaveRoom3_MapEventHeader: ; 0x18c644
 	db 1
 	person_event SPRITE_RED, 14, 13, $7, $0, 255, 255, $80, 0, RedScript_0x18c603, $0762
 ; 0x18c65c
-

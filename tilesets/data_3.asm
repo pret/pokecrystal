@@ -62,4 +62,3 @@ INCBIN "tilesets/17_collision.bin"
 Tileset31Meta: ; 0x23891
 INCBIN "tilesets/31_metatiles.bin"
 ; 0x23b11
-

@@ -8,5 +8,3 @@
 	page "a dust cloud that"
 	next "drives insect prey"
 	next "out into the open.@"
-; 0x181d75
-

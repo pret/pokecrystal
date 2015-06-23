@@ -69,4 +69,3 @@ Route30BerrySpeechHouse_MapEventHeader: ; 0x196e20
 	db 1
 	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $b0, 0, PokefanMScript_0x196d64, $ffff
 ; 0x196e47
-

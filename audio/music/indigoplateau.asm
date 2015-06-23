@@ -188,5 +188,3 @@ Music_IndigoPlateau_branch_ee92a: ; ee92a
 	note C#, 4
 	loopchannel 0, Music_IndigoPlateau_branch_ee92a
 ; ee94b
-
-

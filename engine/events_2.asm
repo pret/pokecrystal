@@ -641,4 +641,3 @@ Function97f42: ; 97f42
 	pop af
 	ret
 ; 97f7e
-

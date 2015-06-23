@@ -8,5 +8,3 @@
 	page "tail is predeter-"
 	next "mined for each"
 	next "SMEARGLE.@"
-; 0x1d124b
-

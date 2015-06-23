@@ -8,5 +8,3 @@
 	page "each other,"
 	next "making pretty,"
 	next "relaxing sounds.@"
-; 0x1cd705
-

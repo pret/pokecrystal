@@ -93,4 +93,3 @@ LakeofRageHiddenPowerHouse_MapEventHeader: ; 0x19a685
 	db 1
 	person_event SPRITE_FISHER, 7, 6, $3, $0, 255, 255, $0, 0, FisherScript_0x19a527, $ffff
 ; 0x19a6ac
-

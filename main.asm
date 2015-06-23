@@ -96596,4 +96596,3 @@ INCBIN "misc/stadium2_2.bin"
 ELSE
 INCBIN "misc/stadium2_1.bin"
 ENDC
-

@@ -191,4 +191,3 @@ MountMortar1FInside_MapEventHeader: ; 0x7e01d
 	person_event SPRITE_POKE_BALL, 20, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de86, $07c8
 	person_event SPRITE_POKE_BALL, 21, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de88, $07c9
 ; 0x7e0c8
-

@@ -77,4 +77,3 @@ SilphCo1F_MapEventHeader: ; 0x18ace7
 	person_event SPRITE_RECEPTIONIST, 6, 8, $6, $0, 255, 255, $90, 0, ReceptionistScript_0x18abe5, $ffff
 	person_event SPRITE_OFFICER, 5, 17, $6, $0, 255, 255, $90, 0, OfficerScript_0x18abe8, $ffff
 ; 0x18ad11
-

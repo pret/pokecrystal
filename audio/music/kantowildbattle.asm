@@ -1224,5 +1224,3 @@ Music_KantoWildBattle_branch_ed39e: ; ed39e
 	note G_, 16
 	loopchannel 0, Music_KantoWildBattle_branch_ed39e
 ; ed5c6
-
-

@@ -23,4 +23,3 @@ VermilionPokeCenter2FBeta_MapEventHeader: ; 0x1917dc
 	; people-events
 	db 0
 ; 0x1917e7
-

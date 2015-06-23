@@ -8,5 +8,3 @@
 	page "to make its way to"
 	next "any place in the"
 	next "world it wants.@"
-; 0x1cda11
-
