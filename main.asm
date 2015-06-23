@@ -75836,8 +75836,8 @@ INCBIN "gfx/slots_3.2bpp.lz"
 SECTION "bank28", ROMX, BANK[$28]
 
 INCLUDE "engine/more_phone_scripts.asm"
-INCLUDE "engine/buena_scripts.asm"
-INCLUDE "text/buena.asm"
+INCLUDE "engine/buena_phone_scripts.asm"
+INCLUDE "text/phone/buena.asm"
 
 
 SECTION "bank29", ROMX, BANK[$29]
