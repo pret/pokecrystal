@@ -752,10 +752,10 @@ Function17abcf: ; 17abcf (5e:6bcf)
 	ld de, $d048
 	ld bc, $10
 	call CopyBytes
-	ld hl, Palette_b471
+	ld hl, MapObjectPals + 8
 	ld de, $d058
 	ld bc, $8
-	ld a, BANK(Palette_b471)
+	ld a, BANK(MapObjectPals)
 	call FarCopyBytes
 	pop af
 	ld [rSVBK], a ; $ff00+$70

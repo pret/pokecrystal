@@ -1942,6 +1942,7 @@ INCLUDE "gfx/trainers/palette_pointers.asm"
 Functionb1de: ; b1de
 	callba Function494ac
 	jr c, .asm_b230
+
 	ld a, [wd19a]
 	and 7
 	ld e, a
@@ -1977,7 +1978,7 @@ Functionb1de: ; b1de
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, MornPal
+	ld de, TilesetBGPalette
 	add hl, de
 	ld e, l
 	ld d, h
@@ -2000,18 +2001,18 @@ Functionb1de: ; b1de
 	ld a, [TimeOfDayPal]
 	and 3
 	ld bc, $40
-	ld hl, Palettes_b469
+	ld hl, MapObjectPals
 	call AddNTimes
 	ld de, Unkn2Pals
-	ld bc, $0040
-	ld a, $5
+	ld bc, $40
+	ld a, $5 ; BANK(Unkn2Pals)
 	call FarCopyWRAM
+
 	ld a, [wd19a]
 	cp 1
 	jr z, .asm_b253
 	cp 2
 	ret nz
-
 .asm_b253
 	ld a, [MapGroup]
 	ld l, a
@@ -2019,51 +2020,58 @@ Functionb1de: ; b1de
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, Palettes_b569
+	ld de, RoofPals
 	add hl, de
 	ld a, [TimeOfDayPal]
 	and 3
-	cp 2
+	cp NITE
 	jr c, .asm_b26d
 	inc hl
 	inc hl
 	inc hl
 	inc hl
-
 .asm_b26d
 	ld de, Unkn1Pals + 8 * 6 + 2
-	ld bc, $0004
+	ld bc, 4
 	ld a, $5
 	call FarCopyWRAM
 	ret
 ; b279
 
 Unknown_b279: ; b279
-	dw Unknown_b289
-	dw Unknown_b289
-	dw Unknown_b289
-	dw Unknown_b2a9
-	dw Unknown_b2c9
-	dw Unknown_b2e9
-	dw Unknown_b2a9
-	dw Unknown_b2c9
+	dw TilesetColors1
+	dw TilesetColors1
+	dw TilesetColors1
+	dw TilesetColors2
+	dw TilesetColors3
+	dw TilesetColors4
+	dw TilesetColors2
+	dw TilesetColors3
 ; b289
 
-Unknown_b289: ; b289
-	db $00, $01, $02, $28, $04, $05, $06, $07, $08, $09, $0a, $28, $0c, $0d, $0e, $0f
-	db $10, $11, $12, $29, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
+TilesetColors1: ; b289
+	db $00, $01, $02, $28, $04, $05, $06, $07
+	db $08, $09, $0a, $28, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $29, $14, $15, $16, $17
+	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
 
-Unknown_b2a9: ; b289
-	db $20, $21, $22, $23, $24, $25, $26, $07, $20, $21, $22, $23, $24, $25, $26, $07
-	db $10, $11, $12, $13, $14, $15, $16, $07, $18, $19, $1a, $1b, $1c, $1d, $1e, $07
+TilesetColors2: ; b289
+	db $20, $21, $22, $23, $24, $25, $26, $07
+	db $20, $21, $22, $23, $24, $25, $26, $07
+	db $10, $11, $12, $13, $14, $15, $16, $07
+	db $18, $19, $1a, $1b, $1c, $1d, $1e, $07
 
-Unknown_b2c9: ; b289
-	db $00, $01, $02, $03, $04, $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f
-	db $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
+TilesetColors3: ; b289
+	db $00, $01, $02, $03, $04, $05, $06, $07
+	db $08, $09, $0a, $0b, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $13, $14, $15, $16, $17
+	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
 
-Unknown_b2e9: ; b289
-	db $00, $01, $02, $03, $04, $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f
-	db $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
+TilesetColors4: ; b289
+	db $00, $01, $02, $03, $04, $05, $06, $07
+	db $08, $09, $0a, $0b, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $13, $14, $15, $16, $17
+	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
 ; b309
 
 Palette_b309: ; b309
@@ -2080,375 +2088,14 @@ Palette_b311: ; b311
 	RGB 00, 00, 00
 ; b319
 
-MornPal: ; 0xb319
-INCLUDE "tilesets/morn.pal"
-; 0xb359
+TilesetBGPalette: ; b319
+INCLUDE "tilesets/bg.pal"
 
-DayPal: ; 0xb359
-INCLUDE "tilesets/day.pal"
-; 0xb399
+MapObjectPals:: ; b469
+INCLUDE "tilesets/ob.pal"
 
-NitePal: ; 0xb399
-INCLUDE "tilesets/nite.pal"
-; 0xb3d9
-
-DarkPal: ; 0xb3d9
-INCLUDE "tilesets/dark.pal"
-; 0xb419
-
-; There are actually a lot more of these.
-
-; b419
-
-	RGB 30, 28, 26
-	RGB 19, 19, 19
-	RGB 13, 13, 13
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 19, 24
-	RGB 30, 10, 06
-	RGB 07, 07, 07
-
-	RGB 18, 24, 09
-	RGB 15, 20, 01
-	RGB 09, 13, 00
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 15, 16, 31
-	RGB 09, 09, 31
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 31, 07
-	RGB 31, 16, 01
-	RGB 07, 07, 07
-
-	RGB 26, 24, 17
-	RGB 21, 17, 07
-	RGB 16, 13, 03
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 17, 19, 31
-	RGB 14, 16, 31
-	RGB 07, 07, 07
-
-	RGB 31, 31, 16
-	RGB 31, 31, 16
-	RGB 14, 09, 00
-	RGB 00, 00, 00
-
-	RGB 23, 23, 31
-	RGB 18, 19, 31
-	RGB 13, 12, 31
-	RGB 07, 07, 07
-
-	RGB 15, 13, 27
-	RGB 10, 09, 20
-	RGB 04, 03, 18
-	RGB 00, 00, 00
-; b469
-
-Palettes_b469: ; b469
-	RGB 28, 31, 16
-	RGB 31, 19, 10
-	RGB 31, 07, 01
-	RGB 00, 00, 00
-
-Palette_b471::
-	RGB 28, 31, 16
-	RGB 31, 19, 10
-	RGB 10, 09, 31
-	RGB 00, 00, 00
-
-	RGB 28, 31, 16
-	RGB 31, 19, 10
-	RGB 07, 23, 03
-	RGB 00, 00, 00
-
-	RGB 28, 31, 16
-	RGB 31, 19, 10
-	RGB 15, 10, 03
-	RGB 00, 00, 00
-
-	RGB 28, 31, 16
-	RGB 31, 19, 10
-	RGB 30, 10, 06
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 13, 13, 13
-	RGB 00, 00, 00
-
-	RGB 22, 31, 10
-	RGB 12, 25, 01
-	RGB 05, 14, 00
-	RGB 07, 07, 07
-
-	RGB 28, 31, 16
-	RGB 24, 18, 07
-	RGB 20, 15, 03
-	RGB 07, 07, 07
-
-	RGB 27, 31, 27
-	RGB 31, 19, 10
-	RGB 31, 07, 01
-	RGB 00, 00, 00
-
-	RGB 27, 31, 27
-	RGB 31, 19, 10
-	RGB 10, 09, 31
-	RGB 00, 00, 00
-
-	RGB 27, 31, 27
-	RGB 31, 19, 10
-	RGB 07, 23, 03
-	RGB 00, 00, 00
-
-	RGB 27, 31, 27
-	RGB 31, 19, 10
-	RGB 15, 10, 03
-	RGB 00, 00, 00
-
-	RGB 27, 31, 27
-	RGB 31, 19, 10
-	RGB 30, 10, 06
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 13, 13, 13
-	RGB 00, 00, 00
-
-	RGB 22, 31, 10
-	RGB 12, 25, 01
-	RGB 05, 14, 00
-	RGB 07, 07, 07
-
-	RGB 27, 31, 27
-	RGB 24, 18, 07
-	RGB 20, 15, 03
-	RGB 07, 07, 07
-
-	RGB 15, 14, 24
-	RGB 31, 19, 10
-	RGB 31, 07, 01
-	RGB 00, 00, 00
-
-	RGB 15, 14, 24
-	RGB 31, 19, 10
-	RGB 10, 09, 31
-	RGB 00, 00, 00
-
-	RGB 15, 14, 24
-	RGB 31, 19, 10
-	RGB 07, 23, 03
-	RGB 00, 00, 00
-
-	RGB 15, 14, 24
-	RGB 31, 19, 10
-	RGB 15, 10, 03
-	RGB 00, 00, 00
-
-	RGB 15, 14, 24
-	RGB 31, 19, 10
-	RGB 30, 10, 06
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 13, 13, 13
-	RGB 00, 00, 00
-
-	RGB 15, 14, 24
-	RGB 08, 13, 19
-	RGB 00, 11, 13
-	RGB 00, 00, 00
-
-	RGB 15, 14, 24
-	RGB 12, 09, 15
-	RGB 08, 04, 05
-	RGB 00, 00, 00
-
-	RGB 01, 01, 02
-	RGB 31, 19, 10
-	RGB 31, 07, 01
-	RGB 00, 00, 00
-
-	RGB 01, 01, 02
-	RGB 31, 19, 10
-	RGB 10, 09, 31
-	RGB 00, 00, 00
-
-	RGB 01, 01, 02
-	RGB 31, 19, 10
-	RGB 07, 23, 03
-	RGB 00, 00, 00
-
-	RGB 01, 01, 02
-	RGB 31, 19, 10
-	RGB 15, 10, 03
-	RGB 00, 00, 00
-
-	RGB 01, 01, 02
-	RGB 31, 19, 10
-	RGB 30, 10, 06
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 13, 13, 13
-	RGB 00, 00, 00
-
-	RGB 01, 01, 02
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-
-	RGB 01, 01, 02
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-; b569
-
-Palettes_b569: ; b569
-	RGB 21, 21, 21
-	RGB 11, 11, 11
-	RGB 21, 21, 21
-	RGB 11, 11, 11
-
-	RGB 14, 17, 31
-	RGB 07, 11, 15
-	RGB 09, 09, 17
-	RGB 05, 07, 13
-
-	RGB 12, 19, 00
-	RGB 06, 10, 00
-	RGB 06, 09, 07
-	RGB 04, 05, 06
-
-	RGB 21, 21, 21
-	RGB 11, 11, 11
-	RGB 21, 21, 21
-	RGB 17, 08, 07
-
-	RGB 31, 19, 00
-	RGB 27, 10, 05
-	RGB 15, 07, 02
-	RGB 11, 04, 02
-
-	RGB 11, 10, 16
-	RGB 05, 06, 07
-	RGB 03, 04, 08
-	RGB 00, 00, 00
-
-	RGB 31, 10, 00
-	RGB 18, 06, 00
-	RGB 18, 05, 09
-	RGB 17, 08, 07
-
-	RGB 17, 27, 31
-	RGB 05, 15, 31
-	RGB 07, 08, 22
-	RGB 07, 07, 16
-
-	RGB 22, 20, 10
-	RGB 17, 14, 03
-	RGB 11, 11, 05
-	RGB 10, 09, 07
-
-	RGB 31, 08, 04
-	RGB 09, 09, 08
-	RGB 18, 05, 09
-	RGB 09, 09, 08
-
-	RGB 24, 14, 31
-	RGB 13, 07, 21
-	RGB 12, 03, 18
-	RGB 09, 03, 15
-
-	RGB 25, 25, 00
-	RGB 20, 17, 08
-	RGB 12, 12, 00
-	RGB 10, 09, 05
-
-	RGB 27, 23, 01
-	RGB 23, 11, 00
-	RGB 15, 11, 01
-	RGB 11, 10, 01
-
-	RGB 27, 28, 31
-	RGB 17, 19, 22
-	RGB 14, 14, 18
-	RGB 10, 09, 13
-
-	RGB 19, 19, 16
-	RGB 10, 12, 15
-	RGB 09, 09, 11
-	RGB 04, 05, 07
-
-	RGB 14, 17, 31
-	RGB 07, 11, 15
-	RGB 09, 13, 19
-	RGB 07, 07, 16
-
-	RGB 21, 21, 21
-	RGB 13, 13, 13
-	RGB 11, 11, 19
-	RGB 07, 07, 12
-
-	RGB 31, 18, 29
-	RGB 17, 13, 20
-	RGB 14, 06, 12
-	RGB 11, 03, 10
-
-	RGB 23, 15, 31
-	RGB 16, 05, 31
-	RGB 12, 07, 17
-	RGB 08, 06, 10
-
-	RGB 21, 21, 25
-	RGB 16, 16, 16
-	RGB 13, 13, 13
-	RGB 07, 07, 07
-
-	RGB 21, 21, 21
-	RGB 11, 11, 11
-	RGB 21, 21, 21
-	RGB 11, 11, 11
-
-	RGB 19, 31, 15
-	RGB 31, 22, 02
-	RGB 12, 13, 09
-	RGB 09, 12, 03
-
-	RGB 15, 10, 31
-	RGB 07, 05, 15
-	RGB 06, 05, 17
-	RGB 02, 02, 08
-
-	RGB 21, 31, 07
-	RGB 13, 25, 04
-	RGB 09, 14, 08
-	RGB 06, 10, 04
-
-	RGB 20, 31, 14
-	RGB 11, 23, 05
-	RGB 09, 13, 08
-	RGB 06, 09, 04
-
-	RGB 31, 26, 00
-	RGB 31, 15, 00
-	RGB 13, 13, 01
-	RGB 08, 08, 01
-
-	RGB 31, 14, 28
-	RGB 31, 05, 21
-	RGB 14, 07, 17
-	RGB 13, 00, 08
+RoofPals: ; b569
+INCLUDE "tilesets/roof.pal"
 
 Palettes_b641: ; b641
 	RGB 27, 31, 27
@@ -2475,7 +2122,6 @@ Palettes_b641: ; b641
 	RGB 31, 31, 07
 	RGB 31, 16, 01
 	RGB 00, 00, 00
-; b669
 
 	RGB 27, 31, 27
 	RGB 22, 16, 08
