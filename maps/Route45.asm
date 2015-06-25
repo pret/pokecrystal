@@ -89,58 +89,58 @@ UnknownScript_0x19e118: ; 0x19e118
 ; 0x19e11b
 
 UnknownScript_0x19e11b: ; 0x19e11b
-	jumpstd $0019
+	jumpstd asknumber1m
 	end
 ; 0x19e11f
 
 UnknownScript_0x19e11f: ; 0x19e11f
-	jumpstd $001a
+	jumpstd asknumber2m
 	end
 ; 0x19e123
 
 UnknownScript_0x19e123: ; 0x19e123
-	jumpstd $001b
+	jumpstd registerednumberm
 	end
 ; 0x19e127
 
 UnknownScript_0x19e127: ; 0x19e127
-	jumpstd $001c
+	jumpstd numberacceptedm
 	end
 ; 0x19e12b
 
 UnknownScript_0x19e12b: ; 0x19e12b
-	jumpstd $001d
+	jumpstd numberdeclinedm
 	end
 ; 0x19e12f
 
 UnknownScript_0x19e12f: ; 0x19e12f
-	jumpstd $001e
+	jumpstd phonefullm
 	end
 ; 0x19e133
 
 UnknownScript_0x19e133: ; 0x19e133
-	jumpstd $001f
+	jumpstd rematchm
 	end
 ; 0x19e137
 
 UnknownScript_0x19e137: ; 0x19e137
-	jumpstd $0020
+	jumpstd giftm
 	end
 ; 0x19e13b
 
 UnknownScript_0x19e13b: ; 0x19e13b
-	jumpstd $0021
+	jumpstd packfullm
 	end
 ; 0x19e13f
 
 UnknownScript_0x19e13f: ; 0x19e13f
 	setevent EVENT_PARRY_IRON
-	jumpstd $0021
+	jumpstd packfullm
 	end
 ; 0x19e146
 
 UnknownScript_0x19e146: ; 0x19e146
-	jumpstd $0022
+	jumpstd rematchgiftm
 	end
 ; 0x19e14a
 

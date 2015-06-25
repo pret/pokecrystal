@@ -146,48 +146,48 @@ UnknownScript_0x1a973b: ; 0x1a973b
 ; 0x1a974f
 
 UnknownScript_0x1a974f: ; 0x1a974f
-	jumpstd $0023
+	jumpstd asknumber1f
 	end
 ; 0x1a9753
 
 UnknownScript_0x1a9753: ; 0x1a9753
-	jumpstd $0024
+	jumpstd asknumber2f
 	end
 ; 0x1a9757
 
 UnknownScript_0x1a9757: ; 0x1a9757
-	jumpstd $0025
+	jumpstd registerednumberf
 	end
 ; 0x1a975b
 
 UnknownScript_0x1a975b: ; 0x1a975b
-	jumpstd $0026
+	jumpstd numberacceptedf
 	end
 ; 0x1a975f
 
 UnknownScript_0x1a975f: ; 0x1a975f
-	jumpstd $0027
+	jumpstd numberdeclinedf
 	end
 ; 0x1a9763
 
 UnknownScript_0x1a9763: ; 0x1a9763
-	jumpstd $0028
+	jumpstd phonefullf
 	end
 ; 0x1a9767
 
 UnknownScript_0x1a9767: ; 0x1a9767
-	jumpstd $0029
+	jumpstd rematchf
 	end
 ; 0x1a976b
 
 UnknownScript_0x1a976b: ; 0x1a976b
 	setevent EVENT_ERIN_CALCIUM
-	jumpstd $002b
+	jumpstd packfullf
 	end
 ; 0x1a9772
 
 UnknownScript_0x1a9772: ; 0x1a9772
-	jumpstd $002c
+	jumpstd rematchgiftf
 	end
 ; 0x1a9776
 

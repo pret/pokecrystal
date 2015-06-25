@@ -43,7 +43,7 @@ SuperNerdScript_0x70d4a: ; 0x70d4a
 ; 0x70d4d
 
 MapCeladonDeptStore3FSignpost1Script: ; 0x70d4d
-	jumpstd $0014
+	jumpstd elevatorbutton
 ; 0x70d50
 
 MapCeladonDeptStore3FSignpost0Script: ; 0x70d50

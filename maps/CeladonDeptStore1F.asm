@@ -23,7 +23,7 @@ MapCeladonDeptStore1FSignpost0Script: ; 0x709e9
 ; 0x709ec
 
 MapCeladonDeptStore6FSignpost1Script: ; 0x709ec
-	jumpstd $0014
+	jumpstd elevatorbutton
 ; 0x709ef
 
 UnknownText_0x709ef: ; 0x709ef

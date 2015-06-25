@@ -59,11 +59,11 @@ UnknownScript_0x18ec73: ; 0x18ec73
 ; 0x18ec7c
 
 UnknownScript_0x18ec7c: ; 0x18ec7c
-	jumpstd $0012
+	jumpstd goldenrodrockets
 ; 0x18ec7f
 
 UnknownScript_0x18ec7f: ; 0x18ec7f
-	jumpstd $0013
+	jumpstd radiotowerrockets
 ; 0x18ec82
 
 TrainerTwinsAmyandmay1: ; 0x18ec82
@@ -232,12 +232,12 @@ AzaleaGymGuyScript: ; 0x18ece6
 MapAzaleaGymSignpost1Script: ; 0x18ecfb
 	checkflag $001c
 	iftrue UnknownScript_0x18ed04
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x18ed04
 
 UnknownScript_0x18ed04: ; 0x18ed04
 	trainertotext BUGSY, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x18ed0b
 
 UnknownText_0x18ed0b: ; 0x18ed0b

@@ -157,48 +157,48 @@ UnknownScript_0x5b03f: ; 0x5b03f
 ; 0x5b053
 
 UnknownScript_0x5b053: ; 0x5b053
-	jumpstd $0019
+	jumpstd asknumber1m
 	end
 ; 0x5b057
 
 UnknownScript_0x5b057: ; 0x5b057
-	jumpstd $001a
+	jumpstd asknumber2m
 	end
 ; 0x5b05b
 
 UnknownScript_0x5b05b: ; 0x5b05b
-	jumpstd $001b
+	jumpstd registerednumberm
 	end
 ; 0x5b05f
 
 UnknownScript_0x5b05f: ; 0x5b05f
-	jumpstd $001c
+	jumpstd numberacceptedm
 	end
 ; 0x5b063
 
 UnknownScript_0x5b063: ; 0x5b063
-	jumpstd $001d
+	jumpstd numberdeclinedm
 	end
 ; 0x5b067
 
 UnknownScript_0x5b067: ; 0x5b067
-	jumpstd $001e
+	jumpstd phonefullm
 	end
 ; 0x5b06b
 
 UnknownScript_0x5b06b: ; 0x5b06b
-	jumpstd $001f
+	jumpstd rematchm
 	end
 ; 0x5b06f
 
 UnknownScript_0x5b06f: ; 0x5b06f
 	setevent EVENT_HUEY_PROTEIN
-	jumpstd $0021
+	jumpstd packfullm
 	end
 ; 0x5b076
 
 UnknownScript_0x5b076: ; 0x5b076
-	jumpstd $0022
+	jumpstd rematchgiftm
 	end
 ; 0x5b07a
 

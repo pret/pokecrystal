@@ -39,7 +39,7 @@ MapGoldenrodDeptStore2FSignpost0Script: ; 0x55b76
 ; 0x55b79
 
 MapGoldenrodDeptStore2FSignpost1Script: ; 0x55b79
-	jumpstd $0014
+	jumpstd elevatorbutton
 ; 0x55b7c
 
 ; possibly unused

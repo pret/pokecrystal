@@ -223,12 +223,12 @@ FuchsiaGymGuyScript: ; 0x195f03
 MapFuchsiaGymSignpost1Script: ; 0x195f17
 	checkflag $0027
 	iftrue UnknownScript_0x195f20
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x195f20
 
 UnknownScript_0x195f20: ; 0x195f20
 	trainertotext JANINE, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x195f27
 
 MovementData_0x195f27: ; 0x195f27

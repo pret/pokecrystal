@@ -153,7 +153,7 @@ MapGoldenrodDeptStore5FSignpost0Script: ; 0x5613d
 ; 0x56140
 
 MapGoldenrodDeptStore5FSignpost1Script: ; 0x56140
-	jumpstd $0014
+	jumpstd elevatorbutton
 ; 0x56143
 
 UnknownText_0x56143: ; 0x56143

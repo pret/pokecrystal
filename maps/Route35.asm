@@ -82,37 +82,37 @@ UnknownScript_0x19c8ef: ; 0x19c8ef
 ; 0x19c903
 
 UnknownScript_0x19c903: ; 0x19c903
-	jumpstd $0019
+	jumpstd asknumber1m
 	end
 ; 0x19c907
 
 UnknownScript_0x19c907: ; 0x19c907
-	jumpstd $001a
+	jumpstd asknumber2m
 	end
 ; 0x19c90b
 
 UnknownScript_0x19c90b: ; 0x19c90b
-	jumpstd $001b
+	jumpstd registerednumberm
 	end
 ; 0x19c90f
 
 UnknownScript_0x19c90f: ; 0x19c90f
-	jumpstd $001c
+	jumpstd numberacceptedm
 	end
 ; 0x19c913
 
 UnknownScript_0x19c913: ; 0x19c913
-	jumpstd $001d
+	jumpstd numberdeclinedm
 	end
 ; 0x19c917
 
 UnknownScript_0x19c917: ; 0x19c917
-	jumpstd $001e
+	jumpstd phonefullm
 	end
 ; 0x19c91b
 
 UnknownScript_0x19c91b: ; 0x19c91b
-	jumpstd $001f
+	jumpstd rematchm
 	end
 ; 0x19c91f
 

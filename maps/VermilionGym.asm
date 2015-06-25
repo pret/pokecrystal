@@ -151,12 +151,12 @@ MapVermilionGymSignpost14Script: ; 0x19212f
 MapVermilionGymSignpost16Script: ; 0x192132
 	checkflag $0025
 	iftrue UnknownScript_0x19213b
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x19213b
 
 UnknownScript_0x19213b: ; 0x19213b
 	trainertotext LT_SURGE, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x192142
 
 UnknownText_0x192142: ; 0x192142

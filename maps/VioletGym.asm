@@ -59,11 +59,11 @@ UnknownScript_0x68418: ; 0x68418
 ; 0x68421
 
 UnknownScript_0x68421: ; 0x68421
-	jumpstd $0012
+	jumpstd goldenrodrockets
 ; 0x68424
 
 UnknownScript_0x68424: ; 0x68424
-	jumpstd $0013
+	jumpstd radiotowerrockets
 ; 0x68427
 
 TrainerBird_keeperRod: ; 0x68427
@@ -144,12 +144,12 @@ VioletGymGuyScript: ; 0x6844f
 MapVioletGymSignpost1Script: ; 0x68463
 	checkflag $001b
 	iftrue UnknownScript_0x6846c
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x6846c
 
 UnknownScript_0x6846c: ; 0x6846c
 	trainertotext FALKNER, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x68473
 
 UnknownText_0x68473: ; 0x68473

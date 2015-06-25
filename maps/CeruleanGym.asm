@@ -217,12 +217,12 @@ MapCeruleanGymSignpost2Script: ; 0x1884c6
 UnknownScript_0x1884d3: ; 0x1884d3
 	checkflag $0024
 	iftrue UnknownScript_0x1884dc
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x1884dc
 
 UnknownScript_0x1884dc: ; 0x1884dc
 	trainertotext MISTY, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x1884e3
 
 MovementData_0x1884e3: ; 0x1884e3

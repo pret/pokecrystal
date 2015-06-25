@@ -75,11 +75,11 @@ UnknownScript_0x99db7: ; 0x99db7
 ; 0x99dc0
 
 UnknownScript_0x99dc0: ; 0x99dc0
-	jumpstd $0012
+	jumpstd goldenrodrockets
 ; 0x99dc3
 
 UnknownScript_0x99dc3: ; 0x99dc3
-	jumpstd $0013
+	jumpstd radiotowerrockets
 ; 0x99dc6
 
 UnknownScript_0x99dc6: ; 0x99dc6
@@ -235,12 +235,12 @@ EcruteakGymGuyScript: ; 0x99e39
 MapEcruteakGymSignpost1Script: ; 0x99e4d
 	checkflag $001e
 	iftrue UnknownScript_0x99e56
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x99e56
 
 UnknownScript_0x99e56: ; 0x99e56
 	trainertotext MORTY, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x99e5d
 
 MovementData_0x99e5d: ; 0x99e5d

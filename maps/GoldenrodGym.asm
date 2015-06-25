@@ -88,11 +88,11 @@ UnknownScript_0x5407d: ; 0x5407d
 ; 0x54086
 
 UnknownScript_0x54086: ; 0x54086
-	jumpstd $0012
+	jumpstd goldenrodrockets
 ; 0x54089
 
 UnknownScript_0x54089: ; 0x54089
-	jumpstd $0013
+	jumpstd radiotowerrockets
 ; 0x5408c
 
 TrainerLassCarrie: ; 0x5408c
@@ -246,12 +246,12 @@ GoldenrodGymGuyScript: ; 0x540f7
 MapGoldenrodGymSignpost1Script: ; 0x5410c
 	checkflag $001d
 	iftrue UnknownScript_0x54115
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x54115
 
 UnknownScript_0x54115: ; 0x54115
 	trainertotext WHITNEY, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x5411c
 
 BridgetWalksUpMovement: ; 0x5411c

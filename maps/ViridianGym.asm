@@ -57,12 +57,12 @@ ViridianGymGuyScript: ; 0x9aa57
 MapViridianGymSignpost1Script: ; 0x9aa6b
 	checkflag $002a
 	iftrue UnknownScript_0x9aa74
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x9aa74
 
 UnknownScript_0x9aa74: ; 0x9aa74
 	trainertotext BLUE, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x9aa7b
 
 UnknownText_0x9aa7b: ; 0x9aa7b

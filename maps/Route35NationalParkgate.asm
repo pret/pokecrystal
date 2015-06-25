@@ -75,7 +75,7 @@ UnknownScript_0x6a1d1: ; 0x6a1d1
 	writetext UnknownText_0x6a7db
 	closetext
 	loadmovesprites
-	jumpstd $0016
+	jumpstd bugcontestresultswarp
 ; 0x6a1ee
 
 UnknownScript_0x6a1ee: ; 0x6a1ee
@@ -231,7 +231,7 @@ MapRoute36NationalParkgateSignpost0Script: ; 0x6a2db
 ; 0x6a2de
 
 UnknownScript_0x6a2de: ; 0x6a2de
-	jumpstd $0015
+	jumpstd daytotext
 	end
 ; 0x6a2e2
 

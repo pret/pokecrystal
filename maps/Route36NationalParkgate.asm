@@ -83,7 +83,7 @@ UnknownScript_0x6ab47: ; 0x6ab47
 	applymovement $0, MovementData_0x6add1
 	pause 15
 	special Function8c0ab
-	jumpstd $0017
+	jumpstd bugcontestresults
 ; 0x6ab76
 
 UnknownScript_0x6ab76: ; 0x6ab76
@@ -320,7 +320,7 @@ OfficerScript_0x6acf4: ; 0x6acf4
 ; 0x6ad02
 
 UnknownScript_0x6ad02: ; 0x6ad02
-	jumpstd $0015
+	jumpstd daytotext
 	end
 ; 0x6ad06
 

@@ -177,12 +177,12 @@ SaffronGymGuyScript: ; 0x189cbb
 MapSaffronGymSignpost0Script: ; 0x189ccf
 	checkflag $0028
 	iftrue UnknownScript_0x189cd8
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x189cd8
 
 UnknownScript_0x189cd8: ; 0x189cd8
 	trainertotext SABRINA, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x189cdf
 
 UnknownText_0x189cdf: ; 0x189cdf

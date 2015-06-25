@@ -202,12 +202,12 @@ BlackthornGymGuyScript: ; 0x194ed6
 MapBlackthornGym1FSignpost1Script: ; 0x194eea
 	checkflag $0022
 	iftrue UnknownScript_0x194ef3
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x194ef3
 
 UnknownScript_0x194ef3: ; 0x194ef3
 	trainertotext CLAIR, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x194efa
 
 UnknownText_0x194efa: ; 0x194efa

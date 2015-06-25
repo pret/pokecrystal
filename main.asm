@@ -12731,7 +12731,7 @@ UnknownScript_0x124ce: ; 0x124ce
 	resetfuncs
 
 .script_64f2
-	jumpstd $0016
+	jumpstd bugcontestresultswarp
 ; 0x124f5
 
 UnknownText_0x124f5: ; 0x124f5
@@ -15375,7 +15375,7 @@ UnknownScript_0x13603: ; 0x13603
 
 UnknownScript_0x1360b: ; 0x1360b
 	loadmovesprites
-	jumpstd $0016
+	jumpstd bugcontestresultswarp
 ; 0x1360f
 
 UnknownText_0x1360f: ; 0x1360f
@@ -52496,7 +52496,7 @@ Unknown_80671: ; 80671
 	dwb TimeOfDay,     $00
 	dwb Function806c5, $80
 	dwb Function806d3, $80
-	dwb Function806e1, $80
+	dwb CountBadges,   $80
 	dwb PlayerState,   $40
 	dwb Function806ef, $80
 	dwb hHours,        $00
@@ -52537,7 +52537,7 @@ Function806d3: ; 806d3
 	jp Function8066c
 ; 806e1
 
-Function806e1: ; 806e1
+CountBadges: ; 806e1
 ; Number of owned badges.
 	ld hl, Badges
 	ld b, 2
@@ -75842,9 +75842,23 @@ INCLUDE "text/phone/buena.asm"
 
 SECTION "bank29", ROMX, BANK[$29]
 
-INCLUDE "text/phone/extra2.asm"
-
-
+INCLUDE "text/phone/anthony_overworld.asm"
+INCLUDE "text/phone/todd_overworld.asm"
+INCLUDE "text/phone/gina_overworld.asm"
+INCLUDE "text/phone/irwin_overworld.asm"
+INCLUDE "text/phone/arnie_overworld.asm"
+INCLUDE "text/phone/alan_overworld.asm"
+INCLUDE "text/phone/dana_overworld.asm"
+INCLUDE "text/phone/chad_overworld.asm"
+INCLUDE "text/phone/derek_overworld.asm"
+INCLUDE "text/phone/tully_overworld.asm"
+INCLUDE "text/phone/brent_overworld.asm"
+INCLUDE "text/phone/tiffany_overworld.asm"
+INCLUDE "text/phone/vance_overworld.asm"
+INCLUDE "text/phone/wilton_overworld.asm"
+INCLUDE "text/phone/kenji_overworld.asm"
+INCLUDE "text/phone/parry_overworld.asm"
+INCLUDE "text/phone/erin_overworld.asm"
 
 SECTION "Tileset Data 5", ROMX, BANK[TILESETS_5]
 
@@ -95652,8 +95666,17 @@ INCLUDE "misc/mobile_5f.asm"
 SECTION "Common Text 1", ROMX, BANK[$6C]
 
 INCLUDE "text/common.asm"
-
-
+INCLUDE "text/phone/jack_overworld.asm"
+INCLUDE "text/phone/beverly_overworld.asm"
+INCLUDE "text/phone/huey_overworld.asm"
+INCLUDE "text/phone/gaven_overworld.asm"
+INCLUDE "text/phone/beth_overworld.asm"
+INCLUDE "text/phone/jose_overworld.asm"
+INCLUDE "text/phone/reena_overworld.asm"
+INCLUDE "text/phone/joey_overworld.asm"
+INCLUDE "text/phone/wade_overworld.asm"
+INCLUDE "text/phone/ralph_overworld.asm"
+INCLUDE "text/phone/liz_overworld.asm"
 
 SECTION "bank6D", ROMX, BANK[$6D]
 

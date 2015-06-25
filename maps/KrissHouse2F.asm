@@ -21,7 +21,7 @@ UnknownScript_0x7abb4: ; 0x7abb4
 	setevent $0007
 	checkevent $0036
 	iftrue UnknownScript_0x7abc4
-	jumpstd $0018
+	jumpstd initializeevents
 	return
 ; 0x7abc4
 

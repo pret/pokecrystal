@@ -87,12 +87,12 @@ PewterGymGuyScript: ; 0x1a28ac
 MapPewterGymSignpost1Script: ; 0x1a28c0
 	checkflag $0023
 	iftrue UnknownScript_0x1a28c9
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x1a28c9
 
 UnknownScript_0x1a28c9: ; 0x1a28c9
 	trainertotext BROCK, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x1a28d0
 
 UnknownText_0x1a28d0: ; 0x1a28d0

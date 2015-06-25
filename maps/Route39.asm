@@ -85,42 +85,42 @@ UnknownScript_0x1a5b5c: ; 0x1a5b5c
 ; 0x1a5b62
 
 UnknownScript_0x1a5b62: ; 0x1a5b62
-	jumpstd $0019
+	jumpstd asknumber1m
 	end
 ; 0x1a5b66
 
 UnknownScript_0x1a5b66: ; 0x1a5b66
-	jumpstd $001a
+	jumpstd asknumber2m
 	end
 ; 0x1a5b6a
 
 UnknownScript_0x1a5b6a: ; 0x1a5b6a
-	jumpstd $001b
+	jumpstd registerednumberm
 	end
 ; 0x1a5b6e
 
 UnknownScript_0x1a5b6e: ; 0x1a5b6e
-	jumpstd $001c
+	jumpstd numberacceptedm
 	end
 ; 0x1a5b72
 
 UnknownScript_0x1a5b72: ; 0x1a5b72
-	jumpstd $001d
+	jumpstd numberdeclinedm
 	end
 ; 0x1a5b76
 
 UnknownScript_0x1a5b76: ; 0x1a5b76
-	jumpstd $001e
+	jumpstd phonefullm
 	end
 ; 0x1a5b7a
 
 UnknownScript_0x1a5b7a: ; 0x1a5b7a
-	jumpstd $0020
+	jumpstd giftm
 	end
 ; 0x1a5b7e
 
 UnknownScript_0x1a5b7e: ; 0x1a5b7e
-	jumpstd $0021
+	jumpstd packfullm
 	end
 ; 0x1a5b82
 

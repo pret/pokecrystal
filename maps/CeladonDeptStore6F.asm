@@ -113,7 +113,7 @@ MapCeladonDeptStore6FSignpost0Script: ; 0x7124a
 ; 0x7124d
 
 UnknownScript_0x7124d: ; 0x7124d
-	jumpstd $0014
+	jumpstd elevatorbutton
 ; 0x71250
 
 UnknownText_0x71250: ; 0x71250

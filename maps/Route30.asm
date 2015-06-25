@@ -164,48 +164,48 @@ UnknownScript_0x1a176f: ; 0x1a176f
 ; 0x1a1783
 
 UnknownScript_0x1a1783: ; 0x1a1783
-	jumpstd $0019
+	jumpstd asknumber1m
 	end
 ; 0x1a1787
 
 UnknownScript_0x1a1787: ; 0x1a1787
-	jumpstd $001a
+	jumpstd asknumber2m
 	end
 ; 0x1a178b
 
 UnknownScript_0x1a178b: ; 0x1a178b
-	jumpstd $001b
+	jumpstd registerednumberm
 	end
 ; 0x1a178f
 
 UnknownScript_0x1a178f: ; 0x1a178f
-	jumpstd $001c
+	jumpstd numberacceptedm
 	end
 ; 0x1a1793
 
 UnknownScript_0x1a1793: ; 0x1a1793
-	jumpstd $001d
+	jumpstd numberdeclinedm
 	end
 ; 0x1a1797
 
 UnknownScript_0x1a1797: ; 0x1a1797
-	jumpstd $001e
+	jumpstd phonefullm
 	end
 ; 0x1a179b
 
 UnknownScript_0x1a179b: ; 0x1a179b
-	jumpstd $001f
+	jumpstd rematchm
 	end
 ; 0x1a179f
 
 UnknownScript_0x1a179f: ; 0x1a179f
 	setevent EVENT_JOEY_HP_UP
-	jumpstd $0021
+	jumpstd packfullm
 	end
 ; 0x1a17a6
 
 UnknownScript_0x1a17a6: ; 0x1a17a6
-	jumpstd $0022
+	jumpstd rematchgiftm
 	end
 ; 0x1a17aa
 

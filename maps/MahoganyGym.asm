@@ -60,11 +60,11 @@ UnknownScript_0x199af6: ; 0x199af6
 ; 0x199aff
 
 UnknownScript_0x199aff: ; 0x199aff
-	jumpstd $0012
+	jumpstd goldenrodrockets
 ; 0x199b02
 
 UnknownScript_0x199b02: ; 0x199b02
-	jumpstd $0013
+	jumpstd radiotowerrockets
 ; 0x199b05
 
 TrainerSkierRoxanne: ; 0x199b05
@@ -232,12 +232,12 @@ MahoganyGymGuyScript: ; 0x199b69
 MapMahoganyGymSignpost1Script: ; 0x199b7d
 	checkflag $0021
 	iftrue UnknownScript_0x199b86
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x199b86
 
 UnknownScript_0x199b86: ; 0x199b86
 	trainertotext PRYCE, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x199b8d
 
 UnknownText_0x199b8d: ; 0x199b8d

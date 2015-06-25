@@ -1,4 +1,3 @@
-
 UnknownText_0x174000: ; 0x174000
 	text "Hi, ", $14, "!"
 	line "Our BICYCLE sales"

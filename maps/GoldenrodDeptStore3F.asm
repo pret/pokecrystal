@@ -27,7 +27,7 @@ MapGoldenrodDeptStore3FSignpost0Script: ; 0x55dc6
 ; 0x55dc9
 
 MapGoldenrodDeptStore3FSignpost1Script: ; 0x55dc9
-	jumpstd $0014
+	jumpstd elevatorbutton
 ; 0x55dcc
 
 UnknownText_0x55dcc: ; 0x55dcc

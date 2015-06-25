@@ -117,58 +117,58 @@ UnknownScript_0x19d8cb: ; 0x19d8cb
 ; 0x19d8df
 
 UnknownScript_0x19d8df: ; 0x19d8df
-	jumpstd $0019
+	jumpstd asknumber1m
 	end
 ; 0x19d8e3
 
 UnknownScript_0x19d8e3: ; 0x19d8e3
-	jumpstd $001a
+	jumpstd asknumber2m
 	end
 ; 0x19d8e7
 
 UnknownScript_0x19d8e7: ; 0x19d8e7
-	jumpstd $001b
+	jumpstd registerednumberm
 	end
 ; 0x19d8eb
 
 UnknownScript_0x19d8eb: ; 0x19d8eb
-	jumpstd $001c
+	jumpstd numberacceptedm
 	end
 ; 0x19d8ef
 
 UnknownScript_0x19d8ef: ; 0x19d8ef
-	jumpstd $001d
+	jumpstd numberdeclinedm
 	end
 ; 0x19d8f3
 
 UnknownScript_0x19d8f3: ; 0x19d8f3
-	jumpstd $001e
+	jumpstd phonefullm
 	end
 ; 0x19d8f7
 
 UnknownScript_0x19d8f7: ; 0x19d8f7
-	jumpstd $001f
+	jumpstd rematchm
 	end
 ; 0x19d8fb
 
 UnknownScript_0x19d8fb: ; 0x19d8fb
-	jumpstd $0020
+	jumpstd giftm
 	end
 ; 0x19d8ff
 
 UnknownScript_0x19d8ff: ; 0x19d8ff
-	jumpstd $0021
+	jumpstd packfullm
 	end
 ; 0x19d903
 
 UnknownScript_0x19d903: ; 0x19d903
 	setevent EVENT_VANCE_CARBOS
-	jumpstd $0021
+	jumpstd packfullm
 	end
 ; 0x19d90a
 
 UnknownScript_0x19d90a: ; 0x19d90a
-	jumpstd $0022
+	jumpstd rematchgiftm
 	end
 ; 0x19d90e
 

@@ -74,11 +74,11 @@ UnknownScript_0x9d681: ; 0x9d681
 ; 0x9d68a
 
 UnknownScript_0x9d68a: ; 0x9d68a
-	jumpstd $0012
+	jumpstd goldenrodrockets
 ; 0x9d68d
 
 UnknownScript_0x9d68d: ; 0x9d68d
-	jumpstd $0013
+	jumpstd radiotowerrockets
 ; 0x9d690
 
 TrainerBlackbeltYoshi: ; 0x9d690
@@ -204,12 +204,12 @@ BoulderScript_0x9d6e0: ; 0x9d6e0
 MapCianwoodGymSignpost1Script: ; 0x9d6e3
 	checkflag $0020
 	iftrue UnknownScript_0x9d6ec
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x9d6ec
 
 UnknownScript_0x9d6ec: ; 0x9d6ec
 	trainertotext CHUCK, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x9d6f3
 
 MovementData_0x9d6f3: ; 0x9d6f3

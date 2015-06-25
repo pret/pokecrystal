@@ -191,12 +191,12 @@ TwinsJoandzoe2Script: ; 0x72b10
 MapCeladonGymSignpost1Script: ; 0x72b18
 	checkflag $0026
 	iftrue UnknownScript_0x72b21
-	jumpstd $002d
+	jumpstd gymstatue1
 ; 0x72b21
 
 UnknownScript_0x72b21: ; 0x72b21
 	trainertotext ERIKA, 1, $1
-	jumpstd $002e
+	jumpstd gymstatue2
 ; 0x72b28
 
 UnknownText_0x72b28: ; 0x72b28

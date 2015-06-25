@@ -17,3 +17,32 @@
 	enum smashrock
 	enum pokecentersign
 	enum martsign
+	enum goldenrodrockets
+	enum radiotowerrockets
+	enum elevatorbutton
+	enum daytotext
+	enum bugcontestresultswarp
+	enum bugcontestresults
+	enum initializeevents
+	enum asknumber1m
+	enum asknumber2m
+	enum registerednumberm
+	enum numberacceptedm
+	enum numberdeclinedm
+	enum phonefullm
+	enum rematchm
+	enum giftm
+	enum packfullm
+	enum rematchgiftm
+	enum asknumber1f
+	enum asknumber2f
+	enum registerednumberf
+	enum numberacceptedf
+	enum numberdeclinedf
+	enum phonefullf
+	enum rematchf
+	enum giftf
+	enum packfullf
+	enum rematchgiftf
+	enum gymstatue1
+	enum gymstatue2

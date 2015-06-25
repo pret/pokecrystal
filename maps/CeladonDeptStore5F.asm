@@ -39,7 +39,7 @@ MapCeladonDeptStore5FSignpost0Script: ; 0x7101d
 ; 0x71020
 
 MapCeladonDeptStore5FSignpost1Script: ; 0x71020
-	jumpstd $0014
+	jumpstd elevatorbutton
 ; 0x71023
 
 UnknownText_0x71023: ; 0x71023

@@ -123,37 +123,37 @@ UnknownScript_0x1a4db6: ; 0x1a4db6
 ; 0x1a4dbf
 
 UnknownScript_0x1a4dbf: ; 0x1a4dbf
-	jumpstd $0019
+	jumpstd asknumber1m
 	end
 ; 0x1a4dc3
 
 UnknownScript_0x1a4dc3: ; 0x1a4dc3
-	jumpstd $001a
+	jumpstd asknumber2m
 	end
 ; 0x1a4dc7
 
 UnknownScript_0x1a4dc7: ; 0x1a4dc7
-	jumpstd $001b
+	jumpstd registerednumberm
 	end
 ; 0x1a4dcb
 
 UnknownScript_0x1a4dcb: ; 0x1a4dcb
-	jumpstd $001c
+	jumpstd numberacceptedm
 	end
 ; 0x1a4dcf
 
 UnknownScript_0x1a4dcf: ; 0x1a4dcf
-	jumpstd $001d
+	jumpstd numberdeclinedm
 	end
 ; 0x1a4dd3
 
 UnknownScript_0x1a4dd3: ; 0x1a4dd3
-	jumpstd $001e
+	jumpstd phonefullm
 	end
 ; 0x1a4dd7
 
 UnknownScript_0x1a4dd7: ; 0x1a4dd7
-	jumpstd $001f
+	jumpstd rematchm
 	end
 ; 0x1a4ddb
 
@@ -274,37 +274,37 @@ UnknownScript_0x1a4e72: ; 0x1a4e72
 ; 0x1a4e7b
 
 UnknownScript_0x1a4e7b: ; 0x1a4e7b
-	jumpstd $0023
+	jumpstd asknumber1f
 	end
 ; 0x1a4e7f
 
 UnknownScript_0x1a4e7f: ; 0x1a4e7f
-	jumpstd $0024
+	jumpstd asknumber2f
 	end
 ; 0x1a4e83
 
 UnknownScript_0x1a4e83: ; 0x1a4e83
-	jumpstd $0025
+	jumpstd registerednumberf
 	end
 ; 0x1a4e87
 
 UnknownScript_0x1a4e87: ; 0x1a4e87
-	jumpstd $0026
+	jumpstd numberacceptedf
 	end
 ; 0x1a4e8b
 
 UnknownScript_0x1a4e8b: ; 0x1a4e8b
-	jumpstd $0027
+	jumpstd numberdeclinedf
 	end
 ; 0x1a4e8f
 
 UnknownScript_0x1a4e8f: ; 0x1a4e8f
-	jumpstd $0028
+	jumpstd phonefullf
 	end
 ; 0x1a4e93
 
 UnknownScript_0x1a4e93: ; 0x1a4e93
-	jumpstd $0029
+	jumpstd rematchf
 	end
 ; 0x1a4e97
 
