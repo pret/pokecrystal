@@ -1219,7 +1219,7 @@ UnknownScript_0xa0840:
 	jump UnknownScript_0xa0484
 
 UnknownScript_0xa0848:
-	checkevent $074f
+	checkevent EVENT_OPENED_MT_SILVER
 	iftrue UnknownScript_0xa08e0
 	checkevent EVENT_FOUGHT_SNORLAX
 	iftrue UnknownScript_0xa08d8
@@ -1229,7 +1229,7 @@ UnknownScript_0xa0848:
 	iftrue UnknownScript_0xa08f0
 	checkflag ENGINE_FLYPOINT_VERMILION
 	iftrue UnknownScript_0xa08c8
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0xa08c0
 	checkflag ENGINE_RISINGBADGE
 	iftrue UnknownScript_0xa08b8

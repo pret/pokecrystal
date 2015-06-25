@@ -266,7 +266,7 @@ UnknownScript_0x19059c: ; 0x19059c
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1905e8
 UnknownScript_0x1905a2: ; 0x1905a2
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1905db
 UnknownScript_0x1905a8: ; 0x1905a8
 	checkflag $004a
@@ -447,7 +447,7 @@ UnknownScript_0x19066d: ; 0x19066d
 	if_equal $1, UnknownScript_0x19069e
 	if_equal $0, UnknownScript_0x1906a4
 UnknownScript_0x19068c: ; 0x19068c
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1906d8
 UnknownScript_0x190692: ; 0x190692
 	checkevent EVENT_CLEARED_RADIO_TOWER

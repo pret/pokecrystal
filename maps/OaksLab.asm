@@ -13,7 +13,7 @@ UnknownScript_0x19b3c7: ; 0x19b3c7
 OakScript_0x19b3c8: ; 0x19b3c8
 	faceplayer
 	loadfont
-	checkevent $074f
+	checkevent EVENT_OPENED_MT_SILVER
 	iftrue UnknownScript_0x19b3ea
 	checkevent $00e1
 	iftrue UnknownScript_0x19b3dd
@@ -40,7 +40,7 @@ UnknownScript_0x19b3ea: ; 0x19b3ea
 UnknownScript_0x19b3f7: ; 0x19b3f7
 	writetext UnknownText_0x19b4fc
 	keeptextopen
-	setevent $074f
+	setevent EVENT_OPENED_MT_SILVER
 	jump UnknownScript_0x19b3ea
 ; 0x19b401
 

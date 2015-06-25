@@ -23,7 +23,7 @@ UnknownScript_0x1988e7: ; 0x1988e7
 ; 0x1988e8
 
 UnknownScript_0x1988e8: ; 0x1988e8
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse UnknownScript_0x198908
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x1988fd

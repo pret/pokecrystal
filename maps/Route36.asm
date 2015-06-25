@@ -239,7 +239,7 @@ UnknownScript_0x19415f: ; 0x19415f
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1941ab
 UnknownScript_0x194165: ; 0x194165
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19419e
 UnknownScript_0x19416b: ; 0x19416b
 	checkflag $004b

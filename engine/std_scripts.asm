@@ -617,8 +617,8 @@ InitializeEventsScript:
 	setevent $07af
 	setevent $07ae
 	setevent $07cf
-	setflag $000e
-	setflag $0017
+	setflag ENGINE_ROCKET_SIGNAL_ON_CH20
+	setflag ENGINE_ROCKETS_IN_MAHOGANY
 	variablesprite $4, $52
 	variablesprite $5, $4
 	variablesprite $6, $35

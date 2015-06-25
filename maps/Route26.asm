@@ -94,7 +94,7 @@ UnknownScript_0x1a4d90: ; 0x1a4d90
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a4db6
 UnknownScript_0x1a4d96: ; 0x1a4d96
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a4da9
 UnknownScript_0x1a4d9c: ; 0x1a4d9c
 	loadtrainer COOLTRAINERM, GAVEN3
@@ -245,7 +245,7 @@ UnknownScript_0x1a4e4c: ; 0x1a4e4c
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a4e72
 UnknownScript_0x1a4e52: ; 0x1a4e52
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a4e65
 UnknownScript_0x1a4e58: ; 0x1a4e58
 	loadtrainer COOLTRAINERF, BETH1

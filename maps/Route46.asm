@@ -94,7 +94,7 @@ UnknownScript_0x1a96f1: ; 0x1a96f1
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a9717
 UnknownScript_0x1a96f7: ; 0x1a96f7
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a970a
 UnknownScript_0x1a96fd: ; 0x1a96fd
 	loadtrainer PICNICKER, ERIN1

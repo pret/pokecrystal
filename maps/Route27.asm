@@ -135,7 +135,7 @@ UnknownScript_0x1a0916: ; 0x1a0916
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a093c
 UnknownScript_0x1a091c: ; 0x1a091c
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a092f
 UnknownScript_0x1a0922: ; 0x1a0922
 	loadtrainer BIRD_KEEPER, JOSE2
@@ -337,7 +337,7 @@ UnknownScript_0x1a0a00: ; 0x1a0a00
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a0a26
 UnknownScript_0x1a0a06: ; 0x1a0a06
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a0a19
 UnknownScript_0x1a0a0c: ; 0x1a0a0c
 	loadtrainer COOLTRAINERF, REENA1

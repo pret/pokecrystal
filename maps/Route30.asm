@@ -85,7 +85,7 @@ UnknownScript_0x1a16e0: ; 0x1a16e0
 	if_equal $1, UnknownScript_0x1a1711
 	if_equal $0, UnknownScript_0x1a1717
 UnknownScript_0x1a16ff: ; 0x1a16ff
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a174b
 UnknownScript_0x1a1705: ; 0x1a1705
 	checkevent EVENT_CLEARED_RADIO_TOWER

@@ -73,7 +73,7 @@ UnknownScript_0x1ac070: ; 0x1ac070
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1ac0bc
 UnknownScript_0x1ac076: ; 0x1ac076
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1ac0af
 UnknownScript_0x1ac07c: ; 0x1ac07c
 	checkevent EVENT_CLEARED_RADIO_TOWER

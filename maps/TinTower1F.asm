@@ -28,7 +28,7 @@ UnknownScript_0x18502e: ; 0x18502e
 UnknownScript_0x18502f: ; 0x18502f
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x185047
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse UnknownScript_0x185050
 	special SpecialBeastsCheck
 	iffalse UnknownScript_0x185050

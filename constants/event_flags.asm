@@ -42,6 +42,7 @@ EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST            EQU $040
 EVENT_DUDE_TALKED_TO_YOU                               EQU $041
 EVENT_LEARNED_TO_CATCH_POKEMON                         EQU $042
 EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON                  EQU $043
+EVENT_BEAT_ELITE_FOUR                                  EQU $044
 EVENT_GOT_SHUCKIE                                      EQU $045
 EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM           EQU $046
 EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER                   EQU $047
@@ -563,6 +564,7 @@ EVENT_BEAT_POKEFANM_ALLAN                              EQU $5c8
 EVENT_BEAT_SAGE_GAKU                                   EQU $5c9
 EVENT_BEAT_SAGE_MASA                                   EQU $5ca
 EVENT_BEAT_SAGE_KOJI                                   EQU $5cb
+EVENT_RIVAL_SPROUT_TOWER                               EQU $6c4
 EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE                EQU $6ff
 EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER               EQU $700
 EVENT_ELMS_AIDE_IN_LAB                                 EQU $701
@@ -570,7 +572,10 @@ EVENT_BOULDER_IN_ICE_PATH_1                            EQU $70d
 EVENT_BOULDER_IN_ICE_PATH_2                            EQU $70e
 EVENT_BOULDER_IN_ICE_PATH_3                            EQU $70f
 EVENT_BOULDER_IN_ICE_PATH_4                            EQU $710
+EVENT_OPENED_MT_SILVER                                 EQU $74f
 EVENT_FOUGHT_SNORLAX                                   EQU $750
+EVENT_RED_IN_MT_SILVER                                 EQU $762
+EVENT_TELEPORT_GUY                                     EQU $77c
 EVENT_PICKED_UP_FOCUS_BAND                             EQU $77d
 EVENT_PICKED_UP_GOLD_BERRY_FROM_HO_OH_ITEM_ROOM        EQU $794
 EVENT_PICKED_UP_MYSTERYBERRY_FROM_HO_OH_ITEM_ROOM      EQU $795

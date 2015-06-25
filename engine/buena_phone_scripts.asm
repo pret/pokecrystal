@@ -66,7 +66,7 @@ UnknownScript_0xa0b73:
 	end
 
 UnknownScript_0xa0b77:
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0xa0b82
 	random $b
 	jump UnknownScript_0xa0b84

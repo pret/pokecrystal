@@ -155,13 +155,13 @@ CooltrainerMScript_0x180136: ; 0x180136
 	jumptextfaceplayer UnknownText_0x180178
 ; 0x180139
 
-GrampsScript_0x180139: ; 0x180139
+TeleportGuyScript:
 	faceplayer
 	loadfont
-	writetext UnknownText_0x180335
+	writetext TeleportGuyText1
 	yesorno
-	iffalse UnknownScript_0x180154
-	writetext UnknownText_0x1803e7
+	iffalse .No
+	writetext TeleportGuyYesText
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
@@ -169,23 +169,20 @@ GrampsScript_0x180139: ; 0x180139
 	waitbutton
 	warp GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $d, $6
 	end
-; 0x180154
 
-UnknownScript_0x180154: ; 0x180154
-	writetext UnknownText_0x180411
+.No
+	writetext TeleportGuyNoText
 	closetext
 	loadmovesprites
 	end
-; 0x18015a
 
-JynxScript_0x18015a: ; 0x18015a
+AbraScript:
 	loadfont
-	writetext UnknownText_0x180433
+	writetext AbraText
 	cry ABRA
 	closetext
 	loadmovesprites
 	end
-; 0x180164
 
 MovementData_0x180164: ; 0x180164
 	step_up
@@ -285,7 +282,7 @@ UnknownText_0x1802fd: ; 0x1802fd
 	done
 ; 0x180335
 
-UnknownText_0x180335: ; 0x180335
+TeleportGuyText1:
 	text "Ah! You're chal-"
 	line "lenging the ELITE"
 
@@ -304,25 +301,22 @@ UnknownText_0x180335: ; 0x180335
 	para "Would you like to"
 	line "go home now?"
 	done
-; 0x1803e7
 
-UnknownText_0x1803e7: ; 0x1803e7
+TeleportGuyYesText:
 	text "OK, OK. Picture"
 	line "your house in your"
 	cont "mind…"
 	done
-; 0x180411
 
-UnknownText_0x180411: ; 0x180411
+TeleportGuyNoText:
 	text "OK, OK. The best"
 	line "of luck to you!"
 	done
 ; 0x180433
 
-UnknownText_0x180433: ; 0x180433
+AbraText:
 	text "ABRA: Aabra…"
 	done
-; 0x180441
 
 IndigoPlateauPokeCenter1F_MapEventHeader: ; 0x180441
 	; filler
@@ -349,6 +343,6 @@ IndigoPlateauPokeCenter1F_MapEventHeader: ; 0x180441
 	person_event SPRITE_CLERK, 11, 15, $6, $0, 255, 255, $0, 0, ClerkScript_0x18012f, $ffff
 	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, $22, 255, 255, $0, 0, CooltrainerMScript_0x180136, $ffff
 	person_event SPRITE_SILVER, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, $077b
-	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, GrampsScript_0x180139, $077c
-	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, JynxScript_0x18015a, $077c
+	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, AbraScript, EVENT_TELEPORT_GUY
 ; 0x1804b9

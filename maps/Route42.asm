@@ -93,7 +93,7 @@ UnknownScript_0x1a929a: ; 0x1a929a
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a92d3
 UnknownScript_0x1a92a0: ; 0x1a92a0
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a92c6
 UnknownScript_0x1a92a6: ; 0x1a92a6
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT

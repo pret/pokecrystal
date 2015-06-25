@@ -127,7 +127,7 @@ UnknownScript_0x1a1da1: ; 0x1a1da1
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a1ded
 UnknownScript_0x1a1da7: ; 0x1a1da7
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a1de0
 UnknownScript_0x1a1dad: ; 0x1a1dad
 	checkevent EVENT_CLEARED_RADIO_TOWER
@@ -298,7 +298,7 @@ UnknownScript_0x1a1e94: ; 0x1a1e94
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a1ee0
 UnknownScript_0x1a1e9a: ; 0x1a1e9a
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1a1ed3
 UnknownScript_0x1a1ea0: ; 0x1a1ea0
 	checkevent EVENT_CLEARED_RADIO_TOWER

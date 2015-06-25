@@ -11,7 +11,7 @@ GoldenrodGameCorner_MapScriptHeader: ; 0x56bf4
 ; 0x56bf9
 
 UnknownScript_0x56bf9: ; 0x56bf9
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse UnknownScript_0x56c19
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56c0e

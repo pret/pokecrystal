@@ -93,7 +93,7 @@ UnknownScript_0x5afe2: ; 0x5afe2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x5b01b
 UnknownScript_0x5afe8: ; 0x5afe8
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x5b00e
 UnknownScript_0x5afee: ; 0x5afee
 	checkevent EVENT_CLEARED_RADIO_TOWER

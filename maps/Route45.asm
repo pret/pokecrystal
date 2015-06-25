@@ -261,7 +261,7 @@ UnknownScript_0x19e1cf: ; 0x19e1c
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19e1f5
 UnknownScript_0x19e1d5: ; 0x19e1d5
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19e1e8
 UnknownScript_0x19e1db: ; 0x19e1db
 	loadtrainer HIKER, PARRY3

@@ -34,10 +34,10 @@ UnknownScript_0x181454: ; 0x181454
 	pause 15
 	writebyte $2
 	special Function12324
-	setevent $0044
-	setevent $077c
-	setevent $06c4
-	clearevent $0762
+	setevent EVENT_BEAT_ELITE_FOUR
+	setevent EVENT_TELEPORT_GUY
+	setevent EVENT_RIVAL_SPROUT_TOWER
+	clearevent EVENT_RED_IN_MT_SILVER
 	setevent $0737
 	clearevent $0738
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1

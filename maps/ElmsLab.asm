@@ -100,7 +100,7 @@ ProfElmScript: ; 0x78be0
 	loadfont
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue UnknownScript_0x78bee
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue ElmGiveTicketScript
 UnknownScript_0x78bee: ; 0x78bee
 	checkevent EVENT_GOT_MASTER_BALL_FROM_ELM

@@ -149,7 +149,7 @@ UnknownScript_0x780dc: ; 0x780dc
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x78128
 UnknownScript_0x780e2: ; 0x780e2
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x7811b
 UnknownScript_0x780e8: ; 0x780e8
 	checkflag $004b
@@ -306,7 +306,7 @@ UnknownScript_0x781be: ; 0x781be
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x7820a
 UnknownScript_0x781c4: ; 0x781c4
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x781fd
 UnknownScript_0x781ca: ; 0x781ca
 	checkevent EVENT_CLEARED_RADIO_TOWER

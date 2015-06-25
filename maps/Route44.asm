@@ -65,7 +65,7 @@ UnknownScript_0x19d881: ; 0x19d881
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d8a7
 UnknownScript_0x19d887: ; 0x19d887
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19d89a
 UnknownScript_0x19d88d: ; 0x19d88d
 	loadtrainer BIRD_KEEPER, VANCE1
@@ -262,7 +262,7 @@ UnknownScript_0x19d985: ; 0x19d985
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d9ab
 UnknownScript_0x19d98b: ; 0x19d98b
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19d99e
 UnknownScript_0x19d991: ; 0x19d991
 	loadtrainer FISHER, WILTON1

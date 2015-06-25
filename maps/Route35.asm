@@ -295,7 +295,7 @@ UnknownScript_0x19c9da: ; 0x19c9da
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19ca26
 UnknownScript_0x19c9e0: ; 0x19c9e0
-	checkevent $0044
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19ca19
 UnknownScript_0x19c9e6: ; 0x19c9e6
 	checkflag $004b
