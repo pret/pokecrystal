@@ -229,16 +229,13 @@ AzaleaGymGuyScript: ; 0x18ece6
 	end
 ; 0x18ecfb
 
-MapAzaleaGymSignpost1Script: ; 0x18ecfb
-	checkflag $001c
-	iftrue UnknownScript_0x18ed04
+AzaleaGymStatue:
+	checkflag ENGINE_HIVEBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x18ed04
-
-UnknownScript_0x18ed04: ; 0x18ed04
+.Beaten
 	trainertotext BUGSY, 1, $1
 	jumpstd gymstatue2
-; 0x18ed0b
 
 UnknownText_0x18ed0b: ; 0x18ed0b
 	text "I'm BUGSY!"
@@ -489,8 +486,8 @@ AzaleaGym_MapEventHeader: ; 0x18f3cc
 
 	; signposts
 	db 2
-	signpost 13, 3, $0, MapAzaleaGymSignpost1Script
-	signpost 13, 6, $0, MapAzaleaGymSignpost1Script
+	signpost 13, 3, $0, AzaleaGymStatue
+	signpost 13, 6, $0, AzaleaGymStatue
 
 	; people-events
 	db 7

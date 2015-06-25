@@ -39,7 +39,7 @@ UnknownScript_0x19eea0: ; 0x19eea0
 	spriteface $0, $2
 	applymovement $2, MovementData_0x19f000
 	disappear $2
-	clearevent $076f
+	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	dotrigger $0
 	special RestartMapMusic
 	end
@@ -66,7 +66,7 @@ UnknownScript_0x19eee0: ; 0x19eee0
 	spriteface $0, $2
 	applymovement $2, MovementData_0x19f000
 	disappear $2
-	clearevent $076f
+	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	dotrigger $0
 	special RestartMapMusic
 	end

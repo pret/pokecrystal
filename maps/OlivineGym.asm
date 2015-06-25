@@ -91,16 +91,13 @@ OlivineGymGuyScript: ; 0x9c187
 	end
 ; 0x9c1a9
 
-MapOlivineGymSignpost1Script: ; 0x9c1a9
-	checkflag $001f
-	iftrue UnknownScript_0x9c1b2
+OlivineGymStatue:
+	checkflag ENGINE_MINERALBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x9c1b2
-
-UnknownScript_0x9c1b2: ; 0x9c1b2
+.Beaten
 	trainertotext JASMINE, 1, $1
 	jumpstd gymstatue2
-; 0x9c1b9
 
 UnknownText_0x9c1b9: ; 0x9c1b9
 	text "…Thank you for"
@@ -229,8 +226,8 @@ OlivineGym_MapEventHeader: ; 0x9c526
 
 	; signposts
 	db 2
-	signpost 13, 3, $0, MapOlivineGymSignpost1Script
-	signpost 13, 6, $0, MapOlivineGymSignpost1Script
+	signpost 13, 3, $0, OlivineGymStatue
+	signpost 13, 6, $0, OlivineGymStatue
 
 	; people-events
 	db 2

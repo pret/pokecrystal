@@ -188,16 +188,13 @@ TwinsJoandzoe2Script: ; 0x72b10
 	end
 ; 0x72b18
 
-MapCeladonGymSignpost1Script: ; 0x72b18
-	checkflag $0026
-	iftrue UnknownScript_0x72b21
+CeladonGymStatue:
+	checkflag ENGINE_RAINBOWBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x72b21
-
-UnknownScript_0x72b21: ; 0x72b21
+.Beaten
 	trainertotext ERIKA, 1, $1
 	jumpstd gymstatue2
-; 0x72b28
 
 UnknownText_0x72b28: ; 0x72b28
 	text "ERIKA: Hello…"
@@ -388,8 +385,8 @@ CeladonGym_MapEventHeader: ; 0x72fdf
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, MapCeladonGymSignpost1Script
-	signpost 15, 6, $0, MapCeladonGymSignpost1Script
+	signpost 15, 3, $0, CeladonGymStatue
+	signpost 15, 6, $0, CeladonGymStatue
 
 	; people-events
 	db 6

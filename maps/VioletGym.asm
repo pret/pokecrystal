@@ -141,16 +141,13 @@ VioletGymGuyScript: ; 0x6844f
 	end
 ; 0x68463
 
-MapVioletGymSignpost1Script: ; 0x68463
-	checkflag $001b
-	iftrue UnknownScript_0x6846c
+VioletGymStatue:
+	checkflag ENGINE_ZEPHYRBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x6846c
-
-UnknownScript_0x6846c: ; 0x6846c
+.Beaten
 	trainertotext FALKNER, 1, $1
 	jumpstd gymstatue2
-; 0x68473
 
 UnknownText_0x68473: ; 0x68473
 	text "I'm FALKNER, the"
@@ -349,8 +346,8 @@ VioletGym_MapEventHeader: ; 0x68a0c
 
 	; signposts
 	db 2
-	signpost 13, 3, $0, MapVioletGymSignpost1Script
-	signpost 13, 6, $0, MapVioletGymSignpost1Script
+	signpost 13, 3, $0, VioletGymStatue
+	signpost 13, 6, $0, VioletGymStatue
 
 	; people-events
 	db 4

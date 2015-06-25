@@ -220,16 +220,13 @@ FuchsiaGymGuyScript: ; 0x195f03
 	end
 ; 0x195f17
 
-MapFuchsiaGymSignpost1Script: ; 0x195f17
-	checkflag $0027
-	iftrue UnknownScript_0x195f20
+FuchsiaGymStatue:
+	checkflag ENGINE_SOULBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x195f20
-
-UnknownScript_0x195f20: ; 0x195f20
+.Beaten
 	trainertotext JANINE, 1, $1
 	jumpstd gymstatue2
-; 0x195f27
 
 MovementData_0x195f27: ; 0x195f27
 	turn_head_down
@@ -426,8 +423,8 @@ FuchsiaGym_MapEventHeader: ; 0x196353
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, MapFuchsiaGymSignpost1Script
-	signpost 15, 6, $0, MapFuchsiaGymSignpost1Script
+	signpost 15, 3, $0, FuchsiaGymStatue
+	signpost 15, 6, $0, FuchsiaGymStatue
 
 	; people-events
 	db 6

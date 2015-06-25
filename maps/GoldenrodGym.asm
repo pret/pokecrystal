@@ -243,16 +243,13 @@ GoldenrodGymGuyScript: ; 0x540f7
 	end
 ; 0x5410c
 
-MapGoldenrodGymSignpost1Script: ; 0x5410c
-	checkflag $001d
-	iftrue UnknownScript_0x54115
+GoldenrodGymStatue:
+	checkflag ENGINE_PLAINBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x54115
-
-UnknownScript_0x54115: ; 0x54115
+.Beaten
 	trainertotext WHITNEY, 1, $1
 	jumpstd gymstatue2
-; 0x5411c
 
 BridgetWalksUpMovement: ; 0x5411c
 	step_left
@@ -499,8 +496,8 @@ GoldenrodGym_MapEventHeader: ; 0x546dd
 
 	; signposts
 	db 2
-	signpost 15, 1, $0, MapGoldenrodGymSignpost1Script
-	signpost 15, 4, $0, MapGoldenrodGymSignpost1Script
+	signpost 15, 1, $0, GoldenrodGymStatue
+	signpost 15, 4, $0, GoldenrodGymStatue
 
 	; people-events
 	db 6

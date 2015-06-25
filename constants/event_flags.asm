@@ -575,6 +575,7 @@ EVENT_BOULDER_IN_ICE_PATH_4                            EQU $710
 EVENT_OPENED_MT_SILVER                                 EQU $74f
 EVENT_FOUGHT_SNORLAX                                   EQU $750
 EVENT_RED_IN_MT_SILVER                                 EQU $762
+EVENT_TRAINERS_IN_CERULEAN_GYM                         EQU $76f
 EVENT_TELEPORT_GUY                                     EQU $77c
 EVENT_PICKED_UP_FOCUS_BAND                             EQU $77d
 EVENT_PICKED_UP_GOLD_BERRY_FROM_HO_OH_ITEM_ROOM        EQU $794

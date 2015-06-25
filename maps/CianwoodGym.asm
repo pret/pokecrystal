@@ -201,16 +201,13 @@ BoulderScript_0x9d6e0: ; 0x9d6e0
 	jumpstd strengthboulder
 ; 0x9d6e3
 
-MapCianwoodGymSignpost1Script: ; 0x9d6e3
-	checkflag $0020
-	iftrue UnknownScript_0x9d6ec
+CianwoodGymStatue:
+	checkflag ENGINE_STORMBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x9d6ec
-
-UnknownScript_0x9d6ec: ; 0x9d6ec
+.Beaten
 	trainertotext CHUCK, 1, $1
 	jumpstd gymstatue2
-; 0x9d6f3
 
 MovementData_0x9d6f3: ; 0x9d6f3
 	db $39 ; movement
@@ -411,8 +408,8 @@ CianwoodGym_MapEventHeader: ; 0x9db3e
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, MapCianwoodGymSignpost1Script
-	signpost 15, 6, $0, MapCianwoodGymSignpost1Script
+	signpost 15, 3, $0, CianwoodGymStatue
+	signpost 15, 6, $0, CianwoodGymStatue
 
 	; people-events
 	db 9

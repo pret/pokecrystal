@@ -199,16 +199,13 @@ BlackthornGymGuyScript: ; 0x194ed6
 	end
 ; 0x194eea
 
-MapBlackthornGym1FSignpost1Script: ; 0x194eea
-	checkflag $0022
-	iftrue UnknownScript_0x194ef3
+BlackthornGymStatue:
+	checkflag ENGINE_RISINGBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x194ef3
-
-UnknownScript_0x194ef3: ; 0x194ef3
+.Beaten
 	trainertotext CLAIR, 1, $1
 	jumpstd gymstatue2
-; 0x194efa
 
 UnknownText_0x194efa: ; 0x194efa
 	text "I am CLAIR."
@@ -486,8 +483,8 @@ BlackthornGym1F_MapEventHeader: ; 0x1956ae
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, MapBlackthornGym1FSignpost1Script
-	signpost 15, 6, $0, MapBlackthornGym1FSignpost1Script
+	signpost 15, 3, $0, BlackthornGymStatue
+	signpost 15, 6, $0, BlackthornGymStatue
 
 	; people-events
 	db 5

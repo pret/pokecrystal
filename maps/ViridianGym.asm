@@ -54,16 +54,13 @@ ViridianGymGuyScript: ; 0x9aa57
 	end
 ; 0x9aa6b
 
-MapViridianGymSignpost1Script: ; 0x9aa6b
-	checkflag $002a
-	iftrue UnknownScript_0x9aa74
+ViridianGymStatue:
+	checkflag ENGINE_EARTHBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x9aa74
-
-UnknownScript_0x9aa74: ; 0x9aa74
+.Beaten
 	trainertotext BLUE, 1, $1
 	jumpstd gymstatue2
-; 0x9aa7b
 
 UnknownText_0x9aa7b: ; 0x9aa7b
 	text "BLUE: Yo! Finally"
@@ -192,8 +189,8 @@ ViridianGym_MapEventHeader: ; 0x9ae04
 
 	; signposts
 	db 2
-	signpost 13, 3, $0, MapViridianGymSignpost1Script
-	signpost 13, 6, $0, MapViridianGymSignpost1Script
+	signpost 13, 3, $0, ViridianGymStatue
+	signpost 13, 6, $0, ViridianGymStatue
 
 	; people-events
 	db 2

@@ -232,16 +232,13 @@ EcruteakGymGuyScript: ; 0x99e39
 	end
 ; 0x99e4d
 
-MapEcruteakGymSignpost1Script: ; 0x99e4d
-	checkflag $001e
-	iftrue UnknownScript_0x99e56
+EcruteakGymStatue:
+	checkflag ENGINE_FOGBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x99e56
-
-UnknownScript_0x99e56: ; 0x99e56
+.Beaten
 	trainertotext MORTY, 1, $1
 	jumpstd gymstatue2
-; 0x99e5d
 
 MovementData_0x99e5d: ; 0x99e5d
 	step_up
@@ -533,8 +530,8 @@ EcruteakGym_MapEventHeader: ; 0x9a4e9
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, MapEcruteakGymSignpost1Script
-	signpost 15, 6, $0, MapEcruteakGymSignpost1Script
+	signpost 15, 3, $0, EcruteakGymStatue
+	signpost 15, 6, $0, EcruteakGymStatue
 
 	; people-events
 	db 7

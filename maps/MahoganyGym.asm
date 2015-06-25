@@ -229,16 +229,13 @@ MahoganyGymGuyScript: ; 0x199b69
 	end
 ; 0x199b7d
 
-MapMahoganyGymSignpost1Script: ; 0x199b7d
-	checkflag $0021
-	iftrue UnknownScript_0x199b86
+MahoganyGymStatue:
+	checkflag ENGINE_GLACIERBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x199b86
-
-UnknownScript_0x199b86: ; 0x199b86
+.Beaten
 	trainertotext PRYCE, 1, $1
 	jumpstd gymstatue2
-; 0x199b8d
 
 UnknownText_0x199b8d: ; 0x199b8d
 	text "#MON have many"
@@ -500,8 +497,8 @@ MahoganyGym_MapEventHeader: ; 0x19a2df
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, MapMahoganyGymSignpost1Script
-	signpost 15, 6, $0, MapMahoganyGymSignpost1Script
+	signpost 15, 3, $0, MahoganyGymStatue
+	signpost 15, 6, $0, MahoganyGymStatue
 
 	; people-events
 	db 7

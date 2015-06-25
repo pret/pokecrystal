@@ -194,36 +194,31 @@ MapCeruleanGymSignpostItem0: ; 0x1884b6
 	
 ; 0x1884b9
 
-MapCeruleanGymSignpost1Script: ; 0x1884b9
-	checkevent $076f
-	iffalse UnknownScript_0x1884d3
+CeruleanGymStatue1:
+	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
+	iffalse CeruleanGymStatue
 	loadfont
-	writetext UnknownText_0x188610
+	writetext CeruleanGymNote1
 	closetext
 	loadmovesprites
 	end
-; 0x1884c6
 
-MapCeruleanGymSignpost2Script: ; 0x1884c6
-	checkevent $076f
-	iffalse UnknownScript_0x1884d3
+CeruleanGymStatue2:
+	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
+	iffalse CeruleanGymStatue
 	loadfont
-	writetext UnknownText_0x188642
+	writetext CeruleanGymNote2
 	closetext
 	loadmovesprites
 	end
-; 0x1884d3
 
-UnknownScript_0x1884d3: ; 0x1884d3
-	checkflag $0024
-	iftrue UnknownScript_0x1884dc
+CeruleanGymStatue:
+	checkflag ENGINE_CASCADEBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x1884dc
-
-UnknownScript_0x1884dc: ; 0x1884dc
+.Beaten
 	trainertotext MISTY, 1, $1
 	jumpstd gymstatue2
-; 0x1884e3
 
 MovementData_0x1884e3: ; 0x1884e3
 	big_step_down
@@ -298,19 +293,17 @@ UnknownText_0x1885a5: ; 0x1885a5
 	done
 ; 0x188610
 
-UnknownText_0x188610: ; 0x188610
+CeruleanGymNote1:
 	text "Sorry, I'll be out"
 	line "for a while."
 	cont "MISTY, GYM LEADER"
 	done
-; 0x188642
 
-UnknownText_0x188642: ; 0x188642
+CeruleanGymNote2:
 	text "Since MISTY's out,"
 	line "we'll be away too."
 	cont "GYM TRAINERS"
 	done
-; 0x188674
 
 UnknownText_0x188674: ; 0x188674
 	text "MISTY: I was ex-"
@@ -464,15 +457,14 @@ CeruleanGym_MapEventHeader: ; 0x188a51
 	; signposts
 	db 3
 	signpost 8, 3, $7, MapCeruleanGymSignpostItem0
-	signpost 13, 2, $0, MapCeruleanGymSignpost1Script
-	signpost 13, 6, $0, MapCeruleanGymSignpost2Script
+	signpost 13, 2, $0, CeruleanGymStatue1
+	signpost 13, 6, $0, CeruleanGymStatue2
 
 	; people-events
 	db 6
 	person_event SPRITE_ROCKET, 14, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $076d
-	person_event SPRITE_MISTY, 7, 9, $6, $0, 255, 255, $80, 0, MistyScript_0x188432, $076f
-	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, $076f
-	person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, $076f
-	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, $0, 255, 255, $82, 3, TrainerSwimmermParker, $076f
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, CeruleanGymGuyScript, $076f
-; 0x188abe
+	person_event SPRITE_MISTY, 7, 9, $6, $0, 255, 255, $80, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, $0, 255, 255, $82, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM

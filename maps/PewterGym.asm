@@ -84,16 +84,13 @@ PewterGymGuyScript: ; 0x1a28ac
 	end
 ; 0x1a28c0
 
-MapPewterGymSignpost1Script: ; 0x1a28c0
-	checkflag $0023
-	iftrue UnknownScript_0x1a28c9
+PewterGymStatue:
+	checkflag ENGINE_BOULDERBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x1a28c9
-
-UnknownScript_0x1a28c9: ; 0x1a28c9
+.Beaten
 	trainertotext BROCK, 1, $1
 	jumpstd gymstatue2
-; 0x1a28d0
 
 UnknownText_0x1a28d0: ; 0x1a28d0
 	text "BROCK: Wow, it's"
@@ -252,8 +249,8 @@ PewterGym_MapEventHeader: ; 0x1a2d88
 
 	; signposts
 	db 2
-	signpost 11, 2, $0, MapPewterGymSignpost1Script
-	signpost 11, 7, $0, MapPewterGymSignpost1Script
+	signpost 11, 2, $0, PewterGymStatue
+	signpost 11, 7, $0, PewterGymStatue
 
 	; people-events
 	db 3

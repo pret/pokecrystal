@@ -174,16 +174,13 @@ SaffronGymGuyScript: ; 0x189cbb
 	end
 ; 0x189ccf
 
-MapSaffronGymSignpost0Script: ; 0x189ccf
-	checkflag $0028
-	iftrue UnknownScript_0x189cd8
+SaffronGymStatue:
+	checkflag ENGINE_MARSHBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x189cd8
-
-UnknownScript_0x189cd8: ; 0x189cd8
+.Beaten
 	trainertotext SABRINA, 1, $1
 	jumpstd gymstatue2
-; 0x189cdf
 
 UnknownText_0x189cdf: ; 0x189cdf
 	text "SABRINA: I knew"
@@ -424,7 +421,7 @@ SaffronGym_MapEventHeader: ; 0x18a2c4
 
 	; signposts
 	db 1
-	signpost 15, 8, $0, MapSaffronGymSignpost0Script
+	signpost 15, 8, $0, SaffronGymStatue
 
 	; people-events
 	db 6

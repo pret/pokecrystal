@@ -148,16 +148,13 @@ MapVermilionGymSignpost14Script: ; 0x19212f
 	jumptext UnknownText_0x19261e
 ; 0x192132
 
-MapVermilionGymSignpost16Script: ; 0x192132
-	checkflag $0025
-	iftrue UnknownScript_0x19213b
+VermilionGymStatue:
+	checkflag ENGINE_THUNDERBADGE
+	iftrue .Beaten
 	jumpstd gymstatue1
-; 0x19213b
-
-UnknownScript_0x19213b: ; 0x19213b
+.Beaten
 	trainertotext LT_SURGE, 1, $1
 	jumpstd gymstatue2
-; 0x192142
 
 UnknownText_0x192142: ; 0x192142
 	text "SURGE: Hey, you"
@@ -361,8 +358,8 @@ VermilionGym_MapEventHeader: ; 0x19263d
 	signpost 11, 5, $0, MapVermilionGymSignpost14Script
 	signpost 11, 7, $0, MapVermilionGymSignpost14Script
 	signpost 11, 9, $0, MapVermilionGymSignpost14Script
-	signpost 15, 3, $0, MapVermilionGymSignpost16Script
-	signpost 15, 6, $0, MapVermilionGymSignpost16Script
+	signpost 15, 3, $0, VermilionGymStatue
+	signpost 15, 6, $0, VermilionGymStatue
 
 	; people-events
 	db 5
