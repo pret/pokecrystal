@@ -109,7 +109,7 @@ UnknownScript_0x9e44e: ; 0x9e44e
 	writebyte $8
 	special Function170687
 UnknownScript_0x9e454: ; 0x9e454
-	musicfadeout $0000, $8
+	musicfadeout MUSIC_NONE, $8
 	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0
 	domaptrigger GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR, $0
 	domaptrigger GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY, $0

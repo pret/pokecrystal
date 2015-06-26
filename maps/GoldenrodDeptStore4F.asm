@@ -1,28 +1,24 @@
-GoldenrodDeptStore4F_MapScriptHeader: ; 0x55ee7
+GoldenrodDeptStore4F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x55ee9
 
-ClerkScript_0x55ee9: ; 0x55ee9
+ClerkScript_0x55ee9:
 	faceplayer
 	loadfont
 	pokemart $0, $0008
 	loadmovesprites
 	end
-; 0x55ef1
 
-CooltrainerMScript_0x55ef1: ; 0x55ef1
+CooltrainerMScript_0x55ef1:
 	jumptextfaceplayer UnknownText_0x55f08
-; 0x55ef4
 
-BugCatcherScript_0x55ef4: ; 0x55ef4
+BugCatcherScript_0x55ef4:
 	jumptextfaceplayer UnknownText_0x55f52
-; 0x55ef7
 
-GameboyKidScript_0x55ef7: ; 0x55ef7
+GameboyKidScript_0x55ef7:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x55f74
@@ -30,17 +26,14 @@ GameboyKidScript_0x55ef7: ; 0x55ef7
 	loadmovesprites
 	spriteface $5, $0
 	end
-; 0x55f02
 
-MapGoldenrodDeptStore4FSignpost0Script: ; 0x55f02
-	jumptext UnknownText_0x5600d
-; 0x55f05
+GoldenrodDeptStore4FDirectory:
+	jumptext GoldenrodDeptStore4FDirectoryText
 
-MapGoldenrodDeptStore4FSignpost1Script: ; 0x55f05
+GoldenrodDeptStore4FElevatorButton:
 	jumpstd elevatorbutton
-; 0x55f08
 
-UnknownText_0x55f08: ; 0x55f08
+UnknownText_0x55f08:
 	text "Hey. I love strong"
 	line "#MON."
 
@@ -48,15 +41,13 @@ UnknownText_0x55f08: ; 0x55f08
 	line "TEIN to crank up"
 	cont "their ATTACK."
 	done
-; 0x55f52
 
-UnknownText_0x55f52: ; 0x55f52
+UnknownText_0x55f52:
 	text "IRON adds to your"
 	line "#MON's DEFENSE."
 	done
-; 0x55f74
 
-UnknownText_0x55f74: ; 0x55f74
+UnknownText_0x55f74:
 	text "Some #MON"
 	line "evolve only by"
 
@@ -72,17 +63,15 @@ UnknownText_0x55f74: ; 0x55f74
 	para "I heard there are"
 	line "others too."
 	done
-; 0x5600d
 
-UnknownText_0x5600d: ; 0x5600d
+GoldenrodDeptStore4FDirectoryText:
 	text "Let Us Pump Up"
 	line "Your #MON!"
 
 	para "4F MEDICINE BOX"
 	done
-; 0x56038
 
-GoldenrodDeptStore4F_MapEventHeader: ; 0x56038
+GoldenrodDeptStore4F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -97,8 +86,8 @@ GoldenrodDeptStore4F_MapEventHeader: ; 0x56038
 
 	; signposts
 	db 2
-	signpost 0, 14, $0, MapGoldenrodDeptStore4FSignpost0Script
-	signpost 0, 3, $0, MapGoldenrodDeptStore4FSignpost1Script
+	signpost 0, 14, $0, GoldenrodDeptStore4FDirectory
+	signpost 0, 3, $0, GoldenrodDeptStore4FElevatorButton
 
 	; people-events
 	db 4
@@ -106,4 +95,3 @@ GoldenrodDeptStore4F_MapEventHeader: ; 0x56038
 	person_event SPRITE_COOLTRAINER_M, 11, 15, $9, $0, 255, 255, $0, 0, CooltrainerMScript_0x55ef1, $ffff
 	person_event SPRITE_BUG_CATCHER, 6, 11, $5, $1, 255, 255, $0, 0, BugCatcherScript_0x55ef4, $ffff
 	person_event SPRITE_GAMEBOY_KID, 5, 9, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x55ef7, $ffff
-; 0x5608b

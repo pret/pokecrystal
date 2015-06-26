@@ -1,49 +1,44 @@
-Route27SandstormHouse_MapScriptHeader: ; 0x7b392
+Route27SandstormHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7b394
 
-GrannyScript_0x7b394: ; 0x7b394
+SandstormHouseWoman:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TM37_SANDSTORM
-	iftrue UnknownScript_0x7b3b7
+	iftrue .AlreadyGotItem
 	special Function718d
-	writetext UnknownText_0x7b3c6
+	writetext SandstormHouseWomanText1
 	keeptextopen
-	if_greater_than $95, UnknownScript_0x7b3aa
-	jump UnknownScript_0x7b3bd
-; 0x7b3aa
+	if_greater_than $95, .Loyal
+	jump .Disloyal
 
-UnknownScript_0x7b3aa: ; 0x7b3aa
-	writetext UnknownText_0x7b42b
+.Loyal
+	writetext SandstormHouseWomanLoyalText
 	keeptextopen
 	verbosegiveitem TM_37, 1
-	iffalse UnknownScript_0x7b3bb
+	iffalse .Done
 	setevent EVENT_GOT_TM37_SANDSTORM
-UnknownScript_0x7b3b7: ; 0x7b3b7
-	writetext UnknownText_0x7b48f
+.AlreadyGotItem
+	writetext SandstormHouseSandstormDescription
 	closetext
-UnknownScript_0x7b3bb: ; 0x7b3bb
+.Done
 	loadmovesprites
 	end
-; 0x7b3bd
 
-UnknownScript_0x7b3bd: ; 0x7b3bd
-	writetext UnknownText_0x7b51f
+.Disloyal
+	writetext SandstormHouseWomanDisloyalText
 	closetext
 	loadmovesprites
 	end
-; 0x7b3c3
 
-MapRoute27SandstormHouseSignpost1Script: ; 0x7b3c3
+SandstormHouseBookshelf:
 	jumpstd magazinebookshelf
-; 0x7b3c6
 
-UnknownText_0x7b3c6: ; 0x7b3c6
+SandstormHouseWomanText1:
 	text "Where are you off"
 	line "to with #MON?"
 
@@ -55,9 +50,8 @@ UnknownText_0x7b3c6: ; 0x7b3c6
 
 	para "Let me see…"
 	done
-; 0x7b42b
 
-UnknownText_0x7b42b: ; 0x7b42b
+SandstormHouseWomanLoyalText:
 	text "Ah! Your #MON"
 	line "trusts you very"
 	cont "much."
@@ -68,9 +62,8 @@ UnknownText_0x7b42b: ; 0x7b42b
 	para "Here. A gift for"
 	line "your journey."
 	done
-; 0x7b48f
 
-UnknownText_0x7b48f: ; 0x7b48f
+SandstormHouseSandstormDescription:
 	text "TM37 happens to be"
 	line "SANDSTORM."
 
@@ -84,9 +77,8 @@ UnknownText_0x7b48f: ; 0x7b48f
 	para "Use it if you"
 	line "dare. Good luck!"
 	done
-; 0x7b51f
 
-UnknownText_0x7b51f: ; 0x7b51f
+SandstormHouseWomanDisloyalText:
 	text "If it doesn't come"
 	line "to trust you some"
 
@@ -97,9 +89,8 @@ UnknownText_0x7b51f: ; 0x7b51f
 	line "that binds #MON"
 	cont "and trainers."
 	done
-; 0x7b592
 
-Route27SandstormHouse_MapEventHeader: ; 0x7b592
+Route27SandstormHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -113,10 +104,9 @@ Route27SandstormHouse_MapEventHeader: ; 0x7b592
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapRoute27SandstormHouseSignpost1Script
-	signpost 1, 1, $0, MapRoute27SandstormHouseSignpost1Script
+	signpost 1, 0, $0, SandstormHouseBookshelf
+	signpost 1, 1, $0, SandstormHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_GRANNY, 8, 6, $6, $0, 255, 255, $0, 0, GrannyScript_0x7b394, $ffff
-; 0x7b5b9
+	person_event SPRITE_GRANNY, 8, 6, $6, $0, 255, 255, $0, 0, SandstormHouseWoman, $ffff

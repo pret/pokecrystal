@@ -1,49 +1,41 @@
-GoldenrodDeptStore2F_MapScriptHeader: ; 0x55b5b
+GoldenrodDeptStore2F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x55b5d
 
-ClerkScript_0x55b5d: ; 0x55b5d
+ClerkScript_0x55b5d:
 	faceplayer
 	loadfont
 	pokemart $0, $0005
 	loadmovesprites
 	end
-; 0x55b65
 
-ClerkScript_0x55b65: ; 0x55b65
+ClerkScript_0x55b65:
 	faceplayer
 	loadfont
 	pokemart $0, $0006
 	loadmovesprites
 	end
-; 0x55b6d
 
-YoungsterScript_0x55b6d: ; 0x55b6d
+YoungsterScript_0x55b6d:
 	jumptextfaceplayer UnknownText_0x55c25
-; 0x55b70
 
-CooltrainerFScript_0x55b70: ; 0x55b70
+CooltrainerFScript_0x55b70:
 	jumptextfaceplayer UnknownText_0x55c7b
-; 0x55b73
 
-GentlemanScript_0x55b73: ; 0x55b73
+GentlemanScript_0x55b73:
 	jumptextfaceplayer UnknownText_0x55cb7
-; 0x55b76
 
-MapGoldenrodDeptStore2FSignpost0Script: ; 0x55b76
-	jumptext UnknownText_0x55d28
-; 0x55b79
+GoldenrodDeptStore2FDirectory:
+	jumptext GoldenrodDeptStore2FDirectoryText
 
-MapGoldenrodDeptStore2FSignpost1Script: ; 0x55b79
+GoldenrodDeptStore2FElevatorButton:
 	jumpstd elevatorbutton
-; 0x55b7c
 
 ; possibly unused
-UnknownText_0x55b7c: ; 0x55b7c
+UnknownText_0x55b7c:
 	text "We intend to sell"
 	line "items for #MON"
 	cont "to hold."
@@ -52,10 +44,9 @@ UnknownText_0x55b7c: ; 0x55b7c
 	line "gift. Have a #-"
 	cont "MON hold it."
 	done
-; 0x55bd3
 
 ; possibly unused
-UnknownText_0x55bd3: ; 0x55bd3
+UnknownText_0x55bd3:
 	text "By giving #MON"
 	line "items to hold, I"
 
@@ -63,9 +54,8 @@ UnknownText_0x55bd3: ; 0x55bd3
 	line "develop new battle"
 	cont "techniques."
 	done
-; 0x55c25
 
-UnknownText_0x55c25: ; 0x55c25
+UnknownText_0x55c25:
 	text "#GEAR can store"
 	line "up to ten phone"
 	cont "numbers."
@@ -74,18 +64,16 @@ UnknownText_0x55c25: ; 0x55c25
 	line "cide which numbers"
 	cont "to keep."
 	done
-; 0x55c7b
 
-UnknownText_0x55c7b: ; 0x55c7b
+UnknownText_0x55c7b:
 	text "I got my ABRA at"
 	line "the GAME CORNER."
 
 	para "Now it's my best"
 	line "partner."
 	done
-; 0x55cb7
 
-UnknownText_0x55cb7: ; 0x55cb7
+UnknownText_0x55cb7:
 	text "This DEPT.STORE"
 	line "makes me realize"
 
@@ -96,18 +84,16 @@ UnknownText_0x55cb7: ; 0x55cb7
 	line "is unmatched any-"
 	cont "where else."
 	done
-; 0x55d28
 
-UnknownText_0x55d28: ; 0x55d28
+GoldenrodDeptStore2FDirectoryText:
 	text "Your Travel"
 	line "Companion"
 
 	para "2F TRAINER'S"
 	line "   MARKET"
 	done
-; 0x55d56
 
-GoldenrodDeptStore2F_MapEventHeader: ; 0x55d56
+GoldenrodDeptStore2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -122,8 +108,8 @@ GoldenrodDeptStore2F_MapEventHeader: ; 0x55d56
 
 	; signposts
 	db 2
-	signpost 0, 14, $0, MapGoldenrodDeptStore2FSignpost0Script
-	signpost 0, 3, $0, MapGoldenrodDeptStore2FSignpost1Script
+	signpost 0, 14, $0, GoldenrodDeptStore2FDirectory
+	signpost 0, 3, $0, GoldenrodDeptStore2FElevatorButton
 
 	; people-events
 	db 5
@@ -132,4 +118,3 @@ GoldenrodDeptStore2F_MapEventHeader: ; 0x55d56
 	person_event SPRITE_YOUNGSTER, 10, 13, $4, $10, 255, 255, $0, 0, YoungsterScript_0x55b6d, $ffff
 	person_event SPRITE_COOLTRAINER_F, 6, 10, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x55b70, $ffff
 	person_event SPRITE_GENTLEMAN, 10, 6, $3, $0, 255, 255, $0, 0, GentlemanScript_0x55b73, $ffff
-; 0x55db6

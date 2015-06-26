@@ -1,27 +1,23 @@
-PewterSnoozeSpeechHouse_MapScriptHeader: ; 0x1a3057
+PewterSnoozeSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1a3059
 
-GrampsScript_0x1a3059: ; 0x1a3059
+GrampsScript_0x1a3059:
 	jumptextfaceplayer UnknownText_0x1a305f
-; 0x1a305c
 
-MapPewterSnoozeSpeechHouseSignpost1Script: ; 0x1a305c
+PewterSnoozeSpeechHouseBookshelf:
 	jumpstd picturebookshelf
-; 0x1a305f
 
-UnknownText_0x1a305f: ; 0x1a305f
+UnknownText_0x1a305f:
 	text "I like snoozing"
 	line "with the radio on…"
 	cont "…Zzzz…"
 	done
-; 0x1a308a
 
-PewterSnoozeSpeechHouse_MapEventHeader: ; 0x1a308a
+PewterSnoozeSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -35,10 +31,9 @@ PewterSnoozeSpeechHouse_MapEventHeader: ; 0x1a308a
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapPewterSnoozeSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapPewterSnoozeSpeechHouseSignpost1Script
+	signpost 1, 0, $0, PewterSnoozeSpeechHouseBookshelf
+	signpost 1, 1, $0, PewterSnoozeSpeechHouseBookshelf
 
 	; people-events
 	db 1
 	person_event SPRITE_GRAMPS, 7, 9, $8, $0, 255, 255, $90, 0, GrampsScript_0x1a3059, $ffff
-; 0x1a30b1

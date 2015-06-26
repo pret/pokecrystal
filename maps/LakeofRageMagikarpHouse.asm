@@ -95,9 +95,8 @@ UnknownScript_0x19a728: ; 0x19a728
 	jumptext UnknownText_0x19aabc
 ; 0x19a72b
 
-MapLakeofRageMagikarpHouseSignpost1Script: ; 0x19a72b
+MagikarpHouseBookshelf:
 	jumpstd difficultbookshelf
-; 0x19a72e
 
 UnknownText_0x19a72e: ; 0x19a72e
 	text "LAKE OF RAGE is"
@@ -238,8 +237,8 @@ LakeofRageMagikarpHouse_MapEventHeader: ; 0x19aae2
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapLakeofRageMagikarpHouseSignpost1Script
-	signpost 1, 1, $0, MapLakeofRageMagikarpHouseSignpost1Script
+	signpost 1, 0, $0, MagikarpHouseBookshelf
+	signpost 1, 1, $0, MagikarpHouseBookshelf
 
 	; people-events
 	db 1

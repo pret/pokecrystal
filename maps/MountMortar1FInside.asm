@@ -64,9 +64,8 @@ SupernerdMarkusScript: ; 0x7de71
 	end
 ; 0x7de79
 
-BoulderScript_0x7de79: ; 0x7de79
+MountMortar1FBoulder:
 	jumpstd strengthboulder
-; 0x7de7c
 
 ItemFragment_0x7de7c: ; 0x7de7c
 	db ESCAPE_ROPE, 1
@@ -180,7 +179,7 @@ MountMortar1FInside_MapEventHeader: ; 0x7e01d
 
 	; people-events
 	db 10
-	person_event SPRITE_BOULDER, 47, 25, $19, $0, 255, 255, $0, 0, BoulderScript_0x7de79, $ffff
+	person_event SPRITE_BOULDER, 47, 25, $19, $0, 255, 255, $0, 0, MountMortar1FBoulder, $ffff
 	person_event SPRITE_POKE_BALL, 42, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de7c, $067d
 	person_event SPRITE_POKE_BALL, 14, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de7e, $067e
 	person_event SPRITE_POKE_BALL, 31, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de80, $067f

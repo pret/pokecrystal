@@ -123,47 +123,35 @@ LassScript_0x1a00b9: ; 0x1a00b9
 
 UnknownScript_0x1a00bc: ; 0x1a00bc
 	jumptextfaceplayer UnknownText_0x1a03cc
-; 0x1a00bf
 
-MapCianwoodCitySignpost0Script: ; 0x1a00bf
-	jumptext UnknownText_0x1a0660
-; 0x1a00c2
+CianwoodCitySign:
+	jumptext CianwoodCitySignText
 
-MapCianwoodCitySignpost1Script: ; 0x1a00c2
-	jumptext UnknownText_0x1a068f
-; 0x1a00c5
+CianwoodGymSign:
+	jumptext CianwoodGymSignText
 
-MapCianwoodCitySignpost3Script: ; 0x1a00c5
-	jumptext UnknownText_0x1a06d6
-; 0x1a00c8
+CianwoodPharmacySign:
+	jumptext CianwoodPharmacySignText
 
-MapCianwoodCitySignpost4Script: ; 0x1a00c8
-	jumptext UnknownText_0x1a0725
-; 0x1a00cb
+CianwoodPhotoStudioSign:
+	jumptext CianwoodPhotoStudioSignText
 
-MapCianwoodCitySignpost5Script: ; 0x1a00cb
-	jumptext UnknownText_0x1a0760
-; 0x1a00ce
+CianwoodPokeSeerSign:
+	jumptext CianwoodPokeSeerSignText
 
-MapCianwoodCitySignpost2Script: ; 0x1a00ce
+CianwoodPokeCenterSign:
 	jumpstd pokecentersign
-; 0x1a00d1
 
-RockScript_0x1a00d1: ; 0x1a00d1
+CianwoodCityRock:
 	jumpstd smashrock
-; 0x1a00d4
 
-MapCianwoodCitySignpostItem6: ; 0x1a00d4
+MapCianwoodCitySignpostItem6:
 	dw $00b2
 	db REVIVE
-	
-; 0x1a00d7
 
-MapCianwoodCitySignpostItem7: ; 0x1a00d7
+MapCianwoodCitySignpostItem7:
 	dw $00b3
 	db MAX_ETHER
-	
-; 0x1a00da
 
 MovementData_0x1a00da: ; 0x1a00da
 	db $39 ; movement
@@ -368,17 +356,15 @@ UnknownText_0x1a05c3: ; 0x1a05c3
 
 	para "See you around!"
 	done
-; 0x1a0660
 
-UnknownText_0x1a0660: ; 0x1a0660
+CianwoodCitySignText:
 	text "CIANWOOD CITY"
 
 	para "A Port Surrounded"
 	line "by Rough Seas"
 	done
-; 0x1a068f
 
-UnknownText_0x1a068f: ; 0x1a068f
+CianwoodGymSignText:
 	text "CIANWOOD CITY"
 	line "#MON GYM"
 
@@ -387,9 +373,8 @@ UnknownText_0x1a068f: ; 0x1a068f
 	para "His Roaring Fists"
 	line "Do the Talking"
 	done
-; 0x1a06d6
 
-UnknownText_0x1a06d6: ; 0x1a06d6
+CianwoodPharmacySignText:
 	text "500 Years of"
 	line "Tradition"
 
@@ -399,24 +384,21 @@ UnknownText_0x1a06d6: ; 0x1a06d6
 	para "We Await Your"
 	line "Medicinal Queries"
 	done
-; 0x1a0725
 
-UnknownText_0x1a0725: ; 0x1a0725
+CianwoodPhotoStudioSignText:
 	text "CIANWOOD CITY"
 	line "PHOTO STUDIO"
 
 	para "Take a Snapshot as"
 	line "a Keepsake!"
 	done
-; 0x1a0760
 
-UnknownText_0x1a0760: ; 0x1a0760
+CianwoodPokeSeerSignText:
 	text "THE # SEER"
 	line "AHEAD"
 	done
-; 0x1a0772
 
-CianwoodCity_MapEventHeader: ; 0x1a0772
+CianwoodCity_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -436,12 +418,12 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 
 	; signposts
 	db 8
-	signpost 34, 20, $0, MapCianwoodCitySignpost0Script
-	signpost 45, 7, $0, MapCianwoodCitySignpost1Script
-	signpost 43, 24, $0, MapCianwoodCitySignpost2Script
-	signpost 47, 19, $0, MapCianwoodCitySignpost3Script
-	signpost 32, 8, $0, MapCianwoodCitySignpost4Script
-	signpost 24, 8, $0, MapCianwoodCitySignpost5Script
+	signpost 34, 20, $0, CianwoodCitySign
+	signpost 45, 7, $0, CianwoodGymSign
+	signpost 43, 24, $0, CianwoodPokeCenterSign
+	signpost 47, 19, $0, CianwoodPharmacySign
+	signpost 32, 8, $0, CianwoodPhotoStudioSign
+	signpost 24, 8, $0, CianwoodPokeSeerSign
 	signpost 19, 4, $7, MapCianwoodCitySignpostItem6
 	signpost 29, 5, $7, MapCianwoodCitySignpostItem7
 
@@ -450,12 +432,12 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	person_event SPRITE_STANDING_YOUNGSTER, 41, 25, $3, $0, 255, 255, $a0, 0, StandingYoungsterScript_0x1a00b3, $ffff
 	person_event SPRITE_POKEFAN_M, 37, 21, $5, $1, 255, 255, $0, 0, PokefanMScript_0x1a00b6, $ffff
 	person_event SPRITE_LASS, 46, 18, $4, $20, 255, 255, $0, 0, LassScript_0x1a00b9, $ffff
-	person_event SPRITE_ROCK, 20, 12, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
-	person_event SPRITE_ROCK, 21, 13, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
-	person_event SPRITE_ROCK, 29, 8, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
-	person_event SPRITE_ROCK, 33, 9, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
-	person_event SPRITE_ROCK, 31, 14, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
-	person_event SPRITE_ROCK, 23, 8, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
+	person_event SPRITE_ROCK, 20, 12, $18, $0, 255, 255, $0, 0, CianwoodCityRock, $ffff
+	person_event SPRITE_ROCK, 21, 13, $18, $0, 255, 255, $0, 0, CianwoodCityRock, $ffff
+	person_event SPRITE_ROCK, 29, 8, $18, $0, 255, 255, $0, 0, CianwoodCityRock, $ffff
+	person_event SPRITE_ROCK, 33, 9, $18, $0, 255, 255, $0, 0, CianwoodCityRock, $ffff
+	person_event SPRITE_ROCK, 31, 14, $18, $0, 255, 255, $0, 0, CianwoodCityRock, $ffff
+	person_event SPRITE_ROCK, 23, 8, $18, $0, 255, 255, $0, 0, CianwoodCityRock, $ffff
 	person_event SPRITE_POKEFAN_F, 50, 14, $5, $1, 255, 255, $0, 0, PokefanFScript_0x1a0084, $ffff
 	person_event SPRITE_SUPER_NERD, 25, 15, $7, $0, 255, 255, $90, 0, ObjectEvent, $07ad
 	person_event SPRITE_SUICUNE, 18, 14, $1, $0, 255, 255, $90, 0, ObjectEvent, $07ae

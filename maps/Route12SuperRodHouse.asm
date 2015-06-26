@@ -34,9 +34,9 @@ UnknownScript_0x7f4aa: ; 0x7f4aa
 	end
 ; 0x7f4ac
 
-UnknownScript_0x7f4ac: ; 0x7f4ac
+SuperRodHouseBookshelf:
+; unused
 	jumpstd picturebookshelf
-; 0x7f4af
 
 UnknownText_0x7f4af: ; 0x7f4af
 	text "I'm the FISHING"

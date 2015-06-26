@@ -27,42 +27,40 @@ UnknownScript_0x19c00f: ; 0x19c00f
 	return
 ; 0x19c013
 
-GrampsScript_0x19c013: ; 0x19c013
+CherrygroveCityGuideGent: ; 0x19c013
 	faceplayer
 	loadfont
-	writetext UnknownText_0x19c1e3
+	writetext GuideGentIntroText
 	yesorno
-	iffalse UnknownScript_0x19c0a4
-	jump UnknownScript_0x19c01f
-; 0x19c01f
-
-UnknownScript_0x19c01f: ; 0x19c01f
-	writetext UnknownText_0x19c26f
+	iffalse .No
+	jump .Yes
+.Yes
+	writetext GuideGentTourText1
 	closetext
 	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, $0
 	applymovement $2, MovementData_0x19c195
 	loadfont
-	writetext UnknownText_0x19c285
+	writetext GuideGentPokeCenterText
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c19b
 	spriteface $0, $1
 	loadfont
-	writetext UnknownText_0x19c304
+	writetext GuideGentMartText
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1a3
 	spriteface $0, $1
 	loadfont
-	writetext UnknownText_0x19c359
+	writetext GuideGentRoute30Text
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1ac
 	spriteface $0, $2
 	loadfont
-	writetext UnknownText_0x19c3a7
+	writetext GuideGentSeaText
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1b6
@@ -71,14 +69,14 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	spriteface $2, $2
 	spriteface $0, $3
 	loadfont
-	writetext UnknownText_0x19c3ec
+	writetext GuideGentGiftText
 	keeptextopen
 	stringtotext .mapcardname, $1
 	scall .UnknownScript_0x19c097
 	setflag $0001
-	writetext UnknownText_0x19c438
+	writetext GotMapCardText
 	keeptextopen
-	writetext UnknownText_0x19c451
+	writetext GuideGentPokegearText
 	closetext
 	loadmovesprites
 	stopfollow
@@ -99,12 +97,11 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	db "MAP CARD@"
 ; 0x19c0a4
 
-UnknownScript_0x19c0a4: ; 0x19c0a4
-	writetext UnknownText_0x19c49f
+.No
+	writetext GuideGentNoText
 	closetext
 	loadmovesprites
 	end
-; 0x19c0aa
 
 UnknownScript_0x19c0aa: ; 0x19c0aa
 	moveperson $3, $27, $7
@@ -225,7 +222,7 @@ UnknownScript_0x19c168: ; 0x19c168
 	end
 ; 0x19c16e
 
-FisherScript_0x19c16e: ; 0x19c16e
+MysticWaterGuy: ; 0x19c16e
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
@@ -243,21 +240,18 @@ UnknownScript_0x19c187: ; 0x19c187
 	end
 ; 0x19c189
 
-MapCherrygroveCitySignpost0Script: ; 0x19c189
-	jumptext UnknownText_0x19c7e0
-; 0x19c18c
+CherrygroveCitySign:
+	jumptext CherrygroveCitySignText
 
-MapCherrygroveCitySignpost1Script: ; 0x19c18c
-	jumptext UnknownText_0x19c815
+GuideGentsHouseSign: ; 0x19c18c
+	jumptext GuideGentsHouseSignText
 ; 0x19c18f
 
-MapCherrygroveCitySignpost3Script: ; 0x19c18f
+CherrygroveCityPokeCenterSign:
 	jumpstd pokecentersign
-; 0x19c192
 
-MapCherrygroveCitySignpost2Script: ; 0x19c192
+CherrygroveCityMartSign: ; 0x19c192
 	jumpstd martsign
-; 0x19c195
 
 MovementData_0x19c195: ; 0x19c195
 	step_left
@@ -365,9 +359,8 @@ MovementData_0x19c1da: ; 0x19c1da
 	big_step_left
 	big_step_left
 	step_end
-; 0x19c1e3
 
-UnknownText_0x19c1e3: ; 0x19c1e3
+GuideGentIntroText:
 	text "You're a rookie"
 	line "trainer, aren't"
 	cont "you? I can tell!"
@@ -380,15 +373,13 @@ UnknownText_0x19c1e3: ; 0x19c1e3
 	line "can teach you a"
 	cont "few things."
 	done
-; 0x19c26f
 
-UnknownText_0x19c26f: ; 0x19c26f
+GuideGentTourText1:
 	text "OK, then!"
 	line "Follow me!"
 	done
-; 0x19c285
 
-UnknownText_0x19c285: ; 0x19c285
+GuideGentPokeCenterText:
 	text "This is a #MON"
 	line "CENTER. They heal"
 
@@ -401,9 +392,8 @@ UnknownText_0x19c285: ; 0x19c285
 	para "you better learn"
 	line "about them."
 	done
-; 0x19c304
 
-UnknownText_0x19c304: ; 0x19c304
+GuideGentMartText:
 	text "This is a #MON"
 	line "MART."
 
@@ -413,9 +403,8 @@ UnknownText_0x19c304: ; 0x19c304
 	para "#MON and other"
 	line "useful items."
 	done
-; 0x19c359
 
-UnknownText_0x19c359: ; 0x19c359
+GuideGentRoute30Text:
 	text "ROUTE 30 is out"
 	line "this way."
 
@@ -425,9 +414,8 @@ UnknownText_0x19c359: ; 0x19c359
 	para "prized #MON"
 	line "there."
 	done
-; 0x19c3a7
 
-UnknownText_0x19c3a7: ; 0x19c3a7
+GuideGentSeaText:
 	text "This is the sea,"
 	line "as you can see."
 
@@ -435,9 +423,8 @@ UnknownText_0x19c3a7: ; 0x19c3a7
 	line "found only in"
 	cont "water."
 	done
-; 0x19c3ec
 
-UnknownText_0x19c3ec: ; 0x19c3ec
+GuideGentGiftText:
 	text "Here…"
 
 	para "It's my house!"
@@ -447,15 +434,13 @@ UnknownText_0x19c3ec: ; 0x19c3ec
 	para "Let me give you a"
 	line "small gift."
 	done
-; 0x19c438
 
-UnknownText_0x19c438: ; 0x19c438
+GotMapCardText:
 	text $52, "'s #GEAR"
 	line "now has a MAP!"
 	done
-; 0x19c451
 
-UnknownText_0x19c451: ; 0x19c451
+GuideGentPokegearText:
 	text "#GEAR becomes"
 	line "more useful as you"
 	cont "add CARDS."
@@ -463,16 +448,14 @@ UnknownText_0x19c451: ; 0x19c451
 	para "I wish you luck on"
 	line "your journey!"
 	done
-; 0x19c49f
 
-UnknownText_0x19c49f: ; 0x19c49f
+GuideGentNoText:
 	text "Oh… It's something"
 	line "I enjoy doing…"
 
 	para "Fine. Come see me"
 	line "when you like."
 	done
-; 0x19c4e2
 
 UnknownText_0x19c4e2: ; 0x19c4e2
 	text $56, " ", $56, " ", $56
@@ -588,7 +571,7 @@ UnknownText_0x19c7c1: ; 0x19c7c1
 	done
 ; 0x19c7e0
 
-UnknownText_0x19c7e0: ; 0x19c7e0
+CherrygroveCitySignText: ; 0x19c7e0
 	text "CHERRYGROVE CITY"
 
 	para "The City of Cute,"
@@ -596,7 +579,7 @@ UnknownText_0x19c7e0: ; 0x19c7e0
 	done
 ; 0x19c815
 
-UnknownText_0x19c815: ; 0x19c815
+GuideGentsHouseSignText: ; 0x19c815
 	text "GUIDE GENT'S HOUSE"
 	done
 ; 0x19c829
@@ -620,16 +603,16 @@ CherrygroveCity_MapEventHeader: ; 0x19c829
 
 	; signposts
 	db 4
-	signpost 8, 30, $0, MapCherrygroveCitySignpost0Script
-	signpost 9, 23, $0, MapCherrygroveCitySignpost1Script
-	signpost 3, 24, $0, MapCherrygroveCitySignpost2Script
-	signpost 3, 30, $0, MapCherrygroveCitySignpost3Script
+	signpost 8, 30, $0, CherrygroveCitySign
+	signpost 9, 23, $0, GuideGentsHouseSign
+	signpost 3, 24, $0, CherrygroveCityMartSign
+	signpost 3, 30, $0, CherrygroveCityPokeCenterSign
 
 	; people-events
 	db 5
-	person_event SPRITE_GRAMPS, 10, 36, $6, $0, 255, 255, $0, 0, GrampsScript_0x19c013, $06fe
+	person_event SPRITE_GRAMPS, 10, 36, $6, $0, 255, 255, $0, 0, CherrygroveCityGuideGent, $06fe
 	person_event SPRITE_SILVER, 10, 43, $3, $0, 255, 255, $0, 0, ObjectEvent, $06be
 	person_event SPRITE_TEACHER, 16, 31, $5, $1, 255, 255, $90, 0, TeacherScript_0x19c146, $ffff
 	person_event SPRITE_YOUNGSTER, 11, 27, $5, $1, 255, 255, $80, 0, YoungsterScript_0x19c15a, $ffff
-	person_event SPRITE_FISHER, 16, 11, $9, $0, 255, 255, $a0, 0, FisherScript_0x19c16e, $ffff
+	person_event SPRITE_FISHER, 16, 11, $9, $0, 255, 255, $a0, 0, MysticWaterGuy, $ffff
 ; 0x19c8ad

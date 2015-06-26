@@ -22,9 +22,8 @@ LassScript_0x196cb9: ; 0x196cb9
 	end
 ; 0x196cc0
 
-MapCherrygroveEvolutionSpeechHouseSignpost1Script: ; 0x196cc0
+CherrygroveEvolutionSpeechHouseBookshelf:
 	jumpstd magazinebookshelf
-; 0x196cc3
 
 UnknownText_0x196cc3: ; 0x196cc3
 	text "#MON gain expe-"
@@ -57,8 +56,8 @@ CherrygroveEvolutionSpeechHouse_MapEventHeader: ; 0x196d2e
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapCherrygroveEvolutionSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapCherrygroveEvolutionSpeechHouseSignpost1Script
+	signpost 1, 0, $0, CherrygroveEvolutionSpeechHouseBookshelf
+	signpost 1, 1, $0, CherrygroveEvolutionSpeechHouseBookshelf
 
 	; people-events
 	db 2

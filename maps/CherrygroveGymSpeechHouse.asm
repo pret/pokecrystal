@@ -14,9 +14,8 @@ BugCatcherScript_0x196ae4: ; 0x196ae4
 	jumptextfaceplayer UnknownText_0x196b65
 ; 0x196ae7
 
-MapCherrygroveGymSpeechHouseSignpost1Script: ; 0x196ae7
+CherrygroveGymSpeechHouseBookshelf:
 	jumpstd picturebookshelf
-; 0x196aea
 
 UnknownText_0x196aea: ; 0x196aea
 	text "You're trying to"
@@ -60,8 +59,8 @@ CherrygroveGymSpeechHouse_MapEventHeader: ; 0x196bd1
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapCherrygroveGymSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapCherrygroveGymSpeechHouseSignpost1Script
+	signpost 1, 0, $0, CherrygroveGymSpeechHouseBookshelf
+	signpost 1, 1, $0, CherrygroveGymSpeechHouseBookshelf
 
 	; people-events
 	db 2

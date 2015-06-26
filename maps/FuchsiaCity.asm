@@ -1,4 +1,4 @@
-FuchsiaCity_MapScriptHeader: ; 0x194b19
+FuchsiaCity_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,71 +8,56 @@ FuchsiaCity_MapScriptHeader: ; 0x194b19
 	; callbacks
 
 	dbw 5, UnknownScript_0x194b1e
-; 0x194b1e
 
-UnknownScript_0x194b1e: ; 0x194b1e
+UnknownScript_0x194b1e:
 	setflag $003e
 	return
-; 0x194b22
 
-YoungsterScript_0x194b22: ; 0x194b22
+YoungsterScript_0x194b22:
 	jumptextfaceplayer UnknownText_0x194b45
-; 0x194b25
 
-PokefanMScript_0x194b25: ; 0x194b25
+PokefanMScript_0x194b25:
 	jumptextfaceplayer UnknownText_0x194b83
-; 0x194b28
 
-TeacherScript_0x194b28: ; 0x194b28
+TeacherScript_0x194b28:
 	jumptextfaceplayer UnknownText_0x194bd3
-; 0x194b2b
 
-MapFuchsiaCitySignpost0Script: ; 0x194b2b
-	jumptext UnknownText_0x194c22
-; 0x194b2e
+FuchsiaCitySign:
+	jumptext FuchsiaCitySignText
 
-MapFuchsiaCitySignpost1Script: ; 0x194b2e
-	jumptext UnknownText_0x194c4a
-; 0x194b31
+FuchsiaGymSign:
+	jumptext FuchsiaGymSignText
 
-MapFuchsiaCitySignpost2Script: ; 0x194b31
-	jumptext UnknownText_0x194c8b
-; 0x194b34
+SafariZoneOfficeSign:
+	jumptext SafariZoneOfficeSignText
 
-MapFuchsiaCitySignpost3Script: ; 0x194b34
-	jumptext UnknownText_0x194cd5
-; 0x194b37
+WardensHomeSign:
+	jumptext WardensHomeSignText
 
-MapFuchsiaCitySignpost4Script: ; 0x194b37
-	jumptext UnknownText_0x194cf0
-; 0x194b3a
+SafariZoneClosedSign:
+	jumptext SafariZoneClosedSignText
 
-MapFuchsiaCitySignpost5Script: ; 0x194b3a
-	jumptext UnknownText_0x194d37
-; 0x194b3d
+NoLitteringSign:
+	jumptext NoLitteringSignText
 
-MapFuchsiaCitySignpost6Script: ; 0x194b3d
+FuchsiaCityPokeCenterSign:
 	jumpstd pokecentersign
-; 0x194b40
 
-MapFuchsiaCitySignpost7Script: ; 0x194b40
+FuchsiaCityMartSign:
 	jumpstd martsign
-; 0x194b43
 
-FruitTreeScript_0x194b43: ; 0x194b43
+FruitTreeScript_0x194b43:
 	fruittree $1e
-; 0x194b45
 
-UnknownText_0x194b45: ; 0x194b45
+UnknownText_0x194b45:
 	text "One of the ELITE"
 	line "FOUR used to be"
 
 	para "the LEADER of"
 	line "FUCHSIA's GYM."
 	done
-; 0x194b83
 
-UnknownText_0x194b83: ; 0x194b83
+UnknownText_0x194b83:
 	text "KOGA's daughter"
 	line "succeeded him as"
 
@@ -80,9 +65,8 @@ UnknownText_0x194b83: ; 0x194b83
 	line "after he joined"
 	cont "the ELITE FOUR."
 	done
-; 0x194bd3
 
-UnknownText_0x194bd3: ; 0x194bd3
+UnknownText_0x194bd3:
 	text "The SAFARI ZONE is"
 	line "closed… It's sad,"
 
@@ -90,17 +74,15 @@ UnknownText_0x194bd3: ; 0x194bd3
 	line "FUCHSIA's main"
 	cont "attraction."
 	done
-; 0x194c22
 
-UnknownText_0x194c22: ; 0x194c22
+FuchsiaCitySignText:
 	text "FUCHSIA CITY"
 
 	para "Behold! It's"
 	line "Passion Pink!"
 	done
-; 0x194c4a
 
-UnknownText_0x194c4a: ; 0x194c4a
+FuchsiaGymSignText:
 	text "FUCHSIA CITY"
 	line "#MON GYM"
 	cont "LEADER: JANINE"
@@ -108,9 +90,8 @@ UnknownText_0x194c4a: ; 0x194c4a
 	para "The Poisonous"
 	line "Ninja Master"
 	done
-; 0x194c8b
 
-UnknownText_0x194c8b: ; 0x194c8b
+SafariZoneOfficeSignText:
 	text "There's a notice"
 	line "here…"
 
@@ -118,15 +99,13 @@ UnknownText_0x194c8b: ; 0x194c8b
 	line "is closed until"
 	cont "further notice."
 	done
-; 0x194cd5
 
-UnknownText_0x194cd5: ; 0x194cd5
+WardensHomeSignText:
 	text "SAFARI ZONE"
 	line "WARDEN'S HOME"
 	done
-; 0x194cf0
 
-UnknownText_0x194cf0: ; 0x194cf0
+SafariZoneClosedSignText:
 	text "The WARDEN is"
 	line "traveling abroad."
 
@@ -134,17 +113,15 @@ UnknownText_0x194cf0: ; 0x194cf0
 	line "SAFARI ZONE is"
 	cont "closed."
 	done
-; 0x194d37
 
-UnknownText_0x194d37: ; 0x194d37
+NoLitteringSignText:
 	text "No littering."
 
 	para "Please take your"
 	line "waste with you."
 	done
-; 0x194d67
 
-FuchsiaCity_MapEventHeader: ; 0x194d67
+FuchsiaCity_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -167,14 +144,14 @@ FuchsiaCity_MapEventHeader: ; 0x194d67
 
 	; signposts
 	db 8
-	signpost 15, 21, $0, MapFuchsiaCitySignpost0Script
-	signpost 29, 5, $0, MapFuchsiaCitySignpost1Script
-	signpost 15, 25, $0, MapFuchsiaCitySignpost2Script
-	signpost 29, 27, $0, MapFuchsiaCitySignpost3Script
-	signpost 5, 17, $0, MapFuchsiaCitySignpost4Script
-	signpost 15, 13, $0, MapFuchsiaCitySignpost5Script
-	signpost 27, 20, $0, MapFuchsiaCitySignpost6Script
-	signpost 13, 6, $0, MapFuchsiaCitySignpost7Script
+	signpost 15, 21, $0, FuchsiaCitySign
+	signpost 29, 5, $0, FuchsiaGymSign
+	signpost 15, 25, $0, SafariZoneOfficeSign
+	signpost 29, 27, $0, WardensHomeSign
+	signpost 5, 17, $0, SafariZoneClosedSign
+	signpost 15, 13, $0, NoLitteringSign
+	signpost 27, 20, $0, FuchsiaCityPokeCenterSign
+	signpost 13, 6, $0, FuchsiaCityMartSign
 
 	; people-events
 	db 4
@@ -182,4 +159,3 @@ FuchsiaCity_MapEventHeader: ; 0x194d67
 	person_event SPRITE_POKEFAN_M, 12, 17, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x194b25, $ffff
 	person_event SPRITE_TEACHER, 18, 20, $2, $11, 255, 255, $80, 0, TeacherScript_0x194b28, $ffff
 	person_event SPRITE_FRUIT_TREE, 5, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194b43, $ffff
-; 0x194e00

@@ -4,20 +4,17 @@ BlackthornDodrioTradeHouse_MapScriptHeader: ; 0x195a28
 
 	; callback count
 	db 0
-; 0x195a2a
 
-LassScript_0x195a2a: ; 0x195a2a
+Emy:
 	faceplayer
 	loadfont
 	trade $3
 	closetext
 	loadmovesprites
 	end
-; 0x195a31
 
-MapBlackthornDodrioTradeHouseSignpost1Script: ; 0x195a31
+EmysHouseBookshelf:
 	jumpstd magazinebookshelf
-; 0x195a34
 
 BlackthornDodrioTradeHouse_MapEventHeader: ; 0x195a34
 	; filler
@@ -33,10 +30,10 @@ BlackthornDodrioTradeHouse_MapEventHeader: ; 0x195a34
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapBlackthornDodrioTradeHouseSignpost1Script
-	signpost 1, 1, $0, MapBlackthornDodrioTradeHouseSignpost1Script
+	signpost 1, 0, $0, EmysHouseBookshelf
+	signpost 1, 1, $0, EmysHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_LASS, 7, 6, $3, $0, 255, 255, $a0, 0, LassScript_0x195a2a, $ffff
+	person_event SPRITE_LASS, 7, 6, $3, $0, 255, 255, $a0, 0, Emy, $ffff
 ; 0x195a5b

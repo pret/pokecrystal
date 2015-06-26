@@ -79,7 +79,7 @@ LanceScript_0x180e7b: ; 0x180e7b
 	reloadmappart
 	loadmovesprites
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	musicfadeout $0038, $10
+	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
 	pause 30
 	showemote $0, $2, 15
 	spriteface $2, $0

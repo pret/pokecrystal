@@ -7,69 +7,63 @@ CopycatsHouse2F_MapScriptHeader: ; 0x18ae9a
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x18ae9f
+	dbw 2, CopycatsHouse2FCallback
 ; 0x18ae9f
 
-UnknownScript_0x18ae9f: ; 0x18ae9f
+CopycatsHouse2FCallback:
 	checkflag $0063
-	iftrue UnknownScript_0x18aeac
+	iftrue .Part1
 	disappear $7
 	appear $2
-	jump UnknownScript_0x18aeb0
-; 0x18aeac
-
-UnknownScript_0x18aeac: ; 0x18aeac
+	jump .Done
+.Part1
 	disappear $2
 	appear $7
-UnknownScript_0x18aeb0: ; 0x18aeb0
+.Done
 	return
-; 0x18aeb1
 
-CopycatScript_0x18aeb1: ; 0x18aeb1
+Copycat:
 	faceplayer
 	checkevent EVENT_GOT_PASS_FROM_COPYCAT
-	iftrue UnknownScript_0x18af6f
+	iftrue .Part15
 	checkevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
-	iftrue UnknownScript_0x18af5b
+	iftrue .Part13
 	checkitem LOST_ITEM
-	iftrue UnknownScript_0x18af4a
+	iftrue .Part12
 	checkflag $0063
-	iftrue UnknownScript_0x18aed4
+	iftrue .Part1
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
 	variablesprite $b, $1
-	jump UnknownScript_0x18aedc
-; 0x18aed4
+	jump .Part2
 
-UnknownScript_0x18aed4: ; 0x18aed4
+.Part1
 	applymovement $7, MovementData_0x18afd0
 	faceplayer
 	variablesprite $b, $60
-UnknownScript_0x18aedc: ; 0x18aedc
+.Part2
 	special Function14209
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x18af16
+	iftrue .Part7
 	loadfont
 	checkflag $0063
-	iftrue UnknownScript_0x18aef2
+	iftrue .Part3
 	writetext UnknownText_0x18afda
-	jump UnknownScript_0x18aef5
-; 0x18aef2
+	jump .Part4
 
-UnknownScript_0x18aef2: ; 0x18aef2
+.Part3
 	writetext UnknownText_0x18b316
-UnknownScript_0x18aef5: ; 0x18aef5
+.Part4
 	closetext
 	loadmovesprites
 	checkflag $0063
-	iftrue UnknownScript_0x18af04
+	iftrue .Part5
 	applymovement $2, MovementData_0x18afd0
-	jump UnknownScript_0x18af08
-; 0x18af04
+	jump .Part6
 
-UnknownScript_0x18af04: ; 0x18af04
+.Part5
 	applymovement $7, MovementData_0x18afd0
-UnknownScript_0x18af08: ; 0x18af08
+.Part6
 	faceplayer
 	variablesprite $b, $28
 	special Function14209
@@ -78,30 +72,27 @@ UnknownScript_0x18af08: ; 0x18af08
 	closetext
 	loadmovesprites
 	end
-; 0x18af16
 
-UnknownScript_0x18af16: ; 0x18af16
+.Part7
 	loadfont
 	checkflag $0063
-	iftrue UnknownScript_0x18af23
+	iftrue .Part8
 	writetext UnknownText_0x18b064
-	jump UnknownScript_0x18af26
-; 0x18af23
+	jump .Part9
 
-UnknownScript_0x18af23: ; 0x18af23
+.Part8
 	writetext UnknownText_0x18b366
-UnknownScript_0x18af26: ; 0x18af26
+.Part9
 	closetext
 	loadmovesprites
 	checkflag $0063
-	iftrue UnknownScript_0x18af35
+	iftrue .Part10
 	applymovement $2, MovementData_0x18afd0
-	jump UnknownScript_0x18af39
-; 0x18af35
+	jump .Part11
 
-UnknownScript_0x18af35: ; 0x18af35
+.Part10
 	applymovement $7, MovementData_0x18afd0
-UnknownScript_0x18af39: ; 0x18af39
+.Part11
 	faceplayer
 	variablesprite $b, $28
 	special Function14209
@@ -111,99 +102,87 @@ UnknownScript_0x18af39: ; 0x18af39
 	loadmovesprites
 	setevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	end
-; 0x18af4a
 
-UnknownScript_0x18af4a: ; 0x18af4a
+.Part12
 	loadfont
 	writetext UnknownText_0x18b17f
 	keeptextopen
 	takeitem LOST_ITEM, 1
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent $0773
-	jump UnknownScript_0x18af5c
-; 0x18af5b
+	jump .Part14
 
-UnknownScript_0x18af5b: ; 0x18af5b
+.Part13
 	loadfont
-UnknownScript_0x18af5c: ; 0x18af5c
+.Part14
 	writetext UnknownText_0x18b1e2
 	keeptextopen
 	verbosegiveitem PASS, 1
-	iffalse UnknownScript_0x18afba
+	iffalse .Part22
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
 	writetext UnknownText_0x18b214
 	closetext
 	loadmovesprites
 	end
-; 0x18af6f
 
-UnknownScript_0x18af6f: ; 0x18af6f
+.Part15
 	checkflag $0063
-	iftrue UnknownScript_0x18af80
+	iftrue .Part16
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
 	variablesprite $b, $1
-	jump UnknownScript_0x18af88
-; 0x18af80
+	jump .Part17
 
-UnknownScript_0x18af80: ; 0x18af80
+.Part16
 	applymovement $7, MovementData_0x18afd0
 	faceplayer
 	variablesprite $b, $60
-UnknownScript_0x18af88: ; 0x18af88
+.Part17
 	special Function14209
 	loadfont
 	checkflag $0063
-	iftrue UnknownScript_0x18af98
+	iftrue .Part18
 	writetext UnknownText_0x18b298
-	jump UnknownScript_0x18af9b
-; 0x18af98
+	jump .Part19
 
-UnknownScript_0x18af98: ; 0x18af98
+.Part18
 	writetext UnknownText_0x18b415
-UnknownScript_0x18af9b: ; 0x18af9b
+.Part19
 	closetext
 	loadmovesprites
 	checkflag $0063
-	iftrue UnknownScript_0x18afaa
+	iftrue .Part20
 	applymovement $2, MovementData_0x18afd0
-	jump UnknownScript_0x18afae
-; 0x18afaa
+	jump .Part21
 
-UnknownScript_0x18afaa: ; 0x18afaa
+.Part20
 	applymovement $7, MovementData_0x18afd0
-UnknownScript_0x18afae: ; 0x18afae
+.Part21
 	faceplayer
 	variablesprite $b, $28
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b2f5
 	closetext
-UnknownScript_0x18afba: ; 0x18afba
+.Part22
 	loadmovesprites
 	end
-; 0x18afbc
 
-MoltresScript_0x18afbc: ; 0x18afbc
+CopycatsDodrio:
 	loadfont
-	writetext UnknownText_0x18b476
+	writetext CopycatsDodrioText1
 	cry DODRIO
 	keeptextopen
-	writetext UnknownText_0x18b489
+	writetext CopycatsDodrioText2
 	closetext
 	loadmovesprites
 	end
-; 0x18afca
 
-FairyScript_0x18afca:
-MonsterScript_0x18afca:
-BirdScript_0x18afca: ; 0x18afca
-	jumptext UnknownText_0x18b4c4
-; 0x18afcd
+CopycatsHouse2FDoll:
+	jumptext CopycatsHouse2FDollText
 
-MapCopycatsHouse2FSignpost1Script: ; 0x18afcd
+CopycatsHouse2FBookshelf:
 	jumpstd picturebookshelf
-; 0x18afd0
 
 MovementData_0x18afd0: ; 0x18afd0
 	turn_head_down
@@ -371,12 +350,12 @@ UnknownText_0x18b415: ; 0x18b415
 	done
 ; 0x18b476
 
-UnknownText_0x18b476: ; 0x18b476
+CopycatsDodrioText1: ; 0x18b476
 	text "DODRIO: Gii giii!"
 	done
 ; 0x18b489
 
-UnknownText_0x18b489: ; 0x18b489
+CopycatsDodrioText2: ; 0x18b489
 	text "MIRROR, MIRROR ON"
 	line "THE WALL, WHO'S"
 
@@ -385,13 +364,12 @@ UnknownText_0x18b489: ; 0x18b489
 	done
 ; 0x18b4c4
 
-UnknownText_0x18b4c4: ; 0x18b4c4
+CopycatsHouse2FDollText:
 	text "This is a rare"
 	line "#MON! Huh?"
 
 	para "It's only a doll…"
 	done
-; 0x18b4f0
 
 CopycatsHouse2F_MapEventHeader: ; 0x18b4f0
 	; filler
@@ -406,15 +384,15 @@ CopycatsHouse2F_MapEventHeader: ; 0x18b4f0
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapCopycatsHouse2FSignpost1Script
-	signpost 1, 1, $0, MapCopycatsHouse2FSignpost1Script
+	signpost 1, 0, $0, CopycatsHouse2FBookshelf
+	signpost 1, 1, $0, CopycatsHouse2FBookshelf
 
 	; people-events
 	db 6
-	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $80, 0, CopycatScript_0x18aeb1, $06ee
-	person_event SPRITE_MOLTRES, 8, 10, $16, $0, 255, 255, $b0, 0, MoltresScript_0x18afbc, $ffff
-	person_event SPRITE_FAIRY, 5, 10, $6, $0, 255, 255, $80, 0, FairyScript_0x18afca, $0773
-	person_event SPRITE_MONSTER, 5, 6, $6, $0, 255, 255, $a0, 0, MonsterScript_0x18afca, $ffff
-	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, BirdScript_0x18afca, $ffff
-	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, CopycatScript_0x18aeb1, $06ef
+	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $80, 0, Copycat, $06ee
+	person_event SPRITE_MOLTRES, 8, 10, $16, $0, 255, 255, $b0, 0, CopycatsDodrio, $ffff
+	person_event SPRITE_FAIRY, 5, 10, $6, $0, 255, 255, $80, 0, CopycatsHouse2FDoll, $0773
+	person_event SPRITE_MONSTER, 5, 6, $6, $0, 255, 255, $a0, 0, CopycatsHouse2FDoll, $ffff
+	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, CopycatsHouse2FDoll, $ffff
+	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, Copycat, $06ef
 ; 0x18b553

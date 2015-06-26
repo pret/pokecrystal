@@ -15,13 +15,11 @@ GentlemanScript_0x5577c: ; 0x5577c
 	end
 ; 0x55784
 
-MapGoldenrodNameRatersHouseSignpost1Script: ; 0x55784
+GoldenrodNameRatersHouseBookshelf:
 	jumpstd difficultbookshelf
-; 0x55787
 
-MapGoldenrodNameRatersHouseSignpost2Script: ; 0x55787
+GoldenrodNameRatersHouseRadio:
 	jumpstd radio2
-; 0x5578a
 
 INCLUDE "text/sweethoney.asm"
 
@@ -39,9 +37,9 @@ GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, MapGoldenrodNameRatersHouseSignpost1Script
-	signpost 1, 1, $0, MapGoldenrodNameRatersHouseSignpost1Script
-	signpost 1, 7, $0, MapGoldenrodNameRatersHouseSignpost2Script
+	signpost 1, 0, $0, GoldenrodNameRatersHouseBookshelf
+	signpost 1, 1, $0, GoldenrodNameRatersHouseBookshelf
+	signpost 1, 7, $0, GoldenrodNameRatersHouseRadio
 
 	; people-events
 	db 1

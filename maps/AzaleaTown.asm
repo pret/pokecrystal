@@ -194,41 +194,32 @@ KurtOutsideScript_0x19810c: ; 0x19810c
 	end
 ; 0x198117
 
-MapAzaleaTownSignpost0Script: ; 0x198117
-	jumptext UnknownText_0x19865a
-; 0x19811a
+AzaleaTownSign:
+	jumptext AzaleaTownSignText
 
-MapAzaleaTownSignpost1Script: ; 0x19811a
-	jumptext UnknownText_0x198693
-; 0x19811d
+KurtsHouseSign:
+	jumptext KurtsHouseSignText
 
-MapAzaleaTownSignpost2Script: ; 0x19811d
-	jumptext UnknownText_0x1986a1
-; 0x198120
+AzaleaGymSign:
+	jumptext AzaleaGymSignText
 
-MapAzaleaTownSignpost3Script: ; 0x198120
-	jumptext UnknownText_0x1986e7
-; 0x198123
+SlowpokeWellSign:
+	jumptext SlowpokeWellSignText
 
-MapAzaleaTownSignpost4Script: ; 0x198123
-	jumptext UnknownText_0x19878d
-; 0x198126
+CharcoalKilnSign:
+	jumptext CharcoalKilnSignText
 
-MapAzaleaTownSignpost7Script: ; 0x198126
-	jumptext UnknownText_0x19879c
-; 0x198129
+AzaleaTownIlextForestSign:
+	jumptext AzaleaTownIlexForestSignText
 
-MapAzaleaTownSignpost5Script: ; 0x198129
+AzaleaTownPokeCenterSign:
 	jumpstd pokecentersign
-; 0x19812c
 
-MapAzaleaTownSignpost6Script: ; 0x19812c
+AzaleaTownMartSign:
 	jumpstd martsign
-; 0x19812f
 
-FruitTreeScript_0x19812f: ; 0x19812f
+WhiteApricornTree:
 	fruittree $14
-; 0x198131
 
 MapAzaleaTownSignpostItem8: ; 0x198131
 	dw $00b1
@@ -448,21 +439,19 @@ UnknownText_0x198628: ; 0x198628
 	done
 ; 0x19865a
 
-UnknownText_0x19865a: ; 0x19865a
+AzaleaTownSignText:
 	text "AZALEA TOWN"
 	line "Where People and"
 
 	para "#MON Live in"
 	line "Happy Harmony"
 	done
-; 0x198693
 
-UnknownText_0x198693: ; 0x198693
+KurtsHouseSignText:
 	text "KURT'S HOUSE"
 	done
-; 0x1986a1
 
-UnknownText_0x1986a1: ; 0x1986a1
+AzaleaGymSignText:
 	text "AZALEA TOWN"
 	line "#MON GYM"
 	cont "LEADER: BUGSY"
@@ -471,9 +460,8 @@ UnknownText_0x1986a1: ; 0x1986a1
 	line "Bug #MON"
 	cont "Encyclopedia"
 	done
-; 0x1986e7
 
-UnknownText_0x1986e7: ; 0x1986e7
+SlowpokeWellSignText:
 	text "SLOWPOKE WELL"
 
 	para "Also known as the"
@@ -489,20 +477,17 @@ UnknownText_0x1986e7: ; 0x1986e7
 	para "ended a drought"
 	line "400 years ago."
 	done
-; 0x19878d
 
-UnknownText_0x19878d: ; 0x19878d
+CharcoalKilnSignText:
 	text "CHARCOAL KILN"
 	done
-; 0x19879c
 
-UnknownText_0x19879c: ; 0x19879c
+AzaleaTownIlexForestSignText:
 	text "ILEX FOREST"
 
 	para "Enter through the"
 	line "gate."
 	done
-; 0x1987c1
 
 AzaleaTown_MapEventHeader: ; 0x1987c1
 	; filler
@@ -527,14 +512,14 @@ AzaleaTown_MapEventHeader: ; 0x1987c1
 
 	; signposts
 	db 9
-	signpost 9, 19, $0, MapAzaleaTownSignpost0Script
-	signpost 9, 10, $0, MapAzaleaTownSignpost1Script
-	signpost 15, 14, $0, MapAzaleaTownSignpost2Script
-	signpost 7, 29, $0, MapAzaleaTownSignpost3Script
-	signpost 13, 19, $0, MapAzaleaTownSignpost4Script
-	signpost 9, 16, $0, MapAzaleaTownSignpost5Script
-	signpost 5, 22, $0, MapAzaleaTownSignpost6Script
-	signpost 9, 3, $0, MapAzaleaTownSignpost7Script
+	signpost 9, 19, $0, AzaleaTownSign
+	signpost 9, 10, $0, KurtsHouseSign
+	signpost 15, 14, $0, AzaleaGymSign
+	signpost 7, 29, $0, SlowpokeWellSign
+	signpost 13, 19, $0, CharcoalKilnSign
+	signpost 9, 16, $0, AzaleaTownPokeCenterSign
+	signpost 5, 22, $0, AzaleaTownMartSign
+	signpost 9, 3, $0, AzaleaTownIlextForestSign
 	signpost 6, 31, $7, MapAzaleaTownSignpostItem8
 
 	; people-events
@@ -547,7 +532,7 @@ AzaleaTown_MapEventHeader: ; 0x1987c1
 	person_event SPRITE_SLOWPOKE, 13, 22, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
 	person_event SPRITE_SLOWPOKE, 13, 33, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
 	person_event SPRITE_SLOWPOKE, 19, 19, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
-	person_event SPRITE_FRUIT_TREE, 6, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19812f, $ffff
+	person_event SPRITE_FRUIT_TREE, 6, 12, $1, $0, 255, 255, $0, 0, WhiteApricornTree, $ffff
 	person_event SPRITE_AZALEA_ROCKET, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, $06bf
 	person_event SPRITE_AZALEA_ROCKET, 20, 14, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ae, $06fc
 	person_event SPRITE_KURT_OUTSIDE, 9, 10, $8, $0, 255, 255, $0, 0, KurtOutsideScript_0x19810c, $07a4

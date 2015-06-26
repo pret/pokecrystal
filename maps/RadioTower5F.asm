@@ -51,7 +51,7 @@ UnknownScript_0x60011: ; 0x60011
 	end
 ; 0x60046
 
-GentlemanScript_0x60046: ; 0x60046
+Director:
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
@@ -60,7 +60,6 @@ GentlemanScript_0x60046: ; 0x60046
 	closetext
 	loadmovesprites
 	end
-; 0x60054
 
 UnknownScript_0x60054: ; 0x60054
 	writetext UnknownText_0x60824
@@ -160,9 +159,8 @@ UnknownScript_0x600f1: ; 0x600f1
 	end
 ; 0x600fb
 
-RockerScript_0x600fb: ; 0x600fb
-	jumptextfaceplayer UnknownText_0x608be
-; 0x600fe
+Ben:
+	jumptextfaceplayer BenText
 
 ItemFragment_0x600fe: ; 0x600fe
 	db ULTRA_BALL, 1
@@ -176,9 +174,8 @@ MapRadioTower5FSignpost2Script: ; 0x60103
 	jumptext UnknownText_0x608f9
 ; 0x60106
 
-MapRadioTower5FSignpost4Script: ; 0x60106
+RadioTower5FBookshelf:
 	jumpstd magazinebookshelf
-; 0x60109
 
 MovementData_0x60109: ; 0x60109
 	step_left
@@ -450,11 +447,10 @@ UnknownText_0x60824: ; 0x60824
 	done
 ; 0x608be
 
-UnknownText_0x608be: ; 0x608be
+BenText:
 	text "BEN: Do you listen"
 	line "to our music?"
 	done
-; 0x608e0
 
 UnknownText_0x608e0: ; 0x608e0
 	text "5F DIRECTOR'S"
@@ -486,14 +482,14 @@ RadioTower5F_MapEventHeader: ; 0x60906
 	signpost 0, 3, $0, MapRadioTower5FSignpost0Script
 	signpost 0, 11, $0, MapRadioTower5FSignpost2Script
 	signpost 0, 15, $0, MapRadioTower5FSignpost2Script
-	signpost 1, 16, $0, MapRadioTower5FSignpost4Script
-	signpost 1, 17, $0, MapRadioTower5FSignpost4Script
+	signpost 1, 16, $0, RadioTower5FBookshelf
+	signpost 1, 17, $0, RadioTower5FBookshelf
 
 	; people-events
 	db 5
-	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, GentlemanScript_0x60046, $ffff
+	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, Director, $ffff
 	person_event SPRITE_ROCKET, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, $06ce
 	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, $06ce
-	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, RockerScript_0x600fb, $06d0
+	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, Ben, $06d0
 	person_event SPRITE_POKE_BALL, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, $07cd
 ; 0x60980

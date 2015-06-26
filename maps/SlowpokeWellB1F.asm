@@ -186,9 +186,8 @@ SlowpokeScript_0x5a695: ; 0x5a695
 	end
 ; 0x5a6a0
 
-BoulderScript_0x5a6a0: ; 0x5a6a0
+SlowpokeWellB1FBoulder:
 	jumpstd strengthboulder
-; 0x5a6a3
 
 ItemFragment_0x5a6a3: ; 0x5a6a3
 	db SUPER_POTION, 1
@@ -430,6 +429,6 @@ SlowpokeWellB1F_MapEventHeader: ; 0x5ac84
 	person_event SPRITE_SLOWPOKE, 8, 11, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a681, $06fb
 	person_event SPRITE_SLOWPOKE, 6, 10, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a695, $06fb
 	person_event SPRITE_KURT, 18, 20, $7, $0, 255, 255, $0, 0, KurtScript_0x5a5d5, $0740
-	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, BoulderScript_0x5a6a0, $ffff
+	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, SlowpokeWellB1FBoulder, $ffff
 	person_event SPRITE_POKE_BALL, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, $0662
 ; 0x5ad09

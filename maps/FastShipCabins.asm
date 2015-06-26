@@ -341,9 +341,8 @@ SupernerdShawnScript: ; 0x75ff9
 	end
 ; 0x76001
 
-MapFastShipCabins_SE_SSE_CaptainsCabinSignpost0Script: ; 0x76001
+FastShipCaptainsCabinTrashcan:
 	jumpstd trashcan
-; 0x76004
 
 MovementData_0x76004: ; 0x76004
 	big_step_right
@@ -641,7 +640,7 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader: ; 0x76678
 
 	; signposts
 	db 1
-	signpost 25, 4, $0, MapFastShipCabins_SE_SSE_CaptainsCabinSignpost0Script
+	signpost 25, 4, $0, FastShipCaptainsCabinTrashcan
 
 	; people-events
 	db 11

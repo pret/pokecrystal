@@ -70,13 +70,11 @@ TwinScript_0x5499a: ; 0x5499a
 	jumptextfaceplayer UnknownText_0x54b67
 ; 0x5499d
 
-MapGoldenrodHappinessRaterSignpost1Script: ; 0x5499d
+HappinessRatersHouseBookshelf:
 	jumpstd difficultbookshelf
-; 0x549a0
 
-MapGoldenrodHappinessRaterSignpost2Script: ; 0x549a0
+HappinessRatersHouseRadio:
 	jumpstd radio2
-; 0x549a3
 
 UnknownText_0x549a3: ; 0x549a3
 	text "If you treat your"
@@ -166,9 +164,9 @@ GoldenrodHappinessRater_MapEventHeader: ; 0x54b9c
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, MapGoldenrodHappinessRaterSignpost1Script
-	signpost 1, 1, $0, MapGoldenrodHappinessRaterSignpost1Script
-	signpost 1, 7, $0, MapGoldenrodHappinessRaterSignpost2Script
+	signpost 1, 0, $0, HappinessRatersHouseBookshelf
+	signpost 1, 1, $0, HappinessRatersHouseBookshelf
+	signpost 1, 7, $0, HappinessRatersHouseRadio
 
 	; people-events
 	db 3

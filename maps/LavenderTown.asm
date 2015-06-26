@@ -1,4 +1,4 @@
-LavenderTown_MapScriptHeader: ; 0x1ad6db
+LavenderTown_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,69 +8,55 @@ LavenderTown_MapScriptHeader: ; 0x1ad6db
 	; callbacks
 
 	dbw 5, UnknownScript_0x1ad6e0
-; 0x1ad6e0
 
-UnknownScript_0x1ad6e0: ; 0x1ad6e0
+UnknownScript_0x1ad6e0:
 	setflag $003b
 	return
-; 0x1ad6e4
 
-PokefanMScript_0x1ad6e4: ; 0x1ad6e4
+PokefanMScript_0x1ad6e4:
 	jumptextfaceplayer UnknownText_0x1ad702
-; 0x1ad6e7
 
-TeacherScript_0x1ad6e7: ; 0x1ad6e7
+TeacherScript_0x1ad6e7:
 	jumptextfaceplayer UnknownText_0x1ad73a
-; 0x1ad6ea
 
-GrampsScript_0x1ad6ea: ; 0x1ad6ea
+GrampsScript_0x1ad6ea:
 	jumptextfaceplayer UnknownText_0x1ad75c
-; 0x1ad6ed
 
-YoungsterScript_0x1ad6ed: ; 0x1ad6ed
+YoungsterScript_0x1ad6ed:
 	jumptextfaceplayer UnknownText_0x1ad7ac
-; 0x1ad6f0
 
-MapLavenderTownSignpost0Script: ; 0x1ad6f0
-	jumptext UnknownText_0x1ad7f7
-; 0x1ad6f3
+LavenderTownSign:
+	jumptext LavenderTownSignText
 
-MapLavenderTownSignpost1Script: ; 0x1ad6f3
-	jumptext UnknownText_0x1ad81c
-; 0x1ad6f6
+KantoRadioStationSign:
+	jumptext KantoRadioStationSignText
 
-MapLavenderTownSignpost2Script: ; 0x1ad6f6
-	jumptext UnknownText_0x1ad861
-; 0x1ad6f9
+VolunteerPokemonHouseSign:
+	jumptext VolunteerPokemonHouseSignText
 
-MapLavenderTownSignpost3Script: ; 0x1ad6f9
-	jumptext UnknownText_0x1ad880
-; 0x1ad6fc
+SoulHouseSign:
+	jumptext SoulHouseSignText
 
-MapLavenderTownSignpost4Script: ; 0x1ad6fc
+LavenderPokeCenterSignText:
 	jumpstd pokecentersign
-; 0x1ad6ff
 
-MapLavenderTownSignpost5Script: ; 0x1ad6ff
+LavenderMartSignText:
 	jumpstd martsign
-; 0x1ad702
 
-UnknownText_0x1ad702: ; 0x1ad702
+UnknownText_0x1ad702:
 	text "That's quite some"
 	line "building, eh?"
 
 	para "It's KANTO's RADIO"
 	line "TOWER."
 	done
-; 0x1ad73a
 
-UnknownText_0x1ad73a: ; 0x1ad73a
+UnknownText_0x1ad73a:
 	text "KANTO has many"
 	line "good radio shows."
 	done
-; 0x1ad75c
 
-UnknownText_0x1ad75c: ; 0x1ad75c
+UnknownText_0x1ad75c:
 	text "People come from"
 	line "all over to pay"
 
@@ -78,9 +64,8 @@ UnknownText_0x1ad75c: ; 0x1ad75c
 	line "the departed souls"
 	cont "of #MON."
 	done
-; 0x1ad7ac
 
-UnknownText_0x1ad7ac: ; 0x1ad7ac
+UnknownText_0x1ad7ac:
 	text "You need a #"
 	line "FLUTE to wake"
 	cont "sleeping #MON."
@@ -88,17 +73,15 @@ UnknownText_0x1ad7ac: ; 0x1ad7ac
 	para "Every trainer has"
 	line "to know that!"
 	done
-; 0x1ad7f7
 
-UnknownText_0x1ad7f7: ; 0x1ad7f7
+LavenderTownSignText:
 	text "LAVENDER TOWN"
 
 	para "The Noble Purple"
 	line "Town"
 	done
-; 0x1ad81c
 
-UnknownText_0x1ad81c: ; 0x1ad81c
+KantoRadioStationSignText:
 	text "KANTO RADIO"
 	line "STATION"
 
@@ -106,23 +89,20 @@ UnknownText_0x1ad81c: ; 0x1ad81c
 	line "Programs On-Air"
 	cont "Around the Clock!"
 	done
-; 0x1ad861
 
-UnknownText_0x1ad861: ; 0x1ad861
+VolunteerPokemonHouseSignText:
 	text "LAVENDER VOLUNTEER"
 	line "#MON HOUSE"
 	done
-; 0x1ad880
 
-UnknownText_0x1ad880: ; 0x1ad880
+SoulHouseSignText:
 	text "SOUL HOUSE"
 
 	para "May the Souls of"
 	line "#MON Rest Easy"
 	done
-; 0x1ad8ac
 
-LavenderTown_MapEventHeader: ; 0x1ad8ac
+LavenderTown_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -141,12 +121,12 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 
 	; signposts
 	db 6
-	signpost 3, 11, $0, MapLavenderTownSignpost0Script
-	signpost 7, 15, $0, MapLavenderTownSignpost1Script
-	signpost 9, 3, $0, MapLavenderTownSignpost2Script
-	signpost 13, 15, $0, MapLavenderTownSignpost3Script
-	signpost 5, 6, $0, MapLavenderTownSignpost4Script
-	signpost 5, 2, $0, MapLavenderTownSignpost5Script
+	signpost 3, 11, $0, LavenderTownSign
+	signpost 7, 15, $0, KantoRadioStationSign
+	signpost 9, 3, $0, VolunteerPokemonHouseSign
+	signpost 13, 15, $0, SoulHouseSign
+	signpost 5, 6, $0, LavenderPokeCenterSignText
+	signpost 5, 2, $0, LavenderMartSignText
 
 	; people-events
 	db 4
@@ -154,4 +134,3 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 	person_event SPRITE_TEACHER, 19, 6, $5, $1, 255, 255, $90, 0, TeacherScript_0x1ad6e7, $ffff
 	person_event SPRITE_GRAMPS, 16, 18, $7, $0, 255, 255, $0, 0, GrampsScript_0x1ad6ea, $ffff
 	person_event SPRITE_YOUNGSTER, 15, 10, $5, $1, 255, 255, $a0, 1, YoungsterScript_0x1ad6ed, $ffff
-; 0x1ad927

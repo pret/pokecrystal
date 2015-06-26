@@ -87,40 +87,36 @@ UnknownScript_0x7309a: ; 0x7309a
 	end
 ; 0x730ad
 
-MapCeladonCafeSignpost0Script: ; 0x730ad
-	jumptext UnknownText_0x73285
-; 0x730b0
+EatathonContestPoster:
+	jumptext EatathonContestPosterText
 
-MapCeladonCafeSignpost1Script: ; 0x730b0
+CeladonCafeTrashcan:
 	checkevent EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
-	iftrue UnknownScript_0x730db
+	iftrue .TrashEmpty
 	giveitem LEFTOVERS, $1
-	iffalse UnknownScript_0x730cd
+	iffalse .PackFull
 	loadfont
 	itemtotext LEFTOVERS, $0
-	writetext UnknownText_0x732e7
+	writetext FoundLeftoversText
 	playsound SFX_ITEM
 	waitbutton
 	itemnotify
 	loadmovesprites
 	setevent EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
 	end
-; 0x730cd
 
-UnknownScript_0x730cd: ; 0x730cd
+.PackFull
 	loadfont
 	itemtotext LEFTOVERS, $0
-	writetext UnknownText_0x732e7
+	writetext FoundLeftoversText
 	keeptextopen
-	writetext UnknownText_0x732f7
+	writetext NoRoomForLeftoversText
 	closetext
 	loadmovesprites
 	end
-; 0x730db
 
-UnknownScript_0x730db: ; 0x730db
+.TrashEmpty
 	jumpstd trashcan
-; 0x730de
 
 UnknownText_0x730de: ; 0x730de
 	text "Hi!"
@@ -199,7 +195,7 @@ UnknownText_0x73278: ; 0x73278
 	done
 ; 0x73285
 
-UnknownText_0x73285: ; 0x73285
+EatathonContestPosterText:
 	text "Eatathon Contest!"
 	line "No time limit!"
 
@@ -209,21 +205,18 @@ UnknownText_0x73285: ; 0x73285
 	para "muncher gets it"
 	line "all for free!"
 	done
-; 0x732e7
 
-UnknownText_0x732e7: ; 0x732e7
+FoundLeftoversText:
 	text $52, " found"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
 	done
-; 0x732f7
 
-UnknownText_0x732f7: ; 0x732f7
+NoRoomForLeftoversText:
 	text "But ", $52, " can't"
 	line "hold another item…"
 	done
-; 0x73316
 
 CeladonCafe_MapEventHeader: ; 0x73316
 	; filler
@@ -239,8 +232,8 @@ CeladonCafe_MapEventHeader: ; 0x73316
 
 	; signposts
 	db 2
-	signpost 0, 5, $0, MapCeladonCafeSignpost0Script
-	signpost 1, 7, $0, MapCeladonCafeSignpost1Script
+	signpost 0, 5, $0, EatathonContestPoster
+	signpost 1, 7, $0, CeladonCafeTrashcan
 
 	; people-events
 	db 5
@@ -249,4 +242,3 @@ CeladonCafe_MapEventHeader: ; 0x73316
 	person_event SPRITE_FISHER, 11, 5, $9, $0, 255, 255, $a0, 0, FisherScript_0x73062, $ffff
 	person_event SPRITE_FISHER, 6, 5, $9, $0, 255, 255, $0, 0, FisherScript_0x73073, $ffff
 	person_event SPRITE_TEACHER, 7, 8, $8, $0, 255, 255, $0, 0, TeacherScript_0x73084, $ffff
-; 0x73371

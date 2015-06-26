@@ -19,13 +19,11 @@ RhydonScript_0x9c592: ; 0x9c592
 	end
 ; 0x9c59c
 
-MapOlivineHouseBetaSignpost0Script: ; 0x9c59c
+OlivineHouseBetaBookshelf1:
 	jumpstd picturebookshelf
-; 0x9c59f
 
-MapOlivineHouseBetaSignpost1Script: ; 0x9c59f
+OlivineHouseBetaBookshelf2:
 	jumpstd magazinebookshelf
-; 0x9c5a2
 
 UnknownText_0x9c5a2: ; 0x9c5a2
 	text "When my #MON"
@@ -56,8 +54,8 @@ OlivineHouseBeta_MapEventHeader: ; 0x9c601
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapOlivineHouseBetaSignpost0Script
-	signpost 1, 1, $0, MapOlivineHouseBetaSignpost1Script
+	signpost 1, 0, $0, OlivineHouseBetaBookshelf1
+	signpost 1, 1, $0, OlivineHouseBetaBookshelf2
 
 	; people-events
 	db 2

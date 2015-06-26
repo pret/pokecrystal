@@ -14,9 +14,8 @@ YoungsterScript_0x191eba: ; 0x191eba
 	jumptextfaceplayer UnknownText_0x191f16
 ; 0x191ebd
 
-MapVermilionMagnetTrainSpeechHouseSignpost1Script: ; 0x191ebd
+VermilionMagnetTrainSpeechHouseBookshelf:
 	jumpstd picturebookshelf
-; 0x191ec0
 
 UnknownText_0x191ec0: ; 0x191ec0
 	text "Do you know about"
@@ -49,8 +48,8 @@ VermilionMagnetTrainSpeechHouse_MapEventHeader: ; 0x191f48
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapVermilionMagnetTrainSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapVermilionMagnetTrainSpeechHouseSignpost1Script
+	signpost 1, 0, $0, VermilionMagnetTrainSpeechHouseBookshelf
+	signpost 1, 1, $0, VermilionMagnetTrainSpeechHouseBookshelf
 
 	; people-events
 	db 2

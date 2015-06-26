@@ -1,28 +1,23 @@
-OlivinePunishmentSpeechHouse_MapScriptHeader: ; 0x9c635
+OlivinePunishmentSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x9c637
 
-PokefanMScript_0x9c637: ; 0x9c637
-	jumptextfaceplayer UnknownText_0x9c643
-; 0x9c63a
+OlivinePunishmentSpeechHouseDad:
+	jumptextfaceplayer OlivinePunishmentSpeechHouseDadText
 
-LassScript_0x9c63a: ; 0x9c63a
-	jumptextfaceplayer UnknownText_0x9c6b1
-; 0x9c63d
+OlivinePunishmentSpeechHouseDaughter:
+	jumptextfaceplayer OlivinePunishmentSpeechHouseDaughterText
 
-MapOlivinePunishmentSpeechHouseSignpost1Script: ; 0x9c63d
+OlivinePunishmentSpeechHouseBookshelf2:
 	jumpstd picturebookshelf
-; 0x9c640
 
-MapOlivinePunishmentSpeechHouseSignpost0Script: ; 0x9c640
+OlivinePunishmentSpeechHouseBookshelf1:
 	jumpstd magazinebookshelf
-; 0x9c643
 
-UnknownText_0x9c643: ; 0x9c643
+OlivinePunishmentSpeechHouseDadText:
 	text "Along the way to"
 	line "CIANWOOD, there"
 
@@ -33,16 +28,14 @@ UnknownText_0x9c643: ; 0x9c643
 	line "to the islands as"
 	cont "punishment!"
 	done
-; 0x9c6b1
 
-UnknownText_0x9c6b1: ; 0x9c6b1
+OlivinePunishmentSpeechHouseDaughterText:
 	text "Whenever I get in"
 	line "trouble, Daddy"
 	cont "always scares me."
 	done
-; 0x9c6e5
 
-OlivinePunishmentSpeechHouse_MapEventHeader: ; 0x9c6e5
+OlivinePunishmentSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -56,11 +49,10 @@ OlivinePunishmentSpeechHouse_MapEventHeader: ; 0x9c6e5
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapOlivinePunishmentSpeechHouseSignpost0Script
-	signpost 1, 1, $0, MapOlivinePunishmentSpeechHouseSignpost1Script
+	signpost 1, 0, $0, OlivinePunishmentSpeechHouseBookshelf1
+	signpost 1, 1, $0, OlivinePunishmentSpeechHouseBookshelf2
 
 	; people-events
 	db 2
-	person_event SPRITE_POKEFAN_M, 6, 5, $3, $0, 255, 255, $0, 0, PokefanMScript_0x9c637, $ffff
-	person_event SPRITE_LASS, 9, 9, $5, $2, 255, 255, $0, 0, LassScript_0x9c63a, $ffff
-; 0x9c719
+	person_event SPRITE_POKEFAN_M, 6, 5, $3, $0, 255, 255, $0, 0, OlivinePunishmentSpeechHouseDad, $ffff
+	person_event SPRITE_LASS, 9, 9, $5, $2, 255, 255, $0, 0, OlivinePunishmentSpeechHouseDaughter, $ffff

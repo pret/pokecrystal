@@ -127,33 +127,26 @@ SantosNotSaturdayScript:
 	loadmovesprites
 	end
 
-MapBlackthornCitySignpost0Script: ; 0x1a4765
-	jumptext UnknownText_0x1a4b67
-; 0x1a4768
+BlackthornCitySign:
+	jumptext BlackthornCitySignText
 
-MapBlackthornCitySignpost1Script: ; 0x1a4768
-	jumptext UnknownText_0x1a4b91
-; 0x1a476b
+BlackthornGymSign:
+	jumptext BlackthornGymSignText
 
-MapBlackthornCitySignpost2Script: ; 0x1a476b
-	jumptext UnknownText_0x1a4bd9
-; 0x1a476e
+MoveDeletersHouseSign:
+	jumptext MoveDeletersHouseSignText
 
-MapBlackthornCitySignpost3Script: ; 0x1a476e
-	jumptext UnknownText_0x1a4bef
-; 0x1a4771
+DragonDensSign:
+	jumptext DragonDensSignText
 
-MapBlackthornCitySignpost4Script: ; 0x1a4771
-	jumptext UnknownText_0x1a4c03
-; 0x1a4774
+BlackthornCityTrainerTips:
+	jumptext BlackthornCityTrainerTipsText
 
-MapBlackthornCitySignpost6Script: ; 0x1a4774
+BlackthornCityPokeCenterSign:
 	jumpstd pokecentersign
-; 0x1a4777
 
-MapBlackthornCitySignpost5Script: ; 0x1a4777
+BlackthornCityMartSign:
 	jumpstd martsign
-; 0x1a477a
 
 UnknownText_0x1a477a: ; 0x1a477a
 	text "I am sorry."
@@ -296,15 +289,14 @@ UnknownText_0x1a4b1e: ; 0x1a4b1e
 	done
 ; 0x1a4b67
 
-UnknownText_0x1a4b67: ; 0x1a4b67
+BlackthornCitySignText:
 	text "BLACKTHORN CITY"
 
 	para "A Quiet Mountain"
 	line "Retreat"
 	done
-; 0x1a4b91
 
-UnknownText_0x1a4b91: ; 0x1a4b91
+BlackthornGymSignText: ; 0x1a4b91
 	text "BLACKTHORN CITY"
 	line "#MON GYM"
 	cont "LEADER: CLAIR"
@@ -314,19 +306,17 @@ UnknownText_0x1a4b91: ; 0x1a4b91
 	done
 ; 0x1a4bd9
 
-UnknownText_0x1a4bd9: ; 0x1a4bd9
+MoveDeletersHouseSignText:
 	text "MOVE DELETER'S"
 	line "HOUSE"
 	done
-; 0x1a4bef
 
-UnknownText_0x1a4bef: ; 0x1a4bef
+DragonDensSignText:
 	text "DRAGON'S DEN"
 	line "AHEAD"
 	done
-; 0x1a4c03
 
-UnknownText_0x1a4c03: ; 0x1a4c03
+BlackthornCityTrainerTipsText: ; 0x1a4c03
 	text "TRAINER TIPS"
 
 	para "A #MON holding"
@@ -358,13 +348,13 @@ BlackthornCity_MapEventHeader: ; 0x1a4c57
 
 	; signposts
 	db 7
-	signpost 24, 34, $0, MapBlackthornCitySignpost0Script
-	signpost 13, 17, $0, MapBlackthornCitySignpost1Script
-	signpost 31, 7, $0, MapBlackthornCitySignpost2Script
-	signpost 3, 21, $0, MapBlackthornCitySignpost3Script
-	signpost 25, 5, $0, MapBlackthornCitySignpost4Script
-	signpost 29, 16, $0, MapBlackthornCitySignpost5Script
-	signpost 29, 22, $0, MapBlackthornCitySignpost6Script
+	signpost 24, 34, $0, BlackthornCitySign
+	signpost 13, 17, $0, BlackthornGymSign
+	signpost 31, 7, $0, MoveDeletersHouseSign
+	signpost 3, 21, $0, DragonDensSign
+	signpost 25, 5, $0, BlackthornCityTrainerTips
+	signpost 29, 16, $0, BlackthornCityMartSign
+	signpost 29, 22, $0, BlackthornCityPokeCenterSign
 
 	; people-events
 	db 9

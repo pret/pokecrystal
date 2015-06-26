@@ -22,11 +22,10 @@ UnknownScript_0x9b85c: ; 0x9b85c
 UnknownScript_0x9b860: ; 0x9b860
 	loadmovesprites
 	end
-; 0x9b862
 
-UnknownScript_0x9b862: ; 0x9b862
+Route2NuggetSpeechHouseBookshelf:
+; unused
 	jumpstd difficultbookshelf
-; 0x9b865
 
 UnknownText_0x9b865: ; 0x9b865
 	text "Hi! Wow, I'm glad"

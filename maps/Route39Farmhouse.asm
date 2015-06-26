@@ -95,7 +95,7 @@ UnknownScript_0x9cf33: ; 0x9cf33
 	end
 ; 0x9cf35
 
-MapRoute39FarmhouseSignpost1Script: ; 0x9cf35
+FarmhouseBookshelf:
 	jumpstd picturebookshelf
 ; 0x9cf38
 
@@ -223,8 +223,8 @@ Route39Farmhouse_MapEventHeader: ; 0x9d242
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapRoute39FarmhouseSignpost1Script
-	signpost 1, 1, $0, MapRoute39FarmhouseSignpost1Script
+	signpost 1, 0, $0, FarmhouseBookshelf
+	signpost 1, 1, $0, FarmhouseBookshelf
 
 	; people-events
 	db 2

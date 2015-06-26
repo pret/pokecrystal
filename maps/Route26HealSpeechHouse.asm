@@ -27,7 +27,7 @@ TeacherScript_0x7b125: ; 0x7b125
 	end
 ; 0x7b14a
 
-MapRoute26HealSpeechHouseSignpost1Script: ; 0x7b14a
+Route26HealHouseBookshelf: ; 0x7b14a
 	jumpstd picturebookshelf
 ; 0x7b14d
 
@@ -64,10 +64,9 @@ Route26HealSpeechHouse_MapEventHeader: ; 0x7b1bb
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapRoute26HealSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapRoute26HealSpeechHouseSignpost1Script
+	signpost 1, 0, $0, Route26HealHouseBookshelf
+	signpost 1, 1, $0, Route26HealHouseBookshelf
 
 	; people-events
 	db 1
 	person_event SPRITE_TEACHER, 7, 6, $6, $0, 255, 255, $90, 0, TeacherScript_0x7b125, $ffff
-; 0x7b1e2

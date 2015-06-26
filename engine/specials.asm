@@ -49,7 +49,7 @@ SpecialsPointers:: ; c029
 	add_special Function166d6
 	add_special Function1672a
 	add_special Function16936
-	add_special Function2c547
+	add_special MoveDeletion
 	add_special Function16218
 	add_special Function8cc04
 	add_special SpecialNameRival

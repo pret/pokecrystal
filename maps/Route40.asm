@@ -198,7 +198,7 @@ MapRoute40Signpost0Script: ; 0x1a6213
 	jumptext UnknownText_0x1a6767
 ; 0x1a6216
 
-RockScript_0x1a6216: ; 0x1a6216
+Route40Rock: ; 0x1a6216
 	jumpstd smashrock
 ; 0x1a6219
 
@@ -450,9 +450,9 @@ Route40_MapEventHeader: ; 0x1a678e
 	person_event SPRITE_OLIVINE_RIVAL, 34, 22, $8, $0, 255, 255, $82, 5, TrainerSwimmermRandall, $ffff
 	person_event SPRITE_SWIMMER_GIRL, 23, 7, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfElaine, $ffff
 	person_event SPRITE_SWIMMER_GIRL, 29, 14, $1f, $0, 255, 255, $a2, 3, TrainerSwimmerfPaula, $ffff
-	person_event SPRITE_ROCK, 15, 11, $18, $0, 255, 255, $0, 0, RockScript_0x1a6216, $ffff
-	person_event SPRITE_ROCK, 13, 10, $18, $0, 255, 255, $0, 0, RockScript_0x1a6216, $ffff
-	person_event SPRITE_ROCK, 12, 11, $18, $0, 255, 255, $0, 0, RockScript_0x1a6216, $ffff
+	person_event SPRITE_ROCK, 15, 11, $18, $0, 255, 255, $0, 0, Route40Rock, $ffff
+	person_event SPRITE_ROCK, 13, 10, $18, $0, 255, 255, $0, 0, Route40Rock, $ffff
+	person_event SPRITE_ROCK, 12, 11, $18, $0, 255, 255, $0, 0, Route40Rock, $ffff
 	person_event SPRITE_LASS, 17, 15, $6, $0, 255, 255, $0, 0, LassScript_0x1a61c4, $ffff
 	person_event SPRITE_BUENA, 14, 12, $3, $0, 255, 255, $0, 0, MonicaScript, $075e
 	person_event SPRITE_POKEFAN_M, 10, 11, $9, $0, 255, 255, $0, 0, PokefanMScript_0x1a61c7, $ffff

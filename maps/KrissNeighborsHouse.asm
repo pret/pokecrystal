@@ -4,54 +4,45 @@ KrissNeighborsHouse_MapScriptHeader: ; 0x7acec
 
 	; callback count
 	db 0
-; 0x7acee
 
-CooltrainerFScript_0x7acee: ; 0x7acee
-	jumptextfaceplayer UnknownText_0x7ad2f
-; 0x7acf1
+KrissNeighborsDaughter:
+	jumptextfaceplayer KrissNeighborsDaughterText
 
-PokefanFScript_0x7acf1: ; 0x7acf1
-	jumptextfaceplayer UnknownText_0x7add4
-; 0x7acf4
+KrissNeighbor:
+	jumptextfaceplayer KrissNeighborText
 
-MapKrissNeighborsHouseSignpost1Script: ; 0x7acf4
+KrissNeighborsHouseBookshelf:
 	jumpstd magazinebookshelf
-; 0x7acf7
 
-MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
+KrissNeighborsHouseRadio:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue UnknownScript_0x7ad24
-	checkevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
-	iftrue UnknownScript_0x7ad27
+	iftrue .NormalRadio
+	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
+	iftrue .AbbreviatedRadio
 	playmusic MUSIC_POKEMON_TALK
 	loadfont
-	writetext UnknownText_0x7ae3b
+	writetext KrisNeighborRadioText1
 	pause 45
-	writetext UnknownText_0x7ae6c
+	writetext KrisNeighborRadioText2
 	pause 45
-	writetext UnknownText_0x7ae7b
+	writetext KrisNeighborRadioText3
 	pause 45
-	musicfadeout $003c, $10
-	writetext UnknownText_0x7ae9b
+	musicfadeout MUSIC_NEW_BARK_TOWN, $10
+	writetext KrisNeighborRadioText4
 	pause 45
 	loadmovesprites
-	setevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
+	setevent EVENT_LISTENED_TO_INITIAL_RADIO
 	end
-; 0x7ad24
-
-UnknownScript_0x7ad24: ; 0x7ad24
+.NormalRadio
 	jumpstd radio1
-; 0x7ad27
-
-UnknownScript_0x7ad27: ; 0x7ad27
+.AbbreviatedRadio
 	loadfont
-	writetext UnknownText_0x7ae9b
+	writetext KrisNeighborRadioText4
 	pause 45
 	loadmovesprites
 	end
-; 0x7ad2f
 
-UnknownText_0x7ad2f: ; 0x7ad2f
+KrissNeighborsDaughterText:
 	text "PIKACHU is an"
 	line "evolved #MON."
 
@@ -69,9 +60,8 @@ UnknownText_0x7ad2f: ; 0x7ad2f
 	line "a researcher like"
 	cont "him…"
 	done
-; 0x7add4
 
-UnknownText_0x7add4: ; 0x7add4
+KrissNeighborText:
 	text "My daughter is"
 	line "adamant about"
 
@@ -83,31 +73,26 @@ UnknownText_0x7add4: ; 0x7add4
 
 	para "But then, so do I!"
 	done
-; 0x7ae3b
 
-UnknownText_0x7ae3b: ; 0x7ae3b
+KrisNeighborRadioText1:
 	text "PROF.OAK'S #MON"
 	line "TALK! Please tune"
 	cont "in next time!"
 	done
-; 0x7ae6c
 
-UnknownText_0x7ae6c: ; 0x7ae6c
+KrisNeighborRadioText2:
 	text "#MON CHANNEL!"
 	done
-; 0x7ae7b
 
-UnknownText_0x7ae7b: ; 0x7ae7b
+KrisNeighborRadioText3:
 	text "This is DJ MARY,"
 	line "your co-host!"
 	done
-; 0x7ae9b
 
-UnknownText_0x7ae9b: ; 0x7ae9b
+KrisNeighborRadioText4:
 	text "#MON!"
 	line "#MON CHANNEL…"
 	done
-; 0x7aeb0
 
 KrissNeighborsHouse_MapEventHeader: ; 0x7aeb0
 	; filler
@@ -123,12 +108,12 @@ KrissNeighborsHouse_MapEventHeader: ; 0x7aeb0
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, MapKrissNeighborsHouseSignpost1Script
-	signpost 1, 1, $0, MapKrissNeighborsHouseSignpost1Script
-	signpost 1, 7, $0, MapKrissNeighborsHouseSignpost2Script
+	signpost 1, 0, $0, KrissNeighborsHouseBookshelf
+	signpost 1, 1, $0, KrissNeighborsHouseBookshelf
+	signpost 1, 7, $0, KrissNeighborsHouseRadio
 
 	; people-events
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, CooltrainerFScript_0x7acee, $ffff
-	person_event SPRITE_POKEFAN_F, 7, 9, $8, $0, 255, 255, $80, 0, PokefanFScript_0x7acf1, $0793
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, KrissNeighborsDaughter, $ffff
+	person_event SPRITE_POKEFAN_F, 7, 9, $8, $0, 255, 255, $80, 0, KrissNeighbor, $0793
 ; 0x7aee9

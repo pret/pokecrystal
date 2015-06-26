@@ -14,9 +14,8 @@ YoungsterScript_0x99337: ; 0x99337
 	jumptextfaceplayer UnknownText_0x993ec
 ; 0x9933a
 
-MapEcruteakLugiaSpeechHouseSignpost0Script: ; 0x9933a
+LugiaSpeechHouseRadio:
 	jumpstd radio2
-; 0x9933d
 
 UnknownText_0x9933d: ; 0x9933d
 	text "This happened when"
@@ -60,7 +59,7 @@ EcruteakLugiaSpeechHouse_MapEventHeader: ; 0x99431
 
 	; signposts
 	db 1
-	signpost 1, 2, $0, MapEcruteakLugiaSpeechHouseSignpost0Script
+	signpost 1, 2, $0, LugiaSpeechHouseRadio
 
 	; people-events
 	db 2

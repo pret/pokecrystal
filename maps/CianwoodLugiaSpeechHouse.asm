@@ -18,9 +18,8 @@ TwinScript_0x9e1b6: ; 0x9e1b6
 	jumptextfaceplayer UnknownText_0x9e2a9
 ; 0x9e1b9
 
-MapCianwoodLugiaSpeechHouseSignpost1Script: ; 0x9e1b9
+CianwoodLugiaSpeechHouseBookshelf:
 	jumpstd picturebookshelf
-; 0x9e1bc
 
 UnknownText_0x9e1bc: ; 0x9e1bc
 	text "You came from"
@@ -78,8 +77,8 @@ CianwoodLugiaSpeechHouse_MapEventHeader: ; 0x9e32b
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapCianwoodLugiaSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapCianwoodLugiaSpeechHouseSignpost1Script
+	signpost 1, 0, $0, CianwoodLugiaSpeechHouseBookshelf
+	signpost 1, 1, $0, CianwoodLugiaSpeechHouseBookshelf
 
 	; people-events
 	db 3

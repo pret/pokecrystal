@@ -7,88 +7,68 @@ CeladonCity_MapScriptHeader: ; 0x1a9f3a
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x1a9f3f
-; 0x1a9f3f
+	dbw 5, .Callback
 
-UnknownScript_0x1a9f3f: ; 0x1a9f3f
+.Callback
 	setflag $003d
 	return
-; 0x1a9f43
 
 FisherScript_0x1a9f43: ; 0x1a9f43
 	jumptextfaceplayer UnknownText_0x1a9f7d
-; 0x1a9f46
 
-PoliwagScript_0x1a9f46: ; 0x1a9f46
+CeladonCityPoliwrath:
 	loadfont
-	writetext UnknownText_0x1a9fcb
+	writetext CeladonCityPoliwrathText
 	cry POLIWRATH
 	closetext
 	loadmovesprites
 	end
-; 0x1a9f50
 
 TeacherScript_0x1a9f50: ; 0x1a9f50
 	jumptextfaceplayer UnknownText_0x1a9fde
-; 0x1a9f53
 
 GrampsScript_0x1a9f53: ; 0x1a9f53
 	jumptextfaceplayer UnknownText_0x1aa043
-; 0x1a9f56
 
 GrampsScript_0x1a9f56: ; 0x1a9f56
 	jumptextfaceplayer UnknownText_0x1aa0dc
-; 0x1a9f59
 
 YoungsterScript_0x1a9f59: ; 0x1a9f59
 	jumptextfaceplayer UnknownText_0x1aa115
-; 0x1a9f5c
 
 YoungsterScript_0x1a9f5c: ; 0x1a9f5c
 	jumptextfaceplayer UnknownText_0x1aa155
-; 0x1a9f5f
 
 TeacherScript_0x1a9f5f: ; 0x1a9f5f
 	jumptextfaceplayer UnknownText_0x1aa1bd
-; 0x1a9f62
 
 LassScript_0x1a9f62: ; 0x1a9f62
 	jumptextfaceplayer UnknownText_0x1aa306
-; 0x1a9f65
 
-MapCeladonCitySignpost0Script: ; 0x1a9f65
-	jumptext UnknownText_0x1aa340
-; 0x1a9f68
+CeladonCitySign: ; 0x1a9f65
+	jumptext CeladonCitySignText
 
-MapCeladonCitySignpost1Script: ; 0x1a9f68
-	jumptext UnknownText_0x1aa369
-; 0x1a9f6b
+CeladonGymSign: ; 0x1a9f68
+	jumptext CeladonGymSignText
 
-MapCeladonCitySignpost2Script: ; 0x1a9f6b
-	jumptext UnknownText_0x1aa3a9
-; 0x1a9f6e
+CeladonCityDeptStoreSign: ; 0x1a9f6b
+	jumptext CeladonCityDeptStoreSignText
 
-MapCeladonCitySignpost3Script: ; 0x1a9f6e
-	jumptext UnknownText_0x1aa3d4
-; 0x1a9f71
+CeladonCityMansionSign: ; 0x1a9f6e
+	jumptext CeladonCityMansionSignText
 
-MapCeladonCitySignpost4Script: ; 0x1a9f71
-	jumptext UnknownText_0x1aa3e5
-; 0x1a9f74
+CeladonCityGameCornerSign: ; 0x1a9f71
+	jumptext CeladonCityGameCornerSignText
 
-MapCeladonCitySignpost5Script: ; 0x1a9f74
-	jumptext UnknownText_0x1aa418
-; 0x1a9f77
+CeladonCityTrainerTips: ; 0x1a9f74
+	jumptext CeladonCityTrainerTipsText
 
-MapCeladonCitySignpost6Script: ; 0x1a9f77
+CeladonCityPokeCenterSign: ; 0x1a9f77
 	jumpstd pokecentersign
-; 0x1a9f7a
 
 MapCeladonCitySignpostItem7: ; 0x1a9f7a
 	dw $00fd
 	db PP_UP
-	
-; 0x1a9f7d
 
 UnknownText_0x1a9f7d: ; 0x1a9f7d
 	text "This POLIWRATH is"
@@ -100,10 +80,9 @@ UnknownText_0x1a9f7d: ; 0x1a9f7d
 	done
 ; 0x1a9fcb
 
-UnknownText_0x1a9fcb: ; 0x1a9fcb
+CeladonCityPoliwrathText:
 	text "POLIWRATH: Croak!"
 	done
-; 0x1a9fde
 
 UnknownText_0x1a9fde: ; 0x1a9fde
 	text "I lost at the slot"
@@ -210,7 +189,7 @@ UnknownText_0x1aa306: ; 0x1aa306
 	done
 ; 0x1aa340
 
-UnknownText_0x1aa340: ; 0x1aa340
+CeladonCitySignText: ; 0x1aa340
 	text "CELADON CITY"
 
 	para "The City of"
@@ -218,7 +197,7 @@ UnknownText_0x1aa340: ; 0x1aa340
 	done
 ; 0x1aa369
 
-UnknownText_0x1aa369: ; 0x1aa369
+CeladonGymSignText: ; 0x1aa369
 	text "CELADON CITY"
 	line "#MON GYM"
 	cont "LEADER: ERIKA"
@@ -228,26 +207,26 @@ UnknownText_0x1aa369: ; 0x1aa369
 	done
 ; 0x1aa3a9
 
-UnknownText_0x1aa3a9: ; 0x1aa3a9
+CeladonCityDeptStoreSignText: ; 0x1aa3a9
 	text "Find What You"
 	line "Need at CELADON"
 	cont "DEPT.STORE!"
 	done
 ; 0x1aa3d4
 
-UnknownText_0x1aa3d4: ; 0x1aa3d4
+CeladonCityMansionSignText: ; 0x1aa3d4
 	text "CELADON MANSION"
 	done
 ; 0x1aa3e5
 
-UnknownText_0x1aa3e5: ; 0x1aa3e5
+CeladonCityGameCornerSignText: ; 0x1aa3e5
 	text "The Playground for"
 	line "Everybody--CELADON"
 	cont "GAME CORNER"
 	done
 ; 0x1aa418
 
-UnknownText_0x1aa418: ; 0x1aa418
+CeladonCityTrainerTipsText: ; 0x1aa418
 	text "TRAINER TIPS"
 
 	para "GUARD SPEC."
@@ -284,19 +263,19 @@ CeladonCity_MapEventHeader: ; 0x1aa497
 
 	; signposts
 	db 8
-	signpost 21, 23, $0, MapCeladonCitySignpost0Script
-	signpost 31, 11, $0, MapCeladonCitySignpost1Script
-	signpost 9, 6, $0, MapCeladonCitySignpost2Script
-	signpost 9, 13, $0, MapCeladonCitySignpost3Script
-	signpost 21, 19, $0, MapCeladonCitySignpost4Script
-	signpost 21, 29, $0, MapCeladonCitySignpost5Script
-	signpost 9, 30, $0, MapCeladonCitySignpost6Script
+	signpost 21, 23, $0, CeladonCitySign
+	signpost 31, 11, $0, CeladonGymSign
+	signpost 9, 6, $0, CeladonCityDeptStoreSign
+	signpost 9, 13, $0, CeladonCityMansionSign
+	signpost 21, 19, $0, CeladonCityGameCornerSign
+	signpost 21, 29, $0, CeladonCityTrainerTips
+	signpost 9, 30, $0, CeladonCityPokeCenterSign
 	signpost 21, 37, $7, MapCeladonCitySignpostItem7
 
 	; people-events
 	db 9
 	person_event SPRITE_FISHER, 15, 30, $9, $0, 255, 255, $a0, 0, FisherScript_0x1a9f43, $ffff
-	person_event SPRITE_POLIWAG, 15, 31, $16, $0, 255, 255, $90, 0, PoliwagScript_0x1a9f46, $ffff
+	person_event SPRITE_POLIWAG, 15, 31, $16, $0, 255, 255, $90, 0, CeladonCityPoliwrath, $ffff
 	person_event SPRITE_TEACHER, 28, 24, $5, $2, 255, 255, $80, 0, TeacherScript_0x1a9f50, $ffff
 	person_event SPRITE_GRAMPS, 20, 18, $6, $0, 255, 255, $b0, 0, GrampsScript_0x1a9f53, $ffff
 	person_event SPRITE_GRAMPS, 35, 12, $7, $0, 255, 255, $80, 0, GrampsScript_0x1a9f56, $ffff

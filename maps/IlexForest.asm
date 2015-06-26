@@ -482,9 +482,9 @@ MapIlexForestSignpostItem3: ; 0x6ee1e
 	db FULL_HEAL
 ; 0x6ee21
 
-UnknownScript_0x6ee21: ; 0x6ee21
+IlexForestBoulder:
+; unused
 	jumpstd strengthboulder
-; 0x6ee24
 
 MapIlexForestSignpost0Script: ; 0x6ee24
 	jumptext UnknownText_0x6f2de

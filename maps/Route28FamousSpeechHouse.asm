@@ -1,54 +1,47 @@
-Route28FamousSpeechHouse_MapScriptHeader: ; 0x1ae651
+Route28FamousSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 1
 
 	; triggers
-	dw UnknownScript_0x1ae657, $0000
+	dw .Trigger, $0000
 
 	; callback count
 	db 0
-; 0x1ae657
 
-UnknownScript_0x1ae657: ; 0x1ae657
+.Trigger
 	end
-; 0x1ae658
 
-CooltrainerFScript_0x1ae658: ; 0x1ae658
+Celebrity:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TM47_STEEL_WING
-	iftrue UnknownScript_0x1ae66f
-	writetext UnknownText_0x1ae682
+	iftrue .AlreadyGotItem
+	writetext CelebrityText1
 	keeptextopen
 	verbosegiveitem TM_47, 1
-	iffalse UnknownScript_0x1ae66d
+	iffalse .Done
 	setevent EVENT_GOT_TM47_STEEL_WING
-UnknownScript_0x1ae66d: ; 0x1ae66d
+.Done
 	loadmovesprites
 	end
-; 0x1ae66f
-
-UnknownScript_0x1ae66f: ; 0x1ae66f
-	writetext UnknownText_0x1ae6f0
+.AlreadyGotItem
+	writetext CelebrityText2
 	closetext
 	loadmovesprites
 	end
-; 0x1ae675
 
-MoltresScript_0x1ae675: ; 0x1ae675
+CelebritysFearow:
 	loadfont
-	writetext UnknownText_0x1ae752
+	writetext CelebritysFearowText
 	cry FEAROW
 	closetext
 	loadmovesprites
 	end
-; 0x1ae67f
 
-MapRoute28FamousSpeechHouseSignpost1Script: ; 0x1ae67f
+CelebrityHouseBookshelf:
 	jumpstd magazinebookshelf
-; 0x1ae682
 
-UnknownText_0x1ae682: ; 0x1ae682
+CelebrityText1:
 	text "Oh, dear."
 	line "You've found me."
 
@@ -59,9 +52,8 @@ UnknownText_0x1ae682: ; 0x1ae682
 	line "for keeping my"
 	cont "secret. Please?"
 	done
-; 0x1ae6f0
 
-UnknownText_0x1ae6f0: ; 0x1ae6f0
+CelebrityText2:
 	text "It's tough being a"
 	line "top celebrity."
 
@@ -71,14 +63,12 @@ UnknownText_0x1ae6f0: ; 0x1ae6f0
 	para "I just want to be"
 	line "left alone…"
 	done
-; 0x1ae752
 
-UnknownText_0x1ae752: ; 0x1ae752
+CelebritysFearowText:
 	text "FEAROW: Feero!"
 	done
-; 0x1ae762
 
-Route28FamousSpeechHouse_MapEventHeader: ; 0x1ae762
+Route28FamousSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -92,11 +82,10 @@ Route28FamousSpeechHouse_MapEventHeader: ; 0x1ae762
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapRoute28FamousSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapRoute28FamousSpeechHouseSignpost1Script
+	signpost 1, 0, $0, CelebrityHouseBookshelf
+	signpost 1, 1, $0, CelebrityHouseBookshelf
 
 	; people-events
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $6, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1ae658, $ffff
-	person_event SPRITE_MOLTRES, 9, 10, $16, $0, 255, 255, $b0, 0, MoltresScript_0x1ae675, $ffff
-; 0x1ae796
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $6, $0, 255, 255, $a0, 0, Celebrity, $ffff
+	person_event SPRITE_MOLTRES, 9, 10, $16, $0, 255, 255, $b0, 0, CelebritysFearow, $ffff

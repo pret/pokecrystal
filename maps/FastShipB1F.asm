@@ -382,9 +382,8 @@ SchoolboyRickyScript: ; 0x76866
 	end
 ; 0x7686e
 
-MapFastShipB1FSignpost0Script: ; 0x7686e
+FashShipB1FTrashcan:
 	jumpstd trashcan
-; 0x76871
 
 MovementData_0x76871: ; 0x76871
 	fix_facing
@@ -681,7 +680,7 @@ FastShipB1F_MapEventHeader: ; 0x76ee9
 
 	; signposts
 	db 1
-	signpost 9, 27, $0, MapFastShipB1FSignpost0Script
+	signpost 9, 27, $0, FashShipB1FTrashcan
 
 	; people-events
 	db 12

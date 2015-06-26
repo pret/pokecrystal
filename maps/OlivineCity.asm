@@ -1,4 +1,4 @@
-OlivineCity_MapScriptHeader: ; 0x1a8820
+OlivineCity_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,22 +12,18 @@ OlivineCity_MapScriptHeader: ; 0x1a8820
 	; callbacks
 
 	dbw 5, UnknownScript_0x1a882f
-; 0x1a882d
 
-UnknownScript_0x1a882d: ; 0x1a882d
+UnknownScript_0x1a882d:
 	end
-; 0x1a882e
 
-UnknownScript_0x1a882e: ; 0x1a882e
+UnknownScript_0x1a882e:
 	end
-; 0x1a882f
 
-UnknownScript_0x1a882f: ; 0x1a882f
+UnknownScript_0x1a882f:
 	setflag $0047
 	return
-; 0x1a8833
 
-UnknownScript_0x1a8833: ; 0x1a8833
+UnknownScript_0x1a8833:
 	spriteface $0, $2
 	showemote $0, $0, 15
 	special Functionc48f
@@ -50,9 +46,8 @@ UnknownScript_0x1a8833: ; 0x1a8833
 	variablesprite $5, $31
 	special Function14209
 	end
-; 0x1a886b
 
-UnknownScript_0x1a886b: ; 0x1a886b
+UnknownScript_0x1a886b:
 	spriteface $0, $2
 	showemote $0, $0, 15
 	special Functionc48f
@@ -75,13 +70,11 @@ UnknownScript_0x1a886b: ; 0x1a886b
 	variablesprite $5, $31
 	special Function14209
 	end
-; 0x1a88a3
 
-SailorScript_0x1a88a3: ; 0x1a88a3
+SailorScript_0x1a88a3:
 	jumptextfaceplayer UnknownText_0x1a8a58
-; 0x1a88a6
 
-StandingYoungsterScript_0x1a88a6: ; 0x1a88a6
+StandingYoungsterScript_0x1a88a6:
 	faceplayer
 	loadfont
 	random $2
@@ -90,63 +83,51 @@ StandingYoungsterScript_0x1a88a6: ; 0x1a88a6
 	closetext
 	loadmovesprites
 	end
-; 0x1a88b4
 
-UnknownScript_0x1a88b4: ; 0x1a88b4
+UnknownScript_0x1a88b4:
 	writetext UnknownText_0x1a8b41
 	closetext
 	loadmovesprites
 	end
-; 0x1a88ba
 
-SailorScript_0x1a88ba: ; 0x1a88ba
+SailorScript_0x1a88ba:
 	jumptextfaceplayer UnknownText_0x1a8b71
-; 0x1a88bd
 
-MapOlivineCitySignpost0Script: ; 0x1a88bd
-	jumptext UnknownText_0x1a8bd0
-; 0x1a88c0
+OlivineCitySign:
+	jumptext OlivineCitySignText
 
-MapOlivineCitySignpost1Script: ; 0x1a88c0
-	jumptext UnknownText_0x1a8c00
-; 0x1a88c3
+OlivineCityPortSign:
+	jumptext OlivineCityPortSignText
 
-MapOlivineCitySignpost2Script: ; 0x1a88c3
-	jumptext UnknownText_0x1a8c1d
-; 0x1a88c6
+OlivineGymSign:
+	jumptext OlivineGymSignText
 
-MapOlivineCitySignpost3Script: ; 0x1a88c6
-	jumptext UnknownText_0x1a8c60
-; 0x1a88c9
+OlivineLighthouseSign:
+	jumptext OlivineLighthouseSignText
 
-MapOlivineCitySignpost4Script: ; 0x1a88c9
-	jumptext UnknownText_0x1a8c99
-; 0x1a88cc
+OlivineCityBattleTowerSign:
+	jumptext OlivineCityBattleTowerSignText
 
-MapOlivineCitySignpost5Script: ; 0x1a88cc
+OlivineCityPokeCenterSign:
 	jumpstd pokecentersign
-; 0x1a88cf
 
-MapOlivineCitySignpost6Script: ; 0x1a88cf
+OlivineCityMartSign:
 	jumpstd martsign
-; 0x1a88d2
 
-MovementData_0x1a88d2: ; 0x1a88d2
+MovementData_0x1a88d2:
 	step_down
 	step_right
 	step_right
 	step_end
-; 0x1a88d6
 
-MovementData_0x1a88d6: ; 0x1a88d6
+MovementData_0x1a88d6:
 	step_down
 	step_down
 	step_right
 	step_right
 	step_end
-; 0x1a88db
 
-MovementData_0x1a88db: ; 0x1a88db
+MovementData_0x1a88db:
 	step_right
 	step_right
 	step_right
@@ -160,9 +141,8 @@ MovementData_0x1a88db: ; 0x1a88db
 	step_up
 	step_up
 	step_end
-; 0x1a88e8
 
-MovementData_0x1a88e8: ; 0x1a88e8
+MovementData_0x1a88e8:
 	step_right
 	step_right
 	step_right
@@ -175,21 +155,18 @@ MovementData_0x1a88e8: ; 0x1a88e8
 	step_up
 	step_up
 	step_end
-; 0x1a88f4
 
-MovementData_0x1a88f4: ; 0x1a88f4
+MovementData_0x1a88f4:
 	step_down
 	turn_head_up
 	step_end
-; 0x1a88f7
 
-MovementData_0x1a88f7: ; 0x1a88f7
+MovementData_0x1a88f7:
 	step_up
 	turn_head_down
 	step_end
-; 0x1a88fa
 
-UnknownText_0x1a88fa: ; 0x1a88fa
+UnknownText_0x1a88fa:
 	text "…"
 
 	para "You again?"
@@ -228,9 +205,8 @@ UnknownText_0x1a88fa: ; 0x1a88fa
 	line "make you a bit"
 	cont "less weak!"
 	done
-; 0x1a8a58
 
-UnknownText_0x1a8a58: ; 0x1a8a58
+UnknownText_0x1a8a58:
 	text "Dark roads are"
 	line "dangerous at"
 	cont "night."
@@ -247,26 +223,23 @@ UnknownText_0x1a8a58: ; 0x1a8a58
 	para "to guide it, no"
 	line "ship can sail."
 	done
-; 0x1a8b04
 
-UnknownText_0x1a8b04: ; 0x1a8b04
+UnknownText_0x1a8b04:
 	text "That thing you"
 	line "have--it's a #-"
 	cont "GEAR, right? Wow,"
 	cont "that's cool."
 	done
-; 0x1a8b41
 
-UnknownText_0x1a8b41: ; 0x1a8b41
+UnknownText_0x1a8b41:
 	text "Wow, you have a"
 	line "#DEX!"
 
 	para "That is just so"
 	line "awesome."
 	done
-; 0x1a8b71
 
-UnknownText_0x1a8b71: ; 0x1a8b71
+UnknownText_0x1a8b71:
 	text "The sea is sweet!"
 
 	para "Sunsets on the sea"
@@ -276,23 +249,20 @@ UnknownText_0x1a8b71: ; 0x1a8b71
 	line "Yo-ho! Blow the"
 	cont "man down!…"
 	done
-; 0x1a8bd0
 
-UnknownText_0x1a8bd0: ; 0x1a8bd0
+OlivineCitySignText:
 	text "OLIVINE CITY"
 
 	para "The Port Closest"
 	line "to Foreign Lands"
 	done
-; 0x1a8c00
 
-UnknownText_0x1a8c00: ; 0x1a8c00
+OlivineCityPortSignText:
 	text "OLIVINE PORT"
 	line "FAST SHIP PIER"
 	done
-; 0x1a8c1d
 
-UnknownText_0x1a8c1d: ; 0x1a8c1d
+OlivineGymSignText:
 	text "OLIVINE CITY"
 	line "#MON GYM"
 	cont "LEADER: JASMINE"
@@ -300,27 +270,23 @@ UnknownText_0x1a8c1d: ; 0x1a8c1d
 	para "The Steel-Clad"
 	line "Defense Girl"
 	done
-; 0x1a8c60
 
-UnknownText_0x1a8c60: ; 0x1a8c60
+OlivineLighthouseSignText:
 	text "OLIVINE LIGHTHOUSE"
 	line "Also known as the"
 	cont "GLITTER LIGHTHOUSE"
 	done
-; 0x1a8c99
 
-UnknownText_0x1a8c99: ; 0x1a8c99
+OlivineCityBattleTowerSignText:
 	text "BATTLE TOWER AHEAD"
 	line "Opening Now!"
 	done
-; 0x1a8cba
 
-UnknownText_0x1a8cba: ; 0x1a8cba
+UnknownText_0x1a8cba:
 	text "BATTLE TOWER AHEAD"
 	done
-; 0x1a8cce
 
-OlivineCity_MapEventHeader: ; 0x1a8cce
+OlivineCity_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -345,13 +311,13 @@ OlivineCity_MapEventHeader: ; 0x1a8cce
 
 	; signposts
 	db 7
-	signpost 11, 17, $0, MapOlivineCitySignpost0Script
-	signpost 24, 20, $0, MapOlivineCitySignpost1Script
-	signpost 11, 7, $0, MapOlivineCitySignpost2Script
-	signpost 28, 30, $0, MapOlivineCitySignpost3Script
-	signpost 23, 3, $0, MapOlivineCitySignpost4Script
-	signpost 21, 14, $0, MapOlivineCitySignpost5Script
-	signpost 17, 20, $0, MapOlivineCitySignpost6Script
+	signpost 11, 17, $0, OlivineCitySign
+	signpost 24, 20, $0, OlivineCityPortSign
+	signpost 11, 7, $0, OlivineGymSign
+	signpost 28, 30, $0, OlivineLighthouseSign
+	signpost 23, 3, $0, OlivineCityBattleTowerSign
+	signpost 21, 14, $0, OlivineCityPokeCenterSign
+	signpost 17, 20, $0, OlivineCityMartSign
 
 	; people-events
 	db 4
@@ -359,4 +325,3 @@ OlivineCity_MapEventHeader: ; 0x1a8cce
 	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, $0, 255, 255, $80, 0, StandingYoungsterScript_0x1a88a6, $ffff
 	person_event SPRITE_SAILOR, 25, 21, $2, $11, 255, 255, $0, 0, SailorScript_0x1a88ba, $ffff
 	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c3
-; 0x1a8d72

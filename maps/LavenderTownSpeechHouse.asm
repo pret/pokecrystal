@@ -10,9 +10,8 @@ PokefanFScript_0x7ea47: ; 0x7ea47
 	jumptextfaceplayer UnknownText_0x7ea4d
 ; 0x7ea4a
 
-MapLavenderTownSpeechHouseSignpost1Script: ; 0x7ea4a
+LavenderTownSpeechHouseBookshelf:
 	jumpstd picturebookshelf
-; 0x7ea4d
 
 UnknownText_0x7ea4d: ; 0x7ea4d
 	text "LAVENDER is a"
@@ -43,8 +42,8 @@ LavenderTownSpeechHouse_MapEventHeader: ; 0x7eac4
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapLavenderTownSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapLavenderTownSpeechHouseSignpost1Script
+	signpost 1, 0, $0, LavenderTownSpeechHouseBookshelf
+	signpost 1, 1, $0, LavenderTownSpeechHouseBookshelf
 
 	; people-events
 	db 1

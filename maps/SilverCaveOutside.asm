@@ -1,4 +1,4 @@
-SilverCaveOutside_MapScriptHeader: ; 0x1b2042
+SilverCaveOutside_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,33 +8,26 @@ SilverCaveOutside_MapScriptHeader: ; 0x1b2042
 	; callbacks
 
 	dbw 5, UnknownScript_0x1b2047
-; 0x1b2047
 
-UnknownScript_0x1b2047: ; 0x1b2047
+UnknownScript_0x1b2047:
 	setflag $004c
 	return
-; 0x1b204b
 
-MapSilverCaveOutsideSignpost0Script: ; 0x1b204b
+MtSilverPokeCenterSign:
 	jumpstd pokecentersign
-; 0x1b204e
 
-MapSilverCaveOutsideSignpost1Script: ; 0x1b204e
-	jumptext UnknownText_0x1b2054
-; 0x1b2051
+MtSilverSign:
+	jumptext MtSilverSignText
 
-MapSilverCaveOutsideSignpostItem2: ; 0x1b2051
+MapSilverCaveOutsideSignpostItem2:
 	dw $00b8
 	db FULL_RESTORE
-	
-; 0x1b2054
 
-UnknownText_0x1b2054: ; 0x1b2054
+MtSilverSignText:
 	text "MT.SILVER"
 	done
-; 0x1b205f
 
-SilverCaveOutside_MapEventHeader: ; 0x1b205f
+SilverCaveOutside_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -48,10 +41,9 @@ SilverCaveOutside_MapEventHeader: ; 0x1b205f
 
 	; signposts
 	db 3
-	signpost 19, 24, $0, MapSilverCaveOutsideSignpost0Script
-	signpost 13, 17, $0, MapSilverCaveOutsideSignpost1Script
+	signpost 19, 24, $0, MtSilverPokeCenterSign
+	signpost 13, 17, $0, MtSilverSign
 	signpost 25, 9, $7, MapSilverCaveOutsideSignpostItem2
 
 	; people-events
 	db 0
-; 0x1b207e

@@ -165,7 +165,7 @@ GruntF2Script: ; 0x5d76d
 	end
 ; 0x5d775
 
-BuenaScript_0x5d775: ; 0x5d775
+Buena:
 	faceplayer
 	loadfont
 	checkflag $0013
@@ -420,9 +420,8 @@ MapRadioTower2FSignpost5Script: ; 0x5d91b
 	jumptext UnknownText_0x5e463
 ; 0x5d91e
 
-MapRadioTower2FSignpost4Script: ; 0x5d91e
+RadioTower2FBookshelf:
 	jumpstd magazinebookshelf
-; 0x5d921
 
 MovementData_0x5d921: ; 0x5d921
 	slow_step_down
@@ -856,9 +855,9 @@ RadioTower2F_MapEventHeader: ; 0x5e481
 	db 6
 	signpost 0, 3, $0, MapRadioTower2FSignpost0Script
 	signpost 0, 5, $0, MapRadioTower2FSignpost1Script
-	signpost 1, 9, $0, MapRadioTower2FSignpost4Script
-	signpost 1, 10, $0, MapRadioTower2FSignpost4Script
-	signpost 1, 11, $0, MapRadioTower2FSignpost4Script
+	signpost 1, 9, $0, RadioTower2FBookshelf
+	signpost 1, 10, $0, RadioTower2FBookshelf
+	signpost 1, 11, $0, RadioTower2FBookshelf
 	signpost 0, 13, $0, MapRadioTower2FSignpost5Script
 
 	; people-events
@@ -872,6 +871,5 @@ RadioTower2F_MapEventHeader: ; 0x5e481
 	person_event SPRITE_BLACK_BELT, 5, 4, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d71f, $06d1
 	person_event SPRITE_BLACK_BELT, 5, 5, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d722, $06d0
 	person_event SPRITE_JIGGLYPUFF, 5, 16, $16, $0, 255, 255, $0, 0, JigglypuffScript_0x5d715, $ffff
-	person_event SPRITE_BUENA, 9, 18, $9, $0, 255, 255, $80, 0, BuenaScript_0x5d775, $ffff
+	person_event SPRITE_BUENA, 9, 18, $9, $0, 255, 255, $80, 0, Buena, $ffff
 	person_event SPRITE_RECEPTIONIST, 11, 16, $9, $0, 255, 255, $a0, 0, ReceptionistScript_0x5d8ff, $06cf
-; 0x5e53e

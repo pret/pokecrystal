@@ -10,9 +10,8 @@ ItemFragment_0x7e66f: ; 0x7e66f
 	db NEVERMELTICE, 1
 ; 0x7e671
 
-RockScript_0x7e671: ; 0x7e671
+IcePathB3FRock:
 	jumpstd smashrock
-; 0x7e674
 
 IcePathB3F_MapEventHeader: ; 0x7e674
 	; filler
@@ -32,5 +31,5 @@ IcePathB3F_MapEventHeader: ; 0x7e674
 	; people-events
 	db 2
 	person_event SPRITE_POKE_BALL, 11, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e66f, $068e
-	person_event SPRITE_ROCK, 10, 10, $18, $0, 255, 255, $0, 0, RockScript_0x7e671, $ffff
+	person_event SPRITE_ROCK, 10, 10, $18, $0, 255, 255, $0, 0, IcePathB3FRock, $ffff
 ; 0x7e69e

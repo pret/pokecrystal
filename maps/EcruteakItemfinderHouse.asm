@@ -56,9 +56,8 @@ UnknownScript_0x9a633: ; 0x9a633
 	end
 ; 0x9a639
 
-MapEcruteakItemfinderHouseSignpost0Script: ; 0x9a639
+ItemFinderHouseRadio:
 	jumpstd radio2
-; 0x9a63c
 
 UnknownText_0x9a63c: ; 0x9a63c
 	text "Ah. You're on an"
@@ -186,7 +185,7 @@ EcruteakItemfinderHouse_MapEventHeader: ; 0x9a9f5
 
 	; signposts
 	db 1
-	signpost 1, 2, $0, MapEcruteakItemfinderHouseSignpost0Script
+	signpost 1, 2, $0, ItemFinderHouseRadio
 
 	; people-events
 	db 2

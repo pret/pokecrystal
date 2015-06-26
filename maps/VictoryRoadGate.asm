@@ -30,7 +30,7 @@ UnknownScript_0x9ba04: ; 0x9ba04
 	writetext UnknownText_0x9ba29
 	keeptextopen
 	checkcode $7
-	if_greater_than $7, UnknownScript_0x9ba19
+	if_greater_than 7, UnknownScript_0x9ba19
 	writetext UnknownText_0x9ba5f
 	closetext
 	loadmovesprites

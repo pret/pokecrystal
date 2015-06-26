@@ -1,4 +1,4 @@
-CeladonDeptStore6F_MapScriptHeader: ; 0x71170
+CeladonDeptStore6F_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,121 +8,104 @@ CeladonDeptStore6F_MapScriptHeader: ; 0x71170
 	; callbacks
 
 	dbw 1, UnknownScript_0x71175
-; 0x71175
 
-UnknownScript_0x71175: ; 0x71175
+UnknownScript_0x71175:
 	changeblock $c, $0, $3
 	return
-; 0x7117a
 
-SuperNerdScript_0x7117a: ; 0x7117a
+SuperNerdScript_0x7117a:
 	jumptextfaceplayer UnknownText_0x712c7
-; 0x7117d
 
-YoungsterScript_0x7117d: ; 0x7117d
+YoungsterScript_0x7117d:
 	jumptextfaceplayer UnknownText_0x71310
-; 0x71180
 
-MapCeladonDeptStore6FSignpost5Script: ; 0x71180
+CeladonVendingMachine:
 	loadfont
-	writetext UnknownText_0x71250
-UnknownScript_0x71184: ; 0x71184
+	writetext CeladonVendingText
+.Start
 	special Function24ae8
-	loadmenudata MenuDataHeader_0x71203
+	loadmenudata .MenuData
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x7119a
-	if_equal $2, UnknownScript_0x711b4
-	if_equal $3, UnknownScript_0x711ce
+	if_equal $1, .FreshWater
+	if_equal $2, .SodaPop
+	if_equal $3, .Lemonade
 	loadmovesprites
 	end
-; 0x7119a
 
-UnknownScript_0x7119a: ; 0x7119a
+.FreshWater
 	checkmoney $0, 200
-	if_equal $2, UnknownScript_0x711f5
+	if_equal $2, .NotEnoughMoney
 	giveitem FRESH_WATER, $1
-	iffalse UnknownScript_0x711fc
+	iffalse .NotEnoughSpace
 	takemoney $0, 200
 	itemtotext FRESH_WATER, $0
-	jump UnknownScript_0x711e8
-; 0x711b4
+	jump .VendItem
 
-UnknownScript_0x711b4: ; 0x711b4
+.SodaPop
 	checkmoney $0, 300
-	if_equal $2, UnknownScript_0x711f5
+	if_equal $2, .NotEnoughMoney
 	giveitem SODA_POP, $1
-	iffalse UnknownScript_0x711fc
+	iffalse .NotEnoughSpace
 	takemoney $0, 300
 	itemtotext SODA_POP, $0
-	jump UnknownScript_0x711e8
-; 0x711ce
+	jump .VendItem
 
-UnknownScript_0x711ce: ; 0x711ce
+.Lemonade
 	checkmoney $0, 350
-	if_equal $2, UnknownScript_0x711f5
+	if_equal $2, .NotEnoughMoney
 	giveitem LEMONADE, $1
-	iffalse UnknownScript_0x711fc
+	iffalse .NotEnoughSpace
 	takemoney $0, 350
 	itemtotext LEMONADE, $0
-	jump UnknownScript_0x711e8
-; 0x711e8
+	jump .VendItem
 
-UnknownScript_0x711e8: ; 0x711e8
+.VendItem
 	pause 10
 	playsound SFX_ENTER_DOOR
-	writetext UnknownText_0x71274
+	writetext CeladonClangText
 	keeptextopen
 	itemnotify
-	jump UnknownScript_0x71184
-; 0x711f5
+	jump .Start
 
-UnknownScript_0x711f5: ; 0x711f5
-	writetext UnknownText_0x7128e
+.NotEnoughMoney
+	writetext CeladonVendingNoMoneyText
 	closetext
-	jump UnknownScript_0x71184
-; 0x711fc
+	jump .Start
 
-UnknownScript_0x711fc: ; 0x711fc
-	writetext UnknownText_0x712a7
+.NotEnoughSpace
+	writetext CeladonVendingNoSpaceText
 	closetext
-	jump UnknownScript_0x71184
-; 0x71203
+	jump .Start
 
-
-MenuDataHeader_0x71203: ; 0x71203
+.MenuData
 	db $40 ; flags
 	db 02, 00 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x7120b
+	dw .MenuData2
 	db 1 ; default option
-; 0x7120b
 
-MenuData2_0x7120b: ; 0x7120b
+.MenuData2
 	db $80 ; flags
 	db 4 ; items
 	db "FRESH WATER  ¥200@"
 	db "SODA POP     ¥300@"
 	db "LEMONADE     ¥350@"
 	db "CANCEL@"
-; 0x71249
 
 
-MapCeladonDeptStore6FSignpost0Script: ; 0x7124a
-	jumptext UnknownText_0x7133e
-; 0x7124d
+CeladonDeptStore6FDirectory:
+	jumptext CeladonDeptStore6FDirectoryText
 
-UnknownScript_0x7124d: ; 0x7124d
+UnknownScript_0x7124d:
 	jumpstd elevatorbutton
-; 0x71250
 
-UnknownText_0x71250: ; 0x71250
+CeladonVendingText:
 	text "A vending machine!"
 	line "Here's the menu."
 	done
-; 0x71274
 
-UnknownText_0x71274: ; 0x71274
+CeladonClangText:
 	text "Clang!"
 
 	para "@"
@@ -130,21 +113,18 @@ UnknownText_0x71274: ; 0x71274
 	db $0
 	line "popped out."
 	done
-; 0x7128e
 
-UnknownText_0x7128e: ; 0x7128e
+CeladonVendingNoMoneyText:
 	text "Oops, not enough"
 	line "money…"
 	done
-; 0x712a7
 
-UnknownText_0x712a7: ; 0x712a7
+CeladonVendingNoSpaceText:
 	text "There's no more"
 	line "room for stuff…"
 	done
-; 0x712c7
 
-UnknownText_0x712c7: ; 0x712c7
+UnknownText_0x712c7:
 	text "A vending machine"
 	line "with a prize rou-"
 	cont "lette…"
@@ -152,23 +132,20 @@ UnknownText_0x712c7: ; 0x712c7
 	para "You never see"
 	line "those anymore."
 	done
-; 0x71310
 
-UnknownText_0x71310: ; 0x71310
+UnknownText_0x71310:
 	text "Aww! There's no"
 	line "games here!"
 
 	para "I wanted to play…"
 	done
-; 0x7133e
 
-UnknownText_0x7133e: ; 0x7133e
+CeladonDeptStore6FDirectoryText:
 	text "6F: ROOFTOP SQUARE"
 	line "VENDING MACHINES"
 	done
-; 0x71363
 
-CeladonDeptStore6F_MapEventHeader: ; 0x71363
+CeladonDeptStore6F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -182,15 +159,14 @@ CeladonDeptStore6F_MapEventHeader: ; 0x71363
 
 	; signposts
 	db 6
-	signpost 0, 14, $0, MapCeladonDeptStore6FSignpost0Script
-	signpost 0, 3, $0, MapCeladonDeptStore6FSignpost1Script
-	signpost 1, 8, $1, MapCeladonDeptStore6FSignpost5Script
-	signpost 1, 9, $1, MapCeladonDeptStore6FSignpost5Script
-	signpost 1, 10, $1, MapCeladonDeptStore6FSignpost5Script
-	signpost 1, 11, $1, MapCeladonDeptStore6FSignpost5Script
+	signpost 0, 14, $0, CeladonDeptStore6FDirectory
+	signpost 0, 3, $0, CeladonDeptStore1FElevatorButton
+	signpost 1, 8, $1, CeladonVendingMachine
+	signpost 1, 9, $1, CeladonVendingMachine
+	signpost 1, 10, $1, CeladonVendingMachine
+	signpost 1, 11, $1, CeladonVendingMachine
 
 	; people-events
 	db 2
 	person_event SPRITE_SUPER_NERD, 6, 13, $7, $0, 255, 255, $0, 0, SuperNerdScript_0x7117a, $ffff
 	person_event SPRITE_YOUNGSTER, 9, 16, $2, $12, 255, 255, $80, 0, YoungsterScript_0x7117d, $ffff
-; 0x713ab

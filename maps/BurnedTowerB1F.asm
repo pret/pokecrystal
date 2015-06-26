@@ -123,9 +123,8 @@ ItemFragment_0x186231: ; 0x186231
 	db TM_20, 1
 ; 0x186233
 
-BoulderScript_0x186233: ; 0x186233
+BurnedTowerB1FBoulder:
 	jumpstd strengthboulder
-; 0x186236
 
 MovementData_0x186236: ; 0x186236
 	db $39 ; movement
@@ -269,7 +268,7 @@ BurnedTowerB1F_MapEventHeader: ; 0x1863de
 
 	; people-events
 	db 9
-	person_event SPRITE_BOULDER, 12, 21, $19, $0, 255, 255, $0, 0, BoulderScript_0x186233, $ffff
+	person_event SPRITE_BOULDER, 12, 21, $19, $0, 255, 255, $0, 0, BurnedTowerB1FBoulder, $ffff
 	person_event SPRITE_RAIKOU, 7, 11, $16, $0, 255, 255, $b0, 0, ObjectEvent, $074a
 	person_event SPRITE_ENTEI, 7, 16, $16, $0, 255, 255, $80, 0, ObjectEvent, $074a
 	person_event SPRITE_SUICUNE, 8, 14, $16, $0, 255, 255, $90, 0, ObjectEvent, $074a

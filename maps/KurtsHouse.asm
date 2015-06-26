@@ -378,105 +378,93 @@ UnknownScript_0x18e3e0: ; 0x18e3e0
 	end
 ; 0x18e3ed
 
-TwinScript_0x18e3ed: ; 0x18e3ed
+KurtsGranddaughter1:
 	faceplayer
 	checkevent $0000
-	iftrue UnknownScript_0x18e42f
+	iftrue KurtsGranddaughter2Subscript
 	checkevent $0001
-	iftrue UnknownScript_0x18e448
+	iftrue KurtsGranddaughterFunScript
 	checkevent $00c0
-	iftrue UnknownScript_0x18e420
+	iftrue .Lonely
 	checkevent $0030
-	iftrue UnknownScript_0x18e427
+	iftrue .Dad
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iftrue UnknownScript_0x18e419
+	iftrue .SlowpokeBack
 	checkevent $06fa
-	iftrue UnknownScript_0x18e420
+	iftrue .Lonely
 	loadfont
-	writetext UnknownText_0x18e9b5
+	writetext KurtsGranddaughterSlowpokeGoneText
 	closetext
 	loadmovesprites
 	end
-; 0x18e419
 
-UnknownScript_0x18e419: ; 0x18e419
+.SlowpokeBack
 	loadfont
-	writetext UnknownText_0x18ea0f
+	writetext KurtsGranddaughterSlowpokeBackText
 	closetext
 	loadmovesprites
 	end
-; 0x18e420
 
-UnknownScript_0x18e420: ; 0x18e420
+.Lonely
 	loadfont
-	writetext UnknownText_0x18e9f1
+	writetext KurtsGranddaughterLonelyText
 	closetext
 	loadmovesprites
 	end
-; 0x18e427
 
-UnknownScript_0x18e427: ; 0x18e427
+.Dad
 	loadfont
-	writetext UnknownText_0x18ea55
+	writetext KurtsGranddaughterDadText
 	closetext
 	loadmovesprites
 	end
-; 0x18e42e
 
-TwinScript_0x18e42e: ; 0x18e42e
+KurtsGranddaughter2:
 	faceplayer
-UnknownScript_0x18e42f: ; 0x18e42f
+KurtsGranddaughter2Subscript:
 	loadfont
 	checkevent $00bf
-	iftrue UnknownScript_0x18e43f
-	writetext UnknownText_0x18eab2
+	iftrue .GSBall
+	writetext KurtsGranddaughterHelpText
 	closetext
 	loadmovesprites
 	spriteface $6, $3
 	end
-; 0x18e43f
 
-UnknownScript_0x18e43f: ; 0x18e43f
-	writetext UnknownText_0x18eb14
+.GSBall
+	writetext KurtsGranddaughterGSBallText
 	closetext
 	loadmovesprites
 	spriteface $6, $3
 	end
-; 0x18e448
 
-UnknownScript_0x18e448: ; 0x18e448
+KurtsGranddaughterFunScript: ; 0x18e448
 	loadfont
-	writetext UnknownText_0x18eafc
+	writetext KurtsGranddaughterFunText
 	closetext
 	loadmovesprites
 	end
-; 0x18e44f
 
-SlowpokeScript_0x18e44f: ; 0x18e44f
+KurtsHouseSlowpoke:
 	faceplayer
 	loadfont
-	writetext UnknownText_0x18eb56
+	writetext KurtsHouseSlowpokeText
 	cry SLOWPOKE
 	closetext
 	loadmovesprites
 	end
-; 0x18e45a
 
-MapKurtsHouseSignpost2Script: ; 0x18e45a
-	jumptext UnknownText_0x18eb69
-; 0x18e45d
+KurtsHouseOakPhoto:
+	jumptext KurtsHouseOakPhotoText
 
-MapKurtsHouseSignpost6Script: ; 0x18e45d
-	jumptext UnknownText_0x18eb7e
-; 0x18e460
+KurtsHouseCelebiStatue:
+	jumptext KurtsHouseCelebiStatueText
 
-MapKurtsHouseSignpost5Script: ; 0x18e460
+KurtsHouseBookshelf:
 	jumpstd difficultbookshelf
-; 0x18e463
 
-MapKurtsHouseSignpost0Script: ; 0x18e463
+KurtsHouseRadio:
 	jumpstd radio2
-; 0x18e466
 
 MovementData_0x18e466: ; 0x18e466
 	big_step_down
@@ -666,33 +654,29 @@ UnknownText_0x18e95c: ; 0x18e95c
 	para "There must be"
 	line "something to this!"
 	done
-; 0x18e9b5
 
-UnknownText_0x18e9b5: ; 0x18e9b5
+KurtsGranddaughterSlowpokeGoneText:
 	text "The SLOWPOKE are"
 	line "gone… Were they"
 
 	para "taken away by bad"
 	line "people?"
 	done
-; 0x18e9f1
 
-UnknownText_0x18e9f1: ; 0x18e9f1
+KurtsGranddaughterLonelyText:
 	text "Grandpa's gone…"
 	line "I'm so lonely…"
 	done
-; 0x18ea0f
 
-UnknownText_0x18ea0f: ; 0x18ea0f
+KurtsGranddaughterSlowpokeBackText:
 	text "The SLOWPOKE my"
 	line "dad gave me came"
 
 	para "back! Its TAIL is"
 	line "growing back too!"
 	done
-; 0x18ea55
 
-UnknownText_0x18ea55: ; 0x18ea55
+KurtsGranddaughterDadText:
 	text "Dad works at SILPH"
 	line "where he studies"
 	cont "# BALLS."
@@ -701,9 +685,8 @@ UnknownText_0x18ea55: ; 0x18ea55
 	line "home with Grandpa"
 	cont "and SLOWPOKE."
 	done
-; 0x18eab2
 
-UnknownText_0x18eab2: ; 0x18eab2
+KurtsGranddaughterHelpText:
 	text "I get to help"
 	line "Grandpa now!"
 
@@ -711,41 +694,35 @@ UnknownText_0x18eab2: ; 0x18eab2
 	line "BALLS for you, so"
 	cont "please wait!"
 	done
-; 0x18eafc
 
-UnknownText_0x18eafc: ; 0x18eafc
+KurtsGranddaughterFunText:
 	text "It's fun to make"
 	line "BALLS!"
 	done
-; 0x18eb14
 
-UnknownText_0x18eb14: ; 0x18eb14
+KurtsGranddaughterGSBallText:
 	text "Grandpa's checking"
 	line "a BALL right now."
 
 	para "So I'm waiting"
 	line "till he's done."
 	done
-; 0x18eb56
 
-UnknownText_0x18eb56: ; 0x18eb56
+KurtsHouseSlowpokeText:
 	text "SLOWPOKE: …"
 	line "Yawn?"
 	done
-; 0x18eb69
 
-UnknownText_0x18eb69: ; 0x18eb69
+KurtsHouseOakPhotoText:
 	text "…A young PROF."
 	line "OAK?"
 	done
-; 0x18eb7e
 
-UnknownText_0x18eb7e: ; 0x18eb7e
+KurtsHouseCelebiStatueText:
 	text "It's a statue of"
 	line "the forest's pro-"
 	cont "tector."
 	done
-; 0x18eba8
 
 KurtsHouse_MapEventHeader: ; 0x18eba8
 	; filler
@@ -761,19 +738,19 @@ KurtsHouse_MapEventHeader: ; 0x18eba8
 
 	; signposts
 	db 7
-	signpost 1, 6, $0, MapKurtsHouseSignpost0Script
-	signpost 0, 8, $0, MapKurtsHouseSignpost2Script
-	signpost 0, 9, $0, MapKurtsHouseSignpost2Script
-	signpost 1, 5, $0, MapKurtsHouseSignpost5Script
-	signpost 1, 2, $0, MapKurtsHouseSignpost5Script
-	signpost 1, 3, $0, MapKurtsHouseSignpost5Script
-	signpost 1, 4, $0, MapKurtsHouseSignpost6Script
+	signpost 1, 6, $0, KurtsHouseRadio
+	signpost 0, 8, $0, KurtsHouseOakPhoto
+	signpost 0, 9, $0, KurtsHouseOakPhoto
+	signpost 1, 5, $0, KurtsHouseBookshelf
+	signpost 1, 2, $0, KurtsHouseBookshelf
+	signpost 1, 3, $0, KurtsHouseBookshelf
+	signpost 1, 4, $0, KurtsHouseCelebiStatue
 
 	; people-events
 	db 5
 	person_event SPRITE_KURT, 6, 7, $6, $0, 255, 255, $0, 0, KurtScript_0x18e178, $073e
-	person_event SPRITE_TWIN, 7, 9, $3, $0, 255, 255, $0, 0, TwinScript_0x18e3ed, $078c
-	person_event SPRITE_SLOWPOKE, 7, 10, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x18e44f, $06fd
+	person_event SPRITE_TWIN, 7, 9, $3, $0, 255, 255, $0, 0, KurtsGranddaughter1, $078c
+	person_event SPRITE_SLOWPOKE, 7, 10, $1, $0, 255, 255, $0, 0, KurtsHouseSlowpoke, $06fd
 	person_event SPRITE_KURT, 7, 18, $7, $0, 255, 255, $0, 0, KurtScript_0x18e3bd, $073f
-	person_event SPRITE_TWIN, 8, 15, $9, $0, 255, 255, $0, 0, TwinScript_0x18e42e, $078d
+	person_event SPRITE_TWIN, 8, 15, $9, $0, 255, 255, $0, 0, KurtsGranddaughter2, $078d
 ; 0x18ec1c

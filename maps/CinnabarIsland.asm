@@ -1,4 +1,4 @@
-CinnabarIsland_MapScriptHeader: ; 0x1ac9a7
+CinnabarIsland_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,50 +8,41 @@ CinnabarIsland_MapScriptHeader: ; 0x1ac9a7
 	; callbacks
 
 	dbw 5, UnknownScript_0x1ac9ac
-; 0x1ac9ac
 
-UnknownScript_0x1ac9ac: ; 0x1ac9ac
+UnknownScript_0x1ac9ac:
 	setflag $003f
 	return
-; 0x1ac9b0
 
-BlueScript_0x1ac9b0: ; 0x1ac9b0
+CinnabarIslandBlue:
 	faceplayer
 	loadfont
-	writetext UnknownText_0x1ac9d2
+	writetext CinnabarIslandBlueText
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
-	applymovement $2, MovementData_0x1ac9d0
+	applymovement $2, CinnabarIslandBlueTeleport
 	disappear $2
 	clearevent $0776
 	end
-; 0x1ac9c4
 
-MapCinnabarIslandSignpost1Script: ; 0x1ac9c4
-	jumptext UnknownText_0x1acc73
-; 0x1ac9c7
+CinnabarIslandGymSign:
+	jumptext CinnabarIslandGymSignText
 
-MapCinnabarIslandSignpost2Script: ; 0x1ac9c7
-	jumptext UnknownText_0x1accc2
-; 0x1ac9ca
+CinnabarIslandSign:
+	jumptext CinnabarIslandSignText
 
-MapCinnabarIslandSignpost0Script: ; 0x1ac9ca
+CinnabarIslandPokeCenterSign:
 	jumpstd pokecentersign
-; 0x1ac9cd
 
-MapCinnabarIslandSignpostItem3: ; 0x1ac9cd
+MapCinnabarIslandSignpostItem3:
 	dw $00fe
 	db RARE_CANDY
-	
-; 0x1ac9d0
 
-MovementData_0x1ac9d0: ; 0x1ac9d0
+CinnabarIslandBlueTeleport:
 	teleport_from
 	step_end
-; 0x1ac9d2
 
-UnknownText_0x1ac9d2: ; 0x1ac9d2
+CinnabarIslandBlueText:
 	text "Who are you?"
 
 	para "Well, it's plain"
@@ -118,9 +109,8 @@ UnknownText_0x1ac9d2: ; 0x1ac9d2
 	para "I'll take you on"
 	line "then."
 	done
-; 0x1acc73
 
-UnknownText_0x1acc73: ; 0x1acc73
+CinnabarIslandGymSignText:
 	text "There's a notice"
 	line "here…"
 
@@ -130,17 +120,15 @@ UnknownText_0x1acc73: ; 0x1acc73
 
 	para "BLAINE"
 	done
-; 0x1accc2
 
-UnknownText_0x1accc2: ; 0x1accc2
+CinnabarIslandSignText:
 	text "CINNABAR ISLAND"
 
 	para "The Fiery Town of"
 	line "Burning Desire"
 	done
-; 0x1accf4
 
-CinnabarIsland_MapEventHeader: ; 0x1accf4
+CinnabarIsland_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -153,12 +141,11 @@ CinnabarIsland_MapEventHeader: ; 0x1accf4
 
 	; signposts
 	db 4
-	signpost 11, 12, $0, MapCinnabarIslandSignpost0Script
-	signpost 11, 9, $0, MapCinnabarIslandSignpost1Script
-	signpost 7, 7, $0, MapCinnabarIslandSignpost2Script
+	signpost 11, 12, $0, CinnabarIslandPokeCenterSign
+	signpost 11, 9, $0, CinnabarIslandGymSign
+	signpost 7, 7, $0, CinnabarIslandSign
 	signpost 1, 9, $7, MapCinnabarIslandSignpostItem3
 
 	; people-events
 	db 1
-	person_event SPRITE_BLUE, 10, 13, $3, $0, 255, 255, $0, 0, BlueScript_0x1ac9b0, $0775
-; 0x1acd20
+	person_event SPRITE_BLUE, 10, 13, $3, $0, 255, 255, $0, 0, CinnabarIslandBlue, $0775

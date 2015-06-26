@@ -80,17 +80,17 @@ UnknownScript_0x553c5: ; 0x553c5
 	end
 ; 0x553cb
 
-UnknownScript_0x553cb: ; 0x553cb
+FlowerShopShelf1:
+; unused
 	jumpstd picturebookshelf
-; 0x553ce
 
-UnknownScript_0x553ce: ; 0x553ce
+FlowerShopShelf2:
+; unused
 	jumpstd magazinebookshelf
-; 0x553d1
 
-UnknownScript_0x553d1: ; 0x553d1
+FlowerShopRadio:
+; unused
 	jumpstd radio2
-; 0x553d4
 
 UnknownText_0x553d4: ; 0x553d4
 	text "Have you seen that"

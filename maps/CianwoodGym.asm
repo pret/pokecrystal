@@ -197,9 +197,8 @@ BlackbeltLungScript: ; 0x9d6d8
 	end
 ; 0x9d6e0
 
-BoulderScript_0x9d6e0: ; 0x9d6e0
+CianwoodGymBoulder:
 	jumpstd strengthboulder
-; 0x9d6e3
 
 CianwoodGymStatue:
 	checkflag ENGINE_STORMBADGE
@@ -418,8 +417,7 @@ CianwoodGym_MapEventHeader: ; 0x9db3e
 	person_event SPRITE_BLACK_BELT, 16, 11, $8, $0, 255, 255, $b2, 3, TrainerBlackbeltLao, $ffff
 	person_event SPRITE_BLACK_BELT, 13, 7, $9, $0, 255, 255, $b2, 2, TrainerBlackbeltNob, $ffff
 	person_event SPRITE_BLACK_BELT, 9, 9, $8, $0, 255, 255, $b2, 1, TrainerBlackbeltLung, $ffff
-	person_event SPRITE_BOULDER, 5, 9, $19, $0, 255, 255, $0, 0, BoulderScript_0x9d6e0, $ffff
-	person_event SPRITE_BOULDER, 11, 7, $19, $0, 255, 255, $0, 0, BoulderScript_0x9d6e0, $ffff
-	person_event SPRITE_BOULDER, 11, 8, $19, $0, 255, 255, $0, 0, BoulderScript_0x9d6e0, $ffff
-	person_event SPRITE_BOULDER, 11, 9, $19, $0, 255, 255, $0, 0, BoulderScript_0x9d6e0, $ffff
-; 0x9dbcd
+	person_event SPRITE_BOULDER, 5, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, $ffff
+	person_event SPRITE_BOULDER, 11, 7, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, $ffff
+	person_event SPRITE_BOULDER, 11, 8, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, $ffff
+	person_event SPRITE_BOULDER, 11, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, $ffff

@@ -1,25 +1,22 @@
-MoveDeletersHouse_MapScriptHeader: ; 0x195cb2
+MoveDeletersHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x195cb4
 
-SuperNerdScript_0x195cb4: ; 0x195cb4
+MoveDeleter:
 	faceplayer
 	loadfont
-	special Function2c547
+	special MoveDeletion
 	closetext
 	loadmovesprites
 	end
-; 0x195cbc
 
-MapMoveDeletersHouseSignpost1Script: ; 0x195cbc
+MoveDeletersHouseBookshelf:
 	jumpstd difficultbookshelf
-; 0x195cbf
 
-MoveDeletersHouse_MapEventHeader: ; 0x195cbf
+MoveDeletersHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -33,10 +30,9 @@ MoveDeletersHouse_MapEventHeader: ; 0x195cbf
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapMoveDeletersHouseSignpost1Script
-	signpost 1, 1, $0, MapMoveDeletersHouseSignpost1Script
+	signpost 1, 0, $0, MoveDeletersHouseBookshelf
+	signpost 1, 1, $0, MoveDeletersHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x195cb4, $ffff
-; 0x195ce6
+	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $0, 0, MoveDeleter, $ffff

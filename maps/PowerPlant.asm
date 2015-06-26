@@ -141,7 +141,7 @@ UnknownScript_0x188e5f: ; 0x188e5f
 	end
 ; 0x188e65
 
-FisherScript_0x188e65: ; 0x188e65
+PowerPlantManager: ; 0x188e65
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -209,9 +209,8 @@ GymGuyScript_0x188ecb: ; 0x188ecb
 	end
 ; 0x188ed2
 
-MapPowerPlantSignpost1Script: ; 0x188ed2
+PowerPlantBookshelf:
 	jumpstd difficultbookshelf
-; 0x188ed5
 
 MovementData_0x188ed5: ; 0x188ed5
 	step_right
@@ -437,8 +436,8 @@ PowerPlant_MapEventHeader: ; 0x1894b9
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapPowerPlantSignpost1Script
-	signpost 1, 1, $0, MapPowerPlantSignpost1Script
+	signpost 1, 0, $0, PowerPlantBookshelf
+	signpost 1, 1, $0, PowerPlantBookshelf
 
 	; people-events
 	db 7
@@ -447,6 +446,6 @@ PowerPlant_MapEventHeader: ; 0x1894b9
 	person_event SPRITE_GYM_GUY, 15, 10, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188e29, $ffff
 	person_event SPRITE_OFFICER, 7, 13, $8, $0, 255, 255, $a0, 0, OfficerScript_0x188e3d, $ffff
 	person_event SPRITE_GYM_GUY, 6, 11, $5, $1, 255, 255, $90, 0, GymGuyScript_0x188e51, $ffff
-	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, FisherScript_0x188e65, $ffff
+	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, PowerPlantManager, $ffff
 	person_event SPRITE_GYM_GUY, 9, 9, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188ecb, $ffff
 ; 0x189536

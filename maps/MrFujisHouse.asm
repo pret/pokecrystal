@@ -14,36 +14,32 @@ LassScript_0x7e8cd: ; 0x7e8cd
 	jumptextfaceplayer UnknownText_0x7e940
 ; 0x7e8d0
 
-RhydonScript_0x7e8d0: ; 0x7e8d0
+MrFujisPsyduck:
 	loadfont
-	writetext UnknownText_0x7e9b6
+	writetext MrFujisPsyduckText
 	cry PSYDUCK
 	closetext
 	loadmovesprites
 	end
-; 0x7e8da
 
-GrowlitheScript_0x7e8da: ; 0x7e8da
+MrFujisNidorino:
 	loadfont
-	writetext UnknownText_0x7e9c9
+	writetext MrFujisNidorinoText
 	cry NIDORINO
 	closetext
 	loadmovesprites
 	end
-; 0x7e8e4
 
-MoltresScript_0x7e8e4: ; 0x7e8e4
+MrFujisPidgey:
 	loadfont
-	writetext UnknownText_0x7e9da
+	writetext MrFujisPidgeyText
 	cry PIDGEY
 	closetext
 	loadmovesprites
 	end
-; 0x7e8ee
 
-MapMrFujisHouseSignpost1Script: ; 0x7e8ee
+MrFujisHouseBookshelf:
 	jumpstd difficultbookshelf
-; 0x7e8f1
 
 UnknownText_0x7e8f1: ; 0x7e8f1
 	text "MR.FUJI does live"
@@ -69,20 +65,17 @@ UnknownText_0x7e940: ; 0x7e940
 	done
 ; 0x7e9b6
 
-UnknownText_0x7e9b6: ; 0x7e9b6
+MrFujisPsyduckText:
 	text "PSYDUCK: Gu-guwa?"
 	done
-; 0x7e9c9
 
-UnknownText_0x7e9c9: ; 0x7e9c9
+MrFujisNidorinoText:
 	text "NIDORINO: Gyun!"
 	done
-; 0x7e9da
 
-UnknownText_0x7e9da: ; 0x7e9da
+MrFujisPidgeyText:
 	text "PIDGEY: Pijji!"
 	done
-; 0x7e9ea
 
 MrFujisHouse_MapEventHeader: ; 0x7e9ea
 	; filler
@@ -98,14 +91,13 @@ MrFujisHouse_MapEventHeader: ; 0x7e9ea
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapMrFujisHouseSignpost1Script
-	signpost 1, 1, $0, MapMrFujisHouseSignpost1Script
+	signpost 1, 0, $0, MrFujisHouseBookshelf
+	signpost 1, 1, $0, MrFujisHouseBookshelf
 
 	; people-events
 	db 5
 	person_event SPRITE_SUPER_NERD, 5, 8, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x7e8ca, $ffff
 	person_event SPRITE_LASS, 8, 7, $2, $11, 255, 255, $0, 0, LassScript_0x7e8cd, $ffff
-	person_event SPRITE_RHYDON, 8, 11, $16, $0, 255, 255, $0, 0, RhydonScript_0x7e8d0, $ffff
-	person_event SPRITE_GROWLITHE, 9, 9, $16, $0, 255, 255, $90, 0, GrowlitheScript_0x7e8da, $ffff
-	person_event SPRITE_MOLTRES, 7, 5, $16, $0, 255, 255, $b0, 0, MoltresScript_0x7e8e4, $ffff
-; 0x7ea45
+	person_event SPRITE_RHYDON, 8, 11, $16, $0, 255, 255, $0, 0, MrFujisPsyduck, $ffff
+	person_event SPRITE_GROWLITHE, 9, 9, $16, $0, 255, 255, $90, 0, MrFujisNidorino, $ffff
+	person_event SPRITE_MOLTRES, 7, 5, $16, $0, 255, 255, $b0, 0, MrFujisPidgey, $ffff

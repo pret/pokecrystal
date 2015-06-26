@@ -28,9 +28,8 @@ TeacherScript_0x18b64f: ; 0x18b64f
 	jumptextfaceplayer UnknownText_0x18b6de
 ; 0x18b652
 
-MapRoute5CleanseTagSpeechHouseSignpost1Script: ; 0x18b652
+HouseForSaleBookshelf:
 	jumpstd difficultbookshelf
-; 0x18b655
 
 UnknownText_0x18b655: ; 0x18b655
 	text "Eeyaaaah!"
@@ -77,11 +76,10 @@ Route5CleanseTagSpeechHouse_MapEventHeader: ; 0x18b744
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapRoute5CleanseTagSpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapRoute5CleanseTagSpeechHouseSignpost1Script
+	signpost 1, 0, $0, HouseForSaleBookshelf
+	signpost 1, 1, $0, HouseForSaleBookshelf
 
 	; people-events
 	db 2
 	person_event SPRITE_GRANNY, 9, 6, $1f, $0, 255, 255, $b0, 0, GrannyScript_0x18b634, $ffff
 	person_event SPRITE_TEACHER, 7, 9, $8, $0, 255, 255, $80, 0, TeacherScript_0x18b64f, $ffff
-; 0x18b778

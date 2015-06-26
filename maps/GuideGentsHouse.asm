@@ -1,20 +1,17 @@
-GuideGentsHouse_MapScriptHeader: ; 0x196c05
+GuideGentsHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x196c07
 
-GrampsScript_0x196c07: ; 0x196c07
-	jumptextfaceplayer UnknownText_0x196c0d
-; 0x196c0a
+GuideGentsHouseGuideGent:
+	jumptextfaceplayer GuideGentsHouseGuideGentText
 
-MapGuideGentsHouseSignpost1Script: ; 0x196c0a
+GuideGentsHouseBookshelf:
 	jumpstd magazinebookshelf
-; 0x196c0d
 
-UnknownText_0x196c0d: ; 0x196c0d
+GuideGentsHouseGuideGentText:
 	text "When I was a wee"
 	line "lad, I was a hot-"
 	cont "shot trainer!"
@@ -26,9 +23,8 @@ UnknownText_0x196c0d: ; 0x196c0d
 	para "Treat them all"
 	line "with kindness!"
 	done
-; 0x196c89
 
-GuideGentsHouse_MapEventHeader: ; 0x196c89
+GuideGentsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -42,10 +38,9 @@ GuideGentsHouse_MapEventHeader: ; 0x196c89
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapGuideGentsHouseSignpost1Script
-	signpost 1, 1, $0, MapGuideGentsHouseSignpost1Script
+	signpost 1, 0, $0, GuideGentsHouseBookshelf
+	signpost 1, 1, $0, GuideGentsHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x196c07, $06ff
-; 0x196cb0
+	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GuideGentsHouseGuideGent, $06ff

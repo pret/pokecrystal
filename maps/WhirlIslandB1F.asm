@@ -26,9 +26,8 @@ ItemFragment_0x18c418: ; 0x18c418
 	db ESCAPE_ROPE, 1
 ; 0x18c41a
 
-BoulderScript_0x18c41a: ; 0x18c41a
+WhirlIslandB1FBoulder:
 	jumpstd strengthboulder
-; 0x18c41d
 
 MapWhirlIslandB1FSignpostItem0: ; 0x18c41d
 	dw $0097
@@ -80,5 +79,5 @@ WhirlIslandB1F_MapEventHeader: ; 0x18c426
 	person_event SPRITE_POKE_BALL, 27, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c414, $0693
 	person_event SPRITE_POKE_BALL, 12, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c416, $0694
 	person_event SPRITE_POKE_BALL, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, $0695
-	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, BoulderScript_0x18c41a, $ffff
+	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, WhirlIslandB1FBoulder, $ffff
 ; 0x18c4b6

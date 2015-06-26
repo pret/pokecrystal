@@ -216,9 +216,8 @@ UnknownScript_0x75629: ; 0x75629
 	end
 ; 0x75634
 
-MapFastShipCabins_NNW_NNE_NESignpost2Script: ; 0x75634
+FastShipCabins_NNW_NNE_NETrashcan:
 	jumpstd trashcan
-; 0x75637
 
 MovementData_0x75637: ; 0x75637
 	step_left
@@ -407,9 +406,9 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader: ; 0x759ce
 
 	; signposts
 	db 3
-	signpost 13, 6, $0, MapFastShipCabins_NNW_NNE_NESignpost2Script
-	signpost 19, 7, $0, MapFastShipCabins_NNW_NNE_NESignpost2Script
-	signpost 31, 7, $0, MapFastShipCabins_NNW_NNE_NESignpost2Script
+	signpost 13, 6, $0, FastShipCabins_NNW_NNE_NETrashcan
+	signpost 19, 7, $0, FastShipCabins_NNW_NNE_NETrashcan
+	signpost 31, 7, $0, FastShipCabins_NNW_NNE_NETrashcan
 
 	; people-events
 	db 7

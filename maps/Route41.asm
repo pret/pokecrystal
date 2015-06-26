@@ -296,9 +296,9 @@ SwimmermMathewScript: ; 0x1a6901
 	end
 ; 0x1a6909
 
-UnknownScript_0x1a6909: ; 0x1a6909
+Route41Rock:
+; unused
 	jumpstd smashrock
-; 0x1a690c
 
 MapRoute41SignpostItem0: ; 0x1a690c
 	dw $00ac

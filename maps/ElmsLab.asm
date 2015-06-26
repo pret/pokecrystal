@@ -309,18 +309,17 @@ LookAtElmPokeBallScript: ; 0x78d6d
 	end
 ; 0x78d74
 
-MapElmsLabSignpost0Script: ; 0x78d74
+ElmsLabHealingMachine:
 	loadfont
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue UnknownScript_0x78d81
-	writetext UnknownText_0x79690
+	iftrue .CanHeal
+	writetext ElmsLabHealingMachineText1
 	closetext
 	loadmovesprites
 	end
-; 0x78d81
 
-UnknownScript_0x78d81: ; 0x78d81
-	writetext UnknownText_0x796aa
+.CanHeal
+	writetext ElmsLabHealingMachineText2
 	yesorno
 	iftrue UnknownScript_0x78d8a
 	loadmovesprites
@@ -595,7 +594,6 @@ UnknownScript_0x78f0c: ; 0x78f0c
 
 UnknownScript_0x78f12: ; 0x78f12
 	applymovement $0, MovementData_0x78f72
-; 0x78f16
 
 MeetCopScript: ; 0x78f16
 	applymovement $0, MovementData_0x78f74
@@ -614,60 +612,53 @@ CopScript: ; 0x78f1a
 	end
 ; 0x78f33
 
-MapElmsLabSignpost14Script: ; 0x78f33
+ElmsLabWindow:
 	loadfont
 	checkflag $0043
-	iftrue UnknownScript_0x78f49
+	iftrue .Normal
 	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
-	iftrue UnknownScript_0x78f43
-	jump UnknownScript_0x78f49
-; 0x78f43
+	iftrue .BreakIn
+	jump .Normal
 
-UnknownScript_0x78f43: ; 0x78f43
-	writetext UnknownText_0x7a231
+.BreakIn
+	writetext ElmsLabWindowText2
 	closetext
 	loadmovesprites
 	end
 ; 0x78f49
 
-UnknownScript_0x78f49: ; 0x78f49
-	writetext UnknownText_0x7a1fd
+.Normal
+	writetext ElmsLabWindowText1
 	closetext
 	loadmovesprites
 	end
 ; 0x78f4f
 
-MapElmsLabSignpost5Script: ; 0x78f4f
-	jumptext UnknownText_0x7a24c
-; 0x78f52
+ElmsLabTravelTip1:
+	jumptext ElmsLabTravelTip1Text
 
-MapElmsLabSignpost6Script: ; 0x78f52
-	jumptext UnknownText_0x7a28a
-; 0x78f55
+ElmsLabTravelTip2:
+	jumptext ElmsLabTravelTip2Text
 
-MapElmsLabSignpost7Script: ; 0x78f55
-	jumptext UnknownText_0x7a2c6
-; 0x78f58
+ElmsLabTravelTip3:
+	jumptext ElmsLabTravelTip3Text
 
-MapElmsLabSignpost8Script: ; 0x78f58
-	jumptext UnknownText_0x7a315
-; 0x78f5b
+ElmsLabTravelTip4:
+	jumptext ElmsLabTravelTip4Text
 
-MapElmsLabSignpost13Script: ; 0x78f5b
-	jumptext UnknownText_0x7a370
-; 0x78f5e
+ElmsLabTrashcan:
+	jumptext ElmsLabTrashcanText
 
-MapElmsLabSignpost15Script: ; 0x78f5e
-	jumptext UnknownText_0x7a3a6
+ElmsLabPC: ; 0x78f5e
+	jumptext ElmsLabPCText
 ; 0x78f61
 
-UnknownScript_0x78f61: ; 0x78f61
+ElmsLabTrashcan2:
+; unused
 	jumpstd trashcan
-; 0x78f64
 
-MapElmsLabSignpost12Script: ; 0x78f64
+ElmsLabBookshelf:
 	jumpstd difficultbookshelf
-; 0x78f67
 
 MovementData_0x78f67: ; 0x78f67
 	step_up
@@ -1008,7 +999,6 @@ ElmDirectionsText1: ; 0x794c0
 	para "number. Call me if"
 	line "anything comes up!"
 	done
-; 0x79581
 
 ElmDirectionsText2: ; 0x79581
 	text "If your #MON is"
@@ -1020,19 +1010,16 @@ ElmDirectionsText2: ; 0x79581
 	para "Feel free to use"
 	line "it anytime."
 	done
-; 0x795db
 
 ElmDirectionsText3: ; 0x795db
 	text $14, ", I'm"
 	line "counting on you!"
 	done
-; 0x795f3
 
 GotElmsNumberText: ; 0x795f3
 	text $52, " got ELM's"
 	line "phone number."
 	done
-; 0x7960d
 
 ElmDescribesMrPokemonText: ; 0x7960d
 	text "MR.#MON goes"
@@ -1043,26 +1030,22 @@ ElmDescribesMrPokemonText: ; 0x7960d
 	line "just rare and"
 	cont "not very useful…"
 	done
-; 0x79668
 
 ElmPokeBallText: ; 0x79668
 	text "It contains a"
 	line "#MON caught by"
 	cont "PROF.ELM."
 	done
-; 0x79690
 
-UnknownText_0x79690: ; 0x79690
+ElmsLabHealingMachineText1:
 	text "I wonder what this"
 	line "does?"
 	done
-; 0x796aa
 
-UnknownText_0x796aa: ; 0x796aa
+ElmsLabHealingMachineText2:
 	text "Would you like to"
 	line "heal your #MON?"
 	done
-; 0x796cd
 
 ElmAfterTheftText1: ; 0x796cd
 	text "ELM: ", $14, ", this"
@@ -1429,21 +1412,19 @@ UnknownText_0x7a1c0: ; 0x7a1c0
 	done
 ; 0x7a1fd
 
-UnknownText_0x7a1fd: ; 0x7a1fd
+ElmsLabWindowText1:
 	text "The window's open."
 
 	para "A pleasant breeze"
 	line "is blowing in."
 	done
-; 0x7a231
 
-UnknownText_0x7a231: ; 0x7a231
+ElmsLabWindowText2:
 	text "He broke in"
 	line "through here!"
 	done
-; 0x7a24c
 
-UnknownText_0x7a24c: ; 0x7a24c
+ElmsLabTravelTip1Text:
 	text $52, " opened a"
 	line "book."
 
@@ -1452,9 +1433,8 @@ UnknownText_0x7a24c: ; 0x7a24c
 	para "Press START to"
 	line "open the MENU."
 	done
-; 0x7a28a
 
-UnknownText_0x7a28a: ; 0x7a28a
+ElmsLabTravelTip2Text:
 	text $52, " opened a"
 	line "book."
 
@@ -1463,9 +1443,8 @@ UnknownText_0x7a28a: ; 0x7a28a
 	para "Record your trip"
 	line "with SAVE!"
 	done
-; 0x7a2c6
 
-UnknownText_0x7a2c6: ; 0x7a2c6
+ElmsLabTravelTip3Text:
 	text $52, " opened a"
 	line "book."
 
@@ -1475,9 +1454,8 @@ UnknownText_0x7a2c6: ; 0x7a2c6
 	line "press SELECT to"
 	cont "move items."
 	done
-; 0x7a315
 
-UnknownText_0x7a315: ; 0x7a315
+ElmsLabTravelTip4Text:
 	text $52, " opened a"
 	line "book."
 
@@ -1489,23 +1467,20 @@ UnknownText_0x7a315: ; 0x7a315
 	para "A Button to switch"
 	line "moves."
 	done
-; 0x7a370
 
-UnknownText_0x7a370: ; 0x7a370
+ElmsLabTrashcanText:
 	text "The wrapper from"
 	line "the snack PROF.ELM"
 	cont "ate is in there…"
 	done
-; 0x7a3a6
 
-UnknownText_0x7a3a6: ; 0x7a3a6
+ElmsLabPCText:
 	text "OBSERVATIONS ON"
 	line "#MON EVOLUTION"
 
 	para "…It says on the"
 	line "screen…"
 	done
-; 0x7a3de
 
 ElmsLab_MapEventHeader: ; 0x7a3de
 	; filler
@@ -1529,22 +1504,22 @@ ElmsLab_MapEventHeader: ; 0x7a3de
 
 	; signposts
 	db 16
-	signpost 1, 2, $0, MapElmsLabSignpost0Script
-	signpost 1, 6, $0, MapElmsLabSignpost12Script
-	signpost 1, 7, $0, MapElmsLabSignpost12Script
-	signpost 1, 8, $0, MapElmsLabSignpost12Script
-	signpost 1, 9, $0, MapElmsLabSignpost12Script
-	signpost 7, 0, $0, MapElmsLabSignpost5Script
-	signpost 7, 1, $0, MapElmsLabSignpost6Script
-	signpost 7, 2, $0, MapElmsLabSignpost7Script
-	signpost 7, 3, $0, MapElmsLabSignpost8Script
-	signpost 7, 6, $0, MapElmsLabSignpost12Script
-	signpost 7, 7, $0, MapElmsLabSignpost12Script
-	signpost 7, 8, $0, MapElmsLabSignpost12Script
-	signpost 7, 9, $0, MapElmsLabSignpost12Script
-	signpost 3, 9, $0, MapElmsLabSignpost13Script
-	signpost 0, 5, $0, MapElmsLabSignpost14Script
-	signpost 5, 3, $2, MapElmsLabSignpost15Script
+	signpost 1, 2, $0, ElmsLabHealingMachine
+	signpost 1, 6, $0, ElmsLabBookshelf
+	signpost 1, 7, $0, ElmsLabBookshelf
+	signpost 1, 8, $0, ElmsLabBookshelf
+	signpost 1, 9, $0, ElmsLabBookshelf
+	signpost 7, 0, $0, ElmsLabTravelTip1
+	signpost 7, 1, $0, ElmsLabTravelTip2
+	signpost 7, 2, $0, ElmsLabTravelTip3
+	signpost 7, 3, $0, ElmsLabTravelTip4
+	signpost 7, 6, $0, ElmsLabBookshelf
+	signpost 7, 7, $0, ElmsLabBookshelf
+	signpost 7, 8, $0, ElmsLabBookshelf
+	signpost 7, 9, $0, ElmsLabBookshelf
+	signpost 3, 9, $0, ElmsLabTrashcan
+	signpost 0, 5, $0, ElmsLabWindow
+	signpost 5, 3, $2, ElmsLabPC
 
 	; people-events
 	db 6
@@ -1554,4 +1529,3 @@ ElmsLab_MapEventHeader: ; 0x7a3de
 	person_event SPRITE_POKE_BALL, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, $0641
 	person_event SPRITE_POKE_BALL, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, $0642
 	person_event SPRITE_OFFICER, 7, 9, $7, $0, 255, 255, $90, 0, CopScript, $0702
-; 0x7a4cc

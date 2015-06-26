@@ -14,17 +14,14 @@ LassScript_0x5564d: ; 0x5564d
 	jumptextfaceplayer UnknownText_0x556ca
 ; 0x55650
 
-MapGoldenrodPPSpeechHouseSignpost1Script: ; 0x55650
+GoldenrodPPSpeechHouseBookshelf2:
 	jumpstd difficultbookshelf
-; 0x55653
 
-MapGoldenrodPPSpeechHouseSignpost0Script: ; 0x55653
+GoldenrodPPSpeechHouseBookshelf1:
 	jumpstd magazinebookshelf
-; 0x55656
 
-MapGoldenrodPPSpeechHouseSignpost2Script: ; 0x55656
+GoldenrodPPSpeechHouseRadio:
 	jumpstd radio2
-; 0x55659
 
 UnknownText_0x55659: ; 0x55659
 	text "Once while I was"
@@ -69,9 +66,9 @@ GoldenrodPPSpeechHouse_MapEventHeader: ; 0x55741
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, MapGoldenrodPPSpeechHouseSignpost0Script
-	signpost 1, 1, $0, MapGoldenrodPPSpeechHouseSignpost1Script
-	signpost 1, 7, $0, MapGoldenrodPPSpeechHouseSignpost2Script
+	signpost 1, 0, $0, GoldenrodPPSpeechHouseBookshelf1
+	signpost 1, 1, $0, GoldenrodPPSpeechHouseBookshelf2
+	signpost 1, 7, $0, GoldenrodPPSpeechHouseRadio
 
 	; people-events
 	db 2

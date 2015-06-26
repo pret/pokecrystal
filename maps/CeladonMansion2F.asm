@@ -1,24 +1,20 @@
-CeladonMansion2F_MapScriptHeader: ; 0x7152e
+CeladonMansion2F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x71530
 
-MapCeladonMansion2FSignpost0Script: ; 0x71530
-	jumptext UnknownText_0x71539
-; 0x71533
+CeladonMansion2FComputer:
+	jumptext CeladonMansion2FComputerText
 
-MapCeladonMansion2FSignpost1Script: ; 0x71533
-	jumptext UnknownText_0x7162c
-; 0x71536
+CeladonMansion2FSign:
+	jumptext CeladonMansion2FSignText
 
-MapCeladonMansion2FSignpost2Script: ; 0x71536
+CeladonMansion2FBookshelf:
 	jumpstd difficultbookshelf
-; 0x71539
 
-UnknownText_0x71539: ; 0x71539
+CeladonMansion2FComputerText:
 	text $52, " turned on"
 	line "the PC."
 
@@ -47,15 +43,13 @@ UnknownText_0x71539: ; 0x71539
 
 	para "…"
 	done
-; 0x7162c
 
-UnknownText_0x7162c: ; 0x7162c
+CeladonMansion2FSignText:
 	text "GAME FREAK"
 	line "MEETING ROOM"
 	done
-; 0x71645
 
-CeladonMansion2F_MapEventHeader: ; 0x71645
+CeladonMansion2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -71,10 +65,9 @@ CeladonMansion2F_MapEventHeader: ; 0x71645
 
 	; signposts
 	db 3
-	signpost 3, 0, $0, MapCeladonMansion2FSignpost0Script
-	signpost 8, 5, $1, MapCeladonMansion2FSignpost1Script
-	signpost 3, 2, $0, MapCeladonMansion2FSignpost2Script
+	signpost 3, 0, $0, CeladonMansion2FComputer
+	signpost 8, 5, $1, CeladonMansion2FSign
+	signpost 3, 2, $0, CeladonMansion2FBookshelf
 
 	; people-events
 	db 0
-; 0x7166e

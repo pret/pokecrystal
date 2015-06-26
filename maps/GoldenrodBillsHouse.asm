@@ -6,7 +6,7 @@ GoldenrodBillsHouse_MapScriptHeader: ; 0x54be2
 	db 0
 ; 0x54be4
 
-BillScript_0x54be4: ; 0x54be4
+BillsHouseBill:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_EEVEE
@@ -51,7 +51,7 @@ UnknownScript_0x54c1f: ; 0x54c1f
 	end
 ; 0x54c25
 
-PokefanFScript_0x54c25: ; 0x54c25
+BillsMom: ; 0x54c25
 	faceplayer
 	loadfont
 	checkevent $0712
@@ -69,7 +69,7 @@ UnknownScript_0x54c33: ; 0x54c33
 	end
 ; 0x54c39
 
-TwinScript_0x54c39: ; 0x54c39
+BillsSister:
 	faceplayer
 	loadfont
 	checkcellnum $3
@@ -104,17 +104,14 @@ UnknownScript_0x54c64: ; 0x54c64
 	jump UnknownScript_0x54c5e
 ; 0x54c6b
 
-MapGoldenrodBillsHouseSignpost1Script: ; 0x54c6b
+BillsHouseBookshelf1:
 	jumpstd picturebookshelf
-; 0x54c6e
 
-MapGoldenrodBillsHouseSignpost0Script: ; 0x54c6e
+BillsHouseBookshelf2:
 	jumpstd magazinebookshelf
-; 0x54c71
 
-MapGoldenrodBillsHouseSignpost2Script: ; 0x54c71
+BillsHouseRadio:
 	jumpstd radio2
-; 0x54c74
 
 UnknownText_0x54c74: ; 0x54c74
 	text "BILL: Hi, ", $52, "!"
@@ -278,13 +275,13 @@ GoldenrodBillsHouse_MapEventHeader: ; 0x5509f
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, MapGoldenrodBillsHouseSignpost0Script
-	signpost 1, 1, $0, MapGoldenrodBillsHouseSignpost1Script
-	signpost 1, 7, $0, MapGoldenrodBillsHouseSignpost2Script
+	signpost 1, 0, $0, BillsHouseBookshelf2
+	signpost 1, 1, $0, BillsHouseBookshelf1
+	signpost 1, 7, $0, BillsHouseRadio
 
 	; people-events
 	db 3
-	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillScript_0x54be4, $0712
-	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, PokefanFScript_0x54c25, $ffff
-	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, TwinScript_0x54c39, $ffff
+	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillsHouseBill, $0712
+	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, BillsMom, $ffff
+	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, BillsSister, $ffff
 ; 0x550e5

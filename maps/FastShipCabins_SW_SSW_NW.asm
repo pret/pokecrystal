@@ -132,9 +132,9 @@ UnknownScript_0x75aa5: ; 0x75aa5
 	end
 ; 0x75aac
 
-MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
+FastShipBed:
 	loadfont
-	writetext UnknownText_0x75da4
+	writetext FastShipBedText1
 	closetext
 	loadmovesprites
 	special Function8c0b6
@@ -146,7 +146,7 @@ MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	special RestartMapMusic
 	special Function8c0ab
 	loadfont
-	writetext UnknownText_0x75dc1
+	writetext FastShipBedText2
 	closetext
 	loadmovesprites
 	checkevent $0031
@@ -165,7 +165,7 @@ UnknownScript_0x75ae2: ; 0x75ae2
 	checkevent $002f
 	iftrue UnknownScript_0x75af7
 	loadfont
-	writetext UnknownText_0x75e0f
+	writetext FastShipArrivedVermilionText
 	closetext
 	loadmovesprites
 	setevent $0031
@@ -174,16 +174,15 @@ UnknownScript_0x75ae2: ; 0x75ae2
 
 UnknownScript_0x75af7: ; 0x75af7
 	loadfont
-	writetext UnknownText_0x75dde
+	writetext FastShipArrivedOlivineText
 	closetext
 	loadmovesprites
 	setevent $0031
 	end
 ; 0x75b01
 
-MapFastShipCabins_SW_SSW_NWSignpost2Script: ; 0x75b01
+FastShipCabinsNorthwestCabinTrashcan: ; 0x75b01
 	jumpstd trashcan
-; 0x75b04
 
 FirebreatherLyleSeenText: ; 0x75b04
 	text "I'm going to KANTO"
@@ -285,31 +284,27 @@ UnknownText_0x75d65: ; 0x75d65
 	done
 ; 0x75da4
 
-UnknownText_0x75da4: ; 0x75da4
+FastShipBedText1:
 	text "A comfy bed!"
 	line "Time to sleep…"
 	done
-; 0x75dc1
 
-UnknownText_0x75dc1: ; 0x75dc1
+FastShipBedText2:
 	text "Ah, refreshed and"
 	line "restored!"
 	done
-; 0x75dde
 
-UnknownText_0x75dde: ; 0x75dde
+FastShipArrivedOlivineText:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
 	cont "OLIVINE CITY."
 	done
-; 0x75e0f
 
-UnknownText_0x75e0f: ; 0x75e0f
+FastShipArrivedVermilionText:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
 	cont "VERMILION CITY."
 	done
-; 0x75e42
 
 FastShipCabins_SW_SSW_NW_MapEventHeader: ; 0x75e42
 	; filler
@@ -328,9 +323,9 @@ FastShipCabins_SW_SSW_NW_MapEventHeader: ; 0x75e42
 
 	; signposts
 	db 3
-	signpost 1, 7, $0, MapFastShipCabins_SW_SSW_NWSignpost1Script
-	signpost 2, 7, $0, MapFastShipCabins_SW_SSW_NWSignpost1Script
-	signpost 7, 7, $0, MapFastShipCabins_SW_SSW_NWSignpost2Script
+	signpost 1, 7, $0, FastShipBed
+	signpost 2, 7, $0, FastShipBed
+	signpost 7, 7, $0, FastShipCabinsNorthwestCabinTrashcan
 
 	; people-events
 	db 4

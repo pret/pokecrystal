@@ -1,25 +1,21 @@
-Route10North_MapScriptHeader: ; 0x1b207e
+Route10North_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1b2080
 
-MapRoute10NorthSignpost0Script: ; 0x1b2080
-	jumptext UnknownText_0x1b2086
-; 0x1b2083
+PowerPlantSign:
+	jumptext PowerPlantSignText
 
-MapRoute10NorthSignpost1Script: ; 0x1b2083
+Route10PokeCenterSign:
 	jumpstd pokecentersign
-; 0x1b2086
 
-UnknownText_0x1b2086: ; 0x1b2086
+PowerPlantSignText:
 	text "KANTO POWER PLANT"
 	done
-; 0x1b2099
 
-Route10North_MapEventHeader: ; 0x1b2099
+Route10North_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -33,9 +29,8 @@ Route10North_MapEventHeader: ; 0x1b2099
 
 	; signposts
 	db 2
-	signpost 11, 5, $0, MapRoute10NorthSignpost0Script
-	signpost 1, 12, $0, MapRoute10NorthSignpost1Script
+	signpost 11, 5, $0, PowerPlantSign
+	signpost 1, 12, $0, Route10PokeCenterSign
 
 	; people-events
 	db 0
-; 0x1b20b3

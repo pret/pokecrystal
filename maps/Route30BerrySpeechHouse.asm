@@ -24,9 +24,8 @@ UnknownScript_0x196d7d: ; 0x196d7d
 	end
 ; 0x196d7f
 
-MapRoute30BerrySpeechHouseSignpost1Script: ; 0x196d7f
+Route30BerrySpeechHouseBookshelf:
 	jumpstd magazinebookshelf
-; 0x196d82
 
 UnknownText_0x196d82: ; 0x196d82
 	text "You know, #MON"
@@ -62,10 +61,9 @@ Route30BerrySpeechHouse_MapEventHeader: ; 0x196e20
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapRoute30BerrySpeechHouseSignpost1Script
-	signpost 1, 1, $0, MapRoute30BerrySpeechHouseSignpost1Script
+	signpost 1, 0, $0, Route30BerrySpeechHouseBookshelf
+	signpost 1, 1, $0, Route30BerrySpeechHouseBookshelf
 
 	; people-events
 	db 1
 	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $b0, 0, PokefanMScript_0x196d64, $ffff
-; 0x196e47

@@ -79,9 +79,8 @@ UnknownScript_0x62fd1: ; 0x62fd1
 	end
 ; 0x62fd7
 
-MapDayCareSignpost1Script: ; 0x62fd7
+DayCareBookshelf:
 	jumpstd difficultbookshelf
-; 0x62fda
 
 UnknownText_0x62fda: ; 0x62fda
 	text "Gramps was looking"
@@ -186,8 +185,8 @@ DayCare_MapEventHeader: ; 0x63250
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MapDayCareSignpost1Script
-	signpost 1, 1, $0, MapDayCareSignpost1Script
+	signpost 1, 0, $0, DayCareBookshelf
+	signpost 1, 1, $0, DayCareBookshelf
 
 	; people-events
 	db 2

@@ -1,4 +1,4 @@
-VioletCity_MapScriptHeader: ; 0x1a83b2
+VioletCity_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,14 +8,12 @@ VioletCity_MapScriptHeader: ; 0x1a83b2
 	; callbacks
 
 	dbw 5, UnknownScript_0x1a83b7
-; 0x1a83b7
 
-UnknownScript_0x1a83b7: ; 0x1a83b7
+UnknownScript_0x1a83b7:
 	setflag $0043
 	return
-; 0x1a83bb
 
-FisherScript_0x1a83bb: ; 0x1a83bb
+FisherScript_0x1a83bb:
 	applymovement $2, MovementData_0x1a8465
 	faceplayer
 	loadfont
@@ -23,16 +21,14 @@ FisherScript_0x1a83bb: ; 0x1a83bb
 	yesorno
 	iffalse UnknownScript_0x1a83d1
 	jump UnknownScript_0x1a83cb
-; 0x1a83cb
 
-UnknownScript_0x1a83cb: ; 0x1a83cb
+UnknownScript_0x1a83cb:
 	writetext UnknownText_0x1a84ac
 	closetext
 	loadmovesprites
 	end
-; 0x1a83d1
 
-UnknownScript_0x1a83d1: ; 0x1a83d1
+UnknownScript_0x1a83d1:
 	writetext UnknownText_0x1a84cb
 	closetext
 	loadmovesprites
@@ -54,67 +50,51 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	clearevent $06cb
 	waitbutton
 	end
-; 0x1a8403
 
-LassScript_0x1a8403: ; 0x1a8403
+LassScript_0x1a8403:
 	jumptextfaceplayer UnknownText_0x1a8529
-; 0x1a8406
 
-SuperNerdScript_0x1a8406: ; 0x1a8406
+SuperNerdScript_0x1a8406:
 	jumptextfaceplayer UnknownText_0x1a8593
-; 0x1a8409
 
-GrampsScript_0x1a8409: ; 0x1a8409
+GrampsScript_0x1a8409:
 	jumptextfaceplayer UnknownText_0x1a85ef
-; 0x1a840c
 
-YoungsterScript_0x1a840c: ; 0x1a840c
+YoungsterScript_0x1a840c:
 	jumptextfaceplayer UnknownText_0x1a8665
-; 0x1a840f
 
-MapVioletCitySignpost0Script: ; 0x1a840f
-	jumptext UnknownText_0x1a86b2
-; 0x1a8412
+VioletCitySign:
+	jumptext VioletCitySignText
 
-MapVioletCitySignpost1Script: ; 0x1a8412
-	jumptext UnknownText_0x1a86dc
-; 0x1a8415
+VioletGymSign:
+	jumptext VioletGymSignText
 
-MapVioletCitySignpost2Script: ; 0x1a8415
-	jumptext UnknownText_0x1a8724
-; 0x1a8418
+SproutTowerSign:
+	jumptext SproutTowerSignText
 
-MapVioletCitySignpost3Script: ; 0x1a8418
-	jumptext UnknownText_0x1a874d
-; 0x1a841b
+EarlsPokemonAcademySign:
+	jumptext EarlsPokemonAcademySignText
 
-MapVioletCitySignpost4Script: ; 0x1a841b
+VioletCityPokeCenterSign:
 	jumpstd pokecentersign
-; 0x1a841e
 
-MapVioletCitySignpost5Script: ; 0x1a841e
+VioletCityMartSign:
 	jumpstd martsign
-; 0x1a8421
 
-ItemFragment_0x1a8421: ; 0x1a8421
+ItemFragment_0x1a8421:
 	db PP_UP, 1
-; 0x1a8423
 
-ItemFragment_0x1a8423: ; 0x1a8423
+ItemFragment_0x1a8423:
 	db RARE_CANDY, 1
-; 0x1a8425
 
-FruitTreeScript_0x1a8425: ; 0x1a8425
+FruitTreeScript_0x1a8425:
 	fruittree $9
-; 0x1a8427
 
-MapVioletCitySignpostItem6: ; 0x1a8427
+MapVioletCitySignpostItem6:
 	dw $00b0
 	db HYPER_POTION
-	
-; 0x1a842a
 
-MovementData_0x1a842a: ; 0x1a842a
+MovementData_0x1a842a:
 	big_step_down
 	big_step_down
 	turn_head_down
@@ -172,14 +152,12 @@ MovementData_0x1a842a: ; 0x1a842a
 	big_step_up
 	turn_head_down
 	step_end
-; 0x1a8463
 
-MovementData_0x1a8463: ; 0x1a8463
+MovementData_0x1a8463:
 	step_up
 	step_end
-; 0x1a8465
 
-MovementData_0x1a8465: ; 0x1a8465
+MovementData_0x1a8465:
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -194,38 +172,33 @@ MovementData_0x1a8465: ; 0x1a8465
 	turn_head_right
 	turn_head_down
 	step_end
-; 0x1a8473
 
-UnknownText_0x1a8473: ; 0x1a8473
+UnknownText_0x1a8473:
 	text "Hello!"
 	line "You are trainer?"
 
 	para "Battle GYM LEADER,"
 	line "win you did?"
 	done
-; 0x1a84ac
 
-UnknownText_0x1a84ac: ; 0x1a84ac
+UnknownText_0x1a84ac:
 	text "Ooh, la la!"
 	line "Very indeed nice!"
 	done
-; 0x1a84cb
 
-UnknownText_0x1a84cb: ; 0x1a84cb
+UnknownText_0x1a84cb:
 	text "Is that so? Then"
 	line "study shall you!"
 	cont "Follow me!"
 	done
-; 0x1a84f9
 
-UnknownText_0x1a84f9: ; 0x1a84f9
+UnknownText_0x1a84f9:
 	text "Here, teacher I"
 	line "am. Good it is"
 	cont "you study here!"
 	done
-; 0x1a8529
 
-UnknownText_0x1a8529: ; 0x1a8529
+UnknownText_0x1a8529:
 	text "Ghosts are rumored"
 	line "to appear in"
 	cont "SPROUT TOWER."
@@ -236,9 +209,8 @@ UnknownText_0x1a8529: ; 0x1a8529
 	para "had no effect on"
 	line "ghosts."
 	done
-; 0x1a8593
 
-UnknownText_0x1a8593: ; 0x1a8593
+UnknownText_0x1a8593:
 	text "Hey, you're a"
 	line "#MON trainer?"
 
@@ -248,9 +220,8 @@ UnknownText_0x1a8593: ; 0x1a8593
 	para "you'll be ready"
 	line "for prime time!"
 	done
-; 0x1a85ef
 
-UnknownText_0x1a85ef: ; 0x1a85ef
+UnknownText_0x1a85ef:
 	text "FALKNER, from the"
 	line "VIOLET #MON"
 
@@ -263,9 +234,8 @@ UnknownText_0x1a85ef: ; 0x1a85ef
 	para "has done a great"
 	line "job with it."
 	done
-; 0x1a8665
 
-UnknownText_0x1a8665: ; 0x1a8665
+UnknownText_0x1a8665:
 	text "I saw a wiggly"
 	line "tree up ahead!"
 
@@ -273,17 +243,15 @@ UnknownText_0x1a8665: ; 0x1a8665
 	line "it squirms and"
 	cont "dances! Cool!"
 	done
-; 0x1a86b2
 
-UnknownText_0x1a86b2: ; 0x1a86b2
+VioletCitySignText:
 	text "VIOLET CITY"
 
 	para "The City of"
 	line "Nostalgic Scents"
 	done
-; 0x1a86dc
 
-UnknownText_0x1a86dc: ; 0x1a86dc
+VioletGymSignText:
 	text "VIOLET CITY"
 	line "#MON GYM"
 	cont "LEADER: FALKNER"
@@ -291,23 +259,20 @@ UnknownText_0x1a86dc: ; 0x1a86dc
 	para "The Elegant Master"
 	line "of Flying #MON"
 	done
-; 0x1a8724
 
-UnknownText_0x1a8724: ; 0x1a8724
+SproutTowerSignText:
 	text "SPROUT TOWER"
 
 	para "Experience the"
 	line "Way of #MON"
 	done
-; 0x1a874d
 
-UnknownText_0x1a874d: ; 0x1a874d
+EarlsPokemonAcademySignText:
 	text "EARL'S #MON"
 	line "ACADEMY"
 	done
-; 0x1a8762
 
-VioletCity_MapEventHeader: ; 0x1a8762
+VioletCity_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -328,12 +293,12 @@ VioletCity_MapEventHeader: ; 0x1a8762
 
 	; signposts
 	db 7
-	signpost 20, 24, $0, MapVioletCitySignpost0Script
-	signpost 17, 15, $0, MapVioletCitySignpost1Script
-	signpost 8, 24, $0, MapVioletCitySignpost2Script
-	signpost 17, 27, $0, MapVioletCitySignpost3Script
-	signpost 25, 32, $0, MapVioletCitySignpost4Script
-	signpost 17, 10, $0, MapVioletCitySignpost5Script
+	signpost 20, 24, $0, VioletCitySign
+	signpost 17, 15, $0, VioletGymSign
+	signpost 8, 24, $0, SproutTowerSign
+	signpost 17, 27, $0, EarlsPokemonAcademySign
+	signpost 25, 32, $0, VioletCityPokeCenterSign
+	signpost 17, 10, $0, VioletCityMartSign
 	signpost 14, 37, $7, MapVioletCitySignpostItem6
 
 	; people-events
@@ -346,4 +311,3 @@ VioletCity_MapEventHeader: ; 0x1a8762
 	person_event SPRITE_FRUIT_TREE, 33, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8425, $ffff
 	person_event SPRITE_POKE_BALL, 5, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8421, $0643
 	person_event SPRITE_POKE_BALL, 9, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8423, $0644
-; 0x1a8820

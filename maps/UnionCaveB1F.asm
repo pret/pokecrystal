@@ -130,9 +130,8 @@ ItemFragment_0x5a018: ; 0x5a018
 	db X_DEFEND, 1
 ; 0x5a01a
 
-BoulderScript_0x5a01a: ; 0x5a01a
+UnionCaveB1FBoulder:
 	jumpstd strengthboulder
-; 0x5a01d
 
 HikerPhillipSeenText: ; 0x5a01d
 	text "It's been a while"
@@ -256,6 +255,6 @@ UnionCaveB1F_MapEventHeader: ; 0x5a28e
 	person_event SPRITE_SUPER_NERD, 36, 9, $8, $0, 255, 255, $92, 3, TrainerPokemaniacAndrew, $ffff
 	person_event SPRITE_SUPER_NERD, 34, 21, $8, $0, 255, 255, $92, 3, TrainerPokemaniacCalvin, $ffff
 	person_event SPRITE_POKE_BALL, 20, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a016, $065e
-	person_event SPRITE_BOULDER, 14, 11, $19, $0, 255, 255, $0, 0, BoulderScript_0x5a01a, $ffff
+	person_event SPRITE_BOULDER, 14, 11, $19, $0, 255, 255, $0, 0, UnionCaveB1FBoulder, $ffff
 	person_event SPRITE_POKE_BALL, 27, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a018, $065f
 ; 0x5a308

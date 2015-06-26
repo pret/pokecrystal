@@ -137,9 +137,8 @@ MortyScript_0x185cbf: ; 0x185cbf
 	jumptextfaceplayer UnknownText_0x186002
 ; 0x185cc2
 
-RockScript_0x185cc2: ; 0x185cc2
+BurnedTower1FRock:
 	jumpstd smashrock
-; 0x185cc5
 
 MapBurnedTower1FSignpostItem0: ; 0x185cc5
 	dw $0080
@@ -339,7 +338,7 @@ BurnedTower1F_MapEventHeader: ; 0x1860b2
 
 	; people-events
 	db 5
-	person_event SPRITE_ROCK, 8, 19, $18, $0, 255, 255, $0, 0, RockScript_0x185cc2, $ffff
+	person_event SPRITE_ROCK, 8, 19, $18, $0, 255, 255, $0, 0, BurnedTower1FRock, $ffff
 	person_event SPRITE_SUPER_NERD, 16, 16, $3, $0, 255, 255, $90, 0, SuperNerdScript_0x185cbc, $0765
 	person_event SPRITE_SILVER, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, $06c5
 	person_event SPRITE_MORTY, 18, 18, $2, $11, 255, 255, $b0, 0, MortyScript_0x185cbf, $0764

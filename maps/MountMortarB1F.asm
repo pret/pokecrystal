@@ -47,9 +47,8 @@ UnknownScript_0x7e237: ; 0x7e237
 	end
 ; 0x7e23d
 
-BoulderScript_0x7e23d: ; 0x7e23d
+MountMortarB1FBoulder:
 	jumpstd strengthboulder
-; 0x7e240
 
 ItemFragment_0x7e240: ; 0x7e240
 	db HYPER_POTION, 1
@@ -163,7 +162,7 @@ MountMortarB1F_MapEventHeader: ; 0x7e400
 	db 7
 	person_event SPRITE_POKE_BALL, 16, 33, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e240, $0686
 	person_event SPRITE_POKE_BALL, 20, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e242, $0687
-	person_event SPRITE_BOULDER, 14, 13, $19, $0, 255, 255, $0, 0, BoulderScript_0x7e23d, $ffff
+	person_event SPRITE_BOULDER, 14, 13, $19, $0, 255, 255, $0, 0, MountMortarB1FBoulder, $ffff
 	person_event SPRITE_BLACK_BELT, 8, 20, $6, $0, 255, 255, $b0, 0, BlackBeltScript_0x7e1f6, $ffff
 	person_event SPRITE_POKE_BALL, 28, 38, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e244, $07ca
 	person_event SPRITE_POKE_BALL, 7, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e246, $07cb

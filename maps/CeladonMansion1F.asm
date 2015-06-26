@@ -6,46 +6,40 @@ CeladonMansion1F_MapScriptHeader: ; 0x713ed
 	db 0
 ; 0x713ef
 
-GrannyScript_0x713ef: ; 0x713ef
-	jumptextfaceplayer UnknownText_0x71416
-; 0x713f2
+CeladonMansionManager:
+	jumptextfaceplayer CeladonMansionManagerText
 
-GrowlitheScript_0x713f2: ; 0x713f2
+CeladonMansion1FMeowth:
 	loadfont
-	writetext UnknownText_0x71470
+	writetext CeladonMansion1FMeowthText
 	cry MEOWTH
 	closetext
 	loadmovesprites
 	end
-; 0x713fc
 
-ClefairyScript_0x713fc: ; 0x713fc
+CeladonMansion1FClefairy:
 	loadfont
-	writetext UnknownText_0x7147f
+	writetext CeladonMansion1FClefairyText
 	cry CLEFAIRY
 	closetext
 	loadmovesprites
 	end
-; 0x71406
 
-GrowlitheScript_0x71406: ; 0x71406
+CeladonMansion1FNidoranF:
 	loadfont
-	writetext UnknownText_0x71496
+	writetext CeladonMansion1FNidoranFText
 	cry NIDORAN_F
 	closetext
 	loadmovesprites
 	end
-; 0x71410
 
-MapCeladonMansion1FSignpost0Script: ; 0x71410
-	jumptext UnknownText_0x714ab
-; 0x71413
+CeladonMansionManagersSuiteSign:
+	jumptext CeladonMansionManagersSuiteSignText
 
-MapCeladonMansion1FSignpost2Script: ; 0x71413
+CeladonMansion1fBookshelf:
 	jumpstd picturebookshelf
-; 0x71416
 
-UnknownText_0x71416: ; 0x71416
+CeladonMansionManagerText:
 	text "My dear #MON"
 	line "keep me company,"
 
@@ -55,30 +49,25 @@ UnknownText_0x71416: ; 0x71416
 	para "MEOWTH even brings"
 	line "money home."
 	done
-; 0x71470
 
-UnknownText_0x71470: ; 0x71470
+CeladonMansion1FMeowthText:
 	text "MEOWTH: Meow!"
 	done
-; 0x7147f
 
-UnknownText_0x7147f: ; 0x7147f
+CeladonMansion1FClefairyText:
 	text "CLEFAIRY: Clef"
 	line "cleff!"
 	done
-; 0x71496
 
-UnknownText_0x71496: ; 0x71496
+CeladonMansion1FNidoranFText:
 	text "NIDORAN: Kya"
 	line "kyaoo!"
 	done
-; 0x714ab
 
-UnknownText_0x714ab: ; 0x714ab
+CeladonMansionManagersSuiteSignText:
 	text "CELADON MANSION"
 	line "MANAGER'S SUITE"
 	done
-; 0x714cc
 
 CeladonMansion1F_MapEventHeader: ; 0x714cc
 	; filler
@@ -97,14 +86,13 @@ CeladonMansion1F_MapEventHeader: ; 0x714cc
 
 	; signposts
 	db 3
-	signpost 8, 5, $1, MapCeladonMansion1FSignpost0Script
-	signpost 3, 0, $0, MapCeladonMansion1FSignpost2Script
-	signpost 3, 2, $0, MapCeladonMansion1FSignpost2Script
+	signpost 8, 5, $1, CeladonMansionManagersSuiteSign
+	signpost 3, 0, $0, CeladonMansion1fBookshelf
+	signpost 3, 2, $0, CeladonMansion1fBookshelf
 
 	; people-events
 	db 4
-	person_event SPRITE_GRANNY, 9, 5, $3, $0, 255, 255, $0, 0, GrannyScript_0x713ef, $ffff
-	person_event SPRITE_GROWLITHE, 10, 6, $16, $0, 255, 255, $0, 0, GrowlitheScript_0x713f2, $ffff
-	person_event SPRITE_CLEFAIRY, 8, 7, $16, $0, 255, 255, $0, 0, ClefairyScript_0x713fc, $ffff
-	person_event SPRITE_GROWLITHE, 8, 8, $16, $2, 255, 255, $90, 0, GrowlitheScript_0x71406, $ffff
-; 0x7152e
+	person_event SPRITE_GRANNY, 9, 5, $3, $0, 255, 255, $0, 0, CeladonMansionManager, $ffff
+	person_event SPRITE_GROWLITHE, 10, 6, $16, $0, 255, 255, $0, 0, CeladonMansion1FMeowth, $ffff
+	person_event SPRITE_CLEFAIRY, 8, 7, $16, $0, 255, 255, $0, 0, CeladonMansion1FClefairy, $ffff
+	person_event SPRITE_GROWLITHE, 8, 8, $16, $2, 255, 255, $90, 0, CeladonMansion1FNidoranF, $ffff
