@@ -41100,7 +41100,7 @@ Palette_49418: ; 49418
 ; 49420
 
 Function49420:: ; 49420 (12:5420)
-	ld hl, Palette_496bd
+	ld hl, MansionPalette4
 	ld de, Unkn1Pals + $30
 	ld bc, $8
 	ld a, $5 ; BANK(Unkn1Pals)
@@ -41177,314 +41177,124 @@ Function49496: ; 49496
 Function494ac: ; 494ac
 	ld a, [wd199]
 	cp $15
-	jr z, .asm_494c9
+	jr z, .pokecom_2f
 	cp $16
-	jr z, .asm_494ce
+	jr z, .battle_tower
 	cp $1d
-	jr z, .asm_494d3
+	jr z, .ice_path
 	cp $5
-	jr z, .asm_494e1
+	jr z, .house
 	cp $1b
-	jr z, .asm_494e6
+	jr z, .radio_tower
 	cp $d
-	jr z, .asm_494eb
-	jr .asm_494f0
+	jr z, .mansion_mobile
+	jr .do_nothing
 
-.asm_494c9
-	call Function494f2
+.pokecom_2f
+	call LoadPokeComPalette
 	scf
 	ret
 
-.asm_494ce
-	call Function49541
+.battle_tower
+	call LoadBattleTowerPalette
 	scf
 	ret
 
-.asm_494d3
-	ld a, [wd19a]
-	and $7
-	cp $3
-	jr z, .asm_494f0
-	call Function49590
+.ice_path
+	ld a, [wd19a] ; permission
+	and 7
+	cp 3 ; Hall of Fame
+	jr z, .do_nothing
+	call LoadIcePathPalette
 	scf
 	ret
 
-.asm_494e1
-	call Function495df
+.house
+	call LoadHousePalette
 	scf
 	ret
 
-.asm_494e6
-	call Function4962e
+.radio_tower
+	call LoadRadioTowerPalette
 	scf
 	ret
 
-.asm_494eb
-	call Function496c5
+.mansion_mobile
+	call LoadMansionPalette
 	scf
 	ret
 
-.asm_494f0
+.do_nothing
 	and a
 	ret
 ; 494f2
 
-Function494f2: ; 494f2
+LoadPokeComPalette: ; 494f2
 	ld a, $5
 	ld de, Unkn1Pals
-	ld hl, Palette_49501
+	ld hl, PokeComPalette
 	ld bc, $0040
 	call FarCopyWRAM
 	ret
 ; 49501
 
-Palette_49501: ; 49501
-	RGB 30, 28, 26
-	RGB 19, 19, 19
-	RGB 13, 13, 13
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 19, 24
-	RGB 30, 10, 06
-	RGB 07, 07, 07
-
-	RGB 18, 24, 09
-	RGB 15, 20, 01
-	RGB 09, 13, 00
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 17, 19, 31
-	RGB 14, 16, 31
-	RGB 07, 07, 07
-
-	RGB 31, 26, 21
-	RGB 31, 20, 01
-	RGB 14, 16, 31
-	RGB 07, 07, 07
-
-	RGB 21, 17, 07
-	RGB 17, 19, 31
-	RGB 16, 13, 03
-	RGB 07, 07, 07
-
-	RGB 05, 05, 16
-	RGB 08, 19, 28
-	RGB 00, 00, 00
-	RGB 31, 31, 31
-
-	RGB 31, 31, 16
-	RGB 31, 31, 16
-	RGB 14, 09, 00
-	RGB 00, 00, 00
+PokeComPalette: ; 49501
+INCLUDE "tilesets/pokecom.pal"
 ; 49541
 
-Function49541: ; 49541
+LoadBattleTowerPalette: ; 49541
 	ld a, $5
 	ld de, Unkn1Pals
-	ld hl, Palette_49550
+	ld hl, BattleTowerPalette
 	ld bc, $0040
 	call FarCopyWRAM
 	ret
 ; 49550
 
-Palette_49550: ; 49550
-	RGB 30, 28, 26
-	RGB 19, 19, 19
-	RGB 13, 13, 13
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 19, 24
-	RGB 30, 10, 06
-	RGB 07, 07, 07
-
-	RGB 18, 24, 09
-	RGB 15, 20, 01
-	RGB 09, 13, 00
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 15, 16, 31
-	RGB 09, 09, 31
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 31, 07
-	RGB 31, 16, 01
-	RGB 07, 07, 07
-
-	RGB 26, 24, 17
-	RGB 21, 17, 07
-	RGB 16, 13, 03
-	RGB 07, 07, 07
-
-	RGB 05, 05, 16
-	RGB 08, 19, 28
-	RGB 00, 00, 00
-	RGB 31, 31, 31
-
-	RGB 31, 31, 16
-	RGB 31, 31, 16
-	RGB 14, 09, 00
-	RGB 00, 00, 00
+BattleTowerPalette: ; 49550
+INCLUDE "tilesets/battle_tower.pal"
 ; 49590
 
-Function49590: ; 49590
+LoadIcePathPalette: ; 49590
 	ld a, $5
 	ld de, Unkn1Pals
-	ld hl, Palette_4959f
+	ld hl, IcePathPalette
 	ld bc, $0040
 	call FarCopyWRAM
 	ret
 ; 4959f
 
-Palette_4959f: ; 4959f
-	RGB 15, 14, 24
-	RGB 11, 11, 19
-	RGB 07, 07, 12
-	RGB 00, 00, 00
-
-	RGB 15, 14, 24
-	RGB 14, 07, 17
-	RGB 13, 00, 08
-	RGB 00, 00, 00
-
-	RGB 22, 29, 31
-	RGB 10, 27, 31
-	RGB 31, 31, 31
-	RGB 05, 00, 09
-
-	RGB 15, 14, 24
-	RGB 05, 05, 17
-	RGB 03, 03, 10
-	RGB 00, 00, 00
-
-	RGB 30, 30, 11
-	RGB 16, 14, 18
-	RGB 16, 14, 10
-	RGB 00, 00, 00
-
-	RGB 15, 14, 24
-	RGB 12, 09, 15
-	RGB 08, 04, 05
-	RGB 00, 00, 00
-
-	RGB 25, 31, 31
-	RGB 09, 28, 31
-	RGB 16, 11, 31
-	RGB 05, 00, 09
-
-	RGB 31, 31, 16
-	RGB 31, 31, 16
-	RGB 14, 09, 00
-	RGB 00, 00, 00
+IcePathPalette: ; 4959f
+INCLUDE "tilesets/ice_path.pal"
 ; 495df
 
-Function495df: ; 495df
+LoadHousePalette: ; 495df
 	ld a, $5
 	ld de, Unkn1Pals
-	ld hl, Palette_495ee
+	ld hl, HousePalette
 	ld bc, $0040
 	call FarCopyWRAM
 	ret
 ; 495ee
 
-Palette_495ee: ; 495ee
-	RGB 30, 28, 26
-	RGB 19, 19, 19
-	RGB 13, 13, 13
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 19, 24
-	RGB 30, 10, 06
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 15, 20, 01
-	RGB 09, 13, 00
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 15, 16, 31
-	RGB 09, 09, 31
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 31, 07
-	RGB 31, 16, 01
-	RGB 07, 07, 07
-
-	RGB 26, 24, 17
-	RGB 21, 17, 07
-	RGB 16, 13, 03
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 19, 24
-	RGB 16, 13, 03
-	RGB 07, 07, 07
-
-	RGB 31, 31, 16
-	RGB 31, 31, 16
-	RGB 14, 09, 00
-	RGB 00, 00, 00
+HousePalette: ; 495ee
+INCLUDE "tilesets/house.pal"
 ; 4962e
 
-Function4962e: ; 4962e
+LoadRadioTowerPalette: ; 4962e
 	ld a, $5
 	ld de, Unkn1Pals
-	ld hl, Palette_4963d
+	ld hl, RadioTowerPalette
 	ld bc, $0040
 	call FarCopyWRAM
 	ret
 ; 4963d
 
-Palette_4963d: ; 4963d
-	RGB 27, 31, 27
-	RGB 21, 21, 21
-	RGB 13, 13, 13
-	RGB 07, 07, 07
-
-	RGB 27, 31, 27
-	RGB 31, 19, 24
-	RGB 30, 10, 06
-	RGB 07, 07, 07
-
-	RGB 08, 12, 31
-	RGB 12, 25, 01
-	RGB 05, 14, 00
-	RGB 07, 07, 07
-
-	RGB 31, 31, 31
-	RGB 08, 12, 31
-	RGB 01, 04, 31
-	RGB 07, 07, 07
-
-	RGB 27, 31, 27
-	RGB 12, 25, 01
-	RGB 05, 14, 00
-	RGB 07, 07, 07
-
-	RGB 27, 31, 27
-	RGB 24, 18, 07
-	RGB 20, 15, 03
-	RGB 07, 07, 07
-
-	RGB 27, 31, 27
-	RGB 15, 31, 31
-	RGB 05, 17, 31
-	RGB 07, 07, 07
-
-	RGB 31, 31, 16
-	RGB 31, 31, 16
-	RGB 14, 09, 00
-	RGB 00, 00, 00
+RadioTowerPalette: ; 4963d
+INCLUDE "tilesets/radio_tower.pal"
 ; 4967d
 
-Palette_4967d: ; 4967d
+MansionPalette1: ; 4967d
 	RGB 30, 28, 26
 	RGB 19, 19, 19
 	RGB 13, 13, 13
@@ -41515,7 +41325,7 @@ Palette_4967d: ; 4967d
 	RGB 16, 13, 03
 	RGB 07, 07, 07
 
-Palette_496ad: ; 496ad
+MansionPalette3: ; 496ad
 	RGB 30, 28, 26
 	RGB 17, 19, 31
 	RGB 14, 16, 31
@@ -41527,38 +41337,38 @@ Palette_496ad: ; 496ad
 	RGB 00, 00, 00
 ; 496bd
 
-Palette_496bd: ; 496bd
+MansionPalette4: ; 496bd
 	RGB 05, 05, 16
 	RGB 08, 19, 28
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 ; 496c5
 
-Function496c5: ; 496c5
+LoadMansionPalette: ; 496c5
 	ld a, $5
 	ld de, Unkn1Pals
-	ld hl, Palette_4967d
+	ld hl, MansionPalette1
 	ld bc, $0040
 	call FarCopyWRAM
 	ld a, $5
-	ld de, wd020
-	ld hl, Palette_496fe
+	ld de, Unkn1Pals + $20
+	ld hl, MansionPalette2
 	ld bc, $0008
 	call FarCopyWRAM
 	ld a, $5
-	ld de, wd018
-	ld hl, Palette_496ad
+	ld de, Unkn1Pals + $18
+	ld hl, MansionPalette3
 	ld bc, $0008
 	call FarCopyWRAM
 	ld a, $5
-	ld de, wd030
-	ld hl, Palette_496bd
+	ld de, Unkn1Pals + $30
+	ld hl, MansionPalette4
 	ld bc, $0008
 	call FarCopyWRAM
 	ret
 ; 496fe
 
-Palette_496fe: ; 496fe
+MansionPalette2: ; 496fe
 	RGB 25, 24, 23
 	RGB 20, 19, 19
 	RGB 14, 16, 31
