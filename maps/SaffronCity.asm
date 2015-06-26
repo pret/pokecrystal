@@ -6,11 +6,10 @@ SaffronCity_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x199326
-
-UnknownScript_0x199326:
-	setflag $003c
+.FlyPoint
+	setflag ENGINE_FLYPOINT_SAFFRON
 	return
 
 LassScript_0x19932a:

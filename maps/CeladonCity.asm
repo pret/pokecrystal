@@ -1,4 +1,4 @@
-CeladonCity_MapScriptHeader: ; 0x1a9f3a
+CeladonCity_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -6,14 +6,13 @@ CeladonCity_MapScriptHeader: ; 0x1a9f3a
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, .Callback
-
-.Callback
-	setflag $003d
+.FlyPoint
+	setflag ENGINE_FLYPOINT_CELADON
 	return
 
-FisherScript_0x1a9f43: ; 0x1a9f43
+FisherScript_0x1a9f43:
 	jumptextfaceplayer UnknownText_0x1a9f7d
 
 CeladonCityPoliwrath:
@@ -24,53 +23,53 @@ CeladonCityPoliwrath:
 	loadmovesprites
 	end
 
-TeacherScript_0x1a9f50: ; 0x1a9f50
+TeacherScript_0x1a9f50:
 	jumptextfaceplayer UnknownText_0x1a9fde
 
-GrampsScript_0x1a9f53: ; 0x1a9f53
+GrampsScript_0x1a9f53:
 	jumptextfaceplayer UnknownText_0x1aa043
 
-GrampsScript_0x1a9f56: ; 0x1a9f56
+GrampsScript_0x1a9f56:
 	jumptextfaceplayer UnknownText_0x1aa0dc
 
-YoungsterScript_0x1a9f59: ; 0x1a9f59
+YoungsterScript_0x1a9f59:
 	jumptextfaceplayer UnknownText_0x1aa115
 
-YoungsterScript_0x1a9f5c: ; 0x1a9f5c
+YoungsterScript_0x1a9f5c:
 	jumptextfaceplayer UnknownText_0x1aa155
 
-TeacherScript_0x1a9f5f: ; 0x1a9f5f
+TeacherScript_0x1a9f5f:
 	jumptextfaceplayer UnknownText_0x1aa1bd
 
-LassScript_0x1a9f62: ; 0x1a9f62
+LassScript_0x1a9f62:
 	jumptextfaceplayer UnknownText_0x1aa306
 
-CeladonCitySign: ; 0x1a9f65
+CeladonCitySign:
 	jumptext CeladonCitySignText
 
-CeladonGymSign: ; 0x1a9f68
+CeladonGymSign:
 	jumptext CeladonGymSignText
 
-CeladonCityDeptStoreSign: ; 0x1a9f6b
+CeladonCityDeptStoreSign:
 	jumptext CeladonCityDeptStoreSignText
 
-CeladonCityMansionSign: ; 0x1a9f6e
+CeladonCityMansionSign:
 	jumptext CeladonCityMansionSignText
 
-CeladonCityGameCornerSign: ; 0x1a9f71
+CeladonCityGameCornerSign:
 	jumptext CeladonCityGameCornerSignText
 
-CeladonCityTrainerTips: ; 0x1a9f74
+CeladonCityTrainerTips:
 	jumptext CeladonCityTrainerTipsText
 
-CeladonCityPokeCenterSign: ; 0x1a9f77
+CeladonCityPokeCenterSign:
 	jumpstd pokecentersign
 
-MapCeladonCitySignpostItem7: ; 0x1a9f7a
+MapCeladonCitySignpostItem7:
 	dw $00fd
 	db PP_UP
 
-UnknownText_0x1a9f7d: ; 0x1a9f7d
+UnknownText_0x1a9f7d:
 	text "This POLIWRATH is"
 	line "my partner."
 
@@ -78,13 +77,12 @@ UnknownText_0x1a9f7d: ; 0x1a9f7d
 	line "ever evolve into a"
 	cont "frog #MON."
 	done
-; 0x1a9fcb
 
 CeladonCityPoliwrathText:
 	text "POLIWRATH: Croak!"
 	done
 
-UnknownText_0x1a9fde: ; 0x1a9fde
+UnknownText_0x1a9fde:
 	text "I lost at the slot"
 	line "machines again…"
 
@@ -94,9 +92,8 @@ UnknownText_0x1a9fde: ; 0x1a9fde
 	para "You should check"
 	line "them out too."
 	done
-; 0x1aa043
 
-UnknownText_0x1aa043: ; 0x1aa043
+UnknownText_0x1aa043:
 	text "GRIMER have been"
 	line "appearing lately."
 
@@ -110,18 +107,16 @@ UnknownText_0x1aa043: ; 0x1aa043
 	line "come from? This is"
 	cont "a serious problem…"
 	done
-; 0x1aa0dc
 
-UnknownText_0x1aa0dc: ; 0x1aa0dc
+UnknownText_0x1aa0dc:
 	text "Nihihi! This GYM"
 	line "is great! Only"
 
 	para "girls are allowed"
 	line "here!"
 	done
-; 0x1aa115
 
-UnknownText_0x1aa115: ; 0x1aa115
+UnknownText_0x1aa115:
 	text "Want to know a"
 	line "secret?"
 
@@ -129,9 +124,8 @@ UnknownText_0x1aa115: ; 0x1aa115
 	line "has a hidden back"
 	cont "door."
 	done
-; 0x1aa155
 
-UnknownText_0x1aa155: ; 0x1aa155
+UnknownText_0x1aa155:
 	text "They're holding an"
 	line "eating contest at"
 	cont "the restaurant."
@@ -140,9 +134,8 @@ UnknownText_0x1aa155: ; 0x1aa155
 	line "go at it makes me"
 	cont "feel bloated…"
 	done
-; 0x1aa1bd
 
-UnknownText_0x1aa1bd: ; 0x1aa1bd
+UnknownText_0x1aa1bd:
 	text "CELADON DEPT.STORE"
 	line "has the biggest"
 
@@ -158,10 +151,9 @@ UnknownText_0x1aa1bd: ; 0x1aa1bd
 	para "Gee… I sound like"
 	line "a sales clerk."
 	done
-; 0x1aa25b
 
 ; possibly unused
-UnknownText_0x1aa25b: ; 0x1aa25b
+UnknownText_0x1aa25b:
 	text "I love being"
 	line "surrounded by tall"
 	cont "buildings!"
@@ -178,26 +170,23 @@ UnknownText_0x1aa25b: ; 0x1aa25b
 	para "place like that in"
 	line "KANTO…"
 	done
-; 0x1aa306
 
-UnknownText_0x1aa306: ; 0x1aa306
+UnknownText_0x1aa306:
 	text "Looking at the"
 	line "ground while I was"
 
 	para "walking made me"
 	line "dizzy."
 	done
-; 0x1aa340
 
-CeladonCitySignText: ; 0x1aa340
+CeladonCitySignText:
 	text "CELADON CITY"
 
 	para "The City of"
 	line "Rainbow Dreams"
 	done
-; 0x1aa369
 
-CeladonGymSignText: ; 0x1aa369
+CeladonGymSignText:
 	text "CELADON CITY"
 	line "#MON GYM"
 	cont "LEADER: ERIKA"
@@ -205,28 +194,24 @@ CeladonGymSignText: ; 0x1aa369
 	para "The Nature-Loving"
 	line "Princess"
 	done
-; 0x1aa3a9
 
-CeladonCityDeptStoreSignText: ; 0x1aa3a9
+CeladonCityDeptStoreSignText:
 	text "Find What You"
 	line "Need at CELADON"
 	cont "DEPT.STORE!"
 	done
-; 0x1aa3d4
 
-CeladonCityMansionSignText: ; 0x1aa3d4
+CeladonCityMansionSignText:
 	text "CELADON MANSION"
 	done
-; 0x1aa3e5
 
-CeladonCityGameCornerSignText: ; 0x1aa3e5
+CeladonCityGameCornerSignText:
 	text "The Playground for"
 	line "Everybody--CELADON"
 	cont "GAME CORNER"
 	done
-; 0x1aa418
 
-CeladonCityTrainerTipsText: ; 0x1aa418
+CeladonCityTrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "GUARD SPEC."
@@ -240,9 +225,8 @@ CeladonCityTrainerTipsText: ; 0x1aa418
 	line "CELADON DEPT."
 	cont "STORE!"
 	done
-; 0x1aa497
 
-CeladonCity_MapEventHeader: ; 0x1aa497
+CeladonCity_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -283,4 +267,3 @@ CeladonCity_MapEventHeader: ; 0x1aa497
 	person_event SPRITE_YOUNGSTER, 37, 28, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x1a9f5c, $ffff
 	person_event SPRITE_TEACHER, 18, 10, $2, $22, 255, 255, $a0, 0, TeacherScript_0x1a9f5f, $ffff
 	person_event SPRITE_LASS, 26, 11, $4, $20, 255, 255, $80, 0, LassScript_0x1a9f62, $ffff
-; 0x1aa567

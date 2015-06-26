@@ -1,4 +1,4 @@
-BlackthornGym2F_MapScriptHeader: ; 0x195722
+BlackthornGym2F_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -6,69 +6,59 @@ BlackthornGym2F_MapScriptHeader: ; 0x195722
 	db 1
 
 	; callbacks
+	dbw 3, .Boulders
 
-	dbw 3, UnknownScript_0x195727
-; 0x195727
-
-UnknownScript_0x195727: ; 0x195727
-	writecmdqueue CmdQueue_0x19572b
+.Boulders
+	writecmdqueue .BoulderCmdQueue
 	return
-; 0x19572b
 
-CmdQueue_0x19572b: ; 0x19572b
-	dbw 2, StoneTable_0x195730 ; check if any stones are sitting on a warp
+.BoulderCmdQueue
+	dbw 2, .BoulderTable ; check if any stones are sitting on a warp
 	db 0, 0 ; filler
-; 0x195730
 
-StoneTable_0x195730: ; 0x195730
+.BoulderTable
 	db 5, 4 ; warp, person
-	dw UnknownScript_0x19573d
+	dw .Disappear4
 
 	db 3, 5 ; warp, person
-	dw UnknownScript_0x195742
+	dw .Disappear5
 
 	db 4, 6 ; warp, person
-	dw UnknownScript_0x195747
+	dw .Disappear6
 
 	db $ff ; end
-; 0x19573d
 
-UnknownScript_0x19573d: ; 0x19573d
+.Disappear4
 	disappear 4
-	jump UnknownScript_0x19574c
-; 0x195742
+	jump .Fall
 
-UnknownScript_0x195742: ; 0x195742
+.Disappear5
 	disappear 5
-	jump UnknownScript_0x19574c
-; 0x195747
+	jump .Fall
 
-UnknownScript_0x195747: ; 0x195747
+.Disappear6
 	disappear 6
-	jump UnknownScript_0x19574c
-; 0x19574c
+	jump .Fall
 
-UnknownScript_0x19574c: ; 0x19574c
+.Fall
 	pause 30
-	scall UnknownScript_0x195758
+	scall .FX
 	loadfont
-	writetext UnknownText_0x1958a5
+	writetext BlackthornGym2FBoulderFellText
 	closetext
 	loadmovesprites
 	end
-; 0x195758
 
-UnknownScript_0x195758: ; 0x195758
+.FX
 	playsound SFX_STRENGTH
 	earthquake 80
 	end
-; 0x19575e
 
 
 BlackthornGymBoulder:
 	jumpstd strengthboulder
 
-TrainerCooltrainermCody: ; 0x195761
+TrainerCooltrainermCody:
 	; bit/flag number
 	dw $54b
 
@@ -86,18 +76,16 @@ TrainerCooltrainermCody: ; 0x195761
 
 	; script when talk again
 	dw CooltrainermCodyScript
-; 0x19576d
 
-CooltrainermCodyScript: ; 0x19576d
+CooltrainermCodyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1957d5
 	closetext
 	loadmovesprites
 	end
-; 0x195775
 
-TrainerCooltrainerfFran: ; 0x195775
+TrainerCooltrainerfFran:
 	; bit/flag number
 	dw $55d
 
@@ -115,31 +103,27 @@ TrainerCooltrainerfFran: ; 0x195775
 
 	; script when talk again
 	dw CooltrainerfFranScript
-; 0x195781
 
-CooltrainerfFranScript: ; 0x195781
+CooltrainerfFranScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x195883
 	closetext
 	loadmovesprites
 	end
-; 0x195789
 
-CooltrainermCodySeenText: ; 0x195789
+CooltrainermCodySeenText:
 	text "It's not as if we"
 	line "all use dragon-"
 	cont "type #MON."
 	done
-; 0x1957b6
 
-CooltrainermCodyBeatenText: ; 0x1957b6
+CooltrainermCodyBeatenText:
 	text "Rats! If only I"
 	line "had a dragon!"
 	done
-; 0x1957d5
 
-UnknownText_0x1957d5: ; 0x1957d5
+UnknownText_0x1957d5:
 	text "Members of our"
 	line "dragon-user clan"
 
@@ -149,9 +133,8 @@ UnknownText_0x1957d5: ; 0x1957d5
 	para "our MASTER allows"
 	line "it."
 	done
-; 0x19582b
 
-CooltrainerfFranSeenText: ; 0x19582b
+CooltrainerfFranSeenText:
 	text "I can't allow a"
 	line "nameless trainer"
 	cont "past me!"
@@ -159,26 +142,22 @@ CooltrainerfFranSeenText: ; 0x19582b
 	para "CLAIR would be"
 	line "livid if I did!"
 	done
-; 0x195874
 
-CooltrainerfFranBeatenText: ; 0x195874
+CooltrainerfFranBeatenText:
 	text "Awww… I lost…"
 	done
-; 0x195883
 
-UnknownText_0x195883: ; 0x195883
+UnknownText_0x195883:
 	text "Uh-oh… CLAIR is"
 	line "going to be mad…"
 	done
-; 0x1958a5
 
-UnknownText_0x1958a5: ; 0x1958a5
+BlackthornGym2FBoulderFellText:
 	text "The boulder fell"
 	line "through!"
 	done
-; 0x1958c0
 
-BlackthornGym2F_MapEventHeader: ; 0x1958c0
+BlackthornGym2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -200,9 +179,9 @@ BlackthornGym2F_MapEventHeader: ; 0x1958c0
 	db 8
 	person_event SPRITE_COOLTRAINER_M, 5, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermCody, $ffff
 	person_event SPRITE_COOLTRAINER_F, 15, 8, $8, $0, 255, 255, $82, 1, TrainerCooltrainerfFran, $ffff
-	person_event SPRITE_BOULDER, 6, 12, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, $0706
-	person_event SPRITE_BOULDER, 7, 6, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, $0707
-	person_event SPRITE_BOULDER, 20, 10, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, $0708
+	person_event SPRITE_BOULDER, 6, 12, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1
+	person_event SPRITE_BOULDER, 7, 6, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_2
+	person_event SPRITE_BOULDER, 20, 10, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_3
 	person_event SPRITE_BOULDER, 7, 7, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, $ffff
 	person_event SPRITE_BOULDER, 5, 10, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, $ffff
 	person_event SPRITE_BOULDER, 18, 12, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, $ffff

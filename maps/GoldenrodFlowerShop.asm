@@ -11,7 +11,7 @@ TeacherScript_0x5535d: ; 0x5535d
 	iftrue UnknownScript_0x5538f
 	checkevent EVENT_GOT_SQUIRTBOTTLE
 	iftrue UnknownScript_0x55399
-	checkevent $00b9
+	checkevent EVENT_MET_FLORIA
 	iffalse UnknownScript_0x5539f
 	checkevent $00ba
 	iffalse UnknownScript_0x5538f
@@ -24,7 +24,7 @@ TeacherScript_0x5535d: ; 0x5535d
 	verbosegiveitem SQUIRTBOTTLE, 1
 	setevent EVENT_GOT_SQUIRTBOTTLE
 	loadmovesprites
-	setevent $0769
+	setevent EVENT_FLORIA_AT_SUDOWOODO
 	clearevent $0768
 	end
 ; 0x5538f
@@ -62,7 +62,7 @@ LassScript_0x553a2: ; 0x553a2
 	loadmovesprites
 	setevent $00ba
 	setevent $0768
-	clearevent $0769
+	clearevent EVENT_FLORIA_AT_SUDOWOODO
 	end
 ; 0x553bf
 

@@ -6,11 +6,10 @@ FuchsiaCity_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x194b1e
-
-UnknownScript_0x194b1e:
-	setflag $003e
+.FlyPoint
+	setflag ENGINE_FLYPOINT_FUCHSIA
 	return
 
 YoungsterScript_0x194b22:

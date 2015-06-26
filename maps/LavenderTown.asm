@@ -6,11 +6,10 @@ LavenderTown_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1ad6e0
-
-UnknownScript_0x1ad6e0:
-	setflag $003b
+.FlyPoint
+	setflag ENGINE_FLYPOINT_LAVENDER
 	return
 
 PokefanMScript_0x1ad6e4:

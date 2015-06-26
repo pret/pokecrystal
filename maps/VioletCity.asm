@@ -6,11 +6,10 @@ VioletCity_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1a83b7
-
-UnknownScript_0x1a83b7:
-	setflag $0043
+.FlyPoint
+	setflag ENGINE_FLYPOINT_VIOLET
 	return
 
 FisherScript_0x1a83bb:

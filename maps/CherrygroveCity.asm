@@ -1,33 +1,28 @@
-CherrygroveCity_MapScriptHeader: ; 0x19c000
+CherrygroveCity_MapScriptHeader:
 	; trigger count
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19c00d, $0000
-	dw UnknownScript_0x19c00e, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
 	; callback count
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x19c00f
-; 0x19c00d
-
-UnknownScript_0x19c00d: ; 0x19c00d
+.Trigger1
 	end
-; 0x19c00e
 
-UnknownScript_0x19c00e: ; 0x19c00e
+.Trigger2
 	end
-; 0x19c00f
 
-UnknownScript_0x19c00f: ; 0x19c00f
-	setflag $0042
+.FlyPoint
+	setflag ENGINE_FLYPOINT_CHERRYGROVE
 	return
-; 0x19c013
 
-CherrygroveCityGuideGent: ; 0x19c013
+CherrygroveCityGuideGent:
 	faceplayer
 	loadfont
 	writetext GuideGentIntroText
@@ -89,13 +84,12 @@ CherrygroveCityGuideGent: ; 0x19c013
 	waitbutton
 	end
 
-.UnknownScript_0x19c097 ; 0x19c097
+.UnknownScript_0x19c097
 	jumpstd $002f
 	end
 
-.mapcardname ; 0x19c09b
+.mapcardname
 	db "MAP CARD@"
-; 0x19c0a4
 
 .No
 	writetext GuideGentNoText
@@ -103,11 +97,10 @@ CherrygroveCityGuideGent: ; 0x19c013
 	loadmovesprites
 	end
 
-UnknownScript_0x19c0aa: ; 0x19c0aa
+UnknownScript_0x19c0aa:
 	moveperson $3, $27, $7
-; 0x19c0ae
 
-UnknownScript_0x19c0ae: ; 0x19c0ae
+UnknownScript_0x19c0ae:
 	spriteface $0, $3
 	showemote $0, $0, 15
 	special Functionc48f
@@ -133,9 +126,8 @@ UnknownScript_0x19c0ae: ; 0x19c0ae
 	reloadmap
 	iftrue UnknownScript_0x19c11a
 	jump UnknownScript_0x19c126
-; 0x19c0ee
 
-UnknownScript_0x19c0ee: ; 0x19c0ee
+UnknownScript_0x19c0ee:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
 	loadtrainer RIVAL1, RIVAL1_1
@@ -145,9 +137,8 @@ UnknownScript_0x19c0ee: ; 0x19c0ee
 	reloadmap
 	iftrue UnknownScript_0x19c11a
 	jump UnknownScript_0x19c126
-; 0x19c104
 
-UnknownScript_0x19c104: ; 0x19c104
+UnknownScript_0x19c104:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
 	loadtrainer RIVAL1, RIVAL1_2
@@ -157,24 +148,22 @@ UnknownScript_0x19c104: ; 0x19c104
 	reloadmap
 	iftrue UnknownScript_0x19c11a
 	jump UnknownScript_0x19c126
-; 0x19c11a
 
-UnknownScript_0x19c11a: ; 0x19c11a
+UnknownScript_0x19c11a:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x19c608
 	closetext
 	loadmovesprites
 	jump UnknownScript_0x19c12f
-; 0x19c126
 
-UnknownScript_0x19c126: ; 0x19c126
+UnknownScript_0x19c126:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x19c59e
 	closetext
 	loadmovesprites
-UnknownScript_0x19c12f: ; 0x19c12f
+UnknownScript_0x19c12f:
 	playsound SFX_TACKLE
 	applymovement $0, MovementData_0x19c1d4
 	spriteface $0, $2
@@ -184,9 +173,8 @@ UnknownScript_0x19c12f: ; 0x19c12f
 	special Functionc658
 	playmapmusic
 	end
-; 0x19c146
 
-TeacherScript_0x19c146: ; 0x19c146
+TeacherScript_0x19c146:
 	faceplayer
 	loadfont
 	checkflag $0001
@@ -195,16 +183,14 @@ TeacherScript_0x19c146: ; 0x19c146
 	closetext
 	loadmovesprites
 	end
-; 0x19c154
 
-UnknownScript_0x19c154: ; 0x19c154
+UnknownScript_0x19c154:
 	writetext UnknownText_0x19c6a8
 	closetext
 	loadmovesprites
 	end
-; 0x19c15a
 
-YoungsterScript_0x19c15a: ; 0x19c15a
+YoungsterScript_0x19c15a:
 	faceplayer
 	loadfont
 	checkflag $000b
@@ -213,16 +199,14 @@ YoungsterScript_0x19c15a: ; 0x19c15a
 	closetext
 	loadmovesprites
 	end
-; 0x19c168
 
-UnknownScript_0x19c168: ; 0x19c168
+UnknownScript_0x19c168:
 	writetext UnknownText_0x19c701
 	closetext
 	loadmovesprites
 	end
-; 0x19c16e
 
-MysticWaterGuy: ; 0x19c16e
+MysticWaterGuy:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
@@ -232,37 +216,34 @@ MysticWaterGuy: ; 0x19c16e
 	verbosegiveitem MYSTIC_WATER, 1
 	iffalse UnknownScript_0x19c187
 	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
-UnknownScript_0x19c183: ; 0x19c183
+UnknownScript_0x19c183:
 	writetext UnknownText_0x19c7c1
 	closetext
-UnknownScript_0x19c187: ; 0x19c187
+UnknownScript_0x19c187:
 	loadmovesprites
 	end
-; 0x19c189
 
 CherrygroveCitySign:
 	jumptext CherrygroveCitySignText
 
-GuideGentsHouseSign: ; 0x19c18c
+GuideGentsHouseSign:
 	jumptext GuideGentsHouseSignText
-; 0x19c18f
 
 CherrygroveCityPokeCenterSign:
 	jumpstd pokecentersign
 
-CherrygroveCityMartSign: ; 0x19c192
+CherrygroveCityMartSign:
 	jumpstd martsign
 
-MovementData_0x19c195: ; 0x19c195
+MovementData_0x19c195:
 	step_left
 	step_left
 	step_up
 	step_left
 	turn_head_up
 	step_end
-; 0x19c19b
 
-MovementData_0x19c19b: ; 0x19c19b
+MovementData_0x19c19b:
 	step_left
 	step_left
 	step_left
@@ -271,9 +252,8 @@ MovementData_0x19c19b: ; 0x19c19b
 	step_left
 	turn_head_up
 	step_end
-; 0x19c1a3
 
-MovementData_0x19c1a3: ; 0x19c1a3
+MovementData_0x19c1a3:
 	step_left
 	step_left
 	step_left
@@ -283,9 +263,8 @@ MovementData_0x19c1a3: ; 0x19c1a3
 	step_left
 	turn_head_up
 	step_end
-; 0x19c1ac
 
-MovementData_0x19c1ac: ; 0x19c1ac
+MovementData_0x19c1ac:
 	step_left
 	step_left
 	step_left
@@ -296,9 +275,8 @@ MovementData_0x19c1ac: ; 0x19c1ac
 	step_down
 	turn_head_left
 	step_end
-; 0x19c1b6
 
-MovementData_0x19c1b6: ; 0x19c1b6
+MovementData_0x19c1b6:
 	step_down
 	step_down
 	step_right
@@ -320,36 +298,31 @@ MovementData_0x19c1b6: ; 0x19c1b6
 	step_right
 	turn_head_up
 	step_end
-; 0x19c1cb
 
-MovementData_0x19c1cb: ; 0x19c1cb
+MovementData_0x19c1cb:
 	step_up
 	step_up
 	step_end
-; 0x19c1ce
 
-MovementData_0x19c1ce: ; 0x19c1ce
+MovementData_0x19c1ce:
 	step_left
 	step_left
 	step_left
 	step_left
 	step_left
 	step_end
-; 0x19c1d4
 
-MovementData_0x19c1d4: ; 0x19c1d4
+MovementData_0x19c1d4:
 	big_step_down
 	turn_head_up
 	step_end
-; 0x19c1d7
 
-MovementData_0x19c1d7: ; 0x19c1d7
+MovementData_0x19c1d7:
 	step_left
 	turn_head_down
 	step_end
-; 0x19c1da
 
-MovementData_0x19c1da: ; 0x19c1da
+MovementData_0x19c1da:
 	big_step_left
 	big_step_left
 	big_step_left
@@ -457,7 +430,7 @@ GuideGentNoText:
 	line "when you like."
 	done
 
-UnknownText_0x19c4e2: ; 0x19c4e2
+UnknownText_0x19c4e2:
 	text $56, " ", $56, " ", $56
 
 	para "You got a #MON"
@@ -477,15 +450,13 @@ UnknownText_0x19c4e2: ; 0x19c4e2
 	para "I'll show you"
 	line "what I mean!"
 	done
-; 0x19c57f
 
-UnknownText_0x19c57f: ; 0x19c57f
+UnknownText_0x19c57f:
 	text "Humph. Are you"
 	line "happy you won?"
 	done
-; 0x19c59e
 
-UnknownText_0x19c59e: ; 0x19c59e
+UnknownText_0x19c59e:
 	text $56, " ", $56, " ", $56
 
 	para "My name's ???."
@@ -495,15 +466,13 @@ UnknownText_0x19c59e: ; 0x19c59e
 	cont "est #MON"
 	cont "trainer."
 	done
-; 0x19c5e6
 
-UnknownText_0x19c5e6: ; 0x19c5e6
+UnknownText_0x19c5e6:
 	text "Humph. That was a"
 	line "waste of time."
 	done
-; 0x19c608
 
-UnknownText_0x19c608: ; 0x19c608
+UnknownText_0x19c608:
 	text $56, " ", $56, " ", $56
 
 	para "My name's ???."
@@ -513,9 +482,8 @@ UnknownText_0x19c608: ; 0x19c608
 	cont "est #MON"
 	cont "trainer."
 	done
-; 0x19c650
 
-UnknownText_0x19c650: ; 0x19c650
+UnknownText_0x19c650:
 	text "Did you talk to"
 	line "the old man by the"
 	cont "#MON CENTER?"
@@ -524,23 +492,20 @@ UnknownText_0x19c650: ; 0x19c650
 	line "JOHTO on your"
 	cont "#GEAR."
 	done
-; 0x19c6a8
 
-UnknownText_0x19c6a8: ; 0x19c6a8
+UnknownText_0x19c6a8:
 	text "When you're with"
 	line "#MON, going"
 	cont "anywhere is fun."
 	done
-; 0x19c6d6
 
-UnknownText_0x19c6d6: ; 0x19c6d6
+UnknownText_0x19c6d6:
 	text "MR.#MON's house"
 	line "is still farther"
 	cont "up ahead."
 	done
-; 0x19c701
 
-UnknownText_0x19c701: ; 0x19c701
+UnknownText_0x19c701:
 	text "I battled the"
 	line "trainers on the"
 	cont "road."
@@ -551,9 +516,8 @@ UnknownText_0x19c701: ; 0x19c701
 	para "must take them to"
 	line "a #MON CENTER."
 	done
-; 0x19c766
 
-UnknownText_0x19c766: ; 0x19c766
+UnknownText_0x19c766:
 	text "A #MON I caught"
 	line "had an item."
 
@@ -563,28 +527,24 @@ UnknownText_0x19c766: ; 0x19c766
 	para "I don't need it,"
 	line "so do you want it?"
 	done
-; 0x19c7c1
 
-UnknownText_0x19c7c1: ; 0x19c7c1
+UnknownText_0x19c7c1:
 	text "Back to fishing"
 	line "for me, then."
 	done
-; 0x19c7e0
 
-CherrygroveCitySignText: ; 0x19c7e0
+CherrygroveCitySignText:
 	text "CHERRYGROVE CITY"
 
 	para "The City of Cute,"
 	line "Fragrant Flowers"
 	done
-; 0x19c815
 
-GuideGentsHouseSignText: ; 0x19c815
+GuideGentsHouseSignText:
 	text "GUIDE GENT'S HOUSE"
 	done
-; 0x19c829
 
-CherrygroveCity_MapEventHeader: ; 0x19c829
+CherrygroveCity_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -615,4 +575,3 @@ CherrygroveCity_MapEventHeader: ; 0x19c829
 	person_event SPRITE_TEACHER, 16, 31, $5, $1, 255, 255, $90, 0, TeacherScript_0x19c146, $ffff
 	person_event SPRITE_YOUNGSTER, 11, 27, $5, $1, 255, 255, $80, 0, YoungsterScript_0x19c15a, $ffff
 	person_event SPRITE_FISHER, 16, 11, $9, $0, 255, 255, $a0, 0, MysticWaterGuy, $ffff
-; 0x19c8ad

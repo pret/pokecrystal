@@ -106,7 +106,7 @@ LassScript_0x19408c: ; 0x19408c
 	loadfont
 	checkevent $00ba
 	iftrue UnknownScript_0x1940b3
-	setevent $00b9
+	setevent EVENT_MET_FLORIA
 	writetext UnknownText_0x1942f1
 	closetext
 	loadmovesprites
@@ -786,5 +786,5 @@ Route36_MapEventHeader: ; 0x194a66
 	person_event SPRITE_FISHER, 13, 48, $8, $0, 255, 255, $0, 0, FisherScript_0x1940b9, $ffff
 	person_event SPRITE_FRUIT_TREE, 8, 25, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194247, $ffff
 	person_event SPRITE_YOUNGSTER, 10, 50, $2, $11, 255, 255, $0, 0, ArthurScript, $075a
-	person_event SPRITE_LASS, 16, 37, $6, $0, 255, 255, $90, 0, LassScript_0x19408c, $0769
+	person_event SPRITE_LASS, 16, 37, $6, $0, 255, 255, $90, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
 	person_event SPRITE_SUICUNE, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b0

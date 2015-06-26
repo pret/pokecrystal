@@ -97,6 +97,7 @@ EVENT_GOT_TM12_SWEET_SCENT                             EQU $07a
 EVENT_RELEASED_THE_BEASTS                              EQU $07b
 EVENT_GOT_MASTER_BALL_FROM_ELM                         EQU $07c
 EVENT_FOUND_REVIVE_IN_ROCKET_BASE_B1F                  EQU $086
+EVENT_MET_FLORIA                                       EQU $0b9
 EVENT_CAN_GIVE_GS_BALL_TO_KURT                         EQU $0be
 EVENT_RETURNED_MACHINE_PART                            EQU $0c9
 EVENT_MET_MANAGER_AT_POWER_PLANT                       EQU $0ca
@@ -570,6 +571,9 @@ EVENT_RIVAL_SPROUT_TOWER                               EQU $6c4
 EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE                EQU $6ff
 EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER               EQU $700
 EVENT_ELMS_AIDE_IN_LAB                                 EQU $701
+EVENT_BOULDER_IN_BLACKTHORN_GYM_1                      EQU $706
+EVENT_BOULDER_IN_BLACKTHORN_GYM_2                      EQU $707
+EVENT_BOULDER_IN_BLACKTHORN_GYM_3                      EQU $708
 EVENT_BOULDER_IN_ICE_PATH_1                            EQU $70d
 EVENT_BOULDER_IN_ICE_PATH_2                            EQU $70e
 EVENT_BOULDER_IN_ICE_PATH_3                            EQU $70f
@@ -577,6 +581,7 @@ EVENT_BOULDER_IN_ICE_PATH_4                            EQU $710
 EVENT_OPENED_MT_SILVER                                 EQU $74f
 EVENT_FOUGHT_SNORLAX                                   EQU $750
 EVENT_RED_IN_MT_SILVER                                 EQU $762
+EVENT_FLORIA_AT_SUDOWOODO                              EQU $769
 EVENT_TRAINERS_IN_CERULEAN_GYM                         EQU $76f
 EVENT_TELEPORT_GUY                                     EQU $77c
 EVENT_PICKED_UP_FOCUS_BAND                             EQU $77d

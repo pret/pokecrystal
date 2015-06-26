@@ -6,11 +6,10 @@ ViridianCity_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1a9a48
-
-UnknownScript_0x1a9a48:
-	setflag $0036
+.FlyPoint
+	setflag ENGINE_FLYPOINT_VIRIDIAN
 	return
 
 GrampsScript_0x1a9a4c:

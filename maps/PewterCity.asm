@@ -6,11 +6,10 @@ PewterCity_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x18c005
-
-UnknownScript_0x18c005:
-	setflag $0037
+.FlyPoint
+	setflag ENGINE_FLYPOINT_PEWTER
 	return
 
 CooltrainerFScript_0x18c009:

@@ -6,11 +6,10 @@ CinnabarIsland_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1ac9ac
-
-UnknownScript_0x1ac9ac:
-	setflag $003f
+.FlyPoint
+	setflag ENGINE_FLYPOINT_CINNABAR
 	return
 
 CinnabarIslandBlue:

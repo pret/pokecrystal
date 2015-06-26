@@ -1,4 +1,4 @@
-Route23_MapScriptHeader: ; 0x1ae52e
+Route23_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -6,20 +6,16 @@ Route23_MapScriptHeader: ; 0x1ae52e
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1ae533
-; 0x1ae533
-
-UnknownScript_0x1ae533: ; 0x1ae533
-	setflag $0040
+.FlyPoint
+	setflag ENGINE_FLYPOINT_INDIGO_PLATEAU
 	return
-; 0x1ae537
 
-MapRoute23Signpost0Script: ; 0x1ae537
-	jumptext UnknownText_0x1ae53a
-; 0x1ae53a
+IndigoPlateauSign:
+	jumptext IndigoPlateauSignText
 
-UnknownText_0x1ae53a: ; 0x1ae53a
+IndigoPlateauSignText:
 	text "INDIGO PLATEAU"
 
 	para "The Ultimate Goal"
@@ -27,9 +23,8 @@ UnknownText_0x1ae53a: ; 0x1ae53a
 
 	para "#MON LEAGUE HQ"
 	done
-; 0x1ae579
 
-Route23_MapEventHeader: ; 0x1ae579
+Route23_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -45,8 +40,7 @@ Route23_MapEventHeader: ; 0x1ae579
 
 	; signposts
 	db 1
-	signpost 7, 11, $0, MapRoute23Signpost0Script
+	signpost 7, 11, $0, IndigoPlateauSign
 
 	; people-events
 	db 0
-; 0x1ae598

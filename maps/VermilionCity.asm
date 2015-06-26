@@ -6,11 +6,10 @@ VermilionCity_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1aa97f
-
-UnknownScript_0x1aa97f:
-	setflag $003a
+.FlyPoint
+	setflag ENGINE_FLYPOINT_VERMILION
 	return
 
 TeacherScript_0x1aa983:

@@ -24,7 +24,7 @@ UnknownScript_0x56c0e: ; 0x56c0e
 ; 0x56c11
 
 UnknownScript_0x56c11: ; 0x56c11
-	checkflag $005e
+	checkflag ENGINE_5E
 	iftrue UnknownScript_0x56c19
 	disappear $d
 UnknownScript_0x56c19: ;0x56c19

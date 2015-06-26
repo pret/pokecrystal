@@ -3,24 +3,23 @@ OlivineCity_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1a882d, $0000
-	dw UnknownScript_0x1a882e, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
 	; callback count
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1a882f
-
-UnknownScript_0x1a882d:
+.Trigger1
 	end
 
-UnknownScript_0x1a882e:
+.Trigger2
 	end
 
-UnknownScript_0x1a882f:
-	setflag $0047
+.FlyPoint
+	setflag ENGINE_FLYPOINT_OLIVINE
 	return
 
 UnknownScript_0x1a8833:

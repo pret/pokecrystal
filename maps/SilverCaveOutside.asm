@@ -6,11 +6,10 @@ SilverCaveOutside_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1b2047
-
-UnknownScript_0x1b2047:
-	setflag $004c
+.FlyPoint
+	setflag ENGINE_FLYPOINT_SILVER_CAVE
 	return
 
 MtSilverPokeCenterSign:

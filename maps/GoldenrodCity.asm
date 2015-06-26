@@ -6,37 +6,35 @@ GoldenrodCity_MapScriptHeader:
 	db 2
 
 	; callbacks
+	dbw 5, .FlyPointAndFloria
+	dbw 2, .MoveTutor
 
-	dbw 5, UnknownScript_0x1988d8
-
-	dbw 2, UnknownScript_0x1988e8
-
-UnknownScript_0x1988d8:
-	setflag $0046
-	setflag $0016
-	checkevent $00b9
-	iftrue UnknownScript_0x1988e7
-	clearevent $0769
-UnknownScript_0x1988e7:
+.FlyPointAndFloria
+	setflag ENGINE_FLYPOINT_GOLDENROD
+	setflag ENGINE_16
+	checkevent EVENT_MET_FLORIA
+	iftrue .FloriaDone
+	clearevent EVENT_FLORIA_AT_SUDOWOODO
+.FloriaDone
 	return
 
-UnknownScript_0x1988e8:
+.MoveTutor
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iffalse UnknownScript_0x198908
+	iffalse .MoveTutorDone
 	checkitem COIN_CASE
-	iffalse UnknownScript_0x1988fd
+	iffalse .MoveTutorDisappear
 	checkcode $b
-	if_equal WEDNESDAY, UnknownScript_0x198900
-	if_equal SATURDAY, UnknownScript_0x198900
-UnknownScript_0x1988fd:
+	if_equal WEDNESDAY, .MoveTutorAppear
+	if_equal SATURDAY, .MoveTutorAppear
+.MoveTutorDisappear
 	disappear $10
 	return
 
-UnknownScript_0x198900:
-	checkflag $005e
-	iftrue UnknownScript_0x198908
+.MoveTutorAppear
+	checkflag ENGINE_5E
+	iftrue .MoveTutorDone
 	appear $10
-UnknownScript_0x198908:
+.MoveTutorDone
 	return
 
 MoveTutor:
@@ -131,7 +129,7 @@ UnknownScript_0x1989ca:
 	playsound SFX_ENTER_DOOR
 	disappear $10
 	clearevent $076b
-	setflag $005e
+	setflag ENGINE_5E
 	waitbutton
 	end
 

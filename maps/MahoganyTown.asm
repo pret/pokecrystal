@@ -3,24 +3,23 @@ MahoganyTown_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19000d, $0000
-	dw UnknownScript_0x19000e, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
 	; callback count
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x19000f
-
-UnknownScript_0x19000d:
+.Trigger1
 	end
 
-UnknownScript_0x19000e:
+.Trigger2
 	end
 
-UnknownScript_0x19000f:
-	setflag $0049
+.FlyPoint
+	setflag ENGINE_FLYPOINT_MAHOGANY
 	return
 
 UnknownScript_0x190013:

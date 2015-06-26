@@ -1,4 +1,4 @@
-BlackthornCity_MapScriptHeader: ; 0x1a46d0
+BlackthornCity_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -6,17 +6,14 @@ BlackthornCity_MapScriptHeader: ; 0x1a46d0
 	db 2
 
 	; callbacks
+	dbw 5, .FlyPoint
+	dbw 2, .Santos
 
-	dbw 5, UnknownScript_0x1a46d8
-
-	dbw 2, SantosCallback
-
-UnknownScript_0x1a46d8: ; 0x1a46d8
-	setflag $004b
+.FlyPoint
+	setflag ENGINE_FLYPOINT_BLACKTHORN
 	return
-; 0x1a46dc
 
-SantosCallback:
+.Santos
 	checkcode $b
 	if_equal SATURDAY, .SantosAppears
 	disappear $9
@@ -26,7 +23,7 @@ SantosCallback:
 	appear $9
 	return
 
-SuperNerdScript_0x1a46e8: ; 0x1a46e8
+SuperNerdScript_0x1a46e8:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_CLAIR
@@ -37,31 +34,26 @@ SuperNerdScript_0x1a46e8: ; 0x1a46e8
 	closetext
 	loadmovesprites
 	end
-; 0x1a46fc
 
-UnknownScript_0x1a46fc: ; 0x1a46fc
+UnknownScript_0x1a46fc:
 	writetext UnknownText_0x1a47f3
 	closetext
 	loadmovesprites
 	end
-; 0x1a4702
 
-UnknownScript_0x1a4702: ; 0x1a4702
+UnknownScript_0x1a4702:
 	writetext UnknownText_0x1a4865
 	closetext
 	loadmovesprites
 	end
-; 0x1a4708
 
-GrampsScript_0x1a4708: ; 0x1a4708
+GrampsScript_0x1a4708:
 	jumptextfaceplayer UnknownText_0x1a48c3
-; 0x1a470b
 
-GrampsScript_0x1a470b: ; 0x1a470b
+GrampsScript_0x1a470b:
 	jumptextfaceplayer UnknownText_0x1a48fb
-; 0x1a470e
 
-BlackBeltScript_0x1a470e: ; 0x1a470e
+BlackBeltScript_0x1a470e:
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
@@ -70,26 +62,21 @@ BlackBeltScript_0x1a470e: ; 0x1a470e
 	closetext
 	loadmovesprites
 	end
-; 0x1a471c
 
-UnknownScript_0x1a471c: ; 0x1a471c
+UnknownScript_0x1a471c:
 	writetext UnknownText_0x1a4983
 	closetext
 	loadmovesprites
 	end
-; 0x1a4722
 
-CooltrainerFScript_0x1a4722: ; 0x1a4722
+CooltrainerFScript_0x1a4722:
 	jumptextfaceplayer UnknownText_0x1a49bd
-; 0x1a4725
 
-YoungsterScript_0x1a4725: ; 0x1a4725
+YoungsterScript_0x1a4725:
 	jumptextfaceplayer UnknownText_0x1a49f1
-; 0x1a4728
 
-CooltrainerFScript_0x1a4728: ; 0x1a4728
+CooltrainerFScript_0x1a4728:
 	jumptextfaceplayer UnknownText_0x1a4b1e
-; 0x1a472b
 
 SantosScript:
 	faceplayer
@@ -148,7 +135,7 @@ BlackthornCityPokeCenterSign:
 BlackthornCityMartSign:
 	jumpstd martsign
 
-UnknownText_0x1a477a: ; 0x1a477a
+UnknownText_0x1a477a:
 	text "I am sorry."
 
 	para "CLAIR, our GYM"
@@ -161,9 +148,8 @@ UnknownText_0x1a477a: ; 0x1a477a
 	line "when our LEADER"
 	cont "will return."
 	done
-; 0x1a47f3
 
-UnknownText_0x1a47f3: ; 0x1a47f3
+UnknownText_0x1a47f3:
 	text "CLAIR, our GYM"
 	line "LEADER, is waiting"
 	cont "for you."
@@ -174,9 +160,8 @@ UnknownText_0x1a47f3: ; 0x1a47f3
 	para "a run-of-the-mill"
 	line "trainer to win."
 	done
-; 0x1a4865
 
-UnknownText_0x1a4865: ; 0x1a4865
+UnknownText_0x1a4865:
 	text "You defeated"
 	line "CLAIR?"
 
@@ -188,18 +173,16 @@ UnknownText_0x1a4865: ; 0x1a4865
 	para "anyone other than"
 	line "LANCE."
 	done
-; 0x1a48c3
 
-UnknownText_0x1a48c3: ; 0x1a48c3
+UnknownText_0x1a48c3:
 	text "No. Only chosen"
 	line "trainers may train"
 
 	para "here."
 	line "Please leave."
 	done
-; 0x1a48fb
 
-UnknownText_0x1a48fb: ; 0x1a48fb
+UnknownText_0x1a48fb:
 	text "If CLAIR allows"
 	line "it, her grand-"
 	cont "father--our MASTER"
@@ -207,37 +190,32 @@ UnknownText_0x1a48fb: ; 0x1a48fb
 
 	para "You may enter."
 	done
-; 0x1a494a
 
-UnknownText_0x1a494a: ; 0x1a494a
+UnknownText_0x1a494a:
 	text "My radio's busted?"
 	line "Lately, I only get"
 	cont "this weird signal."
 	done
-; 0x1a4983
 
-UnknownText_0x1a4983: ; 0x1a4983
+UnknownText_0x1a4983:
 	text "Arooo! Voices in"
 	line "my head!"
 
 	para "Huh? I'm listening"
 	line "to my radio!"
 	done
-; 0x1a49bd
 
-UnknownText_0x1a49bd: ; 0x1a49bd
+UnknownText_0x1a49bd:
 	text "Are you going to"
 	line "make your #MON"
 	cont "forget some moves?"
 	done
-; 0x1a49f1
 
-UnknownText_0x1a49f1: ; 0x1a49f1
+UnknownText_0x1a49f1:
 	text "Dragon masters all"
 	line "come from the city"
 	cont "of BLACKTHORN."
 	done
-; 0x1a4a27
 
 MeetSantosText:
 	text "SANTOS: …"
@@ -279,7 +257,7 @@ SantosNotSaturdayText:
 	line "not Saturday…"
 	done
 
-UnknownText_0x1a4b1e: ; 0x1a4b1e
+UnknownText_0x1a4b1e:
 	text "Wow, you came"
 	line "through the ICE"
 	cont "PATH?"
@@ -287,7 +265,6 @@ UnknownText_0x1a4b1e: ; 0x1a4b1e
 	para "You must be a real"
 	line "hotshot trainer!"
 	done
-; 0x1a4b67
 
 BlackthornCitySignText:
 	text "BLACKTHORN CITY"
@@ -296,7 +273,7 @@ BlackthornCitySignText:
 	line "Retreat"
 	done
 
-BlackthornGymSignText: ; 0x1a4b91
+BlackthornGymSignText:
 	text "BLACKTHORN CITY"
 	line "#MON GYM"
 	cont "LEADER: CLAIR"
@@ -304,7 +281,6 @@ BlackthornGymSignText: ; 0x1a4b91
 	para "The Blessed User"
 	line "of Dragon #MON"
 	done
-; 0x1a4bd9
 
 MoveDeletersHouseSignText:
 	text "MOVE DELETER'S"
@@ -316,7 +292,7 @@ DragonDensSignText:
 	line "AHEAD"
 	done
 
-BlackthornCityTrainerTipsText: ; 0x1a4c03
+BlackthornCityTrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "A #MON holding"
@@ -326,9 +302,8 @@ BlackthornCityTrainerTipsText: ; 0x1a4c03
 	line "of any status"
 	cont "problem."
 	done
-; 0x1a4c57
 
-BlackthornCity_MapEventHeader: ; 0x1a4c57
+BlackthornCity_MapEventHeader:
 	; filler
 	db 0, 0
 

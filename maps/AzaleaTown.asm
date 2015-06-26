@@ -1,38 +1,32 @@
-AzaleaTown_MapScriptHeader: ; 0x198000
+AzaleaTown_MapScriptHeader:
 	; trigger count
 	db 3
 
 	; triggers
-	dw UnknownScript_0x198011, $0000
-	dw UnknownScript_0x198012, $0000
-	dw UnknownScript_0x198013, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
+	dw .Trigger3, $0000
 
 	; callback count
 	db 1
 
 	; callbacks
+	dbw 5, .Flypoint
 
-	dbw 5, UnknownScript_0x198014
-; 0x198011
-
-UnknownScript_0x198011: ; 0x198011
+.Trigger1
 	end
-; 0x198012
 
-UnknownScript_0x198012: ; 0x198012
+.Trigger2
 	end
-; 0x198013
 
-UnknownScript_0x198013: ; 0x198013
+.Trigger3
 	end
-; 0x198014
 
-UnknownScript_0x198014: ; 0x198014
-	setflag $0044
+.Flypoint
+	setflag ENGINE_FLYPOINT_AZALEA
 	return
-; 0x198018
 
-UnknownScript_0x198018: ; 0x198018
+UnknownScript_0x198018:
 	moveperson $b, $b, $b
 	spriteface $0, $3
 	showemote $0, $0, 15
@@ -42,9 +36,8 @@ UnknownScript_0x198018: ; 0x198018
 	applymovement $b, MovementData_0x198134
 	spriteface $0, $0
 	jump UnknownScript_0x198049
-; 0x198034
 
-UnknownScript_0x198034: ; 0x198034
+UnknownScript_0x198034:
 	spriteface $0, $3
 	showemote $0, $0, 15
 	special Functionc48f
@@ -52,7 +45,7 @@ UnknownScript_0x198034: ; 0x198034
 	appear $b
 	applymovement $b, MovementData_0x19813c
 	spriteface $0, $1
-UnknownScript_0x198049: ; 0x198049
+UnknownScript_0x198049:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x19814d
@@ -70,9 +63,8 @@ UnknownScript_0x198049: ; 0x198049
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x198091
-; 0x198071
 
-UnknownScript_0x198071: ; 0x198071
+UnknownScript_0x198071:
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
 	loadtrainer RIVAL1, RIVAL1_4
@@ -80,9 +72,8 @@ UnknownScript_0x198071: ; 0x198071
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x198091
-; 0x198081
 
-UnknownScript_0x198081: ; 0x198081
+UnknownScript_0x198081:
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
 	loadtrainer RIVAL1, RIVAL1_5
@@ -90,9 +81,8 @@ UnknownScript_0x198081: ; 0x198081
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x198091
-; 0x198091
 
-UnknownScript_0x198091: ; 0x198091
+UnknownScript_0x198091:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x198233
@@ -106,17 +96,14 @@ UnknownScript_0x198091: ; 0x198091
 	waitbutton
 	playmapmusic
 	end
-; 0x1980ab
 
-AzaleaRocketScript_0x1980ab: ; 0x1980ab
+AzaleaRocketScript_0x1980ab:
 	jumptextfaceplayer UnknownText_0x19837b
-; 0x1980ae
 
-AzaleaRocketScript_0x1980ae: ; 0x1980ae
+AzaleaRocketScript_0x1980ae:
 	jumptextfaceplayer UnknownText_0x1983c7
-; 0x1980b1
 
-GrampsScript_0x1980b1: ; 0x1980b1
+GrampsScript_0x1980b1:
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
@@ -125,24 +112,20 @@ GrampsScript_0x1980b1: ; 0x1980b1
 	closetext
 	loadmovesprites
 	end
-; 0x1980bf
 
-UnknownScript_0x1980bf: ; 0x1980bf
+UnknownScript_0x1980bf:
 	writetext UnknownText_0x198473
 	closetext
 	loadmovesprites
 	end
-; 0x1980c5
 
-TeacherScript_0x1980c5: ; 0x1980c5
+TeacherScript_0x1980c5:
 	jumptextfaceplayer UnknownText_0x1984ce
-; 0x1980c8
 
-YoungsterScript_0x1980c8: ; 0x1980c8
+YoungsterScript_0x1980c8:
 	jumptextfaceplayer UnknownText_0x19851a
-; 0x1980cb
 
-SlowpokeScript_0x1980cb: ; 0x1980cb
+SlowpokeScript_0x1980cb:
 	loadfont
 	writetext UnknownText_0x1985b0
 	pause 60
@@ -151,9 +134,8 @@ SlowpokeScript_0x1980cb: ; 0x1980cb
 	closetext
 	loadmovesprites
 	end
-; 0x1980da
 
-WoosterScript: ; 0x1980da
+WoosterScript:
 ; unused
 	faceplayer
 	loadfont
@@ -162,9 +144,8 @@ WoosterScript: ; 0x1980da
 	closetext
 	loadmovesprites
 	end
-; 0x1980e5
 
-UnknownScript_0x1980e5: ; 0x1980e5
+UnknownScript_0x1980e5:
 	applymovement $0, MovementData_0x198148
 	loadfont
 	writetext UnknownText_0x1985df
@@ -182,9 +163,8 @@ UnknownScript_0x1980e5: ; 0x1980e5
 	dotrigger $0
 	loadmovesprites
 	end
-; 0x19810c
 
-KurtOutsideScript_0x19810c: ; 0x19810c
+KurtOutsideScript_0x19810c:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x198628
@@ -192,7 +172,6 @@ KurtOutsideScript_0x19810c: ; 0x19810c
 	spriteface $d, $2
 	loadmovesprites
 	end
-; 0x198117
 
 AzaleaTownSign:
 	jumptext AzaleaTownSignText
@@ -221,13 +200,12 @@ AzaleaTownMartSign:
 WhiteApricornTree:
 	fruittree $14
 
-MapAzaleaTownSignpostItem8: ; 0x198131
+MapAzaleaTownSignpostItem8:
 	dw $00b1
 	db FULL_HEAL
 	
-; 0x198134
 
-MovementData_0x198134: ; 0x198134
+MovementData_0x198134:
 	step_left
 	step_left
 	step_left
@@ -236,9 +214,8 @@ MovementData_0x198134: ; 0x198134
 	step_left
 	turn_head_up
 	step_end
-; 0x19813c
 
-MovementData_0x19813c: ; 0x19813c
+MovementData_0x19813c:
 	step_left
 	step_left
 	step_left
@@ -247,24 +224,21 @@ MovementData_0x19813c: ; 0x19813c
 	step_left
 	turn_head_down
 	step_end
-; 0x198144
 
-MovementData_0x198144: ; 0x198144
+MovementData_0x198144:
 	step_left
 	step_left
 	step_left
 	step_end
-; 0x198148
 
-MovementData_0x198148: ; 0x198148
+MovementData_0x198148:
 	step_left
 	step_left
 	step_up
 	turn_head_left
 	step_end
-; 0x19814d
 
-UnknownText_0x19814d: ; 0x19814d
+UnknownText_0x19814d:
 	text "…Tell me some-"
 	line "thing."
 
@@ -280,9 +254,8 @@ UnknownText_0x19814d: ; 0x19814d
 	line "Then let's see how"
 	cont "good you are."
 	done
-; 0x1981e6
 
-UnknownText_0x1981e6: ; 0x1981e6
+UnknownText_0x1981e6:
 	text "… Humph! Useless"
 	line "#MON!"
 
@@ -292,9 +265,8 @@ UnknownText_0x1981e6: ; 0x1981e6
 	para "my #MON were"
 	line "weak."
 	done
-; 0x198233
 
-UnknownText_0x198233: ; 0x198233
+UnknownText_0x198233:
 	text "I hate the weak."
 
 	para "#MON, trainers."
@@ -323,15 +295,13 @@ UnknownText_0x198233: ; 0x198233
 	para "like you is only a"
 	line "distraction."
 	done
-; 0x19835b
 
-UnknownText_0x19835b: ; 0x19835b
+UnknownText_0x19835b:
 	text "…Humph! I knew"
 	line "you were lying."
 	done
-; 0x19837b
 
-UnknownText_0x19837b: ; 0x19837b
+UnknownText_0x19837b:
 	text "It's unsafe to go"
 	line "in there, so I'm"
 	cont "standing guard."
@@ -339,9 +309,8 @@ UnknownText_0x19837b: ; 0x19837b
 	para "Aren't I a good"
 	line "Samaritan?"
 	done
-; 0x1983c7
 
-UnknownText_0x1983c7: ; 0x1983c7
+UnknownText_0x1983c7:
 	text "Do you know about"
 	line "SLOWPOKETAIL? I"
 	cont "heard it's tasty!"
@@ -349,9 +318,8 @@ UnknownText_0x1983c7: ; 0x1983c7
 	para "Aren't you glad I"
 	line "told you that?"
 	done
-; 0x19841b
 
-UnknownText_0x19841b: ; 0x19841b
+UnknownText_0x19841b:
 	text "The SLOWPOKE have"
 	line "disappeared from"
 	cont "town…"
@@ -360,9 +328,8 @@ UnknownText_0x19841b: ; 0x19841b
 	line "TAILS are being"
 	cont "sold somewhere."
 	done
-; 0x198473
 
-UnknownText_0x198473: ; 0x198473
+UnknownText_0x198473:
 	text "The SLOWPOKE have"
 	line "returned."
 
@@ -372,9 +339,8 @@ UnknownText_0x198473: ; 0x198473
 	para "goofing off some-"
 	line "where."
 	done
-; 0x1984ce
 
-UnknownText_0x1984ce: ; 0x1984ce
+UnknownText_0x1984ce:
 	text "Did you come to"
 	line "get KURT to make"
 	cont "some BALLS?"
@@ -382,9 +348,8 @@ UnknownText_0x1984ce: ; 0x1984ce
 	para "A lot of people do"
 	line "just that."
 	done
-; 0x19851a
 
-UnknownText_0x19851a: ; 0x19851a
+UnknownText_0x19851a:
 	text "Cut through AZALEA"
 	line "and you'll be in"
 	cont "ILEX FOREST."
@@ -399,45 +364,38 @@ UnknownText_0x19851a: ; 0x19851a
 	line "#MON can CUT"
 	cont "down trees."
 	done
-; 0x1985b0
 
-UnknownText_0x1985b0: ; 0x1985b0
+UnknownText_0x1985b0:
 	text "SLOWPOKE: …"
 
 	para $56, " ", $56, " ", $56
 	done
-; 0x1985c3
 
-UnknownText_0x1985c3: ; 0x1985c3
+UnknownText_0x1985c3:
 	text $56, " ", $56, "Yawn?"
 	done
-; 0x1985cd
 
-WoosterText: ; 0x1985cd
+WoosterText:
 	text "WOOSTER: Gugyoo…"
 	done
-; 0x1985df
 
-UnknownText_0x1985df: ; 0x1985df
+UnknownText_0x1985df:
 	text "ILEX FOREST is"
 	line "restless!"
 
 	para "What is going on?"
 	done
-; 0x19860b
 
-UnknownText_0x19860b: ; 0x19860b
+UnknownText_0x19860b:
 	text $52, ", here's"
 	line "your GS BALL back!"
 	done
-; 0x198628
 
-UnknownText_0x198628: ; 0x198628
+UnknownText_0x198628:
 	text "Could you go see"
 	line "why ILEX FOREST is"
 	cont "so restless?"
 	done
-; 0x19865a
 
 AzaleaTownSignText:
 	text "AZALEA TOWN"
@@ -489,7 +447,7 @@ AzaleaTownIlexForestSignText:
 	line "gate."
 	done
 
-AzaleaTown_MapEventHeader: ; 0x1987c1
+AzaleaTown_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -536,4 +494,3 @@ AzaleaTown_MapEventHeader: ; 0x1987c1
 	person_event SPRITE_AZALEA_ROCKET, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, $06bf
 	person_event SPRITE_AZALEA_ROCKET, 20, 14, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ae, $06fc
 	person_event SPRITE_KURT_OUTSIDE, 9, 10, $8, $0, 255, 255, $0, 0, KurtOutsideScript_0x19810c, $07a4
-; 0x1988d0

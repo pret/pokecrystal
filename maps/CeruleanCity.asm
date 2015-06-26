@@ -6,11 +6,10 @@ CeruleanCity_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, .Callback
-
-.Callback
-	setflag $0038
+.FlyPoint
+	setflag ENGINE_FLYPOINT_CERULEAN
 	return
 
 CooltrainerMScript_0x184009:

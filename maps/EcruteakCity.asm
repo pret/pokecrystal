@@ -6,11 +6,10 @@ EcruteakCity_MapScriptHeader:
 	db 1
 
 	; callbacks
+	dbw 5, .FlyPoint
 
-	dbw 5, UnknownScript_0x1a4005
-
-UnknownScript_0x1a4005:
-	setflag $0048
+.FlyPoint
+	setflag ENGINE_FLYPOINT_ECRUTEAK
 	return
 
 GrampsScript_0x1a4009:
