@@ -66,22 +66,22 @@ UnusedTitleScreen: ; 10c000
 	ld a, $5
 	ld [rSVBK], a
 
-	ld hl, UnsuedTitleBG_Palettes
+	ld hl, UnusedTitleBG_Palettes
 	ld de, Unkn1Pals
 	ld bc, $40
 	call CopyBytes
 
-	ld hl, UnsuedTitleFG_Palettes
+	ld hl, UnusedTitleFG_Palettes
 	ld de, Unkn2Pals
 	ld bc, $40
 	call CopyBytes
 
-	ld hl, UnsuedTitleBG_Palettes
+	ld hl, UnusedTitleBG_Palettes
 	ld de, BGPals
 	ld bc, $40
 	call CopyBytes
 
-	ld hl, UnsuedTitleFG_Palettes
+	ld hl, UnusedTitleFG_Palettes
 	ld de, OBPals
 	ld bc, $40
 	call CopyBytes
@@ -138,7 +138,7 @@ UnusedTitleBG_Tilemap: ; 10d0b1
 	db $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00, $00,$00
 ; 10d8b1
 
-UnsuedTitleBG_Palettes: ; 10d8b1
+UnusedTitleBG_Palettes: ; 10d8b1
 	RGB 00, 00, 00
 	RGB 25, 15, 28
 	RGB 22, 11, 28
@@ -202,7 +202,7 @@ UnusedTitleFG_GFX: ; 10dab1
 INCBIN "gfx/title/old_fg.2bpp"
 ; 10eab1
 
-UnsuedTitleFG_Palettes: ; 10eab1
+UnusedTitleFG_Palettes: ; 10eab1
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 	RGB 16, 16, 24
