@@ -49,14 +49,14 @@ UnknownScript_0x5802c: ; 0x5802c
 ; 0x58031
 
 UnknownScript_0x58031: ; 0x58031
-	spriteface $3, $1
-	spriteface $0, $0
+	spriteface $3, UP
+	spriteface $0, DOWN
 	jump UnknownScript_0x58044
 ; 0x5803a
 
 UnknownScript_0x5803a: ; 0x5803a
-	spriteface $3, $2
-	spriteface $0, $3
+	spriteface $3, LEFT
+	spriteface $0, RIGHT
 	jump UnknownScript_0x58044
 ; 0x58043
 
@@ -108,7 +108,7 @@ YoungsterScript_0x5807e: ; 0x5807e
 	writetext UnknownText_0x5848e
 	closetext
 	loadmovesprites
-	spriteface $6, $1
+	spriteface $6, UP
 	end
 ; 0x58089
 

@@ -30,7 +30,7 @@ TeacherScript_0x5535d: ; 0x5535d
 ; 0x5538f
 
 UnknownScript_0x5538f: ; 0x5538f
-	spriteface $2, $2
+	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x5552e
 	closetext

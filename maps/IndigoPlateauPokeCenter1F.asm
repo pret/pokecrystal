@@ -56,13 +56,13 @@ UnknownScript_0x180053: ; 0x180053
 	if_equal SATURDAY, UnknownScript_0x18012b
 	moveperson $5, $11, $9
 	appear $5
-	spriteface $0, $0
+	spriteface $0, DOWN
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
 	applymovement $5, MovementData_0x180164
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	jump UnknownScript_0x1800ce
 ; 0x180094
 
@@ -78,13 +78,13 @@ UnknownScript_0x180094: ; 0x180094
 	if_equal FRIDAY, UnknownScript_0x18012b
 	if_equal SATURDAY, UnknownScript_0x18012b
 	appear $5
-	spriteface $0, $0
+	spriteface $0, DOWN
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
 	applymovement $5, MovementData_0x18016b
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	spriteface $0, $2
+	spriteface $0, LEFT
 UnknownScript_0x1800ce: ; 0x1800ce
 	loadfont
 	writetext UnknownText_0x1801f5
@@ -130,7 +130,7 @@ UnknownScript_0x180113: ; 0x180113
 	writetext UnknownText_0x1802a4
 	closetext
 	loadmovesprites
-	spriteface $0, $0
+	spriteface $0, DOWN
 	applymovement $5, MovementData_0x180172
 	disappear $5
 	dotrigger $0

@@ -19,7 +19,7 @@ UnknownScript_0x184946: ; 0x184946
 ; 0x184947
 
 UnknownScript_0x184947: ; 0x184947
-	spriteface $0, $1
+	spriteface $0, UP
 	showemote $0, $0, 15
 	special Functionc48f
 	playsound SFX_TACKLE
@@ -36,7 +36,7 @@ UnknownScript_0x184947: ; 0x184947
 	closetext
 	loadmovesprites
 	showemote $0, $8, 15
-	spriteface $8, $0
+	spriteface $8, DOWN
 	pause 15
 	applymovement $8, MovementData_0x184a24
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -44,7 +44,7 @@ UnknownScript_0x184947: ; 0x184947
 	writetext UnknownText_0x184aec
 	closetext
 	loadmovesprites
-	spriteface $8, $1
+	spriteface $8, UP
 	loadfont
 	writetext UnknownText_0x184bc8
 	pause 15

@@ -127,7 +127,7 @@ LassCarrieScript: ; 0x54098
 WhitneyCriesScript: ; 0x540a0
 	showemote $0, $4, 15
 	applymovement $4, BridgetWalksUpMovement
-	spriteface $0, $0
+	spriteface $0, DOWN
 	loadfont
 	writetext BridgetWhitneyCriesText
 	closetext

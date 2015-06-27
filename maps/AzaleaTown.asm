@@ -28,23 +28,23 @@ AzaleaTown_MapScriptHeader:
 
 UnknownScript_0x198018:
 	moveperson $b, $b, $b
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x198134
-	spriteface $0, $0
+	spriteface $0, DOWN
 	jump UnknownScript_0x198049
 
 UnknownScript_0x198034:
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x19813c
-	spriteface $0, $1
+	spriteface $0, UP
 UnknownScript_0x198049:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
@@ -88,7 +88,7 @@ UnknownScript_0x198091:
 	writetext UnknownText_0x198233
 	closetext
 	loadmovesprites
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $b, MovementData_0x198144
 	playsound SFX_EXIT_BUILDING
 	disappear $b
@@ -150,13 +150,13 @@ UnknownScript_0x1980e5:
 	loadfont
 	writetext UnknownText_0x1985df
 	keeptextopen
-	spriteface $d, $3
+	spriteface $d, RIGHT
 	writetext UnknownText_0x19860b
 	keeptextopen
 	writetext UnknownText_0x198628
 	closetext
 	verbosegiveitem GS_BALL, 1
-	spriteface $d, $2
+	spriteface $d, LEFT
 	setflag $0064
 	clearevent $06ed
 	setevent $06eb
@@ -169,7 +169,7 @@ KurtOutsideScript_0x19810c:
 	loadfont
 	writetext UnknownText_0x198628
 	closetext
-	spriteface $d, $2
+	spriteface $d, LEFT
 	loadmovesprites
 	end
 

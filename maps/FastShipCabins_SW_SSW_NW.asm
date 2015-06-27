@@ -140,7 +140,7 @@ FastShipBed:
 	special Function8c0b6
 	special Functiond91
 	special Function1060a2
-	special Functionc658
+	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60
 	special RestartMapMusic

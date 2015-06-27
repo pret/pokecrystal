@@ -41,28 +41,28 @@ CherrygroveCityGuideGent:
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c19b
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext GuideGentMartText
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1a3
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext GuideGentRoute30Text
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1ac
-	spriteface $0, $2
+	spriteface $0, LEFT
 	loadfont
 	writetext GuideGentSeaText
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1b6
-	spriteface $0, $1
+	spriteface $0, UP
 	pause 60
-	spriteface $2, $2
-	spriteface $0, $3
+	spriteface $2, LEFT
+	spriteface $0, RIGHT
 	loadfont
 	writetext GuideGentGiftText
 	keeptextopen
@@ -76,7 +76,7 @@ CherrygroveCityGuideGent:
 	loadmovesprites
 	stopfollow
 	special RestartMapMusic
-	spriteface $0, $1
+	spriteface $0, UP
 	applymovement $2, MovementData_0x19c1cb
 	playsound SFX_ENTER_DOOR
 	disappear $2
@@ -101,13 +101,13 @@ UnknownScript_0x19c0aa:
 	moveperson $3, $27, $7
 
 UnknownScript_0x19c0ae:
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
 	appear $3
 	applymovement $3, MovementData_0x19c1ce
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x19c4e2
@@ -166,11 +166,11 @@ UnknownScript_0x19c126:
 UnknownScript_0x19c12f:
 	playsound SFX_TACKLE
 	applymovement $0, MovementData_0x19c1d4
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $3, MovementData_0x19c1da
 	disappear $3
 	dotrigger $0
-	special Functionc658
+	special HealParty
 	playmapmusic
 	end
 

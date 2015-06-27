@@ -29,7 +29,7 @@ RedScript_0x18c603: ; 0x18c603
 	pause 15
 	special Function8c0ab
 	pause 30
-	special Functionc658
+	special HealParty
 	refreshscreen $0
 	credits
 	end

@@ -189,17 +189,17 @@ Buena:
 	writetext UnknownText_0x5de84
 	closetext
 	loadmovesprites
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	checkcode $9
 	if_not_equal $3, UnknownScript_0x5d7be
 	applymovement $0, MovementData_0x5d921
 UnknownScript_0x5d7be: ; 0x5d7be
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x5dedd
 	closetext
 	loadmovesprites
-	spriteface $b, $0
+	spriteface $b, DOWN
 	refreshscreen $0
 	special SpecialBuenasPassword
 	loadmovesprites
@@ -215,7 +215,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	playsound SFX_TRANSACTION
 	setflag $0060
 	pause 20
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	loadfont
 	writetext UnknownText_0x5e054
 	closetext
@@ -242,7 +242,7 @@ UnknownScript_0x5d80a: ; 0x5d80a
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d81a: ; 0x5d81a
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	end
 ; 0x5d81e
 
@@ -250,7 +250,7 @@ UnknownScript_0x5d81e: ; 0x5d81e
 	writetext UnknownText_0x5df29
 	closetext
 	loadmovesprites
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	special Functionc48f
 	pause 20
 	special RestartMapMusic
@@ -266,7 +266,7 @@ UnknownScript_0x5d82f: ; 0x5d82f
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d83f: ; 0x5d83f
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	pause 10
 	end
 ; 0x5d845
@@ -277,13 +277,13 @@ UnknownScript_0x5d845: ; 0x5d845
 	writetext UnknownText_0x5e01c
 	closetext
 	loadmovesprites
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	pause 20
 	loadfont
 	writetext UnknownText_0x5e054
 	closetext
 	loadmovesprites
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	special Functionc48f
 	pause 20
 	special RestartMapMusic
@@ -306,7 +306,7 @@ UnknownScript_0x5d86b: ; 0x5d86b
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d87b: ; 0x5d87b
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	end
 ; 0x5d87f
 
@@ -319,7 +319,7 @@ UnknownScript_0x5d87f: ; 0x5d87f
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d88f: ; 0x5d88f
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	end
 ; 0x5d893
 
@@ -339,9 +339,9 @@ UnknownScript_0x5d8a4: ; 0x5d8a4
 	checkcellnum $25
 	iftrue UnknownScript_0x5d8fe
 	pause 20
-	spriteface $b, $0
+	spriteface $b, DOWN
 	pause 15
-	spriteface $0, $1
+	spriteface $0, UP
 	pause 15
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
@@ -367,7 +367,7 @@ UnknownScript_0x5d8d0: ; 0x5d8d0
 	writetext UnknownText_0x5e310
 	closetext
 	loadmovesprites
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	addcellnum $25
 	end
 ; 0x5d8ed
@@ -376,7 +376,7 @@ UnknownScript_0x5d8ed: ; 0x5d8ed
 	writetext UnknownText_0x5e33c
 	closetext
 	loadmovesprites
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	end
 ; 0x5d8f6
 
@@ -384,7 +384,7 @@ UnknownScript_0x5d8f6: ; 0x5d8f6
 	writetext UnknownText_0x5e35e
 	closetext
 	loadmovesprites
-	spriteface $b, $3
+	spriteface $b, RIGHT
 UnknownScript_0x5d8fe: ; 0x5d8fe
 	end
 ; 0x5d8ff

@@ -59,19 +59,19 @@ SageScript_0x985a0: ; 0x985a0
 ; 0x985a3
 
 UnknownScript_0x985a3: ; 0x985a3
-	spriteface $4, $1
-	spriteface $0, $0
+	spriteface $4, UP
+	spriteface $0, DOWN
 	showemote $0, $4, 20
 	follow $0, $4
 	applymovement $0, MovementData_0x98622
 	stopfollow
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x98712
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x98625
-	spriteface $4, $2
+	spriteface $4, LEFT
 	end
 ; 0x985c6
 
@@ -163,7 +163,7 @@ SageKojiScript: ; 0x985f8
 	closetext
 	loadmovesprites
 	applymovement $7, MovementData_0x98628
-	spriteface $7, $1
+	spriteface $7, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	dotrigger $1
 	end

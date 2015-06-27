@@ -49,7 +49,7 @@ UnknownScript_0x1935f4: ; 0x1935f4
 	refreshscreen $0
 UnknownScript_0x19360d: ; 0x19360d
 	special Function1060a2
-	special Functionc658
+	special HealParty
 	special Function10383c
 	iftrue UnknownScript_0x193624
 UnknownScript_0x193619: ; 0x193619

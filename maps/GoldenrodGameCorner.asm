@@ -37,7 +37,7 @@ PokefanMScript_0x56c1a: ; 0x56c1a
 	writetext UnknownText_0x5718a
 	closetext
 	loadmovesprites
-	spriteface $d, $3
+	spriteface $d, RIGHT
 	end
 ; 0x56c25
 
@@ -262,7 +262,7 @@ PharmacistScript_0x56df1: ; 0x56df1
 	writetext UnknownText_0x56f55
 	closetext
 	loadmovesprites
-	spriteface $fe, $2
+	spriteface $fe, LEFT
 	end
 ; 0x56dfc
 
@@ -272,7 +272,7 @@ PokefanMScript_0x56dfc: ; 0x56dfc
 	writetext UnknownText_0x56f9e
 	closetext
 	loadmovesprites
-	spriteface $7, $3
+	spriteface $7, RIGHT
 	end
 ; 0x56e07
 
@@ -282,7 +282,7 @@ CooltrainerMScript_0x56e07: ; 0x56e07
 	writetext UnknownText_0x56ff4
 	closetext
 	loadmovesprites
-	spriteface $8, $2
+	spriteface $8, LEFT
 	end
 ; 0x56e12
 
@@ -292,7 +292,7 @@ PokefanFScript_0x56e12: ; 0x56e12
 	writetext UnknownText_0x5702b
 	closetext
 	loadmovesprites
-	spriteface $9, $3
+	spriteface $9, RIGHT
 	end
 ; 0x56e1d
 
@@ -306,7 +306,7 @@ GentlemanScript_0x56e20: ; 0x56e20
 	writetext UnknownText_0x570b1
 	closetext
 	loadmovesprites
-	spriteface $b, $3
+	spriteface $b, RIGHT
 	end
 ; 0x56e2b
 

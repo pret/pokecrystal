@@ -20,7 +20,7 @@ PokefanMScript_0x72123: ; 0x72123
 	writetext UnknownText_0x72215
 	closetext
 	loadmovesprites
-	spriteface $4, $2
+	spriteface $4, LEFT
 	end
 ; 0x7212e
 
@@ -30,7 +30,7 @@ TeacherScript_0x7212e: ; 0x7212e
 	writetext UnknownText_0x72242
 	closetext
 	loadmovesprites
-	spriteface $5, $3
+	spriteface $5, RIGHT
 	end
 ; 0x72139
 
@@ -40,7 +40,7 @@ FishingGuruScript_0x72139: ; 0x72139
 	writetext UnknownText_0x72295
 	closetext
 	loadmovesprites
-	spriteface $6, $3
+	spriteface $6, RIGHT
 	end
 ; 0x72144
 
@@ -63,7 +63,7 @@ FisherScript_0x72144: ; 0x72144
 	writetext UnknownText_0x72345
 	closetext
 	loadmovesprites
-	spriteface $fe, $2
+	spriteface $fe, LEFT
 	end
 ; 0x72172
 
@@ -80,7 +80,7 @@ UnknownScript_0x7217b: ; 0x7217b
 	writetext UnknownText_0x7238a
 	closetext
 	loadmovesprites
-	spriteface $fe, $2
+	spriteface $fe, LEFT
 	end
 ; 0x72184
 
@@ -88,7 +88,7 @@ UnknownScript_0x72184: ; 0x72184
 	writetext UnknownText_0x723d9
 	closetext
 	loadmovesprites
-	spriteface $fe, $2
+	spriteface $fe, LEFT
 	end
 ; 0x7218d
 
@@ -102,7 +102,7 @@ GrampsScript_0x72190: ; 0x72190
 	writetext UnknownText_0x724ad
 	closetext
 	loadmovesprites
-	spriteface $a, $2
+	spriteface $a, LEFT
 	end
 ; 0x7219b
 

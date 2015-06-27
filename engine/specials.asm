@@ -43,7 +43,7 @@ SpecialsPointers:: ; c029
 	add_special Function135db
 	add_special Functionfbb32
 	add_special Functionfbcd2
-	add_special Functionc658
+	add_special HealParty
 	add_special Function1559a
 	add_special Functionc2e7
 	add_special Function166d6
@@ -78,7 +78,7 @@ SpecialsPointers:: ; c029
 	add_special WaitSFX
 	add_special PlayMapMusic
 	add_special RestartMapMusic
-	add_special Function12324
+	add_special HealMachineAnim
 	add_special Function8379
 	add_special Functionc25a
 	add_special Functionc268

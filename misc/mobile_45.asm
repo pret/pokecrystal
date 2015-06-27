@@ -22778,12 +22778,12 @@ Function17024d: ; 17024d
 	xor a
 	ld [InLinkBattle], a
 	callba Function1060a2
-	callba Functionc658
+	callba HealParty
 	call Function1702b7
 	call Function170bf7
 	predef StartBattle
 	callba Function1500c
-	callba Functionc658
+	callba HealParty
 	ld a, [wd0ee]
 	ld [ScriptVar], a
 	and a

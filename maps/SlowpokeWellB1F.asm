@@ -76,7 +76,7 @@ GruntM1Script: ; 0x5a5f8
 	moveperson $8, $b, $6
 	appear $8
 	applymovement $8, KurtSlowpokeWellVictoryMovementData
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext KurtLeaveSlowpokeWellText
 	closetext
@@ -94,7 +94,7 @@ GruntM1Script: ; 0x5a5f8
 	clearevent $06fd
 	clearevent $073e
 	special Function8c084
-	special Functionc658
+	special HealParty
 	pause 15
 	warp GROUP_KURTS_HOUSE, MAP_KURTS_HOUSE, $3, $3
 	end

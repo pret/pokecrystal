@@ -28,7 +28,7 @@ UnknownScript_0x190013:
 	follow $0, $2
 	applymovement $0, MovementData_0x1900a7
 	stopfollow
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	scall UnknownScript_0x19002f
 	applymovement $2, MovementData_0x1900ad
 	end

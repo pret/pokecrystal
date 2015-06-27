@@ -24,7 +24,7 @@ GameboyKidScript_0x55ef7:
 	writetext UnknownText_0x55f74
 	closetext
 	loadmovesprites
-	spriteface $5, $0
+	spriteface $5, DOWN
 	end
 
 GoldenrodDeptStore4FDirectory:

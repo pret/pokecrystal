@@ -41,7 +41,7 @@ UnknownScript_0x7709a: ; 0x7709a
 	applymovement $0, MovementData_0x77121
 	pause 15
 	appear $4
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	cry CLEFAIRY
 	waitbutton
 	pause 30
@@ -61,10 +61,10 @@ UnknownScript_0x7709a: ; 0x7709a
 	follow $2, $3
 	applymovement $2, MovementData_0x77132
 	stopfollow
-	spriteface $2, $0
+	spriteface $2, DOWN
 	pause 10
 	showemote $0, $2, 15
-	spriteface $2, $0
+	spriteface $2, DOWN
 	cry CLEFAIRY
 	pause 15
 	follow $2, $3

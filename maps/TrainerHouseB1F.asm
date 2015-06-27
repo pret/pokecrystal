@@ -14,7 +14,7 @@ UnknownScript_0x9b38a: ; 0x9b38a
 ; 0x9b38b
 
 UnknownScript_0x9b38b: ; 0x9b38b
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	checkflag $0057
 	iftrue UnknownScript_0x9b3f7

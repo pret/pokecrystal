@@ -60,7 +60,7 @@ GameboyKidScript_0x5c037: ; 0x5c037
 	writetext UnknownText_0x5c42a
 	closetext
 	loadmovesprites
-	spriteface $e, $0
+	spriteface $e, DOWN
 	end
 ; 0x5c042
 

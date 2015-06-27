@@ -47,7 +47,7 @@ KurtScript_0x18e178: ; 0x18e178
 	setevent $06fa
 	checkcode $9
 	if_equal $1, UnknownScript_0x18e1ab
-	spriteface $0, $0
+	spriteface $0, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e466
 	playsound SFX_EXIT_BUILDING
@@ -58,7 +58,7 @@ KurtScript_0x18e178: ; 0x18e178
 ; 0x18e1ab
 
 UnknownScript_0x18e1ab: ; 0x18e1ab
-	spriteface $0, $0
+	spriteface $0, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e46c
 	playsound SFX_EXIT_BUILDING
@@ -324,14 +324,14 @@ UnknownScript_0x18e378: ; 0x18e378
 	showemote $0, $2, 30
 	checkcode $9
 	if_equal $1, UnknownScript_0x18e3a2
-	spriteface $0, $0
+	spriteface $0, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e466
 	jump UnknownScript_0x18e3ac
 ; 0x18e3a2
 
 UnknownScript_0x18e3a2: ; 0x18e3a2
-	spriteface $0, $0
+	spriteface $0, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e46c
 UnknownScript_0x18e3ac: ; 0x18e3ac
@@ -355,7 +355,7 @@ UnknownScript_0x18e3c5: ; 0x18e3c5
 	writetext UnknownText_0x18e7d8
 	closetext
 	loadmovesprites
-	spriteface $5, $1
+	spriteface $5, UP
 	end
 ; 0x18e3d4
 
@@ -363,7 +363,7 @@ UnknownScript_0x18e3d4: ; 0x18e3d4
 	writetext UnknownText_0x18e863
 	closetext
 	loadmovesprites
-	spriteface $5, $1
+	spriteface $5, UP
 	setevent $00bb
 	end
 ; 0x18e3e0
@@ -371,7 +371,7 @@ UnknownScript_0x18e3d4: ; 0x18e3d4
 UnknownScript_0x18e3e0: ; 0x18e3e0
 	writetext UnknownText_0x18e934
 	closetext
-	spriteface $5, $1
+	spriteface $5, UP
 	writetext UnknownText_0x18e949
 	closetext
 	loadmovesprites
@@ -428,14 +428,14 @@ KurtsGranddaughter2Subscript:
 	writetext KurtsGranddaughterHelpText
 	closetext
 	loadmovesprites
-	spriteface $6, $3
+	spriteface $6, RIGHT
 	end
 
 .GSBall
 	writetext KurtsGranddaughterGSBallText
 	closetext
 	loadmovesprites
-	spriteface $6, $3
+	spriteface $6, RIGHT
 	end
 
 KurtsGranddaughterFunScript: ; 0x18e448

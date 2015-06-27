@@ -191,10 +191,10 @@ UnknownScript_0x9e4be: ; 0x9e4be
 	if_equal $a, UnknownScript_0x9e3fc
 	if_not_equal $0, UnknownScript_0x9e550
 	writetext UnknownText_0x9e9eb
-	spriteface $2, $2
+	spriteface $2, LEFT
 	writetext UnknownText_0x9ea1b
 	closetext
-	spriteface $2, $0
+	spriteface $2, DOWN
 	loadmovesprites
 	end
 ; 0x9e4ea
@@ -273,7 +273,7 @@ YoungsterScript_0x9e55d: ; 0x9e55d
 	writetext UnknownText_0x9f264
 	closetext
 	loadmovesprites
-	spriteface $3, $3
+	spriteface $3, RIGHT
 	end
 ; 0x9e568
 

@@ -40,7 +40,7 @@ GameboyKidScript_0x68a86: ; 0x68a86
 	writetext UnknownText_0x68dda
 	closetext
 	loadmovesprites
-	spriteface $4, $0
+	spriteface $4, DOWN
 	end
 ; 0x68a91
 
@@ -50,7 +50,7 @@ GameboyKidScript_0x68a91: ; 0x68a91
 	writetext UnknownText_0x68e07
 	closetext
 	loadmovesprites
-	spriteface $5, $0
+	spriteface $5, DOWN
 	end
 ; 0x68a9c
 

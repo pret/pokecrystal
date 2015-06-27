@@ -21,7 +21,7 @@ GameboyKidScript_0x70d34:
 	writetext UnknownText_0x70d86
 	closetext
 	loadmovesprites
-	spriteface $4, $0
+	spriteface $4, DOWN
 	end
 
 GameboyKidScript_0x70d3f:
@@ -30,7 +30,7 @@ GameboyKidScript_0x70d3f:
 	writetext UnknownText_0x70dc7
 	closetext
 	loadmovesprites
-	spriteface $5, $0
+	spriteface $5, DOWN
 	end
 
 SuperNerdScript_0x70d4a:

@@ -55,7 +55,7 @@ FisherScript_0x56749: ; 0x56749
 	writetext UnknownText_0x567d2
 	closetext
 	loadmovesprites
-	spriteface $4, $1
+	spriteface $4, UP
 	end
 ; 0x56754
 
@@ -68,12 +68,12 @@ SuperNerdScript_0x56757: ; 0x56757
 	writetext UnknownText_0x56867
 	closetext
 	loadmovesprites
-	spriteface $6, $1
+	spriteface $6, UP
 	loadfont
 	writetext UnknownText_0x56871
 	closetext
 	loadmovesprites
-	spriteface $6, $3
+	spriteface $6, RIGHT
 	end
 ; 0x5676a
 

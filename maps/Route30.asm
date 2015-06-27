@@ -19,7 +19,7 @@ YoungsterScript_0x1a1673: ; 0x1a1673
 	faceplayer
 	writetext UnknownText_0x1a181c
 	closetext
-	spriteface $2, $1
+	spriteface $2, UP
 	loadmovesprites
 	playsound SFX_TACKLE
 	applymovement $7, MovementData_0x1a1802

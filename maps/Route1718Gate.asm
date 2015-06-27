@@ -25,7 +25,7 @@ UnknownScript_0x73611: ; 0x73611
 
 UnknownScript_0x73617: ; 0x73617
 	showemote $0, $2, 15
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x7364d
 	closetext
