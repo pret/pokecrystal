@@ -204,6 +204,7 @@ EVENT_WALL_OPENED_IN_HO_OH_CHAMBER                     EQU $326
 EVENT_WALL_OPENED_IN_KABUTO_CHAMBER                    EQU $327
 EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER                   EQU $328
 EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER                EQU $329
+EVENT_WELCOMED_TO_POKECOM_CENTER                       EQU $32a
 EVENT_WADE_HAS_BERRY                                   EQU $32b
 EVENT_WADE_HAS_PSNCUREBERRY                            EQU $32c
 EVENT_WADE_HAS_PRZCUREBERRY                            EQU $32d

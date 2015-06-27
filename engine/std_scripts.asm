@@ -1,4 +1,4 @@
-StdScripts:: ; bc000
+StdScripts::
 	dbw BANK(PokeCenterNurseScript), PokeCenterNurseScript
 	dbw BANK(DifficultBookshelfScript), DifficultBookshelfScript
 	dbw BANK(PictureBookshelfScript), PictureBookshelfScript
@@ -51,138 +51,116 @@ StdScripts:: ; bc000
 	dbw BANK(PCScript), PCScript
 	dbw BANK(UnknownScript_0xbcdcd), UnknownScript_0xbcdcd
 	dbw BANK(HappinessCheckScript), HappinessCheckScript
-; bc09c
 
-PokeCenterNurseScript: ; bc09c
-; Talking to a nurse in a Pokemon Center
+PokeCenterNurseScript:
+; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
 
 	loadfont
-; The nurse has different text for:
-; Morn
 	checkmorn
 	iftrue .morn
-; Day
 	checkday
 	iftrue .day
-; Nite
 	checknite
 	iftrue .nite
-; If somehow it's not a time of day at all, we skip the introduction
-	jump .heal
+	jump .ok
 
 .morn
-; Different text if we're in the com center
-	checkevent $032a
+	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .morn_comcenter
-; Good morning! Welcome to ...
 	farwritetext UnknownText_0x1b0000
 	keeptextopen
-	jump .heal
+	jump .ok
 .morn_comcenter
-; Good morning! This is the ...
 	farwritetext UnknownText_0x1b008a
 	keeptextopen
-	jump .heal
+	jump .ok
 
 .day
-; Different text if we're in the com center
-	checkevent $032a
+	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .day_comcenter
-; Hello! Welcome to ...
 	farwritetext UnknownText_0x1b002b
 	keeptextopen
-	jump .heal
+	jump .ok
 .day_comcenter
-; Hello! This is the ...
 	farwritetext UnknownText_0x1b00d6
 	keeptextopen
-	jump .heal
+	jump .ok
 
 .nite
-; Different text if we're in the com center
-	checkevent $032a
+	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .nite_comcenter
-; Good evening! You're out late. ...
 	farwritetext UnknownText_0x1b004f
 	keeptextopen
-	jump .heal
+	jump .ok
 .nite_comcenter
-; Good to see you working so late. ...
 	farwritetext UnknownText_0x1b011b
 	keeptextopen
-	jump .heal
+	jump .ok
 
-.heal
-; If we come back, don't welcome us to the com center again
-	clearevent $032a
-; Ask if you want to heal
+.ok
+	; only do this once
+	clearevent EVENT_WELCOMED_TO_POKECOM_CENTER
+
 	farwritetext UnknownText_0x1b017a
 	yesorno
-	iffalse .end
-; Go ahead and heal
+	iffalse .done
+
 	farwritetext UnknownText_0x1b01bd
 	pause 20
 	special Function1060a2
-; Turn to the machine
-	spriteface $fe, $2
+	spriteface $fe, LEFT
 	pause 10
 	special Functionc658
 	playmusic MUSIC_NONE
-	writebyte $0
+	writebyte 0
 	special Function12324
 	pause 30
 	special RestartMapMusic
-	spriteface $fe, $0
+	spriteface $fe, DOWN
 	pause 10
-; Has Elm already phoned you about Pokerus?
-	checkphonecall
-	iftrue .done
-; Has Pokerus already been found in the Pokecenter?
-	checkflag $000d
-	iftrue .done
-; Check for Pokerus
-	special SpecialCheckPokerus ; SPECIAL_CHECKPOKERUS
+
+	checkphonecall ; elm already called about pokerus
+	iftrue .no
+	checkflag ENGINE_POKERUS ; nurse already talked about pokerus
+	iftrue .no
+	special SpecialCheckPokerus
 	iftrue .pokerus
-.done
-; Thank you for waiting. ...
+.no
+
 	farwritetext UnknownText_0x1b01d7
 	pause 20
-.end
-; We hope to see you again.
+
+.done
 	farwritetext UnknownText_0x1b020b
-; Curtsy
-	spriteface $fe, $1
+
+	spriteface $fe, UP
 	pause 10
-	spriteface $fe, $0
+	spriteface $fe, DOWN
 	pause 10
-; And we're out
+
 	closetext
 	loadmovesprites
 	end
 
 .pokerus
-; Different text for com center (excludes 'in a Pokemon Center')
-; Since flag $32a is cleared when healing,
-; this text is never actually seen
-	checkevent $032a
+	; already cleared earlier in the script
+	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .pokerus_comcenter
-; Your Pokemon appear to be infected ...
+
 	farwritetext UnknownText_0x1b0241
 	closetext
 	loadmovesprites
-	jump .endpokerus
+	jump .pokerus_done
+
 .pokerus_comcenter
-; Your Pokemon appear to be infected ...
 	farwritetext UnknownText_0x1b02d6
 	closetext
 	loadmovesprites
-.endpokerus
-; Don't tell us about Pokerus again
-	setflag $000d
-; Trigger Elm's Pokerus phone call
-	specialphonecall $0001
+
+.pokerus_done
+	setflag ENGINE_POKERUS
+	specialphonecall 1 ; elm calls about pokerus
 	end
-; bc162
 
 DifficultBookshelfScript:
 	farjumptext DifficultBookshelfText
