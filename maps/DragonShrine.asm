@@ -93,12 +93,12 @@ UnknownScript_0x18d0a9: ; 0x18d0a9
 	iftrue UnknownScript_0x18d049
 UnknownScript_0x18d0cb: ; 0x18d0cb
 	loadmovesprites
-	spriteface $2, $2
+	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x18d7f6
 	closetext
 	loadmovesprites
-	spriteface $2, $0
+	spriteface $2, DOWN
 	loadfont
 	writetext UnknownText_0x18d816
 	closetext
@@ -124,12 +124,12 @@ UnknownScript_0x18d100: ; 0x18d100
 	playmusic MUSIC_CLAIR
 	appear $5
 	waitbutton
-	spriteface $0, $0
+	spriteface $0, DOWN
 	pause 30
 	applymovement $5, MovementData_0x18d2d4
-	spriteface $5, $3
-	spriteface $0, $2
-	spriteface $2, $2
+	spriteface $5, RIGHT
+	spriteface $0, LEFT
+	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x18d916
 	closetext
@@ -146,7 +146,7 @@ UnknownScript_0x18d100: ; 0x18d100
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x18d2c9
-	spriteface $5, $1
+	spriteface $5, UP
 	loadfont
 	writetext UnknownText_0x18d520
 	closetext
@@ -173,9 +173,9 @@ UnknownScript_0x18d100: ; 0x18d100
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x18d2ce
-	spriteface $5, $1
+	spriteface $5, UP
 	applymovement $2, MovementData_0x18d2d1
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x18d5a3
 	closetext

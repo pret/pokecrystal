@@ -21,7 +21,7 @@ UnknownScript_0x196e55: ; 0x196e55
 
 UnknownScript_0x196e56: ; 0x196e56
 	showemote $0, $2, 15
-	spriteface $2, $0
+	spriteface $2, DOWN
 	loadfont
 	writetext UnknownText_0x196f66
 	closetext
@@ -40,11 +40,11 @@ UnknownScript_0x196e56: ; 0x196e56
 	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	writetext UnknownText_0x196feb
 	keeptextopen
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	writetext UnknownText_0x197092
 	keeptextopen
-	spriteface $2, $0
-	spriteface $3, $2
+	spriteface $2, DOWN
+	spriteface $3, LEFT
 	writetext UnknownText_0x1970b7
 	closetext
 	loadmovesprites
@@ -92,7 +92,7 @@ UnknownScript_0x196ec7: ; 0x196ec7
 UnknownScript_0x196ec9: ; 0x196ec9
 	playmusic MUSIC_PROF_OAK
 	applymovement $3, MovementData_0x196f5d
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x197185
 	keeptextopen
@@ -104,14 +104,14 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	writetext UnknownText_0x1973de
 	closetext
 	loadmovesprites
-	spriteface $0, $0
+	spriteface $0, DOWN
 	applymovement $3, MovementData_0x196f61
 	playsound SFX_EXIT_BUILDING
 	disappear $3
 	waitbutton
 	special RestartMapMusic
 	pause 15
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x1970ed
 	closetext
@@ -120,7 +120,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	special Functiond91
 	playmusic MUSIC_HEAL
 	special Function1060a2
-	special Functionc658
+	special HealParty
 	pause 60
 	special Function8c0ab
 	special RestartMapMusic

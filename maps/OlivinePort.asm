@@ -36,7 +36,7 @@ SailorScript_0x748c0: ; 0x748c0
 	writetext UnknownText_0x74a55
 	closetext
 	loadmovesprites
-	spriteface $2, $0
+	spriteface $2, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
 	disappear $2
@@ -74,12 +74,12 @@ UnknownScript_0x74919: ; 0x74919
 ; 0x7491f
 
 UnknownScript_0x7491f: ; 0x7491f
-	spriteface $4, $3
+	spriteface $4, RIGHT
 	checkevent $0000
 	iftrue UnknownScript_0x7498b
 	checkevent $0001
 	iftrue UnknownScript_0x7498b
-	spriteface $0, $2
+	spriteface $0, LEFT
 	loadfont
 	checkevent $0030
 	iffalse UnknownScript_0x7494e
@@ -215,7 +215,7 @@ FishingGuruScript_0x74a01: ; 0x74a01
 	writetext UnknownText_0x74bf4
 	closetext
 	loadmovesprites
-	spriteface $5, $1
+	spriteface $5, UP
 	end
 ; 0x74a0c
 
@@ -225,7 +225,7 @@ FishingGuruScript_0x74a0c: ; 0x74a0c
 	writetext UnknownText_0x74c35
 	closetext
 	loadmovesprites
-	spriteface $6, $1
+	spriteface $6, UP
 	end
 ; 0x74a17
 
@@ -235,7 +235,7 @@ YoungsterScript_0x74a17: ; 0x74a17
 	writetext UnknownText_0x74c76
 	closetext
 	loadmovesprites
-	spriteface $7, $0
+	spriteface $7, DOWN
 	end
 ; 0x74a22
 
@@ -245,7 +245,7 @@ CooltrainerFScript_0x74a22: ; 0x74a22
 	writetext UnknownText_0x74ca2
 	closetext
 	loadmovesprites
-	spriteface $8, $0
+	spriteface $8, DOWN
 	end
 ; 0x74a2d
 

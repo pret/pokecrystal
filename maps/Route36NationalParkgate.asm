@@ -64,7 +64,7 @@ UnknownScript_0x6ab46: ; 0x6ab46
 ; 0x6ab47
 
 UnknownScript_0x6ab47: ; 0x6ab47
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	checkcode $11
 	addvar $1
@@ -90,7 +90,7 @@ UnknownScript_0x6ab76: ; 0x6ab76
 	writetext UnknownText_0x6b300
 	closetext
 	loadmovesprites
-	spriteface $0, $2
+	spriteface $0, LEFT
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton
@@ -175,7 +175,7 @@ UnknownScript_0x6ac10: ; 0x6ac10
 	loadmovesprites
 	setflag $0011
 	special Function135db
-	spriteface $0, $2
+	spriteface $0, LEFT
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton

@@ -14,7 +14,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	writetext UnknownText_0x9d6f9
 	closetext
 	loadmovesprites
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	loadfont
 	writetext UnknownText_0x9d76f
 	closetext

@@ -64,7 +64,7 @@ UnknownScript_0x6a1ca: ; 0x6a1ca
 
 UnknownScript_0x6a1d1: ; 0x6a1d1
 	applymovement $0, MovementData_0x6a2e2
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	loadfont
 	checkcode $11
 	addvar $1

@@ -44,7 +44,7 @@ SailorScript_0x74dc4:
 	writetext UnknownText_0x74f06
 	closetext
 	loadmovesprites
-	spriteface $2, $0
+	spriteface $2, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
 	disappear $2
@@ -78,12 +78,12 @@ UnknownScript_0x74e1a:
 	end
 
 UnknownScript_0x74e20:
-	spriteface $3, $3
+	spriteface $3, RIGHT
 	checkevent $0000
 	iftrue UnknownScript_0x74e86
 	checkevent $0001
 	iftrue UnknownScript_0x74e86
-	spriteface $0, $2
+	spriteface $0, LEFT
 	loadfont
 	checkcode $b
 	if_equal MONDAY, UnknownScript_0x74e72

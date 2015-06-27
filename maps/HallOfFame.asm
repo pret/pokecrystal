@@ -23,17 +23,17 @@ UnknownScript_0x181454: ; 0x181454
 	follow $2, $0
 	applymovement $2, MovementData_0x181499
 	stopfollow
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x1814a6
 	closetext
 	loadmovesprites
-	spriteface $2, $1
+	spriteface $2, UP
 	applymovement $0, MovementData_0x1814a4
 	dotrigger $1
 	pause 15
 	writebyte $2
-	special Function12324
+	special HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER
@@ -41,7 +41,7 @@ UnknownScript_0x181454: ; 0x181454
 	setevent $0737
 	clearevent $0738
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
-	special Functionc658
+	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue UnknownScript_0x181497
 	specialphonecall $5

@@ -24,7 +24,7 @@ UnknownScript_0x60010: ; 0x60010
 ; 0x60011
 
 UnknownScript_0x60011: ; 0x60011
-	spriteface $2, $1
+	spriteface $2, UP
 	showemote $0, $2, 15
 	loadfont
 	writetext UnknownText_0x60128
@@ -100,7 +100,7 @@ Executivef1Script: ; 0x60066
 UnknownScript_0x6006e: ; 0x6006e
 	applymovement $0, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $3, $3
+	spriteface $3, RIGHT
 	loadfont
 	writetext UnknownText_0x603d1
 	closetext
@@ -137,7 +137,7 @@ UnknownScript_0x6006e: ; 0x6006e
 	moveperson $2, $c, $0
 	appear $2
 	applymovement $2, MovementData_0x6010f
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x605b2
 	keeptextopen

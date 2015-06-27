@@ -34,48 +34,48 @@ UnknownScript_0x18616b: ; 0x18616b
 	playmusic MUSIC_NONE
 	pause 30
 	appear $3
-	spriteface $0, $1
+	spriteface $0, UP
 	pause 5
 	disappear $6
 	pause 15
 	cry RAIKOU
 	appear $4
-	spriteface $0, $1
+	spriteface $0, UP
 	pause 5
 	disappear $7
 	pause 15
 	cry ENTEI
 	appear $5
-	spriteface $0, $1
+	spriteface $0, UP
 	pause 5
 	disappear $8
 	pause 15
 	cry SUICUNE
 	pause 15
 	playsound SFX_WARP_FROM
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $3, MovementData_0x186236
 	disappear $3
 	waitbutton
 	playsound SFX_WARP_FROM
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	applymovement $4, MovementData_0x18623b
 	disappear $4
 	waitbutton
 	pause 15
 	playsound SFX_WARP_FROM
-	spriteface $0, $1
+	spriteface $0, UP
 	applymovement $5, MovementData_0x186241
 	playsound SFX_WARP_FROM
-	spriteface $0, $0
+	spriteface $0, DOWN
 	applymovement $5, MovementData_0x186248
-	spriteface $0, $1
+	spriteface $0, UP
 	pause 20
 	cry SUICUNE
 	pause 30
 	playsound SFX_WARP_FROM
 	applymovement $5, MovementData_0x186253
-	spriteface $0, $0
+	spriteface $0, DOWN
 	disappear $5
 	waitbutton
 	special RestartMapMusic

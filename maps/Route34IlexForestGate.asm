@@ -28,12 +28,12 @@ UnknownScript_0x62d3d: ; 0x62d3d
 	checkevent $00c0
 	iffalse UnknownScript_0x62d62
 	showemote $0, $5, 20
-	spriteface $5, $2
-	spriteface $0, $3
+	spriteface $5, LEFT
+	spriteface $0, RIGHT
 	follow $0, $5
 	applymovement $0, MovementData_0x62d97
 	stopfollow
-	spriteface $0, $0
+	spriteface $0, DOWN
 	loadfont
 	writetext UnknownText_0x62e41
 	closetext

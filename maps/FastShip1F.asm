@@ -144,7 +144,7 @@ UnknownScript_0x751eb: ; 0x751eb
 	writetext UnknownText_0x75412
 	closetext
 	loadmovesprites
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	applymovement $5, MovementData_0x75222
 	disappear $5
 	dotrigger $0

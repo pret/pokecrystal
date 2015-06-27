@@ -2469,7 +2469,7 @@ Function3cfa4: ; 3cfa4
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
 	jr nz, .asm_3cfe8
-	predef Functionc658
+	predef HealParty
 .asm_3cfe8
 	ld a, [wc2cc]
 	bit 0, a

@@ -191,7 +191,7 @@ SailorScript_0x755f1: ; 0x755f1
 	loadtrainer SAILOR, STANLY
 	startbattle
 	reloadmap
-	special Functionc658
+	special HealParty
 	setevent $057d
 	loadfont
 	writetext UnknownText_0x758b1

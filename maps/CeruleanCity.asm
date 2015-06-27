@@ -45,7 +45,7 @@ CooltrainerFScript_0x18402a:
 	writetext UnknownText_0x1841fa
 	closetext
 	loadmovesprites
-	spriteface $5, $2
+	spriteface $5, LEFT
 	loadfont
 	writetext UnknownText_0x184229
 	closetext
@@ -109,7 +109,7 @@ UnknownScript_0x184072:
 	playsound SFX_TRANSACTION
 	waitbutton
 	showemote $0, $7, 15
-	spriteface $7, $2
+	spriteface $7, LEFT
 	loadfont
 	writetext UnknownText_0x1842ee
 	closetext

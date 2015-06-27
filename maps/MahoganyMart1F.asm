@@ -100,7 +100,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	reloadmappart
 	loadmovesprites
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
-	spriteface $4, $2
+	spriteface $4, LEFT
 	loadfont
 	writetext UnknownText_0x6c5ba
 	closetext

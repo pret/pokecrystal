@@ -19,18 +19,18 @@ UnknownScript_0x1a0872: ; 0x1a0872
 ; 0x1a0873
 
 UnknownScript_0x1a0873: ; 0x1a0873
-	spriteface $a, $2
+	spriteface $a, LEFT
 	showemote $0, $a, 15
 	applymovement $a, MovementData_0x1a0a66
 	jump UnknownScript_0x1a088c
 ; 0x1a0881
 
 UnknownScript_0x1a0881: ; 0x1a0881
-	spriteface $a, $2
+	spriteface $a, LEFT
 	showemote $0, $a, 15
 	applymovement $a, MovementData_0x1a0a69
 UnknownScript_0x1a088c: ; 0x1a088c
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x1a0a6b
 	keeptextopen

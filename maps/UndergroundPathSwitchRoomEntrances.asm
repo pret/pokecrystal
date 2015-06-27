@@ -84,7 +84,7 @@ TeacherScript_0x7ca7d: ; 0x7ca7d
 ; 0x7ca80
 
 UnknownScript_0x7ca80: ; 0x7ca80
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
@@ -92,7 +92,7 @@ UnknownScript_0x7ca80: ; 0x7ca80
 	appear $c
 	waitbutton
 	applymovement $c, MovementData_0x7ce87
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	scall UnknownScript_0x7cad4
 	applymovement $c, MovementData_0x7ce92
 	playsound SFX_EXIT_BUILDING
@@ -104,7 +104,7 @@ UnknownScript_0x7ca80: ; 0x7ca80
 ; 0x7caaa
 
 UnknownScript_0x7caaa: ; 0x7caaa
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
@@ -112,7 +112,7 @@ UnknownScript_0x7caaa: ; 0x7caaa
 	appear $c
 	waitbutton
 	applymovement $c, MovementData_0x7ce8c
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	scall UnknownScript_0x7cad4
 	applymovement $c, MovementData_0x7ce97
 	playsound SFX_EXIT_BUILDING

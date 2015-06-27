@@ -25,7 +25,7 @@ FisherScript_0x73051: ; 0x73051
 	writetext UnknownText_0x7313a
 	closetext
 	loadmovesprites
-	spriteface $3, $2
+	spriteface $3, LEFT
 	end
 ; 0x73062
 
@@ -39,7 +39,7 @@ FisherScript_0x73062: ; 0x73062
 	writetext UnknownText_0x73178
 	closetext
 	loadmovesprites
-	spriteface $4, $3
+	spriteface $4, RIGHT
 	end
 ; 0x73073
 
@@ -53,7 +53,7 @@ FisherScript_0x73073: ; 0x73073
 	writetext UnknownText_0x731bd
 	closetext
 	loadmovesprites
-	spriteface $5, $3
+	spriteface $5, RIGHT
 	end
 ; 0x73084
 
@@ -69,7 +69,7 @@ TeacherScript_0x73084: ; 0x73084
 	writetext UnknownText_0x73212
 	closetext
 	loadmovesprites
-	spriteface $6, $2
+	spriteface $6, LEFT
 	end
 ; 0x7309a
 
@@ -78,12 +78,12 @@ UnknownScript_0x7309a: ; 0x7309a
 	writetext UnknownText_0x73254
 	closetext
 	loadmovesprites
-	spriteface $6, $3
+	spriteface $6, RIGHT
 	loadfont
 	writetext UnknownText_0x73278
 	closetext
 	loadmovesprites
-	spriteface $6, $2
+	spriteface $6, LEFT
 	end
 ; 0x730ad
 

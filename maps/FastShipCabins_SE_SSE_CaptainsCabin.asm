@@ -29,7 +29,7 @@ UnknownScript_0x75eb5: ; 0x75eb5
 ; 0x75ebb
 
 TwinScript_0x75ebb: ; 0x75ebb
-	spriteface $5, $3
+	spriteface $5, RIGHT
 	loadfont
 	writetext UnknownText_0x761e0
 	closetext
@@ -45,13 +45,13 @@ TwinScript_0x75ebb: ; 0x75ebb
 	applymovement $0, MovementData_0x76004
 	moveperson $4, $3, $13
 	appear $4
-	spriteface $0, $1
-	spriteface $4, $1
+	spriteface $0, UP
+	spriteface $4, UP
 	special Function8c0ab
-	spriteface $3, $0
+	spriteface $3, DOWN
 	showemote $0, $3, 15
 	applymovement $4, MovementData_0x7600c
-	spriteface $3, $3
+	spriteface $3, RIGHT
 	checkflag $0063
 	iftrue UnknownScript_0x75f03
 	loadfont
@@ -67,7 +67,7 @@ UnknownScript_0x75f03: ; 0x75f03
 	closetext
 	loadmovesprites
 UnknownScript_0x75f09: ; 0x75f09
-	spriteface $5, $0
+	spriteface $5, DOWN
 	applymovement $3, MovementData_0x76010
 	loadfont
 	writetext UnknownText_0x76143

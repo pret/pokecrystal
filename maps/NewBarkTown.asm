@@ -25,12 +25,12 @@ NewBarkTown_MapScriptHeader:
 
 UnknownScript_0x1a8016:
 	playmusic MUSIC_MOM
-	spriteface $2, $2
+	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x1a8134
 	closetext
 	loadmovesprites
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	applymovement $2, MovementData_0x1a80d4
 	loadfont
 	writetext UnknownText_0x1a813e
@@ -48,14 +48,14 @@ UnknownScript_0x1a8016:
 
 UnknownScript_0x1a8041:
 	playmusic MUSIC_MOM
-	spriteface $2, $2
+	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x1a8134
 	closetext
 	loadmovesprites
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	applymovement $2, MovementData_0x1a80d9
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x1a813e
 	closetext
@@ -110,7 +110,7 @@ SilverScript_0x1a809e:
 	writetext UnknownText_0x1a82a6
 	closetext
 	loadmovesprites
-	spriteface $4, $2
+	spriteface $4, LEFT
 	loadfont
 	writetext UnknownText_0x1a82cd
 	closetext
@@ -119,7 +119,7 @@ SilverScript_0x1a809e:
 	applymovement $0, MovementData_0x1a80ed
 	stopfollow
 	pause 5
-	spriteface $4, $0
+	spriteface $4, DOWN
 	pause 5
 	playsound SFX_TACKLE
 	applymovement $0, MovementData_0x1a80f0

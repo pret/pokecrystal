@@ -49,7 +49,7 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	pause 30
 	loadmovesprites
 	showemote $0, $0, 15
-	spriteface $0, $2
+	spriteface $0, LEFT
 	playmusic MUSIC_CLAIR
 	applymovement $3, MovementData_0x18c9ae
 	loadfont

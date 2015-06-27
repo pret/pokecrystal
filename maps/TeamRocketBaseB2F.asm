@@ -60,20 +60,20 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	writetext UnknownText_0x6d2ad
 	closetext
 	loadmovesprites
-	spriteface $0, $0
+	spriteface $0, DOWN
 	showemote $0, $0, 15
 	applymovement $0, MovementData_0x6d21f
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	applymovement $3, MovementData_0x6d224
-	spriteface $0, $1
+	spriteface $0, UP
 	applymovement $2, MovementData_0x6d22f
 	loadfont
 	writetext UnknownText_0x6d2c3
 	closetext
 	loadmovesprites
 	cry DRAGONITE
-	spriteface $3, $2
-	spriteface $0, $2
+	spriteface $3, LEFT
+	spriteface $0, LEFT
 	appear $5
 	applymovement $5, MovementData_0x6d236
 	applymovement $3, MovementData_0x6d23b
@@ -84,7 +84,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	writetext UnknownText_0x6d38c
 	closetext
 	loadmovesprites
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	applymovement $3, MovementData_0x6d241
 	loadfont
 	writetext UnknownText_0x6d3bd
@@ -117,13 +117,13 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	special Function8c0ab
 	dotrigger $2
 	clearevent $06d6
-	spriteface $4, $0
+	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x6d5d8
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x6d250
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x6d64e
 	closetext
@@ -155,13 +155,13 @@ UnknownScript_0x6d07a: ; 0x6d07a
 ; 0x6d085
 
 UnknownScript_0x6d085: ; 0x6d085
-	spriteface $0, $1
+	spriteface $0, UP
 	jump UnknownScript_0x6d091
 ; 0x6d08b
 
 UnknownScript_0x6d08b: ; 0x6d08b
-	spriteface $0, $3
-	spriteface $4, $2
+	spriteface $0, RIGHT
+	spriteface $4, LEFT
 UnknownScript_0x6d091: ; 0x6d091
 	loadfont
 	writetext UnknownText_0x6da97
@@ -170,7 +170,7 @@ UnknownScript_0x6d091: ; 0x6d091
 	special Function8c084
 	special Function1060a2
 	playsound SFX_FULL_HEAL
-	special Functionc658
+	special HealParty
 	special Function8c079
 	loadfont
 	writetext UnknownText_0x6daf7
@@ -344,7 +344,7 @@ UnknownScript_0x6d184: ; 0x6d184
 	moveperson $4, $12, $6
 	appear $4
 	applymovement $4, MovementData_0x6d27a
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x6d809
 	keeptextopen
@@ -353,12 +353,12 @@ UnknownScript_0x6d184: ; 0x6d184
 	writetext UnknownText_0x6d8f8
 	closetext
 	loadmovesprites
-	spriteface $4, $0
+	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x6d994
 	closetext
 	loadmovesprites
-	spriteface $0, $0
+	spriteface $0, DOWN
 	applymovement $4, MovementData_0x6d283
 	disappear $4
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT

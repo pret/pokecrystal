@@ -36,10 +36,10 @@ TuscanyCallback:
 	return
 
 UnknownScript_0x1a0f6d: ; 0x1a0f6d
-	spriteface $2, $1
+	spriteface $2, UP
 	showemote $0, $2, 15
 	applymovement $2, MovementData_0x1a108d
-	spriteface $0, $2
+	spriteface $0, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
 	writetext UnknownText_0x1a10df
@@ -51,7 +51,7 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	stopfollow
 	loadpokedata RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
-	spriteface $2, $1
+	spriteface $2, UP
 	loadfont
 	writetext UnknownText_0x1a114d
 	closetext
@@ -62,10 +62,10 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 ; 0x1a0fa3
 
 UnknownScript_0x1a0fa3: ; 0x1a0fa3
-	spriteface $2, $1
+	spriteface $2, UP
 	showemote $0, $2, 15
 	applymovement $2, MovementData_0x1a1094
-	spriteface $0, $2
+	spriteface $0, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
 	writetext UnknownText_0x1a10df
@@ -77,7 +77,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	stopfollow
 	loadpokedata RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
-	spriteface $2, $1
+	spriteface $2, UP
 	loadfont
 	writetext UnknownText_0x1a114d
 	closetext

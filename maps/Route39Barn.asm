@@ -14,7 +14,7 @@ TwinScript_0x9cc76: ; 0x9cc76
 	writetext UnknownText_0x9cd2e
 	closetext
 	loadmovesprites
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	end
 ; 0x9cc87
 
@@ -22,7 +22,7 @@ UnknownScript_0x9cc87: ; 0x9cc87
 	writetext UnknownText_0x9cd5a
 	closetext
 	loadmovesprites
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	end
 ; 0x9cc90
 
@@ -34,7 +34,7 @@ TwinScript_0x9cc90: ; 0x9cc90
 	writetext UnknownText_0x9cd2e
 	closetext
 	loadmovesprites
-	spriteface $3, $2
+	spriteface $3, LEFT
 	end
 ; 0x9cca1
 
@@ -42,7 +42,7 @@ UnknownScript_0x9cca1: ; 0x9cca1
 	writetext UnknownText_0x9cd5a
 	closetext
 	loadmovesprites
-	spriteface $3, $2
+	spriteface $3, LEFT
 	end
 ; 0x9ccaa
 

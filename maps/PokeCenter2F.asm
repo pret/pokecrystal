@@ -475,7 +475,7 @@ UnknownScript_0x192b12: ; 0x192b12
 	closetext
 	loadmovesprites
 	applymovement2 MovementData_0x192cdc
-	spriteface $0, $2
+	spriteface $0, LEFT
 	loadfont
 	writetext UnknownText_0x193278
 	closetext
@@ -592,7 +592,7 @@ UnknownScript_0x192c11: ; 0x192c11
 	loadmovesprites
 	checkcode $9
 	if_not_equal $1, UnknownScript_0x192c20
-	spriteface $0, $2
+	spriteface $0, LEFT
 UnknownScript_0x192c20: ; 0x192c20
 	loadfont
 	writetext UnknownText_0x193278

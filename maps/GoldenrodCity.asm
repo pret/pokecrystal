@@ -200,7 +200,7 @@ RocketScript_0x198a1a:
 	writetext UnknownText_0x198d2a
 	closetext
 	loadmovesprites
-	spriteface $9, $1
+	spriteface $9, UP
 	end
 
 RocketScript_0x198a29:

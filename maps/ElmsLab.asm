@@ -54,7 +54,7 @@ UnknownScript_0x78b8b: ; 0x78b8b
 UnknownScript_0x78b8c: ; 0x78b8c
 	applymovement $0, MovementData_0x78f67
 	showemote $0, $2, 15
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	loadfont
 	writetext UnknownText_0x78fb6
 UnknownScript_0x78b9b: ; 0x78b9b
@@ -73,20 +73,20 @@ UnknownScript_0x78ba5: ; 0x78ba5
 	playsound SFX_GLASS_TING
 	pause 30
 	showemote $0, $2, 10
-	spriteface $2, $0
+	spriteface $2, DOWN
 	loadfont
 	writetext UnknownText_0x791ae
 	closetext
 	loadmovesprites
 	loadfont
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	writetext UnknownText_0x791df
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x78fa0
-	spriteface $0, $1
+	spriteface $0, UP
 	applymovement $2, MovementData_0x78fa2
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x792ff
 	closetext
@@ -159,7 +159,7 @@ UnknownScript_0x78c41: ; 0x78c41
 ; 0x78c65
 
 LabTryToLeaveScript: ; 0x78c65
-	spriteface $2, $0
+	spriteface $2, DOWN
 	loadfont
 	writetext LabWhereGoingText
 	closetext
@@ -171,7 +171,7 @@ LabTryToLeaveScript: ; 0x78c65
 CyndaquilPokeBallScript: ; 0x78c73
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface $2, $0
+	spriteface $2, DOWN
 	refreshscreen $0
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
@@ -202,7 +202,7 @@ CyndaquilPokeBallScript: ; 0x78c73
 TotodilePokeBallScript: ; 0x78cb5
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface $2, $0
+	spriteface $2, DOWN
 	refreshscreen $0
 	pokepic TOTODILE
 	cry TOTODILE
@@ -231,7 +231,7 @@ TotodilePokeBallScript: ; 0x78cb5
 ChikoritaPokeBallScript: ; 0x78cf1
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface $2, $0
+	spriteface $2, DOWN
 	refreshscreen $0
 	pokepic CHIKORITA
 	cry CHIKORITA
@@ -265,7 +265,7 @@ DidntChooseStarterScript: ; 0x78d2d
 ; 0x78d33
 
 ElmDirectionsScript: ; 0x78d33
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext ElmDirectionsText1
 	closetext
@@ -277,12 +277,12 @@ ElmDirectionsScript: ; 0x78d33
 	waitbutton
 	closetext
 	loadmovesprites
-	spriteface $2, $2
+	spriteface $2, LEFT
 	loadfont
 	writetext ElmDirectionsText2
 	closetext
 	loadmovesprites
-	spriteface $2, $0
+	spriteface $2, DOWN
 	loadfont
 	writetext ElmDirectionsText3
 	closetext
@@ -328,10 +328,10 @@ ElmsLabHealingMachine:
 
 UnknownScript_0x78d8a: ; 0x78d8a
 	special Function1060a2
-	special Functionc658
+	special HealParty
 	playmusic MUSIC_NONE
 	writebyte $1
-	special Function12324
+	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	loadmovesprites
@@ -494,7 +494,7 @@ UnknownScript_0x78e79: ; 0x78e79
 
 UnknownScript_0x78e7f: ; 0x78e7f
 	applymovement $3, MovementData_0x78f7e
-	spriteface $0, $0
+	spriteface $0, DOWN
 	scall UnknownScript_0x78e9d
 	applymovement $3, MovementData_0x78f87
 	end
@@ -502,7 +502,7 @@ UnknownScript_0x78e7f: ; 0x78e7f
 
 UnknownScript_0x78e8e: ; 0x78e8e
 	applymovement $3, MovementData_0x78f82
-	spriteface $0, $0
+	spriteface $0, DOWN
 	scall UnknownScript_0x78e9d
 	applymovement $3, MovementData_0x78f8b
 	end
@@ -522,7 +522,7 @@ UnknownScript_0x78e9d: ; 0x78e9d
 
 UnknownScript_0x78ead: ; 0x78ead
 	applymovement $3, MovementData_0x78f7e
-	spriteface $0, $0
+	spriteface $0, DOWN
 	scall UnknownScript_0x78ecb
 	applymovement $3, MovementData_0x78f87
 	end
@@ -530,7 +530,7 @@ UnknownScript_0x78ead: ; 0x78ead
 
 UnknownScript_0x78ebc: ; 0x78ebc
 	applymovement $3, MovementData_0x78f82
-	spriteface $0, $0
+	spriteface $0, DOWN
 	scall UnknownScript_0x78ecb
 	applymovement $3, MovementData_0x78f8b
 	end
@@ -598,7 +598,7 @@ UnknownScript_0x78f12: ; 0x78f12
 MeetCopScript: ; 0x78f16
 	applymovement $0, MovementData_0x78f74
 CopScript: ; 0x78f1a
-	spriteface $7, $2
+	spriteface $7, LEFT
 	loadfont
 	writetext UnknownText_0x7a0f0
 	keeptextopen

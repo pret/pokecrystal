@@ -24,19 +24,19 @@ UnknownScript_0x188dc5: ; 0x188dc5
 	waitbutton
 	pause 30
 	applymovement $2, MovementData_0x188ed5
-	spriteface $3, $0
-	spriteface $4, $0
+	spriteface $3, DOWN
+	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x188f22
 	closetext
 	loadmovesprites
-	spriteface $2, $2
-	spriteface $0, $3
+	spriteface $2, LEFT
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x188f7f
 	closetext
 	loadmovesprites
-	spriteface $0, $0
+	spriteface $0, DOWN
 	applymovement $2, MovementData_0x188eda
 	dotrigger $0
 	end

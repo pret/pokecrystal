@@ -22,21 +22,21 @@ UnknownScript_0x19eea0: ; 0x19eea0
 	showemote $4, $2, 15
 	pause 30
 	showemote $0, $3, 10
-	spriteface $2, $0
+	spriteface $2, DOWN
 	applymovement $3, MovementData_0x19efe8
 	disappear $3
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
-	spriteface $2, $1
+	spriteface $2, UP
 	pause 10
 	applymovement $2, MovementData_0x19efed
 	loadfont
 	writetext UnknownText_0x19f006
 	closetext
 	loadmovesprites
-	spriteface $0, $0
+	spriteface $0, DOWN
 	applymovement $2, MovementData_0x19effa
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, MovementData_0x19f000
 	disappear $2
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
@@ -49,21 +49,21 @@ UnknownScript_0x19eee0: ; 0x19eee0
 	showemote $4, $2, 15
 	pause 30
 	showemote $0, $3, 10
-	spriteface $2, $0
+	spriteface $2, DOWN
 	applymovement $3, MovementData_0x19efea
 	disappear $3
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
-	spriteface $2, $1
+	spriteface $2, UP
 	pause 10
 	applymovement $2, MovementData_0x19eff4
 	loadfont
 	writetext UnknownText_0x19f006
 	closetext
 	loadmovesprites
-	spriteface $0, $1
+	spriteface $0, UP
 	applymovement $2, MovementData_0x19effd
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, MovementData_0x19f000
 	disappear $2
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM

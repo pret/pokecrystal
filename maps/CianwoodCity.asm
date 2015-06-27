@@ -28,12 +28,12 @@ UnknownScript_0x1a001d:
 	return
 
 UnknownScript_0x1a001e:
-	spriteface $0, $1
+	spriteface $0, UP
 	showemote $0, $0, 15
 	pause 15
 	playsound SFX_WARP_FROM
 	applymovement $d, MovementData_0x1a00da
-	spriteface $0, $0
+	spriteface $0, DOWN
 	pause 15
 	playsound SFX_WARP_FROM
 	applymovement $d, MovementData_0x1a00e0

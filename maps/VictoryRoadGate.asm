@@ -19,7 +19,7 @@ UnknownScript_0x9b9fc: ; 0x9b9fc
 ; 0x9b9fd
 
 UnknownScript_0x9b9fd: ; 0x9b9fd
-	spriteface $0, $2
+	spriteface $0, LEFT
 	jump UnknownScript_0x9ba04
 ; 0x9ba03
 

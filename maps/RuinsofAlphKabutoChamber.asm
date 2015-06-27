@@ -111,7 +111,7 @@ UnknownScript_0x587c0: ; 0x587c0
 	writetext UnknownText_0x588f5
 	closetext
 	loadmovesprites
-	spriteface $3, $1
+	spriteface $3, UP
 	end
 ; 0x587c9
 

@@ -26,7 +26,7 @@ UnknownScript_0x60f9e: ; 0x60f9e
 	appear $3
 	playmusic MUSIC_SHOW_ME_AROUND
 	applymovement $3, MovementData_0x6105a
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x622f0
 	closetext
@@ -60,7 +60,7 @@ UnknownScript_0x60fe3: ; 0x60fe3
 	appear $3
 	playmusic MUSIC_SHOW_ME_AROUND
 	applymovement $3, MovementData_0x61065
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x622f0
 	closetext

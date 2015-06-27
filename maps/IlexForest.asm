@@ -526,7 +526,7 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	special Functionc48f
 	applymovement $0, MovementData_0x6ef58
 	pause 30
-	spriteface $0, $0
+	spriteface $0, DOWN
 	pause 20
 	clearflag $0064
 	special Function4989a

@@ -45,9 +45,9 @@ UnknownScript_0x6dff7: ; 0x6dff7
 ; 0x6dffc
 
 LanceScript_0x6dffc: ; 0x6dffc
-	spriteface $0, $2
+	spriteface $0, LEFT
 	pause 5
-	spriteface $4, $3
+	spriteface $4, RIGHT
 	pause 20
 	applymovement $2, MovementData_0x6e12a
 	loadfont
@@ -61,12 +61,12 @@ LanceScript_0x6dffc: ; 0x6dffc
 ; 0x6e019
 
 UnknownScript_0x6e019: ; 0x6e019
-	spriteface $0, $2
+	spriteface $0, LEFT
 	showemote $0, $0, 15
 	special Functionc48f
 	appear $a
 	applymovement $a, MovementData_0x6e164
-	spriteface $0, $2
+	spriteface $0, LEFT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x6e267
@@ -96,7 +96,7 @@ UnknownScript_0x6e056: ; 0x6e056
 	pause 30
 	showemote $0, $3, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $3, $0
+	spriteface $3, DOWN
 	loadfont
 	writetext UnknownText_0x6e400
 	closetext

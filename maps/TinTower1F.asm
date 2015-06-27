@@ -93,7 +93,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	special SpecialMonCheck
 	iftrue UnknownScript_0x1850b6
 	applymovement $3, MovementData_0x1851d0
-	spriteface $0, $2
+	spriteface $0, LEFT
 	cry RAIKOU
 	pause 10
 	playsound SFX_WARP_FROM
@@ -106,7 +106,7 @@ UnknownScript_0x1850b6: ; 0x1850b6
 	special SpecialMonCheck
 	iftrue UnknownScript_0x1850d7
 	applymovement $4, MovementData_0x1851da
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	cry ENTEI
 	pause 10
 	playsound SFX_WARP_FROM
@@ -115,7 +115,7 @@ UnknownScript_0x1850b6: ; 0x1850b6
 	playsound SFX_EXIT_BUILDING
 	waitbutton
 UnknownScript_0x1850d7: ; 0x1850d7
-	spriteface $0, $1
+	spriteface $0, UP
 	pause 10
 	applymovement $0, MovementData_0x1851e8
 	applymovement $2, MovementData_0x1851e4
@@ -137,7 +137,7 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	returnafterbattle
 	pause 20
-	spriteface $0, $0
+	spriteface $0, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	playsound SFX_ENTER_DOOR
 	moveperson $5, $a, $f
@@ -158,7 +158,7 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	moveperson $6, $7, $d
 	moveperson $7, $9, $d
 	moveperson $8, $b, $d
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	loadfont
 	writetext UnknownText_0x185203
 	closetext

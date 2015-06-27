@@ -23,7 +23,7 @@ OlivineCity_MapScriptHeader:
 	return
 
 UnknownScript_0x1a8833:
-	spriteface $0, $2
+	spriteface $0, LEFT
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
@@ -37,7 +37,7 @@ UnknownScript_0x1a8833:
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x1a88f4
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	applymovement $5, MovementData_0x1a88db
 	dotrigger $1
 	disappear $5
@@ -47,7 +47,7 @@ UnknownScript_0x1a8833:
 	end
 
 UnknownScript_0x1a886b:
-	spriteface $0, $2
+	spriteface $0, LEFT
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
@@ -61,7 +61,7 @@ UnknownScript_0x1a886b:
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x1a88f7
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	applymovement $5, MovementData_0x1a88e8
 	disappear $5
 	dotrigger $1

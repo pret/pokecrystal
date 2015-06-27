@@ -35,10 +35,10 @@ UnknownScript_0x19401b: ; 0x19401b
 	showemote $0, $0, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	spriteface $0, $1
+	spriteface $0, UP
 	applymovement $a, MovementData_0x194262
 	disappear $a
-	spriteface $0, $0
+	spriteface $0, DOWN
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

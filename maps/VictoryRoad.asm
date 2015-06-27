@@ -20,7 +20,7 @@ UnknownScript_0x74491: ; 0x74491
 
 UnknownScript_0x74492: ; 0x74492
 	moveperson $2, $12, $b
-	spriteface $0, $0
+	spriteface $0, DOWN
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
@@ -35,7 +35,7 @@ UnknownScript_0x74492: ; 0x74492
 ; 0x744b5
 
 UnknownScript_0x744b5: ; 0x744b5
-	spriteface $0, $0
+	spriteface $0, DOWN
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15
@@ -50,7 +50,7 @@ UnknownScript_0x744b5: ; 0x744b5
 ; 0x744d4
 
 UnknownScript_0x744d4: ; 0x744d4
-	spriteface $0, $0
+	spriteface $0, DOWN
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x7455f

@@ -58,7 +58,7 @@ UnknownScript_0x180e74: ; 0x180e74
 	special Functionc48f
 	applymovement $0, MovementData_0x180f3c
 LanceScript_0x180e7b: ; 0x180e7b
-	spriteface $2, $2
+	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x180f67
 	closetext
@@ -82,9 +82,9 @@ LanceScript_0x180e7b: ; 0x180e7b
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
 	pause 30
 	showemote $0, $2, 15
-	spriteface $2, $0
+	spriteface $2, DOWN
 	pause 10
-	spriteface $0, $0
+	spriteface $0, DOWN
 	appear $3
 	applymovement $3, MovementData_0x180f41
 	loadfont
@@ -96,27 +96,27 @@ LanceScript_0x180e7b: ; 0x180e7b
 	follow $3, $4
 	applymovement $3, MovementData_0x180f49
 	stopfollow
-	spriteface $4, $1
-	spriteface $2, $2
+	spriteface $4, UP
+	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x18121b
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x180f4c
-	spriteface $0, $2
+	spriteface $0, LEFT
 	loadfont
 	writetext UnknownText_0x18134b
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x180f4f
-	spriteface $0, $1
+	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x18137b
 	closetext
 	loadmovesprites
 	follow $2, $0
-	spriteface $3, $1
-	spriteface $4, $1
+	spriteface $3, UP
+	spriteface $4, UP
 	applymovement $2, MovementData_0x180f53
 	stopfollow
 	playsound SFX_EXIT_BUILDING

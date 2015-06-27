@@ -41,7 +41,7 @@ UnknownScript_0x185c0c: ; 0x185c0c
 ; 0x185c0d
 
 UnknownScript_0x185c0d: ; 0x185c0d
-	spriteface $3, $0
+	spriteface $3, DOWN
 	showemote $0, $3, 15
 	applymovement $3, MovementData_0x185cd3
 	loadfont
@@ -57,7 +57,7 @@ UnknownScript_0x185c25: ; 0x185c25
 	showemote $0, $4, 15
 	special Functionc48f
 	pause 15
-	spriteface $4, $3
+	spriteface $4, RIGHT
 	pause 15
 	applymovement $0, MovementData_0x185ccd
 	applymovement $4, MovementData_0x185ccf

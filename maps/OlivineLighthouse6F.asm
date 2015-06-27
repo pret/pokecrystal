@@ -33,9 +33,9 @@ UnknownScript_0x60bab: ; 0x60bab
 	writetext UnknownText_0x60dea
 	closetext
 	loadmovesprites
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	pause 15
-	spriteface $3, $2
+	spriteface $3, LEFT
 	loadfont
 	playmusic MUSIC_HEAL
 	writetext UnknownText_0x60e44
@@ -51,13 +51,13 @@ UnknownScript_0x60bab: ; 0x60bab
 	writetext UnknownText_0x60f3d
 	closetext
 	loadmovesprites
-	spriteface $3, $3
+	spriteface $3, RIGHT
 	pause 10
-	spriteface $3, $2
+	spriteface $3, LEFT
 	pause 10
-	spriteface $3, $3
+	spriteface $3, RIGHT
 	pause 10
-	spriteface $3, $2
+	spriteface $3, LEFT
 	pause 10
 	faceplayer
 	loadfont
@@ -90,9 +90,9 @@ UnknownScript_0x60c25: ; 0x60c25
 	writetext UnknownText_0x60edf
 	closetext
 	loadmovesprites
-	spriteface $2, $3
+	spriteface $2, RIGHT
 	pause 15
-	spriteface $3, $2
+	spriteface $3, LEFT
 	loadfont
 	writetext UnknownText_0x60ef1
 	closetext

@@ -4082,7 +4082,7 @@ PredefPointers:: ; 856b
 
 	add_predef LearnMove ; $0
 	add_predef Predef1
-	add_predef Functionc658
+	add_predef HealParty
 	add_predef FlagPredef
 	add_predef Functionc699
 	add_predef FillPP
@@ -4491,7 +4491,7 @@ _PrintNum:: ; c4c7
 ; c658
 
 
-Functionc658: ; c658
+HealParty: ; c658
 	xor a
 	ld [CurPartyMon], a
 	ld hl, PartySpecies
@@ -4503,7 +4503,7 @@ Functionc658: ; c658
 	jr z, .next
 
 	push hl
-	call Functionc677
+	call HealPartyMon
 	pop hl
 
 .next
@@ -4516,7 +4516,7 @@ Functionc658: ; c658
 	ret
 ; c677
 
-Functionc677: ; c677
+HealPartyMon: ; c677
 	ld a, PartyMon1Species - PartyMon1
 	call GetPartyParamLocation
 	ld d, h
@@ -8824,7 +8824,7 @@ Functiondd64: ; dd64
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
-	callba Functionc677
+	callba HealPartyMon
 	ld a, [CurPartyLevel]
 	ld d, a
 	callab Function50e47
@@ -12447,7 +12447,7 @@ Function122f8: ; 122f8
 	ret
 ; 12324
 
-Function12324: ; 12324
+HealMachineAnim: ; 12324
 	ld a, [PartyCount]
 	and a
 	ret z
@@ -12720,7 +12720,7 @@ UnknownScript_0x124ce: ; 0x124ce
 	closetext
 	special Function8c084
 	pause 40
-	special Functionc658
+	special HealParty
 	checkflag $0011
 	iftrue .script_64f2
 	callasm HalveMoney
@@ -49489,7 +49489,7 @@ CheckAnyFaintedMon: ; 507fb
 ; 50821
 
 UnknownScript_0x50821: ; 0x50821
-	special Functionc658
+	special HealParty
 	reloadmappart
 	playsound SFX_WARP_TO
 	special Function8c084

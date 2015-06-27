@@ -34,7 +34,7 @@ UnknownScript_0x1a83d1:
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, $0
 	applymovement $2, MovementData_0x1a842a
-	spriteface $0, $1
+	spriteface $0, UP
 	applymovement $2, MovementData_0x1a8465
 	stopfollow
 	special RestartMapMusic

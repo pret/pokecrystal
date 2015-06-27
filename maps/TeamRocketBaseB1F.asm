@@ -32,7 +32,7 @@ SecurityCamera1a: ; 0x6c65e
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
@@ -58,7 +58,7 @@ SecurityCamera1b: ; 0x6c6a7
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
@@ -84,14 +84,14 @@ SecurityCamera2a: ; 0x6c6f0
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $7
 	appear $2
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, SecurityCameraMovement2
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	moveperson $2, $c, $5
 	appear $2
 	applymovement $2, SecurityCameraMovement3
@@ -111,14 +111,14 @@ SecurityCamera2b: ; 0x6c73c
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $8
 	appear $2
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, SecurityCameraMovement4
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	moveperson $2, $c, $5
 	appear $2
 	applymovement $2, SecurityCameraMovement5
@@ -138,14 +138,14 @@ SecurityCamera3a: ; 0x6c788
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $6
 	appear $2
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	moveperson $2, $19, $b
 	appear $2
 	applymovement $2, SecurityCameraMovement6
@@ -165,14 +165,14 @@ SecurityCamera3b: ; 0x6c7d4
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $7
 	appear $2
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	moveperson $2, $19, $c
 	appear $2
 	applymovement $2, SecurityCameraMovement7
@@ -192,14 +192,14 @@ SecurityCamera4: ; 0x6c820
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $11, $10
 	appear $2
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	moveperson $2, $19, $b
 	appear $2
 	applymovement $2, SecurityCameraMovement8
@@ -219,14 +219,14 @@ SecurityCamera5: ; 0x6c86c
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $3, $10
 	appear $2
-	spriteface $0, $2
+	spriteface $0, LEFT
 	applymovement $2, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	moveperson $2, $e, $10
 	appear $2
 	applymovement $2, SecurityCameraMovement9

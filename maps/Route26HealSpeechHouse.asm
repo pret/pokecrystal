@@ -16,7 +16,7 @@ TeacherScript_0x7b125: ; 0x7b125
 	special Functiond91
 	special Function1060a2
 	playmusic MUSIC_HEAL
-	special Functionc658
+	special HealParty
 	pause 60
 	special Function8c0ab
 	special RestartMapMusic

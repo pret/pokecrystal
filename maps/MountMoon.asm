@@ -20,7 +20,7 @@ UnknownScript_0x7408d: ; 0x7408d
 ; 0x7408e
 
 UnknownScript_0x7408e: ; 0x7408e
-	spriteface $0, $3
+	spriteface $0, RIGHT
 	showemote $0, $0, 15
 	special Functionc48f
 	pause 15

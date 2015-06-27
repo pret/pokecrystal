@@ -45,7 +45,7 @@ UnknownScript_0x59192: ; 0x59192
 	pause 30
 	playsound SFX_TRANSACTION
 	pause 30
-	spriteface $4, $0
+	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x59278
 	closetext

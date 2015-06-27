@@ -25,7 +25,7 @@ UnknownScript_0x7a4d8: ; 0x7a4d8
 UnknownScript_0x7a4db: ; 0x7a4db
 	playmusic MUSIC_MOM
 	showemote $0, $2, 15
-	spriteface $0, $2
+	spriteface $0, LEFT
 	checkevent $0000
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
@@ -105,7 +105,7 @@ UnknownScript_0x7a564: ; 0x7a564
 
 UnknownScript_0x7a56b: ; 0x7a56b
 	special RestartMapMusic
-	spriteface $2, $2
+	spriteface $2, LEFT
 	end
 ; 0x7a572
 
@@ -196,7 +196,7 @@ NeighborScript:
 	writetext NeighborText
 	closetext
 	loadmovesprites
-	spriteface $6, $3
+	spriteface $6, RIGHT
 	end
 
 TVScript:

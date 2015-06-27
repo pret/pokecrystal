@@ -110,10 +110,10 @@ PokeCenterNurseScript:
 	special Function1060a2
 	spriteface $fe, LEFT
 	pause 10
-	special Functionc658
+	special HealParty
 	playmusic MUSIC_NONE
 	writebyte 0
-	special Function12324
+	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	spriteface $fe, DOWN
