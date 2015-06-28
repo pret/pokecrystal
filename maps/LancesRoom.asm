@@ -229,7 +229,7 @@ UnknownText_0x180f67: ; 0x180f67
 	text "LANCE: I've been"
 	line "waiting for you."
 
-	para $14, "!"
+	para "<PLAY_G>!"
 
 	para "I knew that you,"
 	line "with your skills,"
@@ -281,7 +281,7 @@ UnknownText_0x181132: ; 0x181132
 
 	para "You have become"
 	line "truly powerful,"
-	cont $14, "."
+	cont "<PLAY_G>."
 
 	para "Your #MON have"
 	line "responded to your"
@@ -308,7 +308,7 @@ UnknownText_0x1811dd: ; 0x1811dd
 
 UnknownText_0x18121b: ; 0x18121b
 	text "PROF.OAK: Ah,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "It's been a long"
 	line "while."
@@ -336,7 +336,7 @@ UnknownText_0x18121b: ; 0x18121b
 	line "severed."
 
 	para "Congratulations,"
-	line $14, "!"
+	line "<PLAY_G>!"
 	done
 ; 0x18134b
 
@@ -352,7 +352,7 @@ UnknownText_0x18137b: ; 0x18137b
 	line "getting to be a"
 	cont "bit too noisy…"
 
-	para $14, ", could you"
+	para "<PLAY_G>, could you"
 	line "come with me?"
 	done
 ; 0x1813c5

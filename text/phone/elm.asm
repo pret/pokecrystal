@@ -1,5 +1,5 @@
 ElmPhoneStartText: ; 0x1b46fc
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "Try not to overdo"
 	line "it."
@@ -10,7 +10,7 @@ ElmPhoneStartText: ; 0x1b46fc
 	done
 
 ElmPhoneSawMrPokemonText: ; 0x1b4749
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "Did you meet MR."
 	line "#MON? Great!"
@@ -18,7 +18,7 @@ ElmPhoneSawMrPokemonText: ; 0x1b4749
 	done
 
 ElmPhonePokemonStolenText: ; 0x1b4784
-	text $14, "? I'm very"
+	text "<PLAY_G>? I'm very"
 	line "upset now."
 
 	para "We had a #MON"
@@ -29,7 +29,7 @@ ElmPhonePokemonStolenText: ; 0x1b4784
 	done
 
 ElmPhoneCheckingEggText: ; 0x1b47d5
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "We're checking the"
 	line "EGG now. It does"
@@ -39,7 +39,7 @@ ElmPhoneCheckingEggText: ; 0x1b47d5
 	done
 
 ElmPhoneAssistantText: ; 0x1b481c
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "Did you see my"
 	line "assistant? He's at"
@@ -49,7 +49,7 @@ ElmPhoneAssistantText: ; 0x1b481c
 	done
 
 ElmPhoneEggUnhatchedText: ; 0x1b4868
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "How's the EGG? Has"
 	line "anything changed?"
@@ -59,7 +59,7 @@ ElmPhoneEggUnhatchedText: ; 0x1b4868
 	done
 
 ElmPhoneEggHatchedText: ; 0x1b48bb
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 	line "How is the EGG?"
 
 	para "What? It hatched?"
@@ -71,7 +71,7 @@ ElmPhoneEggHatchedText: ; 0x1b48bb
 	done
 
 ElmPhoneDiscovery1Text: ; 0x1b491f
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "I just made a new"
 	line "discovery."
@@ -84,7 +84,7 @@ ElmPhoneDiscovery1Text: ; 0x1b491f
 	done
 
 ElmPhoneDiscovery2Text: ; 0x1b4982
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "It's still a"
 	line "mystery what kinds"
@@ -97,7 +97,7 @@ ElmPhoneDiscovery2Text: ; 0x1b4982
 	done
 
 ElmPhonePokerusText: ; 0x1b49e7
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "I discovered an"
 	line "odd thing."
@@ -130,7 +130,7 @@ ElmPhonePokerusText: ; 0x1b49e7
 	done
 
 ElmPhoneDisasterText: ; 0x1b4b17
-	text "H-hello? ", $14, "?"
+	text "H-hello? <PLAY_G>?"
 	line "It's a disaster!"
 
 	para "Uh, um, it's just"
@@ -144,7 +144,7 @@ ElmPhoneDisasterText: ; 0x1b4b17
 	done
 
 ElmPhoneEggAssistantText: ; 0x1b4b87
-	text "Hello, ", $14, "? We"
+	text "Hello, <PLAY_G>? We"
 	line "discovered some-"
 
 	para "thing about the"
@@ -159,7 +159,7 @@ ElmPhoneEggAssistantText: ; 0x1b4b87
 	done
 
 ElmPhoneRocketText: ; 0x1b4c06
-	text $14, ", how are"
+	text "<PLAY_G>, how are"
 	line "things going?"
 
 	para "I called because"
@@ -171,7 +171,7 @@ ElmPhoneRocketText: ; 0x1b4c06
 	para "They were talking"
 	line "about TEAM ROCKET."
 
-	para $14, ", do you"
+	para "<PLAY_G>, do you"
 	line "know anything"
 	cont "about it?"
 
@@ -186,7 +186,7 @@ ElmPhoneRocketText: ; 0x1b4c06
 	done
 
 ElmPhoneGiftText: ; 0x1b4d09
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 
 	para "I have something"
 	line "here for you."
@@ -198,7 +198,7 @@ ElmPhoneGiftText: ; 0x1b4d09
 	done
 
 ElmPhoneUnusedText: ; 0x1b4d5d
-	text "Hello, ", $14, "?"
+	text "Hello, <PLAY_G>?"
 	line "How's it going?"
 
 	para "I got ahold of"

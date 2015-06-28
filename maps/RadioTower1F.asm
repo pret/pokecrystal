@@ -285,8 +285,9 @@ UnknownText_0x5cf5a: ; 0x5cf5a
 ; 0x5cf79
 
 UnknownText_0x5cf79: ; 0x5cf79
-	db $0, $56, $4f
-	db $56, $57
+	text $56
+	line $56
+	done
 ; 0x5cf7e
 
 UnknownText_0x5cf7e: ; 0x5cf7e
@@ -430,7 +431,7 @@ UnknownText_0x5d37b: ; 0x5d37b
 ; 0x5d3c0
 
 UnknownText_0x5d3c0: ; 0x5d3c0
-	text $52, "'s #GEAR"
+	text "<PLAYER>'s #GEAR"
 	line "can now double as"
 	cont "a radio!"
 	done

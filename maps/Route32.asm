@@ -651,7 +651,7 @@ UnknownText_0x190790:
 	done
 
 UnknownText_0x1907ab:
-	text $52, ", right?"
+	text "<PLAYER>, right?"
 	line "Some guy wearing"
 
 	para "glasses was look-"

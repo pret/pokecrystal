@@ -142,7 +142,7 @@ UnknownText_0x9d3ed: ; 0x9d3ed
 ; 0x9d41b
 
 UnknownText_0x9d41b: ; 0x9d41b
-	text $52, " received a"
+	text "<PLAYER> received a"
 	line "#MON."
 	done
 ; 0x9d42f

@@ -11,7 +11,7 @@ ScientistScript_0x9b952: ; 0x9b952
 ; 0x9b955
 
 UnknownText_0x9b955: ; 0x9b955
-	text "Are you ", $14, "?"
+	text "Are you <PLAY_G>?"
 
 	para "I work as PROF."
 	line "OAK's AIDE."

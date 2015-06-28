@@ -92,7 +92,7 @@ MovementData_0x18052c: ; 0x18052c
 
 UnknownText_0x180531: ; 0x180531
 	text "Welcome to #MON"
-	line "LEAGUE, ", $52, "."
+	line "LEAGUE, <PLAYER>."
 
 	para "Allow me to intro-"
 	line "duce myself. I am"
@@ -133,7 +133,7 @@ UnknownText_0x180644: ; 0x180644
 	para "stand above all"
 	line "trainers!"
 
-	para "Now, ", $52, ", move"
+	para "Now, <PLAYER>, move"
 	line "on and experience"
 
 	para "the true ferocity"

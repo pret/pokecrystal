@@ -766,7 +766,7 @@ UnknownText_0x6d5d8: ; 0x6d5d8
 ; 0x6d64e
 
 UnknownText_0x6d64e: ; 0x6d64e
-	text "Sorry, ", $14, "."
+	text "Sorry, <PLAY_G>."
 	line "I saw how well you"
 
 	para "were doing, so I"
@@ -806,7 +806,7 @@ UnknownText_0x6d6cf: ; 0x6d6cf
 	para "makes me feel"
 	line "guilty."
 
-	para $14, ", let's"
+	para "<PLAY_G>, let's"
 	line "split the job."
 	done
 ; 0x6d7ea
@@ -841,7 +841,7 @@ UnknownText_0x6d809: ; 0x6d809
 ; 0x6d8e6
 
 UnknownText_0x6d8e6: ; 0x6d8e6
-	text $52, " received"
+	text "<PLAYER> received"
 	line "HM06."
 	done
 ; 0x6d8f8
@@ -865,7 +865,7 @@ UnknownText_0x6d8f8: ; 0x6d8f8
 ; 0x6d994
 
 UnknownText_0x6d994: ; 0x6d994
-	text $14, "…"
+	text "<PLAY_G>…"
 
 	para "The journey to be-"
 	line "coming the #MON"
@@ -909,7 +909,7 @@ UnknownText_0x6da97: ; 0x6da97
 ; 0x6daf7
 
 UnknownText_0x6daf7: ; 0x6daf7
-	text "LANCE: ", $14, ","
+	text "LANCE: <PLAY_G>,"
 	line "let's give it our"
 	cont "best for #MON."
 	done
@@ -1005,7 +1005,7 @@ UnknownText_0x6dd39: ; 0x6dd39
 UnknownText_0x6dd6b: ; 0x6dd6b
 	text "The door's closed…"
 
-	para $52, " entered"
+	para "<PLAYER> entered"
 	line "the password."
 
 	para "The door opened!"

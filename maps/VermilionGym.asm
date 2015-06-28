@@ -190,7 +190,7 @@ UnknownText_0x192238: ; 0x192238
 ; 0x192277
 
 UnknownText_0x192277: ; 0x192277
-	text $52, " received"
+	text "<PLAYER> received"
 	line "THUNDERBADGE."
 	done
 ; 0x192291

@@ -270,7 +270,7 @@ UnknownText_0x18edae: ; 0x18edae
 ; 0x18ee14
 
 UnknownText_0x18ee14: ; 0x18ee14
-	text $52, " received"
+	text "<PLAYER> received"
 	line "HIVEBADGE."
 	done
 ; 0x18ee2b

@@ -87,7 +87,7 @@ CianwoodGymGuyText: ; 0x9dc33
 ; 0x9ddc5
 
 CianwoodGymGuyWinText: ; 0x9ddc5
-	text $52, "! You won!"
+	text "<PLAYER>! You won!"
 	line "I could tell by"
 	cont "looking at you!"
 	done

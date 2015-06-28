@@ -29,21 +29,24 @@ BillPhoneNiteGreetingText: ; 0x1b44b5
 	done
 
 BillPhoneGeneriText: ; 0x1b44fe
-	db $0, "Who's calling?", $51
-	db $14, ", is it?", $4f
-	db "Hang on a sec…", $51
-	db $56, $4f
-	db $56, $57
+	text "Who's calling?"
+
+	para "<PLAY_G>, is it?"
+	line "Hang on a sec…"
+
+	para $56
+	line $56
+	done
 
 BillPhoneNotFullText: ; 0x1b452a
 	text "Thanks for"
 	line "waiting!"
 
-	para $14, ", your BOX"
+	para "<PLAY_G>, your BOX"
 	line "has room for @"
 	TX_RAM StringBuffer3
-	text $55
-	db "more #MON."
+	text ""
+	cont "more #MON."
 
 	para "Get out there and"
 	line "fill it up!"
@@ -53,7 +56,7 @@ BillPhoneNearlyFullText: ; 0x1b4587
 	text "Thanks for"
 	line "waiting!"
 
-	para $14, ", your BOX"
+	para "<PLAY_G>, your BOX"
 	line "has room for only"
 	cont "@"
 	TX_RAM StringBuffer3
@@ -67,7 +70,7 @@ BillPhoneFullText: ; 0x1b45ed
 	text "Thanks for"
 	line "waiting!"
 
-	para $14, ", your BOX"
+	para "<PLAY_G>, your BOX"
 	line "is full!"
 
 	para "You'll have to"
@@ -78,7 +81,7 @@ BillPhoneFullText: ; 0x1b45ed
 	done
 
 BillPhoneNewlyFullText: ; 0x1b4652
-	text "Hi, ", $14, "?"
+	text "Hi, <PLAY_G>?"
 	line "It's me, BILL!"
 
 	para "Thanks for using"

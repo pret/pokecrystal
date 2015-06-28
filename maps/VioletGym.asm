@@ -188,7 +188,7 @@ UnknownText_0x6854a: ; 0x6854a
 ; 0x685af
 
 UnknownText_0x685af: ; 0x685af
-	text $52, " received"
+	text "<PLAYER> received"
 	line "ZEPHYRBADGE."
 	done
 ; 0x685c8

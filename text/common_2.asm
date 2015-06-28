@@ -144,27 +144,31 @@ UnknownText_0x1bc1cf: ; 0x1bc1cf
 
 UnknownText_0x1bc1eb: ; 0x1bc1eb
 	text "Your PASSCODE has"
-	line "been set.", $51
-	db "Enter this number"
-	line "next time to open", $55
-	db "the CARD FOLDER.", $51
-	db $57
+	line "been set."
+	para "Enter this number"
+	line "next time to open"
+	cont "the CARD FOLDER."
+	para ""
+	done
 ; 0x1bc23e
 
 UnknownText_0x1bc23e: ; 0x1bc23e
-	text "0000 is invalid!", $51
-	db $57
+	text "0000 is invalid!"
+	para ""
+	done
 ; 0x1bc251
 
 UnknownText_0x1bc251: ; 0x1bc251
-	text "Enter the CARD", $4e, "FOLDER PASSCODE."
+	text "Enter the CARD"
+	next "FOLDER PASSCODE."
 	done
 ; 0x1bc272
 
 UnknownText_0x1bc272: ; 0x1bc272
 	text "Incorrect"
-	line "PASSCODE!", $51
-	db $57
+	line "PASSCODE!"
+	para ""
+	done
 ; 0x1bc288
 
 UnknownText_0x1bc288: ; 0x1bc288
@@ -283,7 +287,8 @@ UnknownText_0x1bc404: ; 0x1bc404
 
 UnknownText_0x1bc42c: ; 0x1bc42c
 	text "The password is:"
-	line $57
+	line ""
+	done
 ; 0x1bc43f
 
 UnknownText_0x1bc43f: ; 0x1bc43f
@@ -347,8 +352,8 @@ UnknownText_0x1bc51c: ; 0x1bc51c
 	text "Put away the"
 	line "@"
 	text_from_ram StringBuffer3
-	text $51
-	db "and set up the"
+	text ""
+	para "and set up the"
 	line "@"
 	text_from_ram StringBuffer4
 	text "."
@@ -399,7 +404,7 @@ UnknownText_0x1bc5ef: ; 0x1bc5ef
 ; 0x1bc615
 
 UnknownText_0x1bc615: ; 0x1bc615
-	text "Hi, ", $52, "!"
+	text "Hi, <PLAYER>!"
 	line "How are you?"
 	prompt
 ; 0x1bc62a
@@ -1286,11 +1291,12 @@ UnknownText_0x1bcf96: ; 0x1bcf96
 
 UnknownText_0x1bcf99: ; 0x1bcf99
 	text ""
-	line $57
+	line ""
+	done
 ; 0x1bcf9c
 
 UnknownText_0x1bcf9c: ; 0x1bcf9c
-	text $3f
+	text "<ENEMY>"
 	line "withdrew"
 	cont "@"
 	text_from_ram EnemyMonNick
@@ -1299,11 +1305,11 @@ UnknownText_0x1bcf9c: ; 0x1bcf9c
 ; 0x1bcfaf
 
 UnknownText_0x1bcfaf: ; 0x1bcfaf
-	text $3f
+	text "<ENEMY>"
 	line "used @"
 	text_from_ram wd050
-	text $55
-	db "on @"
+	text ""
+	cont "on @"
 	text_from_ram EnemyMonNick
 	text "!"
 	prompt
@@ -1383,7 +1389,8 @@ UnknownText_0x1bd0d8: ; 0x1bd0d8
 
 UnknownText_0x1bd109: ; 0x1bd109
 	text "There is no EGG."
-	line $58
+	line ""
+	prompt
 ; 0x1bd11c
 
 UnknownText_0x1bd11c: ; 0x1bd11c
@@ -1528,7 +1535,7 @@ UnknownText_0x1bd308: ; 0x1bd308
 ; 0x1bd321
 
 UnknownText_0x1bd321: ; 0x1bd321
-	text $52, " found"
+	text "<PLAYER> found"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
@@ -1536,7 +1543,7 @@ UnknownText_0x1bd321: ; 0x1bd321
 ; 0x1bd331
 
 UnknownText_0x1bd331: ; 0x1bd331
-	text "But ", $52, " has"
+	text "But <PLAYER> has"
 	line "no space left…"
 	done
 ; 0x1bd34b
@@ -1595,11 +1602,11 @@ UnknownText_0x1bd407: ; 0x1bd407
 ; 0x1bd429
 
 UnknownText_0x1bd429: ; 0x1bd429
-	text $52, " traded"
+	text "<PLAYER> traded"
 	line "@"
 	text_from_ram wd050
-	text " for", $55
-	db "@"
+	text " for"
+	cont "@"
 	text_from_ram StringBuffer2
 	text ".@"
 	db "@"
@@ -1815,8 +1822,9 @@ UnknownText_0x1bd77f: ; 0x1bd77f
 
 UnknownText_0x1bd868: ; 0x1bd868
 	text "OK, I'll take care"
-	line "of your money.", $51
-	db $56, $56, $56, $58
+	line "of your money."
+	para $56, $56, $56
+	prompt
 ; 0x1bd88e
 
 UnknownText_0x1bd88e: ; 0x1bd88e
@@ -1895,7 +1903,7 @@ UnknownText_0x1bda25: ; 0x1bda25
 	text "OK, I'll save your"
 	line "money. Trust me!"
 
-	para $52, ", stick"
+	para "<PLAYER>, stick"
 	line "with it!"
 	done
 ; 0x1bda5b
@@ -1907,7 +1915,7 @@ UnknownText_0x1bda5b: ; 0x1bda5b
 ; 0x1bda7e
 
 UnknownText_0x1bda7e: ; 0x1bda7e
-	text $52, ", don't"
+	text "<PLAYER>, don't"
 	line "give up!"
 	done
 ; 0x1bda90
@@ -2059,7 +2067,7 @@ UnknownText_0x1bde04: ; 0x1bde04
 ; 0x1bde1f
 
 UnknownText_0x1bde1f: ; 0x1bde1f
-	text $52, " got back"
+	text "<PLAYER> got back"
 	line "@"
 	text_from_ram StringBuffer1
 	text "."
@@ -2070,8 +2078,8 @@ UnknownText_0x1bde32: ; 0x1bde32
 	text "Huh? Back already?"
 	line "Your @"
 	text_from_ram StringBuffer1
-	text $51
-	db "needs a little"
+	text ""
+	para "needs a little"
 	line "more time with us."
 
 	para "If you want your"
@@ -2128,7 +2136,7 @@ UnknownText_0x1bdf00: ; 0x1bdf00
 ; 0x1bdfa5
 
 UnknownText_0x1bdfa5: ; 0x1bdfa5
-	text $52, " received"
+	text "<PLAYER> received"
 	line "the EGG!"
 	done
 ; 0x1bdfba

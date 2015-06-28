@@ -320,7 +320,7 @@ UnknownText_0x701b4:
 	line "because of the"
 	cont "rumors?"
 
-	para "You're ", $52, "?"
+	para "You're <PLAYER>?"
 	line "I'm LANCE, a"
 	cont "trainer like you."
 
@@ -330,7 +330,7 @@ UnknownText_0x701b4:
 
 	para "I saw the way you"
 	line "battled earlier,"
-	cont $14, "."
+	cont "<PLAY_G>."
 
 	para "I can tell that"
 	line "you're a trainer"
@@ -359,7 +359,7 @@ UnknownText_0x702c6:
 	line "the cause."
 
 	para "I'll be waiting"
-	line "for you, ", $14, "."
+	line "for you, <PLAY_G>."
 	done
 
 UnknownText_0x70371:
@@ -378,7 +378,7 @@ UnknownText_0x703cb:
 	done
 
 UnknownText_0x703df:
-	text $52, " obtained a"
+	text "<PLAYER> obtained a"
 	line "RED SCALE."
 	done
 

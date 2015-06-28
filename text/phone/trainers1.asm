@@ -5,7 +5,7 @@ UnknownText_0x1b4dc5: ; 0x1b4dc5
 	text "…"
 
 	para "Good morning,"
-	line $14, "!"
+	line "<PLAY_G>!"
 	done
 
 UnknownText_0x1b4ded: ; 0x1b4ded
@@ -15,7 +15,7 @@ UnknownText_0x1b4ded: ; 0x1b4ded
 	text "…"
 
 	para "How's it going,"
-	line $14, "?"
+	line "<PLAY_G>?"
 	done
 
 UnknownText_0x1b4e16: ; 0x1b4e16
@@ -25,11 +25,11 @@ UnknownText_0x1b4e16: ; 0x1b4e16
 	text "…"
 
 	para "Good evening,"
-	line $14, "!"
+	line "<PLAY_G>!"
 	done
 
 UnknownText_0x1b4e3e: ; 0x1b4e3e
-	text $14, ", good"
+	text "<PLAY_G>, good"
 	line "morning!"
 
 	para "It's me, @"
@@ -39,7 +39,7 @@ UnknownText_0x1b4e3e: ; 0x1b4e3e
 	done
 
 UnknownText_0x1b4e72: ; 0x1b4e72
-	text $14, ", howdy!"
+	text "<PLAY_G>, howdy!"
 
 	para "It's me, @"
 	TX_RAM StringBuffer3
@@ -48,7 +48,7 @@ UnknownText_0x1b4e72: ; 0x1b4e72
 	done
 
 UnknownText_0x1b4e9e: ; 0x1b4e9e
-	text $14, ", good"
+	text "<PLAY_G>, good"
 	line "evening!"
 
 	para "It's me, @"
@@ -77,7 +77,7 @@ UnknownText_0x1b4f21: ; 0x1b4f21
 	text "."
 
 	para "Oh! Good morning,"
-	line $52, "."
+	line "<PLAYER>."
 	done
 
 UnknownText_0x1b4f4d: ; 0x1b4f4d
@@ -87,7 +87,7 @@ UnknownText_0x1b4f4d: ; 0x1b4f4d
 	text "."
 
 	para "Oh! Good day,"
-	line $52, "."
+	line "<PLAYER>."
 	done
 
 UnknownText_0x1b4f75: ; 0x1b4f75
@@ -97,11 +97,11 @@ UnknownText_0x1b4f75: ; 0x1b4f75
 	text "."
 
 	para "Oh! Good evening,"
-	line $52, "."
+	line "<PLAYER>."
 	done
 
 UnknownText_0x1b4fa1: ; 0x1b4fa1
-	text "Hello, ", $52, "."
+	text "Hello, <PLAYER>."
 	line "Good morning."
 
 	para "This is @"
@@ -111,7 +111,7 @@ UnknownText_0x1b4fa1: ; 0x1b4fa1
 	done
 
 UnknownText_0x1b4fda: ; 0x1b4fda
-	text "Hi, ", $52, "."
+	text "Hi, <PLAYER>."
 	line "This is @"
 	TX_RAM StringBuffer3
 	text "."
@@ -120,7 +120,7 @@ UnknownText_0x1b4fda: ; 0x1b4fda
 	done
 
 UnknownText_0x1b5004: ; 0x1b5004
-	text "Hi, ", $52, "."
+	text "Hi, <PLAYER>."
 	line "This is @"
 	TX_RAM StringBuffer3
 	text "."
@@ -146,7 +146,7 @@ UnknownText_0x1b5073: ; 0x1b5073
 	text "."
 
 	para "Huh? What's up,"
-	line $52, "?"
+	line "<PLAYER>?"
 	done
 
 UnknownText_0x1b509b: ; 0x1b509b
@@ -156,7 +156,7 @@ UnknownText_0x1b509b: ; 0x1b509b
 	text "."
 
 	para "Huh? What's up"
-	line $52, "?"
+	line "<PLAYER>?"
 	done
 
 UnknownText_0x1b50c2: ; 0x1b50c2
@@ -166,11 +166,11 @@ UnknownText_0x1b50c2: ; 0x1b50c2
 	text "."
 
 	para "Huh? What's up"
-	line $52, "?"
+	line "<PLAYER>?"
 	done
 
 UnknownText_0x1b50e9: ; 0x1b50e9
-	text "Yo, ", $52, "!"
+	text "Yo, <PLAYER>!"
 	line "You awake?"
 
 	para "It's me, @"
@@ -180,7 +180,7 @@ UnknownText_0x1b50e9: ; 0x1b50e9
 	done
 
 UnknownText_0x1b511a: ; 0x1b511a
-	text "Yo, ", $52, "! You"
+	text "Yo, <PLAYER>! You"
 	line "free right now?"
 
 	para "It's me, @"
@@ -190,7 +190,7 @@ UnknownText_0x1b511a: ; 0x1b511a
 	done
 
 UnknownText_0x1b5154: ; 0x1b5154
-	text "Yo, ", $52, "!"
+	text "Yo, <PLAYER>!"
 	line "Were you asleep?"
 
 	para "It's me, @"
@@ -236,7 +236,7 @@ UnknownText_0x1b5270: ; 0x1b5270
 	TX_RAM StringBuffer3
 	text " speaking…"
 
-	para "Hi, ", $14, "!"
+	para "Hi, <PLAY_G>!"
 	line "Good morning!"
 	done
 
@@ -246,7 +246,7 @@ UnknownText_0x1b52a5: ; 0x1b52a5
 	TX_RAM StringBuffer3
 	text " speaking…"
 
-	para "Hi, ", $14, "!"
+	para "Hi, <PLAY_G>!"
 	done
 
 UnknownText_0x1b52cc: ; 0x1b52cc
@@ -255,12 +255,12 @@ UnknownText_0x1b52cc: ; 0x1b52cc
 	TX_RAM StringBuffer3
 	text " speaking…"
 
-	para "Hi, ", $14, "!"
+	para "Hi, <PLAY_G>!"
 	line "Good evening!"
 	done
 
 UnknownText_0x1b5301: ; 0x1b5301
-	text $14, ", good"
+	text "<PLAY_G>, good"
 	line "morning!"
 
 	para "It's me, @"
@@ -270,7 +270,7 @@ UnknownText_0x1b5301: ; 0x1b5301
 	done
 
 UnknownText_0x1b5335: ; 0x1b5335
-	text "Hi, ", $14, "!"
+	text "Hi, <PLAY_G>!"
 
 	para "It's me, @"
 	TX_RAM StringBuffer3
@@ -279,7 +279,7 @@ UnknownText_0x1b5335: ; 0x1b5335
 	done
 
 UnknownText_0x1b535f: ; 0x1b535f
-	text $14, ", good"
+	text "<PLAY_G>, good"
 	line "evening!"
 
 	para "It's me, @"
@@ -304,13 +304,14 @@ UnknownText_0x1b5393: ; 0x1b5393
 	done
 
 UnknownText_0x1b53f7: ; 0x1b53f7
-	db $0, "Hello, this is", $4f
-	db "@"
+	text "Hello, this is"
+	line "@"
 	TX_RAM StringBuffer3
-	db $0, ".", $51
-	db "Oh, ", $14, ".", $4f
-	db "Good morning.", $51
-	db $57
+	text "."
+	para "Oh, <PLAY_G>."
+	line "Good morning."
+	para ""
+	done
 
 UnknownText_0x1b5424: ; 0x1b5424
 	text "Hello, this is"
@@ -318,7 +319,7 @@ UnknownText_0x1b5424: ; 0x1b5424
 	TX_RAM StringBuffer3
 	text "."
 
-	para "Oh. Hi, ", $14, "."
+	para "Oh. Hi, <PLAY_G>."
 	done
 
 UnknownText_0x1b5446: ; 0x1b5446
@@ -327,13 +328,13 @@ UnknownText_0x1b5446: ; 0x1b5446
 	TX_RAM StringBuffer3
 	text "."
 
-	para "Oh, ", $14, "."
+	para "Oh, <PLAY_G>."
 	line "Good evening."
 	done
 
 UnknownText_0x1b5472: ; 0x1b5472
 	text "Good morning,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "This is @"
 	TX_RAM StringBuffer3
@@ -342,7 +343,7 @@ UnknownText_0x1b5472: ; 0x1b5472
 	done
 
 UnknownText_0x1b54a6: ; 0x1b54a6
-	text $14, ", hi!"
+	text "<PLAY_G>, hi!"
 	line "This is @"
 	TX_RAM StringBuffer3
 	text "."
@@ -352,7 +353,7 @@ UnknownText_0x1b54a6: ; 0x1b54a6
 	done
 
 UnknownText_0x1b54d4: ; 0x1b54d4
-	text "Hi, ", $14, "."
+	text "Hi, <PLAY_G>."
 	line "Good evening."
 
 	para "This is @"
@@ -386,7 +387,7 @@ UnknownText_0x1b55ae: ; 0x1b55ae
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, ", $14, "?"
+	para "Oh, <PLAY_G>?"
 	line "Good morning!"
 	done
 
@@ -396,7 +397,7 @@ UnknownText_0x1b55da: ; 0x1b55da
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, ", $14, "? Hi!"
+	para "Oh, <PLAY_G>? Hi!"
 	done
 
 UnknownText_0x1b55fc: ; 0x1b55fc
@@ -405,12 +406,12 @@ UnknownText_0x1b55fc: ; 0x1b55fc
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, ", $14, "?"
+	para "Oh, <PLAY_G>?"
 	line "Good evening!"
 	done
 
 UnknownText_0x1b5628: ; 0x1b5628
-	text "Oh, ", $14, "?"
+	text "Oh, <PLAY_G>?"
 
 	para "Tweet! Yeah, it's"
 	line "me, @"
@@ -419,7 +420,7 @@ UnknownText_0x1b5628: ; 0x1b5628
 	done
 
 UnknownText_0x1b564c: ; 0x1b564c
-	text "Oh, ", $14, "?"
+	text "Oh, <PLAY_G>?"
 
 	para "Tweet! Yeah, it's"
 	line "me, @"
@@ -428,7 +429,7 @@ UnknownText_0x1b564c: ; 0x1b564c
 	done
 
 UnknownText_0x1b5670: ; 0x1b5670
-	text "Oh, ", $14, "?"
+	text "Oh, <PLAY_G>?"
 
 	para "Tweet! Yeah, it's"
 	line "me, @"
@@ -456,7 +457,7 @@ UnknownText_0x1b5702: ; 0x1b5702
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh. Hi, ", $52, "."
+	para "Oh. Hi, <PLAYER>."
 	line "What's up?"
 	done
 
@@ -466,7 +467,7 @@ UnknownText_0x1b572e: ; 0x1b572e
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, hi, ", $52, ","
+	para "Oh, hi, <PLAYER>,"
 	line "what's up?"
 	done
 
@@ -476,7 +477,7 @@ UnknownText_0x1b575a: ; 0x1b575a
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, hi, ", $52, ","
+	para "Oh, hi, <PLAYER>,"
 	line "what's up?"
 	done
 
@@ -528,7 +529,7 @@ UnknownText_0x1b589a: ; 0x1b589a
 	TX_RAM StringBuffer3
 	text " here!"
 
-	para "Oh, ", $52, "? You"
+	para "Oh, <PLAYER>? You"
 	line "doing well?"
 	done
 
@@ -537,7 +538,7 @@ UnknownText_0x1b58c2: ; 0x1b58c2
 	TX_RAM StringBuffer3
 	text " here!"
 
-	para "Oh, ", $52, "? You"
+	para "Oh, <PLAYER>? You"
 	line "doing well?"
 	done
 
@@ -546,12 +547,12 @@ UnknownText_0x1b58ea: ; 0x1b58ea
 	TX_RAM StringBuffer3
 	text " here!"
 
-	para "Oh, ", $52, "? You"
+	para "Oh, <PLAYER>? You"
 	line "doing well?"
 	done
 
 UnknownText_0x1b5912: ; 0x1b5912
-	text "Yo, ", $52, "!"
+	text "Yo, <PLAYER>!"
 	line "How're you doing?"
 
 	para "This is @"
@@ -561,7 +562,7 @@ UnknownText_0x1b5912: ; 0x1b5912
 	done
 
 UnknownText_0x1b5948: ; 0x1b5948
-	text "Yo, ", $52, "! How's"
+	text "Yo, <PLAYER>! How's"
 	line "it going?"
 
 	para "This is @"
@@ -571,7 +572,7 @@ UnknownText_0x1b5948: ; 0x1b5948
 	done
 
 UnknownText_0x1b597c: ; 0x1b597c
-	text "Yo, ", $52, "!"
+	text "Yo, <PLAYER>!"
 	line "How're you doing?"
 
 	para "This is @"
@@ -603,7 +604,7 @@ UnknownText_0x1b5a3b: ; 0x1b5a3b
 	TX_RAM StringBuffer3
 	text " speaking."
 
-	para "Oh. Hi, ", $14, "!"
+	para "Oh. Hi, <PLAY_G>!"
 	line "Good morning!"
 	done
 
@@ -613,7 +614,7 @@ UnknownText_0x1b5a74: ; 0x1b5a74
 	TX_RAM StringBuffer3
 	text " speaking."
 
-	para "Oh, hi, ", $14, "!"
+	para "Oh, hi, <PLAY_G>!"
 	done
 
 UnknownText_0x1b5a9f: ; 0x1b5a9f
@@ -622,12 +623,12 @@ UnknownText_0x1b5a9f: ; 0x1b5a9f
 	TX_RAM StringBuffer3
 	text " speaking."
 
-	para "Oh, hi, ", $14, "!"
+	para "Oh, hi, <PLAY_G>!"
 	line "Good evening!"
 	done
 
 UnknownText_0x1b5ad8: ; 0x1b5ad8
-	text $14, ", good"
+	text "<PLAY_G>, good"
 	line "morning!"
 
 	para "It's me, @"
@@ -637,7 +638,7 @@ UnknownText_0x1b5ad8: ; 0x1b5ad8
 	done
 
 UnknownText_0x1b5b0b: ; 0x1b5b0b
-	text $14, ", howdy!"
+	text "<PLAY_G>, howdy!"
 
 	para "It's me, @"
 	TX_RAM StringBuffer3
@@ -647,7 +648,7 @@ UnknownText_0x1b5b0b: ; 0x1b5b0b
 
 UnknownText_0x1b5b37: ; 0x1b5b37
 	text "Good evening,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "It's me, @"
 	TX_RAM StringBuffer3
@@ -676,7 +677,7 @@ UnknownText_0x1b5b68: ; 0x1b5b68
 	done
 
 UnknownText_0x1b5c10: ; 0x1b5c10
-	text "Yes? Ah, ", $14, "."
+	text "Yes? Ah, <PLAY_G>."
 
 	para "You're courteous"
 	line "enough to state"
@@ -686,7 +687,7 @@ UnknownText_0x1b5c10: ; 0x1b5c10
 	done
 
 UnknownText_0x1b5c63: ; 0x1b5c63
-	text "Yes? Ah, ", $14, "."
+	text "Yes? Ah, <PLAY_G>."
 
 	para "You're courteous"
 	line "enough to state"
@@ -696,7 +697,7 @@ UnknownText_0x1b5c63: ; 0x1b5c63
 	done
 
 UnknownText_0x1b5cb6: ; 0x1b5cb6
-	text "Yes? Ah, ", $14, "."
+	text "Yes? Ah, <PLAY_G>."
 
 	para "You're courteous"
 	line "enough to state"
@@ -738,36 +739,36 @@ UnknownText_0x1b5d51: ; 0x1b5d51
 UnknownText_0x1b5d9f: ; 0x1b5d9f
 	text "Hello, @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "speaking."
 
-	para "Oh, ", $14, "."
+	para "Oh, <PLAY_G>."
 	line "Good morning."
 	done
 
 UnknownText_0x1b5dcc: ; 0x1b5dcc
 	text "Hello, @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "speaking."
 
-	para "Oh, ", $14, "."
+	para "Oh, <PLAY_G>."
 	line "How are you?"
 	done
 
 UnknownText_0x1b5df8: ; 0x1b5df8
 	text "Hello, @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "speaking."
 
-	para "Oh, ", $14, "."
+	para "Oh, <PLAY_G>."
 	line "Good evening."
 	done
 
 UnknownText_0x1b5e25: ; 0x1b5e25
 	text "Good morning,"
-	line $14, "."
+	line "<PLAY_G>."
 
 	para "This is @"
 	TX_RAM StringBuffer3
@@ -776,7 +777,7 @@ UnknownText_0x1b5e25: ; 0x1b5e25
 	done
 
 UnknownText_0x1b5e59: ; 0x1b5e59
-	text "Hi, ", $14, "."
+	text "Hi, <PLAY_G>."
 	line "This is @"
 	TX_RAM StringBuffer3
 	text "."
@@ -787,7 +788,7 @@ UnknownText_0x1b5e59: ; 0x1b5e59
 
 UnknownText_0x1b5e8e: ; 0x1b5e8e
 	text "Good evening,"
-	line $14, "."
+	line "<PLAY_G>."
 
 	para "This is @"
 	TX_RAM StringBuffer3
@@ -823,7 +824,7 @@ UnknownText_0x1b5f7a: ; 0x1b5f7a
 	text " the"
 	line "HIKER here."
 
-	para "Ah, ", $52, "!"
+	para "Ah, <PLAYER>!"
 	done
 
 UnknownText_0x1b5f9e: ; 0x1b5f9e
@@ -832,7 +833,7 @@ UnknownText_0x1b5f9e: ; 0x1b5f9e
 	text " the"
 	line "HIKER here."
 
-	para "Ah, ", $52, ","
+	para "Ah, <PLAYER>,"
 	line "right?"
 	done
 
@@ -842,36 +843,36 @@ UnknownText_0x1b5fc9: ; 0x1b5fc9
 	text " the"
 	line "HIKER here."
 
-	para "Ah, ", $52, ", isn't"
+	para "Ah, <PLAYER>, isn't"
 	line "it?"
 	done
 
 UnknownText_0x1b5ff6: ; 0x1b5ff6
-	text "Yo, ", $52, "?"
+	text "Yo, <PLAYER>?"
 
 	para "This is @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "the HIKER!"
 	done
 
 UnknownText_0x1b6017: ; 0x1b6017
 	text "Hey, is this"
-	line $52, "?"
+	line "<PLAYER>?"
 
 	para "This is @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "the HIKER!"
 	done
 
 UnknownText_0x1b6041: ; 0x1b6041
-	text $52, ", you still"
+	text "<PLAYER>, you still"
 	line "awake?"
 
 	para "This is @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "the HIKER!"
 	done
 
@@ -897,7 +898,7 @@ UnknownText_0x1b60f5: ; 0x1b60f5
 	TX_RAM StringBuffer3
 	text " speaking."
 
-	para "Hey, ", $14, "!"
+	para "Hey, <PLAY_G>!"
 	done
 
 UnknownText_0x1b611b: ; 0x1b611b
@@ -907,7 +908,7 @@ UnknownText_0x1b611b: ; 0x1b611b
 	text " speaking."
 
 	para "This must be"
-	line $14, "."
+	line "<PLAY_G>."
 	done
 
 UnknownText_0x1b6149: ; 0x1b6149
@@ -916,7 +917,7 @@ UnknownText_0x1b6149: ; 0x1b6149
 	TX_RAM StringBuffer3
 	text " speaking."
 
-	para "Ah, ", $14, "!"
+	para "Ah, <PLAY_G>!"
 	done
 
 UnknownText_0x1b616e: ; 0x1b616e
@@ -925,7 +926,7 @@ UnknownText_0x1b616e: ; 0x1b616e
 	TX_RAM StringBuffer3
 	text "."
 
-	para $14, ", right?"
+	para "<PLAY_G>, right?"
 	done
 
 UnknownText_0x1b618f: ; 0x1b618f
@@ -934,7 +935,7 @@ UnknownText_0x1b618f: ; 0x1b618f
 	TX_RAM StringBuffer3
 	text "."
 
-	para $14, ", what are"
+	para "<PLAY_G>, what are"
 	line "you doing?"
 	done
 
@@ -944,7 +945,7 @@ UnknownText_0x1b61bd: ; 0x1b61bd
 	TX_RAM StringBuffer3
 	text "."
 
-	para $14, ", sorry to"
+	para "<PLAY_G>, sorry to"
 	line "call you so late."
 	done
 
@@ -968,7 +969,7 @@ UnknownText_0x1b626a: ; 0x1b626a
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, ", $14, "!"
+	para "Oh, <PLAY_G>!"
 	line "Good morning!"
 	done
 
@@ -978,7 +979,7 @@ UnknownText_0x1b6296: ; 0x1b6296
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, ", $14, "!"
+	para "Oh, <PLAY_G>!"
 	line "Hi, how are you?"
 	done
 
@@ -988,12 +989,12 @@ UnknownText_0x1b62c5: ; 0x1b62c5
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, ", $14, "!"
+	para "Oh, <PLAY_G>!"
 	line "Good evening!"
 	done
 
 UnknownText_0x1b62f1: ; 0x1b62f1
-	text $14, "?"
+	text "<PLAY_G>?"
 
 	para "It's @"
 	TX_RAM StringBuffer3
@@ -1002,7 +1003,7 @@ UnknownText_0x1b62f1: ; 0x1b62f1
 	done
 
 UnknownText_0x1b630e: ; 0x1b630e
-	text $14, "?"
+	text "<PLAY_G>?"
 
 	para "It's @"
 	TX_RAM StringBuffer3
@@ -1011,7 +1012,7 @@ UnknownText_0x1b630e: ; 0x1b630e
 	done
 
 UnknownText_0x1b6331: ; 0x1b6331
-	text $14, "?"
+	text "<PLAY_G>?"
 
 	para "It's @"
 	TX_RAM StringBuffer3
@@ -1032,33 +1033,33 @@ UnknownText_0x1b6352: ; 0x1b6352
 UnknownText_0x1b638c: ; 0x1b638c
 	text "Hello? @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "here…"
 
-	para "Hey, ", $14, "!"
+	para "Hey, <PLAY_G>!"
 	done
 
 UnknownText_0x1b63a8: ; 0x1b63a8
 	text "Hello? @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "here…"
 
-	para "Wow, ", $14, "!"
+	para "Wow, <PLAY_G>!"
 	done
 
 UnknownText_0x1b63c4: ; 0x1b63c4
 	text "Hello? @"
 	TX_RAM StringBuffer3
-	db $0
+	text ""
 	line "here…"
 
-	para "Yippee, ", $14, "!"
+	para "Yippee, <PLAY_G>!"
 	done
 
 UnknownText_0x1b63e3: ; 0x1b63e3
 	text "Uh, hello."
-	line $14, "?"
+	line "<PLAY_G>?"
 
 	para "It's your pal,"
 	line "@"
@@ -1068,7 +1069,7 @@ UnknownText_0x1b63e3: ; 0x1b63e3
 
 UnknownText_0x1b6407: ; 0x1b6407
 	text "Uh, hello,"
-	line $14, "?"
+	line "<PLAY_G>?"
 
 	para "It's your buddy"
 	line "@"
@@ -1078,7 +1079,7 @@ UnknownText_0x1b6407: ; 0x1b6407
 
 UnknownText_0x1b642c: ; 0x1b642c
 	text "Uh, hello,"
-	line $14, "?"
+	line "<PLAY_G>?"
 
 	para "It's your sidekick"
 	line "@"
@@ -1092,7 +1093,7 @@ UnknownText_0x1b6454: ; 0x1b6454
 	TX_RAM StringBuffer3
 	text "."
 
-	para "…Huh, ", $14, "? Yo!"
+	para "…Huh, <PLAY_G>? Yo!"
 	done
 
 UnknownText_0x1b647e: ; 0x1b647e
@@ -1101,7 +1102,7 @@ UnknownText_0x1b647e: ; 0x1b647e
 	TX_RAM StringBuffer3
 	text "."
 
-	para "…Huh, ", $14, "? Yo!"
+	para "…Huh, <PLAY_G>? Yo!"
 	done
 
 UnknownText_0x1b64a8: ; 0x1b64a8
@@ -1110,7 +1111,7 @@ UnknownText_0x1b64a8: ; 0x1b64a8
 	TX_RAM StringBuffer3
 	text "."
 
-	para "…Huh, ", $14, "? Yo!"
+	para "…Huh, <PLAY_G>? Yo!"
 	done
 
 UnknownText_0x1b64d2: ; 0x1b64d2
@@ -1120,7 +1121,7 @@ UnknownText_0x1b64d2: ; 0x1b64d2
 	text " calling."
 
 	para "What are you up"
-	line "to, ", $14, "?"
+	line "to, <PLAY_G>?"
 	done
 
 UnknownText_0x1b6506: ; 0x1b6506
@@ -1130,7 +1131,7 @@ UnknownText_0x1b6506: ; 0x1b6506
 	text " calling."
 
 	para "Where are you now,"
-	line $14, "?"
+	line "<PLAY_G>?"
 	done
 
 UnknownText_0x1b6539: ; 0x1b6539
@@ -1140,7 +1141,7 @@ UnknownText_0x1b6539: ; 0x1b6539
 	text " calling."
 
 	para "Are you awake now,"
-	line $14, "?"
+	line "<PLAY_G>?"
 	done
 
 UnknownText_0x1b656c: ; 0x1b656c
@@ -1154,7 +1155,7 @@ UnknownText_0x1b659d: ; 0x1b659d
 	TX_RAM StringBuffer3
 	text "!"
 
-	para "Is this ", $14, "?"
+	para "Is this <PLAY_G>?"
 	line "Good morning!"
 	done
 
@@ -1163,7 +1164,7 @@ UnknownText_0x1b65c7: ; 0x1b65c7
 	TX_RAM StringBuffer3
 	text "!"
 
-	para "Is that ", $14, "?"
+	para "Is that <PLAY_G>?"
 	done
 
 UnknownText_0x1b65e3: ; 0x1b65e3
@@ -1171,7 +1172,7 @@ UnknownText_0x1b65e3: ; 0x1b65e3
 	TX_RAM StringBuffer3
 	text "!"
 
-	para "Is that ", $14, "?"
+	para "Is that <PLAY_G>?"
 	line "Good evening!"
 	done
 
@@ -1197,7 +1198,7 @@ UnknownText_0x1b663b: ; 0x1b663b
 	done
 
 UnknownText_0x1b6652: ; 0x1b6652
-	text $14, ", are you"
+	text "<PLAY_G>, are you"
 	line "raising your"
 	cont "#MON properly?"
 
@@ -1215,7 +1216,7 @@ UnknownText_0x1b66c8: ; 0x1b66c8
 	text " on the"
 	line "line."
 
-	para "Hey! It's ", $14, "!"
+	para "Hey! It's <PLAY_G>!"
 	done
 
 UnknownText_0x1b66ec: ; 0x1b66ec
@@ -1225,7 +1226,7 @@ UnknownText_0x1b66ec: ; 0x1b66ec
 	line "line."
 
 	para "I know!"
-	line "It's ", $14, "!"
+	line "It's <PLAY_G>!"
 	done
 
 UnknownText_0x1b6713: ; 0x1b6713
@@ -1234,12 +1235,12 @@ UnknownText_0x1b6713: ; 0x1b6713
 	text " on the"
 	line "line."
 
-	para $14, "?"
+	para "<PLAY_G>?"
 	line "What's up?"
 	done
 
 UnknownText_0x1b6738: ; 0x1b6738
-	text "Uh, ", $14, "?"
+	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
 	line "It's me, @"
@@ -1248,7 +1249,7 @@ UnknownText_0x1b6738: ; 0x1b6738
 	done
 
 UnknownText_0x1b6757: ; 0x1b6757
-	text "Uh, ", $14, "?"
+	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
 	line "It's me, @"
@@ -1257,7 +1258,7 @@ UnknownText_0x1b6757: ; 0x1b6757
 	done
 
 UnknownText_0x1b6776: ; 0x1b6776
-	text "Uh, ", $14, "?"
+	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
 	line "It's me, @"
@@ -1284,7 +1285,7 @@ UnknownText_0x1b67e2: ; 0x1b67e2
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Hi, ", $14, "!"
+	para "Hi, <PLAY_G>!"
 	line "Good morning!"
 	done
 
@@ -1294,7 +1295,7 @@ UnknownText_0x1b680e: ; 0x1b680e
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Hi, ", $14, ", good"
+	para "Hi, <PLAY_G>, good"
 	line "day!"
 	done
 
@@ -1304,12 +1305,12 @@ UnknownText_0x1b6836: ; 0x1b6836
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Hi, ", $14, ", good"
+	para "Hi, <PLAY_G>, good"
 	line "evening!"
 	done
 
 UnknownText_0x1b6862: ; 0x1b6862
-	text "Hi, ", $14, ", good"
+	text "Hi, <PLAY_G>, good"
 	line "morning!"
 
 	para "It's @"
@@ -1319,7 +1320,7 @@ UnknownText_0x1b6862: ; 0x1b6862
 	done
 
 UnknownText_0x1b6890: ; 0x1b6890
-	text "Hi, ", $14, ", good"
+	text "Hi, <PLAY_G>, good"
 	line "day!"
 
 	para "It's @"
@@ -1329,7 +1330,7 @@ UnknownText_0x1b6890: ; 0x1b6890
 	done
 
 UnknownText_0x1b68ba: ; 0x1b68ba
-	text "Hi, ", $14, ", good"
+	text "Hi, <PLAY_G>, good"
 	line "evening!"
 
 	para "It's @"
@@ -1358,28 +1359,28 @@ UnknownText_0x1b68e8: ; 0x1b68e8
 	done
 
 UnknownText_0x1b69a8: ; 0x1b69a8
-	text "Hi, ", $14, "?"
+	text "Hi, <PLAY_G>?"
 
 	para "Good morning pika."
 	line "What's up pika?"
 	done
 
 UnknownText_0x1b69d2: ; 0x1b69d2
-	text "Hi, ", $14, "?"
+	text "Hi, <PLAY_G>?"
 
 	para "Good day pika,"
 	line "what's up pika?"
 	done
 
 UnknownText_0x1b69f8: ; 0x1b69f8
-	text "Hi, ", $14, "?"
+	text "Hi, <PLAY_G>?"
 
 	para "Good evening pika,"
 	line "what's up pika?"
 	done
 
 UnknownText_0x1b6a22: ; 0x1b6a22
-	text $14, " pika, good"
+	text "<PLAY_G> pika, good"
 	line "morning!"
 
 	para "It's @"
@@ -1389,7 +1390,7 @@ UnknownText_0x1b6a22: ; 0x1b6a22
 	done
 
 UnknownText_0x1b6a56: ; 0x1b6a56
-	text $14, " pika, good"
+	text "<PLAY_G> pika, good"
 	line "pika day!"
 
 	para "It's @"
@@ -1399,7 +1400,7 @@ UnknownText_0x1b6a56: ; 0x1b6a56
 	done
 
 UnknownText_0x1b6a8b: ; 0x1b6a8b
-	text $14, " pika, good"
+	text "<PLAY_G> pika, good"
 	line "evening!"
 
 	para "It's @"
@@ -1429,7 +1430,7 @@ UnknownText_0x1b6b39: ; 0x1b6b39
 	text "…"
 
 	para "Oh, Good morning,"
-	line $14, "."
+	line "<PLAY_G>."
 	done
 
 UnknownText_0x1b6b65: ; 0x1b6b65
@@ -1439,7 +1440,7 @@ UnknownText_0x1b6b65: ; 0x1b6b65
 	text "…"
 
 	para "That voice…"
-	line $14, ", right?"
+	line "<PLAY_G>, right?"
 	done
 
 UnknownText_0x1b6b92: ; 0x1b6b92
@@ -1449,7 +1450,7 @@ UnknownText_0x1b6b92: ; 0x1b6b92
 	text "…"
 
 	para "This must be"
-	line $14, "!"
+	line "<PLAY_G>!"
 	done
 
 UnknownText_0x1b6bb9: ; 0x1b6bb9
@@ -1495,7 +1496,7 @@ UnknownText_0x1b6c96: ; 0x1b6c96
 	TX_RAM StringBuffer3
 	text " here…"
 
-	para "Ah, ", $52, ". What"
+	para "Ah, <PLAYER>. What"
 	line "can I do for you?"
 	done
 
@@ -1504,7 +1505,7 @@ UnknownText_0x1b6cc6: ; 0x1b6cc6
 	TX_RAM StringBuffer3
 	text " here…"
 
-	para "Ah, ", $52, ". What"
+	para "Ah, <PLAYER>. What"
 	line "can I do for you?"
 	done
 
@@ -1513,12 +1514,12 @@ UnknownText_0x1b6cf6: ; 0x1b6cf6
 	TX_RAM StringBuffer3
 	text " here…"
 
-	para "Ah, ", $52, ". What"
+	para "Ah, <PLAYER>. What"
 	line "can I do for you?"
 	done
 
 UnknownText_0x1b6d26: ; 0x1b6d26
-	text "Hiya, ", $52, ". How"
+	text "Hiya, <PLAYER>. How"
 	line "are you doing?"
 
 	para "Hey! It's me,"
@@ -1528,7 +1529,7 @@ UnknownText_0x1b6d26: ; 0x1b6d26
 	done
 
 UnknownText_0x1b6d57: ; 0x1b6d57
-	text "Hiya, ", $52, ", how"
+	text "Hiya, <PLAYER>, how"
 	line "are you doing?"
 
 	para "Hey, it's me,"
@@ -1538,7 +1539,7 @@ UnknownText_0x1b6d57: ; 0x1b6d57
 	done
 
 UnknownText_0x1b6d88: ; 0x1b6d88
-	text "Hiya, ", $52, ", how"
+	text "Hiya, <PLAYER>, how"
 	line "are you doing?"
 
 	para "Hey, it's me,"
@@ -1562,7 +1563,7 @@ UnknownText_0x1b6db9: ; 0x1b6db9
 
 	para "Heh, my @"
 	TX_RAM StringBuffer4
-	db $0
+	text ""
 	line "is so tough, it"
 
 	para "doesn't need to go"
@@ -1576,7 +1577,7 @@ UnknownText_0x1b6e7c: ; 0x1b6e7c
 	TX_RAM StringBuffer3
 	text "."
 
-	para "Oh, ", $14, "."
+	para "Oh, <PLAY_G>."
 	line "Good morning."
 	done
 
@@ -1586,7 +1587,7 @@ UnknownText_0x1b6ea6: ; 0x1b6ea6
 	TX_RAM StringBuffer3
 	text "."
 
-	para "Oh, ", $14, "."
+	para "Oh, <PLAY_G>."
 	line "Hello."
 	done
 
@@ -1596,12 +1597,12 @@ UnknownText_0x1b6ec9: ; 0x1b6ec9
 	TX_RAM StringBuffer3
 	text "."
 
-	para "Oh, ", $14, ", good"
+	para "Oh, <PLAY_G>, good"
 	line "evening."
 	done
 
 UnknownText_0x1b6ef3: ; 0x1b6ef3
-	text "Is this ", $14, "?"
+	text "Is this <PLAY_G>?"
 
 	para "Good morning. This"
 	line "is @"
@@ -1610,7 +1611,7 @@ UnknownText_0x1b6ef3: ; 0x1b6ef3
 	done
 
 UnknownText_0x1b6f1c: ; 0x1b6f1c
-	text "Is this ", $14, "?"
+	text "Is this <PLAY_G>?"
 
 	para "Hi, it's @"
 	TX_RAM StringBuffer3
@@ -1618,7 +1619,7 @@ UnknownText_0x1b6f1c: ; 0x1b6f1c
 	done
 
 UnknownText_0x1b6f37: ; 0x1b6f37
-	text "Is this ", $14, "?"
+	text "Is this <PLAY_G>?"
 
 	para "Good evening. This"
 	line "is @"
@@ -1655,7 +1656,7 @@ UnknownText_0x1b7019: ; 0x1b7019
 	TX_RAM StringBuffer3
 	text " here!"
 
-	para "Morning, ", $14, "!"
+	para "Morning, <PLAY_G>!"
 
 	para "Are you using bird"
 	line "#MON?"
@@ -1667,7 +1668,7 @@ UnknownText_0x1b7057: ; 0x1b7057
 	TX_RAM StringBuffer3
 	text " here!"
 
-	para "Hi, ", $14, "!"
+	para "Hi, <PLAY_G>!"
 
 	para "Are your bird"
 	line "#MON flying?"
@@ -1679,7 +1680,7 @@ UnknownText_0x1b7092: ; 0x1b7092
 	TX_RAM StringBuffer3
 	text " here!"
 
-	para "Evening, ", $14, "!"
+	para "Evening, <PLAY_G>!"
 	line "Are you letting"
 
 	para "your bird #MON"
@@ -1688,7 +1689,7 @@ UnknownText_0x1b7092: ; 0x1b7092
 
 UnknownText_0x1b70e7: ; 0x1b70e7
 	text "Good morning,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "It's @"
 	TX_RAM StringBuffer3
@@ -1697,7 +1698,7 @@ UnknownText_0x1b70e7: ; 0x1b70e7
 	done
 
 UnknownText_0x1b7112: ; 0x1b7112
-	text "Hi, ", $14, "!"
+	text "Hi, <PLAY_G>!"
 
 	para "It's @"
 	TX_RAM StringBuffer3
@@ -1707,7 +1708,7 @@ UnknownText_0x1b7112: ; 0x1b7112
 
 UnknownText_0x1b7132: ; 0x1b7132
 	text "Good evening,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "It's @"
 	TX_RAM StringBuffer3
@@ -1721,7 +1722,7 @@ UnknownText_0x1b7161: ; 0x1b7161
 
 	para "My @"
 	TX_RAM StringBuffer4
-	db $0
+	text ""
 	line "looks like it will"
 
 	para "get tough enough"
@@ -1737,7 +1738,7 @@ UnknownText_0x1b71d5: ; 0x1b71d5
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Ah, ", $14, "."
+	para "Ah, <PLAY_G>."
 	done
 
 UnknownText_0x1b71fc: ; 0x1b71fc
@@ -1746,7 +1747,7 @@ UnknownText_0x1b71fc: ; 0x1b71fc
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Ah, ", $14, ", is"
+	para "Ah, <PLAY_G>, is"
 	line "it?"
 	done
 
@@ -1757,7 +1758,7 @@ UnknownText_0x1b722a: ; 0x1b722a
 	text "…"
 
 	para "Ah, if it isn't"
-	line $14, "."
+	line "<PLAY_G>."
 	done
 
 UnknownText_0x1b725c: ; 0x1b725c
@@ -1800,7 +1801,7 @@ UnknownText_0x1b730b: ; 0x1b730b
 	TX_RAM StringBuffer3
 	text " here…"
 
-	para $52, "! Beautiful"
+	para "<PLAYER>! Beautiful"
 	line "morning, hey?"
 	done
 
@@ -1808,7 +1809,7 @@ UnknownText_0x1b7331: ; 0x1b7331
 	TX_RAM StringBuffer3
 	text " here…"
 
-	para $52, "! Beautiful"
+	para "<PLAYER>! Beautiful"
 	line "weather, hey?"
 	done
 
@@ -1816,26 +1817,26 @@ UnknownText_0x1b7357: ; 0x1b7357
 	TX_RAM StringBuffer3
 	text " here…"
 
-	para $52, "! Beautiful"
+	para "<PLAYER>! Beautiful"
 	line "moonlight, hey?"
 	done
 
 UnknownText_0x1b737f: ; 0x1b737f
-	text "Hey, ", $52, "!"
+	text "Hey, <PLAYER>!"
 	line "This is @"
 	TX_RAM StringBuffer3
 	text "!"
 	done
 
 UnknownText_0x1b7397: ; 0x1b7397
-	text "Hey, ", $52, "!"
+	text "Hey, <PLAYER>!"
 	line "This is @"
 	TX_RAM StringBuffer3
 	text "!"
 	done
 
 UnknownText_0x1b73af: ; 0x1b73af
-	text "Hey, ", $52, "!"
+	text "Hey, <PLAYER>!"
 	line "This is @"
 	TX_RAM StringBuffer3
 	text "!"
@@ -1848,7 +1849,7 @@ UnknownText_0x1b73c7: ; 0x1b73c7
 	text "!"
 
 	para "Hah, and here's"
-	line $14, "!"
+	line "<PLAY_G>!"
 	done
 
 UnknownText_0x1b73ef: ; 0x1b73ef
@@ -1858,7 +1859,7 @@ UnknownText_0x1b73ef: ; 0x1b73ef
 	text "!"
 
 	para "Hah, and here's"
-	line $14, "!"
+	line "<PLAY_G>!"
 	done
 
 UnknownText_0x1b7417: ; 0x1b7417
@@ -1868,11 +1869,11 @@ UnknownText_0x1b7417: ; 0x1b7417
 	text "!"
 
 	para "Hah, and here's"
-	line $14, "!"
+	line "<PLAY_G>!"
 	done
 
 UnknownText_0x1b743f: ; 0x1b743f
-	text $14, ", it's"
+	text "<PLAY_G>, it's"
 	line "@"
 	TX_RAM StringBuffer3
 	text "!"
@@ -1882,7 +1883,7 @@ UnknownText_0x1b743f: ; 0x1b743f
 	done
 
 UnknownText_0x1b746f: ; 0x1b746f
-	text $14, ", it's"
+	text "<PLAY_G>, it's"
 	line "@"
 	TX_RAM StringBuffer3
 	text "!"
@@ -1892,7 +1893,7 @@ UnknownText_0x1b746f: ; 0x1b746f
 	done
 
 UnknownText_0x1b749b: ; 0x1b749b
-	text $14, ", it's"
+	text "<PLAY_G>, it's"
 	line "@"
 	TX_RAM StringBuffer3
 	text "!"
@@ -1920,7 +1921,7 @@ UnknownText_0x1b751a: ; 0x1b751a
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh. Hi, ", $14, "!"
+	para "Oh. Hi, <PLAY_G>!"
 	line "Good morning!"
 	done
 
@@ -1930,7 +1931,7 @@ UnknownText_0x1b7548: ; 0x1b7548
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, hi, ", $14, "!"
+	para "Oh, hi, <PLAY_G>!"
 	line "Yahoo!"
 	done
 
@@ -1940,11 +1941,11 @@ UnknownText_0x1b756f: ; 0x1b756f
 	TX_RAM StringBuffer3
 	text "…"
 
-	para "Oh, hi, ", $14, "!"
+	para "Oh, hi, <PLAY_G>!"
 	done
 
 UnknownText_0x1b758f: ; 0x1b758f
-	text $14, "!"
+	text "<PLAY_G>!"
 
 	para "It's @"
 	TX_RAM StringBuffer3
@@ -1953,7 +1954,7 @@ UnknownText_0x1b758f: ; 0x1b758f
 	done
 
 UnknownText_0x1b75ac: ; 0x1b75ac
-	text $14, "!"
+	text "<PLAY_G>!"
 
 	para "It's @"
 	TX_RAM StringBuffer3
@@ -1962,7 +1963,7 @@ UnknownText_0x1b75ac: ; 0x1b75ac
 	done
 
 UnknownText_0x1b75c9: ; 0x1b75c9
-	text $14, "!"
+	text "<PLAY_G>!"
 
 	para "It's @"
 	TX_RAM StringBuffer3

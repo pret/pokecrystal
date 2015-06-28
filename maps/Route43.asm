@@ -512,7 +512,7 @@ PokemaniacRonSeenText: ; 0x19d386
 	text "Would you get"
 	line "this?"
 
-	para "Some ", $53, " guy"
+	para "Some <RIVAL> guy"
 	line "made fun of my"
 	cont "#MON!"
 

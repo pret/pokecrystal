@@ -196,7 +196,7 @@ UnknownText_0x1a80f7:
 	done
 
 UnknownText_0x1a8134:
-	text "Wait, ", $14, "!"
+	text "Wait, <PLAY_G>!"
 	done
 
 UnknownText_0x1a813e:
@@ -223,7 +223,7 @@ UnknownText_0x1a81c4:
 	done
 
 UnknownText_0x1a81f2:
-	text "Hi, ", $14, "!"
+	text "Hi, <PLAY_G>!"
 	line "Leaving again?"
 
 	para "You should tell"
@@ -240,7 +240,7 @@ UnknownText_0x1a8236:
 	done
 
 UnknownText_0x1a8274:
-	text "Yo, ", $52, "!"
+	text "Yo, <PLAYER>!"
 
 	para "I hear PROF.ELM"
 	line "discovered some"
@@ -269,7 +269,7 @@ UnknownText_0x1a82e8:
 	done
 
 UnknownText_0x1a8328:
-	text $52, "'s House"
+	text "<PLAYER>'s House"
 	done
 
 UnknownText_0x1a8332:

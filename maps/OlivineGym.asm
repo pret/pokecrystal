@@ -141,7 +141,7 @@ UnknownText_0x9c2bb: ; 0x9c2bb
 ; 0x9c33a
 
 UnknownText_0x9c33a: ; 0x9c33a
-	text $52, " received"
+	text "<PLAYER> received"
 	line "MINERALBADGE."
 	done
 ; 0x9c354
@@ -157,7 +157,7 @@ UnknownText_0x9c354: ; 0x9c354
 ; 0x9c393
 
 UnknownText_0x9c393: ; 0x9c393
-	text $52, " received"
+	text "<PLAYER> received"
 	line "TM09."
 	done
 ; 0x9c3a5

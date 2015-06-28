@@ -406,78 +406,110 @@ UnknownText_0x9e60a: ; 0x9e60a
 ; 0x9e62f
 
 UnknownText_0x9e62f: ; 0x9e62f
-	db $0, "BATTLE TOWER is a", $4f
-	db "facility made for", $55
-	db "#MON battles.", $51
-	db "Countless #MON", $4f
-	db "trainers gather", $51
-	db "from all over to", $4f
-	db "hold battles in", $51
-	db "specially designed", $4f
-	db "BATTLE ROOMS.", $51
-	db "There are many", $4f
-	db "BATTLE ROOMS in", $55
-	db "the BATTLE TOWER.", $51
-	db "Each ROOM holds", $4f
-	db "seven trainers.", $51
-	db "If you defeat the", $4f
-	db "seven in a ROOM,", $51
-	db "and you have a", $4f
-	db "good record, you", $51
-	db "could become the", $4f
-	db "ROOM's LEADER.", $51
-	db "All LEADERS will", $4f
-	db "be recorded in the", $51
-	db "HONOR ROLL for", $4f
-	db "posterity.", $51
-	db "You may challenge", $4f
-	db "in up to five", $51
-	db "BATTLE ROOMS each", $4f
-	db "day.", $51
-	db "However, you may", $4f
-	db "battle only once a", $51
-	db "day in any given", $4f
-	db "ROOM.", $51
-	db "To interrupt a", $4f
-	db "session, you must", $51
-	db "SAVE. If not, you", $4f
-	db "won't be able to", $51
-	db "resume your ROOM", $4f
-	db "challenge.", $51
-	db $57
+	text "BATTLE TOWER is a"
+	line "facility made for"
+	cont "#MON battles."
+
+	para "Countless #MON"
+	line "trainers gather"
+
+	para "from all over to"
+	line "hold battles in"
+
+	para "specially designed"
+	line "BATTLE ROOMS."
+
+	para "There are many"
+	line "BATTLE ROOMS in"
+	cont "the BATTLE TOWER."
+
+	para "Each ROOM holds"
+	line "seven trainers."
+
+	para "If you defeat the"
+	line "seven in a ROOM,"
+
+	para "and you have a"
+	line "good record, you"
+
+	para "could become the"
+	line "ROOM's LEADER."
+
+	para "All LEADERS will"
+	line "be recorded in the"
+
+	para "HONOR ROLL for"
+	line "posterity."
+
+	para "You may challenge"
+	line "in up to five"
+
+	para "BATTLE ROOMS each"
+	line "day."
+
+	para "However, you may"
+	line "battle only once a"
+
+	para "day in any given"
+	line "ROOM."
+
+	para "To interrupt a"
+	line "session, you must"
+
+	para "SAVE. If not, you"
+	line "won't be able to"
+
+	para "resume your ROOM"
+	line "challenge."
+
+	para ""
+	done
 ; 0x9e886
 
 UnknownText_0x9e886: ; 0x9e886
-	db $0, "BATTLE TOWER is a", $4f
-	db "facility made for", $55
-	db "#MON battles.", $51
-	db "Countless #MON", $4f
-	db "trainers gather", $51
-	db "from all over to", $4f
-	db "hold battles in", $51
-	db "specially designed", $4f
-	db "BATTLE ROOMS.", $51
-	db "There are many", $4f
-	db "BATTLE ROOMS in", $55
-	db "the BATTLE TOWER.", $51
-	db "Each ROOM holds", $4f
-	db "seven trainers.", $51
-	db "Beat them all, and", $4f
-	db "win a prize.", $51
-	db "To interrupt a", $4f
-	db "session, you must", $51
-	db "SAVE. If not, you", $4f
-	db "won't be able to", $51
-	db "resume your ROOM", $4f
-	db "challenge.", $51
-	db $57
+	text "BATTLE TOWER is a"
+	line "facility made for"
+	cont "#MON battles."
+
+	para "Countless #MON"
+	line "trainers gather"
+
+	para "from all over to"
+	line "hold battles in"
+
+	para "specially designed"
+	line "BATTLE ROOMS."
+
+	para "There are many"
+	line "BATTLE ROOMS in"
+	cont "the BATTLE TOWER."
+
+	para "Each ROOM holds"
+	line "seven trainers."
+
+	para "Beat them all, and"
+	line "win a prize."
+
+	para "To interrupt a"
+	line "session, you must"
+
+	para "SAVE. If not, you"
+	line "won't be able to"
+
+	para "resume your ROOM"
+	line "challenge."
+
+	para ""
+	done
 ; 0x9e9eb
 
 UnknownText_0x9e9eb: ; 0x9e9eb
-	db $0, "Received a list of", $4f
-	db "LEADERS on the", $55
-	db "HONOR ROLL.", $51
-	db $57
+	text "Received a list of"
+	line "LEADERS on the"
+	cont "HONOR ROLL."
+
+	para ""
+	done
 ; 0x9ea1b
 
 UnknownText_0x9ea1b: ; 0x9ea1b
@@ -487,8 +519,10 @@ UnknownText_0x9ea1b: ; 0x9ea1b
 ; 0x9ea3c
 
 UnknownText_0x9ea3c: ; 0x9ea3c
-	db $0, "Thank you!", $51
-	db $57
+	text "Thank you!"
+
+	para ""
+	done
 ; 0x9ea49
 
 UnknownText_0x9ea49: ; 0x9ea49
@@ -498,25 +532,35 @@ UnknownText_0x9ea49: ; 0x9ea49
 ; 0x9ea5f
 
 UnknownText_0x9ea5f: ; 0x9ea5f
-	db $0, "Congratulations!", $51
-	db "You've beaten all", $4f
-	db "the trainers!", $51
-	db "Your feat may be", $4f
-	db "worth registering,", $51
-	db $52, ". With your", $4f
-	db "results, you may", $51
-	db "be chosen as a", $4f
-	db "ROOM LEADER.", $51
-	db $57
+	text "Congratulations!"
+
+	para "You've beaten all"
+	line "the trainers!"
+
+	para "Your feat may be"
+	line "worth registering,"
+
+	para "<PLAYER>. With your"
+	line "results, you may"
+
+	para "be chosen as a"
+	line "ROOM LEADER."
+
+	para ""
+	done
 ; 0x9eaef
 
 UnknownText_0x9eaef: ; 0x9eaef
-	db $0, "Congratulations!", $51
-	db "You've beaten all", $4f
-	db "the trainers!", $51
-	db "For that, you get", $4f
-	db "this great prize!", $51
-	db $57
+	text "Congratulations!"
+
+	para "You've beaten all"
+	line "the trainers!"
+
+	para "For that, you get"
+	line "this great prize!"
+
+	para ""
+	done
 ; 0x9eb45
 
 UnknownText_0x9eb45: ; 0x9eb45
@@ -529,13 +573,13 @@ UnknownText_0x9eb45: ; 0x9eb45
 ; 0x9eb7e
 
 UnknownText_0x9eb7e: ; 0x9eb7e
-	db $0, $52, " got five", $4f
-	db "@"
+	text "<PLAYER> got five"
+	line "@"
 	text_from_ram StringBuffer4
-	db $0, "!@"
+	text "!@"
 	sound0x0F
 	text_waitbutton
-	db $50
+	db "@"
 ; 0x9eb94
 
 UnknownText_0x9eb94: ; 0x9eb94

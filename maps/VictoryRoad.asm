@@ -203,7 +203,7 @@ UnknownText_0x7455f: ; 0x7455f
 	para "#MON with me."
 	line "I'm invincible!"
 
-	para $52, "!"
+	para "<PLAYER>!"
 	line "I challenge you!"
 	done
 ; 0x7463d

@@ -639,7 +639,7 @@ MenuDataHeader_0x5efb: ; 5efb
 MenuData2_0x5f03: ; 5f03
 	db $00 ; flags
 	db 4 ; items
-	db "PLAYER ", $52, "@"
+	db "PLAYER <PLAYER>@"
 	db "BADGES@"
 	db " @"
 	db "TIME@"
@@ -667,7 +667,7 @@ Function5f1c: ; 5f1c
 	ret
 
 .Player
-	db $52, "@"
+	db "<PLAYER>@"
 ; 5f40
 
 Function5f40: ; 5f40
@@ -13109,22 +13109,39 @@ StartMenu:: ; 125cd
 .PokedexString 	db "#DEX@"
 .PartyString   	db "#MON@"
 .PackString    	db "PACK@"
-.StatusString  	db $52, "@"
+.StatusString  	db "<PLAYER>@"
 .SaveString    	db "SAVE@"
 .OptionString  	db "OPTION@"
 .ExitString    	db "EXIT@"
 .PokegearString	db $24, "GEAR@"
 .QuitString    	db "QUIT@"
 
-.PokedexDesc 	db "#MON", $4e, "database@"
-.PartyDesc   	db "Party ", $4a, $4e, "status@"
-.PackDesc    	db "Contains", $4e, "items@"
-.PokegearDesc	db "Trainer's", $4e, "key device@"
-.StatusDesc  	db "Your own", $4e, "status@"
-.SaveDesc    	db "Save your", $4e, "progress@"
-.OptionDesc  	db "Change", $4e, "settings@"
-.ExitDesc    	db "Close this", $4e, "menu@"
-.QuitDesc    	db "Quit and", $4e, "be judged.@"
+.PokedexDesc  db   "#MON"
+              next "database@"
+
+.PartyDesc    db   "Party ", $4a
+              next "status@"
+
+.PackDesc     db   "Contains"
+              next "items@"
+
+.PokegearDesc db   "Trainer's"
+              next "key device@"
+
+.StatusDesc   db   "Your own"
+              next "status@"
+
+.SaveDesc     db   "Save your"
+              next "progress@"
+
+.OptionDesc   db   "Change"
+              next "settings@"
+
+.ExitDesc     db   "Close this"
+              next "menu@"
+
+.QuitDesc     db   "Quit and"
+              next "be judged.@"
 
 
 .OpenMenu ; 127e5
@@ -19412,7 +19429,7 @@ Unknown_155e6: ; 155e6
 	dw Function156ab, String_15623
 ; 155fa
 
-String_155fa:	db $52, "'s PC@"
+String_155fa:	db "<PLAYER>'s PC@"
 String_15600:	db "BILL's PC@"
 String_15609:	db "PROF.OAK's PC@"
 String_15616:	db "HALL OF FAME@"

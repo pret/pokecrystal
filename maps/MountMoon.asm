@@ -99,7 +99,7 @@ UnknownText_0x74105: ; 0x74105
 	text $56, " ", $56, " ", $56
 
 	para "It's been a while,"
-	line $52, "."
+	line "<PLAYER>."
 
 	para "…Since I lost to"
 	line "you, I thought"
@@ -111,7 +111,7 @@ UnknownText_0x74105: ; 0x74105
 	para "And we came up"
 	line "with an answer."
 
-	para $52, ", now we'll"
+	para "<PLAYER>, now we'll"
 	line "show you!"
 	done
 ; 0x7419d
@@ -147,7 +147,7 @@ UnknownText_0x741fa: ; 0x741fa
 	para "Because these guys"
 	line "are behind me."
 
-	para "…Listen, ", $52, "."
+	para "…Listen, <PLAYER>."
 
 	para "One of these days"
 	line "I'm going to prove"

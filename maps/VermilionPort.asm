@@ -259,7 +259,7 @@ UnknownText_0x74fa7:
 	done
 
 UnknownText_0x74fc2:
-	text $52, " flashed"
+	text "<PLAYER> flashed"
 	line "the S.S.TICKET."
 
 	para "That's it."
@@ -267,7 +267,7 @@ UnknownText_0x74fc2:
 	done
 
 UnknownText_0x74ff2:
-	text $52, " tried to"
+	text "<PLAYER> tried to"
 	line "show the S.S."
 	cont "TICKET…"
 

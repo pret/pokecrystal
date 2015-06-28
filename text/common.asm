@@ -247,9 +247,9 @@ UnknownText_0x1b05bf: ; 0x1b05bf
 ; 0x1b0621
 
 UnknownText_0x1b0621: ; 0x1b0621
-	text $52, ", the No.@"
+	text "<PLAYER>, the No.@"
 	text_from_ram StringBuffer3
-	db $0
+	text ""
 	line "finisher, wins"
 	cont "@"
 	text_from_ram StringBuffer4
@@ -258,7 +258,7 @@ UnknownText_0x1b0621: ; 0x1b0621
 ; 0x1b0648
 
 UnknownText_0x1b0648: ; 0x1b0648
-	text $52, " received"
+	text "<PLAYER> received"
 	line "@"
 	text_from_ram StringBuffer4
 	text "."
@@ -304,7 +304,7 @@ UnknownText_0x1b070d: ; 0x1b070d
 
 UnknownText_0x1b074e: ; 0x1b074e
 	text_from_ram StringBuffer3
-	db $0
+	text ""
 	line "#MON GYM"
 	done
 ; 0x1b075c
@@ -312,9 +312,10 @@ UnknownText_0x1b074e: ; 0x1b074e
 UnknownText_0x1b075c: ; 0x1b075c
 	text "LEADER: @"
 	text_from_ram StringBuffer4
-	db $0, $51
-	db "WINNING TRAINERS:"
-	line $52, $57
+	text ""
+	para "WINNING TRAINERS:"
+	line "<PLAYER>"
+	done
 ; 0x1b077f
 
 UnknownText_0x1b077f: ; 0x1b077f
@@ -408,14 +409,14 @@ HappinessText1:
 	done
 
 RegisteredNumber1Text:
-	text $52, " registered"
+	text "<PLAYER> registered"
 	line "@"
 	text_from_ram StringBuffer3
 	text "'s number."
 	done
 
 RegisteredNumber2Text:
-	text $52, " registered"
+	text "<PLAYER> registered"
 	line "@"
 	text_from_ram StringBuffer3
 	text "'s number."

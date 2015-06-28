@@ -794,7 +794,7 @@ AfterChikoritaMovement: ; 0x78fb0
 ; 0x78fb6
 
 UnknownText_0x78fb6: ; 0x78fb6
-	text "ELM: ", $14, "!"
+	text "ELM: <PLAY_G>!"
 	line "There you are!"
 
 	para "I needed to ask"
@@ -807,7 +807,7 @@ UnknownText_0x78fb6: ; 0x78fb6
 	line "wondering if you"
 
 	para "could help me with"
-	line "it, ", $14, "."
+	line "it, <PLAY_G>."
 
 	para "You see…"
 
@@ -834,7 +834,7 @@ UnknownText_0x78fb6: ; 0x78fb6
 ; 0x790fa
 
 UnknownText_0x790fa: ; 0x790fa
-	text "Thanks, ", $14, "!"
+	text "Thanks, <PLAY_G>!"
 
 	para "You're a great"
 	line "help!"
@@ -902,7 +902,7 @@ UnknownText_0x791df: ; 0x791df
 
 	para "I know!"
 
-	para $14, ", can you"
+	para "<PLAY_G>, can you"
 	line "go in our place?"
 	done
 ; 0x792ff
@@ -916,7 +916,7 @@ UnknownText_0x792ff: ; 0x792ff
 
 	para "You'll be that"
 	line "#MON's first"
-	cont "partner, ", $14, "!"
+	cont "partner, <PLAY_G>!"
 
 	para "Go on. Pick one!"
 	done
@@ -973,7 +973,7 @@ ChoseStarterText: ; 0x79487
 ; 0x794ad
 
 ReceivedStarterText: ; 0x794ad
-	text $52, " received"
+	text "<PLAYER> received"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
@@ -1012,12 +1012,12 @@ ElmDirectionsText2: ; 0x79581
 	done
 
 ElmDirectionsText3: ; 0x795db
-	text $14, ", I'm"
+	text "<PLAY_G>, I'm"
 	line "counting on you!"
 	done
 
 GotElmsNumberText: ; 0x795f3
-	text $52, " got ELM's"
+	text "<PLAYER> got ELM's"
 	line "phone number."
 	done
 
@@ -1048,7 +1048,7 @@ ElmsLabHealingMachineText2:
 	done
 
 ElmAfterTheftText1: ; 0x796cd
-	text "ELM: ", $14, ", this"
+	text "ELM: <PLAY_G>, this"
 	line "is terrible…"
 
 	para "Oh, yes, what was"
@@ -1058,7 +1058,7 @@ ElmAfterTheftText1: ; 0x796cd
 ; 0x79712
 
 ElmAfterTheftText2: ; 0x79712
-	text $52, " handed"
+	text "<PLAYER> handed"
 	line "the MYSTERY EGG to"
 	cont "PROF.ELM."
 	done
@@ -1084,7 +1084,7 @@ ElmAfterTheftText5: ; 0x79780
 	para "PROF.OAK gave you"
 	line "a #DEX?"
 
-	para $14, ", is that"
+	para "<PLAY_G>, is that"
 	line "true? Th-that's"
 	cont "incredible!"
 
@@ -1093,7 +1093,7 @@ ElmAfterTheftText5: ; 0x79780
 	cont "tial of people as"
 	cont "trainers."
 
-	para "Wow, ", $14, ". You"
+	para "Wow, <PLAY_G>. You"
 	line "may have what it"
 
 	para "takes to become"
@@ -1114,7 +1114,7 @@ ElmAfterTheftText5: ; 0x79780
 ; 0x798cf
 
 ElmAfterTheftText6: ; 0x798cf
-	text "…", $14, ". The"
+	text "…<PLAY_G>. The"
 	line "road to the"
 
 	para "championship will"
@@ -1136,7 +1136,7 @@ ElmStudyingEggText: ; 0x7993c
 ; 0x7997d
 
 ElmAideHasEggText: ; 0x7997d
-	text "ELM: ", $14, "?"
+	text "ELM: <PLAY_G>?"
 	line "Didn't you meet my"
 	cont "assistant?"
 
@@ -1159,7 +1159,7 @@ ElmWaitingEggHatchText: ; 0x79a1b
 ; 0x79a40
 
 UnknownText_0x79a40: ; 0x79a40
-	text $14, "? I thought"
+	text "<PLAY_G>? I thought"
 	line "the EGG hatched."
 
 	para "Where is the"
@@ -1168,7 +1168,7 @@ UnknownText_0x79a40: ; 0x79a40
 ; 0x79a72
 
 ShowElmTogepiText1: ; 0x79a72
-	text "ELM: ", $14, ", you"
+	text "ELM: <PLAY_G>, you"
 	line "look great!"
 	done
 ; 0x79a8b
@@ -1194,7 +1194,7 @@ ShowElmTogepiText3: ; 0x79a9f
 ; 0x79b1c
 
 ElmGiveEverstoneText1: ; 0x79b1c
-	text "Thanks, ", $14, "!"
+	text "Thanks, <PLAY_G>!"
 	line "You're helping"
 
 	para "unravel #MON"
@@ -1227,7 +1227,7 @@ ElmGiveEverstoneText2: ; 0x79b8d
 ; 0x79c37
 
 UnknownText_0x79c37: ; 0x79c37
-	text "ELM: ", $14, ", I'll"
+	text "ELM: <PLAY_G>, I'll"
 	line "call you if any-"
 	cont "thing comes up."
 	done
@@ -1249,7 +1249,7 @@ UnknownText_0x79c65: ; 0x79c65
 ; 0x79cd0
 
 ElmGiveMasterBallText1: ; 0x79cd0
-	text "ELM: Hi, ", $14, "!"
+	text "ELM: Hi, <PLAY_G>!"
 	line "Thanks to you, my"
 
 	para "research is going"
@@ -1279,12 +1279,12 @@ ElmGiveMasterBallText2: ; 0x79d31
 	line "make much better"
 
 	para "use of it than I"
-	line "can, ", $14, "!"
+	line "can, <PLAY_G>!"
 	done
 ; 0x79df3
 
 ElmGiveTicketText1: ; 0x79df3
-	text "ELM: ", $14, "!"
+	text "ELM: <PLAY_G>!"
 	line "There you are!"
 
 	para "I called because I"
@@ -1304,7 +1304,7 @@ ElmGiveTicketText2: ; 0x79e6f
 	line "from OLIVINE CITY."
 
 	para "But you knew that"
-	line "already, ", $14, "."
+	line "already, <PLAY_G>."
 
 	para "After all, you've"
 	line "traveled all over"
@@ -1323,7 +1323,7 @@ UnknownText_0x79f0b: ; 0x79f0b
 ; 0x79f38
 
 UnknownText_0x79f38: ; 0x79f38
-	text $14, ", I want"
+	text "<PLAY_G>, I want"
 	line "you to have this"
 	cont "for your errand."
 	done
@@ -1363,7 +1363,7 @@ UnknownText_0x79f95: ; 0x79f95
 ; 0x7a078
 
 UnknownText_0x7a078: ; 0x7a078
-	text $14, "!"
+	text "<PLAY_G>!"
 
 	para "Use these on your"
 	line "#DEX quest!"
@@ -1404,7 +1404,7 @@ UnknownText_0x7a0f0: ; 0x7a0f0
 ; 0x7a1c0
 
 UnknownText_0x7a1c0: ; 0x7a1c0
-	text "OK! So ", $53
+	text "OK! So <RIVAL>"
 	line "was his name."
 
 	para "Thanks for helping"
@@ -1425,7 +1425,7 @@ ElmsLabWindowText2:
 	done
 
 ElmsLabTravelTip1Text:
-	text $52, " opened a"
+	text "<PLAYER> opened a"
 	line "book."
 
 	para "Travel Tip 1:"
@@ -1435,7 +1435,7 @@ ElmsLabTravelTip1Text:
 	done
 
 ElmsLabTravelTip2Text:
-	text $52, " opened a"
+	text "<PLAYER> opened a"
 	line "book."
 
 	para "Travel Tip 2:"
@@ -1445,7 +1445,7 @@ ElmsLabTravelTip2Text:
 	done
 
 ElmsLabTravelTip3Text:
-	text $52, " opened a"
+	text "<PLAYER> opened a"
 	line "book."
 
 	para "Travel Tip 3:"
@@ -1456,7 +1456,7 @@ ElmsLabTravelTip3Text:
 	done
 
 ElmsLabTravelTip4Text:
-	text $52, " opened a"
+	text "<PLAYER> opened a"
 	line "book."
 
 	para "Travel Tip 4:"

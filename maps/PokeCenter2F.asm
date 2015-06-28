@@ -1029,7 +1029,7 @@ UnknownText_0x19307c: ; 0x19307c
 UnknownText_0x19308b: ; 0x19308b
 	text "Sorry--@"
 	text_from_ram StringBuffer1
-	db $0
+	text ""
 	line "can't be taken."
 	prompt
 ; 0x1930a8
@@ -1077,7 +1077,7 @@ UnknownText_0x19315f: ; 0x19315f
 
 UnknownText_0x193190: ; 0x193190
 	text "Hello! You're"
-	line $52, ", right?"
+	line "<PLAYER>, right?"
 
 	para "I have some-"
 	line "thing for you."

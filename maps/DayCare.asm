@@ -143,7 +143,7 @@ UnknownText_0x631a1: ; 0x631a1
 ; 0x631ae
 
 UnknownText_0x631ae: ; 0x631ae
-	text $52, " received"
+	text "<PLAYER> received"
 	line "ODD EGG!"
 	done
 ; 0x631c3

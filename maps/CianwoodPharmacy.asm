@@ -59,7 +59,7 @@ PharmacistGiveSecretpotionText:
 	done
 
 ReceivedSecretpotionText:
-	text $52, " received"
+	text "<PLAYER> received"
 	line "SECRETPOTION."
 	done
 

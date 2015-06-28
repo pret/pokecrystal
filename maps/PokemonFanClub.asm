@@ -193,7 +193,7 @@ UnknownText_0x191a72: ; 0x191a72
 ; 0x191ae0
 
 UnknownText_0x191ae0: ; 0x191ae0
-	text "Hello, ", $14, "!"
+	text "Hello, <PLAY_G>!"
 
 	para "Did you come see"
 	line "me about my #-"
@@ -264,7 +264,7 @@ UnknownText_0x191c5a: ; 0x191c5a
 ; 0x191d0a
 
 UnknownText_0x191d0a: ; 0x191d0a
-	text $52, " received"
+	text "<PLAYER> received"
 	line "# DOLL."
 	done
 ; 0x191d1e

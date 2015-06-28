@@ -209,7 +209,7 @@ UnknownText_0x60d99: ; 0x60d99
 ; 0x60dc3
 
 UnknownText_0x60dc3: ; 0x60dc3
-	text $52, " handed the"
+	text "<PLAYER> handed the"
 	line "SECRETPOTION to"
 	cont "JASMINE."
 	done

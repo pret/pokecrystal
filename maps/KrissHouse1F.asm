@@ -115,7 +115,7 @@ UnknownScript_0x7a572: ; 0x7a572
 ; 0x7a578
 
 GearName: ; 0x7a578
-	db $54, "GEAR@"
+	db "#GEAR@"
 ; 0x7a57e
 
 UnknownScript_0x7a57e: ; 0x7a57e
@@ -232,7 +232,7 @@ MovementData_0x7a602: ; 0x7a602
 ; 0x7a604
 
 UnknownText_0x7a604: ; 0x7a604
-	text "Oh, ", $52, "…! Our"
+	text "Oh, <PLAYER>…! Our"
 	line "neighbor, PROF."
 
 	para "ELM, was looking"
@@ -342,7 +342,7 @@ UnknownText_0x7a8e5: ; 0x7a8e5
 ; 0x7a957
 
 UnknownText_0x7a957: ; 0x7a957
-	text $52, ", do it!"
+	text "<PLAYER>, do it!"
 
 	para "I'm behind you all"
 	line "the way!"
@@ -351,25 +351,25 @@ UnknownText_0x7a957: ; 0x7a957
 
 NeighborMornIntroText:
 	text "Good morning,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "I'm visiting!"
 	done
 
 NeighborDayIntroText:
-	text "Hello, ", $14, "!"
+	text "Hello, <PLAY_G>!"
 	line "I'm visiting!"
 	done
 
 NeighborNiteIntroText:
 	text "Good evening,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "I'm visiting!"
 	done
 
 NeighborText:
-	text $14, ", have you"
+	text "<PLAY_G>, have you"
 	line "heard?"
 
 	para "My daughter is"

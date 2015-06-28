@@ -246,7 +246,7 @@ UnknownText_0x1801f5: ; 0x1801f5
 	para "are going to pound"
 	line "you."
 
-	para $52, "!"
+	para "<PLAYER>!"
 	line "I challenge you!"
 	done
 ; 0x180295

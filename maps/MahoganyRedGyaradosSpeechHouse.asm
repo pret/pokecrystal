@@ -28,10 +28,11 @@ UnknownScript_0x199990: ; 0x199990
 	end
 ; 0x199996
 
-; TODO wtf?
-UnknownText_0x199996: ; 0x199996
-	limited_interpret_data 2
-	db $0, "ズ", $03, $00
+UnknownScript_0x195996:
+	jumpstd picturebookshelf
+
+UnknownScript_0x195999:
+	jumpstd magazinebookshelf
 
 UnknownText_0x19999c: ; 0x19999c
 	text "I heard that a red"

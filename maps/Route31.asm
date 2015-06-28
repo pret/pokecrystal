@@ -378,7 +378,7 @@ UnknownText_0x1a5761: ; 0x1a5761
 ; 0x1a5790
 
 UnknownText_0x1a5790: ; 0x1a5790
-	text $52, " handed"
+	text "<PLAYER> handed"
 	line "over the #MON"
 	cont "holding the MAIL."
 	done

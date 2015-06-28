@@ -488,7 +488,7 @@ MovementData_0x18e46c: ; 0x18e46c
 UnknownText_0x18e473: ; 0x18e473
 	text "Hm? Who are you?"
 
-	para $52, ", eh? You"
+	para "<PLAYER>, eh? You"
 	line "want me to make"
 	cont "some BALLS?"
 
@@ -528,7 +528,7 @@ UnknownText_0x18e473: ; 0x18e473
 ; 0x18e615
 
 UnknownText_0x18e615: ; 0x18e615
-	text "KURT: Hi, ", $52, "!"
+	text "KURT: Hi, <PLAYER>!"
 
 	para "You handled your-"
 	line "self like a real"
@@ -591,7 +591,7 @@ UnknownText_0x18e7d8: ; 0x18e7d8
 ; 0x18e7fb
 
 UnknownText_0x18e7fb: ; 0x18e7fb
-	text "KURT: Ah, ", $52, "!"
+	text "KURT: Ah, <PLAYER>!"
 	line "I just finished"
 	cont "your BALL. Here!"
 	done
@@ -645,7 +645,7 @@ UnknownText_0x18e949: ; 0x18e949
 ; 0x18e95c
 
 UnknownText_0x18e95c: ; 0x18e95c
-	text $52, "!"
+	text "<PLAYER>!"
 
 	para "This BALL started"
 	line "to shake while I"

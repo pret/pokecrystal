@@ -416,7 +416,7 @@ UnknownText_0x5eaa4: ; 0x5eaa4
 ; 0x5eabc
 
 UnknownText_0x5eabc: ; 0x5eabc
-	text $52, " inserted"
+	text "<PLAYER> inserted"
 	line "the CARD KEY."
 	done
 ; 0x5ead6

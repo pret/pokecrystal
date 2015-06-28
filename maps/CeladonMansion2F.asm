@@ -15,7 +15,7 @@ CeladonMansion2FBookshelf:
 	jumpstd difficultbookshelf
 
 CeladonMansion2FComputerText:
-	text $52, " turned on"
+	text "<PLAYER> turned on"
 	line "the PC."
 
 	para "…"

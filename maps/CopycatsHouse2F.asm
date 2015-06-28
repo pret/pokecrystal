@@ -198,13 +198,13 @@ MovementData_0x18afd0: ; 0x18afd0
 ; 0x18afda
 
 UnknownText_0x18afda: ; 0x18afda
-	text $52, ": Hi! Do"
+	text "<PLAYER>: Hi! Do"
 	line "you like #MON?"
 
-	para $52, ": Uh, no, I"
+	para "<PLAYER>: Uh, no, I"
 	line "just asked you."
 
-	para $52, ": Huh?"
+	para "<PLAYER>: Huh?"
 	line "You're strange!"
 	done
 ; 0x18b028
@@ -219,17 +219,17 @@ UnknownText_0x18b028: ; 0x18b028
 ; 0x18b064
 
 UnknownText_0x18b064: ; 0x18b064
-	text $52, ": Hi!"
+	text "<PLAYER>: Hi!"
 	line "I heard that you"
 
 	para "lost your favorite"
 	line "# DOLL."
 
-	para $52, ": If I find"
+	para "<PLAYER>: If I find"
 	line "it, you'll give me"
 	cont "a rail PASS?"
 
-	para $52, ": I'll go"
+	para "<PLAYER>: I'll go"
 	line "find it for you."
 
 	para "You think you lost"
@@ -286,13 +286,13 @@ UnknownText_0x18b214: ; 0x18b214
 ; 0x18b298
 
 UnknownText_0x18b298: ; 0x18b298
-	text $52, ": Hi!"
+	text "<PLAYER>: Hi!"
 	line "Thanks a lot for"
 	cont "the rail PASS!"
 
-	para $52, ": Pardon?"
+	para "<PLAYER>: Pardon?"
 
-	para $52, ": Is it"
+	para "<PLAYER>: Is it"
 	line "that fun to mimic"
 	cont "my every move?"
 	done
@@ -305,29 +305,29 @@ UnknownText_0x18b2f5: ; 0x18b2f5
 ; 0x18b316
 
 UnknownText_0x18b316: ; 0x18b316
-	text $52, ": Hi. You"
+	text "<PLAYER>: Hi. You"
 	line "must like #MON."
 
-	para $52, ": No, not"
+	para "<PLAYER>: No, not"
 	line "me. I asked you."
 
-	para $52, ": Pardon?"
+	para "<PLAYER>: Pardon?"
 	line "You're weird!"
 	done
 ; 0x18b366
 
 UnknownText_0x18b366: ; 0x18b366
-	text $52, ": Hi. Did"
+	text "<PLAYER>: Hi. Did"
 	line "you really lose"
 	cont "your # DOLL?"
 
-	para $52, ": You'll"
+	para "<PLAYER>: You'll"
 	line "really give me a"
 
 	para "rail PASS if I"
 	line "find it for you?"
 
-	para $52, ": Sure,"
+	para "<PLAYER>: Sure,"
 	line "I'll look for it!"
 
 	para "You think you lost"
@@ -337,12 +337,12 @@ UnknownText_0x18b366: ; 0x18b366
 ; 0x18b415
 
 UnknownText_0x18b415: ; 0x18b415
-	text $52, ": Thank you"
+	text "<PLAYER>: Thank you"
 	line "for the rail PASS!"
 
-	para $52, ": …Pardon?"
+	para "<PLAYER>: …Pardon?"
 
-	para $52, ": Is it"
+	para "<PLAYER>: Is it"
 	line "really that fun to"
 
 	para "copy what I say"

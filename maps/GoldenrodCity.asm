@@ -536,7 +536,8 @@ UnknownText_0x1991ac:
 	done
 
 UnknownText_0x1991cf:
-	db $0, $57
+	text ""
+	done
 
 GoldenrodCity_MapEventHeader:
 	; filler

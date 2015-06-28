@@ -467,7 +467,7 @@ UnknownText_0x1a50d7: ; 0x1a50d7
 
 CooltrainerfBeth1SeenText: ; 0x1a5136
 	text "I lost to a train-"
-	line "er named ", $53, "."
+	line "er named <RIVAL>."
 
 	para "He was really"
 	line "strong, but…"

@@ -113,7 +113,7 @@ MovementData_0x69551: ; 0x69551
 ; 0x69555
 
 UnknownText_0x69555: ; 0x69555
-	text $14, ", long"
+	text "<PLAY_G>, long"
 	line "time, no see."
 
 	para "PROF.ELM asked me"
@@ -138,7 +138,7 @@ UnknownText_0x695c5: ; 0x695c5
 	line "with other active"
 	cont "#MON to hatch."
 
-	para $14, ", you're"
+	para "<PLAY_G>, you're"
 	line "the only person"
 	cont "we can rely on."
 
@@ -166,7 +166,7 @@ UnknownText_0x696f2: ; 0x696f2
 ; 0x69712
 
 UnknownText_0x69712: ; 0x69712
-	text $14, ", will you"
+	text "<PLAY_G>, will you"
 	line "take the EGG?"
 	done
 ; 0x6972d

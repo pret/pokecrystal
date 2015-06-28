@@ -104,7 +104,7 @@ UnknownText_0x1ab646: ; 0x1ab646
 ; 0x1ab683
 
 UnknownText_0x1ab683: ; 0x1ab683
-	text $52, " received"
+	text "<PLAYER> received"
 	line "VOLCANOBADGE."
 	done
 ; 0x1ab69d

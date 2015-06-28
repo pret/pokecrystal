@@ -15,7 +15,7 @@ MapRedsHouse2FSignpost1Script: ; 0x19b04d
 ; 0x19b050
 
 UnknownText_0x19b050: ; 0x19b050
-	text $52, " played the"
+	text "<PLAYER> played the"
 	line "N64."
 
 	para "Better get going--"

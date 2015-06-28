@@ -222,7 +222,7 @@ UnknownText_0x18626a: ; 0x18626a
 
 	para "I'm all choked up!"
 
-	para $52, ", I owe"
+	para "<PLAYER>, I owe"
 	line "this all to you!"
 
 	para "Thank you!"
@@ -239,7 +239,7 @@ UnknownText_0x18626a: ; 0x18626a
 	para "I'm going to track"
 	line "SUICUNE."
 
-	para $52, ", let's"
+	para "<PLAYER>, let's"
 	line "meet again!"
 
 	para "Farewell!"

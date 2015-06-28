@@ -345,7 +345,7 @@ UnknownText_0x74af6: ; 0x74af6
 ; 0x74b11
 
 UnknownText_0x74b11: ; 0x74b11
-	text $52, " flashed"
+	text "<PLAYER> flashed"
 	line "the S.S.TICKET."
 
 	para "That's it."
@@ -354,7 +354,7 @@ UnknownText_0x74b11: ; 0x74b11
 ; 0x74b41
 
 UnknownText_0x74b41: ; 0x74b41
-	text $52, " tried to"
+	text "<PLAYER> tried to"
 	line "show the S.S."
 	cont "TICKET…"
 

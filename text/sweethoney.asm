@@ -31,7 +31,7 @@ UnusedSweetHoneyGiveText: ; 0x55819
 	done
 
 UnusedGotSweetHoneyText: ; 0x5583e
-	text $52, " received"
+	text "<PLAYER> received"
 	line "SWEET HONEY."
 	done
 

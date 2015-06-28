@@ -116,7 +116,7 @@ UnknownText_0x7e2c0: ; 0x7e2c0
 ; 0x7e355
 
 UnknownText_0x7e355: ; 0x7e355
-	text $52, " received"
+	text "<PLAYER> received"
 	line "TYROGUE."
 	done
 ; 0x7e36a

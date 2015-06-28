@@ -261,7 +261,7 @@ UnknownText_0x185ecc: ; 0x185ecc
 
 	para "And you are…?"
 
-	para $52, "? Glad to"
+	para "<PLAYER>? Glad to"
 	line "meet you!"
 
 	para "I heard rumors"

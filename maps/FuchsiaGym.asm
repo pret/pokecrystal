@@ -271,7 +271,7 @@ UnknownText_0x195fa1: ; 0x195fa1
 ; 0x195feb
 
 UnknownText_0x195feb: ; 0x195feb
-	text $52, " received"
+	text "<PLAYER> received"
 	line "SOULBADGE."
 	done
 ; 0x196002

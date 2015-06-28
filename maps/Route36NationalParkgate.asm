@@ -546,7 +546,7 @@ UnknownText_0x6ae87: ; 0x6ae87
 ; 0x6aeb1
 
 UnknownText_0x6aeb1: ; 0x6aeb1
-	text $52, " received"
+	text "<PLAYER> received"
 	line "20 PARK BALLS."
 	done
 ; 0x6aecc
@@ -603,7 +603,7 @@ UnknownText_0x6b021: ; 0x6b021
 ; 0x6b055
 
 UnknownText_0x6b055: ; 0x6b055
-	text $52, "'s #MON"
+	text "<PLAYER>'s #MON"
 	line "were left with the"
 	cont "CONTEST HELPER."
 	done
@@ -677,7 +677,7 @@ UnknownText_0x6b209: ; 0x6b209
 UnknownText_0x6b284: ; 0x6b284
 	text "You still have @"
 	text_from_ram StringBuffer3
-	db $0
+	text ""
 	line "minute(s) left."
 
 	para "Do you want to"
@@ -923,7 +923,7 @@ UnknownText_0x6b910: ; 0x6b910
 ; 0x6b97f
 
 UnknownText_0x6b97f: ; 0x6b97f
-	text $52, "?"
+	text "<PLAYER>?"
 
 	para "Here's the prize"
 	line "we were holding"

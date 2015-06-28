@@ -233,7 +233,7 @@ UnknownText_0x59278: ; 0x59278
 ; 0x592fa
 
 UnknownText_0x592fa: ; 0x592fa
-	text $52, "'s #DEX"
+	text "<PLAYER>'s #DEX"
 	line "was upgraded."
 	done
 ; 0x59311

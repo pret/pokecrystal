@@ -781,7 +781,7 @@ UnknownText_0x62260: ; 0x62260
 ; 0x622f0
 
 UnknownText_0x622f0: ; 0x622f0
-	text $52, ", isn't it?"
+	text "<PLAYER>, isn't it?"
 
 	para "Congratulations!"
 
@@ -873,7 +873,7 @@ UnknownText_0x6252a: ; 0x6252a
 ; 0x62549
 
 UnknownText_0x62549: ; 0x62549
-	text $52, " gave away"
+	text "<PLAYER> gave away"
 	line "the EON MAIL."
 	done
 ; 0x62564

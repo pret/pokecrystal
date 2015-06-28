@@ -503,7 +503,7 @@ UnknownText_0x18d47c: ; 0x18d47c
 	para "That conviction is"
 	line "what is important!"
 
-	para $52, ", don't"
+	para "<PLAYER>, don't"
 	line "lose that belief."
 
 	para "It will see you"
@@ -564,7 +564,7 @@ UnknownText_0x18d604: ; 0x18d604
 ; 0x18d697
 
 UnknownText_0x18d697: ; 0x18d697
-	text $52, " received"
+	text "<PLAYER> received"
 	line "DRATINI!"
 	done
 ; 0x18d6ac
@@ -697,7 +697,7 @@ UnknownText_0x18d9bf: ; 0x18d9bf
 ; 0x18d9f2
 
 UnknownText_0x18d9f2: ; 0x18d9f2
-	text $52, " received"
+	text "<PLAYER> received"
 	line "RISINGBADGE."
 	done
 ; 0x18da0b
@@ -722,7 +722,8 @@ UnknownText_0x18da0b: ; 0x18da0b
 ; 0x18dab4
 
 UnknownText_0x18dab4: ; 0x18dab4
-	db $0, $56, $56, $56, $56, $56, $56, $57
+	text $56, $56, $56, $56, $56, $56
+	done
 ; 0x18dabc
 
 DragonShrine_MapEventHeader: ; 0x18dabc

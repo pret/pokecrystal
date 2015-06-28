@@ -188,7 +188,7 @@ UnknownText_0x9d156: ; 0x9d156
 ; 0x9d1b5
 
 UnknownText_0x9d1b5: ; 0x9d1b5
-	text $52, " received"
+	text "<PLAYER> received"
 	line "TM13."
 	done
 ; 0x9d1c7

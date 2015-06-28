@@ -43,7 +43,7 @@ KenjiPhoneFullText:
 
 KenjiGiftText:
 	text "I wish to thank"
-	line "you, ", $52, "!"
+	line "you, <PLAYER>!"
 
 	para "I've been training"
 	line "all alone…"

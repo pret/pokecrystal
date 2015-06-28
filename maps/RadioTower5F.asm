@@ -291,7 +291,7 @@ Executivef1BeatenText: ; 0x6031e
 ; 0x60358
 
 UnknownText_0x60358: ; 0x60358
-	text $52, ", isn't it?"
+	text "<PLAYER>, isn't it?"
 
 	para "A brat like you"
 	line "won't appreciate"
@@ -361,7 +361,7 @@ UnknownText_0x6050e: ; 0x6050e
 ; 0x605b2
 
 UnknownText_0x605b2: ; 0x605b2
-	text "DIRECTOR: ", $14, ","
+	text "DIRECTOR: <PLAY_G>,"
 	line "thank you!"
 
 	para "Your courageous"
@@ -430,7 +430,7 @@ UnknownText_0x6062c: ; 0x6062c
 
 UnknownText_0x60824: ; 0x60824
 	text "DIRECTOR: Hello,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "You know, I love"
 	line "#MON."
