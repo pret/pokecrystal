@@ -94,7 +94,7 @@ UnknownText_0x180c27: ; 0x180c27
 	text "I am KAREN of the"
 	line "ELITE FOUR."
 
-	para "You're ", $52, "?"
+	para "You're <PLAYER>?"
 	line "How amusing."
 
 	para "I love dark-type"

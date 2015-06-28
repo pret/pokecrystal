@@ -490,7 +490,7 @@ UnknownText_0x19426b: ; 0x19426b
 ; 0x194290
 
 UnknownText_0x194290: ; 0x194290
-	text $52, " used the"
+	text "<PLAYER> used the"
 	line "SQUIRTBOTTLE."
 	done
 ; 0x1942aa
@@ -572,7 +572,7 @@ UnknownText_0x1944d0: ; 0x1944d0
 ; 0x19451a
 
 UnknownText_0x19451a: ; 0x19451a
-	text $52, " received"
+	text "<PLAYER> received"
 	line "TM08."
 	done
 ; 0x19452c

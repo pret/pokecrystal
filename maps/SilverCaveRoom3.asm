@@ -36,8 +36,9 @@ RedScript_0x18c603: ; 0x18c603
 ; 0x18c637
 
 UnknownText_0x18c637: ; 0x18c637
-	db $0, $56, $4f
-	db $56, $57
+	text $56
+	line $56
+	done
 ; 0x18c63c
 
 UnknownText_0x18c63c: ; 0x18c63c
@@ -46,8 +47,9 @@ UnknownText_0x18c63c: ; 0x18c63c
 ; 0x18c63f
 
 UnknownText_0x18c63f: ; 0x18c63f
-	db $0, $56, $4f
-	db $56, $57
+	text $56
+	line $56
+	done
 ; 0x18c644
 
 SilverCaveRoom3_MapEventHeader: ; 0x18c644

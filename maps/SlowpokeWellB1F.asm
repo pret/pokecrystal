@@ -214,7 +214,7 @@ KurtSlowpokeWellVictoryMovementData: ; 0x5a6a5
 
 UnknownText_0x5a6b5: ; 0x5a6b5
 	text "KURT: Hey there,"
-	line $52, "!"
+	line "<PLAYER>!"
 
 	para "The guard up top"
 	line "took off when I"
@@ -237,7 +237,7 @@ UnknownText_0x5a6b5: ; 0x5a6b5
 	para "Ah, it can't be"
 	line "helped."
 
-	para $52, ", show them"
+	para "<PLAYER>, show them"
 	line "how gutsy you are"
 	cont "in my place!"
 	done
@@ -245,7 +245,7 @@ UnknownText_0x5a6b5: ; 0x5a6b5
 
 KurtLeaveSlowpokeWellText: ; 0x5a7ca
 	text "KURT: Way to go,"
-	line $52, "!"
+	line "<PLAYER>!"
 
 	para "TEAM ROCKET has"
 	line "taken off."
@@ -386,7 +386,7 @@ UnknownText_0x5abcb: ; 0x5abcb
 ; 0x5ac09
 
 UnknownText_0x5ac09: ; 0x5ac09
-	text $52, " read the"
+	text "<PLAYER> read the"
 	line "MAIL."
 
 	para "Be good and look"

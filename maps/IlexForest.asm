@@ -990,7 +990,7 @@ UnknownText_0x6f394: ; 0x6f394
 ; 0x6f43b
 
 UnknownText_0x6f43b: ; 0x6f43b
-	text $52, " put in the"
+	text "<PLAYER> put in the"
 	line "GS BALL."
 	done
 ; 0x6f452
@@ -999,7 +999,7 @@ UnknownText_0x6f452: ; 0x6f452
 	text "Whew, wasn't that"
 	line "something!"
 
-	para $52, ", that was"
+	para "<PLAYER>, that was"
 	line "fantastic. Thanks!"
 
 	para "The legends about"

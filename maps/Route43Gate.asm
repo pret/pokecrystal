@@ -266,7 +266,7 @@ UnknownText_0x19ad9b: ; 0x19ad9b
 ; 0x19ae1b
 
 UnknownText_0x19ae1b: ; 0x19ae1b
-	text $52, " received"
+	text "<PLAYER> received"
 	line "TM30."
 	done
 ; 0x19ae2d

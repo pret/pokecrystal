@@ -349,7 +349,7 @@ UnknownText_0x185203: ; 0x185203
 	line "but you were even"
 
 	para "more incredible,"
-	line $52, "."
+	line "<PLAYER>."
 
 	para "I heard SUICUNE's"
 	line "mystic power"
@@ -370,7 +370,7 @@ UnknownText_0x185203: ; 0x185203
 	line "me that fantastic"
 	cont "battle."
 
-	para "Later, ", $52, "!"
+	para "Later, <PLAYER>!"
 	done
 ; 0x185386
 
@@ -483,7 +483,7 @@ UnknownText_0x1856a3: ; 0x1856a3
 	line "to see the #MON"
 
 	para "of rainbow colors,"
-	line $52, "."
+	line "<PLAYER>."
 
 	para "It happened just"
 	line "as I envisioned."

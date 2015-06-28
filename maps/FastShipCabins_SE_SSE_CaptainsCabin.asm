@@ -405,7 +405,7 @@ UnknownText_0x760ae: ; 0x760ae
 ; 0x76143
 
 UnknownText_0x76143: ; 0x76143
-	text $14, ", was it?"
+	text "<PLAY_G>, was it?"
 	line "I heard you enter-"
 	cont "tained my grand-"
 	cont "daughter."

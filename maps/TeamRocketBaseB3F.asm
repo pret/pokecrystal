@@ -429,7 +429,7 @@ UnknownText_0x6e179: ; 0x6e179
 	line "very graciously"
 	cont "told me so."
 
-	para $14, ", let's go"
+	para "<PLAY_G>, let's go"
 	line "get the passwords."
 	done
 ; 0x6e235
@@ -675,7 +675,7 @@ UnknownText_0x6e970: ; 0x6e970
 UnknownText_0x6e9a3: ; 0x6e9a3
 	text "The door's closed…"
 
-	para $52, " entered"
+	para "<PLAYER> entered"
 	line "the two passwords."
 
 	para "The door opened!"

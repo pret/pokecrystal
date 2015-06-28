@@ -57,7 +57,7 @@ HueyRematchGiftText:
 	para "I've battled you"
 	line "over and over, but"
 
-	para $52, ", I haven't"
+	para "<PLAYER>, I haven't"
 	line "won once."
 
 	para "I bought tons of"
@@ -73,7 +73,7 @@ HueyRematchGiftText:
 	line "it is…"
 
 	para "Here, take this,"
-	line $52, "."
+	line "<PLAYER>."
 
 	para "I won't be needing"
 	line "it anymore…"

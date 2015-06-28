@@ -123,7 +123,7 @@ UnknownText_0x69e48: ; 0x69e48
 ; 0x69eb8
 
 UnknownText_0x69eb8: ; 0x69eb8
-	text $52, " received a"
+	text "<PLAYER> received a"
 	line "#MON with MAIL."
 	done
 ; 0x69ed6

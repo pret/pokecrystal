@@ -387,7 +387,7 @@ UnknownText_0x1985df:
 	done
 
 UnknownText_0x19860b:
-	text $52, ", here's"
+	text "<PLAYER>, here's"
 	line "your GS BALL back!"
 	done
 

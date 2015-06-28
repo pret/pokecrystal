@@ -409,7 +409,7 @@ GuideGentGiftText:
 	done
 
 GotMapCardText:
-	text $52, "'s #GEAR"
+	text "<PLAYER>'s #GEAR"
 	line "now has a MAP!"
 	done
 

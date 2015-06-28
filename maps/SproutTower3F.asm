@@ -263,7 +263,7 @@ UnknownText_0x184aec: ; 0x184aec
 ; 0x184bc8
 
 UnknownText_0x184bc8: ; 0x184bc8
-	text $53, " used an"
+	text "<RIVAL> used an"
 	line "ESCAPE ROPE!"
 	done
 ; 0x184be0

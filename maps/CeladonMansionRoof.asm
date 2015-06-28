@@ -30,7 +30,7 @@ UnknownText_0x71aa1: ; 0x71aa1
 	text "There's graffiti"
 	line "on the wall…"
 
-	para $52, " added a"
+	para "<PLAYER> added a"
 	line "moustache!"
 	done
 ; 0x71ad4

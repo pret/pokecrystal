@@ -19,9 +19,11 @@ EkansScript_0x19594c: ; 0x19594c
 	end
 ; 0x195956
 
-UnknownText_0x195956: ; 0x195956
-	limited_interpret_data 2
-	db $0, "ズ", $03, $00
+UnknownScript_0x195956:
+	jumpstd picturebookshelf
+
+UnknownScript_0x195959:
+	jumpstd magazinebookshelf
 
 UnknownText_0x19595c: ; 0x19595c
 	text "A clan of trainers"

@@ -5,7 +5,7 @@ _OakText6: ; 0x1c4000
 ; 0x1c4026
 
 _OakText7: ; 0x1c4026
-	text $52, ", are you"
+	text "<PLAYER>, are you"
 	line "ready?"
 
 	para "Your very own"
@@ -219,7 +219,7 @@ UnknownText_0x1c456d: ; 0x1c456d
 ; 0x1c4590
 
 UnknownText_0x1c4590: ; 0x1c4590
-	text $52, " saved"
+	text "<PLAYER> saved"
 	line "the game."
 	done
 ; 0x1c45a3
@@ -291,7 +291,7 @@ UnknownText_0x1c4706:: ; 0x1c4706
 ; 0x1c4719
 
 UnknownText_0x1c4719:: ; 0x1c4719
-	text $52, " received"
+	text "<PLAYER> received"
 	line "@"
 	text_from_ram StringBuffer4
 	text "."
@@ -299,7 +299,7 @@ UnknownText_0x1c4719:: ; 0x1c4719
 ; 0x1c472c
 
 UnknownText_0x1c472c:: ; 0x1c472c
-	text $52, " put the"
+	text "<PLAYER> put the"
 	line "@"
 	text_from_ram StringBuffer1
 	text " in"
@@ -366,16 +366,16 @@ UnknownText_0x1c4837: ; 0x1c4837
 	text ""
 	line "came from @"
 	text_from_ram wd02a
-	text $55
-	db "in a trade?"
+	text ""
+	cont "in a trade?"
 
 	para "@"
 	text_from_ram wd00e
 	text ""
 	line "was where @"
 	text_from_ram wd02a
-	text $55
-	db "met @"
+	text ""
+	cont "met @"
 	text_from_ram wd003
 	text "!"
 	prompt
@@ -489,8 +489,8 @@ UnknownText_0x1c4ae5: ; 0x1c4ae5
 	para "I'm sure that"
 	line "seeing @"
 	text_from_ram wd003
-	text $51
-	db "in battle would"
+	text ""
+	para "in battle would"
 	line "excite anyone."
 	done
 ; 0x1c4b92
@@ -507,8 +507,8 @@ UnknownText_0x1c4bae: ; 0x1c4bae
 ; 0x1c4baf
 
 UnknownText_0x1c4baf: ; 0x1c4baf
-	text $51
-	db "evolved into"
+	text ""
+	para "evolved into"
 	line "@"
 	text_from_ram StringBuffer1
 	text "!"
@@ -826,12 +826,13 @@ _MobileStadiumEntryText: ; 0x1c50c2
 
 _MobileStadiumSuccessText: ; 0x1c5121
 	text "Data transfer is"
-	line "complete.", $51
-	db "We hope you enjoy"
-	line "MOBILE STADIUM", $51
-	db "battles in the N64"
-	line "#MON STADIUM 2.", $51
-	db $57
+	line "complete."
+	para "We hope you enjoy"
+	line "MOBILE STADIUM"
+	para "battles in the N64"
+	line "#MON STADIUM 2."
+	para ""
+	done
 ; 0x1c5182
 
 UnknownText_0x1c5182: ; 0x1c5182
@@ -879,45 +880,49 @@ UnknownText_0x1c521c: ; 0x1c521c
 
 UnknownText_0x1c5238: ; 0x1c5238
 	text "The CARD FOLDER"
-	line "stores your and", $51
-	db "your friends'"
-	line "CARDS.", $51
-	db "A CARD contains"
-	line "information like", $51
-	db "the person's name,"
-	line "phone number and", $55
-	db "profile.", $51
-	db $57
+	line "stores your and"
+	para "your friends'"
+	line "CARDS."
+	para "A CARD contains"
+	line "information like"
+	para "the person's name,"
+	line "phone number and"
+	cont "profile."
+	para ""
+	done
 ; 0x1c52bc
 
 UnknownText_0x1c52bc: ; 0x1c52bc
-	text "This is your CARD.", $51
-	db "Once you've"
-	line "entered your phone", $51
-	db "number, you can"
-	line "trade CARDS with", $55
-	db "your friends.", $51
-	db $57
+	text "This is your CARD."
+	para "Once you've"
+	line "entered your phone"
+	para "number, you can"
+	line "trade CARDS with"
+	cont "your friends."
+	para ""
+	done
 ; 0x1c531e
 
 UnknownText_0x1c531e: ; 0x1c531e
 	text "If you have your"
-	line "friend's CARD, you", $51
-	db "can use it to make"
-	line "a call from a", $51
-	db "mobile phone on"
-	line "the 2nd floor of a", $55
-	db "#MON CENTER.", $51
-	db $57
+	line "friend's CARD, you"
+	para "can use it to make"
+	line "a call from a"
+	para "mobile phone on"
+	line "the 2nd floor of a"
+	cont "#MON CENTER."
+	para ""
+	done
 ; 0x1c5394
 
 UnknownText_0x1c5394: ; 0x1c5394
 	text "To safely store"
-	line "your collection of", $51
-	db "CARDS, you must"
-	line "set a PASSCODE for", $55
-	db "your CARD FOLDER.", $51
-	db $57
+	line "your collection of"
+	para "CARDS, you must"
+	line "set a PASSCODE for"
+	cont "your CARD FOLDER."
+	para ""
+	done
 ; 0x1c53ee
 
 UnknownText_0x1c53ee: ; 0x1c53ee
@@ -945,8 +950,9 @@ UnknownText_0x1c5494: ; 0x1c5494
 
 UnknownText_0x1c54b9: ; 0x1c54b9
 	text "The CARD FOLDER"
-	line "has been deleted.", $51
-	db $57
+	line "has been deleted."
+	para ""
+	done
 ; 0x1c54dd
 
 UnknownText_0x1c54dd: ; 0x1c54dd
@@ -983,7 +989,8 @@ UnknownText_0x1c5580: ; 0x1c5580
 ; 0x1c5588
 
 UnknownText_0x1c5588: ; 0x1c5588
-	text "", $56, $57
+	text $56
+	done
 ; 0x1c558b
 
 UnknownText_0x1c558b: ; 0x1c558b
@@ -1053,7 +1060,8 @@ UnknownText_0x1c5677: ; 0x1c5677
 ; 0x1c5678
 
 UnknownText_0x1c5678: ; 0x1c5678
-	text "Which move should", $4e, "be forgotten?"
+	text "Which move should"
+	next "be forgotten?"
 	done
 ; 0x1c5699
 
@@ -1110,8 +1118,8 @@ UnknownText_0x1c574d: ; 0x1c574d
 UnknownText_0x1c574e: ; 0x1c574e
 	text " Poof!@"
 	interpret_data
-	text $51
-	db "@"
+	text ""
+	para "@"
 	text_from_ram wd050
 	text " forgot"
 	line "@"
@@ -1181,7 +1189,8 @@ UnknownText_0x1c5823: ; 0x1c5823
 ; 0x1c5824
 
 UnknownText_0x1c5824: ; 0x1c5824
-	text "", $56, $57
+	text $56
+	done
 ; 0x1c5827
 
 UnknownText_0x1c5827: ; 0x1c5827
@@ -1222,20 +1231,23 @@ UnknownText_0x1c58bc: ; 0x1c58bc
 ; 0x1c58d1
 
 UnknownText_0x1c58d1: ; 0x1c58d1
-	text "Here you go!", $51
-	db $57
+	text "Here you go!"
+	para ""
+	done
 ; 0x1c58e0
 
 UnknownText_0x1c58e0: ; 0x1c58e0
 	text "You don't have"
-	line "enough points.", $51
-	db $57
+	line "enough points."
+	para ""
+	done
 ; 0x1c58ff
 
 UnknownText_0x1c58ff: ; 0x1c58ff
 	text "You have no room"
-	line "for it.", $51
-	db $57
+	line "for it."
+	para ""
+	done
 ; 0x1c591a
 
 UnknownText_0x1c591a: ; 0x1c591a
@@ -1245,14 +1257,16 @@ UnknownText_0x1c591a: ; 0x1c591a
 ; 0x1c5937
 
 UnknownText_0x1c5937: ; 0x1c5937
-	text "Excuse me!", $51
-	db $57
+	text "Excuse me!"
+	para ""
+	done
 ; 0x1c5944
 
 UnknownText_0x1c5944: ; 0x1c5944
 	text "Excuse me."
-	line "You're not ready.", $51
-	db $57
+	line "You're not ready."
+	para ""
+	done
 ; 0x1c5962
 
 UnknownText_0x1c5962: ; 0x1c5962
@@ -1263,44 +1277,50 @@ UnknownText_0x1c5962: ; 0x1c5962
 
 UnknownText_0x1c5983: ; 0x1c5983
 	text "You need at least"
-	line "three #MON.", $51
-	db $57
+	line "three #MON."
+	para ""
+	done
 ; 0x1c59a3
 
 UnknownText_0x1c59a3: ; 0x1c59a3
 	text "Sorry, an EGG"
-	line "doesn't qualify.", $51
-	db $57
+	line "doesn't qualify."
+	para ""
+	done
 ; 0x1c59c3
 
 UnknownText_0x1c59c3: ; 0x1c59c3
 	text "Only three #MON"
-	line "may be entered.", $51
-	db $57
+	line "may be entered."
+	para ""
+	done
 ; 0x1c59e5
 
 UnknownText_0x1c59e5: ; 0x1c59e5
 	text "The @"
 	text_from_ram StringBuffer2
 	text " #MON"
-	line "must all be", $55
-	db "different kinds.", $51
-	db $57
+	line "must all be"
+	cont "different kinds."
+	para ""
+	done
 ; 0x1c5a13
 
 UnknownText_0x1c5a13: ; 0x1c5a13
 	text "The @"
 	text_from_ram StringBuffer2
 	text " #MON"
-	line "must not hold the", $55
-	db "same items.", $51
-	db $57
+	line "must not hold the"
+	cont "same items."
+	para ""
+	done
 ; 0x1c5a42
 
 UnknownText_0x1c5a42: ; 0x1c5a42
 	text "You can't take an"
-	line "EGG!", $51
-	db $57
+	line "EGG!"
+	para ""
+	done
 ; 0x1c5a5a
 
 UnknownText_0x1c5a5a: ; 0x1c5a5a
@@ -1374,8 +1394,8 @@ UnknownText_0x1c5b38: ; 0x1c5b38
 UnknownText_0x1c5b53: ; 0x1c5b53
 	text_from_ram EnemyMonNick
 	text "'s data"
-	line "was newly added to", $55
-	db "the #DEX.@"
+	line "was newly added to"
+	cont "the #DEX.@"
 	sound0x2C
 	text_waitbutton
 	db "@"
@@ -1431,7 +1451,7 @@ UnknownText_0x1c5c28: ; 0x1c5c28
 ; 0x1c5c44
 
 UnknownText_0x1c5c44: ; 0x1c5c44
-	text $52, " played the"
+	text "<PLAYER> played the"
 	line "# FLUTE.@"
 	text_waitbutton
 	db "@"
@@ -1495,8 +1515,8 @@ UnknownText_0x1c5d03: ; 0x1c5d03
 	text "There was a trophy"
 	line "inside!@"
 	sound0
-	text $51
-	db "@"
+	text ""
+	para "@"
 	text_from_ram PlayerName
 	text " sent the"
 	line "trophy home."
@@ -1515,7 +1535,7 @@ UnknownText_0x1c5d50: ; 0x1c5d50
 ; 0x1c5d6e
 
 UnknownText_0x1c5d6e: ; 0x1c5d6e
-	text "OAK: ", $52, "!"
+	text "OAK: <PLAYER>!"
 	line "This isn't the"
 	cont "time to use that!"
 	prompt
@@ -1566,7 +1586,7 @@ UnknownText_0x1c5e3a: ; 0x1c5e3a
 ; 0x1c5e68
 
 UnknownText_0x1c5e68: ; 0x1c5e68
-	text $52, " used the@"
+	text "<PLAYER> used the@"
 	text_dunno1
 	text_from_ram StringBuffer2
 	text "."
@@ -1574,7 +1594,7 @@ UnknownText_0x1c5e68: ; 0x1c5e68
 ; 0x1c5e7b
 
 UnknownText_0x1c5e7b: ; 0x1c5e7b
-	text $52, " got on the@"
+	text "<PLAYER> got on the@"
 	text_dunno1
 	text_from_ram StringBuffer2
 	text "."
@@ -1582,7 +1602,7 @@ UnknownText_0x1c5e7b: ; 0x1c5e7b
 ; 0x1c5e90
 
 UnknownText_0x1c5e90: ; 0x1c5e90
-	text $52, " got off@"
+	text "<PLAYER> got off@"
 	text_dunno1
 	text "the @"
 	text_from_ram StringBuffer2

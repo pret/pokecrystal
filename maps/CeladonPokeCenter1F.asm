@@ -109,7 +109,7 @@ UnknownText_0x71f22: ; 0x71f22
 ; 0x71f65
 
 UnknownText_0x71f65: ; 0x71f65
-	text $52, ", have you"
+	text "<PLAYER>, have you"
 	line "heard?"
 
 	para "There have been"
@@ -126,13 +126,13 @@ UnknownText_0x71f65: ; 0x71f65
 	line "ECRUTEAK."
 
 	para "I'll be seeing"
-	line "you, ", $52, "!"
+	line "you, <PLAYER>!"
 	done
 ; 0x7201a
 
 UnknownText_0x7201a: ; 0x7201a
 	text "Oh, by the way,"
-	line $52, "."
+	line "<PLAYER>."
 
 	para "Have you caught"
 	line "the legendary"
@@ -149,7 +149,7 @@ UnknownText_0x7201a: ; 0x7201a
 	cont "you'll inform me."
 
 	para "I'm counting on"
-	line "you, ", $52, "!"
+	line "you, <PLAYER>!"
 	done
 ; 0x720b8
 

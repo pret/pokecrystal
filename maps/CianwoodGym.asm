@@ -268,7 +268,7 @@ UnknownText_0x9d7f6: ; 0x9d7f6
 ; 0x9d835
 
 UnknownText_0x9d835: ; 0x9d835
-	text $52, " received"
+	text "<PLAYER> received"
 	line "STORMBADGE."
 	done
 ; 0x9d84d

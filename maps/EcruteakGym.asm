@@ -309,7 +309,7 @@ UnknownText_0x9a00a: ; 0x9a00a
 ; 0x9a043
 
 UnknownText_0x9a043: ; 0x9a043
-	text $52, " received"
+	text "<PLAYER> received"
 	line "FOGBADGE."
 	done
 ; 0x9a059
@@ -465,7 +465,7 @@ EcruteakGymGuyText: ; 0x9a3e8
 ; 0x9a452
 
 EcruteakGymGuyWinText: ; 0x9a452
-	text "Whew, ", $52, "."
+	text "Whew, <PLAYER>."
 	line "You did great!"
 
 	para "I was cowering in"

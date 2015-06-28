@@ -273,3 +273,13 @@
 	charmap "ー", $e3
 
 	charmap "ァ", $e9
+
+	charmap "<PLAYER>", $52
+	charmap "<RIVAL>",  $53
+	charmap "<RED>",    $38
+	charmap "<GREEN>",  $39
+	charmap "<TARGET>", $59
+	charmap "<USER>",   $5a
+	charmap "<ENEMY>",  $3f
+
+	charmap "<PLAY_G>", $14 ; <PLAYER> + gender

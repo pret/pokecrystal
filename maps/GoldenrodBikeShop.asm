@@ -76,7 +76,7 @@ UnknownText_0x547f8: ; 0x547f8
 ; 0x54848
 
 UnknownText_0x54848: ; 0x54848
-	text $52, " borrowed a"
+	text "<PLAYER> borrowed a"
 	line "BICYCLE."
 	done
 ; 0x5485f

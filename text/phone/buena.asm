@@ -2,7 +2,7 @@ UnknownText_0xa0c28: ; 0xa0c28
 	text "Hi, this is BUENA…"
 
 	para "Oh! Good morning,"
-	line $14, "!"
+	line "<PLAY_G>!"
 
 	para "I'm kind of foggy"
 	line "in the morning…"
@@ -11,7 +11,7 @@ UnknownText_0xa0c28: ; 0xa0c28
 
 UnknownText_0xa0c72: ; 0xa0c72
 	text "Hi, this is BUENA…"
-	line "Oh! Hi, ", $14, "!"
+	line "Oh! Hi, <PLAY_G>!"
 
 	para "Do you tune into"
 	line "BUENA's show?"
@@ -38,7 +38,7 @@ UnknownText_0xa0caf: ; 0xa0caf
 
 UnknownText_0xa0d42: ; 0xa0d42
 	text "Hi, this is BUENA…"
-	line "Oh! Hi, ", $14, "!"
+	line "Oh! Hi, <PLAY_G>!"
 
 	para "I just got off"
 	line "work. "
@@ -49,7 +49,7 @@ UnknownText_0xa0d42: ; 0xa0d42
 ; 0xa0d96
 
 UnknownText_0xa0d96: ; 0xa0d96
-	text $14, "!"
+	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
 	para "I got up early, so"
@@ -58,7 +58,7 @@ UnknownText_0xa0d96: ; 0xa0d96
 ; 0xa0dcf
 
 UnknownText_0xa0dcf: ; 0xa0dcf
-	text $14, "!"
+	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
 	para "I needed someone"
@@ -67,7 +67,7 @@ UnknownText_0xa0dcf: ; 0xa0dcf
 ; 0xa0e01
 
 UnknownText_0xa0e01: ; 0xa0e01
-	text $14, "!"
+	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
 	para "I'm just on my"
@@ -76,7 +76,7 @@ UnknownText_0xa0e01: ; 0xa0e01
 ; 0xa0e29
 
 UnknownText_0xa0e29: ; 0xa0e29
-	text $14, "!"
+	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
 	para "I couldn't sleep,"
@@ -85,7 +85,7 @@ UnknownText_0xa0e29: ; 0xa0e29
 ; 0xa0e5e
 
 UnknownText_0xa0e5e: ; 0xa0e5e
-	text "Oh. Hi, ", $14, "!"
+	text "Oh. Hi, <PLAY_G>!"
 
 	para "You are how?"
 
@@ -98,7 +98,7 @@ UnknownText_0xa0e5e: ; 0xa0e5e
 	para "The RADIO TOWER is"
 	line "in deep trouble!"
 
-	para $14, ", you'd"
+	para "<PLAY_G>, you'd"
 	line "better be careful!"
 	done
 ; 0xa0efb
@@ -152,7 +152,7 @@ UnknownText_0xa0fcf: ; 0xa0fcf
 ; 0xa109d
 
 UnknownText_0xa109d: ; 0xa109d
-	text "Tell me, ", $14, "."
+	text "Tell me, <PLAY_G>."
 	line "Have you ever won"
 
 	para "a prize on the"
@@ -245,7 +245,7 @@ UnknownText_0xa1318: ; 0xa1318
 ; 0xa13d8
 
 UnknownText_0xa13d8: ; 0xa13d8
-	text "Hey, ", $14, "."
+	text "Hey, <PLAY_G>."
 	line "You won that RADIO"
 
 	para "CARD by beating"
@@ -334,7 +334,7 @@ UnknownText_0xa15de: ; 0xa15de
 ; 0xa1717
 
 UnknownText_0xa1717: ; 0xa1717
-	text $14, ", tell me."
+	text "<PLAY_G>, tell me."
 
 	para "When do you relax"
 	line "the most?"
@@ -367,7 +367,7 @@ UnknownText_0xa1717: ; 0xa1717
 ; 0xa183d
 
 UnknownText_0xa183d: ; 0xa183d
-	text $14, ", what was"
+	text "<PLAY_G>, what was"
 	line "the first #MON"
 	cont "you ever caught?"
 
@@ -426,7 +426,7 @@ UnknownText_0xa19b1: ; 0xa19b1
 	para "I'd much rather go"
 	line "to the beach!"
 
-	para $14, ", I hope"
+	para "<PLAY_G>, I hope"
 	line "you have enough"
 
 	para "fun for both of us"
@@ -478,7 +478,7 @@ UnknownText_0xa1bed: ; 0xa1bed
 	para "STORE has a sale"
 	line "on when we go…"
 
-	para $14, ", maybe we"
+	para "<PLAY_G>, maybe we"
 	line "can hook up too!"
 
 	para "Catch you later!"
@@ -509,7 +509,7 @@ UnknownText_0xa1c88: ; 0xa1c88
 ; 0xa1d5f
 
 UnknownText_0xa1d5f: ; 0xa1d5f
-	text "Hey, ", $14, ". You"
+	text "Hey, <PLAY_G>. You"
 	line "use your #GEAR"
 
 	para "to listen to the"

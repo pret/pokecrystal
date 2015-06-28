@@ -238,7 +238,7 @@ UnknownText_0x72c3e: ; 0x72c3e
 ; 0x72c96
 
 UnknownText_0x72c96: ; 0x72c96
-	text $52, " received"
+	text "<PLAYER> received"
 	line "RAINBOWBADGE."
 	done
 ; 0x72cb0

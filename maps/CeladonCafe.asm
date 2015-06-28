@@ -207,14 +207,14 @@ EatathonContestPosterText:
 	done
 
 FoundLeftoversText:
-	text $52, " found"
+	text "<PLAYER> found"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
 	done
 
 NoRoomForLeftoversText:
-	text "But ", $52, " can't"
+	text "But <PLAYER> can't"
 	line "hold another item…"
 	done
 

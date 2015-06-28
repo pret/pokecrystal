@@ -229,7 +229,7 @@ UnknownText_0x189df4: ; 0x189df4
 ; 0x189e95
 
 UnknownText_0x189e95: ; 0x189e95
-	text $52, " received"
+	text "<PLAYER> received"
 	line "MARSHBADGE."
 	done
 ; 0x189ead

@@ -44,7 +44,7 @@ BeverlyPhoneFullText:
 	done
 
 BeverlyGiftText:
-	text "Oh? ", $52, "? "
+	text "Oh? <PLAYER>? "
 	line "I waited here for"
 
 	para "you. I brought you"

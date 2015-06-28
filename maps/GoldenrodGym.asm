@@ -314,7 +314,7 @@ UnknownText_0x54222: ; 0x54222
 ; 0x54273
 
 UnknownText_0x54273: ; 0x54273
-	text $52, " received"
+	text "<PLAYER> received"
 	line "PLAINBADGE."
 	done
 ; 0x5428b

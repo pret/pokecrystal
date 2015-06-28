@@ -111,7 +111,7 @@ UnknownText_0x9abae: ; 0x9abae
 ; 0x9ac0f
 
 UnknownText_0x9ac0f: ; 0x9ac0f
-	text $52, " received"
+	text "<PLAYER> received"
 	line "EARTHBADGE."
 	done
 ; 0x9ac27

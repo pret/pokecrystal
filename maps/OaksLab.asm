@@ -79,7 +79,7 @@ OaksLabPC:
 	jumptext OaksLabPCText
 
 OakWelcomeKantoText:
-	text "OAK: Ah, ", $14, "!"
+	text "OAK: Ah, <PLAY_G>!"
 	line "It's good of you"
 
 	para "to come all this"
@@ -117,7 +117,7 @@ OakOpenMtSilverText:
 	line "assessment of you."
 
 	para "Tell you what,"
-	line $14, ". I'll make"
+	line "<PLAY_G>. I'll make"
 
 	para "arrangements so"
 	line "that you can go to"
@@ -137,7 +137,7 @@ OakOpenMtSilverText:
 
 	para "we can make an"
 	line "exception in your"
-	cont "case, ", $14, "."
+	cont "case, <PLAY_G>."
 
 	para "Go up to INDIGO"
 	line "PLATEAU. You can"
@@ -180,7 +180,7 @@ OakYesKantoBadgesText:
 	line "for you."
 
 	para "Keep trying hard,"
-	line $14, "!"
+	line "<PLAY_G>!"
 	done
 
 UnknownText_0x19b7fb: ; 0x19b7fb
@@ -246,7 +246,7 @@ OaksLabPCText:
 	line "away."
 
 	para "I heard rumors"
-	line "that ", $14, " is"
+	line "that <PLAY_G> is"
 
 	para "getting quite a"
 	line "reputation."

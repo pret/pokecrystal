@@ -292,8 +292,8 @@ UnknownText_0x1c04fa: ; 1c04fa
 	text " sent"
 	line "@"
 	text_from_ram StringBuffer1
-	text $55
-	db "to @"
+	text ""
+	cont "to @"
 	text_from_ram wc950 + 3
 	text "'s home."
 	prompt
@@ -422,7 +422,7 @@ UnknownText_0x1c06de: ; 1c06de
 ; 1c06ed
 
 UnknownText_0x1c06ed: ; 1c06ed
-	text $52, " used an"
+	text "<PLAYER> used an"
 	line "ESCAPE ROPE."
 	done
 ; 1c0705
@@ -441,8 +441,9 @@ UnknownText_0x1c071a: ; 1c071a
 
 UnknownText_0x1c073b: ; 1c073b
 	text "Can't use that"
-	line "here.", $51
-	db $57
+	line "here."
+	para ""
+	done
 ; 1c0751
 
 UnknownText_0x1c0751: ; 1c0751
@@ -578,7 +579,7 @@ UnknownText_0x1c099a: ; 1c099a
 ; 1c09b2
 
 UnknownText_0x1c09b2: ; 1c09b2
-	text $52, " got on the"
+	text "<PLAYER> got on the"
 	line "@"
 	text_from_ram StringBuffer2
 	text "."
@@ -586,7 +587,7 @@ UnknownText_0x1c09b2: ; 1c09b2
 ; 1c09c7
 
 UnknownText_0x1c09c7: ; 1c09c7
-	text $52, " got off"
+	text "<PLAYER> got off"
 	line "the @"
 	text_from_ram StringBuffer2
 	text "."
@@ -608,7 +609,7 @@ UnknownText_0x1c0a05: ; 1c0a05
 ; 1c0a1c
 
 UnknownText_0x1c0a1c: ; 1c0a1c
-	text $52, " found"
+	text "<PLAYER> found"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
@@ -616,17 +617,17 @@ UnknownText_0x1c0a1c: ; 1c0a1c
 ; 1c0a2c
 
 UnknownText_0x1c0a2c: ; 1c0a2c
-	text "But ", $52, " can't"
+	text "But <PLAYER> can't"
 	line "carry any more"
 	cont "items."
 	done
 ; 1c0a4e
 
 UnknownText_0x1c0a4e: ; 1c0a4e
-	text $52, " is out of"
+	text "<PLAYER> is out of"
 	line "useable #MON!"
 
-	para $52, " whited"
+	para "<PLAYER> whited"
 	line "out!"
 	done
 ; 1c0a77
@@ -652,10 +653,10 @@ UnknownText_0x1c0acc: ; 1c0acc
 ; 1c0ada
 
 UnknownText_0x1c0ada: ; 1c0ada
-	text $52, " is out of"
+	text "<PLAYER> is out of"
 	line "useable #MON!"
 
-	para $52, " whited"
+	para "<PLAYER> whited"
 	line "out!"
 	prompt
 ; 1c0b03
@@ -674,7 +675,7 @@ UnknownText_0x1c0b1a: ; 1c0b1a
 ; 1c0b3b
 
 UnknownText_0x1c0b3b: ; 1c0b3b
-	text $52, " sprinkled"
+	text "<PLAYER> sprinkled"
 	line "water."
 
 	para "But nothing"
@@ -683,7 +684,7 @@ UnknownText_0x1c0b3b: ; 1c0b3b
 ; 1c0b65
 
 UnknownText_0x1c0b65: ; 1c0b65
-	text $52, "'s #MON"
+	text "<PLAYER>'s #MON"
 	line "were all healed!"
 	done
 ; 1c0b7f
@@ -724,7 +725,7 @@ UnknownText_0x1c0bd8: ; 1c0bd8
 ; 1c0bee
 
 UnknownText_0x1c0bee: ; 1c0bee
-	text "OAK: ", $52, "!"
+	text "OAK: <PLAYER>!"
 	line "This isn't the"
 	cont "time to use that!"
 	prompt
@@ -774,7 +775,7 @@ UnknownText_0x1c0ca3: ; 1c0ca3
 ; 1c0cc6
 
 UnknownText_0x1c0cc6: ; 1c0cc6
-	text $5a, "'s"
+	text "<USER>'s"
 	line "@"
 	text_from_ram StringBuffer2
 	db "@"
@@ -796,7 +797,7 @@ UnknownText_0x1c0ce0: ; 1c0ce0
 ; 1c0ceb
 
 UnknownText_0x1c0ceb: ; 1c0ceb
-	text $59, "'s"
+	text "<TARGET>'s"
 	line "@"
 	text_from_ram StringBuffer2
 	db "@"
@@ -818,7 +819,7 @@ UnknownText_0x1c0d06: ; 1c0d06
 ; 1c0d0e
 
 UnknownText_0x1c0d0e: ; 1c0d0e
-	text $5a, "@"
+	text "<USER>@"
 	db "@"
 ; 1c0d12
 
@@ -859,7 +860,7 @@ UnknownText_0x1c0d6c: ; 1c0d6c
 ; 1c0d7a
 
 _ActorNameText: ; 1c0d7a
-	text $5a, "@"
+	text "<USER>@"
 	db "@"
 ; 1c0d7e
 
@@ -876,8 +877,8 @@ _UsedMove2Text: ; 1c0d87
 ; 1c0d90
 
 _UsedInsteadText: ; 1c0d90
-	text "instead,", $55
-	db "@"
+	text "instead,"
+	cont "@"
 	db "@"
 ; 1c0d9c
 
@@ -916,8 +917,8 @@ _EndUsedMove5Text: ; 1c0dad
 ; 1c0db0
 
 UnknownText_0x1c0db0: ; 1c0db0
-	text "Huh?", $51
-	db "@"
+	text "Huh?"
+	para "@"
 	db "@"
 ; 1c0db8
 
@@ -1142,20 +1143,20 @@ UnknownText_0x1c10fa: ; 1c10fa
 	text "This Bug-Catching"
 	line "Contest winner is@"
 	interpret_data
-	text "…", $51
-	db "@"
+	text "…"
+	para "@"
 	text_from_ram wd016
 	text ","
-	line "who caught a", $55
-	db "@"
+	line "who caught a"
+	cont "@"
 	text_from_ram StringBuffer1
 	text "!@"
 	db "@"
 ; 1c113f
 
 UnknownText_0x1c113f: ; 1c113f
-	text $51
-	db "The winning score"
+	text ""
+	para "The winning score"
 	line "was @"
 	deciram wd004, $23
 	text " points!"
@@ -1166,8 +1167,8 @@ UnknownText_0x1c1166: ; 1c1166
 	text "Placing second was"
 	line "@"
 	text_from_ram wd016
-	text ",", $51
-	db "who caught a"
+	text ","
+	para "who caught a"
 	line "@"
 	text_from_ram StringBuffer1
 	text "!@"
@@ -1175,8 +1176,8 @@ UnknownText_0x1c1166: ; 1c1166
 ; 1c1196
 
 UnknownText_0x1c1196: ; 1c1196
-	text $51
-	db "The score was"
+	text ""
+	para "The score was"
 	line "@"
 	deciram wd008, $23
 	text " points!"
@@ -1187,8 +1188,8 @@ UnknownText_0x1c11b5: ; 1c11b5
 	text "Placing third was"
 	line "@"
 	text_from_ram wd016
-	text ",", $51
-	db "who caught a"
+	text ","
+	para "who caught a"
 	line "@"
 	text_from_ram StringBuffer1
 	text "!@"
@@ -1196,8 +1197,8 @@ UnknownText_0x1c11b5: ; 1c11b5
 ; 1c11e4
 
 UnknownText_0x1c11e4: ; 1c11e4
-	text $51
-	db "The score was"
+	text ""
+	para "The score was"
 	line "@"
 	deciram wd00c, $23
 	text " points!"
@@ -1216,8 +1217,8 @@ UnknownText_0x1c1203: ; 1c1203
 ; 1c123a
 
 UnknownText_0x1c123a: ; 1c123a
-	text "CURRENT RECORD", $51
-	db "@"
+	text "CURRENT RECORD"
+	para "@"
 	text_from_ram StringBuffer1
 	text " caught by"
 	line "@"
@@ -1273,7 +1274,7 @@ UnknownText_0x1c1328: ; 1c1328
 ; 1c1353
 
 UnknownText_0x1c1353: ; 1c1353
-	text $52, " turned on"
+	text "<PLAYER> turned on"
 	line "the PC."
 	prompt
 ; 1c1368
@@ -1334,7 +1335,7 @@ _KrissPCNoRoomDepositText: ; 1c142d
 ; 1c144d
 
 UnknownText_0x1c144d: ; 1c144d
-	text $52, " turned on"
+	text "<PLAYER> turned on"
 	line "the PC."
 	prompt
 ; 1c1462
@@ -1566,19 +1567,21 @@ _OakPCText4: ; 1c19aa
 
 UnknownText_0x1c19cd: ; 1c19cd
 	text "Triple-theme"
-	line "trainer ranking!", $51
-	db "The SAVE file you"
-	line "just sent might", $55
-	db "make the rankings!", $51
-	db $57
+	line "trainer ranking!"
+	para "The SAVE file you"
+	line "just sent might"
+	cont "make the rankings!"
+	para ""
+	done
 ; 1c1a22
 
 UnknownText_0x1c1a22: ; 1c1a22
 	text "There is no"
-	line "ranking data.", $51
-	db "Link to obtain"
-	line "ranking data.", $51
-	db $57
+	line "ranking data."
+	para "Link to obtain"
+	line "ranking data."
+	para ""
+	done
 ; 1c1a5b
 
 UnknownText_0x1c1a5b: ; 1c1a5b
@@ -1630,7 +1633,7 @@ UnknownText_0x1c1adf: ; 1c1adf
 ; 1c1b03
 
 UnknownText_0x1c1b03: ; 1c1b03
-	text "OAK: ", $52, "!"
+	text "OAK: <PLAYER>!"
 	line "This isn't the"
 	cont "time to use that!"
 	done
@@ -1776,9 +1779,9 @@ _OakText1: ; 1c1d35
 
 _OakText2: ; 1c1da4
 	text "This world is in-"
-	line "habited by crea-", $55
-	db "tures that we call", $55
-	db "#MON.@"
+	line "habited by crea-"
+	cont "tures that we call"
+	cont "#MON.@"
 	db "@"
 ; 1c1de2
 

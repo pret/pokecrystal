@@ -306,7 +306,7 @@ UnknownText_0x18c9bf: ; 0x18c9bf
 ; 0x18c9fb
 
 UnknownText_0x18c9fb: ; 0x18c9fb
-	text $52, " received"
+	text "<PLAYER> received"
 	line "TM24."
 	done
 ; 0x18ca0d
@@ -384,7 +384,7 @@ UnknownText_0x18cc2e: ; 0x18cc2e
 
 UnknownText_0x18cc83: ; 0x18cc83
 	text "…"
-	line "What? ", $52, "?"
+	line "What? <PLAYER>?"
 
 	para "…No, I won't"
 	line "battle you now…"
@@ -501,7 +501,7 @@ UnknownText_0x18cf0f: ; 0x18cf0f
 ; 0x18cf41
 
 UnknownText_0x18cf41: ; 0x18cf41
-	text $52, " found"
+	text "<PLAYER> found"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
@@ -509,7 +509,7 @@ UnknownText_0x18cf41: ; 0x18cf41
 ; 0x18cf51
 
 UnknownText_0x18cf51: ; 0x18cf51
-	text "But ", $52, " can't"
+	text "But <PLAYER> can't"
 	line "carry any more"
 	cont "items."
 	done

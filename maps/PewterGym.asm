@@ -133,13 +133,13 @@ UnknownText_0x1a29bb: ; 0x1a29bb
 ; 0x1a2a3d
 
 UnknownText_0x1a2a3d: ; 0x1a2a3d
-	text $52, " received"
+	text "<PLAYER> received"
 	line "BOULDERBADGE."
 	done
 ; 0x1a2a57
 
 UnknownText_0x1a2a57: ; 0x1a2a57
-	text "BROCK: ", $14, ","
+	text "BROCK: <PLAY_G>,"
 	line "thanks. I enjoyed"
 
 	para "battling you, even"

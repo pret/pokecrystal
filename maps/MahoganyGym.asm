@@ -285,7 +285,7 @@ UnknownText_0x199cb3: ; 0x199cb3
 ; 0x199d3b
 
 UnknownText_0x199d3b: ; 0x199d3b
-	text $52, " received"
+	text "<PLAYER> received"
 	line "GLACIERBADGE."
 	done
 ; 0x199d55

@@ -189,7 +189,7 @@ MovementData_0x196f61: ; 0x196f61
 
 UnknownText_0x196f66: ; 0x196f66
 	text "Hello, hello! You"
-	line "must be ", $14, "."
+	line "must be <PLAY_G>."
 
 	para "PROF.ELM said that"
 	line "you would visit."
@@ -204,7 +204,7 @@ UnknownText_0x196fa8: ; 0x196fa8
 ; 0x196fd2
 
 UnknownText_0x196fd2: ; 0x196fd2
-	text $52, " received"
+	text "<PLAYER> received"
 	line "MYSTERY EGG."
 	done
 ; 0x196feb
@@ -267,7 +267,7 @@ UnknownText_0x19714a: ; 0x19714a
 
 UnknownText_0x197185: ; 0x197185
 	text "OAK: Aha! So"
-	line "you're ", $14, "!"
+	line "you're <PLAY_G>!"
 
 	para "I'm OAK! A #MON"
 	line "researcher."
@@ -331,7 +331,7 @@ UnknownText_0x197185: ; 0x197185
 ; 0x1973cc
 
 UnknownText_0x1973cc: ; 0x1973cc
-	text $52, " received"
+	text "<PLAYER> received"
 	line "#DEX!"
 	done
 ; 0x1973de
@@ -350,7 +350,7 @@ UnknownText_0x1973de: ; 0x1973de
 	line "GOLDENROD for my"
 	cont "usual radio show."
 
-	para $14, ", I'm"
+	para "<PLAY_G>, I'm"
 	line "counting on you!"
 	done
 ; 0x197476
@@ -363,7 +363,7 @@ UnknownText_0x197476: ; 0x197476
 	para "That's rare! "
 	line "I, I want it…"
 
-	para $14, ", would you"
+	para "<PLAY_G>, would you"
 	line "care to trade it?"
 
 	para "I can offer this"

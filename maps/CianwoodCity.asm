@@ -271,7 +271,7 @@ UnknownText_0x1a03cc:
 
 UnknownText_0x1a0433:
 	text "EUSINE: Yo,"
-	line $52, "."
+	line "<PLAYER>."
 
 	para "Wasn't that"
 	line "SUICUNE just now?"
@@ -303,7 +303,7 @@ UnknownText_0x1a0433:
 	line "a trainer to earn"
 	cont "SUICUNE's respect!"
 
-	para "Come on, ", $52, "."
+	para "Come on, <PLAYER>."
 	line "Let's battle now!"
 	done
 
@@ -314,7 +314,7 @@ UnknownText_0x1a05a1:
 
 UnknownText_0x1a05c3:
 	text "You're amazing,"
-	line $52, "!"
+	line "<PLAYER>!"
 
 	para "No wonder #MON"
 	line "gravitate to you."

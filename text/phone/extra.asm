@@ -8,7 +8,7 @@ UnknownText_0x64000: ; 0x64000
 ; 0x64032
 
 UnknownText_0x64032: ; 0x64032
-	text $14, ", have you"
+	text "<PLAY_G>, have you"
 	line "heard?"
 
 	para "GOLDENROD's RADIO"
@@ -23,7 +23,7 @@ UnknownText_0x64032: ; 0x64032
 ; 0x64099
 
 UnknownText_0x64099: ; 0x64099
-	text $14, ", I heard!"
+	text "<PLAY_G>, I heard!"
 
 	para "You defeated that"
 	line "WHITNEY?"
@@ -43,7 +43,7 @@ UnknownText_0x640e6: ; 0x640e6
 	para "LIGHTHOUSE, didn't"
 	line "you?"
 
-	para $14, ", I wish"
+	para "<PLAY_G>, I wish"
 	line "you'd come see me"
 
 	para "when I'm sick in"
@@ -100,7 +100,7 @@ UnknownText_0x642bb: ; 0x642bb
 	line "lady who looked a"
 
 	para "lot like you,"
-	line $14, "."
+	line "<PLAY_G>."
 
 	para "What? That lady"
 	line "was your mom?"
@@ -127,7 +127,7 @@ UnknownText_0x643d4: ; 0x643d4
 	line "I saw!"
 
 	para "You striding onto"
-	line "a ship, ", $14, "!"
+	line "a ship, <PLAY_G>!"
 
 	para "I can't get over"
 	line "how good you look"
@@ -192,7 +192,7 @@ UnknownText_0x645ff: ; 0x645ff
 	cont "the place."
 
 	para "It just makes me"
-	line "sigh, ", $14, "."
+	line "sigh, <PLAY_G>."
 
 	para "How did you get so"
 	line "strong?"
@@ -241,7 +241,7 @@ UnknownText_0x646df: ; 0x646df
 ; 0x647d8
 
 UnknownText_0x647d8: ; 0x647d8
-	text $14, ", I heard!"
+	text "<PLAY_G>, I heard!"
 
 	para "You're kicking up"
 	line "a mighty ruckus"
@@ -491,7 +491,7 @@ UnknownText_0x64e2f: ; 0x64e2f
 
 	para "to @"
 	text_from_ram StringBuffer5
-	db $0
+	text ""
 	line "and pick it up?"
 	done
 ; 0x64e90
@@ -561,8 +561,8 @@ UnknownText_0x6501c: ; 0x6501c
 	text "You know what?"
 	line "A wild @"
 	text_from_ram StringBuffer4
-	text $51
-	db "got away from me"
+	text ""
+	para "got away from me"
 	line "again."
 
 	para "It was so close!"
@@ -918,8 +918,8 @@ UnknownText_0x65ab2: ; 0x65ab2
 	text "Listen to this."
 	line "My @"
 	text_from_ram StringBuffer4
-	text $51
-	db "grins happily when"
+	text ""
+	para "grins happily when"
 	line "I pinch its cheek."
 
 	para "But it never grins"
@@ -1121,7 +1121,7 @@ UnknownText_0x65ff2: ; 0x65ff2
 UnknownText_0x66043: ; 0x66043
 	text "Yup, TULLY here…"
 
-	para $14, "? What?"
+	para "<PLAY_G>? What?"
 	line "You're lost?"
 
 	para "Our battle will be"
@@ -1401,7 +1401,7 @@ UnknownText_0x66796: ; 0x66796
 	para "It's awful."
 	line "My CLEFAIRY…"
 
-	para "Huh? ", $14, "?"
+	para "Huh? <PLAY_G>?"
 
 	para "Oh, sorry! I was"
 	line "in a hurry, and I…"
@@ -1497,8 +1497,8 @@ UnknownText_0x669ed: ; 0x669ed
 	text "But get this, a"
 	line "wild @"
 	text_from_ram StringBuffer4
-	text $51
-	db "just barely eluded"
+	text ""
+	para "just barely eluded"
 	line "us."
 
 	para "I wanted to FLY"
@@ -1533,7 +1533,7 @@ UnknownText_0x66aa5: ; 0x66aa5
 ; 0x66ad1
 
 UnknownText_0x66ad1: ; 0x66ad1
-	text "Oh, ", $14, "!"
+	text "Oh, <PLAY_G>!"
 	line "Hurry, hurry!"
 
 	para "@"
@@ -1808,7 +1808,7 @@ UnknownText_0x6717a: ; 0x6717a
 	text_from_ram StringBuffer3
 	text "'s @"
 	text_from_ram StringBuffer4
-	db $0
+	text ""
 	line "is much stronger"
 	cont "than before!"
 	done
@@ -1831,7 +1831,7 @@ UnknownText_0x671eb: ; 0x671eb
 
 	para "A wild @"
 	text_from_ram StringBuffer4
-	db $0
+	text ""
 	line "got away from me"
 
 	para "again. It's just"
@@ -1869,7 +1869,7 @@ UnknownText_0x67294: ; 0x67294
 ; 0x672d5
 
 UnknownText_0x672d5: ; 0x672d5
-	text "Oh, ", $14, "!"
+	text "Oh, <PLAY_G>!"
 	line "Come battle ERIN!"
 
 	para "I'll be waiting on"

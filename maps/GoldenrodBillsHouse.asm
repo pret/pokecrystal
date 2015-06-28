@@ -114,7 +114,7 @@ BillsHouseRadio:
 	jumpstd radio2
 
 UnknownText_0x54c74: ; 0x54c74
-	text "BILL: Hi, ", $52, "!"
+	text "BILL: Hi, <PLAYER>!"
 	line "Do us a favor and"
 	cont "take this EEVEE."
 
@@ -130,7 +130,7 @@ UnknownText_0x54c74: ; 0x54c74
 
 	para "Can I count on you"
 	line "to play with it,"
-	cont $52, "?"
+	cont "<PLAYER>?"
 	done
 ; 0x54d3f
 
@@ -150,7 +150,7 @@ UnknownText_0x54d3f: ; 0x54d3f
 ; 0x54dae
 
 UnknownText_0x54dae: ; 0x54dae
-	text $52, " received"
+	text "<PLAYER> received"
 	line "EEVEE!"
 	done
 ; 0x54dc1
@@ -230,7 +230,7 @@ UnknownText_0x54f9e: ; 0x54f9e
 ; 0x54fd9
 
 UnknownText_0x54fd9: ; 0x54fd9
-	text $52, " recorded"
+	text "<PLAYER> recorded"
 	line "BILL's number."
 	done
 ; 0x54ff3

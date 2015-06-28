@@ -18,7 +18,7 @@ ElmsHouseBookshelf:
 	jumpstd difficultbookshelf
 
 ElmsWifeText:
-	text "Hi, ", $14, "! My"
+	text "Hi, <PLAY_G>! My"
 	line "husband's always"
 
 	para "so busy--I hope"

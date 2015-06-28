@@ -335,7 +335,7 @@ UnknownText_0x18870c: ; 0x18870c
 ; 0x188768
 
 UnknownText_0x188768: ; 0x188768
-	text $52, " received"
+	text "<PLAYER> received"
 	line "CASCADEBADGE."
 	done
 ; 0x188782

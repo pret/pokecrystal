@@ -108,7 +108,7 @@ UnknownText_0x1814a6: ; 0x1814a6
 	para "all the makings"
 	line "of greatness!"
 
-	para $14, ", allow me"
+	para "<PLAY_G>, allow me"
 	line "to register you"
 
 	para "and your partners"

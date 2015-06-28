@@ -111,7 +111,7 @@ UnknownText_0x1809fe: ; 0x1809fe
 	para "determined. Per-"
 	line "fect for battle!"
 
-	para "Ready, ", $52, "?"
+	para "Ready, <PLAYER>?"
 	line "You will bow down"
 
 	para "to our overwhelm-"

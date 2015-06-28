@@ -1,5 +1,5 @@
 UnknownText_0x174000: ; 0x174000
-	text "Hi, ", $14, "!"
+	text "Hi, <PLAY_G>!"
 	line "Our BICYCLE sales"
 
 	para "have gone through"
@@ -216,7 +216,7 @@ UnknownText_0x1745c2: ; 0x1745c2
 ; 0x174638
 
 UnknownText_0x174638: ; 0x174638
-	text "Hey, ", $14, "!"
+	text "Hey, <PLAY_G>!"
 
 	para "Do you remember"
 	line "your promise?"
@@ -316,7 +316,7 @@ UnknownText_0x174895: ; 0x174895
 
 	para "in @"
 	text_from_ram StringBuffer5
-	db $0
+	text ""
 	line "when you can."
 	done
 ; 0x1748ea
@@ -372,7 +372,7 @@ UnknownText_0x1749c7: ; 0x1749c7
 UnknownText_0x174a24: ; 0x174a24
 	text "My @"
 	text_from_ram StringBuffer4
-	db $0
+	text ""
 	line "might be greater"
 	cont "than I imagined."
 
@@ -452,7 +452,7 @@ UnknownText_0x174c29: ; 0x174c29
 ; 0x174c49
 
 UnknownText_0x174c49: ; 0x174c49
-	text $14, ", why"
+	text "<PLAY_G>, why"
 	line "aren't you here?"
 
 	para "I'll take you down"
@@ -485,8 +485,8 @@ UnknownText_0x174cf6: ; 0x174cf6
 	text "Oh, have you ever"
 	line "seen a @"
 	text_from_ram StringBuffer4
-	text $55
-	db "before?"
+	text ""
+	cont "before?"
 
 	para "I just battled"
 	line "one…"
@@ -553,7 +553,7 @@ UnknownText_0x174ec5: ; 0x174ec5
 ; 0x174ee2
 
 UnknownText_0x174ee2: ; 0x174ee2
-	text "Um… ", $14, "?"
+	text "Um… <PLAY_G>?"
 	line "What's wrong?"
 
 	para "Did you forget our"
@@ -671,7 +671,7 @@ UnknownText_0x17519b: ; 0x17519b
 ; 0x17520a
 
 UnknownText_0x17520a: ; 0x17520a
-	text $14, ", could you"
+	text "<PLAY_G>, could you"
 	line "hurry over?"
 
 	para "FARFETCH'D is"
@@ -823,8 +823,8 @@ UnknownText_0x175591: ; 0x175591
 	text "Oh yeah, I took"
 	line "down a @"
 	text_from_ram StringBuffer4
-	text $51
-	db "in the wild the"
+	text ""
+	para "in the wild the"
 	line "other day."
 
 	para "It was a cakewalk."
@@ -891,7 +891,7 @@ UnknownText_0x17571d: ; 0x17571d
 
 UnknownText_0x175786: ; 0x175786
 	text "What's keeping"
-	line "you, ", $52, "!"
+	line "you, <PLAYER>!"
 
 	para "Let's get down and"
 	line "battle already!"
@@ -927,8 +927,8 @@ UnknownText_0x175869: ; 0x175869
 	text "Oh yeah, we KO'd a"
 	line "wild @"
 	text_from_ram StringBuffer4
-	text $51
-	db "with one hit a"
+	text ""
+	para "with one hit a"
 	line "while back."
 
 	para "It went down so"
@@ -989,7 +989,7 @@ UnknownText_0x1759f7: ; 0x1759f7
 	line "today."
 
 	para "Are you going,"
-	line $14, "?"
+	line "<PLAY_G>?"
 
 	para "I'm trying to make"
 	line "up my mind."
@@ -1146,7 +1146,7 @@ UnknownText_0x175dd9: ; 0x175dd9
 	para "Heh, they're some"
 	line "kind of feisty!"
 
-	para $14, ", you have"
+	para "<PLAY_G>, you have"
 	line "to see this rare"
 
 	para "sight! Get ready"
@@ -1549,7 +1549,7 @@ UnknownText_0x176aef: ; 0x176aef
 
 	para "wild @"
 	text_from_ram StringBuffer4
-	db $0
+	text ""
 	line "quite often."
 
 	para "They're easily"
@@ -1599,27 +1599,27 @@ UnknownText_0x176c47: ; 0x176c47
 ; 0x176c61
 
 UnknownText_0x176c61: ; 0x176c61
-	text $52, "! It's"
+	text "<PLAYER>! It's"
 	line "mind-blowing!"
 
 	para "I took a hike in"
 	line "@"
 	text_from_ram StringBuffer5
-	text $55
-	db "yesterday, see?"
+	text ""
+	cont "yesterday, see?"
 
 	para "Well, there were"
 	line "tons of @"
 	text_from_ram StringBuffer4
-	text $51
-	db "around! You have"
+	text ""
+	para "around! You have"
 	line "to see it!"
 
 	para "I get this feeling"
 	line "that @"
 	text_from_ram StringBuffer4
-	text $51
-	db "may be timid."
+	text ""
+	para "may be timid."
 	line "I didn't see any"
 
 	para "where there are"
@@ -1899,7 +1899,7 @@ UnknownText_0x177465: ; 0x177465
 ; 0x1774c1
 
 UnknownText_0x1774c1: ; 0x1774c1
-	text "Oh, ", $14, "!"
+	text "Oh, <PLAY_G>!"
 	line "How soon can I"
 
 	para "expect to see you"

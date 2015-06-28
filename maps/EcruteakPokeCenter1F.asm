@@ -111,7 +111,7 @@ UnknownText_0x98ed8: ; 0x98ed8
 	text "Hi, I'm BILL. And"
 	line "who are you?"
 
-	para "Hmm, ", $52, ", huh?"
+	para "Hmm, <PLAYER>, huh?"
 	line "You've come at the"
 	cont "right time."
 	done

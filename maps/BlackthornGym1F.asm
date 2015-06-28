@@ -275,7 +275,7 @@ UnknownText_0x195196:
 	done
 
 UnknownText_0x1951bf:
-	text $52, " received"
+	text "<PLAYER> received"
 	line "TM24."
 	done
 

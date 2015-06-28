@@ -110,7 +110,7 @@ CeladonClangText:
 
 	para "@"
 	text_from_ram StringBuffer3
-	db $0
+	text ""
 	line "popped out."
 	done
 

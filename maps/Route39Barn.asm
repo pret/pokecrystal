@@ -171,7 +171,7 @@ UnknownText_0x9cda2: ; 0x9cda2
 ; 0x9cdbc
 
 UnknownText_0x9cdbc: ; 0x9cdbc
-	text $52, " gave a"
+	text "<PLAYER> gave a"
 	line "BERRY to MILTANK."
 	done
 ; 0x9cdd8
@@ -195,13 +195,13 @@ UnknownText_0x9ce1b: ; 0x9ce1b
 ; 0x9ce3c
 
 UnknownText_0x9ce3c: ; 0x9ce3c
-	text $52, " has no"
+	text "<PLAYER> has no"
 	line "BERRIES…"
 	done
 ; 0x9ce4f
 
 UnknownText_0x9ce4f: ; 0x9ce4f
-	text $52, " wouldn't"
+	text "<PLAYER> wouldn't"
 	line "give a BERRY."
 
 	para "MILTANK looks sad."
