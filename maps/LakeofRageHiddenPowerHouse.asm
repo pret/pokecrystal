@@ -12,7 +12,7 @@ HiddenPowerGuy:
 	iftrue .AlreadyGotItem
 	writetext HiddenPowerGuyText1
 	keeptextopen
-	verbosegiveitem TM_10, 1
+	verbosegiveitem TM_HIDDEN_POWER, 1
 	iffalse .Done
 	setevent EVENT_GOT_TM10_HIDDEN_POWER
 	writetext HiddenPowerGuyText2

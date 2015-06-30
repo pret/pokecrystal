@@ -2,7 +2,7 @@ PrintItemDescription: ; 0x1c8955
 ; Print the description for item [CurSpecies] at de.
 
 	ld a, [CurSpecies]
-	cp TM_01
+	cp TM01
 	jr c, .not_a_tm
 
 	ld [CurItem], a

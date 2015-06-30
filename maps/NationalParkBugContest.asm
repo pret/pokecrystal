@@ -113,7 +113,7 @@ ItemFragment_0x5c945: ; 0x5c945
 ; 0x5c947
 
 ItemFragment_0x5c947: ; 0x5c947
-	db TM_28, 1
+	db TM_DIG, 1
 ; 0x5c949
 
 MapNationalParkBugContestSignpostItem2: ; 0x5c949

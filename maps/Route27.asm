@@ -434,7 +434,7 @@ MapRoute27Signpost0Script: ; 0x1a0a5f
 ; 0x1a0a62
 
 ItemFragment_0x1a0a62: ; 0x1a0a62
-	db TM_22, 1
+	db TM_SOLARBEAM, 1
 ; 0x1a0a64
 
 ItemFragment_0x1a0a64: ; 0x1a0a64

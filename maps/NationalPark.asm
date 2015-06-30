@@ -396,7 +396,7 @@ ItemFragment_0x5c1cc: ; 0x5c1cc
 ; 0x5c1ce
 
 ItemFragment_0x5c1ce: ; 0x5c1ce
-	db TM_28, 1
+	db TM_DIG, 1
 ; 0x5c1d0
 
 MapNationalParkSignpostItem2: ; 0x5c1d0

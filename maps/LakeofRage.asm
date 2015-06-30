@@ -284,7 +284,7 @@ ItemFragment_0x70148:
 	db ELIXER, 1
 
 ItemFragment_0x7014a:
-	db TM_43, 1
+	db TM_DETECT, 1
 
 MapLakeofRageSignpostItem2:
 	dw $00b5

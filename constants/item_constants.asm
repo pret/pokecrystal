@@ -190,70 +190,75 @@
 	const MUSIC_MAIL   ; $BC
 	const MIRAGE_MAIL  ; $BD
 	const ITEM_BE      ; $BE
-	const TM_01        ; $BF
-	const TM_02        ; $C0
-	const TM_03        ; $C1
-	const TM_04        ; $C2
-	const ITEM_C3      ; $C3
-	const TM_05        ; $C4
-	const TM_06        ; $C5
-	const TM_07        ; $C6
-	const TM_08        ; $C7
-	const TM_09        ; $C8
-	const TM_10        ; $C9
-	const TM_11        ; $CA
-	const TM_12        ; $CB
-	const TM_13        ; $CC
-	const TM_14        ; $CD
-	const TM_15        ; $CE
-	const TM_16        ; $CF
-	const TM_17        ; $D0
-	const TM_18        ; $D1
-	const TM_19        ; $D2
-	const TM_20        ; $D3
-	const TM_21        ; $D4
-	const TM_22        ; $D5
-	const TM_23        ; $D6
-	const TM_24        ; $D7
-	const TM_25        ; $D8
-	const TM_26        ; $D9
-	const TM_27        ; $DA
-	const TM_28        ; $DB
-	const ITEM_DC      ; $DC
-	const TM_29        ; $DD
-	const TM_30        ; $DE
-	const TM_31        ; $DF
-	const TM_32        ; $E0
-	const TM_33        ; $E1
-	const TM_34        ; $E2
-	const TM_35        ; $E3
-	const TM_36        ; $E4
-	const TM_37        ; $E5
-	const TM_38        ; $E6
-	const TM_39        ; $E7
-	const TM_40        ; $E8
-	const TM_41        ; $E9
-	const TM_42        ; $EA
-	const TM_43        ; $EB
-	const TM_44        ; $EC
-	const TM_45        ; $ED
-	const TM_46        ; $EE
-	const TM_47        ; $EF
-	const TM_48        ; $F0
-	const TM_49        ; $F1
-	const TM_50        ; $F2
-	const HM_01        ; $F3
-	const HM_02        ; $F4
-	const HM_03        ; $F5
-	const HM_04        ; $F6
-	const HM_05        ; $F7
-	const HM_06        ; $F8
-	const HM_07        ; $F9
-	const HM_08        ; $FA
 
+	add_tm DYNAMICPUNCH
+	add_tm HEADBUTT
+	add_tm CURSE
+	add_tm ROLLOUT
+	const ITEM_C3
+	add_tm ROAR
+	add_tm TOXIC
+	add_tm ZAP_CANNON
+	add_tm ROCK_SMASH
+	add_tm PSYCH_UP
+	add_tm HIDDEN_POWER
+	add_tm SUNNY_DAY
+	add_tm SWEET_SCENT
+	add_tm SNORE
+	add_tm BLIZZARD
+	add_tm HYPER_BEAM
+	add_tm ICY_WIND
+	add_tm PROTECT
+	add_tm RAIN_DANCE
+	add_tm GIGA_DRAIN
+	add_tm ENDURE
+	add_tm FRUSTRATION
+	add_tm SOLARBEAM
+	add_tm IRON_TAIL
+	add_tm DRAGONBREATH
+	add_tm THUNDER
+	add_tm EARTHQUAKE
+	add_tm RETURN
+	add_tm DIG
+	const ITEM_DC
+	add_tm PSYCHIC
+	add_tm SHADOW_BALL
+	add_tm MUD_SLAP
+	add_tm DOUBLE_TEAM
+	add_tm ICE_PUNCH
+	add_tm SWAGGER
+	add_tm SLEEP_TALK
+	add_tm SLUDGE_BOMB
+	add_tm SANDSTORM
+	add_tm FIRE_BLAST
+	add_tm SWIFT
+	add_tm DEFENSE_CURL
+	add_tm THUNDERPUNCH
+	add_tm DREAM_EATER
+	add_tm DETECT
+	add_tm REST
+	add_tm ATTRACT
+	add_tm THIEF
+	add_tm STEEL_WING
+	add_tm FIRE_PUNCH
+	add_tm FURY_CUTTER
+	add_tm NIGHTMARE
+NUM_TMS = const_value - TM01 - 2
 
-NUM_TMS EQU 50
-NUM_HMS EQU 7
+	add_hm CUT
+	add_hm FLY
+	add_hm SURF
+	add_hm STRENGTH
+	add_hm FLASH
+	add_hm WHIRLPOOL
+	add_hm WATERFALL
+NUM_HMS = const_value - HM01
+	const HM_08
+
+	add_mt FLAMETHROWER
+	add_mt THUNDERBOLT
+	add_mt ICE_BEAM
+
 
 
 ; leftovers from red

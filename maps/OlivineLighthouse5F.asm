@@ -73,7 +73,7 @@ ItemFragment_0x609ac: ; 0x609ac
 ; 0x609ae
 
 ItemFragment_0x609ae: ; 0x609ae
-	db TM_34, 1
+	db TM_SWAGGER, 1
 ; 0x609b0
 
 MapOlivineLighthouse5FSignpostItem0: ; 0x609b0

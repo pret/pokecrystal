@@ -6823,26 +6823,26 @@ Functiond27b: ; d27b
 	ret
 ; d283
 
-Functiond283: ; d283
-	ld c, 20
+GetPocketCapacity: ; d283
+	ld c, MAX_ITEMS
 	ld a, e
-	cp TMsHMsEnd % $100
+	cp NumItems % $100
 	jr nz, .asm_d28e
 	ld a, d
-	cp TMsHMsEnd / $100
+	cp NumItems / $100
 	ret z
 
 .asm_d28e
-	ld c, 50
+	ld c, MAX_PC_ITEMS
 	ld a, e
-	cp BallsEnd % $100
+	cp PCItems % $100
 	jr nz, .asm_d299
 	ld a, d
-	cp BallsEnd / $100
+	cp PCItems / $100
 	ret z
 
 .asm_d299
-	ld c, $c
+	ld c, MAX_BALLS
 	ret
 ; d29c
 
@@ -6873,7 +6873,7 @@ Functiond29c: ; d29c
 	jr .asm_d2a5
 
 .asm_d2bd
-	call Functiond283
+	call GetPocketCapacity
 	ld a, [de]
 	cp c
 	jr c, .asm_d2c6
@@ -7176,7 +7176,7 @@ GetTMHMNumber:: ; d407
 .skip
 	dec a
 .done
-	sub TM_01
+	sub TM01
 	inc a
 	ld c, a
 	ret
@@ -7189,9 +7189,9 @@ GetNumberedTMHM: ; d417
 	ld a, c 
 
 ; Skip any gaps.
-	cp ITEM_C3 - (TM_01 - 1)
+	cp ITEM_C3 - (TM01 - 1)
 	jr c, .done
-	cp ITEM_DC - (TM_01 - 1) - 1
+	cp ITEM_DC - (TM01 - 1) - 1
 	jr c, .skip_one
 
 .skip_two
@@ -7199,7 +7199,7 @@ GetNumberedTMHM: ; d417
 .skip_one
 	inc a
 .done
-	add TM_01
+	add TM01
 	dec a
 	ld c, a
 	ret
@@ -35563,7 +35563,7 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	push af
 	res 4, [hl]
 	ld a, [CurItem]
-	cp TM_01
+	cp TM01
 	jr c, .asm_2c7f5
 	call GetTMHMItemMove
 	ld a, [wd265]
@@ -35572,7 +35572,7 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	call CopyName1
 	ld hl, UnknownText_0x2c8bf
 	ld a, [CurItem]
-	cp HM_01
+	cp HM01
 	jr c, .asm_2c7e9
 	ld hl, UnknownText_0x2c8c4
 .asm_2c7e9

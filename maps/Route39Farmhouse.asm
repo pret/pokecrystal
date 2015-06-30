@@ -84,7 +84,7 @@ PokefanFScript_0x9cf0e: ; 0x9cf0e
 UnknownScript_0x9cf22: ; 0x9cf22
 	writetext UnknownText_0x9d156
 	keeptextopen
-	verbosegiveitem TM_13, 1
+	verbosegiveitem TM_SNORE, 1
 	iffalse UnknownScript_0x9cf33
 	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 UnknownScript_0x9cf2f: ; 0x9cf2f

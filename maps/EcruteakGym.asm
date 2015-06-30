@@ -51,7 +51,7 @@ UnknownScript_0x99d8c: ; 0x99d8c
 	setevent EVENT_BEAT_MEDIUM_GRACE
 	writetext UnknownText_0x9a059
 	keeptextopen
-	verbosegiveitem TM_30, 1
+	verbosegiveitem TM_SHADOW_BALL, 1
 	iffalse UnknownScript_0x99db5
 	setevent EVENT_GOT_TM30_SHADOW_BALL
 	writetext UnknownText_0x9a0ec

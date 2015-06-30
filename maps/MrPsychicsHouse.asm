@@ -12,7 +12,7 @@ MrPsychic:
 	iftrue .AlreadyGotItem
 	writetext MrPsychicText1
 	keeptextopen
-	verbosegiveitem TM_29, 1
+	verbosegiveitem TM_PSYCHIC, 1
 	iffalse .Done
 	setevent EVENT_GOT_TM29_PSYCHIC
 .AlreadyGotItem

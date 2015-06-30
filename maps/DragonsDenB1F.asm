@@ -55,9 +55,9 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	loadfont
 	writetext UnknownText_0x18c9bf
 	keeptextopen
-	giveitem TM_24, $1
+	giveitem TM_DRAGONBREATH, $1
 	iffalse UnknownScript_0x18c8f4
-	itemtotext TM_24, $0
+	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x18c9fb
 	playsound SFX_ITEM
 	waitbutton

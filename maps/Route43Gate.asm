@@ -128,7 +128,7 @@ OfficerScript_0x19ac85: ; 0x19ac85
 	iftrue UnknownScript_0x19ac9c
 	writetext UnknownText_0x19ad9b
 	keeptextopen
-	verbosegiveitem TM_36, 1
+	verbosegiveitem TM_SLUDGE_BOMB, 1
 	iffalse UnknownScript_0x19aca0
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB
 	loadmovesprites

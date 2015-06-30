@@ -64,7 +64,7 @@ UnknownScript_0x54044: ; 0x54044
 UnknownScript_0x54064: ; 0x54064
 	writetext UnknownText_0x5428b
 	keeptextopen
-	verbosegiveitem TM_45, 1
+	verbosegiveitem TM_ATTRACT, 1
 	iffalse UnknownScript_0x5407b
 	setevent EVENT_GOT_TM45_ATTRACT
 	writetext UnknownText_0x54302

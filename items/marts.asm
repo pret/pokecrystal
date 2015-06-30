@@ -144,37 +144,37 @@ Mart8: ; 16134
 
 Mart9: ; 1613b
 	db 3 ; # items
-	db TM_41
-	db TM_48
-	db TM_33
+	db TM_THUNDERPUNCH
+	db TM_FIRE_PUNCH
+	db TM_ICE_PUNCH
 	db $ff
 ; 16140
 
 Mart10: ; 16140
 	db 4 ; # items
-	db TM_41
-	db TM_48
-	db TM_33
-	db TM_02
+	db TM_THUNDERPUNCH
+	db TM_FIRE_PUNCH
+	db TM_ICE_PUNCH
+	db TM_HEADBUTT
 	db $ff
 ; 16146
 
 Mart11: ; 16146
 	db 4 ; # items
-	db TM_41
-	db TM_48
-	db TM_33
-	db TM_08
+	db TM_THUNDERPUNCH
+	db TM_FIRE_PUNCH
+	db TM_ICE_PUNCH
+	db TM_ROCK_SMASH
 	db $ff
 ; 1614c
 
 Mart12: ; 1614c
 	db 5 ; # items
-	db TM_41
-	db TM_48
-	db TM_33
-	db TM_02
-	db TM_08
+	db TM_THUNDERPUNCH
+	db TM_FIRE_PUNCH
+	db TM_ICE_PUNCH
+	db TM_HEADBUTT
+	db TM_ROCK_SMASH
 	db $ff
 ; 16153
 
@@ -339,11 +339,11 @@ Mart24: ; 161c2
 
 Mart25: ; 161ce
 	db 5 ; # items
-	db TM_10
-	db TM_11
-	db TM_17
-	db TM_18
-	db TM_37
+	db TM_HIDDEN_POWER
+	db TM_SUNNY_DAY
+	db TM_PROTECT
+	db TM_RAIN_DANCE
+	db TM_SANDSTORM
 	db $ff
 ; 161d5
 

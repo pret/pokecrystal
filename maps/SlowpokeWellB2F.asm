@@ -29,7 +29,7 @@ UnknownScript_0x5ad22: ; 0x5ad22
 ; 0x5ad28
 
 ItemFragment_0x5ad28: ; 0x5ad28
-	db TM_18, 1
+	db TM_RAIN_DANCE, 1
 ; 0x5ad2a
 
 UnknownText_0x5ad2a: ; 0x5ad2a

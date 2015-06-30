@@ -89,7 +89,7 @@ PokefanFScript_0x1a0084:
 UnknownScript_0x1a009c:
 	writetext UnknownText_0x1a01e3
 	keeptextopen
-	verbosegiveitem HM_02, 1
+	verbosegiveitem HM_FLY, 1
 	iffalse UnknownScript_0x1a00b1
 	setevent EVENT_GOT_HM02_FLY
 	writetext UnknownText_0x1a021d

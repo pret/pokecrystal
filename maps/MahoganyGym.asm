@@ -36,7 +36,7 @@ UnknownScript_0x199ac8: ; 0x199ac8
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
 	writetext UnknownText_0x199d55
 	keeptextopen
-	verbosegiveitem TM_16, 1
+	verbosegiveitem TM_ICY_WIND, 1
 	iffalse UnknownScript_0x199af4
 	setevent EVENT_GOT_TM16_ICY_WIND
 	writetext UnknownText_0x199def

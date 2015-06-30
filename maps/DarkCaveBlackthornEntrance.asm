@@ -29,7 +29,7 @@ ItemFragment_0x18c73b: ; 0x18c73b
 ; 0x18c73d
 
 ItemFragment_0x18c73d: ; 0x18c73d
-	db TM_13, 1
+	db TM_SNORE, 1
 ; 0x18c73f
 
 UnknownText_0x18c73f: ; 0x18c73f

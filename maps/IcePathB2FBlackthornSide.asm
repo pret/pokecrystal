@@ -7,7 +7,7 @@ IcePathB2FBlackthornSide_MapScriptHeader: ; 0x7e644
 ; 0x7e646
 
 ItemFragment_0x7e646: ; 0x7e646
-	db TM_44, 1
+	db TM_REST, 1
 ; 0x7e648
 
 MapIcePathB2FBlackthornSideSignpostItem0: ; 0x7e648

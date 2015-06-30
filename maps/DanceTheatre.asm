@@ -190,7 +190,7 @@ UnknownScript_0x994ff: ; 0x994ff
 UnknownScript_0x99505: ; 0x99505
 	writetext UnknownText_0x9991a
 	keeptextopen
-	verbosegiveitem HM_03, 1
+	verbosegiveitem HM_SURF, 1
 	setevent EVENT_GOT_HM03_SURF
 	writetext UnknownText_0x9999b
 	closetext
