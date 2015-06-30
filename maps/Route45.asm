@@ -27,7 +27,7 @@ TrainerBlackbeltKenji3: ; 0x19e0a1
 ; 0x19e0ad
 
 BlackbeltKenji3Script: ; 0x19e0ad
-	writecode $17, $22
+	writecode VAR_CALLERID, $22
 	talkaftercancel
 	loadfont
 	checkcellnum $22
@@ -54,7 +54,7 @@ UnknownScript_0x19e0d0: ; 0x19e0d0
 ; 0x19e0e4
 
 UnknownScript_0x19e0e4: ; 0x19e0e4
-	checkcode $1a
+	checkcode VAR_1A
 	if_not_equal $1, UnknownScript_0x19e127
 	checkmorn
 	iftrue UnknownScript_0x19e10c
@@ -223,7 +223,7 @@ TrainerHikerParry3: ; 0x19e172
 ; 0x19e17e
 
 HikerParry3Script: ; 0x19e17e
-	writecode $17, $23
+	writecode VAR_CALLERID, $23
 	talkaftercancel
 	loadfont
 	checkflag $007b

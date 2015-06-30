@@ -26,7 +26,7 @@ UnknownScript_0x7e217: ; 0x7e217
 	writetext UnknownText_0x7e2c0
 	keeptextopen
 	waitbutton
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7e237
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON

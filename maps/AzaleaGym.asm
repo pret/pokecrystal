@@ -24,7 +24,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001c
-	checkcode $7
+	checkcode VAR_BADGES
 	scall UnknownScript_0x18ec73
 UnknownScript_0x18ec48: ; 0x18ec48
 	checkevent EVENT_GOT_TM49_FURY_CUTTER
@@ -35,7 +35,7 @@ UnknownScript_0x18ec48: ; 0x18ec48
 	setevent EVENT_BEAT_BUG_CATCHER_JOSH
 	writetext UnknownText_0x18ee2b
 	keeptextopen
-	verbosegiveitem TM_49, 1
+	verbosegiveitem TM_FURY_CUTTER, 1
 	iffalse UnknownScript_0x18ec71
 	setevent EVENT_GOT_TM49_FURY_CUTTER
 	writetext UnknownText_0x18eefa

@@ -85,7 +85,7 @@ UnknownScript_0x74e20:
 	iftrue UnknownScript_0x74e86
 	spriteface $0, LEFT
 	loadfont
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74e72
 	if_equal TUESDAY, UnknownScript_0x74e72
 	if_equal THURSDAY, UnknownScript_0x74e7c
@@ -147,7 +147,7 @@ SailorScript_0x74e97:
 	loadfont
 	checkevent $0000
 	iftrue UnknownScript_0x74e1a
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74eda
 	if_equal TUESDAY, UnknownScript_0x74eda
 	if_equal THURSDAY, UnknownScript_0x74ee0

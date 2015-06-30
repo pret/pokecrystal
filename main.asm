@@ -5320,7 +5320,7 @@ UnknownScript_0xcaa3: ; 0xcaa3
 	farscall UnknownScript_0x122c1
 	special Function97c28
 	callasm Function154f1
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	newloadmap $fc
 	callasm Function8cb33
 	special WaitSFX
@@ -5588,7 +5588,7 @@ UnknownScript_0xcc3c: ; 0xcc3c
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
 	special Function97c28
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	newloadmap $f5
 	playsound SFX_WARP_FROM
 	applymovement $0, MovementData_0xcc5d
@@ -5686,7 +5686,7 @@ UnknownScript_0xccbb: ; 0xccbb
 	applymovement $0, MovementData_0xcce1
 	farscall UnknownScript_0x122c1
 	special Function97c28
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	newloadmap $f4
 	playsound SFX_WARP_FROM
 	applymovement $0, MovementData_0xcce3
@@ -6547,7 +6547,7 @@ Functiond121: ; d121
 UnknownScript_0xd13e: ; 0xd13e
 	reloadmappart
 	special UpdateTimePals
-	writecode $8, $1
+	writecode VAR_MOVEMENT, $1
 	writetext UnknownText_0xd17c
 	closetext
 	loadmovesprites
@@ -6556,7 +6556,7 @@ UnknownScript_0xd13e: ; 0xd13e
 ; 0xd14e
 
 UnknownScript_0xd14e: ; 0xd14e
-	writecode $8, $1
+	writecode VAR_MOVEMENT, $1
 	loadmovesprites
 	special Functione4a
 	end
@@ -6569,7 +6569,7 @@ Functiond156: ; unreferenced
 UnknownScript_0xd158: ; 0xd158
 	reloadmappart
 	special UpdateTimePals
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	writetext UnknownText_0xd181
 	closetext
 
@@ -6581,7 +6581,7 @@ UnknownScript_0xd163:
 ; 0xd16b
 
 UnknownScript_0xd16b: ; 0xd16b
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	jump UnknownScript_0xd163
 ; 0xd171
 
@@ -6823,26 +6823,26 @@ Functiond27b: ; d27b
 	ret
 ; d283
 
-Functiond283: ; d283
-	ld c, 20
+GetPocketCapacity: ; d283
+	ld c, MAX_ITEMS
 	ld a, e
-	cp TMsHMsEnd % $100
+	cp NumItems % $100
 	jr nz, .asm_d28e
 	ld a, d
-	cp TMsHMsEnd / $100
+	cp NumItems / $100
 	ret z
 
 .asm_d28e
-	ld c, 50
+	ld c, MAX_PC_ITEMS
 	ld a, e
-	cp BallsEnd % $100
+	cp PCItems % $100
 	jr nz, .asm_d299
 	ld a, d
-	cp BallsEnd / $100
+	cp PCItems / $100
 	ret z
 
 .asm_d299
-	ld c, $c
+	ld c, MAX_BALLS
 	ret
 ; d29c
 
@@ -6873,7 +6873,7 @@ Functiond29c: ; d29c
 	jr .asm_d2a5
 
 .asm_d2bd
-	call Functiond283
+	call GetPocketCapacity
 	ld a, [de]
 	cp c
 	jr c, .asm_d2c6
@@ -7176,7 +7176,7 @@ GetTMHMNumber:: ; d407
 .skip
 	dec a
 .done
-	sub TM_01
+	sub TM01
 	inc a
 	ld c, a
 	ret
@@ -7189,9 +7189,9 @@ GetNumberedTMHM: ; d417
 	ld a, c 
 
 ; Skip any gaps.
-	cp ITEM_C3 - (TM_01 - 1)
+	cp ITEM_C3 - (TM01 - 1)
 	jr c, .done
-	cp ITEM_DC - (TM_01 - 1) - 1
+	cp ITEM_DC - (TM01 - 1) - 1
 	jr c, .skip_one
 
 .skip_two
@@ -7199,7 +7199,7 @@ GetNumberedTMHM: ; d417
 .skip_one
 	inc a
 .done
-	add TM_01
+	add TM01
 	dec a
 	ld c, a
 	ret
@@ -12792,7 +12792,7 @@ Function12527: ; 12527
 ; 1253d
 
 UnknownScript_0x1253d:: ; 0x1253d
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x12555
 	if_equal $1, UnknownScript_0x12550
 	if_equal $2, UnknownScript_0x1255f
@@ -15367,7 +15367,7 @@ Function135db: ; 135db
 ; 135eb
 
 UnknownScript_0x135eb:: ; 0x135eb
-	writecode $3, BATTLETYPE_CONTEST
+	writecode VAR_BATTLETYPE, BATTLETYPE_CONTEST
 	battlecheck
 	startbattle
 	returnafterbattle
@@ -35563,7 +35563,7 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	push af
 	res 4, [hl]
 	ld a, [CurItem]
-	cp TM_01
+	cp TM01
 	jr c, .asm_2c7f5
 	call GetTMHMItemMove
 	ld a, [wd265]
@@ -35572,7 +35572,7 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	call CopyName1
 	ld hl, UnknownText_0x2c8bf
 	ld a, [CurItem]
-	cp HM_01
+	cp HM01
 	jr c, .asm_2c7e9
 	ld hl, UnknownText_0x2c8c4
 .asm_2c7e9
@@ -64380,20 +64380,29 @@ Unknown_8c6a9: ; 8c6a9
 	RGB 31, 05, 05
 	RGB 31, 05, 05
 	RGB 31, 05, 05
-; 8c6b1
 
-Function8c6b1: ; 8c6b1 (23:46b1)
+Function8c6b1:
 	ld a, [OtherTrainerClass]
-	ld de, Unknown_8c6b8
+	ld de, PokeBallTransition
 	ret
-; 8c6b8 (23:46b8)
 
-Unknown_8c6b8: ; 8c6b8
-	db $03, $c0, $0f, $f0, $3c, $3c, $30, $0c
-	db $60, $06, $63, $c6, $c6, $63, $fc, $3f
-	db $fc, $3f, $c6, $63, $63, $c6, $60, $06
-	db $30, $0c, $3c, $3c, $0f, $f0, $03, $c0
-; 8c6d8
+PokeBallTransition:
+	db %00000011,%11000000
+	db %00001111,%11110000
+	db %00111100,%00111100
+	db %00110000,%00001100
+	db %01100000,%00000110
+	db %01100011,%11000110
+	db %11000110,%01100011
+	db %11111100,%00111111
+	db %11111100,%00111111
+	db %11000110,%01100011
+	db %01100011,%11000110
+	db %01100000,%00000110
+	db %00110000,%00001100
+	db %00111100,%00111100
+	db %00001111,%11110000
+	db %00000011,%11000000
 
 Function8c6d8: ; 8c6d8
 	ld a, [rSVBK]

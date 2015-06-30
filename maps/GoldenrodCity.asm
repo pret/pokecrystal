@@ -23,7 +23,7 @@ GoldenrodCity_MapScriptHeader:
 	iffalse .MoveTutorDone
 	checkitem COIN_CASE
 	iffalse .MoveTutorDisappear
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal WEDNESDAY, .MoveTutorAppear
 	if_equal SATURDAY, .MoveTutorAppear
 .MoveTutorDisappear
@@ -118,7 +118,7 @@ UnknownScript_0x1989a6:
 	writetext UnknownText_0x19918b
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $2, UnknownScript_0x1989c6
 	applymovement $10, MovementData_0x198a5f
 	jump UnknownScript_0x1989ca

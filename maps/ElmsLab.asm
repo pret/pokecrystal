@@ -193,7 +193,7 @@ CyndaquilPokeBallScript: ; 0x78c73
 	keeptextopen
 	givepoke CYNDAQUIL, 5, BERRY, 0
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, ElmDirectionsScript
 	applymovement $0, AfterCyndaquilMovement
 	jump ElmDirectionsScript
@@ -450,7 +450,7 @@ ElmGiveTicketScript: ; 0x78e2f
 
 ElmJumpBackScript1: ; 0x78e3f
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x78e6d
 	if_equal $1, UnknownScript_0x78e67
 	if_equal $2, UnknownScript_0x78e73
@@ -460,7 +460,7 @@ ElmJumpBackScript1: ; 0x78e3f
 
 ElmJumpBackScript2: ; 0x78e53
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x78e67
 	if_equal $1, UnknownScript_0x78e6d
 	if_equal $2, UnknownScript_0x78e79

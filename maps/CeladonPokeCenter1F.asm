@@ -43,7 +43,7 @@ UnknownScript_0x71e48: ; 0x71e48
 	writetext UnknownText_0x71f65
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x71e5a
 	applymovement $6, MovementData_0x71e6b
 	jump UnknownScript_0x71e5e

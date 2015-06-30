@@ -56,7 +56,7 @@ GrampsScript_0x7803d: ; 0x7803d
 	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a
 	clearflag $0005
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x7805b
 	applymovement $8, MovementData_0x78333
 	playsound SFX_ENTER_DOOR
@@ -107,7 +107,7 @@ TrainerCamperTodd1: ; 0x78071
 ; 0x7807d
 
 CamperTodd1Script: ; 0x7807d
-	writecode $17, $14
+	writecode VAR_CALLERID, $14
 	talkaftercancel
 	loadfont
 	checkflag $0070
@@ -264,7 +264,7 @@ TrainerPicnickerGina1: ; 0x78153
 ; 0x7815f
 
 PicnickerGina1Script: ; 0x7815f
-	writecode $17, $15
+	writecode VAR_CALLERID, $15
 	talkaftercancel
 	loadfont
 	checkflag $0071

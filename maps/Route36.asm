@@ -22,7 +22,7 @@ UnknownScript_0x19400e: ; 0x19400e
 ; 0x19400f
 
 ArthurCallback:
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal THURSDAY, .ArthurAppears
 	disappear $8
 	return
@@ -111,7 +111,7 @@ LassScript_0x19408c: ; 0x19408c
 	closetext
 	loadmovesprites
 	clearevent $0768
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x1940ac
 	applymovement $9, MovementData_0x19424e
 	disappear $9
@@ -147,7 +147,7 @@ FisherScript_0x1940b9: ; 0x1940b9
 UnknownScript_0x1940cd: ; 0x1940cd
 	writetext UnknownText_0x1944d0
 	keeptextopen
-	verbosegiveitem TM_08, 1
+	verbosegiveitem TM_ROCK_SMASH, 1
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da: ; 0x1940da
@@ -197,7 +197,7 @@ TrainerSchoolboyAlan1: ; 0x1940f4
 ; 0x194100
 
 SchoolboyAlan1Script: ; 0x194100
-	writecode $17, $18
+	writecode VAR_CALLERID, $18
 	talkaftercancel
 	loadfont
 	checkflag $0073
@@ -383,7 +383,7 @@ ArthurScript:
 	loadfont
 	checkevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	iftrue ArthurThursdayScript
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal THURSDAY, ArthurNotThursdayScript
 	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
 	iftrue .MetArthur

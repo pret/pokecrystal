@@ -56,7 +56,7 @@ TrainerJugglerIrwin1: ; 0x19c8c3
 ; 0x19c8cf
 
 JugglerIrwin1Script: ; 0x19c8cf
-	writecode $17, $16
+	writecode VAR_CALLERID, $16
 	talkaftercancel
 	loadfont
 	checkcellnum $16
@@ -253,7 +253,7 @@ TrainerBug_catcherArnie1: ; 0x19c96f
 ; 0x19c97b
 
 Bug_catcherArnie1Script: ; 0x19c97b
-	writecode $17, $17
+	writecode VAR_CALLERID, $17
 	talkaftercancel
 	loadfont
 	checkflag $0072
@@ -422,7 +422,7 @@ MapRoute35Signpost1Script: ; 0x19ca79
 ; 0x19ca7c
 
 ItemFragment_0x19ca7c: ; 0x19ca7c
-	db TM_04, 1
+	db TM_ROLLOUT, 1
 ; 0x19ca7e
 
 FruitTreeScript_0x19ca7e: ; 0x19ca7e

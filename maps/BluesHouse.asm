@@ -9,7 +9,7 @@ BluesHouse_MapScriptHeader: ; 0x19b0ce
 DaisyScript_0x19b0d0: ; 0x19b0d0
 	faceplayer
 	loadfont
-	checkcode $a
+	checkcode VAR_HOUR
 	if_equal $f, UnknownScript_0x19b0de
 	writetext UnknownText_0x19b130
 	closetext

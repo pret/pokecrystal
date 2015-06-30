@@ -14,7 +14,7 @@ BlackthornCity_MapScriptHeader:
 	return
 
 .Santos
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SATURDAY, .SantosAppears
 	disappear $9
 	return
@@ -83,7 +83,7 @@ SantosScript:
 	loadfont
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	iftrue SantosSaturdayScript
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal SATURDAY, SantosNotSaturdayScript
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue .MetSantos

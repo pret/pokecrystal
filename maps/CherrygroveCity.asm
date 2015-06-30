@@ -120,7 +120,7 @@ UnknownScript_0x19c0ae:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
 	loadtrainer RIVAL1, RIVAL1_3
-	writecode $3, BATTLETYPE_CANLOSE
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	reloadmap
@@ -131,7 +131,7 @@ UnknownScript_0x19c0ee:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
 	loadtrainer RIVAL1, RIVAL1_1
-	writecode $3, BATTLETYPE_CANLOSE
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	reloadmap
@@ -142,7 +142,7 @@ UnknownScript_0x19c104:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
 	loadtrainer RIVAL1, RIVAL1_2
-	writecode $3, BATTLETYPE_CANLOSE
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	reloadmap

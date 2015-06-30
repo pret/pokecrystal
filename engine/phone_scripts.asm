@@ -19,7 +19,7 @@ MomPhoneScript: ; 0xbceaa
 	farwritetext MomPhoneGreetingText
 	keeptextopen
 	mapnametotext $0
-	checkcode $f
+	checkcode VAR_ROOFPALETTE
 	if_equal $1, UnknownScript_0xbcee7
 	if_equal $2, UnknownScript_0xbcf27
 	jump UnknownScript_0xbcf2f
@@ -30,7 +30,7 @@ UnknownScript_0xbcedf: ; 0xbcedf
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcee7: ; 0xbcee7
-	checkcode $c
+	checkcode VAR_MAPGROUP
 	if_equal GROUP_NEW_BARK_TOWN, .newbark
 	if_equal GROUP_CHERRYGROVE_CITY, .cherrygrove
 	if_equal GROUP_VIOLET_CITY, .violet
@@ -167,7 +167,7 @@ BillPhoneScript1: ; 0xbcfc5
 .main ; 0xbcfe7
 	farwritetext BillPhoneGeneriText
 	keeptextopen
-	checkcode $10
+	checkcode VAR_BOXSPACE
 	RAM2MEM $0
 	if_equal $0, .full
 	if_less_than $6, .nearlyfull
@@ -188,7 +188,7 @@ BillPhoneScript2: ; 0xbd007
 	end
 
 ElmPhoneScript1: ; 0xbd00d
-	checkcode $14
+	checkcode VAR_POKERUS
 	if_equal $1, .pokerus
 	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
 	iftrue .discovery
@@ -251,7 +251,7 @@ ElmPhoneScript1: ; 0xbd00d
 	end
 
 ElmPhoneScript2: ; 0xbd081
-	checkcode $14
+	checkcode VAR_POKERUS
 	if_equal $2, .disaster
 	if_equal $3, .assistant
 	if_equal $4, .rocket
@@ -298,7 +298,7 @@ UnknownScript_0xbd0d0:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_87
 	iftrue UnknownScript_0xbd0ef
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $1, UnknownScript_0xbd0ef
 	checkmorn
 	iftrue UnknownScript_0xbd12a
@@ -375,7 +375,7 @@ UnknownScript_0xbd17c:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_88
 	iftrue UnknownScript_0xbd19b
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $3, UnknownScript_0xbd19b
 	checknite
 	iftrue UnknownScript_0xbd1cd
@@ -417,7 +417,7 @@ UnknownScript_0xbd1da:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_89
 	iftrue UnknownScript_0xbd1f9
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $4, UnknownScript_0xbd1f9
 	checkmorn
 	iftrue UnknownScript_0xbd22c
@@ -462,7 +462,7 @@ UnknownScript_0xbd23d:
 	farscall UnknownScript_0xbe0b6
 	checkflag ENGINE_8A
 	iftrue UnknownScript_0xbd25c
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $5, UnknownScript_0xbd25c
 	checkday
 	iftrue UnknownScript_0xbd287
@@ -504,7 +504,7 @@ UnknownScript_0xbd294:
 	iftrue UnknownScript_0xbd2b9
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
 	iftrue UnknownScript_0xbd2c4
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $6, UnknownScript_0xbd2b9
 	checknite
 	iftrue UnknownScript_0xbd301
@@ -562,7 +562,7 @@ UnknownScript_0xbd31c:
 	farscall UnknownScript_0xbe0b6
 	checkflag ENGINE_8C
 	iftrue UnknownScript_0xbd33b
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $0, UnknownScript_0xbd33b
 	checkmorn
 	iftrue UnknownScript_0xbd366
@@ -602,7 +602,7 @@ UnknownScript_0xbd373:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_8D
 	iftrue UnknownScript_0xbd392
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $1, UnknownScript_0xbd392
 	checkday
 	iftrue UnknownScript_0xbd3c4
@@ -646,7 +646,7 @@ UnknownScript_0xbd3d1:
 	iftrue UnknownScript_0xbd3f6
 	checkflag ENGINE_WADE_HAS_ITEM
 	iftrue UnknownScript_0xbd421
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $2, UnknownScript_0xbd3f6
 	checknite
 	iftrue UnknownScript_0xbd484
@@ -656,7 +656,7 @@ UnknownScript_0xbd3f6:
 	if_equal $0, UnknownScript_0xbd412
 	checkflag ENGINE_51
 	iftrue UnknownScript_0xbd412
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal $2, UnknownScript_0xbd416
 	if_equal $4, UnknownScript_0xbd416
 	if_equal $6, UnknownScript_0xbd416
@@ -682,7 +682,7 @@ UnknownScript_0xbd428:
 	if_equal $0, UnknownScript_0xbd44c
 	checkflag ENGINE_51
 	iftrue UnknownScript_0xbd44c
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal $2, UnknownScript_0xbd480
 	if_equal $4, UnknownScript_0xbd480
 	if_equal $6, UnknownScript_0xbd480
@@ -758,7 +758,7 @@ UnknownScript_0xbd4d2:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_8F
 	iftrue UnknownScript_0xbd4f1
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $3, UnknownScript_0xbd4f1
 	checkmorn
 	iftrue UnknownScript_0xbd537
@@ -821,7 +821,7 @@ UnknownScript_0xbd560:
 	farscall UnknownScript_0xbe0b6
 	checkflag ENGINE_90
 	iftrue UnknownScript_0xbd57f
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $4, UnknownScript_0xbd57f
 	checkday
 	iftrue UnknownScript_0xbd5c3
@@ -924,7 +924,7 @@ UnknownScript_0xbd634:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_91
 	iftrue UnknownScript_0xbd653
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $5, UnknownScript_0xbd653
 	checknite
 	iftrue UnknownScript_0xbd699
@@ -986,7 +986,7 @@ UnknownScript_0xbd6c1:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_92
 	iftrue UnknownScript_0xbd6e0
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $6, UnknownScript_0xbd6e0
 	checkmorn
 	iftrue UnknownScript_0xbd72b
@@ -1048,7 +1048,7 @@ UnknownScript_0xbd743:
 	iftrue UnknownScript_0xbd768
 	checkflag ENGINE_GINA_HAS_LEAF_STONE
 	iftrue UnknownScript_0xbd77d
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $0, UnknownScript_0xbd768
 	checkday
 	iftrue UnknownScript_0xbd7cc
@@ -1139,7 +1139,7 @@ UnknownScript_0xbd813:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_94
 	iftrue UnknownScript_0xbd832
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $2, UnknownScript_0xbd832
 	checkmorn
 	iftrue UnknownScript_0xbd87a
@@ -1206,7 +1206,7 @@ UnknownScript_0xbd8a6:
 	iftrue UnknownScript_0xbd8cb
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
 	iftrue UnknownScript_0xbd8d6
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $3, UnknownScript_0xbd8cb
 	checkday
 	iftrue UnknownScript_0xbd919
@@ -1267,7 +1267,7 @@ UnknownScript_0xbd930:
 	iftrue UnknownScript_0xbd955
 	checkflag ENGINE_LIZ_HAS_THUNDERSTONE
 	iftrue UnknownScript_0xbd960
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $4, UnknownScript_0xbd955
 	checknite
 	iftrue UnknownScript_0xbd9ab
@@ -1331,7 +1331,7 @@ UnknownScript_0xbd9c6:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_97
 	iftrue UnknownScript_0xbd9e5
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $5, UnknownScript_0xbd9e5
 	checkmorn
 	iftrue UnknownScript_0xbda20
@@ -1383,7 +1383,7 @@ UnknownScript_0xbda35:
 	if_equal $0, UnknownScript_0xbda5f
 	checkflag ENGINE_51
 	iftrue UnknownScript_0xbda5f
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal $2, UnknownScript_0xbda63
 	if_equal $4, UnknownScript_0xbda63
 	if_equal $6, UnknownScript_0xbda63
@@ -1405,7 +1405,7 @@ UnknownScript_0xbda6e:
 	if_equal $0, UnknownScript_0xbda92
 	checkflag ENGINE_51
 	iftrue UnknownScript_0xbda92
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal $2, UnknownScript_0xbda9e
 	if_equal $4, UnknownScript_0xbda9e
 	if_equal $6, UnknownScript_0xbda9e
@@ -1432,7 +1432,7 @@ UnknownScript_0xbdaac:
 	iftrue UnknownScript_0xbdad1
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
 	iftrue UnknownScript_0xbdadc
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $0, UnknownScript_0xbdad1
 	checknite
 	iftrue UnknownScript_0xbdb1f
@@ -1491,7 +1491,7 @@ UnknownScript_0xbdb36:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_99
 	iftrue UnknownScript_0xbdb55
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $1, UnknownScript_0xbdb55
 	checkmorn
 	iftrue UnknownScript_0xbdb88
@@ -1538,7 +1538,7 @@ UnknownScript_0xbdb99:
 	iftrue UnknownScript_0xbdbbe
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
 	iftrue UnknownScript_0xbdbc9
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $2, UnknownScript_0xbdbbe
 	checkday
 	iftrue UnknownScript_0xbdc14
@@ -1635,7 +1635,7 @@ UnknownScript_0xbdc73:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_9B
 	iftrue UnknownScript_0xbdc92
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $3, UnknownScript_0xbdc92
 	checknite
 	iftrue UnknownScript_0xbdcc1
@@ -1678,7 +1678,7 @@ UnknownScript_0xbdcce:
 	iftrue UnknownScript_0xbdcf3
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue UnknownScript_0xbdcfe
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $4, UnknownScript_0xbdcf3
 	checkmorn
 	iftrue UnknownScript_0xbdd33
@@ -1762,7 +1762,7 @@ UnknownScript_0xbdd89:
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_9D
 	iftrue UnknownScript_0xbdda8
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $5, UnknownScript_0xbdda8
 	checkday
 	iftrue UnknownScript_0xbddd7
@@ -1803,7 +1803,7 @@ UnknownScript_0xbdde4:
 	farscall UnknownScript_0xbe0b6
 	checkflag ENGINE_9E
 	iftrue UnknownScript_0xbde03
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal $6, UnknownScript_0xbde03
 	checknite
 	iftrue UnknownScript_0xbde32
@@ -1862,7 +1862,7 @@ UnknownScript_0xbde4e:
 	iftrue UnknownScript_0xbdf22
 	checknite
 	iftrue UnknownScript_0xbdfec
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xbdeaa
 	if_equal $7, UnknownScript_0xbdeb0
 	if_equal $b, UnknownScript_0xbdeb6
@@ -1985,7 +1985,7 @@ UnknownScript_0xbdf1c:
 	end
 
 UnknownScript_0xbdf22:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xbdf74
 	if_equal $7, UnknownScript_0xbdf7a
 	if_equal $b, UnknownScript_0xbdf80
@@ -2108,7 +2108,7 @@ UnknownScript_0xbdfe6:
 	end
 
 UnknownScript_0xbdfec:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xbe03e
 	if_equal $7, UnknownScript_0xbe044
 	if_equal $b, UnknownScript_0xbe04a
@@ -2235,7 +2235,7 @@ UnknownScript_0xbe0b6:
 	iftrue UnknownScript_0xbe112
 	checknite
 	iftrue UnknownScript_0xbe164
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xbe0e2
 	if_equal $c, UnknownScript_0xbe0e8
 	if_equal $e, UnknownScript_0xbe0ee
@@ -2286,7 +2286,7 @@ UnknownScript_0xbe10c:
 	end
 
 UnknownScript_0xbe112:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xbe134
 	if_equal $c, UnknownScript_0xbe13a
 	if_equal $e, UnknownScript_0xbe140
@@ -2337,7 +2337,7 @@ UnknownScript_0xbe15e:
 	end
 
 UnknownScript_0xbe164:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xbe186
 	if_equal $c, UnknownScript_0xbe18c
 	if_equal $e, UnknownScript_0xbe192
@@ -2392,7 +2392,7 @@ UnknownScript_0xbe1b6:
 	iftrue UnknownScript_0xbe28a
 	checknite
 	iftrue UnknownScript_0xbe354
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xbe212
 	if_equal $7, UnknownScript_0xbe218
 	if_equal $b, UnknownScript_0xbe21e
@@ -2515,7 +2515,7 @@ UnknownScript_0xbe284:
 	end
 
 UnknownScript_0xbe28a:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xbe2dc
 	if_equal $7, UnknownScript_0xbe2e2
 	if_equal $b, UnknownScript_0xbe2e8
@@ -2638,7 +2638,7 @@ UnknownScript_0xbe34e:
 	end
 
 UnknownScript_0xbe354:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xbe3a6
 	if_equal $7, UnknownScript_0xbe3ac
 	if_equal $b, UnknownScript_0xbe3b2
@@ -2765,7 +2765,7 @@ UnknownScript_0xbe41e:
 	iftrue UnknownScript_0xbe47a
 	checknite
 	iftrue UnknownScript_0xbe4cc
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xbe44a
 	if_equal $c, UnknownScript_0xbe450
 	if_equal $e, UnknownScript_0xbe456
@@ -2816,7 +2816,7 @@ UnknownScript_0xbe474:
 	end
 
 UnknownScript_0xbe47a:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xbe49c
 	if_equal $c, UnknownScript_0xbe4a2
 	if_equal $e, UnknownScript_0xbe4a8
@@ -2867,7 +2867,7 @@ UnknownScript_0xbe4c6:
 	end
 
 UnknownScript_0xbe4cc:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xbe4ee
 	if_equal $c, UnknownScript_0xbe4f4
 	if_equal $e, UnknownScript_0xbe4fa
@@ -2918,7 +2918,7 @@ UnknownScript_0xbe518:
 	end
 
 UnknownScript_0xbe51e:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xbe564
 	if_equal $b, UnknownScript_0xbe570
 	if_equal $d, UnknownScript_0xbe576
@@ -3028,7 +3028,7 @@ UnknownScript_0xbe5ca:
 	end
 
 UnknownScript_0xbe5d0:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xbe5f2
 	if_equal $c, UnknownScript_0xbe5f8
 	if_equal $e, UnknownScript_0xbe5fe

@@ -42,7 +42,7 @@ TrainerBug_catcherWade1: ; 0x1a5447
 ; 0x1a5453
 
 Bug_catcherWade1Script: ; 0x1a5453
-	writecode $17, $10
+	writecode VAR_CALLERID, $10
 	talkaftercancel
 	loadfont
 	checkflag $006c
@@ -247,7 +247,7 @@ UnknownScript_0x1a5584: ; 0x1a5584
 	writetext UnknownText_0x1a57ba
 	keeptextopen
 	setevent EVENT_GAVE_KENYA
-	verbosegiveitem TM_50, 1
+	verbosegiveitem TM_NIGHTMARE, 1
 	iffalse UnknownScript_0x1a55b3
 	setevent EVENT_GOT_TM50_NIGHTMARE
 UnknownScript_0x1a55af: ; 0x1a55af

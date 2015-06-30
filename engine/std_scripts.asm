@@ -244,7 +244,7 @@ MartSignScript
 	farjumptext MartSignText
 
 DayToTextScript:
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .Monday
 	if_equal TUESDAY, .Tuesday
 	if_equal WEDNESDAY, .Wednesday
@@ -622,7 +622,7 @@ InitializeEventsScript:
 
 AskNumber1MScript:
 	special RandomPhoneMon
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, .Jack
 	if_equal $7, .Huey
 	if_equal $b, .Gaven
@@ -707,7 +707,7 @@ AskNumber1MScript:
 
 AskNumber2MScript:
 	special RandomPhoneMon
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, .Jack
 	if_equal $7, .Huey
 	if_equal $b, .Gaven
@@ -798,7 +798,7 @@ RegisteredNumberMScript:
 	end
 
 NumberAcceptedMScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, .Jack
 	if_equal $7, .Huey
 	if_equal $b, .Gaven
@@ -922,7 +922,7 @@ NumberAcceptedMScript:
 	end
 
 NumberDeclinedMScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, .Jack
 	if_equal $7, .Huey
 	if_equal $b, .Gaven
@@ -1046,7 +1046,7 @@ NumberDeclinedMScript:
 	end
 
 PhoneFullMScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, .Jack
 	if_equal $7, .Huey
 	if_equal $b, .Gaven
@@ -1170,7 +1170,7 @@ PhoneFullMScript:
 	end
 
 RematchMScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, .Jack
 	if_equal $7, .Huey
 	if_equal $b, .Gaven
@@ -1276,7 +1276,7 @@ RematchMScript:
 	end
 
 GiftMScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $d, .Jose
 	if_equal $10, .Wade
 	if_equal $18, .Alan
@@ -1315,7 +1315,7 @@ GiftMScript:
 	end
 
 PackFullMScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $7, .Huey
 	if_equal $d, .Jose
 	if_equal $f, .Joey
@@ -1386,7 +1386,7 @@ PackFullMScript:
 
 RematchGiftMScript:
 	loadfont
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $7, .Huey
 	if_equal $f, .Joey
 	if_equal $20, .Vance
@@ -1410,7 +1410,7 @@ RematchGiftMScript:
 	end
 
 AskNumber1FScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, .Beverly
 	if_equal $c, .Beth
 	if_equal $e, .Reena
@@ -1446,7 +1446,7 @@ AskNumber1FScript:
 	end
 
 AskNumber2FScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, .Beverly
 	if_equal $c, .Beth
 	if_equal $e, .Reena
@@ -1489,7 +1489,7 @@ RegisteredNumberFScript:
 	end
 
 NumberAcceptedFScript: ; 0xbcbd3
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, .Beverly
 	if_equal $c, .Beth
 	if_equal $e, .Reena
@@ -1541,7 +1541,7 @@ NumberAcceptedFScript: ; 0xbcbd3
 	end
 
 NumberDeclinedFScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, .Beverly
 	if_equal $c, .Beth
 	if_equal $e, .Reena
@@ -1593,7 +1593,7 @@ NumberDeclinedFScript:
 	end
 
 PhoneFullFScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, .Beverly
 	if_equal $c, .Beth
 	if_equal $e, .Reena
@@ -1645,7 +1645,7 @@ PhoneFullFScript:
 	end
 
 RematchFScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $c, .Beth
 	if_equal $e, .Reena
 	if_equal $12, .Liz
@@ -1691,7 +1691,7 @@ RematchFScript:
 	end
 
 GiftFScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, .Beverly
 	if_equal $15, .Gina
 	if_equal $1a, .Dana
@@ -1715,7 +1715,7 @@ GiftFScript:
 	end
 
 PackFullFScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, .Beverly
 	if_equal $15, .Gina
 	if_equal $1a, .Dana
@@ -1749,7 +1749,7 @@ PackFullFScript:
 	end
 
 RematchGiftFScript:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $24, .Erin
 
 .Erin

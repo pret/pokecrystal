@@ -27,7 +27,7 @@ TrainerBird_keeperVance1: ; 0x19d824
 ; 0x19d830
 
 Bird_keeperVance1Script: ; 0x19d830
-	writecode $17, $20
+	writecode VAR_CALLERID, $20
 	talkaftercancel
 	loadfont
 	checkflag $0079
@@ -222,7 +222,7 @@ TrainerFisherWilton1: ; 0x19d922
 ; 0x19d92e
 
 FisherWilton1Script: ; 0x19d92e
-	writecode $17, $21
+	writecode VAR_CALLERID, $21
 	talkaftercancel
 	loadfont
 	checkflag $007a

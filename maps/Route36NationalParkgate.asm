@@ -45,7 +45,7 @@ UnknownScript_0x6ab20: ; 0x6ab20
 UnknownScript_0x6ab23: ; 0x6ab23
 	checkevent $02d2
 	iftrue UnknownScript_0x6ab46
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, UnknownScript_0x6ab42
 	if_equal THURSDAY, UnknownScript_0x6ab42
 	if_equal SATURDAY, UnknownScript_0x6ab42
@@ -66,7 +66,7 @@ UnknownScript_0x6ab46: ; 0x6ab46
 UnknownScript_0x6ab47: ; 0x6ab47
 	spriteface $0, UP
 	loadfont
-	checkcode $11
+	checkcode VAR_11
 	addvar $1
 	RAM2MEM $0
 	writetext UnknownText_0x6b284
@@ -144,7 +144,7 @@ UnknownScript_0x6abdc: ; 0x6abdc
 ; 0x6abe0
 
 OfficerScript_0x6abe0: ; 0x6abe0
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x6acf1
 	if_equal MONDAY, UnknownScript_0x6acf1
 	if_equal WEDNESDAY, UnknownScript_0x6acf1
@@ -157,7 +157,7 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	writetext UnknownText_0x6add5
 	yesorno
 	iffalse UnknownScript_0x6ac73
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, UnknownScript_0x6ac41
 	special Function13a12
 	clearevent $0308
@@ -185,9 +185,9 @@ UnknownScript_0x6ac10: ; 0x6ac10
 ; 0x6ac41
 
 UnknownScript_0x6ac41: ; 0x6ac41
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_less_than $6, UnknownScript_0x6ac4d
-	checkcode $10
+	checkcode VAR_BOXSPACE
 	if_equal $0, UnknownScript_0x6ac85
 UnknownScript_0x6ac4d: ; 0x6ac4d
 	special Function71ac

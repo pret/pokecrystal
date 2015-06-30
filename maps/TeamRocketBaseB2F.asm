@@ -178,7 +178,7 @@ UnknownScript_0x6d091: ; 0x6d091
 	loadmovesprites
 	dotrigger $1
 	setevent $004c
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x6d0be
 	applymovement $4, MovementData_0x6d212
 	disappear $4
@@ -348,7 +348,7 @@ UnknownScript_0x6d184: ; 0x6d184
 	loadfont
 	writetext UnknownText_0x6d809
 	keeptextopen
-	verbosegiveitem HM_06, 1
+	verbosegiveitem HM_WHIRLPOOL, 1
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8
 	closetext
@@ -422,7 +422,7 @@ UnknownScript_0x6d207: ; 0x6d207
 ; 0x6d20d
 
 ItemFragment_0x6d20d: ; 0x6d20d
-	db TM_46, 1
+	db TM_THIEF, 1
 ; 0x6d20f
 
 MapTeamRocketBaseB2FSignpostItem22: ; 0x6d20f

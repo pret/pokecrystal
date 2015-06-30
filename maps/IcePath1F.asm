@@ -7,7 +7,7 @@ IcePath1F_MapScriptHeader: ; 0x7e470
 ; 0x7e472
 
 ItemFragment_0x7e472: ; 0x7e472
-	db HM_07, 1
+	db HM_WATERFALL, 1
 ; 0x7e474
 
 ItemFragment_0x7e474: ; 0x7e474

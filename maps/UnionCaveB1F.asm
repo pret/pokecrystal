@@ -123,7 +123,7 @@ HikerLeonardScript: ; 0x5a00e
 ; 0x5a016
 
 ItemFragment_0x5a016: ; 0x5a016
-	db TM_39, 1
+	db TM_SWIFT, 1
 ; 0x5a018
 
 ItemFragment_0x5a018: ; 0x5a018

@@ -52,7 +52,7 @@ TrainerFisherTully1: ; 0x1a9233
 ; 0x1a923f
 
 FisherTully1Script: ; 0x1a923f
-	writecode $17, $1d
+	writecode VAR_CALLERID, $1d
 	talkaftercancel
 	loadfont
 	checkflag $0076

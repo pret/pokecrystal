@@ -104,7 +104,7 @@ SuperNerdScript_0x186212: ; 0x186212
 	writetext UnknownText_0x18626a
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x186226
 	applymovement $a, MovementData_0x186263
 	jump UnknownScript_0x18622a
@@ -120,7 +120,7 @@ UnknownScript_0x18622a: ; 0x18622a
 ; 0x186231
 
 ItemFragment_0x186231: ; 0x186231
-	db TM_20, 1
+	db TM_ENDURE, 1
 ; 0x186233
 
 BurnedTowerB1FBoulder:

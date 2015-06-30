@@ -24,7 +24,7 @@ FalknerScript_0x683c2: ; 0x683c2
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001b
-	checkcode $7
+	checkcode VAR_BADGES
 	scall UnknownScript_0x68418
 UnknownScript_0x683ec: ; 0x683ec
 	checkevent EVENT_GOT_TM31_MUD_SLAP
@@ -35,7 +35,7 @@ UnknownScript_0x683ec: ; 0x683ec
 	specialphonecall $3
 	writetext UnknownText_0x685c8
 	keeptextopen
-	verbosegiveitem TM_31, 1
+	verbosegiveitem TM_MUD_SLAP, 1
 	iffalse UnknownScript_0x68416
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648

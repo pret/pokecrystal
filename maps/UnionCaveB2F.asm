@@ -13,7 +13,7 @@ UnionCaveB2F_MapScriptHeader: ; 0x5a308
 UnknownScript_0x5a30d: ; 0x5a30d
 	checkflag $0059
 	iftrue UnknownScript_0x5a319
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal FRIDAY, UnknownScript_0x5a31c
 UnknownScript_0x5a319: ; 0x5a319
 	disappear $7

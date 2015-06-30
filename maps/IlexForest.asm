@@ -366,7 +366,7 @@ UnknownScript_0x6eda1: ; 0x6eda1
 	cry FARFETCH_D
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	end
 ; 0x6edae
 
@@ -377,7 +377,7 @@ BlackBeltScript_0x6edae: ; 0x6edae
 	iftrue UnknownScript_0x6edd8
 	writetext UnknownText_0x6f099
 	keeptextopen
-	verbosegiveitem HM_01, 1
+	verbosegiveitem HM_CUT, 1
 	setevent EVENT_GOT_HM01_CUT
 	writetext UnknownText_0x6f141
 	closetext
@@ -405,7 +405,7 @@ RockerScript_0x6edde: ; 0x6edde
 	iftrue UnknownScript_0x6edf3
 	writetext UnknownText_0x6f21b
 	keeptextopen
-	verbosegiveitem TM_02, 1
+	verbosegiveitem TM_HEADBUTT, 1
 	iffalse UnknownScript_0x6edf7
 	setevent EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3: ; 0x6edf3

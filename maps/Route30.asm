@@ -48,7 +48,7 @@ TrainerYoungsterJoey1: ; 0x1a169a
 ; 0x1a16a6
 
 YoungsterJoey1Script: ; 0x1a16a6
-	writecode $17, $f
+	writecode VAR_CALLERID, $f
 	talkaftercancel
 	loadfont
 	checkflag $006b

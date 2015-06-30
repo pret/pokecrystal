@@ -36,10 +36,10 @@ UnknownScript_0x726fd: ; 0x726fd
 UnknownScript_0x72714: ; 0x72714
 	checkcoins 1500
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_32, $0
+	itemtotext TM_DOUBLE_TEAM, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem TM_32, $1
+	giveitem TM_DOUBLE_TEAM, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 1500
 	jump UnknownScript_0x7276d
@@ -48,10 +48,10 @@ UnknownScript_0x72714: ; 0x72714
 UnknownScript_0x72730: ; 0x72730
 	checkcoins 3500
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_29, $0
+	itemtotext TM_PSYCHIC, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem TM_29, $1
+	giveitem TM_PSYCHIC, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 3500
 	jump UnknownScript_0x7276d
@@ -60,10 +60,10 @@ UnknownScript_0x72730: ; 0x72730
 UnknownScript_0x7274c: ; 0x7274c
 	checkcoins 7500
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_15, $0
+	itemtotext TM_HYPER_BEAM, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem TM_15, $1
+	giveitem TM_HYPER_BEAM, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 7500
 	jump UnknownScript_0x7276d
@@ -152,7 +152,7 @@ UnknownScript_0x727d3: ; 0x727d3
 UnknownScript_0x727ed: ; 0x727ed
 	checkcoins 2222
 	if_equal $2, UnknownScript_0x72778
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem PIKACHU, $0
 	scall UnknownScript_0x72768
@@ -171,7 +171,7 @@ UnknownScript_0x727ed: ; 0x727ed
 UnknownScript_0x7281b: ; 0x7281b
 	checkcoins 5555
 	if_equal $2, UnknownScript_0x72778
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem PORYGON, $0
 	scall UnknownScript_0x72768
@@ -190,7 +190,7 @@ UnknownScript_0x7281b: ; 0x7281b
 UnknownScript_0x72849: ; 0x72849
 	checkcoins 8888
 	if_equal $2, UnknownScript_0x72778
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem LARVITAR, $0
 	scall UnknownScript_0x72768

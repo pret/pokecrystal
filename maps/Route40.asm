@@ -11,7 +11,7 @@ Route40_MapScriptHeader: ; 0x1a6160
 
 MonicaCallback:
 	clearevent $07cf
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .MonicaAppears
 	disappear $a
 	return
@@ -163,7 +163,7 @@ MonicaScript:
 	loadfont
 	checkevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	iftrue MonicaMondayScript
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal MONDAY, MonicaNotMondayScript
 	checkevent EVENT_MET_MONICA_OF_MONDAY
 	iftrue .MetMonica

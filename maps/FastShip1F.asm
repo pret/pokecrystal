@@ -95,7 +95,7 @@ UnknownScript_0x7519c: ; 0x7519c
 ; 0x751b8
 
 UnknownScript_0x751b8: ; 0x751b8
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x751c7
 	applymovement $2, MovementData_0x7520e
 	applymovement $0, MovementData_0x75235

@@ -24,7 +24,7 @@ UnknownScript_0x190462:
 	end
 
 FriedaCallback:
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal FRIDAY, .FriedaAppears
 	disappear $e
 	return
@@ -98,7 +98,7 @@ FisherScript_0x1904ce:
 	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
 	keeptextopen
-	verbosegiveitem TM_05, 1
+	verbosegiveitem TM_ROAR, 1
 	iffalse UnknownScript_0x1904e7
 	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3:
@@ -206,7 +206,7 @@ TrainerFisherRalph1:
 	dw FisherRalph1Script
 
 FisherRalph1Script:
-	writecode $17, $11
+	writecode VAR_CALLERID, $11
 	talkaftercancel
 	loadfont
 	checkflag $006d
@@ -374,7 +374,7 @@ TrainerPicnickerLiz1:
 	dw PicnickerLiz1Script
 
 PicnickerLiz1Script:
-	writecode $17, $12
+	writecode VAR_CALLERID, $12
 	talkaftercancel
 	loadfont
 	checkflag $006e
@@ -573,7 +573,7 @@ FriedaScript:
 	loadfont
 	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	iftrue FriedaFridayScript
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal FRIDAY, FriedaNotFridayScript
 	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue .MetFrieda

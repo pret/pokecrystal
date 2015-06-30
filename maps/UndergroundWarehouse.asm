@@ -144,7 +144,7 @@ ItemFragment_0x7d9e4: ; 0x7d9e4
 ; 0x7d9e6
 
 ItemFragment_0x7d9e6: ; 0x7d9e6
-	db TM_35, 1
+	db TM_SLEEP_TALK, 1
 ; 0x7d9e8
 
 ItemFragment_0x7d9e8: ; 0x7d9e8

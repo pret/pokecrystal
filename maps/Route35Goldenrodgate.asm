@@ -21,7 +21,7 @@ OfficerScript_0x69d37: ; 0x69d37
 	writetext UnknownText_0x69e48
 	keeptextopen
 	waitbutton
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x69d79
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM

@@ -30,7 +30,7 @@ UnknownScript_0x18c89f: ; 0x18c89f
 ; 0x18c8a8
 
 UnknownScript_0x18c8a8: ; 0x18c8a8
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, UnknownScript_0x18c8b5
 	if_equal THURSDAY, UnknownScript_0x18c8b5
 	disappear $4
@@ -55,9 +55,9 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	loadfont
 	writetext UnknownText_0x18c9bf
 	keeptextopen
-	giveitem TM_24, $1
+	giveitem TM_DRAGONBREATH, $1
 	iffalse UnknownScript_0x18c8f4
-	itemtotext TM_24, $0
+	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x18c9fb
 	playsound SFX_ITEM
 	waitbutton

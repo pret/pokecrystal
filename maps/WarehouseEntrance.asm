@@ -47,7 +47,7 @@ UnknownScript_0x7c07d: ; 0x7c07d
 ; 0x7c082
 
 UnknownScript_0x7c082: ; 0x7c082
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x7c0a5
 	if_equal TUESDAY, UnknownScript_0x7c0b5
 	if_equal WEDNESDAY, UnknownScript_0x7c0be
@@ -231,7 +231,7 @@ PokemaniacDonaldScript: ; 0x7c12a
 
 GrannyScript_0x7c132: ; 0x7c132
 	loadfont
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x7c140
 	if_equal SATURDAY, UnknownScript_0x7c140
 	jump UnknownScript_0x7c300
@@ -247,7 +247,7 @@ GrampsScript_0x7c146: ; 0x7c146
 	loadfont
 	checkflag $0056
 	iftrue UnknownScript_0x7c300
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x7c156
 	jump UnknownScript_0x7c300
 ; 0x7c156
@@ -262,7 +262,7 @@ UnknownScript_0x7c156: ; 0x7c156
 
 SuperNerdScript_0x7c161: ; 0x7c161
 	loadfont
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, UnknownScript_0x7c173
 	if_equal THURSDAY, UnknownScript_0x7c173
 	if_equal SATURDAY, UnknownScript_0x7c173
@@ -354,7 +354,7 @@ UnknownScript_0x7c208: ; 0x7c208
 
 SuperNerdScript_0x7c20e: ; 0x7c20e
 	loadfont
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x7c220
 	if_equal WEDNESDAY, UnknownScript_0x7c220
 	if_equal FRIDAY, UnknownScript_0x7c220

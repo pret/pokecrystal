@@ -33,7 +33,7 @@ UnknownScript_0x72a9b: ; 0x72a9b
 	iftrue UnknownScript_0x72aae
 	writetext UnknownText_0x72cb0
 	keeptextopen
-	verbosegiveitem TM_19, 1
+	verbosegiveitem TM_GIGA_DRAIN, 1
 	iffalse UnknownScript_0x72aae
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
 UnknownScript_0x72aae: ; 0x72aae

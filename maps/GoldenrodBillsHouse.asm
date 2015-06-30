@@ -17,7 +17,7 @@ BillsHouseBill:
 	writetext UnknownText_0x54d3f
 	keeptextopen
 	waitbutton
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x54c13
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON

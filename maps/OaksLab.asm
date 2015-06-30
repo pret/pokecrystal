@@ -21,7 +21,7 @@ Oak:
 	keeptextopen
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges
-	checkcode $7
+	checkcode VAR_BADGES
 	if_equal 16, .OpenMtSilver
 	if_equal 8, .Complain
 	jump .AhGood

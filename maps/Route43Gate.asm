@@ -37,7 +37,7 @@ UnknownScript_0x19abd5: ; 0x19abd5
 
 UnknownScript_0x19abda: ; 0x19abda
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x19abea
 	if_equal $1, UnknownScript_0x19ac38
 	dotrigger $1
@@ -128,7 +128,7 @@ OfficerScript_0x19ac85: ; 0x19ac85
 	iftrue UnknownScript_0x19ac9c
 	writetext UnknownText_0x19ad9b
 	keeptextopen
-	verbosegiveitem TM_36, 1
+	verbosegiveitem TM_SLUDGE_BOMB, 1
 	iffalse UnknownScript_0x19aca0
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB
 	loadmovesprites

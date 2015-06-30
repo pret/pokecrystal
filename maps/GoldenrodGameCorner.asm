@@ -15,7 +15,7 @@ UnknownScript_0x56bf9: ; 0x56bf9
 	iffalse UnknownScript_0x56c19
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56c0e
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal WEDNESDAY, UnknownScript_0x56c11
 	if_equal SATURDAY, UnknownScript_0x56c11
 UnknownScript_0x56c0e: ; 0x56c0e
@@ -67,10 +67,10 @@ UnknownScript_0x56c36: ; 056c36
 UnknownScript_0x56c4d: ; 0x56c4d
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_25, $0
+	itemtotext TM_THUNDER, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_25, $1
+	giveitem TM_THUNDER, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6
@@ -79,10 +79,10 @@ UnknownScript_0x56c4d: ; 0x56c4d
 UnknownScript_0x56c69: ; 0x56c69
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_14, $0
+	itemtotext TM_BLIZZARD, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_14, $1
+	giveitem TM_BLIZZARD, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6
@@ -91,10 +91,10 @@ UnknownScript_0x56c69: ; 0x56c69
 UnknownScript_0x56c85: ; 0x56c85
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_38, $0
+	itemtotext TM_FIRE_BLAST, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_38, $1
+	giveitem TM_FIRE_BLAST, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6
@@ -183,7 +183,7 @@ UnknownScript_0x56d0c: ; 0x56d0c
 UnknownScript_0x56d26: ; 0x56d26
 	checkcoins 100
 	if_equal $2, UnknownScript_0x56cb1
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem ABRA, $0
 	scall UnknownScript_0x56ca1
@@ -202,7 +202,7 @@ UnknownScript_0x56d26: ; 0x56d26
 UnknownScript_0x56d54: ; 0x56d54
 	checkcoins 800
 	if_equal $2, UnknownScript_0x56cb1
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem CUBONE, $0
 	scall UnknownScript_0x56ca1
@@ -221,7 +221,7 @@ UnknownScript_0x56d54: ; 0x56d54
 UnknownScript_0x56d82: ; 0x56d82
 	checkcoins 1500
 	if_equal $2, UnknownScript_0x56cb1
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem WOBBUFFET, $0
 	scall UnknownScript_0x56ca1

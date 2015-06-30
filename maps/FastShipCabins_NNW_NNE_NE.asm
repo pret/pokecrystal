@@ -199,7 +199,7 @@ SailorScript_0x755f1: ; 0x755f1
 	loadmovesprites
 	setevent $0033
 	domaptrigger GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F, $1
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x75629
 	applymovement $6, MovementData_0x75637
 	playsound SFX_EXIT_BUILDING

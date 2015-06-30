@@ -30,7 +30,7 @@ TuscanyCallback:
 	return
 
 .DoesTuscanyAppear
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal TUESDAY, .TuscanyDisappears
 	appear $8
 	return
@@ -108,7 +108,7 @@ UnknownScript_0x1a0fe5: ; 0x1a0fe5
 CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	faceplayer
 	loadfont
-	checkcode $10
+	checkcode VAR_BOXSPACE
 	if_equal $0, UnknownScript_0x1a101c
 	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
 	iftrue UnknownScript_0x1a101c
@@ -180,7 +180,7 @@ TuscanyScript:
 	loadfont
 	checkevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	iftrue TuscanyTuesdayScript
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal TUESDAY, TuscanyNotTuesdayScript
 	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
 	iftrue .MetTuscany
