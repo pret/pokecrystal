@@ -348,7 +348,7 @@ UnknownScript_0x6d184: ; 0x6d184
 	loadfont
 	writetext UnknownText_0x6d809
 	keeptextopen
-	verbosegiveitem HM_06, 1
+	verbosegiveitem HM_WHIRLPOOL, 1
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8
 	closetext
@@ -422,7 +422,7 @@ UnknownScript_0x6d207: ; 0x6d207
 ; 0x6d20d
 
 ItemFragment_0x6d20d: ; 0x6d20d
-	db TM_46, 1
+	db TM_THIEF, 1
 ; 0x6d20f
 
 MapTeamRocketBaseB2FSignpostItem22: ; 0x6d20f

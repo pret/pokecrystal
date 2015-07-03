@@ -991,7 +991,7 @@ GetItemName:: ; 3468
 	push bc
 	ld a, [wd265]
 
-	cp TM_01
+	cp TM01
 	jr nc, .TM
 
 	ld [CurSpecies], a
@@ -1019,7 +1019,7 @@ GetTMHMName:: ; 3487
 	push af
 
 ; TM/HM prefix
-	cp HM_01
+	cp HM01
 	push af
 	jr c, .TM
 
@@ -1094,7 +1094,7 @@ GetTMHMName:: ; 3487
 
 
 IsHM:: ; 34df
-	cp HM_01
+	cp HM01
 	jr c, .NotHM
 	scf
 	ret

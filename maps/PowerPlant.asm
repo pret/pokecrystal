@@ -183,7 +183,7 @@ UnknownScript_0x188eac: ; 0x188eac
 	iftrue UnknownScript_0x188ec5
 	writetext UnknownText_0x1893c4
 	keeptextopen
-	verbosegiveitem TM_07, 1
+	verbosegiveitem TM_ZAP_CANNON, 1
 	iffalse UnknownScript_0x188ec3
 	setevent EVENT_GOT_TM07_ZAP_CANNON
 	writetext UnknownText_0x1893f4

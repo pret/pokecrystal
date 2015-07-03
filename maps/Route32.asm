@@ -98,7 +98,7 @@ FisherScript_0x1904ce:
 	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
 	keeptextopen
-	verbosegiveitem TM_05, 1
+	verbosegiveitem TM_ROAR, 1
 	iffalse UnknownScript_0x1904e7
 	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3:

@@ -24,7 +24,7 @@ PharmacistScript_0x71afd: ; 0x71afd
 UnknownScript_0x71b14: ; 0x71b14
 	writetext UnknownText_0x71ba3
 	keeptextopen
-	verbosegiveitem TM_03, 1
+	verbosegiveitem TM_CURSE, 1
 	iffalse UnknownScript_0x71b25
 	setevent EVENT_GOT_TM03_CURSE
 UnknownScript_0x71b21: ; 0x71b21

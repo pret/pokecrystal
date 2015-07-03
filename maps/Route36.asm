@@ -147,7 +147,7 @@ FisherScript_0x1940b9: ; 0x1940b9
 UnknownScript_0x1940cd: ; 0x1940cd
 	writetext UnknownText_0x1944d0
 	keeptextopen
-	verbosegiveitem TM_08, 1
+	verbosegiveitem TM_ROCK_SMASH, 1
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da: ; 0x1940da

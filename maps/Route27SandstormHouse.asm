@@ -19,7 +19,7 @@ SandstormHouseWoman:
 .Loyal
 	writetext SandstormHouseWomanLoyalText
 	keeptextopen
-	verbosegiveitem TM_37, 1
+	verbosegiveitem TM_SANDSTORM, 1
 	iffalse .Done
 	setevent EVENT_GOT_TM37_SANDSTORM
 .AlreadyGotItem

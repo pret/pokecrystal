@@ -36,10 +36,10 @@ UnknownScript_0x726fd: ; 0x726fd
 UnknownScript_0x72714: ; 0x72714
 	checkcoins 1500
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_32, $0
+	itemtotext TM_DOUBLE_TEAM, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem TM_32, $1
+	giveitem TM_DOUBLE_TEAM, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 1500
 	jump UnknownScript_0x7276d
@@ -48,10 +48,10 @@ UnknownScript_0x72714: ; 0x72714
 UnknownScript_0x72730: ; 0x72730
 	checkcoins 3500
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_29, $0
+	itemtotext TM_PSYCHIC, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem TM_29, $1
+	giveitem TM_PSYCHIC, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 3500
 	jump UnknownScript_0x7276d
@@ -60,10 +60,10 @@ UnknownScript_0x72730: ; 0x72730
 UnknownScript_0x7274c: ; 0x7274c
 	checkcoins 7500
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_15, $0
+	itemtotext TM_HYPER_BEAM, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem TM_15, $1
+	giveitem TM_HYPER_BEAM, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 7500
 	jump UnknownScript_0x7276d

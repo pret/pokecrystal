@@ -100,7 +100,7 @@ UnknownScript_0x7451f: ; 0x7451f
 ; 0x74529
 
 ItemFragment_0x74529: ; 0x74529
-	db TM_26, 1
+	db TM_EARTHQUAKE, 1
 ; 0x7452b
 
 ItemFragment_0x7452b: ; 0x7452b

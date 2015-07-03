@@ -31,7 +31,7 @@ UnknownScript_0x9c159: ; 0x9c159
 	iftrue UnknownScript_0x9c172
 	writetext UnknownText_0x9c354
 	keeptextopen
-	verbosegiveitem TM_23, 1
+	verbosegiveitem TM_IRON_TAIL, 1
 	iffalse UnknownScript_0x9c176
 	setevent EVENT_GOT_TM23_IRON_TAIL
 	writetext UnknownText_0x9c3a5

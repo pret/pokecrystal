@@ -422,7 +422,7 @@ MapRoute35Signpost1Script: ; 0x19ca79
 ; 0x19ca7c
 
 ItemFragment_0x19ca7c: ; 0x19ca7c
-	db TM_04, 1
+	db TM_ROLLOUT, 1
 ; 0x19ca7e
 
 FruitTreeScript_0x19ca7e: ; 0x19ca7e

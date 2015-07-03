@@ -67,10 +67,10 @@ UnknownScript_0x56c36: ; 056c36
 UnknownScript_0x56c4d: ; 0x56c4d
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_25, $0
+	itemtotext TM_THUNDER, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_25, $1
+	giveitem TM_THUNDER, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6
@@ -79,10 +79,10 @@ UnknownScript_0x56c4d: ; 0x56c4d
 UnknownScript_0x56c69: ; 0x56c69
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_14, $0
+	itemtotext TM_BLIZZARD, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_14, $1
+	giveitem TM_BLIZZARD, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6
@@ -91,10 +91,10 @@ UnknownScript_0x56c69: ; 0x56c69
 UnknownScript_0x56c85: ; 0x56c85
 	checkcoins 5500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_38, $0
+	itemtotext TM_FIRE_BLAST, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_38, $1
+	giveitem TM_FIRE_BLAST, $1
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6

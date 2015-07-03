@@ -70,7 +70,7 @@ ReceptionistScript_0x560ce:
 UnknownScript_0x560ee:
 	writetext UnknownText_0x5615a
 	keeptextopen
-	verbosegiveitem TM_27, 1
+	verbosegiveitem TM_RETURN, 1
 	iffalse UnknownScript_0x56116
 	setflag $005b
 	loadmovesprites
@@ -85,7 +85,7 @@ UnknownScript_0x560fd:
 UnknownScript_0x56103:
 	writetext UnknownText_0x561d8
 	keeptextopen
-	verbosegiveitem TM_21, 1
+	verbosegiveitem TM_FRUSTRATION, 1
 	iffalse UnknownScript_0x56116
 	setflag $005b
 	loadmovesprites

@@ -50,7 +50,7 @@ UnknownScript_0x9d656: ; 0x9d656
 	setevent EVENT_BEAT_BLACKBELT_LUNG
 	writetext UnknownText_0x9d84d
 	keeptextopen
-	verbosegiveitem TM_01, 1
+	verbosegiveitem TM_DYNAMICPUNCH, 1
 	iffalse UnknownScript_0x9d67f
 	setevent EVENT_GOT_TM01_DYNAMICPUNCH
 	writetext UnknownText_0x9d8da
