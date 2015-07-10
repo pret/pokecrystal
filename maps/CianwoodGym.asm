@@ -39,7 +39,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0020
-	checkcode $7
+	checkcode VAR_BADGES
 	scall UnknownScript_0x9d681
 UnknownScript_0x9d656: ; 0x9d656
 	checkevent EVENT_GOT_TM01_DYNAMICPUNCH

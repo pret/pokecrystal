@@ -1,7 +1,7 @@
 UnknownScript_0xa0b14:
 	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	iftrue UnknownScript_0xa0b73
-	checkcode $a
+	checkcode VAR_HOUR
 	if_greater_than $11, UnknownScript_0xa0b4b
 	scall UnknownScript_0xa0b32
 	jump UnknownScript_0xa0c0e
@@ -36,7 +36,7 @@ UnknownScript_0xa0b4b:
 	end
 
 UnknownScript_0xa0b4f:
-	checkcode $a
+	checkcode VAR_HOUR
 	if_greater_than $11, UnknownScript_0xa0b6e
 	checkmorn
 	iftrue UnknownScript_0xa0b64

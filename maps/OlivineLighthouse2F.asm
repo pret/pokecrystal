@@ -56,7 +56,7 @@ TrainerSailorHuey1: ; 0x5af85
 ; 0x5af91
 
 SailorHuey1Script: ; 0x5af91
-	writecode $17, $7
+	writecode VAR_CALLERID, $7
 	talkaftercancel
 	loadfont
 	checkflag $0066

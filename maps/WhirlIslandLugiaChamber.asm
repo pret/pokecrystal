@@ -36,7 +36,7 @@ LugiaScript_0x18c518: ; 0x18c518
 	pause 15
 	loadmovesprites
 	setevent EVENT_FOUGHT_LUGIA
-	writecode $3, BATTLETYPE_FORCEITEM
+	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata LUGIA, 60
 	startbattle
 	disappear $2

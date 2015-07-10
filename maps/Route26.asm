@@ -56,7 +56,7 @@ TrainerCooltrainermGaven3: ; 0x1a4d33
 ; 0x1a4d3f
 
 CooltrainermGaven3Script: ; 0x1a4d3f
-	writecode $17, $b
+	writecode VAR_CALLERID, $b
 	talkaftercancel
 	loadfont
 	checkflag $0067
@@ -207,7 +207,7 @@ TrainerCooltrainerfBeth1: ; 0x1a4def
 ; 0x1a4dfb
 
 CooltrainerfBeth1Script: ; 0x1a4dfb
-	writecode $17, $c
+	writecode VAR_CALLERID, $c
 	talkaftercancel
 	loadfont
 	checkflag $0068

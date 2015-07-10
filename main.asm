@@ -5320,7 +5320,7 @@ UnknownScript_0xcaa3: ; 0xcaa3
 	farscall UnknownScript_0x122c1
 	special Function97c28
 	callasm Function154f1
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	newloadmap $fc
 	callasm Function8cb33
 	special WaitSFX
@@ -5588,7 +5588,7 @@ UnknownScript_0xcc3c: ; 0xcc3c
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
 	special Function97c28
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	newloadmap $f5
 	playsound SFX_WARP_FROM
 	applymovement $0, MovementData_0xcc5d
@@ -5686,7 +5686,7 @@ UnknownScript_0xccbb: ; 0xccbb
 	applymovement $0, MovementData_0xcce1
 	farscall UnknownScript_0x122c1
 	special Function97c28
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	newloadmap $f4
 	playsound SFX_WARP_FROM
 	applymovement $0, MovementData_0xcce3
@@ -6547,7 +6547,7 @@ Functiond121: ; d121
 UnknownScript_0xd13e: ; 0xd13e
 	reloadmappart
 	special UpdateTimePals
-	writecode $8, $1
+	writecode VAR_MOVEMENT, $1
 	writetext UnknownText_0xd17c
 	closetext
 	loadmovesprites
@@ -6556,7 +6556,7 @@ UnknownScript_0xd13e: ; 0xd13e
 ; 0xd14e
 
 UnknownScript_0xd14e: ; 0xd14e
-	writecode $8, $1
+	writecode VAR_MOVEMENT, $1
 	loadmovesprites
 	special Functione4a
 	end
@@ -6569,7 +6569,7 @@ Functiond156: ; unreferenced
 UnknownScript_0xd158: ; 0xd158
 	reloadmappart
 	special UpdateTimePals
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	writetext UnknownText_0xd181
 	closetext
 
@@ -6581,7 +6581,7 @@ UnknownScript_0xd163:
 ; 0xd16b
 
 UnknownScript_0xd16b: ; 0xd16b
-	writecode $8, $0
+	writecode VAR_MOVEMENT, $0
 	jump UnknownScript_0xd163
 ; 0xd171
 
@@ -12792,7 +12792,7 @@ Function12527: ; 12527
 ; 1253d
 
 UnknownScript_0x1253d:: ; 0x1253d
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x12555
 	if_equal $1, UnknownScript_0x12550
 	if_equal $2, UnknownScript_0x1255f
@@ -15367,7 +15367,7 @@ Function135db: ; 135db
 ; 135eb
 
 UnknownScript_0x135eb:: ; 0x135eb
-	writecode $3, BATTLETYPE_CONTEST
+	writecode VAR_BATTLETYPE, BATTLETYPE_CONTEST
 	battlecheck
 	startbattle
 	returnafterbattle

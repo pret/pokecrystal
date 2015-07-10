@@ -37,7 +37,7 @@ MortyScript_0x99d58: ; 0x99d58
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001e
-	checkcode $7
+	checkcode VAR_BADGES
 	scall UnknownScript_0x99db7
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
 	setevent $0766

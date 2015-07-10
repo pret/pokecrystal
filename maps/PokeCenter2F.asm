@@ -547,7 +547,7 @@ UnknownScript_0x192b9d: ; 0x192b9d
 UnknownScript_0x192bc4: ; 0x192bc4
 	checkflag $0063
 	iftrue UnknownScript_0x192bec
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $2, UnknownScript_0x192bdc
 	if_equal $3, UnknownScript_0x192be4
 	applymovement2 MovementData_0x192cd2
@@ -568,7 +568,7 @@ UnknownScript_0x192be4: ; 0x192be4
 ; 0x192bec
 
 UnknownScript_0x192bec: ; 0x192bec
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x192c00
 	if_equal $2, UnknownScript_0x192c0a
 	applymovement2 MovementData_0x192d33
@@ -590,7 +590,7 @@ UnknownScript_0x192c11: ; 0x192c11
 	writetext UnknownText_0x193266
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_not_equal $1, UnknownScript_0x192c20
 	spriteface $0, LEFT
 UnknownScript_0x192c20: ; 0x192c20

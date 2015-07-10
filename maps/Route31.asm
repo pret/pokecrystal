@@ -42,7 +42,7 @@ TrainerBug_catcherWade1: ; 0x1a5447
 ; 0x1a5453
 
 Bug_catcherWade1Script: ; 0x1a5453
-	writecode $17, $10
+	writecode VAR_CALLERID, $10
 	talkaftercancel
 	loadfont
 	checkflag $006c

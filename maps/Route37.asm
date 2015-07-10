@@ -10,7 +10,7 @@ Route37_MapScriptHeader: ; 0x1a8d72
 	dbw 2, SunnyCallback
 
 SunnyCallback:
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .SunnyAppears
 	disappear $6
 	return
@@ -111,7 +111,7 @@ SunnyScript:
 	loadfont
 	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
 	iftrue SunnySundayScript
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal SUNDAY, SunnyNotSundayScript
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue .MetSunny

@@ -37,7 +37,7 @@ UnknownScript_0x19abd5: ; 0x19abd5
 
 UnknownScript_0x19abda: ; 0x19abda
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x19abea
 	if_equal $1, UnknownScript_0x19ac38
 	dotrigger $1

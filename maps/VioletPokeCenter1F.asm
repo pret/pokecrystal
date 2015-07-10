@@ -19,7 +19,7 @@ ScientistScript_0x694cc: ; 0x694cc
 UnknownScript_0x694d7: ; 0x694d7
 	yesorno
 	iffalse UnknownScript_0x69531
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x6952b
 	giveegg TOGEPI, 5
 	stringtotext .eggname, $1
@@ -31,7 +31,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	writetext UnknownText_0x695c5
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $1, .UnknownScript_0x69511
 	spriteface $0, DOWN
 	applymovement $6, MovementData_0x69549

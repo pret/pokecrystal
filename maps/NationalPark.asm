@@ -85,7 +85,7 @@ TrainerSchoolboyJack1: ; 0x5c042
 ; 0x5c04e
 
 SchoolboyJack1Script: ; 0x5c04e
-	writecode $17, $5
+	writecode VAR_CALLERID, $5
 	talkaftercancel
 	loadfont
 	checkflag $0065
@@ -262,7 +262,7 @@ TrainerPokefanfBeverly1: ; 0x5c12c
 ; 0x5c138
 
 PokefanfBeverly1Script: ; 0x5c138
-	writecode $17, $6
+	writecode VAR_CALLERID, $6
 	talkaftercancel
 	loadfont
 	checkflag $007d

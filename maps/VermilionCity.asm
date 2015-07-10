@@ -48,7 +48,7 @@ UnknownScript_0x1aa9ab:
 	pause 15
 	cry SNORLAX
 	loadmovesprites
-	writecode $3, BATTLETYPE_FORCEITEM
+	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata SNORLAX, 50
 	startbattle
 	disappear $6
@@ -61,7 +61,7 @@ VermilionGymBadgeGuy:
 	loadfont
 	checkevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	iftrue .AlreadyGotItem
-	checkcode $7
+	checkcode VAR_BADGES
 	if_equal 16, .AllBadges
 	if_greater_than 13, .MostBadges
 	if_greater_than 9, .SomeBadges

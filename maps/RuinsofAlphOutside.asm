@@ -31,7 +31,7 @@ UnknownScript_0x5800f: ; 0x5800f
 ; 0x5801e
 
 UnknownScript_0x5801e: ; 0x5801e
-	checkcode $e
+	checkcode VAR_UNOWNCOUNT
 	if_greater_than $2, UnknownScript_0x58027
 	jump UnknownScript_0x5802c
 ; 0x58027

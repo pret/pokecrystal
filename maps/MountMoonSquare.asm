@@ -32,7 +32,7 @@ UnknownScript_0x77097: ; 0x77097
 UnknownScript_0x7709a: ; 0x7709a
 	checkflag $0058
 	iftrue UnknownScript_0x77117
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal MONDAY, UnknownScript_0x77117
 	checknite
 	iffalse UnknownScript_0x77117

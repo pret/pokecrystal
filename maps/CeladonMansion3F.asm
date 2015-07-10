@@ -10,7 +10,7 @@ CooltrainerMScript_0x71670: ; 0x71670
 	faceplayer
 	loadfont
 	writetext UnknownText_0x716ce
-	checkcode $5
+	checkcode VAR_DEXCAUGHT
 	if_greater_than $f8, UnknownScript_0x7167e
 	closetext
 	loadmovesprites

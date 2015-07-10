@@ -15,7 +15,7 @@ UnknownScript_0x56bf9: ; 0x56bf9
 	iffalse UnknownScript_0x56c19
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56c0e
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal WEDNESDAY, UnknownScript_0x56c11
 	if_equal SATURDAY, UnknownScript_0x56c11
 UnknownScript_0x56c0e: ; 0x56c0e
@@ -183,7 +183,7 @@ UnknownScript_0x56d0c: ; 0x56d0c
 UnknownScript_0x56d26: ; 0x56d26
 	checkcoins 100
 	if_equal $2, UnknownScript_0x56cb1
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem ABRA, $0
 	scall UnknownScript_0x56ca1
@@ -202,7 +202,7 @@ UnknownScript_0x56d26: ; 0x56d26
 UnknownScript_0x56d54: ; 0x56d54
 	checkcoins 800
 	if_equal $2, UnknownScript_0x56cb1
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem CUBONE, $0
 	scall UnknownScript_0x56ca1
@@ -221,7 +221,7 @@ UnknownScript_0x56d54: ; 0x56d54
 UnknownScript_0x56d82: ; 0x56d82
 	checkcoins 1500
 	if_equal $2, UnknownScript_0x56cb1
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x56cb7
 	pokenamemem WOBBUFFET, $0
 	scall UnknownScript_0x56ca1

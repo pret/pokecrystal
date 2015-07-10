@@ -24,7 +24,7 @@ PryceScript_0x199a9e: ; 0x199a9e
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $0021
-	checkcode $7
+	checkcode VAR_BADGES
 	scall UnknownScript_0x199af6
 UnknownScript_0x199ac8: ; 0x199ac8
 	checkevent EVENT_GOT_TM16_ICY_WIND

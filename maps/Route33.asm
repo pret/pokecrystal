@@ -31,7 +31,7 @@ TrainerHikerAnthony2: ; 0x1ac005
 ; 0x1ac011
 
 HikerAnthony2Script: ; 0x1ac011
-	writecode $17, $13
+	writecode VAR_CALLERID, $13
 	talkaftercancel
 	loadfont
 	checkflag $006f

@@ -212,7 +212,7 @@ ElderScript_0x18d1a5: ; 0x18d1a5
 UnknownScript_0x18d1c5: ; 0x18d1c5
 	writetext UnknownText_0x18d604
 	closetext
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x18d1ed
 	writetext UnknownText_0x18d697
 	playsound SFX_CAUGHT_MON

@@ -11,9 +11,9 @@ Route16_MapScriptHeader: ; 0x1ad313
 ; 0x1ad318
 
 UnknownScript_0x1ad318: ; 0x1ad318
-	checkcode $13
+	checkcode VAR_YCOORD
 	if_less_than $5, UnknownScript_0x1ad328
-	checkcode $12
+	checkcode VAR_XCOORD
 	if_greater_than $d, UnknownScript_0x1ad328
 	setflag $0019
 	return

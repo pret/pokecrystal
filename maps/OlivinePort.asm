@@ -83,7 +83,7 @@ UnknownScript_0x7491f: ; 0x7491f
 	loadfont
 	checkevent $0030
 	iffalse UnknownScript_0x7494e
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x74977
 	if_equal SATURDAY, UnknownScript_0x74977
 	if_equal TUESDAY, UnknownScript_0x74981
@@ -155,7 +155,7 @@ SailorScript_0x7499c: ; 0x7499c
 	iftrue UnknownScript_0x74919
 	checkevent $0030
 	iffalse UnknownScript_0x749c0
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x749f2
 	if_equal SATURDAY, UnknownScript_0x749f2
 	if_equal TUESDAY, UnknownScript_0x749f8
@@ -173,7 +173,7 @@ UnknownScript_0x749c0: ; 0x749c0
 	closetext
 	loadmovesprites
 	setevent $0001
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f
 	jump SailorScript_0x748c0

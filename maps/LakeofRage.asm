@@ -25,7 +25,7 @@ LakeofRage_MapScriptHeader:
 	return
 
 .Wesley
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal WEDNESDAY, .WesleyAppears
 	disappear $b
 	return
@@ -78,7 +78,7 @@ GyaradosScript_0x70063:
 	cry GYARADOS
 	loadmovesprites
 	loadpokedata GYARADOS, 30
-	writecode $3, BATTLETYPE_SHINY
+	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	if_equal $1, UnknownScript_0x7007a
 	disappear $a
@@ -249,7 +249,7 @@ WesleyScript:
 	loadfont
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue WesleyWednesdayScript
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal WEDNESDAY, WesleyNotWednesdayScript
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley

@@ -45,7 +45,7 @@ KurtScript_0x18e178: ; 0x18e178
 	loadmovesprites
 	special Functionc48f
 	setevent $06fa
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x18e1ab
 	spriteface $0, DOWN
 	playsound SFX_FLY
@@ -322,7 +322,7 @@ UnknownScript_0x18e378: ; 0x18e378
 	special Functionc48f
 	pause 20
 	showemote $0, $2, 30
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x18e3a2
 	spriteface $0, DOWN
 	playsound SFX_FLY

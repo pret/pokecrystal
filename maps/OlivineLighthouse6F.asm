@@ -66,7 +66,7 @@ UnknownScript_0x60bab: ; 0x60bab
 	loadmovesprites
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
 	clearevent $06d3
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x60c17
 	if_equal $3, UnknownScript_0x60c1e
 	applymovement $2, MovementData_0x60c68

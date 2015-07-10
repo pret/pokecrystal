@@ -68,7 +68,7 @@ UnknownScript_0x59192: ; 0x59192
 ScientistScript_0x591d1: ; 0x591d1
 	faceplayer
 	loadfont
-	checkcode $e
+	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x591df
 	writetext UnknownText_0x59311
 	closetext
@@ -86,7 +86,7 @@ UnknownScript_0x591df: ; 0x591df
 ScientistScript_0x591e5: ; 0x591e5
 	faceplayer
 	loadfont
-	checkcode $e
+	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x5920b
 	checkflag $000c
 	iftrue UnknownScript_0x59205
@@ -123,7 +123,7 @@ UnknownScript_0x5920b: ; 0x5920b
 ScientistScript_0x59214: ; 0x59214
 	faceplayer
 	loadfont
-	checkcode $e
+	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x5922e
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
@@ -151,7 +151,7 @@ MapRuinsofAlphResearchCenterSignpost1Script: ; 0x59234
 	loadfont
 	checkevent $0704
 	iftrue UnknownScript_0x59241
-	checkcode $e
+	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59247
 UnknownScript_0x59241: ; 0x59241
 	writetext UnknownText_0x597b6
@@ -171,7 +171,7 @@ MapRuinsofAlphResearchCenterSignpost2Script: ; 0x5924d
 	loadfont
 	checkevent $0704
 	iftrue UnknownScript_0x5925a
-	checkcode $e
+	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59260
 UnknownScript_0x5925a: ; 0x5925a
 	writetext UnknownText_0x5980e

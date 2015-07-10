@@ -174,13 +174,13 @@ Buena:
 	iffalse UnknownScript_0x5d800
 	checkflag $0060
 	iftrue UnknownScript_0x5d82f
-	checkcode $a
+	checkcode VAR_HOUR
 	if_less_than $12, UnknownScript_0x5d893
 	checkflag $005f
 	iffalse UnknownScript_0x5d80a
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d86b
-	checkcode $18
+	checkcode VAR_BLUECARDBALANCE
 	if_equal $1e, UnknownScript_0x5d87f
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
@@ -190,7 +190,7 @@ Buena:
 	closetext
 	loadmovesprites
 	spriteface $b, RIGHT
-	checkcode $9
+	checkcode VAR_FACING
 	if_not_equal $3, UnknownScript_0x5d7be
 	applymovement $0, MovementData_0x5d921
 UnknownScript_0x5d7be: ; 0x5d7be
@@ -208,9 +208,9 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	writetext UnknownText_0x5dfc1
 	closetext
 	loadmovesprites
-	checkcode $18
+	checkcode VAR_BLUECARDBALANCE
 	addvar $1
-	writevarcode $18
+	writevarcode VAR_BLUECARDBALANCE
 	waitbutton
 	playsound SFX_TRANSACTION
 	setflag $0060
@@ -223,7 +223,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	special Functionc48f
 	pause 20
 	special RestartMapMusic
-	checkcode $18
+	checkcode VAR_BLUECARDBALANCE
 	if_equal $1e, UnknownScript_0x5d8a4
 	end
 ; 0x5d800

@@ -36,7 +36,7 @@ TrainerPokefanmDerek1: ; 0x1a5aff
 ; 0x1a5b0b
 
 PokefanmDerek1Script: ; 0x1a5b0b
-	writecode $17, $1c
+	writecode VAR_CALLERID, $1c
 	talkaftercancel
 	loadfont
 	checkflag $0083

@@ -30,7 +30,7 @@ UnknownScript_0x18c89f: ; 0x18c89f
 ; 0x18c8a8
 
 UnknownScript_0x18c8a8: ; 0x18c8a8
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, UnknownScript_0x18c8b5
 	if_equal THURSDAY, UnknownScript_0x18c8b5
 	disappear $4

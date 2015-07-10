@@ -56,7 +56,7 @@ TrainerJugglerIrwin1: ; 0x19c8c3
 ; 0x19c8cf
 
 JugglerIrwin1Script: ; 0x19c8cf
-	writecode $17, $16
+	writecode VAR_CALLERID, $16
 	talkaftercancel
 	loadfont
 	checkcellnum $16
@@ -253,7 +253,7 @@ TrainerBug_catcherArnie1: ; 0x19c96f
 ; 0x19c97b
 
 Bug_catcherArnie1Script: ; 0x19c97b
-	writecode $17, $17
+	writecode VAR_CALLERID, $17
 	talkaftercancel
 	loadfont
 	checkflag $0072

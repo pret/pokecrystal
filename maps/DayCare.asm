@@ -32,7 +32,7 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	writetext UnknownText_0x630ce
 	keeptextopen
 	loadmovesprites
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x62fb6
 	special Function117656
 	loadfont

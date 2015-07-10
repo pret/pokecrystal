@@ -56,7 +56,7 @@ TrainerPicnickerErin1: ; 0x1a9694
 ; 0x1a96a0
 
 PicnickerErin1Script: ; 0x1a96a0
-	writecode $17, $24
+	writecode VAR_CALLERID, $24
 	talkaftercancel
 	loadfont
 	checkflag $007c

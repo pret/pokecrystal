@@ -99,7 +99,7 @@ UnknownScript_0x58778: ; 0x58778
 ScientistScript_0x587a8: ; 0x587a8
 	faceplayer
 	loadfont
-	checkcode $e
+	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x587cf
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587c9

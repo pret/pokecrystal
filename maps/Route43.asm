@@ -101,7 +101,7 @@ TrainerPokemaniacBrent1: ; 0x19d089
 ; 0x19d095
 
 PokemaniacBrent1Script: ; 0x19d095
-	writecode $17, $1e
+	writecode VAR_CALLERID, $1e
 	talkaftercancel
 	loadfont
 	checkflag $0077
@@ -294,7 +294,7 @@ TrainerPicnickerTiffany3: ; 0x19d170
 ; 0x19d17c
 
 PicnickerTiffany3Script: ; 0x19d17c
-	writecode $17, $1f
+	writecode VAR_CALLERID, $1f
 	talkaftercancel
 	loadfont
 	checkflag $0078

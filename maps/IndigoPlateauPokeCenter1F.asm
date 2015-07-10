@@ -48,7 +48,7 @@ UnknownScript_0x180053: ; 0x180053
 	iffalse UnknownScript_0x18012b
 	checkflag $005d
 	iftrue UnknownScript_0x18012b
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x18012b
 	if_equal TUESDAY, UnknownScript_0x18012b
 	if_equal THURSDAY, UnknownScript_0x18012b
@@ -71,7 +71,7 @@ UnknownScript_0x180094: ; 0x180094
 	iffalse UnknownScript_0x18012b
 	checkflag $005d
 	iftrue UnknownScript_0x18012b
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x18012b
 	if_equal TUESDAY, UnknownScript_0x18012b
 	if_equal THURSDAY, UnknownScript_0x18012b

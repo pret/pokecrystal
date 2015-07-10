@@ -178,7 +178,7 @@ UnknownScript_0x6d091: ; 0x6d091
 	loadmovesprites
 	dotrigger $1
 	setevent $004c
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x6d0be
 	applymovement $4, MovementData_0x6d212
 	disappear $4

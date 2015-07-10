@@ -366,7 +366,7 @@ UnknownScript_0x6eda1: ; 0x6eda1
 	cry FARFETCH_D
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	end
 ; 0x6edae
 

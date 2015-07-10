@@ -29,7 +29,7 @@ UnknownScript_0x9ba04: ; 0x9ba04
 	loadfont
 	writetext UnknownText_0x9ba29
 	keeptextopen
-	checkcode $7
+	checkcode VAR_BADGES
 	if_greater_than 7, UnknownScript_0x9ba19
 	writetext UnknownText_0x9ba5f
 	closetext

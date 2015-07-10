@@ -152,7 +152,7 @@ UnknownScript_0x727d3: ; 0x727d3
 UnknownScript_0x727ed: ; 0x727ed
 	checkcoins 2222
 	if_equal $2, UnknownScript_0x72778
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem PIKACHU, $0
 	scall UnknownScript_0x72768
@@ -171,7 +171,7 @@ UnknownScript_0x727ed: ; 0x727ed
 UnknownScript_0x7281b: ; 0x7281b
 	checkcoins 5555
 	if_equal $2, UnknownScript_0x72778
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem PORYGON, $0
 	scall UnknownScript_0x72768
@@ -190,7 +190,7 @@ UnknownScript_0x7281b: ; 0x7281b
 UnknownScript_0x72849: ; 0x72849
 	checkcoins 8888
 	if_equal $2, UnknownScript_0x72778
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7277e
 	pokenamemem LARVITAR, $0
 	scall UnknownScript_0x72768

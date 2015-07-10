@@ -24,7 +24,7 @@ FalknerScript_0x683c2: ; 0x683c2
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001b
-	checkcode $7
+	checkcode VAR_BADGES
 	scall UnknownScript_0x68418
 UnknownScript_0x683ec: ; 0x683ec
 	checkevent EVENT_GOT_TM31_MUD_SLAP

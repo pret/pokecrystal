@@ -95,7 +95,7 @@ TrainerBird_keeperJose2: ; 0x1a08b3
 ; 0x1a08bf
 
 Bird_keeperJose2Script: ; 0x1a08bf
-	writecode $17, $d
+	writecode VAR_CALLERID, $d
 	talkaftercancel
 	loadfont
 	checkflag $0069
@@ -299,7 +299,7 @@ TrainerCooltrainerfReena1: ; 0x1a09a3
 ; 0x1a09af
 
 CooltrainerfReena1Script: ; 0x1a09af
-	writecode $17, $e
+	writecode VAR_CALLERID, $e
 	talkaftercancel
 	loadfont
 	checkflag $006a

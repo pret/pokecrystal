@@ -85,7 +85,7 @@ TrainerLassDana1: ; 0x1a1d36
 ; 0x1a1d42
 
 LassDana1Script: ; 0x1a1d42
-	writecode $17, $1a
+	writecode VAR_CALLERID, $1a
 	talkaftercancel
 	loadfont
 	checkflag $0074
@@ -258,7 +258,7 @@ TrainerSchoolboyChad1: ; 0x1a1e2f
 ; 0x1a1e3b
 
 SchoolboyChad1Script: ; 0x1a1e3b
-	writecode $17, $1b
+	writecode VAR_CALLERID, $1b
 	talkaftercancel
 	loadfont
 	checkflag $0075

@@ -10,7 +10,7 @@ GoldenrodDeptStore5F_MapScriptHeader:
 	dbw 2, UnknownScript_0x56090
 
 UnknownScript_0x56090:
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x56099
 	disappear $7
 	return
@@ -56,7 +56,7 @@ UnknownScript_0x560c8:
 ReceptionistScript_0x560ce:
 	faceplayer
 	loadfont
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal SUNDAY, UnknownScript_0x56112
 	checkflag $005b
 	iftrue UnknownScript_0x56112
