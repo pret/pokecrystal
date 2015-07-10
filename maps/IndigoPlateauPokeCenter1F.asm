@@ -43,7 +43,7 @@ UnknownScript_0x18000a:
 UnknownScript_0x180053:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
-	checkflag $005d
+	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue UnknownScript_0x18012b
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x18012b
@@ -65,7 +65,7 @@ UnknownScript_0x180053:
 UnknownScript_0x180094:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
-	checkflag $005d
+	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue UnknownScript_0x18012b
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x18012b
@@ -128,7 +128,7 @@ UnknownScript_0x180113:
 	disappear $5
 	dotrigger $0
 	playmapmusic
-	setflag $005d
+	setflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 UnknownScript_0x18012b:
 	end
 

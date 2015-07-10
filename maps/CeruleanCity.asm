@@ -86,7 +86,7 @@ YoungsterScript_0x184064:
 	writetext UnknownText_0x1842a9
 	closetext
 	loadmovesprites
-	checkevent $00fa
+	checkevent EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 	iffalse UnknownScript_0x184072
 	end
 
@@ -141,7 +141,7 @@ CeruleanCityMartSign:
 	jumpstd martsign
 
 MapCeruleanCitySignpostItem8:
-	dw $00fa
+	dw EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 	db BERSERK_GENE
 
 UnknownText_0x1840bc:

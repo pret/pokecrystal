@@ -20,7 +20,7 @@ UnknownScript_0x1a0f5a:
 	end
 
 TuscanyCallback:
-	checkflag $001b
+	checkflag ENGINE_ZEPHYRBADGE
 	iftrue .DoesTuscanyAppear
 
 .TuscanyDisappears

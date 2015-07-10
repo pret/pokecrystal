@@ -10,7 +10,7 @@ CopycatsHouse2F_MapScriptHeader:
 	dbw 2, CopycatsHouse2FCallback
 
 CopycatsHouse2FCallback:
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part1
 	disappear $7
 	appear $2
@@ -29,7 +29,7 @@ Copycat:
 	iftrue .Part13
 	checkitem LOST_ITEM
 	iftrue .Part12
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part1
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
@@ -45,7 +45,7 @@ Copycat:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .Part7
 	loadfont
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part3
 	writetext UnknownText_0x18afda
 	jump .Part4
@@ -55,7 +55,7 @@ Copycat:
 .Part4
 	closetext
 	loadmovesprites
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part5
 	applymovement $2, MovementData_0x18afd0
 	jump .Part6
@@ -74,7 +74,7 @@ Copycat:
 
 .Part7
 	loadfont
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part8
 	writetext UnknownText_0x18b064
 	jump .Part9
@@ -84,7 +84,7 @@ Copycat:
 .Part9
 	closetext
 	loadmovesprites
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part10
 	applymovement $2, MovementData_0x18afd0
 	jump .Part11
@@ -125,7 +125,7 @@ Copycat:
 	end
 
 .Part15
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part16
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
@@ -139,7 +139,7 @@ Copycat:
 .Part17
 	special Function14209
 	loadfont
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part18
 	writetext UnknownText_0x18b298
 	jump .Part19
@@ -149,7 +149,7 @@ Copycat:
 .Part19
 	closetext
 	loadmovesprites
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part20
 	applymovement $2, MovementData_0x18afd0
 	jump .Part21

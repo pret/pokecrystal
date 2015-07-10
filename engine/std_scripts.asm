@@ -291,7 +291,7 @@ GoldenrodRocketsScript:
 	end
 
 RadioTowerRocketsScript:
-	setflag $0013
+	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	setevent $06cf
 	setevent $06d1
 	clearevent $06ce
@@ -377,7 +377,7 @@ UnknownScript_0xbc2d4:
 	setevent $0727
 	setevent $0728
 	setevent $0729
-	setflag $0051
+	setflag ENGINE_51
 	special PlayMapMusic
 	end
 ; 0xbc31e
@@ -583,7 +583,7 @@ InitializeEventsScript:
 	setevent $06ed
 	setevent $06f0
 	setevent $07a9
-	setevent $07aa
+	setevent EVENT_EUSINE_IN_BURNED_TOWER
 	setevent $06c8
 	setevent $07ac
 	setevent $07ad

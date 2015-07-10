@@ -7,10 +7,10 @@ Route20_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x1acd25
+	dbw 5, .ClearRocks
 
-UnknownScript_0x1acd25:
-	setevent $00d7
+.ClearRocks
+	setevent EVENT_CINNABAR_ROCKS_CLEARED
 	return
 
 TrainerSwimmerfNicole:

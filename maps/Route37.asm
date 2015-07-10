@@ -113,7 +113,7 @@ SunnyScript:
 	keeptextopen
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 .MetSunny
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Kris
 	writetext SunnyGivesGiftText1
 	keeptextopen

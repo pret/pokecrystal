@@ -79,7 +79,7 @@ UnknownScript_0x6eb74:
 YoungsterScript_0x6eb7b:
 	faceplayer
 	loadfont
-	checkevent $0029
+	checkevent EVENT_HERDED_FARFETCHD
 	iftrue UnknownScript_0x6eb89
 	writetext UnknownText_0x6ef5c
 	closetext
@@ -294,7 +294,7 @@ UnknownScript_0x6ed50:
 	loadvar FarfetchdPosition, $a
 	appear $4
 	setevent $06f7
-	setevent $0029
+	setevent EVENT_HERDED_FARFETCHD
 	end
 
 UnknownScript_0x6ed74:
@@ -439,7 +439,7 @@ MapIlexForestSignpost0Script:
 	jumptext UnknownText_0x6f2de
 
 MapIlexForestSignpost4Script:
-	checkevent $00c0
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue UnknownScript_0x6ee30
 	jump UnknownScript_0x6ee35
 
@@ -459,7 +459,7 @@ UnknownScript_0x6ee38:
 
 UnknownScript_0x6ee42:
 	takeitem GS_BALL, 1
-	clearevent $00c0
+	clearevent EVENT_FOREST_IS_RESTLESS
 	setevent $07a4
 	disappear $8
 	clearevent $06eb

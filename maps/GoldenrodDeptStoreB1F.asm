@@ -21,23 +21,23 @@ UnknownScript_0x7d78a:
 	jump UnknownScript_0x7d791
 
 UnknownScript_0x7d791:
-	checkevent $0305
-	iftrue UnknownScript_0x7d7a2
-	checkevent $0306
-	iftrue UnknownScript_0x7d7a7
+	checkevent EVENT_WAREHOUSE_LAYOUT_2
+	iftrue .Layout2
+	checkevent EVENT_WAREHOUSE_LAYOUT_3
+	iftrue .Layout3
 	changeblock $a, $8, $d
 	return
 
-UnknownScript_0x7d7a2:
+.Layout2
 	changeblock $4, $a, $d
 	return
 
-UnknownScript_0x7d7a7:
+.Layout3
 	changeblock $a, $c, $d
 	return
 
 UnknownScript_0x7d7ac:
-	clearevent $0307
+	clearevent EVENT_WAREHOUSE_BLOCKED_OFF
 	return
 
 BlackBeltScript_0x7d7b0:

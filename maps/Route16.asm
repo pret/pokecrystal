@@ -14,7 +14,7 @@ UnknownScript_0x1ad318:
 	if_less_than $5, UnknownScript_0x1ad328
 	checkcode VAR_XCOORD
 	if_greater_than $d, UnknownScript_0x1ad328
-	setflag $0019
+	setflag ENGINE_ALWAYS_ON_BIKE
 	return
 
 UnknownScript_0x1ad328:

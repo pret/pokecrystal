@@ -7,18 +7,18 @@ Route19_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x19e9de
+	dbw 1, .ClearRocks
 
-UnknownScript_0x19e9de:
-	checkevent $00d7
-	iftrue UnknownScript_0x19e9fc
+.ClearRocks
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	iftrue .Done
 	changeblock $6, $6, $7a
 	changeblock $8, $6, $7a
 	changeblock $a, $6, $7a
 	changeblock $c, $8, $7a
 	changeblock $4, $8, $7a
 	changeblock $a, $a, $7a
-UnknownScript_0x19e9fc:
+.Done
 	return
 
 TrainerSwimmerfDawn:
@@ -132,7 +132,7 @@ SwimmermTuckerScript:
 FisherScript_0x19ea4d:
 	faceplayer
 	loadfont
-	checkevent $00d7
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue UnknownScript_0x19ea5b
 	writetext UnknownText_0x19ecaf
 	closetext
@@ -148,7 +148,7 @@ UnknownScript_0x19ea5b:
 FisherScript_0x19ea61:
 	faceplayer
 	loadfont
-	checkevent $00d7
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue UnknownScript_0x19ea6f
 	writetext UnknownText_0x19ed45
 	closetext

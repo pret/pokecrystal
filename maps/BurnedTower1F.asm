@@ -25,14 +25,14 @@ UnknownScript_0x185bf7:
 	end
 
 UnknownScript_0x185bf8:
-	checkevent $0332
-	iftrue UnknownScript_0x185c02
-	changeblock $a, $8, $32
-UnknownScript_0x185c02:
+	checkevent EVENT_HOLE_IN_BURNED_TOWER
+	iftrue .Next
+	changeblock $a, $8, $32 ; hole
+.Next
 	checkevent EVENT_RELEASED_THE_BEASTS
-	iftrue UnknownScript_0x185c0c
-	changeblock $6, $e, $9
-UnknownScript_0x185c0c:
+	iftrue .Done
+	changeblock $6, $e, $9 ; ladder
+.Done
 	return
 
 UnknownScript_0x185c0d:
@@ -114,7 +114,7 @@ UnknownScript_0x185c80:
 	writetext UnknownText_0x185e75
 	closetext
 	loadmovesprites
-	setevent $0332
+	setevent EVENT_HOLE_IN_BURNED_TOWER
 	pause 15
 	warpcheck
 	end

@@ -9,38 +9,38 @@ MapGoldenrodDeptStoreElevatorSignpost0Script:
 	loadfont
 	elevator Elevator_0x566e0
 	loadmovesprites
-	iffalse UnknownScript_0x566df
+	iffalse .Done
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitbutton
-	checkevent $0307
-	iftrue UnknownScript_0x566df
-	checkevent $0304
-	iftrue UnknownScript_0x566cb
-	checkevent $0305
-	iftrue UnknownScript_0x566d5
-	checkevent $0306
-	iftrue UnknownScript_0x566c1
-UnknownScript_0x566c1: ;0x566c1
-	setevent $0304
-	clearevent $0305
-	clearevent $0306
+	checkevent EVENT_WAREHOUSE_BLOCKED_OFF
+	iftrue .Done
+	checkevent EVENT_WAREHOUSE_LAYOUT_1
+	iftrue .BoxLayout1
+	checkevent EVENT_WAREHOUSE_LAYOUT_2
+	iftrue .BoxLayout2
+	checkevent EVENT_WAREHOUSE_LAYOUT_3
+	iftrue .BoxLayout3
+.BoxLayout3
+	setevent EVENT_WAREHOUSE_LAYOUT_1
+	clearevent EVENT_WAREHOUSE_LAYOUT_2
+	clearevent EVENT_WAREHOUSE_LAYOUT_3
 	end
 
-UnknownScript_0x566cb:
-	clearevent $0304
-	setevent $0305
-	clearevent $0306
+.BoxLayout1
+	clearevent EVENT_WAREHOUSE_LAYOUT_1
+	setevent EVENT_WAREHOUSE_LAYOUT_2
+	clearevent EVENT_WAREHOUSE_LAYOUT_3
 	end
 
-UnknownScript_0x566d5:
-	clearevent $0304
-	clearevent $0305
-	setevent $0306
+.BoxLayout2
+	clearevent EVENT_WAREHOUSE_LAYOUT_1
+	clearevent EVENT_WAREHOUSE_LAYOUT_2
+	setevent EVENT_WAREHOUSE_LAYOUT_3
 	end
 
-UnknownScript_0x566df:
+.Done
 	end
 
 

@@ -236,7 +236,7 @@ Bug_catcherArnie1Script:
 	loadfont
 	checkflag ENGINE_ARNIE
 	iftrue UnknownScript_0x19c9bb
-	checkflag $00a1
+	checkflag ENGINE_YANMA_SWARM
 	iftrue UnknownScript_0x19ca2f
 	checkcellnum $17
 	iftrue UnknownScript_0x19c90f

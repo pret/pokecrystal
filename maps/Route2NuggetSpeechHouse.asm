@@ -8,17 +8,17 @@ Route2NuggetSpeechHouse_MapScriptHeader:
 FisherScript_0x9b847:
 	faceplayer
 	loadfont
-	checkevent $00c8
-	iftrue UnknownScript_0x9b85c
+	checkevent EVENT_GOT_NUGGET_FROM_GUY
+	iftrue .GotItem
 	writetext UnknownText_0x9b865
 	keeptextopen
 	verbosegiveitem NUGGET, 1
-	iffalse UnknownScript_0x9b860
-	setevent $00c8
-UnknownScript_0x9b85c:
+	iffalse .Done
+	setevent EVENT_GOT_NUGGET_FROM_GUY
+.GotItem
 	writetext UnknownText_0x9b8e5
 	closetext
-UnknownScript_0x9b860:
+.Done
 	loadmovesprites
 	end
 

@@ -10,11 +10,11 @@ JasmineScript_0x60b91:
 	loadfont
 	checkitem SECRETPOTION
 	iftrue UnknownScript_0x60bab
-	checkevent $0037
+	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 	iftrue UnknownScript_0x60ba5
 	writetext UnknownText_0x60c81
 	keeptextopen
-	setevent $0037
+	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 UnknownScript_0x60ba5:
 	writetext UnknownText_0x60d64
 	closetext

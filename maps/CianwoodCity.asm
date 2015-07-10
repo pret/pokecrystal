@@ -20,8 +20,8 @@ CianwoodCity_MapScriptHeader:
 
 .FlyPointAndSuicune
 	setflag ENGINE_FLYPOINT_CIANWOOD
-	setevent $07aa
-	checkevent $0333
+	setevent EVENT_EUSINE_IN_BURNED_TOWER
+	checkevent EVENT_FOUGHT_EUSINE
 	iffalse UnknownScript_0x1a001d
 	disappear $c
 UnknownScript_0x1a001d:
@@ -42,9 +42,9 @@ UnknownScript_0x1a001e:
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_42
 	domaptrigger GROUP_ROUTE_42, MAP_ROUTE_42, $1
-	checkevent $0333
-	iftrue UnknownScript_0x1a0083
-	setevent $0333
+	checkevent EVENT_FOUGHT_EUSINE
+	iftrue .Done
+	setevent EVENT_FOUGHT_EUSINE
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	appear $c
 	applymovement $c, MovementData_0x1a00e7
@@ -69,7 +69,7 @@ UnknownScript_0x1a001e:
 	special Functionc48f
 	playmapmusic
 	pause 10
-UnknownScript_0x1a0083:
+.Done
 	end
 
 PokefanFScript_0x1a0084:

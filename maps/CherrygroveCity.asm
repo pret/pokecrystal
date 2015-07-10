@@ -68,7 +68,7 @@ CherrygroveCityGuideGent:
 	keeptextopen
 	stringtotext .mapcardname, $1
 	scall .UnknownScript_0x19c097
-	setflag $0001
+	setflag ENGINE_MAP_CARD
 	writetext GotMapCardText
 	keeptextopen
 	writetext GuideGentPokegearText
@@ -177,7 +177,7 @@ UnknownScript_0x19c12f:
 TeacherScript_0x19c146:
 	faceplayer
 	loadfont
-	checkflag $0001
+	checkflag ENGINE_MAP_CARD
 	iftrue UnknownScript_0x19c154
 	writetext UnknownText_0x19c650
 	closetext
@@ -193,7 +193,7 @@ UnknownScript_0x19c154:
 YoungsterScript_0x19c15a:
 	faceplayer
 	loadfont
-	checkflag $000b
+	checkflag ENGINE_POKEDEX
 	iftrue UnknownScript_0x19c168
 	writetext UnknownText_0x19c6d6
 	closetext

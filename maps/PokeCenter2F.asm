@@ -295,9 +295,9 @@ UnknownScript_0x192a25:
 	end
 
 LinkReceptionistScript_0x192a2d:
-	checkevent $0712
+	checkevent EVENT_MET_BILL
 	iftrue UnknownScript_0x192a25
-	checkflag $0053
+	checkflag ENGINE_TIME_CAPSULE
 	iftrue UnknownScript_0x192a25
 	special Function29cfa
 	faceplayer
@@ -410,7 +410,7 @@ UnknownScript_0x192af7:
 	end
 
 UnknownScript_0x192b04:
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x192b12
 	applymovement2 MovementData_0x192cca
 	applymovement $0, MovementData_0x192cde
@@ -434,7 +434,7 @@ UnknownScript_0x192b12:
 	writebyte $80
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
-	setflag $009f
+	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special Functione4a
 	loadfont
 	writetext UnknownText_0x19329a
@@ -445,7 +445,7 @@ UnknownScript_0x192b12:
 	end
 
 UnknownScript_0x192b50:
-	checkflag $009f
+	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue UnknownScript_0x192b63
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192cf5
@@ -455,7 +455,7 @@ UnknownScript_0x192b50:
 UnknownScript_0x192b63:
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
-	clearflag $009f
+	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $90
@@ -467,7 +467,7 @@ UnknownScript_0x192b63:
 	end
 
 UnknownScript_0x192b8a:
-	checkflag $009f
+	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue UnknownScript_0x192b9d
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192cf5
@@ -477,7 +477,7 @@ UnknownScript_0x192b8a:
 UnknownScript_0x192b9d:
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
-	clearflag $009f
+	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $90
@@ -489,7 +489,7 @@ UnknownScript_0x192b9d:
 	end
 
 UnknownScript_0x192bc4:
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x192bec
 	checkcode VAR_FACING
 	if_equal $2, UnknownScript_0x192bdc
@@ -543,7 +543,7 @@ UnknownScript_0x192c20:
 	special Functionc225
 	applymovement $0, MovementData_0x192d22
 	faceperson $0, $4
-	setflag $009f
+	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special Functione4a
 	loadfont
 	writetext UnknownText_0x19329a
@@ -555,7 +555,7 @@ UnknownScript_0x192c20:
 
 UnknownScript_0x192c4e:
 	special Function29c92
-	checkflag $009f
+	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue UnknownScript_0x192c66
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cf9
@@ -565,7 +565,7 @@ UnknownScript_0x192c4e:
 UnknownScript_0x192c66:
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cfc
-	clearflag $009f
+	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $90

@@ -16,7 +16,7 @@ DaisyScript_0x19b0d0:
 	end
 
 UnknownScript_0x19b0de:
-	checkflag $005c
+	checkflag ENGINE_TEA_IN_BLUES_HOUSE
 	iftrue UnknownScript_0x19b11e
 	writetext UnknownText_0x19b1b6
 	yesorno
@@ -24,9 +24,9 @@ UnknownScript_0x19b0de:
 	writetext UnknownText_0x19b244
 	closetext
 	special Function741d
-	if_equal $0, UnknownScript_0x19b124
-	if_equal $1, UnknownScript_0x19b12a
-	setflag $005c
+	if_equal 0, UnknownScript_0x19b124
+	if_equal 1, UnknownScript_0x19b12a
+	setflag ENGINE_TEA_IN_BLUES_HOUSE
 	writetext UnknownText_0x19b266
 	closetext
 	loadmovesprites

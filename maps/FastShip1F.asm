@@ -43,22 +43,22 @@ SailorScript_0x75160:
 	loadfont
 	checkevent $0031
 	iftrue UnknownScript_0x7517a
-	checkevent $002f
-	iftrue UnknownScript_0x75174
+	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
+	iftrue .Olivine
 	writetext UnknownText_0x7523b
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x75174:
+.Olivine
 	writetext UnknownText_0x7529b
 	closetext
 	loadmovesprites
 	end
 
 UnknownScript_0x7517a:
-	checkevent $002f
-	iftrue UnknownScript_0x7519c
+	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
+	iftrue .Olivine
 	writetext UnknownText_0x754be
 	closetext
 	loadmovesprites
@@ -71,7 +71,7 @@ UnknownScript_0x7517a:
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $7, $11
 	end
 
-UnknownScript_0x7519c:
+.Olivine
 	writetext UnknownText_0x7548d
 	closetext
 	loadmovesprites

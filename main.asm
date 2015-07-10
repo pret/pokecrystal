@@ -12384,9 +12384,9 @@ String_1224f: ; 1224f
 ; 122c1
 
 UnknownScript_0x122c1: ; 0x122c1
-	checkflag $0011
+	checkflag ENGINE_BUG_CONTEST_TIMER
 	iffalse .script_122cd
-	setflag $0051
+	setflag ENGINE_51
 	special Function13a31
 .script_122cd
 	end
@@ -12721,7 +12721,7 @@ UnknownScript_0x124ce: ; 0x124ce
 	special Function8c084
 	pause 40
 	special HealParty
-	checkflag $0011
+	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .script_64f2
 	callasm HalveMoney
 	callasm Function12527
@@ -49267,7 +49267,7 @@ UnknownScript_0x506c8: ; 0x506c8
 	closetext
 	callasm Function506ef
 	iffalse UnknownScript_0x506e9
-	checkflag $0011
+	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue UnknownScript_0x506e5
 	battlecheck
 	startbattle

@@ -10,7 +10,7 @@ Route34_MapScriptHeader:
 	dbw 2, UnknownScript_0x78005
 
 UnknownScript_0x78005:
-	checkflag $0005
+	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x78014
 	clearevent $06e5
 	setevent $06e6
@@ -22,7 +22,7 @@ UnknownScript_0x78014:
 	jump UnknownScript_0x7801d
 
 UnknownScript_0x7801d:
-	checkflag $0006
+	checkflag ENGINE_DAYCARE_MAN_HAS_MON
 	iffalse UnknownScript_0x78029
 	clearevent $06e7
 	jump UnknownScript_0x7802f
@@ -32,7 +32,7 @@ UnknownScript_0x78029:
 	jump UnknownScript_0x7802f
 
 UnknownScript_0x7802f:
-	checkflag $0007
+	checkflag ENGINE_DAYCARE_LADY_HAS_MON
 	iffalse UnknownScript_0x78039
 	clearevent $06e8
 	return
@@ -48,7 +48,7 @@ GrampsScript_0x7803d:
 	closetext
 	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a
-	clearflag $0005
+	clearflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x7805b
 	applymovement $8, MovementData_0x78333
@@ -100,7 +100,7 @@ CamperTodd1Script:
 	loadfont
 	checkflag ENGINE_TODD
 	iftrue UnknownScript_0x780bd
-	checkflag $0061
+	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue UnknownScript_0x78131
 	checkcellnum $14
 	iftrue UnknownScript_0x78143

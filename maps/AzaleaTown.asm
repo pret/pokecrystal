@@ -157,7 +157,7 @@ UnknownScript_0x1980e5:
 	closetext
 	verbosegiveitem GS_BALL, 1
 	spriteface $d, LEFT
-	setflag $0064
+	setflag ENGINE_HAVE_EXAMINED_GS_BALL
 	clearevent $06ed
 	setevent $06eb
 	dotrigger $0

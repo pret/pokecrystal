@@ -27,7 +27,7 @@ UnknownScript_0x6ab13:
 	end
 
 UnknownScript_0x6ab17:
-	checkflag $0011
+	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue UnknownScript_0x6ab20
 	dotrigger $0
 	return
@@ -43,7 +43,7 @@ UnknownScript_0x6ab23:
 	if_equal TUESDAY, UnknownScript_0x6ab42
 	if_equal THURSDAY, UnknownScript_0x6ab42
 	if_equal SATURDAY, UnknownScript_0x6ab42
-	checkflag $0011
+	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue UnknownScript_0x6ab42
 	disappear $2
 	appear $d
@@ -140,7 +140,7 @@ OfficerScript_0x6abe0:
 	if_equal FRIDAY, UnknownScript_0x6acf1
 	faceplayer
 	loadfont
-	checkflag $0051
+	checkflag ENGINE_51
 	iftrue UnknownScript_0x6ac91
 	scall UnknownScript_0x6ad02
 	writetext UnknownText_0x6add5
@@ -151,7 +151,7 @@ OfficerScript_0x6abe0:
 	special Function13a12
 	clearevent $0308
 UnknownScript_0x6ac10:
-	setflag $0011
+	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext UnknownText_0x6ae87
 	keeptextopen
@@ -162,7 +162,7 @@ UnknownScript_0x6ac10:
 	writetext UnknownText_0x6aecc
 	closetext
 	loadmovesprites
-	setflag $0011
+	setflag ENGINE_BUG_CONTEST_TIMER
 	special Function135db
 	spriteface $0, LEFT
 	playsound SFX_EXIT_BUILDING
@@ -286,7 +286,7 @@ UnknownScript_0x6acf1:
 OfficerScript_0x6acf4:
 	faceplayer
 	loadfont
-	checkflag $0051
+	checkflag ENGINE_51
 	iftrue UnknownScript_0x6ac91
 	writetext UnknownText_0x6b370
 	closetext

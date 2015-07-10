@@ -10,8 +10,8 @@ Route17_MapScriptHeader:
 	dbw 5, UnknownScript_0x1ad0ab
 
 UnknownScript_0x1ad0ab:
-	setflag $0019
-	setflag $001a
+	setflag ENGINE_ALWAYS_ON_BIKE
+	setflag ENGINE_DOWNHILL
 	return
 
 TrainerBikerCharles:

@@ -224,7 +224,7 @@ UnknownScript_0x7c140:
 
 GrampsScript_0x7c146:
 	loadfont
-	checkflag $0056
+	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
 	iftrue UnknownScript_0x7c300
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x7c156
@@ -246,7 +246,7 @@ SuperNerdScript_0x7c161:
 	jump UnknownScript_0x7c300
 
 UnknownScript_0x7c173:
-	checkflag $005a
+	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue UnknownScript_0x7c208
 	special Function24ae8
 	writetext UnknownText_0x7c5f9
@@ -259,7 +259,7 @@ UnknownScript_0x7c173:
 	special Function7413
 	if_equal $0, UnknownScript_0x7c1fc
 	if_equal $1, UnknownScript_0x7c1fc
-	setflag $005a
+	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	if_equal $2, UnknownScript_0x7c1a9
 	if_equal $3, UnknownScript_0x7c1b5
 	jump UnknownScript_0x7c1c1
@@ -329,7 +329,7 @@ SuperNerdScript_0x7c20e:
 	jump UnknownScript_0x7c300
 
 UnknownScript_0x7c220:
-	checkflag $005a
+	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue UnknownScript_0x7c2b5
 	special Function24ae8
 	writetext UnknownText_0x7c75c
@@ -342,7 +342,7 @@ UnknownScript_0x7c220:
 	special Function7418
 	if_equal $0, UnknownScript_0x7c2a9
 	if_equal $1, UnknownScript_0x7c2a9
-	setflag $005a
+	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	if_equal $2, UnknownScript_0x7c256
 	if_equal $3, UnknownScript_0x7c262
 	jump UnknownScript_0x7c26e

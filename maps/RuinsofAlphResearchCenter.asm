@@ -50,7 +50,7 @@ UnknownScript_0x59192:
 	writetext UnknownText_0x592fa
 	playsound SFX_ITEM
 	waitbutton
-	setflag $000c
+	setflag ENGINE_UNOWN_DEX
 	writetext UnknownText_0x59311
 	closetext
 	loadmovesprites
@@ -80,7 +80,7 @@ ScientistScript_0x591e5:
 	loadfont
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x5920b
-	checkflag $000c
+	checkflag ENGINE_UNOWN_DEX
 	iftrue UnknownScript_0x59205
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x591ff

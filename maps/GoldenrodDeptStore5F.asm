@@ -58,7 +58,7 @@ ReceptionistScript_0x560ce:
 	loadfont
 	checkcode VAR_WEEKDAY
 	if_not_equal SUNDAY, UnknownScript_0x56112
-	checkflag $005b
+	checkflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	iftrue UnknownScript_0x56112
 	special Function718d
 	writetext UnknownText_0x56143
@@ -72,7 +72,7 @@ UnknownScript_0x560ee:
 	keeptextopen
 	verbosegiveitem TM_RETURN, 1
 	iffalse UnknownScript_0x56116
-	setflag $005b
+	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	loadmovesprites
 	end
 
@@ -87,7 +87,7 @@ UnknownScript_0x56103:
 	keeptextopen
 	verbosegiveitem TM_FRUSTRATION, 1
 	iffalse UnknownScript_0x56116
-	setflag $005b
+	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	loadmovesprites
 	end
 

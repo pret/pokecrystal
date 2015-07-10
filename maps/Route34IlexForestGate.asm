@@ -10,7 +10,7 @@ Route34IlexForestGate_MapScriptHeader:
 	dbw 2, UnknownScript_0x62d2d
 
 UnknownScript_0x62d2d:
-	checkevent $00c0
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d38
 	disappear $2
 	appear $5
@@ -22,7 +22,7 @@ UnknownScript_0x62d38:
 	return
 
 UnknownScript_0x62d3d:
-	checkevent $00c0
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d62
 	showemote $0, $5, 20
 	spriteface $5, LEFT
@@ -42,7 +42,7 @@ UnknownScript_0x62d62:
 TeacherScript_0x62d63:
 	faceplayer
 	loadfont
-	checkevent $00c0
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue UnknownScript_0x62d84
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
 	iftrue UnknownScript_0x62d7e

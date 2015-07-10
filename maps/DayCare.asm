@@ -10,7 +10,7 @@ DayCare_MapScriptHeader:
 	dbw 2, UnknownScript_0x62f7b
 
 UnknownScript_0x62f7b:
-	checkflag $0005
+	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62f88
 	clearevent $06e5
 	setevent $06e6
@@ -58,7 +58,7 @@ UnknownScript_0x62fbd:
 GrannyScript_0x62fc3:
 	faceplayer
 	loadfont
-	checkflag $0005
+	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62fd1
 	special Function1672a
 	closetext

@@ -170,7 +170,7 @@ UnknownScript_0x1989f7:
 CooltrainerFScript_0x1989fd:
 	faceplayer
 	loadfont
-	checkflag $0000
+	checkflag ENGINE_RADIO_CARD
 	iftrue UnknownScript_0x198a0b
 	writetext UnknownText_0x198b73
 	closetext

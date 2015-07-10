@@ -8,7 +8,7 @@ RadioTower1F_MapScriptHeader:
 ReceptionistScript_0x5cd29:
 	faceplayer
 	loadfont
-	checkflag $0013
+	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	iftrue UnknownScript_0x5cd37
 	writetext UnknownText_0x5ce77
 	closetext
@@ -31,8 +31,8 @@ GentlemanScript_0x5cd3d:
 	special Functionc422
 UnknownScript_0x5cd4c:
 	special Function4d9d3
-	checkflag $004e
-	iftrue UnknownScript_0x5cd84
+	checkflag ENGINE_LUCKY_NUMBER_SHOW
+	iftrue .GameOver
 	writetext UnknownText_0x5cf3a
 	keeptextopen
 	loadmovesprites
@@ -49,51 +49,51 @@ UnknownScript_0x5cd4c:
 	loadmovesprites
 	applymovement $6, MovementData_0x5ce74
 	loadfont
-	if_equal $1, UnknownScript_0x5cd8a
-	if_equal $2, UnknownScript_0x5cd9f
-	if_equal $3, UnknownScript_0x5cdb4
-	jump UnknownScript_0x5cdc9
+	if_equal 1, .FirstPlace
+	if_equal 2, .SecondPlace
+	if_equal 3, .ThirdPlace
+	jump .NoPrize
 
-UnknownScript_0x5cd84:
+.GameOver
 	writetext UnknownText_0x5cf7e
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x5cd8a:
+.FirstPlace
 	writetext UnknownText_0x5cfb5
 	playsound SFX_1ST_PLACE
 	waitbutton
 	keeptextopen
-	giveitem MASTER_BALL, $1
+	giveitem MASTER_BALL, 1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
-	setflag $004e
-	jump UnknownScript_0x5cd84
+	setflag ENGINE_LUCKY_NUMBER_SHOW
+	jump .GameOver
 
-UnknownScript_0x5cd9f:
+.SecondPlace
 	writetext UnknownText_0x5d023
 	playsound SFX_2ND_PLACE
 	waitbutton
 	keeptextopen
-	giveitem EXP_SHARE, $1
+	giveitem EXP_SHARE, 1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
-	setflag $004e
-	jump UnknownScript_0x5cd84
+	setflag ENGINE_LUCKY_NUMBER_SHOW
+	jump .GameOver
 
-UnknownScript_0x5cdb4:
+.ThirdPlace
 	writetext UnknownText_0x5d076
 	playsound SFX_3RD_PLACE
 	waitbutton
 	keeptextopen
-	giveitem PP_UP, $1
+	giveitem PP_UP, 1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
-	setflag $004e
-	jump UnknownScript_0x5cd84
+	setflag ENGINE_LUCKY_NUMBER_SHOW
+	jump .GameOver
 
-UnknownScript_0x5cdc9:
+.NoPrize
 	writetext UnknownText_0x5d0c0
 	closetext
 	loadmovesprites
@@ -108,7 +108,7 @@ UnknownScript_0x5cdcf:
 CooltrainerFScript_0x5cdd5:
 	faceplayer
 	loadfont
-	checkflag $0000
+	checkflag ENGINE_RADIO_CARD
 	iftrue UnknownScript_0x5ce2d
 	writetext UnknownText_0x5d12d
 	yesorno
@@ -144,7 +144,7 @@ CooltrainerFScript_0x5cdd5:
 	scall UnknownScript_0x5ce3e
 	writetext UnknownText_0x5d3c0
 	keeptextopen
-	setflag $0000
+	setflag ENGINE_RADIO_CARD
 UnknownScript_0x5ce2d:
 	writetext UnknownText_0x5d3e5
 	closetext

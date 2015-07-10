@@ -29,7 +29,7 @@ UnknownScript_0x6dfef:
 	end
 
 UnknownScript_0x6dff0:
-	checkevent $0303
+	checkevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
 	iftrue UnknownScript_0x6dff7
 	return
 
@@ -141,7 +141,7 @@ GruntF5Script:
 	writetext UnknownText_0x6e611
 	closetext
 	loadmovesprites
-	setevent $0301
+	setevent EVENT_LEARNED_SLOWPOKETAIL
 	end
 
 TrainerGruntM28:
@@ -169,7 +169,7 @@ GruntM28Script:
 	writetext UnknownText_0x6e737
 	closetext
 	loadmovesprites
-	setevent $0302
+	setevent EVENT_LEARNED_RATICATE_TAIL
 	end
 
 TrainerScientistRoss:
@@ -226,33 +226,32 @@ ScientistMitchScript:
 	loadmovesprites
 	end
 
-MapTeamRocketBaseB3FSignpostPtr1:
-	dw $0303
-	dw MapTeamRocketBaseB3FSignpost1Script
+BossDoor:
+	dw EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
+	dw .Script
 	
-
-MapTeamRocketBaseB3FSignpost1Script:
+.Script
 	loadfont
-	checkevent $0301
-	iffalse UnknownScript_0x6e105
-	checkevent $0302
-	iffalse UnknownScript_0x6e105
-	jump UnknownScript_0x6e10b
+	checkevent EVENT_LEARNED_SLOWPOKETAIL
+	iffalse .NeedsPassword
+	checkevent EVENT_LEARNED_RATICATE_TAIL
+	iffalse .NeedsPassword
+	jump .OpenSesame
 
-UnknownScript_0x6e105:
+.NeedsPassword
 	writetext UnknownText_0x6e970
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6e10b:
+.OpenSesame
 	writetext UnknownText_0x6e9a3
 	closetext
 	playsound SFX_ENTER_DOOR
 	changeblock $a, $8, $7
 	reloadmappart
 	loadmovesprites
-	setevent $0303
+	setevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
 	waitbutton
 	end
 
@@ -639,8 +638,8 @@ TeamRocketBaseB3F_MapEventHeader:
 
 	; signposts
 	db 10
-	signpost 9, 10, $6, MapTeamRocketBaseB3FSignpostPtr1
-	signpost 9, 11, $6, MapTeamRocketBaseB3FSignpostPtr1
+	signpost 9, 10, $6, BossDoor
+	signpost 9, 11, $6, BossDoor
 	signpost 1, 10, $0, MapTeamRocketBaseB3FSignpost9Script
 	signpost 1, 11, $0, MapTeamRocketBaseB3FSignpost9Script
 	signpost 1, 12, $0, MapTeamRocketBaseB3FSignpost9Script

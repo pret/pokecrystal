@@ -19,12 +19,12 @@ ClerkScript_0x54750:
 	writetext UnknownText_0x547f8
 	keeptextopen
 	waitbutton
-	giveitem BICYCLE, $1
+	giveitem BICYCLE, 1
 	writetext UnknownText_0x54848
 	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
-	setflag $0014
+	setflag ENGINE_14
 	setevent EVENT_GOT_BICYCLE
 UnknownScript_0x54775:
 	writetext UnknownText_0x5485f

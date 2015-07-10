@@ -14,7 +14,7 @@ UnknownScript_0x9b38a:
 UnknownScript_0x9b38b:
 	spriteface $0, UP
 	loadfont
-	checkflag $0057
+	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue UnknownScript_0x9b3f7
 	writetext UnknownText_0x9b420
 	keeptextopen
@@ -31,7 +31,7 @@ UnknownScript_0x9b3aa:
 	writetext UnknownText_0x9b487
 	yesorno
 	iffalse UnknownScript_0x9b3ed
-	setflag $0057
+	setflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	writetext UnknownText_0x9b4a2
 	closetext
 	loadmovesprites

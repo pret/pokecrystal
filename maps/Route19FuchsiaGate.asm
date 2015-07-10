@@ -8,14 +8,14 @@ Route19FuchsiaGate_MapScriptHeader:
 OfficerScript_0x1ab3f6:
 	faceplayer
 	loadfont
-	checkevent $00d7
-	iftrue UnknownScript_0x1ab404
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	iftrue .RocksCleared
 	writetext UnknownText_0x1ab40a
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1ab404:
+.RocksCleared
 	writetext UnknownText_0x1ab48a
 	closetext
 	loadmovesprites

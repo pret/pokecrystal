@@ -30,7 +30,7 @@ UnknownScript_0x9800f:
 
 UnknownScript_0x98022:
 	clearevent $0766
-	setevent $0767
+	setevent EVENT_RANG_CLEAR_BELL
 	setevent $07b1
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98032
@@ -43,7 +43,7 @@ UnknownScript_0x98033:
 	return
 
 UnknownScript_0x98037:
-	checkevent $0767
+	checkevent EVENT_RANG_CLEAR_BELL
 	iftrue UnknownScript_0x98061
 	applymovement $3, MovementData_0x980c7
 	moveperson $2, $4, $6
@@ -70,7 +70,7 @@ SageScript_0x98062:
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x9807c
-	checkflag $001e
+	checkflag ENGINE_FOGBADGE
 	iftrue UnknownScript_0x98076
 	writetext UnknownText_0x980d1
 	closetext
@@ -100,7 +100,7 @@ UnknownScript_0x98093:
 	closetext
 	loadmovesprites
 	dotrigger $1
-	setevent $0767
+	setevent EVENT_RANG_CLEAR_BELL
 	clearevent $0766
 	setevent $0000
 	end
@@ -299,6 +299,6 @@ EcruteakHouse_MapEventHeader:
 	; people-events
 	db 4
 	person_event SPRITE_SAGE, 10, 8, $6, $0, 255, 255, $0, 0, SageScript_0x98062, $0766
-	person_event SPRITE_SAGE, 10, 9, $6, $0, 255, 255, $0, 0, SageScript_0x98062, $0767
+	person_event SPRITE_SAGE, 10, 9, $6, $0, 255, 255, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL
 	person_event SPRITE_SAGE, 13, 10, $2, $11, 255, 255, $0, 0, SageScript_0x980b0, $07b1
 	person_event SPRITE_GRAMPS, 15, 7, $2, $11, 255, 255, $0, 0, GrampsScript_0x980c4, $07b1

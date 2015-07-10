@@ -33,7 +33,7 @@ HikerAnthony2Script:
 	loadfont
 	checkflag ENGINE_ANTHONY
 	iftrue UnknownScript_0x1ac051
-	checkflag $00a0
+	checkflag ENGINE_DUNSPARCE_SWARM
 	iftrue UnknownScript_0x1ac0c5
 	checkcellnum $13
 	iftrue UnknownScript_0x1ac0d7

@@ -49,7 +49,7 @@ UnknownScript_0x54c1f:
 BillsMom:
 	faceplayer
 	loadfont
-	checkevent $0712
+	checkevent EVENT_MET_BILL
 	iffalse UnknownScript_0x54c33
 	writetext UnknownText_0x54ea8
 	closetext
@@ -257,6 +257,6 @@ GoldenrodBillsHouse_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillsHouseBill, $0712
+	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillsHouseBill, EVENT_MET_BILL
 	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, BillsMom, $ffff
 	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, BillsSister, $ffff

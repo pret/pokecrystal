@@ -20,7 +20,7 @@ UnknownScript_0x5800e:
 	end
 
 UnknownScript_0x5800f:
-	checkflag $000c
+	checkflag ENGINE_UNOWN_DEX
 	iftrue UnknownScript_0x5802c
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x5801e
@@ -71,12 +71,12 @@ UnknownScript_0x58044:
 FisherScript_0x58061:
 	faceplayer
 	loadfont
-	checkevent $00bc
-	iftrue UnknownScript_0x58070
-	setevent $00bc
+	checkevent EVENT_TALKED_TO_RUINS_COWARD
+	iftrue .Next
+	setevent EVENT_TALKED_TO_RUINS_COWARD
 	writetext UnknownText_0x583a4
 	keeptextopen
-UnknownScript_0x58070: ;0x58070
+.Next
 	writetext UnknownText_0x58420
 	closetext
 	loadmovesprites

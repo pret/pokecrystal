@@ -16,11 +16,11 @@ CianwoodPharmacist:
 	loadfont
 	checkevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	iftrue .Mart
-	checkevent $0037
+	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 	iffalse .Mart
 	writetext PharmacistGiveSecretpotionText
 	keeptextopen
-	giveitem SECRETPOTION, $1
+	giveitem SECRETPOTION, 1
 	writetext ReceivedSecretpotionText
 	playsound SFX_KEY_ITEM
 	waitbutton

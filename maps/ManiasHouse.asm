@@ -28,7 +28,7 @@ RockerScript_0x9d278:
 	end
 
 UnknownScript_0x9d2a4:
-	checkflag $0055
+	checkflag ENGINE_SHUCKLE_GIVEN
 	iffalse UnknownScript_0x9d2bc
 	writetext UnknownText_0x9d3ed
 	closetext

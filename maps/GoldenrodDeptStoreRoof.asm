@@ -12,7 +12,7 @@ GoldenrodDeptStoreRoof_MapScriptHeader:
 	dbw 2, UnknownScript_0x5672b
 
 UnknownScript_0x5671b:
-	checkflag $0061
+	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue UnknownScript_0x56722
 	return
 
@@ -22,7 +22,7 @@ UnknownScript_0x56722:
 	return
 
 UnknownScript_0x5672b:
-	checkflag $0061
+	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue UnknownScript_0x56738
 	setevent $06f0
 	clearevent $06f1

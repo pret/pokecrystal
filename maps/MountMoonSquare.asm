@@ -26,7 +26,7 @@ UnknownScript_0x77097:
 	return
 
 UnknownScript_0x7709a:
-	checkflag $0058
+	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	iftrue UnknownScript_0x77117
 	checkcode VAR_WEEKDAY
 	if_not_equal MONDAY, UnknownScript_0x77117
@@ -69,7 +69,7 @@ UnknownScript_0x7709a:
 	disappear $3
 	stopfollow
 	clearevent $00ec
-	setflag $0058
+	setflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	end
 
 UnknownScript_0x77117:

@@ -10,7 +10,7 @@ UnionCaveB2F_MapScriptHeader:
 	dbw 2, UnknownScript_0x5a30d
 
 UnknownScript_0x5a30d:
-	checkflag $0059
+	checkflag ENGINE_UNION_CAVE_LAPRAS
 	iftrue UnknownScript_0x5a319
 	checkcode VAR_WEEKDAY
 	if_equal FRIDAY, UnknownScript_0x5a31c
@@ -28,7 +28,7 @@ SurfScript_0x5a31f:
 	loadpokedata LAPRAS, 20
 	startbattle
 	disappear $7
-	setflag $0059
+	setflag ENGINE_UNION_CAVE_LAPRAS
 	returnafterbattle
 	end
 

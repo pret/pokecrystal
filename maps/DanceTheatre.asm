@@ -160,7 +160,7 @@ GentlemanScript_0x994c6:
 	jump UnknownScript_0x99505
 
 UnknownScript_0x994f3:
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x994ff
 	writetext UnknownText_0x99891
 	closetext

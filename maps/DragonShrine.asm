@@ -99,7 +99,7 @@ UnknownScript_0x18d0cb:
 	writetext UnknownText_0x18d816
 	closetext
 	loadmovesprites
-	setevent $00c1
+	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	loadfont
 	checkevent $0005
 	iftrue UnknownScript_0x18d091
@@ -156,7 +156,7 @@ UnknownScript_0x18d100:
 	loadfont
 	writetext UnknownText_0x18d9bf
 	closetext
-	setflag $0022
+	setflag ENGINE_RISINGBADGE
 	playsound SFX_GET_BADGE
 	waitbutton
 	special RestartMapMusic
@@ -194,7 +194,7 @@ ElderScript_0x18d1a5:
 	iftrue UnknownScript_0x18d1f9
 	checkevent $0006
 	iftrue UnknownScript_0x18d1ff
-	checkevent $00bd
+	checkevent EVENT_GOT_DRATINI
 	iffalse UnknownScript_0x18d1c5
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue UnknownScript_0x18d1f3
@@ -212,9 +212,9 @@ UnknownScript_0x18d1c5:
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	givepoke DRATINI, 15, 0, 0
-	checkevent $00c1
+	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	special SpecialDratini
-	setevent $00bd
+	setevent EVENT_GOT_DRATINI
 	setevent $0006
 	writetext UnknownText_0x18d6ca
 	closetext

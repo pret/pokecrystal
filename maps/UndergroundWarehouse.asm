@@ -119,9 +119,9 @@ GentlemanScript_0x7d9bf:
 	keeptextopen
 	verbosegiveitem CARD_KEY, 1
 	setevent $004a
-	setevent $0304
-	clearevent $0305
-	clearevent $0306
+	setevent EVENT_WAREHOUSE_LAYOUT_1
+	clearevent EVENT_WAREHOUSE_LAYOUT_2
+	clearevent EVENT_WAREHOUSE_LAYOUT_3
 	writetext UnknownText_0x7dc5b
 	keeptextopen
 UnknownScript_0x7d9de:

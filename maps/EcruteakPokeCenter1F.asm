@@ -46,8 +46,8 @@ UnknownScript_0x98e95:
 	applymovement $6, MovementData_0x98ece
 	playsound SFX_EXIT_BUILDING
 	disappear $6
-	clearevent $0712
-	setflag $0053
+	clearevent EVENT_MET_BILL
+	setflag ENGINE_TIME_CAPSULE
 	dotrigger $1
 	waitbutton
 	end

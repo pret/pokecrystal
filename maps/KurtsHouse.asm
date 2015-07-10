@@ -12,9 +12,9 @@ KurtsHouse_MapScriptHeader:
 UnknownScript_0x18e154:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iffalse UnknownScript_0x18e177
-	checkevent $00c0
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue UnknownScript_0x18e177
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e16f
 	disappear $5
 	appear $2
@@ -164,7 +164,7 @@ UnknownScript_0x18e293:
 
 UnknownScript_0x18e299:
 	setevent $0000
-	setflag $0050
+	setflag ENGINE_KURT_MAKING_BALLS
 UnknownScript_0x18e29f:
 	writetext UnknownText_0x18e779
 	closetext
@@ -187,7 +187,7 @@ UnknownScript_0x18e2b2:
 	end
 
 UnknownScript_0x18e2b4:
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -198,7 +198,7 @@ UnknownScript_0x18e2c4:
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e2ca:
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -209,7 +209,7 @@ UnknownScript_0x18e2da:
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e2e0:
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -220,7 +220,7 @@ UnknownScript_0x18e2f0:
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e2f6:
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -231,7 +231,7 @@ UnknownScript_0x18e306:
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e30c:
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -242,7 +242,7 @@ UnknownScript_0x18e31c:
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e322:
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -253,7 +253,7 @@ UnknownScript_0x18e332:
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e338:
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -264,20 +264,20 @@ UnknownScript_0x18e348:
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e34e:
-	checkevent $00bf
+	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e368
 	checkitem GS_BALL
 	iffalse UnknownScript_0x18e202
 	writetext UnknownText_0x18e8ab
 	closetext
 	loadmovesprites
-	setevent $00bf
+	setevent EVENT_GAVE_GS_BALL_TO_KURT
 	takeitem GS_BALL, 1
-	setflag $0050
+	setflag ENGINE_KURT_MAKING_BALLS
 	end
 
 UnknownScript_0x18e368:
-	checkflag $0050
+	checkflag ENGINE_KURT_MAKING_BALLS
 	iffalse UnknownScript_0x18e378
 	writetext UnknownText_0x18e934
 	closetext
@@ -290,9 +290,9 @@ UnknownScript_0x18e378:
 	writetext UnknownText_0x18e95c
 	closetext
 	loadmovesprites
-	setevent $00c0
+	setevent EVENT_FOREST_IS_RESTLESS
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	clearevent $00bf
+	clearevent EVENT_GAVE_GS_BALL_TO_KURT
 	special Functionc48f
 	pause 20
 	showemote $0, $2, 30
@@ -319,10 +319,10 @@ UnknownScript_0x18e3ac:
 KurtScript_0x18e3bd:
 	faceplayer
 	loadfont
-	checkevent $00bf
+	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e3e0
 UnknownScript_0x18e3c5:
-	checkevent $00bb
+	checkevent EVENT_BUGGING_KURT_TOO_MUCH
 	iffalse UnknownScript_0x18e3d4
 	writetext UnknownText_0x18e7d8
 	closetext
@@ -335,7 +335,7 @@ UnknownScript_0x18e3d4:
 	closetext
 	loadmovesprites
 	spriteface $5, UP
-	setevent $00bb
+	setevent EVENT_BUGGING_KURT_TOO_MUCH
 	end
 
 UnknownScript_0x18e3e0:
@@ -353,7 +353,7 @@ KurtsGranddaughter1:
 	iftrue KurtsGranddaughter2Subscript
 	checkevent $0001
 	iftrue KurtsGranddaughterFunScript
-	checkevent $00c0
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Lonely
 	checkevent $0030
 	iftrue .Dad
@@ -392,7 +392,7 @@ KurtsGranddaughter2:
 	faceplayer
 KurtsGranddaughter2Subscript:
 	loadfont
-	checkevent $00bf
+	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue .GSBall
 	writetext KurtsGranddaughterHelpText
 	closetext

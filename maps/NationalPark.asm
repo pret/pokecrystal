@@ -244,11 +244,11 @@ PokefanfBeverly1Script:
 	iftrue UnknownScript_0x5c19b
 	checkpoke MARILL
 	iffalse UnknownScript_0x5c189
-	checkevent EVENT_SHOWED_BEVERLY_MARILL
+	checkevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5c160
 	writetext UnknownText_0x5c5bd
 	keeptextopen
-	setevent EVENT_SHOWED_BEVERLY_MARILL
+	setevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x5c18f
 	jump UnknownScript_0x5c163
 

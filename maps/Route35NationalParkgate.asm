@@ -27,7 +27,7 @@ UnknownScript_0x6a19f:
 	end
 
 UnknownScript_0x6a1a3:
-	checkflag $0011
+	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue UnknownScript_0x6a1ac
 	dotrigger $0
 	return
@@ -41,7 +41,7 @@ UnknownScript_0x6a1af:
 	if_equal TUESDAY, UnknownScript_0x6a1ca
 	if_equal THURSDAY, UnknownScript_0x6a1ca
 	if_equal SATURDAY, UnknownScript_0x6a1ca
-	checkflag $0011
+	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue UnknownScript_0x6a1ac
 	disappear $2
 	appear $3
@@ -88,7 +88,7 @@ OfficerScript_0x6a204:
 	if_equal FRIDAY, UnknownScript_0x6a2c7
 	faceplayer
 	loadfont
-	checkflag $0051
+	checkflag ENGINE_51
 	iftrue UnknownScript_0x6a2c1
 	scall UnknownScript_0x6a2de
 	writetext UnknownText_0x6a2eb
@@ -99,7 +99,7 @@ OfficerScript_0x6a204:
 	special Function13a12
 	clearevent $0308
 UnknownScript_0x6a234:
-	setflag $0011
+	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext UnknownText_0x6a39d
 	keeptextopen
@@ -193,7 +193,7 @@ UnknownScript_0x6a2c7:
 OfficerScript_0x6a2ca:
 	faceplayer
 	loadfont
-	checkflag $0051
+	checkflag ENGINE_51
 	iftrue UnknownScript_0x6a2c1
 	writetext UnknownText_0x6a894
 	closetext

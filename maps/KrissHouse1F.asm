@@ -35,8 +35,8 @@ UnknownScript_0x7a4f6:
 	keeptextopen
 	stringtotext GearName, $1
 	scall UnknownScript_0x7a57e
-	setflag $0004
-	setflag $0002
+	setflag ENGINE_POKEGEAR
+	setflag ENGINE_PHONE_CARD
 	addcellnum $1
 	dotrigger $1
 	setevent $06c7

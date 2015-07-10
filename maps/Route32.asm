@@ -39,7 +39,7 @@ UnknownScript_0x190470:
 	loadfont
 	checkevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	iftrue UnknownScript_0x1904a5
-	checkflag $001b
+	checkflag ENGINE_ZEPHYRBADGE
 	iffalse UnknownScript_0x19049f
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x19048f
@@ -211,7 +211,7 @@ FisherRalph1Script:
 	loadfont
 	checkflag ENGINE_RALPH
 	iftrue UnknownScript_0x19057d
-	checkflag $0052
+	checkflag ENGINE_SPECIAL_WILDDATA
 	iftrue UnknownScript_0x1905f1
 	checkcellnum $11
 	iftrue UnknownScript_0x190603

@@ -48,7 +48,7 @@ TwinScript_0x75ebb:
 	showemote $0, $3, 15
 	applymovement $4, MovementData_0x7600c
 	spriteface $3, RIGHT
-	checkflag $0063
+	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x75f03
 	loadfont
 	writetext UnknownText_0x76284

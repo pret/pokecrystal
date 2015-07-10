@@ -92,7 +92,7 @@ UnknownScript_0x196ec9:
 	writetext UnknownText_0x1973cc
 	playsound SFX_ITEM
 	waitbutton
-	setflag $000b
+	setflag ENGINE_POKEDEX
 	writetext UnknownText_0x1973de
 	closetext
 	loadmovesprites

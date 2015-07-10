@@ -14,7 +14,7 @@ SuperNerdScript_0x5d6fe:
 TeacherScript_0x5d701:
 	faceplayer
 	loadfont
-	checkflag $0013
+	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	iftrue UnknownScript_0x5d70f
 	writetext UnknownText_0x5d956
 	closetext
@@ -152,15 +152,15 @@ GruntF2Script:
 Buena:
 	faceplayer
 	loadfont
-	checkflag $0013
+	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	iftrue UnknownScript_0x5d865
 	checkevent EVENT_MET_BUENA
 	iffalse UnknownScript_0x5d800
-	checkflag $0060
+	checkflag ENGINE_60
 	iftrue UnknownScript_0x5d82f
 	checkcode VAR_HOUR
 	if_less_than $12, UnknownScript_0x5d893
-	checkflag $005f
+	checkflag ENGINE_5F
 	iffalse UnknownScript_0x5d80a
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d86b
@@ -197,7 +197,7 @@ UnknownScript_0x5d7be:
 	writevarcode VAR_BLUECARDBALANCE
 	waitbutton
 	playsound SFX_TRANSACTION
-	setflag $0060
+	setflag ENGINE_60
 	pause 20
 	spriteface $b, RIGHT
 	loadfont
@@ -252,7 +252,7 @@ UnknownScript_0x5d83f:
 	end
 
 UnknownScript_0x5d845:
-	setflag $0060
+	setflag ENGINE_60
 	loadfont
 	writetext UnknownText_0x5e01c
 	closetext
