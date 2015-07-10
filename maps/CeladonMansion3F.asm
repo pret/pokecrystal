@@ -11,7 +11,7 @@ CooltrainerMScript_0x71670: ; 0x71670
 	loadfont
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
-	if_greater_than $f8, UnknownScript_0x7167e
+	if_greater_than 248, UnknownScript_0x7167e
 	closetext
 	loadmovesprites
 	end
