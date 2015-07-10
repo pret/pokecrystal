@@ -16,9 +16,9 @@ ENGINE_ROCKET_SIGNAL_ON_CH20                 EQU $0e
 ENGINE_CREDITS_SKIP                          EQU $0f
 ENGINE_BUG_CONTEST_ON                        EQU $10
 ENGINE_BUG_CONTEST_TIMER                     EQU $11
-ENGINE_ROCKETS_IN_RADIO_TOWER                EQU $12
-ENGINE_BIKE_SHOP_CALL_ENABLED                EQU $13
-ENGINE_14                                    EQU $14
+ENGINE_12                                    EQU $12
+ENGINE_ROCKETS_IN_RADIO_TOWER                EQU $13
+ENGINE_BIKE_SHOP_CALL_ENABLED                EQU $14
 ENGINE_GIVE_POKERUS                          EQU $15
 ENGINE_16                                    EQU $16
 ENGINE_ROCKETS_IN_MAHOGANY                   EQU $17

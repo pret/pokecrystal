@@ -14,7 +14,7 @@ SuperNerdScript_0x5d6fe:
 TeacherScript_0x5d701:
 	faceplayer
 	loadfont
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x5d70f
 	writetext UnknownText_0x5d956
 	closetext
@@ -152,7 +152,7 @@ GruntF2Script:
 Buena:
 	faceplayer
 	loadfont
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x5d865
 	checkevent EVENT_MET_BUENA
 	iffalse UnknownScript_0x5d800

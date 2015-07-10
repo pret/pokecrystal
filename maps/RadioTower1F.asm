@@ -8,7 +8,7 @@ RadioTower1F_MapScriptHeader:
 ReceptionistScript_0x5cd29:
 	faceplayer
 	loadfont
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x5cd37
 	writetext UnknownText_0x5ce77
 	closetext

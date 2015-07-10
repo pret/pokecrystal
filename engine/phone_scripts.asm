@@ -1054,7 +1054,7 @@ UnknownScript_0xbd743:
 	iftrue UnknownScript_0xbd7cc
 
 UnknownScript_0xbd768:
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xbd772
 	farjump UnknownScript_0xa0960
 
@@ -1072,7 +1072,7 @@ UnknownScript_0xbd77d:
 UnknownScript_0xbd784:
 	trainertotext PICNICKER, 2, $0
 	farscall UnknownScript_0xbe41e
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xbd7d9
 	checkflag ENGINE_GINA
 	iftrue UnknownScript_0xbd7c8
@@ -1115,7 +1115,7 @@ UnknownScript_0xbd7dd:
 UnknownScript_0xbd7e7:
 	trainertotext JUGGLER, 1, $0
 	farscall UnknownScript_0xbde4e
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xbd7f9
 	farjump UnknownScript_0xa09c8
 
@@ -1125,7 +1125,7 @@ UnknownScript_0xbd7f9:
 UnknownScript_0xbd7fd:
 	trainertotext JUGGLER, 1, $0
 	farscall UnknownScript_0xbe1b6
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xbd80f
 	farjump UnknownScript_0xa0848
 

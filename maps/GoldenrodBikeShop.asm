@@ -24,7 +24,7 @@ ClerkScript_0x54750:
 	playsound SFX_KEY_ITEM
 	waitbutton
 	itemnotify
-	setflag ENGINE_14
+	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	setevent EVENT_GOT_BICYCLE
 UnknownScript_0x54775:
 	writetext UnknownText_0x5485f

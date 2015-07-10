@@ -1,5 +1,5 @@
 UnknownScript_0xa0b14:
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xa0b73
 	checkcode VAR_HOUR
 	if_greater_than $11, UnknownScript_0xa0b4b
@@ -7,7 +7,7 @@ UnknownScript_0xa0b14:
 	jump UnknownScript_0xa0c0e
 
 UnknownScript_0xa0b26:
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xa0b73
 	scall UnknownScript_0xa0b4f
 	jump UnknownScript_0xa0b77

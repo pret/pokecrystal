@@ -11,7 +11,7 @@ BlackBeltScript_0x19997f:
 TeacherScript_0x199982:
 	faceplayer
 	loadfont
-	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x199990
 	writetext UnknownText_0x199a0e
 	closetext

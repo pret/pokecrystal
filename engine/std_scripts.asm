@@ -291,7 +291,7 @@ GoldenrodRocketsScript:
 	end
 
 RadioTowerRocketsScript:
-	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	setflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	setevent $06cf
 	setevent $06d1
 	clearevent $06ce
