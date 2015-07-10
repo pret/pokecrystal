@@ -1,14 +1,13 @@
-SproutTower2F_MapScriptHeader: ; 0x18477a
+SproutTower2F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18477c
 
-TrainerSageNico: ; 0x18477c
+TrainerSageNico:
 	; bit/flag number
-	dw $412
+	dw EVENT_BEAT_SAGE_NICO
 
 	; trainer group && trainer id
 	db SAGE, NICO
@@ -24,20 +23,18 @@ TrainerSageNico: ; 0x18477c
 
 	; script when talk again
 	dw SageNicoScript
-; 0x184788
 
-SageNicoScript: ; 0x184788
+SageNicoScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1847ff
 	closetext
 	loadmovesprites
 	end
-; 0x184790
 
-TrainerSageEdmond: ; 0x184790
+TrainerSageEdmond:
 	; bit/flag number
-	dw $417
+	dw EVENT_BEAT_SAGE_EDMOND
 
 	; trainer group && trainer id
 	db SAGE, EDMOND
@@ -53,59 +50,50 @@ TrainerSageEdmond: ; 0x184790
 
 	; script when talk again
 	dw SageEdmondScript
-; 0x18479c
 
-SageEdmondScript: ; 0x18479c
+SageEdmondScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18486f
 	closetext
 	loadmovesprites
 	end
-; 0x1847a4
 
-MapSproutTower2FSignpost0Script: ; 0x1847a4
+MapSproutTower2FSignpost0Script:
 	jumptext UnknownText_0x1848c8
-; 0x1847a7
 
-ItemFragment_0x1847a7: ; 0x1847a7
+ItemFragment_0x1847a7:
 	db X_ACCURACY, 1
-; 0x1847a9
 
-SageNicoSeenText: ; 0x1847a9
+SageNicoSeenText:
 	text "However hard we"
 	line "battle, the TOWER"
 	cont "will stand strong."
 	done
-; 0x1847df
 
-SageNicoBeatenText: ; 0x1847df
+SageNicoBeatenText:
 	text "I fought hard but"
 	line "I'm too weak."
 	done
-; 0x1847ff
 
-UnknownText_0x1847ff: ; 0x1847ff
+UnknownText_0x1847ff:
 	text "The flexible pil-"
 	line "lar protects the"
 
 	para "TOWER, even from"
 	line "earthquakes."
 	done
-; 0x184841
 
-SageEdmondSeenText: ; 0x184841
+SageEdmondSeenText:
 	text "…Sway like leaves"
 	line "in the wind…"
 	done
-; 0x184861
 
-SageEdmondBeatenText: ; 0x184861
+SageEdmondBeatenText:
 	text "Oh, I'm weak!"
 	done
-; 0x18486f
 
-UnknownText_0x18486f: ; 0x18486f
+UnknownText_0x18486f:
 	text "I tried to copy"
 	line "BELLSPROUT's"
 
@@ -115,17 +103,15 @@ UnknownText_0x18486f: ; 0x18486f
 	para "But I didn't train"
 	line "well enough."
 	done
-; 0x1848c8
 
-UnknownText_0x1848c8: ; 0x1848c8
+UnknownText_0x1848c8:
 	text "A #MON statue…"
 
 	para "It looks very"
 	line "distinguished."
 	done
-; 0x1848f5
 
-SproutTower2F_MapEventHeader: ; 0x1848f5
+SproutTower2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -148,4 +134,3 @@ SproutTower2F_MapEventHeader: ; 0x1848f5
 	person_event SPRITE_SAGE, 7, 16, $a, $0, 255, 255, $92, 4, TrainerSageNico, $ffff
 	person_event SPRITE_SAGE, 18, 13, $8, $0, 255, 255, $92, 5, TrainerSageEdmond, $ffff
 	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x1847a7, $0648
-; 0x18493b

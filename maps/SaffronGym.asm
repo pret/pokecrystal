@@ -40,7 +40,7 @@ SabrinaScript_0x189c2e:
 
 TrainerMediumRebecca:
 	; bit/flag number
-	dw $590
+	dw EVENT_BEAT_MEDIUM_REBECCA
 
 	; trainer group && trainer id
 	db MEDIUM, REBECCA
@@ -67,7 +67,7 @@ MediumRebeccaScript:
 
 TrainerPsychicFranklin:
 	; bit/flag number
-	dw $43b
+	dw EVENT_BEAT_PSYCHIC_FRANKLIN
 
 	; trainer group && trainer id
 	db PSYCHIC_T, FRANKLIN
@@ -94,7 +94,7 @@ PsychicFranklinScript:
 
 TrainerMediumDoris:
 	; bit/flag number
-	dw $591
+	dw EVENT_BEAT_MEDIUM_DORIS
 
 	; trainer group && trainer id
 	db MEDIUM, DORIS
@@ -121,7 +121,7 @@ MediumDorisScript:
 
 TrainerPsychicJared:
 	; bit/flag number
-	dw $444
+	dw EVENT_BEAT_PSYCHIC_JARED
 
 	; trainer group && trainer id
 	db PSYCHIC_T, JARED

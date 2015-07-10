@@ -1,4 +1,4 @@
-Route43_MapScriptHeader: ; 0x19d04c
+Route43_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,23 +8,20 @@ Route43_MapScriptHeader: ; 0x19d04c
 	; callbacks
 
 	dbw 5, UnknownScript_0x19d051
-; 0x19d051
 
-UnknownScript_0x19d051: ; 0x19d051
+UnknownScript_0x19d051:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19d05c
 	domaptrigger GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE, $0
 	return
-; 0x19d05c
 
-UnknownScript_0x19d05c: ; 0x19d05c
+UnknownScript_0x19d05c:
 	domaptrigger GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE, $1
 	return
-; 0x19d061
 
-TrainerCamperSpencer: ; 0x19d061
+TrainerCamperSpencer:
 	; bit/flag number
-	dw $42c
+	dw EVENT_BEAT_CAMPER_SPENCER
 
 	; trainer group && trainer id
 	db CAMPER, SPENCER
@@ -40,20 +37,18 @@ TrainerCamperSpencer: ; 0x19d061
 
 	; script when talk again
 	dw CamperSpencerScript
-; 0x19d06d
 
-CamperSpencerScript: ; 0x19d06d
+CamperSpencerScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19d57e
 	closetext
 	loadmovesprites
 	end
-; 0x19d075
 
-TrainerPokemaniacBen: ; 0x19d075
+TrainerPokemaniacBen:
 	; bit/flag number
-	dw $4e8
+	dw EVENT_BEAT_POKEMANIAC_BEN
 
 	; trainer group && trainer id
 	db POKEMANIAC, BEN
@@ -69,20 +64,18 @@ TrainerPokemaniacBen: ; 0x19d075
 
 	; script when talk again
 	dw PokemaniacBenScript
-; 0x19d081
 
-PokemaniacBenScript: ; 0x19d081
+PokemaniacBenScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19d2d2
 	closetext
 	loadmovesprites
 	end
-; 0x19d089
 
-TrainerPokemaniacBrent1: ; 0x19d089
+TrainerPokemaniacBrent1:
 	; bit/flag number
-	dw $4e9
+	dw EVENT_BEAT_POKEMANIAC_BRENT
 
 	; trainer group && trainer id
 	db POKEMANIAC, BRENT1
@@ -98,9 +91,8 @@ TrainerPokemaniacBrent1: ; 0x19d089
 
 	; script when talk again
 	dw PokemaniacBrent1Script
-; 0x19d095
 
-PokemaniacBrent1Script: ; 0x19d095
+PokemaniacBrent1Script:
 	writecode VAR_CALLERID, $1e
 	talkaftercancel
 	loadfont
@@ -115,20 +107,18 @@ PokemaniacBrent1Script: ; 0x19d095
 	setevent $0291
 	scall UnknownScript_0x19d12c
 	jump UnknownScript_0x19d0bb
-; 0x19d0b8
 
-UnknownScript_0x19d0b8: ; 0x19d0b8
+UnknownScript_0x19d0b8:
 	scall UnknownScript_0x19d130
-UnknownScript_0x19d0bb: ; 0x19d0bb
+UnknownScript_0x19d0bb:
 	askforphonenumber $1e
 	if_equal $1, UnknownScript_0x19d140
 	if_equal $2, UnknownScript_0x19d13c
 	trainertotext POKEMANIAC, BRENT1, $0
 	scall UnknownScript_0x19d134
 	jump UnknownScript_0x19d138
-; 0x19d0cf
 
-UnknownScript_0x19d0cf: ; 0x19d0cf
+UnknownScript_0x19d0cf:
 	scall UnknownScript_0x19d144
 	winlosstext PokemaniacBrent1BeatenText, $0000
 	copybytetovar wda07
@@ -136,88 +126,77 @@ UnknownScript_0x19d0cf: ; 0x19d0cf
 	if_equal $2, UnknownScript_0x19d0f0
 	if_equal $1, UnknownScript_0x19d0f6
 	if_equal $0, UnknownScript_0x19d0fc
-UnknownScript_0x19d0ea: ; 0x19d0ea
+UnknownScript_0x19d0ea:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d123
-UnknownScript_0x19d0f0: ; 0x19d0f0
+UnknownScript_0x19d0f0:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19d116
-UnknownScript_0x19d0f6: ; 0x19d0f6
+UnknownScript_0x19d0f6:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19d109
-UnknownScript_0x19d0fc: ; 0x19d0fc
+UnknownScript_0x19d0fc:
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
 	returnafterbattle
 	loadvar wda07, $1
 	clearflag $0077
 	end
-; 0x19d109
 
-UnknownScript_0x19d109: ; 0x19d109
+UnknownScript_0x19d109:
 	loadtrainer POKEMANIAC, BRENT2
 	startbattle
 	returnafterbattle
 	loadvar wda07, $2
 	clearflag $0077
 	end
-; 0x19d116
 
-UnknownScript_0x19d116: ; 0x19d116
+UnknownScript_0x19d116:
 	loadtrainer POKEMANIAC, BRENT3
 	startbattle
 	returnafterbattle
 	loadvar wda07, $3
 	clearflag $0077
 	end
-; 0x19d123
 
-UnknownScript_0x19d123: ; 0x19d123
+UnknownScript_0x19d123:
 	loadtrainer POKEMANIAC, BRENT4
 	startbattle
 	returnafterbattle
 	clearflag $0077
 	end
-; 0x19d12c
 
-UnknownScript_0x19d12c: ; 0x19d12c
+UnknownScript_0x19d12c:
 	jumpstd asknumber1m
 	end
-; 0x19d130
 
-UnknownScript_0x19d130: ; 0x19d130
+UnknownScript_0x19d130:
 	jumpstd asknumber2m
 	end
-; 0x19d134
 
-UnknownScript_0x19d134: ; 0x19d134
+UnknownScript_0x19d134:
 	jumpstd registerednumberm
 	end
-; 0x19d138
 
-UnknownScript_0x19d138: ; 0x19d138
+UnknownScript_0x19d138:
 	jumpstd numberacceptedm
 	end
-; 0x19d13c
 
-UnknownScript_0x19d13c: ; 0x19d13c
+UnknownScript_0x19d13c:
 	jumpstd numberdeclinedm
 	end
-; 0x19d140
 
-UnknownScript_0x19d140: ; 0x19d140
+UnknownScript_0x19d140:
 	jumpstd phonefullm
 	end
-; 0x19d144
 
-UnknownScript_0x19d144: ; 0x19d144
+UnknownScript_0x19d144:
 	jumpstd rematchm
 	end
-; 0x19d148
 
-TrainerPokemaniacRon: ; 0x19d148
+TrainerPokemaniacRon:
 	; bit/flag number
-	dw $4ea
+	dw EVENT_BEAT_POKEMANIAC_RON
 
 	; trainer group && trainer id
 	db POKEMANIAC, RON
@@ -233,20 +212,18 @@ TrainerPokemaniacRon: ; 0x19d148
 
 	; script when talk again
 	dw PokemaniacRonScript
-; 0x19d154
 
-PokemaniacRonScript: ; 0x19d154
+PokemaniacRonScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19d3f8
 	closetext
 	loadmovesprites
 	end
-; 0x19d15c
 
-TrainerFisherMarvin: ; 0x19d15c
+TrainerFisherMarvin:
 	; bit/flag number
-	dw $453
+	dw EVENT_BEAT_FISHER_MARVIN
 
 	; trainer group && trainer id
 	db FISHER, MARVIN
@@ -262,20 +239,18 @@ TrainerFisherMarvin: ; 0x19d15c
 
 	; script when talk again
 	dw FisherMarvinScript
-; 0x19d168
 
-FisherMarvinScript: ; 0x19d168
+FisherMarvinScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19d4d3
 	closetext
 	loadmovesprites
 	end
-; 0x19d170
 
-TrainerPicnickerTiffany3: ; 0x19d170
+TrainerPicnickerTiffany3:
 	; bit/flag number
-	dw $491
+	dw EVENT_BEAT_PICNICKER_TIFFANY
 
 	; trainer group && trainer id
 	db PICNICKER, TIFFANY3
@@ -291,9 +266,8 @@ TrainerPicnickerTiffany3: ; 0x19d170
 
 	; script when talk again
 	dw PicnickerTiffany3Script
-; 0x19d17c
 
-PicnickerTiffany3Script: ; 0x19d17c
+PicnickerTiffany3Script:
 	writecode VAR_CALLERID, $1f
 	talkaftercancel
 	loadfont
@@ -312,20 +286,18 @@ PicnickerTiffany3Script: ; 0x19d17c
 	setevent EVENT_SHOWED_TIFFANY_CLEFAIRY
 	scall UnknownScript_0x19d239
 	jump UnknownScript_0x19d1ad
-; 0x19d1aa
 
-UnknownScript_0x19d1aa: ; 0x19d1aa
+UnknownScript_0x19d1aa:
 	scall UnknownScript_0x19d23d
-UnknownScript_0x19d1ad: ; 0x19d1ad
+UnknownScript_0x19d1ad:
 	askforphonenumber $1f
 	if_equal $1, UnknownScript_0x19d24d
 	if_equal $2, UnknownScript_0x19d249
 	trainertotext PICNICKER, TIFFANY3, $0
 	scall UnknownScript_0x19d241
 	jump UnknownScript_0x19d245
-; 0x19d1c1
 
-UnknownScript_0x19d1c1: ; 0x19d1c1
+UnknownScript_0x19d1c1:
 	scall UnknownScript_0x19d251
 	winlosstext PicnickerTiffany3BeatenText, $0000
 	copybytetovar wda08
@@ -333,136 +305,115 @@ UnknownScript_0x19d1c1: ; 0x19d1c1
 	if_equal $2, UnknownScript_0x19d1e2
 	if_equal $1, UnknownScript_0x19d1e8
 	if_equal $0, UnknownScript_0x19d1ee
-UnknownScript_0x19d1dc: ; 0x19d1dc
+UnknownScript_0x19d1dc:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d215
-UnknownScript_0x19d1e2: ; 0x19d1e2
+UnknownScript_0x19d1e2:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19d208
-UnknownScript_0x19d1e8: ; 0x19d1e8
+UnknownScript_0x19d1e8:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x19d1fb
-UnknownScript_0x19d1ee: ; 0x19d1ee
+UnknownScript_0x19d1ee:
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	returnafterbattle
 	loadvar wda08, $1
 	clearflag $0078
 	end
-; 0x19d1fb
 
-UnknownScript_0x19d1fb: ; 0x19d1fb
+UnknownScript_0x19d1fb:
 	loadtrainer PICNICKER, TIFFANY1
 	startbattle
 	returnafterbattle
 	loadvar wda08, $2
 	clearflag $0078
 	end
-; 0x19d208
 
-UnknownScript_0x19d208: ; 0x19d208
+UnknownScript_0x19d208:
 	loadtrainer PICNICKER, TIFFANY2
 	startbattle
 	returnafterbattle
 	loadvar wda08, $3
 	clearflag $0078
 	end
-; 0x19d215
 
-UnknownScript_0x19d215: ; 0x19d215
+UnknownScript_0x19d215:
 	loadtrainer PICNICKER, TIFFANY4
 	startbattle
 	returnafterbattle
 	clearflag $0078
 	end
-; 0x19d21e
 
-UnknownScript_0x19d21e: ; 0x19d21e
+UnknownScript_0x19d21e:
 	scall UnknownScript_0x19d255
 	verbosegiveitem PINK_BOW, 1
 	iffalse UnknownScript_0x19d230
 	clearflag $0085
 	setevent $0104
 	jump UnknownScript_0x19d245
-; 0x19d230
 
-UnknownScript_0x19d230: ; 0x19d230
+UnknownScript_0x19d230:
 	jump UnknownScript_0x19d259
-; 0x19d233
 
-UnknownScript_0x19d233: ; 0x19d233
+UnknownScript_0x19d233:
 	writetext UnknownText_0x19d64b
 	closetext
 	loadmovesprites
 	end
-; 0x19d239
 
-UnknownScript_0x19d239: ; 0x19d239
+UnknownScript_0x19d239:
 	jumpstd asknumber1f
 	end
-; 0x19d23d
 
-UnknownScript_0x19d23d: ; 0x19d23d
+UnknownScript_0x19d23d:
 	jumpstd asknumber2f
 	end
-; 0x19d241
 
-UnknownScript_0x19d241: ; 0x19d241
+UnknownScript_0x19d241:
 	jumpstd registerednumberf
 	end
-; 0x19d245
 
-UnknownScript_0x19d245: ; 0x19d245
+UnknownScript_0x19d245:
 	jumpstd numberacceptedf
 	end
-; 0x19d249
 
-UnknownScript_0x19d249: ; 0x19d249
+UnknownScript_0x19d249:
 	jumpstd numberdeclinedf
 	end
-; 0x19d24d
 
-UnknownScript_0x19d24d: ; 0x19d24d
+UnknownScript_0x19d24d:
 	jumpstd phonefullf
 	end
-; 0x19d251
 
-UnknownScript_0x19d251: ; 0x19d251
+UnknownScript_0x19d251:
 	jumpstd rematchf
 	end
-; 0x19d255
 
-UnknownScript_0x19d255: ; 0x19d255
+UnknownScript_0x19d255:
 	jumpstd giftf
 	end
-; 0x19d259
 
-UnknownScript_0x19d259: ; 0x19d259
+UnknownScript_0x19d259:
 	jumpstd packfullf
 	end
-; 0x19d25d
 
-MapRoute43Signpost0Script: ; 0x19d25d
+MapRoute43Signpost0Script:
 	jumptext UnknownText_0x19d67b
-; 0x19d260
 
-MapRoute43Signpost1Script: ; 0x19d260
+MapRoute43Signpost1Script:
 	jumptext UnknownText_0x19d6a2
-; 0x19d263
 
-MapRoute43Signpost2Script: ; 0x19d263
+MapRoute43Signpost2Script:
 	jumptext UnknownText_0x19d6c9
-; 0x19d266
 
-FruitTreeScript_0x19d266: ; 0x19d266
+FruitTreeScript_0x19d266:
 	fruittree $8
-; 0x19d268
 
-ItemFragment_0x19d268: ; 0x19d268
+ItemFragment_0x19d268:
 	db MAX_ETHER, 1
-; 0x19d26a
 
-PokemaniacBenSeenText: ; 0x19d26a
+PokemaniacBenSeenText:
 	text "I love #MON!"
 
 	para "That's why I"
@@ -471,15 +422,13 @@ PokemaniacBenSeenText: ; 0x19d26a
 	para "I'll keep on col-"
 	line "lecting #MON!"
 	done
-; 0x19d2b4
 
-PokemaniacBenBeatenText: ; 0x19d2b4
+PokemaniacBenBeatenText:
 	text "How could you do"
 	line "this to me?"
 	done
-; 0x19d2d2
 
-UnknownText_0x19d2d2: ; 0x19d2d2
+UnknownText_0x19d2d2:
 	text "What else do I"
 	line "like besides"
 	cont "#MON?"
@@ -487,28 +436,24 @@ UnknownText_0x19d2d2: ; 0x19d2d2
 	para "MARY on the radio."
 	line "I bet she's cute!"
 	done
-; 0x19d319
 
-PokemaniacBrent1SeenText: ; 0x19d319
+PokemaniacBrent1SeenText:
 	text "Hey! Do you have"
 	line "any rare #MON?"
 	done
-; 0x19d33a
 
-PokemaniacBrent1BeatenText: ; 0x19d33a
+PokemaniacBrent1BeatenText:
 	text "Oh, my poor #-"
 	line "MON! Darlings!"
 	done
-; 0x19d359
 
-UnknownText_0x19d359: ; 0x19d359
+UnknownText_0x19d359:
 	text "I'd be happy just"
 	line "to own a single"
 	cont "rare #MON."
 	done
-; 0x19d386
 
-PokemaniacRonSeenText: ; 0x19d386
+PokemaniacRonSeenText:
 	text "Would you get"
 	line "this?"
 
@@ -519,15 +464,13 @@ PokemaniacRonSeenText: ; 0x19d386
 	para "Darn it! My #-"
 	line "MON's great!"
 	done
-; 0x19d3d6
 
-PokemaniacRonBeatenText: ; 0x19d3d6
+PokemaniacRonBeatenText:
 	text "My NIDOKING did"
 	line "pretty right on!"
 	done
-; 0x19d3f8
 
-UnknownText_0x19d3f8: ; 0x19d3f8
+UnknownText_0x19d3f8:
 	text "It's okay for"
 	line "people to like"
 
@@ -538,9 +481,8 @@ UnknownText_0x19d3f8: ; 0x19d3f8
 	line "about having the"
 	cont "most powerful one."
 	done
-; 0x19d461
 
-FisherMarvinSeenText: ; 0x19d461
+FisherMarvinSeenText:
 	text "I'm in a slump."
 
 	para "Maybe it's the"
@@ -549,15 +491,13 @@ FisherMarvinSeenText: ; 0x19d461
 	para "Let's battle for a"
 	line "change of pace!"
 	done
-; 0x19d4b0
 
-FisherMarvinBeatenText: ; 0x19d4b0
+FisherMarvinBeatenText:
 	text "I lost, but I feel"
 	line "better anyway."
 	done
-; 0x19d4d3
 
-UnknownText_0x19d4d3: ; 0x19d4d3
+UnknownText_0x19d4d3:
 	text "KURT's LURE BALL"
 	line "is the best for"
 
@@ -568,76 +508,66 @@ UnknownText_0x19d4d3: ; 0x19d4d3
 	line "effective than a"
 	cont "ULTRA BALL."
 	done
-; 0x19d535
 
-CamperSpencerSeenText: ; 0x19d535
+CamperSpencerSeenText:
 	text "I can do so much"
 	line "with my #MON--"
 	cont "it's super-fun!"
 	done
-; 0x19d565
 
-CamperSpencerBeatenText: ; 0x19d565
+CamperSpencerBeatenText:
 	text "Losing isn't fun"
 	line "at all…"
 	done
-; 0x19d57e
 
-UnknownText_0x19d57e: ; 0x19d57e
+UnknownText_0x19d57e:
 	text "What is going on"
 	line "at LAKE OF RAGE?"
 
 	para "We were planning"
 	line "to camp there."
 	done
-; 0x19d5c1
 
-PicnickerTiffany3SeenText: ; 0x19d5c1
+PicnickerTiffany3SeenText:
 	text "Are you going to"
 	line "LAKE OF RAGE too?"
 
 	para "Let's play for a "
 	line "little while!"
 	done
-; 0x19d604
 
-PicnickerTiffany3BeatenText: ; 0x19d604
+PicnickerTiffany3BeatenText:
 	text "I played too much!"
 	done
-; 0x19d618
 
-UnknownText_0x19d618: ; 0x19d618
+UnknownText_0x19d618:
 	text "I'm having a pic-"
 	line "nic with #MON."
 
 	para "Won't you join us?"
 	done
-; 0x19d64b
 
-UnknownText_0x19d64b: ; 0x19d64b
+UnknownText_0x19d64b:
 	text "Isn't my CLEFAIRY"
 	line "just the most"
 	cont "adorable thing?"
 	done
-; 0x19d67b
 
-UnknownText_0x19d67b: ; 0x19d67b
+UnknownText_0x19d67b:
 	text "ROUTE 43"
 
 	para "LAKE OF RAGE -"
 	line "MAHOGANY TOWN"
 	done
-; 0x19d6a2
 
-UnknownText_0x19d6a2: ; 0x19d6a2
+UnknownText_0x19d6a2:
 	text "ROUTE 43"
 
 	para "LAKE OF RAGE -"
 	line "MAHOGANY TOWN"
 	done
-; 0x19d6c9
 
-UnknownText_0x19d6c9: ; 0x19d6c9
+UnknownText_0x19d6c9:
 	text "TRAINER TIPS"
 
 	para "All #MON have"
@@ -658,9 +588,8 @@ UnknownText_0x19d6c9: ; 0x19d6c9
 	para "weak against your"
 	line "#MON's type."
 	done
-; 0x19d78c
 
-Route43_MapEventHeader: ; 0x19d78c
+Route43_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -691,4 +620,3 @@ Route43_MapEventHeader: ; 0x19d78c
 	person_event SPRITE_YOUNGSTER, 44, 17, $a, $0, 255, 255, $a2, 3, TrainerCamperSpencer, $ffff
 	person_event SPRITE_FRUIT_TREE, 30, 5, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19d266, $ffff
 	person_event SPRITE_POKE_BALL, 36, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x19d268, $06b5
-; 0x19d822

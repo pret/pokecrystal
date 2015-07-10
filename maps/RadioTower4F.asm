@@ -1,16 +1,14 @@
-RadioTower4F_MapScriptHeader: ; 0x5eb80
+RadioTower4F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x5eb82
 
-FisherScript_0x5eb82: ; 0x5eb82
+FisherScript_0x5eb82:
 	jumptextfaceplayer UnknownText_0x5ec12
-; 0x5eb85
 
-TeacherScript_0x5eb85: ; 0x5eb85
+TeacherScript_0x5eb85:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_PINK_BOW_FROM_MARY
@@ -21,9 +19,8 @@ TeacherScript_0x5eb85: ; 0x5eb85
 	closetext
 	loadmovesprites
 	end
-; 0x5eb99
 
-UnknownScript_0x5eb99: ; 0x5eb99
+UnknownScript_0x5eb99:
 	writetext UnknownText_0x5ecab
 	keeptextopen
 	verbosegiveitem PINK_BOW, 1
@@ -33,28 +30,25 @@ UnknownScript_0x5eb99: ; 0x5eb99
 	loadmovesprites
 	setevent EVENT_GOT_PINK_BOW_FROM_MARY
 	end
-; 0x5ebac
 
-UnknownScript_0x5ebac: ; 0x5ebac
+UnknownScript_0x5ebac:
 	writetext UnknownText_0x5ed2c
 	closetext
-UnknownScript_0x5ebb0: ; 0x5ebb0
+UnknownScript_0x5ebb0:
 	loadmovesprites
 	end
-; 0x5ebb2
 
-GrowlitheScript_0x5ebb2: ; 0x5ebb2
+GrowlitheScript_0x5ebb2:
 	loadfont
 	writetext UnknownText_0x5ed66
 	cry MEOWTH
 	closetext
 	loadmovesprites
 	end
-; 0x5ebbc
 
-TrainerGruntM10: ; 0x5ebbc
+TrainerGruntM10:
 	; bit/flag number
-	dw $4fa
+	dw EVENT_BEAT_ROCKET_GRUNTM_10
 
 	; trainer group && trainer id
 	db GRUNTM, 10
@@ -70,20 +64,18 @@ TrainerGruntM10: ; 0x5ebbc
 
 	; script when talk again
 	dw GruntM10Script
-; 0x5ebc8
 
-GruntM10Script: ; 0x5ebc8
+GruntM10Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5ede2
 	closetext
 	loadmovesprites
 	end
-; 0x5ebd0
 
-TrainerExecutivem2: ; 0x5ebd0
+TrainerExecutivem2:
 	; bit/flag number
-	dw $572
+	dw EVENT_BEAT_ROCKET_EXECUTIVEM_2
 
 	; trainer group && trainer id
 	db EXECUTIVEM, 2
@@ -99,20 +91,18 @@ TrainerExecutivem2: ; 0x5ebd0
 
 	; script when talk again
 	dw Executivem2Script
-; 0x5ebdc
 
-Executivem2Script: ; 0x5ebdc
+Executivem2Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5ee69
 	closetext
 	loadmovesprites
 	end
-; 0x5ebe4
 
-TrainerGruntF4: ; 0x5ebe4
+TrainerGruntF4:
 	; bit/flag number
-	dw $513
+	dw EVENT_BEAT_ROCKET_GRUNTF_4
 
 	; trainer group && trainer id
 	db GRUNTF, 4
@@ -128,20 +118,18 @@ TrainerGruntF4: ; 0x5ebe4
 
 	; script when talk again
 	dw GruntF4Script
-; 0x5ebf0
 
-GruntF4Script: ; 0x5ebf0
+GruntF4Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5ef31
 	closetext
 	loadmovesprites
 	end
-; 0x5ebf8
 
-TrainerScientistRich: ; 0x5ebf8
+TrainerScientistRich:
 	; bit/flag number
-	dw $4a3
+	dw EVENT_BEAT_SCIENTIST_RICH
 
 	; trainer group && trainer id
 	db SCIENTIST, RICH
@@ -157,26 +145,22 @@ TrainerScientistRich: ; 0x5ebf8
 
 	; script when talk again
 	dw ScientistRichScript
-; 0x5ec04
 
-ScientistRichScript: ; 0x5ec04
+ScientistRichScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5efcb
 	closetext
 	loadmovesprites
 	end
-; 0x5ec0c
 
-MapRadioTower4FSignpost0Script: ; 0x5ec0c
+MapRadioTower4FSignpost0Script:
 	jumptext UnknownText_0x5effe
-; 0x5ec0f
 
-MapRadioTower4FSignpost1Script: ; 0x5ec0f
+MapRadioTower4FSignpost1Script:
 	jumptext UnknownText_0x5f00d
-; 0x5ec12
 
-UnknownText_0x5ec12: ; 0x5ec12
+UnknownText_0x5ec12:
 	text "I listened to the"
 	line "radio while I was"
 	cont "at the RUINS."
@@ -184,50 +168,44 @@ UnknownText_0x5ec12: ; 0x5ec12
 	para "I heard a strange"
 	line "broadcast there."
 	done
-; 0x5ec68
 
-UnknownText_0x5ec68: ; 0x5ec68
+UnknownText_0x5ec68:
 	text "MARY: Why? Why do"
 	line "I have to suffer"
 	cont "through this?"
 
 	para "MEOWTH, help me!"
 	done
-; 0x5ecab
 
-UnknownText_0x5ecab: ; 0x5ecab
+UnknownText_0x5ecab:
 	text "MARY: Oh! You're"
 	line "my little savior!"
 
 	para "Will you take this"
 	line "as my thanks?"
 	done
-; 0x5ecef
 
-UnknownText_0x5ecef: ; 0x5ecef
+UnknownText_0x5ecef:
 	text "MARY: It's just"
 	line "right for #MON"
 
 	para "that know normal-"
 	line "type moves."
 	done
-; 0x5ed2c
 
-UnknownText_0x5ed2c: ; 0x5ed2c
+UnknownText_0x5ed2c:
 	text "MARY: Please tune"
 	line "into me on PROF."
 
 	para "OAK'S #MON TALK"
 	line "show."
 	done
-; 0x5ed66
 
-UnknownText_0x5ed66: ; 0x5ed66
+UnknownText_0x5ed66:
 	text "MEOWTH: Meowth…"
 	done
-; 0x5ed77
 
-GruntM10SeenText: ; 0x5ed77
+GruntM10SeenText:
 	text "You plan to rescue"
 	line "the DIRECTOR?"
 
@@ -235,20 +213,17 @@ GruntM10SeenText: ; 0x5ed77
 	line "sible because I'm"
 	cont "going to beat you!"
 	done
-; 0x5edcf
 
-GruntM10BeatenText: ; 0x5edcf
+GruntM10BeatenText:
 	text "No! Unbelievable!"
 	done
-; 0x5ede2
 
-UnknownText_0x5ede2: ; 0x5ede2
+UnknownText_0x5ede2:
 	text "I don't believe"
 	line "it! I was beaten!"
 	done
-; 0x5ee04
 
-Executivem2SeenText: ; 0x5ee04
+Executivem2SeenText:
 	text "Stop! I'm known as"
 	line "the TEAM ROCKET"
 	cont "fortress!"
@@ -256,15 +231,13 @@ Executivem2SeenText: ; 0x5ee04
 	para "You're not taking"
 	line "another step!"
 	done
-; 0x5ee50
 
-Executivem2BeatenText: ; 0x5ee50
+Executivem2BeatenText:
 	text "The fortress came"
 	line "down!"
 	done
-; 0x5ee69
 
-UnknownText_0x5ee69: ; 0x5ee69
+UnknownText_0x5ee69:
 	text "You've earned my"
 	line "respect, so here's"
 	cont "some advice."
@@ -273,9 +246,8 @@ UnknownText_0x5ee69: ; 0x5ee69
 	line "You can still turn"
 	cont "back."
 	done
-; 0x5eec4
 
-GruntF4SeenText: ; 0x5eec4
+GruntF4SeenText:
 	text "Don't I think"
 	line "#MON are cute?"
 
@@ -285,58 +257,50 @@ GruntF4SeenText: ; 0x5eec4
 	para "after they beat"
 	line "yours!"
 	done
-; 0x5ef15
 
-GruntF4BeatenText: ; 0x5ef15
+GruntF4BeatenText:
 	text "Oh, no! They're so"
 	line "useless!"
 	done
-; 0x5ef31
 
-UnknownText_0x5ef31: ; 0x5ef31
+UnknownText_0x5ef31:
 	text "I love my"
 	line "beautiful self!"
 
 	para "Who cares about"
 	line "#MON?"
 	done
-; 0x5ef62
 
-ScientistRichSeenText: ; 0x5ef62
+ScientistRichSeenText:
 	text "Most excellent."
 
 	para "This RADIO TOWER"
 	line "will fulfill our"
 	cont "grand design."
 	done
-; 0x5efa3
 
-ScientistRichBeatenText: ; 0x5efa3
+ScientistRichBeatenText:
 	text "Hmmm…"
 
 	para "All grand plans"
 	line "come with snags."
 	done
-; 0x5efcb
 
-UnknownText_0x5efcb: ; 0x5efcb
+UnknownText_0x5efcb:
 	text "Do you honestly"
 	line "believe you can"
 	cont "stop TEAM ROCKET?"
 	done
-; 0x5effe
 
-UnknownText_0x5effe: ; 0x5effe
+UnknownText_0x5effe:
 	text "4F PRODUCTION"
 	done
-; 0x5f00d
 
-UnknownText_0x5f00d: ; 0x5f00d
+UnknownText_0x5f00d:
 	text "4F STUDIO 2"
 	done
-; 0x5f01a
 
-RadioTower4F_MapEventHeader: ; 0x5f01a
+RadioTower4F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -364,4 +328,3 @@ RadioTower4F_MapEventHeader: ; 0x5f01a
 	person_event SPRITE_ROCKET, 5, 18, $8, $2, 255, 255, $2, 2, TrainerExecutivem2, $06ce
 	person_event SPRITE_ROCKET_GIRL, 8, 16, $9, $0, 255, 255, $82, 1, TrainerGruntF4, $06ce
 	person_event SPRITE_SCIENTIST, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, $06ce
-; 0x5f099

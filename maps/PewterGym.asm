@@ -37,7 +37,7 @@ BrockScript_0x1a2864:
 
 TrainerCamperJerry:
 	; bit/flag number
-	dw $42b
+	dw EVENT_BEAT_CAMPER_JERRY
 
 	; trainer group && trainer id
 	db CAMPER, JERRY

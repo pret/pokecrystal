@@ -1,4 +1,4 @@
-Route17_MapScriptHeader: ; 0x1ad0a6
+Route17_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,17 +8,15 @@ Route17_MapScriptHeader: ; 0x1ad0a6
 	; callbacks
 
 	dbw 5, UnknownScript_0x1ad0ab
-; 0x1ad0ab
 
-UnknownScript_0x1ad0ab: ; 0x1ad0ab
+UnknownScript_0x1ad0ab:
 	setflag $0019
 	setflag $001a
 	return
-; 0x1ad0b2
 
-TrainerBikerCharles: ; 0x1ad0b2
+TrainerBikerCharles:
 	; bit/flag number
-	dw $436
+	dw EVENT_BEAT_BIKER_CHARLES
 
 	; trainer group && trainer id
 	db BIKER, CHARLES
@@ -34,20 +32,18 @@ TrainerBikerCharles: ; 0x1ad0b2
 
 	; script when talk again
 	dw BikerCharlesScript
-; 0x1ad0be
 
-BikerCharlesScript: ; 0x1ad0be
+BikerCharlesScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad293
 	closetext
 	loadmovesprites
 	end
-; 0x1ad0c6
 
-TrainerBikerRiley: ; 0x1ad0c6
+TrainerBikerRiley:
 	; bit/flag number
-	dw $437
+	dw EVENT_BEAT_BIKER_RILEY
 
 	; trainer group && trainer id
 	db BIKER, RILEY
@@ -63,20 +59,18 @@ TrainerBikerRiley: ; 0x1ad0c6
 
 	; script when talk again
 	dw BikerRileyScript
-; 0x1ad0d2
 
-BikerRileyScript: ; 0x1ad0d2
+BikerRileyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad13b
 	closetext
 	loadmovesprites
 	end
-; 0x1ad0da
 
-TrainerBikerJoel: ; 0x1ad0da
+TrainerBikerJoel:
 	; bit/flag number
-	dw $438
+	dw EVENT_BEAT_BIKER_JOEL
 
 	; trainer group && trainer id
 	db BIKER, JOEL
@@ -92,20 +86,18 @@ TrainerBikerJoel: ; 0x1ad0da
 
 	; script when talk again
 	dw BikerJoelScript
-; 0x1ad0e6
 
-BikerJoelScript: ; 0x1ad0e6
+BikerJoelScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad196
 	closetext
 	loadmovesprites
 	end
-; 0x1ad0ee
 
-TrainerBikerGlenn: ; 0x1ad0ee
+TrainerBikerGlenn:
 	; bit/flag number
-	dw $439
+	dw EVENT_BEAT_BIKER_GLENN
 
 	; trainer group && trainer id
 	db BIKER, GLENN
@@ -121,59 +113,50 @@ TrainerBikerGlenn: ; 0x1ad0ee
 
 	; script when talk again
 	dw BikerGlennScript
-; 0x1ad0fa
 
-BikerGlennScript: ; 0x1ad0fa
+BikerGlennScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad225
 	closetext
 	loadmovesprites
 	end
-; 0x1ad102
 
-MapRoute17SignpostItem0: ; 0x1ad102
+MapRoute17SignpostItem0:
 	dw $00f6
 	db MAX_ETHER
 	
-; 0x1ad105
 
-MapRoute17SignpostItem1: ; 0x1ad105
+MapRoute17SignpostItem1:
 	dw $00f7
 	db MAX_ELIXER
 	
-; 0x1ad108
 
-BikerRileySeenText: ; 0x1ad108
+BikerRileySeenText:
 	text "Hey, you! You're"
 	line "from JOHTO, huh?"
 	done
-; 0x1ad12a
 
-BikerRileyBeatenText: ; 0x1ad12a
+BikerRileyBeatenText:
 	text "Whoa, you kick!"
 	done
-; 0x1ad13b
 
-UnknownText_0x1ad13b: ; 0x1ad13b
+UnknownText_0x1ad13b:
 	text "Don't get cocky,"
 	line "you JOHTO punk!"
 	done
-; 0x1ad15c
 
-BikerJoelSeenText: ; 0x1ad15c
+BikerJoelSeenText:
 	text "Wow. That's a cool"
 	line "BICYCLE!"
 	done
-; 0x1ad178
 
-BikerJoelBeatenText: ; 0x1ad178
+BikerJoelBeatenText:
 	text "But you don't just"
 	line "look cool…"
 	done
-; 0x1ad196
 
-UnknownText_0x1ad196: ; 0x1ad196
+UnknownText_0x1ad196:
 	text "I look cool, but"
 	line "I'm weak, so I'm"
 	cont "not really cool."
@@ -181,47 +164,40 @@ UnknownText_0x1ad196: ; 0x1ad196
 	para "I have to train"
 	line "harder…"
 	done
-; 0x1ad1e0
 
-BikerGlennSeenText: ; 0x1ad1e0
+BikerGlennSeenText:
 	text "Hey! Want to have"
 	line "a speed battle?"
 	done
-; 0x1ad203
 
-BikerGlennBeatenText: ; 0x1ad203
+BikerGlennBeatenText:
 	text "Yikes! You've got"
 	line "awesome torque!"
 	done
-; 0x1ad225
 
-UnknownText_0x1ad225: ; 0x1ad225
+UnknownText_0x1ad225:
 	text "Hands-free riding"
 	line "is considered cool"
 	cont "on CYCLING ROAD."
 	done
-; 0x1ad25c
 
-BikerCharlesSeenText: ; 0x1ad25c
+BikerCharlesSeenText:
 	text "We're fearless"
 	line "highway stars!"
 	done
-; 0x1ad27a
 
-BikerCharlesBeatenText: ; 0x1ad27a
+BikerCharlesBeatenText:
 	text "Arrrgh! Crash and"
 	line "burn!"
 	done
-; 0x1ad293
 
-UnknownText_0x1ad293: ; 0x1ad293
+UnknownText_0x1ad293:
 	text "Reckless driving"
 	line "causes accidents!"
 	cont "Take it easy!"
 	done
-; 0x1ad2c5
 
-Route17_MapEventHeader: ; 0x1ad2c5
+Route17_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -244,4 +220,3 @@ Route17_MapEventHeader: ; 0x1ad2c5
 	person_event SPRITE_BIKER, 72, 13, $6, $0, 255, 255, $b2, 1, TrainerBikerJoel, $ffff
 	person_event SPRITE_BIKER, 57, 7, $a, $0, 255, 255, $b2, 3, TrainerBikerGlenn, $ffff
 	person_event SPRITE_BIKER, 84, 10, $9, $0, 255, 255, $b2, 4, TrainerBikerCharles, $ffff
-; 0x1ad313

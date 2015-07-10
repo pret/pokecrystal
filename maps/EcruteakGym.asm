@@ -92,7 +92,7 @@ UnknownScript_0x99dc6:
 
 TrainerSageJeffrey:
 	; bit/flag number
-	dw $415
+	dw EVENT_BEAT_SAGE_JEFFREY
 
 	; trainer group && trainer id
 	db SAGE, JEFFREY
@@ -119,7 +119,7 @@ SageJeffreyScript:
 
 TrainerSagePing:
 	; bit/flag number
-	dw $416
+	dw EVENT_BEAT_SAGE_PING
 
 	; trainer group && trainer id
 	db SAGE, PING
@@ -146,7 +146,7 @@ SagePingScript:
 
 TrainerMediumMartha:
 	; bit/flag number
-	dw $58b
+	dw EVENT_BEAT_MEDIUM_MARTHA
 
 	; trainer group && trainer id
 	db MEDIUM, MARTHA
@@ -173,7 +173,7 @@ MediumMarthaScript:
 
 TrainerMediumGrace:
 	; bit/flag number
-	dw $58c
+	dw EVENT_BEAT_MEDIUM_GRACE
 
 	; trainer group && trainer id
 	db MEDIUM, GRACE

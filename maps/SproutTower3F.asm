@@ -1,4 +1,4 @@
-SproutTower3F_MapScriptHeader: ; 0x18493b
+SproutTower3F_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,17 +8,14 @@ SproutTower3F_MapScriptHeader: ; 0x18493b
 
 	; callback count
 	db 0
-; 0x184945
 
-UnknownScript_0x184945: ; 0x184945
+UnknownScript_0x184945:
 	end
-; 0x184946
 
-UnknownScript_0x184946: ; 0x184946
+UnknownScript_0x184946:
 	end
-; 0x184947
 
-UnknownScript_0x184947: ; 0x184947
+UnknownScript_0x184947:
 	spriteface $0, UP
 	showemote $0, $0, 15
 	special Functionc48f
@@ -58,9 +55,8 @@ UnknownScript_0x184947: ; 0x184947
 	dotrigger $1
 	special RestartMapMusic
 	end
-; 0x1849a6
 
-SageLiScript: ; 0x1849a6
+SageLiScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_HM05_FLASH
@@ -82,18 +78,16 @@ SageLiScript: ; 0x1849a6
 	closetext
 	loadmovesprites
 	end
-; 0x1849d1
 
-UnknownScript_0x1849d1: ; 0x1849d1
+UnknownScript_0x1849d1:
 	writetext UnknownText_0x184d88
 	closetext
 	loadmovesprites
 	end
-; 0x1849d7
 
-TrainerSageJin: ; 0x1849d7
+TrainerSageJin:
 	; bit/flag number
-	dw $413
+	dw EVENT_BEAT_SAGE_JIN
 
 	; trainer group && trainer id
 	db SAGE, JIN
@@ -109,20 +103,18 @@ TrainerSageJin: ; 0x1849d7
 
 	; script when talk again
 	dw SageJinScript
-; 0x1849e3
 
-SageJinScript: ; 0x1849e3
+SageJinScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x184dfa
 	closetext
 	loadmovesprites
 	end
-; 0x1849eb
 
-TrainerSageTroy: ; 0x1849eb
+TrainerSageTroy:
 	; bit/flag number
-	dw $414
+	dw EVENT_BEAT_SAGE_TROY
 
 	; trainer group && trainer id
 	db SAGE, TROY
@@ -138,20 +130,18 @@ TrainerSageTroy: ; 0x1849eb
 
 	; script when talk again
 	dw SageTroyScript
-; 0x1849f7
 
-SageTroyScript: ; 0x1849f7
+SageTroyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x184ea4
 	closetext
 	loadmovesprites
 	end
-; 0x1849ff
 
-TrainerSageNeal: ; 0x1849ff
+TrainerSageNeal:
 	; bit/flag number
-	dw $418
+	dw EVENT_BEAT_SAGE_NEAL
 
 	; trainer group && trainer id
 	db SAGE, NEAL
@@ -167,53 +157,44 @@ TrainerSageNeal: ; 0x1849ff
 
 	; script when talk again
 	dw SageNealScript
-; 0x184a0b
 
-SageNealScript: ; 0x184a0b
+SageNealScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x184f12
 	closetext
 	loadmovesprites
 	end
-; 0x184a13
 
-MapSproutTower3FSignpost3Script: ; 0x184a13
+MapSproutTower3FSignpost3Script:
 	jumptext UnknownText_0x184f37
-; 0x184a16
 
-MapSproutTower3FSignpost5Script: ; 0x184a16
+MapSproutTower3FSignpost5Script:
 	jumptext UnknownText_0x184f61
-; 0x184a19
 
-ItemFragment_0x184a19: ; 0x184a19
+ItemFragment_0x184a19:
 	db POTION, 1
-; 0x184a1b
 
-ItemFragment_0x184a1b: ; 0x184a1b
+ItemFragment_0x184a1b:
 	db ESCAPE_ROPE, 1
-; 0x184a1d
 
-MovementData_0x184a1d: ; 0x184a1d
+MovementData_0x184a1d:
 	step_up
 	step_up
 	step_up
 	step_up
 	step_end
-; 0x184a22
 
-MovementData_0x184a22: ; 0x184a22
+MovementData_0x184a22:
 	step_up
 	step_end
-; 0x184a24
 
-MovementData_0x184a24: ; 0x184a24
+MovementData_0x184a24:
 	step_right
 	step_down
 	step_end
-; 0x184a27
 
-UnknownText_0x184a27: ; 0x184a27
+UnknownText_0x184a27:
 	text "ELDER: You are in-"
 	line "deed skilled as a"
 	cont "trainer."
@@ -233,9 +214,8 @@ UnknownText_0x184a27: ; 0x184a27
 	para "#MON are not"
 	line "tools of war…"
 	done
-; 0x184aec
 
-UnknownText_0x184aec: ; 0x184aec
+UnknownText_0x184aec:
 	text "…"
 	line "…Humph!"
 
@@ -260,15 +240,13 @@ UnknownText_0x184aec: ; 0x184aec
 	line "care less about"
 	cont "weak #MON."
 	done
-; 0x184bc8
 
-UnknownText_0x184bc8: ; 0x184bc8
+UnknownText_0x184bc8:
 	text "<RIVAL> used an"
 	line "ESCAPE ROPE!"
 	done
-; 0x184be0
 
-SageLiSeenText: ; 0x184be0
+SageLiSeenText:
 	text "So good of you to"
 	line "come here!"
 
@@ -290,14 +268,12 @@ SageLiSeenText: ; 0x184be0
 	para "your #MON and"
 	line "you!"
 	done
-; 0x184cb2
 
-SageLiBeatenText: ; 0x184cb2
+SageLiBeatenText:
 	text "Ah, excellent!"
 	done
-; 0x184cc2
 
-UnknownText_0x184cc2: ; 0x184cc2
+UnknownText_0x184cc2:
 	text "You and your #-"
 	line "MON should have"
 
@@ -307,9 +283,8 @@ UnknownText_0x184cc2: ; 0x184cc2
 	para "Take this FLASH"
 	line "HM."
 	done
-; 0x184d13
 
-UnknownText_0x184d13: ; 0x184d13
+UnknownText_0x184d13:
 	text "FLASH illuminates"
 	line "even the darkest"
 	cont "of all places."
@@ -320,29 +295,25 @@ UnknownText_0x184d13: ; 0x184d13
 	para "need the BADGE"
 	line "from VIOLET's GYM."
 	done
-; 0x184d88
 
-UnknownText_0x184d88: ; 0x184d88
+UnknownText_0x184d88:
 	text "I hope you learn"
 	line "and grow from your"
 	cont "journey."
 	done
-; 0x184db6
 
-SageJinSeenText: ; 0x184db6
+SageJinSeenText:
 	text "I train to find"
 	line "enlightenment in"
 	cont "#MON!"
 	done
-; 0x184dde
 
-SageJinBeatenText: ; 0x184dde
+SageJinBeatenText:
 	text "My training is"
 	line "incomplete…"
 	done
-; 0x184dfa
 
-UnknownText_0x184dfa: ; 0x184dfa
+UnknownText_0x184dfa:
 	text "As #MON grow"
 	line "stronger, so does"
 	cont "the trainer."
@@ -353,62 +324,53 @@ UnknownText_0x184dfa: ; 0x184dfa
 	para "stronger, so do"
 	line "the #MON."
 	done
-; 0x184e60
 
-SageTroySeenText: ; 0x184e60
+SageTroySeenText:
 	text "Let me see how"
 	line "much you trust"
 	cont "your #MON."
 	done
-; 0x184e8a
 
-SageTroyBeatenText: ; 0x184e8a
+SageTroyBeatenText:
 	text "Yes, your trust is"
 	line "real!"
 	done
-; 0x184ea4
 
-UnknownText_0x184ea4: ; 0x184ea4
+UnknownText_0x184ea4:
 	text "It is not far to"
 	line "the ELDER."
 	done
-; 0x184ec1
 
-SageNealSeenText: ; 0x184ec1
+SageNealSeenText:
 	text "The ELDER's HM"
 	line "lights even pitch-"
 	cont "black darkness."
 	done
-; 0x184ef3
 
-SageNealBeatenText: ; 0x184ef3
+SageNealBeatenText:
 	text "It is my head that"
 	line "is bright!"
 	done
-; 0x184f12
 
-UnknownText_0x184f12: ; 0x184f12
+UnknownText_0x184f12:
 	text "Let there be light"
 	line "on your journey."
 	done
-; 0x184f37
 
-UnknownText_0x184f37: ; 0x184f37
+UnknownText_0x184f37:
 	text "It's a powerful"
 	line "painting of a"
 	cont "BELLSPROUT."
 	done
-; 0x184f61
 
-UnknownText_0x184f61: ; 0x184f61
+UnknownText_0x184f61:
 	text "A #MON statue…"
 
 	para "It looks very"
 	line "distinguished."
 	done
-; 0x184f8e
 
-SproutTower3F_MapEventHeader: ; 0x184f8e
+SproutTower3F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -438,4 +400,3 @@ SproutTower3F_MapEventHeader: ; 0x184f8e
 	person_event SPRITE_POKE_BALL, 18, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a19, $0649
 	person_event SPRITE_POKE_BALL, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, $064a
 	person_event SPRITE_SILVER, 8, 14, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER
-; 0x18501a

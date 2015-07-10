@@ -1,14 +1,13 @@
-UnionCave1F_MapScriptHeader: ; 0x59b9a
+UnionCave1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x59b9c
 
-TrainerPokemaniacLarry: ; 0x59b9c
+TrainerPokemaniacLarry:
 	; bit/flag number
-	dw $4e4
+	dw EVENT_BEAT_POKEMANIAC_LARRY
 
 	; trainer group && trainer id
 	db POKEMANIAC, LARRY
@@ -24,20 +23,18 @@ TrainerPokemaniacLarry: ; 0x59b9c
 
 	; script when talk again
 	dw PokemaniacLarryScript
-; 0x59ba8
 
-PokemaniacLarryScript: ; 0x59ba8
+PokemaniacLarryScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x59d31
 	closetext
 	loadmovesprites
 	end
-; 0x59bb0
 
-TrainerHikerRussell: ; 0x59bb0
+TrainerHikerRussell:
 	; bit/flag number
-	dw $525
+	dw EVENT_BEAT_HIKER_RUSSELL
 
 	; trainer group && trainer id
 	db HIKER, RUSSELL
@@ -53,20 +50,18 @@ TrainerHikerRussell: ; 0x59bb0
 
 	; script when talk again
 	dw HikerRussellScript
-; 0x59bbc
 
-HikerRussellScript: ; 0x59bbc
+HikerRussellScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x59c6c
 	closetext
 	loadmovesprites
 	end
-; 0x59bc4
 
-TrainerHikerDaniel: ; 0x59bc4
+TrainerHikerDaniel:
 	; bit/flag number
-	dw $535
+	dw EVENT_BEAT_HIKER_DANIEL
 
 	; trainer group && trainer id
 	db HIKER, DANIEL
@@ -82,20 +77,18 @@ TrainerHikerDaniel: ; 0x59bc4
 
 	; script when talk again
 	dw HikerDanielScript
-; 0x59bd0
 
-HikerDanielScript: ; 0x59bd0
+HikerDanielScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x59dc9
 	closetext
 	loadmovesprites
 	end
-; 0x59bd8
 
-TrainerFirebreatherBill: ; 0x59bd8
+TrainerFirebreatherBill:
 	; bit/flag number
-	dw $44a
+	dw EVENT_BEAT_FIREBREATHER_BILL
 
 	; trainer group && trainer id
 	db FIREBREATHER, BILL
@@ -111,20 +104,18 @@ TrainerFirebreatherBill: ; 0x59bd8
 
 	; script when talk again
 	dw FirebreatherBillScript
-; 0x59be4
 
-FirebreatherBillScript: ; 0x59be4
+FirebreatherBillScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x59e6f
 	closetext
 	loadmovesprites
 	end
-; 0x59bec
 
-TrainerFirebreatherRay: ; 0x59bec
+TrainerFirebreatherRay:
 	; bit/flag number
-	dw $44c
+	dw EVENT_BEAT_FIREBREATHER_RAY
 
 	; trainer group && trainer id
 	db FIREBREATHER, RAY
@@ -140,38 +131,31 @@ TrainerFirebreatherRay: ; 0x59bec
 
 	; script when talk again
 	dw FirebreatherRayScript
-; 0x59bf8
 
-FirebreatherRayScript: ; 0x59bf8
+FirebreatherRayScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x59efc
 	closetext
 	loadmovesprites
 	end
-; 0x59c00
 
-ItemFragment_0x59c00: ; 0x59c00
+ItemFragment_0x59c00:
 	db GREAT_BALL, 1
-; 0x59c02
 
-ItemFragment_0x59c02: ; 0x59c02
+ItemFragment_0x59c02:
 	db X_ATTACK, 1
-; 0x59c04
 
-ItemFragment_0x59c04: ; 0x59c04
+ItemFragment_0x59c04:
 	db POTION, 1
-; 0x59c06
 
-ItemFragment_0x59c06: ; 0x59c06
+ItemFragment_0x59c06:
 	db AWAKENING, 1
-; 0x59c08
 
-UnknownScript_0x59c08: ; 0x59c08
+UnknownScript_0x59c08:
 	jumptext UnknownText_0x59f29
-; 0x59c0b
 
-HikerRussellSeenText: ; 0x59c0b
+HikerRussellSeenText:
 	text "You're headed to"
 	line "AZALEA, are you?"
 
@@ -179,14 +163,12 @@ HikerRussellSeenText: ; 0x59c0b
 	line "if you are good"
 	cont "enough to battle."
 	done
-; 0x59c5f
 
-HikerRussellBeatenText: ; 0x59c5f
+HikerRussellBeatenText:
 	text "Oh, oh, oh!"
 	done
-; 0x59c6c
 
-UnknownText_0x59c6c: ; 0x59c6c
+UnknownText_0x59c6c:
 	text "All right, then!"
 	line "I've decided."
 
@@ -194,9 +176,8 @@ UnknownText_0x59c6c: ; 0x59c6c
 	line "until my #MON"
 	cont "get tougher!"
 	done
-; 0x59cb5
 
-PokemaniacLarrySeenText: ; 0x59cb5
+PokemaniacLarrySeenText:
 	text "I roam far and"
 	line "wide in search of"
 	cont "#MON."
@@ -207,39 +188,34 @@ PokemaniacLarrySeenText: ; 0x59cb5
 	para "Then you're my"
 	line "collecting rival!"
 	done
-; 0x59d1b
 
-PokemaniacLarryBeatenText: ; 0x59d1b
+PokemaniacLarryBeatenText:
 	text "Ugh. My poor #-"
 	line "MON…"
 	done
-; 0x59d31
 
-UnknownText_0x59d31: ; 0x59d31
+UnknownText_0x59d31:
 	text "Every Friday, you"
 	line "can hear #MON"
 
 	para "roars from deep"
 	line "inside the cave."
 	done
-; 0x59d73
 
-HikerDanielSeenText: ; 0x59d73
+HikerDanielSeenText:
 	text "Whoa! What a"
 	line "surprise!"
 
 	para "I didn't expect to"
 	line "see anyone here!"
 	done
-; 0x59dae
 
-HikerDanielBeatenText: ; 0x59dae
+HikerDanielBeatenText:
 	text "Whoa! I'm beaten"
 	line "big time!"
 	done
-; 0x59dc9
 
-UnknownText_0x59dc9: ; 0x59dc9
+UnknownText_0x59dc9:
 	text "I was conned into"
 	line "buying a SLOWPOKE-"
 	cont "TAIL."
@@ -247,9 +223,8 @@ UnknownText_0x59dc9: ; 0x59dc9
 	para "I feel sorry for"
 	line "the poor #MON."
 	done
-; 0x59e15
 
-FirebreatherBillSeenText: ; 0x59e15
+FirebreatherBillSeenText:
 	text "ZUBAT's SUPERSONIC"
 	line "keeps confusing"
 	cont "my #MON."
@@ -257,23 +232,20 @@ FirebreatherBillSeenText: ; 0x59e15
 	para "I'm seriously"
 	line "upset about that!"
 	done
-; 0x59e60
 
-FirebreatherBillBeatenText: ; 0x59e60
+FirebreatherBillBeatenText:
 	text "I flamed out!"
 	done
-; 0x59e6f
 
-UnknownText_0x59e6f: ; 0x59e6f
+UnknownText_0x59e6f:
 	text "On weekends, you"
 	line "can hear strange"
 
 	para "roars from deep in"
 	line "the cave."
 	done
-; 0x59eaf
 
-FirebreatherRaySeenText: ; 0x59eaf
+FirebreatherRaySeenText:
 	text "If it's light, a"
 	line "cave isn't scary."
 
@@ -281,26 +253,22 @@ FirebreatherRaySeenText: ; 0x59eaf
 	line "#MON aren't"
 	cont "scary."
 	done
-; 0x59ef4
 
-FirebreatherRayBeatenText: ; 0x59ef4
+FirebreatherRayBeatenText:
 	text "FLASH!"
 	done
-; 0x59efc
 
-UnknownText_0x59efc: ; 0x59efc
+UnknownText_0x59efc:
 	text "It's my #MON's"
 	line "fire that lights"
 	cont "up this cave."
 	done
-; 0x59f29
 
-UnknownText_0x59f29: ; 0x59f29
+UnknownText_0x59f29:
 	text "UNION CAVE"
 	done
-; 0x59f35
 
-UnionCave1F_MapEventHeader: ; 0x59f35
+UnionCave1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -328,4 +296,3 @@ UnionCave1F_MapEventHeader: ; 0x59f35
 	person_event SPRITE_POKE_BALL, 6, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c02, $065b
 	person_event SPRITE_POKE_BALL, 21, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c04, $065c
 	person_event SPRITE_POKE_BALL, 37, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c06, $065d
-; 0x59fc4

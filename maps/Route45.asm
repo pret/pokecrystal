@@ -1,14 +1,13 @@
-Route45_MapScriptHeader: ; 0x19e09f
+Route45_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x19e0a1
 
-TrainerBlackbeltKenji3: ; 0x19e0a1
+TrainerBlackbeltKenji:
 	; bit/flag number
-	dw $4ab
+	dw EVENT_BEAT_BLACKBELT_KENJI
 
 	; trainer group && trainer id
 	db BLACKBELT_T, KENJI3
@@ -24,9 +23,8 @@ TrainerBlackbeltKenji3: ; 0x19e0a1
 
 	; script when talk again
 	dw BlackbeltKenji3Script
-; 0x19e0ad
 
-BlackbeltKenji3Script: ; 0x19e0ad
+BlackbeltKenji3Script:
 	writecode VAR_CALLERID, $22
 	talkaftercancel
 	loadfont
@@ -40,20 +38,18 @@ BlackbeltKenji3Script: ; 0x19e0ad
 	setevent $0299
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e0d0
-; 0x19e0cd
 
-UnknownScript_0x19e0cd: ; 0x19e0cd
+UnknownScript_0x19e0cd:
 	scall UnknownScript_0x19e11f
-UnknownScript_0x19e0d0: ; 0x19e0d0
+UnknownScript_0x19e0d0:
 	askforphonenumber $22
 	if_equal $1, UnknownScript_0x19e12f
 	if_equal $2, UnknownScript_0x19e12b
 	trainertotext BLACKBELT_T, KENJI3, $0
 	scall UnknownScript_0x19e123
 	jump UnknownScript_0x19e127
-; 0x19e0e4
 
-UnknownScript_0x19e0e4: ; 0x19e0e4
+UnknownScript_0x19e0e4:
 	checkcode VAR_1A
 	if_not_equal $1, UnknownScript_0x19e127
 	checkmorn
@@ -68,85 +64,70 @@ UnknownScript_0x19e0e4: ; 0x19e0e4
 	clearevent $026a
 	special Function11485
 	jump UnknownScript_0x19e127
-; 0x19e10c
 
-UnknownScript_0x19e10c: ; 0x19e10c
+UnknownScript_0x19e10c:
 	writetext UnknownText_0x19e634
 	closetext
 	loadmovesprites
 	end
-; 0x19e112
 
-UnknownScript_0x19e112: ; 0x19e112
+UnknownScript_0x19e112:
 	writetext UnknownText_0x19e66c
 	closetext
 	loadmovesprites
 	end
-; 0x19e118
 
-UnknownScript_0x19e118: ; 0x19e118
+UnknownScript_0x19e118:
 	jump UnknownScript_0x19e13b
-; 0x19e11b
 
-UnknownScript_0x19e11b: ; 0x19e11b
+UnknownScript_0x19e11b:
 	jumpstd asknumber1m
 	end
-; 0x19e11f
 
-UnknownScript_0x19e11f: ; 0x19e11f
+UnknownScript_0x19e11f:
 	jumpstd asknumber2m
 	end
-; 0x19e123
 
-UnknownScript_0x19e123: ; 0x19e123
+UnknownScript_0x19e123:
 	jumpstd registerednumberm
 	end
-; 0x19e127
 
-UnknownScript_0x19e127: ; 0x19e127
+UnknownScript_0x19e127:
 	jumpstd numberacceptedm
 	end
-; 0x19e12b
 
-UnknownScript_0x19e12b: ; 0x19e12b
+UnknownScript_0x19e12b:
 	jumpstd numberdeclinedm
 	end
-; 0x19e12f
 
-UnknownScript_0x19e12f: ; 0x19e12f
+UnknownScript_0x19e12f:
 	jumpstd phonefullm
 	end
-; 0x19e133
 
-UnknownScript_0x19e133: ; 0x19e133
+UnknownScript_0x19e133:
 	jumpstd rematchm
 	end
-; 0x19e137
 
-UnknownScript_0x19e137: ; 0x19e137
+UnknownScript_0x19e137:
 	jumpstd giftm
 	end
-; 0x19e13b
 
-UnknownScript_0x19e13b: ; 0x19e13b
+UnknownScript_0x19e13b:
 	jumpstd packfullm
 	end
-; 0x19e13f
 
-UnknownScript_0x19e13f: ; 0x19e13f
+UnknownScript_0x19e13f:
 	setevent EVENT_PARRY_IRON
 	jumpstd packfullm
 	end
-; 0x19e146
 
-UnknownScript_0x19e146: ; 0x19e146
+UnknownScript_0x19e146:
 	jumpstd rematchgiftm
 	end
-; 0x19e14a
 
-TrainerHikerErik: ; 0x19e14a
+TrainerHikerErik:
 	; bit/flag number
-	dw $52a
+	dw EVENT_BEAT_HIKER_ERIK
 
 	; trainer group && trainer id
 	db HIKER, ERIK
@@ -162,20 +143,18 @@ TrainerHikerErik: ; 0x19e14a
 
 	; script when talk again
 	dw HikerErikScript
-; 0x19e156
 
-HikerErikScript: ; 0x19e156
+HikerErikScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e301
 	closetext
 	loadmovesprites
 	end
-; 0x19e15e
 
-TrainerHikerMichael: ; 0x19e15e
+TrainerHikerMichael:
 	; bit/flag number
-	dw $52b
+	dw EVENT_BEAT_HIKER_MICHAEL
 
 	; trainer group && trainer id
 	db HIKER, MICHAEL
@@ -191,20 +170,18 @@ TrainerHikerMichael: ; 0x19e15e
 
 	; script when talk again
 	dw HikerMichaelScript
-; 0x19e16a
 
-HikerMichaelScript: ; 0x19e16a
+HikerMichaelScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e3b1
 	closetext
 	loadmovesprites
 	end
-; 0x19e172
 
-TrainerHikerParry3: ; 0x19e172
+TrainerHikerParry:
 	; bit/flag number
-	dw $52c
+	dw EVENT_BEAT_HIKER_PARRY
 
 	; trainer group && trainer id
 	db HIKER, PARRY3
@@ -220,9 +197,8 @@ TrainerHikerParry3: ; 0x19e172
 
 	; script when talk again
 	dw HikerParry3Script
-; 0x19e17e
 
-HikerParry3Script: ; 0x19e17e
+HikerParry3Script:
 	writecode VAR_CALLERID, $23
 	talkaftercancel
 	loadfont
@@ -237,51 +213,47 @@ HikerParry3Script: ; 0x19e17e
 	setevent $029b
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e1a4
-; 0x19e1a1
 
-UnknownScript_0x19e1a1: ; 0x19e1a1
+UnknownScript_0x19e1a1:
 	scall UnknownScript_0x19e11f
-UnknownScript_0x19e1a4: ; 0x19e1a4
+UnknownScript_0x19e1a4:
 	askforphonenumber $23
 	if_equal $1, UnknownScript_0x19e12f
 	if_equal $2, UnknownScript_0x19e12b
 	trainertotext HIKER, PARRY1, $0
 	scall UnknownScript_0x19e123
 	jump UnknownScript_0x19e127
-; 0x19e1b8
 
-UnknownScript_0x19e1b8: ; 0x19e1b8
+UnknownScript_0x19e1b8:
 	scall UnknownScript_0x19e133
 	winlosstext HikerParry3BeatenText, $0000
 	copybytetovar wda0c
 	if_equal $2, UnknownScript_0x19e1cf
 	if_equal $1, UnknownScript_0x19e1d5
 	if_equal $0, UnknownScript_0x19e1db
-UnknownScript_0x19e1cf: ; 0x19e1c
+UnknownScript_0x19e1cf:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19e1f5
-UnknownScript_0x19e1d5: ; 0x19e1d5
+UnknownScript_0x19e1d5:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19e1e8
-UnknownScript_0x19e1db: ; 0x19e1db
+UnknownScript_0x19e1db:
 	loadtrainer HIKER, PARRY3
 	startbattle
 	returnafterbattle
 	loadvar wda0c, $1
 	clearflag $007b
 	end
-; 0x19e1e8
 
-UnknownScript_0x19e1e8: ; 0x19e1e8
+UnknownScript_0x19e1e8:
 	loadtrainer HIKER, PARRY1
 	startbattle
 	returnafterbattle
 	loadvar wda0c, $2
 	clearflag $007b
 	end
-; 0x19e1f5
 
-UnknownScript_0x19e1f5: ; 0x19e1f5
+UnknownScript_0x19e1f5:
 	loadtrainer HIKER, PARRY2
 	startbattle
 	returnafterbattle
@@ -295,13 +267,11 @@ UnknownScript_0x19e1f5: ; 0x19e1f5
 	iffalse UnknownScript_0x19e13f
 	setevent $0268
 	jump UnknownScript_0x19e127
-; 0x19e218
 
-UnknownScript_0x19e218: ; 0x19e218
+UnknownScript_0x19e218:
 	end
-; 0x19e219
 
-UnknownScript_0x19e219: ; 0x19e219
+UnknownScript_0x19e219:
 	loadfont
 	writetext UnknownText_0x19e52c
 	closetext
@@ -310,11 +280,10 @@ UnknownScript_0x19e219: ; 0x19e219
 	clearevent EVENT_PARRY_IRON
 	setevent $0268
 	jump UnknownScript_0x19e127
-; 0x19e22d
 
-TrainerHikerTimothy: ; 0x19e22d
+TrainerHikerTimothy:
 	; bit/flag number
-	dw $52d
+	dw EVENT_BEAT_HIKER_TIMOTHY
 
 	; trainer group && trainer id
 	db HIKER, TIMOTHY
@@ -330,20 +299,18 @@ TrainerHikerTimothy: ; 0x19e22d
 
 	; script when talk again
 	dw HikerTimothyScript
-; 0x19e239
 
-HikerTimothyScript: ; 0x19e239
+HikerTimothyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e4f1
 	closetext
 	loadmovesprites
 	end
-; 0x19e241
 
-TrainerCooltrainermRyan: ; 0x19e241
+TrainerCooltrainermRyan:
 	; bit/flag number
-	dw $54f
+	dw EVENT_BEAT_COOLTRAINERM_RYAN
 
 	; trainer group && trainer id
 	db COOLTRAINERM, RYAN
@@ -359,20 +326,18 @@ TrainerCooltrainermRyan: ; 0x19e241
 
 	; script when talk again
 	dw CooltrainermRyanScript
-; 0x19e24d
 
-CooltrainermRyanScript: ; 0x19e24d
+CooltrainermRyanScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e70d
 	closetext
 	loadmovesprites
 	end
-; 0x19e255
 
-TrainerCooltrainerfKelly: ; 0x19e255
+TrainerCooltrainerfKelly:
 	; bit/flag number
-	dw $561
+	dw EVENT_BEAT_COOLTRAINERF_KELLY
 
 	; trainer group && trainer id
 	db COOLTRAINERF, KELLY
@@ -388,21 +353,19 @@ TrainerCooltrainerfKelly: ; 0x19e255
 
 	; script when talk again
 	dw CooltrainerfKellyScript
-; 0x19e261
 
-CooltrainerfKellyScript: ; 0x19e261
+CooltrainerfKellyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e7d1
 	closetext
 	loadmovesprites
 	end
-; 0x19e269
 
-YoungsterScript_0x19e269: ; 0x19e269
+YoungsterScript_0x19e269:
 	faceplayer
 	loadfont
-	checkevent $05c3
+	checkevent EVENT_BEAT_CAMPER_QUENTIN
 	iftrue UnknownScript_0x19e285
 	writetext UnknownText_0x19e87f
 	closetext
@@ -411,56 +374,46 @@ YoungsterScript_0x19e269: ; 0x19e269
 	loadtrainer CAMPER, QUENTIN
 	startbattle
 	returnafterbattle
-	setevent $05c3
+	setevent EVENT_BEAT_CAMPER_QUENTIN
 	loadmovesprites
 	end
-; 0x19e285
 
-UnknownScript_0x19e285: ; 0x19e285
+UnknownScript_0x19e285:
 	writetext UnknownText_0x19e8bb
 	closetext
 	loadmovesprites
 	end
-; 0x19e28b
 
-UnknownScript_0x19e28b: ; 0x19e28b
+UnknownScript_0x19e28b:
 	writetext UnknownText_0x19e830
 	closetext
 	loadmovesprites
 	end
-; 0x19e291
 
-MapRoute45Signpost0Script: ; 0x19e291
+MapRoute45Signpost0Script:
 	jumptext UnknownText_0x19e8fe
-; 0x19e294
 
-FruitTreeScript_0x19e294: ; 0x19e294
+FruitTreeScript_0x19e294:
 	fruittree $c
-; 0x19e296
 
-ItemFragment_0x19e296: ; 0x19e296
+ItemFragment_0x19e296:
 	db NUGGET, 1
-; 0x19e298
 
-ItemFragment_0x19e298: ; 0x19e298
+ItemFragment_0x19e298:
 	db REVIVE, 1
-; 0x19e29a
 
-ItemFragment_0x19e29a: ; 0x19e29a
+ItemFragment_0x19e29a:
 	db ELIXER, 1
-; 0x19e29c
 
-ItemFragment_0x19e29c: ; 0x19e29c
+ItemFragment_0x19e29c:
 	db MAX_POTION, 1
-; 0x19e29e
 
-MapRoute45SignpostItem1: ; 0x19e29e
+MapRoute45SignpostItem1:
 	dw $00af
 	db PP_UP
 	
-; 0x19e2a1
 
-HikerErikSeenText: ; 0x19e2a1
+HikerErikSeenText:
 	text "Be prepared for"
 	line "anything!"
 
@@ -468,23 +421,20 @@ HikerErikSeenText: ; 0x19e2a1
 	line "#MON have been"
 	cont "raised properly!"
 	done
-; 0x19e2ef
 
-HikerErikBeatenText: ; 0x19e2ef
+HikerErikBeatenText:
 	text "Oh, I lost that!"
 	done
-; 0x19e301
 
-UnknownText_0x19e301: ; 0x19e301
+UnknownText_0x19e301:
 	text "I'll head back to"
 	line "BLACKTHORN's ICE"
 
 	para "PATH and train"
 	line "some more."
 	done
-; 0x19e33d
 
-HikerMichaelSeenText: ; 0x19e33d
+HikerMichaelSeenText:
 	text "Yo! You're spunky!"
 	line "But you know what?"
 
@@ -492,15 +442,13 @@ HikerMichaelSeenText: ; 0x19e33d
 	line "sheer spunkiness,"
 	cont "I'm the man!"
 	done
-; 0x19e392
 
-HikerMichaelBeatenText: ; 0x19e392
+HikerMichaelBeatenText:
 	text "My #MON weren't"
 	line "spunky enough!"
 	done
-; 0x19e3b1
 
-UnknownText_0x19e3b1: ; 0x19e3b1
+UnknownText_0x19e3b1:
 	text "Boy, do I love"
 	line "HP UP! Mmmm, yum!"
 
@@ -509,30 +457,26 @@ UnknownText_0x19e3b1: ; 0x19e3b1
 
 	para "I can't help it!"
 	done
-; 0x19e3fd
 
-HikerParry3SeenText: ; 0x19e3fd
+HikerParry3SeenText:
 	text "My #MON are"
 	line "power packed!"
 	done
-; 0x19e418
 
-HikerParry3BeatenText: ; 0x19e418
+HikerParry3BeatenText:
 	text "Wahahah! I'm the"
 	line "big loser!"
 	done
-; 0x19e434
 
-UnknownText_0x19e434: ; 0x19e434
+UnknownText_0x19e434:
 	text "I'm not much good"
 	line "at thinking, see?"
 
 	para "So, I just plow"
 	line "ahead with power!"
 	done
-; 0x19e47a
 
-HikerTimothySeenText: ; 0x19e47a
+HikerTimothySeenText:
 	text "Why do I climb"
 	line "mountains?"
 
@@ -545,24 +489,21 @@ HikerTimothySeenText: ; 0x19e47a
 	para "Because they're"
 	line "there!"
 	done
-; 0x19e4d6
 
-HikerTimothyBeatenText: ; 0x19e4d6
+HikerTimothyBeatenText:
 	text "Losses…"
 	line "They're there too!"
 	done
-; 0x19e4f1
 
-UnknownText_0x19e4f1: ; 0x19e4f1
+UnknownText_0x19e4f1:
 	text "The best thing to"
 	line "ever happen to me"
 
 	para "was discovering"
 	line "#MON."
 	done
-; 0x19e52c
 
-UnknownText_0x19e52c: ; 0x19e52c
+UnknownText_0x19e52c:
 	text "I just can't find"
 	line "a way to win!"
 
@@ -574,23 +515,20 @@ UnknownText_0x19e52c: ; 0x19e52c
 	para "you couldn't take"
 	line "when we last met."
 	done
-; 0x19e59c
 
-BlackbeltKenji3SeenText: ; 0x19e59c
+BlackbeltKenji3SeenText:
 	text "I was training"
 	line "here alone."
 
 	para "Behold the fruits"
 	line "of my labor!"
 	done
-; 0x19e5d7
 
-BlackbeltKenji3BeatenText: ; 0x19e5d7
+BlackbeltKenji3BeatenText:
 	text "Waaaargh!"
 	done
-; 0x19e5e2
 
-UnknownText_0x19e5e2: ; 0x19e5e2
+UnknownText_0x19e5e2:
 	text "This calls for"
 	line "extreme measures."
 
@@ -598,16 +536,14 @@ UnknownText_0x19e5e2: ; 0x19e5e2
 	line "hills and train in"
 	cont "solitude."
 	done
-; 0x19e634
 
-UnknownText_0x19e634: ; 0x19e634
+UnknownText_0x19e634:
 	text "I'm going to train"
 	line "a bit more before"
 	cont "I break for lunch."
 	done
-; 0x19e66c
 
-UnknownText_0x19e66c: ; 0x19e66c
+UnknownText_0x19e66c:
 	text "We had plenty of"
 	line "rest at lunch, so"
 
@@ -617,22 +553,19 @@ UnknownText_0x19e66c: ; 0x19e66c
 	para "We're going to"
 	line "train again!"
 	done
-; 0x19e6cb
 
-CooltrainermRyanSeenText: ; 0x19e6cb
+CooltrainermRyanSeenText:
 	text "What are your"
 	line "thoughts on rais-"
 	cont "ing #MON?"
 	done
-; 0x19e6f6
 
-CooltrainermRyanBeatenText: ; 0x19e6f6
+CooltrainermRyanBeatenText:
 	text "You've won my"
 	line "respect."
 	done
-; 0x19e70d
 
-UnknownText_0x19e70d: ; 0x19e70d
+UnknownText_0x19e70d:
 	text "I see you're rais-"
 	line "ing your #MON"
 	cont "with care."
@@ -641,9 +574,8 @@ UnknownText_0x19e70d: ; 0x19e70d
 	line "will save you in"
 	cont "tough situations."
 	done
-; 0x19e76f
 
-CooltrainerfKellySeenText: ; 0x19e76f
+CooltrainerfKellySeenText:
 	text "What is your"
 	line "battle strategy?"
 
@@ -651,14 +583,12 @@ CooltrainerfKellySeenText: ; 0x19e76f
 	line "use strong moves"
 	cont "indiscriminately."
 	done
-; 0x19e7c2
 
-CooltrainerfKellyBeatenText: ; 0x19e7c2
+CooltrainerfKellyBeatenText:
 	text "Fine. I lost."
 	done
-; 0x19e7d1
 
-UnknownText_0x19e7d1: ; 0x19e7d1
+UnknownText_0x19e7d1:
 	text "I'm not in favor"
 	line "of overly power-"
 	cont "ful moves."
@@ -667,9 +597,8 @@ UnknownText_0x19e7d1: ; 0x19e7d1
 	line "I also don't want"
 	cont "to harm #MON."
 	done
-; 0x19e830
 
-UnknownText_0x19e830: ; 0x19e830
+UnknownText_0x19e830:
 	text "I'm really, really"
 	line "tough!"
 
@@ -677,36 +606,31 @@ UnknownText_0x19e830: ; 0x19e830
 	line "I can prove how"
 	cont "tough I really am?"
 	done
-; 0x19e87f
 
-UnknownText_0x19e87f: ; 0x19e87f
+UnknownText_0x19e87f:
 	text "I'm really, really"
 	line "tough!"
 	done
-; 0x19e899
 
-UnknownText_0x19e899: ; 0x19e899
+UnknownText_0x19e899:
 	text "I was tough at the"
 	line "BATTLE TOWER…"
 	done
-; 0x19e8bb
 
-UnknownText_0x19e8bb: ; 0x19e8bb
+UnknownText_0x19e8bb:
 	text "Have you been to"
 	line "the BATTLE TOWER?"
 
 	para "I never, ever lose"
 	line "there, but…"
 	done
-; 0x19e8fe
 
-UnknownText_0x19e8fe: ; 0x19e8fe
+UnknownText_0x19e8fe:
 	text "ROUTE 45"
 	line "MOUNTAIN RD. AHEAD"
 	done
-; 0x19e91b
 
-Route45_MapEventHeader: ; 0x19e91b
+Route45_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -726,9 +650,9 @@ Route45_MapEventHeader: ; 0x19e91b
 	db 13
 	person_event SPRITE_POKEFAN_M, 20, 14, $9, $0, 255, 255, $b2, 1, TrainerHikerErik, $ffff
 	person_event SPRITE_POKEFAN_M, 69, 19, $9, $0, 255, 255, $b2, 2, TrainerHikerMichael, $ffff
-	person_event SPRITE_POKEFAN_M, 32, 9, $7, $0, 255, 255, $b2, 2, TrainerHikerParry3, $ffff
+	person_event SPRITE_POKEFAN_M, 32, 9, $7, $0, 255, 255, $b2, 2, TrainerHikerParry, $ffff
 	person_event SPRITE_POKEFAN_M, 69, 13, $8, $0, 255, 255, $b2, 1, TrainerHikerTimothy, $ffff
-	person_event SPRITE_BLACK_BELT, 54, 15, $a, $0, 255, 255, $b2, 2, TrainerBlackbeltKenji3, $ffff
+	person_event SPRITE_BLACK_BELT, 54, 15, $a, $0, 255, 255, $b2, 2, TrainerBlackbeltKenji, $ffff
 	person_event SPRITE_COOLTRAINER_M, 22, 21, $8, $0, 255, 255, $82, 1, TrainerCooltrainermRyan, $ffff
 	person_event SPRITE_COOLTRAINER_F, 40, 9, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfKelly, $ffff
 	person_event SPRITE_FRUIT_TREE, 86, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19e294, $ffff
@@ -737,4 +661,3 @@ Route45_MapEventHeader: ; 0x19e91b
 	person_event SPRITE_POKE_BALL, 24, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29a, $06ba
 	person_event SPRITE_POKE_BALL, 37, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29c, $06bb
 	person_event SPRITE_YOUNGSTER, 74, 8, $3, $0, 255, 255, $a0, 0, YoungsterScript_0x19e269, $ffff
-; 0x19e9d9

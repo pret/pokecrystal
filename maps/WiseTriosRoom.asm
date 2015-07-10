@@ -1,4 +1,4 @@
-WiseTriosRoom_MapScriptHeader: ; 0x98565
+WiseTriosRoom_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,17 +12,14 @@ WiseTriosRoom_MapScriptHeader: ; 0x98565
 	; callbacks
 
 	dbw 2, UnknownScript_0x98574
-; 0x98572
 
-UnknownScript_0x98572: ; 0x98572
+UnknownScript_0x98572:
 	end
-; 0x98573
 
-UnknownScript_0x98573: ; 0x98573
+UnknownScript_0x98573:
 	end
-; 0x98574
 
-UnknownScript_0x98574: ; 0x98574
+UnknownScript_0x98574:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue UnknownScript_0x98593
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
@@ -32,33 +29,27 @@ UnknownScript_0x98574: ; 0x98574
 	clearevent $07ab
 	setevent $07ac
 	return
-; 0x9858c
 
-UnknownScript_0x9858c: ; 0x9858c
+UnknownScript_0x9858c:
 	setevent $07ab
 	clearevent $07ac
 	return
-; 0x98593
 
-UnknownScript_0x98593: ; 0x98593
+UnknownScript_0x98593:
 	setevent $07ab
 	setevent $07ac
 	return
-; 0x9859a
 
-SageScript_0x9859a: ; 0x9859a
+SageScript_0x9859a:
 	jumptextfaceplayer UnknownText_0x9862b
-; 0x9859d
 
-SageScript_0x9859d: ; 0x9859d
+SageScript_0x9859d:
 	jumptextfaceplayer UnknownText_0x9868b
-; 0x985a0
 
-SageScript_0x985a0: ; 0x985a0
+SageScript_0x985a0:
 	jumptextfaceplayer UnknownText_0x987af
-; 0x985a3
 
-UnknownScript_0x985a3: ; 0x985a3
+UnknownScript_0x985a3:
 	spriteface $4, UP
 	spriteface $0, DOWN
 	showemote $0, $4, 20
@@ -73,11 +64,10 @@ UnknownScript_0x985a3: ; 0x985a3
 	applymovement $4, MovementData_0x98625
 	spriteface $4, LEFT
 	end
-; 0x985c6
 
-TrainerSageGaku: ; 0x985c6
+TrainerSageGaku:
 	; bit/flag number
-	dw $5c9
+	dw EVENT_BEAT_SAGE_GAKU
 
 	; trainer group && trainer id
 	db SAGE, GAKU
@@ -93,19 +83,17 @@ TrainerSageGaku: ; 0x985c6
 
 	; script when talk again
 	dw SageGakuScript
-; 0x985d2
 
-SageGakuScript: ; 0x985d2
+SageGakuScript:
 	loadfont
 	writetext UnknownText_0x98938
 	closetext
 	loadmovesprites
 	end
-; 0x985d9
 
-TrainerSageMasa: ; 0x985d9
+TrainerSageMasa:
 	; bit/flag number
-	dw $5ca
+	dw EVENT_BEAT_SAGE_MASA
 
 	; trainer group && trainer id
 	db SAGE, MASA
@@ -121,19 +109,17 @@ TrainerSageMasa: ; 0x985d9
 
 	; script when talk again
 	dw SageMasaScript
-; 0x985e5
 
-SageMasaScript: ; 0x985e5
+SageMasaScript:
 	loadfont
 	writetext UnknownText_0x98a35
 	closetext
 	loadmovesprites
 	end
-; 0x985ec
 
-TrainerSageKoji: ; 0x985ec
+TrainerSageKoji:
 	; bit/flag number
-	dw $5cb
+	dw EVENT_BEAT_SAGE_KOJI
 
 	; trainer group && trainer id
 	db SAGE, KOJI
@@ -149,9 +135,8 @@ TrainerSageKoji: ; 0x985ec
 
 	; script when talk again
 	dw SageKojiScript
-; 0x985f8
 
-SageKojiScript: ; 0x985f8
+SageKojiScript:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9861b
 	pause 10
@@ -167,35 +152,30 @@ SageKojiScript: ; 0x985f8
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	dotrigger $1
 	end
-; 0x9861b
 
-UnknownScript_0x9861b: ; 0x9861b
+UnknownScript_0x9861b:
 	loadfont
 	writetext UnknownText_0x98db5
 	closetext
 	loadmovesprites
 	end
-; 0x98622
 
-MovementData_0x98622: ; 0x98622
+MovementData_0x98622:
 	step_left
 	step_left
 	step_end
-; 0x98625
 
-MovementData_0x98625: ; 0x98625
+MovementData_0x98625:
 	step_right
 	step_down
 	step_end
-; 0x98628
 
-MovementData_0x98628: ; 0x98628
+MovementData_0x98628:
 	step_right
 	step_down
 	step_end
-; 0x9862b
 
-UnknownText_0x9862b: ; 0x9862b
+UnknownText_0x9862b:
 	text "Astounding…"
 
 	para "SUICUNE, ENTEI and"
@@ -205,9 +185,8 @@ UnknownText_0x9862b: ; 0x9862b
 	para "Is the legend"
 	line "coming true?"
 	done
-; 0x9868b
 
-UnknownText_0x9868b: ; 0x9868b
+UnknownText_0x9868b:
 	text "We train at the"
 	line "BURNED TOWER, but"
 
@@ -220,9 +199,8 @@ UnknownText_0x9868b: ; 0x9868b
 	para "deliberately made"
 	line "by someone."
 	done
-; 0x98712
 
-UnknownText_0x98712: ; 0x98712
+UnknownText_0x98712:
 	text "TIN TOWER may be"
 	line "entered by those"
 
@@ -238,18 +216,16 @@ UnknownText_0x98712: ; 0x98712
 	para "to refrain from"
 	line "entering!"
 	done
-; 0x987af
 
-UnknownText_0x987af: ; 0x987af
+UnknownText_0x987af:
 	text "We, the WISE TRIO,"
 	line "are the protectors"
 
 	para "of the legendary"
 	line "#MON."
 	done
-; 0x987ed
 
-SageGakuSeenText: ; 0x987ed
+SageGakuSeenText:
 	text "Legend has it that"
 	line "upon the emergence"
 
@@ -278,15 +254,13 @@ SageGakuSeenText: ; 0x987ed
 	para "worthiness to go"
 	line "inside!"
 	done
-; 0x98914
 
-SageGakuBeatenText: ; 0x98914
+SageGakuBeatenText:
 	text "Stronger than we"
 	line "thought? Perhaps…"
 	done
-; 0x98938
 
-UnknownText_0x98938: ; 0x98938
+UnknownText_0x98938:
 	text "Ah, so it is you"
 	line "who claim to have"
 
@@ -300,24 +274,21 @@ UnknownText_0x98938: ; 0x98938
 	line "they can't be seen"
 	cont "while they sleep…"
 	done
-; 0x989d2
 
-SageMasaSeenText: ; 0x989d2
+SageMasaSeenText:
 	text "Can you be trusted"
 	line "with the truth?"
 
 	para "I must ascertain"
 	line "your worthiness."
 	done
-; 0x98a18
 
-SageMasaBeatenText: ; 0x98a18
+SageMasaBeatenText:
 	text "…I will tell you"
 	line "the truth…"
 	done
-; 0x98a35
 
-UnknownText_0x98a35: ; 0x98a35
+UnknownText_0x98a35:
 	text "In the past, there"
 	line "were two nine-tier"
 	cont "towers here."
@@ -366,30 +337,26 @@ UnknownText_0x98a35: ; 0x98a35
 	line "the BURNED TOWER"
 	cont "came to be."
 	done
-; 0x98c42
 
-SageKojiSeenText: ; 0x98c42
+SageKojiSeenText:
 	text "Let me see your"
 	line "power!"
 	done
-; 0x98c5a
 
-SageKojiBeatenText: ; 0x98c5a
+SageKojiBeatenText:
 	text "Too strong!"
 	line "Why?"
 	done
-; 0x98c6c
 
-UnknownText_0x98c6c: ; 0x98c6c
+UnknownText_0x98c6c:
 	text "You… Are you the"
 	line "trainer who is"
 
 	para "awaited by the"
 	line "legendary #MON?"
 	done
-; 0x98cac
 
-UnknownText_0x98cac: ; 0x98cac
+UnknownText_0x98cac:
 	text "I see…"
 
 	para "We, the WISE TRIO,"
@@ -414,17 +381,15 @@ UnknownText_0x98cac: ; 0x98cac
 	para "SUICUNE will put"
 	line "you to the test."
 	done
-; 0x98db5
 
-UnknownText_0x98db5: ; 0x98db5
+UnknownText_0x98db5:
 	text "Please, do go on."
 
 	para "SUICUNE will put"
 	line "you to the test."
 	done
-; 0x98dea
 
-WiseTriosRoom_MapEventHeader: ; 0x98dea
+WiseTriosRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -449,4 +414,3 @@ WiseTriosRoom_MapEventHeader: ; 0x98dea
 	person_event SPRITE_SAGE, 6, 8, $6, $0, 255, 255, $2, 2, TrainerSageGaku, $07ac
 	person_event SPRITE_SAGE, 10, 8, $7, $0, 255, 255, $2, 2, TrainerSageMasa, $07ac
 	person_event SPRITE_SAGE, 8, 10, $8, $0, 255, 255, $2, 2, TrainerSageKoji, $07ac
-; 0x98e55

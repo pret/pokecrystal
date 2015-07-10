@@ -62,7 +62,7 @@ AzaleaGymTriggerRockets:
 
 TrainerTwinsAmyandmay1:
 	; bit/flag number
-	dw $464
+	dw EVENT_BEAT_TWINS_AMY_AND_MAY
 
 	; trainer group && trainer id
 	db TWINS, AMYANDMAY1
@@ -89,7 +89,7 @@ TwinsAmyandmay1Script:
 
 TrainerTwinsAmyandmay2:
 	; bit/flag number
-	dw $464
+	dw EVENT_BEAT_TWINS_AMY_AND_MAY
 
 	; trainer group && trainer id
 	db TWINS, AMYANDMAY2
@@ -116,7 +116,7 @@ TwinsAmyandmay2Script:
 
 TrainerBug_catcherBug_catcher_benny:
 	; bit/flag number
-	dw $53c
+	dw EVENT_BEAT_BUG_CATCHER_BENNY
 
 	; trainer group && trainer id
 	db BUG_CATCHER, BUG_CATCHER_BENNY
@@ -143,7 +143,7 @@ Bug_catcherBug_catcher_bennyScript:
 
 TrainerBug_catcherAl:
 	; bit/flag number
-	dw $53d
+	dw EVENT_BEAT_BUG_CATCHER_AL
 
 	; trainer group && trainer id
 	db BUG_CATCHER, AL
@@ -170,7 +170,7 @@ Bug_catcherAlScript:
 
 TrainerBug_catcherJosh:
 	; bit/flag number
-	dw $53e
+	dw EVENT_BEAT_BUG_CATCHER_JOSH
 
 	; trainer group && trainer id
 	db BUG_CATCHER, JOSH

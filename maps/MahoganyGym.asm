@@ -63,7 +63,7 @@ MahoganyGymTriggerRockets:
 
 TrainerSkierRoxanne:
 	; bit/flag number
-	dw $592
+	dw EVENT_BEAT_SKIER_ROXANNE
 
 	; trainer group && trainer id
 	db SKIER, ROXANNE
@@ -90,7 +90,7 @@ SkierRoxanneScript:
 
 TrainerSkierClarissa:
 	; bit/flag number
-	dw $593
+	dw EVENT_BEAT_SKIER_CLARISSA
 
 	; trainer group && trainer id
 	db SKIER, CLARISSA
@@ -117,7 +117,7 @@ SkierClarissaScript:
 
 TrainerBoarderRonald:
 	; bit/flag number
-	dw $40e
+	dw EVENT_BEAT_BOARDER_RONALD
 
 	; trainer group && trainer id
 	db BOARDER, RONALD
@@ -144,7 +144,7 @@ BoarderRonaldScript:
 
 TrainerBoarderBrad:
 	; bit/flag number
-	dw $40f
+	dw EVENT_BEAT_BOARDER_BRAD
 
 	; trainer group && trainer id
 	db BOARDER, BRAD
@@ -171,7 +171,7 @@ BoarderBradScript:
 
 TrainerBoarderDouglas:
 	; bit/flag number
-	dw $410
+	dw EVENT_BEAT_BOARDER_DOUGLAS
 
 	; trainer group && trainer id
 	db BOARDER, DOUGLAS

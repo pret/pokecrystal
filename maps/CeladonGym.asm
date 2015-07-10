@@ -43,7 +43,7 @@ UnknownScript_0x72aae:
 
 TrainerLassMichelle:
 	; bit/flag number
-	dw $51d
+	dw EVENT_BEAT_LASS_MICHELLE
 
 	; trainer group && trainer id
 	db LASS, MICHELLE
@@ -70,7 +70,7 @@ LassMichelleScript:
 
 TrainerPicnickerTanya:
 	; bit/flag number
-	dw $490
+	dw EVENT_BEAT_PICNICKER_TANYA
 
 	; trainer group && trainer id
 	db PICNICKER, TANYA
@@ -97,7 +97,7 @@ PicnickerTanyaScript:
 
 TrainerBeautyJulia:
 	; bit/flag number
-	dw $4ba
+	dw EVENT_BEAT_BEAUTY_JULIA
 
 	; trainer group && trainer id
 	db BEAUTY, JULIA
@@ -124,7 +124,7 @@ BeautyJuliaScript:
 
 TrainerTwinsJoandzoe1:
 	; bit/flag number
-	dw $468
+	dw EVENT_BEAT_TWINS_JO_AND_ZOE
 
 	; trainer group && trainer id
 	db TWINS, JOANDZOE1
@@ -151,7 +151,7 @@ TwinsJoandzoe1Script:
 
 TrainerTwinsJoandzoe2:
 	; bit/flag number
-	dw $468
+	dw EVENT_BEAT_TWINS_JO_AND_ZOE
 
 	; trainer group && trainer id
 	db TWINS, JOANDZOE2

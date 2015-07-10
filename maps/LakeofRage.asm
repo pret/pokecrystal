@@ -138,7 +138,7 @@ UnknownScript_0x700b8:
 
 TrainerFisherAndre:
 	; bit/flag number
-	dw $455
+	dw EVENT_BEAT_FISHER_ANDRE
 
 	; trainer group && trainer id
 	db FISHER, ANDRE
@@ -165,7 +165,7 @@ FisherAndreScript:
 
 TrainerFisherRaymond:
 	; bit/flag number
-	dw $456
+	dw EVENT_BEAT_FISHER_RAYMOND
 
 	; trainer group && trainer id
 	db FISHER, RAYMOND
@@ -192,7 +192,7 @@ FisherRaymondScript:
 
 TrainerCooltrainermAaron:
 	; bit/flag number
-	dw $549
+	dw EVENT_BEAT_COOLTRAINERM_AARON
 
 	; trainer group && trainer id
 	db COOLTRAINERM, AARON
@@ -219,7 +219,7 @@ CooltrainermAaronScript:
 
 TrainerCooltrainerfLois:
 	; bit/flag number
-	dw $55c
+	dw EVENT_BEAT_COOLTRAINERF_LOIS
 
 	; trainer group && trainer id
 	db COOLTRAINERF, LOIS

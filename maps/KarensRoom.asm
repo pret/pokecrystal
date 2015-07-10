@@ -1,4 +1,4 @@
-KarensRoom_MapScriptHeader: ; 0x180baf
+KarensRoom_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,30 +12,26 @@ KarensRoom_MapScriptHeader: ; 0x180baf
 	; callbacks
 
 	dbw 1, UnknownScript_0x180bc1
-; 0x180bbc
 
-UnknownScript_0x180bbc: ; 0x180bbc
+UnknownScript_0x180bbc:
 	priorityjump UnknownScript_0x180bd6
 	end
-; 0x180bc0
 
-UnknownScript_0x180bc0: ; 0x180bc0
+UnknownScript_0x180bc0:
 	end
-; 0x180bc1
 
-UnknownScript_0x180bc1: ; 0x180bc1
+UnknownScript_0x180bc1:
 	checkevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x180bcb
 	changeblock $4, $e, $2a
-UnknownScript_0x180bcb: ; 0x180bcb
+UnknownScript_0x180bcb:
 	checkevent EVENT_KARENS_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x180bd5
 	changeblock $4, $2, $16
-UnknownScript_0x180bd5: ; 0x180bd5
+UnknownScript_0x180bd5:
 	return
-; 0x180bd6
 
-UnknownScript_0x180bd6: ; 0x180bd6
+UnknownScript_0x180bd6:
 	applymovement $0, MovementData_0x180c22
 	refreshscreen $86
 	playsound SFX_STRENGTH
@@ -47,9 +43,8 @@ UnknownScript_0x180bd6: ; 0x180bd6
 	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	waitbutton
 	end
-; 0x180bee
 
-KarenScript_0x180bee: ; 0x180bee
+KarenScript_0x180bee:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_ELITE_4_KAREN
@@ -73,24 +68,21 @@ KarenScript_0x180bee: ; 0x180bee
 	setevent EVENT_KARENS_ROOM_EXIT_OPEN
 	waitbutton
 	end
-; 0x180c1c
 
-UnknownScript_0x180c1c: ; 0x180c1c
+UnknownScript_0x180c1c:
 	writetext UnknownText_0x180d29
 	closetext
 	loadmovesprites
 	end
-; 0x180c22
 
-MovementData_0x180c22: ; 0x180c22
+MovementData_0x180c22:
 	step_up
 	step_up
 	step_up
 	step_up
 	step_end
-; 0x180c27
 
-UnknownText_0x180c27: ; 0x180c27
+UnknownText_0x180c27:
 	text "I am KAREN of the"
 	line "ELITE FOUR."
 
@@ -112,16 +104,14 @@ UnknownText_0x180c27: ; 0x180c27
 
 	para "Let's go."
 	done
-; 0x180cf8
 
-UnknownText_0x180cf8: ; 0x180cf8
+UnknownText_0x180cf8:
 	text "Well, aren't you"
 	line "good. I like that"
 	cont "in a trainer."
 	done
-; 0x180d29
 
-UnknownText_0x180d29: ; 0x180d29
+UnknownText_0x180d29:
 	text "Strong #MON."
 
 	para "Weak #MON."
@@ -143,9 +133,8 @@ UnknownText_0x180d29: ; 0x180d29
 	para "Go on--the CHAM-"
 	line "PION is waiting."
 	done
-; 0x180e05
 
-KarensRoom_MapEventHeader: ; 0x180e05
+KarensRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -165,4 +154,3 @@ KarensRoom_MapEventHeader: ; 0x180e05
 	; people-events
 	db 1
 	person_event SPRITE_KAREN, 11, 9, $6, $0, 255, 255, $80, 0, KarenScript_0x180bee, $ffff
-; 0x180e2c

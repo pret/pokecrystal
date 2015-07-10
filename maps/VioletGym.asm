@@ -62,7 +62,7 @@ VioletGymTriggerRockets:
 
 TrainerBird_keeperRod:
 	; bit/flag number
-	dw $3fb
+	dw EVENT_BEAT_BIRD_KEEPER_ROD
 
 	; trainer group && trainer id
 	db BIRD_KEEPER, ROD
@@ -89,7 +89,7 @@ Bird_keeperRodScript:
 
 TrainerBird_keeperAbe:
 	; bit/flag number
-	dw $3fc
+	dw EVENT_BEAT_BIRD_KEEPER_ABE
 
 	; trainer group && trainer id
 	db BIRD_KEEPER, ABE

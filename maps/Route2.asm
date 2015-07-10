@@ -1,14 +1,13 @@
-Route2_MapScriptHeader: ; 0x1ac2ba
+Route2_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1ac2bc
 
-TrainerBug_catcherRob: ; 0x1ac2bc
+TrainerBug_catcherRob:
 	; bit/flag number
-	dw $539
+	dw EVENT_BEAT_BUG_CATCHER_ROB
 
 	; trainer group && trainer id
 	db BUG_CATCHER, ROB
@@ -24,20 +23,18 @@ TrainerBug_catcherRob: ; 0x1ac2bc
 
 	; script when talk again
 	dw Bug_catcherRobScript
-; 0x1ac2c8
 
-Bug_catcherRobScript: ; 0x1ac2c8
+Bug_catcherRobScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac34d
 	closetext
 	loadmovesprites
 	end
-; 0x1ac2d0
 
-TrainerBug_catcherEd: ; 0x1ac2d0
+TrainerBug_catcherEd:
 	; bit/flag number
-	dw $53a
+	dw EVENT_BEAT_BUG_CATCHER_ED
 
 	; trainer group && trainer id
 	db BUG_CATCHER, ED
@@ -53,20 +50,18 @@ TrainerBug_catcherEd: ; 0x1ac2d0
 
 	; script when talk again
 	dw Bug_catcherEdScript
-; 0x1ac2dc
 
-Bug_catcherEdScript: ; 0x1ac2dc
+Bug_catcherEdScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac3cf
 	closetext
 	loadmovesprites
 	end
-; 0x1ac2e4
 
-TrainerBug_catcherDoug: ; 0x1ac2e4
+TrainerBug_catcherDoug:
 	; bit/flag number
-	dw $543
+	dw EVENT_BEAT_BUG_CATCHER_DOUG
 
 	; trainer group && trainer id
 	db BUG_CATCHER, DOUG
@@ -82,121 +77,100 @@ TrainerBug_catcherDoug: ; 0x1ac2e4
 
 	; script when talk again
 	dw Bug_catcherDougScript
-; 0x1ac2f0
 
-Bug_catcherDougScript: ; 0x1ac2f0
+Bug_catcherDougScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac423
 	closetext
 	loadmovesprites
 	end
-; 0x1ac2f8
 
-MapRoute2Signpost0Script: ; 0x1ac2f8
+MapRoute2Signpost0Script:
 	jumptext UnknownText_0x1ac47a
-; 0x1ac2fb
 
-MapRoute2Signpost1Script: ; 0x1ac2fb
+MapRoute2Signpost1Script:
 	jumptext UnknownText_0x1ac49f
-; 0x1ac2fe
 
-ItemFragment_0x1ac2fe: ; 0x1ac2fe
+ItemFragment_0x1ac2fe:
 	db DIRE_HIT, 1
-; 0x1ac300
 
-ItemFragment_0x1ac300: ; 0x1ac300
+ItemFragment_0x1ac300:
 	db MAX_POTION, 1
-; 0x1ac302
 
-ItemFragment_0x1ac302: ; 0x1ac302
+ItemFragment_0x1ac302:
 	db CARBOS, 1
-; 0x1ac304
 
-ItemFragment_0x1ac304: ; 0x1ac304
+ItemFragment_0x1ac304:
 	db ELIXER, 1
-; 0x1ac306
 
-FruitTreeScript_0x1ac306: ; 0x1ac306
+FruitTreeScript_0x1ac306:
 	fruittree $19
-; 0x1ac308
 
-MapRoute2SignpostItem2: ; 0x1ac308
+MapRoute2SignpostItem2:
 	dw $00ed
 	db MAX_ETHER
 	
-; 0x1ac30b
 
-MapRoute2SignpostItem3: ; 0x1ac30b
+MapRoute2SignpostItem3:
 	dw $00ee
 	db FULL_HEAL
 	
-; 0x1ac30e
 
-MapRoute2SignpostItem4: ; 0x1ac30e
+MapRoute2SignpostItem4:
 	dw $00ef
 	db FULL_RESTORE
 	
-; 0x1ac311
 
-MapRoute2SignpostItem5: ; 0x1ac311
+MapRoute2SignpostItem5:
 	dw $00f0
 	db REVIVE
 	
-; 0x1ac314
 
-Bug_catcherRobSeenText: ; 0x1ac314
+Bug_catcherRobSeenText:
 	text "My bug #MON are"
 	line "tough. Prepare to"
 	cont "lose!"
 	done
-; 0x1ac33d
 
-Bug_catcherRobBeatenText: ; 0x1ac33d
+Bug_catcherRobBeatenText:
 	text "I was whipped…"
 	done
-; 0x1ac34d
 
-UnknownText_0x1ac34d: ; 0x1ac34d
+UnknownText_0x1ac34d:
 	text "I'm going to look"
 	line "for stronger bug"
 	cont "#MON."
 	done
-; 0x1ac376
 
-Bug_catcherEdSeenText: ; 0x1ac376
+Bug_catcherEdSeenText:
 	text "If you walk in"
 	line "tall grass wearing"
 
 	para "shorts, do you get"
 	line "nicks and cuts?"
 	done
-; 0x1ac3bc
 
-Bug_catcherEdBeatenText: ; 0x1ac3bc
+Bug_catcherEdBeatenText:
 	text "Ouch, ouch, ouch!"
 	done
-; 0x1ac3cf
 
-UnknownText_0x1ac3cf: ; 0x1ac3cf
+UnknownText_0x1ac3cf:
 	text "They'll really"
 	line "sting when you"
 	cont "take a bath."
 	done
-; 0x1ac3fa
 
-Bug_catcherDougSeenText: ; 0x1ac3fa
+Bug_catcherDougSeenText:
 	text "Why don't girls"
 	line "like bug #MON?"
 	done
-; 0x1ac419
 
-Bug_catcherDougBeatenText: ; 0x1ac419
+Bug_catcherDougBeatenText:
 	text "No good!"
 	done
-; 0x1ac423
 
-UnknownText_0x1ac423: ; 0x1ac423
+UnknownText_0x1ac423:
 	text "Bug #MON squish"
 	line "like plush toys"
 
@@ -206,22 +180,19 @@ UnknownText_0x1ac423: ; 0x1ac423
 	para "I love how they"
 	line "feel!"
 	done
-; 0x1ac47a
 
-UnknownText_0x1ac47a: ; 0x1ac47a
+UnknownText_0x1ac47a:
 	text "ROUTE 2"
 
 	para "VIRIDIAN CITY -"
 	line "PEWTER CITY"
 	done
-; 0x1ac49f
 
-UnknownText_0x1ac49f: ; 0x1ac49f
+UnknownText_0x1ac49f:
 	text "DIGLETT'S CAVE"
 	done
-; 0x1ac4af
 
-Route2_MapEventHeader: ; 0x1ac4af
+Route2_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -255,4 +226,3 @@ Route2_MapEventHeader: ; 0x1ac4af
 	person_event SPRITE_POKE_BALL, 6, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac302, $0785
 	person_event SPRITE_POKE_BALL, 54, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac304, $0786
 	person_event SPRITE_FRUIT_TREE, 18, 14, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac306, $ffff
-; 0x1ac554

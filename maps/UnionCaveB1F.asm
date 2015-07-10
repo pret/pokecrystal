@@ -1,14 +1,13 @@
-UnionCaveB1F_MapScriptHeader: ; 0x59fc4
+UnionCaveB1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x59fc6
 
-TrainerPokemaniacAndrew: ; 0x59fc6
+TrainerPokemaniacAndrew:
 	; bit/flag number
-	dw $4e5
+	dw EVENT_BEAT_POKEMANIAC_ANDREW
 
 	; trainer group && trainer id
 	db POKEMANIAC, ANDREW
@@ -24,20 +23,18 @@ TrainerPokemaniacAndrew: ; 0x59fc6
 
 	; script when talk again
 	dw PokemaniacAndrewScript
-; 0x59fd2
 
-PokemaniacAndrewScript: ; 0x59fd2
+PokemaniacAndrewScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a181
 	closetext
 	loadmovesprites
 	end
-; 0x59fda
 
-TrainerPokemaniacCalvin: ; 0x59fda
+TrainerPokemaniacCalvin:
 	; bit/flag number
-	dw $4e6
+	dw EVENT_BEAT_POKEMANIAC_CALVIN
 
 	; trainer group && trainer id
 	db POKEMANIAC, CALVIN
@@ -53,20 +50,18 @@ TrainerPokemaniacCalvin: ; 0x59fda
 
 	; script when talk again
 	dw PokemaniacCalvinScript
-; 0x59fe6
 
-PokemaniacCalvinScript: ; 0x59fe6
+PokemaniacCalvinScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a230
 	closetext
 	loadmovesprites
 	end
-; 0x59fee
 
-TrainerHikerPhillip: ; 0x59fee
+TrainerHikerPhillip:
 	; bit/flag number
-	dw $526
+	dw EVENT_BEAT_HIKER_PHILLIP
 
 	; trainer group && trainer id
 	db HIKER, PHILLIP
@@ -82,20 +77,18 @@ TrainerHikerPhillip: ; 0x59fee
 
 	; script when talk again
 	dw HikerPhillipScript
-; 0x59ffa
 
-HikerPhillipScript: ; 0x59ffa
+HikerPhillipScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a073
 	closetext
 	loadmovesprites
 	end
-; 0x5a002
 
-TrainerHikerLeonard: ; 0x5a002
+TrainerHikerLeonard:
 	; bit/flag number
-	dw $527
+	dw EVENT_BEAT_HIKER_LEONARD
 
 	; trainer group && trainer id
 	db HIKER, LEONARD
@@ -111,29 +104,25 @@ TrainerHikerLeonard: ; 0x5a002
 
 	; script when talk again
 	dw HikerLeonardScript
-; 0x5a00e
 
-HikerLeonardScript: ; 0x5a00e
+HikerLeonardScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a0fb
 	closetext
 	loadmovesprites
 	end
-; 0x5a016
 
-ItemFragment_0x5a016: ; 0x5a016
+ItemFragment_0x5a016:
 	db TM_SWIFT, 1
-; 0x5a018
 
-ItemFragment_0x5a018: ; 0x5a018
+ItemFragment_0x5a018:
 	db X_DEFEND, 1
-; 0x5a01a
 
 UnionCaveB1FBoulder:
 	jumpstd strengthboulder
 
-HikerPhillipSeenText: ; 0x5a01d
+HikerPhillipSeenText:
 	text "It's been a while"
 	line "since I last saw"
 	cont "another person."
@@ -141,14 +130,12 @@ HikerPhillipSeenText: ; 0x5a01d
 	para "Don't be shy."
 	line "Let's battle!"
 	done
-; 0x5a06a
 
-HikerPhillipBeatenText: ; 0x5a06a
+HikerPhillipBeatenText:
 	text "Uurggh…"
 	done
-; 0x5a073
 
-UnknownText_0x5a073: ; 0x5a073
+UnknownText_0x5a073:
 	text "I've been lost for"
 	line "a long time…"
 
@@ -156,21 +143,18 @@ UnknownText_0x5a073: ; 0x5a073
 	line "here, but I am"
 	cont "soooo hungry!"
 	done
-; 0x5a0bf
 
-HikerLeonardSeenText: ; 0x5a0bf
+HikerLeonardSeenText:
 	text "What do you know!"
 	line "A visitor!"
 	done
-; 0x5a0dd
 
-HikerLeonardBeatenText: ; 0x5a0dd
+HikerLeonardBeatenText:
 	text "Wahahah! You're a"
 	line "feisty one!"
 	done
-; 0x5a0fb
 
-UnknownText_0x5a0fb: ; 0x5a0fb
+UnknownText_0x5a0fb:
 	text "I live down here."
 
 	para "You can, too, if"
@@ -179,30 +163,26 @@ UnknownText_0x5a0fb: ; 0x5a0fb
 	para "There's plenty of"
 	line "room, you see."
 	done
-; 0x5a14a
 
-PokemaniacAndrewSeenText: ; 0x5a14a
+PokemaniacAndrewSeenText:
 	text "Who's there?"
 
 	para "Leave me and my"
 	line "#MON alone!"
 	done
-; 0x5a173
 
-PokemaniacAndrewBeatenText: ; 0x5a173
+PokemaniacAndrewBeatenText:
 	text "Go…"
 	line "Go away!"
 	done
-; 0x5a181
 
-UnknownText_0x5a181: ; 0x5a181
+UnknownText_0x5a181:
 	text "Just me and my"
 	line "#MON. I'm de-"
 	cont "lirious with joy."
 	done
-; 0x5a1b0
 
-PokemaniacCalvinSeenText: ; 0x5a1b0
+PokemaniacCalvinSeenText:
 	text "I came all the way"
 	line "here to conduct my"
 	cont "#MON research."
@@ -211,15 +191,13 @@ PokemaniacCalvinSeenText: ; 0x5a1b0
 	line "my findings in a"
 	cont "real battle!"
 	done
-; 0x5a217
 
-PokemaniacCalvinBeatenText: ; 0x5a217
+PokemaniacCalvinBeatenText:
 	text "You demonstrated"
 	line "on me!"
 	done
-; 0x5a230
 
-UnknownText_0x5a230: ; 0x5a230
+UnknownText_0x5a230:
 	text "I should compile"
 	line "and announce my"
 	cont "study findings."
@@ -228,9 +206,8 @@ UnknownText_0x5a230: ; 0x5a230
 	line "come famous like"
 	cont "PROF.ELM."
 	done
-; 0x5a28e
 
-UnionCaveB1F_MapEventHeader: ; 0x5a28e
+UnionCaveB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -257,4 +234,3 @@ UnionCaveB1F_MapEventHeader: ; 0x5a28e
 	person_event SPRITE_POKE_BALL, 20, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a016, $065e
 	person_event SPRITE_BOULDER, 14, 11, $19, $0, 255, 255, $0, 0, UnionCaveB1FBoulder, $ffff
 	person_event SPRITE_POKE_BALL, 27, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a018, $065f
-; 0x5a308

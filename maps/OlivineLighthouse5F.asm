@@ -1,14 +1,13 @@
-OlivineLighthouse5F_MapScriptHeader: ; 0x60980
+OlivineLighthouse5F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x60982
 
-TrainerBird_keeperDenis: ; 0x60982
+TrainerBird_keeperDenis:
 	; bit/flag number
-	dw $400
+	dw EVENT_BEAT_BIRD_KEEPER_DENIS
 
 	; trainer group && trainer id
 	db BIRD_KEEPER, DENIS
@@ -24,20 +23,18 @@ TrainerBird_keeperDenis: ; 0x60982
 
 	; script when talk again
 	dw Bird_keeperDenisScript
-; 0x6098e
 
-Bird_keeperDenisScript: ; 0x6098e
+Bird_keeperDenisScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x60ac3
 	closetext
 	loadmovesprites
 	end
-; 0x60996
 
-TrainerSailorErnest: ; 0x60996
+TrainerSailorErnest:
 	; bit/flag number
-	dw $579
+	dw EVENT_BEAT_SAILOR_ERNEST
 
 	; trainer group && trainer id
 	db SAILOR, ERNEST
@@ -53,51 +50,43 @@ TrainerSailorErnest: ; 0x60996
 
 	; script when talk again
 	dw SailorErnestScript
-; 0x609a2
 
-SailorErnestScript: ; 0x609a2
+SailorErnestScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x60a1f
 	closetext
 	loadmovesprites
 	end
-; 0x609aa
 
-ItemFragment_0x609aa: ; 0x609aa
+ItemFragment_0x609aa:
 	db RARE_CANDY, 1
-; 0x609ac
 
-ItemFragment_0x609ac: ; 0x609ac
+ItemFragment_0x609ac:
 	db SUPER_REPEL, 1
-; 0x609ae
 
-ItemFragment_0x609ae: ; 0x609ae
+ItemFragment_0x609ae:
 	db TM_SWAGGER, 1
-; 0x609b0
 
-MapOlivineLighthouse5FSignpostItem0: ; 0x609b0
+MapOlivineLighthouse5FSignpostItem0:
 	dw $0085
 	db HYPER_POTION
 	
-; 0x609b3
 
-SailorErnestSeenText: ; 0x609b3
+SailorErnestSeenText:
 	text "I wanted to battle"
 	line "JASMINE, but she's"
 
 	para "not up to it now."
 	line "So, how about you?"
 	done
-; 0x609fe
 
-SailorErnestBeatenText: ; 0x609fe
+SailorErnestBeatenText:
 	text "Whoa, whoa. You're"
 	line "overwhelming!"
 	done
-; 0x60a1f
 
-UnknownText_0x60a1f: ; 0x60a1f
+UnknownText_0x60a1f:
 	text "A GYM LEADER isn't"
 	line "just about being"
 
@@ -105,23 +94,20 @@ UnknownText_0x60a1f: ; 0x60a1f
 	line "also needs to be"
 	cont "compassionate."
 	done
-; 0x60a74
 
-Bird_keeperDenisSeenText: ; 0x60a74
+Bird_keeperDenisSeenText:
 	text "We're pretty high"
 	line "up here. My bird"
 
 	para "#MON are in"
 	line "prime form."
 	done
-; 0x60aaf
 
-Bird_keeperDenisBeatenText: ; 0x60aaf
+Bird_keeperDenisBeatenText:
 	text "Oops…They crashed…"
 	done
-; 0x60ac3
 
-UnknownText_0x60ac3: ; 0x60ac3
+UnknownText_0x60ac3:
 	text "My #MON learned"
 	line "how to use FLY in"
 	cont "CIANWOOD."
@@ -130,9 +116,8 @@ UnknownText_0x60ac3: ; 0x60ac3
 	line "loser, I'll FLY"
 	cont "across the sea…"
 	done
-; 0x60b20
 
-OlivineLighthouse5F_MapEventHeader: ; 0x60b20
+OlivineLighthouse5F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -160,4 +145,3 @@ OlivineLighthouse5F_MapEventHeader: ; 0x60b20
 	person_event SPRITE_POKE_BALL, 16, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x609aa, $0665
 	person_event SPRITE_POKE_BALL, 19, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x609ac, $0666
 	person_event SPRITE_POKE_BALL, 17, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x609ae, $0667
-; 0x60b8f

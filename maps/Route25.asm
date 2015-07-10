@@ -1,4 +1,4 @@
-Route25_MapScriptHeader: ; 0x19ee94
+Route25_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,17 +8,14 @@ Route25_MapScriptHeader: ; 0x19ee94
 
 	; callback count
 	db 0
-; 0x19ee9e
 
-UnknownScript_0x19ee9e: ; 0x19ee9e
+UnknownScript_0x19ee9e:
 	end
-; 0x19ee9f
 
-UnknownScript_0x19ee9f: ; 0x19ee9f
+UnknownScript_0x19ee9f:
 	end
-; 0x19eea0
 
-UnknownScript_0x19eea0: ; 0x19eea0
+UnknownScript_0x19eea0:
 	showemote $4, $2, 15
 	pause 30
 	showemote $0, $3, 10
@@ -43,9 +40,8 @@ UnknownScript_0x19eea0: ; 0x19eea0
 	dotrigger $0
 	special RestartMapMusic
 	end
-; 0x19eee0
 
-UnknownScript_0x19eee0: ; 0x19eee0
+UnknownScript_0x19eee0:
 	showemote $4, $2, 15
 	pause 30
 	showemote $0, $3, 10
@@ -70,11 +66,10 @@ UnknownScript_0x19eee0: ; 0x19eee0
 	dotrigger $0
 	special RestartMapMusic
 	end
-; 0x19ef20
 
-TrainerSchoolboyDudley: ; 0x19ef20
+TrainerSchoolboyDudley:
 	; bit/flag number
-	dw $472
+	dw EVENT_BEAT_SCHOOLBOY_DUDLEY
 
 	; trainer group && trainer id
 	db SCHOOLBOY, DUDLEY
@@ -90,20 +85,18 @@ TrainerSchoolboyDudley: ; 0x19ef20
 
 	; script when talk again
 	dw SchoolboyDudleyScript
-; 0x19ef2c
 
-SchoolboyDudleyScript: ; 0x19ef2c
+SchoolboyDudleyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f1b5
 	closetext
 	loadmovesprites
 	end
-; 0x19ef34
 
-TrainerLassEllen: ; 0x19ef34
+TrainerLassEllen:
 	; bit/flag number
-	dw $51f
+	dw EVENT_BEAT_LASS_ELLEN
 
 	; trainer group && trainer id
 	db LASS, ELLEN
@@ -119,20 +112,18 @@ TrainerLassEllen: ; 0x19ef34
 
 	; script when talk again
 	dw LassEllenScript
-; 0x19ef40
 
-LassEllenScript: ; 0x19ef40
+LassEllenScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f208
 	closetext
 	loadmovesprites
 	end
-; 0x19ef48
 
-TrainerSchoolboyJoe: ; 0x19ef48
+TrainerSchoolboyJoe:
 	; bit/flag number
-	dw $473
+	dw EVENT_BEAT_SCHOOLBOY_JOE
 
 	; trainer group && trainer id
 	db SCHOOLBOY, JOE
@@ -148,20 +139,18 @@ TrainerSchoolboyJoe: ; 0x19ef48
 
 	; script when talk again
 	dw SchoolboyJoeScript
-; 0x19ef54
 
-SchoolboyJoeScript: ; 0x19ef54
+SchoolboyJoeScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f25c
 	closetext
 	loadmovesprites
 	end
-; 0x19ef5c
 
-TrainerLassLaura: ; 0x19ef5c
+TrainerLassLaura:
 	; bit/flag number
-	dw $51b
+	dw EVENT_BEAT_LASS_LAURA
 
 	; trainer group && trainer id
 	db LASS, LAURA
@@ -177,20 +166,18 @@ TrainerLassLaura: ; 0x19ef5c
 
 	; script when talk again
 	dw LassLauraScript
-; 0x19ef68
 
-LassLauraScript: ; 0x19ef68
+LassLauraScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f2a6
 	closetext
 	loadmovesprites
 	end
-; 0x19ef70
 
-TrainerCamperLloyd: ; 0x19ef70
+TrainerCamperLloyd:
 	; bit/flag number
-	dw $41f
+	dw EVENT_BEAT_CAMPER_LLOYD
 
 	; trainer group && trainer id
 	db CAMPER, LLOYD
@@ -206,20 +193,18 @@ TrainerCamperLloyd: ; 0x19ef70
 
 	; script when talk again
 	dw CamperLloydScript
-; 0x19ef7c
 
-CamperLloydScript: ; 0x19ef7c
+CamperLloydScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f2f8
 	closetext
 	loadmovesprites
 	end
-; 0x19ef84
 
-TrainerLassShannon: ; 0x19ef84
+TrainerLassShannon:
 	; bit/flag number
-	dw $51c
+	dw EVENT_BEAT_LASS_SHANNON
 
 	; trainer group && trainer id
 	db LASS, SHANNON
@@ -235,20 +220,18 @@ TrainerLassShannon: ; 0x19ef84
 
 	; script when talk again
 	dw LassShannonScript
-; 0x19ef90
 
-LassShannonScript: ; 0x19ef90
+LassShannonScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f35b
 	closetext
 	loadmovesprites
 	end
-; 0x19ef98
 
-TrainerSupernerdPat: ; 0x19ef98
+TrainerSupernerdPat:
 	; bit/flag number
-	dw $588
+	dw EVENT_BEAT_SUPER_NERD_PAT
 
 	; trainer group && trainer id
 	db SUPER_NERD, PAT
@@ -264,21 +247,19 @@ TrainerSupernerdPat: ; 0x19ef98
 
 	; script when talk again
 	dw SupernerdPatScript
-; 0x19efa4
 
-SupernerdPatScript: ; 0x19efa4
+SupernerdPatScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f41a
 	closetext
 	loadmovesprites
 	end
-; 0x19efac
 
-CooltrainerMScript_0x19efac: ; 0x19efac
+CooltrainerMScript_0x19efac:
 	faceplayer
 	loadfont
-	checkevent $0558
+	checkevent EVENT_BEAT_COOLTRAINERM_KEVIN
 	iftrue UnknownScript_0x19efda
 	checkevent EVENT_CLEARED_NUGGET_BRIDGE
 	iftrue UnknownScript_0x19efc7
@@ -287,7 +268,7 @@ CooltrainerMScript_0x19efac: ; 0x19efac
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x19efde
 	setevent EVENT_CLEARED_NUGGET_BRIDGE
-UnknownScript_0x19efc7: ; 0x19efc7
+UnknownScript_0x19efc7:
 	writetext UnknownText_0x19f49d
 	closetext
 	loadmovesprites
@@ -295,42 +276,36 @@ UnknownScript_0x19efc7: ; 0x19efc7
 	loadtrainer COOLTRAINERM, KEVIN
 	startbattle
 	returnafterbattle
-	setevent $0558
+	setevent EVENT_BEAT_COOLTRAINERM_KEVIN
 	loadfont
-UnknownScript_0x19efda: ; 0x19efda
+UnknownScript_0x19efda:
 	writetext UnknownText_0x19f520
 	closetext
-UnknownScript_0x19efde: ; 0x19efde
+UnknownScript_0x19efde:
 	loadmovesprites
 	end
-; 0x19efe0
 
-MapRoute25Signpost0Script: ; 0x19efe0
+MapRoute25Signpost0Script:
 	jumptext UnknownText_0x19f567
-; 0x19efe3
 
-ItemFragment_0x19efe3: ; 0x19efe3
+ItemFragment_0x19efe3:
 	db PROTEIN, 1
-; 0x19efe5
 
-MapRoute25SignpostItem1: ; 0x19efe5
+MapRoute25SignpostItem1:
 	dw $00f8
 	db POTION
 	
-; 0x19efe8
 
-MovementData_0x19efe8: ; 0x19efe8
+MovementData_0x19efe8:
 	big_step_down
 	step_end
-; 0x19efea
 
-MovementData_0x19efea: ; 0x19efea
+MovementData_0x19efea:
 	big_step_down
 	big_step_down
 	step_end
-; 0x19efed
 
-MovementData_0x19efed: ; 0x19efed
+MovementData_0x19efed:
 	step_up
 	step_up
 	step_up
@@ -338,39 +313,34 @@ MovementData_0x19efed: ; 0x19efed
 	step_left
 	step_left
 	step_end
-; 0x19eff4
 
-MovementData_0x19eff4: ; 0x19eff4
+MovementData_0x19eff4:
 	step_up
 	step_up
 	step_left
 	step_left
 	step_left
 	step_end
-; 0x19effa
 
-MovementData_0x19effa: ; 0x19effa
+MovementData_0x19effa:
 	step_down
 	step_left
 	step_end
-; 0x19effd
 
-MovementData_0x19effd: ; 0x19effd
+MovementData_0x19effd:
 	step_up
 	step_left
 	step_end
-; 0x19f000
 
-MovementData_0x19f000: ; 0x19f000
+MovementData_0x19f000:
 	step_left
 	step_left
 	step_left
 	step_left
 	step_left
 	step_end
-; 0x19f006
 
-UnknownText_0x19f006: ; 0x19f006
+UnknownText_0x19f006:
 	text "MISTY: Aww! Why"
 	line "did you have to"
 
@@ -403,9 +373,8 @@ UnknownText_0x19f006: ; 0x19f006
 	line "GYM LEADER in"
 	cont "CERULEAN."
 	done
-; 0x19f14d
 
-SchoolboyDudleySeenText: ; 0x19f14d
+SchoolboyDudleySeenText:
 	text "Beat the six of us"
 	line "trainers to win a"
 	cont "fabulous prize!"
@@ -413,106 +382,88 @@ SchoolboyDudleySeenText: ; 0x19f14d
 	para "Think you've got"
 	line "what it takes?"
 	done
-; 0x19f1a2
 
-SchoolboyDudleyBeatenText: ; 0x19f1a2
+SchoolboyDudleyBeatenText:
 	text "Whoo! Good stuff."
 	done
-; 0x19f1b5
 
-UnknownText_0x19f1b5: ; 0x19f1b5
+UnknownText_0x19f1b5:
 	text "I did my best."
 	line "I have no regrets."
 	done
-; 0x19f1d8
 
-LassEllenSeenText: ; 0x19f1d8
+LassEllenSeenText:
 	text "I'm second."
 	line "Now it's serious!"
 	done
-; 0x19f1f5
 
-LassEllenBeatenText: ; 0x19f1f5
+LassEllenBeatenText:
 	text "How could I lose?"
 	done
-; 0x19f208
 
-UnknownText_0x19f208: ; 0x19f208
+UnknownText_0x19f208:
 	text "I did my best."
 	line "I have no regrets."
 	done
-; 0x19f22b
 
-SchoolboyJoeSeenText: ; 0x19f22b
+SchoolboyJoeSeenText:
 	text "Here's No. 3!"
 	line "I won't be easy."
 	done
-; 0x19f249
 
-SchoolboyJoeBeatenText: ; 0x19f249
+SchoolboyJoeBeatenText:
 	text "Ow! Stomped flat!"
 	done
-; 0x19f25c
 
-UnknownText_0x19f25c: ; 0x19f25c
+UnknownText_0x19f25c:
 	text "I did my best."
 	line "I have no regrets."
 	done
-; 0x19f27f
 
-LassLauraSeenText: ; 0x19f27f
+LassLauraSeenText:
 	text "I'm No. 4!"
 	line "Getting tired?"
 	done
-; 0x19f299
 
-LassLauraBeatenText: ; 0x19f299
+LassLauraBeatenText:
 	text "I lost too…"
 	done
-; 0x19f2a6
 
-UnknownText_0x19f2a6: ; 0x19f2a6
+UnknownText_0x19f2a6:
 	text "I did my best."
 	line "I have no regrets."
 	done
-; 0x19f2c9
 
-CamperLloydSeenText: ; 0x19f2c9
+CamperLloydSeenText:
 	text "OK! I'm No. 5."
 	line "I'll stomp you!"
 	done
-; 0x19f2e7
 
-CamperLloydBeatenText: ; 0x19f2e7
+CamperLloydBeatenText:
 	text "Whoa! Too much."
 	done
-; 0x19f2f8
 
-UnknownText_0x19f2f8: ; 0x19f2f8
+UnknownText_0x19f2f8:
 	text "I did my best."
 	line "I have no regrets."
 	done
-; 0x19f31b
 
-LassShannonSeenText: ; 0x19f31b
+LassShannonSeenText:
 	text "I'm the last in"
 	line "line, but I tell"
 	cont "you, I'm tough!"
 	done
-; 0x19f34b
 
-LassShannonBeatenText: ; 0x19f34b
+LassShannonBeatenText:
 	text "You're kidding."
 	done
-; 0x19f35b
 
-UnknownText_0x19f35b: ; 0x19f35b
+UnknownText_0x19f35b:
 	text "I did my best."
 	line "I have no regrets."
 	done
-; 0x19f37e
 
-SupernerdPatSeenText: ; 0x19f37e
+SupernerdPatSeenText:
 	text "Mufufufu…"
 
 	para "I have nothing to"
@@ -525,21 +476,18 @@ SupernerdPatSeenText: ; 0x19f37e
 	para "were tired out by"
 	line "all the battles."
 	done
-; 0x19f401
 
-SupernerdPatBeatenText: ; 0x19f401
+SupernerdPatBeatenText:
 	text "Aren't you tired"
 	line "at all?"
 	done
-; 0x19f41a
 
-UnknownText_0x19f41a: ; 0x19f41a
+UnknownText_0x19f41a:
 	text "I'm sorry… I won't"
 	line "cheat anymore…"
 	done
-; 0x19f43b
 
-UnknownText_0x19f43b: ; 0x19f43b
+UnknownText_0x19f43b:
 	text "You took on one"
 	line "more battle than"
 
@@ -549,9 +497,8 @@ UnknownText_0x19f43b: ; 0x19f43b
 	para "As promised, you"
 	line "win a prize."
 	done
-; 0x19f49d
 
-UnknownText_0x19f49d: ; 0x19f49d
+UnknownText_0x19f49d:
 	text "But after seeing"
 	line "how you battle, I"
 
@@ -561,15 +508,13 @@ UnknownText_0x19f49d: ; 0x19f49d
 	para "How about it? Let"
 	line "me take you on."
 	done
-; 0x19f4fd
 
-UnknownText_0x19f4fd: ; 0x19f4fd
+UnknownText_0x19f4fd:
 	text "I've never had a"
 	line "battle this good!"
 	done
-; 0x19f520
 
-UnknownText_0x19f520: ; 0x19f520
+UnknownText_0x19f520:
 	text "That was a great"
 	line "battle!"
 
@@ -577,20 +522,17 @@ UnknownText_0x19f520: ; 0x19f520
 	line "MON are truly out-"
 	cont "standing!"
 	done
-; 0x19f567
 
-UnknownText_0x19f567: ; 0x19f567
+UnknownText_0x19f567:
 	text "SEA COTTAGE"
 	line "BILL'S HOUSE"
 	done
-; 0x19f581
 
-UnknownText_0x19f581: ; 0x19f581
+UnknownText_0x19f581:
 	text "BILL'S HOUSE"
 	done
-; 0x19f58f
 
-Route25_MapEventHeader: ; 0x19f58f
+Route25_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -621,4 +563,3 @@ Route25_MapEventHeader: ; 0x19f58f
 	person_event SPRITE_SUPER_NERD, 11, 35, $6, $0, 255, 255, $b2, 1, TrainerSupernerdPat, $ffff
 	person_event SPRITE_COOLTRAINER_M, 12, 41, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x19efac, $ffff
 	person_event SPRITE_POKE_BALL, 8, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x19efe3, $078b
-; 0x19f643

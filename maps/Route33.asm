@@ -1,18 +1,16 @@
-Route33_MapScriptHeader: ; 0x1ac000
+Route33_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1ac002
 
-LassScript_0x1ac002: ; 0x1ac002
+LassScript_0x1ac002:
 	jumptextfaceplayer UnknownText_0x1ac1e7
-; 0x1ac005
 
-TrainerHikerAnthony2: ; 0x1ac005
+TrainerHikerAnthony:
 	; bit/flag number
-	dw $528
+	dw EVENT_BEAT_HIKER_ANTHONY
 
 	; trainer group && trainer id
 	db HIKER, ANTHONY2
@@ -28,9 +26,8 @@ TrainerHikerAnthony2: ; 0x1ac005
 
 	; script when talk again
 	dw HikerAnthony2Script
-; 0x1ac011
 
-HikerAnthony2Script: ; 0x1ac011
+HikerAnthony2Script:
 	writecode VAR_CALLERID, $13
 	talkaftercancel
 	loadfont
@@ -47,20 +44,18 @@ HikerAnthony2Script: ; 0x1ac011
 	setevent $027b
 	scall UnknownScript_0x1ac0cb
 	jump UnknownScript_0x1ac03d
-; 0x1ac03a
 
-UnknownScript_0x1ac03a: ; 0x1ac03a
+UnknownScript_0x1ac03a:
 	scall UnknownScript_0x1ac0cf
-UnknownScript_0x1ac03d: ; 0x1ac03d
+UnknownScript_0x1ac03d:
 	askforphonenumber $13
 	if_equal $1, UnknownScript_0x1ac0df
 	if_equal $2, UnknownScript_0x1ac0db
 	trainertotext HIKER, ANTHONY2, $0
 	scall UnknownScript_0x1ac0d3
 	jump UnknownScript_0x1ac0d7
-; 0x1ac051
 
-UnknownScript_0x1ac051: ; 0x1ac051
+UnknownScript_0x1ac051:
 	scall UnknownScript_0x1ac0e3
 	winlosstext HikerAnthony2BeatenText, $0000
 	copybytetovar wd9fd
@@ -69,135 +64,117 @@ UnknownScript_0x1ac051: ; 0x1ac051
 	if_equal $2, UnknownScript_0x1ac07c
 	if_equal $1, UnknownScript_0x1ac082
 	if_equal $0, UnknownScript_0x1ac088
-UnknownScript_0x1ac070: ; 0x1ac070
+UnknownScript_0x1ac070:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1ac0bc
-UnknownScript_0x1ac076: ; 0x1ac076
+UnknownScript_0x1ac076:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x1ac0af
-UnknownScript_0x1ac07c: ; 0x1ac07c
+UnknownScript_0x1ac07c:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1ac0a2
-UnknownScript_0x1ac082: ; 0x1ac082
+UnknownScript_0x1ac082:
 	checkflag $0047
 	iftrue UnknownScript_0x1ac095
-UnknownScript_0x1ac088: ; 0x1ac088
+UnknownScript_0x1ac088:
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	returnafterbattle
 	loadvar wd9fd, $1
 	clearflag $006f
 	end
-; 0x1ac095
 
-UnknownScript_0x1ac095: ; 0x1ac095
+UnknownScript_0x1ac095:
 	loadtrainer HIKER, ANTHONY1
 	startbattle
 	returnafterbattle
 	loadvar wd9fd, $2
 	clearflag $006f
 	end
-; 0x1ac0a2
 
-UnknownScript_0x1ac0a2: ; 0x1ac0a2
+UnknownScript_0x1ac0a2:
 	loadtrainer HIKER, ANTHONY3
 	startbattle
 	returnafterbattle
 	loadvar wd9fd, $3
 	clearflag $006f
 	end
-; 0x1ac0af
 
-UnknownScript_0x1ac0af: ; 0x1ac0af
+UnknownScript_0x1ac0af:
 	loadtrainer HIKER, ANTHONY4
 	startbattle
 	returnafterbattle
 	loadvar wd9fd, $4
 	clearflag $006f
 	end
-; 0x1ac0bc
 
-UnknownScript_0x1ac0bc: ; 0x1ac0bc
+UnknownScript_0x1ac0bc:
 	loadtrainer HIKER, ANTHONY5
 	startbattle
 	returnafterbattle
 	clearflag $006f
 	end
-; 0x1ac0c5
 
-UnknownScript_0x1ac0c5: ; 0x1ac0c5
+UnknownScript_0x1ac0c5:
 	writetext UnknownText_0x1ac180
 	closetext
 	loadmovesprites
 	end
-; 0x1ac0cb
 
-UnknownScript_0x1ac0cb: ; 0x1ac0cb
+UnknownScript_0x1ac0cb:
 	jumpstd asknumber1m
 	end
-; 0x1ac0cf
 
-UnknownScript_0x1ac0cf: ; 0x1ac0cf
+UnknownScript_0x1ac0cf:
 	jumpstd asknumber2m
 	end
-; 0x1ac0d3
 
-UnknownScript_0x1ac0d3: ; 0x1ac0d3
+UnknownScript_0x1ac0d3:
 	jumpstd registerednumberm
 	end
-; 0x1ac0d7
 
-UnknownScript_0x1ac0d7: ; 0x1ac0d7
+UnknownScript_0x1ac0d7:
 	jumpstd numberacceptedm
 	end
-; 0x1ac0db
 
-UnknownScript_0x1ac0db: ; 0x1ac0db
+UnknownScript_0x1ac0db:
 	jumpstd numberdeclinedm
 	end
-; 0x1ac0df
 
-UnknownScript_0x1ac0df: ; 0x1ac0df
+UnknownScript_0x1ac0df:
 	jumpstd phonefullm
 	end
-; 0x1ac0e3
 
-UnknownScript_0x1ac0e3: ; 0x1ac0e3
+UnknownScript_0x1ac0e3:
 	jumpstd rematchm
 	end
-; 0x1ac0e7
 
-MapRoute33Signpost0Script: ; 0x1ac0e7
+MapRoute33Signpost0Script:
 	jumptext UnknownText_0x1ac279
-; 0x1ac0ea
 
-FruitTreeScript_0x1ac0ea: ; 0x1ac0ea
+FruitTreeScript_0x1ac0ea:
 	fruittree $6
-; 0x1ac0ec
 
-HikerAnthony2SeenText: ; 0x1ac0ec
+HikerAnthony2SeenText:
 	text "I came through the"
 	line "tunnel, but I"
 
 	para "still have plenty"
 	line "of energy left."
 	done
-; 0x1ac130
 
-HikerAnthony2BeatenText: ; 0x1ac130
+HikerAnthony2BeatenText:
 	text "Whoa! You've got"
 	line "more zip than me!"
 	done
-; 0x1ac153
 
-UnknownText_0x1ac153: ; 0x1ac153
+UnknownText_0x1ac153:
 	text "We HIKERS are at"
 	line "our best in the"
 	cont "mountains."
 	done
-; 0x1ac180
 
-UnknownText_0x1ac180: ; 0x1ac180
+UnknownText_0x1ac180:
 	text "Hey, did you get a"
 	line "DUNSPARCE?"
 
@@ -207,9 +184,8 @@ UnknownText_0x1ac180: ; 0x1ac180
 	line "in the light. It's"
 	cont "got a funny face!"
 	done
-; 0x1ac1e7
 
-UnknownText_0x1ac1e7: ; 0x1ac1e7
+UnknownText_0x1ac1e7:
 	text "Pant, pant…"
 
 	para "I finally got"
@@ -224,14 +200,12 @@ UnknownText_0x1ac1e7: ; 0x1ac1e7
 	para "thing, so I came"
 	line "outside."
 	done
-; 0x1ac279
 
-UnknownText_0x1ac279: ; 0x1ac279
+UnknownText_0x1ac279:
 	text "ROUTE 33"
 	done
-; 0x1ac283
 
-Route33_MapEventHeader: ; 0x1ac283
+Route33_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -248,7 +222,6 @@ Route33_MapEventHeader: ; 0x1ac283
 
 	; people-events
 	db 3
-	person_event SPRITE_POKEFAN_M, 17, 10, $a, $0, 255, 255, $b2, 2, TrainerHikerAnthony2, $ffff
+	person_event SPRITE_POKEFAN_M, 17, 10, $a, $0, 255, 255, $b2, 2, TrainerHikerAnthony, $ffff
 	person_event SPRITE_LASS, 20, 17, $2, $11, 255, 255, $90, 0, LassScript_0x1ac002, $ffff
 	person_event SPRITE_FRUIT_TREE, 20, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac0ea, $ffff
-; 0x1ac2ba

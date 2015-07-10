@@ -34,9 +34,9 @@ UnknownScript_0x18000a: ; 0x18000a
 	clearevent EVENT_KARENS_ROOM_EXIT_OPEN
 	clearevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	clearevent $0312
-	clearevent $05b8
-	clearevent $05b9
-	clearevent $05ba
+	clearevent EVENT_BEAT_ELITE_4_WILL
+	clearevent EVENT_BEAT_ELITE_4_KOGA
+	clearevent EVENT_BEAT_ELITE_4_BRUNO
 	clearevent EVENT_BEAT_ELITE_4_KAREN
 	clearevent EVENT_BEAT_CHAMPION_LANCE
 	setevent $075f

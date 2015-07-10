@@ -1,14 +1,13 @@
-Route3_MapScriptHeader: ; 0x1adf63
+Route3_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1adf65
 
-TrainerFirebreatherOtis: ; 0x1adf65
+TrainerFirebreatherOtis:
 	; bit/flag number
-	dw $446
+	dw EVENT_BEAT_FIREBREATHER_OTIS
 
 	; trainer group && trainer id
 	db FIREBREATHER, OTIS
@@ -24,20 +23,18 @@ TrainerFirebreatherOtis: ; 0x1adf65
 
 	; script when talk again
 	dw FirebreatherOtisScript
-; 0x1adf71
 
-FirebreatherOtisScript: ; 0x1adf71
+FirebreatherOtisScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1adff7
 	closetext
 	loadmovesprites
 	end
-; 0x1adf79
 
-TrainerYoungsterWarren: ; 0x1adf79
+TrainerYoungsterWarren:
 	; bit/flag number
-	dw $5b1
+	dw EVENT_BEAT_YOUNGSTER_WARREN
 
 	; trainer group && trainer id
 	db YOUNGSTER, WARREN
@@ -53,20 +50,18 @@ TrainerYoungsterWarren: ; 0x1adf79
 
 	; script when talk again
 	dw YoungsterWarrenScript
-; 0x1adf85
 
-YoungsterWarrenScript: ; 0x1adf85
+YoungsterWarrenScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae051
 	closetext
 	loadmovesprites
 	end
-; 0x1adf8d
 
-TrainerYoungsterJimmy: ; 0x1adf8d
+TrainerYoungsterJimmy:
 	; bit/flag number
-	dw $5b2
+	dw EVENT_BEAT_YOUNGSTER_JIMMY
 
 	; trainer group && trainer id
 	db YOUNGSTER, JIMMY
@@ -82,20 +77,18 @@ TrainerYoungsterJimmy: ; 0x1adf8d
 
 	; script when talk again
 	dw YoungsterJimmyScript
-; 0x1adf99
 
-YoungsterJimmyScript: ; 0x1adf99
+YoungsterJimmyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae0a9
 	closetext
 	loadmovesprites
 	end
-; 0x1adfa1
 
-TrainerFirebreatherBurt: ; 0x1adfa1
+TrainerFirebreatherBurt:
 	; bit/flag number
-	dw $449
+	dw EVENT_BEAT_FIREBREATHER_BURT
 
 	; trainer group && trainer id
 	db FIREBREATHER, BURT
@@ -111,91 +104,77 @@ TrainerFirebreatherBurt: ; 0x1adfa1
 
 	; script when talk again
 	dw FirebreatherBurtScript
-; 0x1adfad
 
-FirebreatherBurtScript: ; 0x1adfad
+FirebreatherBurtScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae118
 	closetext
 	loadmovesprites
 	end
-; 0x1adfb5
 
-MapRoute3Signpost0Script: ; 0x1adfb5
+MapRoute3Signpost0Script:
 	jumptext UnknownText_0x1ae163
-; 0x1adfb8
 
-FirebreatherOtisSeenText: ; 0x1adfb8
+FirebreatherOtisSeenText:
 	text "Ah! The weather's"
 	line "as fine as ever."
 	done
-; 0x1adfdb
 
-FirebreatherOtisBeatenText: ; 0x1adfdb
+FirebreatherOtisBeatenText:
 	text "It's sunny, but"
 	line "I'm all wet…"
 	done
-; 0x1adff7
 
-UnknownText_0x1adff7: ; 0x1adff7
+UnknownText_0x1adff7:
 	text "When it rains,"
 	line "it's hard to get"
 	cont "ignition…"
 	done
-; 0x1ae021
 
-YoungsterWarrenSeenText: ; 0x1ae021
+YoungsterWarrenSeenText:
 	text "Hmmm… I don't know"
 	line "what to do…"
 	done
-; 0x1ae040
 
-YoungsterWarrenBeatenText: ; 0x1ae040
+YoungsterWarrenBeatenText:
 	text "I knew I'd lose…"
 	done
-; 0x1ae051
 
-UnknownText_0x1ae051: ; 0x1ae051
+UnknownText_0x1ae051:
 	text "You looked strong."
 
 	para "I was afraid to"
 	line "take you on…"
 	done
-; 0x1ae082
 
-YoungsterJimmySeenText: ; 0x1ae082
+YoungsterJimmySeenText:
 	text "I can run like the"
 	line "wind!"
 	done
-; 0x1ae09c
 
-YoungsterJimmyBeatenText: ; 0x1ae09c
+YoungsterJimmyBeatenText:
 	text "Blown away!"
 	done
-; 0x1ae0a9
 
-UnknownText_0x1ae0a9: ; 0x1ae0a9
+UnknownText_0x1ae0a9:
 	text "I wear shorts the"
 	line "whole year round."
 
 	para "That's my fashion"
 	line "policy."
 	done
-; 0x1ae0e7
 
-FirebreatherBurtSeenText: ; 0x1ae0e7
+FirebreatherBurtSeenText:
 	text "Step right up and"
 	line "take a look!"
 	done
-; 0x1ae107
 
-FirebreatherBurtBeatenText: ; 0x1ae107
+FirebreatherBurtBeatenText:
 	text "Yow! That's hot!"
 	done
-; 0x1ae118
 
-UnknownText_0x1ae118: ; 0x1ae118
+UnknownText_0x1ae118:
 	text "The greatest fire-"
 	line "breather in KANTO,"
 	cont "that's me."
@@ -203,17 +182,15 @@ UnknownText_0x1ae118: ; 0x1ae118
 	para "But not the best"
 	line "trainer…"
 	done
-; 0x1ae163
 
-UnknownText_0x1ae163: ; 0x1ae163
+UnknownText_0x1ae163:
 	text "MT.MOON SQUARE"
 
 	para "Just go up the"
 	line "stairs."
 	done
-; 0x1ae18a
 
-Route3_MapEventHeader: ; 0x1ae18a
+Route3_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -234,4 +211,3 @@ Route3_MapEventHeader: ; 0x1ae18a
 	person_event SPRITE_YOUNGSTER, 11, 14, $8, $0, 255, 255, $92, 3, TrainerYoungsterWarren, $ffff
 	person_event SPRITE_YOUNGSTER, 7, 20, $a, $0, 255, 255, $92, 1, TrainerYoungsterJimmy, $ffff
 	person_event SPRITE_FISHER, 9, 53, $a, $0, 255, 255, $82, 3, TrainerFirebreatherBurt, $ffff
-; 0x1ae1ce

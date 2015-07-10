@@ -88,7 +88,7 @@ UnknownScript_0x194e94:
 
 TrainerCooltrainermPaul:
 	; bit/flag number
-	dw $54a
+	dw EVENT_BEAT_COOLTRAINERM_PAUL
 
 	; trainer group && trainer id
 	db COOLTRAINERM, PAUL
@@ -115,7 +115,7 @@ CooltrainermPaulScript:
 
 TrainerCooltrainermMike:
 	; bit/flag number
-	dw $54c
+	dw EVENT_BEAT_COOLTRAINERM_MIKE
 
 	; trainer group && trainer id
 	db COOLTRAINERM, MIKE
@@ -142,7 +142,7 @@ CooltrainermMikeScript:
 
 TrainerCooltrainerfLola:
 	; bit/flag number
-	dw $55e
+	dw EVENT_BEAT_COOLTRAINERF_LOLA
 
 	; trainer group && trainer id
 	db COOLTRAINERF, LOLA

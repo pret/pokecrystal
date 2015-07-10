@@ -1,4 +1,4 @@
-Route34_MapScriptHeader: ; 0x78000
+Route34_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,47 +8,40 @@ Route34_MapScriptHeader: ; 0x78000
 	; callbacks
 
 	dbw 2, UnknownScript_0x78005
-; 0x78005
 
-UnknownScript_0x78005: ; 0x78005
+UnknownScript_0x78005:
 	checkflag $0005
 	iftrue UnknownScript_0x78014
 	clearevent $06e5
 	setevent $06e6
 	jump UnknownScript_0x7801d
-; 0x78014
 
-UnknownScript_0x78014: ; 0x78014
+UnknownScript_0x78014:
 	setevent $06e5
 	clearevent $06e6
 	jump UnknownScript_0x7801d
-; 0x7801d
 
-UnknownScript_0x7801d: ; 0x7801d
+UnknownScript_0x7801d:
 	checkflag $0006
 	iffalse UnknownScript_0x78029
 	clearevent $06e7
 	jump UnknownScript_0x7802f
-; 0x78029
 
-UnknownScript_0x78029: ; 0x78029
+UnknownScript_0x78029:
 	setevent $06e7
 	jump UnknownScript_0x7802f
-; 0x7802f
 
-UnknownScript_0x7802f: ; 0x7802f
+UnknownScript_0x7802f:
 	checkflag $0007
 	iffalse UnknownScript_0x78039
 	clearevent $06e8
 	return
-; 0x78039
 
-UnknownScript_0x78039: ; 0x78039
+UnknownScript_0x78039:
 	setevent $06e8
 	return
-; 0x7803d
 
-GrampsScript_0x7803d: ; 0x7803d
+GrampsScript_0x7803d:
 	faceplayer
 	loadfont
 	special Function16936
@@ -61,34 +54,30 @@ GrampsScript_0x7803d: ; 0x7803d
 	applymovement $8, MovementData_0x78333
 	playsound SFX_ENTER_DOOR
 	disappear $8
-UnknownScript_0x7805a: ; 0x7805a
+UnknownScript_0x7805a:
 	end
-; 0x7805b
 
-UnknownScript_0x7805b: ; 0x7805b
+UnknownScript_0x7805b:
 	applymovement $8, MovementData_0x78337
 	playsound SFX_ENTER_DOOR
 	disappear $8
 	end
-; 0x78065
 
-DaycareMon1Script_0x78065: ; 0x78065
+DaycareMon1Script_0x78065:
 	loadfont
 	special Function17421
 	loadmovesprites
 	end
-; 0x7806b
 
-DaycareMon2Script_0x7806b: ; 0x7806b
+DaycareMon2Script_0x7806b:
 	loadfont
 	special Function17440
 	loadmovesprites
 	end
-; 0x78071
 
-TrainerCamperTodd1: ; 0x78071
+TrainerCamperTodd1:
 	; bit/flag number
-	dw $41b
+	dw EVENT_BEAT_CAMPER_TODD
 
 	; trainer group && trainer id
 	db CAMPER, TODD1
@@ -104,9 +93,8 @@ TrainerCamperTodd1: ; 0x78071
 
 	; script when talk again
 	dw CamperTodd1Script
-; 0x7807d
 
-CamperTodd1Script: ; 0x7807d
+CamperTodd1Script:
 	writecode VAR_CALLERID, $14
 	talkaftercancel
 	loadfont
@@ -123,20 +111,18 @@ CamperTodd1Script: ; 0x7807d
 	setevent $027d
 	scall UnknownScript_0x78137
 	jump UnknownScript_0x780a9
-; 0x780a6
 
-UnknownScript_0x780a6: ; 0x780a6
+UnknownScript_0x780a6:
 	scall UnknownScript_0x7813b
-UnknownScript_0x780a9: ; 0x780a9
+UnknownScript_0x780a9:
 	askforphonenumber $14
 	if_equal $1, UnknownScript_0x7814b
 	if_equal $2, UnknownScript_0x78147
 	trainertotext CAMPER, TODD1, $0
 	scall UnknownScript_0x7813f
 	jump UnknownScript_0x78143
-; 0x780bd
 
-UnknownScript_0x780bd: ; 0x780bd
+UnknownScript_0x780bd:
 	scall UnknownScript_0x7814f
 	winlosstext CamperTodd1BeatenText, $0000
 	copybytetovar wd9fe
@@ -145,107 +131,94 @@ UnknownScript_0x780bd: ; 0x780bd
 	if_equal $2, UnknownScript_0x780e8
 	if_equal $1, UnknownScript_0x780ee
 	if_equal $0, UnknownScript_0x780f4
-UnknownScript_0x780dc: ; 0x780dc
+UnknownScript_0x780dc:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x78128
-UnknownScript_0x780e2: ; 0x780e2
+UnknownScript_0x780e2:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x7811b
-UnknownScript_0x780e8: ; 0x780e8
+UnknownScript_0x780e8:
 	checkflag $004b
 	iftrue UnknownScript_0x7810e
-UnknownScript_0x780ee: ; 0x780ee
+UnknownScript_0x780ee:
 	checkflag $0045
 	iftrue UnknownScript_0x78101
-UnknownScript_0x780f4: ; 0x780f4
+UnknownScript_0x780f4:
 	loadtrainer CAMPER, TODD1
 	startbattle
 	returnafterbattle
 	loadvar wd9fe, $1
 	clearflag $0070
 	end
-; 0x78101
 
-UnknownScript_0x78101: ; 0x78101
+UnknownScript_0x78101:
 	loadtrainer CAMPER, TODD2
 	startbattle
 	returnafterbattle
 	loadvar wd9fe, $2
 	clearflag $0070
 	end
-; 0x7810e
 
-UnknownScript_0x7810e: ; 0x7810e
+UnknownScript_0x7810e:
 	loadtrainer CAMPER, TODD3
 	startbattle
 	returnafterbattle
 	loadvar wd9fe, $3
 	clearflag $0070
 	end
-; 0x7811b
 
-UnknownScript_0x7811b: ; 0x7811b
+UnknownScript_0x7811b:
 	loadtrainer CAMPER, TODD4
 	startbattle
 	returnafterbattle
 	loadvar wd9fe, $4
 	clearflag $0070
 	end
-; 0x78128
 
-UnknownScript_0x78128: ; 0x78128
+UnknownScript_0x78128:
 	loadtrainer CAMPER, TODD5
 	startbattle
 	returnafterbattle
 	clearflag $0070
 	end
-; 0x78131
 
-UnknownScript_0x78131: ; 0x78131
+UnknownScript_0x78131:
 	writetext UnknownText_0x78532
 	closetext
 	loadmovesprites
 	end
-; 0x78137
 
-UnknownScript_0x78137: ; 0x78137
+UnknownScript_0x78137:
 	jumpstd asknumber1m
 	end
-; 0x7813b
 
-UnknownScript_0x7813b: ; 0x7813b
+UnknownScript_0x7813b:
 	jumpstd asknumber2m
 	end
-; 0x7813f
 
-UnknownScript_0x7813f: ; 0x7813f
+UnknownScript_0x7813f:
 	jumpstd registerednumberm
 	end
-; 0x78143
 
-UnknownScript_0x78143: ; 0x78143
+UnknownScript_0x78143:
 	jumpstd numberacceptedm
 	end
-; 0x78147
 
-UnknownScript_0x78147: ; 0x78147
+UnknownScript_0x78147:
 	jumpstd numberdeclinedm
 	end
-; 0x7814b
 
-UnknownScript_0x7814b: ; 0x7814b
+UnknownScript_0x7814b:
 	jumpstd phonefullm
 	end
-; 0x7814f
 
-UnknownScript_0x7814f: ; 0x7814f
+UnknownScript_0x7814f:
 	jumpstd rematchm
 	end
-; 0x78153
 
-TrainerPicnickerGina1: ; 0x78153
+TrainerPicnickerGina1:
 	; bit/flag number
-	dw $47f
+	dw EVENT_BEAT_PICNICKER_GINA
 
 	; trainer group && trainer id
 	db PICNICKER, GINA1
@@ -261,9 +234,8 @@ TrainerPicnickerGina1: ; 0x78153
 
 	; script when talk again
 	dw PicnickerGina1Script
-; 0x7815f
 
-PicnickerGina1Script: ; 0x7815f
+PicnickerGina1Script:
 	writecode VAR_CALLERID, $15
 	talkaftercancel
 	loadfont
@@ -280,20 +252,18 @@ PicnickerGina1Script: ; 0x7815f
 	setevent $027f
 	scall UnknownScript_0x78228
 	jump UnknownScript_0x7818b
-; 0x78188
 
-UnknownScript_0x78188: ; 0x78188
+UnknownScript_0x78188:
 	scall UnknownScript_0x7822c
-UnknownScript_0x7818b: ; 0x7818b
+UnknownScript_0x7818b:
 	askforphonenumber $15
 	if_equal $1, UnknownScript_0x7823c
 	if_equal $2, UnknownScript_0x78238
 	trainertotext PICNICKER, GINA1, $0
 	scall UnknownScript_0x78230
 	jump UnknownScript_0x78234
-; 0x7819f
 
-UnknownScript_0x7819f: ; 0x7819f
+UnknownScript_0x7819f:
 	scall UnknownScript_0x78240
 	winlosstext PicnickerGina1BeatenText, $0000
 	copybytetovar wd9ff
@@ -302,126 +272,110 @@ UnknownScript_0x7819f: ; 0x7819f
 	if_equal $2, UnknownScript_0x781ca
 	if_equal $1, UnknownScript_0x781d0
 	if_equal $0, UnknownScript_0x781d6
-UnknownScript_0x781be: ; 0x781be
+UnknownScript_0x781be:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x7820a
-UnknownScript_0x781c4: ; 0x781c4
+UnknownScript_0x781c4:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x781fd
-UnknownScript_0x781ca: ; 0x781ca
+UnknownScript_0x781ca:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x781f0
-UnknownScript_0x781d0: ; 0x781d0
+UnknownScript_0x781d0:
 	checkflag $0049
 	iftrue UnknownScript_0x781e3
-UnknownScript_0x781d6: ; 0x781d6
+UnknownScript_0x781d6:
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	returnafterbattle
 	loadvar wd9ff, $1
 	clearflag $0071
 	end
-; 0x781e3
 
-UnknownScript_0x781e3: ; 0x781e3
+UnknownScript_0x781e3:
 	loadtrainer PICNICKER, GINA2
 	startbattle
 	returnafterbattle
 	loadvar wd9ff, $2
 	clearflag $0071
 	end
-; 0x781f0
 
-UnknownScript_0x781f0: ; 0x781f0
+UnknownScript_0x781f0:
 	loadtrainer PICNICKER, GINA3
 	startbattle
 	returnafterbattle
 	loadvar wd9ff, $3
 	clearflag $0071
 	end
-; 0x781fd
 
-UnknownScript_0x781fd: ; 0x781fd
+UnknownScript_0x781fd:
 	loadtrainer PICNICKER, GINA4
 	startbattle
 	returnafterbattle
 	loadvar wd9ff, $4
 	clearflag $0071
 	end
-; 0x7820a
 
-UnknownScript_0x7820a: ; 0x7820a
+UnknownScript_0x7820a:
 	loadtrainer PICNICKER, GINA5
 	startbattle
 	returnafterbattle
 	clearflag $0071
 	end
-; 0x78213
 
-UnknownScript_0x78213: ; 0x78213
+UnknownScript_0x78213:
 	scall UnknownScript_0x78244
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x78225
 	clearflag $0080
 	setevent $0100
 	jump UnknownScript_0x78234
-; 0x78225
 
-UnknownScript_0x78225: ; 0x78225
+UnknownScript_0x78225:
 	jump UnknownScript_0x78248
-; 0x78228
 
-UnknownScript_0x78228: ; 0x78228
+UnknownScript_0x78228:
 	jumpstd asknumber1f
 	end
-; 0x7822c
 
-UnknownScript_0x7822c: ; 0x7822c
+UnknownScript_0x7822c:
 	jumpstd asknumber2f
 	end
-; 0x78230
 
-UnknownScript_0x78230: ; 0x78230
+UnknownScript_0x78230:
 	jumpstd registerednumberf
 	end
-; 0x78234
 
-UnknownScript_0x78234: ; 0x78234
+UnknownScript_0x78234:
 	jumpstd numberacceptedf
 	end
-; 0x78238
 
-UnknownScript_0x78238: ; 0x78238
+UnknownScript_0x78238:
 	jumpstd numberdeclinedf
 	end
-; 0x7823c
 
-UnknownScript_0x7823c: ; 0x7823c
+UnknownScript_0x7823c:
 	jumpstd phonefullf
 	end
-; 0x78240
 
-UnknownScript_0x78240: ; 0x78240
+UnknownScript_0x78240:
 	jumpstd rematchf
 	end
-; 0x78244
 
-UnknownScript_0x78244: ; 0x78244
+UnknownScript_0x78244:
 	jumpstd giftf
 	end
-; 0x78248
 
-UnknownScript_0x78248: ; 0x78248
+UnknownScript_0x78248:
 	jumpstd packfullf
 	end
-; 0x7824c
 
-OfficerScript_0x7824c: ; 0x7824c
+OfficerScript_0x7824c:
 	faceplayer
 	loadfont
 	checknite
 	iffalse UnknownScript_0x78276
-	checkevent $0546
+	checkevent EVENT_BEAT_OFFICER_KEITH
 	iftrue UnknownScript_0x78270
 	playmusic MUSIC_OFFICER_ENCOUNTER
 	writetext UnknownText_0x785e4
@@ -431,28 +385,25 @@ OfficerScript_0x7824c: ; 0x7824c
 	loadtrainer OFFICER, KEITH
 	startbattle
 	returnafterbattle
-	setevent $0546
+	setevent EVENT_BEAT_OFFICER_KEITH
 	loadmovesprites
 	end
-; 0x78270
 
-UnknownScript_0x78270: ; 0x78270
+UnknownScript_0x78270:
 	writetext UnknownText_0x78624
 	closetext
 	loadmovesprites
 	end
-; 0x78276
 
-UnknownScript_0x78276: ; 0x78276
+UnknownScript_0x78276:
 	writetext UnknownText_0x7866a
 	closetext
 	loadmovesprites
 	end
-; 0x7827c
 
-TrainerYoungsterSamuel: ; 0x7827c
+TrainerYoungsterSamuel:
 	; bit/flag number
-	dw $5ad
+	dw EVENT_BEAT_YOUNGSTER_SAMUEL
 
 	; trainer group && trainer id
 	db YOUNGSTER, SAMUEL
@@ -468,20 +419,18 @@ TrainerYoungsterSamuel: ; 0x7827c
 
 	; script when talk again
 	dw YoungsterSamuelScript
-; 0x78288
 
-YoungsterSamuelScript: ; 0x78288
+YoungsterSamuelScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x783d8
 	closetext
 	loadmovesprites
 	end
-; 0x78290
 
-TrainerYoungsterIan: ; 0x78290
+TrainerYoungsterIan:
 	; bit/flag number
-	dw $5ae
+	dw EVENT_BEAT_YOUNGSTER_IAN
 
 	; trainer group && trainer id
 	db YOUNGSTER, IAN
@@ -497,20 +446,18 @@ TrainerYoungsterIan: ; 0x78290
 
 	; script when talk again
 	dw YoungsterIanScript
-; 0x7829c
 
-YoungsterIanScript: ; 0x7829c
+YoungsterIanScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x78469
 	closetext
 	loadmovesprites
 	end
-; 0x782a4
 
-TrainerPokefanmBrandon: ; 0x782a4
+TrainerPokefanmBrandon:
 	; bit/flag number
-	dw $4d3
+	dw EVENT_BEAT_POKEFANM_BRANDON
 
 	; trainer group && trainer id
 	db POKEFANM, BRANDON
@@ -526,20 +473,18 @@ TrainerPokefanmBrandon: ; 0x782a4
 
 	; script when talk again
 	dw PokefanmBrandonScript
-; 0x782b0
 
-PokefanmBrandonScript: ; 0x782b0
+PokefanmBrandonScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x786fc
 	closetext
 	loadmovesprites
 	end
-; 0x782b8
 
-TrainerCooltrainerfIrene: ; 0x782b8
+TrainerCooltrainerfIrene:
 	; bit/flag number
-	dw $560
+	dw EVENT_BEAT_COOLTRAINERF_IRENE
 
 	; trainer group && trainer id
 	db COOLTRAINERF, IRENE
@@ -555,9 +500,8 @@ TrainerCooltrainerfIrene: ; 0x782b8
 
 	; script when talk again
 	dw CooltrainerfIreneScript
-; 0x782c4
 
-CooltrainerfIreneScript: ; 0x782c4
+CooltrainerfIreneScript:
 	talkaftercancel
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
@@ -566,18 +510,16 @@ CooltrainerfIreneScript: ; 0x782c4
 	closetext
 	loadmovesprites
 	end
-; 0x782d2
 
-UnknownScript_0x782d2: ; 0x782d2
+UnknownScript_0x782d2:
 	writetext UnknownText_0x787ad
 	closetext
 	loadmovesprites
 	end
-; 0x782d8
 
-TrainerCooltrainerfJenn: ; 0x782d8
+TrainerCooltrainerfJenn:
 	; bit/flag number
-	dw $56b
+	dw EVENT_BEAT_COOLTRAINERF_JENN
 
 	; trainer group && trainer id
 	db COOLTRAINERF, JENN
@@ -593,9 +535,8 @@ TrainerCooltrainerfJenn: ; 0x782d8
 
 	; script when talk again
 	dw CooltrainerfJennScript
-; 0x782e4
 
-CooltrainerfJennScript: ; 0x782e4
+CooltrainerfJennScript:
 	talkaftercancel
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
@@ -604,18 +545,16 @@ CooltrainerfJennScript: ; 0x782e4
 	closetext
 	loadmovesprites
 	end
-; 0x782f2
 
-UnknownScript_0x782f2: ; 0x782f2
+UnknownScript_0x782f2:
 	writetext UnknownText_0x78866
 	closetext
 	loadmovesprites
 	end
-; 0x782f8
 
-TrainerCooltrainerfKate: ; 0x782f8
+TrainerCooltrainerfKate:
 	; bit/flag number
-	dw $55f
+	dw EVENT_BEAT_COOLTRAINERF_KATE
 
 	; trainer group && trainer id
 	db COOLTRAINERF, KATE
@@ -631,9 +570,8 @@ TrainerCooltrainerfKate: ; 0x782f8
 
 	; script when talk again
 	dw CooltrainerfKateScript
-; 0x78304
 
-CooltrainerfKateScript: ; 0x78304
+CooltrainerfKateScript:
 	talkaftercancel
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
@@ -643,75 +581,63 @@ CooltrainerfKateScript: ; 0x78304
 	verbosegiveitem SOFT_SAND, 1
 	iffalse UnknownScript_0x7831d
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
-UnknownScript_0x78319: ; 0x78319
+UnknownScript_0x78319:
 	writetext UnknownText_0x7892b
 	closetext
-UnknownScript_0x7831d: ; 0x7831d
+UnknownScript_0x7831d:
 	loadmovesprites
 	end
-; 0x7831f
 
-UnknownScript_0x7831f: ; 0x7831f
+UnknownScript_0x7831f:
 	jumptext UnknownText_0x7898a
-; 0x78322
 
-MapRoute34Signpost0Script: ; 0x78322
+MapRoute34Signpost0Script:
 	jumptext UnknownText_0x789a8
-; 0x78325
 
-MapRoute34Signpost1Script: ; 0x78325
+MapRoute34Signpost1Script:
 	jumptext UnknownText_0x789ed
-; 0x78328
 
-MapRoute34Signpost2Script: ; 0x78328
+MapRoute34Signpost2Script:
 	jumptext UnknownText_0x78a52
-; 0x7832b
 
-ItemFragment_0x7832b: ; 0x7832b
+ItemFragment_0x7832b:
 	db NUGGET, 1
-; 0x7832d
 
-MapRoute34SignpostItem3: ; 0x7832d
+MapRoute34SignpostItem3:
 	dw $00a7
 	db RARE_CANDY
 	
-; 0x78330
 
-MapRoute34SignpostItem4: ; 0x78330
+MapRoute34SignpostItem4:
 	dw $00a8
 	db SUPER_POTION
 	
-; 0x78333
 
-MovementData_0x78333: ; 0x78333
+MovementData_0x78333:
 	slow_step_left
 	slow_step_left
 	slow_step_up
 	step_end
-; 0x78337
 
-MovementData_0x78337: ; 0x78337
+MovementData_0x78337:
 	slow_step_down
 	slow_step_left
 	slow_step_left
 	slow_step_up
 	slow_step_up
 	step_end
-; 0x7833d
 
-YoungsterSamuelSeenText: ; 0x7833d
+YoungsterSamuelSeenText:
 	text "This is where I do"
 	line "my training!"
 	done
-; 0x7835e
 
-YoungsterSamuelBeatenText: ; 0x7835e
+YoungsterSamuelBeatenText:
 	text "Beaten by a"
 	line "passing stranger!"
 	done
-; 0x7837d
 
-UnknownText_0x7837d: ; 0x7837d
+UnknownText_0x7837d:
 	text "Have you been to"
 	line "GOLDENROD CITY?"
 
@@ -721,9 +647,8 @@ UnknownText_0x7837d: ; 0x7837d
 	para "changed the"
 	line "#MON CENTER?"
 	done
-; 0x783d8
 
-UnknownText_0x783d8: ; 0x783d8
+UnknownText_0x783d8:
 	text "I'm going to train"
 	line "even harder."
 
@@ -731,111 +656,96 @@ UnknownText_0x783d8: ; 0x783d8
 	line "trying to become"
 	cont "a GYM LEADER."
 	done
-; 0x78425
 
-YoungsterIanSeenText: ; 0x78425
+YoungsterIanSeenText:
 	text "I'm the best in my"
 	line "class at #MON."
 	done
-; 0x78447
 
-YoungsterIanBeatenText: ; 0x78447
+YoungsterIanBeatenText:
 	text "No! There are bet-"
 	line "ter trainers…"
 	done
-; 0x78469
 
-UnknownText_0x78469: ; 0x78469
+UnknownText_0x78469:
 	text "I'm trying hard so"
 	line "I can be the star"
 	cont "in my class."
 	done
-; 0x7849b
 
-CamperTodd1SeenText: ; 0x7849b
+CamperTodd1SeenText:
 	text "I'm confident in"
 	line "my ability to"
 	cont "raise #MON."
 
 	para "Want to see?"
 	done
-; 0x784d3
 
-CamperTodd1BeatenText: ; 0x784d3
+CamperTodd1BeatenText:
 	text "Did I screw up my"
 	line "training?"
 	done
-; 0x784f0
 
-UnknownText_0x784f0: ; 0x784f0
+UnknownText_0x784f0:
 	text "Maybe I should"
 	line "take one to a DAY-"
 
 	para "CARE. Or maybe use"
 	line "some items…"
 	done
-; 0x78532
 
-UnknownText_0x78532: ; 0x78532
+UnknownText_0x78532:
 	text "Shopping under the"
 	line "sky!"
 
 	para "It feels so nice"
 	line "up on a rooftop."
 	done
-; 0x7856d
 
-PicnickerGina1SeenText: ; 0x7856d
+PicnickerGina1SeenText:
 	text "Are you a trainer?"
 
 	para "Let's have a"
 	line "practice battle."
 	done
-; 0x7859e
 
-PicnickerGina1BeatenText: ; 0x7859e
+PicnickerGina1BeatenText:
 	text "Oh, no! I just"
 	line "can't win…"
 	done
-; 0x785b8
 
-UnknownText_0x785b8: ; 0x785b8
+UnknownText_0x785b8:
 	text "You're too strong"
 	line "to be a practice"
 	cont "partner."
 	done
-; 0x785e4
 
-UnknownText_0x785e4: ; 0x785e4
+UnknownText_0x785e4:
 	text "Who goes there?"
 	line "What are you up"
 	cont "to?"
 	done
-; 0x78609
 
-UnknownText_0x78609: ; 0x78609
+UnknownText_0x78609:
 	text "You're a tough"
 	line "little kid."
 	done
-; 0x78624
 
-UnknownText_0x78624: ; 0x78624
+UnknownText_0x78624:
 	text "Yep, I see nothing"
 	line "wrong today. You"
 
 	para "be good and stay"
 	line "out of trouble."
 	done
-; 0x7866a
 
-UnknownText_0x7866a: ; 0x7866a
+UnknownText_0x7866a:
 	text "I'm on patrol for"
 	line "suspicious indi-"
 	cont "viduals."
 	done
-; 0x78696
 
-PokefanmBrandonSeenText: ; 0x78696
+PokefanmBrandonSeenText:
 	text "I just got my"
 	line "#MON back from"
 	cont "DAY-CARE."
@@ -843,15 +753,13 @@ PokefanmBrandonSeenText: ; 0x78696
 	para "Let's see how much"
 	line "stronger it got!"
 	done
-; 0x786e1
 
-PokefanmBrandonBeatenText: ; 0x786e1
+PokefanmBrandonBeatenText:
 	text "Why does it end"
 	line "this way?"
 	done
-; 0x786fc
 
-UnknownText_0x786fc: ; 0x786fc
+UnknownText_0x786fc:
 	text "My #MON knew"
 	line "moves I didn't"
 	cont "know it had."
@@ -859,77 +767,66 @@ UnknownText_0x786fc: ; 0x786fc
 	para "That confounded me"
 	line "to no end!"
 	done
-; 0x78743
 
-CooltrainerfIreneSeenText: ; 0x78743
+CooltrainerfIreneSeenText:
 	text "IRENE: Kyaaah!"
 	line "Someone found us!"
 	done
-; 0x78765
 
-CooltrainerfIreneBeatenText: ; 0x78765
+CooltrainerfIreneBeatenText:
 	text "IRENE: Ohhh!"
 	line "Too strong!"
 	done
-; 0x7877f
 
-UnknownText_0x7877f: ; 0x7877f
+UnknownText_0x7877f:
 	text "IRENE: My sister"
 	line "KATE will get you"
 	cont "for this!"
 	done
-; 0x787ad
 
-UnknownText_0x787ad: ; 0x787ad
+UnknownText_0x787ad:
 	text "IRENE: Isn't this"
 	line "beach great?"
 
 	para "It's our secret"
 	line "little getaway!"
 	done
-; 0x787eb
 
-CooltrainerfJennSeenText: ; 0x787eb
+CooltrainerfJennSeenText:
 	text "JENN: You can't"
 	line "beat IRENE and go"
 	cont "unpunished!"
 	done
-; 0x78819
 
-CooltrainerfJennBeatenText: ; 0x78819
+CooltrainerfJennBeatenText:
 	text "JENN: So sorry,"
 	line "IRENE! Sis!"
 	done
-; 0x78836
 
-UnknownText_0x78836: ; 0x78836
+UnknownText_0x78836:
 	text "JENN: Don't get"
 	line "cocky! My sister"
 	cont "KATE is tough!"
 	done
-; 0x78866
 
-UnknownText_0x78866: ; 0x78866
+UnknownText_0x78866:
 	text "JENN: Sunlight"
 	line "makes your body"
 	cont "stronger."
 	done
-; 0x78890
 
-CooltrainerfKateSeenText: ; 0x78890
+CooltrainerfKateSeenText:
 	text "KATE: You sure"
 	line "were mean to my"
 	cont "little sisters!"
 	done
-; 0x788c0
 
-CooltrainerfKateBeatenText: ; 0x788c0
+CooltrainerfKateBeatenText:
 	text "KATE: No! I can't"
 	line "believe I lost."
 	done
-; 0x788e2
 
-UnknownText_0x788e2: ; 0x788e2
+UnknownText_0x788e2:
 	text "KATE: You're too"
 	line "strong. I didn't"
 	cont "stand a chance."
@@ -937,9 +834,8 @@ UnknownText_0x788e2: ; 0x788e2
 	para "Here. You deserve"
 	line "this."
 	done
-; 0x7892b
 
-UnknownText_0x7892b: ; 0x7892b
+UnknownText_0x7892b:
 	text "KATE: I'm sorry we"
 	line "jumped you."
 
@@ -949,15 +845,13 @@ UnknownText_0x7892b: ; 0x7892b
 	para "here. You sure"
 	line "startled us."
 	done
-; 0x7898a
 
-UnknownText_0x7898a: ; 0x7898a
+UnknownText_0x7898a:
 	text "ILEX FOREST"
 	line "THROUGH THE GATE"
 	done
-; 0x789a8
 
-UnknownText_0x789a8: ; 0x789a8
+UnknownText_0x789a8:
 	text "ROUTE 34"
 
 	para "GOLDENROD CITY -"
@@ -966,9 +860,8 @@ UnknownText_0x789a8: ; 0x789a8
 	para "ILEX FOREST"
 	line "SOMEWHERE BETWEEN"
 	done
-; 0x789ed
 
-UnknownText_0x789ed: ; 0x789ed
+UnknownText_0x789ed:
 	text "TRAINER TIPS"
 
 	para "BERRY trees grow"
@@ -979,17 +872,15 @@ UnknownText_0x789ed: ; 0x789ed
 	line "which trees bear"
 	cont "which BERRIES."
 	done
-; 0x78a52
 
-UnknownText_0x78a52: ; 0x78a52
+UnknownText_0x78a52:
 	text "DAY-CARE"
 
 	para "LET US RAISE YOUR"
 	line "#MON FOR YOU!"
 	done
-; 0x78a7c
 
-Route34_MapEventHeader: ; 0x78a7c
+Route34_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -1027,4 +918,3 @@ Route34_MapEventHeader: ; 0x78a7c
 	person_event SPRITE_COOLTRAINER_F, 52, 7, $9, $0, 255, 255, $82, 3, TrainerCooltrainerfJenn, $ffff
 	person_event SPRITE_COOLTRAINER_F, 55, 10, $7, $0, 255, 255, $82, 2, TrainerCooltrainerfKate, $ffff
 	person_event SPRITE_POKE_BALL, 34, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7832b, $07bc
-; 0x78b5d

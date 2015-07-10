@@ -1,4 +1,4 @@
-Route36_MapScriptHeader: ; 0x194000
+Route36_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -13,13 +13,11 @@ Route36_MapScriptHeader: ; 0x194000
 
 	dbw 2, ArthurCallback
 
-UnknownScript_0x19400d: ; 0x19400d
+UnknownScript_0x19400d:
 	end
-; 0x19400e
 
-UnknownScript_0x19400e: ; 0x19400e
+UnknownScript_0x19400e:
 	end
-; 0x19400f
 
 ArthurCallback:
 	checkcode VAR_WEEKDAY
@@ -31,7 +29,7 @@ ArthurCallback:
 	appear $8
 	return
 
-UnknownScript_0x19401b: ; 0x19401b
+UnknownScript_0x19401b:
 	showemote $0, $0, 15
 	pause 15
 	playsound SFX_WARP_FROM
@@ -44,27 +42,24 @@ UnknownScript_0x19401b: ; 0x19401b
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $1
 	end
-; 0x19403c
 
-WeirdTreeScript_0x19403c: ; 0x19403c
+WeirdTreeScript_0x19403c:
 	checkitem SQUIRTBOTTLE
 	iftrue UnknownScript_0x19404a
 	waitbutton
 	playsound SFX_SANDSTORM
 	applymovement $4, MovementData_0x194249
 	end
-; 0x19404a
 
-UnknownScript_0x19404a: ; 0x19404a
+UnknownScript_0x19404a:
 	loadfont
 	writetext UnknownText_0x19426b
 	yesorno
 	iffalse UnknownScript_0x194079
 	loadmovesprites
 	; fallthrough
-; 0x194053
 
-WateredWeirdTreeScript:: ; 0x194053
+WateredWeirdTreeScript::
 	loadfont
 	writetext UnknownText_0x194290
 	closetext
@@ -84,14 +79,12 @@ WateredWeirdTreeScript:: ; 0x194053
 	variablesprite $4, $26
 	returnafterbattle
 	end
-; 0x194079
 
-UnknownScript_0x194079: ; 0x194079
+UnknownScript_0x194079:
 	loadmovesprites
 	end
-; 0x19407b
 
-UnknownScript_0x19407b: ; 0x19407b
+UnknownScript_0x19407b:
 	returnafterbattle
 	applymovement $4, MovementData_0x19424b
 	disappear $4
@@ -99,9 +92,8 @@ UnknownScript_0x19407b: ; 0x19407b
 	special Function14209
 	special Function14168
 	end
-; 0x19408c
 
-LassScript_0x19408c: ; 0x19408c
+LassScript_0x19408c:
 	faceplayer
 	loadfont
 	checkevent $00ba
@@ -116,22 +108,19 @@ LassScript_0x19408c: ; 0x19408c
 	applymovement $9, MovementData_0x19424e
 	disappear $9
 	end
-; 0x1940ac
 
-UnknownScript_0x1940ac: ; 0x1940ac
+UnknownScript_0x1940ac:
 	applymovement $9, MovementData_0x194258
 	disappear $9
 	end
-; 0x1940b3
 
-UnknownScript_0x1940b3: ; 0x1940b3
+UnknownScript_0x1940b3:
 	writetext UnknownText_0x1943ed
 	closetext
 	loadmovesprites
 	end
-; 0x1940b9
 
-FisherScript_0x1940b9: ; 0x1940b9
+FisherScript_0x1940b9:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
@@ -142,23 +131,21 @@ FisherScript_0x1940b9: ; 0x1940b9
 	closetext
 	loadmovesprites
 	end
-; 0x1940cd
 
-UnknownScript_0x1940cd: ; 0x1940cd
+UnknownScript_0x1940cd:
 	writetext UnknownText_0x1944d0
 	keeptextopen
 	verbosegiveitem TM_ROCK_SMASH, 1
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
-UnknownScript_0x1940da: ; 0x1940da
+UnknownScript_0x1940da:
 	writetext UnknownText_0x19452c
 	closetext
-UnknownScript_0x1940de: ; 0x1940de
+UnknownScript_0x1940de:
 	loadmovesprites
 	end
-; 0x1940e0
 
-LassScript_0x1940e0: ; 0x1940e0
+LassScript_0x1940e0:
 	faceplayer
 	loadfont
 	checkevent EVENT_FOUGHT_SUDOWOODO
@@ -167,18 +154,16 @@ LassScript_0x1940e0: ; 0x1940e0
 	closetext
 	loadmovesprites
 	end
-; 0x1940ee
 
-UnknownScript_0x1940ee: ; 0x1940ee
+UnknownScript_0x1940ee:
 	writetext UnknownText_0x19469e
 	closetext
 	loadmovesprites
 	end
-; 0x1940f4
 
-TrainerSchoolboyAlan1: ; 0x1940f4
+TrainerSchoolboyAlan1:
 	; bit/flag number
-	dw $46e
+	dw EVENT_BEAT_SCHOOLBOY_ALAN
 
 	; trainer group && trainer id
 	db SCHOOLBOY, ALAN1
@@ -194,9 +179,8 @@ TrainerSchoolboyAlan1: ; 0x1940f4
 
 	; script when talk again
 	dw SchoolboyAlan1Script
-; 0x194100
 
-SchoolboyAlan1Script: ; 0x194100
+SchoolboyAlan1Script:
 	writecode VAR_CALLERID, $18
 	talkaftercancel
 	loadfont
@@ -213,20 +197,18 @@ SchoolboyAlan1Script: ; 0x194100
 	setevent $0285
 	scall UnknownScript_0x1941c9
 	jump UnknownScript_0x19412c
-; 0x194129
 
-UnknownScript_0x194129: ; 0x194129
+UnknownScript_0x194129:
 	scall UnknownScript_0x1941cd
-UnknownScript_0x19412c: ; 0x19412c
+UnknownScript_0x19412c:
 	askforphonenumber $18
 	if_equal $1, UnknownScript_0x1941dd
 	if_equal $2, UnknownScript_0x1941d9
 	trainertotext SCHOOLBOY, ALAN1, $0
 	scall UnknownScript_0x1941d1
 	jump UnknownScript_0x1941d5
-; 0x194140
 
-UnknownScript_0x194140: ; 0x194140
+UnknownScript_0x194140:
 	scall UnknownScript_0x1941e1
 	winlosstext SchoolboyAlan1BeatenText, $0000
 	copybytetovar wda02
@@ -235,123 +217,107 @@ UnknownScript_0x194140: ; 0x194140
 	if_equal $2, UnknownScript_0x19416b
 	if_equal $1, UnknownScript_0x194171
 	if_equal $0, UnknownScript_0x194177
-UnknownScript_0x19415f: ; 0x19415f
+UnknownScript_0x19415f:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1941ab
-UnknownScript_0x194165: ; 0x194165
+UnknownScript_0x194165:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0x19419e
-UnknownScript_0x19416b: ; 0x19416b
+UnknownScript_0x19416b:
 	checkflag $004b
 	iftrue UnknownScript_0x194191
-UnknownScript_0x194171: ; 0x194171
+UnknownScript_0x194171:
 	checkflag $0047
 	iftrue UnknownScript_0x194184
-UnknownScript_0x194177: ; 0x194177
+UnknownScript_0x194177:
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	returnafterbattle
 	loadvar wda02, $1
 	clearflag $0073
 	end
-; 0x194184
 
-UnknownScript_0x194184: ; 0x194184
+UnknownScript_0x194184:
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	returnafterbattle
 	loadvar wda02, $2
 	clearflag $0073
 	end
-; 0x194191
 
-UnknownScript_0x194191: ; 0x194191
+UnknownScript_0x194191:
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	returnafterbattle
 	loadvar wda02, $3
 	clearflag $0073
 	end
-; 0x19419e
 
-UnknownScript_0x19419e: ; 0x19419e
+UnknownScript_0x19419e:
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	returnafterbattle
 	loadvar wda02, $4
 	clearflag $0073
 	end
-; 0x1941ab
 
-UnknownScript_0x1941ab: ; 0x1941ab
+UnknownScript_0x1941ab:
 	loadtrainer SCHOOLBOY, ALAN5
 	startbattle
 	returnafterbattle
 	clearflag $0073
 	end
-; 0x1941b4
 
-UnknownScript_0x1941b4: ; 0x1941b4
+UnknownScript_0x1941b4:
 	scall UnknownScript_0x1941e5
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1941c6
 	clearflag $0081
 	setevent $0101
 	jump UnknownScript_0x1941d5
-; 0x1941c6
 
-UnknownScript_0x1941c6: ; 0x1941c6
+UnknownScript_0x1941c6:
 	jump UnknownScript_0x1941e9
-; 0x1941c9
 
-UnknownScript_0x1941c9: ; 0x1941c9
+UnknownScript_0x1941c9:
 	jumpstd asknumber1m
 	end
-; 0x1941cd
 
-UnknownScript_0x1941cd: ; 0x1941cd
+UnknownScript_0x1941cd:
 	jumpstd asknumber2m
 	end
-; 0x1941d1
 
-UnknownScript_0x1941d1: ; 0x1941d1
+UnknownScript_0x1941d1:
 	jumpstd registerednumberm
 	end
-; 0x1941d5
 
-UnknownScript_0x1941d5: ; 0x1941d5
+UnknownScript_0x1941d5:
 	jumpstd numberacceptedm
 	end
-; 0x1941d9
 
-UnknownScript_0x1941d9: ; 0x1941d9
+UnknownScript_0x1941d9:
 	jumpstd numberdeclinedm
 	end
-; 0x1941dd
 
-UnknownScript_0x1941dd: ; 0x1941dd
+UnknownScript_0x1941dd:
 	jumpstd phonefullm
 	end
-; 0x1941e1
 
-UnknownScript_0x1941e1: ; 0x1941e1
+UnknownScript_0x1941e1:
 	jumpstd rematchm
 	end
-; 0x1941e5
 
-UnknownScript_0x1941e5: ; 0x1941e5
+UnknownScript_0x1941e5:
 	jumpstd giftm
 	end
-; 0x1941e9
 
-UnknownScript_0x1941e9: ; 0x1941e9
+UnknownScript_0x1941e9:
 	jumpstd packfullm
 	end
-; 0x1941ed
 
-TrainerPsychicMark: ; 0x1941ed
+TrainerPsychicMark:
 	; bit/flag number
-	dw $440
+	dw EVENT_BEAT_PSYCHIC_MARK
 
 	; trainer group && trainer id
 	db PSYCHIC_T, MARK
@@ -367,16 +333,14 @@ TrainerPsychicMark: ; 0x1941ed
 
 	; script when talk again
 	dw PsychicMarkScript
-; 0x1941f9
 
-PsychicMarkScript: ; 0x1941f9
+PsychicMarkScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19471e
 	closetext
 	loadmovesprites
 	end
-; 0x194201
 
 ArthurScript:
 	faceplayer
@@ -414,38 +378,31 @@ ArthurNotThursdayScript:
 	loadmovesprites
 	end
 
-MapRoute36Signpost2Script: ; 0x19423b
+MapRoute36Signpost2Script:
 	jumptext UnknownText_0x194924
-; 0x19423e
 
-MapRoute36Signpost1Script: ; 0x19423e
+MapRoute36Signpost1Script:
 	jumptext UnknownText_0x19492e
-; 0x194241
 
-MapRoute36Signpost3Script: ; 0x194241
+MapRoute36Signpost3Script:
 	jumptext UnknownText_0x19494c
-; 0x194244
 
-MapRoute36Signpost0Script: ; 0x194244
+MapRoute36Signpost0Script:
 	jumptext UnknownText_0x1949ee
-; 0x194247
 
-FruitTreeScript_0x194247: ; 0x194247
+FruitTreeScript_0x194247:
 	fruittree $d
-; 0x194249
 
-MovementData_0x194249: ; 0x194249
+MovementData_0x194249:
 	db $56 ; movement
 	step_end
-; 0x19424b
 
-MovementData_0x19424b: ; 0x19424b
+MovementData_0x19424b:
 	fast_jump_step_up
 	fast_jump_step_up
 	step_end
-; 0x19424e
 
-MovementData_0x19424e: ; 0x19424e
+MovementData_0x19424e:
 	step_down
 	step_down
 	step_down
@@ -456,9 +413,8 @@ MovementData_0x19424e: ; 0x19424e
 	step_left
 	step_left
 	step_end
-; 0x194258
 
-MovementData_0x194258: ; 0x194258
+MovementData_0x194258:
 	step_left
 	step_down
 	step_down
@@ -469,9 +425,8 @@ MovementData_0x194258: ; 0x194258
 	step_left
 	step_left
 	step_end
-; 0x194262
 
-MovementData_0x194262: ; 0x194262
+MovementData_0x194262:
 	db $39 ; movement
 	fast_jump_step_down
 	fast_jump_step_down
@@ -481,21 +436,18 @@ MovementData_0x194262: ; 0x194262
 	fast_jump_step_right
 	db $38 ; movement
 	step_end
-; 0x19426b
 
-UnknownText_0x19426b: ; 0x19426b
+UnknownText_0x19426b:
 	text "It's a weird tree."
 	line "Use SQUIRTBOTTLE?"
 	done
-; 0x194290
 
-UnknownText_0x194290: ; 0x194290
+UnknownText_0x194290:
 	text "<PLAYER> used the"
 	line "SQUIRTBOTTLE."
 	done
-; 0x1942aa
 
-UnknownText_0x1942aa: ; 0x1942aa
+UnknownText_0x1942aa:
 	text "The weird tree"
 	line "doesn't like the"
 	cont "SQUIRTBOTTLE!"
@@ -503,9 +455,8 @@ UnknownText_0x1942aa: ; 0x1942aa
 	para "The weird tree"
 	line "attacked!"
 	done
-; 0x1942f1
 
-UnknownText_0x1942f1: ; 0x1942f1
+UnknownText_0x1942f1:
 	text "I'm the FLOWER"
 	line "SHOP's FLORIA!"
 
@@ -530,9 +481,8 @@ UnknownText_0x1942f1: ; 0x1942f1
 	line "my sis and borrow"
 	cont "her water bottle!"
 	done
-; 0x1943ed
 
-UnknownText_0x1943ed: ; 0x1943ed
+UnknownText_0x1943ed:
 	text "When I told my sis"
 	line "about the jiggly"
 
@@ -545,9 +495,8 @@ UnknownText_0x1943ed: ; 0x1943ed
 	para "lend me her water"
 	line "bottle…"
 	done
-; 0x19446f
 
-UnknownText_0x19446f: ; 0x19446f
+UnknownText_0x19446f:
 	text "Wa-hey!"
 
 	para "I was going to"
@@ -559,9 +508,8 @@ UnknownText_0x19446f: ; 0x19446f
 	para "But I couldn't!"
 	line "I'm a failure!"
 	done
-; 0x1944d0
 
-UnknownText_0x1944d0: ; 0x1944d0
+UnknownText_0x1944d0:
 	text "Did you clear that"
 	line "wretched tree?"
 
@@ -569,15 +517,13 @@ UnknownText_0x1944d0: ; 0x1944d0
 	line "I want you to"
 	cont "have this."
 	done
-; 0x19451a
 
-UnknownText_0x19451a: ; 0x19451a
+UnknownText_0x19451a:
 	text "<PLAYER> received"
 	line "TM08."
 	done
-; 0x19452c
 
-UnknownText_0x19452c: ; 0x19452c
+UnknownText_0x19452c:
 	text "That happens to be"
 	line "ROCK SMASH."
 
@@ -591,9 +537,8 @@ UnknownText_0x19452c: ; 0x19452c
 	line "in your way, just"
 	cont "smash 'em up!"
 	done
-; 0x1945b8
 
-UnknownText_0x1945b8: ; 0x1945b8
+UnknownText_0x1945b8:
 	text "An odd tree is"
 	line "blocking the way"
 	cont "to GOLDENROD CITY."
@@ -604,9 +549,8 @@ UnknownText_0x1945b8: ; 0x1945b8
 	para "CENTER they just"
 	line "opened…"
 	done
-; 0x194626
 
-UnknownText_0x194626: ; 0x194626
+UnknownText_0x194626:
 	text "An odd tree is"
 	line "blocking the way"
 	cont "to GOLDENROD CITY."
@@ -617,9 +561,8 @@ UnknownText_0x194626: ; 0x194626
 	para "Something should"
 	line "be done about it."
 	done
-; 0x19469e
 
-UnknownText_0x19469e: ; 0x19469e
+UnknownText_0x19469e:
 	text "That odd tree dis-"
 	line "appeared without a"
 	cont "trace."
@@ -627,42 +570,36 @@ UnknownText_0x19469e: ; 0x19469e
 	para "Oh! That tree was"
 	line "really a #MON?"
 	done
-; 0x1946ed
 
-PsychicMarkSeenText: ; 0x1946ed
+PsychicMarkSeenText:
 	text "I'm going to read"
 	line "your thoughts!"
 	done
-; 0x19470e
 
-PsychicMarkBeatenText: ; 0x19470e
+PsychicMarkBeatenText:
 	text "I misread you!"
 	done
-; 0x19471e
 
-UnknownText_0x19471e: ; 0x19471e
+UnknownText_0x19471e:
 	text "I'd be strong if"
 	line "only I could tell"
 
 	para "what my opponent"
 	line "was thinking."
 	done
-; 0x194760
 
-SchoolboyAlan1SeenText: ; 0x194760
+SchoolboyAlan1SeenText:
 	text "Thanks to my stud-"
 	line "ies, I'm ready for"
 	cont "any #MON!"
 	done
-; 0x194790
 
-SchoolboyAlan1BeatenText: ; 0x194790
+SchoolboyAlan1BeatenText:
 	text "Oops! Computation"
 	line "error?"
 	done
-; 0x1947aa
 
-UnknownText_0x1947aa: ; 0x1947aa
+UnknownText_0x1947aa:
 	text "Darn. I study five"
 	line "hours a day too."
 
@@ -670,7 +607,6 @@ UnknownText_0x1947aa: ; 0x1947aa
 	line "learning than just"
 	cont "reading books."
 	done
-; 0x194800
 
 MeetArthurText:
 	text "ARTHUR: Who are"
@@ -710,18 +646,16 @@ ArthurNotThursdayText:
 	cont "disappointing."
 	done
 
-UnknownText_0x194924: ; 0x194924
+UnknownText_0x194924:
 	text "ROUTE 36"
 	done
-; 0x19492e
 
-UnknownText_0x19492e: ; 0x19492e
+UnknownText_0x19492e:
 	text "RUINS OF ALPH"
 	line "NORTH ENTRANCE"
 	done
-; 0x19494c
 
-UnknownText_0x19494c: ; 0x19494c
+UnknownText_0x19494c:
 	text "TRAINER TIPS"
 
 	para "#MON stats"
@@ -737,9 +671,8 @@ UnknownText_0x19494c: ; 0x19494c
 	para "pronounced as the"
 	line "#MON grow."
 	done
-; 0x1949ee
 
-UnknownText_0x1949ee: ; 0x1949ee
+UnknownText_0x1949ee:
 	text "TRAINER TIPS"
 
 	para "Use DIG to return"
@@ -752,9 +685,8 @@ UnknownText_0x1949ee: ; 0x1949ee
 	para "caves and other"
 	line "landmarks."
 	done
-; 0x194a66
 
-Route36_MapEventHeader: ; 0x194a66
+Route36_MapEventHeader:
 	; filler
 	db 0, 0
 

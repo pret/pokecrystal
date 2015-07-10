@@ -39,7 +39,7 @@ SurgeScript_0x1920a5:
 
 TrainerGentlemanGregory:
 	; bit/flag number
-	dw $49c
+	dw EVENT_BEAT_GENTLEMAN_GREGORY
 
 	; trainer group && trainer id
 	db GENTLEMAN, GREGORY
@@ -66,7 +66,7 @@ GentlemanGregoryScript:
 
 TrainerGuitaristVincent:
 	; bit/flag number
-	dw $494
+	dw EVENT_BEAT_GUITARIST_VINCENT
 
 	; trainer group && trainer id
 	db GUITARIST, VINCENT
@@ -93,7 +93,7 @@ GuitaristVincentScript:
 
 TrainerJugglerHorton:
 	; bit/flag number
-	dw $497
+	dw EVENT_BEAT_JUGGLER_HORTON
 
 	; trainer group && trainer id
 	db JUGGLER, HORTON

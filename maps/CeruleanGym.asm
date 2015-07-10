@@ -81,7 +81,7 @@ MistyScript_0x188432:
 
 TrainerSwimmerfDiana:
 	; bit/flag number
-	dw $3f9
+	dw EVENT_BEAT_SWIMMERF_DIANA
 
 	; trainer group && trainer id
 	db SWIMMERF, DIANA
@@ -108,7 +108,7 @@ SwimmerfDianaScript:
 
 TrainerSwimmerfBriana:
 	; bit/flag number
-	dw $3fa
+	dw EVENT_BEAT_SWIMMERF_BRIANA
 
 	; trainer group && trainer id
 	db SWIMMERF, BRIANA
@@ -135,7 +135,7 @@ SwimmerfBrianaScript:
 
 TrainerSwimmermParker:
 	; bit/flag number
-	dw $5a8
+	dw EVENT_BEAT_SWIMMERM_PARKER
 
 	; trainer group && trainer id
 	db SWIMMERM, PARKER

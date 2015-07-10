@@ -1,4 +1,4 @@
-Route37_MapScriptHeader: ; 0x1a8d72
+Route37_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -19,9 +19,9 @@ SunnyCallback:
 	appear $6
 	return
 
-TrainerTwinsAnnandanne1: ; 0x1a8d83
+TrainerTwinsAnnandanne1:
 	; bit/flag number
-	dw $465
+	dw EVENT_BEAT_TWINS_ANN_AND_ANNE
 
 	; trainer group && trainer id
 	db TWINS, ANNANDANNE1
@@ -37,20 +37,18 @@ TrainerTwinsAnnandanne1: ; 0x1a8d83
 
 	; script when talk again
 	dw TwinsAnnandanne1Script
-; 0x1a8d8f
 
-TwinsAnnandanne1Script: ; 0x1a8d8f
+TwinsAnnandanne1Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a8e62
 	closetext
 	loadmovesprites
 	end
-; 0x1a8d97
 
-TrainerTwinsAnnandanne2: ; 0x1a8d97
+TrainerTwinsAnnandanne2:
 	; bit/flag number
-	dw $465
+	dw EVENT_BEAT_TWINS_ANN_AND_ANNE
 
 	; trainer group && trainer id
 	db TWINS, ANNANDANNE2
@@ -66,20 +64,18 @@ TrainerTwinsAnnandanne2: ; 0x1a8d97
 
 	; script when talk again
 	dw TwinsAnnandanne2Script
-; 0x1a8da3
 
-TwinsAnnandanne2Script: ; 0x1a8da3
+TwinsAnnandanne2Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a8eec
 	closetext
 	loadmovesprites
 	end
-; 0x1a8dab
 
-TrainerPsychicGreg: ; 0x1a8dab
+TrainerPsychicGreg:
 	; bit/flag number
-	dw $43e
+	dw EVENT_BEAT_PSYCHIC_GREG
 
 	; trainer group && trainer id
 	db PSYCHIC_T, GREG
@@ -95,16 +91,14 @@ TrainerPsychicGreg: ; 0x1a8dab
 
 	; script when talk again
 	dw PsychicGregScript
-; 0x1a8db7
 
-PsychicGregScript: ; 0x1a8db7
+PsychicGregScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a8f80
 	closetext
 	loadmovesprites
 	end
-; 0x1a8dbf
 
 SunnyScript:
 	faceplayer
@@ -149,71 +143,60 @@ SunnyNotSundayScript:
 	loadmovesprites
 	end
 
-MapRoute37Signpost0Script: ; 0x1a8e06
+MapRoute37Signpost0Script:
 	jumptext UnknownText_0x1a9197
-; 0x1a8e09
 
-FruitTreeScript_0x1a8e09: ; 0x1a8e09
+FruitTreeScript_0x1a8e09:
 	fruittree $11
-; 0x1a8e0b
 
-FruitTreeScript_0x1a8e0b: ; 0x1a8e0b
+FruitTreeScript_0x1a8e0b:
 	fruittree $12
-; 0x1a8e0d
 
-FruitTreeScript_0x1a8e0d: ; 0x1a8e0d
+FruitTreeScript_0x1a8e0d:
 	fruittree $13
-; 0x1a8e0f
 
-MapRoute37SignpostItem1: ; 0x1a8e0f
+MapRoute37SignpostItem1:
 	dw $00a9
 	db ETHER
 	
-; 0x1a8e12
 
-TwinsAnnandanne1SeenText: ; 0x1a8e12
+TwinsAnnandanne1SeenText:
 	text "ANN: ANNE and I"
 	line "are in this to-"
 	cont "gether!"
 	done
-; 0x1a8e3b
 
-TwinsAnnandanne1BeatenText: ; 0x1a8e3b
+TwinsAnnandanne1BeatenText:
 	text "ANN & ANNE: Nnn… A"
 	line "little too strong."
 	done
-; 0x1a8e62
 
-UnknownText_0x1a8e62: ; 0x1a8e62
+UnknownText_0x1a8e62:
 	text "ANN: I can tell"
 	line "what my sister and"
 
 	para "my #MON are"
 	line "thinking."
 	done
-; 0x1a8e9c
 
-TwinsAnnandanne2SeenText: ; 0x1a8e9c
+TwinsAnnandanne2SeenText:
 	text "ANNE: ANN and I"
 	line "are in this to-"
 	cont "gether!"
 	done
-; 0x1a8ec5
 
-TwinsAnnandanne2BeatenText: ; 0x1a8ec5
+TwinsAnnandanne2BeatenText:
 	text "ANN & ANNE: Nnn… A"
 	line "little too strong."
 	done
-; 0x1a8eec
 
-UnknownText_0x1a8eec: ; 0x1a8eec
+UnknownText_0x1a8eec:
 	text "ANNE: We share the"
 	line "same feelings as"
 	cont "our #MON."
 	done
-; 0x1a8f1b
 
-PsychicGregSeenText: ; 0x1a8f1b
+PsychicGregSeenText:
 	text "#MON can't do a"
 	line "thing if they are"
 	cont "asleep."
@@ -221,21 +204,18 @@ PsychicGregSeenText: ; 0x1a8f1b
 	para "I'll show you how"
 	line "scary that is!"
 	done
-; 0x1a8f65
 
-PsychicGregBeatenText: ; 0x1a8f65
+PsychicGregBeatenText:
 	text "I lost. That's"
 	line "pretty sad…"
 	done
-; 0x1a8f80
 
-UnknownText_0x1a8f80: ; 0x1a8f80
+UnknownText_0x1a8f80:
 	text "Putting #MON to"
 	line "sleep or paralyz-"
 	cont "ing them are good"
 	cont "battle techniques."
 	done
-; 0x1a8fc8
 
 MeetSunnyText:
 	text "SUNNY: Hi!"
@@ -297,12 +277,11 @@ SunnyNotSundayText:
 	cont "Um… I forgot!"
 	done
 
-UnknownText_0x1a9197: ; 0x1a9197
+UnknownText_0x1a9197:
 	text "ROUTE 37"
 	done
-; 0x1a91a1
 
-Route37_MapEventHeader: ; 0x1a91a1
+Route37_MapEventHeader:
 	; filler
 	db 0, 0
 

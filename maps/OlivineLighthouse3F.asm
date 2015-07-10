@@ -1,14 +1,13 @@
-OlivineLighthouse3F_MapScriptHeader: ; 0x5b23b
+OlivineLighthouse3F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x5b23d
 
-TrainerBird_keeperTheo: ; 0x5b23d
+TrainerBird_keeperTheo:
 	; bit/flag number
-	dw $3fe
+	dw EVENT_BEAT_BIRD_KEEPER_THEO
 
 	; trainer group && trainer id
 	db BIRD_KEEPER, THEO
@@ -24,20 +23,18 @@ TrainerBird_keeperTheo: ; 0x5b23d
 
 	; script when talk again
 	dw Bird_keeperTheoScript
-; 0x5b249
 
-Bird_keeperTheoScript: ; 0x5b249
+Bird_keeperTheoScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b2df
 	closetext
 	loadmovesprites
 	end
-; 0x5b251
 
-TrainerGentlemanPreston: ; 0x5b251
+TrainerGentlemanPreston:
 	; bit/flag number
-	dw $49a
+	dw EVENT_BEAT_GENTLEMAN_PRESTON
 
 	; trainer group && trainer id
 	db GENTLEMAN, PRESTON
@@ -53,20 +50,18 @@ TrainerGentlemanPreston: ; 0x5b251
 
 	; script when talk again
 	dw GentlemanPrestonScript
-; 0x5b25d
 
-GentlemanPrestonScript: ; 0x5b25d
+GentlemanPrestonScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b457
 	closetext
 	loadmovesprites
 	end
-; 0x5b265
 
-TrainerSailorTerrell: ; 0x5b265
+TrainerSailorTerrell:
 	; bit/flag number
-	dw $577
+	dw EVENT_BEAT_SAILOR_TERRELL
 
 	; trainer group && trainer id
 	db SAILOR, TERRELL
@@ -82,37 +77,32 @@ TrainerSailorTerrell: ; 0x5b265
 
 	; script when talk again
 	dw SailorTerrellScript
-; 0x5b271
 
-SailorTerrellScript: ; 0x5b271
+SailorTerrellScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b384
 	closetext
 	loadmovesprites
 	end
-; 0x5b279
 
-ItemFragment_0x5b279: ; 0x5b279
+ItemFragment_0x5b279:
 	db ETHER, 1
-; 0x5b27b
 
-Bird_keeperTheoSeenText: ; 0x5b27b
+Bird_keeperTheoSeenText:
 	text "Why are you here?"
 	line "Are you just going"
 
 	para "to gawk? I suggest"
 	line "that you leave!"
 	done
-; 0x5b2c4
 
-Bird_keeperTheoBeatenText: ; 0x5b2c4
+Bird_keeperTheoBeatenText:
 	text "You really are"
 	line "concerned…"
 	done
-; 0x5b2df
 
-UnknownText_0x5b2df: ; 0x5b2df
+UnknownText_0x5b2df:
 	text "How the heck do"
 	line "you go up?"
 
@@ -122,22 +112,19 @@ UnknownText_0x5b2df: ; 0x5b2df
 	para "but I can't get up"
 	line "there…"
 	done
-; 0x5b333
 
-SailorTerrellSeenText: ; 0x5b333
+SailorTerrellSeenText:
 	text "Sailors are both"
 	line "kind and strong."
 	cont "How about you?"
 	done
-; 0x5b365
 
-SailorTerrellBeatenText: ; 0x5b365
+SailorTerrellBeatenText:
 	text "You are both kind"
 	line "and strong…"
 	done
-; 0x5b384
 
-UnknownText_0x5b384: ; 0x5b384
+UnknownText_0x5b384:
 	text "Every time I come"
 	line "back to OLIVINE, I"
 	cont "visit the GYM."
@@ -148,30 +135,26 @@ UnknownText_0x5b384: ; 0x5b384
 	para "changed without me"
 	line "noticing."
 	done
-; 0x5b3f4
 
-GentlemanPrestonSeenText: ; 0x5b3f4
+GentlemanPrestonSeenText:
 	text "I travel the world"
 	line "to train my #-"
 	cont "MON. I wish to"
 	cont "battle with you."
 	done
-; 0x5b437
 
-GentlemanPrestonBeatenText: ; 0x5b437
+GentlemanPrestonBeatenText:
 	text "…sigh… I must"
 	line "train some more…"
 	done
-; 0x5b457
 
-UnknownText_0x5b457: ; 0x5b457
+UnknownText_0x5b457:
 	text "JASMINE used to"
 	line "use rock #MON"
 	cont "like ONIX."
 	done
-; 0x5b481
 
-OlivineLighthouse3F_MapEventHeader: ; 0x5b481
+OlivineLighthouse3F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -199,4 +182,3 @@ OlivineLighthouse3F_MapEventHeader: ; 0x5b481
 	person_event SPRITE_GENTLEMAN, 9, 17, $9, $0, 255, 255, $92, 4, TrainerGentlemanPreston, $ffff
 	person_event SPRITE_YOUNGSTER, 13, 7, $7, $0, 255, 255, $92, 3, TrainerBird_keeperTheo, $ffff
 	person_event SPRITE_POKE_BALL, 6, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x5b279, $0664
-; 0x5b4e8

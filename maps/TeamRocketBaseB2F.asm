@@ -1,4 +1,4 @@
-TeamRocketBaseB2F_MapScriptHeader: ; 0x6cf70
+TeamRocketBaseB2F_MapScriptHeader:
 	; trigger count
 	db 4
 
@@ -14,46 +14,38 @@ TeamRocketBaseB2F_MapScriptHeader: ; 0x6cf70
 	; callbacks
 
 	dbw 1, UnknownScript_0x6cf89
-; 0x6cf85
 
-UnknownScript_0x6cf85: ; 0x6cf85
+UnknownScript_0x6cf85:
 	end
-; 0x6cf86
 
-UnknownScript_0x6cf86: ; 0x6cf86
+UnknownScript_0x6cf86:
 	end
-; 0x6cf87
 
-UnknownScript_0x6cf87: ; 0x6cf87
+UnknownScript_0x6cf87:
 	end
-; 0x6cf88
 
-UnknownScript_0x6cf88: ; 0x6cf88
+UnknownScript_0x6cf88:
 	end
-; 0x6cf89
 
-UnknownScript_0x6cf89: ; 0x6cf89
+UnknownScript_0x6cf89:
 	checkevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	iftrue UnknownScript_0x6cf90
 	return
-; 0x6cf90
 
-UnknownScript_0x6cf90: ; 0x6cf90
+UnknownScript_0x6cf90:
 	changeblock $e, $c, $7
 	return
-; 0x6cf95
 
-UnknownScript_0x6cf95: ; 0x6cf95
+UnknownScript_0x6cf95:
 	moveperson $4, $9, $d
 	jump UnknownScript_0x6cfac
-; 0x6cf9c
 
-UnknownScript_0x6cf9c: ; 0x6cf9c
+UnknownScript_0x6cf9c:
 	moveperson $3, $15, $10
 	moveperson $2, $15, $10
 	moveperson $5, $a, $d
 	moveperson $4, $a, $d
-UnknownScript_0x6cfac: ; 0x6cfac
+UnknownScript_0x6cfac:
 	appear $3
 	appear $2
 	loadfont
@@ -101,7 +93,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	setevent $06de
 	setevent $06d6
 	returnafterbattle
-	setevent $0570
+	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
 	loadfont
 	writetext UnknownText_0x6d4c6
 	closetext
@@ -138,31 +130,27 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	loadmovesprites
 	applymovement $4, MovementData_0x6d267
 	disappear $4
-; 0x6d075
 
-UnknownScript_0x6d075: ; 0x6d075
+UnknownScript_0x6d075:
 	applymovement $0, MovementData_0x6d271
 	end
-; 0x6d07a
 
-UnknownScript_0x6d07a: ; 0x6d07a
+UnknownScript_0x6d07a:
 	loadfont
 	writetext UnknownText_0x6d7ea
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x6d278
 	end
-; 0x6d085
 
-UnknownScript_0x6d085: ; 0x6d085
+UnknownScript_0x6d085:
 	spriteface $0, UP
 	jump UnknownScript_0x6d091
-; 0x6d08b
 
-UnknownScript_0x6d08b: ; 0x6d08b
+UnknownScript_0x6d08b:
 	spriteface $0, RIGHT
 	spriteface $4, LEFT
-UnknownScript_0x6d091: ; 0x6d091
+UnknownScript_0x6d091:
 	loadfont
 	writetext UnknownText_0x6da97
 	closetext
@@ -183,17 +171,15 @@ UnknownScript_0x6d091: ; 0x6d091
 	applymovement $4, MovementData_0x6d212
 	disappear $4
 	end
-; 0x6d0be
 
-UnknownScript_0x6d0be: ; 0x6d0be
+UnknownScript_0x6d0be:
 	applymovement $4, MovementData_0x6d219
 	disappear $4
 	end
-; 0x6d0c5
 
-TrainerGruntM17: ; 0x6d0c5
+TrainerGruntM17:
 	; bit/flag number
-	dw $501
+	dw EVENT_BEAT_ROCKET_GRUNTM_16
 
 	; trainer group && trainer id
 	db GRUNTM, 17
@@ -209,20 +195,18 @@ TrainerGruntM17: ; 0x6d0c5
 
 	; script when talk again
 	dw GruntM17Script
-; 0x6d0d1
 
-GruntM17Script: ; 0x6d0d1
+GruntM17Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6db88
 	closetext
 	loadmovesprites
 	end
-; 0x6d0d9
 
-TrainerGruntM18: ; 0x6d0d9
+TrainerGruntM18:
 	; bit/flag number
-	dw $502
+	dw EVENT_BEAT_ROCKET_GRUNTM_17
 
 	; trainer group && trainer id
 	db GRUNTM, 18
@@ -238,20 +222,18 @@ TrainerGruntM18: ; 0x6d0d9
 
 	; script when talk again
 	dw GruntM18Script
-; 0x6d0e5
 
-GruntM18Script: ; 0x6d0e5
+GruntM18Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6dc1a
 	closetext
 	loadmovesprites
 	end
-; 0x6d0ed
 
-TrainerGruntM19: ; 0x6d0ed
+TrainerGruntM19:
 	; bit/flag number
-	dw $503
+	dw EVENT_BEAT_ROCKET_GRUNTM_18
 
 	; trainer group && trainer id
 	db GRUNTM, 19
@@ -267,18 +249,16 @@ TrainerGruntM19: ; 0x6d0ed
 
 	; script when talk again
 	dw GruntM19Script
-; 0x6d0f9
 
-GruntM19Script: ; 0x6d0f9
+GruntM19Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6dcd1
 	closetext
 	loadmovesprites
 	end
-; 0x6d101
 
-VoltorbScript_0x6d101: ; 0x6d101
+VoltorbScript_0x6d101:
 	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
@@ -295,9 +275,8 @@ VoltorbScript_0x6d101: ; 0x6d101
 	special PlayMapMusic
 	applymovement $0, MovementData_0x6d28c
 	jump UnknownScript_0x6d184
-; 0x6d12c
 
-VoltorbScript_0x6d12c: ; 0x6d12c
+VoltorbScript_0x6d12c:
 	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
@@ -314,9 +293,8 @@ VoltorbScript_0x6d12c: ; 0x6d12c
 	special PlayMapMusic
 	applymovement $0, MovementData_0x6d299
 	jump UnknownScript_0x6d184
-; 0x6d157
 
-VoltorbScript_0x6d157: ; 0x6d157
+VoltorbScript_0x6d157:
 	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
@@ -333,14 +311,12 @@ VoltorbScript_0x6d157: ; 0x6d157
 	special PlayMapMusic
 	applymovement $0, MovementData_0x6d2a4
 	jump UnknownScript_0x6d184
-; 0x6d182
 
-UnknownScript_0x6d182: ; 0x6d182
+UnknownScript_0x6d182:
 	returnafterbattle
 	end
-; 0x6d184
 
-UnknownScript_0x6d184: ; 0x6d184
+UnknownScript_0x6d184:
 	moveperson $4, $12, $6
 	appear $4
 	applymovement $4, MovementData_0x6d27a
@@ -374,15 +350,13 @@ UnknownScript_0x6d184: ; 0x6d184
 	setevent EVENT_SECURITY_CAMERA_4
 	setevent EVENT_SECURITY_CAMERA_5
 	end
-; 0x6d1d7
 
-MapTeamRocketBaseB2FSignpostPtr1: ; 0x6d1d7
+MapTeamRocketBaseB2FSignpostPtr1:
 	dw $0300
 	dw MapTeamRocketBaseB2FSignpost1Script
 	
-; 0x6d1db
 
-MapTeamRocketBaseB2FSignpost1Script: ; 0x6d1db
+MapTeamRocketBaseB2FSignpost1Script:
 	loadfont
 	checkevent EVENT_LEARNED_HAIL_GIOVANNI
 	iftrue UnknownScript_0x6d1e8
@@ -390,9 +364,8 @@ MapTeamRocketBaseB2FSignpost1Script: ; 0x6d1db
 	closetext
 	loadmovesprites
 	end
-; 0x6d1e8
 
-UnknownScript_0x6d1e8: ; 0x6d1e8
+UnknownScript_0x6d1e8:
 	writetext UnknownText_0x6dd6b
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -402,9 +375,8 @@ UnknownScript_0x6d1e8: ; 0x6d1e8
 	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	waitbutton
 	end
-; 0x6d1fa
 
-MapTeamRocketBaseB2FSignpost21Script: ; 0x6d1fa
+MapTeamRocketBaseB2FSignpost21Script:
 	loadfont
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x6d207
@@ -412,26 +384,22 @@ MapTeamRocketBaseB2FSignpost21Script: ; 0x6d1fa
 	closetext
 	loadmovesprites
 	end
-; 0x6d207
 
-UnknownScript_0x6d207: ; 0x6d207
+UnknownScript_0x6d207:
 	writetext UnknownText_0x6de03
 	closetext
 	loadmovesprites
 	end
-; 0x6d20d
 
-ItemFragment_0x6d20d: ; 0x6d20d
+ItemFragment_0x6d20d:
 	db TM_THIEF, 1
-; 0x6d20f
 
-MapTeamRocketBaseB2FSignpostItem22: ; 0x6d20f
+MapTeamRocketBaseB2FSignpostItem22:
 	dw $0087
 	db FULL_HEAL
 	
-; 0x6d212
 
-MovementData_0x6d212: ; 0x6d212
+MovementData_0x6d212:
 	step_right
 	step_right
 	step_right
@@ -439,26 +407,23 @@ MovementData_0x6d212: ; 0x6d212
 	step_right
 	step_right
 	step_end
-; 0x6d219
 
-MovementData_0x6d219: ; 0x6d219
+MovementData_0x6d219:
 	step_right
 	step_right
 	step_right
 	step_right
 	step_right
 	step_end
-; 0x6d21f
 
-MovementData_0x6d21f: ; 0x6d21f
+MovementData_0x6d21f:
 	step_down
 	step_down
 	step_down
 	turn_head_right
 	step_end
-; 0x6d224
 
-MovementData_0x6d224: ; 0x6d224
+MovementData_0x6d224:
 	big_step_left
 	big_step_left
 	big_step_up
@@ -470,9 +435,8 @@ MovementData_0x6d224: ; 0x6d224
 	big_step_left
 	turn_head_down
 	step_end
-; 0x6d22f
 
-MovementData_0x6d22f: ; 0x6d22f
+MovementData_0x6d22f:
 	big_step_left
 	big_step_left
 	big_step_up
@@ -480,70 +444,60 @@ MovementData_0x6d22f: ; 0x6d22f
 	big_step_left
 	big_step_left
 	step_end
-; 0x6d236
 
-MovementData_0x6d236: ; 0x6d236
+MovementData_0x6d236:
 	big_step_right
 	big_step_right
 	big_step_right
 	big_step_right
 	step_end
-; 0x6d23b
 
-MovementData_0x6d23b: ; 0x6d23b
+MovementData_0x6d23b:
 	fix_facing
 	db $39 ; movement
 	jump_step_right
 	db $38 ; movement
 	remove_fixed_facing
 	step_end
-; 0x6d241
 
-MovementData_0x6d241: ; 0x6d241
+MovementData_0x6d241:
 	slow_step_down
 	turn_head_left
 	step_end
-; 0x6d244
 
-MovementData_0x6d244: ; 0x6d244
+MovementData_0x6d244:
 	step_right
 	step_right
 	step_right
 	step_end
-; 0x6d248
 
-MovementData_0x6d248: ; 0x6d248
+MovementData_0x6d248:
 	big_step_left
 	step_end
-; 0x6d24a
 
-MovementData_0x6d24a: ; 0x6d24a
+MovementData_0x6d24a:
 	big_step_left
 	step_end
-; 0x6d24c
 
-MovementData_0x6d24c: ; 0x6d24c
+MovementData_0x6d24c:
 	big_step_left
 	big_step_up
 	turn_head_left
 	step_end
-; 0x6d250
 
-MovementData_0x6d250: ; 0x6d250
+MovementData_0x6d250:
 	step_right
 	step_right
 	turn_head_down
 	step_end
-; 0x6d254
 
-MovementData_0x6d254: ; 0x6d254
+MovementData_0x6d254:
 	step_up
 	step_up
 	step_up
 	step_end
-; 0x6d258
 
-MovementData_0x6d258: ; 0x6d258
+MovementData_0x6d258:
 	accelerate_last
 	step_left
 	step_left
@@ -559,9 +513,8 @@ MovementData_0x6d258: ; 0x6d258
 	step_left
 	turn_head_down
 	step_end
-; 0x6d267
 
-MovementData_0x6d267: ; 0x6d267
+MovementData_0x6d267:
 	step_right
 	step_right
 	step_right
@@ -572,9 +525,8 @@ MovementData_0x6d267: ; 0x6d267
 	step_up
 	step_up
 	step_end
-; 0x6d271
 
-MovementData_0x6d271: ; 0x6d271
+MovementData_0x6d271:
 	step_up
 	step_left
 	step_left
@@ -582,14 +534,12 @@ MovementData_0x6d271: ; 0x6d271
 	step_left
 	turn_head_up
 	step_end
-; 0x6d278
 
-MovementData_0x6d278: ; 0x6d278
+MovementData_0x6d278:
 	step_left
 	step_end
-; 0x6d27a
 
-MovementData_0x6d27a: ; 0x6d27a
+MovementData_0x6d27a:
 	step_down
 	step_down
 	step_down
@@ -599,9 +549,8 @@ MovementData_0x6d27a: ; 0x6d27a
 	step_left
 	step_left
 	step_end
-; 0x6d283
 
-MovementData_0x6d283: ; 0x6d283
+MovementData_0x6d283:
 	step_down
 	step_down
 	step_left
@@ -611,9 +560,8 @@ MovementData_0x6d283: ; 0x6d283
 	step_left
 	step_left
 	step_end
-; 0x6d28c
 
-MovementData_0x6d28c: ; 0x6d28c
+MovementData_0x6d28c:
 	step_right
 	step_right
 	step_down
@@ -627,9 +575,8 @@ MovementData_0x6d28c: ; 0x6d28c
 	step_right
 	step_right
 	step_end
-; 0x6d299
 
-MovementData_0x6d299: ; 0x6d299
+MovementData_0x6d299:
 	step_right
 	step_right
 	step_down
@@ -641,9 +588,8 @@ MovementData_0x6d299: ; 0x6d299
 	step_right
 	step_right
 	step_end
-; 0x6d2a4
 
-MovementData_0x6d2a4: ; 0x6d2a4
+MovementData_0x6d2a4:
 	step_right
 	step_right
 	step_down
@@ -653,15 +599,13 @@ MovementData_0x6d2a4: ; 0x6d2a4
 	step_right
 	step_right
 	step_end
-; 0x6d2ad
 
-UnknownText_0x6d2ad: ; 0x6d2ad
+UnknownText_0x6d2ad:
 	text "Hold it right"
 	line "there!"
 	done
-; 0x6d2c3
 
-UnknownText_0x6d2c3: ; 0x6d2c3
+UnknownText_0x6d2c3:
 	text "We can't have a"
 	line "brat like you on"
 	cont "the loose."
@@ -680,16 +624,14 @@ UnknownText_0x6d2c3: ; 0x6d2c3
 	line "get ready to be"
 	cont "thrashed."
 	done
-; 0x6d38c
 
-UnknownText_0x6d38c: ; 0x6d38c
+UnknownText_0x6d38c:
 	text "Hey! Don't be so"
 	line "selfish. Spread"
 	cont "the fun around."
 	done
-; 0x6d3bd
 
-UnknownText_0x6d3bd: ; 0x6d3bd
+UnknownText_0x6d3bd:
 	text "What? You had an"
 	line "accomplice?"
 
@@ -705,9 +647,8 @@ UnknownText_0x6d3bd: ; 0x6d3bd
 	para "it is to meddle"
 	line "with TEAM ROCKET!"
 	done
-; 0x6d45c
 
-UnknownText_0x6d45c: ; 0x6d45c
+UnknownText_0x6d45c:
 	text "Tch, you really"
 	line "are strong."
 
@@ -719,9 +660,8 @@ UnknownText_0x6d45c: ; 0x6d45c
 	para "you could become"
 	line "an EXECUTIVE."
 	done
-; 0x6d4c6
 
-UnknownText_0x6d4c6: ; 0x6d4c6
+UnknownText_0x6d4c6:
 	text "…This hideout is"
 	line "done for…"
 
@@ -748,9 +688,8 @@ UnknownText_0x6d4c6: ; 0x6d4c6
 
 	para "Fufufufu…"
 	done
-; 0x6d5d8
 
-UnknownText_0x6d5d8: ; 0x6d5d8
+UnknownText_0x6d5d8:
 	text "LANCE: That did"
 	line "it. We defeated"
 
@@ -763,9 +702,8 @@ UnknownText_0x6d5d8: ; 0x6d5d8
 	para "guy I battled in"
 	line "the process…"
 	done
-; 0x6d64e
 
-UnknownText_0x6d64e: ; 0x6d64e
+UnknownText_0x6d64e:
 	text "Sorry, <PLAY_G>."
 	line "I saw how well you"
 
@@ -778,9 +716,8 @@ UnknownText_0x6d64e: ; 0x6d64e
 	para "turn off that odd"
 	line "radio signal."
 	done
-; 0x6d6cf
 
-UnknownText_0x6d6cf: ; 0x6d6cf
+UnknownText_0x6d6cf:
 	text "It's this machine"
 	line "that's causing all"
 	cont "the problems."
@@ -809,15 +746,13 @@ UnknownText_0x6d6cf: ; 0x6d6cf
 	para "<PLAY_G>, let's"
 	line "split the job."
 	done
-; 0x6d7ea
 
-UnknownText_0x6d7ea: ; 0x6d7ea
+UnknownText_0x6d7ea:
 	text "LANCE: Leave this"
 	line "side to me."
 	done
-; 0x6d809
 
-UnknownText_0x6d809: ; 0x6d809
+UnknownText_0x6d809:
 	text "LANCE: That odd"
 	line "signal has finally"
 	cont "stopped."
@@ -838,15 +773,13 @@ UnknownText_0x6d809: ; 0x6d809
 	line "but I don't have"
 	cont "any need for it."
 	done
-; 0x6d8e6
 
-UnknownText_0x6d8e6: ; 0x6d8e6
+UnknownText_0x6d8e6:
 	text "<PLAYER> received"
 	line "HM06."
 	done
-; 0x6d8f8
 
-UnknownText_0x6d8f8: ; 0x6d8f8
+UnknownText_0x6d8f8:
 	text "That's WHIRLPOOL."
 	line "Teach it to a"
 
@@ -862,9 +795,8 @@ UnknownText_0x6d8f8: ; 0x6d8f8
 	para "with the BADGE"
 	line "from MAHOGANY GYM."
 	done
-; 0x6d994
 
-UnknownText_0x6d994: ; 0x6d994
+UnknownText_0x6d994:
 	text "<PLAY_G>…"
 
 	para "The journey to be-"
@@ -893,9 +825,8 @@ UnknownText_0x6d994: ; 0x6d994
 	para "I look forward to"
 	line "seeing you again!"
 	done
-; 0x6da97
 
-UnknownText_0x6da97: ; 0x6da97
+UnknownText_0x6da97:
 	text "LANCE: Are you all"
 	line "right?"
 
@@ -906,16 +837,14 @@ UnknownText_0x6da97: ; 0x6da97
 	line "some of my medi-"
 	cont "cine."
 	done
-; 0x6daf7
 
-UnknownText_0x6daf7: ; 0x6daf7
+UnknownText_0x6daf7:
 	text "LANCE: <PLAY_G>,"
 	line "let's give it our"
 	cont "best for #MON."
 	done
-; 0x6db22
 
-GruntM17SeenText: ; 0x6db22
+GruntM17SeenText:
 	text "The door won't"
 	line "open?"
 
@@ -925,14 +854,12 @@ GruntM17SeenText: ; 0x6db22
 	para "password that only"
 	line "TEAM ROCKET knows."
 	done
-; 0x6db79
 
-GruntM17BeatenText: ; 0x6db79
+GruntM17BeatenText:
 	text "What? I lost?"
 	done
-; 0x6db88
 
-UnknownText_0x6db88: ; 0x6db88
+UnknownText_0x6db88:
 	text "Heh, I'm just a"
 	line "GRUNT."
 
@@ -940,23 +867,20 @@ UnknownText_0x6db88: ; 0x6db88
 	line "password. Too bad"
 	cont "for you."
 	done
-; 0x6dbca
 
-GruntM18SeenText: ; 0x6dbca
+GruntM18SeenText:
 	text "Oh, a kid? I don't"
 	line "really like this,"
 
 	para "but eliminate you"
 	line "I must."
 	done
-; 0x6dc09
 
-GruntM18BeatenText: ; 0x6dc09
+GruntM18BeatenText:
 	text "I knew I'd lose…"
 	done
-; 0x6dc1a
 
-UnknownText_0x6dc1a: ; 0x6dc1a
+UnknownText_0x6dc1a:
 	text "I got wiped out on"
 	line "the last mission"
 	cont "by a kid too."
@@ -970,20 +894,17 @@ UnknownText_0x6dc1a: ; 0x6dc1a
 	para "looking eyes just"
 	line "creamed me…"
 	done
-; 0x6dcb0
 
-GruntM19SeenText: ; 0x6dcb0
+GruntM19SeenText:
 	text "You rotten little"
 	line "pest!"
 	done
-; 0x6dcc9
 
-GruntM19BeatenText: ; 0x6dcc9
+GruntM19BeatenText:
 	text "Grrrr…"
 	done
-; 0x6dcd1
 
-UnknownText_0x6dcd1: ; 0x6dcd1
+UnknownText_0x6dcd1:
 	text "Heh, only the boss"
 	line "knows the password"
 	cont "for that door."
@@ -992,17 +913,15 @@ UnknownText_0x6dcd1: ; 0x6dcd1
 	line "Who knows? Go look"
 	cont "for yourself."
 	done
-; 0x6dd39
 
-UnknownText_0x6dd39: ; 0x6dd39
+UnknownText_0x6dd39:
 	text "The door's closed…"
 
 	para "It needs a pass-"
 	line "word to open."
 	done
-; 0x6dd6b
 
-UnknownText_0x6dd6b: ; 0x6dd6b
+UnknownText_0x6dd6b:
 	text "The door's closed…"
 
 	para "<PLAYER> entered"
@@ -1010,9 +929,8 @@ UnknownText_0x6dd6b: ; 0x6dd6b
 
 	para "The door opened!"
 	done
-; 0x6dda7
 
-UnknownText_0x6dda7: ; 0x6dda7
+UnknownText_0x6dda7:
 	text "It's the radio"
 	line "transmitter that's"
 
@@ -1022,18 +940,16 @@ UnknownText_0x6dda7: ; 0x6dda7
 	para "It's working at"
 	line "full capacity."
 	done
-; 0x6de03
 
-UnknownText_0x6de03: ; 0x6de03
+UnknownText_0x6de03:
 	text "The radio trans-"
 	line "mitter has finally"
 
 	para "stopped its evil"
 	line "broadcast."
 	done
-; 0x6de44
 
-TeamRocketBaseB2F_MapEventHeader: ; 0x6de44
+TeamRocketBaseB2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -1099,4 +1015,3 @@ TeamRocketBaseB2F_MapEventHeader: ; 0x6de44
 	person_event SPRITE_ROCKET, 5, 8, $a, $0, 255, 255, $2, 1, TrainerGruntM18, $06da
 	person_event SPRITE_ROCKET, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, $06da
 	person_event SPRITE_POKE_BALL, 14, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6d20d, $066c
-; 0x6dfd4

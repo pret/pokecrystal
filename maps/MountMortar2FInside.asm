@@ -1,14 +1,13 @@
-MountMortar2FInside_MapScriptHeader: ; 0x7e0c8
+MountMortar2FInside_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7e0ca
 
-TrainerSupernerdHugh: ; 0x7e0ca
+TrainerSupernerdHugh:
 	; bit/flag number
-	dw $5c5
+	dw EVENT_BEAT_SUPER_NERD_HUGH
 
 	; trainer group && trainer id
 	db SUPER_NERD, HUGH
@@ -24,58 +23,47 @@ TrainerSupernerdHugh: ; 0x7e0ca
 
 	; script when talk again
 	dw SupernerdHughScript
-; 0x7e0d6
 
-SupernerdHughScript: ; 0x7e0d6
+SupernerdHughScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7e10e
 	closetext
 	loadmovesprites
 	end
-; 0x7e0de
 
-ItemFragment_0x7e0de: ; 0x7e0de
+ItemFragment_0x7e0de:
 	db MAX_POTION, 1
-; 0x7e0e0
 
-ItemFragment_0x7e0e0: ; 0x7e0e0
+ItemFragment_0x7e0e0:
 	db RARE_CANDY, 1
-; 0x7e0e2
 
-ItemFragment_0x7e0e2: ; 0x7e0e2
+ItemFragment_0x7e0e2:
 	db TM_DEFENSE_CURL, 1
-; 0x7e0e4
 
-ItemFragment_0x7e0e4: ; 0x7e0e4
+ItemFragment_0x7e0e4:
 	db DRAGON_SCALE, 1
-; 0x7e0e6
 
-ItemFragment_0x7e0e6: ; 0x7e0e6
+ItemFragment_0x7e0e6:
 	db ELIXER, 1
-; 0x7e0e8
 
-ItemFragment_0x7e0e8: ; 0x7e0e8
+ItemFragment_0x7e0e8:
 	db ESCAPE_ROPE, 1
-; 0x7e0ea
 
-MapMountMortar2FInsideSignpostItem0: ; 0x7e0ea
+MapMountMortar2FInsideSignpostItem0:
 	dw $0092
 	db FULL_RESTORE
 	
-; 0x7e0ed
 
-SupernerdHughSeenText: ; 0x7e0ed
+SupernerdHughSeenText:
 	text "Yo! MARKUS!"
 	done
-; 0x7e0fa
 
-SupernerdHughBeatenText: ; 0x7e0fa
+SupernerdHughBeatenText:
 	text "Sorry, my mistake."
 	done
-; 0x7e10e
 
-UnknownText_0x7e10e: ; 0x7e10e
+UnknownText_0x7e10e:
 	text "I'm investigating"
 	line "MT.MORTAR, but my"
 	cont "pal's gone AWOL."
@@ -86,9 +74,8 @@ UnknownText_0x7e10e: ; 0x7e10e
 	para "SLOWPOKE that can"
 	line "use STRENGTH?"
 	done
-; 0x7e184
 
-MountMortar2FInside_MapEventHeader: ; 0x7e184
+MountMortar2FInside_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -113,4 +100,3 @@ MountMortar2FInside_MapEventHeader: ; 0x7e184
 	person_event SPRITE_POKE_BALL, 15, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e6, $0684
 	person_event SPRITE_POKE_BALL, 9, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e8, $0685
 	person_event SPRITE_SUPER_NERD, 30, 17, $a, $0, 255, 255, $b2, 2, TrainerSupernerdHugh, $ffff
-; 0x7e1f4

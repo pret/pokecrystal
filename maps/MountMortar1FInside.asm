@@ -1,14 +1,13 @@
-MountMortar1FInside_MapScriptHeader: ; 0x7de4f
+MountMortar1FInside_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7de51
 
-TrainerPokemaniacMiller: ; 0x7de51
+TrainerPokemaniacMiller:
 	; bit/flag number
-	dw $5c4
+	dw EVENT_BEAT_POKEMANIAC_MILLER
 
 	; trainer group && trainer id
 	db POKEMANIAC, MILLER
@@ -24,20 +23,18 @@ TrainerPokemaniacMiller: ; 0x7de51
 
 	; script when talk again
 	dw PokemaniacMillerScript
-; 0x7de5d
 
-PokemaniacMillerScript: ; 0x7de5d
+PokemaniacMillerScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7debd
 	closetext
 	loadmovesprites
 	end
-; 0x7de65
 
-TrainerSupernerdMarkus: ; 0x7de65
+TrainerSupernerdMarkus:
 	; bit/flag number
-	dw $5c6
+	dw EVENT_BEAT_SUPER_NERD_MARKUS
 
 	; trainer group && trainer id
 	db SUPER_NERD, MARKUS
@@ -53,67 +50,55 @@ TrainerSupernerdMarkus: ; 0x7de65
 
 	; script when talk again
 	dw SupernerdMarkusScript
-; 0x7de71
 
-SupernerdMarkusScript: ; 0x7de71
+SupernerdMarkusScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7df97
 	closetext
 	loadmovesprites
 	end
-; 0x7de79
 
 MountMortar1FBoulder:
 	jumpstd strengthboulder
 
-ItemFragment_0x7de7c: ; 0x7de7c
+ItemFragment_0x7de7c:
 	db ESCAPE_ROPE, 1
-; 0x7de7e
 
-ItemFragment_0x7de7e: ; 0x7de7e
+ItemFragment_0x7de7e:
 	db MAX_REVIVE, 1
-; 0x7de80
 
-ItemFragment_0x7de80: ; 0x7de80
+ItemFragment_0x7de80:
 	db HYPER_POTION, 1
-; 0x7de82
 
-ItemFragment_0x7de82: ; 0x7de82
+ItemFragment_0x7de82:
 	db MAX_POTION, 1
-; 0x7de84
 
-ItemFragment_0x7de84: ; 0x7de84
+ItemFragment_0x7de84:
 	db NUGGET, 1
-; 0x7de86
 
-ItemFragment_0x7de86: ; 0x7de86
+ItemFragment_0x7de86:
 	db IRON, 1
-; 0x7de88
 
-ItemFragment_0x7de88: ; 0x7de88
+ItemFragment_0x7de88:
 	db ULTRA_BALL, 1
-; 0x7de8a
 
-MapMountMortar1FInsideSignpostItem0: ; 0x7de8a
+MapMountMortar1FInsideSignpostItem0:
 	dw $0091
 	db MAX_REPEL
 	
-; 0x7de8d
 
-PokemaniacMillerSeenText: ; 0x7de8d
+PokemaniacMillerSeenText:
 	text "I'm not losing"
 	line "this time!"
 	done
-; 0x7dea7
 
-PokemaniacMillerBeatenText: ; 0x7dea7
+PokemaniacMillerBeatenText:
 	text "I lost to some"
 	line "kid…?"
 	done
-; 0x7debd
 
-UnknownText_0x7debd: ; 0x7debd
+UnknownText_0x7debd:
 	text "A while back, this"
 	line "karate dude wanted"
 
@@ -129,20 +114,17 @@ UnknownText_0x7debd: ; 0x7debd
 	para "his training. I"
 	line "wonder how he is?"
 	done
-; 0x7df6a
 
-SupernerdMarkusSeenText: ; 0x7df6a
+SupernerdMarkusSeenText:
 	text "Hey! HUGH!"
 	done
-; 0x7df76
 
-SupernerdMarkusBeatenText: ; 0x7df76
+SupernerdMarkusBeatenText:
 	text "I mistook you for"
 	line "someone else…"
 	done
-; 0x7df97
 
-UnknownText_0x7df97: ; 0x7df97
+UnknownText_0x7df97:
 	text "I came to explore"
 	line "MT.MORTAR, but I"
 
@@ -155,9 +137,8 @@ UnknownText_0x7df97: ; 0x7df97
 	para "SEADRA that knows"
 	line "WATERFALL?"
 	done
-; 0x7e01d
 
-MountMortar1FInside_MapEventHeader: ; 0x7e01d
+MountMortar1FInside_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -189,4 +170,3 @@ MountMortar1FInside_MapEventHeader: ; 0x7e01d
 	person_event SPRITE_SUPER_NERD, 32, 28, $a, $0, 255, 255, $b2, 3, TrainerSupernerdMarkus, $ffff
 	person_event SPRITE_POKE_BALL, 20, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de86, $07c8
 	person_event SPRITE_POKE_BALL, 21, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de88, $07c9
-; 0x7e0c8

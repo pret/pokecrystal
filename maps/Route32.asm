@@ -134,7 +134,7 @@ UnknownScript_0x190503:
 
 TrainerCamperRoland:
 	; bit/flag number
-	dw $41a
+	dw EVENT_BEAT_CAMPER_ROLAND
 
 	; trainer group && trainer id
 	db CAMPER, ROLAND
@@ -161,7 +161,7 @@ CamperRolandScript:
 
 TrainerFisherJustin:
 	; bit/flag number
-	dw $44e
+	dw EVENT_BEAT_FISHER_JUSTIN
 
 	; trainer group && trainer id
 	db FISHER, JUSTIN
@@ -188,7 +188,7 @@ FisherJustinScript:
 
 TrainerFisherRalph1:
 	; bit/flag number
-	dw $44f
+	dw EVENT_BEAT_FISHER_RALPH
 
 	; trainer group && trainer id
 	db FISHER, RALPH1
@@ -329,7 +329,7 @@ UnknownScript_0x19060f:
 
 TrainerFisherHenry:
 	; bit/flag number
-	dw $452
+	dw EVENT_BEAT_FISHER_HENRY
 
 	; trainer group && trainer id
 	db FISHER, HENRY
@@ -356,7 +356,7 @@ FisherHenryScript:
 
 TrainerPicnickerLiz1:
 	; bit/flag number
-	dw $47e
+	dw EVENT_BEAT_PICNICKER_LIZ
 
 	; trainer group && trainer id
 	db PICNICKER, LIZ1
@@ -489,7 +489,7 @@ UnknownScript_0x1906f9:
 
 TrainerYoungsterAlbert:
 	; bit/flag number
-	dw $5ab
+	dw EVENT_BEAT_YOUNGSTER_ALBERT
 
 	; trainer group && trainer id
 	db YOUNGSTER, ALBERT
@@ -516,7 +516,7 @@ YoungsterAlbertScript:
 
 TrainerYoungsterGordon:
 	; bit/flag number
-	dw $5ac
+	dw EVENT_BEAT_YOUNGSTER_GORDON
 
 	; trainer group && trainer id
 	db YOUNGSTER, GORDON
@@ -543,7 +543,7 @@ YoungsterGordonScript:
 
 TrainerBird_keeperPeter:
 	; bit/flag number
-	dw $407
+	dw EVENT_BEAT_BIRD_KEEPER_PETER
 
 	; trainer group && trainer id
 	db BIRD_KEEPER, PETER

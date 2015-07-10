@@ -1,30 +1,25 @@
-SproutTower1F_MapScriptHeader: ; 0x1844fc
+SproutTower1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1844fe
 
-SageScript_0x1844fe: ; 0x1844fe
+SageScript_0x1844fe:
 	jumptextfaceplayer UnknownText_0x1845d8
-; 0x184501
 
-SageScript_0x184501: ; 0x184501
+SageScript_0x184501:
 	jumptextfaceplayer UnknownText_0x18460a
-; 0x184504
 
-GrannyScript_0x184504: ; 0x184504
+GrannyScript_0x184504:
 	jumptextfaceplayer UnknownText_0x184649
-; 0x184507
 
-TeacherScript_0x184507: ; 0x184507
+TeacherScript_0x184507:
 	jumptextfaceplayer UnknownText_0x18469d
-; 0x18450a
 
-TrainerSageChow: ; 0x18450a
+TrainerSageChow:
 	; bit/flag number
-	dw $411
+	dw EVENT_BEAT_SAGE_CHOW
 
 	; trainer group && trainer id
 	db SAGE, CHOW
@@ -40,26 +35,22 @@ TrainerSageChow: ; 0x18450a
 
 	; script when talk again
 	dw SageChowScript
-; 0x184516
 
-SageChowScript: ; 0x184516
+SageChowScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x184583
 	closetext
 	loadmovesprites
 	end
-; 0x18451e
 
-ItemFragment_0x18451e: ; 0x18451e
+ItemFragment_0x18451e:
 	db PARLYZ_HEAL, 1
-; 0x184520
 
-MapSproutTower1FSignpost1Script: ; 0x184520
+MapSproutTower1FSignpost1Script:
 	jumptext UnknownText_0x1846d6
-; 0x184523
 
-SageChowSeenText: ; 0x184523
+SageChowSeenText:
 	text "We stand guard in"
 	line "this tower."
 
@@ -67,14 +58,12 @@ SageChowSeenText: ; 0x184523
 	line "our gratitude to"
 	cont "honor all #MON."
 	done
-; 0x184574
 
-SageChowBeatenText: ; 0x184574
+SageChowBeatenText:
 	text "Th-Thank you!"
 	done
-; 0x184583
 
-UnknownText_0x184583: ; 0x184583
+UnknownText_0x184583:
 	text "All living beings"
 	line "coexist through"
 	cont "cooperation."
@@ -82,25 +71,22 @@ UnknownText_0x184583: ; 0x184583
 	para "We must always be"
 	line "thankful for this."
 	done
-; 0x1845d8
 
-UnknownText_0x1845d8: ; 0x1845d8
+UnknownText_0x1845d8:
 	text "Only if you reach"
 	line "the top will you"
 	cont "obtain an HM."
 	done
-; 0x18460a
 
-UnknownText_0x18460a: ; 0x18460a
+UnknownText_0x18460a:
 	text "SPROUT TOWER was"
 	line "built long ago"
 
 	para "as a place for"
 	line "#MON training."
 	done
-; 0x184649
 
-UnknownText_0x184649: ; 0x184649
+UnknownText_0x184649:
 	text "A BELLSPROUT over"
 	line "100 feet tall…"
 
@@ -108,26 +94,23 @@ UnknownText_0x184649: ; 0x184649
 	line "became the center"
 	cont "pillar here."
 	done
-; 0x18469d
 
-UnknownText_0x18469d: ; 0x18469d
+UnknownText_0x18469d:
 	text "See the pillar"
 	line "shaking?"
 
 	para "People are train-"
 	line "ing upstairs."
 	done
-; 0x1846d6
 
-UnknownText_0x1846d6: ; 0x1846d6
+UnknownText_0x1846d6:
 	text "A #MON statue…"
 
 	para "It looks very"
 	line "distinguished."
 	done
-; 0x184703
 
-SproutTower1F_MapEventHeader: ; 0x184703
+SproutTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -155,4 +138,3 @@ SproutTower1F_MapEventHeader: ; 0x184703
 	person_event SPRITE_TEACHER, 13, 13, $7, $0, 255, 255, $0, 0, TeacherScript_0x184507, $ffff
 	person_event SPRITE_SAGE, 9, 7, $7, $0, 255, 255, $92, 4, TrainerSageChow, $ffff
 	person_event SPRITE_POKE_BALL, 11, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x18451e, $0647
-; 0x18477a

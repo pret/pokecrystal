@@ -1,4 +1,4 @@
-RuinsofAlphOutside_MapScriptHeader: ; 0x58000
+RuinsofAlphOutside_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,57 +12,48 @@ RuinsofAlphOutside_MapScriptHeader: ; 0x58000
 	; callbacks
 
 	dbw 2, UnknownScript_0x5800f
-; 0x5800d
 
-UnknownScript_0x5800d: ; 0x5800d
+UnknownScript_0x5800d:
 	end
-; 0x5800e
 
-UnknownScript_0x5800e: ; 0x5800e
+UnknownScript_0x5800e:
 	end
-; 0x5800f
 
-UnknownScript_0x5800f: ; 0x5800f
+UnknownScript_0x5800f:
 	checkflag $000c
 	iftrue UnknownScript_0x5802c
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x5801e
 	jump UnknownScript_0x5802c
-; 0x5801e
 
-UnknownScript_0x5801e: ; 0x5801e
+UnknownScript_0x5801e:
 	checkcode VAR_UNOWNCOUNT
 	if_greater_than $2, UnknownScript_0x58027
 	jump UnknownScript_0x5802c
-; 0x58027
 
-UnknownScript_0x58027: ; 0x58027
+UnknownScript_0x58027:
 	appear $3
 	dotrigger $1
 	return
-; 0x5802c
 
-UnknownScript_0x5802c: ; 0x5802c
+UnknownScript_0x5802c:
 	disappear $3
 	dotrigger $0
 	return
-; 0x58031
 
-UnknownScript_0x58031: ; 0x58031
+UnknownScript_0x58031:
 	spriteface $3, UP
 	spriteface $0, DOWN
 	jump UnknownScript_0x58044
-; 0x5803a
 
-UnknownScript_0x5803a: ; 0x5803a
+UnknownScript_0x5803a:
 	spriteface $3, LEFT
 	spriteface $0, RIGHT
 	jump UnknownScript_0x58044
-; 0x58043
 
-ScientistScript_0x58043: ; 0x58043
+ScientistScript_0x58043:
 	faceplayer
-UnknownScript_0x58044: ; 0x58044
+UnknownScript_0x58044:
 	loadfont
 	writetext UnknownText_0x580c7
 	closetext
@@ -76,9 +67,8 @@ UnknownScript_0x58044: ; 0x58044
 	domaptrigger GROUP_RUINS_OF_ALPH_RESEARCH_CENTER, MAP_RUINS_OF_ALPH_RESEARCH_CENTER, $1
 	warpcheck
 	end
-; 0x58061
 
-FisherScript_0x58061: ; 0x58061
+FisherScript_0x58061:
 	faceplayer
 	loadfont
 	checkevent $00bc
@@ -91,18 +81,16 @@ UnknownScript_0x58070: ;0x58070
 	closetext
 	loadmovesprites
 	end
-; 0x58076
 
-YoungsterScript_0x58076: ; 0x58076
+YoungsterScript_0x58076:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x58449
 	closetext
 	loadmovesprites
 	end
-; 0x5807e
 
-YoungsterScript_0x5807e: ; 0x5807e
+YoungsterScript_0x5807e:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5848e
@@ -110,11 +98,10 @@ YoungsterScript_0x5807e: ; 0x5807e
 	loadmovesprites
 	spriteface $6, UP
 	end
-; 0x58089
 
-TrainerPsychicNathan: ; 0x58089
+TrainerPsychicNathan:
 	; bit/flag number
-	dw $43a
+	dw EVENT_BEAT_PSYCHIC_NATHAN
 
 	; trainer group && trainer id
 	db PSYCHIC_T, NATHAN
@@ -130,21 +117,19 @@ TrainerPsychicNathan: ; 0x58089
 
 	; script when talk again
 	dw PsychicNathanScript
-; 0x58095
 
-PsychicNathanScript: ; 0x58095
+PsychicNathanScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5830e
 	closetext
 	loadmovesprites
 	end
-; 0x5809d
 
 
-TrainerSuperNerdStan: ; 0x5809d
+TrainerSuperNerdStan:
 	; bit/flag number
-	dw $581
+	dw EVENT_BEAT_SUPER_NERD_STAN
 
 	; trainer group && trainer id
 	db SUPER_NERD, STAN
@@ -160,31 +145,26 @@ TrainerSuperNerdStan: ; 0x5809d
 
 	; script when talk again
 	dw UnknownScript_0x580a9
-; 0x580a9
 
-UnknownScript_0x580a9: ; 0x580a9
+UnknownScript_0x580a9:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x58250
 	closetext
 	loadmovesprites
 	end
-; 0x580b1
 
 
-MapRuinsofAlphOutsideSignpost0Script: ; 0x580b1
+MapRuinsofAlphOutsideSignpost0Script:
 	jumptext UnknownText_0x58325
-; 0x580b4
 
-MapRuinsofAlphOutsideSignpost1Script: ; 0x580b4
+MapRuinsofAlphOutsideSignpost1Script:
 	jumptext UnknownText_0x58342
-; 0x580b7
 
-MapRuinsofAlphOutsideSignpost2Script: ; 0x580b7
+MapRuinsofAlphOutsideSignpost2Script:
 	jumptext UnknownText_0x58362
-; 0x580ba
 
-MovementData_0x580ba: ; 0x580ba
+MovementData_0x580ba:
 	step_right
 	step_right
 	step_right
@@ -196,14 +176,12 @@ MovementData_0x580ba: ; 0x580ba
 	step_up
 	step_up
 	step_end
-; 0x580c5
 
-MovementData_0x580c5: ; 0x580c5
+MovementData_0x580c5:
 	step_up
 	step_end
-; 0x580c7
 
-UnknownText_0x580c7: ; 0x580c7
+UnknownText_0x580c7:
 	text "Hm? That's a #-"
 	line "DEX, isn't it?"
 	cont "May I see it?"
@@ -231,25 +209,22 @@ UnknownText_0x580c7: ; 0x580c7
 	line "grade your #-"
 	cont "DEX. Follow me."
 	done
-; 0x581e5
 
-UnknownText_0x581e5: ; 0x581e5
+UnknownText_0x581e5:
 	text "What do you want?"
 	line "I'm studying--"
 	cont "don't disturb me!"
 	done
-; 0x58217
 
-UnknownText_0x58217: ; 0x58217
+UnknownText_0x58217:
 	text "Sorry…"
 	line "I'm frustrated by"
 
 	para "our lack of real"
 	line "understanding…"
 	done
-; 0x58250
 
-UnknownText_0x58250: ; 0x58250
+UnknownText_0x58250:
 	text "The RUINS are from"
 	line "about 1500 years"
 	cont "ago."
@@ -265,47 +240,40 @@ UnknownText_0x58250: ; 0x58250
 	para "It's all one big"
 	line "mystery…"
 	done
-; 0x582eb
 
-PsychicNathanSeenText: ; 0x582eb
+PsychicNathanSeenText:
 	text "Hmmm… This is a"
 	line "strange place."
 	done
-; 0x5830b
 
-PsychicNathanBeatenText: ; 0x5830b
+PsychicNathanBeatenText:
 	text "…"
 	done
-; 0x5830e
 
-UnknownText_0x5830e: ; 0x5830e
+UnknownText_0x5830e:
 	text "I like thinking"
 	line "here."
 	done
-; 0x58325
 
-UnknownText_0x58325: ; 0x58325
+UnknownText_0x58325:
 	text "MYSTERY STONE"
 	line "PANEL CHAMBER"
 	done
-; 0x58342
 
-UnknownText_0x58342: ; 0x58342
+UnknownText_0x58342:
 	text "RUINS OF ALPH"
 	line "VISITORS WELCOME"
 	done
-; 0x58362
 
-UnknownText_0x58362: ; 0x58362
+UnknownText_0x58362:
 	text "RUINS OF ALPH"
 	line "RESEARCH CENTER"
 
 	para "THE AUTHORITY ON"
 	line "THE RUINS OF ALPH"
 	done
-; 0x583a4
 
-UnknownText_0x583a4: ; 0x583a4
+UnknownText_0x583a4:
 	text "While exploring"
 	line "the RUINS, we"
 
@@ -318,26 +286,23 @@ UnknownText_0x583a4: ; 0x583a4
 	para "You should be"
 	line "careful too."
 	done
-; 0x58420
 
-UnknownText_0x58420: ; 0x58420
+UnknownText_0x58420:
 	text "The RUINS hide a"
 	line "huge secret!"
 
 	para "…I think…"
 	done
-; 0x58449
 
-UnknownText_0x58449: ; 0x58449
+UnknownText_0x58449:
 	text "There are many"
 	line "kinds of UNOWN, so"
 
 	para "we use them for"
 	line "our secret codes."
 	done
-; 0x5848e
 
-UnknownText_0x5848e: ; 0x5848e
+UnknownText_0x5848e:
 	text "A… H… E… A… D…"
 	line "Hmm…"
 
@@ -346,9 +311,8 @@ UnknownText_0x5848e: ; 0x5848e
 	para "I'm decoding this"
 	line "message!"
 	done
-; 0x584c3
 
-RuinsofAlphOutside_MapEventHeader: ; 0x584c3
+RuinsofAlphOutside_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -384,4 +348,3 @@ RuinsofAlphOutside_MapEventHeader: ; 0x584c3
 	person_event SPRITE_FISHER, 21, 17, $3, $0, 255, 255, $a0, 0, FisherScript_0x58061, $078e
 	person_event SPRITE_YOUNGSTER, 15, 18, $2, $11, 255, 255, $b0, 0, YoungsterScript_0x58076, $078f
 	person_event SPRITE_YOUNGSTER, 12, 16, $7, $0, 255, 255, $80, 0, YoungsterScript_0x5807e, $078f
-; 0x58560

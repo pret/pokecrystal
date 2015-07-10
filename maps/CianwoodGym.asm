@@ -77,7 +77,7 @@ CianwoodGymTriggerRockets:
 
 TrainerBlackbeltYoshi:
 	; bit/flag number
-	dw $4a5
+	dw EVENT_BEAT_BLACKBELT_YOSHI
 
 	; trainer group && trainer id
 	db BLACKBELT_T, YOSHI
@@ -104,7 +104,7 @@ BlackbeltYoshiScript:
 
 TrainerBlackbeltLao:
 	; bit/flag number
-	dw $4a7
+	dw EVENT_BEAT_BLACKBELT_LAO
 
 	; trainer group && trainer id
 	db BLACKBELT_T, LAO
@@ -131,7 +131,7 @@ BlackbeltLaoScript:
 
 TrainerBlackbeltNob:
 	; bit/flag number
-	dw $4a8
+	dw EVENT_BEAT_BLACKBELT_NOB
 
 	; trainer group && trainer id
 	db BLACKBELT_T, NOB
@@ -158,7 +158,7 @@ BlackbeltNobScript:
 
 TrainerBlackbeltLung:
 	; bit/flag number
-	dw $4aa
+	dw EVENT_BEAT_BLACKBELT_LUNG
 
 	; trainer group && trainer id
 	db BLACKBELT_T, LUNG

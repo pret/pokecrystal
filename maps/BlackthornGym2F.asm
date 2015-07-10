@@ -60,7 +60,7 @@ BlackthornGymBoulder:
 
 TrainerCooltrainermCody:
 	; bit/flag number
-	dw $54b
+	dw EVENT_BEAT_COOLTRAINERM_CODY
 
 	; trainer group && trainer id
 	db COOLTRAINERM, CODY
@@ -87,7 +87,7 @@ CooltrainermCodyScript:
 
 TrainerCooltrainerfFran:
 	; bit/flag number
-	dw $55d
+	dw EVENT_BEAT_COOLTRAINERF_FRAN
 
 	; trainer group && trainer id
 	db COOLTRAINERF, FRAN

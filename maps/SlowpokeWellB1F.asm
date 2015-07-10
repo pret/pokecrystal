@@ -1,18 +1,16 @@
-SlowpokeWellB1F_MapScriptHeader: ; 0x5a5d3
+SlowpokeWellB1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x5a5d5
 
-KurtScript_0x5a5d5: ; 0x5a5d5
+KurtScript_0x5a5d5:
 	jumptextfaceplayer UnknownText_0x5a6b5
-; 0x5a5d8
 
-TrainerGruntM29: ; 0x5a5d8
+TrainerGruntM29:
 	; bit/flag number
-	dw $50d
+	dw EVENT_BEAT_ROCKET_GRUNTM_22
 
 	; trainer group && trainer id
 	db GRUNTM, 29
@@ -28,20 +26,18 @@ TrainerGruntM29: ; 0x5a5d8
 
 	; script when talk again
 	dw GruntM29Script
-; 0x5a5e4
 
-GruntM29Script: ; 0x5a5e4
+GruntM29Script:
 	talkaftercancel
 	loadfont
 	writetext TrainerGruntM29SlowpokeProfitText
 	closetext
 	loadmovesprites
 	end
-; 0x5a5ec
 
-TrainerGruntM1: ; 0x5a5ec
+TrainerGruntM1:
 	; bit/flag number
-	dw $4f1
+	dw EVENT_BEAT_ROCKET_GRUNTM_1
 
 	; trainer group && trainer id
 	db GRUNTM, 1
@@ -57,9 +53,8 @@ TrainerGruntM1: ; 0x5a5ec
 
 	; script when talk again
 	dw GruntM1Script
-; 0x5a5f8
 
-GruntM1Script: ; 0x5a5f8
+GruntM1Script:
 	loadfont
 	writetext TrainerGruntM1WhenTalkText
 	closetext
@@ -98,11 +93,10 @@ GruntM1Script: ; 0x5a5f8
 	pause 15
 	warp GROUP_KURTS_HOUSE, MAP_KURTS_HOUSE, $3, $3
 	end
-; 0x5a659
 
-TrainerGruntM2: ; 0x5a659
+TrainerGruntM2:
 	; bit/flag number
-	dw $4f2
+	dw EVENT_BEAT_ROCKET_GRUNTM_2
 
 	; trainer group && trainer id
 	db GRUNTM, 2
@@ -118,20 +112,18 @@ TrainerGruntM2: ; 0x5a659
 
 	; script when talk again
 	dw GruntM2Script
-; 0x5a665
 
-GruntM2Script: ; 0x5a665
+GruntM2Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5aaf2
 	closetext
 	loadmovesprites
 	end
-; 0x5a66d
 
-TrainerGruntF1: ; 0x5a66d
+TrainerGruntF1:
 	; bit/flag number
-	dw $510
+	dw EVENT_BEAT_ROCKET_GRUNTF_1
 
 	; trainer group && trainer id
 	db GRUNTF, 1
@@ -147,18 +139,16 @@ TrainerGruntF1: ; 0x5a66d
 
 	; script when talk again
 	dw GruntF1Script
-; 0x5a679
 
-GruntF1Script: ; 0x5a679
+GruntF1Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5ab8d
 	closetext
 	loadmovesprites
 	end
-; 0x5a681
 
-SlowpokeScript_0x5a681: ; 0x5a681
+SlowpokeScript_0x5a681:
 	faceplayer
 	loadfont
 	cry SLOWPOKE
@@ -167,16 +157,14 @@ SlowpokeScript_0x5a681: ; 0x5a681
 	iftrue UnknownScript_0x5a68f
 	loadmovesprites
 	end
-; 0x5a68f
 
-UnknownScript_0x5a68f: ; 0x5a68f
+UnknownScript_0x5a68f:
 	writetext UnknownText_0x5ac09
 	closetext
 	loadmovesprites
 	end
-; 0x5a695
 
-SlowpokeScript_0x5a695: ; 0x5a695
+SlowpokeScript_0x5a695:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ac61
@@ -184,16 +172,14 @@ SlowpokeScript_0x5a695: ; 0x5a695
 	closetext
 	loadmovesprites
 	end
-; 0x5a6a0
 
 SlowpokeWellB1FBoulder:
 	jumpstd strengthboulder
 
-ItemFragment_0x5a6a3: ; 0x5a6a3
+ItemFragment_0x5a6a3:
 	db SUPER_POTION, 1
-; 0x5a6a5
 
-KurtSlowpokeWellVictoryMovementData: ; 0x5a6a5
+KurtSlowpokeWellVictoryMovementData:
 	step_left
 	step_left
 	step_left
@@ -210,9 +196,8 @@ KurtSlowpokeWellVictoryMovementData: ; 0x5a6a5
 	accelerate_last
 	turn_head_left
 	step_end
-; 0x5a6b5
 
-UnknownText_0x5a6b5: ; 0x5a6b5
+UnknownText_0x5a6b5:
 	text "KURT: Hey there,"
 	line "<PLAYER>!"
 
@@ -241,9 +226,8 @@ UnknownText_0x5a6b5: ; 0x5a6b5
 	line "how gutsy you are"
 	cont "in my place!"
 	done
-; 0x5a7ca
 
-KurtLeaveSlowpokeWellText: ; 0x5a7ca
+KurtLeaveSlowpokeWellText:
 	text "KURT: Way to go,"
 	line "<PLAYER>!"
 
@@ -254,9 +238,8 @@ KurtLeaveSlowpokeWellText: ; 0x5a7ca
 	line "too. Let's get out"
 	cont "of here."
 	done
-; 0x5a825
 
-GruntM29SeenText: ; 0x5a825
+GruntM29SeenText:
 	text "Darn! I was stand-"
 	line "ing guard up top"
 
@@ -271,15 +254,13 @@ GruntM29SeenText: ; 0x5a825
 	line "my anger by taking"
 	cont "it out on you!"
 	done
-; 0x5a8cc
 
-GruntM29BeatenText: ; 0x5a8cc
+GruntM29BeatenText:
 	text "Arrgh! This is NOT"
 	line "my day!"
 	done
-; 0x5a8e8
 
-TrainerGruntM29SlowpokeProfitText: ; 0x5a8e8
+TrainerGruntM29SlowpokeProfitText:
 	text "Sure, we've been"
 	line "hacking the tails"
 
@@ -295,25 +276,22 @@ TrainerGruntM29SlowpokeProfitText: ; 0x5a8e8
 	para "and we'll do any-"
 	line "thing for money!"
 	done
-; 0x5a98b
 
-GruntM1SeenText: ; 0x5a98b
+GruntM1SeenText:
 	text "What do you want?"
 
 	para "If you interrupt"
 	line "our work, don't"
 	cont "expect any mercy!"
 	done
-; 0x5a9d0
 
-GruntM1BeatenText: ; 0x5a9d0
+GruntM1BeatenText:
 	text "You did OK today,"
 	line "but wait till next"
 	cont "time!"
 	done
-; 0x5a9fc
 
-TrainerGruntM1WhenTalkText: ; 0x5a9fc
+TrainerGruntM1WhenTalkText:
 	text "Yeah, TEAM ROCKET"
 	line "was broken up"
 	cont "three years ago."
@@ -326,9 +304,8 @@ TrainerGruntM1WhenTalkText: ; 0x5a9fc
 	line "fun watching us"
 	cont "stir up trouble!"
 	done
-; 0x5aa8d
 
-GruntM2SeenText: ; 0x5aa8d
+GruntM2SeenText:
 	text "Quit taking SLOW-"
 	line "POKETAILS?"
 
@@ -336,15 +313,13 @@ GruntM2SeenText: ; 0x5aa8d
 	line "TEAM ROCKET's rep"
 	cont "would be ruined!"
 	done
-; 0x5aadf
 
-GruntM2BeatenText: ; 0x5aadf
+GruntM2BeatenText:
 	text "Just…"
 	line "Too strong…"
 	done
-; 0x5aaf2
 
-UnknownText_0x5aaf2: ; 0x5aaf2
+UnknownText_0x5aaf2:
 	text "We need the money,"
 	line "but selling SLOW-"
 	cont "POKETAILS?"
@@ -352,40 +327,35 @@ UnknownText_0x5aaf2: ; 0x5aaf2
 	para "It's tough being a"
 	line "ROCKET GRUNT!"
 	done
-; 0x5ab43
 
-GruntF1SeenText: ; 0x5ab43
+GruntF1SeenText:
 	text "Stop taking TAILS?"
 
 	para "Yeah, just try to"
 	line "defeat all of us!"
 	done
-; 0x5ab7b
 
-GruntF1BeatenText: ; 0x5ab7b
+GruntF1BeatenText:
 	text "You rotten brat!"
 	done
-; 0x5ab8d
 
-UnknownText_0x5ab8d: ; 0x5ab8d
+UnknownText_0x5ab8d:
 	text "SLOWPOKETAILS"
 	line "grow back fast!"
 
 	para "What's wrong with"
 	line "selling them?"
 	done
-; 0x5abcb
 
-UnknownText_0x5abcb: ; 0x5abcb
+UnknownText_0x5abcb:
 	text "A SLOWPOKE with"
 	line "its TAIL cut off…"
 
 	para "Huh? It has MAIL."
 	line "Read it?"
 	done
-; 0x5ac09
 
-UnknownText_0x5ac09: ; 0x5ac09
+UnknownText_0x5ac09:
 	text "<PLAYER> read the"
 	line "MAIL."
 
@@ -397,15 +367,13 @@ UnknownText_0x5ac09: ; 0x5ac09
 
 	para "Love, Dad"
 	done
-; 0x5ac61
 
-UnknownText_0x5ac61: ; 0x5ac61
+UnknownText_0x5ac61:
 	text "A SLOWPOKE with"
 	line "its TAIL cut off…"
 	done
-; 0x5ac84
 
-SlowpokeWellB1F_MapEventHeader: ; 0x5ac84
+SlowpokeWellB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -431,4 +399,3 @@ SlowpokeWellB1F_MapEventHeader: ; 0x5ac84
 	person_event SPRITE_KURT, 18, 20, $7, $0, 255, 255, $0, 0, KurtScript_0x5a5d5, $0740
 	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, SlowpokeWellB1FBoulder, $ffff
 	person_event SPRITE_POKE_BALL, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, $0662
-; 0x5ad09

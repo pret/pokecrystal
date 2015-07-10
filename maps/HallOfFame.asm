@@ -1,4 +1,4 @@
-HallOfFame_MapScriptHeader: ; 0x181445
+HallOfFame_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,18 +8,15 @@ HallOfFame_MapScriptHeader: ; 0x181445
 
 	; callback count
 	db 0
-; 0x18144f
 
-UnknownScript_0x18144f: ; 0x18144f
+UnknownScript_0x18144f:
 	priorityjump UnknownScript_0x181454
 	end
-; 0x181453
 
-UnknownScript_0x181453: ; 0x181453
+UnknownScript_0x181453:
 	end
-; 0x181454
 
-UnknownScript_0x181454: ; 0x181454
+UnknownScript_0x181454:
 	follow $2, $0
 	applymovement $2, MovementData_0x181499
 	stopfollow
@@ -45,12 +42,11 @@ UnknownScript_0x181454: ; 0x181454
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue UnknownScript_0x181497
 	specialphonecall $5
-UnknownScript_0x181497: ; 0x181497
+UnknownScript_0x181497:
 	halloffame
 	end
-; 0x181499
 
-MovementData_0x181499: ; 0x181499
+MovementData_0x181499:
 	step_up
 	step_up
 	step_up
@@ -62,14 +58,12 @@ MovementData_0x181499: ; 0x181499
 	step_right
 	turn_head_left
 	step_end
-; 0x1814a4
 
-MovementData_0x1814a4: ; 0x1814a4
+MovementData_0x1814a4:
 	slow_step_up
 	step_end
-; 0x1814a6
 
-UnknownText_0x1814a6: ; 0x1814a6
+UnknownText_0x1814a6:
 	text "LANCE: It's been a"
 	line "long time since I"
 	cont "last came here."
@@ -114,9 +108,8 @@ UnknownText_0x1814a6: ; 0x1814a6
 	para "and your partners"
 	line "as CHAMPIONS!"
 	done
-; 0x181678
 
-HallOfFame_MapEventHeader: ; 0x181678
+HallOfFame_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -134,4 +127,3 @@ HallOfFame_MapEventHeader: ; 0x181678
 	; people-events
 	db 1
 	person_event SPRITE_LANCE, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $ffff
-; 0x181695

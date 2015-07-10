@@ -88,7 +88,7 @@ GoldenrodGymTriggerRockets:
 
 TrainerLassCarrie:
 	; bit/flag number
-	dw $515
+	dw EVENT_BEAT_LASS_CARRIE
 
 	; trainer group && trainer id
 	db LASS, CARRIE
@@ -128,7 +128,7 @@ WhitneyCriesScript:
 
 TrainerLassBridget:
 	; bit/flag number
-	dw $516
+	dw EVENT_BEAT_LASS_BRIDGET
 
 	; trainer group && trainer id
 	db LASS, BRIDGET
@@ -155,7 +155,7 @@ LassBridgetScript:
 
 TrainerBeautyVictoria:
 	; bit/flag number
-	dw $4ad
+	dw EVENT_BEAT_BEAUTY_VICTORIA
 
 	; trainer group && trainer id
 	db BEAUTY, VICTORIA
@@ -182,7 +182,7 @@ BeautyVictoriaScript:
 
 TrainerBeautySamantha:
 	; bit/flag number
-	dw $4ae
+	dw EVENT_BEAT_BEAUTY_SAMANTHA
 
 	; trainer group && trainer id
 	db BEAUTY, SAMANTHA

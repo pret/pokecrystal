@@ -1,4 +1,4 @@
-UnionCaveB2F_MapScriptHeader: ; 0x5a308
+UnionCaveB2F_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,24 +8,21 @@ UnionCaveB2F_MapScriptHeader: ; 0x5a308
 	; callbacks
 
 	dbw 2, UnknownScript_0x5a30d
-; 0x5a30d
 
-UnknownScript_0x5a30d: ; 0x5a30d
+UnknownScript_0x5a30d:
 	checkflag $0059
 	iftrue UnknownScript_0x5a319
 	checkcode VAR_WEEKDAY
 	if_equal FRIDAY, UnknownScript_0x5a31c
-UnknownScript_0x5a319: ; 0x5a319
+UnknownScript_0x5a319:
 	disappear $7
 	return
-; 0x5a31c
 
-UnknownScript_0x5a31c: ; 0x5a31c
+UnknownScript_0x5a31c:
 	appear $7
 	return
-; 0x5a31f
 
-SurfScript_0x5a31f: ; 0x5a31f
+SurfScript_0x5a31f:
 	faceplayer
 	cry LAPRAS
 	loadpokedata LAPRAS, 20
@@ -34,11 +31,10 @@ SurfScript_0x5a31f: ; 0x5a31f
 	setflag $0059
 	returnafterbattle
 	end
-; 0x5a32e
 
-TrainerCooltrainermNick: ; 0x5a32e
+TrainerCooltrainermNick:
 	; bit/flag number
-	dw $548
+	dw EVENT_BEAT_COOLTRAINERM_NICK
 
 	; trainer group && trainer id
 	db COOLTRAINERM, NICK
@@ -54,20 +50,18 @@ TrainerCooltrainermNick: ; 0x5a32e
 
 	; script when talk again
 	dw CooltrainermNickScript
-; 0x5a33a
 
-CooltrainermNickScript: ; 0x5a33a
+CooltrainermNickScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a3f0
 	closetext
 	loadmovesprites
 	end
-; 0x5a342
 
-TrainerCooltrainerfGwen: ; 0x5a342
+TrainerCooltrainerfGwen:
 	; bit/flag number
-	dw $55b
+	dw EVENT_BEAT_COOLTRAINERF_GWEN
 
 	; trainer group && trainer id
 	db COOLTRAINERF, GWEN
@@ -83,20 +77,18 @@ TrainerCooltrainerfGwen: ; 0x5a342
 
 	; script when talk again
 	dw CooltrainerfGwenScript
-; 0x5a34e
 
-CooltrainerfGwenScript: ; 0x5a34e
+CooltrainerfGwenScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a488
 	closetext
 	loadmovesprites
 	end
-; 0x5a356
 
-TrainerCooltrainerfEmma: ; 0x5a356
+TrainerCooltrainerfEmma:
 	; bit/flag number
-	dw $569
+	dw EVENT_BEAT_COOLTRAINERF_EMMA
 
 	; trainer group && trainer id
 	db COOLTRAINERF, EMMA
@@ -112,26 +104,22 @@ TrainerCooltrainerfEmma: ; 0x5a356
 
 	; script when talk again
 	dw CooltrainerfEmmaScript
-; 0x5a362
 
-CooltrainerfEmmaScript: ; 0x5a362
+CooltrainerfEmmaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a52b
 	closetext
 	loadmovesprites
 	end
-; 0x5a36a
 
-ItemFragment_0x5a36a: ; 0x5a36a
+ItemFragment_0x5a36a:
 	db ELIXER, 1
-; 0x5a36c
 
-ItemFragment_0x5a36c: ; 0x5a36c
+ItemFragment_0x5a36c:
 	db HYPER_POTION, 1
-; 0x5a36e
 
-CooltrainermNickSeenText: ; 0x5a36e
+CooltrainermNickSeenText:
 	text "There are two"
 	line "kinds of people."
 
@@ -142,15 +130,13 @@ CooltrainermNickSeenText: ; 0x5a36e
 	para "What kind of"
 	line "person are you?"
 	done
-; 0x5a3d5
 
-CooltrainermNickBeatenText: ; 0x5a3d5
+CooltrainermNickBeatenText:
 	text "You've got"
 	line "dazzling style!"
 	done
-; 0x5a3f0
 
-UnknownText_0x5a3f0: ; 0x5a3f0
+UnknownText_0x5a3f0:
 	text "Your #MON style"
 	line "is stunning and"
 	cont "colorful, I admit."
@@ -158,28 +144,24 @@ UnknownText_0x5a3f0: ; 0x5a3f0
 	para "You'll just keep"
 	line "getting better!"
 	done
-; 0x5a444
 
-CooltrainerfGwenSeenText: ; 0x5a444
+CooltrainerfGwenSeenText:
 	text "I'm in training."
 	line "Care for a round?"
 	done
-; 0x5a467
 
-CooltrainerfGwenBeatenText: ; 0x5a467
+CooltrainerfGwenBeatenText:
 	text "Aww, no! You're"
 	line "too good for me."
 	done
-; 0x5a488
 
-UnknownText_0x5a488: ; 0x5a488
+UnknownText_0x5a488:
 	text "I'm going to train"
 	line "by myself until I"
 	cont "improve."
 	done
-; 0x5a4b6
 
-CooltrainerfEmmaSeenText: ; 0x5a4b6
+CooltrainerfEmmaSeenText:
 	text "If the #MON I"
 	line "liked were there,"
 	cont "I'd go anywhere."
@@ -187,15 +169,13 @@ CooltrainerfEmmaSeenText: ; 0x5a4b6
 	para "That's what a real"
 	line "trainer does."
 	done
-; 0x5a507
 
-CooltrainerfEmmaBeatenText: ; 0x5a507
+CooltrainerfEmmaBeatenText:
 	text "I'd rather pet my"
 	line "babies than this!"
 	done
-; 0x5a52b
 
-UnknownText_0x5a52b: ; 0x5a52b
+UnknownText_0x5a52b:
 	text "Just once a week,"
 	line "a #MON comes to"
 	cont "the water's edge."
@@ -203,9 +183,8 @@ UnknownText_0x5a52b: ; 0x5a52b
 	para "I wanted to see"
 	line "that #MON…"
 	done
-; 0x5a57a
 
-UnionCaveB2F_MapEventHeader: ; 0x5a57a
+UnionCaveB2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -227,4 +206,3 @@ UnionCaveB2F_MapEventHeader: ; 0x5a57a
 	person_event SPRITE_POKE_BALL, 6, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36a, $0660
 	person_event SPRITE_POKE_BALL, 23, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36c, $0661
 	person_event SPRITE_SURF, 35, 15, $24, $11, 255, 255, $90, 0, SurfScript_0x5a31f, $0760
-; 0x5a5d3

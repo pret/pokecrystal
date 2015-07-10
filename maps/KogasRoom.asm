@@ -1,4 +1,4 @@
-KogasRoom_MapScriptHeader: ; 0x18071b
+KogasRoom_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,30 +12,26 @@ KogasRoom_MapScriptHeader: ; 0x18071b
 	; callbacks
 
 	dbw 1, UnknownScript_0x18072d
-; 0x180728
 
-UnknownScript_0x180728: ; 0x180728
+UnknownScript_0x180728:
 	priorityjump UnknownScript_0x180742
 	end
-; 0x18072c
 
-UnknownScript_0x18072c: ; 0x18072c
+UnknownScript_0x18072c:
 	end
-; 0x18072d
 
-UnknownScript_0x18072d: ; 0x18072d
+UnknownScript_0x18072d:
 	checkevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x180737
 	changeblock $4, $e, $2a
-UnknownScript_0x180737: ; 0x180737
+UnknownScript_0x180737:
 	checkevent EVENT_KOGAS_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x180741
 	changeblock $4, $2, $16
-UnknownScript_0x180741: ; 0x180741
+UnknownScript_0x180741:
 	return
-; 0x180742
 
-UnknownScript_0x180742: ; 0x180742
+UnknownScript_0x180742:
 	applymovement $0, MovementData_0x18078e
 	refreshscreen $86
 	playsound SFX_STRENGTH
@@ -47,12 +43,11 @@ UnknownScript_0x180742: ; 0x180742
 	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	waitbutton
 	end
-; 0x18075a
 
-KogaScript_0x18075a: ; 0x18075a
+KogaScript_0x18075a:
 	faceplayer
 	loadfont
-	checkevent $05b9
+	checkevent EVENT_BEAT_ELITE_4_KOGA
 	iftrue UnknownScript_0x180788
 	writetext UnknownText_0x180793
 	closetext
@@ -61,7 +56,7 @@ KogaScript_0x18075a: ; 0x18075a
 	loadtrainer KOGA, 1
 	startbattle
 	returnafterbattle
-	setevent $05b9
+	setevent EVENT_BEAT_ELITE_4_KOGA
 	loadfont
 	writetext UnknownText_0x1808ca
 	closetext
@@ -73,24 +68,21 @@ KogaScript_0x18075a: ; 0x18075a
 	setevent EVENT_KOGAS_ROOM_EXIT_OPEN
 	waitbutton
 	end
-; 0x180788
 
-UnknownScript_0x180788: ; 0x180788
+UnknownScript_0x180788:
 	writetext UnknownText_0x1808ca
 	closetext
 	loadmovesprites
 	end
-; 0x18078e
 
-MovementData_0x18078e: ; 0x18078e
+MovementData_0x18078e:
 	step_up
 	step_up
 	step_up
 	step_up
 	step_end
-; 0x180793
 
-UnknownText_0x180793: ; 0x180793
+UnknownText_0x180793:
 	text "Fwahahahaha!"
 
 	para "I am KOGA of the"
@@ -118,16 +110,14 @@ UnknownText_0x180793: ; 0x180793
 	para "force--you shall"
 	line "see soon enough!"
 	done
-; 0x1808a9
 
-UnknownText_0x1808a9: ; 0x1808a9
+UnknownText_0x1808a9:
 	text "Ah!"
 	line "You have proven"
 	cont "your worth!"
 	done
-; 0x1808ca
 
-UnknownText_0x1808ca: ; 0x1808ca
+UnknownText_0x1808ca:
 	text "I subjected you to"
 	line "everything I could"
 	cont "muster."
@@ -140,9 +130,8 @@ UnknownText_0x1808ca: ; 0x1808ca
 	line "room, and put your"
 	cont "abilities to test!"
 	done
-; 0x18095f
 
-KogasRoom_MapEventHeader: ; 0x18095f
+KogasRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -162,4 +151,3 @@ KogasRoom_MapEventHeader: ; 0x18095f
 	; people-events
 	db 1
 	person_event SPRITE_KOGA, 11, 9, $6, $0, 255, 255, $90, 0, KogaScript_0x18075a, $ffff
-; 0x180986

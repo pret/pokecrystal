@@ -1,4 +1,4 @@
-Route40_MapScriptHeader: ; 0x1a6160
+Route40_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -20,9 +20,9 @@ MonicaCallback:
 	appear $a
 	return
 
-TrainerSwimmerfElaine: ; 0x1a6174
+TrainerSwimmerfElaine:
 	; bit/flag number
-	dw $3e8
+	dw EVENT_BEAT_SWIMMERF_ELAINE
 
 	; trainer group && trainer id
 	db SWIMMERF, ELAINE
@@ -38,20 +38,18 @@ TrainerSwimmerfElaine: ; 0x1a6174
 
 	; script when talk again
 	dw SwimmerfElaineScript
-; 0x1a6180
 
-SwimmerfElaineScript: ; 0x1a6180
+SwimmerfElaineScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a637b
 	closetext
 	loadmovesprites
 	end
-; 0x1a6188
 
-TrainerSwimmerfPaula: ; 0x1a6188
+TrainerSwimmerfPaula:
 	; bit/flag number
-	dw $3e9
+	dw EVENT_BEAT_SWIMMERF_PAULA
 
 	; trainer group && trainer id
 	db SWIMMERF, PAULA
@@ -67,20 +65,18 @@ TrainerSwimmerfPaula: ; 0x1a6188
 
 	; script when talk again
 	dw SwimmerfPaulaScript
-; 0x1a6194
 
-SwimmerfPaulaScript: ; 0x1a6194
+SwimmerfPaulaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a63f5
 	closetext
 	loadmovesprites
 	end
-; 0x1a619c
 
-TrainerSwimmermSimon: ; 0x1a619c
+TrainerSwimmermSimon:
 	; bit/flag number
-	dw $595
+	dw EVENT_BEAT_SWIMMERM_SIMON
 
 	; trainer group && trainer id
 	db SWIMMERM, SIMON
@@ -96,20 +92,18 @@ TrainerSwimmermSimon: ; 0x1a619c
 
 	; script when talk again
 	dw SwimmermSimonScript
-; 0x1a61a8
 
-SwimmermSimonScript: ; 0x1a61a8
+SwimmermSimonScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6282
 	closetext
 	loadmovesprites
 	end
-; 0x1a61b0
 
-TrainerSwimmermRandall: ; 0x1a61b0
+TrainerSwimmermRandall:
 	; bit/flag number
-	dw $596
+	dw EVENT_BEAT_SWIMMERM_RANDALL
 
 	; trainer group && trainer id
 	db SWIMMERM, RANDALL
@@ -125,38 +119,31 @@ TrainerSwimmermRandall: ; 0x1a61b0
 
 	; script when talk again
 	dw SwimmermRandallScript
-; 0x1a61bc
 
-SwimmermRandallScript: ; 0x1a61bc
+SwimmermRandallScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a62fa
 	closetext
 	loadmovesprites
 	end
-; 0x1a61c4
 
-LassScript_0x1a61c4: ; 0x1a61c4
+LassScript_0x1a61c4:
 	jumptextfaceplayer UnknownText_0x1a6429
-; 0x1a61c7
 
-PokefanMScript_0x1a61c7: ; 0x1a61c7
+PokefanMScript_0x1a61c7:
 	special Function10630f
 	iftrue UnknownScript_0x1a61d0
 	jumptextfaceplayer UnknownText_0x1a646a
-; 0x1a61d0
 
-UnknownScript_0x1a61d0: ; 0x1a61d0
+UnknownScript_0x1a61d0:
 	jumptextfaceplayer UnknownText_0x1a649b
-; 0x1a61d3
 
-LassScript_0x1a61d3: ; 0x1a61d3
+LassScript_0x1a61d3:
 	jumptextfaceplayer UnknownText_0x1a64e6
-; 0x1a61d6
 
-StandingYoungsterScript_0x1a61d6: ; 0x1a61d6
+StandingYoungsterScript_0x1a61d6:
 	jumptextfaceplayer UnknownText_0x1a6564
-; 0x1a61d9
 
 MonicaScript:
 	faceplayer
@@ -194,20 +181,17 @@ MonicaNotMondayScript:
 	loadmovesprites
 	end
 
-MapRoute40Signpost0Script: ; 0x1a6213
+MapRoute40Signpost0Script:
 	jumptext UnknownText_0x1a6767
-; 0x1a6216
 
-Route40Rock: ; 0x1a6216
+Route40Rock:
 	jumpstd smashrock
-; 0x1a6219
 
-MapRoute40SignpostItem1: ; 0x1a6219
+MapRoute40SignpostItem1:
 	dw $00ab
 	db HYPER_POTION
-; 0x1a621c
 
-MovementData_0x1a621c: ; 0x1a621c
+MovementData_0x1a621c:
 	step_right
 	step_up
 	step_up
@@ -216,128 +200,111 @@ MovementData_0x1a621c: ; 0x1a621c
 	step_up
 	step_up
 	step_end
-; 0x1a6224
 
-MovementData_0x1a6224: ; 0x1a6224
+MovementData_0x1a6224:
 	step_up
 	step_up
 	step_up
 	step_up
 	step_up
 	step_end
-; 0x1a622a
 
-MovementData_0x1a622a: ; 0x1a622a
+MovementData_0x1a622a:
 	step_up
 	step_up
 	step_up
 	step_up
 	step_end
-; 0x1a622f
 
-SwimmermSimonSeenText: ; 0x1a622f
+SwimmermSimonSeenText:
 	text "You have to warm"
 	line "up before going"
 	cont "into the water."
 
 	para "That's basic."
 	done
-; 0x1a626e
 
-SwimmermSimonBeatenText: ; 0x1a626e
+SwimmermSimonBeatenText:
 	text "OK! Uncle! I give!"
 	done
-; 0x1a6282
 
-UnknownText_0x1a6282: ; 0x1a6282
+UnknownText_0x1a6282:
 	text "CIANWOOD CITY is"
 	line "a good distance"
 	cont "away from here."
 	done
-; 0x1a62b4
 
-SwimmermRandallSeenText: ; 0x1a62b4
+SwimmermRandallSeenText:
 	text "Hey, you're young"
 	line "and fit!"
 
 	para "Don't ride your"
 	line "#MON! Swim!"
 	done
-; 0x1a62ea
 
-SwimmermRandallBeatenText: ; 0x1a62ea
+SwimmermRandallBeatenText:
 	text "Uh-oh. I lost…"
 	done
-; 0x1a62fa
 
-UnknownText_0x1a62fa: ; 0x1a62fa
+UnknownText_0x1a62fa:
 	text "Swimming exercises"
 	line "your entire body."
 	cont "It's healthy."
 	done
-; 0x1a632d
 
-SwimmerfElaineSeenText: ; 0x1a632d
+SwimmerfElaineSeenText:
 	text "Are you going to"
 	line "CIANWOOD?"
 
 	para "How about a quick"
 	line "battle first?"
 	done
-; 0x1a6369
 
-SwimmerfElaineBeatenText: ; 0x1a6369
+SwimmerfElaineBeatenText:
 	text "I lost that one!"
 	done
-; 0x1a637b
 
-UnknownText_0x1a637b: ; 0x1a637b
+UnknownText_0x1a637b:
 	text "I'd say I'm a bet-"
 	line "ter swimmer than"
 	cont "you. Yeah!"
 	done
-; 0x1a63a9
 
-SwimmerfPaulaSeenText: ; 0x1a63a9
+SwimmerfPaulaSeenText:
 	text "No inner tube for"
 	line "me."
 
 	para "I'm hanging on to"
 	line "a sea #MON!"
 	done
-; 0x1a63dd
 
-SwimmerfPaulaBeatenText: ; 0x1a63dd
+SwimmerfPaulaBeatenText:
 	text "Ooh, I'm feeling"
 	line "dizzy!"
 	done
-; 0x1a63f5
 
-UnknownText_0x1a63f5: ; 0x1a63f5
+UnknownText_0x1a63f5:
 	text "While I float like"
 	line "this, the waves"
 	cont "carry me along."
 	done
-; 0x1a6429
 
-UnknownText_0x1a6429: ; 0x1a6429
+UnknownText_0x1a6429:
 	text "Although you can't"
 	line "see it from here,"
 
 	para "CIANWOOD is across"
 	line "the sea."
 	done
-; 0x1a646a
 
-UnknownText_0x1a646a: ; 0x1a646a
+UnknownText_0x1a646a:
 	text "Hm! There's a big"
 	line "building up ahead!"
 
 	para "What is it?"
 	done
-; 0x1a649b
 
-UnknownText_0x1a649b: ; 0x1a649b
+UnknownText_0x1a649b:
 	text "Hm! Look at all"
 	line "those serious-"
 	cont "looking trainers"
@@ -345,9 +312,8 @@ UnknownText_0x1a649b: ; 0x1a649b
 
 	para "What? What?"
 	done
-; 0x1a64e6
 
-UnknownText_0x1a64e6: ; 0x1a64e6
+UnknownText_0x1a64e6:
 	text "I came to OLIVINE"
 	line "by ship to see the"
 
@@ -358,9 +324,8 @@ UnknownText_0x1a64e6: ; 0x1a64e6
 	line "feels so different"
 	cont "from a big city."
 	done
-; 0x1a6564
 
-UnknownText_0x1a6564: ; 0x1a6564
+UnknownText_0x1a6564:
 	text "Have you gone to"
 	line "the BATTLE TOWER?"
 
@@ -376,7 +341,6 @@ UnknownText_0x1a6564: ; 0x1a6564
 	para "you shouldn't do"
 	line "badly at all."
 	done
-; 0x1a6606
 
 MeetMonicaText:
 	text "MONICA: Glad to"
@@ -420,15 +384,14 @@ MonicaNotMondayText:
 	cont "Monday. How sad…"
 	done
 
-UnknownText_0x1a6767: ; 0x1a6767
+UnknownText_0x1a6767:
 	text "ROUTE 40"
 
 	para "CIANWOOD CITY -"
 	line "OLIVINE CITY"
 	done
-; 0x1a678e
 
-Route40_MapEventHeader: ; 0x1a678e
+Route40_MapEventHeader:
 	; filler
 	db 0, 0
 

@@ -1,14 +1,13 @@
-Route9_MapScriptHeader: ; 0x1aaf25
+Route9_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1aaf27
 
-TrainerCamperDean: ; 0x1aaf27
+TrainerCamperDean:
 	; bit/flag number
-	dw $420
+	dw EVENT_BEAT_CAMPER_DEAN
 
 	; trainer group && trainer id
 	db CAMPER, DEAN
@@ -24,20 +23,18 @@ TrainerCamperDean: ; 0x1aaf27
 
 	; script when talk again
 	dw CamperDeanScript
-; 0x1aaf33
 
-CamperDeanScript: ; 0x1aaf33
+CamperDeanScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1aafd9
 	closetext
 	loadmovesprites
 	end
-; 0x1aaf3b
 
-TrainerPicnickerHeidi: ; 0x1aaf3b
+TrainerPicnickerHeidi:
 	; bit/flag number
-	dw $48a
+	dw EVENT_BEAT_PICNICKER_HEIDI
 
 	; trainer group && trainer id
 	db PICNICKER, HEIDI
@@ -53,20 +50,18 @@ TrainerPicnickerHeidi: ; 0x1aaf3b
 
 	; script when talk again
 	dw PicnickerHeidiScript
-; 0x1aaf47
 
-PicnickerHeidiScript: ; 0x1aaf47
+PicnickerHeidiScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab07c
 	closetext
 	loadmovesprites
 	end
-; 0x1aaf4f
 
-TrainerCamperSid: ; 0x1aaf4f
+TrainerCamperSid:
 	; bit/flag number
-	dw $421
+	dw EVENT_BEAT_CAMPER_SID
 
 	; trainer group && trainer id
 	db CAMPER, SID
@@ -82,20 +77,18 @@ TrainerCamperSid: ; 0x1aaf4f
 
 	; script when talk again
 	dw CamperSidScript
-; 0x1aaf5b
 
-CamperSidScript: ; 0x1aaf5b
+CamperSidScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab0f6
 	closetext
 	loadmovesprites
 	end
-; 0x1aaf63
 
-TrainerPicnickerEdna: ; 0x1aaf63
+TrainerPicnickerEdna:
 	; bit/flag number
-	dw $48b
+	dw EVENT_BEAT_PICNICKER_EDNA
 
 	; trainer group && trainer id
 	db PICNICKER, EDNA
@@ -111,20 +104,18 @@ TrainerPicnickerEdna: ; 0x1aaf63
 
 	; script when talk again
 	dw PicnickerEdnaScript
-; 0x1aaf6f
 
-PicnickerEdnaScript: ; 0x1aaf6f
+PicnickerEdnaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab15f
 	closetext
 	loadmovesprites
 	end
-; 0x1aaf77
 
-TrainerHikerTim: ; 0x1aaf77
+TrainerHikerTim:
 	; bit/flag number
-	dw $530
+	dw EVENT_BEAT_HIKER_TIM
 
 	; trainer group && trainer id
 	db HIKER, TIM
@@ -140,20 +131,18 @@ TrainerHikerTim: ; 0x1aaf77
 
 	; script when talk again
 	dw HikerTimScript
-; 0x1aaf83
 
-HikerTimScript: ; 0x1aaf83
+HikerTimScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab210
 	closetext
 	loadmovesprites
 	end
-; 0x1aaf8b
 
-TrainerHikerSidney: ; 0x1aaf8b
+TrainerHikerSidney:
 	; bit/flag number
-	dw $532
+	dw EVENT_BEAT_HIKER_SIDNEY
 
 	; trainer group && trainer id
 	db HIKER, SIDNEY
@@ -169,39 +158,33 @@ TrainerHikerSidney: ; 0x1aaf8b
 
 	; script when talk again
 	dw HikerSidneyScript
-; 0x1aaf97
 
-HikerSidneyScript: ; 0x1aaf97
+HikerSidneyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab278
 	closetext
 	loadmovesprites
 	end
-; 0x1aaf9f
 
-MapRoute9Signpost0Script: ; 0x1aaf9f
+MapRoute9Signpost0Script:
 	jumptext UnknownText_0x1ab2a2
-; 0x1aafa2
 
-MapRoute9SignpostItem1: ; 0x1aafa2
+MapRoute9SignpostItem1:
 	dw $00f2
 	db ETHER
 	
-; 0x1aafa5
 
-CamperDeanSeenText: ; 0x1aafa5
+CamperDeanSeenText:
 	text "I came to explore"
 	line "ROCK TUNNEL."
 	done
-; 0x1aafc5
 
-CamperDeanBeatenText: ; 0x1aafc5
+CamperDeanBeatenText:
 	text "Whoa! Danger, man."
 	done
-; 0x1aafd9
 
-UnknownText_0x1aafd9: ; 0x1aafd9
+UnknownText_0x1aafd9:
 	text "My #MON were"
 	line "hurt before even"
 
@@ -212,72 +195,62 @@ UnknownText_0x1aafd9: ; 0x1aafd9
 	line "them to a #MON"
 	cont "CENTER right away."
 	done
-; 0x1ab03f
 
-PicnickerHeidiSeenText: ; 0x1ab03f
+PicnickerHeidiSeenText:
 	text "Have you ever been"
 	line "to a picnic?"
 
 	para "They're so much"
 	line "fun!"
 	done
-; 0x1ab074
 
-PicnickerHeidiBeatenText: ; 0x1ab074
+PicnickerHeidiBeatenText:
 	text "Ohhhh!"
 	done
-; 0x1ab07c
 
-UnknownText_0x1ab07c: ; 0x1ab07c
+UnknownText_0x1ab07c:
 	text "We bake lots of"
 	line "goodies and share"
 
 	para "them all around."
 	line "They're delicious!"
 	done
-; 0x1ab0c2
 
-CamperSidSeenText: ; 0x1ab0c2
+CamperSidSeenText:
 	text "Hey, you!"
 	line "Don't litter!"
 	done
-; 0x1ab0da
 
-CamperSidBeatenText: ; 0x1ab0da
+CamperSidBeatenText:
 	text "I was just point-"
 	line "ing out…"
 	done
-; 0x1ab0f6
 
-UnknownText_0x1ab0f6: ; 0x1ab0f6
+UnknownText_0x1ab0f6:
 	text "Sorry. You weren't"
 	line "littering. It was"
 	cont "my mistake."
 	done
-; 0x1ab127
 
-PicnickerEdnaSeenText: ; 0x1ab127
+PicnickerEdnaSeenText:
 	text "People shouldn't"
 	line "leave any litter"
 	cont "behind."
 	done
-; 0x1ab151
 
-PicnickerEdnaBeatenText: ; 0x1ab151
+PicnickerEdnaBeatenText:
 	text "Ohh… I lost…"
 	done
-; 0x1ab15f
 
-UnknownText_0x1ab15f: ; 0x1ab15f
+UnknownText_0x1ab15f:
 	text "Conserving energy"
 	line "is important, but"
 
 	para "the environment is"
 	line "even more vital."
 	done
-; 0x1ab1a8
 
-HikerTimSeenText: ; 0x1ab1a8
+HikerTimSeenText:
 	text "She'll be coming"
 	line "'round MT.SILVER"
 	cont "when she comes…"
@@ -285,51 +258,44 @@ HikerTimSeenText: ; 0x1ab1a8
 	para "MT.SILVER is in"
 	line "JOHTO, right?"
 	done
-; 0x1ab1f7
 
-HikerTimBeatenText: ; 0x1ab1f7
+HikerTimBeatenText:
 	text "I was too busy"
 	line "singing…"
 	done
-; 0x1ab210
 
-UnknownText_0x1ab210: ; 0x1ab210
+UnknownText_0x1ab210:
 	text "Battles are about"
 	line "concentration."
 	done
-; 0x1ab232
 
-HikerSidneySeenText: ; 0x1ab232
+HikerSidneySeenText:
 	text "I'll tell you a"
 	line "secret."
 
 	para "But first, we"
 	line "battle!"
 	done
-; 0x1ab260
 
-HikerSidneyBeatenText: ; 0x1ab260
+HikerSidneyBeatenText:
 	text "Oh, dang!"
 	line "I lost that…"
 	done
-; 0x1ab278
 
-UnknownText_0x1ab278: ; 0x1ab278
+UnknownText_0x1ab278:
 	text "The POWER PLANT is"
 	line "across a small"
 	cont "river."
 	done
-; 0x1ab2a2
 
-UnknownText_0x1ab2a2: ; 0x1ab2a2
+UnknownText_0x1ab2a2:
 	text "ROUTE 9"
 
 	para "CERULEAN CITY -"
 	line "ROCK TUNNEL"
 	done
-; 0x1ab2c7
 
-Route9_MapEventHeader: ; 0x1ab2c7
+Route9_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -353,4 +319,3 @@ Route9_MapEventHeader: ; 0x1ab2c7
 	person_event SPRITE_LASS, 19, 16, $7, $0, 255, 255, $a2, 1, TrainerPicnickerEdna, $ffff
 	person_event SPRITE_POKEFAN_M, 7, 32, $9, $0, 255, 255, $b2, 2, TrainerHikerTim, $ffff
 	person_event SPRITE_POKEFAN_M, 19, 40, $9, $0, 255, 255, $b2, 4, TrainerHikerSidney, $ffff
-; 0x1ab32a

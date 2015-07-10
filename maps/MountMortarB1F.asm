@@ -11,7 +11,7 @@ BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	loadfont
 	checkevent EVENT_GOT_TYROGUE_FROM_KIYO
 	iftrue UnknownScript_0x7e231
-	checkevent $04a9
+	checkevent EVENT_BEAT_BLACKBELT_KIYO
 	iftrue UnknownScript_0x7e217
 	writetext UnknownText_0x7e24d
 	closetext
@@ -20,7 +20,7 @@ BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	loadtrainer BLACKBELT_T, KIYO
 	startbattle
 	returnafterbattle
-	setevent $04a9
+	setevent EVENT_BEAT_BLACKBELT_KIYO
 	loadfont
 UnknownScript_0x7e217: ; 0x7e217
 	writetext UnknownText_0x7e2c0
