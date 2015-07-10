@@ -26,10 +26,10 @@ BlackthornGym1F_MapScriptHeader:
 ClairScript_0x194e24:
 	faceplayer
 	loadfont
-	checkflag $0022
+	checkflag ENGINE_RISINGBADGE
 	iftrue UnknownScript_0x194e69
 	checkevent EVENT_BEAT_CLAIR
-	iftrue UnknownScript_0x194e63
+	iftrue .FightDone
 	writetext UnknownText_0x194efa
 	closetext
 	loadmovesprites
@@ -51,8 +51,7 @@ ClairScript_0x194e24:
 	setevent $074c
 	clearevent $074d
 	end
-
-UnknownScript_0x194e63:
+.FightDone
 	writetext UnknownText_0x195162
 	closetext
 	loadmovesprites

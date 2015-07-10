@@ -1,16 +1,15 @@
-CianwoodGym_MapScriptHeader: ; 0x9d60d
+CianwoodGym_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x9d60f
 
-ChuckScript_0x9d60f: ; 0x9d60f
+ChuckScript_0x9d60f:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_CHUCK
-	iftrue UnknownScript_0x9d656
+	iftrue .FightDone
 	writetext UnknownText_0x9d6f9
 	closetext
 	loadmovesprites
@@ -38,10 +37,10 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	writetext UnknownText_0x9d835
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0020
+	setflag ENGINE_STORMBADGE
 	checkcode VAR_BADGES
-	scall UnknownScript_0x9d681
-UnknownScript_0x9d656: ; 0x9d656
+	scall CianwoodGymTriggerRockets
+.FightDone
 	checkevent EVENT_GOT_TM01_DYNAMICPUNCH
 	iftrue UnknownScript_0x9d67b
 	setevent EVENT_BEAT_BLACKBELT_YOSHI
@@ -57,31 +56,26 @@ UnknownScript_0x9d656: ; 0x9d656
 	closetext
 	loadmovesprites
 	end
-; 0x9d67b
 
-UnknownScript_0x9d67b: ; 0x9d67b
+UnknownScript_0x9d67b:
 	writetext UnknownText_0x9d930
 	closetext
-UnknownScript_0x9d67f: ; 0x9d67f
+UnknownScript_0x9d67f:
 	loadmovesprites
 	end
-; 0x9d681
 
-UnknownScript_0x9d681: ; 0x9d681
-	if_equal $7, UnknownScript_0x9d68d
-	if_equal $6, UnknownScript_0x9d68a
+CianwoodGymTriggerRockets:
+	if_equal 7, .RadioTowerRockets
+	if_equal 6, .GoldenrodRockets
 	end
-; 0x9d68a
 
-UnknownScript_0x9d68a: ; 0x9d68a
+.GoldenrodRockets
 	jumpstd goldenrodrockets
-; 0x9d68d
 
-UnknownScript_0x9d68d: ; 0x9d68d
+.RadioTowerRockets
 	jumpstd radiotowerrockets
-; 0x9d690
 
-TrainerBlackbeltYoshi: ; 0x9d690
+TrainerBlackbeltYoshi:
 	; bit/flag number
 	dw $4a5
 
@@ -99,18 +93,16 @@ TrainerBlackbeltYoshi: ; 0x9d690
 
 	; script when talk again
 	dw BlackbeltYoshiScript
-; 0x9d69c
 
-BlackbeltYoshiScript: ; 0x9d69c
+BlackbeltYoshiScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9d9fa
 	closetext
 	loadmovesprites
 	end
-; 0x9d6a4
 
-TrainerBlackbeltLao: ; 0x9d6a4
+TrainerBlackbeltLao:
 	; bit/flag number
 	dw $4a7
 
@@ -128,18 +120,16 @@ TrainerBlackbeltLao: ; 0x9d6a4
 
 	; script when talk again
 	dw BlackbeltLaoScript
-; 0x9d6b0
 
-BlackbeltLaoScript: ; 0x9d6b0
+BlackbeltLaoScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9da61
 	closetext
 	loadmovesprites
 	end
-; 0x9d6b8
 
-TrainerBlackbeltNob: ; 0x9d6b8
+TrainerBlackbeltNob:
 	; bit/flag number
 	dw $4a8
 
@@ -157,18 +147,16 @@ TrainerBlackbeltNob: ; 0x9d6b8
 
 	; script when talk again
 	dw BlackbeltNobScript
-; 0x9d6c4
 
-BlackbeltNobScript: ; 0x9d6c4
+BlackbeltNobScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9dac0
 	closetext
 	loadmovesprites
 	end
-; 0x9d6cc
 
-TrainerBlackbeltLung: ; 0x9d6cc
+TrainerBlackbeltLung:
 	; bit/flag number
 	dw $4aa
 
@@ -186,16 +174,14 @@ TrainerBlackbeltLung: ; 0x9d6cc
 
 	; script when talk again
 	dw BlackbeltLungScript
-; 0x9d6d8
 
-BlackbeltLungScript: ; 0x9d6d8
+BlackbeltLungScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9db14
 	closetext
 	loadmovesprites
 	end
-; 0x9d6e0
 
 CianwoodGymBoulder:
 	jumpstd strengthboulder
@@ -208,16 +194,15 @@ CianwoodGymStatue:
 	trainertotext CHUCK, 1, $1
 	jumpstd gymstatue2
 
-MovementData_0x9d6f3: ; 0x9d6f3
+MovementData_0x9d6f3:
 	db $39 ; movement
 	big_step_left
 	big_step_up
 	fast_jump_step_right
 	db $38 ; movement
 	step_end
-; 0x9d6f9
 
-UnknownText_0x9d6f9: ; 0x9d6f9
+UnknownText_0x9d6f9:
 	text "WAHAHAH!"
 
 	para "So you've come"
@@ -232,17 +217,15 @@ UnknownText_0x9d6f9: ; 0x9d6f9
 
 	para "Watch this!"
 	done
-; 0x9d76f
 
-UnknownText_0x9d76f: ; 0x9d76f
+UnknownText_0x9d76f:
 	text "CHUCK: Urggh!"
 	line "…"
 
 	para "Oooarrgh!"
 	done
-; 0x9d78a
 
-UnknownText_0x9d78a: ; 0x9d78a
+UnknownText_0x9d78a:
 	text "There! Scared now,"
 	line "are you?"
 
@@ -255,9 +238,8 @@ UnknownText_0x9d78a: ; 0x9d78a
 	para "Come on. We shall"
 	line "do battle!"
 	done
-; 0x9d7f6
 
-UnknownText_0x9d7f6: ; 0x9d7f6
+UnknownText_0x9d7f6:
 	text "Wha? Huh?"
 	line "I lost?"
 
@@ -265,15 +247,13 @@ UnknownText_0x9d7f6: ; 0x9d7f6
 	line "You're worthy of"
 	cont "STORMBADGE!"
 	done
-; 0x9d835
 
-UnknownText_0x9d835: ; 0x9d835
+UnknownText_0x9d835:
 	text "<PLAYER> received"
 	line "STORMBADGE."
 	done
-; 0x9d84d
 
-UnknownText_0x9d84d: ; 0x9d84d
+UnknownText_0x9d84d:
 	text "STORMBADGE makes"
 	line "all #MON up to"
 
@@ -289,9 +269,8 @@ UnknownText_0x9d84d: ; 0x9d84d
 	para "Here, take this"
 	line "too!"
 	done
-; 0x9d8da
 
-UnknownText_0x9d8da: ; 0x9d8da
+UnknownText_0x9d8da:
 	text "That is DYNAMIC-"
 	line "PUNCH."
 
@@ -301,9 +280,8 @@ UnknownText_0x9d8da: ; 0x9d8da
 	para "does, it causes"
 	line "confusion!"
 	done
-; 0x9d930
 
-UnknownText_0x9d930: ; 0x9d930
+UnknownText_0x9d930:
 	text "WAHAHAH! I enjoyed"
 	line "battling you!"
 
@@ -314,9 +292,8 @@ UnknownText_0x9d930: ; 0x9d930
 	line "going to train 24"
 	cont "hours a day!"
 	done
-; 0x9d997
 
-BlackbeltYoshiSeenText: ; 0x9d997
+BlackbeltYoshiSeenText:
 	text "My #MON and I"
 	line "are bound togeth-"
 	cont "er by friendship."
@@ -324,76 +301,64 @@ BlackbeltYoshiSeenText: ; 0x9d997
 	para "Our bond will"
 	line "never be broken!"
 	done
-; 0x9d9e9
 
-BlackbeltYoshiBeatenText: ; 0x9d9e9
+BlackbeltYoshiBeatenText:
 	text "This isn't real!"
 	done
-; 0x9d9fa
 
-UnknownText_0x9d9fa: ; 0x9d9fa
+UnknownText_0x9d9fa:
 	text "You seem to have a"
 	line "strong bond with"
 	cont "your #MON too!"
 	done
-; 0x9da2e
 
-BlackbeltLaoSeenText: ; 0x9da2e
+BlackbeltLaoSeenText:
 	text "We martial artists"
 	line "fear nothing!"
 	done
-; 0x9da50
 
-BlackbeltLaoBeatenText: ; 0x9da50
+BlackbeltLaoBeatenText:
 	text "That's shocking!"
 	done
-; 0x9da61
 
-UnknownText_0x9da61: ; 0x9da61
+UnknownText_0x9da61:
 	text "Fighting #MON"
 	line "are afraid of psy-"
 	cont "chics…"
 	done
-; 0x9da8a
 
-BlackbeltNobSeenText: ; 0x9da8a
+BlackbeltNobSeenText:
 	text "Words are useless."
 	line "Let your fists do"
 	cont "the talking!"
 	done
-; 0x9dabd
 
-BlackbeltNobBeatenText: ; 0x9dabd
+BlackbeltNobBeatenText:
 	text "…"
 	done
-; 0x9dac0
 
-UnknownText_0x9dac0: ; 0x9dac0
+UnknownText_0x9dac0:
 	text "I lost! "
 	line "I'm speechless!"
 	done
-; 0x9dad9
 
-BlackbeltLungSeenText: ; 0x9dad9
+BlackbeltLungSeenText:
 	text "My raging fists"
 	line "will shatter your"
 	cont "#MON!"
 	done
-; 0x9db02
 
-BlackbeltLungBeatenText: ; 0x9db02
+BlackbeltLungBeatenText:
 	text "I got shattered!"
 	done
-; 0x9db14
 
-UnknownText_0x9db14: ; 0x9db14
+UnknownText_0x9db14:
 	text "My #MON lost…"
 	line "My… my pride is"
 	cont "shattered…"
 	done
-; 0x9db3e
 
-CianwoodGym_MapEventHeader: ; 0x9db3e
+CianwoodGym_MapEventHeader:
 	; filler
 	db 0, 0
 

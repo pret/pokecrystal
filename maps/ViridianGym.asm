@@ -1,16 +1,15 @@
-ViridianGym_MapScriptHeader: ; 0x9aa24
+ViridianGym_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x9aa26
 
-BlueScript_0x9aa26: ; 0x9aa26
+BlueScript_0x9aa26:
 	faceplayer
 	loadfont
-	checkflag $002a
-	iftrue UnknownScript_0x9aa51
+	checkflag ENGINE_EARTHBADGE
+	iftrue .FightDone
 	writetext UnknownText_0x9aa7b
 	closetext
 	loadmovesprites
@@ -23,21 +22,19 @@ BlueScript_0x9aa26: ; 0x9aa26
 	writetext UnknownText_0x9ac0f
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $002a
+	setflag ENGINE_EARTHBADGE
 	writetext UnknownText_0x9ac27
 	closetext
 	loadmovesprites
 	end
-; 0x9aa51
 
-UnknownScript_0x9aa51: ; 0x9aa51
+.FightDone
 	writetext UnknownText_0x9acab
 	closetext
 	loadmovesprites
 	end
-; 0x9aa57
 
-ViridianGymGuyScript: ; 0x9aa57
+ViridianGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_BLUE
@@ -52,7 +49,6 @@ ViridianGymGuyScript: ; 0x9aa57
 	closetext
 	loadmovesprites
 	end
-; 0x9aa6b
 
 ViridianGymStatue:
 	checkflag ENGINE_EARTHBADGE
@@ -62,7 +58,7 @@ ViridianGymStatue:
 	trainertotext BLUE, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x9aa7b: ; 0x9aa7b
+UnknownText_0x9aa7b:
 	text "BLUE: Yo! Finally"
 	line "got here, huh?"
 
@@ -94,9 +90,8 @@ UnknownText_0x9aa7b: ; 0x9aa7b
 	para "Ready, JOHTO"
 	line "CHAMP?"
 	done
-; 0x9abae
 
-UnknownText_0x9abae: ; 0x9abae
+UnknownText_0x9abae:
 	text "BLUE: What?"
 
 	para "How the heck did I"
@@ -108,15 +103,13 @@ UnknownText_0x9abae: ; 0x9abae
 	line "Here, take this--"
 	cont "it's EARTHBADGE."
 	done
-; 0x9ac0f
 
-UnknownText_0x9ac0f: ; 0x9ac0f
+UnknownText_0x9ac0f:
 	text "<PLAYER> received"
 	line "EARTHBADGE."
 	done
-; 0x9ac27
 
-UnknownText_0x9ac27: ; 0x9ac27
+UnknownText_0x9ac27:
 	text "BLUE: …"
 
 	para "All right, I was"
@@ -131,18 +124,16 @@ UnknownText_0x9ac27: ; 0x9ac27
 	para "Don't you forget"
 	line "it!"
 	done
-; 0x9acab
 
-UnknownText_0x9acab: ; 0x9acab
+UnknownText_0x9acab:
 	text "BLUE: Listen, you."
 
 	para "You'd better not"
 	line "lose until I beat"
 	cont "you. Got it?"
 	done
-; 0x9acee
 
-ViridianGymGuyText: ; 0x9acee
+ViridianGymGuyText:
 	text "Yo, CHAMP in"
 	line "making!"
 
@@ -161,9 +152,8 @@ ViridianGymGuyText: ; 0x9acee
 	para "Give it everything"
 	line "you've got!"
 	done
-; 0x9ada0
 
-ViridianGymGuyWinText: ; 0x9ada0
+ViridianGymGuyWinText:
 	text "Man, you are truly"
 	line "tough…"
 
@@ -173,9 +163,8 @@ ViridianGymGuyWinText: ; 0x9ada0
 	para "battle. It brought"
 	line "tears to my eyes."
 	done
-; 0x9ae04
 
-ViridianGym_MapEventHeader: ; 0x9ae04
+ViridianGym_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -196,4 +185,3 @@ ViridianGym_MapEventHeader: ; 0x9ae04
 	db 2
 	person_event SPRITE_BLUE, 7, 9, $6, $0, 255, 255, $0, 0, BlueScript_0x9aa26, $0776
 	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, ViridianGymGuyScript, $0776
-; 0x9ae38

@@ -1,4 +1,4 @@
-SeafoamGym_MapScriptHeader: ; 0x1ab4f4
+SeafoamGym_MapScriptHeader:
 	; trigger count
 	db 1
 
@@ -7,47 +7,43 @@ SeafoamGym_MapScriptHeader: ; 0x1ab4f4
 
 	; callback count
 	db 0
-; 0x1ab4fa
 
-UnknownScript_0x1ab4fa: ; 0x1ab4fa
+UnknownScript_0x1ab4fa:
 	end
-; 0x1ab4fb
 
-BlaineScript_0x1ab4fb: ; 0x1ab4fb
+BlaineScript_0x1ab4fb:
 	faceplayer
 	loadfont
-	checkflag $0029
-	iftrue UnknownScript_0x1ab52b
+	checkflag ENGINE_VOLCANOBADGE
+	iftrue .FightDone
 	writetext UnknownText_0x1ab548
 	closetext
 	loadmovesprites
 	winlosstext UnknownText_0x1ab646, $0000
 	loadtrainer BLAINE, 1
 	startbattle
-	iftrue UnknownScript_0x1ab516
+	iftrue .ReturnAfterBattle
 	appear $3
-UnknownScript_0x1ab516: ; 0x1ab516
+.ReturnAfterBattle
 	returnafterbattle
-	setevent $04cb
+	setevent EVENT_BEAT_BLAINE
 	loadfont
 	writetext UnknownText_0x1ab683
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0029
+	setflag ENGINE_VOLCANOBADGE
 	writetext UnknownText_0x1ab69d
 	closetext
 	loadmovesprites
 	end
-; 0x1ab52b
 
-UnknownScript_0x1ab52b: ; 0x1ab52b
+.FightDone
 	writetext UnknownText_0x1ab71c
 	closetext
 	loadmovesprites
 	end
-; 0x1ab531
 
-SeafoamGymGuyScript: ; 0x1ab531
+SeafoamGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
@@ -63,9 +59,8 @@ SeafoamGymGuyScript: ; 0x1ab531
 	closetext
 	loadmovesprites
 	end
-; 0x1ab548
 
-UnknownText_0x1ab548: ; 0x1ab548
+UnknownText_0x1ab548:
 	text "BLAINE: Waaah!"
 
 	para "My GYM in CINNABAR"
@@ -92,24 +87,21 @@ UnknownText_0x1ab548: ; 0x1ab548
 	para "Ha! You'd better"
 	line "have BURN HEAL!"
 	done
-; 0x1ab646
 
-UnknownText_0x1ab646: ; 0x1ab646
+UnknownText_0x1ab646:
 	text "BLAINE: Awesome."
 	line "I've burned out…"
 
 	para "You've earned"
 	line "VOLCANOBADGE!"
 	done
-; 0x1ab683
 
-UnknownText_0x1ab683: ; 0x1ab683
+UnknownText_0x1ab683:
 	text "<PLAYER> received"
 	line "VOLCANOBADGE."
 	done
-; 0x1ab69d
 
-UnknownText_0x1ab69d: ; 0x1ab69d
+UnknownText_0x1ab69d:
 	text "BLAINE: I did lose"
 	line "this time, but I'm"
 
@@ -122,18 +114,16 @@ UnknownText_0x1ab69d: ; 0x1ab69d
 	para "we'll have to have"
 	line "a rematch."
 	done
-; 0x1ab71c
 
-UnknownText_0x1ab71c: ; 0x1ab71c
+UnknownText_0x1ab71c:
 	text "BLAINE: My fire"
 	line "#MON will be"
 
 	para "even stronger."
 	line "Just you watch!"
 	done
-; 0x1ab759
 
-SeafoamGymGuyWinText: ; 0x1ab759
+SeafoamGymGuyWinText:
 	text "Yo!"
 
 	para "… Huh? It's over"
@@ -153,9 +143,8 @@ SeafoamGymGuyWinText: ; 0x1ab759
 	para "without my advice."
 	line "I knew you'd win!"
 	done
-; 0x1ab806
 
-SeafoamGymGuyWinText2: ; 0x1ab806
+SeafoamGymGuyWinText2:
 	text "A #MON GYM can"
 	line "be anywhere as"
 
@@ -165,9 +154,8 @@ SeafoamGymGuyWinText2: ; 0x1ab806
 	para "There's no need"
 	line "for a building."
 	done
-; 0x1ab865
 
-SeafoamGym_MapEventHeader: ; 0x1ab865
+SeafoamGym_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -185,4 +173,3 @@ SeafoamGym_MapEventHeader: ; 0x1ab865
 	db 2
 	person_event SPRITE_BLAINE, 6, 9, $6, $0, 255, 255, $b0, 0, BlaineScript_0x1ab4fb, $ffff
 	person_event SPRITE_GYM_GUY, 9, 10, $7, $0, 255, 255, $90, 0, SeafoamGymGuyScript, $0777
-; 0x1ab88a

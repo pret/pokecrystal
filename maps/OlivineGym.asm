@@ -1,16 +1,15 @@
-OlivineGym_MapScriptHeader: ; 0x9c12d
+OlivineGym_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x9c12f
 
-JasmineScript_0x9c12f: ; 0x9c12f
+JasmineScript_0x9c12f:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_JASMINE
-	iftrue UnknownScript_0x9c159
+	iftrue .FightDone
 	writetext UnknownText_0x9c1b9
 	closetext
 	loadmovesprites
@@ -23,10 +22,10 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	writetext UnknownText_0x9c33a
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $001f
-	checkcode $7
-	scall UnknownScript_0x9c178
-UnknownScript_0x9c159: ; 0x9c159
+	setflag ENGINE_MINERALBADGE
+	checkcode VAR_BADGES
+	scall OlivineGymTriggerRockets
+.FightDone
 	checkevent EVENT_GOT_TM23_IRON_TAIL
 	iftrue UnknownScript_0x9c172
 	writetext UnknownText_0x9c354
@@ -38,31 +37,26 @@ UnknownScript_0x9c159: ; 0x9c159
 	closetext
 	loadmovesprites
 	end
-; 0x9c172
 
-UnknownScript_0x9c172: ; 0x9c172
+UnknownScript_0x9c172:
 	writetext UnknownText_0x9c3d1
 	closetext
-UnknownScript_0x9c176: ; 0x9c176
+UnknownScript_0x9c176:
 	loadmovesprites
 	end
-; 0x9c178
 
-UnknownScript_0x9c178: ; 0x9c178
-	if_equal $7, UnknownScript_0x9c184
-	if_equal $6, UnknownScript_0x9c181
+OlivineGymTriggerRockets:
+	if_equal 7, .RadioTowerRockets
+	if_equal 6, .GoldenrodRockets
 	end
-; 0x9c181
 
-UnknownScript_0x9c181: ; 0x9c181
+.GoldenrodRockets
 	jumpstd goldenrodrockets
-; 0x9c184
 
-UnknownScript_0x9c184: ; 0x9c184
+.RadioTowerRockets
 	jumpstd radiotowerrockets
-; 0x9c187
 
-OlivineGymGuyScript: ; 0x9c187
+OlivineGymGuyScript:
 	faceplayer
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .OlivineGymGuyWinScript
@@ -73,7 +67,6 @@ OlivineGymGuyScript: ; 0x9c187
 	closetext
 	loadmovesprites
 	end
-; 0x9c19b
 
 .OlivineGymGuyWinScript
 	loadfont
@@ -81,7 +74,6 @@ OlivineGymGuyScript: ; 0x9c187
 	closetext
 	loadmovesprites
 	end
-; 0x9c1a2
 
 .OlivineGymGuyPreScript
 	loadfont
@@ -89,7 +81,6 @@ OlivineGymGuyScript: ; 0x9c187
 	closetext
 	loadmovesprites
 	end
-; 0x9c1a9
 
 OlivineGymStatue:
 	checkflag ENGINE_MINERALBADGE
@@ -99,7 +90,7 @@ OlivineGymStatue:
 	trainertotext JASMINE, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x9c1b9: ; 0x9c1b9
+UnknownText_0x9c1b9:
 	text "…Thank you for"
 	line "your help at the"
 	cont "LIGHTHOUSE…"
@@ -123,9 +114,8 @@ UnknownText_0x9c1b9: ; 0x9c1b9
 
 	para "…Um… May I begin?"
 	done
-; 0x9c2bb
 
-UnknownText_0x9c2bb: ; 0x9c2bb
+UnknownText_0x9c2bb:
 	text "…You are a better"
 	line "trainer than me,"
 
@@ -138,15 +128,13 @@ UnknownText_0x9c2bb: ; 0x9c2bb
 	para "confer upon you"
 	line "this BADGE."
 	done
-; 0x9c33a
 
-UnknownText_0x9c33a: ; 0x9c33a
+UnknownText_0x9c33a:
 	text "<PLAYER> received"
 	line "MINERALBADGE."
 	done
-; 0x9c354
 
-UnknownText_0x9c354: ; 0x9c354
+UnknownText_0x9c354:
 	text "MINERALBADGE"
 	line "raises #MON's"
 	cont "DEFENSE."
@@ -154,29 +142,25 @@ UnknownText_0x9c354: ; 0x9c354
 	para "…Um… Please take"
 	line "this too…"
 	done
-; 0x9c393
 
-UnknownText_0x9c393: ; 0x9c393
+UnknownText_0x9c393:
 	text "<PLAYER> received"
 	line "TM09."
 	done
-; 0x9c3a5
 
-UnknownText_0x9c3a5: ; 0x9c3a5
+UnknownText_0x9c3a5:
 	text "…You could use"
 	line "that TM to teach"
 	cont "IRON TAIL."
 	done
-; 0x9c3d1
 
-UnknownText_0x9c3d1: ; 0x9c3d1
+UnknownText_0x9c3d1:
 	text "Um… I don't know"
 	line "how to say this,"
 	cont "but good luck…"
 	done
-; 0x9c402
 
-OlivineGymGuyText: ; 0x9c402
+OlivineGymGuyText:
 	text "JASMINE uses the"
 	line "newly discovered"
 	cont "steel-type."
@@ -184,9 +168,8 @@ OlivineGymGuyText: ; 0x9c402
 	para "I don't know very"
 	line "much about it."
 	done
-; 0x9c451
 
-OlivineGymGuyWinText: ; 0x9c451
+OlivineGymGuyWinText:
 	text "That was awesome."
 
 	para "The steel-type,"
@@ -196,9 +179,8 @@ OlivineGymGuyWinText: ; 0x9c451
 	line "encounter of an"
 	cont "unknown kind!"
 	done
-; 0x9c4a8
 
-OlivineGymGuyPreText: ; 0x9c4a8
+OlivineGymGuyPreText:
 	text "JASMINE, the GYM"
 	line "LEADER, is at the"
 	cont "LIGHTHOUSE."
@@ -210,9 +192,8 @@ OlivineGymGuyPreText: ; 0x9c4a8
 	line "has to be compas-"
 	cont "sionate."
 	done
-; 0x9c526
 
-OlivineGym_MapEventHeader: ; 0x9c526
+OlivineGym_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -233,4 +214,3 @@ OlivineGym_MapEventHeader: ; 0x9c526
 	db 2
 	person_event SPRITE_JASMINE, 7, 9, $6, $0, 255, 255, $80, 0, JasmineScript_0x9c12f, $06d3
 	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, OlivineGymGuyScript, $ffff
-; 0x9c55a

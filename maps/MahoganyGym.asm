@@ -1,16 +1,15 @@
-MahoganyGym_MapScriptHeader: ; 0x199a9c
+MahoganyGym_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x199a9e
 
-PryceScript_0x199a9e: ; 0x199a9e
+PryceScript_0x199a9e:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_PRYCE
-	iftrue UnknownScript_0x199ac8
+	iftrue .FightDone
 	writetext UnknownText_0x199b8d
 	closetext
 	loadmovesprites
@@ -23,10 +22,10 @@ PryceScript_0x199a9e: ; 0x199a9e
 	writetext UnknownText_0x199d3b
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0021
+	setflag ENGINE_GLACIERBADGE
 	checkcode VAR_BADGES
-	scall UnknownScript_0x199af6
-UnknownScript_0x199ac8: ; 0x199ac8
+	scall MahoganyGymTriggerRockets
+.FightDone
 	checkevent EVENT_GOT_TM16_ICY_WIND
 	iftrue UnknownScript_0x199af0
 	setevent EVENT_BEAT_SKIER_ROXANNE
@@ -43,31 +42,26 @@ UnknownScript_0x199ac8: ; 0x199ac8
 	closetext
 	loadmovesprites
 	end
-; 0x199af0
 
-UnknownScript_0x199af0: ; 0x199af0
+UnknownScript_0x199af0:
 	writetext UnknownText_0x199e59
 	closetext
-UnknownScript_0x199af4: ; 0x199af4
+UnknownScript_0x199af4:
 	loadmovesprites
 	end
-; 0x199af6
 
-UnknownScript_0x199af6: ; 0x199af6
-	if_equal $7, UnknownScript_0x199b02
-	if_equal $6, UnknownScript_0x199aff
+MahoganyGymTriggerRockets:
+	if_equal 7, .RadioTowerRockets
+	if_equal 6, .GoldenrodRockets
 	end
-; 0x199aff
 
-UnknownScript_0x199aff: ; 0x199aff
+.GoldenrodRockets
 	jumpstd goldenrodrockets
-; 0x199b02
 
-UnknownScript_0x199b02: ; 0x199b02
+.RadioTowerRockets
 	jumpstd radiotowerrockets
-; 0x199b05
 
-TrainerSkierRoxanne: ; 0x199b05
+TrainerSkierRoxanne:
 	; bit/flag number
 	dw $592
 
@@ -85,18 +79,16 @@ TrainerSkierRoxanne: ; 0x199b05
 
 	; script when talk again
 	dw SkierRoxanneScript
-; 0x199b11
 
-SkierRoxanneScript: ; 0x199b11
+SkierRoxanneScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19a116
 	closetext
 	loadmovesprites
 	end
-; 0x199b19
 
-TrainerSkierClarissa: ; 0x199b19
+TrainerSkierClarissa:
 	; bit/flag number
 	dw $593
 
@@ -114,18 +106,16 @@ TrainerSkierClarissa: ; 0x199b19
 
 	; script when talk again
 	dw SkierClarissaScript
-; 0x199b25
 
-SkierClarissaScript: ; 0x199b25
+SkierClarissaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19a18f
 	closetext
 	loadmovesprites
 	end
-; 0x199b2d
 
-TrainerBoarderRonald: ; 0x199b2d
+TrainerBoarderRonald:
 	; bit/flag number
 	dw $40e
 
@@ -143,18 +133,16 @@ TrainerBoarderRonald: ; 0x199b2d
 
 	; script when talk again
 	dw BoarderRonaldScript
-; 0x199b39
 
-BoarderRonaldScript: ; 0x199b39
+BoarderRonaldScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x199f2d
 	closetext
 	loadmovesprites
 	end
-; 0x199b41
 
-TrainerBoarderBrad: ; 0x199b41
+TrainerBoarderBrad:
 	; bit/flag number
 	dw $40f
 
@@ -172,18 +160,16 @@ TrainerBoarderBrad: ; 0x199b41
 
 	; script when talk again
 	dw BoarderBradScript
-; 0x199b4d
 
-BoarderBradScript: ; 0x199b4d
+BoarderBradScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x199fdd
 	closetext
 	loadmovesprites
 	end
-; 0x199b55
 
-TrainerBoarderDouglas: ; 0x199b55
+TrainerBoarderDouglas:
 	; bit/flag number
 	dw $410
 
@@ -201,18 +187,16 @@ TrainerBoarderDouglas: ; 0x199b55
 
 	; script when talk again
 	dw BoarderDouglasScript
-; 0x199b61
 
-BoarderDouglasScript: ; 0x199b61
+BoarderDouglasScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19a047
 	closetext
 	loadmovesprites
 	end
-; 0x199b69
 
-MahoganyGymGuyScript: ; 0x199b69
+MahoganyGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_PRYCE
@@ -227,7 +211,6 @@ MahoganyGymGuyScript: ; 0x199b69
 	closetext
 	loadmovesprites
 	end
-; 0x199b7d
 
 MahoganyGymStatue:
 	checkflag ENGINE_GLACIERBADGE
@@ -237,7 +220,7 @@ MahoganyGymStatue:
 	trainertotext PRYCE, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x199b8d: ; 0x199b8d
+UnknownText_0x199b8d:
 	text "#MON have many"
 	line "experiences in"
 
@@ -267,9 +250,8 @@ UnknownText_0x199b8d: ; 0x199b8d
 	para "shall demonstrate"
 	line "my power!"
 	done
-; 0x199cb3
 
-UnknownText_0x199cb3: ; 0x199cb3
+UnknownText_0x199cb3:
 	text "Ah, I am impressed"
 	line "by your prowess."
 
@@ -282,15 +264,13 @@ UnknownText_0x199cb3: ; 0x199cb3
 	para "You are worthy of"
 	line "this BADGE!"
 	done
-; 0x199d3b
 
-UnknownText_0x199d3b: ; 0x199d3b
+UnknownText_0x199d3b:
 	text "<PLAYER> received"
 	line "GLACIERBADGE."
 	done
-; 0x199d55
 
-UnknownText_0x199d55: ; 0x199d55
+UnknownText_0x199d55:
 	text "That BADGE will"
 	line "raise the SPECIAL"
 	cont "stats of #MON."
@@ -303,9 +283,8 @@ UnknownText_0x199d55: ; 0x199d55
 	para "And this… This is"
 	line "a gift from me!"
 	done
-; 0x199def
 
-UnknownText_0x199def: ; 0x199def
+UnknownText_0x199def:
 	text "That TM contains"
 	line "ICY WIND."
 
@@ -316,9 +295,8 @@ UnknownText_0x199def: ; 0x199def
 	line "the harshness of"
 	cont "winter."
 	done
-; 0x199e59
 
-UnknownText_0x199e59: ; 0x199e59
+UnknownText_0x199e59:
 	text "When the ice and"
 	line "snow melt, spring"
 	cont "arrives."
@@ -332,31 +310,27 @@ UnknownText_0x199e59: ; 0x199e59
 	para "Cherish your time"
 	line "together!"
 	done
-; 0x199ee1
 
-BoarderRonaldSeenText: ; 0x199ee1
+BoarderRonaldSeenText:
 	text "I'll freeze your"
 	line "#MON, so you"
 	cont "can't do a thing!"
 	done
-; 0x199f10
 
-BoarderRonaldBeatenText: ; 0x199f10
+BoarderRonaldBeatenText:
 	text "Darn. I couldn't"
 	line "do a thing."
 	done
-; 0x199f2d
 
-UnknownText_0x199f2d: ; 0x199f2d
+UnknownText_0x199f2d:
 	text "I think there's a"
 	line "move a #MON"
 
 	para "can use while it's"
 	line "frozen."
 	done
-; 0x199f65
 
-BoarderBradSeenText: ; 0x199f65
+BoarderBradSeenText:
 	text "This GYM has a"
 	line "slippery floor."
 
@@ -367,34 +341,29 @@ BoarderBradSeenText: ; 0x199f65
 	line "not playing games"
 	cont "here!"
 	done
-; 0x199fbd
 
-BoarderBradBeatenText: ; 0x199fbd
+BoarderBradBeatenText:
 	text "Do you see how"
 	line "serious we are?"
 	done
-; 0x199fdd
 
-UnknownText_0x199fdd: ; 0x199fdd
+UnknownText_0x199fdd:
 	text "This GYM is great."
 	line "I love boarding"
 	cont "with my #MON!"
 	done
-; 0x19a00f
 
-BoarderDouglasSeenText: ; 0x19a00f
+BoarderDouglasSeenText:
 	text "I know PRYCE's"
 	line "secret."
 	done
-; 0x19a026
 
-BoarderDouglasBeatenText: ; 0x19a026
+BoarderDouglasBeatenText:
 	text "OK. I'll tell you"
 	line "PRYCE's secret."
 	done
-; 0x19a047
 
-UnknownText_0x19a047: ; 0x19a047
+UnknownText_0x19a047:
 	text "The secret behind"
 	line "PRYCE's power…"
 
@@ -404,52 +373,45 @@ UnknownText_0x19a047: ; 0x19a047
 	para "to strengthen his"
 	line "mind and body."
 	done
-; 0x19a0ae
 
-SkierRoxanneSeenText: ; 0x19a0ae
+SkierRoxanneSeenText:
 	text "To get to PRYCE,"
 	line "our GYM LEADER,"
 
 	para "you need to think"
 	line "before you skate."
 	done
-; 0x19a0f4
 
-SkierRoxanneBeatenText: ; 0x19a0f4
+SkierRoxanneBeatenText:
 	text "I wouldn't lose to"
 	line "you in skiing!"
 	done
-; 0x19a116
 
-UnknownText_0x19a116: ; 0x19a116
+UnknownText_0x19a116:
 	text "If you don't skate"
 	line "with precision,"
 
 	para "you won't get far"
 	line "in this GYM."
 	done
-; 0x19a157
 
-SkierClarissaSeenText: ; 0x19a157
+SkierClarissaSeenText:
 	text "Check out my"
 	line "parallel turn!"
 	done
-; 0x19a174
 
-SkierClarissaBeatenText: ; 0x19a174
+SkierClarissaBeatenText:
 	text "No! You made me"
 	line "wipe out!"
 	done
-; 0x19a18f
 
-UnknownText_0x19a18f: ; 0x19a18f
+UnknownText_0x19a18f:
 	text "I shouldn't have"
 	line "been bragging"
 	cont "about my skiing…"
 	done
-; 0x19a1bf
 
-MahoganyGymGuyText: ; 0x19a1bf
+MahoganyGymGuyText:
 	text "PRYCE is a veteran"
 	line "who has trained"
 
@@ -468,9 +430,8 @@ MahoganyGymGuyText: ; 0x19a1bf
 	para "with your burning"
 	line "ambition!"
 	done
-; 0x19a275
 
-MahoganyGymGuyWinText: ; 0x19a275
+MahoganyGymGuyWinText:
 	text "PRYCE is some-"
 	line "thing, but you're"
 	cont "something else!"
@@ -481,9 +442,8 @@ MahoganyGymGuyWinText: ; 0x19a275
 	para "bridged the gen-"
 	line "eration gap!"
 	done
-; 0x19a2df
 
-MahoganyGym_MapEventHeader: ; 0x19a2df
+MahoganyGym_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -509,4 +469,3 @@ MahoganyGym_MapEventHeader: ; 0x19a2df
 	person_event SPRITE_ROCKER, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, $ffff
 	person_event SPRITE_ROCKER, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, $ffff
 	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, $ffff
-; 0x19a354

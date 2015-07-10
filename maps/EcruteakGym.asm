@@ -1,4 +1,4 @@
-EcruteakGym_MapScriptHeader: ; 0x99d49
+EcruteakGym_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,22 +8,19 @@ EcruteakGym_MapScriptHeader: ; 0x99d49
 
 	; callback count
 	db 0
-; 0x99d53
 
-UnknownScript_0x99d53: ; 0x99d53
+UnknownScript_0x99d53:
 	priorityjump UnknownScript_0x99dc6
 	end
-; 0x99d57
 
-UnknownScript_0x99d57: ; 0x99d57
+UnknownScript_0x99d57:
 	end
-; 0x99d58
 
-MortyScript_0x99d58: ; 0x99d58
+MortyScript_0x99d58:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_MORTY
-	iftrue UnknownScript_0x99d8c
+	iftrue .FightDone
 	writetext UnknownText_0x99e65
 	closetext
 	loadmovesprites
@@ -36,13 +33,13 @@ MortyScript_0x99d58: ; 0x99d58
 	writetext UnknownText_0x9a043
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $001e
+	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
-	scall UnknownScript_0x99db7
+	scall EcruteakGymTriggerRockets
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
 	setevent $0766
 	setevent $0767
-UnknownScript_0x99d8c: ; 0x99d8c	
+.FightDone
 	checkevent EVENT_GOT_TM30_SHADOW_BALL
 	iftrue UnknownScript_0x99db1
 	setevent EVENT_BEAT_SAGE_JEFFREY
@@ -58,31 +55,26 @@ UnknownScript_0x99d8c: ; 0x99d8c
 	closetext
 	loadmovesprites
 	end
-; 0x99db1
 
-UnknownScript_0x99db1: ; 0x99db1
+UnknownScript_0x99db1:
 	writetext UnknownText_0x9a145
 	closetext
-UnknownScript_0x99db5: ; 0x99db5
+UnknownScript_0x99db5:
 	loadmovesprites
 	end
-; 0x99db7
 
-UnknownScript_0x99db7: ; 0x99db7
-	if_equal $7, UnknownScript_0x99dc3
-	if_equal $6, UnknownScript_0x99dc0
+EcruteakGymTriggerRockets:
+	if_equal 7, .RadioTowerRockets
+	if_equal 6, .GoldenrodRockets
 	end
-; 0x99dc0
 
-UnknownScript_0x99dc0: ; 0x99dc0
+.GoldenrodRockets
 	jumpstd goldenrodrockets
-; 0x99dc3
 
-UnknownScript_0x99dc3: ; 0x99dc3
+.RadioTowerRockets
 	jumpstd radiotowerrockets
-; 0x99dc6
 
-UnknownScript_0x99dc6: ; 0x99dc6
+UnknownScript_0x99dc6:
 	applymovement $0, MovementData_0x99e5d
 	applymovement $8, MovementData_0x99e63
 	loadfont
@@ -97,9 +89,8 @@ UnknownScript_0x99dc6: ; 0x99dc6
 	waitbutton
 	warp GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, $6, $1b
 	end
-; 0x99de9
 
-TrainerSageJeffrey: ; 0x99de9
+TrainerSageJeffrey:
 	; bit/flag number
 	dw $415
 
@@ -117,18 +108,16 @@ TrainerSageJeffrey: ; 0x99de9
 
 	; script when talk again
 	dw SageJeffreyScript
-; 0x99df5
 
-SageJeffreyScript: ; 0x99df5
+SageJeffreyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9a263
 	closetext
 	loadmovesprites
 	end
-; 0x99dfd
 
-TrainerSagePing: ; 0x99dfd
+TrainerSagePing:
 	; bit/flag number
 	dw $416
 
@@ -146,18 +135,16 @@ TrainerSagePing: ; 0x99dfd
 
 	; script when talk again
 	dw SagePingScript
-; 0x99e09
 
-SagePingScript: ; 0x99e09
+SagePingScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9a2b7
 	closetext
 	loadmovesprites
 	end
-; 0x99e11
 
-TrainerMediumMartha: ; 0x99e11
+TrainerMediumMartha:
 	; bit/flag number
 	dw $58b
 
@@ -175,18 +162,16 @@ TrainerMediumMartha: ; 0x99e11
 
 	; script when talk again
 	dw MediumMarthaScript
-; 0x99e1d
 
-MediumMarthaScript: ; 0x99e1d
+MediumMarthaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9a318
 	closetext
 	loadmovesprites
 	end
-; 0x99e25
 
-TrainerMediumGrace: ; 0x99e25
+TrainerMediumGrace:
 	; bit/flag number
 	dw $58c
 
@@ -204,18 +189,16 @@ TrainerMediumGrace: ; 0x99e25
 
 	; script when talk again
 	dw MediumGraceScript
-; 0x99e31
 
-MediumGraceScript: ; 0x99e31
+MediumGraceScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9a38a
 	closetext
 	loadmovesprites
 	end
-; 0x99e39
 
-EcruteakGymGuyScript: ; 0x99e39
+EcruteakGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_MORTY
@@ -230,7 +213,6 @@ EcruteakGymGuyScript: ; 0x99e39
 	closetext
 	loadmovesprites
 	end
-; 0x99e4d
 
 EcruteakGymStatue:
 	checkflag ENGINE_FOGBADGE
@@ -240,24 +222,21 @@ EcruteakGymStatue:
 	trainertotext MORTY, 1, $1
 	jumpstd gymstatue2
 
-MovementData_0x99e5d: ; 0x99e5d
+MovementData_0x99e5d:
 	step_up
 	step_end
-; 0x99e5f
 
-MovementData_0x99e5f: ; 0x99e5f
+MovementData_0x99e5f:
 	fix_facing
 	slow_step_down
 	remove_fixed_facing
 	step_end
-; 0x99e63
 
-MovementData_0x99e63: ; 0x99e63
+MovementData_0x99e63:
 	slow_step_down
 	step_end
-; 0x99e65
 
-UnknownText_0x99e65: ; 0x99e65
+UnknownText_0x99e65:
 	text "Good of you to"
 	line "have come."
 
@@ -297,24 +276,21 @@ UnknownText_0x99e65: ; 0x99e65
 	line "help me reach that"
 	cont "level!"
 	done
-; 0x9a00a
 
-UnknownText_0x9a00a: ; 0x9a00a
+UnknownText_0x9a00a:
 	text "I'm not good"
 	line "enough yet…"
 
 	para "All right. This"
 	line "BADGE is yours."
 	done
-; 0x9a043
 
-UnknownText_0x9a043: ; 0x9a043
+UnknownText_0x9a043:
 	text "<PLAYER> received"
 	line "FOGBADGE."
 	done
-; 0x9a059
 
-UnknownText_0x9a059: ; 0x9a059
+UnknownText_0x9a059:
 	text "By having FOG-"
 	line "BADGE, #MON up"
 
@@ -330,9 +306,8 @@ UnknownText_0x9a059: ; 0x9a059
 	para "I want you to have"
 	line "this too."
 	done
-; 0x9a0ec
 
-UnknownText_0x9a0ec: ; 0x9a0ec
+UnknownText_0x9a0ec:
 	text "It's SHADOW BALL."
 	line "It causes damage"
 
@@ -342,9 +317,8 @@ UnknownText_0x9a0ec: ; 0x9a0ec
 	para "Use it if it"
 	line "appeals to you."
 	done
-; 0x9a145
 
-UnknownText_0x9a145: ; 0x9a145
+UnknownText_0x9a145:
 	text "I see…"
 
 	para "Your journey has"
@@ -358,9 +332,8 @@ UnknownText_0x9a145: ; 0x9a145
 	para "I envy you for"
 	line "that…"
 	done
-; 0x9a1bd
 
-SageJeffreySeenText: ; 0x9a1bd
+SageJeffreySeenText:
 	text "I spent the spring"
 	line "with my #MON."
 
@@ -373,33 +346,28 @@ SageJeffreySeenText: ; 0x9a1bd
 	para "lived together"
 	line "for a long time."
 	done
-; 0x9a23d
 
-SageJeffreyBeatenText: ; 0x9a23d
+SageJeffreyBeatenText:
 	text "Wins and losses, I"
 	line "experienced both."
 	done
-; 0x9a263
 
-UnknownText_0x9a263: ; 0x9a263
+UnknownText_0x9a263:
 	text "Where did #MON"
 	line "come from?"
 	done
-; 0x9a27e
 
-SagePingSeenText: ; 0x9a27e
+SagePingSeenText:
 	text "Can you inflict"
 	line "any damage on our"
 	cont "#MON?"
 	done
-; 0x9a2a7
 
-SagePingBeatenText: ; 0x9a2a7
+SagePingBeatenText:
 	text "Ah! Well done!"
 	done
-; 0x9a2b7
 
-UnknownText_0x9a2b7: ; 0x9a2b7
+UnknownText_0x9a2b7:
 	text "We use only ghost-"
 	line "type #MON."
 
@@ -407,39 +375,33 @@ UnknownText_0x9a2b7: ; 0x9a2b7
 	line "attack can harm"
 	cont "them!"
 	done
-; 0x9a2fb
 
-MediumMarthaSeenText: ; 0x9a2fb
+MediumMarthaSeenText:
 	text "I shall win!"
 	done
-; 0x9a309
 
-MediumMarthaBeatenText: ; 0x9a309
+MediumMarthaBeatenText:
 	text "I, I, I lost!"
 	done
-; 0x9a318
 
-UnknownText_0x9a318: ; 0x9a318
+UnknownText_0x9a318:
 	text "The one who wants"
 	line "to win most--will!"
 	done
-; 0x9a33e
 
-MediumGraceSeenText: ; 0x9a33e
+MediumGraceSeenText:
 	text "Stumped by our in-"
 	line "visible floor?"
 
 	para "Defeat me if you"
 	line "want a hint!"
 	done
-; 0x9a37f
 
-MediumGraceBeatenText: ; 0x9a37f
+MediumGraceBeatenText:
 	text "Wha-what?"
 	done
-; 0x9a38a
 
-UnknownText_0x9a38a: ; 0x9a38a
+UnknownText_0x9a38a:
 	text "Fine. I shall tell"
 	line "you the secret of"
 
@@ -449,9 +411,8 @@ UnknownText_0x9a38a: ; 0x9a38a
 	para "The path is right"
 	line "before our eyes!"
 	done
-; 0x9a3e8
 
-EcruteakGymGuyText: ; 0x9a3e8
+EcruteakGymGuyText:
 	text "The trainers here"
 	line "have secret mo-"
 	cont "tives."
@@ -462,9 +423,8 @@ EcruteakGymGuyText: ; 0x9a3e8
 	para "deep secrets about"
 	line "ECRUTEAK."
 	done
-; 0x9a452
 
-EcruteakGymGuyWinText: ; 0x9a452
+EcruteakGymGuyWinText:
 	text "Whew, <PLAYER>."
 	line "You did great!"
 
@@ -472,9 +432,8 @@ EcruteakGymGuyWinText: ; 0x9a452
 	line "the corner out of"
 	cont "pure terror!"
 	done
-; 0x9a49c
 
-UnknownText_0x9a49c: ; 0x9a49c
+UnknownText_0x9a49c:
 	text "MORTY, the GYM"
 	line "LEADER, is absent."
 
@@ -483,9 +442,8 @@ UnknownText_0x9a49c: ; 0x9a49c
 
 	para "Hohohoho."
 	done
-; 0x9a4e9
 
-EcruteakGym_MapEventHeader: ; 0x9a4e9
+EcruteakGym_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -542,4 +500,3 @@ EcruteakGym_MapEventHeader: ; 0x9a4e9
 	person_event SPRITE_GRANNY, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, $ffff
 	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, $ffff
 	person_event SPRITE_GRAMPS, 18, 8, $6, $0, 255, 255, $a0, 0, ObjectEvent, $07a8
-; 0x9a5f9

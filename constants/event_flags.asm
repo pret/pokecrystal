@@ -268,6 +268,7 @@ EVENT_BEAT_CAMPER_ROLAND                               EQU $41a
 EVENT_BEAT_CAMPER_TODD_1                               EQU $41b
 EVENT_BEAT_CAMPER_IVAN                                 EQU $41c
 EVENT_BEAT_CAMPER_ELLIOT                               EQU $41d
+EVENT_BEAT_CAMPER_BARRY                                EQU $41e
 EVENT_BEAT_CAMPER_LLOYD                                EQU $41f
 EVENT_BEAT_CAMPER_DEAN                                 EQU $420
 EVENT_BEAT_CAMPER_SID                                  EQU $421
@@ -338,6 +339,7 @@ EVENT_BEAT_PICNICKER_LIZ_1                             EQU $47e
 EVENT_BEAT_PICNICKER_GINA_1                            EQU $47f
 EVENT_BEAT_PICNICKER_BROOKE                            EQU $480
 EVENT_BEAT_PICNICKER_KIM                               EQU $481
+EVENT_BEAT_PICNICKER_CINDY                             EQU $482
 EVENT_BEAT_PICNICKER_HOPE                              EQU $483
 EVENT_BEAT_PICNICKER_SHARON                            EQU $484
 EVENT_BEAT_PICNICKER_DEBRA                             EQU $485
@@ -382,8 +384,10 @@ EVENT_BEAT_CLAIR                                       EQU $4c4
 EVENT_BEAT_BROCK                                       EQU $4c5
 EVENT_BEAT_MISTY                                       EQU $4c6
 EVENT_BEAT_LTSURGE                                     EQU $4c7
+EVENT_BEAT_ERIKA                                       EQU $4c8
 EVENT_BEAT_JANINE                                      EQU $4c9
 EVENT_BEAT_SABRINA                                     EQU $4ca
+EVENT_BEAT_BLAINE                                      EQU $4cb
 EVENT_BEAT_BLUE                                        EQU $4cc
 EVENT_BEAT_POKEFANM_WILLIAM                            EQU $4cd
 EVENT_BEAT_POKEFANM_DEREK                              EQU $4ce
@@ -443,8 +447,10 @@ EVENT_BEAT_ROCKET_GRUNTF_4                             EQU $513
 EVENT_BEAT_ROCKET_GRUNTF_5                             EQU $514
 EVENT_BEAT_LASS_CARRIE                                 EQU $515
 EVENT_BEAT_LASS_BRIDGET                                EQU $516
+EVENT_BEAT_LASS_ALICE                                  EQU $517
 EVENT_BEAT_LASS_KRISE                                  EQU $518
 EVENT_BEAT_LASS_CONNIE_1                               EQU $519
+EVENT_BEAT_LASS_LINDA                                  EQU $51a
 EVENT_BEAT_LASS_LAURA                                  EQU $51b
 EVENT_BEAT_LASS_SHANNON                                EQU $51c
 EVENT_BEAT_LASS_MICHELLE                               EQU $51d

@@ -1,4 +1,4 @@
-CeruleanGym_MapScriptHeader: ; 0x1883cf
+CeruleanGym_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,18 +8,15 @@ CeruleanGym_MapScriptHeader: ; 0x1883cf
 
 	; callback count
 	db 0
-; 0x1883d9
 
-UnknownScript_0x1883d9: ; 0x1883d9
+UnknownScript_0x1883d9:
 	end
-; 0x1883da
 
-UnknownScript_0x1883da: ; 0x1883da
+UnknownScript_0x1883da:
 	priorityjump UnknownScript_0x1883de
 	end
-; 0x1883de
 
-UnknownScript_0x1883de: ; 0x1883de
+UnknownScript_0x1883de:
 	applymovement $2, MovementData_0x1884e3
 	playsound SFX_TACKLE
 	applymovement $2, MovementData_0x1884eb
@@ -54,13 +51,12 @@ UnknownScript_0x1883de: ; 0x1883de
 	spriteface $0, DOWN
 	pause 15
 	end
-; 0x188432
 
-MistyScript_0x188432: ; 0x188432
+MistyScript_0x188432:
 	faceplayer
 	loadfont
-	checkflag $0024
-	iftrue UnknownScript_0x188460
+	checkflag ENGINE_CASCADEBADGE
+	iftrue .FightDone
 	writetext UnknownText_0x188674
 	closetext
 	loadmovesprites
@@ -76,15 +72,14 @@ MistyScript_0x188432: ; 0x188432
 	writetext UnknownText_0x188768
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0024
-UnknownScript_0x188460: ; 0x188460
+	setflag ENGINE_CASCADEBADGE
+.FightDone
 	writetext UnknownText_0x188782
 	closetext
 	loadmovesprites
 	end
-; 0x188466
 
-TrainerSwimmerfDiana: ; 0x188466
+TrainerSwimmerfDiana:
 	; bit/flag number
 	dw $3f9
 
@@ -102,18 +97,16 @@ TrainerSwimmerfDiana: ; 0x188466
 
 	; script when talk again
 	dw SwimmerfDianaScript
-; 0x188472
 
-SwimmerfDianaScript: ; 0x188472
+SwimmerfDianaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x188856
 	closetext
 	loadmovesprites
 	end
-; 0x18847a
 
-TrainerSwimmerfBriana: ; 0x18847a
+TrainerSwimmerfBriana:
 	; bit/flag number
 	dw $3fa
 
@@ -131,18 +124,16 @@ TrainerSwimmerfBriana: ; 0x18847a
 
 	; script when talk again
 	dw SwimmerfBrianaScript
-; 0x188486
 
-SwimmerfBrianaScript: ; 0x188486
+SwimmerfBrianaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1888c0
 	closetext
 	loadmovesprites
 	end
-; 0x18848e
 
-TrainerSwimmermParker: ; 0x18848e
+TrainerSwimmermParker:
 	; bit/flag number
 	dw $5a8
 
@@ -160,18 +151,16 @@ TrainerSwimmermParker: ; 0x18848e
 
 	; script when talk again
 	dw SwimmermParkerScript
-; 0x18849a
 
-SwimmermParkerScript: ; 0x18849a
+SwimmermParkerScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x188943
 	closetext
 	loadmovesprites
 	end
-; 0x1884a2
 
-CeruleanGymGuyScript: ; 0x1884a2
+CeruleanGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_MISTY
@@ -186,13 +175,11 @@ CeruleanGymGuyScript: ; 0x1884a2
 	closetext
 	loadmovesprites
 	end
-; 0x1884b6
 
-MapCeruleanGymSignpostItem0: ; 0x1884b6
+MapCeruleanGymSignpostItem0:
 	dw $00fb
 	db MACHINE_PART
 	
-; 0x1884b9
 
 CeruleanGymStatue1:
 	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
@@ -220,21 +207,19 @@ CeruleanGymStatue:
 	trainertotext MISTY, 1, $1
 	jumpstd gymstatue2
 
-MovementData_0x1884e3: ; 0x1884e3
+MovementData_0x1884e3:
 	big_step_down
 	big_step_down
 	big_step_down
 	big_step_down
 	step_end
-; 0x1884e8
 
-MovementData_0x1884e8: ; 0x1884e8
+MovementData_0x1884e8:
 	big_step_right
 	big_step_down
 	step_end
-; 0x1884eb
 
-MovementData_0x1884eb: ; 0x1884eb
+MovementData_0x1884eb:
 	fix_facing
 	db $39 ; movement
 	jump_step_up
@@ -245,21 +230,18 @@ MovementData_0x1884eb: ; 0x1884eb
 	step_down
 	step_down
 	step_end
-; 0x1884f5
 
-MovementData_0x1884f5: ; 0x1884f5
+MovementData_0x1884f5:
 	big_step_down
 	step_end
-; 0x1884f7
 
-MovementData_0x1884f7: ; 0x1884f7
+MovementData_0x1884f7:
 	fix_facing
 	slow_step_up
 	remove_fixed_facing
 	step_end
-; 0x1884fb
 
-UnknownText_0x1884fb: ; 0x1884fb
+UnknownText_0x1884fb:
 	text "Oops! I so sorry!"
 	line "You not hurt,"
 	cont "okay?"
@@ -270,16 +252,14 @@ UnknownText_0x1884fb: ; 0x1884fb
 	cont "good for me if"
 	cont "seen by somebody."
 	done
-; 0x188574
 
-UnknownText_0x188574: ; 0x188574
+UnknownText_0x188574:
 	text "Oh no! You seen"
 	line "me already! I make"
 	cont "big mistake!"
 	done
-; 0x1885a5
 
-UnknownText_0x1885a5: ; 0x1885a5
+UnknownText_0x1885a5:
 	text "Hey, you! Forget"
 	line "you see me, okay?"
 
@@ -291,7 +271,6 @@ UnknownText_0x1885a5: ; 0x1885a5
 
 	para "Bye-bye a go-go!"
 	done
-; 0x188610
 
 CeruleanGymNote1:
 	text "Sorry, I'll be out"
@@ -305,7 +284,7 @@ CeruleanGymNote2:
 	cont "GYM TRAINERS"
 	done
 
-UnknownText_0x188674: ; 0x188674
+UnknownText_0x188674:
 	text "MISTY: I was ex-"
 	line "pecting you, you"
 	cont "pest!"
@@ -320,9 +299,8 @@ UnknownText_0x188674: ; 0x188674
 	para "My water-type"
 	line "#MON are tough!"
 	done
-; 0x18870c
 
-UnknownText_0x18870c: ; 0x18870c
+UnknownText_0x18870c:
 	text "MISTY: You really"
 	line "are good…"
 
@@ -332,15 +310,13 @@ UnknownText_0x18870c: ; 0x18870c
 	para "Here you go. It's"
 	line "CASCADEBADGE."
 	done
-; 0x188768
 
-UnknownText_0x188768: ; 0x188768
+UnknownText_0x188768:
 	text "<PLAYER> received"
 	line "CASCADEBADGE."
 	done
-; 0x188782
 
-UnknownText_0x188782: ; 0x188782
+UnknownText_0x188782:
 	text "MISTY: Are there"
 	line "many strong train-"
 	cont "ers in JOHTO? Like"
@@ -352,41 +328,35 @@ UnknownText_0x188782: ; 0x188782
 	para "I can battle some"
 	line "skilled trainers."
 	done
-; 0x18880a
 
-SwimmerfDianaSeenText: ; 0x18880a
+SwimmerfDianaSeenText:
 	text "Sorry about being"
 	line "away. Let's get on"
 	cont "with it!"
 	done
-; 0x188838
 
-SwimmerfDianaBeatenText: ; 0x188838
+SwimmerfDianaBeatenText:
 	text "I give up! You're"
 	line "the winner!"
 	done
-; 0x188856
 
-UnknownText_0x188856: ; 0x188856
+UnknownText_0x188856:
 	text "I'll be swimming"
 	line "quietly."
 	done
-; 0x188870
 
-SwimmerfBrianaSeenText: ; 0x188870
+SwimmerfBrianaSeenText:
 	text "Don't let my ele-"
 	line "gant swimming un-"
 	cont "nerve you."
 	done
-; 0x18889f
 
-SwimmerfBrianaBeatenText: ; 0x18889f
+SwimmerfBrianaBeatenText:
 	text "Ooh, you calmly"
 	line "disposed of me…"
 	done
-; 0x1888c0
 
-UnknownText_0x1888c0: ; 0x1888c0
+UnknownText_0x1888c0:
 	text "Don't be too smug"
 	line "about beating me."
 
@@ -394,22 +364,19 @@ UnknownText_0x1888c0: ; 0x1888c0
 	line "you if you get"
 	cont "complacent."
 	done
-; 0x188912
 
-SwimmermParkerSeenText: ; 0x188912
+SwimmermParkerSeenText:
 	text "Glub…"
 
 	para "I'm first! Come"
 	line "and get me!"
 	done
-; 0x188934
 
-SwimmermParkerBeatenText: ; 0x188934
+SwimmermParkerBeatenText:
 	text "This can't be…"
 	done
-; 0x188943
 
-UnknownText_0x188943: ; 0x188943
+UnknownText_0x188943:
 	text "MISTY has gotten"
 	line "much better in the"
 	cont "past few years."
@@ -418,9 +385,8 @@ UnknownText_0x188943: ; 0x188943
 	line "guard down, or"
 	cont "you'll be crushed!"
 	done
-; 0x1889a7
 
-CeruleanGymGuyText: ; 0x1889a7
+CeruleanGymGuyText:
 	text "Yo! CHAMP in"
 	line "making!"
 
@@ -430,9 +396,8 @@ CeruleanGymGuyText: ; 0x1889a7
 	para "for some fun too."
 	line "He-he-he."
 	done
-; 0x1889fa
 
-CeruleanGymGuyWinText: ; 0x1889fa
+CeruleanGymGuyWinText:
 	text "Hoo, you showed me"
 	line "how tough you are."
 
@@ -440,9 +405,8 @@ CeruleanGymGuyWinText: ; 0x1889fa
 	line "was one heck of a"
 	cont "great battle!"
 	done
-; 0x188a51
 
-CeruleanGym_MapEventHeader: ; 0x188a51
+CeruleanGym_MapEventHeader:
 	; filler
 	db 0, 0
 
