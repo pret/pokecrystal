@@ -71,7 +71,9 @@ map_header: MACRO
 \1_MapHeader:
 	db BANK(\1_SecondMapHeader), \2, \3
 	dw \1_SecondMapHeader
-	db \4, \5, \6, \7
+	db \4, \5
+	dn \6, \7
+	db \8
 ENDM
 
 
