@@ -58,7 +58,7 @@ UnknownScript_0x6a1d1:
 	applymovement $0, MovementData_0x6a2e2
 	spriteface $2, RIGHT
 	loadfont
-	checkcode VAR_11
+	checkcode VAR_CONTESTMINUTES
 	addvar $1
 	RAM2MEM $0
 	writetext UnknownText_0x6a79a

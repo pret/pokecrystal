@@ -58,7 +58,7 @@ UnknownScript_0x6ab46:
 UnknownScript_0x6ab47:
 	spriteface $0, UP
 	loadfont
-	checkcode VAR_11
+	checkcode VAR_CONTESTMINUTES
 	addvar $1
 	RAM2MEM $0
 	writetext UnknownText_0x6b284
