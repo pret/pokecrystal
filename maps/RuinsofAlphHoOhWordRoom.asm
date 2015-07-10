@@ -1,12 +1,11 @@
-RuinsofAlphHoOhWordRoom_MapScriptHeader: ; 0x59b3e
+RuinsofAlphHoOhWordRoom_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x59b40
 
-RuinsofAlphHoOhWordRoom_MapEventHeader: ; 0x59b40
+RuinsofAlphHoOhWordRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -24,4 +23,3 @@ RuinsofAlphHoOhWordRoom_MapEventHeader: ; 0x59b40
 
 	; people-events
 	db 0
-; 0x59b55

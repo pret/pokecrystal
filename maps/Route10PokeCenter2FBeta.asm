@@ -1,12 +1,11 @@
-Route10PokeCenter2FBeta_MapScriptHeader: ; 0x188dac
+Route10PokeCenter2FBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x188dae
 
-Route10PokeCenter2FBeta_MapEventHeader: ; 0x188dae
+Route10PokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -22,4 +21,3 @@ Route10PokeCenter2FBeta_MapEventHeader: ; 0x188dae
 
 	; people-events
 	db 0
-; 0x188db9

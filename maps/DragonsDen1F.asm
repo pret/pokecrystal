@@ -1,12 +1,11 @@
-DragonsDen1F_MapScriptHeader: ; 0x18c874
+DragonsDen1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c876
 
-DragonsDen1F_MapEventHeader: ; 0x18c876
+DragonsDen1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -25,4 +24,3 @@ DragonsDen1F_MapEventHeader: ; 0x18c876
 
 	; people-events
 	db 0
-; 0x18c890

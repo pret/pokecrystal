@@ -1,20 +1,17 @@
-Route10PokeCenter1F_MapScriptHeader: ; 0x188bd2
+Route10PokeCenter1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x188bd4
 
-NurseScript_0x188bd4: ; 0x188bd4
+NurseScript_0x188bd4:
 	jumpstd pokecenternurse
-; 0x188bd7
 
-GentlemanScript_0x188bd7: ; 0x188bd7
+GentlemanScript_0x188bd7:
 	jumptextfaceplayer UnknownText_0x188bf1
-; 0x188bda
 
-GymGuyScript_0x188bda: ; 0x188bda
+GymGuyScript_0x188bda:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -23,29 +20,25 @@ GymGuyScript_0x188bda: ; 0x188bda
 	closetext
 	loadmovesprites
 	end
-; 0x188be8
 
-UnknownScript_0x188be8: ; 0x188be8
+UnknownScript_0x188be8:
 	writetext UnknownText_0x188c9e
 	closetext
 	loadmovesprites
 	end
-; 0x188bee
 
-CooltrainerFScript_0x188bee: ; 0x188bee
+CooltrainerFScript_0x188bee:
 	jumptextfaceplayer UnknownText_0x188d0c
-; 0x188bf1
 
-UnknownText_0x188bf1: ; 0x188bf1
+UnknownText_0x188bf1:
 	text "A #MON CENTER"
 	line "near a cave?"
 
 	para "That's mighty"
 	line "convenient."
 	done
-; 0x188c26
 
-UnknownText_0x188c26: ; 0x188c26
+UnknownText_0x188c26:
 	text "The POWER PLANT's"
 	line "MANAGER is looking"
 
@@ -58,9 +51,8 @@ UnknownText_0x188c26: ; 0x188c26
 	para "something that"
 	line "was stolen."
 	done
-; 0x188c9e
 
-UnknownText_0x188c9e: ; 0x188c9e
+UnknownText_0x188c9e:
 	text "I hear TEAM ROCKET"
 	line "got back together"
 
@@ -70,9 +62,8 @@ UnknownText_0x188c9e: ; 0x188c9e
 	para "I didn't know any-"
 	line "thing about that."
 	done
-; 0x188d0c
 
-UnknownText_0x188d0c: ; 0x188d0c
+UnknownText_0x188d0c:
 	text "When you go out-"
 	line "side, you can see"
 
@@ -82,9 +73,8 @@ UnknownText_0x188d0c: ; 0x188d0c
 	para "That's the POWER"
 	line "PLANT."
 	done
-; 0x188d63
 
-Route10PokeCenter1F_MapEventHeader: ; 0x188d63
+Route10PokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -106,4 +96,3 @@ Route10PokeCenter1F_MapEventHeader: ; 0x188d63
 	person_event SPRITE_GENTLEMAN, 10, 11, $5, $1, 255, 255, $80, 0, GentlemanScript_0x188bd7, $ffff
 	person_event SPRITE_GYM_GUY, 6, 11, $3, $0, 255, 255, $a0, 0, GymGuyScript_0x188bda, $ffff
 	person_event SPRITE_COOLTRAINER_F, 7, 5, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x188bee, $ffff
-; 0x188dac

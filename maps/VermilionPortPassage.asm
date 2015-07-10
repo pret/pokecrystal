@@ -1,24 +1,21 @@
-VermilionPortPassage_MapScriptHeader: ; 0x77018
+VermilionPortPassage_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7701a
 
-TeacherScript_0x7701a: ; 0x7701a
+TeacherScript_0x7701a:
 	jumptextfaceplayer UnknownText_0x7701d
-; 0x7701d
 
-UnknownText_0x7701d: ; 0x7701d
+UnknownText_0x7701d:
 	text "The FAST SHIP"
 	line "sails on Wednes-"
 	cont "days and Sundays"
 	cont "every week."
 	done
-; 0x7705a
 
-VermilionPortPassage_MapEventHeader: ; 0x7705a
+VermilionPortPassage_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -39,4 +36,3 @@ VermilionPortPassage_MapEventHeader: ; 0x7705a
 	; people-events
 	db 1
 	person_event SPRITE_TEACHER, 5, 21, $8, $0, 255, 255, $0, 0, TeacherScript_0x7701a, $ffff
-; 0x77086

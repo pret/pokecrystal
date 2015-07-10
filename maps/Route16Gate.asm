@@ -1,4 +1,4 @@
-Route16Gate_MapScriptHeader: ; 0x733e3
+Route16Gate_MapScriptHeader:
 	; trigger count
 	db 1
 
@@ -7,23 +7,19 @@ Route16Gate_MapScriptHeader: ; 0x733e3
 
 	; callback count
 	db 0
-; 0x733e9
 
-UnknownScript_0x733e9: ; 0x733e9
+UnknownScript_0x733e9:
 	end
-; 0x733ea
 
-OfficerScript_0x733ea: ; 0x733ea
+OfficerScript_0x733ea:
 	jumptextfaceplayer UnknownText_0x73408
-; 0x733ed
 
-UnknownScript_0x733ed: ; 0x733ed
+UnknownScript_0x733ed:
 	checkitem BICYCLE
 	iffalse UnknownScript_0x733f3
 	end
-; 0x733f3
 
-UnknownScript_0x733f3: ; 0x733f3
+UnknownScript_0x733f3:
 	showemote $0, $2, 15
 	spriteface $0, UP
 	loadfont
@@ -32,15 +28,13 @@ UnknownScript_0x733f3: ; 0x733f3
 	loadmovesprites
 	applymovement $0, MovementData_0x73405
 	end
-; 0x73405
 
-MovementData_0x73405: ; 0x73405
+MovementData_0x73405:
 	step_right
 	turn_head_left
 	step_end
-; 0x73408
 
-UnknownText_0x73408: ; 0x73408
+UnknownText_0x73408:
 	text "CYCLING ROAD"
 	line "starts here."
 
@@ -54,9 +48,8 @@ UnknownText_0x73408: ; 0x73408
 	para "you can't get from"
 	line "a ship or train."
 	done
-; 0x73496
 
-UnknownText_0x73496: ; 0x73496
+UnknownText_0x73496:
 	text "Hey! Whoa! Stop!"
 
 	para "You can't go out"
@@ -65,9 +58,8 @@ UnknownText_0x73496: ; 0x73496
 	para "ROAD without a"
 	line "BICYCLE."
 	done
-; 0x734df
 
-Route16Gate_MapEventHeader: ; 0x734df
+Route16Gate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -89,4 +81,3 @@ Route16Gate_MapEventHeader: ; 0x734df
 	; people-events
 	db 1
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x733ea, $ffff
-; 0x73516

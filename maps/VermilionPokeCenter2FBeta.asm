@@ -1,12 +1,11 @@
-VermilionPokeCenter2FBeta_MapScriptHeader: ; 0x1917da
+VermilionPokeCenter2FBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1917dc
 
-VermilionPokeCenter2FBeta_MapEventHeader: ; 0x1917dc
+VermilionPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -22,4 +21,3 @@ VermilionPokeCenter2FBeta_MapEventHeader: ; 0x1917dc
 
 	; people-events
 	db 0
-; 0x1917e7

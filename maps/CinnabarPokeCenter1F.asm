@@ -1,24 +1,20 @@
-CinnabarPokeCenter1F_MapScriptHeader: ; 0x1ab32a
+CinnabarPokeCenter1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1ab32c
 
-NurseScript_0x1ab32c: ; 0x1ab32c
+NurseScript_0x1ab32c:
 	jumpstd pokecenternurse
-; 0x1ab32f
 
-CooltrainerFScript_0x1ab32f: ; 0x1ab32f
+CooltrainerFScript_0x1ab32f:
 	jumptextfaceplayer UnknownText_0x1ab335
-; 0x1ab332
 
-FisherScript_0x1ab332: ; 0x1ab332
+FisherScript_0x1ab332:
 	jumptextfaceplayer UnknownText_0x1ab37f
-; 0x1ab335
 
-UnknownText_0x1ab335: ; 0x1ab335
+UnknownText_0x1ab335:
 	text "CINNABAR GYM's"
 	line "BLAINE apparently"
 
@@ -26,16 +22,14 @@ UnknownText_0x1ab335: ; 0x1ab335
 	line "SEAFOAM ISLANDS"
 	cont "cave…"
 	done
-; 0x1ab37f
 
-UnknownText_0x1ab37f: ; 0x1ab37f
+UnknownText_0x1ab37f:
 	text "It's been a year"
 	line "since the volcano"
 	cont "erupted."
 	done
-; 0x1ab3ab
 
-CinnabarPokeCenter1F_MapEventHeader: ; 0x1ab3ab
+CinnabarPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -56,4 +50,3 @@ CinnabarPokeCenter1F_MapEventHeader: ; 0x1ab3ab
 	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x1ab32c, $ffff
 	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1ab32f, $ffff
 	person_event SPRITE_FISHER, 8, 6, $6, $0, 255, 255, $a0, 0, FisherScript_0x1ab332, $ffff
-; 0x1ab3e7

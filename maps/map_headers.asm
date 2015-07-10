@@ -1,5 +1,5 @@
 
-MapGroupPointers:: ; 0x94000
+MapGroupPointers::
 ; pointers to the first map header of each map group
 	dw MapGroup1
 	dw MapGroup2

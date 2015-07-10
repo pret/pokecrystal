@@ -1,4 +1,4 @@
-MountMoon_MapScriptHeader: ; 0x7407f
+MountMoon_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,18 +8,15 @@ MountMoon_MapScriptHeader: ; 0x7407f
 
 	; callback count
 	db 0
-; 0x74089
 
-UnknownScript_0x74089: ; 0x74089
+UnknownScript_0x74089:
 	priorityjump UnknownScript_0x7408e
 	end
-; 0x7408d
 
-UnknownScript_0x7408d: ; 0x7408d
+UnknownScript_0x7408d:
 	end
-; 0x7408e
 
-UnknownScript_0x7408e: ; 0x7408e
+UnknownScript_0x7408e:
 	spriteface $0, RIGHT
 	showemote $0, $0, 15
 	special Functionc48f
@@ -41,9 +38,8 @@ UnknownScript_0x7408e: ; 0x7408e
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x740e3
-; 0x740c3
 
-UnknownScript_0x740c3: ; 0x740c3
+UnknownScript_0x740c3:
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
 	loadtrainer RIVAL2, 1
@@ -51,9 +47,8 @@ UnknownScript_0x740c3: ; 0x740c3
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x740e3
-; 0x740d3
 
-UnknownScript_0x740d3: ; 0x740d3
+UnknownScript_0x740d3:
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
 	loadtrainer RIVAL2, 2
@@ -61,9 +56,8 @@ UnknownScript_0x740d3: ; 0x740d3
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x740e3
-; 0x740e3
 
-UnknownScript_0x740e3: ; 0x740e3
+UnknownScript_0x740e3:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x741fa
@@ -75,16 +69,14 @@ UnknownScript_0x740e3: ; 0x740e3
 	setevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	playmapmusic
 	end
-; 0x740f9
 
-MovementData_0x740f9: ; 0x740f9
+MovementData_0x740f9:
 	step_left
 	step_left
 	step_left
 	step_end
-; 0x740fd
 
-MovementData_0x740fd: ; 0x740fd
+MovementData_0x740fd:
 	step_right
 	step_right
 	step_down
@@ -93,9 +85,8 @@ MovementData_0x740fd: ; 0x740fd
 	step_down
 	step_down
 	step_end
-; 0x74105
 
-UnknownText_0x74105: ; 0x74105
+UnknownText_0x74105:
 	text $56, " ", $56, " ", $56
 
 	para "It's been a while,"
@@ -114,9 +105,8 @@ UnknownText_0x74105: ; 0x74105
 	para "<PLAYER>, now we'll"
 	line "show you!"
 	done
-; 0x7419d
 
-UnknownText_0x7419d: ; 0x7419d
+UnknownText_0x7419d:
 	text $56, " ", $56, " ", $56
 
 	para "I thought I raised"
@@ -128,9 +118,8 @@ UnknownText_0x7419d: ; 0x7419d
 	para "…But it still "
 	line "wasn't enough…"
 	done
-; 0x741fa
 
-UnknownText_0x741fa: ; 0x741fa
+UnknownText_0x741fa:
 	text $56, " ", $56, " ", $56
 
 	para "…You won, fair"
@@ -155,9 +144,8 @@ UnknownText_0x741fa: ; 0x741fa
 	para "how good I am by"
 	line "beating you."
 	done
-; 0x742e0
 
-UnknownText_0x742e0: ; 0x742e0
+UnknownText_0x742e0:
 	text $56, " ", $56, " ", $56
 
 	para "I've repaid my"
@@ -170,9 +158,8 @@ UnknownText_0x742e0: ; 0x742e0
 	line "become the world's"
 	cont "greatest trainer."
 	done
-; 0x74356
 
-MountMoon_MapEventHeader: ; 0x74356
+MountMoon_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -196,4 +183,3 @@ MountMoon_MapEventHeader: ; 0x74356
 	; people-events
 	db 1
 	person_event SPRITE_SILVER, 7, 11, $8, $0, 255, 255, $0, 0, ObjectEvent, $077a
-; 0x74391

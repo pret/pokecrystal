@@ -1,31 +1,27 @@
-DiglettsCave_MapScriptHeader: ; 0x74000
+DiglettsCave_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x74002
 
-PokefanMScript_0x74002: ; 0x74002
+PokefanMScript_0x74002:
 	jumptextfaceplayer UnknownText_0x74008
-; 0x74005
 
-MapDiglettsCaveSignpostItem0: ; 0x74005
+MapDiglettsCaveSignpostItem0:
 	dw $00e4
 	db MAX_REVIVE
 	
-; 0x74008
 
-UnknownText_0x74008: ; 0x74008
+UnknownText_0x74008:
 	text "A bunch of DIGLETT"
 	line "popped out of the"
 
 	para "ground! That was"
 	line "shocking."
 	done
-; 0x74049
 
-DiglettsCave_MapEventHeader: ; 0x74049
+DiglettsCave_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -48,4 +44,3 @@ DiglettsCave_MapEventHeader: ; 0x74049
 	; people-events
 	db 1
 	person_event SPRITE_POKEFAN_M, 35, 7, $6, $0, 255, 255, $0, 0, PokefanMScript_0x74002, $ffff
-; 0x7407f

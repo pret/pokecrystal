@@ -1,16 +1,14 @@
-MahoganyRedGyaradosSpeechHouse_MapScriptHeader: ; 0x19997d
+MahoganyRedGyaradosSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x19997f
 
-BlackBeltScript_0x19997f: ; 0x19997f
+BlackBeltScript_0x19997f:
 	jumptextfaceplayer UnknownText_0x19999c
-; 0x199982
 
-TeacherScript_0x199982: ; 0x199982
+TeacherScript_0x199982:
 	faceplayer
 	loadfont
 	checkflag $0013
@@ -19,14 +17,12 @@ TeacherScript_0x199982: ; 0x199982
 	closetext
 	loadmovesprites
 	end
-; 0x199990
 
-UnknownScript_0x199990: ; 0x199990
+UnknownScript_0x199990:
 	writetext UnknownText_0x199a3d
 	closetext
 	loadmovesprites
 	end
-; 0x199996
 
 UnknownScript_0x195996:
 	jumpstd picturebookshelf
@@ -34,7 +30,7 @@ UnknownScript_0x195996:
 UnknownScript_0x195999:
 	jumpstd magazinebookshelf
 
-UnknownText_0x19999c: ; 0x19999c
+UnknownText_0x19999c:
 	text "I heard that a red"
 	line "GYARADOS appeared"
 	cont "at the LAKE."
@@ -45,25 +41,22 @@ UnknownText_0x19999c: ; 0x19999c
 	para "GYARADOS are rare"
 	line "in that lake…"
 	done
-; 0x199a0e
 
-UnknownText_0x199a0e: ; 0x199a0e
+UnknownText_0x199a0e:
 	text "My favorite radio"
 	line "program? I'd say"
 	cont "#MON MUSIC."
 	done
-; 0x199a3d
 
-UnknownText_0x199a3d: ; 0x199a3d
+UnknownText_0x199a3d:
 	text "I've been hearing"
 	line "laughter on the"
 
 	para "radio…"
 	line "It's creepy."
 	done
-; 0x199a72
 
-MahoganyRedGyaradosSpeechHouse_MapEventHeader: ; 0x199a72
+MahoganyRedGyaradosSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -82,4 +75,3 @@ MahoganyRedGyaradosSpeechHouse_MapEventHeader: ; 0x199a72
 	db 2
 	person_event SPRITE_BLACK_BELT, 7, 6, $9, $0, 255, 255, $0, 0, BlackBeltScript_0x19997f, $ffff
 	person_event SPRITE_TEACHER, 9, 10, $4, $10, 255, 255, $90, 0, TeacherScript_0x199982, $ffff
-; 0x199a9c

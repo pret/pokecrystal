@@ -1,12 +1,11 @@
-Route26DayofWeekSiblingsHouse_MapScriptHeader: ; 0x7b1e2
+Route26DayofWeekSiblingsHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7b1e4
 
-PokedexScript_0x7b1e4: ; 0x7b1e4
+PokedexScript_0x7b1e4:
 	loadfont
 	writetext UnknownText_0x7b1f9
 	yesorno
@@ -16,20 +15,18 @@ PokedexScript_0x7b1e4: ; 0x7b1e4
 	iffalse UnknownText_0x7b1f7
 	writetext UnknownText_0x7b2b9
 	closetext
-UnknownText_0x7b1f7: ; 0x7b1f7
+UnknownText_0x7b1f7:
 	loadmovesprites
 	end
-; 0x7b1f9
 
-UnknownText_0x7b1f9: ; 0x7b1f9
+UnknownText_0x7b1f9:
 	text "There's something"
 	line "written here."
 
 	para "Read it?"
 	done
-; 0x7b222
 
-UnknownText_0x7b222: ; 0x7b222
+UnknownText_0x7b222:
 	text "To my brothers and"
 	line "sisters:"
 
@@ -46,9 +43,8 @@ UnknownText_0x7b222: ; 0x7b222
 
 	para "Keep reading?"
 	done
-; 0x7b2b9
 
-UnknownText_0x7b2b9: ; 0x7b2b9
+UnknownText_0x7b2b9:
 	text "Monday, MONICA"
 	line "ROUTE 40"
 
@@ -70,9 +66,8 @@ UnknownText_0x7b2b9: ; 0x7b2b9
 	para "Sunday, SUNNY"
 	line "ROUTE 37"
 	done
-; 0x7b375
 
-Route26DayofWeekSiblingsHouse_MapEventHeader: ; 0x7b375
+Route26DayofWeekSiblingsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -90,4 +85,3 @@ Route26DayofWeekSiblingsHouse_MapEventHeader: ; 0x7b375
 	; people-events
 	db 1
 	person_event SPRITE_POKEDEX, 7, 7, $1, $0, 255, 255, $0, 0, PokedexScript_0x7b1e4, $ffff
-; 0x7b392

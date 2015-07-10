@@ -1,20 +1,17 @@
-Route7_MapScriptHeader: ; 0x1ad380
+Route7_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1ad382
 
-MapRoute7Signpost0Script: ; 0x1ad382
+MapRoute7Signpost0Script:
 	jumptext UnknownText_0x1ad388
-; 0x1ad385
 
-MapRoute7Signpost1Script: ; 0x1ad385
+MapRoute7Signpost1Script:
 	jumptext UnknownText_0x1ad456
-; 0x1ad388
 
-UnknownText_0x1ad388: ; 0x1ad388
+UnknownText_0x1ad388:
 	text "What's this flyer?"
 
 	para "… Uncouth trainers"
@@ -32,14 +29,12 @@ UnknownText_0x1ad388: ; 0x1ad388
 
 	para "CELADON POLICE"
 	done
-; 0x1ad456
 
-UnknownText_0x1ad456: ; 0x1ad456
+UnknownText_0x1ad456:
 	text "It's locked…"
 	done
-; 0x1ad463
 
-Route7_MapEventHeader: ; 0x1ad463
+Route7_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -58,4 +53,3 @@ Route7_MapEventHeader: ; 0x1ad463
 
 	; people-events
 	db 0
-; 0x1ad47d

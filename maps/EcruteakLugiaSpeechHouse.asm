@@ -1,23 +1,20 @@
-EcruteakLugiaSpeechHouse_MapScriptHeader: ; 0x99332
+EcruteakLugiaSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x99334
 
-GrampsScript_0x99334: ; 0x99334
+GrampsScript_0x99334:
 	jumptextfaceplayer UnknownText_0x9933d
-; 0x99337
 
-YoungsterScript_0x99337: ; 0x99337
+YoungsterScript_0x99337:
 	jumptextfaceplayer UnknownText_0x993ec
-; 0x9933a
 
 LugiaSpeechHouseRadio:
 	jumpstd radio2
 
-UnknownText_0x9933d: ; 0x9933d
+UnknownText_0x9933d:
 	text "This happened when"
 	line "I was young."
 
@@ -34,18 +31,16 @@ UnknownText_0x9933d: ; 0x9933d
 	para "It was like a bird"
 	line "and a dragon."
 	done
-; 0x993ec
 
-UnknownText_0x993ec: ; 0x993ec
+UnknownText_0x993ec:
 	text "Is there really a"
 	line "#MON that big?"
 
 	para "If it exists, it"
 	line "must be powerful."
 	done
-; 0x99431
 
-EcruteakLugiaSpeechHouse_MapEventHeader: ; 0x99431
+EcruteakLugiaSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -65,4 +60,3 @@ EcruteakLugiaSpeechHouse_MapEventHeader: ; 0x99431
 	db 2
 	person_event SPRITE_GRAMPS, 7, 6, $3, $0, 255, 255, $0, 0, GrampsScript_0x99334, $ffff
 	person_event SPRITE_YOUNGSTER, 8, 9, $8, $0, 255, 255, $0, 0, YoungsterScript_0x99337, $ffff
-; 0x99460

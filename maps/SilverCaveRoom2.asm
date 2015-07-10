@@ -1,30 +1,25 @@
-SilverCaveRoom2_MapScriptHeader: ; 0x18c5b0
+SilverCaveRoom2_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c5b2
 
-ItemFragment_0x18c5b2: ; 0x18c5b2
+ItemFragment_0x18c5b2:
 	db CALCIUM, 1
-; 0x18c5b4
 
-ItemFragment_0x18c5b4: ; 0x18c5b4
+ItemFragment_0x18c5b4:
 	db ULTRA_BALL, 1
-; 0x18c5b6
 
-ItemFragment_0x18c5b6: ; 0x18c5b6
+ItemFragment_0x18c5b6:
 	db PP_UP, 1
-; 0x18c5b8
 
-MapSilverCaveRoom2SignpostItem0: ; 0x18c5b8
+MapSilverCaveRoom2SignpostItem0:
 	dw $009c
 	db MAX_POTION
 	
-; 0x18c5bb
 
-SilverCaveRoom2_MapEventHeader: ; 0x18c5bb
+SilverCaveRoom2_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -47,4 +42,3 @@ SilverCaveRoom2_MapEventHeader: ; 0x18c5bb
 	person_event SPRITE_POKE_BALL, 14, 28, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b2, $07c2
 	person_event SPRITE_POKE_BALL, 28, 26, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b4, $07c3
 	person_event SPRITE_POKE_BALL, 24, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b6, $07c4
-; 0x18c601

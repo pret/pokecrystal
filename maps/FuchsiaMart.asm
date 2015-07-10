@@ -1,44 +1,38 @@
-FuchsiaMart_MapScriptHeader: ; 0x195ce6
+FuchsiaMart_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x195ce8
 
-ClerkScript_0x195ce8: ; 0x195ce8
+ClerkScript_0x195ce8:
 	loadfont
 	pokemart $0, $001d
 	loadmovesprites
 	end
-; 0x195cef
 
-FisherScript_0x195cef: ; 0x195cef
+FisherScript_0x195cef:
 	jumptextfaceplayer UnknownText_0x195cf5
-; 0x195cf2
 
-CooltrainerFScript_0x195cf2: ; 0x195cf2
+CooltrainerFScript_0x195cf2:
 	jumptextfaceplayer UnknownText_0x195d36
-; 0x195cf5
 
-UnknownText_0x195cf5: ; 0x195cf5
+UnknownText_0x195cf5:
 	text "I was hoping to"
 	line "buy some SAFARI"
 
 	para "ZONE souvenirs,"
 	line "but it's closed…"
 	done
-; 0x195d36
 
-UnknownText_0x195d36: ; 0x195d36
+UnknownText_0x195d36:
 	text "The SAFARI ZONE"
 	line "WARDEN's grand-"
 	cont "daughter lives in"
 	cont "town."
 	done
-; 0x195d6e
 
-FuchsiaMart_MapEventHeader: ; 0x195d6e
+FuchsiaMart_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -58,4 +52,3 @@ FuchsiaMart_MapEventHeader: ; 0x195d6e
 	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x195ce8, $ffff
 	person_event SPRITE_FISHER, 6, 7, $8, $0, 255, 255, $80, 0, FisherScript_0x195cef, $ffff
 	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x195cf2, $ffff
-; 0x195da5

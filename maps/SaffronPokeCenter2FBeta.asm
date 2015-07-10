@@ -1,12 +1,11 @@
-SaffronPokeCenter2FBeta_MapScriptHeader: ; 0x18a76b
+SaffronPokeCenter2FBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18a76d
 
-SaffronPokeCenter2FBeta_MapEventHeader: ; 0x18a76d
+SaffronPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -22,4 +21,3 @@ SaffronPokeCenter2FBeta_MapEventHeader: ; 0x18a76d
 
 	; people-events
 	db 0
-; 0x18a778

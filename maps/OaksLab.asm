@@ -1,14 +1,12 @@
-OaksLab_MapScriptHeader: ; 0x19b3c5
+OaksLab_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x19b3c7
 
-UnknownScript_0x19b3c7: ; 0x19b3c7
+UnknownScript_0x19b3c7:
 	end
-; 0x19b3c8
 
 Oak:
 	faceplayer
@@ -51,17 +49,14 @@ Oak:
 	keeptextopen
 	jump .CheckPokedex
 
-ScientistScript_0x19b40f: ; 0x19b40f
+ScientistScript_0x19b40f:
 	jumptextfaceplayer UnknownText_0x19b7fb
-; 0x19b412
 
-ScientistScript_0x19b412: ; 0x19b412
+ScientistScript_0x19b412:
 	jumptextfaceplayer UnknownText_0x19b859
-; 0x19b415
 
-ScientistScript_0x19b415: ; 0x19b415
+ScientistScript_0x19b415:
 	jumptextfaceplayer UnknownText_0x19b8a7
-; 0x19b418
 
 OaksLabBookshelf:
 	jumpstd difficultbookshelf
@@ -183,7 +178,7 @@ OakYesKantoBadgesText:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x19b7fb: ; 0x19b7fb
+UnknownText_0x19b7fb:
 	text "The PROF's #MON"
 	line "TALK radio program"
 
@@ -193,9 +188,8 @@ UnknownText_0x19b7fb: ; 0x19b7fb
 	para "It's a shame--I'd"
 	line "like to hear it."
 	done
-; 0x19b859
 
-UnknownText_0x19b859: ; 0x19b859
+UnknownText_0x19b859:
 	text "Thanks to your"
 	line "work on the #-"
 	cont "DEX, the PROF's"
@@ -203,16 +197,14 @@ UnknownText_0x19b859: ; 0x19b859
 	para "research is coming"
 	line "along great."
 	done
-; 0x19b8a7
 
-UnknownText_0x19b8a7: ; 0x19b8a7
+UnknownText_0x19b8a7:
 	text "Don't tell anyone,"
 	line "but PROF.OAK'S"
 
 	para "#MON TALK isn't"
 	line "a live broadcast."
 	done
-; 0x19b8ea
 
 OaksLabPoster1Text:
 	text "Press START to"
@@ -257,9 +249,8 @@ OaksLabPCText:
 	para "ELM in NEW BARK"
 	line "TOWN 8-)"
 	done
-; 0x19ba33
 
-OaksLab_MapEventHeader: ; 0x19ba33
+OaksLab_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -296,4 +287,3 @@ OaksLab_MapEventHeader: ; 0x19ba33
 	person_event SPRITE_SCIENTIST, 12, 5, $5, $1, 255, 255, $90, 0, ScientistScript_0x19b40f, $ffff
 	person_event SPRITE_SCIENTIST, 13, 12, $4, $10, 255, 255, $90, 0, ScientistScript_0x19b412, $ffff
 	person_event SPRITE_SCIENTIST, 8, 5, $2, $11, 255, 255, $90, 0, ScientistScript_0x19b415, $ffff
-; 0x19bac7

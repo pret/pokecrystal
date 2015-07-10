@@ -1,4 +1,4 @@
-Route29_MapScriptHeader: ; 0x1a0f4c
+Route29_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -13,13 +13,11 @@ Route29_MapScriptHeader: ; 0x1a0f4c
 
 	dbw 2, TuscanyCallback
 
-UnknownScript_0x1a0f59: ; 0x1a0f59
+UnknownScript_0x1a0f59:
 	end
-; 0x1a0f5a
 
-UnknownScript_0x1a0f5a: ; 0x1a0f5a
+UnknownScript_0x1a0f5a:
 	end
-; 0x1a0f5b
 
 TuscanyCallback:
 	checkflag $001b
@@ -35,7 +33,7 @@ TuscanyCallback:
 	appear $8
 	return
 
-UnknownScript_0x1a0f6d: ; 0x1a0f6d
+UnknownScript_0x1a0f6d:
 	spriteface $2, UP
 	showemote $0, $2, 15
 	applymovement $2, MovementData_0x1a108d
@@ -59,9 +57,8 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	dotrigger $0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
-; 0x1a0fa3
 
-UnknownScript_0x1a0fa3: ; 0x1a0fa3
+UnknownScript_0x1a0fa3:
 	spriteface $2, UP
 	showemote $0, $2, 15
 	applymovement $2, MovementData_0x1a1094
@@ -85,27 +82,24 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	dotrigger $0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
-; 0x1a0fd9
 
-UnknownScript_0x1a0fd9: ; 0x1a0fd9
+UnknownScript_0x1a0fd9:
 	writetext UnknownText_0x1a1197
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x1a109a
 	dotrigger $0
 	end
-; 0x1a0fe5
 
-UnknownScript_0x1a0fe5: ; 0x1a0fe5
+UnknownScript_0x1a0fe5:
 	writetext UnknownText_0x1a1197
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x1a10a1
 	dotrigger $0
 	end
-; 0x1a0ff1
 
-CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
+CooltrainerMScript_0x1a0ff1:
 	faceplayer
 	loadfont
 	checkcode VAR_BOXSPACE
@@ -126,54 +120,46 @@ CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	loadmovesprites
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
-; 0x1a101c
 
-UnknownScript_0x1a101c: ; 0x1a101c
+UnknownScript_0x1a101c:
 	writetext UnknownText_0x1a10a7
 	closetext
 	loadmovesprites
 	end
-; 0x1a1022
 
-UnknownScript_0x1a1022: ; 0x1a1022
+UnknownScript_0x1a1022:
 	writetext UnknownText_0x1a1197
 	closetext
 	loadmovesprites
 	end
-; 0x1a1028
 
-YoungsterScript_0x1a1028: ; 0x1a1028
+YoungsterScript_0x1a1028:
 	jumptextfaceplayer UnknownText_0x1a1214
-; 0x1a102b
 
-TeacherScript_0x1a102b: ; 0x1a102b
+TeacherScript_0x1a102b:
 	jumptextfaceplayer UnknownText_0x1a126c
-; 0x1a102e
 
-FisherScript_0x1a102e: ; 0x1a102e
+FisherScript_0x1a102e:
 	jumptextfaceplayer UnknownText_0x1a12d9
-; 0x1a1031
 
-CooltrainerMScript_0x1a1031: ; 0x1a1031
+CooltrainerMScript_0x1a1031:
 	faceplayer
 	loadfont
 	checkday
 	iftrue UnknownScript_0x1a103d
 	checknite
 	iftrue UnknownScript_0x1a1043
-UnknownScript_0x1a103d: ; 0x1a103d
+UnknownScript_0x1a103d:
 	writetext UnknownText_0x1a134c
 	closetext
 	loadmovesprites
 	end
-; 0x1a1043
 
-UnknownScript_0x1a1043: ; 0x1a1043
+UnknownScript_0x1a1043:
 	writetext UnknownText_0x1a137c
 	closetext
 	loadmovesprites
 	end
-; 0x1a1049
 
 TuscanyScript:
 	faceplayer
@@ -211,23 +197,19 @@ TuscanyNotTuesdayScript:
 	loadmovesprites
 	end
 
-MapRoute29Signpost0Script: ; 0x1a1083
+MapRoute29Signpost0Script:
 	jumptext UnknownText_0x1a158e
-; 0x1a1086
 
-MapRoute29Signpost1Script: ; 0x1a1086
+MapRoute29Signpost1Script:
 	jumptext UnknownText_0x1a15b9
-; 0x1a1089
 
-FruitTreeScript_0x1a1089: ; 0x1a1089
+FruitTreeScript_0x1a1089:
 	fruittree $1
-; 0x1a108b
 
-ItemFragment_0x1a108b: ; 0x1a108b
+ItemFragment_0x1a108b:
 	db POTION, 1
-; 0x1a108d
 
-MovementData_0x1a108d: ; 0x1a108d
+MovementData_0x1a108d:
 	step_up
 	step_up
 	step_up
@@ -235,18 +217,16 @@ MovementData_0x1a108d: ; 0x1a108d
 	step_right
 	step_right
 	step_end
-; 0x1a1094
 
-MovementData_0x1a1094: ; 0x1a1094
+MovementData_0x1a1094:
 	step_up
 	step_up
 	step_up
 	step_right
 	step_right
 	step_end
-; 0x1a109a
 
-MovementData_0x1a109a: ; 0x1a109a
+MovementData_0x1a109a:
 	step_left
 	step_left
 	step_down
@@ -254,27 +234,24 @@ MovementData_0x1a109a: ; 0x1a109a
 	step_down
 	step_down
 	step_end
-; 0x1a10a1
 
-MovementData_0x1a10a1: ; 0x1a10a1
+MovementData_0x1a10a1:
 	step_left
 	step_left
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x1a10a7
 
-UnknownText_0x1a10a7: ; 0x1a10a7
+UnknownText_0x1a10a7:
 	text "#MON hide in"
 	line "the grass. Who"
 
 	para "knows when they'll"
 	line "pop out…"
 	done
-; 0x1a10df
 
-UnknownText_0x1a10df: ; 0x1a10df
+UnknownText_0x1a10df:
 	text "I've seen you a"
 	line "couple times. How"
 
@@ -285,9 +262,8 @@ UnknownText_0x1a10df: ; 0x1a10df
 	line "to show you how to"
 	cont "catch #MON?"
 	done
-; 0x1a114d
 
-UnknownText_0x1a114d: ; 0x1a114d
+UnknownText_0x1a114d:
 	text "That's how you do"
 	line "it."
 
@@ -295,9 +271,8 @@ UnknownText_0x1a114d: ; 0x1a114d
 	line "first, #MON are"
 	cont "easier to catch."
 	done
-; 0x1a1197
 
-UnknownText_0x1a1197: ; 0x1a1197
+UnknownText_0x1a1197:
 	text "Oh. Fine, then."
 
 	para "Anyway, if you"
@@ -306,16 +281,14 @@ UnknownText_0x1a1197: ; 0x1a1197
 	para "#MON, you have"
 	line "to walk a lot."
 	done
-; 0x1a11e3
 
-UnknownText_0x1a11e3: ; 0x1a11e3
+UnknownText_0x1a11e3:
 	text "Huh? You want me"
 	line "to show you how to"
 	cont "catch #MON?"
 	done
-; 0x1a1214
 
-UnknownText_0x1a1214: ; 0x1a1214
+UnknownText_0x1a1214:
 	text "Yo. How are your"
 	line "#MON?"
 
@@ -325,9 +298,8 @@ UnknownText_0x1a1214: ; 0x1a1214
 	para "battle, keep out"
 	line "of the grass."
 	done
-; 0x1a126c
 
-UnknownText_0x1a126c: ; 0x1a126c
+UnknownText_0x1a126c:
 	text "See those ledges?"
 	line "It's scary to jump"
 	cont "off them."
@@ -338,44 +310,39 @@ UnknownText_0x1a126c: ; 0x1a126c
 	para "walking through"
 	line "the grass."
 	done
-; 0x1a12d9
 
-UnknownText_0x1a12d9: ; 0x1a12d9
+UnknownText_0x1a12d9:
 	text "I wanted to take a"
 	line "break, so I saved"
 
 	para "to record my"
 	line "progress."
 	done
-; 0x1a1316
 
 ; possibly unused
-UnknownText_0x1a1316: ; 0x1a1316
+UnknownText_0x1a1316:
 	text "I'm waiting for"
 	line "#MON that"
 
 	para "appear only in the"
 	line "daytime."
 	done
-; 0x1a134c
 
-UnknownText_0x1a134c: ; 0x1a134c
+UnknownText_0x1a134c:
 	text "I'm waiting for"
 	line "#MON that"
 
 	para "appear only at"
 	line "night."
 	done
-; 0x1a137c
 
-UnknownText_0x1a137c: ; 0x1a137c
+UnknownText_0x1a137c:
 	text "I'm waiting for"
 	line "#MON that"
 
 	para "appear only in the"
 	line "morning."
 	done
-; 0x1a13b2
 
 MeetTuscanyText:
 	text "TUSCANY: I do be-"
@@ -429,23 +396,21 @@ TuscanyNotTuesdayText:
 	cont "is unfortunate…"
 	done
 
-UnknownText_0x1a158e: ; 0x1a158e
+UnknownText_0x1a158e:
 	text "ROUTE 29"
 
 	para "CHERRYGROVE CITY -"
 	line "NEW BARK TOWN"
 	done
-; 0x1a15b9
 
-UnknownText_0x1a15b9: ; 0x1a15b9
+UnknownText_0x1a15b9:
 	text "ROUTE 29"
 
 	para "CHERRYGROVE CITY -"
 	line "NEW BARK TOWN"
 	done
-; 0x1a15e4
 
-Route29_MapEventHeader: ; 0x1a15e4
+Route29_MapEventHeader:
 	; filler
 	db 0, 0
 

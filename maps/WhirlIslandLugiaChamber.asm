@@ -1,4 +1,4 @@
-WhirlIslandLugiaChamber_MapScriptHeader: ; 0x18c4ff
+WhirlIslandLugiaChamber_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,27 +8,23 @@ WhirlIslandLugiaChamber_MapScriptHeader: ; 0x18c4ff
 	; callbacks
 
 	dbw 2, UnknownScript_0x18c504
-; 0x18c504
 
-UnknownScript_0x18c504: ; 0x18c504
+UnknownScript_0x18c504:
 	checkevent EVENT_FOUGHT_LUGIA
 	iftrue UnknownScript_0x18c515
 	checkitem SILVER_WING
 	iftrue UnknownScript_0x18c512
 	jump UnknownScript_0x18c515
-; 0x18c512
 
-UnknownScript_0x18c512: ; 0x18c512
+UnknownScript_0x18c512:
 	appear $2
 	return
-; 0x18c515
 
-UnknownScript_0x18c515: ; 0x18c515
+UnknownScript_0x18c515:
 	disappear $2
 	return
-; 0x18c518
 
-LugiaScript_0x18c518: ; 0x18c518
+LugiaScript_0x18c518:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18c531
@@ -42,14 +38,12 @@ LugiaScript_0x18c518: ; 0x18c518
 	disappear $2
 	returnafterbattle
 	end
-; 0x18c531
 
-UnknownText_0x18c531: ; 0x18c531
+UnknownText_0x18c531:
 	text "Gyaaas!"
 	done
-; 0x18c53a
 
-WhirlIslandLugiaChamber_MapEventHeader: ; 0x18c53a
+WhirlIslandLugiaChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -66,4 +60,3 @@ WhirlIslandLugiaChamber_MapEventHeader: ; 0x18c53a
 	; people-events
 	db 1
 	person_event SPRITE_LUGIA, 9, 13, $16, $0, 255, 255, $90, 0, LugiaScript_0x18c518, $073d
-; 0x18c552

@@ -1,4 +1,4 @@
-BlackthornDodrioTradeHouse_MapScriptHeader: ; 0x195a28
+BlackthornDodrioTradeHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -16,7 +16,7 @@ Emy:
 EmysHouseBookshelf:
 	jumpstd magazinebookshelf
 
-BlackthornDodrioTradeHouse_MapEventHeader: ; 0x195a34
+BlackthornDodrioTradeHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -36,4 +36,3 @@ BlackthornDodrioTradeHouse_MapEventHeader: ; 0x195a34
 	; people-events
 	db 1
 	person_event SPRITE_LASS, 7, 6, $3, $0, 255, 255, $a0, 0, Emy, $ffff
-; 0x195a5b

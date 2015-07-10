@@ -1,4 +1,4 @@
-PowerPlant_MapScriptHeader: ; 0x188db9
+PowerPlant_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,17 +8,14 @@ PowerPlant_MapScriptHeader: ; 0x188db9
 
 	; callback count
 	db 0
-; 0x188dc3
 
-UnknownScript_0x188dc3: ; 0x188dc3
+UnknownScript_0x188dc3:
 	end
-; 0x188dc4
 
-UnknownScript_0x188dc4: ; 0x188dc4
+UnknownScript_0x188dc4:
 	end
-; 0x188dc5
 
-UnknownScript_0x188dc5: ; 0x188dc5
+UnknownScript_0x188dc5:
 	playsound SFX_CALL
 	showemote $0, $2, 15
 	waitbutton
@@ -40,9 +37,8 @@ UnknownScript_0x188dc5: ; 0x188dc5
 	applymovement $2, MovementData_0x188eda
 	dotrigger $0
 	end
-; 0x188df5
 
-OfficerScript_0x188df5: ; 0x188df5
+OfficerScript_0x188df5:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -53,23 +49,20 @@ OfficerScript_0x188df5: ; 0x188df5
 	closetext
 	loadmovesprites
 	end
-; 0x188e09
 
-UnknownScript_0x188e09: ; 0x188e09
+UnknownScript_0x188e09:
 	writetext UnknownText_0x188f7f
 	closetext
 	loadmovesprites
 	end
-; 0x188e0f
 
-UnknownScript_0x188e0f: ; 0x188e0f
+UnknownScript_0x188e0f:
 	writetext UnknownText_0x188fa2
 	closetext
 	loadmovesprites
 	end
-; 0x188e15
 
-GymGuyScript_0x188e15: ; 0x188e15
+GymGuyScript_0x188e15:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -78,16 +71,14 @@ GymGuyScript_0x188e15: ; 0x188e15
 	closetext
 	loadmovesprites
 	end
-; 0x188e23
 
-UnknownScript_0x188e23: ; 0x188e23
+UnknownScript_0x188e23:
 	writetext UnknownText_0x189038
 	closetext
 	loadmovesprites
 	end
-; 0x188e29
 
-GymGuyScript_0x188e29: ; 0x188e29
+GymGuyScript_0x188e29:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -96,16 +87,14 @@ GymGuyScript_0x188e29: ; 0x188e29
 	closetext
 	loadmovesprites
 	end
-; 0x188e37
 
-UnknownScript_0x188e37: ; 0x188e37
+UnknownScript_0x188e37:
 	writetext UnknownText_0x1890ef
 	closetext
 	loadmovesprites
 	end
-; 0x188e3d
 
-OfficerScript_0x188e3d: ; 0x188e3d
+OfficerScript_0x188e3d:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -114,16 +103,14 @@ OfficerScript_0x188e3d: ; 0x188e3d
 	closetext
 	loadmovesprites
 	end
-; 0x188e4b
 
-UnknownScript_0x188e4b: ; 0x188e4b
+UnknownScript_0x188e4b:
 	writetext UnknownText_0x18917f
 	closetext
 	loadmovesprites
 	end
-; 0x188e51
 
-GymGuyScript_0x188e51: ; 0x188e51
+GymGuyScript_0x188e51:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -132,16 +119,14 @@ GymGuyScript_0x188e51: ; 0x188e51
 	closetext
 	loadmovesprites
 	end
-; 0x188e5f
 
-UnknownScript_0x188e5f: ; 0x188e5f
+UnknownScript_0x188e5f:
 	writetext UnknownText_0x189225
 	closetext
 	loadmovesprites
 	end
-; 0x188e65
 
-PowerPlantManager: ; 0x188e65
+PowerPlantManager:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -159,16 +144,14 @@ PowerPlantManager: ; 0x188e65
 	domaptrigger GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM, $1
 	dotrigger $1
 	end
-; 0x188e8d
 
-UnknownScript_0x188e8d: ; 0x188e8d
+UnknownScript_0x188e8d:
 	writetext UnknownText_0x189308
 	closetext
 	loadmovesprites
 	end
-; 0x188e93
 
-UnknownScript_0x188e93: ; 0x188e93
+UnknownScript_0x188e93:
 	writetext UnknownText_0x18936e
 	keeptextopen
 	takeitem MACHINE_PART, 1
@@ -178,7 +161,7 @@ UnknownScript_0x188e93: ; 0x188e93
 	setevent $076c
 	setevent EVENT_RESTORED_POWER_TO_KANTO
 	clearevent $0749
-UnknownScript_0x188eac: ; 0x188eac
+UnknownScript_0x188eac:
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue UnknownScript_0x188ec5
 	writetext UnknownText_0x1893c4
@@ -188,57 +171,51 @@ UnknownScript_0x188eac: ; 0x188eac
 	setevent EVENT_GOT_TM07_ZAP_CANNON
 	writetext UnknownText_0x1893f4
 	closetext
-UnknownScript_0x188ec3: ; 0x188ec3
+UnknownScript_0x188ec3:
 	loadmovesprites
 	end
-; 0x188ec5
 
-UnknownScript_0x188ec5: ; 0x188ec5
+UnknownScript_0x188ec5:
 	writetext UnknownText_0x189475
 	closetext
 	loadmovesprites
 	end
-; 0x188ecb
 
-GymGuyScript_0x188ecb: ; 0x188ecb
+GymGuyScript_0x188ecb:
 	faceplayer
 	loadfont
 	trade $6
 	closetext
 	loadmovesprites
 	end
-; 0x188ed2
 
 PowerPlantBookshelf:
 	jumpstd difficultbookshelf
 
-MovementData_0x188ed5: ; 0x188ed5
+MovementData_0x188ed5:
 	step_right
 	step_right
 	step_up
 	step_up
 	step_end
-; 0x188eda
 
-MovementData_0x188eda: ; 0x188eda
+MovementData_0x188eda:
 	step_down
 	step_down
 	step_left
 	step_left
 	turn_head_down
 	step_end
-; 0x188ee0
 
-UnknownText_0x188ee0: ; 0x188ee0
+UnknownText_0x188ee0:
 	text "A thief broke into"
 	line "the POWER PLANT…"
 
 	para "What is the world"
 	line "coming to?"
 	done
-; 0x188f22
 
-UnknownText_0x188f22: ; 0x188f22
+UnknownText_0x188f22:
 	text "I just got word"
 	line "from CERULEAN."
 
@@ -248,22 +225,19 @@ UnknownText_0x188f22: ; 0x188f22
 	para "has been loitering"
 	line "around."
 	done
-; 0x188f7f
 
-UnknownText_0x188f7f: ; 0x188f7f
+UnknownText_0x188f7f:
 	text "Could I ask for"
 	line "your cooperation?"
 	done
-; 0x188fa2
 
-UnknownText_0x188fa2: ; 0x188fa2
+UnknownText_0x188fa2:
 	text "We'll have to beef"
 	line "up our security"
 	cont "presence."
 	done
-; 0x188fcf
 
-UnknownText_0x188fcf: ; 0x188fcf
+UnknownText_0x188fcf:
 	text "Someone made off"
 	line "with a part that's"
 
@@ -274,18 +248,16 @@ UnknownText_0x188fcf: ; 0x188fcf
 	line "new generator's"
 	cont "useless!"
 	done
-; 0x189038
 
-UnknownText_0x189038: ; 0x189038
+UnknownText_0x189038:
 	text "The generator's up"
 	line "and running. It's"
 
 	para "making electricity"
 	line "to spare."
 	done
-; 0x189079
 
-UnknownText_0x189079: ; 0x189079
+UnknownText_0x189079:
 	text "This POWER PLANT"
 	line "had been abandoned"
 	cont "in the past."
@@ -296,15 +268,13 @@ UnknownText_0x189079: ; 0x189079
 	para "provide power to"
 	line "the MAGNET TRAIN."
 	done
-; 0x1890ef
 
-UnknownText_0x1890ef: ; 0x1890ef
+UnknownText_0x1890ef:
 	text "The generator's"
 	line "running again!"
 	done
-; 0x18910e
 
-UnknownText_0x18910e: ; 0x18910e
+UnknownText_0x18910e:
 	text "The POWER PLANT's"
 	line "MANAGER is up"
 	cont "ahead."
@@ -315,18 +285,16 @@ UnknownText_0x18910e: ; 0x18910e
 	cont "both sad and"
 	cont "furious…"
 	done
-; 0x18917f
 
-UnknownText_0x18917f: ; 0x18917f
+UnknownText_0x18917f:
 	text "Since the gener-"
 	line "ator's been fixed,"
 
 	para "the MANAGER has"
 	line "been cheerful."
 	done
-; 0x1891c2
 
-UnknownText_0x1891c2: ; 0x1891c2
+UnknownText_0x1891c2:
 	text "The MAGNET TRAIN"
 	line "consumes a lot of"
 	cont "electricity."
@@ -335,18 +303,16 @@ UnknownText_0x1891c2: ; 0x1891c2
 	line "the new generator"
 	cont "isn't operating."
 	done
-; 0x189225
 
-UnknownText_0x189225: ; 0x189225
+UnknownText_0x189225:
 	text "All right! We can"
 	line "finally get the"
 
 	para "MAGNET TRAIN"
 	line "running again."
 	done
-; 0x189264
 
-UnknownText_0x189264: ; 0x189264
+UnknownText_0x189264:
 	text "MANAGER: I, I, I'm"
 	line "ready to blast"
 	cont "someone!"
@@ -363,9 +329,8 @@ UnknownText_0x189264: ; 0x189264
 	para "a taste of my ZAP"
 	line "CANNON!"
 	done
-; 0x189308
 
-UnknownText_0x189308: ; 0x189308
+UnknownText_0x189308:
 	text "MANAGER: I won't"
 	line "forgive him!"
 
@@ -377,9 +342,8 @@ UnknownText_0x189308: ; 0x189308
 
 	para "Gahahahah!"
 	done
-; 0x18936e
 
-UnknownText_0x18936e: ; 0x18936e
+UnknownText_0x18936e:
 	text "MANAGER: Ah! Yeah!"
 
 	para "That's the missing"
@@ -387,17 +351,15 @@ UnknownText_0x18936e: ; 0x18936e
 	cont "loved generator!"
 	cont "You found it?"
 	done
-; 0x1893c4
 
-UnknownText_0x1893c4: ; 0x1893c4
+UnknownText_0x1893c4:
 	text "Wahah! Thanks!"
 
 	para "Here! Take this TM"
 	line "as a reward!"
 	done
-; 0x1893f4
 
-UnknownText_0x1893f4: ; 0x1893f4
+UnknownText_0x1893f4:
 	text "MANAGER: TM07 is"
 	line "my ZAP CANNON."
 
@@ -410,18 +372,16 @@ UnknownText_0x1893f4: ; 0x1893f4
 	para "accurate, but it"
 	line "packs a wallop!"
 	done
-; 0x189475
 
-UnknownText_0x189475: ; 0x189475
+UnknownText_0x189475:
 	text "MANAGER: My be-"
 	line "loved generator!"
 
 	para "Keep pumping the"
 	line "electricity out!"
 	done
-; 0x1894b9
 
-PowerPlant_MapEventHeader: ; 0x1894b9
+PowerPlant_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -448,4 +408,3 @@ PowerPlant_MapEventHeader: ; 0x1894b9
 	person_event SPRITE_GYM_GUY, 6, 11, $5, $1, 255, 255, $90, 0, GymGuyScript_0x188e51, $ffff
 	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, PowerPlantManager, $ffff
 	person_event SPRITE_GYM_GUY, 9, 9, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188ecb, $ffff
-; 0x189536

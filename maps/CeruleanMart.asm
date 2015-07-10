@@ -1,27 +1,23 @@
-CeruleanMart_MapScriptHeader: ; 0x188abe
+CeruleanMart_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x188ac0
 
-ClerkScript_0x188ac0: ; 0x188ac0
+ClerkScript_0x188ac0:
 	loadfont
 	pokemart $0, $0014
 	loadmovesprites
 	end
-; 0x188ac7
 
-CooltrainerMScript_0x188ac7: ; 0x188ac7
+CooltrainerMScript_0x188ac7:
 	jumptextfaceplayer UnknownText_0x188acd
-; 0x188aca
 
-CooltrainerFScript_0x188aca: ; 0x188aca
+CooltrainerFScript_0x188aca:
 	jumptextfaceplayer UnknownText_0x188b46
-; 0x188acd
 
-UnknownText_0x188acd: ; 0x188acd
+UnknownText_0x188acd:
 	text "You'll run into"
 	line "many trainers on"
 
@@ -34,9 +30,8 @@ UnknownText_0x188acd: ; 0x188acd
 	para "up against other"
 	line "trainers."
 	done
-; 0x188b46
 
-UnknownText_0x188b46: ; 0x188b46
+UnknownText_0x188b46:
 	text "MISTY is about the"
 	line "only person in"
 
@@ -44,9 +39,8 @@ UnknownText_0x188b46: ; 0x188b46
 	line "the trainers at"
 	cont "CERULEAN's CAPE."
 	done
-; 0x188b9b
 
-CeruleanMart_MapEventHeader: ; 0x188b9b
+CeruleanMart_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -66,4 +60,3 @@ CeruleanMart_MapEventHeader: ; 0x188b9b
 	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x188ac0, $ffff
 	person_event SPRITE_COOLTRAINER_M, 10, 5, $6, $0, 255, 255, $a0, 0, CooltrainerMScript_0x188ac7, $ffff
 	person_event SPRITE_COOLTRAINER_F, 6, 11, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x188aca, $ffff
-; 0x188bd2

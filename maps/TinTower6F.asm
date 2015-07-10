@@ -1,16 +1,14 @@
-TinTower6F_MapScriptHeader: ; 0x185ae2
+TinTower6F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x185ae4
 
-ItemFragment_0x185ae4: ; 0x185ae4
+ItemFragment_0x185ae4:
 	db MAX_POTION, 1
-; 0x185ae6
 
-TinTower6F_MapEventHeader: ; 0x185ae6
+TinTower6F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -28,4 +26,3 @@ TinTower6F_MapEventHeader: ; 0x185ae6
 	; people-events
 	db 1
 	person_event SPRITE_POKE_BALL, 12, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ae4, $07c6
-; 0x185b03

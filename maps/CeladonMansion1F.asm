@@ -1,10 +1,9 @@
-CeladonMansion1F_MapScriptHeader: ; 0x713ed
+CeladonMansion1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x713ef
 
 CeladonMansionManager:
 	jumptextfaceplayer CeladonMansionManagerText
@@ -69,7 +68,7 @@ CeladonMansionManagersSuiteSignText:
 	line "MANAGER'S SUITE"
 	done
 
-CeladonMansion1F_MapEventHeader: ; 0x714cc
+CeladonMansion1F_MapEventHeader:
 	; filler
 	db 0, 0
 

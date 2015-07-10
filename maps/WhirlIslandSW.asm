@@ -1,16 +1,14 @@
-WhirlIslandSW_MapScriptHeader: ; 0x18c3ba
+WhirlIslandSW_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c3bc
 
-ItemFragment_0x18c3bc: ; 0x18c3bc
+ItemFragment_0x18c3bc:
 	db ULTRA_BALL, 1
-; 0x18c3be
 
-WhirlIslandSW_MapEventHeader: ; 0x18c3be
+WhirlIslandSW_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -31,4 +29,3 @@ WhirlIslandSW_MapEventHeader: ; 0x18c3be
 	; people-events
 	db 1
 	person_event SPRITE_POKE_BALL, 6, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c3bc, $0690
-; 0x18c3ea

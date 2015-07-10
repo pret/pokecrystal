@@ -1,16 +1,14 @@
-TinTower3F_MapScriptHeader: ; 0x185a35
+TinTower3F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x185a37
 
-ItemFragment_0x185a37: ; 0x185a37
+ItemFragment_0x185a37:
 	db FULL_HEAL, 1
-; 0x185a39
 
-TinTower3F_MapEventHeader: ; 0x185a39
+TinTower3F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -28,4 +26,3 @@ TinTower3F_MapEventHeader: ; 0x185a39
 	; people-events
 	db 1
 	person_event SPRITE_POKE_BALL, 18, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a37, $064b
-; 0x185a56

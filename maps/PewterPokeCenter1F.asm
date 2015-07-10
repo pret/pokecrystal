@@ -1,42 +1,36 @@
-PewterPokeCenter1F_MapScriptHeader: ; 0x1a2ee5
+PewterPokeCenter1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1a2ee7
 
-NurseScript_0x1a2ee7: ; 0x1a2ee7
+NurseScript_0x1a2ee7:
 	jumpstd pokecenternurse
-; 0x1a2eea
 
-TeacherScript_0x1a2eea: ; 0x1a2eea
+TeacherScript_0x1a2eea:
 	jumptextfaceplayer UnknownText_0x1a2f01
-; 0x1a2eed
 
-JigglypuffScript_0x1a2eed: ; 0x1a2eed
+JigglypuffScript_0x1a2eed:
 	loadfont
 	writetext UnknownText_0x1a2f5d
 	cry JIGGLYPUFF
 	closetext
 	loadmovesprites
 	end
-; 0x1a2ef7
 
-BugCatcherScript_0x1a2ef7: ; 0x1a2ef7
+BugCatcherScript_0x1a2ef7:
 	jumptextfaceplayer UnknownText_0x1a2f75
-; 0x1a2efa
 
-PokefanMScript_0x1a2efa: ; 0x1a2efa
+PokefanMScript_0x1a2efa:
 	faceplayer
 	loadfont
 	trade $4
 	closetext
 	loadmovesprites
 	end
-; 0x1a2f01
 
-UnknownText_0x1a2f01: ; 0x1a2f01
+UnknownText_0x1a2f01:
 	text "…Yeah, and the"
 	line "GYM in CINNABAR's"
 
@@ -46,15 +40,13 @@ UnknownText_0x1a2f01: ; 0x1a2f01
 	para "…Yes? I'm on the"
 	line "phone. Go away!"
 	done
-; 0x1a2f5d
 
-UnknownText_0x1a2f5d: ; 0x1a2f5d
+UnknownText_0x1a2f5d:
 	text "JIGGLYPUFF: Puu"
 	line "pupuu."
 	done
-; 0x1a2f75
 
-UnknownText_0x1a2f75: ; 0x1a2f75
+UnknownText_0x1a2f75:
 	text "Most #MON get"
 	line "drowsy if they"
 
@@ -67,9 +59,8 @@ UnknownText_0x1a2f75: ; 0x1a2f75
 	para "used only while a"
 	line "#MON is asleep."
 	done
-; 0x1a2ff4
 
-PewterPokeCenter1F_MapEventHeader: ; 0x1a2ff4
+PewterPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -92,4 +83,3 @@ PewterPokeCenter1F_MapEventHeader: ; 0x1a2ff4
 	person_event SPRITE_JIGGLYPUFF, 7, 5, $16, $0, 255, 255, $0, 0, JigglypuffScript_0x1a2eed, $ffff
 	person_event SPRITE_BUG_CATCHER, 7, 6, $6, $0, 255, 255, $90, 0, BugCatcherScript_0x1a2ef7, $ffff
 	person_event SPRITE_POKEFAN_M, 6, 11, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1a2efa, $ffff
-; 0x1a304a

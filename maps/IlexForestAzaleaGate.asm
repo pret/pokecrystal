@@ -1,27 +1,23 @@
-IlexForestAzaleaGate_MapScriptHeader: ; 0x62c78
+IlexForestAzaleaGate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x62c7a
 
-OfficerScript_0x62c7a: ; 0x62c7a
+OfficerScript_0x62c7a:
 	jumptextfaceplayer UnknownText_0x62c80
-; 0x62c7d
 
-GrannyScript_0x62c7d: ; 0x62c7d
+GrannyScript_0x62c7d:
 	jumptextfaceplayer UnknownText_0x62cb0
-; 0x62c80
 
-UnknownText_0x62c80: ; 0x62c80
+UnknownText_0x62c80:
 	text "ILEX FOREST is"
 	line "big. Be careful!"
 	cont "Don't get lost."
 	done
-; 0x62cb0
 
-UnknownText_0x62cb0: ; 0x62cb0
+UnknownText_0x62cb0:
 	text "The FOREST is"
 	line "watched over by"
 	cont "its protector."
@@ -29,9 +25,8 @@ UnknownText_0x62cb0: ; 0x62cb0
 	para "Stay out of"
 	line "mischief!"
 	done
-; 0x62cf4
 
-IlexForestAzaleaGate_MapEventHeader: ; 0x62cf4
+IlexForestAzaleaGate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -52,4 +47,3 @@ IlexForestAzaleaGate_MapEventHeader: ; 0x62cf4
 	db 2
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x62c7a, $ffff
 	person_event SPRITE_GRANNY, 7, 5, $6, $0, 255, 255, $b0, 0, GrannyScript_0x62c7d, $ffff
-; 0x62d28

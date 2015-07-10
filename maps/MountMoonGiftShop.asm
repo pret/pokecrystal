@@ -1,31 +1,27 @@
-MountMoonGiftShop_MapScriptHeader: ; 0x771a6
+MountMoonGiftShop_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x771a8
 
-GrampsScript_0x771a8: ; 0x771a8
+GrampsScript_0x771a8:
 	faceplayer
 	loadfont
 	pokemart $0, $001f
 	loadmovesprites
 	end
-; 0x771b0
 
-LassScript_0x771b0: ; 0x771b0
+LassScript_0x771b0:
 	jumptextfaceplayer UnknownText_0x771b3
-; 0x771b3
 
-UnknownText_0x771b3: ; 0x771b3
+UnknownText_0x771b3:
 	text "When the sun goes"
 	line "down, CLEFAIRY"
 	cont "come out to play."
 	done
-; 0x771e7
 
-MountMoonGiftShop_MapEventHeader: ; 0x771e7
+MountMoonGiftShop_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -46,4 +42,3 @@ MountMoonGiftShop_MapEventHeader: ; 0x771e7
 	person_event SPRITE_GRAMPS, 6, 5, $9, $0, 255, 2, $0, 0, GrampsScript_0x771a8, $ffff
 	person_event SPRITE_LASS, 10, 5, $5, $1, 255, 1, $0, 0, LassScript_0x771b0, $ffff
 	person_event SPRITE_LASS, 8, 9, $4, $10, 255, 2, $0, 0, LassScript_0x771b0, $ffff
-; 0x7722b

@@ -1,4 +1,4 @@
-Route16_MapScriptHeader: ; 0x1ad313
+Route16_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,35 +8,30 @@ Route16_MapScriptHeader: ; 0x1ad313
 	; callbacks
 
 	dbw 5, UnknownScript_0x1ad318
-; 0x1ad318
 
-UnknownScript_0x1ad318: ; 0x1ad318
+UnknownScript_0x1ad318:
 	checkcode VAR_YCOORD
 	if_less_than $5, UnknownScript_0x1ad328
 	checkcode VAR_XCOORD
 	if_greater_than $d, UnknownScript_0x1ad328
 	setflag $0019
 	return
-; 0x1ad328
 
-UnknownScript_0x1ad328: ; 0x1ad328
+UnknownScript_0x1ad328:
 	clearflag $0019
 	return
-; 0x1ad32c
 
-MapRoute16Signpost0Script: ; 0x1ad32c
+MapRoute16Signpost0Script:
 	jumptext UnknownText_0x1ad32f
-; 0x1ad32f
 
-UnknownText_0x1ad32f: ; 0x1ad32f
+UnknownText_0x1ad32f:
 	text "CYCLING ROAD"
 
 	para "DOWNHILL COASTING"
 	line "ALL THE WAY!"
 	done
-; 0x1ad35c
 
-Route16_MapEventHeader: ; 0x1ad35c
+Route16_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -57,4 +52,3 @@ Route16_MapEventHeader: ; 0x1ad35c
 
 	; people-events
 	db 0
-; 0x1ad380

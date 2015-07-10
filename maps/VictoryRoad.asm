@@ -1,4 +1,4 @@
-VictoryRoad_MapScriptHeader: ; 0x74486
+VictoryRoad_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,17 +8,14 @@ VictoryRoad_MapScriptHeader: ; 0x74486
 
 	; callback count
 	db 0
-; 0x74490
 
-UnknownScript_0x74490: ; 0x74490
+UnknownScript_0x74490:
 	end
-; 0x74491
 
-UnknownScript_0x74491: ; 0x74491
+UnknownScript_0x74491:
 	end
-; 0x74492
 
-UnknownScript_0x74492: ; 0x74492
+UnknownScript_0x74492:
 	moveperson $2, $12, $b
 	spriteface $0, DOWN
 	showemote $0, $0, 15
@@ -32,9 +29,8 @@ UnknownScript_0x74492: ; 0x74492
 	dotrigger $1
 	playmapmusic
 	end
-; 0x744b5
 
-UnknownScript_0x744b5: ; 0x744b5
+UnknownScript_0x744b5:
 	spriteface $0, DOWN
 	showemote $0, $0, 15
 	special Functionc48f
@@ -47,9 +43,8 @@ UnknownScript_0x744b5: ; 0x744b5
 	dotrigger $1
 	playmapmusic
 	end
-; 0x744d4
 
-UnknownScript_0x744d4: ; 0x744d4
+UnknownScript_0x744d4:
 	spriteface $0, DOWN
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
@@ -68,9 +63,8 @@ UnknownScript_0x744d4: ; 0x744d4
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x7451f
-; 0x744ff
 
-UnknownScript_0x744ff: ; 0x744ff
+UnknownScript_0x744ff:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2
 	loadtrainer RIVAL1, RIVAL1_13
@@ -78,9 +72,8 @@ UnknownScript_0x744ff: ; 0x744ff
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x7451f
-; 0x7450f
 
-UnknownScript_0x7450f: ; 0x7450f
+UnknownScript_0x7450f:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2
 	loadtrainer RIVAL1, RIVAL1_14
@@ -88,50 +81,41 @@ UnknownScript_0x7450f: ; 0x7450f
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x7451f
-; 0x7451f
 
-UnknownScript_0x7451f: ; 0x7451f
+UnknownScript_0x7451f:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x746ce
 	closetext
 	loadmovesprites
 	end
-; 0x74529
 
-ItemFragment_0x74529: ; 0x74529
+ItemFragment_0x74529:
 	db TM_EARTHQUAKE, 1
-; 0x7452b
 
-ItemFragment_0x7452b: ; 0x7452b
+ItemFragment_0x7452b:
 	db MAX_REVIVE, 1
-; 0x7452d
 
-ItemFragment_0x7452d: ; 0x7452d
+ItemFragment_0x7452d:
 	db FULL_RESTORE, 1
-; 0x7452f
 
-ItemFragment_0x7452f: ; 0x7452f
+ItemFragment_0x7452f:
 	db FULL_HEAL, 1
-; 0x74531
 
-ItemFragment_0x74531: ; 0x74531
+ItemFragment_0x74531:
 	db HP_UP, 1
-; 0x74533
 
-MapVictoryRoadSignpostItem0: ; 0x74533
+MapVictoryRoadSignpostItem0:
 	dw $009e
 	db MAX_POTION
 	
-; 0x74536
 
-MapVictoryRoadSignpostItem1: ; 0x74536
+MapVictoryRoadSignpostItem1:
 	dw $009f
 	db FULL_HEAL
 	
-; 0x74539
 
-MovementData_0x74539: ; 0x74539
+MovementData_0x74539:
 	step_left
 	step_left
 	step_left
@@ -141,9 +125,8 @@ MovementData_0x74539: ; 0x74539
 	step_up
 	step_up
 	step_end
-; 0x74542
 
-MovementData_0x74542: ; 0x74542
+MovementData_0x74542:
 	step_up
 	step_up
 	step_left
@@ -154,9 +137,8 @@ MovementData_0x74542: ; 0x74542
 	step_up
 	step_up
 	step_end
-; 0x7454c
 
-MovementData_0x7454c: ; 0x7454c
+MovementData_0x7454c:
 	step_down
 	step_down
 	step_right
@@ -166,9 +148,8 @@ MovementData_0x7454c: ; 0x7454c
 	step_right
 	step_right
 	step_end
-; 0x74555
 
-MovementData_0x74555: ; 0x74555
+MovementData_0x74555:
 	step_down
 	step_down
 	step_right
@@ -179,9 +160,8 @@ MovementData_0x74555: ; 0x74555
 	step_down
 	step_down
 	step_end
-; 0x7455f
 
-UnknownText_0x7455f: ; 0x7455f
+UnknownText_0x7455f:
 	text "Hold it."
 
 	para "…Are you going to"
@@ -206,9 +186,8 @@ UnknownText_0x7455f: ; 0x7455f
 	para "<PLAYER>!"
 	line "I challenge you!"
 	done
-; 0x7463d
 
-UnknownText_0x7463d: ; 0x7463d
+UnknownText_0x7463d:
 	text "…I couldn't win…"
 
 	para "I gave it every-"
@@ -223,9 +202,8 @@ UnknownText_0x7463d: ; 0x7463d
 	para "that dragon master"
 	line "said to me…"
 	done
-; 0x746ce
 
-UnknownText_0x746ce: ; 0x746ce
+UnknownText_0x746ce:
 	text "…I haven't given up"
 	line "on becoming the"
 	cont "greatest trainer…"
@@ -246,9 +224,8 @@ UnknownText_0x746ce: ; 0x746ce
 	para "…Humph! You keep"
 	line "at it until then."
 	done
-; 0x747aa
 
-UnknownText_0x747aa: ; 0x747aa
+UnknownText_0x747aa:
 	text "…Humph!"
 
 	para "When it comes down"
@@ -258,9 +235,8 @@ UnknownText_0x747aa: ; 0x747aa
 	para "I don't need any-"
 	line "thing else."
 	done
-; 0x74802
 
-VictoryRoad_MapEventHeader: ; 0x74802
+VictoryRoad_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -295,4 +271,3 @@ VictoryRoad_MapEventHeader: ; 0x74802
 	person_event SPRITE_POKE_BALL, 33, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452d, $06a5
 	person_event SPRITE_POKE_BALL, 52, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452f, $06a6
 	person_event SPRITE_POKE_BALL, 42, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x74531, $06a7
-; 0x748a2

@@ -1,4 +1,4 @@
-BurnedTowerB1F_MapScriptHeader: ; 0x186151
+BurnedTowerB1F_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,25 +12,21 @@ BurnedTowerB1F_MapScriptHeader: ; 0x186151
 	; callbacks
 
 	dbw 1, UnknownScript_0x186160
-; 0x18615e
 
-UnknownScript_0x18615e: ; 0x18615e
+UnknownScript_0x18615e:
 	end
-; 0x18615f
 
-UnknownScript_0x18615f: ; 0x18615f
+UnknownScript_0x18615f:
 	end
-; 0x186160
 
-UnknownScript_0x186160: ; 0x186160
+UnknownScript_0x186160:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x18616a
 	changeblock $6, $e, $2
-UnknownScript_0x18616a: ; 0x18616a
+UnknownScript_0x18616a:
 	return
-; 0x18616b
 
-UnknownScript_0x18616b: ; 0x18616b
+UnknownScript_0x18616b:
 	playmusic MUSIC_NONE
 	pause 30
 	appear $3
@@ -96,9 +92,8 @@ UnknownScript_0x18616b: ; 0x18616b
 	loadmovesprites
 	dotrigger $1
 	end
-; 0x186212
 
-SuperNerdScript_0x186212: ; 0x186212
+SuperNerdScript_0x186212:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18626a
@@ -108,42 +103,37 @@ SuperNerdScript_0x186212: ; 0x186212
 	if_equal $1, UnknownScript_0x186226
 	applymovement $a, MovementData_0x186263
 	jump UnknownScript_0x18622a
-; 0x186226
 
-UnknownScript_0x186226: ; 0x186226
+UnknownScript_0x186226:
 	applymovement $a, MovementData_0x18625c
-UnknownScript_0x18622a: ; 0x18622a
+UnknownScript_0x18622a:
 	disappear $a
 	playsound SFX_EXIT_BUILDING
 	waitbutton
 	end
-; 0x186231
 
-ItemFragment_0x186231: ; 0x186231
+ItemFragment_0x186231:
 	db TM_ENDURE, 1
-; 0x186233
 
 BurnedTowerB1FBoulder:
 	jumpstd strengthboulder
 
-MovementData_0x186236: ; 0x186236
+MovementData_0x186236:
 	db $39 ; movement
 	fast_jump_step_down
 	fast_jump_step_left
 	db $38 ; movement
 	step_end
-; 0x18623b
 
-MovementData_0x18623b: ; 0x18623b
+MovementData_0x18623b:
 	db $39 ; movement
 	fast_jump_step_right
 	fast_jump_step_down
 	fast_jump_step_right
 	db $38 ; movement
 	step_end
-; 0x186241
 
-MovementData_0x186241: ; 0x186241
+MovementData_0x186241:
 	db $39 ; movement
 	fast_jump_step_right
 	fast_jump_step_down
@@ -151,9 +141,8 @@ MovementData_0x186241: ; 0x186241
 	fast_jump_step_left
 	db $38 ; movement
 	step_end
-; 0x186248
 
-MovementData_0x186248: ; 0x186248
+MovementData_0x186248:
 	db $39 ; movement
 	fast_jump_step_left
 	fast_jump_step_up
@@ -161,16 +150,14 @@ MovementData_0x186248: ; 0x186248
 	fast_jump_step_right
 	db $38 ; movement
 	step_end
-; 0x18624f
 
-MovementData_0x18624f: ; 0x18624f
+MovementData_0x18624f:
 	db $39 ; movement
 	big_step_down
 	db $38 ; movement
 	step_end
-; 0x186253
 
-MovementData_0x186253: ; 0x186253
+MovementData_0x186253:
 	db $39 ; movement
 	big_step_up
 	fast_jump_step_right
@@ -180,9 +167,8 @@ MovementData_0x186253: ; 0x186253
 	fast_jump_step_down
 	db $38 ; movement
 	step_end
-; 0x18625c
 
-MovementData_0x18625c: ; 0x18625c
+MovementData_0x18625c:
 	step_left
 	step_left
 	step_down
@@ -190,9 +176,8 @@ MovementData_0x18625c: ; 0x18625c
 	step_left
 	step_down
 	step_end
-; 0x186263
 
-MovementData_0x186263: ; 0x186263
+MovementData_0x186263:
 	step_down
 	step_left
 	step_left
@@ -200,9 +185,8 @@ MovementData_0x186263: ; 0x186263
 	step_down
 	step_down
 	step_end
-; 0x18626a
 
-UnknownText_0x18626a: ; 0x18626a
+UnknownText_0x18626a:
 	text "EUSINE: I dug a"
 	line "hole here, too…"
 
@@ -244,9 +228,8 @@ UnknownText_0x18626a: ; 0x18626a
 
 	para "Farewell!"
 	done
-; 0x1863de
 
-BurnedTowerB1F_MapEventHeader: ; 0x1863de
+BurnedTowerB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -277,4 +260,3 @@ BurnedTowerB1F_MapEventHeader: ; 0x1863de
 	person_event SPRITE_SUICUNE, 8, 14, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
 	person_event SPRITE_POKE_BALL, 8, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x186231, $0657
 	person_event SPRITE_SUPER_NERD, 16, 14, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x186212, $07aa
-; 0x18647f

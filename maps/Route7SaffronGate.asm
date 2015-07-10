@@ -1,12 +1,11 @@
-Route7SaffronGate_MapScriptHeader: ; 0x73516
+Route7SaffronGate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x73518
 
-OfficerScript_0x73518: ; 0x73518
+OfficerScript_0x73518:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -15,16 +14,14 @@ OfficerScript_0x73518: ; 0x73518
 	closetext
 	loadmovesprites
 	end
-; 0x73526
 
-UnknownScript_0x73526: ; 0x73526
+UnknownScript_0x73526:
 	writetext UnknownText_0x73592
 	closetext
 	loadmovesprites
 	end
-; 0x7352c
 
-UnknownText_0x7352c: ; 0x7352c
+UnknownText_0x7352c:
 	text "Did you hear about"
 	line "the accident at"
 	cont "the POWER PLANT?"
@@ -33,9 +30,8 @@ UnknownText_0x7352c: ; 0x7352c
 	line "the East, close to"
 	cont "LAVENDER TOWN."
 	done
-; 0x73592
 
-UnknownText_0x73592: ; 0x73592
+UnknownText_0x73592:
 	text "I take my GUARD"
 	line "job seriously."
 
@@ -45,9 +41,8 @@ UnknownText_0x73592: ; 0x73592
 	para "OK. You can go"
 	line "through."
 	done
-; 0x735e0
 
-Route7SaffronGate_MapEventHeader: ; 0x735e0
+Route7SaffronGate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -67,4 +62,3 @@ Route7SaffronGate_MapEventHeader: ; 0x735e0
 	; people-events
 	db 1
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x73518, $ffff
-; 0x73607

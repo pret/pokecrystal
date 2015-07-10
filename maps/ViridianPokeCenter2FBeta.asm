@@ -1,12 +1,11 @@
-ViridianPokeCenter2FBeta_MapScriptHeader: ; 0x9b838
+ViridianPokeCenter2FBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x9b83a
 
-ViridianPokeCenter2FBeta_MapEventHeader: ; 0x9b83a
+ViridianPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -22,4 +21,3 @@ ViridianPokeCenter2FBeta_MapEventHeader: ; 0x9b83a
 
 	; people-events
 	db 0
-; 0x9b845

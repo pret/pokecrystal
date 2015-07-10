@@ -1,12 +1,11 @@
-CeruleanPokeCenter2FBeta_MapScriptHeader: ; 0x1883c2
+CeruleanPokeCenter2FBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1883c4
 
-CeruleanPokeCenter2FBeta_MapEventHeader: ; 0x1883c4
+CeruleanPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -22,4 +21,3 @@ CeruleanPokeCenter2FBeta_MapEventHeader: ; 0x1883c4
 
 	; people-events
 	db 0
-; 0x1883cf

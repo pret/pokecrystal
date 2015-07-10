@@ -1,18 +1,15 @@
-GoldenrodPPSpeechHouse_MapScriptHeader: ; 0x55648
+GoldenrodPPSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x5564a
 
-FisherScript_0x5564a: ; 0x5564a
+FisherScript_0x5564a:
 	jumptextfaceplayer UnknownText_0x55659
-; 0x5564d
 
-LassScript_0x5564d: ; 0x5564d
+LassScript_0x5564d:
 	jumptextfaceplayer UnknownText_0x556ca
-; 0x55650
 
 GoldenrodPPSpeechHouseBookshelf2:
 	jumpstd difficultbookshelf
@@ -23,7 +20,7 @@ GoldenrodPPSpeechHouseBookshelf1:
 GoldenrodPPSpeechHouseRadio:
 	jumpstd radio2
 
-UnknownText_0x55659: ; 0x55659
+UnknownText_0x55659:
 	text "Once while I was"
 	line "battling, my"
 
@@ -36,9 +33,8 @@ UnknownText_0x55659: ; 0x55659
 	para "moves were all"
 	line "gone."
 	done
-; 0x556ca
 
-UnknownText_0x556ca: ; 0x556ca
+UnknownText_0x556ca:
 	text "Sometimes, a"
 	line "healthy #MON"
 
@@ -50,9 +46,8 @@ UnknownText_0x556ca: ; 0x556ca
 	cont "MON CENTER or use"
 	cont "an item."
 	done
-; 0x55741
 
-GoldenrodPPSpeechHouse_MapEventHeader: ; 0x55741
+GoldenrodPPSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -74,4 +69,3 @@ GoldenrodPPSpeechHouse_MapEventHeader: ; 0x55741
 	db 2
 	person_event SPRITE_FISHER, 8, 6, $4, $10, 255, 255, $a0, 0, FisherScript_0x5564a, $ffff
 	person_event SPRITE_LASS, 7, 9, $8, $10, 255, 255, $0, 0, LassScript_0x5564d, $ffff
-; 0x5577a

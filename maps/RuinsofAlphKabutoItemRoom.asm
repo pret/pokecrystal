@@ -1,39 +1,32 @@
-RuinsofAlphKabutoItemRoom_MapScriptHeader: ; 0x599a0
+RuinsofAlphKabutoItemRoom_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x599a2
 
-ItemFragment_0x599a2: ; 0x599a2
+ItemFragment_0x599a2:
 	db BERRY, 1
-; 0x599a4
 
-ItemFragment_0x599a4: ; 0x599a4
+ItemFragment_0x599a4:
 	db PSNCUREBERRY, 1
-; 0x599a6
 
-ItemFragment_0x599a6: ; 0x599a6
+ItemFragment_0x599a6:
 	db HEAL_POWDER, 1
-; 0x599a8
 
-ItemFragment_0x599a8: ; 0x599a8
+ItemFragment_0x599a8:
 	db ENERGYPOWDER, 1
-; 0x599aa
 
-MapRuinsofAlphKabutoItemRoomSignpost1Script: ; 0x599aa
+MapRuinsofAlphKabutoItemRoomSignpost1Script:
 	jumptext UnknownText_0x599ad
-; 0x599ad
 
-UnknownText_0x599ad: ; 0x599ad
+UnknownText_0x599ad:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
 	done
-; 0x599d2
 
-RuinsofAlphKabutoItemRoom_MapEventHeader: ; 0x599d2
+RuinsofAlphKabutoItemRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -58,4 +51,3 @@ RuinsofAlphKabutoItemRoom_MapEventHeader: ; 0x599d2
 	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x599a4, $0799
 	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x599a6, $079a
 	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x599a8, $079b
-; 0x59a2a

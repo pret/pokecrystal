@@ -1,4 +1,4 @@
-AzaleaPokeCenter1F_MapScriptHeader: ; 0x18db21
+AzaleaPokeCenter1F_MapScriptHeader:
 	; trigger count
 	db 1
 
@@ -7,29 +7,23 @@ AzaleaPokeCenter1F_MapScriptHeader: ; 0x18db21
 
 	; callback count
 	db 0
-; 0x18db27
 
-UnknownScript_0x18db27: ; 0x18db27
+UnknownScript_0x18db27:
 	end
-; 0x18db28
 
-NurseScript_0x18db28: ; 0x18db28
+NurseScript_0x18db28:
 	jumpstd pokecenternurse
-; 0x18db2b
 
-GentlemanScript_0x18db2b: ; 0x18db2b
+GentlemanScript_0x18db2b:
 	jumptextfaceplayer UnknownText_0x18db34
-; 0x18db2e
 
-FishingGuruScript_0x18db2e: ; 0x18db2e
+FishingGuruScript_0x18db2e:
 	jumptextfaceplayer UnknownText_0x18dbee
-; 0x18db31
 
-PokefanFScript_0x18db31: ; 0x18db31
+PokefanFScript_0x18db31:
 	jumptextfaceplayer UnknownText_0x18dc19
-; 0x18db34
 
-UnknownText_0x18db34: ; 0x18db34
+UnknownText_0x18db34:
 	text "Do your #MON"
 	line "know HM moves?"
 
@@ -39,9 +33,8 @@ UnknownText_0x18db34: ; 0x18db34
 	para "your #MON has"
 	line "fainted."
 	done
-; 0x18db88
 
-UnknownText_0x18db88: ; 0x18db88
+UnknownText_0x18db88:
 	text "This BILL guy"
 	line "created the system"
 
@@ -52,16 +45,14 @@ UnknownText_0x18db88: ; 0x18db88
 	line "store up to 20"
 	cont "#MON per BOX."
 	done
-; 0x18dbee
 
-UnknownText_0x18dbee: ; 0x18dbee
+UnknownText_0x18dbee:
 	text "BILL's PC can"
 	line "store up to 20"
 	cont "#MON per BOX."
 	done
-; 0x18dc19
 
-UnknownText_0x18dc19: ; 0x18dc19
+UnknownText_0x18dc19:
 	text "Do you know about"
 	line "APRICORNS?"
 
@@ -80,9 +71,8 @@ UnknownText_0x18dc19: ; 0x18dc19
 	para "everyone used"
 	line "APRICORNS."
 	done
-; 0x18dccf
 
-AzaleaPokeCenter1F_MapEventHeader: ; 0x18dccf
+AzaleaPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -104,4 +94,3 @@ AzaleaPokeCenter1F_MapEventHeader: ; 0x18dccf
 	person_event SPRITE_GENTLEMAN, 10, 13, $4, $10, 255, 255, $0, 0, GentlemanScript_0x18db2b, $ffff
 	person_event SPRITE_FISHING_GURU, 5, 10, $6, $0, 255, 255, $0, 0, FishingGuruScript_0x18db2e, $ffff
 	person_event SPRITE_POKEFAN_F, 8, 5, $2, $21, 255, 255, $0, 0, PokefanFScript_0x18db31, $ffff
-; 0x18dd18

@@ -1,21 +1,19 @@
-PokeSeersHouse_MapScriptHeader: ; 0x9e36c
+PokeSeersHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x9e36e
 
-SeerScript: ; 0x9e36e
+SeerScript:
 	faceplayer
 	loadfont
 	special SpecialPokeSeer
 	closetext
 	loadmovesprites
 	end
-; 0x9e376
 
-PokeSeersHouse_MapEventHeader: ; 0x9e376
+PokeSeersHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -33,4 +31,3 @@ PokeSeersHouse_MapEventHeader: ; 0x9e376
 	; people-events
 	db 1
 	person_event SPRITE_GRANNY, 7, 6, $6, $0, 255, 255, $80, 0, SeerScript, $ffff
-; 0x9e393

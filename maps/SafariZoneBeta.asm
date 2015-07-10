@@ -1,12 +1,11 @@
-SafariZoneBeta_MapScriptHeader: ; 0x74474
+SafariZoneBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x74476
 
-SafariZoneBeta_MapEventHeader: ; 0x74476
+SafariZoneBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -23,4 +22,3 @@ SafariZoneBeta_MapEventHeader: ; 0x74476
 
 	; people-events
 	db 0
-; 0x74486

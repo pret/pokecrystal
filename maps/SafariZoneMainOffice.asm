@@ -1,12 +1,11 @@
-SafariZoneMainOffice_MapScriptHeader: ; 0x195da5
+SafariZoneMainOffice_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x195da7
 
-SafariZoneMainOffice_MapEventHeader: ; 0x195da7
+SafariZoneMainOffice_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -23,4 +22,3 @@ SafariZoneMainOffice_MapEventHeader: ; 0x195da7
 
 	; people-events
 	db 0
-; 0x195db7

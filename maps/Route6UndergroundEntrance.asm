@@ -1,12 +1,11 @@
-Route6UndergroundEntrance_MapScriptHeader: ; 0x19282e
+Route6UndergroundEntrance_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x192830
 
-Route6UndergroundEntrance_MapEventHeader: ; 0x192830
+Route6UndergroundEntrance_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -24,4 +23,3 @@ Route6UndergroundEntrance_MapEventHeader: ; 0x192830
 
 	; people-events
 	db 0
-; 0x192845

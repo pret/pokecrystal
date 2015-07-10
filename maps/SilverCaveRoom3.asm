@@ -1,12 +1,11 @@
-SilverCaveRoom3_MapScriptHeader: ; 0x18c601
+SilverCaveRoom3_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c603
 
-RedScript_0x18c603: ; 0x18c603
+RedScript_0x18c603:
 	special Functionc48f
 	faceplayer
 	loadfont
@@ -33,26 +32,22 @@ RedScript_0x18c603: ; 0x18c603
 	refreshscreen $0
 	credits
 	end
-; 0x18c637
 
-UnknownText_0x18c637: ; 0x18c637
+UnknownText_0x18c637:
 	text $56
 	line $56
 	done
-; 0x18c63c
 
-UnknownText_0x18c63c: ; 0x18c63c
+UnknownText_0x18c63c:
 	text "…"
 	done
-; 0x18c63f
 
-UnknownText_0x18c63f: ; 0x18c63f
+UnknownText_0x18c63f:
 	text $56
 	line $56
 	done
-; 0x18c644
 
-SilverCaveRoom3_MapEventHeader: ; 0x18c644
+SilverCaveRoom3_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -69,4 +64,3 @@ SilverCaveRoom3_MapEventHeader: ; 0x18c644
 	; people-events
 	db 1
 	person_event SPRITE_RED, 14, 13, $7, $0, 255, 255, $80, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER
-; 0x18c65c

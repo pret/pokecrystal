@@ -1,21 +1,19 @@
-CeladonCafe_MapScriptHeader: ; 0x73047
+CeladonCafe_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x73049
 
-SuperNerdScript_0x73049: ; 0x73049
+SuperNerdScript_0x73049:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x730de
 	closetext
 	loadmovesprites
 	end
-; 0x73051
 
-FisherScript_0x73051: ; 0x73051
+FisherScript_0x73051:
 	loadfont
 	writetext UnknownText_0x73129
 	closetext
@@ -27,9 +25,8 @@ FisherScript_0x73051: ; 0x73051
 	loadmovesprites
 	spriteface $3, LEFT
 	end
-; 0x73062
 
-FisherScript_0x73062: ; 0x73062
+FisherScript_0x73062:
 	loadfont
 	writetext UnknownText_0x7316a
 	closetext
@@ -41,9 +38,8 @@ FisherScript_0x73062: ; 0x73062
 	loadmovesprites
 	spriteface $4, RIGHT
 	end
-; 0x73073
 
-FisherScript_0x73073: ; 0x73073
+FisherScript_0x73073:
 	loadfont
 	writetext UnknownText_0x731ae
 	closetext
@@ -55,9 +51,8 @@ FisherScript_0x73073: ; 0x73073
 	loadmovesprites
 	spriteface $5, RIGHT
 	end
-; 0x73084
 
-TeacherScript_0x73084: ; 0x73084
+TeacherScript_0x73084:
 	checkitem COIN_CASE
 	iftrue UnknownScript_0x7309a
 	loadfont
@@ -71,9 +66,8 @@ TeacherScript_0x73084: ; 0x73084
 	loadmovesprites
 	spriteface $6, LEFT
 	end
-; 0x7309a
 
-UnknownScript_0x7309a: ; 0x7309a
+UnknownScript_0x7309a:
 	loadfont
 	writetext UnknownText_0x73254
 	closetext
@@ -85,7 +79,6 @@ UnknownScript_0x7309a: ; 0x7309a
 	loadmovesprites
 	spriteface $6, LEFT
 	end
-; 0x730ad
 
 EatathonContestPoster:
 	jumptext EatathonContestPosterText
@@ -118,7 +111,7 @@ CeladonCafeTrashcan:
 .TrashEmpty
 	jumpstd trashcan
 
-UnknownText_0x730de: ; 0x730de
+UnknownText_0x730de:
 	text "Hi!"
 
 	para "We're holding an"
@@ -127,73 +120,62 @@ UnknownText_0x730de: ; 0x730de
 	para "We can't serve you"
 	line "right now. Sorry."
 	done
-; 0x73129
 
-UnknownText_0x73129: ; 0x73129
+UnknownText_0x73129:
 	text "…Snarfle, chew…"
 	done
-; 0x7313a
 
-UnknownText_0x7313a: ; 0x7313a
+UnknownText_0x7313a:
 	text "Don't talk to me!"
 
 	para "You'll break my"
 	line "concentration!"
 	done
-; 0x7316a
 
-UnknownText_0x7316a: ; 0x7316a
+UnknownText_0x7316a:
 	text "…Gulp… Chew…"
 	done
-; 0x73178
 
-UnknownText_0x73178: ; 0x73178
+UnknownText_0x73178:
 	text "I take quantity"
 	line "over quality!"
 
 	para "I'm happy when I'm"
 	line "full!"
 	done
-; 0x731ae
 
-UnknownText_0x731ae: ; 0x731ae
+UnknownText_0x731ae:
 	text "Munch, munch…"
 	done
-; 0x731bd
 
-UnknownText_0x731bd: ; 0x731bd
+UnknownText_0x731bd:
 	text "The food is good"
 	line "here, but GOLDEN-"
 	cont "ROD has the best"
 	cont "food anywhere."
 	done
-; 0x73201
 
-UnknownText_0x73201: ; 0x73201
+UnknownText_0x73201:
 	text "Crunch… Crunch…"
 	done
-; 0x73212
 
-UnknownText_0x73212: ; 0x73212
+UnknownText_0x73212:
 	text "Nobody here will"
 	line "give you a COIN"
 
 	para "CASE. You should"
 	line "look in JOHTO."
 	done
-; 0x73254
 
-UnknownText_0x73254: ; 0x73254
+UnknownText_0x73254:
 	text "Crunch… Crunch…"
 
 	para "I can keep eating!"
 	done
-; 0x73278
 
-UnknownText_0x73278: ; 0x73278
+UnknownText_0x73278:
 	text "More, CHEF!"
 	done
-; 0x73285
 
 EatathonContestPosterText:
 	text "Eatathon Contest!"
@@ -218,7 +200,7 @@ NoRoomForLeftoversText:
 	line "hold another item…"
 	done
 
-CeladonCafe_MapEventHeader: ; 0x73316
+CeladonCafe_MapEventHeader:
 	; filler
 	db 0, 0
 

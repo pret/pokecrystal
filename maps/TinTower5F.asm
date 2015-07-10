@@ -1,28 +1,24 @@
-TinTower5F_MapScriptHeader: ; 0x185aa7
+TinTower5F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x185aa9
 
-ItemFragment_0x185aa9: ; 0x185aa9
+ItemFragment_0x185aa9:
 	db RARE_CANDY, 1
-; 0x185aab
 
-MapTinTower5FSignpostItem0: ; 0x185aab
+MapTinTower5FSignpostItem0:
 	dw $007e
 	db FULL_RESTORE
 	
-; 0x185aae
 
-MapTinTower5FSignpostItem1: ; 0x185aae
+MapTinTower5FSignpostItem1:
 	dw $007f
 	db CARBOS
 	
-; 0x185ab1
 
-TinTower5F_MapEventHeader: ; 0x185ab1
+TinTower5F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -44,4 +40,3 @@ TinTower5F_MapEventHeader: ; 0x185ab1
 	; people-events
 	db 1
 	person_event SPRITE_POKE_BALL, 13, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x185aa9, $064f
-; 0x185ae2

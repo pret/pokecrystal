@@ -1,4 +1,4 @@
-BurnedTower1F_MapScriptHeader: ; 0x185be1
+BurnedTower1F_MapScriptHeader:
 	; trigger count
 	db 3
 
@@ -13,34 +13,29 @@ BurnedTower1F_MapScriptHeader: ; 0x185be1
 	; callbacks
 
 	dbw 1, UnknownScript_0x185bf8
-; 0x185bf2
 
-UnknownScript_0x185bf2: ; 0x185bf2
+UnknownScript_0x185bf2:
 	priorityjump UnknownScript_0x185c0d
 	end
-; 0x185bf6
 
-UnknownScript_0x185bf6: ; 0x185bf6
+UnknownScript_0x185bf6:
 	end
-; 0x185bf7
 
-UnknownScript_0x185bf7: ; 0x185bf7
+UnknownScript_0x185bf7:
 	end
-; 0x185bf8
 
-UnknownScript_0x185bf8: ; 0x185bf8
+UnknownScript_0x185bf8:
 	checkevent $0332
 	iftrue UnknownScript_0x185c02
 	changeblock $a, $8, $32
-UnknownScript_0x185c02: ; 0x185c02
+UnknownScript_0x185c02:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x185c0c
 	changeblock $6, $e, $9
-UnknownScript_0x185c0c: ; 0x185c0c
+UnknownScript_0x185c0c:
 	return
-; 0x185c0d
 
-UnknownScript_0x185c0d: ; 0x185c0d
+UnknownScript_0x185c0d:
 	spriteface $3, DOWN
 	showemote $0, $3, 15
 	applymovement $3, MovementData_0x185cd3
@@ -51,9 +46,8 @@ UnknownScript_0x185c0d: ; 0x185c0d
 	moveperson $3, $9, $e
 	dotrigger $1
 	end
-; 0x185c25
 
-UnknownScript_0x185c25: ; 0x185c25
+UnknownScript_0x185c25:
 	showemote $0, $4, 15
 	special Functionc48f
 	pause 15
@@ -77,9 +71,8 @@ UnknownScript_0x185c25: ; 0x185c25
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x185c80
-; 0x185c60
 
-UnknownScript_0x185c60: ; 0x185c60
+UnknownScript_0x185c60:
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
 	loadtrainer RIVAL1, RIVAL1_7
@@ -87,9 +80,8 @@ UnknownScript_0x185c60: ; 0x185c60
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x185c80
-; 0x185c70
 
-UnknownScript_0x185c70: ; 0x185c70
+UnknownScript_0x185c70:
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
 	loadtrainer RIVAL1, RIVAL1_8
@@ -97,9 +89,8 @@ UnknownScript_0x185c70: ; 0x185c70
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x185c80
-; 0x185c80
 
-UnknownScript_0x185c80: ; 0x185c80
+UnknownScript_0x185c80:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x185de2
@@ -127,60 +118,50 @@ UnknownScript_0x185c80: ; 0x185c80
 	pause 15
 	warpcheck
 	end
-; 0x185cbc
 
-SuperNerdScript_0x185cbc: ; 0x185cbc
+SuperNerdScript_0x185cbc:
 	jumptextfaceplayer UnknownText_0x185f99
-; 0x185cbf
 
-MortyScript_0x185cbf: ; 0x185cbf
+MortyScript_0x185cbf:
 	jumptextfaceplayer UnknownText_0x186002
-; 0x185cc2
 
 BurnedTower1FRock:
 	jumpstd smashrock
 
-MapBurnedTower1FSignpostItem0: ; 0x185cc5
+MapBurnedTower1FSignpostItem0:
 	dw $0080
 	db ETHER
 	
-; 0x185cc8
 
-MapBurnedTower1FSignpostItem1: ; 0x185cc8
+MapBurnedTower1FSignpostItem1:
 	dw $00ff
 	db ULTRA_BALL
 	
-; 0x185ccb
 
-ItemFragment_0x185ccb: ; 0x185ccb
+ItemFragment_0x185ccb:
 	db HP_UP, 1
-; 0x185ccd
 
-MovementData_0x185ccd: ; 0x185ccd
+MovementData_0x185ccd:
 	step_left
 	step_end
-; 0x185ccf
 
-MovementData_0x185ccf: ; 0x185ccf
+MovementData_0x185ccf:
 	step_right
 	step_end
-; 0x185cd1
 
-MovementData_0x185cd1: ; 0x185cd1
+MovementData_0x185cd1:
 	db $59 ; movement
 	step_end
-; 0x185cd3
 
-MovementData_0x185cd3: ; 0x185cd3
+MovementData_0x185cd3:
 	step_down
 	step_left
 	step_left
 	step_left
 	step_down
 	step_end
-; 0x185cd9
 
-UnknownText_0x185cd9: ; 0x185cd9
+UnknownText_0x185cd9:
 	text $56, " ", $56, " ", $56
 
 	para "…Oh, it's you."
@@ -203,9 +184,8 @@ UnknownText_0x185cd9: ; 0x185cd9
 	para "It's all your"
 	line "fault!"
 	done
-; 0x185d9b
 
-UnknownText_0x185d9b: ; 0x185d9b
+UnknownText_0x185d9b:
 	text "…Humph!"
 
 	para "This is why I hate"
@@ -214,9 +194,8 @@ UnknownText_0x185d9b: ; 0x185d9b
 	para "There's no"
 	line "challenge in it."
 	done
-; 0x185de2
 
-UnknownText_0x185de2: ; 0x185de2
+UnknownText_0x185de2:
 	text "…Aw, whatever."
 
 	para "You would never be"
@@ -225,9 +204,8 @@ UnknownText_0x185de2: ; 0x185de2
 	para "legendary #MON"
 	line "anyway."
 	done
-; 0x185e2c
 
-UnknownText_0x185e2c: ; 0x185e2c
+UnknownText_0x185e2c:
 	text "…Humph!"
 
 	para "This is why I hate"
@@ -236,9 +214,8 @@ UnknownText_0x185e2c: ; 0x185e2c
 	para "It's just a waste"
 	line "of my time."
 	done
-; 0x185e75
 
-UnknownText_0x185e75: ; 0x185e75
+UnknownText_0x185e75:
 	text "Humph!"
 
 	para "What are you doing"
@@ -249,9 +226,8 @@ UnknownText_0x185e75: ; 0x185e75
 
 	para "Serves you right!"
 	done
-; 0x185ecc
 
-UnknownText_0x185ecc: ; 0x185ecc
+UnknownText_0x185ecc:
 	text "EUSINE: My name's"
 	line "EUSINE."
 
@@ -273,9 +249,8 @@ UnknownText_0x185ecc: ; 0x185ecc
 	para "But where exactly"
 	line "could it be?"
 	done
-; 0x185f99
 
-UnknownText_0x185f99: ; 0x185f99
+UnknownText_0x185f99:
 	text "EUSINE: I heard"
 	line "that SUICUNE is in"
 
@@ -285,9 +260,8 @@ UnknownText_0x185f99: ; 0x185f99
 	para "But where exactly"
 	line "could it be?"
 	done
-; 0x186002
 
-UnknownText_0x186002: ; 0x186002
+UnknownText_0x186002:
 	text "MORTY: ECRUTEAK's"
 	line "GYM LEADER has to"
 
@@ -304,9 +278,8 @@ UnknownText_0x186002: ; 0x186002
 	para "investigate the"
 	line "TOWER with him."
 	done
-; 0x1860b2
 
-BurnedTower1F_MapEventHeader: ; 0x1860b2
+BurnedTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -343,4 +316,3 @@ BurnedTower1F_MapEventHeader: ; 0x1860b2
 	person_event SPRITE_SILVER, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, $06c5
 	person_event SPRITE_MORTY, 18, 18, $2, $11, 255, 255, $b0, 0, MortyScript_0x185cbf, $0764
 	person_event SPRITE_POKE_BALL, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ccb, $0656
-; 0x186151

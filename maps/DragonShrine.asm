@@ -1,4 +1,4 @@
-DragonShrine_MapScriptHeader: ; 0x18d014
+DragonShrine_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,24 +8,21 @@ DragonShrine_MapScriptHeader: ; 0x18d014
 
 	; callback count
 	db 0
-; 0x18d01e
 
-UnknownScript_0x18d01e: ; 0x18d01e
+UnknownScript_0x18d01e:
 	priorityjump UnknownScript_0x18d023
 	end
-; 0x18d022
 
-UnknownScript_0x18d022: ; 0x18d022
+UnknownScript_0x18d022:
 	end
-; 0x18d023
 
-UnknownScript_0x18d023: ; 0x18d023
+UnknownScript_0x18d023:
 	applymovement $0, MovementData_0x18d2bf
 	applymovement $2, MovementData_0x18d2c7
 	loadfont
 	writetext UnknownText_0x18d2ea
 	keeptextopen
-UnknownScript_0x18d030: ; 0x18d030
+UnknownScript_0x18d030:
 	setevent $0001
 	writetext UnknownText_0x18d3bc
 	keeptextopen
@@ -36,9 +33,8 @@ UnknownScript_0x18d030: ; 0x18d030
 	if_equal $2, UnknownScript_0x18d0cb
 	if_equal $3, UnknownScript_0x18d0a9
 	end
-; 0x18d049
 
-UnknownScript_0x18d049: ; 0x18d049
+UnknownScript_0x18d049:
 	setevent $0002
 	writetext UnknownText_0x18d3d3
 	keeptextopen
@@ -48,7 +44,7 @@ UnknownScript_0x18d049: ; 0x18d049
 	if_equal $1, UnknownScript_0x18d0a9
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0cb
-UnknownScript_0x18d061: ; 0x18d061
+UnknownScript_0x18d061:
 	setevent $0003
 	writetext UnknownText_0x18d3f3
 	keeptextopen
@@ -58,7 +54,7 @@ UnknownScript_0x18d061: ; 0x18d061
 	if_equal $1, UnknownScript_0x18d0cb
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0a9
-UnknownScript_0x18d079: ; 0x18d079
+UnknownScript_0x18d079:
 	setevent $0004
 	writetext UnknownText_0x18d420
 	keeptextopen
@@ -68,7 +64,7 @@ UnknownScript_0x18d079: ; 0x18d079
 	if_equal $1, UnknownScript_0x18d0a9
 	if_equal $2, UnknownScript_0x18d0cb
 	if_equal $3, UnknownScript_0x18d0a9
-UnknownScript_0x18d091: ; 0x18d091
+UnknownScript_0x18d091:
 	setevent $0005
 	writetext UnknownText_0x18d44a
 	keeptextopen
@@ -78,7 +74,7 @@ UnknownScript_0x18d091: ; 0x18d091
 	if_equal $1, UnknownScript_0x18d0cb
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0cb
-UnknownScript_0x18d0a9: ; 0x18d0a9
+UnknownScript_0x18d0a9:
 	checkevent $0005
 	iftrue UnknownScript_0x18d100
 	writetext UnknownText_0x18d82d
@@ -91,7 +87,7 @@ UnknownScript_0x18d0a9: ; 0x18d0a9
 	iftrue UnknownScript_0x18d061
 	checkevent $0001
 	iftrue UnknownScript_0x18d049
-UnknownScript_0x18d0cb: ; 0x18d0cb
+UnknownScript_0x18d0cb:
 	loadmovesprites
 	spriteface $2, LEFT
 	loadfont
@@ -115,7 +111,7 @@ UnknownScript_0x18d0cb: ; 0x18d0cb
 	iftrue UnknownScript_0x18d049
 	checkevent $0001
 	iftrue UnknownScript_0x18d030
-UnknownScript_0x18d100: ; 0x18d100
+UnknownScript_0x18d100:
 	writetext UnknownText_0x18d47c
 	closetext
 	loadmovesprites
@@ -190,9 +186,8 @@ UnknownScript_0x18d100: ; 0x18d100
 	waitbutton
 	setevent $0000
 	end
-; 0x18d1a5
 
-ElderScript_0x18d1a5: ; 0x18d1a5
+ElderScript_0x18d1a5:
 	faceplayer
 	loadfont
 	checkevent $0000
@@ -207,9 +202,8 @@ ElderScript_0x18d1a5: ; 0x18d1a5
 	closetext
 	loadmovesprites
 	end
-; 0x18d1c5
 
-UnknownScript_0x18d1c5: ; 0x18d1c5
+UnknownScript_0x18d1c5:
 	writetext UnknownText_0x18d604
 	closetext
 	checkcode VAR_PARTYCOUNT
@@ -226,141 +220,124 @@ UnknownScript_0x18d1c5: ; 0x18d1c5
 	closetext
 	loadmovesprites
 	end
-; 0x18d1ed
 
-UnknownScript_0x18d1ed: ; 0x18d1ed
+UnknownScript_0x18d1ed:
 	writetext UnknownText_0x18d6ac
 	closetext
 	loadmovesprites
 	end
-; 0x18d1f3
 
-UnknownScript_0x18d1f3: ; 0x18d1f3
+UnknownScript_0x18d1f3:
 	writetext UnknownText_0x18d782
 	closetext
 	loadmovesprites
 	end
-; 0x18d1f9
 
-UnknownScript_0x18d1f9: ; 0x18d1f9
+UnknownScript_0x18d1f9:
 	writetext UnknownText_0x18d5e5
 	closetext
 	loadmovesprites
 	end
-; 0x18d1ff
 
-UnknownScript_0x18d1ff: ; 0x18d1ff
+UnknownScript_0x18d1ff:
 	writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites
 	end
-; 0x18d205
 
-ElderScript_0x18d205: ; 0x18d205
+ElderScript_0x18d205:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18d840
 	closetext
 	loadmovesprites
 	end
-; 0x18d20d
 
-ElderScript_0x18d20d: ; 0x18d20d
+ElderScript_0x18d20d:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18d8b1
 	closetext
 	loadmovesprites
 	end
-; 0x18d215
 
 
-MenuDataHeader_0x18d215: ; 0x18d215
+MenuDataHeader_0x18d215:
 	db $40 ; flags
 	db 04, 08 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x18d21d
 	db 1 ; default option
-; 0x18d21d
 
-MenuData2_0x18d21d: ; 0x18d21d
+MenuData2_0x18d21d:
 	db $81 ; flags
 	db 3 ; items
 	db "Pal@"
 	db "Underling@"
 	db "Friend@"
-; 0x18d234
 
 
-MenuDataHeader_0x18d234: ; 0x18d234
+MenuDataHeader_0x18d234:
 	db $40 ; flags
 	db 04, 09 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x18d23c
 	db 1 ; default option
-; 0x18d23c
 
-MenuData2_0x18d23c: ; 0x18d23c
+MenuData2_0x18d23c:
 	db $81 ; flags
 	db 3 ; items
 	db "Strategy@"
 	db "Raising@"
 	db "Cheating@"
-; 0x18d258
 
 
-MenuDataHeader_0x18d258: ; 0x18d258
+MenuDataHeader_0x18d258:
 	db $40 ; flags
 	db 04, 05 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x18d260
 	db 1 ; default option
-; 0x18d260
 
-MenuData2_0x18d260: ; 0x18d260
+MenuData2_0x18d260:
 	db $81 ; flags
 	db 3 ; items
 	db "Weak person@"
 	db "Tough person@"
 	db "Anybody@"
-; 0x18d283
 
 
-MenuDataHeader_0x18d283: ; 0x18d283
+MenuDataHeader_0x18d283:
 	db $40 ; flags
 	db 04, 08 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x18d28b
 	db 1 ; default option
-; 0x18d28b
 
-MenuData2_0x18d28b: ; 0x18d28b
+MenuData2_0x18d28b:
 	db $81 ; flags
 	db 3 ; items
 	db "Love@"
 	db "Violence@"
 	db "Knowledge@"
-; 0x18d2a5
 
 
-MenuDataHeader_0x18d2a5: ; 0x18d2a5
+MenuDataHeader_0x18d2a5:
 	db $40 ; flags
 	db 04, 12 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x18d2ad
 	db 1 ; default option
-; 0x18d2ad
 
-MenuData2_0x18d2ad: ; 0x18d2ad
+MenuData2_0x18d2ad:
 	db $81 ; flags
 	db 3 ; items
 	db "Tough@"
 	db "Both@"
 	db "Weak@"
-; 0x18d2bf
 
 
-MovementData_0x18d2bf: ; 0x18d2bf
+MovementData_0x18d2bf:
 	slow_step_up
 	slow_step_up
 	slow_step_up
@@ -369,61 +346,52 @@ MovementData_0x18d2bf: ; 0x18d2bf
 	slow_step_up
 	slow_step_up
 	step_end
-; 0x18d2c7
 
-MovementData_0x18d2c7: ; 0x18d2c7
+MovementData_0x18d2c7:
 	slow_step_down
 	step_end
-; 0x18d2c9
 
-MovementData_0x18d2c9: ; 0x18d2c9
+MovementData_0x18d2c9:
 	slow_step_left
 	slow_step_left
 	slow_step_left
 	turn_head_down
 	step_end
-; 0x18d2ce
 
-MovementData_0x18d2ce: ; 0x18d2ce
+MovementData_0x18d2ce:
 	slow_step_right
 	slow_step_right
 	step_end
-; 0x18d2d1
 
-MovementData_0x18d2d1: ; 0x18d2d1
+MovementData_0x18d2d1:
 	slow_step_right
 	turn_head_down
 	step_end
-; 0x18d2d4
 
-MovementData_0x18d2d4: ; 0x18d2d4
+MovementData_0x18d2d4:
 	slow_step_up
 	slow_step_up
 	slow_step_up
 	slow_step_up
 	slow_step_up
 	step_end
-; 0x18d2da
 
-MovementData_0x18d2da: ; 0x18d2da
+MovementData_0x18d2da:
 	fix_facing
 	big_step_left
 	step_end
-; 0x18d2dd
 
-MovementData_0x18d2dd: ; 0x18d2dd
+MovementData_0x18d2dd:
 	slow_step_left
 	remove_fixed_facing
 	step_end
-; 0x18d2e0
 
-MovementData_0x18d2e0: ; 0x18d2e0
+MovementData_0x18d2e0:
 	slow_step_right
 	slow_step_right
 	step_end
-; 0x18d2e3
 
-MovementData_0x18d2e3: ; 0x18d2e3
+MovementData_0x18d2e3:
 	step_down
 	step_down
 	step_down
@@ -431,9 +399,8 @@ MovementData_0x18d2e3: ; 0x18d2e3
 	step_down
 	step_down
 	step_end
-; 0x18d2ea
 
-UnknownText_0x18d2ea: ; 0x18d2ea
+UnknownText_0x18d2ea:
 	text "Hm… Good to see"
 	line "you here."
 
@@ -455,44 +422,38 @@ UnknownText_0x18d2ea: ; 0x18d2ea
 
 	para "Ready?"
 	done
-; 0x18d3bc
 
-UnknownText_0x18d3bc: ; 0x18d3bc
+UnknownText_0x18d3bc:
 	text "What are #MON"
 	line "to you?"
 	done
-; 0x18d3d3
 
-UnknownText_0x18d3d3: ; 0x18d3d3
+UnknownText_0x18d3d3:
 	text "What helps you to"
 	line "win battles?"
 	done
-; 0x18d3f3
 
-UnknownText_0x18d3f3: ; 0x18d3f3
+UnknownText_0x18d3f3:
 	text "What kind of"
 	line "trainer do you"
 	cont "wish to battle?"
 	done
-; 0x18d420
 
-UnknownText_0x18d420: ; 0x18d420
+UnknownText_0x18d420:
 	text "What is most"
 	line "important for"
 	cont "raising #MON?"
 	done
-; 0x18d44a
 
-UnknownText_0x18d44a: ; 0x18d44a
+UnknownText_0x18d44a:
 	text "Strong #MON."
 	line "Weak #MON."
 
 	para "Which is more"
 	line "important?"
 	done
-; 0x18d47c
 
-UnknownText_0x18d47c: ; 0x18d47c
+UnknownText_0x18d47c:
 	text "Hm… I see…"
 
 	para "You care deeply"
@@ -510,9 +471,8 @@ UnknownText_0x18d47c: ; 0x18d47c
 	line "through at the"
 	cont "#MON LEAGUE."
 	done
-; 0x18d520
 
-UnknownText_0x18d520: ; 0x18d520
+UnknownText_0x18d520:
 	text "CLAIR!"
 
 	para "This child is"
@@ -526,9 +486,8 @@ UnknownText_0x18d520: ; 0x18d520
 	para "…Or must I inform"
 	line "LANCE of this?"
 	done
-; 0x18d5a3
 
-UnknownText_0x18d5a3: ; 0x18d5a3
+UnknownText_0x18d5a3:
 	text "CLAIR…"
 
 	para "Reflect upon what"
@@ -537,15 +496,13 @@ UnknownText_0x18d5a3: ; 0x18d5a3
 	para "lack and this"
 	line "child has."
 	done
-; 0x18d5e5
 
-UnknownText_0x18d5e5: ; 0x18d5e5
+UnknownText_0x18d5e5:
 	text "Come again, if you"
 	line "so desire."
 	done
-; 0x18d604
 
-UnknownText_0x18d604: ; 0x18d604
+UnknownText_0x18d604:
 	text "Hm… Good to see"
 	line "you here."
 
@@ -561,21 +518,18 @@ UnknownText_0x18d604: ; 0x18d604
 	para "have recognized"
 	line "your worth."
 	done
-; 0x18d697
 
-UnknownText_0x18d697: ; 0x18d697
+UnknownText_0x18d697:
 	text "<PLAYER> received"
 	line "DRATINI!"
 	done
-; 0x18d6ac
 
-UnknownText_0x18d6ac: ; 0x18d6ac
+UnknownText_0x18d6ac:
 	text "Hm? Your #MON"
 	line "party is full."
 	done
-; 0x18d6ca
 
-UnknownText_0x18d6ca: ; 0x18d6ca
+UnknownText_0x18d6ca:
 	text "Dragon #MON are"
 	line "symbolic of our"
 	cont "clan."
@@ -586,9 +540,8 @@ UnknownText_0x18d6ca: ; 0x18d6ca
 	para "entrusted with"
 	line "one."
 	done
-; 0x18d724
 
-UnknownText_0x18d724: ; 0x18d724
+UnknownText_0x18d724:
 	text "CLAIR appears to"
 	line "have learned an"
 
@@ -598,9 +551,8 @@ UnknownText_0x18d724: ; 0x18d724
 	para "I thank you as her"
 	line "grandfather."
 	done
-; 0x18d782
 
-UnknownText_0x18d782: ; 0x18d782
+UnknownText_0x18d782:
 	text "A boy close to"
 	line "your age is in"
 	cont "training here."
@@ -611,26 +563,22 @@ UnknownText_0x18d782: ; 0x18d782
 	para "younger. It is a"
 	line "little worrisome…"
 	done
-; 0x18d7f6
 
-UnknownText_0x18d7f6: ; 0x18d7f6
+UnknownText_0x18d7f6:
 	text "Hah? I didn't"
 	line "quite catch that…"
 	done
-; 0x18d816
 
-UnknownText_0x18d816: ; 0x18d816
+UnknownText_0x18d816:
 	text "What was it you"
 	line "said?"
 	done
-; 0x18d82d
 
-UnknownText_0x18d82d: ; 0x18d82d
+UnknownText_0x18d82d:
 	text "Oh, I understand…"
 	done
-; 0x18d840
 
-UnknownText_0x18d840: ; 0x18d840
+UnknownText_0x18d840:
 	text "It's been quite"
 	line "some time since a"
 
@@ -641,9 +589,8 @@ UnknownText_0x18d840: ; 0x18d840
 	para "In fact, not since"
 	line "Master LANCE."
 	done
-; 0x18d8b1
 
-UnknownText_0x18d8b1: ; 0x18d8b1
+UnknownText_0x18d8b1:
 	text "You know young"
 	line "Master LANCE?"
 
@@ -654,9 +601,8 @@ UnknownText_0x18d8b1: ; 0x18d8b1
 	para "It's in their"
 	line "blood."
 	done
-; 0x18d916
 
-UnknownText_0x18d916: ; 0x18d916
+UnknownText_0x18d916:
 	text "So how did it go?"
 
 	para "I guess there's no"
@@ -668,41 +614,35 @@ UnknownText_0x18d916: ; 0x18d916
 
 	para "…What? You passed?"
 	done
-; 0x18d974
 
-UnknownText_0x18d974: ; 0x18d974
+UnknownText_0x18d974:
 	text "That can't be!"
 	done
-; 0x18d983
 
-UnknownText_0x18d983: ; 0x18d983
+UnknownText_0x18d983:
 	text "You're lying!"
 
 	para "Even I haven't"
 	line "been approved!"
 	done
-; 0x18d9ae
 
-UnknownText_0x18d9ae: ; 0x18d9ae
+UnknownText_0x18d9ae:
 	text "I-I understand…"
 	done
-; 0x18d9bf
 
-UnknownText_0x18d9bf: ; 0x18d9bf
+UnknownText_0x18d9bf:
 	text "Here, this is the"
 	line "RISINGBADGE…"
 
 	para "Hurry up! Take it!"
 	done
-; 0x18d9f2
 
-UnknownText_0x18d9f2: ; 0x18d9f2
+UnknownText_0x18d9f2:
 	text "<PLAYER> received"
 	line "RISINGBADGE."
 	done
-; 0x18da0b
 
-UnknownText_0x18da0b: ; 0x18da0b
+UnknownText_0x18da0b:
 	text "RISINGBADGE will"
 	line "enable your"
 
@@ -719,14 +659,12 @@ UnknownText_0x18da0b: ; 0x18da0b
 	para "command without"
 	line "question."
 	done
-; 0x18dab4
 
-UnknownText_0x18dab4: ; 0x18dab4
+UnknownText_0x18dab4:
 	text $56, $56, $56, $56, $56, $56
 	done
-; 0x18dabc
 
-DragonShrine_MapEventHeader: ; 0x18dabc
+DragonShrine_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -747,4 +685,3 @@ DragonShrine_MapEventHeader: ; 0x18dabc
 	person_event SPRITE_ELDER, 8, 6, $9, $0, 255, 255, $0, 0, ElderScript_0x18d205, $0000
 	person_event SPRITE_ELDER, 8, 11, $8, $0, 255, 255, $0, 0, ElderScript_0x18d20d, $0000
 	person_event SPRITE_CLAIR, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, $0790
-; 0x18db00

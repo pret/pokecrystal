@@ -1,4 +1,4 @@
-IndigoPlateauPokeCenter1F_MapScriptHeader: ; 0x180000
+IndigoPlateauPokeCenter1F_MapScriptHeader:
 	; trigger count
 	db 1
 
@@ -11,13 +11,11 @@ IndigoPlateauPokeCenter1F_MapScriptHeader: ; 0x180000
 	; callbacks
 
 	dbw 5, UnknownScript_0x18000a
-; 0x180009
 
-UnknownScript_0x180009: ; 0x180009
+UnknownScript_0x180009:
 	end
-; 0x18000a
 
-UnknownScript_0x18000a: ; 0x18000a
+UnknownScript_0x18000a:
 	domaptrigger GROUP_WILLS_ROOM, MAP_WILLS_ROOM, $0
 	domaptrigger GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM, $0
 	domaptrigger GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM, $0
@@ -41,9 +39,8 @@ UnknownScript_0x18000a: ; 0x18000a
 	clearevent EVENT_BEAT_CHAMPION_LANCE
 	setevent $075f
 	return
-; 0x180053
 
-UnknownScript_0x180053: ; 0x180053
+UnknownScript_0x180053:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
 	checkflag $005d
@@ -64,9 +61,8 @@ UnknownScript_0x180053: ; 0x180053
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface $0, RIGHT
 	jump UnknownScript_0x1800ce
-; 0x180094
 
-UnknownScript_0x180094: ; 0x180094
+UnknownScript_0x180094:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
 	checkflag $005d
@@ -85,7 +81,7 @@ UnknownScript_0x180094: ; 0x180094
 	applymovement $5, MovementData_0x18016b
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface $0, LEFT
-UnknownScript_0x1800ce: ; 0x1800ce
+UnknownScript_0x1800ce:
 	loadfont
 	writetext UnknownText_0x1801f5
 	closetext
@@ -102,9 +98,8 @@ UnknownScript_0x1800ce: ; 0x1800ce
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x180113
-; 0x1800f3
 
-UnknownScript_0x1800f3: ; 0x1800f3
+UnknownScript_0x1800f3:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5
 	loadtrainer RIVAL2, 4
@@ -112,9 +107,8 @@ UnknownScript_0x1800f3: ; 0x1800f3
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x180113
-; 0x180103
 
-UnknownScript_0x180103: ; 0x180103
+UnknownScript_0x180103:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5
 	loadtrainer RIVAL2, 5
@@ -122,9 +116,8 @@ UnknownScript_0x180103: ; 0x180103
 	reloadmapmusic
 	returnafterbattle
 	jump UnknownScript_0x180113
-; 0x180113
 
-UnknownScript_0x180113: ; 0x180113
+UnknownScript_0x180113:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x1802a4
@@ -136,24 +129,20 @@ UnknownScript_0x180113: ; 0x180113
 	dotrigger $0
 	playmapmusic
 	setflag $005d
-UnknownScript_0x18012b: ; 0x18012b
+UnknownScript_0x18012b:
 	end
-; 0x18012c
 
-NurseScript_0x18012c: ; 0x18012c
+NurseScript_0x18012c:
 	jumpstd pokecenternurse
-; 0x18012f
 
-ClerkScript_0x18012f: ; 0x18012f
+ClerkScript_0x18012f:
 	loadfont
 	pokemart $0, $0020
 	loadmovesprites
 	end
-; 0x180136
 
-CooltrainerMScript_0x180136: ; 0x180136
+CooltrainerMScript_0x180136:
 	jumptextfaceplayer UnknownText_0x180178
-; 0x180139
 
 TeleportGuyScript:
 	faceplayer
@@ -184,7 +173,7 @@ AbraScript:
 	loadmovesprites
 	end
 
-MovementData_0x180164: ; 0x180164
+MovementData_0x180164:
 	step_up
 	step_up
 	step_up
@@ -192,9 +181,8 @@ MovementData_0x180164: ; 0x180164
 	step_up
 	turn_head_left
 	step_end
-; 0x18016b
 
-MovementData_0x18016b: ; 0x18016b
+MovementData_0x18016b:
 	step_up
 	step_up
 	step_up
@@ -202,18 +190,16 @@ MovementData_0x18016b: ; 0x18016b
 	step_up
 	turn_head_right
 	step_end
-; 0x180172
 
-MovementData_0x180172: ; 0x180172
+MovementData_0x180172:
 	step_down
 	step_down
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x180178
 
-UnknownText_0x180178: ; 0x180178
+UnknownText_0x180178:
 	text "At the #MON"
 	line "LEAGUE, you'll get"
 
@@ -226,9 +212,8 @@ UnknownText_0x180178: ; 0x180178
 	para "lose, you have to"
 	line "start all over!"
 	done
-; 0x1801f5
 
-UnknownText_0x1801f5: ; 0x1801f5
+UnknownText_0x1801f5:
 	text "Hold it."
 
 	para "You're going to"
@@ -249,16 +234,14 @@ UnknownText_0x1801f5: ; 0x1801f5
 	para "<PLAYER>!"
 	line "I challenge you!"
 	done
-; 0x180295
 
-UnknownText_0x180295: ; 0x180295
+UnknownText_0x180295:
 	text "…"
 
 	para "OK--I lost…"
 	done
-; 0x1802a4
 
-UnknownText_0x1802a4: ; 0x1802a4
+UnknownText_0x1802a4:
 	text "…Darn… I still"
 	line "can't win…"
 
@@ -269,9 +252,8 @@ UnknownText_0x1802a4: ; 0x1802a4
 	para "Humph! Try not to"
 	line "lose!"
 	done
-; 0x1802fd
 
-UnknownText_0x1802fd: ; 0x1802fd
+UnknownText_0x1802fd:
 	text "…"
 
 	para "Whew…"
@@ -280,7 +262,6 @@ UnknownText_0x1802fd: ; 0x1802fd
 	para "I'm going to be"
 	line "the CHAMPION!"
 	done
-; 0x180335
 
 TeleportGuyText1:
 	text "Ah! You're chal-"
@@ -312,13 +293,12 @@ TeleportGuyNoText:
 	text "OK, OK. The best"
 	line "of luck to you!"
 	done
-; 0x180433
 
 AbraText:
 	text "ABRA: Aabra…"
 	done
 
-IndigoPlateauPokeCenter1F_MapEventHeader: ; 0x180441
+IndigoPlateauPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -345,4 +325,3 @@ IndigoPlateauPokeCenter1F_MapEventHeader: ; 0x180441
 	person_event SPRITE_SILVER, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, $077b
 	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
 	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, AbraScript, EVENT_TELEPORT_GUY
-; 0x1804b9

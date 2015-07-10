@@ -1,12 +1,11 @@
-Route35Goldenrodgate_MapScriptHeader: ; 0x69d35
+Route35Goldenrodgate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x69d37
 
-OfficerScript_0x69d37: ; 0x69d37
+OfficerScript_0x69d37:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_HP_UP_FROM_RANDY
@@ -29,52 +28,49 @@ OfficerScript_0x69d37: ; 0x69d37
 	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
 	setevent EVENT_GOT_KENYA
-UnknownScript_0x69d73: ; 0x69d73
+UnknownScript_0x69d73:
 	writetext UnknownText_0x69ed6
 	closetext
 	loadmovesprites
 	end
-; 0x69d79
 
-UnknownScript_0x69d79: ; 0x69d79
+UnknownScript_0x69d79:
 	writetext UnknownText_0x69f56
 	closetext
 	loadmovesprites
 	end
-; 0x69d7f
 
-UnknownScript_0x69d7f: ; 0x69d7f
+UnknownScript_0x69d7f:
 	writetext UnknownText_0x69f74
 	closetext
 	loadmovesprites
 	end
-; 0x69d85
 
-UnknownScript_0x69d85: ; 0x69d85
+UnknownScript_0x69d85:
 	writetext UnknownText_0x69f8b
 	keeptextopen
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x69d96
 	setevent EVENT_GOT_HP_UP_FROM_RANDY
-UnknownScript_0x69d92: ; 0x69d92
+UnknownScript_0x69d92:
 	writetext UnknownText_0x69fd9
 	closetext
-UnknownScript_0x69d96: ; 0x69d96
+UnknownScript_0x69d96:
 	loadmovesprites
 	end
 
-GiftSpearowMail: ; 0x69d98
+GiftSpearowMail:
 	db FLOWER_MAIL
 	db "DARK CAVE leads", $4E
 	db "to another road@"
-GiftSpearowName: ; 0x69db9
+GiftSpearowName:
 	db "KENYA@"
-GiftSpearowOTName: ; 0x69dbf
+GiftSpearowOTName:
 	db "RANDY@"
 
-	db 0 ; 0x69dc5 XXX is there a reason for this?
+	db 0
 
-PokefanFScript_0x69dc6: ; 0x69dc6
+PokefanFScript_0x69dc6:
 	faceplayer
 	loadfont
 	checkevent EVENT_FOUGHT_SUDOWOODO
@@ -83,20 +79,17 @@ PokefanFScript_0x69dc6: ; 0x69dc6
 	closetext
 	loadmovesprites
 	end
-; 0x69dd4
 
-UnknownScript_0x69dd4: ; 0x69dd4
+UnknownScript_0x69dd4:
 	writetext UnknownText_0x6a09a
 	closetext
 	loadmovesprites
 	end
-; 0x69dda
 
-FisherScript_0x69dda: ; 0x69dda
+FisherScript_0x69dda:
 	jumptextfaceplayer UnknownText_0x6a0cb
-; 0x69ddd
 
-UnknownText_0x69ddd: ; 0x69ddd
+UnknownText_0x69ddd:
 	text "Excuse me, kid!"
 	line "Can you do a guy"
 	cont "a favor?"
@@ -107,9 +100,8 @@ UnknownText_0x69ddd: ; 0x69ddd
 
 	para "He's on ROUTE 31."
 	done
-; 0x69e48
 
-UnknownText_0x69e48: ; 0x69e48
+UnknownText_0x69e48:
 	text "You will? Perfect!"
 	line "Thanks, kid!"
 
@@ -120,15 +112,13 @@ UnknownText_0x69e48: ; 0x69e48
 	para "You'll recognize"
 	line "him right away!"
 	done
-; 0x69eb8
 
-UnknownText_0x69eb8: ; 0x69eb8
+UnknownText_0x69eb8:
 	text "<PLAYER> received a"
 	line "#MON with MAIL."
 	done
-; 0x69ed6
 
-UnknownText_0x69ed6: ; 0x69ed6
+UnknownText_0x69ed6:
 	text "You can read it,"
 	line "but don't lose it!"
 	cont "ROUTE 31!"
@@ -140,21 +130,18 @@ UnknownText_0x69ed6: ; 0x69ed6
 	para "I wonder if it's"
 	line "been cleared?"
 	done
-; 0x69f56
 
-UnknownText_0x69f56: ; 0x69f56
+UnknownText_0x69f56:
 	text "You can't carry"
 	line "another #MON…"
 	done
-; 0x69f74
 
-UnknownText_0x69f74: ; 0x69f74
+UnknownText_0x69f74:
 	text "Oh… Never mind,"
 	line "then…"
 	done
-; 0x69f8b
 
-UnknownText_0x69f8b: ; 0x69f8b
+UnknownText_0x69f8b:
 	text "Thanks, kid! You"
 	line "made the delivery"
 	cont "for me!"
@@ -162,16 +149,14 @@ UnknownText_0x69f8b: ; 0x69f8b
 	para "Here's something"
 	line "for your trouble!"
 	done
-; 0x69fd9
 
-UnknownText_0x69fd9: ; 0x69fd9
+UnknownText_0x69fd9:
 	text "My pal was snooz-"
 	line "ing, right? Heh,"
 	cont "what'd I say?"
 	done
-; 0x6a00a
 
-UnknownText_0x6a00a: ; 0x6a00a
+UnknownText_0x6a00a:
 	text "A strange tree is"
 	line "blocking the road."
 
@@ -184,16 +169,14 @@ UnknownText_0x6a00a: ; 0x6a00a
 	para "watered it with a"
 	line "SQUIRTBOTTLE."
 	done
-; 0x6a09a
 
-UnknownText_0x6a09a: ; 0x6a09a
+UnknownText_0x6a09a:
 	text "I like the #MON"
 	line "Lullaby they play"
 	cont "on the radio."
 	done
-; 0x6a0cb
 
-UnknownText_0x6a0cb: ; 0x6a0cb
+UnknownText_0x6a0cb:
 	text "I wonder how many"
 	line "kinds of #MON"
 
@@ -206,9 +189,8 @@ UnknownText_0x6a0cb: ; 0x6a0cb
 	para "there were 150"
 	line "different kinds."
 	done
-; 0x6a148
 
-Route35Goldenrodgate_MapEventHeader: ; 0x6a148
+Route35Goldenrodgate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -230,4 +212,3 @@ Route35Goldenrodgate_MapEventHeader: ; 0x6a148
 	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x69d37, $ffff
 	person_event SPRITE_POKEFAN_F, 8, 10, $4, $10, 255, 255, $90, 0, PokefanFScript_0x69dc6, $ffff
 	person_event SPRITE_FISHER, 6, 7, $3, $0, 255, 255, $a0, 0, FisherScript_0x69dda, $ffff
-; 0x6a189

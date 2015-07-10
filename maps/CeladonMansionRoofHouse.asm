@@ -1,12 +1,11 @@
-CeladonMansionRoofHouse_MapScriptHeader: ; 0x71afb
+CeladonMansionRoofHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x71afd
 
-PharmacistScript_0x71afd: ; 0x71afd
+PharmacistScript_0x71afd:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TM03_CURSE
@@ -19,29 +18,26 @@ PharmacistScript_0x71afd: ; 0x71afd
 	closetext
 	loadmovesprites
 	end
-; 0x71b14
 
-UnknownScript_0x71b14: ; 0x71b14
+UnknownScript_0x71b14:
 	writetext UnknownText_0x71ba3
 	keeptextopen
 	verbosegiveitem TM_CURSE, 1
 	iffalse UnknownScript_0x71b25
 	setevent EVENT_GOT_TM03_CURSE
-UnknownScript_0x71b21: ; 0x71b21
+UnknownScript_0x71b21:
 	writetext UnknownText_0x71db3
 	closetext
-UnknownScript_0x71b25: ; 0x71b25
+UnknownScript_0x71b25:
 	loadmovesprites
 	end
-; 0x71b27
 
-UnknownText_0x71b27: ; 0x71b27
+UnknownText_0x71b27:
 	text "Let me recount a"
 	line "terrifying tale…"
 	done
-; 0x71b4a
 
-UnknownText_0x71b4a: ; 0x71b4a
+UnknownText_0x71b4a:
 	text "Then again, it's"
 	line "not as scary while"
 
@@ -51,9 +47,8 @@ UnknownText_0x71b4a: ; 0x71b4a
 	para "Come back after"
 	line "sunset, OK?"
 	done
-; 0x71ba3
 
-UnknownText_0x71ba3: ; 0x71ba3
+UnknownText_0x71ba3:
 	text "Once upon a time,"
 	line "there was a little"
 
@@ -107,9 +102,8 @@ UnknownText_0x71ba3: ; 0x71ba3
 	line "patiently, you may"
 	cont "take this--TM03!"
 	done
-; 0x71db3
 
-UnknownText_0x71db3: ; 0x71db3
+UnknownText_0x71db3:
 	text "TM03 is CURSE."
 
 	para "It's a terrifying"
@@ -118,9 +112,8 @@ UnknownText_0x71db3: ; 0x71db3
 	para "whittles down the"
 	line "victim's HP."
 	done
-; 0x71e03
 
-CeladonMansionRoofHouse_MapEventHeader: ; 0x71e03
+CeladonMansionRoofHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -138,4 +131,3 @@ CeladonMansionRoofHouse_MapEventHeader: ; 0x71e03
 	; people-events
 	db 1
 	person_event SPRITE_PHARMACIST, 6, 7, $6, $20, 255, 255, $a0, 0, PharmacistScript_0x71afd, $ffff
-; 0x71e20

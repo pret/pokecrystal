@@ -1,12 +1,11 @@
-WhirlIslandNW_MapScriptHeader: ; 0x18c378
+WhirlIslandNW_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c37a
 
-WhirlIslandNW_MapEventHeader: ; 0x18c37a
+WhirlIslandNW_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -25,4 +24,3 @@ WhirlIslandNW_MapEventHeader: ; 0x18c37a
 
 	; people-events
 	db 0
-; 0x18c394

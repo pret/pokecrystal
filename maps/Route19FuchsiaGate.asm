@@ -1,12 +1,11 @@
-Route19FuchsiaGate_MapScriptHeader: ; 0x1ab3f4
+Route19FuchsiaGate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1ab3f6
 
-OfficerScript_0x1ab3f6: ; 0x1ab3f6
+OfficerScript_0x1ab3f6:
 	faceplayer
 	loadfont
 	checkevent $00d7
@@ -15,16 +14,14 @@ OfficerScript_0x1ab3f6: ; 0x1ab3f6
 	closetext
 	loadmovesprites
 	end
-; 0x1ab404
 
-UnknownScript_0x1ab404: ; 0x1ab404
+UnknownScript_0x1ab404:
 	writetext UnknownText_0x1ab48a
 	closetext
 	loadmovesprites
 	end
-; 0x1ab40a
 
-UnknownText_0x1ab40a: ; 0x1ab40a
+UnknownText_0x1ab40a:
 	text "CINNABAR's volcano"
 	line "erupted."
 
@@ -36,18 +33,16 @@ UnknownText_0x1ab40a: ; 0x1ab40a
 	line "people of CINNABAR"
 	cont "are safe…"
 	done
-; 0x1ab48a
 
-UnknownText_0x1ab48a: ; 0x1ab48a
+UnknownText_0x1ab48a:
 	text "No CINNABAR citi-"
 	line "zens were injured"
 
 	para "by the eruption."
 	line "That's great!"
 	done
-; 0x1ab4cd
 
-Route19FuchsiaGate_MapEventHeader: ; 0x1ab4cd
+Route19FuchsiaGate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -67,4 +62,3 @@ Route19FuchsiaGate_MapEventHeader: ; 0x1ab4cd
 	; people-events
 	db 1
 	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x1ab3f6, $ffff
-; 0x1ab4f4

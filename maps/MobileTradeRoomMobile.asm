@@ -1,4 +1,4 @@
-MobileTradeRoomMobile_MapScriptHeader: ; 0x19356c
+MobileTradeRoomMobile_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,24 +8,20 @@ MobileTradeRoomMobile_MapScriptHeader: ; 0x19356c
 
 	; callback count
 	db 0
-; 0x193576
 
-UnknownScript_0x193576: ; 0x193576
+UnknownScript_0x193576:
 	priorityjump UnknownScript_0x19357b
 	end
-; 0x19357a
 
-UnknownScript_0x19357a: ; 0x19357a
+UnknownScript_0x19357a:
 	end
-; 0x19357b
 
-UnknownScript_0x19357b: ; 0x19357b
+UnknownScript_0x19357b:
 	dotrigger $1
 	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $4
 	end
-; 0x193582
 
-MapMobileTradeRoomMobileSignpost0Script: ; 0x193582
+MapMobileTradeRoomMobileSignpost0Script:
 	refreshscreen $0
 	special Function1037c2
 	writetext UnknownText_0x193591
@@ -34,15 +30,13 @@ MapMobileTradeRoomMobileSignpost0Script: ; 0x193582
 	special Function101231
 	loadmovesprites
 	end
-; 0x193591
 
-UnknownText_0x193591: ; 0x193591
+UnknownText_0x193591:
 	text "Establishing"
 	line "communications…"
 	done
-; 0x1935af
 
-MobileTradeRoomMobile_MapEventHeader: ; 0x1935af
+MobileTradeRoomMobile_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -60,4 +54,3 @@ MobileTradeRoomMobile_MapEventHeader: ; 0x1935af
 
 	; people-events
 	db 0
-; 0x1935c4

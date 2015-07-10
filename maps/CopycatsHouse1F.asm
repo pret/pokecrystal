@@ -1,16 +1,14 @@
-CopycatsHouse1F_MapScriptHeader: ; 0x18ad11
+CopycatsHouse1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18ad13
 
-PokefanMScript_0x18ad13: ; 0x18ad13
+PokefanMScript_0x18ad13:
 	jumptextfaceplayer UnknownText_0x18ad34
-; 0x18ad16
 
-PokefanFScript_0x18ad16: ; 0x18ad16
+PokefanFScript_0x18ad16:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -19,25 +17,22 @@ PokefanFScript_0x18ad16: ; 0x18ad16
 	closetext
 	loadmovesprites
 	end
-; 0x18ad24
 
-UnknownScript_0x18ad24: ; 0x18ad24
+UnknownScript_0x18ad24:
 	writetext UnknownText_0x18add3
 	closetext
 	loadmovesprites
 	end
-; 0x18ad2a
 
-ClefairyScript_0x18ad2a: ; 0x18ad2a
+ClefairyScript_0x18ad2a:
 	loadfont
 	writetext UnknownText_0x18ae4b
 	cry BLISSEY
 	closetext
 	loadmovesprites
 	end
-; 0x18ad34
 
-UnknownText_0x18ad34: ; 0x18ad34
+UnknownText_0x18ad34:
 	text "My daughter likes"
 	line "to mimic people."
 
@@ -47,18 +42,16 @@ UnknownText_0x18ad34: ; 0x18ad34
 	para "nickname COPYCAT"
 	line "around here."
 	done
-; 0x18ad95
 
-UnknownText_0x18ad95: ; 0x18ad95
+UnknownText_0x18ad95:
 	text "My daughter is so"
 	line "self-centered…"
 
 	para "She only has a few"
 	line "friends."
 	done
-; 0x18add3
 
-UnknownText_0x18add3: ; 0x18add3
+UnknownText_0x18add3:
 	text "She recently lost"
 	line "the # DOLL that"
 
@@ -69,14 +62,12 @@ UnknownText_0x18add3: ; 0x18add3
 	line "she's gotten even"
 	cont "better at mimicry…"
 	done
-; 0x18ae4b
 
-UnknownText_0x18ae4b: ; 0x18ae4b
+UnknownText_0x18ae4b:
 	text "BLISSEY: Bliisii!"
 	done
-; 0x18ae5e
 
-CopycatsHouse1F_MapEventHeader: ; 0x18ae5e
+CopycatsHouse1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -97,4 +88,3 @@ CopycatsHouse1F_MapEventHeader: ; 0x18ae5e
 	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $0, 0, PokefanMScript_0x18ad13, $ffff
 	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $a0, 0, PokefanFScript_0x18ad16, $ffff
 	person_event SPRITE_CLEFAIRY, 10, 10, $16, $0, 255, 255, $0, 0, ClefairyScript_0x18ad2a, $ffff
-; 0x18ae9a

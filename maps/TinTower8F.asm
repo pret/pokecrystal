@@ -1,24 +1,20 @@
-TinTower8F_MapScriptHeader: ; 0x185b33
+TinTower8F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x185b35
 
-ItemFragment_0x185b35: ; 0x185b35
+ItemFragment_0x185b35:
 	db NUGGET, 1
-; 0x185b37
 
-ItemFragment_0x185b37: ; 0x185b37
+ItemFragment_0x185b37:
 	db MAX_ELIXER, 1
-; 0x185b39
 
-ItemFragment_0x185b39: ; 0x185b39
+ItemFragment_0x185b39:
 	db FULL_RESTORE, 1
-; 0x185b3b
 
-TinTower8F_MapEventHeader: ; 0x185b3b
+TinTower8F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -42,4 +38,3 @@ TinTower8F_MapEventHeader: ; 0x185b3b
 	person_event SPRITE_POKE_BALL, 17, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x185b35, $0651
 	person_event SPRITE_POKE_BALL, 10, 15, $1, $0, 255, 255, $1, 0, ItemFragment_0x185b37, $0652
 	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x185b39, $0653
-; 0x185b86

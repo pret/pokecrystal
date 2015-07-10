@@ -1,16 +1,14 @@
-Route2Gate_MapScriptHeader: ; 0x9b950
+Route2Gate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x9b952
 
-ScientistScript_0x9b952: ; 0x9b952
+ScientistScript_0x9b952:
 	jumptextfaceplayer UnknownText_0x9b955
-; 0x9b955
 
-UnknownText_0x9b955: ; 0x9b955
+UnknownText_0x9b955:
 	text "Are you <PLAY_G>?"
 
 	para "I work as PROF."
@@ -23,9 +21,8 @@ UnknownText_0x9b955: ; 0x9b955
 	line "nearby in PALLET"
 	cont "TOWN."
 	done
-; 0x9b9ca
 
-Route2Gate_MapEventHeader: ; 0x9b9ca
+Route2Gate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -45,4 +42,3 @@ Route2Gate_MapEventHeader: ; 0x9b9ca
 	; people-events
 	db 1
 	person_event SPRITE_SCIENTIST, 8, 10, $4, $20, 255, 255, $90, 0, ScientistScript_0x9b952, $ffff
-; 0x9b9f1

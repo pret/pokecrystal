@@ -1,4 +1,4 @@
-CopycatsHouse2F_MapScriptHeader: ; 0x18ae9a
+CopycatsHouse2F_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,7 +8,6 @@ CopycatsHouse2F_MapScriptHeader: ; 0x18ae9a
 	; callbacks
 
 	dbw 2, CopycatsHouse2FCallback
-; 0x18ae9f
 
 CopycatsHouse2FCallback:
 	checkflag $0063
@@ -184,7 +183,7 @@ CopycatsHouse2FDoll:
 CopycatsHouse2FBookshelf:
 	jumpstd picturebookshelf
 
-MovementData_0x18afd0: ; 0x18afd0
+MovementData_0x18afd0:
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -195,9 +194,8 @@ MovementData_0x18afd0: ; 0x18afd0
 	turn_head_right
 	turn_head_down
 	step_end
-; 0x18afda
 
-UnknownText_0x18afda: ; 0x18afda
+UnknownText_0x18afda:
 	text "<PLAYER>: Hi! Do"
 	line "you like #MON?"
 
@@ -207,18 +205,16 @@ UnknownText_0x18afda: ; 0x18afda
 	para "<PLAYER>: Huh?"
 	line "You're strange!"
 	done
-; 0x18b028
 
-UnknownText_0x18b028: ; 0x18b028
+UnknownText_0x18b028:
 	text "COPYCAT: Hmm?"
 	line "Quit mimicking?"
 
 	para "But that's my"
 	line "favorite hobby!"
 	done
-; 0x18b064
 
-UnknownText_0x18b064: ; 0x18b064
+UnknownText_0x18b064:
 	text "<PLAYER>: Hi!"
 	line "I heard that you"
 
@@ -236,9 +232,8 @@ UnknownText_0x18b064: ; 0x18b064
 	line "it when you went"
 	cont "to VERMILION CITY?"
 	done
-; 0x18b116
 
-UnknownText_0x18b116: ; 0x18b116
+UnknownText_0x18b116:
 	text "COPYCAT: Pardon?"
 
 	para "I shouldn't decide"
@@ -249,9 +244,8 @@ UnknownText_0x18b116: ; 0x18b116
 	line "worried… What if"
 	cont "someone finds it?"
 	done
-; 0x18b17f
 
-UnknownText_0x18b17f: ; 0x18b17f
+UnknownText_0x18b17f:
 	text "COPYCAT: Yay!"
 	line "That's my CLEFAIRY"
 	cont "# DOLL!"
@@ -262,16 +256,14 @@ UnknownText_0x18b17f: ; 0x18b17f
 	para "sewn on? That's"
 	line "proof!"
 	done
-; 0x18b1e2
 
-UnknownText_0x18b1e2: ; 0x18b1e2
+UnknownText_0x18b1e2:
 	text "OK. Here's the"
 	line "MAGNET TRAIN PASS"
 	cont "like I promised!"
 	done
-; 0x18b214
 
-UnknownText_0x18b214: ; 0x18b214
+UnknownText_0x18b214:
 	text "COPYCAT: That's"
 	line "the PASS for the"
 	cont "MAGNET TRAIN."
@@ -283,9 +275,8 @@ UnknownText_0x18b214: ; 0x18b214
 	line "down our old house"
 	cont "for the STATION."
 	done
-; 0x18b298
 
-UnknownText_0x18b298: ; 0x18b298
+UnknownText_0x18b298:
 	text "<PLAYER>: Hi!"
 	line "Thanks a lot for"
 	cont "the rail PASS!"
@@ -296,15 +287,13 @@ UnknownText_0x18b298: ; 0x18b298
 	line "that fun to mimic"
 	cont "my every move?"
 	done
-; 0x18b2f5
 
-UnknownText_0x18b2f5: ; 0x18b2f5
+UnknownText_0x18b2f5:
 	text "COPYCAT: You bet!"
 	line "It's a scream!"
 	done
-; 0x18b316
 
-UnknownText_0x18b316: ; 0x18b316
+UnknownText_0x18b316:
 	text "<PLAYER>: Hi. You"
 	line "must like #MON."
 
@@ -314,9 +303,8 @@ UnknownText_0x18b316: ; 0x18b316
 	para "<PLAYER>: Pardon?"
 	line "You're weird!"
 	done
-; 0x18b366
 
-UnknownText_0x18b366: ; 0x18b366
+UnknownText_0x18b366:
 	text "<PLAYER>: Hi. Did"
 	line "you really lose"
 	cont "your # DOLL?"
@@ -334,9 +322,8 @@ UnknownText_0x18b366: ; 0x18b366
 	line "it when you were"
 	cont "in VERMILION?"
 	done
-; 0x18b415
 
-UnknownText_0x18b415: ; 0x18b415
+UnknownText_0x18b415:
 	text "<PLAYER>: Thank you"
 	line "for the rail PASS!"
 
@@ -348,21 +335,18 @@ UnknownText_0x18b415: ; 0x18b415
 	para "copy what I say"
 	line "and do?"
 	done
-; 0x18b476
 
-CopycatsDodrioText1: ; 0x18b476
+CopycatsDodrioText1:
 	text "DODRIO: Gii giii!"
 	done
-; 0x18b489
 
-CopycatsDodrioText2: ; 0x18b489
+CopycatsDodrioText2:
 	text "MIRROR, MIRROR ON"
 	line "THE WALL, WHO'S"
 
 	para "THE FAIREST ONE OF"
 	line "ALL?"
 	done
-; 0x18b4c4
 
 CopycatsHouse2FDollText:
 	text "This is a rare"
@@ -371,7 +355,7 @@ CopycatsHouse2FDollText:
 	para "It's only a doll…"
 	done
 
-CopycatsHouse2F_MapEventHeader: ; 0x18b4f0
+CopycatsHouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -395,4 +379,3 @@ CopycatsHouse2F_MapEventHeader: ; 0x18b4f0
 	person_event SPRITE_MONSTER, 5, 6, $6, $0, 255, 255, $a0, 0, CopycatsHouse2FDoll, $ffff
 	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, CopycatsHouse2FDoll, $ffff
 	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, Copycat, $06ef
-; 0x18b553

@@ -1,12 +1,11 @@
-RuinsofAlphOmanyteWordRoom_MapScriptHeader: ; 0x59b6c
+RuinsofAlphOmanyteWordRoom_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x59b6e
 
-RuinsofAlphOmanyteWordRoom_MapEventHeader: ; 0x59b6e
+RuinsofAlphOmanyteWordRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -24,4 +23,3 @@ RuinsofAlphOmanyteWordRoom_MapEventHeader: ; 0x59b6e
 
 	; people-events
 	db 0
-; 0x59b83

@@ -1,10 +1,9 @@
-GoldenrodBillsHouse_MapScriptHeader: ; 0x54be2
+GoldenrodBillsHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x54be4
 
 BillsHouseBill:
 	faceplayer
@@ -28,30 +27,26 @@ BillsHouseBill:
 	closetext
 	loadmovesprites
 	end
-; 0x54c13
 
-UnknownScript_0x54c13: ; 0x54c13
+UnknownScript_0x54c13:
 	writetext UnknownText_0x54e02
 	closetext
 	loadmovesprites
 	end
-; 0x54c19
 
-UnknownScript_0x54c19: ; 0x54c19
+UnknownScript_0x54c19:
 	writetext UnknownText_0x54e2d
 	closetext
 	loadmovesprites
 	end
-; 0x54c1f
 
-UnknownScript_0x54c1f: ; 0x54c1f
+UnknownScript_0x54c1f:
 	writetext UnknownText_0x54e42
 	closetext
 	loadmovesprites
 	end
-; 0x54c25
 
-BillsMom: ; 0x54c25
+BillsMom:
 	faceplayer
 	loadfont
 	checkevent $0712
@@ -60,14 +55,12 @@ BillsMom: ; 0x54c25
 	closetext
 	loadmovesprites
 	end
-; 0x54c33
 
-UnknownScript_0x54c33: ; 0x54c33
+UnknownScript_0x54c33:
 	writetext UnknownText_0x54f4e
 	closetext
 	loadmovesprites
 	end
-; 0x54c39
 
 BillsSister:
 	faceplayer
@@ -89,20 +82,17 @@ UnknownScript_0x54c58: ;0x54c58
 	closetext
 	loadmovesprites
 	end
-; 0x54c5e
 
-UnknownScript_0x54c5e: ; 0x54c5e
+UnknownScript_0x54c5e:
 	writetext UnknownText_0x54ff3
 	closetext
 	loadmovesprites
 	end
-; 0x54c64
 
-UnknownScript_0x54c64: ; 0x54c64
+UnknownScript_0x54c64:
 	writetext UnknownText_0x55046
 	keeptextopen
 	jump UnknownScript_0x54c5e
-; 0x54c6b
 
 BillsHouseBookshelf1:
 	jumpstd picturebookshelf
@@ -113,7 +103,7 @@ BillsHouseBookshelf2:
 BillsHouseRadio:
 	jumpstd radio2
 
-UnknownText_0x54c74: ; 0x54c74
+UnknownText_0x54c74:
 	text "BILL: Hi, <PLAYER>!"
 	line "Do us a favor and"
 	cont "take this EEVEE."
@@ -132,9 +122,8 @@ UnknownText_0x54c74: ; 0x54c74
 	line "to play with it,"
 	cont "<PLAYER>?"
 	done
-; 0x54d3f
 
-UnknownText_0x54d3f: ; 0x54d3f
+UnknownText_0x54d3f:
 	text "BILL: I knew you'd"
 	line "come through!"
 
@@ -147,37 +136,32 @@ UnknownText_0x54d3f: ; 0x54d3f
 	para "Take good care of"
 	line "it!"
 	done
-; 0x54dae
 
-UnknownText_0x54dae: ; 0x54dae
+UnknownText_0x54dae:
 	text "<PLAYER> received"
 	line "EEVEE!"
 	done
-; 0x54dc1
 
-UnknownText_0x54dc1: ; 0x54dc1
+UnknownText_0x54dc1:
 	text "BILL: PROF.ELM"
 	line "claims EEVEE may"
 
 	para "evolve in new and"
 	line "unknown ways."
 	done
-; 0x54e02
 
-UnknownText_0x54e02: ; 0x54e02
+UnknownText_0x54e02:
 	text "Whoa, wait. You"
 	line "can't carry any"
 	cont "more #MON."
 	done
-; 0x54e2d
 
-UnknownText_0x54e2d: ; 0x54e2d
+UnknownText_0x54e2d:
 	text "Oh… Now what to"
 	line "do?"
 	done
-; 0x54e42
 
-UnknownText_0x54e42: ; 0x54e42
+UnknownText_0x54e42:
 	text "BILL: My pop, he"
 	line "won't work. All he"
 
@@ -187,9 +171,8 @@ UnknownText_0x54e42: ; 0x54e42
 	para "He's getting to be"
 	line "a real headache…"
 	done
-; 0x54ea8
 
-UnknownText_0x54ea8: ; 0x54ea8
+UnknownText_0x54ea8:
 	text "Oh, you collect"
 	line "#MON? My son"
 	cont "BILL is an expert."
@@ -206,9 +189,8 @@ UnknownText_0x54ea8: ; 0x54ea8
 	para "CORNER without"
 	line "being called…"
 	done
-; 0x54f4e
 
-UnknownText_0x54f4e: ; 0x54f4e
+UnknownText_0x54f4e:
 	text "My husband was"
 	line "once known as a"
 
@@ -218,24 +200,21 @@ UnknownText_0x54f4e: ; 0x54f4e
 	para "taken after his"
 	line "father."
 	done
-; 0x54f9e
 
-UnknownText_0x54f9e: ; 0x54f9e
+UnknownText_0x54f9e:
 	text "Are you a trainer?"
 
 	para "I've got a useful"
 	line "phone number for"
 	cont "you."
 	done
-; 0x54fd9
 
-UnknownText_0x54fd9: ; 0x54fd9
+UnknownText_0x54fd9:
 	text "<PLAYER> recorded"
 	line "BILL's number."
 	done
-; 0x54ff3
 
-UnknownText_0x54ff3: ; 0x54ff3
+UnknownText_0x54ff3:
 	text "My brother made"
 	line "the PC #MON"
 	cont "storage system."
@@ -244,24 +223,21 @@ UnknownText_0x54ff3: ; 0x54ff3
 	line "give you BILL's"
 	cont "number…"
 	done
-; 0x55046
 
-UnknownText_0x55046: ; 0x55046
+UnknownText_0x55046:
 	text "You can't record"
 	line "any more numbers."
 	done
-; 0x55069
 
-UnknownText_0x55069: ; 0x55069
+UnknownText_0x55069:
 	text "My big brother"
 	line "BILL made the PC"
 
 	para "#MON storage"
 	line "system."
 	done
-; 0x5509f
 
-GoldenrodBillsHouse_MapEventHeader: ; 0x5509f
+GoldenrodBillsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -284,4 +260,3 @@ GoldenrodBillsHouse_MapEventHeader: ; 0x5509f
 	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillsHouseBill, $0712
 	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, BillsMom, $ffff
 	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, BillsSister, $ffff
-; 0x550e5

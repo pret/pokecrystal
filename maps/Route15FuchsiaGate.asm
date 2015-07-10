@@ -1,25 +1,22 @@
-Route15FuchsiaGate_MapScriptHeader: ; 0x19679c
+Route15FuchsiaGate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x19679e
 
-OfficerScript_0x19679e: ; 0x19679e
+OfficerScript_0x19679e:
 	jumptextfaceplayer UnknownText_0x1967a1
-; 0x1967a1
 
-UnknownText_0x1967a1: ; 0x1967a1
+UnknownText_0x1967a1:
 	text "You're working on"
 	line "a #DEX? That's"
 
 	para "really something."
 	line "Don't give up!"
 	done
-; 0x1967e1
 
-Route15FuchsiaGate_MapEventHeader: ; 0x1967e1
+Route15FuchsiaGate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -39,4 +36,3 @@ Route15FuchsiaGate_MapEventHeader: ; 0x1967e1
 	; people-events
 	db 1
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x19679e, $ffff
-; 0x196808

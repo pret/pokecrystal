@@ -1,49 +1,42 @@
-Route5_MapScriptHeader: ; 0x1adb17
+Route5_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1adb19
 
-PokefanMScript_0x1adb19: ; 0x1adb19
+PokefanMScript_0x1adb19:
 	jumptextfaceplayer UnknownText_0x1adb22
-; 0x1adb1c
 
-MapRoute5Signpost0Script: ; 0x1adb1c
+MapRoute5Signpost0Script:
 	jumptext UnknownText_0x1adb66
-; 0x1adb1f
 
-MapRoute5Signpost1Script: ; 0x1adb1f
+MapRoute5Signpost1Script:
 	jumptext UnknownText_0x1adb97
-; 0x1adb22
 
-UnknownText_0x1adb22: ; 0x1adb22
+UnknownText_0x1adb22:
 	text "The road is closed"
 	line "until the problem"
 
 	para "at the POWER PLANT"
 	line "is solved."
 	done
-; 0x1adb66
 
-UnknownText_0x1adb66: ; 0x1adb66
+UnknownText_0x1adb66:
 	text "UNDERGROUND PATH"
 
 	para "CERULEAN CITY -"
 	line "VERMILION CITY"
 	done
-; 0x1adb97
 
-UnknownText_0x1adb97: ; 0x1adb97
+UnknownText_0x1adb97:
 	text "What's this?"
 
 	para "House for Sale…"
 	line "Nobody lives here."
 	done
-; 0x1adbc7
 
-Route5_MapEventHeader: ; 0x1adbc7
+Route5_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -65,4 +58,3 @@ Route5_MapEventHeader: ; 0x1adbc7
 	; people-events
 	db 1
 	person_event SPRITE_POKEFAN_M, 20, 21, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1adb19, $0771
-; 0x1adbf8

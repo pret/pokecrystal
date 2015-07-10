@@ -1,12 +1,11 @@
-WhirlIslandCave_MapScriptHeader: ; 0x18c3ea
+WhirlIslandCave_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c3ec
 
-WhirlIslandCave_MapEventHeader: ; 0x18c3ec
+WhirlIslandCave_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -23,4 +22,3 @@ WhirlIslandCave_MapEventHeader: ; 0x18c3ec
 
 	; people-events
 	db 0
-; 0x18c3fc

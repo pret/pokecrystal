@@ -1,18 +1,15 @@
-MrFujisHouse_MapScriptHeader: ; 0x7e8c8
+MrFujisHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7e8ca
 
-SuperNerdScript_0x7e8ca: ; 0x7e8ca
+SuperNerdScript_0x7e8ca:
 	jumptextfaceplayer UnknownText_0x7e8f1
-; 0x7e8cd
 
-LassScript_0x7e8cd: ; 0x7e8cd
+LassScript_0x7e8cd:
 	jumptextfaceplayer UnknownText_0x7e940
-; 0x7e8d0
 
 MrFujisPsyduck:
 	loadfont
@@ -41,7 +38,7 @@ MrFujisPidgey:
 MrFujisHouseBookshelf:
 	jumpstd difficultbookshelf
 
-UnknownText_0x7e8f1: ; 0x7e8f1
+UnknownText_0x7e8f1:
 	text "MR.FUJI does live"
 	line "here, but he's not"
 
@@ -50,9 +47,8 @@ UnknownText_0x7e8f1: ; 0x7e8f1
 	para "He should be at"
 	line "the SOUL HOUSE."
 	done
-; 0x7e940
 
-UnknownText_0x7e940: ; 0x7e940
+UnknownText_0x7e940:
 	text "Some cold-hearted"
 	line "people stop caring"
 	cont "for their #MON."
@@ -63,7 +59,6 @@ UnknownText_0x7e940: ; 0x7e940
 	para "#MON and takes"
 	line "care of them."
 	done
-; 0x7e9b6
 
 MrFujisPsyduckText:
 	text "PSYDUCK: Gu-guwa?"
@@ -77,7 +72,7 @@ MrFujisPidgeyText:
 	text "PIDGEY: Pijji!"
 	done
 
-MrFujisHouse_MapEventHeader: ; 0x7e9ea
+MrFujisHouse_MapEventHeader:
 	; filler
 	db 0, 0
 

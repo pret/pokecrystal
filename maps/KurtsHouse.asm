@@ -1,4 +1,4 @@
-KurtsHouse_MapScriptHeader: ; 0x18e14f
+KurtsHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,9 +8,8 @@ KurtsHouse_MapScriptHeader: ; 0x18e14f
 	; callbacks
 
 	dbw 2, UnknownScript_0x18e154
-; 0x18e154
 
-UnknownScript_0x18e154: ; 0x18e154
+UnknownScript_0x18e154:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iffalse UnknownScript_0x18e177
 	checkevent $00c0
@@ -22,18 +21,16 @@ UnknownScript_0x18e154: ; 0x18e154
 	disappear $6
 	appear $3
 	return
-; 0x18e16f
 
-UnknownScript_0x18e16f: ; 0x18e16f
+UnknownScript_0x18e16f:
 	disappear $2
 	appear $5
 	disappear $3
 	appear $6
-UnknownScript_0x18e177: ; 0x18e177
+UnknownScript_0x18e177:
 	return
-; 0x18e178
 
-KurtScript_0x18e178: ; 0x18e178
+KurtScript_0x18e178:
 	faceplayer
 	loadfont
 	checkevent $0035
@@ -55,9 +52,8 @@ KurtScript_0x18e178: ; 0x18e178
 	waitbutton
 	special RestartMapMusic
 	end
-; 0x18e1ab
 
-UnknownScript_0x18e1ab: ; 0x18e1ab
+UnknownScript_0x18e1ab:
 	spriteface $0, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e46c
@@ -66,15 +62,14 @@ UnknownScript_0x18e1ab: ; 0x18e1ab
 	waitbutton
 	special RestartMapMusic
 	end
-; 0x18e1bf
 
-UnknownScript_0x18e1bf: ; 0x18e1bf
+UnknownScript_0x18e1bf:
 	writetext UnknownText_0x18e615
 	keeptextopen
 	verbosegiveitem LURE_BALL, 1
 	iffalse UnknownScript_0x18e2b2
 	setevent $0035
-UnknownScript_0x18e1cc: ; 0x18e1cc
+UnknownScript_0x18e1cc:
 	checkevent $0000
 	iftrue UnknownScript_0x18e29f
 	checkevent $0258
@@ -93,14 +88,14 @@ UnknownScript_0x18e1cc: ; 0x18e1cc
 	iftrue UnknownScript_0x18e338
 	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e34e
-UnknownScript_0x18e202: ; 0x18e202
+UnknownScript_0x18e202:
 	checkevent $0001
 	iftrue UnknownScript_0x18e212
 	checkevent $0002
 	iftrue UnknownScript_0x18e212
 	writetext UnknownText_0x18e6c9
 	closetext
-UnknownScript_0x18e212: ; 0x18e212
+UnknownScript_0x18e212:
 	checkitem RED_APRICORN
 	iftrue UnknownScript_0x18e249
 	checkitem BLU_APRICORN
@@ -121,16 +116,14 @@ UnknownScript_0x18e212: ; 0x18e212
 	iftrue UnknownScript_0x18e243
 	loadmovesprites
 	end
-; 0x18e243
 
-UnknownScript_0x18e243: ; 0x18e243
+UnknownScript_0x18e243:
 	writetext UnknownText_0x18e6c9
 	closetext
 	loadmovesprites
 	end
-; 0x18e249
 
-UnknownScript_0x18e249: ; 0x18e249
+UnknownScript_0x18e249:
 	writetext UnknownText_0x18e736
 	keeptextopen
 	setevent $0002
@@ -144,150 +137,133 @@ UnknownScript_0x18e249: ; 0x18e249
 	if_equal $65, UnknownScript_0x18e293
 	setevent $0258
 	jump UnknownScript_0x18e299
-; 0x18e275
 
-UnknownScript_0x18e275: ; 0x18e275
+UnknownScript_0x18e275:
 	setevent $0259
 	jump UnknownScript_0x18e299
-; 0x18e27b
 
-UnknownScript_0x18e27b: ; 0x18e27b
+UnknownScript_0x18e27b:
 	setevent $025a
 	jump UnknownScript_0x18e299
-; 0x18e281
 
-UnknownScript_0x18e281: ; 0x18e281
+UnknownScript_0x18e281:
 	setevent $025b
 	jump UnknownScript_0x18e299
-; 0x18e287
 
-UnknownScript_0x18e287: ; 0x18e287
+UnknownScript_0x18e287:
 	setevent $025c
 	jump UnknownScript_0x18e299
-; 0x18e28d
 
-UnknownScript_0x18e28d: ; 0x18e28d
+UnknownScript_0x18e28d:
 	setevent $025d
 	jump UnknownScript_0x18e299
-; 0x18e293
 
-UnknownScript_0x18e293: ; 0x18e293
+UnknownScript_0x18e293:
 	setevent $025e
 	jump UnknownScript_0x18e299
-; 0x18e299
 
-UnknownScript_0x18e299: ; 0x18e299
+UnknownScript_0x18e299:
 	setevent $0000
 	setflag $0050
-UnknownScript_0x18e29f: ; 0x18e29f
+UnknownScript_0x18e29f:
 	writetext UnknownText_0x18e779
 	closetext
 	loadmovesprites
 	end
-; 0x18e2a5
 
-UnknownScript_0x18e2a5: ; 0x18e2a5
+UnknownScript_0x18e2a5:
 	writetext UnknownText_0x18e7bc
 	closetext
 	loadmovesprites
 	end
-; 0x18e2ab
 
-UnknownScript_0x18e2ab: ; 0x18e2ab
+UnknownScript_0x18e2ab:
 	setevent $0001
-UnknownScript_0x18e2ae: ; 0x18e2ae
+UnknownScript_0x18e2ae:
 	writetext UnknownText_0x18e82a
 	closetext
-UnknownScript_0x18e2b2: ; 0x18e2b2
+UnknownScript_0x18e2b2:
 	loadmovesprites
 	end
-; 0x18e2b4
 
-UnknownScript_0x18e2b4: ; 0x18e2b4
+UnknownScript_0x18e2b4:
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LEVEL_BALL, $16
 	iffalse UnknownScript_0x18e2b2
-UnknownScript_0x18e2c4: ; 0x18e2c4
+UnknownScript_0x18e2c4:
 	clearevent $0258
 	jump UnknownScript_0x18e2ab
-; 0x18e2ca
 
-UnknownScript_0x18e2ca: ; 0x18e2ca
+UnknownScript_0x18e2ca:
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LURE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
-UnknownScript_0x18e2da: ; 0x18e2da
+UnknownScript_0x18e2da:
 	clearevent $0259
 	jump UnknownScript_0x18e2ab
-; 0x18e2e0
 
-UnknownScript_0x18e2e0: ; 0x18e2e0
+UnknownScript_0x18e2e0:
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 MOON_BALL, $16
 	iffalse UnknownScript_0x18e2b2
-UnknownScript_0x18e2f0: ; 0x18e2f0
+UnknownScript_0x18e2f0:
 	clearevent $025a
 	jump UnknownScript_0x18e2ab
-; 0x18e2f6
 
-UnknownScript_0x18e2f6: ; 0x18e2f6
+UnknownScript_0x18e2f6:
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 FRIEND_BALL, $16
 	iffalse UnknownScript_0x18e2b2
-UnknownScript_0x18e306: ; 0x18e306
+UnknownScript_0x18e306:
 	clearevent $025b
 	jump UnknownScript_0x18e2ab
-; 0x18e30c
 
-UnknownScript_0x18e30c: ; 0x18e30c
+UnknownScript_0x18e30c:
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 FAST_BALL, $16
 	iffalse UnknownScript_0x18e2b2
-UnknownScript_0x18e31c: ; 0x18e31c
+UnknownScript_0x18e31c:
 	clearevent $025c
 	jump UnknownScript_0x18e2ab
-; 0x18e322
 
-UnknownScript_0x18e322: ; 0x18e322
+UnknownScript_0x18e322:
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 HEAVY_BALL, $16
 	iffalse UnknownScript_0x18e2b2
-UnknownScript_0x18e332: ; 0x18e332
+UnknownScript_0x18e332:
 	clearevent $025d
 	jump UnknownScript_0x18e2ab
-; 0x18e338
 
-UnknownScript_0x18e338: ; 0x18e338
+UnknownScript_0x18e338:
 	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LOVE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
-UnknownScript_0x18e348: ; 0x18e348
+UnknownScript_0x18e348:
 	clearevent $025e
 	jump UnknownScript_0x18e2ab
-; 0x18e34e
 
-UnknownScript_0x18e34e: ; 0x18e34e
+UnknownScript_0x18e34e:
 	checkevent $00bf
 	iftrue UnknownScript_0x18e368
 	checkitem GS_BALL
@@ -299,9 +275,8 @@ UnknownScript_0x18e34e: ; 0x18e34e
 	takeitem GS_BALL, 1
 	setflag $0050
 	end
-; 0x18e368
 
-UnknownScript_0x18e368: ; 0x18e368
+UnknownScript_0x18e368:
 	checkflag $0050
 	iffalse UnknownScript_0x18e378
 	writetext UnknownText_0x18e934
@@ -310,9 +285,8 @@ UnknownScript_0x18e368: ; 0x18e368
 	closetext
 	loadmovesprites
 	end
-; 0x18e378
 
-UnknownScript_0x18e378: ; 0x18e378
+UnknownScript_0x18e378:
 	writetext UnknownText_0x18e95c
 	closetext
 	loadmovesprites
@@ -328,13 +302,12 @@ UnknownScript_0x18e378: ; 0x18e378
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e466
 	jump UnknownScript_0x18e3ac
-; 0x18e3a2
 
-UnknownScript_0x18e3a2: ; 0x18e3a2
+UnknownScript_0x18e3a2:
 	spriteface $0, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e46c
-UnknownScript_0x18e3ac: ; 0x18e3ac
+UnknownScript_0x18e3ac:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	clearevent $07a4
@@ -342,14 +315,13 @@ UnknownScript_0x18e3ac: ; 0x18e3ac
 	special RestartMapMusic
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $2
 	end
-; 0x18e3bd
 
-KurtScript_0x18e3bd: ; 0x18e3bd
+KurtScript_0x18e3bd:
 	faceplayer
 	loadfont
 	checkevent $00bf
 	iftrue UnknownScript_0x18e3e0
-UnknownScript_0x18e3c5: ; 0x18e3c5
+UnknownScript_0x18e3c5:
 	checkevent $00bb
 	iffalse UnknownScript_0x18e3d4
 	writetext UnknownText_0x18e7d8
@@ -357,18 +329,16 @@ UnknownScript_0x18e3c5: ; 0x18e3c5
 	loadmovesprites
 	spriteface $5, UP
 	end
-; 0x18e3d4
 
-UnknownScript_0x18e3d4: ; 0x18e3d4
+UnknownScript_0x18e3d4:
 	writetext UnknownText_0x18e863
 	closetext
 	loadmovesprites
 	spriteface $5, UP
 	setevent $00bb
 	end
-; 0x18e3e0
 
-UnknownScript_0x18e3e0: ; 0x18e3e0
+UnknownScript_0x18e3e0:
 	writetext UnknownText_0x18e934
 	closetext
 	spriteface $5, UP
@@ -376,7 +346,6 @@ UnknownScript_0x18e3e0: ; 0x18e3e0
 	closetext
 	loadmovesprites
 	end
-; 0x18e3ed
 
 KurtsGranddaughter1:
 	faceplayer
@@ -438,7 +407,7 @@ KurtsGranddaughter2Subscript:
 	spriteface $6, RIGHT
 	end
 
-KurtsGranddaughterFunScript: ; 0x18e448
+KurtsGranddaughterFunScript:
 	loadfont
 	writetext KurtsGranddaughterFunText
 	closetext
@@ -466,16 +435,15 @@ KurtsHouseBookshelf:
 KurtsHouseRadio:
 	jumpstd radio2
 
-MovementData_0x18e466: ; 0x18e466
+MovementData_0x18e466:
 	big_step_down
 	big_step_down
 	big_step_down
 	big_step_down
 	big_step_down
 	step_end
-; 0x18e46c
 
-MovementData_0x18e46c: ; 0x18e46c
+MovementData_0x18e46c:
 	big_step_right
 	big_step_down
 	big_step_down
@@ -483,9 +451,8 @@ MovementData_0x18e46c: ; 0x18e46c
 	big_step_down
 	big_step_down
 	step_end
-; 0x18e473
 
-UnknownText_0x18e473: ; 0x18e473
+UnknownText_0x18e473:
 	text "Hm? Who are you?"
 
 	para "<PLAYER>, eh? You"
@@ -525,9 +492,8 @@ UnknownText_0x18e473: ; 0x18e473
 	line "Old KURT is on his"
 	cont "way!"
 	done
-; 0x18e615
 
-UnknownText_0x18e615: ; 0x18e615
+UnknownText_0x18e615:
 	text "KURT: Hi, <PLAYER>!"
 
 	para "You handled your-"
@@ -545,9 +511,8 @@ UnknownText_0x18e615: ; 0x18e615
 	para "This is all I have"
 	line "now, but take it."
 	done
-; 0x18e6c9
 
-UnknownText_0x18e6c9: ; 0x18e6c9
+UnknownText_0x18e6c9:
 	text "KURT: I make BALLS"
 	line "from APRICORNS."
 
@@ -558,64 +523,56 @@ UnknownText_0x18e6c9: ; 0x18e6c9
 	para "I'll make BALLS"
 	line "out of them."
 	done
-; 0x18e736
 
-UnknownText_0x18e736: ; 0x18e736
+UnknownText_0x18e736:
 	text "KURT: You have an"
 	line "APRICORN for me?"
 
 	para "Fine! I'll turn it"
 	line "into a BALL."
 	done
-; 0x18e779
 
-UnknownText_0x18e779: ; 0x18e779
+UnknownText_0x18e779:
 	text "KURT: It'll take a"
 	line "day to make you a"
 
 	para "BALL. Come back"
 	line "for it later."
 	done
-; 0x18e7bc
 
-UnknownText_0x18e7bc: ; 0x18e7bc
+UnknownText_0x18e7bc:
 	text "KURT: Oh…"
 	line "That's a letdown."
 	done
-; 0x18e7d8
 
-UnknownText_0x18e7d8: ; 0x18e7d8
+UnknownText_0x18e7d8:
 	text "KURT: I'm working!"
 	line "Don't bother me!"
 	done
-; 0x18e7fb
 
-UnknownText_0x18e7fb: ; 0x18e7fb
+UnknownText_0x18e7fb:
 	text "KURT: Ah, <PLAYER>!"
 	line "I just finished"
 	cont "your BALL. Here!"
 	done
-; 0x18e82a
 
-UnknownText_0x18e82a: ; 0x18e82a
+UnknownText_0x18e82a:
 	text "KURT: That turned"
 	line "out great."
 
 	para "Try catching"
 	line "#MON with it."
 	done
-; 0x18e863
 
-UnknownText_0x18e863: ; 0x18e863
+UnknownText_0x18e863:
 	text "KURT: Now that my"
 	line "granddaughter is"
 
 	para "helping me, I can"
 	line "work much faster."
 	done
-; 0x18e8ab
 
-UnknownText_0x18e8ab: ; 0x18e8ab
+UnknownText_0x18e8ab:
 	text "Wh-what is that?"
 
 	para "I've never seen"
@@ -630,21 +587,18 @@ UnknownText_0x18e8ab: ; 0x18e8ab
 	para "Let me check it"
 	line "for you."
 	done
-; 0x18e934
 
-UnknownText_0x18e934: ; 0x18e934
+UnknownText_0x18e934:
 	text "I'm checking it"
 	line "now."
 	done
-; 0x18e949
 
-UnknownText_0x18e949: ; 0x18e949
+UnknownText_0x18e949:
 	text "Ah-ha! I see!"
 	line "So…"
 	done
-; 0x18e95c
 
-UnknownText_0x18e95c: ; 0x18e95c
+UnknownText_0x18e95c:
 	text "<PLAYER>!"
 
 	para "This BALL started"
@@ -724,7 +678,7 @@ KurtsHouseCelebiStatueText:
 	cont "tector."
 	done
 
-KurtsHouse_MapEventHeader: ; 0x18eba8
+KurtsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -753,4 +707,3 @@ KurtsHouse_MapEventHeader: ; 0x18eba8
 	person_event SPRITE_SLOWPOKE, 7, 10, $1, $0, 255, 255, $0, 0, KurtsHouseSlowpoke, $06fd
 	person_event SPRITE_KURT, 7, 18, $7, $0, 255, 255, $0, 0, KurtScript_0x18e3bd, $073f
 	person_event SPRITE_TWIN, 8, 15, $9, $0, 255, 255, $0, 0, KurtsGranddaughter2, $078d
-; 0x18ec1c

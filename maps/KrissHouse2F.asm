@@ -1,4 +1,4 @@
-KrissHouse2F_MapScriptHeader: ; 0x7abab
+KrissHouse2F_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -10,29 +10,24 @@ KrissHouse2F_MapScriptHeader: ; 0x7abab
 	dbw 5, UnknownScript_0x7abb4
 
 	dbw 1, UnknownScript_0x7abc5
-; 0x7abb3
 
-UnknownScript_0x7abb3: ; 0x7abb3
+UnknownScript_0x7abb3:
 	end
-; 0x7abb4
 
-UnknownScript_0x7abb4: ; 0x7abb4
+UnknownScript_0x7abb4:
 	special Function27043
 	setevent $0007
 	checkevent $0036
 	iftrue UnknownScript_0x7abc4
 	jumpstd initializeevents
 	return
-; 0x7abc4
 
-UnknownScript_0x7abc4: ; 0x7abc4
+UnknownScript_0x7abc4:
 	return
-; 0x7abc5
 
-UnknownScript_0x7abc5: ; 0x7abc5
+UnknownScript_0x7abc5:
 	special Function26feb
 	return
-; 0x7abc9
 
 
 	db 0, 0, 0 ; filler
@@ -117,7 +112,7 @@ KrisRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-KrissHouse2F_MapEventHeader: ; 0x7ac99
+KrissHouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 

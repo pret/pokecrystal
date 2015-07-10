@@ -1,30 +1,25 @@
-TinTower4F_MapScriptHeader: ; 0x185a56
+TinTower4F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x185a58
 
-ItemFragment_0x185a58: ; 0x185a58
+ItemFragment_0x185a58:
 	db ULTRA_BALL, 1
-; 0x185a5a
 
-ItemFragment_0x185a5a: ; 0x185a5a
+ItemFragment_0x185a5a:
 	db PP_UP, 1
-; 0x185a5c
 
-ItemFragment_0x185a5c: ; 0x185a5c
+ItemFragment_0x185a5c:
 	db ESCAPE_ROPE, 1
-; 0x185a5e
 
-MapTinTower4FSignpostItem0: ; 0x185a5e
+MapTinTower4FSignpostItem0:
 	dw $007d
 	db MAX_POTION
 	
-; 0x185a61
 
-TinTower4F_MapEventHeader: ; 0x185a61
+TinTower4F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -47,4 +42,3 @@ TinTower4F_MapEventHeader: ; 0x185a61
 	person_event SPRITE_POKE_BALL, 14, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a58, $064c
 	person_event SPRITE_POKE_BALL, 18, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a5a, $064d
 	person_event SPRITE_POKE_BALL, 16, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a5c, $064e
-; 0x185aa7

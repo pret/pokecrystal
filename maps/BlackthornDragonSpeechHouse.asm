@@ -1,23 +1,20 @@
-BlackthornDragonSpeechHouse_MapScriptHeader: ; 0x195947
+BlackthornDragonSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x195949
 
-GrannyScript_0x195949: ; 0x195949
+GrannyScript_0x195949:
 	jumptextfaceplayer UnknownText_0x19595c
-; 0x19594c
 
-EkansScript_0x19594c: ; 0x19594c
+EkansScript_0x19594c:
 	loadfont
 	writetext UnknownText_0x1959ee
 	cry DRATINI
 	closetext
 	loadmovesprites
 	end
-; 0x195956
 
 UnknownScript_0x195956:
 	jumpstd picturebookshelf
@@ -25,7 +22,7 @@ UnknownScript_0x195956:
 UnknownScript_0x195959:
 	jumpstd magazinebookshelf
 
-UnknownText_0x19595c: ; 0x19595c
+UnknownText_0x19595c:
 	text "A clan of trainers"
 	line "who can freely"
 
@@ -39,14 +36,12 @@ UnknownText_0x19595c: ; 0x19595c
 	para "about dragons in"
 	line "this town."
 	done
-; 0x1959ee
 
-UnknownText_0x1959ee: ; 0x1959ee
+UnknownText_0x1959ee:
 	text "DRATINI: Draa!"
 	done
-; 0x1959fe
 
-BlackthornDragonSpeechHouse_MapEventHeader: ; 0x1959fe
+BlackthornDragonSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -65,4 +60,3 @@ BlackthornDragonSpeechHouse_MapEventHeader: ; 0x1959fe
 	db 2
 	person_event SPRITE_GRANNY, 7, 6, $3, $0, 255, 255, $0, 0, GrannyScript_0x195949, $ffff
 	person_event SPRITE_EKANS, 9, 9, $16, $0, 255, 255, $90, 0, EkansScript_0x19594c, $ffff
-; 0x195a28

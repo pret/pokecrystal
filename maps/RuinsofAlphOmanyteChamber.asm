@@ -1,4 +1,4 @@
-RuinsofAlphOmanyteChamber_MapScriptHeader: ; 0x58bdc
+RuinsofAlphOmanyteChamber_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,41 +12,35 @@ RuinsofAlphOmanyteChamber_MapScriptHeader: ; 0x58bdc
 	; callbacks
 
 	dbw 1, UnknownScript_0x58bf8
-; 0x58be9
 
-UnknownScript_0x58be9: ; 0x58be9
+UnknownScript_0x58be9:
 	special Function8adef
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58bf3
 	end
-; 0x58bf3
 
-UnknownScript_0x58bf3: ; 0x58bf3
+UnknownScript_0x58bf3:
 	priorityjump UnknownScript_0x58c12
 	end
-; 0x58bf7
 
-UnknownScript_0x58bf7: ; 0x58bf7
+UnknownScript_0x58bf7:
 	end
-; 0x58bf8
 
-UnknownScript_0x58bf8: ; 0x58bf8
+UnknownScript_0x58bf8:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58c02
 	changeblock $4, $0, $2e
-UnknownScript_0x58c02: ; 0x58c02
+UnknownScript_0x58c02:
 	checkevent $02a2
 	iffalse UnknownScript_0x58c09
 	return
-; 0x58c09
 
-UnknownScript_0x58c09: ; 0x58c09
+UnknownScript_0x58c09:
 	changeblock $2, $2, $1
 	changeblock $4, $2, $2
 	return
-; 0x58c12
 
-UnknownScript_0x58c12: ; 0x58c12
+UnknownScript_0x58c12:
 	pause 30
 	earthquake 30
 	showemote $0, $0, 20
@@ -58,18 +52,16 @@ UnknownScript_0x58c12: ; 0x58c12
 	dotrigger $1
 	loadmovesprites
 	end
-; 0x58c2a
 
-MapRuinsofAlphOmanyteChamberSignpost2Script: ; 0x58c2a
+MapRuinsofAlphOmanyteChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $1
 	special Functionc360
 	loadmovesprites
 	iftrue UnknownScript_0x58c36
 	end
-; 0x58c36
 
-UnknownScript_0x58c36: ; 0x58c36
+UnknownScript_0x58c36:
 	setevent $0705
 	setevent $02a2
 	setflag $002c
@@ -87,26 +79,22 @@ UnknownScript_0x58c36: ; 0x58c36
 	pause 20
 	warpcheck
 	end
-; 0x58c63
 
-MapRuinsofAlphOmanyteChamberSignpost1Script: ; 0x58c63
+MapRuinsofAlphOmanyteChamberSignpost1Script:
 	jumptext UnknownText_0x58d01
-; 0x58c66
 
-MapRuinsofAlphOmanyteChamberSignpost3Script: ; 0x58c66
+MapRuinsofAlphOmanyteChamberSignpost3Script:
 	jumptext UnknownText_0x58d26
-; 0x58c69
 
-MapRuinsofAlphOmanyteChamberSignpost4Script: ; 0x58c69
+MapRuinsofAlphOmanyteChamberSignpost4Script:
 	loadfont
 	writetext UnknownText_0x58c8e
 	writebyte $2
 	special Function8ae68
 	loadmovesprites
 	end
-; 0x58c74
 
-MapRuinsofAlphOmanyteChamberSignpost5Script: ; 0x58c74
+MapRuinsofAlphOmanyteChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58c85
 	loadfont
@@ -115,62 +103,53 @@ MapRuinsofAlphOmanyteChamberSignpost5Script: ; 0x58c74
 	special Function8ae68
 	loadmovesprites
 	end
-; 0x58c85
 
-UnknownScript_0x58c85: ; 0x58c85
+UnknownScript_0x58c85:
 	loadfont
 	writetext UnknownText_0x58ce1
 	closetext
 	loadmovesprites
 	end
-; 0x58c8c
 
-MovementData_0x58c8c: ; 0x58c8c
+MovementData_0x58c8c:
 	db $59 ; movement
 	step_end
-; 0x58c8e
 
-UnknownText_0x58c8e: ; 0x58c8e
+UnknownText_0x58c8e:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
-; 0x58caf
 
 ; possibly unused.. this again?
-UnknownText_0x58caf: ; 0x58caf
+UnknownText_0x58caf:
 	text "It's UNOWN text!"
 	done
-; 0x58cc0
 
-UnknownText_0x58cc0: ; 0x58cc0
+UnknownText_0x58cc0:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
-; 0x58ce1
 
-UnknownText_0x58ce1: ; 0x58ce1
+UnknownText_0x58ce1:
 	text "There's a big hole"
 	line "in the wall!"
 	done
-; 0x58d01
 
-UnknownText_0x58d01: ; 0x58d01
+UnknownText_0x58d01:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
 	done
-; 0x58d26
 
-UnknownText_0x58d26: ; 0x58d26
+UnknownText_0x58d26:
 	text "This #MON"
 	line "drifted in the"
 
 	para "sea by twisting"
 	line "its ten tentacles."
 	done
-; 0x58d63
 
-RuinsofAlphOmanyteChamber_MapEventHeader: ; 0x58d63
+RuinsofAlphOmanyteChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -196,4 +175,3 @@ RuinsofAlphOmanyteChamber_MapEventHeader: ; 0x58d63
 
 	; people-events
 	db 0
-; 0x58da0

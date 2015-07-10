@@ -1,12 +1,11 @@
-CeladonDeptStoreElevator_MapScriptHeader: ; 0x713ab
+CeladonDeptStoreElevator_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x713ad
 
-MapCeladonDeptStoreElevatorSignpost0Script: ; 0x713ad
+MapCeladonDeptStoreElevatorSignpost0Script:
 	loadfont
 	elevator Elevator_0x713be
 	loadmovesprites
@@ -15,12 +14,11 @@ MapCeladonDeptStoreElevatorSignpost0Script: ; 0x713ad
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitbutton
-UnknownScript_0x713bd: ; 0x713bd
+UnknownScript_0x713bd:
 	end
-; 0x713be
 
 
-Elevator_0x713be: ; 0x713be
+Elevator_0x713be:
 	db 6 ; floors
 	db _1F,  4, GROUP_CELADON_DEPT_STORE_1F, MAP_CELADON_DEPT_STORE_1F
 	db _2F,  3, GROUP_CELADON_DEPT_STORE_2F, MAP_CELADON_DEPT_STORE_2F
@@ -29,10 +27,9 @@ Elevator_0x713be: ; 0x713be
 	db _5F,  3, GROUP_CELADON_DEPT_STORE_5F, MAP_CELADON_DEPT_STORE_5F
 	db _6F,  2, GROUP_CELADON_DEPT_STORE_6F, MAP_CELADON_DEPT_STORE_6F
 	db $ff ; end
-; 0x713d8
 
 
-CeladonDeptStoreElevator_MapEventHeader: ; 0x713d8
+CeladonDeptStoreElevator_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -50,4 +47,3 @@ CeladonDeptStoreElevator_MapEventHeader: ; 0x713d8
 
 	; people-events
 	db 0
-; 0x713ed

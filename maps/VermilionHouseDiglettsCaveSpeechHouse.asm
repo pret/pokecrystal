@@ -1,16 +1,14 @@
-VermilionHouseDiglettsCaveSpeechHouse_MapScriptHeader: ; 0x19202f
+VermilionHouseDiglettsCaveSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x192031
 
-GentlemanScript_0x192031: ; 0x192031
+GentlemanScript_0x192031:
 	jumptextfaceplayer UnknownText_0x192034
-; 0x192034
 
-UnknownText_0x192034: ; 0x192034
+UnknownText_0x192034:
 	text "Over many years,"
 	line "DIGLETT dug a"
 	cont "large tunnel."
@@ -18,9 +16,8 @@ UnknownText_0x192034: ; 0x192034
 	para "That tunnel goes"
 	line "to a distant town."
 	done
-; 0x192086
 
-VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader: ; 0x192086
+VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -38,4 +35,3 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader: ; 0x192086
 	; people-events
 	db 1
 	person_event SPRITE_GENTLEMAN, 7, 5, $4, $10, 255, 255, $80, 0, GentlemanScript_0x192031, $ffff
-; 0x1920a3

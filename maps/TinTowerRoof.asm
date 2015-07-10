@@ -1,4 +1,4 @@
-TinTowerRoof_MapScriptHeader: ; 0x7722b
+TinTowerRoof_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,27 +8,23 @@ TinTowerRoof_MapScriptHeader: ; 0x7722b
 	; callbacks
 
 	dbw 2, UnknownScript_0x77230
-; 0x77230
 
-UnknownScript_0x77230: ; 0x77230
+UnknownScript_0x77230:
 	checkevent EVENT_FOUGHT_HO_OH
 	iftrue UnknownScript_0x77241
 	checkitem RAINBOW_WING
 	iftrue UnknownScript_0x7723e
 	jump UnknownScript_0x77241
-; 0x7723e
 
-UnknownScript_0x7723e: ; 0x7723e
+UnknownScript_0x7723e:
 	appear $2
 	return
-; 0x77241
 
-UnknownScript_0x77241: ; 0x77241
+UnknownScript_0x77241:
 	disappear $2
 	return
-; 0x77244
 
-HoOhScript_0x77244: ; 0x77244
+HoOhScript_0x77244:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x77260
@@ -43,14 +39,12 @@ HoOhScript_0x77244: ; 0x77244
 	returnafterbattle
 	setevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	end
-; 0x77260
 
-UnknownText_0x77260: ; 0x77260
+UnknownText_0x77260:
 	text "Shaoooh!"
 	done
-; 0x7726a
 
-TinTowerRoof_MapEventHeader: ; 0x7726a
+TinTowerRoof_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -67,4 +61,3 @@ TinTowerRoof_MapEventHeader: ; 0x7726a
 	; people-events
 	db 1
 	person_event SPRITE_HO_OH, 9, 13, $16, $0, 255, 255, $80, 0, HoOhScript_0x77244, $073c
-; 0x77282

@@ -1,4 +1,4 @@
-EcruteakPokeCenter1F_MapScriptHeader: ; 0x98e55
+EcruteakPokeCenter1F_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,18 +8,15 @@ EcruteakPokeCenter1F_MapScriptHeader: ; 0x98e55
 
 	; callback count
 	db 0
-; 0x98e5f
 
-UnknownScript_0x98e5f: ; 0x98e5f
+UnknownScript_0x98e5f:
 	priorityjump UnknownScript_0x98e64
 	end
-; 0x98e63
 
-UnknownScript_0x98e63: ; 0x98e63
+UnknownScript_0x98e63:
 	end
-; 0x98e64
 
-UnknownScript_0x98e64: ; 0x98e64
+UnknownScript_0x98e64:
 	pause 30
 	playsound SFX_EXIT_BUILDING
 	appear $6
@@ -40,9 +37,8 @@ UnknownScript_0x98e64: ; 0x98e64
 	writetext UnknownText_0x98ed8
 	keeptextopen
 	jump UnknownScript_0x98e95
-; 0x98e95
 
-UnknownScript_0x98e95: ; 0x98e95
+UnknownScript_0x98e95:
 	writetext UnknownText_0x98f22
 	closetext
 	loadmovesprites
@@ -55,31 +51,25 @@ UnknownScript_0x98e95: ; 0x98e95
 	dotrigger $1
 	waitbutton
 	end
-; 0x98eb0
 
-NurseScript_0x98eb0: ; 0x98eb0
+NurseScript_0x98eb0:
 	jumpstd pokecenternurse
-; 0x98eb3
 
-PokefanMScript_0x98eb3: ; 0x98eb3
+PokefanMScript_0x98eb3:
 	special Function10630f
 	iftrue UnknownScript_0x98ebc
 	jumptextfaceplayer UnknownText_0x99155
-; 0x98ebc
 
-UnknownScript_0x98ebc: ; 0x98ebc
+UnknownScript_0x98ebc:
 	jumptextfaceplayer UnknownText_0x991aa
-; 0x98ebf
 
-CooltrainerFScript_0x98ebf: ; 0x98ebf
+CooltrainerFScript_0x98ebf:
 	jumptextfaceplayer UnknownText_0x99240
-; 0x98ec2
 
-GymGuyScript_0x98ec2: ; 0x98ec2
+GymGuyScript_0x98ec2:
 	jumptextfaceplayer UnknownText_0x99286
-; 0x98ec5
 
-MovementData_0x98ec5: ; 0x98ec5
+MovementData_0x98ec5:
 	step_up
 	step_up
 	step_up
@@ -89,25 +79,22 @@ MovementData_0x98ec5: ; 0x98ec5
 	step_right
 	turn_head_up
 	step_end
-; 0x98ece
 
-MovementData_0x98ece: ; 0x98ece
+MovementData_0x98ece:
 	step_right
 	step_down
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x98ed4
 
-MovementData_0x98ed4: ; 0x98ed4
+MovementData_0x98ed4:
 	step_up
 	step_up
 	step_up
 	step_end
-; 0x98ed8
 
-UnknownText_0x98ed8: ; 0x98ed8
+UnknownText_0x98ed8:
 	text "Hi, I'm BILL. And"
 	line "who are you?"
 
@@ -115,9 +102,8 @@ UnknownText_0x98ed8: ; 0x98ed8
 	line "You've come at the"
 	cont "right time."
 	done
-; 0x98f22
 
-UnknownText_0x98f22: ; 0x98f22
+UnknownText_0x98f22:
 	text "I just finished"
 	line "adjustments on my"
 	cont "TIME CAPSULE."
@@ -170,9 +156,8 @@ UnknownText_0x98f22: ; 0x98f22
 
 	para "Buh-bye!"
 	done
-; 0x99155
 
-UnknownText_0x99155: ; 0x99155
+UnknownText_0x99155:
 	text "The way the KIMONO"
 	line "GIRLS dance is"
 
@@ -180,9 +165,8 @@ UnknownText_0x99155: ; 0x99155
 	line "like the way they"
 	cont "use their #MON."
 	done
-; 0x991aa
 
-UnknownText_0x991aa: ; 0x991aa
+UnknownText_0x991aa:
 	text "You must be hoping"
 	line "to battle more"
 
@@ -197,9 +181,8 @@ UnknownText_0x991aa: ; 0x991aa
 	para "It's a little past"
 	line "OLIVINE CITY."
 	done
-; 0x99240
 
-UnknownText_0x99240: ; 0x99240
+UnknownText_0x99240:
 	text "MORTY, the GYM"
 	line "LEADER, is soooo"
 	cont "cool."
@@ -207,9 +190,8 @@ UnknownText_0x99240: ; 0x99240
 	para "His #MON are"
 	line "really tough too."
 	done
-; 0x99286
 
-UnknownText_0x99286: ; 0x99286
+UnknownText_0x99286:
 	text "LAKE OF RAGE…"
 
 	para "The appearance of"
@@ -218,9 +200,8 @@ UnknownText_0x99286: ; 0x99286
 	para "I smell a conspir-"
 	line "acy. I know it!"
 	done
-; 0x992dc
 
-EcruteakPokeCenter1F_MapEventHeader: ; 0x992dc
+EcruteakPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -243,4 +224,3 @@ EcruteakPokeCenter1F_MapEventHeader: ; 0x992dc
 	person_event SPRITE_COOLTRAINER_F, 8, 5, $3, $0, 255, 255, $0, 0, CooltrainerFScript_0x98ebf, $ffff
 	person_event SPRITE_GYM_GUY, 5, 11, $6, $0, 255, 255, $a0, 0, GymGuyScript_0x98ec2, $ffff
 	person_event SPRITE_BILL, 11, 4, $9, $0, 255, 255, $0, 0, ObjectEvent, $0713
-; 0x99332

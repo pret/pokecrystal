@@ -1,12 +1,11 @@
-RuinsofAlphAerodactylWordRoom_MapScriptHeader: ; 0x59b83
+RuinsofAlphAerodactylWordRoom_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x59b85
 
-RuinsofAlphAerodactylWordRoom_MapEventHeader: ; 0x59b85
+RuinsofAlphAerodactylWordRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -24,4 +23,3 @@ RuinsofAlphAerodactylWordRoom_MapEventHeader: ; 0x59b85
 
 	; people-events
 	db 0
-; 0x59b9a

@@ -1,34 +1,29 @@
-Route31VioletGate_MapScriptHeader: ; 0x197632
+Route31VioletGate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x197634
 
-OfficerScript_0x197634: ; 0x197634
+OfficerScript_0x197634:
 	jumptextfaceplayer UnknownText_0x19763a
-; 0x197637
 
-CooltrainerFScript_0x197637: ; 0x197637
+CooltrainerFScript_0x197637:
 	jumptextfaceplayer UnknownText_0x197661
-; 0x19763a
 
-UnknownText_0x19763a: ; 0x19763a
+UnknownText_0x19763a:
 	text "Hi there!"
 	line "Did you visit"
 	cont "SPROUT TOWER?"
 	done
-; 0x197661
 
-UnknownText_0x197661: ; 0x197661
+UnknownText_0x197661:
 	text "I came too far"
 	line "out. I'd better"
 	cont "phone home!"
 	done
-; 0x19768c
 
-Route31VioletGate_MapEventHeader: ; 0x19768c
+Route31VioletGate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -49,4 +44,3 @@ Route31VioletGate_MapEventHeader: ; 0x19768c
 	db 2
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x197634, $ffff
 	person_event SPRITE_COOLTRAINER_F, 6, 5, $3, $0, 255, 255, $90, 0, CooltrainerFScript_0x197637, $ffff
-; 0x1976c0

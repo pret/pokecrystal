@@ -1,12 +1,11 @@
-Route30BerrySpeechHouse_MapScriptHeader: ; 0x196d62
+Route30BerrySpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x196d64
 
-PokefanMScript_0x196d64: ; 0x196d64
+PokefanMScript_0x196d64:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
@@ -16,18 +15,17 @@ PokefanMScript_0x196d64: ; 0x196d64
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x196d7d
 	setevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
-UnknownScript_0x196d79: ; 0x196d79
+UnknownScript_0x196d79:
 	writetext UnknownText_0x196dec
 	closetext
-UnknownScript_0x196d7d: ; 0x196d7d
+UnknownScript_0x196d7d:
 	loadmovesprites
 	end
-; 0x196d7f
 
 Route30BerrySpeechHouseBookshelf:
 	jumpstd magazinebookshelf
 
-UnknownText_0x196d82: ; 0x196d82
+UnknownText_0x196d82:
 	text "You know, #MON"
 	line "eat BERRIES."
 
@@ -38,16 +36,14 @@ UnknownText_0x196d82: ; 0x196d82
 	para "Here. I'll share"
 	line "one with you!"
 	done
-; 0x196dec
 
-UnknownText_0x196dec: ; 0x196dec
+UnknownText_0x196dec:
 	text "Check trees for"
 	line "BERRIES. They just"
 	cont "drop right off."
 	done
-; 0x196e20
 
-Route30BerrySpeechHouse_MapEventHeader: ; 0x196e20
+Route30BerrySpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 

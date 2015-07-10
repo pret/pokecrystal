@@ -1,24 +1,20 @@
-WhirlIslandB2F_MapScriptHeader: ; 0x18c4b6
+WhirlIslandB2F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c4b8
 
-ItemFragment_0x18c4b8: ; 0x18c4b8
+ItemFragment_0x18c4b8:
 	db FULL_RESTORE, 1
-; 0x18c4ba
 
-ItemFragment_0x18c4ba: ; 0x18c4ba
+ItemFragment_0x18c4ba:
 	db MAX_REVIVE, 1
-; 0x18c4bc
 
-ItemFragment_0x18c4bc: ; 0x18c4bc
+ItemFragment_0x18c4bc:
 	db MAX_ELIXER, 1
-; 0x18c4be
 
-WhirlIslandB2F_MapEventHeader: ; 0x18c4be
+WhirlIslandB2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -40,4 +36,3 @@ WhirlIslandB2F_MapEventHeader: ; 0x18c4be
 	person_event SPRITE_POKE_BALL, 15, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4b8, $0696
 	person_event SPRITE_POKE_BALL, 8, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4ba, $0697
 	person_event SPRITE_POKE_BALL, 16, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4bc, $0698
-; 0x18c4ff

@@ -1,27 +1,23 @@
-LavenderMart_MapScriptHeader: ; 0x7eb1a
+LavenderMart_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7eb1c
 
-ClerkScript_0x7eb1c: ; 0x7eb1c
+ClerkScript_0x7eb1c:
 	loadfont
 	pokemart $0, $0015
 	loadmovesprites
 	end
-; 0x7eb23
 
-PokefanMScript_0x7eb23: ; 0x7eb23
+PokefanMScript_0x7eb23:
 	jumptextfaceplayer UnknownText_0x7eb29
-; 0x7eb26
 
-RockerScript_0x7eb26: ; 0x7eb26
+RockerScript_0x7eb26:
 	jumptextfaceplayer UnknownText_0x7ebac
-; 0x7eb29
 
-UnknownText_0x7eb29: ; 0x7eb29
+UnknownText_0x7eb29:
 	text "REPEL is a neces-"
 	line "sity if you are"
 
@@ -34,9 +30,8 @@ UnknownText_0x7eb29: ; 0x7eb29
 	para "haven't made it to"
 	line "all the caves."
 	done
-; 0x7ebac
 
-UnknownText_0x7ebac: ; 0x7ebac
+UnknownText_0x7ebac:
 	text "I heard about a"
 	line "craftsman who"
 
@@ -46,9 +41,8 @@ UnknownText_0x7ebac: ; 0x7ebac
 	para "of AZALEA. I wish"
 	line "I had some."
 	done
-; 0x7ec0e
 
-LavenderMart_MapEventHeader: ; 0x7ec0e
+LavenderMart_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -68,4 +62,3 @@ LavenderMart_MapEventHeader: ; 0x7ec0e
 	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x7eb1c, $ffff
 	person_event SPRITE_POKEFAN_M, 10, 10, $5, $2, 255, 255, $80, 0, PokefanMScript_0x7eb23, $ffff
 	person_event SPRITE_ROCKER, 6, 13, $3, $0, 255, 255, $0, 0, RockerScript_0x7eb26, $ffff
-; 0x7ec45

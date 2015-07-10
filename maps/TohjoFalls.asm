@@ -1,16 +1,14 @@
-TohjoFalls_MapScriptHeader: ; 0x18db00
+TohjoFalls_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18db02
 
-ItemFragment_0x18db02: ; 0x18db02
+ItemFragment_0x18db02:
 	db MOON_STONE, 1
-; 0x18db04
 
-TohjoFalls_MapEventHeader: ; 0x18db04
+TohjoFalls_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -28,4 +26,3 @@ TohjoFalls_MapEventHeader: ; 0x18db04
 	; people-events
 	db 1
 	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18db02, $06a9
-; 0x18db21

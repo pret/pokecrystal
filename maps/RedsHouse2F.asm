@@ -1,36 +1,31 @@
-RedsHouse2F_MapScriptHeader: ; 0x19b048
+RedsHouse2F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x19b04a
 
-MapRedsHouse2FSignpost0Script: ; 0x19b04a
+MapRedsHouse2FSignpost0Script:
 	jumptext UnknownText_0x19b050
-; 0x19b04d
 
-MapRedsHouse2FSignpost1Script: ; 0x19b04d
+MapRedsHouse2FSignpost1Script:
 	jumptext UnknownText_0x19b087
-; 0x19b050
 
-UnknownText_0x19b050: ; 0x19b050
+UnknownText_0x19b050:
 	text "<PLAYER> played the"
 	line "N64."
 
 	para "Better get going--"
 	line "no time to lose!"
 	done
-; 0x19b087
 
-UnknownText_0x19b087: ; 0x19b087
+UnknownText_0x19b087:
 	text "It looks like it"
 	line "hasn't been used"
 	cont "in a long time…"
 	done
-; 0x19b0b9
 
-RedsHouse2F_MapEventHeader: ; 0x19b0b9
+RedsHouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -48,4 +43,3 @@ RedsHouse2F_MapEventHeader: ; 0x19b0b9
 
 	; people-events
 	db 0
-; 0x19b0ce

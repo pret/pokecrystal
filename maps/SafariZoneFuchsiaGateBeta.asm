@@ -1,12 +1,11 @@
-SafariZoneFuchsiaGateBeta_MapScriptHeader: ; 0x74458
+SafariZoneFuchsiaGateBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7445a
 
-SafariZoneFuchsiaGateBeta_MapEventHeader: ; 0x7445a
+SafariZoneFuchsiaGateBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -25,4 +24,3 @@ SafariZoneFuchsiaGateBeta_MapEventHeader: ; 0x7445a
 
 	; people-events
 	db 0
-; 0x74474

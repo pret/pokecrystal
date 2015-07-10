@@ -1,25 +1,22 @@
-VioletOnixTradeHouse_MapScriptHeader: ; 0x6998b
+VioletOnixTradeHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x6998d
 
-PokefanMScript_0x6998d: ; 0x6998d
+PokefanMScript_0x6998d:
 	jumptextfaceplayer UnknownText_0x69997
-; 0x69990
 
-YoungsterScript_0x69990: ; 0x69990
+YoungsterScript_0x69990:
 	faceplayer
 	loadfont
 	trade $1
 	closetext
 	loadmovesprites
 	end
-; 0x69997
 
-UnknownText_0x69997: ; 0x69997
+UnknownText_0x69997:
 	text "A #MON you get"
 	line "in a trade grows"
 	cont "quickly."
@@ -30,9 +27,8 @@ UnknownText_0x69997: ; 0x69997
 	para "BADGE, they may"
 	line "disobey you."
 	done
-; 0x69a01
 
-VioletOnixTradeHouse_MapEventHeader: ; 0x69a01
+VioletOnixTradeHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -51,4 +47,3 @@ VioletOnixTradeHouse_MapEventHeader: ; 0x69a01
 	db 2
 	person_event SPRITE_POKEFAN_M, 7, 6, $3, $0, 255, 255, $0, 0, PokefanMScript_0x6998d, $ffff
 	person_event SPRITE_YOUNGSTER, 9, 10, $4, $20, 255, 255, $80, 0, YoungsterScript_0x69990, $ffff
-; 0x69a2b

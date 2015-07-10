@@ -143,7 +143,7 @@ FarfetchdText:
 	text "FARFETCH'D: Kwaa!"
 	done
 
-CharcoalKiln_MapEventHeader: ; 0x18dff8
+CharcoalKiln_MapEventHeader:
 	; filler
 	db 0, 0
 

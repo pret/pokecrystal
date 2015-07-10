@@ -1,12 +1,11 @@
-SlowpokeWellB2F_MapScriptHeader: ; 0x5ad09
+SlowpokeWellB2F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x5ad0b
 
-GymGuyScript_0x5ad0b: ; 0x5ad0b
+GymGuyScript_0x5ad0b:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
@@ -16,23 +15,20 @@ GymGuyScript_0x5ad0b: ; 0x5ad0b
 	verbosegiveitem KINGS_ROCK, 1
 	iffalse UnknownScript_0x5ad20
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
-UnknownScript_0x5ad20: ; 0x5ad20
+UnknownScript_0x5ad20:
 	loadmovesprites
 	end
-; 0x5ad22
 
-UnknownScript_0x5ad22: ; 0x5ad22
+UnknownScript_0x5ad22:
 	writetext UnknownText_0x5adf2
 	closetext
 	loadmovesprites
 	end
-; 0x5ad28
 
-ItemFragment_0x5ad28: ; 0x5ad28
+ItemFragment_0x5ad28:
 	db TM_RAIN_DANCE, 1
-; 0x5ad2a
 
-UnknownText_0x5ad2a: ; 0x5ad2a
+UnknownText_0x5ad2a:
 	text "I'm waiting to see"
 	line "SLOWPOKE's moment"
 	cont "of evolution."
@@ -51,9 +47,8 @@ UnknownText_0x5ad2a: ; 0x5ad2a
 	line "KING'S ROCK with"
 	cont "you."
 	done
-; 0x5adf2
 
-UnknownText_0x5adf2: ; 0x5adf2
+UnknownText_0x5adf2:
 	text "I'm going to be"
 	line "like SLOWPOKE."
 
@@ -61,9 +56,8 @@ UnknownText_0x5adf2: ; 0x5adf2
 	line "ly, so I can see"
 	cont "one evolve."
 	done
-; 0x5ae40
 
-SlowpokeWellB2F_MapEventHeader: ; 0x5ae40
+SlowpokeWellB2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -81,4 +75,3 @@ SlowpokeWellB2F_MapEventHeader: ; 0x5ae40
 	db 2
 	person_event SPRITE_GYM_GUY, 8, 9, $2, $21, 255, 255, $0, 1, GymGuyScript_0x5ad0b, $ffff
 	person_event SPRITE_POKE_BALL, 9, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x5ad28, $0663
-; 0x5ae65

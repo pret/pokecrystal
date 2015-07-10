@@ -1,20 +1,17 @@
-Route2946Gate_MapScriptHeader: ; 0x7b5b9
+Route2946Gate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7b5bb
 
-OfficerScript_0x7b5bb: ; 0x7b5bb
+OfficerScript_0x7b5bb:
 	jumptextfaceplayer UnknownText_0x7b5c1
-; 0x7b5be
 
-YoungsterScript_0x7b5be: ; 0x7b5be
+YoungsterScript_0x7b5be:
 	jumptextfaceplayer UnknownText_0x7b60d
-; 0x7b5c1
 
-UnknownText_0x7b5c1: ; 0x7b5c1
+UnknownText_0x7b5c1:
 	text "You can't climb"
 	line "ledges."
 
@@ -22,9 +19,8 @@ UnknownText_0x7b5c1: ; 0x7b5c1
 	line "down from them to"
 	cont "take a shortcut."
 	done
-; 0x7b60d
 
-UnknownText_0x7b60d: ; 0x7b60d
+UnknownText_0x7b60d:
 	text "Different kinds of"
 	line "#MON appear"
 	cont "past here."
@@ -35,9 +31,8 @@ UnknownText_0x7b60d: ; 0x7b60d
 	para "you have to look"
 	line "everywhere."
 	done
-; 0x7b674
 
-Route2946Gate_MapEventHeader: ; 0x7b674
+Route2946Gate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -58,4 +53,3 @@ Route2946Gate_MapEventHeader: ; 0x7b674
 	db 2
 	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x7b5bb, $ffff
 	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x7b5be, $ffff
-; 0x7b6a8

@@ -1,4 +1,4 @@
-IcePathB1F_MapScriptHeader: ; 0x7e4b9
+IcePathB1F_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -8,19 +8,16 @@ IcePathB1F_MapScriptHeader: ; 0x7e4b9
 	; callbacks
 
 	dbw 3, UnknownScript_0x7e4be
-; 0x7e4be
 
-UnknownScript_0x7e4be: ; 0x7e4be
+UnknownScript_0x7e4be:
 	writecmdqueue CmdQueue_0x7e4c2
 	return
-; 0x7e4c2
 
-CmdQueue_0x7e4c2: ; 0x7e4c2
+CmdQueue_0x7e4c2:
 	dbw 2, StoneTable_0x7e4c7 ; check if any stones are sitting on a warp
 	db 0, 0 ; filler
-; 0x7e4c7
 
-StoneTable_0x7e4c7: ; 0x7e4c7
+StoneTable_0x7e4c7:
 	db 3, 2 ; warp, person
 	dw UnknownScript_0x7e4d8
 
@@ -34,33 +31,28 @@ StoneTable_0x7e4c7: ; 0x7e4c7
 	dw UnknownScript_0x7e4f0
 
 	db $ff ; end
-; 0x7e4d8
 
-UnknownScript_0x7e4d8: ; 0x7e4d8
+UnknownScript_0x7e4d8:
 	disappear 2
 	clearevent EVENT_BOULDER_IN_ICE_PATH_1
 	jump UnknownScript_0x7e4f8
-; 0x7e4e0
 
-UnknownScript_0x7e4e0: ; 0x7e4e0
+UnknownScript_0x7e4e0:
 	disappear 3
 	clearevent EVENT_BOULDER_IN_ICE_PATH_2
 	jump UnknownScript_0x7e4f8
-; 0x7e4e8
 
-UnknownScript_0x7e4e8: ; 0x7e4e8
+UnknownScript_0x7e4e8:
 	disappear 4
 	clearevent EVENT_BOULDER_IN_ICE_PATH_3
 	jump UnknownScript_0x7e4f8
-; 0x7e4f0
 
-UnknownScript_0x7e4f0: ; 0x7e4f0
+UnknownScript_0x7e4f0:
 	disappear 5
 	clearevent EVENT_BOULDER_IN_ICE_PATH_4
 	jump UnknownScript_0x7e4f8
-; 0x7e4f8
 
-UnknownScript_0x7e4f8: ; 0x7e4f8
+UnknownScript_0x7e4f8:
 	pause 30
 	scall UnknownScript_0x7e504
 	loadfont
@@ -68,37 +60,31 @@ UnknownScript_0x7e4f8: ; 0x7e4f8
 	closetext
 	loadmovesprites
 	end
-; 0x7e504
 
-UnknownScript_0x7e504: ; 0x7e504
+UnknownScript_0x7e504:
 	playsound SFX_STRENGTH
 	earthquake 80
 	end
-; 0x7e50a
 
 
-IcePathB1FBoulder: ; 0x7e50a
+IcePathB1FBoulder:
 	jumpstd strengthboulder
-; 0x7e50d
 
-ItemFragment_0x7e50d: ; 0x7e50d
+ItemFragment_0x7e50d:
 	db IRON, 1
-; 0x7e50f
 
-MapIcePathB1FSignpostItem0: ; 0x7e50f
+MapIcePathB1FSignpostItem0:
 	dw $0094
 	db MAX_POTION
-; 0x7e512
 
 
-UnknownText_0x7e512: ; 0x7e512
+UnknownText_0x7e512:
 	text "The boulder fell"
 	line "through."
 	done
-; 0x7e52d
 
 
-IcePathB1F_MapEventHeader: ; 0x7e52d
+IcePathB1F_MapEventHeader:
 	; filler
 	db 0, 0
 

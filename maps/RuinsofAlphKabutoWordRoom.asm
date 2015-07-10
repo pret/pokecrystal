@@ -1,12 +1,11 @@
-RuinsofAlphKabutoWordRoom_MapScriptHeader: ; 0x59b55
+RuinsofAlphKabutoWordRoom_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x59b57
 
-RuinsofAlphKabutoWordRoom_MapEventHeader: ; 0x59b57
+RuinsofAlphKabutoWordRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -24,4 +23,3 @@ RuinsofAlphKabutoWordRoom_MapEventHeader: ; 0x59b57
 
 	; people-events
 	db 0
-; 0x59b6c

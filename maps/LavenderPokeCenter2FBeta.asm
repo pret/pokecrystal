@@ -1,12 +1,11 @@
-LavenderPokeCenter2FBeta_MapScriptHeader: ; 0x7e8bb
+LavenderPokeCenter2FBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7e8bd
 
-LavenderPokeCenter2FBeta_MapEventHeader: ; 0x7e8bd
+LavenderPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -22,4 +21,3 @@ LavenderPokeCenter2FBeta_MapEventHeader: ; 0x7e8bd
 
 	; people-events
 	db 0
-; 0x7e8c8

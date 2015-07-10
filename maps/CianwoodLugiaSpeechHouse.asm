@@ -1,27 +1,23 @@
-CianwoodLugiaSpeechHouse_MapScriptHeader: ; 0x9e1ae
+CianwoodLugiaSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x9e1b0
 
-TeacherScript_0x9e1b0: ; 0x9e1b0
+TeacherScript_0x9e1b0:
 	jumptextfaceplayer UnknownText_0x9e1bc
-; 0x9e1b3
 
-LassScript_0x9e1b3: ; 0x9e1b3
+LassScript_0x9e1b3:
 	jumptextfaceplayer UnknownText_0x9e23f
-; 0x9e1b6
 
-TwinScript_0x9e1b6: ; 0x9e1b6
+TwinScript_0x9e1b6:
 	jumptextfaceplayer UnknownText_0x9e2a9
-; 0x9e1b9
 
 CianwoodLugiaSpeechHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x9e1bc: ; 0x9e1bc
+UnknownText_0x9e1bc:
 	text "You came from"
 	line "OLIVINE?"
 
@@ -34,9 +30,8 @@ UnknownText_0x9e1bc: ; 0x9e1bc
 	cont "ture is hiding in"
 	cont "them."
 	done
-; 0x9e23f
 
-UnknownText_0x9e23f: ; 0x9e23f
+UnknownText_0x9e23f:
 	text "I heard that you"
 	line "can only see it if"
 
@@ -47,9 +42,8 @@ UnknownText_0x9e23f: ; 0x9e23f
 	line "same scent as the"
 	cont "creature."
 	done
-; 0x9e2a9
 
-UnknownText_0x9e2a9: ; 0x9e2a9
+UnknownText_0x9e2a9:
 	text "I've heard that"
 	line "the whirlpools"
 
@@ -61,9 +55,8 @@ UnknownText_0x9e2a9: ; 0x9e2a9
 	line "special move to"
 	cont "get past them."
 	done
-; 0x9e32b
 
-CianwoodLugiaSpeechHouse_MapEventHeader: ; 0x9e32b
+CianwoodLugiaSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -85,4 +78,3 @@ CianwoodLugiaSpeechHouse_MapEventHeader: ; 0x9e32b
 	person_event SPRITE_TEACHER, 8, 6, $6, $0, 255, 255, $0, 0, TeacherScript_0x9e1b0, $ffff
 	person_event SPRITE_LASS, 9, 10, $5, $1, 255, 255, $a0, 0, LassScript_0x9e1b3, $ffff
 	person_event SPRITE_TWIN, 6, 4, $7, $0, 255, 255, $90, 0, TwinScript_0x9e1b6, $ffff
-; 0x9e36c

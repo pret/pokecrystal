@@ -1,12 +1,11 @@
-FuchsiaPokeCenter2FBeta_MapScriptHeader: ; 0x1965b7
+FuchsiaPokeCenter2FBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1965b9
 
-FuchsiaPokeCenter2FBeta_MapEventHeader: ; 0x1965b9
+FuchsiaPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -22,4 +21,3 @@ FuchsiaPokeCenter2FBeta_MapEventHeader: ; 0x1965b9
 
 	; people-events
 	db 0
-; 0x1965c4

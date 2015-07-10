@@ -1,4 +1,4 @@
-KrissNeighborsHouse_MapScriptHeader: ; 0x7acec
+KrissNeighborsHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
@@ -94,7 +94,7 @@ KrisNeighborRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-KrissNeighborsHouse_MapEventHeader: ; 0x7aeb0
+KrissNeighborsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -116,4 +116,3 @@ KrissNeighborsHouse_MapEventHeader: ; 0x7aeb0
 	db 2
 	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, KrissNeighborsDaughter, $ffff
 	person_event SPRITE_POKEFAN_F, 7, 9, $8, $0, 255, 255, $80, 0, KrissNeighbor, $0793
-; 0x7aee9

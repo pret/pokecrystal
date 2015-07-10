@@ -1,36 +1,30 @@
-IcePathB2FMahoganySide_MapScriptHeader: ; 0x7e5a1
+IcePathB2FMahoganySide_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7e5a3
 
-BoulderScript_0x7e5a3: ; 0x7e5a3
+BoulderScript_0x7e5a3:
 	jumptext UnknownText_0x7e5ad
-; 0x7e5a6
 
-ItemFragment_0x7e5a6: ; 0x7e5a6
+ItemFragment_0x7e5a6:
 	db FULL_HEAL, 1
-; 0x7e5a8
 
-ItemFragment_0x7e5a8: ; 0x7e5a8
+ItemFragment_0x7e5a8:
 	db MAX_POTION, 1
-; 0x7e5aa
 
-MapIcePathB2FMahoganySideSignpostItem0: ; 0x7e5aa
+MapIcePathB2FMahoganySideSignpostItem0:
 	dw $0095
 	db CARBOS
 	
-; 0x7e5ad
 
-UnknownText_0x7e5ad: ; 0x7e5ad
+UnknownText_0x7e5ad:
 	text "It's immovably"
 	line "imbedded in ice."
 	done
-; 0x7e5cd
 
-IcePathB2FMahoganySide_MapEventHeader: ; 0x7e5cd
+IcePathB2FMahoganySide_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -58,4 +52,3 @@ IcePathB2FMahoganySide_MapEventHeader: ; 0x7e5cd
 	person_event SPRITE_BOULDER, 17, 16, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $0710
 	person_event SPRITE_POKE_BALL, 13, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a6, $068b
 	person_event SPRITE_POKE_BALL, 6, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a8, $068c
-; 0x7e644

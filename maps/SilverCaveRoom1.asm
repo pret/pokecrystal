@@ -1,40 +1,33 @@
-SilverCaveRoom1_MapScriptHeader: ; 0x18c552
+SilverCaveRoom1_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c554
 
-ItemFragment_0x18c554: ; 0x18c554
+ItemFragment_0x18c554:
 	db MAX_ELIXER, 1
-; 0x18c556
 
-ItemFragment_0x18c556: ; 0x18c556
+ItemFragment_0x18c556:
 	db PROTEIN, 1
-; 0x18c558
 
-ItemFragment_0x18c558: ; 0x18c558
+ItemFragment_0x18c558:
 	db ESCAPE_ROPE, 1
-; 0x18c55a
 
-ItemFragment_0x18c55a: ; 0x18c55a
+ItemFragment_0x18c55a:
 	db ULTRA_BALL, 1
-; 0x18c55c
 
-MapSilverCaveRoom1SignpostItem0: ; 0x18c55c
+MapSilverCaveRoom1SignpostItem0:
 	dw $009a
 	db DIRE_HIT
 	
-; 0x18c55f
 
-MapSilverCaveRoom1SignpostItem1: ; 0x18c55f
+MapSilverCaveRoom1SignpostItem1:
 	dw $009b
 	db ULTRA_BALL
 	
-; 0x18c562
 
-SilverCaveRoom1_MapEventHeader: ; 0x18c562
+SilverCaveRoom1_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -57,4 +50,3 @@ SilverCaveRoom1_MapEventHeader: ; 0x18c562
 	person_event SPRITE_POKE_BALL, 33, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c556, $069a
 	person_event SPRITE_POKE_BALL, 34, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c558, $069b
 	person_event SPRITE_POKE_BALL, 22, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c55a, $07c1
-; 0x18c5b0

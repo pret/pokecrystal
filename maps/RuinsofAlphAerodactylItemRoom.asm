@@ -1,39 +1,32 @@
-RuinsofAlphAerodactylItemRoom_MapScriptHeader: ; 0x59ab4
+RuinsofAlphAerodactylItemRoom_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x59ab6
 
-ItemFragment_0x59ab6: ; 0x59ab6
+ItemFragment_0x59ab6:
 	db GOLD_BERRY, 1
-; 0x59ab8
 
-ItemFragment_0x59ab8: ; 0x59ab8
+ItemFragment_0x59ab8:
 	db MOON_STONE, 1
-; 0x59aba
 
-ItemFragment_0x59aba: ; 0x59aba
+ItemFragment_0x59aba:
 	db HEAL_POWDER, 1
-; 0x59abc
 
-ItemFragment_0x59abc: ; 0x59abc
+ItemFragment_0x59abc:
 	db ENERGY_ROOT, 1
-; 0x59abe
 
-MapRuinsofAlphAerodactylItemRoomSignpost1Script: ; 0x59abe
+MapRuinsofAlphAerodactylItemRoomSignpost1Script:
 	jumptext UnknownText_0x59ac1
-; 0x59ac1
 
-UnknownText_0x59ac1: ; 0x59ac1
+UnknownText_0x59ac1:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
 	done
-; 0x59ae6
 
-RuinsofAlphAerodactylItemRoom_MapEventHeader: ; 0x59ae6
+RuinsofAlphAerodactylItemRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -58,4 +51,3 @@ RuinsofAlphAerodactylItemRoom_MapEventHeader: ; 0x59ae6
 	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab8, $07a1
 	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59aba, $07a2
 	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59abc, $07a3
-; 0x59b3e

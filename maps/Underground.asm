@@ -1,24 +1,21 @@
-Underground_MapScriptHeader: ; 0x74391
+Underground_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x74393
 
-MapUndergroundSignpostItem0: ; 0x74393
+MapUndergroundSignpostItem0:
 	dw $00e5
 	db FULL_RESTORE
 	
-; 0x74396
 
-MapUndergroundSignpostItem1: ; 0x74396
+MapUndergroundSignpostItem1:
 	dw $00e6
 	db X_SPECIAL
 	
-; 0x74399
 
-Underground_MapEventHeader: ; 0x74399
+Underground_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -37,4 +34,3 @@ Underground_MapEventHeader: ; 0x74399
 
 	; people-events
 	db 0
-; 0x743b3

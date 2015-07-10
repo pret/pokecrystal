@@ -1,4 +1,4 @@
-TimeCapsule_MapScriptHeader: ; 0x1934eb
+TimeCapsule_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,58 +12,49 @@ TimeCapsule_MapScriptHeader: ; 0x1934eb
 	; callbacks
 
 	dbw 2, UnknownScript_0x1934fd
-; 0x1934f8
 
-UnknownScript_0x1934f8: ; 0x1934f8
+UnknownScript_0x1934f8:
 	priorityjump UnknownScript_0x19350d
 	end
-; 0x1934fc
 
-UnknownScript_0x1934fc: ; 0x1934fc
+UnknownScript_0x1934fc:
 	end
-; 0x1934fd
 
-UnknownScript_0x1934fd: ; 0x1934fd
+UnknownScript_0x1934fd:
 	special Function29f47
 	iffalse UnknownScript_0x193508
 	disappear $3
 	appear $2
 	return
-; 0x193508
 
-UnknownScript_0x193508: ; 0x193508
+UnknownScript_0x193508:
 	disappear $2
 	appear $3
 	return
-; 0x19350d
 
-UnknownScript_0x19350d: ; 0x19350d
+UnknownScript_0x19350d:
 	dotrigger $1
 	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $3
 	end
-; 0x193514
 
-MapTimeCapsuleSignpost1Script: ; 0x193514
+MapTimeCapsuleSignpost1Script:
 	special Function29eaf
 	newloadmap $f8
 	end
-; 0x19351a
 
-ChrisScript_0x19351a: ; 0x19351a
+ChrisScript_0x19351a:
 	loadfont
 	writetext UnknownText_0x193521
 	closetext
 	loadmovesprites
 	end
-; 0x193521
 
-UnknownText_0x193521: ; 0x193521
+UnknownText_0x193521:
 	text "Your friend is"
 	line "ready."
 	done
-; 0x193538
 
-TimeCapsule_MapEventHeader: ; 0x193538
+TimeCapsule_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -84,4 +75,3 @@ TimeCapsule_MapEventHeader: ; 0x193538
 	db 2
 	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x19351a, $0000
 	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x19351a, $0001
-; 0x19356c

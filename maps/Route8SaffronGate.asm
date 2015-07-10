@@ -1,25 +1,22 @@
-Route8SaffronGate_MapScriptHeader: ; 0x7f414
+Route8SaffronGate_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7f416
 
-OfficerScript_0x7f416: ; 0x7f416
+OfficerScript_0x7f416:
 	jumptextfaceplayer UnknownText_0x7f419
-; 0x7f419
 
-UnknownText_0x7f419: ; 0x7f419
+UnknownText_0x7f419:
 	text "Have you been to"
 	line "LAVENDER TOWN?"
 
 	para "There's a tall"
 	line "RADIO TOWER there."
 	done
-; 0x7f45b
 
-Route8SaffronGate_MapEventHeader: ; 0x7f45b
+Route8SaffronGate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -39,4 +36,3 @@ Route8SaffronGate_MapEventHeader: ; 0x7f45b
 	; people-events
 	db 1
 	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x7f416, $ffff
-; 0x7f482

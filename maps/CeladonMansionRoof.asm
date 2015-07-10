@@ -1,20 +1,17 @@
-CeladonMansionRoof_MapScriptHeader: ; 0x71a37
+CeladonMansionRoof_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x71a39
 
-FisherScript_0x71a39: ; 0x71a39
+FisherScript_0x71a39:
 	jumptextfaceplayer UnknownText_0x71a3f
-; 0x71a3c
 
-MapCeladonMansionRoofSignpost0Script: ; 0x71a3c
+MapCeladonMansionRoofSignpost0Script:
 	jumptext UnknownText_0x71aa1
-; 0x71a3f
 
-UnknownText_0x71a3f: ; 0x71a3f
+UnknownText_0x71a3f:
 	text "High places--I do"
 	line "love them so!"
 
@@ -24,18 +21,16 @@ UnknownText_0x71a3f: ; 0x71a3f
 	para "heights as much as"
 	line "me is smoke!"
 	done
-; 0x71aa1
 
-UnknownText_0x71aa1: ; 0x71aa1
+UnknownText_0x71aa1:
 	text "There's graffiti"
 	line "on the wall…"
 
 	para "<PLAYER> added a"
 	line "moustache!"
 	done
-; 0x71ad4
 
-CeladonMansionRoof_MapEventHeader: ; 0x71ad4
+CeladonMansionRoof_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -55,4 +50,3 @@ CeladonMansionRoof_MapEventHeader: ; 0x71ad4
 	; people-events
 	db 1
 	person_event SPRITE_FISHER, 9, 11, $4, $10, 255, 255, $90, 0, FisherScript_0x71a39, $ffff
-; 0x71afb

@@ -1,19 +1,17 @@
-GoldenrodNameRatersHouse_MapScriptHeader: ; 0x5577a
+GoldenrodNameRatersHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x5577c
 
-GentlemanScript_0x5577c: ; 0x5577c
+GentlemanScript_0x5577c:
 	faceplayer
 	loadfont
 	special SpecialNameRater
 	closetext
 	loadmovesprites
 	end
-; 0x55784
 
 GoldenrodNameRatersHouseBookshelf:
 	jumpstd difficultbookshelf
@@ -23,7 +21,7 @@ GoldenrodNameRatersHouseRadio:
 
 INCLUDE "text/sweethoney.asm"
 
-GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
+GoldenrodNameRatersHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -44,4 +42,3 @@ GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 	; people-events
 	db 1
 	person_event SPRITE_GENTLEMAN, 8, 6, $6, $2, 255, 255, $0, 0, GentlemanScript_0x5577c, $ffff
-; 0x5597f

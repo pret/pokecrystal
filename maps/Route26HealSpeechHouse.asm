@@ -1,12 +1,11 @@
-Route26HealSpeechHouse_MapScriptHeader: ; 0x7b123
+Route26HealSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7b125
 
-TeacherScript_0x7b125: ; 0x7b125
+TeacherScript_0x7b125:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7b14d
@@ -25,22 +24,19 @@ TeacherScript_0x7b125: ; 0x7b125
 	closetext
 	loadmovesprites
 	end
-; 0x7b14a
 
-Route26HealHouseBookshelf: ; 0x7b14a
+Route26HealHouseBookshelf:
 	jumpstd picturebookshelf
-; 0x7b14d
 
-UnknownText_0x7b14d: ; 0x7b14d
+UnknownText_0x7b14d:
 	text "Your #MON look"
 	line "a little tired."
 
 	para "You should rest"
 	line "them a while."
 	done
-; 0x7b18b
 
-UnknownText_0x7b18b: ; 0x7b18b
+UnknownText_0x7b18b:
 	text "There!"
 
 	para "Your #MON are"
@@ -48,9 +44,8 @@ UnknownText_0x7b18b: ; 0x7b18b
 
 	para "Keep at it!"
 	done
-; 0x7b1bb
 
-Route26HealSpeechHouse_MapEventHeader: ; 0x7b1bb
+Route26HealSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 

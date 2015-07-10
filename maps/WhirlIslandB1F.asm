@@ -1,53 +1,44 @@
-WhirlIslandB1F_MapScriptHeader: ; 0x18c40e
+WhirlIslandB1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18c410
 
-ItemFragment_0x18c410: ; 0x18c410
+ItemFragment_0x18c410:
 	db FULL_RESTORE, 1
-; 0x18c412
 
-ItemFragment_0x18c412: ; 0x18c412
+ItemFragment_0x18c412:
 	db CARBOS, 1
-; 0x18c414
 
-ItemFragment_0x18c414: ; 0x18c414
+ItemFragment_0x18c414:
 	db CALCIUM, 1
-; 0x18c416
 
-ItemFragment_0x18c416: ; 0x18c416
+ItemFragment_0x18c416:
 	db NUGGET, 1
-; 0x18c418
 
-ItemFragment_0x18c418: ; 0x18c418
+ItemFragment_0x18c418:
 	db ESCAPE_ROPE, 1
-; 0x18c41a
 
 WhirlIslandB1FBoulder:
 	jumpstd strengthboulder
 
-MapWhirlIslandB1FSignpostItem0: ; 0x18c41d
+MapWhirlIslandB1FSignpostItem0:
 	dw $0097
 	db RARE_CANDY
 	
-; 0x18c420
 
-MapWhirlIslandB1FSignpostItem1: ; 0x18c420
+MapWhirlIslandB1FSignpostItem1:
 	dw $0098
 	db ULTRA_BALL
 	
-; 0x18c423
 
-MapWhirlIslandB1FSignpostItem2: ; 0x18c423
+MapWhirlIslandB1FSignpostItem2:
 	dw $0099
 	db FULL_RESTORE
 	
-; 0x18c426
 
-WhirlIslandB1F_MapEventHeader: ; 0x18c426
+WhirlIslandB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -80,4 +71,3 @@ WhirlIslandB1F_MapEventHeader: ; 0x18c426
 	person_event SPRITE_POKE_BALL, 12, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c416, $0694
 	person_event SPRITE_POKE_BALL, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, $0695
 	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, WhirlIslandB1FBoulder, $ffff
-; 0x18c4b6

@@ -1,27 +1,23 @@
-Route28_MapScriptHeader: ; 0x1a540b
+Route28_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1a540d
 
-MapRoute28Signpost0Script: ; 0x1a540d
+MapRoute28Signpost0Script:
 	jumptext UnknownText_0x1a5413
-; 0x1a5410
 
-MapRoute28SignpostItem1: ; 0x1a5410
+MapRoute28SignpostItem1:
 	dw $00a3
 	db RARE_CANDY
 	
-; 0x1a5413
 
-UnknownText_0x1a5413: ; 0x1a5413
+UnknownText_0x1a5413:
 	text "ROUTE 28"
 	done
-; 0x1a541d
 
-Route28_MapEventHeader: ; 0x1a541d
+Route28_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -40,4 +36,3 @@ Route28_MapEventHeader: ; 0x1a541d
 
 	; people-events
 	db 0
-; 0x1a5437

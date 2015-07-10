@@ -1,12 +1,11 @@
-MountMortarB1F_MapScriptHeader: ; 0x7e1f4
+MountMortarB1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7e1f6
 
-BlackBeltScript_0x7e1f6: ; 0x7e1f6
+BlackBeltScript_0x7e1f6:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TYROGUE_FROM_KIYO
@@ -22,7 +21,7 @@ BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	returnafterbattle
 	setevent EVENT_BEAT_BLACKBELT_KIYO
 	loadfont
-UnknownScript_0x7e217: ; 0x7e217
+UnknownScript_0x7e217:
 	writetext UnknownText_0x7e2c0
 	keeptextopen
 	waitbutton
@@ -33,50 +32,42 @@ UnknownScript_0x7e217: ; 0x7e217
 	waitbutton
 	givepoke TYROGUE, 10, 0, 0
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
-UnknownScript_0x7e231: ; 0x7e231
+UnknownScript_0x7e231:
 	writetext UnknownText_0x7e36a
 	closetext
 	loadmovesprites
 	end
-; 0x7e237
 
-UnknownScript_0x7e237: ; 0x7e237
+UnknownScript_0x7e237:
 	writetext UnknownText_0x7e3df
 	closetext
 	loadmovesprites
 	end
-; 0x7e23d
 
 MountMortarB1FBoulder:
 	jumpstd strengthboulder
 
-ItemFragment_0x7e240: ; 0x7e240
+ItemFragment_0x7e240:
 	db HYPER_POTION, 1
-; 0x7e242
 
-ItemFragment_0x7e242: ; 0x7e242
+ItemFragment_0x7e242:
 	db CARBOS, 1
-; 0x7e244
 
-ItemFragment_0x7e244: ; 0x7e244
+ItemFragment_0x7e244:
 	db FULL_RESTORE, 1
-; 0x7e246
 
-ItemFragment_0x7e246: ; 0x7e246
+ItemFragment_0x7e246:
 	db MAX_ETHER, 1
-; 0x7e248
 
-ItemFragment_0x7e248: ; 0x7e248
+ItemFragment_0x7e248:
 	db PP_UP, 1
-; 0x7e24a
 
-MapMountMortarB1FSignpostItem0: ; 0x7e24a
+MapMountMortarB1FSignpostItem0:
 	dw $0093
 	db MAX_REVIVE
 	
-; 0x7e24d
 
-UnknownText_0x7e24d: ; 0x7e24d
+UnknownText_0x7e24d:
 	text "Hey!"
 
 	para "I am the KARATE"
@@ -90,15 +81,13 @@ UnknownText_0x7e24d: ; 0x7e24d
 
 	para "Hwaaarggh!"
 	done
-; 0x7e2a9
 
-UnknownText_0x7e2a9: ; 0x7e2a9
+UnknownText_0x7e2a9:
 	text "Waaaarggh!"
 	line "I'm beaten!"
 	done
-; 0x7e2c0
 
-UnknownText_0x7e2c0: ; 0x7e2c0
+UnknownText_0x7e2c0:
 	text "I… I'm crushed…"
 
 	para "My training is"
@@ -113,15 +102,13 @@ UnknownText_0x7e2c0: ; 0x7e2c0
 	para "give you a rare"
 	line "fighting #MON."
 	done
-; 0x7e355
 
-UnknownText_0x7e355: ; 0x7e355
+UnknownText_0x7e355:
 	text "<PLAYER> received"
 	line "TYROGUE."
 	done
-; 0x7e36a
 
-UnknownText_0x7e36a: ; 0x7e36a
+UnknownText_0x7e36a:
 	text "TYROGUE is a"
 	line "fighting-type."
 
@@ -134,15 +121,13 @@ UnknownText_0x7e36a: ; 0x7e36a
 
 	para "Farewell!"
 	done
-; 0x7e3df
 
-UnknownText_0x7e3df: ; 0x7e3df
+UnknownText_0x7e3df:
 	text "You have no room"
 	line "in your party!"
 	done
-; 0x7e400
 
-MountMortarB1F_MapEventHeader: ; 0x7e400
+MountMortarB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -167,4 +152,3 @@ MountMortarB1F_MapEventHeader: ; 0x7e400
 	person_event SPRITE_POKE_BALL, 28, 38, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e244, $07ca
 	person_event SPRITE_POKE_BALL, 7, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e246, $07cb
 	person_event SPRITE_POKE_BALL, 30, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e248, $07cc
-; 0x7e470

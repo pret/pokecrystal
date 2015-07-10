@@ -1,12 +1,11 @@
-Route5CleanseTagSpeechHouse_MapScriptHeader: ; 0x18b632
+Route5CleanseTagSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x18b634
 
-GrannyScript_0x18b634: ; 0x18b634
+GrannyScript_0x18b634:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_CLEANSE_TAG
@@ -16,22 +15,20 @@ GrannyScript_0x18b634: ; 0x18b634
 	verbosegiveitem CLEANSE_TAG, 1
 	iffalse UnknownScript_0x18b64d
 	setevent EVENT_GOT_CLEANSE_TAG
-UnknownScript_0x18b649: ; 0x18b649
+UnknownScript_0x18b649:
 	writetext UnknownText_0x18b6a7
 	closetext
-UnknownScript_0x18b64d: ; 0x18b64d
+UnknownScript_0x18b64d:
 	loadmovesprites
 	end
-; 0x18b64f
 
-TeacherScript_0x18b64f: ; 0x18b64f
+TeacherScript_0x18b64f:
 	jumptextfaceplayer UnknownText_0x18b6de
-; 0x18b652
 
 HouseForSaleBookshelf:
 	jumpstd difficultbookshelf
 
-UnknownText_0x18b655: ; 0x18b655
+UnknownText_0x18b655:
 	text "Eeyaaaah!"
 
 	para "I sense a sinister"
@@ -41,16 +38,14 @@ UnknownText_0x18b655: ; 0x18b655
 	para "Take this to ward"
 	line "it off!"
 	done
-; 0x18b6a7
 
-UnknownText_0x18b6a7: ; 0x18b6a7
+UnknownText_0x18b6a7:
 	text "You were in mortal"
 	line "danger, but you"
 	cont "are protected now."
 	done
-; 0x18b6de
 
-UnknownText_0x18b6de: ; 0x18b6de
+UnknownText_0x18b6de:
 	text "My grandma is into"
 	line "warding off what"
 
@@ -60,9 +55,8 @@ UnknownText_0x18b6de: ; 0x18b6de
 	para "I'm sorry that she"
 	line "startled you."
 	done
-; 0x18b744
 
-Route5CleanseTagSpeechHouse_MapEventHeader: ; 0x18b744
+Route5CleanseTagSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 

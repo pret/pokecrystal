@@ -1,4 +1,4 @@
-EcruteakHouse_MapScriptHeader: ; 0x98000
+EcruteakHouse_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -12,17 +12,14 @@ EcruteakHouse_MapScriptHeader: ; 0x98000
 	; callbacks
 
 	dbw 2, UnknownScript_0x9800f
-; 0x9800d
 
-UnknownScript_0x9800d: ; 0x9800d
+UnknownScript_0x9800d:
 	end
-; 0x9800e
 
-UnknownScript_0x9800e: ; 0x9800e
+UnknownScript_0x9800e:
 	end
-; 0x9800f
 
-UnknownScript_0x9800f: ; 0x9800f
+UnknownScript_0x9800f:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue UnknownScript_0x98033
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
@@ -30,25 +27,22 @@ UnknownScript_0x9800f: ; 0x9800f
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x98022
 	return
-; 0x98022
 
-UnknownScript_0x98022: ; 0x98022
+UnknownScript_0x98022:
 	clearevent $0766
 	setevent $0767
 	setevent $07b1
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98032
 	dotrigger $0
-UnknownScript_0x98032: ; 0x98032
+UnknownScript_0x98032:
 	return
-; 0x98033
 
-UnknownScript_0x98033: ; 0x98033
+UnknownScript_0x98033:
 	clearevent $07b1
 	return
-; 0x98037
 
-UnknownScript_0x98037: ; 0x98037
+UnknownScript_0x98037:
 	checkevent $0767
 	iftrue UnknownScript_0x98061
 	applymovement $3, MovementData_0x980c7
@@ -57,9 +51,8 @@ UnknownScript_0x98037: ; 0x98037
 	pause 5
 	disappear $3
 	end
-; 0x9804c
 
-UnknownScript_0x9804c: ; 0x9804c
+UnknownScript_0x9804c:
 	checkevent $0766
 	iftrue UnknownScript_0x98061
 	applymovement $2, MovementData_0x980cc
@@ -68,13 +61,11 @@ UnknownScript_0x9804c: ; 0x9804c
 	pause 5
 	disappear $2
 	end
-; 0x98061
 
-UnknownScript_0x98061: ; 0x98061
+UnknownScript_0x98061:
 	end
-; 0x98062
 
-SageScript_0x98062: ; 0x98062
+SageScript_0x98062:
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
@@ -85,16 +76,14 @@ SageScript_0x98062: ; 0x98062
 	closetext
 	loadmovesprites
 	end
-; 0x98076
 
-UnknownScript_0x98076: ; 0x98076
+UnknownScript_0x98076:
 	writetext UnknownText_0x98131
 	closetext
 	loadmovesprites
 	end
-; 0x9807c
 
-UnknownScript_0x9807c: ; 0x9807c
+UnknownScript_0x9807c:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x980a4
 	checkevent $0000
@@ -105,9 +94,8 @@ UnknownScript_0x9807c: ; 0x9807c
 	closetext
 	loadmovesprites
 	end
-; 0x98093
 
-UnknownScript_0x98093: ; 0x98093
+UnknownScript_0x98093:
 	writetext UnknownText_0x98250
 	closetext
 	loadmovesprites
@@ -116,23 +104,20 @@ UnknownScript_0x98093: ; 0x98093
 	clearevent $0766
 	setevent $0000
 	end
-; 0x980a4
 
-UnknownScript_0x980a4: ; 0x980a4
+UnknownScript_0x980a4:
 	writetext UnknownText_0x9837e
 	closetext
 	loadmovesprites
 	end
-; 0x980aa
 
-UnknownScript_0x980aa: ; 0x980aa
+UnknownScript_0x980aa:
 	writetext UnknownText_0x98391
 	closetext
 	loadmovesprites
 	end
-; 0x980b0
 
-SageScript_0x980b0: ; 0x980b0
+SageScript_0x980b0:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_CLEAR_BELL
@@ -141,36 +126,31 @@ SageScript_0x980b0: ; 0x980b0
 	closetext
 	loadmovesprites
 	end
-; 0x980be
 
-UnknownScript_0x980be: ; 0x980be
+UnknownScript_0x980be:
 	writetext UnknownText_0x9846f
 	closetext
 	loadmovesprites
 	end
-; 0x980c4
 
-GrampsScript_0x980c4: ; 0x980c4
+GrampsScript_0x980c4:
 	jumptextfaceplayer UnknownText_0x984ab
-; 0x980c7
 
-MovementData_0x980c7: ; 0x980c7
+MovementData_0x980c7:
 	fix_facing
 	big_step_left
 	remove_fixed_facing
 	turn_head_down
 	step_end
-; 0x980cc
 
-MovementData_0x980cc: ; 0x980cc
+MovementData_0x980cc:
 	fix_facing
 	big_step_right
 	remove_fixed_facing
 	turn_head_down
 	step_end
-; 0x980d1
 
-UnknownText_0x980d1: ; 0x980d1
+UnknownText_0x980d1:
 	text "TIN TOWER is off"
 	line "limits to anyone"
 
@@ -180,9 +160,8 @@ UnknownText_0x980d1: ; 0x980d1
 	para "Sorry, but you'll"
 	line "have to leave."
 	done
-; 0x98131
 
-UnknownText_0x98131: ; 0x98131
+UnknownText_0x98131:
 	text "TIN TOWER is off"
 	line "limits to anyone"
 
@@ -195,9 +174,8 @@ UnknownText_0x98131: ; 0x98131
 	line "BADGE! Please, go"
 	cont "right through."
 	done
-; 0x981a4
 
-UnknownText_0x981a4: ; 0x981a4
+UnknownText_0x981a4:
 	text "A momentous event"
 	line "has occurred."
 
@@ -214,9 +192,8 @@ UnknownText_0x981a4: ; 0x981a4
 	para "very difficult to"
 	line "understand…"
 	done
-; 0x98250
 
-UnknownText_0x98250: ; 0x98250
+UnknownText_0x98250:
 	text "A momentous event"
 	line "has occurred."
 
@@ -249,14 +226,12 @@ UnknownText_0x98250: ; 0x98250
 
 	para "Please, do go on."
 	done
-; 0x9837e
 
-UnknownText_0x9837e: ; 0x9837e
+UnknownText_0x9837e:
 	text "Please, do go on."
 	done
-; 0x98391
 
-UnknownText_0x98391: ; 0x98391
+UnknownText_0x98391:
 	text "That bell's chime"
 	line "is indicative of"
 	cont "the bearer's soul."
@@ -269,9 +244,8 @@ UnknownText_0x98391: ; 0x98391
 
 	para "Please, do go on."
 	done
-; 0x9840b
 
-UnknownText_0x9840b: ; 0x9840b
+UnknownText_0x9840b:
 	text "The TIN TOWER"
 	line "ahead is a nine-"
 
@@ -282,18 +256,16 @@ UnknownText_0x9840b: ; 0x9840b
 	line "soul of all who"
 	cont "see it."
 	done
-; 0x9846f
 
-UnknownText_0x9846f: ; 0x9846f
+UnknownText_0x9846f:
 	text "The TIN TOWER"
 	line "shook! A #MON"
 
 	para "must have returned"
 	line "to the top!"
 	done
-; 0x984ab
 
-UnknownText_0x984ab: ; 0x984ab
+UnknownText_0x984ab:
 	text "Two towers…"
 	line "Two #MON…"
 
@@ -303,9 +275,8 @@ UnknownText_0x984ab: ; 0x984ab
 	para "#MON flew away,"
 	line "never to return."
 	done
-; 0x98502
 
-EcruteakHouse_MapEventHeader: ; 0x98502
+EcruteakHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -331,4 +302,3 @@ EcruteakHouse_MapEventHeader: ; 0x98502
 	person_event SPRITE_SAGE, 10, 9, $6, $0, 255, 255, $0, 0, SageScript_0x98062, $0767
 	person_event SPRITE_SAGE, 13, 10, $2, $11, 255, 255, $0, 0, SageScript_0x980b0, $07b1
 	person_event SPRITE_GRAMPS, 15, 7, $2, $11, 255, 255, $0, 0, GrampsScript_0x980c4, $07b1
-; 0x98565

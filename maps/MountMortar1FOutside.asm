@@ -1,26 +1,22 @@
-MountMortar1FOutside_MapScriptHeader: ; 0x7ddf4
+MountMortar1FOutside_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7ddf6
 
-ItemFragment_0x7ddf6: ; 0x7ddf6
+ItemFragment_0x7ddf6:
 	db ETHER, 1
-; 0x7ddf8
 
-ItemFragment_0x7ddf8: ; 0x7ddf8
+ItemFragment_0x7ddf8:
 	db REVIVE, 1
-; 0x7ddfa
 
-MapMountMortar1FOutsideSignpostItem0: ; 0x7ddfa
+MapMountMortar1FOutsideSignpostItem0:
 	dw $0090
 	db HYPER_POTION
 	
-; 0x7ddfd
 
-MountMortar1FOutside_MapEventHeader: ; 0x7ddfd
+MountMortar1FOutside_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -47,4 +43,3 @@ MountMortar1FOutside_MapEventHeader: ; 0x7ddfd
 	db 2
 	person_event SPRITE_POKE_BALL, 19, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ddf6, $067b
 	person_event SPRITE_POKE_BALL, 22, 35, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ddf8, $067c
-; 0x7de4f

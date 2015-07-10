@@ -1,24 +1,20 @@
-IcePath1F_MapScriptHeader: ; 0x7e470
+IcePath1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7e472
 
-ItemFragment_0x7e472: ; 0x7e472
+ItemFragment_0x7e472:
 	db HM_WATERFALL, 1
-; 0x7e474
 
-ItemFragment_0x7e474: ; 0x7e474
+ItemFragment_0x7e474:
 	db PP_UP, 1
-; 0x7e476
 
-ItemFragment_0x7e476: ; 0x7e476
+ItemFragment_0x7e476:
 	db PROTEIN, 1
-; 0x7e478
 
-IcePath1F_MapEventHeader: ; 0x7e478
+IcePath1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -40,4 +36,3 @@ IcePath1F_MapEventHeader: ; 0x7e478
 	person_event SPRITE_POKE_BALL, 11, 35, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e472, $0688
 	person_event SPRITE_POKE_BALL, 27, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e474, $0689
 	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e476, $07be
-; 0x7e4b9

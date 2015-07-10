@@ -1,4 +1,4 @@
-MrPokemonsHouse_MapScriptHeader: ; 0x196e47
+MrPokemonsHouse_MapScriptHeader:
 	; trigger count
 	db 2
 
@@ -8,18 +8,15 @@ MrPokemonsHouse_MapScriptHeader: ; 0x196e47
 
 	; callback count
 	db 0
-; 0x196e51
 
-UnknownScript_0x196e51: ; 0x196e51
+UnknownScript_0x196e51:
 	priorityjump UnknownScript_0x196e56
 	end
-; 0x196e55
 
-UnknownScript_0x196e55: ; 0x196e55
+UnknownScript_0x196e55:
 	end
-; 0x196e56
 
-UnknownScript_0x196e56: ; 0x196e56
+UnknownScript_0x196e56:
 	showemote $0, $2, 15
 	spriteface $2, DOWN
 	loadfont
@@ -49,9 +46,8 @@ UnknownScript_0x196e56: ; 0x196e56
 	closetext
 	loadmovesprites
 	jump UnknownScript_0x196ec9
-; 0x196e97
 
-GentlemanScript_0x196e97: ; 0x196e97
+GentlemanScript_0x196e97:
 	faceplayer
 	loadfont
 	checkitem RED_SCALE
@@ -62,16 +58,14 @@ GentlemanScript_0x196e97: ; 0x196e97
 	closetext
 	loadmovesprites
 	end
-; 0x196eaa
 
-UnknownScript_0x196eaa: ; 0x196eaa
+UnknownScript_0x196eaa:
 	writetext UnknownText_0x19714a
 	closetext
 	loadmovesprites
 	end
-; 0x196eb0
 
-UnknownScript_0x196eb0: ; 0x196eb0
+UnknownScript_0x196eb0:
 	writetext UnknownText_0x197476
 	yesorno
 	iffalse UnknownScript_0x196ec3
@@ -79,17 +73,15 @@ UnknownScript_0x196eb0: ; 0x196eb0
 	iffalse UnknownScript_0x196ec7
 	takeitem RED_SCALE, 1
 	jump UnknownScript_0x196eaa
-; 0x196ec3
 
-UnknownScript_0x196ec3: ; 0x196ec3
+UnknownScript_0x196ec3:
 	writetext UnknownText_0x19750d
 	closetext
-UnknownScript_0x196ec7: ; 0x196ec7
+UnknownScript_0x196ec7:
 	loadmovesprites
 	end
-; 0x196ec9
 
-UnknownScript_0x196ec9: ; 0x196ec9
+UnknownScript_0x196ec9:
 	playmusic MUSIC_PROF_OAK
 	applymovement $3, MovementData_0x196f5d
 	spriteface $0, RIGHT
@@ -142,74 +134,62 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	iftrue UnknownScript_0x196f4d
 	setevent $0641
 	end
-; 0x196f49
 
-UnknownScript_0x196f49: ; 0x196f49
+UnknownScript_0x196f49:
 	setevent $0642
 	end
-; 0x196f4d
 
-UnknownScript_0x196f4d: ; 0x196f4d
+UnknownScript_0x196f4d:
 	setevent $0640
 	end
-; 0x196f51
 
-MapMrPokemonsHouseSignpost1Script: ; 0x196f51
+MapMrPokemonsHouseSignpost1Script:
 	jumptext UnknownText_0x197543
-; 0x196f54
 
-MapMrPokemonsHouseSignpost3Script: ; 0x196f54
+MapMrPokemonsHouseSignpost3Script:
 	jumptext UnknownText_0x197584
-; 0x196f57
 
-MapMrPokemonsHouseSignpost4Script: ; 0x196f57
+MapMrPokemonsHouseSignpost4Script:
 	jumptext UnknownText_0x1975ac
-; 0x196f5a
 
-MovementData_0x196f5a: ; 0x196f5a
+MovementData_0x196f5a:
 	step_right
 	step_up
 	step_end
-; 0x196f5d
 
-MovementData_0x196f5d: ; 0x196f5d
+MovementData_0x196f5d:
 	step_down
 	step_left
 	step_left
 	step_end
-; 0x196f61
 
-MovementData_0x196f61: ; 0x196f61
+MovementData_0x196f61:
 	step_down
 	step_left
 	turn_head_down
 	db $3f ; movement
 	step_end
-; 0x196f66
 
-UnknownText_0x196f66: ; 0x196f66
+UnknownText_0x196f66:
 	text "Hello, hello! You"
 	line "must be <PLAY_G>."
 
 	para "PROF.ELM said that"
 	line "you would visit."
 	done
-; 0x196fa8
 
-UnknownText_0x196fa8: ; 0x196fa8
+UnknownText_0x196fa8:
 	text "This is what I"
 	line "want PROF.ELM to"
 	cont "examine."
 	done
-; 0x196fd2
 
-UnknownText_0x196fd2: ; 0x196fd2
+UnknownText_0x196fd2:
 	text "<PLAYER> received"
 	line "MYSTERY EGG."
 	done
-; 0x196feb
 
-UnknownText_0x196feb: ; 0x196feb
+UnknownText_0x196feb:
 	text "I know a couple"
 	line "who run a #MON"
 	cont "DAY-CARE service."
@@ -225,22 +205,19 @@ UnknownText_0x196feb: ; 0x196feb
 	line "tion, PROF.ELM is"
 	cont "the authority."
 	done
-; 0x197092
 
-UnknownText_0x197092: ; 0x197092
+UnknownText_0x197092:
 	text "Even PROF.OAK here"
 	line "recognizes that."
 	done
-; 0x1970b7
 
-UnknownText_0x1970b7: ; 0x1970b7
+UnknownText_0x1970b7:
 	text "If my assumption"
 	line "is correct, PROF."
 	cont "ELM will know it."
 	done
-; 0x1970ed
 
-UnknownText_0x1970ed: ; 0x1970ed
+UnknownText_0x1970ed:
 	text "You are returning"
 	line "to PROF.ELM?"
 
@@ -248,24 +225,21 @@ UnknownText_0x1970ed: ; 0x1970ed
 	line "should have some"
 	cont "rest."
 	done
-; 0x197134
 
-UnknownText_0x197134: ; 0x197134
+UnknownText_0x197134:
 	text "I'm depending on"
 	line "you!"
 	done
-; 0x19714a
 
-UnknownText_0x19714a: ; 0x19714a
+UnknownText_0x19714a:
 	text "Life is delight-"
 	line "ful! Always, new"
 
 	para "discoveries to be"
 	line "made!"
 	done
-; 0x197185
 
-UnknownText_0x197185: ; 0x197185
+UnknownText_0x197185:
 	text "OAK: Aha! So"
 	line "you're <PLAY_G>!"
 
@@ -328,15 +302,13 @@ UnknownText_0x197185: ; 0x197185
 	para "It's a hi-tech"
 	line "encyclopedia!"
 	done
-; 0x1973cc
 
-UnknownText_0x1973cc: ; 0x1973cc
+UnknownText_0x1973cc:
 	text "<PLAYER> received"
 	line "#DEX!"
 	done
-; 0x1973de
 
-UnknownText_0x1973de: ; 0x1973de
+UnknownText_0x1973de:
 	text "Go meet many kinds"
 	line "of #MON and"
 
@@ -353,9 +325,8 @@ UnknownText_0x1973de: ; 0x1973de
 	para "<PLAY_G>, I'm"
 	line "counting on you!"
 	done
-; 0x197476
 
-UnknownText_0x197476: ; 0x197476
+UnknownText_0x197476:
 	text "Hm? That SCALE!"
 	line "What's that?"
 	cont "A red GYARADOS?"
@@ -370,41 +341,36 @@ UnknownText_0x197476: ; 0x197476
 	line "EXP.SHARE I got"
 	cont "from PROF.OAK."
 	done
-; 0x19750d
 
-UnknownText_0x19750d: ; 0x19750d
+UnknownText_0x19750d:
 	text "That's disappoint-"
 	line "ing. That happens"
 	cont "to be very rare."
 	done
-; 0x197543
 
-UnknownText_0x197543: ; 0x197543
+UnknownText_0x197543:
 	text "It's packed with"
 	line "foreign magazines."
 
 	para "Can't even read"
 	line "their titles…"
 	done
-; 0x197584
 
-UnknownText_0x197584: ; 0x197584
+UnknownText_0x197584:
 	text "It's a big com-"
 	line "puter. Hmm. It's"
 	cont "broken."
 	done
-; 0x1975ac
 
-UnknownText_0x1975ac: ; 0x1975ac
+UnknownText_0x1975ac:
 	text "A whole pile of"
 	line "strange coins!"
 
 	para "Maybe they're from"
 	line "another country…"
 	done
-; 0x1975ef
 
-MrPokemonsHouse_MapEventHeader: ; 0x1975ef
+MrPokemonsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -428,4 +394,3 @@ MrPokemonsHouse_MapEventHeader: ; 0x1975ef
 	db 2
 	person_event SPRITE_GENTLEMAN, 9, 7, $9, $0, 255, 255, $0, 0, GentlemanScript_0x196e97, $ffff
 	person_event SPRITE_OAK, 9, 10, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c9
-; 0x197632

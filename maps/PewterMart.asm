@@ -1,27 +1,23 @@
-PewterMart_MapScriptHeader: ; 0x1a2dc9
+PewterMart_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1a2dcb
 
-ClerkScript_0x1a2dcb: ; 0x1a2dcb
+ClerkScript_0x1a2dcb:
 	loadfont
 	pokemart $0, $0013
 	loadmovesprites
 	end
-; 0x1a2dd2
 
-YoungsterScript_0x1a2dd2: ; 0x1a2dd2
+YoungsterScript_0x1a2dd2:
 	jumptextfaceplayer UnknownText_0x1a2dd8
-; 0x1a2dd5
 
-SuperNerdScript_0x1a2dd5: ; 0x1a2dd5
+SuperNerdScript_0x1a2dd5:
 	jumptextfaceplayer UnknownText_0x1a2e3a
-; 0x1a2dd8
 
-UnknownText_0x1a2dd8: ; 0x1a2dd8
+UnknownText_0x1a2dd8:
 	text "Hi! Check out my"
 	line "GYARADOS!"
 
@@ -31,9 +27,8 @@ UnknownText_0x1a2dd8: ; 0x1a2dd8
 	para "believe how strong"
 	line "it has become."
 	done
-; 0x1a2e3a
 
-UnknownText_0x1a2e3a: ; 0x1a2e3a
+UnknownText_0x1a2e3a:
 	text "There once was a"
 	line "weird old man who"
 	cont "sold MAGIKARP."
@@ -44,9 +39,8 @@ UnknownText_0x1a2e3a: ; 0x1a2e3a
 	para "LAKE OF RAGE were"
 	line "excellent."
 	done
-; 0x1a2eae
 
-PewterMart_MapEventHeader: ; 0x1a2eae
+PewterMart_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -66,4 +60,3 @@ PewterMart_MapEventHeader: ; 0x1a2eae
 	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x1a2dcb, $ffff
 	person_event SPRITE_YOUNGSTER, 6, 13, $5, $2, 255, 255, $0, 0, YoungsterScript_0x1a2dd2, $ffff
 	person_event SPRITE_SUPER_NERD, 10, 10, $3, $0, 255, 255, $80, 0, SuperNerdScript_0x1a2dd5, $ffff
-; 0x1a2ee5

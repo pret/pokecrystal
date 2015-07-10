@@ -1,19 +1,17 @@
-LavenderTownSpeechHouse_MapScriptHeader: ; 0x7ea45
+LavenderTownSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x7ea47
 
-PokefanFScript_0x7ea47: ; 0x7ea47
+PokefanFScript_0x7ea47:
 	jumptextfaceplayer UnknownText_0x7ea4d
-; 0x7ea4a
 
 LavenderTownSpeechHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x7ea4d: ; 0x7ea4d
+UnknownText_0x7ea4d:
 	text "LAVENDER is a"
 	line "tiny, quiet town"
 
@@ -26,9 +24,8 @@ UnknownText_0x7ea4d: ; 0x7ea4d
 	para "RADIO TOWER was"
 	line "built."
 	done
-; 0x7eac4
 
-LavenderTownSpeechHouse_MapEventHeader: ; 0x7eac4
+LavenderTownSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -48,4 +45,3 @@ LavenderTownSpeechHouse_MapEventHeader: ; 0x7eac4
 	; people-events
 	db 1
 	person_event SPRITE_POKEFAN_F, 7, 6, $7, $0, 255, 255, $90, 0, PokefanFScript_0x7ea47, $ffff
-; 0x7eaeb

@@ -1,12 +1,11 @@
-CinnabarPokeCenter2FBeta_MapScriptHeader: ; 0x1ab3e7
+CinnabarPokeCenter2FBeta_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1ab3e9
 
-CinnabarPokeCenter2FBeta_MapEventHeader: ; 0x1ab3e9
+CinnabarPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -22,4 +21,3 @@ CinnabarPokeCenter2FBeta_MapEventHeader: ; 0x1ab3e9
 
 	; people-events
 	db 0
-; 0x1ab3f4

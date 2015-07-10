@@ -1,12 +1,11 @@
-Route24_MapScriptHeader: ; 0x1adbf8
+Route24_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x1adbfa
 
-RocketScript_0x1adbfa: ; 0x1adbfa
+RocketScript_0x1adbfa:
 	faceplayer
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
@@ -33,9 +32,8 @@ RocketScript_0x1adbfa: ; 0x1adbfa
 	special Function8c0ab
 	playmapmusic
 	end
-; 0x1adc2e
 
-UnknownText_0x1adc2e: ; 0x1adc2e
+UnknownText_0x1adc2e:
 	text "Hey, kid! Me am a"
 	line "TEAM ROCKET member"
 	cont "kind of guy!"
@@ -63,9 +61,8 @@ UnknownText_0x1adc2e: ; 0x1adc2e
 	para "Hey, kid! Battle"
 	line "begin we do!"
 	done
-; 0x1add67
 
-UnknownText_0x1add67: ; 0x1add67
+UnknownText_0x1add67:
 	text "Ayieeeh! No, no,"
 	line "no, believe it I"
 	cont "can't!"
@@ -74,9 +71,8 @@ UnknownText_0x1add67: ; 0x1add67
 	line "be you! Match I am"
 	cont "not to you!"
 	done
-; 0x1addc0
 
-UnknownText_0x1addc0: ; 0x1addc0
+UnknownText_0x1addc0:
 	text "OK. Tell you mine"
 	line "secret will I."
 
@@ -104,9 +100,8 @@ UnknownText_0x1addc0: ; 0x1addc0
 	para "friends, yes. Will"
 	line "revenge they are."
 	done
-; 0x1adee1
 
-UnknownText_0x1adee1: ; 0x1adee1
+UnknownText_0x1adee1:
 	text "…"
 
 	para "You say what? TEAM"
@@ -119,9 +114,8 @@ UnknownText_0x1adee1: ; 0x1adee1
 	line "do what now on"
 	cont "from, me?"
 	done
-; 0x1adf50
 
-Route24_MapEventHeader: ; 0x1adf50
+Route24_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -137,4 +131,3 @@ Route24_MapEventHeader: ; 0x1adf50
 	; people-events
 	db 1
 	person_event SPRITE_ROCKET, 11, 12, $3, $0, 255, 255, $0, 0, RocketScript_0x1adbfa, $076c
-; 0x1adf63

@@ -1,23 +1,20 @@
-CherrygroveGymSpeechHouse_MapScriptHeader: ; 0x196adf
+CherrygroveGymSpeechHouse_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x196ae1
 
-PokefanMScript_0x196ae1: ; 0x196ae1
+PokefanMScript_0x196ae1:
 	jumptextfaceplayer UnknownText_0x196aea
-; 0x196ae4
 
-BugCatcherScript_0x196ae4: ; 0x196ae4
+BugCatcherScript_0x196ae4:
 	jumptextfaceplayer UnknownText_0x196b65
-; 0x196ae7
 
 CherrygroveGymSpeechHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x196aea: ; 0x196aea
+UnknownText_0x196aea:
 	text "You're trying to"
 	line "see how good you"
 
@@ -30,9 +27,8 @@ UnknownText_0x196aea: ; 0x196aea
 	para "all over JOHTO and"
 	line "collect BADGES."
 	done
-; 0x196b65
 
-UnknownText_0x196b65: ; 0x196b65
+UnknownText_0x196b65:
 	text "When I get older,"
 	line "I'm going to be a"
 	cont "GYM LEADER!"
@@ -43,9 +39,8 @@ UnknownText_0x196b65: ; 0x196b65
 	para "friend's to make"
 	line "them tougher!"
 	done
-; 0x196bd1
 
-CherrygroveGymSpeechHouse_MapEventHeader: ; 0x196bd1
+CherrygroveGymSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -66,4 +61,3 @@ CherrygroveGymSpeechHouse_MapEventHeader: ; 0x196bd1
 	db 2
 	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $0, 0, PokefanMScript_0x196ae1, $ffff
 	person_event SPRITE_BUG_CATCHER, 9, 9, $5, $1, 255, 255, $80, 0, BugCatcherScript_0x196ae4, $ffff
-; 0x196c05

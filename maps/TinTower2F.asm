@@ -1,12 +1,11 @@
-TinTower2F_MapScriptHeader: ; 0x185a23
+TinTower2F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x185a25
 
-TinTower2F_MapEventHeader: ; 0x185a25
+TinTower2F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -23,4 +22,3 @@ TinTower2F_MapEventHeader: ; 0x185a25
 
 	; people-events
 	db 0
-; 0x185a35

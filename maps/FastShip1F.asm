@@ -1,4 +1,4 @@
-FastShip1F_MapScriptHeader: ; 0x75127
+FastShip1F_MapScriptHeader:
 	; trigger count
 	db 3
 
@@ -9,22 +9,18 @@ FastShip1F_MapScriptHeader: ; 0x75127
 
 	; callback count
 	db 0
-; 0x75135
 
-UnknownScript_0x75135: ; 0x75135
+UnknownScript_0x75135:
 	end
-; 0x75136
 
-UnknownScript_0x75136: ; 0x75136
+UnknownScript_0x75136:
 	priorityjump UnknownScript_0x7513b
 	end
-; 0x7513a
 
-UnknownScript_0x7513a: ; 0x7513a
+UnknownScript_0x7513a:
 	end
-; 0x7513b
 
-UnknownScript_0x7513b: ; 0x7513b
+UnknownScript_0x7513b:
 	applymovement $2, MovementData_0x7520e
 	applymovement $0, MovementData_0x75217
 	applymovement $2, MovementData_0x75211
@@ -37,14 +33,12 @@ UnknownScript_0x7513b: ; 0x7513b
 	iftrue UnknownScript_0x7515d
 	dotrigger $2
 	end
-; 0x7515d
 
-UnknownScript_0x7515d: ; 0x7515d
+UnknownScript_0x7515d:
 	dotrigger $0
 	end
-; 0x75160
 
-SailorScript_0x75160: ; 0x75160
+SailorScript_0x75160:
 	faceplayer
 	loadfont
 	checkevent $0031
@@ -55,16 +49,14 @@ SailorScript_0x75160: ; 0x75160
 	closetext
 	loadmovesprites
 	end
-; 0x75174
 
-UnknownScript_0x75174: ; 0x75174
+UnknownScript_0x75174:
 	writetext UnknownText_0x7529b
 	closetext
 	loadmovesprites
 	end
-; 0x7517a
 
-UnknownScript_0x7517a: ; 0x7517a
+UnknownScript_0x7517a:
 	checkevent $002f
 	iftrue UnknownScript_0x7519c
 	writetext UnknownText_0x754be
@@ -78,9 +70,8 @@ UnknownScript_0x7517a: ; 0x7517a
 	domaptrigger GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $1
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $7, $11
 	end
-; 0x7519c
 
-UnknownScript_0x7519c: ; 0x7519c
+UnknownScript_0x7519c:
 	writetext UnknownText_0x7548d
 	closetext
 	loadmovesprites
@@ -92,23 +83,20 @@ UnknownScript_0x7519c: ; 0x7519c
 	domaptrigger GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $1
 	warp GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $7, $17
 	end
-; 0x751b8
 
-UnknownScript_0x751b8: ; 0x751b8
+UnknownScript_0x751b8:
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x751c7
 	applymovement $2, MovementData_0x7520e
 	applymovement $0, MovementData_0x75235
 	end
-; 0x751c7
 
-UnknownScript_0x751c7: ; 0x751c7
+UnknownScript_0x751c7:
 	applymovement $2, MovementData_0x75214
 	applymovement $0, MovementData_0x75238
 	end
-; 0x751d0
 
-SailorScript_0x751d0: ; 0x751d0
+SailorScript_0x751d0:
 	faceplayer
 	loadfont
 	checkevent $0030
@@ -117,24 +105,20 @@ SailorScript_0x751d0: ; 0x751d0
 	closetext
 	loadmovesprites
 	end
-; 0x751de
 
-UnknownScript_0x751de: ; 0x751de
+UnknownScript_0x751de:
 	writetext UnknownText_0x7534f
 	closetext
 	loadmovesprites
 	end
-; 0x751e4
 
-SailorScript_0x751e4: ; 0x751e4
+SailorScript_0x751e4:
 	jumptextfaceplayer UnknownText_0x753c0
-; 0x751e7
 
-UnknownScript_0x751e7: ; 0x751e7
+UnknownScript_0x751e7:
 	moveperson $5, $14, $6
-; 0x751eb
 
-UnknownScript_0x751eb: ; 0x751eb
+UnknownScript_0x751eb:
 	appear $5
 	applymovement $5, MovementData_0x7521b
 	playsound SFX_TACKLE
@@ -149,47 +133,40 @@ UnknownScript_0x751eb: ; 0x751eb
 	disappear $5
 	dotrigger $0
 	end
-; 0x7520e
 
-MovementData_0x7520e: ; 0x7520e
+MovementData_0x7520e:
 	slow_step_left
 	turn_head_right
 	step_end
-; 0x75211
 
-MovementData_0x75211: ; 0x75211
+MovementData_0x75211:
 	slow_step_right
 	turn_head_down
 	step_end
-; 0x75214
 
-MovementData_0x75214: ; 0x75214
+MovementData_0x75214:
 	slow_step_down
 	turn_head_up
 	step_end
-; 0x75217
 
-MovementData_0x75217: ; 0x75217
+MovementData_0x75217:
 	step_down
 	step_down
 	turn_head_down
 	step_end
-; 0x7521b
 
-MovementData_0x7521b: ; 0x7521b
+MovementData_0x7521b:
 	big_step_right
 	big_step_right
 	big_step_right
 	big_step_right
 	step_end
-; 0x75220
 
-MovementData_0x75220: ; 0x75220
+MovementData_0x75220:
 	step_right
 	step_end
-; 0x75222
 
-MovementData_0x75222: ; 0x75222
+MovementData_0x75222:
 	big_step_down
 	big_step_right
 	big_step_right
@@ -202,37 +179,31 @@ MovementData_0x75222: ; 0x75222
 	big_step_down
 	big_step_down
 	step_end
-; 0x7522e
 
-MovementData_0x7522e: ; 0x7522e
+MovementData_0x7522e:
 	big_step_right
 	turn_head_left
 	step_end
-; 0x75231
 
-MovementData_0x75231: ; 0x75231
+MovementData_0x75231:
 	step_up
 	step_end
-; 0x75233
 
-MovementData_0x75233: ; 0x75233
+MovementData_0x75233:
 	step_down
 	step_end
-; 0x75235
 
-MovementData_0x75235: ; 0x75235
+MovementData_0x75235:
 	step_up
 	step_up
 	step_end
-; 0x75238
 
-MovementData_0x75238: ; 0x75238
+MovementData_0x75238:
 	step_right
 	step_up
 	step_end
-; 0x7523b
 
-UnknownText_0x7523b: ; 0x7523b
+UnknownText_0x7523b:
 	text "FAST SHIP S.S.AQUA"
 	line "is en route to"
 	cont "VERMILION CITY."
@@ -241,9 +212,8 @@ UnknownText_0x7523b: ; 0x7523b
 	line "announcement when"
 	cont "we arrive."
 	done
-; 0x7529b
 
-UnknownText_0x7529b: ; 0x7529b
+UnknownText_0x7529b:
 	text "FAST SHIP S.S.AQUA"
 	line "is en route to"
 	cont "OLIVINE CITY."
@@ -252,9 +222,8 @@ UnknownText_0x7529b: ; 0x7529b
 	line "announcement when"
 	cont "we arrive."
 	done
-; 0x752f9
 
-UnknownText_0x752f9: ; 0x752f9
+UnknownText_0x752f9:
 	text "Here's your cabin."
 
 	para "If your #MON"
@@ -264,9 +233,8 @@ UnknownText_0x752f9: ; 0x752f9
 	para "That will heal"
 	line "them."
 	done
-; 0x7534f
 
-UnknownText_0x7534f: ; 0x7534f
+UnknownText_0x7534f:
 	text "Here's your cabin."
 
 	para "You can heal your"
@@ -277,9 +245,8 @@ UnknownText_0x7534f: ; 0x7534f
 	line "arrive while"
 	cont "you're sleeping."
 	done
-; 0x753c0
 
-UnknownText_0x753c0: ; 0x753c0
+UnknownText_0x753c0:
 	text "The passengers are"
 	line "all trainers."
 
@@ -287,9 +254,8 @@ UnknownText_0x753c0: ; 0x753c0
 	line "ing to battle in"
 	cont "their cabins."
 	done
-; 0x75412
 
-UnknownText_0x75412: ; 0x75412
+UnknownText_0x75412:
 	text "Whoa! Excuse me."
 	line "I was in a hurry!"
 
@@ -302,23 +268,20 @@ UnknownText_0x75412: ; 0x75412
 	para "her, please let me"
 	line "know!"
 	done
-; 0x7548d
 
-UnknownText_0x7548d: ; 0x7548d
+UnknownText_0x7548d:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
 	cont "OLIVINE CITY."
 	done
-; 0x754be
 
-UnknownText_0x754be: ; 0x754be
+UnknownText_0x754be:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
 	cont "VERMILION CITY."
 	done
-; 0x754f1
 
-FastShip1F_MapEventHeader: ; 0x754f1
+FastShip1F_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -351,4 +314,3 @@ FastShip1F_MapEventHeader: ; 0x754f1
 	person_event SPRITE_SAILOR, 11, 18, $9, $0, 255, 255, $0, 0, SailorScript_0x751d0, $ffff
 	person_event SPRITE_SAILOR, 21, 26, $5, $2, 255, 255, $0, 0, SailorScript_0x751e4, $ffff
 	person_event SPRITE_GENTLEMAN, 10, 23, $9, $0, 255, 255, $0, 0, ObjectEvent, $072c
-; 0x75577
