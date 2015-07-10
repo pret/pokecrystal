@@ -80,7 +80,7 @@ UnknownScript_0x1a4d65:
 UnknownScript_0x1a4d79:
 	scall UnknownScript_0x1a4dd7
 	winlosstext CooltrainermGaven3BeatenText, $0000
-	copybytetovar GavenFightCount
+	copybytetovar wGavenFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
@@ -94,7 +94,7 @@ UnknownScript_0x1a4d79:
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	returnafterbattle
-	loadvar GavenFightCount, 1
+	loadvar wGavenFightCount, 1
 	clearflag ENGINE_GAVEN
 	end
 
@@ -102,7 +102,7 @@ UnknownScript_0x1a4d79:
 	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
 	returnafterbattle
-	loadvar GavenFightCount, 2
+	loadvar wGavenFightCount, 2
 	clearflag ENGINE_GAVEN
 	end
 
@@ -216,7 +216,7 @@ UnknownScript_0x1a4e21:
 UnknownScript_0x1a4e35:
 	scall UnknownScript_0x1a4e93
 	winlosstext CooltrainerfBeth1BeatenText, $0000
-	copybytetovar BethFightCount
+	copybytetovar wBethFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
@@ -230,7 +230,7 @@ UnknownScript_0x1a4e35:
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	returnafterbattle
-	loadvar BethFightCount, 1
+	loadvar wBethFightCount, 1
 	clearflag ENGINE_BETH
 	end
 
@@ -238,7 +238,7 @@ UnknownScript_0x1a4e35:
 	loadtrainer COOLTRAINERF, BETH2
 	startbattle
 	returnafterbattle
-	loadvar BethFightCount, 2
+	loadvar wBethFightCount, 2
 	clearflag ENGINE_BETH
 	end
 

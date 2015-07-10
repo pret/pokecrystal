@@ -78,7 +78,7 @@ UnknownScript_0x5afb3:
 UnknownScript_0x5afc7:
 	scall UnknownScript_0x5b06b
 	winlosstext SailorHuey1BeatenText, $0000
-	copybytetovar HueyFightCount
+	copybytetovar wHueyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -96,7 +96,7 @@ UnknownScript_0x5afc7:
 	loadtrainer SAILOR, HUEY1
 	startbattle
 	returnafterbattle
-	loadvar HueyFightCount, 1
+	loadvar wHueyFightCount, 1
 	clearflag ENGINE_HUEY
 	end
 
@@ -104,7 +104,7 @@ UnknownScript_0x5afc7:
 	loadtrainer SAILOR, HUEY2
 	startbattle
 	returnafterbattle
-	loadvar HueyFightCount, 2
+	loadvar wHueyFightCount, 2
 	clearflag ENGINE_HUEY
 	end
 
@@ -112,7 +112,7 @@ UnknownScript_0x5afc7:
 	loadtrainer SAILOR, HUEY3
 	startbattle
 	returnafterbattle
-	loadvar HueyFightCount, 3
+	loadvar wHueyFightCount, 3
 	clearflag ENGINE_HUEY
 	end
 

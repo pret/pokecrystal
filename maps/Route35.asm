@@ -261,7 +261,7 @@ UnknownScript_0x19c9a7:
 UnknownScript_0x19c9bb:
 	scall UnknownScript_0x19c91b
 	winlosstext Bug_catcherArnie1BeatenText, $0000
-	copybytetovar ArnieFightCount
+	copybytetovar wArnieFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -283,7 +283,7 @@ UnknownScript_0x19c9bb:
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	returnafterbattle
-	loadvar ArnieFightCount, 1
+	loadvar wArnieFightCount, 1
 	clearflag ENGINE_ARNIE
 	end
 
@@ -291,7 +291,7 @@ UnknownScript_0x19c9bb:
 	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
 	returnafterbattle
-	loadvar ArnieFightCount, 2
+	loadvar wArnieFightCount, 2
 	clearflag ENGINE_ARNIE
 	end
 
@@ -299,7 +299,7 @@ UnknownScript_0x19c9bb:
 	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
 	returnafterbattle
-	loadvar ArnieFightCount, 3
+	loadvar wArnieFightCount, 3
 	clearflag ENGINE_ARNIE
 	end
 
@@ -307,7 +307,7 @@ UnknownScript_0x19c9bb:
 	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
 	returnafterbattle
-	loadvar ArnieFightCount, 4
+	loadvar wArnieFightCount, 4
 	clearflag ENGINE_ARNIE
 	end
 

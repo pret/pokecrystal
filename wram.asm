@@ -2216,36 +2216,36 @@ wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 
 SECTION "Events", WRAMX, BANK [1]
 
-JackFightCount::    ds 1
-                    ds 1
-HueyFightCount::    ds 1
-GavenFightCount::   ds 1
-BethFightCount::    ds 1
-JoseFightCount::    ds 1
-ReenaFightCount::   ds 1
-JoeyFightCount::    ds 1
-WadeFightCount::    ds 1
-RalphFightCount::   ds 1
-LizFightCount::     ds 1
-AnthonyFightCount:: ds 1
-ToddFightCount::    ds 1
-GinaFightCount::    ds 1
+wJackFightCount::    ds 1
+                     ds 1
+wHueyFightCount::    ds 1
+wGavenFightCount::   ds 1
+wBethFightCount::    ds 1
+wJoseFightCount::    ds 1
+wReenaFightCount::   ds 1
+wJoeyFightCount::    ds 1
+wWadeFightCount::    ds 1
+wRalphFightCount::   ds 1
+wLizFightCount::     ds 1
+wAnthonyFightCount:: ds 1
+wToddFightCount::    ds 1
+wGinaFightCount::    ds 1
 
 wda00:: ds 1
 
-ArnieFightCount::   ds 1
-AlanFightCount::    ds 1
-DanaFightCount::    ds 1
-ChadFightCount::    ds 1
-	            ds 1
-TullyFightCount::   ds 1
-BrentFightCount::   ds 1
-TiffanyFightCount:: ds 1
-VanceFightCount::   ds 1
-WiltonFightCount::  ds 1
-                    ds 1
-ParryFightCount::   ds 1
-ErinFightCount::    ds 1
+wArnieFightCount::   ds 1
+wAlanFightCount::    ds 1
+wDanaFightCount::    ds 1
+wChadFightCount::    ds 1
+                     ds 1
+wTullyFightCount::   ds 1
+wBrentFightCount::   ds 1
+wTiffanyFightCount:: ds 1
+wVanceFightCount::   ds 1
+wWiltonFightCount::  ds 1
+                     ds 1
+wParryFightCount::   ds 1
+wErinFightCount::    ds 1
 
 	ds 100
 

@@ -227,7 +227,7 @@ UnknownScript_0x19e1a4:
 UnknownScript_0x19e1b8:
 	scall UnknownScript_0x19e133
 	winlosstext HikerParry3BeatenText, $0000
-	copybytetovar ParryFightCount
+	copybytetovar wParryFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
@@ -241,7 +241,7 @@ UnknownScript_0x19e1b8:
 	loadtrainer HIKER, PARRY3
 	startbattle
 	returnafterbattle
-	loadvar ParryFightCount, 1
+	loadvar wParryFightCount, 1
 	clearflag ENGINE_PARRY
 	end
 
@@ -249,7 +249,7 @@ UnknownScript_0x19e1b8:
 	loadtrainer HIKER, PARRY1
 	startbattle
 	returnafterbattle
-	loadvar ParryFightCount, 2
+	loadvar wParryFightCount, 2
 	clearflag ENGINE_PARRY
 	end
 

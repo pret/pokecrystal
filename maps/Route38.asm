@@ -109,7 +109,7 @@ UnknownScript_0x1a1d6e:
 UnknownScript_0x1a1d82:
 	scall UnknownScript_0x1a1e23
 	winlosstext LassDana1BeatenText, $0000
-	copybytetovar DanaFightCount
+	copybytetovar wDanaFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -131,7 +131,7 @@ UnknownScript_0x1a1d82:
 	loadtrainer LASS, DANA1
 	startbattle
 	returnafterbattle
-	loadvar DanaFightCount, 1
+	loadvar wDanaFightCount, 1
 	clearflag ENGINE_DANA
 	end
 
@@ -139,7 +139,7 @@ UnknownScript_0x1a1d82:
 	loadtrainer LASS, DANA2
 	startbattle
 	returnafterbattle
-	loadvar DanaFightCount, 2
+	loadvar wDanaFightCount, 2
 	clearflag ENGINE_DANA
 	end
 
@@ -147,7 +147,7 @@ UnknownScript_0x1a1d82:
 	loadtrainer LASS, DANA3
 	startbattle
 	returnafterbattle
-	loadvar DanaFightCount, 3
+	loadvar wDanaFightCount, 3
 	clearflag ENGINE_DANA
 	end
 
@@ -155,7 +155,7 @@ UnknownScript_0x1a1d82:
 	loadtrainer LASS, DANA4
 	startbattle
 	returnafterbattle
-	loadvar DanaFightCount, 4
+	loadvar wDanaFightCount, 4
 	clearflag ENGINE_DANA
 	end
 
@@ -261,7 +261,7 @@ UnknownScript_0x1a1e61:
 UnknownScript_0x1a1e75:
 	scall UnknownScript_0x1a1f01
 	winlosstext SchoolboyChad1BeatenText, $0000
-	copybytetovar ChadFightCount
+	copybytetovar wChadFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -283,7 +283,7 @@ UnknownScript_0x1a1e75:
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	returnafterbattle
-	loadvar ChadFightCount, 1
+	loadvar wChadFightCount, 1
 	clearflag ENGINE_CHAD
 	end
 
@@ -291,7 +291,7 @@ UnknownScript_0x1a1e75:
 	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
 	returnafterbattle
-	loadvar ChadFightCount, 2
+	loadvar wChadFightCount, 2
 	clearflag ENGINE_CHAD
 	end
 
@@ -299,7 +299,7 @@ UnknownScript_0x1a1e75:
 	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
 	returnafterbattle
-	loadvar ChadFightCount, 3
+	loadvar wChadFightCount, 3
 	clearflag ENGINE_CHAD
 	end
 
@@ -307,7 +307,7 @@ UnknownScript_0x1a1e75:
 	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
 	returnafterbattle
-	loadvar ChadFightCount, 4
+	loadvar wChadFightCount, 4
 	clearflag ENGINE_CHAD
 	end
 

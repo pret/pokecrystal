@@ -236,7 +236,7 @@ UnknownScript_0x190569:
 UnknownScript_0x19057d:
 	scall UnknownScript_0x19060f
 	winlosstext FisherRalph1BeatenText, $0000
-	copybytetovar RalphFightCount
+	copybytetovar wRalphFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -258,7 +258,7 @@ UnknownScript_0x19057d:
 	loadtrainer FISHER, RALPH1
 	startbattle
 	returnafterbattle
-	loadvar RalphFightCount, 1
+	loadvar wRalphFightCount, 1
 	clearflag ENGINE_RALPH
 	end
 
@@ -266,7 +266,7 @@ UnknownScript_0x19057d:
 	loadtrainer FISHER, RALPH2
 	startbattle
 	returnafterbattle
-	loadvar RalphFightCount, 2
+	loadvar wRalphFightCount, 2
 	clearflag ENGINE_RALPH
 	end
 
@@ -274,7 +274,7 @@ UnknownScript_0x19057d:
 	loadtrainer FISHER, RALPH3
 	startbattle
 	returnafterbattle
-	loadvar RalphFightCount, 3
+	loadvar wRalphFightCount, 3
 	clearflag ENGINE_RALPH
 	end
 
@@ -282,7 +282,7 @@ UnknownScript_0x19057d:
 	loadtrainer FISHER, RALPH4
 	startbattle
 	returnafterbattle
-	loadvar RalphFightCount, 4
+	loadvar wRalphFightCount, 4
 	clearflag ENGINE_RALPH
 	end
 
@@ -402,7 +402,7 @@ UnknownScript_0x190659:
 UnknownScript_0x19066d:
 	scall UnknownScript_0x1906f9
 	winlosstext PicnickerLiz1BeatenText, $0000
-	copybytetovar LizFightCount
+	copybytetovar wLizFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -424,7 +424,7 @@ UnknownScript_0x19066d:
 	loadtrainer PICNICKER, LIZ1
 	startbattle
 	returnafterbattle
-	loadvar LizFightCount, 1
+	loadvar wLizFightCount, 1
 	clearflag ENGINE_LIZ
 	end
 
@@ -432,7 +432,7 @@ UnknownScript_0x19066d:
 	loadtrainer PICNICKER, LIZ2
 	startbattle
 	returnafterbattle
-	loadvar LizFightCount, 2
+	loadvar wLizFightCount, 2
 	clearflag ENGINE_LIZ
 	end
 
@@ -440,7 +440,7 @@ UnknownScript_0x19066d:
 	loadtrainer PICNICKER, LIZ3
 	startbattle
 	returnafterbattle
-	loadvar LizFightCount, 3
+	loadvar wLizFightCount, 3
 	clearflag ENGINE_LIZ
 	end
 
@@ -448,7 +448,7 @@ UnknownScript_0x19066d:
 	loadtrainer PICNICKER, LIZ4
 	startbattle
 	returnafterbattle
-	loadvar LizFightCount, 4
+	loadvar wLizFightCount, 4
 	clearflag ENGINE_LIZ
 	end
 

@@ -125,7 +125,7 @@ UnknownScript_0x780a9:
 UnknownScript_0x780bd:
 	scall UnknownScript_0x7814f
 	winlosstext CamperTodd1BeatenText, $0000
-	copybytetovar ToddFightCount
+	copybytetovar wToddFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -147,7 +147,7 @@ UnknownScript_0x780bd:
 	loadtrainer CAMPER, TODD1
 	startbattle
 	returnafterbattle
-	loadvar ToddFightCount, 1
+	loadvar wToddFightCount, 1
 	clearflag ENGINE_TODD
 	end
 
@@ -155,7 +155,7 @@ UnknownScript_0x780bd:
 	loadtrainer CAMPER, TODD2
 	startbattle
 	returnafterbattle
-	loadvar ToddFightCount, 2
+	loadvar wToddFightCount, 2
 	clearflag ENGINE_TODD
 	end
 
@@ -163,7 +163,7 @@ UnknownScript_0x780bd:
 	loadtrainer CAMPER, TODD3
 	startbattle
 	returnafterbattle
-	loadvar ToddFightCount, 3
+	loadvar wToddFightCount, 3
 	clearflag ENGINE_TODD
 	end
 
@@ -171,7 +171,7 @@ UnknownScript_0x780bd:
 	loadtrainer CAMPER, TODD4
 	startbattle
 	returnafterbattle
-	loadvar ToddFightCount, 4
+	loadvar wToddFightCount, 4
 	clearflag ENGINE_TODD
 	end
 
@@ -266,7 +266,7 @@ UnknownScript_0x7818b:
 UnknownScript_0x7819f:
 	scall UnknownScript_0x78240
 	winlosstext PicnickerGina1BeatenText, $0000
-	copybytetovar GinaFightCount
+	copybytetovar wGinaFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -288,7 +288,7 @@ UnknownScript_0x7819f:
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	returnafterbattle
-	loadvar GinaFightCount, 1
+	loadvar wGinaFightCount, 1
 	clearflag ENGINE_GINA
 	end
 
@@ -296,7 +296,7 @@ UnknownScript_0x7819f:
 	loadtrainer PICNICKER, GINA2
 	startbattle
 	returnafterbattle
-	loadvar GinaFightCount, 2
+	loadvar wGinaFightCount, 2
 	clearflag ENGINE_GINA
 	end
 
@@ -304,7 +304,7 @@ UnknownScript_0x7819f:
 	loadtrainer PICNICKER, GINA3
 	startbattle
 	returnafterbattle
-	loadvar GinaFightCount, 3
+	loadvar wGinaFightCount, 3
 	clearflag ENGINE_GINA
 	end
 
@@ -312,7 +312,7 @@ UnknownScript_0x7819f:
 	loadtrainer PICNICKER, GINA4
 	startbattle
 	returnafterbattle
-	loadvar GinaFightCount, 4
+	loadvar wGinaFightCount, 4
 	clearflag ENGINE_GINA
 	end
 

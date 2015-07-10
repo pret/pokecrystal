@@ -58,7 +58,7 @@ UnknownScript_0x1ac03d:
 UnknownScript_0x1ac051:
 	scall UnknownScript_0x1ac0e3
 	winlosstext HikerAnthony2BeatenText, $0000
-	copybytetovar AnthonyFightCount
+	copybytetovar wAnthonyFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -80,7 +80,7 @@ UnknownScript_0x1ac051:
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	returnafterbattle
-	loadvar AnthonyFightCount, 1
+	loadvar wAnthonyFightCount, 1
 	clearflag ENGINE_ANTHONY
 	end
 
@@ -88,7 +88,7 @@ UnknownScript_0x1ac051:
 	loadtrainer HIKER, ANTHONY1
 	startbattle
 	returnafterbattle
-	loadvar AnthonyFightCount, 2
+	loadvar wAnthonyFightCount, 2
 	clearflag ENGINE_ANTHONY
 	end
 
@@ -96,7 +96,7 @@ UnknownScript_0x1ac051:
 	loadtrainer HIKER, ANTHONY3
 	startbattle
 	returnafterbattle
-	loadvar AnthonyFightCount, 3
+	loadvar wAnthonyFightCount, 3
 	clearflag ENGINE_ANTHONY
 	end
 
@@ -104,7 +104,7 @@ UnknownScript_0x1ac051:
 	loadtrainer HIKER, ANTHONY4
 	startbattle
 	returnafterbattle
-	loadvar AnthonyFightCount, 4
+	loadvar wAnthonyFightCount, 4
 	clearflag ENGINE_ANTHONY
 	end
 

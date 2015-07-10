@@ -77,7 +77,7 @@ UnknownScript_0x1a926b:
 UnknownScript_0x1a927f:
 	scall UnknownScript_0x1a9309
 	winlosstext FisherTully1BeatenText, $0000
-	copybytetovar TullyFightCount
+	copybytetovar wTullyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -95,7 +95,7 @@ UnknownScript_0x1a927f:
 	loadtrainer FISHER, TULLY1
 	startbattle
 	returnafterbattle
-	loadvar TullyFightCount, 1
+	loadvar wTullyFightCount, 1
 	clearflag ENGINE_TULLY
 	end
 
@@ -103,7 +103,7 @@ UnknownScript_0x1a927f:
 	loadtrainer FISHER, TULLY2
 	startbattle
 	returnafterbattle
-	loadvar TullyFightCount, 2
+	loadvar wTullyFightCount, 2
 	clearflag ENGINE_TULLY
 	end
 
@@ -111,7 +111,7 @@ UnknownScript_0x1a927f:
 	loadtrainer FISHER, TULLY3
 	startbattle
 	returnafterbattle
-	loadvar TullyFightCount, 3
+	loadvar wTullyFightCount, 3
 	clearflag ENGINE_TULLY
 	end
 

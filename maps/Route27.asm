@@ -116,7 +116,7 @@ UnknownScript_0x1a08eb:
 UnknownScript_0x1a08ff:
 	scall UnknownScript_0x1a096f
 	winlosstext Bird_keeperJose2BeatenText, $0000
-	copybytetovar JoseFightCount
+	copybytetovar wJoseFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
@@ -130,7 +130,7 @@ UnknownScript_0x1a08ff:
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	returnafterbattle
-	loadvar JoseFightCount, 1
+	loadvar wJoseFightCount, 1
 	clearflag ENGINE_JOSE
 	end
 
@@ -138,7 +138,7 @@ UnknownScript_0x1a08ff:
 	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
 	returnafterbattle
-	loadvar JoseFightCount, 2
+	loadvar wJoseFightCount, 2
 	clearflag ENGINE_JOSE
 	end
 
@@ -297,7 +297,7 @@ UnknownScript_0x1a09d5:
 UnknownScript_0x1a09e9:
 	scall UnknownScript_0x1a0a47
 	winlosstext CooltrainerfReena1BeatenText, $0000
-	copybytetovar ReenaFightCount
+	copybytetovar wReenaFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
@@ -311,7 +311,7 @@ UnknownScript_0x1a09e9:
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	returnafterbattle
-	loadvar ReenaFightCount, 1
+	loadvar wReenaFightCount, 1
 	clearflag ENGINE_REENA
 	end
 
@@ -319,7 +319,7 @@ UnknownScript_0x1a09e9:
 	loadtrainer COOLTRAINERF, REENA2
 	startbattle
 	returnafterbattle
-	loadvar ReenaFightCount, 2
+	loadvar wReenaFightCount, 2
 	clearflag ENGINE_REENA
 	end
 

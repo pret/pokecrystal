@@ -68,7 +68,7 @@ UnknownScript_0x1a547f:
 UnknownScript_0x1a5493:
 	scall UnknownScript_0x1a5564
 	winlosstext Bug_catcherWade1BeatenText, $0000
-	copybytetovar WadeFightCount
+	copybytetovar wWadeFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -90,7 +90,7 @@ UnknownScript_0x1a5493:
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	returnafterbattle
-	loadvar WadeFightCount, 1
+	loadvar wWadeFightCount, 1
 	clearflag ENGINE_WADE
 	end
 
@@ -98,7 +98,7 @@ UnknownScript_0x1a5493:
 	loadtrainer BUG_CATCHER, WADE2
 	startbattle
 	returnafterbattle
-	loadvar WadeFightCount, 2
+	loadvar wWadeFightCount, 2
 	clearflag ENGINE_WADE
 	end
 
@@ -106,7 +106,7 @@ UnknownScript_0x1a5493:
 	loadtrainer BUG_CATCHER, WADE3
 	startbattle
 	returnafterbattle
-	loadvar WadeFightCount, 3
+	loadvar wWadeFightCount, 3
 	clearflag ENGINE_WADE
 	end
 
@@ -114,7 +114,7 @@ UnknownScript_0x1a5493:
 	loadtrainer BUG_CATCHER, WADE4
 	startbattle
 	returnafterbattle
-	loadvar WadeFightCount, 4
+	loadvar wWadeFightCount, 4
 	clearflag ENGINE_WADE
 	end
 

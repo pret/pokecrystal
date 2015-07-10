@@ -121,7 +121,7 @@ UnknownScript_0x19d0bb:
 UnknownScript_0x19d0cf:
 	scall UnknownScript_0x19d144
 	winlosstext PokemaniacBrent1BeatenText, $0000
-	copybytetovar BrentFightCount
+	copybytetovar wBrentFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -139,7 +139,7 @@ UnknownScript_0x19d0cf:
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
 	returnafterbattle
-	loadvar BrentFightCount, 1
+	loadvar wBrentFightCount, 1
 	clearflag ENGINE_BRENT
 	end
 
@@ -147,7 +147,7 @@ UnknownScript_0x19d0cf:
 	loadtrainer POKEMANIAC, BRENT2
 	startbattle
 	returnafterbattle
-	loadvar BrentFightCount, 2
+	loadvar wBrentFightCount, 2
 	clearflag ENGINE_BRENT
 	end
 
@@ -155,7 +155,7 @@ UnknownScript_0x19d0cf:
 	loadtrainer POKEMANIAC, BRENT3
 	startbattle
 	returnafterbattle
-	loadvar BrentFightCount, 3
+	loadvar wBrentFightCount, 3
 	clearflag ENGINE_BRENT
 	end
 
@@ -300,7 +300,7 @@ UnknownScript_0x19d1ad:
 UnknownScript_0x19d1c1:
 	scall UnknownScript_0x19d251
 	winlosstext PicnickerTiffany3BeatenText, $0000
-	copybytetovar TiffanyFightCount
+	copybytetovar wTiffanyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -318,7 +318,7 @@ UnknownScript_0x19d1c1:
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	returnafterbattle
-	loadvar TiffanyFightCount, 1
+	loadvar wTiffanyFightCount, 1
 	clearflag ENGINE_TIFFANY
 	end
 
@@ -326,7 +326,7 @@ UnknownScript_0x19d1c1:
 	loadtrainer PICNICKER, TIFFANY1
 	startbattle
 	returnafterbattle
-	loadvar TiffanyFightCount, 2
+	loadvar wTiffanyFightCount, 2
 	clearflag ENGINE_TIFFANY
 	end
 
@@ -334,7 +334,7 @@ UnknownScript_0x19d1c1:
 	loadtrainer PICNICKER, TIFFANY2
 	startbattle
 	returnafterbattle
-	loadvar TiffanyFightCount, 3
+	loadvar wTiffanyFightCount, 3
 	clearflag ENGINE_TIFFANY
 	end
 

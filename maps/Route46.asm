@@ -80,7 +80,7 @@ UnknownScript_0x1a96c6:
 UnknownScript_0x1a96da:
 	scall UnknownScript_0x1a9767
 	winlosstext PicnickerErin1BeatenText, $0000
-	copybytetovar ErinFightCount
+	copybytetovar wErinFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
@@ -94,7 +94,7 @@ UnknownScript_0x1a96da:
 	loadtrainer PICNICKER, ERIN1
 	startbattle
 	returnafterbattle
-	loadvar ErinFightCount, 1
+	loadvar wErinFightCount, 1
 	clearflag ENGINE_ERIN
 	end
 
@@ -102,7 +102,7 @@ UnknownScript_0x1a96da:
 	loadtrainer PICNICKER, ERIN2
 	startbattle
 	returnafterbattle
-	loadvar ErinFightCount, 2
+	loadvar wErinFightCount, 2
 	clearflag ENGINE_ERIN
 	end
 

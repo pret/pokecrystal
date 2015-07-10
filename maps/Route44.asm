@@ -53,7 +53,7 @@ UnknownScript_0x19d856:
 UnknownScript_0x19d86a:
 	scall UnknownScript_0x19d8f7
 	winlosstext Bird_keeperVance1BeatenText, $0000
-	copybytetovar VanceFightCount
+	copybytetovar wVanceFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
@@ -67,7 +67,7 @@ UnknownScript_0x19d86a:
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
 	returnafterbattle
-	loadvar VanceFightCount, 1
+	loadvar wVanceFightCount, 1
 	clearflag ENGINE_VANCE
 	end
 
@@ -75,7 +75,7 @@ UnknownScript_0x19d86a:
 	loadtrainer BIRD_KEEPER, VANCE2
 	startbattle
 	returnafterbattle
-	loadvar VanceFightCount, 2
+	loadvar wVanceFightCount, 2
 	clearflag ENGINE_VANCE
 	end
 
@@ -229,7 +229,7 @@ UnknownScript_0x19d95a:
 UnknownScript_0x19d96e:
 	scall UnknownScript_0x19d8f7
 	winlosstext FisherWilton1BeatenText, $0000
-	copybytetovar WiltonFightCount
+	copybytetovar wWiltonFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
@@ -243,7 +243,7 @@ UnknownScript_0x19d96e:
 	loadtrainer FISHER, WILTON1
 	startbattle
 	returnafterbattle
-	loadvar WiltonFightCount, 1
+	loadvar wWiltonFightCount, 1
 	clearflag ENGINE_WILTON
 	end
 
@@ -251,7 +251,7 @@ UnknownScript_0x19d96e:
 	loadtrainer FISHER, WILTON2
 	startbattle
 	returnafterbattle
-	loadvar WiltonFightCount, 2
+	loadvar wWiltonFightCount, 2
 	clearflag ENGINE_WILTON
 	end
 

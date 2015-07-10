@@ -73,7 +73,7 @@ UnknownScript_0x1a16cc:
 UnknownScript_0x1a16e0:
 	scall UnknownScript_0x1a179b
 	winlosstext YoungsterJoey1BeatenText, $0000
-	copybytetovar JoeyFightCount
+	copybytetovar wJoeyFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -95,7 +95,7 @@ UnknownScript_0x1a16e0:
 	loadtrainer YOUNGSTER, JOEY1
 	startbattle
 	returnafterbattle
-	loadvar JoeyFightCount, 1
+	loadvar wJoeyFightCount, 1
 	clearflag ENGINE_JOEY
 	end
 
@@ -103,7 +103,7 @@ UnknownScript_0x1a16e0:
 	loadtrainer YOUNGSTER, JOEY2
 	startbattle
 	returnafterbattle
-	loadvar JoeyFightCount, 2
+	loadvar wJoeyFightCount, 2
 	clearflag ENGINE_JOEY
 	end
 
@@ -111,7 +111,7 @@ UnknownScript_0x1a16e0:
 	loadtrainer YOUNGSTER, JOEY3
 	startbattle
 	returnafterbattle
-	loadvar JoeyFightCount, 3
+	loadvar wJoeyFightCount, 3
 	clearflag ENGINE_JOEY
 	end
 
@@ -119,7 +119,7 @@ UnknownScript_0x1a16e0:
 	loadtrainer YOUNGSTER, JOEY4
 	startbattle
 	returnafterbattle
-	loadvar JoeyFightCount, 4
+	loadvar wJoeyFightCount, 4
 	clearflag ENGINE_JOEY
 	end
 

@@ -211,7 +211,7 @@ UnknownScript_0x19412c:
 UnknownScript_0x194140:
 	scall UnknownScript_0x1941e1
 	winlosstext SchoolboyAlan1BeatenText, $0000
-	copybytetovar AlanFightCount
+	copybytetovar wAlanFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -233,7 +233,7 @@ UnknownScript_0x194140:
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	returnafterbattle
-	loadvar AlanFightCount, 1
+	loadvar wAlanFightCount, 1
 	clearflag ENGINE_ALAN
 	end
 
@@ -241,7 +241,7 @@ UnknownScript_0x194140:
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	returnafterbattle
-	loadvar AlanFightCount, 2
+	loadvar wAlanFightCount, 2
 	clearflag ENGINE_ALAN
 	end
 
@@ -249,7 +249,7 @@ UnknownScript_0x194140:
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	returnafterbattle
-	loadvar AlanFightCount, 3
+	loadvar wAlanFightCount, 3
 	clearflag ENGINE_ALAN
 	end
 
@@ -257,7 +257,7 @@ UnknownScript_0x194140:
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	returnafterbattle
-	loadvar AlanFightCount, 4
+	loadvar wAlanFightCount, 4
 	clearflag ENGINE_ALAN
 	end
 

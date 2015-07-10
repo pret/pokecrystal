@@ -103,7 +103,7 @@ UnknownScript_0x5c074:
 UnknownScript_0x5c088:
 	scall UnknownScript_0x5c114
 	winlosstext SchoolboyJack1BeatenText, $0000
-	copybytetovar JackFightCount
+	copybytetovar wJackFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -125,7 +125,7 @@ UnknownScript_0x5c088:
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	returnafterbattle
-	loadvar JackFightCount, 1
+	loadvar wJackFightCount, 1
 	clearflag ENGINE_JACK
 	end
 
@@ -133,7 +133,7 @@ UnknownScript_0x5c088:
 	loadtrainer SCHOOLBOY, JACK2
 	startbattle
 	returnafterbattle
-	loadvar JackFightCount, 2
+	loadvar wJackFightCount, 2
 	clearflag ENGINE_JACK
 	end
 
@@ -141,7 +141,7 @@ UnknownScript_0x5c088:
 	loadtrainer SCHOOLBOY, JACK3
 	startbattle
 	returnafterbattle
-	loadvar JackFightCount, 3
+	loadvar wJackFightCount, 3
 	clearflag ENGINE_JACK
 	end
 
@@ -149,7 +149,7 @@ UnknownScript_0x5c088:
 	loadtrainer SCHOOLBOY, JACK4
 	startbattle
 	returnafterbattle
-	loadvar JackFightCount, 4
+	loadvar wJackFightCount, 4
 	clearflag ENGINE_JACK
 	end
 
