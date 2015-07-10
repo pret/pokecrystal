@@ -59,7 +59,7 @@ UnknownScript_0x54044: ; 0x54044
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001d
-	checkcode $7
+	checkcode VAR_BADGES
 	scall UnknownScript_0x5407d
 UnknownScript_0x54064: ; 0x54064
 	writetext UnknownText_0x5428b

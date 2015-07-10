@@ -24,7 +24,7 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag $001f
-	checkcode $7
+	checkcode VAR_BADGES
 	scall UnknownScript_0x9c178
 UnknownScript_0x9c159: ; 0x9c159
 	checkevent EVENT_GOT_TM23_IRON_TAIL
