@@ -1459,7 +1459,7 @@ UnknownScript_0xa09e6:
 	jump UnknownScript_0xa0484
 
 UnknownScript_0xa09ee:
-	checkcode VAR_1A
+	checkcode VAR_KENJI_BREAK
 	if_equal $2, UnknownScript_0xa0a00
 	if_equal $1, UnknownScript_0xa0a08
 	farwritetext UnknownText_0x66e17

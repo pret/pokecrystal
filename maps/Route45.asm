@@ -50,7 +50,7 @@ UnknownScript_0x19e0d0:
 	jump UnknownScript_0x19e127
 
 UnknownScript_0x19e0e4:
-	checkcode VAR_1A
+	checkcode VAR_KENJI_BREAK
 	if_not_equal $1, UnknownScript_0x19e127
 	checkmorn
 	iftrue UnknownScript_0x19e10c

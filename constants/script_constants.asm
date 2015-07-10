@@ -27,5 +27,5 @@
 	const VAR_CALLERID
 	const VAR_BLUECARDBALANCE
 	const VAR_19
-	const VAR_1A
+	const VAR_KENJI_BREAK
 NUM_VARS EQU const_value
