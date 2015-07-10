@@ -227,45 +227,45 @@ UnknownScript_0x19e1a4:
 UnknownScript_0x19e1b8:
 	scall UnknownScript_0x19e133
 	winlosstext HikerParry3BeatenText, $0000
-	copybytetovar wda0c
-	if_equal $2, UnknownScript_0x19e1cf
-	if_equal $1, UnknownScript_0x19e1d5
-	if_equal $0, UnknownScript_0x19e1db
-UnknownScript_0x19e1cf:
+	copybytetovar ParryFightCount
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x19e1f5
-UnknownScript_0x19e1d5:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x19e1e8
-UnknownScript_0x19e1db:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer HIKER, PARRY3
 	startbattle
 	returnafterbattle
-	loadvar wda0c, $1
+	loadvar ParryFightCount, 1
 	clearflag ENGINE_PARRY
 	end
 
-UnknownScript_0x19e1e8:
+.LoadFight1
 	loadtrainer HIKER, PARRY1
 	startbattle
 	returnafterbattle
-	loadvar wda0c, $2
+	loadvar ParryFightCount, 2
 	clearflag ENGINE_PARRY
 	end
 
-UnknownScript_0x19e1f5:
+.LoadFight2
 	loadtrainer HIKER, PARRY2
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_PARRY
 	checkevent EVENT_PARRY_IRON
 	iftrue UnknownScript_0x19e219
-	checkevent $0268
+	checkevent EVENT_GOT_IRON_FROM_PARRY
 	iftrue UnknownScript_0x19e218
 	scall UnknownScript_0x19e146
 	verbosegiveitem IRON, 1
 	iffalse UnknownScript_0x19e13f
-	setevent $0268
+	setevent EVENT_GOT_IRON_FROM_PARRY
 	jump UnknownScript_0x19e127
 
 UnknownScript_0x19e218:
@@ -278,7 +278,7 @@ UnknownScript_0x19e219:
 	verbosegiveitem IRON, 1
 	iffalse UnknownScript_0x19e13f
 	clearevent EVENT_PARRY_IRON
-	setevent $0268
+	setevent EVENT_GOT_IRON_FROM_PARRY
 	jump UnknownScript_0x19e127
 
 TrainerHikerTimothy:

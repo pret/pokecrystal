@@ -2232,19 +2232,19 @@ wd9fe:: ds 1
 wd9ff:: ds 1
 
 wda00:: ds 1
-wda01:: ds 1
-wda02:: ds 1
-wda03:: ds 1
-wda04:: ds 1
+ArnieFightCount:: ds 1
+AlanFightCount:: ds 1
+DanaFightCount:: ds 1
+ChadFightCount:: ds 1
 wda05:: ds 1
-wda06:: ds 1
-wda07:: ds 1
-wda08:: ds 1
-wda09:: ds 1
-wda0a:: ds 1
+TullyFightCount:: ds 1
+BrentFightCount:: ds 1
+TiffanyFightCount:: ds 1
+VanceFightCount:: ds 1
+WiltonFightCount:: ds 1
 wda0b:: ds 1
-wda0c:: ds 1
-wda0d:: ds 1
+ParryFightCount:: ds 1
+ErinFightCount:: ds 1
 	ds 100
 
 EventFlags:: ; da72

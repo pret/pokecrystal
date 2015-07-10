@@ -211,57 +211,57 @@ UnknownScript_0x19412c:
 UnknownScript_0x194140:
 	scall UnknownScript_0x1941e1
 	winlosstext SchoolboyAlan1BeatenText, $0000
-	copybytetovar wda02
-	if_equal $4, UnknownScript_0x19415f
-	if_equal $3, UnknownScript_0x194165
-	if_equal $2, UnknownScript_0x19416b
-	if_equal $1, UnknownScript_0x194171
-	if_equal $0, UnknownScript_0x194177
-UnknownScript_0x19415f:
+	copybytetovar AlanFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1941ab
-UnknownScript_0x194165:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x19419e
-UnknownScript_0x19416b:
-	checkflag $004b
-	iftrue UnknownScript_0x194191
-UnknownScript_0x194171:
-	checkflag $0047
-	iftrue UnknownScript_0x194184
-UnknownScript_0x194177:
+	iftrue .LoadFight3
+.Fight2
+	checkflag ENGINE_FLYPOINT_BLACKTHORN
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_OLIVINE
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	returnafterbattle
-	loadvar wda02, $1
+	loadvar AlanFightCount, 1
 	clearflag ENGINE_ALAN
 	end
 
-UnknownScript_0x194184:
+.LoadFight1
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	returnafterbattle
-	loadvar wda02, $2
+	loadvar AlanFightCount, 2
 	clearflag ENGINE_ALAN
 	end
 
-UnknownScript_0x194191:
+.LoadFight2
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	returnafterbattle
-	loadvar wda02, $3
+	loadvar AlanFightCount, 3
 	clearflag ENGINE_ALAN
 	end
 
-UnknownScript_0x19419e:
+.LoadFight3
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	returnafterbattle
-	loadvar wda02, $4
+	loadvar AlanFightCount, 4
 	clearflag ENGINE_ALAN
 	end
 
-UnknownScript_0x1941ab:
+.LoadFight4
 	loadtrainer SCHOOLBOY, ALAN5
 	startbattle
 	returnafterbattle

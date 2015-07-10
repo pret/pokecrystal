@@ -109,57 +109,57 @@ UnknownScript_0x1a1d6e:
 UnknownScript_0x1a1d82:
 	scall UnknownScript_0x1a1e23
 	winlosstext LassDana1BeatenText, $0000
-	copybytetovar wda03
-	if_equal $4, UnknownScript_0x1a1da1
-	if_equal $3, UnknownScript_0x1a1da7
-	if_equal $2, UnknownScript_0x1a1dad
-	if_equal $1, UnknownScript_0x1a1db3
-	if_equal $0, UnknownScript_0x1a1db9
-UnknownScript_0x1a1da1:
+	copybytetovar DanaFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1a1ded
-UnknownScript_0x1a1da7:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a1de0
-UnknownScript_0x1a1dad:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1a1dd3
-UnknownScript_0x1a1db3:
-	checkflag $0045
-	iftrue UnknownScript_0x1a1dc6
-UnknownScript_0x1a1db9:
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_CIANWOOD
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer LASS, DANA1
 	startbattle
 	returnafterbattle
-	loadvar wda03, $1
+	loadvar DanaFightCount, 1
 	clearflag ENGINE_DANA
 	end
 
-UnknownScript_0x1a1dc6:
+.LoadFight1
 	loadtrainer LASS, DANA2
 	startbattle
 	returnafterbattle
-	loadvar wda03, $2
+	loadvar DanaFightCount, 2
 	clearflag ENGINE_DANA
 	end
 
-UnknownScript_0x1a1dd3:
+.LoadFight2
 	loadtrainer LASS, DANA3
 	startbattle
 	returnafterbattle
-	loadvar wda03, $3
+	loadvar DanaFightCount, 3
 	clearflag ENGINE_DANA
 	end
 
-UnknownScript_0x1a1de0:
+.LoadFight3
 	loadtrainer LASS, DANA4
 	startbattle
 	returnafterbattle
-	loadvar wda03, $4
+	loadvar DanaFightCount, 4
 	clearflag ENGINE_DANA
 	end
 
-UnknownScript_0x1a1ded:
+.LoadFight4
 	loadtrainer LASS, DANA5
 	startbattle
 	returnafterbattle
@@ -261,57 +261,57 @@ UnknownScript_0x1a1e61:
 UnknownScript_0x1a1e75:
 	scall UnknownScript_0x1a1f01
 	winlosstext SchoolboyChad1BeatenText, $0000
-	copybytetovar wda04
-	if_equal $4, UnknownScript_0x1a1e94
-	if_equal $3, UnknownScript_0x1a1e9a
-	if_equal $2, UnknownScript_0x1a1ea0
-	if_equal $1, UnknownScript_0x1a1ea6
-	if_equal $0, UnknownScript_0x1a1eac
-UnknownScript_0x1a1e94:
+	copybytetovar ChadFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1a1ee0
-UnknownScript_0x1a1e9a:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a1ed3
-UnknownScript_0x1a1ea0:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1a1ec6
-UnknownScript_0x1a1ea6:
-	checkflag $0049
-	iftrue UnknownScript_0x1a1eb9
-UnknownScript_0x1a1eac:
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_MAHOGANY
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	returnafterbattle
-	loadvar wda04, $1
+	loadvar ChadFightCount, 1
 	clearflag ENGINE_CHAD
 	end
 
-UnknownScript_0x1a1eb9:
+.LoadFight1
 	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
 	returnafterbattle
-	loadvar wda04, $2
+	loadvar ChadFightCount, 2
 	clearflag ENGINE_CHAD
 	end
 
-UnknownScript_0x1a1ec6:
+.LoadFight2
 	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
 	returnafterbattle
-	loadvar wda04, $3
+	loadvar ChadFightCount, 3
 	clearflag ENGINE_CHAD
 	end
 
-UnknownScript_0x1a1ed3:
+.LoadFight3
 	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
 	returnafterbattle
-	loadvar wda04, $4
+	loadvar ChadFightCount, 4
 	clearflag ENGINE_CHAD
 	end
 
-UnknownScript_0x1a1ee0:
+.LoadFight4
 	loadtrainer SCHOOLBOY, CHAD5
 	startbattle
 	returnafterbattle

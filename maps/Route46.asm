@@ -80,45 +80,45 @@ UnknownScript_0x1a96c6:
 UnknownScript_0x1a96da:
 	scall UnknownScript_0x1a9767
 	winlosstext PicnickerErin1BeatenText, $0000
-	copybytetovar wda0d
-	if_equal $2, UnknownScript_0x1a96f1
-	if_equal $1, UnknownScript_0x1a96f7
-	if_equal $0, UnknownScript_0x1a96fd
-UnknownScript_0x1a96f1:
+	copybytetovar ErinFightCount
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1a9717
-UnknownScript_0x1a96f7:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a970a
-UnknownScript_0x1a96fd:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer PICNICKER, ERIN1
 	startbattle
 	returnafterbattle
-	loadvar wda0d, $1
+	loadvar ErinFightCount, 1
 	clearflag ENGINE_ERIN
 	end
 
-UnknownScript_0x1a970a:
+.LoadFight1
 	loadtrainer PICNICKER, ERIN2
 	startbattle
 	returnafterbattle
-	loadvar wda0d, $2
+	loadvar ErinFightCount, 2
 	clearflag ENGINE_ERIN
 	end
 
-UnknownScript_0x1a9717:
+.LoadFight2
 	loadtrainer PICNICKER, ERIN3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_ERIN
 	checkevent EVENT_ERIN_CALCIUM
 	iftrue UnknownScript_0x1a973b
-	checkevent $0269
+	checkevent EVENT_GOT_CALCIUM_FROM_ERIN
 	iftrue UnknownScript_0x1a973a
 	scall UnknownScript_0x1a9772
 	verbosegiveitem CALCIUM, 1
 	iffalse UnknownScript_0x1a976b
-	setevent $0269
+	setevent EVENT_GOT_CALCIUM_FROM_ERIN
 	jump UnknownScript_0x1a975b
 
 UnknownScript_0x1a973a:
@@ -131,7 +131,7 @@ UnknownScript_0x1a973b:
 	verbosegiveitem CALCIUM, 1
 	iffalse UnknownScript_0x1a976b
 	clearevent EVENT_ERIN_CALCIUM
-	setevent $0269
+	setevent EVENT_GOT_CALCIUM_FROM_ERIN
 	jump UnknownScript_0x1a975b
 
 UnknownScript_0x1a974f:

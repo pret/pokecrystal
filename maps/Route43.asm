@@ -121,45 +121,45 @@ UnknownScript_0x19d0bb:
 UnknownScript_0x19d0cf:
 	scall UnknownScript_0x19d144
 	winlosstext PokemaniacBrent1BeatenText, $0000
-	copybytetovar wda07
-	if_equal $3, UnknownScript_0x19d0ea
-	if_equal $2, UnknownScript_0x19d0f0
-	if_equal $1, UnknownScript_0x19d0f6
-	if_equal $0, UnknownScript_0x19d0fc
-UnknownScript_0x19d0ea:
+	copybytetovar BrentFightCount
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight3
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x19d123
-UnknownScript_0x19d0f0:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x19d116
-UnknownScript_0x19d0f6:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x19d109
-UnknownScript_0x19d0fc:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
 	returnafterbattle
-	loadvar wda07, $1
+	loadvar BrentFightCount, 1
 	clearflag ENGINE_BRENT
 	end
 
-UnknownScript_0x19d109:
+.LoadFight1
 	loadtrainer POKEMANIAC, BRENT2
 	startbattle
 	returnafterbattle
-	loadvar wda07, $2
+	loadvar BrentFightCount, 2
 	clearflag ENGINE_BRENT
 	end
 
-UnknownScript_0x19d116:
+.LoadFight2
 	loadtrainer POKEMANIAC, BRENT3
 	startbattle
 	returnafterbattle
-	loadvar wda07, $3
+	loadvar BrentFightCount, 3
 	clearflag ENGINE_BRENT
 	end
 
-UnknownScript_0x19d123:
+.LoadFight3
 	loadtrainer POKEMANIAC, BRENT4
 	startbattle
 	returnafterbattle
@@ -300,45 +300,45 @@ UnknownScript_0x19d1ad:
 UnknownScript_0x19d1c1:
 	scall UnknownScript_0x19d251
 	winlosstext PicnickerTiffany3BeatenText, $0000
-	copybytetovar wda08
-	if_equal $3, UnknownScript_0x19d1dc
-	if_equal $2, UnknownScript_0x19d1e2
-	if_equal $1, UnknownScript_0x19d1e8
-	if_equal $0, UnknownScript_0x19d1ee
-UnknownScript_0x19d1dc:
+	copybytetovar TiffanyFightCount
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight3
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x19d215
-UnknownScript_0x19d1e2:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x19d208
-UnknownScript_0x19d1e8:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x19d1fb
-UnknownScript_0x19d1ee:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	returnafterbattle
-	loadvar wda08, $1
+	loadvar TiffanyFightCount, 1
 	clearflag ENGINE_TIFFANY
 	end
 
-UnknownScript_0x19d1fb:
+.LoadFight1
 	loadtrainer PICNICKER, TIFFANY1
 	startbattle
 	returnafterbattle
-	loadvar wda08, $2
+	loadvar TiffanyFightCount, 2
 	clearflag ENGINE_TIFFANY
 	end
 
-UnknownScript_0x19d208:
+.LoadFight2
 	loadtrainer PICNICKER, TIFFANY2
 	startbattle
 	returnafterbattle
-	loadvar wda08, $3
+	loadvar TiffanyFightCount, 3
 	clearflag ENGINE_TIFFANY
 	end
 
-UnknownScript_0x19d215:
+.LoadFight3
 	loadtrainer PICNICKER, TIFFANY4
 	startbattle
 	returnafterbattle

@@ -77,45 +77,45 @@ UnknownScript_0x1a926b:
 UnknownScript_0x1a927f:
 	scall UnknownScript_0x1a9309
 	winlosstext FisherTully1BeatenText, $0000
-	copybytetovar wda06
-	if_equal $3, UnknownScript_0x1a929a
-	if_equal $2, UnknownScript_0x1a92a0
-	if_equal $1, UnknownScript_0x1a92a6
-	if_equal $0, UnknownScript_0x1a92ac
-UnknownScript_0x1a929a:
+	copybytetovar TullyFightCount
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight3
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1a92d3
-UnknownScript_0x1a92a0:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a92c6
-UnknownScript_0x1a92a6:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x1a92b9
-UnknownScript_0x1a92ac:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer FISHER, TULLY1
 	startbattle
 	returnafterbattle
-	loadvar wda06, $1
+	loadvar TullyFightCount, 1
 	clearflag ENGINE_TULLY
 	end
 
-UnknownScript_0x1a92b9:
+.LoadFight1
 	loadtrainer FISHER, TULLY2
 	startbattle
 	returnafterbattle
-	loadvar wda06, $2
+	loadvar TullyFightCount, 2
 	clearflag ENGINE_TULLY
 	end
 
-UnknownScript_0x1a92c6:
+.LoadFight2
 	loadtrainer FISHER, TULLY3
 	startbattle
 	returnafterbattle
-	loadvar wda06, $3
+	loadvar TullyFightCount, 3
 	clearflag ENGINE_TULLY
 	end
 
-UnknownScript_0x1a92d3:
+.LoadFight3
 	loadtrainer FISHER, TULLY4
 	startbattle
 	returnafterbattle

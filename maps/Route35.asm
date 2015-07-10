@@ -261,57 +261,57 @@ UnknownScript_0x19c9a7:
 UnknownScript_0x19c9bb:
 	scall UnknownScript_0x19c91b
 	winlosstext Bug_catcherArnie1BeatenText, $0000
-	copybytetovar wda01
-	if_equal $4, UnknownScript_0x19c9da
-	if_equal $3, UnknownScript_0x19c9e0
-	if_equal $2, UnknownScript_0x19c9e6
-	if_equal $1, UnknownScript_0x19c9ec
-	if_equal $0, UnknownScript_0x19c9f2
-UnknownScript_0x19c9da:
+	copybytetovar ArnieFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x19ca26
-UnknownScript_0x19c9e0:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x19ca19
-UnknownScript_0x19c9e6:
-	checkflag $004b
-	iftrue UnknownScript_0x19ca0c
-UnknownScript_0x19c9ec:
-	checkflag $004a
-	iftrue UnknownScript_0x19c9ff
-UnknownScript_0x19c9f2:
+	iftrue .LoadFight3
+.Fight2
+	checkflag ENGINE_FLYPOINT_BLACKTHORN
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_LAKE_OF_RAGE
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	returnafterbattle
-	loadvar wda01, $1
+	loadvar ArnieFightCount, 1
 	clearflag ENGINE_ARNIE
 	end
 
-UnknownScript_0x19c9ff:
+.LoadFight1
 	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
 	returnafterbattle
-	loadvar wda01, $2
+	loadvar ArnieFightCount, 2
 	clearflag ENGINE_ARNIE
 	end
 
-UnknownScript_0x19ca0c:
+.LoadFight2
 	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
 	returnafterbattle
-	loadvar wda01, $3
+	loadvar ArnieFightCount, 3
 	clearflag ENGINE_ARNIE
 	end
 
-UnknownScript_0x19ca19:
+.LoadFight3
 	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
 	returnafterbattle
-	loadvar wda01, $4
+	loadvar ArnieFightCount, 4
 	clearflag ENGINE_ARNIE
 	end
 
-UnknownScript_0x19ca26:
+.LoadFight4
 	loadtrainer BUG_CATCHER, ARNIE5
 	startbattle
 	returnafterbattle

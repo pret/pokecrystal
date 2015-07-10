@@ -128,6 +128,9 @@ EVENT_GOT_TM29_PSYCHIC                                 EQU $0e3
 EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE                  EQU $0f9
 EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM               EQU $0fb
 EVENT_SHOWED_BEVERLY_MARILL                            EQU $261
+EVENT_GOT_CARBOS_FROM_VANCE                            EQU $267
+EVENT_GOT_IRON_FROM_PARRY                              EQU $268
+EVENT_GOT_CALCIUM_FROM_ERIN                            EQU $269
 EVENT_SHOWED_DEREK_PIKACHU                             EQU $28d
 EVENT_SHOWED_TIFFANY_CLEFAIRY                          EQU $293
 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD      EQU $29e

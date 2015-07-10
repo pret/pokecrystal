@@ -53,45 +53,45 @@ UnknownScript_0x19d856:
 UnknownScript_0x19d86a:
 	scall UnknownScript_0x19d8f7
 	winlosstext Bird_keeperVance1BeatenText, $0000
-	copybytetovar wda09
-	if_equal $2, UnknownScript_0x19d881
-	if_equal $1, UnknownScript_0x19d887
-	if_equal $0, UnknownScript_0x19d88d
-UnknownScript_0x19d881:
+	copybytetovar VanceFightCount
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x19d8a7
-UnknownScript_0x19d887:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x19d89a
-UnknownScript_0x19d88d:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
 	returnafterbattle
-	loadvar wda09, $1
+	loadvar VanceFightCount, 1
 	clearflag ENGINE_VANCE
 	end
 
-UnknownScript_0x19d89a:
+.LoadFight1
 	loadtrainer BIRD_KEEPER, VANCE2
 	startbattle
 	returnafterbattle
-	loadvar wda09, $2
+	loadvar VanceFightCount, 2
 	clearflag ENGINE_VANCE
 	end
 
-UnknownScript_0x19d8a7:
+.LoadFight2
 	loadtrainer BIRD_KEEPER, VANCE3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_VANCE
 	checkevent EVENT_VANCE_CARBOS
 	iftrue UnknownScript_0x19d8cb
-	checkevent $0267
+	checkevent EVENT_GOT_CARBOS_FROM_VANCE
 	iftrue UnknownScript_0x19d8ca
 	scall UnknownScript_0x19d90a
 	verbosegiveitem CARBOS, 1
 	iffalse UnknownScript_0x19d903
-	setevent $0267
+	setevent EVENT_GOT_CARBOS_FROM_VANCE
 	jump UnknownScript_0x19d8eb
 
 UnknownScript_0x19d8ca:
@@ -104,7 +104,7 @@ UnknownScript_0x19d8cb:
 	verbosegiveitem CARBOS, 1
 	iffalse UnknownScript_0x19d903
 	clearevent EVENT_VANCE_CARBOS
-	setevent $0267
+	setevent EVENT_GOT_CARBOS_FROM_VANCE
 	jump UnknownScript_0x19d8eb
 
 UnknownScript_0x19d8df:
@@ -229,33 +229,33 @@ UnknownScript_0x19d95a:
 UnknownScript_0x19d96e:
 	scall UnknownScript_0x19d8f7
 	winlosstext FisherWilton1BeatenText, $0000
-	copybytetovar wda0a
-	if_equal $2, UnknownScript_0x19d985
-	if_equal $1, UnknownScript_0x19d98b
-	if_equal $0, UnknownScript_0x19d991
-UnknownScript_0x19d985:
+	copybytetovar WiltonFightCount
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x19d9ab
-UnknownScript_0x19d98b:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x19d99e
-UnknownScript_0x19d991:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer FISHER, WILTON1
 	startbattle
 	returnafterbattle
-	loadvar wda0a, $1
+	loadvar WiltonFightCount, 1
 	clearflag ENGINE_WILTON
 	end
 
-UnknownScript_0x19d99e:
+.LoadFight1
 	loadtrainer FISHER, WILTON2
 	startbattle
 	returnafterbattle
-	loadvar wda0a, $2
+	loadvar WiltonFightCount, 2
 	clearflag ENGINE_WILTON
 	end
 
-UnknownScript_0x19d9ab:
+.LoadFight2
 	loadtrainer FISHER, WILTON3
 	startbattle
 	returnafterbattle
