@@ -30,12 +30,12 @@ BlackbeltKenji3Script:
 	loadfont
 	checkcellnum $22
 	iftrue UnknownScript_0x19e0e4
-	checkevent $0299
+	checkevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19e0cd
 	special Function11485
 	writetext UnknownText_0x19e5e2
 	closetext
-	setevent $0299
+	setevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e0d0
 
@@ -206,11 +206,11 @@ HikerParry3Script:
 	iftrue UnknownScript_0x19e1b8
 	checkcellnum $23
 	iftrue UnknownScript_0x19e127
-	checkevent $029b
+	checkevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19e1a1
 	writetext UnknownText_0x19e434
 	keeptextopen
-	setevent $029b
+	setevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e1a4
 

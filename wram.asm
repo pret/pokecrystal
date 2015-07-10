@@ -2216,35 +2216,37 @@ wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 
 SECTION "Events", WRAMX, BANK [1]
 
-wd9f2:: ds 1
-	ds 1
-wd9f4:: ds 1
-wd9f5:: ds 1
-wd9f6:: ds 1
-wd9f7:: ds 1
-wd9f8:: ds 1
-wd9f9:: ds 1
-wd9fa:: ds 1
-wd9fb:: ds 1
-wd9fc:: ds 1
-wd9fd:: ds 1
-wd9fe:: ds 1
-wd9ff:: ds 1
+JackFightCount::    ds 1
+                    ds 1
+HueyFightCount::    ds 1
+GavenFightCount::   ds 1
+BethFightCount::    ds 1
+JoseFightCount::    ds 1
+ReenaFightCount::   ds 1
+JoeyFightCount::    ds 1
+WadeFightCount::    ds 1
+RalphFightCount::   ds 1
+LizFightCount::     ds 1
+AnthonyFightCount:: ds 1
+ToddFightCount::    ds 1
+GinaFightCount::    ds 1
 
 wda00:: ds 1
-ArnieFightCount:: ds 1
-AlanFightCount:: ds 1
-DanaFightCount:: ds 1
-ChadFightCount:: ds 1
-wda05:: ds 1
-TullyFightCount:: ds 1
-BrentFightCount:: ds 1
+
+ArnieFightCount::   ds 1
+AlanFightCount::    ds 1
+DanaFightCount::    ds 1
+ChadFightCount::    ds 1
+	            ds 1
+TullyFightCount::   ds 1
+BrentFightCount::   ds 1
 TiffanyFightCount:: ds 1
-VanceFightCount:: ds 1
-WiltonFightCount:: ds 1
-wda0b:: ds 1
-ParryFightCount:: ds 1
-ErinFightCount:: ds 1
+VanceFightCount::   ds 1
+WiltonFightCount::  ds 1
+                    ds 1
+ParryFightCount::   ds 1
+ErinFightCount::    ds 1
+
 	ds 100
 
 EventFlags:: ; da72

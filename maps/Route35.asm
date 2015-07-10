@@ -57,11 +57,11 @@ JugglerIrwin1Script:
 	loadfont
 	checkcellnum $16
 	iftrue UnknownScript_0x19c90f
-	checkevent $0281
+	checkevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19c8ec
 	writetext UnknownText_0x19cd5a
 	keeptextopen
-	setevent $0281
+	setevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19c903
 	jump UnknownScript_0x19c8ef
 
@@ -240,11 +240,11 @@ Bug_catcherArnie1Script:
 	iftrue UnknownScript_0x19ca2f
 	checkcellnum $17
 	iftrue UnknownScript_0x19c90f
-	checkevent $0283
+	checkevent EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19c9a4
 	writetext UnknownText_0x19cdf6
 	keeptextopen
-	setevent $0283
+	setevent EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19c903
 	jump UnknownScript_0x19c9a7
 

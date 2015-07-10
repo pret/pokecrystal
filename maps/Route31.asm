@@ -47,11 +47,11 @@ Bug_catcherWade1Script:
 	iftrue UnknownScript_0x1a5507
 	checkcellnum $10
 	iftrue UnknownScript_0x1a5558
-	checkevent $0275
+	checkevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a547c
 	writetext UnknownText_0x1a5671
 	closetext
-	setevent $0275
+	setevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a554c
 	jump UnknownScript_0x1a547f
 
@@ -68,57 +68,57 @@ UnknownScript_0x1a547f:
 UnknownScript_0x1a5493:
 	scall UnknownScript_0x1a5564
 	winlosstext Bug_catcherWade1BeatenText, $0000
-	copybytetovar wd9fa
-	if_equal $4, UnknownScript_0x1a54b2
-	if_equal $3, UnknownScript_0x1a54b8
-	if_equal $2, UnknownScript_0x1a54be
-	if_equal $1, UnknownScript_0x1a54c4
-	if_equal $0, UnknownScript_0x1a54ca
-UnknownScript_0x1a54b2:
+	copybytetovar WadeFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a54fe
-UnknownScript_0x1a54b8:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1a54f1
-UnknownScript_0x1a54be:
-	checkflag $0049
-	iftrue UnknownScript_0x1a54e4
-UnknownScript_0x1a54c4:
-	checkflag $0046
-	iftrue UnknownScript_0x1a54d7
-UnknownScript_0x1a54ca:
+	iftrue .LoadFight3
+.Fight2
+	checkflag ENGINE_FLYPOINT_MAHOGANY
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_GOLDENROD
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	returnafterbattle
-	loadvar wd9fa, $1
+	loadvar WadeFightCount, 1
 	clearflag ENGINE_WADE
 	end
 
-UnknownScript_0x1a54d7:
+.LoadFight1
 	loadtrainer BUG_CATCHER, WADE2
 	startbattle
 	returnafterbattle
-	loadvar wd9fa, $2
+	loadvar WadeFightCount, 2
 	clearflag ENGINE_WADE
 	end
 
-UnknownScript_0x1a54e4:
+.LoadFight2
 	loadtrainer BUG_CATCHER, WADE3
 	startbattle
 	returnafterbattle
-	loadvar wd9fa, $3
+	loadvar WadeFightCount, 3
 	clearflag ENGINE_WADE
 	end
 
-UnknownScript_0x1a54f1:
+.LoadFight3
 	loadtrainer BUG_CATCHER, WADE4
 	startbattle
 	returnafterbattle
-	loadvar wd9fa, $4
+	loadvar WadeFightCount, 4
 	clearflag ENGINE_WADE
 	end
 
-UnknownScript_0x1a54fe:
+.LoadFight4
 	loadtrainer BUG_CATCHER, WADE5
 	startbattle
 	returnafterbattle

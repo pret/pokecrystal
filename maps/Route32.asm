@@ -215,11 +215,11 @@ FisherRalph1Script:
 	iftrue UnknownScript_0x1905f1
 	checkcellnum $11
 	iftrue UnknownScript_0x190603
-	checkevent $0277
+	checkevent EVENT_RALPH_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x190566
 	writetext UnknownText_0x190bf8
 	keeptextopen
-	setevent $0277
+	setevent EVENT_RALPH_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1905f7
 	jump UnknownScript_0x190569
 
@@ -236,57 +236,57 @@ UnknownScript_0x190569:
 UnknownScript_0x19057d:
 	scall UnknownScript_0x19060f
 	winlosstext FisherRalph1BeatenText, $0000
-	copybytetovar wd9fb
-	if_equal $4, UnknownScript_0x19059c
-	if_equal $3, UnknownScript_0x1905a2
-	if_equal $2, UnknownScript_0x1905a8
-	if_equal $1, UnknownScript_0x1905ae
-	if_equal $0, UnknownScript_0x1905b4
-UnknownScript_0x19059c:
+	copybytetovar RalphFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1905e8
-UnknownScript_0x1905a2:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1905db
-UnknownScript_0x1905a8:
-	checkflag $004a
-	iftrue UnknownScript_0x1905ce
-UnknownScript_0x1905ae:
-	checkflag $0048
-	iftrue UnknownScript_0x1905c1
-UnknownScript_0x1905b4:
+	iftrue .LoadFight3
+.Fight2
+	checkflag ENGINE_FLYPOINT_LAKE_OF_RAGE
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_ECRUTEAK
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer FISHER, RALPH1
 	startbattle
 	returnafterbattle
-	loadvar wd9fb, $1
+	loadvar RalphFightCount, 1
 	clearflag ENGINE_RALPH
 	end
 
-UnknownScript_0x1905c1:
+.LoadFight1
 	loadtrainer FISHER, RALPH2
 	startbattle
 	returnafterbattle
-	loadvar wd9fb, $2
+	loadvar RalphFightCount, 2
 	clearflag ENGINE_RALPH
 	end
 
-UnknownScript_0x1905ce:
+.LoadFight2
 	loadtrainer FISHER, RALPH3
 	startbattle
 	returnafterbattle
-	loadvar wd9fb, $3
+	loadvar RalphFightCount, 3
 	clearflag ENGINE_RALPH
 	end
 
-UnknownScript_0x1905db:
+.LoadFight3
 	loadtrainer FISHER, RALPH4
 	startbattle
 	returnafterbattle
-	loadvar wd9fb, $4
+	loadvar RalphFightCount, 4
 	clearflag ENGINE_RALPH
 	end
 
-UnknownScript_0x1905e8:
+.LoadFight4
 	loadtrainer FISHER, RALPH5
 	startbattle
 	returnafterbattle
@@ -381,11 +381,11 @@ PicnickerLiz1Script:
 	iftrue UnknownScript_0x19066d
 	checkcellnum $12
 	iftrue UnknownScript_0x1906ed
-	checkevent $0279
+	checkevent EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x190656
 	writetext UnknownText_0x191060
 	keeptextopen
-	setevent $0279
+	setevent EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1906e1
 	jump UnknownScript_0x190659
 
@@ -402,57 +402,57 @@ UnknownScript_0x190659:
 UnknownScript_0x19066d:
 	scall UnknownScript_0x1906f9
 	winlosstext PicnickerLiz1BeatenText, $0000
-	copybytetovar wd9fc
-	if_equal $4, UnknownScript_0x19068c
-	if_equal $3, UnknownScript_0x190692
-	if_equal $2, UnknownScript_0x190698
-	if_equal $1, UnknownScript_0x19069e
-	if_equal $0, UnknownScript_0x1906a4
-UnknownScript_0x19068c:
+	copybytetovar LizFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1906d8
-UnknownScript_0x190692:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1906cb
-UnknownScript_0x190698:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x1906be
-UnknownScript_0x19069e:
-	checkflag $0048
-	iftrue UnknownScript_0x1906b1
-UnknownScript_0x1906a4:
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_ECRUTEAK
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer PICNICKER, LIZ1
 	startbattle
 	returnafterbattle
-	loadvar wd9fc, $1
+	loadvar LizFightCount, 1
 	clearflag ENGINE_LIZ
 	end
 
-UnknownScript_0x1906b1:
+.LoadFight1
 	loadtrainer PICNICKER, LIZ2
 	startbattle
 	returnafterbattle
-	loadvar wd9fc, $2
+	loadvar LizFightCount, 2
 	clearflag ENGINE_LIZ
 	end
 
-UnknownScript_0x1906be:
+.LoadFight2
 	loadtrainer PICNICKER, LIZ3
 	startbattle
 	returnafterbattle
-	loadvar wd9fc, $3
+	loadvar LizFightCount, 3
 	clearflag ENGINE_LIZ
 	end
 
-UnknownScript_0x1906cb:
+.LoadFight3
 	loadtrainer PICNICKER, LIZ4
 	startbattle
 	returnafterbattle
-	loadvar wd9fc, $4
+	loadvar LizFightCount, 4
 	clearflag ENGINE_LIZ
 	end
 
-UnknownScript_0x1906d8:
+.LoadFight4
 	loadtrainer PICNICKER, LIZ5
 	startbattle
 	returnafterbattle

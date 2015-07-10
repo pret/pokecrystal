@@ -59,11 +59,11 @@ PicnickerErin1Script:
 	iftrue UnknownScript_0x1a96da
 	checkcellnum $24
 	iftrue UnknownScript_0x1a975b
-	checkevent $029d
+	checkevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a96c3
 	writetext UnknownText_0x1a98c6
 	keeptextopen
-	setevent $029d
+	setevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a974f
 	jump UnknownScript_0x1a96c6
 

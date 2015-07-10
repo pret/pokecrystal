@@ -52,11 +52,11 @@ YoungsterJoey1Script:
 	iftrue UnknownScript_0x1a16e0
 	checkcellnum $f
 	iftrue UnknownScript_0x1a178f
-	checkevent $0273
+	checkevent EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a16c9
 	writetext UnknownText_0x1a18c2
 	keeptextopen
-	setevent $0273
+	setevent EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a1783
 	jump UnknownScript_0x1a16cc
 
@@ -73,69 +73,69 @@ UnknownScript_0x1a16cc:
 UnknownScript_0x1a16e0:
 	scall UnknownScript_0x1a179b
 	winlosstext YoungsterJoey1BeatenText, $0000
-	copybytetovar wd9f9
-	if_equal $4, UnknownScript_0x1a16ff
-	if_equal $3, UnknownScript_0x1a1705
-	if_equal $2, UnknownScript_0x1a170b
-	if_equal $1, UnknownScript_0x1a1711
-	if_equal $0, UnknownScript_0x1a1717
-UnknownScript_0x1a16ff:
+	copybytetovar JoeyFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a174b
-UnknownScript_0x1a1705:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1a173e
-UnknownScript_0x1a170b:
-	checkflag $0047
-	iftrue UnknownScript_0x1a1731
-UnknownScript_0x1a1711:
-	checkflag $0046
-	iftrue UnknownScript_0x1a1724
-UnknownScript_0x1a1717:
+	iftrue .LoadFight3
+.Fight2
+	checkflag ENGINE_FLYPOINT_OLIVINE
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_GOLDENROD
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer YOUNGSTER, JOEY1
 	startbattle
 	returnafterbattle
-	loadvar wd9f9, $1
+	loadvar JoeyFightCount, 1
 	clearflag ENGINE_JOEY
 	end
 
-UnknownScript_0x1a1724:
+.LoadFight1
 	loadtrainer YOUNGSTER, JOEY2
 	startbattle
 	returnafterbattle
-	loadvar wd9f9, $2
+	loadvar JoeyFightCount, 2
 	clearflag ENGINE_JOEY
 	end
 
-UnknownScript_0x1a1731:
+.LoadFight2
 	loadtrainer YOUNGSTER, JOEY3
 	startbattle
 	returnafterbattle
-	loadvar wd9f9, $3
+	loadvar JoeyFightCount, 3
 	clearflag ENGINE_JOEY
 	end
 
-UnknownScript_0x1a173e:
+.LoadFight3
 	loadtrainer YOUNGSTER, JOEY4
 	startbattle
 	returnafterbattle
-	loadvar wd9f9, $4
+	loadvar JoeyFightCount, 4
 	clearflag ENGINE_JOEY
 	end
 
-UnknownScript_0x1a174b:
+.LoadFight4
 	loadtrainer YOUNGSTER, JOEY5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_JOEY
 	checkevent EVENT_JOEY_HP_UP
 	iftrue UnknownScript_0x1a176f
-	checkevent $0266
+	checkevent EVENT_GOT_HP_UP_FROM_JOEY
 	iftrue UnknownScript_0x1a176e
 	scall UnknownScript_0x1a17a6
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1a179f
-	setevent $0266
+	setevent EVENT_GOT_HP_UP_FROM_JOEY
 	jump UnknownScript_0x1a178f
 
 UnknownScript_0x1a176e:

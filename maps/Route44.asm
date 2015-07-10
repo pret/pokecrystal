@@ -32,11 +32,11 @@ Bird_keeperVance1Script:
 	iftrue UnknownScript_0x19d86a
 	checkcellnum $20
 	iftrue UnknownScript_0x19d8eb
-	checkevent $0295
+	checkevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d853
 	writetext UnknownText_0x19dbf3
 	keeptextopen
-	setevent $0295
+	setevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d8df
 	jump UnknownScript_0x19d856
 
@@ -208,11 +208,11 @@ FisherWilton1Script:
 	iftrue UnknownScript_0x19d9b4
 	checkcellnum $21
 	iftrue UnknownScript_0x19d8eb
-	checkevent $0297
+	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d957
 	writetext UnknownText_0x19daa8
 	keeptextopen
-	setevent $0297
+	setevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d8df
 	jump UnknownScript_0x19d95a
 

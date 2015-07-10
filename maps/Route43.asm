@@ -100,11 +100,11 @@ PokemaniacBrent1Script:
 	iftrue UnknownScript_0x19d0cf
 	checkcellnum $1e
 	iftrue UnknownScript_0x19d138
-	checkevent $0291
+	checkevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d0b8
 	writetext UnknownText_0x19d359
 	keeptextopen
-	setevent $0291
+	setevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d12c
 	jump UnknownScript_0x19d0bb
 
@@ -279,11 +279,11 @@ PicnickerTiffany3Script:
 	iftrue UnknownScript_0x19d245
 	checkpoke CLEFAIRY
 	iffalse UnknownScript_0x19d233
-	checkevent EVENT_SHOWED_TIFFANY_CLEFAIRY
+	checkevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d1aa
 	writetext UnknownText_0x19d618
 	keeptextopen
-	setevent EVENT_SHOWED_TIFFANY_CLEFAIRY
+	setevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d239
 	jump UnknownScript_0x19d1ad
 

@@ -88,11 +88,11 @@ LassDana1Script:
 	iftrue UnknownScript_0x1a1df6
 	checkcellnum $1a
 	iftrue UnknownScript_0x1a1e17
-	checkevent $0289
+	checkevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a1d6b
 	writetext UnknownText_0x1a20ec
 	keeptextopen
-	setevent $0289
+	setevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a1e0b
 	jump UnknownScript_0x1a1d6e
 
@@ -240,11 +240,11 @@ SchoolboyChad1Script:
 	iftrue UnknownScript_0x1a1e75
 	checkcellnum $1b
 	iftrue UnknownScript_0x1a1ef5
-	checkevent $028b
+	checkevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a1e5e
 	writetext UnknownText_0x1a200e
 	keeptextopen
-	setevent $028b
+	setevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a1ee9
 	jump UnknownScript_0x1a1e61
 

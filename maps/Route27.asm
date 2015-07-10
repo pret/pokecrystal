@@ -95,11 +95,11 @@ Bird_keeperJose2Script:
 	iftrue UnknownScript_0x1a0945
 	checkcellnum $d
 	iftrue UnknownScript_0x1a0963
-	checkevent $026f
+	checkevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a08e8
 	writetext UnknownText_0x1a0e42
 	keeptextopen
-	setevent $026f
+	setevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a0957
 	jump UnknownScript_0x1a08eb
 
@@ -116,33 +116,33 @@ UnknownScript_0x1a08eb:
 UnknownScript_0x1a08ff:
 	scall UnknownScript_0x1a096f
 	winlosstext Bird_keeperJose2BeatenText, $0000
-	copybytetovar wd9f7
-	if_equal $2, UnknownScript_0x1a0916
-	if_equal $1, UnknownScript_0x1a091c
-	if_equal $0, UnknownScript_0x1a0922
-UnknownScript_0x1a0916:
+	copybytetovar JoseFightCount
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1a093c
-UnknownScript_0x1a091c:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a092f
-UnknownScript_0x1a0922:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	returnafterbattle
-	loadvar wd9f7, $1
+	loadvar JoseFightCount, 1
 	clearflag ENGINE_JOSE
 	end
 
-UnknownScript_0x1a092f:
+.LoadFight1
 	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
 	returnafterbattle
-	loadvar wd9f7, $2
+	loadvar JoseFightCount, 2
 	clearflag ENGINE_JOSE
 	end
 
-UnknownScript_0x1a093c:
+.LoadFight2
 	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
 	returnafterbattle
@@ -276,11 +276,11 @@ CooltrainerfReena1Script:
 	iftrue UnknownScript_0x1a09e9
 	checkcellnum $e
 	iftrue UnknownScript_0x1a0a3b
-	checkevent $0271
+	checkevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a09d2
 	writetext UnknownText_0x1a0c35
 	keeptextopen
-	setevent $0271
+	setevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a0a2f
 	jump UnknownScript_0x1a09d5
 
@@ -297,33 +297,33 @@ UnknownScript_0x1a09d5:
 UnknownScript_0x1a09e9:
 	scall UnknownScript_0x1a0a47
 	winlosstext CooltrainerfReena1BeatenText, $0000
-	copybytetovar wd9f8
-	if_equal $2, UnknownScript_0x1a0a00
-	if_equal $1, UnknownScript_0x1a0a06
-	if_equal $0, UnknownScript_0x1a0a0c
-UnknownScript_0x1a0a00:
+	copybytetovar ReenaFightCount
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1a0a26
-UnknownScript_0x1a0a06:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a0a19
-UnknownScript_0x1a0a0c:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	returnafterbattle
-	loadvar wd9f8, $1
+	loadvar ReenaFightCount, 1
 	clearflag ENGINE_REENA
 	end
 
-UnknownScript_0x1a0a19:
+.LoadFight1
 	loadtrainer COOLTRAINERF, REENA2
 	startbattle
 	returnafterbattle
-	loadvar wd9f8, $2
+	loadvar ReenaFightCount, 2
 	clearflag ENGINE_REENA
 	end
 
-UnknownScript_0x1a0a26:
+.LoadFight2
 	loadtrainer COOLTRAINERF, REENA3
 	startbattle
 	returnafterbattle

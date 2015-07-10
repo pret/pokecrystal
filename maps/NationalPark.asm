@@ -82,11 +82,11 @@ SchoolboyJack1Script:
 	iftrue UnknownScript_0x5c088
 	checkcellnum $5
 	iftrue UnknownScript_0x5c108
-	checkevent $025f
+	checkevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5c071
 	writetext UnknownText_0x5c4f3
 	keeptextopen
-	setevent $025f
+	setevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x5c0fc
 	jump UnknownScript_0x5c074
 
@@ -103,57 +103,57 @@ UnknownScript_0x5c074:
 UnknownScript_0x5c088:
 	scall UnknownScript_0x5c114
 	winlosstext SchoolboyJack1BeatenText, $0000
-	copybytetovar wd9f2
-	if_equal $4, UnknownScript_0x5c0a7
-	if_equal $3, UnknownScript_0x5c0ad
-	if_equal $2, UnknownScript_0x5c0b3
-	if_equal $1, UnknownScript_0x5c0b9
-	if_equal $0, UnknownScript_0x5c0bf
-UnknownScript_0x5c0a7:
+	copybytetovar JackFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x5c0f3
-UnknownScript_0x5c0ad:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x5c0e6
-UnknownScript_0x5c0b3:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x5c0d9
-UnknownScript_0x5c0b9:
-	checkflag $0047
-	iftrue UnknownScript_0x5c0cc
-UnknownScript_0x5c0bf:
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_OLIVINE
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	returnafterbattle
-	loadvar wd9f2, $1
+	loadvar JackFightCount, 1
 	clearflag ENGINE_JACK
 	end
 
-UnknownScript_0x5c0cc:
+.LoadFight1
 	loadtrainer SCHOOLBOY, JACK2
 	startbattle
 	returnafterbattle
-	loadvar wd9f2, $2
+	loadvar JackFightCount, 2
 	clearflag ENGINE_JACK
 	end
 
-UnknownScript_0x5c0d9:
+.LoadFight2
 	loadtrainer SCHOOLBOY, JACK3
 	startbattle
 	returnafterbattle
-	loadvar wd9f2, $3
+	loadvar JackFightCount, 3
 	clearflag ENGINE_JACK
 	end
 
-UnknownScript_0x5c0e6:
+.LoadFight3
 	loadtrainer SCHOOLBOY, JACK4
 	startbattle
 	returnafterbattle
-	loadvar wd9f2, $4
+	loadvar JackFightCount, 4
 	clearflag ENGINE_JACK
 	end
 
-UnknownScript_0x5c0f3:
+.LoadFight4
 	loadtrainer SCHOOLBOY, JACK5
 	startbattle
 	returnafterbattle

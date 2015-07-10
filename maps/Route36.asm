@@ -190,11 +190,11 @@ SchoolboyAlan1Script:
 	iftrue UnknownScript_0x1941b4
 	checkcellnum $18
 	iftrue UnknownScript_0x1941d5
-	checkevent $0285
+	checkevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x194129
 	writetext UnknownText_0x1947aa
 	keeptextopen
-	setevent $0285
+	setevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1941c9
 	jump UnknownScript_0x19412c
 

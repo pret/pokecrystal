@@ -104,11 +104,11 @@ CamperTodd1Script:
 	iftrue UnknownScript_0x78131
 	checkcellnum $14
 	iftrue UnknownScript_0x78143
-	checkevent $027d
+	checkevent EVENT_TODD_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x780a6
 	writetext UnknownText_0x784f0
 	keeptextopen
-	setevent $027d
+	setevent EVENT_TODD_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x78137
 	jump UnknownScript_0x780a9
 
@@ -125,57 +125,57 @@ UnknownScript_0x780a9:
 UnknownScript_0x780bd:
 	scall UnknownScript_0x7814f
 	winlosstext CamperTodd1BeatenText, $0000
-	copybytetovar wd9fe
-	if_equal $4, UnknownScript_0x780dc
-	if_equal $3, UnknownScript_0x780e2
-	if_equal $2, UnknownScript_0x780e8
-	if_equal $1, UnknownScript_0x780ee
-	if_equal $0, UnknownScript_0x780f4
-UnknownScript_0x780dc:
+	copybytetovar ToddFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x78128
-UnknownScript_0x780e2:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x7811b
-UnknownScript_0x780e8:
-	checkflag $004b
-	iftrue UnknownScript_0x7810e
-UnknownScript_0x780ee:
-	checkflag $0045
-	iftrue UnknownScript_0x78101
-UnknownScript_0x780f4:
+	iftrue .LoadFight3
+.Fight2
+	checkflag ENGINE_FLYPOINT_BLACKTHORN
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_CIANWOOD
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer CAMPER, TODD1
 	startbattle
 	returnafterbattle
-	loadvar wd9fe, $1
+	loadvar ToddFightCount, 1
 	clearflag ENGINE_TODD
 	end
 
-UnknownScript_0x78101:
+.LoadFight1
 	loadtrainer CAMPER, TODD2
 	startbattle
 	returnafterbattle
-	loadvar wd9fe, $2
+	loadvar ToddFightCount, 2
 	clearflag ENGINE_TODD
 	end
 
-UnknownScript_0x7810e:
+.LoadFight2
 	loadtrainer CAMPER, TODD3
 	startbattle
 	returnafterbattle
-	loadvar wd9fe, $3
+	loadvar ToddFightCount, 3
 	clearflag ENGINE_TODD
 	end
 
-UnknownScript_0x7811b:
+.LoadFight3
 	loadtrainer CAMPER, TODD4
 	startbattle
 	returnafterbattle
-	loadvar wd9fe, $4
+	loadvar ToddFightCount, 4
 	clearflag ENGINE_TODD
 	end
 
-UnknownScript_0x78128:
+.LoadFight4
 	loadtrainer CAMPER, TODD5
 	startbattle
 	returnafterbattle
@@ -245,11 +245,11 @@ PicnickerGina1Script:
 	iftrue UnknownScript_0x78213
 	checkcellnum $15
 	iftrue UnknownScript_0x78234
-	checkevent $027f
+	checkevent EVENT_GINA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x78188
 	writetext UnknownText_0x785b8
 	keeptextopen
-	setevent $027f
+	setevent EVENT_GINA_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x78228
 	jump UnknownScript_0x7818b
 
@@ -266,57 +266,57 @@ UnknownScript_0x7818b:
 UnknownScript_0x7819f:
 	scall UnknownScript_0x78240
 	winlosstext PicnickerGina1BeatenText, $0000
-	copybytetovar wd9ff
-	if_equal $4, UnknownScript_0x781be
-	if_equal $3, UnknownScript_0x781c4
-	if_equal $2, UnknownScript_0x781ca
-	if_equal $1, UnknownScript_0x781d0
-	if_equal $0, UnknownScript_0x781d6
-UnknownScript_0x781be:
+	copybytetovar GinaFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x7820a
-UnknownScript_0x781c4:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x781fd
-UnknownScript_0x781ca:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x781f0
-UnknownScript_0x781d0:
-	checkflag $0049
-	iftrue UnknownScript_0x781e3
-UnknownScript_0x781d6:
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_MAHOGANY
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	returnafterbattle
-	loadvar wd9ff, $1
+	loadvar GinaFightCount, 1
 	clearflag ENGINE_GINA
 	end
 
-UnknownScript_0x781e3:
+.LoadFight1
 	loadtrainer PICNICKER, GINA2
 	startbattle
 	returnafterbattle
-	loadvar wd9ff, $2
+	loadvar GinaFightCount, 2
 	clearflag ENGINE_GINA
 	end
 
-UnknownScript_0x781f0:
+.LoadFight2
 	loadtrainer PICNICKER, GINA3
 	startbattle
 	returnafterbattle
-	loadvar wd9ff, $3
+	loadvar GinaFightCount, 3
 	clearflag ENGINE_GINA
 	end
 
-UnknownScript_0x781fd:
+.LoadFight3
 	loadtrainer PICNICKER, GINA4
 	startbattle
 	returnafterbattle
-	loadvar wd9ff, $4
+	loadvar GinaFightCount, 4
 	clearflag ENGINE_GINA
 	end
 
-UnknownScript_0x7820a:
+.LoadFight4
 	loadtrainer PICNICKER, GINA5
 	startbattle
 	returnafterbattle

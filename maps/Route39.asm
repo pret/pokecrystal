@@ -42,11 +42,11 @@ PokefanmDerek1Script:
 	iftrue UnknownScript_0x1a5b6e
 	checkpoke PIKACHU
 	iffalse UnknownScript_0x1a5b5c
-	checkevent EVENT_SHOWED_DEREK_PIKACHU
+	checkevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a5b33
 	writetext UnknownText_0x1a5cf8
 	keeptextopen
-	setevent EVENT_SHOWED_DEREK_PIKACHU
+	setevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a5b62
 	jump UnknownScript_0x1a5b36
 

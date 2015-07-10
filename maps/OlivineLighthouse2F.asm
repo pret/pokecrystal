@@ -59,9 +59,9 @@ SailorHuey1Script:
 	iftrue UnknownScript_0x5afc7
 	checkcellnum $7
 	iftrue UnknownScript_0x5b05f
-	checkevent $0263
+	checkevent EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5afb0
-	setevent $0263
+	setevent EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x5b053
 	jump UnknownScript_0x5afb3
 
@@ -78,57 +78,57 @@ UnknownScript_0x5afb3:
 UnknownScript_0x5afc7:
 	scall UnknownScript_0x5b06b
 	winlosstext SailorHuey1BeatenText, $0000
-	copybytetovar wd9f4
-	if_equal $3, UnknownScript_0x5afe2
-	if_equal $2, UnknownScript_0x5afe8
-	if_equal $1, UnknownScript_0x5afee
-	if_equal $0, UnknownScript_0x5aff4
-UnknownScript_0x5afe2:
+	copybytetovar HueyFightCount
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight3
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x5b01b
-UnknownScript_0x5afe8:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x5b00e
-UnknownScript_0x5afee:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x5b001
-UnknownScript_0x5aff4:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer SAILOR, HUEY1
 	startbattle
 	returnafterbattle
-	loadvar wd9f4, $1
+	loadvar HueyFightCount, 1
 	clearflag ENGINE_HUEY
 	end
 
-UnknownScript_0x5b001:
+.LoadFight1
 	loadtrainer SAILOR, HUEY2
 	startbattle
 	returnafterbattle
-	loadvar wd9f4, $2
+	loadvar HueyFightCount, 2
 	clearflag ENGINE_HUEY
 	end
 
-UnknownScript_0x5b00e:
+.LoadFight2
 	loadtrainer SAILOR, HUEY3
 	startbattle
 	returnafterbattle
-	loadvar wd9f4, $3
+	loadvar HueyFightCount, 3
 	clearflag ENGINE_HUEY
 	end
 
-UnknownScript_0x5b01b:
+.LoadFight3
 	loadtrainer SAILOR, HUEY4
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_HUEY
 	checkevent EVENT_HUEY_PROTEIN
 	iftrue UnknownScript_0x5b03f
-	checkevent $0265
+	checkevent EVENT_GOT_PROTEIN_FROM_HUEY
 	iftrue UnknownScript_0x5b03e
 	scall UnknownScript_0x5b076
 	verbosegiveitem PROTEIN, 1
 	iffalse UnknownScript_0x5b06f
-	setevent $0265
+	setevent EVENT_GOT_PROTEIN_FROM_HUEY
 	jump UnknownScript_0x5b05f
 
 UnknownScript_0x5b03e:

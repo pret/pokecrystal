@@ -37,11 +37,11 @@ HikerAnthony2Script:
 	iftrue UnknownScript_0x1ac0c5
 	checkcellnum $13
 	iftrue UnknownScript_0x1ac0d7
-	checkevent $027b
+	checkevent EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1ac03a
 	writetext UnknownText_0x1ac153
 	keeptextopen
-	setevent $027b
+	setevent EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1ac0cb
 	jump UnknownScript_0x1ac03d
 
@@ -58,57 +58,57 @@ UnknownScript_0x1ac03d:
 UnknownScript_0x1ac051:
 	scall UnknownScript_0x1ac0e3
 	winlosstext HikerAnthony2BeatenText, $0000
-	copybytetovar wd9fd
-	if_equal $4, UnknownScript_0x1ac070
-	if_equal $3, UnknownScript_0x1ac076
-	if_equal $2, UnknownScript_0x1ac07c
-	if_equal $1, UnknownScript_0x1ac082
-	if_equal $0, UnknownScript_0x1ac088
-UnknownScript_0x1ac070:
+	copybytetovar AnthonyFightCount
+	if_equal 4, .Fight4
+	if_equal 3, .Fight3
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight4
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1ac0bc
-UnknownScript_0x1ac076:
+	iftrue .LoadFight4
+.Fight3
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1ac0af
-UnknownScript_0x1ac07c:
+	iftrue .LoadFight3
+.Fight2
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1ac0a2
-UnknownScript_0x1ac082:
-	checkflag $0047
-	iftrue UnknownScript_0x1ac095
-UnknownScript_0x1ac088:
+	iftrue .LoadFight2
+.Fight1
+	checkflag ENGINE_FLYPOINT_OLIVINE
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	returnafterbattle
-	loadvar wd9fd, $1
+	loadvar AnthonyFightCount, 1
 	clearflag ENGINE_ANTHONY
 	end
 
-UnknownScript_0x1ac095:
+.LoadFight1
 	loadtrainer HIKER, ANTHONY1
 	startbattle
 	returnafterbattle
-	loadvar wd9fd, $2
+	loadvar AnthonyFightCount, 2
 	clearflag ENGINE_ANTHONY
 	end
 
-UnknownScript_0x1ac0a2:
+.LoadFight2
 	loadtrainer HIKER, ANTHONY3
 	startbattle
 	returnafterbattle
-	loadvar wd9fd, $3
+	loadvar AnthonyFightCount, 3
 	clearflag ENGINE_ANTHONY
 	end
 
-UnknownScript_0x1ac0af:
+.LoadFight3
 	loadtrainer HIKER, ANTHONY4
 	startbattle
 	returnafterbattle
-	loadvar wd9fd, $4
+	loadvar AnthonyFightCount, 4
 	clearflag ENGINE_ANTHONY
 	end
 
-UnknownScript_0x1ac0bc:
+.LoadFight4
 	loadtrainer HIKER, ANTHONY5
 	startbattle
 	returnafterbattle

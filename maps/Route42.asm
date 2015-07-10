@@ -56,11 +56,11 @@ FisherTully1Script:
 	iftrue UnknownScript_0x1a92dc
 	checkcellnum $1d
 	iftrue UnknownScript_0x1a92fd
-	checkevent $028f
+	checkevent EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a9268
 	writetext UnknownText_0x1a93ab
 	keeptextopen
-	setevent $028f
+	setevent EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a92f1
 	jump UnknownScript_0x1a926b
 

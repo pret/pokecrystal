@@ -59,11 +59,11 @@ CooltrainermGaven3Script:
 	iftrue UnknownScript_0x1a4d79
 	checkcellnum $b
 	iftrue UnknownScript_0x1a4dcb
-	checkevent $026b
+	checkevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a4d62
 	writetext UnknownText_0x1a4fe4
 	keeptextopen
-	setevent $026b
+	setevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a4dbf
 	jump UnknownScript_0x1a4d65
 
@@ -80,33 +80,33 @@ UnknownScript_0x1a4d65:
 UnknownScript_0x1a4d79:
 	scall UnknownScript_0x1a4dd7
 	winlosstext CooltrainermGaven3BeatenText, $0000
-	copybytetovar wd9f5
-	if_equal $2, UnknownScript_0x1a4d90
-	if_equal $1, UnknownScript_0x1a4d96
-	if_equal $0, UnknownScript_0x1a4d9c
-UnknownScript_0x1a4d90:
+	copybytetovar GavenFightCount
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1a4db6
-UnknownScript_0x1a4d96:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a4da9
-UnknownScript_0x1a4d9c:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	returnafterbattle
-	loadvar wd9f5, $1
+	loadvar GavenFightCount, 1
 	clearflag ENGINE_GAVEN
 	end
 
-UnknownScript_0x1a4da9:
+.LoadFight1
 	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
 	returnafterbattle
-	loadvar wd9f5, $2
+	loadvar GavenFightCount, 2
 	clearflag ENGINE_GAVEN
 	end
 
-UnknownScript_0x1a4db6:
+.LoadFight2
 	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
 	returnafterbattle
@@ -195,11 +195,11 @@ CooltrainerfBeth1Script:
 	iftrue UnknownScript_0x1a4e35
 	checkcellnum $c
 	iftrue UnknownScript_0x1a4e87
-	checkevent $026d
+	checkevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a4e1e
 	writetext UnknownText_0x1a51d9
 	keeptextopen
-	setevent $026d
+	setevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a4e7b
 	jump UnknownScript_0x1a4e21
 
@@ -216,33 +216,33 @@ UnknownScript_0x1a4e21:
 UnknownScript_0x1a4e35:
 	scall UnknownScript_0x1a4e93
 	winlosstext CooltrainerfBeth1BeatenText, $0000
-	copybytetovar wd9f6
-	if_equal $2, UnknownScript_0x1a4e4c
-	if_equal $1, UnknownScript_0x1a4e52
-	if_equal $0, UnknownScript_0x1a4e58
-UnknownScript_0x1a4e4c:
+	copybytetovar BethFightCount
+	if_equal 2, .Fight2
+	if_equal 1, .Fight1
+	if_equal 0, .LoadFight0
+.Fight2
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x1a4e72
-UnknownScript_0x1a4e52:
+	iftrue .LoadFight2
+.Fight1
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0x1a4e65
-UnknownScript_0x1a4e58:
+	iftrue .LoadFight1
+.LoadFight0
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	returnafterbattle
-	loadvar wd9f6, $1
+	loadvar BethFightCount, 1
 	clearflag ENGINE_BETH
 	end
 
-UnknownScript_0x1a4e65:
+.LoadFight1
 	loadtrainer COOLTRAINERF, BETH2
 	startbattle
 	returnafterbattle
-	loadvar wd9f6, $2
+	loadvar BethFightCount, 2
 	clearflag ENGINE_BETH
 	end
 
-UnknownScript_0x1a4e72:
+.LoadFight2
 	loadtrainer COOLTRAINERF, BETH3
 	startbattle
 	returnafterbattle
