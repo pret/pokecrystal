@@ -78,7 +78,7 @@ SchoolboyJack1Script:
 	writecode VAR_CALLERID, $5
 	talkaftercancel
 	loadfont
-	checkflag $0065
+	checkflag ENGINE_JACK
 	iftrue UnknownScript_0x5c088
 	checkcellnum $5
 	iftrue UnknownScript_0x5c108
@@ -126,7 +126,7 @@ UnknownScript_0x5c0bf:
 	startbattle
 	returnafterbattle
 	loadvar wd9f2, $1
-	clearflag $0065
+	clearflag ENGINE_JACK
 	end
 
 UnknownScript_0x5c0cc:
@@ -134,7 +134,7 @@ UnknownScript_0x5c0cc:
 	startbattle
 	returnafterbattle
 	loadvar wd9f2, $2
-	clearflag $0065
+	clearflag ENGINE_JACK
 	end
 
 UnknownScript_0x5c0d9:
@@ -142,7 +142,7 @@ UnknownScript_0x5c0d9:
 	startbattle
 	returnafterbattle
 	loadvar wd9f2, $3
-	clearflag $0065
+	clearflag ENGINE_JACK
 	end
 
 UnknownScript_0x5c0e6:
@@ -150,14 +150,14 @@ UnknownScript_0x5c0e6:
 	startbattle
 	returnafterbattle
 	loadvar wd9f2, $4
-	clearflag $0065
+	clearflag ENGINE_JACK
 	end
 
 UnknownScript_0x5c0f3:
 	loadtrainer SCHOOLBOY, JACK5
 	startbattle
 	returnafterbattle
-	clearflag $0065
+	clearflag ENGINE_JACK
 	end
 
 UnknownScript_0x5c0fc:
@@ -238,7 +238,7 @@ PokefanfBeverly1Script:
 	writecode VAR_CALLERID, $6
 	talkaftercancel
 	loadfont
-	checkflag $007d
+	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0x5c177
 	checkcellnum $6
 	iftrue UnknownScript_0x5c19b
@@ -266,7 +266,7 @@ UnknownScript_0x5c177:
 	scall UnknownScript_0x5c1a7
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x5c186
-	clearflag $007d
+	clearflag ENGINE_BEVERLY_HAS_NUGGET
 	jump UnknownScript_0x5c19b
 
 UnknownScript_0x5c186:

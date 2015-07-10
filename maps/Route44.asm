@@ -28,7 +28,7 @@ Bird_keeperVance1Script:
 	writecode VAR_CALLERID, $20
 	talkaftercancel
 	loadfont
-	checkflag $0079
+	checkflag ENGINE_VANCE
 	iftrue UnknownScript_0x19d86a
 	checkcellnum $20
 	iftrue UnknownScript_0x19d8eb
@@ -68,7 +68,7 @@ UnknownScript_0x19d88d:
 	startbattle
 	returnafterbattle
 	loadvar wda09, $1
-	clearflag $0079
+	clearflag ENGINE_VANCE
 	end
 
 UnknownScript_0x19d89a:
@@ -76,14 +76,14 @@ UnknownScript_0x19d89a:
 	startbattle
 	returnafterbattle
 	loadvar wda09, $2
-	clearflag $0079
+	clearflag ENGINE_VANCE
 	end
 
 UnknownScript_0x19d8a7:
 	loadtrainer BIRD_KEEPER, VANCE3
 	startbattle
 	returnafterbattle
-	clearflag $0079
+	clearflag ENGINE_VANCE
 	checkevent EVENT_VANCE_CARBOS
 	iftrue UnknownScript_0x19d8cb
 	checkevent $0267
@@ -202,9 +202,9 @@ FisherWilton1Script:
 	writecode VAR_CALLERID, $21
 	talkaftercancel
 	loadfont
-	checkflag $007a
+	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0x19d96e
-	checkflag $0086
+	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue UnknownScript_0x19d9b4
 	checkcellnum $21
 	iftrue UnknownScript_0x19d8eb
@@ -244,7 +244,7 @@ UnknownScript_0x19d991:
 	startbattle
 	returnafterbattle
 	loadvar wda0a, $1
-	clearflag $007a
+	clearflag ENGINE_WILTON
 	end
 
 UnknownScript_0x19d99e:
@@ -252,14 +252,14 @@ UnknownScript_0x19d99e:
 	startbattle
 	returnafterbattle
 	loadvar wda0a, $2
-	clearflag $007a
+	clearflag ENGINE_WILTON
 	end
 
 UnknownScript_0x19d9ab:
 	loadtrainer FISHER, WILTON3
 	startbattle
 	returnafterbattle
-	clearflag $007a
+	clearflag ENGINE_WILTON
 	end
 
 UnknownScript_0x19d9b4:
@@ -284,7 +284,7 @@ UnknownScript_0x19d9db:
 	verbosegiveitem POKE_BALL, 1
 	iffalse UnknownScript_0x19d9e7
 UnknownScript_0x19d9e1:
-	clearflag $0086
+	clearflag ENGINE_WILTON_HAS_ITEM
 	jump UnknownScript_0x19d8eb
 
 UnknownScript_0x19d9e7:

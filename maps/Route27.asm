@@ -89,9 +89,9 @@ Bird_keeperJose2Script:
 	writecode VAR_CALLERID, $d
 	talkaftercancel
 	loadfont
-	checkflag $0069
+	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0x1a08ff
-	checkflag $007e
+	checkflag ENGINE_JOSE_HAS_STAR_PIECE
 	iftrue UnknownScript_0x1a0945
 	checkcellnum $d
 	iftrue UnknownScript_0x1a0963
@@ -131,7 +131,7 @@ UnknownScript_0x1a0922:
 	startbattle
 	returnafterbattle
 	loadvar wd9f7, $1
-	clearflag $0069
+	clearflag ENGINE_JOSE
 	end
 
 UnknownScript_0x1a092f:
@@ -139,21 +139,21 @@ UnknownScript_0x1a092f:
 	startbattle
 	returnafterbattle
 	loadvar wd9f7, $2
-	clearflag $0069
+	clearflag ENGINE_JOSE
 	end
 
 UnknownScript_0x1a093c:
 	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
 	returnafterbattle
-	clearflag $0069
+	clearflag ENGINE_JOSE
 	end
 
 UnknownScript_0x1a0945:
 	scall UnknownScript_0x1a0973
 	verbosegiveitem STAR_PIECE, 1
 	iffalse UnknownScript_0x1a0954
-	clearflag $007e
+	clearflag ENGINE_JOSE_HAS_STAR_PIECE
 	jump UnknownScript_0x1a0963
 
 UnknownScript_0x1a0954:
@@ -272,7 +272,7 @@ CooltrainerfReena1Script:
 	writecode VAR_CALLERID, $e
 	talkaftercancel
 	loadfont
-	checkflag $006a
+	checkflag ENGINE_REENA
 	iftrue UnknownScript_0x1a09e9
 	checkcellnum $e
 	iftrue UnknownScript_0x1a0a3b
@@ -312,7 +312,7 @@ UnknownScript_0x1a0a0c:
 	startbattle
 	returnafterbattle
 	loadvar wd9f8, $1
-	clearflag $006a
+	clearflag ENGINE_REENA
 	end
 
 UnknownScript_0x1a0a19:
@@ -320,14 +320,14 @@ UnknownScript_0x1a0a19:
 	startbattle
 	returnafterbattle
 	loadvar wd9f8, $2
-	clearflag $006a
+	clearflag ENGINE_REENA
 	end
 
 UnknownScript_0x1a0a26:
 	loadtrainer COOLTRAINERF, REENA3
 	startbattle
 	returnafterbattle
-	clearflag $006a
+	clearflag ENGINE_REENA
 	end
 
 UnknownScript_0x1a0a2f:

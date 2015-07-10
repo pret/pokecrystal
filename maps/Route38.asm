@@ -82,9 +82,9 @@ LassDana1Script:
 	writecode VAR_CALLERID, $1a
 	talkaftercancel
 	loadfont
-	checkflag $0074
+	checkflag ENGINE_DANA
 	iftrue UnknownScript_0x1a1d82
-	checkflag $0082
+	checkflag ENGINE_LIZ_HAS_THUNDERSTONE
 	iftrue UnknownScript_0x1a1df6
 	checkcellnum $1a
 	iftrue UnknownScript_0x1a1e17
@@ -132,7 +132,7 @@ UnknownScript_0x1a1db9:
 	startbattle
 	returnafterbattle
 	loadvar wda03, $1
-	clearflag $0074
+	clearflag ENGINE_DANA
 	end
 
 UnknownScript_0x1a1dc6:
@@ -140,7 +140,7 @@ UnknownScript_0x1a1dc6:
 	startbattle
 	returnafterbattle
 	loadvar wda03, $2
-	clearflag $0074
+	clearflag ENGINE_DANA
 	end
 
 UnknownScript_0x1a1dd3:
@@ -148,7 +148,7 @@ UnknownScript_0x1a1dd3:
 	startbattle
 	returnafterbattle
 	loadvar wda03, $3
-	clearflag $0074
+	clearflag ENGINE_DANA
 	end
 
 UnknownScript_0x1a1de0:
@@ -156,21 +156,21 @@ UnknownScript_0x1a1de0:
 	startbattle
 	returnafterbattle
 	loadvar wda03, $4
-	clearflag $0074
+	clearflag ENGINE_DANA
 	end
 
 UnknownScript_0x1a1ded:
 	loadtrainer LASS, DANA5
 	startbattle
 	returnafterbattle
-	clearflag $0074
+	clearflag ENGINE_DANA
 	end
 
 UnknownScript_0x1a1df6:
 	scall UnknownScript_0x1a1e27
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1a1e08
-	clearflag $0082
+	clearflag ENGINE_LIZ_HAS_THUNDERSTONE
 	setevent $0102
 	jump UnknownScript_0x1a1e17
 
@@ -236,7 +236,7 @@ SchoolboyChad1Script:
 	writecode VAR_CALLERID, $1b
 	talkaftercancel
 	loadfont
-	checkflag $0075
+	checkflag ENGINE_CHAD
 	iftrue UnknownScript_0x1a1e75
 	checkcellnum $1b
 	iftrue UnknownScript_0x1a1ef5
@@ -284,7 +284,7 @@ UnknownScript_0x1a1eac:
 	startbattle
 	returnafterbattle
 	loadvar wda04, $1
-	clearflag $0075
+	clearflag ENGINE_CHAD
 	end
 
 UnknownScript_0x1a1eb9:
@@ -292,7 +292,7 @@ UnknownScript_0x1a1eb9:
 	startbattle
 	returnafterbattle
 	loadvar wda04, $2
-	clearflag $0075
+	clearflag ENGINE_CHAD
 	end
 
 UnknownScript_0x1a1ec6:
@@ -300,7 +300,7 @@ UnknownScript_0x1a1ec6:
 	startbattle
 	returnafterbattle
 	loadvar wda04, $3
-	clearflag $0075
+	clearflag ENGINE_CHAD
 	end
 
 UnknownScript_0x1a1ed3:
@@ -308,14 +308,14 @@ UnknownScript_0x1a1ed3:
 	startbattle
 	returnafterbattle
 	loadvar wda04, $4
-	clearflag $0075
+	clearflag ENGINE_CHAD
 	end
 
 UnknownScript_0x1a1ee0:
 	loadtrainer SCHOOLBOY, CHAD5
 	startbattle
 	returnafterbattle
-	clearflag $0075
+	clearflag ENGINE_CHAD
 	end
 
 UnknownScript_0x1a1ee9:

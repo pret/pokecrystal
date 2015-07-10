@@ -234,7 +234,7 @@ Bug_catcherArnie1Script:
 	writecode VAR_CALLERID, $17
 	talkaftercancel
 	loadfont
-	checkflag $0072
+	checkflag ENGINE_ARNIE
 	iftrue UnknownScript_0x19c9bb
 	checkflag $00a1
 	iftrue UnknownScript_0x19ca2f
@@ -284,7 +284,7 @@ UnknownScript_0x19c9f2:
 	startbattle
 	returnafterbattle
 	loadvar wda01, $1
-	clearflag $0072
+	clearflag ENGINE_ARNIE
 	end
 
 UnknownScript_0x19c9ff:
@@ -292,7 +292,7 @@ UnknownScript_0x19c9ff:
 	startbattle
 	returnafterbattle
 	loadvar wda01, $2
-	clearflag $0072
+	clearflag ENGINE_ARNIE
 	end
 
 UnknownScript_0x19ca0c:
@@ -300,7 +300,7 @@ UnknownScript_0x19ca0c:
 	startbattle
 	returnafterbattle
 	loadvar wda01, $3
-	clearflag $0072
+	clearflag ENGINE_ARNIE
 	end
 
 UnknownScript_0x19ca19:
@@ -308,14 +308,14 @@ UnknownScript_0x19ca19:
 	startbattle
 	returnafterbattle
 	loadvar wda01, $4
-	clearflag $0072
+	clearflag ENGINE_ARNIE
 	end
 
 UnknownScript_0x19ca26:
 	loadtrainer BUG_CATCHER, ARNIE5
 	startbattle
 	returnafterbattle
-	clearflag $0072
+	clearflag ENGINE_ARNIE
 	end
 
 UnknownScript_0x19ca2f:

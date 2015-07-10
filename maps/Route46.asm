@@ -55,7 +55,7 @@ PicnickerErin1Script:
 	writecode VAR_CALLERID, $24
 	talkaftercancel
 	loadfont
-	checkflag $007c
+	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0x1a96da
 	checkcellnum $24
 	iftrue UnknownScript_0x1a975b
@@ -95,7 +95,7 @@ UnknownScript_0x1a96fd:
 	startbattle
 	returnafterbattle
 	loadvar wda0d, $1
-	clearflag $007c
+	clearflag ENGINE_ERIN
 	end
 
 UnknownScript_0x1a970a:
@@ -103,14 +103,14 @@ UnknownScript_0x1a970a:
 	startbattle
 	returnafterbattle
 	loadvar wda0d, $2
-	clearflag $007c
+	clearflag ENGINE_ERIN
 	end
 
 UnknownScript_0x1a9717:
 	loadtrainer PICNICKER, ERIN3
 	startbattle
 	returnafterbattle
-	clearflag $007c
+	clearflag ENGINE_ERIN
 	checkevent EVENT_ERIN_CALCIUM
 	iftrue UnknownScript_0x1a973b
 	checkevent $0269

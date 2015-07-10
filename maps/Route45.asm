@@ -202,7 +202,7 @@ HikerParry3Script:
 	writecode VAR_CALLERID, $23
 	talkaftercancel
 	loadfont
-	checkflag $007b
+	checkflag ENGINE_PARRY
 	iftrue UnknownScript_0x19e1b8
 	checkcellnum $23
 	iftrue UnknownScript_0x19e127
@@ -242,7 +242,7 @@ UnknownScript_0x19e1db:
 	startbattle
 	returnafterbattle
 	loadvar wda0c, $1
-	clearflag $007b
+	clearflag ENGINE_PARRY
 	end
 
 UnknownScript_0x19e1e8:
@@ -250,14 +250,14 @@ UnknownScript_0x19e1e8:
 	startbattle
 	returnafterbattle
 	loadvar wda0c, $2
-	clearflag $007b
+	clearflag ENGINE_PARRY
 	end
 
 UnknownScript_0x19e1f5:
 	loadtrainer HIKER, PARRY2
 	startbattle
 	returnafterbattle
-	clearflag $007b
+	clearflag ENGINE_PARRY
 	checkevent EVENT_PARRY_IRON
 	iftrue UnknownScript_0x19e219
 	checkevent $0268

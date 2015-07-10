@@ -209,7 +209,7 @@ FisherRalph1Script:
 	writecode VAR_CALLERID, $11
 	talkaftercancel
 	loadfont
-	checkflag $006d
+	checkflag ENGINE_RALPH
 	iftrue UnknownScript_0x19057d
 	checkflag $0052
 	iftrue UnknownScript_0x1905f1
@@ -259,7 +259,7 @@ UnknownScript_0x1905b4:
 	startbattle
 	returnafterbattle
 	loadvar wd9fb, $1
-	clearflag $006d
+	clearflag ENGINE_RALPH
 	end
 
 UnknownScript_0x1905c1:
@@ -267,7 +267,7 @@ UnknownScript_0x1905c1:
 	startbattle
 	returnafterbattle
 	loadvar wd9fb, $2
-	clearflag $006d
+	clearflag ENGINE_RALPH
 	end
 
 UnknownScript_0x1905ce:
@@ -275,7 +275,7 @@ UnknownScript_0x1905ce:
 	startbattle
 	returnafterbattle
 	loadvar wd9fb, $3
-	clearflag $006d
+	clearflag ENGINE_RALPH
 	end
 
 UnknownScript_0x1905db:
@@ -283,14 +283,14 @@ UnknownScript_0x1905db:
 	startbattle
 	returnafterbattle
 	loadvar wd9fb, $4
-	clearflag $006d
+	clearflag ENGINE_RALPH
 	end
 
 UnknownScript_0x1905e8:
 	loadtrainer FISHER, RALPH5
 	startbattle
 	returnafterbattle
-	clearflag $006d
+	clearflag ENGINE_RALPH
 	end
 
 UnknownScript_0x1905f1:
@@ -377,7 +377,7 @@ PicnickerLiz1Script:
 	writecode VAR_CALLERID, $12
 	talkaftercancel
 	loadfont
-	checkflag $006e
+	checkflag ENGINE_LIZ
 	iftrue UnknownScript_0x19066d
 	checkcellnum $12
 	iftrue UnknownScript_0x1906ed
@@ -425,7 +425,7 @@ UnknownScript_0x1906a4:
 	startbattle
 	returnafterbattle
 	loadvar wd9fc, $1
-	clearflag $006e
+	clearflag ENGINE_LIZ
 	end
 
 UnknownScript_0x1906b1:
@@ -433,7 +433,7 @@ UnknownScript_0x1906b1:
 	startbattle
 	returnafterbattle
 	loadvar wd9fc, $2
-	clearflag $006e
+	clearflag ENGINE_LIZ
 	end
 
 UnknownScript_0x1906be:
@@ -441,7 +441,7 @@ UnknownScript_0x1906be:
 	startbattle
 	returnafterbattle
 	loadvar wd9fc, $3
-	clearflag $006e
+	clearflag ENGINE_LIZ
 	end
 
 UnknownScript_0x1906cb:
@@ -449,14 +449,14 @@ UnknownScript_0x1906cb:
 	startbattle
 	returnafterbattle
 	loadvar wd9fc, $4
-	clearflag $006e
+	clearflag ENGINE_LIZ
 	end
 
 UnknownScript_0x1906d8:
 	loadtrainer PICNICKER, LIZ5
 	startbattle
 	returnafterbattle
-	clearflag $006e
+	clearflag ENGINE_LIZ
 	end
 
 UnknownScript_0x1906e1:

@@ -55,7 +55,7 @@ CooltrainermGaven3Script:
 	writecode VAR_CALLERID, $b
 	talkaftercancel
 	loadfont
-	checkflag $0067
+	checkflag ENGINE_GAVEN
 	iftrue UnknownScript_0x1a4d79
 	checkcellnum $b
 	iftrue UnknownScript_0x1a4dcb
@@ -95,7 +95,7 @@ UnknownScript_0x1a4d9c:
 	startbattle
 	returnafterbattle
 	loadvar wd9f5, $1
-	clearflag $0067
+	clearflag ENGINE_GAVEN
 	end
 
 UnknownScript_0x1a4da9:
@@ -103,14 +103,14 @@ UnknownScript_0x1a4da9:
 	startbattle
 	returnafterbattle
 	loadvar wd9f5, $2
-	clearflag $0067
+	clearflag ENGINE_GAVEN
 	end
 
 UnknownScript_0x1a4db6:
 	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
 	returnafterbattle
-	clearflag $0067
+	clearflag ENGINE_GAVEN
 	end
 
 UnknownScript_0x1a4dbf:
@@ -191,7 +191,7 @@ CooltrainerfBeth1Script:
 	writecode VAR_CALLERID, $c
 	talkaftercancel
 	loadfont
-	checkflag $0068
+	checkflag ENGINE_BETH
 	iftrue UnknownScript_0x1a4e35
 	checkcellnum $c
 	iftrue UnknownScript_0x1a4e87
@@ -231,7 +231,7 @@ UnknownScript_0x1a4e58:
 	startbattle
 	returnafterbattle
 	loadvar wd9f6, $1
-	clearflag $0068
+	clearflag ENGINE_BETH
 	end
 
 UnknownScript_0x1a4e65:
@@ -239,14 +239,14 @@ UnknownScript_0x1a4e65:
 	startbattle
 	returnafterbattle
 	loadvar wd9f6, $2
-	clearflag $0068
+	clearflag ENGINE_BETH
 	end
 
 UnknownScript_0x1a4e72:
 	loadtrainer COOLTRAINERF, BETH3
 	startbattle
 	returnafterbattle
-	clearflag $0068
+	clearflag ENGINE_BETH
 	end
 
 UnknownScript_0x1a4e7b:

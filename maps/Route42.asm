@@ -50,9 +50,9 @@ FisherTully1Script:
 	writecode VAR_CALLERID, $1d
 	talkaftercancel
 	loadfont
-	checkflag $0076
+	checkflag ENGINE_TULLY
 	iftrue UnknownScript_0x1a927f
-	checkflag $0084
+	checkflag ENGINE_TULLY_HAS_WATER_STONE
 	iftrue UnknownScript_0x1a92dc
 	checkcellnum $1d
 	iftrue UnknownScript_0x1a92fd
@@ -96,7 +96,7 @@ UnknownScript_0x1a92ac:
 	startbattle
 	returnafterbattle
 	loadvar wda06, $1
-	clearflag $0076
+	clearflag ENGINE_TULLY
 	end
 
 UnknownScript_0x1a92b9:
@@ -104,7 +104,7 @@ UnknownScript_0x1a92b9:
 	startbattle
 	returnafterbattle
 	loadvar wda06, $2
-	clearflag $0076
+	clearflag ENGINE_TULLY
 	end
 
 UnknownScript_0x1a92c6:
@@ -112,21 +112,21 @@ UnknownScript_0x1a92c6:
 	startbattle
 	returnafterbattle
 	loadvar wda06, $3
-	clearflag $0076
+	clearflag ENGINE_TULLY
 	end
 
 UnknownScript_0x1a92d3:
 	loadtrainer FISHER, TULLY4
 	startbattle
 	returnafterbattle
-	clearflag $0076
+	clearflag ENGINE_TULLY
 	end
 
 UnknownScript_0x1a92dc:
 	scall UnknownScript_0x1a930d
 	verbosegiveitem WATER_STONE, 1
 	iffalse UnknownScript_0x1a92ee
-	clearflag $0084
+	clearflag ENGINE_TULLY_HAS_WATER_STONE
 	setevent $0103
 	jump UnknownScript_0x1a92fd
 

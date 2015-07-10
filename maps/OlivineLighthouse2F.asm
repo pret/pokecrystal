@@ -55,7 +55,7 @@ SailorHuey1Script:
 	writecode VAR_CALLERID, $7
 	talkaftercancel
 	loadfont
-	checkflag $0066
+	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0x5afc7
 	checkcellnum $7
 	iftrue UnknownScript_0x5b05f
@@ -97,7 +97,7 @@ UnknownScript_0x5aff4:
 	startbattle
 	returnafterbattle
 	loadvar wd9f4, $1
-	clearflag $0066
+	clearflag ENGINE_HUEY
 	end
 
 UnknownScript_0x5b001:
@@ -105,7 +105,7 @@ UnknownScript_0x5b001:
 	startbattle
 	returnafterbattle
 	loadvar wd9f4, $2
-	clearflag $0066
+	clearflag ENGINE_HUEY
 	end
 
 UnknownScript_0x5b00e:
@@ -113,14 +113,14 @@ UnknownScript_0x5b00e:
 	startbattle
 	returnafterbattle
 	loadvar wd9f4, $3
-	clearflag $0066
+	clearflag ENGINE_HUEY
 	end
 
 UnknownScript_0x5b01b:
 	loadtrainer SAILOR, HUEY4
 	startbattle
 	returnafterbattle
-	clearflag $0066
+	clearflag ENGINE_HUEY
 	checkevent EVENT_HUEY_PROTEIN
 	iftrue UnknownScript_0x5b03f
 	checkevent $0265

@@ -98,7 +98,7 @@ CamperTodd1Script:
 	writecode VAR_CALLERID, $14
 	talkaftercancel
 	loadfont
-	checkflag $0070
+	checkflag ENGINE_TODD
 	iftrue UnknownScript_0x780bd
 	checkflag $0061
 	iftrue UnknownScript_0x78131
@@ -148,7 +148,7 @@ UnknownScript_0x780f4:
 	startbattle
 	returnafterbattle
 	loadvar wd9fe, $1
-	clearflag $0070
+	clearflag ENGINE_TODD
 	end
 
 UnknownScript_0x78101:
@@ -156,7 +156,7 @@ UnknownScript_0x78101:
 	startbattle
 	returnafterbattle
 	loadvar wd9fe, $2
-	clearflag $0070
+	clearflag ENGINE_TODD
 	end
 
 UnknownScript_0x7810e:
@@ -164,7 +164,7 @@ UnknownScript_0x7810e:
 	startbattle
 	returnafterbattle
 	loadvar wd9fe, $3
-	clearflag $0070
+	clearflag ENGINE_TODD
 	end
 
 UnknownScript_0x7811b:
@@ -172,14 +172,14 @@ UnknownScript_0x7811b:
 	startbattle
 	returnafterbattle
 	loadvar wd9fe, $4
-	clearflag $0070
+	clearflag ENGINE_TODD
 	end
 
 UnknownScript_0x78128:
 	loadtrainer CAMPER, TODD5
 	startbattle
 	returnafterbattle
-	clearflag $0070
+	clearflag ENGINE_TODD
 	end
 
 UnknownScript_0x78131:
@@ -239,9 +239,9 @@ PicnickerGina1Script:
 	writecode VAR_CALLERID, $15
 	talkaftercancel
 	loadfont
-	checkflag $0071
+	checkflag ENGINE_GINA
 	iftrue UnknownScript_0x7819f
-	checkflag $0080
+	checkflag ENGINE_GINA_HAS_LEAF_STONE
 	iftrue UnknownScript_0x78213
 	checkcellnum $15
 	iftrue UnknownScript_0x78234
@@ -289,7 +289,7 @@ UnknownScript_0x781d6:
 	startbattle
 	returnafterbattle
 	loadvar wd9ff, $1
-	clearflag $0071
+	clearflag ENGINE_GINA
 	end
 
 UnknownScript_0x781e3:
@@ -297,7 +297,7 @@ UnknownScript_0x781e3:
 	startbattle
 	returnafterbattle
 	loadvar wd9ff, $2
-	clearflag $0071
+	clearflag ENGINE_GINA
 	end
 
 UnknownScript_0x781f0:
@@ -305,7 +305,7 @@ UnknownScript_0x781f0:
 	startbattle
 	returnafterbattle
 	loadvar wd9ff, $3
-	clearflag $0071
+	clearflag ENGINE_GINA
 	end
 
 UnknownScript_0x781fd:
@@ -313,21 +313,21 @@ UnknownScript_0x781fd:
 	startbattle
 	returnafterbattle
 	loadvar wd9ff, $4
-	clearflag $0071
+	clearflag ENGINE_GINA
 	end
 
 UnknownScript_0x7820a:
 	loadtrainer PICNICKER, GINA5
 	startbattle
 	returnafterbattle
-	clearflag $0071
+	clearflag ENGINE_GINA
 	end
 
 UnknownScript_0x78213:
 	scall UnknownScript_0x78244
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x78225
-	clearflag $0080
+	clearflag ENGINE_GINA_HAS_LEAF_STONE
 	setevent $0100
 	jump UnknownScript_0x78234
 

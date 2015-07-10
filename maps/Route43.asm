@@ -96,7 +96,7 @@ PokemaniacBrent1Script:
 	writecode VAR_CALLERID, $1e
 	talkaftercancel
 	loadfont
-	checkflag $0077
+	checkflag ENGINE_BRENT
 	iftrue UnknownScript_0x19d0cf
 	checkcellnum $1e
 	iftrue UnknownScript_0x19d138
@@ -140,7 +140,7 @@ UnknownScript_0x19d0fc:
 	startbattle
 	returnafterbattle
 	loadvar wda07, $1
-	clearflag $0077
+	clearflag ENGINE_BRENT
 	end
 
 UnknownScript_0x19d109:
@@ -148,7 +148,7 @@ UnknownScript_0x19d109:
 	startbattle
 	returnafterbattle
 	loadvar wda07, $2
-	clearflag $0077
+	clearflag ENGINE_BRENT
 	end
 
 UnknownScript_0x19d116:
@@ -156,14 +156,14 @@ UnknownScript_0x19d116:
 	startbattle
 	returnafterbattle
 	loadvar wda07, $3
-	clearflag $0077
+	clearflag ENGINE_BRENT
 	end
 
 UnknownScript_0x19d123:
 	loadtrainer POKEMANIAC, BRENT4
 	startbattle
 	returnafterbattle
-	clearflag $0077
+	clearflag ENGINE_BRENT
 	end
 
 UnknownScript_0x19d12c:
@@ -271,9 +271,9 @@ PicnickerTiffany3Script:
 	writecode VAR_CALLERID, $1f
 	talkaftercancel
 	loadfont
-	checkflag $0078
+	checkflag ENGINE_TIFFANY
 	iftrue UnknownScript_0x19d1c1
-	checkflag $0085
+	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
 	iftrue UnknownScript_0x19d21e
 	checkcellnum $1f
 	iftrue UnknownScript_0x19d245
@@ -319,7 +319,7 @@ UnknownScript_0x19d1ee:
 	startbattle
 	returnafterbattle
 	loadvar wda08, $1
-	clearflag $0078
+	clearflag ENGINE_TIFFANY
 	end
 
 UnknownScript_0x19d1fb:
@@ -327,7 +327,7 @@ UnknownScript_0x19d1fb:
 	startbattle
 	returnafterbattle
 	loadvar wda08, $2
-	clearflag $0078
+	clearflag ENGINE_TIFFANY
 	end
 
 UnknownScript_0x19d208:
@@ -335,21 +335,21 @@ UnknownScript_0x19d208:
 	startbattle
 	returnafterbattle
 	loadvar wda08, $3
-	clearflag $0078
+	clearflag ENGINE_TIFFANY
 	end
 
 UnknownScript_0x19d215:
 	loadtrainer PICNICKER, TIFFANY4
 	startbattle
 	returnafterbattle
-	clearflag $0078
+	clearflag ENGINE_TIFFANY
 	end
 
 UnknownScript_0x19d21e:
 	scall UnknownScript_0x19d255
 	verbosegiveitem PINK_BOW, 1
 	iffalse UnknownScript_0x19d230
-	clearflag $0085
+	clearflag ENGINE_TIFFANY_HAS_PINK_BOW
 	setevent $0104
 	jump UnknownScript_0x19d245
 

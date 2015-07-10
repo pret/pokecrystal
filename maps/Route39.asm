@@ -36,7 +36,7 @@ PokefanmDerek1Script:
 	writecode VAR_CALLERID, $1c
 	talkaftercancel
 	loadfont
-	checkflag $0083
+	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue UnknownScript_0x1a5b4a
 	checkcellnum $1c
 	iftrue UnknownScript_0x1a5b6e
@@ -64,7 +64,7 @@ UnknownScript_0x1a5b4a:
 	scall UnknownScript_0x1a5b7a
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x1a5b59
-	clearflag $0083
+	clearflag ENGINE_DEREK_HAS_NUGGET
 	jump UnknownScript_0x1a5b6e
 
 UnknownScript_0x1a5b59:

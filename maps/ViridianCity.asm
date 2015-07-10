@@ -32,14 +32,14 @@ UnknownScript_0x1a9a5b:
 GrampsScript_0x1a9a61:
 	faceplayer
 	loadfont
-	checkevent $0775
-	iftrue UnknownScript_0x1a9a6f
+	checkevent EVENT_BLUE_IN_CINNABAR
+	iftrue .BlueReturned
 	writetext UnknownText_0x1a9c11
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1a9a6f:
+.BlueReturned
 	writetext UnknownText_0x1a9c7e
 	closetext
 	loadmovesprites

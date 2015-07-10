@@ -184,9 +184,9 @@ SchoolboyAlan1Script:
 	writecode VAR_CALLERID, $18
 	talkaftercancel
 	loadfont
-	checkflag $0073
+	checkflag ENGINE_ALAN
 	iftrue UnknownScript_0x194140
-	checkflag $0081
+	checkflag ENGINE_ALAN_HAS_FIRE_STONE
 	iftrue UnknownScript_0x1941b4
 	checkcellnum $18
 	iftrue UnknownScript_0x1941d5
@@ -234,7 +234,7 @@ UnknownScript_0x194177:
 	startbattle
 	returnafterbattle
 	loadvar wda02, $1
-	clearflag $0073
+	clearflag ENGINE_ALAN
 	end
 
 UnknownScript_0x194184:
@@ -242,7 +242,7 @@ UnknownScript_0x194184:
 	startbattle
 	returnafterbattle
 	loadvar wda02, $2
-	clearflag $0073
+	clearflag ENGINE_ALAN
 	end
 
 UnknownScript_0x194191:
@@ -250,7 +250,7 @@ UnknownScript_0x194191:
 	startbattle
 	returnafterbattle
 	loadvar wda02, $3
-	clearflag $0073
+	clearflag ENGINE_ALAN
 	end
 
 UnknownScript_0x19419e:
@@ -258,21 +258,21 @@ UnknownScript_0x19419e:
 	startbattle
 	returnafterbattle
 	loadvar wda02, $4
-	clearflag $0073
+	clearflag ENGINE_ALAN
 	end
 
 UnknownScript_0x1941ab:
 	loadtrainer SCHOOLBOY, ALAN5
 	startbattle
 	returnafterbattle
-	clearflag $0073
+	clearflag ENGINE_ALAN
 	end
 
 UnknownScript_0x1941b4:
 	scall UnknownScript_0x1941e5
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1941c6
-	clearflag $0081
+	clearflag ENGINE_ALAN_HAS_FIRE_STONE
 	setevent $0101
 	jump UnknownScript_0x1941d5
 

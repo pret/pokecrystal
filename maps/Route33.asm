@@ -31,7 +31,7 @@ HikerAnthony2Script:
 	writecode VAR_CALLERID, $13
 	talkaftercancel
 	loadfont
-	checkflag $006f
+	checkflag ENGINE_ANTHONY
 	iftrue UnknownScript_0x1ac051
 	checkflag $00a0
 	iftrue UnknownScript_0x1ac0c5
@@ -81,7 +81,7 @@ UnknownScript_0x1ac088:
 	startbattle
 	returnafterbattle
 	loadvar wd9fd, $1
-	clearflag $006f
+	clearflag ENGINE_ANTHONY
 	end
 
 UnknownScript_0x1ac095:
@@ -89,7 +89,7 @@ UnknownScript_0x1ac095:
 	startbattle
 	returnafterbattle
 	loadvar wd9fd, $2
-	clearflag $006f
+	clearflag ENGINE_ANTHONY
 	end
 
 UnknownScript_0x1ac0a2:
@@ -97,7 +97,7 @@ UnknownScript_0x1ac0a2:
 	startbattle
 	returnafterbattle
 	loadvar wd9fd, $3
-	clearflag $006f
+	clearflag ENGINE_ANTHONY
 	end
 
 UnknownScript_0x1ac0af:
@@ -105,14 +105,14 @@ UnknownScript_0x1ac0af:
 	startbattle
 	returnafterbattle
 	loadvar wd9fd, $4
-	clearflag $006f
+	clearflag ENGINE_ANTHONY
 	end
 
 UnknownScript_0x1ac0bc:
 	loadtrainer HIKER, ANTHONY5
 	startbattle
 	returnafterbattle
-	clearflag $006f
+	clearflag ENGINE_ANTHONY
 	end
 
 UnknownScript_0x1ac0c5:

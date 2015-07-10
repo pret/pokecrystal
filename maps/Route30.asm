@@ -48,7 +48,7 @@ YoungsterJoey1Script:
 	writecode VAR_CALLERID, $f
 	talkaftercancel
 	loadfont
-	checkflag $006b
+	checkflag ENGINE_JOEY
 	iftrue UnknownScript_0x1a16e0
 	checkcellnum $f
 	iftrue UnknownScript_0x1a178f
@@ -96,7 +96,7 @@ UnknownScript_0x1a1717:
 	startbattle
 	returnafterbattle
 	loadvar wd9f9, $1
-	clearflag $006b
+	clearflag ENGINE_JOEY
 	end
 
 UnknownScript_0x1a1724:
@@ -104,7 +104,7 @@ UnknownScript_0x1a1724:
 	startbattle
 	returnafterbattle
 	loadvar wd9f9, $2
-	clearflag $006b
+	clearflag ENGINE_JOEY
 	end
 
 UnknownScript_0x1a1731:
@@ -112,7 +112,7 @@ UnknownScript_0x1a1731:
 	startbattle
 	returnafterbattle
 	loadvar wd9f9, $3
-	clearflag $006b
+	clearflag ENGINE_JOEY
 	end
 
 UnknownScript_0x1a173e:
@@ -120,14 +120,14 @@ UnknownScript_0x1a173e:
 	startbattle
 	returnafterbattle
 	loadvar wd9f9, $4
-	clearflag $006b
+	clearflag ENGINE_JOEY
 	end
 
 UnknownScript_0x1a174b:
 	loadtrainer YOUNGSTER, JOEY5
 	startbattle
 	returnafterbattle
-	clearflag $006b
+	clearflag ENGINE_JOEY
 	checkevent EVENT_JOEY_HP_UP
 	iftrue UnknownScript_0x1a176f
 	checkevent $0266

@@ -147,4 +147,4 @@ CinnabarIsland_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_BLUE, 10, 13, $3, $0, 255, 255, $0, 0, CinnabarIslandBlue, $0775
+	person_event SPRITE_BLUE, 10, 13, $3, $0, 255, 255, $0, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

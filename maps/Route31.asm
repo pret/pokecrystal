@@ -41,9 +41,9 @@ Bug_catcherWade1Script:
 	writecode VAR_CALLERID, $10
 	talkaftercancel
 	loadfont
-	checkflag $006c
+	checkflag ENGINE_WADE
 	iftrue UnknownScript_0x1a5493
-	checkflag $007f
+	checkflag ENGINE_WADE_HAS_ITEM
 	iftrue UnknownScript_0x1a5507
 	checkcellnum $10
 	iftrue UnknownScript_0x1a5558
@@ -91,7 +91,7 @@ UnknownScript_0x1a54ca:
 	startbattle
 	returnafterbattle
 	loadvar wd9fa, $1
-	clearflag $006c
+	clearflag ENGINE_WADE
 	end
 
 UnknownScript_0x1a54d7:
@@ -99,7 +99,7 @@ UnknownScript_0x1a54d7:
 	startbattle
 	returnafterbattle
 	loadvar wd9fa, $2
-	clearflag $006c
+	clearflag ENGINE_WADE
 	end
 
 UnknownScript_0x1a54e4:
@@ -107,7 +107,7 @@ UnknownScript_0x1a54e4:
 	startbattle
 	returnafterbattle
 	loadvar wd9fa, $3
-	clearflag $006c
+	clearflag ENGINE_WADE
 	end
 
 UnknownScript_0x1a54f1:
@@ -115,49 +115,45 @@ UnknownScript_0x1a54f1:
 	startbattle
 	returnafterbattle
 	loadvar wd9fa, $4
-	clearflag $006c
+	clearflag ENGINE_WADE
 	end
 
 UnknownScript_0x1a54fe:
 	loadtrainer BUG_CATCHER, WADE5
 	startbattle
 	returnafterbattle
-	clearflag $006c
+	clearflag ENGINE_WADE
 	end
 
 UnknownScript_0x1a5507:
 	scall UnknownScript_0x1a5568
 	checkevent EVENT_WADE_HAS_BERRY
-	iftrue UnknownScript_0x1a5522
+	iftrue .Berry
 	checkevent EVENT_WADE_HAS_PSNCUREBERRY
-	iftrue UnknownScript_0x1a552b
+	iftrue .Psncureberry
 	checkevent EVENT_WADE_HAS_PRZCUREBERRY
-	iftrue UnknownScript_0x1a5534
+	iftrue .Przcureberry
 	checkevent EVENT_WADE_HAS_BITTER_BERRY
-	iftrue UnknownScript_0x1a553d
-UnknownScript_0x1a5522:
+	iftrue .BitterBerry
+.Berry
 	verbosegiveitem BERRY, 1
-	iffalse UnknownScript_0x1a5549
-	jump UnknownScript_0x1a5543
-
-UnknownScript_0x1a552b:
+	iffalse .PackFull
+	jump .Done
+.Psncureberry
 	verbosegiveitem PSNCUREBERRY, 1
-	iffalse UnknownScript_0x1a5549
-	jump UnknownScript_0x1a5543
-
-UnknownScript_0x1a5534:
+	iffalse .PackFull
+	jump .Done
+.Przcureberry
 	verbosegiveitem PRZCUREBERRY, 1
-	iffalse UnknownScript_0x1a5549
-	jump UnknownScript_0x1a5543
-
-UnknownScript_0x1a553d:
+	iffalse .PackFull
+	jump .Done
+.BitterBerry
 	verbosegiveitem BITTER_BERRY, 1
-	iffalse UnknownScript_0x1a5549
-UnknownScript_0x1a5543:
-	clearflag $007f
+	iffalse .PackFull
+.Done
+	clearflag ENGINE_WADE_HAS_ITEM
 	jump UnknownScript_0x1a5558
-
-UnknownScript_0x1a5549:
+.PackFull
 	jump UnknownScript_0x1a556c
 
 UnknownScript_0x1a554c:
