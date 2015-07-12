@@ -139,11 +139,11 @@ FastShipBed:
 	writetext FastShipBedText2
 	closetext
 	loadmovesprites
-	checkevent $0031
+	checkevent EVENT_031
 	iftrue UnknownScript_0x75ae1
-	checkevent $0032
+	checkevent EVENT_032
 	iftrue UnknownScript_0x75ae2
-	checkevent $0030
+	checkevent EVENT_030
 	iftrue UnknownScript_0x75ae2
 UnknownScript_0x75ae1:
 	end
@@ -151,13 +151,13 @@ UnknownScript_0x75ae1:
 UnknownScript_0x75ae2:
 	playsound SFX_ELEVATOR_END
 	pause 30
-	checkevent $002f
+	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue UnknownScript_0x75af7
 	loadfont
 	writetext FastShipArrivedVermilionText
 	closetext
 	loadmovesprites
-	setevent $0031
+	setevent EVENT_031
 	end
 
 UnknownScript_0x75af7:
@@ -165,7 +165,7 @@ UnknownScript_0x75af7:
 	writetext FastShipArrivedOlivineText
 	closetext
 	loadmovesprites
-	setevent $0031
+	setevent EVENT_031
 	end
 
 FastShipCabinsNorthwestCabinTrashcan:
@@ -303,7 +303,7 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_FISHER, 19, 5, $1e, $0, 255, 255, $82, 2, TrainerFirebreatherLyle, $0739
-	person_event SPRITE_BUG_CATCHER, 19, 10, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherKen, $073b
-	person_event SPRITE_BUENA, 30, 5, $a, $0, 255, 255, $92, 3, TrainerBeautyCassie, $073a
-	person_event SPRITE_ROCKER, 32, 7, $1e, $0, 255, 255, $82, 2, TrainerGuitaristClyde, $073b
+	person_event SPRITE_FISHER, 19, 5, $1e, $0, 255, 255, $82, 2, TrainerFirebreatherLyle, EVENT_739
+	person_event SPRITE_BUG_CATCHER, 19, 10, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherKen, EVENT_73B
+	person_event SPRITE_BUENA, 30, 5, $a, $0, 255, 255, $92, 3, TrainerBeautyCassie, EVENT_73A
+	person_event SPRITE_ROCKER, 32, 7, $1e, $0, 255, 255, $82, 2, TrainerGuitaristClyde, EVENT_73B

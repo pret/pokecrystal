@@ -451,10 +451,10 @@ AzaleaGym_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_BUGSY, 11, 9, $3, $0, 255, 255, $a0, 0, BugsyScript_0x18ec1e, $ffff
-	person_event SPRITE_BUG_CATCHER, 7, 9, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherBug_catcher_benny, $ffff
-	person_event SPRITE_BUG_CATCHER, 12, 12, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherAl, $ffff
-	person_event SPRITE_BUG_CATCHER, 6, 4, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherJosh, $ffff
-	person_event SPRITE_TWIN, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay1, $ffff
-	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay2, $ffff
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, AzaleaGymGuyScript, $ffff
+	person_event SPRITE_BUGSY, 11, 9, $3, $0, 255, 255, $a0, 0, BugsyScript_0x18ec1e, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUG_CATCHER, 7, 9, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherBug_catcher_benny, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUG_CATCHER, 12, 12, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherAl, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUG_CATCHER, 6, 4, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherJosh, EVENT_ALWAYS_THERE
+	person_event SPRITE_TWIN, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay1, EVENT_ALWAYS_THERE
+	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay2, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, AzaleaGymGuyScript, EVENT_ALWAYS_THERE

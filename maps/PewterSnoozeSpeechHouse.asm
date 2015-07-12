@@ -36,4 +36,4 @@ PewterSnoozeSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_GRAMPS, 7, 9, $8, $0, 255, 255, $90, 0, GrampsScript_0x1a3059, $ffff
+	person_event SPRITE_GRAMPS, 7, 9, $8, $0, 255, 255, $90, 0, GrampsScript_0x1a3059, EVENT_ALWAYS_THERE

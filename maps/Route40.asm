@@ -10,7 +10,7 @@ Route40_MapScriptHeader:
 	dbw 2, MonicaCallback
 
 MonicaCallback:
-	clearevent $07cf
+	clearevent EVENT_7CF
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .MonicaAppears
 	disappear $a
@@ -409,15 +409,15 @@ Route40_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_OLIVINE_RIVAL, 19, 18, $9, $0, 255, 255, $82, 4, TrainerSwimmermSimon, $ffff
-	person_event SPRITE_OLIVINE_RIVAL, 34, 22, $8, $0, 255, 255, $82, 5, TrainerSwimmermRandall, $ffff
-	person_event SPRITE_SWIMMER_GIRL, 23, 7, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfElaine, $ffff
-	person_event SPRITE_SWIMMER_GIRL, 29, 14, $1f, $0, 255, 255, $a2, 3, TrainerSwimmerfPaula, $ffff
-	person_event SPRITE_ROCK, 15, 11, $18, $0, 255, 255, $0, 0, Route40Rock, $ffff
-	person_event SPRITE_ROCK, 13, 10, $18, $0, 255, 255, $0, 0, Route40Rock, $ffff
-	person_event SPRITE_ROCK, 12, 11, $18, $0, 255, 255, $0, 0, Route40Rock, $ffff
-	person_event SPRITE_LASS, 17, 15, $6, $0, 255, 255, $0, 0, LassScript_0x1a61c4, $ffff
-	person_event SPRITE_BUENA, 14, 12, $3, $0, 255, 255, $0, 0, MonicaScript, $075e
-	person_event SPRITE_POKEFAN_M, 10, 11, $9, $0, 255, 255, $0, 0, PokefanMScript_0x1a61c7, $ffff
-	person_event SPRITE_LASS, 8, 17, $3, $0, 255, 255, $a0, 0, LassScript_0x1a61d3, $ffff
-	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, $3, $0, 255, 255, $90, 0, StandingYoungsterScript_0x1a61d6, $07cf
+	person_event SPRITE_OLIVINE_RIVAL, 19, 18, $9, $0, 255, 255, $82, 4, TrainerSwimmermSimon, EVENT_ALWAYS_THERE
+	person_event SPRITE_OLIVINE_RIVAL, 34, 22, $8, $0, 255, 255, $82, 5, TrainerSwimmermRandall, EVENT_ALWAYS_THERE
+	person_event SPRITE_SWIMMER_GIRL, 23, 7, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfElaine, EVENT_ALWAYS_THERE
+	person_event SPRITE_SWIMMER_GIRL, 29, 14, $1f, $0, 255, 255, $a2, 3, TrainerSwimmerfPaula, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCK, 15, 11, $18, $0, 255, 255, $0, 0, Route40Rock, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCK, 13, 10, $18, $0, 255, 255, $0, 0, Route40Rock, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCK, 12, 11, $18, $0, 255, 255, $0, 0, Route40Rock, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 17, 15, $6, $0, 255, 255, $0, 0, LassScript_0x1a61c4, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUENA, 14, 12, $3, $0, 255, 255, $0, 0, MonicaScript, EVENT_75E
+	person_event SPRITE_POKEFAN_M, 10, 11, $9, $0, 255, 255, $0, 0, PokefanMScript_0x1a61c7, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 8, 17, $3, $0, 255, 255, $a0, 0, LassScript_0x1a61d3, EVENT_ALWAYS_THERE
+	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, $3, $0, 255, 255, $90, 0, StandingYoungsterScript_0x1a61d6, EVENT_7CF

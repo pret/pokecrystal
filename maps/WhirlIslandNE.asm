@@ -26,4 +26,4 @@ WhirlIslandNE_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 15, 15, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c396, $068f
+	person_event SPRITE_POKE_BALL, 15, 15, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c396, EVENT_68F

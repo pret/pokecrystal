@@ -1476,7 +1476,7 @@ UnknownScript_0xa0a08:
 	iftrue UnknownScript_0xa0a1d
 	checknite
 	iftrue UnknownScript_0xa0a25
-	setevent $026a
+	setevent EVENT_26A
 	farwritetext UnknownText_0x66f11
 	keeptextopen
 	jump UnknownScript_0xa0484

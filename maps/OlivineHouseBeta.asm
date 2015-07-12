@@ -54,5 +54,5 @@ OlivineHouseBeta_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_TEACHER, 7, 6, $3, $0, 255, 255, $0, 0, TeacherScript_0x9c58f, $ffff
-	person_event SPRITE_RHYDON, 8, 10, $4, $20, 255, 255, $0, 0, RhydonScript_0x9c592, $ffff
+	person_event SPRITE_TEACHER, 7, 6, $3, $0, 255, 255, $0, 0, TeacherScript_0x9c58f, EVENT_ALWAYS_THERE
+	person_event SPRITE_RHYDON, 8, 10, $4, $20, 255, 255, $0, 0, RhydonScript_0x9c592, EVENT_ALWAYS_THERE

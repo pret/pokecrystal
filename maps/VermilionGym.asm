@@ -335,8 +335,8 @@ VermilionGym_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_SURGE, 6, 9, $6, $0, 255, 255, $b0, 0, SurgeScript_0x1920a5, $ffff
-	person_event SPRITE_GENTLEMAN, 12, 12, $8, $0, 255, 255, $92, 4, TrainerGentlemanGregory, $ffff
-	person_event SPRITE_ROCKER, 11, 8, $6, $3, 255, 255, $82, 3, TrainerGuitaristVincent, $ffff
-	person_event SPRITE_SUPER_NERD, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, $ffff
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, $ffff
+	person_event SPRITE_SURGE, 6, 9, $6, $0, 255, 255, $b0, 0, SurgeScript_0x1920a5, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 12, 12, $8, $0, 255, 255, $92, 4, TrainerGentlemanGregory, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCKER, 11, 8, $6, $3, 255, 255, $82, 3, TrainerGuitaristVincent, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, EVENT_ALWAYS_THERE

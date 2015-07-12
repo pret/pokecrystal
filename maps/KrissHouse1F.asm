@@ -16,13 +16,13 @@ UnknownScript_0x7a4d7:
 	end
 
 UnknownScript_0x7a4d8:
-	setevent $0000
+	setevent EVENT_000
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
 	showemote $0, $2, 15
 	spriteface $0, LEFT
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
@@ -39,8 +39,8 @@ UnknownScript_0x7a4f6:
 	setflag ENGINE_PHONE_CARD
 	addcellnum $1
 	dotrigger $1
-	setevent $06c7
-	clearevent $06c8
+	setevent EVENT_6C7
+	clearevent EVENT_6C8
 	writetext UnknownText_0x7a6bd
 	keeptextopen
 	special Function90913
@@ -77,9 +77,9 @@ UnknownScript_0x7a549:
 	writetext UnknownText_0x7a850
 	closetext
 	loadmovesprites
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x7a55d
-	checkevent $0001
+	checkevent EVENT_001
 	iffalse UnknownScript_0x7a564
 	jump UnknownScript_0x7a56b
 
@@ -104,16 +104,16 @@ GearName:
 	db "#GEAR@"
 
 UnknownScript_0x7a57e:
-	jumpstd $002f
+	jumpstd receiveitem
 	end
 
 MomScript_0x7a582:
 	faceplayer
-	setevent $0001
+	setevent EVENT_001
 	checktriggers
 	iffalse UnknownScript_0x7a572
 	loadfont
-	checkevent $0076
+	checkevent EVENT_076
 	iftrue UnknownScript_0x7a5af
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue UnknownScript_0x7a5b8
@@ -139,7 +139,7 @@ UnknownScript_0x7a5af:
 	end
 
 UnknownScript_0x7a5b5:
-	setevent $0076
+	setevent EVENT_076
 UnknownScript_0x7a5b8:
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special Function16218
@@ -404,8 +404,8 @@ KrissHouse1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 255, $0, 0, MomScript_0x7a582, $06c7
-	person_event SPRITE_MOM, 6, 6, $7, $0, 255, 1, $0, 0, MomScript_0x7a582, $06c8
-	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 2, $0, 0, MomScript_0x7a582, $06c8
-	person_event SPRITE_MOM, 6, 4, $7, $0, 255, 4, $0, 0, MomScript_0x7a582, $06c8
-	person_event SPRITE_POKEFAN_F, 8, 8, $9, $0, 255, 255, $80, 0, NeighborScript, $0792
+	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 255, $0, 0, MomScript_0x7a582, EVENT_6C7
+	person_event SPRITE_MOM, 6, 6, $7, $0, 255, 1, $0, 0, MomScript_0x7a582, EVENT_6C8
+	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 2, $0, 0, MomScript_0x7a582, EVENT_6C8
+	person_event SPRITE_MOM, 6, 4, $7, $0, 255, 4, $0, 0, MomScript_0x7a582, EVENT_6C8
+	person_event SPRITE_POKEFAN_F, 8, 8, $9, $0, 255, 255, $80, 0, NeighborScript, EVENT_792

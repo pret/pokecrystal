@@ -160,13 +160,13 @@ MountMortar1FInside_MapEventHeader:
 
 	; people-events
 	db 10
-	person_event SPRITE_BOULDER, 47, 25, $19, $0, 255, 255, $0, 0, MountMortar1FBoulder, $ffff
-	person_event SPRITE_POKE_BALL, 42, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de7c, $067d
-	person_event SPRITE_POKE_BALL, 14, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de7e, $067e
-	person_event SPRITE_POKE_BALL, 31, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de80, $067f
-	person_event SPRITE_POKE_BALL, 24, 26, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de82, $07a6
-	person_event SPRITE_POKE_BALL, 23, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de84, $07a7
-	person_event SPRITE_SUPER_NERD, 47, 37, $8, $0, 255, 255, $92, 3, TrainerPokemaniacMiller, $ffff
-	person_event SPRITE_SUPER_NERD, 32, 28, $a, $0, 255, 255, $b2, 3, TrainerSupernerdMarkus, $ffff
-	person_event SPRITE_POKE_BALL, 20, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de86, $07c8
-	person_event SPRITE_POKE_BALL, 21, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de88, $07c9
+	person_event SPRITE_BOULDER, 47, 25, $19, $0, 255, 255, $0, 0, MountMortar1FBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 42, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de7c, EVENT_67D
+	person_event SPRITE_POKE_BALL, 14, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de7e, EVENT_67E
+	person_event SPRITE_POKE_BALL, 31, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de80, EVENT_67F
+	person_event SPRITE_POKE_BALL, 24, 26, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de82, EVENT_7A6
+	person_event SPRITE_POKE_BALL, 23, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de84, EVENT_7A7
+	person_event SPRITE_SUPER_NERD, 47, 37, $8, $0, 255, 255, $92, 3, TrainerPokemaniacMiller, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 32, 28, $a, $0, 255, 255, $b2, 3, TrainerSupernerdMarkus, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 20, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de86, EVENT_7C8
+	person_event SPRITE_POKE_BALL, 21, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de88, EVENT_7C9

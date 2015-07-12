@@ -84,8 +84,8 @@ CeladonDeptStore5F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_CLERK, 9, 11, $7, $0, 255, 255, $90, 0, ClerkScript_0x71004, $ffff
-	person_event SPRITE_CLERK, 9, 12, $7, $0, 255, 255, $90, 0, ClerkScript_0x7100c, $ffff
-	person_event SPRITE_GENTLEMAN, 9, 17, $2, $11, 255, 255, $80, 0, GentlemanScript_0x71014, $ffff
-	person_event SPRITE_SAILOR, 8, 7, $2, $11, 255, 255, $90, 0, SailorScript_0x71017, $ffff
-	person_event SPRITE_TEACHER, 11, 5, $9, $0, 255, 255, $a0, 0, TeacherScript_0x7101a, $ffff
+	person_event SPRITE_CLERK, 9, 11, $7, $0, 255, 255, $90, 0, ClerkScript_0x71004, EVENT_ALWAYS_THERE
+	person_event SPRITE_CLERK, 9, 12, $7, $0, 255, 255, $90, 0, ClerkScript_0x7100c, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 9, 17, $2, $11, 255, 255, $80, 0, GentlemanScript_0x71014, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAILOR, 8, 7, $2, $11, 255, 255, $90, 0, SailorScript_0x71017, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 11, 5, $9, $0, 255, 255, $a0, 0, TeacherScript_0x7101a, EVENT_ALWAYS_THERE

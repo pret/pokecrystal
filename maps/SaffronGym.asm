@@ -394,9 +394,9 @@ SaffronGym_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_SABRINA, 12, 13, $6, $0, 255, 255, $80, 0, SabrinaScript_0x189c2e, $ffff
-	person_event SPRITE_GRANNY, 20, 21, $a, $0, 255, 255, $b2, 3, TrainerMediumRebecca, $ffff
-	person_event SPRITE_YOUNGSTER, 20, 7, $a, $0, 255, 255, $92, 3, TrainerPsychicFranklin, $ffff
-	person_event SPRITE_GRANNY, 8, 7, $a, $0, 255, 255, $b2, 2, TrainerMediumDoris, $ffff
-	person_event SPRITE_YOUNGSTER, 8, 21, $a, $0, 255, 255, $92, 2, TrainerPsychicJared, $ffff
-	person_event SPRITE_GYM_GUY, 18, 13, $6, $0, 255, 255, $90, 0, SaffronGymGuyScript, $ffff
+	person_event SPRITE_SABRINA, 12, 13, $6, $0, 255, 255, $80, 0, SabrinaScript_0x189c2e, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRANNY, 20, 21, $a, $0, 255, 255, $b2, 3, TrainerMediumRebecca, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 20, 7, $a, $0, 255, 255, $92, 3, TrainerPsychicFranklin, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRANNY, 8, 7, $a, $0, 255, 255, $b2, 2, TrainerMediumDoris, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 8, 21, $a, $0, 255, 255, $92, 2, TrainerPsychicJared, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 18, 13, $6, $0, 255, 255, $90, 0, SaffronGymGuyScript, EVENT_ALWAYS_THERE

@@ -21,7 +21,7 @@ UnknownScript_0x1804ca:
 	end
 
 UnknownScript_0x1804cb:
-	checkevent $0309
+	checkevent EVENT_309
 	iffalse UnknownScript_0x1804d5
 	changeblock $4, $e, $2a
 UnknownScript_0x1804d5:
@@ -40,7 +40,7 @@ UnknownScript_0x1804e0:
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setevent $0309
+	setevent EVENT_309
 	waitbutton
 	end
 
@@ -148,4 +148,4 @@ WillsRoom_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_WILL, 11, 9, $6, $0, 255, 255, $80, 0, WillScript_0x1804f8, $ffff
+	person_event SPRITE_WILL, 11, 9, $6, $0, 255, 255, $80, 0, WillScript_0x1804f8, EVENT_ALWAYS_THERE

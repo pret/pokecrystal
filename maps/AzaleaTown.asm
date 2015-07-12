@@ -51,7 +51,7 @@ UnknownScript_0x198049:
 	writetext UnknownText_0x19814d
 	closetext
 	loadmovesprites
-	setevent $06bf
+	setevent EVENT_6BF
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x198071
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -158,8 +158,8 @@ UnknownScript_0x1980e5:
 	verbosegiveitem GS_BALL, 1
 	spriteface $d, LEFT
 	setflag ENGINE_HAVE_EXAMINED_GS_BALL
-	clearevent $06ed
-	setevent $06eb
+	clearevent EVENT_6ED
+	setevent EVENT_6EB
 	dotrigger $0
 	loadmovesprites
 	end
@@ -482,15 +482,15 @@ AzaleaTown_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_AZALEA_ROCKET, 13, 35, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ab, $06fa
-	person_event SPRITE_GRAMPS, 13, 25, $2, $21, 255, 255, $0, 0, GrampsScript_0x1980b1, $ffff
-	person_event SPRITE_TEACHER, 17, 19, $4, $20, 255, 255, $90, 0, TeacherScript_0x1980c5, $ffff
-	person_event SPRITE_YOUNGSTER, 13, 11, $5, $1, 255, 255, $a0, 0, YoungsterScript_0x1980c8, $ffff
-	person_event SPRITE_SLOWPOKE, 21, 12, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
-	person_event SPRITE_SLOWPOKE, 13, 22, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
-	person_event SPRITE_SLOWPOKE, 13, 33, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
-	person_event SPRITE_SLOWPOKE, 19, 19, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
-	person_event SPRITE_FRUIT_TREE, 6, 12, $1, $0, 255, 255, $0, 0, WhiteApricornTree, $ffff
-	person_event SPRITE_AZALEA_ROCKET, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, $06bf
-	person_event SPRITE_AZALEA_ROCKET, 20, 14, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ae, $06fc
-	person_event SPRITE_KURT_OUTSIDE, 9, 10, $8, $0, 255, 255, $0, 0, KurtOutsideScript_0x19810c, $07a4
+	person_event SPRITE_AZALEA_ROCKET, 13, 35, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ab, EVENT_6FA
+	person_event SPRITE_GRAMPS, 13, 25, $2, $21, 255, 255, $0, 0, GrampsScript_0x1980b1, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 17, 19, $4, $20, 255, 255, $90, 0, TeacherScript_0x1980c5, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 13, 11, $5, $1, 255, 255, $a0, 0, YoungsterScript_0x1980c8, EVENT_ALWAYS_THERE
+	person_event SPRITE_SLOWPOKE, 21, 12, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
+	person_event SPRITE_SLOWPOKE, 13, 22, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
+	person_event SPRITE_SLOWPOKE, 13, 33, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
+	person_event SPRITE_SLOWPOKE, 19, 19, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
+	person_event SPRITE_FRUIT_TREE, 6, 12, $1, $0, 255, 255, $0, 0, WhiteApricornTree, EVENT_ALWAYS_THERE
+	person_event SPRITE_AZALEA_ROCKET, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6BF
+	person_event SPRITE_AZALEA_ROCKET, 20, 14, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ae, EVENT_6FC
+	person_event SPRITE_KURT_OUTSIDE, 9, 10, $8, $0, 255, 255, $0, 0, KurtOutsideScript_0x19810c, EVENT_7A4

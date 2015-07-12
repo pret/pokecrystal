@@ -90,6 +90,6 @@ OlivineCafe_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_SAILOR, 7, 8, $8, $0, 255, 255, $0, 0, SailorScript_0x9c8c1, $ffff
-	person_event SPRITE_FISHING_GURU, 7, 11, $4, $10, 255, 255, $0, 0, FishingGuruScript_0x9c8d9, $ffff
-	person_event SPRITE_SAILOR, 10, 10, $7, $0, 255, 255, $0, 0, SailorScript_0x9c8dc, $ffff
+	person_event SPRITE_SAILOR, 7, 8, $8, $0, 255, 255, $0, 0, SailorScript_0x9c8c1, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHING_GURU, 7, 11, $4, $10, 255, 255, $0, 0, FishingGuruScript_0x9c8d9, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAILOR, 10, 10, $7, $0, 255, 255, $0, 0, SailorScript_0x9c8dc, EVENT_ALWAYS_THERE

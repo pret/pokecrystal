@@ -65,9 +65,9 @@ WhirlIslandB1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_POKE_BALL, 17, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c410, $0691
-	person_event SPRITE_POKE_BALL, 22, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c412, $0692
-	person_event SPRITE_POKE_BALL, 27, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c414, $0693
-	person_event SPRITE_POKE_BALL, 12, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c416, $0694
-	person_event SPRITE_POKE_BALL, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, $0695
-	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, WhirlIslandB1FBoulder, $ffff
+	person_event SPRITE_POKE_BALL, 17, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c410, EVENT_691
+	person_event SPRITE_POKE_BALL, 22, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c412, EVENT_692
+	person_event SPRITE_POKE_BALL, 27, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c414, EVENT_693
+	person_event SPRITE_POKE_BALL, 12, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c416, EVENT_694
+	person_event SPRITE_POKE_BALL, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, EVENT_695
+	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, WhirlIslandB1FBoulder, EVENT_ALWAYS_THERE

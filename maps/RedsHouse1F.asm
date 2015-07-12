@@ -94,4 +94,4 @@ RedsHouse1F_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_REDS_MOM, 7, 9, $8, $0, 255, 255, $0, 0, RedsMom, $ffff
+	person_event SPRITE_REDS_MOM, 7, 9, $8, $0, 255, 255, $0, 0, RedsMom, EVENT_ALWAYS_THERE

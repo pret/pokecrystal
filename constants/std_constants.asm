@@ -46,3 +46,8 @@
 	enum rematchgiftf
 	enum gymstatue1
 	enum gymstatue2
+	enum receiveitem
+	enum receivetogepiegg
+	enum pc
+	enum gamecornercoinvendor
+	enum happinesschecknpc

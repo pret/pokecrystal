@@ -89,9 +89,9 @@ UnknownScript_0x6cfac:
 	loadtrainer EXECUTIVEF, 2
 	startbattle
 	disappear $5
-	setevent $06dd
-	setevent $06de
-	setevent $06d6
+	setevent EVENT_6DD
+	setevent EVENT_6DE
+	setevent EVENT_6D6
 	returnafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
 	loadfont
@@ -108,7 +108,7 @@ UnknownScript_0x6cfac:
 	pause 15
 	special Function8c0ab
 	dotrigger $2
-	clearevent $06d6
+	clearevent EVENT_6D6
 	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x6d5d8
@@ -165,7 +165,7 @@ UnknownScript_0x6d091:
 	closetext
 	loadmovesprites
 	dotrigger $1
-	setevent $004c
+	setevent EVENT_04C
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x6d0be
 	applymovement $4, MovementData_0x6d212
@@ -265,11 +265,11 @@ VoltorbScript_0x6d101:
 	iftrue UnknownScript_0x6d182
 	disappear $6
 	disappear $9
-	checkevent $06e0
+	checkevent EVENT_6E0
 	iffalse UnknownScript_0x6d182
-	checkevent $06e1
+	checkevent EVENT_6E1
 	iffalse UnknownScript_0x6d182
-	checkevent $06e2
+	checkevent EVENT_6E2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -283,11 +283,11 @@ VoltorbScript_0x6d12c:
 	iftrue UnknownScript_0x6d182
 	disappear $7
 	disappear $a
-	checkevent $06e0
+	checkevent EVENT_6E0
 	iffalse UnknownScript_0x6d182
-	checkevent $06e1
+	checkevent EVENT_6E1
 	iffalse UnknownScript_0x6d182
-	checkevent $06e2
+	checkevent EVENT_6E2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -301,11 +301,11 @@ VoltorbScript_0x6d157:
 	iftrue UnknownScript_0x6d182
 	disappear $8
 	disappear $b
-	checkevent $06e0
+	checkevent EVENT_6E0
 	iffalse UnknownScript_0x6d182
-	checkevent $06e1
+	checkevent EVENT_6E1
 	iffalse UnknownScript_0x6d182
-	checkevent $06e2
+	checkevent EVENT_6E2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -338,11 +338,11 @@ UnknownScript_0x6d184:
 	applymovement $4, MovementData_0x6d283
 	disappear $4
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT
-	clearflag $000e
-	setevent $06dc
-	setevent $0757
+	clearflag ENGINE_ROCKET_SIGNAL_ON_CH20
+	setevent EVENT_6DC
+	setevent EVENT_757
 	dotrigger $3
-	clearevent $0735
+	clearevent EVENT_735
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	setevent EVENT_SECURITY_CAMERA_1
 	setevent EVENT_SECURITY_CAMERA_2
@@ -1001,17 +1001,17 @@ TeamRocketBaseB2F_MapEventHeader:
 
 	; people-events
 	db 14
-	person_event SPRITE_ROCKET, 20, 24, $7, $0, 255, 255, $0, 0, ObjectEvent, $06de
-	person_event SPRITE_ROCKET_GIRL, 20, 24, $7, $0, 255, 255, $80, 0, ObjectEvent, $06dd
-	person_event SPRITE_LANCE, 17, 9, $6, $0, 255, 255, $0, 0, ObjectEvent, $06d6
-	person_event SPRITE_DRAGON, 17, 13, $9, $0, 255, 255, $0, 0, ObjectEvent, $06df
-	person_event SPRITE_VOLTORB, 9, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d101, $06e0
-	person_event SPRITE_VOLTORB, 11, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d12c, $06e1
-	person_event SPRITE_VOLTORB, 13, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d157, $06e2
-	person_event SPRITE_VOLTORB, 9, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e0
-	person_event SPRITE_VOLTORB, 11, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e1
-	person_event SPRITE_VOLTORB, 13, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e2
-	person_event SPRITE_ROCKET, 17, 29, $6, $0, 255, 255, $2, 3, TrainerGruntM17, $06da
-	person_event SPRITE_ROCKET, 5, 8, $a, $0, 255, 255, $2, 1, TrainerGruntM18, $06da
-	person_event SPRITE_ROCKET, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, $06da
-	person_event SPRITE_POKE_BALL, 14, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6d20d, $066c
+	person_event SPRITE_ROCKET, 20, 24, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6DE
+	person_event SPRITE_ROCKET_GIRL, 20, 24, $7, $0, 255, 255, $80, 0, ObjectEvent, EVENT_6DD
+	person_event SPRITE_LANCE, 17, 9, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6D6
+	person_event SPRITE_DRAGON, 17, 13, $9, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6DF
+	person_event SPRITE_VOLTORB, 9, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d101, EVENT_6E0
+	person_event SPRITE_VOLTORB, 11, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d12c, EVENT_6E1
+	person_event SPRITE_VOLTORB, 13, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d157, EVENT_6E2
+	person_event SPRITE_VOLTORB, 9, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E0
+	person_event SPRITE_VOLTORB, 11, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E1
+	person_event SPRITE_VOLTORB, 13, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E2
+	person_event SPRITE_ROCKET, 17, 29, $6, $0, 255, 255, $2, 3, TrainerGruntM17, EVENT_6DA
+	person_event SPRITE_ROCKET, 5, 8, $a, $0, 255, 255, $2, 1, TrainerGruntM18, EVENT_6DA
+	person_event SPRITE_ROCKET, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, EVENT_6DA
+	person_event SPRITE_POKE_BALL, 14, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6d20d, EVENT_66C

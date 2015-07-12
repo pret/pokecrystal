@@ -457,9 +457,9 @@ GoldenrodGym_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_WHITNEY, 7, 12, $6, $0, 255, 255, $80, 0, WhitneyScript_0x5400c, $ffff
-	person_event SPRITE_LASS, 17, 13, $9, $0, 255, 255, $92, 4, TrainerLassCarrie, $ffff
-	person_event SPRITE_LASS, 10, 13, $8, $0, 255, 255, $92, 1, TrainerLassBridget, $ffff
-	person_event SPRITE_BUENA, 6, 4, $6, $0, 255, 255, $92, 3, TrainerBeautyVictoria, $ffff
-	person_event SPRITE_BUENA, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, $ffff
-	person_event SPRITE_GYM_GUY, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, $ffff
+	person_event SPRITE_WHITNEY, 7, 12, $6, $0, 255, 255, $80, 0, WhitneyScript_0x5400c, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 17, 13, $9, $0, 255, 255, $92, 4, TrainerLassCarrie, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 10, 13, $8, $0, 255, 255, $92, 1, TrainerLassBridget, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUENA, 6, 4, $6, $0, 255, 255, $92, 3, TrainerBeautyVictoria, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUENA, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, EVENT_ALWAYS_THERE

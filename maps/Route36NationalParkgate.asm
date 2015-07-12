@@ -37,7 +37,7 @@ UnknownScript_0x6ab20:
 	return
 
 UnknownScript_0x6ab23:
-	checkevent $02d2
+	checkevent EVENT_2D2
 	iftrue UnknownScript_0x6ab46
 	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, UnknownScript_0x6ab42
@@ -89,43 +89,43 @@ UnknownScript_0x6ab76:
 	end
 
 UnknownScript_0x6ab8c:
-	checkevent $0716
+	checkevent EVENT_716
 	iftrue UnknownScript_0x6ab94
 	appear $3
 UnknownScript_0x6ab94:
-	checkevent $0717
+	checkevent EVENT_717
 	iftrue UnknownScript_0x6ab9c
 	appear $4
 UnknownScript_0x6ab9c:
-	checkevent $0718
+	checkevent EVENT_718
 	iftrue UnknownScript_0x6aba4
 	appear $5
 UnknownScript_0x6aba4:
-	checkevent $0719
+	checkevent EVENT_719
 	iftrue UnknownScript_0x6abac
 	appear $6
 UnknownScript_0x6abac:
-	checkevent $071a
+	checkevent EVENT_71A
 	iftrue UnknownScript_0x6abb4
 	appear $7
 UnknownScript_0x6abb4:
-	checkevent $071b
+	checkevent EVENT_71B
 	iftrue UnknownScript_0x6abbc
 	appear $8
 UnknownScript_0x6abbc:
-	checkevent $071c
+	checkevent EVENT_71C
 	iftrue UnknownScript_0x6abc4
 	appear $9
 UnknownScript_0x6abc4:
-	checkevent $071d
+	checkevent EVENT_71D
 	iftrue UnknownScript_0x6abcc
 	appear $a
 UnknownScript_0x6abcc:
-	checkevent $071e
+	checkevent EVENT_71E
 	iftrue UnknownScript_0x6abd4
 	appear $b
 UnknownScript_0x6abd4:
-	checkevent $071f
+	checkevent EVENT_71F
 	iftrue UnknownScript_0x6abdc
 	appear $c
 UnknownScript_0x6abdc:
@@ -149,7 +149,7 @@ OfficerScript_0x6abe0:
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, UnknownScript_0x6ac41
 	special Function13a12
-	clearevent $0308
+	clearevent EVENT_308
 UnknownScript_0x6ac10:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
@@ -185,7 +185,7 @@ UnknownScript_0x6ac4d:
 	iffalse UnknownScript_0x6ac79
 	special Function13a12
 	iftrue UnknownScript_0x6ac7f
-	setevent $0308
+	setevent EVENT_308
 	writetext UnknownText_0x6b021
 	keeptextopen
 	writetext UnknownText_0x6b055
@@ -225,13 +225,13 @@ UnknownScript_0x6ac8b:
 	end
 
 UnknownScript_0x6ac91:
-	checkevent $0313
+	checkevent EVENT_313
 	iftrue UnknownScript_0x6acaf
-	checkevent $0314
+	checkevent EVENT_314
 	iftrue UnknownScript_0x6acbe
-	checkevent $0315
+	checkevent EVENT_315
 	iftrue UnknownScript_0x6accd
-	checkevent $0316
+	checkevent EVENT_316
 	iftrue UnknownScript_0x6acdc
 	writetext UnknownText_0x6b32b
 	closetext
@@ -243,7 +243,7 @@ UnknownScript_0x6acaf:
 	keeptextopen
 	verbosegiveitem SUN_STONE, 1
 	iffalse UnknownScript_0x6aceb
-	clearevent $0313
+	clearevent EVENT_313
 	loadmovesprites
 	end
 
@@ -252,7 +252,7 @@ UnknownScript_0x6acbe:
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x6aceb
-	clearevent $0314
+	clearevent EVENT_314
 	loadmovesprites
 	end
 
@@ -261,7 +261,7 @@ UnknownScript_0x6accd:
 	keeptextopen
 	verbosegiveitem GOLD_BERRY, 1
 	iffalse UnknownScript_0x6aceb
-	clearevent $0315
+	clearevent EVENT_315
 	loadmovesprites
 	end
 
@@ -270,7 +270,7 @@ UnknownScript_0x6acdc:
 	keeptextopen
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x6aceb
-	clearevent $0316
+	clearevent EVENT_316
 	loadmovesprites
 	end
 
@@ -300,7 +300,7 @@ UnknownScript_0x6ad02:
 YoungsterScript_0x6ad06:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad14
 	writetext UnknownText_0x6b399
 	closetext
@@ -316,7 +316,7 @@ UnknownScript_0x6ad14:
 YoungsterScript_0x6ad1a:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad28
 	writetext UnknownText_0x6b40f
 	closetext
@@ -332,7 +332,7 @@ UnknownScript_0x6ad28:
 RockerScript_0x6ad2e:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad3c
 	writetext UnknownText_0x6b462
 	closetext
@@ -348,7 +348,7 @@ UnknownScript_0x6ad3c:
 PokefanMScript_0x6ad42:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad50
 	writetext UnknownText_0x6b4da
 	closetext
@@ -364,7 +364,7 @@ UnknownScript_0x6ad50:
 YoungsterScript_0x6ad56:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad64
 	writetext UnknownText_0x6b54e
 	closetext
@@ -380,7 +380,7 @@ UnknownScript_0x6ad64:
 YoungsterScript_0x6ad6a:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad78
 	writetext UnknownText_0x6b5b0
 	closetext
@@ -396,7 +396,7 @@ UnknownScript_0x6ad78:
 LassScript_0x6ad7e:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad8c
 	writetext UnknownText_0x6b64b
 	closetext
@@ -412,7 +412,7 @@ UnknownScript_0x6ad8c:
 YoungsterScript_0x6ad92:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ada0
 	writetext UnknownText_0x6b6b8
 	closetext
@@ -428,7 +428,7 @@ UnknownScript_0x6ada0:
 YoungsterScript_0x6ada6:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6adb4
 	writetext UnknownText_0x6b71b
 	closetext
@@ -444,7 +444,7 @@ UnknownScript_0x6adb4:
 YoungsterScript_0x6adba:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6adc8
 	writetext UnknownText_0x6b76f
 	closetext
@@ -862,15 +862,15 @@ Route36NationalParkgate_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_OFFICER, 7, 4, $6, $0, 255, 255, $a0, 0, OfficerScript_0x6abe0, $0747
-	person_event SPRITE_YOUNGSTER, 9, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x6ad06, $0720
-	person_event SPRITE_YOUNGSTER, 9, 8, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x6ad1a, $0721
-	person_event SPRITE_ROCKER, 10, 6, $7, $0, 255, 255, $90, 0, RockerScript_0x6ad2e, $0722
-	person_event SPRITE_POKEFAN_M, 9, 10, $7, $0, 255, 255, $b0, 0, PokefanMScript_0x6ad42, $0723
-	person_event SPRITE_YOUNGSTER, 11, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x6ad56, $0724
-	person_event SPRITE_YOUNGSTER, 10, 9, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x6ad6a, $0725
-	person_event SPRITE_LASS, 10, 7, $7, $0, 255, 255, $90, 0, LassScript_0x6ad7e, $0726
-	person_event SPRITE_YOUNGSTER, 11, 8, $7, $0, 255, 255, $80, 0, YoungsterScript_0x6ad92, $0727
-	person_event SPRITE_YOUNGSTER, 11, 10, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x6ada6, $0728
-	person_event SPRITE_YOUNGSTER, 10, 10, $7, $0, 255, 255, $90, 0, YoungsterScript_0x6adba, $0729
-	person_event SPRITE_OFFICER, 6, 7, $6, $0, 255, 255, $a0, 0, OfficerScript_0x6acf4, $0748
+	person_event SPRITE_OFFICER, 7, 4, $6, $0, 255, 255, $a0, 0, OfficerScript_0x6abe0, EVENT_747
+	person_event SPRITE_YOUNGSTER, 9, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x6ad06, EVENT_720
+	person_event SPRITE_YOUNGSTER, 9, 8, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x6ad1a, EVENT_721
+	person_event SPRITE_ROCKER, 10, 6, $7, $0, 255, 255, $90, 0, RockerScript_0x6ad2e, EVENT_722
+	person_event SPRITE_POKEFAN_M, 9, 10, $7, $0, 255, 255, $b0, 0, PokefanMScript_0x6ad42, EVENT_723
+	person_event SPRITE_YOUNGSTER, 11, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x6ad56, EVENT_724
+	person_event SPRITE_YOUNGSTER, 10, 9, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x6ad6a, EVENT_725
+	person_event SPRITE_LASS, 10, 7, $7, $0, 255, 255, $90, 0, LassScript_0x6ad7e, EVENT_726
+	person_event SPRITE_YOUNGSTER, 11, 8, $7, $0, 255, 255, $80, 0, YoungsterScript_0x6ad92, EVENT_727
+	person_event SPRITE_YOUNGSTER, 11, 10, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x6ada6, EVENT_728
+	person_event SPRITE_YOUNGSTER, 10, 10, $7, $0, 255, 255, $90, 0, YoungsterScript_0x6adba, EVENT_729
+	person_event SPRITE_OFFICER, 6, 7, $6, $0, 255, 255, $a0, 0, OfficerScript_0x6acf4, EVENT_748

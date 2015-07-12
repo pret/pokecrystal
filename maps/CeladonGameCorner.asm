@@ -6,7 +6,7 @@ CeladonGameCorner_MapScriptHeader:
 	db 0
 
 ClerkScript_0x7211d:
-	jumpstd $0032
+	jumpstd gamecornercoinvendor
 
 ReceptionistScript_0x72120:
 	jumptextfaceplayer UnknownText_0x721d0
@@ -61,7 +61,7 @@ FisherScript_0x72144:
 	end
 
 .UnknownScript_0x72172
-	jumpstd $002f
+	jumpstd receiveitem
 	end
 
 .coinname
@@ -325,12 +325,12 @@ CeladonGameCorner_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_CLERK, 6, 9, $6, $0, 255, 255, $a0, 0, ClerkScript_0x7211d, $ffff
-	person_event SPRITE_RECEPTIONIST, 6, 7, $6, $0, 255, 255, $a0, 0, ReceptionistScript_0x72120, $ffff
-	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $80, 0, PokefanMScript_0x72123, $ffff
-	person_event SPRITE_TEACHER, 11, 21, $9, $0, 255, 255, $90, 0, TeacherScript_0x7212e, $ffff
-	person_event SPRITE_FISHING_GURU, 11, 15, $9, $0, 255, 255, $a0, 0, FishingGuruScript_0x72139, $ffff
-	person_event SPRITE_FISHER, 14, 12, $8, $0, 255, 2, $80, 0, FisherScript_0x72144, $ffff
-	person_event SPRITE_FISHER, 14, 12, $8, $0, 255, 4, $80, 0, FisherScript_0x72144, $ffff
-	person_event SPRITE_GYM_GUY, 7, 15, $6, $0, 255, 255, $80, 0, CeladonGymGuyScript, $ffff
-	person_event SPRITE_GRAMPS, 12, 6, $8, $0, 255, 255, $a0, 0, GrampsScript_0x72190, $ffff
+	person_event SPRITE_CLERK, 6, 9, $6, $0, 255, 255, $a0, 0, ClerkScript_0x7211d, EVENT_ALWAYS_THERE
+	person_event SPRITE_RECEPTIONIST, 6, 7, $6, $0, 255, 255, $a0, 0, ReceptionistScript_0x72120, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $80, 0, PokefanMScript_0x72123, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 11, 21, $9, $0, 255, 255, $90, 0, TeacherScript_0x7212e, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHING_GURU, 11, 15, $9, $0, 255, 255, $a0, 0, FishingGuruScript_0x72139, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 14, 12, $8, $0, 255, 2, $80, 0, FisherScript_0x72144, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 14, 12, $8, $0, 255, 4, $80, 0, FisherScript_0x72144, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 7, 15, $6, $0, 255, 255, $80, 0, CeladonGymGuyScript, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRAMPS, 12, 6, $8, $0, 255, 255, $a0, 0, GrampsScript_0x72190, EVENT_ALWAYS_THERE

@@ -174,8 +174,8 @@ PewterCity_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_COOLTRAINER_F, 15, 23, $2, $22, 255, 255, $a0, 0, CooltrainerFScript_0x18c009, $ffff
-	person_event SPRITE_BUG_CATCHER, 33, 18, $2, $22, 255, 255, $80, 0, BugCatcherScript_0x18c00c, $ffff
-	person_event SPRITE_GRAMPS, 21, 33, $5, $2, 255, 255, $90, 0, GrampsScript_0x18c00f, $ffff
-	person_event SPRITE_FRUIT_TREE, 7, 36, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x18c03e, $ffff
-	person_event SPRITE_FRUIT_TREE, 7, 34, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x18c040, $ffff
+	person_event SPRITE_COOLTRAINER_F, 15, 23, $2, $22, 255, 255, $a0, 0, CooltrainerFScript_0x18c009, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUG_CATCHER, 33, 18, $2, $22, 255, 255, $80, 0, BugCatcherScript_0x18c00c, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRAMPS, 21, 33, $5, $2, 255, 255, $90, 0, GrampsScript_0x18c00f, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 7, 36, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x18c03e, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 7, 34, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x18c040, EVENT_ALWAYS_THERE

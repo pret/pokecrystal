@@ -21,7 +21,7 @@ CinnabarIslandBlue:
 	playsound SFX_WARP_TO
 	applymovement $2, CinnabarIslandBlueTeleport
 	disappear $2
-	clearevent $0776
+	clearevent EVENT_776
 	end
 
 CinnabarIslandGymSign:

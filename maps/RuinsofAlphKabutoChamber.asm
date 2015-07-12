@@ -32,7 +32,7 @@ UnknownScript_0x58737:
 	iftrue UnknownScript_0x58741
 	changeblock $4, $0, $2e
 UnknownScript_0x58741:
-	checkevent $02a1
+	checkevent EVENT_2A1
 	iffalse UnknownScript_0x58748
 	return
 
@@ -66,10 +66,10 @@ MapRuinsofAlphKabutoChamberSignpost2Script:
 	end
 
 UnknownScript_0x58778:
-	setevent $0705
-	setevent $02a1
+	setevent EVENT_705
+	setevent EVENT_2A1
 	setflag ENGINE_UNLOCKED_UNOWNS_1
-	setevent $074e
+	setevent EVENT_74E
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote $0, $0, 15
@@ -92,7 +92,7 @@ ScientistScript_0x587a8:
 	if_equal 26, UnknownScript_0x587cf
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587c9
-	checkevent $02a1
+	checkevent EVENT_2A1
 	iffalse UnknownScript_0x587c0
 	writetext UnknownText_0x589b8
 	keeptextopen
@@ -284,5 +284,5 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_RECEPTIONIST, 9, 9, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x58769, $074e
-	person_event SPRITE_SCIENTIST, 5, 7, $7, $0, 255, 255, $90, 0, ScientistScript_0x587a8, $ffff
+	person_event SPRITE_RECEPTIONIST, 9, 9, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x58769, EVENT_74E
+	person_event SPRITE_SCIENTIST, 5, 7, $7, $0, 255, 255, $90, 0, ScientistScript_0x587a8, EVENT_ALWAYS_THERE

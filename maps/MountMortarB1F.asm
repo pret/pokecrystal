@@ -145,10 +145,10 @@ MountMortarB1F_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_POKE_BALL, 16, 33, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e240, $0686
-	person_event SPRITE_POKE_BALL, 20, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e242, $0687
-	person_event SPRITE_BOULDER, 14, 13, $19, $0, 255, 255, $0, 0, MountMortarB1FBoulder, $ffff
-	person_event SPRITE_BLACK_BELT, 8, 20, $6, $0, 255, 255, $b0, 0, BlackBeltScript_0x7e1f6, $ffff
-	person_event SPRITE_POKE_BALL, 28, 38, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e244, $07ca
-	person_event SPRITE_POKE_BALL, 7, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e246, $07cb
-	person_event SPRITE_POKE_BALL, 30, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e248, $07cc
+	person_event SPRITE_POKE_BALL, 16, 33, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e240, EVENT_686
+	person_event SPRITE_POKE_BALL, 20, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e242, EVENT_687
+	person_event SPRITE_BOULDER, 14, 13, $19, $0, 255, 255, $0, 0, MountMortarB1FBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_BLACK_BELT, 8, 20, $6, $0, 255, 255, $b0, 0, BlackBeltScript_0x7e1f6, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 28, 38, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e244, EVENT_7CA
+	person_event SPRITE_POKE_BALL, 7, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e246, EVENT_7CB
+	person_event SPRITE_POKE_BALL, 30, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e248, EVENT_7CC

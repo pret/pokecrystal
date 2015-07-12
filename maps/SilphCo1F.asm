@@ -68,5 +68,5 @@ SilphCo1F_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_RECEPTIONIST, 6, 8, $6, $0, 255, 255, $90, 0, ReceptionistScript_0x18abe5, $ffff
-	person_event SPRITE_OFFICER, 5, 17, $6, $0, 255, 255, $90, 0, OfficerScript_0x18abe8, $ffff
+	person_event SPRITE_RECEPTIONIST, 6, 8, $6, $0, 255, 255, $90, 0, ReceptionistScript_0x18abe5, EVENT_ALWAYS_THERE
+	person_event SPRITE_OFFICER, 5, 17, $6, $0, 255, 255, $90, 0, OfficerScript_0x18abe8, EVENT_ALWAYS_THERE

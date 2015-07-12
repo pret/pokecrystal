@@ -238,6 +238,6 @@ PewterGym_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_BROCK, 5, 9, $6, $0, 255, 255, $b0, 0, BrockScript_0x1a2864, $ffff
-	person_event SPRITE_YOUNGSTER, 9, 6, $9, $0, 255, 255, $a2, 3, TrainerCamperJerry, $ffff
-	person_event SPRITE_GYM_GUY, 15, 10, $6, $0, 255, 255, $90, 1, PewterGymGuyScript, $ffff
+	person_event SPRITE_BROCK, 5, 9, $6, $0, 255, 255, $b0, 0, BrockScript_0x1a2864, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 9, 6, $9, $0, 255, 255, $a2, 3, TrainerCamperJerry, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 15, 10, $6, $0, 255, 255, $90, 1, PewterGymGuyScript, EVENT_ALWAYS_THERE

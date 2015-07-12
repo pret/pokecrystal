@@ -113,12 +113,12 @@ GruntM15Script:
 GentlemanScript_0x7d9bf:
 	faceplayer
 	loadfont
-	checkevent $004a
+	checkevent EVENT_04A
 	iftrue UnknownScript_0x7d9de
 	writetext UnknownText_0x7dbc6
 	keeptextopen
 	verbosegiveitem CARD_KEY, 1
-	setevent $004a
+	setevent EVENT_04A
 	setevent EVENT_WAREHOUSE_LAYOUT_1
 	clearevent EVENT_WAREHOUSE_LAYOUT_2
 	clearevent EVENT_WAREHOUSE_LAYOUT_3
@@ -270,10 +270,10 @@ UndergroundWarehouse_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_ROCKET, 12, 13, $7, $0, 255, 255, $2, 3, TrainerGruntM24, $06ce
-	person_event SPRITE_ROCKET, 19, 12, $7, $0, 255, 255, $2, 3, TrainerGruntM14, $06ce
-	person_event SPRITE_ROCKET, 7, 18, $9, $0, 255, 255, $2, 4, TrainerGruntM15, $06ce
-	person_event SPRITE_GENTLEMAN, 12, 16, $3, $0, 255, 255, $0, 0, GentlemanScript_0x7d9bf, $06ce
-	person_event SPRITE_POKE_BALL, 19, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e4, $0679
-	person_event SPRITE_POKE_BALL, 13, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e6, $067a
-	person_event SPRITE_POKE_BALL, 5, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e8, $0655
+	person_event SPRITE_ROCKET, 12, 13, $7, $0, 255, 255, $2, 3, TrainerGruntM24, EVENT_6CE
+	person_event SPRITE_ROCKET, 19, 12, $7, $0, 255, 255, $2, 3, TrainerGruntM14, EVENT_6CE
+	person_event SPRITE_ROCKET, 7, 18, $9, $0, 255, 255, $2, 4, TrainerGruntM15, EVENT_6CE
+	person_event SPRITE_GENTLEMAN, 12, 16, $3, $0, 255, 255, $0, 0, GentlemanScript_0x7d9bf, EVENT_6CE
+	person_event SPRITE_POKE_BALL, 19, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e4, EVENT_679
+	person_event SPRITE_POKE_BALL, 13, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e6, EVENT_67A
+	person_event SPRITE_POKE_BALL, 5, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e8, EVENT_655

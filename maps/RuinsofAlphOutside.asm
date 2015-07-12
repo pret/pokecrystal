@@ -343,8 +343,8 @@ RuinsofAlphOutside_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_YOUNGSTER, 24, 8, $6, $0, 255, 255, $2, 1, TrainerPsychicNathan, $ffff
-	person_event SPRITE_SCIENTIST, 19, 15, $7, $0, 255, 255, $0, 0, ScientistScript_0x58043, $0703
-	person_event SPRITE_FISHER, 21, 17, $3, $0, 255, 255, $a0, 0, FisherScript_0x58061, $078e
-	person_event SPRITE_YOUNGSTER, 15, 18, $2, $11, 255, 255, $b0, 0, YoungsterScript_0x58076, $078f
-	person_event SPRITE_YOUNGSTER, 12, 16, $7, $0, 255, 255, $80, 0, YoungsterScript_0x5807e, $078f
+	person_event SPRITE_YOUNGSTER, 24, 8, $6, $0, 255, 255, $2, 1, TrainerPsychicNathan, EVENT_ALWAYS_THERE
+	person_event SPRITE_SCIENTIST, 19, 15, $7, $0, 255, 255, $0, 0, ScientistScript_0x58043, EVENT_703
+	person_event SPRITE_FISHER, 21, 17, $3, $0, 255, 255, $a0, 0, FisherScript_0x58061, EVENT_78E
+	person_event SPRITE_YOUNGSTER, 15, 18, $2, $11, 255, 255, $b0, 0, YoungsterScript_0x58076, EVENT_78F
+	person_event SPRITE_YOUNGSTER, 12, 16, $7, $0, 255, 255, $80, 0, YoungsterScript_0x5807e, EVENT_78F

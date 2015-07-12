@@ -265,21 +265,21 @@ UnknownScript_0x7c173:
 	jump UnknownScript_0x7c1c1
 
 UnknownScript_0x7c1a9:
-	setevent $0000
-	clearevent $0001
-	clearevent $0002
+	setevent EVENT_000
+	clearevent EVENT_001
+	clearevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
 UnknownScript_0x7c1b5:
-	clearevent $0000
-	setevent $0001
-	clearevent $0002
+	clearevent EVENT_000
+	setevent EVENT_001
+	clearevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
 UnknownScript_0x7c1c1:
-	clearevent $0000
-	clearevent $0001
-	setevent $0002
+	clearevent EVENT_000
+	clearevent EVENT_001
+	setevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
 UnknownScript_0x7c1cd:
@@ -296,9 +296,9 @@ UnknownScript_0x7c1cd:
 	loadfont
 	writetext UnknownText_0x7c6d8
 	closetext
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x7c2bb
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
@@ -348,21 +348,21 @@ UnknownScript_0x7c220:
 	jump UnknownScript_0x7c26e
 
 UnknownScript_0x7c256:
-	setevent $0000
-	clearevent $0001
-	clearevent $0002
+	setevent EVENT_000
+	clearevent EVENT_001
+	clearevent EVENT_002
 	jump UnknownScript_0x7c27a
 
 UnknownScript_0x7c262:
-	clearevent $0000
-	setevent $0001
-	clearevent $0002
+	clearevent EVENT_000
+	setevent EVENT_001
+	clearevent EVENT_002
 	jump UnknownScript_0x7c27a
 
 UnknownScript_0x7c26e:
-	clearevent $0000
-	clearevent $0001
-	setevent $0002
+	clearevent EVENT_000
+	clearevent EVENT_001
+	setevent EVENT_002
 	jump UnknownScript_0x7c27a
 
 UnknownScript_0x7c27a:
@@ -379,9 +379,9 @@ UnknownScript_0x7c27a:
 	loadfont
 	writetext UnknownText_0x7c82a
 	closetext
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x7c2bb
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
@@ -734,12 +734,12 @@ WarehouseEntrance_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_SUPER_NERD, 35, 9, $8, $0, 255, 255, $b2, 3, TrainerSupernerdEric, $ffff
-	person_event SPRITE_SUPER_NERD, 13, 10, $7, $0, 255, 255, $b2, 2, TrainerSupernerdTeru, $ffff
-	person_event SPRITE_SUPER_NERD, 31, 7, $a, $0, 255, 255, $92, 2, TrainerPokemaniacIssac, $ffff
-	person_event SPRITE_SUPER_NERD, 10, 6, $9, $0, 255, 255, $92, 3, TrainerPokemaniacDonald, $ffff
-	person_event SPRITE_POKE_BALL, 29, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7c306, $0672
-	person_event SPRITE_GRAMPS, 15, 11, $8, $0, 255, 255, $b0, 0, GrampsScript_0x7c146, $0753
-	person_event SPRITE_SUPER_NERD, 18, 11, $8, $0, 255, 255, $90, 0, SuperNerdScript_0x7c161, $0754
-	person_event SPRITE_SUPER_NERD, 19, 11, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x7c20e, $0755
-	person_event SPRITE_GRANNY, 25, 11, $8, $0, 255, 255, $b0, 0, GrannyScript_0x7c132, $0752
+	person_event SPRITE_SUPER_NERD, 35, 9, $8, $0, 255, 255, $b2, 3, TrainerSupernerdEric, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 13, 10, $7, $0, 255, 255, $b2, 2, TrainerSupernerdTeru, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 31, 7, $a, $0, 255, 255, $92, 2, TrainerPokemaniacIssac, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 10, 6, $9, $0, 255, 255, $92, 3, TrainerPokemaniacDonald, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 29, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7c306, EVENT_672
+	person_event SPRITE_GRAMPS, 15, 11, $8, $0, 255, 255, $b0, 0, GrampsScript_0x7c146, EVENT_753
+	person_event SPRITE_SUPER_NERD, 18, 11, $8, $0, 255, 255, $90, 0, SuperNerdScript_0x7c161, EVENT_754
+	person_event SPRITE_SUPER_NERD, 19, 11, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x7c20e, EVENT_755
+	person_event SPRITE_GRANNY, 25, 11, $8, $0, 255, 255, $b0, 0, GrannyScript_0x7c132, EVENT_752

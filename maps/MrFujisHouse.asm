@@ -91,8 +91,8 @@ MrFujisHouse_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_SUPER_NERD, 5, 8, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x7e8ca, $ffff
-	person_event SPRITE_LASS, 8, 7, $2, $11, 255, 255, $0, 0, LassScript_0x7e8cd, $ffff
-	person_event SPRITE_RHYDON, 8, 11, $16, $0, 255, 255, $0, 0, MrFujisPsyduck, $ffff
-	person_event SPRITE_GROWLITHE, 9, 9, $16, $0, 255, 255, $90, 0, MrFujisNidorino, $ffff
-	person_event SPRITE_MOLTRES, 7, 5, $16, $0, 255, 255, $b0, 0, MrFujisPidgey, $ffff
+	person_event SPRITE_SUPER_NERD, 5, 8, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x7e8ca, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 8, 7, $2, $11, 255, 255, $0, 0, LassScript_0x7e8cd, EVENT_ALWAYS_THERE
+	person_event SPRITE_RHYDON, 8, 11, $16, $0, 255, 255, $0, 0, MrFujisPsyduck, EVENT_ALWAYS_THERE
+	person_event SPRITE_GROWLITHE, 9, 9, $16, $0, 255, 255, $90, 0, MrFujisNidorino, EVENT_ALWAYS_THERE
+	person_event SPRITE_MOLTRES, 7, 5, $16, $0, 255, 255, $b0, 0, MrFujisPidgey, EVENT_ALWAYS_THERE

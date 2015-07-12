@@ -46,7 +46,7 @@ SilverCaveRoom1_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_POKE_BALL, 13, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c554, $0699
-	person_event SPRITE_POKE_BALL, 33, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c556, $069a
-	person_event SPRITE_POKE_BALL, 34, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c558, $069b
-	person_event SPRITE_POKE_BALL, 22, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c55a, $07c1
+	person_event SPRITE_POKE_BALL, 13, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c554, EVENT_699
+	person_event SPRITE_POKE_BALL, 33, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c556, EVENT_69A
+	person_event SPRITE_POKE_BALL, 34, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c558, EVENT_69B
+	person_event SPRITE_POKE_BALL, 22, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c55a, EVENT_7C1

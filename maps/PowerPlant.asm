@@ -139,7 +139,7 @@ PowerPlantManager:
 	closetext
 	loadmovesprites
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
-	clearevent $076d
+	clearevent EVENT_76D
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	domaptrigger GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM, $1
 	dotrigger $1
@@ -156,11 +156,11 @@ UnknownScript_0x188e93:
 	keeptextopen
 	takeitem MACHINE_PART, 1
 	setevent EVENT_RETURNED_MACHINE_PART
-	clearevent $0772
-	setevent $0771
-	setevent $076c
+	clearevent EVENT_772
+	setevent EVENT_771
+	setevent EVENT_76C
 	setevent EVENT_RESTORED_POWER_TO_KANTO
-	clearevent $0749
+	clearevent EVENT_749
 UnknownScript_0x188eac:
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue UnknownScript_0x188ec5
@@ -401,10 +401,10 @@ PowerPlant_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_OFFICER, 18, 8, $6, $0, 255, 255, $a0, 0, OfficerScript_0x188df5, $ffff
-	person_event SPRITE_GYM_GUY, 13, 6, $3, $0, 255, 255, $90, 0, GymGuyScript_0x188e15, $ffff
-	person_event SPRITE_GYM_GUY, 15, 10, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188e29, $ffff
-	person_event SPRITE_OFFICER, 7, 13, $8, $0, 255, 255, $a0, 0, OfficerScript_0x188e3d, $ffff
-	person_event SPRITE_GYM_GUY, 6, 11, $5, $1, 255, 255, $90, 0, GymGuyScript_0x188e51, $ffff
-	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, PowerPlantManager, $ffff
-	person_event SPRITE_GYM_GUY, 9, 9, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188ecb, $ffff
+	person_event SPRITE_OFFICER, 18, 8, $6, $0, 255, 255, $a0, 0, OfficerScript_0x188df5, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 13, 6, $3, $0, 255, 255, $90, 0, GymGuyScript_0x188e15, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 15, 10, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188e29, EVENT_ALWAYS_THERE
+	person_event SPRITE_OFFICER, 7, 13, $8, $0, 255, 255, $a0, 0, OfficerScript_0x188e3d, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 6, 11, $5, $1, 255, 255, $90, 0, GymGuyScript_0x188e51, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, PowerPlantManager, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 9, 9, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188ecb, EVENT_ALWAYS_THERE

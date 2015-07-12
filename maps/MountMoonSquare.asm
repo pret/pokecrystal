@@ -18,7 +18,7 @@ UnknownScript_0x77092:
 	end
 
 UnknownScript_0x77093:
-	setevent $00ec
+	setevent EVENT_0EC
 	return
 
 UnknownScript_0x77097:
@@ -68,7 +68,7 @@ UnknownScript_0x7709a:
 	disappear $2
 	disappear $3
 	stopfollow
-	clearevent $00ec
+	clearevent EVENT_0EC
 	setflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	end
 
@@ -156,6 +156,6 @@ MountMoonSquare_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_FAIRY, 10, 10, $6, $0, 255, 255, $0, 0, ObjectEvent, $0779
-	person_event SPRITE_FAIRY, 10, 11, $6, $0, 255, 255, $0, 0, ObjectEvent, $0779
-	person_event SPRITE_ROCK, 11, 11, $18, $0, 255, 255, $0, 0, MtMoonSquareRock, $0778
+	person_event SPRITE_FAIRY, 10, 10, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_779
+	person_event SPRITE_FAIRY, 10, 11, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_779
+	person_event SPRITE_ROCK, 11, 11, $18, $0, 255, 255, $0, 0, MtMoonSquareRock, EVENT_778

@@ -154,7 +154,7 @@ FuchsiaCity_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_YOUNGSTER, 22, 27, $2, $11, 255, 255, $a0, 0, YoungsterScript_0x194b22, $ffff
-	person_event SPRITE_POKEFAN_M, 12, 17, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x194b25, $ffff
-	person_event SPRITE_TEACHER, 18, 20, $2, $11, 255, 255, $80, 0, TeacherScript_0x194b28, $ffff
-	person_event SPRITE_FRUIT_TREE, 5, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194b43, $ffff
+	person_event SPRITE_YOUNGSTER, 22, 27, $2, $11, 255, 255, $a0, 0, YoungsterScript_0x194b22, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 12, 17, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x194b25, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 18, 20, $2, $11, 255, 255, $80, 0, TeacherScript_0x194b28, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 5, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194b43, EVENT_ALWAYS_THERE

@@ -108,7 +108,7 @@ Copycat:
 	keeptextopen
 	takeitem LOST_ITEM, 1
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
-	clearevent $0773
+	clearevent EVENT_773
 	jump .Part14
 
 .Part13
@@ -373,9 +373,9 @@ CopycatsHouse2F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $80, 0, Copycat, $06ee
-	person_event SPRITE_MOLTRES, 8, 10, $16, $0, 255, 255, $b0, 0, CopycatsDodrio, $ffff
-	person_event SPRITE_FAIRY, 5, 10, $6, $0, 255, 255, $80, 0, CopycatsHouse2FDoll, $0773
-	person_event SPRITE_MONSTER, 5, 6, $6, $0, 255, 255, $a0, 0, CopycatsHouse2FDoll, $ffff
-	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, CopycatsHouse2FDoll, $ffff
-	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, Copycat, $06ef
+	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $80, 0, Copycat, EVENT_6EE
+	person_event SPRITE_MOLTRES, 8, 10, $16, $0, 255, 255, $b0, 0, CopycatsDodrio, EVENT_ALWAYS_THERE
+	person_event SPRITE_FAIRY, 5, 10, $6, $0, 255, 255, $80, 0, CopycatsHouse2FDoll, EVENT_773
+	person_event SPRITE_MONSTER, 5, 6, $6, $0, 255, 255, $a0, 0, CopycatsHouse2FDoll, EVENT_ALWAYS_THERE
+	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, CopycatsHouse2FDoll, EVENT_ALWAYS_THERE
+	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, Copycat, EVENT_6EF

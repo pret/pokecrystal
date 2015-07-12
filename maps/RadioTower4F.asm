@@ -321,10 +321,10 @@ RadioTower4F_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_FISHER, 8, 10, $7, $0, 255, 255, $80, 0, FisherScript_0x5eb82, $06d0
-	person_event SPRITE_TEACHER, 10, 18, $3, $0, 255, 255, $a0, 0, TeacherScript_0x5eb85, $ffff
-	person_event SPRITE_GROWLITHE, 11, 16, $16, $0, 255, 255, $80, 0, GrowlitheScript_0x5ebb2, $ffff
-	person_event SPRITE_ROCKET, 10, 9, $1f, $0, 255, 255, $2, 3, TrainerGruntM10, $06ce
-	person_event SPRITE_ROCKET, 5, 18, $8, $2, 255, 255, $2, 2, TrainerExecutivem2, $06ce
-	person_event SPRITE_ROCKET_GIRL, 8, 16, $9, $0, 255, 255, $82, 1, TrainerGruntF4, $06ce
-	person_event SPRITE_SCIENTIST, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, $06ce
+	person_event SPRITE_FISHER, 8, 10, $7, $0, 255, 255, $80, 0, FisherScript_0x5eb82, EVENT_6D0
+	person_event SPRITE_TEACHER, 10, 18, $3, $0, 255, 255, $a0, 0, TeacherScript_0x5eb85, EVENT_ALWAYS_THERE
+	person_event SPRITE_GROWLITHE, 11, 16, $16, $0, 255, 255, $80, 0, GrowlitheScript_0x5ebb2, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCKET, 10, 9, $1f, $0, 255, 255, $2, 3, TrainerGruntM10, EVENT_6CE
+	person_event SPRITE_ROCKET, 5, 18, $8, $2, 255, 255, $2, 2, TrainerExecutivem2, EVENT_6CE
+	person_event SPRITE_ROCKET_GIRL, 8, 16, $9, $0, 255, 255, $82, 1, TrainerGruntF4, EVENT_6CE
+	person_event SPRITE_SCIENTIST, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, EVENT_6CE

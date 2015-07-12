@@ -430,11 +430,11 @@ Route29_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 16, 54, $3, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a0ff1, $ffff
-	person_event SPRITE_YOUNGSTER, 20, 31, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x1a1028, $ffff
-	person_event SPRITE_TEACHER, 15, 19, $5, $1, 255, 255, $a0, 0, TeacherScript_0x1a102b, $ffff
-	person_event SPRITE_FRUIT_TREE, 6, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1089, $ffff
-	person_event SPRITE_FISHER, 7, 29, $7, $0, 255, 255, $90, 0, FisherScript_0x1a102e, $ffff
-	person_event SPRITE_COOLTRAINER_M, 8, 17, $6, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a1031, $ffff
-	person_event SPRITE_TEACHER, 16, 33, $3, $0, 255, 255, $0, 0, TuscanyScript, $0759
-	person_event SPRITE_POKE_BALL, 6, 52, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a108b, $06ad
+	person_event SPRITE_COOLTRAINER_M, 16, 54, $3, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a0ff1, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 20, 31, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x1a1028, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 15, 19, $5, $1, 255, 255, $a0, 0, TeacherScript_0x1a102b, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 6, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1089, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 7, 29, $7, $0, 255, 255, $90, 0, FisherScript_0x1a102e, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 8, 17, $6, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a1031, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 16, 33, $3, $0, 255, 255, $0, 0, TuscanyScript, EVENT_759
+	person_event SPRITE_POKE_BALL, 6, 52, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a108b, EVENT_6AD

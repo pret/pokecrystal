@@ -784,14 +784,14 @@ RadioTower2F_MapEventHeader:
 
 	; people-events
 	db 11
-	person_event SPRITE_SUPER_NERD, 10, 10, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x5d6fe, $06cf
-	person_event SPRITE_TEACHER, 6, 21, $5, $1, 255, 255, $80, 0, TeacherScript_0x5d701, $ffff
-	person_event SPRITE_ROCKET, 8, 5, $7, $0, 255, 255, $2, 3, TrainerGruntM4, $06ce
-	person_event SPRITE_ROCKET, 8, 12, $6, $0, 255, 255, $2, 3, TrainerGruntM5, $06ce
-	person_event SPRITE_ROCKET, 5, 8, $6, $0, 255, 255, $2, 2, TrainerGruntM6, $06ce
-	person_event SPRITE_ROCKET_GIRL, 9, 14, $7, $0, 255, 255, $82, 3, TrainerGruntF2, $06ce
-	person_event SPRITE_BLACK_BELT, 5, 4, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d71f, $06d1
-	person_event SPRITE_BLACK_BELT, 5, 5, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d722, $06d0
-	person_event SPRITE_JIGGLYPUFF, 5, 16, $16, $0, 255, 255, $0, 0, JigglypuffScript_0x5d715, $ffff
-	person_event SPRITE_BUENA, 9, 18, $9, $0, 255, 255, $80, 0, Buena, $ffff
-	person_event SPRITE_RECEPTIONIST, 11, 16, $9, $0, 255, 255, $a0, 0, ReceptionistScript_0x5d8ff, $06cf
+	person_event SPRITE_SUPER_NERD, 10, 10, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x5d6fe, EVENT_6CF
+	person_event SPRITE_TEACHER, 6, 21, $5, $1, 255, 255, $80, 0, TeacherScript_0x5d701, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCKET, 8, 5, $7, $0, 255, 255, $2, 3, TrainerGruntM4, EVENT_6CE
+	person_event SPRITE_ROCKET, 8, 12, $6, $0, 255, 255, $2, 3, TrainerGruntM5, EVENT_6CE
+	person_event SPRITE_ROCKET, 5, 8, $6, $0, 255, 255, $2, 2, TrainerGruntM6, EVENT_6CE
+	person_event SPRITE_ROCKET_GIRL, 9, 14, $7, $0, 255, 255, $82, 3, TrainerGruntF2, EVENT_6CE
+	person_event SPRITE_BLACK_BELT, 5, 4, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d71f, EVENT_6D1
+	person_event SPRITE_BLACK_BELT, 5, 5, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d722, EVENT_6D0
+	person_event SPRITE_JIGGLYPUFF, 5, 16, $16, $0, 255, 255, $0, 0, JigglypuffScript_0x5d715, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUENA, 9, 18, $9, $0, 255, 255, $80, 0, Buena, EVENT_ALWAYS_THERE
+	person_event SPRITE_RECEPTIONIST, 11, 16, $9, $0, 255, 255, $a0, 0, ReceptionistScript_0x5d8ff, EVENT_6CF

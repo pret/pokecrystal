@@ -16,8 +16,8 @@ UnknownScript_0x7abb3:
 
 UnknownScript_0x7abb4:
 	special Function27043
-	setevent $0007
-	checkevent $0036
+	setevent EVENT_007
+	checkevent EVENT_036
 	iftrue UnknownScript_0x7abc4
 	jumpstd initializeevents
 	return
@@ -132,7 +132,7 @@ KrissHouse2F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_CONSOLE, 6, 8, $1, $0, 255, 255, $0, 0, GameConsole, $0741
-	person_event SPRITE_DOLL_1, 8, 8, $1, $0, 255, 255, $0, 0, Doll1, $0742
-	person_event SPRITE_DOLL_2, 8, 9, $1, $0, 255, 255, $0, 0, Doll2, $0743
-	person_event SPRITE_BIG_DOLL, 5, 4, $21, $0, 255, 255, $0, 0, BigDoll, $0744
+	person_event SPRITE_CONSOLE, 6, 8, $1, $0, 255, 255, $0, 0, GameConsole, EVENT_741
+	person_event SPRITE_DOLL_1, 8, 8, $1, $0, 255, 255, $0, 0, Doll1, EVENT_742
+	person_event SPRITE_DOLL_2, 8, 9, $1, $0, 255, 255, $0, 0, Doll2, EVENT_743
+	person_event SPRITE_BIG_DOLL, 5, 4, $21, $0, 255, 255, $0, 0, BigDoll, EVENT_744

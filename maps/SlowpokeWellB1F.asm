@@ -79,15 +79,15 @@ GruntM1Script:
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
 	variablesprite $6, $4
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $1
-	clearevent $06f3
-	clearevent $06e9
-	setevent $06f5
-	setevent $06f6
-	setevent $06fb
-	setevent $0740
-	clearevent $06f9
-	clearevent $06fd
-	clearevent $073e
+	clearevent EVENT_6F3
+	clearevent EVENT_6E9
+	setevent EVENT_6F5
+	setevent EVENT_6F6
+	setevent EVENT_6FB
+	setevent EVENT_740
+	clearevent EVENT_6F9
+	clearevent EVENT_6FD
+	clearevent EVENT_73E
 	special Function8c084
 	special HealParty
 	pause 15
@@ -390,12 +390,12 @@ SlowpokeWellB1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_ROCKET, 11, 19, $6, $0, 255, 255, $2, 3, TrainerGruntM29, $06fc
-	person_event SPRITE_ROCKET, 6, 9, $6, $0, 255, 255, $2, 1, TrainerGruntM1, $06fc
-	person_event SPRITE_ROCKET, 10, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM2, $06fc
-	person_event SPRITE_ROCKET_GIRL, 8, 14, $9, $0, 255, 255, $82, 4, TrainerGruntF1, $06fc
-	person_event SPRITE_SLOWPOKE, 8, 11, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a681, $06fb
-	person_event SPRITE_SLOWPOKE, 6, 10, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a695, $06fb
-	person_event SPRITE_KURT, 18, 20, $7, $0, 255, 255, $0, 0, KurtScript_0x5a5d5, $0740
-	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, SlowpokeWellB1FBoulder, $ffff
-	person_event SPRITE_POKE_BALL, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, $0662
+	person_event SPRITE_ROCKET, 11, 19, $6, $0, 255, 255, $2, 3, TrainerGruntM29, EVENT_6FC
+	person_event SPRITE_ROCKET, 6, 9, $6, $0, 255, 255, $2, 1, TrainerGruntM1, EVENT_6FC
+	person_event SPRITE_ROCKET, 10, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM2, EVENT_6FC
+	person_event SPRITE_ROCKET_GIRL, 8, 14, $9, $0, 255, 255, $82, 4, TrainerGruntF1, EVENT_6FC
+	person_event SPRITE_SLOWPOKE, 8, 11, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a681, EVENT_6FB
+	person_event SPRITE_SLOWPOKE, 6, 10, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a695, EVENT_6FB
+	person_event SPRITE_KURT, 18, 20, $7, $0, 255, 255, $0, 0, KurtScript_0x5a5d5, EVENT_740
+	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, SlowpokeWellB1FBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, EVENT_662

@@ -57,6 +57,6 @@ OlivineMart_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x9cac7, $ffff
-	person_event SPRITE_COOLTRAINER_F, 6, 10, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x9cace, $ffff
-	person_event SPRITE_LASS, 10, 5, $8, $0, 255, 255, $0, 0, LassScript_0x9cad1, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x9cac7, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 6, 10, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x9cace, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 10, 5, $8, $0, 255, 255, $0, 0, LassScript_0x9cad1, EVENT_ALWAYS_THERE

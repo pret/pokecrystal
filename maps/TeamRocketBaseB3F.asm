@@ -651,17 +651,17 @@ TeamRocketBaseB3F_MapEventHeader:
 
 	; people-events
 	db 14
-	person_event SPRITE_LANCE, 18, 29, $6, $0, 255, 255, $0, 0, LanceScript_0x6dffc, $06d7
-	person_event SPRITE_ROCKET, 7, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, $06db
-	person_event SPRITE_MOLTRES, 6, 11, $16, $0, 255, 255, $90, 0, MoltresScript_0x6e091, $06da
-	person_event SPRITE_ROCKET_GIRL, 11, 25, $7, $0, 255, 255, $82, 0, TrainerGruntF5, $06da
-	person_event SPRITE_ROCKET, 18, 9, $a, $0, 255, 255, $2, 3, TrainerGruntM28, $06da
-	person_event SPRITE_SCIENTIST, 15, 27, $7, $0, 255, 255, $92, 0, TrainerScientistRoss, $06da
-	person_event SPRITE_SCIENTIST, 19, 15, $9, $0, 255, 255, $92, 3, TrainerScientistMitch, $06da
-	person_event SPRITE_ROCKET, 18, 28, $6, $0, 255, 255, $0, 0, RocketScript_0x6e048, $06da
-	person_event SPRITE_SILVER, 9, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c0
-	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e120, $066d
-	person_event SPRITE_POKE_BALL, 16, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e122, $066e
-	person_event SPRITE_POKE_BALL, 13, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e124, $066f
-	person_event SPRITE_POKE_BALL, 6, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e126, $0670
-	person_event SPRITE_POKE_BALL, 14, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e128, $0654
+	person_event SPRITE_LANCE, 18, 29, $6, $0, 255, 255, $0, 0, LanceScript_0x6dffc, EVENT_6D7
+	person_event SPRITE_ROCKET, 7, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6DB
+	person_event SPRITE_MOLTRES, 6, 11, $16, $0, 255, 255, $90, 0, MoltresScript_0x6e091, EVENT_6DA
+	person_event SPRITE_ROCKET_GIRL, 11, 25, $7, $0, 255, 255, $82, 0, TrainerGruntF5, EVENT_6DA
+	person_event SPRITE_ROCKET, 18, 9, $a, $0, 255, 255, $2, 3, TrainerGruntM28, EVENT_6DA
+	person_event SPRITE_SCIENTIST, 15, 27, $7, $0, 255, 255, $92, 0, TrainerScientistRoss, EVENT_6DA
+	person_event SPRITE_SCIENTIST, 19, 15, $9, $0, 255, 255, $92, 3, TrainerScientistMitch, EVENT_6DA
+	person_event SPRITE_ROCKET, 18, 28, $6, $0, 255, 255, $0, 0, RocketScript_0x6e048, EVENT_6DA
+	person_event SPRITE_SILVER, 9, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C0
+	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e120, EVENT_66D
+	person_event SPRITE_POKE_BALL, 16, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e122, EVENT_66E
+	person_event SPRITE_POKE_BALL, 13, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e124, EVENT_66F
+	person_event SPRITE_POKE_BALL, 6, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e126, EVENT_670
+	person_event SPRITE_POKE_BALL, 14, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e128, EVENT_654

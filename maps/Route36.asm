@@ -96,13 +96,13 @@ UnknownScript_0x19407b:
 LassScript_0x19408c:
 	faceplayer
 	loadfont
-	checkevent $00ba
+	checkevent EVENT_0BA
 	iftrue UnknownScript_0x1940b3
 	setevent EVENT_MET_FLORIA
 	writetext UnknownText_0x1942f1
 	closetext
 	loadmovesprites
-	clearevent $0768
+	clearevent EVENT_768
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x1940ac
 	applymovement $9, MovementData_0x19424e
@@ -273,7 +273,7 @@ UnknownScript_0x1941b4:
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1941c6
 	clearflag ENGINE_ALAN_HAS_FIRE_STONE
-	setevent $0101
+	setevent EVENT_101
 	jump UnknownScript_0x1941d5
 
 UnknownScript_0x1941c6:
@@ -711,12 +711,12 @@ Route36_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_YOUNGSTER, 17, 24, $9, $0, 255, 255, $92, 3, TrainerPsychicMark, $ffff
-	person_event SPRITE_YOUNGSTER, 18, 35, $8, $0, 255, 255, $92, 5, TrainerSchoolboyAlan1, $ffff
-	person_event SPRITE_WEIRD_TREE, 13, 39, $17, $0, 255, 255, $0, 0, WeirdTreeScript_0x19403c, $06f8
-	person_event SPRITE_LASS, 12, 55, $5, $2, 255, 255, $0, 0, LassScript_0x1940e0, $ffff
-	person_event SPRITE_FISHER, 13, 48, $8, $0, 255, 255, $0, 0, FisherScript_0x1940b9, $ffff
-	person_event SPRITE_FRUIT_TREE, 8, 25, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194247, $ffff
-	person_event SPRITE_YOUNGSTER, 10, 50, $2, $11, 255, 255, $0, 0, ArthurScript, $075a
+	person_event SPRITE_YOUNGSTER, 17, 24, $9, $0, 255, 255, $92, 3, TrainerPsychicMark, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 18, 35, $8, $0, 255, 255, $92, 5, TrainerSchoolboyAlan1, EVENT_ALWAYS_THERE
+	person_event SPRITE_WEIRD_TREE, 13, 39, $17, $0, 255, 255, $0, 0, WeirdTreeScript_0x19403c, EVENT_6F8
+	person_event SPRITE_LASS, 12, 55, $5, $2, 255, 255, $0, 0, LassScript_0x1940e0, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 13, 48, $8, $0, 255, 255, $0, 0, FisherScript_0x1940b9, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 8, 25, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194247, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 10, 50, $2, $11, 255, 255, $0, 0, ArthurScript, EVENT_75A
 	person_event SPRITE_LASS, 16, 37, $6, $0, 255, 255, $90, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
-	person_event SPRITE_SUICUNE, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b0
+	person_event SPRITE_SUICUNE, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36

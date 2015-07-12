@@ -517,11 +517,11 @@ Route26_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 28, 18, $8, $0, 255, 255, $82, 2, TrainerCooltrainermJake, $ffff
-	person_event SPRITE_COOLTRAINER_M, 42, 13, $8, $0, 255, 255, $82, 3, TrainerCooltrainermGaven3, $ffff
-	person_event SPRITE_COOLTRAINER_F, 60, 14, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfJoyce, $ffff
-	person_event SPRITE_COOLTRAINER_F, 12, 9, $9, $0, 255, 255, $82, 4, TrainerCooltrainerfBeth1, $ffff
-	person_event SPRITE_YOUNGSTER, 83, 17, $9, $0, 255, 255, $92, 2, TrainerPsychicRichard, $ffff
-	person_event SPRITE_FISHER, 96, 14, $6, $0, 255, 255, $a2, 3, TrainerFisherScott, $ffff
-	person_event SPRITE_FRUIT_TREE, 58, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a4ec2, $ffff
-	person_event SPRITE_POKE_BALL, 19, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a4ec4, $06aa
+	person_event SPRITE_COOLTRAINER_M, 28, 18, $8, $0, 255, 255, $82, 2, TrainerCooltrainermJake, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 42, 13, $8, $0, 255, 255, $82, 3, TrainerCooltrainermGaven3, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 60, 14, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfJoyce, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 12, 9, $9, $0, 255, 255, $82, 4, TrainerCooltrainerfBeth1, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 83, 17, $9, $0, 255, 255, $92, 2, TrainerPsychicRichard, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 96, 14, $6, $0, 255, 255, $a2, 3, TrainerFisherScott, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 58, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a4ec2, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 19, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a4ec4, EVENT_6AA

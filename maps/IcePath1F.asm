@@ -33,6 +33,6 @@ IcePath1F_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_POKE_BALL, 11, 35, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e472, $0688
-	person_event SPRITE_POKE_BALL, 27, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e474, $0689
-	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e476, $07be
+	person_event SPRITE_POKE_BALL, 11, 35, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e472, EVENT_688
+	person_event SPRITE_POKE_BALL, 27, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e474, EVENT_689
+	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e476, EVENT_7BE

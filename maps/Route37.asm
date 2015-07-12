@@ -298,10 +298,10 @@ Route37_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_WEIRD_TREE, 16, 10, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne1, $ffff
-	person_event SPRITE_WEIRD_TREE, 16, 11, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne2, $ffff
-	person_event SPRITE_YOUNGSTER, 10, 10, $a, $0, 255, 255, $92, 1, TrainerPsychicGreg, $ffff
-	person_event SPRITE_FRUIT_TREE, 9, 17, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e09, $ffff
-	person_event SPRITE_BUG_CATCHER, 12, 20, $2, $11, 255, 255, $0, 0, SunnyScript, $075b
-	person_event SPRITE_FRUIT_TREE, 9, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0b, $ffff
-	person_event SPRITE_FRUIT_TREE, 11, 19, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0d, $ffff
+	person_event SPRITE_WEIRD_TREE, 16, 10, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne1, EVENT_ALWAYS_THERE
+	person_event SPRITE_WEIRD_TREE, 16, 11, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne2, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 10, 10, $a, $0, 255, 255, $92, 1, TrainerPsychicGreg, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 9, 17, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e09, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUG_CATCHER, 12, 20, $2, $11, 255, 255, $0, 0, SunnyScript, EVENT_75B
+	person_event SPRITE_FRUIT_TREE, 9, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0b, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 11, 19, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0d, EVENT_ALWAYS_THERE

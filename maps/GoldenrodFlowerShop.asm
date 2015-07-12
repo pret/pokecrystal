@@ -12,7 +12,7 @@ TeacherScript_0x5535d:
 	iftrue UnknownScript_0x55399
 	checkevent EVENT_MET_FLORIA
 	iffalse UnknownScript_0x5539f
-	checkevent $00ba
+	checkevent EVENT_0BA
 	iffalse UnknownScript_0x5538f
 	checkflag ENGINE_PLAINBADGE
 	iffalse UnknownScript_0x5539c
@@ -24,7 +24,7 @@ TeacherScript_0x5535d:
 	setevent EVENT_GOT_SQUIRTBOTTLE
 	loadmovesprites
 	setevent EVENT_FLORIA_AT_SUDOWOODO
-	clearevent $0768
+	clearevent EVENT_768
 	end
 
 UnknownScript_0x5538f:
@@ -54,8 +54,8 @@ LassScript_0x553a2:
 	writetext UnknownText_0x55561
 	closetext
 	loadmovesprites
-	setevent $00ba
-	setevent $0768
+	setevent EVENT_0BA
+	setevent EVENT_768
 	clearevent EVENT_FLORIA_AT_SUDOWOODO
 	end
 
@@ -172,5 +172,5 @@ GoldenrodFlowerShop_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_TEACHER, 8, 6, $9, $0, 255, 255, $0, 0, TeacherScript_0x5535d, $ffff
-	person_event SPRITE_LASS, 10, 9, $2, $11, 255, 255, $90, 0, LassScript_0x553a2, $0768
+	person_event SPRITE_TEACHER, 8, 6, $9, $0, 255, 255, $0, 0, TeacherScript_0x5535d, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 10, 9, $2, $11, 255, 255, $90, 0, LassScript_0x553a2, EVENT_768

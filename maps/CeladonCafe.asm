@@ -219,8 +219,8 @@ CeladonCafe_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_SUPER_NERD, 7, 13, $8, $0, 255, 255, $b0, 0, SuperNerdScript_0x73049, $ffff
-	person_event SPRITE_FISHER, 10, 8, $8, $0, 255, 255, $0, 0, FisherScript_0x73051, $ffff
-	person_event SPRITE_FISHER, 11, 5, $9, $0, 255, 255, $a0, 0, FisherScript_0x73062, $ffff
-	person_event SPRITE_FISHER, 6, 5, $9, $0, 255, 255, $0, 0, FisherScript_0x73073, $ffff
-	person_event SPRITE_TEACHER, 7, 8, $8, $0, 255, 255, $0, 0, TeacherScript_0x73084, $ffff
+	person_event SPRITE_SUPER_NERD, 7, 13, $8, $0, 255, 255, $b0, 0, SuperNerdScript_0x73049, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 10, 8, $8, $0, 255, 255, $0, 0, FisherScript_0x73051, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 11, 5, $9, $0, 255, 255, $a0, 0, FisherScript_0x73062, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 6, 5, $9, $0, 255, 255, $0, 0, FisherScript_0x73073, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 7, 8, $8, $0, 255, 255, $0, 0, TeacherScript_0x73084, EVENT_ALWAYS_THERE

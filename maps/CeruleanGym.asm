@@ -40,8 +40,8 @@ UnknownScript_0x1883de:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
-	clearevent $076c
-	clearevent $076e
+	clearevent EVENT_76C
+	clearevent EVENT_76E
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_25, MAP_ROUTE_25, $1
 	domaptrigger GROUP_POWER_PLANT, MAP_POWER_PLANT, $0
@@ -426,7 +426,7 @@ CeruleanGym_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_ROCKET, 14, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $076d
+	person_event SPRITE_ROCKET, 14, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_76D
 	person_event SPRITE_MISTY, 7, 9, $6, $0, 255, 255, $80, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
 	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
 	person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM

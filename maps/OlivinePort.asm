@@ -20,14 +20,14 @@ UnknownScript_0x748b1:
 	applymovement $0, MovementData_0x74a32
 	appear $2
 	dotrigger $0
-	setevent $0000
+	setevent EVENT_000
 	blackoutmod GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	end
 
 SailorScript_0x748c0:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
 	closetext
@@ -41,10 +41,10 @@ SailorScript_0x748c0:
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton
-	checkevent $0030
+	checkevent EVENT_030
 	iffalse UnknownScript_0x7490a
-	clearevent $073a
-	setevent $073b
+	clearevent EVENT_73A
+	setevent EVENT_73B
 	clearevent EVENT_BEAT_COOLTRAINERM_SEAN
 	clearevent EVENT_BEAT_COOLTRAINERF_CAROL
 	clearevent EVENT_BEAT_GENTLEMAN_EDWARD
@@ -55,7 +55,7 @@ SailorScript_0x748c0:
 	clearevent EVENT_BEAT_FISHER_JONAH
 	clearevent EVENT_BEAT_BLACKBELT_WAI
 UnknownScript_0x7490a:
-	clearevent $002f
+	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear $2
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
 	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
@@ -69,13 +69,13 @@ UnknownScript_0x74919:
 
 UnknownScript_0x7491f:
 	spriteface $4, RIGHT
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x7498b
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue UnknownScript_0x7498b
 	spriteface $0, LEFT
 	loadfont
-	checkevent $0030
+	checkevent EVENT_030
 	iffalse UnknownScript_0x7494e
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x74977
@@ -94,7 +94,7 @@ UnknownScript_0x7494e:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent $0001
+	setevent EVENT_001
 	applymovement $0, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
@@ -138,9 +138,9 @@ UnknownScript_0x74992:
 SailorScript_0x7499c:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74919
-	checkevent $0030
+	checkevent EVENT_030
 	iffalse UnknownScript_0x749c0
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x749f2
@@ -159,7 +159,7 @@ UnknownScript_0x749c0:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent $0001
+	setevent EVENT_001
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f
@@ -398,10 +398,10 @@ OlivinePort_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_SAILOR, 27, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x748c0, $072a
-	person_event SPRITE_SAILOR, 19, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x749fe, $0737
-	person_event SPRITE_SAILOR, 19, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x7499c, $0738
-	person_event SPRITE_FISHING_GURU, 18, 8, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a01, $0737
-	person_event SPRITE_FISHING_GURU, 18, 17, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a0c, $0737
-	person_event SPRITE_YOUNGSTER, 19, 8, $6, $0, 255, 255, $0, 0, YoungsterScript_0x74a17, $0738
-	person_event SPRITE_COOLTRAINER_F, 19, 15, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x74a22, $0738
+	person_event SPRITE_SAILOR, 27, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x748c0, EVENT_72A
+	person_event SPRITE_SAILOR, 19, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x749fe, EVENT_737
+	person_event SPRITE_SAILOR, 19, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x7499c, EVENT_738
+	person_event SPRITE_FISHING_GURU, 18, 8, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a01, EVENT_737
+	person_event SPRITE_FISHING_GURU, 18, 17, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a0c, EVENT_737
+	person_event SPRITE_YOUNGSTER, 19, 8, $6, $0, 255, 255, $0, 0, YoungsterScript_0x74a17, EVENT_738
+	person_event SPRITE_COOLTRAINER_F, 19, 15, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x74a22, EVENT_738

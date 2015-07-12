@@ -83,4 +83,4 @@ LakeofRageHiddenPowerHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHER, 7, 6, $3, $0, 255, 255, $0, 0, HiddenPowerGuy, $ffff
+	person_event SPRITE_FISHER, 7, 6, $3, $0, 255, 255, $0, 0, HiddenPowerGuy, EVENT_ALWAYS_THERE

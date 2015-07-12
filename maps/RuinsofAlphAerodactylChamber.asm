@@ -30,7 +30,7 @@ UnknownScript_0x58db9:
 	iftrue UnknownScript_0x58dc3
 	changeblock $4, $0, $2e
 UnknownScript_0x58dc3:
-	checkevent $02a3
+	checkevent EVENT_2A3
 	iffalse UnknownScript_0x58dca
 	return
 
@@ -61,8 +61,8 @@ MapRuinsofAlphAerodactylChamberSignpost2Script:
 	end
 
 UnknownScript_0x58df7:
-	setevent $0705
-	setevent $02a3
+	setevent EVENT_705
+	setevent EVENT_2A3
 	setflag ENGINE_UNLOCKED_UNOWNS_3
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30

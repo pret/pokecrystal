@@ -227,10 +227,10 @@ UnionCaveB1F_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_POKEFAN_M, 8, 13, $a, $0, 255, 255, $b2, 3, TrainerHikerPhillip, $ffff
-	person_event SPRITE_POKEFAN_M, 11, 20, $6, $0, 255, 255, $b2, 3, TrainerHikerLeonard, $ffff
-	person_event SPRITE_SUPER_NERD, 36, 9, $8, $0, 255, 255, $92, 3, TrainerPokemaniacAndrew, $ffff
-	person_event SPRITE_SUPER_NERD, 34, 21, $8, $0, 255, 255, $92, 3, TrainerPokemaniacCalvin, $ffff
-	person_event SPRITE_POKE_BALL, 20, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a016, $065e
-	person_event SPRITE_BOULDER, 14, 11, $19, $0, 255, 255, $0, 0, UnionCaveB1FBoulder, $ffff
-	person_event SPRITE_POKE_BALL, 27, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a018, $065f
+	person_event SPRITE_POKEFAN_M, 8, 13, $a, $0, 255, 255, $b2, 3, TrainerHikerPhillip, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 11, 20, $6, $0, 255, 255, $b2, 3, TrainerHikerLeonard, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 36, 9, $8, $0, 255, 255, $92, 3, TrainerPokemaniacAndrew, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 34, 21, $8, $0, 255, 255, $92, 3, TrainerPokemaniacCalvin, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 20, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a016, EVENT_65E
+	person_event SPRITE_BOULDER, 14, 11, $19, $0, 255, 255, $0, 0, UnionCaveB1FBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 27, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a018, EVENT_65F

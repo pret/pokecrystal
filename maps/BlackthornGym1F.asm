@@ -47,9 +47,9 @@ ClairScript_0x194e24:
 	setevent EVENT_BEAT_COOLTRAINERM_MIKE
 	setevent EVENT_BEAT_COOLTRAINERF_FRAN
 	setevent EVENT_BEAT_COOLTRAINERF_LOLA
-	clearevent $0736
-	setevent $074c
-	clearevent $074d
+	clearevent EVENT_736
+	setevent EVENT_74C
+	clearevent EVENT_74D
 	end
 .FightDone
 	writetext UnknownText_0x195162
@@ -452,8 +452,8 @@ BlackthornGym1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_CLAIR, 7, 9, $6, $0, 255, 255, $90, 0, ClairScript_0x194e24, $ffff
-	person_event SPRITE_COOLTRAINER_M, 10, 10, $6, $0, 255, 255, $82, 3, TrainerCooltrainermMike, $ffff
-	person_event SPRITE_COOLTRAINER_M, 18, 5, $6, $0, 255, 255, $82, 3, TrainerCooltrainermPaul, $ffff
-	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, $ffff
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, $ffff
+	person_event SPRITE_CLAIR, 7, 9, $6, $0, 255, 255, $90, 0, ClairScript_0x194e24, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 10, 10, $6, $0, 255, 255, $82, 3, TrainerCooltrainermMike, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 18, 5, $6, $0, 255, 255, $82, 3, TrainerCooltrainermPaul, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, EVENT_ALWAYS_THERE

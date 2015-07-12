@@ -320,7 +320,7 @@ OlivineCity_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_SAILOR, 31, 30, $4, $10, 255, 255, $0, 0, SailorScript_0x1a88a3, $ffff
-	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, $0, 255, 255, $80, 0, StandingYoungsterScript_0x1a88a6, $ffff
-	person_event SPRITE_SAILOR, 25, 21, $2, $11, 255, 255, $0, 0, SailorScript_0x1a88ba, $ffff
-	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c3
+	person_event SPRITE_SAILOR, 31, 30, $4, $10, 255, 255, $0, 0, SailorScript_0x1a88a3, EVENT_ALWAYS_THERE
+	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, $0, 255, 255, $80, 0, StandingYoungsterScript_0x1a88a6, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAILOR, 25, 21, $2, $11, 255, 255, $0, 0, SailorScript_0x1a88ba, EVENT_ALWAYS_THERE
+	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C3

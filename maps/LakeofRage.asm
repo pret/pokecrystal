@@ -51,7 +51,7 @@ UnknownScript_0x70035:
 	playsound SFX_WARP_TO
 	applymovement $2, MovementData_0x70155
 	disappear $2
-	clearevent $06d5
+	clearevent EVENT_6D5
 	setevent EVENT_DECIDED_TO_HELP_LANCE
 	domaptrigger GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F, $1
 	end
@@ -576,15 +576,15 @@ LakeofRage_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_LANCE, 32, 25, $7, $0, 255, 255, $0, 0, LanceScript_0x70022, $06d4
-	person_event SPRITE_GRAMPS, 30, 24, $7, $0, 255, 255, $0, 0, GrampsScript_0x7008e, $ffff
-	person_event SPRITE_SUPER_NERD, 17, 40, $8, $0, 255, 255, $0, 0, SuperNerdScript_0x700a2, $ffff
-	person_event SPRITE_COOLTRAINER_F, 33, 29, $5, $1, 255, 255, $0, 0, CooltrainerFScript_0x700a5, $ffff
-	person_event SPRITE_FISHER, 27, 34, $8, $0, 255, 255, $92, 1, TrainerFisherAndre, $0735
-	person_event SPRITE_FISHER, 30, 28, $7, $0, 255, 255, $92, 1, TrainerFisherRaymond, $0735
-	person_event SPRITE_COOLTRAINER_M, 19, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermAaron, $0735
-	person_event SPRITE_COOLTRAINER_F, 11, 40, $8, $0, 255, 255, $82, 0, TrainerCooltrainerfLois, $0735
-	person_event SPRITE_GYARADOS, 26, 22, $16, $0, 255, 255, $80, 0, GyaradosScript_0x70063, $0751
-	person_event SPRITE_SUPER_NERD, 8, 8, $6, $0, 255, 255, $0, 0, WesleyScript, $075c
-	person_event SPRITE_POKE_BALL, 14, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x70148, $0645
-	person_event SPRITE_POKE_BALL, 6, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7014a, $0646
+	person_event SPRITE_LANCE, 32, 25, $7, $0, 255, 255, $0, 0, LanceScript_0x70022, EVENT_6D4
+	person_event SPRITE_GRAMPS, 30, 24, $7, $0, 255, 255, $0, 0, GrampsScript_0x7008e, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 17, 40, $8, $0, 255, 255, $0, 0, SuperNerdScript_0x700a2, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 33, 29, $5, $1, 255, 255, $0, 0, CooltrainerFScript_0x700a5, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 27, 34, $8, $0, 255, 255, $92, 1, TrainerFisherAndre, EVENT_735
+	person_event SPRITE_FISHER, 30, 28, $7, $0, 255, 255, $92, 1, TrainerFisherRaymond, EVENT_735
+	person_event SPRITE_COOLTRAINER_M, 19, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermAaron, EVENT_735
+	person_event SPRITE_COOLTRAINER_F, 11, 40, $8, $0, 255, 255, $82, 0, TrainerCooltrainerfLois, EVENT_735
+	person_event SPRITE_GYARADOS, 26, 22, $16, $0, 255, 255, $80, 0, GyaradosScript_0x70063, EVENT_751
+	person_event SPRITE_SUPER_NERD, 8, 8, $6, $0, 255, 255, $0, 0, WesleyScript, EVENT_75C
+	person_event SPRITE_POKE_BALL, 14, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x70148, EVENT_645
+	person_event SPRITE_POKE_BALL, 6, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7014a, EVENT_646

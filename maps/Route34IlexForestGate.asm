@@ -152,7 +152,7 @@ Route34IlexForestGate_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_TEACHER, 7, 13, $8, $0, 255, 255, $90, 0, TeacherScript_0x62d63, $06ea
-	person_event SPRITE_BUTTERFREE, 8, 13, $16, $0, 255, 255, $80, 0, ButterfreeScript_0x62d8a, $ffff
-	person_event SPRITE_LASS, 8, 7, $4, $10, 255, 255, $a0, 0, LassScript_0x62d94, $06eb
-	person_event SPRITE_TEACHER, 11, 9, $7, $0, 255, 255, $90, 0, TeacherScript_0x62d63, $06ec
+	person_event SPRITE_TEACHER, 7, 13, $8, $0, 255, 255, $90, 0, TeacherScript_0x62d63, EVENT_6EA
+	person_event SPRITE_BUTTERFREE, 8, 13, $16, $0, 255, 255, $80, 0, ButterfreeScript_0x62d8a, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 8, 7, $4, $10, 255, 255, $a0, 0, LassScript_0x62d94, EVENT_6EB
+	person_event SPRITE_TEACHER, 11, 9, $7, $0, 255, 255, $90, 0, TeacherScript_0x62d63, EVENT_6EC

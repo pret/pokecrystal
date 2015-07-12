@@ -130,4 +130,4 @@ Route24_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_ROCKET, 11, 12, $3, $0, 255, 255, $0, 0, RocketScript_0x1adbfa, $076c
+	person_event SPRITE_ROCKET, 11, 12, $3, $0, 255, 255, $0, 0, RocketScript_0x1adbfa, EVENT_76C

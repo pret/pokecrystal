@@ -49,6 +49,6 @@ FuchsiaMart_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x195ce8, $ffff
-	person_event SPRITE_FISHER, 6, 7, $8, $0, 255, 255, $80, 0, FisherScript_0x195cef, $ffff
-	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x195cf2, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x195ce8, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 6, 7, $8, $0, 255, 255, $80, 0, FisherScript_0x195cef, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x195cf2, EVENT_ALWAYS_THERE

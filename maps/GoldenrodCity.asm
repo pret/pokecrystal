@@ -128,7 +128,7 @@ UnknownScript_0x1989c6:
 UnknownScript_0x1989ca:
 	playsound SFX_ENTER_DOOR
 	disappear $10
-	clearevent $076b
+	clearevent EVENT_76B
 	setflag ENGINE_5E
 	waitbutton
 	end
@@ -581,18 +581,18 @@ GoldenrodCity_MapEventHeader:
 
 	; people-events
 	db 15
-	person_event SPRITE_POKEFAN_M, 22, 11, $7, $0, 255, 255, $0, 0, PokefanMScript_0x1989e3, $06cf
-	person_event SPRITE_YOUNGSTER, 21, 34, $2, $11, 255, 255, $0, 0, YoungsterScript_0x1989e6, $06cf
-	person_event SPRITE_COOLTRAINER_F, 20, 16, $8, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1989e9, $06cf
-	person_event SPRITE_COOLTRAINER_F, 30, 24, $2, $21, 255, 255, $0, 0, CooltrainerFScript_0x1989fd, $06cf
-	person_event SPRITE_YOUNGSTER, 21, 23, $2, $11, 255, 255, $80, 0, YoungsterScript_0x198a11, $06cf
-	person_event SPRITE_LASS, 14, 21, $5, $2, 255, 255, $a0, 0, LassScript_0x198a14, $06cf
-	person_event SPRITE_GRAMPS, 31, 15, $5, $1, 255, 255, $0, 0, GrampsScript_0x198a17, $06cf
-	person_event SPRITE_ROCKET, 20, 8, $7, $0, 255, 255, $0, 0, RocketScript_0x198a1a, $06cc
-	person_event SPRITE_ROCKET, 24, 32, $7, $0, 255, 255, $0, 0, RocketScript_0x198a29, $06cd
-	person_event SPRITE_ROCKET, 19, 12, $6, $0, 255, 255, $0, 0, RocketScript_0x198a2c, $06cd
-	person_event SPRITE_ROCKET, 27, 20, $9, $0, 255, 255, $0, 0, RocketScript_0x198a2f, $06ce
-	person_event SPRITE_ROCKET, 24, 33, $7, $0, 255, 255, $0, 0, RocketScript_0x198a32, $06ce
-	person_event SPRITE_ROCKET, 11, 33, $6, $0, 255, 255, $0, 0, RocketScript_0x198a35, $06ce
-	person_event SPRITE_ROCKET, 14, 35, $8, $0, 255, 255, $0, 0, RocketScript_0x198a38, $06ce
-	person_event SPRITE_POKEFAN_M, 26, 16, $3, $0, 255, 255, $80, 0, MoveTutor, $076a
+	person_event SPRITE_POKEFAN_M, 22, 11, $7, $0, 255, 255, $0, 0, PokefanMScript_0x1989e3, EVENT_6CF
+	person_event SPRITE_YOUNGSTER, 21, 34, $2, $11, 255, 255, $0, 0, YoungsterScript_0x1989e6, EVENT_6CF
+	person_event SPRITE_COOLTRAINER_F, 20, 16, $8, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1989e9, EVENT_6CF
+	person_event SPRITE_COOLTRAINER_F, 30, 24, $2, $21, 255, 255, $0, 0, CooltrainerFScript_0x1989fd, EVENT_6CF
+	person_event SPRITE_YOUNGSTER, 21, 23, $2, $11, 255, 255, $80, 0, YoungsterScript_0x198a11, EVENT_6CF
+	person_event SPRITE_LASS, 14, 21, $5, $2, 255, 255, $a0, 0, LassScript_0x198a14, EVENT_6CF
+	person_event SPRITE_GRAMPS, 31, 15, $5, $1, 255, 255, $0, 0, GrampsScript_0x198a17, EVENT_6CF
+	person_event SPRITE_ROCKET, 20, 8, $7, $0, 255, 255, $0, 0, RocketScript_0x198a1a, EVENT_6CC
+	person_event SPRITE_ROCKET, 24, 32, $7, $0, 255, 255, $0, 0, RocketScript_0x198a29, EVENT_6CD
+	person_event SPRITE_ROCKET, 19, 12, $6, $0, 255, 255, $0, 0, RocketScript_0x198a2c, EVENT_6CD
+	person_event SPRITE_ROCKET, 27, 20, $9, $0, 255, 255, $0, 0, RocketScript_0x198a2f, EVENT_6CE
+	person_event SPRITE_ROCKET, 24, 33, $7, $0, 255, 255, $0, 0, RocketScript_0x198a32, EVENT_6CE
+	person_event SPRITE_ROCKET, 11, 33, $6, $0, 255, 255, $0, 0, RocketScript_0x198a35, EVENT_6CE
+	person_event SPRITE_ROCKET, 14, 35, $8, $0, 255, 255, $0, 0, RocketScript_0x198a38, EVENT_6CE
+	person_event SPRITE_POKEFAN_M, 26, 16, $3, $0, 255, 255, $80, 0, MoveTutor, EVENT_76A

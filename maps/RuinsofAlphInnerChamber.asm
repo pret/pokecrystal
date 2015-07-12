@@ -25,7 +25,7 @@ UnknownScript_0x58f6e:
 	loadmovesprites
 	dotrigger $0
 	setevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
-	clearevent $078e
+	clearevent EVENT_78E
 	end
 
 FisherScript_0x58f7d:
@@ -125,6 +125,6 @@ RuinsofAlphInnerChamber_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_FISHER, 11, 7, $3, $0, 255, 255, $a0, 0, FisherScript_0x58f7d, $0705
-	person_event SPRITE_TEACHER, 17, 18, $2, $11, 255, 255, $0, 0, TeacherScript_0x58f80, $0705
-	person_event SPRITE_GRAMPS, 23, 15, $7, $0, 255, 255, $b0, 0, GrampsScript_0x58f83, $0705
+	person_event SPRITE_FISHER, 11, 7, $3, $0, 255, 255, $a0, 0, FisherScript_0x58f7d, EVENT_705
+	person_event SPRITE_TEACHER, 17, 18, $2, $11, 255, 255, $0, 0, TeacherScript_0x58f80, EVENT_705
+	person_event SPRITE_GRAMPS, 23, 15, $7, $0, 255, 255, $b0, 0, GrampsScript_0x58f83, EVENT_705

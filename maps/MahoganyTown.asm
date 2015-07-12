@@ -268,7 +268,7 @@ MahoganyTown_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_POKEFAN_M, 12, 23, $6, $0, 255, 255, $0, 0, PokefanMScript_0x19002e, $0756
-	person_event SPRITE_GRAMPS, 13, 10, $5, $1, 255, 255, $0, 0, GrampsScript_0x19007e, $ffff
-	person_event SPRITE_FISHER, 18, 10, $6, $0, 255, 255, $a0, 0, FisherScript_0x190092, $0757
-	person_event SPRITE_LASS, 12, 16, $6, $0, 255, 255, $0, 0, LassScript_0x190095, $0736
+	person_event SPRITE_POKEFAN_M, 12, 23, $6, $0, 255, 255, $0, 0, PokefanMScript_0x19002e, EVENT_756
+	person_event SPRITE_GRAMPS, 13, 10, $5, $1, 255, 255, $0, 0, GrampsScript_0x19007e, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 18, 10, $6, $0, 255, 255, $a0, 0, FisherScript_0x190092, EVENT_757
+	person_event SPRITE_LASS, 12, 16, $6, $0, 255, 255, $0, 0, LassScript_0x190095, EVENT_736

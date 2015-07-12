@@ -818,8 +818,8 @@ GoldenrodPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x60f91, $ffff
-	person_event SPRITE_LINK_RECEPTIONIST, 12, 20, $6, $0, 255, 255, $90, 0, ObjectEvent, $ffff
-	person_event SPRITE_GAMEBOY_KID, 5, 10, $6, $0, 255, 255, $a0, 0, GameboyKidScript_0x6101e, $ffff
-	person_event SPRITE_LASS, 8, 5, $5, $1, 255, 255, $0, 0, LassScript_0x61021, $ffff
-	person_event SPRITE_POKEFAN_F, 9, 11, $6, $0, 255, 255, $b0, 0, PokefanFScript_0x61024, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x60f91, EVENT_ALWAYS_THERE
+	person_event SPRITE_LINK_RECEPTIONIST, 12, 20, $6, $0, 255, 255, $90, 0, ObjectEvent, EVENT_ALWAYS_THERE
+	person_event SPRITE_GAMEBOY_KID, 5, 10, $6, $0, 255, 255, $a0, 0, GameboyKidScript_0x6101e, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 8, 5, $5, $1, 255, 255, $0, 0, LassScript_0x61021, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_F, 9, 11, $6, $0, 255, 255, $b0, 0, PokefanFScript_0x61024, EVENT_ALWAYS_THERE

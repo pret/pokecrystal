@@ -258,5 +258,5 @@ GoldenrodBillsHouse_MapEventHeader:
 	; people-events
 	db 3
 	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillsHouseBill, EVENT_MET_BILL
-	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, BillsMom, $ffff
-	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, BillsSister, $ffff
+	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, BillsMom, EVENT_ALWAYS_THERE
+	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, BillsSister, EVENT_ALWAYS_THERE

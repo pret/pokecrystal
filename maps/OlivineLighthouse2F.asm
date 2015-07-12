@@ -141,7 +141,7 @@ UnknownScript_0x5b03f:
 	verbosegiveitem PROTEIN, 1
 	iffalse UnknownScript_0x5b06f
 	clearevent EVENT_HUEY_PROTEIN
-	setevent $0265
+	setevent EVENT_GOT_PROTEIN_FROM_HUEY
 	jump UnknownScript_0x5b05f
 
 UnknownScript_0x5b053:
@@ -253,5 +253,5 @@ OlivineLighthouse2F_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_SAILOR, 7, 13, $9, $0, 255, 255, $92, 3, TrainerSailorHuey1, $ffff
-	person_event SPRITE_GENTLEMAN, 12, 21, $8, $0, 255, 255, $92, 3, TrainerGentlemanAlfred, $ffff
+	person_event SPRITE_SAILOR, 7, 13, $9, $0, 255, 255, $92, 3, TrainerSailorHuey1, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 12, 21, $8, $0, 255, 255, $92, 3, TrainerGentlemanAlfred, EVENT_ALWAYS_THERE

@@ -232,9 +232,9 @@ GoldenrodDeptStore5F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_CLERK, 9, 12, $7, $0, 255, 255, $0, 0, ClerkScript_0x5609c, $ffff
-	person_event SPRITE_LASS, 10, 7, $2, $11, 255, 255, $0, 0, LassScript_0x56130, $ffff
-	person_event SPRITE_COOLTRAINER_M, 7, 10, $3, $0, 255, 255, $0, 0, CooltrainerMScript_0x56133, $ffff
-	person_event SPRITE_POKEFAN_M, 9, 17, $2, $22, 255, 255, $0, 0, PokefanMScript_0x5613a, $ffff
-	person_event SPRITE_TWIN, 5, 13, $6, $0, 255, 255, $a0, 0, TwinScript_0x56118, $ffff
-	person_event SPRITE_RECEPTIONIST, 9, 11, $7, $0, 255, 255, $80, 0, ReceptionistScript_0x560ce, $0763
+	person_event SPRITE_CLERK, 9, 12, $7, $0, 255, 255, $0, 0, ClerkScript_0x5609c, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 10, 7, $2, $11, 255, 255, $0, 0, LassScript_0x56130, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 7, 10, $3, $0, 255, 255, $0, 0, CooltrainerMScript_0x56133, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 9, 17, $2, $22, 255, 255, $0, 0, PokefanMScript_0x5613a, EVENT_ALWAYS_THERE
+	person_event SPRITE_TWIN, 5, 13, $6, $0, 255, 255, $a0, 0, TwinScript_0x56118, EVENT_ALWAYS_THERE
+	person_event SPRITE_RECEPTIONIST, 9, 11, $7, $0, 255, 255, $80, 0, ReceptionistScript_0x560ce, EVENT_763

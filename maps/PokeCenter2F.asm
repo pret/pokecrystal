@@ -16,8 +16,8 @@ PokeCenter2F_MapScriptHeader:
 UnknownScript_0x19285f:
 	special Functionc2f6
 	if_equal $0, UnknownScript_0x192872
-	clearevent $0711
-	checkevent $0001
+	clearevent EVENT_711
+	checkevent EVENT_001
 	iftrue UnknownScript_0x192872
 	priorityjump UnknownScript_0x192887
 
@@ -46,7 +46,7 @@ UnknownScript_0x192883:
 
 UnknownScript_0x192887:
 	appear $5
-	setevent $0001
+	setevent EVENT_001
 	end
 
 UnknownScript_0x19288d:
@@ -588,7 +588,7 @@ MapPokeCenter2FSignpost0Script:
 OfficerScript_0x192c9a:
 	faceplayer
 	loadfont
-	checkevent $0711
+	checkevent EVENT_711
 	iftrue UnknownScript_0x192cb8
 	writetext UnknownText_0x193190
 	yesorno
@@ -599,7 +599,7 @@ OfficerScript_0x192c9a:
 	special Functionc309
 	iffalse UnknownScript_0x192cbe
 	itemnotify
-	setevent $0711
+	setevent EVENT_711
 UnknownScript_0x192cb8:
 	writetext UnknownText_0x1931d2
 	closetext
@@ -1040,7 +1040,7 @@ PokeCenter2F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x19289d, $ffff
-	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192952, $ffff
-	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192a2d, $ffff
-	person_event SPRITE_OFFICER, 5, 5, $6, $0, 255, 255, $0, 0, OfficerScript_0x192c9a, $0711
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x19289d, EVENT_ALWAYS_THERE
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192952, EVENT_ALWAYS_THERE
+	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192a2d, EVENT_ALWAYS_THERE
+	person_event SPRITE_OFFICER, 5, 5, $6, $0, 255, 255, $0, 0, OfficerScript_0x192c9a, EVENT_711

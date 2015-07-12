@@ -158,4 +158,4 @@ BluesHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_DAISY, 7, 6, $3, $0, 255, 255, $0, 0, DaisyScript_0x19b0d0, $ffff
+	person_event SPRITE_DAISY, 7, 6, $3, $0, 255, 255, $0, 0, DaisyScript_0x19b0d0, EVENT_ALWAYS_THERE

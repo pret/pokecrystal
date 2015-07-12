@@ -29,9 +29,9 @@ UnknownScript_0x9800f:
 	return
 
 UnknownScript_0x98022:
-	clearevent $0766
+	clearevent EVENT_766
 	setevent EVENT_RANG_CLEAR_BELL
-	setevent $07b1
+	setevent EVENT_7B1
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98032
 	dotrigger $0
@@ -39,7 +39,7 @@ UnknownScript_0x98032:
 	return
 
 UnknownScript_0x98033:
-	clearevent $07b1
+	clearevent EVENT_7B1
 	return
 
 UnknownScript_0x98037:
@@ -53,7 +53,7 @@ UnknownScript_0x98037:
 	end
 
 UnknownScript_0x9804c:
-	checkevent $0766
+	checkevent EVENT_766
 	iftrue UnknownScript_0x98061
 	applymovement $2, MovementData_0x980cc
 	moveperson $3, $5, $6
@@ -86,7 +86,7 @@ UnknownScript_0x98076:
 UnknownScript_0x9807c:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x980a4
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x980aa
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98093
@@ -101,8 +101,8 @@ UnknownScript_0x98093:
 	loadmovesprites
 	dotrigger $1
 	setevent EVENT_RANG_CLEAR_BELL
-	clearevent $0766
-	setevent $0000
+	clearevent EVENT_766
+	setevent EVENT_000
 	end
 
 UnknownScript_0x980a4:
@@ -298,7 +298,7 @@ EcruteakHouse_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_SAGE, 10, 8, $6, $0, 255, 255, $0, 0, SageScript_0x98062, $0766
+	person_event SPRITE_SAGE, 10, 8, $6, $0, 255, 255, $0, 0, SageScript_0x98062, EVENT_766
 	person_event SPRITE_SAGE, 10, 9, $6, $0, 255, 255, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL
-	person_event SPRITE_SAGE, 13, 10, $2, $11, 255, 255, $0, 0, SageScript_0x980b0, $07b1
-	person_event SPRITE_GRAMPS, 15, 7, $2, $11, 255, 255, $0, 0, GrampsScript_0x980c4, $07b1
+	person_event SPRITE_SAGE, 13, 10, $2, $11, 255, 255, $0, 0, SageScript_0x980b0, EVENT_7B1
+	person_event SPRITE_GRAMPS, 15, 7, $2, $11, 255, 255, $0, 0, GrampsScript_0x980c4, EVENT_7B1

@@ -237,7 +237,7 @@ ViridianCity_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_GRAMPS, 9, 22, $2, $22, 255, 255, $0, 0, GrampsScript_0x1a9a4c, $ffff
-	person_event SPRITE_GRAMPS, 12, 34, $6, $0, 255, 255, $90, 0, GrampsScript_0x1a9a61, $ffff
-	person_event SPRITE_FISHER, 27, 10, $6, $0, 255, 255, $80, 0, FisherScript_0x1a9a75, $ffff
-	person_event SPRITE_YOUNGSTER, 25, 21, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x1a9a90, $ffff
+	person_event SPRITE_GRAMPS, 9, 22, $2, $22, 255, 255, $0, 0, GrampsScript_0x1a9a4c, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRAMPS, 12, 34, $6, $0, 255, 255, $90, 0, GrampsScript_0x1a9a61, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 27, 10, $6, $0, 255, 255, $80, 0, FisherScript_0x1a9a75, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 25, 21, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x1a9a90, EVENT_ALWAYS_THERE

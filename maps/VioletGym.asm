@@ -326,7 +326,7 @@ VioletGym_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_FALKNER, 5, 9, $6, $0, 255, 255, $90, 0, FalknerScript_0x683c2, $ffff
-	person_event SPRITE_YOUNGSTER, 10, 11, $8, $2, 255, 255, $92, 3, TrainerBird_keeperRod, $ffff
-	person_event SPRITE_YOUNGSTER, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, $ffff
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, $ffff
+	person_event SPRITE_FALKNER, 5, 9, $6, $0, 255, 255, $90, 0, FalknerScript_0x683c2, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 10, 11, $8, $2, 255, 255, $92, 3, TrainerBird_keeperRod, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, EVENT_ALWAYS_THERE

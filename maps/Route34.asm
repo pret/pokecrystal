@@ -12,33 +12,33 @@ Route34_MapScriptHeader:
 UnknownScript_0x78005:
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x78014
-	clearevent $06e5
-	setevent $06e6
+	clearevent EVENT_6E5
+	setevent EVENT_6E6
 	jump UnknownScript_0x7801d
 
 UnknownScript_0x78014:
-	setevent $06e5
-	clearevent $06e6
+	setevent EVENT_6E5
+	clearevent EVENT_6E6
 	jump UnknownScript_0x7801d
 
 UnknownScript_0x7801d:
 	checkflag ENGINE_DAYCARE_MAN_HAS_MON
 	iffalse UnknownScript_0x78029
-	clearevent $06e7
+	clearevent EVENT_6E7
 	jump UnknownScript_0x7802f
 
 UnknownScript_0x78029:
-	setevent $06e7
+	setevent EVENT_6E7
 	jump UnknownScript_0x7802f
 
 UnknownScript_0x7802f:
 	checkflag ENGINE_DAYCARE_LADY_HAS_MON
 	iffalse UnknownScript_0x78039
-	clearevent $06e8
+	clearevent EVENT_6E8
 	return
 
 UnknownScript_0x78039:
-	setevent $06e8
+	setevent EVENT_6E8
 	return
 
 GrampsScript_0x7803d:
@@ -328,7 +328,7 @@ UnknownScript_0x78213:
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x78225
 	clearflag ENGINE_GINA_HAS_LEAF_STONE
-	setevent $0100
+	setevent EVENT_100
 	jump UnknownScript_0x78234
 
 UnknownScript_0x78225:
@@ -905,16 +905,16 @@ Route34_MapEventHeader:
 
 	; people-events
 	db 13
-	person_event SPRITE_YOUNGSTER, 11, 17, $8, $0, 255, 255, $a2, 5, TrainerCamperTodd1, $ffff
-	person_event SPRITE_YOUNGSTER, 36, 19, $6, $0, 255, 255, $92, 3, TrainerYoungsterSamuel, $ffff
-	person_event SPRITE_YOUNGSTER, 24, 15, $6, $0, 255, 255, $92, 3, TrainerYoungsterIan, $ffff
-	person_event SPRITE_LASS, 30, 14, $9, $0, 255, 255, $a2, 3, TrainerPicnickerGina1, $ffff
-	person_event SPRITE_OFFICER, 15, 13, $6, $0, 255, 255, $90, 0, OfficerScript_0x7824c, $ffff
-	person_event SPRITE_POKEFAN_M, 32, 22, $1e, $0, 255, 255, $82, 3, TrainerPokefanmBrandon, $ffff
-	person_event SPRITE_GRAMPS, 20, 19, $6, $0, 255, 255, $0, 0, GrampsScript_0x7803d, $06e6
-	person_event SPRITE_DAYCARE_MON_1, 22, 18, $16, $22, 255, 255, $0, 0, DaycareMon1Script_0x78065, $06e7
-	person_event SPRITE_DAYCARE_MON_2, 23, 21, $16, $22, 255, 255, $0, 0, DaycareMon2Script_0x7806b, $06e8
-	person_event SPRITE_COOLTRAINER_F, 52, 15, $8, $0, 255, 255, $82, 5, TrainerCooltrainerfIrene, $ffff
-	person_event SPRITE_COOLTRAINER_F, 52, 7, $9, $0, 255, 255, $82, 3, TrainerCooltrainerfJenn, $ffff
-	person_event SPRITE_COOLTRAINER_F, 55, 10, $7, $0, 255, 255, $82, 2, TrainerCooltrainerfKate, $ffff
-	person_event SPRITE_POKE_BALL, 34, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7832b, $07bc
+	person_event SPRITE_YOUNGSTER, 11, 17, $8, $0, 255, 255, $a2, 5, TrainerCamperTodd1, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 36, 19, $6, $0, 255, 255, $92, 3, TrainerYoungsterSamuel, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 24, 15, $6, $0, 255, 255, $92, 3, TrainerYoungsterIan, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 30, 14, $9, $0, 255, 255, $a2, 3, TrainerPicnickerGina1, EVENT_ALWAYS_THERE
+	person_event SPRITE_OFFICER, 15, 13, $6, $0, 255, 255, $90, 0, OfficerScript_0x7824c, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 32, 22, $1e, $0, 255, 255, $82, 3, TrainerPokefanmBrandon, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRAMPS, 20, 19, $6, $0, 255, 255, $0, 0, GrampsScript_0x7803d, EVENT_6E6
+	person_event SPRITE_DAYCARE_MON_1, 22, 18, $16, $22, 255, 255, $0, 0, DaycareMon1Script_0x78065, EVENT_6E7
+	person_event SPRITE_DAYCARE_MON_2, 23, 21, $16, $22, 255, 255, $0, 0, DaycareMon2Script_0x7806b, EVENT_6E8
+	person_event SPRITE_COOLTRAINER_F, 52, 15, $8, $0, 255, 255, $82, 5, TrainerCooltrainerfIrene, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 52, 7, $9, $0, 255, 255, $82, 3, TrainerCooltrainerfJenn, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 55, 10, $7, $0, 255, 255, $82, 2, TrainerCooltrainerfKate, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 34, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7832b, EVENT_7BC

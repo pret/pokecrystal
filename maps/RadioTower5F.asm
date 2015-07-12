@@ -114,16 +114,16 @@ UnknownScript_0x6006e:
 	special Function8c0ab
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
 	setevent EVENT_CLEARED_RADIO_TOWER
-	clearflag $0013
-	setevent $06cc
-	setevent $06cd
-	setevent $06ce
-	clearevent $0736
-	clearflag $0017
-	clearevent $06cf
-	clearevent $06d0
-	setevent $06e3
-	clearevent $06e4
+	clearflag ENGINE_ROCKETS_IN_RADIO_TOWER
+	setevent EVENT_6CC
+	setevent EVENT_6CD
+	setevent EVENT_6CE
+	clearevent EVENT_736
+	clearflag ENGINE_ROCKETS_IN_MAHOGANY
+	clearevent EVENT_6CF
+	clearevent EVENT_6D0
+	setevent EVENT_6E3
+	clearevent EVENT_6E4
 	special PlayMapMusic
 	disappear $2
 	moveperson $2, $c, $0
@@ -140,7 +140,7 @@ UnknownScript_0x6006e:
 	dotrigger $2
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL
-	setevent $0761
+	setevent EVENT_761
 	jump UnknownScript_0x600f1
 
 UnknownScript_0x600f1:
@@ -455,8 +455,8 @@ RadioTower5F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, Director, $ffff
-	person_event SPRITE_ROCKET, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, $06ce
-	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, $06ce
-	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, Ben, $06d0
-	person_event SPRITE_POKE_BALL, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, $07cd
+	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, Director, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCKET, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6CE
+	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, EVENT_6CE
+	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, Ben, EVENT_6D0
+	person_event SPRITE_POKE_BALL, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, EVENT_7CD

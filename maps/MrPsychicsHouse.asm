@@ -63,4 +63,4 @@ MrPsychicsHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 9, $8, $0, 255, 255, $a0, 0, MrPsychic, $ffff
+	person_event SPRITE_FISHING_GURU, 7, 9, $8, $0, 255, 255, $a0, 0, MrPsychic, EVENT_ALWAYS_THERE

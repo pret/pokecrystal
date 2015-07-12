@@ -125,4 +125,4 @@ GoldenrodBikeShop_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_CLERK, 6, 11, $8, $0, 255, 255, $80, 0, ClerkScript_0x54750, $ffff
+	person_event SPRITE_CLERK, 6, 11, $8, $0, 255, 255, $80, 0, ClerkScript_0x54750, EVENT_ALWAYS_THERE

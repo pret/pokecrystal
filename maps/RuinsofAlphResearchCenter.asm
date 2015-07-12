@@ -105,7 +105,7 @@ UnknownScript_0x5920b:
 	writetext UnknownText_0x594cb
 	closetext
 	loadmovesprites
-	clearevent $078f
+	clearevent EVENT_78F
 	end
 
 ScientistScript_0x59214:
@@ -134,7 +134,7 @@ UnknownScript_0x5922e:
 
 MapRuinsofAlphResearchCenterSignpost1Script:
 	loadfont
-	checkevent $0704
+	checkevent EVENT_704
 	iftrue UnknownScript_0x59241
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59247
@@ -152,7 +152,7 @@ UnknownScript_0x59247:
 
 MapRuinsofAlphResearchCenterSignpost2Script:
 	loadfont
-	checkevent $0704
+	checkevent EVENT_704
 	iftrue UnknownScript_0x5925a
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59260
@@ -412,6 +412,6 @@ RuinsofAlphResearchCenter_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_SCIENTIST, 9, 8, $7, $0, 255, 255, $90, 0, ScientistScript_0x591e5, $ffff
-	person_event SPRITE_SCIENTIST, 6, 9, $2, $12, 255, 255, $90, 0, ScientistScript_0x59214, $ffff
-	person_event SPRITE_SCIENTIST, 9, 6, $7, $0, 255, 255, $90, 0, ScientistScript_0x591d1, $0704
+	person_event SPRITE_SCIENTIST, 9, 8, $7, $0, 255, 255, $90, 0, ScientistScript_0x591e5, EVENT_ALWAYS_THERE
+	person_event SPRITE_SCIENTIST, 6, 9, $2, $12, 255, 255, $90, 0, ScientistScript_0x59214, EVENT_ALWAYS_THERE
+	person_event SPRITE_SCIENTIST, 9, 6, $7, $0, 255, 255, $90, 0, ScientistScript_0x591d1, EVENT_704

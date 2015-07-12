@@ -222,6 +222,6 @@ Route33_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_POKEFAN_M, 17, 10, $a, $0, 255, 255, $b2, 2, TrainerHikerAnthony, $ffff
-	person_event SPRITE_LASS, 20, 17, $2, $11, 255, 255, $90, 0, LassScript_0x1ac002, $ffff
-	person_event SPRITE_FRUIT_TREE, 20, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac0ea, $ffff
+	person_event SPRITE_POKEFAN_M, 17, 10, $a, $0, 255, 255, $b2, 2, TrainerHikerAnthony, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 20, 17, $2, $11, 255, 255, $90, 0, LassScript_0x1ac002, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 20, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac0ea, EVENT_ALWAYS_THERE

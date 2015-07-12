@@ -23,7 +23,7 @@ SecurityCamera1a:
 	checkevent EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent $06da
+	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -48,7 +48,7 @@ SecurityCamera1b:
 	checkevent EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent $06da
+	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -73,7 +73,7 @@ SecurityCamera2a:
 	checkevent EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent $06da
+	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -99,7 +99,7 @@ SecurityCamera2b:
 	checkevent EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent $06da
+	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -125,7 +125,7 @@ SecurityCamera3a:
 	checkevent EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent $06da
+	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -151,7 +151,7 @@ SecurityCamera3b:
 	checkevent EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent $06da
+	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -177,7 +177,7 @@ SecurityCamera4:
 	checkevent EVENT_SECURITY_CAMERA_4
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent $06da
+	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -203,7 +203,7 @@ SecurityCamera5:
 	checkevent EVENT_SECURITY_CAMERA_5
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent $06da
+	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -819,9 +819,9 @@ TeamRocketBaseB1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_ROCKET, 4, 4, $6, $0, 255, 255, $0, 0, ObjectEvent, $06d9
-	person_event SPRITE_ROCKET, 8, 6, $9, $0, 255, 255, $2, 3, TrainerGruntM16, $06da
-	person_event SPRITE_SCIENTIST, 16, 22, $8, $0, 255, 255, $92, 3, TrainerScientistJed, $06da
-	person_event SPRITE_POKE_BALL, 10, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac4, $0669
-	person_event SPRITE_POKE_BALL, 19, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac6, $066a
-	person_event SPRITE_POKE_BALL, 16, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac8, $066b
+	person_event SPRITE_ROCKET, 4, 4, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6D9
+	person_event SPRITE_ROCKET, 8, 6, $9, $0, 255, 255, $2, 3, TrainerGruntM16, EVENT_6DA
+	person_event SPRITE_SCIENTIST, 16, 22, $8, $0, 255, 255, $92, 3, TrainerScientistJed, EVENT_6DA
+	person_event SPRITE_POKE_BALL, 10, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac4, EVENT_669
+	person_event SPRITE_POKE_BALL, 19, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac6, EVENT_66A
+	person_event SPRITE_POKE_BALL, 16, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac8, EVENT_66B

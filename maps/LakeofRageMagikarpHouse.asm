@@ -8,18 +8,18 @@ LakeofRageMagikarpHouse_MapScriptHeader:
 FishingGuruScript_0x19a6ae:
 	faceplayer
 	loadfont
-	checkevent $003a
+	checkevent EVENT_03A
 	iftrue UnknownScript_0x19a6fe
-	checkevent $0039
+	checkevent EVENT_039
 	iftrue UnknownScript_0x19a6e0
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19a6d7
-	checkevent $0038
+	checkevent EVENT_038
 	iftrue UnknownScript_0x19a6d1
 	writetext UnknownText_0x19a72e
 	closetext
 	loadmovesprites
-	setevent $0038
+	setevent EVENT_038
 	end
 
 UnknownScript_0x19a6d1:
@@ -32,7 +32,7 @@ UnknownScript_0x19a6d7:
 	writetext UnknownText_0x19a890
 	closetext
 	loadmovesprites
-	setevent $0039
+	setevent EVENT_039
 	end
 
 UnknownScript_0x19a6e0:
@@ -55,12 +55,12 @@ UnknownScript_0x19a6fe:
 	writetext UnknownText_0x19a9c3
 	closetext
 	loadmovesprites
-	clearevent $003a
+	clearevent EVENT_03A
 	end
 
 UnknownScript_0x19a711:
 	loadmovesprites
-	setevent $003a
+	setevent EVENT_03A
 	end
 
 UnknownScript_0x19a716:
@@ -221,4 +221,4 @@ LakeofRageMagikarpHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $0, 0, FishingGuruScript_0x19a6ae, $ffff
+	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $0, 0, FishingGuruScript_0x19a6ae, EVENT_ALWAYS_THERE

@@ -23,7 +23,7 @@ UnknownScript_0x18d023:
 	writetext UnknownText_0x18d2ea
 	keeptextopen
 UnknownScript_0x18d030:
-	setevent $0001
+	setevent EVENT_001
 	writetext UnknownText_0x18d3bc
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d215
@@ -35,7 +35,7 @@ UnknownScript_0x18d030:
 	end
 
 UnknownScript_0x18d049:
-	setevent $0002
+	setevent EVENT_002
 	writetext UnknownText_0x18d3d3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d234
@@ -45,7 +45,7 @@ UnknownScript_0x18d049:
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0cb
 UnknownScript_0x18d061:
-	setevent $0003
+	setevent EVENT_003
 	writetext UnknownText_0x18d3f3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d258
@@ -55,7 +55,7 @@ UnknownScript_0x18d061:
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0a9
 UnknownScript_0x18d079:
-	setevent $0004
+	setevent EVENT_004
 	writetext UnknownText_0x18d420
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d283
@@ -65,7 +65,7 @@ UnknownScript_0x18d079:
 	if_equal $2, UnknownScript_0x18d0cb
 	if_equal $3, UnknownScript_0x18d0a9
 UnknownScript_0x18d091:
-	setevent $0005
+	setevent EVENT_005
 	writetext UnknownText_0x18d44a
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d2a5
@@ -75,17 +75,17 @@ UnknownScript_0x18d091:
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0cb
 UnknownScript_0x18d0a9:
-	checkevent $0005
+	checkevent EVENT_005
 	iftrue UnknownScript_0x18d100
 	writetext UnknownText_0x18d82d
 	keeptextopen
-	checkevent $0004
+	checkevent EVENT_004
 	iftrue UnknownScript_0x18d091
-	checkevent $0003
+	checkevent EVENT_003
 	iftrue UnknownScript_0x18d079
-	checkevent $0002
+	checkevent EVENT_002
 	iftrue UnknownScript_0x18d061
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue UnknownScript_0x18d049
 UnknownScript_0x18d0cb:
 	loadmovesprites
@@ -101,15 +101,15 @@ UnknownScript_0x18d0cb:
 	loadmovesprites
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	loadfont
-	checkevent $0005
+	checkevent EVENT_005
 	iftrue UnknownScript_0x18d091
-	checkevent $0004
+	checkevent EVENT_004
 	iftrue UnknownScript_0x18d079
-	checkevent $0003
+	checkevent EVENT_003
 	iftrue UnknownScript_0x18d061
-	checkevent $0002
+	checkevent EVENT_002
 	iftrue UnknownScript_0x18d049
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue UnknownScript_0x18d030
 UnknownScript_0x18d100:
 	writetext UnknownText_0x18d47c
@@ -184,15 +184,15 @@ UnknownScript_0x18d100:
 	playsound SFX_ENTER_DOOR
 	disappear $5
 	waitbutton
-	setevent $0000
+	setevent EVENT_000
 	end
 
 ElderScript_0x18d1a5:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x18d1f9
-	checkevent $0006
+	checkevent EVENT_006
 	iftrue UnknownScript_0x18d1ff
 	checkevent EVENT_GOT_DRATINI
 	iffalse UnknownScript_0x18d1c5
@@ -215,7 +215,7 @@ UnknownScript_0x18d1c5:
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	special SpecialDratini
 	setevent EVENT_GOT_DRATINI
-	setevent $0006
+	setevent EVENT_006
 	writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites
@@ -681,7 +681,7 @@ DragonShrine_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_ELDER, 5, 9, $6, $0, 255, 255, $0, 0, ElderScript_0x18d1a5, $0000
-	person_event SPRITE_ELDER, 8, 6, $9, $0, 255, 255, $0, 0, ElderScript_0x18d205, $0000
-	person_event SPRITE_ELDER, 8, 11, $8, $0, 255, 255, $0, 0, ElderScript_0x18d20d, $0000
-	person_event SPRITE_CLAIR, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, $0790
+	person_event SPRITE_ELDER, 5, 9, $6, $0, 255, 255, $0, 0, ElderScript_0x18d1a5, EVENT_000
+	person_event SPRITE_ELDER, 8, 6, $9, $0, 255, 255, $0, 0, ElderScript_0x18d205, EVENT_000
+	person_event SPRITE_ELDER, 8, 11, $8, $0, 255, 255, $0, 0, ElderScript_0x18d20d, EVENT_000
+	person_event SPRITE_CLAIR, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, EVENT_790

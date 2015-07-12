@@ -109,4 +109,4 @@ Route27SandstormHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_GRANNY, 8, 6, $6, $0, 255, 255, $0, 0, SandstormHouseWoman, $ffff
+	person_event SPRITE_GRANNY, 8, 6, $6, $0, 255, 255, $0, 0, SandstormHouseWoman, EVENT_ALWAYS_THERE

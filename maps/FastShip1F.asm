@@ -28,8 +28,8 @@ UnknownScript_0x7513b:
 	playsound SFX_BOAT
 	earthquake 30
 	blackoutmod GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW
-	clearevent $0031
-	checkevent $0030
+	clearevent EVENT_031
+	checkevent EVENT_030
 	iftrue UnknownScript_0x7515d
 	dotrigger $2
 	end
@@ -41,7 +41,7 @@ UnknownScript_0x7515d:
 SailorScript_0x75160:
 	faceplayer
 	loadfont
-	checkevent $0031
+	checkevent EVENT_031
 	iftrue UnknownScript_0x7517a
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue .Olivine
@@ -66,7 +66,7 @@ UnknownScript_0x7517a:
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton
-	setevent $072b
+	setevent EVENT_72B
 	domaptrigger GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $1
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $7, $11
 	end
@@ -79,7 +79,7 @@ UnknownScript_0x7517a:
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton
-	setevent $072a
+	setevent EVENT_72A
 	domaptrigger GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $1
 	warp GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $7, $17
 	end
@@ -99,7 +99,7 @@ UnknownScript_0x751c7:
 SailorScript_0x751d0:
 	faceplayer
 	loadfont
-	checkevent $0030
+	checkevent EVENT_030
 	iftrue UnknownScript_0x751de
 	writetext UnknownText_0x752f9
 	closetext
@@ -310,7 +310,7 @@ FastShip1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_SAILOR, 6, 29, $6, $0, 255, 255, $0, 0, SailorScript_0x75160, $ffff
-	person_event SPRITE_SAILOR, 11, 18, $9, $0, 255, 255, $0, 0, SailorScript_0x751d0, $ffff
-	person_event SPRITE_SAILOR, 21, 26, $5, $2, 255, 255, $0, 0, SailorScript_0x751e4, $ffff
-	person_event SPRITE_GENTLEMAN, 10, 23, $9, $0, 255, 255, $0, 0, ObjectEvent, $072c
+	person_event SPRITE_SAILOR, 6, 29, $6, $0, 255, 255, $0, 0, SailorScript_0x75160, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAILOR, 11, 18, $9, $0, 255, 255, $0, 0, SailorScript_0x751d0, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAILOR, 21, 26, $5, $2, 255, 255, $0, 0, SailorScript_0x751e4, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 10, 23, $9, $0, 255, 255, $0, 0, ObjectEvent, EVENT_72C

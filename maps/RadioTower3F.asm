@@ -407,10 +407,10 @@ RadioTower3F_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_SUPER_NERD, 8, 11, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x5e553, $06d0
-	person_event SPRITE_GYM_GUY, 8, 7, $a, $0, 255, 255, $80, 0, GymGuyScript_0x5e556, $ffff
-	person_event SPRITE_COOLTRAINER_F, 7, 15, $2, $11, 255, 255, $a0, 0, CooltrainerFScript_0x5e56a, $ffff
-	person_event SPRITE_ROCKET, 5, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM7, $06ce
-	person_event SPRITE_ROCKET, 6, 10, $6, $0, 255, 255, $2, 3, TrainerGruntM8, $06ce
-	person_event SPRITE_ROCKET, 10, 20, $7, $0, 255, 255, $2, 3, TrainerGruntM9, $06ce
-	person_event SPRITE_SCIENTIST, 10, 13, $7, $0, 255, 255, $92, 5, TrainerScientistMarc, $06ce
+	person_event SPRITE_SUPER_NERD, 8, 11, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x5e553, EVENT_6D0
+	person_event SPRITE_GYM_GUY, 8, 7, $a, $0, 255, 255, $80, 0, GymGuyScript_0x5e556, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 7, 15, $2, $11, 255, 255, $a0, 0, CooltrainerFScript_0x5e56a, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCKET, 5, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM7, EVENT_6CE
+	person_event SPRITE_ROCKET, 6, 10, $6, $0, 255, 255, $2, 3, TrainerGruntM8, EVENT_6CE
+	person_event SPRITE_ROCKET, 10, 20, $7, $0, 255, 255, $2, 3, TrainerGruntM9, EVENT_6CE
+	person_event SPRITE_SCIENTIST, 10, 13, $7, $0, 255, 255, $92, 5, TrainerScientistMarc, EVENT_6CE

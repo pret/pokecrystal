@@ -231,15 +231,15 @@ NationalParkBugContest_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_YOUNGSTER, 33, 23, $2, $22, 255, 255, $80, 0, YoungsterScript_0x5c8ec, $0716
-	person_event SPRITE_YOUNGSTER, 26, 32, $2, $22, 255, 255, $a0, 0, YoungsterScript_0x5c8f4, $0717
-	person_event SPRITE_ROCKER, 22, 13, $7, $0, 255, 255, $90, 0, RockerScript_0x5c8fc, $0718
-	person_event SPRITE_POKEFAN_M, 17, 11, $4, $1, 255, 255, $b0, 0, PokefanMScript_0x5c904, $0719
-	person_event SPRITE_YOUNGSTER, 13, 27, $3, $0, 255, 255, $80, 0, YoungsterScript_0x5c90c, $071a
-	person_event SPRITE_YOUNGSTER, 17, 31, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x5c914, $071b
-	person_event SPRITE_LASS, 27, 11, $5, $2, 255, 255, $90, 0, LassScript_0x5c91c, $071c
-	person_event SPRITE_YOUNGSTER, 31, 15, $2, $11, 255, 255, $80, 0, YoungsterScript_0x5c924, $071d
-	person_event SPRITE_YOUNGSTER, 12, 20, $2, $11, 255, 255, $a0, 0, YoungsterScript_0x5c92c, $071e
-	person_event SPRITE_YOUNGSTER, 38, 21, $2, $33, 255, 255, $90, 0, YoungsterScript_0x5c934, $071f
-	person_event SPRITE_POKE_BALL, 16, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c945, $0658
-	person_event SPRITE_POKE_BALL, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c947, $0659
+	person_event SPRITE_YOUNGSTER, 33, 23, $2, $22, 255, 255, $80, 0, YoungsterScript_0x5c8ec, EVENT_716
+	person_event SPRITE_YOUNGSTER, 26, 32, $2, $22, 255, 255, $a0, 0, YoungsterScript_0x5c8f4, EVENT_717
+	person_event SPRITE_ROCKER, 22, 13, $7, $0, 255, 255, $90, 0, RockerScript_0x5c8fc, EVENT_718
+	person_event SPRITE_POKEFAN_M, 17, 11, $4, $1, 255, 255, $b0, 0, PokefanMScript_0x5c904, EVENT_719
+	person_event SPRITE_YOUNGSTER, 13, 27, $3, $0, 255, 255, $80, 0, YoungsterScript_0x5c90c, EVENT_71A
+	person_event SPRITE_YOUNGSTER, 17, 31, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x5c914, EVENT_71B
+	person_event SPRITE_LASS, 27, 11, $5, $2, 255, 255, $90, 0, LassScript_0x5c91c, EVENT_71C
+	person_event SPRITE_YOUNGSTER, 31, 15, $2, $11, 255, 255, $80, 0, YoungsterScript_0x5c924, EVENT_71D
+	person_event SPRITE_YOUNGSTER, 12, 20, $2, $11, 255, 255, $a0, 0, YoungsterScript_0x5c92c, EVENT_71E
+	person_event SPRITE_YOUNGSTER, 38, 21, $2, $33, 255, 255, $90, 0, YoungsterScript_0x5c934, EVENT_71F
+	person_event SPRITE_POKE_BALL, 16, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c945, EVENT_658
+	person_event SPRITE_POKE_BALL, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c947, EVENT_659

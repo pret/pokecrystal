@@ -626,14 +626,14 @@ Route44_MapEventHeader:
 
 	; people-events
 	db 11
-	person_event SPRITE_FISHER, 7, 39, $6, $0, 255, 255, $a2, 1, TrainerFisherWilton1, $ffff
-	person_event SPRITE_FISHER, 17, 23, $9, $0, 255, 255, $a2, 1, TrainerFisherEdgar, $ffff
-	person_event SPRITE_YOUNGSTER, 13, 14, $1f, $0, 255, 255, $92, 3, TrainerPsychicPhil, $ffff
-	person_event SPRITE_SUPER_NERD, 6, 47, $1f, $0, 255, 255, $a2, 3, TrainerPokemaniacZach, $ffff
-	person_event SPRITE_YOUNGSTER, 9, 55, $6, $0, 255, 255, $a2, 2, TrainerBird_keeperVance1, $ffff
-	person_event SPRITE_COOLTRAINER_M, 19, 45, $8, $0, 255, 255, $82, 5, TrainerCooltrainermAllen, $ffff
-	person_event SPRITE_COOLTRAINER_F, 18, 35, $8, $0, 255, 255, $82, 5, TrainerCooltrainerfCybil, $ffff
-	person_event SPRITE_FRUIT_TREE, 9, 13, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19da40, $ffff
-	person_event SPRITE_POKE_BALL, 12, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da42, $06b6
-	person_event SPRITE_POKE_BALL, 8, 49, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da44, $06b7
-	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da46, $07bd
+	person_event SPRITE_FISHER, 7, 39, $6, $0, 255, 255, $a2, 1, TrainerFisherWilton1, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 17, 23, $9, $0, 255, 255, $a2, 1, TrainerFisherEdgar, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 13, 14, $1f, $0, 255, 255, $92, 3, TrainerPsychicPhil, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 6, 47, $1f, $0, 255, 255, $a2, 3, TrainerPokemaniacZach, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 9, 55, $6, $0, 255, 255, $a2, 2, TrainerBird_keeperVance1, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 19, 45, $8, $0, 255, 255, $82, 5, TrainerCooltrainermAllen, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 18, 35, $8, $0, 255, 255, $82, 5, TrainerCooltrainerfCybil, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 9, 13, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19da40, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 12, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da42, EVENT_6B6
+	person_event SPRITE_POKE_BALL, 8, 49, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da44, EVENT_6B7
+	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da46, EVENT_7BD

@@ -212,5 +212,5 @@ OlivineGym_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_JASMINE, 7, 9, $6, $0, 255, 255, $80, 0, JasmineScript_0x9c12f, $06d3
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, OlivineGymGuyScript, $ffff
+	person_event SPRITE_JASMINE, 7, 9, $6, $0, 255, 255, $80, 0, JasmineScript_0x9c12f, EVENT_6D3
+	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, OlivineGymGuyScript, EVENT_ALWAYS_THERE

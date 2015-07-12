@@ -44,11 +44,11 @@ DarkCaveVioletEntrance_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_POKE_BALL, 12, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c68e, $069e
-	person_event SPRITE_ROCK, 18, 20, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, $ffff
-	person_event SPRITE_ROCK, 10, 31, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, $ffff
-	person_event SPRITE_ROCK, 18, 11, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, $ffff
-	person_event SPRITE_ROCK, 35, 40, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, $ffff
-	person_event SPRITE_POKE_BALL, 26, 40, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c690, $069f
-	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c692, $06a0
-	person_event SPRITE_POKE_BALL, 32, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c694, $07ce
+	person_event SPRITE_POKE_BALL, 12, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c68e, EVENT_69E
+	person_event SPRITE_ROCK, 18, 20, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCK, 10, 31, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCK, 18, 11, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCK, 35, 40, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 26, 40, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c690, EVENT_69F
+	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c692, EVENT_6A0
+	person_event SPRITE_POKE_BALL, 32, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c694, EVENT_7CE

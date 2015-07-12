@@ -16,7 +16,7 @@ UnknownScript_0x7673b:
 	end
 
 UnknownScript_0x7673c:
-	checkevent $072f
+	checkevent EVENT_72F
 	iftrue UnknownScript_0x76766
 	applymovement $3, MovementData_0x76876
 	moveperson $2, $1e, $6
@@ -26,7 +26,7 @@ UnknownScript_0x7673c:
 	end
 
 UnknownScript_0x76751:
-	checkevent $072e
+	checkevent EVENT_72E
 	iftrue UnknownScript_0x76766
 	applymovement $2, MovementData_0x76871
 	moveperson $3, $1f, $6
@@ -41,17 +41,17 @@ UnknownScript_0x76766:
 SailorScript_0x76767:
 	faceplayer
 	loadfont
-	checkevent $0030
+	checkevent EVENT_030
 	iftrue UnknownScript_0x767a0
-	checkevent $0033
+	checkevent EVENT_033
 	iftrue UnknownScript_0x7678d
-	checkevent $0034
+	checkevent EVENT_034
 	iftrue UnknownScript_0x76787
 	writetext UnknownText_0x7687b
 	closetext
 	loadmovesprites
-	setevent $0034
-	clearevent $072d
+	setevent EVENT_034
+	clearevent EVENT_72D
 	end
 
 UnknownScript_0x76787:
@@ -62,7 +62,7 @@ UnknownScript_0x76787:
 
 UnknownScript_0x7678d:
 	writetext UnknownText_0x7692e
-	checkevent $0032
+	checkevent EVENT_032
 	iffalse UnknownScript_0x76799
 	closetext
 	loadmovesprites
@@ -616,15 +616,15 @@ FastShipB1F_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_SAILOR, 10, 34, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, $072e
-	person_event SPRITE_SAILOR, 10, 35, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, $072f
-	person_event SPRITE_SAILOR, 15, 13, $7, $0, 255, 255, $92, 3, TrainerSailorJeff, $0739
-	person_event SPRITE_LASS, 8, 10, $7, $0, 255, 255, $a2, 1, TrainerPicnickerDebra, $0739
-	person_event SPRITE_SUPER_NERD, 13, 30, $9, $0, 255, 255, $92, 1, TrainerJugglerFritz, $0739
-	person_event SPRITE_SAILOR, 8, 21, $9, $0, 255, 255, $92, 4, TrainerSailorGarrett, $073a
-	person_event SPRITE_FISHER, 12, 29, $7, $0, 255, 255, $a2, 3, TrainerFisherJonah, $073a
-	person_event SPRITE_BLACK_BELT, 15, 19, $1f, $0, 255, 255, $b2, 3, TrainerBlackbeltWai, $073a
-	person_event SPRITE_SAILOR, 8, 27, $9, $0, 255, 255, $92, 4, TrainerSailorKenneth, $073b
-	person_event SPRITE_TEACHER, 15, 13, $7, $0, 255, 255, $82, 3, TrainerTeacherShirley, $073b
-	person_event SPRITE_YOUNGSTER, 13, 18, $3, $0, 255, 255, $92, 1, TrainerSchoolboyNate, $073b
-	person_event SPRITE_YOUNGSTER, 15, 18, $a, $0, 255, 255, $92, 1, TrainerSchoolboyRicky, $073b
+	person_event SPRITE_SAILOR, 10, 34, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, EVENT_72E
+	person_event SPRITE_SAILOR, 10, 35, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, EVENT_72F
+	person_event SPRITE_SAILOR, 15, 13, $7, $0, 255, 255, $92, 3, TrainerSailorJeff, EVENT_739
+	person_event SPRITE_LASS, 8, 10, $7, $0, 255, 255, $a2, 1, TrainerPicnickerDebra, EVENT_739
+	person_event SPRITE_SUPER_NERD, 13, 30, $9, $0, 255, 255, $92, 1, TrainerJugglerFritz, EVENT_739
+	person_event SPRITE_SAILOR, 8, 21, $9, $0, 255, 255, $92, 4, TrainerSailorGarrett, EVENT_73A
+	person_event SPRITE_FISHER, 12, 29, $7, $0, 255, 255, $a2, 3, TrainerFisherJonah, EVENT_73A
+	person_event SPRITE_BLACK_BELT, 15, 19, $1f, $0, 255, 255, $b2, 3, TrainerBlackbeltWai, EVENT_73A
+	person_event SPRITE_SAILOR, 8, 27, $9, $0, 255, 255, $92, 4, TrainerSailorKenneth, EVENT_73B
+	person_event SPRITE_TEACHER, 15, 13, $7, $0, 255, 255, $82, 3, TrainerTeacherShirley, EVENT_73B
+	person_event SPRITE_YOUNGSTER, 13, 18, $3, $0, 255, 255, $92, 1, TrainerSchoolboyNate, EVENT_73B
+	person_event SPRITE_YOUNGSTER, 15, 18, $a, $0, 255, 255, $92, 1, TrainerSchoolboyRicky, EVENT_73B

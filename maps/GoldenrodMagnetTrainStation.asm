@@ -182,5 +182,5 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_OFFICER, 13, 13, $6, $0, 255, 255, $0, 0, OfficerScript_0x550ec, $ffff
-	person_event SPRITE_GENTLEMAN, 18, 15, $2, $22, 255, 255, $0, 0, GentlemanScript_0x55143, $0749
+	person_event SPRITE_OFFICER, 13, 13, $6, $0, 255, 255, $0, 0, OfficerScript_0x550ec, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 18, 15, $2, $22, 255, 255, $0, 0, GentlemanScript_0x55143, EVENT_749

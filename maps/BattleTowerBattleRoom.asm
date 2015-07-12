@@ -155,5 +155,5 @@ BattleTowerBattleRoom_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_YOUNGSTER, 4, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $0791
-	person_event SPRITE_RECEPTIONIST, 10, 5, $9, $0, 255, 255, $0, 0, ObjectEvent, $ffff
+	person_event SPRITE_YOUNGSTER, 4, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_791
+	person_event SPRITE_RECEPTIONIST, 10, 5, $9, $0, 255, 255, $0, 0, ObjectEvent, EVENT_ALWAYS_THERE

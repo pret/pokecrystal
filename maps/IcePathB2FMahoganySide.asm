@@ -46,9 +46,9 @@ IcePathB2FMahoganySide_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_BOULDER, 7, 15, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $070d
-	person_event SPRITE_BOULDER, 11, 8, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $070e
-	person_event SPRITE_BOULDER, 16, 7, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $070f
-	person_event SPRITE_BOULDER, 17, 16, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $0710
-	person_event SPRITE_POKE_BALL, 13, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a6, $068b
-	person_event SPRITE_POKE_BALL, 6, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a8, $068c
+	person_event SPRITE_BOULDER, 7, 15, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_1
+	person_event SPRITE_BOULDER, 11, 8, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_2
+	person_event SPRITE_BOULDER, 16, 7, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_3
+	person_event SPRITE_BOULDER, 17, 16, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_4
+	person_event SPRITE_POKE_BALL, 13, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a6, EVENT_68B
+	person_event SPRITE_POKE_BALL, 6, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a8, EVENT_68C

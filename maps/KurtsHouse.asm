@@ -33,7 +33,7 @@ UnknownScript_0x18e177:
 KurtScript_0x18e178:
 	faceplayer
 	loadfont
-	checkevent $0035
+	checkevent EVENT_035
 	iftrue UnknownScript_0x18e1cc
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18e1bf
@@ -41,7 +41,7 @@ KurtScript_0x18e178:
 	closetext
 	loadmovesprites
 	special Functionc48f
-	setevent $06fa
+	setevent EVENT_6FA
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x18e1ab
 	spriteface $0, DOWN
@@ -68,30 +68,30 @@ UnknownScript_0x18e1bf:
 	keeptextopen
 	verbosegiveitem LURE_BALL, 1
 	iffalse UnknownScript_0x18e2b2
-	setevent $0035
+	setevent EVENT_035
 UnknownScript_0x18e1cc:
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x18e29f
-	checkevent $0258
+	checkevent EVENT_258
 	iftrue UnknownScript_0x18e2b4
-	checkevent $0259
+	checkevent EVENT_259
 	iftrue UnknownScript_0x18e2ca
-	checkevent $025a
+	checkevent EVENT_25A
 	iftrue UnknownScript_0x18e2e0
-	checkevent $025b
+	checkevent EVENT_25B
 	iftrue UnknownScript_0x18e2f6
-	checkevent $025c
+	checkevent EVENT_25C
 	iftrue UnknownScript_0x18e30c
-	checkevent $025d
+	checkevent EVENT_25D
 	iftrue UnknownScript_0x18e322
-	checkevent $025e
+	checkevent EVENT_25E
 	iftrue UnknownScript_0x18e338
 	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e34e
 UnknownScript_0x18e202:
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue UnknownScript_0x18e212
-	checkevent $0002
+	checkevent EVENT_002
 	iftrue UnknownScript_0x18e212
 	writetext UnknownText_0x18e6c9
 	closetext
@@ -110,9 +110,9 @@ UnknownScript_0x18e212:
 	iftrue UnknownScript_0x18e249
 	checkitem PNK_APRICORN
 	iftrue UnknownScript_0x18e249
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue UnknownScript_0x18e2ae
-	checkevent $0002
+	checkevent EVENT_002
 	iftrue UnknownScript_0x18e243
 	loadmovesprites
 	end
@@ -126,7 +126,7 @@ UnknownScript_0x18e243:
 UnknownScript_0x18e249:
 	writetext UnknownText_0x18e736
 	keeptextopen
-	setevent $0002
+	setevent EVENT_002
 	special Function88018
 	if_equal $0, UnknownScript_0x18e2a5
 	if_equal $59, UnknownScript_0x18e275
@@ -135,35 +135,35 @@ UnknownScript_0x18e249:
 	if_equal $61, UnknownScript_0x18e287
 	if_equal $63, UnknownScript_0x18e28d
 	if_equal $65, UnknownScript_0x18e293
-	setevent $0258
+	setevent EVENT_258
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e275:
-	setevent $0259
+	setevent EVENT_259
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e27b:
-	setevent $025a
+	setevent EVENT_25A
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e281:
-	setevent $025b
+	setevent EVENT_25B
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e287:
-	setevent $025c
+	setevent EVENT_25C
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e28d:
-	setevent $025d
+	setevent EVENT_25D
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e293:
-	setevent $025e
+	setevent EVENT_25E
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e299:
-	setevent $0000
+	setevent EVENT_000
 	setflag ENGINE_KURT_MAKING_BALLS
 UnknownScript_0x18e29f:
 	writetext UnknownText_0x18e779
@@ -178,7 +178,7 @@ UnknownScript_0x18e2a5:
 	end
 
 UnknownScript_0x18e2ab:
-	setevent $0001
+	setevent EVENT_001
 UnknownScript_0x18e2ae:
 	writetext UnknownText_0x18e82a
 	closetext
@@ -194,7 +194,7 @@ UnknownScript_0x18e2b4:
 	verbosegiveitem2 LEVEL_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2c4:
-	clearevent $0258
+	clearevent EVENT_258
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e2ca:
@@ -205,7 +205,7 @@ UnknownScript_0x18e2ca:
 	verbosegiveitem2 LURE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2da:
-	clearevent $0259
+	clearevent EVENT_259
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e2e0:
@@ -216,7 +216,7 @@ UnknownScript_0x18e2e0:
 	verbosegiveitem2 MOON_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2f0:
-	clearevent $025a
+	clearevent EVENT_25A
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e2f6:
@@ -227,7 +227,7 @@ UnknownScript_0x18e2f6:
 	verbosegiveitem2 FRIEND_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e306:
-	clearevent $025b
+	clearevent EVENT_25B
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e30c:
@@ -238,7 +238,7 @@ UnknownScript_0x18e30c:
 	verbosegiveitem2 FAST_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e31c:
-	clearevent $025c
+	clearevent EVENT_25C
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e322:
@@ -249,7 +249,7 @@ UnknownScript_0x18e322:
 	verbosegiveitem2 HEAVY_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e332:
-	clearevent $025d
+	clearevent EVENT_25D
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e338:
@@ -260,7 +260,7 @@ UnknownScript_0x18e338:
 	verbosegiveitem2 LOVE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e348:
-	clearevent $025e
+	clearevent EVENT_25E
 	jump UnknownScript_0x18e2ab
 
 UnknownScript_0x18e34e:
@@ -310,7 +310,7 @@ UnknownScript_0x18e3a2:
 UnknownScript_0x18e3ac:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	clearevent $07a4
+	clearevent EVENT_7A4
 	waitbutton
 	special RestartMapMusic
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $2
@@ -349,17 +349,17 @@ UnknownScript_0x18e3e0:
 
 KurtsGranddaughter1:
 	faceplayer
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue KurtsGranddaughter2Subscript
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue KurtsGranddaughterFunScript
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Lonely
-	checkevent $0030
+	checkevent EVENT_030
 	iftrue .Dad
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue .SlowpokeBack
-	checkevent $06fa
+	checkevent EVENT_6FA
 	iftrue .Lonely
 	loadfont
 	writetext KurtsGranddaughterSlowpokeGoneText
@@ -702,8 +702,8 @@ KurtsHouse_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_KURT, 6, 7, $6, $0, 255, 255, $0, 0, KurtScript_0x18e178, $073e
-	person_event SPRITE_TWIN, 7, 9, $3, $0, 255, 255, $0, 0, KurtsGranddaughter1, $078c
-	person_event SPRITE_SLOWPOKE, 7, 10, $1, $0, 255, 255, $0, 0, KurtsHouseSlowpoke, $06fd
-	person_event SPRITE_KURT, 7, 18, $7, $0, 255, 255, $0, 0, KurtScript_0x18e3bd, $073f
-	person_event SPRITE_TWIN, 8, 15, $9, $0, 255, 255, $0, 0, KurtsGranddaughter2, $078d
+	person_event SPRITE_KURT, 6, 7, $6, $0, 255, 255, $0, 0, KurtScript_0x18e178, EVENT_73E
+	person_event SPRITE_TWIN, 7, 9, $3, $0, 255, 255, $0, 0, KurtsGranddaughter1, EVENT_78C
+	person_event SPRITE_SLOWPOKE, 7, 10, $1, $0, 255, 255, $0, 0, KurtsHouseSlowpoke, EVENT_6FD
+	person_event SPRITE_KURT, 7, 18, $7, $0, 255, 255, $0, 0, KurtScript_0x18e3bd, EVENT_73F
+	person_event SPRITE_TWIN, 8, 15, $9, $0, 255, 255, $0, 0, KurtsGranddaughter2, EVENT_78D

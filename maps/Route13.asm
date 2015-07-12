@@ -285,8 +285,8 @@ Route13_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_YOUNGSTER, 10, 46, $6, $0, 255, 255, $92, 2, TrainerBird_keeperPerry, $ffff
-	person_event SPRITE_YOUNGSTER, 10, 47, $6, $0, 255, 255, $92, 2, TrainerBird_keeperBret, $ffff
-	person_event SPRITE_POKEFAN_M, 12, 36, $8, $0, 255, 255, $82, 3, TrainerPokefanmJoshua, $ffff
-	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $82, 4, TrainerHikerKenny, $ffff
-	person_event SPRITE_POKEFAN_M, 10, 29, $9, $0, 255, 255, $82, 4, TrainerPokefanmAlex, $ffff
+	person_event SPRITE_YOUNGSTER, 10, 46, $6, $0, 255, 255, $92, 2, TrainerBird_keeperPerry, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 10, 47, $6, $0, 255, 255, $92, 2, TrainerBird_keeperBret, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 12, 36, $8, $0, 255, 255, $82, 3, TrainerPokefanmJoshua, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $82, 4, TrainerHikerKenny, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 10, 29, $9, $0, 255, 255, $82, 4, TrainerPokefanmAlex, EVENT_ALWAYS_THERE

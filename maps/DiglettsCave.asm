@@ -43,4 +43,4 @@ DiglettsCave_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKEFAN_M, 35, 7, $6, $0, 255, 255, $0, 0, PokefanMScript_0x74002, $ffff
+	person_event SPRITE_POKEFAN_M, 35, 7, $6, $0, 255, 255, $0, 0, PokefanMScript_0x74002, EVENT_ALWAYS_THERE

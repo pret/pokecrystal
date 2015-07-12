@@ -97,7 +97,7 @@ OfficerScript_0x6a204:
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, UnknownScript_0x6a271
 	special Function13a12
-	clearevent $0308
+	clearevent EVENT_308
 UnknownScript_0x6a234:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
@@ -142,7 +142,7 @@ UnknownScript_0x6a27d: ; 6a27d
 	iffalse UnknownScript_0x6a2a9
 	special Function13a12
 	iftrue UnknownScript_0x6a2af
-	setevent $0308
+	setevent EVENT_308
 	writetext UnknownText_0x6a537
 	keeptextopen
 	writetext UnknownText_0x6a56b
@@ -458,6 +458,6 @@ Route35NationalParkgate_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_OFFICER, 5, 6, $6, $0, 255, 255, $a0, 0, OfficerScript_0x6a204, $0745
-	person_event SPRITE_YOUNGSTER, 9, 10, $2, $11, 255, 255, $80, 0, YoungsterScript_0x6a2d8, $0734
-	person_event SPRITE_OFFICER, 7, 4, $9, $0, 255, 255, $a0, 0, OfficerScript_0x6a2ca, $0746
+	person_event SPRITE_OFFICER, 5, 6, $6, $0, 255, 255, $a0, 0, OfficerScript_0x6a204, EVENT_745
+	person_event SPRITE_YOUNGSTER, 9, 10, $2, $11, 255, 255, $80, 0, YoungsterScript_0x6a2d8, EVENT_734
+	person_event SPRITE_OFFICER, 7, 4, $9, $0, 255, 255, $a0, 0, OfficerScript_0x6a2ca, EVENT_746

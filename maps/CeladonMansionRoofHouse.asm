@@ -130,4 +130,4 @@ CeladonMansionRoofHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_PHARMACIST, 6, 7, $6, $20, 255, 255, $a0, 0, PharmacistScript_0x71afd, $ffff
+	person_event SPRITE_PHARMACIST, 6, 7, $6, $20, 255, 255, $a0, 0, PharmacistScript_0x71afd, EVENT_ALWAYS_THERE

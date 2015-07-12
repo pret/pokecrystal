@@ -51,5 +51,5 @@ Route2946Gate_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x7b5bb, $ffff
-	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x7b5be, $ffff
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x7b5bb, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x7b5be, EVENT_ALWAYS_THERE

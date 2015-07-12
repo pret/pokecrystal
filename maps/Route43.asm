@@ -350,7 +350,7 @@ UnknownScript_0x19d21e:
 	verbosegiveitem PINK_BOW, 1
 	iffalse UnknownScript_0x19d230
 	clearflag ENGINE_TIFFANY_HAS_PINK_BOW
-	setevent $0104
+	setevent EVENT_104
 	jump UnknownScript_0x19d245
 
 UnknownScript_0x19d230:
@@ -612,11 +612,11 @@ Route43_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_SUPER_NERD, 9, 17, $8, $0, 255, 255, $92, 2, TrainerPokemaniacBen, $ffff
-	person_event SPRITE_SUPER_NERD, 24, 17, $a, $0, 255, 255, $92, 3, TrainerPokemaniacBrent1, $ffff
-	person_event SPRITE_SUPER_NERD, 11, 18, $6, $0, 255, 255, $92, 2, TrainerPokemaniacRon, $ffff
-	person_event SPRITE_FISHER, 20, 8, $9, $0, 255, 255, $a2, 4, TrainerFisherMarvin, $ffff
-	person_event SPRITE_LASS, 29, 13, $6, $0, 255, 255, $a2, 2, TrainerPicnickerTiffany3, $ffff
-	person_event SPRITE_YOUNGSTER, 44, 17, $a, $0, 255, 255, $a2, 3, TrainerCamperSpencer, $ffff
-	person_event SPRITE_FRUIT_TREE, 30, 5, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19d266, $ffff
-	person_event SPRITE_POKE_BALL, 36, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x19d268, $06b5
+	person_event SPRITE_SUPER_NERD, 9, 17, $8, $0, 255, 255, $92, 2, TrainerPokemaniacBen, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 24, 17, $a, $0, 255, 255, $92, 3, TrainerPokemaniacBrent1, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 11, 18, $6, $0, 255, 255, $92, 2, TrainerPokemaniacRon, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 20, 8, $9, $0, 255, 255, $a2, 4, TrainerFisherMarvin, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 29, 13, $6, $0, 255, 255, $a2, 2, TrainerPicnickerTiffany3, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 44, 17, $a, $0, 255, 255, $a2, 3, TrainerCamperSpencer, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 30, 5, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19d266, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 36, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x19d268, EVENT_6B5

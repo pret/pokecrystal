@@ -35,8 +35,8 @@ UnknownScript_0x181454:
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER
 	clearevent EVENT_RED_IN_MT_SILVER
-	setevent $0737
-	clearevent $0738
+	setevent EVENT_737
+	clearevent EVENT_738
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
@@ -126,4 +126,4 @@ HallOfFame_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_LANCE, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $ffff
+	person_event SPRITE_LANCE, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_ALWAYS_THERE

@@ -73,5 +73,5 @@ TimeCapsule_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x19351a, $0000
-	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x19351a, $0001
+	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x19351a, EVENT_000
+	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x19351a, EVENT_001

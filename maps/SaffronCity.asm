@@ -295,11 +295,11 @@ SaffronCity_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_LASS, 18, 11, $5, $2, 255, 255, $80, 0, LassScript_0x19932a, $ffff
-	person_event SPRITE_POKEFAN_M, 34, 23, $5, $2, 255, 255, $b0, 0, PokefanMScript_0x19933e, $ffff
-	person_event SPRITE_COOLTRAINER_M, 11, 36, $5, $1, 255, 255, $a0, 0, CooltrainerMScript_0x199352, $ffff
-	person_event SPRITE_COOLTRAINER_F, 28, 24, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x199355, $ffff
-	person_event SPRITE_FISHER, 16, 31, $6, $0, 255, 255, $a0, 0, FisherScript_0x199358, $ffff
-	person_event SPRITE_YOUNGSTER, 23, 19, $4, $10, 255, 255, $90, 0, YoungsterScript_0x19936c, $ffff
-	person_event SPRITE_YOUNGSTER, 26, 39, $2, $11, 255, 255, $80, 0, YoungsterScript_0x19936f, $ffff
-	person_event SPRITE_LASS, 12, 23, $3, $0, 255, 255, $a0, 0, LassScript_0x199372, $ffff
+	person_event SPRITE_LASS, 18, 11, $5, $2, 255, 255, $80, 0, LassScript_0x19932a, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 34, 23, $5, $2, 255, 255, $b0, 0, PokefanMScript_0x19933e, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 11, 36, $5, $1, 255, 255, $a0, 0, CooltrainerMScript_0x199352, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 28, 24, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x199355, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 16, 31, $6, $0, 255, 255, $a0, 0, FisherScript_0x199358, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 23, 19, $4, $10, 255, 255, $90, 0, YoungsterScript_0x19936c, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 26, 39, $2, $11, 255, 255, $80, 0, YoungsterScript_0x19936f, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 12, 23, $3, $0, 255, 255, $a0, 0, LassScript_0x199372, EVENT_ALWAYS_THERE

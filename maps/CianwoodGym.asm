@@ -377,12 +377,12 @@ CianwoodGym_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_CHUCK, 5, 8, $6, $0, 255, 255, $b0, 0, ChuckScript_0x9d60f, $ffff
-	person_event SPRITE_BLACK_BELT, 16, 6, $9, $0, 255, 255, $b2, 3, TrainerBlackbeltYoshi, $ffff
-	person_event SPRITE_BLACK_BELT, 16, 11, $8, $0, 255, 255, $b2, 3, TrainerBlackbeltLao, $ffff
-	person_event SPRITE_BLACK_BELT, 13, 7, $9, $0, 255, 255, $b2, 2, TrainerBlackbeltNob, $ffff
-	person_event SPRITE_BLACK_BELT, 9, 9, $8, $0, 255, 255, $b2, 1, TrainerBlackbeltLung, $ffff
-	person_event SPRITE_BOULDER, 5, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, $ffff
-	person_event SPRITE_BOULDER, 11, 7, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, $ffff
-	person_event SPRITE_BOULDER, 11, 8, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, $ffff
-	person_event SPRITE_BOULDER, 11, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, $ffff
+	person_event SPRITE_CHUCK, 5, 8, $6, $0, 255, 255, $b0, 0, ChuckScript_0x9d60f, EVENT_ALWAYS_THERE
+	person_event SPRITE_BLACK_BELT, 16, 6, $9, $0, 255, 255, $b2, 3, TrainerBlackbeltYoshi, EVENT_ALWAYS_THERE
+	person_event SPRITE_BLACK_BELT, 16, 11, $8, $0, 255, 255, $b2, 3, TrainerBlackbeltLao, EVENT_ALWAYS_THERE
+	person_event SPRITE_BLACK_BELT, 13, 7, $9, $0, 255, 255, $b2, 2, TrainerBlackbeltNob, EVENT_ALWAYS_THERE
+	person_event SPRITE_BLACK_BELT, 9, 9, $8, $0, 255, 255, $b2, 1, TrainerBlackbeltLung, EVENT_ALWAYS_THERE
+	person_event SPRITE_BOULDER, 5, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_BOULDER, 11, 7, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_BOULDER, 11, 8, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_BOULDER, 11, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, EVENT_ALWAYS_THERE

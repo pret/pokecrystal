@@ -51,7 +51,7 @@ UnknownScript_0x744d4:
 	writetext UnknownText_0x7455f
 	closetext
 	loadmovesprites
-	setevent $06c2
+	setevent EVENT_6C2
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x744ff
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -265,9 +265,9 @@ VictoryRoad_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_SILVER, 17, 22, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c2
-	person_event SPRITE_POKE_BALL, 32, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x74529, $06a3
-	person_event SPRITE_POKE_BALL, 52, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452b, $06a4
-	person_event SPRITE_POKE_BALL, 33, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452d, $06a5
-	person_event SPRITE_POKE_BALL, 52, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452f, $06a6
-	person_event SPRITE_POKE_BALL, 42, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x74531, $06a7
+	person_event SPRITE_SILVER, 17, 22, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C2
+	person_event SPRITE_POKE_BALL, 32, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x74529, EVENT_6A3
+	person_event SPRITE_POKE_BALL, 52, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452b, EVENT_6A4
+	person_event SPRITE_POKE_BALL, 33, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452d, EVENT_6A5
+	person_event SPRITE_POKE_BALL, 52, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452f, EVENT_6A6
+	person_event SPRITE_POKE_BALL, 42, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x74531, EVENT_6A7

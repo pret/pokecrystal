@@ -39,4 +39,4 @@ TinTower5F_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 13, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x185aa9, $064f
+	person_event SPRITE_POKE_BALL, 13, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x185aa9, EVENT_64F

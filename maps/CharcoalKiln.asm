@@ -163,6 +163,6 @@ CharcoalKiln_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_BLACK_BELT, 7, 6, $3, $0, 255, 255, $0, 0, CharcoalKilnBoss, $06f7
-	person_event SPRITE_YOUNGSTER, 7, 9, $2, $11, 255, 255, $0, 0, CharcoalKilnApprentice, $06f6
-	person_event SPRITE_MOLTRES, 10, 9, $16, $22, 255, 255, $b0, 0, CharcoalKilnFarfetchd, $06f5
+	person_event SPRITE_BLACK_BELT, 7, 6, $3, $0, 255, 255, $0, 0, CharcoalKilnBoss, EVENT_6F7
+	person_event SPRITE_YOUNGSTER, 7, 9, $2, $11, 255, 255, $0, 0, CharcoalKilnApprentice, EVENT_6F6
+	person_event SPRITE_MOLTRES, 10, 9, $16, $22, 255, 255, $b0, 0, CharcoalKilnFarfetchd, EVENT_6F5

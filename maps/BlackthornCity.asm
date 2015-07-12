@@ -333,12 +333,12 @@ BlackthornCity_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_SUPER_NERD, 16, 22, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, $06e3
-	person_event SPRITE_SUPER_NERD, 16, 23, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, $06e4
-	person_event SPRITE_GRAMPS, 6, 24, $6, $0, 255, 255, $0, 0, GrampsScript_0x1a4708, $074c
-	person_event SPRITE_GRAMPS, 6, 25, $8, $0, 255, 255, $0, 0, GrampsScript_0x1a470b, $074d
-	person_event SPRITE_BLACK_BELT, 35, 28, $5, $1, 255, 255, $90, 0, BlackBeltScript_0x1a470e, $ffff
-	person_event SPRITE_COOLTRAINER_F, 29, 13, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1a4722, $ffff
-	person_event SPRITE_YOUNGSTER, 19, 17, $5, $1, 255, 255, $0, 0, YoungsterScript_0x1a4725, $ffff
-	person_event SPRITE_YOUNGSTER, 24, 26, $6, $0, 255, 255, $0, 0, SantosScript, $075d
-	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1a4728, $ffff
+	person_event SPRITE_SUPER_NERD, 16, 22, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, EVENT_6E3
+	person_event SPRITE_SUPER_NERD, 16, 23, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, EVENT_6E4
+	person_event SPRITE_GRAMPS, 6, 24, $6, $0, 255, 255, $0, 0, GrampsScript_0x1a4708, EVENT_74C
+	person_event SPRITE_GRAMPS, 6, 25, $8, $0, 255, 255, $0, 0, GrampsScript_0x1a470b, EVENT_74D
+	person_event SPRITE_BLACK_BELT, 35, 28, $5, $1, 255, 255, $90, 0, BlackBeltScript_0x1a470e, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 29, 13, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1a4722, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 19, 17, $5, $1, 255, 255, $0, 0, YoungsterScript_0x1a4725, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 24, 26, $6, $0, 255, 255, $0, 0, SantosScript, EVENT_75D
+	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1a4728, EVENT_ALWAYS_THERE

@@ -37,8 +37,8 @@ MortyScript_0x99d58:
 	checkcode VAR_BADGES
 	scall EcruteakGymTriggerRockets
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
-	setevent $0766
-	setevent $0767
+	setevent EVENT_766
+	setevent EVENT_RANG_CLEAR_BELL
 .FightDone
 	checkevent EVENT_GOT_TM30_SHADOW_BALL
 	iftrue UnknownScript_0x99db1
@@ -493,10 +493,10 @@ EcruteakGym_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_MORTY, 5, 9, $6, $0, 255, 255, $b0, 0, MortyScript_0x99d58, $ffff
-	person_event SPRITE_SAGE, 11, 6, $9, $0, 255, 255, $92, 1, TrainerSageJeffrey, $ffff
-	person_event SPRITE_SAGE, 17, 7, $9, $0, 255, 255, $92, 3, TrainerSagePing, $ffff
-	person_event SPRITE_GRANNY, 9, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumMartha, $ffff
-	person_event SPRITE_GRANNY, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, $ffff
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, $ffff
-	person_event SPRITE_GRAMPS, 18, 8, $6, $0, 255, 255, $a0, 0, ObjectEvent, $07a8
+	person_event SPRITE_MORTY, 5, 9, $6, $0, 255, 255, $b0, 0, MortyScript_0x99d58, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAGE, 11, 6, $9, $0, 255, 255, $92, 1, TrainerSageJeffrey, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAGE, 17, 7, $9, $0, 255, 255, $92, 3, TrainerSagePing, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRANNY, 9, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumMartha, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRANNY, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRAMPS, 18, 8, $6, $0, 255, 255, $a0, 0, ObjectEvent, EVENT_7A8

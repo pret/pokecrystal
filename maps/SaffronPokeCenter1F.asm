@@ -123,7 +123,7 @@ SaffronPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18a47d, $ffff
-	person_event SPRITE_TEACHER, 6, 11, $2, $11, 255, 255, $a0, 0, TeacherScript_0x18a480, $ffff
-	person_event SPRITE_FISHER, 10, 12, $8, $0, 255, 255, $80, 0, FisherScript_0x18a48c, $ffff
-	person_event SPRITE_YOUNGSTER, 8, 5, $3, $0, 255, 255, $90, 0, YoungsterScript_0x18a4a0, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18a47d, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 6, 11, $2, $11, 255, 255, $a0, 0, TeacherScript_0x18a480, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 10, 12, $8, $0, 255, 255, $80, 0, FisherScript_0x18a48c, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 8, 5, $3, $0, 255, 255, $90, 0, YoungsterScript_0x18a4a0, EVENT_ALWAYS_THERE

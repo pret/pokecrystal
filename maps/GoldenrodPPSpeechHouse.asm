@@ -67,5 +67,5 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_FISHER, 8, 6, $4, $10, 255, 255, $a0, 0, FisherScript_0x5564a, $ffff
-	person_event SPRITE_LASS, 7, 9, $8, $10, 255, 255, $0, 0, LassScript_0x5564d, $ffff
+	person_event SPRITE_FISHER, 8, 6, $4, $10, 255, 255, $a0, 0, FisherScript_0x5564a, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 7, 9, $8, $10, 255, 255, $0, 0, LassScript_0x5564d, EVENT_ALWAYS_THERE

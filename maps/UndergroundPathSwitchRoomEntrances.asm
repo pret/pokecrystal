@@ -116,9 +116,9 @@ UnknownScript_0x7caaa:
 	end
 
 UnknownScript_0x7cad4:
-	checkevent $06c5
+	checkevent EVENT_6C5
 	iftrue UnknownScript_0x7cae1
-	setevent $06c5
+	setevent EVENT_6C5
 	domaptrigger GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F, $1
 UnknownScript_0x7cae1:
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -126,7 +126,7 @@ UnknownScript_0x7cae1:
 	writetext UnknownText_0x7ce9d
 	closetext
 	loadmovesprites
-	setevent $06c1
+	setevent EVENT_6C1
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x7cb09
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -1021,14 +1021,14 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 
 	; people-events
 	db 11
-	person_event SPRITE_PHARMACIST, 16, 13, $9, $0, 255, 255, $a2, 2, TrainerBurglarDuncan, $06ce
-	person_event SPRITE_PHARMACIST, 12, 8, $8, $0, 255, 255, $a2, 2, TrainerBurglarEddie, $06ce
-	person_event SPRITE_ROCKET, 6, 21, $6, $0, 255, 255, $2, 3, TrainerGruntM13, $06ce
-	person_event SPRITE_ROCKET, 6, 15, $6, $0, 255, 255, $2, 3, TrainerGruntM11, $06ce
-	person_event SPRITE_ROCKET, 6, 7, $6, $0, 255, 255, $2, 3, TrainerGruntM25, $06ce
-	person_event SPRITE_ROCKET_GIRL, 16, 23, $6, $0, 255, 255, $82, 1, TrainerGruntF3, $06ce
-	person_event SPRITE_TEACHER, 31, 7, $6, $0, 255, 255, $0, 0, TeacherScript_0x7ca7d, $ffff
-	person_event SPRITE_SUPER_NERD, 31, 23, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x7ca7a, $ffff
-	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7d, $0673
-	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7f, $0674
-	person_event SPRITE_SILVER, 7, 27, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c1
+	person_event SPRITE_PHARMACIST, 16, 13, $9, $0, 255, 255, $a2, 2, TrainerBurglarDuncan, EVENT_6CE
+	person_event SPRITE_PHARMACIST, 12, 8, $8, $0, 255, 255, $a2, 2, TrainerBurglarEddie, EVENT_6CE
+	person_event SPRITE_ROCKET, 6, 21, $6, $0, 255, 255, $2, 3, TrainerGruntM13, EVENT_6CE
+	person_event SPRITE_ROCKET, 6, 15, $6, $0, 255, 255, $2, 3, TrainerGruntM11, EVENT_6CE
+	person_event SPRITE_ROCKET, 6, 7, $6, $0, 255, 255, $2, 3, TrainerGruntM25, EVENT_6CE
+	person_event SPRITE_ROCKET_GIRL, 16, 23, $6, $0, 255, 255, $82, 1, TrainerGruntF3, EVENT_6CE
+	person_event SPRITE_TEACHER, 31, 7, $6, $0, 255, 255, $0, 0, TeacherScript_0x7ca7d, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 31, 23, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x7ca7a, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7d, EVENT_673
+	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7f, EVENT_674
+	person_event SPRITE_SILVER, 7, 27, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C1

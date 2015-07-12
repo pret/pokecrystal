@@ -47,7 +47,7 @@ RuinsofAlphOmanyteItemRoom_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a2c, $079c
-	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a2e, $079d
-	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a30, $079e
-	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a32, $079f
+	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a2c, EVENT_PICKED_UP_MYSTERYBERRY_FROM_OMANYTE_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a2e, EVENT_PICKED_UP_MYSTIC_WATER_FROM_OMANYTE_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a30, EVENT_PICKED_UP_STARDUST_FROM_OMANYTE_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a32, EVENT_PICKED_UP_STAR_PIECE_FROM_OMANYTE_ITEM_ROOM

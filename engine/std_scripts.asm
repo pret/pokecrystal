@@ -287,16 +287,16 @@ DayToTextScript:
 	db "SATURDAY@"
 
 GoldenrodRocketsScript:
-	clearevent $06cd
+	clearevent EVENT_6CD
 	end
 
 RadioTowerRocketsScript:
 	setflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	setevent $06cf
-	setevent $06d1
-	clearevent $06ce
-	clearevent $0025
-	setevent $0756
+	setevent EVENT_6CF
+	setevent EVENT_6D1
+	clearevent EVENT_6CE
+	clearevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
+	setevent EVENT_756
 	specialphonecall $0004
 	domaptrigger GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN, $1
 	end
@@ -304,19 +304,19 @@ RadioTowerRocketsScript:
 BugContestResultsWarpScript:
 	special WhiteBGMap
 	scall UnknownScript_0xbc380
-	setevent $0747
-	clearevent $0748
-	setevent $02d2
+	setevent EVENT_747
+	clearevent EVENT_748
+	setevent EVENT_2D2
 	warp GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE, $0, $4
 	applymovement $0, MovementData_0xbcea1
 
 BugContestResultsScript:
-	clearflag $0011
-	clearevent $02d2
-	clearevent $0313
-	clearevent $0314
-	clearevent $0315
-	clearevent $0316
+	clearflag ENGINE_BUG_CONTEST_TIMER
+	clearevent EVENT_2D2
+	clearevent EVENT_313
+	clearevent EVENT_314
+	clearevent EVENT_315
+	clearevent EVENT_316
 	loadfont
 	farwritetext UnknownText_0x1b05bf
 	closetext
@@ -342,7 +342,7 @@ UnknownScript_0xbc2b1: ; 0xbc2b1
 	keeptextopen
 
 UnknownScript_0xbc2b6:
-	checkevent $0308
+	checkevent EVENT_308
 	iffalse UnknownScript_0xbc2c4
 	farwritetext UnknownText_0x1b06d9
 	closetext
@@ -357,33 +357,33 @@ UnknownScript_0xbc2d4:
 	loadmovesprites
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE, $0
-	setevent $0716
-	setevent $0717
-	setevent $0718
-	setevent $0719
-	setevent $071a
-	setevent $071b
-	setevent $071c
-	setevent $071d
-	setevent $071e
-	setevent $071f
-	setevent $0720
-	setevent $0721
-	setevent $0722
-	setevent $0723
-	setevent $0724
-	setevent $0725
-	setevent $0726
-	setevent $0727
-	setevent $0728
-	setevent $0729
+	setevent EVENT_716
+	setevent EVENT_717
+	setevent EVENT_718
+	setevent EVENT_719
+	setevent EVENT_71A
+	setevent EVENT_71B
+	setevent EVENT_71C
+	setevent EVENT_71D
+	setevent EVENT_71E
+	setevent EVENT_71F
+	setevent EVENT_720
+	setevent EVENT_721
+	setevent EVENT_722
+	setevent EVENT_723
+	setevent EVENT_724
+	setevent EVENT_725
+	setevent EVENT_726
+	setevent EVENT_727
+	setevent EVENT_728
+	setevent EVENT_729
 	setflag ENGINE_51
 	special PlayMapMusic
 	end
 ; 0xbc31e
 
 UnknownScript_0xbc31e: ; 0xbc31e
-	setevent $0000
+	setevent EVENT_000
 	itemtotext SUN_STONE, $1
 	farwritetext UnknownText_0x1b0621
 	closetext
@@ -413,188 +413,188 @@ UnknownScript_0xbc343: ; 0xbc343
 UnknownScript_0xbc354: ; 0xbc354
 	farwritetext UnknownText_0x1b08cc
 	keeptextopen
-	setevent $0313
+	setevent EVENT_313
 	jump UnknownScript_0xbc2b1
 ; 0xbc35f
 
 UnknownScript_0xbc35f: ; 0xbc35f
 	farwritetext UnknownText_0x1b08cc
 	keeptextopen
-	setevent $0314
+	setevent EVENT_314
 	jump UnknownScript_0xbc2b1
 ; 0xbc36a
 
 UnknownScript_0xbc36a: ; 0xbc36a
 	farwritetext UnknownText_0x1b08cc
 	keeptextopen
-	setevent $0315
+	setevent EVENT_315
 	jump UnknownScript_0xbc2b1
 ; 0xbc375
 
 UnknownScript_0xbc375: ; 0xbc375
 	farwritetext UnknownText_0x1b08cc
 	keeptextopen
-	setevent $0316
+	setevent EVENT_316
 	jump UnknownScript_0xbc2a9
 ; 0xbc380
 
 UnknownScript_0xbc380: ; 0xbc380
-	checkevent $0716
+	checkevent EVENT_716
 	iftrue .skip1
-	clearevent $0720
+	clearevent EVENT_720
 .skip1
-	checkevent $0717
+	checkevent EVENT_717
 	iftrue .skip2
-	clearevent $0721
+	clearevent EVENT_721
 .skip2
-	checkevent $0718
+	checkevent EVENT_718
 	iftrue .skip3
-	clearevent $0722
+	clearevent EVENT_722
 .skip3
-	checkevent $0719
+	checkevent EVENT_719
 	iftrue .skip4
-	clearevent $0723
+	clearevent EVENT_723
 .skip4
-	checkevent $071a
+	checkevent EVENT_71A
 	iftrue .skip5
-	clearevent $0724
+	clearevent EVENT_724
 .skip5
-	checkevent $071b
+	checkevent EVENT_71B
 	iftrue .skip6
-	clearevent $0725
+	clearevent EVENT_725
 .skip6
-	checkevent $071c
+	checkevent EVENT_71C
 	iftrue .skip7
-	clearevent $0726
+	clearevent EVENT_726
 .skip7
-	checkevent $071d
+	checkevent EVENT_71D
 	iftrue .skip8
-	clearevent $0727
+	clearevent EVENT_727
 .skip8
-	checkevent $071e
+	checkevent EVENT_71E
 	iftrue .skip9
-	clearevent $0728
+	clearevent EVENT_728
 .skip9
-	checkevent $071f
+	checkevent EVENT_71F
 	iftrue .skip10
-	clearevent $0729
+	clearevent EVENT_729
 .skip10
 	end
 
 InitializeEventsScript:
-	setevent $06cb
-	setevent $06ce
-	setevent $06cd
-	setevent $06d0
-	setevent $06f3
-	setevent $06e9
-	setevent $06f4
-	setevent $06d5
-	setevent $06de
-	setevent $06dd
-	setevent $06df
-	setevent $06c0
-	setevent $06e4
-	setevent $0025
-	setevent $06be
-	setevent $06bf
-	setevent $06c1
-	setevent $06f9
-	setevent $06fd
-	setevent $06ff
-	setevent $0700
-	setevent $0702
-	setevent $0703
-	setevent $0704
-	setevent $070d
-	setevent $070e
-	setevent $070f
-	setevent $0710
-	setevent $0715
-	setevent $0716
-	setevent $0717
-	setevent $0718
-	setevent $0719
-	setevent $071a
-	setevent $071b
-	setevent $071c
-	setevent $071d
-	setevent $071e
-	setevent $071f
-	setevent $0720
-	setevent $0721
-	setevent $0722
-	setevent $0723
-	setevent $0724
-	setevent $0725
-	setevent $0726
-	setevent $0727
-	setevent $0728
-	setevent $0729
-	setevent $072c
-	setevent $072f
-	setevent $072d
-	setevent $0735
-	setevent $0736
-	setevent $073c
-	setevent $073d
-	setevent $0741
-	setevent $0742
-	setevent $0743
-	setevent $0744
-	setevent $02a4
-	setevent $02af
-	setevent $0749
-	setevent $06d3
-	setevent $074d
-	setevent $0712
-	setevent $0713
-	setevent $0711
-	setevent $06d4
-	setevent $0304
-	setevent $0307
-	setevent $06d8
-	setevent $06c3
-	setevent $06c2
-	setevent $06c6
-	setevent $075f
-	setevent $0731
-	setevent $074a
-	setevent $0762
-	setevent $0738
-	setevent $073a
-	setevent $073b
-	setevent $0733
-	setevent $073f
-	setevent $078d
-	setevent $0766
-	setevent $0768
-	setevent $0769
-	setevent $076a
-	setevent $078e
-	setevent $078f
-	setevent $0790
-	setevent $0791
-	setevent $0793
-	setevent $07a4
-	setevent $07a4
-	setevent $07a5
-	setevent $06ec
-	setevent $06ed
-	setevent $06f0
-	setevent $07a9
+	setevent EVENT_6CB
+	setevent EVENT_6CE
+	setevent EVENT_6CD
+	setevent EVENT_6D0
+	setevent EVENT_6F3
+	setevent EVENT_6E9
+	setevent EVENT_6F4
+	setevent EVENT_6D5
+	setevent EVENT_6DE
+	setevent EVENT_6DD
+	setevent EVENT_6DF
+	setevent EVENT_6C0
+	setevent EVENT_6E4
+	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
+	setevent EVENT_6BE
+	setevent EVENT_6BF
+	setevent EVENT_6C1
+	setevent EVENT_6F9
+	setevent EVENT_6FD
+	setevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	setevent EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
+	setevent EVENT_702
+	setevent EVENT_703
+	setevent EVENT_704
+	setevent EVENT_BOULDER_IN_ICE_PATH_1
+	setevent EVENT_BOULDER_IN_ICE_PATH_2
+	setevent EVENT_BOULDER_IN_ICE_PATH_3
+	setevent EVENT_BOULDER_IN_ICE_PATH_4
+	setevent EVENT_715
+	setevent EVENT_716
+	setevent EVENT_717
+	setevent EVENT_718
+	setevent EVENT_719
+	setevent EVENT_71A
+	setevent EVENT_71B
+	setevent EVENT_71C
+	setevent EVENT_71D
+	setevent EVENT_71E
+	setevent EVENT_71F
+	setevent EVENT_720
+	setevent EVENT_721
+	setevent EVENT_722
+	setevent EVENT_723
+	setevent EVENT_724
+	setevent EVENT_725
+	setevent EVENT_726
+	setevent EVENT_727
+	setevent EVENT_728
+	setevent EVENT_729
+	setevent EVENT_72C
+	setevent EVENT_72F
+	setevent EVENT_72D
+	setevent EVENT_735
+	setevent EVENT_736
+	setevent EVENT_73C
+	setevent EVENT_73D
+	setevent EVENT_741
+	setevent EVENT_742
+	setevent EVENT_743
+	setevent EVENT_744
+	setevent EVENT_2A4
+	setevent EVENT_2AF
+	setevent EVENT_749
+	setevent EVENT_6D3
+	setevent EVENT_74D
+	setevent EVENT_MET_BILL
+	setevent EVENT_713
+	setevent EVENT_711
+	setevent EVENT_6D4
+	setevent EVENT_WAREHOUSE_LAYOUT_1
+	setevent EVENT_WAREHOUSE_BLOCKED_OFF
+	setevent EVENT_6D8
+	setevent EVENT_6C3
+	setevent EVENT_6C2
+	setevent EVENT_6C6
+	setevent EVENT_75F
+	setevent EVENT_731
+	setevent EVENT_74A
+	setevent EVENT_RED_IN_MT_SILVER
+	setevent EVENT_738
+	setevent EVENT_73A
+	setevent EVENT_73B
+	setevent EVENT_733
+	setevent EVENT_73F
+	setevent EVENT_78D
+	setevent EVENT_766
+	setevent EVENT_768
+	setevent EVENT_FLORIA_AT_SUDOWOODO
+	setevent EVENT_76A
+	setevent EVENT_78E
+	setevent EVENT_78F
+	setevent EVENT_790
+	setevent EVENT_791
+	setevent EVENT_793
+	setevent EVENT_7A4
+	setevent EVENT_7A4
+	setevent EVENT_7A5
+	setevent EVENT_6EC
+	setevent EVENT_6ED
+	setevent EVENT_6F0
+	setevent EVENT_7A9
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
-	setevent $06c8
-	setevent $07ac
-	setevent $07ad
-	setevent $07b5
-	setevent $07b6
-	setevent $07c5
-	setevent $07b7
-	setevent $07b0
-	setevent $07af
-	setevent $07ae
-	setevent $07cf
+	setevent EVENT_6C8
+	setevent EVENT_7AC
+	setevent EVENT_7AD
+	setevent EVENT_7B5
+	setevent EVENT_7B6
+	setevent EVENT_7C5
+	setevent EVENT_SET_WHEN_FOUGHT_HO_OH
+	setevent EVENT_SAW_SUICUNE_ON_ROUTE_36
+	setevent EVENT_SAW_SUICUNE_ON_ROUTE_42
+	setevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	setevent EVENT_7CF
 	setflag ENGINE_ROCKET_SIGNAL_ON_CH20
 	setflag ENGINE_ROCKETS_IN_MAHOGANY
 	variablesprite $4, $52
@@ -606,18 +606,18 @@ InitializeEventsScript:
 	variablesprite $a, $a
 	variablesprite $b, $28
 	variablesprite $c, $28
-	setevent $00fb
-	setevent $076d
-	setevent $076c
-	setevent $076e
-	setevent $076f
-	setevent $0773
-	setevent $0776
-	setevent $0777
-	setevent $0779
-	setevent $0772
-	setevent $077b
-	setevent $0036
+	setevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
+	setevent EVENT_76D
+	setevent EVENT_76C
+	setevent EVENT_76E
+	setevent EVENT_TRAINERS_IN_CERULEAN_GYM
+	setevent EVENT_773
+	setevent EVENT_776
+	setevent EVENT_777
+	setevent EVENT_779
+	setevent EVENT_772
+	setevent EVENT_77B
+	setevent EVENT_036
 	return
 
 AskNumber1MScript:

@@ -184,7 +184,7 @@ SailorScript_0x755f1:
 	writetext UnknownText_0x758b1
 	closetext
 	loadmovesprites
-	setevent $0033
+	setevent EVENT_033
 	domaptrigger GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F, $1
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x75629
@@ -374,10 +374,10 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_COOLTRAINER_M, 7, 8, $a, $0, 255, 255, $82, 2, TrainerCooltrainermSean, $073a
-	person_event SPRITE_COOLTRAINER_F, 9, 5, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfCarol, $073a
-	person_event SPRITE_SUPER_NERD, 9, 5, $7, $0, 255, 255, $92, 3, TrainerPokemaniacEthan, $073b
-	person_event SPRITE_POKEFAN_M, 21, 8, $7, $0, 255, 255, $b2, 3, TrainerHikerNoland, $0739
-	person_event SPRITE_SAILOR, 30, 8, $3, $0, 255, 255, $90, 0, SailorScript_0x755f1, $072d
-	person_event SPRITE_GENTLEMAN, 34, 11, $3, $0, 255, 255, $92, 1, TrainerGentlemanEdward, $073a
-	person_event SPRITE_PHARMACIST, 34, 6, $7, $0, 255, 255, $a2, 4, TrainerBurglarCorey, $073b
+	person_event SPRITE_COOLTRAINER_M, 7, 8, $a, $0, 255, 255, $82, 2, TrainerCooltrainermSean, EVENT_73A
+	person_event SPRITE_COOLTRAINER_F, 9, 5, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfCarol, EVENT_73A
+	person_event SPRITE_SUPER_NERD, 9, 5, $7, $0, 255, 255, $92, 3, TrainerPokemaniacEthan, EVENT_73B
+	person_event SPRITE_POKEFAN_M, 21, 8, $7, $0, 255, 255, $b2, 3, TrainerHikerNoland, EVENT_739
+	person_event SPRITE_SAILOR, 30, 8, $3, $0, 255, 255, $90, 0, SailorScript_0x755f1, EVENT_72D
+	person_event SPRITE_GENTLEMAN, 34, 11, $3, $0, 255, 255, $92, 1, TrainerGentlemanEdward, EVENT_73A
+	person_event SPRITE_PHARMACIST, 34, 6, $7, $0, 255, 255, $a2, 4, TrainerBurglarCorey, EVENT_73B

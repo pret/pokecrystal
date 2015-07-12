@@ -145,4 +145,4 @@ BrunosRoom_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_BRUNO, 11, 9, $6, $0, 255, 255, $b0, 0, BrunoScript_0x1809c5, $ffff
+	person_event SPRITE_BRUNO, 11, 9, $6, $0, 255, 255, $b0, 0, BrunoScript_0x1809c5, EVENT_ALWAYS_THERE

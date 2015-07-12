@@ -14,7 +14,7 @@ MomPhoneScript: ; 0xbceaa
 	jump MomPhoneNoPokemonScript
 
 .bcec5 ; 0xbcec5
-	checkevent $0007
+	checkevent EVENT_007
 	iftrue MomPhoneHangUpScript
 	farwritetext MomPhoneGreetingText
 	keeptextopen
@@ -1080,7 +1080,7 @@ UnknownScript_0xbd784:
 	iftrue UnknownScript_0xbd7c8
 	checkflag ENGINE_GINA_HAS_LEAF_STONE
 	iftrue UnknownScript_0xbd7c8
-	checkevent $0100
+	checkevent EVENT_100
 	iftrue UnknownScript_0xbd7b2
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbd7dd
@@ -1233,7 +1233,7 @@ UnknownScript_0xbd8dd:
 	iftrue UnknownScript_0xbd915
 	farscall UnknownScript_0xbde42
 	if_equal $0, UnknownScript_0xbd91c
-	checkevent $0101
+	checkevent EVENT_101
 	iftrue UnknownScript_0xbd90d
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbd926
@@ -1294,7 +1294,7 @@ UnknownScript_0xbd967:
 	iftrue UnknownScript_0xbd99f
 	farscall UnknownScript_0xbde42
 	if_equal $0, UnknownScript_0xbd9ae
-	checkevent $0102
+	checkevent EVENT_102
 	iftrue UnknownScript_0xbd997
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbd9bc
@@ -1459,7 +1459,7 @@ UnknownScript_0xbdae3:
 	iftrue UnknownScript_0xbdb1b
 	farscall UnknownScript_0xbde42
 	if_equal $0, UnknownScript_0xbdb22
-	checkevent $0103
+	checkevent EVENT_103
 	iftrue UnknownScript_0xbdb13
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbdb2c
@@ -1567,7 +1567,7 @@ UnknownScript_0xbdbd0:
 	iftrue UnknownScript_0xbdc10
 	farscall UnknownScript_0xbde42
 	if_equal $0, UnknownScript_0xbdc17
-	checkevent $0104
+	checkevent EVENT_104
 	iftrue UnknownScript_0xbdc08
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbdc69

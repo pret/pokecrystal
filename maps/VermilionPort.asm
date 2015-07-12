@@ -27,19 +27,19 @@ UnknownScript_0x74da6:
 	applymovement $0, MovementData_0x74ef3
 	appear $2
 	dotrigger $0
-	setevent $0731
-	setevent $0730
-	setevent $0739
-	clearevent $0733
-	setevent $0030
-	setevent $0000
+	setevent EVENT_731
+	setevent EVENT_730
+	setevent EVENT_739
+	clearevent EVENT_733
+	setevent EVENT_030
+	setevent EVENT_000
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	end
 
 SailorScript_0x74dc4:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
 	closetext
@@ -53,8 +53,8 @@ SailorScript_0x74dc4:
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton
-	setevent $073a
-	clearevent $073b
+	setevent EVENT_73A
+	clearevent EVENT_73B
 	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
 	clearevent EVENT_BEAT_BURGLAR_COREY
 	clearevent EVENT_BEAT_BUG_CATCHER_KEN
@@ -65,7 +65,7 @@ SailorScript_0x74dc4:
 	clearevent EVENT_BEAT_TEACHER_SHIRLEY
 	clearevent EVENT_BEAT_SCHOOLBOY_NATE
 	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
-	setevent $002f
+	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear $2
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
 	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
@@ -79,9 +79,9 @@ UnknownScript_0x74e1a:
 
 UnknownScript_0x74e20:
 	spriteface $3, RIGHT
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74e86
-	checkevent $0001
+	checkevent EVENT_001
 	iftrue UnknownScript_0x74e86
 	spriteface $0, LEFT
 	loadfont
@@ -101,7 +101,7 @@ UnknownScript_0x74e20:
 	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setevent $0001
+	setevent EVENT_001
 	applymovement $0, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
 
@@ -145,7 +145,7 @@ UnknownScript_0x74e8d:
 SailorScript_0x74e97:
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74eda
@@ -163,7 +163,7 @@ SailorScript_0x74e97:
 	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setevent $0001
+	setevent EVENT_001
 	applymovement $0, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 
@@ -318,6 +318,6 @@ VermilionPort_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_SAILOR, 21, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x74dc4, $072b
-	person_event SPRITE_SAILOR, 15, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x74e97, $ffff
-	person_event SPRITE_SUPER_NERD, 15, 15, $5, $2, 255, 255, $0, 0, SuperNerdScript_0x74ee6, $ffff
+	person_event SPRITE_SAILOR, 21, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x74dc4, EVENT_72B
+	person_event SPRITE_SAILOR, 15, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x74e97, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 15, 15, $5, $2, 255, 255, $0, 0, SuperNerdScript_0x74ee6, EVENT_ALWAYS_THERE

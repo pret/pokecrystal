@@ -60,4 +60,4 @@ TinTowerRoof_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_HO_OH, 9, 13, $16, $0, 255, 255, $80, 0, HoOhScript_0x77244, $073c
+	person_event SPRITE_HO_OH, 9, 13, $16, $0, 255, 255, $80, 0, HoOhScript_0x77244, EVENT_73C

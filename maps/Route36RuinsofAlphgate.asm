@@ -49,5 +49,5 @@ Route36RuinsofAlphgate_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x6aa1a, $ffff
-	person_event SPRITE_GRAMPS, 9, 11, $2, $21, 255, 255, $b0, 0, GrampsScript_0x6aa1d, $ffff
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x6aa1a, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRAMPS, 9, 11, $2, $21, 255, 255, $b0, 0, GrampsScript_0x6aa1d, EVENT_ALWAYS_THERE

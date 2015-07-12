@@ -92,7 +92,7 @@ LavenderPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x7e6a0, $ffff
-	person_event SPRITE_GENTLEMAN, 10, 11, $5, $1, 255, 255, $0, 0, GentlemanScript_0x7e6a3, $ffff
-	person_event SPRITE_TEACHER, 7, 9, $6, $0, 255, 255, $a0, 0, TeacherScript_0x7e6a6, $ffff
-	person_event SPRITE_YOUNGSTER, 9, 5, $4, $10, 255, 255, $80, 0, YoungsterScript_0x7e6a9, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x7e6a0, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 10, 11, $5, $1, 255, 255, $0, 0, GentlemanScript_0x7e6a3, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 7, 9, $6, $0, 255, 255, $a0, 0, TeacherScript_0x7e6a6, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 9, 5, $4, $10, 255, 255, $80, 0, YoungsterScript_0x7e6a9, EVENT_ALWAYS_THERE

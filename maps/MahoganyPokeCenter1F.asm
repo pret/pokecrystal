@@ -65,7 +65,7 @@ MahoganyPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x19a356, $ffff
-	person_event SPRITE_POKEFAN_M, 6, 11, $2, $11, 255, 255, $80, 0, PokefanMScript_0x19a359, $ffff
-	person_event SPRITE_YOUNGSTER, 7, 5, $9, $0, 255, 255, $a0, 0, YoungsterScript_0x19a35c, $ffff
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $8, $0, 255, 255, $0, 0, CooltrainerFScript_0x19a35f, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x19a356, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 6, 11, $2, $11, 255, 255, $80, 0, PokefanMScript_0x19a359, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 7, 5, $9, $0, 255, 255, $a0, 0, YoungsterScript_0x19a35c, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $8, $0, 255, 255, $0, 0, CooltrainerFScript_0x19a35f, EVENT_ALWAYS_THERE

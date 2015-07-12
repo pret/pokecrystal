@@ -26,18 +26,18 @@ UnknownScript_0x98574:
 	iftrue UnknownScript_0x9858c
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x9858c
-	clearevent $07ab
-	setevent $07ac
+	clearevent EVENT_7AB
+	setevent EVENT_7AC
 	return
 
 UnknownScript_0x9858c:
-	setevent $07ab
-	clearevent $07ac
+	setevent EVENT_7AB
+	clearevent EVENT_7AC
 	return
 
 UnknownScript_0x98593:
-	setevent $07ab
-	setevent $07ac
+	setevent EVENT_7AB
+	setevent EVENT_7AC
 	return
 
 SageScript_0x9859a:
@@ -408,9 +408,9 @@ WiseTriosRoom_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_SAGE, 6, 10, $3, $0, 255, 255, $0, 0, SageScript_0x9859a, $07ab
-	person_event SPRITE_SAGE, 11, 10, $5, $1, 255, 255, $0, 0, SageScript_0x9859d, $07ab
-	person_event SPRITE_SAGE, 9, 11, $8, $0, 255, 255, $0, 0, SageScript_0x985a0, $07ab
-	person_event SPRITE_SAGE, 6, 8, $6, $0, 255, 255, $2, 2, TrainerSageGaku, $07ac
-	person_event SPRITE_SAGE, 10, 8, $7, $0, 255, 255, $2, 2, TrainerSageMasa, $07ac
-	person_event SPRITE_SAGE, 8, 10, $8, $0, 255, 255, $2, 2, TrainerSageKoji, $07ac
+	person_event SPRITE_SAGE, 6, 10, $3, $0, 255, 255, $0, 0, SageScript_0x9859a, EVENT_7AB
+	person_event SPRITE_SAGE, 11, 10, $5, $1, 255, 255, $0, 0, SageScript_0x9859d, EVENT_7AB
+	person_event SPRITE_SAGE, 9, 11, $8, $0, 255, 255, $0, 0, SageScript_0x985a0, EVENT_7AB
+	person_event SPRITE_SAGE, 6, 8, $6, $0, 255, 255, $2, 2, TrainerSageGaku, EVENT_7AC
+	person_event SPRITE_SAGE, 10, 8, $7, $0, 255, 255, $2, 2, TrainerSageMasa, EVENT_7AC
+	person_event SPRITE_SAGE, 8, 10, $8, $0, 255, 255, $2, 2, TrainerSageKoji, EVENT_7AC

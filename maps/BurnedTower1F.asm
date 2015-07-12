@@ -97,7 +97,7 @@ UnknownScript_0x185c80:
 	closetext
 	loadmovesprites
 	dotrigger $2
-	setevent $06c5
+	setevent EVENT_6C5
 	special Functionc48f
 	pause 15
 	earthquake 50
@@ -311,8 +311,8 @@ BurnedTower1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_ROCK, 8, 19, $18, $0, 255, 255, $0, 0, BurnedTower1FRock, $ffff
-	person_event SPRITE_SUPER_NERD, 16, 16, $3, $0, 255, 255, $90, 0, SuperNerdScript_0x185cbc, $0765
-	person_event SPRITE_SILVER, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, $06c5
-	person_event SPRITE_MORTY, 18, 18, $2, $11, 255, 255, $b0, 0, MortyScript_0x185cbf, $0764
-	person_event SPRITE_POKE_BALL, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ccb, $0656
+	person_event SPRITE_ROCK, 8, 19, $18, $0, 255, 255, $0, 0, BurnedTower1FRock, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 16, 16, $3, $0, 255, 255, $90, 0, SuperNerdScript_0x185cbc, EVENT_765
+	person_event SPRITE_SILVER, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, EVENT_6C5
+	person_event SPRITE_MORTY, 18, 18, $2, $11, 255, 255, $b0, 0, MortyScript_0x185cbf, EVENT_764
+	person_event SPRITE_POKE_BALL, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ccb, EVENT_656

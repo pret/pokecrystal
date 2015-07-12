@@ -120,27 +120,27 @@ UnknownScript_0x196ec9:
 	writetext UnknownText_0x197134
 	closetext
 	loadmovesprites
-	setevent $06bd
-	setevent $0792
-	clearevent $0793
+	setevent EVENT_6BD
+	setevent EVENT_792
+	clearevent EVENT_793
 	dotrigger $1
 	domaptrigger GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, $1
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $3
 	specialphonecall $2
-	clearevent $0702
+	clearevent EVENT_702
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x196f49
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x196f4d
-	setevent $0641
+	setevent EVENT_641
 	end
 
 UnknownScript_0x196f49:
-	setevent $0642
+	setevent EVENT_642
 	end
 
 UnknownScript_0x196f4d:
-	setevent $0640
+	setevent EVENT_640
 	end
 
 MapMrPokemonsHouseSignpost1Script:
@@ -392,5 +392,5 @@ MrPokemonsHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_GENTLEMAN, 9, 7, $9, $0, 255, 255, $0, 0, GentlemanScript_0x196e97, $ffff
-	person_event SPRITE_OAK, 9, 10, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c9
+	person_event SPRITE_GENTLEMAN, 9, 7, $9, $0, 255, 255, $0, 0, GentlemanScript_0x196e97, EVENT_ALWAYS_THERE
+	person_event SPRITE_OAK, 9, 10, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C9

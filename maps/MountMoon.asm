@@ -182,4 +182,4 @@ MountMoon_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_SILVER, 7, 11, $8, $0, 255, 255, $0, 0, ObjectEvent, $077a
+	person_event SPRITE_SILVER, 7, 11, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_77A

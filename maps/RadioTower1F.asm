@@ -155,7 +155,7 @@ RadioCardText:
 	db "RADIO CARD@"
 
 UnknownScript_0x5ce3e:
-	jumpstd $002f
+	jumpstd receiveitem
 	end
 
 UnknownScript_0x5ce42:
@@ -500,9 +500,9 @@ RadioTower1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_RECEPTIONIST, 10, 9, $8, $0, 255, 255, $80, 0, ReceptionistScript_0x5cd29, $ffff
-	person_event SPRITE_LASS, 8, 20, $8, $0, 255, 255, $80, 0, LassScript_0x5ce51, $06cf
-	person_event SPRITE_YOUNGSTER, 8, 19, $9, $0, 255, 255, $90, 0, YoungsterScript_0x5ce54, $06cf
-	person_event SPRITE_ROCKET, 5, 18, $6, $0, 255, 255, $2, 3, TrainerGruntM3, $06ce
-	person_event SPRITE_GENTLEMAN, 10, 12, $7, $0, 255, 255, $90, 0, GentlemanScript_0x5cd3d, $06cf
-	person_event SPRITE_COOLTRAINER_F, 10, 16, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x5cdd5, $06cf
+	person_event SPRITE_RECEPTIONIST, 10, 9, $8, $0, 255, 255, $80, 0, ReceptionistScript_0x5cd29, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 8, 20, $8, $0, 255, 255, $80, 0, LassScript_0x5ce51, EVENT_6CF
+	person_event SPRITE_YOUNGSTER, 8, 19, $9, $0, 255, 255, $90, 0, YoungsterScript_0x5ce54, EVENT_6CF
+	person_event SPRITE_ROCKET, 5, 18, $6, $0, 255, 255, $2, 3, TrainerGruntM3, EVENT_6CE
+	person_event SPRITE_GENTLEMAN, 10, 12, $7, $0, 255, 255, $90, 0, GentlemanScript_0x5cd3d, EVENT_6CF
+	person_event SPRITE_COOLTRAINER_F, 10, 16, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x5cdd5, EVENT_6CF

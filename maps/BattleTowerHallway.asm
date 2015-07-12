@@ -96,4 +96,4 @@ BattleTowerHallway_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_RECEPTIONIST, 6, 15, $6, $0, 255, 255, $0, 0, BattleTowerHallway_MapEventHeader, $ffff
+	person_event SPRITE_RECEPTIONIST, 6, 15, $6, $0, 255, 255, $0, 0, BattleTowerHallway_MapEventHeader, EVENT_ALWAYS_THERE

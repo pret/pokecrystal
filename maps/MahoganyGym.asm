@@ -462,10 +462,10 @@ MahoganyGym_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_PRYCE, 7, 9, $6, $0, 255, 255, $b0, 0, PryceScript_0x199a9e, $ffff
-	person_event SPRITE_BUENA, 10, 8, $6, $0, 255, 255, $82, 1, TrainerSkierRoxanne, $ffff
-	person_event SPRITE_ROCKER, 21, 4, $7, $0, 255, 255, $92, 1, TrainerBoarderRonald, $ffff
-	person_event SPRITE_BUENA, 21, 13, $7, $0, 255, 255, $82, 1, TrainerSkierClarissa, $ffff
-	person_event SPRITE_ROCKER, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, $ffff
-	person_event SPRITE_ROCKER, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, $ffff
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, $ffff
+	person_event SPRITE_PRYCE, 7, 9, $6, $0, 255, 255, $b0, 0, PryceScript_0x199a9e, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUENA, 10, 8, $6, $0, 255, 255, $82, 1, TrainerSkierRoxanne, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCKER, 21, 4, $7, $0, 255, 255, $92, 1, TrainerBoarderRonald, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUENA, 21, 13, $7, $0, 255, 255, $82, 1, TrainerSkierClarissa, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCKER, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCKER, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, EVENT_ALWAYS_THERE
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, EVENT_ALWAYS_THERE

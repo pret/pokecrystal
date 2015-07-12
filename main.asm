@@ -52213,7 +52213,7 @@ EngineFlagAction:: ; 80430
 	cp $a2
 	jr c, .read
 	
-; Invalid flags are treated as flag $00.
+; Invalid flags are treated as flag 00.
 	
 .invalid
 	xor a

@@ -22,7 +22,7 @@ UnknownScript_0x18000a:
 	domaptrigger GROUP_KARENS_ROOM, MAP_KARENS_ROOM, $0
 	domaptrigger GROUP_LANCES_ROOM, MAP_LANCES_ROOM, $0
 	domaptrigger GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $0
-	clearevent $0309
+	clearevent EVENT_309
 	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_KOGAS_ROOM_EXIT_OPEN
@@ -31,13 +31,13 @@ UnknownScript_0x18000a:
 	clearevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_KARENS_ROOM_EXIT_OPEN
 	clearevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	clearevent $0312
+	clearevent EVENT_312
 	clearevent EVENT_BEAT_ELITE_4_WILL
 	clearevent EVENT_BEAT_ELITE_4_KOGA
 	clearevent EVENT_BEAT_ELITE_4_BRUNO
 	clearevent EVENT_BEAT_ELITE_4_KAREN
 	clearevent EVENT_BEAT_CHAMPION_LANCE
-	setevent $075f
+	setevent EVENT_75F
 	return
 
 UnknownScript_0x180053:
@@ -86,7 +86,7 @@ UnknownScript_0x1800ce:
 	writetext UnknownText_0x1801f5
 	closetext
 	loadmovesprites
-	setevent $077b
+	setevent EVENT_77B
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x1800f3
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -319,9 +319,9 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_NURSE, 11, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18012c, $ffff
-	person_event SPRITE_CLERK, 11, 15, $6, $0, 255, 255, $0, 0, ClerkScript_0x18012f, $ffff
-	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, $22, 255, 255, $0, 0, CooltrainerMScript_0x180136, $ffff
-	person_event SPRITE_SILVER, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, $077b
+	person_event SPRITE_NURSE, 11, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18012c, EVENT_ALWAYS_THERE
+	person_event SPRITE_CLERK, 11, 15, $6, $0, 255, 255, $0, 0, ClerkScript_0x18012f, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, $22, 255, 255, $0, 0, CooltrainerMScript_0x180136, EVENT_ALWAYS_THERE
+	person_event SPRITE_SILVER, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_77B
 	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
 	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, AbraScript, EVENT_TELEPORT_GUY

@@ -270,7 +270,7 @@ ElmDirectionsScript:
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
-	setevent $06be
+	setevent EVENT_6BE
 	dotrigger $5
 	domaptrigger GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $1
 	end
@@ -339,8 +339,8 @@ ElmAfterTheftScript:
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
-	clearevent $0715
-	setevent $0714
+	clearevent EVENT_715
+	setevent EVENT_714
 	writetext ElmAfterTheftText6
 	closetext
 	loadmovesprites
@@ -508,7 +508,7 @@ UnknownScript_0x78ecb:
 	end
 
 UnknownScript_0x78ee2:
-	jumpstd $002f
+	jumpstd receiveitem
 	end
 
 ElmsAideScript:
@@ -1408,9 +1408,9 @@ ElmsLab_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_ELM, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, $ffff
-	person_event SPRITE_SCIENTIST, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, $0701
-	person_event SPRITE_POKE_BALL, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, $0640
-	person_event SPRITE_POKE_BALL, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, $0641
-	person_event SPRITE_POKE_BALL, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, $0642
-	person_event SPRITE_OFFICER, 7, 9, $7, $0, 255, 255, $90, 0, CopScript, $0702
+	person_event SPRITE_ELM, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, EVENT_ALWAYS_THERE
+	person_event SPRITE_SCIENTIST, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	person_event SPRITE_POKE_BALL, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, EVENT_640
+	person_event SPRITE_POKE_BALL, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, EVENT_641
+	person_event SPRITE_POKE_BALL, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, EVENT_642
+	person_event SPRITE_OFFICER, 7, 9, $7, $0, 255, 255, $90, 0, CopScript, EVENT_702

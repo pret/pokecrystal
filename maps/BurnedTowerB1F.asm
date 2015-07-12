@@ -81,10 +81,10 @@ UnknownScript_0x18616b:
 	domaptrigger GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM, $1
 	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $1
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	setevent $07a8
-	clearevent $07a9
-	setevent $0764
-	setevent $0765
+	setevent EVENT_7A8
+	clearevent EVENT_7A9
+	setevent EVENT_764
+	setevent EVENT_765
 	appear $a
 	refreshscreen $0
 	changeblock $6, $e, $1b
@@ -251,12 +251,12 @@ BurnedTowerB1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_BOULDER, 12, 21, $19, $0, 255, 255, $0, 0, BurnedTowerB1FBoulder, $ffff
-	person_event SPRITE_RAIKOU, 7, 11, $16, $0, 255, 255, $b0, 0, ObjectEvent, $074a
-	person_event SPRITE_ENTEI, 7, 16, $16, $0, 255, 255, $80, 0, ObjectEvent, $074a
-	person_event SPRITE_SUICUNE, 8, 14, $16, $0, 255, 255, $90, 0, ObjectEvent, $074a
-	person_event SPRITE_RAIKOU, 7, 11, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
-	person_event SPRITE_ENTEI, 7, 16, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
-	person_event SPRITE_SUICUNE, 8, 14, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
-	person_event SPRITE_POKE_BALL, 8, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x186231, $0657
+	person_event SPRITE_BOULDER, 12, 21, $19, $0, 255, 255, $0, 0, BurnedTowerB1FBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_RAIKOU, 7, 11, $16, $0, 255, 255, $b0, 0, ObjectEvent, EVENT_74A
+	person_event SPRITE_ENTEI, 7, 16, $16, $0, 255, 255, $80, 0, ObjectEvent, EVENT_74A
+	person_event SPRITE_SUICUNE, 8, 14, $16, $0, 255, 255, $90, 0, ObjectEvent, EVENT_74A
+	person_event SPRITE_RAIKOU, 7, 11, $6, $0, 255, 255, $d0, 0, ObjectEvent, EVENT_74B
+	person_event SPRITE_ENTEI, 7, 16, $6, $0, 255, 255, $d0, 0, ObjectEvent, EVENT_74B
+	person_event SPRITE_SUICUNE, 8, 14, $6, $0, 255, 255, $d0, 0, ObjectEvent, EVENT_74B
+	person_event SPRITE_POKE_BALL, 8, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x186231, EVENT_657
 	person_event SPRITE_SUPER_NERD, 16, 14, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER

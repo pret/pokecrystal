@@ -200,9 +200,9 @@ UnionCaveB2F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_ROCKER, 23, 19, $6, $0, 255, 255, $82, 3, TrainerCooltrainermNick, $ffff
-	person_event SPRITE_COOLTRAINER_F, 17, 9, $a, $0, 255, 255, $82, 1, TrainerCooltrainerfGwen, $ffff
-	person_event SPRITE_COOLTRAINER_F, 34, 7, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfEmma, $ffff
-	person_event SPRITE_POKE_BALL, 6, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36a, $0660
-	person_event SPRITE_POKE_BALL, 23, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36c, $0661
-	person_event SPRITE_SURF, 35, 15, $24, $11, 255, 255, $90, 0, SurfScript_0x5a31f, $0760
+	person_event SPRITE_ROCKER, 23, 19, $6, $0, 255, 255, $82, 3, TrainerCooltrainermNick, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 17, 9, $a, $0, 255, 255, $82, 1, TrainerCooltrainerfGwen, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 34, 7, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfEmma, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKE_BALL, 6, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36a, EVENT_660
+	person_event SPRITE_POKE_BALL, 23, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36c, EVENT_661
+	person_event SPRITE_SURF, 35, 15, $24, $11, 255, 255, $90, 0, SurfScript_0x5a31f, EVENT_760

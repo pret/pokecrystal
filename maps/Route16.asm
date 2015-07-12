@@ -18,7 +18,7 @@ UnknownScript_0x1ad318:
 	return
 
 UnknownScript_0x1ad328:
-	clearflag $0019
+	clearflag ENGINE_ALWAYS_ON_BIKE
 	return
 
 MapRoute16Signpost0Script:

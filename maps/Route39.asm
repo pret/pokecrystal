@@ -418,13 +418,13 @@ Route39_MapEventHeader:
 
 	; people-events
 	db 10
-	person_event SPRITE_SAILOR, 33, 17, $8, $0, 255, 255, $92, 5, TrainerSailorEugene, $ffff
-	person_event SPRITE_POKEFAN_M, 26, 14, $7, $0, 255, 255, $82, 4, TrainerPokefanmDerek1, $ffff
-	person_event SPRITE_POKEFAN_F, 23, 15, $9, $0, 255, 255, $82, 4, TrainerPokefanfRuth, $ffff
-	person_event SPRITE_TAUROS, 16, 7, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, $ffff
-	person_event SPRITE_TAUROS, 15, 10, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, $ffff
-	person_event SPRITE_TAUROS, 19, 8, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, $ffff
-	person_event SPRITE_TAUROS, 17, 12, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, $ffff
-	person_event SPRITE_STANDING_YOUNGSTER, 11, 17, $a, $0, 255, 255, $92, 1, TrainerPsychicNorman, $ffff
-	person_event SPRITE_FRUIT_TREE, 7, 13, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a5bf4, $ffff
-	person_event SPRITE_POKEFAN_F, 26, 8, $6, $0, 255, 255, $80, 0, PokefanFScript_0x1a5bbe, $ffff
+	person_event SPRITE_SAILOR, 33, 17, $8, $0, 255, 255, $92, 5, TrainerSailorEugene, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 26, 14, $7, $0, 255, 255, $82, 4, TrainerPokefanmDerek1, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_F, 23, 15, $9, $0, 255, 255, $82, 4, TrainerPokefanfRuth, EVENT_ALWAYS_THERE
+	person_event SPRITE_TAUROS, 16, 7, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, EVENT_ALWAYS_THERE
+	person_event SPRITE_TAUROS, 15, 10, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, EVENT_ALWAYS_THERE
+	person_event SPRITE_TAUROS, 19, 8, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, EVENT_ALWAYS_THERE
+	person_event SPRITE_TAUROS, 17, 12, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, EVENT_ALWAYS_THERE
+	person_event SPRITE_STANDING_YOUNGSTER, 11, 17, $a, $0, 255, 255, $92, 1, TrainerPsychicNorman, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 7, 13, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a5bf4, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_F, 26, 8, $6, $0, 255, 255, $80, 0, PokefanFScript_0x1a5bbe, EVENT_ALWAYS_THERE

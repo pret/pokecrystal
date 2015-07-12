@@ -89,5 +89,5 @@ PalletTown_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_TEACHER, 12, 7, $2, $22, 255, 255, $0, 0, TeacherScript_0x1ac6d5, $ffff
-	person_event SPRITE_FISHER, 18, 16, $5, $2, 255, 255, $a0, 0, FisherScript_0x1ac6d8, $ffff
+	person_event SPRITE_TEACHER, 12, 7, $2, $22, 255, 255, $0, 0, TeacherScript_0x1ac6d5, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 18, 16, $5, $2, 255, 255, $a0, 0, FisherScript_0x1ac6d8, EVENT_ALWAYS_THERE

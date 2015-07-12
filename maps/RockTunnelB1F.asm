@@ -39,6 +39,6 @@ RockTunnelB1F_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_POKE_BALL, 29, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x74409, $0780
-	person_event SPRITE_POKE_BALL, 21, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x7440b, $0781
-	person_event SPRITE_POKE_BALL, 6, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x7440d, $0782
+	person_event SPRITE_POKE_BALL, 29, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x74409, EVENT_780
+	person_event SPRITE_POKE_BALL, 21, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x7440b, EVENT_781
+	person_event SPRITE_POKE_BALL, 6, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x7440d, EVENT_782
