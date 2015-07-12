@@ -2255,7 +2255,7 @@ EventFlags:: ; da72
 ;PoliceAtElmsLabEvent:: ; db52
 ;SalesmanMahoganyTownEvent:: ; db5c
 ;RedGyaradosEvent:: ; db5c
-	flag_array 2000
+	flag_array NUM_EVENTS
 ; db6c
 
 	ds 6

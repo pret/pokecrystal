@@ -2001,53 +2001,7 @@
 	const EVENT_7CD
 	const EVENT_7CE
 	const EVENT_7CF
-	const EVENT_7D0
-	const EVENT_7D1
-	const EVENT_7D2
-	const EVENT_7D3
-	const EVENT_7D4
-	const EVENT_7D5
-	const EVENT_7D6
-	const EVENT_7D7
-	const EVENT_7D8
-	const EVENT_7D9
-	const EVENT_7DA
-	const EVENT_7DB
-	const EVENT_7DC
-	const EVENT_7DD
-	const EVENT_7DE
-	const EVENT_7DF
-	const EVENT_7E0
-	const EVENT_7E1
-	const EVENT_7E2
-	const EVENT_7E3
-	const EVENT_7E4
-	const EVENT_7E5
-	const EVENT_7E6
-	const EVENT_7E7
-	const EVENT_7E8
-	const EVENT_7E9
-	const EVENT_7EA
-	const EVENT_7EB
-	const EVENT_7EC
-	const EVENT_7ED
-	const EVENT_7EE
-	const EVENT_7EF
-	const EVENT_7F0
-	const EVENT_7F1
-	const EVENT_7F2
-	const EVENT_7F3
-	const EVENT_7F4
-	const EVENT_7F5
-	const EVENT_7F6
-	const EVENT_7F7
-	const EVENT_7F8
-	const EVENT_7F9
-	const EVENT_7FA
-	const EVENT_7FB
-	const EVENT_7FC
-	const EVENT_7FD
-	const EVENT_7FE
-	const EVENT_7FF
 
-EVENT_ALWAYS_THERE EQU $ffff
+NUM_EVENTS EQU const_value
+
+EVENT_ALWAYS_THERE EQU -1
