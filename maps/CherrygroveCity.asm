@@ -572,6 +572,6 @@ CherrygroveCity_MapEventHeader:
 	db 5
 	person_event SPRITE_GRAMPS, 10, 36, $6, $0, 255, 255, $0, 0, CherrygroveCityGuideGent, EVENT_6FE
 	person_event SPRITE_SILVER, 10, 43, $3, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6BE
-	person_event SPRITE_TEACHER, 16, 31, $5, $1, 255, 255, $90, 0, TeacherScript_0x19c146, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 11, 27, $5, $1, 255, 255, $80, 0, YoungsterScript_0x19c15a, EVENT_ALWAYS_THERE
-	person_event SPRITE_FISHER, 16, 11, $9, $0, 255, 255, $a0, 0, MysticWaterGuy, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 16, 31, $5, $1, 255, 255, $90, 0, TeacherScript_0x19c146, -1
+	person_event SPRITE_YOUNGSTER, 11, 27, $5, $1, 255, 255, $80, 0, YoungsterScript_0x19c15a, -1
+	person_event SPRITE_FISHER, 16, 11, $9, $0, 255, 255, $a0, 0, MysticWaterGuy, -1

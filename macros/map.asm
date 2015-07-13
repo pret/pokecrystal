@@ -162,3 +162,17 @@ if "\1" == "east"
 endc
 
 ENDM
+
+mapgroup: MACRO
+\1\@  EQUS "GROUP_\1"
+\1\@2 EQUS "MAP_\1"
+\1\@ EQU const_value
+	enum \1\@2
+\1_HEIGHT EQU \2
+\1_WIDTH EQU \3
+ENDM
+
+newgroup: MACRO
+const_value = const_value + 1
+	enum_start 1
+ENDM

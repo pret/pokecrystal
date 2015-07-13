@@ -455,7 +455,7 @@ RadioTower5F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, Director, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, Director, -1
 	person_event SPRITE_ROCKET, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6CE
 	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, EVENT_6CE
 	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, Ben, EVENT_6D0

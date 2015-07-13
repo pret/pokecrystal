@@ -44,6 +44,14 @@ dbwww: MACRO
 	dw \2, \3, \4
 	ENDM
 
+dbankaddr: MACRO
+	dbw BANK(\1), \1
+	ENDM
+
+daddrbank: MACRO
+	dwb \1, BANK(\1)
+	ENDM
+
 dn: MACRO
 	rept _NARG / 2
 	db (\1) << 4 + (\2)

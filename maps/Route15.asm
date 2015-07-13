@@ -306,10 +306,10 @@ Route15_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_YOUNGSTER, 14, 14, $9, $0, 255, 255, $92, 4, TrainerSchoolboyKipp, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 17, 19, $7, $0, 255, 255, $92, 3, TrainerSchoolboyTommy, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 14, 37, $6, $0, 255, 255, $92, 3, TrainerSchoolboyJohnny, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 14, 31, $6, $0, 255, 255, $92, 3, TrainerSchoolboyBilly, EVENT_ALWAYS_THERE
-	person_event SPRITE_TEACHER, 16, 34, $7, $0, 255, 255, $82, 4, TrainerTeacherColette, EVENT_ALWAYS_THERE
-	person_event SPRITE_TEACHER, 14, 24, $a, $0, 255, 255, $82, 3, TrainerTeacherHillary, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 14, 14, $9, $0, 255, 255, $92, 4, TrainerSchoolboyKipp, -1
+	person_event SPRITE_YOUNGSTER, 17, 19, $7, $0, 255, 255, $92, 3, TrainerSchoolboyTommy, -1
+	person_event SPRITE_YOUNGSTER, 14, 37, $6, $0, 255, 255, $92, 3, TrainerSchoolboyJohnny, -1
+	person_event SPRITE_YOUNGSTER, 14, 31, $6, $0, 255, 255, $92, 3, TrainerSchoolboyBilly, -1
+	person_event SPRITE_TEACHER, 16, 34, $7, $0, 255, 255, $82, 4, TrainerTeacherColette, -1
+	person_event SPRITE_TEACHER, 14, 24, $a, $0, 255, 255, $82, 3, TrainerTeacherHillary, -1
 	person_event SPRITE_POKE_BALL, 9, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x1aa5e4, EVENT_78A

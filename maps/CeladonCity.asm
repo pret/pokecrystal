@@ -258,12 +258,12 @@ CeladonCity_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_FISHER, 15, 30, $9, $0, 255, 255, $a0, 0, FisherScript_0x1a9f43, EVENT_ALWAYS_THERE
-	person_event SPRITE_POLIWAG, 15, 31, $16, $0, 255, 255, $90, 0, CeladonCityPoliwrath, EVENT_ALWAYS_THERE
-	person_event SPRITE_TEACHER, 28, 24, $5, $2, 255, 255, $80, 0, TeacherScript_0x1a9f50, EVENT_ALWAYS_THERE
-	person_event SPRITE_GRAMPS, 20, 18, $6, $0, 255, 255, $b0, 0, GrampsScript_0x1a9f53, EVENT_ALWAYS_THERE
-	person_event SPRITE_GRAMPS, 35, 12, $7, $0, 255, 255, $80, 0, GrampsScript_0x1a9f56, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 17, 22, $5, $2, 255, 255, $90, 0, YoungsterScript_0x1a9f59, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 37, 28, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x1a9f5c, EVENT_ALWAYS_THERE
-	person_event SPRITE_TEACHER, 18, 10, $2, $22, 255, 255, $a0, 0, TeacherScript_0x1a9f5f, EVENT_ALWAYS_THERE
-	person_event SPRITE_LASS, 26, 11, $4, $20, 255, 255, $80, 0, LassScript_0x1a9f62, EVENT_ALWAYS_THERE
+	person_event SPRITE_FISHER, 15, 30, $9, $0, 255, 255, $a0, 0, FisherScript_0x1a9f43, -1
+	person_event SPRITE_POLIWAG, 15, 31, $16, $0, 255, 255, $90, 0, CeladonCityPoliwrath, -1
+	person_event SPRITE_TEACHER, 28, 24, $5, $2, 255, 255, $80, 0, TeacherScript_0x1a9f50, -1
+	person_event SPRITE_GRAMPS, 20, 18, $6, $0, 255, 255, $b0, 0, GrampsScript_0x1a9f53, -1
+	person_event SPRITE_GRAMPS, 35, 12, $7, $0, 255, 255, $80, 0, GrampsScript_0x1a9f56, -1
+	person_event SPRITE_YOUNGSTER, 17, 22, $5, $2, 255, 255, $90, 0, YoungsterScript_0x1a9f59, -1
+	person_event SPRITE_YOUNGSTER, 37, 28, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x1a9f5c, -1
+	person_event SPRITE_TEACHER, 18, 10, $2, $22, 255, 255, $a0, 0, TeacherScript_0x1a9f5f, -1
+	person_event SPRITE_LASS, 26, 11, $4, $20, 255, 255, $80, 0, LassScript_0x1a9f62, -1

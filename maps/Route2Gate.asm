@@ -41,4 +41,4 @@ Route2Gate_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_SCIENTIST, 8, 10, $4, $20, 255, 255, $90, 0, ScientistScript_0x9b952, EVENT_ALWAYS_THERE
+	person_event SPRITE_SCIENTIST, 8, 10, $4, $20, 255, 255, $90, 0, ScientistScript_0x9b952, -1

@@ -295,9 +295,9 @@ VermilionCity_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_TEACHER, 13, 22, $2, $11, 255, 255, $0, 0, TeacherScript_0x1aa983, EVENT_ALWAYS_THERE
-	person_event SPRITE_GRAMPS, 10, 27, $9, $0, 255, 255, $0, 0, GrampsScript_0x1aa986, EVENT_ALWAYS_THERE
-	person_event SPRITE_MACHOP, 11, 30, $16, $0, 255, 255, $90, 0, VermilionMachop, EVENT_ALWAYS_THERE
-	person_event SPRITE_SUPER_NERD, 20, 18, $2, $11, 255, 255, $a0, 0, SuperNerdScript_0x1aa99b, EVENT_ALWAYS_THERE
+	person_event SPRITE_TEACHER, 13, 22, $2, $11, 255, 255, $0, 0, TeacherScript_0x1aa983, -1
+	person_event SPRITE_GRAMPS, 10, 27, $9, $0, 255, 255, $0, 0, GrampsScript_0x1aa986, -1
+	person_event SPRITE_MACHOP, 11, 30, $16, $0, 255, 255, $90, 0, VermilionMachop, -1
+	person_event SPRITE_SUPER_NERD, 20, 18, $2, $11, 255, 255, $a0, 0, SuperNerdScript_0x1aa99b, -1
 	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, $0, 255, 255, $0, 0, VermilionSnorlax, EVENT_770
-	person_event SPRITE_POKEFAN_M, 16, 35, $6, $0, 255, 255, $80, 0, VermilionGymBadgeGuy, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 16, 35, $6, $0, 255, 255, $80, 0, VermilionGymBadgeGuy, -1

@@ -87,5 +87,5 @@ Route28FamousSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $6, $0, 255, 255, $a0, 0, Celebrity, EVENT_ALWAYS_THERE
-	person_event SPRITE_MOLTRES, 9, 10, $16, $0, 255, 255, $b0, 0, CelebritysFearow, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $6, $0, 255, 255, $a0, 0, Celebrity, -1
+	person_event SPRITE_MOLTRES, 9, 10, $16, $0, 255, 255, $b0, 0, CelebritysFearow, -1

@@ -300,9 +300,9 @@ CeruleanCity_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_COOLTRAINER_M, 27, 19, $2, $22, 255, 255, $90, 0, CooltrainerMScript_0x184009, EVENT_ALWAYS_THERE
-	person_event SPRITE_SUPER_NERD, 19, 27, $2, $11, 255, 255, $90, 0, SuperNerdScript_0x18401d, EVENT_ALWAYS_THERE
-	person_event SPRITE_SLOWPOKE, 28, 24, $1, $0, 255, 255, $0, 0, CeruleanCitySlowbro, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_F, 28, 25, $8, $0, 255, 255, $a0, 0, CooltrainerFScript_0x18402a, EVENT_ALWAYS_THERE
-	person_event SPRITE_FISHER, 30, 34, $5, $1, 255, 255, $80, 0, FisherScript_0x18404a, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 16, 10, $3, $1, 255, 255, $80, 0, YoungsterScript_0x184064, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 27, 19, $2, $22, 255, 255, $90, 0, CooltrainerMScript_0x184009, -1
+	person_event SPRITE_SUPER_NERD, 19, 27, $2, $11, 255, 255, $90, 0, SuperNerdScript_0x18401d, -1
+	person_event SPRITE_SLOWPOKE, 28, 24, $1, $0, 255, 255, $0, 0, CeruleanCitySlowbro, -1
+	person_event SPRITE_COOLTRAINER_F, 28, 25, $8, $0, 255, 255, $a0, 0, CooltrainerFScript_0x18402a, -1
+	person_event SPRITE_FISHER, 30, 34, $5, $1, 255, 255, $80, 0, FisherScript_0x18404a, -1
+	person_event SPRITE_YOUNGSTER, 16, 10, $3, $1, 255, 255, $80, 0, YoungsterScript_0x184064, -1

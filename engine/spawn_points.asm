@@ -18,7 +18,7 @@ ENDM
 	spawn VIRIDIAN,    VIRIDIAN_CITY,              23, 26
 	spawn PEWTER,      PEWTER_CITY,                13, 26
 	spawn CERULEAN,    CERULEAN_CITY,              19, 22
-	spawn ROCK_TUNNEL, ROUTE_10A,                  11,  2
+	spawn ROCK_TUNNEL, ROUTE_10_NORTH,             11,  2
 	spawn VERMILION,   VERMILION_CITY,              9,  6
 	spawn LAVENDER,    LAVENDER_TOWN,               5,  6
 	spawn SAFFRON,     SAFFRON_CITY,                9, 30

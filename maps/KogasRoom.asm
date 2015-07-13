@@ -150,4 +150,4 @@ KogasRoom_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_KOGA, 11, 9, $6, $0, 255, 255, $90, 0, KogaScript_0x18075a, EVENT_ALWAYS_THERE
+	person_event SPRITE_KOGA, 11, 9, $6, $0, 255, 255, $90, 0, KogaScript_0x18075a, -1

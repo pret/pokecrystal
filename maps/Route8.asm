@@ -263,9 +263,9 @@ Route8_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_BIKER, 12, 14, $8, $0, 255, 255, $82, 5, TrainerBikerDwayne, EVENT_ALWAYS_THERE
-	person_event SPRITE_BIKER, 13, 14, $8, $0, 255, 255, $a2, 5, TrainerBikerHarris, EVENT_ALWAYS_THERE
-	person_event SPRITE_BIKER, 14, 14, $8, $0, 255, 255, $92, 5, TrainerBikerZeke, EVENT_ALWAYS_THERE
-	person_event SPRITE_SUPER_NERD, 6, 27, $6, $0, 255, 255, $b2, 3, TrainerSupernerdSam, EVENT_ALWAYS_THERE
-	person_event SPRITE_SUPER_NERD, 16, 35, $a, $0, 255, 255, $b2, 4, TrainerSupernerdTom, EVENT_ALWAYS_THERE
-	person_event SPRITE_FRUIT_TREE, 9, 37, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x6c06c, EVENT_ALWAYS_THERE
+	person_event SPRITE_BIKER, 12, 14, $8, $0, 255, 255, $82, 5, TrainerBikerDwayne, -1
+	person_event SPRITE_BIKER, 13, 14, $8, $0, 255, 255, $a2, 5, TrainerBikerHarris, -1
+	person_event SPRITE_BIKER, 14, 14, $8, $0, 255, 255, $92, 5, TrainerBikerZeke, -1
+	person_event SPRITE_SUPER_NERD, 6, 27, $6, $0, 255, 255, $b2, 3, TrainerSupernerdSam, -1
+	person_event SPRITE_SUPER_NERD, 16, 35, $a, $0, 255, 255, $b2, 4, TrainerSupernerdTom, -1
+	person_event SPRITE_FRUIT_TREE, 9, 37, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x6c06c, -1

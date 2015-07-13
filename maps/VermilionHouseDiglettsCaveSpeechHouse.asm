@@ -34,4 +34,4 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_GENTLEMAN, 7, 5, $4, $10, 255, 255, $80, 0, GentlemanScript_0x192031, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 7, 5, $4, $10, 255, 255, $80, 0, GentlemanScript_0x192031, -1

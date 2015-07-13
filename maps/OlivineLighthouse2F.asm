@@ -253,5 +253,5 @@ OlivineLighthouse2F_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_SAILOR, 7, 13, $9, $0, 255, 255, $92, 3, TrainerSailorHuey1, EVENT_ALWAYS_THERE
-	person_event SPRITE_GENTLEMAN, 12, 21, $8, $0, 255, 255, $92, 3, TrainerGentlemanAlfred, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAILOR, 7, 13, $9, $0, 255, 255, $92, 3, TrainerSailorHuey1, -1
+	person_event SPRITE_GENTLEMAN, 12, 21, $8, $0, 255, 255, $92, 3, TrainerGentlemanAlfred, -1

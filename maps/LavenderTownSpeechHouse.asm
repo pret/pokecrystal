@@ -44,4 +44,4 @@ LavenderTownSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKEFAN_F, 7, 6, $7, $0, 255, 255, $90, 0, PokefanFScript_0x7ea47, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_F, 7, 6, $7, $0, 255, 255, $90, 0, PokefanFScript_0x7ea47, -1

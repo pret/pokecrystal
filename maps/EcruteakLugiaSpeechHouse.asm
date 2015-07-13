@@ -58,5 +58,5 @@ EcruteakLugiaSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, $3, $0, 255, 255, $0, 0, GrampsScript_0x99334, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 8, 9, $8, $0, 255, 255, $0, 0, YoungsterScript_0x99337, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRAMPS, 7, 6, $3, $0, 255, 255, $0, 0, GrampsScript_0x99334, -1
+	person_event SPRITE_YOUNGSTER, 8, 9, $8, $0, 255, 255, $0, 0, YoungsterScript_0x99337, -1

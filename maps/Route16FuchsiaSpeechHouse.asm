@@ -38,4 +38,4 @@ Route16FuchsiaSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x73373, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x73373, -1

@@ -311,7 +311,7 @@ BurnedTower1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_ROCK, 8, 19, $18, $0, 255, 255, $0, 0, BurnedTower1FRock, EVENT_ALWAYS_THERE
+	person_event SPRITE_ROCK, 8, 19, $18, $0, 255, 255, $0, 0, BurnedTower1FRock, -1
 	person_event SPRITE_SUPER_NERD, 16, 16, $3, $0, 255, 255, $90, 0, SuperNerdScript_0x185cbc, EVENT_765
 	person_event SPRITE_SILVER, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, EVENT_6C5
 	person_event SPRITE_MORTY, 18, 18, $2, $11, 255, 255, $b0, 0, MortyScript_0x185cbf, EVENT_764

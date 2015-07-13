@@ -251,7 +251,7 @@ BurnedTowerB1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_BOULDER, 12, 21, $19, $0, 255, 255, $0, 0, BurnedTowerB1FBoulder, EVENT_ALWAYS_THERE
+	person_event SPRITE_BOULDER, 12, 21, $19, $0, 255, 255, $0, 0, BurnedTowerB1FBoulder, -1
 	person_event SPRITE_RAIKOU, 7, 11, $16, $0, 255, 255, $b0, 0, ObjectEvent, EVENT_74A
 	person_event SPRITE_ENTEI, 7, 16, $16, $0, 255, 255, $80, 0, ObjectEvent, EVENT_74A
 	person_event SPRITE_SUICUNE, 8, 14, $16, $0, 255, 255, $90, 0, ObjectEvent, EVENT_74A

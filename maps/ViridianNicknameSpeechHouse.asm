@@ -72,7 +72,7 @@ ViridianNicknameSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_POKEFAN_M, 8, 6, $9, $0, 255, 255, $80, 0, PokefanMScript_0x9ae3a, EVENT_ALWAYS_THERE
-	person_event SPRITE_LASS, 8, 9, $7, $0, 255, 255, $a0, 0, LassScript_0x9ae3d, EVENT_ALWAYS_THERE
-	person_event SPRITE_MOLTRES, 6, 9, $16, $2, 255, 255, $b0, 0, MoltresScript_0x9ae40, EVENT_ALWAYS_THERE
-	person_event SPRITE_GROWLITHE, 7, 10, $16, $2, 255, 255, $90, 0, GrowlitheScript_0x9ae4a, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 8, 6, $9, $0, 255, 255, $80, 0, PokefanMScript_0x9ae3a, -1
+	person_event SPRITE_LASS, 8, 9, $7, $0, 255, 255, $a0, 0, LassScript_0x9ae3d, -1
+	person_event SPRITE_MOLTRES, 6, 9, $16, $2, 255, 255, $b0, 0, MoltresScript_0x9ae40, -1
+	person_event SPRITE_GROWLITHE, 7, 10, $16, $2, 255, 255, $90, 0, GrowlitheScript_0x9ae4a, -1
