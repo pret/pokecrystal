@@ -489,9 +489,9 @@ DragonsDenB1F_MapEventHeader:
 	person_event SPRITE_POKE_BALL, 20, 39, $1, $0, 255, 255, $0, 0, PokeBallScript_0x18c95a, EVENT_6A8
 	person_event SPRITE_CLAIR, 34, 18, $7, $0, 255, 255, $90, 0, ObjectEvent, EVENT_6D8
 	person_event SPRITE_SILVER, 27, 24, $2, $22, 255, 255, $0, 0, SilverScript_0x18c97e, EVENT_6C6
-	person_event SPRITE_COOLTRAINER_M, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_F, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, EVENT_ALWAYS_THERE
-	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia1, EVENT_ALWAYS_THERE
-	person_event SPRITE_TWIN, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_M, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, -1
+	person_event SPRITE_COOLTRAINER_F, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, -1
+	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia1, -1
+	person_event SPRITE_TWIN, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, -1
 	person_event SPRITE_POKE_BALL, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, EVENT_7BF
 	person_event SPRITE_POKE_BALL, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, EVENT_7C0

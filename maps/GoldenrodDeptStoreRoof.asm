@@ -226,8 +226,8 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 	; people-events
 	db 8
 	person_event SPRITE_CLERK, 8, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x5673f, EVENT_6F0
-	person_event SPRITE_POKEFAN_F, 7, 14, $5, $1, 255, 255, $80, 0, PokefanFScript_0x56746, EVENT_ALWAYS_THERE
-	person_event SPRITE_FISHER, 5, 6, $7, $0, 255, 255, $90, 0, FisherScript_0x56749, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_F, 7, 14, $5, $1, 255, 255, $80, 0, PokefanFScript_0x56746, -1
+	person_event SPRITE_FISHER, 5, 6, $7, $0, 255, 255, $90, 0, FisherScript_0x56749, -1
 	person_event SPRITE_TWIN, 8, 7, $2, $11, 255, 255, $a0, 0, TwinScript_0x56754, EVENT_6F1
 	person_event SPRITE_SUPER_NERD, 10, 18, $9, $0, 255, 255, $a0, 0, SuperNerdScript_0x56757, EVENT_6F1
 	person_event SPRITE_POKEFAN_M, 4, 11, $5, $1, 255, 255, $0, 0, PokefanMScript_0x5676a, EVENT_6F0

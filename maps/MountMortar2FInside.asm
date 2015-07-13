@@ -99,4 +99,4 @@ MountMortar2FInside_MapEventHeader:
 	person_event SPRITE_POKE_BALL, 9, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e4, EVENT_683
 	person_event SPRITE_POKE_BALL, 15, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e6, EVENT_684
 	person_event SPRITE_POKE_BALL, 9, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e8, EVENT_685
-	person_event SPRITE_SUPER_NERD, 30, 17, $a, $0, 255, 255, $b2, 2, TrainerSupernerdHugh, EVENT_ALWAYS_THERE
+	person_event SPRITE_SUPER_NERD, 30, 17, $a, $0, 255, 255, $b2, 2, TrainerSupernerdHugh, -1

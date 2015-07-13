@@ -52,5 +52,5 @@ OlivineLighthouse1F_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_SAILOR, 6, 12, $6, $0, 255, 255, $0, 0, SailorScript_0x5ae67, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_F, 13, 20, $4, $20, 255, 255, $0, 0, PokefanFScript_0x5ae6a, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAILOR, 6, 12, $6, $0, 255, 255, $0, 0, SailorScript_0x5ae67, -1
+	person_event SPRITE_POKEFAN_F, 13, 20, $4, $20, 255, 255, $0, 0, PokefanFScript_0x5ae6a, -1

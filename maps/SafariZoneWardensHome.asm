@@ -94,4 +94,4 @@ SafariZoneWardensHome_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_LASS, 8, 6, $9, $0, 255, 255, $a0, 0, WardensGranddaughter, EVENT_ALWAYS_THERE
+	person_event SPRITE_LASS, 8, 6, $9, $0, 255, 255, $a0, 0, WardensGranddaughter, -1

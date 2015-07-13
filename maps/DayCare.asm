@@ -176,4 +176,4 @@ DayCare_MapEventHeader:
 	; people-events
 	db 2
 	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x62f8f, EVENT_6E5
-	person_event SPRITE_GRANNY, 7, 9, $8, $0, 255, 255, $80, 0, GrannyScript_0x62fc3, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRANNY, 7, 9, $8, $0, 255, 255, $80, 0, GrannyScript_0x62fc3, -1

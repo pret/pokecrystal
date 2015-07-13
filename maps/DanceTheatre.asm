@@ -425,12 +425,12 @@ DanceTheatre_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_KIMONO_GIRL, 6, 4, $1e, $0, 255, 255, $a2, 0, TrainerKimono_girlNaoko2, EVENT_ALWAYS_THERE
-	person_event SPRITE_KIMONO_GIRL, 5, 6, $a, $0, 255, 255, $92, 0, TrainerKimono_girlSayo, EVENT_ALWAYS_THERE
-	person_event SPRITE_KIMONO_GIRL, 6, 10, $3, $0, 255, 255, $82, 0, TrainerKimono_girlZuki, EVENT_ALWAYS_THERE
-	person_event SPRITE_KIMONO_GIRL, 5, 13, $a, $0, 255, 255, $92, 0, TrainerKimono_girlKuni, EVENT_ALWAYS_THERE
-	person_event SPRITE_KIMONO_GIRL, 6, 15, $1f, $0, 255, 255, $a2, 0, TrainerKimono_girlMiki, EVENT_ALWAYS_THERE
-	person_event SPRITE_GENTLEMAN, 14, 11, $7, $0, 255, 255, $0, 0, GentlemanScript_0x994c6, EVENT_ALWAYS_THERE
-	person_event SPRITE_RHYDON, 12, 10, $16, $0, 255, 255, $90, 0, RhydonScript_0x9951b, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_M, 14, 14, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x99525, EVENT_ALWAYS_THERE
-	person_event SPRITE_GRANNY, 10, 7, $7, $0, 255, 255, $0, 0, GrannyScript_0x99528, EVENT_ALWAYS_THERE
+	person_event SPRITE_KIMONO_GIRL, 6, 4, $1e, $0, 255, 255, $a2, 0, TrainerKimono_girlNaoko2, -1
+	person_event SPRITE_KIMONO_GIRL, 5, 6, $a, $0, 255, 255, $92, 0, TrainerKimono_girlSayo, -1
+	person_event SPRITE_KIMONO_GIRL, 6, 10, $3, $0, 255, 255, $82, 0, TrainerKimono_girlZuki, -1
+	person_event SPRITE_KIMONO_GIRL, 5, 13, $a, $0, 255, 255, $92, 0, TrainerKimono_girlKuni, -1
+	person_event SPRITE_KIMONO_GIRL, 6, 15, $1f, $0, 255, 255, $a2, 0, TrainerKimono_girlMiki, -1
+	person_event SPRITE_GENTLEMAN, 14, 11, $7, $0, 255, 255, $0, 0, GentlemanScript_0x994c6, -1
+	person_event SPRITE_RHYDON, 12, 10, $16, $0, 255, 255, $90, 0, RhydonScript_0x9951b, -1
+	person_event SPRITE_COOLTRAINER_M, 14, 14, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x99525, -1
+	person_event SPRITE_GRANNY, 10, 7, $7, $0, 255, 255, $0, 0, GrannyScript_0x99528, -1

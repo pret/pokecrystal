@@ -810,8 +810,8 @@ BattleTower1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_RECEPTIONIST, 10, 11, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x9e3e2, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 13, 18, $9, $0, 255, 255, $b0, 0, YoungsterScript_0x9e55d, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_F, 13, 8, $5, $1, 255, 255, $80, 0, CooltrainerFScript_0x9e568, EVENT_ALWAYS_THERE
-	person_event SPRITE_BUG_CATCHER, 7, 5, $2, $11, 255, 255, $90, 0, BugCatcherScript_0x9e56b, EVENT_ALWAYS_THERE
-	person_event SPRITE_GRANNY, 7, 18, $4, $10, 255, 255, $0, 0, GrannyScript_0x9e56e, EVENT_ALWAYS_THERE
+	person_event SPRITE_RECEPTIONIST, 10, 11, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x9e3e2, -1
+	person_event SPRITE_YOUNGSTER, 13, 18, $9, $0, 255, 255, $b0, 0, YoungsterScript_0x9e55d, -1
+	person_event SPRITE_COOLTRAINER_F, 13, 8, $5, $1, 255, 255, $80, 0, CooltrainerFScript_0x9e568, -1
+	person_event SPRITE_BUG_CATCHER, 7, 5, $2, $11, 255, 255, $90, 0, BugCatcherScript_0x9e56b, -1
+	person_event SPRITE_GRANNY, 7, 18, $4, $10, 255, 255, $0, 0, GrannyScript_0x9e56e, -1

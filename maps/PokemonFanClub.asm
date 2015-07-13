@@ -307,9 +307,9 @@ PokemonFanClub_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_GENTLEMAN, 5, 7, $6, $0, 255, 255, $0, 0, GentlemanScript_0x1917e9, EVENT_ALWAYS_THERE
-	person_event SPRITE_RECEPTIONIST, 5, 8, $6, $0, 255, 255, $a0, 0, ReceptionistScript_0x191821, EVENT_ALWAYS_THERE
-	person_event SPRITE_FISHER, 7, 6, $9, $0, 255, 255, $0, 0, FisherScript_0x191824, EVENT_ALWAYS_THERE
-	person_event SPRITE_TEACHER, 6, 11, $8, $0, 255, 255, $0, 0, TeacherScript_0x19186b, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 5, 7, $6, $0, 255, 255, $0, 0, GentlemanScript_0x1917e9, -1
+	person_event SPRITE_RECEPTIONIST, 5, 8, $6, $0, 255, 255, $a0, 0, ReceptionistScript_0x191821, -1
+	person_event SPRITE_FISHER, 7, 6, $9, $0, 255, 255, $0, 0, FisherScript_0x191824, -1
+	person_event SPRITE_TEACHER, 6, 11, $8, $0, 255, 255, $0, 0, TeacherScript_0x19186b, -1
 	person_event SPRITE_FAIRY, 8, 6, $6, $0, 255, 255, $0, 0, FairyScript_0x19186e, EVENT_774
-	person_event SPRITE_ODDISH, 7, 11, $16, $0, 255, 255, $a0, 0, OddishScript_0x191871, EVENT_ALWAYS_THERE
+	person_event SPRITE_ODDISH, 7, 11, $16, $0, 255, 255, $a0, 0, OddishScript_0x191871, -1

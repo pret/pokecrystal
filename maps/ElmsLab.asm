@@ -1408,7 +1408,7 @@ ElmsLab_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_ELM, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, EVENT_ALWAYS_THERE
+	person_event SPRITE_ELM, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, -1
 	person_event SPRITE_SCIENTIST, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
 	person_event SPRITE_POKE_BALL, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, EVENT_640
 	person_event SPRITE_POKE_BALL, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, EVENT_641

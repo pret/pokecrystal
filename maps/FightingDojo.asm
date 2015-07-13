@@ -57,5 +57,5 @@ FightingDojo_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_BLACK_BELT, 8, 8, $6, $0, 255, 255, $90, 0, BlackBeltScript_0x189b61, EVENT_ALWAYS_THERE
+	person_event SPRITE_BLACK_BELT, 8, 8, $6, $0, 255, 255, $90, 0, BlackBeltScript_0x189b61, -1
 	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x189b6a, EVENT_PICKED_UP_FOCUS_BAND

@@ -45,5 +45,5 @@ IlexForestAzaleaGate_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x62c7a, EVENT_ALWAYS_THERE
-	person_event SPRITE_GRANNY, 7, 5, $6, $0, 255, 255, $b0, 0, GrannyScript_0x62c7d, EVENT_ALWAYS_THERE
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x62c7a, -1
+	person_event SPRITE_GRANNY, 7, 5, $6, $0, 255, 255, $b0, 0, GrannyScript_0x62c7d, -1

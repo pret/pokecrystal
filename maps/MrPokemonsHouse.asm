@@ -392,5 +392,5 @@ MrPokemonsHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_GENTLEMAN, 9, 7, $9, $0, 255, 255, $0, 0, GentlemanScript_0x196e97, EVENT_ALWAYS_THERE
+	person_event SPRITE_GENTLEMAN, 9, 7, $9, $0, 255, 255, $0, 0, GentlemanScript_0x196e97, -1
 	person_event SPRITE_OAK, 9, 10, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C9

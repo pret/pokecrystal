@@ -132,9 +132,9 @@ SproutTower1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_SAGE, 8, 11, $6, $0, 255, 255, $90, 0, SageScript_0x1844fe, EVENT_ALWAYS_THERE
-	person_event SPRITE_SAGE, 11, 10, $2, $11, 255, 255, $90, 0, SageScript_0x184501, EVENT_ALWAYS_THERE
-	person_event SPRITE_GRANNY, 16, 15, $8, $0, 255, 255, $0, 0, GrannyScript_0x184504, EVENT_ALWAYS_THERE
-	person_event SPRITE_TEACHER, 13, 13, $7, $0, 255, 255, $0, 0, TeacherScript_0x184507, EVENT_ALWAYS_THERE
-	person_event SPRITE_SAGE, 9, 7, $7, $0, 255, 255, $92, 4, TrainerSageChow, EVENT_ALWAYS_THERE
+	person_event SPRITE_SAGE, 8, 11, $6, $0, 255, 255, $90, 0, SageScript_0x1844fe, -1
+	person_event SPRITE_SAGE, 11, 10, $2, $11, 255, 255, $90, 0, SageScript_0x184501, -1
+	person_event SPRITE_GRANNY, 16, 15, $8, $0, 255, 255, $0, 0, GrannyScript_0x184504, -1
+	person_event SPRITE_TEACHER, 13, 13, $7, $0, 255, 255, $0, 0, TeacherScript_0x184507, -1
+	person_event SPRITE_SAGE, 9, 7, $7, $0, 255, 255, $92, 4, TrainerSageChow, -1
 	person_event SPRITE_POKE_BALL, 11, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x18451e, EVENT_647

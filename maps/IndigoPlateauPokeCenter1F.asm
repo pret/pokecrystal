@@ -319,9 +319,9 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_NURSE, 11, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18012c, EVENT_ALWAYS_THERE
-	person_event SPRITE_CLERK, 11, 15, $6, $0, 255, 255, $0, 0, ClerkScript_0x18012f, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, $22, 255, 255, $0, 0, CooltrainerMScript_0x180136, EVENT_ALWAYS_THERE
+	person_event SPRITE_NURSE, 11, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18012c, -1
+	person_event SPRITE_CLERK, 11, 15, $6, $0, 255, 255, $0, 0, ClerkScript_0x18012f, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, $22, 255, 255, $0, 0, CooltrainerMScript_0x180136, -1
 	person_event SPRITE_SILVER, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_77B
 	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
 	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, AbraScript, EVENT_TELEPORT_GUY

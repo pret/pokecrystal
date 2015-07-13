@@ -452,8 +452,8 @@ BlackthornGym1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_CLAIR, 7, 9, $6, $0, 255, 255, $90, 0, ClairScript_0x194e24, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_M, 10, 10, $6, $0, 255, 255, $82, 3, TrainerCooltrainermMike, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_M, 18, 5, $6, $0, 255, 255, $82, 3, TrainerCooltrainermPaul, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, EVENT_ALWAYS_THERE
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, EVENT_ALWAYS_THERE
+	person_event SPRITE_CLAIR, 7, 9, $6, $0, 255, 255, $90, 0, ClairScript_0x194e24, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 10, $6, $0, 255, 255, $82, 3, TrainerCooltrainermMike, -1
+	person_event SPRITE_COOLTRAINER_M, 18, 5, $6, $0, 255, 255, $82, 3, TrainerCooltrainermPaul, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, -1
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, -1

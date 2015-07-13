@@ -200,6 +200,6 @@ Route39Barn_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_TWIN, 7, 6, $9, $0, 255, 255, $0, 0, TwinScript_0x9cc76, EVENT_ALWAYS_THERE
-	person_event SPRITE_TWIN, 7, 8, $8, $0, 255, 255, $a0, 0, TwinScript_0x9cc90, EVENT_ALWAYS_THERE
-	person_event SPRITE_TAUROS, 7, 7, $16, $0, 255, 255, $0, 0, TaurosScript_0x9ccaa, EVENT_ALWAYS_THERE
+	person_event SPRITE_TWIN, 7, 6, $9, $0, 255, 255, $0, 0, TwinScript_0x9cc76, -1
+	person_event SPRITE_TWIN, 7, 8, $8, $0, 255, 255, $a0, 0, TwinScript_0x9cc90, -1
+	person_event SPRITE_TAUROS, 7, 7, $16, $0, 255, 255, $0, 0, TaurosScript_0x9ccaa, -1

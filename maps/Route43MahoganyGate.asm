@@ -54,4 +54,4 @@ Route43MahoganyGate_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x19ab0b, EVENT_ALWAYS_THERE
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x19ab0b, -1

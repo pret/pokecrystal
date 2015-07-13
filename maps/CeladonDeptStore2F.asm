@@ -82,7 +82,7 @@ CeladonDeptStore2F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_CLERK, 9, 17, $7, $0, 255, 255, $90, 0, ClerkScript_0x70bad, EVENT_ALWAYS_THERE
-	person_event SPRITE_CLERK, 9, 18, $7, $0, 255, 255, $90, 0, ClerkScript_0x70bb5, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_M, 6, 9, $7, $0, 255, 255, $80, 0, PokefanMScript_0x70bbd, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 6, 10, $8, $0, 255, 255, $a0, 0, YoungsterScript_0x70bc0, EVENT_ALWAYS_THERE
+	person_event SPRITE_CLERK, 9, 17, $7, $0, 255, 255, $90, 0, ClerkScript_0x70bad, -1
+	person_event SPRITE_CLERK, 9, 18, $7, $0, 255, 255, $90, 0, ClerkScript_0x70bb5, -1
+	person_event SPRITE_POKEFAN_M, 6, 9, $7, $0, 255, 255, $80, 0, PokefanMScript_0x70bbd, -1
+	person_event SPRITE_YOUNGSTER, 6, 10, $8, $0, 255, 255, $a0, 0, YoungsterScript_0x70bc0, -1

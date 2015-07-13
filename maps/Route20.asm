@@ -175,6 +175,6 @@ Route20_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 12, 56, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNicole, EVENT_ALWAYS_THERE
-	person_event SPRITE_SWIMMER_GIRL, 17, 49, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfLori, EVENT_ALWAYS_THERE
-	person_event SPRITE_SWIMMER_GUY, 17, 16, $a, $0, 255, 255, $82, 3, TrainerSwimmermCameron, EVENT_ALWAYS_THERE
+	person_event SPRITE_SWIMMER_GIRL, 12, 56, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNicole, -1
+	person_event SPRITE_SWIMMER_GIRL, 17, 49, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfLori, -1
+	person_event SPRITE_SWIMMER_GUY, 17, 16, $a, $0, 255, 255, $82, 3, TrainerSwimmermCameron, -1

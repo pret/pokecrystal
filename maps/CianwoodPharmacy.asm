@@ -90,4 +90,4 @@ CianwoodPharmacy_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_PHARMACIST, 7, 6, $6, $0, 255, 255, $80, 0, CianwoodPharmacist, EVENT_ALWAYS_THERE
+	person_event SPRITE_PHARMACIST, 7, 6, $6, $0, 255, 255, $80, 0, CianwoodPharmacist, -1

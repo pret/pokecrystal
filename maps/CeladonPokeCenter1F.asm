@@ -156,8 +156,8 @@ CeladonPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x71e22, EVENT_ALWAYS_THERE
-	person_event SPRITE_GENTLEMAN, 9, 5, $5, $1, 255, 255, $0, 0, GentlemanScript_0x71e25, EVENT_ALWAYS_THERE
-	person_event SPRITE_PHARMACIST, 7, 4, $6, $0, 255, 255, $80, 0, PharmacistScript_0x71e2b, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_F, 10, 12, $5, $1, 255, 255, $a0, 0, CooltrainerFScript_0x71e28, EVENT_ALWAYS_THERE
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x71e22, -1
+	person_event SPRITE_GENTLEMAN, 9, 5, $5, $1, 255, 255, $0, 0, GentlemanScript_0x71e25, -1
+	person_event SPRITE_PHARMACIST, 7, 4, $6, $0, 255, 255, $80, 0, PharmacistScript_0x71e2b, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 12, $5, $1, 255, 255, $a0, 0, CooltrainerFScript_0x71e28, -1
 	person_event SPRITE_SUPER_NERD, 7, 8, $6, $0, 255, 255, $90, 0, SuperNerdScript_0x71e2e, EVENT_SET_WHEN_FOUGHT_HO_OH

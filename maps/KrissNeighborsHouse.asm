@@ -114,5 +114,5 @@ KrissNeighborsHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, KrissNeighborsDaughter, EVENT_ALWAYS_THERE
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, KrissNeighborsDaughter, -1
 	person_event SPRITE_POKEFAN_F, 7, 9, $8, $0, 255, 255, $80, 0, KrissNeighbor, EVENT_793

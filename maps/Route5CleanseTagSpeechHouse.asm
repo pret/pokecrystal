@@ -75,5 +75,5 @@ Route5CleanseTagSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_GRANNY, 9, 6, $1f, $0, 255, 255, $b0, 0, GrannyScript_0x18b634, EVENT_ALWAYS_THERE
-	person_event SPRITE_TEACHER, 7, 9, $8, $0, 255, 255, $80, 0, TeacherScript_0x18b64f, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRANNY, 9, 6, $1f, $0, 255, 255, $b0, 0, GrannyScript_0x18b634, -1
+	person_event SPRITE_TEACHER, 7, 9, $8, $0, 255, 255, $80, 0, TeacherScript_0x18b64f, -1

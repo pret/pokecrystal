@@ -648,16 +648,16 @@ Route45_MapEventHeader:
 
 	; people-events
 	db 13
-	person_event SPRITE_POKEFAN_M, 20, 14, $9, $0, 255, 255, $b2, 1, TrainerHikerErik, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_M, 69, 19, $9, $0, 255, 255, $b2, 2, TrainerHikerMichael, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_M, 32, 9, $7, $0, 255, 255, $b2, 2, TrainerHikerParry, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_M, 69, 13, $8, $0, 255, 255, $b2, 1, TrainerHikerTimothy, EVENT_ALWAYS_THERE
-	person_event SPRITE_BLACK_BELT, 54, 15, $a, $0, 255, 255, $b2, 2, TrainerBlackbeltKenji, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_M, 22, 21, $8, $0, 255, 255, $82, 1, TrainerCooltrainermRyan, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_F, 40, 9, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfKelly, EVENT_ALWAYS_THERE
-	person_event SPRITE_FRUIT_TREE, 86, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19e294, EVENT_ALWAYS_THERE
+	person_event SPRITE_POKEFAN_M, 20, 14, $9, $0, 255, 255, $b2, 1, TrainerHikerErik, -1
+	person_event SPRITE_POKEFAN_M, 69, 19, $9, $0, 255, 255, $b2, 2, TrainerHikerMichael, -1
+	person_event SPRITE_POKEFAN_M, 32, 9, $7, $0, 255, 255, $b2, 2, TrainerHikerParry, -1
+	person_event SPRITE_POKEFAN_M, 69, 13, $8, $0, 255, 255, $b2, 1, TrainerHikerTimothy, -1
+	person_event SPRITE_BLACK_BELT, 54, 15, $a, $0, 255, 255, $b2, 2, TrainerBlackbeltKenji, -1
+	person_event SPRITE_COOLTRAINER_M, 22, 21, $8, $0, 255, 255, $82, 1, TrainerCooltrainermRyan, -1
+	person_event SPRITE_COOLTRAINER_F, 40, 9, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfKelly, -1
+	person_event SPRITE_FRUIT_TREE, 86, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19e294, -1
 	person_event SPRITE_POKE_BALL, 55, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e296, EVENT_6B8
 	person_event SPRITE_POKE_BALL, 70, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e298, EVENT_6B9
 	person_event SPRITE_POKE_BALL, 24, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29a, EVENT_6BA
 	person_event SPRITE_POKE_BALL, 37, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29c, EVENT_6BB
-	person_event SPRITE_YOUNGSTER, 74, 8, $3, $0, 255, 255, $a0, 0, YoungsterScript_0x19e269, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 74, 8, $3, $0, 255, 255, $a0, 0, YoungsterScript_0x19e269, -1

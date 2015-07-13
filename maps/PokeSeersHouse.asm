@@ -30,4 +30,4 @@ PokeSeersHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_GRANNY, 7, 6, $6, $0, 255, 255, $80, 0, SeerScript, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRANNY, 7, 6, $6, $0, 255, 255, $80, 0, SeerScript, -1

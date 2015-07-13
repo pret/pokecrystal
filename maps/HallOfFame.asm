@@ -126,4 +126,4 @@ HallOfFame_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_LANCE, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_ALWAYS_THERE
+	person_event SPRITE_LANCE, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, -1

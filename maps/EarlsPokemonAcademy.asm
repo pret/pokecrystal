@@ -426,8 +426,8 @@ EarlsPokemonAcademy_MapEventHeader:
 	; people-events
 	db 6
 	person_event SPRITE_FISHER, 6, 8, $6, $0, 255, 255, $a0, 0, AcademyEarl, EVENT_6CB
-	person_event SPRITE_YOUNGSTER, 9, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x68a83, EVENT_ALWAYS_THERE
-	person_event SPRITE_GAMEBOY_KID, 15, 7, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x68a86, EVENT_ALWAYS_THERE
-	person_event SPRITE_GAMEBOY_KID, 15, 8, $8, $0, 255, 255, $80, 0, GameboyKidScript_0x68a91, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 11, 8, $7, $0, 255, 255, $0, 0, YoungsterScript_0x68a9c, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEDEX, 8, 6, $1, $0, 255, 255, $0, 0, AcademyNotebook, EVENT_ALWAYS_THERE
+	person_event SPRITE_YOUNGSTER, 9, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x68a83, -1
+	person_event SPRITE_GAMEBOY_KID, 15, 7, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x68a86, -1
+	person_event SPRITE_GAMEBOY_KID, 15, 8, $8, $0, 255, 255, $80, 0, GameboyKidScript_0x68a91, -1
+	person_event SPRITE_YOUNGSTER, 11, 8, $7, $0, 255, 255, $0, 0, YoungsterScript_0x68a9c, -1
+	person_event SPRITE_POKEDEX, 8, 6, $1, $0, 255, 255, $0, 0, AcademyNotebook, -1

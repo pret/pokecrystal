@@ -47,6 +47,6 @@ CinnabarPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x1ab32c, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1ab32f, EVENT_ALWAYS_THERE
-	person_event SPRITE_FISHER, 8, 6, $6, $0, 255, 255, $a0, 0, FisherScript_0x1ab332, EVENT_ALWAYS_THERE
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x1ab32c, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1ab32f, -1
+	person_event SPRITE_FISHER, 8, 6, $6, $0, 255, 255, $a0, 0, FisherScript_0x1ab332, -1

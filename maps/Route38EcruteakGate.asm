@@ -40,4 +40,4 @@ Route38EcruteakGate_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x9cbd7, EVENT_ALWAYS_THERE
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x9cbd7, -1

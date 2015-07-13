@@ -60,6 +60,6 @@ Route32RuinsofAlphGate_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x69a2d, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_M, 6, 12, $4, $10, 255, 255, $b0, 0, PokefanMScript_0x69a30, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 10, 5, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x69a33, EVENT_ALWAYS_THERE
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x69a2d, -1
+	person_event SPRITE_POKEFAN_M, 6, 12, $4, $10, 255, 255, $b0, 0, PokefanMScript_0x69a30, -1
+	person_event SPRITE_YOUNGSTER, 10, 5, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x69a33, -1

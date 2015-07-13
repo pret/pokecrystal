@@ -218,11 +218,11 @@ Route2_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_BUG_CATCHER, 49, 14, $8, $0, 255, 255, $b2, 5, TrainerBug_catcherRob, EVENT_ALWAYS_THERE
-	person_event SPRITE_BUG_CATCHER, 8, 10, $1f, $0, 255, 255, $b2, 3, TrainerBug_catcherEd, EVENT_ALWAYS_THERE
-	person_event SPRITE_BUG_CATCHER, 44, 4, $9, $0, 255, 255, $b2, 3, TrainerBug_catcherDoug, EVENT_ALWAYS_THERE
+	person_event SPRITE_BUG_CATCHER, 49, 14, $8, $0, 255, 255, $b2, 5, TrainerBug_catcherRob, -1
+	person_event SPRITE_BUG_CATCHER, 8, 10, $1f, $0, 255, 255, $b2, 3, TrainerBug_catcherEd, -1
+	person_event SPRITE_BUG_CATCHER, 44, 4, $9, $0, 255, 255, $b2, 3, TrainerBug_catcherDoug, -1
 	person_event SPRITE_POKE_BALL, 33, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac2fe, EVENT_783
 	person_event SPRITE_POKE_BALL, 27, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac300, EVENT_784
 	person_event SPRITE_POKE_BALL, 6, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac302, EVENT_785
 	person_event SPRITE_POKE_BALL, 54, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac304, EVENT_786
-	person_event SPRITE_FRUIT_TREE, 18, 14, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac306, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 18, 14, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac306, -1

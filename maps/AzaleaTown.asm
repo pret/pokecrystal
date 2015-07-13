@@ -483,14 +483,14 @@ AzaleaTown_MapEventHeader:
 	; people-events
 	db 12
 	person_event SPRITE_AZALEA_ROCKET, 13, 35, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ab, EVENT_6FA
-	person_event SPRITE_GRAMPS, 13, 25, $2, $21, 255, 255, $0, 0, GrampsScript_0x1980b1, EVENT_ALWAYS_THERE
-	person_event SPRITE_TEACHER, 17, 19, $4, $20, 255, 255, $90, 0, TeacherScript_0x1980c5, EVENT_ALWAYS_THERE
-	person_event SPRITE_YOUNGSTER, 13, 11, $5, $1, 255, 255, $a0, 0, YoungsterScript_0x1980c8, EVENT_ALWAYS_THERE
+	person_event SPRITE_GRAMPS, 13, 25, $2, $21, 255, 255, $0, 0, GrampsScript_0x1980b1, -1
+	person_event SPRITE_TEACHER, 17, 19, $4, $20, 255, 255, $90, 0, TeacherScript_0x1980c5, -1
+	person_event SPRITE_YOUNGSTER, 13, 11, $5, $1, 255, 255, $a0, 0, YoungsterScript_0x1980c8, -1
 	person_event SPRITE_SLOWPOKE, 21, 12, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
 	person_event SPRITE_SLOWPOKE, 13, 22, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
 	person_event SPRITE_SLOWPOKE, 13, 33, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
 	person_event SPRITE_SLOWPOKE, 19, 19, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
-	person_event SPRITE_FRUIT_TREE, 6, 12, $1, $0, 255, 255, $0, 0, WhiteApricornTree, EVENT_ALWAYS_THERE
+	person_event SPRITE_FRUIT_TREE, 6, 12, $1, $0, 255, 255, $0, 0, WhiteApricornTree, -1
 	person_event SPRITE_AZALEA_ROCKET, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6BF
 	person_event SPRITE_AZALEA_ROCKET, 20, 14, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ae, EVENT_6FC
 	person_event SPRITE_KURT_OUTSIDE, 9, 10, $8, $0, 255, 255, $0, 0, KurtOutsideScript_0x19810c, EVENT_7A4

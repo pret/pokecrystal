@@ -479,15 +479,15 @@ GoldenrodGameCorner_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_CLERK, 6, 7, $6, $0, 255, 255, $80, 0, ClerkScript_0x56c25, EVENT_ALWAYS_THERE
-	person_event SPRITE_RECEPTIONIST, 6, 20, $6, $0, 255, 255, $80, 0, ReceptionistScript_0x56c28, EVENT_ALWAYS_THERE
-	person_event SPRITE_RECEPTIONIST, 6, 22, $6, $0, 255, 255, $80, 0, ReceptionistScript_0x56d01, EVENT_ALWAYS_THERE
-	person_event SPRITE_PHARMACIST, 11, 12, $8, $0, 255, 2, $90, 0, PharmacistScript_0x56df1, EVENT_ALWAYS_THERE
-	person_event SPRITE_PHARMACIST, 11, 12, $8, $0, 255, 4, $90, 0, PharmacistScript_0x56df1, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_M, 14, 15, $9, $0, 255, 255, $b0, 0, PokefanMScript_0x56dfc, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_M, 12, 18, $8, $0, 255, 255, $90, 0, CooltrainerMScript_0x56e07, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_F, 10, 21, $9, $0, 255, 255, $80, 0, PokefanFScript_0x56e12, EVENT_ALWAYS_THERE
-	person_event SPRITE_COOLTRAINER_F, 7, 14, $2, $12, 255, 255, $a0, 0, CooltrainerFScript_0x56e1d, EVENT_ALWAYS_THERE
-	person_event SPRITE_GENTLEMAN, 14, 9, $9, $0, 255, 255, $90, 0, GentlemanScript_0x56e20, EVENT_ALWAYS_THERE
-	person_event SPRITE_POKEFAN_M, 13, 6, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x56e2b, EVENT_ALWAYS_THERE
+	person_event SPRITE_CLERK, 6, 7, $6, $0, 255, 255, $80, 0, ClerkScript_0x56c25, -1
+	person_event SPRITE_RECEPTIONIST, 6, 20, $6, $0, 255, 255, $80, 0, ReceptionistScript_0x56c28, -1
+	person_event SPRITE_RECEPTIONIST, 6, 22, $6, $0, 255, 255, $80, 0, ReceptionistScript_0x56d01, -1
+	person_event SPRITE_PHARMACIST, 11, 12, $8, $0, 255, 2, $90, 0, PharmacistScript_0x56df1, -1
+	person_event SPRITE_PHARMACIST, 11, 12, $8, $0, 255, 4, $90, 0, PharmacistScript_0x56df1, -1
+	person_event SPRITE_POKEFAN_M, 14, 15, $9, $0, 255, 255, $b0, 0, PokefanMScript_0x56dfc, -1
+	person_event SPRITE_COOLTRAINER_M, 12, 18, $8, $0, 255, 255, $90, 0, CooltrainerMScript_0x56e07, -1
+	person_event SPRITE_POKEFAN_F, 10, 21, $9, $0, 255, 255, $80, 0, PokefanFScript_0x56e12, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 14, $2, $12, 255, 255, $a0, 0, CooltrainerFScript_0x56e1d, -1
+	person_event SPRITE_GENTLEMAN, 14, 9, $9, $0, 255, 255, $90, 0, GentlemanScript_0x56e20, -1
+	person_event SPRITE_POKEFAN_M, 13, 6, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x56e2b, -1
 	person_event SPRITE_POKEFAN_M, 14, 21, $9, $0, 255, 255, $80, 0, PokefanMScript_0x56c1a, EVENT_76B

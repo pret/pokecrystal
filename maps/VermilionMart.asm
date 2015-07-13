@@ -48,6 +48,6 @@ VermilionMart_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x191f7e, EVENT_ALWAYS_THERE
-	person_event SPRITE_SUPER_NERD, 6, 9, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x191f85, EVENT_ALWAYS_THERE
-	person_event SPRITE_BUENA, 10, 12, $5, $1, 255, 255, $a0, 0, BuenaScript_0x191f88, EVENT_ALWAYS_THERE
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x191f7e, -1
+	person_event SPRITE_SUPER_NERD, 6, 9, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x191f85, -1
+	person_event SPRITE_BUENA, 10, 12, $5, $1, 255, 255, $a0, 0, BuenaScript_0x191f88, -1
