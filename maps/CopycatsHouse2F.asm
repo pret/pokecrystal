@@ -33,13 +33,13 @@ Copycat:
 	iftrue .Part1
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
-	variablesprite $b, $1
+	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part2
 
 .Part1
 	applymovement $7, MovementData_0x18afd0
 	faceplayer
-	variablesprite $b, $60
+	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part2
 	special Function14209
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -64,7 +64,7 @@ Copycat:
 	applymovement $7, MovementData_0x18afd0
 .Part6
 	faceplayer
-	variablesprite $b, $28
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b028
@@ -93,7 +93,7 @@ Copycat:
 	applymovement $7, MovementData_0x18afd0
 .Part11
 	faceplayer
-	variablesprite $b, $28
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b116
@@ -129,13 +129,13 @@ Copycat:
 	iftrue .Part16
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
-	variablesprite $b, $1
+	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part17
 
 .Part16
 	applymovement $7, MovementData_0x18afd0
 	faceplayer
-	variablesprite $b, $60
+	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part17
 	special Function14209
 	loadfont
@@ -158,7 +158,7 @@ Copycat:
 	applymovement $7, MovementData_0x18afd0
 .Part21
 	faceplayer
-	variablesprite $b, $28
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b2f5

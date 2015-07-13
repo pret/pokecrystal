@@ -77,7 +77,7 @@ GruntM1Script:
 	closetext
 	loadmovesprites
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
-	variablesprite $6, $4
+	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_SILVER
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $1
 	clearevent EVENT_6F3
 	clearevent EVENT_6E9

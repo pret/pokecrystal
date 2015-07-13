@@ -23,10 +23,10 @@ JanineScript_0x195db9:
 	setevent EVENT_BEAT_LASS_LINDA
 	setevent EVENT_BEAT_PICNICKER_CINDY
 	setevent EVENT_BEAT_CAMPER_BARRY
-	variablesprite $7, $28
-	variablesprite $8, $28
-	variablesprite $9, $28
-	variablesprite $a, $27
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special Function14209
 	loadfont
 	writetext UnknownText_0x195feb
@@ -56,7 +56,7 @@ FuschiaGym1Script_0x195e1b:
 	iftrue UnknownScript_0x195e2c
 	applymovement $3, MovementData_0x195f27
 	faceplayer
-	variablesprite $7, $28
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
 	special Function14209
 UnknownScript_0x195e2c:
 	faceplayer
@@ -75,7 +75,7 @@ UnknownScript_0x195e2c:
 	end
 
 UnknownScript_0x195e4a:
-	variablesprite $7, $a
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
 	returnafterbattle
 	end
 
@@ -90,7 +90,7 @@ FuschiaGym2Script_0x195e55:
 	iftrue UnknownScript_0x195e66
 	applymovement $4, MovementData_0x195f27
 	faceplayer
-	variablesprite $8, $28
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	special Function14209
 UnknownScript_0x195e66:
 	faceplayer
@@ -109,7 +109,7 @@ UnknownScript_0x195e66:
 	end
 
 UnknownScript_0x195e84:
-	variablesprite $8, $a
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
 	returnafterbattle
 	end
 
@@ -124,7 +124,7 @@ FuschiaGym3Script_0x195e8f:
 	iftrue UnknownScript_0x195ea0
 	applymovement $5, MovementData_0x195f27
 	faceplayer
-	variablesprite $9, $28
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	special Function14209
 UnknownScript_0x195ea0:
 	faceplayer
@@ -143,7 +143,7 @@ UnknownScript_0x195ea0:
 	end
 
 UnknownScript_0x195ebe:
-	variablesprite $9, $a
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
 	returnafterbattle
 	end
 
@@ -158,7 +158,7 @@ FuschiaGym4Script_0x195ec9:
 	iftrue UnknownScript_0x195eda
 	applymovement $6, MovementData_0x195f27
 	faceplayer
-	variablesprite $a, $27
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special Function14209
 UnknownScript_0x195eda:
 	faceplayer
@@ -177,7 +177,7 @@ UnknownScript_0x195eda:
 	end
 
 UnknownScript_0x195ef8:
-	variablesprite $a, $a
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
 	returnafterbattle
 	end
 
@@ -392,8 +392,8 @@ FuchsiaGym_MapEventHeader:
 	; people-events
 	db 6
 	person_event SPRITE_JANINE, 14, 5, $3, $0, 255, 255, $90, 0, JanineScript_0x195db9, -1
-	person_event SPRITE_FUSCHIA_GYM_1, 11, 9, $a, $0, 255, 255, $90, 0, FuschiaGym1Script_0x195e1b, -1
-	person_event SPRITE_FUSCHIA_GYM_2, 15, 9, $a, $0, 255, 255, $90, 0, FuschiaGym2Script_0x195e55, -1
-	person_event SPRITE_FUSCHIA_GYM_3, 8, 13, $a, $0, 255, 255, $90, 0, FuschiaGym3Script_0x195e8f, -1
-	person_event SPRITE_FUSCHIA_GYM_4, 6, 8, $a, $0, 255, 255, $90, 0, FuschiaGym4Script_0x195ec9, -1
+	person_event SPRITE_FUCHSIA_GYM_1, 11, 9, $a, $0, 255, 255, $90, 0, FuschiaGym1Script_0x195e1b, -1
+	person_event SPRITE_FUCHSIA_GYM_2, 15, 9, $a, $0, 255, 255, $90, 0, FuschiaGym2Script_0x195e55, -1
+	person_event SPRITE_FUCHSIA_GYM_3, 8, 13, $a, $0, 255, 255, $90, 0, FuschiaGym3Script_0x195e8f, -1
+	person_event SPRITE_FUCHSIA_GYM_4, 6, 8, $a, $0, 255, 255, $90, 0, FuschiaGym4Script_0x195ec9, -1
 	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 0, FuchsiaGymGuyScript, -1

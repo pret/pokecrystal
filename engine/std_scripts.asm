@@ -597,15 +597,15 @@ InitializeEventsScript:
 	setevent EVENT_7CF
 	setflag ENGINE_ROCKET_SIGNAL_ON_CH20
 	setflag ENGINE_ROCKETS_IN_MAHOGANY
-	variablesprite $4, $52
-	variablesprite $5, $4
-	variablesprite $6, $35
-	variablesprite $7, $a
-	variablesprite $8, $a
-	variablesprite $9, $a
-	variablesprite $a, $a
-	variablesprite $b, $28
-	variablesprite $c, $28
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_SUDOWOODO
+	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SILVER
+	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_ROCKET
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
+	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
 	setevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	setevent EVENT_76D
 	setevent EVENT_76C

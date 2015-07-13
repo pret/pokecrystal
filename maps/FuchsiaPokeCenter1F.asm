@@ -28,7 +28,7 @@ JanineImpersonatorScript_0x196462:
 	loadmovesprites
 	applymovement $5, MovementData_0x196486
 	faceplayer
-	variablesprite $c, $a
+	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_JANINE
 	special Function14209
 	loadfont
 	writetext UnknownText_0x19654e
@@ -36,7 +36,7 @@ JanineImpersonatorScript_0x196462:
 	loadmovesprites
 	applymovement $5, MovementData_0x196486
 	faceplayer
-	variablesprite $c, $28
+	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
 	special Function14209
 	end
 

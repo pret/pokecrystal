@@ -42,7 +42,7 @@ UnknownScript_0x1a8833:
 	dotrigger $1
 	disappear $5
 	special RestartMapMusic
-	variablesprite $5, $31
+	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
 	special Function14209
 	end
 
@@ -66,7 +66,7 @@ UnknownScript_0x1a886b:
 	disappear $5
 	dotrigger $1
 	special RestartMapMusic
-	variablesprite $5, $31
+	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
 	special Function14209
 	end
 
