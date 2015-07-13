@@ -1,75 +1,80 @@
 ; growth rate
-MEDIUM_FAST EQU 0
-MEDIUM_SLOW EQU 3
-SLOW        EQU 4
-FAST        EQU 5
+	const_def
+	const MEDIUM_FAST
+	const SLIGHTLY_FAST
+	const SLIGHTLY_SLOW
+	const MEDIUM_SLOW
+	const SLOW
+	const FAST
 
 ; egg group constants
-
-MONSTER       EQU $01
-AMPHIBIAN     EQU $02
-INSECT        EQU $03
-AVIAN         EQU $04
-FIELD         EQU $05
-FAIRY         EQU $06
-PLANT         EQU $07
-HUMANSHAPE    EQU $08
-INVERTEBRATE  EQU $09
-INANIMATE     EQU $0A
-AMORPHOUS     EQU $0B
-FISH          EQU $0C
-LADIES_MAN    EQU $0D
-REPTILE       EQU $0E
-NO_EGGS       EQU $0F
+const_value SET 1
+	const MONSTER
+	const AMPHIBIAN
+	const INSECT
+	const AVIAN
+	const FIELD
+	const FAIRY
+	const PLANT
+	const HUMANSHAPE
+	const INVERTEBRATE
+	const INANIMATE
+	const AMORPHOUS
+	const FISH
+	const LADIES_MAN
+	const REPTILE
+	const NO_EGGS
 
 
 ; menu sprites
-ICON_POLIWAG       EQU $01
-ICON_JIGGLYPUFF    EQU $02
-ICON_DIGLETT       EQU $03
-ICON_PIKACHU       EQU $04
-ICON_STARYU        EQU $05
-ICON_FISH          EQU $06
-ICON_BIRD          EQU $07
-ICON_MONSTER       EQU $08
-ICON_CLEFAIRY      EQU $09
-ICON_ODDISH        EQU $0a
-ICON_BUG           EQU $0b
-ICON_GHOST         EQU $0c
-ICON_LAPRAS        EQU $0d
-ICON_HUMANSHAPE    EQU $0e
-ICON_FOX           EQU $0f
-ICON_EQUINE        EQU $10
-ICON_SHELL         EQU $11
-ICON_BLOB          EQU $12
-ICON_SERPENT       EQU $13
-ICON_VOLTORB       EQU $14
-ICON_SQUIRTLE      EQU $15
-ICON_BULBASAUR     EQU $16
-ICON_CHARMANDER    EQU $17
-ICON_CATERPILLAR   EQU $18
-ICON_UNOWN         EQU $19
-ICON_GEODUDE       EQU $1a
-ICON_FIGHTER       EQU $1b
-ICON_EGG           EQU $1c
-ICON_JELLYFISH     EQU $1d
-ICON_MOTH          EQU $1e
-ICON_BAT           EQU $1f
-ICON_SNORLAX       EQU $20
-ICON_HO_OH         EQU $21
-ICON_LUGIA         EQU $22
-ICON_GYARADOS      EQU $23
-ICON_SLOWPOKE      EQU $24
-ICON_SUDOWOODO     EQU $25
-ICON_BIGMON        EQU $26
+const_value SET 1
+	const ICON_POLIWAG
+	const ICON_JIGGLYPUFF
+	const ICON_DIGLETT
+	const ICON_PIKACHU
+	const ICON_STARYU
+	const ICON_FISH
+	const ICON_BIRD
+	const ICON_MONSTER
+	const ICON_CLEFAIRY
+	const ICON_ODDISH
+	const ICON_BUG
+	const ICON_GHOST
+	const ICON_LAPRAS
+	const ICON_HUMANSHAPE
+	const ICON_FOX
+	const ICON_EQUINE
+	const ICON_SHELL
+	const ICON_BLOB
+	const ICON_SERPENT
+	const ICON_VOLTORB
+	const ICON_SQUIRTLE
+	const ICON_BULBASAUR
+	const ICON_CHARMANDER
+	const ICON_CATERPILLAR
+	const ICON_UNOWN
+	const ICON_GEODUDE
+	const ICON_FIGHTER
+	const ICON_EGG
+	const ICON_JELLYFISH
+	const ICON_MOTH
+	const ICON_BAT
+	const ICON_SNORLAX
+	const ICON_HO_OH
+	const ICON_LUGIA
+	const ICON_GYARADOS
+	const ICON_SLOWPOKE
+	const ICON_SUDOWOODO
+	const ICON_BIGMON
 
 
 ; evolution types
-EVOLVE_LEVEL     EQU 1
-EVOLVE_ITEM      EQU 2
-EVOLVE_TRADE     EQU 3
-EVOLVE_HAPPINESS EQU 4
-EVOLVE_STAT      EQU 5
+const_value SET 1
+	const EVOLVE_LEVEL
+	const EVOLVE_ITEM
+	const EVOLVE_TRADE
+	const EVOLVE_HAPPINESS
+	const EVOLVE_STAT
 
 
 BASE_HAPPINESS        EQU 70
@@ -77,12 +82,14 @@ FRIEND_BALL_HAPPINESS EQU 200
 
 ; happiness evolution triggers
 HAPPINESS_TO_EVOLVE EQU 220
-TR_ANYTIME EQU 1
-TR_MORNDAY EQU 2
-TR_NITE    EQU 3
+const_value SET 1
+	const TR_ANYTIME
+	const TR_MORNDAY
+	const TR_NITE
 
 
 ; stat evolution triggers
-ATK_GT_DEF EQU 1
-ATK_LT_DEF EQU 2
-ATK_EQ_DEF EQU 3
+const_value SET 1
+	const ATK_GT_DEF
+	const ATK_LT_DEF
+	const ATK_EQ_DEF

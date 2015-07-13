@@ -1,4 +1,3 @@
-NUM_POKEMON EQU 251
 
 const_value set 1
 	const BULBASAUR
@@ -252,5 +251,9 @@ const_value set 1
 	const LUGIA
 	const HO_OH
 	const CELEBI
+
+const_value SET const_value + -1
+
+NUM_POKEMON EQU const_value
 
 EGG EQU 253

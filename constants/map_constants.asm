@@ -576,7 +576,7 @@ MAP_N_A   EQU -1
 	const SPRITE_ENTEI
 	const SPRITE_RAIKOU
 	const SPRITE_STANDING_YOUNGSTER
-const_value = $80
+const_value SET $80
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN
 	const SPRITE_GEODUDE
@@ -614,11 +614,11 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_LUGIA
 	const SPRITE_HO_OH
 
-const_value = $e0
+const_value SET $e0
 	const SPRITE_DAYCARE_MON_1
 	const SPRITE_DAYCARE_MON_2
 
-const_value = $f0
+const_value SET $f0
 SPRITE_VARS EQU const_value
 	const SPRITE_CONSOLE
 	const SPRITE_DOLL_1
@@ -635,7 +635,7 @@ SPRITE_VARS EQU const_value
 	const SPRITE_JANINE_IMPERSONATOR
 
 ; sprite types
-const_value = 1
+const_value SET 1
 	const WALKING_SPRITE
 	const STANDING_SPRITE
 	const STILL_SPRITE
@@ -652,7 +652,7 @@ const_value = 1
 	const PAL_OW_ROCK
 
 ; permissions
-const_value = 1
+const_value SET 1
 	const TOWN
 	const ROUTE
 	const INDOOR
