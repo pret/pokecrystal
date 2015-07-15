@@ -442,12 +442,12 @@ Function17d224: ; 17d224
 .asm_17d23c
 	call LoadMenuDataHeader
 	call Function17d246
-	call Function1c17
+	call WriteBackup
 	ret
 ; 17d246
 
 Function17d246: ; 17d246
-	call Function1d81
+	call InterpretMenu2
 	jr c, .asm_17d264
 	ld a, [ScriptVar]
 	cp $5
@@ -1909,13 +1909,13 @@ Function17dc1f: ; 17dc1f
 	ld [wc70f], a
 	ld hl, wc708
 	call LoadMenuDataHeader
-	call Function1d81
+	call InterpretMenu2
 	jr nc, .asm_17dc6e
 	ld a, $2
 	ld [wcfa9], a
 
 .asm_17dc6e
-	call Function1c17
+	call WriteBackup
 	pop af
 	ld [rSVBK], a
 	ld a, [wcfa9]
@@ -2701,7 +2701,7 @@ Function17e133: ; 17e133
 	ld a, [hli]
 	ld [ScriptVar], a
 	push hl
-	callba Function4a843
+	callba MobileCheckOwnMonAnywhere
 	pop hl
 	jr c, .asm_17e159
 	inc hl

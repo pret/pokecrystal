@@ -2452,7 +2452,7 @@ Function3cfa4: ; 3cfa4
 	and a
 	ld a, b
 	call z, Function3d0ea
-	callab Function39939
+	callab Battle_GetTrainerName
 	ld hl, BattleText_0x809da
 	call StdBattleTextBox
 	call IsMobileBattle
@@ -2493,7 +2493,7 @@ Function3cfa4: ; 3cfa4
 	call DelayFrames
 	call EmptyBattleTextBox
 	ld c, $3
-	callba Function11c000
+	callba StoreText
 	call Functiona80
 	ld hl, wPayDayMoney
 	ld a, [hli]
@@ -2903,7 +2903,7 @@ Function3d227: ; 3d227
 	call ClearPalettes
 	call DelayFrame
 	call Function3eda6
-	call Function1c17
+	call WriteBackup
 	call ClearSGB
 	call Function32f9
 	call Function3f26d
@@ -3100,7 +3100,7 @@ LostBattle: ; 3d38e
 
 	call EmptyBattleTextBox
 	ld c, 2
-	callba Function11c000
+	callba StoreText
 	call Functiona80
 	call ClearTileMap
 	call WhiteBGMap
@@ -3644,7 +3644,7 @@ Function3d714: ; 3d714
 Function3d74b: ; 3d74b
 	ld a, [CurPartyMon]
 	push af
-	callab Function39939
+	callab Battle_GetTrainerName
 	ld hl, BattleText_0x80aca
 	call StdBattleTextBox
 	lb bc, 1, 7
@@ -3695,7 +3695,7 @@ Function3d7a0: ; 3d7a0
 ; 3d7b8
 
 Function3d7b8: ; 3d7b8
-	callab Function39939
+	callab Battle_GetTrainerName
 	ld hl, BattleText_0x80af8
 	call StdBattleTextBox
 	jp WaitBGMap
@@ -5312,7 +5312,7 @@ Function3e299:
 	call ClearPalettes
 	call DelayFrame
 	call Function3eda6
-	call Function1c17
+	call WriteBackup
 	call Function309d
 	call ClearSGB
 	call Function32f9
@@ -5395,7 +5395,7 @@ Function3e358: ; 3e358
 	call DelayFrame
 	call ClearSprites
 	call Function3eda6
-	call Function1c17
+	call WriteBackup
 	call ClearSGB
 	call Function32f9
 	ld a, [CurPartyMon]
@@ -5411,7 +5411,7 @@ Function3e3ad: ; 3e3ad
 	jr z, .asm_3e3c1
 	call Function1d6e
 	call Function3e8e4
-	call Function1c17
+	call WriteBackup
 
 .asm_3e3c1
 	call Function3e7c1
@@ -9455,7 +9455,7 @@ BattleStartMessage: ; 3fc8b
 	ld c, 20
 	call DelayFrames
 
-	callba Function39939
+	callba Battle_GetTrainerName
 
 	ld hl, WantsToBattleText
 	jr .asm_3fd0e

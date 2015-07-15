@@ -25,7 +25,7 @@ UnknownScript_0x1883de:
 	writetext UnknownText_0x1884fb
 	closetext
 	loadmovesprites
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1884f7
 	loadfont
 	writetext UnknownText_0x188574

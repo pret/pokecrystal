@@ -23,7 +23,7 @@ MahoganyTown_MapScriptHeader:
 	return
 
 UnknownScript_0x190013:
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1900a9
 	follow $0, $2
 	applymovement $0, MovementData_0x1900a7

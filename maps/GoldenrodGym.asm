@@ -114,7 +114,7 @@ LassCarrieScript:
 	end
 
 WhitneyCriesScript:
-	showemote $0, $4, 15
+	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, BridgetWalksUpMovement
 	spriteface $0, DOWN
 	loadfont

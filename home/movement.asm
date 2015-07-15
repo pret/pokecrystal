@@ -203,11 +203,11 @@ Function1c10:: ; 0x1c10
 	callab Function2446d
 	ret
 
-Function1c17:: ; 0x1c17
+WriteBackup:: ; 0x1c17
 	push af
 	call Function1c07
 	call Function321c
-	call Function1ad2
+	call DrawOnMap
 	pop af
 	ret
 

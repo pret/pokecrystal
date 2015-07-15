@@ -1320,10 +1320,15 @@ SECTION "WRAM 1", WRAMX, BANK [1]
 wd000:: ds 1
 wd001:: ds 1
 wd002::
+PhoneScriptBank::
 DefaultFlypoint:: ; d002
 	ds 1
-wd003:: ds 1
-wd004:: ds 1
+wd003::
+PhoneCallerLo::
+	ds 1
+wd004::
+PhoneCallerHi::
+	ds 1
 wd005::
 StartFlypoint:: ; d005
 	ds 1
@@ -1952,7 +1957,6 @@ wd4cf:: ds 1
 wd4d0:: ds 1
 wd4d1:: ds 5
 
-
 ObjectStructs::
 
 PlayerStruct:: ; d4d6
@@ -2002,29 +2006,29 @@ PlayerSpriteY:: ; d4ee
 	ds 15
 
 ObjectStruct1:: ; d4fe
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct2:: ; d526
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct3:: ; d54e
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct4:: ; d576
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct5:: ; d59e
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct6:: ; d5c6
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct7:: ; d5ee
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct8:: ; d616
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct9:: ; d63e
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct10:: ; d666
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct11:: ; d68e
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct12:: ; d6b6
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ; d6de
 
 wd6de::

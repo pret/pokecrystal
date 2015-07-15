@@ -88,7 +88,7 @@ OfficerScript_0x6a204:
 	if_equal FRIDAY, UnknownScript_0x6a2c7
 	faceplayer
 	loadfont
-	checkflag ENGINE_51
+	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0x6a2c1
 	scall UnknownScript_0x6a2de
 	writetext UnknownText_0x6a2eb
@@ -97,7 +97,7 @@ OfficerScript_0x6a204:
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, UnknownScript_0x6a271
 	special Function13a12
-	clearevent EVENT_308
+	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 UnknownScript_0x6a234:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
@@ -142,7 +142,7 @@ UnknownScript_0x6a27d: ; 6a27d
 	iffalse UnknownScript_0x6a2a9
 	special Function13a12
 	iftrue UnknownScript_0x6a2af
-	setevent EVENT_308
+	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6a537
 	keeptextopen
 	writetext UnknownText_0x6a56b
@@ -193,7 +193,7 @@ UnknownScript_0x6a2c7:
 OfficerScript_0x6a2ca:
 	faceplayer
 	loadfont
-	checkflag ENGINE_51
+	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0x6a2c1
 	writetext UnknownText_0x6a894
 	closetext

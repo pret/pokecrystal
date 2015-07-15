@@ -129,7 +129,7 @@ FastShipBed:
 	loadmovesprites
 	special Function8c0b6
 	special Functiond91
-	special Function1060a2
+	special Mobile_HealParty
 	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60

@@ -20,7 +20,7 @@ UnknownScript_0x7a4d8:
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $0, LEFT
 	checkevent EVENT_000
 	iffalse UnknownScript_0x7a4f2

@@ -54,7 +54,7 @@ UnknownScript_0x180053:
 	moveperson $5, $11, $9
 	appear $5
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	applymovement $5, MovementData_0x180164
@@ -75,7 +75,7 @@ UnknownScript_0x180094:
 	if_equal SATURDAY, UnknownScript_0x18012b
 	appear $5
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	applymovement $5, MovementData_0x18016b

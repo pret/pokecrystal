@@ -295,7 +295,7 @@ UnknownScript_0x18e378:
 	clearevent EVENT_GAVE_GS_BALL_TO_KURT
 	special Functionc48f
 	pause 20
-	showemote $0, $2, 30
+	showemote EMOTE_SHOCK, $2, 30
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x18e3a2
 	spriteface $0, DOWN

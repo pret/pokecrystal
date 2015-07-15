@@ -440,7 +440,7 @@ UnknownScript_0x192b12:
 	writetext UnknownText_0x19329a
 	closetext
 	loadmovesprites
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	applymovement $0, MovementData_0x192ce5
 	end
 
@@ -549,7 +549,7 @@ UnknownScript_0x192c20:
 	writetext UnknownText_0x19329a
 	closetext
 	loadmovesprites
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	applymovement $0, MovementData_0x192d2d
 	end
 

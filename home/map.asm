@@ -8,7 +8,7 @@ Function210f:: ; 210f
 	ret
 ; 211b
 
-Function211b:: ; 211b
+CheckTriggers:: ; 211b
 	push hl
 	ld hl, BikeFlags + 2
 	ld a, [hli]
@@ -17,7 +17,7 @@ Function211b:: ; 211b
 	or h
 	ld a, [hl]
 	jr nz, .asm_2128
-	ld a, $ff
+	ld a, -1
 
 .asm_2128
 	pop hl
@@ -702,7 +702,7 @@ Function24cd:: ; 24cd
 	ld bc, OverworldMapEnd - OverworldMap
 	ld a, 0
 	call ByteFill
-	call Function24e4
+	call ChangeMap
 	call FillMapConnections
 	ld a, $1
 	call Function263b
@@ -711,7 +711,7 @@ Function24cd:: ; 24cd
 
 
 
-Function24e4:: ; 24e4
+ChangeMap:: ; 24e4
 	ld a, [hROMBank]
 	push af
 
@@ -938,7 +938,7 @@ FillEastConnectionStrip:: ; 25f6
 	ret
 ; 261b
 
-Function261b:: ; 261b
+LoadMapStatus:: ; 261b
 	ld [MapStatus], a
 	ret
 ; 261f
@@ -1027,7 +1027,7 @@ Function2674:: ; 2674
 	ld a, [hl]
 	push af
 	set 1, [hl]
-	callba Function96c56
+	callba EnableScriptMode
 	callba ScriptEvents
 	pop af
 	ld [ScriptFlags], a
@@ -1036,7 +1036,7 @@ Function2674:: ; 2674
 	ret
 ; 269a
 
-Function269a:: ; 269a
+MapTextbox:: ; 269a
 	ld a, [hROMBank]
 	push af
 
@@ -1059,7 +1059,7 @@ Function269a:: ; 269a
 	ret
 ; 26b7
 
-Function26b7:: ; 26b7
+Call_a_de:: ; 26b7
 ; Call a:de.
 
 	ld [hBuffer], a
@@ -1079,7 +1079,7 @@ Function26b7:: ; 26b7
 	ret
 ; 26c7
 
-Function26c7:: ; 26c7
+GetMovementData:: ; 26c7
 	ld a, [hROMBank]
 	push af
 	ld a, b
@@ -1412,7 +1412,7 @@ Function2821:: ; 2821
 	ret
 ; 2879
 
-Function2879:: ; 2879
+BufferScreen:: ; 2879
 	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
@@ -1733,7 +1733,7 @@ GetFacingTileCoord:: ; 2a07
 
 
 Function2a3c:: ; 2a3c
-	call Function2a66
+	call GetBlockLocation
 	ld a, [hl]
 	and a
 	jr z, .asm_2a63
@@ -1766,7 +1766,7 @@ Function2a3c:: ; 2a3c
 	ret
 ; 2a66
 
-Function2a66:: ; 2a66
+GetBlockLocation:: ; 2a66
 	ld a, [MapWidth]
 	add $6
 	ld c, a
@@ -1878,7 +1878,7 @@ Function2ae7:: ; 2ae7
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function211b
+	call CheckTriggers
 	ld b, a
 	ld a, [MapX]
 	sub $4
@@ -1941,7 +1941,7 @@ FadeToMenu:: ; 2b29
 Function2b3c:: ; 2b3c
 	call WhiteBGMap
 	call Function2bae
-	call Function1ad2
+	call DrawOnMap
 	call Function1d7d
 	call Functiond90
 	jr Function2b5c
@@ -1951,7 +1951,7 @@ Function2b4d:: ; 2b4d
 	call WhiteBGMap
 	call Function1d7d
 	call Function2bae
-	call Function1ad2
+	call DrawOnMap
 	call Functiond90
 ; 2b5c
 
@@ -1978,7 +1978,7 @@ Function2b74:: ; 0x2b74
 	call TextBox
 	ld hl, VramState
 	set 0, [hl]
-	call Function1ad2
+	call DrawOnMap
 	call Function3200
 	ld b, $9
 	call GetSGBLayout

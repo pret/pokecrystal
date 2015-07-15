@@ -60,7 +60,7 @@ ReceptionistScript_0x560ce:
 	if_not_equal SUNDAY, UnknownScript_0x56112
 	checkflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	iftrue UnknownScript_0x56112
-	special Function718d
+	special GetFirstPokemonHappiness
 	writetext UnknownText_0x56143
 	keeptextopen
 	if_greater_than $95, UnknownScript_0x560ee

@@ -2,11 +2,11 @@
 
 
 LoadMenuDataHeader:: ; 0x1d35
-	call Function1d3c
+	call CopyMenuDataHeader
 	call Function1c00
 	ret
 
-Function1d3c:: ; 0x1d3c
+CopyMenuDataHeader:: ; 0x1d3c
 	ld de, wcf81
 	ld bc, $0010
 	call CopyBytes
@@ -48,7 +48,7 @@ MenuDataHeader_0x1d5f:: ; 1d5f
 
 Function1d67:: ; 1d67
 	call Function1d4f
-	call Function1c17
+	call WriteBackup
 	ret
 ; 1d6e
 
@@ -71,11 +71,11 @@ Function1d7d:: ; 1d7d
 	ret
 ; 1d81
 
-Function1d81:: ; 0x1d81
+InterpretMenu2:: ; 0x1d81
 	xor a
 	ld [hBGMapMode], a
 	call Function1cbb
-	call Function1ad2
+	call DrawOnMap
 	call Function1c89
 	call Function321c
 	call Function1c66
@@ -97,8 +97,8 @@ Function1d81:: ; 0x1d81
 
 Function1dab:: ; 1dab
 	call LoadMenuDataHeader
-	call Function1d81
-	call Function1c17
+	call InterpretMenu2
+	call WriteBackup
 	ld a, [wcfa9]
 	ret
 ; 1db8
@@ -138,7 +138,7 @@ _YesNoBox:: ; 1dd9
 ; Return nc (yes) or c (no).
 	push bc
 	ld hl, YesNoMenuDataHeader
-	call Function1d3c
+	call CopyMenuDataHeader
 	pop bc
 	ld a, b
 	cp $e
@@ -158,11 +158,11 @@ _YesNoBox:: ; 1dd9
 	call Function1c00
 
 Function1dfe:: ; 1dfe
-	call Function1d81
+	call InterpretMenu2
 	push af
 	ld c, $f
 	call DelayFrames
-	call Function1c17
+	call WriteBackup
 	pop af
 	jr c, .asm_1e16
 	ld a, [wcfa9]
@@ -201,7 +201,7 @@ Function1e2e:: ; 1e2e
 
 Function1e35:: ; 1e35
 	push de
-	call Function1d3c
+	call CopyMenuDataHeader
 	pop de
 	ld a, [wcf83]
 	ld h, a
@@ -540,7 +540,7 @@ PlayClickSFX:: ; 2009
 
 Function2012:: ; 2012
 	call Function1d4f
-	call Functiona46
+	call CloseText
 	call Function1c07
 	ret
 ; 201c
@@ -559,7 +559,7 @@ Function201c:: ; 201c
 	ret
 ; 202a
 
-Function202a:: ; 202a
+InterpretMenu:: ; 202a
 	ld a, [hROMBank]
 	ld [wcf94], a
 	callba Function2400e

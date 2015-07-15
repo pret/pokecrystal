@@ -20,7 +20,7 @@ UnknownScript_0x73611:
 	end
 
 UnknownScript_0x73617:
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x7364d

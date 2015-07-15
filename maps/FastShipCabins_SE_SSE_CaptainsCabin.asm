@@ -45,7 +45,7 @@ TwinScript_0x75ebb:
 	spriteface $4, UP
 	special Function8c0ab
 	spriteface $3, DOWN
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	applymovement $4, MovementData_0x7600c
 	spriteface $3, RIGHT
 	checkflag ENGINE_PLAYER_IS_FEMALE

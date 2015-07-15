@@ -24,7 +24,7 @@ UnknownScript_0x62d38:
 UnknownScript_0x62d3d:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d62
-	showemote $0, $5, 20
+	showemote EMOTE_SHOCK, $5, 20
 	spriteface $5, LEFT
 	spriteface $0, RIGHT
 	follow $0, $5

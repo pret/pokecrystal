@@ -42,7 +42,7 @@ UnknownScript_0x18c8b8:
 	writetext UnknownText_0x18c9b8
 	pause 30
 	loadmovesprites
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	spriteface $0, LEFT
 	playmusic MUSIC_CLAIR
 	applymovement $3, MovementData_0x18c9ae

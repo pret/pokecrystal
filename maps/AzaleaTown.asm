@@ -29,7 +29,7 @@ AzaleaTown_MapScriptHeader:
 UnknownScript_0x198018:
 	moveperson $b, $b, $b
 	spriteface $0, RIGHT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	appear $b
@@ -39,7 +39,7 @@ UnknownScript_0x198018:
 
 UnknownScript_0x198034:
 	spriteface $0, RIGHT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	appear $b

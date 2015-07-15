@@ -17,13 +17,13 @@ UnknownScript_0x1a0872:
 
 UnknownScript_0x1a0873:
 	spriteface $a, LEFT
-	showemote $0, $a, 15
+	showemote EMOTE_SHOCK, $a, 15
 	applymovement $a, MovementData_0x1a0a66
 	jump UnknownScript_0x1a088c
 
 UnknownScript_0x1a0881:
 	spriteface $a, LEFT
-	showemote $0, $a, 15
+	showemote EMOTE_SHOCK, $a, 15
 	applymovement $a, MovementData_0x1a0a69
 UnknownScript_0x1a088c:
 	spriteface $0, RIGHT

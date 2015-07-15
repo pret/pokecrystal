@@ -52,7 +52,7 @@ SageScript_0x985a0:
 UnknownScript_0x985a3:
 	spriteface $4, UP
 	spriteface $0, DOWN
-	showemote $0, $4, 20
+	showemote EMOTE_SHOCK, $4, 20
 	follow $0, $4
 	applymovement $0, MovementData_0x98622
 	stopfollow
@@ -140,7 +140,7 @@ SageKojiScript:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9861b
 	pause 10
-	showemote $0, $7, 20
+	showemote EMOTE_SHOCK, $7, 20
 	loadfont
 	writetext UnknownText_0x98c6c
 	keeptextopen

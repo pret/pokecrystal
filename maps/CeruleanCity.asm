@@ -108,7 +108,7 @@ UnknownScript_0x184072:
 	waitbutton
 	playsound SFX_TRANSACTION
 	waitbutton
-	showemote $0, $7, 15
+	showemote EMOTE_SHOCK, $7, 15
 	spriteface $7, LEFT
 	loadfont
 	writetext UnknownText_0x1842ee

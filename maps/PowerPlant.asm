@@ -17,7 +17,7 @@ UnknownScript_0x188dc4:
 
 UnknownScript_0x188dc5:
 	playsound SFX_CALL
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	waitbutton
 	pause 30
 	applymovement $2, MovementData_0x188ed5

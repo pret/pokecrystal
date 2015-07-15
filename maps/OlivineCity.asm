@@ -24,7 +24,7 @@ OlivineCity_MapScriptHeader:
 
 UnknownScript_0x1a8833:
 	spriteface $0, LEFT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_ENTER_DOOR
@@ -48,7 +48,7 @@ UnknownScript_0x1a8833:
 
 UnknownScript_0x1a886b:
 	spriteface $0, LEFT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_ENTER_DOOR

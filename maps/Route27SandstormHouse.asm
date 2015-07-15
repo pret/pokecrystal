@@ -10,7 +10,7 @@ SandstormHouseWoman:
 	loadfont
 	checkevent EVENT_GOT_TM37_SANDSTORM
 	iftrue .AlreadyGotItem
-	special Function718d
+	special GetFirstPokemonHappiness
 	writetext SandstormHouseWomanText1
 	keeptextopen
 	if_greater_than $95, .Loyal

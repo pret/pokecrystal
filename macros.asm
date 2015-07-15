@@ -136,3 +136,9 @@ bcd: MACRO
 	shift
 	endr
 ENDM
+
+add_n_times: MACRO
+	rept \3
+	add \1, \2
+	endr
+ENDM

@@ -30,7 +30,7 @@ ArthurCallback:
 	return
 
 UnknownScript_0x19401b:
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface $0, UP

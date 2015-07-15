@@ -129,7 +129,7 @@ UnknownScript_0x6abd4:
 	iftrue UnknownScript_0x6abdc
 	appear $c
 UnknownScript_0x6abdc:
-	special Function1ad2
+	special DrawOnMap
 	end
 
 OfficerScript_0x6abe0:
@@ -140,7 +140,7 @@ OfficerScript_0x6abe0:
 	if_equal FRIDAY, UnknownScript_0x6acf1
 	faceplayer
 	loadfont
-	checkflag ENGINE_51
+	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0x6ac91
 	scall UnknownScript_0x6ad02
 	writetext UnknownText_0x6add5
@@ -149,7 +149,7 @@ OfficerScript_0x6abe0:
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, UnknownScript_0x6ac41
 	special Function13a12
-	clearevent EVENT_308
+	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 UnknownScript_0x6ac10:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
@@ -185,7 +185,7 @@ UnknownScript_0x6ac4d:
 	iffalse UnknownScript_0x6ac79
 	special Function13a12
 	iftrue UnknownScript_0x6ac7f
-	setevent EVENT_308
+	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6b021
 	keeptextopen
 	writetext UnknownText_0x6b055
@@ -225,13 +225,13 @@ UnknownScript_0x6ac8b:
 	end
 
 UnknownScript_0x6ac91:
-	checkevent EVENT_313
+	checkevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	iftrue UnknownScript_0x6acaf
-	checkevent EVENT_314
+	checkevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	iftrue UnknownScript_0x6acbe
-	checkevent EVENT_315
+	checkevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	iftrue UnknownScript_0x6accd
-	checkevent EVENT_316
+	checkevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	iftrue UnknownScript_0x6acdc
 	writetext UnknownText_0x6b32b
 	closetext
@@ -243,7 +243,7 @@ UnknownScript_0x6acaf:
 	keeptextopen
 	verbosegiveitem SUN_STONE, 1
 	iffalse UnknownScript_0x6aceb
-	clearevent EVENT_313
+	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	loadmovesprites
 	end
 
@@ -252,7 +252,7 @@ UnknownScript_0x6acbe:
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x6aceb
-	clearevent EVENT_314
+	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	loadmovesprites
 	end
 
@@ -261,7 +261,7 @@ UnknownScript_0x6accd:
 	keeptextopen
 	verbosegiveitem GOLD_BERRY, 1
 	iffalse UnknownScript_0x6aceb
-	clearevent EVENT_315
+	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	loadmovesprites
 	end
 
@@ -270,7 +270,7 @@ UnknownScript_0x6acdc:
 	keeptextopen
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x6aceb
-	clearevent EVENT_316
+	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	loadmovesprites
 	end
 
@@ -286,7 +286,7 @@ UnknownScript_0x6acf1:
 OfficerScript_0x6acf4:
 	faceplayer
 	loadfont
-	checkflag ENGINE_51
+	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0x6ac91
 	writetext UnknownText_0x6b370
 	closetext

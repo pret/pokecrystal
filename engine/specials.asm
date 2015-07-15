@@ -36,10 +36,10 @@ SpecialsPointers:: ; c029
 	add_special Functionc2f6
 	add_special Functionc309
 	add_special Function1050b9
-	add_special Functionc34a
-	add_special Function4d9e5
+	add_special BugContestJudging
+	add_special CheckPartyFullAfterContest
 	add_special Function13a12
-	add_special Function13a31
+	add_special ContestReturnMons
 	add_special Function135db
 	add_special Functionfbb32
 	add_special Functionfbcd2
@@ -71,7 +71,7 @@ SpecialsPointers:: ; c029
 	add_special WhiteBGMap
 	add_special UpdateTimePals
 	add_special ClearTileMap
-	add_special Function1ad2
+	add_special DrawOnMap
 	add_special Functione4a
 	add_special Functionc230
 	add_special SpecialSeenMon
@@ -105,7 +105,7 @@ SpecialsPointers:: ; c029
 	add_special Function88018
 	add_special SpecialNameRater
 	add_special Functionc2da
-	add_special Function718d
+	add_special GetFirstPokemonHappiness
 	add_special Function71ac
 	add_special Function2a4ab
 	add_special Function2a51f
@@ -173,7 +173,7 @@ SpecialsPointers:: ; c029
 	add_special Function10366e
 	add_special Function1037eb
 	add_special Function10383c
-	add_special Function1060a2
+	add_special Mobile_HealParty
 	add_special Function14168
 	add_special Function1037c2
 	add_special Function10630f
@@ -358,8 +358,8 @@ UnknownText_0xc345: ; 0xc345
 	db "@"
 ; 0xc34a
 
-Functionc34a: ; c34a
-	callba Function1369d
+BugContestJudging: ; c34a
+	callba _BugContestJudging
 	ld a, b
 	ld [ScriptVar], a
 	ret
@@ -463,7 +463,7 @@ UnknownText_0xc3d6: ; 0xc3d6
 
 Functionc3db: ; c3db
 	call WhiteBGMap
-	call Function2879
+	call BufferScreen
 	ret
 ; c3e2
 
@@ -492,17 +492,18 @@ Functionc3fc: ; c3fc
 ; c403
 
 
-Functionc403:: ; c403
+LoadWildData:: ; c403
 	ld a, c
 	and a
-	jr nz, .asm_c410
+	jr nz, .swarm_route35
+; swarm dark cave violet entrance
 	ld a, d
 	ld [wdfcc], a
 	ld a, e
 	ld [wdfcd], a
 	ret
 
-.asm_c410
+.swarm_route35
 	ld a, d
 	ld [wdc5a], a
 	ld a, e

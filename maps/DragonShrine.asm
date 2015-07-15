@@ -116,7 +116,7 @@ UnknownScript_0x18d100:
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_CLAIR
 	appear $5
 	waitbutton
@@ -147,7 +147,7 @@ UnknownScript_0x18d100:
 	writetext UnknownText_0x18d520
 	closetext
 	loadmovesprites
-	showemote $0, $5, 15
+	showemote EMOTE_SHOCK, $5, 15
 	loadfont
 	writetext UnknownText_0x18d9ae
 	closetext

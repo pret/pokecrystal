@@ -13,7 +13,7 @@ TeacherScript_0x7b125:
 	loadmovesprites
 	special Function8c0b6
 	special Functiond91
-	special Function1060a2
+	special Mobile_HealParty
 	playmusic MUSIC_HEAL
 	special HealParty
 	pause 60

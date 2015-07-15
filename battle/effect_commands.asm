@@ -9710,7 +9710,7 @@ BattleCommand67: ; 379c9
 ; Return to battle scene
 	call ClearPalettes
 	callba Function3ed9f
-	call Function1c17
+	call WriteBackup
 	call ClearSprites
 	hlcoord 1, 0
 	lb bc, 4, 10
@@ -9779,7 +9779,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	call Function1d6e
 	ld hl, Function3e8e4
 	call CallBattleCore
-	call Function1c17
+	call WriteBackup
 
 	xor a
 	ld [wd0ec], a
@@ -9810,7 +9810,7 @@ BatonPass_LinkEnemySwitch: ; 37a82
 	add NUM_MOVES
 	ld [wBattleAction], a
 .asm_37aa8
-	jp Function1c17
+	jp WriteBackup
 ; 37aab
 
 

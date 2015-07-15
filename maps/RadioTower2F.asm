@@ -320,7 +320,7 @@ UnknownScript_0x5d8a4:
 	pause 15
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
-	showemote $0, $b, 15
+	showemote EMOTE_SHOCK, $b, 15
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	loadfont

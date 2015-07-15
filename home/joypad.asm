@@ -312,7 +312,7 @@ Functiona36:: ; a36
 	jr Functiona36
 ; a46
 
-Functiona46:: ; a46
+CloseText:: ; a46
 	ld a, [hOAMUpdate]
 	push af
 	ld a, 1
@@ -387,7 +387,7 @@ Functionaa5:: ; aa5
 	ret
 ; aaf
 
-Functionaaf:: ; aaf
+KeepTextOpen:: ; aaf
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .asm_ac1

@@ -17,7 +17,7 @@ UnknownScript_0x196e55:
 	end
 
 UnknownScript_0x196e56:
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, DOWN
 	loadfont
 	writetext UnknownText_0x196f66
@@ -111,7 +111,7 @@ UnknownScript_0x196ec9:
 	special Function8c0b6
 	special Functiond91
 	playmusic MUSIC_HEAL
-	special Function1060a2
+	special Mobile_HealParty
 	special HealParty
 	pause 60
 	special Function8c0ab

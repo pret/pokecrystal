@@ -59,7 +59,7 @@ UnknownScript_0x7709a:
 	stopfollow
 	spriteface $2, DOWN
 	pause 10
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, DOWN
 	cry CLEFAIRY
 	pause 15

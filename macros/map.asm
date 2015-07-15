@@ -164,6 +164,7 @@ endc
 ENDM
 
 mapgroup: MACRO
+; map id, height, width
 \1\@  EQUS "GROUP_\1"
 \1\@2 EQUS "MAP_\1"
 \1\@ EQU const_value

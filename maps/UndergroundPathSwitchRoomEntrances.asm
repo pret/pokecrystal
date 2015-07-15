@@ -79,7 +79,7 @@ TeacherScript_0x7ca7d:
 
 UnknownScript_0x7ca80:
 	spriteface $0, RIGHT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_EXIT_BUILDING
@@ -98,7 +98,7 @@ UnknownScript_0x7ca80:
 
 UnknownScript_0x7caaa:
 	spriteface $0, RIGHT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_EXIT_BUILDING

@@ -25,7 +25,7 @@ SecurityCamera1a:
 	scall PlaySecurityCameraSounds
 	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
@@ -34,7 +34,7 @@ SecurityCamera1a:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
@@ -50,7 +50,7 @@ SecurityCamera1b:
 	scall PlaySecurityCameraSounds
 	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
@@ -59,7 +59,7 @@ SecurityCamera1b:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
@@ -75,7 +75,7 @@ SecurityCamera2a:
 	scall PlaySecurityCameraSounds
 	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $7
 	appear $2
@@ -84,7 +84,7 @@ SecurityCamera2a:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $c, $5
@@ -101,7 +101,7 @@ SecurityCamera2b:
 	scall PlaySecurityCameraSounds
 	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $8
 	appear $2
@@ -110,7 +110,7 @@ SecurityCamera2b:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $c, $5
@@ -127,7 +127,7 @@ SecurityCamera3a:
 	scall PlaySecurityCameraSounds
 	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $6
 	appear $2
@@ -136,7 +136,7 @@ SecurityCamera3a:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $19, $b
@@ -153,7 +153,7 @@ SecurityCamera3b:
 	scall PlaySecurityCameraSounds
 	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $7
 	appear $2
@@ -162,7 +162,7 @@ SecurityCamera3b:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $19, $c
@@ -179,7 +179,7 @@ SecurityCamera4:
 	scall PlaySecurityCameraSounds
 	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $11, $10
 	appear $2
@@ -188,7 +188,7 @@ SecurityCamera4:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $19, $b
@@ -205,7 +205,7 @@ SecurityCamera5:
 	scall PlaySecurityCameraSounds
 	checkevent EVENT_6DA
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $3, $10
 	appear $2
@@ -214,7 +214,7 @@ SecurityCamera5:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $e, $10

@@ -326,7 +326,7 @@ Function100232: ; 100232
 	push de
 	callba Function106464
 	call Function3f20
-	call Function1ad2
+	call DrawOnMap
 	hlcoord 1, 2
 	pop de
 	call PlaceString
@@ -796,7 +796,7 @@ Function1004f4: ; 1004f4
 Function100504: ; 100504
 	push de
 	call Function3f20
-	call Function1ad2
+	call DrawOnMap
 	pop de
 	hlcoord 4, 2
 	call PlaceString
@@ -829,7 +829,7 @@ Jumptable_10052a: ; 10052a
 
 Function100534: ; 100534
 	call Function100513
-	call Function1ad2
+	call DrawOnMap
 	call Function321c
 	ld a, [wcd28]
 	inc a
@@ -1828,7 +1828,7 @@ Function100b7a: ; 100b7a
 	rst FarCall
 	callba Function24085
 	callba MobileTextBorder
-	call Function1ad2
+	call DrawOnMap
 	call Function321c
 	callba Function2411a
 	ld hl, wcfa5
@@ -2078,11 +2078,11 @@ Function100d22: ; 100d22
 
 Function100d67: ; 100d67
 	ld hl, MenuDataHeader_100d88
-	call Function1d3c
+	call CopyMenuDataHeader
 	xor a
 	ld [hBGMapMode], a
 	call Function1cbb
-	call Function1ad2
+	call DrawOnMap
 	call Function1c89
 	call WaitBGMap
 	call Function1c66
@@ -2809,7 +2809,7 @@ Jumptable_101247: ; 101247
 ; 101251
 
 Function101251: ; 101251
-	call Function1ad2
+	call DrawOnMap
 	call ResetWindow
 	ld hl, UnknownText_0x1021f4
 	call Function1021e0
@@ -2826,7 +2826,7 @@ Function101265: ; 101265
 ; 10126c
 
 Function10126c: ; 10126c
-	call Function1ad2
+	call DrawOnMap
 	callba Script_reloadmappart
 	ld hl, UnknownText_0x1021f4
 	call Function1021e0
@@ -3015,7 +3015,7 @@ Function1013aa: ; 1013aa
 	call Function1d7d
 	call Function2bae
 	callba Function106464
-	call Function1ad2
+	call DrawOnMap
 	call Function2b5c
 	ret
 ; 1013c0
@@ -4171,7 +4171,7 @@ Function101b70: ; 101b70
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	call Function1ad2
+	call DrawOnMap
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a
@@ -7316,7 +7316,7 @@ Function103309: ; 103309
 	ld a, [hl]
 	ld [wd1ee], a
 	call Function1034be
-	call Function1ad2
+	call DrawOnMap
 	callba Function104000
 	ld a, $1
 	ld [wd1f0], a
@@ -7685,8 +7685,8 @@ Function103612: ; 103612
 	ld [wcf88], a
 
 .asm_103622
-	call Function1d81
-	call Function1c17
+	call InterpretMenu2
+	call WriteBackup
 	jr c, .asm_10363b
 	ld a, [wcfa9]
 	ld [ScriptVar], a
@@ -7773,7 +7773,7 @@ Function10366e: ; 10366e
 	jr c, .asm_1036f4
 	ld hl, MenuDataHeader_103747
 	call LoadMenuDataHeader
-	call Function1d81
+	call InterpretMenu2
 	call Function1c07
 	jr c, .asm_1036f4
 	ld a, [wcfa9]

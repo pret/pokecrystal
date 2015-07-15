@@ -18,7 +18,7 @@ UnknownScript_0x74491:
 UnknownScript_0x74492:
 	moveperson $2, $12, $b
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	appear $2
@@ -32,7 +32,7 @@ UnknownScript_0x74492:
 
 UnknownScript_0x744b5:
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	appear $2

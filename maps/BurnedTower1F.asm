@@ -37,7 +37,7 @@ UnknownScript_0x185bf8:
 
 UnknownScript_0x185c0d:
 	spriteface $3, DOWN
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	applymovement $3, MovementData_0x185cd3
 	loadfont
 	writetext UnknownText_0x185ecc
@@ -48,7 +48,7 @@ UnknownScript_0x185c0d:
 	end
 
 UnknownScript_0x185c25:
-	showemote $0, $4, 15
+	showemote EMOTE_SHOCK, $4, 15
 	special Functionc48f
 	pause 15
 	spriteface $4, RIGHT
@@ -101,7 +101,7 @@ UnknownScript_0x185c80:
 	special Functionc48f
 	pause 15
 	earthquake 50
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playsound SFX_ENTER_DOOR
 	waitbutton
 	changeblock $a, $8, $25
@@ -109,7 +109,7 @@ UnknownScript_0x185c80:
 	pause 15
 	applymovement $0, MovementData_0x185cd1
 	playsound SFX_KINESIS
-	showemote $0, $4, 20
+	showemote EMOTE_SHOCK, $4, 20
 	loadfont
 	writetext UnknownText_0x185e75
 	closetext

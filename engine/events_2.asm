@@ -125,8 +125,8 @@ Function97cc0:: ; 97cc0
 	jr .asm_97cf4
 
 .asm_97ced
-	ld a, BANK(UnknownScript_0x135eb)
-	ld hl, UnknownScript_0x135eb
+	ld a, BANK(BugCatchingContestBattleScript)
+	ld hl, BugCatchingContestBattleScript
 	jr .asm_97cf4
 
 .asm_97cf4

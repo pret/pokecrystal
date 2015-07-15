@@ -54,7 +54,7 @@ LanceScript_0x6dffc:
 
 UnknownScript_0x6e019:
 	spriteface $0, LEFT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	appear $a
 	applymovement $a, MovementData_0x6e164
@@ -83,7 +83,7 @@ UnknownScript_0x6e052:
 	applymovement $0, MovementData_0x6e13a
 UnknownScript_0x6e056:
 	pause 30
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, DOWN
 	loadfont

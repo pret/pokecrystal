@@ -654,7 +654,7 @@ UnknownScript_0xbd3d1:
 UnknownScript_0xbd3f6:
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbd412
-	checkflag ENGINE_51
+	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0xbd412
 	checkcode VAR_WEEKDAY
 	if_equal $2, UnknownScript_0xbd416
@@ -680,7 +680,7 @@ UnknownScript_0xbd428:
 	farscall UnknownScript_0xbe1b6
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbd44c
-	checkflag ENGINE_51
+	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0xbd44c
 	checkcode VAR_WEEKDAY
 	if_equal $2, UnknownScript_0xbd480
@@ -1381,7 +1381,7 @@ UnknownScript_0xbda35:
 	iftrue UnknownScript_0xbda67
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbda5f
-	checkflag ENGINE_51
+	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0xbda5f
 	checkcode VAR_WEEKDAY
 	if_equal $2, UnknownScript_0xbda63
@@ -1403,7 +1403,7 @@ UnknownScript_0xbda6e:
 	farscall UnknownScript_0xbe1b6
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbda92
-	checkflag ENGINE_51
+	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0xbda92
 	checkcode VAR_WEEKDAY
 	if_equal $2, UnknownScript_0xbda9e
@@ -3104,27 +3104,27 @@ String_be65b: db "Sister@"
 String_be662: db "Brother@"
 
 
-UnknownScript_0xbe66a:: ; 0xbe66a
+TalkToTrainerScript:: ; 0xbe66a
 	faceplayer
 	trainerstatus $2
-	iftrue UnknownScript_0xbe698
+	iftrue AlreadyBeatenTrainerScript
 	loadtrainerdata
 	playrammusic
-	jump UnknownScript_0xbe68a
+	jump StartBattleWithMapTrainerScript
 ; 0xbe675
 
-UnknownScript_0xbe675:: ; 0xbe675
+SeenByTrainerScript:: ; 0xbe675
 	loadtrainerdata
 	playrammusic
-	showemote $0, $fe, 30
+	showemote EMOTE_SHOCK, $fe, 30
 	callasm Function831e
 	applymovement2 MovementBuffer
 	writepersonxy $fe
 	faceperson $0, $fe
-	jump UnknownScript_0xbe68a
+	jump StartBattleWithMapTrainerScript
 ; 0xbe68a
 
-UnknownScript_0xbe68a: ; 0xbe68a
+StartBattleWithMapTrainerScript: ; 0xbe68a
 	loadfont
 	trainertext $0
 	closetext
@@ -3135,6 +3135,6 @@ UnknownScript_0xbe68a: ; 0xbe68a
 	trainerstatus $1
 	loadvar wd04d, $ff
 
-UnknownScript_0xbe698:
+AlreadyBeatenTrainerScript:
 	scripttalkafter
 ; 0xbe699

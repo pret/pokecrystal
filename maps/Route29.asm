@@ -35,7 +35,7 @@ TuscanyCallback:
 
 UnknownScript_0x1a0f6d:
 	spriteface $2, UP
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1a108d
 	spriteface $0, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
@@ -60,7 +60,7 @@ UnknownScript_0x1a0f6d:
 
 UnknownScript_0x1a0fa3:
 	spriteface $2, UP
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1a1094
 	spriteface $0, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU

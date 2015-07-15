@@ -40,10 +40,10 @@ UnknownScript_0x19abda:
 
 UnknownScript_0x19abea:
 	applymovement $0, MovementData_0x19aca2
-	showemote $0, $4, 15
+	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, MovementData_0x19acbb
 	spriteface $3, UP
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	applymovement $3, MovementData_0x19aca4
 	loadfont
 	writetext UnknownText_0x19acd2
@@ -72,10 +72,10 @@ UnknownScript_0x19ac28:
 	end
 
 UnknownScript_0x19ac38:
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	applymovement $3, MovementData_0x19acaf
 	spriteface $4, DOWN
-	showemote $0, $4, 15
+	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, MovementData_0x19acc7
 	loadfont
 	writetext UnknownText_0x19acd2

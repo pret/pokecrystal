@@ -21,7 +21,7 @@ UnknownScript_0x60010:
 
 UnknownScript_0x60011:
 	spriteface $2, UP
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	loadfont
 	writetext UnknownText_0x60128
 	closetext

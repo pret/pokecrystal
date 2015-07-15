@@ -1235,7 +1235,7 @@ Function3574:: ; 3574
 	call Function35de
 	jr nc, .asm_3597
 	call Function2631
-	callba Function96c56
+	callba EnableScriptMode
 	scf
 	ret
 
@@ -1402,7 +1402,7 @@ CheckTrainerBattle:: ; 360d
 	jr z, .next
 
 ; Is facing the player...
-	call Function1ae5
+	call GetObjectStruct
 	call FacingPlayerDistance_bc
 	jr nc, .next
 

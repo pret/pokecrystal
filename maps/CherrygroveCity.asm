@@ -102,7 +102,7 @@ UnknownScript_0x19c0aa:
 
 UnknownScript_0x19c0ae:
 	spriteface $0, RIGHT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	appear $3

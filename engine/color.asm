@@ -806,8 +806,7 @@ Function9764: ; 9764
 Function976b: ; 976b
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
+	add_n_times hl, hl, 2
 	ld bc, TrainerPalettes
 	add hl, bc
 	ret
@@ -1975,9 +1974,7 @@ Functionb1de: ; b1de
 	push hl
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
+	add_n_times hl, hl, 3
 	ld de, TilesetBGPalette
 	add hl, de
 	ld e, l
@@ -2017,9 +2014,7 @@ Functionb1de: ; b1de
 	ld a, [MapGroup]
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
+	add_n_times hl, hl, 3
 	ld de, RoofPals
 	add hl, de
 	ld a, [TimeOfDayPal]

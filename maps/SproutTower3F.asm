@@ -17,7 +17,7 @@ UnknownScript_0x184946:
 
 UnknownScript_0x184947:
 	spriteface $0, UP
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
@@ -32,7 +32,7 @@ UnknownScript_0x184947:
 	writetext UnknownText_0x184a27
 	closetext
 	loadmovesprites
-	showemote $0, $8, 15
+	showemote EMOTE_SHOCK, $8, 15
 	spriteface $8, DOWN
 	pause 15
 	applymovement $8, MovementData_0x184a24

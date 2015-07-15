@@ -5919,7 +5919,7 @@ Function11636e: ; 11636e
 	call ByteFill
 	ld a, $90
 	ld [hWY], a
-	call Function1ad2
+	call DrawOnMap
 	pop af
 	ld [rSVBK], a
 	callba Function104061
@@ -5962,7 +5962,7 @@ Function1163c0: ; 1163c0
 	call DelayFrame
 	ld a, $90
 	ld [hWY], a
-	call Function1ad2
+	call DrawOnMap
 	callba Function14157
 	pop af
 	ld [rSVBK], a
@@ -9861,7 +9861,7 @@ Function118982:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	call Function1c17
+	call WriteBackup
 	pop af
 	ld [rSVBK], a
 	ld a, [wcd38]
@@ -9885,7 +9885,7 @@ Function118982:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	call Function1c17
+	call WriteBackup
 	pop af
 	ld [rSVBK], a
 	ld a, $7
@@ -13714,7 +13714,7 @@ Function11a5b9: ; 11a5b9
 	ld c, $12
 	call Function3eea
 	callba Function104061
-	call Function1ad2
+	call DrawOnMap
 	ld c, $0
 	callba Function115e18
 	ld a, $1
@@ -14130,7 +14130,7 @@ Function11a9ce: ; 11a9ce
 	callba Function106464
 	call Functiond90
 	callba Function2b5c
-	call Function1ad2
+	call DrawOnMap
 	ret
 ; 11a9f0
 
@@ -16469,7 +16469,7 @@ Unknown_11bb7d:
 
 SECTION "bank47", ROMX, BANK[$47]
 
-Function11c000:: ; 11c000
+StoreText:: ; 11c000
 	ld a, [rSVBK]
 	push af
 	ld a, $3
@@ -22777,7 +22777,7 @@ Function17024d: ; 17024d
 	ld [wcfc0], a
 	xor a
 	ld [InLinkBattle], a
-	callba Function1060a2
+	callba Mobile_HealParty
 	callba HealParty
 	call Function1702b7
 	call Function170bf7

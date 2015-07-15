@@ -18,7 +18,7 @@ UnknownScript_0x19ee9f:
 UnknownScript_0x19eea0:
 	showemote $4, $2, 15
 	pause 30
-	showemote $0, $3, 10
+	showemote EMOTE_SHOCK, $3, 10
 	spriteface $2, DOWN
 	applymovement $3, MovementData_0x19efe8
 	disappear $3
@@ -44,7 +44,7 @@ UnknownScript_0x19eea0:
 UnknownScript_0x19eee0:
 	showemote $4, $2, 15
 	pause 30
-	showemote $0, $3, 10
+	showemote EMOTE_SHOCK, $3, 10
 	spriteface $2, DOWN
 	applymovement $3, MovementData_0x19efea
 	disappear $3

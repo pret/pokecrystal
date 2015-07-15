@@ -1,9 +1,9 @@
 ; Event scripting commands.
 
 
-Function96c56:: ; 96c56
+EnableScriptMode:: ; 96c56
 	push af
-	ld a, 1
+	ld a, SCRIPT_READ
 	ld [ScriptMode], a
 	pop af
 	ret
@@ -346,7 +346,7 @@ JumpTextFacePlayerScript: ; 0x96e79
 	faceplayer
 JumpTextScript: ; 0x96e7a
 	loadfont
-	repeattext $ff, $ff
+	repeattext -1, -1
 	closetext
 	loadmovesprites
 	end
@@ -385,7 +385,7 @@ Script_2writetext: ; 0x96e9b
 	ld h, a
 	ld a, [ScriptBank]
 	ld b, a
-	call Function269a
+	call MapTextbox
 	ret
 ; 0x96eab
 
@@ -400,7 +400,7 @@ Script_3writetext: ; 0x96eab
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	call Function269a
+	call MapTextbox
 	ret
 ; 0x96ebb
 
@@ -414,27 +414,27 @@ Script_repeattext: ; 0x96ebb
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	cp $ff
-	jr nz, .asm_96ed8 ; 0x96ec5 $11
+	cp -1
+	jr nz, .done ; 0x96ec5 $11
 	ld a, l
-	cp $ff
-	jr nz, .asm_96ed8 ; 0x96eca $c
+	cp -1
+	jr nz, .done ; 0x96eca $c
 	ld hl, wd44e
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function269a
+	call MapTextbox
 	ret
-.asm_96ed8
+.done
 	ret
 ; 0x96ed9
 
 Script_closetext: ; 0x96ed9
 ; script command 0x54
 
-	jp Functiona46
+	jp CloseText
 ; 0x96edc
 
 Script_keeptextopen: ; 0x96edc
@@ -445,7 +445,7 @@ Script_keeptextopen: ; 0x96edc
 	ld a, $1
 	ld [$ffd8], a
 	call WaitBGMap
-	call Functionaaf
+	call KeepTextOpen
 	pop af
 	ld [$ffd8], a
 	ret
@@ -456,9 +456,9 @@ Script_yesorno: ; 0x96eed
 
 	call YesNoBox
 	ld a, 0
-	jr c, .asm_96ef6 ; 0x96ef2 $2
+	jr c, .no ; 0x96ef2 $2
 	ld a, 1
-.asm_96ef6
+.no
 	ld [ScriptVar], a
 	ret
 ; 0x96efa
@@ -474,16 +474,16 @@ Script_loadmenudata: ; 0x96efa
 	ld h, a
 	ld de, LoadMenuDataHeader
 	ld a, [ScriptBank]
-	call Function26b7
-	call Function1ad2
+	call Call_a_de
+	call DrawOnMap
 	ret
 ; 0x96f0f
 
 Script_writebackup: ; 0x96f0f
 ; script command 0x50
 
-	call Function1c17
-	call Function1ad2
+	call WriteBackup
+	call DrawOnMap
 	ret
 ; 0x96f16
 
@@ -498,14 +498,14 @@ Script_pokepic: ; 0x96f16
 	ld a, [ScriptVar]
 .ok
 	ld [CurPartySpecies], a
-	callba Function244e3
+	callba Pokepic
 	ret
 ; 0x96f29
 
 Script_pokepicyesorno: ; 0x96f29
 ; script command 0x57
 
-	callba Function24528
+	callba PokepicYesOrNo
 	ret
 ; 0x96f30
 
@@ -513,7 +513,7 @@ Script_interpretmenu2: ; 0x96f30
 ; script command 0x59
 
 	ld a, [ScriptBank]
-	ld hl, Function1d81
+	ld hl, InterpretMenu2
 	rst FarCall
 	ld a, [wcfa9]
 	jr nc, .ok
@@ -527,7 +527,7 @@ Script_interpretmenu: ; 0x96f41
 ; script command 0x58
 
 	ld a, [ScriptBank]
-	ld hl, Function202a
+	ld hl, InterpretMenu
 	rst FarCall
 	ld a, [wcf88]
 	jr nc, .ok
@@ -543,10 +543,10 @@ Script_storetext: ; 0x96f52
 ;     pointer (PointerLabelBeforeBank)
 ;     memory (SingleByteParam)
 
-	call Function106c
+	call SetUpTextBox
 	call GetScriptByte
 	ld c, a
-	callba Function11c000
+	callba StoreText
 	ret
 ; 0x96f60
 
@@ -559,8 +559,8 @@ Script_verbosegiveitem: ; 0x96f60
 	call Script_giveitem
 	call CurItemName
 	ld de, StringBuffer1
-	ld a, $1
-	call Function976c8
+	ld a, 1
+	call CopyConvertedText
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
 	jp ScriptCall
@@ -600,26 +600,26 @@ Script_verbosegiveitem2: ; 0x96f8e
 ;     var (SingleByteParam)
 
 	call GetScriptByte
-	cp $ff
+	cp -1
 	jr nz, .ok
 	ld a, [ScriptVar]
 .ok
 	ld [CurItem], a
 	call GetScriptByte
-	call Function9769e
+	call GetVarAction
 	ld a, [de]
 	ld [wd10c], a
 	ld hl, NumItems
 	call ReceiveItem
-	ld a, $1
+	ld a, 1
 	jr c, .ok2
 	xor a
 .ok2
 	ld [ScriptVar], a
 	call CurItemName
 	ld de, StringBuffer1
-	ld a, $1
-	call Function976c8
+	ld a, 1
+	call CopyConvertedText
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
 	jp ScriptCall
@@ -632,7 +632,7 @@ Script_itemnotify: ; 0x96fc6
 	call CurItemName
 	ld b, BANK(PutItemInPocketText)
 	ld hl, PutItemInPocketText
-	call Function269a
+	call MapTextbox
 	ret
 ; 0x96fd5
 
@@ -643,7 +643,7 @@ Script_pocketisfull: ; 0x96fd5
 	call CurItemName
 	ld b, BANK(PocketIsFullText)
 	ld hl, PocketIsFullText
-	call Function269a
+	call MapTextbox
 	ret
 ; 0x96fe4
 
@@ -746,7 +746,7 @@ Script_elevator: ; 0x9707c
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba Function1342d
+	callba Elevator
 	ret c
 	ld a, $1
 	ld [ScriptVar], a
@@ -775,14 +775,14 @@ Script_phonecall: ; 0x970a4
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba Function9029a
+	callba PhoneCall
 	ret
 ; 0x970b7
 
 Script_hangup: ; 0x970b7
 ; script command 0x99
 
-	callba Function902eb
+	callba HangUp
 	ret
 ; 0x970be
 
@@ -792,20 +792,20 @@ Script_askforphonenumber: ; 0x970be
 ;     number (SingleByteParam)
 
 	call YesNoBox
-	jr c, .asm_970d6 ; 0x970c1 $13
+	jr c, .refused ; 0x970c1 $13
 	call GetScriptByte
 	ld c, a
-	callba Function90000
-	jr c, .asm_970d2 ; 0x970cd $3
+	callba AddPhoneNumber
+	jr c, .phonefull ; 0x970cd $3
 	xor a
-	jr .asm_970db ; 0x970d0 $9
-.asm_970d2
-	ld a, $1
-	jr .asm_970db ; 0x970d4 $5
-.asm_970d6
+	jr .done ; 0x970d0 $9
+.phonefull
+	ld a, 1
+	jr .done ; 0x970d4 $5
+.refused
 	call GetScriptByte
-	ld a, $2
-.asm_970db
+	ld a, 2
+.done
 	ld [ScriptVar], a
 	ret
 ; 0x970df
@@ -817,7 +817,7 @@ Script_describedecoration: ; 0x970df
 
 	call GetScriptByte
 	ld b, a
-	callba Function26f59
+	callba DescribeDecoration
 	ld h, d
 	ld l, e
 	jp ScriptJump
@@ -848,7 +848,7 @@ Script_loadwilddata: ; 0x970fc
 	ld d, a
 	call GetScriptByte
 	ld e, a
-	callba Functionc403
+	callba LoadWildData
 	ret
 ; 0x9710f
 
@@ -859,7 +859,7 @@ Script_trainertext: ; 0x9710f
 
 	call GetScriptByte
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, WalkingX
 	add hl, bc
 	add hl, bc
@@ -868,7 +868,7 @@ Script_trainertext: ; 0x9710f
 	ld l, a
 	ld a, [EngineBuffer1]
 	ld b, a
-	call Function269a
+	call MapTextbox
 	ret
 ; 0x97125
 
@@ -901,7 +901,7 @@ Script_trainerstatus: ; 0x97132
 	ld a, c
 	and a
 	ret z
-	ld a, $1
+	ld a, 1
 	ld [ScriptVar], a
 	ret
 ; 0x9714c
@@ -937,7 +937,7 @@ Script_talkaftercancel: ; 0x97163
 Script_talkaftercheck: ; 0x9716b
 ; script command 0x67
 
-	ld a, $1
+	ld a, 1
 	ld [ScriptVar], a
 	ld a, [wd04d]
 	and a
@@ -1042,7 +1042,7 @@ Script_cry: ; 0x971d1
 	ret
 ; 0x971e3
 
-Function971e3: ; 0x971e3
+GetScriptPerson: ; 0x971e3
 	and a
 	ret z
 	cp $fe
@@ -1057,7 +1057,7 @@ Script_setlasttalked: ; 0x971ea
 ;     person (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	ld [$ffe0], a
 	ret
 ; 0x971f3
@@ -1069,17 +1069,17 @@ Script_applymovement: ; 0x971f3
 ;     data (MovementPointerLabelParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	ld c, a
 ; 971fa
 
-Function971fa: ; 971fa
+ApplyMovement: ; 971fa
 	push bc
 	ld a, c
-	callba Function585c
+	callba SetFlagsForMovement_1
 	pop bc
 	push bc
-	call Function97221
+	call SetFlagsForMovement_2
 	pop bc
 	call GetScriptByte
 	ld l, a
@@ -1087,7 +1087,7 @@ Function971fa: ; 971fa
 	ld h, a
 	ld a, [ScriptBank]
 	ld b, a
-	call Function26c7
+	call GetMovementData
 	ret c
 	ld a, SCRIPT_WAIT_MOVEMENT
 	ld [ScriptMode], a
@@ -1095,8 +1095,8 @@ Function971fa: ; 971fa
 	ret
 ; 0x97221
 
-Function97221: ; 0x97221
-	callba Function5897
+SetFlagsForMovement_2: ; 0x97221
+	callba _SetFlagsForMovement_2
 	ret
 ; 0x97228
 
@@ -1107,7 +1107,7 @@ Script_applymovement2: ; 0x97228
 
 	ld a, [$ffe0]
 	ld c, a
-	jp Function971fa
+	jp ApplyMovement
 ; 0x9722e
 
 Script_faceplayer: ; 0x9722e
@@ -1119,14 +1119,14 @@ Script_faceplayer: ; 0x9722e
 	ld d, $0
 	ld a, [$ffe0]
 	ld e, a
-	callba Function8417
+	callba GetRelativeFacing
 	ld a, d
 	add a
 	add a
 	ld e, a
 	ld a, [$ffe0]
 	ld d, a
-	call Function9728b
+	call ApplyPersonFacing
 	ret
 ; 0x97248
 
@@ -1137,21 +1137,21 @@ Script_faceperson: ; 0x97248
 ;     person2 (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	cp $fe
 	jr c, .asm_97254 ; 0x97250 $2
 	ld a, [$ffe0]
 .asm_97254
 	ld e, a
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	cp $fe
 	jr nz, .asm_97261 ; 0x9725d $2
 	ld a, [$ffe0]
 .asm_97261
 	ld d, a
 	push de
-	callba Function8417
+	callba GetRelativeFacing
 	pop bc
 	ret c
 	ld a, d
@@ -1159,7 +1159,7 @@ Script_faceperson: ; 0x97248
 	add a
 	ld e, a
 	ld d, c
-	call Function9728b
+	call ApplyPersonFacing
 	ret
 ; 0x97274
 
@@ -1170,7 +1170,7 @@ Script_spriteface: ; 0x97274
 ;     facing (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	cp $fe
 	jr nz, .asm_97280 ; 0x9727c $2
 	ld a, [$ffe0]
@@ -1180,37 +1180,37 @@ Script_spriteface: ; 0x97274
 	add a
 	add a
 	ld e, a
-	call Function9728b
+	call ApplyPersonFacing
 	ret
 ; 0x9728b
 
-Function9728b: ; 0x9728b
+ApplyPersonFacing: ; 0x9728b
 	ld a, d
 	push de
 	call Function18de
-	jr c, .asm_972b9 ; 0x97290 $27
-	ld hl, $0000
+	jr c, .not_visible ; 0x97290 $27
+	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	push bc
 	call Function1836
 	pop bc
-	jr c, .asm_972b9 ; 0x9729c $1b
-	ld hl, $0004
+	jr c, .not_visible ; 0x9729c $1b
+	ld hl, OBJECT_04
 	add hl, bc
 	bit 2, [hl]
-	jr nz, .asm_972b9 ; 0x972a4 $13
+	jr nz, .not_visible ; 0x972a4 $13
 	pop de
 	ld a, e
-	call Function1af8
+	call SetSpriteDirection
 	ld hl, VramState
 	bit 6, [hl]
 	jr nz, .asm_972b5 ; 0x972b0 $3
 	call Function972bc
 .asm_972b5
-	call Function1ad2
+	call DrawOnMap
 	ret
-.asm_972b9
+.not_visible
 	pop de
 	scf
 	ret
@@ -1252,7 +1252,7 @@ Script_appear: ; 0x972dd
 ;     person (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	call Function1956
 	ld a, [$ffaf]
 	ld b, $0
@@ -1266,7 +1266,7 @@ Script_disappear: ; 0x972ee
 ;     person (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	cp $fe
 	jr nz, .asm_972fa ; 0x972f6 $2
 	ld a, [$ffe0]
@@ -1307,10 +1307,10 @@ Script_follow: ; 0x97325
 ;     person1 (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	ld b, a
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	ld c, a
 	callba Function5803
 	ret
@@ -1331,7 +1331,7 @@ Script_moveperson: ; 0x97341
 ;     y (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	ld b, a
 	call GetScriptByte
 	add $4
@@ -1349,7 +1349,7 @@ Script_writepersonxy: ; 0x9735b
 ;     person (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	cp $fe
 	jr nz, .asm_97367 ; 0x97363 $2
 	ld a, [$ffe0]
@@ -1366,10 +1366,10 @@ Script_follownotexact: ; 0x9736f
 ;     person1 (SingleByteParam)
 
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	ld b, a
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	ld c, a
 	callba Function839e
 	ret
@@ -1400,7 +1400,7 @@ Script_showemote: ; 0x97396
 	call GetScriptByte
 	ld [ScriptVar], a
 	call GetScriptByte
-	call Function971e3
+	call GetScriptPerson
 	cp $fe
 	jr z, .asm_973a8 ; 0x973a4 $2
 	ld [$ffe0], a
@@ -1525,7 +1525,7 @@ Script_loadtrainer: ; 0x97424
 Script_startbattle: ; 0x97436
 ; script command 0x5f
 
-	call Function2879
+	call BufferScreen
 	predef StartBattle
 	ld a, [wd0ee]
 	and $3f
@@ -1540,7 +1540,7 @@ Script_catchtutorial: ; 0x97447
 
 	call GetScriptByte
 	ld [BattleType], a
-	call Function2879
+	call BufferScreen
 	callba Function4e554
 	jp Script_reloadmap
 ; 0x97459
@@ -1582,7 +1582,7 @@ Script_reloadmap: ; 0x97491
 	ld a, $f3
 	ld [$ff9f], a
 	ld a, $1
-	call Function261b
+	call LoadMapStatus
 	call StopScript
 	ret
 ; 0x974a2
@@ -1858,7 +1858,7 @@ Script_priorityjump: ; 0x975aa
 Script_checktriggers: ; 0x975c2
 ; script command 0x13
 
-	call Function211b
+	call CheckTriggers
 	jr z, .asm_975cb ; 0x975c5 $4
 	ld [ScriptVar], a
 	ret
@@ -2051,7 +2051,7 @@ Script_checkcode: ; 0x9767d
 ;     variable_id (SingleByteParam)
 
 	call GetScriptByte
-	call Function9769e
+	call GetVarAction
 	ld a, [de]
 	ld [ScriptVar], a
 	ret
@@ -2063,7 +2063,7 @@ Script_writevarcode: ; 0x97688
 ;     variable_id (SingleByteParam)
 
 	call GetScriptByte
-	call Function9769e
+	call GetVarAction
 	ld a, [ScriptVar]
 	ld [de], a
 	ret
@@ -2076,15 +2076,15 @@ Script_writecode: ; 0x97693
 ;     value (SingleByteParam)
 
 	call GetScriptByte
-	call Function9769e
+	call GetVarAction
 	call GetScriptByte
 	ld [de], a
 	ret
 ; 0x9769e
 
-Function9769e: ; 0x9769e
+GetVarAction: ; 0x9769e
 	ld c, a
-	callba Function80648
+	callba _GetVarAction
 	ret
 ; 0x976a6
 
@@ -2103,26 +2103,26 @@ Version: ; 976ad
 Script_pokenamemem: ; 0x976ae
 ; script command 0x40
 ; parameters:
-;     pokemon (PokemonParam)
+;     pokemon (PokemonParam); leave $0 to draw from script var
 ;     memory (SingleByteParam)
 
 	call GetScriptByte
 	and a
-	jr nz, .asm_976b7 ; 0x976b2 $3
+	jr nz, .gotit ; 0x976b2 $3
 	ld a, [ScriptVar]
-.asm_976b7
+.gotit
 	ld [wd265], a
 	call GetPokemonName
 	ld de, StringBuffer1
 
-Unknown_976c0: ; 0x976c0
+ConvertMemToText: ; 0x976c0
 	call GetScriptByte
 	cp 3
 	jr c, .ok
 	xor a
 .ok
 
-Function976c8: ; 976c8
+CopyConvertedText: ; 976c8
 	ld hl, StringBuffer3
 	ld bc, 19
 	call AddNTimes
@@ -2138,13 +2138,13 @@ Script_itemtotext: ; 0x976d5
 
 	call GetScriptByte
 	and a
-	jr nz, .asm_976de ; 0x976d9 $3
+	jr nz, .ok ; 0x976d9 $3
 	ld a, [ScriptVar]
-.asm_976de
+.ok
 	ld [wd265], a
 	call GetItemName
 	ld de, StringBuffer1
-	jr Unknown_976c0 ; 0x976e7 $d7
+	jr ConvertMemToText ; 0x976e7 $d7
 ; 0x976e9
 
 Script_mapnametotext: ; 0x976e9
@@ -2158,11 +2158,11 @@ Script_mapnametotext: ; 0x976e9
 	ld c, a
 	call GetWorldMapLocation
 
-Unknown_976f4: ; 0x976f4
+ConvertLandmarkToText: ; 0x976f4
 	ld e, a
 	callba GetLandmarkName
 	ld de, StringBuffer1
-	jp Unknown_976c0
+	jp ConvertMemToText
 ; 0x97701
 
 Script_displaylocation: ; 0x97701
@@ -2172,7 +2172,7 @@ Script_displaylocation: ; 0x97701
 ;     memory (SingleByteParam)
 
 	call GetScriptByte
-	jr Unknown_976f4 ; 0x97704 $ee
+	jr ConvertLandmarkToText ; 0x97704 $ee
 ; 0x97706
 
 Script_trainertotext: ; 0x97706
@@ -2186,8 +2186,8 @@ Script_trainertotext: ; 0x97706
 	ld c, a
 	call GetScriptByte
 	ld b, a
-	callba Function3994c
-	jr Unknown_976c0 ; 0x97714 $aa
+	callba GetTrainerName
+	jr ConvertMemToText ; 0x97714 $aa
 ; 0x97716
 
 Script_name: ; 0x97716
@@ -2205,7 +2205,7 @@ Unknown_9771c: ; 0x9771c
 	ld [CurSpecies], a
 	call GetName
 	ld de, StringBuffer1
-	jp Unknown_976c0
+	jp ConvertMemToText
 ; 0x9772b
 
 Script_trainerclassname: ; 0x9772b
@@ -2225,13 +2225,13 @@ Script_readmoney: ; 0x97732
 ;     account (SingleByteParam)
 ;     memory (SingleByteParam)
 
-	call Function97771
-	call Function97861
+	call ResetStringBuffer1
+	call GetMoneyAccount
 	ld hl, StringBuffer1
 	ld bc, $4306
 	call PrintNum
 	ld de, StringBuffer1
-	jp Unknown_976c0
+	jp ConvertMemToText
 ; 0x97747
 
 Script_readcoins: ; 0x97747
@@ -2239,13 +2239,13 @@ Script_readcoins: ; 0x97747
 ; parameters:
 ;     memory (SingleByteParam)
 
-	call Function97771
+	call ResetStringBuffer1
 	ld hl, StringBuffer1
 	ld de, Coins
 	ld bc, $4206
 	call PrintNum
 	ld de, StringBuffer1
-	jp Unknown_976c0
+	jp ConvertMemToText
 ; 0x9775c
 
 Script_RAM2MEM: ; 0x9775c
@@ -2253,18 +2253,18 @@ Script_RAM2MEM: ; 0x9775c
 ; parameters:
 ;     memory (SingleByteParam)
 
-	call Function97771
+	call ResetStringBuffer1
 	ld de, ScriptVar
 	ld hl, StringBuffer1
 	ld bc, $4103
 	call PrintNum
 	ld de, StringBuffer1
-	jp Unknown_976c0
+	jp ConvertMemToText
 ; 0x97771
 
-Function97771: ; 0x97771
+ResetStringBuffer1: ; 0x97771
 	ld hl, StringBuffer1
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	ld a, "@"
 	call ByteFill
 	ret
@@ -2284,7 +2284,7 @@ Script_stringtotext: ; 0x9777d
 	ld hl, CopyName1
 	rst FarCall
 	ld de, StringBuffer2
-	jp Unknown_976c0
+	jp ConvertMemToText
 ; 0x97792
 
 Script_givepokeitem: ; 0x97792
@@ -2301,12 +2301,12 @@ Script_givepokeitem: ; 0x97792
 	ld b, a
 	push bc
 	inc hl
-	ld bc, $0020
+	ld bc, MAIL_MAX_LENGTH
 	ld de, wd002
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop bc
-	callba Function446cc
+	callba GivePokeItem
 	ret
 ; 0x977b7
 
@@ -2332,20 +2332,20 @@ Script_giveitem: ; 0x977ca
 ;     quantity (SingleByteParam)
 
 	call GetScriptByte
-	cp $ff
-	jr nz, .asm_977d4 ; 0x977cf $3
+	cp -1
+	jr nz, .ok ; 0x977cf $3
 	ld a, [ScriptVar]
-.asm_977d4
+.ok
 	ld [CurItem], a
 	call GetScriptByte
 	ld [wd10c], a
 	ld hl, NumItems
 	call ReceiveItem
-	jr nc, .asm_977eb ; 0x977e3 $6
+	jr nc, .full ; 0x977e3 $6
 	ld a, $1
 	ld [ScriptVar], a
 	ret
-.asm_977eb
+.full
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -2396,9 +2396,9 @@ Script_givemoney: ; 0x97829
 ;     account (SingleByteParam)
 ;     money (MoneyByteParam)
 
-	call Function97861
-	call Function9786d
-	callba Function15fd7
+	call GetMoneyAccount
+	call LoadMoneyAmountToMem
+	callba GiveMoney
 	ret
 ; 0x97836
 
@@ -2408,9 +2408,9 @@ Script_takemoney: ; 0x97836
 ;     account (SingleByteParam)
 ;     money (MoneyByteParam)
 
-	call Function97861
-	call Function9786d
-	callba Function15ffa
+	call GetMoneyAccount
+	call LoadMoneyAmountToMem
+	callba TakeMoney
 	ret
 ; 0x97843
 
@@ -2420,12 +2420,12 @@ Script_checkmoney: ; 0x97843
 ;     account (SingleByteParam)
 ;     money (MoneyByteParam)
 
-	call Function97861
-	call Function9786d
-	callba Function1600b
+	call GetMoneyAccount
+	call LoadMoneyAmountToMem
+	callba CheckMoney
 ; 0x9784f
 
-Unknown_9784f: ; 0x9784f
+CheckMoneyAction: ; 0x9784f
 	jr c, .two
 	jr z, .one
 	ld a, 0
@@ -2440,7 +2440,7 @@ Unknown_9784f: ; 0x9784f
 	ret
 ; 0x97861
 
-Function97861: ; 0x97861
+GetMoneyAccount: ; 0x97861
 	call GetScriptByte
 	and a
 	ld de, Money
@@ -2449,7 +2449,7 @@ Function97861: ; 0x97861
 	ret
 ; 0x9786d
 
-Function9786d: ; 0x9786d
+LoadMoneyAmountToMem: ; 0x9786d
 	ld bc, $ffc3
 	push bc
 	call GetScriptByte
@@ -2469,8 +2469,8 @@ Script_givecoins: ; 0x97881
 ; parameters:
 ;     coins (CoinByteParam)
 
-	call Function978a0
-	callba Function1606f
+	call LoadCoinAmountToMem
+	callba GiveCoins
 	ret
 ; 0x9788b
 
@@ -2479,8 +2479,8 @@ Script_takecoins: ; 0x9788b
 ; parameters:
 ;     coins (CoinByteParam)
 
-	call Function978a0
-	callba Function1608f
+	call LoadCoinAmountToMem
+	callba TakeCoins
 	ret
 ; 0x97895
 
@@ -2489,12 +2489,12 @@ Script_checkcoins: ; 0x97895
 ; parameters:
 ;     coins (CoinByteParam)
 
-	call Function978a0
-	callba Function160a1
-	jr Unknown_9784f
+	call LoadCoinAmountToMem
+	callba CheckCoins
+	jr CheckMoneyAction
 ; 978a0
 
-Function978a0: ; 978a0
+LoadCoinAmountToMem: ; 978a0
 	call GetScriptByte
 	ld [$ffc4], a
 	call GetScriptByte
@@ -2510,7 +2510,7 @@ Script_checktime: ; 0x978ae
 
 	xor a
 	ld [ScriptVar], a
-	callba Functionc000
+	callba CheckTime
 	call GetScriptByte
 	and c
 	ret z
@@ -2545,7 +2545,7 @@ Script_addcellnum: ; 0x978da
 	ld [ScriptVar], a
 	call GetScriptByte
 	ld c, a
-	callba Function90000
+	callba AddPhoneNumber
 	ret nc
 	ld a, $1
 	ld [ScriptVar], a
@@ -2561,7 +2561,7 @@ Script_delcellnum: ; 0x978ef
 	ld [ScriptVar], a
 	call GetScriptByte
 	ld c, a
-	callba Function9000f
+	callba DelCellNum
 	ret nc
 	ld a, $1
 	ld [ScriptVar], a
@@ -2577,7 +2577,7 @@ Script_checkcellnum: ; 0x97904
 	ld [ScriptVar], a
 	call GetScriptByte
 	ld c, a
-	callba Function90019
+	callba CheckCellNum
 	ret nc
 	ld a, $1
 	ld [ScriptVar], a
@@ -2637,7 +2637,7 @@ Script_givepoke: ; 0x97932
 	call GetScriptByte
 	call GetScriptByte
 .ok
-	callba Functione277
+	callba GivePoke
 	ld a, b
 	ld [ScriptVar], a
 	ret
@@ -2721,7 +2721,7 @@ Script_setflag: ; 0x979bb
 	call GetScriptByte
 	ld d, a
 	ld b, $1
-	call Function979ee
+	call _EngineFlagAction
 	ret
 ; 0x979c9
 
@@ -2735,7 +2735,7 @@ Script_clearflag: ; 0x979c9
 	call GetScriptByte
 	ld d, a
 	ld b, $0
-	call Function979ee
+	call _EngineFlagAction
 	ret
 ; 0x979d7
 
@@ -2749,7 +2749,7 @@ Script_checkflag: ; 0x979d7
 	call GetScriptByte
 	ld d, a
 	ld b, $2
-	call Function979ee
+	call _EngineFlagAction
 	ld a, c
 	and a
 	jr z, .asm_979ea ; 0x979e6 $2
@@ -2759,7 +2759,7 @@ Script_checkflag: ; 0x979d7
 	ret
 ; 0x979ee
 
-Function979ee: ; 0x979ee
+_EngineFlagAction: ; 0x979ee
 	callba EngineFlagAction
 	ret
 ; 0x979f5
@@ -2820,7 +2820,7 @@ Script_warp: ; 0x97a1d
 
 	call GetScriptByte
 	and a
-	jr z, .asm_97a4a ; 0x97a21 $27
+	jr z, .not_ok ; 0x97a21 $27
 	ld [MapGroup], a
 	call GetScriptByte
 	ld [MapNumber], a
@@ -2833,10 +2833,10 @@ Script_warp: ; 0x97a1d
 	ld a, $f1
 	ld [$ff9f], a
 	ld a, $1
-	call Function261b
+	call LoadMapStatus
 	call StopScript
 	ret
-.asm_97a4a
+.not_ok
 	call GetScriptByte
 	call GetScriptByte
 	call GetScriptByte
@@ -2845,7 +2845,7 @@ Script_warp: ; 0x97a1d
 	ld a, $fb
 	ld [$ff9f], a
 	ld a, $1
-	call Function261b
+	call LoadMapStatus
 	call StopScript
 	ret
 ; 0x97a65
@@ -2929,8 +2929,8 @@ Script_changemap: ; 0x97ab3
 	ld [MapBlockDataPointer], a
 	call GetScriptByte
 	ld [MapBlockDataPointer + 1], a
-	call Function24e4
-	call Function2879
+	call ChangeMap
+	call BufferScreen
 	ret
 ; 0x97acc
 
@@ -2947,10 +2947,10 @@ Script_changeblock: ; 0x97acc
 	call GetScriptByte
 	add $4
 	ld e, a
-	call Function2a66
+	call GetBlockLocation
 	call GetScriptByte
 	ld [hl], a
-	call Function2879
+	call BufferScreen
 	ret
 ; 0x97ae3
 
@@ -2962,7 +2962,7 @@ Script_reloadmappart:: ; 0x97ae3
 	call Function2173
 	call Function2914
 	callba Function104061
-	call Function1ad2
+	call DrawOnMap
 	ret
 ; 0x97af6
 
@@ -2971,12 +2971,12 @@ Script_warpcheck: ; 0x97af6
 
 	call Function224a
 	ret nc
-	callba Function966d0
+	callba SetAll_ScriptFlags3
 	ret
 ; 0x97b01
 
 Function97b01: ; 0x97b01
-	callba Function966d0
+	callba SetAll_ScriptFlags3
 	ret
 ; 0x97b08
 
@@ -2988,7 +2988,7 @@ Script_newloadmap: ; 0x97b08
 	call GetScriptByte
 	ld [$ff9f], a
 	ld a, $1
-	call Function261b
+	call LoadMapStatus
 	call StopScript
 	ret
 ; 0x97b16
@@ -3196,7 +3196,7 @@ Script_credits: ; 0x97bf3
 DisplayCredits:
 	call Script_resetfuncs
 	ld a, $3
-	call Function261b
+	call LoadMapStatus
 	call StopScript
 	ret
 ; 0x97c051

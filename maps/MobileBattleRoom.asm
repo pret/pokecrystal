@@ -43,7 +43,7 @@ UnknownScript_0x1935f4:
 	special RestartMapMusic
 	refreshscreen $0
 UnknownScript_0x19360d:
-	special Function1060a2
+	special Mobile_HealParty
 	special HealParty
 	special Function10383c
 	iftrue UnknownScript_0x193624

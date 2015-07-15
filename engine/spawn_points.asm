@@ -41,22 +41,22 @@ ENDM
 	spawn BLACKTHORN,  BLACKTHORN_CITY,            21, 30
 	spawn MT_SILVER,   SILVER_CAVE_OUTSIDE,        23, 20
 	spawn FAST_SHIP,   FAST_SHIP_CABINS_SW_SSW_NW,  6,  2
+const_value = -1
+	spawn N_A,         N_A,                        -1, -1
 
-	db -1, -1, -1, -1
-
-	const NUM_SPAWNS
+NUM_SPAWNS EQU const_value
 
 
 LoadSpawnPoint: ; 1531f
+	; loads the spawn point in wd001
 	push hl
 	push de
 	ld a, [wd001]
-	cp -1
-	jr z, .asm_15341
+	cp SPAWN_N_A
+	jr z, .spawn_n_a
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
+	add_n_times hl, hl, 2 ; multiply hl by 4
 	ld de, SpawnPoints
 	add hl, de
 	ld a, [hli]
@@ -67,7 +67,7 @@ LoadSpawnPoint: ; 1531f
 	ld [XCoord], a
 	ld a, [hli]
 	ld [YCoord], a
-.asm_15341
+.spawn_n_a
 	pop de
 	pop hl
 	ret
@@ -75,32 +75,33 @@ LoadSpawnPoint: ; 1531f
 
 
 IsSpawnPoint: ; 15344
+; Checks if the map loaded in de is a spawn point.  Returns carry if it's a spawn point.
 	ld hl, SpawnPoints
 	ld c, 0
-.asm_15349
+.loop
 	ld a, [hl]
-	cp -1
-	jr z, .asm_1535f
+	cp SPAWN_N_A
+	jr z, .nope
 	cp d
-	jr nz, .asm_15356
+	jr nz, .next
 	inc hl
 	ld a, [hld]
 	cp e
-	jr z, .asm_15361
+	jr z, .yes
 
-.asm_15356
+.next
 	push bc
 	ld bc, 4
 	add hl, bc
 	pop bc
 	inc c
-	jr .asm_15349
+	jr .loop
 
-.asm_1535f
+.nope
 	and a
 	ret
 
-.asm_15361
+.yes
 	scf
 	ret
 ; 15363

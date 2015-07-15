@@ -75,7 +75,7 @@ LanceScript_0x180e7b:
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
 	pause 30
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, DOWN
 	pause 10
 	spriteface $0, DOWN
@@ -119,7 +119,7 @@ LanceScript_0x180e7b:
 	playsound SFX_EXIT_BUILDING
 	disappear $0
 	applymovement $3, MovementData_0x180f57
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	loadfont
 	writetext UnknownText_0x1813c5
 	pause 30

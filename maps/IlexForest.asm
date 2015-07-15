@@ -467,7 +467,7 @@ UnknownScript_0x6ee42:
 	closetext
 	loadmovesprites
 	pause 20
-	showemote $0, $0, 20
+	showemote EMOTE_SHOCK, $0, 20
 	special Functionc48f
 	applymovement $0, MovementData_0x6ef58
 	pause 30

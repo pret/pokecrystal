@@ -53,7 +53,7 @@ UnknownScript_0x6cfac:
 	closetext
 	loadmovesprites
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	applymovement $0, MovementData_0x6d21f
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	applymovement $3, MovementData_0x6d224
@@ -156,7 +156,7 @@ UnknownScript_0x6d091:
 	closetext
 	loadmovesprites
 	special Function8c084
-	special Function1060a2
+	special Mobile_HealParty
 	playsound SFX_FULL_HEAL
 	special HealParty
 	special Function8c079

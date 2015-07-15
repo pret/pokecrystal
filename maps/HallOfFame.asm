@@ -3,50 +3,50 @@ HallOfFame_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18144f, $0000
-	dw UnknownScript_0x181453, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
 	; callback count
 	db 0
 
-UnknownScript_0x18144f:
-	priorityjump UnknownScript_0x181454
+.Trigger1:
+	priorityjump HallOfFameScript
 	end
 
-UnknownScript_0x181453:
+.Trigger2:
 	end
 
-UnknownScript_0x181454:
+HallOfFameScript:
 	follow $2, $0
-	applymovement $2, MovementData_0x181499
+	applymovement $2, HallOfFame_WalkUpWithLance
 	stopfollow
 	spriteface $0, RIGHT
 	loadfont
-	writetext UnknownText_0x1814a6
+	writetext HallOfFame_LanceText
 	closetext
 	loadmovesprites
 	spriteface $2, UP
-	applymovement $0, MovementData_0x1814a4
+	applymovement $0, HallOfFame_SlowlyApproachMachine
 	dotrigger $1
 	pause 15
-	writebyte $2
+	writebyte 2 ; Machine is in the Hall of Fame
 	special HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER
 	clearevent EVENT_RED_IN_MT_SILVER
-	setevent EVENT_737
-	clearevent EVENT_738
+	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue UnknownScript_0x181497
+	iftrue HallOfFame_SkipPhoneCall
 	specialphonecall $5
-UnknownScript_0x181497:
+HallOfFame_SkipPhoneCall:
 	halloffame
 	end
 
-MovementData_0x181499:
+HallOfFame_WalkUpWithLance:
 	step_up
 	step_up
 	step_up
@@ -59,11 +59,11 @@ MovementData_0x181499:
 	turn_head_left
 	step_end
 
-MovementData_0x1814a4:
+HallOfFame_SlowlyApproachMachine:
 	slow_step_up
 	step_end
 
-UnknownText_0x1814a6:
+HallOfFame_LanceText:
 	text "LANCE: It's been a"
 	line "long time since I"
 	cont "last came here."
@@ -126,4 +126,4 @@ HallOfFame_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_LANCE, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, -1
+	person_event SPRITE_LANCE, 16, 8, UP << 2 | $3, $0, -1, -1, PAL_OW_RED << 4 | $0, 0, ObjectEvent, -1

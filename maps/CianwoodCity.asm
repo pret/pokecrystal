@@ -29,7 +29,7 @@ UnknownScript_0x1a001d:
 
 UnknownScript_0x1a001e:
 	spriteface $0, UP
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	pause 15
 	playsound SFX_WARP_FROM
 	applymovement $d, MovementData_0x1a00da

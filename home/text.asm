@@ -169,7 +169,7 @@ Function1052:: ; 1052
 
 
 PrintText:: ; 1057
-	call Function106c
+	call SetUpTextBox
 Function105a:: ; 105a
 	push hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
@@ -183,10 +183,10 @@ PrintTextBoxText:: ; 1065
 	ret
 ; 106c
 
-Function106c:: ; 106c
+SetUpTextBox:: ; 106c
 	push hl
 	call SpeechTextBox
-	call Function1ad2
+	call DrawOnMap
 	call Function321c
 	pop hl
 	ret
@@ -385,7 +385,7 @@ Char3F:: ; 121b
 	ld de, String12a2
 	call PlaceString
 	push bc
-	callab Function39939
+	callab Battle_GetTrainerName
 	pop hl
 	ld de, StringBuffer1
 	jr Function126a
@@ -517,7 +517,7 @@ Paragraph:: ; 12f2
 .asm_1301
 
 	call Function13b6
-	call Functionaaf
+	call KeepTextOpen
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
 	call ClearBox
@@ -540,7 +540,7 @@ Char4B:: ; 131f
 	call Function13b6
 
 	push de
-	call Functionaaf
+	call KeepTextOpen
 	pop de
 
 	ld a, [InLinkBattle]
@@ -590,7 +590,7 @@ PromptText:: ; 135a
 .ok
 
 	call Function13b6
-	call Functionaaf
+	call KeepTextOpen
 	ld a, [InLinkBattle]
 	cp $3
 	jr z, DoneText
@@ -904,7 +904,7 @@ Text_06:: ; 149f
 	push hl
 	call Function13c7
 	push bc
-	call Functionaaf
+	call KeepTextOpen
 	pop bc
 	call Function13cd
 	pop hl
@@ -1066,7 +1066,7 @@ Text_0D:: ; 1562
 ; display arrow
 	push hl
 	push bc
-	call Functionaaf
+	call KeepTextOpen
 	pop bc
 	pop hl
 	ret
