@@ -31,8 +31,8 @@ Route28_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 5, 31, $0, MapRoute28Signpost0Script
-	signpost 2, 25, $7, MapRoute28SignpostItem1
+	signpost 5, 31, SIGNPOST_READ, MapRoute28Signpost0Script
+	signpost 2, 25, SIGNPOST_ITEMIFSET, MapRoute28SignpostItem1
 
 	; people-events
 	db 0

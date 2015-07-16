@@ -212,12 +212,12 @@ SilverScript_0x18c97e:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x18c995
 	writetext UnknownText_0x18cc83
 	closetext
 	loadmovesprites
-	setevent EVENT_000
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
 	special RestartMapMusic
 	end
 
@@ -479,19 +479,19 @@ DragonsDenB1F_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 24, 18, $0, MapDragonsDenB1FSignpost0Script
-	signpost 29, 33, $7, MapDragonsDenB1FSignpostItem1
-	signpost 17, 21, $7, MapDragonsDenB1FSignpostItem2
-	signpost 15, 31, $7, MapDragonsDenB1FSignpostItem3
+	signpost 24, 18, SIGNPOST_READ, MapDragonsDenB1FSignpost0Script
+	signpost 29, 33, SIGNPOST_ITEMIFSET, MapDragonsDenB1FSignpostItem1
+	signpost 17, 21, SIGNPOST_ITEMIFSET, MapDragonsDenB1FSignpostItem2
+	signpost 15, 31, SIGNPOST_ITEMIFSET, MapDragonsDenB1FSignpostItem3
 
 	; people-events
 	db 9
-	person_event SPRITE_POKE_BALL, 20, 39, $1, $0, 255, 255, $0, 0, PokeBallScript_0x18c95a, EVENT_6A8
-	person_event SPRITE_CLAIR, 34, 18, $7, $0, 255, 255, $90, 0, ObjectEvent, EVENT_6D8
-	person_event SPRITE_SILVER, 27, 24, $2, $22, 255, 255, $0, 0, SilverScript_0x18c97e, EVENT_6C6
-	person_event SPRITE_COOLTRAINER_M, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, -1
-	person_event SPRITE_COOLTRAINER_F, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, -1
-	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia1, -1
-	person_event SPRITE_TWIN, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, -1
-	person_event SPRITE_POKE_BALL, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, EVENT_7BF
-	person_event SPRITE_POKE_BALL, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, EVENT_7C0
+	person_event SPRITE_POKE_BALL, 20, 39, DOWN << 2 | $1, $0, -1, -1, $0, 0, PokeBallScript_0x18c95a, EVENT_6A8
+	person_event SPRITE_CLAIR, 34, 18, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_6D8
+	person_event SPRITE_SILVER, 27, 24, DOWN << 2 | $2, $22, -1, -1, $0, 0, SilverScript_0x18c97e, EVENT_6C6
+	person_event SPRITE_COOLTRAINER_M, 12, 24, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainermDarin, -1
+	person_event SPRITE_COOLTRAINER_F, 12, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCara, -1
+	person_event SPRITE_TWIN, 21, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsLeaandpia1, -1
+	person_event SPRITE_TWIN, 22, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsLeaandpia2, -1
+	person_event SPRITE_POKE_BALL, 8, 34, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c9a1, EVENT_7BF
+	person_event SPRITE_POKE_BALL, 24, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c9a3, EVENT_7C0

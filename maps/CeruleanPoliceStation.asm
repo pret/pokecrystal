@@ -55,6 +55,6 @@ CeruleanPoliceStation_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_FISHING_GURU, 5, 9, $7, $0, 255, 255, $a0, 0, FishingGuruScript_0x18804a, -1
-	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $90, 0, PokefanFScript_0x18804d, -1
-	person_event SPRITE_DIGLETT, 9, 7, $16, $0, 255, 255, $b0, 0, DiglettScript_0x188050, -1
+	person_event SPRITE_FISHING_GURU, 5, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingGuruScript_0x18804a, -1
+	person_event SPRITE_POKEFAN_F, 8, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanFScript_0x18804d, -1
+	person_event SPRITE_DIGLETT, 9, 7, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, DiglettScript_0x188050, -1

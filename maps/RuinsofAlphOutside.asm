@@ -337,14 +337,14 @@ RuinsofAlphOutside_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 8, 16, $0, MapRuinsofAlphOutsideSignpost0Script
-	signpost 16, 12, $0, MapRuinsofAlphOutsideSignpost1Script
-	signpost 12, 18, $0, MapRuinsofAlphOutsideSignpost2Script
+	signpost 8, 16, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost0Script
+	signpost 16, 12, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost1Script
+	signpost 12, 18, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost2Script
 
 	; people-events
 	db 5
-	person_event SPRITE_YOUNGSTER, 24, 8, $6, $0, 255, 255, $2, 1, TrainerPsychicNathan, -1
-	person_event SPRITE_SCIENTIST, 19, 15, $7, $0, 255, 255, $0, 0, ScientistScript_0x58043, EVENT_703
-	person_event SPRITE_FISHER, 21, 17, $3, $0, 255, 255, $a0, 0, FisherScript_0x58061, EVENT_78E
-	person_event SPRITE_YOUNGSTER, 15, 18, $2, $11, 255, 255, $b0, 0, YoungsterScript_0x58076, EVENT_78F
-	person_event SPRITE_YOUNGSTER, 12, 16, $7, $0, 255, 255, $80, 0, YoungsterScript_0x5807e, EVENT_78F
+	person_event SPRITE_YOUNGSTER, 24, 8, UP << 2 | $2, $0, -1, -1, $2, 1, TrainerPsychicNathan, -1
+	person_event SPRITE_SCIENTIST, 19, 15, UP << 2 | $3, $0, -1, -1, $0, 0, ScientistScript_0x58043, EVENT_703
+	person_event SPRITE_FISHER, 21, 17, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x58061, EVENT_78E
+	person_event SPRITE_YOUNGSTER, 15, 18, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, YoungsterScript_0x58076, EVENT_78F
+	person_event SPRITE_YOUNGSTER, 12, 16, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x5807e, EVENT_78F

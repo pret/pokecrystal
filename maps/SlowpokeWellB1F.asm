@@ -10,7 +10,7 @@ KurtScript_0x5a5d5:
 
 TrainerGruntM29:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_22
+	dw EVENT_BEAT_ROCKET_GRUNTM_29
 
 	; trainer group && trainer id
 	db GRUNTM, 29
@@ -390,12 +390,12 @@ SlowpokeWellB1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_ROCKET, 11, 19, $6, $0, 255, 255, $2, 3, TrainerGruntM29, EVENT_6FC
-	person_event SPRITE_ROCKET, 6, 9, $6, $0, 255, 255, $2, 1, TrainerGruntM1, EVENT_6FC
-	person_event SPRITE_ROCKET, 10, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM2, EVENT_6FC
-	person_event SPRITE_ROCKET_GIRL, 8, 14, $9, $0, 255, 255, $82, 4, TrainerGruntF1, EVENT_6FC
-	person_event SPRITE_SLOWPOKE, 8, 11, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a681, EVENT_6FB
-	person_event SPRITE_SLOWPOKE, 6, 10, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a695, EVENT_6FB
-	person_event SPRITE_KURT, 18, 20, $7, $0, 255, 255, $0, 0, KurtScript_0x5a5d5, EVENT_740
-	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, SlowpokeWellB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, EVENT_662
+	person_event SPRITE_ROCKET, 11, 19, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM29, EVENT_6FC
+	person_event SPRITE_ROCKET, 6, 9, UP << 2 | $2, $0, -1, -1, $2, 1, TrainerGruntM1, EVENT_6FC
+	person_event SPRITE_ROCKET, 10, 9, LEFT << 2 | $1, $0, -1, -1, $2, 2, TrainerGruntM2, EVENT_6FC
+	person_event SPRITE_ROCKET_GIRL, 8, 14, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerGruntF1, EVENT_6FC
+	person_event SPRITE_SLOWPOKE, 8, 11, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a681, EVENT_6FB
+	person_event SPRITE_SLOWPOKE, 6, 10, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a695, EVENT_6FB
+	person_event SPRITE_KURT, 18, 20, UP << 2 | $3, $0, -1, -1, $0, 0, KurtScript_0x5a5d5, EVENT_740
+	person_event SPRITE_BOULDER, 6, 7, LEFT << 2 | $11, $0, -1, -1, $0, 0, SlowpokeWellB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 7, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a6a3, EVENT_662

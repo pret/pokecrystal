@@ -1389,28 +1389,28 @@ ElmsLab_MapEventHeader:
 
 	; signposts
 	db 16
-	signpost 1, 2, $0, ElmsLabHealingMachine
-	signpost 1, 6, $0, ElmsLabBookshelf
-	signpost 1, 7, $0, ElmsLabBookshelf
-	signpost 1, 8, $0, ElmsLabBookshelf
-	signpost 1, 9, $0, ElmsLabBookshelf
-	signpost 7, 0, $0, ElmsLabTravelTip1
-	signpost 7, 1, $0, ElmsLabTravelTip2
-	signpost 7, 2, $0, ElmsLabTravelTip3
-	signpost 7, 3, $0, ElmsLabTravelTip4
-	signpost 7, 6, $0, ElmsLabBookshelf
-	signpost 7, 7, $0, ElmsLabBookshelf
-	signpost 7, 8, $0, ElmsLabBookshelf
-	signpost 7, 9, $0, ElmsLabBookshelf
-	signpost 3, 9, $0, ElmsLabTrashcan
-	signpost 0, 5, $0, ElmsLabWindow
-	signpost 5, 3, $2, ElmsLabPC
+	signpost 1, 2, SIGNPOST_READ, ElmsLabHealingMachine
+	signpost 1, 6, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 7, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 8, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 9, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 0, SIGNPOST_READ, ElmsLabTravelTip1
+	signpost 7, 1, SIGNPOST_READ, ElmsLabTravelTip2
+	signpost 7, 2, SIGNPOST_READ, ElmsLabTravelTip3
+	signpost 7, 3, SIGNPOST_READ, ElmsLabTravelTip4
+	signpost 7, 6, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 7, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 8, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 9, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 3, 9, SIGNPOST_READ, ElmsLabTrashcan
+	signpost 0, 5, SIGNPOST_READ, ElmsLabWindow
+	signpost 5, 3, SIGNPOST_DOWN, ElmsLabPC
 
 	; people-events
 	db 6
-	person_event SPRITE_ELM, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, -1
-	person_event SPRITE_SCIENTIST, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	person_event SPRITE_POKE_BALL, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, EVENT_640
-	person_event SPRITE_POKE_BALL, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, EVENT_641
-	person_event SPRITE_POKE_BALL, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, EVENT_642
-	person_event SPRITE_OFFICER, 7, 9, $7, $0, 255, 255, $90, 0, CopScript, EVENT_702
+	person_event SPRITE_ELM, 6, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ProfElmScript, -1
+	person_event SPRITE_SCIENTIST, 13, 6, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	person_event SPRITE_POKE_BALL, 7, 10, DOWN << 2 | $1, $0, -1, -1, $0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 7, 11, DOWN << 2 | $1, $0, -1, -1, $0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 7, 12, DOWN << 2 | $1, $0, -1, -1, $0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_OFFICER, 7, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CopScript, EVENT_COP_IN_ELMS_LAB

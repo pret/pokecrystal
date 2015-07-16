@@ -79,7 +79,7 @@ UnknownScript_0x9e40f:
 	yesorno
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $0
-	special Function29e66
+	special Special_TryQuickSave
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $1
 	writebyte $1
@@ -168,7 +168,7 @@ UnknownScript_0x9e4be:
 	writetext UnknownText_0x9ef1f
 	yesorno
 	iffalse UnknownScript_0x9e3fc
-	special Function29e66
+	special Special_TryQuickSave
 	iffalse UnknownScript_0x9e3fc
 	writebyte $1
 	special Function170687
@@ -207,7 +207,7 @@ UnknownScript_0x9e515:
 	yesorno
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $0
-	special Function29e66
+	special Special_TryQuickSave
 	iffalse UnknownScript_0x9e3fc
 	dotrigger $1
 	writebyte $6
@@ -806,12 +806,12 @@ BattleTower1F_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 6, 6, $0, MapBattleTower1FSignpost0Script
+	signpost 6, 6, SIGNPOST_READ, MapBattleTower1FSignpost0Script
 
 	; people-events
 	db 5
-	person_event SPRITE_RECEPTIONIST, 10, 11, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x9e3e2, -1
-	person_event SPRITE_YOUNGSTER, 13, 18, $9, $0, 255, 255, $b0, 0, YoungsterScript_0x9e55d, -1
-	person_event SPRITE_COOLTRAINER_F, 13, 8, $5, $1, 255, 255, $80, 0, CooltrainerFScript_0x9e568, -1
-	person_event SPRITE_BUG_CATCHER, 7, 5, $2, $11, 255, 255, $90, 0, BugCatcherScript_0x9e56b, -1
-	person_event SPRITE_GRANNY, 7, 18, $4, $10, 255, 255, $0, 0, GrannyScript_0x9e56e, -1
+	person_event SPRITE_RECEPTIONIST, 10, 11, UP << 2 | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x9e3e2, -1
+	person_event SPRITE_YOUNGSTER, 13, 18, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, YoungsterScript_0x9e55d, -1
+	person_event SPRITE_COOLTRAINER_F, 13, 8, UP << 2 | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x9e568, -1
+	person_event SPRITE_BUG_CATCHER, 7, 5, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BugCatcherScript_0x9e56b, -1
+	person_event SPRITE_GRANNY, 7, 18, UP << 2 | $0, $10, -1, -1, $0, 0, GrannyScript_0x9e56e, -1

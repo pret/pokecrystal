@@ -227,10 +227,10 @@ UnionCaveB1F_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_POKEFAN_M, 8, 13, $a, $0, 255, 255, $b2, 3, TrainerHikerPhillip, -1
-	person_event SPRITE_POKEFAN_M, 11, 20, $6, $0, 255, 255, $b2, 3, TrainerHikerLeonard, -1
-	person_event SPRITE_SUPER_NERD, 36, 9, $8, $0, 255, 255, $92, 3, TrainerPokemaniacAndrew, -1
-	person_event SPRITE_SUPER_NERD, 34, 21, $8, $0, 255, 255, $92, 3, TrainerPokemaniacCalvin, -1
-	person_event SPRITE_POKE_BALL, 20, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a016, EVENT_65E
-	person_event SPRITE_BOULDER, 14, 11, $19, $0, 255, 255, $0, 0, UnionCaveB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 27, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a018, EVENT_65F
+	person_event SPRITE_POKEFAN_M, 8, 13, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerPhillip, -1
+	person_event SPRITE_POKEFAN_M, 11, 20, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerLeonard, -1
+	person_event SPRITE_SUPER_NERD, 36, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacAndrew, -1
+	person_event SPRITE_SUPER_NERD, 34, 21, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacCalvin, -1
+	person_event SPRITE_POKE_BALL, 20, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a016, EVENT_65E
+	person_event SPRITE_BOULDER, 14, 11, LEFT << 2 | $11, $0, -1, -1, $0, 0, UnionCaveB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 27, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a018, EVENT_65F

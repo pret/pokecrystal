@@ -368,16 +368,16 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 13, 6, $0, FastShipCabins_NNW_NNE_NETrashcan
-	signpost 19, 7, $0, FastShipCabins_NNW_NNE_NETrashcan
-	signpost 31, 7, $0, FastShipCabins_NNW_NNE_NETrashcan
+	signpost 13, 6, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
+	signpost 19, 7, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
+	signpost 31, 7, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
 
 	; people-events
 	db 7
-	person_event SPRITE_COOLTRAINER_M, 7, 8, $a, $0, 255, 255, $82, 2, TrainerCooltrainermSean, EVENT_73A
-	person_event SPRITE_COOLTRAINER_F, 9, 5, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfCarol, EVENT_73A
-	person_event SPRITE_SUPER_NERD, 9, 5, $7, $0, 255, 255, $92, 3, TrainerPokemaniacEthan, EVENT_73B
-	person_event SPRITE_POKEFAN_M, 21, 8, $7, $0, 255, 255, $b2, 3, TrainerHikerNoland, EVENT_739
-	person_event SPRITE_SAILOR, 30, 8, $3, $0, 255, 255, $90, 0, SailorScript_0x755f1, EVENT_72D
-	person_event SPRITE_GENTLEMAN, 34, 11, $3, $0, 255, 255, $92, 1, TrainerGentlemanEdward, EVENT_73A
-	person_event SPRITE_PHARMACIST, 34, 6, $7, $0, 255, 255, $a2, 4, TrainerBurglarCorey, EVENT_73B
+	person_event SPRITE_COOLTRAINER_M, 7, 8, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermSean, EVENT_73A
+	person_event SPRITE_COOLTRAINER_F, 9, 5, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCarol, EVENT_73A
+	person_event SPRITE_SUPER_NERD, 9, 5, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacEthan, EVENT_73B
+	person_event SPRITE_POKEFAN_M, 21, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerNoland, EVENT_739
+	person_event SPRITE_SAILOR, 30, 8, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x755f1, EVENT_72D
+	person_event SPRITE_GENTLEMAN, 34, 11, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerGentlemanEdward, EVENT_73A
+	person_event SPRITE_PHARMACIST, 34, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerBurglarCorey, EVENT_73B

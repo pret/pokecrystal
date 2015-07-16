@@ -446,15 +446,15 @@ AzaleaGym_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 13, 3, $0, AzaleaGymStatue
-	signpost 13, 6, $0, AzaleaGymStatue
+	signpost 13, 3, SIGNPOST_READ, AzaleaGymStatue
+	signpost 13, 6, SIGNPOST_READ, AzaleaGymStatue
 
 	; people-events
 	db 7
-	person_event SPRITE_BUGSY, 11, 9, $3, $0, 255, 255, $a0, 0, BugsyScript_0x18ec1e, -1
-	person_event SPRITE_BUG_CATCHER, 7, 9, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherBug_catcher_benny, -1
-	person_event SPRITE_BUG_CATCHER, 12, 12, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherAl, -1
-	person_event SPRITE_BUG_CATCHER, 6, 4, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherJosh, -1
-	person_event SPRITE_TWIN, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay1, -1
-	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay2, -1
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, AzaleaGymGuyScript, -1
+	person_event SPRITE_BUGSY, 11, 9, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BugsyScript_0x18ec1e, -1
+	person_event SPRITE_BUG_CATCHER, 7, 9, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBug_catcherBug_catcher_benny, -1
+	person_event SPRITE_BUG_CATCHER, 12, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherAl, -1
+	person_event SPRITE_BUG_CATCHER, 6, 4, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherJosh, -1
+	person_event SPRITE_TWIN, 14, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAmyandmay1, -1
+	person_event SPRITE_TWIN, 14, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAmyandmay2, -1
+	person_event SPRITE_GYM_GUY, 17, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, AzaleaGymGuyScript, -1

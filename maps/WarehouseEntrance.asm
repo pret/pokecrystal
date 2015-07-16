@@ -265,20 +265,20 @@ UnknownScript_0x7c173:
 	jump UnknownScript_0x7c1c1
 
 UnknownScript_0x7c1a9:
-	setevent EVENT_000
-	clearevent EVENT_001
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	clearevent EVENT_CHRIS2_IN_CABLE_CLUB
 	clearevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
 UnknownScript_0x7c1b5:
-	clearevent EVENT_000
-	setevent EVENT_001
+	clearevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_CHRIS2_IN_CABLE_CLUB
 	clearevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
 UnknownScript_0x7c1c1:
-	clearevent EVENT_000
-	clearevent EVENT_001
+	clearevent EVENT_CHRIS1_IN_CABLE_CLUB
+	clearevent EVENT_CHRIS2_IN_CABLE_CLUB
 	setevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
@@ -296,9 +296,9 @@ UnknownScript_0x7c1cd:
 	loadfont
 	writetext UnknownText_0x7c6d8
 	closetext
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x7c2bb
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
@@ -348,20 +348,20 @@ UnknownScript_0x7c220:
 	jump UnknownScript_0x7c26e
 
 UnknownScript_0x7c256:
-	setevent EVENT_000
-	clearevent EVENT_001
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	clearevent EVENT_CHRIS2_IN_CABLE_CLUB
 	clearevent EVENT_002
 	jump UnknownScript_0x7c27a
 
 UnknownScript_0x7c262:
-	clearevent EVENT_000
-	setevent EVENT_001
+	clearevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_CHRIS2_IN_CABLE_CLUB
 	clearevent EVENT_002
 	jump UnknownScript_0x7c27a
 
 UnknownScript_0x7c26e:
-	clearevent EVENT_000
-	clearevent EVENT_001
+	clearevent EVENT_CHRIS1_IN_CABLE_CLUB
+	clearevent EVENT_CHRIS2_IN_CABLE_CLUB
 	setevent EVENT_002
 	jump UnknownScript_0x7c27a
 
@@ -379,9 +379,9 @@ UnknownScript_0x7c27a:
 	loadfont
 	writetext UnknownText_0x7c82a
 	closetext
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x7c2bb
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
@@ -726,20 +726,20 @@ WarehouseEntrance_MapEventHeader:
 
 	; signposts
 	db 5
-	signpost 6, 18, $0, MapWarehouseEntranceSignpost0Script
-	signpost 6, 19, $0, MapWarehouseEntranceSignpost1Script
-	signpost 13, 6, $7, MapWarehouseEntranceSignpostItem2
-	signpost 18, 4, $7, MapWarehouseEntranceSignpostItem3
-	signpost 8, 17, $7, MapWarehouseEntranceSignpostItem4
+	signpost 6, 18, SIGNPOST_READ, MapWarehouseEntranceSignpost0Script
+	signpost 6, 19, SIGNPOST_READ, MapWarehouseEntranceSignpost1Script
+	signpost 13, 6, SIGNPOST_ITEMIFSET, MapWarehouseEntranceSignpostItem2
+	signpost 18, 4, SIGNPOST_ITEMIFSET, MapWarehouseEntranceSignpostItem3
+	signpost 8, 17, SIGNPOST_ITEMIFSET, MapWarehouseEntranceSignpostItem4
 
 	; people-events
 	db 9
-	person_event SPRITE_SUPER_NERD, 35, 9, $8, $0, 255, 255, $b2, 3, TrainerSupernerdEric, -1
-	person_event SPRITE_SUPER_NERD, 13, 10, $7, $0, 255, 255, $b2, 2, TrainerSupernerdTeru, -1
-	person_event SPRITE_SUPER_NERD, 31, 7, $a, $0, 255, 255, $92, 2, TrainerPokemaniacIssac, -1
-	person_event SPRITE_SUPER_NERD, 10, 6, $9, $0, 255, 255, $92, 3, TrainerPokemaniacDonald, -1
-	person_event SPRITE_POKE_BALL, 29, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7c306, EVENT_672
-	person_event SPRITE_GRAMPS, 15, 11, $8, $0, 255, 255, $b0, 0, GrampsScript_0x7c146, EVENT_753
-	person_event SPRITE_SUPER_NERD, 18, 11, $8, $0, 255, 255, $90, 0, SuperNerdScript_0x7c161, EVENT_754
-	person_event SPRITE_SUPER_NERD, 19, 11, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x7c20e, EVENT_755
-	person_event SPRITE_GRANNY, 25, 11, $8, $0, 255, 255, $b0, 0, GrannyScript_0x7c132, EVENT_752
+	person_event SPRITE_SUPER_NERD, 35, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerSupernerdEric, -1
+	person_event SPRITE_SUPER_NERD, 13, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdTeru, -1
+	person_event SPRITE_SUPER_NERD, 31, 7, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPokemaniacIssac, -1
+	person_event SPRITE_SUPER_NERD, 10, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacDonald, -1
+	person_event SPRITE_POKE_BALL, 29, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7c306, EVENT_672
+	person_event SPRITE_GRAMPS, 15, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x7c146, EVENT_753
+	person_event SPRITE_SUPER_NERD, 18, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x7c161, EVENT_754
+	person_event SPRITE_SUPER_NERD, 19, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x7c20e, EVENT_755
+	person_event SPRITE_GRANNY, 25, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x7c132, EVENT_752

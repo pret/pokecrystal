@@ -226,8 +226,8 @@ VioletPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x694c9, -1
-	person_event SPRITE_GAMEBOY_KID, 10, 11, $6, $0, 255, 255, $a0, 0, GameboyKidScript_0x69540, -1
-	person_event SPRITE_GENTLEMAN, 8, 5, $3, $0, 255, 255, $0, 0, GentlemanScript_0x69543, -1
-	person_event SPRITE_YOUNGSTER, 5, 12, $6, $0, 255, 255, $80, 0, YoungsterScript_0x69546, -1
-	person_event SPRITE_SCIENTIST, 7, 8, $6, $0, 255, 255, $90, 0, ScientistScript_0x694cc, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
+	person_event SPRITE_NURSE, 5, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x694c9, -1
+	person_event SPRITE_GAMEBOY_KID, 10, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GameboyKidScript_0x69540, -1
+	person_event SPRITE_GENTLEMAN, 8, 5, DOWN << 2 | $3, $0, -1, -1, $0, 0, GentlemanScript_0x69543, -1
+	person_event SPRITE_YOUNGSTER, 5, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x69546, -1
+	person_event SPRITE_SCIENTIST, 7, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x694cc, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER

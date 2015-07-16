@@ -264,6 +264,6 @@ Route43Gate_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x19ac85, EVENT_735
-	person_event SPRITE_ROCKET, 8, 6, $6, $0, 255, 255, $0, 0, RocketScript_0x19ac82, EVENT_6DC
-	person_event SPRITE_ROCKET, 8, 11, $7, $0, 255, 255, $0, 0, RocketScript_0x19ac82, EVENT_6DC
+	person_event SPRITE_OFFICER, 8, 4, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x19ac85, EVENT_735
+	person_event SPRITE_ROCKET, 8, 6, UP << 2 | $2, $0, -1, -1, $0, 0, RocketScript_0x19ac82, EVENT_6DC
+	person_event SPRITE_ROCKET, 8, 11, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x19ac82, EVENT_6DC

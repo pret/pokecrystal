@@ -48,8 +48,8 @@ Route7_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 11, 5, $0, MapRoute7Signpost0Script
-	signpost 9, 6, $0, MapRoute7Signpost1Script
+	signpost 11, 5, SIGNPOST_READ, MapRoute7Signpost0Script
+	signpost 9, 6, SIGNPOST_READ, MapRoute7Signpost1Script
 
 	; people-events
 	db 0

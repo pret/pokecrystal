@@ -104,12 +104,12 @@ IcePathB1F_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 30, 17, $7, MapIcePathB1FSignpostItem0
+	signpost 30, 17, SIGNPOST_ITEMIFSET, MapIcePathB1FSignpostItem0
 
 	; people-events
 	db 5
-	person_event SPRITE_BOULDER, 11, 15, $19, $0, 255, 255, $0, 0, IcePathB1FBoulder, EVENT_709
-	person_event SPRITE_BOULDER, 12, 11, $19, $0, 255, 255, $0, 0, IcePathB1FBoulder, EVENT_70A
-	person_event SPRITE_BOULDER, 13, 12, $19, $0, 255, 255, $0, 0, IcePathB1FBoulder, EVENT_70B
-	person_event SPRITE_BOULDER, 11, 21, $19, $0, 255, 255, $0, 0, IcePathB1FBoulder, EVENT_70C
-	person_event SPRITE_POKE_BALL, 39, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e50d, EVENT_68A
+	person_event SPRITE_BOULDER, 11, 15, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_709
+	person_event SPRITE_BOULDER, 12, 11, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_70A
+	person_event SPRITE_BOULDER, 13, 12, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_70B
+	person_event SPRITE_BOULDER, 11, 21, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_70C
+	person_event SPRITE_POKE_BALL, 39, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e50d, EVENT_68A

@@ -2280,16 +2280,18 @@ BikeFlags:: ; dbf5
 ; bit 2: downhill
 	ds 1
 
-	ds 3
+	ds 1
+wCurrentMapTriggerPointer:: ; dbf7
+	ds 2
 
 wdbf9:: ds 2
 wdbfb:: ds 1
 wdbfc:: ds 1
 wdbfd:: ds 1
-wdbfe:: ds 1
+wCurrentMapXYTriggerCount:: ds 1
 wdbff:: ds 1
 wdc00:: ds 1
-wdc01:: ds 1
+wCurrentMapSignpostCount:: ds 1
 wdc02:: ds 1
 wdc03:: ds 1
 wdc04:: ds 1

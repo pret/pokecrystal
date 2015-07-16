@@ -216,13 +216,13 @@ Route11_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 7, 3, $0, MapRoute11Signpost0Script
-	signpost 5, 32, $7, MapRoute11SignpostItem1
+	signpost 7, 3, SIGNPOST_READ, MapRoute11Signpost0Script
+	signpost 5, 32, SIGNPOST_ITEMIFSET, MapRoute11SignpostItem1
 
 	; people-events
 	db 5
-	person_event SPRITE_YOUNGSTER, 18, 26, $a, $0, 255, 255, $92, 3, TrainerYoungsterOwen, -1
-	person_event SPRITE_YOUNGSTER, 8, 24, $6, $0, 255, 255, $92, 3, TrainerYoungsterJason, -1
-	person_event SPRITE_YOUNGSTER, 11, 32, $6, $0, 255, 255, $92, 1, TrainerPsychicHerman, -1
-	person_event SPRITE_YOUNGSTER, 10, 12, $a, $0, 255, 255, $92, 3, TrainerPsychicFidel, -1
-	person_event SPRITE_FRUIT_TREE, 6, 36, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x68055, -1
+	person_event SPRITE_YOUNGSTER, 18, 26, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterOwen, -1
+	person_event SPRITE_YOUNGSTER, 8, 24, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJason, -1
+	person_event SPRITE_YOUNGSTER, 11, 32, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicHerman, -1
+	person_event SPRITE_YOUNGSTER, 10, 12, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFidel, -1
+	person_event SPRITE_FRUIT_TREE, 6, 36, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x68055, -1

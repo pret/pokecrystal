@@ -125,14 +125,14 @@ KrissHouse2F_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 1, 2, $1, KrissHousePC
-	signpost 1, 3, $0, KrissHouseRadio
-	signpost 1, 5, $0, KrissHouseBookshelf
-	signpost 0, 6, $5, KrissHousePoster
+	signpost 1, 2, SIGNPOST_UP, KrissHousePC
+	signpost 1, 3, SIGNPOST_READ, KrissHouseRadio
+	signpost 1, 5, SIGNPOST_READ, KrissHouseBookshelf
+	signpost 0, 6, SIGNPOST_IFSET, KrissHousePoster
 
 	; people-events
 	db 4
-	person_event SPRITE_CONSOLE, 6, 8, $1, $0, 255, 255, $0, 0, GameConsole, EVENT_741
-	person_event SPRITE_DOLL_1, 8, 8, $1, $0, 255, 255, $0, 0, Doll1, EVENT_742
-	person_event SPRITE_DOLL_2, 8, 9, $1, $0, 255, 255, $0, 0, Doll2, EVENT_743
-	person_event SPRITE_BIG_DOLL, 5, 4, $21, $0, 255, 255, $0, 0, BigDoll, EVENT_744
+	person_event SPRITE_CONSOLE, 6, 8, DOWN << 2 | $1, $0, -1, -1, $0, 0, GameConsole, EVENT_741
+	person_event SPRITE_DOLL_1, 8, 8, DOWN << 2 | $1, $0, -1, -1, $0, 0, Doll1, EVENT_742
+	person_event SPRITE_DOLL_2, 8, 9, DOWN << 2 | $1, $0, -1, -1, $0, 0, Doll2, EVENT_743
+	person_event SPRITE_BIG_DOLL, 5, 4, DOWN << 2 | $21, $0, -1, -1, $0, 0, BigDoll, EVENT_744

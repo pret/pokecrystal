@@ -52,9 +52,9 @@ Route5_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 17, 17, $0, MapRoute5Signpost0Script
-	signpost 11, 10, $0, MapRoute5Signpost1Script
+	signpost 17, 17, SIGNPOST_READ, MapRoute5Signpost0Script
+	signpost 11, 10, SIGNPOST_READ, MapRoute5Signpost1Script
 
 	; people-events
 	db 1
-	person_event SPRITE_POKEFAN_M, 20, 21, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1adb19, EVENT_771
+	person_event SPRITE_POKEFAN_M, 20, 21, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x1adb19, EVENT_771

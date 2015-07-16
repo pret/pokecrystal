@@ -7733,7 +7733,7 @@ Function103654: ; 103654
 	ret
 ; 10366e
 
-Function10366e: ; 10366e
+Mobile_SelectThreeMons: ; 10366e
 	callba Function10632f
 	bit 7, c
 	jr z, .asm_10369b

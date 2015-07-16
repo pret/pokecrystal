@@ -30,9 +30,9 @@ OlivineVoltorbHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, TimsHouseBookshelf
-	signpost 1, 1, $0, TimsHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, TimsHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, TimsHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $80, 0, Tim, -1
+	person_event SPRITE_FISHING_GURU, 7, 6, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Tim, -1

@@ -40,15 +40,15 @@ DarkCaveVioletEntrance_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 3, 26, $7, MapDarkCaveVioletEntranceSignpostItem0
+	signpost 3, 26, SIGNPOST_ITEMIFSET, MapDarkCaveVioletEntranceSignpostItem0
 
 	; people-events
 	db 8
-	person_event SPRITE_POKE_BALL, 12, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c68e, EVENT_69E
-	person_event SPRITE_ROCK, 18, 20, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 10, 31, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 18, 11, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 35, 40, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_POKE_BALL, 26, 40, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c690, EVENT_69F
-	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c692, EVENT_6A0
-	person_event SPRITE_POKE_BALL, 32, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c694, EVENT_7CE
+	person_event SPRITE_POKE_BALL, 12, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c68e, EVENT_69E
+	person_event SPRITE_ROCK, 18, 20, LEFT << 2 | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 10, 31, LEFT << 2 | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 18, 11, LEFT << 2 | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 35, 40, LEFT << 2 | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_POKE_BALL, 26, 40, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c690, EVENT_69F
+	person_event SPRITE_POKE_BALL, 13, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c692, EVENT_6A0
+	person_event SPRITE_POKE_BALL, 32, 34, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c694, EVENT_7CE

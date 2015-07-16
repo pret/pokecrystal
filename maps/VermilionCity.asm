@@ -284,20 +284,20 @@ VermilionCity_MapEventHeader:
 
 	; signposts
 	db 8
-	signpost 3, 25, $0, VermilionCitySign
-	signpost 19, 5, $0, VermilionGymSign
-	signpost 13, 5, $0, PokemonFanClubSign
-	signpost 9, 33, $0, VermilionCityDiglettsCaveSign
-	signpost 15, 27, $0, VermilionCityPortSign
-	signpost 5, 10, $0, VermilionCityPokeCenterSign
-	signpost 13, 22, $0, VermilionCityMartSign
-	signpost 19, 12, $7, MapVermilionCitySignpostItem7
+	signpost 3, 25, SIGNPOST_READ, VermilionCitySign
+	signpost 19, 5, SIGNPOST_READ, VermilionGymSign
+	signpost 13, 5, SIGNPOST_READ, PokemonFanClubSign
+	signpost 9, 33, SIGNPOST_READ, VermilionCityDiglettsCaveSign
+	signpost 15, 27, SIGNPOST_READ, VermilionCityPortSign
+	signpost 5, 10, SIGNPOST_READ, VermilionCityPokeCenterSign
+	signpost 13, 22, SIGNPOST_READ, VermilionCityMartSign
+	signpost 19, 12, SIGNPOST_ITEMIFSET, MapVermilionCitySignpostItem7
 
 	; people-events
 	db 6
-	person_event SPRITE_TEACHER, 13, 22, $2, $11, 255, 255, $0, 0, TeacherScript_0x1aa983, -1
-	person_event SPRITE_GRAMPS, 10, 27, $9, $0, 255, 255, $0, 0, GrampsScript_0x1aa986, -1
-	person_event SPRITE_MACHOP, 11, 30, $16, $0, 255, 255, $90, 0, VermilionMachop, -1
-	person_event SPRITE_SUPER_NERD, 20, 18, $2, $11, 255, 255, $a0, 0, SuperNerdScript_0x1aa99b, -1
-	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, $0, 255, 255, $0, 0, VermilionSnorlax, EVENT_770
-	person_event SPRITE_POKEFAN_M, 16, 35, $6, $0, 255, 255, $80, 0, VermilionGymBadgeGuy, -1
+	person_event SPRITE_TEACHER, 13, 22, DOWN << 2 | $2, $11, -1, -1, $0, 0, TeacherScript_0x1aa983, -1
+	person_event SPRITE_GRAMPS, 10, 27, LEFT << 2 | $1, $0, -1, -1, $0, 0, GrampsScript_0x1aa986, -1
+	person_event SPRITE_MACHOP, 11, 30, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, VermilionMachop, -1
+	person_event SPRITE_SUPER_NERD, 20, 18, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x1aa99b, -1
+	person_event SPRITE_BIG_SNORLAX, 12, 38, UP << 2 | $11, $0, -1, -1, $0, 0, VermilionSnorlax, EVENT_770
+	person_event SPRITE_POKEFAN_M, 16, 35, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, VermilionGymBadgeGuy, -1

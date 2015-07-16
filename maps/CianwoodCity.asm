@@ -392,26 +392,26 @@ CianwoodCity_MapEventHeader:
 
 	; signposts
 	db 8
-	signpost 34, 20, $0, CianwoodCitySign
-	signpost 45, 7, $0, CianwoodGymSign
-	signpost 43, 24, $0, CianwoodPokeCenterSign
-	signpost 47, 19, $0, CianwoodPharmacySign
-	signpost 32, 8, $0, CianwoodPhotoStudioSign
-	signpost 24, 8, $0, CianwoodPokeSeerSign
-	signpost 19, 4, $7, MapCianwoodCitySignpostItem6
-	signpost 29, 5, $7, MapCianwoodCitySignpostItem7
+	signpost 34, 20, SIGNPOST_READ, CianwoodCitySign
+	signpost 45, 7, SIGNPOST_READ, CianwoodGymSign
+	signpost 43, 24, SIGNPOST_READ, CianwoodPokeCenterSign
+	signpost 47, 19, SIGNPOST_READ, CianwoodPharmacySign
+	signpost 32, 8, SIGNPOST_READ, CianwoodPhotoStudioSign
+	signpost 24, 8, SIGNPOST_READ, CianwoodPokeSeerSign
+	signpost 19, 4, SIGNPOST_ITEMIFSET, MapCianwoodCitySignpostItem6
+	signpost 29, 5, SIGNPOST_ITEMIFSET, MapCianwoodCitySignpostItem7
 
 	; people-events
 	db 12
-	person_event SPRITE_STANDING_YOUNGSTER, 41, 25, $3, $0, 255, 255, $a0, 0, StandingYoungsterScript_0x1a00b3, -1
-	person_event SPRITE_POKEFAN_M, 37, 21, $5, $1, 255, 255, $0, 0, PokefanMScript_0x1a00b6, -1
-	person_event SPRITE_LASS, 46, 18, $4, $20, 255, 255, $0, 0, LassScript_0x1a00b9, -1
-	person_event SPRITE_ROCK, 20, 12, $18, $0, 255, 255, $0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 21, 13, $18, $0, 255, 255, $0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 29, 8, $18, $0, 255, 255, $0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 33, 9, $18, $0, 255, 255, $0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 31, 14, $18, $0, 255, 255, $0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 23, 8, $18, $0, 255, 255, $0, 0, CianwoodCityRock, -1
-	person_event SPRITE_POKEFAN_F, 50, 14, $5, $1, 255, 255, $0, 0, PokefanFScript_0x1a0084, -1
-	person_event SPRITE_SUPER_NERD, 25, 15, $7, $0, 255, 255, $90, 0, ObjectEvent, EVENT_7AD
-	person_event SPRITE_SUICUNE, 18, 14, $1, $0, 255, 255, $90, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	person_event SPRITE_STANDING_YOUNGSTER, 41, 25, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, StandingYoungsterScript_0x1a00b3, -1
+	person_event SPRITE_POKEFAN_M, 37, 21, UP << 2 | $1, $1, -1, -1, $0, 0, PokefanMScript_0x1a00b6, -1
+	person_event SPRITE_LASS, 46, 18, UP << 2 | $0, $20, -1, -1, $0, 0, LassScript_0x1a00b9, -1
+	person_event SPRITE_ROCK, 20, 12, LEFT << 2 | $10, $0, -1, -1, $0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 21, 13, LEFT << 2 | $10, $0, -1, -1, $0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 29, 8, LEFT << 2 | $10, $0, -1, -1, $0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 33, 9, LEFT << 2 | $10, $0, -1, -1, $0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 31, 14, LEFT << 2 | $10, $0, -1, -1, $0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 23, 8, LEFT << 2 | $10, $0, -1, -1, $0, 0, CianwoodCityRock, -1
+	person_event SPRITE_POKEFAN_F, 50, 14, UP << 2 | $1, $1, -1, -1, $0, 0, PokefanFScript_0x1a0084, -1
+	person_event SPRITE_SUPER_NERD, 25, 15, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_7AD
+	person_event SPRITE_SUICUNE, 18, 14, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

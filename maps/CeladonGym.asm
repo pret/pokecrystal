@@ -353,14 +353,14 @@ CeladonGym_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, CeladonGymStatue
-	signpost 15, 6, $0, CeladonGymStatue
+	signpost 15, 3, SIGNPOST_READ, CeladonGymStatue
+	signpost 15, 6, SIGNPOST_READ, CeladonGymStatue
 
 	; people-events
 	db 6
-	person_event SPRITE_ERIKA, 7, 9, $6, $0, 255, 255, $a0, 0, ErikaScript_0x72a6a, -1
-	person_event SPRITE_LASS, 12, 11, $8, $0, 255, 255, $92, 2, TrainerLassMichelle, -1
-	person_event SPRITE_LASS, 12, 6, $9, $0, 255, 255, $a2, 2, TrainerPicnickerTanya, -1
-	person_event SPRITE_BUENA, 9, 7, $9, $0, 255, 255, $92, 2, TrainerBeautyJulia, -1
-	person_event SPRITE_TWIN, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe1, -1
-	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe2, -1
+	person_event SPRITE_ERIKA, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ErikaScript_0x72a6a, -1
+	person_event SPRITE_LASS, 12, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerLassMichelle, -1
+	person_event SPRITE_LASS, 12, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerTanya, -1
+	person_event SPRITE_BUENA, 9, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBeautyJulia, -1
+	person_event SPRITE_TWIN, 14, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe1, -1
+	person_event SPRITE_TWIN, 14, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe2, -1

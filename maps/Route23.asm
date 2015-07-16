@@ -40,7 +40,7 @@ Route23_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 7, 11, $0, IndigoPlateauSign
+	signpost 7, 11, SIGNPOST_READ, IndigoPlateauSign
 
 	; people-events
 	db 0

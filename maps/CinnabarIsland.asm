@@ -140,11 +140,11 @@ CinnabarIsland_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 11, 12, $0, CinnabarIslandPokeCenterSign
-	signpost 11, 9, $0, CinnabarIslandGymSign
-	signpost 7, 7, $0, CinnabarIslandSign
-	signpost 1, 9, $7, MapCinnabarIslandSignpostItem3
+	signpost 11, 12, SIGNPOST_READ, CinnabarIslandPokeCenterSign
+	signpost 11, 9, SIGNPOST_READ, CinnabarIslandGymSign
+	signpost 7, 7, SIGNPOST_READ, CinnabarIslandSign
+	signpost 1, 9, SIGNPOST_ITEMIFSET, MapCinnabarIslandSignpostItem3
 
 	; people-events
 	db 1
-	person_event SPRITE_BLUE, 10, 13, $3, $0, 255, 255, $0, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	person_event SPRITE_BLUE, 10, 13, DOWN << 2 | $3, $0, -1, -1, $0, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

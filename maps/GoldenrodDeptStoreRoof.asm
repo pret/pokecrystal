@@ -218,18 +218,18 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 3, 15, $3, MapGoldenrodDeptStoreRoofSignpost0Script
-	signpost 5, 15, $3, MapGoldenrodDeptStoreRoofSignpost1Script
-	signpost 6, 15, $3, MapGoldenrodDeptStoreRoofSignpost2Script
-	signpost 0, 3, $1, MapGoldenrodDeptStoreRoofSignpost3Script
+	signpost 3, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost0Script
+	signpost 5, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost1Script
+	signpost 6, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost2Script
+	signpost 0, 3, SIGNPOST_UP, MapGoldenrodDeptStoreRoofSignpost3Script
 
 	; people-events
 	db 8
-	person_event SPRITE_CLERK, 8, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x5673f, EVENT_6F0
-	person_event SPRITE_POKEFAN_F, 7, 14, $5, $1, 255, 255, $80, 0, PokefanFScript_0x56746, -1
-	person_event SPRITE_FISHER, 5, 6, $7, $0, 255, 255, $90, 0, FisherScript_0x56749, -1
-	person_event SPRITE_TWIN, 8, 7, $2, $11, 255, 255, $a0, 0, TwinScript_0x56754, EVENT_6F1
-	person_event SPRITE_SUPER_NERD, 10, 18, $9, $0, 255, 255, $a0, 0, SuperNerdScript_0x56757, EVENT_6F1
-	person_event SPRITE_POKEFAN_M, 4, 11, $5, $1, 255, 255, $0, 0, PokefanMScript_0x5676a, EVENT_6F0
-	person_event SPRITE_TEACHER, 7, 9, $2, $11, 255, 255, $a0, 0, TeacherScript_0x5676d, EVENT_6F0
-	person_event SPRITE_BUG_CATCHER, 10, 5, $7, $0, 255, 255, $80, 0, BugCatcherScript_0x56770, EVENT_6F0
+	person_event SPRITE_CLERK, 8, 5, LEFT << 2 | $1, $0, -1, -1, $0, 0, ClerkScript_0x5673f, EVENT_6F0
+	person_event SPRITE_POKEFAN_F, 7, 14, UP << 2 | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x56746, -1
+	person_event SPRITE_FISHER, 5, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x56749, -1
+	person_event SPRITE_TWIN, 8, 7, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x56754, EVENT_6F1
+	person_event SPRITE_SUPER_NERD, 10, 18, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x56757, EVENT_6F1
+	person_event SPRITE_POKEFAN_M, 4, 11, UP << 2 | $1, $1, -1, -1, $0, 0, PokefanMScript_0x5676a, EVENT_6F0
+	person_event SPRITE_TEACHER, 7, 9, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5676d, EVENT_6F0
+	person_event SPRITE_BUG_CATCHER, 10, 5, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x56770, EVENT_6F0

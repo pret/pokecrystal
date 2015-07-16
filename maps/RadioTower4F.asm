@@ -316,15 +316,15 @@ RadioTower4F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 0, 7, $0, MapRadioTower4FSignpost0Script
-	signpost 0, 15, $0, MapRadioTower4FSignpost1Script
+	signpost 0, 7, SIGNPOST_READ, MapRadioTower4FSignpost0Script
+	signpost 0, 15, SIGNPOST_READ, MapRadioTower4FSignpost1Script
 
 	; people-events
 	db 7
-	person_event SPRITE_FISHER, 8, 10, $7, $0, 255, 255, $80, 0, FisherScript_0x5eb82, EVENT_6D0
-	person_event SPRITE_TEACHER, 10, 18, $3, $0, 255, 255, $a0, 0, TeacherScript_0x5eb85, -1
-	person_event SPRITE_GROWLITHE, 11, 16, $16, $0, 255, 255, $80, 0, GrowlitheScript_0x5ebb2, -1
-	person_event SPRITE_ROCKET, 10, 9, $1f, $0, 255, 255, $2, 3, TrainerGruntM10, EVENT_6CE
-	person_event SPRITE_ROCKET, 5, 18, $8, $2, 255, 255, $2, 2, TrainerExecutivem2, EVENT_6CE
-	person_event SPRITE_ROCKET_GIRL, 8, 16, $9, $0, 255, 255, $82, 1, TrainerGruntF4, EVENT_6CE
-	person_event SPRITE_SCIENTIST, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, EVENT_6CE
+	person_event SPRITE_FISHER, 8, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x5eb82, EVENT_6D0
+	person_event SPRITE_TEACHER, 10, 18, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5eb85, -1
+	person_event SPRITE_GROWLITHE, 11, 16, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrowlitheScript_0x5ebb2, -1
+	person_event SPRITE_ROCKET, 10, 9, RIGHT << 2 | $13, $0, -1, -1, $2, 3, TrainerGruntM10, EVENT_6CE
+	person_event SPRITE_ROCKET, 5, 18, LEFT << 2 | $0, $2, -1, -1, $2, 2, TrainerExecutivem2, EVENT_6CE
+	person_event SPRITE_ROCKET_GIRL, 8, 16, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF4, EVENT_6CE
+	person_event SPRITE_SCIENTIST, 6, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerScientistRich, EVENT_6CE

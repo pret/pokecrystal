@@ -85,13 +85,13 @@ CeladonMansion1F_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 8, 5, $1, CeladonMansionManagersSuiteSign
-	signpost 3, 0, $0, CeladonMansion1fBookshelf
-	signpost 3, 2, $0, CeladonMansion1fBookshelf
+	signpost 8, 5, SIGNPOST_UP, CeladonMansionManagersSuiteSign
+	signpost 3, 0, SIGNPOST_READ, CeladonMansion1fBookshelf
+	signpost 3, 2, SIGNPOST_READ, CeladonMansion1fBookshelf
 
 	; people-events
 	db 4
-	person_event SPRITE_GRANNY, 9, 5, $3, $0, 255, 255, $0, 0, CeladonMansionManager, -1
-	person_event SPRITE_GROWLITHE, 10, 6, $16, $0, 255, 255, $0, 0, CeladonMansion1FMeowth, -1
-	person_event SPRITE_CLEFAIRY, 8, 7, $16, $0, 255, 255, $0, 0, CeladonMansion1FClefairy, -1
-	person_event SPRITE_GROWLITHE, 8, 8, $16, $2, 255, 255, $90, 0, CeladonMansion1FNidoranF, -1
+	person_event SPRITE_GRANNY, 9, 5, DOWN << 2 | $3, $0, -1, -1, $0, 0, CeladonMansionManager, -1
+	person_event SPRITE_GROWLITHE, 10, 6, UP << 2 | $12, $0, -1, -1, $0, 0, CeladonMansion1FMeowth, -1
+	person_event SPRITE_CLEFAIRY, 8, 7, UP << 2 | $12, $0, -1, -1, $0, 0, CeladonMansion1FClefairy, -1
+	person_event SPRITE_GROWLITHE, 8, 8, UP << 2 | $12, $2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CeladonMansion1FNidoranF, -1

@@ -143,7 +143,7 @@ CianwoodPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x9dbcf, -1
-	person_event SPRITE_LASS, 9, 5, $4, $10, 255, 255, $a0, 0, LassScript_0x9dbd2, -1
-	person_event SPRITE_GYM_GUY, 7, 9, $6, $0, 255, 255, $80, 0, CianwoodGymGuyScript, -1
-	person_event SPRITE_SUPER_NERD, 10, 12, $5, $1, 255, 255, $90, 0, SuperNerdScript_0x9dbea, -1
+	person_event SPRITE_NURSE, 5, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x9dbcf, -1
+	person_event SPRITE_LASS, 9, 5, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x9dbd2, -1
+	person_event SPRITE_GYM_GUY, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CianwoodGymGuyScript, -1
+	person_event SPRITE_SUPER_NERD, 10, 12, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x9dbea, -1

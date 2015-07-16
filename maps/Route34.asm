@@ -897,24 +897,24 @@ Route34_MapEventHeader:
 
 	; signposts
 	db 5
-	signpost 6, 12, $0, MapRoute34Signpost0Script
-	signpost 33, 13, $0, MapRoute34Signpost1Script
-	signpost 13, 10, $0, MapRoute34Signpost2Script
-	signpost 32, 8, $7, MapRoute34SignpostItem3
-	signpost 19, 17, $7, MapRoute34SignpostItem4
+	signpost 6, 12, SIGNPOST_READ, MapRoute34Signpost0Script
+	signpost 33, 13, SIGNPOST_READ, MapRoute34Signpost1Script
+	signpost 13, 10, SIGNPOST_READ, MapRoute34Signpost2Script
+	signpost 32, 8, SIGNPOST_ITEMIFSET, MapRoute34SignpostItem3
+	signpost 19, 17, SIGNPOST_ITEMIFSET, MapRoute34SignpostItem4
 
 	; people-events
 	db 13
-	person_event SPRITE_YOUNGSTER, 11, 17, $8, $0, 255, 255, $a2, 5, TrainerCamperTodd1, -1
-	person_event SPRITE_YOUNGSTER, 36, 19, $6, $0, 255, 255, $92, 3, TrainerYoungsterSamuel, -1
-	person_event SPRITE_YOUNGSTER, 24, 15, $6, $0, 255, 255, $92, 3, TrainerYoungsterIan, -1
-	person_event SPRITE_LASS, 30, 14, $9, $0, 255, 255, $a2, 3, TrainerPicnickerGina1, -1
-	person_event SPRITE_OFFICER, 15, 13, $6, $0, 255, 255, $90, 0, OfficerScript_0x7824c, -1
-	person_event SPRITE_POKEFAN_M, 32, 22, $1e, $0, 255, 255, $82, 3, TrainerPokefanmBrandon, -1
-	person_event SPRITE_GRAMPS, 20, 19, $6, $0, 255, 255, $0, 0, GrampsScript_0x7803d, EVENT_6E6
-	person_event SPRITE_DAYCARE_MON_1, 22, 18, $16, $22, 255, 255, $0, 0, DaycareMon1Script_0x78065, EVENT_6E7
-	person_event SPRITE_DAYCARE_MON_2, 23, 21, $16, $22, 255, 255, $0, 0, DaycareMon2Script_0x7806b, EVENT_6E8
-	person_event SPRITE_COOLTRAINER_F, 52, 15, $8, $0, 255, 255, $82, 5, TrainerCooltrainerfIrene, -1
-	person_event SPRITE_COOLTRAINER_F, 52, 7, $9, $0, 255, 255, $82, 3, TrainerCooltrainerfJenn, -1
-	person_event SPRITE_COOLTRAINER_F, 55, 10, $7, $0, 255, 255, $82, 2, TrainerCooltrainerfKate, -1
-	person_event SPRITE_POKE_BALL, 34, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7832b, EVENT_7BC
+	person_event SPRITE_YOUNGSTER, 11, 17, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerCamperTodd1, -1
+	person_event SPRITE_YOUNGSTER, 36, 19, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterSamuel, -1
+	person_event SPRITE_YOUNGSTER, 24, 15, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterIan, -1
+	person_event SPRITE_LASS, 30, 14, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPicnickerGina1, -1
+	person_event SPRITE_OFFICER, 15, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x7824c, -1
+	person_event SPRITE_POKEFAN_M, 32, 22, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmBrandon, -1
+	person_event SPRITE_GRAMPS, 20, 19, UP << 2 | $2, $0, -1, -1, $0, 0, GrampsScript_0x7803d, EVENT_6E6
+	person_event SPRITE_DAYCARE_MON_1, 22, 18, UP << 2 | $12, $22, -1, -1, $0, 0, DaycareMon1Script_0x78065, EVENT_6E7
+	person_event SPRITE_DAYCARE_MON_2, 23, 21, UP << 2 | $12, $22, -1, -1, $0, 0, DaycareMon2Script_0x7806b, EVENT_6E8
+	person_event SPRITE_COOLTRAINER_F, 52, 15, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainerfIrene, -1
+	person_event SPRITE_COOLTRAINER_F, 52, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfJenn, -1
+	person_event SPRITE_COOLTRAINER_F, 55, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainerfKate, -1
+	person_event SPRITE_POKE_BALL, 34, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7832b, EVENT_7BC

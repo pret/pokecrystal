@@ -38,9 +38,9 @@ GuideGentsHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, GuideGentsHouseBookshelf
-	signpost 1, 1, $0, GuideGentsHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, GuideGentsHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, GuideGentsHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	person_event SPRITE_GRAMPS, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE

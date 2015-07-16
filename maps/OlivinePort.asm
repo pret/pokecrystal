@@ -20,14 +20,14 @@ UnknownScript_0x748b1:
 	applymovement $0, MovementData_0x74a32
 	appear $2
 	dotrigger $0
-	setevent EVENT_000
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
 	blackoutmod GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	end
 
 SailorScript_0x748c0:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
 	closetext
@@ -69,9 +69,9 @@ UnknownScript_0x74919:
 
 UnknownScript_0x7491f:
 	spriteface $4, RIGHT
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x7498b
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iftrue UnknownScript_0x7498b
 	spriteface $0, LEFT
 	loadfont
@@ -94,7 +94,7 @@ UnknownScript_0x7494e:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_CHRIS2_IN_CABLE_CLUB
 	applymovement $0, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
@@ -138,7 +138,7 @@ UnknownScript_0x74992:
 SailorScript_0x7499c:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x74919
 	checkevent EVENT_030
 	iffalse UnknownScript_0x749c0
@@ -159,7 +159,7 @@ UnknownScript_0x749c0:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_CHRIS2_IN_CABLE_CLUB
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f
@@ -394,14 +394,14 @@ OlivinePort_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 22, 1, $7, MapOlivinePortSignpostItem0
+	signpost 22, 1, SIGNPOST_ITEMIFSET, MapOlivinePortSignpostItem0
 
 	; people-events
 	db 7
-	person_event SPRITE_SAILOR, 27, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x748c0, EVENT_72A
-	person_event SPRITE_SAILOR, 19, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_SAILOR, 19, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	person_event SPRITE_FISHING_GURU, 18, 8, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_FISHING_GURU, 18, 17, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_YOUNGSTER, 19, 8, $6, $0, 255, 255, $0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	person_event SPRITE_COOLTRAINER_F, 19, 15, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 27, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x748c0, EVENT_72A
+	person_event SPRITE_SAILOR, 19, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 19, 10, LEFT << 2 | $1, $0, -1, -1, $0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 18, 8, UP << 2 | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 18, 17, UP << 2 | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_YOUNGSTER, 19, 8, UP << 2 | $2, $0, -1, -1, $0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_COOLTRAINER_F, 19, 15, UP << 2 | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME

@@ -247,23 +247,23 @@ CeladonCity_MapEventHeader:
 
 	; signposts
 	db 8
-	signpost 21, 23, $0, CeladonCitySign
-	signpost 31, 11, $0, CeladonGymSign
-	signpost 9, 6, $0, CeladonCityDeptStoreSign
-	signpost 9, 13, $0, CeladonCityMansionSign
-	signpost 21, 19, $0, CeladonCityGameCornerSign
-	signpost 21, 29, $0, CeladonCityTrainerTips
-	signpost 9, 30, $0, CeladonCityPokeCenterSign
-	signpost 21, 37, $7, MapCeladonCitySignpostItem7
+	signpost 21, 23, SIGNPOST_READ, CeladonCitySign
+	signpost 31, 11, SIGNPOST_READ, CeladonGymSign
+	signpost 9, 6, SIGNPOST_READ, CeladonCityDeptStoreSign
+	signpost 9, 13, SIGNPOST_READ, CeladonCityMansionSign
+	signpost 21, 19, SIGNPOST_READ, CeladonCityGameCornerSign
+	signpost 21, 29, SIGNPOST_READ, CeladonCityTrainerTips
+	signpost 9, 30, SIGNPOST_READ, CeladonCityPokeCenterSign
+	signpost 21, 37, SIGNPOST_ITEMIFSET, MapCeladonCitySignpostItem7
 
 	; people-events
 	db 9
-	person_event SPRITE_FISHER, 15, 30, $9, $0, 255, 255, $a0, 0, FisherScript_0x1a9f43, -1
-	person_event SPRITE_POLIWAG, 15, 31, $16, $0, 255, 255, $90, 0, CeladonCityPoliwrath, -1
-	person_event SPRITE_TEACHER, 28, 24, $5, $2, 255, 255, $80, 0, TeacherScript_0x1a9f50, -1
-	person_event SPRITE_GRAMPS, 20, 18, $6, $0, 255, 255, $b0, 0, GrampsScript_0x1a9f53, -1
-	person_event SPRITE_GRAMPS, 35, 12, $7, $0, 255, 255, $80, 0, GrampsScript_0x1a9f56, -1
-	person_event SPRITE_YOUNGSTER, 17, 22, $5, $2, 255, 255, $90, 0, YoungsterScript_0x1a9f59, -1
-	person_event SPRITE_YOUNGSTER, 37, 28, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x1a9f5c, -1
-	person_event SPRITE_TEACHER, 18, 10, $2, $22, 255, 255, $a0, 0, TeacherScript_0x1a9f5f, -1
-	person_event SPRITE_LASS, 26, 11, $4, $20, 255, 255, $80, 0, LassScript_0x1a9f62, -1
+	person_event SPRITE_FISHER, 15, 30, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a9f43, -1
+	person_event SPRITE_POLIWAG, 15, 31, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CeladonCityPoliwrath, -1
+	person_event SPRITE_TEACHER, 28, 24, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x1a9f50, -1
+	person_event SPRITE_GRAMPS, 20, 18, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x1a9f53, -1
+	person_event SPRITE_GRAMPS, 35, 12, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrampsScript_0x1a9f56, -1
+	person_event SPRITE_YOUNGSTER, 17, 22, UP << 2 | $1, $2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a9f59, -1
+	person_event SPRITE_YOUNGSTER, 37, 28, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a9f5c, -1
+	person_event SPRITE_TEACHER, 18, 10, DOWN << 2 | $2, $22, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x1a9f5f, -1
+	person_event SPRITE_LASS, 26, 11, UP << 2 | $0, $20, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x1a9f62, -1

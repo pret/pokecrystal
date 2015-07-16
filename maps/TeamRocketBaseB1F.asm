@@ -506,7 +506,7 @@ ScientistJedScript:
 
 TrainerGruntM16:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_15
+	dw EVENT_BEAT_ROCKET_GRUNTM_16
 
 	; trainer group && trainer id
 	db GRUNTM, 16
@@ -807,21 +807,21 @@ TeamRocketBaseB1F_MapEventHeader:
 
 	; signposts
 	db 9
-	signpost 11, 19, $0, MapTeamRocketBaseB1FSignpost0Script
-	signpost 1, 24, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 1, 6, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 15, 8, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 15, 22, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 5, 24, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 11, 20, $0, MapTeamRocketBaseB1FSignpost7Script
-	signpost 11, 21, $0, MapTeamRocketBaseB1FSignpost7Script
-	signpost 11, 3, $7, MapTeamRocketBaseB1FSignpostItem8
+	signpost 11, 19, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost0Script
+	signpost 1, 24, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 1, 6, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 15, 8, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 15, 22, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 5, 24, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 11, 20, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
+	signpost 11, 21, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
+	signpost 11, 3, SIGNPOST_ITEMIFSET, MapTeamRocketBaseB1FSignpostItem8
 
 	; people-events
 	db 6
-	person_event SPRITE_ROCKET, 4, 4, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6D9
-	person_event SPRITE_ROCKET, 8, 6, $9, $0, 255, 255, $2, 3, TrainerGruntM16, EVENT_6DA
-	person_event SPRITE_SCIENTIST, 16, 22, $8, $0, 255, 255, $92, 3, TrainerScientistJed, EVENT_6DA
-	person_event SPRITE_POKE_BALL, 10, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac4, EVENT_669
-	person_event SPRITE_POKE_BALL, 19, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac6, EVENT_66A
-	person_event SPRITE_POKE_BALL, 16, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac8, EVENT_66B
+	person_event SPRITE_ROCKET, 4, 4, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6D9
+	person_event SPRITE_ROCKET, 8, 6, LEFT << 2 | $1, $0, -1, -1, $2, 3, TrainerGruntM16, EVENT_6DA
+	person_event SPRITE_SCIENTIST, 16, 22, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistJed, EVENT_6DA
+	person_event SPRITE_POKE_BALL, 10, 31, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac4, EVENT_669
+	person_event SPRITE_POKE_BALL, 19, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac6, EVENT_66A
+	person_event SPRITE_POKE_BALL, 16, 25, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac8, EVENT_66B

@@ -620,20 +620,20 @@ Route44_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 7, 53, $0, MapRoute44Signpost0Script
-	signpost 10, 6, $0, MapRoute44Signpost1Script
-	signpost 9, 32, $7, MapRoute44SignpostItem2
+	signpost 7, 53, SIGNPOST_READ, MapRoute44Signpost0Script
+	signpost 10, 6, SIGNPOST_READ, MapRoute44Signpost1Script
+	signpost 9, 32, SIGNPOST_ITEMIFSET, MapRoute44SignpostItem2
 
 	; people-events
 	db 11
-	person_event SPRITE_FISHER, 7, 39, $6, $0, 255, 255, $a2, 1, TrainerFisherWilton1, -1
-	person_event SPRITE_FISHER, 17, 23, $9, $0, 255, 255, $a2, 1, TrainerFisherEdgar, -1
-	person_event SPRITE_YOUNGSTER, 13, 14, $1f, $0, 255, 255, $92, 3, TrainerPsychicPhil, -1
-	person_event SPRITE_SUPER_NERD, 6, 47, $1f, $0, 255, 255, $a2, 3, TrainerPokemaniacZach, -1
-	person_event SPRITE_YOUNGSTER, 9, 55, $6, $0, 255, 255, $a2, 2, TrainerBird_keeperVance1, -1
-	person_event SPRITE_COOLTRAINER_M, 19, 45, $8, $0, 255, 255, $82, 5, TrainerCooltrainermAllen, -1
-	person_event SPRITE_COOLTRAINER_F, 18, 35, $8, $0, 255, 255, $82, 5, TrainerCooltrainerfCybil, -1
-	person_event SPRITE_FRUIT_TREE, 9, 13, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19da40, -1
-	person_event SPRITE_POKE_BALL, 12, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da42, EVENT_6B6
-	person_event SPRITE_POKE_BALL, 8, 49, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da44, EVENT_6B7
-	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x19da46, EVENT_7BD
+	person_event SPRITE_FISHER, 7, 39, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherWilton1, -1
+	person_event SPRITE_FISHER, 17, 23, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherEdgar, -1
+	person_event SPRITE_YOUNGSTER, 13, 14, RIGHT << 2 | $13, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicPhil, -1
+	person_event SPRITE_SUPER_NERD, 6, 47, RIGHT << 2 | $13, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPokemaniacZach, -1
+	person_event SPRITE_YOUNGSTER, 9, 55, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBird_keeperVance1, -1
+	person_event SPRITE_COOLTRAINER_M, 19, 45, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainermAllen, -1
+	person_event SPRITE_COOLTRAINER_F, 18, 35, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainerfCybil, -1
+	person_event SPRITE_FRUIT_TREE, 9, 13, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19da40, -1
+	person_event SPRITE_POKE_BALL, 12, 34, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da42, EVENT_6B6
+	person_event SPRITE_POKE_BALL, 8, 49, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da44, EVENT_6B7
+	person_event SPRITE_POKE_BALL, 13, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da46, EVENT_7BD

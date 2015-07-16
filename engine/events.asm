@@ -358,7 +358,7 @@ CheckTileEvent: ; 96874
 	call CheckBit2_ScriptFlags3
 	jr z, .bit2
 
-	callba Function104820
+	callba CheckMovingOffEdgeOfMap
 	jr c, .return4
 
 	call Function2238
@@ -368,7 +368,7 @@ CheckTileEvent: ; 96874
 	call CheckBit1_ScriptFlags3
 	jr z, .bit1
 
-	call Function2ad4
+	call CheckCurrentMapXYTriggers
 	jr c, .movement
 
 .bit1
@@ -398,12 +398,12 @@ CheckTileEvent: ; 96874
 .return6
 	ld a, [StandingTile]
 	call CheckPitTile
-	jr nz, .asm_968b6
+	jr nz, .pittile
 	ld a, 6
 	scf
 	ret
 
-.asm_968b6
+.pittile
 	ld a, 5
 	scf
 	ret
@@ -528,8 +528,8 @@ Function9693a: ; 9693a
 	ret
 
 .elevator
-	ld a, BANK(UnknownScript_0x135f8)
-	ld hl, UnknownScript_0x135f8
+	ld a, BANK(BugCatchingContestOverScript)
+	ld hl, BugCatchingContestOverScript
 	call CallScript
 	scf
 	ret
@@ -764,8 +764,8 @@ TryReadSign: ; 96a38
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
-	ld a, BANK(UnknownScript_0x13625)
-	ld hl, UnknownScript_0x13625
+	ld a, BANK(SignpostItemScript)
+	ld hl, SignpostItemScript
 	call CallScript
 	scf
 	ret
@@ -817,7 +817,7 @@ CheckSignFlag: ; 96ad8
 	call GetFarHalfword
 	ld e, l
 	ld d, h
-	ld b, $2
+	ld b, $2 ; check
 	call EventFlagAction
 	ld a, c
 	and a
@@ -1024,8 +1024,8 @@ Function96bd7: ; 96bd7
 	dec a
 	ld [wdca1], a
 	ret nz
-	ld a, BANK(UnknownScript_0x13619)
-	ld hl, UnknownScript_0x13619
+	ld a, BANK(RepelWoreOffScript)
+	ld hl, RepelWoreOffScript
 	call CallScript
 	scf
 	ret

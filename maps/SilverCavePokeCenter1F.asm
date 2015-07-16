@@ -43,5 +43,5 @@ SilverCavePokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x1ae59a, -1
-	person_event SPRITE_GRANNY, 9, 5, $8, $12, 255, 255, $0, 0, GrannyScript_0x1ae59d, -1
+	person_event SPRITE_NURSE, 5, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x1ae59a, -1
+	person_event SPRITE_GRANNY, 9, 5, LEFT << 2 | $0, $12, -1, -1, $0, 0, GrannyScript_0x1ae59d, -1

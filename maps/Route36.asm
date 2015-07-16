@@ -704,19 +704,19 @@ Route36_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 1, 29, $0, MapRoute36Signpost0Script
-	signpost 11, 45, $0, MapRoute36Signpost1Script
-	signpost 7, 55, $0, MapRoute36Signpost2Script
-	signpost 7, 21, $0, MapRoute36Signpost3Script
+	signpost 1, 29, SIGNPOST_READ, MapRoute36Signpost0Script
+	signpost 11, 45, SIGNPOST_READ, MapRoute36Signpost1Script
+	signpost 7, 55, SIGNPOST_READ, MapRoute36Signpost2Script
+	signpost 7, 21, SIGNPOST_READ, MapRoute36Signpost3Script
 
 	; people-events
 	db 9
-	person_event SPRITE_YOUNGSTER, 17, 24, $9, $0, 255, 255, $92, 3, TrainerPsychicMark, -1
-	person_event SPRITE_YOUNGSTER, 18, 35, $8, $0, 255, 255, $92, 5, TrainerSchoolboyAlan1, -1
-	person_event SPRITE_WEIRD_TREE, 13, 39, $17, $0, 255, 255, $0, 0, WeirdTreeScript_0x19403c, EVENT_6F8
-	person_event SPRITE_LASS, 12, 55, $5, $2, 255, 255, $0, 0, LassScript_0x1940e0, -1
-	person_event SPRITE_FISHER, 13, 48, $8, $0, 255, 255, $0, 0, FisherScript_0x1940b9, -1
-	person_event SPRITE_FRUIT_TREE, 8, 25, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194247, -1
-	person_event SPRITE_YOUNGSTER, 10, 50, $2, $11, 255, 255, $0, 0, ArthurScript, EVENT_75A
-	person_event SPRITE_LASS, 16, 37, $6, $0, 255, 255, $90, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
-	person_event SPRITE_SUICUNE, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36
+	person_event SPRITE_YOUNGSTER, 17, 24, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicMark, -1
+	person_event SPRITE_YOUNGSTER, 18, 35, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSchoolboyAlan1, -1
+	person_event SPRITE_WEIRD_TREE, 13, 39, UP << 2 | $13, $0, -1, -1, $0, 0, WeirdTreeScript_0x19403c, EVENT_6F8
+	person_event SPRITE_LASS, 12, 55, UP << 2 | $1, $2, -1, -1, $0, 0, LassScript_0x1940e0, -1
+	person_event SPRITE_FISHER, 13, 48, LEFT << 2 | $0, $0, -1, -1, $0, 0, FisherScript_0x1940b9, -1
+	person_event SPRITE_FRUIT_TREE, 8, 25, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x194247, -1
+	person_event SPRITE_YOUNGSTER, 10, 50, DOWN << 2 | $2, $11, -1, -1, $0, 0, ArthurScript, EVENT_75A
+	person_event SPRITE_LASS, 16, 37, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
+	person_event SPRITE_SUICUNE, 10, 25, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36

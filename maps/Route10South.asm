@@ -116,9 +116,9 @@ Route10South_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 3, 5, $0, MapRoute10SouthSignpost0Script
+	signpost 3, 5, SIGNPOST_READ, MapRoute10SouthSignpost0Script
 
 	; people-events
 	db 2
-	person_event SPRITE_POKEFAN_M, 7, 21, $8, $0, 255, 255, $b2, 3, TrainerHikerJim, -1
-	person_event SPRITE_POKEFAN_M, 14, 12, $a, $0, 255, 255, $82, 3, TrainerPokefanmRobert, -1
+	person_event SPRITE_POKEFAN_M, 7, 21, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerJim, -1
+	person_event SPRITE_POKEFAN_M, 14, 12, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmRobert, -1

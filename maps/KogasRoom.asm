@@ -21,7 +21,7 @@ UnknownScript_0x18072c:
 	end
 
 UnknownScript_0x18072d:
-	checkevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
+	checkevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x180737
 	changeblock $4, $e, $2a
 UnknownScript_0x180737:
@@ -40,7 +40,7 @@ UnknownScript_0x180742:
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
+	setevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	waitbutton
 	end
 
@@ -150,4 +150,4 @@ KogasRoom_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_KOGA, 11, 9, $6, $0, 255, 255, $90, 0, KogaScript_0x18075a, -1
+	person_event SPRITE_KOGA, 11, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, KogaScript_0x18075a, -1

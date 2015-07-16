@@ -60,11 +60,11 @@ CeladonDeptStore4F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 0, 14, $0, CeladonDeptStore4FDirectory
-	signpost 0, 3, $0, CeladonDeptStore4FElevatorButton
+	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore4FDirectory
+	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore4FElevatorButton
 
 	; people-events
 	db 3
-	person_event SPRITE_CLERK, 9, 17, $7, $0, 255, 255, $90, 0, ClerkScript_0x70f0d, -1
-	person_event SPRITE_SUPER_NERD, 10, 11, $5, $1, 255, 255, $a0, 0, SuperNerdScript_0x70f15, -1
-	person_event SPRITE_YOUNGSTER, 6, 12, $7, $0, 255, 255, $0, 0, YoungsterScript_0x70f18, -1
+	person_event SPRITE_CLERK, 9, 17, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x70f0d, -1
+	person_event SPRITE_SUPER_NERD, 10, 11, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x70f15, -1
+	person_event SPRITE_YOUNGSTER, 6, 12, UP << 2 | $3, $0, -1, -1, $0, 0, YoungsterScript_0x70f18, -1

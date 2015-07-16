@@ -513,15 +513,15 @@ Route26_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 6, 8, $0, MapRoute26Signpost0Script
+	signpost 6, 8, SIGNPOST_READ, MapRoute26Signpost0Script
 
 	; people-events
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 28, 18, $8, $0, 255, 255, $82, 2, TrainerCooltrainermJake, -1
-	person_event SPRITE_COOLTRAINER_M, 42, 13, $8, $0, 255, 255, $82, 3, TrainerCooltrainermGaven3, -1
-	person_event SPRITE_COOLTRAINER_F, 60, 14, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfJoyce, -1
-	person_event SPRITE_COOLTRAINER_F, 12, 9, $9, $0, 255, 255, $82, 4, TrainerCooltrainerfBeth1, -1
-	person_event SPRITE_YOUNGSTER, 83, 17, $9, $0, 255, 255, $92, 2, TrainerPsychicRichard, -1
-	person_event SPRITE_FISHER, 96, 14, $6, $0, 255, 255, $a2, 3, TrainerFisherScott, -1
-	person_event SPRITE_FRUIT_TREE, 58, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a4ec2, -1
-	person_event SPRITE_POKE_BALL, 19, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a4ec4, EVENT_6AA
+	person_event SPRITE_COOLTRAINER_M, 28, 18, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermJake, -1
+	person_event SPRITE_COOLTRAINER_M, 42, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermGaven3, -1
+	person_event SPRITE_COOLTRAINER_F, 60, 14, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfJoyce, -1
+	person_event SPRITE_COOLTRAINER_F, 12, 9, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainerfBeth1, -1
+	person_event SPRITE_YOUNGSTER, 83, 17, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicRichard, -1
+	person_event SPRITE_FISHER, 96, 14, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherScott, -1
+	person_event SPRITE_FRUIT_TREE, 58, 18, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a4ec2, -1
+	person_event SPRITE_POKE_BALL, 19, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a4ec4, EVENT_6AA

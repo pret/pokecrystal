@@ -42,12 +42,12 @@ RuinsofAlphAerodactylItemRoom_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 2, $0, MapRuinsofAlphAerodactylItemRoomSignpost1Script
-	signpost 1, 5, $0, MapRuinsofAlphAerodactylItemRoomSignpost1Script
+	signpost 1, 2, SIGNPOST_READ, MapRuinsofAlphAerodactylItemRoomSignpost1Script
+	signpost 1, 5, SIGNPOST_READ, MapRuinsofAlphAerodactylItemRoomSignpost1Script
 
 	; people-events
 	db 4
-	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab6, EVENT_PICKED_UP_GOLD_BERRY_FROM_AERODACTYL_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab8, EVENT_PICKED_UP_MOON_STONE_FROM_AERODACTYL_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59aba, EVENT_PICKED_UP_HEAL_POWDER_FROM_AERODACTYL_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59abc, EVENT_PICKED_UP_ENERGY_ROOT_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 10, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59ab6, EVENT_PICKED_UP_GOLD_BERRY_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 10, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59ab8, EVENT_PICKED_UP_MOON_STONE_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59aba, EVENT_PICKED_UP_HEAL_POWDER_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59abc, EVENT_PICKED_UP_ENERGY_ROOT_FROM_AERODACTYL_ITEM_ROOM

@@ -396,15 +396,15 @@ PowerPlant_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, PowerPlantBookshelf
-	signpost 1, 1, $0, PowerPlantBookshelf
+	signpost 1, 0, SIGNPOST_READ, PowerPlantBookshelf
+	signpost 1, 1, SIGNPOST_READ, PowerPlantBookshelf
 
 	; people-events
 	db 7
-	person_event SPRITE_OFFICER, 18, 8, $6, $0, 255, 255, $a0, 0, OfficerScript_0x188df5, -1
-	person_event SPRITE_GYM_GUY, 13, 6, $3, $0, 255, 255, $90, 0, GymGuyScript_0x188e15, -1
-	person_event SPRITE_GYM_GUY, 15, 10, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188e29, -1
-	person_event SPRITE_OFFICER, 7, 13, $8, $0, 255, 255, $a0, 0, OfficerScript_0x188e3d, -1
-	person_event SPRITE_GYM_GUY, 6, 11, $5, $1, 255, 255, $90, 0, GymGuyScript_0x188e51, -1
-	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, PowerPlantManager, -1
-	person_event SPRITE_GYM_GUY, 9, 9, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188ecb, -1
+	person_event SPRITE_OFFICER, 18, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x188df5, -1
+	person_event SPRITE_GYM_GUY, 13, 6, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188e15, -1
+	person_event SPRITE_GYM_GUY, 15, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188e29, -1
+	person_event SPRITE_OFFICER, 7, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x188e3d, -1
+	person_event SPRITE_GYM_GUY, 6, 11, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188e51, -1
+	person_event SPRITE_FISHER, 14, 18, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PowerPlantManager, -1
+	person_event SPRITE_GYM_GUY, 9, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188ecb, -1

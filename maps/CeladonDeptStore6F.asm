@@ -159,14 +159,14 @@ CeladonDeptStore6F_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 0, 14, $0, CeladonDeptStore6FDirectory
-	signpost 0, 3, $0, CeladonDeptStore1FElevatorButton
-	signpost 1, 8, $1, CeladonVendingMachine
-	signpost 1, 9, $1, CeladonVendingMachine
-	signpost 1, 10, $1, CeladonVendingMachine
-	signpost 1, 11, $1, CeladonVendingMachine
+	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore6FDirectory
+	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore1FElevatorButton
+	signpost 1, 8, SIGNPOST_UP, CeladonVendingMachine
+	signpost 1, 9, SIGNPOST_UP, CeladonVendingMachine
+	signpost 1, 10, SIGNPOST_UP, CeladonVendingMachine
+	signpost 1, 11, SIGNPOST_UP, CeladonVendingMachine
 
 	; people-events
 	db 2
-	person_event SPRITE_SUPER_NERD, 6, 13, $7, $0, 255, 255, $0, 0, SuperNerdScript_0x7117a, -1
-	person_event SPRITE_YOUNGSTER, 9, 16, $2, $12, 255, 255, $80, 0, YoungsterScript_0x7117d, -1
+	person_event SPRITE_SUPER_NERD, 6, 13, UP << 2 | $3, $0, -1, -1, $0, 0, SuperNerdScript_0x7117a, -1
+	person_event SPRITE_YOUNGSTER, 9, 16, DOWN << 2 | $2, $12, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x7117d, -1

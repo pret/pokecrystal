@@ -31,7 +31,7 @@ UnknownScript_0x7d950:
 
 TrainerGruntM24:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_19
+	dw EVENT_BEAT_ROCKET_GRUNTM_24
 
 	; trainer group && trainer id
 	db GRUNTM, 24
@@ -58,7 +58,7 @@ GruntM24Script:
 
 TrainerGruntM14:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_13
+	dw EVENT_BEAT_ROCKET_GRUNTM_14
 
 	; trainer group && trainer id
 	db GRUNTM, 14
@@ -85,7 +85,7 @@ GruntM14Script:
 
 TrainerGruntM15:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_14
+	dw EVENT_BEAT_ROCKET_GRUNTM_15
 
 	; trainer group && trainer id
 	db GRUNTM, 15
@@ -270,10 +270,10 @@ UndergroundWarehouse_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_ROCKET, 12, 13, $7, $0, 255, 255, $2, 3, TrainerGruntM24, EVENT_6CE
-	person_event SPRITE_ROCKET, 19, 12, $7, $0, 255, 255, $2, 3, TrainerGruntM14, EVENT_6CE
-	person_event SPRITE_ROCKET, 7, 18, $9, $0, 255, 255, $2, 4, TrainerGruntM15, EVENT_6CE
-	person_event SPRITE_GENTLEMAN, 12, 16, $3, $0, 255, 255, $0, 0, GentlemanScript_0x7d9bf, EVENT_6CE
-	person_event SPRITE_POKE_BALL, 19, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e4, EVENT_679
-	person_event SPRITE_POKE_BALL, 13, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e6, EVENT_67A
-	person_event SPRITE_POKE_BALL, 5, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e8, EVENT_655
+	person_event SPRITE_ROCKET, 12, 13, UP << 2 | $3, $0, -1, -1, $2, 3, TrainerGruntM24, EVENT_6CE
+	person_event SPRITE_ROCKET, 19, 12, UP << 2 | $3, $0, -1, -1, $2, 3, TrainerGruntM14, EVENT_6CE
+	person_event SPRITE_ROCKET, 7, 18, LEFT << 2 | $1, $0, -1, -1, $2, 4, TrainerGruntM15, EVENT_6CE
+	person_event SPRITE_GENTLEMAN, 12, 16, DOWN << 2 | $3, $0, -1, -1, $0, 0, GentlemanScript_0x7d9bf, EVENT_6CE
+	person_event SPRITE_POKE_BALL, 19, 22, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e4, EVENT_679
+	person_event SPRITE_POKE_BALL, 13, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e6, EVENT_67A
+	person_event SPRITE_POKE_BALL, 5, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e8, EVENT_655

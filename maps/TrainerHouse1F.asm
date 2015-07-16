@@ -145,14 +145,14 @@ TrainerHouse1F_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 0, 5, $0, MapTrainerHouse1FSignpost0Script
-	signpost 0, 7, $0, MapTrainerHouse1FSignpost1Script
-	signpost 10, 7, $0, MapTrainerHouse1FSignpost2Script
+	signpost 0, 5, SIGNPOST_READ, MapTrainerHouse1FSignpost0Script
+	signpost 0, 7, SIGNPOST_READ, MapTrainerHouse1FSignpost1Script
+	signpost 10, 7, SIGNPOST_READ, MapTrainerHouse1FSignpost2Script
 
 	; people-events
 	db 5
-	person_event SPRITE_RECEPTIONIST, 15, 4, $9, $0, 255, 255, $a0, 0, ReceptionistScript_0x9af67, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 11, $7, $0, 255, 255, $0, 0, CooltrainerMScript_0x9af6a, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 10, $6, $2, 255, 255, $80, 0, CooltrainerFScript_0x9af6d, -1
-	person_event SPRITE_YOUNGSTER, 12, 8, $5, $2, 255, 255, $80, 0, YoungsterScript_0x9af70, -1
-	person_event SPRITE_GENTLEMAN, 8, 6, $9, $0, 255, 255, $0, 0, GentlemanScript_0x9af73, -1
+	person_event SPRITE_RECEPTIONIST, 15, 4, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x9af67, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 11, UP << 2 | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x9af6a, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 10, UP << 2 | $2, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x9af6d, -1
+	person_event SPRITE_YOUNGSTER, 12, 8, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x9af70, -1
+	person_event SPRITE_GENTLEMAN, 8, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, GentlemanScript_0x9af73, -1

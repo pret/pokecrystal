@@ -3216,7 +3216,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, 0, 0, LEFT << 2 | $3, $ff, -1, -1, PAL_OW_RED << 4 | $0, 0, $0000, -1
+	person_event SPRITE_CHRIS, 0, 0, LEFT << 2 | $3, $ff, -1, -1, $0, 0, $0000, -1
 	; db $01, $00, $00, $0b, $ff, $ff, $ff, $00, $00, $00, $00, $ff, $ff
 ; 807e
 
@@ -5319,7 +5319,7 @@ UnknownScript_0xcaa3: ; 0xcaa3
 	special UpdateTimePals
 	callasm Function8caed
 	farscall UnknownScript_0x122c1
-	special Function97c28
+	special WarpToLastSpawn
 	callasm Function154f1
 	writecode VAR_MOVEMENT, $0
 	newloadmap $fc
@@ -5588,7 +5588,7 @@ UnknownScript_0xcc3c: ; 0xcc3c
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
-	special Function97c28
+	special WarpToLastSpawn
 	writecode VAR_MOVEMENT, $0
 	newloadmap $f5
 	playsound SFX_WARP_FROM
@@ -5686,7 +5686,7 @@ UnknownScript_0xccbb: ; 0xccbb
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcce1
 	farscall UnknownScript_0x122c1
-	special Function97c28
+	special WarpToLastSpawn
 	writecode VAR_MOVEMENT, $0
 	newloadmap $f4
 	playsound SFX_WARP_FROM
@@ -12731,7 +12731,7 @@ UnknownScript_0x124ce: ; 0x124ce
 	callasm HalveMoney
 	callasm Function12527
 	farscall UnknownScript_0x122c1
-	special Function97c28
+	special WarpToLastSpawn
 	newloadmap $f1
 	resetfuncs
 
@@ -13349,8 +13349,8 @@ StartMenu_Quit: ; 128f0
 	ld hl, .EndTheContestText
 	call Function12cf5
 	jr c, .asm_12903
-	ld a, BANK(UnknownScript_0x1360b)
-	ld hl, UnknownScript_0x1360b
+	ld a, BANK(BugCatchingContestReturnToGateScript)
+	ld hl, BugCatchingContestReturnToGateScript
 	call Function31cf
 	ld a, 4
 	ret
@@ -15357,10 +15357,10 @@ FloorToString: ; 13575
 ; 135db
 
 
-Function135db: ; 135db
+Special_GiveParkBalls: ; 135db
 	xor a
 	ld [wdf9c], a
-	ld a, $14
+	ld a, 20
 	ld [wdc79], a
 	callba Function11490
 	ret
@@ -15372,25 +15372,25 @@ BugCatchingContestBattleScript:: ; 0x135eb
 	startbattle
 	returnafterbattle
 	copybytetovar wdc79
-	iffalse UnknownScript_0x13603
+	iffalse BugCatchingContestOutOfBallsScript
 	end
 ; 0x135f8
 
-UnknownScript_0x135f8:: ; 0x135f8
+BugCatchingContestOverScript:: ; 0x135f8
 	playsound SFX_ELEVATOR_END
 	loadfont
 	writetext UnknownText_0x1360f
 	closetext
-	jump UnknownScript_0x1360b
+	jump BugCatchingContestReturnToGateScript
 ; 0x13603
 
-UnknownScript_0x13603: ; 0x13603
+BugCatchingContestOutOfBallsScript: ; 0x13603
 	playsound SFX_ELEVATOR_END
 	loadfont
 	writetext UnknownText_0x13614
 	closetext
 
-UnknownScript_0x1360b: ; 0x1360b
+BugCatchingContestReturnToGateScript: ; 0x1360b
 	loadmovesprites
 	jumpstd bugcontestresultswarp
 ; 0x1360f
@@ -15407,7 +15407,7 @@ UnknownText_0x13614: ; 0x13614
 	db "@"
 ; 0x13619
 
-UnknownScript_0x13619:: ; 0x13619
+RepelWoreOffScript:: ; 0x13619
 	loadfont
 	writetext UnknownText_0x13620
 	closetext
@@ -15421,14 +15421,14 @@ UnknownText_0x13620: ; 0x13620
 	db "@"
 ; 0x13625
 
-UnknownScript_0x13625:: ; 0x13625
+SignpostItemScript:: ; 0x13625
 	loadfont
 	copybytetovar Unkn2Pals
-	itemtotext $0, $0
+	itemtotext 0, 0
 	writetext UnknownText_0x13645
-	giveitem $ff, $1
+	giveitem -1, 1
 	iffalse UnknownScript_0x1363e
-	callasm Function1364f
+	callasm SetMemEvent
 	specialsound
 	itemnotify
 	jump UnknownScript_0x13643
@@ -15456,19 +15456,20 @@ UnknownText_0x1364a: ; 0x1364a
 	db "@"
 ; 0x1364f
 
-Function1364f: ; 1364f
+SetMemEvent: ; 1364f
 	ld hl, EngineBuffer1 ; wd03e (aliases: MenuItemsList, CurFruitTree, CurInput)
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-	ld b, $1
+	ld b, $1 ; set
 	call EventFlagAction
 	ret
 
 
-Function1365b:: ; 1365b
+CheckFacingTileForStd:: ; 1365b
+; Checks to see if the tile you're facing has a std script associated with it.  If so, executes the script and returns carry.
 	ld a, c
-	ld de, .table2 - .table1
+	ld de, 3
 	ld hl, .table1
 	call IsInArray
 	jr nc, .notintable
@@ -15493,7 +15494,6 @@ Function1365b:: ; 1365b
 
 .table1
 	dbw $91, magazinebookshelf
-.table2
 	dbw $93, pcscript
 	dbw $94, radio1
 	dbw $95, townmap
@@ -15514,21 +15514,21 @@ _BugContestJudging: ; 1369d
 	callba Function105f79
 	call Function13819
 	ld a, [wd00a]
-	call LoadContestantData
+	call LoadContestantName
 	ld a, [wd00b]
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, BugContest_ThirdPlaceText
 	call PrintText
 	ld a, [EndFlypoint]
-	call LoadContestantData
+	call LoadContestantName
 	ld a, [MovementBuffer]
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, BugContest_SecondPlaceText
 	call PrintText
 	ld a, [DefaultFlypoint]
-	call LoadContestantData
+	call LoadContestantName
 	ld a, [wd003]
 	ld [wd265], a
 	call GetPokemonName
@@ -15596,56 +15596,65 @@ BugContest_ThirdPlaceScoreText: ; 0x1372b
 	db "@"
 ; 0x13730
 
-LoadContestantData: ; 13730
+LoadContestantName: ; 13730
+
+; If a = 0, get your name.
 	dec a
-	jr z, .asm_13777
+	jr z, .done
+; Find the pointer for the trainer class of the Bug Catching Contestant whose ID is in a.
 	ld c, a
 	ld b, 0
 	ld hl, BugContestantPointers
-	add hl, bc
-	add hl, bc
+	add_n_times hl, bc, 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+; Copy the Trainer Class to c.
 	ld a, [hli]
 	ld c, a
+; Save hl and bc for later.
 	push hl
 	push bc
+; Get the Trainer Class name and copy it into wd016.
 	callab Function3952d
 	ld hl, StringBuffer1
 	ld de, wd016
-	ld bc, $000d
+	ld bc, TRAINER_CLASS_NAME_LENGTH
 	call CopyBytes
 	ld hl, wd016
-.asm_13757
+; Delete the trailing terminator and replace it with a space.
+.next
 	ld a, [hli]
-	cp $50
-	jr nz, .asm_13757
+	cp "@"
+	jr nz, .next
 	dec hl
-	ld [hl], $7f
+	ld [hl], " "
 	inc hl
 	ld d, h
 	ld e, l
+; Restore the Trainer Class ID and Trainer ID pointer.  Save de for later.
 	pop bc
 	pop hl
 	push de
+; Get the name of the trainer with class c and ID b.
 	ld a, [hl]
 	ld b, a
 	callab GetTrainerName
+; Append the name to wd016.
 	ld hl, StringBuffer1
 	pop de
-	ld bc, $000a
+	ld bc, NAME_LENGTH - 1
 	jp CopyBytes
 
-.asm_13777
+.done
 	ld hl, PlayerName
 	ld de, wd016
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	jp CopyBytes
 ; 13783
 
 BugContestantPointers: ; 13783
-	dw BugContestant_BugCatcherDon
+	dw BugContestant_BugCatcherDon ; This reverts back to the player
 	dw BugContestant_BugCatcherDon
 	dw BugContestant_BugCatcherEd
 	dw BugContestant_CooltrainerMNick
@@ -15721,17 +15730,17 @@ BugContestant_SchoolboyKipp:
 
 Function13807: ; 13807
 	ld hl, wd00a
-	ld de, $fffc
-	ld b, $3
-.asm_1380f
+	ld de, -4
+	ld b, 3
+.loop
 	ld a, [hl]
-	cp $1
-	jr z, .asm_13818
+	cp 1
+	jr z, .done
 	add hl, de
 	dec b
-	jr nz, .asm_1380f
+	jr nz, .loop
 
-.asm_13818
+.done
 	ret
 ; 13819
 
@@ -15739,7 +15748,7 @@ Function13819: ; 13819
 	call Function13833
 	call Function138b0
 	ld hl, wd00e
-	ld a, $1
+	ld a, 1
 	ld [hli], a
 	ld a, [wdf9c]
 	ld [hli], a
@@ -15753,57 +15762,57 @@ Function13819: ; 13819
 
 Function13833: ; 13833
 	ld hl, DefaultFlypoint
-	ld b, $c
+	ld b, 12
 	xor a
-.asm_13839
+.loop
 	ld [hli], a
 	dec b
-	jr nz, .asm_13839
+	jr nz, .loop
 	ret
 ; 1383e
 
 Function1383e: ; 1383e
 	ld de, wd010
 	ld hl, wd004
-	ld c, $2
+	ld c, 2
 	call StringCmp
-	jr c, .asm_1386b
+	jr c, .next
 	ld hl, EndFlypoint
 	ld de, wd00a
 	ld bc, $0004
 	call CopyBytes
 	ld hl, DefaultFlypoint
 	ld de, EndFlypoint
-	ld bc, $0004
+	ld bc, 4
 	call CopyBytes
 	ld hl, DefaultFlypoint
 	call Function138a0
-	jr .asm_1389f
+	jr .done
 
-.asm_1386b
+.next
 	ld de, wd010
 	ld hl, wd008
-	ld c, $2
+	ld c, 2
 	call StringCmp
-	jr c, .asm_1388c
+	jr c, .next2
 	ld hl, EndFlypoint
 	ld de, wd00a
-	ld bc, $0004
+	ld bc, 4
 	call CopyBytes
 	ld hl, EndFlypoint
 	call Function138a0
-	jr .asm_1389f
+	jr .done
 
-.asm_1388c
+.next2
 	ld de, wd010
 	ld hl, wd00c
-	ld c, $2
+	ld c, 2
 	call StringCmp
-	jr c, .asm_1389f
+	jr c, .done
 	ld hl, wd00a
 	call Function138a0
 
-.asm_1389f
+.done
 	ret
 ; 138a0
 
@@ -15825,12 +15834,12 @@ Function138a0: ; 138a0
 ; 138b0
 
 Function138b0: ; 138b0
-	ld e, $0
-.asm_138b2
+	ld e, 0
+.loop
 	push de
-	call Function139ed
+	call Special_CheckBugContestContestantFlag
 	pop de
-	jr nz, .asm_138f9
+	jr nz, .done
 	ld a, e
 	inc a
 	inc a
@@ -15839,32 +15848,29 @@ Function138b0: ; 138b0
 	ld c, a
 	ld b, 0
 	ld hl, BugContestantPointers
-	add hl, bc
-	add hl, bc
+	add_n_times hl, bc, 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	inc hl
 	inc hl
-.asm_138cd
+.loop2
 	call Random
-	and $3
-	cp $3
-	jr z, .asm_138cd
+	and 3
+	cp 3
+	jr z, .loop2
 	ld c, a
-	ld b, $0
-	add hl, bc
-	add hl, bc
-	add hl, bc
+	ld b, 0
+	add_n_times hl, bc, 3
 	ld a, [hli]
 	ld [wd00f], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	call Random
-	and $7
+	and 7
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, h
 	ld [wd010], a
@@ -15874,11 +15880,11 @@ Function138b0: ; 138b0
 	call Function1383e
 	pop de
 
-.asm_138f9
+.done
 	inc e
 	ld a, e
-	cp $a
-	jr nz, .asm_138b2
+	cp 10
+	jr nz, .loop
 	ret
 ; 13900
 
@@ -15979,115 +15985,126 @@ ContestScore: ; 13900
 
 ; decreases all pokemon's pokerus counter by b. if the lower nybble reaches zero, the pokerus is cured.
 ApplyPokerusTick: ; 13988
-	ld hl, PartyMon1PokerusStatus
+	ld hl, PartyMon1PokerusStatus ; PartyMon1 + MON_PKRS
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
-.asm_13991
+.loop
 	ld a, [hl]
 	and $f
-	jr z, .asm_139a0
+	jr z, .does_not_have_pokerus
 	sub b
-	jr nc, .asm_1399a
+	jr nc, .ok
 	xor a
 
-.asm_1399a
+.ok
 	ld d, a
 	ld a, [hl]
 	and $f0
 	add d
 	ld [hl], a
 
-.asm_139a0
+.does_not_have_pokerus
 	ld de, PartyMon2 - PartyMon1
 	add hl, de
 	dec c
-	jr nz, .asm_13991
+	jr nz, .loop
 	ret
 ; 139a8
 
-Function139a8: ; 139a8
-	ld c, $a
-	ld hl, Unknown_139fe
-.asm_139ad
+Special_SelectRandomBugContestContestants: ; 139a8
+; Select five random people to participate in the current contest.
+
+; First we have to make sure that any old data is cleared away.
+	ld c, 10 ; Number of people to choose from.
+	ld hl, BugCatchingContestantEventFlagTable
+.loop1
 	push bc
 	push hl
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld b, $0
+	ld b, $0 ; clear
 	call EventFlagAction
 	pop hl
 	inc hl
 	inc hl
 	pop bc
 	dec c
-	jr nz, .asm_139ad
-	ld c, $5
-.asm_139c0
+	jr nz, .loop1
+
+; Now that that's out of the way, we can get on to the good stuff.
+	ld c, 5
+.loop2
 	push bc
-.asm_139c1
+.next
+; Choose a flag at uniform random to be set.
 	call Random
-	cp $fa
-	jr nc, .asm_139c1
-	ld c, $19
+	cp $fa ; 250
+	jr nc, .next
+	ld c, $19 ; 25
 	call SimpleDivide
 	ld e, b
 	ld d, 0
-	ld hl, Unknown_139fe
-	add hl, de
-	add hl, de
+	ld hl, BugCatchingContestantEventFlagTable
+	add_n_times hl, de, 2
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	push de
-	ld b, $2
+; If we've already set it, it doesn't count.
+	ld b, $2 ; check
 	call EventFlagAction
 	pop de
 	ld a, c
 	and a
-	jr nz, .asm_139c1
-	ld b, $1
+	jr nz, .next
+; Set the flag.  This will cause that sprite to not be visible in the contest.
+	ld b, $1 ; set
 	call EventFlagAction
 	pop bc
+; Check if we're done.  If so, return.  Otherwise, choose the next victim.
 	dec c
-	jr nz, .asm_139c0
+	jr nz, .loop2
 	ret
 ; 139ed
 
-Function139ed: ; 139ed
-	ld hl, Unknown_139fe
+Special_CheckBugContestContestantFlag: ; 139ed
+; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
+
+; Bug: If a >= 10 when this is called, it will read beyond the table.
+
+	ld hl, BugCatchingContestantEventFlagTable
 	ld e, a
 	ld d, 0
-	add hl, de
-	add hl, de
+	add_n_times hl, de, 2
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld b, $2
+	ld b, $2 ; check
 	call EventFlagAction
 	ret
 ; 139fe
 
-Unknown_139fe: ; 139fe
-	dw $0716
-	dw $0717
-	dw $0718
-	dw $0719
-	dw $071a
-	dw $071b
-	dw $071c
-	dw $071d
-	dw $071e
-	dw $071f
+BugCatchingContestantEventFlagTable: ; 139fe
+	dw EVENT_BUG_CATCHING_CONTESTANT_1A
+	dw EVENT_BUG_CATCHING_CONTESTANT_2A
+	dw EVENT_BUG_CATCHING_CONTESTANT_3A
+	dw EVENT_BUG_CATCHING_CONTESTANT_4A
+	dw EVENT_BUG_CATCHING_CONTESTANT_5A
+	dw EVENT_BUG_CATCHING_CONTESTANT_6A
+	dw EVENT_BUG_CATCHING_CONTESTANT_7A
+	dw EVENT_BUG_CATCHING_CONTESTANT_8A
+	dw EVENT_BUG_CATCHING_CONTESTANT_9A
+	dw EVENT_BUG_CATCHING_CONTESTANT_10A
 ; 13a12
 
-Function13a12: ; 13a12
+CheckFirstMonFainted: ; 13a12
 	ld hl, PartyMon1HP
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_13a2b
+	jr z, .fainted
 	ld hl, PartyCount
 	ld a, 1
 	ld [hli], a
@@ -16099,7 +16116,7 @@ Function13a12: ; 13a12
 	ld [ScriptVar], a
 	ret
 
-.asm_13a2b
+.fainted
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -33045,60 +33062,69 @@ TradeGameBoyLZ: INCBIN "gfx/trade/game_boy.2bpp.lz"
 TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
 TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
 
-Function29bfb: ; 29bfb
+Special_CheckTimeCapsuleCompatibility: ; 29bfb
+; Checks to see if your Party is compatible with the generation 1 games.  Returns the following in ScriptVar:
+; 0: Party is okay
+; 1: At least one Pokemon was introduced in GS
+; 2: At least one Pokemon has a move that was introduced in GS
+; 3: At least one Pokemon is holding mail
+
+; If any party Pokemon was introduced in the generation 2 games, don't let it in.
 	ld hl, PartySpecies
-	ld b, PARTY_LENGTH
-.asm_29c00
+	ld b, PARTY_LENGTH ; 6
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_29c0c
-	cp 151 + 1
-	jr nc, .asm_29c42
+	jr z, .checkitem
+	cp CHIKORITA ; MEW + 1 ; 151 + 1
+	jr nc, .mon_too_new
 	dec b
-	jr nz, .asm_29c00
+	jr nz, .loop
 
-.asm_29c0c
+; If any party Pokemon is holding mail, don't let it in.
+.checkitem
 	ld a, [PartyCount]
 	ld b, a
 	ld hl, PartyMon1Item
-.asm_29c13
+.itemloop
 	push hl
 	push bc
 	ld d, [hl]
 	callba ItemIsMail
 	pop bc
 	pop hl
-	jr c, .asm_29c5e
+	jr c, .mon_has_mail
 	ld de, PartyMon2 - PartyMon1
 	add hl, de
 	dec b
-	jr nz, .asm_29c13
+	jr nz, .itemloop
 
+; If any party Pokemon has a move that was introduced in the generation 2 games, don't let it in.
 	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	ld b, a
-.asm_29c2e
+.move_loop
 	ld c, NUM_MOVES
-.asm_29c30
+.move_next
 	ld a, [hli]
 	cp STRUGGLE + 1
-	jr nc, .asm_29c4c
+	jr nc, .move_too_new
 	dec c
-	jr nz, .asm_29c30
+	jr nz, .move_next
 	ld de, PartyMon2 - (PartyMon1 + NUM_MOVES)
 	add hl, de
 	dec b
-	jr nz, .asm_29c2e
+	jr nz, .move_loop
 	xor a
-	jr .asm_29c63
+	jr .done
 
-.asm_29c42
+.mon_too_new
 	ld [wd265], a
 	call GetPokemonName
 	ld a, $1
-	jr .asm_29c63
+	jr .done
 
-.asm_29c4c
+.move_too_new
 	push bc
 	ld [wd265], a
 	call GetMoveName
@@ -33106,13 +33132,13 @@ Function29bfb: ; 29bfb
 	pop bc
 	call Function29c67
 	ld a, $2
-	jr .asm_29c63
+	jr .done
 
-.asm_29c5e
+.mon_has_mail
 	call Function29c67
 	ld a, $3
 
-.asm_29c63
+.done
 	ld [ScriptVar], a
 	ret
 ; 29c67
@@ -33131,7 +33157,7 @@ Function29c67: ; 29c67
 	ret
 ; 29c7b
 
-Function29c7b: ; 29c7b
+Special_EnterTimeCapsule: ; 29c7b
 	ld c, $a
 	call DelayFrames
 	ld a, $4
@@ -33145,7 +33171,7 @@ Function29c7b: ; 29c7b
 	ret
 ; 29c92
 
-Function29c92: ; 29c92
+Special_AbortLink: ; 29c92
 	ld c, $3
 	call DelayFrames
 	ld a, $ff
@@ -33193,21 +33219,21 @@ Function29c92: ; 29c92
 	ret
 ; 29ce8
 
-Function29ce8: ; 29ce8
+Special_SetBitsForLinkTradeRequest: ; 29ce8
 	ld a, $1
 	ld [wcf56], a
 	ld [wd265], a
 	ret
 ; 29cf1
 
-Function29cf1: ; 29cf1
+Special_SetBitsForBattleRequest: ; 29cf1
 	ld a, $2
 	ld [wcf56], a
 	ld [wd265], a
 	ret
 ; 29cfa
 
-Function29cfa: ; 29cfa
+Special_SetBitsForTimeCapsuleRequest: ; 29cfa
 	ld a, $2
 	ld [rSB], a
 	xor a
@@ -33222,7 +33248,7 @@ Function29cfa: ; 29cfa
 	ret
 ; 29d11
 
-Function29d11: ; 29d11
+Special_WaitForLinkedFriend: ; 29d11
 	ld a, [wcf56]
 	and a
 	jr z, .asm_29d2f
@@ -33294,7 +33320,7 @@ Function29d11: ; 29d11
 	ret
 ; 29d92
 
-Function29d92: ; 29d92
+Special_CheckLinkTimeout: ; 29d92
 	ld a, $1
 	ld [wcf56], a
 	ld hl, wcf5b
@@ -33430,7 +33456,7 @@ Function29e53: ; 29e53
 	ret
 ; 29e66
 
-Function29e66: ; 29e66
+Special_TryQuickSave: ; 29e66
 	ld a, [wd265]
 	push af
 	callba Function14ab2
@@ -33447,7 +33473,7 @@ Function29e66: ; 29e66
 	ret
 ; 29e82
 
-Function29e82: ; 29e82
+Special_CheckBothSelectedSameRoom: ; 29e82
 	ld a, [wd265]
 	call Function29f17
 	push af
@@ -33474,7 +33500,7 @@ Function29e82: ; 29e82
 	ret
 ; 29eaf
 
-Function29eaf: ; 29eaf
+Special_TimeCapsule: ; 29eaf
 	ld a, $1
 	ld [InLinkBattle], a
 	call Function2ed3
@@ -33485,7 +33511,7 @@ Function29eaf: ; 29eaf
 	ret
 ; 29ec4
 
-Function29ec4: ; 29ec4
+Special_TradeCenter: ; 29ec4
 	ld a, $2
 	ld [InLinkBattle], a
 	call Function2ed3
@@ -33496,7 +33522,7 @@ Function29ec4: ; 29ec4
 	ret
 ; 29ed9
 
-Function29ed9: ; 29ed9
+Special_Colosseum: ; 29ed9
 	ld a, $3
 	ld [InLinkBattle], a
 	call Function2ed3
@@ -33507,7 +33533,7 @@ Function29ed9: ; 29ed9
 	ret
 ; 29eee
 
-Function29eee: ; 29eee
+Special_CloseLink: ; 29eee
 	xor a
 	ld [InLinkBattle], a
 	ld c, $3
@@ -33515,7 +33541,7 @@ Function29eee: ; 29eee
 	jp Function29f04
 ; 29efa
 
-Function29efa: ; 29efa
+Special_FailedLinkToPast: ; 29efa
 	ld c, $28
 	call DelayFrames
 	ld a, $e
@@ -33564,14 +33590,14 @@ Function29f17: ; 29f17
 	ret
 ; 29f47
 
-Function29f47: ; 29f47
+Special_CableClubCheckWhichChris: ; 29f47
 	ld a, [$ffcb]
 	cp $1
 	ld a, $1
-	jr z, .asm_29f50
+	jr z, .yes
 	dec a
 
-.asm_29f50
+.yes
 	ld [ScriptVar], a
 	ret
 ; 29f54
@@ -35089,7 +35115,7 @@ TrainerClassNames:: ; 2c1ef
 	db "RIVAL@"
 	db "#MON PROF.@"
 	db "ELITE FOUR@"
-	db $4a, " TRAINER@"
+	db "<PKMN> TRAINER@"
 	db "ELITE FOUR@"
 	db "ELITE FOUR@"
 	db "ELITE FOUR@"
@@ -35140,7 +35166,7 @@ TrainerClassNames:: ; 2c1ef
 	db "KIMONO GIRL@"
 	db "TWINS@"
 	db "#FAN@"
-	db $4a, " TRAINER@"
+	db "<PKMN> TRAINER@"
 	db "LEADER@"
 	db "OFFICER@"
 	db "ROCKET@"
@@ -75984,7 +76010,7 @@ Functionb8172: ; b8172
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	and a
 	jr z, .asm_b81dd
 .asm_b8194
@@ -90043,23 +90069,23 @@ UnownWord25: unownword "YIELD"
 UnownWord26: unownword "ZOOM"
 ; fbb32
 
-Functionfbb32: ; fbb32
+Special_CheckMagikarpLength: ; fbb32
 	callba Function50000
-	jr c, .asm_fbb9e
+	jr c, .declined
 	ld a, [CurPartySpecies]
 	cp MAGIKARP
-	jr nz, .asm_fbba4
+	jr nz, .not_magikarp
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	push hl
-	ld bc, $0015
+	ld bc, MON_DVS
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, $0006
+	ld bc, MON_ID
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -90072,7 +90098,7 @@ Functionfbb32: ; fbb32
 	ld de, wdfe8
 	ld c, $2
 	call StringCmp
-	jr nc, .asm_fbb98
+	jr nc, .not_long_enough
 	ld hl, Buffer1
 	ld de, wdfe8
 	ld a, [hli]
@@ -90089,17 +90115,17 @@ Functionfbb32: ; fbb32
 	ld [ScriptVar], a
 	ret
 
-.asm_fbb98
+.not_long_enough
 	ld a, $2
 	ld [ScriptVar], a
 	ret
 
-.asm_fbb9e
+.declined
 	ld a, $1
 	ld [ScriptVar], a
 	ret
 
-.asm_fbba4
+.not_magikarp
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -92235,55 +92261,55 @@ Function1047f0: ; 1047f0
 	ld [wd45b], a
 	ret
 
-Function104820:: ; 104820 (41:4820)
+CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ld a, [wd151]
-	cp $ff
+	cp STANDING
 	ret z
 	and a
-	jr z, .asm_104837
-	cp $1
-	jr z, .asm_104846
-	cp $2
-	jr z, .asm_104851
-	cp $3
-	jr z, .asm_10485c
+	jr z, .down
+	cp UP
+	jr z, .up
+	cp LEFT
+	jr z, .left
+	cp RIGHT
+	jr z, .right
 	and a
 	ret
-.asm_104837
+.down
 	ld a, [MapY]
-	sub $4
+	sub 4
 	ld b, a
 	ld a, [MapHeight]
 	add a
 	cp b
-	jr z, .asm_10486b
+	jr z, .ok
 	and a
 	ret
-.asm_104846
+.up
 	ld a, [MapY]
-	sub $4
-	cp $ff
-	jr z, .asm_10486b
+	sub 4
+	cp -1
+	jr z, .ok
 	and a
 	ret
-.asm_104851
+.left
 	ld a, [MapX]
 	sub $4
-	cp $ff
-	jr z, .asm_10486b
+	cp -1
+	jr z, .ok
 	and a
 	ret
-.asm_10485c
+.right
 	ld a, [MapX]
-	sub $4
+	sub 4
 	ld b, a
 	ld a, [MapWidth]
 	add a
 	cp b
-	jr z, .asm_10486b
+	jr z, .ok
 	and a
 	ret
-.asm_10486b
+.ok
 	scf
 	ret
 
@@ -93468,16 +93494,16 @@ Function105091: ; 105091 (41:5091)
 	jr c, .asm_105096
 	jp CloseSRAM
 
-Function1050b9: ; 1050b9
+Special_UnlockMysteryGift: ; 1050b9
 	call Function105106
 	ld hl, $abe3
 	ld a, [hl]
 	inc a
-	jr nz, .asm_1050c5
+	jr nz, .ok
 	ld [hld], a
 	ld [hl], a
 
-.asm_1050c5
+.ok
 	jp CloseSRAM
 ; 1050c8
 

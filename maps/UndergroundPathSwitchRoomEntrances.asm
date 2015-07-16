@@ -194,7 +194,7 @@ GruntM11Script:
 
 TrainerGruntM25:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_20
+	dw EVENT_BEAT_ROCKET_GRUNTM_25
 
 	; trainer group && trainer id
 	db GRUNTM, 25
@@ -275,7 +275,7 @@ BurglarEddieScript:
 
 TrainerGruntM13:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_12
+	dw EVENT_BEAT_ROCKET_GRUNTM_13
 
 	; trainer group && trainer id
 	db GRUNTM, 13
@@ -1012,23 +1012,23 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 1, 16, $0, MapUndergroundPathSwitchRoomEntrancesSignpost0Script
-	signpost 1, 10, $0, MapUndergroundPathSwitchRoomEntrancesSignpost1Script
-	signpost 1, 2, $0, MapUndergroundPathSwitchRoomEntrancesSignpost2Script
-	signpost 11, 20, $0, MapUndergroundPathSwitchRoomEntrancesSignpost3Script
-	signpost 9, 8, $7, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
-	signpost 8, 1, $7, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
+	signpost 1, 16, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost0Script
+	signpost 1, 10, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost1Script
+	signpost 1, 2, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost2Script
+	signpost 11, 20, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost3Script
+	signpost 9, 8, SIGNPOST_ITEMIFSET, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
+	signpost 8, 1, SIGNPOST_ITEMIFSET, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
 
 	; people-events
 	db 11
-	person_event SPRITE_PHARMACIST, 16, 13, $9, $0, 255, 255, $a2, 2, TrainerBurglarDuncan, EVENT_6CE
-	person_event SPRITE_PHARMACIST, 12, 8, $8, $0, 255, 255, $a2, 2, TrainerBurglarEddie, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 21, $6, $0, 255, 255, $2, 3, TrainerGruntM13, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 15, $6, $0, 255, 255, $2, 3, TrainerGruntM11, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 7, $6, $0, 255, 255, $2, 3, TrainerGruntM25, EVENT_6CE
-	person_event SPRITE_ROCKET_GIRL, 16, 23, $6, $0, 255, 255, $82, 1, TrainerGruntF3, EVENT_6CE
-	person_event SPRITE_TEACHER, 31, 7, $6, $0, 255, 255, $0, 0, TeacherScript_0x7ca7d, -1
-	person_event SPRITE_SUPER_NERD, 31, 23, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x7ca7a, -1
-	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7d, EVENT_673
-	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7f, EVENT_674
-	person_event SPRITE_SILVER, 7, 27, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C1
+	person_event SPRITE_PHARMACIST, 16, 13, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarDuncan, EVENT_6CE
+	person_event SPRITE_PHARMACIST, 12, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarEddie, EVENT_6CE
+	person_event SPRITE_ROCKET, 6, 21, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM13, EVENT_6CE
+	person_event SPRITE_ROCKET, 6, 15, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM11, EVENT_6CE
+	person_event SPRITE_ROCKET, 6, 7, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM25, EVENT_6CE
+	person_event SPRITE_ROCKET_GIRL, 16, 23, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF3, EVENT_6CE
+	person_event SPRITE_TEACHER, 31, 7, UP << 2 | $2, $0, -1, -1, $0, 0, TeacherScript_0x7ca7d, -1
+	person_event SPRITE_SUPER_NERD, 31, 23, UP << 2 | $2, $0, -1, -1, $0, 0, SuperNerdScript_0x7ca7a, -1
+	person_event SPRITE_POKE_BALL, 16, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7d, EVENT_673
+	person_event SPRITE_POKE_BALL, 13, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7f, EVENT_674
+	person_event SPRITE_SILVER, 7, 27, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6C1

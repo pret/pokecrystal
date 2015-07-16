@@ -35,10 +35,10 @@ GoldenrodNameRatersHouse_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, GoldenrodNameRatersHouseBookshelf
-	signpost 1, 1, $0, GoldenrodNameRatersHouseBookshelf
-	signpost 1, 7, $0, GoldenrodNameRatersHouseRadio
+	signpost 1, 0, SIGNPOST_READ, GoldenrodNameRatersHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, GoldenrodNameRatersHouseBookshelf
+	signpost 1, 7, SIGNPOST_READ, GoldenrodNameRatersHouseRadio
 
 	; people-events
 	db 1
-	person_event SPRITE_GENTLEMAN, 8, 6, $6, $2, 255, 255, $0, 0, GentlemanScript_0x5577c, -1
+	person_event SPRITE_GENTLEMAN, 8, 6, UP << 2 | $2, $2, -1, -1, $0, 0, GentlemanScript_0x5577c, -1

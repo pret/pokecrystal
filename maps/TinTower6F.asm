@@ -25,4 +25,4 @@ TinTower6F_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 12, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ae4, EVENT_7C6
+	person_event SPRITE_POKE_BALL, 12, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185ae4, EVENT_7C6

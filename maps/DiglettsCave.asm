@@ -39,8 +39,8 @@ DiglettsCave_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 11, 6, $7, MapDiglettsCaveSignpostItem0
+	signpost 11, 6, SIGNPOST_ITEMIFSET, MapDiglettsCaveSignpostItem0
 
 	; people-events
 	db 1
-	person_event SPRITE_POKEFAN_M, 35, 7, $6, $0, 255, 255, $0, 0, PokefanMScript_0x74002, -1
+	person_event SPRITE_POKEFAN_M, 35, 7, UP << 2 | $2, $0, -1, -1, $0, 0, PokefanMScript_0x74002, -1

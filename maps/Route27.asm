@@ -68,7 +68,7 @@ PsychicGilbertScript:
 
 TrainerBird_keeperJose2:
 	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_JOSE
+	dw EVENT_BEAT_BIRD_KEEPER_JOSE2
 
 	; trainer group && trainer id
 	db BIRD_KEEPER, JOSE2
@@ -571,16 +571,16 @@ Route27_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 7, 25, $0, MapRoute27Signpost0Script
+	signpost 7, 25, SIGNPOST_READ, MapRoute27Signpost0Script
 
 	; people-events
 	db 9
-	person_event SPRITE_COOLTRAINER_M, 11, 52, $7, $0, 255, 255, $82, 3, TrainerCooltrainermBlake, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 62, $9, $0, 255, 255, $82, 4, TrainerCooltrainermBrian, -1
-	person_event SPRITE_COOLTRAINER_F, 14, 76, $7, $0, 255, 255, $82, 4, TrainerCooltrainerfReena, -1
-	person_event SPRITE_COOLTRAINER_F, 10, 41, $1f, $0, 255, 255, $82, 2, TrainerCooltrainerfMegan, -1
-	person_event SPRITE_YOUNGSTER, 11, 69, $8, $0, 255, 255, $92, 3, TrainerPsychicGilbert, -1
-	person_event SPRITE_YOUNGSTER, 17, 62, $9, $0, 255, 255, $92, 3, TrainerBird_keeperJose2, -1
-	person_event SPRITE_POKE_BALL, 16, 64, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a62, EVENT_6AB
-	person_event SPRITE_POKE_BALL, 16, 57, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a64, EVENT_6AC
-	person_event SPRITE_FISHER, 14, 25, $3, $0, 255, 255, $0, 3, FisherScript_0x1a089c, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 52, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermBlake, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 62, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainermBrian, -1
+	person_event SPRITE_COOLTRAINER_F, 14, 76, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainerfReena, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 41, RIGHT << 2 | $13, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainerfMegan, -1
+	person_event SPRITE_YOUNGSTER, 11, 69, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicGilbert, -1
+	person_event SPRITE_YOUNGSTER, 17, 62, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperJose2, -1
+	person_event SPRITE_POKE_BALL, 16, 64, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a0a62, EVENT_6AB
+	person_event SPRITE_POKE_BALL, 16, 57, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a0a64, EVENT_6AC
+	person_event SPRITE_FISHER, 14, 25, DOWN << 2 | $3, $0, -1, -1, $0, 3, FisherScript_0x1a089c, -1

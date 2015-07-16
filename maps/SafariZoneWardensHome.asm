@@ -87,11 +87,11 @@ SafariZoneWardensHome_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 1, 0, $0, WardensHomeBookshelf
-	signpost 1, 1, $0, WardensHomeBookshelf
-	signpost 0, 7, $0, WardenPhoto
-	signpost 0, 9, $0, SafariZonePhoto
+	signpost 1, 0, SIGNPOST_READ, WardensHomeBookshelf
+	signpost 1, 1, SIGNPOST_READ, WardensHomeBookshelf
+	signpost 0, 7, SIGNPOST_READ, WardenPhoto
+	signpost 0, 9, SIGNPOST_READ, SafariZonePhoto
 
 	; people-events
 	db 1
-	person_event SPRITE_LASS, 8, 6, $9, $0, 255, 255, $a0, 0, WardensGranddaughter, -1
+	person_event SPRITE_LASS, 8, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, WardensGranddaughter, -1

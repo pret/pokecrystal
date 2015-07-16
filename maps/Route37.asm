@@ -293,15 +293,15 @@ Route37_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 3, 5, $0, MapRoute37Signpost0Script
-	signpost 2, 4, $7, MapRoute37SignpostItem1
+	signpost 3, 5, SIGNPOST_READ, MapRoute37Signpost0Script
+	signpost 2, 4, SIGNPOST_ITEMIFSET, MapRoute37SignpostItem1
 
 	; people-events
 	db 7
-	person_event SPRITE_WEIRD_TREE, 16, 10, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne1, -1
-	person_event SPRITE_WEIRD_TREE, 16, 11, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne2, -1
-	person_event SPRITE_YOUNGSTER, 10, 10, $a, $0, 255, 255, $92, 1, TrainerPsychicGreg, -1
-	person_event SPRITE_FRUIT_TREE, 9, 17, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e09, -1
-	person_event SPRITE_BUG_CATCHER, 12, 20, $2, $11, 255, 255, $0, 0, SunnyScript, EVENT_75B
-	person_event SPRITE_FRUIT_TREE, 9, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0b, -1
-	person_event SPRITE_FRUIT_TREE, 11, 19, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0d, -1
+	person_event SPRITE_WEIRD_TREE, 16, 10, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAnnandanne1, -1
+	person_event SPRITE_WEIRD_TREE, 16, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAnnandanne2, -1
+	person_event SPRITE_YOUNGSTER, 10, 10, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicGreg, -1
+	person_event SPRITE_FRUIT_TREE, 9, 17, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e09, -1
+	person_event SPRITE_BUG_CATCHER, 12, 20, DOWN << 2 | $2, $11, -1, -1, $0, 0, SunnyScript, EVENT_75B
+	person_event SPRITE_FRUIT_TREE, 9, 20, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e0b, -1
+	person_event SPRITE_FRUIT_TREE, 11, 19, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e0d, -1

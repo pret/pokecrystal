@@ -43,10 +43,10 @@ VermilionMagnetTrainSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, VermilionMagnetTrainSpeechHouseBookshelf
-	signpost 1, 1, $0, VermilionMagnetTrainSpeechHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, VermilionMagnetTrainSpeechHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, VermilionMagnetTrainSpeechHouseBookshelf
 
 	; people-events
 	db 2
-	person_event SPRITE_POKEFAN_F, 7, 6, $8, $0, 255, 255, $0, 0, PokefanFScript_0x191eb7, -1
-	person_event SPRITE_YOUNGSTER, 7, 4, $a, $0, 255, 255, $a0, 0, YoungsterScript_0x191eba, -1
+	person_event SPRITE_POKEFAN_F, 7, 6, LEFT << 2 | $0, $0, -1, -1, $0, 0, PokefanFScript_0x191eb7, -1
+	person_event SPRITE_YOUNGSTER, 7, 4, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x191eba, -1

@@ -121,11 +121,11 @@ GoldenrodDeptStoreB1F_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_POKE_BALL, 19, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d7c3, EVENT_675
-	person_event SPRITE_POKE_BALL, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d7c5, EVENT_676
-	person_event SPRITE_POKE_BALL, 7, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d7c7, EVENT_677
-	person_event SPRITE_POKE_BALL, 19, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d7c9, EVENT_678
-	person_event SPRITE_BLACK_BELT, 14, 13, $4, $10, 255, 255, $a0, 0, BlackBeltScript_0x7d7b0, -1
-	person_event SPRITE_BLACK_BELT, 12, 8, $3, $0, 255, 255, $80, 0, BlackBeltScript_0x7d7b3, -1
-	person_event SPRITE_BLACK_BELT, 17, 10, $5, $1, 255, 255, $90, 0, BlackBeltScript_0x7d7b6, -1
-	person_event SPRITE_MACHOP, 11, 11, $16, $0, 255, 255, $90, 0, MachopScript_0x7d7b9, -1
+	person_event SPRITE_POKE_BALL, 19, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d7c3, EVENT_675
+	person_event SPRITE_POKE_BALL, 6, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d7c5, EVENT_676
+	person_event SPRITE_POKE_BALL, 7, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d7c7, EVENT_677
+	person_event SPRITE_POKE_BALL, 19, 19, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d7c9, EVENT_678
+	person_event SPRITE_BLACK_BELT, 14, 13, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BlackBeltScript_0x7d7b0, -1
+	person_event SPRITE_BLACK_BELT, 12, 8, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, BlackBeltScript_0x7d7b3, -1
+	person_event SPRITE_BLACK_BELT, 17, 10, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x7d7b6, -1
+	person_event SPRITE_MACHOP, 11, 11, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, MachopScript_0x7d7b9, -1

@@ -35,4 +35,4 @@ VermilionPortPassage_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_TEACHER, 5, 21, $8, $0, 255, 255, $0, 0, TeacherScript_0x7701a, -1
+	person_event SPRITE_TEACHER, 5, 21, LEFT << 2 | $0, $0, -1, -1, $0, 0, TeacherScript_0x7701a, -1

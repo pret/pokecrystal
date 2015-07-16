@@ -89,14 +89,14 @@ MountMortar2FInside_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 8, 24, $7, MapMountMortar2FInsideSignpostItem0
+	signpost 8, 24, SIGNPOST_ITEMIFSET, MapMountMortar2FInsideSignpostItem0
 
 	; people-events
 	db 7
-	person_event SPRITE_POKE_BALL, 26, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0de, EVENT_680
-	person_event SPRITE_POKE_BALL, 37, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e0, EVENT_681
-	person_event SPRITE_POKE_BALL, 21, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e2, EVENT_682
-	person_event SPRITE_POKE_BALL, 9, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e4, EVENT_683
-	person_event SPRITE_POKE_BALL, 15, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e6, EVENT_684
-	person_event SPRITE_POKE_BALL, 9, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e8, EVENT_685
-	person_event SPRITE_SUPER_NERD, 30, 17, $a, $0, 255, 255, $b2, 2, TrainerSupernerdHugh, -1
+	person_event SPRITE_POKE_BALL, 26, 32, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0de, EVENT_680
+	person_event SPRITE_POKE_BALL, 37, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e0, EVENT_681
+	person_event SPRITE_POKE_BALL, 21, 23, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e2, EVENT_682
+	person_event SPRITE_POKE_BALL, 9, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e4, EVENT_683
+	person_event SPRITE_POKE_BALL, 15, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e6, EVENT_684
+	person_event SPRITE_POKE_BALL, 9, 32, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e8, EVENT_685
+	person_event SPRITE_SUPER_NERD, 30, 17, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdHugh, -1

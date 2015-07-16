@@ -59,9 +59,9 @@ Route26HealSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, Route26HealHouseBookshelf
-	signpost 1, 1, $0, Route26HealHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, Route26HealHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, Route26HealHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_TEACHER, 7, 6, $6, $0, 255, 255, $90, 0, TeacherScript_0x7b125, -1
+	person_event SPRITE_TEACHER, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7b125, -1

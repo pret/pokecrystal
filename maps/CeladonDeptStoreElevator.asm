@@ -43,7 +43,7 @@ CeladonDeptStoreElevator_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 0, 3, $0, MapCeladonDeptStoreElevatorSignpost0Script
+	signpost 0, 3, SIGNPOST_READ, MapCeladonDeptStoreElevatorSignpost0Script
 
 	; people-events
 	db 0

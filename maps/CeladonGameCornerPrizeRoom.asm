@@ -279,10 +279,10 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 2, $0, MapCeladonGameCornerPrizeRoomSignpost0Script
-	signpost 1, 4, $0, MapCeladonGameCornerPrizeRoomSignpost1Script
+	signpost 1, 2, SIGNPOST_READ, MapCeladonGameCornerPrizeRoomSignpost0Script
+	signpost 1, 4, SIGNPOST_READ, MapCeladonGameCornerPrizeRoomSignpost1Script
 
 	; people-events
 	db 2
-	person_event SPRITE_GENTLEMAN, 6, 4, $6, $0, 255, 255, $80, 0, GentlemanScript_0x726e9, -1
-	person_event SPRITE_PHARMACIST, 8, 8, $4, $10, 255, 255, $a0, 0, PharmacistScript_0x726ec, -1
+	person_event SPRITE_GENTLEMAN, 6, 4, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x726e9, -1
+	person_event SPRITE_PHARMACIST, 8, 8, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, PharmacistScript_0x726ec, -1

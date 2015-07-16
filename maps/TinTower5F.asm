@@ -34,9 +34,9 @@ TinTower5F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 14, 16, $7, MapTinTower5FSignpostItem0
-	signpost 15, 3, $7, MapTinTower5FSignpostItem1
+	signpost 14, 16, SIGNPOST_ITEMIFSET, MapTinTower5FSignpostItem0
+	signpost 15, 3, SIGNPOST_ITEMIFSET, MapTinTower5FSignpostItem1
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 13, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x185aa9, EVENT_64F
+	person_event SPRITE_POKE_BALL, 13, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185aa9, EVENT_64F

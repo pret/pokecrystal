@@ -251,12 +251,12 @@ BurnedTowerB1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_BOULDER, 12, 21, $19, $0, 255, 255, $0, 0, BurnedTowerB1FBoulder, -1
-	person_event SPRITE_RAIKOU, 7, 11, $16, $0, 255, 255, $b0, 0, ObjectEvent, EVENT_74A
-	person_event SPRITE_ENTEI, 7, 16, $16, $0, 255, 255, $80, 0, ObjectEvent, EVENT_74A
-	person_event SPRITE_SUICUNE, 8, 14, $16, $0, 255, 255, $90, 0, ObjectEvent, EVENT_74A
-	person_event SPRITE_RAIKOU, 7, 11, $6, $0, 255, 255, $d0, 0, ObjectEvent, EVENT_74B
-	person_event SPRITE_ENTEI, 7, 16, $6, $0, 255, 255, $d0, 0, ObjectEvent, EVENT_74B
-	person_event SPRITE_SUICUNE, 8, 14, $6, $0, 255, 255, $d0, 0, ObjectEvent, EVENT_74B
-	person_event SPRITE_POKE_BALL, 8, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x186231, EVENT_657
-	person_event SPRITE_SUPER_NERD, 16, 14, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER
+	person_event SPRITE_BOULDER, 12, 21, LEFT << 2 | $11, $0, -1, -1, $0, 0, BurnedTowerB1FBoulder, -1
+	person_event SPRITE_RAIKOU, 7, 11, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_74A
+	person_event SPRITE_ENTEI, 7, 16, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_74A
+	person_event SPRITE_SUICUNE, 8, 14, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_74A
+	person_event SPRITE_RAIKOU, 7, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_74B
+	person_event SPRITE_ENTEI, 7, 16, UP << 2 | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_74B
+	person_event SPRITE_SUICUNE, 8, 14, UP << 2 | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_74B
+	person_event SPRITE_POKE_BALL, 8, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x186231, EVENT_657
+	person_event SPRITE_SUPER_NERD, 16, 14, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER

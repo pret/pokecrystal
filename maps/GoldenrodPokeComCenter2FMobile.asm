@@ -99,8 +99,8 @@ MenuDataHeader_0x6264c:
 MenuData2_0x62654:
 	db $80 ; flags
 	db 3 ; items
-	db "でんわ",$1f,"つかうとき@" ; Use phone
-	db "でんわ",$4a,"つながらないとき@" ; Don't use phone
+	db "でんわ", $1f,"つかうとき@" ; Use phone
+	db "でんわ", $4a,"つながらないとき@" ; Don't use phone
 	db "やめる@" ; QUIT
 
 
@@ -277,12 +277,12 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 26, 6, $1, MapGoldenrodPokeComCenter2FMobileSignpost0Script
-	signpost 28, 6, $1, MapGoldenrodPokeComCenter2FMobileSignpost1Script
-	signpost 26, 3, $1, MapGoldenrodPokeComCenter2FMobileSignpost2Script
+	signpost 26, 6, SIGNPOST_UP, MapGoldenrodPokeComCenter2FMobileSignpost0Script
+	signpost 28, 6, SIGNPOST_UP, MapGoldenrodPokeComCenter2FMobileSignpost1Script
+	signpost 26, 3, SIGNPOST_UP, MapGoldenrodPokeComCenter2FMobileSignpost2Script
 
 	; people-events
 	db 3
-	person_event SPRITE_SCIENTIST, 32, 8, $4, $10, 255, 255, $80, 0, ScientistScript_0x625d1, -1
-	person_event SPRITE_SCIENTIST, 31, 11, $7, $0, 255, 255, $90, 0, ScientistScript_0x625d4, -1
-	person_event SPRITE_SCIENTIST, 33, 11, $7, $0, 255, 255, $a0, 0, ScientistScript_0x625d7, -1
+	person_event SPRITE_SCIENTIST, 32, 8, UP << 2 | $0, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, ScientistScript_0x625d1, -1
+	person_event SPRITE_SCIENTIST, 31, 11, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x625d4, -1
+	person_event SPRITE_SCIENTIST, 33, 11, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ScientistScript_0x625d7, -1

@@ -136,12 +136,12 @@ OlivineLighthouse5F_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 13, 3, $7, MapOlivineLighthouse5FSignpostItem0
+	signpost 13, 3, SIGNPOST_ITEMIFSET, MapOlivineLighthouse5FSignpostItem0
 
 	; people-events
 	db 5
-	person_event SPRITE_SAILOR, 15, 12, $a, $0, 255, 255, $92, 3, TrainerSailorErnest, -1
-	person_event SPRITE_YOUNGSTER, 7, 12, $8, $0, 255, 255, $92, 4, TrainerBird_keeperDenis, -1
-	person_event SPRITE_POKE_BALL, 16, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x609aa, EVENT_665
-	person_event SPRITE_POKE_BALL, 19, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x609ac, EVENT_666
-	person_event SPRITE_POKE_BALL, 17, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x609ae, EVENT_667
+	person_event SPRITE_SAILOR, 15, 12, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorErnest, -1
+	person_event SPRITE_YOUNGSTER, 7, 12, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerBird_keeperDenis, -1
+	person_event SPRITE_POKE_BALL, 16, 19, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x609aa, EVENT_665
+	person_event SPRITE_POKE_BALL, 19, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ac, EVENT_666
+	person_event SPRITE_POKE_BALL, 17, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ae, EVENT_667

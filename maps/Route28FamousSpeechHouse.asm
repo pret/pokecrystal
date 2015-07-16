@@ -82,10 +82,10 @@ Route28FamousSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, CelebrityHouseBookshelf
-	signpost 1, 1, $0, CelebrityHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, CelebrityHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, CelebrityHouseBookshelf
 
 	; people-events
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $6, $0, 255, 255, $a0, 0, Celebrity, -1
-	person_event SPRITE_MOLTRES, 9, 10, $16, $0, 255, 255, $b0, 0, CelebritysFearow, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Celebrity, -1
+	person_event SPRITE_MOLTRES, 9, 10, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CelebritysFearow, -1

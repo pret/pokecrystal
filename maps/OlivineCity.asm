@@ -310,17 +310,17 @@ OlivineCity_MapEventHeader:
 
 	; signposts
 	db 7
-	signpost 11, 17, $0, OlivineCitySign
-	signpost 24, 20, $0, OlivineCityPortSign
-	signpost 11, 7, $0, OlivineGymSign
-	signpost 28, 30, $0, OlivineLighthouseSign
-	signpost 23, 3, $0, OlivineCityBattleTowerSign
-	signpost 21, 14, $0, OlivineCityPokeCenterSign
-	signpost 17, 20, $0, OlivineCityMartSign
+	signpost 11, 17, SIGNPOST_READ, OlivineCitySign
+	signpost 24, 20, SIGNPOST_READ, OlivineCityPortSign
+	signpost 11, 7, SIGNPOST_READ, OlivineGymSign
+	signpost 28, 30, SIGNPOST_READ, OlivineLighthouseSign
+	signpost 23, 3, SIGNPOST_READ, OlivineCityBattleTowerSign
+	signpost 21, 14, SIGNPOST_READ, OlivineCityPokeCenterSign
+	signpost 17, 20, SIGNPOST_READ, OlivineCityMartSign
 
 	; people-events
 	db 4
-	person_event SPRITE_SAILOR, 31, 30, $4, $10, 255, 255, $0, 0, SailorScript_0x1a88a3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, $0, 255, 255, $80, 0, StandingYoungsterScript_0x1a88a6, -1
-	person_event SPRITE_SAILOR, 25, 21, $2, $11, 255, 255, $0, 0, SailorScript_0x1a88ba, -1
-	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C3
+	person_event SPRITE_SAILOR, 31, 30, UP << 2 | $0, $10, -1, -1, $0, 0, SailorScript_0x1a88a3, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, StandingYoungsterScript_0x1a88a6, -1
+	person_event SPRITE_SAILOR, 25, 21, DOWN << 2 | $2, $11, -1, -1, $0, 0, SailorScript_0x1a88ba, -1
+	person_event SPRITE_OLIVINE_RIVAL, 15, 14, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6C3

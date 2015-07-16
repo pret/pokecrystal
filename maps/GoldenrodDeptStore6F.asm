@@ -160,14 +160,14 @@ GoldenrodDeptStore6F_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 0, 14, $0, GoldenrodDeptStore6FDirectory
-	signpost 0, 3, $0, GoldenrodDeptStore6FElevatorButton
-	signpost 1, 8, $1, GoldenrodVendingMachine
-	signpost 1, 9, $1, GoldenrodVendingMachine
-	signpost 1, 10, $1, GoldenrodVendingMachine
-	signpost 1, 11, $1, GoldenrodVendingMachine
+	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore6FDirectory
+	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore6FElevatorButton
+	signpost 1, 8, SIGNPOST_UP, GoldenrodVendingMachine
+	signpost 1, 9, SIGNPOST_UP, GoldenrodVendingMachine
+	signpost 1, 10, SIGNPOST_UP, GoldenrodVendingMachine
+	signpost 1, 11, SIGNPOST_UP, GoldenrodVendingMachine
 
 	; people-events
 	db 2
-	person_event SPRITE_LASS, 6, 14, $5, $1, 255, 255, $a0, 0, LassScript_0x564bf, -1
-	person_event SPRITE_SUPER_NERD, 6, 12, $7, $0, 255, 255, $80, 0, SuperNerdScript_0x564c2, -1
+	person_event SPRITE_LASS, 6, 14, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x564bf, -1
+	person_event SPRITE_SUPER_NERD, 6, 12, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x564c2, -1

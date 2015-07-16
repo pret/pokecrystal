@@ -147,6 +147,6 @@ Route21_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 20, 15, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNikki, -1
-	person_event SPRITE_SWIMMER_GUY, 34, 6, $9, $0, 255, 255, $82, 4, TrainerSwimmermSeth, -1
-	person_event SPRITE_FISHER, 26, 18, $7, $0, 255, 255, $a2, 1, TrainerFisherArnold, -1
+	person_event SPRITE_SWIMMER_GIRL, 20, 15, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfNikki, -1
+	person_event SPRITE_SWIMMER_GUY, 34, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerSwimmermSeth, -1
+	person_event SPRITE_FISHER, 26, 18, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherArnold, -1

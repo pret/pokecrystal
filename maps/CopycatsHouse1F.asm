@@ -85,6 +85,6 @@ CopycatsHouse1F_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $0, 0, PokefanMScript_0x18ad13, -1
-	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $a0, 0, PokefanFScript_0x18ad16, -1
-	person_event SPRITE_CLEFAIRY, 10, 10, $16, $0, 255, 255, $0, 0, ClefairyScript_0x18ad2a, -1
+	person_event SPRITE_POKEFAN_M, 7, 6, UP << 2 | $2, $0, -1, -1, $0, 0, PokefanMScript_0x18ad13, -1
+	person_event SPRITE_POKEFAN_F, 8, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, PokefanFScript_0x18ad16, -1
+	person_event SPRITE_CLEFAIRY, 10, 10, UP << 2 | $12, $0, -1, -1, $0, 0, ClefairyScript_0x18ad2a, -1

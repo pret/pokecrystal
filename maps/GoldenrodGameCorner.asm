@@ -445,49 +445,49 @@ GoldenrodGameCorner_MapEventHeader:
 
 	; signposts
 	db 31
-	signpost 6, 6, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 7, 6, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 8, 6, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 9, 6, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 10, 6, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 11, 6, $3, MapGoldenrodGameCornerSignpost17Script
-	signpost 6, 7, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 7, 7, $0, MapGoldenrodGameCornerSignpost7Script
-	signpost 8, 7, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 9, 7, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 10, 7, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 11, 7, $4, MapGoldenrodGameCornerSignpost17Script
-	signpost 6, 12, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 7, 12, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 8, 12, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 9, 12, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 10, 12, $0, MapGoldenrodGameCornerSignpost17Script
-	signpost 11, 12, $3, MapGoldenrodGameCornerSignpost17Script
-	signpost 6, 13, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 7, 13, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 8, 13, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 9, 13, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 10, 13, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 11, 13, $4, MapGoldenrodGameCornerSignpost29Script
-	signpost 6, 18, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 7, 18, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 8, 18, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 9, 18, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 10, 18, $0, MapGoldenrodGameCornerSignpost29Script
-	signpost 11, 18, $3, MapGoldenrodGameCornerSignpost29Script
-	signpost 1, 12, $4, MapGoldenrodGameCornerSignpost30Script
+	signpost 6, 6, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 7, 6, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 8, 6, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 9, 6, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 10, 6, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 11, 6, SIGNPOST_RIGHT, MapGoldenrodGameCornerSignpost17Script
+	signpost 6, 7, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 7, 7, SIGNPOST_READ, MapGoldenrodGameCornerSignpost7Script
+	signpost 8, 7, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 9, 7, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 10, 7, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 11, 7, SIGNPOST_LEFT, MapGoldenrodGameCornerSignpost17Script
+	signpost 6, 12, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 7, 12, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 8, 12, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 9, 12, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 10, 12, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
+	signpost 11, 12, SIGNPOST_RIGHT, MapGoldenrodGameCornerSignpost17Script
+	signpost 6, 13, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 7, 13, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 8, 13, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 9, 13, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 10, 13, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 11, 13, SIGNPOST_LEFT, MapGoldenrodGameCornerSignpost29Script
+	signpost 6, 18, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 7, 18, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 8, 18, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 9, 18, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 10, 18, SIGNPOST_READ, MapGoldenrodGameCornerSignpost29Script
+	signpost 11, 18, SIGNPOST_RIGHT, MapGoldenrodGameCornerSignpost29Script
+	signpost 1, 12, SIGNPOST_LEFT, MapGoldenrodGameCornerSignpost30Script
 
 	; people-events
 	db 12
-	person_event SPRITE_CLERK, 6, 7, $6, $0, 255, 255, $80, 0, ClerkScript_0x56c25, -1
-	person_event SPRITE_RECEPTIONIST, 6, 20, $6, $0, 255, 255, $80, 0, ReceptionistScript_0x56c28, -1
-	person_event SPRITE_RECEPTIONIST, 6, 22, $6, $0, 255, 255, $80, 0, ReceptionistScript_0x56d01, -1
-	person_event SPRITE_PHARMACIST, 11, 12, $8, $0, 255, 2, $90, 0, PharmacistScript_0x56df1, -1
-	person_event SPRITE_PHARMACIST, 11, 12, $8, $0, 255, 4, $90, 0, PharmacistScript_0x56df1, -1
-	person_event SPRITE_POKEFAN_M, 14, 15, $9, $0, 255, 255, $b0, 0, PokefanMScript_0x56dfc, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 18, $8, $0, 255, 255, $90, 0, CooltrainerMScript_0x56e07, -1
-	person_event SPRITE_POKEFAN_F, 10, 21, $9, $0, 255, 255, $80, 0, PokefanFScript_0x56e12, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 14, $2, $12, 255, 255, $a0, 0, CooltrainerFScript_0x56e1d, -1
-	person_event SPRITE_GENTLEMAN, 14, 9, $9, $0, 255, 255, $90, 0, GentlemanScript_0x56e20, -1
-	person_event SPRITE_POKEFAN_M, 13, 6, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x56e2b, -1
-	person_event SPRITE_POKEFAN_M, 14, 21, $9, $0, 255, 255, $80, 0, PokefanMScript_0x56c1a, EVENT_76B
+	person_event SPRITE_CLERK, 6, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ClerkScript_0x56c25, -1
+	person_event SPRITE_RECEPTIONIST, 6, 20, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x56c28, -1
+	person_event SPRITE_RECEPTIONIST, 6, 22, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x56d01, -1
+	person_event SPRITE_PHARMACIST, 11, 12, LEFT << 2 | $0, $0, -1, 2, (PAL_OW_BLUE << 4) | $80, 0, PharmacistScript_0x56df1, -1
+	person_event SPRITE_PHARMACIST, 11, 12, LEFT << 2 | $0, $0, -1, 4, (PAL_OW_BLUE << 4) | $80, 0, PharmacistScript_0x56df1, -1
+	person_event SPRITE_POKEFAN_M, 14, 15, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x56dfc, -1
+	person_event SPRITE_COOLTRAINER_M, 12, 18, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerMScript_0x56e07, -1
+	person_event SPRITE_POKEFAN_F, 10, 21, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x56e12, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 14, DOWN << 2 | $2, $12, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x56e1d, -1
+	person_event SPRITE_GENTLEMAN, 14, 9, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x56e20, -1
+	person_event SPRITE_POKEFAN_M, 13, 6, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x56e2b, -1
+	person_event SPRITE_POKEFAN_M, 14, 21, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x56c1a, EVENT_76B

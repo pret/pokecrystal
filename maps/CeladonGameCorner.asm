@@ -284,53 +284,53 @@ CeladonGameCorner_MapEventHeader:
 
 	; signposts
 	db 38
-	signpost 6, 1, $0, MapCeladonGameCornerSignpost11Script
-	signpost 7, 1, $0, MapCeladonGameCornerSignpost11Script
-	signpost 8, 1, $0, MapCeladonGameCornerSignpost11Script
-	signpost 9, 1, $0, MapCeladonGameCornerSignpost11Script
-	signpost 10, 1, $0, MapCeladonGameCornerSignpost11Script
-	signpost 11, 1, $4, MapCeladonGameCornerSignpost11Script
-	signpost 6, 6, $0, MapCeladonGameCornerSignpost11Script
-	signpost 7, 6, $0, MapCeladonGameCornerSignpost11Script
-	signpost 8, 6, $0, MapCeladonGameCornerSignpost11Script
-	signpost 9, 6, $0, MapCeladonGameCornerSignpost9Script
-	signpost 10, 6, $0, MapCeladonGameCornerSignpost11Script
-	signpost 11, 6, $3, MapCeladonGameCornerSignpost11Script
-	signpost 6, 7, $0, MapCeladonGameCornerSignpost35Script
-	signpost 7, 7, $0, MapCeladonGameCornerSignpost35Script
-	signpost 8, 7, $0, MapCeladonGameCornerSignpost35Script
-	signpost 9, 7, $0, MapCeladonGameCornerSignpost35Script
-	signpost 10, 7, $0, MapCeladonGameCornerSignpost16Script
-	signpost 11, 7, $4, MapCeladonGameCornerSignpost35Script
-	signpost 6, 12, $0, MapCeladonGameCornerSignpost35Script
-	signpost 7, 12, $0, MapCeladonGameCornerSignpost35Script
-	signpost 8, 12, $0, MapCeladonGameCornerSignpost35Script
-	signpost 9, 12, $0, MapCeladonGameCornerSignpost35Script
-	signpost 10, 12, $0, MapCeladonGameCornerSignpost35Script
-	signpost 11, 12, $3, MapCeladonGameCornerSignpost35Script
-	signpost 6, 13, $0, MapCeladonGameCornerSignpost35Script
-	signpost 7, 13, $0, MapCeladonGameCornerSignpost35Script
-	signpost 8, 13, $0, MapCeladonGameCornerSignpost35Script
-	signpost 9, 13, $0, MapCeladonGameCornerSignpost35Script
-	signpost 10, 13, $0, MapCeladonGameCornerSignpost35Script
-	signpost 11, 13, $4, MapCeladonGameCornerSignpost35Script
-	signpost 6, 18, $0, MapCeladonGameCornerSignpost35Script
-	signpost 7, 18, $0, MapCeladonGameCornerSignpost35Script
-	signpost 8, 18, $0, MapCeladonGameCornerSignpost32Script
-	signpost 9, 18, $0, MapCeladonGameCornerSignpost35Script
-	signpost 10, 18, $0, MapCeladonGameCornerSignpost35Script
-	signpost 11, 18, $3, MapCeladonGameCornerSignpost35Script
-	signpost 0, 15, $0, MapCeladonGameCornerSignpost36Script
-	signpost 0, 9, $0, MapCeladonGameCornerSignpost37Script
+	signpost 6, 1, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 7, 1, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 8, 1, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 9, 1, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 10, 1, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 11, 1, SIGNPOST_LEFT, MapCeladonGameCornerSignpost11Script
+	signpost 6, 6, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 7, 6, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 8, 6, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 9, 6, SIGNPOST_READ, MapCeladonGameCornerSignpost9Script
+	signpost 10, 6, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
+	signpost 11, 6, SIGNPOST_RIGHT, MapCeladonGameCornerSignpost11Script
+	signpost 6, 7, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 7, 7, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 8, 7, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 9, 7, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 10, 7, SIGNPOST_READ, MapCeladonGameCornerSignpost16Script
+	signpost 11, 7, SIGNPOST_LEFT, MapCeladonGameCornerSignpost35Script
+	signpost 6, 12, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 7, 12, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 8, 12, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 9, 12, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 10, 12, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 11, 12, SIGNPOST_RIGHT, MapCeladonGameCornerSignpost35Script
+	signpost 6, 13, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 7, 13, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 8, 13, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 9, 13, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 10, 13, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 11, 13, SIGNPOST_LEFT, MapCeladonGameCornerSignpost35Script
+	signpost 6, 18, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 7, 18, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 8, 18, SIGNPOST_READ, MapCeladonGameCornerSignpost32Script
+	signpost 9, 18, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 10, 18, SIGNPOST_READ, MapCeladonGameCornerSignpost35Script
+	signpost 11, 18, SIGNPOST_RIGHT, MapCeladonGameCornerSignpost35Script
+	signpost 0, 15, SIGNPOST_READ, MapCeladonGameCornerSignpost36Script
+	signpost 0, 9, SIGNPOST_READ, MapCeladonGameCornerSignpost37Script
 
 	; people-events
 	db 9
-	person_event SPRITE_CLERK, 6, 9, $6, $0, 255, 255, $a0, 0, ClerkScript_0x7211d, -1
-	person_event SPRITE_RECEPTIONIST, 6, 7, $6, $0, 255, 255, $a0, 0, ReceptionistScript_0x72120, -1
-	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $80, 0, PokefanMScript_0x72123, -1
-	person_event SPRITE_TEACHER, 11, 21, $9, $0, 255, 255, $90, 0, TeacherScript_0x7212e, -1
-	person_event SPRITE_FISHING_GURU, 11, 15, $9, $0, 255, 255, $a0, 0, FishingGuruScript_0x72139, -1
-	person_event SPRITE_FISHER, 14, 12, $8, $0, 255, 2, $80, 0, FisherScript_0x72144, -1
-	person_event SPRITE_FISHER, 14, 12, $8, $0, 255, 4, $80, 0, FisherScript_0x72144, -1
-	person_event SPRITE_GYM_GUY, 7, 15, $6, $0, 255, 255, $80, 0, CeladonGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 12, 6, $8, $0, 255, 255, $a0, 0, GrampsScript_0x72190, -1
+	person_event SPRITE_CLERK, 6, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ClerkScript_0x7211d, -1
+	person_event SPRITE_RECEPTIONIST, 6, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x72120, -1
+	person_event SPRITE_POKEFAN_M, 14, 18, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x72123, -1
+	person_event SPRITE_TEACHER, 11, 21, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7212e, -1
+	person_event SPRITE_FISHING_GURU, 11, 15, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingGuruScript_0x72139, -1
+	person_event SPRITE_FISHER, 14, 12, LEFT << 2 | $0, $0, -1, 2, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x72144, -1
+	person_event SPRITE_FISHER, 14, 12, LEFT << 2 | $0, $0, -1, 4, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x72144, -1
+	person_event SPRITE_GYM_GUY, 7, 15, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CeladonGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 12, 6, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GrampsScript_0x72190, -1

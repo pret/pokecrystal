@@ -16,13 +16,13 @@ UnknownScript_0x7a4d7:
 	end
 
 UnknownScript_0x7a4d8:
-	setevent EVENT_000
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
 	showemote EMOTE_SHOCK, $2, 15
 	spriteface $0, LEFT
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
@@ -77,9 +77,9 @@ UnknownScript_0x7a549:
 	writetext UnknownText_0x7a850
 	closetext
 	loadmovesprites
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x7a55d
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iffalse UnknownScript_0x7a564
 	jump UnknownScript_0x7a56b
 
@@ -109,7 +109,7 @@ UnknownScript_0x7a57e:
 
 MomScript_0x7a582:
 	faceplayer
-	setevent EVENT_001
+	setevent EVENT_CHRIS2_IN_CABLE_CLUB
 	checktriggers
 	iffalse UnknownScript_0x7a572
 	loadfont
@@ -397,15 +397,15 @@ KrissHouse1F_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 1, 0, $0, StoveScript
-	signpost 1, 1, $0, SinkScript
-	signpost 1, 2, $0, FridgeScript
-	signpost 1, 4, $0, TVScript
+	signpost 1, 0, SIGNPOST_READ, StoveScript
+	signpost 1, 1, SIGNPOST_READ, SinkScript
+	signpost 1, 2, SIGNPOST_READ, FridgeScript
+	signpost 1, 4, SIGNPOST_READ, TVScript
 
 	; people-events
 	db 5
-	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 255, $0, 0, MomScript_0x7a582, EVENT_6C7
-	person_event SPRITE_MOM, 6, 6, $7, $0, 255, 1, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 2, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_MOM, 6, 4, $7, $0, 255, 4, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_POKEFAN_F, 8, 8, $9, $0, 255, 255, $80, 0, NeighborScript, EVENT_792
+	person_event SPRITE_MOM, 8, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, MomScript_0x7a582, EVENT_6C7
+	person_event SPRITE_MOM, 6, 6, UP << 2 | $3, $0, -1, 1, $0, 0, MomScript_0x7a582, EVENT_6C8
+	person_event SPRITE_MOM, 8, 11, LEFT << 2 | $0, $0, -1, 2, $0, 0, MomScript_0x7a582, EVENT_6C8
+	person_event SPRITE_MOM, 6, 4, UP << 2 | $3, $0, -1, 4, $0, 0, MomScript_0x7a582, EVENT_6C8
+	person_event SPRITE_POKEFAN_F, 8, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, NeighborScript, EVENT_792

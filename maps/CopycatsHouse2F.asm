@@ -368,14 +368,14 @@ CopycatsHouse2F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, CopycatsHouse2FBookshelf
-	signpost 1, 1, $0, CopycatsHouse2FBookshelf
+	signpost 1, 0, SIGNPOST_READ, CopycatsHouse2FBookshelf
+	signpost 1, 1, SIGNPOST_READ, CopycatsHouse2FBookshelf
 
 	; people-events
 	db 6
-	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $80, 0, Copycat, EVENT_6EE
-	person_event SPRITE_MOLTRES, 8, 10, $16, $0, 255, 255, $b0, 0, CopycatsDodrio, -1
-	person_event SPRITE_FAIRY, 5, 10, $6, $0, 255, 255, $80, 0, CopycatsHouse2FDoll, EVENT_773
-	person_event SPRITE_MONSTER, 5, 6, $6, $0, 255, 255, $a0, 0, CopycatsHouse2FDoll, -1
-	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, CopycatsHouse2FDoll, -1
-	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, Copycat, EVENT_6EF
+	person_event SPRITE_COPYCAT, 7, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Copycat, EVENT_6EE
+	person_event SPRITE_MOLTRES, 8, 10, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CopycatsDodrio, -1
+	person_event SPRITE_FAIRY, 5, 10, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CopycatsHouse2FDoll, EVENT_773
+	person_event SPRITE_MONSTER, 5, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CopycatsHouse2FDoll, -1
+	person_event SPRITE_BIRD, 5, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CopycatsHouse2FDoll, -1
+	person_event SPRITE_COPYCAT, 7, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, Copycat, EVENT_6EF

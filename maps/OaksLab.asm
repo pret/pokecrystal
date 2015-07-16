@@ -264,26 +264,26 @@ OaksLab_MapEventHeader:
 
 	; signposts
 	db 16
-	signpost 1, 6, $0, OaksLabBookshelf
-	signpost 1, 7, $0, OaksLabBookshelf
-	signpost 1, 8, $0, OaksLabBookshelf
-	signpost 1, 9, $0, OaksLabBookshelf
-	signpost 7, 0, $0, OaksLabBookshelf
-	signpost 7, 1, $0, OaksLabBookshelf
-	signpost 7, 2, $0, OaksLabBookshelf
-	signpost 7, 3, $0, OaksLabBookshelf
-	signpost 7, 6, $0, OaksLabBookshelf
-	signpost 7, 7, $0, OaksLabBookshelf
-	signpost 7, 8, $0, OaksLabBookshelf
-	signpost 7, 9, $0, OaksLabBookshelf
-	signpost 0, 4, $0, OaksLabPoster1
-	signpost 0, 5, $0, OaksLabPoster2
-	signpost 3, 9, $0, OaksLabTrashcan
-	signpost 1, 0, $0, OaksLabPC
+	signpost 1, 6, SIGNPOST_READ, OaksLabBookshelf
+	signpost 1, 7, SIGNPOST_READ, OaksLabBookshelf
+	signpost 1, 8, SIGNPOST_READ, OaksLabBookshelf
+	signpost 1, 9, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 0, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 1, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 2, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 3, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 6, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 7, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 8, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 9, SIGNPOST_READ, OaksLabBookshelf
+	signpost 0, 4, SIGNPOST_READ, OaksLabPoster1
+	signpost 0, 5, SIGNPOST_READ, OaksLabPoster2
+	signpost 3, 9, SIGNPOST_READ, OaksLabTrashcan
+	signpost 1, 0, SIGNPOST_READ, OaksLabPC
 
 	; people-events
 	db 4
-	person_event SPRITE_OAK, 6, 8, $6, $0, 255, 255, $0, 0, Oak, -1
-	person_event SPRITE_SCIENTIST, 12, 5, $5, $1, 255, 255, $90, 0, ScientistScript_0x19b40f, -1
-	person_event SPRITE_SCIENTIST, 13, 12, $4, $10, 255, 255, $90, 0, ScientistScript_0x19b412, -1
-	person_event SPRITE_SCIENTIST, 8, 5, $2, $11, 255, 255, $90, 0, ScientistScript_0x19b415, -1
+	person_event SPRITE_OAK, 6, 8, UP << 2 | $2, $0, -1, -1, $0, 0, Oak, -1
+	person_event SPRITE_SCIENTIST, 12, 5, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b40f, -1
+	person_event SPRITE_SCIENTIST, 13, 12, UP << 2 | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b412, -1
+	person_event SPRITE_SCIENTIST, 8, 5, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b415, -1

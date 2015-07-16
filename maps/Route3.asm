@@ -203,11 +203,11 @@ Route3_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 13, 49, $0, MapRoute3Signpost0Script
+	signpost 13, 49, SIGNPOST_READ, MapRoute3Signpost0Script
 
 	; people-events
 	db 4
-	person_event SPRITE_FISHER, 16, 30, $7, $0, 255, 255, $82, 2, TrainerFirebreatherOtis, -1
-	person_event SPRITE_YOUNGSTER, 11, 14, $8, $0, 255, 255, $92, 3, TrainerYoungsterWarren, -1
-	person_event SPRITE_YOUNGSTER, 7, 20, $a, $0, 255, 255, $92, 1, TrainerYoungsterJimmy, -1
-	person_event SPRITE_FISHER, 9, 53, $a, $0, 255, 255, $82, 3, TrainerFirebreatherBurt, -1
+	person_event SPRITE_FISHER, 16, 30, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherOtis, -1
+	person_event SPRITE_YOUNGSTER, 11, 14, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterWarren, -1
+	person_event SPRITE_YOUNGSTER, 7, 20, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerYoungsterJimmy, -1
+	person_event SPRITE_FISHER, 9, 53, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerFirebreatherBurt, -1

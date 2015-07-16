@@ -38,8 +38,8 @@ RedsHouse2F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 5, 3, $0, MapRedsHouse2FSignpost0Script
-	signpost 1, 0, $0, MapRedsHouse2FSignpost1Script
+	signpost 5, 3, SIGNPOST_READ, MapRedsHouse2FSignpost0Script
+	signpost 1, 0, SIGNPOST_READ, MapRedsHouse2FSignpost1Script
 
 	; people-events
 	db 0

@@ -171,10 +171,10 @@ Route20_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 11, 37, $0, MapRoute20Signpost0Script
+	signpost 11, 37, SIGNPOST_READ, MapRoute20Signpost0Script
 
 	; people-events
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 12, 56, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNicole, -1
-	person_event SPRITE_SWIMMER_GIRL, 17, 49, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfLori, -1
-	person_event SPRITE_SWIMMER_GUY, 17, 16, $a, $0, 255, 255, $82, 3, TrainerSwimmermCameron, -1
+	person_event SPRITE_SWIMMER_GIRL, 12, 56, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfNicole, -1
+	person_event SPRITE_SWIMMER_GIRL, 17, 49, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfLori, -1
+	person_event SPRITE_SWIMMER_GUY, 17, 16, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermCameron, -1

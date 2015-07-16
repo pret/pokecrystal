@@ -143,18 +143,18 @@ FuchsiaCity_MapEventHeader:
 
 	; signposts
 	db 8
-	signpost 15, 21, $0, FuchsiaCitySign
-	signpost 29, 5, $0, FuchsiaGymSign
-	signpost 15, 25, $0, SafariZoneOfficeSign
-	signpost 29, 27, $0, WardensHomeSign
-	signpost 5, 17, $0, SafariZoneClosedSign
-	signpost 15, 13, $0, NoLitteringSign
-	signpost 27, 20, $0, FuchsiaCityPokeCenterSign
-	signpost 13, 6, $0, FuchsiaCityMartSign
+	signpost 15, 21, SIGNPOST_READ, FuchsiaCitySign
+	signpost 29, 5, SIGNPOST_READ, FuchsiaGymSign
+	signpost 15, 25, SIGNPOST_READ, SafariZoneOfficeSign
+	signpost 29, 27, SIGNPOST_READ, WardensHomeSign
+	signpost 5, 17, SIGNPOST_READ, SafariZoneClosedSign
+	signpost 15, 13, SIGNPOST_READ, NoLitteringSign
+	signpost 27, 20, SIGNPOST_READ, FuchsiaCityPokeCenterSign
+	signpost 13, 6, SIGNPOST_READ, FuchsiaCityMartSign
 
 	; people-events
 	db 4
-	person_event SPRITE_YOUNGSTER, 22, 27, $2, $11, 255, 255, $a0, 0, YoungsterScript_0x194b22, -1
-	person_event SPRITE_POKEFAN_M, 12, 17, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x194b25, -1
-	person_event SPRITE_TEACHER, 18, 20, $2, $11, 255, 255, $80, 0, TeacherScript_0x194b28, -1
-	person_event SPRITE_FRUIT_TREE, 5, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194b43, -1
+	person_event SPRITE_YOUNGSTER, 22, 27, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x194b22, -1
+	person_event SPRITE_POKEFAN_M, 12, 17, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x194b25, -1
+	person_event SPRITE_TEACHER, 18, 20, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x194b28, -1
+	person_event SPRITE_FRUIT_TREE, 5, 12, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x194b43, -1

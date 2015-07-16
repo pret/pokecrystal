@@ -96,35 +96,35 @@ RuinsofAlphInnerChamber_MapEventHeader:
 
 	; signposts
 	db 26
-	signpost 3, 2, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 5, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 8, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 11, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 14, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 17, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 2, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 5, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 8, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 11, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 14, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 17, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 13, 2, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 13, 17, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 2, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 5, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 8, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 11, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 14, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 17, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 2, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 5, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 8, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 11, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 14, $0, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 17, $0, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 3, 8, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 3, 11, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 3, 14, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 3, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 8, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 8, 5, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 8, 8, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 8, 11, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 8, 14, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 8, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 13, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 13, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 18, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 18, 5, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 18, 8, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 18, 11, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 18, 14, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 18, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 24, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 24, 5, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 24, 8, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 24, 11, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 24, 14, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 24, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
 
 	; people-events
 	db 3
-	person_event SPRITE_FISHER, 11, 7, $3, $0, 255, 255, $a0, 0, FisherScript_0x58f7d, EVENT_705
-	person_event SPRITE_TEACHER, 17, 18, $2, $11, 255, 255, $0, 0, TeacherScript_0x58f80, EVENT_705
-	person_event SPRITE_GRAMPS, 23, 15, $7, $0, 255, 255, $b0, 0, GrampsScript_0x58f83, EVENT_705
+	person_event SPRITE_FISHER, 11, 7, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x58f7d, EVENT_705
+	person_event SPRITE_TEACHER, 17, 18, DOWN << 2 | $2, $11, -1, -1, $0, 0, TeacherScript_0x58f80, EVENT_705
+	person_event SPRITE_GRAMPS, 23, 15, UP << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x58f83, EVENT_705

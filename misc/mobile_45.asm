@@ -427,7 +427,7 @@ Function1143b7: ; 1143b7
 	pop hl
 	push af
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -673,7 +673,7 @@ Function1144d1: ; 1144d1
 .asm_11451c
 	pop hl
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -690,7 +690,7 @@ Function1144d1: ; 1144d1
 .asm_114537
 	ld hl, wdc06
 	ld a, [hl]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld hl, wdc09
@@ -1255,7 +1255,7 @@ Function114843: ; 114843
 Function114867: ; 114867
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -1283,7 +1283,7 @@ Function114867: ; 114867
 	inc e
 	call z, Function1148b9
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1313,7 +1313,7 @@ Function114867: ; 114867
 
 Function1148b9: ; 1148b9
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -1322,7 +1322,7 @@ Function1148b9: ; 1148b9
 Function1148c2: ; 1148c2
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -1375,7 +1375,7 @@ Function1148c2: ; 1148c2
 	inc e
 	call z, Function114944
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1413,7 +1413,7 @@ Function1148c2: ; 1148c2
 
 Function114944: ; 114944
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -1422,7 +1422,7 @@ Function114944: ; 114944
 Function11494d: ; 11494d
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -1467,7 +1467,7 @@ Function11494d: ; 11494d
 	inc e
 	call z, Function1149c3
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1505,7 +1505,7 @@ Function11494d: ; 11494d
 
 Function1149c3: ; 1149c3
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -1514,7 +1514,7 @@ Function1149c3: ; 1149c3
 Function1149cc: ; 1149cc
 	ld hl, wdc06
 	ld a, [hl]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	push de
@@ -1546,7 +1546,7 @@ Function1149cc: ; 1149cc
 	inc e
 	call z, Function114a0f
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1563,7 +1563,7 @@ Function1149cc: ; 1149cc
 
 Function114a0f: ; 114a0f
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -1872,7 +1872,7 @@ Function114b55: ; 114b55
 .asm_114b96
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -1922,7 +1922,7 @@ Function114bbc: ; 114bbc
 	jr z, .asm_114bff
 	pop hl
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2152,7 +2152,7 @@ Function114cd9: ; 114cd9
 .asm_114d11
 	pop hl
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2456,7 +2456,7 @@ Function114e62: ; 114e62
 Function114ea0: ; 114ea0
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2481,7 +2481,7 @@ Function114ea0: ; 114ea0
 	inc e
 	call z, Function114ee0
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2502,7 +2502,7 @@ Function114ea0: ; 114ea0
 
 Function114ee0: ; 114ee0
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -2740,7 +2740,7 @@ Function115020: ; 115020
 	push hl
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2767,7 +2767,7 @@ Function115020: ; 115020
 
 .asm_115046
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2786,7 +2786,7 @@ Function115020: ; 115020
 
 Function115059: ; 115059
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -2952,7 +2952,7 @@ Function1150b3: ; 1150b3
 Function115136: ; 115136
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2979,7 +2979,7 @@ Function115136: ; 115136
 
 .asm_11515d
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2998,7 +2998,7 @@ Function115136: ; 115136
 
 Function115170: ; 115170
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -3007,7 +3007,7 @@ Function115170: ; 115170
 Function115179: ; 115179
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -3102,7 +3102,7 @@ Function115179: ; 115179
 	inc e
 	call z, Function11520e
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3117,7 +3117,7 @@ Function115179: ; 115179
 
 Function11520e: ; 11520e
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -3127,7 +3127,7 @@ Function115217: ; 115217
 	push hl
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -3166,7 +3166,7 @@ Function115217: ; 115217
 
 .asm_115252
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3211,7 +3211,7 @@ Function115217: ; 115217
 
 Function115286: ; 115286
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -3610,7 +3610,7 @@ Function1153d2: ; 1153d2
 	ld [de], a
 	ld hl, RightOrnament
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -3619,7 +3619,7 @@ Function1153d2: ; 1153d2
 	ld hl, $ddc8
 	call Function115d6a
 	ld hl, RightOrnament
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -3845,7 +3845,7 @@ Function1155d1: ; 1155d1
 
 Function11560a: ; 11560a
 	ld a, [wdc06]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld a, [wdc17]
 	ld [wdc00], a
 	ld [$ff8c], a
@@ -3920,7 +3920,7 @@ Function11560a: ; 11560a
 	inc hl
 	ld [hl], d
 	pop bc
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [$ff8c], a
 	ld [$4000], a
 	ld hl, wdc07
@@ -3942,7 +3942,7 @@ Function11560a: ; 11560a
 	jr nz, .asm_11564d
 
 .asm_1156a9
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [wdc06], a
 	xor a
 	ret
@@ -4285,7 +4285,7 @@ Function11581e: ; 11581e
 	pop hl
 	ld hl, wdc07
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -4294,7 +4294,7 @@ Function11581e: ; 11581e
 	ld hl, PartyMon5Speed
 	call Function115d6a
 	ld hl, wdc07
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -4847,7 +4847,7 @@ Function115b00: ; 115b00
 	pop hl
 	ld hl, wdc07
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -4856,7 +4856,7 @@ Function115b00: ; 115b00
 	ld hl, wdc26
 	call Function115d6a
 	ld hl, wdc07
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -5230,7 +5230,7 @@ Function115d6a: ; 115d6a
 
 Function115d77: ; 115d77
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret

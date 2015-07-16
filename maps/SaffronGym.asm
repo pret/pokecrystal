@@ -390,13 +390,13 @@ SaffronGym_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 15, 8, $0, SaffronGymStatue
+	signpost 15, 8, SIGNPOST_READ, SaffronGymStatue
 
 	; people-events
 	db 6
-	person_event SPRITE_SABRINA, 12, 13, $6, $0, 255, 255, $80, 0, SabrinaScript_0x189c2e, -1
-	person_event SPRITE_GRANNY, 20, 21, $a, $0, 255, 255, $b2, 3, TrainerMediumRebecca, -1
-	person_event SPRITE_YOUNGSTER, 20, 7, $a, $0, 255, 255, $92, 3, TrainerPsychicFranklin, -1
-	person_event SPRITE_GRANNY, 8, 7, $a, $0, 255, 255, $b2, 2, TrainerMediumDoris, -1
-	person_event SPRITE_YOUNGSTER, 8, 21, $a, $0, 255, 255, $92, 2, TrainerPsychicJared, -1
-	person_event SPRITE_GYM_GUY, 18, 13, $6, $0, 255, 255, $90, 0, SaffronGymGuyScript, -1
+	person_event SPRITE_SABRINA, 12, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SabrinaScript_0x189c2e, -1
+	person_event SPRITE_GRANNY, 20, 21, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerMediumRebecca, -1
+	person_event SPRITE_YOUNGSTER, 20, 7, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFranklin, -1
+	person_event SPRITE_GRANNY, 8, 7, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerMediumDoris, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicJared, -1
+	person_event SPRITE_GYM_GUY, 18, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SaffronGymGuyScript, -1

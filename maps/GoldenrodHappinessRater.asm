@@ -145,12 +145,12 @@ GoldenrodHappinessRater_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, HappinessRatersHouseBookshelf
-	signpost 1, 1, $0, HappinessRatersHouseBookshelf
-	signpost 1, 7, $0, HappinessRatersHouseRadio
+	signpost 1, 0, SIGNPOST_READ, HappinessRatersHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, HappinessRatersHouseBookshelf
+	signpost 1, 7, SIGNPOST_READ, HappinessRatersHouseRadio
 
 	; people-events
 	db 3
-	person_event SPRITE_TEACHER, 8, 6, $6, $0, 255, 255, $90, 0, TeacherScript_0x54953, -1
-	person_event SPRITE_POKEFAN_M, 7, 9, $8, $0, 255, 255, $0, 0, PokefanMScript_0x54997, -1
-	person_event SPRITE_TWIN, 10, 9, $5, $1, 255, 255, $a0, 0, TwinScript_0x5499a, -1
+	person_event SPRITE_TEACHER, 8, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x54953, -1
+	person_event SPRITE_POKEFAN_M, 7, 9, LEFT << 2 | $0, $0, -1, -1, $0, 0, PokefanMScript_0x54997, -1
+	person_event SPRITE_TWIN, 10, 9, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x5499a, -1

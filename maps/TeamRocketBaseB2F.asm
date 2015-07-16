@@ -179,7 +179,7 @@ UnknownScript_0x6d0be:
 
 TrainerGruntM17:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_16
+	dw EVENT_BEAT_ROCKET_GRUNTM_17
 
 	; trainer group && trainer id
 	db GRUNTM, 17
@@ -206,7 +206,7 @@ GruntM17Script:
 
 TrainerGruntM18:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_17
+	dw EVENT_BEAT_ROCKET_GRUNTM_18
 
 	; trainer group && trainer id
 	db GRUNTM, 18
@@ -233,7 +233,7 @@ GruntM18Script:
 
 TrainerGruntM19:
 	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_18
+	dw EVENT_BEAT_ROCKET_GRUNTM_19
 
 	; trainer group && trainer id
 	db GRUNTM, 19
@@ -975,43 +975,43 @@ TeamRocketBaseB2F_MapEventHeader:
 
 	; signposts
 	db 23
-	signpost 12, 14, $6, MapTeamRocketBaseB2FSignpostPtr1
-	signpost 12, 15, $6, MapTeamRocketBaseB2FSignpostPtr1
-	signpost 9, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 16, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 15, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 14, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 13, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 8, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 6, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 5, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 13, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 14, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 15, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 16, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 5, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 6, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 8, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 26, $7, MapTeamRocketBaseB2FSignpostItem22
+	signpost 12, 14, SIGNPOST_IFNOTSET, MapTeamRocketBaseB2FSignpostPtr1
+	signpost 12, 15, SIGNPOST_IFNOTSET, MapTeamRocketBaseB2FSignpostPtr1
+	signpost 9, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 16, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 15, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 14, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 13, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 8, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 7, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 6, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 5, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 13, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 14, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 15, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 16, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 5, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 6, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 7, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 8, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 7, 26, SIGNPOST_ITEMIFSET, MapTeamRocketBaseB2FSignpostItem22
 
 	; people-events
 	db 14
-	person_event SPRITE_ROCKET, 20, 24, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6DE
-	person_event SPRITE_ROCKET_GIRL, 20, 24, $7, $0, 255, 255, $80, 0, ObjectEvent, EVENT_6DD
-	person_event SPRITE_LANCE, 17, 9, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6D6
-	person_event SPRITE_DRAGON, 17, 13, $9, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6DF
-	person_event SPRITE_VOLTORB, 9, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d101, EVENT_6E0
-	person_event SPRITE_VOLTORB, 11, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d12c, EVENT_6E1
-	person_event SPRITE_VOLTORB, 13, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d157, EVENT_6E2
-	person_event SPRITE_VOLTORB, 9, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E0
-	person_event SPRITE_VOLTORB, 11, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E1
-	person_event SPRITE_VOLTORB, 13, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E2
-	person_event SPRITE_ROCKET, 17, 29, $6, $0, 255, 255, $2, 3, TrainerGruntM17, EVENT_6DA
-	person_event SPRITE_ROCKET, 5, 8, $a, $0, 255, 255, $2, 1, TrainerGruntM18, EVENT_6DA
-	person_event SPRITE_ROCKET, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, EVENT_6DA
-	person_event SPRITE_POKE_BALL, 14, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6d20d, EVENT_66C
+	person_event SPRITE_ROCKET, 20, 24, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6DE
+	person_event SPRITE_ROCKET_GIRL, 20, 24, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_6DD
+	person_event SPRITE_LANCE, 17, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6D6
+	person_event SPRITE_DRAGON, 17, 13, LEFT << 2 | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6DF
+	person_event SPRITE_VOLTORB, 9, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d101, EVENT_6E0
+	person_event SPRITE_VOLTORB, 11, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d12c, EVENT_6E1
+	person_event SPRITE_VOLTORB, 13, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d157, EVENT_6E2
+	person_event SPRITE_VOLTORB, 9, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6E0
+	person_event SPRITE_VOLTORB, 11, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6E1
+	person_event SPRITE_VOLTORB, 13, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6E2
+	person_event SPRITE_ROCKET, 17, 29, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM17, EVENT_6DA
+	person_event SPRITE_ROCKET, 5, 8, LEFT << 2 | $2, $0, -1, -1, $2, 1, TrainerGruntM18, EVENT_6DA
+	person_event SPRITE_ROCKET, 18, 25, LEFT << 2 | $0, $0, -1, -1, $2, 4, TrainerGruntM19, EVENT_6DA
+	person_event SPRITE_POKE_BALL, 14, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6d20d, EVENT_66C

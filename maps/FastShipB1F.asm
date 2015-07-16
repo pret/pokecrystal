@@ -612,19 +612,19 @@ FastShipB1F_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 9, 27, $0, FashShipB1FTrashcan
+	signpost 9, 27, SIGNPOST_READ, FashShipB1FTrashcan
 
 	; people-events
 	db 12
-	person_event SPRITE_SAILOR, 10, 34, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, EVENT_72E
-	person_event SPRITE_SAILOR, 10, 35, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, EVENT_72F
-	person_event SPRITE_SAILOR, 15, 13, $7, $0, 255, 255, $92, 3, TrainerSailorJeff, EVENT_739
-	person_event SPRITE_LASS, 8, 10, $7, $0, 255, 255, $a2, 1, TrainerPicnickerDebra, EVENT_739
-	person_event SPRITE_SUPER_NERD, 13, 30, $9, $0, 255, 255, $92, 1, TrainerJugglerFritz, EVENT_739
-	person_event SPRITE_SAILOR, 8, 21, $9, $0, 255, 255, $92, 4, TrainerSailorGarrett, EVENT_73A
-	person_event SPRITE_FISHER, 12, 29, $7, $0, 255, 255, $a2, 3, TrainerFisherJonah, EVENT_73A
-	person_event SPRITE_BLACK_BELT, 15, 19, $1f, $0, 255, 255, $b2, 3, TrainerBlackbeltWai, EVENT_73A
-	person_event SPRITE_SAILOR, 8, 27, $9, $0, 255, 255, $92, 4, TrainerSailorKenneth, EVENT_73B
-	person_event SPRITE_TEACHER, 15, 13, $7, $0, 255, 255, $82, 3, TrainerTeacherShirley, EVENT_73B
-	person_event SPRITE_YOUNGSTER, 13, 18, $3, $0, 255, 255, $92, 1, TrainerSchoolboyNate, EVENT_73B
-	person_event SPRITE_YOUNGSTER, 15, 18, $a, $0, 255, 255, $92, 1, TrainerSchoolboyRicky, EVENT_73B
+	person_event SPRITE_SAILOR, 10, 34, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x76767, EVENT_72E
+	person_event SPRITE_SAILOR, 10, 35, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x76767, EVENT_72F
+	person_event SPRITE_SAILOR, 15, 13, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorJeff, EVENT_739
+	person_event SPRITE_LASS, 8, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerPicnickerDebra, EVENT_739
+	person_event SPRITE_SUPER_NERD, 13, 30, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerJugglerFritz, EVENT_739
+	person_event SPRITE_SAILOR, 8, 21, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSailorGarrett, EVENT_73A
+	person_event SPRITE_FISHER, 12, 29, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherJonah, EVENT_73A
+	person_event SPRITE_BLACK_BELT, 15, 19, RIGHT << 2 | $13, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBlackbeltWai, EVENT_73A
+	person_event SPRITE_SAILOR, 8, 27, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSailorKenneth, EVENT_73B
+	person_event SPRITE_TEACHER, 15, 13, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerTeacherShirley, EVENT_73B
+	person_event SPRITE_YOUNGSTER, 13, 18, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyNate, EVENT_73B
+	person_event SPRITE_YOUNGSTER, 15, 18, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyRicky, EVENT_73B

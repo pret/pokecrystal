@@ -488,15 +488,15 @@ EcruteakGym_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, EcruteakGymStatue
-	signpost 15, 6, $0, EcruteakGymStatue
+	signpost 15, 3, SIGNPOST_READ, EcruteakGymStatue
+	signpost 15, 6, SIGNPOST_READ, EcruteakGymStatue
 
 	; people-events
 	db 7
-	person_event SPRITE_MORTY, 5, 9, $6, $0, 255, 255, $b0, 0, MortyScript_0x99d58, -1
-	person_event SPRITE_SAGE, 11, 6, $9, $0, 255, 255, $92, 1, TrainerSageJeffrey, -1
-	person_event SPRITE_SAGE, 17, 7, $9, $0, 255, 255, $92, 3, TrainerSagePing, -1
-	person_event SPRITE_GRANNY, 9, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumMartha, -1
-	person_event SPRITE_GRANNY, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, -1
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 18, 8, $6, $0, 255, 255, $a0, 0, ObjectEvent, EVENT_7A8
+	person_event SPRITE_MORTY, 5, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MortyScript_0x99d58, -1
+	person_event SPRITE_SAGE, 11, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSageJeffrey, -1
+	person_event SPRITE_SAGE, 17, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSagePing, -1
+	person_event SPRITE_GRANNY, 9, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerMediumMartha, -1
+	person_event SPRITE_GRANNY, 13, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerMediumGrace, -1
+	person_event SPRITE_GYM_GUY, 19, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, EcruteakGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 18, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_7A8

@@ -218,10 +218,10 @@ Route33_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 11, 11, $0, MapRoute33Signpost0Script
+	signpost 11, 11, SIGNPOST_READ, MapRoute33Signpost0Script
 
 	; people-events
 	db 3
-	person_event SPRITE_POKEFAN_M, 17, 10, $a, $0, 255, 255, $b2, 2, TrainerHikerAnthony, -1
-	person_event SPRITE_LASS, 20, 17, $2, $11, 255, 255, $90, 0, LassScript_0x1ac002, -1
-	person_event SPRITE_FRUIT_TREE, 20, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac0ea, -1
+	person_event SPRITE_POKEFAN_M, 17, 10, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerAnthony, -1
+	person_event SPRITE_LASS, 20, 17, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x1ac002, -1
+	person_event SPRITE_FRUIT_TREE, 20, 18, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1ac0ea, -1

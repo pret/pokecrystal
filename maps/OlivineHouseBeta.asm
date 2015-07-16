@@ -49,10 +49,10 @@ OlivineHouseBeta_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, OlivineHouseBetaBookshelf1
-	signpost 1, 1, $0, OlivineHouseBetaBookshelf2
+	signpost 1, 0, SIGNPOST_READ, OlivineHouseBetaBookshelf1
+	signpost 1, 1, SIGNPOST_READ, OlivineHouseBetaBookshelf2
 
 	; people-events
 	db 2
-	person_event SPRITE_TEACHER, 7, 6, $3, $0, 255, 255, $0, 0, TeacherScript_0x9c58f, -1
-	person_event SPRITE_RHYDON, 8, 10, $4, $20, 255, 255, $0, 0, RhydonScript_0x9c592, -1
+	person_event SPRITE_TEACHER, 7, 6, DOWN << 2 | $3, $0, -1, -1, $0, 0, TeacherScript_0x9c58f, -1
+	person_event SPRITE_RHYDON, 8, 10, UP << 2 | $0, $20, -1, -1, $0, 0, RhydonScript_0x9c592, -1

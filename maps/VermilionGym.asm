@@ -315,28 +315,28 @@ VermilionGym_MapEventHeader:
 
 	; signposts
 	db 17
-	signpost 7, 1, $0, MapVermilionGymSignpost14Script
-	signpost 7, 3, $0, MapVermilionGymSignpost14Script
-	signpost 7, 5, $0, MapVermilionGymSignpost14Script
-	signpost 7, 7, $0, MapVermilionGymSignpost14Script
-	signpost 7, 9, $0, MapVermilionGymSignpost14Script
-	signpost 9, 1, $0, MapVermilionGymSignpost14Script
-	signpost 9, 3, $0, MapVermilionGymSignpost14Script
-	signpost 9, 5, $0, MapVermilionGymSignpost14Script
-	signpost 9, 7, $0, MapVermilionGymSignpost14Script
-	signpost 9, 9, $0, MapVermilionGymSignpost14Script
-	signpost 11, 1, $0, MapVermilionGymSignpost14Script
-	signpost 11, 3, $0, MapVermilionGymSignpost14Script
-	signpost 11, 5, $0, MapVermilionGymSignpost14Script
-	signpost 11, 7, $0, MapVermilionGymSignpost14Script
-	signpost 11, 9, $0, MapVermilionGymSignpost14Script
-	signpost 15, 3, $0, VermilionGymStatue
-	signpost 15, 6, $0, VermilionGymStatue
+	signpost 7, 1, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 7, 3, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 7, 5, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 7, 7, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 7, 9, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 1, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 3, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 5, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 7, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 9, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 1, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 3, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 5, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 7, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 9, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 15, 3, SIGNPOST_READ, VermilionGymStatue
+	signpost 15, 6, SIGNPOST_READ, VermilionGymStatue
 
 	; people-events
 	db 5
-	person_event SPRITE_SURGE, 6, 9, $6, $0, 255, 255, $b0, 0, SurgeScript_0x1920a5, -1
-	person_event SPRITE_GENTLEMAN, 12, 12, $8, $0, 255, 255, $92, 4, TrainerGentlemanGregory, -1
-	person_event SPRITE_ROCKER, 11, 8, $6, $3, 255, 255, $82, 3, TrainerGuitaristVincent, -1
-	person_event SPRITE_SUPER_NERD, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, -1
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, -1
+	person_event SPRITE_SURGE, 6, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, SurgeScript_0x1920a5, -1
+	person_event SPRITE_GENTLEMAN, 12, 12, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerGentlemanGregory, -1
+	person_event SPRITE_ROCKER, 11, 8, UP << 2 | $2, $3, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerGuitaristVincent, -1
+	person_event SPRITE_SUPER_NERD, 14, 4, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerJugglerHorton, -1
+	person_event SPRITE_GYM_GUY, 19, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, VermilionGymGuyScript, -1

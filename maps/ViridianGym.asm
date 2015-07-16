@@ -178,10 +178,10 @@ ViridianGym_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 13, 3, $0, ViridianGymStatue
-	signpost 13, 6, $0, ViridianGymStatue
+	signpost 13, 3, SIGNPOST_READ, ViridianGymStatue
+	signpost 13, 6, SIGNPOST_READ, ViridianGymStatue
 
 	; people-events
 	db 2
-	person_event SPRITE_BLUE, 7, 9, $6, $0, 255, 255, $0, 0, BlueScript_0x9aa26, EVENT_776
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, ViridianGymGuyScript, EVENT_776
+	person_event SPRITE_BLUE, 7, 9, UP << 2 | $2, $0, -1, -1, $0, 0, BlueScript_0x9aa26, EVENT_776
+	person_event SPRITE_GYM_GUY, 17, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ViridianGymGuyScript, EVENT_776

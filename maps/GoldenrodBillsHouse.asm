@@ -251,12 +251,12 @@ GoldenrodBillsHouse_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, BillsHouseBookshelf2
-	signpost 1, 1, $0, BillsHouseBookshelf1
-	signpost 1, 7, $0, BillsHouseRadio
+	signpost 1, 0, SIGNPOST_READ, BillsHouseBookshelf2
+	signpost 1, 1, SIGNPOST_READ, BillsHouseBookshelf1
+	signpost 1, 7, SIGNPOST_READ, BillsHouseRadio
 
 	; people-events
 	db 3
-	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillsHouseBill, EVENT_MET_BILL
-	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, BillsMom, -1
-	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, BillsSister, -1
+	person_event SPRITE_BILL, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, BillsHouseBill, EVENT_MET_BILL
+	person_event SPRITE_POKEFAN_F, 7, 9, UP << 2 | $2, $0, -1, -1, $0, 0, BillsMom, -1
+	person_event SPRITE_TWIN, 8, 9, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BillsSister, -1

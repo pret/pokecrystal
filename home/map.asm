@@ -9,40 +9,48 @@ Function210f:: ; 210f
 ; 211b
 
 CheckTriggers:: ; 211b
+; Checks wCurrentMapTriggerPointer.  If it's empty, returns -1 in a.  Otherwise, returns the active trigger ID in a.
 	push hl
-	ld hl, BikeFlags + 2
+	ld hl, wCurrentMapTriggerPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
 	ld a, [hl]
-	jr nz, .asm_2128
+	jr nz, .triggerexists
 	ld a, -1
 
-.asm_2128
+.triggerexists
 	pop hl
 	ret
 ; 212a
 
 GetCurrentMapTrigger:: ; 212a
+; Grabs the wram map trigger pointer for the current map and loads it into wCurrentMapTriggerPointer.
+; If there are no triggers, both bytes of wCurrentMapTriggerPointer are wiped clean.
+; Copy the current map group and number into bc.  This is needed for GetMapTrigger.
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
+; Blank out wCurrentMapTriggerPointer; this is the default scenario.
 	xor a
-	ld [BikeFlags + 2], a
-	ld [BikeFlags + 3], a
+	ld [wCurrentMapTriggerPointer], a
+	ld [wCurrentMapTriggerPointer + 1], a
 	call GetMapTrigger
-	ret c
+	ret c ; The map is not in the trigger table
+; Load the trigger table pointer from de into wCurrentMapTriggerPointer
 	ld a, e
-	ld [BikeFlags + 2], a
+	ld [wCurrentMapTriggerPointer], a
 	ld a, d
-	ld [BikeFlags + 3], a
+	ld [wCurrentMapTriggerPointer + 1], a
 	xor a
 	ret
 ; 2147
 
 GetMapTrigger:: ; 2147
+; Searches the trigger table for the map group and number loaded in bc, and returns the wram pointer in de.
+; If the map is not in the trigger table, returns carry.
 	push bc
 	ld a, [hROMBank]
 	push af
@@ -50,34 +58,34 @@ GetMapTrigger:: ; 2147
 	rst Bankswitch
 
 	ld hl, MapTriggers
-.asm_2151
+.loop
 	push hl
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_2167
+	ld a, [hli] ; map group, or terminator
+	cp -1
+	jr z, .end ; the current map is not in the trigger table
 	cp b
-	jr nz, .asm_2160
-	ld a, [hli]
+	jr nz, .next ; map group did not match
+	ld a, [hli] ; map number
 	cp c
-	jr nz, .asm_2160
-	jr .asm_216a
+	jr nz, .next ; map number did not match
+	jr .found ; we found our map
 
-.asm_2160
+.next
 	pop hl
-	ld de, $0004
+	ld de, 4 ; size of an entry in the trigger table
 	add hl, de
-	jr .asm_2151
+	jr .loop
 
-.asm_2167
+.end
 	scf
-	jr .asm_216d
+	jr .done
 
-.asm_216a
+.found
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 
-.asm_216d
+.done
 	pop hl
 	pop bc
 	ld a, b
@@ -234,7 +242,7 @@ Function2252:: ; 2252
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function2266
 
 	pop de
@@ -305,7 +313,7 @@ Function22a7:: ; 22a7
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function22b4
 
 	pop af
@@ -381,7 +389,7 @@ Function2300:: ; 2300
 
 Function2309:: ; 2309
 	call Function2326
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function234f
 	xor a
 	call Function2336
@@ -390,7 +398,7 @@ Function2309:: ; 2309
 
 Function2317:: ; 2317
 	call Function2326
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function234f
 	ld a, $1
 	call Function2336
@@ -548,7 +556,7 @@ Function23da:: ; 23da
 Function23f1:: ; 23f1
 	ld a, [hli]
 	ld c, a
-	ld [wdbfe], a
+	ld [wCurrentMapXYTriggerCount], a
 	ld a, l
 	ld [wdbff], a
 	ld a, h
@@ -564,7 +572,7 @@ Function23f1:: ; 23f1
 Function2408:: ; 2408
 	ld a, [hli]
 	ld c, a
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld a, l
 	ld [wdc02], a
 	ld a, h
@@ -972,7 +980,7 @@ Function263b:: ; 263b
 	ld b, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function2653
 	jr nc, .done
 
@@ -1607,13 +1615,13 @@ Function298b:: ; 298b
 	ld a, [TileDown]
 	and $7
 	cp $2
-	jr z, .asm_299f
+	jr z, .ok
 	cp $6
-	jr z, .asm_299f
+	jr z, .ok
 	cp $7
 	ret nz
 
-.asm_299f
+.ok
 	ld a, [TilePermissions]
 	or $8
 	ld [TilePermissions], a
@@ -1626,13 +1634,13 @@ Function29a8:: ; 29a8
 	ld a, [TileUp]
 	and $7
 	cp $3
-	jr z, .asm_29bc
+	jr z, .ok
 	cp $4
-	jr z, .asm_29bc
+	jr z, .ok
 	cp $5
 	ret nz
 
-.asm_29bc
+.ok
 	ld a, [TilePermissions]
 	or $4
 	ld [TilePermissions], a
@@ -1645,13 +1653,13 @@ Function29c5:: ; 29c5
 	ld a, [TileRight]
 	and $7
 	cp $1
-	jr z, .asm_29d9
+	jr z, .ok
 	cp $5
-	jr z, .asm_29d9
+	jr z, .ok
 	cp $7
 	ret nz
 
-.asm_29d9
+.ok
 	ld a, [TilePermissions]
 	or $1
 	ld [TilePermissions], a
@@ -1664,13 +1672,13 @@ Function29e2:: ; 29e2
 	ld a, [TileLeft]
 	and $7
 	cp $0
-	jr z, .asm_29f6
+	jr z, .ok
 	cp $4
-	jr z, .asm_29f6
+	jr z, .ok
 	cp $6
 	ret nz
 
-.asm_29f6
+.ok
 	ld a, [TilePermissions]
 	or $2
 	ld [TilePermissions], a
@@ -1696,8 +1704,7 @@ GetFacingTileCoord:: ; 2a07
 	srl a
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
+	add_n_times hl, hl, 2
 	ld de, .Directions
 	add hl, de
 
@@ -1736,33 +1743,32 @@ Function2a3c:: ; 2a3c
 	call GetBlockLocation
 	ld a, [hl]
 	and a
-	jr z, .asm_2a63
+	jr z, .nope
 	ld l, a
 	ld h, $0
-	add hl, hl
-	add hl, hl
+	add_n_times hl, hl, 2
 	ld a, [TilesetCollisionAddress]
 	ld c, a
 	ld a, [TilesetCollisionAddress + 1]
 	ld b, a
 	add hl, bc
 	rr d
-	jr nc, .asm_2a56
+	jr nc, .nocarry
 	inc hl
 
-.asm_2a56
+.nocarry
 	rr e
-	jr nc, .asm_2a5c
+	jr nc, .nocarry2
 	inc hl
 	inc hl
 
-.asm_2a5c
+.nocarry2
 	ld a, [TilesetCollisionBank]
 	call GetFarByte
 	ret
 
-.asm_2a63
-	ld a, $ff
+.nope
+	ld a, -1
 	ret
 ; 2a66
 
@@ -1775,20 +1781,20 @@ GetBlockLocation:: ; 2a66
 	add hl, bc
 	ld a, e
 	srl a
-	jr z, .asm_2a84
+	jr z, .nope
 	and a
-.asm_2a78
+.loop
 	srl a
-	jr nc, .asm_2a7d
+	jr nc, .ok
 	add hl, bc
 
-.asm_2a7d
+.ok
 	sla c
 	rl b
 	and a
-	jr nz, .asm_2a78
+	jr nz, .loop
 
-.asm_2a84
+.nope
 	ld c, d
 	srl c
 	ld b, $0
@@ -1799,128 +1805,138 @@ GetBlockLocation:: ; 2a66
 
 CheckFacingSign:: ; 2a8b
 	call GetFacingTileCoord
+; Load facing into b.
 	ld b, a
+; Convert the coordinates at de to within-boundaries coordinates.
 	ld a, d
 	sub 4
 	ld d, a
 	ld a, e
 	sub 4
 	ld e, a
-	ld a, [wdc01]
+; If there are no signposts, we don't need to be here.
+	ld a, [wCurrentMapSignpostCount]
 	and a
 	ret z
 	ld c, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
-	call Function2aaa
+	call SwitchToMapScriptHeaderBank
+	call CheckIfFacingTileCoordIsSign
 	pop hl
 	ld a, h
 	rst Bankswitch
 	ret
 ; 2aaa
 
-Function2aaa:: ; 2aaa
+CheckIfFacingTileCoordIsSign:: ; 2aaa
+; Checks to see if you are facing a signpost.  If so, copies it into EngineBuffer1 and sets carry.
 	ld hl, wdc02
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_2ab0
+.loop
 	push hl
 	ld a, [hli]
 	cp e
-	jr nz, .asm_2abb
+	jr nz, .next
 	ld a, [hli]
 	cp d
-	jr nz, .asm_2abb
-	jr .asm_2ac8
+	jr nz, .next
+	jr .copysign
 
-.asm_2abb
+.next
 	pop hl
-	ld a, 5
+	ld a, 5 ; signpost event length
 	add l
 	ld l, a
-	jr nc, .asm_2ac3
+	jr nc, .nocarry
 	inc h
 
-.asm_2ac3
+.nocarry
 	dec c
-	jr nz, .asm_2ab0
+	jr nz, .loop
 	xor a
 	ret
 
-.asm_2ac8
+.copysign
 	pop hl
 	ld de, EngineBuffer1
-	ld bc, 5
+	ld bc, 5 ; signpost event length
 	call CopyBytes
 	scf
 	ret
 ; 2ad4
 
-Function2ad4:: ; 2ad4
-	ld a, [wdbfe]
+CheckCurrentMapXYTriggers:: ; 2ad4
+; If there are no xy triggers, we don't need to be here.
+	ld a, [wCurrentMapXYTriggerCount]
 	and a
 	ret z
+; Copy the trigger count into c.
 	ld c, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
-	call Function2ae7
+	call SwitchToMapScriptHeaderBank
+	call CheckStandingOnXYTrigger
 	pop hl
 	ld a, h
 	rst Bankswitch
 	ret
 ; 2ae7
 
-Function2ae7:: ; 2ae7
+CheckStandingOnXYTrigger:: ; 2ae7
+; Checks to see if you are standing on an xy-trigger.  If yes, copies the trigger to EngineBuffer1 and sets carry.
 	ld hl, wdbff
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+; Load the active trigger ID into b
 	call CheckTriggers
 	ld b, a
+; Load your current coordinates into de.  This will be used to check if your position is in the xy-trigger table for the current map.
 	ld a, [MapX]
-	sub $4
+	sub 4
 	ld d, a
 	ld a, [MapY]
-	sub $4
+	sub 4
 	ld e, a
-.asm_2afd
+
+.loop
 	push hl
 	ld a, [hli]
 	cp b
-	jr z, .asm_2b06
-	cp $ff
-	jr nz, .asm_2b10
+	jr z, .got_id
+	cp -1
+	jr nz, .next
 
-.asm_2b06
+.got_id
 	ld a, [hli]
 	cp e
-	jr nz, .asm_2b10
+	jr nz, .next
 	ld a, [hli]
 	cp d
-	jr nz, .asm_2b10
-	jr .asm_2b1d
+	jr nz, .next
+	jr .copytrigger
 
-.asm_2b10
+.next
 	pop hl
-	ld a, $8
+	ld a, $8 ; xy-trigger size
 	add l
 	ld l, a
-	jr nc, .asm_2b18
+	jr nc, .nocarry
 	inc h
 
-.asm_2b18
+.nocarry
 	dec c
-	jr nz, .asm_2afd
+	jr nz, .loop
 	xor a
 	ret
 
-.asm_2b1d
+.copytrigger
 	pop hl
 	ld de, EngineBuffer1
-	ld bc, $0008
+	ld bc, $0008 ; xy-trigger size
 	call CopyBytes
 	scf
 	ret
@@ -2139,7 +2155,7 @@ Function2c3d:: ; 2c3d
 	ret
 ; 2c52
 
-Function2c52:: ; 2c52
+SwitchToMapScriptHeaderBank:: ; 2c52
 	ld a, [MapScriptHeaderBank]
 	rst Bankswitch
 	ret

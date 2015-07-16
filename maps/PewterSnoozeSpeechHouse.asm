@@ -31,9 +31,9 @@ PewterSnoozeSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, PewterSnoozeSpeechHouseBookshelf
-	signpost 1, 1, $0, PewterSnoozeSpeechHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, PewterSnoozeSpeechHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, PewterSnoozeSpeechHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_GRAMPS, 7, 9, $8, $0, 255, 255, $90, 0, GrampsScript_0x1a3059, -1
+	person_event SPRITE_GRAMPS, 7, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x1a3059, -1

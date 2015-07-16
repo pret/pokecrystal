@@ -82,12 +82,12 @@ PalletTown_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 9, 7, $0, PalletTownSign
-	signpost 5, 3, $0, RedsHouseSign
-	signpost 13, 13, $0, OaksLabSign
-	signpost 5, 11, $0, BluesHouseSign
+	signpost 9, 7, SIGNPOST_READ, PalletTownSign
+	signpost 5, 3, SIGNPOST_READ, RedsHouseSign
+	signpost 13, 13, SIGNPOST_READ, OaksLabSign
+	signpost 5, 11, SIGNPOST_READ, BluesHouseSign
 
 	; people-events
 	db 2
-	person_event SPRITE_TEACHER, 12, 7, $2, $22, 255, 255, $0, 0, TeacherScript_0x1ac6d5, -1
-	person_event SPRITE_FISHER, 18, 16, $5, $2, 255, 255, $a0, 0, FisherScript_0x1ac6d8, -1
+	person_event SPRITE_TEACHER, 12, 7, DOWN << 2 | $2, $22, -1, -1, $0, 0, TeacherScript_0x1ac6d5, -1
+	person_event SPRITE_FISHER, 18, 16, UP << 2 | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1ac6d8, -1

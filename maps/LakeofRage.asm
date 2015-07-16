@@ -568,23 +568,23 @@ LakeofRage_MapEventHeader:
 
 	; signposts
 	db 5
-	signpost 27, 21, $0, MapLakeofRageSignpost0Script
-	signpost 31, 25, $0, MapLakeofRageSignpost1Script
-	signpost 28, 11, $7, MapLakeofRageSignpostItem2
-	signpost 4, 4, $7, MapLakeofRageSignpostItem3
-	signpost 5, 35, $7, MapLakeofRageSignpostItem4
+	signpost 27, 21, SIGNPOST_READ, MapLakeofRageSignpost0Script
+	signpost 31, 25, SIGNPOST_READ, MapLakeofRageSignpost1Script
+	signpost 28, 11, SIGNPOST_ITEMIFSET, MapLakeofRageSignpostItem2
+	signpost 4, 4, SIGNPOST_ITEMIFSET, MapLakeofRageSignpostItem3
+	signpost 5, 35, SIGNPOST_ITEMIFSET, MapLakeofRageSignpostItem4
 
 	; people-events
 	db 12
-	person_event SPRITE_LANCE, 32, 25, $7, $0, 255, 255, $0, 0, LanceScript_0x70022, EVENT_6D4
-	person_event SPRITE_GRAMPS, 30, 24, $7, $0, 255, 255, $0, 0, GrampsScript_0x7008e, -1
-	person_event SPRITE_SUPER_NERD, 17, 40, $8, $0, 255, 255, $0, 0, SuperNerdScript_0x700a2, -1
-	person_event SPRITE_COOLTRAINER_F, 33, 29, $5, $1, 255, 255, $0, 0, CooltrainerFScript_0x700a5, -1
-	person_event SPRITE_FISHER, 27, 34, $8, $0, 255, 255, $92, 1, TrainerFisherAndre, EVENT_735
-	person_event SPRITE_FISHER, 30, 28, $7, $0, 255, 255, $92, 1, TrainerFisherRaymond, EVENT_735
-	person_event SPRITE_COOLTRAINER_M, 19, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermAaron, EVENT_735
-	person_event SPRITE_COOLTRAINER_F, 11, 40, $8, $0, 255, 255, $82, 0, TrainerCooltrainerfLois, EVENT_735
-	person_event SPRITE_GYARADOS, 26, 22, $16, $0, 255, 255, $80, 0, GyaradosScript_0x70063, EVENT_751
-	person_event SPRITE_SUPER_NERD, 8, 8, $6, $0, 255, 255, $0, 0, WesleyScript, EVENT_75C
-	person_event SPRITE_POKE_BALL, 14, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x70148, EVENT_645
-	person_event SPRITE_POKE_BALL, 6, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7014a, EVENT_646
+	person_event SPRITE_LANCE, 32, 25, UP << 2 | $3, $0, -1, -1, $0, 0, LanceScript_0x70022, EVENT_6D4
+	person_event SPRITE_GRAMPS, 30, 24, UP << 2 | $3, $0, -1, -1, $0, 0, GrampsScript_0x7008e, -1
+	person_event SPRITE_SUPER_NERD, 17, 40, LEFT << 2 | $0, $0, -1, -1, $0, 0, SuperNerdScript_0x700a2, -1
+	person_event SPRITE_COOLTRAINER_F, 33, 29, UP << 2 | $1, $1, -1, -1, $0, 0, CooltrainerFScript_0x700a5, -1
+	person_event SPRITE_FISHER, 27, 34, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherAndre, EVENT_735
+	person_event SPRITE_FISHER, 30, 28, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherRaymond, EVENT_735
+	person_event SPRITE_COOLTRAINER_M, 19, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermAaron, EVENT_735
+	person_event SPRITE_COOLTRAINER_F, 11, 40, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerCooltrainerfLois, EVENT_735
+	person_event SPRITE_GYARADOS, 26, 22, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GyaradosScript_0x70063, EVENT_751
+	person_event SPRITE_SUPER_NERD, 8, 8, UP << 2 | $2, $0, -1, -1, $0, 0, WesleyScript, EVENT_75C
+	person_event SPRITE_POKE_BALL, 14, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x70148, EVENT_645
+	person_event SPRITE_POKE_BALL, 6, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7014a, EVENT_646

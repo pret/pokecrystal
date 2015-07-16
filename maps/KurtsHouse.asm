@@ -70,7 +70,7 @@ UnknownScript_0x18e1bf:
 	iffalse UnknownScript_0x18e2b2
 	setevent EVENT_035
 UnknownScript_0x18e1cc:
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x18e29f
 	checkevent EVENT_258
 	iftrue UnknownScript_0x18e2b4
@@ -89,7 +89,7 @@ UnknownScript_0x18e1cc:
 	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e34e
 UnknownScript_0x18e202:
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iftrue UnknownScript_0x18e212
 	checkevent EVENT_002
 	iftrue UnknownScript_0x18e212
@@ -110,7 +110,7 @@ UnknownScript_0x18e212:
 	iftrue UnknownScript_0x18e249
 	checkitem PNK_APRICORN
 	iftrue UnknownScript_0x18e249
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iftrue UnknownScript_0x18e2ae
 	checkevent EVENT_002
 	iftrue UnknownScript_0x18e243
@@ -163,7 +163,7 @@ UnknownScript_0x18e293:
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e299:
-	setevent EVENT_000
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
 	setflag ENGINE_KURT_MAKING_BALLS
 UnknownScript_0x18e29f:
 	writetext UnknownText_0x18e779
@@ -178,7 +178,7 @@ UnknownScript_0x18e2a5:
 	end
 
 UnknownScript_0x18e2ab:
-	setevent EVENT_001
+	setevent EVENT_CHRIS2_IN_CABLE_CLUB
 UnknownScript_0x18e2ae:
 	writetext UnknownText_0x18e82a
 	closetext
@@ -349,9 +349,9 @@ UnknownScript_0x18e3e0:
 
 KurtsGranddaughter1:
 	faceplayer
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue KurtsGranddaughter2Subscript
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iftrue KurtsGranddaughterFunScript
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Lonely
@@ -692,18 +692,18 @@ KurtsHouse_MapEventHeader:
 
 	; signposts
 	db 7
-	signpost 1, 6, $0, KurtsHouseRadio
-	signpost 0, 8, $0, KurtsHouseOakPhoto
-	signpost 0, 9, $0, KurtsHouseOakPhoto
-	signpost 1, 5, $0, KurtsHouseBookshelf
-	signpost 1, 2, $0, KurtsHouseBookshelf
-	signpost 1, 3, $0, KurtsHouseBookshelf
-	signpost 1, 4, $0, KurtsHouseCelebiStatue
+	signpost 1, 6, SIGNPOST_READ, KurtsHouseRadio
+	signpost 0, 8, SIGNPOST_READ, KurtsHouseOakPhoto
+	signpost 0, 9, SIGNPOST_READ, KurtsHouseOakPhoto
+	signpost 1, 5, SIGNPOST_READ, KurtsHouseBookshelf
+	signpost 1, 2, SIGNPOST_READ, KurtsHouseBookshelf
+	signpost 1, 3, SIGNPOST_READ, KurtsHouseBookshelf
+	signpost 1, 4, SIGNPOST_READ, KurtsHouseCelebiStatue
 
 	; people-events
 	db 5
-	person_event SPRITE_KURT, 6, 7, $6, $0, 255, 255, $0, 0, KurtScript_0x18e178, EVENT_73E
-	person_event SPRITE_TWIN, 7, 9, $3, $0, 255, 255, $0, 0, KurtsGranddaughter1, EVENT_78C
-	person_event SPRITE_SLOWPOKE, 7, 10, $1, $0, 255, 255, $0, 0, KurtsHouseSlowpoke, EVENT_6FD
-	person_event SPRITE_KURT, 7, 18, $7, $0, 255, 255, $0, 0, KurtScript_0x18e3bd, EVENT_73F
-	person_event SPRITE_TWIN, 8, 15, $9, $0, 255, 255, $0, 0, KurtsGranddaughter2, EVENT_78D
+	person_event SPRITE_KURT, 6, 7, UP << 2 | $2, $0, -1, -1, $0, 0, KurtScript_0x18e178, EVENT_73E
+	person_event SPRITE_TWIN, 7, 9, DOWN << 2 | $3, $0, -1, -1, $0, 0, KurtsGranddaughter1, EVENT_78C
+	person_event SPRITE_SLOWPOKE, 7, 10, DOWN << 2 | $1, $0, -1, -1, $0, 0, KurtsHouseSlowpoke, EVENT_6FD
+	person_event SPRITE_KURT, 7, 18, UP << 2 | $3, $0, -1, -1, $0, 0, KurtScript_0x18e3bd, EVENT_73F
+	person_event SPRITE_TWIN, 8, 15, LEFT << 2 | $1, $0, -1, -1, $0, 0, KurtsGranddaughter2, EVENT_78D

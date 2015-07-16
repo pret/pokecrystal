@@ -40,4 +40,4 @@ LavenderNameRater_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_GENTLEMAN, 7, 6, $6, $0, 255, 255, $80, 0, LavenderNameRater, -1
+	person_event SPRITE_GENTLEMAN, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, LavenderNameRater, -1

@@ -28,7 +28,7 @@ Route22_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 7, 15, $0, MapRoute22Signpost0Script
+	signpost 7, 15, SIGNPOST_READ, MapRoute22Signpost0Script
 
 	; people-events
 	db 0

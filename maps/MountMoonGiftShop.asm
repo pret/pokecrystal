@@ -38,7 +38,7 @@ MountMoonGiftShop_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_GRAMPS, 7, 8, $6, $0, 255, 1, $0, 0, GrampsScript_0x771a8, -1
-	person_event SPRITE_GRAMPS, 6, 5, $9, $0, 255, 2, $0, 0, GrampsScript_0x771a8, -1
-	person_event SPRITE_LASS, 10, 5, $5, $1, 255, 1, $0, 0, LassScript_0x771b0, -1
-	person_event SPRITE_LASS, 8, 9, $4, $10, 255, 2, $0, 0, LassScript_0x771b0, -1
+	person_event SPRITE_GRAMPS, 7, 8, UP << 2 | $2, $0, -1, 1, $0, 0, GrampsScript_0x771a8, -1
+	person_event SPRITE_GRAMPS, 6, 5, LEFT << 2 | $1, $0, -1, 2, $0, 0, GrampsScript_0x771a8, -1
+	person_event SPRITE_LASS, 10, 5, UP << 2 | $1, $1, -1, 1, $0, 0, LassScript_0x771b0, -1
+	person_event SPRITE_LASS, 8, 9, UP << 2 | $0, $10, -1, 2, $0, 0, LassScript_0x771b0, -1

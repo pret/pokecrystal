@@ -41,12 +41,12 @@ SilverCaveRoom1_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 23, 16, $7, MapSilverCaveRoom1SignpostItem0
-	signpost 12, 17, $7, MapSilverCaveRoom1SignpostItem1
+	signpost 23, 16, SIGNPOST_ITEMIFSET, MapSilverCaveRoom1SignpostItem0
+	signpost 12, 17, SIGNPOST_ITEMIFSET, MapSilverCaveRoom1SignpostItem1
 
 	; people-events
 	db 4
-	person_event SPRITE_POKE_BALL, 13, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c554, EVENT_699
-	person_event SPRITE_POKE_BALL, 33, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c556, EVENT_69A
-	person_event SPRITE_POKE_BALL, 34, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c558, EVENT_69B
-	person_event SPRITE_POKE_BALL, 22, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c55a, EVENT_7C1
+	person_event SPRITE_POKE_BALL, 13, 8, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c554, EVENT_699
+	person_event SPRITE_POKE_BALL, 33, 19, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c556, EVENT_69A
+	person_event SPRITE_POKE_BALL, 34, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c558, EVENT_69B
+	person_event SPRITE_POKE_BALL, 22, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c55a, EVENT_7C1

@@ -298,13 +298,13 @@ NewBarkTown_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 8, 8, $0, MapNewBarkTownSignpost0Script
-	signpost 5, 11, $0, MapNewBarkTownSignpost1Script
-	signpost 3, 3, $0, MapNewBarkTownSignpost2Script
-	signpost 13, 9, $0, MapNewBarkTownSignpost3Script
+	signpost 8, 8, SIGNPOST_READ, MapNewBarkTownSignpost0Script
+	signpost 5, 11, SIGNPOST_READ, MapNewBarkTownSignpost1Script
+	signpost 3, 3, SIGNPOST_READ, MapNewBarkTownSignpost2Script
+	signpost 13, 9, SIGNPOST_READ, MapNewBarkTownSignpost3Script
 
 	; people-events
 	db 3
-	person_event SPRITE_TEACHER, 12, 10, $3, $1, 255, 255, $0, 0, TeacherScript_0x1a806f, -1
-	person_event SPRITE_FISHER, 13, 16, $4, $10, 255, 255, $a0, 0, FisherScript_0x1a809b, -1
-	person_event SPRITE_SILVER, 6, 7, $9, $0, 255, 255, $0, 0, SilverScript_0x1a809e, EVENT_6BD
+	person_event SPRITE_TEACHER, 12, 10, DOWN << 2 | $3, $1, -1, -1, $0, 0, TeacherScript_0x1a806f, -1
+	person_event SPRITE_FISHER, 13, 16, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a809b, -1
+	person_event SPRITE_SILVER, 6, 7, LEFT << 2 | $1, $0, -1, -1, $0, 0, SilverScript_0x1a809e, EVENT_6BD

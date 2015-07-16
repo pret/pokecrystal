@@ -108,11 +108,11 @@ KrissNeighborsHouse_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, KrissNeighborsHouseBookshelf
-	signpost 1, 1, $0, KrissNeighborsHouseBookshelf
-	signpost 1, 7, $0, KrissNeighborsHouseRadio
+	signpost 1, 0, SIGNPOST_READ, KrissNeighborsHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, KrissNeighborsHouseBookshelf
+	signpost 1, 7, SIGNPOST_READ, KrissNeighborsHouseRadio
 
 	; people-events
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, KrissNeighborsDaughter, -1
-	person_event SPRITE_POKEFAN_F, 7, 9, $8, $0, 255, 255, $80, 0, KrissNeighbor, EVENT_793
+	person_event SPRITE_COOLTRAINER_F, 7, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighborsDaughter, -1
+	person_event SPRITE_POKEFAN_F, 7, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighbor, EVENT_793

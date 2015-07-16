@@ -59,15 +59,15 @@ WhirlIslandB1F_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 4, 30, $7, MapWhirlIslandB1FSignpostItem0
-	signpost 18, 36, $7, MapWhirlIslandB1FSignpostItem1
-	signpost 23, 2, $7, MapWhirlIslandB1FSignpostItem2
+	signpost 4, 30, SIGNPOST_ITEMIFSET, MapWhirlIslandB1FSignpostItem0
+	signpost 18, 36, SIGNPOST_ITEMIFSET, MapWhirlIslandB1FSignpostItem1
+	signpost 23, 2, SIGNPOST_ITEMIFSET, MapWhirlIslandB1FSignpostItem2
 
 	; people-events
 	db 6
-	person_event SPRITE_POKE_BALL, 17, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c410, EVENT_691
-	person_event SPRITE_POKE_BALL, 22, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c412, EVENT_692
-	person_event SPRITE_POKE_BALL, 27, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c414, EVENT_693
-	person_event SPRITE_POKE_BALL, 12, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c416, EVENT_694
-	person_event SPRITE_POKE_BALL, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, EVENT_695
-	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, WhirlIslandB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 17, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c410, EVENT_691
+	person_event SPRITE_POKE_BALL, 22, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c412, EVENT_692
+	person_event SPRITE_POKE_BALL, 27, 37, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c414, EVENT_693
+	person_event SPRITE_POKE_BALL, 12, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c416, EVENT_694
+	person_event SPRITE_POKE_BALL, 30, 23, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c418, EVENT_695
+	person_event SPRITE_BOULDER, 30, 27, LEFT << 2 | $11, $0, -1, -1, $0, 0, WhirlIslandB1FBoulder, -1

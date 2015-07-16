@@ -404,20 +404,20 @@ Route40_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 10, 14, $0, MapRoute40Signpost0Script
-	signpost 8, 7, $7, MapRoute40SignpostItem1
+	signpost 10, 14, SIGNPOST_READ, MapRoute40Signpost0Script
+	signpost 8, 7, SIGNPOST_ITEMIFSET, MapRoute40SignpostItem1
 
 	; people-events
 	db 12
-	person_event SPRITE_OLIVINE_RIVAL, 19, 18, $9, $0, 255, 255, $82, 4, TrainerSwimmermSimon, -1
-	person_event SPRITE_OLIVINE_RIVAL, 34, 22, $8, $0, 255, 255, $82, 5, TrainerSwimmermRandall, -1
-	person_event SPRITE_SWIMMER_GIRL, 23, 7, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfElaine, -1
-	person_event SPRITE_SWIMMER_GIRL, 29, 14, $1f, $0, 255, 255, $a2, 3, TrainerSwimmerfPaula, -1
-	person_event SPRITE_ROCK, 15, 11, $18, $0, 255, 255, $0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 13, 10, $18, $0, 255, 255, $0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 12, 11, $18, $0, 255, 255, $0, 0, Route40Rock, -1
-	person_event SPRITE_LASS, 17, 15, $6, $0, 255, 255, $0, 0, LassScript_0x1a61c4, -1
-	person_event SPRITE_BUENA, 14, 12, $3, $0, 255, 255, $0, 0, MonicaScript, EVENT_75E
-	person_event SPRITE_POKEFAN_M, 10, 11, $9, $0, 255, 255, $0, 0, PokefanMScript_0x1a61c7, -1
-	person_event SPRITE_LASS, 8, 17, $3, $0, 255, 255, $a0, 0, LassScript_0x1a61d3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, $3, $0, 255, 255, $90, 0, StandingYoungsterScript_0x1a61d6, EVENT_7CF
+	person_event SPRITE_OLIVINE_RIVAL, 19, 18, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerSwimmermSimon, -1
+	person_event SPRITE_OLIVINE_RIVAL, 34, 22, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerSwimmermRandall, -1
+	person_event SPRITE_SWIMMER_GIRL, 23, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerSwimmerfElaine, -1
+	person_event SPRITE_SWIMMER_GIRL, 29, 14, RIGHT << 2 | $13, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfPaula, -1
+	person_event SPRITE_ROCK, 15, 11, LEFT << 2 | $10, $0, -1, -1, $0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 13, 10, LEFT << 2 | $10, $0, -1, -1, $0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 12, 11, LEFT << 2 | $10, $0, -1, -1, $0, 0, Route40Rock, -1
+	person_event SPRITE_LASS, 17, 15, UP << 2 | $2, $0, -1, -1, $0, 0, LassScript_0x1a61c4, -1
+	person_event SPRITE_BUENA, 14, 12, DOWN << 2 | $3, $0, -1, -1, $0, 0, MonicaScript, EVENT_75E
+	person_event SPRITE_POKEFAN_M, 10, 11, LEFT << 2 | $1, $0, -1, -1, $0, 0, PokefanMScript_0x1a61c7, -1
+	person_event SPRITE_LASS, 8, 17, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x1a61d3, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, StandingYoungsterScript_0x1a61d6, EVENT_7CF

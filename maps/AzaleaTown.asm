@@ -470,27 +470,27 @@ AzaleaTown_MapEventHeader:
 
 	; signposts
 	db 9
-	signpost 9, 19, $0, AzaleaTownSign
-	signpost 9, 10, $0, KurtsHouseSign
-	signpost 15, 14, $0, AzaleaGymSign
-	signpost 7, 29, $0, SlowpokeWellSign
-	signpost 13, 19, $0, CharcoalKilnSign
-	signpost 9, 16, $0, AzaleaTownPokeCenterSign
-	signpost 5, 22, $0, AzaleaTownMartSign
-	signpost 9, 3, $0, AzaleaTownIlextForestSign
-	signpost 6, 31, $7, MapAzaleaTownSignpostItem8
+	signpost 9, 19, SIGNPOST_READ, AzaleaTownSign
+	signpost 9, 10, SIGNPOST_READ, KurtsHouseSign
+	signpost 15, 14, SIGNPOST_READ, AzaleaGymSign
+	signpost 7, 29, SIGNPOST_READ, SlowpokeWellSign
+	signpost 13, 19, SIGNPOST_READ, CharcoalKilnSign
+	signpost 9, 16, SIGNPOST_READ, AzaleaTownPokeCenterSign
+	signpost 5, 22, SIGNPOST_READ, AzaleaTownMartSign
+	signpost 9, 3, SIGNPOST_READ, AzaleaTownIlextForestSign
+	signpost 6, 31, SIGNPOST_ITEMIFSET, MapAzaleaTownSignpostItem8
 
 	; people-events
 	db 12
-	person_event SPRITE_AZALEA_ROCKET, 13, 35, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ab, EVENT_6FA
-	person_event SPRITE_GRAMPS, 13, 25, $2, $21, 255, 255, $0, 0, GrampsScript_0x1980b1, -1
-	person_event SPRITE_TEACHER, 17, 19, $4, $20, 255, 255, $90, 0, TeacherScript_0x1980c5, -1
-	person_event SPRITE_YOUNGSTER, 13, 11, $5, $1, 255, 255, $a0, 0, YoungsterScript_0x1980c8, -1
-	person_event SPRITE_SLOWPOKE, 21, 12, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
-	person_event SPRITE_SLOWPOKE, 13, 22, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
-	person_event SPRITE_SLOWPOKE, 13, 33, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
-	person_event SPRITE_SLOWPOKE, 19, 19, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
-	person_event SPRITE_FRUIT_TREE, 6, 12, $1, $0, 255, 255, $0, 0, WhiteApricornTree, -1
-	person_event SPRITE_AZALEA_ROCKET, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6BF
-	person_event SPRITE_AZALEA_ROCKET, 20, 14, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ae, EVENT_6FC
-	person_event SPRITE_KURT_OUTSIDE, 9, 10, $8, $0, 255, 255, $0, 0, KurtOutsideScript_0x19810c, EVENT_7A4
+	person_event SPRITE_AZALEA_ROCKET, 13, 35, UP << 2 | $2, $0, -1, -1, $0, 0, AzaleaRocketScript_0x1980ab, EVENT_6FA
+	person_event SPRITE_GRAMPS, 13, 25, DOWN << 2 | $2, $21, -1, -1, $0, 0, GrampsScript_0x1980b1, -1
+	person_event SPRITE_TEACHER, 17, 19, UP << 2 | $0, $20, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x1980c5, -1
+	person_event SPRITE_YOUNGSTER, 13, 11, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1980c8, -1
+	person_event SPRITE_SLOWPOKE, 21, 12, DOWN << 2 | $1, $0, -1, -1, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
+	person_event SPRITE_SLOWPOKE, 13, 22, DOWN << 2 | $1, $0, -1, -1, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
+	person_event SPRITE_SLOWPOKE, 13, 33, DOWN << 2 | $1, $0, -1, -1, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
+	person_event SPRITE_SLOWPOKE, 19, 19, DOWN << 2 | $1, $0, -1, -1, $0, 0, SlowpokeScript_0x1980cb, EVENT_6F9
+	person_event SPRITE_FRUIT_TREE, 6, 12, DOWN << 2 | $1, $0, -1, -1, $0, 0, WhiteApricornTree, -1
+	person_event SPRITE_AZALEA_ROCKET, 14, 15, LEFT << 2 | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6BF
+	person_event SPRITE_AZALEA_ROCKET, 20, 14, UP << 2 | $2, $0, -1, -1, $0, 0, AzaleaRocketScript_0x1980ae, EVENT_6FC
+	person_event SPRITE_KURT_OUTSIDE, 9, 10, LEFT << 2 | $0, $0, -1, -1, $0, 0, KurtOutsideScript_0x19810c, EVENT_7A4

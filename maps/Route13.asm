@@ -278,15 +278,15 @@ Route13_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 13, 29, $0, MapRoute13Signpost0Script
-	signpost 11, 41, $0, MapRoute13Signpost1Script
-	signpost 13, 17, $0, MapRoute13Signpost2Script
-	signpost 13, 30, $7, MapRoute13SignpostItem3
+	signpost 13, 29, SIGNPOST_READ, MapRoute13Signpost0Script
+	signpost 11, 41, SIGNPOST_READ, MapRoute13Signpost1Script
+	signpost 13, 17, SIGNPOST_READ, MapRoute13Signpost2Script
+	signpost 13, 30, SIGNPOST_ITEMIFSET, MapRoute13SignpostItem3
 
 	; people-events
 	db 5
-	person_event SPRITE_YOUNGSTER, 10, 46, $6, $0, 255, 255, $92, 2, TrainerBird_keeperPerry, -1
-	person_event SPRITE_YOUNGSTER, 10, 47, $6, $0, 255, 255, $92, 2, TrainerBird_keeperBret, -1
-	person_event SPRITE_POKEFAN_M, 12, 36, $8, $0, 255, 255, $82, 3, TrainerPokefanmJoshua, -1
-	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $82, 4, TrainerHikerKenny, -1
-	person_event SPRITE_POKEFAN_M, 10, 29, $9, $0, 255, 255, $82, 4, TrainerPokefanmAlex, -1
+	person_event SPRITE_YOUNGSTER, 10, 46, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperPerry, -1
+	person_event SPRITE_YOUNGSTER, 10, 47, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperBret, -1
+	person_event SPRITE_POKEFAN_M, 12, 36, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmJoshua, -1
+	person_event SPRITE_POKEFAN_M, 14, 18, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerHikerKenny, -1
+	person_event SPRITE_POKEFAN_M, 10, 29, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanmAlex, -1

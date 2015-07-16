@@ -52,10 +52,10 @@ FightingDojo_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 0, 4, $0, MapFightingDojoSignpost0Script
-	signpost 0, 5, $0, MapFightingDojoSignpost1Script
+	signpost 0, 4, SIGNPOST_READ, MapFightingDojoSignpost0Script
+	signpost 0, 5, SIGNPOST_READ, MapFightingDojoSignpost1Script
 
 	; people-events
 	db 2
-	person_event SPRITE_BLACK_BELT, 8, 8, $6, $0, 255, 255, $90, 0, BlackBeltScript_0x189b61, -1
-	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x189b6a, EVENT_PICKED_UP_FOCUS_BAND
+	person_event SPRITE_BLACK_BELT, 8, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x189b61, -1
+	person_event SPRITE_POKE_BALL, 5, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x189b6a, EVENT_PICKED_UP_FOCUS_BAND

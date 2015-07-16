@@ -166,12 +166,12 @@ RuinsofAlphOmanyteChamber_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 3, 2, $0, MapRuinsofAlphOmanyteChamberSignpost1Script
-	signpost 3, 5, $0, MapRuinsofAlphOmanyteChamberSignpost1Script
-	signpost 2, 3, $1, MapRuinsofAlphOmanyteChamberSignpost2Script
-	signpost 2, 4, $1, MapRuinsofAlphOmanyteChamberSignpost3Script
-	signpost 0, 3, $1, MapRuinsofAlphOmanyteChamberSignpost4Script
-	signpost 0, 4, $1, MapRuinsofAlphOmanyteChamberSignpost5Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphOmanyteChamberSignpost1Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphOmanyteChamberSignpost1Script
+	signpost 2, 3, SIGNPOST_UP, MapRuinsofAlphOmanyteChamberSignpost2Script
+	signpost 2, 4, SIGNPOST_UP, MapRuinsofAlphOmanyteChamberSignpost3Script
+	signpost 0, 3, SIGNPOST_UP, MapRuinsofAlphOmanyteChamberSignpost4Script
+	signpost 0, 4, SIGNPOST_UP, MapRuinsofAlphOmanyteChamberSignpost5Script
 
 	; people-events
 	db 0

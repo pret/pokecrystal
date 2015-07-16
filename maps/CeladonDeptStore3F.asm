@@ -102,13 +102,13 @@ CeladonDeptStore3F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 0, 14, $0, CeladonDeptStore3FDirectory
-	signpost 0, 3, $0, CeladonDeptStore3FElevatorButton
+	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore3FDirectory
+	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore3FElevatorButton
 
 	; people-events
 	db 5
-	person_event SPRITE_CLERK, 5, 11, $6, $0, 255, 255, $90, 0, ClerkScript_0x70d29, -1
-	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x70d31, -1
-	person_event SPRITE_GAMEBOY_KID, 5, 13, $6, $0, 255, 255, $80, 0, GameboyKidScript_0x70d34, -1
-	person_event SPRITE_GAMEBOY_KID, 5, 14, $6, $0, 255, 255, $90, 0, GameboyKidScript_0x70d3f, -1
-	person_event SPRITE_SUPER_NERD, 8, 17, $2, $11, 255, 255, $80, 0, SuperNerdScript_0x70d4a, -1
+	person_event SPRITE_CLERK, 5, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x70d29, -1
+	person_event SPRITE_YOUNGSTER, 8, 10, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x70d31, -1
+	person_event SPRITE_GAMEBOY_KID, 5, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GameboyKidScript_0x70d34, -1
+	person_event SPRITE_GAMEBOY_KID, 5, 14, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GameboyKidScript_0x70d3f, -1
+	person_event SPRITE_SUPER_NERD, 8, 17, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x70d4a, -1

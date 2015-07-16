@@ -104,9 +104,9 @@ Route27SandstormHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, SandstormHouseBookshelf
-	signpost 1, 1, $0, SandstormHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, SandstormHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, SandstormHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_GRANNY, 8, 6, $6, $0, 255, 255, $0, 0, SandstormHouseWoman, -1
+	person_event SPRITE_GRANNY, 8, 6, UP << 2 | $2, $0, -1, -1, $0, 0, SandstormHouseWoman, -1

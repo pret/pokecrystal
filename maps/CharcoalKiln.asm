@@ -157,12 +157,12 @@ CharcoalKiln_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, CharcoalKilnBookshelf
-	signpost 1, 1, $0, CharcoalKilnBookshelf
-	signpost 1, 7, $0, CharcoalKilnRadio
+	signpost 1, 0, SIGNPOST_READ, CharcoalKilnBookshelf
+	signpost 1, 1, SIGNPOST_READ, CharcoalKilnBookshelf
+	signpost 1, 7, SIGNPOST_READ, CharcoalKilnRadio
 
 	; people-events
 	db 3
-	person_event SPRITE_BLACK_BELT, 7, 6, $3, $0, 255, 255, $0, 0, CharcoalKilnBoss, EVENT_6F7
-	person_event SPRITE_YOUNGSTER, 7, 9, $2, $11, 255, 255, $0, 0, CharcoalKilnApprentice, EVENT_6F6
-	person_event SPRITE_MOLTRES, 10, 9, $16, $22, 255, 255, $b0, 0, CharcoalKilnFarfetchd, EVENT_6F5
+	person_event SPRITE_BLACK_BELT, 7, 6, DOWN << 2 | $3, $0, -1, -1, $0, 0, CharcoalKilnBoss, EVENT_6F7
+	person_event SPRITE_YOUNGSTER, 7, 9, DOWN << 2 | $2, $11, -1, -1, $0, 0, CharcoalKilnApprentice, EVENT_6F6
+	person_event SPRITE_MOLTRES, 10, 9, UP << 2 | $12, $22, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CharcoalKilnFarfetchd, EVENT_6F5

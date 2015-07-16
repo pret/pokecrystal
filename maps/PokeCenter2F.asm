@@ -3,430 +3,430 @@ PokeCenter2F_MapScriptHeader:
 	db 6
 
 	; triggers
-	dw UnknownScript_0x19285f, $0000
-	dw UnknownScript_0x192873, $0000
-	dw UnknownScript_0x192877, $0000
-	dw UnknownScript_0x19287b, $0000
-	dw UnknownScript_0x19287f, $0000
-	dw UnknownScript_0x192883, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
+	dw .Trigger3, $0000
+	dw .Trigger4, $0000
+	dw .Trigger5, $0000
+	dw .Trigger6, $0000
 
 	; callback count
 	db 0
 
-UnknownScript_0x19285f:
-	special Functionc2f6
-	if_equal $0, UnknownScript_0x192872
-	clearevent EVENT_711
-	checkevent EVENT_001
-	iftrue UnknownScript_0x192872
-	priorityjump UnknownScript_0x192887
+.Trigger1:
+	special Special_CheckMysteryGift
+	if_equal $0, .Trigger1Done
+	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	iftrue .Trigger1Done
+	priorityjump PokeCenter2F_AppearMysteryGiftDeliveryGuy
 
-UnknownScript_0x192872:
+.Trigger1Done:
 	end
 
-UnknownScript_0x192873:
-	priorityjump UnknownScript_0x192ab6
+.Trigger2:
+	priorityjump Script_LeftCableTradeCenter
 	end
 
-UnknownScript_0x192877:
-	priorityjump UnknownScript_0x192add
+.Trigger3:
+	priorityjump Script_LeftCableColosseum
 	end
 
-UnknownScript_0x19287b:
-	priorityjump UnknownScript_0x192c4e
+.Trigger4:
+	priorityjump Script_LeftTimeCapsule
 	end
 
-UnknownScript_0x19287f:
-	priorityjump UnknownScript_0x192ac3
+.Trigger5:
+	priorityjump Script_LeftMobileTradeRoom
 	end
 
-UnknownScript_0x192883:
-	priorityjump UnknownScript_0x192aea
+.Trigger6:
+	priorityjump Script_LeftMobileBattleRoom
 	end
 
-UnknownScript_0x192887:
+PokeCenter2F_AppearMysteryGiftDeliveryGuy:
 	appear $5
-	setevent EVENT_001
+	setevent EVENT_CHRIS2_IN_CABLE_CLUB
 	end
 
-UnknownScript_0x19288d:
+Script_TradeCenterClosed:
 	faceplayer
 	loadfont
-	writetext UnknownText_0x19312f
+	writetext Text_TradeRoomClosed
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x192895:
+Script_BattleRoomClosed:
 	faceplayer
 	loadfont
-	writetext UnknownText_0x19315f
+	writetext Text_BattleRoomClosed
 	closetext
 	loadmovesprites
 	end
 
-LinkReceptionistScript_0x19289d:
+LinkReceptionistScript_Trade:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iffalse UnknownScript_0x19288d
+	iffalse Script_TradeCenterClosed
 	loadfont
-	writetext UnknownText_0x192e3a
+	writetext Text_TradeReceptionistIntro
 	yesorno
-	iffalse UnknownScript_0x19291d
+	iffalse .Cancel
 	special Function10630f
-	iffalse UnknownScript_0x1928be
-	writetext UnknownText_0x192d7e
+	iffalse .NoMobile
+	writetext Text_TradeReceptionistMobile
 	special Function103612
-	iffalse UnknownScript_0x19291d
-	if_equal $1, UnknownScript_0x19291f
-UnknownScript_0x1928be:
-	special Function29ce8
-	writetext UnknownText_0x192f67
-	special Function29d11
-	iffalse UnknownScript_0x1928f6
-	writetext UnknownText_0x192f34
+	iffalse .Cancel
+	if_equal $1, .Mobile
+.NoMobile:
+	special Special_SetBitsForLinkTradeRequest
+	writetext Text_PleaseWait
+	special Special_WaitForLinkedFriend
+	iffalse .FriendNotReady
+	writetext Text_MustSaveGame
 	yesorno
-	iffalse UnknownScript_0x192917
-	special Function29e66
-	iffalse UnknownScript_0x192917
-	writetext UnknownText_0x192f67
-	special Function29d92
-	iffalse UnknownScript_0x192911
+	iffalse .DidNotSave
+	special Special_TryQuickSave
+	iffalse .DidNotSave
+	writetext Text_PleaseWait
+	special Special_CheckLinkTimeout
+	iffalse .LinkTimedOut
 	copybytetovar wcf51
-	iffalse UnknownScript_0x1928fe
-	special Function29e82
-	iffalse UnknownScript_0x192909
-	writetext UnknownText_0x19306b
+	iffalse .LinkedToFirstGen
+	special Special_CheckBothSelectedSameRoom
+	iffalse .IncompatibleRooms
+	writetext Text_PleaseComeIn2
 	closetext
 	loadmovesprites
-	scall UnknownScript_0x192b04
+	scall PokeCenter2F_CheckGender
 	warpcheck
 	end
 
-UnknownScript_0x1928f6:
-	special Function29c92
-	writetext UnknownText_0x192f19
+.FriendNotReady:
+	special Special_AbortLink
+	writetext Text_FriendNotReady
 	loadmovesprites
 	end
 
-UnknownScript_0x1928fe:
-	special Function29efa
-	writetext UnknownText_0x193029
-	special Function29eee
+.LinkedToFirstGen:
+	special Special_FailedLinkToPast
+	writetext Text_CantLinkToThePast
+	special Special_CloseLink
 	loadmovesprites
 	end
 
-UnknownScript_0x192909:
-	writetext UnknownText_0x19304a
-	special Function29eee
+.IncompatibleRooms:
+	writetext Text_IncompatibleRooms
+	special Special_CloseLink
 	loadmovesprites
 	end
 
-UnknownScript_0x192911:
-	writetext UnknownText_0x192f75
-	jump UnknownScript_0x19291a
+.LinkTimedOut:
+	writetext Text_LinkTimedOut
+	jump .AbortLink
 
-UnknownScript_0x192917:
-	writetext UnknownText_0x192fd1
-UnknownScript_0x19291a:
-	special Function29c92
-UnknownScript_0x19291d:
+.DidNotSave:
+	writetext Text_PleaseComeAgain
+.AbortLink:
+	special Special_AbortLink
+.Cancel:
 	loadmovesprites
 	end
 
-UnknownScript_0x19291f:
-	scall UnknownScript_0x19292b
-	iftrue UnknownScript_0x19292a
-	scall UnknownScript_0x19294a
+.Mobile:
+	scall .Mobile_TrySave
+	iftrue .Mobile_Abort
+	scall BattleTradeMobile_WalkIn
 	warpcheck
 	end
 
-UnknownScript_0x19292a:
+.Mobile_Abort:
 	end
 
-UnknownScript_0x19292b:
-	writetext UnknownText_0x192f34
+.Mobile_TrySave:
+	writetext Text_MustSaveGame
 	yesorno
-	iffalse UnknownScript_0x192943
-	special Function29e66
-	iffalse UnknownScript_0x192943
+	iffalse .Mobile_DidNotSave
+	special Special_TryQuickSave
+	iffalse .Mobile_DidNotSave
 	special Function1011f1
-	writetext UnknownText_0x19306b
+	writetext Text_PleaseComeIn2
 	closetext
 	loadmovesprites
 	writebyte $0
 	end
 
-UnknownScript_0x192943:
-	writetext UnknownText_0x192fd1
+.Mobile_DidNotSave:
+	writetext Text_PleaseComeAgain
 	loadmovesprites
 	writebyte $1
 	end
 
-UnknownScript_0x19294a:
+BattleTradeMobile_WalkIn:
 	applymovement2 MovementData_0x192cce
 	applymovement $0, MovementData_0x192ce7
 	end
 
-LinkReceptionistScript_0x192952:
+LinkReceptionistScript_Battle:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iffalse UnknownScript_0x192895
+	iffalse Script_BattleRoomClosed
 	loadfont
-	writetext UnknownText_0x192de0
+	writetext Text_BattleReceptionistIntro
 	yesorno
-	iffalse UnknownScript_0x1929d2
+	iffalse .Cancel
 	special Function10630f
-	iffalse UnknownScript_0x192973
-	writetext UnknownText_0x192d39
+	iffalse .NoMobile
+	writetext Text_BattleReceptionistMobile
 	special Function103612
-	iffalse UnknownScript_0x1929d2
-	if_equal $1, UnknownScript_0x1929d4
-UnknownScript_0x192973:
-	special Function29cf1
-	writetext UnknownText_0x192f67
-	special Function29d11
-	iffalse UnknownScript_0x1929ab
-	writetext UnknownText_0x192f34
+	iffalse .Cancel
+	if_equal $1, .Mobile
+.NoMobile:
+	special Special_SetBitsForBattleRequest
+	writetext Text_PleaseWait
+	special Special_WaitForLinkedFriend
+	iffalse .FriendNotReady
+	writetext Text_MustSaveGame
 	yesorno
-	iffalse UnknownScript_0x1929cc
-	special Function29e66
-	iffalse UnknownScript_0x1929cc
-	writetext UnknownText_0x192f67
-	special Function29d92
-	iffalse UnknownScript_0x1929c6
+	iffalse .DidNotSave
+	special Special_TryQuickSave
+	iffalse .DidNotSave
+	writetext Text_PleaseWait
+	special Special_CheckLinkTimeout
+	iffalse .LinkTimedOut
 	copybytetovar wcf51
-	iffalse UnknownScript_0x1929b3
-	special Function29e82
-	iffalse UnknownScript_0x1929be
-	writetext UnknownText_0x19306b
+	iffalse .LinkedToFirstGen
+	special Special_CheckBothSelectedSameRoom
+	iffalse .IncompatibleRooms
+	writetext Text_PleaseComeIn2
 	closetext
 	loadmovesprites
-	scall UnknownScript_0x192b04
+	scall PokeCenter2F_CheckGender
 	warpcheck
 	end
 
-UnknownScript_0x1929ab:
-	special Function29c92
-	writetext UnknownText_0x192f19
+.FriendNotReady:
+	special Special_AbortLink
+	writetext Text_FriendNotReady
 	loadmovesprites
 	end
 
-UnknownScript_0x1929b3:
-	special Function29efa
-	writetext UnknownText_0x193029
-	special Function29eee
+.LinkedToFirstGen:
+	special Special_FailedLinkToPast
+	writetext Text_CantLinkToThePast
+	special Special_CloseLink
 	loadmovesprites
 	end
 
-UnknownScript_0x1929be:
-	writetext UnknownText_0x19304a
-	special Function29eee
+.IncompatibleRooms:
+	writetext Text_IncompatibleRooms
+	special Special_CloseLink
 	loadmovesprites
 	end
 
-UnknownScript_0x1929c6:
-	writetext UnknownText_0x192f75
-	jump UnknownScript_0x1929cf
+.LinkTimedOut:
+	writetext Text_LinkTimedOut
+	jump .AbortLink
 
-UnknownScript_0x1929cc:
-	writetext UnknownText_0x192fd1
-UnknownScript_0x1929cf:
-	special Function29c92
-UnknownScript_0x1929d2:
+.DidNotSave:
+	writetext Text_PleaseComeAgain
+.AbortLink:
+	special Special_AbortLink
+.Cancel:
 	loadmovesprites
 	end
 
-UnknownScript_0x1929d4:
-	scall UnknownScript_0x192a05
-	iffalse UnknownScript_0x1929e5
-	scall UnknownScript_0x1929e6
-	iftrue UnknownScript_0x1929e5
-	scall UnknownScript_0x19294a
+.Mobile:
+	scall .SelectThreeMons
+	iffalse .Mobile_Abort
+	scall .Mobile_TrySave
+	iftrue .Mobile_Abort
+	scall BattleTradeMobile_WalkIn
 	warpcheck
 	end
 
-UnknownScript_0x1929e5:
+.Mobile_Abort:
 	end
 
-UnknownScript_0x1929e6:
-	writetext UnknownText_0x192f34
+.Mobile_TrySave:
+	writetext Text_MustSaveGame
 	yesorno
-	iffalse UnknownScript_0x1929fe
+	iffalse .Mobile_DidNotSave
 	special Function103780
-	iffalse UnknownScript_0x1929fe
+	iffalse .Mobile_DidNotSave
 	special Function1011f1
-	writetext UnknownText_0x19306b
+	writetext Text_PleaseComeIn2
 	closetext
 	loadmovesprites
 	writebyte $0
 	end
 
-UnknownScript_0x1929fe:
-	writetext UnknownText_0x192fd1
+.Mobile_DidNotSave:
+	writetext Text_PleaseComeAgain
 	loadmovesprites
 	writebyte $1
 	end
 
-UnknownScript_0x192a05:
-	special Function10366e
-	iffalse UnknownScript_0x192a1e
-	if_equal $1, UnknownScript_0x192a22
-	if_equal $2, UnknownScript_0x192a22
-	if_equal $3, UnknownScript_0x192a1a
-	jump UnknownScript_0x192a1e
+.SelectThreeMons:
+	special Mobile_SelectThreeMons
+	iffalse .Mobile_DidNotSelect
+	if_equal $1, .Mobile_OK
+	if_equal $2, .Mobile_OK
+	if_equal $3, .Mobile_InvalidParty
+	jump .Mobile_DidNotSelect
 
-UnknownScript_0x192a1a:
-	writetext UnknownText_0x1932bc
+.Mobile_InvalidParty:
+	writetext Text_BrokeStadiumRules
 	closetext
-UnknownScript_0x192a1e:
+.Mobile_DidNotSelect:
 	loadmovesprites
 	writebyte $0
 	end
 
-UnknownScript_0x192a22:
+.Mobile_OK:
 	writebyte $1
 	end
 
-UnknownScript_0x192a25:
+Script_TimeCapsuleClosed:
 	faceplayer
 	loadfont
-	writetext UnknownText_0x193100
+	writetext Text_TimeCapsuleClosed
 	closetext
 	loadmovesprites
 	end
 
-LinkReceptionistScript_0x192a2d:
+LinkReceptionistScript_TimeCapsule:
 	checkevent EVENT_MET_BILL
-	iftrue UnknownScript_0x192a25
+	iftrue Script_TimeCapsuleClosed
 	checkflag ENGINE_TIME_CAPSULE
-	iftrue UnknownScript_0x192a25
-	special Function29cfa
+	iftrue Script_TimeCapsuleClosed
+	special Special_SetBitsForTimeCapsuleRequest
 	faceplayer
 	loadfont
-	writetext UnknownText_0x192e9f
+	writetext Text_TimeCapsuleRecptionistIntro
 	yesorno
-	iffalse UnknownScript_0x192aa2
-	special Function29bfb
-	if_equal $1, UnknownScript_0x192aa7
-	if_equal $2, UnknownScript_0x192aac
-	if_equal $3, UnknownScript_0x192ab1
-	writetext UnknownText_0x192f67
-	special Function29d11
-	iffalse UnknownScript_0x192a91
-	writetext UnknownText_0x192f34
+	iffalse .Cancel
+	special Special_CheckTimeCapsuleCompatibility
+	if_equal $1, .MonTooNew
+	if_equal $2, .MonMoveTooNew
+	if_equal $3, .MonHasMail
+	writetext Text_PleaseWait
+	special Special_WaitForLinkedFriend
+	iffalse .FriendNotReady
+	writetext Text_MustSaveGame
 	yesorno
-	iffalse UnknownScript_0x192a9f
-	special Function29e66
-	iffalse UnknownScript_0x192a9f
-	writetext UnknownText_0x192f67
-	special Function29d92
-	iffalse UnknownScript_0x192a99
+	iffalse .DidNotSave
+	special Special_TryQuickSave
+	iffalse .DidNotSave
+	writetext Text_PleaseWait
+	special Special_CheckLinkTimeout
+	iffalse .LinkTimedOut
 	copybytetovar wcf51
-	iffalse UnknownScript_0x192a84
-	special Function29e82
-	writetext UnknownText_0x19304a
-	special Function29eee
+	iffalse .OK
+	special Special_CheckBothSelectedSameRoom
+	writetext Text_IncompatibleRooms
+	special Special_CloseLink
 	loadmovesprites
 	end
 
-UnknownScript_0x192a84:
-	special Function29c7b
-	writetext UnknownText_0x19306b
+.OK:
+	special Special_EnterTimeCapsule
+	writetext Text_PleaseComeIn2
 	closetext
 	loadmovesprites
-	scall UnknownScript_0x192bc4
+	scall TimeCapsuleScript_CheckPlayerGender
 	warpcheck
 	end
 
-UnknownScript_0x192a91:
-	special Function29c92
-	writetext UnknownText_0x192f19
+.FriendNotReady:
+	special Special_AbortLink
+	writetext Text_FriendNotReady
 	loadmovesprites
 	end
 
-UnknownScript_0x192a99:
-	writetext UnknownText_0x192f75
-	jump UnknownScript_0x192aa2
+.LinkTimedOut:
+	writetext Text_LinkTimedOut
+	jump .Cancel
 
-UnknownScript_0x192a9f:
-	writetext UnknownText_0x192fd1
-UnknownScript_0x192aa2:
-	special Function29c92
+.DidNotSave:
+	writetext Text_PleaseComeAgain
+.Cancel:
+	special Special_AbortLink
 	loadmovesprites
 	end
 
-UnknownScript_0x192aa7:
-	writetext UnknownText_0x19308b
+.MonTooNew:
+	writetext Text_RejectNewMon
 	loadmovesprites
 	end
 
-UnknownScript_0x192aac:
-	writetext UnknownText_0x1930a8
+.MonMoveTooNew:
+	writetext Text_RejectMonWithNewMove
 	loadmovesprites
 	end
 
-UnknownScript_0x192ab1:
-	writetext UnknownText_0x1930cf
+.MonHasMail:
+	writetext Text_RejectMonWithMail
 	loadmovesprites
 	end
 
-UnknownScript_0x192ab6:
-	special Function29c92
-	scall UnknownScript_0x192b50
+Script_LeftCableTradeCenter:
+	special Special_AbortLink
+	scall Script_CleanUpFemaleFlagAfterTrade
 	dotrigger $0
 	domaptrigger GROUP_TRADE_CENTER, MAP_TRADE_CENTER, $0
 	end
 
-UnknownScript_0x192ac3:
+Script_LeftMobileTradeRoom:
 	special Function101220
-	scall UnknownScript_0x192ad0
+	scall Script_WalkOutOfMobileTradeRoom
 	dotrigger $0
 	domaptrigger GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE, $0
 	end
 
-UnknownScript_0x192ad0:
+Script_WalkOutOfMobileTradeRoom:
 	applymovement $2, MovementData_0x192d0b
 	applymovement $0, MovementData_0x192d0f
 	applymovement $2, MovementData_0x192d14
 	end
 
-UnknownScript_0x192add:
-	special Function29c92
-	scall UnknownScript_0x192b8a
+Script_LeftCableColosseum:
+	special Special_AbortLink
+	scall Script_CleanUpFemaleFlagAfterBattle
 	dotrigger $0
 	domaptrigger GROUP_COLOSSEUM, MAP_COLOSSEUM, $0
 	end
 
-UnknownScript_0x192aea:
+Script_LeftMobileBattleRoom:
 	special Function101220
-	scall UnknownScript_0x192af7
+	scall Script_WalkOutOfMobileBattleRoom
 	dotrigger $0
 	domaptrigger GROUP_MOBILE_BATTLE_ROOM, MAP_MOBILE_BATTLE_ROOM, $0
 	end
 
-UnknownScript_0x192af7:
+Script_WalkOutOfMobileBattleRoom:
 	applymovement $3, MovementData_0x192d0b
 	applymovement $0, MovementData_0x192d0f
 	applymovement $3, MovementData_0x192d14
 	end
 
-UnknownScript_0x192b04:
+PokeCenter2F_CheckGender:
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x192b12
+	iftrue .Female
 	applymovement2 MovementData_0x192cca
 	applymovement $0, MovementData_0x192cde
 	end
 
-UnknownScript_0x192b12:
+.Female:
 	applymovement2 MovementData_0x192cd8
 	applymovement $0, MovementData_0x192ce2
 	loadfont
-	writetext UnknownText_0x193266
+	writetext Text_OhPleaseWait
 	closetext
 	loadmovesprites
 	applymovement2 MovementData_0x192cdc
 	spriteface $0, LEFT
 	loadfont
-	writetext UnknownText_0x193278
+	writetext Text_ChangeTheLook
 	closetext
 	loadmovesprites
 	playsound SFX_TINGLE
@@ -437,22 +437,22 @@ UnknownScript_0x192b12:
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special Functione4a
 	loadfont
-	writetext UnknownText_0x19329a
+	writetext Text_LikeTheLook
 	closetext
 	loadmovesprites
 	showemote EMOTE_SHOCK, $0, 15
 	applymovement $0, MovementData_0x192ce5
 	end
 
-UnknownScript_0x192b50:
+Script_CleanUpFemaleFlagAfterTrade:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
-	iftrue UnknownScript_0x192b63
+	iftrue .Female
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192cf5
 	applymovement $2, MovementData_0x192cfe
 	end
 
-UnknownScript_0x192b63:
+.Female:
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
@@ -466,15 +466,15 @@ UnknownScript_0x192b63:
 	applymovement $2, MovementData_0x192cfe
 	end
 
-UnknownScript_0x192b8a:
+Script_CleanUpFemaleFlagAfterBattle:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
-	iftrue UnknownScript_0x192b9d
+	iftrue .Female
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192cf5
 	applymovement $3, MovementData_0x192cfe
 	end
 
-UnknownScript_0x192b9d:
+.Female:
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
@@ -488,53 +488,53 @@ UnknownScript_0x192b9d:
 	applymovement $3, MovementData_0x192cfe
 	end
 
-UnknownScript_0x192bc4:
+TimeCapsuleScript_CheckPlayerGender:
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x192bec
+	iftrue .Female
 	checkcode VAR_FACING
-	if_equal $2, UnknownScript_0x192bdc
-	if_equal $3, UnknownScript_0x192be4
+	if_equal LEFT, .MaleFacingLeft
+	if_equal RIGHT, .MaleFacingRight
 	applymovement2 MovementData_0x192cd2
 	applymovement $0, MovementData_0x192cec
 	end
 
-UnknownScript_0x192bdc:
+.MaleFacingLeft:
 	applymovement2 MovementData_0x192cd2
 	applymovement $0, MovementData_0x192cef
 	end
 
-UnknownScript_0x192be4:
+.MaleFacingRight:
 	applymovement2 MovementData_0x192cd5
 	applymovement $0, MovementData_0x192cf2
 	end
 
-UnknownScript_0x192bec:
+.Female:
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x192c00
-	if_equal $2, UnknownScript_0x192c0a
+	if_equal RIGHT, .FemaleFacingRight
+	if_equal LEFT, .FemaleFacingLeft
 	applymovement2 MovementData_0x192d33
 	applymovement $0, MovementData_0x192d2d
-	jump UnknownScript_0x192c11
+	jump .FemaleContinue
 
-UnknownScript_0x192c00:
+.FemaleFacingRight:
 	applymovement2 MovementData_0x192d36
 	applymovement $0, MovementData_0x192d2f
-	jump UnknownScript_0x192c11
+	jump .FemaleContinue
 
-UnknownScript_0x192c0a:
+.FemaleFacingLeft:
 	applymovement2 MovementData_0x192d33
 	applymovement $0, MovementData_0x192d31
-UnknownScript_0x192c11:
+.FemaleContinue:
 	loadfont
-	writetext UnknownText_0x193266
+	writetext Text_OhPleaseWait
 	closetext
 	loadmovesprites
 	checkcode VAR_FACING
-	if_not_equal $1, UnknownScript_0x192c20
+	if_not_equal UP, .FemaleChangeApperance
 	spriteface $0, LEFT
-UnknownScript_0x192c20:
+.FemaleChangeApperance:
 	loadfont
-	writetext UnknownText_0x193278
+	writetext Text_ChangeTheLook
 	closetext
 	loadmovesprites
 	playsound SFX_TINGLE
@@ -546,23 +546,23 @@ UnknownScript_0x192c20:
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special Functione4a
 	loadfont
-	writetext UnknownText_0x19329a
+	writetext Text_LikeTheLook
 	closetext
 	loadmovesprites
 	showemote EMOTE_SHOCK, $0, 15
 	applymovement $0, MovementData_0x192d2d
 	end
 
-UnknownScript_0x192c4e:
-	special Function29c92
+Script_LeftTimeCapsule:
+	special Special_AbortLink
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
-	iftrue UnknownScript_0x192c66
+	iftrue .Female
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cf9
 	applymovement $4, MovementData_0x192d01
-	jump UnknownScript_0x192c8c
+	jump .Done
 
-UnknownScript_0x192c66:
+.Female:
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cfc
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
@@ -574,7 +574,7 @@ UnknownScript_0x192c66:
 	special Functione4a
 	applymovement $0, MovementData_0x192cfc
 	applymovement $4, MovementData_0x192d01
-UnknownScript_0x192c8c:
+.Done:
 	dotrigger $0
 	domaptrigger GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE, $0
 	end
@@ -588,32 +588,32 @@ MapPokeCenter2FSignpost0Script:
 OfficerScript_0x192c9a:
 	faceplayer
 	loadfont
-	checkevent EVENT_711
-	iftrue UnknownScript_0x192cb8
-	writetext UnknownText_0x193190
+	checkevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
+	iftrue .AlreadyGotGift
+	writetext Text_MysteryGiftDeliveryGuy_Intro
 	yesorno
-	iffalse UnknownScript_0x192cc4
-	writetext UnknownText_0x1931c4
+	iffalse .RefusedGift
+	writetext Text_MysteryGiftDeliveryGuy_HereYouGo
 	keeptextopen
 	waitbutton
-	special Functionc309
-	iffalse UnknownScript_0x192cbe
+	special Special_GetMysteryGiftItem
+	iffalse .BagIsFull
 	itemnotify
-	setevent EVENT_711
-UnknownScript_0x192cb8:
-	writetext UnknownText_0x1931d2
+	setevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
+.AlreadyGotGift:
+	writetext Text_MysteryGiftDeliveryGuy_Outro
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x192cbe:
-	writetext UnknownText_0x1931ef
+.BagIsFull:
+	writetext Text_MysteryGiftDeliveryGuy_NoRoom
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x192cc4:
-	writetext UnknownText_0x19324d
+.RefusedGift:
+	writetext Text_MysteryGiftDeliveryGuy_SaidNo
 	closetext
 	loadmovesprites
 	end
@@ -795,7 +795,7 @@ MovementData_0x192d36:
 	turn_head_left
 	step_end
 
-UnknownText_0x192d39:
+Text_BattleReceptionistMobile:
 	text "Would you like to"
 	line "battle over a GAME"
 
@@ -803,7 +803,7 @@ UnknownText_0x192d39:
 	line "mobile phone?"
 	done
 
-UnknownText_0x192d7e:
+Text_TradeReceptionistMobile:
 	text "Would you like to"
 	line "trade over a GAME"
 
@@ -811,12 +811,12 @@ UnknownText_0x192d7e:
 	line "mobile phone?"
 	done
 
-UnknownText_0x192dc2:
+Text_ThisWayToMobileRoom:
 	text "This way to the"
 	line "MOBILE ROOM."
 	done
 
-UnknownText_0x192de0:
+Text_BattleReceptionistIntro:
 	text "Welcome to CABLE"
 	line "CLUB COLOSSEUM."
 
@@ -827,7 +827,7 @@ UnknownText_0x192de0:
 	line "battle?"
 	done
 
-UnknownText_0x192e3a:
+Text_TradeReceptionistIntro:
 	text "Welcome to CABLE"
 	line "TRADE CENTER."
 
@@ -839,7 +839,7 @@ UnknownText_0x192e3a:
 	line "trade?"
 	done
 
-UnknownText_0x192e9f:
+Text_TimeCapsuleRecptionistIntro:
 	text "Welcome to CABLE"
 	line "CLUB TIME CAPSULE."
 
@@ -851,22 +851,22 @@ UnknownText_0x192e9f:
 	line "trade across time?"
 	done
 
-UnknownText_0x192f19:
+Text_FriendNotReady:
 	text "Your friend is not"
 	line "ready."
 	prompt
 
-UnknownText_0x192f34:
+Text_MustSaveGame:
 	text "Before opening the"
 	line "link, you must"
 	cont "save your game."
 	done
 
-UnknownText_0x192f67:
+Text_PleaseWait:
 	text "Please wait."
 	done
 
-UnknownText_0x192f75:
+Text_LinkTimedOut:
 	text "The link has been"
 	line "closed because of"
 	cont "inactivity."
@@ -876,46 +876,46 @@ UnknownText_0x192f75:
 	cont "come again."
 	prompt
 
-UnknownText_0x192fd1:
+Text_PleaseComeAgain:
 	text "Please come again."
 	prompt
 
-UnknownText_0x192fe5:
+Text_PleaseComeIn:
 	text "Please come in."
 	prompt
 
-UnknownText_0x192ff6:
+Text_TemporaryStagingInLinkRoom:
 	text "We'll put you in"
 	line "the link room for"
 	cont "the time being."
 	done
 
-UnknownText_0x193029:
+Text_CantLinkToThePast:
 	text "You can't link to"
 	line "the past here."
 	prompt
 
-UnknownText_0x19304a:
+Text_IncompatibleRooms:
 	text "Incompatible rooms"
 	line "were chosen."
 	prompt
 
-UnknownText_0x19306b:
+Text_PleaseComeIn2:
 	text "Please come in."
 	done
 
-UnknownText_0x19307c:
+Text_PleaseEnter:
 	text "Please enter."
 	prompt
 
-UnknownText_0x19308b:
+Text_RejectNewMon:
 	text "Sorry--@"
 	text_from_ram StringBuffer1
 	text ""
 	line "can't be taken."
 	prompt
 
-UnknownText_0x1930a8:
+Text_RejectMonWithNewMove:
 	text "You can't take the"
 	line "@"
 	text_from_ram StringBuffer1
@@ -925,7 +925,7 @@ UnknownText_0x1930a8:
 	text "."
 	prompt
 
-UnknownText_0x1930cf:
+Text_RejectMonWithMail:
 	text "You can't take the"
 	line "@"
 	text_from_ram StringBuffer1
@@ -933,25 +933,25 @@ UnknownText_0x1930cf:
 	cont "has MAIL with you."
 	prompt
 
-UnknownText_0x193100:
+Text_TimeCapsuleClosed:
 	text "I'm sorry--the"
 	line "TIME CAPSULE is"
 	cont "being adjusted."
 	done
 
-UnknownText_0x19312f:
+Text_TradeRoomClosed:
 	text "I'm sorry--the"
 	line "TRADE MACHINE is"
 	cont "being adjusted."
 	done
 
-UnknownText_0x19315f:
+Text_BattleRoomClosed:
 	text "I'm sorry--the"
 	line "BATTLE MACHINE is"
 	cont "being adjusted."
 	done
 
-UnknownText_0x193190:
+Text_MysteryGiftDeliveryGuy_Intro:
 	text "Hello! You're"
 	line "<PLAYER>, right?"
 
@@ -959,16 +959,16 @@ UnknownText_0x193190:
 	line "thing for you."
 	done
 
-UnknownText_0x1931c4:
+Text_MysteryGiftDeliveryGuy_HereYouGo:
 	text "Here you go!"
 	done
 
-UnknownText_0x1931d2:
+Text_MysteryGiftDeliveryGuy_Outro:
 	text "We hope to serve"
 	line "you again."
 	done
 
-UnknownText_0x1931ef:
+Text_MysteryGiftDeliveryGuy_NoRoom:
 	text "Oh, you have no"
 	line "space for this."
 
@@ -979,26 +979,26 @@ UnknownText_0x1931ef:
 	line "to pick it up."
 	done
 
-UnknownText_0x19324d:
+Text_MysteryGiftDeliveryGuy_SaidNo:
 	text "No? That's very"
 	line "strange…"
 	done
 
-UnknownText_0x193266:
+Text_OhPleaseWait:
 	text "Oh, please wait."
 	done
 
-UnknownText_0x193278:
+Text_ChangeTheLook:
 	text "We need to change"
 	line "the look here…"
 	done
 
-UnknownText_0x19329a:
+Text_LikeTheLook:
 	text "How does this"
 	line "style look to you?"
 	done
 
-UnknownText_0x1932bc:
+Text_BrokeStadiumRules:
 	text "Excuse me!"
 
 	para "For STADIUM rules,"
@@ -1024,7 +1024,7 @@ PokeCenter2F_MapEventHeader:
 
 	; warps
 	db 6
-	warp_def $7, $0, 255, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $0, -1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 	warp_def $0, $5, 1, GROUP_TRADE_CENTER, MAP_TRADE_CENTER
 	warp_def $0, $9, 1, GROUP_COLOSSEUM, MAP_COLOSSEUM
 	warp_def $2, $d, 1, GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE
@@ -1036,11 +1036,11 @@ PokeCenter2F_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 3, 7, $0, MapPokeCenter2FSignpost0Script
+	signpost 3, 7, SIGNPOST_READ, MapPokeCenter2FSignpost0Script
 
 	; people-events
 	db 4
-	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x19289d, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192952, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192a2d, -1
-	person_event SPRITE_OFFICER, 5, 5, $6, $0, 255, 255, $0, 0, OfficerScript_0x192c9a, EVENT_711
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_Trade, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_Battle, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_TimeCapsule, -1
+	person_event SPRITE_OFFICER, 5, 5, UP << 2 | $2, $0, -1, -1, $0, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY

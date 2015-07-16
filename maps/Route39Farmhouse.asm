@@ -202,10 +202,10 @@ Route39Farmhouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, FarmhouseBookshelf
-	signpost 1, 1, $0, FarmhouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, FarmhouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, FarmhouseBookshelf
 
 	; people-events
 	db 2
-	person_event SPRITE_POKEFAN_M, 6, 7, $6, $0, 255, 255, $90, 0, PokefanMScript_0x9ceb4, -1
-	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $b0, 0, PokefanFScript_0x9cf0e, -1
+	person_event SPRITE_POKEFAN_M, 6, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanMScript_0x9ceb4, -1
+	person_event SPRITE_POKEFAN_F, 8, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanFScript_0x9cf0e, -1

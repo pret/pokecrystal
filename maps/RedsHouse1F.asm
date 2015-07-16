@@ -88,10 +88,10 @@ RedsHouse1F_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, RedsHouse1FBookshelf
-	signpost 1, 1, $0, RedsHouse1FBookshelf
-	signpost 1, 2, $0, RedsHouse1FTV
+	signpost 1, 0, SIGNPOST_READ, RedsHouse1FBookshelf
+	signpost 1, 1, SIGNPOST_READ, RedsHouse1FBookshelf
+	signpost 1, 2, SIGNPOST_READ, RedsHouse1FTV
 
 	; people-events
 	db 1
-	person_event SPRITE_REDS_MOM, 7, 9, $8, $0, 255, 255, $0, 0, RedsMom, -1
+	person_event SPRITE_REDS_MOM, 7, 9, LEFT << 2 | $0, $0, -1, -1, $0, 0, RedsMom, -1

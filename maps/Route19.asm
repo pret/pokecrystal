@@ -306,14 +306,14 @@ Route19_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 13, 11, $0, MapRoute19Signpost0Script
-	signpost 1, 11, $0, MapRoute19Signpost1Script
+	signpost 13, 11, SIGNPOST_READ, MapRoute19Signpost0Script
+	signpost 1, 11, SIGNPOST_READ, MapRoute19Signpost1Script
 
 	; people-events
 	db 6
-	person_event SPRITE_SWIMMER_GIRL, 27, 13, $8, $0, 255, 255, $a2, 0, TrainerSwimmerfDawn, -1
-	person_event SPRITE_SWIMMER_GUY, 32, 17, $a, $0, 255, 255, $82, 3, TrainerSwimmermHarold, -1
-	person_event SPRITE_SWIMMER_GUY, 21, 15, $a, $0, 255, 255, $82, 3, TrainerSwimmermJerome, -1
-	person_event SPRITE_SWIMMER_GUY, 27, 12, $7, $0, 255, 255, $82, 0, TrainerSwimmermTucker, -1
-	person_event SPRITE_FISHER, 9, 13, $6, $0, 255, 255, $80, 1, FisherScript_0x19ea4d, -1
-	person_event SPRITE_FISHER, 9, 15, $5, $1, 255, 255, $90, 1, FisherScript_0x19ea61, -1
+	person_event SPRITE_SWIMMER_GIRL, 27, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerSwimmerfDawn, -1
+	person_event SPRITE_SWIMMER_GUY, 32, 17, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermHarold, -1
+	person_event SPRITE_SWIMMER_GUY, 21, 15, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermJerome, -1
+	person_event SPRITE_SWIMMER_GUY, 27, 12, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerSwimmermTucker, -1
+	person_event SPRITE_FISHER, 9, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 1, FisherScript_0x19ea4d, -1
+	person_event SPRITE_FISHER, 9, 15, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, FisherScript_0x19ea61, -1

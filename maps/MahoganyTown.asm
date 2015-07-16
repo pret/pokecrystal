@@ -261,14 +261,14 @@ MahoganyTown_MapEventHeader:
 
 	; signposts
 	db 4
-	signpost 5, 1, $0, MahoganyTownSign
-	signpost 7, 9, $0, MahoganyTownRagecandybarSign
-	signpost 13, 3, $0, MahoganyGymSign
-	signpost 13, 16, $0, MahoganyTownPokeCenterSign
+	signpost 5, 1, SIGNPOST_READ, MahoganyTownSign
+	signpost 7, 9, SIGNPOST_READ, MahoganyTownRagecandybarSign
+	signpost 13, 3, SIGNPOST_READ, MahoganyGymSign
+	signpost 13, 16, SIGNPOST_READ, MahoganyTownPokeCenterSign
 
 	; people-events
 	db 4
-	person_event SPRITE_POKEFAN_M, 12, 23, $6, $0, 255, 255, $0, 0, PokefanMScript_0x19002e, EVENT_756
-	person_event SPRITE_GRAMPS, 13, 10, $5, $1, 255, 255, $0, 0, GrampsScript_0x19007e, -1
-	person_event SPRITE_FISHER, 18, 10, $6, $0, 255, 255, $a0, 0, FisherScript_0x190092, EVENT_757
-	person_event SPRITE_LASS, 12, 16, $6, $0, 255, 255, $0, 0, LassScript_0x190095, EVENT_736
+	person_event SPRITE_POKEFAN_M, 12, 23, UP << 2 | $2, $0, -1, -1, $0, 0, PokefanMScript_0x19002e, EVENT_756
+	person_event SPRITE_GRAMPS, 13, 10, UP << 2 | $1, $1, -1, -1, $0, 0, GrampsScript_0x19007e, -1
+	person_event SPRITE_FISHER, 18, 10, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x190092, EVENT_757
+	person_event SPRITE_LASS, 12, 16, UP << 2 | $2, $0, -1, -1, $0, 0, LassScript_0x190095, EVENT_736

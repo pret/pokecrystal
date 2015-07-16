@@ -207,10 +207,10 @@ OlivineGym_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 13, 3, $0, OlivineGymStatue
-	signpost 13, 6, $0, OlivineGymStatue
+	signpost 13, 3, SIGNPOST_READ, OlivineGymStatue
+	signpost 13, 6, SIGNPOST_READ, OlivineGymStatue
 
 	; people-events
 	db 2
-	person_event SPRITE_JASMINE, 7, 9, $6, $0, 255, 255, $80, 0, JasmineScript_0x9c12f, EVENT_6D3
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, OlivineGymGuyScript, -1
+	person_event SPRITE_JASMINE, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, JasmineScript_0x9c12f, EVENT_6D3
+	person_event SPRITE_GYM_GUY, 17, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OlivineGymGuyScript, -1

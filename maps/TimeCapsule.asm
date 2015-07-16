@@ -3,42 +3,42 @@ TimeCapsule_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1934f8, $0000
-	dw UnknownScript_0x1934fc, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
 	; callback count
 	db 1
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x1934fd
+	dbw 2, TimeCapsule_SetWhichChris
 
-UnknownScript_0x1934f8:
-	priorityjump UnknownScript_0x19350d
+.Trigger1:
+	priorityjump TimeCapsule_Initialize
 	end
 
-UnknownScript_0x1934fc:
+.Trigger2:
 	end
 
-UnknownScript_0x1934fd:
-	special Function29f47
-	iffalse UnknownScript_0x193508
+TimeCapsule_SetWhichChris:
+	special Special_CableClubCheckWhichChris
+	iffalse .Chris2
 	disappear $3
 	appear $2
 	return
 
-UnknownScript_0x193508:
+.Chris2:
 	disappear $2
 	appear $3
 	return
 
-UnknownScript_0x19350d:
+TimeCapsule_Initialize:
 	dotrigger $1
 	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $3
 	end
 
 MapTimeCapsuleSignpost1Script:
-	special Function29eaf
+	special Special_TimeCapsule
 	newloadmap $f8
 	end
 
@@ -68,10 +68,10 @@ TimeCapsule_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 4, 4, $3, MapTimeCapsuleSignpost1Script
-	signpost 4, 5, $4, MapTimeCapsuleSignpost1Script
+	signpost 4, 4, SIGNPOST_RIGHT, MapTimeCapsuleSignpost1Script
+	signpost 4, 5, SIGNPOST_LEFT, MapTimeCapsuleSignpost1Script
 
 	; people-events
 	db 2
-	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x19351a, EVENT_000
-	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x19351a, EVENT_001
+	person_event SPRITE_CHRIS, 8, 7, LEFT << 2 | $1, $0, -1, -1, $0, 0, ChrisScript_0x19351a, EVENT_CHRIS1_IN_CABLE_CLUB
+	person_event SPRITE_CHRIS, 8, 10, LEFT << 2 | $0, $0, -1, -1, $0, 0, ChrisScript_0x19351a, EVENT_CHRIS2_IN_CABLE_CLUB

@@ -228,16 +228,16 @@ ViridianCity_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 17, 17, $0, ViridianCitySign
-	signpost 7, 27, $0, ViridianGymSign
-	signpost 1, 19, $0, ViridianCityWelcomeSign
-	signpost 15, 21, $0, TrainerHouseSign
-	signpost 25, 24, $0, ViridianCityPokeCenterSign
-	signpost 19, 30, $0, ViridianCityMartSign
+	signpost 17, 17, SIGNPOST_READ, ViridianCitySign
+	signpost 7, 27, SIGNPOST_READ, ViridianGymSign
+	signpost 1, 19, SIGNPOST_READ, ViridianCityWelcomeSign
+	signpost 15, 21, SIGNPOST_READ, TrainerHouseSign
+	signpost 25, 24, SIGNPOST_READ, ViridianCityPokeCenterSign
+	signpost 19, 30, SIGNPOST_READ, ViridianCityMartSign
 
 	; people-events
 	db 4
-	person_event SPRITE_GRAMPS, 9, 22, $2, $22, 255, 255, $0, 0, GrampsScript_0x1a9a4c, -1
-	person_event SPRITE_GRAMPS, 12, 34, $6, $0, 255, 255, $90, 0, GrampsScript_0x1a9a61, -1
-	person_event SPRITE_FISHER, 27, 10, $6, $0, 255, 255, $80, 0, FisherScript_0x1a9a75, -1
-	person_event SPRITE_YOUNGSTER, 25, 21, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x1a9a90, -1
+	person_event SPRITE_GRAMPS, 9, 22, DOWN << 2 | $2, $22, -1, -1, $0, 0, GrampsScript_0x1a9a4c, -1
+	person_event SPRITE_GRAMPS, 12, 34, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x1a9a61, -1
+	person_event SPRITE_FISHER, 27, 10, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x1a9a75, -1
+	person_event SPRITE_YOUNGSTER, 25, 21, DOWN << 2 | $2, $33, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a9a90, -1

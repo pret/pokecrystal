@@ -51,10 +51,10 @@ CherrygroveEvolutionSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, CherrygroveEvolutionSpeechHouseBookshelf
-	signpost 1, 1, $0, CherrygroveEvolutionSpeechHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, CherrygroveEvolutionSpeechHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, CherrygroveEvolutionSpeechHouseBookshelf
 
 	; people-events
 	db 2
-	person_event SPRITE_LASS, 9, 7, $8, $0, 255, 255, $a0, 0, LassScript_0x196cb9, -1
-	person_event SPRITE_YOUNGSTER, 9, 6, $9, $0, 255, 255, $80, 0, YoungsterScript_0x196cb2, -1
+	person_event SPRITE_LASS, 9, 7, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x196cb9, -1
+	person_event SPRITE_YOUNGSTER, 9, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x196cb2, -1

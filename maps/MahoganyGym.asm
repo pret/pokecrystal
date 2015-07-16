@@ -457,15 +457,15 @@ MahoganyGym_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, MahoganyGymStatue
-	signpost 15, 6, $0, MahoganyGymStatue
+	signpost 15, 3, SIGNPOST_READ, MahoganyGymStatue
+	signpost 15, 6, SIGNPOST_READ, MahoganyGymStatue
 
 	; people-events
 	db 7
-	person_event SPRITE_PRYCE, 7, 9, $6, $0, 255, 255, $b0, 0, PryceScript_0x199a9e, -1
-	person_event SPRITE_BUENA, 10, 8, $6, $0, 255, 255, $82, 1, TrainerSkierRoxanne, -1
-	person_event SPRITE_ROCKER, 21, 4, $7, $0, 255, 255, $92, 1, TrainerBoarderRonald, -1
-	person_event SPRITE_BUENA, 21, 13, $7, $0, 255, 255, $82, 1, TrainerSkierClarissa, -1
-	person_event SPRITE_ROCKER, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, -1
-	person_event SPRITE_ROCKER, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, -1
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, -1
+	person_event SPRITE_PRYCE, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PryceScript_0x199a9e, -1
+	person_event SPRITE_BUENA, 10, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerSkierRoxanne, -1
+	person_event SPRITE_ROCKER, 21, 4, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderRonald, -1
+	person_event SPRITE_BUENA, 21, 13, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerSkierClarissa, -1
+	person_event SPRITE_ROCKER, 13, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderBrad, -1
+	person_event SPRITE_ROCKER, 8, 6, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderDouglas, -1
+	person_event SPRITE_GYM_GUY, 19, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MahoganyGymGuyScript, -1

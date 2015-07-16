@@ -592,19 +592,19 @@ Route35_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 7, 1, $0, MapRoute35Signpost1Script
-	signpost 31, 11, $0, MapRoute35Signpost1Script
+	signpost 7, 1, SIGNPOST_READ, MapRoute35Signpost1Script
+	signpost 31, 11, SIGNPOST_READ, MapRoute35Signpost1Script
 
 	; people-events
 	db 11
-	person_event SPRITE_YOUNGSTER, 23, 8, $a, $0, 255, 255, $a2, 2, TrainerCamperIvan, -1
-	person_event SPRITE_YOUNGSTER, 24, 12, $6, $0, 255, 255, $a2, 3, TrainerCamperElliot, -1
-	person_event SPRITE_LASS, 24, 11, $6, $0, 255, 255, $a2, 3, TrainerPicnickerBrooke, -1
-	person_event SPRITE_LASS, 30, 14, $a, $0, 255, 255, $a2, 1, TrainerPicnickerKim, -1
-	person_event SPRITE_YOUNGSTER, 32, 18, $6, $0, 255, 255, $92, 0, TrainerBird_keeperBryan, -1
-	person_event SPRITE_FISHER, 14, 6, $1e, $0, 255, 255, $82, 2, TrainerFirebreatherWalt, -1
-	person_event SPRITE_BUG_CATCHER, 11, 20, $6, $2, 255, 255, $b2, 3, TrainerBug_catcherArnie1, -1
-	person_event SPRITE_SUPER_NERD, 14, 9, $a, $0, 255, 255, $92, 2, TrainerJugglerIrwin, -1
-	person_event SPRITE_OFFICER, 10, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x19ca49, -1
-	person_event SPRITE_FRUIT_TREE, 29, 6, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19ca7e, -1
-	person_event SPRITE_POKE_BALL, 20, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x19ca7c, EVENT_6B2
+	person_event SPRITE_YOUNGSTER, 23, 8, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperIvan, -1
+	person_event SPRITE_YOUNGSTER, 24, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperElliot, -1
+	person_event SPRITE_LASS, 24, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPicnickerBrooke, -1
+	person_event SPRITE_LASS, 30, 14, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerPicnickerKim, -1
+	person_event SPRITE_YOUNGSTER, 32, 18, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerBird_keeperBryan, -1
+	person_event SPRITE_FISHER, 14, 6, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherWalt, -1
+	person_event SPRITE_BUG_CATCHER, 11, 20, UP << 2 | $2, $2, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherArnie1, -1
+	person_event SPRITE_SUPER_NERD, 14, 9, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerJugglerIrwin, -1
+	person_event SPRITE_OFFICER, 10, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x19ca49, -1
+	person_event SPRITE_FRUIT_TREE, 29, 6, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19ca7e, -1
+	person_event SPRITE_POKE_BALL, 20, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19ca7c, EVENT_6B2

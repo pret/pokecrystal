@@ -270,6 +270,6 @@ OlivineLighthouse6F_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_JASMINE, 12, 12, $6, $0, 255, 255, $80, 0, JasmineScript_0x60b91, EVENT_6D2
-	person_event SPRITE_MONSTER, 12, 13, $6, $0, 255, 255, $b0, 0, MonsterScript_0x60c3a, -1
-	person_event SPRITE_POKE_BALL, 8, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x60c66, EVENT_668
+	person_event SPRITE_JASMINE, 12, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, JasmineScript_0x60b91, EVENT_6D2
+	person_event SPRITE_MONSTER, 12, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MonsterScript_0x60c3a, -1
+	person_event SPRITE_POKE_BALL, 8, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x60c66, EVENT_668

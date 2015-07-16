@@ -119,10 +119,10 @@ Route1_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 27, 7, $0, MapRoute1Signpost0Script
+	signpost 27, 7, SIGNPOST_READ, MapRoute1Signpost0Script
 
 	; people-events
 	db 3
-	person_event SPRITE_YOUNGSTER, 16, 8, $9, $0, 255, 255, $92, 4, TrainerSchoolboyDanny, -1
-	person_event SPRITE_COOLTRAINER_F, 29, 13, $a, $0, 255, 255, $82, 2, TrainerCooltrainerfQuinn, -1
-	person_event SPRITE_FRUIT_TREE, 11, 7, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac581, -1
+	person_event SPRITE_YOUNGSTER, 16, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSchoolboyDanny, -1
+	person_event SPRITE_COOLTRAINER_F, 29, 13, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainerfQuinn, -1
+	person_event SPRITE_FRUIT_TREE, 11, 7, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1ac581, -1

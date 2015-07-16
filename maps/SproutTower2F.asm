@@ -127,10 +127,10 @@ SproutTower2F_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 15, 12, $0, MapSproutTower2FSignpost0Script
+	signpost 15, 12, SIGNPOST_READ, MapSproutTower2FSignpost0Script
 
 	; people-events
 	db 3
-	person_event SPRITE_SAGE, 7, 16, $a, $0, 255, 255, $92, 4, TrainerSageNico, -1
-	person_event SPRITE_SAGE, 18, 13, $8, $0, 255, 255, $92, 5, TrainerSageEdmond, -1
-	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x1847a7, EVENT_648
+	person_event SPRITE_SAGE, 7, 16, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSageNico, -1
+	person_event SPRITE_SAGE, 18, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSageEdmond, -1
+	person_event SPRITE_POKE_BALL, 5, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1847a7, EVENT_648

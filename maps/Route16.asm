@@ -48,7 +48,7 @@ Route16_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 5, 5, $0, MapRoute16Signpost0Script
+	signpost 5, 5, SIGNPOST_READ, MapRoute16Signpost0Script
 
 	; people-events
 	db 0

@@ -214,13 +214,13 @@ CeladonCafe_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 0, 5, $0, EatathonContestPoster
-	signpost 1, 7, $0, CeladonCafeTrashcan
+	signpost 0, 5, SIGNPOST_READ, EatathonContestPoster
+	signpost 1, 7, SIGNPOST_READ, CeladonCafeTrashcan
 
 	; people-events
 	db 5
-	person_event SPRITE_SUPER_NERD, 7, 13, $8, $0, 255, 255, $b0, 0, SuperNerdScript_0x73049, -1
-	person_event SPRITE_FISHER, 10, 8, $8, $0, 255, 255, $0, 0, FisherScript_0x73051, -1
-	person_event SPRITE_FISHER, 11, 5, $9, $0, 255, 255, $a0, 0, FisherScript_0x73062, -1
-	person_event SPRITE_FISHER, 6, 5, $9, $0, 255, 255, $0, 0, FisherScript_0x73073, -1
-	person_event SPRITE_TEACHER, 7, 8, $8, $0, 255, 255, $0, 0, TeacherScript_0x73084, -1
+	person_event SPRITE_SUPER_NERD, 7, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, SuperNerdScript_0x73049, -1
+	person_event SPRITE_FISHER, 10, 8, LEFT << 2 | $0, $0, -1, -1, $0, 0, FisherScript_0x73051, -1
+	person_event SPRITE_FISHER, 11, 5, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x73062, -1
+	person_event SPRITE_FISHER, 6, 5, LEFT << 2 | $1, $0, -1, -1, $0, 0, FisherScript_0x73073, -1
+	person_event SPRITE_TEACHER, 7, 8, LEFT << 2 | $0, $0, -1, -1, $0, 0, TeacherScript_0x73084, -1

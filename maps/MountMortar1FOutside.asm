@@ -37,9 +37,9 @@ MountMortar1FOutside_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 22, 25, $7, MapMountMortar1FOutsideSignpostItem0
+	signpost 22, 25, SIGNPOST_ITEMIFSET, MapMountMortar1FOutsideSignpostItem0
 
 	; people-events
 	db 2
-	person_event SPRITE_POKE_BALL, 19, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ddf6, EVENT_67B
-	person_event SPRITE_POKE_BALL, 22, 35, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ddf8, EVENT_67C
+	person_event SPRITE_POKE_BALL, 19, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf6, EVENT_67B
+	person_event SPRITE_POKE_BALL, 22, 35, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf8, EVENT_67C

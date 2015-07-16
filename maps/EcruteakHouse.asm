@@ -86,7 +86,7 @@ UnknownScript_0x98076:
 UnknownScript_0x9807c:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x980a4
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x980aa
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98093
@@ -102,7 +102,7 @@ UnknownScript_0x98093:
 	dotrigger $1
 	setevent EVENT_RANG_CLEAR_BELL
 	clearevent EVENT_766
-	setevent EVENT_000
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
 	end
 
 UnknownScript_0x980a4:
@@ -298,7 +298,7 @@ EcruteakHouse_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_SAGE, 10, 8, $6, $0, 255, 255, $0, 0, SageScript_0x98062, EVENT_766
-	person_event SPRITE_SAGE, 10, 9, $6, $0, 255, 255, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL
-	person_event SPRITE_SAGE, 13, 10, $2, $11, 255, 255, $0, 0, SageScript_0x980b0, EVENT_7B1
-	person_event SPRITE_GRAMPS, 15, 7, $2, $11, 255, 255, $0, 0, GrampsScript_0x980c4, EVENT_7B1
+	person_event SPRITE_SAGE, 10, 8, UP << 2 | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_766
+	person_event SPRITE_SAGE, 10, 9, UP << 2 | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL
+	person_event SPRITE_SAGE, 13, 10, DOWN << 2 | $2, $11, -1, -1, $0, 0, SageScript_0x980b0, EVENT_7B1
+	person_event SPRITE_GRAMPS, 15, 7, DOWN << 2 | $2, $11, -1, -1, $0, 0, GrampsScript_0x980c4, EVENT_7B1

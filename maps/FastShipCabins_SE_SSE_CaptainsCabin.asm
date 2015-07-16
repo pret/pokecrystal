@@ -579,18 +579,18 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 25, 4, $0, FastShipCaptainsCabinTrashcan
+	signpost 25, 4, SIGNPOST_READ, FastShipCaptainsCabinTrashcan
 
 	; people-events
 	db 11
-	person_event SPRITE_CAPTAIN, 29, 7, $6, $0, 255, 255, $90, 0, CaptainScript_0x75ea7, -1
-	person_event SPRITE_GENTLEMAN, 21, 6, $9, $0, 255, 255, $90, 0, GentlemanScript_0x75f1f, EVENT_730
-	person_event SPRITE_TWIN, 21, 7, $a, $0, 255, 255, $0, 0, TwinScript_0x75f6d, EVENT_731
-	person_event SPRITE_TWIN, 29, 6, $a, $0, 255, 255, $0, 0, TwinScript_0x75ebb, EVENT_732
-	person_event SPRITE_POKEFAN_M, 10, 9, $8, $0, 255, 255, $82, 5, TrainerPokefanmColin, EVENT_739
-	person_event SPRITE_TWIN, 8, 6, $6, $0, 255, 255, $82, 1, TrainerTwinsMegandpeg1, EVENT_739
-	person_event SPRITE_TWIN, 8, 7, $6, $0, 255, 255, $82, 1, TrainerTwinsMegandpeg2, EVENT_739
-	person_event SPRITE_SUPER_NERD, 9, 9, $8, $0, 255, 255, $92, 5, TrainerPsychicRodney, EVENT_73A
-	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $82, 3, TrainerPokefanmJeremy, EVENT_73B
-	person_event SPRITE_POKEFAN_F, 9, 9, $9, $0, 255, 255, $82, 1, TrainerPokefanfGeorgia, EVENT_73B
-	person_event SPRITE_SUPER_NERD, 19, 5, $3, $0, 255, 255, $b2, 2, TrainerSupernerdShawn, EVENT_73A
+	person_event SPRITE_CAPTAIN, 29, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CaptainScript_0x75ea7, -1
+	person_event SPRITE_GENTLEMAN, 21, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x75f1f, EVENT_730
+	person_event SPRITE_TWIN, 21, 7, LEFT << 2 | $2, $0, -1, -1, $0, 0, TwinScript_0x75f6d, EVENT_731
+	person_event SPRITE_TWIN, 29, 6, LEFT << 2 | $2, $0, -1, -1, $0, 0, TwinScript_0x75ebb, EVENT_732
+	person_event SPRITE_POKEFAN_M, 10, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerPokefanmColin, EVENT_739
+	person_event SPRITE_TWIN, 8, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsMegandpeg1, EVENT_739
+	person_event SPRITE_TWIN, 8, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsMegandpeg2, EVENT_739
+	person_event SPRITE_SUPER_NERD, 9, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerPsychicRodney, EVENT_73A
+	person_event SPRITE_POKEFAN_M, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmJeremy, EVENT_73B
+	person_event SPRITE_POKEFAN_F, 9, 9, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerPokefanfGeorgia, EVENT_73B
+	person_event SPRITE_SUPER_NERD, 19, 5, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdShawn, EVENT_73A

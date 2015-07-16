@@ -384,19 +384,19 @@ SproutTower3F_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 1, 8, $0, MapSproutTower3FSignpost5Script
-	signpost 1, 11, $0, MapSproutTower3FSignpost5Script
-	signpost 0, 9, $0, MapSproutTower3FSignpost3Script
-	signpost 0, 10, $0, MapSproutTower3FSignpost3Script
-	signpost 15, 5, $0, MapSproutTower3FSignpost5Script
-	signpost 15, 14, $0, MapSproutTower3FSignpost5Script
+	signpost 1, 8, SIGNPOST_READ, MapSproutTower3FSignpost5Script
+	signpost 1, 11, SIGNPOST_READ, MapSproutTower3FSignpost5Script
+	signpost 0, 9, SIGNPOST_READ, MapSproutTower3FSignpost3Script
+	signpost 0, 10, SIGNPOST_READ, MapSproutTower3FSignpost3Script
+	signpost 15, 5, SIGNPOST_READ, MapSproutTower3FSignpost5Script
+	signpost 15, 14, SIGNPOST_READ, MapSproutTower3FSignpost5Script
 
 	; people-events
 	db 7
-	person_event SPRITE_SAGE, 17, 12, $9, $0, 255, 255, $92, 3, TrainerSageJin, -1
-	person_event SPRITE_SAGE, 12, 12, $6, $0, 255, 255, $92, 2, TrainerSageTroy, -1
-	person_event SPRITE_SAGE, 6, 14, $6, $0, 255, 255, $90, 0, SageLiScript, -1
-	person_event SPRITE_SAGE, 15, 15, $8, $0, 255, 255, $92, 3, TrainerSageNeal, -1
-	person_event SPRITE_POKE_BALL, 18, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a19, EVENT_649
-	person_event SPRITE_POKE_BALL, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, EVENT_64A
-	person_event SPRITE_SILVER, 8, 14, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER
+	person_event SPRITE_SAGE, 17, 12, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSageJin, -1
+	person_event SPRITE_SAGE, 12, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerSageTroy, -1
+	person_event SPRITE_SAGE, 6, 14, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SageLiScript, -1
+	person_event SPRITE_SAGE, 15, 15, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSageNeal, -1
+	person_event SPRITE_POKE_BALL, 18, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x184a19, EVENT_649
+	person_event SPRITE_POKE_BALL, 5, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x184a1b, EVENT_64A
+	person_event SPRITE_SILVER, 8, 14, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER

@@ -1,7 +1,7 @@
 ; More overworld event handling.
 
 
-Function97c28:: ; 97c28
+WarpToLastSpawn:: ; 97c28
 	ld hl, StatusFlags2
 	res 1, [hl]
 	res 2, [hl]
@@ -48,46 +48,46 @@ Function97c5f:: ; 97c5f
 	call GetFacingTileCoord
 	ld [EngineBuffer1], a
 	ld c, a
-	callba Function1365b
-	jr c, .asm_97cb9
+	callba CheckFacingTileForStd
+	jr c, .done
 
 	call CheckCutTreeTile
 	jr nz, .whirlpool
 	callba TryCutOW
-	jr .asm_97cb9
+	jr .done
 
 .whirlpool
 	ld a, [EngineBuffer1]
 	call CheckWhirlpoolTile
 	jr nz, .waterfall
 	callba TryWhirlpoolOW
-	jr .asm_97cb9
+	jr .done
 
 .waterfall
 	ld a, [EngineBuffer1]
 	call CheckWaterfallTile
 	jr nz, .headbutt
 	callba TryWaterfallOW
-	jr .asm_97cb9
+	jr .done
 
 .headbutt
 	ld a, [EngineBuffer1]
 	call CheckHeadbuttTreeTile
 	jr nz, .surf
 	callba TryHeadbuttOW
-	jr c, .asm_97cb9
-	jr .asm_97cb7
+	jr c, .done
+	jr .noevent
 
 .surf
 	callba TrySurfOW
-	jr nc, .asm_97cb7
-	jr .asm_97cb9
+	jr nc, .noevent
+	jr .done
 
-.asm_97cb7
+.noevent
 	xor a
 	ret
 
-.asm_97cb9
+.done
 	call PlayClickSFX
 	ld a, $ff
 	scf

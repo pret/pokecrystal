@@ -22,16 +22,16 @@ UnknownScript_0x18000a:
 	domaptrigger GROUP_KARENS_ROOM, MAP_KARENS_ROOM, $0
 	domaptrigger GROUP_LANCES_ROOM, MAP_LANCES_ROOM, $0
 	domaptrigger GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $0
-	clearevent EVENT_309
-	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	clearevent EVENT_KOGAS_ROOM_EXIT_OPEN
+	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
+	clearevent EVENT_KOGAS_ROOM_EXIT_OPEN
+	clearevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	clearevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_KARENS_ROOM_EXIT_OPEN
 	clearevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	clearevent EVENT_312
+	clearevent EVENT_LANCES_ROOM_EXIT_OPEN
 	clearevent EVENT_BEAT_ELITE_4_WILL
 	clearevent EVENT_BEAT_ELITE_4_KOGA
 	clearevent EVENT_BEAT_ELITE_4_BRUNO
@@ -319,9 +319,9 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_NURSE, 11, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18012c, -1
-	person_event SPRITE_CLERK, 11, 15, $6, $0, 255, 255, $0, 0, ClerkScript_0x18012f, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, $22, 255, 255, $0, 0, CooltrainerMScript_0x180136, -1
-	person_event SPRITE_SILVER, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_77B
-	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
-	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, AbraScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_NURSE, 11, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x18012c, -1
+	person_event SPRITE_CLERK, 11, 15, UP << 2 | $2, $0, -1, -1, $0, 0, ClerkScript_0x18012f, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 15, DOWN << 2 | $2, $22, -1, -1, $0, 0, CooltrainerMScript_0x180136, -1
+	person_event SPRITE_SILVER, 13, 20, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_77B
+	person_event SPRITE_GRAMPS, 13, 5, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_JYNX, 13, 4, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, AbraScript, EVENT_TELEPORT_GUY

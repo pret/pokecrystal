@@ -40,5 +40,5 @@ FuchsiaBillSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_POKEFAN_F, 7, 6, $9, $0, 255, 255, $80, 0, PokefanFScript_0x1963bd, -1
-	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $0, 0, YoungsterScript_0x1963c0, -1
+	person_event SPRITE_POKEFAN_F, 7, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x1963bd, -1
+	person_event SPRITE_YOUNGSTER, 8, 10, UP << 2 | $0, $10, -1, -1, $0, 0, YoungsterScript_0x1963c0, -1

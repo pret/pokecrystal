@@ -23,7 +23,7 @@ UnknownScript_0x18d023:
 	writetext UnknownText_0x18d2ea
 	keeptextopen
 UnknownScript_0x18d030:
-	setevent EVENT_001
+	setevent EVENT_CHRIS2_IN_CABLE_CLUB
 	writetext UnknownText_0x18d3bc
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d215
@@ -85,7 +85,7 @@ UnknownScript_0x18d0a9:
 	iftrue UnknownScript_0x18d079
 	checkevent EVENT_002
 	iftrue UnknownScript_0x18d061
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iftrue UnknownScript_0x18d049
 UnknownScript_0x18d0cb:
 	loadmovesprites
@@ -109,7 +109,7 @@ UnknownScript_0x18d0cb:
 	iftrue UnknownScript_0x18d061
 	checkevent EVENT_002
 	iftrue UnknownScript_0x18d049
-	checkevent EVENT_001
+	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
 	iftrue UnknownScript_0x18d030
 UnknownScript_0x18d100:
 	writetext UnknownText_0x18d47c
@@ -184,13 +184,13 @@ UnknownScript_0x18d100:
 	playsound SFX_ENTER_DOOR
 	disappear $5
 	waitbutton
-	setevent EVENT_000
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
 	end
 
 ElderScript_0x18d1a5:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
 	iftrue UnknownScript_0x18d1f9
 	checkevent EVENT_006
 	iftrue UnknownScript_0x18d1ff
@@ -681,7 +681,7 @@ DragonShrine_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_ELDER, 5, 9, $6, $0, 255, 255, $0, 0, ElderScript_0x18d1a5, EVENT_000
-	person_event SPRITE_ELDER, 8, 6, $9, $0, 255, 255, $0, 0, ElderScript_0x18d205, EVENT_000
-	person_event SPRITE_ELDER, 8, 11, $8, $0, 255, 255, $0, 0, ElderScript_0x18d20d, EVENT_000
-	person_event SPRITE_CLAIR, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, EVENT_790
+	person_event SPRITE_ELDER, 5, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_CHRIS1_IN_CABLE_CLUB
+	person_event SPRITE_ELDER, 8, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_CHRIS1_IN_CABLE_CLUB
+	person_event SPRITE_ELDER, 8, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_CHRIS1_IN_CABLE_CLUB
+	person_event SPRITE_CLAIR, 12, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_790

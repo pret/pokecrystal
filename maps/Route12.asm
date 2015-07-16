@@ -237,15 +237,15 @@ Route12_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 27, 11, $0, MapRoute12Signpost0Script
-	signpost 9, 13, $0, MapRoute12Signpost1Script
-	signpost 13, 14, $7, MapRoute12SignpostItem2
+	signpost 27, 11, SIGNPOST_READ, MapRoute12Signpost0Script
+	signpost 9, 13, SIGNPOST_READ, MapRoute12Signpost1Script
+	signpost 13, 14, SIGNPOST_ITEMIFSET, MapRoute12SignpostItem2
 
 	; people-events
 	db 6
-	person_event SPRITE_FISHER, 17, 9, $a, $0, 255, 255, $a2, 1, TrainerFisherMartin, -1
-	person_event SPRITE_FISHER, 27, 18, $6, $0, 255, 255, $a2, 1, TrainerFisherStephen, -1
-	person_event SPRITE_FISHER, 42, 14, $8, $0, 255, 255, $a2, 5, TrainerFisherBarney, -1
-	person_event SPRITE_FISHER, 11, 10, $9, $0, 255, 255, $a2, 3, TrainerFisherKyle, -1
-	person_event SPRITE_POKE_BALL, 47, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700b, EVENT_788
-	person_event SPRITE_POKE_BALL, 55, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700d, EVENT_789
+	person_event SPRITE_FISHER, 17, 9, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherMartin, -1
+	person_event SPRITE_FISHER, 27, 18, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherStephen, -1
+	person_event SPRITE_FISHER, 42, 14, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerFisherBarney, -1
+	person_event SPRITE_FISHER, 11, 10, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherKyle, -1
+	person_event SPRITE_POKE_BALL, 47, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700b, EVENT_788
+	person_event SPRITE_POKE_BALL, 55, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700d, EVENT_789

@@ -61,8 +61,8 @@ VermilionHouseFishingSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 0, 3, $0, FishingDudesHousePhoto
+	signpost 0, 3, SIGNPOST_READ, FishingDudesHousePhoto
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHING_GURU, 8, 6, $6, $0, 255, 255, $a0, 0, FishingDude, -1
+	person_event SPRITE_FISHING_GURU, 8, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingDude, -1

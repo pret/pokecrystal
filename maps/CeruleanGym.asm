@@ -420,15 +420,15 @@ CeruleanGym_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 8, 3, $7, MapCeruleanGymSignpostItem0
-	signpost 13, 2, $0, CeruleanGymStatue1
-	signpost 13, 6, $0, CeruleanGymStatue2
+	signpost 8, 3, SIGNPOST_ITEMIFSET, MapCeruleanGymSignpostItem0
+	signpost 13, 2, SIGNPOST_READ, CeruleanGymStatue1
+	signpost 13, 6, SIGNPOST_READ, CeruleanGymStatue2
 
 	; people-events
 	db 6
-	person_event SPRITE_ROCKET, 14, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_76D
-	person_event SPRITE_MISTY, 7, 9, $6, $0, 255, 255, $80, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, $0, 255, 255, $82, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_ROCKET, 14, 8, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_76D
+	person_event SPRITE_MISTY, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 10, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 13, 5, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GUY, 13, 12, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_GYM_GUY, 17, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM

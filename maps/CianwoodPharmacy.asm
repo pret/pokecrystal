@@ -85,9 +85,9 @@ CianwoodPharmacy_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, CianwoodPharmacyBookshelf
-	signpost 1, 1, $0, CianwoodPharmacyBookshelf
+	signpost 1, 0, SIGNPOST_READ, CianwoodPharmacyBookshelf
+	signpost 1, 1, SIGNPOST_READ, CianwoodPharmacyBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_PHARMACIST, 7, 6, $6, $0, 255, 255, $80, 0, CianwoodPharmacist, -1
+	person_event SPRITE_PHARMACIST, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CianwoodPharmacist, -1

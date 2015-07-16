@@ -401,16 +401,16 @@ RadioTower3F_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 0, 3, $0, MapRadioTower3FSignpost0Script
-	signpost 0, 9, $0, MapRadioTower3FSignpost1Script
-	signpost 2, 14, $1, MapRadioTower3FSignpost2Script
+	signpost 0, 3, SIGNPOST_READ, MapRadioTower3FSignpost0Script
+	signpost 0, 9, SIGNPOST_READ, MapRadioTower3FSignpost1Script
+	signpost 2, 14, SIGNPOST_UP, MapRadioTower3FSignpost2Script
 
 	; people-events
 	db 7
-	person_event SPRITE_SUPER_NERD, 8, 11, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x5e553, EVENT_6D0
-	person_event SPRITE_GYM_GUY, 8, 7, $a, $0, 255, 255, $80, 0, GymGuyScript_0x5e556, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 15, $2, $11, 255, 255, $a0, 0, CooltrainerFScript_0x5e56a, -1
-	person_event SPRITE_ROCKET, 5, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM7, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 10, $6, $0, 255, 255, $2, 3, TrainerGruntM8, EVENT_6CE
-	person_event SPRITE_ROCKET, 10, 20, $7, $0, 255, 255, $2, 3, TrainerGruntM9, EVENT_6CE
-	person_event SPRITE_SCIENTIST, 10, 13, $7, $0, 255, 255, $92, 5, TrainerScientistMarc, EVENT_6CE
+	person_event SPRITE_SUPER_NERD, 8, 11, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x5e553, EVENT_6D0
+	person_event SPRITE_GYM_GUY, 8, 7, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GymGuyScript_0x5e556, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 15, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x5e56a, -1
+	person_event SPRITE_ROCKET, 5, 9, LEFT << 2 | $1, $0, -1, -1, $2, 2, TrainerGruntM7, EVENT_6CE
+	person_event SPRITE_ROCKET, 6, 10, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM8, EVENT_6CE
+	person_event SPRITE_ROCKET, 10, 20, UP << 2 | $3, $0, -1, -1, $2, 3, TrainerGruntM9, EVENT_6CE
+	person_event SPRITE_SCIENTIST, 10, 13, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerScientistMarc, EVENT_6CE

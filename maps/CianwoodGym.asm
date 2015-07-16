@@ -372,17 +372,17 @@ CianwoodGym_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 15, 3, $0, CianwoodGymStatue
-	signpost 15, 6, $0, CianwoodGymStatue
+	signpost 15, 3, SIGNPOST_READ, CianwoodGymStatue
+	signpost 15, 6, SIGNPOST_READ, CianwoodGymStatue
 
 	; people-events
 	db 9
-	person_event SPRITE_CHUCK, 5, 8, $6, $0, 255, 255, $b0, 0, ChuckScript_0x9d60f, -1
-	person_event SPRITE_BLACK_BELT, 16, 6, $9, $0, 255, 255, $b2, 3, TrainerBlackbeltYoshi, -1
-	person_event SPRITE_BLACK_BELT, 16, 11, $8, $0, 255, 255, $b2, 3, TrainerBlackbeltLao, -1
-	person_event SPRITE_BLACK_BELT, 13, 7, $9, $0, 255, 255, $b2, 2, TrainerBlackbeltNob, -1
-	person_event SPRITE_BLACK_BELT, 9, 9, $8, $0, 255, 255, $b2, 1, TrainerBlackbeltLung, -1
-	person_event SPRITE_BOULDER, 5, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 7, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 8, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_CHUCK, 5, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ChuckScript_0x9d60f, -1
+	person_event SPRITE_BLACK_BELT, 16, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBlackbeltYoshi, -1
+	person_event SPRITE_BLACK_BELT, 16, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBlackbeltLao, -1
+	person_event SPRITE_BLACK_BELT, 13, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBlackbeltNob, -1
+	person_event SPRITE_BLACK_BELT, 9, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerBlackbeltLung, -1
+	person_event SPRITE_BOULDER, 5, 9, LEFT << 2 | $11, $0, -1, -1, $0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 11, 7, LEFT << 2 | $11, $0, -1, -1, $0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 11, 8, LEFT << 2 | $11, $0, -1, -1, $0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 11, 9, LEFT << 2 | $11, $0, -1, -1, $0, 0, CianwoodGymBoulder, -1

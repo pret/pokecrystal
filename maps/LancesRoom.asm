@@ -25,7 +25,7 @@ UnknownScript_0x180e3e:
 	iffalse UnknownScript_0x180e48
 	changeblock $4, $16, $34
 UnknownScript_0x180e48:
-	checkevent EVENT_312
+	checkevent EVENT_LANCES_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x180e52
 	changeblock $4, $0, $b
 UnknownScript_0x180e52:
@@ -358,6 +358,6 @@ LancesRoom_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_LANCE, 7, 9, $6, $0, 255, 255, $0, 0, LanceScript_0x180e7b, -1
-	person_event SPRITE_TEACHER, 11, 8, $7, $0, 255, 255, $a0, 0, ObjectEvent, EVENT_75F
-	person_event SPRITE_OAK, 11, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_75F
+	person_event SPRITE_LANCE, 7, 9, UP << 2 | $2, $0, -1, -1, $0, 0, LanceScript_0x180e7b, -1
+	person_event SPRITE_TEACHER, 11, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_75F
+	person_event SPRITE_OAK, 11, 8, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_75F

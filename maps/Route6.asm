@@ -132,10 +132,10 @@ Route6_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 5, 19, $0, MapRoute6Signpost0Script
+	signpost 5, 19, SIGNPOST_READ, MapRoute6Signpost0Script
 
 	; people-events
 	db 3
-	person_event SPRITE_POKEFAN_M, 8, 21, $6, $0, 255, 255, $b0, 2, PokefanMScript_0x1ad951, EVENT_771
-	person_event SPRITE_POKEFAN_M, 16, 13, $9, $0, 255, 255, $82, 0, TrainerPokefanmRex, -1
-	person_event SPRITE_POKEFAN_M, 16, 14, $8, $0, 255, 255, $82, 0, TrainerPokefanmAllan, -1
+	person_event SPRITE_POKEFAN_M, 8, 21, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 2, PokefanMScript_0x1ad951, EVENT_771
+	person_event SPRITE_POKEFAN_M, 16, 13, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerPokefanmRex, -1
+	person_event SPRITE_POKEFAN_M, 16, 14, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerPokefanmAllan, -1

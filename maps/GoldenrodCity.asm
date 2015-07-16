@@ -566,33 +566,33 @@ GoldenrodCity_MapEventHeader:
 
 	; signposts
 	db 12
-	signpost 14, 10, $0, GoldenrodCityStationSign
-	signpost 17, 4, $0, GoldenrodCityRadioTowerSign
-	signpost 27, 26, $0, GoldenrodDeptStoreSign
-	signpost 9, 26, $0, GoldenrodGymSign
-	signpost 18, 22, $0, GoldenrodCitySign
-	signpost 30, 28, $0, GoldenrodCityBikeShopSign
-	signpost 22, 16, $0, GoldenrodCityGameCornerSign
-	signpost 7, 12, $0, GoldenrodCityNameRaterSign
-	signpost 6, 8, $0, GoldenrodCityUndergroundSignNorth
-	signpost 30, 12, $0, GoldenrodCityUndergroundSignSouth
-	signpost 27, 16, $1, GoldenrodCityPokeCenterSign
-	signpost 6, 30, $0, GoldenrodCityFlowerShopSign
+	signpost 14, 10, SIGNPOST_READ, GoldenrodCityStationSign
+	signpost 17, 4, SIGNPOST_READ, GoldenrodCityRadioTowerSign
+	signpost 27, 26, SIGNPOST_READ, GoldenrodDeptStoreSign
+	signpost 9, 26, SIGNPOST_READ, GoldenrodGymSign
+	signpost 18, 22, SIGNPOST_READ, GoldenrodCitySign
+	signpost 30, 28, SIGNPOST_READ, GoldenrodCityBikeShopSign
+	signpost 22, 16, SIGNPOST_READ, GoldenrodCityGameCornerSign
+	signpost 7, 12, SIGNPOST_READ, GoldenrodCityNameRaterSign
+	signpost 6, 8, SIGNPOST_READ, GoldenrodCityUndergroundSignNorth
+	signpost 30, 12, SIGNPOST_READ, GoldenrodCityUndergroundSignSouth
+	signpost 27, 16, SIGNPOST_UP, GoldenrodCityPokeCenterSign
+	signpost 6, 30, SIGNPOST_READ, GoldenrodCityFlowerShopSign
 
 	; people-events
 	db 15
-	person_event SPRITE_POKEFAN_M, 22, 11, $7, $0, 255, 255, $0, 0, PokefanMScript_0x1989e3, EVENT_6CF
-	person_event SPRITE_YOUNGSTER, 21, 34, $2, $11, 255, 255, $0, 0, YoungsterScript_0x1989e6, EVENT_6CF
-	person_event SPRITE_COOLTRAINER_F, 20, 16, $8, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1989e9, EVENT_6CF
-	person_event SPRITE_COOLTRAINER_F, 30, 24, $2, $21, 255, 255, $0, 0, CooltrainerFScript_0x1989fd, EVENT_6CF
-	person_event SPRITE_YOUNGSTER, 21, 23, $2, $11, 255, 255, $80, 0, YoungsterScript_0x198a11, EVENT_6CF
-	person_event SPRITE_LASS, 14, 21, $5, $2, 255, 255, $a0, 0, LassScript_0x198a14, EVENT_6CF
-	person_event SPRITE_GRAMPS, 31, 15, $5, $1, 255, 255, $0, 0, GrampsScript_0x198a17, EVENT_6CF
-	person_event SPRITE_ROCKET, 20, 8, $7, $0, 255, 255, $0, 0, RocketScript_0x198a1a, EVENT_6CC
-	person_event SPRITE_ROCKET, 24, 32, $7, $0, 255, 255, $0, 0, RocketScript_0x198a29, EVENT_6CD
-	person_event SPRITE_ROCKET, 19, 12, $6, $0, 255, 255, $0, 0, RocketScript_0x198a2c, EVENT_6CD
-	person_event SPRITE_ROCKET, 27, 20, $9, $0, 255, 255, $0, 0, RocketScript_0x198a2f, EVENT_6CE
-	person_event SPRITE_ROCKET, 24, 33, $7, $0, 255, 255, $0, 0, RocketScript_0x198a32, EVENT_6CE
-	person_event SPRITE_ROCKET, 11, 33, $6, $0, 255, 255, $0, 0, RocketScript_0x198a35, EVENT_6CE
-	person_event SPRITE_ROCKET, 14, 35, $8, $0, 255, 255, $0, 0, RocketScript_0x198a38, EVENT_6CE
-	person_event SPRITE_POKEFAN_M, 26, 16, $3, $0, 255, 255, $80, 0, MoveTutor, EVENT_76A
+	person_event SPRITE_POKEFAN_M, 22, 11, UP << 2 | $3, $0, -1, -1, $0, 0, PokefanMScript_0x1989e3, EVENT_6CF
+	person_event SPRITE_YOUNGSTER, 21, 34, DOWN << 2 | $2, $11, -1, -1, $0, 0, YoungsterScript_0x1989e6, EVENT_6CF
+	person_event SPRITE_COOLTRAINER_F, 20, 16, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x1989e9, EVENT_6CF
+	person_event SPRITE_COOLTRAINER_F, 30, 24, DOWN << 2 | $2, $21, -1, -1, $0, 0, CooltrainerFScript_0x1989fd, EVENT_6CF
+	person_event SPRITE_YOUNGSTER, 21, 23, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x198a11, EVENT_6CF
+	person_event SPRITE_LASS, 14, 21, UP << 2 | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x198a14, EVENT_6CF
+	person_event SPRITE_GRAMPS, 31, 15, UP << 2 | $1, $1, -1, -1, $0, 0, GrampsScript_0x198a17, EVENT_6CF
+	person_event SPRITE_ROCKET, 20, 8, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a1a, EVENT_6CC
+	person_event SPRITE_ROCKET, 24, 32, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a29, EVENT_6CD
+	person_event SPRITE_ROCKET, 19, 12, UP << 2 | $2, $0, -1, -1, $0, 0, RocketScript_0x198a2c, EVENT_6CD
+	person_event SPRITE_ROCKET, 27, 20, LEFT << 2 | $1, $0, -1, -1, $0, 0, RocketScript_0x198a2f, EVENT_6CE
+	person_event SPRITE_ROCKET, 24, 33, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a32, EVENT_6CE
+	person_event SPRITE_ROCKET, 11, 33, UP << 2 | $2, $0, -1, -1, $0, 0, RocketScript_0x198a35, EVENT_6CE
+	person_event SPRITE_ROCKET, 14, 35, LEFT << 2 | $0, $0, -1, -1, $0, 0, RocketScript_0x198a38, EVENT_6CE
+	person_event SPRITE_POKEFAN_M, 26, 16, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MoveTutor, EVENT_76A

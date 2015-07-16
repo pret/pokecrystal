@@ -57,9 +57,9 @@ Route30BerrySpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, Route30BerrySpeechHouseBookshelf
-	signpost 1, 1, $0, Route30BerrySpeechHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, Route30BerrySpeechHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, Route30BerrySpeechHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $b0, 0, PokefanMScript_0x196d64, -1
+	person_event SPRITE_POKEFAN_M, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x196d64, -1

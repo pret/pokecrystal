@@ -2,9 +2,7 @@
 Special:: ; c01b
 ; Run script special de.
 	ld hl, SpecialsPointers
-	add hl, de
-	add hl, de
-	add hl, de
+	add_n_times hl, de, 3
 	ld b, [hl]
 	inc hl
 	ld a, [hli]
@@ -16,32 +14,36 @@ Special:: ; c01b
 ; c029
 
 SpecialsPointers:: ; c029
-	add_special Function97c28
-	add_special Function29ce8
-	add_special Function29d11
-	add_special Function29d92
-	add_special Function29e66
-	add_special Function29e82
-	add_special Function29efa
-	add_special Function29eee
-	add_special Function29c92
-	add_special Function29cf1
-	add_special Function29cfa
-	add_special Function29bfb
-	add_special Function29c7b
-	add_special Function29ec4
-	add_special Function29ed9
-	add_special Function29eaf
-	add_special Function29f47
-	add_special Functionc2f6
-	add_special Functionc309
-	add_special Function1050b9
+	add_special WarpToLastSpawn
+
+; Communications
+	add_special Special_SetBitsForLinkTradeRequest
+	add_special Special_WaitForLinkedFriend
+	add_special Special_CheckLinkTimeout
+	add_special Special_TryQuickSave
+	add_special Special_CheckBothSelectedSameRoom
+	add_special Special_FailedLinkToPast
+	add_special Special_CloseLink
+	add_special Special_AbortLink
+	add_special Special_SetBitsForBattleRequest
+	add_special Special_SetBitsForTimeCapsuleRequest
+	add_special Special_CheckTimeCapsuleCompatibility
+	add_special Special_EnterTimeCapsule
+	add_special Special_TradeCenter
+	add_special Special_Colosseum
+	add_special Special_TimeCapsule
+	add_special Special_CableClubCheckWhichChris
+	add_special Special_CheckMysteryGift
+	add_special Special_GetMysteryGiftItem
+	add_special Special_UnlockMysteryGift
+
+; Bug Catching Contest
 	add_special BugContestJudging
 	add_special CheckPartyFullAfterContest
-	add_special Function13a12
+	add_special CheckFirstMonFainted
 	add_special ContestReturnMons
-	add_special Function135db
-	add_special Functionfbb32
+	add_special Special_GiveParkBalls
+	add_special Special_CheckMagikarpLength
 	add_special Functionfbcd2
 	add_special HealParty
 	add_special Function1559a
@@ -87,7 +89,7 @@ SpecialsPointers:: ; c029
 	add_special Functionc3ef
 	add_special Function17421
 	add_special Function17440
-	add_special Function139a8
+	add_special Special_SelectRandomBugContestContestants
 	add_special Functionc3fc
 	add_special Function26feb
 	add_special Function27043
@@ -170,7 +172,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialMonCheck
 	add_special Functionc225
 	add_special Function170bd2
-	add_special Function10366e
+	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
 	add_special Function10383c
 	add_special Mobile_HealParty
@@ -309,21 +311,21 @@ Functionc2e7: ; c2e7
 	ret
 ; c2f6
 
-Functionc2f6: ; c2f6
+Special_CheckMysteryGift: ; c2f6
 	ld a, $0
 	call GetSRAMBank
 	ld a, [$abe2]
 	and a
-	jr z, .asm_c302
+	jr z, .no
 	inc a
 
-.asm_c302
+.no
 	ld [ScriptVar], a
 	call CloseSRAM
 	ret
 ; c309
 
-Functionc309: ; c309
+Special_GetMysteryGiftItem: ; c309
 	ld a, $0
 	call GetSRAMBank
 	ld a, [$abe2]

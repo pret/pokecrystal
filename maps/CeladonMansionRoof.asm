@@ -45,8 +45,8 @@ CeladonMansionRoof_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 1, 6, $4, MapCeladonMansionRoofSignpost0Script
+	signpost 1, 6, SIGNPOST_LEFT, MapCeladonMansionRoofSignpost0Script
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHER, 9, 11, $4, $10, 255, 255, $90, 0, FisherScript_0x71a39, -1
+	person_event SPRITE_FISHER, 9, 11, UP << 2 | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x71a39, -1

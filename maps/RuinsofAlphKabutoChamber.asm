@@ -275,14 +275,14 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 3, 2, $0, MapRuinsofAlphKabutoChamberSignpost1Script
-	signpost 3, 5, $0, MapRuinsofAlphKabutoChamberSignpost1Script
-	signpost 2, 3, $1, MapRuinsofAlphKabutoChamberSignpost2Script
-	signpost 2, 4, $1, MapRuinsofAlphKabutoChamberSignpost3Script
-	signpost 0, 3, $1, MapRuinsofAlphKabutoChamberSignpost4Script
-	signpost 0, 4, $1, MapRuinsofAlphKabutoChamberSignpost5Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphKabutoChamberSignpost1Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphKabutoChamberSignpost1Script
+	signpost 2, 3, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost2Script
+	signpost 2, 4, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost3Script
+	signpost 0, 3, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost4Script
+	signpost 0, 4, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost5Script
 
 	; people-events
 	db 2
-	person_event SPRITE_RECEPTIONIST, 9, 9, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x58769, EVENT_74E
-	person_event SPRITE_SCIENTIST, 5, 7, $7, $0, 255, 255, $90, 0, ScientistScript_0x587a8, -1
+	person_event SPRITE_RECEPTIONIST, 9, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x58769, EVENT_74E
+	person_event SPRITE_SCIENTIST, 5, 7, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x587a8, -1

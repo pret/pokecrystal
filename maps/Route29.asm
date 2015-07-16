@@ -425,16 +425,16 @@ Route29_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 7, 51, $0, MapRoute29Signpost0Script
-	signpost 5, 3, $0, MapRoute29Signpost1Script
+	signpost 7, 51, SIGNPOST_READ, MapRoute29Signpost0Script
+	signpost 5, 3, SIGNPOST_READ, MapRoute29Signpost1Script
 
 	; people-events
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 16, 54, $3, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a0ff1, -1
-	person_event SPRITE_YOUNGSTER, 20, 31, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x1a1028, -1
-	person_event SPRITE_TEACHER, 15, 19, $5, $1, 255, 255, $a0, 0, TeacherScript_0x1a102b, -1
-	person_event SPRITE_FRUIT_TREE, 6, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1089, -1
-	person_event SPRITE_FISHER, 7, 29, $7, $0, 255, 255, $90, 0, FisherScript_0x1a102e, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 17, $6, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a1031, -1
-	person_event SPRITE_TEACHER, 16, 33, $3, $0, 255, 255, $0, 0, TuscanyScript, EVENT_759
-	person_event SPRITE_POKE_BALL, 6, 52, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a108b, EVENT_6AD
+	person_event SPRITE_COOLTRAINER_M, 16, 54, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x1a0ff1, -1
+	person_event SPRITE_YOUNGSTER, 20, 31, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a1028, -1
+	person_event SPRITE_TEACHER, 15, 19, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x1a102b, -1
+	person_event SPRITE_FRUIT_TREE, 6, 16, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a1089, -1
+	person_event SPRITE_FISHER, 7, 29, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x1a102e, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 17, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x1a1031, -1
+	person_event SPRITE_TEACHER, 16, 33, DOWN << 2 | $3, $0, -1, -1, $0, 0, TuscanyScript, EVENT_759
+	person_event SPRITE_POKE_BALL, 6, 52, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a108b, EVENT_6AD

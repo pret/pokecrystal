@@ -27,8 +27,8 @@ IcePathB2FBlackthornSide_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 10, 2, $7, MapIcePathB2FBlackthornSideSignpostItem0
+	signpost 10, 2, SIGNPOST_ITEMIFSET, MapIcePathB2FBlackthornSideSignpostItem0
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 20, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e646, EVENT_68D
+	person_event SPRITE_POKE_BALL, 20, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e646, EVENT_68D

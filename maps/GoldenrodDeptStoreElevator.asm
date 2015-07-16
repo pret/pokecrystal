@@ -70,7 +70,7 @@ GoldenrodDeptStoreElevator_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 0, 3, $0, MapGoldenrodDeptStoreElevatorSignpost0Script
+	signpost 0, 3, SIGNPOST_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
 
 	; people-events
 	db 0

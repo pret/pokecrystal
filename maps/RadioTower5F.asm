@@ -447,16 +447,16 @@ RadioTower5F_MapEventHeader:
 
 	; signposts
 	db 5
-	signpost 0, 3, $0, MapRadioTower5FSignpost0Script
-	signpost 0, 11, $0, MapRadioTower5FSignpost2Script
-	signpost 0, 15, $0, MapRadioTower5FSignpost2Script
-	signpost 1, 16, $0, RadioTower5FBookshelf
-	signpost 1, 17, $0, RadioTower5FBookshelf
+	signpost 0, 3, SIGNPOST_READ, MapRadioTower5FSignpost0Script
+	signpost 0, 11, SIGNPOST_READ, MapRadioTower5FSignpost2Script
+	signpost 0, 15, SIGNPOST_READ, MapRadioTower5FSignpost2Script
+	signpost 1, 16, SIGNPOST_READ, RadioTower5FBookshelf
+	signpost 1, 17, SIGNPOST_READ, RadioTower5FBookshelf
 
 	; people-events
 	db 5
-	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, Director, -1
-	person_event SPRITE_ROCKET, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6CE
-	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, EVENT_6CE
-	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, Ben, EVENT_6D0
-	person_event SPRITE_POKE_BALL, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, EVENT_7CD
+	person_event SPRITE_GENTLEMAN, 10, 7, DOWN << 2 | $3, $0, -1, -1, $0, 0, Director, -1
+	person_event SPRITE_ROCKET, 9, 17, LEFT << 2 | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6CE
+	person_event SPRITE_ROCKET_GIRL, 6, 21, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerExecutivef1, EVENT_6CE
+	person_event SPRITE_ROCKER, 9, 17, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Ben, EVENT_6D0
+	person_event SPRITE_POKE_BALL, 9, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x600fe, EVENT_7CD

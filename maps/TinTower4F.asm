@@ -35,10 +35,10 @@ TinTower4F_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 6, 11, $7, MapTinTower4FSignpostItem0
+	signpost 6, 11, SIGNPOST_ITEMIFSET, MapTinTower4FSignpostItem0
 
 	; people-events
 	db 3
-	person_event SPRITE_POKE_BALL, 14, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a58, EVENT_64C
-	person_event SPRITE_POKE_BALL, 18, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a5a, EVENT_64D
-	person_event SPRITE_POKE_BALL, 16, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a5c, EVENT_64E
+	person_event SPRITE_POKE_BALL, 14, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a58, EVENT_64C
+	person_event SPRITE_POKE_BALL, 18, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a5a, EVENT_64D
+	person_event SPRITE_POKE_BALL, 16, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a5c, EVENT_64E

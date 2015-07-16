@@ -1067,26 +1067,26 @@ Route32_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 5, 13, $0, Route32Sign
-	signpost 1, 9, $0, Route32RuinsSign
-	signpost 84, 10, $0, Route32UnionCaveSign
-	signpost 73, 12, $0, Route32PokeCenterSign
-	signpost 67, 12, $7, MapRoute32SignpostItem4
-	signpost 40, 11, $7, MapRoute32SignpostItem5
+	signpost 5, 13, SIGNPOST_READ, Route32Sign
+	signpost 1, 9, SIGNPOST_READ, Route32RuinsSign
+	signpost 84, 10, SIGNPOST_READ, Route32UnionCaveSign
+	signpost 73, 12, SIGNPOST_READ, Route32PokeCenterSign
+	signpost 67, 12, SIGNPOST_ITEMIFSET, MapRoute32SignpostItem4
+	signpost 40, 11, SIGNPOST_ITEMIFSET, MapRoute32SignpostItem5
 
 	; people-events
 	db 14
-	person_event SPRITE_FISHER, 53, 12, $6, $0, 255, 255, $a2, 1, TrainerFisherJustin, -1
-	person_event SPRITE_FISHER, 60, 16, $7, $0, 255, 255, $a2, 3, TrainerFisherRalph1, -1
-	person_event SPRITE_FISHER, 52, 10, $8, $0, 255, 255, $a2, 1, TrainerFisherHenry, -1
-	person_event SPRITE_YOUNGSTER, 26, 16, $9, $0, 255, 255, $92, 3, TrainerYoungsterAlbert, -1
-	person_event SPRITE_YOUNGSTER, 67, 8, $a, $0, 255, 255, $92, 3, TrainerYoungsterGordon, -1
-	person_event SPRITE_YOUNGSTER, 49, 7, $7, $0, 255, 255, $a2, 3, TrainerCamperRoland, -1
-	person_event SPRITE_LASS, 34, 14, $8, $0, 255, 255, $a2, 1, TrainerPicnickerLiz1, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 23, $8, $0, 255, 255, $0, 0, CooltrainerMScript_0x19046f, -1
-	person_event SPRITE_YOUNGSTER, 86, 15, $7, $0, 255, 255, $92, 3, TrainerBird_keeperPeter, -1
-	person_event SPRITE_FISHER, 74, 11, $6, $0, 255, 255, $0, 0, FisherScript_0x1904f2, EVENT_6FC
-	person_event SPRITE_POKE_BALL, 57, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x190773, EVENT_6B0
-	person_event SPRITE_FISHER, 17, 19, $9, $0, 255, 255, $0, 0, FisherScript_0x1904ce, -1
-	person_event SPRITE_LASS, 71, 16, $8, $0, 255, 255, $0, 0, FriedaScript, EVENT_758
-	person_event SPRITE_POKE_BALL, 34, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x190775, EVENT_6B1
+	person_event SPRITE_FISHER, 53, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherJustin, -1
+	person_event SPRITE_FISHER, 60, 16, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherRalph1, -1
+	person_event SPRITE_FISHER, 52, 10, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherHenry, -1
+	person_event SPRITE_YOUNGSTER, 26, 16, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterAlbert, -1
+	person_event SPRITE_YOUNGSTER, 67, 8, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterGordon, -1
+	person_event SPRITE_YOUNGSTER, 49, 7, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperRoland, -1
+	person_event SPRITE_LASS, 34, 14, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerPicnickerLiz1, -1
+	person_event SPRITE_COOLTRAINER_M, 12, 23, LEFT << 2 | $0, $0, -1, -1, $0, 0, CooltrainerMScript_0x19046f, -1
+	person_event SPRITE_YOUNGSTER, 86, 15, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperPeter, -1
+	person_event SPRITE_FISHER, 74, 11, UP << 2 | $2, $0, -1, -1, $0, 0, FisherScript_0x1904f2, EVENT_6FC
+	person_event SPRITE_POKE_BALL, 57, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x190773, EVENT_6B0
+	person_event SPRITE_FISHER, 17, 19, LEFT << 2 | $1, $0, -1, -1, $0, 0, FisherScript_0x1904ce, -1
+	person_event SPRITE_LASS, 71, 16, LEFT << 2 | $0, $0, -1, -1, $0, 0, FriedaScript, EVENT_758
+	person_event SPRITE_POKE_BALL, 34, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x190775, EVENT_6B1

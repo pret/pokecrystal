@@ -41,7 +41,7 @@ UnknownScript_0x19a6e0:
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
 	closetext
-	special Functionfbb32
+	special Special_CheckMagikarpLength
 	if_equal $0, UnknownScript_0x19a71c
 	if_equal $1, UnknownScript_0x19a722
 	if_equal $2, UnknownScript_0x19a716
@@ -216,9 +216,9 @@ LakeofRageMagikarpHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, MagikarpHouseBookshelf
-	signpost 1, 1, $0, MagikarpHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, MagikarpHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, MagikarpHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $0, 0, FishingGuruScript_0x19a6ae, -1
+	person_event SPRITE_FISHING_GURU, 7, 6, DOWN << 2 | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x19a6ae, -1

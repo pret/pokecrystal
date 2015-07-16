@@ -65,9 +65,9 @@ CeladonMansion2F_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 3, 0, $0, CeladonMansion2FComputer
-	signpost 8, 5, $1, CeladonMansion2FSign
-	signpost 3, 2, $0, CeladonMansion2FBookshelf
+	signpost 3, 0, SIGNPOST_READ, CeladonMansion2FComputer
+	signpost 8, 5, SIGNPOST_UP, CeladonMansion2FSign
+	signpost 3, 2, SIGNPOST_READ, CeladonMansion2FBookshelf
 
 	; people-events
 	db 0

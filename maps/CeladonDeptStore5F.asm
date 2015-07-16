@@ -79,13 +79,13 @@ CeladonDeptStore5F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 0, 14, $0, CeladonDeptStore5FDirectory
-	signpost 0, 3, $0, CeladonDeptStore5FElevatorButton
+	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore5FDirectory
+	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore5FElevatorButton
 
 	; people-events
 	db 5
-	person_event SPRITE_CLERK, 9, 11, $7, $0, 255, 255, $90, 0, ClerkScript_0x71004, -1
-	person_event SPRITE_CLERK, 9, 12, $7, $0, 255, 255, $90, 0, ClerkScript_0x7100c, -1
-	person_event SPRITE_GENTLEMAN, 9, 17, $2, $11, 255, 255, $80, 0, GentlemanScript_0x71014, -1
-	person_event SPRITE_SAILOR, 8, 7, $2, $11, 255, 255, $90, 0, SailorScript_0x71017, -1
-	person_event SPRITE_TEACHER, 11, 5, $9, $0, 255, 255, $a0, 0, TeacherScript_0x7101a, -1
+	person_event SPRITE_CLERK, 9, 11, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x71004, -1
+	person_event SPRITE_CLERK, 9, 12, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x7100c, -1
+	person_event SPRITE_GENTLEMAN, 9, 17, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x71014, -1
+	person_event SPRITE_SAILOR, 8, 7, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x71017, -1
+	person_event SPRITE_TEACHER, 11, 5, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x7101a, -1

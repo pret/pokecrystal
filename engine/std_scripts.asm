@@ -357,33 +357,33 @@ BugContestResults_CleanUp
 	loadmovesprites
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE, $0
-	setevent EVENT_716
-	setevent EVENT_717
-	setevent EVENT_718
-	setevent EVENT_719
-	setevent EVENT_71A
-	setevent EVENT_71B
-	setevent EVENT_71C
-	setevent EVENT_71D
-	setevent EVENT_71E
-	setevent EVENT_71F
-	setevent EVENT_720
-	setevent EVENT_721
-	setevent EVENT_722
-	setevent EVENT_723
-	setevent EVENT_724
-	setevent EVENT_725
-	setevent EVENT_726
-	setevent EVENT_727
-	setevent EVENT_728
-	setevent EVENT_729
+	setevent EVENT_BUG_CATCHING_CONTESTANT_1A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_2A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_3A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_4A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_5A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_6A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_7A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_8A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_9A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_10A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_1B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_2B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_3B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_4B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_5B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_6B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_7B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_8B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_9B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_10B
 	setflag ENGINE_DAILY_BUG_CONTEST
 	special PlayMapMusic
 	end
 ; 0xbc31e
 
 BugContestResults_FirstPlace ; 0xbc31e
-	setevent EVENT_000
+	setevent EVENT_CHRIS1_IN_CABLE_CLUB
 	itemtotext SUN_STONE, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	closetext
@@ -439,45 +439,45 @@ BugContestResults_NoRoomForBerry ; 0xbc375
 ; 0xbc380
 
 BugContestResults_EnsureNoDuplicateSprites ; 0xbc380
-	checkevent EVENT_716
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	iftrue .skip1
-	clearevent EVENT_720
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_1B
 .skip1
-	checkevent EVENT_717
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_2A
 	iftrue .skip2
-	clearevent EVENT_721
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_2B
 .skip2
-	checkevent EVENT_718
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_3A
 	iftrue .skip3
-	clearevent EVENT_722
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_3B
 .skip3
-	checkevent EVENT_719
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_4A
 	iftrue .skip4
-	clearevent EVENT_723
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_4B
 .skip4
-	checkevent EVENT_71A
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_5A
 	iftrue .skip5
-	clearevent EVENT_724
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_5B
 .skip5
-	checkevent EVENT_71B
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_6A
 	iftrue .skip6
-	clearevent EVENT_725
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_6B
 .skip6
-	checkevent EVENT_71C
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_7A
 	iftrue .skip7
-	clearevent EVENT_726
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_7B
 .skip7
-	checkevent EVENT_71D
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_8A
 	iftrue .skip8
-	clearevent EVENT_727
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_8B
 .skip8
-	checkevent EVENT_71E
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_9A
 	iftrue .skip9
-	clearevent EVENT_728
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_9B
 .skip9
-	checkevent EVENT_71F
+	checkevent EVENT_BUG_CATCHING_CONTESTANT_10A
 	iftrue .skip10
-	clearevent EVENT_729
+	clearevent EVENT_BUG_CATCHING_CONTESTANT_10B
 .skip10
 	end
 
@@ -503,7 +503,7 @@ InitializeEventsScript:
 	setevent EVENT_6FD
 	setevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
 	setevent EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
-	setevent EVENT_702
+	setevent EVENT_COP_IN_ELMS_LAB
 	setevent EVENT_703
 	setevent EVENT_704
 	setevent EVENT_BOULDER_IN_ICE_PATH_1
@@ -511,26 +511,26 @@ InitializeEventsScript:
 	setevent EVENT_BOULDER_IN_ICE_PATH_3
 	setevent EVENT_BOULDER_IN_ICE_PATH_4
 	setevent EVENT_715
-	setevent EVENT_716
-	setevent EVENT_717
-	setevent EVENT_718
-	setevent EVENT_719
-	setevent EVENT_71A
-	setevent EVENT_71B
-	setevent EVENT_71C
-	setevent EVENT_71D
-	setevent EVENT_71E
-	setevent EVENT_71F
-	setevent EVENT_720
-	setevent EVENT_721
-	setevent EVENT_722
-	setevent EVENT_723
-	setevent EVENT_724
-	setevent EVENT_725
-	setevent EVENT_726
-	setevent EVENT_727
-	setevent EVENT_728
-	setevent EVENT_729
+	setevent EVENT_BUG_CATCHING_CONTESTANT_1A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_2A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_3A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_4A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_5A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_6A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_7A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_8A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_9A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_10A
+	setevent EVENT_BUG_CATCHING_CONTESTANT_1B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_2B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_3B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_4B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_5B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_6B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_7B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_8B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_9B
+	setevent EVENT_BUG_CATCHING_CONTESTANT_10B
 	setevent EVENT_72C
 	setevent EVENT_72F
 	setevent EVENT_72D
@@ -549,7 +549,7 @@ InitializeEventsScript:
 	setevent EVENT_74D
 	setevent EVENT_MET_BILL
 	setevent EVENT_713
-	setevent EVENT_711
+	setevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	setevent EVENT_6D4
 	setevent EVENT_WAREHOUSE_LAYOUT_1
 	setevent EVENT_WAREHOUSE_BLOCKED_OFF

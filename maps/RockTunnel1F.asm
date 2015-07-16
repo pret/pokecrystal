@@ -39,10 +39,10 @@ RockTunnel1F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 4, 24, $7, MapRockTunnel1FSignpostItem0
-	signpost 15, 21, $7, MapRockTunnel1FSignpostItem1
+	signpost 4, 24, SIGNPOST_ITEMIFSET, MapRockTunnel1FSignpostItem0
+	signpost 15, 21, SIGNPOST_ITEMIFSET, MapRockTunnel1FSignpostItem1
 
 	; people-events
 	db 2
-	person_event SPRITE_POKE_BALL, 22, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x743b5, EVENT_77E
-	person_event SPRITE_POKE_BALL, 19, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x743b7, EVENT_77F
+	person_event SPRITE_POKE_BALL, 22, 8, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x743b5, EVENT_77E
+	person_event SPRITE_POKE_BALL, 19, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x743b7, EVENT_77F

@@ -302,14 +302,14 @@ Route15_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 9, 19, $0, MapRoute15Signpost0Script
+	signpost 9, 19, SIGNPOST_READ, MapRoute15Signpost0Script
 
 	; people-events
 	db 7
-	person_event SPRITE_YOUNGSTER, 14, 14, $9, $0, 255, 255, $92, 4, TrainerSchoolboyKipp, -1
-	person_event SPRITE_YOUNGSTER, 17, 19, $7, $0, 255, 255, $92, 3, TrainerSchoolboyTommy, -1
-	person_event SPRITE_YOUNGSTER, 14, 37, $6, $0, 255, 255, $92, 3, TrainerSchoolboyJohnny, -1
-	person_event SPRITE_YOUNGSTER, 14, 31, $6, $0, 255, 255, $92, 3, TrainerSchoolboyBilly, -1
-	person_event SPRITE_TEACHER, 16, 34, $7, $0, 255, 255, $82, 4, TrainerTeacherColette, -1
-	person_event SPRITE_TEACHER, 14, 24, $a, $0, 255, 255, $82, 3, TrainerTeacherHillary, -1
-	person_event SPRITE_POKE_BALL, 9, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x1aa5e4, EVENT_78A
+	person_event SPRITE_YOUNGSTER, 14, 14, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSchoolboyKipp, -1
+	person_event SPRITE_YOUNGSTER, 17, 19, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyTommy, -1
+	person_event SPRITE_YOUNGSTER, 14, 37, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyJohnny, -1
+	person_event SPRITE_YOUNGSTER, 14, 31, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyBilly, -1
+	person_event SPRITE_TEACHER, 16, 34, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerTeacherColette, -1
+	person_event SPRITE_TEACHER, 14, 24, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerTeacherHillary, -1
+	person_event SPRITE_POKE_BALL, 9, 16, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1aa5e4, EVENT_78A

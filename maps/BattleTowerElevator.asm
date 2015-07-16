@@ -60,4 +60,4 @@ BattleTowerElevator_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_RECEPTIONIST, 6, 5, $9, $0, 255, 255, $0, 0, MovementData_0x9f58f, -1
+	person_event SPRITE_RECEPTIONIST, 6, 5, LEFT << 2 | $1, $0, -1, -1, $0, 0, MovementData_0x9f58f, -1

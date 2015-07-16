@@ -323,22 +323,22 @@ BlackthornCity_MapEventHeader:
 
 	; signposts
 	db 7
-	signpost 24, 34, $0, BlackthornCitySign
-	signpost 13, 17, $0, BlackthornGymSign
-	signpost 31, 7, $0, MoveDeletersHouseSign
-	signpost 3, 21, $0, DragonDensSign
-	signpost 25, 5, $0, BlackthornCityTrainerTips
-	signpost 29, 16, $0, BlackthornCityMartSign
-	signpost 29, 22, $0, BlackthornCityPokeCenterSign
+	signpost 24, 34, SIGNPOST_READ, BlackthornCitySign
+	signpost 13, 17, SIGNPOST_READ, BlackthornGymSign
+	signpost 31, 7, SIGNPOST_READ, MoveDeletersHouseSign
+	signpost 3, 21, SIGNPOST_READ, DragonDensSign
+	signpost 25, 5, SIGNPOST_READ, BlackthornCityTrainerTips
+	signpost 29, 16, SIGNPOST_READ, BlackthornCityMartSign
+	signpost 29, 22, SIGNPOST_READ, BlackthornCityPokeCenterSign
 
 	; people-events
 	db 9
-	person_event SPRITE_SUPER_NERD, 16, 22, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, EVENT_6E3
-	person_event SPRITE_SUPER_NERD, 16, 23, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, EVENT_6E4
-	person_event SPRITE_GRAMPS, 6, 24, $6, $0, 255, 255, $0, 0, GrampsScript_0x1a4708, EVENT_74C
-	person_event SPRITE_GRAMPS, 6, 25, $8, $0, 255, 255, $0, 0, GrampsScript_0x1a470b, EVENT_74D
-	person_event SPRITE_BLACK_BELT, 35, 28, $5, $1, 255, 255, $90, 0, BlackBeltScript_0x1a470e, -1
-	person_event SPRITE_COOLTRAINER_F, 29, 13, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1a4722, -1
-	person_event SPRITE_YOUNGSTER, 19, 17, $5, $1, 255, 255, $0, 0, YoungsterScript_0x1a4725, -1
-	person_event SPRITE_YOUNGSTER, 24, 26, $6, $0, 255, 255, $0, 0, SantosScript, EVENT_75D
-	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1a4728, -1
+	person_event SPRITE_SUPER_NERD, 16, 22, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_6E3
+	person_event SPRITE_SUPER_NERD, 16, 23, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_6E4
+	person_event SPRITE_GRAMPS, 6, 24, UP << 2 | $2, $0, -1, -1, $0, 0, GrampsScript_0x1a4708, EVENT_74C
+	person_event SPRITE_GRAMPS, 6, 25, LEFT << 2 | $0, $0, -1, -1, $0, 0, GrampsScript_0x1a470b, EVENT_74D
+	person_event SPRITE_BLACK_BELT, 35, 28, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x1a470e, -1
+	person_event SPRITE_COOLTRAINER_F, 29, 13, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x1a4722, -1
+	person_event SPRITE_YOUNGSTER, 19, 17, UP << 2 | $1, $1, -1, -1, $0, 0, YoungsterScript_0x1a4725, -1
+	person_event SPRITE_YOUNGSTER, 24, 26, UP << 2 | $2, $0, -1, -1, $0, 0, SantosScript, EVENT_75D
+	person_event SPRITE_COOLTRAINER_F, 23, 39, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x1a4728, -1

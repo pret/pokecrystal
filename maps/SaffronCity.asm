@@ -284,22 +284,22 @@ SaffronCity_MapEventHeader:
 
 	; signposts
 	db 8
-	signpost 5, 21, $0, SaffronCitySign
-	signpost 5, 33, $0, SaffronGymSign
-	signpost 5, 25, $0, FightingDojoSign
-	signpost 21, 15, $0, SilphCoSign
-	signpost 29, 25, $0, MrPsychicsHouseSign
-	signpost 5, 11, $0, SaffronCityMagnetTrainStationSign
-	signpost 29, 10, $0, SaffronCityPokeCenterSign
-	signpost 11, 26, $0, SaffronCityMartSign
+	signpost 5, 21, SIGNPOST_READ, SaffronCitySign
+	signpost 5, 33, SIGNPOST_READ, SaffronGymSign
+	signpost 5, 25, SIGNPOST_READ, FightingDojoSign
+	signpost 21, 15, SIGNPOST_READ, SilphCoSign
+	signpost 29, 25, SIGNPOST_READ, MrPsychicsHouseSign
+	signpost 5, 11, SIGNPOST_READ, SaffronCityMagnetTrainStationSign
+	signpost 29, 10, SIGNPOST_READ, SaffronCityPokeCenterSign
+	signpost 11, 26, SIGNPOST_READ, SaffronCityMartSign
 
 	; people-events
 	db 8
-	person_event SPRITE_LASS, 18, 11, $5, $2, 255, 255, $80, 0, LassScript_0x19932a, -1
-	person_event SPRITE_POKEFAN_M, 34, 23, $5, $2, 255, 255, $b0, 0, PokefanMScript_0x19933e, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 36, $5, $1, 255, 255, $a0, 0, CooltrainerMScript_0x199352, -1
-	person_event SPRITE_COOLTRAINER_F, 28, 24, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x199355, -1
-	person_event SPRITE_FISHER, 16, 31, $6, $0, 255, 255, $a0, 0, FisherScript_0x199358, -1
-	person_event SPRITE_YOUNGSTER, 23, 19, $4, $10, 255, 255, $90, 0, YoungsterScript_0x19936c, -1
-	person_event SPRITE_YOUNGSTER, 26, 39, $2, $11, 255, 255, $80, 0, YoungsterScript_0x19936f, -1
-	person_event SPRITE_LASS, 12, 23, $3, $0, 255, 255, $a0, 0, LassScript_0x199372, -1
+	person_event SPRITE_LASS, 18, 11, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x19932a, -1
+	person_event SPRITE_POKEFAN_M, 34, 23, UP << 2 | $1, $2, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x19933e, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 36, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerMScript_0x199352, -1
+	person_event SPRITE_COOLTRAINER_F, 28, 24, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x199355, -1
+	person_event SPRITE_FISHER, 16, 31, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x199358, -1
+	person_event SPRITE_YOUNGSTER, 23, 19, UP << 2 | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x19936c, -1
+	person_event SPRITE_YOUNGSTER, 26, 39, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x19936f, -1
+	person_event SPRITE_LASS, 12, 23, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x199372, -1

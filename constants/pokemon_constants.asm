@@ -1,4 +1,5 @@
 
+; pokemon
 const_value set 1
 	const BULBASAUR
 	const IVYSAUR
@@ -257,3 +258,58 @@ const_value SET const_value + -1
 NUM_POKEMON EQU const_value
 
 EGG EQU 253
+
+; pokemon structure in RAM
+	const_def
+
+	const MON_SPECIES
+	const MON_ITEM
+	const MON_MOVE1
+	const MON_MOVE2
+	const MON_MOVE3
+	const MON_MOVE4
+	const MON_ID
+	const MON_07
+	const MON_EXP
+	const MON_09
+	const MON_0A
+	const MON_HP_EXP
+	const MON_0C
+	const MON_ATK_EXP
+	const MON_0E
+	const MON_DEF_EXP
+	const MON_10
+	const MON_SPD_EXP
+	const MON_12
+	const MON_SPC_EXP
+	const MON_14
+	const MON_DVS
+	const MON_16
+	const MON_PP1
+	const MON_PP2
+	const MON_PP3
+	const MON_PP4
+	const MON_HAPPINESS
+	const MON_PKRUS
+	const MON_CAUGHTTIME
+	const MON_CAUGHTGENDER
+	const MON_LEVEL
+BOXMON_STRUCT_LENGTH EQU const_value
+
+	const MON_STATUS
+	const MON_21
+	const MON_HP
+	const MON_23
+	const MON_MAXHP
+	const MON_25
+	const MON_ATK
+	const MON_27
+	const MON_DEF
+	const MON_29
+	const MON_SPD
+	const MON_2B
+	const MON_SAT
+	const MON_2D
+	const MON_SDF
+	const MON_2F
+PARTYMON_STRUCT_LENGTH EQU const_value

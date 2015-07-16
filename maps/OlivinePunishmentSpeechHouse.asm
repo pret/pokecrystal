@@ -49,10 +49,10 @@ OlivinePunishmentSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, OlivinePunishmentSpeechHouseBookshelf1
-	signpost 1, 1, $0, OlivinePunishmentSpeechHouseBookshelf2
+	signpost 1, 0, SIGNPOST_READ, OlivinePunishmentSpeechHouseBookshelf1
+	signpost 1, 1, SIGNPOST_READ, OlivinePunishmentSpeechHouseBookshelf2
 
 	; people-events
 	db 2
-	person_event SPRITE_POKEFAN_M, 6, 5, $3, $0, 255, 255, $0, 0, OlivinePunishmentSpeechHouseDad, -1
-	person_event SPRITE_LASS, 9, 9, $5, $2, 255, 255, $0, 0, OlivinePunishmentSpeechHouseDaughter, -1
+	person_event SPRITE_POKEFAN_M, 6, 5, DOWN << 2 | $3, $0, -1, -1, $0, 0, OlivinePunishmentSpeechHouseDad, -1
+	person_event SPRITE_LASS, 9, 9, UP << 2 | $1, $2, -1, -1, $0, 0, OlivinePunishmentSpeechHouseDaughter, -1

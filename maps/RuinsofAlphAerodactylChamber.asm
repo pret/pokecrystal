@@ -165,12 +165,12 @@ RuinsofAlphAerodactylChamber_MapEventHeader:
 
 	; signposts
 	db 6
-	signpost 3, 2, $0, MapRuinsofAlphAerodactylChamberSignpost1Script
-	signpost 3, 5, $0, MapRuinsofAlphAerodactylChamberSignpost1Script
-	signpost 2, 3, $1, MapRuinsofAlphAerodactylChamberSignpost2Script
-	signpost 2, 4, $1, MapRuinsofAlphAerodactylChamberSignpost3Script
-	signpost 0, 3, $1, MapRuinsofAlphAerodactylChamberSignpost4Script
-	signpost 0, 4, $1, MapRuinsofAlphAerodactylChamberSignpost5Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphAerodactylChamberSignpost1Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphAerodactylChamberSignpost1Script
+	signpost 2, 3, SIGNPOST_UP, MapRuinsofAlphAerodactylChamberSignpost2Script
+	signpost 2, 4, SIGNPOST_UP, MapRuinsofAlphAerodactylChamberSignpost3Script
+	signpost 0, 3, SIGNPOST_UP, MapRuinsofAlphAerodactylChamberSignpost4Script
+	signpost 0, 4, SIGNPOST_UP, MapRuinsofAlphAerodactylChamberSignpost5Script
 
 	; people-events
 	db 0

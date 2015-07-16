@@ -119,9 +119,9 @@ Route18_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 5, 9, $0, MapRoute18Signpost0Script
+	signpost 5, 9, SIGNPOST_READ, MapRoute18Signpost0Script
 
 	; people-events
 	db 2
-	person_event SPRITE_YOUNGSTER, 16, 13, $a, $0, 255, 255, $92, 3, TrainerBird_keeperBoris, -1
-	person_event SPRITE_YOUNGSTER, 10, 17, $6, $0, 255, 255, $92, 3, TrainerBird_keeperBob, -1
+	person_event SPRITE_YOUNGSTER, 16, 13, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBoris, -1
+	person_event SPRITE_YOUNGSTER, 10, 17, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBob, -1

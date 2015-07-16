@@ -66,11 +66,11 @@ GoldenrodDeptStore3F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 0, 14, $0, GoldenrodDeptStore3FDirectory
-	signpost 0, 3, $0, GoldenrodDeptStore3FElevatorButton
+	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore3FDirectory
+	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore3FElevatorButton
 
 	; people-events
 	db 3
-	person_event SPRITE_CLERK, 5, 10, $6, $0, 255, 255, $0, 0, ClerkScript_0x55db8, -1
-	person_event SPRITE_SUPER_NERD, 9, 16, $a, $10, 255, 255, $80, 0, SuperNerdScript_0x55dc0, -1
-	person_event SPRITE_ROCKER, 9, 6, $4, $10, 255, 255, $0, 0, RockerScript_0x55dc3, -1
+	person_event SPRITE_CLERK, 5, 10, UP << 2 | $2, $0, -1, -1, $0, 0, ClerkScript_0x55db8, -1
+	person_event SPRITE_SUPER_NERD, 9, 16, LEFT << 2 | $2, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x55dc0, -1
+	person_event SPRITE_ROCKER, 9, 6, UP << 2 | $0, $10, -1, -1, $0, 0, RockerScript_0x55dc3, -1

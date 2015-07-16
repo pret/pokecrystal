@@ -21,7 +21,7 @@ UnknownScript_0x180997:
 	end
 
 UnknownScript_0x180998:
-	checkevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
+	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x1809a2
 	changeblock $4, $e, $2a
 UnknownScript_0x1809a2:
@@ -40,7 +40,7 @@ UnknownScript_0x1809ad:
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
+	setevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	waitbutton
 	end
 
@@ -145,4 +145,4 @@ BrunosRoom_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_BRUNO, 11, 9, $6, $0, 255, 255, $b0, 0, BrunoScript_0x1809c5, -1
+	person_event SPRITE_BRUNO, 11, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrunoScript_0x1809c5, -1

@@ -61,11 +61,11 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, GoldenrodPPSpeechHouseBookshelf1
-	signpost 1, 1, $0, GoldenrodPPSpeechHouseBookshelf2
-	signpost 1, 7, $0, GoldenrodPPSpeechHouseRadio
+	signpost 1, 0, SIGNPOST_READ, GoldenrodPPSpeechHouseBookshelf1
+	signpost 1, 1, SIGNPOST_READ, GoldenrodPPSpeechHouseBookshelf2
+	signpost 1, 7, SIGNPOST_READ, GoldenrodPPSpeechHouseRadio
 
 	; people-events
 	db 2
-	person_event SPRITE_FISHER, 8, 6, $4, $10, 255, 255, $a0, 0, FisherScript_0x5564a, -1
-	person_event SPRITE_LASS, 7, 9, $8, $10, 255, 255, $0, 0, LassScript_0x5564d, -1
+	person_event SPRITE_FISHER, 8, 6, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x5564a, -1
+	person_event SPRITE_LASS, 7, 9, LEFT << 2 | $0, $10, -1, -1, $0, 0, LassScript_0x5564d, -1

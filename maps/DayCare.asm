@@ -170,10 +170,10 @@ DayCare_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, DayCareBookshelf
-	signpost 1, 1, $0, DayCareBookshelf
+	signpost 1, 0, SIGNPOST_READ, DayCareBookshelf
+	signpost 1, 1, SIGNPOST_READ, DayCareBookshelf
 
 	; people-events
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x62f8f, EVENT_6E5
-	person_event SPRITE_GRANNY, 7, 9, $8, $0, 255, 255, $80, 0, GrannyScript_0x62fc3, -1
+	person_event SPRITE_GRAMPS, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, GrampsScript_0x62f8f, EVENT_6E5
+	person_event SPRITE_GRANNY, 7, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrannyScript_0x62fc3, -1

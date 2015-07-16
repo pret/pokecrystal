@@ -29,8 +29,8 @@ Underground_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 9, 3, $7, MapUndergroundSignpostItem0
-	signpost 19, 1, $7, MapUndergroundSignpostItem1
+	signpost 9, 3, SIGNPOST_ITEMIFSET, MapUndergroundSignpostItem0
+	signpost 19, 1, SIGNPOST_ITEMIFSET, MapUndergroundSignpostItem1
 
 	; people-events
 	db 0

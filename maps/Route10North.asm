@@ -29,8 +29,8 @@ Route10North_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 11, 5, $0, PowerPlantSign
-	signpost 1, 12, $0, Route10PokeCenterSign
+	signpost 11, 5, SIGNPOST_READ, PowerPlantSign
+	signpost 1, 12, SIGNPOST_READ, Route10PokeCenterSign
 
 	; people-events
 	db 0

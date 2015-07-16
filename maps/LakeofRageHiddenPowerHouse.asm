@@ -78,9 +78,9 @@ LakeofRageHiddenPowerHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, HiddenPowerHouseBookshelf
-	signpost 1, 1, $0, HiddenPowerHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, HiddenPowerHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, HiddenPowerHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHER, 7, 6, $3, $0, 255, 255, $0, 0, HiddenPowerGuy, -1
+	person_event SPRITE_FISHER, 7, 6, DOWN << 2 | $3, $0, -1, -1, $0, 0, HiddenPowerGuy, -1

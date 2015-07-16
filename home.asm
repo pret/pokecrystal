@@ -499,13 +499,14 @@ Function31cf:: ; 31cf
 StringCmp:: ; 31db
 ; Compare c bytes at de and hl.
 ; Return z if they all match.
+.loop
 	ld a, [de]
 	cp [hl]
 	ret nz
 	inc de
 	inc hl
 	dec c
-	jr nz, StringCmp
+	jr nz, .loop
 	ret
 ; 0x31e4
 
@@ -866,9 +867,7 @@ GetName:: ; 33c3
 	ld e, a
 	ld d, 0
 	ld hl, NamesPointers
-	add hl, de
-	add hl, de
-	add hl, de
+	add_n_times hl, de, 3
 	ld a, [hli]
 	rst Bankswitch
 	ld a, [hli]
@@ -880,7 +879,7 @@ GetName:: ; 33c3
 	call GetNthString
 
 	ld de, StringBuffer1
-	ld bc, $000d
+	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 
 .done
@@ -1209,7 +1208,7 @@ Function3567:: ; 3567
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function3574
 
 	pop bc
@@ -1355,7 +1354,7 @@ CheckTrainerBattle2:: ; 3600
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call CheckTrainerBattle
 
 	pop bc

@@ -233,11 +233,11 @@ PewterGym_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 11, 2, $0, PewterGymStatue
-	signpost 11, 7, $0, PewterGymStatue
+	signpost 11, 2, SIGNPOST_READ, PewterGymStatue
+	signpost 11, 7, SIGNPOST_READ, PewterGymStatue
 
 	; people-events
 	db 3
-	person_event SPRITE_BROCK, 5, 9, $6, $0, 255, 255, $b0, 0, BrockScript_0x1a2864, -1
-	person_event SPRITE_YOUNGSTER, 9, 6, $9, $0, 255, 255, $a2, 3, TrainerCamperJerry, -1
-	person_event SPRITE_GYM_GUY, 15, 10, $6, $0, 255, 255, $90, 1, PewterGymGuyScript, -1
+	person_event SPRITE_BROCK, 5, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrockScript_0x1a2864, -1
+	person_event SPRITE_YOUNGSTER, 9, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperJerry, -1
+	person_event SPRITE_GYM_GUY, 15, 10, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, PewterGymGuyScript, -1

@@ -506,17 +506,17 @@ Route41_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 35, 9, $7, MapRoute41SignpostItem0
+	signpost 35, 9, SIGNPOST_ITEMIFSET, MapRoute41SignpostItem0
 
 	; people-events
 	db 10
-	person_event SPRITE_OLIVINE_RIVAL, 10, 36, $a, $0, 255, 255, $82, 3, TrainerSwimmermCharlie, -1
-	person_event SPRITE_OLIVINE_RIVAL, 12, 50, $a, $0, 255, 255, $82, 3, TrainerSwimmermGeorge, -1
-	person_event SPRITE_OLIVINE_RIVAL, 30, 24, $1e, $0, 255, 255, $82, 3, TrainerSwimmermBerke, -1
-	person_event SPRITE_OLIVINE_RIVAL, 34, 36, $1f, $0, 255, 255, $82, 3, TrainerSwimmermKirk, -1
-	person_event SPRITE_OLIVINE_RIVAL, 50, 23, $1e, $0, 255, 255, $82, 3, TrainerSwimmermMathew, -1
-	person_event SPRITE_SWIMMER_GIRL, 8, 21, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfKaylee, -1
-	person_event SPRITE_SWIMMER_GIRL, 23, 27, $7, $0, 255, 255, $a2, 3, TrainerSwimmerfSusie, -1
-	person_event SPRITE_SWIMMER_GIRL, 38, 31, $8, $0, 255, 255, $a2, 3, TrainerSwimmerfDenise, -1
-	person_event SPRITE_SWIMMER_GIRL, 32, 48, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfKara, -1
-	person_event SPRITE_SWIMMER_GIRL, 54, 13, $a, $0, 255, 255, $a2, 2, TrainerSwimmerfWendy, -1
+	person_event SPRITE_OLIVINE_RIVAL, 10, 36, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermCharlie, -1
+	person_event SPRITE_OLIVINE_RIVAL, 12, 50, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermGeorge, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30, 24, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermBerke, -1
+	person_event SPRITE_OLIVINE_RIVAL, 34, 36, RIGHT << 2 | $13, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermKirk, -1
+	person_event SPRITE_OLIVINE_RIVAL, 50, 23, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermMathew, -1
+	person_event SPRITE_SWIMMER_GIRL, 8, 21, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfKaylee, -1
+	person_event SPRITE_SWIMMER_GIRL, 23, 27, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfSusie, -1
+	person_event SPRITE_SWIMMER_GIRL, 38, 31, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfDenise, -1
+	person_event SPRITE_SWIMMER_GIRL, 32, 48, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerSwimmerfKara, -1
+	person_event SPRITE_SWIMMER_GIRL, 54, 13, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerSwimmerfWendy, -1

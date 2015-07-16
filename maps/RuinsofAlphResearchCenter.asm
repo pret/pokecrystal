@@ -406,12 +406,12 @@ RuinsofAlphResearchCenter_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 5, 6, $0, MapRuinsofAlphResearchCenterSignpost0Script
-	signpost 4, 3, $0, MapRuinsofAlphResearchCenterSignpost1Script
-	signpost 1, 7, $0, MapRuinsofAlphResearchCenterSignpost2Script
+	signpost 5, 6, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost0Script
+	signpost 4, 3, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost1Script
+	signpost 1, 7, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost2Script
 
 	; people-events
 	db 3
-	person_event SPRITE_SCIENTIST, 9, 8, $7, $0, 255, 255, $90, 0, ScientistScript_0x591e5, -1
-	person_event SPRITE_SCIENTIST, 6, 9, $2, $12, 255, 255, $90, 0, ScientistScript_0x59214, -1
-	person_event SPRITE_SCIENTIST, 9, 6, $7, $0, 255, 255, $90, 0, ScientistScript_0x591d1, EVENT_704
+	person_event SPRITE_SCIENTIST, 9, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591e5, -1
+	person_event SPRITE_SCIENTIST, 6, 9, DOWN << 2 | $2, $12, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x59214, -1
+	person_event SPRITE_SCIENTIST, 9, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591d1, EVENT_704

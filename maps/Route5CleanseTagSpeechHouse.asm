@@ -70,10 +70,10 @@ Route5CleanseTagSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, HouseForSaleBookshelf
-	signpost 1, 1, $0, HouseForSaleBookshelf
+	signpost 1, 0, SIGNPOST_READ, HouseForSaleBookshelf
+	signpost 1, 1, SIGNPOST_READ, HouseForSaleBookshelf
 
 	; people-events
 	db 2
-	person_event SPRITE_GRANNY, 9, 6, $1f, $0, 255, 255, $b0, 0, GrannyScript_0x18b634, -1
-	person_event SPRITE_TEACHER, 7, 9, $8, $0, 255, 255, $80, 0, TeacherScript_0x18b64f, -1
+	person_event SPRITE_GRANNY, 9, 6, RIGHT << 2 | $13, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x18b634, -1
+	person_event SPRITE_TEACHER, 7, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x18b64f, -1

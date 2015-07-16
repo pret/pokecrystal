@@ -3,63 +3,63 @@ Colosseum_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x193471, $0000
-	dw UnknownScript_0x193475, $0000
-	dw UnknownScript_0x193476, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
+	dw .Trigger3, $0000
 
 	; callback count
 	db 2
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x193477
+	dbw 2, ColosseumScript_SetWhichChris
 
-	dbw 5, UnknownScript_0x193487
+	dbw 5, ColosseumScript_InitializeCB
 
-UnknownScript_0x193471:
-	priorityjump UnknownScript_0x19348c
+.Trigger1:
+	priorityjump ColosseumScript_Initialize
 	end
 
-UnknownScript_0x193475:
+.Trigger2:
 	end
 
-UnknownScript_0x193476:
+.Trigger3:
 	end
 
-UnknownScript_0x193477:
-	special Function29f47
-	iffalse UnknownScript_0x193482
+ColosseumScript_SetWhichChris:
+	special Special_CableClubCheckWhichChris
+	iffalse .Chris2
 	disappear $3
 	appear $2
 	return
 
-UnknownScript_0x193482:
+.Chris2:
 	disappear $2
 	appear $3
 	return
 
-UnknownScript_0x193487:
+ColosseumScript_InitializeCB:
 	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $2
 	return
 
-UnknownScript_0x19348c:
+ColosseumScript_Initialize:
 	dotrigger $1
 	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $2
 	end
 
 MapColosseumSignpost1Script:
-	special Function29ed9
+	special Special_Colosseum
 	newloadmap $f8
 	end
 
 ChrisScript_0x193499:
 	loadfont
-	writetext UnknownText_0x1934a0
+	writetext .FriendReadyText
 	closetext
 	loadmovesprites
 	end
 
-UnknownText_0x1934a0:
+.FriendReadyText:
 	text "Your friend is"
 	line "ready."
 	done
@@ -78,10 +78,10 @@ Colosseum_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 4, 4, $3, MapColosseumSignpost1Script
-	signpost 4, 5, $4, MapColosseumSignpost1Script
+	signpost 4, 4, SIGNPOST_RIGHT, MapColosseumSignpost1Script
+	signpost 4, 5, SIGNPOST_LEFT, MapColosseumSignpost1Script
 
 	; people-events
 	db 2
-	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x193499, EVENT_000
-	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x193499, EVENT_001
+	person_event SPRITE_CHRIS, 8, 7, LEFT << 2 | $1, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_CHRIS1_IN_CABLE_CLUB
+	person_event SPRITE_CHRIS, 8, 10, LEFT << 2 | $0, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_CHRIS2_IN_CABLE_CLUB

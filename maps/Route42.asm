@@ -377,20 +377,20 @@ Route42_MapEventHeader:
 
 	; signposts
 	db 5
-	signpost 10, 4, $0, MapRoute42Signpost0Script
-	signpost 5, 7, $0, MapRoute42Signpost1Script
-	signpost 9, 45, $0, MapRoute42Signpost2Script
-	signpost 8, 54, $0, MapRoute42Signpost3Script
-	signpost 11, 16, $7, MapRoute42SignpostItem4
+	signpost 10, 4, SIGNPOST_READ, MapRoute42Signpost0Script
+	signpost 5, 7, SIGNPOST_READ, MapRoute42Signpost1Script
+	signpost 9, 45, SIGNPOST_READ, MapRoute42Signpost2Script
+	signpost 8, 54, SIGNPOST_READ, MapRoute42Signpost3Script
+	signpost 11, 16, SIGNPOST_ITEMIFSET, MapRoute42SignpostItem4
 
 	; people-events
 	db 9
-	person_event SPRITE_FISHER, 14, 44, $8, $0, 255, 255, $a2, 1, TrainerFisherTully1, -1
-	person_event SPRITE_POKEFAN_M, 13, 55, $a, $0, 255, 255, $b2, 3, TrainerHikerBenjamin, -1
-	person_event SPRITE_SUPER_NERD, 12, 51, $6, $0, 255, 255, $92, 3, TrainerPokemaniacShane, -1
-	person_event SPRITE_FRUIT_TREE, 20, 31, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a934d, -1
-	person_event SPRITE_FRUIT_TREE, 20, 32, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a934f, -1
-	person_event SPRITE_FRUIT_TREE, 20, 33, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a9351, -1
-	person_event SPRITE_POKE_BALL, 8, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a9349, EVENT_6B3
-	person_event SPRITE_POKE_BALL, 12, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a934b, EVENT_6B4
-	person_event SPRITE_SUICUNE, 20, 30, $1, $0, 255, 255, $90, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	person_event SPRITE_FISHER, 14, 44, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherTully1, -1
+	person_event SPRITE_POKEFAN_M, 13, 55, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerBenjamin, -1
+	person_event SPRITE_SUPER_NERD, 12, 51, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacShane, -1
+	person_event SPRITE_FRUIT_TREE, 20, 31, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a934d, -1
+	person_event SPRITE_FRUIT_TREE, 20, 32, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a934f, -1
+	person_event SPRITE_FRUIT_TREE, 20, 33, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a9351, -1
+	person_event SPRITE_POKE_BALL, 8, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a9349, EVENT_6B3
+	person_event SPRITE_POKE_BALL, 12, 37, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a934b, EVENT_6B4
+	person_event SPRITE_SUICUNE, 20, 30, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

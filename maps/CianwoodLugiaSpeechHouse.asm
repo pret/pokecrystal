@@ -70,11 +70,11 @@ CianwoodLugiaSpeechHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, CianwoodLugiaSpeechHouseBookshelf
-	signpost 1, 1, $0, CianwoodLugiaSpeechHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, CianwoodLugiaSpeechHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, CianwoodLugiaSpeechHouseBookshelf
 
 	; people-events
 	db 3
-	person_event SPRITE_TEACHER, 8, 6, $6, $0, 255, 255, $0, 0, TeacherScript_0x9e1b0, -1
-	person_event SPRITE_LASS, 9, 10, $5, $1, 255, 255, $a0, 0, LassScript_0x9e1b3, -1
-	person_event SPRITE_TWIN, 6, 4, $7, $0, 255, 255, $90, 0, TwinScript_0x9e1b6, -1
+	person_event SPRITE_TEACHER, 8, 6, UP << 2 | $2, $0, -1, -1, $0, 0, TeacherScript_0x9e1b0, -1
+	person_event SPRITE_LASS, 9, 10, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x9e1b3, -1
+	person_event SPRITE_TWIN, 6, 4, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TwinScript_0x9e1b6, -1

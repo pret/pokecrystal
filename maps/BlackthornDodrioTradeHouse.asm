@@ -30,9 +30,9 @@ BlackthornDodrioTradeHouse_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 1, 0, $0, EmysHouseBookshelf
-	signpost 1, 1, $0, EmysHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, EmysHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, EmysHouseBookshelf
 
 	; people-events
 	db 1
-	person_event SPRITE_LASS, 7, 6, $3, $0, 255, 255, $a0, 0, Emy, -1
+	person_event SPRITE_LASS, 7, 6, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Emy, -1

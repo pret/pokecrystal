@@ -93,11 +93,11 @@ ElmsHouse_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 1, 0, $0, ElmsHousePC
-	signpost 1, 6, $0, ElmsHouseBookshelf
-	signpost 1, 7, $0, ElmsHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, ElmsHousePC
+	signpost 1, 6, SIGNPOST_READ, ElmsHouseBookshelf
+	signpost 1, 7, SIGNPOST_READ, ElmsHouseBookshelf
 
 	; people-events
 	db 2
-	person_event SPRITE_TEACHER, 9, 5, $4, $10, 255, 255, $a0, 0, ElmsWife, -1
-	person_event SPRITE_BUG_CATCHER, 8, 9, $7, $0, 255, 255, $0, 0, ElmsSon, -1
+	person_event SPRITE_TEACHER, 9, 5, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ElmsWife, -1
+	person_event SPRITE_BUG_CATCHER, 8, 9, UP << 2 | $3, $0, -1, -1, $0, 0, ElmsSon, -1
