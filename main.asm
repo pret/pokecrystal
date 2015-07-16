@@ -2217,7 +2217,7 @@ Function6f3e: ; 6f3e
 ; 6f5b
 
 .data_6f5b
-	db 1, 2, 8, 4
+	db 1 << DOWN, 1 << UP, 1 << RIGHT, 1 << LEFT
 ; 6f5f
 
 Function6f5f: ; 6f5f
@@ -2242,20 +2242,20 @@ Function6f5f: ; 6f5f
 ; 6f7b
 
 .data_6f7b
-	db 2, 1, 4, 8
+	db 1 << UP, 1 << DOWN, 1 << LEFT, 1 << RIGHT
 ; 6f7f
 
 Function6f7f: ; 6f7f
 	ld d, a
 	and $f0
 	cp $b0
-	jr z, .asm_6f8c
+	jr z, .done
 	cp $c0
-	jr z, .asm_6f8c
+	jr z, .done
 	xor a
 	ret
 
-.asm_6f8c
+.done
 	ld a, d
 	and 7
 	ld e, a
@@ -2356,12 +2356,12 @@ CheckFacingObject:: ; 6fd9
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr z, .asm_7007
+	cp STANDING
+	jr z, .standing
 	xor a
 	ret
 
-.asm_7007
+.standing
 	scf
 	ret
 ; 7009
@@ -2393,23 +2393,23 @@ Function7021: ; 7021
 	ld e, [hl]
 	call GetSpriteDirection
 	and a
-	jr z, .asm_703b
-	cp $4
-	jr z, .asm_703d
-	cp $8
-	jr z, .asm_703f
+	jr z, .down
+	cp UP << 2
+	jr z, .up
+	cp LEFT << 2
+	jr z, .left
 	inc d
 	ret
 
-.asm_703b
+.down
 	inc e
 	ret
 
-.asm_703d
+.up
 	dec e
 	ret
 
-.asm_703f
+.left
 	dec d
 	ret
 ; 7041
@@ -2417,71 +2417,71 @@ Function7021: ; 7021
 Function7041: ; 7041
 	ld bc, ObjectStructs
 	xor a
-.asm_7045
+.loop
 	ld [$ffb0], a
 	call GetObjectSprite
-	jr z, .asm_7093
+	jr z, .nope
 	ld hl, OBJECT_04
 	add hl, bc
 	bit 7, [hl]
-	jr nz, .asm_7093
+	jr nz, .nope
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit 7, [hl]
-	jr z, .asm_7063
+	jr z, .got
 	call Function7171
-	jr nc, .asm_707b
-	jr .asm_7073
+	jr nc, .ok
+	jr .ok2
 
-.asm_7063
+.got
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .asm_707b
+	jr nz, .ok
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr nz, .asm_707b
+	jr nz, .ok
 
-.asm_7073
+.ok2
 	ld a, [$ffaf]
 	ld l, a
 	ld a, [$ffb0]
 	cp l
-	jr nz, .asm_70a2
+	jr nz, .setcarry
 
-.asm_707b
+.ok
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .asm_7093
+	jr nz, .nope
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr nz, .asm_7093
+	jr nz, .nope
 	ld a, [$ffaf]
 	ld l, a
 	ld a, [$ffb0]
 	cp l
-	jr nz, .asm_70a2
+	jr nz, .setcarry
 
-.asm_7093
-	ld hl, ObjectStruct2 - ObjectStruct1
+.nope
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ld a, [$ffb0]
 	inc a
-	cp $d
-	jr nz, .asm_7045
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	and a
 	ret
 
-.asm_70a2
+.setcarry
 	scf
 	ret
 ; 70a4
@@ -2584,7 +2584,7 @@ Function7113: ; 7113
 	ld e, a
 	ld bc, ObjectStructs
 	xor a
-.asm_711f
+.loop
 	ld [$ffb0], a
 	call GetObjectSprite
 	jr z, .asm_7160
@@ -2627,14 +2627,14 @@ Function7113: ; 7113
 	jr .asm_716f
 
 .asm_7160
-	ld hl, ObjectStruct2 - ObjectStruct1
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ld a, [$ffb0]
 	inc a
-	cp $d
-	jr nz, .asm_711f
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	xor a
 	ret
 
@@ -2729,13 +2729,13 @@ ChangeHappiness: ; 71c2
 	ld a, [de]
 	cp 100
 	ld e, 0
-	jr c, .asm_71ef
+	jr c, .ok
 	inc e
 	cp 200
-	jr c, .asm_71ef
+	jr c, .ok
 	inc e
 
-.asm_71ef
+.ok
 	dec c
 	ld b, 0
 	ld hl, .Actions
@@ -2751,16 +2751,16 @@ ChangeHappiness: ; 71c2
 	ld a, [de]
 	jr nc, .negative
 	add [hl]
-	jr nc, .asm_720d
-	ld a, $ff
-	jr .asm_720d
+	jr nc, .done
+	ld a, -1
+	jr .done
 
 .negative
 	add [hl]
-	jr c, .asm_720d
+	jr c, .done
 	xor a
 
-.asm_720d
+.done
 	ld [de], a
 	ld a, [IsInBattle]
 	and a
@@ -2776,23 +2776,23 @@ ChangeHappiness: ; 71c2
 ; 7221
 
 .Actions
-	db  +5,  +3,  +2
-	db  +5,  +3,  +2
-	db  +1,  +1,  +0
+	db  +5,  +3,  +2 ; Gained a level
+	db  +5,  +3,  +2 ; Used a stat-boosting item (vitamin or X-item)
+	db  +1,  +1,  +0 
 	db  +3,  +2,  +1 ; Battled a Gym Leader
 	db  +1,  +1,  +0 ; Learned a move
-	db  -1,  -1,  -1
-	db  -5,  -5, -10
-	db  -5,  -5, -10
-	db  +1,  +1,  +1
-	db  +3,  +3,  +1
-	db  +5,  +5,  +2
-	db  +1,  +1,  +1
-	db  +3,  +3,  +1
-	db +10, +10,  +4
-	db  -5,  -5, -10
-	db -10, -10, -15
-	db -15, -15, -20
+	db  -1,  -1,  -1 ; Lost to an enemy
+	db  -5,  -5, -10 
+	db  -5,  -5, -10 ; Lost to a much weaker enemy
+	db  +1,  +1,  +1 
+	db  +3,  +3,  +1 
+	db  +5,  +5,  +2 
+	db  +1,  +1,  +1 
+	db  +3,  +3,  +1 
+	db +10, +10,  +4 
+	db  -5,  -5, -10 ; Used Heal Powder or Energypowder (bitter)
+	db -10, -10, -15 ; Used Energy Root (bitter)
+	db -15, -15, -20 ; Used Revival Herb (bitter)
 	db  +3,  +3,  +1
 	db +10,  +6,  +4
 ; 725a
@@ -3095,21 +3095,21 @@ Function7420: ; 7420
 	jr c, .asm_744e
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_7453
+	jr z, .egg
 	push hl
 	call GetCurNick
 	call CopyPokemonName_Buffer1_Buffer3
 	pop hl
 	call Random
-.next
+.loop
 	sub [hl]
-	jr c, .asm_7444
+	jr c, .ok
 	inc hl
 	inc hl
 	inc hl
-	jr .next
+	jr .loop
 
-.asm_7444
+.ok
 	inc hl
 	ld a, [hli]
 	ld [ScriptVar], a
@@ -3122,7 +3122,7 @@ Function7420: ; 7420
 	ld [ScriptVar], a
 	ret
 
-.asm_7453
+.egg
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -4147,7 +4147,7 @@ PredefPointers:: ; 856b
 	add_predef GetTrainerPic
 	add_predef DecompressPredef ; $40
 	add_predef Function347d3
-	add_predef Functionfb908
+	add_predef ConvertMon_1to2
 	add_predef Functionfb877
 	add_predef Functiond0000
 	add_predef Function50d0a
@@ -7834,7 +7834,7 @@ Functiond784: ; d784
 .asm_d795
 	push hl
 	add hl, de
-	ld a, $7f
+	ld a, " "
 	ld [hli], a
 	ld [hli], a
 	ld [hld], a
@@ -11981,7 +11981,7 @@ Function11f84: ; 11f84 (4:5f84)
 	call ByteFill
 	hlcoord 0, 6
 	ld bc, $f0
-	ld a, $7f
+	ld a, " "
 	call ByteFill
 	hlcoord 1, 1
 	ld bc, $412
@@ -11990,21 +11990,21 @@ Function11f84: ; 11f84 (4:5f84)
 
 Function11fa9: ; 11fa9 (4:5fa9)
 	hlcoord 1, 7
-	ld b, $6
-.asm_11fae
-	ld c, $13
-.asm_11fb0
+	ld b, 6
+.next
+	ld c, SCREEN_WIDTH - 1
+.loop
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec c
-	jr nz, .asm_11fb0
+	jr nz, .loop
 	push de
-	ld de, $15
+	ld de, 21
 	add hl, de
 	pop de
 	dec b
-	jr nz, .asm_11fae
+	jr nz, .next
 	ret
 
 Function11fc0: ; 11fc0 (4:5fc0)
@@ -12048,8 +12048,7 @@ Function12008: ; 12008 (4:6008)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_12017
-	add hl, de
-	add hl, de
+	add_n_times hl, de, 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -13202,12 +13201,7 @@ StartMenu:: ; 125cd
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+	add_n_times hl, de, 6
 	ret
 ; 12829
 
@@ -17000,7 +16994,7 @@ AddSpriteGFX: ; 142e5
 
 LoadSpriteGFX: ; 14306
 ; Bug: b is not preserved, so
-; it's useless as a loop count.
+; it's useless as a next count.
 
 	ld hl, UsedSprites
 	ld b, SPRITE_GFX_LIST_CAPACITY
@@ -17058,7 +17052,7 @@ SortUsedSprites: ; 1431e
 .CheckFollowing
 	ld a, [de]
 	cp [hl]
-	jr nc, .next
+	jr nc, .loop
 
 ; Swap the two sprites.
 
@@ -17078,7 +17072,7 @@ SortUsedSprites: ; 1431e
 
 ; Keep doing this until everything's in order.
 
-.next
+.loop
 	dec de
 	dec de
 	dec c
@@ -17116,10 +17110,10 @@ ArrangeUsedSprites: ; 14355
 ; Spill over into the second table after $80 tiles.
 	add b
 	cp $80
-	jr z, .next
+	jr z, .loop
 	jr nc, .SecondTable
 
-.next
+.loop
 	ld [hl], b
 	inc hl
 	ld b, a
@@ -21571,11 +21565,11 @@ DSTChecks: ; 16439
 	jr z, .asm_16447
 	and a ; within one hour of 00:00?
 	jr z, .LostBooklet
-	jr .next
+	jr .loop
 
 .asm_16447
 	cp 23 ; within one hour of 23:00?
-	jr nz, .next
+	jr nz, .loop
 	; fallthrough
 
 .LostBooklet
@@ -21591,7 +21585,7 @@ DSTChecks: ; 16439
 	call Function13e5
 	ret
 
-.next
+.loop
 	call Function164ea
 	bccoord 1, 14
 	ld a, [wDST]
@@ -29634,7 +29628,7 @@ Function2805d: ; 2805d
 	ld [wd265], a
 	push hl
 	push de
-	callab Functionfb908
+	callab ConvertMon_1to2
 	pop de
 	pop hl
 	ld a, [wd265]
@@ -30141,7 +30135,7 @@ Function28499: ; 28499
 	ld [wd265], a
 	push hl
 	push de
-	callab Functionfb8f1
+	callab ConvertMon_2to1
 	pop de
 	pop hl
 	ld a, [wd265]
@@ -30181,7 +30175,7 @@ Function284f6: ; 284f6
 	push bc
 	ld a, [hl]
 	ld [wd265], a
-	callab Functionfb8f1
+	callab ConvertMon_2to1
 	pop bc
 	pop de
 	ld a, [wd265]
@@ -30461,7 +30455,7 @@ Function286ba: ; 286ba
 	push bc
 	push de
 	ld [wd265], a
-	callab Functionfb908
+	callab ConvertMon_1to2
 	pop de
 	pop bc
 	ld a, [wd265]
@@ -33845,13 +33839,13 @@ Function2a138:: ; 2a138
 	ld de, PartyMon2 - PartyMon1
 	ld a, [PartyCount]
 	ld c, a
-.next
+.loop
 	ld a, [hl]
 	cp CLEANSE_TAG
 	jr z, .asm_2a14c
 	add hl, de
 	dec c
-	jr nz, .next
+	jr nz, .loop
 	ret
 
 .asm_2a14c
@@ -36254,14 +36248,14 @@ ConvertBerriesToBerryJuice: ; 2ede6
 	push hl
 	ld a, [hl]
 	cp SHUCKLE
-	jr nz, .nextMon
+	jr nz, .loopMon
 	ld bc, PartyMon1Item - PartyMon1Species
 	add hl, bc
 	ld a, [hl]
 	cp BERRY
 	jr z, .convertToJuice
 
-.nextMon
+.loopMon
 	pop hl
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
@@ -36673,10 +36667,10 @@ ReadTrainerParty: ; 39771
 .skip_trainer
 	dec b
 	jr z, .got_trainer
-.next
+.loop
 	ld a, [hli]
 	cp $ff
-	jr nz, .next
+	jr nz, .loop
 	jr .skip_trainer
 .got_trainer
 
@@ -43281,13 +43275,13 @@ CheckOwnMonAnywhere: ; 0x4a721
 	ld bc, sBoxMonOT
 .openboxmon
 	call CheckOwnMon
-	jr nc, .next
+	jr nc, .loop
 
 	; found!
 	call CloseSRAM
 	ret
 
-.next
+.loop
 	push bc
 	ld bc, sBoxMon2 - sBoxMon1
 	add hl, bc
@@ -43306,7 +43300,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	ld a, [wCurBox]
 	and $f
 	cp c
-	jr z, .nextbox
+	jr z, .loopbox
 
 	; Load the box.
 	ld hl, BoxAddressTable1
@@ -43323,7 +43317,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	; Number of monsters in the box
 	ld a, [hl]
 	and a
-	jr z, .nextbox
+	jr z, .loopbox
 
 	push bc
 
@@ -43344,14 +43338,14 @@ CheckOwnMonAnywhere: ; 0x4a721
 
 .boxmon
 	call CheckOwnMon
-	jr nc, .nextboxmon
+	jr nc, .loopboxmon
 
 	; found!
 	pop bc
 	call CloseSRAM
 	ret
 
-.nextboxmon
+.loopboxmon
 	push bc
 	ld bc, sBoxMon2 - sBoxMon1
 	add hl, bc
@@ -43361,7 +43355,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	jr nz, .boxmon
 	pop bc
 
-.nextbox
+.loopbox
 	inc c
 	ld a, c
 	cp NUM_BOXES
@@ -49499,7 +49493,7 @@ CheckAnyFaintedMon: ; 507fb
 
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_5081d
+	jr z, .done
 
 .next
 	pop hl
@@ -49510,7 +49504,7 @@ CheckAnyFaintedMon: ; 507fb
 	xor a
 	ret
 
-.asm_5081d
+.done
 	pop hl
 	pop af
 	scf
@@ -53701,14 +53695,14 @@ Function82236: ; 82236
 	ld hl, $ffa9
 	ld a, [hl]
 	and $4
-	jr nz, .next7
+	jr nz, .loop7
 	ld a, [hl]
 	and $2
 	jr nz, .asm_82299
 	call Function822f0
 	ret
 
-.next7
+.loop7
 	ld hl, wcf64
 	ld a, [hl]
 	inc a
@@ -56532,9 +56526,9 @@ ShowPlayerNamingChoices: ; 88297
 	ld hl, ChrisNameMenuHeader
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .GotGender
+	jr z, .GotClass
 	ld hl, KrisNameMenuHeader
-.GotGender
+.GotClass
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	ld a, [wcfa9]
@@ -56588,15 +56582,15 @@ Unknown_882f9: ; 882f9
 	db " NAME @" ; title
 ; 88318
 
-Function88318: ; 88318
+GetPlayerNameArray: ; 88318 This Function is never called
 	ld hl, PlayerName
 	ld de, Unknown_882c9
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_88328
+	jr z, .done
 	ld de, Unknown_882f9
 
-.asm_88328
+.done
 	call InitName
 	ret
 ; 8832c
@@ -56624,9 +56618,9 @@ Function8833e: ; 8833e
 	ld hl, ChrisCardPic
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_8834b
+	jr z, .GotClass
 	ld hl, KrisCardPic
-.asm_8834b
+.GotClass
 	ld de, $9000
 	ld bc, $230
 	ld a, BANK(ChrisCardPic) ; BANK(KrisCardPic)
@@ -56663,7 +56657,7 @@ GetChrisBackpic: ; 88830
 	ld hl, ChrisBackpic
 	ld b, BANK(ChrisBackpic)
 	ld de, $9310
-	ld c, $31
+	ld c, 7 * 7
 	predef DecompressPredef
 	ret
 ; 88840
@@ -56675,22 +56669,22 @@ Function88840: ; 88840
 	ld e, 0
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_88851
+	jr z, .GotClass
 	ld e, 1
 
-.asm_88851
+.GotClass
 	ld a, e
 	ld [TrainerClass], a
 	ld de, ChrisPic
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_88862
+	jr z, .GotPic
 	ld de, KrisPic
 
-.asm_88862
+.GotPic
 	ld hl, VTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
-	ld c, $31
+	ld c, 7 * 7
 	call Get2bpp
 	call WaitBGMap
 	ld a, $1
@@ -56808,30 +56802,32 @@ Function8917a: ; 8917a (22:517a)
 	ret
 
 Function89185: ; 89185 (22:5185)
+; Compares c bytes starting at de and hl and incrementing together until a match is found.
 	push de
 	push hl
-.asm_89187
+.loop
 	ld a, [de]
 	inc de
 	cp [hl]
-	jr nz, .asm_89190
+	jr nz, .done
 	inc hl
 	dec c
-	jr nz, .asm_89187
-.asm_89190
+	jr nz, .loop
+.done
 	pop hl
 	pop de
 	ret
 
 Function89193: ; 89193
+; Copies c bytes from hl to de.
 	push de
 	push hl
-.asm_89195
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_89195
+	jr nz, .loop
 	pop hl
 	pop de
 	ret
@@ -56839,16 +56835,17 @@ Function89193: ; 89193
 
 
 Function8919e: ; 8919e (22:519e)
+; Searches for the c'th string starting at de.  Returns the pointer in de.
 	ld a, c
 	and a
 	ret z
-.asm_891a1
+.loop
 	ld a, [de]
 	inc de
-	cp $50
-	jr nz, .asm_891a1
+	cp "@"
+	jr nz, .loop
 	dec c
-	jr nz, .asm_891a1
+	jr nz, .loop
 	ret
 
 Function891ab: ; 891ab
@@ -56909,13 +56906,13 @@ Function891fe: ; 891fe
 ; 89209
 
 Function89209: ; 89209
-	ld a, $1
+	ld a, 1
 	ld [wc2ce], a
 	ret
 ; 8920f
 
 Function8920f: ; 8920f
-	ld a, $0
+	ld a, 0
 	ld [wc2ce], a
 	ret
 ; 89215
@@ -56934,11 +56931,11 @@ Function89215: ; 89215
 
 Function8921f: ; 8921f (22:521f)
 	push de
-	ld de, $14
+	ld de, SCREEN_WIDTH
 	add hl, de
 	inc hl
 	ld a, $7f
-.asm_89227
+.loop
 	push bc
 	push hl
 .asm_89229
@@ -56949,7 +56946,7 @@ Function8921f: ; 8921f (22:521f)
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .asm_89227
+	jr nz, .loop
 	pop de
 	ret
 
@@ -57018,14 +57015,14 @@ Function89261: ; 89261
 	call WriteBackup
 	call Function8920f
 	pop af
-	jr c, .asm_892a1
+	jr c, .done
 	ld a, [wcfa9]
 	cp $2
-	jr z, .asm_892a1
+	jr z, .done
 	and a
 	ret
 
-.asm_892a1
+.done
 	scf
 	ret
 ; 892a3
@@ -57051,49 +57048,49 @@ Function892b4: ; 892b4 (22:52b4)
 Function892b7: ; 892b7
 	ld d, b
 	ld e, c
-	ld hl, $0000
+	ld hl, 0
 	add hl, bc
-	ld a, $50
-	ld bc, $0006
+	ld a, "@"
+	ld bc, 6
 	call ByteFill
 	ld b, d
 	ld c, e
-	ld hl, $0006
+	ld hl, 6
 	add hl, bc
-	ld a, $50
-	ld bc, $0006
+	ld a, "@"
+	ld bc, 6
 	call ByteFill
 	ld b, d
 	ld c, e
-	ld hl, $000c
+	ld hl, 12
 	add hl, bc
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld hl, $000e
+	ld hl, 14
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
-	ld hl, $0010
+	ld hl, 16
 	add hl, bc
 	ld [hl], a
-	ld hl, $0011
+	ld hl, 17
 	add hl, bc
-	ld a, $ff
-	ld bc, $0008
+	ld a, -1
+	ld bc, 8
 	call ByteFill
 	ld b, d
 	ld c, e
-	ld e, $6
-	ld hl, $0019
+	ld e, 6
+	ld hl, 25
 	add hl, bc
-.asm_892fb
-	ld a, $ff
+.loop
+	ld a, -1
 	ld [hli], a
-	ld a, $ff
+	ld a, -1
 	ld [hli], a
 	dec e
-	jr nz, .asm_892fb
+	jr nz, .loop
 	ret
 ; 89305
 
@@ -57101,8 +57098,8 @@ Function892b7: ; 892b7
 Function89305: ; 89305 (22:5305)
 	xor a
 	ld [MenuSelection], a
-	ld c, $28
-.asm_8930b
+	ld c, 40
+.loop
 	ld a, [MenuSelection]
 	inc a
 	ld [MenuSelection], a
@@ -57110,7 +57107,7 @@ Function89305: ; 89305 (22:5305)
 	call Function892b4
 	pop bc
 	dec c
-	jr nz, .asm_8930b
+	jr nz, .loop
 	ret
 
 Function8931b: ; 8931b
@@ -57127,29 +57124,30 @@ Function8931b: ; 8931b
 ; 8932d
 
 Function8932d: ; 8932d
-	ld hl, $0000
+	ld hl, 0
 	add hl, bc
 
 Function89331: ; 89331
+; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.  Sets carry if it does not find a nonspace character.  Returns the location of the following character in hl.
 	push bc
-	ld c, $5
-.asm_89334
+	ld c, 5
+.loop
 	ld a, [hli]
-	cp $50
-	jr z, .asm_89340
-	cp $7f
-	jr nz, .asm_89343
+	cp "@"
+	jr z, .terminator
+	cp " "
+	jr nz, .nonspace
 	dec c
-	jr nz, .asm_89334
+	jr nz, .loop
 
-.asm_89340
+.terminator
 	scf
-	jr .asm_89344
+	jr .done
 
-.asm_89343
+.nonspace
 	and a
 
-.asm_89344
+.done
 	pop bc
 	ret
 ; 89346
@@ -57158,62 +57156,64 @@ Function89331: ; 89331
 Function89346: ; 89346 (22:5346)
 	ld h, b
 	ld l, c
-	jr asm_8934e
+	jr _continue
 
 Function8934a: ; 8934a
-	ld hl, $0006
+	ld hl, 6
 	add hl, bc
-asm_8934e:
+_continue:
+; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.  Sets carry if it does not find a nonspace character.  Returns the location of the following character in hl.
 	push bc
-	ld c, $5
-.asm_89351
+	ld c, 5
+.loop
 	ld a, [hli]
-	cp $50
-	jr z, .asm_8935d
-	cp $7f
-	jr nz, .asm_89360
+	cp "@"
+	jr z, .terminator
+	cp " "
+	jr nz, .nonspace
 	dec c
-	jr nz, .asm_89351
+	jr nz, .loop
 
-.asm_8935d
+.terminator
 	scf
-	jr .asm_89361
+	jr .done
 
-.asm_89360
+.nonspace
 	and a
 
-.asm_89361
+.done
 	pop bc
 	ret
 ; 89363
 
 Function89363: ; 89363
+; Scans six byte pairs starting at bc to find $ff.  Sets carry if it does not find a $ff.  Returns the location of the byte after the first $ff found in hl.
 	ld h, b
 	ld l, c
-	jr .asm_8936b
+	jr ._continue
 
-	ld hl, $0019
+	ld hl, 25
 	add hl, bc
 
-.asm_8936b
+._continue
 	push de
-	ld e, $6
-.asm_8936e
+	ld e, 6
+.loop
 	ld a, [hli]
-	cp $ff
-	jr nz, .asm_8937e
+	cp -1
+	jr nz, .ok
 	ld a, [hli]
-	cp $ff
-	jr nz, .asm_8937e
+	cp -1
+	jr nz, .ok
 	dec e
-	jr nz, .asm_8936e
+	jr nz, .loop
 	scf
-	jr .asm_8937f
+	jr .done
 
-.asm_8937e
+.ok
 	and a
 
-.asm_8937f
+.done
 	pop de
 	ret
 ; 89381
@@ -57222,16 +57222,16 @@ Function89381: ; 89381
 	push bc
 	push de
 	call Function89b45
-	jr c, .asm_89392
+	jr c, .ok
 	push hl
-	ld a, $ff
-	ld bc, $0008
+	ld a, -1
+	ld bc, 8
 	call ByteFill
 	pop hl
 
-.asm_89392
+.ok
 	pop de
-	ld c, $8
+	ld c, 8
 	call Function89193
 	pop bc
 	ret
@@ -57239,13 +57239,13 @@ Function89381: ; 89381
 
 Function8939a: ; 8939a
 	push bc
-	ld hl, $0000
+	ld hl, 0
 	add hl, bc
 	ld de, DefaultFlypoint
-	ld c, $6
+	ld c, 6
 	call Function89193
 	pop bc
-	ld hl, $0011
+	ld hl, 17
 	add hl, bc
 	ld de, wd008
 	call Function89381
@@ -57286,7 +57286,7 @@ Function893e2: ; 893e2 (22:53e2)
 Function893ef: ; 893ef
 	ld de, VTiles0
 	ld hl, GFX_8940b
-	ld bc, $0020
+	ld bc, $20
 	ld a, BANK(GFX_8940b)
 	call FarCopyBytes
 	ret
@@ -57318,14 +57318,15 @@ Function8942b: ; 8942b (22:542b)
 	ret
 
 Function89448: ; 89448 (22:5448)
+; Clears the Sprites array
 	push af
 	ld hl, Sprites
-	ld d, $60
+	ld d, $10 * 6
 	xor a
-.asm_8944f
+.loop
 	ld [hli], a
 	dec d
-	jr nz, .asm_8944f
+	jr nz, .loop
 	pop af
 	ret
 
@@ -57352,11 +57353,11 @@ Function89464: ; 89464
 ; 89481
 
 Function89481: ; 89481
-	ld d, $2
+	ld d, 2
 	call Function8934a
 	ret c
-	ld d, $0
-	ld hl, $0010
+	ld d, 0
+	ld hl, 16
 	add hl, bc
 	bit 0, [hl]
 	ret z
@@ -57366,7 +57367,7 @@ Function89481: ; 89481
 
 
 Function89492: ; 89492 (22:5492)
-	ld d, $0
+	ld d, 0
 	ld a, [PlayerGender]
 	bit 0, a
 	ret z
@@ -57376,11 +57377,11 @@ Function89492: ; 89492 (22:5492)
 Function8949c: ; 8949c
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, 5
 	ld [rSVBK], a
 	ld hl, Palette_894b3
 	ld de, Unkn1Pals + 8 * 7
-	ld bc, $0008
+	ld bc, 8
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -57419,22 +57420,21 @@ Function894dc: ; 894dc
 	push bc
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, 5
 	ld [rSVBK], a
 	ld c, d
 	ld b, 0
 	ld hl, Unknown_89509
-	add hl, bc
-	add hl, bc
+	add_n_times hl, bc, 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld de, Unkn1Pals
-	ld bc, $0018
+	ld bc, 24
 	call CopyBytes
 	ld hl, Palette_89557
 	ld de, wd018
-	ld bc, $0018
+	ld bc, 24
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -57515,7 +57515,7 @@ Palette_89557: ; 89557
 
 Function8956f: ; 8956f
 	push bc
-	ld hl, $0010
+	ld hl, 16
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -57528,20 +57528,19 @@ Function8956f: ; 8956f
 	ld [TrainerClass], a
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, 5
 	ld [rSVBK], a
 	ld hl, wd030
-	ld a, $ff
+	ld a, -1
 	ld [hli], a
-	ld a, $7f
+	ld a, " "
 	ld [hl], a
 	pop af
 	ld [rSVBK], a
 	ld a, [TrainerClass]
-	ld h, $0
+	ld h, 0
 	ld l, a
-	add hl, hl
-	add hl, hl
+	add_n_times hl, hl, 2
 	ld de, TrainerPalettes
 	add hl, de
 	ld a, [rSVBK]
@@ -57549,15 +57548,15 @@ Function8956f: ; 8956f
 	ld a, $5
 	ld [rSVBK], a
 	ld de, wd032
-	ld c, $4
-.asm_895b1
+	ld c, 4
+.loop
 	ld a, BANK(TrainerPalettes)
 	call GetFarByte
 	ld [de], a
 	inc de
 	inc hl
 	dec c
-	jr nz, .asm_895b1
+	jr nz, .loop
 	ld hl, wd036
 	xor a
 	ld [hli], a
@@ -57572,11 +57571,11 @@ Function8956f: ; 8956f
 Function895c7: ; 895c7 (22:55c7)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
-	ld a, $5
+	ld a, 5
 	ld [rSVBK], a ; $ff00+$70
 	ld hl, Palette_895de
 	ld de, wd030
-	ld bc, $8
+	ld bc, 8
 	call CopyBytes
 	pop af
 	ld [rSVBK], a ; $ff00+$70
@@ -57591,7 +57590,7 @@ Palette_895de: ; 895de
 ; 895e6
 
 Function895e6: ; 895e6
-	ld a, $7
+	ld a, 7
 	ld hl, AttrMap
 	ld bc, $0168
 	call ByteFill
@@ -57612,77 +57611,77 @@ Function895f2: ; 895f2
 
 Function89605: ; 89605
 	hlcoord 19, 2, AttrMap
-	ld a, $1
-	ld de, $0014
-	ld c, $e
-.asm_8960f
+	ld a, 1
+	ld de, SCREEN_WIDTH
+	ld c, 14
+.loop
 	ld [hl], a
 	dec c
-	jr z, .asm_8961b
+	jr z, .done
 	add hl, de
 	inc a
 	ld [hl], a
 	dec a
 	add hl, de
 	dec c
-	jr nz, .asm_8960f
+	jr nz, .loop
 
-.asm_8961b
+.done
 	hlcoord 0, 16, AttrMap
-	ld c, $a
-	ld a, $2
-.asm_89622
+	ld c, 10
+	ld a, 2
+.loop2
 	ld [hli], a
 	dec a
 	ld [hli], a
 	inc a
 	dec c
-	jr nz, .asm_89622
+	jr nz, .loop2
 	hlcoord 1, 11, AttrMap
-	ld a, $4
-	ld bc, $0004
+	ld a, 4
+	ld bc, 4
 	call ByteFill
-	ld a, $5
-	ld bc, $000e
+	ld a, 5
+	ld bc, 14
 	call ByteFill
 	ret
 ; 8963d
 
 Function8963d: ; 8963d
 	hlcoord 12, 3, AttrMap
-	ld a, $6
-	ld de, $0014
+	ld a, 6
+	ld de, SCREEN_WIDTH
 	ld bc, $0707
-.asm_89648
+.loop
 	push hl
-	ld c, $7
-.asm_8964b
+	ld c, 7
+.next
 	ld [hli], a
 	dec c
-	jr nz, .asm_8964b
+	jr nz, .next
 	pop hl
 	add hl, de
 	dec b
-	jr nz, .asm_89648
+	jr nz, .loop
 	ret
 ; 89655
 
 Function89655: ; 89655
-	ld hl, AttrMap + SCREEN_WIDTH * 12 + 1
+	hlcoord 1, 12, AttrMap
 	ld de, SCREEN_WIDTH
 	ld a, 5
 	ld b, 4
-.asm_8965f
+.loop
 	ld c, 18
 	push hl
-.asm_89662
+.next
 	ld [hli], a
 	dec c
-	jr nz, .asm_89662
+	jr nz, .next
 	pop hl
 	add hl, de
 	dec b
-	jr nz, .asm_8965f
+	jr nz, .loop
 	ret
 ; 8966c
 
@@ -57690,7 +57689,7 @@ Function8966c: ; 8966c
 	push bc
 	call Function89688
 	hlcoord 4, 0
-	ld c, $8
+	ld c, 8
 	call Function896f5
 	pop bc
 	ret
@@ -57701,73 +57700,73 @@ Function8967a: ; 8967a (22:567a)
 	push bc
 	call Function89688
 	hlcoord 2, 0
-	ld c, $c
+	ld c, 12
 	call Function896f5
 	pop bc
 	ret
 
 Function89688: ; 89688
 	ld hl, TileMap
-	ld a, $1
-	ld e, $14
+	ld a, 1
+	ld e, SCREEN_WIDTH
 	call Function896e1
-	ld a, $2
-	ld e, $14
+	ld a, 2
+	ld e, SCREEN_WIDTH
 	call Function896eb
-	ld a, $3
+	ld a, 3
 	ld [hli], a
-	ld a, $4
-	ld e, $12
+	ld a, 4
+	ld e, SCREEN_HEIGHT
 	call Function896e1
-	ld a, $6
+	ld a, 6
 	ld [hli], a
 	push bc
-	ld c, $d
-.asm_896a9
+	ld c, 13
+.loop
 	call Function896cb
 	dec c
-	jr z, .asm_896b5
+	jr z, .done
 	call Function896d6
 	dec c
-	jr nz, .asm_896a9
+	jr nz, .loop
 
-.asm_896b5
+.done
 	pop bc
-	ld a, $19
+	ld a, 25
 	ld [hli], a
-	ld a, $1a
-	ld e, $12
+	ld a, 26
+	ld e, SCREEN_HEIGHT
 	call Function896e1
-	ld a, $1c
+	ld a, 28
 	ld [hli], a
-	ld a, $2
-	ld e, $14
+	ld a, 2
+	ld e, SCREEN_WIDTH
 	call Function896eb
 	ret
 ; 896cb
 
 Function896cb: ; 896cb
-	ld de, $0013
-	ld a, $7
+	ld de, SCREEN_WIDTH - 1
+	ld a, 7
 	ld [hl], a
 	add hl, de
-	ld a, $9
+	ld a, 9
 	ld [hli], a
 	ret
 ; 896d6
 
 Function896d6: ; 896d6
-	ld de, $0013
-	ld a, $a
+	ld de, SCREEN_WIDTH - 1
+	ld a, 10
 	ld [hl], a
 	add hl, de
-	ld a, $b
+	ld a, 11
 	ld [hli], a
 	ret
 ; 896e1
 
 Function896e1: ; 896e1
-.asm_896e1
+.loop
 	ld [hli], a
 	inc a
 	dec e
@@ -57775,12 +57774,12 @@ Function896e1: ; 896e1
 	ld [hli], a
 	dec a
 	dec e
-	jr nz, .asm_896e1
+	jr nz, .loop
 	ret
 ; 896eb
 
 Function896eb: ; 896eb
-.asm_896eb
+.loop
 	ld [hli], a
 	dec a
 	dec e
@@ -57788,7 +57787,7 @@ Function896eb: ; 896eb
 	ld [hli], a
 	inc a
 	dec e
-	jr nz, .asm_896eb
+	jr nz, .loop
 	ret
 ; 896f5
 
@@ -76756,21 +76755,21 @@ Functionb8762: ; b8762 (2e:4762)
 	ld a, BANK(WildMons1)
 	call GetFarByte
 	cp $ff
-	jr z, .asm_b87ec
+	jr z, .done2
 	inc hl
 	cp b
 	jr nz, .next
 	ld a, BANK(WildMons1)
 	call GetFarByte
 	cp c
-	jr z, .asm_b8796
+	jr z, .done
 .next
 	dec hl
 	ld de, $2f
 	add hl, de
 	jr .loop
 
-.asm_b8796
+.done
 	inc hl
 	inc hl
 	inc hl
@@ -76784,13 +76783,13 @@ Functionb8762: ; b8762 (2e:4762)
 
 	ld bc, $e
 	call AddNTimes
-.asm_b87a9
+.loop2
 	call Random
 	and 7
 	cp 2
-	jr c, .asm_b87a9
+	jr c, .loop2
 	cp 5
-	jr nc, .asm_b87a9
+	jr nc, .loop2
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -76815,7 +76814,7 @@ Functionb8762: ; b8762 (2e:4762)
 	ld a, $e
 	jp Functionb86ea
 
-.asm_b87ec
+.done2
 	pop bc
 	ld a, $0
 	jp Functionb86ea
@@ -85938,7 +85937,7 @@ _OptionsMenu: ; e41d0
 	xor a
 	ld [wcf63], a
 	ld c, $6 ;number of items on the menu minus 1 (for cancel)
-.asm_e41f3 ;this loop will display the settings of each option when the menu is opened
+.asm_e41f3 ;this next will display the settings of each option when the menu is opened
 	push bc
 	xor a
 	ld [$ffa9], a
@@ -89632,18 +89631,19 @@ Functionfb8c8: ; fb8c8
 	ret
 ; fb8f1
 
-Functionfb8f1: ; fb8f1
+ConvertMon_2to1: ; fb8f1
+; Takes the Gen-2 Pokemon number stored in wd265, finds it in the Pokered_MonIndices table, and returns its index in wd265.
 	push bc
 	push hl
 	ld a, [wd265]
 	ld b, a
 	ld c, 0
-	ld hl, Unknown_fb91c
-.asm_fb8fc
+	ld hl, Pokered_MonIndices
+.loop
 	inc c
 	ld a, [hli]
 	cp b
-	jr nz, .asm_fb8fc
+	jr nz, .loop
 	ld a, c
 	ld [wd265], a
 	pop hl
@@ -89651,12 +89651,13 @@ Functionfb8f1: ; fb8f1
 	ret
 ; fb908
 
-Functionfb908: ; fb908
+ConvertMon_1to2: ; fb908
+; Takes the Gen-1 Pokemon number stored in wd265 and returns the corresponding value from Pokered_MonIndices in wd265.
 	push bc
 	push hl
 	ld a, [wd265]
 	dec a
-	ld hl, Unknown_fb91c
+	ld hl, Pokered_MonIndices
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -89667,7 +89668,7 @@ Functionfb908: ; fb908
 	ret
 ; fb91c
 
-Unknown_fb91c: ; fb91c
+Pokered_MonIndices: ; fb91c
 	db RHYDON
 	db KANGASKHAN
 	db NIDORAN_M
@@ -90004,32 +90005,42 @@ UnownWords: ; fba5a
 	dw UnownWord26
 ; fba90
 
-UnownWord1:	db $40, $4d, $46, $51, $58, $ff                ; ANGRY
-UnownWord2:	db $41, $44, $40, $51, $ff                     ; BEAR
-UnownWord3:	db $42, $47, $40, $52, $44, $ff                ; CHASE
-UnownWord4:	db $43, $48, $51, $44, $42, $53, $ff           ; DIRECT
-UnownWord5:	db $44, $4d, $46, $40, $46, $44, $ff           ; ENGAGE
-UnownWord6:	db $45, $48, $4d, $43, $ff                     ; FIND
-UnownWord7:	db $46, $48, $55, $44, $ff                     ; GIVE
-UnownWord8:	db $47, $44, $4b, $4f, $ff                     ; HELP
-UnownWord9:	db $48, $4d, $42, $51, $44, $40, $52, $44, $ff ; INCREASE
-UnownWord10:	db $49, $4e, $48, $4d, $ff                     ; JOIN
-UnownWord11:	db $4a, $44, $44, $4f, $ff                     ; KEEP
-UnownWord12:	db $4b, $40, $54, $46, $47, $ff                ; LAUGH
-UnownWord13:	db $4c, $40, $4a, $44, $ff                     ; MAKE
-UnownWord14:	db $4d, $54, $59, $59, $4b, $44, $ff           ; NUZZLE
-UnownWord15:	db $4e, $41, $52, $44, $51, $55, $44, $ff      ; OBSERVE
-UnownWord16:	db $4f, $44, $51, $45, $4e, $51, $4c, $ff      ; PERFORM
-UnownWord17:	db $50, $54, $48, $42, $4a, $44, $4d, $ff      ; QUICKEN
-UnownWord18:	db $51, $44, $40, $52, $52, $54, $51, $44, $ff ; REASSURE
-UnownWord19:	db $52, $44, $40, $51, $42, $47, $ff           ; SEARCH
-UnownWord20:	db $53, $44, $4b, $4b, $ff                     ; TELL
-UnownWord21:	db $54, $4d, $43, $4e, $ff                     ; UNDO
-UnownWord22:	db $55, $40, $4d, $48, $52, $47, $ff           ; VANISH
-UnownWord23:	db $56, $40, $4d, $53, $ff                     ; WANT
-UnownWord24:	db $57, $57, $57, $57, $57, $ff                ; XXXXX
-UnownWord25:	db $58, $48, $44, $4b, $43, $ff                ; YIELD
-UnownWord26:	db $59, $4e, $4e, $4c, $ff                     ; ZOOM
+unownword: macro
+x = 1
+	rept STRLEN(\1)
+	db STRSUB(\1, x, 1) - $40
+x = x + 1
+	endr
+	db -1
+endm
+
+
+UnownWord1:	 unownword "ANGRY"
+UnownWord2:	 unownword "BEAR"
+UnownWord3:	 unownword "CHASE"
+UnownWord4:	 unownword "DIRECT"
+UnownWord5:	 unownword "ENGAGE"
+UnownWord6:	 unownword "FIND"
+UnownWord7:	 unownword "GIVE"
+UnownWord8:	 unownword "HELP"
+UnownWord9:	 unownword "INCREASE"
+UnownWord10: unownword "JOIN"
+UnownWord11: unownword "KEEP"
+UnownWord12: unownword "LAUGH"
+UnownWord13: unownword "MAKE"
+UnownWord14: unownword "NUZZLE"
+UnownWord15: unownword "OBSERVE"
+UnownWord16: unownword "PERFORM"
+UnownWord17: unownword "QUICKEN"
+UnownWord18: unownword "REASSURE"
+UnownWord19: unownword "SEARCH"
+UnownWord20: unownword "TELL"
+UnownWord21: unownword "UNDO"
+UnownWord22: unownword "VANISH"
+UnownWord23: unownword "WANT"
+UnownWord24: unownword "XXXXX"
+UnownWord25: unownword "YIELD"
+UnownWord26: unownword "ZOOM"
 ; fbb32
 
 Functionfbb32: ; fbb32
@@ -90811,10 +90822,10 @@ GetTradeMonNames: ; fce1b
 	call Functionfcdf4
 
 	ld hl, StringBuffer1
-.next
+.loop
 	ld a, [hli]
 	cp "@"
-	jr nz, .next
+	jr nz, .loop
 
 	dec hl
 	push hl
@@ -94334,7 +94345,7 @@ UpdateUsedMoves: ; 105ed0
 	ld hl, PlayerUsedMoves
 ; get move id
 	ld b, a
-; loop count
+; next count
 	ld c, NUM_MOVES
 	
 .loop
