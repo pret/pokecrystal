@@ -300,7 +300,7 @@ UnknownScript_0x6ad02:
 YoungsterScript_0x6ad06:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad14
 	writetext UnknownText_0x6b399
 	closetext
@@ -316,7 +316,7 @@ UnknownScript_0x6ad14:
 YoungsterScript_0x6ad1a:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad28
 	writetext UnknownText_0x6b40f
 	closetext
@@ -332,7 +332,7 @@ UnknownScript_0x6ad28:
 RockerScript_0x6ad2e:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad3c
 	writetext UnknownText_0x6b462
 	closetext
@@ -348,7 +348,7 @@ UnknownScript_0x6ad3c:
 PokefanMScript_0x6ad42:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad50
 	writetext UnknownText_0x6b4da
 	closetext
@@ -364,7 +364,7 @@ UnknownScript_0x6ad50:
 YoungsterScript_0x6ad56:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad64
 	writetext UnknownText_0x6b54e
 	closetext
@@ -380,7 +380,7 @@ UnknownScript_0x6ad64:
 YoungsterScript_0x6ad6a:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad78
 	writetext UnknownText_0x6b5b0
 	closetext
@@ -396,7 +396,7 @@ UnknownScript_0x6ad78:
 LassScript_0x6ad7e:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ad8c
 	writetext UnknownText_0x6b64b
 	closetext
@@ -412,7 +412,7 @@ UnknownScript_0x6ad8c:
 YoungsterScript_0x6ad92:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6ada0
 	writetext UnknownText_0x6b6b8
 	closetext
@@ -428,7 +428,7 @@ UnknownScript_0x6ada0:
 YoungsterScript_0x6ada6:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6adb4
 	writetext UnknownText_0x6b71b
 	closetext
@@ -444,7 +444,7 @@ UnknownScript_0x6adb4:
 YoungsterScript_0x6adba:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x6adc8
 	writetext UnknownText_0x6b76f
 	closetext

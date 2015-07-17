@@ -265,20 +265,20 @@ UnknownScript_0x7c173:
 	jump UnknownScript_0x7c1c1
 
 UnknownScript_0x7c1a9:
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
-	clearevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_000
+	clearevent EVENT_001
 	clearevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
 UnknownScript_0x7c1b5:
-	clearevent EVENT_CHRIS1_IN_CABLE_CLUB
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	clearevent EVENT_000
+	setevent EVENT_001
 	clearevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
 UnknownScript_0x7c1c1:
-	clearevent EVENT_CHRIS1_IN_CABLE_CLUB
-	clearevent EVENT_CHRIS2_IN_CABLE_CLUB
+	clearevent EVENT_000
+	clearevent EVENT_001
 	setevent EVENT_002
 	jump UnknownScript_0x7c1cd
 
@@ -296,9 +296,9 @@ UnknownScript_0x7c1cd:
 	loadfont
 	writetext UnknownText_0x7c6d8
 	closetext
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x7c2bb
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
@@ -348,20 +348,20 @@ UnknownScript_0x7c220:
 	jump UnknownScript_0x7c26e
 
 UnknownScript_0x7c256:
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
-	clearevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_000
+	clearevent EVENT_001
 	clearevent EVENT_002
 	jump UnknownScript_0x7c27a
 
 UnknownScript_0x7c262:
-	clearevent EVENT_CHRIS1_IN_CABLE_CLUB
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	clearevent EVENT_000
+	setevent EVENT_001
 	clearevent EVENT_002
 	jump UnknownScript_0x7c27a
 
 UnknownScript_0x7c26e:
-	clearevent EVENT_CHRIS1_IN_CABLE_CLUB
-	clearevent EVENT_CHRIS2_IN_CABLE_CLUB
+	clearevent EVENT_000
+	clearevent EVENT_001
 	setevent EVENT_002
 	jump UnknownScript_0x7c27a
 
@@ -379,9 +379,9 @@ UnknownScript_0x7c27a:
 	loadfont
 	writetext UnknownText_0x7c82a
 	closetext
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x7c2bb
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 

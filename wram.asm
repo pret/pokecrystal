@@ -1381,6 +1381,7 @@ EngineBuffer1:: ; d03e
 	ds 1
 wd03f::
 CurFruit:: ; d03f
+MartPointerBank::
 	ds 1
 
 wd040::
@@ -2346,7 +2347,8 @@ FruitTreeFlags:: ; dc27
 	ds 5
 
 wdc2d:: ds 4
-wdc31:: ds 4
+wSpecialPhoneCallID:: ds 2
+wdc33:: ds 2
 wdc35:: ds 4
 wdc39:: ds 1
 wdc3a:: ds 1

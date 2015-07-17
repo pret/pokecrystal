@@ -20,14 +20,14 @@ UnknownScript_0x748b1:
 	applymovement $0, MovementData_0x74a32
 	appear $2
 	dotrigger $0
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_000
 	blackoutmod GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	end
 
 SailorScript_0x748c0:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
 	closetext
@@ -69,9 +69,9 @@ UnknownScript_0x74919:
 
 UnknownScript_0x7491f:
 	spriteface $4, RIGHT
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x7498b
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iftrue UnknownScript_0x7498b
 	spriteface $0, LEFT
 	loadfont
@@ -94,7 +94,7 @@ UnknownScript_0x7494e:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_001
 	applymovement $0, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
@@ -138,7 +138,7 @@ UnknownScript_0x74992:
 SailorScript_0x7499c:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74919
 	checkevent EVENT_030
 	iffalse UnknownScript_0x749c0
@@ -159,7 +159,7 @@ UnknownScript_0x749c0:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_001
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f

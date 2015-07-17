@@ -271,21 +271,21 @@ Function97db3:: ; 97db3
 Function97db5: ; 97db5
 	ld hl, StatusFlags2
 	bit 4, [hl]
-	jr z, .asm_97df7
+	jr z, .NoCall
 	ld a, [PlayerState]
-	cp $1
-	jr nz, .asm_97df7
+	cp 1
+	jr nz, .NoCall
 	call Function2d05
 	and a
-	jr nz, .asm_97df7
+	jr nz, .NoCall
 	ld hl, wdca1 + 1
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	cp $ff
+	cp -1
 	jr nz, .asm_97dd8
 	ld a, e
-	cp $ff
+	cp -1
 	jr z, .asm_97ddc
 
 .asm_97dd8
@@ -297,34 +297,34 @@ Function97db5: ; 97db5
 .asm_97ddc
 	ld a, d
 	cp $4
-	jr c, .asm_97df7
-	ld a, [wdc31]
+	jr c, .NoCall
+	ld a, [wSpecialPhoneCallID]
 	and a
-	jr nz, .asm_97df7
-	ld a, $6
-	ld [wdc31], a
+	jr nz, .NoCall
+	ld a, 6
+	ld [wSpecialPhoneCallID], a
 	xor a
-	ld [wdc31 + 1], a
+	ld [wSpecialPhoneCallID + 1], a
 	ld hl, StatusFlags2
 	res 4, [hl]
 	scf
 	ret
 
-.asm_97df7
+.NoCall
 	xor a
 	ret
 ; 97df9
 
 Function97df9:: ; 97df9
 	ld hl, wd6de
-	ld de, $0006
-	ld c, $4
+	ld de, 6
+	ld c, 4
 	xor a
-.asm_97e02
+.loop
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .asm_97e02
+	jr nz, .loop
 	ret
 ; 97e08
 

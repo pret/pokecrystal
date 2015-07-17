@@ -1656,5 +1656,5 @@ UnknownScript_0xa0b04:
 UnknownScript_0xa0b09:
 	farwritetext UnknownText_0x174000
 	clearflag ENGINE_BIKE_SHOP_CALL_ENABLED
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	end

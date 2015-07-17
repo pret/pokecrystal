@@ -17,7 +17,7 @@ PokeCenter2F_MapScriptHeader:
 	special Special_CheckMysteryGift
 	if_equal $0, .Trigger1Done
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iftrue .Trigger1Done
 	priorityjump PokeCenter2F_AppearMysteryGiftDeliveryGuy
 
@@ -46,7 +46,7 @@ PokeCenter2F_MapScriptHeader:
 
 PokeCenter2F_AppearMysteryGiftDeliveryGuy:
 	appear $5
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_001
 	end
 
 Script_TradeCenterClosed:

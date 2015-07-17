@@ -126,7 +126,7 @@ UnknownScript_0x196ec9:
 	dotrigger $1
 	domaptrigger GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, $1
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $3
-	specialphonecall $2
+	specialphonecall ELMCALL_ROBBED
 	clearevent EVENT_COP_IN_ELMS_LAB
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x196f49

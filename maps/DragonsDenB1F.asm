@@ -212,12 +212,12 @@ SilverScript_0x18c97e:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x18c995
 	writetext UnknownText_0x18cc83
 	closetext
 	loadmovesprites
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_000
 	special RestartMapMusic
 	end
 

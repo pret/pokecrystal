@@ -73,5 +73,5 @@ TradeCenter_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_CHRIS, 8, 7, LEFT << 2 | $1, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_CHRIS1_IN_CABLE_CLUB
-	person_event SPRITE_CHRIS, 8, 10, LEFT << 2 | $0, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_CHRIS2_IN_CABLE_CLUB
+	person_event SPRITE_CHRIS, 8, 7, LEFT << 2 | $1, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_000
+	person_event SPRITE_CHRIS, 8, 10, LEFT << 2 | $0, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_001

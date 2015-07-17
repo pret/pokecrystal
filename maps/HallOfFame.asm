@@ -40,9 +40,9 @@ HallOfFameScript:
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue HallOfFame_SkipPhoneCall
-	specialphonecall $5
-HallOfFame_SkipPhoneCall:
+	iftrue .SkipPhoneCall
+	specialphonecall ELMCALL_SSTICKET
+.SkipPhoneCall:
 	halloffame
 	end
 

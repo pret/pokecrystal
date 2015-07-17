@@ -2450,7 +2450,7 @@ GetMoneyAccount: ; 0x97861
 ; 0x9786d
 
 LoadMoneyAmountToMem: ; 0x9786d
-	ld bc, $ffc3
+	ld bc, hMoneyTemp
 	push bc
 	call GetScriptByte
 	ld [bc], a
@@ -2498,8 +2498,8 @@ LoadCoinAmountToMem: ; 978a0
 	call GetScriptByte
 	ld [$ffc4], a
 	call GetScriptByte
-	ld [$ffc3], a
-	ld bc, $ffc3
+	ld [hMoneyTemp], a
+	ld bc, hMoneyTemp
 	ret
 ; 0x978ae
 
@@ -2572,6 +2572,7 @@ Script_checkcellnum: ; 0x97904
 ; script command 0x2a
 ; parameters:
 ;     person (SingleByteParam)
+; returns false if the cell number is not in your phone
 
 	xor a
 	ld [ScriptVar], a
@@ -2590,16 +2591,17 @@ Script_specialphonecall: ; 0x97919
 ;     call_id (MultiByteParam)
 
 	call GetScriptByte
-	ld [wdc31], a
+	ld [wSpecialPhoneCallID], a
 	call GetScriptByte
-	ld [wdc31 + 1], a
+	ld [wSpecialPhoneCallID + 1], a
 	ret
 ; 0x97926
 
 Script_checkphonecall: ; 0x97926
 ; script command 0x9d
+; returns false if no special phone call is stored
 
-	ld a, [wdc31]
+	ld a, [wSpecialPhoneCallID]
 	and a
 	jr z, .ok
 	ld a, 1
@@ -2648,6 +2650,7 @@ Script_giveegg: ; 0x97968
 ; parameters:
 ;     pkmn (PokemonParam)
 ;     level (DecimalParam)
+; if no room in the party, return 0 in ScriptVar; else, return 2
 
 	xor a
 	ld [ScriptVar], a
@@ -2658,7 +2661,7 @@ Script_giveegg: ; 0x97968
 	ld [CurPartyLevel], a
 	callba GiveEgg
 	ret nc
-	ld a, $2
+	ld a, 2
 	ld [ScriptVar], a
 	ret
 ; 0x97988
@@ -2672,7 +2675,7 @@ Script_setevent: ; 0x97988
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, $1
+	ld b, 1 ; set
 	call EventFlagAction
 	ret
 ; 0x97996
@@ -2686,7 +2689,7 @@ Script_clearevent: ; 0x97996
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, $0
+	ld b, 0 ; clear
 	call EventFlagAction
 	ret
 ; 0x979a4
@@ -2700,13 +2703,13 @@ Script_checkevent: ; 0x979a4
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, $2
+	ld b, 2 ; check
 	call EventFlagAction
 	ld a, c
 	and a
-	jr z, .asm_979b7 ; 0x979b3 $2
-	ld a, $1
-.asm_979b7
+	jr z, .false ; 0x979b3 $2
+	ld a, 1
+.false
 	ld [ScriptVar], a
 	ret
 ; 0x979bb
@@ -2720,7 +2723,7 @@ Script_setflag: ; 0x979bb
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, $1
+	ld b, 1 ; set
 	call _EngineFlagAction
 	ret
 ; 0x979c9
@@ -2734,7 +2737,7 @@ Script_clearflag: ; 0x979c9
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, $0
+	ld b, 0 ; clear
 	call _EngineFlagAction
 	ret
 ; 0x979d7
@@ -2748,13 +2751,13 @@ Script_checkflag: ; 0x979d7
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, $2
+	ld b, 2 ; check
 	call _EngineFlagAction
 	ld a, c
 	and a
-	jr z, .asm_979ea ; 0x979e6 $2
-	ld a, $1
-.asm_979ea
+	jr z, .false ; 0x979e6 $2
+	ld a, 1
+.false
 	ld [ScriptVar], a
 	ret
 ; 0x979ee
@@ -2808,7 +2811,7 @@ Script_warpfacing: ; 0x97a0e
 	set 5, a
 	or c
 	ld [wd45b], a
-; 0x97a1d
+; fall through
 
 Script_warp: ; 0x97a1d
 ; script command 0x3c
@@ -2818,6 +2821,7 @@ Script_warp: ; 0x97a1d
 ;     x (SingleByteParam)
 ;     y (SingleByteParam)
 
+; This seems to be some sort of error handling case.
 	call GetScriptByte
 	and a
 	jr z, .not_ok ; 0x97a21 $27
@@ -2828,11 +2832,11 @@ Script_warp: ; 0x97a1d
 	ld [XCoord], a
 	call GetScriptByte
 	ld [YCoord], a
-	ld a, $ff
+	ld a, -1
 	ld [wd001], a
-	ld a, $f1
+	ld a, -15
 	ld [$ff9f], a
-	ld a, $1
+	ld a, 1
 	call LoadMapStatus
 	call StopScript
 	ret
@@ -2840,11 +2844,11 @@ Script_warp: ; 0x97a1d
 	call GetScriptByte
 	call GetScriptByte
 	call GetScriptByte
-	ld a, $ff
+	ld a, -1
 	ld [wd001], a
-	ld a, $fb
+	ld a, -5
 	ld [$ff9f], a
-	ld a, $1
+	ld a, 1
 	call LoadMapStatus
 	call StopScript
 	ret
@@ -2882,7 +2886,7 @@ Script_blackoutmod: ; 0x97a78
 Script_reloadmapmusic: ; 0x97a85
 ; script command 0x83
 
-	ld a, $1
+	ld a, 1
 	ld [wc2c1], a
 	ret
 ; 0x97a8b
@@ -2913,7 +2917,7 @@ Script_delcmdqueue: ; 0x97a9e
 	ld b, a
 	callba Function97e5c
 	ret c
-	ld a, $1
+	ld a, 1
 	ld [ScriptVar], a
 	ret
 ; 0x97ab3
@@ -2942,10 +2946,10 @@ Script_changeblock: ; 0x97acc
 ;     block (SingleByteParam)
 
 	call GetScriptByte
-	add $4
+	add 4
 	ld d, a
 	call GetScriptByte
-	add $4
+	add 4
 	ld e, a
 	call GetBlockLocation
 	call GetScriptByte
@@ -2987,7 +2991,7 @@ Script_newloadmap: ; 0x97b08
 
 	call GetScriptByte
 	ld [$ff9f], a
-	ld a, $1
+	ld a, 1
 	call LoadMapStatus
 	call StopScript
 	ret
@@ -3064,14 +3068,14 @@ Script_pause: ; 0x97b47
 
 	call GetScriptByte
 	and a
-	jr z, .asm_97b50 ; 0x97b4b $3
+	jr z, .loop ; 0x97b4b $3
 	ld [ScriptDelay], a
-.asm_97b50
+.loop
 	ld c, 2
 	call DelayFrames
 	ld hl, ScriptDelay
 	dec [hl]
-	jr nz, .asm_97b50 ; 0x97b59 $f5
+	jr nz, .loop ; 0x97b59 $f5
 	ret
 ; 0x97b5c
 
@@ -3082,9 +3086,9 @@ Script_deactivatefacing: ; 0x97b5c
 
 	call GetScriptByte
 	and a
-	jr z, .asm_97b65 ; 0x97b60 $3
+	jr z, .no_time ; 0x97b60 $3
 	ld [ScriptDelay], a
-.asm_97b65
+.no_time
 	ld a, SCRIPT_WAIT
 	ld [ScriptMode], a
 	call StopScript
@@ -3104,9 +3108,9 @@ Script_end: ; 0x97b74
 ; script command 0x91
 
 	call ExitScriptSubroutine
-	jr c, .asm_97b7a
+	jr c, .resume
 	ret
-.asm_97b7a
+.resume
 	xor a
 	ld [ScriptRunning], a
 	ld a, SCRIPT_OFF
@@ -3121,8 +3125,8 @@ Script_return: ; 0x97b8c
 ; script command 0x90
 
 	call ExitScriptSubroutine
-	jr c, .asm_97b91
-.asm_97b91
+	jr c, .dummy
+.dummy
 	ld hl, ScriptFlags
 	res 0, [hl]
 	call StopScript
@@ -3135,17 +3139,15 @@ ExitScriptSubroutine: ; 0x97b9a
 	ld hl, wd43c
 	ld a, [hl]
 	and a
-	jr z, .asm_97bbe ; 0x97b9f $1d
+	jr z, .done ; 0x97b9f $1d
 	dec [hl]
 	ld e, [hl]
 	ld d, $0
 	ld hl, wd43d
-	add hl, de
-	add hl, de
-	add hl, de
+	add_n_times hl, de, 3
 	ld a, [hli]
 	ld b, a
-	and $7f
+	and " "
 	ld [ScriptBank], a
 	ld a, [hli]
 	ld e, a
@@ -3155,7 +3157,7 @@ ExitScriptSubroutine: ; 0x97b9a
 	ld [ScriptPos + 1], a
 	and a
 	ret
-.asm_97bbe
+.done
 	scf
 	ret
 ; 0x97bc0
@@ -3208,13 +3210,13 @@ Script_wait: ; 0x97c05
 
 	push bc
 	call GetScriptByte
-.asm_97c09
+.loop
 	push af
 	ld c, 6
 	call DelayFrames
 	pop af
 	dec a
-	jr nz, .asm_97c09 ; 0x97c11 $f6
+	jr nz, .loop ; 0x97c11 $f6
 	pop bc
 	ret
 ; 0x97c15
@@ -3229,7 +3231,7 @@ Script_unknown0xa9: ; 0x97c15
 ; 0x97c20
 
 
-Function97c20: ; 97c20
+Function97c20: ; 97c20 unreferenced
 	ld a, [.byte]
 	ld [ScriptVar], a
 	ret

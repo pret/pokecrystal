@@ -2810,7 +2810,7 @@ GorgeousBox: ; f767
 ; f769
 
 Function_0xf769: ; f769
-	callba Function26f02
+	callba SetSpecificDecorationFlag
 
 	ld hl, UnknownText_0xf778
 	call PrintText

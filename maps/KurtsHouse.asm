@@ -70,7 +70,7 @@ UnknownScript_0x18e1bf:
 	iffalse UnknownScript_0x18e2b2
 	setevent EVENT_035
 UnknownScript_0x18e1cc:
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x18e29f
 	checkevent EVENT_258
 	iftrue UnknownScript_0x18e2b4
@@ -89,7 +89,7 @@ UnknownScript_0x18e1cc:
 	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e34e
 UnknownScript_0x18e202:
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iftrue UnknownScript_0x18e212
 	checkevent EVENT_002
 	iftrue UnknownScript_0x18e212
@@ -110,7 +110,7 @@ UnknownScript_0x18e212:
 	iftrue UnknownScript_0x18e249
 	checkitem PNK_APRICORN
 	iftrue UnknownScript_0x18e249
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iftrue UnknownScript_0x18e2ae
 	checkevent EVENT_002
 	iftrue UnknownScript_0x18e243
@@ -163,7 +163,7 @@ UnknownScript_0x18e293:
 	jump UnknownScript_0x18e299
 
 UnknownScript_0x18e299:
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_000
 	setflag ENGINE_KURT_MAKING_BALLS
 UnknownScript_0x18e29f:
 	writetext UnknownText_0x18e779
@@ -178,7 +178,7 @@ UnknownScript_0x18e2a5:
 	end
 
 UnknownScript_0x18e2ab:
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_001
 UnknownScript_0x18e2ae:
 	writetext UnknownText_0x18e82a
 	closetext
@@ -349,9 +349,9 @@ UnknownScript_0x18e3e0:
 
 KurtsGranddaughter1:
 	faceplayer
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue KurtsGranddaughter2Subscript
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iftrue KurtsGranddaughterFunScript
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Lonely

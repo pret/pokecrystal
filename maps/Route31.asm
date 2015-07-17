@@ -15,7 +15,7 @@ UnknownScript_0x1a543c:
 	return
 
 UnknownScript_0x1a5443:
-	specialphonecall $7
+	specialphonecall MOMCALL_WORRIED
 	return
 
 TrainerBug_catcherWade1:

@@ -139,7 +139,7 @@ MomPhoneNoGymQuestScript: ; 0xbcfac
 MomPhoneLectureScript: ; 0xbcfb1
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	setflag ENGINE_DST
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	farwritetext MomPhoneLectureText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
@@ -247,7 +247,7 @@ ElmPhoneScript1: ; 0xbd00d
 
 .pokerus ; 0xbd079
 	farwritetext ElmPhonePokerusText
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	end
 
 ElmPhoneScript2: ; 0xbd081
@@ -258,35 +258,35 @@ ElmPhoneScript2: ; 0xbd081
 	if_equal $5, .gift
 	if_equal $8, .gift
 	farwritetext ElmPhonePokerusText
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	end
 
 .disaster ; 0xbd09f
 	farwritetext ElmPhoneDisasterText
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	setevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	end
 
 .assistant ; 0xbd0aa
 	farwritetext ElmPhoneEggAssistantText
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	clearevent EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
 	setevent EVENT_ELMS_AIDE_IN_LAB
 	end
 
 .rocket ; 0xbd0b8
 	farwritetext ElmPhoneRocketText
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	end
 
 .gift ; 0xbd0c0
 	farwritetext ElmPhoneGiftText
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	end
 
 .unused ; 0xbd0c8
 	farwritetext ElmPhoneUnusedText
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	end
 ; bd0d0
 

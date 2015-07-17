@@ -16,13 +16,13 @@ UnknownScript_0x7a4d7:
 	end
 
 UnknownScript_0x7a4d8:
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_000
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
 	showemote EMOTE_SHOCK, $2, 15
 	spriteface $0, LEFT
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
@@ -77,9 +77,9 @@ UnknownScript_0x7a549:
 	writetext UnknownText_0x7a850
 	closetext
 	loadmovesprites
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x7a55d
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iffalse UnknownScript_0x7a564
 	jump UnknownScript_0x7a56b
 
@@ -109,7 +109,7 @@ UnknownScript_0x7a57e:
 
 MomScript_0x7a582:
 	faceplayer
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_001
 	checktriggers
 	iffalse UnknownScript_0x7a572
 	loadfont

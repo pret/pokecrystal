@@ -32,14 +32,14 @@ UnknownScript_0x74da6:
 	setevent EVENT_739
 	clearevent EVENT_733
 	setevent EVENT_030
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_000
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	end
 
 SailorScript_0x74dc4:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
 	closetext
@@ -79,9 +79,9 @@ UnknownScript_0x74e1a:
 
 UnknownScript_0x74e20:
 	spriteface $3, RIGHT
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74e86
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
+	checkevent EVENT_001
 	iftrue UnknownScript_0x74e86
 	spriteface $0, LEFT
 	loadfont
@@ -101,7 +101,7 @@ UnknownScript_0x74e20:
 	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_001
 	applymovement $0, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
 
@@ -145,7 +145,7 @@ UnknownScript_0x74e8d:
 SailorScript_0x74e97:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74eda
@@ -163,7 +163,7 @@ SailorScript_0x74e97:
 	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+	setevent EVENT_001
 	applymovement $0, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 

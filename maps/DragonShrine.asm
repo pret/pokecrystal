@@ -3,91 +3,91 @@ DragonShrine_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18d01e, $0000
-	dw UnknownScript_0x18d022, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
 	; callback count
 	db 0
 
-UnknownScript_0x18d01e:
-	priorityjump UnknownScript_0x18d023
+.Trigger1:
+	priorityjump DragonShrineTestScript
 	end
 
-UnknownScript_0x18d022:
+.Trigger2:
 	end
 
-UnknownScript_0x18d023:
+DragonShrineTestScript:
 	applymovement $0, MovementData_0x18d2bf
 	applymovement $2, MovementData_0x18d2c7
 	loadfont
 	writetext UnknownText_0x18d2ea
 	keeptextopen
-UnknownScript_0x18d030:
-	setevent EVENT_CHRIS2_IN_CABLE_CLUB
+.Question1:
+	setevent EVENT_001
 	writetext UnknownText_0x18d3bc
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d215
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0a9
-	if_equal $2, UnknownScript_0x18d0cb
-	if_equal $3, UnknownScript_0x18d0a9
+	if_equal $1, .RightAnswer
+	if_equal $2, .WrongAnswer
+	if_equal $3, .RightAnswer
 	end
 
-UnknownScript_0x18d049:
+.Question2:
 	setevent EVENT_002
 	writetext UnknownText_0x18d3d3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d234
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0a9
-	if_equal $2, UnknownScript_0x18d0a9
-	if_equal $3, UnknownScript_0x18d0cb
-UnknownScript_0x18d061:
+	if_equal $1, .RightAnswer
+	if_equal $2, .RightAnswer
+	if_equal $3, .WrongAnswer
+.Question3:
 	setevent EVENT_003
 	writetext UnknownText_0x18d3f3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d258
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0cb
-	if_equal $2, UnknownScript_0x18d0a9
-	if_equal $3, UnknownScript_0x18d0a9
-UnknownScript_0x18d079:
+	if_equal $1, .WrongAnswer
+	if_equal $2, .RightAnswer
+	if_equal $3, .RightAnswer
+.Question4:
 	setevent EVENT_004
 	writetext UnknownText_0x18d420
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d283
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0a9
-	if_equal $2, UnknownScript_0x18d0cb
-	if_equal $3, UnknownScript_0x18d0a9
-UnknownScript_0x18d091:
+	if_equal $1, .RightAnswer
+	if_equal $2, .WrongAnswer
+	if_equal $3, .RightAnswer
+.Question5:
 	setevent EVENT_005
 	writetext UnknownText_0x18d44a
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d2a5
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0cb
-	if_equal $2, UnknownScript_0x18d0a9
-	if_equal $3, UnknownScript_0x18d0cb
-UnknownScript_0x18d0a9:
+	if_equal $1, .WrongAnswer
+	if_equal $2, .RightAnswer
+	if_equal $3, .WrongAnswer
+.RightAnswer:
 	checkevent EVENT_005
-	iftrue UnknownScript_0x18d100
+	iftrue .PassedTheTest
 	writetext UnknownText_0x18d82d
 	keeptextopen
 	checkevent EVENT_004
-	iftrue UnknownScript_0x18d091
+	iftrue .Question5
 	checkevent EVENT_003
-	iftrue UnknownScript_0x18d079
+	iftrue .Question4
 	checkevent EVENT_002
-	iftrue UnknownScript_0x18d061
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
-	iftrue UnknownScript_0x18d049
-UnknownScript_0x18d0cb:
+	iftrue .Question3
+	checkevent EVENT_001
+	iftrue .Question2
+.WrongAnswer:
 	loadmovesprites
 	spriteface $2, LEFT
 	loadfont
@@ -102,16 +102,16 @@ UnknownScript_0x18d0cb:
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	loadfont
 	checkevent EVENT_005
-	iftrue UnknownScript_0x18d091
+	iftrue .Question5
 	checkevent EVENT_004
-	iftrue UnknownScript_0x18d079
+	iftrue .Question4
 	checkevent EVENT_003
-	iftrue UnknownScript_0x18d061
+	iftrue .Question3
 	checkevent EVENT_002
-	iftrue UnknownScript_0x18d049
-	checkevent EVENT_CHRIS2_IN_CABLE_CLUB
-	iftrue UnknownScript_0x18d030
-UnknownScript_0x18d100:
+	iftrue .Question2
+	checkevent EVENT_001
+	iftrue .Question1
+.PassedTheTest:
 	writetext UnknownText_0x18d47c
 	closetext
 	loadmovesprites
@@ -160,7 +160,7 @@ UnknownScript_0x18d100:
 	playsound SFX_GET_BADGE
 	waitbutton
 	special RestartMapMusic
-	specialphonecall $8
+	specialphonecall ELMCALL_MASTERBALL
 	dotrigger $1
 	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
 	writetext UnknownText_0x18d9f2
@@ -184,30 +184,30 @@ UnknownScript_0x18d100:
 	playsound SFX_ENTER_DOOR
 	disappear $5
 	waitbutton
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_000
 	end
 
 ElderScript_0x18d1a5:
 	faceplayer
 	loadfont
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
-	iftrue UnknownScript_0x18d1f9
+	checkevent EVENT_000
+	iftrue .DontGiveDratiniYet
 	checkevent EVENT_006
-	iftrue UnknownScript_0x18d1ff
+	iftrue .ReceivedDratini
 	checkevent EVENT_GOT_DRATINI
-	iffalse UnknownScript_0x18d1c5
+	iffalse .GiveDratini
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
-	iftrue UnknownScript_0x18d1f3
+	iftrue .BeatRivalInMtMoon
 	writetext UnknownText_0x18d724
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1c5:
+.GiveDratini:
 	writetext UnknownText_0x18d604
 	closetext
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x18d1ed
+	if_equal 6, .PartyFull
 	writetext UnknownText_0x18d697
 	playsound SFX_CAUGHT_MON
 	waitbutton
@@ -221,25 +221,25 @@ UnknownScript_0x18d1c5:
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1ed:
+.PartyFull:
 	writetext UnknownText_0x18d6ac
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1f3:
+.BeatRivalInMtMoon:
 	writetext UnknownText_0x18d782
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1f9:
+.DontGiveDratiniYet:
 	writetext UnknownText_0x18d5e5
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1ff:
+.ReceivedDratini:
 	writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites
@@ -681,7 +681,7 @@ DragonShrine_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_ELDER, 5, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_CHRIS1_IN_CABLE_CLUB
-	person_event SPRITE_ELDER, 8, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_CHRIS1_IN_CABLE_CLUB
-	person_event SPRITE_ELDER, 8, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_CHRIS1_IN_CABLE_CLUB
+	person_event SPRITE_ELDER, 5, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_000
+	person_event SPRITE_ELDER, 8, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_000
+	person_event SPRITE_ELDER, 8, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_000
 	person_event SPRITE_CLAIR, 12, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_790

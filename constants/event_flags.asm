@@ -1,8 +1,8 @@
 
 	const_def
 
-	const EVENT_CHRIS1_IN_CABLE_CLUB
-	const EVENT_CHRIS2_IN_CABLE_CLUB
+	const EVENT_000
+	const EVENT_001
 	const EVENT_002
 	const EVENT_003
 	const EVENT_004
@@ -1648,6 +1648,9 @@
 	const EVENT_63D
 	const EVENT_63E
 	const EVENT_63F
+; Sprite visibility: When these events are cleared, the sprite becomes visible; when set, the sprite is hidden.
+; The map script command macros `disappear` and `appear` set/clear these flags and immediately apply the effect on visibility.
+; The map script command macros `setevent` and `clearevent` set/clear these flags, and their effects will be seen when the map is reloaded.
 	const EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	const EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
 	const EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
@@ -1824,8 +1827,8 @@
 	const EVENT_6ED
 	const EVENT_6EE
 	const EVENT_6EF
-	const EVENT_6F0
-	const EVENT_6F1
+	const EVENT_GOLDENROD_SALE_OFF
+	const EVENT_GOLDENROD_SALE_ON
 	const EVENT_6F2
 	const EVENT_6F3
 	const EVENT_6F4

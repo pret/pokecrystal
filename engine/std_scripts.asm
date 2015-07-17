@@ -159,7 +159,7 @@ PokeCenterNurseScript:
 
 .pokerus_done
 	setflag ENGINE_POKERUS
-	specialphonecall 1 ; elm calls about pokerus
+	specialphonecall ELMCALL_POKERUS
 	end
 
 DifficultBookshelfScript:
@@ -297,7 +297,7 @@ RadioTowerRocketsScript:
 	clearevent EVENT_6CE
 	clearevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	setevent EVENT_756
-	specialphonecall $0004
+	specialphonecall ELMCALL_WEIRDBROADCAST
 	domaptrigger GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN, $1
 	end
 
@@ -383,7 +383,7 @@ BugContestResults_CleanUp
 ; 0xbc31e
 
 BugContestResults_FirstPlace ; 0xbc31e
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_000
 	itemtotext SUN_STONE, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	closetext
@@ -581,7 +581,7 @@ InitializeEventsScript:
 	setevent EVENT_7A5
 	setevent EVENT_6EC
 	setevent EVENT_6ED
-	setevent EVENT_6F0
+	setevent EVENT_GOLDENROD_SALE_OFF
 	setevent EVENT_7A9
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
 	setevent EVENT_6C8

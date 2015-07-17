@@ -27,25 +27,25 @@ FalknerScript_0x683c2:
 	scall VioletGymTriggerRockets
 .FightDone
 	checkevent EVENT_GOT_TM31_MUD_SLAP
-	iftrue UnknownScript_0x68412
+	iftrue .SpeechAfterTM
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $2
-	specialphonecall $3
+	specialphonecall ELMCALL_ASSISTANT
 	writetext UnknownText_0x685c8
 	keeptextopen
 	verbosegiveitem TM_MUD_SLAP, 1
-	iffalse UnknownScript_0x68416
+	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x68412:
+.SpeechAfterTM:
 	writetext UnknownText_0x68735
 	closetext
-UnknownScript_0x68416:
+.NoRoomForMudSlap:
 	loadmovesprites
 	end
 

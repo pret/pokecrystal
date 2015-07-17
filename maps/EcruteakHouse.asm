@@ -86,7 +86,7 @@ UnknownScript_0x98076:
 UnknownScript_0x9807c:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x980a4
-	checkevent EVENT_CHRIS1_IN_CABLE_CLUB
+	checkevent EVENT_000
 	iftrue UnknownScript_0x980aa
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98093
@@ -102,7 +102,7 @@ UnknownScript_0x98093:
 	dotrigger $1
 	setevent EVENT_RANG_CLEAR_BELL
 	clearevent EVENT_766
-	setevent EVENT_CHRIS1_IN_CABLE_CLUB
+	setevent EVENT_000
 	end
 
 UnknownScript_0x980a4:
