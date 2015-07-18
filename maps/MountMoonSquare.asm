@@ -18,7 +18,7 @@ UnknownScript_0x77092:
 	end
 
 UnknownScript_0x77093:
-	setevent EVENT_0EC
+	setevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE 
 	return
 
 UnknownScript_0x77097:
@@ -27,11 +27,11 @@ UnknownScript_0x77097:
 
 UnknownScript_0x7709a:
 	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
-	iftrue UnknownScript_0x77117
+	iftrue .NoDancing
 	checkcode VAR_WEEKDAY
-	if_not_equal MONDAY, UnknownScript_0x77117
+	if_not_equal MONDAY, .NoDancing
 	checknite
-	iffalse UnknownScript_0x77117
+	iffalse .NoDancing
 	appear $2
 	appear $3
 	applymovement $0, MovementData_0x77121
@@ -68,16 +68,15 @@ UnknownScript_0x7709a:
 	disappear $2
 	disappear $3
 	stopfollow
-	clearevent EVENT_0EC
+	clearevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 	setflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	end
 
-UnknownScript_0x77117:
+.NoDancing:
 	end
 
 MapMountMoonSquareSignpostItem0:
-	dw $00ec
-	db MOON_STONE
+	dwb EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
 	
 
 MapMountMoonSquareSignpost1Script:
@@ -151,11 +150,11 @@ MountMoonSquare_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 7, 7, SIGNPOST_ITEMIFSET, MapMountMoonSquareSignpostItem0
+	signpost 7, 7, SIGNPOST_ITEM, MapMountMoonSquareSignpostItem0
 	signpost 7, 17, SIGNPOST_READ, MapMountMoonSquareSignpost1Script
 
 	; people-events
 	db 3
-	person_event SPRITE_FAIRY, 10, 10, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_779
-	person_event SPRITE_FAIRY, 10, 11, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_779
-	person_event SPRITE_ROCK, 11, 11, LEFT << 2 | $10, $0, -1, -1, $0, 0, MtMoonSquareRock, EVENT_778
+	person_event SPRITE_FAIRY, 10, 10, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_FAIRY, 10, 11, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_ROCK, 11, 11, LEFT << 2 | $10, $0, -1, -1, $0, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK

@@ -12,8 +12,7 @@ ItemFragment_0x7ddf8:
 	db REVIVE, 1
 
 MapMountMortar1FOutsideSignpostItem0:
-	dw $0090
-	db HYPER_POTION
+	dwb EVENT_MOUNT_MORTAR_1F_OUTSIDE_HIDDEN_HYPER_POTION, HYPER_POTION
 	
 
 MountMortar1FOutside_MapEventHeader:
@@ -37,9 +36,9 @@ MountMortar1FOutside_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 22, 25, SIGNPOST_ITEMIFSET, MapMountMortar1FOutsideSignpostItem0
+	signpost 22, 25, SIGNPOST_ITEM, MapMountMortar1FOutsideSignpostItem0
 
 	; people-events
 	db 2
-	person_event SPRITE_POKE_BALL, 19, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf6, EVENT_67B
-	person_event SPRITE_POKE_BALL, 22, 35, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf8, EVENT_67C
+	person_event SPRITE_POKE_BALL, 19, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf6, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
+	person_event SPRITE_POKE_BALL, 22, 35, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf8, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE

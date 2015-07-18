@@ -15,8 +15,7 @@ ItemFragment_0x7e5a8:
 	db MAX_POTION, 1
 
 MapIcePathB2FMahoganySideSignpostItem0:
-	dw $0095
-	db CARBOS
+	dwb EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS, CARBOS
 	
 
 UnknownText_0x7e5ad:
@@ -42,13 +41,13 @@ IcePathB2FMahoganySide_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 17, 0, SIGNPOST_ITEMIFSET, MapIcePathB2FMahoganySideSignpostItem0
+	signpost 17, 0, SIGNPOST_ITEM, MapIcePathB2FMahoganySideSignpostItem0
 
 	; people-events
 	db 6
-	person_event SPRITE_BOULDER, 7, 15, DOWN << 2 | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_1
-	person_event SPRITE_BOULDER, 11, 8, DOWN << 2 | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_2
-	person_event SPRITE_BOULDER, 16, 7, DOWN << 2 | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_3
-	person_event SPRITE_BOULDER, 17, 16, DOWN << 2 | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_4
-	person_event SPRITE_POKE_BALL, 13, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e5a6, EVENT_68B
-	person_event SPRITE_POKE_BALL, 6, 4, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e5a8, EVENT_68C
+	person_event SPRITE_BOULDER, 7, 15, DOWN << 2 | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_1A
+	person_event SPRITE_BOULDER, 11, 8, DOWN << 2 | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_2A
+	person_event SPRITE_BOULDER, 16, 7, DOWN << 2 | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_3A
+	person_event SPRITE_BOULDER, 17, 16, DOWN << 2 | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_4A
+	person_event SPRITE_POKE_BALL, 13, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e5a6, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 6, 4, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e5a8, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_MAX_POTION

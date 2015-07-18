@@ -3,48 +3,48 @@ EcruteakHouse_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9800d, $0000
-	dw UnknownScript_0x9800e, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
 	; callback count
 	db 1
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x9800f
+	dbw 2, .InitializeSages
 
-UnknownScript_0x9800d:
+.Trigger1:
 	end
 
-UnknownScript_0x9800e:
+.Trigger2:
 	end
 
-UnknownScript_0x9800f:
+.InitializeSages:
 	checkevent EVENT_FOUGHT_SUICUNE
-	iftrue UnknownScript_0x98033
+	iftrue .DontBlockTower
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	iftrue UnknownScript_0x98033
+	iftrue .DontBlockTower
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x98022
+	iftrue .BlockTower
 	return
 
-UnknownScript_0x98022:
-	clearevent EVENT_766
-	setevent EVENT_RANG_CLEAR_BELL
-	setevent EVENT_7B1
+.BlockTower:
+	clearevent EVENT_RANG_CLEAR_BELL_1
+	setevent EVENT_RANG_CLEAR_BELL_2
+	setevent EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
 	checkitem CLEAR_BELL
-	iftrue UnknownScript_0x98032
+	iftrue .NoClearBell
 	dotrigger $0
-UnknownScript_0x98032:
+.NoClearBell:
 	return
 
-UnknownScript_0x98033:
-	clearevent EVENT_7B1
+.DontBlockTower:
+	clearevent EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
 	return
 
-UnknownScript_0x98037:
-	checkevent EVENT_RANG_CLEAR_BELL
-	iftrue UnknownScript_0x98061
+EcruteakHouse_XYTrigger1:
+	checkevent EVENT_RANG_CLEAR_BELL_2
+	iftrue EcruteakHouse_XYTrigger_DontMove
 	applymovement $3, MovementData_0x980c7
 	moveperson $2, $4, $6
 	appear $2
@@ -52,9 +52,9 @@ UnknownScript_0x98037:
 	disappear $3
 	end
 
-UnknownScript_0x9804c:
-	checkevent EVENT_766
-	iftrue UnknownScript_0x98061
+EcruteakHouse_XYTrigger2:
+	checkevent EVENT_RANG_CLEAR_BELL_1
+	iftrue EcruteakHouse_XYTrigger_DontMove
 	applymovement $2, MovementData_0x980cc
 	moveperson $3, $5, $6
 	appear $3
@@ -62,56 +62,56 @@ UnknownScript_0x9804c:
 	disappear $2
 	end
 
-UnknownScript_0x98061:
+EcruteakHouse_XYTrigger_DontMove:
 	end
 
 SageScript_0x98062:
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x9807c
+	iftrue .CheckForClearBell
 	checkflag ENGINE_FOGBADGE
-	iftrue UnknownScript_0x98076
+	iftrue .BlockPassage_GotFogBadge
 	writetext UnknownText_0x980d1
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x98076:
+.BlockPassage_GotFogBadge:
 	writetext UnknownText_0x98131
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9807c:
+.CheckForClearBell:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	iftrue UnknownScript_0x980a4
+	iftrue .AllowedThrough
 	checkevent EVENT_000
-	iftrue UnknownScript_0x980aa
+	iftrue .Event000
 	checkitem CLEAR_BELL
-	iftrue UnknownScript_0x98093
+	iftrue .RingClearBell
 	writetext UnknownText_0x981a4
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x98093:
+.RingClearBell:
 	writetext UnknownText_0x98250
 	closetext
 	loadmovesprites
 	dotrigger $1
-	setevent EVENT_RANG_CLEAR_BELL
-	clearevent EVENT_766
+	setevent EVENT_RANG_CLEAR_BELL_2
+	clearevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_000
 	end
 
-UnknownScript_0x980a4:
+.AllowedThrough:
 	writetext UnknownText_0x9837e
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x980aa:
+.Event000:
 	writetext UnknownText_0x98391
 	closetext
 	loadmovesprites
@@ -121,13 +121,13 @@ SageScript_0x980b0:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_CLEAR_BELL
-	iftrue UnknownScript_0x980be
+	iftrue .GotClearBell
 	writetext UnknownText_0x9840b
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x980be:
+.GotClearBell:
 	writetext UnknownText_0x9846f
 	closetext
 	loadmovesprites
@@ -290,15 +290,15 @@ EcruteakHouse_MapEventHeader:
 
 	; xy triggers
 	db 2
-	xy_trigger 0, $7, $4, $0, UnknownScript_0x98037, $0, $0
-	xy_trigger 0, $7, $5, $0, UnknownScript_0x9804c, $0, $0
+	xy_trigger 0, $7, $4, $0, EcruteakHouse_XYTrigger1, $0, $0
+	xy_trigger 0, $7, $5, $0, EcruteakHouse_XYTrigger2, $0, $0
 
 	; signposts
 	db 0
 
 	; people-events
 	db 4
-	person_event SPRITE_SAGE, 10, 8, UP << 2 | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_766
-	person_event SPRITE_SAGE, 10, 9, UP << 2 | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL
-	person_event SPRITE_SAGE, 13, 10, DOWN << 2 | $2, $11, -1, -1, $0, 0, SageScript_0x980b0, EVENT_7B1
-	person_event SPRITE_GRAMPS, 15, 7, DOWN << 2 | $2, $11, -1, -1, $0, 0, GrampsScript_0x980c4, EVENT_7B1
+	person_event SPRITE_SAGE, 10, 8, UP << 2 | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
+	person_event SPRITE_SAGE, 10, 9, UP << 2 | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
+	person_event SPRITE_SAGE, 13, 10, DOWN << 2 | $2, $11, -1, -1, $0, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	person_event SPRITE_GRAMPS, 15, 7, DOWN << 2 | $2, $11, -1, -1, $0, 0, GrampsScript_0x980c4, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE

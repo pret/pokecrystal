@@ -43,8 +43,8 @@ SailorScript_0x748c0:
 	waitbutton
 	checkevent EVENT_030
 	iffalse UnknownScript_0x7490a
-	clearevent EVENT_73A
-	setevent EVENT_73B
+	clearevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	setevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	clearevent EVENT_BEAT_COOLTRAINERM_SEAN
 	clearevent EVENT_BEAT_COOLTRAINERF_CAROL
 	clearevent EVENT_BEAT_GENTLEMAN_EDWARD
@@ -227,8 +227,7 @@ CooltrainerFScript_0x74a22:
 	end
 
 MapOlivinePortSignpostItem0:
-	dw $00ea
-	db PROTEIN
+	dwb EVENT_OLIVINE_PORT_HIDDEN_PROTEIN, PROTEIN
 	
 
 MovementData_0x74a30:
@@ -394,11 +393,11 @@ OlivinePort_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 22, 1, SIGNPOST_ITEMIFSET, MapOlivinePortSignpostItem0
+	signpost 22, 1, SIGNPOST_ITEM, MapOlivinePortSignpostItem0
 
 	; people-events
 	db 7
-	person_event SPRITE_SAILOR, 27, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x748c0, EVENT_72A
+	person_event SPRITE_SAILOR, 27, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	person_event SPRITE_SAILOR, 19, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	person_event SPRITE_SAILOR, 19, 10, LEFT << 2 | $1, $0, -1, -1, $0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
 	person_event SPRITE_FISHING_GURU, 18, 8, UP << 2 | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME

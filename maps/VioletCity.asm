@@ -46,7 +46,7 @@ UnknownScript_0x1a83d1:
 	applymovement $2, MovementData_0x1a8463
 	playsound SFX_ENTER_DOOR
 	disappear $2
-	clearevent EVENT_6CB
+	clearevent EVENT_EARLS_ACADEMY_EARL
 	waitbutton
 	end
 
@@ -90,8 +90,7 @@ FruitTreeScript_0x1a8425:
 	fruittree $9
 
 MapVioletCitySignpostItem6:
-	dw $00b0
-	db HYPER_POTION
+	dwb EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a842a:
 	big_step_down
@@ -298,15 +297,15 @@ VioletCity_MapEventHeader:
 	signpost 17, 27, SIGNPOST_READ, EarlsPokemonAcademySign
 	signpost 25, 32, SIGNPOST_READ, VioletCityPokeCenterSign
 	signpost 17, 10, SIGNPOST_READ, VioletCityMartSign
-	signpost 14, 37, SIGNPOST_ITEMIFSET, MapVioletCitySignpostItem6
+	signpost 14, 37, SIGNPOST_ITEM, MapVioletCitySignpostItem6
 
 	; people-events
 	db 8
-	person_event SPRITE_FISHER, 20, 17, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a83bb, EVENT_6CA
+	person_event SPRITE_FISHER, 20, 17, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a83bb, EVENT_VIOLET_CITY_EARL
 	person_event SPRITE_LASS, 32, 32, DOWN << 2 | $2, $22, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x1a8403, -1
 	person_event SPRITE_SUPER_NERD, 18, 28, DOWN << 2 | $2, $21, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a8406, -1
 	person_event SPRITE_GRAMPS, 24, 21, UP << 2 | $1, $1, -1, -1, $0, 0, GrampsScript_0x1a8409, -1
 	person_event SPRITE_YOUNGSTER, 22, 9, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a840c, -1
 	person_event SPRITE_FRUIT_TREE, 33, 18, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8425, -1
-	person_event SPRITE_POKE_BALL, 5, 8, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a8421, EVENT_643
-	person_event SPRITE_POKE_BALL, 9, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a8423, EVENT_644
+	person_event SPRITE_POKE_BALL, 5, 8, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a8421, EVENT_VIOLET_CITY_PP_UP
+	person_event SPRITE_POKE_BALL, 9, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a8423, EVENT_VIOLET_CITY_RARE_CANDY

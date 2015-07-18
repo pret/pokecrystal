@@ -24,18 +24,15 @@ WhirlIslandB1FBoulder:
 	jumpstd strengthboulder
 
 MapWhirlIslandB1FSignpostItem0:
-	dw $0097
-	db RARE_CANDY
+	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
 MapWhirlIslandB1FSignpostItem1:
-	dw $0098
-	db ULTRA_BALL
+	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
 MapWhirlIslandB1FSignpostItem2:
-	dw $0099
-	db FULL_RESTORE
+	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
 WhirlIslandB1F_MapEventHeader:
@@ -59,15 +56,15 @@ WhirlIslandB1F_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 4, 30, SIGNPOST_ITEMIFSET, MapWhirlIslandB1FSignpostItem0
-	signpost 18, 36, SIGNPOST_ITEMIFSET, MapWhirlIslandB1FSignpostItem1
-	signpost 23, 2, SIGNPOST_ITEMIFSET, MapWhirlIslandB1FSignpostItem2
+	signpost 4, 30, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem0
+	signpost 18, 36, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem1
+	signpost 23, 2, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem2
 
 	; people-events
 	db 6
-	person_event SPRITE_POKE_BALL, 17, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c410, EVENT_691
-	person_event SPRITE_POKE_BALL, 22, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c412, EVENT_692
-	person_event SPRITE_POKE_BALL, 27, 37, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c414, EVENT_693
-	person_event SPRITE_POKE_BALL, 12, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c416, EVENT_694
-	person_event SPRITE_POKE_BALL, 30, 23, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c418, EVENT_695
+	person_event SPRITE_POKE_BALL, 17, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c410, EVENT_WHIRL_ISLAND_B1F_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 22, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c412, EVENT_WHIRL_ISLAND_B1F_CARBOS
+	person_event SPRITE_POKE_BALL, 27, 37, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c414, EVENT_WHIRL_ISLAND_B1F_CALCIUM
+	person_event SPRITE_POKE_BALL, 12, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c416, EVENT_WHIRL_ISLAND_B1F_NUGGET
+	person_event SPRITE_POKE_BALL, 30, 23, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c418, EVENT_WHIRL_ISLAND_B1F_ESCAPE_ROPE
 	person_event SPRITE_BOULDER, 30, 27, LEFT << 2 | $11, $0, -1, -1, $0, 0, WhirlIslandB1FBoulder, -1

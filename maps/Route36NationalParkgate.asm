@@ -862,7 +862,7 @@ Route36NationalParkgate_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_OFFICER, 7, 4, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6abe0, EVENT_747
+	person_event SPRITE_OFFICER, 7, 4, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6abe0, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	person_event SPRITE_YOUNGSTER, 9, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad06, EVENT_BUG_CATCHING_CONTESTANT_1B
 	person_event SPRITE_YOUNGSTER, 9, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6ad1a, EVENT_BUG_CATCHING_CONTESTANT_2B
 	person_event SPRITE_ROCKER, 10, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, RockerScript_0x6ad2e, EVENT_BUG_CATCHING_CONTESTANT_3B
@@ -873,4 +873,4 @@ Route36NationalParkgate_MapEventHeader:
 	person_event SPRITE_YOUNGSTER, 11, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad92, EVENT_BUG_CATCHING_CONTESTANT_8B
 	person_event SPRITE_YOUNGSTER, 11, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6ada6, EVENT_BUG_CATCHING_CONTESTANT_9B
 	person_event SPRITE_YOUNGSTER, 10, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x6adba, EVENT_BUG_CATCHING_CONTESTANT_10B
-	person_event SPRITE_OFFICER, 6, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6acf4, EVENT_748
+	person_event SPRITE_OFFICER, 6, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6acf4, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

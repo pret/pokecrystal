@@ -333,12 +333,12 @@ BlackthornCity_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_SUPER_NERD, 16, 22, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_6E3
-	person_event SPRITE_SUPER_NERD, 16, 23, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_6E4
-	person_event SPRITE_GRAMPS, 6, 24, UP << 2 | $2, $0, -1, -1, $0, 0, GrampsScript_0x1a4708, EVENT_74C
-	person_event SPRITE_GRAMPS, 6, 25, LEFT << 2 | $0, $0, -1, -1, $0, 0, GrampsScript_0x1a470b, EVENT_74D
+	person_event SPRITE_SUPER_NERD, 16, 22, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
+	person_event SPRITE_SUPER_NERD, 16, 23, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
+	person_event SPRITE_GRAMPS, 6, 24, UP << 2 | $2, $0, -1, -1, $0, 0, GrampsScript_0x1a4708, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
+	person_event SPRITE_GRAMPS, 6, 25, LEFT << 2 | $0, $0, -1, -1, $0, 0, GrampsScript_0x1a470b, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
 	person_event SPRITE_BLACK_BELT, 35, 28, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x1a470e, -1
 	person_event SPRITE_COOLTRAINER_F, 29, 13, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x1a4722, -1
 	person_event SPRITE_YOUNGSTER, 19, 17, UP << 2 | $1, $1, -1, -1, $0, 0, YoungsterScript_0x1a4725, -1
-	person_event SPRITE_YOUNGSTER, 24, 26, UP << 2 | $2, $0, -1, -1, $0, 0, SantosScript, EVENT_75D
+	person_event SPRITE_YOUNGSTER, 24, 26, UP << 2 | $2, $0, -1, -1, $0, 0, SantosScript, EVENT_BLACKTHORN_CITY_SANTOS_OF_SATURDAY
 	person_event SPRITE_COOLTRAINER_F, 23, 39, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x1a4728, -1

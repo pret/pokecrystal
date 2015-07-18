@@ -270,7 +270,7 @@ ElmDirectionsScript:
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
-	setevent EVENT_6BE
+	setevent EVENT_RIVAL_CHERRYGROVE_CITY
 	dotrigger $5
 	domaptrigger GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $1
 	end
@@ -339,8 +339,8 @@ ElmAfterTheftScript:
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
-	clearevent EVENT_715
-	setevent EVENT_714
+	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
+	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
 	closetext
 	loadmovesprites

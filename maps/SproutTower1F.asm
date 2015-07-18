@@ -137,4 +137,4 @@ SproutTower1F_MapEventHeader:
 	person_event SPRITE_GRANNY, 16, 15, LEFT << 2 | $0, $0, -1, -1, $0, 0, GrannyScript_0x184504, -1
 	person_event SPRITE_TEACHER, 13, 13, UP << 2 | $3, $0, -1, -1, $0, 0, TeacherScript_0x184507, -1
 	person_event SPRITE_SAGE, 9, 7, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSageChow, -1
-	person_event SPRITE_POKE_BALL, 11, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18451e, EVENT_647
+	person_event SPRITE_POKE_BALL, 11, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18451e, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL

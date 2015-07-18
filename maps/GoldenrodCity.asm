@@ -31,7 +31,7 @@ GoldenrodCity_MapScriptHeader:
 	return
 
 .MoveTutorAppear
-	checkflag ENGINE_5E
+	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .MoveTutorDone
 	appear $10
 .MoveTutorDone
@@ -42,52 +42,52 @@ MoveTutor:
 	loadfont
 	writetext UnknownText_0x199042
 	yesorno
-	iffalse UnknownScript_0x19899a
+	iffalse .Refused
 	special Function24b25
 	writetext UnknownText_0x199090
 	yesorno
-	iffalse UnknownScript_0x1989a0
+	iffalse .Refused2
 	checkcoins 4000
-	if_equal $2, UnknownScript_0x1989dd
+	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x1990ce
-	loadmenudata MenuDataHeader_0x198967
+	loadmenudata .MoveMenuDataHeader
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x19893a
-	if_equal $2, UnknownScript_0x198949
-	if_equal $3, UnknownScript_0x198958
-	jump UnknownScript_0x1989d7
+	if_equal $1, .Flamethrower
+	if_equal $2, .Thunderbolt
+	if_equal $3, .IceBeam
+	jump .Incompatible
 
-UnknownScript_0x19893a:
+.Flamethrower:
 	writebyte $1
 	writetext UnknownText_0x1991cf
 	special Function4925b
-	if_equal $0, UnknownScript_0x1989a6
-	jump UnknownScript_0x1989d7
+	if_equal $0, .TeachMove
+	jump .Incompatible
 
-UnknownScript_0x198949:
+.Thunderbolt:
 	writebyte $2
 	writetext UnknownText_0x1991cf
 	special Function4925b
-	if_equal $0, UnknownScript_0x1989a6
-	jump UnknownScript_0x1989d7
+	if_equal $0, .TeachMove
+	jump .Incompatible
 
-UnknownScript_0x198958:
+.IceBeam:
 	writebyte $3
 	writetext UnknownText_0x1991cf
 	special Function4925b
-	if_equal $0, UnknownScript_0x1989a6
-	jump UnknownScript_0x1989d7
+	if_equal $0, .TeachMove
+	jump .Incompatible
 
 
-MenuDataHeader_0x198967:
+.MoveMenuDataHeader:
 	db $40 ; flags
 	db 02, 00 ; start coords
 	db 11, 15 ; end coords
-	dw MenuData2_0x19896f
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x19896f:
+.MenuData2:
 	db $80 ; flags
 	db 4 ; items
 	db "FLAMETHROWER@"
@@ -96,19 +96,19 @@ MenuData2_0x19896f:
 	db "CANCEL@"
 
 
-UnknownScript_0x19899a:
+.Refused:
 	writetext UnknownText_0x1990b4
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1989a0:
+.Refused2:
 	writetext UnknownText_0x199107
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1989a6:
+.TeachMove:
 	writetext UnknownText_0x19913a
 	keeptextopen
 	takecoins 4000
@@ -119,27 +119,27 @@ UnknownScript_0x1989a6:
 	closetext
 	loadmovesprites
 	checkcode VAR_FACING
-	if_equal $2, UnknownScript_0x1989c6
+	if_equal $2, .WalkAroundPlayer
 	applymovement $10, MovementData_0x198a5f
-	jump UnknownScript_0x1989ca
+	jump .GoInside
 
-UnknownScript_0x1989c6:
+.WalkAroundPlayer:
 	applymovement $10, MovementData_0x198a63
-UnknownScript_0x1989ca:
+.GoInside:
 	playsound SFX_ENTER_DOOR
 	disappear $10
-	clearevent EVENT_76B
-	setflag ENGINE_5E
+	clearevent EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
+	setflag ENGINE_DAILY_MOVE_TUTOR
 	waitbutton
 	end
 
-UnknownScript_0x1989d7:
+.Incompatible:
 	writetext UnknownText_0x1991a4
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1989dd:
+.NotEnoughMoney:
 	writetext UnknownText_0x1991ac
 	closetext
 	loadmovesprites
@@ -155,13 +155,13 @@ CooltrainerFScript_0x1989e9:
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1989f7
+	iftrue .ClearedRadioTower
 	writetext UnknownText_0x198ae6
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1989f7:
+.ClearedRadioTower:
 	writetext UnknownText_0x198b2d
 	closetext
 	loadmovesprites
@@ -171,13 +171,13 @@ CooltrainerFScript_0x1989fd:
 	faceplayer
 	loadfont
 	checkflag ENGINE_RADIO_CARD
-	iftrue UnknownScript_0x198a0b
+	iftrue .GotRadioCard
 	writetext UnknownText_0x198b73
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x198a0b:
+.GotRadioCard:
 	writetext UnknownText_0x198c14
 	closetext
 	loadmovesprites
@@ -581,18 +581,18 @@ GoldenrodCity_MapEventHeader:
 
 	; people-events
 	db 15
-	person_event SPRITE_POKEFAN_M, 22, 11, UP << 2 | $3, $0, -1, -1, $0, 0, PokefanMScript_0x1989e3, EVENT_6CF
-	person_event SPRITE_YOUNGSTER, 21, 34, DOWN << 2 | $2, $11, -1, -1, $0, 0, YoungsterScript_0x1989e6, EVENT_6CF
-	person_event SPRITE_COOLTRAINER_F, 20, 16, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x1989e9, EVENT_6CF
-	person_event SPRITE_COOLTRAINER_F, 30, 24, DOWN << 2 | $2, $21, -1, -1, $0, 0, CooltrainerFScript_0x1989fd, EVENT_6CF
-	person_event SPRITE_YOUNGSTER, 21, 23, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x198a11, EVENT_6CF
-	person_event SPRITE_LASS, 14, 21, UP << 2 | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x198a14, EVENT_6CF
-	person_event SPRITE_GRAMPS, 31, 15, UP << 2 | $1, $1, -1, -1, $0, 0, GrampsScript_0x198a17, EVENT_6CF
-	person_event SPRITE_ROCKET, 20, 8, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a1a, EVENT_6CC
-	person_event SPRITE_ROCKET, 24, 32, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a29, EVENT_6CD
-	person_event SPRITE_ROCKET, 19, 12, UP << 2 | $2, $0, -1, -1, $0, 0, RocketScript_0x198a2c, EVENT_6CD
-	person_event SPRITE_ROCKET, 27, 20, LEFT << 2 | $1, $0, -1, -1, $0, 0, RocketScript_0x198a2f, EVENT_6CE
-	person_event SPRITE_ROCKET, 24, 33, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a32, EVENT_6CE
-	person_event SPRITE_ROCKET, 11, 33, UP << 2 | $2, $0, -1, -1, $0, 0, RocketScript_0x198a35, EVENT_6CE
-	person_event SPRITE_ROCKET, 14, 35, LEFT << 2 | $0, $0, -1, -1, $0, 0, RocketScript_0x198a38, EVENT_6CE
-	person_event SPRITE_POKEFAN_M, 26, 16, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MoveTutor, EVENT_76A
+	person_event SPRITE_POKEFAN_M, 22, 11, UP << 2 | $3, $0, -1, -1, $0, 0, PokefanMScript_0x1989e3, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_YOUNGSTER, 21, 34, DOWN << 2 | $2, $11, -1, -1, $0, 0, YoungsterScript_0x1989e6, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 20, 16, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x1989e9, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 30, 24, DOWN << 2 | $2, $21, -1, -1, $0, 0, CooltrainerFScript_0x1989fd, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_YOUNGSTER, 21, 23, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x198a11, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_LASS, 14, 21, UP << 2 | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x198a14, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_GRAMPS, 31, 15, UP << 2 | $1, $1, -1, -1, $0, 0, GrampsScript_0x198a17, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_ROCKET, 20, 8, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a1a, EVENT_GOLDENROD_CITY_ROCKET_SCOUT
+	person_event SPRITE_ROCKET, 24, 32, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a29, EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 19, 12, UP << 2 | $2, $0, -1, -1, $0, 0, RocketScript_0x198a2c, EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 27, 20, LEFT << 2 | $1, $0, -1, -1, $0, 0, RocketScript_0x198a2f, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 24, 33, UP << 2 | $3, $0, -1, -1, $0, 0, RocketScript_0x198a32, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 11, 33, UP << 2 | $2, $0, -1, -1, $0, 0, RocketScript_0x198a35, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 14, 35, LEFT << 2 | $0, $0, -1, -1, $0, 0, RocketScript_0x198a38, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_POKEFAN_M, 26, 16, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MoveTutor, EVENT_GOLDENROD_CITY_MOVE_TUTOR

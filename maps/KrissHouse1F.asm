@@ -39,8 +39,8 @@ UnknownScript_0x7a4f6:
 	setflag ENGINE_PHONE_CARD
 	addcellnum $1
 	dotrigger $1
-	setevent EVENT_6C7
-	clearevent EVENT_6C8
+	setevent EVENT_KRISS_HOUSE_MOM_1
+	clearevent EVENT_KRISS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
 	keeptextopen
 	special Function90913
@@ -404,8 +404,8 @@ KrissHouse1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_MOM, 8, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, MomScript_0x7a582, EVENT_6C7
-	person_event SPRITE_MOM, 6, 6, UP << 2 | $3, $0, -1, 1, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_MOM, 8, 11, LEFT << 2 | $0, $0, -1, 2, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_MOM, 6, 4, UP << 2 | $3, $0, -1, 4, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_POKEFAN_F, 8, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, NeighborScript, EVENT_792
+	person_event SPRITE_MOM, 8, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
+	person_event SPRITE_MOM, 6, 6, UP << 2 | $3, $0, -1, 1, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 8, 11, LEFT << 2 | $0, $0, -1, 2, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 6, 4, UP << 2 | $3, $0, -1, 4, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_POKEFAN_F, 8, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR

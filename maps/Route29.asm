@@ -436,5 +436,5 @@ Route29_MapEventHeader:
 	person_event SPRITE_FRUIT_TREE, 6, 16, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a1089, -1
 	person_event SPRITE_FISHER, 7, 29, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x1a102e, -1
 	person_event SPRITE_COOLTRAINER_M, 8, 17, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x1a1031, -1
-	person_event SPRITE_TEACHER, 16, 33, DOWN << 2 | $3, $0, -1, -1, $0, 0, TuscanyScript, EVENT_759
-	person_event SPRITE_POKE_BALL, 6, 52, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a108b, EVENT_6AD
+	person_event SPRITE_TEACHER, 16, 33, DOWN << 2 | $3, $0, -1, -1, $0, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
+	person_event SPRITE_POKE_BALL, 6, 52, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a108b, EVENT_ROUTE_29_POTION

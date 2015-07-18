@@ -62,7 +62,7 @@ MapRuinsofAlphOmanyteChamberSignpost2Script:
 	end
 
 UnknownScript_0x58c36:
-	setevent EVENT_705
+	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_2A2
 	setflag ENGINE_UNLOCKED_UNOWNS_2
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1

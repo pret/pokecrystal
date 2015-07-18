@@ -10,7 +10,7 @@ Route40BattleTowerGate_MapScriptHeader:
 	dbw 2, UnknownScript_0x9f665
 
 UnknownScript_0x9f665:
-	clearevent EVENT_7CF
+	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	return
 
 RockerScript_0x9f669:
@@ -88,5 +88,5 @@ Route40BattleTowerGate_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_ROCKER, 7, 7, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, RockerScript_0x9f669, EVENT_7CF
+	person_event SPRITE_ROCKER, 7, 7, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, RockerScript_0x9f669, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	person_event SPRITE_TWIN, 9, 11, UP << 2 | $0, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, TwinScript_0x9f66c, -1

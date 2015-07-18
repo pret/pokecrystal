@@ -29,8 +29,8 @@ UnknownScript_0x18502f:
 	iffalse UnknownScript_0x185050
 	special SpecialBeastsCheck
 	iffalse UnknownScript_0x185050
-	clearevent EVENT_7C5
-	setevent EVENT_7B6
+	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
 UnknownScript_0x185047:
 	checkevent EVENT_FOUGHT_HO_OH
 	iffalse UnknownScript_0x18504f
@@ -66,8 +66,8 @@ UnknownScript_0x185077:
 	disappear $2
 	disappear $3
 	disappear $4
-	clearevent EVENT_7B6
-	setevent EVENT_7C5
+	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	return
 
 UnknownScript_0x185084:
@@ -534,13 +534,13 @@ TinTower1F_MapEventHeader:
 
 	; people-events
 	db 10
-	person_event SPRITE_SUICUNE, 13, 13, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_7B2
-	person_event SPRITE_RAIKOU, 13, 11, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_7B4
-	person_event SPRITE_ENTEI, 13, 16, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_7B3
-	person_event SPRITE_SUPER_NERD, 7, 12, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x1851c8, EVENT_7B5
-	person_event SPRITE_SAGE, 13, 9, DOWN << 2 | $3, $0, -1, -1, $0, 0, SageScript_0x185173, EVENT_7B6
-	person_event SPRITE_SAGE, 15, 15, DOWN << 2 | $3, $0, -1, -1, $0, 0, SageScript_0x185176, EVENT_7B6
-	person_event SPRITE_SAGE, 10, 18, DOWN << 2 | $3, $0, -1, -1, $0, 0, SageScript_0x185179, EVENT_7B6
-	person_event SPRITE_SAGE, 6, 8, UP << 2 | $0, $10, -1, -1, $0, 0, SageScript_0x18517c, EVENT_7C5
-	person_event SPRITE_SAGE, 5, 13, UP << 2 | $2, $0, -1, -1, $0, 0, SageScript_0x185188, EVENT_7C5
-	person_event SPRITE_SAGE, 6, 18, UP << 2 | $1, $1, -1, -1, $0, 0, SageScript_0x1851bc, EVENT_7C5
+	person_event SPRITE_SUICUNE, 13, 13, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
+	person_event SPRITE_RAIKOU, 13, 11, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
+	person_event SPRITE_ENTEI, 13, 16, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
+	person_event SPRITE_SUPER_NERD, 7, 12, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x1851c8, EVENT_TIN_TOWER_1F_EUSINE
+	person_event SPRITE_SAGE, 13, 9, DOWN << 2 | $3, $0, -1, -1, $0, 0, SageScript_0x185173, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 15, 15, DOWN << 2 | $3, $0, -1, -1, $0, 0, SageScript_0x185176, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 10, 18, DOWN << 2 | $3, $0, -1, -1, $0, 0, SageScript_0x185179, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 6, 8, UP << 2 | $0, $10, -1, -1, $0, 0, SageScript_0x18517c, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SAGE, 5, 13, UP << 2 | $2, $0, -1, -1, $0, 0, SageScript_0x185188, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SAGE, 6, 18, UP << 2 | $1, $1, -1, -1, $0, 0, SageScript_0x1851bc, EVENT_TIN_TOWER_1F_WISE_TRIO_2

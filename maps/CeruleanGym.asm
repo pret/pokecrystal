@@ -40,8 +40,8 @@ UnknownScript_0x1883de:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
-	clearevent EVENT_76C
-	clearevent EVENT_76E
+	clearevent EVENT_ROUTE_24_ROCKET
+	clearevent EVENT_ROUTE_25_MISTY_BOYFRIEND
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_25, MAP_ROUTE_25, $1
 	domaptrigger GROUP_POWER_PLANT, MAP_POWER_PLANT, $0
@@ -177,8 +177,7 @@ CeruleanGymGuyScript:
 	end
 
 MapCeruleanGymSignpostItem0:
-	dw $00fb
-	db MACHINE_PART
+	dwb EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM, MACHINE_PART
 	
 
 CeruleanGymStatue1:
@@ -420,13 +419,13 @@ CeruleanGym_MapEventHeader:
 
 	; signposts
 	db 3
-	signpost 8, 3, SIGNPOST_ITEMIFSET, MapCeruleanGymSignpostItem0
+	signpost 8, 3, SIGNPOST_ITEM, MapCeruleanGymSignpostItem0
 	signpost 13, 2, SIGNPOST_READ, CeruleanGymStatue1
 	signpost 13, 6, SIGNPOST_READ, CeruleanGymStatue2
 
 	; people-events
 	db 6
-	person_event SPRITE_ROCKET, 14, 8, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_76D
+	person_event SPRITE_ROCKET, 14, 8, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
 	person_event SPRITE_MISTY, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
 	person_event SPRITE_SWIMMER_GIRL, 10, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
 	person_event SPRITE_SWIMMER_GIRL, 13, 5, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM

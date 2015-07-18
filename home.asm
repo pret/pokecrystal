@@ -1497,11 +1497,11 @@ FacingPlayerDistance:: ; 36ad
 ; Return carry if the sprite at bc is facing the player,
 ; and its distance in d.
 
-	ld hl, $0010 ; x
+	ld hl, OBJECT_MAP_X ; x
 	add hl, bc
 	ld d, [hl]
 
-	ld hl, $0011 ; y
+	ld hl, OBJECT_MAP_Y ; y
 	add hl, bc
 	ld e, [hl]
 
@@ -1570,7 +1570,7 @@ Function36f5:: ; 36f5
 	add hl, bc
 	ld a, [hl]
 	call GetMapObject
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -1580,7 +1580,7 @@ Function36f5:: ; 36f5
 	ld d, h
 	ld e, l
 	push de
-	ld b, $2
+	ld b, $2 ; check
 	call EventFlagAction
 	pop de
 	ld a, c
@@ -1593,19 +1593,19 @@ Function36f5:: ; 36f5
 Function3718:: ; 3718
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
-	jr .asm_3724
+	jr .canlose
 
 	ld hl, WalkingTile
-	jr .asm_3731
+	jr .ok
 
-.asm_3724
+.canlose
 	ld a, [wd0ee]
 	ld hl, WalkingTile
 	and $f
-	jr z, .asm_3731
+	jr z, .ok
 	ld hl, wd048 + 1
 
-.asm_3731
+.ok
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

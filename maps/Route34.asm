@@ -12,33 +12,33 @@ Route34_MapScriptHeader:
 UnknownScript_0x78005:
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x78014
-	clearevent EVENT_6E5
-	setevent EVENT_6E6
+	clearevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	setevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	jump UnknownScript_0x7801d
 
 UnknownScript_0x78014:
-	setevent EVENT_6E5
-	clearevent EVENT_6E6
+	setevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	clearevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	jump UnknownScript_0x7801d
 
 UnknownScript_0x7801d:
 	checkflag ENGINE_DAYCARE_MAN_HAS_MON
 	iffalse UnknownScript_0x78029
-	clearevent EVENT_6E7
+	clearevent EVENT_DAYCARE_MON_1
 	jump UnknownScript_0x7802f
 
 UnknownScript_0x78029:
-	setevent EVENT_6E7
+	setevent EVENT_DAYCARE_MON_1
 	jump UnknownScript_0x7802f
 
 UnknownScript_0x7802f:
 	checkflag ENGINE_DAYCARE_LADY_HAS_MON
 	iffalse UnknownScript_0x78039
-	clearevent EVENT_6E8
+	clearevent EVENT_DAYCARE_MON_2
 	return
 
 UnknownScript_0x78039:
-	setevent EVENT_6E8
+	setevent EVENT_DAYCARE_MON_2
 	return
 
 GrampsScript_0x7803d:
@@ -604,13 +604,11 @@ ItemFragment_0x7832b:
 	db NUGGET, 1
 
 MapRoute34SignpostItem3:
-	dw $00a7
-	db RARE_CANDY
+	dwb EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
 MapRoute34SignpostItem4:
-	dw $00a8
-	db SUPER_POTION
+	dwb EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
 MovementData_0x78333:
@@ -888,9 +886,9 @@ Route34_MapEventHeader:
 	db 5
 	warp_def $25, $d, 1, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
 	warp_def $25, $e, 2, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
-	warp_def $e, $b, 1, GROUP_DAY_CARE, MAP_DAY_CARE
-	warp_def $f, $b, 2, GROUP_DAY_CARE, MAP_DAY_CARE
-	warp_def $f, $d, 3, GROUP_DAY_CARE, MAP_DAY_CARE
+	warp_def $e, $b, 1, GROUP_DAYCARE, MAP_DAYCARE
+	warp_def $f, $b, 2, GROUP_DAYCARE, MAP_DAYCARE
+	warp_def $f, $d, 3, GROUP_DAYCARE, MAP_DAYCARE
 
 	; xy triggers
 	db 0
@@ -900,8 +898,8 @@ Route34_MapEventHeader:
 	signpost 6, 12, SIGNPOST_READ, MapRoute34Signpost0Script
 	signpost 33, 13, SIGNPOST_READ, MapRoute34Signpost1Script
 	signpost 13, 10, SIGNPOST_READ, MapRoute34Signpost2Script
-	signpost 32, 8, SIGNPOST_ITEMIFSET, MapRoute34SignpostItem3
-	signpost 19, 17, SIGNPOST_ITEMIFSET, MapRoute34SignpostItem4
+	signpost 32, 8, SIGNPOST_ITEM, MapRoute34SignpostItem3
+	signpost 19, 17, SIGNPOST_ITEM, MapRoute34SignpostItem4
 
 	; people-events
 	db 13
@@ -911,10 +909,10 @@ Route34_MapEventHeader:
 	person_event SPRITE_LASS, 30, 14, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPicnickerGina1, -1
 	person_event SPRITE_OFFICER, 15, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x7824c, -1
 	person_event SPRITE_POKEFAN_M, 32, 22, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmBrandon, -1
-	person_event SPRITE_GRAMPS, 20, 19, UP << 2 | $2, $0, -1, -1, $0, 0, GrampsScript_0x7803d, EVENT_6E6
-	person_event SPRITE_DAYCARE_MON_1, 22, 18, UP << 2 | $12, $22, -1, -1, $0, 0, DaycareMon1Script_0x78065, EVENT_6E7
-	person_event SPRITE_DAYCARE_MON_2, 23, 21, UP << 2 | $12, $22, -1, -1, $0, 0, DaycareMon2Script_0x7806b, EVENT_6E8
+	person_event SPRITE_GRAMPS, 20, 19, UP << 2 | $2, $0, -1, -1, $0, 0, GrampsScript_0x7803d, EVENT_DAYCARE_MAN_ON_ROUTE_34
+	person_event SPRITE_DAYCARE_MON_1, 22, 18, UP << 2 | $12, $22, -1, -1, $0, 0, DaycareMon1Script_0x78065, EVENT_DAYCARE_MON_1
+	person_event SPRITE_DAYCARE_MON_2, 23, 21, UP << 2 | $12, $22, -1, -1, $0, 0, DaycareMon2Script_0x7806b, EVENT_DAYCARE_MON_2
 	person_event SPRITE_COOLTRAINER_F, 52, 15, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainerfIrene, -1
 	person_event SPRITE_COOLTRAINER_F, 52, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfJenn, -1
 	person_event SPRITE_COOLTRAINER_F, 55, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainerfKate, -1
-	person_event SPRITE_POKE_BALL, 34, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7832b, EVENT_7BC
+	person_event SPRITE_POKE_BALL, 34, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7832b, EVENT_ROUTE_34_NUGGET

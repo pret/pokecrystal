@@ -21,7 +21,7 @@ CinnabarIslandBlue:
 	playsound SFX_WARP_TO
 	applymovement $2, CinnabarIslandBlueTeleport
 	disappear $2
-	clearevent EVENT_776
+	clearevent EVENT_VIRIDIAN_GYM_BLUE
 	end
 
 CinnabarIslandGymSign:
@@ -34,8 +34,7 @@ CinnabarIslandPokeCenterSign:
 	jumpstd pokecentersign
 
 MapCinnabarIslandSignpostItem3:
-	dw $00fe
-	db RARE_CANDY
+	dwb EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY, RARE_CANDY
 
 CinnabarIslandBlueTeleport:
 	teleport_from
@@ -143,7 +142,7 @@ CinnabarIsland_MapEventHeader:
 	signpost 11, 12, SIGNPOST_READ, CinnabarIslandPokeCenterSign
 	signpost 11, 9, SIGNPOST_READ, CinnabarIslandGymSign
 	signpost 7, 7, SIGNPOST_READ, CinnabarIslandSign
-	signpost 1, 9, SIGNPOST_ITEMIFSET, MapCinnabarIslandSignpostItem3
+	signpost 1, 9, SIGNPOST_ITEM, MapCinnabarIslandSignpostItem3
 
 	; people-events
 	db 1

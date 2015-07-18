@@ -51,7 +51,7 @@ UnknownScript_0x744d4:
 	writetext UnknownText_0x7455f
 	closetext
 	loadmovesprites
-	setevent EVENT_6C2
+	setevent EVENT_RIVAL_VICTORY_ROAD
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x744ff
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -106,13 +106,11 @@ ItemFragment_0x74531:
 	db HP_UP, 1
 
 MapVictoryRoadSignpostItem0:
-	dw $009e
-	db MAX_POTION
+	dwb EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION, MAX_POTION
 	
 
 MapVictoryRoadSignpostItem1:
-	dw $009f
-	db FULL_HEAL
+	dwb EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
 MovementData_0x74539:
@@ -260,14 +258,14 @@ VictoryRoad_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 29, 3, SIGNPOST_ITEMIFSET, MapVictoryRoadSignpostItem0
-	signpost 65, 3, SIGNPOST_ITEMIFSET, MapVictoryRoadSignpostItem1
+	signpost 29, 3, SIGNPOST_ITEM, MapVictoryRoadSignpostItem0
+	signpost 65, 3, SIGNPOST_ITEM, MapVictoryRoadSignpostItem1
 
 	; people-events
 	db 6
-	person_event SPRITE_SILVER, 17, 22, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6C2
-	person_event SPRITE_POKE_BALL, 32, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x74529, EVENT_6A3
-	person_event SPRITE_POKE_BALL, 52, 16, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452b, EVENT_6A4
-	person_event SPRITE_POKE_BALL, 33, 22, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452d, EVENT_6A5
-	person_event SPRITE_POKE_BALL, 52, 19, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452f, EVENT_6A6
-	person_event SPRITE_POKE_BALL, 42, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x74531, EVENT_6A7
+	person_event SPRITE_SILVER, 17, 22, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
+	person_event SPRITE_POKE_BALL, 32, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x74529, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
+	person_event SPRITE_POKE_BALL, 52, 16, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452b, EVENT_VICTORY_ROAD_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 33, 22, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452d, EVENT_VICTORY_ROAD_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 52, 19, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452f, EVENT_VICTORY_ROAD_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 42, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x74531, EVENT_VICTORY_ROAD_HP_UP

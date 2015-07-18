@@ -303,7 +303,7 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_FISHER, 19, 5, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherLyle, EVENT_739
-	person_event SPRITE_BUG_CATCHER, 19, 10, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBug_catcherKen, EVENT_73B
-	person_event SPRITE_BUENA, 30, 5, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautyCassie, EVENT_73A
-	person_event SPRITE_ROCKER, 32, 7, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerGuitaristClyde, EVENT_73B
+	person_event SPRITE_FISHER, 19, 5, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_BUG_CATCHER, 19, 10, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_BUENA, 30, 5, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_ROCKER, 32, 7, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

@@ -207,7 +207,7 @@ _ResetWRAM: ; 5bae
 	ld [wCurBox], a
 	ld [wd4b4], a
 
-	call Function5ca6
+	call SetDefaultBoxNames
 
 	ld a, 1
 	call GetSRAMBank
@@ -301,10 +301,10 @@ Function5ca1: ; 5ca1
 	ret
 ; 5ca6
 
-Function5ca6: ; 5ca6
+SetDefaultBoxNames: ; 5ca6
 	ld hl, wBoxNames
 	ld c, 0
-.asm_5cab
+.loop
 	push hl
 	ld de, .Box
 	call CopyName2
@@ -312,12 +312,12 @@ Function5ca6: ; 5ca6
 	ld a, c
 	inc a
 	cp 10
-	jr c, .asm_5cbe
+	jr c, .less
 	sub 10
 	ld [hl], "1"
 	inc hl
 
-.asm_5cbe
+.less
 	add "0"
 	ld [hli], a
 	ld [hl], "@"
@@ -327,7 +327,7 @@ Function5ca6: ; 5ca6
 	inc c
 	ld a, c
 	cp NUM_BOXES
-	jr c, .asm_5cab
+	jr c, .loop
 	ret
 
 .Box
@@ -3291,7 +3291,7 @@ Function80b8: ; 80b8
 ; 80e7
 
 
-Function80e7:: ; 80e7
+CopyObjectStruct:: ; 80e7
 	call Function2707
 	and a
 	ret nz
@@ -3332,7 +3332,7 @@ Function8116: ; 8116
 
 Function811d: ; 811d
 	ld a, [$ffb0]
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld [hl], a
 	ld a, [$ffaf]
@@ -3350,12 +3350,12 @@ Function811d: ; 811d
 	add hl, bc
 	ld a, [hl]
 	and $f0
-	jr z, .asm_814e
+	jr z, .no_color
 	swap a
 	and $7
 	ld [wc2f3], a
 
-.asm_814e
+.no_color
 	ld hl, MAPOBJECT_FACING
 	add hl, bc
 	ld a, [hl]
@@ -3389,7 +3389,7 @@ Function8177: ; 8177
 	ld a, [hl]
 	and a
 	jr z, .next
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp MAPOBJECT_NOT_VISIBLE
@@ -3415,7 +3415,7 @@ Function8177: ; 8177
 	cp MAPOBJECT_SCREEN_HEIGHT
 	jr nc, .next
 	push bc
-	call Function80e7
+	call CopyObjectStruct
 	pop bc
 	jp c, Function81c9
 
@@ -3479,7 +3479,7 @@ Function81ea: ; 81ea
 	ld a, d
 	cp [hl]
 	jr nz, .next
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp MAPOBJECT_NOT_VISIBLE
@@ -3494,7 +3494,7 @@ Function81ea: ; 81ea
 	jr nc, .next
 	push de
 	push bc
-	call Function80e7
+	call CopyObjectStruct
 	pop bc
 	pop de
 
@@ -3537,7 +3537,7 @@ Function823e: ; 823e
 	ld a, e
 	cp [hl]
 	jr nz, .next
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp MAPOBJECT_NOT_VISIBLE
@@ -3552,7 +3552,7 @@ Function823e: ; 823e
 	jr nc, .next
 	push de
 	push bc
-	call Function80e7
+	call CopyObjectStruct
 	pop bc
 	pop de
 
@@ -3688,7 +3688,7 @@ Function8341: ; 8341
 	push bc
 	ld a, c
 	call GetMapObject
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	call GetObjectStruct
@@ -3697,7 +3697,7 @@ Function8341: ; 8341
 	pop bc
 	ld a, b
 	call GetMapObject
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	call GetObjectStruct
@@ -23302,7 +23302,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	jr nz, .nottogepi
 	; set the event flag for hatching togepi
 	ld de, EVENT_TOGEPI_HATCHED
-	ld b, $1
+	ld b, $1 ; set
 	call EventFlagAction
 .nottogepi
 
@@ -25223,14 +25223,14 @@ Function2454f: ; 2454f
 	ld bc, MapObjects
 	ld de, wd81e
 	xor a
-.asm_24561
+.loop
 	push af
 	push bc
 	push de
 	call Function245a7
-	jr c, .asm_2456c
+	jr c, .next
 	call Function2457d
-.asm_2456c
+.next
 	pop de
 	ld [de], a
 	inc de
@@ -25242,44 +25242,44 @@ Function2454f: ; 2454f
 	pop af
 	inc a
 	cp $10
-	jr nz, .asm_24561
+	jr nz, .loop
 	ret
 
 Function2457d: ; 2457d (9:457d)
-	ld hl, $1
+	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_245a3
-	ld hl, $c
+	jr z, .minus_one
+	ld hl, MAPOBJECT_EVENT_FLAG
 	add hl, bc
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
 	ld d, a
-	cp $ff
-	jr nz, .asm_24598
+	cp -1
+	jr nz, .clear
 	ld a, e
-	cp $ff
-	jr z, .asm_245a1
-	jr .asm_245a3
-.asm_24598
-	ld b, $2
+	cp -1
+	jr z, .zero
+	jr .minus_one
+.clear
+	ld b, $2 ; clear
 	call EventFlagAction
 	ld a, c
 	and a
-	jr nz, .asm_245a3
-.asm_245a1
+	jr nz, .minus_one
+.zero
 	xor a
 	ret
-.asm_245a3
-	ld a, $ff
+.minus_one
+	ld a, -1
 	scf
 	ret
 
 Function245a7: ; 245a7 (9:45a7)
 	call Function18f5
-	ld a, $ff
+	ld a, -1
 	ret c
 	xor a
 	ret
@@ -25302,26 +25302,26 @@ Function245af:: ; 245af
 ; 245cb
 
 Function245cb:: ; 245cb
-.asm_245cb
+.loop
 	call Function24609
 	jp c, Function245d6
 	call z, Function245e1
-	jr .asm_245cb
+	jr .loop
 ; 245d6
 
 Function245d6: ; 245d6
 	call Function1ff8
 	ld [wcf73], a
-	ld a, $0
+	ld a, 0
 	ld [$ffaa], a
 	ret
 ; 245e1
 
 Function245e1: ; 245e1
 	call Function245f1
-	ld a, $1
+	ld a, 1
 	ld [hBGMapMode], a
-	ld c, $3
+	ld c, 3
 	call DelayFrames
 	xor a
 	ld [hBGMapMode], a
@@ -49467,35 +49467,35 @@ UnknownScript_0x507af: ; 0x507af
 _BasementKey: ; 507b4
 	ld a, [MapGroup]
 	cp GROUP_WAREHOUSE_ENTRANCE
-	jr nz, .asm_507db
+	jr nz, .nope
 
 	ld a, [MapNumber]
 	cp MAP_WAREHOUSE_ENTRANCE
-	jr nz, .asm_507db
+	jr nz, .nope
 
 	call GetFacingTileCoord
 	ld a, d
 	cp 22
-	jr nz, .asm_507db
+	jr nz, .nope
 	ld a, e
 	cp 10
-	jr nz, .asm_507db
+	jr nz, .nope
 
-	ld hl, UnknownScript_0x507e1
+	ld hl, UnlockBasementDoorScript
 	call Function31cd
-	ld a, $1
+	ld a, 1
 	ld [wd0ec], a
 	ret
 
-.asm_507db
+.nope
 	ld a, $0
 	ld [wd0ec], a
 	ret
 ; 507e1
 
-UnknownScript_0x507e1: ; 0x507e1
+UnlockBasementDoorScript: ; 0x507e1
 	loadmovesprites
-	farjump MapWarehouseEntranceSignpost0Script
+	farjump BasementDoorScript
 ; 0x507e6
 
 
@@ -49505,7 +49505,7 @@ _SacredAsh: ; 507e6
 	call CheckAnyFaintedMon
 	ret nc
 
-	ld hl, UnknownScript_0x50821
+	ld hl, SacredAshScript
 	call Function31cd
 	ld a, $1
 	ld [wd0ec], a
@@ -49548,7 +49548,7 @@ CheckAnyFaintedMon: ; 507fb
 	ret
 ; 50821
 
-UnknownScript_0x50821: ; 0x50821
+SacredAshScript: ; 0x50821
 	special HealParty
 	reloadmappart
 	playsound SFX_WARP_TO

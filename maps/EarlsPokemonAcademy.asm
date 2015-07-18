@@ -425,7 +425,7 @@ EarlsPokemonAcademy_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_FISHER, 6, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, AcademyEarl, EVENT_6CB
+	person_event SPRITE_FISHER, 6, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
 	person_event SPRITE_YOUNGSTER, 9, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x68a83, -1
 	person_event SPRITE_GAMEBOY_KID, 15, 7, UP << 2 | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x68a86, -1
 	person_event SPRITE_GAMEBOY_KID, 15, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GameboyKidScript_0x68a91, -1

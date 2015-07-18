@@ -9,8 +9,7 @@ MapRoute28Signpost0Script:
 	jumptext UnknownText_0x1a5413
 
 MapRoute28SignpostItem1:
-	dw $00a3
-	db RARE_CANDY
+	dwb EVENT_ROUTE_28_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
 UnknownText_0x1a5413:
@@ -32,7 +31,7 @@ Route28_MapEventHeader:
 	; signposts
 	db 2
 	signpost 5, 31, SIGNPOST_READ, MapRoute28Signpost0Script
-	signpost 2, 25, SIGNPOST_ITEMIFSET, MapRoute28SignpostItem1
+	signpost 2, 25, SIGNPOST_ITEM, MapRoute28SignpostItem1
 
 	; people-events
 	db 0

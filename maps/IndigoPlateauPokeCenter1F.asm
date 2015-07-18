@@ -37,7 +37,7 @@ UnknownScript_0x18000a:
 	clearevent EVENT_BEAT_ELITE_4_BRUNO
 	clearevent EVENT_BEAT_ELITE_4_KAREN
 	clearevent EVENT_BEAT_CHAMPION_LANCE
-	setevent EVENT_75F
+	setevent EVENT_LANCES_ROOM_OAK_AND_MARY
 	return
 
 UnknownScript_0x180053:
@@ -86,7 +86,7 @@ UnknownScript_0x1800ce:
 	writetext UnknownText_0x1801f5
 	closetext
 	loadmovesprites
-	setevent EVENT_77B
+	setevent EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x1800f3
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -322,6 +322,6 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 	person_event SPRITE_NURSE, 11, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x18012c, -1
 	person_event SPRITE_CLERK, 11, 15, UP << 2 | $2, $0, -1, -1, $0, 0, ClerkScript_0x18012f, -1
 	person_event SPRITE_COOLTRAINER_M, 15, 15, DOWN << 2 | $2, $22, -1, -1, $0, 0, CooltrainerMScript_0x180136, -1
-	person_event SPRITE_SILVER, 13, 20, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_77B
+	person_event SPRITE_SILVER, 13, 20, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	person_event SPRITE_GRAMPS, 13, 5, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
 	person_event SPRITE_JYNX, 13, 4, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, AbraScript, EVENT_TELEPORT_GUY

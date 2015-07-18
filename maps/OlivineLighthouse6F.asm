@@ -63,7 +63,7 @@ UnknownScript_0x60bab:
 	closetext
 	loadmovesprites
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
-	clearevent EVENT_6D3
+	clearevent EVENT_OLIVINE_GYM_JASMINE
 	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x60c17
 	if_equal $3, UnknownScript_0x60c1e
@@ -270,6 +270,6 @@ OlivineLighthouse6F_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_JASMINE, 12, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, JasmineScript_0x60b91, EVENT_6D2
+	person_event SPRITE_JASMINE, 12, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, JasmineScript_0x60b91, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
 	person_event SPRITE_MONSTER, 12, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MonsterScript_0x60c3a, -1
-	person_event SPRITE_POKE_BALL, 8, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x60c66, EVENT_668
+	person_event SPRITE_POKE_BALL, 8, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x60c66, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

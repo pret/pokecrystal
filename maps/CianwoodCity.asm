@@ -135,12 +135,10 @@ CianwoodCityRock:
 	jumpstd smashrock
 
 MapCianwoodCitySignpostItem6:
-	dw $00b2
-	db REVIVE
+	dwb EVENT_CIANWOOD_CITY_HIDDEN_REVIVE, REVIVE
 
 MapCianwoodCitySignpostItem7:
-	dw $00b3
-	db MAX_ETHER
+	dwb EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
 
 MovementData_0x1a00da:
 	db $39 ; movement
@@ -398,8 +396,8 @@ CianwoodCity_MapEventHeader:
 	signpost 47, 19, SIGNPOST_READ, CianwoodPharmacySign
 	signpost 32, 8, SIGNPOST_READ, CianwoodPhotoStudioSign
 	signpost 24, 8, SIGNPOST_READ, CianwoodPokeSeerSign
-	signpost 19, 4, SIGNPOST_ITEMIFSET, MapCianwoodCitySignpostItem6
-	signpost 29, 5, SIGNPOST_ITEMIFSET, MapCianwoodCitySignpostItem7
+	signpost 19, 4, SIGNPOST_ITEM, MapCianwoodCitySignpostItem6
+	signpost 29, 5, SIGNPOST_ITEM, MapCianwoodCitySignpostItem7
 
 	; people-events
 	db 12
@@ -413,5 +411,5 @@ CianwoodCity_MapEventHeader:
 	person_event SPRITE_ROCK, 31, 14, LEFT << 2 | $10, $0, -1, -1, $0, 0, CianwoodCityRock, -1
 	person_event SPRITE_ROCK, 23, 8, LEFT << 2 | $10, $0, -1, -1, $0, 0, CianwoodCityRock, -1
 	person_event SPRITE_POKEFAN_F, 50, 14, UP << 2 | $1, $1, -1, -1, $0, 0, PokefanFScript_0x1a0084, -1
-	person_event SPRITE_SUPER_NERD, 25, 15, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_7AD
+	person_event SPRITE_SUPER_NERD, 25, 15, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
 	person_event SPRITE_SUICUNE, 18, 14, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

@@ -353,8 +353,7 @@ ItemFragment_0x5c1ce:
 	db TM_DIG, 1
 
 MapNationalParkSignpostItem2:
-	dw $0084
-	db FULL_HEAL
+	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
 UnknownText_0x5c1d3:
@@ -581,7 +580,7 @@ NationalPark_MapEventHeader:
 	db 4
 	signpost 44, 14, SIGNPOST_READ, MapNationalParkSignpost0Script
 	signpost 31, 27, SIGNPOST_READ, MapNationalParkSignpost1Script
-	signpost 47, 6, SIGNPOST_ITEMIFSET, MapNationalParkSignpostItem2
+	signpost 47, 6, SIGNPOST_ITEM, MapNationalParkSignpostItem2
 	signpost 4, 12, SIGNPOST_READ, MapNationalParkSignpost3Script
 
 	; people-events
@@ -597,6 +596,6 @@ NationalPark_MapEventHeader:
 	person_event SPRITE_POKEFAN_F, 33, 22, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerPokefanfBeverly1, -1
 	person_event SPRITE_POKEFAN_M, 13, 20, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerPokefanmWilliam, -1
 	person_event SPRITE_LASS, 18, 12, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassKrise, -1
-	person_event SPRITE_POKE_BALL, 16, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c1cc, EVENT_658
+	person_event SPRITE_POKE_BALL, 16, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c1cc, EVENT_NATIONAL_PARK_PARLYZ_HEAL
 	person_event SPRITE_GAMEBOY_KID, 10, 30, UP << 2 | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x5c037, -1
-	person_event SPRITE_POKE_BALL, 47, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c1ce, EVENT_659
+	person_event SPRITE_POKE_BALL, 47, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c1ce, EVENT_NATIONAL_PARK_TM_DIG

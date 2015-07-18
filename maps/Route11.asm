@@ -120,8 +120,7 @@ FruitTreeScript_0x68055:
 	fruittree $18
 
 MapRoute11SignpostItem1:
-	dw $00f5
-	db REVIVE
+	dwb EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
 	
 
 YoungsterOwenSeenText:
@@ -217,7 +216,7 @@ Route11_MapEventHeader:
 	; signposts
 	db 2
 	signpost 7, 3, SIGNPOST_READ, MapRoute11Signpost0Script
-	signpost 5, 32, SIGNPOST_ITEMIFSET, MapRoute11SignpostItem1
+	signpost 5, 32, SIGNPOST_ITEM, MapRoute11SignpostItem1
 
 	; people-events
 	db 5

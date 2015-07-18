@@ -245,7 +245,7 @@ Function967d1: ; 967d1
 ; 967e1
 
 Function967e1: ; 967e1
-	callba Function5920
+	callba RefreshMapAppearDisappear
 	callba Functiond4d2
 	callba Functionb8098
 	ret
@@ -648,7 +648,7 @@ TryObjectEvent: ; 969b5
 ; 96a04
 
 .zero ; 96a04
-	ld hl, MAPOBJECT_POINTER_LO
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -660,7 +660,7 @@ TryObjectEvent: ; 969b5
 ; 96a12
 
 .one ; 96a12
-	ld hl, MAPOBJECT_POINTER_LO
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]

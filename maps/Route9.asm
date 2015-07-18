@@ -171,8 +171,7 @@ MapRoute9Signpost0Script:
 	jumptext UnknownText_0x1ab2a2
 
 MapRoute9SignpostItem1:
-	dw $00f2
-	db ETHER
+	dwb EVENT_ROUTE_9_HIDDEN_ETHER, ETHER
 	
 
 CamperDeanSeenText:
@@ -309,7 +308,7 @@ Route9_MapEventHeader:
 	; signposts
 	db 2
 	signpost 7, 15, SIGNPOST_READ, MapRoute9Signpost0Script
-	signpost 15, 41, SIGNPOST_ITEMIFSET, MapRoute9SignpostItem1
+	signpost 15, 41, SIGNPOST_ITEM, MapRoute9SignpostItem1
 
 	; people-events
 	db 6

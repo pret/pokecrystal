@@ -93,8 +93,7 @@ ItemFragment_0x1ae20f:
 	db HP_UP, 1
 
 MapRoute4SignpostItem1:
-	dw $00f1
-	db ULTRA_BALL
+	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
 Bird_keeperHankSeenText:
@@ -178,11 +177,11 @@ Route4_MapEventHeader:
 	; signposts
 	db 2
 	signpost 7, 3, SIGNPOST_READ, MapRoute4Signpost0Script
-	signpost 3, 10, SIGNPOST_ITEMIFSET, MapRoute4SignpostItem1
+	signpost 3, 10, SIGNPOST_ITEM, MapRoute4SignpostItem1
 
 	; people-events
 	db 4
 	person_event SPRITE_YOUNGSTER, 13, 21, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperHank, -1
 	person_event SPRITE_LASS, 12, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerPicnickerHope, -1
 	person_event SPRITE_LASS, 10, 25, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerPicnickerSharon, -1
-	person_event SPRITE_POKE_BALL, 7, 30, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1ae20f, EVENT_787
+	person_event SPRITE_POKE_BALL, 7, 30, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1ae20f, EVENT_ROUTE_4_HP_UP

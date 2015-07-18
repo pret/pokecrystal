@@ -123,13 +123,11 @@ BikerGlennScript:
 	end
 
 MapRoute17SignpostItem0:
-	dw $00f6
-	db MAX_ETHER
+	dwb EVENT_ROUTE_17_HIDDEN_MAX_ETHER, MAX_ETHER
 	
 
 MapRoute17SignpostItem1:
-	dw $00f7
-	db MAX_ELIXER
+	dwb EVENT_ROUTE_17_HIDDEN_MAX_ELIXER, MAX_ELIXER
 	
 
 BikerRileySeenText:
@@ -211,8 +209,8 @@ Route17_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 54, 9, SIGNPOST_ITEMIFSET, MapRoute17SignpostItem0
-	signpost 77, 8, SIGNPOST_ITEMIFSET, MapRoute17SignpostItem1
+	signpost 54, 9, SIGNPOST_ITEM, MapRoute17SignpostItem0
+	signpost 77, 8, SIGNPOST_ITEM, MapRoute17SignpostItem1
 
 	; people-events
 	db 4

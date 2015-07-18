@@ -117,8 +117,7 @@ VermilionCityMartSign:
 	jumpstd martsign
 
 MapVermilionCitySignpostItem7:
-	dw $00fc
-	db FULL_HEAL
+	dwb EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
 
 UnknownText_0x1aaa15:
 	text "VERMILION PORT is"
@@ -291,7 +290,7 @@ VermilionCity_MapEventHeader:
 	signpost 15, 27, SIGNPOST_READ, VermilionCityPortSign
 	signpost 5, 10, SIGNPOST_READ, VermilionCityPokeCenterSign
 	signpost 13, 22, SIGNPOST_READ, VermilionCityMartSign
-	signpost 19, 12, SIGNPOST_ITEMIFSET, MapVermilionCitySignpostItem7
+	signpost 19, 12, SIGNPOST_ITEM, MapVermilionCitySignpostItem7
 
 	; people-events
 	db 6
@@ -299,5 +298,5 @@ VermilionCity_MapEventHeader:
 	person_event SPRITE_GRAMPS, 10, 27, LEFT << 2 | $1, $0, -1, -1, $0, 0, GrampsScript_0x1aa986, -1
 	person_event SPRITE_MACHOP, 11, 30, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, VermilionMachop, -1
 	person_event SPRITE_SUPER_NERD, 20, 18, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x1aa99b, -1
-	person_event SPRITE_BIG_SNORLAX, 12, 38, UP << 2 | $11, $0, -1, -1, $0, 0, VermilionSnorlax, EVENT_770
+	person_event SPRITE_BIG_SNORLAX, 12, 38, UP << 2 | $11, $0, -1, -1, $0, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
 	person_event SPRITE_POKEFAN_M, 16, 35, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, VermilionGymBadgeGuy, -1

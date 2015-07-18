@@ -84,8 +84,7 @@ ItemFragment_0x7de88:
 	db ULTRA_BALL, 1
 
 MapMountMortar1FInsideSignpostItem0:
-	dw $0091
-	db MAX_REPEL
+	dwb EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL
 	
 
 PokemaniacMillerSeenText:
@@ -156,17 +155,17 @@ MountMortar1FInside_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 11, 30, SIGNPOST_ITEMIFSET, MapMountMortar1FInsideSignpostItem0
+	signpost 11, 30, SIGNPOST_ITEM, MapMountMortar1FInsideSignpostItem0
 
 	; people-events
 	db 10
 	person_event SPRITE_BOULDER, 47, 25, LEFT << 2 | $11, $0, -1, -1, $0, 0, MountMortar1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 42, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de7c, EVENT_67D
-	person_event SPRITE_POKE_BALL, 14, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de7e, EVENT_67E
-	person_event SPRITE_POKE_BALL, 31, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de80, EVENT_67F
-	person_event SPRITE_POKE_BALL, 24, 26, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de82, EVENT_7A6
-	person_event SPRITE_POKE_BALL, 23, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de84, EVENT_7A7
+	person_event SPRITE_POKE_BALL, 42, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de7c, EVENT_MOUNT_MORTAR_1F_INSIDE_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 14, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de7e, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 31, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de80, EVENT_MOUNT_MORTAR_1F_INSIDE_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 24, 26, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de82, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_POTION
+	person_event SPRITE_POKE_BALL, 23, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de84, EVENT_MOUNT_MORTAR_1F_INSIDE_NUGGET
 	person_event SPRITE_SUPER_NERD, 47, 37, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacMiller, -1
 	person_event SPRITE_SUPER_NERD, 32, 28, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerSupernerdMarkus, -1
-	person_event SPRITE_POKE_BALL, 20, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de86, EVENT_7C8
-	person_event SPRITE_POKE_BALL, 21, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de88, EVENT_7C9
+	person_event SPRITE_POKE_BALL, 20, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de86, EVENT_MOUNT_MORTAR_1F_INSIDE_IRON
+	person_event SPRITE_POKE_BALL, 21, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de88, EVENT_MOUNT_MORTAR_1F_INSIDE_ULTRA_BALL

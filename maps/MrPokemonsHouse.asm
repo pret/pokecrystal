@@ -120,9 +120,9 @@ UnknownScript_0x196ec9:
 	writetext UnknownText_0x197134
 	closetext
 	loadmovesprites
-	setevent EVENT_6BD
-	setevent EVENT_792
-	clearevent EVENT_793
+	setevent EVENT_RIVAL_NEW_BARK_TOWN
+	setevent EVENT_KRISS_HOUSE_1F_NEIGHBOR
+	clearevent EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
 	dotrigger $1
 	domaptrigger GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, $1
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $3
@@ -393,4 +393,4 @@ MrPokemonsHouse_MapEventHeader:
 	; people-events
 	db 2
 	person_event SPRITE_GENTLEMAN, 9, 7, LEFT << 2 | $1, $0, -1, -1, $0, 0, GentlemanScript_0x196e97, -1
-	person_event SPRITE_OAK, 9, 10, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6C9
+	person_event SPRITE_OAK, 9, 10, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK

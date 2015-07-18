@@ -292,8 +292,7 @@ ItemFragment_0x19efe3:
 	db PROTEIN, 1
 
 MapRoute25SignpostItem1:
-	dw $00f8
-	db POTION
+	dwb EVENT_ROUTE_25_HIDDEN_POTION, POTION
 	
 
 MovementData_0x19efe8:
@@ -548,12 +547,12 @@ Route25_MapEventHeader:
 	; signposts
 	db 2
 	signpost 5, 45, SIGNPOST_READ, MapRoute25Signpost0Script
-	signpost 5, 4, SIGNPOST_ITEMIFSET, MapRoute25SignpostItem1
+	signpost 5, 4, SIGNPOST_ITEM, MapRoute25SignpostItem1
 
 	; people-events
 	db 11
-	person_event SPRITE_MISTY, 13, 50, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_76E
-	person_event SPRITE_COOLTRAINER_M, 14, 50, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_76E
+	person_event SPRITE_MISTY, 13, 50, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_COOLTRAINER_M, 14, 50, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	person_event SPRITE_YOUNGSTER, 12, 16, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyDudley, -1
 	person_event SPRITE_LASS, 15, 20, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassEllen, -1
 	person_event SPRITE_YOUNGSTER, 12, 25, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyJoe, -1
@@ -562,4 +561,4 @@ Route25_MapEventHeader:
 	person_event SPRITE_LASS, 15, 32, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassShannon, -1
 	person_event SPRITE_SUPER_NERD, 11, 35, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerSupernerdPat, -1
 	person_event SPRITE_COOLTRAINER_M, 12, 41, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x19efac, -1
-	person_event SPRITE_POKE_BALL, 8, 36, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19efe3, EVENT_78B
+	person_event SPRITE_POKE_BALL, 8, 36, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN

@@ -417,8 +417,7 @@ ItemFragment_0x19da46:
 	db MAX_REPEL, 1
 
 MapRoute44SignpostItem2:
-	dw $00ae
-	db ELIXER
+	dwb EVENT_ROUTE_44_HIDDEN_ELIXER, ELIXER
 	
 
 FisherWilton1SeenText:
@@ -622,7 +621,7 @@ Route44_MapEventHeader:
 	db 3
 	signpost 7, 53, SIGNPOST_READ, MapRoute44Signpost0Script
 	signpost 10, 6, SIGNPOST_READ, MapRoute44Signpost1Script
-	signpost 9, 32, SIGNPOST_ITEMIFSET, MapRoute44SignpostItem2
+	signpost 9, 32, SIGNPOST_ITEM, MapRoute44SignpostItem2
 
 	; people-events
 	db 11
@@ -634,6 +633,6 @@ Route44_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_M, 19, 45, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainermAllen, -1
 	person_event SPRITE_COOLTRAINER_F, 18, 35, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainerfCybil, -1
 	person_event SPRITE_FRUIT_TREE, 9, 13, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19da40, -1
-	person_event SPRITE_POKE_BALL, 12, 34, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da42, EVENT_6B6
-	person_event SPRITE_POKE_BALL, 8, 49, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da44, EVENT_6B7
-	person_event SPRITE_POKE_BALL, 13, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da46, EVENT_7BD
+	person_event SPRITE_POKE_BALL, 12, 34, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da42, EVENT_ROUTE_44_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 8, 49, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da44, EVENT_ROUTE_44_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 13, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19da46, EVENT_ROUTE_44_MAX_REPEL

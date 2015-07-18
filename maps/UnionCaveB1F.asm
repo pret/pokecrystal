@@ -231,6 +231,6 @@ UnionCaveB1F_MapEventHeader:
 	person_event SPRITE_POKEFAN_M, 11, 20, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerLeonard, -1
 	person_event SPRITE_SUPER_NERD, 36, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacAndrew, -1
 	person_event SPRITE_SUPER_NERD, 34, 21, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacCalvin, -1
-	person_event SPRITE_POKE_BALL, 20, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a016, EVENT_65E
+	person_event SPRITE_POKE_BALL, 20, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a016, EVENT_UNION_CAVE_B1F_TM_SWIFT
 	person_event SPRITE_BOULDER, 14, 11, LEFT << 2 | $11, $0, -1, -1, $0, 0, UnionCaveB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 27, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a018, EVENT_65F
+	person_event SPRITE_POKE_BALL, 27, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a018, EVENT_UNION_CAVE_B1F_X_DEFEND

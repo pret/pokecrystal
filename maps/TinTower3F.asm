@@ -25,4 +25,4 @@ TinTower3F_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 18, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a37, EVENT_64B
+	person_event SPRITE_POKE_BALL, 18, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a37, EVENT_TIN_TOWER_3F_FULL_HEAL

@@ -607,4 +607,4 @@ Route35_MapEventHeader:
 	person_event SPRITE_SUPER_NERD, 14, 9, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerJugglerIrwin, -1
 	person_event SPRITE_OFFICER, 10, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x19ca49, -1
 	person_event SPRITE_FRUIT_TREE, 29, 6, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19ca7e, -1
-	person_event SPRITE_POKE_BALL, 20, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19ca7c, EVENT_6B2
+	person_event SPRITE_POKE_BALL, 20, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19ca7c, EVENT_ROUTE_35_TM_ROLLOUT

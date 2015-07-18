@@ -323,4 +323,4 @@ OlivineCity_MapEventHeader:
 	person_event SPRITE_SAILOR, 31, 30, UP << 2 | $0, $10, -1, -1, $0, 0, SailorScript_0x1a88a3, -1
 	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, StandingYoungsterScript_0x1a88a6, -1
 	person_event SPRITE_SAILOR, 25, 21, DOWN << 2 | $2, $11, -1, -1, $0, 0, SailorScript_0x1a88ba, -1
-	person_event SPRITE_OLIVINE_RIVAL, 15, 14, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6C3
+	person_event SPRITE_OLIVINE_RIVAL, 15, 14, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY

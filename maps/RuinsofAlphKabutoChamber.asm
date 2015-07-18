@@ -66,10 +66,10 @@ MapRuinsofAlphKabutoChamberSignpost2Script:
 	end
 
 UnknownScript_0x58778:
-	setevent EVENT_705
+	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_2A1
 	setflag ENGINE_UNLOCKED_UNOWNS_1
-	setevent EVENT_74E
+	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote EMOTE_SHOCK, $0, 15
@@ -284,5 +284,5 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_RECEPTIONIST, 9, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x58769, EVENT_74E
+	person_event SPRITE_RECEPTIONIST, 9, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	person_event SPRITE_SCIENTIST, 5, 7, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x587a8, -1

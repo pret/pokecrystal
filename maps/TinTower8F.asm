@@ -35,6 +35,6 @@ TinTower8F_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_POKE_BALL, 17, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b35, EVENT_651
-	person_event SPRITE_POKE_BALL, 10, 15, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b37, EVENT_652
-	person_event SPRITE_POKE_BALL, 5, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b39, EVENT_653
+	person_event SPRITE_POKE_BALL, 17, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b35, EVENT_TIN_TOWER_8F_NUGGET
+	person_event SPRITE_POKE_BALL, 10, 15, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b37, EVENT_TIN_TOWER_8F_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 5, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b39, EVENT_TIN_TOWER_8F_FULL_RESTORE

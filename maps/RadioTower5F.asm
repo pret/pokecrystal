@@ -115,15 +115,15 @@ UnknownScript_0x6006e:
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
 	setevent EVENT_CLEARED_RADIO_TOWER
 	clearflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	setevent EVENT_6CC
-	setevent EVENT_6CD
-	setevent EVENT_6CE
-	clearevent EVENT_736
+	setevent EVENT_GOLDENROD_CITY_ROCKET_SCOUT
+	setevent EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
+	setevent EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	clearevent EVENT_MAHOGANY_MART_OWNERS
 	clearflag ENGINE_ROCKETS_IN_MAHOGANY
-	clearevent EVENT_6CF
-	clearevent EVENT_6D0
-	setevent EVENT_6E3
-	clearevent EVENT_6E4
+	clearevent EVENT_GOLDENROD_CITY_CIVILIANS
+	clearevent EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	setevent EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
+	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
 	disappear $2
 	moveperson $2, $c, $0
@@ -456,7 +456,7 @@ RadioTower5F_MapEventHeader:
 	; people-events
 	db 5
 	person_event SPRITE_GENTLEMAN, 10, 7, DOWN << 2 | $3, $0, -1, -1, $0, 0, Director, -1
-	person_event SPRITE_ROCKET, 9, 17, LEFT << 2 | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6CE
-	person_event SPRITE_ROCKET_GIRL, 6, 21, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerExecutivef1, EVENT_6CE
-	person_event SPRITE_ROCKER, 9, 17, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Ben, EVENT_6D0
-	person_event SPRITE_POKE_BALL, 9, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x600fe, EVENT_7CD
+	person_event SPRITE_ROCKET, 9, 17, LEFT << 2 | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 6, 21, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKER, 9, 17, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_POKE_BALL, 9, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL

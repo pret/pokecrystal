@@ -22,7 +22,7 @@ UnknownScript_0x56c0e:
 	return
 
 UnknownScript_0x56c11:
-	checkflag ENGINE_5E
+	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue UnknownScript_0x56c19
 	disappear $d
 UnknownScript_0x56c19: ;0x56c19
@@ -490,4 +490,4 @@ GoldenrodGameCorner_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_F, 7, 14, DOWN << 2 | $2, $12, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x56e1d, -1
 	person_event SPRITE_GENTLEMAN, 14, 9, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x56e20, -1
 	person_event SPRITE_POKEFAN_M, 13, 6, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x56e2b, -1
-	person_event SPRITE_POKEFAN_M, 14, 21, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x56c1a, EVENT_76B
+	person_event SPRITE_POKEFAN_M, 14, 21, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x56c1a, EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR

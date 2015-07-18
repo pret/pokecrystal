@@ -101,8 +101,7 @@ ItemFragment_0x5c947:
 	db TM_DIG, 1
 
 MapNationalParkBugContestSignpostItem2:
-	dw $0084
-	db FULL_HEAL
+	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
 UnknownText_0x5c94c:
@@ -226,7 +225,7 @@ NationalParkBugContest_MapEventHeader:
 	db 4
 	signpost 44, 14, SIGNPOST_READ, MapNationalParkBugContestSignpost0Script
 	signpost 31, 27, SIGNPOST_READ, MapNationalParkBugContestSignpost1Script
-	signpost 47, 6, SIGNPOST_ITEMIFSET, MapNationalParkBugContestSignpostItem2
+	signpost 47, 6, SIGNPOST_ITEM, MapNationalParkBugContestSignpostItem2
 	signpost 4, 12, SIGNPOST_READ, MapNationalParkBugContestSignpost3Script
 
 	; people-events
@@ -241,5 +240,5 @@ NationalParkBugContest_MapEventHeader:
 	person_event SPRITE_YOUNGSTER, 31, 15, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x5c924, EVENT_BUG_CATCHING_CONTESTANT_8A
 	person_event SPRITE_YOUNGSTER, 12, 20, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x5c92c, EVENT_BUG_CATCHING_CONTESTANT_9A
 	person_event SPRITE_YOUNGSTER, 38, 21, DOWN << 2 | $2, $33, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x5c934, EVENT_BUG_CATCHING_CONTESTANT_10A
-	person_event SPRITE_POKE_BALL, 16, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c945, EVENT_658
-	person_event SPRITE_POKE_BALL, 47, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c947, EVENT_659
+	person_event SPRITE_POKE_BALL, 16, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c945, EVENT_NATIONAL_PARK_PARLYZ_HEAL
+	person_event SPRITE_POKE_BALL, 47, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c947, EVENT_NATIONAL_PARK_TM_DIG

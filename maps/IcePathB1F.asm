@@ -34,22 +34,22 @@ StoneTable_0x7e4c7:
 
 UnknownScript_0x7e4d8:
 	disappear 2
-	clearevent EVENT_BOULDER_IN_ICE_PATH_1
+	clearevent EVENT_BOULDER_IN_ICE_PATH_1A
 	jump UnknownScript_0x7e4f8
 
 UnknownScript_0x7e4e0:
 	disappear 3
-	clearevent EVENT_BOULDER_IN_ICE_PATH_2
+	clearevent EVENT_BOULDER_IN_ICE_PATH_2A
 	jump UnknownScript_0x7e4f8
 
 UnknownScript_0x7e4e8:
 	disappear 4
-	clearevent EVENT_BOULDER_IN_ICE_PATH_3
+	clearevent EVENT_BOULDER_IN_ICE_PATH_3A
 	jump UnknownScript_0x7e4f8
 
 UnknownScript_0x7e4f0:
 	disappear 5
-	clearevent EVENT_BOULDER_IN_ICE_PATH_4
+	clearevent EVENT_BOULDER_IN_ICE_PATH_4A
 	jump UnknownScript_0x7e4f8
 
 UnknownScript_0x7e4f8:
@@ -74,8 +74,7 @@ ItemFragment_0x7e50d:
 	db IRON, 1
 
 MapIcePathB1FSignpostItem0:
-	dw $0094
-	db MAX_POTION
+	dwb EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
 
 UnknownText_0x7e512:
@@ -104,12 +103,12 @@ IcePathB1F_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 30, 17, SIGNPOST_ITEMIFSET, MapIcePathB1FSignpostItem0
+	signpost 30, 17, SIGNPOST_ITEM, MapIcePathB1FSignpostItem0
 
 	; people-events
 	db 5
-	person_event SPRITE_BOULDER, 11, 15, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_709
-	person_event SPRITE_BOULDER, 12, 11, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_70A
-	person_event SPRITE_BOULDER, 13, 12, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_70B
-	person_event SPRITE_BOULDER, 11, 21, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_70C
-	person_event SPRITE_POKE_BALL, 39, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e50d, EVENT_68A
+	person_event SPRITE_BOULDER, 11, 15, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
+	person_event SPRITE_BOULDER, 12, 11, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
+	person_event SPRITE_BOULDER, 13, 12, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
+	person_event SPRITE_BOULDER, 11, 21, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
+	person_event SPRITE_POKE_BALL, 39, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e50d, EVENT_ICE_PATH_B1F_IRON

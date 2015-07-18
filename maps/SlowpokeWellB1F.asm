@@ -79,15 +79,15 @@ GruntM1Script:
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
 	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_SILVER
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $1
-	clearevent EVENT_6F3
-	clearevent EVENT_6E9
+	clearevent EVENT_ILEX_FOREST_APPRENTICE
+	clearevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_6F5
 	setevent EVENT_6F6
-	setevent EVENT_6FB
-	setevent EVENT_740
-	clearevent EVENT_6F9
-	clearevent EVENT_6FD
-	clearevent EVENT_73E
+	setevent EVENT_SLOWPOKE_WELL_SLOWPOKES
+	setevent EVENT_SLOWPOKE_WELL_KURT
+	clearevent EVENT_AZALEA_TOWN_SLOWPOKES
+	clearevent EVENT_KURTS_HOUSE_SLOWPOKE
+	clearevent EVENT_KURTS_HOUSE_KURT_1
 	special Function8c084
 	special HealParty
 	pause 15
@@ -390,12 +390,12 @@ SlowpokeWellB1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_ROCKET, 11, 19, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM29, EVENT_6FC
-	person_event SPRITE_ROCKET, 6, 9, UP << 2 | $2, $0, -1, -1, $2, 1, TrainerGruntM1, EVENT_6FC
-	person_event SPRITE_ROCKET, 10, 9, LEFT << 2 | $1, $0, -1, -1, $2, 2, TrainerGruntM2, EVENT_6FC
-	person_event SPRITE_ROCKET_GIRL, 8, 14, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerGruntF1, EVENT_6FC
-	person_event SPRITE_SLOWPOKE, 8, 11, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a681, EVENT_6FB
-	person_event SPRITE_SLOWPOKE, 6, 10, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a695, EVENT_6FB
-	person_event SPRITE_KURT, 18, 20, UP << 2 | $3, $0, -1, -1, $0, 0, KurtScript_0x5a5d5, EVENT_740
+	person_event SPRITE_ROCKET, 11, 19, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 6, 9, UP << 2 | $2, $0, -1, -1, $2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 10, 9, LEFT << 2 | $1, $0, -1, -1, $2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET_GIRL, 8, 14, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_SLOWPOKE, 8, 11, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 6, 10, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_KURT, 18, 20, UP << 2 | $3, $0, -1, -1, $0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
 	person_event SPRITE_BOULDER, 6, 7, LEFT << 2 | $11, $0, -1, -1, $0, 0, SlowpokeWellB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 7, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a6a3, EVENT_662
+	person_event SPRITE_POKE_BALL, 7, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION

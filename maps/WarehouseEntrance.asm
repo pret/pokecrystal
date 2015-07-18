@@ -7,13 +7,13 @@ WarehouseEntrance_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x7c043
+	dbw 5, .ResetSwitches
 
-	dbw 1, UnknownScript_0x7c076
+	dbw 1, .CheckBasementKey
 
-	dbw 2, UnknownScript_0x7c082
+	dbw 2, .CheckDayOfWeek
 
-UnknownScript_0x7c043:
+.ResetSwitches:
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3
@@ -33,69 +33,71 @@ UnknownScript_0x7c043:
 	copyvartobyte UndergroundSwitchPositions
 	return
 
-UnknownScript_0x7c076:
+.CheckBasementKey:
 	checkevent EVENT_USED_BASEMENT_KEY
-	iffalse UnknownScript_0x7c07d
+	iffalse .LockBasementDoor
 	return
 
-UnknownScript_0x7c07d:
+.LockBasementDoor:
 	changeblock $12, $6, $3d
 	return
 
-UnknownScript_0x7c082:
+.CheckDayOfWeek:
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, UnknownScript_0x7c0a5
-	if_equal TUESDAY, UnknownScript_0x7c0b5
-	if_equal WEDNESDAY, UnknownScript_0x7c0be
-	if_equal THURSDAY, UnknownScript_0x7c0c7
-	if_equal FRIDAY, UnknownScript_0x7c0d0
-	if_equal SATURDAY, UnknownScript_0x7c0d9
+	if_equal MONDAY, .Monday
+	if_equal TUESDAY, .Tuesday
+	if_equal WEDNESDAY, .Wednesday
+	if_equal THURSDAY, .Thursday
+	if_equal FRIDAY, .Friday
+	if_equal SATURDAY, .Saturday
+
+.Sunday:
 	disappear $7
 	disappear $8
 	appear $9
 	appear $a
 	return
 
-UnknownScript_0x7c0a5:
+.Monday:
 	disappear $7
 	checkmorn
-	iffalse UnknownScript_0x7c0ae
+	iffalse .NotMondayMorning
 	appear $7
-UnknownScript_0x7c0ae:
+.NotMondayMorning:
 	disappear $8
 	disappear $9
 	disappear $a
 	return
 
-UnknownScript_0x7c0b5:
+.Tuesday:
 	disappear $7
 	appear $8
 	disappear $9
 	disappear $a
 	return
 
-UnknownScript_0x7c0be:
+.Wednesday:
 	disappear $7
 	disappear $8
 	appear $9
 	disappear $a
 	return
 
-UnknownScript_0x7c0c7:
+.Thursday:
 	disappear $7
 	appear $8
 	disappear $9
 	disappear $a
 	return
 
-UnknownScript_0x7c0d0:
+.Friday:
 	disappear $7
 	disappear $8
 	appear $9
 	disappear $a
 	return
 
-UnknownScript_0x7c0d9:
+.Saturday:
 	disappear $7
 	appear $8
 	disappear $9
@@ -213,11 +215,11 @@ PokemaniacDonaldScript:
 GrannyScript_0x7c132:
 	loadfont
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, UnknownScript_0x7c140
-	if_equal SATURDAY, UnknownScript_0x7c140
-	jump UnknownScript_0x7c300
+	if_equal SUNDAY, .Open
+	if_equal SATURDAY, .Open
+	jump WarehouseEntranceScript_ShopClosed
 
-UnknownScript_0x7c140:
+.Open:
 	pokemart $1, $0021
 	loadmovesprites
 	end
@@ -225,64 +227,64 @@ UnknownScript_0x7c140:
 GrampsScript_0x7c146:
 	loadfont
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
-	iftrue UnknownScript_0x7c300
+	iftrue WarehouseEntranceScript_ShopClosed
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, UnknownScript_0x7c156
-	jump UnknownScript_0x7c300
+	if_equal MONDAY, .CheckMorn
+	jump WarehouseEntranceScript_ShopClosed
 
-UnknownScript_0x7c156:
+.CheckMorn:
 	checkmorn
-	iffalse UnknownScript_0x7c300
+	iffalse WarehouseEntranceScript_ShopClosed
 	pokemart $2, $0000
 	loadmovesprites
 	end
 
-SuperNerdScript_0x7c161:
+OlderHaircutBrotherScript:
 	loadfont
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, UnknownScript_0x7c173
-	if_equal THURSDAY, UnknownScript_0x7c173
-	if_equal SATURDAY, UnknownScript_0x7c173
-	jump UnknownScript_0x7c300
+	if_equal TUESDAY, .DoHaircut
+	if_equal THURSDAY, .DoHaircut
+	if_equal SATURDAY, .DoHaircut
+	jump WarehouseEntranceScript_ShopClosed
 
-UnknownScript_0x7c173:
+.DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
-	iftrue UnknownScript_0x7c208
+	iftrue .AlreadyGotHaircut
 	special Function24ae8
 	writetext UnknownText_0x7c5f9
 	yesorno
-	iffalse UnknownScript_0x7c1fc
+	iffalse .Refused
 	checkmoney $0, 500
-	if_equal $2, UnknownScript_0x7c202
+	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	keeptextopen
 	special Function7413
-	if_equal $0, UnknownScript_0x7c1fc
-	if_equal $1, UnknownScript_0x7c1fc
+	if_equal $0, .Refused
+	if_equal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
-	if_equal $2, UnknownScript_0x7c1a9
-	if_equal $3, UnknownScript_0x7c1b5
-	jump UnknownScript_0x7c1c1
+	if_equal $2, .two
+	if_equal $3, .three
+	jump .else
 
-UnknownScript_0x7c1a9:
+.two:
 	setevent EVENT_000
 	clearevent EVENT_001
 	clearevent EVENT_002
-	jump UnknownScript_0x7c1cd
+	jump .then
 
-UnknownScript_0x7c1b5:
+.three:
 	clearevent EVENT_000
 	setevent EVENT_001
 	clearevent EVENT_002
-	jump UnknownScript_0x7c1cd
+	jump .then
 
-UnknownScript_0x7c1c1:
+.else:
 	clearevent EVENT_000
 	clearevent EVENT_001
 	setevent EVENT_002
-	jump UnknownScript_0x7c1cd
+	jump .then
 
-UnknownScript_0x7c1cd:
+.then:
 	takemoney $0, 500
 	special Function24ae8
 	writetext UnknownText_0x7c6b8
@@ -302,70 +304,70 @@ UnknownScript_0x7c1cd:
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
-UnknownScript_0x7c1fc:
+.Refused:
 	writetext UnknownText_0x7c6ea
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x7c202:
+.NotEnoughMoney:
 	writetext UnknownText_0x7c709
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x7c208:
+.AlreadyGotHaircut:
 	writetext UnknownText_0x7c72b
 	closetext
 	loadmovesprites
 	end
 
-SuperNerdScript_0x7c20e:
+YoungerHaircutBrotherScript:
 	loadfont
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, UnknownScript_0x7c220
-	if_equal WEDNESDAY, UnknownScript_0x7c220
-	if_equal FRIDAY, UnknownScript_0x7c220
-	jump UnknownScript_0x7c300
+	if_equal SUNDAY, .DoHaircut
+	if_equal WEDNESDAY, .DoHaircut
+	if_equal FRIDAY, .DoHaircut
+	jump WarehouseEntranceScript_ShopClosed
 
-UnknownScript_0x7c220:
+.DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
-	iftrue UnknownScript_0x7c2b5
+	iftrue .AlreadyGotHaircut
 	special Function24ae8
 	writetext UnknownText_0x7c75c
 	yesorno
-	iffalse UnknownScript_0x7c2a9
+	iffalse .Refused
 	checkmoney $0, 300
-	if_equal $2, UnknownScript_0x7c2af
+	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	keeptextopen
 	special Function7418
-	if_equal $0, UnknownScript_0x7c2a9
-	if_equal $1, UnknownScript_0x7c2a9
+	if_equal $0, .Refused
+	if_equal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
-	if_equal $2, UnknownScript_0x7c256
-	if_equal $3, UnknownScript_0x7c262
-	jump UnknownScript_0x7c26e
+	if_equal $2, .two
+	if_equal $3, .three
+	jump .else
 
-UnknownScript_0x7c256:
+.two:
 	setevent EVENT_000
 	clearevent EVENT_001
 	clearevent EVENT_002
-	jump UnknownScript_0x7c27a
+	jump .then
 
-UnknownScript_0x7c262:
+.three:
 	clearevent EVENT_000
 	setevent EVENT_001
 	clearevent EVENT_002
-	jump UnknownScript_0x7c27a
+	jump .then
 
-UnknownScript_0x7c26e:
+.else:
 	clearevent EVENT_000
 	clearevent EVENT_001
 	setevent EVENT_002
-	jump UnknownScript_0x7c27a
+	jump .then
 
-UnknownScript_0x7c27a:
+.then:
 	takemoney $0, 300
 	special Function24ae8
 	writetext UnknownText_0x7c80e
@@ -385,19 +387,19 @@ UnknownScript_0x7c27a:
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
-UnknownScript_0x7c2a9:
+.Refused:
 	writetext UnknownText_0x7c842
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x7c2af:
+.NotEnoughMoney:
 	writetext UnknownText_0x7c85b
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x7c2b5:
+.AlreadyGotHaircut:
 	writetext UnknownText_0x7c87b
 	closetext
 	loadmovesprites
@@ -424,18 +426,18 @@ UnknownScript_0x7c2cd:
 	loadmovesprites
 	end
 
-MapWarehouseEntranceSignpost0Script::
+BasementDoorScript::
 	loadfont
 	checkevent EVENT_USED_BASEMENT_KEY
-	iftrue UnknownScript_0x7c2fa
+	iftrue .Open
 	checkitem BASEMENT_KEY
-	iftrue UnknownScript_0x7c2e8
+	iftrue .Unlock
 	writetext UnknownText_0x7c5b0
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x7c2e8:
+.Unlock:
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x7c5d6
 	closetext
@@ -446,13 +448,13 @@ UnknownScript_0x7c2e8:
 	setevent EVENT_USED_BASEMENT_KEY
 	end
 
-UnknownScript_0x7c2fa:
+.Open:
 	writetext UnknownText_0x7c5c3
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x7c300:
+WarehouseEntranceScript_ShopClosed:
 	writetext UnknownText_0x7c904
 	closetext
 	loadmovesprites
@@ -465,18 +467,15 @@ MapWarehouseEntranceSignpost1Script:
 	jumptext UnknownText_0x7c91a
 
 MapWarehouseEntranceSignpostItem2:
-	dw $008b
-	db PARLYZ_HEAL
+	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
 	
 
 MapWarehouseEntranceSignpostItem3:
-	dw $008c
-	db SUPER_POTION
+	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
 MapWarehouseEntranceSignpostItem4:
-	dw $008d
-	db ANTIDOTE
+	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_ANTIDOTE, ANTIDOTE
 	
 
 SupernerdEricSeenText:
@@ -726,11 +725,11 @@ WarehouseEntrance_MapEventHeader:
 
 	; signposts
 	db 5
-	signpost 6, 18, SIGNPOST_READ, MapWarehouseEntranceSignpost0Script
+	signpost 6, 18, SIGNPOST_READ, BasementDoorScript
 	signpost 6, 19, SIGNPOST_READ, MapWarehouseEntranceSignpost1Script
-	signpost 13, 6, SIGNPOST_ITEMIFSET, MapWarehouseEntranceSignpostItem2
-	signpost 18, 4, SIGNPOST_ITEMIFSET, MapWarehouseEntranceSignpostItem3
-	signpost 8, 17, SIGNPOST_ITEMIFSET, MapWarehouseEntranceSignpostItem4
+	signpost 13, 6, SIGNPOST_ITEM, MapWarehouseEntranceSignpostItem2
+	signpost 18, 4, SIGNPOST_ITEM, MapWarehouseEntranceSignpostItem3
+	signpost 8, 17, SIGNPOST_ITEM, MapWarehouseEntranceSignpostItem4
 
 	; people-events
 	db 9
@@ -738,8 +737,8 @@ WarehouseEntrance_MapEventHeader:
 	person_event SPRITE_SUPER_NERD, 13, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdTeru, -1
 	person_event SPRITE_SUPER_NERD, 31, 7, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPokemaniacIssac, -1
 	person_event SPRITE_SUPER_NERD, 10, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacDonald, -1
-	person_event SPRITE_POKE_BALL, 29, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7c306, EVENT_672
-	person_event SPRITE_GRAMPS, 15, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x7c146, EVENT_753
-	person_event SPRITE_SUPER_NERD, 18, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x7c161, EVENT_754
-	person_event SPRITE_SUPER_NERD, 19, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x7c20e, EVENT_755
-	person_event SPRITE_GRANNY, 25, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x7c132, EVENT_752
+	person_event SPRITE_POKE_BALL, 29, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
+	person_event SPRITE_GRAMPS, 15, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
+	person_event SPRITE_SUPER_NERD, 18, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
+	person_event SPRITE_SUPER_NERD, 19, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
+	person_event SPRITE_GRANNY, 25, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY

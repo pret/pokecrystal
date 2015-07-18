@@ -9,13 +9,11 @@ ItemFragment_0x185aa9:
 	db RARE_CANDY, 1
 
 MapTinTower5FSignpostItem0:
-	dw $007e
-	db FULL_RESTORE
+	dwb EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
 MapTinTower5FSignpostItem1:
-	dw $007f
-	db CARBOS
+	dwb EVENT_TIN_TOWER_5F_HIDDEN_CARBOS, CARBOS
 	
 
 TinTower5F_MapEventHeader:
@@ -34,9 +32,9 @@ TinTower5F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 14, 16, SIGNPOST_ITEMIFSET, MapTinTower5FSignpostItem0
-	signpost 15, 3, SIGNPOST_ITEMIFSET, MapTinTower5FSignpostItem1
+	signpost 14, 16, SIGNPOST_ITEM, MapTinTower5FSignpostItem0
+	signpost 15, 3, SIGNPOST_ITEM, MapTinTower5FSignpostItem1
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 13, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185aa9, EVENT_64F
+	person_event SPRITE_POKE_BALL, 13, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185aa9, EVENT_TIN_TOWER_5F_RARE_CANDY

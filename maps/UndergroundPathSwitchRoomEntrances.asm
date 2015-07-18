@@ -116,9 +116,9 @@ UnknownScript_0x7caaa:
 	end
 
 UnknownScript_0x7cad4:
-	checkevent EVENT_6C5
+	checkevent EVENT_RIVAL_BURNED_TOWER
 	iftrue UnknownScript_0x7cae1
-	setevent EVENT_6C5
+	setevent EVENT_RIVAL_BURNED_TOWER
 	domaptrigger GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F, $1
 UnknownScript_0x7cae1:
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -126,7 +126,7 @@ UnknownScript_0x7cae1:
 	writetext UnknownText_0x7ce9d
 	closetext
 	loadmovesprites
-	setevent EVENT_6C1
+	setevent EVENT_RIVAL_UNDERGROUND_PATH
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x7cb09
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -686,13 +686,11 @@ ItemFragment_0x7ce7f:
 	db FULL_HEAL, 1
 
 MapUndergroundPathSwitchRoomEntrancesSignpostItem4:
-	dw $008e
-	db MAX_POTION
+	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
 	
 
 MapUndergroundPathSwitchRoomEntrancesSignpostItem5:
-	dw $008f
-	db REVIVE
+	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
 	
 
 MovementData_0x7ce87:
@@ -1016,19 +1014,19 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	signpost 1, 10, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost1Script
 	signpost 1, 2, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost2Script
 	signpost 11, 20, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost3Script
-	signpost 9, 8, SIGNPOST_ITEMIFSET, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
-	signpost 8, 1, SIGNPOST_ITEMIFSET, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
+	signpost 9, 8, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
+	signpost 8, 1, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
 
 	; people-events
 	db 11
-	person_event SPRITE_PHARMACIST, 16, 13, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarDuncan, EVENT_6CE
-	person_event SPRITE_PHARMACIST, 12, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarEddie, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 21, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM13, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 15, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM11, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 7, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM25, EVENT_6CE
-	person_event SPRITE_ROCKET_GIRL, 16, 23, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF3, EVENT_6CE
+	person_event SPRITE_PHARMACIST, 16, 13, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_PHARMACIST, 12, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 21, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 15, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 7, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 16, 23, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_TEACHER, 31, 7, UP << 2 | $2, $0, -1, -1, $0, 0, TeacherScript_0x7ca7d, -1
 	person_event SPRITE_SUPER_NERD, 31, 23, UP << 2 | $2, $0, -1, -1, $0, 0, SuperNerdScript_0x7ca7a, -1
-	person_event SPRITE_POKE_BALL, 16, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7d, EVENT_673
-	person_event SPRITE_POKE_BALL, 13, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7f, EVENT_674
-	person_event SPRITE_SILVER, 7, 27, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6C1
+	person_event SPRITE_POKE_BALL, 16, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7d, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
+	person_event SPRITE_POKE_BALL, 13, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7f, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
+	person_event SPRITE_SILVER, 7, 27, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH

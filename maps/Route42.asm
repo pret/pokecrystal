@@ -251,8 +251,7 @@ FruitTreeScript_0x1a9351:
 	fruittree $17
 
 MapRoute42SignpostItem4:
-	dw $00ad
-	db MAX_POTION
+	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
 	
 
 MovementData_0x1a9356:
@@ -381,7 +380,7 @@ Route42_MapEventHeader:
 	signpost 5, 7, SIGNPOST_READ, MapRoute42Signpost1Script
 	signpost 9, 45, SIGNPOST_READ, MapRoute42Signpost2Script
 	signpost 8, 54, SIGNPOST_READ, MapRoute42Signpost3Script
-	signpost 11, 16, SIGNPOST_ITEMIFSET, MapRoute42SignpostItem4
+	signpost 11, 16, SIGNPOST_ITEM, MapRoute42SignpostItem4
 
 	; people-events
 	db 9
@@ -391,6 +390,6 @@ Route42_MapEventHeader:
 	person_event SPRITE_FRUIT_TREE, 20, 31, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a934d, -1
 	person_event SPRITE_FRUIT_TREE, 20, 32, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a934f, -1
 	person_event SPRITE_FRUIT_TREE, 20, 33, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a9351, -1
-	person_event SPRITE_POKE_BALL, 8, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a9349, EVENT_6B3
-	person_event SPRITE_POKE_BALL, 12, 37, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a934b, EVENT_6B4
+	person_event SPRITE_POKE_BALL, 8, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 12, 37, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
 	person_event SPRITE_SUICUNE, 20, 30, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

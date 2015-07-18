@@ -10,7 +10,7 @@ Route40_MapScriptHeader:
 	dbw 2, MonicaCallback
 
 MonicaCallback:
-	clearevent EVENT_7CF
+	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .MonicaAppears
 	disappear $a
@@ -188,8 +188,7 @@ Route40Rock:
 	jumpstd smashrock
 
 MapRoute40SignpostItem1:
-	dw $00ab
-	db HYPER_POTION
+	dwb EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a621c:
 	step_right
@@ -405,7 +404,7 @@ Route40_MapEventHeader:
 	; signposts
 	db 2
 	signpost 10, 14, SIGNPOST_READ, MapRoute40Signpost0Script
-	signpost 8, 7, SIGNPOST_ITEMIFSET, MapRoute40SignpostItem1
+	signpost 8, 7, SIGNPOST_ITEM, MapRoute40SignpostItem1
 
 	; people-events
 	db 12
@@ -417,7 +416,7 @@ Route40_MapEventHeader:
 	person_event SPRITE_ROCK, 13, 10, LEFT << 2 | $10, $0, -1, -1, $0, 0, Route40Rock, -1
 	person_event SPRITE_ROCK, 12, 11, LEFT << 2 | $10, $0, -1, -1, $0, 0, Route40Rock, -1
 	person_event SPRITE_LASS, 17, 15, UP << 2 | $2, $0, -1, -1, $0, 0, LassScript_0x1a61c4, -1
-	person_event SPRITE_BUENA, 14, 12, DOWN << 2 | $3, $0, -1, -1, $0, 0, MonicaScript, EVENT_75E
+	person_event SPRITE_BUENA, 14, 12, DOWN << 2 | $3, $0, -1, -1, $0, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
 	person_event SPRITE_POKEFAN_M, 10, 11, LEFT << 2 | $1, $0, -1, -1, $0, 0, PokefanMScript_0x1a61c7, -1
 	person_event SPRITE_LASS, 8, 17, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x1a61d3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, StandingYoungsterScript_0x1a61d6, EVENT_7CF
+	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

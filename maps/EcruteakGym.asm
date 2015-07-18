@@ -37,8 +37,8 @@ MortyScript_0x99d58:
 	checkcode VAR_BADGES
 	scall EcruteakGymTriggerRockets
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
-	setevent EVENT_766
-	setevent EVENT_RANG_CLEAR_BELL
+	setevent EVENT_RANG_CLEAR_BELL_1
+	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone
 	checkevent EVENT_GOT_TM30_SHADOW_BALL
 	iftrue UnknownScript_0x99db1
@@ -499,4 +499,4 @@ EcruteakGym_MapEventHeader:
 	person_event SPRITE_GRANNY, 9, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerMediumMartha, -1
 	person_event SPRITE_GRANNY, 13, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerMediumGrace, -1
 	person_event SPRITE_GYM_GUY, 19, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, EcruteakGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 18, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_7A8
+	person_event SPRITE_GRAMPS, 18, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS

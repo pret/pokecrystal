@@ -152,7 +152,7 @@ Route34IlexForestGate_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_TEACHER, 7, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_6EA
+	person_event SPRITE_TEACHER, 7, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
 	person_event SPRITE_BUTTERFREE, 8, 13, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ButterfreeScript_0x62d8a, -1
-	person_event SPRITE_LASS, 8, 7, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x62d94, EVENT_6EB
-	person_event SPRITE_TEACHER, 11, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_6EC
+	person_event SPRITE_LASS, 8, 7, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x62d94, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
+	person_event SPRITE_TEACHER, 11, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY

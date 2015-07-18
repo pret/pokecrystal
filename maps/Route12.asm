@@ -126,8 +126,7 @@ ItemFragment_0x1a700d:
 	db NUGGET, 1
 
 MapRoute12SignpostItem2:
-	dw $00f3
-	db ELIXER
+	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
 	
 
 FisherMartinSeenText:
@@ -239,7 +238,7 @@ Route12_MapEventHeader:
 	db 3
 	signpost 27, 11, SIGNPOST_READ, MapRoute12Signpost0Script
 	signpost 9, 13, SIGNPOST_READ, MapRoute12Signpost1Script
-	signpost 13, 14, SIGNPOST_ITEMIFSET, MapRoute12SignpostItem2
+	signpost 13, 14, SIGNPOST_ITEM, MapRoute12SignpostItem2
 
 	; people-events
 	db 6
@@ -247,5 +246,5 @@ Route12_MapEventHeader:
 	person_event SPRITE_FISHER, 27, 18, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherStephen, -1
 	person_event SPRITE_FISHER, 42, 14, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerFisherBarney, -1
 	person_event SPRITE_FISHER, 11, 10, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherKyle, -1
-	person_event SPRITE_POKE_BALL, 47, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700b, EVENT_788
-	person_event SPRITE_POKE_BALL, 55, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700d, EVENT_789
+	person_event SPRITE_POKE_BALL, 47, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
+	person_event SPRITE_POKE_BALL, 55, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET

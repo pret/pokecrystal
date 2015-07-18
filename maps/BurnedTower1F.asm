@@ -97,7 +97,7 @@ UnknownScript_0x185c80:
 	closetext
 	loadmovesprites
 	dotrigger $2
-	setevent EVENT_6C5
+	setevent EVENT_RIVAL_BURNED_TOWER
 	special Functionc48f
 	pause 15
 	earthquake 50
@@ -129,13 +129,11 @@ BurnedTower1FRock:
 	jumpstd smashrock
 
 MapBurnedTower1FSignpostItem0:
-	dw $0080
-	db ETHER
+	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ETHER, ETHER
 	
 
 MapBurnedTower1FSignpostItem1:
-	dw $00ff
-	db ULTRA_BALL
+	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
 ItemFragment_0x185ccb:
@@ -306,13 +304,13 @@ BurnedTower1F_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 7, 8, SIGNPOST_ITEMIFSET, MapBurnedTower1FSignpostItem0
-	signpost 11, 13, SIGNPOST_ITEMIFSET, MapBurnedTower1FSignpostItem1
+	signpost 7, 8, SIGNPOST_ITEM, MapBurnedTower1FSignpostItem0
+	signpost 11, 13, SIGNPOST_ITEM, MapBurnedTower1FSignpostItem1
 
 	; people-events
 	db 5
 	person_event SPRITE_ROCK, 8, 19, LEFT << 2 | $10, $0, -1, -1, $0, 0, BurnedTower1FRock, -1
-	person_event SPRITE_SUPER_NERD, 16, 16, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x185cbc, EVENT_765
-	person_event SPRITE_SILVER, 13, 12, LEFT << 2 | $0, $0, -1, -1, $2, 3, ObjectEvent, EVENT_6C5
-	person_event SPRITE_MORTY, 18, 18, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MortyScript_0x185cbf, EVENT_764
-	person_event SPRITE_POKE_BALL, 6, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185ccb, EVENT_656
+	person_event SPRITE_SUPER_NERD, 16, 16, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
+	person_event SPRITE_SILVER, 13, 12, LEFT << 2 | $0, $0, -1, -1, $2, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
+	person_event SPRITE_MORTY, 18, 18, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
+	person_event SPRITE_POKE_BALL, 6, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP

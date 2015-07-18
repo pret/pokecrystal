@@ -156,8 +156,7 @@ FruitTreeScript_0x1a8e0d:
 	fruittree $13
 
 MapRoute37SignpostItem1:
-	dw $00a9
-	db ETHER
+	dwb EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
 	
 
 TwinsAnnandanne1SeenText:
@@ -294,7 +293,7 @@ Route37_MapEventHeader:
 	; signposts
 	db 2
 	signpost 3, 5, SIGNPOST_READ, MapRoute37Signpost0Script
-	signpost 2, 4, SIGNPOST_ITEMIFSET, MapRoute37SignpostItem1
+	signpost 2, 4, SIGNPOST_ITEM, MapRoute37SignpostItem1
 
 	; people-events
 	db 7
@@ -302,6 +301,6 @@ Route37_MapEventHeader:
 	person_event SPRITE_WEIRD_TREE, 16, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAnnandanne2, -1
 	person_event SPRITE_YOUNGSTER, 10, 10, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicGreg, -1
 	person_event SPRITE_FRUIT_TREE, 9, 17, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e09, -1
-	person_event SPRITE_BUG_CATCHER, 12, 20, DOWN << 2 | $2, $11, -1, -1, $0, 0, SunnyScript, EVENT_75B
+	person_event SPRITE_BUG_CATCHER, 12, 20, DOWN << 2 | $2, $11, -1, -1, $0, 0, SunnyScript, EVENT_ROUTE_37_SUNNY_OF_SUNDAY
 	person_event SPRITE_FRUIT_TREE, 9, 20, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e0b, -1
 	person_event SPRITE_FRUIT_TREE, 11, 19, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e0d, -1

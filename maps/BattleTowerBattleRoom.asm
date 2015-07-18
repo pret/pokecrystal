@@ -155,5 +155,5 @@ BattleTowerBattleRoom_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_YOUNGSTER, 4, 8, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_791
+	person_event SPRITE_YOUNGSTER, 4, 8, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
 	person_event SPRITE_RECEPTIONIST, 10, 5, LEFT << 2 | $1, $0, -1, -1, $0, 0, ObjectEvent, -1

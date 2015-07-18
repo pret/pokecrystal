@@ -12,13 +12,13 @@ DayCare_MapScriptHeader:
 UnknownScript_0x62f7b:
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62f88
-	clearevent EVENT_6E5
-	setevent EVENT_6E6
+	clearevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	setevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	return
 
 UnknownScript_0x62f88:
-	setevent EVENT_6E5
-	clearevent EVENT_6E6
+	setevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	clearevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	return
 
 GrampsScript_0x62f8f:
@@ -175,5 +175,5 @@ DayCare_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, GrampsScript_0x62f8f, EVENT_6E5
+	person_event SPRITE_GRAMPS, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, GrampsScript_0x62f8f, EVENT_DAYCARE_MAN_IN_DAYCARE
 	person_event SPRITE_GRANNY, 7, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrannyScript_0x62fc3, -1

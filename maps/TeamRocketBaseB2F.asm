@@ -89,9 +89,9 @@ UnknownScript_0x6cfac:
 	loadtrainer EXECUTIVEF, 2
 	startbattle
 	disappear $5
-	setevent EVENT_6DD
-	setevent EVENT_6DE
-	setevent EVENT_6D6
+	setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
+	setevent EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
+	setevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	returnafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
 	loadfont
@@ -108,7 +108,7 @@ UnknownScript_0x6cfac:
 	pause 15
 	special Function8c0ab
 	dotrigger $2
-	clearevent EVENT_6D6
+	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x6d5d8
@@ -265,11 +265,11 @@ VoltorbScript_0x6d101:
 	iftrue UnknownScript_0x6d182
 	disappear $6
 	disappear $9
-	checkevent EVENT_6E0
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E1
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E2
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -283,11 +283,11 @@ VoltorbScript_0x6d12c:
 	iftrue UnknownScript_0x6d182
 	disappear $7
 	disappear $a
-	checkevent EVENT_6E0
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E1
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E2
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -301,11 +301,11 @@ VoltorbScript_0x6d157:
 	iftrue UnknownScript_0x6d182
 	disappear $8
 	disappear $b
-	checkevent EVENT_6E0
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E1
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E2
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -339,10 +339,10 @@ UnknownScript_0x6d184:
 	disappear $4
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT
 	clearflag ENGINE_ROCKET_SIGNAL_ON_CH20
-	setevent EVENT_6DC
-	setevent EVENT_757
+	setevent EVENT_ROUTE_43_GATE_ROCKETS
+	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
 	dotrigger $3
-	clearevent EVENT_735
+	clearevent EVENT_LAKE_OF_RAGE_CIVILIANS
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	setevent EVENT_SECURITY_CAMERA_1
 	setevent EVENT_SECURITY_CAMERA_2
@@ -395,8 +395,7 @@ ItemFragment_0x6d20d:
 	db TM_THIEF, 1
 
 MapTeamRocketBaseB2FSignpostItem22:
-	dw $0087
-	db FULL_HEAL
+	dwb EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
 MovementData_0x6d212:
@@ -997,21 +996,21 @@ TeamRocketBaseB2F_MapEventHeader:
 	signpost 6, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
 	signpost 7, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
 	signpost 8, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 26, SIGNPOST_ITEMIFSET, MapTeamRocketBaseB2FSignpostItem22
+	signpost 7, 26, SIGNPOST_ITEM, MapTeamRocketBaseB2FSignpostItem22
 
 	; people-events
 	db 14
-	person_event SPRITE_ROCKET, 20, 24, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6DE
-	person_event SPRITE_ROCKET_GIRL, 20, 24, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_6DD
-	person_event SPRITE_LANCE, 17, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6D6
-	person_event SPRITE_DRAGON, 17, 13, LEFT << 2 | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6DF
-	person_event SPRITE_VOLTORB, 9, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d101, EVENT_6E0
-	person_event SPRITE_VOLTORB, 11, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d12c, EVENT_6E1
-	person_event SPRITE_VOLTORB, 13, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d157, EVENT_6E2
-	person_event SPRITE_VOLTORB, 9, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6E0
-	person_event SPRITE_VOLTORB, 11, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6E1
-	person_event SPRITE_VOLTORB, 13, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6E2
-	person_event SPRITE_ROCKET, 17, 29, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM17, EVENT_6DA
-	person_event SPRITE_ROCKET, 5, 8, LEFT << 2 | $2, $0, -1, -1, $2, 1, TrainerGruntM18, EVENT_6DA
-	person_event SPRITE_ROCKET, 18, 25, LEFT << 2 | $0, $0, -1, -1, $2, 4, TrainerGruntM19, EVENT_6DA
-	person_event SPRITE_POKE_BALL, 14, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6d20d, EVENT_66C
+	person_event SPRITE_ROCKET, 20, 24, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
+	person_event SPRITE_ROCKET_GIRL, 20, 24, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
+	person_event SPRITE_LANCE, 17, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_LANCE
+	person_event SPRITE_DRAGON, 17, 13, LEFT << 2 | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_DRAGONITE
+	person_event SPRITE_VOLTORB, 9, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d101, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	person_event SPRITE_VOLTORB, 11, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d12c, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	person_event SPRITE_VOLTORB, 13, 11, UP << 2 | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d157, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	person_event SPRITE_VOLTORB, 9, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	person_event SPRITE_VOLTORB, 11, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	person_event SPRITE_VOLTORB, 13, 26, UP << 2 | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	person_event SPRITE_ROCKET, 17, 29, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM17, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 5, 8, LEFT << 2 | $2, $0, -1, -1, $2, 1, TrainerGruntM18, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 18, 25, LEFT << 2 | $0, $0, -1, -1, $2, 4, TrainerGruntM19, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_POKE_BALL, 14, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6d20d, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF

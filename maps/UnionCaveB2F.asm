@@ -203,6 +203,6 @@ UnionCaveB2F_MapEventHeader:
 	person_event SPRITE_ROCKER, 23, 19, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermNick, -1
 	person_event SPRITE_COOLTRAINER_F, 17, 9, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainerfGwen, -1
 	person_event SPRITE_COOLTRAINER_F, 34, 7, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfEmma, -1
-	person_event SPRITE_POKE_BALL, 6, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a36a, EVENT_660
-	person_event SPRITE_POKE_BALL, 23, 16, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a36c, EVENT_661
-	person_event SPRITE_SURF, 35, 15, UP << 2 | $20, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SurfScript_0x5a31f, EVENT_760
+	person_event SPRITE_POKE_BALL, 6, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a36a, EVENT_UNION_CAVE_B2F_ELIXER
+	person_event SPRITE_POKE_BALL, 23, 16, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a36c, EVENT_UNION_CAVE_B2F_HYPER_POTION
+	person_event SPRITE_SURF, 35, 15, UP << 2 | $20, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SurfScript_0x5a31f, EVENT_UNION_CAVE_B2F_LAPRAS

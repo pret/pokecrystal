@@ -67,7 +67,7 @@ UnknownScript_0x75f09:
 	loadfont
 	writetext UnknownText_0x76143
 	keeptextopen
-	setevent EVENT_72B
+	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
 	jump UnknownScript_0x75f37
 
@@ -76,7 +76,7 @@ GentlemanScript_0x75f1f:
 	loadfont
 	checkevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 	iftrue UnknownScript_0x75f67
-	checkevent EVENT_732
+	checkevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
 	iftrue UnknownScript_0x75f58
 	writetext UnknownText_0x760ae
 	closetext
@@ -584,13 +584,13 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 	; people-events
 	db 11
 	person_event SPRITE_CAPTAIN, 29, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CaptainScript_0x75ea7, -1
-	person_event SPRITE_GENTLEMAN, 21, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x75f1f, EVENT_730
-	person_event SPRITE_TWIN, 21, 7, LEFT << 2 | $2, $0, -1, -1, $0, 0, TwinScript_0x75f6d, EVENT_731
-	person_event SPRITE_TWIN, 29, 6, LEFT << 2 | $2, $0, -1, -1, $0, 0, TwinScript_0x75ebb, EVENT_732
-	person_event SPRITE_POKEFAN_M, 10, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerPokefanmColin, EVENT_739
-	person_event SPRITE_TWIN, 8, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsMegandpeg1, EVENT_739
-	person_event SPRITE_TWIN, 8, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsMegandpeg2, EVENT_739
-	person_event SPRITE_SUPER_NERD, 9, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerPsychicRodney, EVENT_73A
-	person_event SPRITE_POKEFAN_M, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmJeremy, EVENT_73B
-	person_event SPRITE_POKEFAN_F, 9, 9, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerPokefanfGeorgia, EVENT_73B
-	person_event SPRITE_SUPER_NERD, 19, 5, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdShawn, EVENT_73A
+	person_event SPRITE_GENTLEMAN, 21, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x75f1f, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	person_event SPRITE_TWIN, 21, 7, LEFT << 2 | $2, $0, -1, -1, $0, 0, TwinScript_0x75f6d, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	person_event SPRITE_TWIN, 29, 6, LEFT << 2 | $2, $0, -1, -1, $0, 0, TwinScript_0x75ebb, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
+	person_event SPRITE_POKEFAN_M, 10, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_TWIN, 8, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_TWIN, 8, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SUPER_NERD, 9, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_POKEFAN_M, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_POKEFAN_F, 9, 9, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_SUPER_NERD, 19, 5, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND

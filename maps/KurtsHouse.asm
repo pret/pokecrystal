@@ -41,7 +41,7 @@ KurtScript_0x18e178:
 	closetext
 	loadmovesprites
 	special Functionc48f
-	setevent EVENT_6FA
+	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x18e1ab
 	spriteface $0, DOWN
@@ -310,7 +310,7 @@ UnknownScript_0x18e3a2:
 UnknownScript_0x18e3ac:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	clearevent EVENT_7A4
+	clearevent EVENT_AZALEA_TOWN_KURT
 	waitbutton
 	special RestartMapMusic
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $2
@@ -359,7 +359,7 @@ KurtsGranddaughter1:
 	iftrue .Dad
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue .SlowpokeBack
-	checkevent EVENT_6FA
+	checkevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	iftrue .Lonely
 	loadfont
 	writetext KurtsGranddaughterSlowpokeGoneText
@@ -702,8 +702,8 @@ KurtsHouse_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_KURT, 6, 7, UP << 2 | $2, $0, -1, -1, $0, 0, KurtScript_0x18e178, EVENT_73E
-	person_event SPRITE_TWIN, 7, 9, DOWN << 2 | $3, $0, -1, -1, $0, 0, KurtsGranddaughter1, EVENT_78C
-	person_event SPRITE_SLOWPOKE, 7, 10, DOWN << 2 | $1, $0, -1, -1, $0, 0, KurtsHouseSlowpoke, EVENT_6FD
-	person_event SPRITE_KURT, 7, 18, UP << 2 | $3, $0, -1, -1, $0, 0, KurtScript_0x18e3bd, EVENT_73F
-	person_event SPRITE_TWIN, 8, 15, LEFT << 2 | $1, $0, -1, -1, $0, 0, KurtsGranddaughter2, EVENT_78D
+	person_event SPRITE_KURT, 6, 7, UP << 2 | $2, $0, -1, -1, $0, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
+	person_event SPRITE_TWIN, 7, 9, DOWN << 2 | $3, $0, -1, -1, $0, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
+	person_event SPRITE_SLOWPOKE, 7, 10, DOWN << 2 | $1, $0, -1, -1, $0, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
+	person_event SPRITE_KURT, 7, 18, UP << 2 | $3, $0, -1, -1, $0, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
+	person_event SPRITE_TWIN, 8, 15, LEFT << 2 | $1, $0, -1, -1, $0, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2

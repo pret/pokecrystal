@@ -66,7 +66,7 @@ UnknownScript_0x7517a:
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton
-	setevent EVENT_72B
+	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	domaptrigger GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $1
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $7, $11
 	end
@@ -79,7 +79,7 @@ UnknownScript_0x7517a:
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton
-	setevent EVENT_72A
+	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	domaptrigger GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $1
 	warp GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $7, $17
 	end
@@ -313,4 +313,4 @@ FastShip1F_MapEventHeader:
 	person_event SPRITE_SAILOR, 6, 29, UP << 2 | $2, $0, -1, -1, $0, 0, SailorScript_0x75160, -1
 	person_event SPRITE_SAILOR, 11, 18, LEFT << 2 | $1, $0, -1, -1, $0, 0, SailorScript_0x751d0, -1
 	person_event SPRITE_SAILOR, 21, 26, UP << 2 | $1, $2, -1, -1, $0, 0, SailorScript_0x751e4, -1
-	person_event SPRITE_GENTLEMAN, 10, 23, LEFT << 2 | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_72C
+	person_event SPRITE_GENTLEMAN, 10, 23, LEFT << 2 | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

@@ -181,4 +181,4 @@ OlivineLighthouse3F_MapEventHeader:
 	person_event SPRITE_SAILOR, 6, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSailorTerrell, -1
 	person_event SPRITE_GENTLEMAN, 9, 17, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerGentlemanPreston, -1
 	person_event SPRITE_YOUNGSTER, 13, 7, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperTheo, -1
-	person_event SPRITE_POKE_BALL, 6, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5b279, EVENT_664
+	person_event SPRITE_POKE_BALL, 6, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5b279, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER

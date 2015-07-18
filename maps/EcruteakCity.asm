@@ -81,8 +81,7 @@ EcruteakCityMartSign:
 	jumpstd martsign
 
 MapEcruteakCitySignpostItem7:
-	dw $00b4
-	db HYPER_POTION
+	dwb EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 UnusedMissingDaughterText:
 ; This text is neither used nor referenced in the final game.
@@ -287,7 +286,7 @@ EcruteakCity_MapEventHeader:
 	signpost 10, 2, SIGNPOST_READ, BurnedTowerSign
 	signpost 27, 24, SIGNPOST_READ, EcruteakCityPokeCenterSign
 	signpost 21, 30, SIGNPOST_READ, EcruteakCityMartSign
-	signpost 14, 23, SIGNPOST_ITEMIFSET, MapEcruteakCitySignpostItem7
+	signpost 14, 23, SIGNPOST_ITEM, MapEcruteakCitySignpostItem7
 
 	; people-events
 	db 7
@@ -297,4 +296,4 @@ EcruteakCity_MapEventHeader:
 	person_event SPRITE_LASS, 13, 7, UP << 2 | $3, $0, -1, -1, $0, 0, LassScript_0x1a4015, -1
 	person_event SPRITE_FISHER, 26, 13, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a4029, -1
 	person_event SPRITE_YOUNGSTER, 18, 14, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x1a403d, -1
-	person_event SPRITE_GRAMPS, 11, 7, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GrampsScript_0x1a400f, EVENT_7A9
+	person_event SPRITE_GRAMPS, 11, 7, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GrampsScript_0x1a400f, EVENT_ECRUTEAK_CITY_GRAMPS

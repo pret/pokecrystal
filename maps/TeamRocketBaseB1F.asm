@@ -23,7 +23,7 @@ SecurityCamera1a:
 	checkevent EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -48,7 +48,7 @@ SecurityCamera1b:
 	checkevent EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -73,7 +73,7 @@ SecurityCamera2a:
 	checkevent EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -99,7 +99,7 @@ SecurityCamera2b:
 	checkevent EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -125,7 +125,7 @@ SecurityCamera3a:
 	checkevent EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -151,7 +151,7 @@ SecurityCamera3b:
 	checkevent EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -177,7 +177,7 @@ SecurityCamera4:
 	checkevent EVENT_SECURITY_CAMERA_4
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -203,7 +203,7 @@ SecurityCamera5:
 	checkevent EVENT_SECURITY_CAMERA_5
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -569,8 +569,7 @@ ItemFragment_0x6cac8:
 	db GUARD_SPEC, 1
 
 MapTeamRocketBaseB1FSignpostItem8:
-	dw $0086
-	db REVIVE
+	dwb EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE, REVIVE
 	
 
 SecurityCameraMovement1:
@@ -815,13 +814,13 @@ TeamRocketBaseB1F_MapEventHeader:
 	signpost 5, 24, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
 	signpost 11, 20, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
 	signpost 11, 21, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
-	signpost 11, 3, SIGNPOST_ITEMIFSET, MapTeamRocketBaseB1FSignpostItem8
+	signpost 11, 3, SIGNPOST_ITEM, MapTeamRocketBaseB1FSignpostItem8
 
 	; people-events
 	db 6
-	person_event SPRITE_ROCKET, 4, 4, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_6D9
-	person_event SPRITE_ROCKET, 8, 6, LEFT << 2 | $1, $0, -1, -1, $2, 3, TrainerGruntM16, EVENT_6DA
-	person_event SPRITE_SCIENTIST, 16, 22, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistJed, EVENT_6DA
-	person_event SPRITE_POKE_BALL, 10, 31, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac4, EVENT_669
-	person_event SPRITE_POKE_BALL, 19, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac6, EVENT_66A
-	person_event SPRITE_POKE_BALL, 16, 25, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac8, EVENT_66B
+	person_event SPRITE_ROCKET, 4, 4, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
+	person_event SPRITE_ROCKET, 8, 6, LEFT << 2 | $1, $0, -1, -1, $2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 16, 22, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_POKE_BALL, 10, 31, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac4, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 19, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac6, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
+	person_event SPRITE_POKE_BALL, 16, 25, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac8, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC

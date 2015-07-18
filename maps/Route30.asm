@@ -283,8 +283,7 @@ FruitTreeScript_0x1a17f9:
 	fruittree $5
 
 MapRoute30SignpostItem4:
-	dw $00a4
-	db POTION
+	dwb EVENT_ROUTE_30_HIDDEN_POTION, POTION
 	
 
 MovementData_0x1a17fe:
@@ -461,18 +460,18 @@ Route30_MapEventHeader:
 	signpost 29, 13, SIGNPOST_READ, MapRoute30Signpost1Script
 	signpost 5, 15, SIGNPOST_READ, MapRoute30Signpost2Script
 	signpost 21, 3, SIGNPOST_READ, MapRoute30Signpost3Script
-	signpost 9, 14, SIGNPOST_ITEMIFSET, MapRoute30SignpostItem4
+	signpost 9, 14, SIGNPOST_ITEM, MapRoute30SignpostItem4
 
 	; people-events
 	db 11
-	person_event SPRITE_YOUNGSTER, 30, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a1673, EVENT_714
-	person_event SPRITE_YOUNGSTER, 32, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJoey, EVENT_715
+	person_event SPRITE_YOUNGSTER, 30, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a1673, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_YOUNGSTER, 32, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
 	person_event SPRITE_YOUNGSTER, 27, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerYoungsterMikey, -1
 	person_event SPRITE_BUG_CATCHER, 11, 5, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherDon, -1
 	person_event SPRITE_YOUNGSTER, 34, 11, UP << 2 | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x1a17d2, -1
-	person_event SPRITE_MONSTER, 28, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_714
-	person_event SPRITE_MONSTER, 29, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_714
+	person_event SPRITE_MONSTER, 28, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_MONSTER, 29, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
 	person_event SPRITE_FRUIT_TREE, 43, 9, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a17f7, -1
 	person_event SPRITE_FRUIT_TREE, 9, 15, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a17f9, -1
 	person_event SPRITE_COOLTRAINER_F, 17, 6, UP << 2 | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x1a17e6, -1
-	person_event SPRITE_POKE_BALL, 39, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a17f5, EVENT_7B8
+	person_event SPRITE_POKE_BALL, 39, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a17f5, EVENT_ROUTE_30_ANTIDOTE

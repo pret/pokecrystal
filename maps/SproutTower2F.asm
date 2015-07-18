@@ -133,4 +133,4 @@ SproutTower2F_MapEventHeader:
 	db 3
 	person_event SPRITE_SAGE, 7, 16, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSageNico, -1
 	person_event SPRITE_SAGE, 18, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSageEdmond, -1
-	person_event SPRITE_POKE_BALL, 5, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1847a7, EVENT_648
+	person_event SPRITE_POKE_BALL, 5, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1847a7, EVENT_SPROUT_TOWER2F_X_ACCURACY

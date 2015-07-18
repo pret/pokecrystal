@@ -237,4 +237,4 @@ GoldenrodDeptStore5F_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_M, 7, 10, DOWN << 2 | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x56133, -1
 	person_event SPRITE_POKEFAN_M, 9, 17, DOWN << 2 | $2, $22, -1, -1, $0, 0, PokefanMScript_0x5613a, -1
 	person_event SPRITE_TWIN, 5, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x56118, -1
-	person_event SPRITE_RECEPTIONIST, 9, 11, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x560ce, EVENT_763
+	person_event SPRITE_RECEPTIONIST, 9, 11, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY

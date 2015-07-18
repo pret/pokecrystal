@@ -223,4 +223,4 @@ EcruteakPokeCenter1F_MapEventHeader:
 	person_event SPRITE_POKEFAN_M, 10, 11, LEFT << 2 | $2, $0, -1, -1, $0, 0, PokefanMScript_0x98eb3, -1
 	person_event SPRITE_COOLTRAINER_F, 8, 5, DOWN << 2 | $3, $0, -1, -1, $0, 0, CooltrainerFScript_0x98ebf, -1
 	person_event SPRITE_GYM_GUY, 5, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GymGuyScript_0x98ec2, -1
-	person_event SPRITE_BILL, 11, 4, LEFT << 2 | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_713
+	person_event SPRITE_BILL, 11, 4, LEFT << 2 | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL

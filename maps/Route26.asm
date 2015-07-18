@@ -524,4 +524,4 @@ Route26_MapEventHeader:
 	person_event SPRITE_YOUNGSTER, 83, 17, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicRichard, -1
 	person_event SPRITE_FISHER, 96, 14, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherScott, -1
 	person_event SPRITE_FRUIT_TREE, 58, 18, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a4ec2, -1
-	person_event SPRITE_POKE_BALL, 19, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a4ec4, EVENT_6AA
+	person_event SPRITE_POKE_BALL, 19, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a4ec4, EVENT_ROUTE_26_MAX_ELIXER

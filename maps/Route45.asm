@@ -409,8 +409,7 @@ ItemFragment_0x19e29c:
 	db MAX_POTION, 1
 
 MapRoute45SignpostItem1:
-	dw $00af
-	db PP_UP
+	dwb EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
 	
 
 HikerErikSeenText:
@@ -644,7 +643,7 @@ Route45_MapEventHeader:
 	; signposts
 	db 2
 	signpost 4, 10, SIGNPOST_READ, MapRoute45Signpost0Script
-	signpost 80, 13, SIGNPOST_ITEMIFSET, MapRoute45SignpostItem1
+	signpost 80, 13, SIGNPOST_ITEM, MapRoute45SignpostItem1
 
 	; people-events
 	db 13
@@ -656,8 +655,8 @@ Route45_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_M, 22, 21, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermRyan, -1
 	person_event SPRITE_COOLTRAINER_F, 40, 9, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfKelly, -1
 	person_event SPRITE_FRUIT_TREE, 86, 20, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19e294, -1
-	person_event SPRITE_POKE_BALL, 55, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e296, EVENT_6B8
-	person_event SPRITE_POKE_BALL, 70, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e298, EVENT_6B9
-	person_event SPRITE_POKE_BALL, 24, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e29a, EVENT_6BA
-	person_event SPRITE_POKE_BALL, 37, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e29c, EVENT_6BB
+	person_event SPRITE_POKE_BALL, 55, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e296, EVENT_ROUTE_45_NUGGET
+	person_event SPRITE_POKE_BALL, 70, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e298, EVENT_ROUTE_45_REVIVE
+	person_event SPRITE_POKE_BALL, 24, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e29a, EVENT_ROUTE_45_ELIXER
+	person_event SPRITE_POKE_BALL, 37, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e29c, EVENT_ROUTE_45_MAX_POTION
 	person_event SPRITE_YOUNGSTER, 74, 8, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x19e269, -1

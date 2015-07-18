@@ -141,8 +141,7 @@ CeruleanCityMartSign:
 	jumpstd martsign
 
 MapCeruleanCitySignpostItem8:
-	dw EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
-	db BERSERK_GENE
+	dwb EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY, BERSERK_GENE
 
 UnknownText_0x1840bc:
 	text "KANTO's POWER"
@@ -296,7 +295,7 @@ CeruleanCity_MapEventHeader:
 	signpost 29, 14, SIGNPOST_READ, CeruleanLockedDoor
 	signpost 21, 20, SIGNPOST_READ, CeruleanCityPokeCenterSign
 	signpost 29, 26, SIGNPOST_READ, CeruleanCityMartSign
-	signpost 12, 2, SIGNPOST_ITEMIFSET, MapCeruleanCitySignpostItem8
+	signpost 12, 2, SIGNPOST_ITEM, MapCeruleanCitySignpostItem8
 
 	; people-events
 	db 6

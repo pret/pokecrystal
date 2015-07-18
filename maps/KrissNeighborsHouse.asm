@@ -115,4 +115,4 @@ KrissNeighborsHouse_MapEventHeader:
 	; people-events
 	db 2
 	person_event SPRITE_COOLTRAINER_F, 7, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighborsDaughter, -1
-	person_event SPRITE_POKEFAN_F, 7, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighbor, EVENT_793
+	person_event SPRITE_POKEFAN_F, 7, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR

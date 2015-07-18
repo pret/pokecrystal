@@ -27,10 +27,10 @@ UnknownScript_0x74da6:
 	applymovement $0, MovementData_0x74ef3
 	appear $2
 	dotrigger $0
-	setevent EVENT_731
-	setevent EVENT_730
-	setevent EVENT_739
-	clearevent EVENT_733
+	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	clearevent EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
 	setevent EVENT_030
 	setevent EVENT_000
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
@@ -53,8 +53,8 @@ SailorScript_0x74dc4:
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitbutton
-	setevent EVENT_73A
-	clearevent EVENT_73B
+	setevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	clearevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
 	clearevent EVENT_BEAT_BURGLAR_COREY
 	clearevent EVENT_BEAT_BUG_CATCHER_KEN
@@ -194,8 +194,7 @@ SuperNerdScript_0x74ee6:
 	end
 
 MapVermilionPortSignpostItem0:
-	dw $00eb
-	db IRON
+	dwb EVENT_VERMILION_PORT_HIDDEN_IRON, IRON
 	
 
 MovementData_0x74ef1:
@@ -314,10 +313,10 @@ VermilionPort_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 13, 16, SIGNPOST_ITEMIFSET, MapVermilionPortSignpostItem0
+	signpost 13, 16, SIGNPOST_ITEM, MapVermilionPortSignpostItem0
 
 	; people-events
 	db 3
-	person_event SPRITE_SAILOR, 21, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x74dc4, EVENT_72B
+	person_event SPRITE_SAILOR, 21, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	person_event SPRITE_SAILOR, 15, 10, LEFT << 2 | $1, $0, -1, -1, $0, 0, SailorScript_0x74e97, -1
 	person_event SPRITE_SUPER_NERD, 15, 15, UP << 2 | $1, $2, -1, -1, $0, 0, SuperNerdScript_0x74ee6, -1

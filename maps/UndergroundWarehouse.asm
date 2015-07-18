@@ -270,10 +270,10 @@ UndergroundWarehouse_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_ROCKET, 12, 13, UP << 2 | $3, $0, -1, -1, $2, 3, TrainerGruntM24, EVENT_6CE
-	person_event SPRITE_ROCKET, 19, 12, UP << 2 | $3, $0, -1, -1, $2, 3, TrainerGruntM14, EVENT_6CE
-	person_event SPRITE_ROCKET, 7, 18, LEFT << 2 | $1, $0, -1, -1, $2, 4, TrainerGruntM15, EVENT_6CE
-	person_event SPRITE_GENTLEMAN, 12, 16, DOWN << 2 | $3, $0, -1, -1, $0, 0, GentlemanScript_0x7d9bf, EVENT_6CE
-	person_event SPRITE_POKE_BALL, 19, 22, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e4, EVENT_679
-	person_event SPRITE_POKE_BALL, 13, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e6, EVENT_67A
-	person_event SPRITE_POKE_BALL, 5, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e8, EVENT_655
+	person_event SPRITE_ROCKET, 12, 13, UP << 2 | $3, $0, -1, -1, $2, 3, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 19, 12, UP << 2 | $3, $0, -1, -1, $2, 3, TrainerGruntM14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 7, 18, LEFT << 2 | $1, $0, -1, -1, $2, 4, TrainerGruntM15, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_GENTLEMAN, 12, 16, DOWN << 2 | $3, $0, -1, -1, $0, 0, GentlemanScript_0x7d9bf, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_POKE_BALL, 19, 22, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e4, EVENT_UNDERGROUND_WAREHOUSE_MAX_ETHER
+	person_event SPRITE_POKE_BALL, 13, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e6, EVENT_UNDERGROUND_WAREHOUSE_TM_SLEEP_TALK
+	person_event SPRITE_POKE_BALL, 5, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e8, EVENT_UNDERGROUND_WAREHOUSE_ULTRA_BALL

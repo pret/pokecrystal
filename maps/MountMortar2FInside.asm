@@ -51,8 +51,7 @@ ItemFragment_0x7e0e8:
 	db ESCAPE_ROPE, 1
 
 MapMountMortar2FInsideSignpostItem0:
-	dw $0092
-	db FULL_RESTORE
+	dwb EVENT_MOUNT_MORTAR_2F_INSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
 SupernerdHughSeenText:
@@ -89,14 +88,14 @@ MountMortar2FInside_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 8, 24, SIGNPOST_ITEMIFSET, MapMountMortar2FInsideSignpostItem0
+	signpost 8, 24, SIGNPOST_ITEM, MapMountMortar2FInsideSignpostItem0
 
 	; people-events
 	db 7
-	person_event SPRITE_POKE_BALL, 26, 32, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0de, EVENT_680
-	person_event SPRITE_POKE_BALL, 37, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e0, EVENT_681
-	person_event SPRITE_POKE_BALL, 21, 23, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e2, EVENT_682
-	person_event SPRITE_POKE_BALL, 9, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e4, EVENT_683
-	person_event SPRITE_POKE_BALL, 15, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e6, EVENT_684
-	person_event SPRITE_POKE_BALL, 9, 32, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e8, EVENT_685
+	person_event SPRITE_POKE_BALL, 26, 32, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0de, EVENT_MOUNT_MORTAR_2F_INSIDE_MAX_POTION
+	person_event SPRITE_POKE_BALL, 37, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e0, EVENT_MOUNT_MORTAR_2F_INSIDE_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 21, 23, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e2, EVENT_MOUNT_MORTAR_2F_INSIDE_TM_DEFENSE_CURL
+	person_event SPRITE_POKE_BALL, 9, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e4, EVENT_MOUNT_MORTAR_2F_INSIDE_DRAGON_SCALE
+	person_event SPRITE_POKE_BALL, 15, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e6, EVENT_MOUNT_MORTAR_2F_INSIDE_ELIXER
+	person_event SPRITE_POKE_BALL, 9, 32, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e8, EVENT_MOUNT_MORTAR_2F_INSIDE_ESCAPE_ROPE
 	person_event SPRITE_SUPER_NERD, 30, 17, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdHugh, -1

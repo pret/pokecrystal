@@ -102,7 +102,7 @@ LassScript_0x19408c:
 	writetext UnknownText_0x1942f1
 	closetext
 	loadmovesprites
-	clearevent EVENT_768
+	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x1940ac
 	applymovement $9, MovementData_0x19424e
@@ -713,10 +713,10 @@ Route36_MapEventHeader:
 	db 9
 	person_event SPRITE_YOUNGSTER, 17, 24, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicMark, -1
 	person_event SPRITE_YOUNGSTER, 18, 35, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSchoolboyAlan1, -1
-	person_event SPRITE_WEIRD_TREE, 13, 39, UP << 2 | $13, $0, -1, -1, $0, 0, WeirdTreeScript_0x19403c, EVENT_6F8
+	person_event SPRITE_WEIRD_TREE, 13, 39, UP << 2 | $13, $0, -1, -1, $0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
 	person_event SPRITE_LASS, 12, 55, UP << 2 | $1, $2, -1, -1, $0, 0, LassScript_0x1940e0, -1
 	person_event SPRITE_FISHER, 13, 48, LEFT << 2 | $0, $0, -1, -1, $0, 0, FisherScript_0x1940b9, -1
 	person_event SPRITE_FRUIT_TREE, 8, 25, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x194247, -1
-	person_event SPRITE_YOUNGSTER, 10, 50, DOWN << 2 | $2, $11, -1, -1, $0, 0, ArthurScript, EVENT_75A
+	person_event SPRITE_YOUNGSTER, 10, 50, DOWN << 2 | $2, $11, -1, -1, $0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
 	person_event SPRITE_LASS, 16, 37, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
 	person_event SPRITE_SUICUNE, 10, 25, DOWN << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36

@@ -280,8 +280,7 @@ Route41Rock:
 	jumpstd smashrock
 
 MapRoute41SignpostItem0:
-	dw $00ac
-	db MAX_ETHER
+	dwb EVENT_ROUTE_41_HIDDEN_MAX_ETHER, MAX_ETHER
 
 SwimmermCharlieSeenText:
 	text "The water's warm"
@@ -506,7 +505,7 @@ Route41_MapEventHeader:
 
 	; signposts
 	db 1
-	signpost 35, 9, SIGNPOST_ITEMIFSET, MapRoute41SignpostItem0
+	signpost 35, 9, SIGNPOST_ITEM, MapRoute41SignpostItem0
 
 	; people-events
 	db 10

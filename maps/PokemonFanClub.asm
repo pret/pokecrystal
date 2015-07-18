@@ -311,5 +311,5 @@ PokemonFanClub_MapEventHeader:
 	person_event SPRITE_RECEPTIONIST, 5, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x191821, -1
 	person_event SPRITE_FISHER, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, FisherScript_0x191824, -1
 	person_event SPRITE_TEACHER, 6, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, TeacherScript_0x19186b, -1
-	person_event SPRITE_FAIRY, 8, 6, UP << 2 | $2, $0, -1, -1, $0, 0, FairyScript_0x19186e, EVENT_774
+	person_event SPRITE_FAIRY, 8, 6, UP << 2 | $2, $0, -1, -1, $0, 0, FairyScript_0x19186e, EVENT_VERMILION_FAN_CLUB_DOLL
 	person_event SPRITE_ODDISH, 7, 11, UP << 2 | $12, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OddishScript_0x191871, -1

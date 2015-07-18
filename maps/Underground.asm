@@ -6,13 +6,11 @@ Underground_MapScriptHeader:
 	db 0
 
 MapUndergroundSignpostItem0:
-	dw $00e5
-	db FULL_RESTORE
+	dwb EVENT_UNDERGROUND_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
 MapUndergroundSignpostItem1:
-	dw $00e6
-	db X_SPECIAL
+	dwb EVENT_UNDERGROUND_HIDDEN_X_SPECIAL, X_SPECIAL
 	
 
 Underground_MapEventHeader:
@@ -29,8 +27,8 @@ Underground_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 9, 3, SIGNPOST_ITEMIFSET, MapUndergroundSignpostItem0
-	signpost 19, 1, SIGNPOST_ITEMIFSET, MapUndergroundSignpostItem1
+	signpost 9, 3, SIGNPOST_ITEM, MapUndergroundSignpostItem0
+	signpost 19, 1, SIGNPOST_ITEM, MapUndergroundSignpostItem1
 
 	; people-events
 	db 0

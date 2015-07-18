@@ -456,7 +456,7 @@
 	map_header_2 GoldenrodPokeComCenter2FMobile, GOLDENROD_POKECOM_CENTER_2F_MOBILE, $0, NONE
 	map_header_2 IlexForestAzaleaGate, ILEX_FOREST_AZALEA_GATE, $0, NONE
 	map_header_2 Route34IlexForestGate, ROUTE_34_ILEX_FOREST_GATE, $0, NONE
-	map_header_2 DayCare, DAY_CARE, $0, NONE
+	map_header_2 DayCare, DAYCARE, $0, NONE
 	map_header_2 VermilionHouseFishingSpeechHouse, VERMILION_HOUSE_FISHING_SPEECH_HOUSE, $0, NONE
 	map_header_2 VermilionPokeCenter1F, VERMILION_POKECENTER_1F, $0, NONE
 	map_header_2 VermilionPokeCenter2FBeta, VERMILION_POKECENTER_2F_BETA, $0, NONE

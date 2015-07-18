@@ -619,4 +619,4 @@ Route43_MapEventHeader:
 	person_event SPRITE_LASS, 29, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerTiffany3, -1
 	person_event SPRITE_YOUNGSTER, 44, 17, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperSpencer, -1
 	person_event SPRITE_FRUIT_TREE, 30, 5, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19d266, -1
-	person_event SPRITE_POKE_BALL, 36, 16, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19d268, EVENT_6B5
+	person_event SPRITE_POKE_BALL, 36, 16, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER

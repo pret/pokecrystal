@@ -314,4 +314,4 @@ Route46_MapEventHeader:
 	person_event SPRITE_LASS, 17, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerErin1, -1
 	person_event SPRITE_FRUIT_TREE, 9, 11, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a978f, -1
 	person_event SPRITE_FRUIT_TREE, 10, 12, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a9791, -1
-	person_event SPRITE_POKE_BALL, 19, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a978d, EVENT_6BC
+	person_event SPRITE_POKE_BALL, 19, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED

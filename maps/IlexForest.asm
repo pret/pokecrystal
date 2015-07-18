@@ -344,9 +344,9 @@ BlackBeltScript_0x6edae:
 	writetext UnknownText_0x6f141
 	closetext
 	loadmovesprites
-	setevent EVENT_6E9
-	setevent EVENT_6F3
-	setevent EVENT_6F4
+	setevent EVENT_ILEX_FOREST_FARFETCHD
+	setevent EVENT_ILEX_FOREST_APPRENTICE
+	setevent EVENT_ILEX_FOREST_CHARCOAL_MASTER
 	clearevent EVENT_6F5
 	clearevent EVENT_6F6
 	clearevent EVENT_6F7
@@ -418,18 +418,15 @@ ItemFragment_0x6ee16:
 	db ETHER, 1
 
 MapIlexForestSignpostItem1:
-	dw $0088
-	db ETHER
+	dwb EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER
 	
 
 MapIlexForestSignpostItem2:
-	dw $0089
-	db SUPER_POTION
+	dwb EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
 MapIlexForestSignpostItem3:
-	dw $008a
-	db FULL_HEAL
+	dwb EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL, FULL_HEAL
 
 IlexForestBoulder:
 ; unused
@@ -460,9 +457,9 @@ UnknownScript_0x6ee38:
 UnknownScript_0x6ee42:
 	takeitem GS_BALL, 1
 	clearevent EVENT_FOREST_IS_RESTLESS
-	setevent EVENT_7A4
+	setevent EVENT_AZALEA_TOWN_KURT
 	disappear $8
-	clearevent EVENT_6EB
+	clearevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
 	writetext UnknownText_0x6f43b
 	closetext
 	loadmovesprites
@@ -962,21 +959,21 @@ IlexForest_MapEventHeader:
 	; signposts
 	db 5
 	signpost 17, 3, SIGNPOST_READ, MapIlexForestSignpost0Script
-	signpost 7, 11, SIGNPOST_ITEMIFSET, MapIlexForestSignpostItem1
-	signpost 14, 22, SIGNPOST_ITEMIFSET, MapIlexForestSignpostItem2
-	signpost 17, 1, SIGNPOST_ITEMIFSET, MapIlexForestSignpostItem3
+	signpost 7, 11, SIGNPOST_ITEM, MapIlexForestSignpostItem1
+	signpost 14, 22, SIGNPOST_ITEM, MapIlexForestSignpostItem2
+	signpost 17, 1, SIGNPOST_ITEM, MapIlexForestSignpostItem3
 	signpost 22, 8, SIGNPOST_UP, MapIlexForestSignpost4Script
 
 	; people-events
 	db 11
-	person_event SPRITE_BIRD, 35, 18, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BirdScript_0x6eb8f, EVENT_6E9
-	person_event SPRITE_YOUNGSTER, 32, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6eb7b, EVENT_6F3
-	person_event SPRITE_BLACK_BELT, 32, 9, LEFT << 2 | $1, $0, -1, -1, $0, 0, BlackBeltScript_0x6edae, EVENT_6F4
+	person_event SPRITE_BIRD, 35, 18, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BirdScript_0x6eb8f, EVENT_ILEX_FOREST_FARFETCHD
+	person_event SPRITE_YOUNGSTER, 32, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6eb7b, EVENT_ILEX_FOREST_APPRENTICE
+	person_event SPRITE_BLACK_BELT, 32, 9, LEFT << 2 | $1, $0, -1, -1, $0, 0, BlackBeltScript_0x6edae, EVENT_ILEX_FOREST_CHARCOAL_MASTER
 	person_event SPRITE_ROCKER, 18, 19, LEFT << 2 | $1, $0, -1, -1, $0, 0, RockerScript_0x6edde, -1
-	person_event SPRITE_POKE_BALL, 36, 24, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee10, EVENT_671
-	person_event SPRITE_KURT, 33, 12, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_7A5
-	person_event SPRITE_LASS, 28, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x6ee0d, EVENT_6ED
+	person_event SPRITE_POKE_BALL, 36, 24, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee10, EVENT_ILEX_FOREST_REVIVE
+	person_event SPRITE_KURT, 33, 12, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
+	person_event SPRITE_LASS, 28, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x6ee0d, EVENT_ILEX_FOREST_LASS
 	person_event SPRITE_YOUNGSTER, 5, 16, UP << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerBug_catcherWayne, -1
-	person_event SPRITE_POKE_BALL, 21, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee12, EVENT_7B9
-	person_event SPRITE_POKE_BALL, 11, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee14, EVENT_7BA
-	person_event SPRITE_POKE_BALL, 5, 31, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee16, EVENT_7BB
+	person_event SPRITE_POKE_BALL, 21, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee12, EVENT_ILEX_FOREST_X_ATTACK
+	person_event SPRITE_POKE_BALL, 11, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee14, EVENT_ILEX_FOREST_ANTIDOTE
+	person_event SPRITE_POKE_BALL, 5, 31, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee16, EVENT_ILEX_FOREST_ETHER

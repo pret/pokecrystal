@@ -139,7 +139,7 @@ PowerPlantManager:
 	closetext
 	loadmovesprites
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
-	clearevent EVENT_76D
+	clearevent EVENT_CERULEAN_GYM_ROCKET
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	domaptrigger GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM, $1
 	dotrigger $1
@@ -156,11 +156,11 @@ UnknownScript_0x188e93:
 	keeptextopen
 	takeitem MACHINE_PART, 1
 	setevent EVENT_RETURNED_MACHINE_PART
-	clearevent EVENT_772
-	setevent EVENT_771
-	setevent EVENT_76C
+	clearevent EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	setevent EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	setevent EVENT_ROUTE_24_ROCKET
 	setevent EVENT_RESTORED_POWER_TO_KANTO
-	clearevent EVENT_749
+	clearevent EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
 UnknownScript_0x188eac:
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue UnknownScript_0x188ec5

@@ -105,7 +105,7 @@ UnknownScript_0x5920b:
 	writetext UnknownText_0x594cb
 	closetext
 	loadmovesprites
-	clearevent EVENT_78F
+	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
 	end
 
 ScientistScript_0x59214:
@@ -134,7 +134,7 @@ UnknownScript_0x5922e:
 
 MapRuinsofAlphResearchCenterSignpost1Script:
 	loadfont
-	checkevent EVENT_704
+	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x59241
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59247
@@ -152,7 +152,7 @@ UnknownScript_0x59247:
 
 MapRuinsofAlphResearchCenterSignpost2Script:
 	loadfont
-	checkevent EVENT_704
+	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x5925a
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59260
@@ -414,4 +414,4 @@ RuinsofAlphResearchCenter_MapEventHeader:
 	db 3
 	person_event SPRITE_SCIENTIST, 9, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591e5, -1
 	person_event SPRITE_SCIENTIST, 6, 9, DOWN << 2 | $2, $12, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x59214, -1
-	person_event SPRITE_SCIENTIST, 9, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591d1, EVENT_704
+	person_event SPRITE_SCIENTIST, 9, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST

@@ -36,4 +36,4 @@ OlivinePortPassage_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKEFAN_M, 5, 21, LEFT << 2 | $0, $0, -1, -1, $0, 0, PokefanMScript_0x76fac, EVENT_733
+	person_event SPRITE_POKEFAN_M, 5, 21, LEFT << 2 | $0, $0, -1, -1, $0, 0, PokefanMScript_0x76fac, EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M

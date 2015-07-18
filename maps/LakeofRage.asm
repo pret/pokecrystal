@@ -51,7 +51,7 @@ UnknownScript_0x70035:
 	playsound SFX_WARP_TO
 	applymovement $2, MovementData_0x70155
 	disappear $2
-	clearevent EVENT_6D5
+	clearevent EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	setevent EVENT_DECIDED_TO_HELP_LANCE
 	domaptrigger GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F, $1
 	end
@@ -287,18 +287,15 @@ ItemFragment_0x7014a:
 	db TM_DETECT, 1
 
 MapLakeofRageSignpostItem2:
-	dw $00b5
-	db FULL_RESTORE
+	dwb EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
 MapLakeofRageSignpostItem3:
-	dw $00b6
-	db RARE_CANDY
+	dwb EVENT_LAKE_OF_RAGE_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
 MapLakeofRageSignpostItem4:
-	dw $00b7
-	db MAX_POTION
+	dwb EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION, MAX_POTION
 	
 
 MovementData_0x70155:
@@ -570,21 +567,21 @@ LakeofRage_MapEventHeader:
 	db 5
 	signpost 27, 21, SIGNPOST_READ, MapLakeofRageSignpost0Script
 	signpost 31, 25, SIGNPOST_READ, MapLakeofRageSignpost1Script
-	signpost 28, 11, SIGNPOST_ITEMIFSET, MapLakeofRageSignpostItem2
-	signpost 4, 4, SIGNPOST_ITEMIFSET, MapLakeofRageSignpostItem3
-	signpost 5, 35, SIGNPOST_ITEMIFSET, MapLakeofRageSignpostItem4
+	signpost 28, 11, SIGNPOST_ITEM, MapLakeofRageSignpostItem2
+	signpost 4, 4, SIGNPOST_ITEM, MapLakeofRageSignpostItem3
+	signpost 5, 35, SIGNPOST_ITEM, MapLakeofRageSignpostItem4
 
 	; people-events
 	db 12
-	person_event SPRITE_LANCE, 32, 25, UP << 2 | $3, $0, -1, -1, $0, 0, LanceScript_0x70022, EVENT_6D4
+	person_event SPRITE_LANCE, 32, 25, UP << 2 | $3, $0, -1, -1, $0, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
 	person_event SPRITE_GRAMPS, 30, 24, UP << 2 | $3, $0, -1, -1, $0, 0, GrampsScript_0x7008e, -1
 	person_event SPRITE_SUPER_NERD, 17, 40, LEFT << 2 | $0, $0, -1, -1, $0, 0, SuperNerdScript_0x700a2, -1
 	person_event SPRITE_COOLTRAINER_F, 33, 29, UP << 2 | $1, $1, -1, -1, $0, 0, CooltrainerFScript_0x700a5, -1
-	person_event SPRITE_FISHER, 27, 34, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherAndre, EVENT_735
-	person_event SPRITE_FISHER, 30, 28, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherRaymond, EVENT_735
-	person_event SPRITE_COOLTRAINER_M, 19, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermAaron, EVENT_735
-	person_event SPRITE_COOLTRAINER_F, 11, 40, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerCooltrainerfLois, EVENT_735
-	person_event SPRITE_GYARADOS, 26, 22, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GyaradosScript_0x70063, EVENT_751
-	person_event SPRITE_SUPER_NERD, 8, 8, UP << 2 | $2, $0, -1, -1, $0, 0, WesleyScript, EVENT_75C
-	person_event SPRITE_POKE_BALL, 14, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x70148, EVENT_645
-	person_event SPRITE_POKE_BALL, 6, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7014a, EVENT_646
+	person_event SPRITE_FISHER, 27, 34, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_FISHER, 30, 28, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_COOLTRAINER_M, 19, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 11, 40, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_GYARADOS, 26, 22, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GyaradosScript_0x70063, EVENT_LAKE_OF_RAGE_RED_GYARADOS
+	person_event SPRITE_SUPER_NERD, 8, 8, UP << 2 | $2, $0, -1, -1, $0, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
+	person_event SPRITE_POKE_BALL, 14, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x70148, EVENT_LAKE_OF_RAGE_ELIXER
+	person_event SPRITE_POKE_BALL, 6, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7014a, EVENT_LAKE_OF_RAGE_TM_DETECT

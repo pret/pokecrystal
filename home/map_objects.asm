@@ -22,7 +22,7 @@ Function180e:: ; 180e
 	ld c, SPRITE_GFX_LIST_CAPACITY - 1
 	ld b, a
 	ld a, [hConnectionStripLength]
-	cp $0
+	cp 0
 	jr z, .nope
 	ld a, b
 .loop
@@ -235,7 +235,7 @@ Function18de:: ; 18de
 ; Sets carry if the object is not visible on the screen.
 	ld [hConnectionStripLength], a
 	call GetMapObject
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp MAPOBJECT_NOT_VISIBLE
@@ -327,25 +327,25 @@ Function18f5:: ; 18f5
 Function194d:: ; 194d
 	ld [hConnectionStripLength], a
 	call GetMapObject
-	call Function80e7
+	call CopyObjectStruct
 	ret
 ; 1956
 
 
 
-Function1956:: ; 1956
+_CopyObjectStruct:: ; 1956
 	ld [hConnectionStripLength], a
 	call Function271e
 	ld a, [hConnectionStripLength]
 	call GetMapObject
-	callba Function80e7
+	callba CopyObjectStruct
 	ret
 ; 1967
 
 Function1967:: ; 1967
 	ld [hConnectionStripLength], a
 	call GetMapObject
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp MAPOBJECT_NOT_VISIBLE
@@ -375,7 +375,7 @@ Function1985:: ; 1985
 	ret
 ; 199f
 
-Function199f:: ; 199f
+DeleteObjectStruct:: ; 199f
 	call Function1967
 	call Function2712
 	ret
@@ -397,7 +397,7 @@ Function19a6:: ; 19a6
 
 Function19b8:: ; 19b8
 	call GetMapObject
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -620,7 +620,7 @@ DrawOnMap:: ; 1ad2
 	bit 0, a
 	ret z
 	callba Function55e0
-	callba Function5920
+	callba RefreshMapAppearDisappear
 	ret
 ; 1ae5
 

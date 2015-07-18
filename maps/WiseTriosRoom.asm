@@ -26,18 +26,18 @@ UnknownScript_0x98574:
 	iftrue UnknownScript_0x9858c
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x9858c
-	clearevent EVENT_7AB
-	setevent EVENT_7AC
+	clearevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
 UnknownScript_0x9858c:
-	setevent EVENT_7AB
-	clearevent EVENT_7AC
+	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	clearevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
 UnknownScript_0x98593:
-	setevent EVENT_7AB
-	setevent EVENT_7AC
+	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
 SageScript_0x9859a:
@@ -408,9 +408,9 @@ WiseTriosRoom_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_SAGE, 6, 10, DOWN << 2 | $3, $0, -1, -1, $0, 0, SageScript_0x9859a, EVENT_7AB
-	person_event SPRITE_SAGE, 11, 10, UP << 2 | $1, $1, -1, -1, $0, 0, SageScript_0x9859d, EVENT_7AB
-	person_event SPRITE_SAGE, 9, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, SageScript_0x985a0, EVENT_7AB
-	person_event SPRITE_SAGE, 6, 8, UP << 2 | $2, $0, -1, -1, $2, 2, TrainerSageGaku, EVENT_7AC
-	person_event SPRITE_SAGE, 10, 8, UP << 2 | $3, $0, -1, -1, $2, 2, TrainerSageMasa, EVENT_7AC
-	person_event SPRITE_SAGE, 8, 10, LEFT << 2 | $0, $0, -1, -1, $2, 2, TrainerSageKoji, EVENT_7AC
+	person_event SPRITE_SAGE, 6, 10, DOWN << 2 | $3, $0, -1, -1, $0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 11, 10, UP << 2 | $1, $1, -1, -1, $0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 9, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 6, 8, UP << 2 | $2, $0, -1, -1, $2, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 10, 8, UP << 2 | $3, $0, -1, -1, $2, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 8, 10, LEFT << 2 | $0, $0, -1, -1, $2, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2

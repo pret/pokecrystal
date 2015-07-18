@@ -2761,7 +2761,7 @@ Function5602: ; 5602
 	call Function5629
 
 .ok
-	call Function5920
+	call RefreshMapAppearDisappear
 	ret
 ; 561d
 
@@ -2769,7 +2769,7 @@ Function561d: ; 561d
 	call Function5645
 	ld a, 0
 	call Function5629
-	call Function5920
+	call RefreshMapAppearDisappear
 	ret
 ; 5629
 
@@ -2777,7 +2777,7 @@ Function5629: ; 5629
 	cp $10
 	ret nc
 	call GetMapObject
-	ld hl, MAPOBJECT_VRAM_ID
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp MAPOBJECT_NOT_VISIBLE
@@ -3320,7 +3320,7 @@ Function5903: ; 5903
 	db 6, 7, 8, 9
 ; 5920
 
-Function5920:: ; 5920
+RefreshMapAppearDisappear:: ; 5920
 	ld a, [VramState]
 	bit 0, a
 	ret z

@@ -1253,10 +1253,10 @@ Script_appear: ; 0x972dd
 
 	call GetScriptByte
 	call GetScriptPerson
-	call Function1956
+	call _CopyObjectStruct
 	ld a, [$ffaf]
-	ld b, $0
-	call Function9730b
+	ld b, 0 ; clear
+	call ApplyEventActionAppearDisappear
 	ret
 ; 0x972ee
 
@@ -1267,35 +1267,35 @@ Script_disappear: ; 0x972ee
 
 	call GetScriptByte
 	call GetScriptPerson
-	cp $fe
-	jr nz, .asm_972fa ; 0x972f6 $2
+	cp -2
+	jr nz, .skip ; 0x972f6 $2
 	ld a, [$ffe0]
-.asm_972fa
-	call Function199f
+.skip
+	call DeleteObjectStruct
 	ld a, [$ffaf]
-	ld b, $1
-	call Function9730b
-	callba Function5920
+	ld b, 1 ; set
+	call ApplyEventActionAppearDisappear
+	callba RefreshMapAppearDisappear
 	ret
 ; 0x9730b
 
-Function9730b: ; 0x9730b
+ApplyEventActionAppearDisappear: ; 0x9730b
 	push bc
 	call GetMapObject
-	ld hl, $000c
+	ld hl, MAPOBJECT_EVENT_FLAG
 	add hl, bc
 	pop bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld a, $ff
+	ld a, -1
 	cp e
-	jr nz, .asm_97321 ; 0x9731a $5
+	jr nz, .okay ; 0x9731a $5
 	cp d
-	jr nz, .asm_97321 ; 0x9731d $2
+	jr nz, .okay ; 0x9731d $2
 	xor a
 	ret
-.asm_97321
+.okay
 	call EventFlagAction
 	ret
 ; 0x97325

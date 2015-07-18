@@ -33,6 +33,6 @@ WhirlIslandB2F_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_POKE_BALL, 15, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c4b8, EVENT_696
-	person_event SPRITE_POKE_BALL, 8, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c4ba, EVENT_697
-	person_event SPRITE_POKE_BALL, 16, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c4bc, EVENT_698
+	person_event SPRITE_POKE_BALL, 15, 14, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c4b8, EVENT_WHIRL_ISLAND_B2F_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 8, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c4ba, EVENT_WHIRL_ISLAND_B2F_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 16, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c4bc, EVENT_WHIRL_ISLAND_B2F_MAX_ELIXER
