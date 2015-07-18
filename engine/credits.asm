@@ -789,13 +789,13 @@ Function109c1c: ; 109c1c (42:5c1c)
 ; 109c24 (42:5c24)
 
 
-CreditsBorderGFX:    INCBIN "gfx/credits/border.w72.2bpp"
+CreditsBorderGFX:    INCBIN "gfx/credits/border.2bpp"
 
 CreditsMonsGFX:
-CreditsPichuGFX:     INCBIN "gfx/credits/pichu.w32.2bpp"
-CreditsSmoochumGFX:  INCBIN "gfx/credits/smoochum.w32.2bpp"
-CreditsDittoGFX:     INCBIN "gfx/credits/ditto.w32.2bpp"
-CreditsIgglybuffGFX: INCBIN "gfx/credits/igglybuff.w32.2bpp"
+CreditsPichuGFX:     INCBIN "gfx/credits/pichu.2bpp"
+CreditsSmoochumGFX:  INCBIN "gfx/credits/smoochum.2bpp"
+CreditsDittoGFX:     INCBIN "gfx/credits/ditto.2bpp"
+CreditsIgglybuffGFX: INCBIN "gfx/credits/igglybuff.2bpp"
 
 
 CreditsScript: ; 10acb4

@@ -79791,7 +79791,7 @@ Functioncbce5: ; cbce5
 ; cbd2e
 
 TheEndGFX:: ; cbd2e
-INCBIN "gfx/credits/theend.w64.2bpp"
+INCBIN "gfx/credits/theend.2bpp"
 ; cbe2e
 
 
