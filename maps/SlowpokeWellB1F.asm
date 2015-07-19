@@ -9,23 +9,7 @@ KurtScript_0x5a5d5:
 	jumptextfaceplayer UnknownText_0x5a6b5
 
 TrainerGruntM29:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_29
-
-	; trainer group && trainer id
-	db GRUNTM, 29
-
-	; text when seen
-	dw GruntM29SeenText
-
-	; text when trainer beaten
-	dw GruntM29BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM29Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, 29, GruntM29SeenText, GruntM29BeatenText, $0000, GruntM29Script
 
 GruntM29Script:
 	talkaftercancel
@@ -36,23 +20,7 @@ GruntM29Script:
 	end
 
 TrainerGruntM1:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_1
-
-	; trainer group && trainer id
-	db GRUNTM, 1
-
-	; text when seen
-	dw GruntM1SeenText
-
-	; text when trainer beaten
-	dw GruntM1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, 1, GruntM1SeenText, GruntM1BeatenText, $0000, GruntM1Script
 
 GruntM1Script:
 	loadfont
@@ -95,23 +63,7 @@ GruntM1Script:
 	end
 
 TrainerGruntM2:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_2
-
-	; trainer group && trainer id
-	db GRUNTM, 2
-
-	; text when seen
-	dw GruntM2SeenText
-
-	; text when trainer beaten
-	dw GruntM2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, 2, GruntM2SeenText, GruntM2BeatenText, $0000, GruntM2Script
 
 GruntM2Script:
 	talkaftercancel
@@ -122,23 +74,7 @@ GruntM2Script:
 	end
 
 TrainerGruntF1:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_1
-
-	; trainer group && trainer id
-	db GRUNTF, 1
-
-	; text when seen
-	dw GruntF1SeenText
-
-	; text when trainer beaten
-	dw GruntF1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, 1, GruntF1SeenText, GruntF1BeatenText, $0000, GruntF1Script
 
 GruntF1Script:
 	talkaftercancel

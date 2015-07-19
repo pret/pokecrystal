@@ -14,7 +14,7 @@ Special:: ; c01b
 ; c029
 
 SpecialsPointers:: ; c029
-	add_special WarpToLastSpawn
+	add_special WarpToSpawnPoint
 
 ; Communications
 	add_special Special_SetBitsForLinkTradeRequest
@@ -58,7 +58,7 @@ SpecialsPointers:: ; c029
 	add_special Function90913
 	add_special Functionc2c0
 	add_special Functionc2cd
-	add_special Functionc355
+	add_special MapRadio
 	add_special Functionc360
 	add_special Functionc373
 	add_special Functionc380
@@ -92,7 +92,7 @@ SpecialsPointers:: ; c029
 	add_special Special_SelectRandomBugContestContestants
 	add_special Functionc3fc
 	add_special Function26feb
-	add_special Function27043
+	add_special ToggleDecorationsVisibility
 	add_special SpecialGiveShuckle
 	add_special SpecialReturnShuckle
 	add_special Function73f7
@@ -150,7 +150,7 @@ SpecialsPointers:: ; c029
 	add_special Function101225
 	add_special Function101231
 	add_special Function4925b
-	add_special Function8adef
+	add_special SpecialOmanyteChamber
 	add_special Function11c1ab
 	add_special Function170687
 	add_special Function8ae68
@@ -367,10 +367,10 @@ BugContestJudging: ; c34a
 	ret
 ; c355
 
-Functionc355: ; c355
+MapRadio: ; c355
 	ld a, [ScriptVar]
 	ld e, a
-	callba Function91a53
+	callba PlayRadio
 	ret
 ; c360
 

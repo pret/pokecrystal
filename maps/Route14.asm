@@ -14,23 +14,7 @@ TeacherScript_0x1ad47f:
 	end
 
 TrainerPokefanmCarter:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_CARTER
-
-	; trainer group && trainer id
-	db POKEFANM, CARTER
-
-	; text when seen
-	dw PokefanmCarterSeenText
-
-	; text when trainer beaten
-	dw PokefanmCarterBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmCarterScript
+	trainer EVENT_BEAT_POKEFANM_CARTER, POKEFANM, CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, $0000, PokefanmCarterScript
 
 PokefanmCarterScript:
 	talkaftercancel
@@ -41,23 +25,7 @@ PokefanmCarterScript:
 	end
 
 TrainerBird_keeperRoy:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_ROY
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, ROY
-
-	; text when seen
-	dw Bird_keeperRoySeenText
-
-	; text when trainer beaten
-	dw Bird_keeperRoyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperRoyScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROY, BIRD_KEEPER, ROY, Bird_keeperRoySeenText, Bird_keeperRoyBeatenText, $0000, Bird_keeperRoyScript
 
 Bird_keeperRoyScript:
 	talkaftercancel
@@ -68,23 +36,7 @@ Bird_keeperRoyScript:
 	end
 
 TrainerPokefanmTrevor:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_TREVOR
-
-	; trainer group && trainer id
-	db POKEFANM, TREVOR
-
-	; text when seen
-	dw PokefanmTrevorSeenText
-
-	; text when trainer beaten
-	dw PokefanmTrevorBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmTrevorScript
+	trainer EVENT_BEAT_POKEFANM_TREVOR, POKEFANM, TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, $0000, PokefanmTrevorScript
 
 PokefanmTrevorScript:
 	talkaftercancel

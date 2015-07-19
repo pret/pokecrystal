@@ -128,23 +128,7 @@ TwinScript_0x75f6d:
 	end
 
 TrainerPokefanmColin:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_COLIN
-
-	; trainer group && trainer id
-	db POKEFANM, COLIN
-
-	; text when seen
-	dw PokefanmColinSeenText
-
-	; text when trainer beaten
-	dw PokefanmColinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmColinScript
+	trainer EVENT_BEAT_POKEFANM_COLIN, POKEFANM, COLIN, PokefanmColinSeenText, PokefanmColinBeatenText, $0000, PokefanmColinScript
 
 PokefanmColinScript:
 	talkaftercancel
@@ -155,23 +139,7 @@ PokefanmColinScript:
 	end
 
 TrainerTwinsMegandpeg1:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_MEG_AND_PEG
-
-	; trainer group && trainer id
-	db TWINS, MEGANDPEG1
-
-	; text when seen
-	dw TwinsMegandpeg1SeenText
-
-	; text when trainer beaten
-	dw TwinsMegandpeg1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsMegandpeg1Script
+	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG1, TwinsMegandpeg1SeenText, TwinsMegandpeg1BeatenText, $0000, TwinsMegandpeg1Script
 
 TwinsMegandpeg1Script:
 	talkaftercancel
@@ -182,23 +150,7 @@ TwinsMegandpeg1Script:
 	end
 
 TrainerTwinsMegandpeg2:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_MEG_AND_PEG
-
-	; trainer group && trainer id
-	db TWINS, MEGANDPEG2
-
-	; text when seen
-	dw TwinsMegandpeg2SeenText
-
-	; text when trainer beaten
-	dw TwinsMegandpeg2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsMegandpeg2Script
+	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG2, TwinsMegandpeg2SeenText, TwinsMegandpeg2BeatenText, $0000, TwinsMegandpeg2Script
 
 TwinsMegandpeg2Script:
 	talkaftercancel
@@ -209,23 +161,7 @@ TwinsMegandpeg2Script:
 	end
 
 TrainerPsychicRodney:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_RODNEY
-
-	; trainer group && trainer id
-	db PSYCHIC_T, RODNEY
-
-	; text when seen
-	dw PsychicRodneySeenText
-
-	; text when trainer beaten
-	dw PsychicRodneyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicRodneyScript
+	trainer EVENT_BEAT_PSYCHIC_RODNEY, PSYCHIC_T, RODNEY, PsychicRodneySeenText, PsychicRodneyBeatenText, $0000, PsychicRodneyScript
 
 PsychicRodneyScript:
 	talkaftercancel
@@ -236,23 +172,7 @@ PsychicRodneyScript:
 	end
 
 TrainerPokefanmJeremy:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_JEREMY
-
-	; trainer group && trainer id
-	db POKEFANM, JEREMY
-
-	; text when seen
-	dw PokefanmJeremySeenText
-
-	; text when trainer beaten
-	dw PokefanmJeremyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmJeremyScript
+	trainer EVENT_BEAT_POKEFANM_JEREMY, POKEFANM, JEREMY, PokefanmJeremySeenText, PokefanmJeremyBeatenText, $0000, PokefanmJeremyScript
 
 PokefanmJeremyScript:
 	talkaftercancel
@@ -263,23 +183,7 @@ PokefanmJeremyScript:
 	end
 
 TrainerPokefanfGeorgia:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANF_GEORGIA
-
-	; trainer group && trainer id
-	db POKEFANF, GEORGIA
-
-	; text when seen
-	dw PokefanfGeorgiaSeenText
-
-	; text when trainer beaten
-	dw PokefanfGeorgiaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanfGeorgiaScript
+	trainer EVENT_BEAT_POKEFANF_GEORGIA, POKEFANF, GEORGIA, PokefanfGeorgiaSeenText, PokefanfGeorgiaBeatenText, $0000, PokefanfGeorgiaScript
 
 PokefanfGeorgiaScript:
 	talkaftercancel
@@ -290,23 +194,7 @@ PokefanfGeorgiaScript:
 	end
 
 TrainerSupernerdShawn:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_SHAWN
-
-	; trainer group && trainer id
-	db SUPER_NERD, SHAWN
-
-	; text when seen
-	dw SupernerdShawnSeenText
-
-	; text when trainer beaten
-	dw SupernerdShawnBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdShawnScript
+	trainer EVENT_BEAT_SUPER_NERD_SHAWN, SUPER_NERD, SHAWN, SupernerdShawnSeenText, SupernerdShawnBeatenText, $0000, SupernerdShawnScript
 
 SupernerdShawnScript:
 	talkaftercancel

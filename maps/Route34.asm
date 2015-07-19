@@ -76,33 +76,17 @@ DaycareMon2Script_0x7806b:
 	end
 
 TrainerCamperTodd1:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_TODD
-
-	; trainer group && trainer id
-	db CAMPER, TODD1
-
-	; text when seen
-	dw CamperTodd1SeenText
-
-	; text when trainer beaten
-	dw CamperTodd1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperTodd1Script
+	trainer EVENT_BEAT_CAMPER_TODD, CAMPER, TODD1, CamperTodd1SeenText, CamperTodd1BeatenText, $0000, CamperTodd1Script
 
 CamperTodd1Script:
-	writecode VAR_CALLERID, $14
+	writecode VAR_CALLERID, PHONE_CAMPER_TODD
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_TODD
 	iftrue UnknownScript_0x780bd
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue UnknownScript_0x78131
-	checkcellnum $14
+	checkcellnum PHONE_CAMPER_TODD
 	iftrue UnknownScript_0x78143
 	checkevent EVENT_TODD_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x780a6
@@ -115,7 +99,7 @@ CamperTodd1Script:
 UnknownScript_0x780a6:
 	scall UnknownScript_0x7813b
 UnknownScript_0x780a9:
-	askforphonenumber $14
+	askforphonenumber PHONE_CAMPER_TODD
 	if_equal $1, UnknownScript_0x7814b
 	if_equal $2, UnknownScript_0x78147
 	trainertotext CAMPER, TODD1, $0
@@ -217,33 +201,17 @@ UnknownScript_0x7814f:
 	end
 
 TrainerPicnickerGina1:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_GINA
-
-	; trainer group && trainer id
-	db PICNICKER, GINA1
-
-	; text when seen
-	dw PicnickerGina1SeenText
-
-	; text when trainer beaten
-	dw PicnickerGina1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerGina1Script
+	trainer EVENT_BEAT_PICNICKER_GINA, PICNICKER, GINA1, PicnickerGina1SeenText, PicnickerGina1BeatenText, $0000, PicnickerGina1Script
 
 PicnickerGina1Script:
-	writecode VAR_CALLERID, $15
+	writecode VAR_CALLERID, PHONE_PICNICKER_GINA
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_GINA
 	iftrue UnknownScript_0x7819f
 	checkflag ENGINE_GINA_HAS_LEAF_STONE
 	iftrue UnknownScript_0x78213
-	checkcellnum $15
+	checkcellnum PHONE_PICNICKER_GINA
 	iftrue UnknownScript_0x78234
 	checkevent EVENT_GINA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x78188
@@ -256,7 +224,7 @@ PicnickerGina1Script:
 UnknownScript_0x78188:
 	scall UnknownScript_0x7822c
 UnknownScript_0x7818b:
-	askforphonenumber $15
+	askforphonenumber PHONE_PICNICKER_GINA
 	if_equal $1, UnknownScript_0x7823c
 	if_equal $2, UnknownScript_0x78238
 	trainertotext PICNICKER, GINA1, $0
@@ -402,23 +370,7 @@ UnknownScript_0x78276:
 	end
 
 TrainerYoungsterSamuel:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_SAMUEL
-
-	; trainer group && trainer id
-	db YOUNGSTER, SAMUEL
-
-	; text when seen
-	dw YoungsterSamuelSeenText
-
-	; text when trainer beaten
-	dw YoungsterSamuelBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterSamuelScript
+	trainer EVENT_BEAT_YOUNGSTER_SAMUEL, YOUNGSTER, SAMUEL, YoungsterSamuelSeenText, YoungsterSamuelBeatenText, $0000, YoungsterSamuelScript
 
 YoungsterSamuelScript:
 	talkaftercancel
@@ -429,23 +381,7 @@ YoungsterSamuelScript:
 	end
 
 TrainerYoungsterIan:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_IAN
-
-	; trainer group && trainer id
-	db YOUNGSTER, IAN
-
-	; text when seen
-	dw YoungsterIanSeenText
-
-	; text when trainer beaten
-	dw YoungsterIanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterIanScript
+	trainer EVENT_BEAT_YOUNGSTER_IAN, YOUNGSTER, IAN, YoungsterIanSeenText, YoungsterIanBeatenText, $0000, YoungsterIanScript
 
 YoungsterIanScript:
 	talkaftercancel
@@ -456,23 +392,7 @@ YoungsterIanScript:
 	end
 
 TrainerPokefanmBrandon:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_BRANDON
-
-	; trainer group && trainer id
-	db POKEFANM, BRANDON
-
-	; text when seen
-	dw PokefanmBrandonSeenText
-
-	; text when trainer beaten
-	dw PokefanmBrandonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmBrandonScript
+	trainer EVENT_BEAT_POKEFANM_BRANDON, POKEFANM, BRANDON, PokefanmBrandonSeenText, PokefanmBrandonBeatenText, $0000, PokefanmBrandonScript
 
 PokefanmBrandonScript:
 	talkaftercancel
@@ -483,23 +403,7 @@ PokefanmBrandonScript:
 	end
 
 TrainerCooltrainerfIrene:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_IRENE
-
-	; trainer group && trainer id
-	db COOLTRAINERF, IRENE
-
-	; text when seen
-	dw CooltrainerfIreneSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfIreneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfIreneScript
+	trainer EVENT_BEAT_COOLTRAINERF_IRENE, COOLTRAINERF, IRENE, CooltrainerfIreneSeenText, CooltrainerfIreneBeatenText, $0000, CooltrainerfIreneScript
 
 CooltrainerfIreneScript:
 	talkaftercancel
@@ -518,23 +422,7 @@ UnknownScript_0x782d2:
 	end
 
 TrainerCooltrainerfJenn:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_JENN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, JENN
-
-	; text when seen
-	dw CooltrainerfJennSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfJennBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfJennScript
+	trainer EVENT_BEAT_COOLTRAINERF_JENN, COOLTRAINERF, JENN, CooltrainerfJennSeenText, CooltrainerfJennBeatenText, $0000, CooltrainerfJennScript
 
 CooltrainerfJennScript:
 	talkaftercancel
@@ -553,23 +441,7 @@ UnknownScript_0x782f2:
 	end
 
 TrainerCooltrainerfKate:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_KATE
-
-	; trainer group && trainer id
-	db COOLTRAINERF, KATE
-
-	; text when seen
-	dw CooltrainerfKateSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfKateBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfKateScript
+	trainer EVENT_BEAT_COOLTRAINERF_KATE, COOLTRAINERF, KATE, CooltrainerfKateSeenText, CooltrainerfKateBeatenText, $0000, CooltrainerfKateScript
 
 CooltrainerfKateScript:
 	talkaftercancel

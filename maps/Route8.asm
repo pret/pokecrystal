@@ -6,23 +6,7 @@ Route8_MapScriptHeader:
 	db 0
 
 TrainerBikerDwayne:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_DWAYNE
-
-	; trainer group && trainer id
-	db BIKER, DWAYNE
-
-	; text when seen
-	dw BikerDwayneSeenText
-
-	; text when trainer beaten
-	dw BikerDwayneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerDwayneScript
+	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, $0000, BikerDwayneScript
 
 BikerDwayneScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ BikerDwayneScript:
 	end
 
 TrainerBikerHarris:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_HARRIS
-
-	; trainer group && trainer id
-	db BIKER, HARRIS
-
-	; text when seen
-	dw BikerHarrisSeenText
-
-	; text when trainer beaten
-	dw BikerHarrisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerHarrisScript
+	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, $0000, BikerHarrisScript
 
 BikerHarrisScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ BikerHarrisScript:
 	end
 
 TrainerBikerZeke:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_ZEKE
-
-	; trainer group && trainer id
-	db BIKER, ZEKE
-
-	; text when seen
-	dw BikerZekeSeenText
-
-	; text when trainer beaten
-	dw BikerZekeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerZekeScript
+	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, $0000, BikerZekeScript
 
 BikerZekeScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ BikerZekeScript:
 	end
 
 TrainerSupernerdSam:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_SAM
-
-	; trainer group && trainer id
-	db SUPER_NERD, SAM
-
-	; text when seen
-	dw SupernerdSamSeenText
-
-	; text when trainer beaten
-	dw SupernerdSamBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdSamScript
+	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, $0000, SupernerdSamScript
 
 SupernerdSamScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ SupernerdSamScript:
 	end
 
 TrainerSupernerdTom:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_TOM
-
-	; trainer group && trainer id
-	db SUPER_NERD, TOM
-
-	; text when seen
-	dw SupernerdTomSeenText
-
-	; text when trainer beaten
-	dw SupernerdTomBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdTomScript
+	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, $0000, SupernerdTomScript
 
 SupernerdTomScript:
 	talkaftercancel

@@ -500,7 +500,7 @@ Function10364: ; 10364
 	jr c, .asm_1039c
 	call Function10a1d
 	ld hl, UnknownText_0x10ae9
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	push af
 	call Function1c07
@@ -1673,7 +1673,7 @@ UnknownText_0x10b07: ; 0x10b07
 ; 0x10b0c
 
 UnknownText_0x10b0c: ; 0x10b0c
-	; 
+	;
 	text_jump UnknownText_0x1c0c83
 	db "@"
 ; 0x10b11

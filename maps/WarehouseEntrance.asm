@@ -105,23 +105,7 @@ WarehouseEntrance_MapScriptHeader:
 	return
 
 TrainerSupernerdEric:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_ERIC
-
-	; trainer group && trainer id
-	db SUPER_NERD, ERIC
-
-	; text when seen
-	dw SupernerdEricSeenText
-
-	; text when trainer beaten
-	dw SupernerdEricBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdEricScript
+	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, $0000, SupernerdEricScript
 
 SupernerdEricScript:
 	talkaftercancel
@@ -132,23 +116,7 @@ SupernerdEricScript:
 	end
 
 TrainerSupernerdTeru:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_TERU
-
-	; trainer group && trainer id
-	db SUPER_NERD, TERU
-
-	; text when seen
-	dw SupernerdTeruSeenText
-
-	; text when trainer beaten
-	dw SupernerdTeruBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdTeruScript
+	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, $0000, SupernerdTeruScript
 
 SupernerdTeruScript:
 	talkaftercancel
@@ -159,23 +127,7 @@ SupernerdTeruScript:
 	end
 
 TrainerPokemaniacIssac:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_ISSAC
-
-	; trainer group && trainer id
-	db POKEMANIAC, ISSAC
-
-	; text when seen
-	dw PokemaniacIssacSeenText
-
-	; text when trainer beaten
-	dw PokemaniacIssacBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacIssacScript
+	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, $0000, PokemaniacIssacScript
 
 PokemaniacIssacScript:
 	talkaftercancel
@@ -186,23 +138,7 @@ PokemaniacIssacScript:
 	end
 
 TrainerPokemaniacDonald:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_DONALD
-
-	; trainer group && trainer id
-	db POKEMANIAC, DONALD
-
-	; text when seen
-	dw PokemaniacDonaldSeenText
-
-	; text when trainer beaten
-	dw PokemaniacDonaldBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacDonaldScript
+	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, $0000, PokemaniacDonaldScript
 
 PokemaniacDonaldScript:
 	talkaftercancel

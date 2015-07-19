@@ -130,7 +130,7 @@ Movement_step_wait5: ; 5145
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $4
-	call Function505e
+	call GetMovementByte
 	ld hl, $000a
 	add hl, bc
 	ld [hl], a
@@ -150,7 +150,7 @@ Function516a: ; 516a
 	ld hl, $000c
 	add hl, bc
 	ld [hl], a
-	call Function505e
+	call GetMovementByte
 	ld hl, $000a
 	add hl, bc
 	ld [hl], a
@@ -174,7 +174,7 @@ Function5189: ; 5189
 ; 5196
 
 Function5196: ; 5196
-	call Function505e
+	call GetMovementByte
 	ld hl, $000a
 	add hl, bc
 	ld [hl], a
@@ -228,7 +228,7 @@ Function51db: ; 51db
 	ld hl, $001b
 	add hl, bc
 	ld [hl], $0
-	call Function505e
+	call GetMovementByte
 	ld hl, $000a
 	add hl, bc
 	ld [hl], a
@@ -302,7 +302,7 @@ Movement_step_sleep: ; 5242
 ; parameters:
 ;	duration (DecimalParam)
 
-	call Function505e
+	call GetMovementByte
 	jr Function5247
 
 Function5247: ; 5247
@@ -411,7 +411,7 @@ Movement_step_shake: ; 52d5
 ; parameters:
 ;	displacement (DecimalParam)
 
-	call Function505e
+	call GetMovementByte
 	call Function5565
 	jp Function5065
 ; 52de

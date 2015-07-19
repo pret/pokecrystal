@@ -59,23 +59,7 @@ BlackthornGymBoulder:
 	jumpstd strengthboulder
 
 TrainerCooltrainermCody:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_CODY
-
-	; trainer group && trainer id
-	db COOLTRAINERM, CODY
-
-	; text when seen
-	dw CooltrainermCodySeenText
-
-	; text when trainer beaten
-	dw CooltrainermCodyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermCodyScript
+	trainer EVENT_BEAT_COOLTRAINERM_CODY, COOLTRAINERM, CODY, CooltrainermCodySeenText, CooltrainermCodyBeatenText, $0000, CooltrainermCodyScript
 
 CooltrainermCodyScript:
 	talkaftercancel
@@ -86,23 +70,7 @@ CooltrainermCodyScript:
 	end
 
 TrainerCooltrainerfFran:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_FRAN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, FRAN
-
-	; text when seen
-	dw CooltrainerfFranSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfFranBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfFranScript
+	trainer EVENT_BEAT_COOLTRAINERF_FRAN, COOLTRAINERF, FRAN, CooltrainerfFranSeenText, CooltrainerfFranBeatenText, $0000, CooltrainerfFranScript
 
 CooltrainerfFranScript:
 	talkaftercancel

@@ -137,23 +137,7 @@ UnknownScript_0x700b8:
 	end
 
 TrainerFisherAndre:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_ANDRE
-
-	; trainer group && trainer id
-	db FISHER, ANDRE
-
-	; text when seen
-	dw FisherAndreSeenText
-
-	; text when trainer beaten
-	dw FisherAndreBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherAndreScript
+	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, $0000, FisherAndreScript
 
 FisherAndreScript:
 	talkaftercancel
@@ -164,23 +148,7 @@ FisherAndreScript:
 	end
 
 TrainerFisherRaymond:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_RAYMOND
-
-	; trainer group && trainer id
-	db FISHER, RAYMOND
-
-	; text when seen
-	dw FisherRaymondSeenText
-
-	; text when trainer beaten
-	dw FisherRaymondBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherRaymondScript
+	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, $0000, FisherRaymondScript
 
 FisherRaymondScript:
 	talkaftercancel
@@ -191,23 +159,7 @@ FisherRaymondScript:
 	end
 
 TrainerCooltrainermAaron:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_AARON
-
-	; trainer group && trainer id
-	db COOLTRAINERM, AARON
-
-	; text when seen
-	dw CooltrainermAaronSeenText
-
-	; text when trainer beaten
-	dw CooltrainermAaronBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermAaronScript
+	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, $0000, CooltrainermAaronScript
 
 CooltrainermAaronScript:
 	talkaftercancel
@@ -218,23 +170,7 @@ CooltrainermAaronScript:
 	end
 
 TrainerCooltrainerfLois:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_LOIS
-
-	; trainer group && trainer id
-	db COOLTRAINERF, LOIS
-
-	; text when seen
-	dw CooltrainerfLoisSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfLoisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfLoisScript
+	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, $0000, CooltrainerfLoisScript
 
 CooltrainerfLoisScript:
 	talkaftercancel

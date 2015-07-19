@@ -21,9 +21,9 @@ Function1d4b:: ; 1d4b
 ; 1d4f
 
 
-Function1d4f:: ; 1d4f
+MenuTextBox:: ; 1d4f
 	push hl
-	call Function1d58
+	call LoadMenuTextBox
 	pop hl
 	jp PrintText
 ; 1d57
@@ -32,7 +32,7 @@ Function1d57:: ; 1d57
 	ret
 ; 1d58
 
-Function1d58:: ; 1d58
+LoadMenuTextBox:: ; 1d58
 	ld hl, MenuDataHeader_0x1d5f
 	call LoadMenuDataHeader
 	ret
@@ -46,8 +46,8 @@ MenuDataHeader_0x1d5f:: ; 1d5f
 	db 0 ; default option
 ; 1d67
 
-Function1d67:: ; 1d67
-	call Function1d4f
+MenuTextBoxBackup:: ; 1d67
+	call MenuTextBox
 	call WriteBackup
 	ret
 ; 1d6e
@@ -252,7 +252,7 @@ MenuFunc_1e7f:: ; 0x1e7f
 MenuWriteText:: ; 0x1e8c
 	xor a
 	ld [hBGMapMode], a
-	call Function1ebd ; sort out the text 
+	call Function1ebd ; sort out the text
 	call Function1eda ; actually write it
 	call Function2e31
 	ld a, [hOAMUpdate]
@@ -530,7 +530,7 @@ Function1ff8:: ; 1ff8
 ; 2009
 
 
-PlayClickSFX:: ; 2009 
+PlayClickSFX:: ; 2009
 	push de
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -539,7 +539,7 @@ PlayClickSFX:: ; 2009
 ; 0x2012
 
 Function2012:: ; 2012
-	call Function1d4f
+	call MenuTextBox
 	call CloseText
 	call Function1c07
 	ret

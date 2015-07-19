@@ -41,10 +41,10 @@ ENDM
 	spawn BLACKTHORN,  BLACKTHORN_CITY,            21, 30
 	spawn MT_SILVER,   SILVER_CAVE_OUTSIDE,        23, 20
 	spawn FAST_SHIP,   FAST_SHIP_CABINS_SW_SSW_NW,  6,  2
+NUM_SPAWNS EQU const_value
 const_value = -1
 	spawn N_A,         N_A,                        -1, -1
 
-NUM_SPAWNS EQU const_value
 
 
 LoadSpawnPoint: ; 1531f

@@ -6,23 +6,7 @@ Route21_MapScriptHeader:
 	db 0
 
 TrainerSwimmermSeth:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_SETH
-
-	; trainer group && trainer id
-	db SWIMMERM, SETH
-
-	; text when seen
-	dw SwimmermSethSeenText
-
-	; text when trainer beaten
-	dw SwimmermSethBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermSethScript
+	trainer EVENT_BEAT_SWIMMERM_SETH, SWIMMERM, SETH, SwimmermSethSeenText, SwimmermSethBeatenText, $0000, SwimmermSethScript
 
 SwimmermSethScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ SwimmermSethScript:
 	end
 
 TrainerSwimmerfNikki:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_NIKKI
-
-	; trainer group && trainer id
-	db SWIMMERF, NIKKI
-
-	; text when seen
-	dw SwimmerfNikkiSeenText
-
-	; text when trainer beaten
-	dw SwimmerfNikkiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfNikkiScript
+	trainer EVENT_BEAT_SWIMMERF_NIKKI, SWIMMERF, NIKKI, SwimmerfNikkiSeenText, SwimmerfNikkiBeatenText, $0000, SwimmerfNikkiScript
 
 SwimmerfNikkiScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ SwimmerfNikkiScript:
 	end
 
 TrainerFisherArnold:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_ARNOLD
-
-	; trainer group && trainer id
-	db FISHER, ARNOLD
-
-	; text when seen
-	dw FisherArnoldSeenText
-
-	; text when trainer beaten
-	dw FisherArnoldBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherArnoldScript
+	trainer EVENT_BEAT_FISHER_ARNOLD, FISHER, ARNOLD, FisherArnoldSeenText, FisherArnoldBeatenText, $0000, FisherArnoldScript
 
 FisherArnoldScript:
 	talkaftercancel

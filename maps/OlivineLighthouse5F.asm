@@ -6,23 +6,7 @@ OlivineLighthouse5F_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperDenis:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_DENIS
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, DENIS
-
-	; text when seen
-	dw Bird_keeperDenisSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperDenisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperDenisScript
+	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, $0000, Bird_keeperDenisScript
 
 Bird_keeperDenisScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperDenisScript:
 	end
 
 TrainerSailorErnest:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_ERNEST
-
-	; trainer group && trainer id
-	db SAILOR, ERNEST
-
-	; text when seen
-	dw SailorErnestSeenText
-
-	; text when trainer beaten
-	dw SailorErnestBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorErnestScript
+	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, $0000, SailorErnestScript
 
 SailorErnestScript:
 	talkaftercancel

@@ -6,23 +6,7 @@ UnionCaveB1F_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacAndrew:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_ANDREW
-
-	; trainer group && trainer id
-	db POKEMANIAC, ANDREW
-
-	; text when seen
-	dw PokemaniacAndrewSeenText
-
-	; text when trainer beaten
-	dw PokemaniacAndrewBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacAndrewScript
+	trainer EVENT_BEAT_POKEMANIAC_ANDREW, POKEMANIAC, ANDREW, PokemaniacAndrewSeenText, PokemaniacAndrewBeatenText, $0000, PokemaniacAndrewScript
 
 PokemaniacAndrewScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokemaniacAndrewScript:
 	end
 
 TrainerPokemaniacCalvin:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_CALVIN
-
-	; trainer group && trainer id
-	db POKEMANIAC, CALVIN
-
-	; text when seen
-	dw PokemaniacCalvinSeenText
-
-	; text when trainer beaten
-	dw PokemaniacCalvinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacCalvinScript
+	trainer EVENT_BEAT_POKEMANIAC_CALVIN, POKEMANIAC, CALVIN, PokemaniacCalvinSeenText, PokemaniacCalvinBeatenText, $0000, PokemaniacCalvinScript
 
 PokemaniacCalvinScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ PokemaniacCalvinScript:
 	end
 
 TrainerHikerPhillip:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_PHILLIP
-
-	; trainer group && trainer id
-	db HIKER, PHILLIP
-
-	; text when seen
-	dw HikerPhillipSeenText
-
-	; text when trainer beaten
-	dw HikerPhillipBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerPhillipScript
+	trainer EVENT_BEAT_HIKER_PHILLIP, HIKER, PHILLIP, HikerPhillipSeenText, HikerPhillipBeatenText, $0000, HikerPhillipScript
 
 HikerPhillipScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ HikerPhillipScript:
 	end
 
 TrainerHikerLeonard:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_LEONARD
-
-	; trainer group && trainer id
-	db HIKER, LEONARD
-
-	; text when seen
-	dw HikerLeonardSeenText
-
-	; text when trainer beaten
-	dw HikerLeonardBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerLeonardScript
+	trainer EVENT_BEAT_HIKER_LEONARD, HIKER, LEONARD, HikerLeonardSeenText, HikerLeonardBeatenText, $0000, HikerLeonardScript
 
 HikerLeonardScript:
 	talkaftercancel

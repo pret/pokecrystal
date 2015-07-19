@@ -6,23 +6,7 @@ FastShipCabins_SW_SSW_NW_MapScriptHeader:
 	db 0
 
 TrainerFirebreatherLyle:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_LYLE
-
-	; trainer group && trainer id
-	db FIREBREATHER, LYLE
-
-	; text when seen
-	dw FirebreatherLyleSeenText
-
-	; text when trainer beaten
-	dw FirebreatherLyleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherLyleScript
+	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, $0000, FirebreatherLyleScript
 
 FirebreatherLyleScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ FirebreatherLyleScript:
 	end
 
 TrainerBug_catcherKen:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_KEN
-
-	; trainer group && trainer id
-	db BUG_CATCHER, KEN
-
-	; text when seen
-	dw Bug_catcherKenSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherKenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherKenScript
+	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, $0000, Bug_catcherKenScript
 
 Bug_catcherKenScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ Bug_catcherKenScript:
 	end
 
 TrainerBeautyCassie:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_CASSIE
-
-	; trainer group && trainer id
-	db BEAUTY, CASSIE
-
-	; text when seen
-	dw BeautyCassieSeenText
-
-	; text when trainer beaten
-	dw BeautyCassieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyCassieScript
+	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, $0000, BeautyCassieScript
 
 BeautyCassieScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ BeautyCassieScript:
 	end
 
 TrainerGuitaristClyde:
-	; bit/flag number
-	dw EVENT_BEAT_GUITARIST_CLYDE
-
-	; trainer group && trainer id
-	db GUITARIST, CLYDE
-
-	; text when seen
-	dw GuitaristClydeSeenText
-
-	; text when trainer beaten
-	dw GuitaristClydeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GuitaristClydeScript
+	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, $0000, GuitaristClydeScript
 
 GuitaristClydeScript:
 	talkaftercancel

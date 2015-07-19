@@ -133,23 +133,7 @@ UnknownScript_0x190503:
 	end
 
 TrainerCamperRoland:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_ROLAND
-
-	; trainer group && trainer id
-	db CAMPER, ROLAND
-
-	; text when seen
-	dw CamperRolandSeenText
-
-	; text when trainer beaten
-	dw CamperRolandBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperRolandScript
+	trainer EVENT_BEAT_CAMPER_ROLAND, CAMPER, ROLAND, CamperRolandSeenText, CamperRolandBeatenText, $0000, CamperRolandScript
 
 CamperRolandScript:
 	talkaftercancel
@@ -160,23 +144,7 @@ CamperRolandScript:
 	end
 
 TrainerFisherJustin:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_JUSTIN
-
-	; trainer group && trainer id
-	db FISHER, JUSTIN
-
-	; text when seen
-	dw FisherJustinSeenText
-
-	; text when trainer beaten
-	dw FisherJustinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherJustinScript
+	trainer EVENT_BEAT_FISHER_JUSTIN, FISHER, JUSTIN, FisherJustinSeenText, FisherJustinBeatenText, $0000, FisherJustinScript
 
 FisherJustinScript:
 	talkaftercancel
@@ -187,33 +155,17 @@ FisherJustinScript:
 	end
 
 TrainerFisherRalph1:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_RALPH
-
-	; trainer group && trainer id
-	db FISHER, RALPH1
-
-	; text when seen
-	dw FisherRalph1SeenText
-
-	; text when trainer beaten
-	dw FisherRalph1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherRalph1Script
+	trainer EVENT_BEAT_FISHER_RALPH, FISHER, RALPH1, FisherRalph1SeenText, FisherRalph1BeatenText, $0000, FisherRalph1Script
 
 FisherRalph1Script:
-	writecode VAR_CALLERID, $11
+	writecode VAR_CALLERID, PHONE_FISHER_RALPH
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_RALPH
 	iftrue UnknownScript_0x19057d
 	checkflag ENGINE_SPECIAL_WILDDATA
 	iftrue UnknownScript_0x1905f1
-	checkcellnum $11
+	checkcellnum PHONE_FISHER_RALPH
 	iftrue UnknownScript_0x190603
 	checkevent EVENT_RALPH_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x190566
@@ -226,7 +178,7 @@ FisherRalph1Script:
 UnknownScript_0x190566:
 	scall UnknownScript_0x1905fb
 UnknownScript_0x190569:
-	askforphonenumber $11
+	askforphonenumber PHONE_FISHER_RALPH
 	if_equal $1, UnknownScript_0x19060b
 	if_equal $2, UnknownScript_0x190607
 	trainertotext FISHER, RALPH1, $0
@@ -328,23 +280,7 @@ UnknownScript_0x19060f:
 	end
 
 TrainerFisherHenry:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_HENRY
-
-	; trainer group && trainer id
-	db FISHER, HENRY
-
-	; text when seen
-	dw FisherHenrySeenText
-
-	; text when trainer beaten
-	dw FisherHenryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherHenryScript
+	trainer EVENT_BEAT_FISHER_HENRY, FISHER, HENRY, FisherHenrySeenText, FisherHenryBeatenText, $0000, FisherHenryScript
 
 FisherHenryScript:
 	talkaftercancel
@@ -355,31 +291,15 @@ FisherHenryScript:
 	end
 
 TrainerPicnickerLiz1:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_LIZ
-
-	; trainer group && trainer id
-	db PICNICKER, LIZ1
-
-	; text when seen
-	dw PicnickerLiz1SeenText
-
-	; text when trainer beaten
-	dw PicnickerLiz1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerLiz1Script
+	trainer EVENT_BEAT_PICNICKER_LIZ, PICNICKER, LIZ1, PicnickerLiz1SeenText, PicnickerLiz1BeatenText, $0000, PicnickerLiz1Script
 
 PicnickerLiz1Script:
-	writecode VAR_CALLERID, $12
+	writecode VAR_CALLERID, PHONE_PICNICKER_LIZ
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_LIZ
 	iftrue UnknownScript_0x19066d
-	checkcellnum $12
+	checkcellnum PHONE_PICNICKER_LIZ
 	iftrue UnknownScript_0x1906ed
 	checkevent EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x190656
@@ -392,7 +312,7 @@ PicnickerLiz1Script:
 UnknownScript_0x190656:
 	scall UnknownScript_0x1906e5
 UnknownScript_0x190659:
-	askforphonenumber $12
+	askforphonenumber PHONE_PICNICKER_LIZ
 	if_equal $1, UnknownScript_0x1906f5
 	if_equal $2, UnknownScript_0x1906f1
 	trainertotext PICNICKER, LIZ1, $0
@@ -488,23 +408,7 @@ UnknownScript_0x1906f9:
 	end
 
 TrainerYoungsterAlbert:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_ALBERT
-
-	; trainer group && trainer id
-	db YOUNGSTER, ALBERT
-
-	; text when seen
-	dw YoungsterAlbertSeenText
-
-	; text when trainer beaten
-	dw YoungsterAlbertBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterAlbertScript
+	trainer EVENT_BEAT_YOUNGSTER_ALBERT, YOUNGSTER, ALBERT, YoungsterAlbertSeenText, YoungsterAlbertBeatenText, $0000, YoungsterAlbertScript
 
 YoungsterAlbertScript:
 	talkaftercancel
@@ -515,23 +419,7 @@ YoungsterAlbertScript:
 	end
 
 TrainerYoungsterGordon:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_GORDON
-
-	; trainer group && trainer id
-	db YOUNGSTER, GORDON
-
-	; text when seen
-	dw YoungsterGordonSeenText
-
-	; text when trainer beaten
-	dw YoungsterGordonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterGordonScript
+	trainer EVENT_BEAT_YOUNGSTER_GORDON, YOUNGSTER, GORDON, YoungsterGordonSeenText, YoungsterGordonBeatenText, $0000, YoungsterGordonScript
 
 YoungsterGordonScript:
 	talkaftercancel
@@ -542,23 +430,7 @@ YoungsterGordonScript:
 	end
 
 TrainerBird_keeperPeter:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_PETER
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, PETER
-
-	; text when seen
-	dw Bird_keeperPeterSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperPeterBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperPeterScript
+	trainer EVENT_BEAT_BIRD_KEEPER_PETER, BIRD_KEEPER, PETER, Bird_keeperPeterSeenText, Bird_keeperPeterBeatenText, $0000, Bird_keeperPeterScript
 
 Bird_keeperPeterScript:
 	talkaftercancel

@@ -62,23 +62,7 @@ MahoganyGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerSkierRoxanne:
-	; bit/flag number
-	dw EVENT_BEAT_SKIER_ROXANNE
-
-	; trainer group && trainer id
-	db SKIER, ROXANNE
-
-	; text when seen
-	dw SkierRoxanneSeenText
-
-	; text when trainer beaten
-	dw SkierRoxanneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SkierRoxanneScript
+	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, $0000, SkierRoxanneScript
 
 SkierRoxanneScript:
 	talkaftercancel
@@ -89,23 +73,7 @@ SkierRoxanneScript:
 	end
 
 TrainerSkierClarissa:
-	; bit/flag number
-	dw EVENT_BEAT_SKIER_CLARISSA
-
-	; trainer group && trainer id
-	db SKIER, CLARISSA
-
-	; text when seen
-	dw SkierClarissaSeenText
-
-	; text when trainer beaten
-	dw SkierClarissaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SkierClarissaScript
+	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, $0000, SkierClarissaScript
 
 SkierClarissaScript:
 	talkaftercancel
@@ -116,23 +84,7 @@ SkierClarissaScript:
 	end
 
 TrainerBoarderRonald:
-	; bit/flag number
-	dw EVENT_BEAT_BOARDER_RONALD
-
-	; trainer group && trainer id
-	db BOARDER, RONALD
-
-	; text when seen
-	dw BoarderRonaldSeenText
-
-	; text when trainer beaten
-	dw BoarderRonaldBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BoarderRonaldScript
+	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, $0000, BoarderRonaldScript
 
 BoarderRonaldScript:
 	talkaftercancel
@@ -143,23 +95,7 @@ BoarderRonaldScript:
 	end
 
 TrainerBoarderBrad:
-	; bit/flag number
-	dw EVENT_BEAT_BOARDER_BRAD
-
-	; trainer group && trainer id
-	db BOARDER, BRAD
-
-	; text when seen
-	dw BoarderBradSeenText
-
-	; text when trainer beaten
-	dw BoarderBradBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BoarderBradScript
+	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, $0000, BoarderBradScript
 
 BoarderBradScript:
 	talkaftercancel
@@ -170,23 +106,7 @@ BoarderBradScript:
 	end
 
 TrainerBoarderDouglas:
-	; bit/flag number
-	dw EVENT_BEAT_BOARDER_DOUGLAS
-
-	; trainer group && trainer id
-	db BOARDER, DOUGLAS
-
-	; text when seen
-	dw BoarderDouglasSeenText
-
-	; text when trainer beaten
-	dw BoarderDouglasBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BoarderDouglasScript
+	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, $0000, BoarderDouglasScript
 
 BoarderDouglasScript:
 	talkaftercancel

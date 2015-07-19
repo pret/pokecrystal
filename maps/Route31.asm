@@ -19,33 +19,17 @@ UnknownScript_0x1a5443:
 	return
 
 TrainerBug_catcherWade1:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_WADE
-
-	; trainer group && trainer id
-	db BUG_CATCHER, WADE1
-
-	; text when seen
-	dw Bug_catcherWade1SeenText
-
-	; text when trainer beaten
-	dw Bug_catcherWade1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherWade1Script
+	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, Bug_catcherWade1SeenText, Bug_catcherWade1BeatenText, $0000, Bug_catcherWade1Script
 
 Bug_catcherWade1Script:
-	writecode VAR_CALLERID, $10
+	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_WADE
 	iftrue UnknownScript_0x1a5493
 	checkflag ENGINE_WADE_HAS_ITEM
 	iftrue UnknownScript_0x1a5507
-	checkcellnum $10
+	checkcellnum PHONE_BUG_CATCHER_WADE
 	iftrue UnknownScript_0x1a5558
 	checkevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a547c
@@ -58,7 +42,7 @@ Bug_catcherWade1Script:
 UnknownScript_0x1a547c:
 	scall UnknownScript_0x1a5550
 UnknownScript_0x1a547f:
-	askforphonenumber $10
+	askforphonenumber PHONE_BUG_CATCHER_WADE
 	if_equal $1, UnknownScript_0x1a5560
 	if_equal $2, UnknownScript_0x1a555c
 	trainertotext BUG_CATCHER, WADE1, $0

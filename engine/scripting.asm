@@ -912,12 +912,12 @@ Script_winlosstext: ; 0x9714c
 ;     win_text_pointer (TextPointerLabelParam)
 ;     loss_text_pointer (TextPointerLabelParam)
 
-	ld hl, WalkingTile
+	ld hl, wWinTextPointer ; d047
 	call GetScriptByte
 	ld [hli], a
 	call GetScriptByte
 	ld [hli], a
-	ld hl, wd048 + 1
+	ld hl, wLossTextPointer ; d049; this is unnecessary
 	call GetScriptByte
 	ld [hli], a
 	call GetScriptByte
@@ -2675,7 +2675,7 @@ Script_setevent: ; 0x97988
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, 1 ; set
+	ld b, SET_FLAG
 	call EventFlagAction
 	ret
 ; 0x97996
@@ -2689,7 +2689,7 @@ Script_clearevent: ; 0x97996
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, 0 ; clear
+	ld b, RESET_FLAG
 	call EventFlagAction
 	ret
 ; 0x979a4
@@ -2703,7 +2703,7 @@ Script_checkevent: ; 0x979a4
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, 2 ; check
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	ld a, c
 	and a

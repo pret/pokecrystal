@@ -6,23 +6,7 @@ Route1_MapScriptHeader:
 	db 0
 
 TrainerSchoolboyDanny:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_DANNY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, DANNY
-
-	; text when seen
-	dw SchoolboyDannySeenText
-
-	; text when trainer beaten
-	dw SchoolboyDannyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyDannyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DANNY, SCHOOLBOY, DANNY, SchoolboyDannySeenText, SchoolboyDannyBeatenText, $0000, SchoolboyDannyScript
 
 SchoolboyDannyScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ SchoolboyDannyScript:
 	end
 
 TrainerCooltrainerfQuinn:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_QUINN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, QUINN
-
-	; text when seen
-	dw CooltrainerfQuinnSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfQuinnBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfQuinnScript
+	trainer EVENT_BEAT_COOLTRAINERF_QUINN, COOLTRAINERF, QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, $0000, CooltrainerfQuinnScript
 
 CooltrainerfQuinnScript:
 	talkaftercancel

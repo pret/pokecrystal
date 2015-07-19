@@ -65,14 +65,14 @@ UnknownScript_0x54c33:
 BillsSister:
 	faceplayer
 	loadfont
-	checkcellnum $3
+	checkcellnum PHONE_BILL
 	iftrue UnknownScript_0x54c58
 	writetext UnknownText_0x54f9e
-	askforphonenumber $3
+	askforphonenumber PHONE_BILL
 	if_equal $1, UnknownScript_0x54c64
 	if_equal $2, UnknownScript_0x54c5e
 	waitbutton
-	addcellnum $3
+	addcellnum PHONE_BILL
 	writetext UnknownText_0x54fd9
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton

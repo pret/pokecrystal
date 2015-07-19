@@ -40,23 +40,7 @@ FisherScript_0x1a089c:
 	jumptextfaceplayer UnknownText_0x1a0a71
 
 TrainerPsychicGilbert:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_GILBERT
-
-	; trainer group && trainer id
-	db PSYCHIC_T, GILBERT
-
-	; text when seen
-	dw PsychicGilbertSeenText
-
-	; text when trainer beaten
-	dw PsychicGilbertBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicGilbertScript
+	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, $0000, PsychicGilbertScript
 
 PsychicGilbertScript:
 	talkaftercancel
@@ -67,33 +51,17 @@ PsychicGilbertScript:
 	end
 
 TrainerBird_keeperJose2:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_JOSE2
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, JOSE2
-
-	; text when seen
-	dw Bird_keeperJose2SeenText
-
-	; text when trainer beaten
-	dw Bird_keeperJose2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperJose2Script
+	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, Bird_keeperJose2SeenText, Bird_keeperJose2BeatenText, $0000, Bird_keeperJose2Script
 
 Bird_keeperJose2Script:
-	writecode VAR_CALLERID, $d
+	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0x1a08ff
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
 	iftrue UnknownScript_0x1a0945
-	checkcellnum $d
+	checkcellnum PHONE_BIRDKEEPER_JOSE
 	iftrue UnknownScript_0x1a0963
 	checkevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a08e8
@@ -106,7 +74,7 @@ Bird_keeperJose2Script:
 UnknownScript_0x1a08e8:
 	scall UnknownScript_0x1a095b
 UnknownScript_0x1a08eb:
-	askforphonenumber $d
+	askforphonenumber PHONE_BIRDKEEPER_JOSE
 	if_equal $1, UnknownScript_0x1a096b
 	if_equal $2, UnknownScript_0x1a0967
 	trainertotext BIRD_KEEPER, JOSE2, $0
@@ -196,23 +164,7 @@ UnknownScript_0x1a0977:
 	end
 
 TrainerCooltrainermBlake:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_BLAKE
-
-	; trainer group && trainer id
-	db COOLTRAINERM, BLAKE
-
-	; text when seen
-	dw CooltrainermBlakeSeenText
-
-	; text when trainer beaten
-	dw CooltrainermBlakeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermBlakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, $0000, CooltrainermBlakeScript
 
 CooltrainermBlakeScript:
 	talkaftercancel
@@ -223,23 +175,7 @@ CooltrainermBlakeScript:
 	end
 
 TrainerCooltrainermBrian:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_BRIAN
-
-	; trainer group && trainer id
-	db COOLTRAINERM, BRIAN
-
-	; text when seen
-	dw CooltrainermBrianSeenText
-
-	; text when trainer beaten
-	dw CooltrainermBrianBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermBrianScript
+	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, $0000, CooltrainermBrianScript
 
 CooltrainermBrianScript:
 	talkaftercancel
@@ -250,31 +186,15 @@ CooltrainermBrianScript:
 	end
 
 TrainerCooltrainerfReena:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_REENA
-
-	; trainer group && trainer id
-	db COOLTRAINERF, REENA1
-
-	; text when seen
-	dw CooltrainerfReena1SeenText
-
-	; text when trainer beaten
-	dw CooltrainerfReena1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfReena1Script
+	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, $0000, CooltrainerfReena1Script
 
 CooltrainerfReena1Script:
-	writecode VAR_CALLERID, $e
+	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_REENA
 	iftrue UnknownScript_0x1a09e9
-	checkcellnum $e
+	checkcellnum PHONE_COOLTRAINERF_REENA
 	iftrue UnknownScript_0x1a0a3b
 	checkevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a09d2
@@ -287,7 +207,7 @@ CooltrainerfReena1Script:
 UnknownScript_0x1a09d2:
 	scall UnknownScript_0x1a0a33
 UnknownScript_0x1a09d5:
-	askforphonenumber $e
+	askforphonenumber PHONE_COOLTRAINERF_REENA
 	if_equal $1, UnknownScript_0x1a0a43
 	if_equal $2, UnknownScript_0x1a0a3f
 	trainertotext COOLTRAINERF, REENA1, $0
@@ -359,23 +279,7 @@ UnknownScript_0x1a0a47:
 	end
 
 TrainerCooltrainerfMegan:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_MEGAN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, MEGAN
-
-	; text when seen
-	dw CooltrainerfMeganSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfMeganBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfMeganScript
+	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, $0000, CooltrainerfMeganScript
 
 CooltrainerfMeganScript:
 	talkaftercancel

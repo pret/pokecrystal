@@ -166,23 +166,7 @@ UnknownScript_0x7cb29:
 	end
 
 TrainerGruntM11:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_11
-
-	; trainer group && trainer id
-	db GRUNTM, 11
-
-	; text when seen
-	dw GruntM11SeenText
-
-	; text when trainer beaten
-	dw GruntM11BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM11Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, 11, GruntM11SeenText, GruntM11BeatenText, $0000, GruntM11Script
 
 GruntM11Script:
 	talkaftercancel
@@ -193,23 +177,7 @@ GruntM11Script:
 	end
 
 TrainerGruntM25:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_25
-
-	; trainer group && trainer id
-	db GRUNTM, 25
-
-	; text when seen
-	dw GruntM25SeenText
-
-	; text when trainer beaten
-	dw GruntM25BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM25Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, 25, GruntM25SeenText, GruntM25BeatenText, $0000, GruntM25Script
 
 GruntM25Script:
 	talkaftercancel
@@ -220,23 +188,7 @@ GruntM25Script:
 	end
 
 TrainerBurglarDuncan:
-	; bit/flag number
-	dw EVENT_BEAT_BURGLAR_DUNCAN
-
-	; trainer group && trainer id
-	db BURGLAR, DUNCAN
-
-	; text when seen
-	dw BurglarDuncanSeenText
-
-	; text when trainer beaten
-	dw BurglarDuncanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BurglarDuncanScript
+	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, $0000, BurglarDuncanScript
 
 BurglarDuncanScript:
 	talkaftercancel
@@ -247,23 +199,7 @@ BurglarDuncanScript:
 	end
 
 TrainerBurglarEddie:
-	; bit/flag number
-	dw EVENT_BEAT_BURGLAR_EDDIE
-
-	; trainer group && trainer id
-	db BURGLAR, EDDIE
-
-	; text when seen
-	dw BurglarEddieSeenText
-
-	; text when trainer beaten
-	dw BurglarEddieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BurglarEddieScript
+	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, $0000, BurglarEddieScript
 
 BurglarEddieScript:
 	talkaftercancel
@@ -274,23 +210,7 @@ BurglarEddieScript:
 	end
 
 TrainerGruntM13:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_13
-
-	; trainer group && trainer id
-	db GRUNTM, 13
-
-	; text when seen
-	dw GruntM13SeenText
-
-	; text when trainer beaten
-	dw GruntM13BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM13Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, 13, GruntM13SeenText, GruntM13BeatenText, $0000, GruntM13Script
 
 GruntM13Script:
 	talkaftercancel
@@ -301,23 +221,7 @@ GruntM13Script:
 	end
 
 TrainerGruntF3:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_3
-
-	; trainer group && trainer id
-	db GRUNTF, 3
-
-	; text when seen
-	dw GruntF3SeenText
-
-	; text when trainer beaten
-	dw GruntF3BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF3Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, 3, GruntF3SeenText, GruntF3BeatenText, $0000, GruntF3Script
 
 GruntF3Script:
 	talkaftercancel

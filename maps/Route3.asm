@@ -6,23 +6,7 @@ Route3_MapScriptHeader:
 	db 0
 
 TrainerFirebreatherOtis:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_OTIS
-
-	; trainer group && trainer id
-	db FIREBREATHER, OTIS
-
-	; text when seen
-	dw FirebreatherOtisSeenText
-
-	; text when trainer beaten
-	dw FirebreatherOtisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherOtisScript
+	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, $0000, FirebreatherOtisScript
 
 FirebreatherOtisScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ FirebreatherOtisScript:
 	end
 
 TrainerYoungsterWarren:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_WARREN
-
-	; trainer group && trainer id
-	db YOUNGSTER, WARREN
-
-	; text when seen
-	dw YoungsterWarrenSeenText
-
-	; text when trainer beaten
-	dw YoungsterWarrenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterWarrenScript
+	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, $0000, YoungsterWarrenScript
 
 YoungsterWarrenScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ YoungsterWarrenScript:
 	end
 
 TrainerYoungsterJimmy:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_JIMMY
-
-	; trainer group && trainer id
-	db YOUNGSTER, JIMMY
-
-	; text when seen
-	dw YoungsterJimmySeenText
-
-	; text when trainer beaten
-	dw YoungsterJimmyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterJimmyScript
+	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, $0000, YoungsterJimmyScript
 
 YoungsterJimmyScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ YoungsterJimmyScript:
 	end
 
 TrainerFirebreatherBurt:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_BURT
-
-	; trainer group && trainer id
-	db FIREBREATHER, BURT
-
-	; text when seen
-	dw FirebreatherBurtSeenText
-
-	; text when trainer beaten
-	dw FirebreatherBurtBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherBurtScript
+	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, $0000, FirebreatherBurtScript
 
 FirebreatherBurtScript:
 	talkaftercancel

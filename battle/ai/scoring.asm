@@ -151,7 +151,7 @@ AI_Setup: ; 385e0
 AI_Types: ; 38635
 ; Dismiss any move that the player is immune to.
 ; Encourage super-effective moves.
-; Discourage not very effective moves unless 
+; Discourage not very effective moves unless
 ; all damaging moves are of the same type.
 
 	ld hl, Buffer1 - 1
@@ -963,9 +963,9 @@ AI_Smart_Bide: ; 38a1e
 AI_Smart_Whirlwind: ; 38a2a
 ; Whirlwind, Roar.
 
-; Discourage this move if the player has not shown 
+; Discourage this move if the player has not shown
 ; a super-effective move against the enemy.
-; Consider player's type(s) if its moves are unknown. 
+; Consider player's type(s) if its moves are unknown.
 
 	push hl
 	callab Function3484e
@@ -1231,7 +1231,7 @@ AI_Smart_Paralyze: ; 38b26
 	call AICheckPlayerQuarterHP
 	jr nc, .asm_38b3a
 	
-; 80% chance to greatly encourage this move 
+; 80% chance to greatly encourage this move
 ; if enemy is slower than player and its HP is above 25%.	
 	call AICompareSpeed
 	ret c
@@ -1879,7 +1879,7 @@ AI_Smart_MeanLook: ; 38dfb
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_38e26
 
-; 80% chance to greatly encourage this move if the player is either 
+; 80% chance to greatly encourage this move if the player is either
 ; in love, identified, stuck in Rollout, or has a Nightmare.	
 	ld a, [PlayerSubStatus1]
 	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ROLLOUT | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
@@ -3292,7 +3292,7 @@ AI_Aggressive: ; 39369
 	call AIGetEnemyMove
 
 ; Ignore this move if its power is 0 or 1.
-; Moves such as Seismic Toss, Hidden Power, 
+; Moves such as Seismic Toss, Hidden Power,
 ; Counter and Fissure have a base power of 1.	
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	cp 2

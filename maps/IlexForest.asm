@@ -376,23 +376,7 @@ UnknownScript_0x6edf7:
 	end
 
 TrainerBug_catcherWayne:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_WAYNE
-
-	; trainer group && trainer id
-	db BUG_CATCHER, WAYNE
-
-	; text when seen
-	dw Bug_catcherWayneSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherWayneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherWayneScript
+	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, Bug_catcherWayneSeenText, Bug_catcherWayneBeatenText, $0000, Bug_catcherWayneScript
 
 Bug_catcherWayneScript:
 	talkaftercancel

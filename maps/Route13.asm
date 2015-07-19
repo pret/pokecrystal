@@ -6,23 +6,7 @@ Route13_MapScriptHeader:
 	db 0
 
 TrainerPokefanmAlex:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_ALEX
-
-	; trainer group && trainer id
-	db POKEFANM, ALEX
-
-	; text when seen
-	dw PokefanmAlexSeenText
-
-	; text when trainer beaten
-	dw PokefanmAlexBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmAlexScript
+	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, $0000, PokefanmAlexScript
 
 PokefanmAlexScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokefanmAlexScript:
 	end
 
 TrainerPokefanmJoshua:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_JOSHUA
-
-	; trainer group && trainer id
-	db POKEFANM, JOSHUA
-
-	; text when seen
-	dw PokefanmJoshuaSeenText
-
-	; text when trainer beaten
-	dw PokefanmJoshuaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmJoshuaScript
+	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, $0000, PokefanmJoshuaScript
 
 PokefanmJoshuaScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ PokefanmJoshuaScript:
 	end
 
 TrainerBird_keeperPerry:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_PERRY
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, PERRY
-
-	; text when seen
-	dw Bird_keeperPerrySeenText
-
-	; text when trainer beaten
-	dw Bird_keeperPerryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperPerryScript
+	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, $0000, Bird_keeperPerryScript
 
 Bird_keeperPerryScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ Bird_keeperPerryScript:
 	end
 
 TrainerBird_keeperBret:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_BRET
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, BRET
-
-	; text when seen
-	dw Bird_keeperBretSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperBretBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperBretScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, $0000, Bird_keeperBretScript
 
 Bird_keeperBretScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ Bird_keeperBretScript:
 	end
 
 TrainerHikerKenny:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_KENNY
-
-	; trainer group && trainer id
-	db HIKER, KENNY
-
-	; text when seen
-	dw HikerKennySeenText
-
-	; text when trainer beaten
-	dw HikerKennyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerKennyScript
+	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, $0000, HikerKennyScript
 
 HikerKennyScript:
 	talkaftercancel

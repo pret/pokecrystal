@@ -6,23 +6,7 @@ FastShipCabins_NNW_NNE_NE_MapScriptHeader:
 	db 0
 
 TrainerCooltrainermSean:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_SEAN
-
-	; trainer group && trainer id
-	db COOLTRAINERM, SEAN
-
-	; text when seen
-	dw CooltrainermSeanSeenText
-
-	; text when trainer beaten
-	dw CooltrainermSeanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermSeanScript
+	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, $0000, CooltrainermSeanScript
 
 CooltrainermSeanScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ CooltrainermSeanScript:
 	end
 
 TrainerCooltrainerfCarol:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_CAROL
-
-	; trainer group && trainer id
-	db COOLTRAINERF, CAROL
-
-	; text when seen
-	dw CooltrainerfCarolSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfCarolBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfCarolScript
+	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, $0000, CooltrainerfCarolScript
 
 CooltrainerfCarolScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ CooltrainerfCarolScript:
 	end
 
 TrainerPokemaniacEthan:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_ETHAN
-
-	; trainer group && trainer id
-	db POKEMANIAC, ETHAN
-
-	; text when seen
-	dw PokemaniacEthanSeenText
-
-	; text when trainer beaten
-	dw PokemaniacEthanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacEthanScript
+	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, $0000, PokemaniacEthanScript
 
 PokemaniacEthanScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ PokemaniacEthanScript:
 	end
 
 TrainerHikerNoland:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_NOLAND
-
-	; trainer group && trainer id
-	db HIKER, NOLAND
-
-	; text when seen
-	dw HikerNolandSeenText
-
-	; text when trainer beaten
-	dw HikerNolandBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerNolandScript
+	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, $0000, HikerNolandScript
 
 HikerNolandScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ HikerNolandScript:
 	end
 
 TrainerGentlemanEdward:
-	; bit/flag number
-	dw EVENT_BEAT_GENTLEMAN_EDWARD
-
-	; trainer group && trainer id
-	db GENTLEMAN, EDWARD
-
-	; text when seen
-	dw GentlemanEdwardSeenText
-
-	; text when trainer beaten
-	dw GentlemanEdwardBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GentlemanEdwardScript
+	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, $0000, GentlemanEdwardScript
 
 GentlemanEdwardScript:
 	talkaftercancel
@@ -141,23 +61,7 @@ GentlemanEdwardScript:
 	end
 
 TrainerBurglarCorey:
-	; bit/flag number
-	dw EVENT_BEAT_BURGLAR_COREY
-
-	; trainer group && trainer id
-	db BURGLAR, COREY
-
-	; text when seen
-	dw BurglarCoreySeenText
-
-	; text when trainer beaten
-	dw BurglarCoreyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BurglarCoreyScript
+	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, $0000, BurglarCoreyScript
 
 BurglarCoreyScript:
 	talkaftercancel

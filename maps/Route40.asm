@@ -21,23 +21,7 @@ MonicaCallback:
 	return
 
 TrainerSwimmerfElaine:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_ELAINE
-
-	; trainer group && trainer id
-	db SWIMMERF, ELAINE
-
-	; text when seen
-	dw SwimmerfElaineSeenText
-
-	; text when trainer beaten
-	dw SwimmerfElaineBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfElaineScript
+	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, $0000, SwimmerfElaineScript
 
 SwimmerfElaineScript:
 	talkaftercancel
@@ -48,23 +32,7 @@ SwimmerfElaineScript:
 	end
 
 TrainerSwimmerfPaula:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_PAULA
-
-	; trainer group && trainer id
-	db SWIMMERF, PAULA
-
-	; text when seen
-	dw SwimmerfPaulaSeenText
-
-	; text when trainer beaten
-	dw SwimmerfPaulaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfPaulaScript
+	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, $0000, SwimmerfPaulaScript
 
 SwimmerfPaulaScript:
 	talkaftercancel
@@ -75,23 +43,7 @@ SwimmerfPaulaScript:
 	end
 
 TrainerSwimmermSimon:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_SIMON
-
-	; trainer group && trainer id
-	db SWIMMERM, SIMON
-
-	; text when seen
-	dw SwimmermSimonSeenText
-
-	; text when trainer beaten
-	dw SwimmermSimonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermSimonScript
+	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, $0000, SwimmermSimonScript
 
 SwimmermSimonScript:
 	talkaftercancel
@@ -102,23 +54,7 @@ SwimmermSimonScript:
 	end
 
 TrainerSwimmermRandall:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_RANDALL
-
-	; trainer group && trainer id
-	db SWIMMERM, RANDALL
-
-	; text when seen
-	dw SwimmermRandallSeenText
-
-	; text when trainer beaten
-	dw SwimmermRandallBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermRandallScript
+	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, $0000, SwimmermRandallScript
 
 SwimmermRandallScript:
 	talkaftercancel

@@ -15,7 +15,7 @@ UnknownScript_0x7abb3:
 	end
 
 UnknownScript_0x7abb4:
-	special Function27043
+	special ToggleDecorationsVisibility
 	setevent EVENT_007
 	checkevent EVENT_036
 	iftrue UnknownScript_0x7abc4

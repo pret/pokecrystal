@@ -6,23 +6,7 @@ MountMortar1FInside_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacMiller:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_MILLER
-
-	; trainer group && trainer id
-	db POKEMANIAC, MILLER
-
-	; text when seen
-	dw PokemaniacMillerSeenText
-
-	; text when trainer beaten
-	dw PokemaniacMillerBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacMillerScript
+	trainer EVENT_BEAT_POKEMANIAC_MILLER, POKEMANIAC, MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, $0000, PokemaniacMillerScript
 
 PokemaniacMillerScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokemaniacMillerScript:
 	end
 
 TrainerSupernerdMarkus:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_MARKUS
-
-	; trainer group && trainer id
-	db SUPER_NERD, MARKUS
-
-	; text when seen
-	dw SupernerdMarkusSeenText
-
-	; text when trainer beaten
-	dw SupernerdMarkusBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdMarkusScript
+	trainer EVENT_BEAT_SUPER_NERD_MARKUS, SUPER_NERD, MARKUS, SupernerdMarkusSeenText, SupernerdMarkusBeatenText, $0000, SupernerdMarkusScript
 
 SupernerdMarkusScript:
 	talkaftercancel

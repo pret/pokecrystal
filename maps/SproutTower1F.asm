@@ -18,23 +18,7 @@ TeacherScript_0x184507:
 	jumptextfaceplayer UnknownText_0x18469d
 
 TrainerSageChow:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_CHOW
-
-	; trainer group && trainer id
-	db SAGE, CHOW
-
-	; text when seen
-	dw SageChowSeenText
-
-	; text when trainer beaten
-	dw SageChowBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageChowScript
+	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, $0000, SageChowScript
 
 SageChowScript:
 	talkaftercancel

@@ -87,23 +87,7 @@ UnknownScript_0x194e94:
 	end
 
 TrainerCooltrainermPaul:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_PAUL
-
-	; trainer group && trainer id
-	db COOLTRAINERM, PAUL
-
-	; text when seen
-	dw CooltrainermPaulSeenText
-
-	; text when trainer beaten
-	dw CooltrainermPaulBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermPaulScript
+	trainer EVENT_BEAT_COOLTRAINERM_PAUL, COOLTRAINERM, PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, $0000, CooltrainermPaulScript
 
 CooltrainermPaulScript:
 	talkaftercancel
@@ -114,23 +98,7 @@ CooltrainermPaulScript:
 	end
 
 TrainerCooltrainermMike:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_MIKE
-
-	; trainer group && trainer id
-	db COOLTRAINERM, MIKE
-
-	; text when seen
-	dw CooltrainermMikeSeenText
-
-	; text when trainer beaten
-	dw CooltrainermMikeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermMikeScript
+	trainer EVENT_BEAT_COOLTRAINERM_MIKE, COOLTRAINERM, MIKE, CooltrainermMikeSeenText, CooltrainermMikeBeatenText, $0000, CooltrainermMikeScript
 
 CooltrainermMikeScript:
 	talkaftercancel
@@ -141,23 +109,7 @@ CooltrainermMikeScript:
 	end
 
 TrainerCooltrainerfLola:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_LOLA
-
-	; trainer group && trainer id
-	db COOLTRAINERF, LOLA
-
-	; text when seen
-	dw CooltrainerfLolaSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfLolaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfLolaScript
+	trainer EVENT_BEAT_COOLTRAINERF_LOLA, COOLTRAINERF, LOLA, CooltrainerfLolaSeenText, CooltrainerfLolaBeatenText, $0000, CooltrainerfLolaScript
 
 CooltrainerfLolaScript:
 	talkaftercancel

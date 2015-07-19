@@ -66,23 +66,7 @@ UnknownScript_0x985a3:
 	end
 
 TrainerSageGaku:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_GAKU
-
-	; trainer group && trainer id
-	db SAGE, GAKU
-
-	; text when seen
-	dw SageGakuSeenText
-
-	; text when trainer beaten
-	dw SageGakuBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageGakuScript
+	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, $0000, SageGakuScript
 
 SageGakuScript:
 	loadfont
@@ -92,23 +76,7 @@ SageGakuScript:
 	end
 
 TrainerSageMasa:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_MASA
-
-	; trainer group && trainer id
-	db SAGE, MASA
-
-	; text when seen
-	dw SageMasaSeenText
-
-	; text when trainer beaten
-	dw SageMasaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageMasaScript
+	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, $0000, SageMasaScript
 
 SageMasaScript:
 	loadfont
@@ -118,23 +86,7 @@ SageMasaScript:
 	end
 
 TrainerSageKoji:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_KOJI
-
-	; trainer group && trainer id
-	db SAGE, KOJI
-
-	; text when seen
-	dw SageKojiSeenText
-
-	; text when trainer beaten
-	dw SageKojiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageKojiScript
+	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, $0000, SageKojiScript
 
 SageKojiScript:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER

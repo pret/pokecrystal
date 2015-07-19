@@ -61,23 +61,7 @@ AzaleaGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerTwinsAmyandmay1:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_AMY_AND_MAY
-
-	; trainer group && trainer id
-	db TWINS, AMYANDMAY1
-
-	; text when seen
-	dw TwinsAmyandmay1SeenText
-
-	; text when trainer beaten
-	dw TwinsAmyandmay1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsAmyandmay1Script
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, $0000, TwinsAmyandmay1Script
 
 TwinsAmyandmay1Script:
 	talkaftercancel
@@ -88,23 +72,7 @@ TwinsAmyandmay1Script:
 	end
 
 TrainerTwinsAmyandmay2:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_AMY_AND_MAY
-
-	; trainer group && trainer id
-	db TWINS, AMYANDMAY2
-
-	; text when seen
-	dw TwinsAmyandmay2SeenText
-
-	; text when trainer beaten
-	dw TwinsAmyandmay2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsAmyandmay2Script
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, $0000, TwinsAmyandmay2Script
 
 TwinsAmyandmay2Script:
 	talkaftercancel
@@ -115,23 +83,7 @@ TwinsAmyandmay2Script:
 	end
 
 TrainerBug_catcherBug_catcher_benny:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_BENNY
-
-	; trainer group && trainer id
-	db BUG_CATCHER, BUG_CATCHER_BENNY
-
-	; text when seen
-	dw Bug_catcherBug_catcher_bennySeenText
-
-	; text when trainer beaten
-	dw Bug_catcherBug_catcher_bennyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherBug_catcher_bennyScript
+	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherBug_catcher_bennySeenText, Bug_catcherBug_catcher_bennyBeatenText, $0000, Bug_catcherBug_catcher_bennyScript
 
 Bug_catcherBug_catcher_bennyScript:
 	talkaftercancel
@@ -142,23 +94,7 @@ Bug_catcherBug_catcher_bennyScript:
 	end
 
 TrainerBug_catcherAl:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_AL
-
-	; trainer group && trainer id
-	db BUG_CATCHER, AL
-
-	; text when seen
-	dw Bug_catcherAlSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherAlBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherAlScript
+	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, $0000, Bug_catcherAlScript
 
 Bug_catcherAlScript:
 	talkaftercancel
@@ -169,23 +105,7 @@ Bug_catcherAlScript:
 	end
 
 TrainerBug_catcherJosh:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_JOSH
-
-	; trainer group && trainer id
-	db BUG_CATCHER, JOSH
-
-	; text when seen
-	dw Bug_catcherJoshSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherJoshBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherJoshScript
+	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, $0000, Bug_catcherJoshScript
 
 Bug_catcherJoshScript:
 	talkaftercancel

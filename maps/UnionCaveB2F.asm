@@ -33,23 +33,7 @@ SurfScript_0x5a31f:
 	end
 
 TrainerCooltrainermNick:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_NICK
-
-	; trainer group && trainer id
-	db COOLTRAINERM, NICK
-
-	; text when seen
-	dw CooltrainermNickSeenText
-
-	; text when trainer beaten
-	dw CooltrainermNickBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermNickScript
+	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, $0000, CooltrainermNickScript
 
 CooltrainermNickScript:
 	talkaftercancel
@@ -60,23 +44,7 @@ CooltrainermNickScript:
 	end
 
 TrainerCooltrainerfGwen:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_GWEN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, GWEN
-
-	; text when seen
-	dw CooltrainerfGwenSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfGwenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfGwenScript
+	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, $0000, CooltrainerfGwenScript
 
 CooltrainerfGwenScript:
 	talkaftercancel
@@ -87,23 +55,7 @@ CooltrainerfGwenScript:
 	end
 
 TrainerCooltrainerfEmma:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_EMMA
-
-	; trainer group && trainer id
-	db COOLTRAINERF, EMMA
-
-	; text when seen
-	dw CooltrainerfEmmaSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfEmmaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfEmmaScript
+	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, $0000, CooltrainerfEmmaScript
 
 CooltrainerfEmmaScript:
 	talkaftercancel

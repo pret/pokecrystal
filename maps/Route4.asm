@@ -6,23 +6,7 @@ Route4_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperHank:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_HANK
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, HANK
-
-	; text when seen
-	dw Bird_keeperHankSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperHankBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperHankScript
+	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, $0000, Bird_keeperHankScript
 
 Bird_keeperHankScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperHankScript:
 	end
 
 TrainerPicnickerHope:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_HOPE
-
-	; trainer group && trainer id
-	db PICNICKER, HOPE
-
-	; text when seen
-	dw PicnickerHopeSeenText
-
-	; text when trainer beaten
-	dw PicnickerHopeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerHopeScript
+	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, $0000, PicnickerHopeScript
 
 PicnickerHopeScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ PicnickerHopeScript:
 	end
 
 TrainerPicnickerSharon:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_SHARON
-
-	; trainer group && trainer id
-	db PICNICKER, SHARON
-
-	; text when seen
-	dw PicnickerSharonSeenText
-
-	; text when trainer beaten
-	dw PicnickerSharonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerSharonScript
+	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, $0000, PicnickerSharonScript
 
 PicnickerSharonScript:
 	talkaftercancel

@@ -14,31 +14,15 @@ TaurosScript_0x1a5af5:
 	end
 
 TrainerPokefanmDerek1:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_DEREK
-
-	; trainer group && trainer id
-	db POKEFANM, DEREK1
-
-	; text when seen
-	dw PokefanmDerek1SeenText
-
-	; text when trainer beaten
-	dw PokefanmDerek1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmDerek1Script
+	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, $0000, PokefanmDerek1Script
 
 PokefanmDerek1Script:
-	writecode VAR_CALLERID, $1c
+	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue UnknownScript_0x1a5b4a
-	checkcellnum $1c
+	checkcellnum PHONE_POKEFANM_DEREK
 	iftrue UnknownScript_0x1a5b6e
 	checkpoke PIKACHU
 	iffalse UnknownScript_0x1a5b5c
@@ -53,7 +37,7 @@ PokefanmDerek1Script:
 UnknownScript_0x1a5b33:
 	scall UnknownScript_0x1a5b66
 UnknownScript_0x1a5b36:
-	askforphonenumber $1c
+	askforphonenumber PHONE_POKEFANM_DEREK
 	if_equal $1, UnknownScript_0x1a5b76
 	if_equal $2, UnknownScript_0x1a5b72
 	trainertotext POKEFANM, DEREK1, $0
@@ -109,23 +93,7 @@ UnknownScript_0x1a5b7e:
 	end
 
 TrainerPokefanfRuth:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANF_RUTH
-
-	; trainer group && trainer id
-	db POKEFANF, RUTH
-
-	; text when seen
-	dw PokefanfRuthSeenText
-
-	; text when trainer beaten
-	dw PokefanfRuthBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanfRuthScript
+	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, $0000, PokefanfRuthScript
 
 PokefanfRuthScript:
 	talkaftercancel
@@ -136,23 +104,7 @@ PokefanfRuthScript:
 	end
 
 TrainerSailorEugene:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_EUGENE
-
-	; trainer group && trainer id
-	db SAILOR, EUGENE
-
-	; text when seen
-	dw SailorEugeneSeenText
-
-	; text when trainer beaten
-	dw SailorEugeneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorEugeneScript
+	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, $0000, SailorEugeneScript
 
 SailorEugeneScript:
 	talkaftercancel
@@ -163,23 +115,7 @@ SailorEugeneScript:
 	end
 
 TrainerPsychicNorman:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_NORMAN
-
-	; trainer group && trainer id
-	db PSYCHIC_T, NORMAN
-
-	; text when seen
-	dw PsychicNormanSeenText
-
-	; text when trainer beaten
-	dw PsychicNormanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicNormanScript
+	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, $0000, PsychicNormanScript
 
 PsychicNormanScript:
 	talkaftercancel

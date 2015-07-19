@@ -6,23 +6,7 @@ DanceTheatre_MapScriptHeader:
 	db 0
 
 TrainerKimono_girlNaoko2:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_NAOKO
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, NAOKO2
-
-	; text when seen
-	dw Kimono_girlNaoko2SeenText
-
-	; text when trainer beaten
-	dw Kimono_girlNaoko2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlNaoko2Script
+	trainer EVENT_BEAT_KIMONO_GIRL_NAOKO, KIMONO_GIRL, NAOKO2, Kimono_girlNaoko2SeenText, Kimono_girlNaoko2BeatenText, $0000, Kimono_girlNaoko2Script
 
 Kimono_girlNaoko2Script:
 	talkaftercancel
@@ -33,23 +17,7 @@ Kimono_girlNaoko2Script:
 	end
 
 TrainerKimono_girlSayo:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_SAYO
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, SAYO
-
-	; text when seen
-	dw Kimono_girlSayoSeenText
-
-	; text when trainer beaten
-	dw Kimono_girlSayoBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlSayoScript
+	trainer EVENT_BEAT_KIMONO_GIRL_SAYO, KIMONO_GIRL, SAYO, Kimono_girlSayoSeenText, Kimono_girlSayoBeatenText, $0000, Kimono_girlSayoScript
 
 Kimono_girlSayoScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ Kimono_girlSayoScript:
 	end
 
 TrainerKimono_girlZuki:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_ZUKI
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, ZUKI
-
-	; text when seen
-	dw Kimono_girlZukiSeenText
-
-	; text when trainer beaten
-	dw Kimono_girlZukiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlZukiScript
+	trainer EVENT_BEAT_KIMONO_GIRL_ZUKI, KIMONO_GIRL, ZUKI, Kimono_girlZukiSeenText, Kimono_girlZukiBeatenText, $0000, Kimono_girlZukiScript
 
 Kimono_girlZukiScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ Kimono_girlZukiScript:
 	end
 
 TrainerKimono_girlKuni:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_KUNI
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, KUNI
-
-	; text when seen
-	dw Kimono_girlKuniSeenText
-
-	; text when trainer beaten
-	dw Kimono_girlKuniBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlKuniScript
+	trainer EVENT_BEAT_KIMONO_GIRL_KUNI, KIMONO_GIRL, KUNI, Kimono_girlKuniSeenText, Kimono_girlKuniBeatenText, $0000, Kimono_girlKuniScript
 
 Kimono_girlKuniScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ Kimono_girlKuniScript:
 	end
 
 TrainerKimono_girlMiki:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_MIKI
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, MIKI
-
-	; text when seen
-	dw Kimono_girlMikiSeenText
-
-	; text when trainer beaten
-	dw Kimono_girlMikiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlMikiScript
+	trainer EVENT_BEAT_KIMONO_GIRL_MIKI, KIMONO_GIRL, MIKI, Kimono_girlMikiSeenText, Kimono_girlMikiBeatenText, $0000, Kimono_girlMikiScript
 
 Kimono_girlMikiScript:
 	talkaftercancel

@@ -6,31 +6,15 @@ Route44_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperVance1:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_VANCE
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, VANCE1
-
-	; text when seen
-	dw Bird_keeperVance1SeenText
-
-	; text when trainer beaten
-	dw Bird_keeperVance1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperVance1Script
+	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, Bird_keeperVance1SeenText, Bird_keeperVance1BeatenText, $0000, Bird_keeperVance1Script
 
 Bird_keeperVance1Script:
-	writecode VAR_CALLERID, $20
+	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_VANCE
 	iftrue UnknownScript_0x19d86a
-	checkcellnum $20
+	checkcellnum PHONE_BIRDKEEPER_VANCE
 	iftrue UnknownScript_0x19d8eb
 	checkevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d853
@@ -43,7 +27,7 @@ Bird_keeperVance1Script:
 UnknownScript_0x19d853:
 	scall UnknownScript_0x19d8e3
 UnknownScript_0x19d856:
-	askforphonenumber $20
+	askforphonenumber PHONE_BIRDKEEPER_VANCE
 	if_equal $1, UnknownScript_0x19d8f3
 	if_equal $2, UnknownScript_0x19d8ef
 	trainertotext BIRD_KEEPER, VANCE1, $0
@@ -153,23 +137,7 @@ UnknownScript_0x19d90a:
 	end
 
 TrainerPsychicPhil:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_PHIL
-
-	; trainer group && trainer id
-	db PSYCHIC_T, PHIL
-
-	; text when seen
-	dw PsychicPhilSeenText
-
-	; text when trainer beaten
-	dw PsychicPhilBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicPhilScript
+	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, $0000, PsychicPhilScript
 
 PsychicPhilScript:
 	talkaftercancel
@@ -180,33 +148,17 @@ PsychicPhilScript:
 	end
 
 TrainerFisherWilton1:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_WILTON
-
-	; trainer group && trainer id
-	db FISHER, WILTON1
-
-	; text when seen
-	dw FisherWilton1SeenText
-
-	; text when trainer beaten
-	dw FisherWilton1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherWilton1Script
+	trainer EVENT_BEAT_FISHER_WILTON, FISHER, WILTON1, FisherWilton1SeenText, FisherWilton1BeatenText, $0000, FisherWilton1Script
 
 FisherWilton1Script:
-	writecode VAR_CALLERID, $21
+	writecode VAR_CALLERID, PHONE_FISHER_WILTON
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0x19d96e
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue UnknownScript_0x19d9b4
-	checkcellnum $21
+	checkcellnum PHONE_FISHER_WILTON
 	iftrue UnknownScript_0x19d8eb
 	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d957
@@ -219,7 +171,7 @@ FisherWilton1Script:
 UnknownScript_0x19d957:
 	scall UnknownScript_0x19d8e3
 UnknownScript_0x19d95a:
-	askforphonenumber $21
+	askforphonenumber PHONE_FISHER_WILTON
 	if_equal $1, UnknownScript_0x19d8f3
 	if_equal $2, UnknownScript_0x19d8ef
 	trainertotext FISHER, WILTON1, $0
@@ -291,23 +243,7 @@ UnknownScript_0x19d9e7:
 	jump UnknownScript_0x19d8ff
 
 TrainerFisherEdgar:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_EDGAR
-
-	; trainer group && trainer id
-	db FISHER, EDGAR
-
-	; text when seen
-	dw FisherEdgarSeenText
-
-	; text when trainer beaten
-	dw FisherEdgarBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherEdgarScript
+	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, $0000, FisherEdgarScript
 
 FisherEdgarScript:
 	talkaftercancel
@@ -318,23 +254,7 @@ FisherEdgarScript:
 	end
 
 TrainerCooltrainerfCybil:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_CYBIL
-
-	; trainer group && trainer id
-	db COOLTRAINERF, CYBIL
-
-	; text when seen
-	dw CooltrainerfCybilSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfCybilBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfCybilScript
+	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, $0000, CooltrainerfCybilScript
 
 CooltrainerfCybilScript:
 	talkaftercancel
@@ -345,23 +265,7 @@ CooltrainerfCybilScript:
 	end
 
 TrainerPokemaniacZach:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_ZACH
-
-	; trainer group && trainer id
-	db POKEMANIAC, ZACH
-
-	; text when seen
-	dw PokemaniacZachSeenText
-
-	; text when trainer beaten
-	dw PokemaniacZachBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacZachScript
+	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, $0000, PokemaniacZachScript
 
 PokemaniacZachScript:
 	talkaftercancel
@@ -372,23 +276,7 @@ PokemaniacZachScript:
 	end
 
 TrainerCooltrainermAllen:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_ALLEN
-
-	; trainer group && trainer id
-	db COOLTRAINERM, ALLEN
-
-	; text when seen
-	dw CooltrainermAllenSeenText
-
-	; text when trainer beaten
-	dw CooltrainermAllenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermAllenScript
+	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, $0000, CooltrainermAllenScript
 
 CooltrainermAllenScript:
 	talkaftercancel

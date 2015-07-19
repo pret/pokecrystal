@@ -1403,9 +1403,11 @@ WalkingX:: ; d045
 WalkingY:: ; d046
 	ds 1
 WalkingTile:: ; d047
+wWinTextPointer::
 	ds 1
 
-wd048:: ds 3
+wd048:: ds 1
+wLossTextPointer:: ds 2
 wd04b:: ds 2
 wd04d:: ds 1
 wd04e:: ds 2
@@ -2428,7 +2430,7 @@ PartySpecies:: ; dcd8
 	ds PARTY_LENGTH ; species of each Pokémon in party
 PartyEnd:: ; dcde
 	ds 1 ; legacy functions don't check PartyCount
-		 
+		
 PartyMons::
 PartyMon1:: party_struct PartyMon1 ; dcdf
 PartyMon2:: party_struct PartyMon2 ; dd0f

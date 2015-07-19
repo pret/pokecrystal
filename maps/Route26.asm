@@ -6,23 +6,7 @@ Route26_MapScriptHeader:
 	db 0
 
 TrainerCooltrainermJake:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_JAKE
-
-	; trainer group && trainer id
-	db COOLTRAINERM, JAKE
-
-	; text when seen
-	dw CooltrainermJakeSeenText
-
-	; text when trainer beaten
-	dw CooltrainermJakeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermJakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, $0000, CooltrainermJakeScript
 
 CooltrainermJakeScript:
 	talkaftercancel
@@ -33,31 +17,15 @@ CooltrainermJakeScript:
 	end
 
 TrainerCooltrainermGaven3:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_GAVEN
-
-	; trainer group && trainer id
-	db COOLTRAINERM, GAVEN3
-
-	; text when seen
-	dw CooltrainermGaven3SeenText
-
-	; text when trainer beaten
-	dw CooltrainermGaven3BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermGaven3Script
+	trainer EVENT_BEAT_COOLTRAINERM_GAVEN, COOLTRAINERM, GAVEN3, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, $0000, CooltrainermGaven3Script
 
 CooltrainermGaven3Script:
-	writecode VAR_CALLERID, $b
+	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_GAVEN
 	iftrue UnknownScript_0x1a4d79
-	checkcellnum $b
+	checkcellnum PHONE_COOLTRAINERM_GAVEN
 	iftrue UnknownScript_0x1a4dcb
 	checkevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a4d62
@@ -70,7 +38,7 @@ CooltrainermGaven3Script:
 UnknownScript_0x1a4d62:
 	scall UnknownScript_0x1a4dc3
 UnknownScript_0x1a4d65:
-	askforphonenumber $b
+	askforphonenumber PHONE_COOLTRAINERM_GAVEN
 	if_equal $1, UnknownScript_0x1a4dd3
 	if_equal $2, UnknownScript_0x1a4dcf
 	trainertotext COOLTRAINERM, GAVEN3, $0
@@ -142,23 +110,7 @@ UnknownScript_0x1a4dd7:
 	end
 
 TrainerCooltrainerfJoyce:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_JOYCE
-
-	; trainer group && trainer id
-	db COOLTRAINERF, JOYCE
-
-	; text when seen
-	dw CooltrainerfJoyceSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfJoyceBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfJoyceScript
+	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, $0000, CooltrainerfJoyceScript
 
 CooltrainerfJoyceScript:
 	talkaftercancel
@@ -169,31 +121,15 @@ CooltrainerfJoyceScript:
 	end
 
 TrainerCooltrainerfBeth1:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_BETH
-
-	; trainer group && trainer id
-	db COOLTRAINERF, BETH1
-
-	; text when seen
-	dw CooltrainerfBeth1SeenText
-
-	; text when trainer beaten
-	dw CooltrainerfBeth1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfBeth1Script
+	trainer EVENT_BEAT_COOLTRAINERF_BETH, COOLTRAINERF, BETH1, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, $0000, CooltrainerfBeth1Script
 
 CooltrainerfBeth1Script:
-	writecode VAR_CALLERID, $c
+	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_BETH
 	iftrue UnknownScript_0x1a4e35
-	checkcellnum $c
+	checkcellnum PHONE_COOLTRAINERF_BETH
 	iftrue UnknownScript_0x1a4e87
 	checkevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a4e1e
@@ -206,7 +142,7 @@ CooltrainerfBeth1Script:
 UnknownScript_0x1a4e1e:
 	scall UnknownScript_0x1a4e7f
 UnknownScript_0x1a4e21:
-	askforphonenumber $c
+	askforphonenumber PHONE_COOLTRAINERF_BETH
 	if_equal $1, UnknownScript_0x1a4e8f
 	if_equal $2, UnknownScript_0x1a4e8b
 	trainertotext COOLTRAINERF, BETH1, $0
@@ -278,23 +214,7 @@ UnknownScript_0x1a4e93:
 	end
 
 TrainerPsychicRichard:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_RICHARD
-
-	; trainer group && trainer id
-	db PSYCHIC_T, RICHARD
-
-	; text when seen
-	dw PsychicRichardSeenText
-
-	; text when trainer beaten
-	dw PsychicRichardBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicRichardScript
+	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, $0000, PsychicRichardScript
 
 PsychicRichardScript:
 	talkaftercancel
@@ -305,23 +225,7 @@ PsychicRichardScript:
 	end
 
 TrainerFisherScott:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_SCOTT
-
-	; trainer group && trainer id
-	db FISHER, SCOTT
-
-	; text when seen
-	dw FisherScottSeenText
-
-	; text when trainer beaten
-	dw FisherScottBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherScottScript
+	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, $0000, FisherScottScript
 
 FisherScottScript:
 	talkaftercancel

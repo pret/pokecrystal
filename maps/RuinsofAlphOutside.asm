@@ -100,23 +100,7 @@ YoungsterScript_0x5807e:
 	end
 
 TrainerPsychicNathan:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_NATHAN
-
-	; trainer group && trainer id
-	db PSYCHIC_T, NATHAN
-
-	; text when seen
-	dw PsychicNathanSeenText
-
-	; text when trainer beaten
-	dw PsychicNathanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicNathanScript
+	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, $0000, PsychicNathanScript
 
 PsychicNathanScript:
 	talkaftercancel
@@ -128,23 +112,7 @@ PsychicNathanScript:
 
 
 TrainerSuperNerdStan:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_STAN
-
-	; trainer group && trainer id
-	db SUPER_NERD, STAN
-
-	; text when seen
-	dw UnknownText_0x581e5
-
-	; text when trainer beaten
-	dw UnknownText_0x58217
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw UnknownScript_0x580a9
+	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, $0000, UnknownScript_0x580a9
 
 UnknownScript_0x580a9:
 	talkaftercancel

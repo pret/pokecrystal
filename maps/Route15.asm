@@ -6,23 +6,7 @@ Route15_MapScriptHeader:
 	db 0
 
 TrainerTeacherColette:
-	; bit/flag number
-	dw EVENT_BEAT_TEACHER_COLETTE
-
-	; trainer group && trainer id
-	db TEACHER, COLETTE
-
-	; text when seen
-	dw TeacherColetteSeenText
-
-	; text when trainer beaten
-	dw TeacherColetteBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TeacherColetteScript
+	trainer EVENT_BEAT_TEACHER_COLETTE, TEACHER, COLETTE, TeacherColetteSeenText, TeacherColetteBeatenText, $0000, TeacherColetteScript
 
 TeacherColetteScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ TeacherColetteScript:
 	end
 
 TrainerTeacherHillary:
-	; bit/flag number
-	dw EVENT_BEAT_TEACHER_HILLARY
-
-	; trainer group && trainer id
-	db TEACHER, HILLARY
-
-	; text when seen
-	dw TeacherHillarySeenText
-
-	; text when trainer beaten
-	dw TeacherHillaryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TeacherHillaryScript
+	trainer EVENT_BEAT_TEACHER_HILLARY, TEACHER, HILLARY, TeacherHillarySeenText, TeacherHillaryBeatenText, $0000, TeacherHillaryScript
 
 TeacherHillaryScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ TeacherHillaryScript:
 	end
 
 TrainerSchoolboyKipp:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_KIP
-
-	; trainer group && trainer id
-	db SCHOOLBOY, KIPP
-
-	; text when seen
-	dw SchoolboyKippSeenText
-
-	; text when trainer beaten
-	dw SchoolboyKippBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyKippScript
+	trainer EVENT_BEAT_SCHOOLBOY_KIP, SCHOOLBOY, KIPP, SchoolboyKippSeenText, SchoolboyKippBeatenText, $0000, SchoolboyKippScript
 
 SchoolboyKippScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ SchoolboyKippScript:
 	end
 
 TrainerSchoolboyTommy:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_TOMMY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, TOMMY
-
-	; text when seen
-	dw SchoolboyTommySeenText
-
-	; text when trainer beaten
-	dw SchoolboyTommyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyTommyScript
+	trainer EVENT_BEAT_SCHOOLBOY_TOMMY, SCHOOLBOY, TOMMY, SchoolboyTommySeenText, SchoolboyTommyBeatenText, $0000, SchoolboyTommyScript
 
 SchoolboyTommyScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ SchoolboyTommyScript:
 	end
 
 TrainerSchoolboyJohnny:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_JOHNNY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, JOHNNY
-
-	; text when seen
-	dw SchoolboyJohnnySeenText
-
-	; text when trainer beaten
-	dw SchoolboyJohnnyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyJohnnyScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOHNNY, SCHOOLBOY, JOHNNY, SchoolboyJohnnySeenText, SchoolboyJohnnyBeatenText, $0000, SchoolboyJohnnyScript
 
 SchoolboyJohnnyScript:
 	talkaftercancel
@@ -141,23 +61,7 @@ SchoolboyJohnnyScript:
 	end
 
 TrainerSchoolboyBilly:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_BILLY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, BILLY
-
-	; text when seen
-	dw SchoolboyBillySeenText
-
-	; text when trainer beaten
-	dw SchoolboyBillyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyBillyScript
+	trainer EVENT_BEAT_SCHOOLBOY_BILLY, SCHOOLBOY, BILLY, SchoolboyBillySeenText, SchoolboyBillyBeatenText, $0000, SchoolboyBillyScript
 
 SchoolboyBillyScript:
 	talkaftercancel

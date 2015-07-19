@@ -14,7 +14,7 @@ RuinsofAlphOmanyteChamber_MapScriptHeader:
 	dbw 1, UnknownScript_0x58bf8
 
 UnknownScript_0x58be9:
-	special Function8adef
+	special SpecialOmanyteChamber
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58bf3
 	end

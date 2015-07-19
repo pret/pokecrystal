@@ -47,23 +47,7 @@ GrowlitheScript_0x5ebb2:
 	end
 
 TrainerGruntM10:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_10
-
-	; trainer group && trainer id
-	db GRUNTM, 10
-
-	; text when seen
-	dw GruntM10SeenText
-
-	; text when trainer beaten
-	dw GruntM10BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM10Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_10, GRUNTM, 10, GruntM10SeenText, GruntM10BeatenText, $0000, GruntM10Script
 
 GruntM10Script:
 	talkaftercancel
@@ -74,23 +58,7 @@ GruntM10Script:
 	end
 
 TrainerExecutivem2:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_EXECUTIVEM_2
-
-	; trainer group && trainer id
-	db EXECUTIVEM, 2
-
-	; text when seen
-	dw Executivem2SeenText
-
-	; text when trainer beaten
-	dw Executivem2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Executivem2Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, 2, Executivem2SeenText, Executivem2BeatenText, $0000, Executivem2Script
 
 Executivem2Script:
 	talkaftercancel
@@ -101,23 +69,7 @@ Executivem2Script:
 	end
 
 TrainerGruntF4:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_4
-
-	; trainer group && trainer id
-	db GRUNTF, 4
-
-	; text when seen
-	dw GruntF4SeenText
-
-	; text when trainer beaten
-	dw GruntF4BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF4Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_4, GRUNTF, 4, GruntF4SeenText, GruntF4BeatenText, $0000, GruntF4Script
 
 GruntF4Script:
 	talkaftercancel
@@ -128,23 +80,7 @@ GruntF4Script:
 	end
 
 TrainerScientistRich:
-	; bit/flag number
-	dw EVENT_BEAT_SCIENTIST_RICH
-
-	; trainer group && trainer id
-	db SCIENTIST, RICH
-
-	; text when seen
-	dw ScientistRichSeenText
-
-	; text when trainer beaten
-	dw ScientistRichBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw ScientistRichScript
+	trainer EVENT_BEAT_SCIENTIST_RICH, SCIENTIST, RICH, ScientistRichSeenText, ScientistRichBeatenText, $0000, ScientistRichScript
 
 ScientistRichScript:
 	talkaftercancel

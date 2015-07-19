@@ -1774,9 +1774,9 @@ Function2a3c:: ; 2a3c
 
 GetBlockLocation:: ; 2a66
 	ld a, [MapWidth]
-	add $6
+	add 6
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, wc801
 	add hl, bc
 	ld a, e
@@ -1797,7 +1797,7 @@ GetBlockLocation:: ; 2a66
 .nope
 	ld c, d
 	srl c
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ret
 ; 2a8b

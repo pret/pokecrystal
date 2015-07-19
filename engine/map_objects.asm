@@ -2446,19 +2446,19 @@ Function503d: ; 503d
 ; 5041
 
 Function5041: ; 5041
-	call Function5055
+	call CopyMovementPointer
 .loop
 	xor a
 	ld [wc2ea], a
-	call Function505e
-	call Function506b
+	call GetMovementByte
+	call DoMovementFunction
 	ld a, [wc2ea]
 	and a
 	jr nz, .loop
 	ret
 ; 5055
 
-Function5055: ; 5055
+CopyMovementPointer: ; 5055
 	ld a, l
 	ld [wc2eb], a
 	ld a, h
@@ -2466,7 +2466,7 @@ Function5055: ; 5055
 	ret
 ; 505e
 
-Function505e: ; 505e
+GetMovementByte: ; 505e
 	ld hl, wc2eb
 	ld a, [hli]
 	ld h, [hl]
@@ -2480,7 +2480,7 @@ Function5065: ; 5065
 	ret
 ; 506b
 
-Function506b: ; 506b
+DoMovementFunction: ; 506b
 	push af
 	call Function54b8
 	pop af

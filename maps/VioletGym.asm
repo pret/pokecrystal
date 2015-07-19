@@ -61,23 +61,7 @@ VioletGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBird_keeperRod:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_ROD
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, ROD
-
-	; text when seen
-	dw Bird_keeperRodSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperRodBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperRodScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, $0000, Bird_keeperRodScript
 
 Bird_keeperRodScript:
 	talkaftercancel
@@ -88,23 +72,7 @@ Bird_keeperRodScript:
 	end
 
 TrainerBird_keeperAbe:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_ABE
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, ABE
-
-	; text when seen
-	dw Bird_keeperAbeSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperAbeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperAbeScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, $0000, Bird_keeperAbeScript
 
 Bird_keeperAbeScript:
 	talkaftercancel

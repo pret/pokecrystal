@@ -6,23 +6,7 @@ OlivineLighthouse4F_MapScriptHeader:
 	db 0
 
 TrainerLassConnie:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_CONNIE
-
-	; trainer group && trainer id
-	db LASS, CONNIE1
-
-	; text when seen
-	dw LassConnie1SeenText
-
-	; text when trainer beaten
-	dw LassConnie1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassConnie1Script
+	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, $0000, LassConnie1Script
 
 LassConnie1Script:
 	talkaftercancel
@@ -33,23 +17,7 @@ LassConnie1Script:
 	end
 
 TrainerSailorKent:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_KENT
-
-	; trainer group && trainer id
-	db SAILOR, KENT
-
-	; text when seen
-	dw SailorKentSeenText
-
-	; text when trainer beaten
-	dw SailorKentBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorKentScript
+	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, $0000, SailorKentScript
 
 SailorKentScript:
 	talkaftercancel

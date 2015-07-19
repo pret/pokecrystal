@@ -252,7 +252,7 @@ ElmDirectionsScript:
 	writetext ElmDirectionsText1
 	closetext
 	loadmovesprites
-	addcellnum $4
+	addcellnum PHONE_ELM
 	loadfont
 	writetext GotElmsNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER

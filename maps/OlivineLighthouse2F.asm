@@ -6,23 +6,7 @@ OlivineLighthouse2F_MapScriptHeader:
 	db 0
 
 TrainerGentlemanAlfred:
-	; bit/flag number
-	dw EVENT_BEAT_GENTLEMAN_ALFRED
-
-	; trainer group && trainer id
-	db GENTLEMAN, ALFRED
-
-	; text when seen
-	dw GentlemanAlfredSeenText
-
-	; text when trainer beaten
-	dw GentlemanAlfredBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GentlemanAlfredScript
+	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, $0000, GentlemanAlfredScript
 
 GentlemanAlfredScript:
 	talkaftercancel
@@ -33,31 +17,15 @@ GentlemanAlfredScript:
 	end
 
 TrainerSailorHuey1:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_HUEY
-
-	; trainer group && trainer id
-	db SAILOR, HUEY1
-
-	; text when seen
-	dw SailorHuey1SeenText
-
-	; text when trainer beaten
-	dw SailorHuey1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorHuey1Script
+	trainer EVENT_BEAT_SAILOR_HUEY, SAILOR, HUEY1, SailorHuey1SeenText, SailorHuey1BeatenText, $0000, SailorHuey1Script
 
 SailorHuey1Script:
-	writecode VAR_CALLERID, $7
+	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0x5afc7
-	checkcellnum $7
+	checkcellnum PHONE_SAILOR_HUEY
 	iftrue UnknownScript_0x5b05f
 	checkevent EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5afb0
@@ -68,7 +36,7 @@ SailorHuey1Script:
 UnknownScript_0x5afb0:
 	scall UnknownScript_0x5b057
 UnknownScript_0x5afb3:
-	askforphonenumber $7
+	askforphonenumber PHONE_SAILOR_HUEY
 	if_equal $1, UnknownScript_0x5b067
 	if_equal $2, UnknownScript_0x5b063
 	trainertotext SAILOR, HUEY1, $0

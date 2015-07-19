@@ -478,23 +478,7 @@ NoExplodingTrap:
 	end
 
 TrainerScientistJed:
-	; bit/flag number
-	dw EVENT_BEAT_SCIENTIST_JED
-
-	; trainer group && trainer id
-	db SCIENTIST, JED
-
-	; text when seen
-	dw ScientistJedSeenText
-
-	; text when trainer beaten
-	dw ScientistJedBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw ScientistJedScript
+	trainer EVENT_BEAT_SCIENTIST_JED, SCIENTIST, JED, ScientistJedSeenText, ScientistJedBeatenText, $0000, ScientistJedScript
 
 ScientistJedScript:
 	talkaftercancel
@@ -505,23 +489,7 @@ ScientistJedScript:
 	end
 
 TrainerGruntM16:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_16
-
-	; trainer group && trainer id
-	db GRUNTM, 16
-
-	; text when seen
-	dw GruntM16SeenText
-
-	; text when trainer beaten
-	dw GruntM16BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM16Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_16, GRUNTM, 16, GruntM16SeenText, GruntM16BeatenText, $0000, GruntM16Script
 
 GruntM16Script:
 	talkaftercancel

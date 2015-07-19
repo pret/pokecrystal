@@ -6,23 +6,7 @@ Route10South_MapScriptHeader:
 	db 0
 
 TrainerHikerJim:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_JIM
-
-	; trainer group && trainer id
-	db HIKER, JIM
-
-	; text when seen
-	dw HikerJimSeenText
-
-	; text when trainer beaten
-	dw HikerJimBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerJimScript
+	trainer EVENT_BEAT_HIKER_JIM, HIKER, JIM, HikerJimSeenText, HikerJimBeatenText, $0000, HikerJimScript
 
 HikerJimScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ HikerJimScript:
 	end
 
 TrainerPokefanmRobert:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_ROBERT
-
-	; trainer group && trainer id
-	db POKEFANM, ROBERT
-
-	; text when seen
-	dw PokefanmRobertSeenText
-
-	; text when trainer beaten
-	dw PokefanmRobertBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmRobertScript
+	trainer EVENT_BEAT_POKEFANM_ROBERT, POKEFANM, ROBERT, PokefanmRobertSeenText, PokefanmRobertBeatenText, $0000, PokefanmRobertScript
 
 PokefanmRobertScript:
 	talkaftercancel

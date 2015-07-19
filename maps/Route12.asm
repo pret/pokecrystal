@@ -6,23 +6,7 @@ Route12_MapScriptHeader:
 	db 0
 
 TrainerFisherKyle:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_KYLE
-
-	; trainer group && trainer id
-	db FISHER, KYLE
-
-	; text when seen
-	dw FisherKyleSeenText
-
-	; text when trainer beaten
-	dw FisherKyleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherKyleScript
+	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, $0000, FisherKyleScript
 
 FisherKyleScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ FisherKyleScript:
 	end
 
 TrainerFisherMartin:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_MARTIN
-
-	; trainer group && trainer id
-	db FISHER, MARTIN
-
-	; text when seen
-	dw FisherMartinSeenText
-
-	; text when trainer beaten
-	dw FisherMartinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherMartinScript
+	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, $0000, FisherMartinScript
 
 FisherMartinScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ FisherMartinScript:
 	end
 
 TrainerFisherStephen:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_STEPHEN
-
-	; trainer group && trainer id
-	db FISHER, STEPHEN
-
-	; text when seen
-	dw FisherStephenSeenText
-
-	; text when trainer beaten
-	dw FisherStephenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherStephenScript
+	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, $0000, FisherStephenScript
 
 FisherStephenScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ FisherStephenScript:
 	end
 
 TrainerFisherBarney:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_BARNEY
-
-	; trainer group && trainer id
-	db FISHER, BARNEY
-
-	; text when seen
-	dw FisherBarneySeenText
-
-	; text when trainer beaten
-	dw FisherBarneyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherBarneyScript
+	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, $0000, FisherBarneyScript
 
 FisherBarneyScript:
 	talkaftercancel

@@ -42,23 +42,7 @@ BlackBeltScript_0x5d722:
 	jumptextfaceplayer UnknownText_0x5da44
 
 TrainerGruntM4:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_4
-
-	; trainer group && trainer id
-	db GRUNTM, 4
-
-	; text when seen
-	dw GruntM4SeenText
-
-	; text when trainer beaten
-	dw GruntM4BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM4Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_4, GRUNTM, 4, GruntM4SeenText, GruntM4BeatenText, $0000, GruntM4Script
 
 GruntM4Script:
 	talkaftercancel
@@ -69,23 +53,7 @@ GruntM4Script:
 	end
 
 TrainerGruntM5:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_5
-
-	; trainer group && trainer id
-	db GRUNTM, 5
-
-	; text when seen
-	dw GruntM5SeenText
-
-	; text when trainer beaten
-	dw GruntM5BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM5Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_5, GRUNTM, 5, GruntM5SeenText, GruntM5BeatenText, $0000, GruntM5Script
 
 GruntM5Script:
 	talkaftercancel
@@ -96,23 +64,7 @@ GruntM5Script:
 	end
 
 TrainerGruntM6:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_6
-
-	; trainer group && trainer id
-	db GRUNTM, 6
-
-	; text when seen
-	dw GruntM6SeenText
-
-	; text when trainer beaten
-	dw GruntM6BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM6Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_6, GRUNTM, 6, GruntM6SeenText, GruntM6BeatenText, $0000, GruntM6Script
 
 GruntM6Script:
 	talkaftercancel
@@ -123,23 +75,7 @@ GruntM6Script:
 	end
 
 TrainerGruntF2:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_2
-
-	; trainer group && trainer id
-	db GRUNTF, 2
-
-	; text when seen
-	dw GruntF2SeenText
-
-	; text when trainer beaten
-	dw GruntF2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_2, GRUNTF, 2, GruntF2SeenText, GruntF2BeatenText, $0000, GruntF2Script
 
 GruntF2Script:
 	talkaftercancel
@@ -220,7 +156,7 @@ UnknownScript_0x5d80a:
 	writetext UnknownText_0x5de10
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d81a
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
@@ -242,7 +178,7 @@ UnknownScript_0x5d82f:
 	writetext UnknownText_0x5df6c
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d83f
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
@@ -279,7 +215,7 @@ UnknownScript_0x5d86b:
 	writetext UnknownText_0x5e192
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d87b
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
@@ -291,7 +227,7 @@ UnknownScript_0x5d87f:
 	writetext UnknownText_0x5e0f1
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d88f
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
@@ -303,7 +239,7 @@ UnknownScript_0x5d893:
 	writetext UnknownText_0x5e131
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d8a3
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
@@ -311,7 +247,7 @@ UnknownScript_0x5d8a3:
 	end
 
 UnknownScript_0x5d8a4:
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d8fe
 	pause 20
 	spriteface $b, DOWN
@@ -331,7 +267,7 @@ UnknownScript_0x5d8cc:
 	loadfont
 	writetext UnknownText_0x5e2bf
 UnknownScript_0x5d8d0:
-	askforphonenumber $25
+	askforphonenumber PHONE_BUENA
 	if_equal $1, UnknownScript_0x5d8f6
 	if_equal $2, UnknownScript_0x5d8ed
 	writetext UnknownText_0x5e2f3
@@ -342,7 +278,7 @@ UnknownScript_0x5d8d0:
 	closetext
 	loadmovesprites
 	spriteface $b, RIGHT
-	addcellnum $25
+	addcellnum PHONE_BUENA
 	end
 
 UnknownScript_0x5d8ed:

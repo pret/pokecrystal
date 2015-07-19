@@ -6,23 +6,7 @@ Route11_MapScriptHeader:
 	db 0
 
 TrainerYoungsterOwen:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_OWEN
-
-	; trainer group && trainer id
-	db YOUNGSTER, OWEN
-
-	; text when seen
-	dw YoungsterOwenSeenText
-
-	; text when trainer beaten
-	dw YoungsterOwenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterOwenScript
+	trainer EVENT_BEAT_YOUNGSTER_OWEN, YOUNGSTER, OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, $0000, YoungsterOwenScript
 
 YoungsterOwenScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ YoungsterOwenScript:
 	end
 
 TrainerYoungsterJason:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_JASON
-
-	; trainer group && trainer id
-	db YOUNGSTER, JASON
-
-	; text when seen
-	dw YoungsterJasonSeenText
-
-	; text when trainer beaten
-	dw YoungsterJasonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterJasonScript
+	trainer EVENT_BEAT_YOUNGSTER_JASON, YOUNGSTER, JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, $0000, YoungsterJasonScript
 
 YoungsterJasonScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ YoungsterJasonScript:
 	end
 
 TrainerPsychicHerman:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_HERMAN
-
-	; trainer group && trainer id
-	db PSYCHIC_T, HERMAN
-
-	; text when seen
-	dw PsychicHermanSeenText
-
-	; text when trainer beaten
-	dw PsychicHermanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicHermanScript
+	trainer EVENT_BEAT_PSYCHIC_HERMAN, PSYCHIC_T, HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, $0000, PsychicHermanScript
 
 PsychicHermanScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ PsychicHermanScript:
 	end
 
 TrainerPsychicFidel:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_FIDEL
-
-	; trainer group && trainer id
-	db PSYCHIC_T, FIDEL
-
-	; text when seen
-	dw PsychicFidelSeenText
-
-	; text when trainer beaten
-	dw PsychicFidelBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicFidelScript
+	trainer EVENT_BEAT_PSYCHIC_FIDEL, PSYCHIC_T, FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, $0000, PsychicFidelScript
 
 PsychicFidelScript:
 	talkaftercancel

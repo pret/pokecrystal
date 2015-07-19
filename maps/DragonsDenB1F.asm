@@ -78,23 +78,7 @@ UnknownScript_0x18c8f9:
 	end
 
 TrainerCooltrainermDarin:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_DARIN
-
-	; trainer group && trainer id
-	db COOLTRAINERM, DARIN
-
-	; text when seen
-	dw CooltrainermDarinSeenText
-
-	; text when trainer beaten
-	dw CooltrainermDarinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermDarinScript
+	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, $0000, CooltrainermDarinScript
 
 CooltrainermDarinScript:
 	talkaftercancel
@@ -105,23 +89,7 @@ CooltrainermDarinScript:
 	end
 
 TrainerCooltrainerfCara:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_CARA
-
-	; trainer group && trainer id
-	db COOLTRAINERF, CARA
-
-	; text when seen
-	dw CooltrainerfCaraSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfCaraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfCaraScript
+	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, $0000, CooltrainerfCaraScript
 
 CooltrainerfCaraScript:
 	talkaftercancel
@@ -132,23 +100,7 @@ CooltrainerfCaraScript:
 	end
 
 TrainerTwinsLeaandpia1:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_LEA_AND_PIA
-
-	; trainer group && trainer id
-	db TWINS, LEAANDPIA1
-
-	; text when seen
-	dw TwinsLeaandpia1SeenText
-
-	; text when trainer beaten
-	dw TwinsLeaandpia1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsLeaandpia1Script
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, $0000, TwinsLeaandpia1Script
 
 TwinsLeaandpia1Script:
 	talkaftercancel
@@ -159,23 +111,7 @@ TwinsLeaandpia1Script:
 	end
 
 TrainerTwinsLeaandpia2:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_LEA_AND_PIA
-
-	; trainer group && trainer id
-	db TWINS, LEAANDPIA1
-
-	; text when seen
-	dw TwinsLeaandpia2SeenText
-
-	; text when trainer beaten
-	dw TwinsLeaandpia2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsLeaandpia2Script
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, $0000, TwinsLeaandpia2Script
 
 TwinsLeaandpia2Script:
 	talkaftercancel

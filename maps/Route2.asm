@@ -6,23 +6,7 @@ Route2_MapScriptHeader:
 	db 0
 
 TrainerBug_catcherRob:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_ROB
-
-	; trainer group && trainer id
-	db BUG_CATCHER, ROB
-
-	; text when seen
-	dw Bug_catcherRobSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherRobBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherRobScript
+	trainer EVENT_BEAT_BUG_CATCHER_ROB, BUG_CATCHER, ROB, Bug_catcherRobSeenText, Bug_catcherRobBeatenText, $0000, Bug_catcherRobScript
 
 Bug_catcherRobScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bug_catcherRobScript:
 	end
 
 TrainerBug_catcherEd:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_ED
-
-	; trainer group && trainer id
-	db BUG_CATCHER, ED
-
-	; text when seen
-	dw Bug_catcherEdSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherEdBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherEdScript
+	trainer EVENT_BEAT_BUG_CATCHER_ED, BUG_CATCHER, ED, Bug_catcherEdSeenText, Bug_catcherEdBeatenText, $0000, Bug_catcherEdScript
 
 Bug_catcherEdScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ Bug_catcherEdScript:
 	end
 
 TrainerBug_catcherDoug:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_DOUG
-
-	; trainer group && trainer id
-	db BUG_CATCHER, DOUG
-
-	; text when seen
-	dw Bug_catcherDougSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherDougBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherDougScript
+	trainer EVENT_BEAT_BUG_CATCHER_DOUG, BUG_CATCHER, DOUG, Bug_catcherDougSeenText, Bug_catcherDougBeatenText, $0000, Bug_catcherDougScript
 
 Bug_catcherDougScript:
 	talkaftercancel

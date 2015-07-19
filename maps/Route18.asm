@@ -6,23 +6,7 @@ Route18_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperBoris:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_BORIS
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, BORIS
-
-	; text when seen
-	dw Bird_keeperBorisSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperBorisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperBorisScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, Bird_keeperBorisSeenText, Bird_keeperBorisBeatenText, $0000, Bird_keeperBorisScript
 
 Bird_keeperBorisScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperBorisScript:
 	end
 
 TrainerBird_keeperBob:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_BOB
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, BOB
-
-	; text when seen
-	dw Bird_keeperBobSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperBobBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperBobScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, Bird_keeperBobSeenText, Bird_keeperBobBeatenText, $0000, Bird_keeperBobScript
 
 Bird_keeperBobScript:
 	talkaftercancel

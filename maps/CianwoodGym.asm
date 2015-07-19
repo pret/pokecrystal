@@ -76,23 +76,7 @@ CianwoodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBlackbeltYoshi:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_YOSHI
-
-	; trainer group && trainer id
-	db BLACKBELT_T, YOSHI
-
-	; text when seen
-	dw BlackbeltYoshiSeenText
-
-	; text when trainer beaten
-	dw BlackbeltYoshiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltYoshiScript
+	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, $0000, BlackbeltYoshiScript
 
 BlackbeltYoshiScript:
 	talkaftercancel
@@ -103,23 +87,7 @@ BlackbeltYoshiScript:
 	end
 
 TrainerBlackbeltLao:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_LAO
-
-	; trainer group && trainer id
-	db BLACKBELT_T, LAO
-
-	; text when seen
-	dw BlackbeltLaoSeenText
-
-	; text when trainer beaten
-	dw BlackbeltLaoBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltLaoScript
+	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, $0000, BlackbeltLaoScript
 
 BlackbeltLaoScript:
 	talkaftercancel
@@ -130,23 +98,7 @@ BlackbeltLaoScript:
 	end
 
 TrainerBlackbeltNob:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_NOB
-
-	; trainer group && trainer id
-	db BLACKBELT_T, NOB
-
-	; text when seen
-	dw BlackbeltNobSeenText
-
-	; text when trainer beaten
-	dw BlackbeltNobBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltNobScript
+	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, $0000, BlackbeltNobScript
 
 BlackbeltNobScript:
 	talkaftercancel
@@ -157,23 +109,7 @@ BlackbeltNobScript:
 	end
 
 TrainerBlackbeltLung:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_LUNG
-
-	; trainer group && trainer id
-	db BLACKBELT_T, LUNG
-
-	; text when seen
-	dw BlackbeltLungSeenText
-
-	; text when trainer beaten
-	dw BlackbeltLungBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltLungScript
+	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, $0000, BlackbeltLungScript
 
 BlackbeltLungScript:
 	talkaftercancel

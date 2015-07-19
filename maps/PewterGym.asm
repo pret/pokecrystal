@@ -36,23 +36,7 @@ BrockScript_0x1a2864:
 	end
 
 TrainerCamperJerry:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_JERRY
-
-	; trainer group && trainer id
-	db CAMPER, JERRY
-
-	; text when seen
-	dw CamperJerrySeenText
-
-	; text when trainer beaten
-	dw CamperJerryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperJerryScript
+	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, $0000, CamperJerryScript
 
 CamperJerryScript:
 	talkaftercancel

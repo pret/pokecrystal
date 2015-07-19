@@ -6,23 +6,7 @@ Route6_MapScriptHeader:
 	db 0
 
 TrainerPokefanmRex:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_REX
-
-	; trainer group && trainer id
-	db POKEFANM, REX
-
-	; text when seen
-	dw PokefanmRexSeenText
-
-	; text when trainer beaten
-	dw PokefanmRexBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmRexScript
+	trainer EVENT_BEAT_POKEFANM_REX, POKEFANM, REX, PokefanmRexSeenText, PokefanmRexBeatenText, $0000, PokefanmRexScript
 
 PokefanmRexScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokefanmRexScript:
 	end
 
 TrainerPokefanmAllan:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_ALLAN
-
-	; trainer group && trainer id
-	db POKEFANM, ALLAN
-
-	; text when seen
-	dw PokefanmAllanSeenText
-
-	; text when trainer beaten
-	dw PokefanmAllanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmAllanScript
+	trainer EVENT_BEAT_POKEFANM_ALLAN, POKEFANM, ALLAN, PokefanmAllanSeenText, PokefanmAllanBeatenText, $0000, PokefanmAllanScript
 
 PokefanmAllanScript:
 	talkaftercancel

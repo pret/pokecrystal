@@ -87,23 +87,7 @@ GoldenrodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerLassCarrie:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_CARRIE
-
-	; trainer group && trainer id
-	db LASS, CARRIE
-
-	; text when seen
-	dw LassCarrieSeenText
-
-	; text when trainer beaten
-	dw LassCarrieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassCarrieScript
+	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, $0000, LassCarrieScript
 
 LassCarrieScript:
 	talkaftercancel
@@ -127,23 +111,7 @@ WhitneyCriesScript:
 	end
 
 TrainerLassBridget:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_BRIDGET
-
-	; trainer group && trainer id
-	db LASS, BRIDGET
-
-	; text when seen
-	dw LassBridgetSeenText
-
-	; text when trainer beaten
-	dw LassBridgetBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassBridgetScript
+	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, $0000, LassBridgetScript
 
 LassBridgetScript:
 	talkaftercancel
@@ -154,23 +122,7 @@ LassBridgetScript:
 	end
 
 TrainerBeautyVictoria:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_VICTORIA
-
-	; trainer group && trainer id
-	db BEAUTY, VICTORIA
-
-	; text when seen
-	dw BeautyVictoriaSeenText
-
-	; text when trainer beaten
-	dw BeautyVictoriaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyVictoriaScript
+	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, $0000, BeautyVictoriaScript
 
 BeautyVictoriaScript:
 	talkaftercancel
@@ -181,23 +133,7 @@ BeautyVictoriaScript:
 	end
 
 TrainerBeautySamantha:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_SAMANTHA
-
-	; trainer group && trainer id
-	db BEAUTY, SAMANTHA
-
-	; text when seen
-	dw BeautySamanthaSeenText
-
-	; text when trainer beaten
-	dw BeautySamanthaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautySamanthaScript
+	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, $0000, BeautySamanthaScript
 
 BeautySamanthaScript:
 	talkaftercancel

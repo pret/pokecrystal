@@ -6,23 +6,7 @@ OlivineLighthouse3F_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperTheo:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_THEO
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, THEO
-
-	; text when seen
-	dw Bird_keeperTheoSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperTheoBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperTheoScript
+	trainer EVENT_BEAT_BIRD_KEEPER_THEO, BIRD_KEEPER, THEO, Bird_keeperTheoSeenText, Bird_keeperTheoBeatenText, $0000, Bird_keeperTheoScript
 
 Bird_keeperTheoScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperTheoScript:
 	end
 
 TrainerGentlemanPreston:
-	; bit/flag number
-	dw EVENT_BEAT_GENTLEMAN_PRESTON
-
-	; trainer group && trainer id
-	db GENTLEMAN, PRESTON
-
-	; text when seen
-	dw GentlemanPrestonSeenText
-
-	; text when trainer beaten
-	dw GentlemanPrestonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GentlemanPrestonScript
+	trainer EVENT_BEAT_GENTLEMAN_PRESTON, GENTLEMAN, PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, $0000, GentlemanPrestonScript
 
 GentlemanPrestonScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ GentlemanPrestonScript:
 	end
 
 TrainerSailorTerrell:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_TERRELL
-
-	; trainer group && trainer id
-	db SAILOR, TERRELL
-
-	; text when seen
-	dw SailorTerrellSeenText
-
-	; text when trainer beaten
-	dw SailorTerrellBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorTerrellScript
+	trainer EVENT_BEAT_SAILOR_TERRELL, SAILOR, TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, $0000, SailorTerrellScript
 
 SailorTerrellScript:
 	talkaftercancel

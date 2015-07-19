@@ -39,23 +39,7 @@ SabrinaScript_0x189c2e:
 	end
 
 TrainerMediumRebecca:
-	; bit/flag number
-	dw EVENT_BEAT_MEDIUM_REBECCA
-
-	; trainer group && trainer id
-	db MEDIUM, REBECCA
-
-	; text when seen
-	dw MediumRebeccaSeenText
-
-	; text when trainer beaten
-	dw MediumRebeccaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw MediumRebeccaScript
+	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, $0000, MediumRebeccaScript
 
 MediumRebeccaScript:
 	talkaftercancel
@@ -66,23 +50,7 @@ MediumRebeccaScript:
 	end
 
 TrainerPsychicFranklin:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_FRANKLIN
-
-	; trainer group && trainer id
-	db PSYCHIC_T, FRANKLIN
-
-	; text when seen
-	dw PsychicFranklinSeenText
-
-	; text when trainer beaten
-	dw PsychicFranklinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicFranklinScript
+	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, $0000, PsychicFranklinScript
 
 PsychicFranklinScript:
 	talkaftercancel
@@ -93,23 +61,7 @@ PsychicFranklinScript:
 	end
 
 TrainerMediumDoris:
-	; bit/flag number
-	dw EVENT_BEAT_MEDIUM_DORIS
-
-	; trainer group && trainer id
-	db MEDIUM, DORIS
-
-	; text when seen
-	dw MediumDorisSeenText
-
-	; text when trainer beaten
-	dw MediumDorisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw MediumDorisScript
+	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, $0000, MediumDorisScript
 
 MediumDorisScript:
 	talkaftercancel
@@ -120,23 +72,7 @@ MediumDorisScript:
 	end
 
 TrainerPsychicJared:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_JARED
-
-	; trainer group && trainer id
-	db PSYCHIC_T, JARED
-
-	; text when seen
-	dw PsychicJaredSeenText
-
-	; text when trainer beaten
-	dw PsychicJaredBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicJaredScript
+	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, $0000, PsychicJaredScript
 
 PsychicJaredScript:
 	talkaftercancel

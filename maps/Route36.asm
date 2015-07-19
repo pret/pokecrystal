@@ -162,33 +162,17 @@ UnknownScript_0x1940ee:
 	end
 
 TrainerSchoolboyAlan1:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_ALAN
-
-	; trainer group && trainer id
-	db SCHOOLBOY, ALAN1
-
-	; text when seen
-	dw SchoolboyAlan1SeenText
-
-	; text when trainer beaten
-	dw SchoolboyAlan1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyAlan1Script
+	trainer EVENT_BEAT_SCHOOLBOY_ALAN, SCHOOLBOY, ALAN1, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, $0000, SchoolboyAlan1Script
 
 SchoolboyAlan1Script:
-	writecode VAR_CALLERID, $18
+	writecode VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_ALAN
 	iftrue UnknownScript_0x194140
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
 	iftrue UnknownScript_0x1941b4
-	checkcellnum $18
+	checkcellnum PHONE_SCHOOLBOY_ALAN
 	iftrue UnknownScript_0x1941d5
 	checkevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x194129
@@ -201,7 +185,7 @@ SchoolboyAlan1Script:
 UnknownScript_0x194129:
 	scall UnknownScript_0x1941cd
 UnknownScript_0x19412c:
-	askforphonenumber $18
+	askforphonenumber PHONE_SCHOOLBOY_ALAN
 	if_equal $1, UnknownScript_0x1941dd
 	if_equal $2, UnknownScript_0x1941d9
 	trainertotext SCHOOLBOY, ALAN1, $0
@@ -316,23 +300,7 @@ UnknownScript_0x1941e9:
 	end
 
 TrainerPsychicMark:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_MARK
-
-	; trainer group && trainer id
-	db PSYCHIC_T, MARK
-
-	; text when seen
-	dw PsychicMarkSeenText
-
-	; text when trainer beaten
-	dw PsychicMarkBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicMarkScript
+	trainer EVENT_BEAT_PSYCHIC_MARK, PSYCHIC_T, MARK, PsychicMarkSeenText, PsychicMarkBeatenText, $0000, PsychicMarkScript
 
 PsychicMarkScript:
 	talkaftercancel

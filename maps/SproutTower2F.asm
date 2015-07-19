@@ -6,23 +6,7 @@ SproutTower2F_MapScriptHeader:
 	db 0
 
 TrainerSageNico:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_NICO
-
-	; trainer group && trainer id
-	db SAGE, NICO
-
-	; text when seen
-	dw SageNicoSeenText
-
-	; text when trainer beaten
-	dw SageNicoBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageNicoScript
+	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, $0000, SageNicoScript
 
 SageNicoScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ SageNicoScript:
 	end
 
 TrainerSageEdmond:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_EDMOND
-
-	; trainer group && trainer id
-	db SAGE, EDMOND
-
-	; text when seen
-	dw SageEdmondSeenText
-
-	; text when trainer beaten
-	dw SageEdmondBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageEdmondScript
+	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, $0000, SageEdmondScript
 
 SageEdmondScript:
 	talkaftercancel

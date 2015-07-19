@@ -204,7 +204,7 @@ HomepageScript:
 Radio1Script:
 	loadfont
 	writebyte $0
-	special Functionc355
+	special MapRadio
 	loadmovesprites
 	end
 
@@ -212,7 +212,7 @@ Radio2Script:
 ; Lucky Channel
 	loadfont
 	writebyte $4
-	special Functionc355
+	special MapRadio
 	loadmovesprites
 	end
 

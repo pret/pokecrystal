@@ -14,23 +14,7 @@ Route20_MapScriptHeader:
 	return
 
 TrainerSwimmerfNicole:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_NICOLE
-
-	; trainer group && trainer id
-	db SWIMMERF, NICOLE
-
-	; text when seen
-	dw SwimmerfNicoleSeenText
-
-	; text when trainer beaten
-	dw SwimmerfNicoleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfNicoleScript
+	trainer EVENT_BEAT_SWIMMERF_NICOLE, SWIMMERF, NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, $0000, SwimmerfNicoleScript
 
 SwimmerfNicoleScript:
 	talkaftercancel
@@ -41,23 +25,7 @@ SwimmerfNicoleScript:
 	end
 
 TrainerSwimmerfLori:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_LORI
-
-	; trainer group && trainer id
-	db SWIMMERF, LORI
-
-	; text when seen
-	dw SwimmerfLoriSeenText
-
-	; text when trainer beaten
-	dw SwimmerfLoriBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfLoriScript
+	trainer EVENT_BEAT_SWIMMERF_LORI, SWIMMERF, LORI, SwimmerfLoriSeenText, SwimmerfLoriBeatenText, $0000, SwimmerfLoriScript
 
 SwimmerfLoriScript:
 	talkaftercancel
@@ -68,23 +36,7 @@ SwimmerfLoriScript:
 	end
 
 TrainerSwimmermCameron:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_CAMERON
-
-	; trainer group && trainer id
-	db SWIMMERM, CAMERON
-
-	; text when seen
-	dw SwimmermCameronSeenText
-
-	; text when trainer beaten
-	dw SwimmermCameronBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermCameronScript
+	trainer EVENT_BEAT_SWIMMERM_CAMERON, SWIMMERM, CAMERON, SwimmermCameronSeenText, SwimmermCameronBeatenText, $0000, SwimmermCameronScript
 
 SwimmermCameronScript:
 	talkaftercancel

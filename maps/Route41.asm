@@ -6,23 +6,7 @@ Route41_MapScriptHeader:
 	db 0
 
 TrainerSwimmerfKaylee:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_KAYLEE
-
-	; trainer group && trainer id
-	db SWIMMERF, KAYLEE
-
-	; text when seen
-	dw SwimmerfKayleeSeenText
-
-	; text when trainer beaten
-	dw SwimmerfKayleeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfKayleeScript
+	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, $0000, SwimmerfKayleeScript
 
 SwimmerfKayleeScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ SwimmerfKayleeScript:
 	end
 
 TrainerSwimmerfSusie:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_SUSIE
-
-	; trainer group && trainer id
-	db SWIMMERF, SUSIE
-
-	; text when seen
-	dw SwimmerfSusieSeenText
-
-	; text when trainer beaten
-	dw SwimmerfSusieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfSusieScript
+	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, $0000, SwimmerfSusieScript
 
 SwimmerfSusieScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ SwimmerfSusieScript:
 	end
 
 TrainerSwimmerfDenise:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_DENISE
-
-	; trainer group && trainer id
-	db SWIMMERF, DENISE
-
-	; text when seen
-	dw SwimmerfDeniseSeenText
-
-	; text when trainer beaten
-	dw SwimmerfDeniseBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfDeniseScript
+	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, $0000, SwimmerfDeniseScript
 
 SwimmerfDeniseScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ SwimmerfDeniseScript:
 	end
 
 TrainerSwimmerfKara:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_KARA
-
-	; trainer group && trainer id
-	db SWIMMERF, KARA
-
-	; text when seen
-	dw SwimmerfKaraSeenText
-
-	; text when trainer beaten
-	dw SwimmerfKaraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfKaraScript
+	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, $0000, SwimmerfKaraScript
 
 SwimmerfKaraScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ SwimmerfKaraScript:
 	end
 
 TrainerSwimmerfWendy:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_WENDY
-
-	; trainer group && trainer id
-	db SWIMMERF, WENDY
-
-	; text when seen
-	dw SwimmerfWendySeenText
-
-	; text when trainer beaten
-	dw SwimmerfWendyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfWendyScript
+	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, $0000, SwimmerfWendyScript
 
 SwimmerfWendyScript:
 	talkaftercancel
@@ -141,23 +61,7 @@ SwimmerfWendyScript:
 	end
 
 TrainerSwimmermCharlie:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_CHARLIE
-
-	; trainer group && trainer id
-	db SWIMMERM, CHARLIE
-
-	; text when seen
-	dw SwimmermCharlieSeenText
-
-	; text when trainer beaten
-	dw SwimmermCharlieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermCharlieScript
+	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, $0000, SwimmermCharlieScript
 
 SwimmermCharlieScript:
 	talkaftercancel
@@ -168,23 +72,7 @@ SwimmermCharlieScript:
 	end
 
 TrainerSwimmermGeorge:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_GEORGE
-
-	; trainer group && trainer id
-	db SWIMMERM, GEORGE
-
-	; text when seen
-	dw SwimmermGeorgeSeenText
-
-	; text when trainer beaten
-	dw SwimmermGeorgeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermGeorgeScript
+	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, $0000, SwimmermGeorgeScript
 
 SwimmermGeorgeScript:
 	talkaftercancel
@@ -195,23 +83,7 @@ SwimmermGeorgeScript:
 	end
 
 TrainerSwimmermBerke:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_BERKE
-
-	; trainer group && trainer id
-	db SWIMMERM, BERKE
-
-	; text when seen
-	dw SwimmermBerkeSeenText
-
-	; text when trainer beaten
-	dw SwimmermBerkeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermBerkeScript
+	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, $0000, SwimmermBerkeScript
 
 SwimmermBerkeScript:
 	talkaftercancel
@@ -222,23 +94,7 @@ SwimmermBerkeScript:
 	end
 
 TrainerSwimmermKirk:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_KIRK
-
-	; trainer group && trainer id
-	db SWIMMERM, KIRK
-
-	; text when seen
-	dw SwimmermKirkSeenText
-
-	; text when trainer beaten
-	dw SwimmermKirkBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermKirkScript
+	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, $0000, SwimmermKirkScript
 
 SwimmermKirkScript:
 	talkaftercancel
@@ -249,23 +105,7 @@ SwimmermKirkScript:
 	end
 
 TrainerSwimmermMathew:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_MATHEW
-
-	; trainer group && trainer id
-	db SWIMMERM, MATHEW
-
-	; text when seen
-	dw SwimmermMathewSeenText
-
-	; text when trainer beaten
-	dw SwimmermMathewBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermMathewScript
+	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, $0000, SwimmermMathewScript
 
 SwimmermMathewScript:
 	talkaftercancel

@@ -14,12 +14,12 @@ Function4000:: ; 4000
 	jr z, .notinbattle
 
 	call TextBox
-	jr .continue
+	jr .incave
 
 .notinbattle
 	predef Function28eef
 
-.continue
+.incave
 	hlcoord 4, 11
 	ld de, .Waiting
 	call PlaceString
@@ -1304,10 +1304,10 @@ TitleScreenMain: ; 6304
 .check_start
 	ld a, [hl]
 	and START | A_BUTTON
-	jr nz, .continue
+	jr nz, .incave
 	ret
 
-.continue
+.incave
 	ld a, 0
 	jr .done
 
@@ -2774,18 +2774,18 @@ ChangeHappiness: ; 71c2
 .Actions
 	db  +5,  +3,  +2 ; Gained a level
 	db  +5,  +3,  +2 ; Used a stat-boosting item (vitamin or X-item)
-	db  +1,  +1,  +0 
+	db  +1,  +1,  +0
 	db  +3,  +2,  +1 ; Battled a Gym Leader
 	db  +1,  +1,  +0 ; Learned a move
 	db  -1,  -1,  -1 ; Lost to an enemy
-	db  -5,  -5, -10 
+	db  -5,  -5, -10
 	db  -5,  -5, -10 ; Lost to a much weaker enemy
-	db  +1,  +1,  +1 
-	db  +3,  +3,  +1 
-	db  +5,  +5,  +2 
-	db  +1,  +1,  +1 
-	db  +3,  +3,  +1 
-	db +10, +10,  +4 
+	db  +1,  +1,  +1
+	db  +3,  +3,  +1
+	db  +5,  +5,  +2
+	db  +1,  +1,  +1
+	db  +3,  +3,  +1
+	db +10, +10,  +4
 	db  -5,  -5, -10 ; Used Heal Powder or Energypowder (bitter)
 	db -10, -10, -15 ; Used Energy Root (bitter)
 	db -15, -15, -20 ; Used Revival Herb (bitter)
@@ -4516,7 +4516,7 @@ HealPartyMon: ; c677
 	ld d, h
 	ld e, l
 
-	ld hl, PartyMon1Status - PartyMon1Species 
+	ld hl, PartyMon1Status - PartyMon1Species
 	add hl, de
 	xor a
 	ld [hli], a
@@ -4607,16 +4607,16 @@ Functionc6ea: ; c6ea
 	ret
 ; c6f5
 
-Functionc6f5: ; c6f5
+FieldMoveJumptable: ; c6f5
 	ld a, [Buffer1]
 	rst JumpTable
 	ld [Buffer1], a
 	bit 7, a
-	jr nz, .asm_c702
+	jr nz, .okay
 	and a
 	ret
 
-.asm_c702
+.okay
 	and $7f
 	scf
 	ret
@@ -4660,7 +4660,7 @@ CheckBadge: ; c731
 	call CheckEngineFlag
 	ret nc
 	ld hl, BadgeRequiredText
-	call Function1d67 ; push text to queue
+	call MenuTextBoxBackup ; push text to queue
 	scf
 	ret
 ; c73d
@@ -4687,7 +4687,7 @@ CheckPartyMove: ; c742
 	ld a, [hl]
 	and a
 	jr z, .no
-	cp a, $ff
+	cp a, -1
 	jr z, .no
 	cp a, EGG
 	jr z, .next
@@ -4719,9 +4719,9 @@ CheckPartyMove: ; c742
 ; c779
 
 
-Functionc779: ; c779
+FieldMoveFailed: ; c779
 	ld hl, UnknownText_0xc780
-	call Function1d67
+	call MenuTextBoxBackup
 	ret
 ; c780
 
@@ -4730,11 +4730,11 @@ UnknownText_0xc780: ; 0xc780
 	db "@"
 ; 0xc785
 
-Functionc785: ; c785
+CutFunction: ; c785
 	call Functionc6ea
 .loop
-	ld hl, Jumptable_c796
-	call Functionc6f5
+	ld hl, .Jumptable
+	call FieldMoveJumptable
 	jr nc, .loop
 	and $7f
 	ld [wd0ec], a
@@ -4742,36 +4742,36 @@ Functionc785: ; c785
 ; c796
 
 
-Jumptable_c796: ; c796 (3:4796)
-	dw Functionc79c
-	dw Functionc7b2
-	dw Functionc7bb
+.Jumptable: ; c796 (3:4796)
+	dw .CheckAble
+	dw .DoCut
+	dw .FailCut
 
 
-Functionc79c: ; c79c (3:479c)
+.CheckAble: ; c79c (3:479c)
 	ld de, ENGINE_HIVEBADGE
 	call CheckBadge
-	jr c, .asm_c7ac
-	call Functionc7ce
-	jr c, .asm_c7af
+	jr c, .nohivebadge
+	call CheckMapForSomethingToCut
+	jr c, .nothingtocut
 	ld a, $1
 	ret
-.asm_c7ac
+.nohivebadge
 	ld a, $80
 	ret
-.asm_c7af
+.nothingtocut
 	ld a, $2
 	ret
 
-Functionc7b2: ; c7b2 (3:47b2)
-	ld hl, UnknownScript_0xc7fe
-	call Function31cd
+.DoCut: ; c7b2 (3:47b2)
+	ld hl, Script_CutFromMenu
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 
-Functionc7bb: ; c7bb (3:47bb)
+.FailCut: ; c7bb (3:47bb)
 	ld hl, UnknownText_0xc7c9
-	call Function1d67
+	call MenuTextBoxBackup
 	ld a, $80
 	ret
 
@@ -4787,20 +4787,20 @@ UnknownText_0xc7c9: ; 0xc7c9
 	db "@"
 ; 0xc7ce
 
-Functionc7ce: ; c7ce
+CheckMapForSomethingToCut: ; c7ce
 	call GetFacingTileCoord
 	ld c, a
 	push de
 	callba Function149f5
 	pop de
-	jr nc, .asm_c7fc
+	jr nc, .fail
 	call GetBlockLocation
 	ld c, [hl]
 	push hl
 	ld hl, Unknown_c862
 	call Functionc840
 	pop hl
-	jr nc, .asm_c7fc
+	jr nc, .fail
 	ld a, l
 	ld [wd1ec], a
 	ld a, h
@@ -4812,25 +4812,25 @@ Functionc7ce: ; c7ce
 	xor a
 	ret
 
-.asm_c7fc
+.fail
 	scf
 	ret
 ; c7fe
 
-UnknownScript_0xc7fe: ; c7fe
+Script_CutFromMenu: ; c7fe
 	reloadmappart
 	special UpdateTimePals
 
-UnknownScript_0xc802: ; 0xc802
+Script_Cut: ; 0xc802
 	callasm GetPartyNick
 	writetext UnknownText_0xc7c4
 	reloadmappart
-	callasm Functionc810
+	callasm CutDownTreeOrGrass
 	loadmovesprites
 	end
 ; 0xc810
 
-Functionc810: ; c810
+CutDownTreeOrGrass: ; c810
 	ld hl, wd1ec
 	ld a, [hli]
 	ld h, [hl]
@@ -4859,7 +4859,7 @@ Functionc840: ; c840
 	ld de, 3
 	call IsInArray
 	pop bc
-	jr nc, .asm_c860
+	jr nc, .nope
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -4867,7 +4867,7 @@ Functionc840: ; c840
 	ld de, 3
 	ld a, c
 	call IsInArray
-	jr nc, .asm_c860
+	jr nc, .nope
 	inc hl
 	ld b, [hl]
 	inc hl
@@ -4875,7 +4875,7 @@ Functionc840: ; c840
 	scf
 	ret
 
-.asm_c860
+.nope
 	xor a
 	ret
 ; c862
@@ -4945,40 +4945,40 @@ Functionc8b5: ; c8b5
 ; Flash
 	ld de, ENGINE_ZEPHYRBADGE
 	callba CheckBadge
-	jr c, .asm_c8dd
+	jr c, .nozephyrbadge
 	push hl
-	callba Function8ae30
+	callba SpecialAerodactylChamber
 	pop hl
-	jr c, .asm_c8d1
+	jr c, .useflash
 	ld a, [wd847]
-	cp $ff
-	jr nz, .asm_c8d7
+	cp -1
+	jr nz, .notadarkcave
 
-.asm_c8d1
-	call Functionc8e0
+.useflash
+	call UseFlash
 	ld a, $81
 	ret
 
-.asm_c8d7
-	call Functionc779
+.notadarkcave
+	call FieldMoveFailed
 	ld a, $80
 	ret
 
-.asm_c8dd
+.nozephyrbadge
 	ld a, $80
 	ret
 ; c8e0
 
-Functionc8e0: ; c8e0
-	ld hl, UnknownScript_0xc8e6
-	jp Function31cd
+UseFlash: ; c8e0
+	ld hl, Script_UseFlash
+	jp ExitMenuCallScript
 ; c8e6
 
-UnknownScript_0xc8e6: ; 0xc8e6
+Script_UseFlash: ; 0xc8e6
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0xc8f3
-	callasm Function8c7e1
+	callasm BlindingFlash
 	loadmovesprites
 	end
 ; 0xc8f3
@@ -5001,80 +5001,80 @@ UnknownText_0xc908: ; 0xc908
 	db "@"
 ; 0xc909
 
-Functionc909: ; c909
+SurfFunction: ; c909
 	call Functionc6ea
-.asm_c90c
-	ld hl, Jumptable_c91a
-	call Functionc6f5
-	jr nc, .asm_c90c
+.loop
+	ld hl, .Jumptable
+	call FieldMoveJumptable
+	jr nc, .loop
 	and $7f
 	ld [wd0ec], a
 	ret
 ; c91a
 
 
-Jumptable_c91a: ; c91a (3:491a)
-	dw Functionc922
-	dw Functionc95f
-	dw Functionc971
-	dw Functionc97a
+.Jumptable: ; c91a (3:491a)
+	dw .TrySurf
+	dw .DoSurf
+	dw .FailSurf
+	dw .AlreadySurfing
 
 
-Functionc922: ; c922 (3:4922)
+.TrySurf: ; c922 (3:4922)
 	ld de, ENGINE_FOGBADGE
 	call CheckBadge
 	jr c, .asm_c956
 	ld hl, BikeFlags
 	bit 1, [hl] ; always on bike
-	jr nz, .asm_c95c
+	jr nz, .cannotsurf
 	ld a, [PlayerState]
 	cp PLAYER_SURF
-	jr z, .asm_c959
+	jr z, .alreadysurfing
 	cp PLAYER_SURF_PIKA
-	jr z, .asm_c959
+	jr z, .alreadysurfing
 	call GetFacingTileCoord
 	call GetTileCollision
 	cp $1
-	jr nz, .asm_c95c
+	jr nz, .cannotsurf
 	call CheckDirection
-	jr c, .asm_c95c
+	jr c, .cannotsurf
 	callba CheckFacingObject
-	jr c, .asm_c95c
+	jr c, .cannotsurf
 	ld a, $1
 	ret
 .asm_c956
 	ld a, $80
 	ret
-.asm_c959
+.alreadysurfing
 	ld a, $3
 	ret
-.asm_c95c
+.cannotsurf
 	ld a, $2
 	ret
 
-Functionc95f: ; c95f (3:495f)
+.DoSurf: ; c95f (3:495f)
 	call GetSurfType
 	ld [Buffer2], a ; wd1eb (aliases: MovementType)
 	call GetPartyNick
-	ld hl, UnknownScript_0xc983
-	call Function31cd
+	ld hl, SurfFromMenuScript
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 
-Functionc971: ; c971 (3:4971)
+.FailSurf: ; c971 (3:4971)
 	ld hl, CantSurfText
-	call Function1d67
+	call MenuTextBoxBackup
 	ld a, $80
 	ret
 
-Functionc97a: ; c97a (3:497a)
+.AlreadySurfing: ; c97a (3:497a)
 	ld hl, AlreadySurfingText
-	call Function1d67
+	call MenuTextBoxBackup
 	ld a, $80
 	ret
 ; c983 (3:4983)
 
-UnknownScript_0xc983: ; c983
+SurfFromMenuScript: ; c983
 	special UpdateTimePals
 
 UsedSurfScript: ; c986
@@ -5091,7 +5091,7 @@ UsedSurfScript: ; c986
 	special PlayMapMusic
 ; step into the water
 	special Function8379 ; (slow_step_x, step_end)
-	applymovement 0, MovementBuffer ; PLAYER, MovementBuffer
+	applymovement $0, MovementBuffer ; PLAYER, MovementBuffer
 	end
 ; c9a2
 
@@ -5233,11 +5233,11 @@ AskSurfText: ; ca36
 ; ca3b
 
 
-Functionca3b: ; ca3b
+FlyFunction: ; ca3b
 	call Functionc6ea
 .asm_ca3e
 	ld hl, .data_ca4c
-	call Functionc6f5
+	call FieldMoveJumptable
 	jr nc, .asm_ca3e
 	and $7f
 	ld [wd0ec], a
@@ -5245,40 +5245,40 @@ Functionca3b: ; ca3b
 ; ca4c
 
 .data_ca4c
- 	dw Functionca52
- 	dw Functionca94
- 	dw Functionca9d
+ 	dw .TryFly
+ 	dw .DoFly
+ 	dw .FailFly
 ; ca52
 
 
-Functionca52: ; ca52
+.TryFly: ; ca52
 ; Fly
 	ld de, ENGINE_STORMBADGE
 	call CheckBadge
-	jr c, .asm_ca85
+	jr c, .nostormbadge
 	call GetMapPermission
 	call CheckOutdoorMap
-	jr z, .asm_ca64
+	jr z, .outdoors
 	jr .indoors
 
-.asm_ca64
+.outdoors
 	xor a
 	ld [$ffde], a
 	call Function1d6e
 	call ClearSprites
-	callba Function91af3
+	callba _FlyMap
 	ld a, e
 	cp -1
-	jr z, .asm_ca8b
+	jr z, .illegal
 	cp $1c ; NUM_SPAWNS
-	jr nc, .asm_ca8b
+	jr nc, .illegal
 
 	ld [wd001], a
 	call WriteBackup
 	ld a, $1
 	ret
 
-.asm_ca85
+.nostormbadge
 	ld a, $82
 	ret
 
@@ -5286,33 +5286,33 @@ Functionca52: ; ca52
 	ld a, $2
 	ret
 
-.asm_ca8b
+.illegal
 	call WriteBackup
 	call WaitBGMap
 	ld a, $80
 	ret
 ; ca94
 
-Functionca94: ; ca94
-	ld hl, UnknownScript_0xcaa3
-	call Function31cd
+.DoFly: ; ca94
+	ld hl, .FlyScript
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 ; ca9d
 
-Functionca9d: ; ca9d
-	call Functionc779
+.FailFly: ; ca9d
+	call FieldMoveFailed
 	ld a, $82
 	ret
 ; caa3
 
-UnknownScript_0xcaa3: ; 0xcaa3
+.FlyScript: ; 0xcaa3
 	reloadmappart
 	callasm HideSprites
 	special UpdateTimePals
 	callasm Function8caed
 	farscall UnknownScript_0x122c1
-	special WarpToLastSpawn
+	special WarpToSpawnPoint
 	callasm Function154f1
 	writecode VAR_MOVEMENT, $0
 	newloadmap $fc
@@ -5331,52 +5331,52 @@ Functioncacb: ; cacb
 ; cade
 
 Functioncade: ; cade
-	call Functioncae7
+	call AttemptToWaterfall
 	and $7f
 	ld [wd0ec], a
 	ret
 ; cae7
 
-Functioncae7: ; cae7
+AttemptToWaterfall: ; cae7
 ; Waterfall
 	ld de, ENGINE_RISINGBADGE
 	callba CheckBadge
 	ld a, $80
 	ret c
-	call Functioncb07
-	jr c, .asm_cb01
-	ld hl, UnknownScript_0xcb1c
-	call Function31cd
+	call CheckMapCanWaterfall
+	jr c, .failed
+	ld hl, Script_WaterfallFromMenu
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 
-.asm_cb01
-	call Functionc779
+.failed
+	call FieldMoveFailed
 	ld a, $80
 	ret
 ; cb07
 
-Functioncb07: ; cb07
+CheckMapCanWaterfall: ; cb07
 	ld a, [PlayerDirection]
 	and $c
 	cp FACE_UP
-	jr nz, .asm_cb1a
+	jr nz, .failed
 	ld a, [TileUp]
 	call CheckWaterfallTile
-	jr nz, .asm_cb1a
+	jr nz, .failed
 	xor a
 	ret
 
-.asm_cb1a
+.failed
 	scf
 	ret
 ; cb1c
 
-UnknownScript_0xcb1c: ; 0xcb1c
+Script_WaterfallFromMenu: ; 0xcb1c
 	reloadmappart
 	special UpdateTimePals
 
-UnknownScript_0xcb20: ; 0xcb20
+Script_UsedWaterfall: ; 0xcb20
 	callasm GetPartyNick
 	writetext UnknownText_0xcb51
 	closetext
@@ -5384,12 +5384,12 @@ UnknownScript_0xcb20: ; 0xcb20
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement $0, WaterfallStep
-	callasm Functioncb38
+	callasm CheckContinueWaterfall
 	iffalse .loop
 	end
 ; 0xcb38
 
-Functioncb38: ; cb38
+CheckContinueWaterfall: ; cb38
 	xor a
 	ld [ScriptVar], a
 	ld a, [StandingTile]
@@ -5414,27 +5414,27 @@ UnknownText_0xcb51: ; 0xcb51
 TryWaterfallOW:: ; cb56
 	ld d, WATERFALL
 	call CheckPartyMove
-	jr c, .asm_cb74
+	jr c, .failed
 	ld de, ENGINE_RISINGBADGE
 	call CheckEngineFlag
-	jr c, .asm_cb74
-	call Functioncb07
-	jr c, .asm_cb74
-	ld a, BANK(UnknownScript_0xcb86)
-	ld hl, UnknownScript_0xcb86
+	jr c, .failed
+	call CheckMapCanWaterfall
+	jr c, .failed
+	ld a, BANK(Script_AskWaterfall)
+	ld hl, Script_AskWaterfall
 	call CallScript
 	scf
 	ret
 
-.asm_cb74
-	ld a, BANK(UnknownScript_0xcb7e)
-	ld hl, UnknownScript_0xcb7e
+.failed
+	ld a, BANK(Script_CantDoWaterfall)
+	ld hl, Script_CantDoWaterfall
 	call CallScript
 	scf
 	ret
 ; cb7e
 
-UnknownScript_0xcb7e: ; 0xcb7e
+Script_CantDoWaterfall: ; 0xcb7e
 	jumptext UnknownText_0xcb81
 ; 0xcb81
 
@@ -5443,11 +5443,11 @@ UnknownText_0xcb81: ; 0xcb81
 	db "@"
 ; 0xcb86
 
-UnknownScript_0xcb86: ; 0xcb86
+Script_AskWaterfall: ; 0xcb86
 	loadfont
 	writetext UnknownText_0xcb90
 	yesorno
-	iftrue UnknownScript_0xcb20
+	iftrue Script_UsedWaterfall
 	loadmovesprites
 	end
 ; 0xcb90
@@ -5458,89 +5458,89 @@ UnknownText_0xcb90: ; 0xcb90
 ; 0xcb95
 
 
-Functioncb95: ; cb95
+EscapeRopeFunction: ; cb95
 	call Functionc6ea
 	ld a, $1
-	jr asm_cba1
+	jr dig_incave
 
-Functioncb9c: ; cb9c
+DigFunction: ; cb9c
 	call Functionc6ea
 	ld a, $2
 
-asm_cba1
+dig_incave
 	ld [Buffer2], a
-.asm_cba4
-	ld hl, Tablecbb2
-	call Functionc6f5
-	jr nc, .asm_cba4
+.loop
+	ld hl, .DigTable
+	call FieldMoveJumptable
+	jr nc, .loop
 	and $7f
 	ld [wd0ec], a
 	ret
 ; cbb2
 
-Tablecbb2: ; cbb2
-	dw Functioncbb8
-	dw Functioncbd8
-	dw Functioncc06
+.DigTable: ; cbb2
+	dw .CheckCanDig
+	dw .DoDig
+	dw .FailDig
 ; cbb8
 
-Functioncbb8: ; cbb8
+.CheckCanDig: ; cbb8
 	call GetMapPermission
 	cp $4
-	jr z, .asm_cbc6
+	jr z, .incave
 	cp $7
-	jr z, .asm_cbc6
-.asm_cbc3
+	jr z, .incave
+.fail
 	ld a, $2
 	ret
 
-.asm_cbc6
+.incave
 	ld hl, wdca9
 	ld a, [hli]
 	and a
-	jr z, .asm_cbc3
+	jr z, .fail
 	ld a, [hli]
 	and a
-	jr z, .asm_cbc3
+	jr z, .fail
 	ld a, [hl]
 	and a
-	jr z, .asm_cbc3
+	jr z, .fail
 	ld a, $1
 	ret
 ; cbd8
 
-Functioncbd8: ; cbd8
+.DoDig: ; cbd8
 	ld hl, wdca9
 	ld de, wd146
-	ld bc, $0003
+	ld bc, 3
 	call CopyBytes
 	call GetPartyNick
 	ld a, [Buffer2]
 	cp $2
-	jr nz, .asm_cbf7
-	ld hl, UnknownScript_0xcc35
-	call Function31cd
+	jr nz, .escaperope
+	ld hl, UsedDigScript
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 
-.asm_cbf7
-	callba Function8ae4e
-	ld hl, UnknownScript_0xcc2b
-	call Function31cd
+.escaperope
+	callba SpecialKabutoChamber
+	ld hl, UsedEscapeRopeScript
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 ; cc06
 
-Functioncc06: ; cc06
+.FailDig: ; cc06
 	ld a, [Buffer2]
 	cp $2
-	jr nz, .asm_cc19
+	jr nz, .failescaperope
 	ld hl, UnknownText_0xcc26
-	call Function1d4f
+	call MenuTextBox
 	call Functiona80
 	call WriteBackup
 
-.asm_cc19
+.failescaperope
 	ld a, $80
 	ret
 ; cc1c
@@ -5563,25 +5563,25 @@ UnknownText_0xcc26: ; 0xcc26
 	db "@"
 ; 0xcc2b
 
-UnknownScript_0xcc2b: ; 0xcc2b
+UsedEscapeRopeScript: ; 0xcc2b
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0xcc21
-	jump UnknownScript_0xcc3c
+	jump UsedDigOrEscapeRopeScript
 ; 0xcc35
 
-UnknownScript_0xcc35: ; 0xcc35
+UsedDigScript: ; 0xcc35
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0xcc1c
 
-UnknownScript_0xcc3c: ; 0xcc3c
+UsedDigOrEscapeRopeScript: ; 0xcc3c
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
-	special WarpToLastSpawn
+	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, $0
 	newloadmap $f5
 	playsound SFX_WARP_FROM
@@ -5597,29 +5597,29 @@ MovementData_0xcc59: ; 0xcc59
 ; 0xcc5d
 
 MovementData_0xcc5d: ; 0xcc5d
-	db $3c, $58
+	return_dig $58
 	turn_away_down
 	step_end
 ; 0xcc61
 
-Functioncc61: ; cc61
+TeleportFunction: ; cc61
 	call Functionc6ea
-.asm_cc64
-	ld hl, Tablecc72
-	call Functionc6f5
-	jr nc, .asm_cc64
+.loop
+	ld hl, .Jumptable
+	call FieldMoveJumptable
+	jr nc, .loop
 	and $7f
 	ld [wd0ec], a
 	ret
 ; cc72
 
-Tablecc72: ; cc72
-	dw Functioncc78
-	dw Functioncc9c
-	dw Functioncca8
+.Jumptable: ; cc72
+	dw .TryTeleport
+	dw .DoTeleport
+	dw .FailTeleport
 ; cc78
 
-Functioncc78: ; cc78
+.TryTeleport: ; cc78
 	call GetMapPermission
 	call CheckOutdoorMap
 	jr z, .CheckIfSpawnPoint
@@ -5642,17 +5642,17 @@ Functioncc78: ; cc78
 	ret
 ; cc9c
 
-Functioncc9c: ; cc9c
+.DoTeleport: ; cc9c
 	call GetPartyNick
-	ld hl, UnknownScript_0xccbb
-	call Function31cd
+	ld hl, Script_UsedTeleport
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 ; cca8
 
-Functioncca8: ; cca8
+.FailTeleport: ; cca8
 	ld hl, UnknownText_0xccb6
-	call Function1d67
+	call MenuTextBoxBackup
 	ld a, $80
 	ret
 ; ccb1
@@ -5669,7 +5669,7 @@ UnknownText_0xccb6: ; 0xccb6
 	db "@"
 ; 0xccbb
 
-UnknownScript_0xccbb: ; 0xccbb
+Script_UsedTeleport: ; 0xccbb
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0xccb1
@@ -5679,7 +5679,7 @@ UnknownScript_0xccbb: ; 0xccbb
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcce1
 	farscall UnknownScript_0x122c1
-	special WarpToLastSpawn
+	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, $0
 	newloadmap $f4
 	playsound SFX_WARP_FROM
@@ -5697,24 +5697,24 @@ MovementData_0xcce3: ; cce3
 	step_end
 ; cce5
 
-Functioncce5: ; cce5
-	call Functionccee
+StrengthFunction: ; cce5
+	call .TryStrength
 	and $7f
 	ld [wd0ec], a
 	ret
 ; ccee
 
-Functionccee: ; ccee
+.TryStrength: ; ccee
 ; Strength
 	ld de, ENGINE_PLAINBADGE
 	call CheckBadge
-	jr c, Functioncd06
-	jr Functioncd09
+	jr c, FailedStrength
+	jr StartToUseStrength
 ; ccf8
 
-Functionccf8: ; ccf8
+AlreadyUsingStrength: ; ccf8
 	ld hl, UnknownText_0xcd01
-	call Function1d67
+	call MenuTextBoxBackup
 	ld a, $80
 	ret
 ; cd01
@@ -5724,14 +5724,14 @@ UnknownText_0xcd01: ; 0xcd01
 	db "@"
 ; 0xcd06
 
-Functioncd06: ; cd06
+FailedStrength: ; cd06
 	ld a, $80
 	ret
 ; cd09
 
-Functioncd09: ; cd09
-	ld hl, UnknownScript_0xcd29
-	call Function31cd
+StartToUseStrength: ; cd09
+	ld hl, Script_StrengthFromMenu
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 ; cd12
@@ -5754,11 +5754,11 @@ Functioncd1d: ; cd1d
 	ret
 ; cd29
 
-UnknownScript_0xcd29: ; 0xcd29
+Script_StrengthFromMenu: ; 0xcd29
 	reloadmappart
 	special UpdateTimePals
 
-UnknownScript_0xcd2d: ; 0xcd2d
+Script_UsedStrength: ; 0xcd2d
 	callasm Functioncd12
 	writetext UnknownText_0xcd41
 	copybytetovar wd1ef
@@ -5780,25 +5780,25 @@ UnknownText_0xcd46: ; 0xcd46
 ; 0xcd4b
 
 AskStrengthScript:
-	callasm Functioncd78
-	iffalse UnknownScript_0xcd5f
-	if_equal $1, UnknownScript_0xcd59
-	jump UnknownScript_0xcd5c
+	callasm TryStrengthOW
+	iffalse .AskStrength
+	if_equal $1, .DontMeetRequirements
+	jump .AlreadyUsedStrength
 ; 0xcd59
 
-UnknownScript_0xcd59: ; 0xcd59
+.DontMeetRequirements: ; 0xcd59
 	jumptext UnknownText_0xcd73
 ; 0xcd5c
 
-UnknownScript_0xcd5c: ; 0xcd5c
+.AlreadyUsedStrength: ; 0xcd5c
 	jumptext UnknownText_0xcd6e
 ; 0xcd5f
 
-UnknownScript_0xcd5f: ; 0xcd5f
+.AskStrength: ; 0xcd5f
 	loadfont
 	writetext UnknownText_0xcd69
 	yesorno
-	iftrue UnknownScript_0xcd2d
+	iftrue Script_UsedStrength
 	loadmovesprites
 	end
 ; 0xcd69
@@ -5821,79 +5821,79 @@ UnknownText_0xcd73: ; 0xcd73
 	db "@"
 ; 0xcd78
 
-Functioncd78: ; cd78
+TryStrengthOW: ; cd78
 	ld d, STRENGTH
 	call CheckPartyMove
-	jr c, .asm_cd92
+	jr c, .nope
 
 	ld de, ENGINE_PLAINBADGE
 	call CheckEngineFlag
-	jr c, .asm_cd92
+	jr c, .nope
 
 	ld hl, BikeFlags
 	bit 0, [hl]
-	jr z, .asm_cd96
+	jr z, .already_using
 
 	ld a, 2
-	jr .asm_cd99
+	jr .done
 
-.asm_cd92
+.nope
 	ld a, 1
-	jr .asm_cd99
+	jr .done
 
-.asm_cd96
+.already_using
 	xor a
-	jr .asm_cd99
+	jr .done
 
-.asm_cd99
+.done
 	ld [ScriptVar], a
 	ret
 ; cd9d
 
-Functioncd9d: ; cd9d
+WhirlpoolFunction: ; cd9d
 	call Functionc6ea
-.asm_cda0
+.loop
 	ld hl, Jumptable_cdae
-	call Functionc6f5
-	jr nc, .asm_cda0
+	call FieldMoveJumptable
+	jr nc, .loop
 	and $7f
 	ld [wd0ec], a
 	ret
 ; cdae
 
 Jumptable_cdae: ; cdae
-	dw Functioncdb4
-	dw Functioncdca
-	dw Functioncdd3
+	dw .TryWhirlpool
+	dw .DoWhirlpool
+	dw .FailWhirlpool
 ; cdb4
 
-Functioncdb4: ; cdb4
+.TryWhirlpool: ; cdb4
 	ld de, ENGINE_GLACIERBADGE
 	call CheckBadge
-	jr c, .asm_cdc7
-	call Functioncdde
-	jr c, .asm_cdc4
+	jr c, .noglacierbadge
+	call TryWhirlpoolMenu
+	jr c, .failed
 	ld a, $1
 	ret
 
-.asm_cdc4
+.failed
 	ld a, $2
 	ret
 
-.asm_cdc7
+.noglacierbadge
 	ld a, $80
 	ret
 ; cdca
 
-Functioncdca: ; cdca
-	ld hl, UnknownScript_0xce0b
-	call Function31cd
+.DoWhirlpool: ; cdca
+	ld hl, Script_WhirlpoolFromMenu
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 ; cdd3
 
-Functioncdd3: ; cdd3
-	call Functionc779
+.FailWhirlpool: ; cdd3
+	call FieldMoveFailed
 	ld a, $80
 	ret
 ; cdd9
@@ -5904,20 +5904,20 @@ UnknownText_0xcdd9: ; 0xcdd9
 	db "@"
 ; 0xcdde
 
-Functioncdde: ; cdde
+TryWhirlpoolMenu: ; cdde
 	call GetFacingTileCoord
 	ld c, a
 	push de
 	call CheckWhirlpoolTile
 	pop de
-	jr c, .asm_ce09
+	jr c, .failed
 	call GetBlockLocation
 	ld c, [hl]
 	push hl
 	ld hl, Unknown_c8a4
 	call Functionc840
 	pop hl
-	jr nc, .asm_ce09
+	jr nc, .failed
 	ld a, l
 	ld [wd1ec], a
 	ld a, h
@@ -5929,25 +5929,25 @@ Functioncdde: ; cdde
 	xor a
 	ret
 
-.asm_ce09
+.failed
 	scf
 	ret
 ; ce0b
 
-UnknownScript_0xce0b: ; 0xce0b
+Script_WhirlpoolFromMenu: ; 0xce0b
 	reloadmappart
 	special UpdateTimePals
 
-UnknownScript_0xce0f: ; 0xce0f
+Script_UsedWhirlpool: ; 0xce0f
 	callasm GetPartyNick
 	writetext UnknownText_0xcdd9
 	reloadmappart
-	callasm Functionce1d
+	callasm DisappearWhirlpool
 	loadmovesprites
 	end
 ; 0xce1d
 
-Functionce1d: ; ce1d
+DisappearWhirlpool: ; ce1d
 	ld hl, wd1ec
 	ld a, [hli]
 	ld h, [hl]
@@ -5968,27 +5968,27 @@ Functionce1d: ; ce1d
 TryWhirlpoolOW:: ; ce3e
 	ld d, WHIRLPOOL
 	call CheckPartyMove
-	jr c, .asm_ce5c
+	jr c, .failed
 	ld de, ENGINE_GLACIERBADGE
 	call CheckEngineFlag
-	jr c, .asm_ce5c
-	call Functioncdde
-	jr c, .asm_ce5c
-	ld a, BANK(UnknownScript_0xce6e)
-	ld hl, UnknownScript_0xce6e
+	jr c, .failed
+	call TryWhirlpoolMenu
+	jr c, .failed
+	ld a, BANK(Script_AskWhirlpoolOW)
+	ld hl, Script_AskWhirlpoolOW
 	call CallScript
 	scf
 	ret
 
-.asm_ce5c
-	ld a, BANK(UnknownScript_0xce66)
-	ld hl, UnknownScript_0xce66
+.failed
+	ld a, BANK(Script_MightyWhirlpool)
+	ld hl, Script_MightyWhirlpool
 	call CallScript
 	scf
 	ret
 ; ce66
 
-UnknownScript_0xce66: ; 0xce66
+Script_MightyWhirlpool: ; 0xce66
 	jumptext UnknownText_0xce69
 ; 0xce69
 
@@ -5997,11 +5997,11 @@ UnknownText_0xce69: ; 0xce69
 	db "@"
 ; 0xce6e
 
-UnknownScript_0xce6e: ; 0xce6e
+Script_AskWhirlpoolOW: ; 0xce6e
 	loadfont
 	writetext UnknownText_0xce78
 	yesorno
-	iftrue UnknownScript_0xce0f
+	iftrue Script_UsedWhirlpool
 	loadmovesprites
 	end
 ; 0xce78
@@ -6012,25 +6012,25 @@ UnknownText_0xce78: ; 0xce78
 ; 0xce7d
 
 
-Functionce7d: ; ce7d
-	call Functionce86
+HeadbuttFunction: ; ce7d
+	call TryHeadbuttFromMenu
 	and $7f
 	ld [wd0ec], a
 	ret
 ; ce86
 
-Functionce86: ; ce86
+TryHeadbuttFromMenu: ; ce86
 	call GetFacingTileCoord
 	call CheckHeadbuttTreeTile
 	jr nz, .no_tree
 
 	ld hl, HeadbuttFromMenuScript
-	call Function31cd
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 
 .no_tree
-	call Functionc779
+	call FieldMoveFailed
 	ld a, $80
 	ret
 ; ce9d
@@ -6105,50 +6105,50 @@ UnknownText_0xcee6: ; 0xcee6
 ; 0xceeb
 
 
-Functionceeb: ; ceeb
-	call Functioncef4
+RockSmashFunction: ; ceeb
+	call TryRockSmashFromMenu
 	and $7f
 	ld [wd0ec], a
 	ret
 ; cef4
 
-Functioncef4: ; cef4
-	call Functioncf0d
+TryRockSmashFromMenu: ; cef4
+	call GetFacingObject
 	jr c, .no_rock
 	ld a, d
 	cp $18
 	jr nz, .no_rock
 
 	ld hl, RockSmashFromMenuScript
-	call Function31cd
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 
 .no_rock
-	call Functionc779
+	call FieldMoveFailed
 	ld a, $80
 	ret
 ; cf0d
 
-Functioncf0d: ; cf0d
+GetFacingObject: ; cf0d
 	callba CheckFacingObject
-	jr nc, .asm_cf2c
+	jr nc, .fail
 
 	ld a, [$ffb0]
 	call GetObjectStruct
-	ld hl, $0001
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	ld [$ffe0], a
 	call GetMapObject
-	ld hl, $0004
+	ld hl, MAPOBJECT_FACING
 	add hl, bc
 	ld a, [hl]
 	ld d, a
 	and a
 	ret
 
-.asm_cf2c
+.fail
 	scf
 	ret
 ; cf2e
@@ -6165,7 +6165,7 @@ RockSmashScript: ; cf32
 	playsound SFX_STRENGTH
 	earthquake 84
 	applymovement2 MovementData_0xcf55
-	disappear $fe
+	disappear -2
 
 	callasm RockMonEncounter
 	copybytetovar wd22e
@@ -6227,59 +6227,59 @@ HasRockSmash: ; cf7c
 	ret
 
 
-Functioncf8e: ; cf8e
+FishFunction: ; cf8e
 	ld a, e
 	push af
 	call Functionc6ea
 	pop af
 	ld [Buffer2], a
-.asm_cf97
-	ld hl, Jumptable_cfa5
-	call Functionc6f5
-	jr nc, .asm_cf97
+.loop
+	ld hl, .FishTable
+	call FieldMoveJumptable
+	jr nc, .loop
 	and $7f
 	ld [wd0ec], a
 	ret
 ; cfa5
 
-Jumptable_cfa5: ; cfa5
-	dw Functioncfaf
-	dw Functiond002
-	dw Functioncff4
-	dw Functioncff1
-	dw Functiond010
+.FishTable: ; cfa5
+	dw .TryFish
+	dw .FishNoBite
+	dw .FishGotSomething
+	dw .SurfingFish
+	dw .FailFish
 ; cfaf
 
-Functioncfaf: ; cfaf
+.TryFish: ; cfaf
 	ld a, [PlayerState]
 	cp PLAYER_SURF
-	jr z, .asm_cfc4
+	jr z, .surfing
 	cp PLAYER_SURF_PIKA
-	jr z, .asm_cfc4
+	jr z, .surfing
 	call GetFacingTileCoord
 	call GetTileCollision
 	cp $1
-	jr z, .asm_cfc7
+	jr z, .facingwater
 
-.asm_cfc4
+.surfing
 	ld a, $3
 	ret
 
-.asm_cfc7
+.facingwater
 	call Function2d19
 	and a
-	jr nz, .asm_cfd0
+	jr nz, .goodtofish
 	ld a, $4
 	ret
 
-.asm_cfd0
+.goodtofish
 	ld d, a
 	ld a, [Buffer2]
 	ld e, a
 	callba FishAction
 	ld a, d
 	and a
-	jr z, .asm_cfee
+	jr z, .nonibble
 	ld [wd22e], a
 	ld a, e
 	ld [CurPartyLevel], a
@@ -6288,76 +6288,76 @@ Functioncfaf: ; cfaf
 	ld a, $2
 	ret
 
-.asm_cfee
+.nonibble
 	ld a, $1
 	ret
 ; cff1
 
-Functioncff1: ; cff1
+.SurfingFish: ; cff1
 	ld a, $80
 	ret
 ; cff4
 
-Functioncff4: ; cff4
+.FishGotSomething: ; cff4
 	ld a, $1
 	ld [wd1ef], a
-	ld hl, UnknownScript_0xd035
-	call Function31cd
+	ld hl, Script_GotABite
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 ; d002
 
-Functiond002: ; d002
+.FishNoBite: ; d002
 	ld a, $2
 	ld [wd1ef], a
-	ld hl, UnknownScript_0xd01e
-	call Function31cd
+	ld hl, Script_NotEvenANibble
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 ; d010
 
-Functiond010: ; d010
+.FailFish: ; d010
 	ld a, $0
 	ld [wd1ef], a
-	ld hl, UnknownScript_0xd027
-	call Function31cd
+	ld hl, Script_NotEvenANibble2
+	call ExitMenuCallScript
 	ld a, $81
 	ret
 ; d01e
 
-UnknownScript_0xd01e: ; 0xd01e
-	scall UnknownScript_0xd07c
+Script_NotEvenANibble: ; 0xd01e
+	scall Script_FishCastRod
 	writetext UnknownText_0xd0a9
-	jump UnknownScript_0xd02d
+	jump Script_NotEvenANibble_FallThrough
 ; 0xd027
 
-UnknownScript_0xd027: ; 0xd027
-	scall UnknownScript_0xd07c
+Script_NotEvenANibble2: ; 0xd027
+	scall Script_FishCastRod
 	writetext UnknownText_0xd0a9
 
-UnknownScript_0xd02d: ; 0xd02d
+Script_NotEvenANibble_FallThrough: ; 0xd02d
 	loademote $8
-	callasm Functiond095
+	callasm PutTheRodAway
 	loadmovesprites
 	end
 ; 0xd035
 
-UnknownScript_0xd035: ; 0xd035
-	scall UnknownScript_0xd07c
-	callasm Functiond06c
-	iffalse UnknownScript_0xd046
+Script_GotABite: ; 0xd035
+	scall Script_FishCastRod
+	callasm Fishing_CheckFacingUp
+	iffalse .FacingUp
 	applymovement $0, MovementData_0xd062
-	jump UnknownScript_0xd04a
+	jump .FightTheHookedPokemon
 ; 0xd046
 
-UnknownScript_0xd046: ; 0xd046
+.FacingUp: ; 0xd046
 	applymovement $0, MovementData_0xd05c
 
-UnknownScript_0xd04a: ; 0xd04a
+.FightTheHookedPokemon: ; 0xd04a
 	pause 40
 	applymovement $0, MovementData_0xd069
 	writetext UnknownText_0xd0a4
-	callasm Functiond095
+	callasm PutTheRodAway
 	loadmovesprites
 	battlecheck
 	startbattle
@@ -6366,19 +6366,19 @@ UnknownScript_0xd04a: ; 0xd04a
 ; 0xd05c
 
 MovementData_0xd05c: ; d05c
-	db $51
-	db $51
-	db $51
-	db $51
+	fish_got_bite
+	fish_got_bite
+	fish_got_bite
+	fish_got_bite
 	show_emote
 	step_end
 ; d062
 
 MovementData_0xd062: ; d062
-	db $51
-	db $51
-	db $51
-	db $51
+	fish_got_bite
+	fish_got_bite
+	fish_got_bite
+	fish_got_bite
 	show_person
 	show_emote
 	step_end
@@ -6386,24 +6386,24 @@ MovementData_0xd062: ; d062
 
 MovementData_0xd069: ; d069
 	hide_emote
-	db $52
+	fish_got_bite_2
 	step_end
 ; d06c
 
-Functiond06c: ; d06c
+Fishing_CheckFacingUp: ; d06c
 	ld a, [PlayerDirection]
 	and $c
 	cp $4
 	ld a, $1
-	jr z, .asm_d078
+	jr z, .up
 	xor a
 
-.asm_d078
+.up
 	ld [ScriptVar], a
 	ret
 ; d07c
 
-UnknownScript_0xd07c: ; 0xd07c
+Script_FishCastRod: ; 0xd07c
 	reloadmappart
 	loadvar $ffd4, $0
 	special UpdateTimePals
@@ -6420,7 +6420,7 @@ MovementData_0xd093: ; d093
 	step_end
 ; d095
 
-Functiond095: ; d095
+PutTheRodAway: ; d095
 	xor a
 	ld [hBGMapMode], a
 	ld a, $1
@@ -6448,28 +6448,28 @@ UnknownText_0xd0ae: ; 0xd0ae
 	db "@"
 ; 0xd0b3
 
-Functiond0b3: ; d0b3
-	call Functiond0bc
+BikeFunction: ; d0b3
+	call .TryBike
 	and $7f
 	ld [wd0ec], a
 	ret
 ; d0bc
 
-Functiond0bc: ; d0bc
-	call Functiond121
-	jr c, .asm_d110
+.TryBike: ; d0bc
+	call .CheckEnvironment
+	jr c, .CannotUseBike
 	ld a, [PlayerState]
 	cp PLAYER_NORMAL
-	jr z, .asm_d0ce
+	jr z, .GetOnBike
 	cp PLAYER_BIKE
-	jr z, .asm_d0f7
-	jr .asm_d110
+	jr z, .GetOffBike
+	jr .CannotUseBike
 
-.asm_d0ce
-	ld hl, UnknownScript_0xd13e
-	ld de, UnknownScript_0xd14e
-	call Functiond119
-	call Function31cd
+.GetOnBike
+	ld hl, Script_GetOnBike
+	ld de, Script_GetOnBike_Register
+	call .CheckIfRegistered
+	call ExitMenuCallScript
 	xor a
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
@@ -6483,31 +6483,31 @@ Functiond0bc: ; d0bc
 	ld a, $1
 	ret
 
-.asm_d0f7
+.GetOffBike
 	ld hl, BikeFlags
 	bit 1, [hl]
-	jr nz, .asm_d10b
-	ld hl, UnknownScript_0xd158
-	ld de, UnknownScript_0xd16b
-	call Functiond119
+	jr nz, .CantGetOffBike
+	ld hl, Script_GetOffBike
+	ld de, Script_GetOffBike_Register
+	call .CheckIfRegistered
 	ld a, $3
-	jr .asm_d113
+	jr .done
 
-.asm_d10b
+.CantGetOffBike
 	ld hl, UnknownScript_0xd171
-	jr .asm_d113
+	jr .done
 
-.asm_d110
+.CannotUseBike
 	ld a, $0
 	ret
 
-.asm_d113
-	call Function31cd
+.done
+	call ExitMenuCallScript
 	ld a, $1
 	ret
 ; d119
 
-Functiond119: ; d119
+.CheckIfRegistered: ; d119
 	ld a, [wd0ef]
 	and a
 	ret z
@@ -6516,29 +6516,29 @@ Functiond119: ; d119
 	ret
 ; d121
 
-Functiond121: ; d121
+.CheckEnvironment: ; d121
 	call GetMapPermission
 	call CheckOutdoorMap
-	jr z, .asm_d133
+	jr z, .ok
 	cp CAVE
-	jr z, .asm_d133
+	jr z, .ok
 	cp GATE
-	jr z, .asm_d133
-	jr .asm_d13c
+	jr z, .ok
+	jr .nope
 
-.asm_d133
+.ok
 	call Function184a
 	and $f
-	jr nz, .asm_d13c
+	jr nz, .nope
 	xor a
 	ret
 
-.asm_d13c
+.nope
 	scf
 	ret
 ; d13e
 
-UnknownScript_0xd13e: ; 0xd13e
+Script_GetOnBike: ; 0xd13e
 	reloadmappart
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, $1
@@ -6549,7 +6549,7 @@ UnknownScript_0xd13e: ; 0xd13e
 	end
 ; 0xd14e
 
-UnknownScript_0xd14e: ; 0xd14e
+Script_GetOnBike_Register: ; 0xd14e
 	writecode VAR_MOVEMENT, $1
 	loadmovesprites
 	special Functione4a
@@ -6560,7 +6560,7 @@ Functiond156: ; unreferenced
 	nop
 	ret
 
-UnknownScript_0xd158: ; 0xd158
+Script_GetOffBike: ; 0xd158
 	reloadmappart
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, $0
@@ -6574,7 +6574,7 @@ UnknownScript_0xd163:
 	end
 ; 0xd16b
 
-UnknownScript_0xd16b: ; 0xd16b
+Script_GetOffBike_Register: ; 0xd16b
 	writecode VAR_MOVEMENT, $0
 	jump UnknownScript_0xd163
 ; 0xd171
@@ -6633,17 +6633,17 @@ AskCutScript: ; 0xd1a9
 	writetext UnknownText_0xd1c8
 	yesorno
 	iffalse .script_d1b8
-	callasm Functiond1ba
-	iftrue UnknownScript_0xc802
+	callasm .CheckMap
+	iftrue Script_Cut
 .script_d1b8
 	loadmovesprites
 	end
 ; 0xd1ba
 
-Functiond1ba: ; d1ba
+.CheckMap: ; d1ba
 	xor a
 	ld [ScriptVar], a
-	call Functionc7ce
+	call CheckMapForSomethingToCut
 	ret c
 	ld a, 1
 	ld [ScriptVar], a
@@ -6666,65 +6666,65 @@ UnknownText_0xd1d0: ; 0xd1d0
 
 
 _ReceiveItem:: ; d1d5
-	call Functiond27b
-	jp nz, Functiond29c
+	call CheckHLequTMsHMsEnd
+	jp nz, PutItemInPocket
 	push hl
 	call CheckItemPocket
 	pop de
 	ld a, [wd142]
 	dec a
-	ld hl, Tabled1e9
+	ld hl, .Pockets
 	rst JumpTable
 	ret
 ; d1e9
 
-Tabled1e9: ; d1e9
-	dw Functiond1f1
-	dw Functiond1f6
-	dw Functiond1fb
-	dw Functiond201
+.Pockets: ; d1e9
+	dw .Item
+	dw .KeyItem
+	dw .Ball
+	dw .TMHM
 ; d1f1
 
-Functiond1f1: ; d1f1
+.Item: ; d1f1
 	ld h, d
 	ld l, e
-	jp Functiond29c
+	jp PutItemInPocket
 ; d1f6
 
-Functiond1f6: ; d1f6
+.KeyItem: ; d1f6
 	ld h, d
 	ld l, e
-	jp Functiond35a
+	jp ReceiveKeyItem
 ; d1fb
 
-Functiond1fb: ; d1fb
+.Ball: ; d1fb
 	ld hl, NumBalls
-	jp Functiond29c
+	jp PutItemInPocket
 ; d201
 
-Functiond201: ; d201
+.TMHM: ; d201
 	ld h, d
 	ld l, e
 	ld a, [CurItem]
 	ld c, a
 	call GetTMHMNumber
-	jp Functiond3c4
+	jp ReceiveTMHM
 ; d20d
 
 
 _TossItem:: ; d20d
-	call Functiond27b
+	call CheckHLequTMsHMsEnd
 	jr nz, .asm_d241
 	push hl
 	call CheckItemPocket
 	pop de
 	ld a, [wd142]
 	dec a
-	ld hl, .data_d220
+	ld hl, .Pockets
 	rst JumpTable
 	ret
 
-.data_d220
+.Pockets
 	dw .Item
 	dw .KeyItem
 	dw .Ball
@@ -6733,7 +6733,7 @@ _TossItem:: ; d20d
 
 .Ball ; d228
 	ld hl, NumBalls
-	jp Functiond2ff
+	jp RemoveItemFromPocket
 ; d22e
 
 .TMHM ; d22e
@@ -6742,13 +6742,13 @@ _TossItem:: ; d20d
 	ld a, [CurItem]
 	ld c, a
 	call GetTMHMNumber
-	jp Functiond3d8
+	jp TossTMHM
 ; d23a
 
 .KeyItem ; d23a
 	ld h, d
 	ld l, e
-	jp Functiond374
+	jp TossKeyItem
 ; d23f
 
 .Item ; d23f
@@ -6757,22 +6757,22 @@ _TossItem:: ; d20d
 ; d241
 
 .asm_d241
-	jp Functiond2ff
+	jp RemoveItemFromPocket
 ; d244
 
 _CheckItem:: ; d244
-	call Functiond27b
+	call CheckHLequTMsHMsEnd
 	jr nz, .asm_d278
 	push hl
 	call CheckItemPocket
 	pop de
 	ld a, [wd142]
 	dec a
-	ld hl, .data_d257
+	ld hl, .Pockets
 	rst JumpTable
 	ret
 
-.data_d257
+.Pockets
 	dw .Item
 	dw .KeyItem
 	dw .Ball
@@ -6781,7 +6781,7 @@ _CheckItem:: ; d244
 
 .Ball ; d25f
 	ld hl, NumBalls
-	jp Functiond349
+	jp CheckTheItem
 ; d265
 
 .TMHM ; d265
@@ -6790,13 +6790,13 @@ _CheckItem:: ; d244
 	ld a, [CurItem]
 	ld c, a
 	call GetTMHMNumber
-	jp Functiond3fb
+	jp CheckTMHM
 ; d271
 
 .KeyItem ; d271
 	ld h, d
 	ld l, e
-	jp Functiond3b1
+	jp CheckKeyItems
 ; d276
 
 .Item ; d276
@@ -6805,10 +6805,10 @@ _CheckItem:: ; d244
 ; d278
 
 .asm_d278
-	jp Functiond349
+	jp CheckTheItem
 ; d27b
 
-Functiond27b: ; d27b
+CheckHLequTMsHMsEnd: ; d27b
 	ld a, l
 	cp TMsHMsEnd % $100
 	ret nz
@@ -6840,234 +6840,233 @@ GetPocketCapacity: ; d283
 	ret
 ; d29c
 
-Functiond29c: ; d29c
+PutItemInPocket: ; d29c
 	ld d, h
 	ld e, l
 	inc hl
 	ld a, [CurItem]
 	ld c, a
 	ld b, 0
-.asm_d2a5
+.loop
 	ld a, [hli]
-	cp $ff
-	jr z, .asm_d2bd
+	cp -1
+	jr z, .terminator
 	cp c
-	jr nz, .asm_d2ba
-	ld a, $63
+	jr nz, .next
+	ld a, 99
 	sub [hl]
 	add b
 	ld b, a
 	ld a, [wd10c]
 	cp b
-	jr z, .asm_d2c6
-	jr c, .asm_d2c6
+	jr z, .ok
+	jr c, .ok
 
-.asm_d2ba
+.next
 	inc hl
-	jr .asm_d2a5
+	jr .loop
 
-.asm_d2bd
+.terminator
 	call GetPocketCapacity
 	ld a, [de]
 	cp c
-	jr c, .asm_d2c6
+	jr c, .ok
 	and a
 	ret
 
-.asm_d2c6
+.ok
 	ld h, d
 	ld l, e
 	ld a, [CurItem]
 	ld c, a
 	ld a, [wd10c]
 	ld [wd10d], a
-.asm_d2d2
+.loop2
 	inc hl
 	ld a, [hli]
-	cp $ff
-	jr z, .asm_d2ef
+	cp -1
+	jr z, .terminator2
 	cp c
-	jr nz, .asm_d2d2
+	jr nz, .loop2
 	ld a, [wd10d]
 	add [hl]
-	cp $64
-	jr nc, .asm_d2e6
+	cp 100
+	jr nc, .newstack
 	ld [hl], a
-	jr .asm_d2fd
+	jr .done
 
-.asm_d2e6
-	ld [hl], $63
-	sub $63
+.newstack
+	ld [hl], 99
+	sub 99
 	ld [wd10d], a
-	jr .asm_d2d2
+	jr .loop2
 
-.asm_d2ef
+.terminator2
 	dec hl
 	ld a, [CurItem]
 	ld [hli], a
 	ld a, [wd10d]
 	ld [hli], a
-	ld [hl], $ff
+	ld [hl], -1
 	ld h, d
 	ld l, e
 	inc [hl]
 
-.asm_d2fd
+.done
 	scf
 	ret
 ; d2ff
 
-Functiond2ff: ; d2ff
+RemoveItemFromPocket: ; d2ff
 	ld d, h
 	ld e, l
 	ld a, [hli]
 	ld c, a
 	ld a, [wd107]
 	cp c
-	jr nc, .asm_d318
+	jr nc, .ok
 	ld c, a
 	ld b, $0
-	add hl, bc
-	add hl, bc
+	add_n_times hl, bc, 2
 	ld a, [CurItem]
 	cp [hl]
 	inc hl
-	jr z, .asm_d327
+	jr z, .skip
 	ld h, d
 	ld l, e
 	inc hl
 
-.asm_d318
+.ok
 	ld a, [CurItem]
 	ld b, a
-.asm_d31c
+.loop
 	ld a, [hli]
 	cp b
-	jr z, .asm_d327
-	cp $ff
-	jr z, .asm_d347
+	jr z, .skip
+	cp -1
+	jr z, .nope
 	inc hl
-	jr .asm_d31c
+	jr .loop
 
-.asm_d327
+.skip
 	ld a, [wd10c]
 	ld b, a
 	ld a, [hl]
 	sub b
-	jr c, .asm_d347
+	jr c, .nope
 	ld [hl], a
 	ld [wd10d], a
 	and a
-	jr nz, .asm_d345
+	jr nz, .yup
 	dec hl
 	ld b, h
 	ld c, l
 	inc hl
 	inc hl
-.asm_d33b
+.loop2
 	ld a, [hli]
 	ld [bc], a
 	inc bc
-	cp $ff
-	jr nz, .asm_d33b
+	cp -1
+	jr nz, .loop2
 	ld h, d
 	ld l, e
 	dec [hl]
 
-.asm_d345
+.yup
 	scf
 	ret
 
-.asm_d347
+.nope
 	and a
 	ret
 ; d349
 
-Functiond349: ; d349
+CheckTheItem: ; d349
 	ld a, [CurItem]
 	ld c, a
-.asm_d34d
+.loop
 	inc hl
 	ld a, [hli]
-	cp $ff
-	jr z, .asm_d358
+	cp -1
+	jr z, .done
 	cp c
-	jr nz, .asm_d34d
+	jr nz, .loop
 	scf
 	ret
 
-.asm_d358
+.done
 	and a
 	ret
 ; d35a
 
-Functiond35a: ; d35a
+ReceiveKeyItem: ; d35a
 	ld hl, NumKeyItems
 	ld a, [hli]
-	cp $19
-	jr nc, .asm_d372
+	cp MAX_KEY_ITEMS
+	jr nc, .nope
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [CurItem]
 	ld [hli], a
-	ld [hl], $ff
+	ld [hl], -1
 	ld hl, NumKeyItems
 	inc [hl]
 	scf
 	ret
 
-.asm_d372
+.nope
 	and a
 	ret
 ; d374
 
-Functiond374: ; d374
+TossKeyItem: ; d374
 	ld a, [wd107]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, NumKeyItems
 	ld a, [hl]
 	cp e
-	jr nc, .asm_d387
-	call Functiond396
+	jr nc, .ok
+	call .Toss
 	ret nc
-	jr .asm_d38a
+	jr .ok2
 
-.asm_d387
+.ok
 	dec [hl]
 	inc hl
 	add hl, de
 
-.asm_d38a
+.ok2
 	ld d, h
 	ld e, l
 	inc hl
-.asm_d38d
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp $ff
-	jr nz, .asm_d38d
+	cp -1
+	jr nz, .loop
 	scf
 	ret
 ; d396
 
-Functiond396: ; d396
+.Toss: ; d396
 	ld hl, NumKeyItems
 	ld a, [CurItem]
 	ld c, a
-.asm_d39d
+.loop3
 	inc hl
 	ld a, [hl]
 	cp c
-	jr z, .asm_d3a8
-	cp $ff
-	jr nz, .asm_d39d
+	jr z, .ok3
+	cp -1
+	jr nz, .loop3
 	xor a
 	ret
 
-.asm_d3a8
+.ok3
 	ld a, [NumKeyItems]
 	dec a
 	ld [NumKeyItems], a
@@ -7075,73 +7074,73 @@ Functiond396: ; d396
 	ret
 ; d3b1
 
-Functiond3b1: ; d3b1
+CheckKeyItems: ; d3b1
 	ld a, [CurItem]
 	ld c, a
 	ld hl, KeyItems
-.asm_d3b8
+.loop
 	ld a, [hli]
 	cp c
-	jr z, .asm_d3c2
-	cp $ff
-	jr nz, .asm_d3b8
+	jr z, .done
+	cp -1
+	jr nz, .loop
 	and a
 	ret
 
-.asm_d3c2
+.done
 	scf
 	ret
 ; d3c4
 
 
 
-Functiond3c4: ; d3c4
+ReceiveTMHM: ; d3c4
 	dec c
-	ld b, $0
+	ld b, 0
 	ld hl, TMsHMs
 	add hl, bc
 	ld a, [wd10c]
 	add [hl]
-	cp $64
-	jr nc, .asm_d3d6
+	cp 100
+	jr nc, .toomany
 	ld [hl], a
 	scf
 	ret
 
-.asm_d3d6
+.toomany
 	and a
 	ret
 ; d3d8
 
-Functiond3d8: ; d3d8
+TossTMHM: ; d3d8
 	dec c
-	ld b, $0
+	ld b, 0
 	ld hl, TMsHMs
 	add hl, bc
 	ld a, [wd10c]
 	ld b, a
 	ld a, [hl]
 	sub b
-	jr c, .asm_d3f9
+	jr c, .nope
 	ld [hl], a
 	ld [wd10d], a
-	jr nz, .asm_d3f7
+	jr nz, .yup
 	ld a, [wd0e2]
 	and a
-	jr z, .asm_d3f7
+	jr z, .yup
 	dec a
 	ld [wd0e2], a
 
-.asm_d3f7
+.yup
 	scf
 	ret
 
-.asm_d3f9
+.nope
 	and a
 	ret
 ; d3fb
 
-Functiond3fb: ; d3fb
+CheckTMHM: ; d3fb
 	dec c
 	ld b, $0
 	ld hl, TMsHMs
@@ -7180,7 +7179,7 @@ GetTMHMNumber:: ; d407
 GetNumberedTMHM: ; d417
 ; Return the item id of a TM/HM by number c.
 
-	ld a, c 
+	ld a, c
 
 ; Skip any gaps.
 	cp ITEM_C3 - (TM01 - 1)
@@ -7202,7 +7201,7 @@ GetNumberedTMHM: ; d417
 
 _CheckTossableItem:: ; d427
 ; Return 1 in wd142 and carry if CurItem can't be removed from the bag.
-	ld a, 4
+	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
 	bit 7, a
 	jr nz, Functiond47f
@@ -7212,7 +7211,7 @@ _CheckTossableItem:: ; d427
 
 CheckSelectableItem: ; d432
 ; Return 1 in wd142 and carry if CurItem can't be selected.
-	ld a, 4
+	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
 	bit 6, a
 	jr nz, Functiond47f
@@ -7222,7 +7221,7 @@ CheckSelectableItem: ; d432
 
 CheckItemPocket:: ; d43d
 ; Return the pocket for CurItem in wd142.
-	ld a, 5
+	ld a, ITEMATTR_POCKET
 	call GetItemAttr
 	and $f
 	ld [wd142], a
@@ -7231,7 +7230,7 @@ CheckItemPocket:: ; d43d
 
 CheckItemContext: ; d448
 ; Return the context for CurItem in wd142.
-	ld a, 6
+	ld a, ITEMATTR_HELP
 	call GetItemAttr
 	and $f
 	ld [wd142], a
@@ -7240,7 +7239,7 @@ CheckItemContext: ; d448
 
 CheckItemMenu: ; d453
 ; Return the menu for CurItem in wd142.
-	ld a, 6
+	ld a, ITEMATTR_HELP
 	call GetItemAttr
 	swap a
 	and $f
@@ -7265,7 +7264,7 @@ GetItemAttr: ; d460
 	ld a, [CurItem]
 	dec a
 	ld c, a
-	ld a, 7
+	ld a, NUM_ITEMATTRS
 	call AddNTimes
 	ld a, BANK(ItemAttributes)
 	call GetFarByte
@@ -7287,10 +7286,10 @@ GetItemPrice: ; d486
 ; Return the price of CurItem in de.
 	push hl
 	push bc
-	ld a, $0
+	ld a, ITEMATTR_PRICE
 	call GetItemAttr
 	ld e, a
-	ld a, $1
+	ld a, ITEMATTR_PRICE_HI
 	call GetItemAttr
 	ld d, a
 	pop bc
@@ -9745,7 +9744,7 @@ Functione40a: ; e40a (3:640a)
 	and a
 	ret nz
 	ld hl, UnknownText_0xe417
-	call Function1d67
+	call MenuTextBoxBackup
 	scf
 	ret
 ; e417 (3:6417)
@@ -9902,13 +9901,13 @@ Functione512: ; e512
 
 .asm_e51e
 	ld hl, UnknownText_0xe52e
-	call Function1d67
+	call MenuTextBoxBackup
 	scf
 	ret
 
 .asm_e526
 	ld hl, UnknownText_0xe533
-	call Function1d67
+	call MenuTextBoxBackup
 	scf
 	ret
 ; e52e
@@ -9976,7 +9975,7 @@ Functione56d: ; e56d
 
 .asm_e576
 	ld hl, UnknownText_0xe57e
-	call Function1d67
+	call MenuTextBoxBackup
 	scf
 	ret
 ; e57e
@@ -12721,7 +12720,7 @@ UnknownScript_0x124ce: ; 0x124ce
 	callasm HalveMoney
 	callasm Function12527
 	farscall UnknownScript_0x122c1
-	special WarpToLastSpawn
+	special WarpToSpawnPoint
 	newloadmap $f1
 	resetfuncs
 
@@ -12866,7 +12865,7 @@ Function12580: ; 12580
 	ld hl, UnknownScript_0x125ad
 
 .asm_12590
-	call Function31cd
+	call ExitMenuCallScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -13165,7 +13164,7 @@ StartMenu:: ; 125cd
 	push de
 	ld a, [MenuSelection]
 	cp $ff
-	jr z, .none 
+	jr z, .none
 	call .GetMenuAccountTextPointer
 	inc hl
 	inc hl
@@ -13513,7 +13512,7 @@ Function129f4: ; 129f4
 	and a
 	jr nz, .asm_12a3f
 	ld hl, UnknownText_0x12a45
-	call Function1d4f
+	call MenuTextBox
 	callba Function24fbf
 	push af
 	call WriteBackup
@@ -13521,7 +13520,7 @@ Function129f4: ; 129f4
 	pop af
 	jr c, .asm_12a42
 	ld hl, UnknownText_0x12a4a
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	push af
 	call Function1c07
@@ -13532,7 +13531,7 @@ Function129f4: ; 129f4
 	call TossItem
 	call PartyMonItemName
 	ld hl, UnknownText_0x12a4f
-	call Function1d4f
+	call MenuTextBox
 	call Function1c07
 	and a
 	ret
@@ -13564,7 +13563,7 @@ UnknownText_0x12a4f: ; 0x12a4f
 
 Function12a54: ; 12a54 (4:6a54)
 	ld hl, UnknownText_0x12a5b
-	call Function1d67
+	call MenuTextBoxBackup
 	ret
 ; 12a5b (4:6a5b)
 
@@ -13769,7 +13768,7 @@ Function12ba9: ; 12ba9
 
 .next
 	ld hl, CantBeHeldText
-	call Function1d67
+	call MenuTextBoxBackup
 	jr .loop
 
 .quit
@@ -13797,13 +13796,13 @@ Function12bd9: ; 12bd9
 .asm_12bf4
 	call Function12cea
 	ld hl, MadeHoldText
-	call Function1d67
+	call MenuTextBoxBackup
 	call GivePartyItem
 	ret
 
 .asm_12c01
 	ld hl, PleaseRemoveMailText
-	call Function1d67
+	call MenuTextBoxBackup
 	ret
 
 .asm_12c08
@@ -13824,7 +13823,7 @@ Function12bd9: ; 12bd9
 	jr nc, .asm_12c3c
 
 	ld hl, TookAndMadeHoldText
-	call Function1d67
+	call MenuTextBoxBackup
 	ld a, [wd265]
 	ld [CurItem], a
 	call GivePartyItem
@@ -13835,7 +13834,7 @@ Function12bd9: ; 12bd9
 	ld [CurItem], a
 	call Function12cdf
 	ld hl, ItemStorageIsFullText
-	call Function1d67
+	call MenuTextBoxBackup
 
 .asm_12c4b
 	ret
@@ -13876,17 +13875,17 @@ TakePartyItem: ; 12c60
 	ld [hl], NO_ITEM
 	call GetItemName
 	ld hl, TookFromText
-	call Function1d67
+	call MenuTextBoxBackup
 	jr .asm_12c9a
 
 .asm_12c8c
 	ld hl, IsntHoldingAnythingText
-	call Function1d67
+	call MenuTextBoxBackup
 	jr .asm_12c9a
 
 .asm_12c94
 	ld hl, ItemStorageIsFullText
-	call Function1d67
+	call MenuTextBoxBackup
 
 .asm_12c9a
 	ret
@@ -13973,7 +13972,7 @@ Function12cea: ; 12cea (4:6cea)
 	jp TossItem
 
 Function12cf5: ; 12cf5
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	jp Function1c07
 ; 12cfe
@@ -14040,12 +14039,12 @@ Function12d45: ; 12d45
 	callba Function4456e
 	jr c, .asm_12d92
 	ld hl, UnknownText_0x12dfb
-	call Function1d67
+	call MenuTextBoxBackup
 	jr .asm_12dc6
 
 .asm_12d92
 	ld hl, UnknownText_0x12df6
-	call Function1d67
+	call MenuTextBoxBackup
 	jr .asm_12dc6
 
 .asm_12d9a
@@ -14061,12 +14060,12 @@ Function12d45: ; 12d45
 	ld [hl], $0
 	call GetCurNick
 	ld hl, UnknownText_0x12de7
-	call Function1d67
+	call MenuTextBoxBackup
 	jr .asm_12dc6
 
 .asm_12dbe
 	ld hl, UnknownText_0x12dec
-	call Function1d67
+	call MenuTextBoxBackup
 	jr .asm_12dc6
 
 .asm_12dc6
@@ -14139,7 +14138,7 @@ OpenPartyStats: ; 12e00
 
 
 Function12e1b: ; 12e1b
-	callba Functionc785
+	callba CutFunction
 	ld a, [wd0ec]
 	cp $1
 	jr nz, .asm_12e2d
@@ -14154,7 +14153,7 @@ Function12e1b: ; 12e1b
 
 
 Function12e30: ; 12e30
-	callba Functionca3b
+	callba FlyFunction
 	ld a, [wd0ec]
 	cp $2
 	jr z, .asm_12e4c
@@ -14193,7 +14192,7 @@ Function12e55: ; 12e55
 ; 12e6a
 
 Function12e6a: ; 12e6a
-	callba Functioncce5
+	callba StrengthFunction
 	ld a, [wd0ec]
 	cp $1
 	jr nz, .asm_12e7c
@@ -14207,7 +14206,7 @@ Function12e6a: ; 12e6a
 ; 12e7f
 
 Function12e7f: ; 12e7f
-	callba Functioncd9d
+	callba WhirlpoolFunction
 	ld a, [wd0ec]
 	cp $1
 	jr nz, .asm_12e91
@@ -14235,7 +14234,7 @@ Function12e94: ; 12e94
 ; 12ea9
 
 Function12ea9: ; 12ea9
-	callba Functioncc61
+	callba TeleportFunction
 	ld a, [wd0ec]
 	and a
 	jr z, .asm_12eba
@@ -14249,7 +14248,7 @@ Function12ea9: ; 12ea9
 ; 12ebd
 
 Function12ebd: ; 12ebd
-	callba Functionc909
+	callba SurfFunction
 	ld a, [wd0ec]
 	and a
 	jr z, .asm_12ece
@@ -14263,7 +14262,7 @@ Function12ebd: ; 12ebd
 ; 12ed1
 
 Function12ed1: ; 12ed1
-	callba Functioncb9c
+	callba DigFunction
 	ld a, [wd0ec]
 	cp $1
 	jr nz, .asm_12ee3
@@ -14321,7 +14320,7 @@ Function12f05: ; 12f05
 ; 12f26
 
 Function12f26: ; 12f26
-	callba Functionce7d
+	callba HeadbuttFunction
 	ld a, [wd0ec]
 	cp $1
 	jr nz, .asm_12f38
@@ -14335,7 +14334,7 @@ Function12f26: ; 12f26
 ; 12f3b
 
 Function12f3b: ; 12f3b
-	callba Functionceeb
+	callba RockSmashFunction
 	ld a, [wd0ec]
 	cp $1
 	jr nz, .asm_12f4d
@@ -14349,7 +14348,7 @@ Function12f3b: ; 12f3b
 ; 12f50
 
 Function12f50: ; 12f50
-	callba Function506bc
+	callba DoMovementFunctionc
 	ld b, $4
 	ld a, $2
 	ret
@@ -15447,7 +15446,7 @@ SetMemEvent: ; 1364f
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-	ld b, $1 ; set
+	ld b, SET_FLAG
 	call EventFlagAction
 	ret
 
@@ -16011,7 +16010,7 @@ Special_SelectRandomBugContestContestants: ; 139a8
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld b, $0 ; clear
+	ld b, RESET_FLAG
 	call EventFlagAction
 	pop hl
 	inc hl
@@ -16040,14 +16039,14 @@ Special_SelectRandomBugContestContestants: ; 139a8
 	ld d, [hl]
 	push de
 ; If we've already set it, it doesn't count.
-	ld b, $2 ; check
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	pop de
 	ld a, c
 	and a
 	jr nz, .next
 ; Set the flag.  This will cause that sprite to not be visible in the contest.
-	ld b, $1 ; set
+	ld b, SET_FLAG
 	call EventFlagAction
 	pop bc
 ; Check if we're done.  If so, return.  Otherwise, choose the next victim.
@@ -16068,7 +16067,7 @@ Special_CheckBugContestContestantFlag: ; 139ed
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld b, $2 ; check
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	ret
 ; 139fe
@@ -18251,7 +18250,7 @@ Function14a58: ; 14a58
 Function14a83: ; 14a83 (5:4a83)
 	push de
 	ld hl, UnknownText_0x152a1
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	call Function1c07
 	jr c, .asm_14ab0
@@ -18331,7 +18330,7 @@ Function14ad5: ; 14ad5
 
 Function14b34: ; 14b34
 	ld hl, UnknownText_0x152a6
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	call Function1c07
 	jr c, .asm_14b52
@@ -18420,7 +18419,7 @@ Function14b89: ; 14b89
 Function14baf: ; 14baf
 	ld b, BANK(UnknownText_0x15283)
 	call MapTextbox
-	call Function1d58
+	call LoadMenuTextBox
 	lb bc, 0, 7
 	call PlaceYesNoBox
 	ld a, [wcfa9]
@@ -19668,7 +19667,7 @@ Function157bb: ; 157bb
 	push af
 	set 4, a
 	ld [Options], a
-	call Function1d4f
+	call MenuTextBox
 	pop af
 	ld [Options], a
 	ret
@@ -19709,7 +19708,7 @@ Function157e9: ; 0x157e9
 
 .askquantity
 	ld hl, .HowManyText
-	call Function1d4f
+	call MenuTextBox
 	callba Function24fbf
 	call Function1c07
 	call Function1c07
@@ -19731,7 +19730,7 @@ Function157e9: ; 0x157e9
 	call TossItem
 	predef PartyMonItemName
 	ld hl, .WithdrewText
-	call Function1d4f
+	call MenuTextBox
 	xor a
 	ld [hBGMapMode], a
 	call Function1c07
@@ -19739,7 +19738,7 @@ Function157e9: ; 0x157e9
 
 .PackFull
 	ld hl, .NoRoomText
-	call Function1d67
+	call MenuTextBoxBackup
 	ret
 
 .done
@@ -19820,7 +19819,7 @@ Function158b8: ; 0x158b8
 	callba Function129d5
 	ret nc
 	ld hl, UnknownText_0x158c7
-	call Function1d67
+	call MenuTextBoxBackup
 	scf
 	ret
 ; 0x158c7
@@ -19881,7 +19880,7 @@ Function1590a: ; 0x1590a
 
 .asm_1591d
 	ld hl, .HowManyText
-	call Function1d4f
+	call MenuTextBox
 	callba Function24fbf
 	push af
 	call Function1c07
@@ -20028,7 +20027,7 @@ MenuData15a08: ; 0x15a08
 	dbw BANK(Function244c3), Function244c3
 
 Function15a20: ; 15a20
-	call Function1d4f
+	call MenuTextBox
 	call Function1c07
 	ret
 ; 15a27
@@ -20871,7 +20870,7 @@ Function15ece: ; 15ece
 
 Function15ed3: ; 15ed3
 	ld hl, UnknownText_0x15edb
-	call Function1d67
+	call MenuTextBoxBackup
 	and a
 	ret
 ; 15edb
@@ -21037,7 +21036,7 @@ Function15fc3: ; 15fc3
 ; 15fcd
 
 Function15fcd: ; 15fcd
-	call Function1d4f
+	call MenuTextBox
 	call Functiona36
 	call Function1c07
 	ret
@@ -22154,7 +22153,7 @@ Function16798: ; 16798
 ; 167f1
 
 UnknownText_0x167f1: ; 0x167f1
-	; 
+	;
 	text_jump UnknownText_0x1bdaa7
 	db "@"
 ; 0x167f6
@@ -23302,7 +23301,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	jr nz, .nottogepi
 	; set the event flag for hatching togepi
 	ld de, EVENT_TOGEPI_HATCHED
-	ld b, $1 ; set
+	ld b, SET_FLAG
 	call EventFlagAction
 .nottogepi
 
@@ -23441,7 +23440,7 @@ Function17090: ; 17090
 ; 170b0 (5:70b0)
 
 UnknownText_0x170b0: ; 0x170b0
-	; 
+	;
 	text_jump UnknownText_0x1c0db8
 	db "@"
 ; 0x170b5
@@ -25258,13 +25257,13 @@ Function2457d: ; 2457d (9:457d)
 	ld a, [hl]
 	ld d, a
 	cp -1
-	jr nz, .clear
+	jr nz, .check
 	ld a, e
 	cp -1
 	jr z, .zero
 	jr .minus_one
-.clear
-	ld b, $2 ; clear
+.check
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	ld a, c
 	and a
@@ -27694,7 +27693,7 @@ CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
 
 ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText1
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	jr c, .shutdown
 	call ProfOaksPCBoot ; player chose "yes"?
@@ -28131,7 +28130,7 @@ CheckAllDecorationFlags: ; 2687a
 	jr z, .done
 	push hl
 	push af
-	ld b, 2 ; check
+	ld b, CHECK_FLAG
 	call DecorationFlagAction
 	ld a, c
 	and a
@@ -28344,7 +28343,7 @@ Function2695b: ; 2695b
 
 .empty
 	ld hl, UnknownText_0x269b0
-	call Function1d67
+	call MenuTextBoxBackup
 	ret
 ; 269b0
 
@@ -28366,7 +28365,7 @@ MenuData2_0x269bd: ; 0x269bd
 	db $a0 ; flags
 	db 0 ; items
 	dw wd002
-	dw Function269f3
+	dw DecorationMenuFunction
 	dw DecorationAttributes
 ; 0x269c5
 
@@ -28383,7 +28382,7 @@ MenuData2_0x269cd: ; 0x269cd
 	db 8, 0 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, wd002 ; text pointer
-	dbw BANK(Function269f3), Function269f3
+	dbw BANK(DecorationMenuFunction), DecorationMenuFunction
 	dbw 0, 0
 	dbw 0, 0
 ; 269dd
@@ -28396,7 +28395,7 @@ GetDecorationData: ; 269dd
 	ret
 ; 269e7
 
-Function269e7: ; 269e7
+GetDecorationName: ; 269e7
 	push hl
 	call GetDecorationData
 	call GetDecorationType
@@ -28405,7 +28404,7 @@ Function269e7: ; 269e7
 	ret
 ; 269f3
 
-Function269f3: ; 269f3
+DecorationMenuFunction: ; 269f3
 	ld a, [MenuSelection]
 	push de
 	call GetDecorationData
@@ -28418,36 +28417,36 @@ Function269f3: ; 269f3
 DoDecorationAction2: ; 26a02
 	ld a, [MenuSelection]
 	call GetDecorationData
-	ld de, 2
+	ld de, 2 ; function 2
 	add hl, de
 	ld a, [hl]
-	ld hl, Jumptable_26a12
+	ld hl, .DecoActions
 	rst JumpTable
 	ret
 ; 26a12
 
-Jumptable_26a12: ; 26a12
-	dw Function26ce3
-	dw Function26ce5
-	dw Function26ceb
-	dw Function26cf1
-	dw Function26cf7
-	dw Function26cfd
-	dw Function26d03
-	dw Function26d09
-	dw Function26d0f
-	dw Function26d15
-	dw Function26d1b
-	dw Function26d21
-	dw Function26d27
-	dw Function26db3
-	dw Function26dc9
+.DecoActions: ; 26a12
+	dw DecoAction_nothing
+	dw DecoAction_setupbed
+	dw DecoAction_putawaybed
+	dw DecoAction_setupcarpet
+	dw DecoAction_putawaycarpet
+	dw DecoAction_setupplant
+	dw DecoAction_putawayplant
+	dw DecoAction_setupposter
+	dw DecoAction_putawayposter
+	dw DecoAction_setupconsole
+	dw DecoAction_putawayconsole
+	dw DecoAction_setupbigdoll
+	dw DecoAction_putawaybigdoll
+	dw DecoAction_setupornament
+	dw DecoAction_putawayornament
 ; 26a30
 
 
 GetDecorationFlag: ; 26a30
 	call GetDecorationData
-	ld de, 3
+	ld de, 3 ; event flag
 	add hl, de
 	ld a, [hli]
 	ld d, [hl]
@@ -28463,10 +28462,10 @@ DecorationFlagAction: ; 26a3b
 	ret
 ; 26a44
 
-Function26a44: ; 26a44
+GetDecorationSprite: ; 26a44
 	ld a, c
 	call GetDecorationData
-	ld de, 5
+	ld de, 5 ; sprite
 	add hl, de
 	ld a, [hl]
 	ld c, a
@@ -28474,7 +28473,7 @@ Function26a44: ; 26a44
 ; 26a4f
 
 decoration: MACRO
-	; type, ??, event flag, sprite
+	; type, name function, ?? function, event flag, sprite
 	db \1, \2, \3
 	dw \4
 	db \5
@@ -28571,80 +28570,80 @@ GetDecorationType: ; 26c72
 	ld e, [hl]
 	ld bc, StringBuffer2
 	push bc
-	ld hl, Table26c7e
+	ld hl, .NameFunctions
 	rst JumpTable
 	pop de
 	ret
 ; 26c7e
 
-Table26c7e: ; 26c7e
-	dw Function26c8c
-	dw Function26c8d
-	dw Function26c90
-	dw Function26c97
-	dw Function26c9e
-	dw Function26ca6
-	dw Function26cae
+.NameFunctions: ; 26c7e
+	dw .invalid
+	dw .default
+	dw .bed
+	dw .three
+	dw .poster
+	dw .doll
+	dw .bigdoll
 ; 26c8c
 
 
-Function26c8c: ; 26c8c
+.invalid: ; 26c8c
 	ret
 ; 26c8d
 
-Function26c8d: ; 26c8d
+.default: ; 26c8d
 	ld a, e
-	jr Function26cca
+	jr .getdeconame
 
-Function26c90: ; 26c90
-	call Function26c8d
-	ld a, $d
-	jr Function26cca
+.bed: ; 26c90
+	call .default
+	ld a, $d ; " BED@"
+	jr .getdeconame
 
-Function26c97: ; 26c97
-	call Function26c8d
-	ld a, $e
-	jr Function26cca
+.three: ; 26c97
+	call .default
+	ld a, $e ; " CARPET@"
+	jr .getdeconame
 
-Function26c9e: ; 26c9e
+.poster: ; 26c9e
 	ld a, e
-	call Function26cc0
-	ld a, $f
-	jr Function26cca
+	call .getpokename
+	ld a, $f ; " POSTER@"
+	jr .getdeconame
 
-Function26ca6: ; 26ca6
+.doll: ; 26ca6
 	ld a, e
-	call Function26cc0
-	ld a, $10
-	jr Function26cca
+	call .getpokename
+	ld a, $10 ; " DOLL@"
+	jr .getdeconame
 
-Function26cae: ; 26cae
+.bigdoll: ; 26cae
 	push de
-	ld a, $11
-	call Function26cca
+	ld a, $11 ; "BIG @"
+	call .getdeconame
 	pop de
 	ld a, e
-	jr Function26cc0
+	jr .getpokename
 
-Function26cb8: ; 26cb8
+.unused: ; 26cb8
 	push de
-	call Function26cca
+	call .getdeconame
 	pop de
 	ld a, e
-	jr Function26cca
+	jr .getdeconame
 
-Function26cc0: ; 26cc0
+.getpokename: ; 26cc0
 	push bc
 	ld [wd265], a
 	call GetPokemonName
 	pop bc
-	jr Function26cda
+	jr .copy
 
-Function26cca: ; 26cca
-	call GetDecorationName
-	jr Function26cda
+.getdeconame: ; 26cca
+	call ._getdeconame
+	jr .copy
 
-GetDecorationName: ; 26ccf
+._getdeconame: ; 26ccf
 	push bc
 	ld hl, DecorationNames
 	call GetNthString
@@ -28653,7 +28652,7 @@ GetDecorationName: ; 26ccf
 	pop bc
 	ret
 
-Function26cda: ; 26cda
+.copy: ; 26cda
 	ld h, b
 	ld l, c
 	call CopyName2
@@ -28663,77 +28662,77 @@ Function26cda: ; 26cda
 	ret
 ; 26ce3
 
-Function26ce3: ; 26ce3
+DecoAction_nothing: ; 26ce3
 	scf
 	ret
 ; 26ce5
 
-Function26ce5: ; 26ce5
+DecoAction_setupbed: ; 26ce5
 	ld hl, Bed
-	jp Function26d2d
+	jp DecoAction_TrySetItUp
 ; 26ceb
 
-Function26ceb: ; 26ceb
+DecoAction_putawaybed: ; 26ceb
 	ld hl, Bed
-	jp Function26d86
+	jp DecoAction_TryPutItAway
 ; 26cf1
 
-Function26cf1: ; 26cf1
+DecoAction_setupcarpet: ; 26cf1
 	ld hl, Carpet
-	jp Function26d2d
+	jp DecoAction_TrySetItUp
 ; 26cf7
 
-Function26cf7: ; 26cf7
+DecoAction_putawaycarpet: ; 26cf7
 	ld hl, Carpet
-	jp Function26d86
+	jp DecoAction_TryPutItAway
 ; 26cfd
 
-Function26cfd: ; 26cfd
+DecoAction_setupplant: ; 26cfd
 	ld hl, Plant
-	jp Function26d2d
+	jp DecoAction_TrySetItUp
 ; 26d03
 
-Function26d03: ; 26d03
+DecoAction_putawayplant: ; 26d03
 	ld hl, Plant
-	jp Function26d86
+	jp DecoAction_TryPutItAway
 ; 26d09
 
-Function26d09: ; 26d09
+DecoAction_setupposter: ; 26d09
 	ld hl, Poster
-	jp Function26d2d
+	jp DecoAction_TrySetItUp
 ; 26d0f
 
-Function26d0f: ; 26d0f
+DecoAction_putawayposter: ; 26d0f
 	ld hl, Poster
-	jp Function26d86
+	jp DecoAction_TryPutItAway
 ; 26d15
 
-Function26d15: ; 26d15
+DecoAction_setupconsole: ; 26d15
 	ld hl, Console
-	jp Function26d2d
+	jp DecoAction_TrySetItUp
 ; 26d1b
 
-Function26d1b: ; 26d1b
+DecoAction_putawayconsole: ; 26d1b
 	ld hl, Console
-	jp Function26d86
+	jp DecoAction_TryPutItAway
 ; 26d21
 
-Function26d21: ; 26d21
+DecoAction_setupbigdoll: ; 26d21
 	ld hl, BigDoll
-	jp Function26d2d
+	jp DecoAction_TrySetItUp
 ; 26d27
 
-Function26d27: ; 26d27
+DecoAction_putawaybigdoll: ; 26d27
 	ld hl, BigDoll
-	jp Function26d86
+	jp DecoAction_TryPutItAway
 ; 26d2d
 
-Function26d2d: ; 26d2d
+DecoAction_TrySetItUp: ; 26d2d
 	ld a, [hl]
 	ld [Buffer1], a
 	push hl
-	call Function26d46
-	jr c, .asm_26d43
+	call DecoAction_SetItUp
+	jr c, .failed
 	ld a, $1
 	ld [wd1ee], a
 	pop hl
@@ -28742,98 +28741,103 @@ Function26d2d: ; 26d2d
 	xor a
 	ret
 
-.asm_26d43
+.failed
 	pop hl
 	xor a
 	ret
 ; 26d46
 
-Function26d46: ; 26d46
+DecoAction_SetItUp: ; 26d46
+; See if there's anything of the same type already out
 	ld a, [Buffer1]
 	and a
-	jr z, .asm_26d6d
+	jr z, .nothingthere
+; See if that item is already out
 	ld b, a
 	ld a, [MenuSelection]
 	cp b
-	jr z, .asm_26d7e
+	jr z, .alreadythere
+; Put away the item that's already out, and set up the new one
 	ld a, [MenuSelection]
 	ld hl, StringBuffer4
-	call Function269e7
+	call GetDecorationName
 	ld a, [Buffer1]
 	ld hl, StringBuffer3
-	call Function269e7
+	call GetDecorationName
 	ld hl, UnknownText_0x26ee0
-	call Function1d67
+	call MenuTextBoxBackup
 	xor a
 	ret
 
-.asm_26d6d
+.nothingthere
 	ld a, [MenuSelection]
 	ld hl, StringBuffer3
-	call Function269e7
+	call GetDecorationName
 	ld hl, UnknownText_0x26edb
-	call Function1d67
+	call MenuTextBoxBackup
 	xor a
 	ret
 
-.asm_26d7e
+.alreadythere
 	ld hl, UnknownText_0x26ee5
-	call Function1d67
+	call MenuTextBoxBackup
 	scf
 	ret
 ; 26d86
 
-Function26d86: ; 26d86
+DecoAction_TryPutItAway: ; 26d86
+; If there is no item of that type already set, there is nothing to put away.
 	ld a, [hl]
 	ld [Buffer1], a
 	xor a
 	ld [hl], a
 	ld a, [Buffer1]
 	and a
-	jr z, .asm_26dab
+	jr z, .nothingthere
+; Put it away.
 	ld a, $1
 	ld [wd1ee], a
 	ld a, [Buffer1]
 	ld [MenuSelection], a
 	ld hl, StringBuffer3
-	call Function269e7
+	call GetDecorationName
 	ld hl, UnknownText_0x26ed1
-	call Function1d67
+	call MenuTextBoxBackup
 	xor a
 	ret
 
-.asm_26dab
+.nothingthere
 	ld hl, UnknownText_0x26ed6
-	call Function1d67
+	call MenuTextBoxBackup
 	xor a
 	ret
 ; 26db3
 
-Function26db3: ; 26db3
+DecoAction_setupornament: ; 26db3
 	ld hl, UnknownText_0x26e41
-	call Function26e70
-	jr c, .asm_26dc7
-	call Function26de3
-	jr c, .asm_26dc7
+	call DecoAction_AskWhichSide
+	jr c, .cancel
+	call DecoAction_SetItUp_Ornament
+	jr c, .cancel
 	ld a, $1
 	ld [wd1ee], a
-	jr Function26dd6
+	jr DecoAction_FinishUp_Ornament
 
-.asm_26dc7
+.cancel
 	xor a
 	ret
 
-Function26dc9: ; 26dc9
+DecoAction_putawayornament: ; 26dc9
 	ld hl, UnknownText_0x26e6b
-	call Function26e70
-	jr nc, .asm_26dd3
+	call DecoAction_AskWhichSide
+	jr nc, .incave
 	xor a
 	ret
 
-.asm_26dd3
-	call Function26e46
+.incave
+	call DecoAction_PutItAway_Ornament
 
-Function26dd6: ; 26dd6
+DecoAction_FinishUp_Ornament: ; 26dd6
 	call Function26e9a
 	ld a, [wd1ec]
 	ld [hl], a
@@ -28843,48 +28847,48 @@ Function26dd6: ; 26dd6
 	ret
 ; 26de3
 
-Function26de3: ; 26de3
+DecoAction_SetItUp_Ornament: ; 26de3
 	ld a, [wd1ec]
 	and a
-	jr z, .asm_26e11
+	jr z, .nothingthere
 	ld b, a
 	ld a, [MenuSelection]
 	cp b
-	jr z, .asm_26e2b
+	jr z, .failed
 	ld a, b
 	ld hl, StringBuffer3
-	call Function269e7
+	call GetDecorationName
 	ld a, [MenuSelection]
 	ld hl, StringBuffer4
-	call Function269e7
+	call GetDecorationName
 	ld a, [MenuSelection]
 	ld [wd1ec], a
-	call Function26e33
+	call .getwhichside
 	ld hl, UnknownText_0x26ee0
-	call Function1d67
+	call MenuTextBoxBackup
 	xor a
 	ret
 
-.asm_26e11
+.nothingthere
 	ld a, [MenuSelection]
 	ld [wd1ec], a
-	call Function26e33
+	call .getwhichside
 	ld a, [MenuSelection]
 	ld hl, StringBuffer3
-	call Function269e7
+	call GetDecorationName
 	ld hl, UnknownText_0x26edb
-	call Function1d67
+	call MenuTextBoxBackup
 	xor a
 	ret
 
-.asm_26e2b
+.failed
 	ld hl, UnknownText_0x26ee5
-	call Function1d67
+	call MenuTextBoxBackup
 	scf
 	ret
 ; 26e33
 
-Function26e33: ; 26e33
+.getwhichside: ; 26e33
 	ld a, [MenuSelection]
 	ld b, a
 	ld a, [wd1ed]
@@ -28901,24 +28905,24 @@ UnknownText_0x26e41: ; 0x26e41
 	db "@"
 ; 0x26e46
 
-Function26e46: ; 26e46
+DecoAction_PutItAway_Ornament: ; 26e46
 	ld a, [wd1ec]
 	and a
-	jr z, .asm_26e63
+	jr z, .nothingthere
 	ld hl, StringBuffer3
-	call Function269e7
+	call GetDecorationName
 	ld a, $1
 	ld [wd1ee], a
 	xor a
 	ld [wd1ec], a
 	ld hl, UnknownText_0x26ed1
-	call Function1d67
+	call MenuTextBoxBackup
 	xor a
 	ret
 
-.asm_26e63
+.nothingthere
 	ld hl, UnknownText_0x26ed6
-	call Function1d67
+	call MenuTextBoxBackup
 	xor a
 	ret
 ; 26e6b
@@ -28929,8 +28933,8 @@ UnknownText_0x26e6b: ; 0x26e6b
 	db "@"
 ; 0x26e70
 
-Function26e70: ; 26e70
-	call Function1d4f
+DecoAction_AskWhichSide: ; 26e70
+	call MenuTextBox
 	ld hl, MenuDataHeader_0x26eab
 	call Function1dab
 	call Function1c07
@@ -29016,7 +29020,7 @@ Function26eea: ; 26eea
 	ld a, c
 	ld h, d
 	ld l, e
-	call Function269e7
+	call GetDecorationName
 	ret
 ; 26ef1
 
@@ -29031,7 +29035,7 @@ Function26ef5: ; 26ef5 (9:6ef5)
 	call GetDecorationID
 	ld hl, StringBuffer1
 	push hl
-	call Function269e7
+	call GetDecorationName
 	pop de
 	ret
 
@@ -29039,7 +29043,7 @@ Function26ef5: ; 26ef5 (9:6ef5)
 SetSpecificDecorationFlag: ; 26f02
 	ld a, c
 	call GetDecorationID
-	ld b, 1 ; set
+	ld b, SET_FLAG
 	call DecorationFlagAction
 	ret
 ; 26f0c
@@ -29064,7 +29068,7 @@ SetAllDecorationFlags: ; 26f19
 	cp -1
 	jr z, .done
 	push hl
-	ld b, 1 ; set
+	ld b, SET_FLAG
 	call DecorationFlagAction
 	pop hl
 	jr .loop
@@ -29261,25 +29265,25 @@ UnknownText_0x26fe6: ; 0x26fe6
 ; 0x26feb
 
 Function26feb: ; 26feb
-	ld de, $0004
+	lb de, 0, 4
 	ld a, [Bed]
 	call Function27037
-	ld de, $0704
+	lb de, 7, 4
 	ld a, [Plant]
 	call Function27037
-	ld de, $0600
+	lb de, 6, 0
 	ld a, [Poster]
 	call Function27037
-	call Function27027
-	ld de, $0000
+	call SetPosterVisibility
+	lb de, 0, 0
 	call Function27092
 	ld a, [Carpet]
 	and a
 	ret z
-	call Function27085
+	call _GetDecorationSprite
 	ld [hl], a
 	push af
-	ld de, $0002
+	lb de, 0, 2
 	call Function27092
 	pop af
 	inc a
@@ -29291,15 +29295,15 @@ Function26feb: ; 26feb
 	ret
 ; 27027
 
-Function27027: ; 27027
-	ld b, $1
+SetPosterVisibility: ; 27027
+	ld b, SET_FLAG
 	ld a, [Poster]
 	and a
-	jr nz, .asm_27031
-	ld b, $0
+	jr nz, .ok
+	ld b, RESET_FLAG
 
-.asm_27031
-	ld de, $02cc
+.ok
+	ld de, EVENT_KRISS_ROOM_POSTER
 	jp EventFlagAction
 ; 27037
 
@@ -29309,49 +29313,49 @@ Function27037: ; 27037
 	pop af
 	and a
 	ret z
-	call Function27085
+	call _GetDecorationSprite
 	ld [hl], a
 	ret
 ; 27043
 
-Function27043: ; 27043
-	ld de, $0741
-	ld hl, VariableSprites
+ToggleDecorationsVisibility: ; 27043
+	ld de, EVENT_KRISS_HOUSE_2F_CONSOLE
+	ld hl, VariableSprites + SPRITE_CONSOLE - SPRITE_VARS
 	ld a, [Console]
-	call Function27074
-	ld de, $0742
-	ld hl, VariableSprites + 1
+	call ToggleDecorationVisibility
+	ld de, EVENT_KRISS_HOUSE_2F_DOLL_1
+	ld hl, VariableSprites + SPRITE_DOLL_1 - SPRITE_VARS
 	ld a, [LeftOrnament]
-	call Function27074
-	ld de, $0743
-	ld hl, VariableSprites + 2
+	call ToggleDecorationVisibility
+	ld de, EVENT_KRISS_HOUSE_2F_DOLL_2
+	ld hl, VariableSprites + SPRITE_DOLL_2 - SPRITE_VARS
 	ld a, [RightOrnament]
-	call Function27074
-	ld de, $0744
-	ld hl, VariableSprites + 3
+	call ToggleDecorationVisibility
+	ld de, EVENT_KRISS_HOUSE_2F_BIG_DOLL
+	ld hl, VariableSprites + SPRITE_BIG_DOLL - SPRITE_VARS
 	ld a, [BigDoll]
-	call Function27074
+	call ToggleDecorationVisibility
 	ret
 ; 27074
 
-Function27074: ; 27074
+ToggleDecorationVisibility: ; 27074
 	and a
-	jr z, .asm_27080
-	call Function27085
+	jr z, .hide
+	call _GetDecorationSprite
 	ld [hl], a
-	ld b, $0
+	ld b, RESET_FLAG
 	jp EventFlagAction
 
-.asm_27080
-	ld b, $1
+.hide
+	ld b, SET_FLAG
 	jp EventFlagAction
 ; 27085
 
-Function27085: ; 27085
+_GetDecorationSprite: ; 27085
 	ld c, a
 	push de
 	push hl
-	callba Function26a44
+	callba GetDecorationSprite
 	pop hl
 	pop de
 	ld a, c
@@ -29360,10 +29364,10 @@ Function27085: ; 27085
 
 Function27092: ; 27092
 	ld a, d
-	add $4
+	add 4
 	ld d, a
 	ld a, e
-	add $4
+	add 4
 	ld e, a
 	call GetBlockLocation
 	ret
@@ -29383,11 +29387,11 @@ Function2709e: ; 2709e
 	ld c, a
 	call GetWorldMapLocation
 	cp d
-	ld c, $1
-	jr nz, .asm_270bd
-	ld c, $13
+	ld c, 1
+	jr nz, .ok
+	ld c, 19
 
-.asm_270bd
+.ok
 	callab ChangeHappiness
 	ret
 ; 270c4
@@ -32779,7 +32783,7 @@ UnknownText_0x29732: ; 0x29732
 ; 0x29737
 
 UnknownText_0x29737: ; 0x29737
-	; 
+	;
 	text_jump UnknownText_0x1bc701
 	db "@"
 ; 0x2973c
@@ -38000,7 +38004,7 @@ AIChooseMove: ; 440ce
 	ld a, [de]
 	and a
 	jr nz, .asm_44189
-	ld [hl], a 
+	ld [hl], a
 
 ; Disregard the move if its score is not 1	
 .asm_44189
@@ -38661,7 +38665,7 @@ _KrisMailBoxMenu: ; 0x447a0
 
 .nomail
 	ld hl, .EmptyMailboxText
-	jp Function1d67
+	jp MenuTextBoxBackup
 ; 0x447b4
 
 .EmptyMailboxText ; 0x447b4
@@ -38788,7 +38792,7 @@ Function4484a: ; 0x4484a
 
 .PutInPack ; 0x44877
 	ld hl, .MessageLostText
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	call Function1c07
 	ret c
@@ -38801,7 +38805,7 @@ Function4484a: ; 0x4484a
 	call ReceiveItem
 	jr c, .asm_4489e
 	ld hl, .PackFullText
-	jp Function1d67
+	jp MenuTextBoxBackup
 
 .asm_4489e
 	ld a, [MenuSelection]
@@ -38809,7 +38813,7 @@ Function4484a: ; 0x4484a
 	ld b, a
 	call Function445c0
 	ld hl, .PutAwayText
-	jp Function1d67
+	jp MenuTextBoxBackup
 ; 0x448ac
 
 .PutAwayText ; 0x448ac
@@ -49294,9 +49298,9 @@ PoisonWhiteOutText: ; 506b7
 ; 506bc
 
 
-Function506bc: ; 506bc
+DoMovementFunctionc: ; 506bc
 	ld hl, UnknownScript_0x506c8
-	call Function31cd
+	call ExitMenuCallScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -49373,7 +49377,7 @@ UnknownText_0x5072b: ; 0x5072b
 
 _Squirtbottle: ; 50730
 	ld hl, UnknownScript_0x5073c
-	call Function31cd
+	call ExitMenuCallScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -49406,7 +49410,7 @@ Function50753: ; 50753
 	cp MAP_ROUTE_36
 	jr nz, .asm_50774
 
-	callba Functioncf0d
+	callba GetFacingObject
 	jr c, .asm_50774
 
 	ld a, d
@@ -49447,7 +49451,7 @@ _CardKey: ; 50779
 	jr nz, .asm_507a9
 
 	ld hl, UnknownScript_0x507af
-	call Function31cd
+	call ExitMenuCallScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -49482,7 +49486,7 @@ _BasementKey: ; 507b4
 	jr nz, .nope
 
 	ld hl, UnlockBasementDoorScript
-	call Function31cd
+	call ExitMenuCallScript
 	ld a, 1
 	ld [wd0ec], a
 	ret
@@ -49506,7 +49510,7 @@ _SacredAsh: ; 507e6
 	ret nc
 
 	ld hl, SacredAshScript
-	call Function31cd
+	call ExitMenuCallScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -49863,7 +49867,7 @@ DrawHP: ; 50b10
 	call DrawHPBar
 	pop hl
 
-; Print HP 
+; Print HP
 	ld bc, $0015 ; move (1,1)
 	add hl, bc
 	ld de, TempMonHP
@@ -57180,12 +57184,12 @@ Function89331: ; 89331
 Function89346: ; 89346 (22:5346)
 	ld h, b
 	ld l, c
-	jr _continue
+	jr _incave
 
 Function8934a: ; 8934a
 	ld hl, 6
 	add hl, bc
-_continue:
+_incave:
 ; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.  Sets carry if it does not find a nonspace character.  Returns the location of the following character in hl.
 	push bc
 	ld c, 5
@@ -57214,12 +57218,12 @@ Function89363: ; 89363
 ; Scans six byte pairs starting at bc to find $ff.  Sets carry if it does not find a $ff.  Returns the location of the byte after the first $ff found in hl.
 	ld h, b
 	ld l, c
-	jr ._continue
+	jr ._incave
 
 	ld hl, 25
 	add hl, bc
 
-._continue
+._incave
 	push de
 	ld e, 6
 .loop
@@ -61213,34 +61217,34 @@ SpecialHoOhChamber: ; 0x8addb
 	cp HO_OH ; is Ho-oh the first Pokémon in the party?
 	jr nz, .done ; if not, we're done
 	call GetSecondaryMapHeaderPointer
-	ld de, $0326
+	ld de, EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	ld b, SET_FLAG
 	call EventFlagAction
 .done
 	ret
 ; 0x8adef
 
-Function8adef: ; 8adef
+SpecialOmanyteChamber: ; 8adef
 	call GetSecondaryMapHeaderPointer
-	ld de, $0328
+	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, CHECK_FLAG
 	call EventFlagAction
 	ld a, c
 	and a
-	jr nz, .asm_8ae2f
+	jr nz, .nope
 
 	ld a, WATER_STONE
 	ld [CurItem], a
 	ld hl, NumItems
 	call CheckItem
-	jr c, .asm_8ae24
+	jr c, .open
 
 	ld a, [PartyCount]
 	ld b, a
 	inc b
-.asm_8ae10
+.loop
 	dec b
-	jr z, .asm_8ae2f
+	jr z, .nope
 	ld a, b
 	dec a
 	ld [CurPartyMon], a
@@ -61250,38 +61254,38 @@ Function8adef: ; 8adef
 	pop bc
 	ld a, [hl]
 	cp WATER_STONE
-	jr nz, .asm_8ae10
+	jr nz, .loop
 
-.asm_8ae24
+.open
 	call GetSecondaryMapHeaderPointer
-	ld de, $0328
+	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, SET_FLAG
 	call EventFlagAction
 
-.asm_8ae2f
+.nope
 	ret
 ; 8ae30
 
-Function8ae30: ; 8ae30
+SpecialAerodactylChamber: ; 8ae30
 	push de
 	push bc
 
 	call GetSecondaryMapHeaderPointer
 	ld a, h
 	cp RuinsofAlphAerodactylChamber_SecondMapHeader / $100
-	jr nz, .asm_8ae4a
+	jr nz, .nope
 	ld a, l
 	cp RuinsofAlphAerodactylChamber_SecondMapHeader % $100
-	jr nz, .asm_8ae4a
+	jr nz, .nope
 
-	ld de, $0329
+	ld de, EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	ld b, SET_FLAG
 	call EventFlagAction
 
 	scf
 	jr .done
 
-.asm_8ae4a
+.nope
 	and a
 
 .done
@@ -61290,7 +61294,7 @@ Function8ae30: ; 8ae30
 	ret
 ; 8ae4e
 
-Function8ae4e: ; 8ae4e
+SpecialKabutoChamber: ; 8ae4e
 	push hl
 	push de
 
@@ -61302,7 +61306,7 @@ Function8ae4e: ; 8ae4e
 	cp RuinsofAlphKabutoChamber_SecondMapHeader % $100
 	jr nz, .done
 
-	ld de, $0327
+	ld de, EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	ld b, SET_FLAG
 	call EventFlagAction
 
@@ -64579,7 +64583,7 @@ Function8c7d4: ; 8c7d4
 	ret
 ; 8c7e1
 
-Function8c7e1: ; 8c7e1
+BlindingFlash: ; 8c7e1
 	callba Function8c084
 	ld hl, StatusFlags
 	set 2, [hl]
@@ -71452,7 +71456,7 @@ Function912b7: ; 912b7 (24:52b7)
 	hlcoord 1, 10
 	ld [hl], a
 	hlcoord 1, 4
-	ld a, [wc6d1] 
+	ld a, [wc6d1]
 	ld bc, $28
 	call AddNTimes
 	ld [hl], "▶"
@@ -71472,19 +71476,19 @@ Function912d8: ; 912d8 (24:52d8)
 	inc hl
 	dec b
 	jr nz, .asm_912df
-	ld a, [wc6d2] 
+	ld a, [wc6d2]
 	ld e, a
 	ld d, $0
 	ld hl, wdc7c
 	add hl, de
 	xor a
-	ld [wc6d0], a 
+	ld [wc6d0], a
 .asm_912f8
 	ld a, [hli]
 	push hl
 	push af
 	hlcoord 2, 4
-	ld a, [wc6d0] 
+	ld a, [wc6d0]
 	ld bc, $28
 	call AddNTimes
 	ld d, h
@@ -71493,9 +71497,9 @@ Function912d8: ; 912d8 (24:52d8)
 	ld b, a
 	call Function90380
 	pop hl
-	ld a, [wc6d0] 
+	ld a, [wc6d0]
 	inc a
-	ld [wc6d0], a 
+	ld [wc6d0], a
 	cp $4
 	jr c, .asm_912f8
 	call Function912b7
@@ -71530,11 +71534,11 @@ Function9131e: ; 9131e
 
 Function91342: ; 91342 (24:5342)
 	ld hl, wdc7c
-	ld a, [wc6d2] 
+	ld a, [wc6d2]
 	ld e, a
 	ld d, 0
 	add hl, de
-	ld a, [wc6d1] 
+	ld a, [wc6d1]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -71579,7 +71583,7 @@ Function91342: ; 91342 (24:5342)
 	call PlaceString
 	pop de
 	xor a
-	ld [wc6d4], a 
+	ld [wc6d4], a
 	call Function9141d
 	call WaitBGMap
 
@@ -71612,11 +71616,11 @@ Function91342: ; 91342 (24:5342)
 .asm_913c1
 	ld hl, 2
 	add hl, de
-	ld a, [wc6d4] 
+	ld a, [wc6d4]
 	inc a
 	cp [hl]
 	jr nc, .asm_91398
-	ld [wc6d4], a 
+	ld [wc6d4], a
 	call Function9141d
 	jr .asm_91398
 
@@ -71631,7 +71635,7 @@ Function91342: ; 91342 (24:5342)
 	and B_BUTTON
 	jr nz, Function913f1
 
-	ld a, [wc6d4] 
+	ld a, [wc6d4]
 	ld e, a
 	ld d, 0
 	add_n_times hl, de, 2
@@ -71649,7 +71653,7 @@ Function913f1: ; 913f1
 
 Function913f9: ; 913f9
 	ld hl, UnknownText_0x914d8
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	call Function1c07
 	jr c, .asm_91419
@@ -71899,7 +71903,7 @@ UpdateRadioStation: ; 9166f (24:566f)
 	push de
 	jp [hl]
 .asm_9168e
-	ld a, [wc6d9] 
+	ld a, [wc6d9]
 	and a
 	ret z
 	xor a
@@ -71912,9 +71916,9 @@ UpdateRadioStation: ; 9166f (24:566f)
 ; 916a1 (24:56a1)
 
 Function916a1: ; 916a1
-	ld [wc6d9], a 
+	ld [wc6d9], a
 	ld a, [hli]
-	ld [wc6da], a 
+	ld [wc6da], a
 	ld a, [hli]
 	ld [wc6db], a
 	ret
@@ -72041,8 +72045,8 @@ EVOLUTION_RADIO   EQU 10
 
 Function91753: ; 91753 (24:5753)
 	xor a ; OAKS_POKEMON_TALK
-	ld [wd002], a 
-	ld [wd005], a 
+	ld [wd002], a
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72051,9 +72055,9 @@ Function91753: ; 91753 (24:5753)
 
 Function91766: ; 91766 (24:5766)
 	ld a, POKEDEX_SHOW
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72062,9 +72066,9 @@ Function91766: ; 91766 (24:5766)
 
 Function9177b: ; 9177b (24:577b)
 	ld a, POKEMON_MUSIC
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72073,9 +72077,9 @@ Function9177b: ; 9177b (24:577b)
 
 Function91790: ; 91790 (24:5790)
 	ld a, LUCKY_CHANNEL
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72084,9 +72088,9 @@ Function91790: ; 91790 (24:5790)
 
 Function917a5: ; 917a5 (24:57a5)
 	ld a, BUENAS_PASSWORD
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72103,9 +72107,9 @@ NotBuenasPasswordName: db "@"
 
 Function917d5: ; 917d5 (24:57d5)
 	ld a, UNOWN_RADIO
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72114,9 +72118,9 @@ Function917d5: ; 917d5 (24:57d5)
 
 Function917ea: ; 917ea (24:57ea)
 	ld a, PLACES_AND_PEOPLE
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72125,9 +72129,9 @@ Function917ea: ; 917ea (24:57ea)
 
 Function917ff: ; 917ff (24:57ff)
 	ld a, LETS_ALL_SING
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72137,9 +72141,9 @@ Function917ff: ; 917ff (24:57ff)
 
 Function91814: ; 91814
 	ld a, ROCKET_RADIO
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72149,9 +72153,9 @@ Function91814: ; 91814
 
 Function91829: ; 91829 (24:5829)
 	ld a, POKE_FLUTE_RADIO
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72160,9 +72164,9 @@ Function91829: ; 91829 (24:5829)
 
 Function9183e: ; 9183e (24:583e)
 	ld a, EVOLUTION_RADIO
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -72176,7 +72180,7 @@ Function91853: ; 91853
 Function91854: ; 91854 (24:5854)
 	push de
 	ld a, e
-	ld [wc6dc], a 
+	ld [wc6dc], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	pop de
@@ -72188,7 +72192,7 @@ Function91854: ; 91854 (24:5854)
 Function91868: ; 91868 (24:5868)
 	push de
 	ld a, $fe
-	ld [wc6dc], a 
+	ld [wc6dc], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	pop de
@@ -72197,9 +72201,9 @@ Function91868: ; 91868 (24:5868)
 	ret
 
 Function9187c: ; 9187c (24:587c)
-	ld [wc6d9], a 
+	ld [wc6d9], a
 	ld a, l
-	ld [wc6da], a 
+	ld [wc6da], a
 	ld a, h
 	ld [wc6db], a
 	ret
@@ -72208,8 +72212,8 @@ NoRadioStation: ; 91888 (24:5888)
 	call NoRadioMusic
 	call NoRadioName
 	xor a
-	ld [wc6d9], a 
-	ld [wc6da], a 
+	ld [wc6d9], a
+	ld [wc6da], a
 	ld [wc6db], a
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -72219,7 +72223,7 @@ NoRadioMusic: ; 9189d (24:589d)
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld a, $ff
-	ld [wc6dc], a 
+	ld [wc6dc], a
 	ret
 
 NoRadioName: ; 918a9 (24:58a9)
@@ -72412,43 +72416,43 @@ Function91a04: ; 91a04
 	ret
 ; 91a53
 
-Function91a53: ; 91a53
+PlayRadio: ; 91a53
 	ld hl, Options
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	call Function91a87
+	call .PlayStation
 	ld c, 100
 	call DelayFrames
-.asm_91a62
+.loop
 	call Functiona57
 	ld a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
-	jr nz, .asm_91a7f
+	jr nz, .stop
 	ld a, [wc6da]
 	ld l, a
 	ld a, [wc6db]
 	ld h, a
 	ld a, [wc6d9]
 	and a
-	jr z, .asm_91a7a
+	jr z, .zero
 	rst FarCall
 
-.asm_91a7a
+.zero
 	call DelayFrame
-	jr .asm_91a62
+	jr .loop
 
-.asm_91a7f
+.stop
 	pop af
 	ld [Options], a
 	call Function91492
 	ret
 ; 91a87
 
-Function91a87: ; 91a87
-	ld a, $ff
+.PlayStation: ; 91a87
+	ld a, -1
 	ld [EnemyTurnsTaken], a
-	ld hl, Jumptable_91ab9
+	ld hl, .StationPointers
 	ld d, $0
 	add_n_times hl, de, 2
 	ld a, [hli]
@@ -72475,7 +72479,7 @@ Function91a87: ; 91a87
 	ret
 ; 91ab9
 
-Jumptable_91ab9: ; 91ab9
+.StationPointers: ; 91ab9
 	dw Function91acb
 	dw Function91753
 	dw Function91766
@@ -72490,33 +72494,33 @@ Jumptable_91ab9: ; 91ab9
 Function91acb: ; 91acb
 	call IsInJohto
 	and a
-	jr nz, .asm_91ade
+	jr nz, .kanto
 	call UpdateTime
 	ld a, [TimeOfDay]
 	and a
 	jp z, Function91766
 	jp Function91753
 
-.asm_91ade
+.kanto
 	jp Function917ea
 ; 91ae1
 
 Function91ae1: ; 91ae1
 	ld a, e
 	and a
-	jr nz, .asm_91aec
+	jr nz, .kanto
 	call Function91ff2
 	call FillJohtoMap
 	ret
 
-.asm_91aec
+.kanto
 	call Function91ff2
 	call FillKantoMap
 	ret
 ; 91af3
 
 
-Function91af3: ; 91af3
+_FlyMap: ; 91af3
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
@@ -72537,26 +72541,26 @@ Function91af3: ; 91af3
 	ld b, $2
 	call GetSGBLayout
 	call Function32f9
-.asm_91b29
+.loop
 	call Functiona57
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
-	jr nz, .asm_91b4a
+	and B_BUTTON
+	jr nz, .pressedB
 	ld a, [hl]
-	and $1
-	jr nz, .asm_91b4e
+	and A_BUTTON
+	jr nz, .pressedA
 	call Function91b73
 	call Function91c17
 	callba Function8cf69
 	call DelayFrame
-	jr .asm_91b29
+	jr .loop
 
-.asm_91b4a
-	ld a, $ff
-	jr .asm_91b5a
+.pressedB
+	ld a, -1
+	jr .exit
 
-.asm_91b4e
+.pressedA
 	ld a, [DefaultFlypoint]
 	ld l, a
 	ld h, 0
@@ -72565,7 +72569,7 @@ Function91af3: ; 91af3
 	add hl, de
 	ld a, [hl]
 
-.asm_91b5a
+.exit
 	ld [DefaultFlypoint], a
 	pop af
 	ld [$ffaa], a
@@ -73325,7 +73329,7 @@ TownMapPalMap:
 ; 91f7b
 
 TownMapMon: ; 91f7b
-; Draw the FlyMon icon at town map location in 
+; Draw the FlyMon icon at town map location in
 
 ; Get FlyMon species
 	ld a, [CurPartyMon]
@@ -75280,7 +75284,7 @@ Function930e9: ; 930e9 (24:70e9)
 .asm_930fd
 	ld hl, UnknownText_9311f
 	call PrintText
-	call Function1d58
+	call LoadMenuTextBox
 	lb bc, 14, 12
 	call PlaceYesNoBox
 	ld a, [wcfa9]
@@ -76001,7 +76005,7 @@ Functionb8172: ; b8172
 	call GetFarHalfword
 	ld d, h
 	ld e, l
-	ld b, $2
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	ld a, c
 	and a
@@ -76533,7 +76537,7 @@ INCBIN "gfx/unknown/0b8582.2bpp"
 
 
 PlayRadioShow: ; b8612
-	ld a, [wd002] 
+	ld a, [wd002]
 	cp 8
 	jr nc, .ok
 	ld a, [StatusFlags2]
@@ -76543,9 +76547,9 @@ PlayRadioShow: ; b8612
 	and a
 	jr nz, .ok
 	ld a, 7
-	ld [wd002], a 
+	ld [wd002], a
 .ok
-	ld a, [wd002] 
+	ld a, [wd002]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_b863a
@@ -78577,7 +78581,7 @@ UnknownText_0xb91d2: ; 0xb91d2
 ; 0xb91d7
 
 UnknownText_0xb91d7: ; 0xb91d7
-	; 
+	;
 	text_jump UnknownText_0x1bcf99
 	db "@"
 ; 0xb91dc
@@ -86811,7 +86815,7 @@ Unknown_e47ac: ; e47ac
 	RGB 26, 19, 02
 	RGB 26, 19, 00
 ;' e47cc
- 
+
 GameFreakLogo: ; e47cc
 INCBIN "gfx/splash/logo.1bpp"
 ; e48ac
@@ -91183,7 +91187,7 @@ GetItemFromMom: ; fd117
 	jr z, .zero
 	dec a
 	ld de, MomItems_1
-	jr .continue
+	jr .incave
 
 .zero
 	ld a, [wdc17]
@@ -91194,7 +91198,7 @@ GetItemFromMom: ; fd117
 .ok
 	ld de, MomItems_2
 
-.continue
+.incave
 	ld l, a
 	ld h, 0
 	add_n_times hl, hl, 3 ; multiply hl by 8

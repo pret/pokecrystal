@@ -26,31 +26,15 @@ YoungsterScript_0x1a1673:
 	end
 
 TrainerYoungsterJoey:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_JOEY
-
-	; trainer group && trainer id
-	db YOUNGSTER, JOEY1
-
-	; text when seen
-	dw YoungsterJoey1SeenText
-
-	; text when trainer beaten
-	dw YoungsterJoey1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterJoey1Script
+	trainer EVENT_BEAT_YOUNGSTER_JOEY, YOUNGSTER, JOEY1, YoungsterJoey1SeenText, YoungsterJoey1BeatenText, $0000, YoungsterJoey1Script
 
 YoungsterJoey1Script:
-	writecode VAR_CALLERID, $f
+	writecode VAR_CALLERID, PHONE_YOUNGSTER_JOEY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_JOEY
 	iftrue UnknownScript_0x1a16e0
-	checkcellnum $f
+	checkcellnum PHONE_YOUNGSTER_JOEY
 	iftrue UnknownScript_0x1a178f
 	checkevent EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a16c9
@@ -63,7 +47,7 @@ YoungsterJoey1Script:
 UnknownScript_0x1a16c9:
 	scall UnknownScript_0x1a1787
 UnknownScript_0x1a16cc:
-	askforphonenumber $f
+	askforphonenumber PHONE_YOUNGSTER_JOEY
 	if_equal $1, UnknownScript_0x1a1797
 	if_equal $2, UnknownScript_0x1a1793
 	trainertotext YOUNGSTER, JOEY1, $0
@@ -189,23 +173,7 @@ UnknownScript_0x1a17a6:
 	end
 
 TrainerYoungsterMikey:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_MIKEY
-
-	; trainer group && trainer id
-	db YOUNGSTER, MIKEY
-
-	; text when seen
-	dw YoungsterMikeySeenText
-
-	; text when trainer beaten
-	dw YoungsterMikeyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterMikeyScript
+	trainer EVENT_BEAT_YOUNGSTER_MIKEY, YOUNGSTER, MIKEY, YoungsterMikeySeenText, YoungsterMikeyBeatenText, $0000, YoungsterMikeyScript
 
 YoungsterMikeyScript:
 	talkaftercancel
@@ -216,23 +184,7 @@ YoungsterMikeyScript:
 	end
 
 TrainerBug_catcherDon:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_DON
-
-	; trainer group && trainer id
-	db BUG_CATCHER, DON
-
-	; text when seen
-	dw Bug_catcherDonSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherDonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherDonScript
+	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, Bug_catcherDonSeenText, Bug_catcherDonBeatenText, $0000, Bug_catcherDonScript
 
 Bug_catcherDonScript:
 	talkaftercancel

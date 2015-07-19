@@ -1177,7 +1177,7 @@ TownMap: ; ee01
 
 
 Bicycle: ; ee08
-	callba Functiond0b3
+	callba BikeFunction
 	ret
 ; ee0f
 
@@ -2209,7 +2209,7 @@ Functionf419: ; f419 (3:7419)
 .asm_f440
 	push bc
 	ld hl, UnknownText_0xf44a
-	call Function1d67
+	call MenuTextBoxBackup
 	pop bc
 	jr Functionf419
 ; f44a (3:744a)
@@ -2224,7 +2224,7 @@ UnknownText_0xf44a: ; 0xf44a
 EscapeRope: ; f44f
 	xor a
 	ld [wd0ec], a
-	callba Functioncb95
+	callba EscapeRopeFunction
 
 	ld a, [wd0ec]
 	cp 1
@@ -2492,7 +2492,7 @@ SuperRod: ; f5ad
 ; f5b1
 
 Function_0xf5b1: ; f5b1
-	callba Functioncf8e
+	callba FishFunction
 	ret
 ; f5b8
 

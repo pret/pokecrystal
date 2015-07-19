@@ -6,23 +6,7 @@ MountMortar2FInside_MapScriptHeader:
 	db 0
 
 TrainerSupernerdHugh:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_HUGH
-
-	; trainer group && trainer id
-	db SUPER_NERD, HUGH
-
-	; text when seen
-	dw SupernerdHughSeenText
-
-	; text when trainer beaten
-	dw SupernerdHughBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdHughScript
+	trainer EVENT_BEAT_SUPER_NERD_HUGH, SUPER_NERD, HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, $0000, SupernerdHughScript
 
 SupernerdHughScript:
 	talkaftercancel

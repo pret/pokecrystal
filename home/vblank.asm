@@ -363,7 +363,7 @@ VBlank5:: ; 400
 ; bg map
 ; tiles
 ; joypad
-; 
+;
 
 	ld a, [hROMBank]
 	ld [hROMBankBackup], a

@@ -15,23 +15,7 @@ UnknownScript_0x1ad0ab:
 	return
 
 TrainerBikerCharles:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_CHARLES
-
-	; trainer group && trainer id
-	db BIKER, CHARLES
-
-	; text when seen
-	dw BikerCharlesSeenText
-
-	; text when trainer beaten
-	dw BikerCharlesBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerCharlesScript
+	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, $0000, BikerCharlesScript
 
 BikerCharlesScript:
 	talkaftercancel
@@ -42,23 +26,7 @@ BikerCharlesScript:
 	end
 
 TrainerBikerRiley:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_RILEY
-
-	; trainer group && trainer id
-	db BIKER, RILEY
-
-	; text when seen
-	dw BikerRileySeenText
-
-	; text when trainer beaten
-	dw BikerRileyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerRileyScript
+	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, $0000, BikerRileyScript
 
 BikerRileyScript:
 	talkaftercancel
@@ -69,23 +37,7 @@ BikerRileyScript:
 	end
 
 TrainerBikerJoel:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_JOEL
-
-	; trainer group && trainer id
-	db BIKER, JOEL
-
-	; text when seen
-	dw BikerJoelSeenText
-
-	; text when trainer beaten
-	dw BikerJoelBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerJoelScript
+	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, $0000, BikerJoelScript
 
 BikerJoelScript:
 	talkaftercancel
@@ -96,23 +48,7 @@ BikerJoelScript:
 	end
 
 TrainerBikerGlenn:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_GLENN
-
-	; trainer group && trainer id
-	db BIKER, GLENN
-
-	; text when seen
-	dw BikerGlennSeenText
-
-	; text when trainer beaten
-	dw BikerGlennBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerGlennScript
+	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, $0000, BikerGlennScript
 
 BikerGlennScript:
 	talkaftercancel

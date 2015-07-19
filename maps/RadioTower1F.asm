@@ -178,23 +178,7 @@ YoungsterScript_0x5ce54:
 	jumptextfaceplayer UnknownText_0x5d4ac
 
 TrainerGruntM3:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_3
-
-	; trainer group && trainer id
-	db GRUNTM, 3
-
-	; text when seen
-	dw GruntM3SeenText
-
-	; text when trainer beaten
-	dw GruntM3BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM3Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_3, GRUNTM, 3, GruntM3SeenText, GruntM3BeatenText, $0000, GruntM3Script
 
 GruntM3Script:
 	talkaftercancel

@@ -80,23 +80,7 @@ MistyScript_0x188432:
 	end
 
 TrainerSwimmerfDiana:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_DIANA
-
-	; trainer group && trainer id
-	db SWIMMERF, DIANA
-
-	; text when seen
-	dw SwimmerfDianaSeenText
-
-	; text when trainer beaten
-	dw SwimmerfDianaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfDianaScript
+	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, $0000, SwimmerfDianaScript
 
 SwimmerfDianaScript:
 	talkaftercancel
@@ -107,23 +91,7 @@ SwimmerfDianaScript:
 	end
 
 TrainerSwimmerfBriana:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_BRIANA
-
-	; trainer group && trainer id
-	db SWIMMERF, BRIANA
-
-	; text when seen
-	dw SwimmerfBrianaSeenText
-
-	; text when trainer beaten
-	dw SwimmerfBrianaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfBrianaScript
+	trainer EVENT_BEAT_SWIMMERF_BRIANA, SWIMMERF, BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, $0000, SwimmerfBrianaScript
 
 SwimmerfBrianaScript:
 	talkaftercancel
@@ -134,23 +102,7 @@ SwimmerfBrianaScript:
 	end
 
 TrainerSwimmermParker:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_PARKER
-
-	; trainer group && trainer id
-	db SWIMMERM, PARKER
-
-	; text when seen
-	dw SwimmermParkerSeenText
-
-	; text when trainer beaten
-	dw SwimmermParkerBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermParkerScript
+	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, $0000, SwimmermParkerScript
 
 SwimmermParkerScript:
 	talkaftercancel

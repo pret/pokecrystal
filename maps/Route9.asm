@@ -6,23 +6,7 @@ Route9_MapScriptHeader:
 	db 0
 
 TrainerCamperDean:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_DEAN
-
-	; trainer group && trainer id
-	db CAMPER, DEAN
-
-	; text when seen
-	dw CamperDeanSeenText
-
-	; text when trainer beaten
-	dw CamperDeanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperDeanScript
+	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, $0000, CamperDeanScript
 
 CamperDeanScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ CamperDeanScript:
 	end
 
 TrainerPicnickerHeidi:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_HEIDI
-
-	; trainer group && trainer id
-	db PICNICKER, HEIDI
-
-	; text when seen
-	dw PicnickerHeidiSeenText
-
-	; text when trainer beaten
-	dw PicnickerHeidiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerHeidiScript
+	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, $0000, PicnickerHeidiScript
 
 PicnickerHeidiScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ PicnickerHeidiScript:
 	end
 
 TrainerCamperSid:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_SID
-
-	; trainer group && trainer id
-	db CAMPER, SID
-
-	; text when seen
-	dw CamperSidSeenText
-
-	; text when trainer beaten
-	dw CamperSidBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperSidScript
+	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, $0000, CamperSidScript
 
 CamperSidScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ CamperSidScript:
 	end
 
 TrainerPicnickerEdna:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_EDNA
-
-	; trainer group && trainer id
-	db PICNICKER, EDNA
-
-	; text when seen
-	dw PicnickerEdnaSeenText
-
-	; text when trainer beaten
-	dw PicnickerEdnaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerEdnaScript
+	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, $0000, PicnickerEdnaScript
 
 PicnickerEdnaScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ PicnickerEdnaScript:
 	end
 
 TrainerHikerTim:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_TIM
-
-	; trainer group && trainer id
-	db HIKER, TIM
-
-	; text when seen
-	dw HikerTimSeenText
-
-	; text when trainer beaten
-	dw HikerTimBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerTimScript
+	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, $0000, HikerTimScript
 
 HikerTimScript:
 	talkaftercancel
@@ -141,23 +61,7 @@ HikerTimScript:
 	end
 
 TrainerHikerSidney:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_SIDNEY
-
-	; trainer group && trainer id
-	db HIKER, SIDNEY
-
-	; text when seen
-	dw HikerSidneySeenText
-
-	; text when trainer beaten
-	dw HikerSidneyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerSidneyScript
+	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, $0000, HikerSidneyScript
 
 HikerSidneyScript:
 	talkaftercancel

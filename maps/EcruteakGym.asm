@@ -91,23 +91,7 @@ UnknownScript_0x99dc6:
 	end
 
 TrainerSageJeffrey:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_JEFFREY
-
-	; trainer group && trainer id
-	db SAGE, JEFFREY
-
-	; text when seen
-	dw SageJeffreySeenText
-
-	; text when trainer beaten
-	dw SageJeffreyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageJeffreyScript
+	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, $0000, SageJeffreyScript
 
 SageJeffreyScript:
 	talkaftercancel
@@ -118,23 +102,7 @@ SageJeffreyScript:
 	end
 
 TrainerSagePing:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_PING
-
-	; trainer group && trainer id
-	db SAGE, PING
-
-	; text when seen
-	dw SagePingSeenText
-
-	; text when trainer beaten
-	dw SagePingBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SagePingScript
+	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, $0000, SagePingScript
 
 SagePingScript:
 	talkaftercancel
@@ -145,23 +113,7 @@ SagePingScript:
 	end
 
 TrainerMediumMartha:
-	; bit/flag number
-	dw EVENT_BEAT_MEDIUM_MARTHA
-
-	; trainer group && trainer id
-	db MEDIUM, MARTHA
-
-	; text when seen
-	dw MediumMarthaSeenText
-
-	; text when trainer beaten
-	dw MediumMarthaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw MediumMarthaScript
+	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, $0000, MediumMarthaScript
 
 MediumMarthaScript:
 	talkaftercancel
@@ -172,23 +124,7 @@ MediumMarthaScript:
 	end
 
 TrainerMediumGrace:
-	; bit/flag number
-	dw EVENT_BEAT_MEDIUM_GRACE
-
-	; trainer group && trainer id
-	db MEDIUM, GRACE
-
-	; text when seen
-	dw MediumGraceSeenText
-
-	; text when trainer beaten
-	dw MediumGraceBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw MediumGraceScript
+	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, $0000, MediumGraceScript
 
 MediumGraceScript:
 	talkaftercancel

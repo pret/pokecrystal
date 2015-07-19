@@ -4972,14 +4972,14 @@ Function102142: ; 102142
 	call Function10218d
 	call Function102180
 	ld hl, UnknownText_0x1021d1
-	call Function1d4f
+	call MenuTextBox
 	ld de, SFX_LEVEL_UP
 	call PlaySFX
 	call Functiona36
 	call Function1c07
 	call Function10219f
 	ld hl, UnknownText_0x1021d6
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	call Function1c07
 	jr c, .asm_10217c
@@ -5051,7 +5051,7 @@ UnknownText_0x1021db: ; 1021d1
 ; 1021e0
 
 Function1021e0: ; 1021e0
-	call Function1d4f
+	call MenuTextBox
 	call Functiona36
 	call Function1c07
 	ret

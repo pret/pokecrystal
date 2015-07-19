@@ -178,23 +178,7 @@ UnknownScript_0x6d0be:
 	end
 
 TrainerGruntM17:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_17
-
-	; trainer group && trainer id
-	db GRUNTM, 17
-
-	; text when seen
-	dw GruntM17SeenText
-
-	; text when trainer beaten
-	dw GruntM17BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM17Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_17, GRUNTM, 17, GruntM17SeenText, GruntM17BeatenText, $0000, GruntM17Script
 
 GruntM17Script:
 	talkaftercancel
@@ -205,23 +189,7 @@ GruntM17Script:
 	end
 
 TrainerGruntM18:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_18
-
-	; trainer group && trainer id
-	db GRUNTM, 18
-
-	; text when seen
-	dw GruntM18SeenText
-
-	; text when trainer beaten
-	dw GruntM18BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM18Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_18, GRUNTM, 18, GruntM18SeenText, GruntM18BeatenText, $0000, GruntM18Script
 
 GruntM18Script:
 	talkaftercancel
@@ -232,23 +200,7 @@ GruntM18Script:
 	end
 
 TrainerGruntM19:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_19
-
-	; trainer group && trainer id
-	db GRUNTM, 19
-
-	; text when seen
-	dw GruntM19SeenText
-
-	; text when trainer beaten
-	dw GruntM19BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM19Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_19, GRUNTM, 19, GruntM19SeenText, GruntM19BeatenText, $0000, GruntM19Script
 
 GruntM19Script:
 	talkaftercancel

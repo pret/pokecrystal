@@ -68,23 +68,7 @@ UnknownScript_0x19eee0:
 	end
 
 TrainerSchoolboyDudley:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_DUDLEY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, DUDLEY
-
-	; text when seen
-	dw SchoolboyDudleySeenText
-
-	; text when trainer beaten
-	dw SchoolboyDudleyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyDudleyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, $0000, SchoolboyDudleyScript
 
 SchoolboyDudleyScript:
 	talkaftercancel
@@ -95,23 +79,7 @@ SchoolboyDudleyScript:
 	end
 
 TrainerLassEllen:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_ELLEN
-
-	; trainer group && trainer id
-	db LASS, ELLEN
-
-	; text when seen
-	dw LassEllenSeenText
-
-	; text when trainer beaten
-	dw LassEllenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassEllenScript
+	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, $0000, LassEllenScript
 
 LassEllenScript:
 	talkaftercancel
@@ -122,23 +90,7 @@ LassEllenScript:
 	end
 
 TrainerSchoolboyJoe:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_JOE
-
-	; trainer group && trainer id
-	db SCHOOLBOY, JOE
-
-	; text when seen
-	dw SchoolboyJoeSeenText
-
-	; text when trainer beaten
-	dw SchoolboyJoeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyJoeScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, $0000, SchoolboyJoeScript
 
 SchoolboyJoeScript:
 	talkaftercancel
@@ -149,23 +101,7 @@ SchoolboyJoeScript:
 	end
 
 TrainerLassLaura:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_LAURA
-
-	; trainer group && trainer id
-	db LASS, LAURA
-
-	; text when seen
-	dw LassLauraSeenText
-
-	; text when trainer beaten
-	dw LassLauraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassLauraScript
+	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, $0000, LassLauraScript
 
 LassLauraScript:
 	talkaftercancel
@@ -176,23 +112,7 @@ LassLauraScript:
 	end
 
 TrainerCamperLloyd:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_LLOYD
-
-	; trainer group && trainer id
-	db CAMPER, LLOYD
-
-	; text when seen
-	dw CamperLloydSeenText
-
-	; text when trainer beaten
-	dw CamperLloydBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperLloydScript
+	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, $0000, CamperLloydScript
 
 CamperLloydScript:
 	talkaftercancel
@@ -203,23 +123,7 @@ CamperLloydScript:
 	end
 
 TrainerLassShannon:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_SHANNON
-
-	; trainer group && trainer id
-	db LASS, SHANNON
-
-	; text when seen
-	dw LassShannonSeenText
-
-	; text when trainer beaten
-	dw LassShannonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassShannonScript
+	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, $0000, LassShannonScript
 
 LassShannonScript:
 	talkaftercancel
@@ -230,23 +134,7 @@ LassShannonScript:
 	end
 
 TrainerSupernerdPat:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_PAT
-
-	; trainer group && trainer id
-	db SUPER_NERD, PAT
-
-	; text when seen
-	dw SupernerdPatSeenText
-
-	; text when trainer beaten
-	dw SupernerdPatBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdPatScript
+	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, $0000, SupernerdPatScript
 
 SupernerdPatScript:
 	talkaftercancel

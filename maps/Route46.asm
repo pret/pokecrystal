@@ -6,23 +6,7 @@ Route46_MapScriptHeader:
 	db 0
 
 TrainerCamperTed:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_TED
-
-	; trainer group && trainer id
-	db CAMPER, TED
-
-	; text when seen
-	dw CamperTedSeenText
-
-	; text when trainer beaten
-	dw CamperTedBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperTedScript
+	trainer EVENT_BEAT_CAMPER_TED, CAMPER, TED, CamperTedSeenText, CamperTedBeatenText, $0000, CamperTedScript
 
 CamperTedScript:
 	talkaftercancel
@@ -33,31 +17,15 @@ CamperTedScript:
 	end
 
 TrainerPicnickerErin1:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_ERIN
-
-	; trainer group && trainer id
-	db PICNICKER, ERIN1
-
-	; text when seen
-	dw PicnickerErin1SeenText
-
-	; text when trainer beaten
-	dw PicnickerErin1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerErin1Script
+	trainer EVENT_BEAT_PICNICKER_ERIN, PICNICKER, ERIN1, PicnickerErin1SeenText, PicnickerErin1BeatenText, $0000, PicnickerErin1Script
 
 PicnickerErin1Script:
-	writecode VAR_CALLERID, $24
+	writecode VAR_CALLERID, PHONE_PICNICKER_ERIN
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0x1a96da
-	checkcellnum $24
+	checkcellnum PHONE_PICNICKER_ERIN
 	iftrue UnknownScript_0x1a975b
 	checkevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a96c3
@@ -70,7 +38,7 @@ PicnickerErin1Script:
 UnknownScript_0x1a96c3:
 	scall UnknownScript_0x1a9753
 UnknownScript_0x1a96c6:
-	askforphonenumber $24
+	askforphonenumber PHONE_PICNICKER_ERIN
 	if_equal $1, UnknownScript_0x1a9763
 	if_equal $2, UnknownScript_0x1a975f
 	trainertotext PICNICKER, ERIN1, $0
@@ -172,23 +140,7 @@ UnknownScript_0x1a9772:
 	end
 
 TrainerHikerBailey:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_BAILEY
-
-	; trainer group && trainer id
-	db HIKER, BAILEY
-
-	; text when seen
-	dw HikerBaileySeenText
-
-	; text when trainer beaten
-	dw HikerBaileyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerBaileyScript
+	trainer EVENT_BEAT_HIKER_BAILEY, HIKER, BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, $0000, HikerBaileyScript
 
 HikerBaileyScript:
 	talkaftercancel

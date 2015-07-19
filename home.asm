@@ -481,7 +481,7 @@ CallPointerAt:: ; 31be
 ; 31cd
 
 
-Function31cd:: ; 31cd
+ExitMenuCallScript:: ; 31cd
 ; Push pointer hl in the current bank to wd0e8.
 	ld a, [hROMBank]
 
@@ -1379,14 +1379,14 @@ CheckTrainerBattle:: ; 360d
 	push de
 
 ; Has a sprite
-	ld hl, $0001
+	ld hl, MAPOBJECT_SPRITE
 	add hl, de
 	ld a, [hl]
 	and a
 	jr z, .next
 
 ; Is a trainer
-	ld hl, $0008
+	ld hl, MAPOBJECT_COLOR
 	add hl, de
 	ld a, [hl]
 	and $f
@@ -1394,10 +1394,10 @@ CheckTrainerBattle:: ; 360d
 	jr nz, .next
 
 ; Is visible on the map
-	ld hl, $0000
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, de
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .next
 
 ; Is facing the player...
@@ -1406,7 +1406,7 @@ CheckTrainerBattle:: ; 360d
 	jr nc, .next
 
 ; ...within their sight range
-	ld hl, $0009
+	ld hl, MAPOBJECT_RANGE
 	add hl, de
 	ld a, [hl]
 	cp b
@@ -1415,7 +1415,7 @@ CheckTrainerBattle:: ; 360d
 ; And hasn't already been beaten
 	push bc
 	push de
-	ld hl, $000a
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -1429,7 +1429,7 @@ CheckTrainerBattle:: ; 360d
 	pop de
 	pop bc
 	and a
-	jr z, .asm_3666
+	jr z, .startbattle
 
 .next
 	pop de
@@ -1445,7 +1445,7 @@ CheckTrainerBattle:: ; 360d
 	xor a
 	ret
 
-.asm_3666
+.startbattle
 	pop de
 	pop af
 	ld [$ffe0], a
@@ -1457,9 +1457,9 @@ CheckTrainerBattle:: ; 360d
 ; 3674
 
 Function3674:: ; 3674
-	ld a, $1
+	ld a, 1
 	ld [CurFruit], a
-	ld a, $ff
+	ld a, -1
 	ld [wd040], a
 
 Function367e:: ; 367e
@@ -1467,7 +1467,7 @@ Function367e:: ; 367e
 	ld [EngineBuffer1], a
 	ld a, [$ffe0]
 	call GetMapObject
-	ld hl, $000a
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [EngineBuffer1]
 	call GetFarHalfword
@@ -1564,13 +1564,13 @@ FacingPlayerDistance:: ; 36ad
 ; 36f5
 
 
-Function36f5:: ; 36f5
+CheckTrainerFlag:: ; 36f5
 	push bc
-	ld hl, $0001
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	call GetMapObject
-	ld hl, OBJECT_STEP_DURATION
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -1580,7 +1580,7 @@ Function36f5:: ; 36f5
 	ld d, h
 	ld e, l
 	push de
-	ld b, $2 ; check
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	pop de
 	ld a, c

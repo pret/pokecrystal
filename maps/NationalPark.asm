@@ -56,31 +56,15 @@ GameboyKidScript_0x5c037:
 	end
 
 TrainerSchoolboyJack1:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_JACK
-
-	; trainer group && trainer id
-	db SCHOOLBOY, JACK1
-
-	; text when seen
-	dw SchoolboyJack1SeenText
-
-	; text when trainer beaten
-	dw SchoolboyJack1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyJack1Script
+	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, $0000, SchoolboyJack1Script
 
 SchoolboyJack1Script:
-	writecode VAR_CALLERID, $5
+	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0x5c088
-	checkcellnum $5
+	checkcellnum PHONE_SCHOOLBOY_JACK
 	iftrue UnknownScript_0x5c108
 	checkevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5c071
@@ -93,7 +77,7 @@ SchoolboyJack1Script:
 UnknownScript_0x5c071:
 	scall UnknownScript_0x5c100
 UnknownScript_0x5c074:
-	askforphonenumber $5
+	askforphonenumber PHONE_SCHOOLBOY_JACK
 	if_equal $1, UnknownScript_0x5c110
 	if_equal $2, UnknownScript_0x5c10c
 	trainertotext SCHOOLBOY, JACK1, $0
@@ -189,23 +173,7 @@ UnknownScript_0x5c114:
 	end
 
 TrainerPokefanmWilliam:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_WILLIAM
-
-	; trainer group && trainer id
-	db POKEFANM, WILLIAM
-
-	; text when seen
-	dw PokefanmWilliamSeenText
-
-	; text when trainer beaten
-	dw PokefanmWilliamBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmWilliamScript
+	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, $0000, PokefanmWilliamScript
 
 PokefanmWilliamScript:
 	talkaftercancel
@@ -216,31 +184,15 @@ PokefanmWilliamScript:
 	end
 
 TrainerPokefanfBeverly1:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANF_BEVERLY
-
-	; trainer group && trainer id
-	db POKEFANF, BEVERLY1
-
-	; text when seen
-	dw PokefanfBeverly1SeenText
-
-	; text when trainer beaten
-	dw PokefanfBeverly1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanfBeverly1Script
+	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, $0000, PokefanfBeverly1Script
 
 PokefanfBeverly1Script:
-	writecode VAR_CALLERID, $6
+	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0x5c177
-	checkcellnum $6
+	checkcellnum PHONE_POKEFAN_BEVERLY
 	iftrue UnknownScript_0x5c19b
 	checkpoke MARILL
 	iffalse UnknownScript_0x5c189
@@ -255,7 +207,7 @@ PokefanfBeverly1Script:
 UnknownScript_0x5c160:
 	scall UnknownScript_0x5c193
 UnknownScript_0x5c163:
-	askforphonenumber $6
+	askforphonenumber PHONE_POKEFAN_BEVERLY
 	if_equal $1, UnknownScript_0x5c1a3
 	if_equal $2, UnknownScript_0x5c19f
 	trainertotext POKEFANF, BEVERLY1, $0
@@ -311,23 +263,7 @@ UnknownScript_0x5c1ab:
 	end
 
 TrainerLassKrise:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_KRISE
-
-	; trainer group && trainer id
-	db LASS, KRISE
-
-	; text when seen
-	dw LassKriseSeenText
-
-	; text when trainer beaten
-	dw LassKriseBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassKriseScript
+	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, $0000, LassKriseScript
 
 LassKriseScript:
 	talkaftercancel

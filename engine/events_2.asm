@@ -1,7 +1,7 @@
 ; More overworld event handling.
 
 
-WarpToLastSpawn:: ; 97c28
+WarpToSpawnPoint:: ; 97c28
 	ld hl, StatusFlags2
 	res 1, [hl]
 	res 2, [hl]

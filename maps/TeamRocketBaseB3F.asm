@@ -117,23 +117,7 @@ MoltresScript_0x6e091:
 	end
 
 TrainerGruntF5:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_5
-
-	; trainer group && trainer id
-	db GRUNTF, 5
-
-	; text when seen
-	dw GruntF5SeenText
-
-	; text when trainer beaten
-	dw GruntF5BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF5Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_5, GRUNTF, 5, GruntF5SeenText, GruntF5BeatenText, $0000, GruntF5Script
 
 GruntF5Script:
 	talkaftercancel
@@ -145,23 +129,7 @@ GruntF5Script:
 	end
 
 TrainerGruntM28:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_28
-
-	; trainer group && trainer id
-	db GRUNTM, 28
-
-	; text when seen
-	dw GruntM28SeenText
-
-	; text when trainer beaten
-	dw GruntM28BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM28Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_28, GRUNTM, 28, GruntM28SeenText, GruntM28BeatenText, $0000, GruntM28Script
 
 GruntM28Script:
 	talkaftercancel
@@ -173,23 +141,7 @@ GruntM28Script:
 	end
 
 TrainerScientistRoss:
-	; bit/flag number
-	dw EVENT_BEAT_SCIENTIST_ROSS
-
-	; trainer group && trainer id
-	db SCIENTIST, ROSS
-
-	; text when seen
-	dw ScientistRossSeenText
-
-	; text when trainer beaten
-	dw ScientistRossBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw ScientistRossScript
+	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, $0000, ScientistRossScript
 
 ScientistRossScript:
 	talkaftercancel
@@ -200,23 +152,7 @@ ScientistRossScript:
 	end
 
 TrainerScientistMitch:
-	; bit/flag number
-	dw EVENT_BEAT_SCIENTIST_MITCH
-
-	; trainer group && trainer id
-	db SCIENTIST, MITCH
-
-	; text when seen
-	dw ScientistMitchSeenText
-
-	; text when trainer beaten
-	dw ScientistMitchBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw ScientistMitchScript
+	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, $0000, ScientistMitchScript
 
 ScientistMitchScript:
 	talkaftercancel

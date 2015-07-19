@@ -292,7 +292,11 @@ fix_facing: macro
 	db movement_fix_facing ; $3b
 	endm
 
-__enum__ = $3d
+	enum movement_return_dig
+return_dig: macro
+	db movement_return_dig
+	db \1
+	endm
 
 	enum movement_hide_person
 hide_person: macro
@@ -351,7 +355,17 @@ step_wait5: macro
 	db movement_step_wait5 ; $4f
 	endm
 
-__enum__ = $53
+__enum__ = $51
+
+	enum movement_fish_got_bite
+fish_got_bite: macro
+	db movement_fish_got_bite
+	endm
+
+	enum movement_fish_got_bite_2
+fish_got_bite_2: macro
+	db movement_fish_got_bite_2
+	endm
 
 	enum movement_hide_emote
 hide_emote: macro

@@ -63,23 +63,7 @@ UnknownScript_0x60054:
 	end
 
 TrainerExecutivef1:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_EXECUTIVEF_1
-
-	; trainer group && trainer id
-	db EXECUTIVEF, 1
-
-	; text when seen
-	dw Executivef1SeenText
-
-	; text when trainer beaten
-	dw Executivef1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Executivef1Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, 1, Executivef1SeenText, Executivef1BeatenText, $0000, Executivef1Script
 
 Executivef1Script:
 	talkaftercancel

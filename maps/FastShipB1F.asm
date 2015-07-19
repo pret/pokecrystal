@@ -82,23 +82,7 @@ UnknownScript_0x767a0:
 	end
 
 TrainerSailorJeff:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_JEFF
-
-	; trainer group && trainer id
-	db SAILOR, JEFF
-
-	; text when seen
-	dw SailorJeffSeenText
-
-	; text when trainer beaten
-	dw SailorJeffBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorJeffScript
+	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, $0000, SailorJeffScript
 
 SailorJeffScript:
 	talkaftercancel
@@ -109,23 +93,7 @@ SailorJeffScript:
 	end
 
 TrainerPicnickerDebra:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_DEBRA
-
-	; trainer group && trainer id
-	db PICNICKER, DEBRA
-
-	; text when seen
-	dw PicnickerDebraSeenText
-
-	; text when trainer beaten
-	dw PicnickerDebraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerDebraScript
+	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, $0000, PicnickerDebraScript
 
 PicnickerDebraScript:
 	talkaftercancel
@@ -136,23 +104,7 @@ PicnickerDebraScript:
 	end
 
 TrainerJugglerFritz:
-	; bit/flag number
-	dw EVENT_BEAT_JUGGLER_FRITZ
-
-	; trainer group && trainer id
-	db JUGGLER, FRITZ
-
-	; text when seen
-	dw JugglerFritzSeenText
-
-	; text when trainer beaten
-	dw JugglerFritzBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw JugglerFritzScript
+	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, $0000, JugglerFritzScript
 
 JugglerFritzScript:
 	talkaftercancel
@@ -163,23 +115,7 @@ JugglerFritzScript:
 	end
 
 TrainerSailorGarrett:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_GARRETT
-
-	; trainer group && trainer id
-	db SAILOR, GARRETT
-
-	; text when seen
-	dw SailorGarrettSeenText
-
-	; text when trainer beaten
-	dw SailorGarrettBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorGarrettScript
+	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, $0000, SailorGarrettScript
 
 SailorGarrettScript:
 	talkaftercancel
@@ -190,23 +126,7 @@ SailorGarrettScript:
 	end
 
 TrainerFisherJonah:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_JONAH
-
-	; trainer group && trainer id
-	db FISHER, JONAH
-
-	; text when seen
-	dw FisherJonahSeenText
-
-	; text when trainer beaten
-	dw FisherJonahBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherJonahScript
+	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, $0000, FisherJonahScript
 
 FisherJonahScript:
 	talkaftercancel
@@ -217,23 +137,7 @@ FisherJonahScript:
 	end
 
 TrainerBlackbeltWai:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_WAI
-
-	; trainer group && trainer id
-	db BLACKBELT_T, WAI
-
-	; text when seen
-	dw BlackbeltWaiSeenText
-
-	; text when trainer beaten
-	dw BlackbeltWaiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltWaiScript
+	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, $0000, BlackbeltWaiScript
 
 BlackbeltWaiScript:
 	talkaftercancel
@@ -244,23 +148,7 @@ BlackbeltWaiScript:
 	end
 
 TrainerSailorKenneth:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_KENNETH
-
-	; trainer group && trainer id
-	db SAILOR, KENNETH
-
-	; text when seen
-	dw SailorKennethSeenText
-
-	; text when trainer beaten
-	dw SailorKennethBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorKennethScript
+	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, $0000, SailorKennethScript
 
 SailorKennethScript:
 	talkaftercancel
@@ -271,23 +159,7 @@ SailorKennethScript:
 	end
 
 TrainerTeacherShirley:
-	; bit/flag number
-	dw EVENT_BEAT_TEACHER_SHIRLEY
-
-	; trainer group && trainer id
-	db TEACHER, SHIRLEY
-
-	; text when seen
-	dw TeacherShirleySeenText
-
-	; text when trainer beaten
-	dw TeacherShirleyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TeacherShirleyScript
+	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, $0000, TeacherShirleyScript
 
 TeacherShirleyScript:
 	talkaftercancel
@@ -298,23 +170,7 @@ TeacherShirleyScript:
 	end
 
 TrainerSchoolboyNate:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_NATE
-
-	; trainer group && trainer id
-	db SCHOOLBOY, NATE
-
-	; text when seen
-	dw SchoolboyNateSeenText
-
-	; text when trainer beaten
-	dw SchoolboyNateBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyNateScript
+	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, $0000, SchoolboyNateScript
 
 SchoolboyNateScript:
 	talkaftercancel
@@ -325,23 +181,7 @@ SchoolboyNateScript:
 	end
 
 TrainerSchoolboyRicky:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_RICKY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, RICKY
-
-	; text when seen
-	dw SchoolboyRickySeenText
-
-	; text when trainer beaten
-	dw SchoolboyRickyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyRickyScript
+	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, $0000, SchoolboyRickyScript
 
 SchoolboyRickyScript:
 	talkaftercancel

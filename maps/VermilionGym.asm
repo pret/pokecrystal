@@ -38,23 +38,7 @@ SurgeScript_0x1920a5:
 	end
 
 TrainerGentlemanGregory:
-	; bit/flag number
-	dw EVENT_BEAT_GENTLEMAN_GREGORY
-
-	; trainer group && trainer id
-	db GENTLEMAN, GREGORY
-
-	; text when seen
-	dw GentlemanGregorySeenText
-
-	; text when trainer beaten
-	dw GentlemanGregoryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GentlemanGregoryScript
+	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, $0000, GentlemanGregoryScript
 
 GentlemanGregoryScript:
 	talkaftercancel
@@ -65,23 +49,7 @@ GentlemanGregoryScript:
 	end
 
 TrainerGuitaristVincent:
-	; bit/flag number
-	dw EVENT_BEAT_GUITARIST_VINCENT
-
-	; trainer group && trainer id
-	db GUITARIST, VINCENT
-
-	; text when seen
-	dw GuitaristVincentSeenText
-
-	; text when trainer beaten
-	dw GuitaristVincentBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GuitaristVincentScript
+	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, $0000, GuitaristVincentScript
 
 GuitaristVincentScript:
 	talkaftercancel
@@ -92,23 +60,7 @@ GuitaristVincentScript:
 	end
 
 TrainerJugglerHorton:
-	; bit/flag number
-	dw EVENT_BEAT_JUGGLER_HORTON
-
-	; trainer group && trainer id
-	db JUGGLER, HORTON
-
-	; text when seen
-	dw JugglerHortonSeenText
-
-	; text when trainer beaten
-	dw JugglerHortonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw JugglerHortonScript
+	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, $0000, JugglerHortonScript
 
 JugglerHortonScript:
 	talkaftercancel

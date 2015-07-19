@@ -86,23 +86,7 @@ UnknownScript_0x1849d1:
 	end
 
 TrainerSageJin:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_JIN
-
-	; trainer group && trainer id
-	db SAGE, JIN
-
-	; text when seen
-	dw SageJinSeenText
-
-	; text when trainer beaten
-	dw SageJinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageJinScript
+	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, $0000, SageJinScript
 
 SageJinScript:
 	talkaftercancel
@@ -113,23 +97,7 @@ SageJinScript:
 	end
 
 TrainerSageTroy:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_TROY
-
-	; trainer group && trainer id
-	db SAGE, TROY
-
-	; text when seen
-	dw SageTroySeenText
-
-	; text when trainer beaten
-	dw SageTroyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageTroyScript
+	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, $0000, SageTroyScript
 
 SageTroyScript:
 	talkaftercancel
@@ -140,23 +108,7 @@ SageTroyScript:
 	end
 
 TrainerSageNeal:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_NEAL
-
-	; trainer group && trainer id
-	db SAGE, NEAL
-
-	; text when seen
-	dw SageNealSeenText
-
-	; text when trainer beaten
-	dw SageNealBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageNealScript
+	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, $0000, SageNealScript
 
 SageNealScript:
 	talkaftercancel

@@ -20,23 +20,7 @@ SunnyCallback:
 	return
 
 TrainerTwinsAnnandanne1:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_ANN_AND_ANNE
-
-	; trainer group && trainer id
-	db TWINS, ANNANDANNE1
-
-	; text when seen
-	dw TwinsAnnandanne1SeenText
-
-	; text when trainer beaten
-	dw TwinsAnnandanne1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsAnnandanne1Script
+	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE1, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, $0000, TwinsAnnandanne1Script
 
 TwinsAnnandanne1Script:
 	talkaftercancel
@@ -47,23 +31,7 @@ TwinsAnnandanne1Script:
 	end
 
 TrainerTwinsAnnandanne2:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_ANN_AND_ANNE
-
-	; trainer group && trainer id
-	db TWINS, ANNANDANNE2
-
-	; text when seen
-	dw TwinsAnnandanne2SeenText
-
-	; text when trainer beaten
-	dw TwinsAnnandanne2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsAnnandanne2Script
+	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE2, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, $0000, TwinsAnnandanne2Script
 
 TwinsAnnandanne2Script:
 	talkaftercancel
@@ -74,23 +42,7 @@ TwinsAnnandanne2Script:
 	end
 
 TrainerPsychicGreg:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_GREG
-
-	; trainer group && trainer id
-	db PSYCHIC_T, GREG
-
-	; text when seen
-	dw PsychicGregSeenText
-
-	; text when trainer beaten
-	dw PsychicGregBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicGregScript
+	trainer EVENT_BEAT_PSYCHIC_GREG, PSYCHIC_T, GREG, PsychicGregSeenText, PsychicGregBeatenText, $0000, PsychicGregScript
 
 PsychicGregScript:
 	talkaftercancel

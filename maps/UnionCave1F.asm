@@ -6,23 +6,7 @@ UnionCave1F_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacLarry:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_LARRY
-
-	; trainer group && trainer id
-	db POKEMANIAC, LARRY
-
-	; text when seen
-	dw PokemaniacLarrySeenText
-
-	; text when trainer beaten
-	dw PokemaniacLarryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacLarryScript
+	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, $0000, PokemaniacLarryScript
 
 PokemaniacLarryScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokemaniacLarryScript:
 	end
 
 TrainerHikerRussell:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_RUSSELL
-
-	; trainer group && trainer id
-	db HIKER, RUSSELL
-
-	; text when seen
-	dw HikerRussellSeenText
-
-	; text when trainer beaten
-	dw HikerRussellBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerRussellScript
+	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, $0000, HikerRussellScript
 
 HikerRussellScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ HikerRussellScript:
 	end
 
 TrainerHikerDaniel:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_DANIEL
-
-	; trainer group && trainer id
-	db HIKER, DANIEL
-
-	; text when seen
-	dw HikerDanielSeenText
-
-	; text when trainer beaten
-	dw HikerDanielBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerDanielScript
+	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, $0000, HikerDanielScript
 
 HikerDanielScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ HikerDanielScript:
 	end
 
 TrainerFirebreatherBill:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_BILL
-
-	; trainer group && trainer id
-	db FIREBREATHER, BILL
-
-	; text when seen
-	dw FirebreatherBillSeenText
-
-	; text when trainer beaten
-	dw FirebreatherBillBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherBillScript
+	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, $0000, FirebreatherBillScript
 
 FirebreatherBillScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ FirebreatherBillScript:
 	end
 
 TrainerFirebreatherRay:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_RAY
-
-	; trainer group && trainer id
-	db FIREBREATHER, RAY
-
-	; text when seen
-	dw FirebreatherRaySeenText
-
-	; text when trainer beaten
-	dw FirebreatherRayBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherRayScript
+	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, $0000, FirebreatherRayScript
 
 FirebreatherRayScript:
 	talkaftercancel
