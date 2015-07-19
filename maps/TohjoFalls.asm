@@ -25,4 +25,4 @@ TohjoFalls_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 10, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18db02, EVENT_TOHJO_FALLS_MOON_STONE
+	person_event SPRITE_POKE_BALL, 10, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18db02, EVENT_TOHJO_FALLS_MOON_STONE

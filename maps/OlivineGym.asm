@@ -212,5 +212,5 @@ OlivineGym_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_JASMINE, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
-	person_event SPRITE_GYM_GUY, 17, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OlivineGymGuyScript, -1
+	person_event SPRITE_JASMINE, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
+	person_event SPRITE_GYM_GUY, 17, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OlivineGymGuyScript, -1

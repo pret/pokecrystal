@@ -59,6 +59,6 @@ LavenderMart_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_CLERK, 7, 5, LEFT << 2 | $1, $0, -1, -1, $0, 0, ClerkScript_0x7eb1c, -1
-	person_event SPRITE_POKEFAN_M, 10, 10, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x7eb23, -1
-	person_event SPRITE_ROCKER, 6, 13, DOWN << 2 | $3, $0, -1, -1, $0, 0, RockerScript_0x7eb26, -1
+	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x7eb1c, -1
+	person_event SPRITE_POKEFAN_M, 10, 10, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x7eb23, -1
+	person_event SPRITE_ROCKER, 6, 13, OW_DOWN | $3, $0, -1, -1, $0, 0, RockerScript_0x7eb26, -1

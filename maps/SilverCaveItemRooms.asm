@@ -28,5 +28,5 @@ SilverCaveItemRooms_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_POKE_BALL, 7, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c65e, EVENT_SILVER_CAVE_ITEM_ROOMS_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 15, 19, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c660, EVENT_SILVER_CAVE_ITEM_ROOMS_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 7, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c65e, EVENT_SILVER_CAVE_ITEM_ROOMS_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 15, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c660, EVENT_SILVER_CAVE_ITEM_ROOMS_FULL_RESTORE

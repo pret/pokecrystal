@@ -73,5 +73,5 @@ MahoganyRedGyaradosSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_BLACK_BELT, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, BlackBeltScript_0x19997f, -1
-	person_event SPRITE_TEACHER, 9, 10, UP << 2 | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x199982, -1
+	person_event SPRITE_BLACK_BELT, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, BlackBeltScript_0x19997f, -1
+	person_event SPRITE_TEACHER, 9, 10, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x199982, -1

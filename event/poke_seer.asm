@@ -14,7 +14,7 @@ SpecialPokeSeer: ; 4f0bc
 	call Functiona36
 
 	ld b, $6
-	callba Function50000
+	callba SelectMonFromParty
 	jr c, .cancel
 
 	ld a, [CurPartySpecies]

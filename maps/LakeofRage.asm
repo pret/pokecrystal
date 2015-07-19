@@ -509,15 +509,15 @@ LakeofRage_MapEventHeader:
 
 	; people-events
 	db 12
-	person_event SPRITE_LANCE, 32, 25, UP << 2 | $3, $0, -1, -1, $0, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
-	person_event SPRITE_GRAMPS, 30, 24, UP << 2 | $3, $0, -1, -1, $0, 0, GrampsScript_0x7008e, -1
-	person_event SPRITE_SUPER_NERD, 17, 40, LEFT << 2 | $0, $0, -1, -1, $0, 0, SuperNerdScript_0x700a2, -1
-	person_event SPRITE_COOLTRAINER_F, 33, 29, UP << 2 | $1, $1, -1, -1, $0, 0, CooltrainerFScript_0x700a5, -1
-	person_event SPRITE_FISHER, 27, 34, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_FISHER, 30, 28, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_COOLTRAINER_M, 19, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_COOLTRAINER_F, 11, 40, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_GYARADOS, 26, 22, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GyaradosScript_0x70063, EVENT_LAKE_OF_RAGE_RED_GYARADOS
-	person_event SPRITE_SUPER_NERD, 8, 8, UP << 2 | $2, $0, -1, -1, $0, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
-	person_event SPRITE_POKE_BALL, 14, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x70148, EVENT_LAKE_OF_RAGE_ELIXER
-	person_event SPRITE_POKE_BALL, 6, 39, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7014a, EVENT_LAKE_OF_RAGE_TM_DETECT
+	person_event SPRITE_LANCE, 32, 25, OW_UP | $3, $0, -1, -1, $0, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
+	person_event SPRITE_GRAMPS, 30, 24, OW_UP | $3, $0, -1, -1, $0, 0, GrampsScript_0x7008e, -1
+	person_event SPRITE_SUPER_NERD, 17, 40, OW_LEFT | $0, $0, -1, -1, $0, 0, SuperNerdScript_0x700a2, -1
+	person_event SPRITE_COOLTRAINER_F, 33, 29, OW_UP | $1, $1, -1, -1, $0, 0, CooltrainerFScript_0x700a5, -1
+	person_event SPRITE_FISHER, 27, 34, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_FISHER, 30, 28, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_COOLTRAINER_M, 19, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 11, 40, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_GYARADOS, 26, 22, OW_UP | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GyaradosScript_0x70063, EVENT_LAKE_OF_RAGE_RED_GYARADOS
+	person_event SPRITE_SUPER_NERD, 8, 8, OW_UP | $2, $0, -1, -1, $0, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
+	person_event SPRITE_POKE_BALL, 14, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x70148, EVENT_LAKE_OF_RAGE_ELIXER
+	person_event SPRITE_POKE_BALL, 6, 39, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7014a, EVENT_LAKE_OF_RAGE_TM_DETECT

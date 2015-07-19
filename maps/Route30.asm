@@ -416,14 +416,14 @@ Route30_MapEventHeader:
 
 	; people-events
 	db 11
-	person_event SPRITE_YOUNGSTER, 30, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a1673, EVENT_ROUTE_30_BATTLE
-	person_event SPRITE_YOUNGSTER, 32, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
-	person_event SPRITE_YOUNGSTER, 27, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerYoungsterMikey, -1
-	person_event SPRITE_BUG_CATCHER, 11, 5, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherDon, -1
-	person_event SPRITE_YOUNGSTER, 34, 11, UP << 2 | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x1a17d2, -1
-	person_event SPRITE_MONSTER, 28, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
-	person_event SPRITE_MONSTER, 29, 9, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
-	person_event SPRITE_FRUIT_TREE, 43, 9, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a17f7, -1
-	person_event SPRITE_FRUIT_TREE, 9, 15, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a17f9, -1
-	person_event SPRITE_COOLTRAINER_F, 17, 6, UP << 2 | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x1a17e6, -1
-	person_event SPRITE_POKE_BALL, 39, 12, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a17f5, EVENT_ROUTE_30_ANTIDOTE
+	person_event SPRITE_YOUNGSTER, 30, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a1673, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_YOUNGSTER, 32, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
+	person_event SPRITE_YOUNGSTER, 27, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerYoungsterMikey, -1
+	person_event SPRITE_BUG_CATCHER, 11, 5, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherDon, -1
+	person_event SPRITE_YOUNGSTER, 34, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x1a17d2, -1
+	person_event SPRITE_MONSTER, 28, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_MONSTER, 29, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_FRUIT_TREE, 43, 9, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a17f7, -1
+	person_event SPRITE_FRUIT_TREE, 9, 15, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a17f9, -1
+	person_event SPRITE_COOLTRAINER_F, 17, 6, OW_UP | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x1a17e6, -1
+	person_event SPRITE_POKE_BALL, 39, 12, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a17f5, EVENT_ROUTE_30_ANTIDOTE

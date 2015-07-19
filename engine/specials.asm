@@ -91,7 +91,7 @@ SpecialsPointers:: ; c029
 	add_special Function17440
 	add_special Special_SelectRandomBugContestContestants
 	add_special Functionc3fc
-	add_special Function26feb
+	add_special ToggleMaptileDecorations
 	add_special ToggleDecorationsVisibility
 	add_special SpecialGiveShuckle
 	add_special SpecialReturnShuckle
@@ -265,7 +265,7 @@ Functionc298: ; c298
 SpecialNameRival: ; 0xc29d
 	ld b, $2 ; rival
 	ld de, RivalName
-	callba Function116b7
+	callba _NamingScreen
 	; default to "SILVER"
 	ld hl, RivalName
 	ld de, DefaultRivalName

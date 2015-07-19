@@ -247,9 +247,9 @@ Route19_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_SWIMMER_GIRL, 27, 13, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerSwimmerfDawn, -1
-	person_event SPRITE_SWIMMER_GUY, 32, 17, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermHarold, -1
-	person_event SPRITE_SWIMMER_GUY, 21, 15, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermJerome, -1
-	person_event SPRITE_SWIMMER_GUY, 27, 12, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerSwimmermTucker, -1
-	person_event SPRITE_FISHER, 9, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 1, FisherScript_0x19ea4d, -1
-	person_event SPRITE_FISHER, 9, 15, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, FisherScript_0x19ea61, -1
+	person_event SPRITE_SWIMMER_GIRL, 27, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerSwimmerfDawn, -1
+	person_event SPRITE_SWIMMER_GUY, 32, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermHarold, -1
+	person_event SPRITE_SWIMMER_GUY, 21, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermJerome, -1
+	person_event SPRITE_SWIMMER_GUY, 27, 12, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerSwimmermTucker, -1
+	person_event SPRITE_FISHER, 9, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 1, FisherScript_0x19ea4d, -1
+	person_event SPRITE_FISHER, 9, 15, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, FisherScript_0x19ea61, -1

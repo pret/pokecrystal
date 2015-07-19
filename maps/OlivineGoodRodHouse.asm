@@ -96,4 +96,4 @@ OlivineGoodRodHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GoodRodGuru, -1
+	person_event SPRITE_FISHING_GURU, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GoodRodGuru, -1

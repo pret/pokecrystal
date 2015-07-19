@@ -80,7 +80,7 @@ CherrygrovePokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x19696d, -1
-	person_event SPRITE_FISHER, 7, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x196970, -1
-	person_event SPRITE_GENTLEMAN, 10, 12, UP << 2 | $3, $0, -1, -1, $0, 0, GentlemanScript_0x196973, -1
-	person_event SPRITE_TEACHER, 10, 5, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x196976, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x19696d, -1
+	person_event SPRITE_FISHER, 7, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x196970, -1
+	person_event SPRITE_GENTLEMAN, 10, 12, OW_UP | $3, $0, -1, -1, $0, 0, GentlemanScript_0x196973, -1
+	person_event SPRITE_TEACHER, 10, 5, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x196976, -1

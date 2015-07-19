@@ -3,37 +3,37 @@ TeamRocketBaseB3F_MapScriptHeader:
 	db 4
 
 	; triggers
-	dw UnknownScript_0x6dfe9, $0000
-	dw UnknownScript_0x6dfed, $0000
-	dw UnknownScript_0x6dfee, $0000
-	dw UnknownScript_0x6dfef, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
+	dw .Trigger3, $0000
+	dw .Trigger4, $0000
 
 	; callback count
 	db 1
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x6dff0
+	dbw 1, .CheckGiovanniDoor
 
-UnknownScript_0x6dfe9:
+.Trigger1:
 	priorityjump LanceScript_0x6dffc
 	end
 
-UnknownScript_0x6dfed:
+.Trigger2:
 	end
 
-UnknownScript_0x6dfee:
+.Trigger3:
 	end
 
-UnknownScript_0x6dfef:
+.Trigger4:
 	end
 
-UnknownScript_0x6dff0:
+.CheckGiovanniDoor:
 	checkevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
-	iftrue UnknownScript_0x6dff7
+	iftrue .OpenSesame
 	return
 
-UnknownScript_0x6dff7:
+.OpenSesame:
 	changeblock $a, $8, $7
 	return
 
@@ -587,17 +587,17 @@ TeamRocketBaseB3F_MapEventHeader:
 
 	; people-events
 	db 14
-	person_event SPRITE_LANCE, 18, 29, UP << 2 | $2, $0, -1, -1, $0, 0, LanceScript_0x6dffc, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
-	person_event SPRITE_ROCKET, 7, 12, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
-	person_event SPRITE_MOLTRES, 6, 11, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, MoltresScript_0x6e091, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET_GIRL, 11, 25, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerGruntF5, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET, 18, 9, LEFT << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM28, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 15, 27, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 19, 15, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET, 18, 28, UP << 2 | $2, $0, -1, -1, $0, 0, RocketScript_0x6e048, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SILVER, 9, 8, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_TEAM_ROCKET_BASE
-	person_event SPRITE_POKE_BALL, 16, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e120, EVENT_TEAM_ROCKET_BASE_B3F_PROTEIN
-	person_event SPRITE_POKE_BALL, 16, 7, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e122, EVENT_TEAM_ROCKET_BASE_B3F_X_SPECIAL
-	person_event SPRITE_POKE_BALL, 13, 32, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e124, EVENT_TEAM_ROCKET_BASE_B3F_FULL_HEAL
-	person_event SPRITE_POKE_BALL, 6, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e126, EVENT_TEAM_ROCKET_BASE_B3F_ICE_HEAL
-	person_event SPRITE_POKE_BALL, 14, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e128, EVENT_TEAM_ROCKET_BASE_B3F_ULTRA_BALL
+	person_event SPRITE_LANCE, 18, 29, OW_UP | $2, $0, -1, -1, $0, 0, LanceScript_0x6dffc, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	person_event SPRITE_ROCKET, 7, 12, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
+	person_event SPRITE_MOLTRES, 6, 11, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, MoltresScript_0x6e091, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET_GIRL, 11, 25, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerGruntF5, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 18, 9, OW_LEFT | $2, $0, -1, -1, $2, 3, TrainerGruntM28, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 15, 27, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 19, 15, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 18, 28, OW_UP | $2, $0, -1, -1, $0, 0, RocketScript_0x6e048, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SILVER, 9, 8, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_TEAM_ROCKET_BASE
+	person_event SPRITE_POKE_BALL, 16, 5, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e120, EVENT_TEAM_ROCKET_BASE_B3F_PROTEIN
+	person_event SPRITE_POKE_BALL, 16, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e122, EVENT_TEAM_ROCKET_BASE_B3F_X_SPECIAL
+	person_event SPRITE_POKE_BALL, 13, 32, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e124, EVENT_TEAM_ROCKET_BASE_B3F_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 6, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e126, EVENT_TEAM_ROCKET_BASE_B3F_ICE_HEAL
+	person_event SPRITE_POKE_BALL, 14, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e128, EVENT_TEAM_ROCKET_BASE_B3F_ULTRA_BALL

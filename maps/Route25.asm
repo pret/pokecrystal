@@ -439,14 +439,14 @@ Route25_MapEventHeader:
 
 	; people-events
 	db 11
-	person_event SPRITE_MISTY, 13, 50, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_COOLTRAINER_M, 14, 50, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_YOUNGSTER, 12, 16, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyDudley, -1
-	person_event SPRITE_LASS, 15, 20, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassEllen, -1
-	person_event SPRITE_YOUNGSTER, 12, 25, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyJoe, -1
-	person_event SPRITE_LASS, 10, 26, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassLaura, -1
-	person_event SPRITE_YOUNGSTER, 8, 29, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperLloyd, -1
-	person_event SPRITE_LASS, 15, 32, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassShannon, -1
-	person_event SPRITE_SUPER_NERD, 11, 35, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerSupernerdPat, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 41, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x19efac, -1
-	person_event SPRITE_POKE_BALL, 8, 36, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN
+	person_event SPRITE_MISTY, 13, 50, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_COOLTRAINER_M, 14, 50, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_YOUNGSTER, 12, 16, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyDudley, -1
+	person_event SPRITE_LASS, 15, 20, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassEllen, -1
+	person_event SPRITE_YOUNGSTER, 12, 25, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyJoe, -1
+	person_event SPRITE_LASS, 10, 26, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassLaura, -1
+	person_event SPRITE_YOUNGSTER, 8, 29, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperLloyd, -1
+	person_event SPRITE_LASS, 15, 32, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassShannon, -1
+	person_event SPRITE_SUPER_NERD, 11, 35, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerSupernerdPat, -1
+	person_event SPRITE_COOLTRAINER_M, 12, 41, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x19efac, -1
+	person_event SPRITE_POKE_BALL, 8, 36, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN

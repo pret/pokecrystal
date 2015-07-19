@@ -373,9 +373,9 @@ CopycatsHouse2F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_COPYCAT, 7, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Copycat, EVENT_COPYCAT_1
-	person_event SPRITE_MOLTRES, 8, 10, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CopycatsDodrio, -1
-	person_event SPRITE_FAIRY, 5, 10, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
-	person_event SPRITE_MONSTER, 5, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CopycatsHouse2FDoll, -1
-	person_event SPRITE_BIRD, 5, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CopycatsHouse2FDoll, -1
-	person_event SPRITE_COPYCAT, 7, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, Copycat, EVENT_COPYCAT_2
+	person_event SPRITE_COPYCAT, 7, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Copycat, EVENT_COPYCAT_1
+	person_event SPRITE_MOLTRES, 8, 10, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CopycatsDodrio, -1
+	person_event SPRITE_FAIRY, 5, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
+	person_event SPRITE_MONSTER, 5, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CopycatsHouse2FDoll, -1
+	person_event SPRITE_BIRD, 5, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CopycatsHouse2FDoll, -1
+	person_event SPRITE_COPYCAT, 7, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, Copycat, EVENT_COPYCAT_2

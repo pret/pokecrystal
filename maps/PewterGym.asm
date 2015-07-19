@@ -222,6 +222,6 @@ PewterGym_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_BROCK, 5, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrockScript_0x1a2864, -1
-	person_event SPRITE_YOUNGSTER, 9, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperJerry, -1
-	person_event SPRITE_GYM_GUY, 15, 10, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, PewterGymGuyScript, -1
+	person_event SPRITE_BROCK, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrockScript_0x1a2864, -1
+	person_event SPRITE_YOUNGSTER, 9, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperJerry, -1
+	person_event SPRITE_GYM_GUY, 15, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, PewterGymGuyScript, -1

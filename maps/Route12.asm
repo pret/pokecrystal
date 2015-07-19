@@ -178,9 +178,9 @@ Route12_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_FISHER, 17, 9, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherMartin, -1
-	person_event SPRITE_FISHER, 27, 18, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherStephen, -1
-	person_event SPRITE_FISHER, 42, 14, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerFisherBarney, -1
-	person_event SPRITE_FISHER, 11, 10, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherKyle, -1
-	person_event SPRITE_POKE_BALL, 47, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
-	person_event SPRITE_POKE_BALL, 55, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET
+	person_event SPRITE_FISHER, 17, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherMartin, -1
+	person_event SPRITE_FISHER, 27, 18, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherStephen, -1
+	person_event SPRITE_FISHER, 42, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerFisherBarney, -1
+	person_event SPRITE_FISHER, 11, 10, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherKyle, -1
+	person_event SPRITE_POKE_BALL, 47, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
+	person_event SPRITE_POKE_BALL, 55, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET

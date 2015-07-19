@@ -145,11 +145,11 @@ BlackthornGym2F_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 5, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermCody, -1
-	person_event SPRITE_COOLTRAINER_F, 15, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainerfFran, -1
-	person_event SPRITE_BOULDER, 6, 12, LEFT << 2 | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1
-	person_event SPRITE_BOULDER, 7, 6, LEFT << 2 | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_2
-	person_event SPRITE_BOULDER, 20, 10, LEFT << 2 | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_3
-	person_event SPRITE_BOULDER, 7, 7, LEFT << 2 | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1
-	person_event SPRITE_BOULDER, 5, 10, LEFT << 2 | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1
-	person_event SPRITE_BOULDER, 18, 12, LEFT << 2 | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_COOLTRAINER_M, 5, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermCody, -1
+	person_event SPRITE_COOLTRAINER_F, 15, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainerfFran, -1
+	person_event SPRITE_BOULDER, 6, 12, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1
+	person_event SPRITE_BOULDER, 7, 6, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_2
+	person_event SPRITE_BOULDER, 20, 10, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_3
+	person_event SPRITE_BOULDER, 7, 7, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_BOULDER, 5, 10, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_BOULDER, 18, 12, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1

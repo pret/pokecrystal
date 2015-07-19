@@ -207,12 +207,12 @@ UnionCave1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_POKEFAN_M, 10, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerDaniel, -1
-	person_event SPRITE_SUPER_NERD, 25, 8, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacLarry, -1
-	person_event SPRITE_POKEFAN_M, 12, 15, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerHikerRussell, -1
-	person_event SPRITE_FISHER, 31, 19, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerFirebreatherRay, -1
-	person_event SPRITE_FISHER, 23, 18, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerFirebreatherBill, -1
-	person_event SPRITE_POKE_BALL, 25, 21, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c00, EVENT_UNION_CAVE_1F_GREAT_BALL
-	person_event SPRITE_POKE_BALL, 6, 8, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c02, EVENT_UNION_CAVE_1F_X_ATTACK
-	person_event SPRITE_POKE_BALL, 21, 8, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c04, EVENT_UNION_CAVE_1F_POTION
-	person_event SPRITE_POKE_BALL, 37, 16, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c06, EVENT_UNION_CAVE_1F_AWAKENING
+	person_event SPRITE_POKEFAN_M, 10, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerDaniel, -1
+	person_event SPRITE_SUPER_NERD, 25, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacLarry, -1
+	person_event SPRITE_POKEFAN_M, 12, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerHikerRussell, -1
+	person_event SPRITE_FISHER, 31, 19, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerFirebreatherRay, -1
+	person_event SPRITE_FISHER, 23, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerFirebreatherBill, -1
+	person_event SPRITE_POKE_BALL, 25, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c00, EVENT_UNION_CAVE_1F_GREAT_BALL
+	person_event SPRITE_POKE_BALL, 6, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c02, EVENT_UNION_CAVE_1F_X_ATTACK
+	person_event SPRITE_POKE_BALL, 21, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c04, EVENT_UNION_CAVE_1F_POTION
+	person_event SPRITE_POKE_BALL, 37, 16, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c06, EVENT_UNION_CAVE_1F_AWAKENING

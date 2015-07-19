@@ -7607,7 +7607,7 @@ Function3ee3b: ; 3ee3b
 	ld [hBGMapMode], a
 
 .asm_3f035
-	callba Function2709e
+	callba LevelUpHappinessMod
 	ld a, [CurBattleMon]
 	ld b, a
 	ld a, [CurPartyMon]

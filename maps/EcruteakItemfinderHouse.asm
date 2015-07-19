@@ -176,5 +176,5 @@ EcruteakItemfinderHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_COOLTRAINER_M, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x9a5fb, -1
-	person_event SPRITE_POKEDEX, 7, 7, DOWN << 2 | $1, $0, -1, -1, $0, 0, PokedexScript_0x9a620, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x9a5fb, -1
+	person_event SPRITE_POKEDEX, 7, 7, OW_DOWN | $1, $0, -1, -1, $0, 0, PokedexScript_0x9a620, -1

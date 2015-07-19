@@ -309,8 +309,8 @@ BurnedTower1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_ROCK, 8, 19, LEFT << 2 | $10, $0, -1, -1, $0, 0, BurnedTower1FRock, -1
-	person_event SPRITE_SUPER_NERD, 16, 16, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
-	person_event SPRITE_SILVER, 13, 12, LEFT << 2 | $0, $0, -1, -1, $2, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
-	person_event SPRITE_MORTY, 18, 18, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
-	person_event SPRITE_POKE_BALL, 6, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP
+	person_event SPRITE_ROCK, 8, 19, OW_LEFT | $10, $0, -1, -1, $0, 0, BurnedTower1FRock, -1
+	person_event SPRITE_SUPER_NERD, 16, 16, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
+	person_event SPRITE_SILVER, 13, 12, OW_LEFT | $0, $0, -1, -1, $2, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
+	person_event SPRITE_MORTY, 18, 18, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
+	person_event SPRITE_POKE_BALL, 6, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP

@@ -412,6 +412,6 @@ RuinsofAlphResearchCenter_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_SCIENTIST, 9, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591e5, -1
-	person_event SPRITE_SCIENTIST, 6, 9, DOWN << 2 | $2, $12, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x59214, -1
-	person_event SPRITE_SCIENTIST, 9, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
+	person_event SPRITE_SCIENTIST, 9, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591e5, -1
+	person_event SPRITE_SCIENTIST, 6, 9, OW_DOWN | $2, $12, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x59214, -1
+	person_event SPRITE_SCIENTIST, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST

@@ -113,8 +113,8 @@ GoldenrodDeptStore2F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_CLERK, 9, 17, UP << 2 | $3, $0, -1, -1, $0, 0, ClerkScript_0x55b5d, -1
-	person_event SPRITE_CLERK, 10, 17, LEFT << 2 | $0, $0, -1, -1, $0, 0, ClerkScript_0x55b65, -1
-	person_event SPRITE_YOUNGSTER, 10, 13, UP << 2 | $0, $10, -1, -1, $0, 0, YoungsterScript_0x55b6d, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 10, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x55b70, -1
-	person_event SPRITE_GENTLEMAN, 10, 6, DOWN << 2 | $3, $0, -1, -1, $0, 0, GentlemanScript_0x55b73, -1
+	person_event SPRITE_CLERK, 9, 17, OW_UP | $3, $0, -1, -1, $0, 0, ClerkScript_0x55b5d, -1
+	person_event SPRITE_CLERK, 10, 17, OW_LEFT | $0, $0, -1, -1, $0, 0, ClerkScript_0x55b65, -1
+	person_event SPRITE_YOUNGSTER, 10, 13, OW_UP | $0, $10, -1, -1, $0, 0, YoungsterScript_0x55b6d, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 10, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x55b70, -1
+	person_event SPRITE_GENTLEMAN, 10, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, GentlemanScript_0x55b73, -1

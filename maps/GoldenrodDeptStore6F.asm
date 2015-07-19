@@ -169,5 +169,5 @@ GoldenrodDeptStore6F_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_LASS, 6, 14, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x564bf, -1
-	person_event SPRITE_SUPER_NERD, 6, 12, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x564c2, -1
+	person_event SPRITE_LASS, 6, 14, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x564bf, -1
+	person_event SPRITE_SUPER_NERD, 6, 12, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x564c2, -1

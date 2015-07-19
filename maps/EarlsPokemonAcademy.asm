@@ -425,9 +425,9 @@ EarlsPokemonAcademy_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_FISHER, 6, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
-	person_event SPRITE_YOUNGSTER, 9, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x68a83, -1
-	person_event SPRITE_GAMEBOY_KID, 15, 7, UP << 2 | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x68a86, -1
-	person_event SPRITE_GAMEBOY_KID, 15, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GameboyKidScript_0x68a91, -1
-	person_event SPRITE_YOUNGSTER, 11, 8, UP << 2 | $3, $0, -1, -1, $0, 0, YoungsterScript_0x68a9c, -1
-	person_event SPRITE_POKEDEX, 8, 6, DOWN << 2 | $1, $0, -1, -1, $0, 0, AcademyNotebook, -1
+	person_event SPRITE_FISHER, 6, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
+	person_event SPRITE_YOUNGSTER, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x68a83, -1
+	person_event SPRITE_GAMEBOY_KID, 15, 7, OW_UP | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x68a86, -1
+	person_event SPRITE_GAMEBOY_KID, 15, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GameboyKidScript_0x68a91, -1
+	person_event SPRITE_YOUNGSTER, 11, 8, OW_UP | $3, $0, -1, -1, $0, 0, YoungsterScript_0x68a9c, -1
+	person_event SPRITE_POKEDEX, 8, 6, OW_DOWN | $1, $0, -1, -1, $0, 0, AcademyNotebook, -1

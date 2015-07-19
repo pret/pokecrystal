@@ -129,7 +129,7 @@ LavenderTown_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_POKEFAN_M, 11, 16, UP << 2 | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x1ad6e4, -1
-	person_event SPRITE_TEACHER, 19, 6, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x1ad6e7, -1
-	person_event SPRITE_GRAMPS, 16, 18, UP << 2 | $3, $0, -1, -1, $0, 0, GrampsScript_0x1ad6ea, -1
-	person_event SPRITE_YOUNGSTER, 15, 10, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 1, YoungsterScript_0x1ad6ed, -1
+	person_event SPRITE_POKEFAN_M, 11, 16, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x1ad6e4, -1
+	person_event SPRITE_TEACHER, 19, 6, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x1ad6e7, -1
+	person_event SPRITE_GRAMPS, 16, 18, OW_UP | $3, $0, -1, -1, $0, 0, GrampsScript_0x1ad6ea, -1
+	person_event SPRITE_YOUNGSTER, 15, 10, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 1, YoungsterScript_0x1ad6ed, -1

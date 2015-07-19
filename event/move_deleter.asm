@@ -5,7 +5,7 @@ MoveDeletion:
 	jr c, .asm_2c5c3
 	ld hl, UnknownText_0x2c5f4
 	call PrintText
-	callba Function50000
+	callba SelectMonFromParty
 	jr c, .asm_2c5c3
 	ld a, [CurPartySpecies]
 	cp EGG

@@ -295,11 +295,11 @@ SaffronCity_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_LASS, 18, 11, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x19932a, -1
-	person_event SPRITE_POKEFAN_M, 34, 23, UP << 2 | $1, $2, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x19933e, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 36, UP << 2 | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerMScript_0x199352, -1
-	person_event SPRITE_COOLTRAINER_F, 28, 24, UP << 2 | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x199355, -1
-	person_event SPRITE_FISHER, 16, 31, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x199358, -1
-	person_event SPRITE_YOUNGSTER, 23, 19, UP << 2 | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x19936c, -1
-	person_event SPRITE_YOUNGSTER, 26, 39, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x19936f, -1
-	person_event SPRITE_LASS, 12, 23, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x199372, -1
+	person_event SPRITE_LASS, 18, 11, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x19932a, -1
+	person_event SPRITE_POKEFAN_M, 34, 23, OW_UP | $1, $2, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x19933e, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 36, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerMScript_0x199352, -1
+	person_event SPRITE_COOLTRAINER_F, 28, 24, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x199355, -1
+	person_event SPRITE_FISHER, 16, 31, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x199358, -1
+	person_event SPRITE_YOUNGSTER, 23, 19, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x19936c, -1
+	person_event SPRITE_YOUNGSTER, 26, 39, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x19936f, -1
+	person_event SPRITE_LASS, 12, 23, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x199372, -1

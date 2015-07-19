@@ -786,9 +786,9 @@ TeamRocketBaseB1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_ROCKET, 4, 4, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
-	person_event SPRITE_ROCKET, 8, 6, LEFT << 2 | $1, $0, -1, -1, $2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 16, 22, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_POKE_BALL, 10, 31, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac4, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
-	person_event SPRITE_POKE_BALL, 19, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac6, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
-	person_event SPRITE_POKE_BALL, 16, 25, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac8, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC
+	person_event SPRITE_ROCKET, 4, 4, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
+	person_event SPRITE_ROCKET, 8, 6, OW_LEFT | $1, $0, -1, -1, $2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 16, 22, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_POKE_BALL, 10, 31, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac4, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 19, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac6, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
+	person_event SPRITE_POKE_BALL, 16, 25, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac8, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC

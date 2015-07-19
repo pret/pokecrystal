@@ -59,7 +59,7 @@ OlivinePokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x9c002, -1
-	person_event SPRITE_FISHING_GURU, 8, 12, UP << 2 | $1, $1, -1, -1, $0, 0, FishingGuruScript_0x9c005, -1
-	person_event SPRITE_FISHER, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x9c008, -1
-	person_event SPRITE_TEACHER, 5, 11, UP << 2 | $2, $0, -1, -1, $0, 0, TeacherScript_0x9c00b, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x9c002, -1
+	person_event SPRITE_FISHING_GURU, 8, 12, OW_UP | $1, $1, -1, -1, $0, 0, FishingGuruScript_0x9c005, -1
+	person_event SPRITE_FISHER, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x9c008, -1
+	person_event SPRITE_TEACHER, 5, 11, OW_UP | $2, $0, -1, -1, $0, 0, TeacherScript_0x9c00b, -1

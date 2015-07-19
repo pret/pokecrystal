@@ -923,14 +923,14 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 
 	; people-events
 	db 11
-	person_event SPRITE_PHARMACIST, 16, 13, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_PHARMACIST, 12, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 6, 21, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 6, 15, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 6, 7, UP << 2 | $2, $0, -1, -1, $2, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 16, 23, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_TEACHER, 31, 7, UP << 2 | $2, $0, -1, -1, $0, 0, TeacherScript_0x7ca7d, -1
-	person_event SPRITE_SUPER_NERD, 31, 23, UP << 2 | $2, $0, -1, -1, $0, 0, SuperNerdScript_0x7ca7a, -1
-	person_event SPRITE_POKE_BALL, 16, 5, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7d, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
-	person_event SPRITE_POKE_BALL, 13, 18, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7f, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
-	person_event SPRITE_SILVER, 7, 27, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH
+	person_event SPRITE_PHARMACIST, 16, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_PHARMACIST, 12, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 21, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 15, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 7, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 16, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_TEACHER, 31, 7, OW_UP | $2, $0, -1, -1, $0, 0, TeacherScript_0x7ca7d, -1
+	person_event SPRITE_SUPER_NERD, 31, 23, OW_UP | $2, $0, -1, -1, $0, 0, SuperNerdScript_0x7ca7a, -1
+	person_event SPRITE_POKE_BALL, 16, 5, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7d, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
+	person_event SPRITE_POKE_BALL, 13, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7f, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
+	person_event SPRITE_SILVER, 7, 27, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH

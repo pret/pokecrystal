@@ -842,7 +842,7 @@ NamePlayer: ; 0x6074
 	ld a, [wcfa9]
 	dec a
 	jr z, .NewName
-	call Function60fa
+	call StorePlayerName
 	callba Function8c1d
 	callba MovePlayerPicLeft
 	ret
@@ -892,9 +892,9 @@ Function60e9: ; 60e9
 	ret
 ; 60fa
 
-Function60fa: ; 60fa
-	ld a, $50
-	ld bc, $000b
+StorePlayerName: ; 60fa
+	ld a, "@"
+	ld bc, NAME_LENGTH
 	ld hl, PlayerName
 	call ByteFill
 	ld hl, PlayerName
@@ -2390,9 +2390,9 @@ Function7021: ; 7021
 	call GetSpriteDirection
 	and a
 	jr z, .down
-	cp UP << 2
+	cp OW_UP
 	jr z, .up
-	cp LEFT << 2
+	cp OW_LEFT
 	jr z, .left
 	inc d
 	ret
@@ -2790,7 +2790,7 @@ ChangeHappiness: ; 71c2
 	db -10, -10, -15 ; Used Energy Root (bitter)
 	db -15, -15, -20 ; Used Revival Herb (bitter)
 	db  +3,  +3,  +1
-	db +10,  +6,  +4
+	db +10,  +6,  +4 ; Gained a level in the place where it was caught
 ; 725a
 
 
@@ -2987,7 +2987,7 @@ SpecialShuckleNick:
 
 
 SpecialReturnShuckle: ; 737e
-	callba Function50000
+	callba SelectMonFromParty
 	jr c, .asm_73e6
 
 	ld a, [CurPartySpecies]
@@ -3059,7 +3059,7 @@ SpecialReturnShuckle: ; 737e
 ; 73f7
 
 Function73f7: ; 73f7
-	callba Function50000
+	callba SelectMonFromParty
 	jr c, .asm_740e
 	ld a, [CurPartySpecies]
 	ld [ScriptVar], a
@@ -3086,9 +3086,9 @@ Function741d: ; 741d
 
 Function7420: ; 7420
 	push hl
-	callba Function50000
+	callba SelectMonFromParty
 	pop hl
-	jr c, .asm_744e
+	jr c, .nope
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .egg
@@ -3113,7 +3113,7 @@ Function7420: ; 7420
 	call ChangeHappiness
 	ret
 
-.asm_744e
+.nope
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -3188,13 +3188,13 @@ Function8029: ; 8029
 	ld e, $80
 	ld a, [wd45b]
 	bit 2, a
-	jr nz, .asm_8059
+	jr nz, .ok
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_8059
-	ld e, $90
+	jr z, .ok
+	ld e, (PAL_OW_BLUE << 4) | $80
 
-.asm_8059
+.ok
 	ld [hl], e
 	ld a, $0
 	ld [$ffaf], a
@@ -3212,7 +3212,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, 0, 0, LEFT << 2 | $3, $ff, -1, -1, $0, 0, $0000, -1
+	person_event SPRITE_CHRIS, 0, 0, OW_LEFT | $3, $ff, -1, -1, $0, 0, $0000, -1
 	; db $01, $00, $00, $0b, $ff, $ff, $ff, $00, $00, $00, $00, $ff, $ff
 ; 807e
 
@@ -3392,7 +3392,7 @@ Function8177: ; 8177
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp MAPOBJECT_NOT_VISIBLE
+	cp -1
 	jr nz, .next
 	ld a, [XCoord]
 	ld d, a
@@ -3482,7 +3482,7 @@ Function81ea: ; 81ea
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp MAPOBJECT_NOT_VISIBLE
+	cp -1
 	jr nz, .next
 	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
@@ -3540,7 +3540,7 @@ Function823e: ; 823e
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp MAPOBJECT_NOT_VISIBLE
+	cp -1
 	jr nz, .next
 	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
@@ -10929,7 +10929,7 @@ TMHMMoves: ; 1167a
 	db 0 ; end
 ; 116b7
 
-Function116b7: ; 0x116b7
+_NamingScreen: ; 0x116b7
 	call Function2ed3
 	call Function116c1
 	call Function2b74
@@ -23005,7 +23005,7 @@ Function16dac: ; 16dac
 Function16dc7: ; 16dc7
 	ld hl, UnknownText_0x16e04
 	call PrintText
-	callba Function50000
+	callba SelectMonFromParty
 	jr c, .asm_16df8
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -25010,19 +25010,19 @@ Function243e8:: ; 243e8
 	call Function1c47
 	ld a, [wcf81]
 	bit 0, a
-	jr z, .asm_24411
+	jr z, .next
 	ld d, h
 	ld e, l
 	call Function1c23
 
-.asm_24411
+.next
 	call Function1c7e
 	ld a, h
 	or l
-	jr z, .asm_2441b
+	jr z, .next2
 	call Function1c47
 
-.asm_2441b
+.next2
 	pop af
 	ld [rSVBK], a
 	ld hl, wcf78
@@ -28398,7 +28398,7 @@ GetDecorationData: ; 269dd
 GetDecorationName: ; 269e7
 	push hl
 	call GetDecorationData
-	call GetDecorationType
+	call GetDecoName
 	pop hl
 	call CopyName2
 	ret
@@ -28408,7 +28408,7 @@ DecorationMenuFunction: ; 269f3
 	ld a, [MenuSelection]
 	push de
 	call GetDecorationData
-	call GetDecorationType
+	call GetDecoName
 	pop hl
 	call PlaceString
 	ret
@@ -28473,66 +28473,66 @@ GetDecorationSprite: ; 26a44
 ; 26a4f
 
 decoration: MACRO
-	; type, name function, ?? function, event flag, sprite
+	; type, name, command, event flag, tile/sprite
 	db \1, \2, \3
 	dw \4
 	db \5
 ENDM
 
 DecorationAttributes: ; 26a4f
-	decoration DECO_CARPET,   $00,  0, EVENT_000, SPRITE_NONE ; 00
-	decoration DECO_CARPET,   $01,  2, EVENT_000, SPRITE_NONE ; 01
-	decoration DECO_PLANT,    $12,  1, EVENT_2A4, $1b ; 02
-	decoration DECO_PLANT,    $14,  1, EVENT_2A5, $1c ; 03
-	decoration DECO_PLANT,    $15,  1, EVENT_2A6, $1d ; 04
-	decoration DECO_PLANT,    $13,  1, EVENT_2A7, $1e ; 05
-	decoration DECO_CARPET,   $01,  4, EVENT_000, SPRITE_NONE ; 06
-	decoration DECO_POSTER,   $16,  3, EVENT_2A8, $08 ; 07
-	decoration DECO_POSTER,   $17,  3, EVENT_2A9, $0b ; 08
-	decoration DECO_POSTER,   $18,  3, EVENT_2AA, $0e ; 09
-	decoration DECO_POSTER,   $19,  3, EVENT_2AB, $11 ; 0a
-	decoration DECO_CARPET,   $01,  6, EVENT_000, SPRITE_NONE ; 0b
-	decoration DECO_CARPET,   $02,  5, EVENT_2AC, SPRITE_ERIKA ; 0c
-	decoration DECO_CARPET,   $03,  5, EVENT_2AD, SPRITE_KOGA ; 0d
-	decoration DECO_CARPET,   $04,  5, EVENT_2AE, SPRITE_SABRINA ; 0e
-	decoration DECO_CARPET,   $01,  8, EVENT_000, SPRITE_NONE ; 0f
-	decoration DECO_CARPET,   $05,  7, EVENT_2AF, SPRITE_SURGE ; 10
-	decoration DECO_CONSOLE,  $19,  7, EVENT_2B0, SPRITE_COOLTRAINER_M ; 11
-	decoration DECO_CONSOLE,  $23,  7, EVENT_2B1, SPRITE_COOLTRAINER_F ; 12
-	decoration DECO_CONSOLE,  $27,  7, EVENT_2B2, SPRITE_BUG_CATCHER ; 13
-	decoration DECO_CARPET,   $01, 10, EVENT_000, SPRITE_NONE ; 14
-	decoration DECO_CARPET,   $06,  9, EVENT_2B3, SPRITE_FAMICOM ; 15
-	decoration DECO_CARPET,   $07,  9, EVENT_2B4, SPRITE_SNES ; 16
-	decoration DECO_CARPET,   $08,  9, EVENT_2B5, SPRITE_N64 ; 17
-	decoration DECO_CARPET,   $09,  9, EVENT_2B6, SPRITE_VIRTUAL_BOY ; 18
-	decoration DECO_CARPET,   $01, 12, EVENT_000, SPRITE_NONE ; 19
-	decoration DECO_BIGDOLL,  $8f, 11, EVENT_2CF, SPRITE_BIG_SNORLAX ; 1a
-	decoration DECO_BIGDOLL,  $5f, 11, EVENT_2D0, SPRITE_BIG_ONIX ; 1b
-	decoration DECO_BIGDOLL,  $83, 11, EVENT_2D1, SPRITE_BIG_LAPRAS ; 1c
-	decoration DECO_CARPET,   $01, 14, EVENT_000, SPRITE_NONE ; 1d
-	decoration DECO_ORNAMENT, $19, 13, EVENT_2B7, SPRITE_PIKACHU ; 1e
-	decoration DECO_CARPET,   $0c, 13, EVENT_2B8, SPRITE_SURFING_PIKACHU ; 1f
-	decoration DECO_ORNAMENT, $23, 13, EVENT_2B9, SPRITE_CLEFAIRY ; 20
-	decoration DECO_ORNAMENT, $27, 13, EVENT_2BA, SPRITE_JIGGLYPUFF ; 21
-	decoration DECO_ORNAMENT, $01, 13, EVENT_2BB, SPRITE_BULBASAUR ; 22
-	decoration DECO_ORNAMENT, $04, 13, EVENT_2BC, SPRITE_CHARMANDER ; 23
-	decoration DECO_ORNAMENT, $07, 13, EVENT_2BD, SPRITE_SQUIRTLE ; 24
-	decoration DECO_ORNAMENT, $3c, 13, EVENT_2BE, SPRITE_POLIWAG ; 25
-	decoration DECO_ORNAMENT, $32, 13, EVENT_2BF, SPRITE_DIGLETT ; 26
-	decoration DECO_ORNAMENT, $78, 13, EVENT_2C0, SPRITE_STARMIE ; 27
-	decoration DECO_ORNAMENT, $81, 13, EVENT_2C1, SPRITE_MAGIKARP ; 28
-	decoration DECO_ORNAMENT, $2b, 13, EVENT_2C2, SPRITE_ODDISH ; 29
-	decoration DECO_ORNAMENT, $5e, 13, EVENT_2C3, SPRITE_GENGAR ; 2a
-	decoration DECO_ORNAMENT, $5a, 13, EVENT_2C4, SPRITE_SHELLDER ; 2b
-	decoration DECO_ORNAMENT, $58, 13, EVENT_2C5, SPRITE_GRIMER ; 2c
-	decoration DECO_ORNAMENT, $64, 13, EVENT_2C6, SPRITE_VOLTORB ; 2d
-	decoration DECO_ORNAMENT, $0d, 13, EVENT_2C7, SPRITE_WEEDLE ; 2e
-	decoration DECO_ORNAMENT, $c9, 13, EVENT_2C8, SPRITE_UNOWN  ; 2f
-	decoration DECO_ORNAMENT, $4a, 13, EVENT_2C9, SPRITE_GEODUDE ; 30
-	decoration DECO_ORNAMENT, $42, 13, EVENT_2CA, SPRITE_MACHOP; 31
-	decoration DECO_ORNAMENT, $48, 13, EVENT_2CB, SPRITE_TENTACOOL; 32
-	decoration DECO_CARPET,   $0a, 13, EVENT_2CD, SPRITE_GOLD_TROPHY; 33
-	decoration DECO_CARPET,   $0b, 13, EVENT_2CE, SPRITE_SILVER_TROPHY; 34
+	decoration DECO_PLANT,    $00,               $0,                 EVENT_000,                         $00
+	decoration DECO_PLANT,    PUT_IT_AWAY,       PUT_AWAY_BED,       EVENT_000,                         $00
+	decoration DECO_BED,      FEATHERY_BED,      SET_UP_BED,         EVENT_DECO_BED_1,                  $1b
+	decoration DECO_BED,      PINK_BED,          SET_UP_BED,         EVENT_DECO_BED_2,                  $1c
+	decoration DECO_BED,      POLKADOT_BED,      SET_UP_BED,         EVENT_DECO_BED_3,                  $1d
+	decoration DECO_BED,      PIKACHU_BED,       SET_UP_BED,         EVENT_DECO_BED_4,                  $1e
+	decoration DECO_PLANT,    PUT_IT_AWAY,       PUT_AWAY_CARPET,    EVENT_000,                         $00
+	decoration DECO_CARPET,   RED_CARPET,        SET_UP_CARPET,      EVENT_DECO_CARPET_1,               $08
+	decoration DECO_CARPET,   BLUE_CARPET,       SET_UP_CARPET,      EVENT_DECO_CARPET_2,               $0b
+	decoration DECO_CARPET,   YELLOW_CARPET,     SET_UP_CARPET,      EVENT_DECO_CARPET_3,               $0e
+	decoration DECO_CARPET,   GREEN_CARPET,      SET_UP_CARPET,      EVENT_DECO_CARPET_4,               $11
+	decoration DECO_PLANT,    PUT_IT_AWAY,       PUT_AWAY_PLANT,     EVENT_000,                         $00
+	decoration DECO_PLANT,    MAGNAPLANT,        SET_UP_PLANT,       EVENT_DECO_PLANT_1,                $20
+	decoration DECO_PLANT,    TROPICPLANT,       SET_UP_PLANT,       EVENT_DECO_PLANT_2,                $21
+	decoration DECO_PLANT,    JUMBOPLANT,        SET_UP_PLANT,       EVENT_DECO_PLANT_3,                $22
+	decoration DECO_PLANT,    PUT_IT_AWAY,       PUT_AWAY_POSTER,    EVENT_000,                         $00
+	decoration DECO_PLANT,    TOWN_MAP_D,        SET_UP_POSTER,      EVENT_DECO_PLANT_4,                $1f
+	decoration DECO_POSTER,   PIKACHU,           SET_UP_POSTER,      EVENT_DECO_POSTER_1,               $23
+	decoration DECO_POSTER,   CLEFAIRY,          SET_UP_POSTER,      EVENT_DECO_POSTER_2,               $24
+	decoration DECO_POSTER,   JIGGLYPUFF,        SET_UP_POSTER,      EVENT_DECO_POSTER_3,               $25
+	decoration DECO_PLANT,    PUT_IT_AWAY,       PUT_AWAY_CONSOLE,   EVENT_000,                         $00
+	decoration DECO_PLANT,    FAMICOM,           SET_UP_CONSOLE,     EVENT_DECO_FAMICOM,                SPRITE_FAMICOM
+	decoration DECO_PLANT,    SUPER_NES,         SET_UP_CONSOLE,     EVENT_DECO_SNES,                   SPRITE_SNES
+	decoration DECO_PLANT,    NINTENDO_64,       SET_UP_CONSOLE,     EVENT_DECO_N64,                    SPRITE_N64
+	decoration DECO_PLANT,    VIRTUAL_BOY,       SET_UP_CONSOLE,     EVENT_DECO_VIRTUAL_BOY,            SPRITE_VIRTUAL_BOY
+	decoration DECO_PLANT,    PUT_IT_AWAY,       PUT_AWAY_BIG_DOLL,  EVENT_000,                         $00
+	decoration DECO_BIGDOLL,  SNORLAX,           SET_UP_BIG_DOLL,    EVENT_DECO_BIG_SNORLAX_DOLL,       SPRITE_BIG_SNORLAX
+	decoration DECO_BIGDOLL,  ONIX,              SET_UP_BIG_DOLL,    EVENT_DECO_BIG_ONIX_DOLL,          SPRITE_BIG_ONIX
+	decoration DECO_BIGDOLL,  LAPRAS,            SET_UP_BIG_DOLL,    EVENT_DECO_BIG_LAPRAS_DOLL,        SPRITE_BIG_LAPRAS
+	decoration DECO_PLANT,    PUT_IT_AWAY,       PUT_AWAY_DOLL,      EVENT_000,                         $00
+	decoration DECO_DOLL,     PIKACHU,           SET_UP_DOLL,        EVENT_DECO_PIKACHU_DOLL,           SPRITE_PIKACHU
+	decoration DECO_PLANT,    SURF_PIKA_DOLL,    SET_UP_DOLL,        EVENT_DECO_SURFING_PIKACHU_DOLL,   SPRITE_SURFING_PIKACHU
+	decoration DECO_DOLL,     CLEFAIRY,          SET_UP_DOLL,        EVENT_DECO_CLEFAIRY_DOLL,          SPRITE_CLEFAIRY
+	decoration DECO_DOLL,     JIGGLYPUFF,        SET_UP_DOLL,        EVENT_DECO_JIGGLYPUFF_DOLL,        SPRITE_JIGGLYPUFF
+	decoration DECO_DOLL,     BULBASAUR,         SET_UP_DOLL,        EVENT_DECO_BULBASAUR_DOLL,         SPRITE_BULBASAUR
+	decoration DECO_DOLL,     CHARMANDER,        SET_UP_DOLL,        EVENT_DECO_CHARMANDER_DOLL,        SPRITE_CHARMANDER
+	decoration DECO_DOLL,     SQUIRTLE,          SET_UP_DOLL,        EVENT_DECO_SQUIRTLE_DOLL,          SPRITE_SQUIRTLE
+	decoration DECO_DOLL,     POLIWAG,           SET_UP_DOLL,        EVENT_DECO_POLIWAG_DOLL,           SPRITE_POLIWAG
+	decoration DECO_DOLL,     DIGLETT,           SET_UP_DOLL,        EVENT_DECO_DIGLETT_DOLL,           SPRITE_DIGLETT
+	decoration DECO_DOLL,     STARYU,            SET_UP_DOLL,        EVENT_DECO_STARMIE_DOLL,           SPRITE_STARMIE
+	decoration DECO_DOLL,     MAGIKARP,          SET_UP_DOLL,        EVENT_DECO_MAGIKARP_DOLL,          SPRITE_MAGIKARP
+	decoration DECO_DOLL,     ODDISH,            SET_UP_DOLL,        EVENT_DECO_ODDISH_DOLL,            SPRITE_ODDISH
+	decoration DECO_DOLL,     GENGAR,            SET_UP_DOLL,        EVENT_DECO_GENGAR_DOLL,            SPRITE_GENGAR
+	decoration DECO_DOLL,     SHELLDER,          SET_UP_DOLL,        EVENT_DECO_SHELLDER_DOLL,          SPRITE_SHELLDER
+	decoration DECO_DOLL,     GRIMER,            SET_UP_DOLL,        EVENT_DECO_GRIMER_DOLL,            SPRITE_GRIMER
+	decoration DECO_DOLL,     VOLTORB,           SET_UP_DOLL,        EVENT_DECO_VOLTORB_DOLL,           SPRITE_VOLTORB
+	decoration DECO_DOLL,     WEEDLE,            SET_UP_DOLL,        EVENT_DECO_WEEDLE_DOLL,            SPRITE_WEEDLE
+	decoration DECO_DOLL,     UNOWN,             SET_UP_DOLL,        EVENT_DECO_UNOWN_DOLL,             SPRITE_UNOWN
+	decoration DECO_DOLL,     GEODUDE,           SET_UP_DOLL,        EVENT_DECO_GEODUDE_DOLL,           SPRITE_GEODUDE
+	decoration DECO_DOLL,     MACHOP,            SET_UP_DOLL,        EVENT_DECO_MACHOP_DOLL,            SPRITE_MACHOP
+	decoration DECO_DOLL,     TENTACOOL,         SET_UP_DOLL,        EVENT_DECO_TENTACOOL_DOLL,         SPRITE_TENTACOOL
+	decoration DECO_PLANT,    GOLD_TROPHY,       SET_UP_DOLL,        EVENT_DECO_GOLD_TROPHY,            SPRITE_GOLD_TROPHY
+	decoration DECO_PLANT,    SILVER_TROPHY,     SET_UP_DOLL,        EVENT_DECO_SILVER_TROPHY,          SPRITE_SILVER_TROPHY
 ; 26b8d
 
 
@@ -28565,7 +28565,7 @@ DecorationNames: ; 26b8d
 	db "GREEN@"
 ; 26c72
 
-GetDecorationType: ; 26c72
+GetDecoName: ; 26c72
 	ld a, [hli]
 	ld e, [hl]
 	ld bc, StringBuffer2
@@ -28578,9 +28578,9 @@ GetDecorationType: ; 26c72
 
 .NameFunctions: ; 26c7e
 	dw .invalid
-	dw .default
+	dw .plant
 	dw .bed
-	dw .three
+	dw .carpet
 	dw .poster
 	dw .doll
 	dw .bigdoll
@@ -28591,35 +28591,35 @@ GetDecorationType: ; 26c72
 	ret
 ; 26c8d
 
-.default: ; 26c8d
+.plant: ; 26c8d
 	ld a, e
 	jr .getdeconame
 
 .bed: ; 26c90
-	call .default
-	ld a, $d ; " BED@"
+	call .plant
+	ld a, _BED
 	jr .getdeconame
 
-.three: ; 26c97
-	call .default
-	ld a, $e ; " CARPET@"
+.carpet: ; 26c97
+	call .plant
+	ld a, _CARPET
 	jr .getdeconame
 
 .poster: ; 26c9e
 	ld a, e
 	call .getpokename
-	ld a, $f ; " POSTER@"
+	ld a, _POSTER
 	jr .getdeconame
 
 .doll: ; 26ca6
 	ld a, e
 	call .getpokename
-	ld a, $10 ; " DOLL@"
+	ld a, _DOLL
 	jr .getdeconame
 
 .bigdoll: ; 26cae
 	push de
-	ld a, $11 ; "BIG @"
+	ld a, BIG_
 	call .getdeconame
 	pop de
 	ld a, e
@@ -28733,7 +28733,7 @@ DecoAction_TrySetItUp: ; 26d2d
 	push hl
 	call DecoAction_SetItUp
 	jr c, .failed
-	ld a, $1
+	ld a, 1
 	ld [wd1ee], a
 	pop hl
 	ld a, [MenuSelection]
@@ -28838,7 +28838,7 @@ DecoAction_putawayornament: ; 26dc9
 	call DecoAction_PutItAway_Ornament
 
 DecoAction_FinishUp_Ornament: ; 26dd6
-	call Function26e9a
+	call QueryWhichSide
 	ld a, [wd1ec]
 	ld [hl], a
 	ld a, [wd1ed]
@@ -28936,15 +28936,15 @@ UnknownText_0x26e6b: ; 0x26e6b
 DecoAction_AskWhichSide: ; 26e70
 	call MenuTextBox
 	ld hl, MenuDataHeader_0x26eab
-	call Function1dab
+	call GetMenu2
 	call Function1c07
 	call Function1c66
-	jr c, .asm_26e98
+	jr c, .nope
 	ld a, [wcfa9]
-	cp $3
-	jr z, .asm_26e98
+	cp 3
+	jr z, .nope
 	ld [Buffer2], a
-	call Function26e9a
+	call QueryWhichSide
 	ld a, [hl]
 	ld [wd1ec], a
 	ld a, [de]
@@ -28952,16 +28952,16 @@ DecoAction_AskWhichSide: ; 26e70
 	xor a
 	ret
 
-.asm_26e98
+.nope
 	scf
 	ret
 ; 26e9a
 
-Function26e9a: ; 26e9a
+QueryWhichSide: ; 26e9a
 	ld hl, RightOrnament
 	ld de, LeftOrnament
 	ld a, [Buffer2]
-	cp $1
+	cp 1
 	ret z
 	push hl
 	ld h, d
@@ -29016,7 +29016,7 @@ UnknownText_0x26ee5: ; 0x26ee5
 	db "@"
 ; 0x26eea
 
-Function26eea: ; 26eea
+GetDecorationName_c_de: ; 26eea
 	ld a, c
 	ld h, d
 	ld l, e
@@ -29024,13 +29024,13 @@ Function26eea: ; 26eea
 	ret
 ; 26ef1
 
-Function26ef1: ; 26ef1
+DecorationFlagAction_c: ; 26ef1
 	ld a, c
 	jp DecorationFlagAction
 ; 26ef5
 
 
-Function26ef5: ; 26ef5 (9:6ef5)
+GetDecorationName_c: ; 26ef5 (9:6ef5)
 	ld a, c
 	call GetDecorationID
 	ld hl, StringBuffer1
@@ -29078,51 +29078,56 @@ SetAllDecorationFlags: ; 26f19
 ; 26f2b
 
 DecorationIDs: ; 26f2b
-	db $02
-	db $03
-	db $04
-	db $05
-	db $07
-	db $08
-	db $09
-	db $0a
-	db $0c
-	db $0d
-	db $0e
-	db $10
-	db $11
-	db $12
-	db $13
-	db $15
-	db $16
-	db $17
-	db $18
-	db $1e
-	db $1f
-	db $20
-	db $21
-	db $22
-	db $23
-	db $24
-	db $25
-	db $26
-	db $27
-	db $28
-	db $29
-	db $2a
-	db $2b
-	db $2c
-	db $2d
-	db $2e
-	db $2f
-	db $30
-	db $31
-	db $32
-	db $1a
-	db $1b
-	db $1c
-	db $33
-	db $34
+	db DECO_FEATHERY_BED ; 2
+	db DECO_PINK_BED ; 3
+	db DECO_POLKADOT_BED ; 4
+	db DECO_PIKACHU_BED ; 5
+
+	db DECO_RED_CARPET ; 7
+	db DECO_BLUE_CARPET ; 8
+	db DECO_YELLOW_CARPET ; 9
+	db DECO_GREEN_CARPET ; a
+
+	db DECO_MAGNAPLANT ; c
+	db DECO_TROPICPLANT ; d
+	db DECO_JUMBOPLANT ; e
+
+	db DECO_TOWN_MAP ; 10
+	db DECO_PIKACHU_POSTER ; 11
+	db DECO_CLEFAIRY_POSTER ; 12
+	db DECO_JIGGLYPUFF_POSTER ; 13
+
+	db DECO_FAMICOM ; 15
+	db DECO_SNES ; 16
+	db DECO_N64 ; 17
+	db DECO_VIRTUAL_BOY ; 18
+
+	db DECO_PIKACHU_DOLL ; 1e
+	db DECO_SURF_PIKACHU_DOLL ; 1f
+	db DECO_CLEFAIRY_DOLL ; 20
+	db DECO_JIGGLYPUFF_DOLL ; 21
+	db DECO_BULBASAUR_DOLL ; 22
+	db DECO_CHARMANDER_DOLL ; 23
+	db DECO_SQUIRTLE_DOLL ; 24
+	db DECO_POLIWAG_DOLL ; 25
+	db DECO_DIGLETT_DOLL ; 26
+	db DECO_STARMIE_DOLL ; 27
+	db DECO_MAGIKARP_DOLL ; 28
+	db DECO_ODDISH_DOLL ; 29
+	db DECO_GENGAR_DOLL ; 2a
+	db DECO_SHELLDER_DOLL ; 2b
+	db DECO_GRIMER_DOLL ; 2c
+	db DECO_VOLTORB_DOLL ; 2d
+	db DECO_WEEDLE_DOLL ; 2e
+	db DECO_UNOWN_DOLL ; 2f
+	db DECO_GEODUDE_DOLL ; 30
+	db DECO_MACHOP_DOLL ; 31
+	db DECO_TENTACOOL_DOLL ; 32
+	db DECO_BIG_SNORLAX_DOLL ; 1a
+	db DECO_BIG_ONIX_DOLL ; 1b
+	db DECO_BIG_LAPRAS_DOLL ; 1c
+	db DECO_GOLD_TROPHY_DOLL ; 33
+	db DECO_SILVER_TROPHY_DOLL ; 34
 	db -1
 ; 26f59
 
@@ -29146,12 +29151,12 @@ DecorationDesc_Poster: ; 26f69
 	ld hl, DecorationDesc_PosterPointers
 	ld de, 3
 	call IsInArray
-	jr c, .asm_26f7d
+	jr c, .nope
 	ld de, DecorationDesc_NullPoster
 	ld b, BANK(DecorationDesc_NullPoster)
 	ret
 
-.asm_26f7d
+.nope
 	ld b, BANK(DecorationDesc_TownMapPoster)
 	inc hl
 	ld a, [hli]
@@ -29161,11 +29166,11 @@ DecorationDesc_Poster: ; 26f69
 ; 26f84
 
 DecorationDesc_PosterPointers: ; 26f84
-	dbw $10, DecorationDesc_TownMapPoster
-	dbw $11, DecorationDesc_PikachuPoster
-	dbw $12, DecorationDesc_ClefairyPoster
-	dbw $13, DecorationDesc_JigglypuffPoster
-	db $ff
+	dbw DECO_TOWN_MAP, DecorationDesc_TownMapPoster
+	dbw DECO_PIKACHU_POSTER, DecorationDesc_PikachuPoster
+	dbw DECO_CLEFAIRY_POSTER, DecorationDesc_ClefairyPoster
+	dbw DECO_JIGGLYPUFF_POSTER, DecorationDesc_JigglypuffPoster
+	db -1
 ; 26f91
 
 DecorationDesc_TownMapPoster: ; 0x26f91
@@ -29232,7 +29237,7 @@ DecorationDesc_Console: ; 26fc3
 DecorationDesc_OrnamentOrConsole: ; 26fc8
 	ld c, a
 	ld de, StringBuffer3
-	call Function26eea
+	call GetDecorationName_c_de
 	ld b, BANK(Unknown_26fd5)
 	ld de, Unknown_26fd5
 	ret
@@ -29264,19 +29269,19 @@ UnknownText_0x26fe6: ; 0x26fe6
 	db "@"
 ; 0x26feb
 
-Function26feb: ; 26feb
+ToggleMaptileDecorations: ; 26feb
 	lb de, 0, 4
 	ld a, [Bed]
-	call Function27037
+	call SetDecorationTile
 	lb de, 7, 4
 	ld a, [Plant]
-	call Function27037
+	call SetDecorationTile
 	lb de, 6, 0
 	ld a, [Poster]
-	call Function27037
+	call SetDecorationTile
 	call SetPosterVisibility
 	lb de, 0, 0
-	call Function27092
+	call PadCoords_de
 	ld a, [Carpet]
 	and a
 	ret z
@@ -29284,7 +29289,7 @@ Function26feb: ; 26feb
 	ld [hl], a
 	push af
 	lb de, 0, 2
-	call Function27092
+	call PadCoords_de
 	pop af
 	inc a
 	ld [hli], a
@@ -29307,9 +29312,9 @@ SetPosterVisibility: ; 27027
 	jp EventFlagAction
 ; 27037
 
-Function27037: ; 27037
+SetDecorationTile: ; 27037
 	push af
-	call Function27092
+	call PadCoords_de
 	pop af
 	and a
 	ret z
@@ -29362,7 +29367,7 @@ _GetDecorationSprite: ; 27085
 	ret
 ; 27092
 
-Function27092: ; 27092
+PadCoords_de: ; 27092
 	ld a, d
 	add 4
 	ld d, a
@@ -29374,7 +29379,7 @@ Function27092: ; 27092
 ; 2709e
 
 
-Function2709e: ; 2709e
+LevelUpHappinessMod: ; 2709e
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1CaughtLocation
 	call GetPartyLocation
@@ -29403,14 +29408,14 @@ Function2715c: ; 2715c
 	call ClearTileMap
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jr z, .asm_27171
+	jr z, .gettutorialbackpic
 	callba Function3f43d
-	jr .asm_27177
+	jr .continue
 
-.asm_27171
+.gettutorialbackpic
 	callba GetBattleBackpic
 
-.asm_27177
+.continue
 	callba Function3f47c
 	callba Function3ed9f
 	call ClearSGB
@@ -29429,24 +29434,24 @@ Function27192: ; 27192
 	ld hl, OTPartyMon1Item
 	ld de, EnemyMonItem
 	ld a, [CurOTMon]
-	jr z, .asm_271ac
+	jr z, .theirturn
 	ld hl, PartyMon1Item
 	ld de, BattleMonItem
 	ld a, [CurBattleMon]
 
-.asm_271ac
+.theirturn
 	push hl
 	push af
 	ld a, [de]
 	ld b, a
 	callba GetItem
 	ld hl, Unknown_271de
-.asm_271b9
+.loop
 	ld a, [hli]
 	cp b
-	jr z, .asm_271c6
+	jr z, .ok
 	inc a
-	jr nz, .asm_271b9
+	jr nz, .loop
 	pop af
 	pop hl
 	pop bc
@@ -29454,7 +29459,7 @@ Function27192: ; 27192
 	pop hl
 	ret
 
-.asm_271c6
+.ok
 	xor a
 	ld [de], a
 	pop af
@@ -29462,15 +29467,15 @@ Function27192: ; 27192
 	call GetPartyLocation
 	ld a, [hBattleTurn]
 	and a
-	jr nz, .asm_271d8
+	jr nz, .ourturn
 	ld a, [IsInBattle]
 	dec a
-	jr z, .asm_271da
+	jr z, .done
 
-.asm_271d8
+.ourturn
 	ld [hl], $0
 
-.asm_271da
+.done
 	pop bc
 	pop de
 	pop hl
@@ -29500,7 +29505,7 @@ Unknown_271de: ; 271de
 	db $47
 	db HELD_ESCAPE
 	db HELD_CRITICAL_UP
-	db $ff
+	db -1
 ; 271f4
 
 MoveEffectsPointers: ; 271f4
@@ -38478,7 +38483,7 @@ Function44648: ; 44648
 Function44654:: ; 44654
 	push bc
 	push de
-	callba Function50000
+	callba SelectMonFromParty
 	ld a, $2
 	jr c, .asm_446c6
 	ld a, [CurPartyMon]
@@ -48214,7 +48219,7 @@ INCLUDE "event/poke_seer.asm"
 
 SECTION "bank14", ROMX, BANK[$14]
 
-Function50000: ; 50000
+SelectMonFromParty: ; 50000
 	call Function2ed3
 	xor a
 	ld [PartyMenuActionText], a
@@ -49431,24 +49436,24 @@ Function50753: ; 50753
 _CardKey: ; 50779
 	ld a, [MapGroup]
 	cp GROUP_RADIO_TOWER_3F
-	jr nz, .asm_507a9
+	jr nz, .nope
 
 	ld a, [MapNumber]
 	cp MAP_RADIO_TOWER_3F
-	jr nz, .asm_507a9
+	jr nz, .nope
 
 	ld a, [PlayerDirection]
 	and $c
-	cp UP << 2
-	jr nz, .asm_507a9
+	cp OW_UP
+	jr nz, .nope
 
 	call GetFacingTileCoord
 	ld a, d
 	cp 18
-	jr nz, .asm_507a9
+	jr nz, .nope
 	ld a, e
 	cp 6
-	jr nz, .asm_507a9
+	jr nz, .nope
 
 	ld hl, UnknownScript_0x507af
 	call ExitMenuCallScript
@@ -49456,7 +49461,7 @@ _CardKey: ; 50779
 	ld [wd0ec], a
 	ret
 
-.asm_507a9
+.nope
 	ld a, $0
 	ld [wd0ec], a
 	ret
@@ -89998,7 +90003,7 @@ UnownWord26: unownword "ZOOM"
 ; fbb32
 
 Special_CheckMagikarpLength: ; fbb32
-	callba Function50000
+	callba SelectMonFromParty
 	jr c, .declined
 	ld a, [CurPartySpecies]
 	cp MAGIKARP
@@ -91137,7 +91142,7 @@ Functionfd0c3: ; fd0c3
 	ld a, [hl]
 	ld c, a
 	ld b, 1
-	callba Function26ef1
+	callba DecorationFlagAction_c
 	scf
 	ret
 
@@ -91226,13 +91231,13 @@ MomItems_2: ; fd15e
 	momitem    900,   600, MOM_ITEM, SUPER_POTION
 	momitem   4000,   270, MOM_ITEM, REPEL
 	momitem   7000,   600, MOM_ITEM, SUPER_POTION
-	momitem  10000,  1800, MOM_DOLL, DOLL_CHARMANDER
+	momitem  10000,  1800, MOM_DOLL, DECO_CHARMANDER_DOLL
 	momitem  15000,  3000, MOM_ITEM, MOON_STONE
 	momitem  19000,   600, MOM_ITEM, SUPER_POTION
-	momitem  30000,  4800, MOM_DOLL, DOLL_CLEFAIRY
+	momitem  30000,  4800, MOM_DOLL, DECO_CLEFAIRY_DOLL
 	momitem  40000,   900, MOM_ITEM, HYPER_POTION
-	momitem  50000,  8000, MOM_DOLL, DOLL_PIKACHU
-	momitem 100000, 22800, MOM_DOLL, BIGDOLL_SNORLAX
+	momitem  50000,  8000, MOM_DOLL, DECO_PIKACHU_DOLL
+	momitem 100000, 22800, MOM_DOLL, DECO_BIG_SNORLAX_DOLL
 ; fd1ae
 
 	db 0, 0, 0 ; XXX
@@ -92366,7 +92371,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	call Function105069
 	pop bc
 	jr nz, .asm_104990
-	callab Function26ef5
+	callab GetDecorationName_c
 	ld h, d
 	ld l, e
 	ld de, StringBuffer1

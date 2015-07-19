@@ -257,10 +257,10 @@ RadioTower4F_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_FISHER, 8, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x5eb82, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_TEACHER, 10, 18, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5eb85, -1
-	person_event SPRITE_GROWLITHE, 11, 16, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrowlitheScript_0x5ebb2, -1
-	person_event SPRITE_ROCKET, 10, 9, RIGHT << 2 | $13, $0, -1, -1, $2, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 5, 18, LEFT << 2 | $0, $2, -1, -1, $2, 2, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 8, 16, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_SCIENTIST, 6, 8, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerScientistRich, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_FISHER, 8, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x5eb82, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_TEACHER, 10, 18, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5eb85, -1
+	person_event SPRITE_GROWLITHE, 11, 16, OW_UP | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrowlitheScript_0x5ebb2, -1
+	person_event SPRITE_ROCKET, 10, 9, OW_RIGHT | $13, $0, -1, -1, $2, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 5, 18, OW_LEFT | $0, $2, -1, -1, $2, 2, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 8, 16, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SCIENTIST, 6, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerScientistRich, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

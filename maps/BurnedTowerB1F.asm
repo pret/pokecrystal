@@ -251,12 +251,12 @@ BurnedTowerB1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_BOULDER, 12, 21, LEFT << 2 | $11, $0, -1, -1, $0, 0, BurnedTowerB1FBoulder, -1
-	person_event SPRITE_RAIKOU, 7, 11, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_ENTEI, 7, 16, UP << 2 | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_SUICUNE, 8, 14, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_RAIKOU, 7, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_ENTEI, 7, 16, UP << 2 | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_SUICUNE, 8, 14, UP << 2 | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_POKE_BALL, 8, 20, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x186231, EVENT_BURNED_TOWER_B1F_TM_ENDURE
-	person_event SPRITE_SUPER_NERD, 16, 14, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER
+	person_event SPRITE_BOULDER, 12, 21, OW_LEFT | $11, $0, -1, -1, $0, 0, BurnedTowerB1FBoulder, -1
+	person_event SPRITE_RAIKOU, 7, 11, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_ENTEI, 7, 16, OW_UP | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_SUICUNE, 8, 14, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_RAIKOU, 7, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_ENTEI, 7, 16, OW_UP | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_SUICUNE, 8, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_POKE_BALL, 8, 20, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x186231, EVENT_BURNED_TOWER_B1F_TM_ENDURE
+	person_event SPRITE_SUPER_NERD, 16, 14, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER

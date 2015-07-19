@@ -182,4 +182,4 @@ MountMoon_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_SILVER, 7, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	person_event SPRITE_SILVER, 7, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

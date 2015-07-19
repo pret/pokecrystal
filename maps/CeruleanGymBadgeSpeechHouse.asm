@@ -30,4 +30,4 @@ CeruleanGymBadgeSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKEFAN_M, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, PokefanMScript_0x188002, -1
+	person_event SPRITE_POKEFAN_M, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, PokefanMScript_0x188002, -1

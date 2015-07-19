@@ -107,8 +107,8 @@ CeladonDeptStore3F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_CLERK, 5, 11, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x70d29, -1
-	person_event SPRITE_YOUNGSTER, 8, 10, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x70d31, -1
-	person_event SPRITE_GAMEBOY_KID, 5, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GameboyKidScript_0x70d34, -1
-	person_event SPRITE_GAMEBOY_KID, 5, 14, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GameboyKidScript_0x70d3f, -1
-	person_event SPRITE_SUPER_NERD, 8, 17, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x70d4a, -1
+	person_event SPRITE_CLERK, 5, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x70d29, -1
+	person_event SPRITE_YOUNGSTER, 8, 10, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x70d31, -1
+	person_event SPRITE_GAMEBOY_KID, 5, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GameboyKidScript_0x70d34, -1
+	person_event SPRITE_GAMEBOY_KID, 5, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GameboyKidScript_0x70d3f, -1
+	person_event SPRITE_SUPER_NERD, 8, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x70d4a, -1

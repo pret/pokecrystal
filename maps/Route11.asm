@@ -156,8 +156,8 @@ Route11_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_YOUNGSTER, 18, 26, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterOwen, -1
-	person_event SPRITE_YOUNGSTER, 8, 24, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJason, -1
-	person_event SPRITE_YOUNGSTER, 11, 32, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicHerman, -1
-	person_event SPRITE_YOUNGSTER, 10, 12, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFidel, -1
-	person_event SPRITE_FRUIT_TREE, 6, 36, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x68055, -1
+	person_event SPRITE_YOUNGSTER, 18, 26, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterOwen, -1
+	person_event SPRITE_YOUNGSTER, 8, 24, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJason, -1
+	person_event SPRITE_YOUNGSTER, 11, 32, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicHerman, -1
+	person_event SPRITE_YOUNGSTER, 10, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFidel, -1
+	person_event SPRITE_FRUIT_TREE, 6, 36, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x68055, -1

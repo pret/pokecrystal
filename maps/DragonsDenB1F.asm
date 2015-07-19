@@ -419,12 +419,12 @@ DragonsDenB1F_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_POKE_BALL, 20, 39, DOWN << 2 | $1, $0, -1, -1, $0, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
-	person_event SPRITE_CLAIR, 34, 18, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
-	person_event SPRITE_SILVER, 27, 24, DOWN << 2 | $2, $22, -1, -1, $0, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN
-	person_event SPRITE_COOLTRAINER_M, 12, 24, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainermDarin, -1
-	person_event SPRITE_COOLTRAINER_F, 12, 12, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCara, -1
-	person_event SPRITE_TWIN, 21, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsLeaandpia1, -1
-	person_event SPRITE_TWIN, 22, 8, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsLeaandpia2, -1
-	person_event SPRITE_POKE_BALL, 8, 34, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c9a1, EVENT_DRAGONS_DEN_B1F_CALCIUM
-	person_event SPRITE_POKE_BALL, 24, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c9a3, EVENT_DRAGONS_DEN_B1F_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 20, 39, OW_DOWN | $1, $0, -1, -1, $0, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
+	person_event SPRITE_CLAIR, 34, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
+	person_event SPRITE_SILVER, 27, 24, OW_DOWN | $2, $22, -1, -1, $0, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN
+	person_event SPRITE_COOLTRAINER_M, 12, 24, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainermDarin, -1
+	person_event SPRITE_COOLTRAINER_F, 12, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCara, -1
+	person_event SPRITE_TWIN, 21, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsLeaandpia1, -1
+	person_event SPRITE_TWIN, 22, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsLeaandpia2, -1
+	person_event SPRITE_POKE_BALL, 8, 34, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c9a1, EVENT_DRAGONS_DEN_B1F_CALCIUM
+	person_event SPRITE_POKE_BALL, 24, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c9a3, EVENT_DRAGONS_DEN_B1F_MAX_ELIXER

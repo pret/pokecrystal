@@ -42,5 +42,5 @@ Route31VioletGate_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_OFFICER, 6, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x197634, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 5, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerFScript_0x197637, -1
+	person_event SPRITE_OFFICER, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x197634, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 5, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerFScript_0x197637, -1

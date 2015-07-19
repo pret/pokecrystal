@@ -61,7 +61,7 @@ BlackthornPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x195b79, -1
-	person_event SPRITE_GENTLEMAN, 7, 9, UP << 2 | $2, $0, -1, -1, $0, 0, GentlemanScript_0x195b7c, -1
-	person_event SPRITE_TWIN, 8, 5, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x195b7f, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 11, UP << 2 | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x195b82, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x195b79, -1
+	person_event SPRITE_GENTLEMAN, 7, 9, OW_UP | $2, $0, -1, -1, $0, 0, GentlemanScript_0x195b7c, -1
+	person_event SPRITE_TWIN, 8, 5, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x195b7f, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x195b82, -1

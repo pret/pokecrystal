@@ -126,4 +126,4 @@ HallOfFame_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_LANCE, 16, 8, UP << 2 | $3, $0, -1, -1, PAL_OW_RED << 4 | $0, 0, ObjectEvent, -1
+	person_event SPRITE_LANCE, 16, 8, OW_UP | $3, $0, -1, -1, PAL_OW_RED << 4 | $0, 0, ObjectEvent, -1

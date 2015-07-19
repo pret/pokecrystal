@@ -238,7 +238,7 @@ Function18de:: ; 18de
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp MAPOBJECT_NOT_VISIBLE
+	cp -1
 	jr z, .not_visible
 	ld [hConnectedMapWidth], a
 	call GetObjectStruct
@@ -348,9 +348,9 @@ Function1967:: ; 1967
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp MAPOBJECT_NOT_VISIBLE
+	cp -1
 	ret z
-	ld [hl], MAPOBJECT_NOT_VISIBLE
+	ld [hl], -1
 	push af
 	call Function1985
 	pop af
@@ -386,7 +386,7 @@ Function19a6:: ; 19a6
 	call GetMapObject
 	ld d, b
 	ld e, c
-	ld a, MAPOBJECT_NOT_VISIBLE
+	ld a, -1
 	ld [de], a
 	inc de
 	pop hl
@@ -401,13 +401,13 @@ Function19b8:: ; 19b8
 	add hl, bc
 	ld a, [hl]
 	push af
-	ld [hl], MAPOBJECT_NOT_VISIBLE
+	ld [hl], -1
 	inc hl
 	ld bc, OBJECT_LENGTH - 1
 	xor a
 	call ByteFill
 	pop af
-	cp MAPOBJECT_NOT_VISIBLE
+	cp -1
 	ret z
 	cp $d
 	ret nc

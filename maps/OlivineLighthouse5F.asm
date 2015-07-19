@@ -107,8 +107,8 @@ OlivineLighthouse5F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_SAILOR, 15, 12, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorErnest, -1
-	person_event SPRITE_YOUNGSTER, 7, 12, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerBird_keeperDenis, -1
-	person_event SPRITE_POKE_BALL, 16, 19, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x609aa, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
-	person_event SPRITE_POKE_BALL, 19, 10, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ac, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
-	person_event SPRITE_POKE_BALL, 17, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ae, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER
+	person_event SPRITE_SAILOR, 15, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorErnest, -1
+	person_event SPRITE_YOUNGSTER, 7, 12, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerBird_keeperDenis, -1
+	person_event SPRITE_POKE_BALL, 16, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609aa, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 19, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ac, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
+	person_event SPRITE_POKE_BALL, 17, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ae, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER

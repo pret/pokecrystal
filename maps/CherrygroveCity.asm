@@ -570,8 +570,8 @@ CherrygroveCity_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_GRAMPS, 10, 36, UP << 2 | $2, $0, -1, -1, $0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
-	person_event SPRITE_SILVER, 10, 43, DOWN << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
-	person_event SPRITE_TEACHER, 16, 31, UP << 2 | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x19c146, -1
-	person_event SPRITE_YOUNGSTER, 11, 27, UP << 2 | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x19c15a, -1
-	person_event SPRITE_FISHER, 16, 11, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, MysticWaterGuy, -1
+	person_event SPRITE_GRAMPS, 10, 36, OW_UP | $2, $0, -1, -1, $0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
+	person_event SPRITE_SILVER, 10, 43, OW_DOWN | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
+	person_event SPRITE_TEACHER, 16, 31, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x19c146, -1
+	person_event SPRITE_YOUNGSTER, 11, 27, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x19c15a, -1
+	person_event SPRITE_FISHER, 16, 11, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, MysticWaterGuy, -1

@@ -35,4 +35,4 @@ MoveDeletersHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_SUPER_NERD, 7, 6, UP << 2 | $2, $0, -1, -1, $0, 0, MoveDeleter, -1
+	person_event SPRITE_SUPER_NERD, 7, 6, OW_UP | $2, $0, -1, -1, $0, 0, MoveDeleter, -1

@@ -154,7 +154,7 @@ FuchsiaCity_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_YOUNGSTER, 22, 27, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x194b22, -1
-	person_event SPRITE_POKEFAN_M, 12, 17, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x194b25, -1
-	person_event SPRITE_TEACHER, 18, 20, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x194b28, -1
-	person_event SPRITE_FRUIT_TREE, 5, 12, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x194b43, -1
+	person_event SPRITE_YOUNGSTER, 22, 27, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x194b22, -1
+	person_event SPRITE_POKEFAN_M, 12, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x194b25, -1
+	person_event SPRITE_TEACHER, 18, 20, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x194b28, -1
+	person_event SPRITE_FRUIT_TREE, 5, 12, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x194b43, -1

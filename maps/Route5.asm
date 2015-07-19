@@ -57,4 +57,4 @@ Route5_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKEFAN_M, 20, 21, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x1adb19, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	person_event SPRITE_POKEFAN_M, 20, 21, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x1adb19, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH

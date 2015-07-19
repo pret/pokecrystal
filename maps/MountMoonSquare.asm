@@ -155,6 +155,6 @@ MountMoonSquare_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_FAIRY, 10, 10, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	person_event SPRITE_FAIRY, 10, 11, UP << 2 | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	person_event SPRITE_ROCK, 11, 11, LEFT << 2 | $10, $0, -1, -1, $0, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK
+	person_event SPRITE_FAIRY, 10, 10, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_FAIRY, 10, 11, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_ROCK, 11, 11, OW_LEFT | $10, $0, -1, -1, $0, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK

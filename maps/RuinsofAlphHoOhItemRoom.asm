@@ -47,7 +47,7 @@ RuinsofAlphHoOhItemRoom_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_POKE_BALL, 10, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x59918, EVENT_PICKED_UP_GOLD_BERRY_FROM_HO_OH_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 10, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5991a, EVENT_PICKED_UP_MYSTERYBERRY_FROM_HO_OH_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 8, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5991c, EVENT_PICKED_UP_REVIVAL_HERB_FROM_HO_OH_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 8, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x5991e, EVENT_PICKED_UP_CHARCOAL_FROM_HO_OH_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 10, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59918, EVENT_PICKED_UP_GOLD_BERRY_FROM_HO_OH_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 10, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5991a, EVENT_PICKED_UP_MYSTERYBERRY_FROM_HO_OH_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5991c, EVENT_PICKED_UP_REVIVAL_HERB_FROM_HO_OH_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5991e, EVENT_PICKED_UP_CHARCOAL_FROM_HO_OH_ITEM_ROOM

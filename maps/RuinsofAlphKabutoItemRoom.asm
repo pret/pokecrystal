@@ -47,7 +47,7 @@ RuinsofAlphKabutoItemRoom_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_POKE_BALL, 10, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x599a2, EVENT_PICKED_UP_BERRY_FROM_KABUTO_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 10, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x599a4, EVENT_PICKED_UP_PSNCUREBERRY_FROM_KABUTO_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 8, 6, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x599a6, EVENT_PICKED_UP_HEAL_POWDER_FROM_KABUTO_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 8, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x599a8, EVENT_PICKED_UP_ENERGYPOWDER_FROM_KABUTO_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 10, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x599a2, EVENT_PICKED_UP_BERRY_FROM_KABUTO_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 10, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x599a4, EVENT_PICKED_UP_PSNCUREBERRY_FROM_KABUTO_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x599a6, EVENT_PICKED_UP_HEAL_POWDER_FROM_KABUTO_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x599a8, EVENT_PICKED_UP_ENERGYPOWDER_FROM_KABUTO_ITEM_ROOM

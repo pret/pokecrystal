@@ -681,7 +681,7 @@ DragonShrine_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_ELDER, 5, 9, UP << 2 | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_000
-	person_event SPRITE_ELDER, 8, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_000
-	person_event SPRITE_ELDER, 8, 11, LEFT << 2 | $0, $0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_000
-	person_event SPRITE_CLAIR, 12, 8, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
+	person_event SPRITE_ELDER, 5, 9, OW_UP | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_000
+	person_event SPRITE_ELDER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_000
+	person_event SPRITE_ELDER, 8, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_000
+	person_event SPRITE_CLAIR, 12, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

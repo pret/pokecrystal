@@ -37,4 +37,4 @@ TinTower5F_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 13, 13, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x185aa9, EVENT_TIN_TOWER_5F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 13, 13, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185aa9, EVENT_TIN_TOWER_5F_RARE_CANDY

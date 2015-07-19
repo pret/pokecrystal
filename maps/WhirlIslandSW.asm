@@ -28,4 +28,4 @@ WhirlIslandSW_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 6, 19, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c3bc, EVENT_WHIRL_ISLAND_SW_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 6, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c3bc, EVENT_WHIRL_ISLAND_SW_ULTRA_BALL

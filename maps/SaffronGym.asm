@@ -330,9 +330,9 @@ SaffronGym_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_SABRINA, 12, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SabrinaScript_0x189c2e, -1
-	person_event SPRITE_GRANNY, 20, 21, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerMediumRebecca, -1
-	person_event SPRITE_YOUNGSTER, 20, 7, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFranklin, -1
-	person_event SPRITE_GRANNY, 8, 7, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerMediumDoris, -1
-	person_event SPRITE_YOUNGSTER, 8, 21, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicJared, -1
-	person_event SPRITE_GYM_GUY, 18, 13, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SaffronGymGuyScript, -1
+	person_event SPRITE_SABRINA, 12, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SabrinaScript_0x189c2e, -1
+	person_event SPRITE_GRANNY, 20, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerMediumRebecca, -1
+	person_event SPRITE_YOUNGSTER, 20, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFranklin, -1
+	person_event SPRITE_GRANNY, 8, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerMediumDoris, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicJared, -1
+	person_event SPRITE_GYM_GUY, 18, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SaffronGymGuyScript, -1

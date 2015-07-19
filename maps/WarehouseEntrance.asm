@@ -669,12 +669,12 @@ WarehouseEntrance_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_SUPER_NERD, 35, 9, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerSupernerdEric, -1
-	person_event SPRITE_SUPER_NERD, 13, 10, UP << 2 | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdTeru, -1
-	person_event SPRITE_SUPER_NERD, 31, 7, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPokemaniacIssac, -1
-	person_event SPRITE_SUPER_NERD, 10, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacDonald, -1
-	person_event SPRITE_POKE_BALL, 29, 11, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
-	person_event SPRITE_GRAMPS, 15, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
-	person_event SPRITE_SUPER_NERD, 18, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
-	person_event SPRITE_SUPER_NERD, 19, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
-	person_event SPRITE_GRANNY, 25, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY
+	person_event SPRITE_SUPER_NERD, 35, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerSupernerdEric, -1
+	person_event SPRITE_SUPER_NERD, 13, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdTeru, -1
+	person_event SPRITE_SUPER_NERD, 31, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPokemaniacIssac, -1
+	person_event SPRITE_SUPER_NERD, 10, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacDonald, -1
+	person_event SPRITE_POKE_BALL, 29, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
+	person_event SPRITE_GRAMPS, 15, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
+	person_event SPRITE_SUPER_NERD, 18, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
+	person_event SPRITE_SUPER_NERD, 19, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
+	person_event SPRITE_GRANNY, 25, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY

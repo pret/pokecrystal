@@ -41,5 +41,5 @@ PewterNidoranSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_SUPER_NERD, 9, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x1a2807, -1
-	person_event SPRITE_GROWLITHE, 9, 8, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrowlitheScript_0x1a280a, -1
+	person_event SPRITE_SUPER_NERD, 9, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x1a2807, -1
+	person_event SPRITE_GROWLITHE, 9, 8, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrowlitheScript_0x1a280a, -1

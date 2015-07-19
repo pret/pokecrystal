@@ -225,11 +225,11 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_CLERK, 8, 5, LEFT << 2 | $1, $0, -1, -1, $0, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_POKEFAN_F, 7, 14, UP << 2 | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x56746, -1
-	person_event SPRITE_FISHER, 5, 6, UP << 2 | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x56749, -1
-	person_event SPRITE_TWIN, 8, 7, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x56754, EVENT_GOLDENROD_SALE_ON
-	person_event SPRITE_SUPER_NERD, 10, 18, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x56757, EVENT_GOLDENROD_SALE_ON
-	person_event SPRITE_POKEFAN_M, 4, 11, UP << 2 | $1, $1, -1, -1, $0, 0, PokefanMScript_0x5676a, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_TEACHER, 7, 9, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5676d, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_BUG_CATCHER, 10, 5, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x56770, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_CLERK, 8, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_POKEFAN_F, 7, 14, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x56746, -1
+	person_event SPRITE_FISHER, 5, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x56749, -1
+	person_event SPRITE_TWIN, 8, 7, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x56754, EVENT_GOLDENROD_SALE_ON
+	person_event SPRITE_SUPER_NERD, 10, 18, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x56757, EVENT_GOLDENROD_SALE_ON
+	person_event SPRITE_POKEFAN_M, 4, 11, OW_UP | $1, $1, -1, -1, $0, 0, PokefanMScript_0x5676a, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_TEACHER, 7, 9, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5676d, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_BUG_CATCHER, 10, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x56770, EVENT_GOLDENROD_SALE_OFF

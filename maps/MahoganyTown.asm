@@ -268,7 +268,7 @@ MahoganyTown_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_POKEFAN_M, 12, 23, UP << 2 | $2, $0, -1, -1, $0, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
-	person_event SPRITE_GRAMPS, 13, 10, UP << 2 | $1, $1, -1, -1, $0, 0, GrampsScript_0x19007e, -1
-	person_event SPRITE_FISHER, 18, 10, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	person_event SPRITE_LASS, 12, 16, UP << 2 | $2, $0, -1, -1, $0, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS
+	person_event SPRITE_POKEFAN_M, 12, 23, OW_UP | $2, $0, -1, -1, $0, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
+	person_event SPRITE_GRAMPS, 13, 10, OW_UP | $1, $1, -1, -1, $0, 0, GrampsScript_0x19007e, -1
+	person_event SPRITE_FISHER, 18, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	person_event SPRITE_LASS, 12, 16, OW_UP | $2, $0, -1, -1, $0, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS

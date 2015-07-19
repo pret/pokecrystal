@@ -305,6 +305,6 @@ NewBarkTown_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_TEACHER, 12, 10, DOWN << 2 | $3, $1, -1, -1, $0, 0, TeacherScript_0x1a806f, -1
-	person_event SPRITE_FISHER, 13, 16, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a809b, -1
-	person_event SPRITE_SILVER, 6, 7, LEFT << 2 | $1, $0, -1, -1, $0, 0, SilverScript_0x1a809e, EVENT_RIVAL_NEW_BARK_TOWN
+	person_event SPRITE_TEACHER, 12, 10, OW_DOWN | $3, $1, -1, -1, $0, 0, TeacherScript_0x1a806f, -1
+	person_event SPRITE_FISHER, 13, 16, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a809b, -1
+	person_event SPRITE_SILVER, 6, 7, OW_LEFT | $1, $0, -1, -1, $0, 0, SilverScript_0x1a809e, EVENT_RIVAL_NEW_BARK_TOWN

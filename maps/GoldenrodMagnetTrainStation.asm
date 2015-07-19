@@ -182,5 +182,5 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_OFFICER, 13, 13, UP << 2 | $2, $0, -1, -1, $0, 0, OfficerScript_0x550ec, -1
-	person_event SPRITE_GENTLEMAN, 18, 15, DOWN << 2 | $2, $22, -1, -1, $0, 0, GentlemanScript_0x55143, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
+	person_event SPRITE_OFFICER, 13, 13, OW_UP | $2, $0, -1, -1, $0, 0, OfficerScript_0x550ec, -1
+	person_event SPRITE_GENTLEMAN, 18, 15, OW_DOWN | $2, $22, -1, -1, $0, 0, GentlemanScript_0x55143, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN

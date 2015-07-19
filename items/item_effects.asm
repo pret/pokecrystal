@@ -1415,7 +1415,7 @@ RareCandy: ; ef14
 	ld a, [hl]
 	adc b
 	ld [hl], a
-	callba Function2709e
+	callba LevelUpHappinessMod
 
 	ld a, $f8
 	call Functionf24a

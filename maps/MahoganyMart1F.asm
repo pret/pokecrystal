@@ -236,8 +236,8 @@ MahoganyMart1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_PHARMACIST, 7, 8, UP << 2 | $2, $0, -1, -1, $0, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_BLACK_BELT, 10, 5, DOWN << 2 | $3, $0, -1, -1, $0, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_LANCE, 10, 8, LEFT << 2 | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	person_event SPRITE_DRAGON, 10, 7, LEFT << 2 | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	person_event SPRITE_GRANNY, 7, 5, LEFT << 2 | $1, $0, -1, -1, $0, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS
+	person_event SPRITE_PHARMACIST, 7, 8, OW_UP | $2, $0, -1, -1, $0, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_BLACK_BELT, 10, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_LANCE, 10, 8, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	person_event SPRITE_DRAGON, 10, 7, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	person_event SPRITE_GRANNY, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS

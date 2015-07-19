@@ -278,9 +278,9 @@ CeladonGym_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_ERIKA, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ErikaScript_0x72a6a, -1
-	person_event SPRITE_LASS, 12, 11, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerLassMichelle, -1
-	person_event SPRITE_LASS, 12, 6, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerTanya, -1
-	person_event SPRITE_BUENA, 9, 7, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBeautyJulia, -1
-	person_event SPRITE_TWIN, 14, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe1, -1
-	person_event SPRITE_TWIN, 14, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe2, -1
+	person_event SPRITE_ERIKA, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ErikaScript_0x72a6a, -1
+	person_event SPRITE_LASS, 12, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerLassMichelle, -1
+	person_event SPRITE_LASS, 12, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerTanya, -1
+	person_event SPRITE_BUENA, 9, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBeautyJulia, -1
+	person_event SPRITE_TWIN, 14, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe1, -1
+	person_event SPRITE_TWIN, 14, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe2, -1

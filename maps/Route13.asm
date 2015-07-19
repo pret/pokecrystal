@@ -204,8 +204,8 @@ Route13_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_YOUNGSTER, 10, 46, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperPerry, -1
-	person_event SPRITE_YOUNGSTER, 10, 47, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperBret, -1
-	person_event SPRITE_POKEFAN_M, 12, 36, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmJoshua, -1
-	person_event SPRITE_POKEFAN_M, 14, 18, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerHikerKenny, -1
-	person_event SPRITE_POKEFAN_M, 10, 29, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanmAlex, -1
+	person_event SPRITE_YOUNGSTER, 10, 46, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperPerry, -1
+	person_event SPRITE_YOUNGSTER, 10, 47, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperBret, -1
+	person_event SPRITE_POKEFAN_M, 12, 36, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmJoshua, -1
+	person_event SPRITE_POKEFAN_M, 14, 18, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerHikerKenny, -1
+	person_event SPRITE_POKEFAN_M, 10, 29, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanmAlex, -1

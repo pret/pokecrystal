@@ -43,4 +43,4 @@ GuideGentsHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_GRAMPS, 7, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	person_event SPRITE_GRAMPS, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE

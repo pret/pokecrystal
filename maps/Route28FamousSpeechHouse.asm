@@ -87,5 +87,5 @@ Route28FamousSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Celebrity, -1
-	person_event SPRITE_MOLTRES, 9, 10, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CelebritysFearow, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Celebrity, -1
+	person_event SPRITE_MOLTRES, 9, 10, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CelebritysFearow, -1

@@ -430,10 +430,10 @@ Route31_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_FISHER, 11, 21, UP << 2 | $2, $0, -1, -1, $0, 0, FisherScript_0x1a5570, -1
-	person_event SPRITE_YOUNGSTER, 9, 13, DOWN << 2 | $2, $11, -1, -1, $0, 0, YoungsterScript_0x1a55ed, -1
-	person_event SPRITE_BUG_CATCHER, 17, 25, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 5, TrainerBug_catcherWade1, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 37, DOWN << 2 | $2, $11, -1, -1, $0, 0, CooltrainerMScript_0x1a55f6, -1
-	person_event SPRITE_FRUIT_TREE, 11, 20, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a55f9, -1
-	person_event SPRITE_POKE_BALL, 9, 33, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
-	person_event SPRITE_POKE_BALL, 19, 23, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL
+	person_event SPRITE_FISHER, 11, 21, OW_UP | $2, $0, -1, -1, $0, 0, FisherScript_0x1a5570, -1
+	person_event SPRITE_YOUNGSTER, 9, 13, OW_DOWN | $2, $11, -1, -1, $0, 0, YoungsterScript_0x1a55ed, -1
+	person_event SPRITE_BUG_CATCHER, 17, 25, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 5, TrainerBug_catcherWade1, -1
+	person_event SPRITE_COOLTRAINER_M, 12, 37, OW_DOWN | $2, $11, -1, -1, $0, 0, CooltrainerMScript_0x1a55f6, -1
+	person_event SPRITE_FRUIT_TREE, 11, 20, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a55f9, -1
+	person_event SPRITE_POKE_BALL, 9, 33, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
+	person_event SPRITE_POKE_BALL, 19, 23, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL

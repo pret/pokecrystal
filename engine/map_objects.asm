@@ -2780,7 +2780,7 @@ Function5629: ; 5629
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp MAPOBJECT_NOT_VISIBLE
+	cp -1
 	ret z
 	cp $d
 	ret nc

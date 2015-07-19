@@ -311,8 +311,8 @@ RuinsofAlphOutside_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_YOUNGSTER, 24, 8, UP << 2 | $2, $0, -1, -1, $2, 1, TrainerPsychicNathan, -1
-	person_event SPRITE_SCIENTIST, 19, 15, UP << 2 | $3, $0, -1, -1, $0, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
-	person_event SPRITE_FISHER, 21, 17, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
-	person_event SPRITE_YOUNGSTER, 15, 18, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, YoungsterScript_0x58076, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
-	person_event SPRITE_YOUNGSTER, 12, 16, UP << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	person_event SPRITE_YOUNGSTER, 24, 8, OW_UP | $2, $0, -1, -1, $2, 1, TrainerPsychicNathan, -1
+	person_event SPRITE_SCIENTIST, 19, 15, OW_UP | $3, $0, -1, -1, $0, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
+	person_event SPRITE_FISHER, 21, 17, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
+	person_event SPRITE_YOUNGSTER, 15, 18, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, YoungsterScript_0x58076, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	person_event SPRITE_YOUNGSTER, 12, 16, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS

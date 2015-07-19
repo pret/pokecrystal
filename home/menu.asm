@@ -95,7 +95,7 @@ InterpretMenu2:: ; 0x1d81
 	ret
 ; 0x1dab
 
-Function1dab:: ; 1dab
+GetMenu2:: ; 1dab
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	call WriteBackup

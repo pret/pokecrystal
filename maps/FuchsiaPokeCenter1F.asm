@@ -102,7 +102,7 @@ FuchsiaPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, NurseScript_0x196459, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 12, UP << 2 | $1, $1, -1, -1, $0, 0, CooltrainerMScript_0x19645c, -1
-	person_event SPRITE_COOLTRAINER_F, 8, 5, UP << 2 | $1, $1, -1, -1, $0, 0, CooltrainerFScript_0x19645f, -1
-	person_event SPRITE_JANINE_IMPERSONATOR, 7, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, JanineImpersonatorScript_0x196462, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, NurseScript_0x196459, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 12, OW_UP | $1, $1, -1, -1, $0, 0, CooltrainerMScript_0x19645c, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 5, OW_UP | $1, $1, -1, -1, $0, 0, CooltrainerFScript_0x19645f, -1
+	person_event SPRITE_JANINE_IMPERSONATOR, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, JanineImpersonatorScript_0x196462, -1

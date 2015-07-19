@@ -319,9 +319,9 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 
 	; people-events
 	db 6
-	person_event SPRITE_NURSE, 11, 7, UP << 2 | $2, $0, -1, -1, $0, 0, NurseScript_0x18012c, -1
-	person_event SPRITE_CLERK, 11, 15, UP << 2 | $2, $0, -1, -1, $0, 0, ClerkScript_0x18012f, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 15, DOWN << 2 | $2, $22, -1, -1, $0, 0, CooltrainerMScript_0x180136, -1
-	person_event SPRITE_SILVER, 13, 20, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
-	person_event SPRITE_GRAMPS, 13, 5, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
-	person_event SPRITE_JYNX, 13, 4, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, AbraScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_NURSE, 11, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x18012c, -1
+	person_event SPRITE_CLERK, 11, 15, OW_UP | $2, $0, -1, -1, $0, 0, ClerkScript_0x18012f, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 15, OW_DOWN | $2, $22, -1, -1, $0, 0, CooltrainerMScript_0x180136, -1
+	person_event SPRITE_SILVER, 13, 20, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
+	person_event SPRITE_GRAMPS, 13, 5, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_JYNX, 13, 4, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, AbraScript, EVENT_TELEPORT_GUY

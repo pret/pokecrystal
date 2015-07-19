@@ -67,5 +67,5 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_FISHER, 8, 6, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x5564a, -1
-	person_event SPRITE_LASS, 7, 9, LEFT << 2 | $0, $10, -1, -1, $0, 0, LassScript_0x5564d, -1
+	person_event SPRITE_FISHER, 8, 6, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x5564a, -1
+	person_event SPRITE_LASS, 7, 9, OW_LEFT | $0, $10, -1, -1, $0, 0, LassScript_0x5564d, -1

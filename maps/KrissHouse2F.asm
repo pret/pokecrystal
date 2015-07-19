@@ -7,26 +7,26 @@ KrissHouse2F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x7abb4
+	dbw 5, .InitializeRoom
 
-	dbw 1, UnknownScript_0x7abc5
+	dbw 1, .SetSpawn
 
-UnknownScript_0x7abb3:
+.Null:
 	end
 
-UnknownScript_0x7abb4:
+.InitializeRoom:
 	special ToggleDecorationsVisibility
 	setevent EVENT_007
-	checkevent EVENT_036
-	iftrue UnknownScript_0x7abc4
+	checkevent EVENT_INITIALIZED_EVENTS
+	iftrue .SkipInizialization
 	jumpstd initializeevents
 	return
 
-UnknownScript_0x7abc4:
+.SkipInizialization:
 	return
 
-UnknownScript_0x7abc5:
-	special Function26feb
+.SetSpawn:
+	special ToggleMaptileDecorations
 	return
 
 
@@ -46,7 +46,7 @@ GameConsole:
 	describedecoration $4
 
 KrissHousePoster:
-	dw $02cc ; event
+	dw EVENT_KRISS_ROOM_POSTER ; event
 	dw .Script
 .Script
 	describedecoration $0
@@ -132,7 +132,7 @@ KrissHouse2F_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_CONSOLE, 6, 8, DOWN << 2 | $1, $0, -1, -1, $0, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
-	person_event SPRITE_DOLL_1, 8, 8, DOWN << 2 | $1, $0, -1, -1, $0, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
-	person_event SPRITE_DOLL_2, 8, 9, DOWN << 2 | $1, $0, -1, -1, $0, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
-	person_event SPRITE_BIG_DOLL, 5, 4, DOWN << 2 | $21, $0, -1, -1, $0, 0, BigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL
+	person_event SPRITE_CONSOLE, 6, 8, OW_DOWN | $1, $0, -1, -1, $0, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
+	person_event SPRITE_DOLL_1, 8, 8, OW_DOWN | $1, $0, -1, -1, $0, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
+	person_event SPRITE_DOLL_2, 8, 9, OW_DOWN | $1, $0, -1, -1, $0, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
+	person_event SPRITE_BIG_DOLL, 5, 4, OW_DOWN | $21, $0, -1, -1, $0, 0, BigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL

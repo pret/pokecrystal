@@ -345,12 +345,12 @@ DanceTheatre_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_KIMONO_GIRL, 6, 4, RIGHT << 2 | $12, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerKimono_girlNaoko2, -1
-	person_event SPRITE_KIMONO_GIRL, 5, 6, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerKimono_girlSayo, -1
-	person_event SPRITE_KIMONO_GIRL, 6, 10, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerKimono_girlZuki, -1
-	person_event SPRITE_KIMONO_GIRL, 5, 13, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerKimono_girlKuni, -1
-	person_event SPRITE_KIMONO_GIRL, 6, 15, RIGHT << 2 | $13, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerKimono_girlMiki, -1
-	person_event SPRITE_GENTLEMAN, 14, 11, UP << 2 | $3, $0, -1, -1, $0, 0, GentlemanScript_0x994c6, -1
-	person_event SPRITE_RHYDON, 12, 10, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, RhydonScript_0x9951b, -1
-	person_event SPRITE_COOLTRAINER_M, 14, 14, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x99525, -1
-	person_event SPRITE_GRANNY, 10, 7, UP << 2 | $3, $0, -1, -1, $0, 0, GrannyScript_0x99528, -1
+	person_event SPRITE_KIMONO_GIRL, 6, 4, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerKimono_girlNaoko2, -1
+	person_event SPRITE_KIMONO_GIRL, 5, 6, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerKimono_girlSayo, -1
+	person_event SPRITE_KIMONO_GIRL, 6, 10, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerKimono_girlZuki, -1
+	person_event SPRITE_KIMONO_GIRL, 5, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerKimono_girlKuni, -1
+	person_event SPRITE_KIMONO_GIRL, 6, 15, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerKimono_girlMiki, -1
+	person_event SPRITE_GENTLEMAN, 14, 11, OW_UP | $3, $0, -1, -1, $0, 0, GentlemanScript_0x994c6, -1
+	person_event SPRITE_RHYDON, 12, 10, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, RhydonScript_0x9951b, -1
+	person_event SPRITE_COOLTRAINER_M, 14, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x99525, -1
+	person_event SPRITE_GRANNY, 10, 7, OW_UP | $3, $0, -1, -1, $0, 0, GrannyScript_0x99528, -1

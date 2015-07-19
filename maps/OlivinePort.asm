@@ -397,10 +397,10 @@ OlivinePort_MapEventHeader:
 
 	; people-events
 	db 7
-	person_event SPRITE_SAILOR, 27, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	person_event SPRITE_SAILOR, 19, 11, UP << 2 | $3, $0, -1, -1, $0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_SAILOR, 19, 10, LEFT << 2 | $1, $0, -1, -1, $0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	person_event SPRITE_FISHING_GURU, 18, 8, UP << 2 | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_FISHING_GURU, 18, 17, UP << 2 | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_YOUNGSTER, 19, 8, UP << 2 | $2, $0, -1, -1, $0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	person_event SPRITE_COOLTRAINER_F, 19, 15, UP << 2 | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 27, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
+	person_event SPRITE_SAILOR, 19, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 19, 10, OW_LEFT | $1, $0, -1, -1, $0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 18, 8, OW_UP | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 18, 17, OW_UP | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_YOUNGSTER, 19, 8, OW_UP | $2, $0, -1, -1, $0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_COOLTRAINER_F, 19, 15, OW_UP | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME

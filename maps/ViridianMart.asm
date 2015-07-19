@@ -48,6 +48,6 @@ ViridianMart_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_CLERK, 7, 5, LEFT << 2 | $1, $0, -1, -1, $0, 0, ClerkScript_0x9b5e7, -1
-	person_event SPRITE_LASS, 6, 11, UP << 2 | $1, $2, -1, -1, $0, 0, LassScript_0x9b5ee, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 5, UP << 2 | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x9b5f1, -1
+	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x9b5e7, -1
+	person_event SPRITE_LASS, 6, 11, OW_UP | $1, $2, -1, -1, $0, 0, LassScript_0x9b5ee, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 5, OW_UP | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x9b5f1, -1

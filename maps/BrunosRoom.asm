@@ -145,4 +145,4 @@ BrunosRoom_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_BRUNO, 11, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrunoScript_0x1809c5, -1
+	person_event SPRITE_BRUNO, 11, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrunoScript_0x1809c5, -1

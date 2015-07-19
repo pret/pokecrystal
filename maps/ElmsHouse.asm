@@ -99,5 +99,5 @@ ElmsHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_TEACHER, 9, 5, UP << 2 | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ElmsWife, -1
-	person_event SPRITE_BUG_CATCHER, 8, 9, UP << 2 | $3, $0, -1, -1, $0, 0, ElmsSon, -1
+	person_event SPRITE_TEACHER, 9, 5, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ElmsWife, -1
+	person_event SPRITE_BUG_CATCHER, 8, 9, OW_UP | $3, $0, -1, -1, $0, 0, ElmsSon, -1

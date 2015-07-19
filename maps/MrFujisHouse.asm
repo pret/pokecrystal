@@ -91,8 +91,8 @@ MrFujisHouse_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_SUPER_NERD, 5, 8, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x7e8ca, -1
-	person_event SPRITE_LASS, 8, 7, DOWN << 2 | $2, $11, -1, -1, $0, 0, LassScript_0x7e8cd, -1
-	person_event SPRITE_RHYDON, 8, 11, UP << 2 | $12, $0, -1, -1, $0, 0, MrFujisPsyduck, -1
-	person_event SPRITE_GROWLITHE, 9, 9, UP << 2 | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, MrFujisNidorino, -1
-	person_event SPRITE_MOLTRES, 7, 5, UP << 2 | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MrFujisPidgey, -1
+	person_event SPRITE_SUPER_NERD, 5, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x7e8ca, -1
+	person_event SPRITE_LASS, 8, 7, OW_DOWN | $2, $11, -1, -1, $0, 0, LassScript_0x7e8cd, -1
+	person_event SPRITE_RHYDON, 8, 11, OW_UP | $12, $0, -1, -1, $0, 0, MrFujisPsyduck, -1
+	person_event SPRITE_GROWLITHE, 9, 9, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, MrFujisNidorino, -1
+	person_event SPRITE_MOLTRES, 7, 5, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MrFujisPidgey, -1

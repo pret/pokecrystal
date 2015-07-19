@@ -325,12 +325,12 @@ CeladonGameCorner_MapEventHeader:
 
 	; people-events
 	db 9
-	person_event SPRITE_CLERK, 6, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ClerkScript_0x7211d, -1
-	person_event SPRITE_RECEPTIONIST, 6, 7, UP << 2 | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x72120, -1
-	person_event SPRITE_POKEFAN_M, 14, 18, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x72123, -1
-	person_event SPRITE_TEACHER, 11, 21, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7212e, -1
-	person_event SPRITE_FISHING_GURU, 11, 15, LEFT << 2 | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingGuruScript_0x72139, -1
-	person_event SPRITE_FISHER, 14, 12, LEFT << 2 | $0, $0, -1, 2, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x72144, -1
-	person_event SPRITE_FISHER, 14, 12, LEFT << 2 | $0, $0, -1, 4, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x72144, -1
-	person_event SPRITE_GYM_GUY, 7, 15, UP << 2 | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CeladonGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 12, 6, LEFT << 2 | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GrampsScript_0x72190, -1
+	person_event SPRITE_CLERK, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ClerkScript_0x7211d, -1
+	person_event SPRITE_RECEPTIONIST, 6, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x72120, -1
+	person_event SPRITE_POKEFAN_M, 14, 18, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x72123, -1
+	person_event SPRITE_TEACHER, 11, 21, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7212e, -1
+	person_event SPRITE_FISHING_GURU, 11, 15, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingGuruScript_0x72139, -1
+	person_event SPRITE_FISHER, 14, 12, OW_LEFT | $0, $0, -1, 2, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x72144, -1
+	person_event SPRITE_FISHER, 14, 12, OW_LEFT | $0, $0, -1, 4, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x72144, -1
+	person_event SPRITE_GYM_GUY, 7, 15, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CeladonGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 12, 6, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GrampsScript_0x72190, -1

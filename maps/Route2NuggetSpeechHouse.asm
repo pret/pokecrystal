@@ -66,4 +66,4 @@ Route2NuggetSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHER, 8, 6, UP << 2 | $0, $20, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x9b847, -1
+	person_event SPRITE_FISHER, 8, 6, OW_UP | $0, $20, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x9b847, -1

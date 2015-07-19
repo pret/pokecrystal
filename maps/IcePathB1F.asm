@@ -107,8 +107,8 @@ IcePathB1F_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_BOULDER, 11, 15, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
-	person_event SPRITE_BOULDER, 12, 11, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
-	person_event SPRITE_BOULDER, 13, 12, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
-	person_event SPRITE_BOULDER, 11, 21, LEFT << 2 | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
-	person_event SPRITE_POKE_BALL, 39, 9, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e50d, EVENT_ICE_PATH_B1F_IRON
+	person_event SPRITE_BOULDER, 11, 15, OW_LEFT | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
+	person_event SPRITE_BOULDER, 12, 11, OW_LEFT | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
+	person_event SPRITE_BOULDER, 13, 12, OW_LEFT | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
+	person_event SPRITE_BOULDER, 11, 21, OW_LEFT | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
+	person_event SPRITE_POKE_BALL, 39, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e50d, EVENT_ICE_PATH_B1F_IRON

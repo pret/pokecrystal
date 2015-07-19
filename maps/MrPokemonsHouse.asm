@@ -392,5 +392,5 @@ MrPokemonsHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_GENTLEMAN, 9, 7, LEFT << 2 | $1, $0, -1, -1, $0, 0, GentlemanScript_0x196e97, -1
-	person_event SPRITE_OAK, 9, 10, UP << 2 | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK
+	person_event SPRITE_GENTLEMAN, 9, 7, OW_LEFT | $1, $0, -1, -1, $0, 0, GentlemanScript_0x196e97, -1
+	person_event SPRITE_OAK, 9, 10, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK

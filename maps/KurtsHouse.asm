@@ -702,8 +702,8 @@ KurtsHouse_MapEventHeader:
 
 	; people-events
 	db 5
-	person_event SPRITE_KURT, 6, 7, UP << 2 | $2, $0, -1, -1, $0, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
-	person_event SPRITE_TWIN, 7, 9, DOWN << 2 | $3, $0, -1, -1, $0, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
-	person_event SPRITE_SLOWPOKE, 7, 10, DOWN << 2 | $1, $0, -1, -1, $0, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
-	person_event SPRITE_KURT, 7, 18, UP << 2 | $3, $0, -1, -1, $0, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
-	person_event SPRITE_TWIN, 8, 15, LEFT << 2 | $1, $0, -1, -1, $0, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2
+	person_event SPRITE_KURT, 6, 7, OW_UP | $2, $0, -1, -1, $0, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
+	person_event SPRITE_TWIN, 7, 9, OW_DOWN | $3, $0, -1, -1, $0, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
+	person_event SPRITE_SLOWPOKE, 7, 10, OW_DOWN | $1, $0, -1, -1, $0, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
+	person_event SPRITE_KURT, 7, 18, OW_UP | $3, $0, -1, -1, $0, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
+	person_event SPRITE_TWIN, 8, 15, OW_LEFT | $1, $0, -1, -1, $0, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2

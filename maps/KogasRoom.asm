@@ -150,4 +150,4 @@ KogasRoom_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_KOGA, 11, 9, UP << 2 | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, KogaScript_0x18075a, -1
+	person_event SPRITE_KOGA, 11, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, KogaScript_0x18075a, -1

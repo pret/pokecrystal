@@ -41,4 +41,4 @@ GoldenrodNameRatersHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_GENTLEMAN, 8, 6, UP << 2 | $2, $2, -1, -1, $0, 0, GentlemanScript_0x5577c, -1
+	person_event SPRITE_GENTLEMAN, 8, 6, OW_UP | $2, $2, -1, -1, $0, 0, GentlemanScript_0x5577c, -1

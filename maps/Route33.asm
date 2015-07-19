@@ -206,6 +206,6 @@ Route33_MapEventHeader:
 
 	; people-events
 	db 3
-	person_event SPRITE_POKEFAN_M, 17, 10, LEFT << 2 | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerAnthony, -1
-	person_event SPRITE_LASS, 20, 17, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x1ac002, -1
-	person_event SPRITE_FRUIT_TREE, 20, 18, DOWN << 2 | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1ac0ea, -1
+	person_event SPRITE_POKEFAN_M, 17, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerAnthony, -1
+	person_event SPRITE_LASS, 20, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x1ac002, -1
+	person_event SPRITE_FRUIT_TREE, 20, 18, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1ac0ea, -1

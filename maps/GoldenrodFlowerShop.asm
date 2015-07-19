@@ -172,5 +172,5 @@ GoldenrodFlowerShop_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_TEACHER, 8, 6, LEFT << 2 | $1, $0, -1, -1, $0, 0, TeacherScript_0x5535d, -1
-	person_event SPRITE_LASS, 10, 9, DOWN << 2 | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x553a2, EVENT_FLORIA_AT_FLOWER_SHOP
+	person_event SPRITE_TEACHER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, TeacherScript_0x5535d, -1
+	person_event SPRITE_LASS, 10, 9, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x553a2, EVENT_FLORIA_AT_FLOWER_SHOP

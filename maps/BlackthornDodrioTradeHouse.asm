@@ -35,4 +35,4 @@ BlackthornDodrioTradeHouse_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_LASS, 7, 6, DOWN << 2 | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Emy, -1
+	person_event SPRITE_LASS, 7, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Emy, -1

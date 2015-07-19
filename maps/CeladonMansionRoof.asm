@@ -49,4 +49,4 @@ CeladonMansionRoof_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_FISHER, 9, 11, UP << 2 | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x71a39, -1
+	person_event SPRITE_FISHER, 9, 11, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x71a39, -1

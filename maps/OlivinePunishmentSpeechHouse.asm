@@ -54,5 +54,5 @@ OlivinePunishmentSpeechHouse_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_POKEFAN_M, 6, 5, DOWN << 2 | $3, $0, -1, -1, $0, 0, OlivinePunishmentSpeechHouseDad, -1
-	person_event SPRITE_LASS, 9, 9, UP << 2 | $1, $2, -1, -1, $0, 0, OlivinePunishmentSpeechHouseDaughter, -1
+	person_event SPRITE_POKEFAN_M, 6, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, OlivinePunishmentSpeechHouseDad, -1
+	person_event SPRITE_LASS, 9, 9, OW_UP | $1, $2, -1, -1, $0, 0, OlivinePunishmentSpeechHouseDaughter, -1

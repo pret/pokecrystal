@@ -40,5 +40,5 @@ MountMortar1FOutside_MapEventHeader:
 
 	; people-events
 	db 2
-	person_event SPRITE_POKE_BALL, 19, 17, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf6, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
-	person_event SPRITE_POKE_BALL, 22, 35, DOWN << 2 | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf8, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE
+	person_event SPRITE_POKE_BALL, 19, 17, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf6, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
+	person_event SPRITE_POKE_BALL, 22, 35, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ddf8, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE
