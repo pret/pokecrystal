@@ -715,14 +715,14 @@ ClearPalettes:: ; 3317
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	
+
 ; DMG: just change palettes to 0 (white)
 	xor a
 	ld [rBGP], a
 	ld [rOBP0], a
 	ld [rOBP1], a
 	ret
-	
+
 .cgb
 	ld a, [rSVBK]
 	push af
@@ -755,11 +755,11 @@ GetSGBLayout:: ; 3340
 	ld a, [hCGB]
 	and a
 	jr nz, .sgb
-	
+
 	ld a, [hSGB]
 	and a
 	ret z
-	
+
 .sgb
 	predef_jump Function864c ; LoadSGBLayout
 ; 334e
@@ -872,7 +872,9 @@ GetName:: ; 33c3
 	ld e, a
 	ld d, 0
 	ld hl, NamesPointers
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	ld a, [hli]
 	rst Bankswitch
 	ld a, [hli]
@@ -1788,7 +1790,7 @@ GetBaseData:: ; 3856
 	push af
 	ld a, BANK(BaseData)
 	rst Bankswitch
-	
+
 ; Egg doesn't have BaseData
 	ld a, [CurSpecies]
 	cp EGG
@@ -1803,16 +1805,16 @@ GetBaseData:: ; 3856
 	ld bc, BaseData1 - BaseData0
 	call CopyBytes
 	jr .end
-	
+
 .egg
 ; ????
 	ld de, UnknownEggPic
-	
+
 ; Sprite dimensions
 	ld b, $55 ; 5x5
 	ld hl, BasePicSize
 	ld [hl], b
-	
+
 ; ????
 	ld hl, BasePadding
 	ld [hl], e
@@ -1823,12 +1825,12 @@ GetBaseData:: ; 3856
 	inc hl
 	ld [hl], d
 	jr .end
-	
+
 .end
 ; Replace Pokedex # with species
 	ld a, [CurSpecies]
 	ld [BaseDexNo], a
-	
+
 	pop af
 	rst Bankswitch
 	pop hl

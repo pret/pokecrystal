@@ -214,7 +214,7 @@ _ResetWRAM: ; 5bae
 	ld hl, sBoxCount
 	call Function5ca1
 	call CloseSRAM
-	
+
 	ld hl, NumItems
 	call Function5ca1
 
@@ -1108,7 +1108,9 @@ Function6219: ; 6219
 	ld e, a
 	ld d, 0
 	ld hl, .jumptable_626a
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1160,7 +1162,9 @@ TitleScreenScene: ; 62a3
 	ld e, a
 	ld d, 0
 	ld hl, .scenes
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1220,7 +1224,7 @@ TitleScreenEntrance: ; 62bc
 	inc [hl]
 	xor a
 	ld [hLCDStatCustom], a
-	
+
 ; Play the title screen music.
 	ld de, MUSIC_TITLE
 	call PlayMusic
@@ -1387,7 +1391,9 @@ Function639b: ; 639b
 	add hl, bc
 	ld l, [hl]
 	ld h, 0
-	add_n_times hl, hl, 2
+rept 2
+	add hl, hl
+endr
 	ld de, Data63ca
 	add hl, de
 	ld a, [wcf65]
@@ -1396,7 +1402,9 @@ Function639b: ; 639b
 	srl a
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	and a
 	ret z
@@ -2735,7 +2743,9 @@ ChangeHappiness: ; 71c2
 	dec c
 	ld b, 0
 	ld hl, .Actions
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	ld d, 0
 	add hl, de
 	ld a, [hl]
@@ -4026,7 +4036,9 @@ Function84ef: ; 84ef
 	ld a, d
 	ld d, 0
 	ld hl, SineWave
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -6832,7 +6844,9 @@ RemoveItemFromPocket: ; d2ff
 	jr nc, .ok
 	ld c, a
 	ld b, $0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [CurItem]
 	cp [hl]
 	inc hl
@@ -10898,7 +10912,9 @@ Function1171d: ; 1171d
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1172e
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -11218,7 +11234,9 @@ Function11968: ; 11968
 	ld e, a
 	ld d, $0
 	ld hl, Jumptable_11977
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -11943,7 +11961,9 @@ Function12008: ; 12008 (4:6008)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_12017
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -12369,7 +12389,9 @@ Function1233e: ; 1233e
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_12365
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -12872,12 +12894,14 @@ StartMenu:: ; 125cd
 	ld hl, .MenuReturns
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-	
+
 .MenuReturns
 	dw .Reopen
 	dw .Exit
@@ -13094,7 +13118,9 @@ StartMenu:: ; 125cd
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	add_n_times hl, de, 6
+rept 6
+	add hl, de
+endr
 	ret
 ; 12829
 
@@ -14819,7 +14845,9 @@ CheckRegisteredItem: ; 13345
 	inc hl
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	call .IsSameItem
 	jr c, .NoRegisteredItem
 	and a
@@ -14843,7 +14871,9 @@ CheckRegisteredItem: ; 13345
 	inc hl
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	call .IsSameItem
 	jr c, .NoRegisteredItem
 	ret
@@ -15186,7 +15216,9 @@ FloorToString: ; 13575
 	ld e, a
 	ld d, 0
 	ld hl, .floors
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -15495,7 +15527,9 @@ LoadContestantName: ; 13730
 	ld c, a
 	ld b, 0
 	ld hl, BugContestantPointers
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -15738,7 +15772,9 @@ Function138b0: ; 138b0
 	ld c, a
 	ld b, 0
 	ld hl, BugContestantPointers
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -15751,7 +15787,9 @@ Function138b0: ; 138b0
 	jr z, .loop2
 	ld c, a
 	ld b, 0
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	ld a, [hli]
 	ld [wd00f], a
 	ld a, [hli]
@@ -15938,7 +15976,9 @@ Special_SelectRandomBugContestContestants: ; 139a8
 	ld e, b
 	ld d, 0
 	ld hl, BugCatchingContestantEventFlagTable
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -15968,7 +16008,9 @@ Special_CheckBugContestContestantFlag: ; 139ed
 	ld hl, BugCatchingContestantEventFlagTable
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -16329,7 +16371,7 @@ GetTimeOfDay:: ; 14032
 ; get time of day based on the current hour
 	ld a, [hHours] ; hour
 	ld hl, TimesOfDay
-	
+
 .check
 ; if we're within the given time period,
 ; get the corresponding time of day
@@ -16340,7 +16382,7 @@ GetTimeOfDay:: ; 14032
 	inc hl
 ; try again
 	jr .check
-	
+
 .match
 ; get time of day
 	inc hl
@@ -16660,7 +16702,9 @@ AddOutdoorSprites: ; 141ee
 	ld c, a
 	ld b, 0
 	ld hl, OutdoorSprites
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -17129,7 +17173,9 @@ Function143c8: ; 143c8
 	pop bc
 	ld l, c
 	ld h, $0
-	add_n_times hl, hl, 4
+rept 4
+	add hl, hl
+endr
 	pop de
 	add hl, de
 	ld d, h
@@ -17156,7 +17202,9 @@ Function14406: ; 14406
 	and $7f
 	ld l, a
 	ld h, $0
-	add_n_times hl, hl, 4
+rept 4
+	add hl, hl
+endr
 	ld a, l
 	add $0
 	ld l, a
@@ -17300,7 +17348,7 @@ SpriteMons: ; 14495
 	db LUGIA
 	db HO_OH
 ; 144b8
-	
+
 
 OutdoorSprites: ; 144b8
 ; Valid sprite IDs for each map group.
@@ -19026,7 +19074,9 @@ Function150d8: ; 150d8
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_1522d
-	add_n_times hl, de, 5
+rept 5
+	add hl, de
+endr
 	ld a, [hli]
 	push af
 	ld a, [hli]
@@ -19356,7 +19406,7 @@ PokemonCenterPC: ; 1559a
 	db  3 ; items
 	db  1, 0, 4 ; bill's, player's, turn off
 	db -1
-	
+
 	; before Hall Of Fame
 	db  4 ; items
 	db  1, 0, 2, 4 ; bill's, player's, oak's, turn off
@@ -20136,7 +20186,9 @@ GetMart: ; 15b31
 
 .IsAMart
 	ld hl, Marts
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -20372,7 +20424,9 @@ Function15c7d: ; 15c7d
 	pop af
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -20397,7 +20451,9 @@ Function15ca3: ; 15ca3
 	ld e, a
 	ld d, 0
 	ld hl, .data_15cb0
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	ret
 ; 15cb0
 
@@ -20553,7 +20609,9 @@ Function15da5: ; 15da5
 	ld h, [hl]
 	ld l, a
 	inc hl
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	inc hl
 	ld a, [hli]
 	ld [$ffc5], a
@@ -20592,7 +20650,9 @@ Function15df9: ; 15df9
 	ld h, [hl]
 	ld l, a
 	inc hl
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	inc hl
 	ld e, [hl]
 	inc hl
@@ -20636,7 +20696,9 @@ Function15e30: ; 15e30
 	ld c, a
 	ld b, 0
 	ld hl, DefaultFlypoint
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	push de
 	ld d, h
 	ld e, l
@@ -21206,7 +21268,9 @@ Function16233: ; 16233
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_16242
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -21769,7 +21833,9 @@ Function16607: ; 16607
 	push de
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	pop de
 	ret
 ; 16613
@@ -22180,7 +22246,9 @@ Function1689b: ; 1689b
 	ld e, a
 	ld d, 0
 	ld hl, TextTable_168aa
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -23422,7 +23490,9 @@ GLOBAL EggMoves
 	ld c, a
 	ld b, 0
 	ld hl, EggMovePointers
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, BANK(EggMovePointers)
 	call GetFarHalfword
 .loop
@@ -23455,7 +23525,9 @@ GLOBAL EggMoves
 	ld c, a
 	ld b, 0
 	ld hl, EvosAttacksPointers
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 .loop3
@@ -23987,7 +24059,9 @@ Function20000: ; 20000 (8:4000)
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_20015
-	add_n_times hl, de, 4
+rept 4
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -25981,7 +26055,9 @@ Function24a80: ; 24a80 (9:4a80)
 	ld c, a
 	ld b, 0
 	ld hl, Unknown_24a91
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -27077,7 +27153,9 @@ Function2518e: ; 2518e (9:518e)
 	ld e, a
 	ld d, $0
 	ld hl, Jumptable_2519d
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -31704,7 +31782,9 @@ Function290a0: ; 290a0
 	ld e, a
 	ld d, 0
 	ld hl, JumpTable290af
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -31992,7 +32072,9 @@ Function29281: ; 29281
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_2928f
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -32576,7 +32658,9 @@ Function29676: ; 29676 (a:5676)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Jumptable_29686
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -34252,7 +34336,9 @@ Function2a355: ; 2a355
 	inc hl
 	ld c, a
 	ld b, $0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [wdfe7]
 	cp [hl]
 	jr nz, .asm_2a390
@@ -34412,7 +34498,9 @@ Function2a4ab: ; 2a4ab
 	dec a
 	ld c, a
 	ld b, $0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	inc hl
 	ld c, [hl]
 	pop hl
@@ -34484,7 +34572,9 @@ Function2a51f: ; 2a51f
 	and $3
 	ld c, a
 	ld b, $0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	inc hl
 	ld a, [hl]
 	ld [wd265], a
@@ -34503,7 +34593,9 @@ RandomPhoneMon: ; 2a567
 	dec a
 	ld c, a
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, BANK(TrainerGroups)
 	call GetFarHalfword
 
@@ -36075,7 +36167,9 @@ PrintMoveDesc: ; 2cb3e
 	dec a
 	ld c, a
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -36626,7 +36720,9 @@ ReadTrainerParty: ; 39771
 	ld c, a
 	ld b, 0
 	ld hl, TrainerGroups
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -36654,7 +36750,9 @@ ReadTrainerParty: ; 39771
 	ld d, h
 	ld e, l
 	ld hl, TrainerTypes
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -36954,7 +37052,9 @@ GetTrainerName:: ; 3994c
 	push bc
 	ld b, 0
 	ld hl, TrainerGroups
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -37123,7 +37223,9 @@ Function421f5: ; 421f5
 	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -37513,7 +37615,9 @@ LearnLevelMoves: ; 42487
 	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -37712,7 +37816,9 @@ GetPreEvolution: ; 42581
 .asm_42583
 	ld hl, EvosAttacksPointers
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -37864,7 +37970,9 @@ AIChooseMove: ; 440ce
 	ld hl, AIScoringPointers
 	dec c
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -37878,7 +37986,7 @@ AIChooseMove: ; 440ce
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves
-	
+
 .DecrementNextScore
 	; If the enemy has no moves, this will infinite.
 	ld a, [de]
@@ -37902,7 +38010,7 @@ AIChooseMove: ; 440ce
 ; This means that the minimum score will be 1.
 .PickLowestScoreMoves
 	ld a, c
-	
+
 .asm_44175
 	inc [hl]
 	dec hl
@@ -37913,7 +38021,7 @@ AIChooseMove: ; 440ce
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, NUM_MOVES
-	
+
 ; Give a score of 0 to a blank move	
 .asm_44184
 	ld a, [de]
@@ -37929,7 +38037,7 @@ AIChooseMove: ; 440ce
 	xor a
 	ld [hli], a
 	jr .asm_44193
-	
+
 .asm_44191
 	ld a, [de]
 	ld [hli], a
@@ -38198,7 +38306,9 @@ Function44333: ; 44333
 	dec a
 	ld d, 0
 	ld e, a
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -38228,7 +38338,7 @@ GLOBAL PokedexEntries4
 	db BANK(PokedexEntries3)
 	db BANK(PokedexEntries4)
 ; 44355
-	
+
 Function44355: ; 44355
 	call Function44333
 	push hl
@@ -40794,7 +40904,9 @@ INCBIN "gfx/unknown/048e71.2bpp"
 
 Function48e81: ; 48e81
 	ld hl, PackFGFXPointers
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -41797,7 +41909,9 @@ Function49b52: ; 49b52 (12:5b52)
 	ld a, d
 	ld d, $0
 	ld hl, Unknown_49b6e
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -43265,7 +43379,9 @@ CheckOwnMonAnywhere: ; 0x4a721
 	; Load the box.
 	ld hl, BoxAddressTable1
 	ld b, 0
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	ld a, [hli]
 	call GetSRAMBank
 	ld a, [hli]
@@ -43478,7 +43594,9 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	jr z, .asm_4a8d1
 	ld hl, BoxAddressTable2
 	ld b, 0
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	ld a, [hli]
 	call GetSRAMBank
 	ld a, [hli]
@@ -45579,7 +45697,9 @@ Function4d87a: ; 4d87a
 	jr z, .asm_4d90b
 	ld hl, Unknown_4d99f
 	ld b, 0
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	ld a, [hli]
 	call GetSRAMBank
 	ld a, [hli]
@@ -47302,7 +47422,9 @@ Function4e554:: ; 4e554
 	ld c, a
 	ld hl, Jumptable_4e564
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -48511,7 +48633,9 @@ Function5022f: ; 5022f
 	ld e, a
 	ld d, 0
 	ld hl, EvosAttacksPointers
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	call Function50268
 	pop hl
 	call PlaceString
@@ -48729,7 +48853,9 @@ Function50396: ; 50396
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_503b2
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -48902,7 +49028,9 @@ PrintPartyMenuText: ; 5049a
 	ld hl, PartyMenuStrings
 	ld e, a
 	ld d, $0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -49038,7 +49166,9 @@ UnknownText_0x505bc: ; 0x505bc
 Function505c1: ; 505c1
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -49625,7 +49755,9 @@ Function50a28: ; 50a28
 	dec a
 	ld c, a
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -49863,44 +49995,44 @@ GetGender: ; 50bdd
 	ld a, [MonType]
 	and a
 	jr z, .PartyMon
-	
+
 ; 1: OTPartyMon
 	ld hl, OTPartyMon1DVs
 	dec a
 	jr z, .PartyMon
-	
+
 ; 2: sBoxMon
 	ld hl, sBoxMon1DVs
 	ld bc, sBoxMon2 - sBoxMon1
 	dec a
 	jr z, .sBoxMon
-	
+
 ; 3: Unknown
 	ld hl, TempMonDVs
 	dec a
 	jr z, .DVs
-	
+
 ; else: WildMon
 	ld hl, EnemyMonDVs
 	jr .DVs
-	
-	
+
+
 ; Get our place in the party/box.
-	
+
 .PartyMon
 .sBoxMon
 	ld a, [CurPartyMon]
 	call AddNTimes
-	
-	
+
+
 .DVs
-	
+
 ; sBoxMon data is read directly from SRAM.
 	ld a, [MonType]
 	cp BOXMON
 	ld a, 1
 	call z, GetSRAMBank
-	
+
 ; Attack DV
 	ld a, [hli]
 	and $f0
@@ -49909,7 +50041,7 @@ GetGender: ; 50bdd
 	ld a, [hl]
 	and $f0
 	swap a
-	
+
 ; Put our DVs together.
 	or b
 	ld b, a
@@ -49918,8 +50050,8 @@ GetGender: ; 50bdd
 	ld a, [MonType]
 	cp BOXMON
 	call z, CloseSRAM
-	
-	
+
+
 ; We need the gender ratio to do anything with this.
 	push bc
 	ld a, [CurPartySpecies]
@@ -49928,35 +50060,35 @@ GetGender: ; 50bdd
 	ld bc, BaseData1 - BaseData
 	call AddNTimes
 	pop bc
-	
+
 	ld a, BANK(BaseData)
 	call GetFarByte
-	
-	
+
+
 ; The higher the ratio, the more likely the monster is to be female.
-	
+
 	cp $ff
 	jr z, .Genderless
-	
+
 	and a
 	jr z, .Male
-	
+
 	cp $fe
 	jr z, .Female
-	
+
 ; Values below the ratio are male, and vice versa.
 	cp b
 	jr c, .Male
-	
+
 .Female
 	xor a
 	ret
-	
+
 .Male
 	ld a, 1
 	and a
 	ret
-	
+
 .Genderless
 	scf
 	ret
@@ -50629,7 +50761,7 @@ GetUnownLetter: ; 51040
 	srl a
 	or b
 	ld b, a
-	
+
 	; spd
 	ld a, [hl]
 	and %01100000
@@ -51759,7 +51891,9 @@ DoStep: ; 8025f
 	ld e, a
 	ld d, 0
 	ld hl, .Steps
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -52157,31 +52291,33 @@ EngineFlagAction:: ; 80430
 	jr z, .ceiling
 	jr c, .read ; cp 0 can't set carry!
 	jr .invalid
-	
+
 ; There are only $a2 engine flags, so
 ; anything beyond that is invalid too.
-	
+
 .ceiling
 	ld a, e
 	cp $a2
 	jr c, .read
-	
+
 ; Invalid flags are treated as flag 00.
-	
+
 .invalid
 	xor a
 	ld e, a
 	ld d, a
-	
+
 ; Get this flag's location.
-	
+
 .read
 	ld hl, EngineFlags
 ; location
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 ; bit
 	add hl, de
-	
+
 ; location
 	ld e, [hl]
 	inc hl
@@ -52189,28 +52325,28 @@ EngineFlagAction:: ; 80430
 	inc hl
 ; bit
 	ld c, [hl]
-	
+
 ; What are we doing with this flag?
-	
+
 	ld a, b
 	cp 1
 	jr c, .reset ; b = 0
 	jr z, .set   ; b = 1
-	
+
 ; Return the given flag in c.
 .check
 	ld a, [de]
 	and c
 	ld c, a
 	ret
-	
+
 ; Set the given flag.
 .set
 	ld a, [de]
 	or c
 	ld [de], a
 	ret
-	
+
 ; Reset the given flag.
 .reset
 	ld a, c
@@ -52238,7 +52374,9 @@ _GetVarAction:: ; 80648 (20:4648)
 	ld c, a
 	ld b, 0
 	ld hl, VarActionTable
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -52684,7 +52822,9 @@ Function81a74: ; 81a74
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_81acf
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -52864,7 +53004,9 @@ Function81bf4: ; 81bf4
 	inc a
 	ld l, a
 	ld h, $0
-	add_n_times hl, hl, 2
+rept 2
+	add hl, hl
+endr
 	ld de, OverworldMap
 	add hl, de
 	ld de, wc608
@@ -52988,7 +53130,9 @@ Function81cc2: ; 81cc2
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_81d02
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -53314,7 +53458,9 @@ Function81eca: ; 81eca
 	inc a
 	ld l, a
 	ld h, $0
-	add_n_times hl, hl, 2
+rept 2
+	add hl, hl
+endr
 	ld de, OverworldMap
 	add hl, de
 	ld e, l
@@ -53615,7 +53761,9 @@ Function8220f: ; 8220f
 	ld a, [wcf64]
 	ld l, a
 	ld h, $0
-	add_n_times hl, hl, 3
+rept 3
+	add hl, hl
+endr
 	ld de, Unkn1Pals
 	add hl, de
 	ld de, wc608
@@ -53728,7 +53876,9 @@ Function822f0: ; 822f0
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_82301
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -53770,7 +53920,9 @@ Function82309: ; 82309
 	ld e, a
 	ld d, $0
 	ld hl, wc608
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, l
 	ld d, h
 	call Function81ea5
@@ -53868,7 +54020,9 @@ Function82391: ; 82391
 	ld c, a
 	ld b, $0
 	ld hl, wc608
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, e
 	ld [hli], a
 	ld [hl], d
@@ -53908,7 +54062,9 @@ Function84022: ; 84022
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_84031
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -55013,7 +55169,9 @@ Function84785: ; 84785
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_84807
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -55044,7 +55202,9 @@ Function847bd: ; 847bd
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_84807
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -56344,7 +56504,9 @@ Function88201: ; 88201
 	inc hl
 	ld c, a
 	ld b, $0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	inc hl
 	ld a, [hl]
 	pop bc
@@ -56359,7 +56521,9 @@ Function88211: ; 88211
 	ld c, a
 	ld b, $0
 	inc hl
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [CurItem]
 	ld c, a
 	ld a, [hli]
@@ -56531,15 +56695,15 @@ GetPlayerIcon: ; 8832c
 ; Male
 	ld de, ChrisSpriteGFX
 	ld b, BANK(ChrisSpriteGFX)
-	
+
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .done
-	
+
 ; Female
 	ld de, KrisSpriteGFX
 	ld b, BANK(KrisSpriteGFX)
-	
+
 .done
 	ret
 ; 8833e
@@ -57355,7 +57519,9 @@ Function894dc: ; 894dc
 	ld c, d
 	ld b, 0
 	ld hl, Unknown_89509
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -57470,7 +57636,9 @@ Function8956f: ; 8956f
 	ld a, [TrainerClass]
 	ld h, 0
 	ld l, a
-	add_n_times hl, hl, 2
+rept 2
+	add hl, hl
+endr
 	ld de, TrainerPalettes
 	add hl, de
 	ld a, [rSVBK]
@@ -61242,7 +61410,9 @@ Function8ae68: ; 8ae68
 	inc hl
 	ld d, $0
 	ld e, $14
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [ScriptVar]
 	ld c, a
 	ld de, Unknown_8aebc
@@ -61730,7 +61900,9 @@ GetBuenaPrize: ; 8b154
 	ld hl, BuenaPrizes
 	ld b, 0
 	ld c, a
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ret
 ; 8b15e
 
@@ -61955,7 +62127,9 @@ Function8b2a9: ; 8b2a9
 	inc hl
 	inc hl
 	ld b, $0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	call Function8b28a
 	call PrintText
 	pop bc
@@ -63064,7 +63238,9 @@ Function8b8c8: ; 8b8c8
 	ld b, 0
 	ld c, a
 	ld hl, Unknown_8b903
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -63264,39 +63440,39 @@ _TimeOfDayPals:: ; 8c011
 	ld hl, wd846
 	bit 7, [hl]
 	jr nz, .dontchange
-	
+
 ; do we need to bother updating?
 	ld a, [TimeOfDay]
 	ld hl, CurTimeOfDay
 	cp [hl]
 	jr z, .dontchange
-	
+
 ; if so, the time of day has changed
 	ld a, [TimeOfDay]
 	ld [CurTimeOfDay], a
-	
+
 ; get palette id
 	call GetTimePalette
-	
+
 ; same palette as before?
 	ld hl, TimeOfDayPal
 	cp [hl]
 	jr z, .dontchange
-	
+
 ; update palette id
 	ld [TimeOfDayPal], a
-	
-	
+
+
 ; save bg palette 8
 	ld hl, Unkn1Pals + 8 * 7 ; Unkn1Pals + 7 pals
-	
+
 ; save wram bank
 	ld a, [rSVBK]
 	ld b, a
 ; wram bank 5
 	ld a, 5
 	ld [rSVBK], a
-	
+
 ; push palette
 	ld c, 4 ; NUM_PAL_COLORS
 .push
@@ -63307,27 +63483,27 @@ _TimeOfDayPals:: ; 8c011
 	push de
 	dec c
 	jr nz, .push
-	
+
 ; restore wram bank
 	ld a, b
 	ld [rSVBK], a
-	
-	
+
+
 ; update sgb pals
 	ld b, $9
 	call GetSGBLayout
-	
-	
+
+
 ; restore bg palette 8
 	ld hl, wd03f ; last byte in Unkn1Pals
-	
+
 ; save wram bank
 	ld a, [rSVBK]
 	ld d, a
 ; wram bank 5
 	ld a, 5
 	ld [rSVBK], a
-	
+
 ; pop palette
 	ld e, 4 ; NUM_PAL_COLORS
 .pop
@@ -63338,19 +63514,19 @@ _TimeOfDayPals:: ; 8c011
 	dec hl
 	dec e
 	jr nz, .pop
-	
+
 ; restore wram bank
 	ld a, d
 	ld [rSVBK], a
-	
+
 ; update palettes
 	call _UpdateTimePals
 	call DelayFrame
-	
+
 ; successful change
 	scf
 	ret
-	
+
 .dontchange
 ; no change occurred
 	and a
@@ -63489,7 +63665,9 @@ GetTimePalette: ; 8c117
 	ld e, a
 	ld d, 0
 	ld hl, .TimePalettes
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -63576,29 +63754,31 @@ GetTimePalFade: ; 8c17c
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	
+
 ; else: dmg
 
 ; index
 	ld a, [TimeOfDayPal]
 	and %11
-	
+
 ; get fade table
 	push bc
 	ld c, a
 	ld b, $0
 	ld hl, .dmgfades
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	pop bc
-	
+
 ; get place in fade table
 	ld b, $0
 	add hl, bc
 	ret
-	
+
 .cgb
 	ld hl, .cgbfade
 	ld b, $0
@@ -63797,7 +63977,9 @@ Function8c314: ; 8c314
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_8c323
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -64006,7 +64188,9 @@ Function8c44f: ; 8c44f (23:444f)
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_8c490
-	add_n_times hl, de, 5
+rept 5
+	add hl, de
+endr
 	ld a, [hli]
 	cp -1
 	jr z, .asm_8c47a
@@ -64380,7 +64564,9 @@ Function8c70c: ; 8c70c (23:470c)
 	ld a, d
 	ld d, 0
 	ld hl, Unknown_8c728
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -64636,7 +64822,9 @@ Function8ca0c: ; 8ca0c
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_8ca1b
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -64734,7 +64922,9 @@ Function8ca8e: ; 8ca8e (23:4a8e)
 	add e
 	ld e, a
 	ld hl, Unknown_8cab3
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -65138,7 +65328,9 @@ GetMagnetTrainBGTiles: ; 8cd74
 	ld e, a
 	ld d, 0
 	ld hl, MagnetTrainBGTiles
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -65221,7 +65413,9 @@ Function8cdf7: ; 8cdf7
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_8ce06
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -65534,7 +65728,9 @@ Function8cfd6:: ; 8cfd6
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_8d1c4
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	ld e, l
 	ld d, h
 	ld hl, $0000
@@ -65850,7 +66046,9 @@ Function8d189: ; 8d189
 	ld e, [hl]
 	ld d, 0
 	ld hl, Unknown_8d6e6
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -65867,7 +66065,9 @@ Function8d1a2: ; 8d1a2
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_8d94d
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	ret
 ; 8d1ac
 
@@ -65875,7 +66075,9 @@ Function8d1ac: ; 8d1ac
 	push hl
 	ld l, a
 	ld h, 0
-	add_n_times hl, hl, 2
+rept 2
+	add hl, hl
+endr
 	ld de, Unknown_8e706
 	add hl, de
 	ld c, [hl]
@@ -65947,7 +66149,9 @@ Function8d24b: ; 8d24b
 	ld e, [hl]
 	ld d, 0
 	ld hl, Jumptable_8d25b
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -68141,7 +68345,9 @@ Function8e741: ; 8e741
 	ld a, d
 	ld d, 0
 	ld hl, Unknown_8e75d
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -68280,7 +68486,9 @@ Function8e83f: ; 8e83f
 Function8e849: ; 8e849
 	ld d, 0
 	ld hl, Jumptable_8e854
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -68549,7 +68757,7 @@ GetIconGFX: ; 8e9de
 	add 10
 	ld [wc3b7], a
 	ret
-	
+
 HeldItemIcons:
 INCBIN "gfx/icon/mail.2bpp"
 INCBIN "gfx/icon/item.2bpp"
@@ -68560,18 +68768,20 @@ GetIcon_de: ; 8ea17
 	ld l, e
 	ld h, d
 	jr GetIcon
-	
+
 GetIcon_a: ; 8ea1b
 ; Load icon graphics into VRAM starting from tile a.
 	ld l, a
 	ld h, 0
-	
+
 GetIcon: ; 8ea1e
 ; Load icon graphics into VRAM starting from tile hl.
 
 ; One tile is 16 bytes long.
-	add_n_times hl, hl, 4
-	
+rept 4
+	add hl, hl
+endr
+
 	ld de, VTiles0
 	add hl, de
 	push hl
@@ -68589,7 +68799,7 @@ GetIcon: ; 8ea1e
 	ld e, a
 	ld d, [hl]
 	pop hl
-	
+
 	lb bc, BANK(Icons), 8
 	call GetGFXUnlessMobile
 
@@ -69377,7 +69587,9 @@ Function903a9: ; 903a9 (24:43a9)
 	ld c, b
 	ld b, 0
 	ld hl, Unknown_903d6
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -70069,7 +70281,9 @@ Function909de: ; 909de
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_909f2
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -70750,7 +70964,9 @@ Function90f04: ; 90f04 (24:4f04)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_90f13
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -71536,7 +71752,9 @@ Function91342: ; 91342 (24:5342)
 	ld a, [wc6d4]
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -72352,7 +72570,9 @@ PlayRadio: ; 91a53
 	ld [EnemyTurnsTaken], a
 	ld hl, .StationPointers
 	ld d, $0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -72536,57 +72756,57 @@ Function91b73: ; 91b73
 
 TownMapBubble: ; 91bb5
 ; Draw the bubble containing the location text in the town map HUD
-	
+
 ; Top-left corner
 	hlcoord 1, 0
 	ld a, $30
 	ld [hli], a
-	
+
 ; Top row
 	ld bc, 16
 	ld a, " "
 	call ByteFill
-	
+
 ; Top-right corner
 	ld a, $31
 	ld [hl], a
 	hlcoord 1, 1
-	
-	
+
+
 ; Middle row
 	ld bc, 18
 	ld a, " "
 	call ByteFill
-	
-	
+
+
 ; Bottom-left corner
 	hlcoord 1, 2
 	ld a, $32
 	ld [hli], a
-	
+
 ; Bottom row
 	ld bc, 16
 	ld a, " "
 	call ByteFill
-	
+
 ; Bottom-right corner
 	ld a, $33
 	ld [hl], a
-	
-	
+
+
 ; Print "Where?"
 	hlcoord 2, 0
 	ld de, .Where
 	call PlaceString
-	
+
 ; Print the name of the default flypoint
 	call .Name
-	
+
 ; Up/down arrows
 	hlcoord 18, 1
 	ld [hl], $34	
 	ret
-	
+
 .Where
 	db "Where?@"
 
@@ -72599,9 +72819,9 @@ TownMapBubble: ; 91bb5
 	ld de, Flypoints
 	add hl, de
 	ld e, [hl]
-	
+
 	callba GetLandmarkName
-	
+
 	hlcoord 2, 1
 	ld de, StringBuffer1
 	call PlaceString
@@ -72708,114 +72928,114 @@ Function91c8f: ; 91c8f
 ; 91c90
 
 FlyMap: ; 91c90
-	
+
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	
+
 ; If we're not in a valid location, i.e. Pokecenter floor 2F,
 ; the backup map information is used
-	
+
 	cp SPECIAL_MAP
 	jr nz, .CheckRegion
-	
+
 	ld a, [BackupMapGroup]
 	ld b, a
 	ld a, [BackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	
+
 .CheckRegion
 ; The first 46 locations are part of Johto. The rest are in Kanto
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
-	
+
 .JohtoFlyMap
 ; Note that .NoKanto should be modified in tandem with this branch
-	
+
 	push af
-	
+
 ; Start from New Bark Town
 	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
-	
+
 ; Flypoints begin at New Bark Town...
 	ld [StartFlypoint], a
 ; ..and end at Silver Cave
 	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
-	
+
 ; Fill out the map
 	call FillJohtoMap
 	call .MapHud
 	pop af
 	call TownMapPlayerIcon
 	ret
-	
+
 .KantoFlyMap
-	
+
 ; The event that there are no flypoints enabled in a map is not
 ; accounted for. As a result, if you attempt to select a flypoint
 ; when there are none enabled, the game will crash. Additionally,
 ; the flypoint selection has a default starting point that
 ; can be flown to even if none are enabled
-	
+
 ; To prevent both of these things from happening when the player
 ; enters Kanto, fly access is restricted until Indigo Plateau is
 ; visited and its flypoint enabled
-	
+
 	push af
 	ld c, SPAWN_INDIGO
 	call HasVisitedSpawn
 	and a
 	jr z, .NoKanto
-	
+
 ; Kanto's map is only loaded if we've visited Indigo Plateau
-	
+
 ; Flypoints begin at Pallet Town...
 	ld a, FLY_PALLET
 	ld [StartFlypoint], a
 ; ...and end at Indigo Plateau
 	ld a, FLY_INDIGO
 	ld [EndFlypoint], a
-	
+
 ; Because Indigo Plateau is the first flypoint the player
 ; visits, it's made the default flypoint
 	ld [DefaultFlypoint], a
-	
+
 ; Fill out the map
 	call FillKantoMap
 	call .MapHud
 	pop af
 	call TownMapPlayerIcon
 	ret
-	
+
 .NoKanto
 ; If Indigo Plateau hasn't been visited, we use Johto's map instead
-	
+
 ; Start from New Bark Town
 	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
-	
+
 ; Flypoints begin at New Bark Town...
 	ld [StartFlypoint], a
 ; ..and end at Silver Cave
 	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
-	
+
 	call FillJohtoMap
-	
+
 	pop af
-	
+
 .MapHud
 	call TownMapBubble
 	call TownMapPals
-	
+
 	ld hl, VBGMap0 ; BG Map 0
 	call TownMapBGUpdate
-	
+
 	call TownMapMon
 	ld a, c
 	ld [wd003], a
@@ -73119,25 +73339,25 @@ TownMapBGUpdate: ; 91ee4
 	ld [hBGMapAddress], a
 	ld a, h
 	ld [$ffd7], a
-	
+
 ; Only update palettes on CGB
 	ld a, [hCGB]
 	and a
 	jr z, .tiles
-	
+
 ; BG Map mode 2 (palettes)
 	ld a, 2
 	ld [hBGMapMode], a
-	
+
 ; The BG Map is updated in thirds, so we wait
 ; 3 frames to update the whole screen's palettes.
 	ld c, 3
 	call DelayFrames
-	
+
 .tiles
 ; Update BG Map tiles
 	call WaitBGMap
-	
+
 ; Turn off BG Map update
 	xor a
 	ld [hBGMapMode], a
@@ -73147,10 +73367,10 @@ TownMapBGUpdate: ; 91ee4
 FillJohtoMap: ; 91eff
 	ld de, JohtoMap
 	jr FillTownMap
-	
+
 FillKantoMap: ; 91f04
 	ld de, KantoMap
-	
+
 FillTownMap: ; 91f07
 	hlcoord 0, 0
 .loop
@@ -73173,17 +73393,17 @@ TownMapPals: ; 91f13
 ; Current tile
 	ld a, [hli]
 	push hl
-	
+
 ; HP/borders use palette 0
 	cp $60
 	jr nc, .pal0
-	
+
 ; The palette data is condensed to nybbles,
 ; least-significant first.
 	ld hl, TownMapPalMap
 	srl a
 	jr c, .odd
-	
+
 ; Even-numbered tile ids take the bottom nybble...
 	add l
 	ld l, a
@@ -73193,7 +73413,7 @@ TownMapPals: ; 91f13
 	ld a, [hl]
 	and %111
 	jr .update
-	
+
 .odd
 ; ...and odd ids take the top.
 	add l
@@ -73205,10 +73425,10 @@ TownMapPals: ; 91f13
 	swap a
 	and %111
 	jr .update
-	
+
 .pal0
 	xor a
-	
+
 .update
 	pop hl
 	ld [de], a
@@ -73237,16 +73457,16 @@ TownMapMon: ; 91f7b
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
-	
+
 ; Get FlyMon icon
 	ld e, 8 ; starting tile in VRAM
 	callba GetSpeciesIcon
-	
+
 ; Animation/palette
 	ld de, $0000
 	ld a, $0
 	call Function3b2a
-	
+
 	ld hl, 3
 	add hl, bc
 	ld [hl], 8
@@ -73259,14 +73479,14 @@ TownMapMon: ; 91f7b
 TownMapPlayerIcon: ; 91fa6
 ; Draw the player icon at town map location in a
 	push af
-	
+
 	callba GetPlayerIcon
-	
+
 ; Standing icon
 	ld hl, $8100
 	ld c, 4 ; # tiles
 	call Request2bpp
-	
+
 ; Walking icon
 	ld hl, $00c0
 	add hl, de
@@ -73276,7 +73496,7 @@ TownMapPlayerIcon: ; 91fa6
 	ld c, 4 ; # tiles
 	ld a, BANK(ChrisSpriteGFX) ; does nothing
 	call Request2bpp
-	
+
 ; Animation/palette
 	ld de, $0000
 	ld b, $0a ; Male
@@ -73287,17 +73507,17 @@ TownMapPlayerIcon: ; 91fa6
 .asm_91fd3
 	ld a, b
 	call Function3b2a
-	
+
 	ld hl, $0003
 	add hl, bc
 	ld [hl], $10
-	
+
 	pop af
 	ld e, a
 	push bc
 	callba GetLandmarkCoords
 	pop bc
-	
+
 	ld hl, 4
 	add hl, bc
 	ld [hl], e
@@ -73667,7 +73887,9 @@ Function92844: ; 92844 (24:6844)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_92853
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -74244,7 +74466,9 @@ Function92bd4: ; 92bd4 (24:6bd4)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Jumptable_92be4
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -74743,7 +74967,9 @@ Function92e94: ; 92e94
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_92ebd
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -74844,7 +75070,9 @@ Function92f1d: ; 92f1d
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_92f48
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -75251,7 +75479,9 @@ Function93158: ; 93158 (24:7158)
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_93195
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	ld de, StringBuffer2
 	ld bc, $4
 	call CopyBytes
@@ -75362,7 +75592,9 @@ Function9321d: ; 9321d (24:721d)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Jumptable_9322d
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -75458,7 +75690,9 @@ Function932ac: ; 932ac (24:72ac)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Jumptable_932bc
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -76094,7 +76328,9 @@ GetTreeMons: ; b82d2
 	ld e, a
 	ld d, 0
 	ld hl, TreeMons
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 
 	ld a, [hli]
 	ld h, [hl]
@@ -76451,7 +76687,9 @@ PlayRadioShow: ; b8612
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_b863a
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -76631,7 +76869,9 @@ Functionb8762: ; b8762 (2e:4762)
 	ld hl, Unknown_b87f2
 	ld c, a
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
@@ -76679,7 +76919,9 @@ Functionb8762: ; b8762 (2e:4762)
 	jr nc, .loop2
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	inc hl
 	ld a, BANK(WildMons1)
 	call GetFarByte
@@ -76792,7 +77034,9 @@ Functionb8854: ; b8854 (2e:4854)
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_b8869
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -76921,7 +77165,9 @@ Functionb88d9: ; b88d9 (2e:48d9)
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_b88fe
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -77215,7 +77461,9 @@ Functionb8a6c: ; b8a6c (2e:4a6c)
 	ld hl, PokedexDataPointerTable
 	ld c, a
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, BANK(PokedexDataPointerTable)
 	call GetFarHalfword
 	call Functionb8a2d
@@ -77727,7 +77975,9 @@ Functionb8d56: ; b8d56 (2e:4d56)
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_b8d7d
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -77866,7 +78116,9 @@ Functionb8ded: ; b8ded (2e:4ded)
 	ld hl, Unknown_b8e11
 	ld c, a
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
@@ -77902,7 +78154,9 @@ Functionb8e28: ; b8e28 (2e:4e28)
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_b8e52
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -78141,7 +78395,9 @@ Functionb8f8f: ; b8f8f
 	ld hl, Unknown_b8ff9
 	ld d, 0
 	ld e, a
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -78155,7 +78411,9 @@ Functionb8f8f: ; b8f8f
 	push hl
 	ld hl, Jumptable_b8fb8
 	ld e, b
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -78499,7 +78757,9 @@ Functionb91eb: ; b91eb (2e:51eb)
 	ld a, [wd002]
 	ld c, a
 	ld b, 0
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -79895,7 +80155,9 @@ Functione0000: ; e0000
 	call Functione0057
 	ld hl, Unknown_e008b
 	pop bc
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -80063,7 +80325,9 @@ Functione0191: ; e0191 (38:4191)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_e01a0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -80265,7 +80529,9 @@ Functione02da: ; e02da
 	ld e, a
 	ld d, $0
 	ld hl, wc6d0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [wcf66]
 	ld e, a
 	add hl, de
@@ -80426,7 +80692,9 @@ Functione03ec: ; e03ec
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_e0459
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -80643,7 +80911,9 @@ Functione055f: ; e055f
 	and a
 	jr nz, .asm_e0575
 	hlcoord 13, 3
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80652,7 +80922,9 @@ Functione055f: ; e055f
 
 .asm_e0575
 	hlcoord 13, 3
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80667,7 +80939,9 @@ Functione0583: ; e0583
 	and a
 	jr nz, .asm_e0599
 	hlcoord 13, 4
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $3b
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80676,7 +80950,9 @@ Functione0583: ; e0583
 
 .asm_e0599
 	hlcoord 13, 4
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $3d
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80691,7 +80967,9 @@ Functione05a7: ; e05a7
 	and a
 	jr nz, .asm_e05bd
 	hlcoord 13, 6
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80700,7 +80978,9 @@ Functione05a7: ; e05a7
 
 .asm_e05bd
 	hlcoord 13, 6
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80715,7 +80995,9 @@ Functione05cb: ; e05cb
 	and a
 	jr nz, .asm_e05e1
 	hlcoord 13, 7
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $3c
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80724,7 +81006,9 @@ Functione05cb: ; e05cb
 
 .asm_e05e1
 	hlcoord 13, 7
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $3d
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80739,7 +81023,9 @@ Functione05ef: ; e05ef
 	and a
 	jr nz, .asm_e0605
 	hlcoord 13, 9
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80748,7 +81034,9 @@ Functione05ef: ; e05ef
 
 .asm_e0605
 	hlcoord 13, 9
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80763,7 +81051,9 @@ Functione0613: ; e0613
 	and a
 	jr nz, .asm_e0629
 	hlcoord 13, 10
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $3c
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -80772,7 +81062,9 @@ Functione0613: ; e0613
 
 .asm_e0629
 	hlcoord 13, 10
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld [hl], $3d
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -81335,7 +81627,9 @@ Functione0960: ; e0960
 
 .asm_e096d
 	call Functione0398
-	add_n_times hl, hl, 2
+rept 2
+	add hl, hl
+endr
 	ld de, Unknown_e0981
 	add hl, de
 	ld a, [hli]
@@ -81836,7 +82130,9 @@ Functione12ca: ; e12ca
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_e12d9
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -82118,8 +82414,12 @@ Functione1463: ; e1463
 	add hl, de
 	ld a, [wcf65]
 	ld e, a
-	add_n_times hl, de, 4
-	add_n_times hl, de, 2
+rept 4
+	add hl, de
+endr
+rept 2
+	add hl, de
+endr
 	ret
 ; e1475
 
@@ -82479,7 +82779,9 @@ Functione17a3: ; e17a3
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_e17bd
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -82576,7 +82878,9 @@ Functione1ed2: ; e1ed2 (38:5ed2)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_e1ee1
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -82934,7 +83238,9 @@ Functione2101: ; e2101
 	dec a
 	ld l, a
 	ld h, 0
-	add_n_times hl, hl, 3
+rept 3
+	add hl, hl
+endr
 	ld de, Unknown_e2110
 	add hl, de
 	ret
@@ -83262,7 +83568,9 @@ Functione247d: ; e247d (38:647d)
 	ld e, a
 	ld d, 0
 	ld hl, BillsPCDepositJumptable
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -83525,7 +83833,9 @@ Functione2675: ; e2675 (38:6675)
 	ld e, a
 	ld d, 0
 	ld hl, BillsPCWithdrawJumptable
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -83785,7 +84095,9 @@ Functione285d: ; e285d
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_e2881
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -84272,7 +84584,9 @@ Functione2b6d: ; e2b6d (38:6b6d)
 	ld e, a
 	ld d, $0
 	ld hl, wc801
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	ld a, [hl]
 	and a
 	jr z, .asm_e2bc6
@@ -84379,7 +84693,9 @@ Functione2c2c: ; e2c2c (38:6c2c)
 	ld e, a
 	ld d, 0
 	ld hl, OverworldMap
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	ld e, l
 	ld d, h
 	hlcoord 9, 4
@@ -84634,7 +84950,9 @@ Functione2def: ; e2def (38:6def)
 	ld e, a
 	ld d, $0
 	ld hl, OverworldMap
-	add_n_times hl, de, 3
+rept 3
+	add hl, de
+endr
 	ld a, [hl]
 	ret
 
@@ -85141,7 +85459,9 @@ Functione31e7: ; e31e7
 
 .asm_e321d
 	ld hl, Jumptable_e3245
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -85343,7 +85663,9 @@ Functione3396: ; e3396 (38:7396)
 	ld c, b
 	ld b, 0
 	ld hl, Unknown_e33a6
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
@@ -85382,7 +85704,9 @@ Functione33d0: ; e33d0 (38:73d0)
 Functione33df: ; e33df (38:73df)
 	ld e, a
 	ld d, $0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -85552,7 +85876,9 @@ Functione366c: ; e366c (38:766c)
 	ld c, a
 	ld b, 0
 	ld hl, Unknown_e36a5
-	add_n_times hl, bc, 3
+rept 3
+	add hl, bc
+endr
 	ld a, [hli]
 	ld b, a
 	call GetSRAMBank
@@ -85841,7 +86167,9 @@ GetOptionPointer: ; e42d6
 	ld e, a ;copy it to de
 	ld d, 0
 	ld hl, .Pointers
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -85897,7 +86225,9 @@ Options_TextSpeed: ; e42f5
 .NonePressed
 	ld b, 0
 	ld hl, .Strings
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -86115,7 +86445,9 @@ Options_Print: ; e4424
 .NonePressed
 	ld b, $0
 	ld hl, .Strings
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -86451,7 +86783,9 @@ Functione4670: ; e4670
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_e467f
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -86548,7 +86882,9 @@ Functione46ed: ; e46ed (39:46ed)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Jumptable_e46fd
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -86644,7 +86980,9 @@ Functione4776: ; e4776 (39:4776)
 	ld e, a
 	ld d, $0
 	ld hl, Unknown_e47ac
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
@@ -86758,7 +87096,9 @@ Functione490f: ; e490f
 	ld e, a
 	ld d, 0
 	ld hl, IntroScenes
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -87989,7 +88329,9 @@ Functione5223: ; e5223 (39:5223)
 	pop hl
 	push hl
 	ld hl, Unknown_e5288
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -88000,7 +88342,9 @@ Functione5223: ; e5223 (39:5223)
 	ld [hli], a
 	push hl
 	ld hl, Unknown_e52c8
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -88011,7 +88355,9 @@ Functione5223: ; e5223 (39:5223)
 	ld [hli], a
 	push hl
 	ld hl, Unknown_e5308
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -89113,7 +89459,9 @@ Functionfb57e: ; fb57e
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, wcbea
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [BaseType1]
 	cp [hl]
 	jr nz, .asm_fb5db
@@ -89785,7 +90133,9 @@ Functionfba2e: ; fba2e (3e:7a2e)
 	ld e, a
 	ld d, 0
 	ld hl, UnownWords
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -90557,7 +90907,9 @@ GetTradeAttribute: ; 0xfcdc2
 	ld e, a
 	ld d, 0
 	ld hl, NPCTrades
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	pop de
 	add hl, de
 	ret
@@ -90690,7 +91042,9 @@ PrintTradeText: ; fcf38
 	call AddNTimes
 	ld a, [wcf64]
 	ld c, a
-	add_n_times hl, bc, 2
+rept 2
+	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -91070,7 +91424,9 @@ GetItemFromMom: ; fd117
 .incave
 	ld l, a
 	ld h, 0
-	add_n_times hl, hl, 3 ; multiply hl by 8
+rept 3 ; multiply hl by 8
+	add hl, hl
+endr
 	add hl, de
 	ret
 ; fd136
@@ -91587,7 +91943,9 @@ Function104284:: ; 104284
 	ld a, b
 	ld l, c
 	ld h, $0
-	add_n_times hl, hl, 4
+rept 4
+	add hl, hl
+endr
 	ld b, h
 	ld c, l
 	ld h, d
@@ -91644,7 +92002,9 @@ Function1042d6: ; 1042d6
 	ld a, b
 	ld l, c
 	ld h, $0
-	add_n_times hl, hl, 3
+rept 3
+	add hl, hl
+endr
 	ld c, l
 	ld b, h
 	ld h, d
@@ -92369,7 +92729,9 @@ Function104a56: ; 104a56 (41:4a56)
 	ld hl, $abe6
 	ld e, a
 	ld d, $0
-	add_n_times hl, de, 2
+rept 2
+	add hl, de
+endr
 	ld a, [wc901]
 	ld [hli], a
 	ld a, [wc902]
@@ -93882,38 +94244,38 @@ UsedMoveText: ; 105db9
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .start
-	
+
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	call UpdateUsedMoves
-	
+
 .start
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVarAddr
 	ld d, h
 	ld e, l
-	
+
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
 	call GetBattleVarAddr
-	
+
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld [wd265], a
-	
+
 	push hl
 	callba Function34548
 	pop hl
 	jr nz, .grammar
-	
+
 	; update last move
 	ld a, [wd265]
 	ld [hl], a
 	ld [de], a
-	
+
 .grammar
 	call GetMoveGrammar
 ; wd265 now contains MoveGrammar
-	
-	
+
+
 ; everything except 'instead' made redundant in localization
 
 	; check obedience
@@ -93921,7 +94283,7 @@ UsedMoveText: ; 105db9
 	and a
 	ld hl, UsedMove2Text
 	ret nz
-	
+
 	; check move grammar
 	ld a, [wd265]
 	cp $3
@@ -93970,20 +94332,20 @@ MoveNameText: ; 105e23
 GetUsedMoveTextEnder: ; 105e28
 ; get start address
 	ld hl, .endusedmovetexts
-	
+
 ; get move id
 	ld a, [wd265]
-	
+
 ; 2-byte pointer
 	add a
-	
+
 ; seek
 	push bc
 	ld b, $0
 	ld c, a
 	add hl, bc
 	pop bc
-	
+
 ; get pointer to usedmovetext ender
 	ld a, [hli]
 	ld h, [hl]
@@ -94029,7 +94391,7 @@ GetMoveGrammar: ; 105e5c
 	ld a, [wd265]
 	ld c, a
 	ld b, $0
-	
+
 ; read grammar table
 	ld hl, MoveGrammar
 .loop
@@ -94046,12 +94408,12 @@ GetMoveGrammar: ; 105e5c
 ; next grammar type
 	inc b
 	jr .loop
-	
+
 .end
 ; wd265 now contains move grammar
 	ld a, b
 	ld [wd265], a
-	
+
 ; we're done
 	pop bc
 	ret
@@ -94092,7 +94454,7 @@ MoveGrammar: ; 105e7a
 	db PSYCH_UP
 	db EXTREMESPEED
 	db 0 ; end set
-	
+
 ; 1
 	db RECOVER
 	db TELEPORT
@@ -94101,7 +94463,7 @@ MoveGrammar: ; 105e7a
 	db AMNESIA
 	db FLAIL
 	db 0 ; end set
-	
+
 ; 2
 	db MEDITATE
 	db AGILITY
@@ -94112,7 +94474,7 @@ MoveGrammar: ; 105e7a
 	db STRUGGLE
 	db SCARY_FACE
 	db 0 ; end set
-	
+
 ; 3
 	db POUND
 	db SCRATCH
@@ -94153,7 +94515,7 @@ MoveGrammar: ; 105e7a
 	db ATTRACT
 	db ROCK_SMASH
 	db 0 ; end set
-	
+
 ; all other moves = 4
 	db $ff ; end
 ; 105ed0
@@ -94169,7 +94531,7 @@ UpdateUsedMoves: ; 105ed0
 	ld b, a
 ; next count
 	ld c, NUM_MOVES
-	
+
 .loop
 ; get move from the list
 	ld a, [hli]
@@ -94182,7 +94544,7 @@ UpdateUsedMoves: ; 105ed0
 ; next byte
 	dec c
 	jr nz, .loop
-	
+
 ; if the list is full and the move hasn't already been used
 ; shift the list back one byte, deleting the first move used
 ; this can occur with struggle or a new learned move
@@ -94202,13 +94564,13 @@ UpdateUsedMoves: ; 105ed0
 	ld a, b
 	ld [PlayerUsedMoves + 3], a
 	jr .quit
-	
+
 .add
 ; go back to the byte we just inced from
 	dec hl
 ; add the new move
 	ld [hl], b
-	
+
 .quit
 ; list updated
 	pop bc
@@ -96050,7 +96412,7 @@ DudeAutoInput_A: ; 1de29f
 	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
 ; 1de2a5
-	
+
 DudeAutoInput_RightA: ; 1de2a5
 	db NO_INPUT, $08
 	db D_RIGHT,  $00
@@ -96058,7 +96420,7 @@ DudeAutoInput_RightA: ; 1de2a5
 	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
 ; 1de2af
-	
+
 DudeAutoInput_DownA: ; 1de2af
 	db NO_INPUT, $fe
 	db NO_INPUT, $fe

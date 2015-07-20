@@ -493,7 +493,9 @@ Function1a2f:: ; 1a2f
 	ld hl, ObjectStruct3_Data
 	ld e, a
 	ld d, 0
-	add_n_times hl, de, OBJECT_STRUCT_3_DATA_WIDTH
+rept OBJECT_STRUCT_3_DATA_WIDTH
+	add hl,de
+endr
 	ld a, [hl]
 	ret
 ; 1a47
@@ -504,7 +506,9 @@ Function1a47:: ; 1a47
 	ld e, a
 	ld d, 0
 	ld hl, ObjectStruct3_Data + 1
-	add_n_times hl, de, OBJECT_STRUCT_3_DATA_WIDTH
+rept OBJECT_STRUCT_3_DATA_WIDTH
+	add hl,de
+endr
 	ld a, BANK(ObjectStruct3_Data)
 	call GetFarByte
 	add a
@@ -542,7 +546,9 @@ Function1a71:: ; 1a71
 	ld e, a
 	ld d, 0
 	ld hl, ObjectStruct3_Data + 1
-	add_n_times hl, de, OBJECT_STRUCT_3_DATA_WIDTH
+rept OBJECT_STRUCT_3_DATA_WIDTH
+	add hl,de
+endr
 	ld b, h
 	ld c, l
 	pop de

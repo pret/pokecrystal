@@ -472,7 +472,9 @@ Function968ec: ; 968ec
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	add_n_times hl, de, 4
+rept 4
+	add hl,de
+endr
 	
 	call GetMapScriptHeaderBank
 	call GetFarHalfword
@@ -1043,7 +1045,9 @@ Function96beb: ; 96beb
 	ld c, a
 	ld b, 0
 	ld hl, ScriptPointers96c0c
-	add_n_times hl, bc, 3
+rept 3
+	add hl,bc
+endr
 	ld a, [hli]
 	ld [ScriptBank], a
 	ld a, [hli]

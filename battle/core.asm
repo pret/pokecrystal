@@ -6202,25 +6202,25 @@ LoadEnemyMon: ; 3e8eb
 	ld hl, EnemyMonSpecies
 	ld bc, EnemyMonEnd - EnemyMon
 	call ByteFill
-	
+
 ; We don't need to be here if we're in a link battle
 	ld a, [InLinkBattle]
 	and a
 	jp nz, Function3dabd
-	
+
 	ld a, [wcfc0] ; ????
 	bit 0, a
 	jp nz, Function3dabd
-	
+
 ; Make sure everything knows what species we're working with
 	ld a, [TempEnemyMonSpecies]
 	ld [EnemyMonSpecies], a
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
-	
+
 ; Grab the BaseData for this species
 	call GetBaseData
-	
+
 
 ; Let's get the item:
 
@@ -6228,15 +6228,15 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [IsInBattle]
 	dec a
 	jr z, .WildItem
-	
+
 ; If we're in a trainer battle, the item is in the party struct
 	ld a, [CurPartyMon]
 	ld hl, OTPartyMon1Item
 	call GetPartyLocation ; bc = PartyMon[CurPartyMon] - PartyMons
 	ld a, [hl]
 	jr .UpdateItem
-	
-	
+
+
 .WildItem
 ; In a wild battle, we pull from the item slots in BaseData
 
@@ -6246,7 +6246,7 @@ LoadEnemyMon: ; 3e8eb
 	cp BATTLETYPE_FORCEITEM
 	ld a, [BaseItems]
 	jr z, .UpdateItem
-	
+
 ; Failing that, it's all up to chance
 ;  Effective chances:
 ;    75% None
@@ -6258,30 +6258,30 @@ LoadEnemyMon: ; 3e8eb
 	cp a, 1 + (75 percent)
 	ld a, NO_ITEM
 	jr c, .UpdateItem
-	
+
 ; From there, an 8% chance for Item2
 	call BattleRandom
 	cp a, 8 percent ; 8% of 25% = 2% Item2
 	ld a, [BaseItems]
 	jr nc, .UpdateItem
 	ld a, [BaseItems+1]
-	
-	
+
+
 .UpdateItem
 	ld [EnemyMonItem], a
-	
-	
+
+
 ; Initialize DVs
-	
+
 ; If we're in a trainer battle, DVs are predetermined
 	ld a, [IsInBattle]
 	and a
 	jr z, .InitDVs
-	
+
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	jr z, .InitDVs
-	
+
 ; Unknown
 	ld hl, wc6f2
 	ld de, EnemyMonDVs
@@ -6291,12 +6291,12 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [hl]
 	ld [de], a
 	jp .Happiness
-	
-	
+
+
 .InitDVs
-	
+
 ; Trainer DVs
-	
+
 ; All trainers have preset DVs, determined by class
 ; See GetTrainerDVs for more on that
 	callba GetTrainerDVs
@@ -6304,8 +6304,8 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [IsInBattle]
 	dec a
 	jr nz, .UpdateDVs
-	
-	
+
+
 ; Wild DVs
 ; Here's where the fun starts
 
@@ -6314,7 +6314,7 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [BattleType]
 	cp a, BATTLETYPE_ROAMING
 	jr nz, .NotRoaming
-	
+
 ; Grab HP
 	call GetRoamMonHP
 	ld a, [hl]
@@ -6322,7 +6322,7 @@ LoadEnemyMon: ; 3e8eb
 	and a
 ; We'll do something with the result in a minute
 	push af
-	
+
 ; Grab DVs
 	call GetRoamMonDVs
 	inc hl
@@ -6334,7 +6334,7 @@ LoadEnemyMon: ; 3e8eb
 	pop af
 ; If the RoamMon struct has already been initialized, we're done
 	jr nz, .UpdateDVs
-	
+
 ; If it hasn't, we need to initialize the DVs
 ; (HP is initialized at the end of the battle)
 	call GetRoamMonDVs
@@ -6348,7 +6348,7 @@ LoadEnemyMon: ; 3e8eb
 ; We're done with DVs
 	jr .UpdateDVs
 
-	
+
 .NotRoaming
 ; Register a contains BattleType
 
@@ -6360,36 +6360,36 @@ LoadEnemyMon: ; 3e8eb
 	ld b, ATKDEFDV_SHINY ; $ea
 	ld c, SPDSPCDV_SHINY ; $aa
 	jr .UpdateDVs
-	
+
 .GenerateDVs
 ; Generate new random DVs
 	call BattleRandom
 	ld b, a
 	call BattleRandom
 	ld c, a
-	
+
 .UpdateDVs
 ; Input DVs in register bc
 	ld hl, EnemyMonDVs
 	ld a, b
 	ld [hli], a
 	ld [hl], c
-	
-	
+
+
 ; We've still got more to do if we're dealing with a wild monster
 	ld a, [IsInBattle]
 	dec a
 	jr nz, .Happiness
-	
-	
+
+
 ; Species-specfic:
-	
-	
+
+
 ; Unown
 	ld a, [TempEnemyMonSpecies]
 	cp a, UNOWN
 	jr nz, .Magikarp
-	
+
 ; Get letter based on DVs
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
@@ -6397,25 +6397,25 @@ LoadEnemyMon: ; 3e8eb
 ; If combined with forced shiny battletype, causes an infinite loop
 	call CheckUnownLetter
 	jr c, .GenerateDVs ; try again
-	
-	
+
+
 .Magikarp
 ; Skimming this part recommended
-	
+
 	ld a, [TempEnemyMonSpecies]
 	cp a, MAGIKARP
 	jr nz, .Happiness
-	
+
 ; Get Magikarp's length
 	ld de, EnemyMonDVs
 	ld bc, PlayerID
 	callab CalcMagikarpLength
-	
+
 ; We're clear if the length is < 1536
 	ld a, [MagikarpLength]
 	cp a, $06 ; $600 = 1536
 	jr nz, .CheckMagikarpArea
-	
+
 ; 5% chance of skipping size checks
 	call Random
 	cp a, $0c ; / $100
@@ -6424,7 +6424,7 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [MagikarpLength + 1]
 	cp a, $50
 	jr nc, .GenerateDVs
-	
+
 ; 20% chance of skipping this check
 	call Random
 	cp a, $32 ; / $100
@@ -6433,15 +6433,15 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [MagikarpLength + 1]
 	cp a, $40
 	jr nc, .GenerateDVs
-	
+
 .CheckMagikarpArea
 ; The z checks are supposed to be nz
 ; Instead, all maps in GROUP_LAKE_OF_RAGE (mahogany area)
 ; and routes 20 and 44 are treated as Lake of Rage
-	
+
 ; This also means Lake of Rage Magikarp can be smaller than ones
 ; caught elsewhere rather than the other way around
-	
+
 ; Intended behavior enforces a minimum size at Lake of Rage
 ; The real behavior prevents size flooring in the Lake of Rage area
 	ld a, [MapGroup]
@@ -6458,10 +6458,10 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [MagikarpLength]
 	cp a, 1024 >> 8
 	jr c, .GenerateDVs ; try again
-	
-	
+
+
 ; Finally done with DVs
-	
+
 .Happiness
 ; Set happiness
 	ld a, BASE_HAPPINESS
@@ -6474,21 +6474,21 @@ LoadEnemyMon: ; 3e8eb
 	ld b, $00
 	ld hl, LinkBattleRNs + 7 ; ?
 	predef Functione167
-	
+
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
 	ld a, [IsInBattle]
 	cp a, TRAINER_BATTLE
 	jr z, .OpponentParty
-	
+
 ; If we're in a wild battle, check wild-specific stuff
 	and a
 	jr z, .TreeMon
-	
+
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	jp nz, .Moves
-	
+
 .TreeMon
 ; If we're headbutting trees, some monsters enter battle asleep
 	call CheckSleepingTreeMon
@@ -6496,26 +6496,26 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .UpdateStatus
 ; Otherwise, no status
 	xor a
-	
+
 .UpdateStatus
 	ld hl, EnemyMonStatus
 	ld [hli], a
-	
+
 ; Unused byte
 	xor a
 	ld [hli], a
-	
+
 ; Full HP...
 	ld a, [EnemyMonMaxHP]
 	ld [hli], a
 	ld a, [EnemyMonMaxHP + 1]
 	ld [hl], a
-	
+
 ; ...unless it's a RoamMon
 	ld a, [BattleType]
 	cp a, BATTLETYPE_ROAMING
 	jr nz, .Moves
-	
+
 ; Grab HP
 	call GetRoamMonHP
 	ld a, [hl]
@@ -6526,15 +6526,15 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [hl]
 	ld [EnemyMonHP + 1], a
 	jr .Moves
-	
+
 .InitRoamHP
 ; HP only uses the lo byte in the RoamMon struct since
 ; Raikou/Entei/Suicune will have < 256 hp at level 40
 	ld a, [EnemyMonHP + 1]
 	ld [hl], a
 	jr .Moves
-	
-	
+
+
 .OpponentParty
 ; Get HP from the party struct
 	ld hl, (OTPartyMon1HP + 1)
@@ -6544,17 +6544,17 @@ LoadEnemyMon: ; 3e8eb
 	ld [EnemyMonHP + 1], a
 	ld a, [hld]
 	ld [EnemyMonHP], a
-	
+
 ; Make sure everything knows which monster the opponent is using
 	ld a, [CurPartyMon]
 	ld [CurOTMon], a
-	
+
 ; Get status from the party struct
 	dec hl
 	ld a, [hl] ; OTPartyMonStatus
 	ld [EnemyMonStatus], a
-	
-	
+
+
 .Moves
 	ld hl, BaseType1
 	ld de, EnemyMonType1
@@ -6563,7 +6563,7 @@ LoadEnemyMon: ; 3e8eb
 	inc de
 	ld a, [hl]
 	ld [de], a
-	
+
 ; Get moves
 	ld de, EnemyMonMoves
 ; Are we in a trainer battle?
@@ -6577,7 +6577,7 @@ LoadEnemyMon: ; 3e8eb
 	ld bc, NUM_MOVES
 	call CopyBytes
 	jr .PP
-	
+
 .WildMoves
 ; Clear EnemyMonMoves
 	xor a
@@ -6591,19 +6591,19 @@ LoadEnemyMon: ; 3e8eb
 	ld [MagikarpLength], a
 ; Fill moves based on level
 	predef FillMoves
-	
+
 .PP
 ; Trainer battle?
 	ld a, [IsInBattle]
 	cp a, TRAINER_BATTLE
 	jr z, .TrainerPP
-	
+
 ; Fill wild PP
 	ld hl, EnemyMonMoves
 	ld de, EnemyMonPP
 	predef FillPP
 	jr .Finish
-	
+
 .TrainerPP
 ; Copy PP from the party struct
 	ld hl, OTPartyMon1PP
@@ -6612,7 +6612,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, EnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-	
+
 .Finish
 ; Only the first five base stats are copied...
 	ld hl, BaseStats
@@ -6673,7 +6673,7 @@ CheckSleepingTreeMon: ; 3eb38
 	ld a, [BattleType]
 	cp a, BATTLETYPE_TREE
 	jr nz, .NotSleeping
-	
+
 ; Get list for the time of day
 	ld hl, .Morn
 	ld a, [TimeOfDay]
@@ -6682,14 +6682,14 @@ CheckSleepingTreeMon: ; 3eb38
 	ld hl, .Day
 	jr z, .Check
 	ld hl, .Nite
-	
+
 .Check
 	ld a, [TempEnemyMonSpecies]
 	ld de, 1 ; length of species id
 	call IsInArray
 ; If it's a match, the opponent is asleep
 	ret c
-	
+
 .NotSleeping
 	and a
 	ret
@@ -6728,24 +6728,24 @@ CheckSleepingTreeMon: ; 3eb38
 
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
-	
+
 	ld a, [UnlockedUnowns]
 	ld c, a
 	ld de, 0
-	
+
 .loop
-	
+
 ; Don't check this set unless it's been unlocked
 	srl c
 	jr nc, .next
-	
+
 ; Is our letter in the set?
 	ld hl, .LetterSets
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 	push de
 	ld a, [UnownLetter]
 	ld de, 1
@@ -6753,9 +6753,9 @@ CheckUnownLetter: ; 3eb75
 	call IsInArray
 	pop bc
 	pop de
-	
+
 	jr c, .match
-	
+
 .next
 ; Make sure we haven't gone past the end of the table
 	inc e
@@ -6763,22 +6763,22 @@ CheckUnownLetter: ; 3eb75
 	ld a, e
 	cp a, .Set1 - .LetterSets
 	jr c, .loop
-	
+
 ; Hasn't been unlocked, or the letter is invalid
 	scf
 	ret
-	
+
 .match
 ; Valid letter
 	and a
 	ret
-	
+
 .LetterSets
 	dw .Set1
 	dw .Set2
 	dw .Set3
 	dw .Set4
-	
+
 .Set1
 	;  A   B   C   D   E   F   G   H   I   J   K
 	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
@@ -6791,7 +6791,7 @@ CheckUnownLetter: ; 3eb75
 .Set4
 	;  X   Y   Z
 	db 24, 25, 26, $ff
-	
+
 ; 3ebc7
 
 

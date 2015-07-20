@@ -12,7 +12,9 @@ GetPredefPointer:: ; 854b
 	ld e, a
 	ld d, 0
 	ld hl, PredefPointers
-	add_n_times hl, de, 3
+rept 3
+	add hl,de
+endr
 	pop de
 
 	ld a, [hli]

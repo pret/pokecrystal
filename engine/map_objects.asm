@@ -226,7 +226,9 @@ Function444d: ; 444d
 	ld a, [hl]
 	ld l, a
 	ld h, 0
-	add_n_times hl, hl, 2
+rept 2
+	add hl,hl
+endr
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -1385,7 +1387,9 @@ Function4a46: ; 4a46
 	ld e, a
 	ld d, 0
 	ld hl, .data_4a81
-	add_n_times hl, de, 2
+rept 2
+	add hl,de
+endr
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
@@ -3655,7 +3659,9 @@ Function5ac2: ; 5ac2
 	ld c, a
 	ld b, 0
 	ld hl, .Addresses
-	add_n_times hl, bc, 2
+rept 2
+	add hl,bc
+endr
 	ld c, [hl]
 	inc hl
 	ld b, [hl]

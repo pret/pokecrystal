@@ -3144,7 +3144,9 @@ ExitScriptSubroutine: ; 0x97b9a
 	ld e, [hl]
 	ld d, $0
 	ld hl, wd43d
-	add_n_times hl, de, 3
+rept 3
+	add hl,de
+endr
 	ld a, [hli]
 	ld b, a
 	and " "

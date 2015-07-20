@@ -150,7 +150,9 @@ Function2198:: ; 2198
 	add a
 	ld l, a
 	ld h, 0
-	add_n_times hl, hl, 3
+rept 3
+	add hl,hl
+endr
 	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
@@ -1703,7 +1705,9 @@ GetFacingTileCoord:: ; 2a07
 	srl a
 	ld l, a
 	ld h, 0
-	add_n_times hl, hl, 2
+rept 2
+	add hl,hl
+endr
 	ld de, .Directions
 	add hl, de
 
@@ -1745,7 +1749,9 @@ Function2a3c:: ; 2a3c
 	jr z, .nope
 	ld l, a
 	ld h, $0
-	add_n_times hl, hl, 2
+rept 2
+	add hl,hl
+endr
 	ld a, [TilesetCollisionAddress]
 	ld c, a
 	ld a, [TilesetCollisionAddress + 1]

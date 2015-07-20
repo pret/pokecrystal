@@ -2,7 +2,9 @@
 Special:: ; c01b
 ; Run script special de.
 	ld hl, SpecialsPointers
-	add_n_times hl, de, 3
+rept 3
+	add hl,de
+endr
 	ld b, [hl]
 	inc hl
 	ld a, [hli]

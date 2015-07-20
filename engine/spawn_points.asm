@@ -56,7 +56,9 @@ LoadSpawnPoint: ; 1531f
 	jr z, .spawn_n_a
 	ld l, a
 	ld h, 0
-	add_n_times hl, hl, 2 ; multiply hl by 4
+rept 2 ; multiply hl by 4
+	add hl,hl
+endr
 	ld de, SpawnPoints
 	add hl, de
 	ld a, [hli]
