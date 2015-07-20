@@ -27,14 +27,14 @@ GruntM1Script:
 	writetext TrainerGruntM1WhenTalkText
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	disappear $3
 	disappear $4
 	disappear $5
 	pause 15
-	special Function8c0ab
+	special Special_FadeInQuickly
 	disappear $8
 	moveperson $8, $b, $6
 	appear $8

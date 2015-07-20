@@ -105,7 +105,7 @@ Functiondfd:: ; dfd
 
 
 
-Functione4a:: ; e4a
+Special_ReplaceKrisSprite:: ; e4a
 	callba Function14135
 	ret
 ; e51

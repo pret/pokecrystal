@@ -40,7 +40,7 @@ Function2de2:: ; 2de2
 	call Function2e31
 	ld a, $90
 	ld [hWY], a
-	call Functione4a
+	call Special_ReplaceKrisSprite
 	callba ReturnFromMapSetupScript
 	callba Function106594
 	ret

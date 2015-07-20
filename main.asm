@@ -5004,7 +5004,7 @@ UsedSurfScript: ; c986
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
 
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	special PlayMapMusic
 ; step into the water
 	special Function8379 ; (slow_step_x, step_end)
@@ -5242,7 +5242,7 @@ FlyFunction: ; ca3b
 Functioncacb: ; cacb
 	callba Function561d
 	call DelayFrame
-	call Functione4a
+	call Special_ReplaceKrisSprite
 	callba Function106594
 	ret
 ; cade
@@ -6343,7 +6343,7 @@ PutTheRodAway: ; d095
 	ld a, $1
 	ld [PlayerAction], a
 	call DrawOnMap
-	call Functione4a
+	call Special_ReplaceKrisSprite
 	ret
 ; d0a4
 
@@ -6462,14 +6462,14 @@ Script_GetOnBike: ; 0xd13e
 	writetext UnknownText_0xd17c
 	closetext
 	loadmovesprites
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	end
 ; 0xd14e
 
 Script_GetOnBike_Register: ; 0xd14e
 	writecode VAR_MOVEMENT, $1
 	loadmovesprites
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	end
 ; 0xd156
 
@@ -6486,7 +6486,7 @@ Script_GetOffBike: ; 0xd158
 
 UnknownScript_0xd163:
 	loadmovesprites
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	special PlayMapMusic
 	end
 ; 0xd16b
@@ -21243,7 +21243,7 @@ CheckCoins:: ; 160a1
 INCLUDE "items/marts.asm"
 
 
-Function16218: ; 16218
+Special_BankOfMom: ; 16218
 	ld a, [$ffaa]
 	push af
 	ld a, $1
@@ -21992,7 +21992,7 @@ MenuData2_0x166bd: ; 0x166bd
 	db "CANCEL@"
 ; 0x166d6
 
-Function166d6: ; 166d6
+Special_DayCareMan: ; 166d6
 	ld hl, wDaycareMan
 	bit 0, [hl]
 	jr nz, .asm_166fe
@@ -22031,7 +22031,7 @@ Function166d6: ; 166d6
 	ret
 ; 1672a
 
-Function1672a: ; 1672a
+Special_DayCareLady: ; 1672a
 	ld hl, wDaycareLady
 	bit 0, [hl]
 	jr nz, .asm_16752
@@ -22399,7 +22399,7 @@ UnknownText_0x16931: ; 0x16931
 	db "@"
 ; 0x16936
 
-Function16936: ; 16936
+Special_DayCareManOutside: ; 16936
 	ld hl, wDaycareMan
 	bit 6, [hl]
 	jr nz, Function16949
@@ -29177,7 +29177,7 @@ DecorationDesc_TownMapPoster: ; 0x26f91
 	loadfont
 	writetext UnknownText_0x26f9b
 	closetext
-	special Functionc2c0
+	special Special_TownMap
 	loadmovesprites
 	end
 ; 0x26f9b
@@ -41297,7 +41297,7 @@ Function494ac: ; 494ac
 	ret
 
 .ice_path
-	ld a, [wd19a] ; permission
+	ld a, [wRoofPalette] ; permission
 	and 7
 	cp 3 ; Hall of Fame
 	jr z, .do_nothing
@@ -52231,7 +52231,7 @@ WaterToLandSprite: ; 803f9
 	push bc
 	ld a, PLAYER_NORMAL
 	ld [PlayerState], a
-	call Functione4a ; UpdateSprites
+	call Special_ReplaceKrisSprite ; UpdateSprites
 	pop bc
 	ret
 ; 80404
@@ -52419,7 +52419,7 @@ VarActionTable: ; 80671
 	dwb MapGroup,      $00
 	dwb MapNumber,     $00
 	dwb Function806ff, $80
-	dwb wd19a,         $00
+	dwb wRoofPalette,         $00
 	dwb Function80715, $80
 	dwb wd46c,         $00
 	dwb XCoord,        $00
@@ -61386,7 +61386,7 @@ SpecialKabutoChamber: ; 8ae4e
 	ret
 ; 8ae68
 
-Function8ae68: ; 8ae68
+Special_DisplayUnownWords: ; 8ae68
 	ld a, [ScriptVar]
 	ld hl, MenuDataHeader_0x8aed5
 	and a
@@ -63558,7 +63558,7 @@ FadeBlackBGMap:: ; 8c084
 	ret
 ; 8c092
 
-Function8c092: ; 8c092
+Special_BattleTowerFade: ; 8c092
 	call Function8c0c1
 	ld c, $9
 	call GetTimePalFade
@@ -63575,7 +63575,7 @@ Function8c092: ; 8c092
 	ret
 ; 8c0ab
 
-Function8c0ab: ; 8c0ab
+Special_FadeInQuickly: ; 8c0ab
 	ld c, $0
 	call GetTimePalFade
 	ld b, $4
@@ -63583,7 +63583,7 @@ Function8c0ab: ; 8c0ab
 	ret
 ; 8c0b6
 
-Function8c0b6: ; 8c0b6
+Special_FadeBlackQuickly: ; 8c0b6
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -64031,7 +64031,7 @@ Function8c365: ; 8c365 (23:4365)
 	jr nc, .asm_8c375
 	set 0, e
 .asm_8c375
-	ld a, [wd19a]
+	ld a, [wRoofPalette]
 	cp $4
 	jr z, .asm_8c386
 	cp $5
@@ -64732,7 +64732,7 @@ ShakeHeadbuttTree: ; 8c80a
 	ld hl, VTiles1
 	lb bc, BANK(Font), $c
 	call Get1bpp
-	call Functione4a
+	call Special_ReplaceKrisSprite
 	ret
 ; 8c893
 
@@ -65117,7 +65117,7 @@ Function8cbe6: ; 8cbe6 (23:4be6)
 	ld [hl], $80
 	ret
 
-Function8cc04: ; 8cc04
+Special_MagnetTrain: ; 8cc04
 	ld a, [ScriptVar]
 	and a
 	jr nz, .asm_8cc14
@@ -65553,13 +65553,13 @@ Function8ceae: ; 8ceae
 	ld [rSVBK], a
 	ld a, [TimeOfDayPal]
 	push af
-	ld a, [wd19a]
+	ld a, [wRoofPalette]
 	push af
 	ld a, [TimeOfDay]
 	and $3
 	ld [TimeOfDayPal], a
 	ld a, $1
-	ld [wd19a], a
+	ld [wRoofPalette], a
 	ld b, $9
 	call GetSGBLayout
 	call UpdateTimePals
@@ -65570,7 +65570,7 @@ Function8ceae: ; 8ceae
 	ld a, [rOBP1]
 	ld [wcfc9], a
 	pop af
-	ld [wd19a], a
+	ld [wRoofPalette], a
 	pop af
 	ld [TimeOfDayPal], a
 	pop af
@@ -69205,7 +69205,7 @@ Function90178: ; 90178 (24:4178)
 	ret
 
 Function90188: ; 90188
-	ld a, [wd19a]
+	ld a, [wRoofPalette]
 	cp $1
 	jr z, .asm_90195
 	cp $2
@@ -70165,7 +70165,7 @@ GFX_9090b: ; 9090b
 INCBIN "gfx/unknown/09090b.2bpp"
 ; 90913
 
-Function90913: ; 90913
+Special_SetDayOfWeek: ; 90913
 	ld a, [$ffaa]
 	push af
 	ld a, $1
@@ -73691,7 +73691,7 @@ Function923b8: ; 923b8
 INCLUDE "data/wild/fish.asm"
 
 
-Function926c7:
+_SlotMachine:
 	ld hl, Options
 	set 4, [hl]
 	call Function926f7
@@ -80258,7 +80258,7 @@ Functione00ed: ; e00ed (38:40ed)
 	ret
 ; e00ee (38:40ee)
 
-Functione00ee: ; e00ee (38:40ee)
+_CardFlip: ; e00ee (38:40ee)
 	ld hl, Options
 	set 4, [hl]
 	call WhiteBGMap
@@ -82816,7 +82816,7 @@ INCBIN "gfx/unknown/0e1bab.2bpp.lz"
 LZ_e1c9b: ; e1c9b
 INCBIN "gfx/unknown/0e1c9b.2bpp.lz"
 
-Functione1e5b: ; e1e5b (38:5e5b)
+_DummyGame: ; e1e5b (38:5e5b)
 	call Functione1e67
 	call DelayFrame
 .asm_e1e61
@@ -90316,7 +90316,7 @@ Functionfbbdb: ; fbbdb
 
 INCLUDE "battle/magikarp_length.asm"
 
-Functionfbcd2: ; fbcd2
+Special_MagikarpHouseSign: ; fbcd2
 	ld a, [wdfe8]
 	ld [Buffer1], a
 	ld a, [wdfe9]
@@ -92084,11 +92084,11 @@ FishingRodGFX: INCBIN "gfx/misc/fishing.2bpp"
 
 
 RunCallback_05_03: ; 1045b0
-	call Function210f
-	call Function2e50
-	call Function2e5d
+	call Clearwc7e8
+	call ResetMapBufferEventFlags
+	call ResetFlashIfOutOfCave
 	call GetCurrentMapTrigger
-	call Function2e56
+	call ResetBikeFlags
 	ld a, $5
 	call RunMapCallback
 

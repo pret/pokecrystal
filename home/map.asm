@@ -1,6 +1,6 @@
 ; Functions dealing with rendering and interacting with maps.
 
-Function210f:: ; 210f
+Clearwc7e8:: ; 210f
 	ld hl, wc7e8
 	ld bc, $0018
 	ld a, $0

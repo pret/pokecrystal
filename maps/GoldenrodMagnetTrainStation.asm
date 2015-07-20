@@ -33,7 +33,7 @@ UnknownScript_0x550fa:
 	applymovement $2, MovementData_0x55146
 	applymovement $0, MovementData_0x5514f
 	writebyte $0
-	special Function8cc04
+	special Special_MagnetTrain
 	warpcheck
 	newloadmap $f9
 	applymovement $0, MovementData_0x55122

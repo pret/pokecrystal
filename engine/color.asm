@@ -1944,7 +1944,7 @@ Functionb1de: ; b1de
 	callba Function494ac
 	jr c, .asm_b230
 
-	ld a, [wd19a]
+	ld a, [wRoofPalette]
 	and 7
 	ld e, a
 	ld d, 0
@@ -2009,7 +2009,7 @@ endr
 	ld a, $5 ; BANK(Unkn2Pals)
 	call FarCopyWRAM
 
-	ld a, [wd19a]
+	ld a, [wRoofPalette]
 	cp 1
 	jr z, .asm_b253
 	cp 2

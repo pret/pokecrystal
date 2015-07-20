@@ -63,14 +63,14 @@ FastShipBed:
 	writetext FastShipBedText1
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	special Mobile_HealParty
 	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60
 	special RestartMapMusic
-	special Function8c0ab
+	special Special_FadeInQuickly
 	loadfont
 	writetext FastShipBedText2
 	closetext

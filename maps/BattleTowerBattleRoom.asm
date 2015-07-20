@@ -91,7 +91,7 @@ UnknownScript_0x9f4a3:
 
 UnknownScript_0x9f4c2:
 	pause 60
-	special Function8c092
+	special Special_BattleTowerFade
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	writebyte $4
 	special Function170687
@@ -103,7 +103,7 @@ UnknownScript_0x9f4c2:
 
 UnknownScript_0x9f4d9:
 	pause 60
-	special Function8c092
+	special Special_BattleTowerFade
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 BattleTowerBattleRoomScript_0x9f4e4:
 	loadfont

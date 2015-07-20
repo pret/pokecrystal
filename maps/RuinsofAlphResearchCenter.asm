@@ -165,7 +165,7 @@ UnknownScript_0x5925a:
 UnknownScript_0x59260:
 	writetext UnknownText_0x5982d
 	closetext
-	special Functionc2cd
+	special Special_UnownPrinter
 	loadmovesprites
 	end
 

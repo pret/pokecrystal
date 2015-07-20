@@ -84,7 +84,7 @@ KrissHouseBookshelf:
 
 KrissHousePC:
 	loadfont
-	special Functionc2e7
+	special Special_KrissHousePC
 	iftrue .Warp
 	loadmovesprites
 	end

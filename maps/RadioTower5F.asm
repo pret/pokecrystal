@@ -90,12 +90,12 @@ UnknownScript_0x6006e:
 	writetext UnknownText_0x6050e
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $3
 	disappear $4
 	pause 15
-	special Function8c0ab
+	special Special_FadeInQuickly
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
 	setevent EVENT_CLEARED_RADIO_TOWER
 	clearflag ENGINE_ROCKETS_IN_RADIO_TOWER

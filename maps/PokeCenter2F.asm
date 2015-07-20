@@ -435,7 +435,7 @@ PokeCenter2F_CheckGender:
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	loadfont
 	writetext Text_LikeTheLook
 	closetext
@@ -461,7 +461,7 @@ Script_CleanUpFemaleFlagAfterTrade:
 	writebyte $90
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	applymovement $0, MovementData_0x192d2a
 	applymovement $2, MovementData_0x192cfe
 	end
@@ -483,7 +483,7 @@ Script_CleanUpFemaleFlagAfterBattle:
 	writebyte $90
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	applymovement $0, MovementData_0x192d2a
 	applymovement $3, MovementData_0x192cfe
 	end
@@ -544,7 +544,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	applymovement $0, MovementData_0x192d22
 	faceperson $0, $4
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	loadfont
 	writetext Text_LikeTheLook
 	closetext
@@ -571,7 +571,7 @@ Script_LeftTimeCapsule:
 	writebyte $90
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
-	special Functione4a
+	special Special_ReplaceKrisSprite
 	applymovement $0, MovementData_0x192cfc
 	applymovement $4, MovementData_0x192d01
 .Done:

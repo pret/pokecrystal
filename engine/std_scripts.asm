@@ -184,7 +184,7 @@ TownMapScript:
 	loadfont
 	farwritetext TownMapText
 	closetext
-	special Functionc2c0
+	special Special_TownMap
 	loadmovesprites
 	end
 

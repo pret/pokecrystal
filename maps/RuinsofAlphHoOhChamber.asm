@@ -56,7 +56,7 @@ UnknownScript_0x58596:
 MapRuinsofAlphHoOhChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $3
-	special Functionc360
+	special Special_UnownPuzzle
 	loadmovesprites
 	iftrue UnknownScript_0x585ba
 	end
@@ -90,7 +90,7 @@ MapRuinsofAlphHoOhChamberSignpost4Script:
 	loadfont
 	writetext UnknownText_0x58612
 	writebyte $3
-	special Function8ae68
+	special Special_DisplayUnownWords
 	loadmovesprites
 	end
 
@@ -100,7 +100,7 @@ MapRuinsofAlphHoOhChamberSignpost5Script:
 	loadfont
 	writetext UnknownText_0x58644
 	writebyte $3
-	special Function8ae68
+	special Special_DisplayUnownWords
 	loadmovesprites
 	end
 

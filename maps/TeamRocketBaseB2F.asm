@@ -98,15 +98,15 @@ UnknownScript_0x6cfac:
 	writetext UnknownText_0x6d4c6
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	disappear $3
 	disappear $c
 	disappear $d
 	disappear $e
 	pause 15
-	special Function8c0ab
+	special Special_FadeInQuickly
 	dotrigger $2
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	spriteface $4, DOWN

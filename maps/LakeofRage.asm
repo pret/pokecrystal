@@ -132,7 +132,7 @@ MapLakeofRageSignpost1Script:
 
 UnknownScript_0x700b8:
 	keeptextopen
-	special Functionfbcd2
+	special Special_MagikarpHouseSign
 	loadmovesprites
 	end
 

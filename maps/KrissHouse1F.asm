@@ -43,7 +43,7 @@ UnknownScript_0x7a4f6:
 	clearevent EVENT_KRISS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
 	keeptextopen
-	special Function90913
+	special Special_SetDayOfWeek
 UnknownScript_0x7a519:
 	writetext UnknownText_0x7a742
 	yesorno
@@ -142,7 +142,7 @@ UnknownScript_0x7a5b5:
 	setevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 UnknownScript_0x7a5b8:
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	special Function16218
+	special Special_BankOfMom
 	closetext
 	loadmovesprites
 	end

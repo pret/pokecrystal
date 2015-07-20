@@ -46,38 +46,38 @@ SpecialsPointers:: ; c029
 	add_special ContestReturnMons
 	add_special Special_GiveParkBalls
 	add_special Special_CheckMagikarpLength
-	add_special Functionfbcd2
+	add_special Special_MagikarpHouseSign
 	add_special HealParty
 	add_special PokemonCenterPC
-	add_special Functionc2e7
-	add_special Function166d6
-	add_special Function1672a
-	add_special Function16936
+	add_special Special_KrissHousePC
+	add_special Special_DayCareMan
+	add_special Special_DayCareLady
+	add_special Special_DayCareManOutside
 	add_special MoveDeletion
-	add_special Function16218
-	add_special Function8cc04
+	add_special Special_BankOfMom
+	add_special Special_MagnetTrain
 	add_special SpecialNameRival
-	add_special Function90913
-	add_special Functionc2c0
-	add_special Functionc2cd
+	add_special Special_SetDayOfWeek
+	add_special Special_TownMap
+	add_special Special_UnownPrinter
 	add_special MapRadio
-	add_special Functionc360
-	add_special Functionc373
-	add_special Functionc380
-	add_special Functionc38d
-	add_special Functionc3db
+	add_special Special_UnownPuzzle
+	add_special Special_SlotMachine
+	add_special Special_CardFlip
+	add_special Special_DummyNonfunctionalGameCornerGame
+	add_special Special_WhiteBGMapBufferScreen
 	add_special FadeBlackBGMap
-	add_special Function8c092
-	add_special Function8c0b6
+	add_special Special_BattleTowerFade
+	add_special Special_FadeBlackQuickly
 	add_special FadeInBGMap
-	add_special Function8c0ab
-	add_special Functiond91
+	add_special Special_FadeInQuickly
+	add_special Special_ReloadSpritesNoPalettes
 	add_special WhiteBGMap
 	add_special UpdateTimePals
 	add_special ClearTileMap
 	add_special DrawOnMap
-	add_special Functione4a
-	add_special Functionc230
+	add_special Special_ReplaceKrisSprite
+	add_special Special_GameCornerPrizeMonCheckDex
 	add_special SpecialSeenMon
 	add_special WaitSFX
 	add_special PlayMapMusic
@@ -155,7 +155,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialOmanyteChamber
 	add_special Function11c1ab
 	add_special Function170687
-	add_special Function8ae68
+	add_special Special_DisplayUnownWords
 	add_special Function17d224
 	add_special Function17d2b6
 	add_special Function17d2ce
@@ -202,7 +202,7 @@ Functionc225: ; c225
 	ret
 ; c230
 
-Functionc230: ; c230
+Special_GameCornerPrizeMonCheckDex: ; c230
 	ld a, [ScriptVar]
 	dec a
 	call CheckCaughtMon
@@ -283,14 +283,14 @@ SpecialNameRater: ; c2b9
 	ret
 ; c2c0
 
-Functionc2c0: ; c2c0
+Special_TownMap: ; c2c0
 	call FadeToMenu
 	callba Function9191c
 	call Function2b4d
 	ret
 ; c2cd
 
-Functionc2cd: ; c2cd
+Special_UnownPrinter: ; c2cd
 	call FadeToMenu
 	callba Function16be4
 	call Function2b4d
@@ -304,7 +304,7 @@ Functionc2da: ; c2da
 	ret
 ; c2e7
 
-Functionc2e7: ; c2e7
+Special_KrissHousePC: ; c2e7
 	xor a
 	ld [ScriptVar], a
 	callba Function156d9
@@ -376,7 +376,7 @@ MapRadio: ; c355
 	ret
 ; c360
 
-Functionc360: ; c360
+Special_UnownPuzzle: ; c360
 	call FadeToMenu
 	callba Functione1190
 	ld a, [wd0ec]
@@ -385,34 +385,34 @@ Functionc360: ; c360
 	ret
 ; c373
 
-Functionc373: ; c373
-	call Functionc3ae
+Special_SlotMachine: ; c373
+	call Special_CheckCoins
 	ret c
-	ld a, BANK(Function926c7)
-	ld hl, Function926c7
-	call Functionc39a
+	ld a, BANK(_SlotMachine)
+	ld hl, _SlotMachine
+	call Special_StartGameCornerGame
 	ret
 ; c380
 
-Functionc380: ; c380
-	call Functionc3ae
+Special_CardFlip: ; c380
+	call Special_CheckCoins
 	ret c
-	ld a, BANK(Functione00ee)
-	ld hl, Functione00ee
-	call Functionc39a
+	ld a, BANK(_CardFlip)
+	ld hl, _CardFlip
+	call Special_StartGameCornerGame
 	ret
 ; c38d
 
-Functionc38d: ; c38d
-	call Functionc3ae
+Special_DummyNonfunctionalGameCornerGame: ; c38d
+	call Special_CheckCoins
 	ret c
-	ld a, BANK(Functione1e5b)
-	ld hl, Functione1e5b
-	call Functionc39a
+	ld a, BANK(_DummyGame)
+	ld hl, _DummyGame
+	call Special_StartGameCornerGame
 	ret
 ; c39a
 
-Functionc39a: ; c39a
+Special_StartGameCornerGame: ; c39a
 	call Function31cf
 	call FadeToMenu
 	ld hl, wd0e8
@@ -427,7 +427,7 @@ Functionc39a: ; c39a
 	ret
 ; c3ae
 
-Functionc3ae: ; c3ae
+Special_CheckCoins: ; c3ae
 	ld hl, Coins
 	ld a, [hli]
 	or [hl]
@@ -465,7 +465,7 @@ UnknownText_0xc3d6: ; 0xc3d6
 	db "@"
 ; 0xc3db
 
-Functionc3db: ; c3db
+Special_WhiteBGMapBufferScreen: ; c3db
 	call WhiteBGMap
 	call BufferScreen
 	ret

@@ -25,11 +25,11 @@ RocketScript_0x1adbfa:
 	writetext UnknownText_0x1adee1
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	pause 25
-	special Function8c0ab
+	special Special_FadeInQuickly
 	playmapmusic
 	end
 

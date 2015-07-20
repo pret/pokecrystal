@@ -108,13 +108,13 @@ UnknownScript_0x196ec9:
 	writetext UnknownText_0x1970ed
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	playmusic MUSIC_HEAL
 	special Mobile_HealParty
 	special HealParty
 	pause 60
-	special Function8c0ab
+	special Special_FadeInQuickly
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x197134

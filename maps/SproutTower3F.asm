@@ -47,11 +47,11 @@ UnknownScript_0x184947:
 	pause 15
 	loadmovesprites
 	playsound SFX_WARP_TO
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $8
 	waitbutton
-	special Function8c0ab
+	special Special_FadeInQuickly
 	dotrigger $1
 	special RestartMapMusic
 	end

@@ -50,7 +50,7 @@ UnknownScript_0x62fb6:
 	end
 
 UnknownScript_0x62fbd:
-	special Function166d6
+	special Special_DayCareMan
 	closetext
 	loadmovesprites
 	end
@@ -60,7 +60,7 @@ GrannyScript_0x62fc3:
 	loadfont
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62fd1
-	special Function1672a
+	special Special_DayCareLady
 	closetext
 	loadmovesprites
 	end

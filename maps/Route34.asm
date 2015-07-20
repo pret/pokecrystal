@@ -44,7 +44,7 @@ UnknownScript_0x78039:
 GrampsScript_0x7803d:
 	faceplayer
 	loadfont
-	special Function16936
+	special Special_DayCareManOutside
 	closetext
 	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a

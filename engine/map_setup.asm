@@ -393,7 +393,7 @@ Function154f7: ; 154f7
 	jr c, .ok
 	ret
 .ok
-	call Functione4a
+	call Special_ReplaceKrisSprite
 	ret
 
 Function1550c: ; 1550c (5:550c)

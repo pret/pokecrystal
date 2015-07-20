@@ -1,11 +1,11 @@
-Function2e50:: ; 2e50
+ResetMapBufferEventFlags:: ; 2e50
 	xor a
 	ld hl, EventFlags
 	ld [hli], a
 	ret
 ; 2e56
 
-Function2e56:: ; 2e56
+ResetBikeFlags:: ; 2e56
 	xor a
 	ld hl, BikeFlags
 	ld [hli], a
@@ -13,8 +13,8 @@ Function2e56:: ; 2e56
 	ret
 ; 2e5d
 
-Function2e5d:: ; 2e5d
-	ld a, [wd19a]
+ResetFlashIfOutOfCave:: ; 2e5d
+	ld a, [wRoofPalette]
 	cp $2
 	jr z, .asm_2e69
 	cp $1

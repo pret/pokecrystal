@@ -175,7 +175,7 @@ UnknownScript_0x56d26:
 	writetext UnknownText_0x56ebd
 	closetext
 	writebyte ABRA
-	special Functionc230
+	special Special_GameCornerPrizeMonCheckDex
 	givepoke ABRA, 5, 0, 0
 	takecoins 100
 	jump UnknownScript_0x56d0c
@@ -193,7 +193,7 @@ UnknownScript_0x56d54:
 	writetext UnknownText_0x56ebd
 	closetext
 	writebyte CUBONE
-	special Functionc230
+	special Special_GameCornerPrizeMonCheckDex
 	givepoke CUBONE, 15, 0, 0
 	takecoins 800
 	jump UnknownScript_0x56d0c
@@ -211,7 +211,7 @@ UnknownScript_0x56d82:
 	writetext UnknownText_0x56ebd
 	closetext
 	writebyte WOBBUFFET
-	special Functionc230
+	special Special_GameCornerPrizeMonCheckDex
 	givepoke WOBBUFFET, 15, 0, 0
 	takecoins 1500
 	jump UnknownScript_0x56d0c
@@ -292,20 +292,20 @@ MapGoldenrodGameCornerSignpost17Script:
 	if_equal $0, MapGoldenrodGameCornerSignpost7Script
 	refreshscreen $0
 	writebyte $0
-	special Functionc373
+	special Special_SlotMachine
 	loadmovesprites
 	end
 
 MapGoldenrodGameCornerSignpost7Script:
 	refreshscreen $0
 	writebyte $1
-	special Functionc373
+	special Special_SlotMachine
 	loadmovesprites
 	end
 
 MapGoldenrodGameCornerSignpost29Script:
 	refreshscreen $0
-	special Functionc380
+	special Special_CardFlip
 	loadmovesprites
 	end
 

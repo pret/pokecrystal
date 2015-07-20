@@ -11,13 +11,13 @@ TeacherScript_0x7b125:
 	writetext UnknownText_0x7b14d
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	special Mobile_HealParty
 	playmusic MUSIC_HEAL
 	special HealParty
 	pause 60
-	special Function8c0ab
+	special Special_FadeInQuickly
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7b18b

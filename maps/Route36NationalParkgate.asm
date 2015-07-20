@@ -67,14 +67,14 @@ UnknownScript_0x6ab47:
 	writetext UnknownText_0x6b2c5
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	scall UnknownScript_0x6ab8c
 	disappear $2
 	appear $d
 	applymovement $0, MovementData_0x6add1
 	pause 15
-	special Function8c0ab
+	special Special_FadeInQuickly
 	jumpstd bugcontestresults
 
 UnknownScript_0x6ab76:

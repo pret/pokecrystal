@@ -146,7 +146,7 @@ Function97cfd:: ; 97cfd
 	ld hl, StatusFlags
 	bit 5, [hl]
 	jr nz, .asm_97d21
-	ld a, [wd19a]
+	ld a, [wRoofPalette]
 	cp $4
 	jr z, .asm_97d17
 	cp $7

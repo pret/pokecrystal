@@ -104,20 +104,20 @@ MapCeladonGameCornerSignpost35Script:
 	if_equal $0, MapCeladonGameCornerSignpost16Script
 	refreshscreen $0
 	writebyte $0
-	special Functionc373
+	special Special_SlotMachine
 	loadmovesprites
 	end
 
 MapCeladonGameCornerSignpost16Script:
 	refreshscreen $0
 	writebyte $1
-	special Functionc373
+	special Special_SlotMachine
 	loadmovesprites
 	end
 
 MapCeladonGameCornerSignpost11Script:
 	refreshscreen $0
-	special Functionc380
+	special Special_CardFlip
 	loadmovesprites
 	end
 
@@ -128,7 +128,7 @@ MapCeladonGameCornerSignpost9Script:
 	loadfont
 	writetext UnknownText_0x72567
 	closetext
-	special Functionc380
+	special Special_CardFlip
 	loadmovesprites
 	end
 

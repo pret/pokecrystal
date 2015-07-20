@@ -35,15 +35,15 @@ TwinScript_0x75ebb:
 	writetext UnknownText_0x7621f
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $5
 	applymovement $0, MovementData_0x76004
 	moveperson $4, $3, $13
 	appear $4
 	spriteface $0, UP
 	spriteface $4, UP
-	special Function8c0ab
+	special Special_FadeInQuickly
 	spriteface $3, DOWN
 	showemote EMOTE_SHOCK, $3, 15
 	applymovement $4, MovementData_0x7600c
