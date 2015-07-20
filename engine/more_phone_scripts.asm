@@ -1476,7 +1476,7 @@ UnknownScript_0xa0a08:
 	iftrue UnknownScript_0xa0a1d
 	checknite
 	iftrue UnknownScript_0xa0a25
-	setevent EVENT_26A
+	setevent EVENT_KENJI_ON_BREAK
 	farwritetext UnknownText_0x66f11
 	keeptextopen
 	jump UnknownScript_0xa0484

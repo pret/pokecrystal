@@ -1,22 +1,22 @@
 ; trainer groups
 	enum_start 1
-	trainerclass FALKNER
+	trainerclass FALKNER ; 1
 
-	trainerclass WHITNEY
+	trainerclass WHITNEY ; 2
 
-	trainerclass BUGSY
+	trainerclass BUGSY ; 3
 
-	trainerclass MORTY
+	trainerclass MORTY ; 4
 
-	trainerclass PRYCE
+	trainerclass PRYCE ; 5
 
-	trainerclass JASMINE
+	trainerclass JASMINE ; 6
 
-	trainerclass CHUCK
+	trainerclass CHUCK ; 7
 
-	trainerclass CLAIR
+	trainerclass CLAIR ; 8
 
-	trainerclass RIVAL1
+	trainerclass RIVAL1 ; 9
 	const RIVAL1_1
 	const RIVAL1_2
 	const RIVAL1_3
@@ -33,40 +33,40 @@
 	const RIVAL1_14
 	const RIVAL1_15
 
-	trainerclass POKEMON_PROF
+	trainerclass POKEMON_PROF ; a
 
-	trainerclass WILL
+	trainerclass WILL ; b
 
-	trainerclass CAL
+	trainerclass CAL ; c
 	const CAL1
 	const CAL2
 	const CAL3
 
-	trainerclass BRUNO
+	trainerclass BRUNO ; d
 
-	trainerclass KAREN
+	trainerclass KAREN ; e
 
-	trainerclass KOGA
+	trainerclass KOGA ; f
 
-	trainerclass CHAMPION
+	trainerclass CHAMPION ; 10
 	const LANCE
 
-	trainerclass BROCK
+	trainerclass BROCK ; 11
 
-	trainerclass MISTY
+	trainerclass MISTY ; 12
 
-	trainerclass LT_SURGE
+	trainerclass LT_SURGE ; 13
 
-	trainerclass SCIENTIST
+	trainerclass SCIENTIST ; 14
 	const ROSS
 	const MITCH
 	const JED
 	const MARC
 	const RICH
 
-	trainerclass ERIKA
+	trainerclass ERIKA ; 15
 
-	trainerclass YOUNGSTER
+	trainerclass YOUNGSTER ; 16
 	const JOEY1
 	const MIKEY
 	const ALBERT
@@ -82,7 +82,7 @@
 	const JOEY4
 	const JOEY5
 
-	trainerclass SCHOOLBOY
+	trainerclass SCHOOLBOY ; 17
 	const JACK1
 	const KIPP
 	const ALAN1
@@ -108,7 +108,7 @@
 	const CHAD4
 	const CHAD5
 
-	trainerclass BIRD_KEEPER
+	trainerclass BIRD_KEEPER ; 18
 	const ROD
 	const ABE
 	const BRYAN
@@ -129,7 +129,7 @@
 	const VANCE2
 	const VANCE3
 
-	trainerclass LASS
+	trainerclass LASS ; 19
 	const CARRIE
 	const BRIDGET
 	const ALICE
@@ -148,9 +148,9 @@
 	const DANA4
 	const DANA5
 
-	trainerclass JANINE
+	trainerclass JANINE ; 1a
 
-	trainerclass COOLTRAINERM
+	trainerclass COOLTRAINERM ; 1b
 	const NICK
 	const AARON
 	const PAUL
@@ -172,7 +172,7 @@
 	const ALLEN
 	const DARIN
 
-	trainerclass COOLTRAINERF
+	trainerclass COOLTRAINERF ; 1c
 	const GWEN
 	const LOIS
 	const FRAN
@@ -195,7 +195,7 @@
 	const REENA3
 	const CARA
 
-	trainerclass BEAUTY
+	trainerclass BEAUTY ; 1d
 	const VICTORIA
 	const SAMANTHA
 	const JULIE
@@ -214,7 +214,7 @@
 	const VALERIE
 	const OLIVIA
 
-	trainerclass POKEMANIAC
+	trainerclass POKEMANIAC ; 1e
 	const LARRY
 	const ANDREW
 	const CALVIN
@@ -231,27 +231,27 @@
 	const BRENT4
 	const MILLER
 
-	trainerclass GRUNTM
+	trainerclass GRUNTM ; 1f
 
-	trainerclass GENTLEMAN
+	trainerclass GENTLEMAN ; 20
 	const PRESTON
 	const EDWARD
 	const GREGORY
 	const VIRGIL
 	const ALFRED
 
-	trainerclass SKIER
+	trainerclass SKIER ; 21
 	const ROXANNE
 	const CLARISSA
 
-	trainerclass TEACHER
+	trainerclass TEACHER ; 22
 	const COLETTE
 	const HILLARY
 	const SHIRLEY
 
-	trainerclass SABRINA
+	trainerclass SABRINA ; 23
 
-	trainerclass BUG_CATCHER
+	trainerclass BUG_CATCHER ; 24
 	const DON
 	const ROB
 	const ED
@@ -272,7 +272,7 @@
 	const ARNIE5
 	const WAYNE
 
-	trainerclass FISHER
+	trainerclass FISHER ; 25
 	const JUSTIN
 	const RALPH1
 	const ARNOLD
@@ -299,7 +299,7 @@
 	const RALPH5
 	const TULLY4
 
-	trainerclass SWIMMERM
+	trainerclass SWIMMERM ; 26
 	const HAROLD
 	const SIMON
 	const RANDALL
@@ -322,7 +322,7 @@
 	const LEWIS
 	const PARKER
 
-	trainerclass SWIMMERF
+	trainerclass SWIMMERF ; 27
 	const ELAINE
 	const PAULA
 	const KAYLEE
@@ -343,7 +343,7 @@
 	const DIANA
 	const BRIANA
 
-	trainerclass SAILOR
+	trainerclass SAILOR ; 28
 	const EUGENE
 	const HUEY1
 	const TERRELL
@@ -358,7 +358,7 @@
 	const HUEY3
 	const HUEY4
 
-	trainerclass SUPER_NERD
+	trainerclass SUPER_NERD ; 29
 	const STAN
 	const ERIC
 	const GREGG
@@ -374,13 +374,13 @@
 	const HUGH
 	const MARKUS
 
-	trainerclass RIVAL2
+	trainerclass RIVAL2 ; 2a
 
-	trainerclass GUITARIST
+	trainerclass GUITARIST ; 2b
 	const CLYDE
 	const VINCENT
 
-	trainerclass HIKER
+	trainerclass HIKER ; 2c
 	const ANTHONY1
 	const RUSSELL
 	const PHILLIP
@@ -404,7 +404,7 @@
 	const ANTHONY4
 	const ANTHONY5
 
-	trainerclass BIKER
+	trainerclass BIKER ; 2d
 	const BIKER_BENNY
 	const KAZU
 	const DWAYNE
@@ -415,14 +415,14 @@
 	const JOEL
 	const GLENN
 
-	trainerclass BLAINE
+	trainerclass BLAINE ; 2e
 
-	trainerclass BURGLAR
+	trainerclass BURGLAR ; 2f
 	const DUNCAN
 	const EDDIE
 	const COREY
 
-	trainerclass FIREBREATHER
+	trainerclass FIREBREATHER ; 30
 	const OTIS
 	const DICK
 	const NED
@@ -432,7 +432,7 @@
 	const RAY
 	const LYLE
 
-	trainerclass JUGGLER
+	trainerclass JUGGLER ; 31
 	const IRWIN1
 	const FRITZ
 	const HORTON
@@ -440,7 +440,7 @@
 	const IRWIN3
 	const IRWIN4
 
-	trainerclass BLACKBELT_T
+	trainerclass BLACKBELT_T ; 32
 	const KENJI1
 	const YOSHI
 	const KENJI2
@@ -451,9 +451,9 @@
 	const KENJI3
 	const WAI
 
-	trainerclass EXECUTIVEM
+	trainerclass EXECUTIVEM ; 33
 
-	trainerclass PSYCHIC_T
+	trainerclass PSYCHIC_T ; 34
 	const NATHAN
 	const FRANKLIN
 	const HERMAN
@@ -467,7 +467,7 @@
 	const JARED
 	const RODNEY
 
-	trainerclass PICNICKER
+	trainerclass PICNICKER ; 35
 	const LIZ1
 	const GINA1
 	const BROOKE
@@ -495,7 +495,7 @@
 	const GINA5
 	const TIFFANY4
 
-	trainerclass CAMPER
+	trainerclass CAMPER ; 36
 	const ROLAND
 	const TODD1
 	const IVAN
@@ -519,9 +519,9 @@
 	const TODD5
 	const QUENTIN
 
-	trainerclass EXECUTIVEF
+	trainerclass EXECUTIVEF ; 37
 
-	trainerclass SAGE
+	trainerclass SAGE ; 38
 	const CHOW
 	const NICO
 	const JIN
@@ -535,7 +535,7 @@
 	const MASA
 	const KOJI
 
-	trainerclass MEDIUM
+	trainerclass MEDIUM ; 39
 	const MARTHA
 	const GRACE
 	const BETHANY
@@ -544,12 +544,12 @@
 	const REBECCA
 	const DORIS
 
-	trainerclass BOARDER
+	trainerclass BOARDER ; 3a
 	const RONALD
 	const BRAD
 	const DOUGLAS
 
-	trainerclass POKEFANM
+	trainerclass POKEFANM ; 3b
 	const WILLIAM
 	const DEREK1
 	const ROBERT
@@ -565,7 +565,7 @@
 	const REX
 	const ALLAN
 
-	trainerclass KIMONO_GIRL
+	trainerclass KIMONO_GIRL ; 3c
 	const NAOKO1
 	const NAOKO2
 	const SAYO
@@ -573,7 +573,7 @@
 	const KUNI
 	const MIKI
 
-	trainerclass TWINS
+	trainerclass TWINS ; 3d
 	const AMYANDMAY1
 	const ANNANDANNE1
 	const ANNANDANNE2
@@ -585,7 +585,7 @@
 	const LEAANDPIA1
 	const LEAANDPIA2
 
-	trainerclass POKEFANF
+	trainerclass POKEFANF ; 3e
 	const BEVERLY1
 	const RUTH
 	const BEVERLY2
@@ -593,17 +593,17 @@
 	const GEORGIA
 	const JAIME
 
-	trainerclass RED
+	trainerclass RED ; 3f
 
-	trainerclass BLUE
+	trainerclass BLUE ; 40
 
-	trainerclass OFFICER
+	trainerclass OFFICER ; 41
 	const KEITH
 	const DIRK
 
-	trainerclass GRUNTF
+	trainerclass GRUNTF ; 42
 
-	trainerclass MYSTICALMAN
+	trainerclass MYSTICALMAN ; 43
 	const EUSINE
 
 NUM_TRAINER_CLASSES EQU __enum__

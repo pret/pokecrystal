@@ -296,7 +296,7 @@ UnknownScript_0x78213:
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x78225
 	clearflag ENGINE_GINA_HAS_LEAF_STONE
-	setevent EVENT_100
+	setevent EVENT_GINA_GAVE_LEAF_STONE
 	jump UnknownScript_0x78234
 
 UnknownScript_0x78225:

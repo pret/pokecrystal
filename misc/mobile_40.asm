@@ -308,7 +308,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	callba Function8c084
+	callba FadeBlackBGMap
 	callba Function106464
 	call HideSprites
 	call DelayFrame
@@ -903,7 +903,7 @@ Function100597: ; 100597
 	ld [wcfa9], a
 
 .asm_1005a6
-	call Function1c07
+	call ExitMenu
 	ld a, [wcd26]
 	set 7, a
 	ld [wcd26], a
@@ -954,7 +954,7 @@ Function1005e1: ; 1005e1
 	xor a
 	ld [wcfa9], a
 .asm_1005f0
-	call Function1c07
+	call ExitMenu
 	ld a, [wcd26]
 	set 7, a
 	ld [wcd26], a
@@ -1792,7 +1792,7 @@ Function100b12: ; 100b12
 	call Function100ed4
 	ld a, [wcf88]
 	ld [wd0d2], a
-	call Function1c07
+	call ExitMenu
 	ret
 ; 100b45
 
@@ -4494,7 +4494,7 @@ Function101d95: ; 101d95
 
 Function101db2: ; 101db2
 	callba Function103302
-	call Function1c07
+	call ExitMenu
 	ld hl, wcd29
 	set 5, [hl]
 	jr c, .asm_101dca
@@ -4976,12 +4976,12 @@ Function102142: ; 102142
 	ld de, SFX_LEVEL_UP
 	call PlaySFX
 	call Functiona36
-	call Function1c07
+	call ExitMenu
 	call Function10219f
 	ld hl, UnknownText_0x1021d6
 	call MenuTextBox
 	call YesNoBox
-	call Function1c07
+	call ExitMenu
 	jr c, .asm_10217c
 	call Function1021b8
 	jr c, .asm_10217c
@@ -5053,7 +5053,7 @@ UnknownText_0x1021db: ; 1021d1
 Function1021e0: ; 1021e0
 	call MenuTextBox
 	call Functiona36
-	call Function1c07
+	call ExitMenu
 	ret
 ; 1021ea
 
@@ -6207,7 +6207,7 @@ Function102984: ; 102984
 
 Function102996: ; 102996
 	call Function1029af
-	call Function1c07
+	call ExitMenu
 	scf
 	ret
 ; 10299e
@@ -6281,7 +6281,7 @@ Function1029fe: ; 1029fe
 	and [hl]
 	ret z
 	push af
-	call Function1c07
+	call ExitMenu
 	pop af
 	ld a, [wcfa9]
 	cp $1
@@ -7774,7 +7774,7 @@ Mobile_SelectThreeMons: ; 10366e
 	ld hl, MenuDataHeader_103747
 	call LoadMenuDataHeader
 	call InterpretMenu2
-	call Function1c07
+	call ExitMenu
 	jr c, .asm_1036f4
 	ld a, [wcfa9]
 	cp $1
@@ -7815,7 +7815,7 @@ Function1036f9: ; 1036f9
 
 Function103700: ; 103700
 	ld c, $a
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	bit 4, [hl]
 	jr z, .asm_10370f
 	callba Function1008a6
@@ -7913,11 +7913,11 @@ Function103780: ; 103780
 
 Function10378c: ; 10378c
 	ld c, $0
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	bit 4, [hl]
 	jr nz, .asm_10379c
 	ld c, $1
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	set 4, [hl]
 
 .asm_10379c
@@ -7939,7 +7939,7 @@ Function10378c: ; 10378c
 	ld a, c
 	and a
 	ret z
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	res 4, [hl]
 	ret
 ; 1037c2

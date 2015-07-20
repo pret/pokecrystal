@@ -31,15 +31,15 @@ UnknownScript_0x74da6:
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
 	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	clearevent EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
-	setevent EVENT_030
-	setevent EVENT_000
+	setevent EVENT_FAST_SHIP_FIRST_TIME
+	setevent EVENT_GAVE_KURT_APRICORNS
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	end
 
 SailorScript_0x74dc4:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
 	closetext
@@ -51,7 +51,7 @@ SailorScript_0x74dc4:
 	waitbutton
 	applymovement $0, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	setevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	clearevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
@@ -79,9 +79,9 @@ UnknownScript_0x74e1a:
 
 UnknownScript_0x74e20:
 	spriteface $3, RIGHT
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e86
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x74e86
 	spriteface $0, LEFT
 	loadfont
@@ -101,7 +101,7 @@ UnknownScript_0x74e20:
 	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement $0, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
 
@@ -145,7 +145,7 @@ UnknownScript_0x74e8d:
 SailorScript_0x74e97:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74eda
@@ -163,7 +163,7 @@ SailorScript_0x74e97:
 	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement $0, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 

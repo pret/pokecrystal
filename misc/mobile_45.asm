@@ -4330,7 +4330,7 @@ Function11581e: ; 11581e
 
 Function1158c2: ; 1158c2
 	ld a, e
-	ld [wdc20], a
+	ld [SwarmFlags], a
 	ld a, d
 	ld [wdc21], a
 	xor a
@@ -4351,7 +4351,7 @@ Function1158c2: ; 1158c2
 	ld l, c
 	ld h, b
 	xor a
-	ld [wdc1f], a
+	ld [WeeklyFlags], a
 
 .asm_1158e5
 	ld b, $3
@@ -4376,7 +4376,7 @@ Function1158c2: ; 1158c2
 	push hl
 	dec hl
 	ld a, c
-	ld [wdc1f], a
+	ld [WeeklyFlags], a
 .asm_115908
 	xor a
 	ld [hld], a
@@ -4397,7 +4397,7 @@ Function1158c2: ; 1158c2
 	ld [wdc1a], a
 	push de
 	push hl
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4492,7 +4492,7 @@ Function1158c2: ; 1158c2
 	ld a, $a
 	ld [hli], a
 	push hl
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4517,7 +4517,7 @@ Function1158c2: ; 1158c2
 	jp nz, .asm_1158e5
 
 .asm_1159c4
-	ld a, [wdc1f]
+	ld a, [WeeklyFlags]
 	cp $0
 	jr z, .asm_1159d8
 	push hl
@@ -4984,9 +4984,9 @@ Function115bc8: ; 115bc8
 
 Function115c49: ; 115c49
 	ld a, e
-	ld [wdc1f], a
+	ld [WeeklyFlags], a
 	ld a, d
-	ld [wdc20], a
+	ld [SwarmFlags], a
 	xor a
 	ld [de], a
 	inc de
@@ -5055,7 +5055,7 @@ Function115c49: ; 115c49
 	ld [wdc1a], a
 	push de
 	push hl
-	ld hl, wdc1f
+	ld hl, WeeklyFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -5166,9 +5166,9 @@ Function115cfd: ; 115cfd
 .asm_115d38
 	push de
 	push hl
-	ld a, [wdc1f]
+	ld a, [WeeklyFlags]
 	ld l, a
-	ld a, [wdc20]
+	ld a, [SwarmFlags]
 	ld h, a
 	ld e, [hl]
 	inc hl
@@ -8021,13 +8021,13 @@ Function1178e8: ; 1178e8 (45:78e8)
 	ld a, [wcd4e]
 	and a
 	jr nz, .asm_117939
-	call Function1c07
+	call ExitMenu
 	ld a, $1
 	ld [wcd4f], a
 	jp Function117a0a
 .asm_117939
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	jp Function117a0a
 
 Function117942: ; 117942 (45:7942)
@@ -8055,7 +8055,7 @@ Function117976: ; 117976 (45:7976)
 	ld hl, wcd4e
 	dec [hl]
 	ret nz
-	call Function1c07
+	call ExitMenu
 asm_11797e: ; 11797e (45:797e)
 	ld a, $80
 	ld [wcd49], a
@@ -8078,7 +8078,7 @@ Function1179a7: ; 1179a7 (45:79a7)
 	ld hl, wcd4e
 	dec [hl]
 	ret nz
-	call Function1c07
+	call ExitMenu
 	ld a, $1
 	ld [wcd49], a
 	ret
@@ -8285,13 +8285,13 @@ Function117b4f:
 	ld a, [wcf64]
 	and a
 	jr nz, .asm_117ba4 ; 0x117b93 $f
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	jp Function117cdd
 .asm_117ba4
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	ld a, $80
 	ld [wcf63], a
@@ -8395,7 +8395,7 @@ Function117c4a:
 	add hl, de
 	dec c
 	jr nz, .asm_117c71 ; 0x117c7b $f4
-	call Function4b6
+	call FadeToWhite
 	pop af
 	ld [rSVBK], a
 	ld a, $80
@@ -12896,7 +12896,7 @@ Function119f98: ; 119f98
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_119fef
-	call Function1c07
+	call ExitMenu
 	call Function11a63c
 	xor a
 	ld [ScriptVar], a
@@ -12904,7 +12904,7 @@ Function119f98: ; 119f98
 	ld a, [ScriptVar]
 	and a
 	jr z, .asm_119fd4
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	callba Function115dc3
 	ld a, [wcd33]
@@ -12927,8 +12927,8 @@ Function119f98: ; 119f98
 	ret
 
 .asm_119fef
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd45]
 	ld [wcf66], a
@@ -13003,7 +13003,7 @@ Function11a00e: ; 11a00e
 	callba Function117ab4
 	callba Function106462
 	callba Function106464
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	callba Function115d99
 	ld c, $0
@@ -13026,7 +13026,7 @@ Function11a0ca: ; 11a0ca
 	callba Function17d3f6
 	callba Function106462
 	callba Function106464
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	callba Function115d99
 	ld c, $0
@@ -13118,7 +13118,7 @@ Function11a192: ; 11a192
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a1b6
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13128,7 +13128,7 @@ Function11a192: ; 11a192
 	ret
 
 .asm_11a1b6
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd45]
 	ld [wcf66], a
@@ -13259,7 +13259,7 @@ Function11a235: ; 11a235
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a2c4
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd46]
 	cp $0
@@ -13281,7 +13281,7 @@ Function11a235: ; 11a235
 	call PlayClickSFX
 
 .asm_11a2c4
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	and a
 	ret
@@ -13360,7 +13360,7 @@ Function11a33a: ; 11a33a
 	ret
 
 .asm_11a346
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	callba Function115dc3
 	and a
@@ -13404,7 +13404,7 @@ Function11a38d: ; 11a38d
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a3b1
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13414,7 +13414,7 @@ Function11a38d: ; 11a38d
 	ret
 
 .asm_11a3b1
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd45]
 	ld [wcf66], a
@@ -13479,7 +13479,7 @@ Function11a41b: ; 11a41b
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a43f
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13489,7 +13489,7 @@ Function11a41b: ; 11a41b
 	ret
 
 .asm_11a43f
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, $1c
 	ld [wcf66], a
@@ -13550,7 +13550,7 @@ Function11a49e: ; 11a49e
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a4c7
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13562,7 +13562,7 @@ Function11a49e: ; 11a49e
 	ret
 
 .asm_11a4c7
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd46]
 	ld [wcf66], a
@@ -13597,7 +13597,7 @@ Function11a4fe: ; 11a4fe
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a522
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13607,7 +13607,7 @@ Function11a4fe: ; 11a4fe
 	ret
 
 .asm_11a522
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd45]
 	ld [wcf66], a
@@ -13636,7 +13636,7 @@ Function11a536: ; 11a536
 	jr z, .asm_11a562
 	call Function11a9f0
 	jr nz, .asm_11a562
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 
 .asm_11a562
@@ -14544,7 +14544,7 @@ Function11adc4:
 	call Function11ad8a
 
 .asm_11ae2e
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ret
 ; 11ae38
@@ -14649,8 +14649,8 @@ Function11ae98:
 	call Function11ad8a
 
 .asm_11aef7
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	ret
 ; 11af04
@@ -14740,8 +14740,8 @@ Function11af4e:
 	ld [ScriptVar], a
 
 .asm_11afaa
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	ret
 ; 11afb7
@@ -23522,7 +23522,7 @@ Function170729: ; 170729 (5c:4729)
 	ret
 
 Function170737: ; 170737 (5c:4737)
-	callba Function14dbb
+	callba SaveOptionsSelection
 	ret
 
 Function17073e: ; 17073e (5c:473e)
@@ -24729,7 +24729,7 @@ Function171c2c: ; 171c2c (5c:5c2c)
 	ld hl, wcd4c
 	dec [hl]
 	ret nz
-	call Function1c07
+	call ExitMenu
 	call WhiteBGMap
 	jr asm_171c60
 

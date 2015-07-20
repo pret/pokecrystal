@@ -88,7 +88,7 @@ SailorScript_0x755f1:
 	writetext UnknownText_0x758b1
 	closetext
 	loadmovesprites
-	setevent EVENT_033
+	setevent EVENT_FAST_SHIP_LAZY_SAILOR
 	domaptrigger GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F, $1
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x75629

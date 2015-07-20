@@ -30,10 +30,10 @@ UnknownScript_0x19b0de:
 	writetext UnknownText_0x19b266
 	closetext
 	loadmovesprites
-	special Function8c084
+	special FadeBlackBGMap
 	playmusic MUSIC_HEAL
 	pause 60
-	special Function8c079
+	special FadeInBGMap
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x19b296

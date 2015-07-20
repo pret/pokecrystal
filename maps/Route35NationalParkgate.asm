@@ -75,7 +75,7 @@ Route35NationalParkgate_GoBackIn:
 	loadmovesprites
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
@@ -112,7 +112,7 @@ Route35NationalParkgate_OkayToProceed:
 	special Special_GiveParkBalls
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	special Special_SelectRandomBugContestContestants
 	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f

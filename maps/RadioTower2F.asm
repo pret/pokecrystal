@@ -92,16 +92,16 @@ Buena:
 	iftrue UnknownScript_0x5d865
 	checkevent EVENT_MET_BUENA
 	iffalse UnknownScript_0x5d800
-	checkflag ENGINE_60
+	checkflag ENGINE_BUENAS_PASSWORD_2
 	iftrue UnknownScript_0x5d82f
 	checkcode VAR_HOUR
-	if_less_than $12, UnknownScript_0x5d893
-	checkflag ENGINE_5F
+	if_less_than 18, UnknownScript_0x5d893
+	checkflag ENGINE_BUENAS_PASSWORD
 	iffalse UnknownScript_0x5d80a
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d86b
 	checkcode VAR_BLUECARDBALANCE
-	if_equal $1e, UnknownScript_0x5d87f
+	if_equal 30, UnknownScript_0x5d87f
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
 	special Function4ae12
@@ -133,7 +133,7 @@ UnknownScript_0x5d7be:
 	writevarcode VAR_BLUECARDBALANCE
 	waitbutton
 	playsound SFX_TRANSACTION
-	setflag ENGINE_60
+	setflag ENGINE_BUENAS_PASSWORD_2
 	pause 20
 	spriteface $b, RIGHT
 	loadfont
@@ -188,7 +188,7 @@ UnknownScript_0x5d83f:
 	end
 
 UnknownScript_0x5d845:
-	setflag ENGINE_60
+	setflag ENGINE_BUENAS_PASSWORD_2
 	loadfont
 	writetext UnknownText_0x5e01c
 	closetext

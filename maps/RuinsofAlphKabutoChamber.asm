@@ -32,7 +32,7 @@ UnknownScript_0x58737:
 	iftrue UnknownScript_0x58741
 	changeblock $4, $0, $2e
 UnknownScript_0x58741:
-	checkevent EVENT_2A1
+	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse UnknownScript_0x58748
 	return
 
@@ -67,7 +67,7 @@ MapRuinsofAlphKabutoChamberSignpost2Script:
 
 UnknownScript_0x58778:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	setevent EVENT_2A1
+	setevent EVENT_SOLVED_KABUTO_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_1
 	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
@@ -92,7 +92,7 @@ ScientistScript_0x587a8:
 	if_equal 26, UnknownScript_0x587cf
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587c9
-	checkevent EVENT_2A1
+	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse UnknownScript_0x587c0
 	writetext UnknownText_0x589b8
 	keeptextopen

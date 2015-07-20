@@ -40,12 +40,12 @@ UnknownScript_0x19e0e4:
 	iftrue UnknownScript_0x19e10c
 	checknite
 	iftrue UnknownScript_0x19e112
-	checkevent EVENT_26A
+	checkevent EVENT_KENJI_ON_BREAK
 	iffalse UnknownScript_0x19e127
 	scall UnknownScript_0x19e137
 	verbosegiveitem PP_UP, 1
 	iffalse UnknownScript_0x19e118
-	clearevent EVENT_26A
+	clearevent EVENT_KENJI_ON_BREAK
 	special Function11485
 	jump UnknownScript_0x19e127
 

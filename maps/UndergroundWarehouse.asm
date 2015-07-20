@@ -65,12 +65,12 @@ GruntM15Script:
 GentlemanScript_0x7d9bf:
 	faceplayer
 	loadfont
-	checkevent EVENT_04A
+	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue UnknownScript_0x7d9de
 	writetext UnknownText_0x7dbc6
 	keeptextopen
 	verbosegiveitem CARD_KEY, 1
-	setevent EVENT_04A
+	setevent EVENT_RECEIVED_CARD_KEY
 	setevent EVENT_WAREHOUSE_LAYOUT_1
 	clearevent EVENT_WAREHOUSE_LAYOUT_2
 	clearevent EVENT_WAREHOUSE_LAYOUT_3

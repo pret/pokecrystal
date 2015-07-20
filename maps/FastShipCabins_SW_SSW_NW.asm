@@ -75,11 +75,11 @@ FastShipBed:
 	writetext FastShipBedText2
 	closetext
 	loadmovesprites
-	checkevent EVENT_031
+	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue UnknownScript_0x75ae1
-	checkevent EVENT_032
+	checkevent EVENT_FAST_SHIP_FOUND_GIRL
 	iftrue UnknownScript_0x75ae2
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x75ae2
 UnknownScript_0x75ae1:
 	end
@@ -93,7 +93,7 @@ UnknownScript_0x75ae2:
 	writetext FastShipArrivedVermilionText
 	closetext
 	loadmovesprites
-	setevent EVENT_031
+	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 
 UnknownScript_0x75af7:
@@ -101,7 +101,7 @@ UnknownScript_0x75af7:
 	writetext FastShipArrivedOlivineText
 	closetext
 	loadmovesprites
-	setevent EVENT_031
+	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 
 FastShipCabinsNorthwestCabinTrashcan:

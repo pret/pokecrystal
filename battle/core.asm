@@ -469,13 +469,13 @@ Function3c314: ; 3c314
 	cp $2
 	jr z, .asm_3c341
 	call BattleRandom
-	cp $80
+	cp 1 + (50 percent)
 	jp c, .asm_3c3f1
 	jp Function3c3f3
 
 .asm_3c341
 	call BattleRandom
-	cp $80
+	cp 1 + (50 percent)
 	jp c, Function3c3f3
 	jp .asm_3c3f1
 
@@ -555,13 +555,13 @@ Function3c314: ; 3c314
 	cp $2
 	jr z, .asm_3c3e9
 	call BattleRandom
-	cp $80
+	cp 1 + (50 percent)
 	jp c, .asm_3c3f1
 	jp Function3c3f3
 
 .asm_3c3e9
 	call BattleRandom
-	cp $80
+	cp 1 + (50 percent)
 	jp c, Function3c3f3
 .asm_3c3f1
 	scf
@@ -798,7 +798,7 @@ Function3c543: ; 3c543
 
 	call BattleRandom
 	ld b, a
-	cp $80
+	cp 1 + (50 percent)
 	jr nc, .Stay
 
 	push bc
@@ -810,7 +810,7 @@ Function3c543: ; 3c543
 	jr c, .Flee
 
 	ld a, b
-	cp $1a
+	cp 1 + (10 percent)
 	jr nc, .Stay
 
 	ld a, [TempEnemyMonSpecies]
@@ -1607,7 +1607,7 @@ Function3ca8f: ; 3ca8f
 	and a
 	ret nz
 	call BattleRandom
-	cp $19
+	cp 10 percent
 	ret nc
 	xor a
 	ld [BattleMonStatus], a
@@ -1628,7 +1628,7 @@ Function3ca8f: ; 3ca8f
 	and a
 	ret nz
 	call BattleRandom
-	cp $19
+	cp 10 percent
 	ret nc
 	xor a
 	ld [EnemyMonStatus], a
@@ -2882,7 +2882,7 @@ Function3d227: ; 3d227
 	call ClearSprites
 	call WhiteBGMap
 	call Function3eda6
-	call Function1c07
+	call ExitMenu
 	call Function309d
 	call WaitBGMap
 	call ClearSGB
@@ -3685,7 +3685,7 @@ Function3d74b: ; 3d74b
 Function3d7a0: ; 3d7a0
 	xor a
 	ld [hBGMapMode], a
-	call Function1c07
+	call ExitMenu
 	call ClearSprites
 	hlcoord 1, 0
 	lb bc, 4, 10
@@ -5211,7 +5211,7 @@ BattleMenu_Pack: ; 3e1c7
 	call Function3ed9f
 	call Function3f43d
 	call Function3f47c
-	call Function1c07
+	call ExitMenu
 	call WaitBGMap
 	call Function3ee27
 	call Function309d
@@ -5248,7 +5248,7 @@ Function3e234: ; 3e234
 	call Function3f47c
 	ld a, $1
 	ld [wcfa9], a
-	call Function1c07
+	call ExitMenu
 	call Function3df2c
 	call WaitBGMap
 	call Function309d
@@ -5272,7 +5272,7 @@ Function3e234: ; 3e234
 BattleMenu_PKMN: ; 3e28d
 	call Function1d6e
 Function3e290:
-	call Function1c07
+	call ExitMenu
 	call Function1d6e
 	call WhiteBGMap
 Function3e299:
@@ -6255,13 +6255,13 @@ LoadEnemyMon: ; 3e8eb
 
 ; 25% chance of getting an item
 	call BattleRandom
-	cp a, $c0
+	cp a, 1 + (75 percent)
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 	
 ; From there, an 8% chance for Item2
 	call BattleRandom
-	cp a, $14 ; 8% of 25% = 2% Item2
+	cp a, 8 percent ; 8% of 25% = 2% Item2
 	ld a, [BaseItems]
 	jr nc, .UpdateItem
 	ld a, [BaseItems+1]
@@ -8990,7 +8990,7 @@ Function3f998: ; 3f998
 	ret nz
 
 .asm_3f9ca
-	callab Function2a30d
+	callab UpdateRoamMons
 	ret
 ; 3f9d1
 

@@ -16,7 +16,7 @@ KrissHouse2F_MapScriptHeader:
 
 .InitializeRoom:
 	special ToggleDecorationsVisibility
-	setevent EVENT_007
+	setevent EVENT_IN_YOUR_ROOM
 	checkevent EVENT_INITIALIZED_EVENTS
 	iftrue .SkipInizialization
 	jumpstd initializeevents

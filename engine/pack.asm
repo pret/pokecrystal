@@ -138,7 +138,7 @@ Function100e8: ; 100e8 (4:40e8)
 	push de
 	call LoadMenuDataHeader
 	call InterpretMenu2
-	call Function1c07
+	call ExitMenu
 	pop hl
 	ret c
 	ld a, [wcfa9]
@@ -290,7 +290,7 @@ Function101c5: ; 101c5 (4:41c5)
 	push de
 	call LoadMenuDataHeader
 	call InterpretMenu2
-	call Function1c07
+	call ExitMenu
 	pop hl
 	ret c
 	ld a, [wcfa9]
@@ -495,7 +495,7 @@ Function10364: ; 10364
 	call Function10889
 	callba Function24fbf
 	push af
-	call Function1c07
+	call ExitMenu
 	pop af
 	jr c, .asm_1039c
 	call Function10a1d
@@ -503,7 +503,7 @@ Function10364: ; 10364
 	call MenuTextBox
 	call YesNoBox
 	push af
-	call Function1c07
+	call ExitMenu
 	pop af
 	jr c, .asm_1039c
 	ld hl, NumItems
@@ -822,7 +822,7 @@ Function105dc: ; 105dc (4:45dc)
 	push de
 	call LoadMenuDataHeader
 	call InterpretMenu2
-	call Function1c07
+	call ExitMenu
 	pop hl
 	ret c
 	ld a, [wcfa9]

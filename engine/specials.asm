@@ -46,7 +46,7 @@ SpecialsPointers:: ; c029
 	add_special Special_CheckMagikarpLength
 	add_special Functionfbcd2
 	add_special HealParty
-	add_special Function1559a
+	add_special PokemonCenterPC
 	add_special Functionc2e7
 	add_special Function166d6
 	add_special Function1672a
@@ -64,10 +64,10 @@ SpecialsPointers:: ; c029
 	add_special Functionc380
 	add_special Functionc38d
 	add_special Functionc3db
-	add_special Function8c084
+	add_special FadeBlackBGMap
 	add_special Function8c092
 	add_special Function8c0b6
-	add_special Function8c079
+	add_special FadeInBGMap
 	add_special Function8c0ab
 	add_special Functiond91
 	add_special WhiteBGMap
@@ -112,7 +112,7 @@ SpecialsPointers:: ; c029
 	add_special Function2a4ab
 	add_special Function2a51f
 	add_special RandomPhoneMon
-	add_special Function14209
+	add_special RunCallback_04
 	add_special Functionfb841
 	add_special SpecialSnorlaxAwake
 	add_special Function7413
@@ -182,7 +182,7 @@ SpecialsPointers:: ; c029
 	add_special Function103780
 	add_special Function10387b
 	add_special Function4ae12
-	add_special Function1047eb
+	add_special LoadMapPalettes
 	add_special Function4a927
 	add_special Function90a54
 	add_special Function90a88

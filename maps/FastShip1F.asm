@@ -3,24 +3,24 @@ FastShip1F_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x75135, $0000
-	dw UnknownScript_0x75136, $0000
-	dw UnknownScript_0x7513a, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
+	dw .Trigger3, $0000
 
 	; callback count
 	db 0
 
-UnknownScript_0x75135:
+.Trigger1:
 	end
 
-UnknownScript_0x75136:
-	priorityjump UnknownScript_0x7513b
+.Trigger2:
+	priorityjump .PriorityJump2
 	end
 
-UnknownScript_0x7513a:
+.Trigger3:
 	end
 
-UnknownScript_0x7513b:
+.PriorityJump2:
 	applymovement $2, MovementData_0x7520e
 	applymovement $0, MovementData_0x75217
 	applymovement $2, MovementData_0x75211
@@ -28,21 +28,21 @@ UnknownScript_0x7513b:
 	playsound SFX_BOAT
 	earthquake 30
 	blackoutmod GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW
-	clearevent EVENT_031
-	checkevent EVENT_030
-	iftrue UnknownScript_0x7515d
+	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
+	iftrue .Vermilion
 	dotrigger $2
 	end
 
-UnknownScript_0x7515d:
+.Vermilion:
 	dotrigger $0
 	end
 
 SailorScript_0x75160:
 	faceplayer
 	loadfont
-	checkevent EVENT_031
-	iftrue UnknownScript_0x7517a
+	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
+	iftrue .Arrived
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue .Olivine
 	writetext UnknownText_0x7523b
@@ -56,42 +56,42 @@ SailorScript_0x75160:
 	loadmovesprites
 	end
 
-UnknownScript_0x7517a:
+.Arrived:
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
-	iftrue .Olivine
+	iftrue ._Olivine
 	writetext UnknownText_0x754be
 	closetext
 	loadmovesprites
-	scall UnknownScript_0x751b8
+	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	domaptrigger GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $1
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $7, $11
 	end
 
-.Olivine
+._Olivine
 	writetext UnknownText_0x7548d
 	closetext
 	loadmovesprites
-	scall UnknownScript_0x751b8
+	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	domaptrigger GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $1
 	warp GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $7, $17
 	end
 
-UnknownScript_0x751b8:
+.LetThePlayerOut:
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x751c7
+	if_equal RIGHT, .YouAreFacingRight
 	applymovement $2, MovementData_0x7520e
 	applymovement $0, MovementData_0x75235
 	end
 
-UnknownScript_0x751c7:
+.YouAreFacingRight:
 	applymovement $2, MovementData_0x75214
 	applymovement $0, MovementData_0x75238
 	end
@@ -99,14 +99,14 @@ UnknownScript_0x751c7:
 SailorScript_0x751d0:
 	faceplayer
 	loadfont
-	checkevent EVENT_030
-	iftrue UnknownScript_0x751de
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
+	iftrue .Vermilion
 	writetext UnknownText_0x752f9
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x751de:
+.Vermilion:
 	writetext UnknownText_0x7534f
 	closetext
 	loadmovesprites

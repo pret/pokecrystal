@@ -155,19 +155,19 @@ UnknownScript_0x6d091:
 	writetext UnknownText_0x6da97
 	closetext
 	loadmovesprites
-	special Function8c084
+	special FadeBlackBGMap
 	special Mobile_HealParty
 	playsound SFX_FULL_HEAL
 	special HealParty
-	special Function8c079
+	special FadeInBGMap
 	loadfont
 	writetext UnknownText_0x6daf7
 	closetext
 	loadmovesprites
 	dotrigger $1
-	setevent EVENT_04C
+	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x6d0be
+	if_equal RIGHT, UnknownScript_0x6d0be
 	applymovement $4, MovementData_0x6d212
 	disappear $4
 	end

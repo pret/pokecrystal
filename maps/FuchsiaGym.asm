@@ -27,7 +27,7 @@ JanineScript_0x195db9:
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
-	special Function14209
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
@@ -57,7 +57,7 @@ FuschiaGym1Script_0x195e1b:
 	applymovement $3, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
-	special Function14209
+	special RunCallback_04
 UnknownScript_0x195e2c:
 	faceplayer
 	loadfont
@@ -91,7 +91,7 @@ FuschiaGym2Script_0x195e55:
 	applymovement $4, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
-	special Function14209
+	special RunCallback_04
 UnknownScript_0x195e66:
 	faceplayer
 	loadfont
@@ -125,7 +125,7 @@ FuschiaGym3Script_0x195e8f:
 	applymovement $5, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
-	special Function14209
+	special RunCallback_04
 UnknownScript_0x195ea0:
 	faceplayer
 	loadfont
@@ -159,7 +159,7 @@ FuschiaGym4Script_0x195ec9:
 	applymovement $6, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
-	special Function14209
+	special RunCallback_04
 UnknownScript_0x195eda:
 	faceplayer
 	loadfont

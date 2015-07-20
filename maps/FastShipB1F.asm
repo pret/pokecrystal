@@ -41,16 +41,16 @@ UnknownScript_0x76766:
 SailorScript_0x76767:
 	faceplayer
 	loadfont
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x767a0
-	checkevent EVENT_033
+	checkevent EVENT_FAST_SHIP_LAZY_SAILOR
 	iftrue UnknownScript_0x7678d
-	checkevent EVENT_034
+	checkevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
 	iftrue UnknownScript_0x76787
 	writetext UnknownText_0x7687b
 	closetext
 	loadmovesprites
-	setevent EVENT_034
+	setevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
 	clearevent EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
 	end
 
@@ -62,7 +62,7 @@ UnknownScript_0x76787:
 
 UnknownScript_0x7678d:
 	writetext UnknownText_0x7692e
-	checkevent EVENT_032
+	checkevent EVENT_FAST_SHIP_FOUND_GIRL
 	iffalse UnknownScript_0x76799
 	closetext
 	loadmovesprites

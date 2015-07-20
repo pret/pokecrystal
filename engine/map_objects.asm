@@ -3051,8 +3051,8 @@ Function579d: ; 579d
 	ld [wd04e], a
 	ld [wd4e2], a
 	call Function57bc
-	callba Function149c6
-	call c, Function57d9
+	callba CheckWarpCollision
+	call c, SpawnInFacingDown
 	call Function57ca
 	ret
 ; 57bc
@@ -3080,7 +3080,7 @@ Function57ca: ; 57ca
 	jr Function57db
 ; 57d9
 
-Function57d9: ; 57d9
+SpawnInFacingDown: ; 57d9
 	ld a, 0
 	; fallthrough
 ; 57db

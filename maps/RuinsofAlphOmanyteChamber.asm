@@ -31,7 +31,7 @@ UnknownScript_0x58bf8:
 	iftrue UnknownScript_0x58c02
 	changeblock $4, $0, $2e
 UnknownScript_0x58c02:
-	checkevent EVENT_2A2
+	checkevent EVENT_SOLVED_OMANYTE_PUZZLE
 	iffalse UnknownScript_0x58c09
 	return
 
@@ -63,7 +63,7 @@ MapRuinsofAlphOmanyteChamberSignpost2Script:
 
 UnknownScript_0x58c36:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	setevent EVENT_2A2
+	setevent EVENT_SOLVED_OMANYTE_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_2
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30

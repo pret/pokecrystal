@@ -321,7 +321,7 @@ Function3ca8:: ; 3ca8
 	ret
 ; 3cae
 
-Function3cae:: ; 3cae
+CrankUpTheVolume:: ; 3cae
 	ld a, 4 | 1 << 7
 	ld [MusicFade], a
 	ret

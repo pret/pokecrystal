@@ -16,13 +16,13 @@ UnknownScript_0x7a4d7:
 	end
 
 UnknownScript_0x7a4d8:
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
 	showemote EMOTE_SHOCK, $2, 15
 	spriteface $0, LEFT
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
@@ -77,9 +77,9 @@ UnknownScript_0x7a549:
 	writetext UnknownText_0x7a850
 	closetext
 	loadmovesprites
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7a55d
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iffalse UnknownScript_0x7a564
 	jump UnknownScript_0x7a56b
 
@@ -109,11 +109,11 @@ UnknownScript_0x7a57e:
 
 MomScript_0x7a582:
 	faceplayer
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checktriggers
 	iffalse UnknownScript_0x7a572
 	loadfont
-	checkevent EVENT_076
+	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	iftrue UnknownScript_0x7a5af
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue UnknownScript_0x7a5b8
@@ -139,7 +139,7 @@ UnknownScript_0x7a5af:
 	end
 
 UnknownScript_0x7a5b5:
-	setevent EVENT_076
+	setevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 UnknownScript_0x7a5b8:
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special Function16218

@@ -293,7 +293,7 @@ UnknownScript_0x6ed50:
 	appear $2
 	loadvar FarfetchdPosition, $a
 	appear $4
-	setevent EVENT_6F7
+	setevent EVENT_CHARCOAL_KILN_BOSS
 	setevent EVENT_HERDED_FARFETCHD
 	end
 
@@ -347,9 +347,9 @@ BlackBeltScript_0x6edae:
 	setevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_ILEX_FOREST_APPRENTICE
 	setevent EVENT_ILEX_FOREST_CHARCOAL_MASTER
-	clearevent EVENT_6F5
-	clearevent EVENT_6F6
-	clearevent EVENT_6F7
+	clearevent EVENT_CHARCOAL_KILN_FARFETCH_D
+	clearevent EVENT_CHARCOAL_KILN_APPRENTICE
+	clearevent EVENT_CHARCOAL_KILN_BOSS
 	end
 
 UnknownScript_0x6edd8:

@@ -203,21 +203,21 @@ OlderHaircutBrotherScript:
 	jump .else
 
 .two:
-	setevent EVENT_000
-	clearevent EVENT_001
-	clearevent EVENT_002
+	setevent EVENT_GAVE_KURT_APRICORNS
+	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
+	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
 .three:
-	clearevent EVENT_000
-	setevent EVENT_001
-	clearevent EVENT_002
+	clearevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
 .else:
-	clearevent EVENT_000
-	clearevent EVENT_001
-	setevent EVENT_002
+	clearevent EVENT_GAVE_KURT_APRICORNS
+	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
 .then:
@@ -226,17 +226,17 @@ OlderHaircutBrotherScript:
 	writetext UnknownText_0x7c6b8
 	closetext
 	loadmovesprites
-	special Function8c084
+	special FadeBlackBGMap
 	playmusic MUSIC_HEAL
 	pause 60
-	special Function8c079
+	special FadeInBGMap
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c6d8
 	closetext
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7c2bb
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
@@ -286,21 +286,21 @@ YoungerHaircutBrotherScript:
 	jump .else
 
 .two:
-	setevent EVENT_000
-	clearevent EVENT_001
-	clearevent EVENT_002
+	setevent EVENT_GAVE_KURT_APRICORNS
+	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
+	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
 .three:
-	clearevent EVENT_000
-	setevent EVENT_001
-	clearevent EVENT_002
+	clearevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
 .else:
-	clearevent EVENT_000
-	clearevent EVENT_001
-	setevent EVENT_002
+	clearevent EVENT_GAVE_KURT_APRICORNS
+	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
 .then:
@@ -309,17 +309,17 @@ YoungerHaircutBrotherScript:
 	writetext UnknownText_0x7c80e
 	closetext
 	loadmovesprites
-	special Function8c084
+	special FadeBlackBGMap
 	playmusic MUSIC_HEAL
 	pause 60
-	special Function8c079
+	special FadeInBGMap
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c82a
 	closetext
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7c2bb
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 

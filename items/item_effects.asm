@@ -603,7 +603,7 @@ ParkBall: ; e8a2
 	ld b, 0
 	callba Function116c1
 
-	call Function4b6
+	call FadeToWhite
 
 	call Functione51
 
@@ -685,7 +685,7 @@ ParkBall: ; e8a2
 	ld hl, UnknownText_0xedeb
 	call PrintText
 
-	call Function4b6
+	call FadeToWhite
 	call Functione51
 	jr .asm_ebe2
 

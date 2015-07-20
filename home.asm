@@ -836,7 +836,12 @@ NamesPointers:: ; 33ab
 	dbw 0, PartyMonOT
 	dbw 0, OTPartyMonOT
 	dbw BANK(TrainerClassNames), TrainerClassNames
-	dbw $04, MoveDescriptions ; ????
+; 33c0
+
+Function33c0:
+	inc b
+	ld d, d
+	ld c, e
 ; 33c3
 
 GetName:: ; 33c3

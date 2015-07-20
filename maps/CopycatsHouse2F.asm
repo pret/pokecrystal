@@ -41,7 +41,7 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part2
-	special Function14209
+	special RunCallback_04
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .Part7
 	loadfont
@@ -65,7 +65,7 @@ Copycat:
 .Part6
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special Function14209
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b028
 	closetext
@@ -94,7 +94,7 @@ Copycat:
 .Part11
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special Function14209
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b116
 	closetext
@@ -137,7 +137,7 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part17
-	special Function14209
+	special RunCallback_04
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part18
@@ -159,7 +159,7 @@ Copycat:
 .Part21
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special Function14209
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b2f5
 	closetext

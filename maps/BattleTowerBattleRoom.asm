@@ -31,7 +31,7 @@ UnknownScript_0x9f425:
 	keeptextopen
 	loadmovesprites
 	special Function170215
-	special Function8c084
+	special FadeBlackBGMap
 	reloadmap
 	if_not_equal $0, UnknownScript_0x9f4c2
 	copybytetovar wcf64
@@ -46,10 +46,10 @@ UnknownScript_0x9f425:
 	closetext
 	loadmovesprites
 	playmusic MUSIC_HEAL
-	special Function8c084
-	special Function1047eb
+	special FadeBlackBGMap
+	special LoadMapPalettes
 	pause 60
-	special Function8c079
+	special FadeInBGMap
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x9eebc
@@ -73,7 +73,7 @@ UnknownScript_0x9f483:
 	special Function170687
 	playsound SFX_SAVE
 	waitbutton
-	special Function8c084
+	special FadeBlackBGMap
 	special Reset
 UnknownScript_0x9f4a3:
 	writetext UnknownText_0x9efbf
@@ -84,7 +84,7 @@ UnknownScript_0x9f4a3:
 	writebyte $6
 	special Function170687
 	loadmovesprites
-	special Function8c084
+	special FadeBlackBGMap
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	loadfont
 	jump UnknownScript_0x9e4b0

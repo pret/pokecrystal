@@ -35,11 +35,11 @@ MapMobileBattleRoomSignpost0Script:
 	writetext MobileBattleRoom_HealText
 	pause 20
 	loadmovesprites
-	special Function8c084
+	special FadeBlackBGMap
 	playmusic MUSIC_HEAL
-	special Function1047eb
+	special LoadMapPalettes
 	pause 60
-	special Function8c079
+	special FadeInBGMap
 	special RestartMapMusic
 	refreshscreen $0
 .two_:

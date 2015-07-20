@@ -29,7 +29,7 @@ JanineImpersonatorScript_0x196462:
 	applymovement $5, MovementData_0x196486
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_JANINE
-	special Function14209
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x19654e
 	closetext
@@ -37,7 +37,7 @@ JanineImpersonatorScript_0x196462:
 	applymovement $5, MovementData_0x196486
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
-	special Function14209
+	special RunCallback_04
 	end
 
 MovementData_0x196486:

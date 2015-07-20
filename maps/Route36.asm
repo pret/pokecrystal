@@ -89,14 +89,14 @@ UnknownScript_0x19407b:
 	applymovement $4, MovementData_0x19424b
 	disappear $4
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
-	special Function14209
+	special RunCallback_04
 	special Function14168
 	end
 
 LassScript_0x19408c:
 	faceplayer
 	loadfont
-	checkevent EVENT_0BA
+	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
 	iftrue UnknownScript_0x1940b3
 	setevent EVENT_MET_FLORIA
 	writetext UnknownText_0x1942f1
@@ -257,7 +257,7 @@ UnknownScript_0x1941b4:
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1941c6
 	clearflag ENGINE_ALAN_HAS_FIRE_STONE
-	setevent EVENT_101
+	setevent EVENT_ALAN_GAVE_FIRE_STONE
 	jump UnknownScript_0x1941d5
 
 UnknownScript_0x1941c6:

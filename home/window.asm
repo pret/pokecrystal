@@ -41,7 +41,7 @@ Function2de2:: ; 2de2
 	ld a, $90
 	ld [hWY], a
 	call Functione4a
-	callba Functionb8000
+	callba ReturnFromMapSetupScript
 	callba Function106594
 	ret
 ; 2e08

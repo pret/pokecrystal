@@ -20,7 +20,7 @@ NewBarkTown_MapScriptHeader:
 
 .FlyPoint
 	setflag ENGINE_FLYPOINT_NEW_BARK
-	clearevent EVENT_076
+	clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	return
 
 UnknownScript_0x1a8016:

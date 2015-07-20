@@ -148,12 +148,12 @@ SilverScript_0x18c97e:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x18c995
 	writetext UnknownText_0x18cc83
 	closetext
 	loadmovesprites
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	special RestartMapMusic
 	end
 

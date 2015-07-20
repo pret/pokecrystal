@@ -221,7 +221,7 @@ TrashCanScript: ; 0xbc1a5
 
 PCScript:
 	loadfont
-	special Function1559a
+	special PokemonCenterPC
 	loadmovesprites
 	end
 
@@ -306,13 +306,13 @@ BugContestResultsWarpScript:
 	scall BugContestResults_CopyContestantsToResults
 	setevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	clearevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
-	setevent EVENT_2D2
+	setevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	warp GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE, $0, $4
 	applymovement $0, Movement_ContestResults_WalkAfterWarp
 
 BugContestResultsScript:
 	clearflag ENGINE_BUG_CONTEST_TIMER
-	clearevent EVENT_2D2
+	clearevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
@@ -383,7 +383,7 @@ BugContestResults_CleanUp
 ; 0xbc31e
 
 BugContestResults_FirstPlace ; 0xbc31e
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	itemtotext SUN_STONE, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	closetext

@@ -12,17 +12,7 @@ FishAction: ; 92402
 	call GetFishGroupHeader
 	
 	ld hl, FishGroupHeaders
-	; encounter chance
-	add hl, de
-	; pointer to old rod data
-	add hl, de
-	add hl, de
-	; pointer to good rod data
-	add hl, de
-	add hl, de
-	; pointer to super rod data
-	add hl, de
-	add hl, de
+	add_n_times hl, de, 7
 	
 	call Fish
 	
@@ -52,8 +42,7 @@ Fish: ; 9241a
 	inc hl
 	ld e, b
 	ld d, 0
-	add hl, de
-	add hl, de
+	add_n_times hl, de, 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -122,7 +111,7 @@ GetFishGroupHeader: ; 9245b
 ; Return fishing encounter group header d in de.
 
 	push hl
-	ld hl, wdc1e
+	ld hl, DailyFlags
 	bit 2, [hl]
 	pop hl
 	jr z, .end

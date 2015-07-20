@@ -67,7 +67,7 @@ MenuDataHeader_0x1d75:: ; 1d75
 ; 1d7d
 
 Function1d7d:: ; 1d7d
-	call Function1c07
+	call ExitMenu
 	ret
 ; 1d81
 
@@ -541,7 +541,7 @@ PlayClickSFX:: ; 2009
 Function2012:: ; 2012
 	call MenuTextBox
 	call CloseText
-	call Function1c07
+	call ExitMenu
 	ret
 ; 201c
 

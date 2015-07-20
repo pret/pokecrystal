@@ -154,7 +154,7 @@ TeleportGuyScript:
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	warp GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $d, $6
 	end

@@ -125,7 +125,7 @@ LanceScript_0x180e7b:
 	pause 30
 	loadmovesprites
 	applymovement $3, MovementData_0x180f5b
-	special Function8c084
+	special FadeBlackBGMap
 	pause 15
 	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
 	end

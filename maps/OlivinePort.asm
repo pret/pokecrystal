@@ -20,14 +20,14 @@ UnknownScript_0x748b1:
 	applymovement $0, MovementData_0x74a32
 	appear $2
 	dotrigger $0
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	blackoutmod GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	end
 
 SailorScript_0x748c0:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
 	closetext
@@ -39,9 +39,9 @@ SailorScript_0x748c0:
 	waitbutton
 	applymovement $0, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7490a
 	clearevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	setevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
@@ -69,13 +69,13 @@ UnknownScript_0x74919:
 
 UnknownScript_0x7491f:
 	spriteface $4, RIGHT
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7498b
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x7498b
 	spriteface $0, LEFT
 	loadfont
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7494e
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x74977
@@ -94,7 +94,7 @@ UnknownScript_0x7494e:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement $0, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
@@ -138,9 +138,9 @@ UnknownScript_0x74992:
 SailorScript_0x7499c:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x749c0
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x749f2
@@ -159,7 +159,7 @@ UnknownScript_0x749c0:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f

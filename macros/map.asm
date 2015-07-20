@@ -67,7 +67,7 @@ warp_def: macro
 
 
 map_header: MACRO
-	; label, tileset, permission, location, music, time of day, fishing group
+	; label, tileset, permission, location, music, phone service flag, time of day, fishing group
 \1_MapHeader:
 	db BANK(\1_SecondMapHeader), \2, \3
 	dw \1_SecondMapHeader

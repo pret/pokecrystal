@@ -23,7 +23,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d2ea
 	keeptextopen
 .Question1:
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	writetext UnknownText_0x18d3bc
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d215
@@ -35,7 +35,7 @@ DragonShrineTestScript:
 	end
 
 .Question2:
-	setevent EVENT_002
+	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	writetext UnknownText_0x18d3d3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d234
@@ -45,7 +45,7 @@ DragonShrineTestScript:
 	if_equal $2, .RightAnswer
 	if_equal $3, .WrongAnswer
 .Question3:
-	setevent EVENT_003
+	setevent EVENT_DRAGON_SHRINE_QUESTION_3
 	writetext UnknownText_0x18d3f3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d258
@@ -55,7 +55,7 @@ DragonShrineTestScript:
 	if_equal $2, .RightAnswer
 	if_equal $3, .RightAnswer
 .Question4:
-	setevent EVENT_004
+	setevent EVENT_DRAGON_SHRINE_QUESTION_4
 	writetext UnknownText_0x18d420
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d283
@@ -65,7 +65,7 @@ DragonShrineTestScript:
 	if_equal $2, .WrongAnswer
 	if_equal $3, .RightAnswer
 .Question5:
-	setevent EVENT_005
+	setevent EVENT_DRAGON_SHRINE_QUESTION_5
 	writetext UnknownText_0x18d44a
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d2a5
@@ -75,17 +75,17 @@ DragonShrineTestScript:
 	if_equal $2, .RightAnswer
 	if_equal $3, .WrongAnswer
 .RightAnswer:
-	checkevent EVENT_005
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
 	iftrue .PassedTheTest
 	writetext UnknownText_0x18d82d
 	keeptextopen
-	checkevent EVENT_004
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
 	iftrue .Question5
-	checkevent EVENT_003
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
 	iftrue .Question4
-	checkevent EVENT_002
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
 	iftrue .Question3
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue .Question2
 .WrongAnswer:
 	loadmovesprites
@@ -101,15 +101,15 @@ DragonShrineTestScript:
 	loadmovesprites
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	loadfont
-	checkevent EVENT_005
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
 	iftrue .Question5
-	checkevent EVENT_004
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
 	iftrue .Question4
-	checkevent EVENT_003
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
 	iftrue .Question3
-	checkevent EVENT_002
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
 	iftrue .Question2
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue .Question1
 .PassedTheTest:
 	writetext UnknownText_0x18d47c
@@ -184,15 +184,15 @@ DragonShrineTestScript:
 	playsound SFX_ENTER_DOOR
 	disappear $5
 	waitbutton
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	end
 
 ElderScript_0x18d1a5:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue .DontGiveDratiniYet
-	checkevent EVENT_006
+	checkevent EVENT_JUST_RECEIVED_DRATINI
 	iftrue .ReceivedDratini
 	checkevent EVENT_GOT_DRATINI
 	iffalse .GiveDratini
@@ -215,7 +215,7 @@ ElderScript_0x18d1a5:
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	special SpecialDratini
 	setevent EVENT_GOT_DRATINI
-	setevent EVENT_006
+	setevent EVENT_JUST_RECEIVED_DRATINI
 	writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites
@@ -681,7 +681,7 @@ DragonShrine_MapEventHeader:
 
 	; people-events
 	db 4
-	person_event SPRITE_ELDER, 5, 9, OW_UP | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_000
-	person_event SPRITE_ELDER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_000
-	person_event SPRITE_ELDER, 8, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_000
+	person_event SPRITE_ELDER, 5, 9, OW_UP | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 8, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
 	person_event SPRITE_CLAIR, 12, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

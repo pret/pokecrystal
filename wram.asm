@@ -1307,6 +1307,7 @@ Options2:: ; cfd1
 	ds 1
 
 	ds 2
+OptionsEnd::
 wcfd4:: ds 1
 wcfd5:: ds 1
 wcfd6:: ds 1
@@ -2334,9 +2335,9 @@ wdc19:: ds 1
 wdc1a:: ds 1
 wdc1b:: ds 1
 wdc1c:: ds 2
-wdc1e:: ds 1
-wdc1f:: ds 1
-wdc20:: ds 1
+DailyFlags:: ds 1
+WeeklyFlags:: ds 1
+SwarmFlags:: ds 1
 wdc21:: ds 1
 wdc22:: ds 1
 wdc23:: ds 1

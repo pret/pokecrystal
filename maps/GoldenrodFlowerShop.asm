@@ -12,7 +12,7 @@ TeacherScript_0x5535d:
 	iftrue UnknownScript_0x55399
 	checkevent EVENT_MET_FLORIA
 	iffalse UnknownScript_0x5539f
-	checkevent EVENT_0BA
+	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
 	iffalse UnknownScript_0x5538f
 	checkflag ENGINE_PLAINBADGE
 	iffalse UnknownScript_0x5539c
@@ -54,7 +54,7 @@ LassScript_0x553a2:
 	writetext UnknownText_0x55561
 	closetext
 	loadmovesprites
-	setevent EVENT_0BA
+	setevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
 	setevent EVENT_FLORIA_AT_FLOWER_SHOP
 	clearevent EVENT_FLORIA_AT_SUDOWOODO
 	end

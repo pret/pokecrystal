@@ -42,9 +42,9 @@ UnknownScript_0x60bab:
 	loadmovesprites
 	special RestartMapMusic
 	cry AMPHAROS
-	special Function8c084
+	special FadeBlackBGMap
 	pause 10
-	special Function8c079
+	special FadeInBGMap
 	loadfont
 	writetext UnknownText_0x60f3d
 	closetext
@@ -116,10 +116,10 @@ UnknownScript_0x60c51:
 	cry AMPHAROS
 	closetext
 	loadmovesprites
-	special Function8c084
-	special Function8c079
-	special Function8c084
-	special Function8c079
+	special FadeBlackBGMap
+	special FadeInBGMap
+	special FadeBlackBGMap
+	special FadeInBGMap
 	end
 
 ItemFragment_0x60c66:

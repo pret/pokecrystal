@@ -8,7 +8,7 @@ BillsHouse_MapScriptHeader:
 GrampsScript_0x189538:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x1896ba
 	checkevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x1896c0
@@ -120,7 +120,7 @@ UnknownScript_0x18963b:
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	loadmovesprites
 	end
 
@@ -131,7 +131,7 @@ UnknownScript_0x189652:
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	loadmovesprites
 	end
 
@@ -142,7 +142,7 @@ UnknownScript_0x189669:
 	verbosegiveitem WATER_STONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	loadmovesprites
 	end
 
@@ -153,7 +153,7 @@ UnknownScript_0x189680:
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	loadmovesprites
 	end
 

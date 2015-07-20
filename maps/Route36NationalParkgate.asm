@@ -37,7 +37,7 @@ UnknownScript_0x6ab20:
 	return
 
 UnknownScript_0x6ab23:
-	checkevent EVENT_2D2
+	checkevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	iftrue UnknownScript_0x6ab46
 	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, UnknownScript_0x6ab42
@@ -83,7 +83,7 @@ UnknownScript_0x6ab76:
 	loadmovesprites
 	spriteface $0, LEFT
 	playsound SFX_EXIT_BUILDING
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
@@ -166,7 +166,7 @@ UnknownScript_0x6ac10:
 	special Special_GiveParkBalls
 	spriteface $0, LEFT
 	playsound SFX_EXIT_BUILDING
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	special Special_SelectRandomBugContestContestants
 	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
@@ -300,7 +300,7 @@ UnknownScript_0x6ad02:
 YoungsterScript_0x6ad06:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad14
 	writetext UnknownText_0x6b399
 	closetext
@@ -316,7 +316,7 @@ UnknownScript_0x6ad14:
 YoungsterScript_0x6ad1a:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad28
 	writetext UnknownText_0x6b40f
 	closetext
@@ -332,7 +332,7 @@ UnknownScript_0x6ad28:
 RockerScript_0x6ad2e:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad3c
 	writetext UnknownText_0x6b462
 	closetext
@@ -348,7 +348,7 @@ UnknownScript_0x6ad3c:
 PokefanMScript_0x6ad42:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad50
 	writetext UnknownText_0x6b4da
 	closetext
@@ -364,7 +364,7 @@ UnknownScript_0x6ad50:
 YoungsterScript_0x6ad56:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad64
 	writetext UnknownText_0x6b54e
 	closetext
@@ -380,7 +380,7 @@ UnknownScript_0x6ad64:
 YoungsterScript_0x6ad6a:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad78
 	writetext UnknownText_0x6b5b0
 	closetext
@@ -396,7 +396,7 @@ UnknownScript_0x6ad78:
 LassScript_0x6ad7e:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad8c
 	writetext UnknownText_0x6b64b
 	closetext
@@ -412,7 +412,7 @@ UnknownScript_0x6ad8c:
 YoungsterScript_0x6ad92:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ada0
 	writetext UnknownText_0x6b6b8
 	closetext
@@ -428,7 +428,7 @@ UnknownScript_0x6ada0:
 YoungsterScript_0x6ada6:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6adb4
 	writetext UnknownText_0x6b71b
 	closetext
@@ -444,7 +444,7 @@ UnknownScript_0x6adb4:
 YoungsterScript_0x6adba:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6adc8
 	writetext UnknownText_0x6b76f
 	closetext

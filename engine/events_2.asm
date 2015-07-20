@@ -275,7 +275,7 @@ Function97db5: ; 97db5
 	ld a, [PlayerState]
 	cp 1
 	jr nz, .NoCall
-	call Function2d05
+	call GetMapHeaderPhoneServiceNybble
 	and a
 	jr nz, .NoCall
 	ld hl, wdca1 + 1

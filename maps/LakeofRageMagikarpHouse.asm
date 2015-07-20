@@ -8,18 +8,18 @@ LakeofRageMagikarpHouse_MapScriptHeader:
 FishingGuruScript_0x19a6ae:
 	faceplayer
 	loadfont
-	checkevent EVENT_03A
+	checkevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	iftrue UnknownScript_0x19a6fe
-	checkevent EVENT_039
+	checkevent EVENT_LAKE_OF_RAGE_ASKED_FOR_MAGIKARP
 	iftrue UnknownScript_0x19a6e0
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19a6d7
-	checkevent EVENT_038
+	checkevent EVENT_LAKE_OF_RAGE_EXPLAINED_WEIRD_MAGIKARP
 	iftrue UnknownScript_0x19a6d1
 	writetext UnknownText_0x19a72e
 	closetext
 	loadmovesprites
-	setevent EVENT_038
+	setevent EVENT_LAKE_OF_RAGE_EXPLAINED_WEIRD_MAGIKARP
 	end
 
 UnknownScript_0x19a6d1:
@@ -32,7 +32,7 @@ UnknownScript_0x19a6d7:
 	writetext UnknownText_0x19a890
 	closetext
 	loadmovesprites
-	setevent EVENT_039
+	setevent EVENT_LAKE_OF_RAGE_ASKED_FOR_MAGIKARP
 	end
 
 UnknownScript_0x19a6e0:
@@ -55,12 +55,12 @@ UnknownScript_0x19a6fe:
 	writetext UnknownText_0x19a9c3
 	closetext
 	loadmovesprites
-	clearevent EVENT_03A
+	clearevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	end
 
 UnknownScript_0x19a711:
 	loadmovesprites
-	setevent EVENT_03A
+	setevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	end
 
 UnknownScript_0x19a716:

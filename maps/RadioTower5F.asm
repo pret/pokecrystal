@@ -124,7 +124,7 @@ UnknownScript_0x6006e:
 	dotrigger $2
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL
-	setevent EVENT_761
+	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump UnknownScript_0x600f1
 
 UnknownScript_0x600f1:

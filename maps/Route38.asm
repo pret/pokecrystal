@@ -36,7 +36,7 @@ LassDana1Script:
 	loadfont
 	checkflag ENGINE_DANA
 	iftrue UnknownScript_0x1a1d82
-	checkflag ENGINE_LIZ_HAS_THUNDERSTONE
+	checkflag ENGINE_DANA_HAS_THUNDERSTONE
 	iftrue UnknownScript_0x1a1df6
 	checkcellnum PHONE_LASS_DANA
 	iftrue UnknownScript_0x1a1e17
@@ -122,8 +122,8 @@ UnknownScript_0x1a1df6:
 	scall UnknownScript_0x1a1e27
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1a1e08
-	clearflag ENGINE_LIZ_HAS_THUNDERSTONE
-	setevent EVENT_102
+	clearflag ENGINE_DANA_HAS_THUNDERSTONE
+	setevent EVENT_DANA_GAVE_THUNDERSTONE
 	jump UnknownScript_0x1a1e17
 
 UnknownScript_0x1a1e08:

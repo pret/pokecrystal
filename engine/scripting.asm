@@ -2124,7 +2124,7 @@ ConvertMemToText: ; 0x976c0
 
 CopyConvertedText: ; 976c8
 	ld hl, StringBuffer3
-	ld bc, 19
+	ld bc, StringBuffer4 - StringBuffer3
 	call AddNTimes
 	call CopyName2
 	ret
@@ -2200,7 +2200,7 @@ Script_name: ; 0x97716
 	call GetScriptByte
 	ld [wcf61], a
 
-Unknown_9771c: ; 0x9771c
+ContinueToGetName: ; 0x9771c
 	call GetScriptByte
 	ld [CurSpecies], a
 	call GetName
@@ -2216,7 +2216,7 @@ Script_trainerclassname: ; 0x9772b
 
 	ld a, TRAINER_NAME
 	ld [wcf61], a
-	jr Unknown_9771c ; 0x97730 $ea
+	jr ContinueToGetName ; 0x97730 $ea
 ; 0x97732
 
 Script_readmoney: ; 0x97732

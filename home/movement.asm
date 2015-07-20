@@ -193,7 +193,7 @@ Function1c00:: ; 1c00
 	ret
 ; 1c07
 
-Function1c07:: ; 0x1c07
+ExitMenu:: ; 0x1c07
 	push af
 	callab Function243e8
 	pop af
@@ -205,7 +205,7 @@ Function1c10:: ; 0x1c10
 
 WriteBackup:: ; 0x1c17
 	push af
-	call Function1c07
+	call ExitMenu
 	call Function321c
 	call DrawOnMap
 	pop af

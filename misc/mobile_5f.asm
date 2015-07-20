@@ -1975,7 +1975,7 @@ Function17dcaf:
 	add hl, de
 	dec c
 	jr nz, .asm_17dcbb
-	call Function4b6
+	call FadeToWhite
 	ld a, $4
 	ld [rSVBK], a
 	ret

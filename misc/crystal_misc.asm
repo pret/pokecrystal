@@ -249,7 +249,7 @@ Function17a81a: ; 17a81a (5e:681a)
 	ld a, [hJoyPressed] ; $ff00+$a7
 	and $3
 	ret z
-	call Function1c07
+	call ExitMenu
 	call Function17ac1d
 	call Function17ac2a
 	ld hl, $d088

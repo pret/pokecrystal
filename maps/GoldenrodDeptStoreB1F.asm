@@ -12,7 +12,7 @@ GoldenrodDeptStoreB1F_MapScriptHeader:
 	dbw 5, UnknownScript_0x7d7ac
 
 UnknownScript_0x7d781:
-	checkevent EVENT_04A
+	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue UnknownScript_0x7d78a
 	jump UnknownScript_0x7d791
 

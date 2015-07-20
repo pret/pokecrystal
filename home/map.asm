@@ -150,9 +150,7 @@ Function2198:: ; 2198
 	add a
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
+	add_n_times hl, hl, 3
 	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
@@ -387,7 +385,7 @@ Function2300:: ; 2300
 ; 2309
 
 
-Function2309:: ; 2309
+LoadMapAttributes:: ; 2309
 	call Function2326
 	call SwitchToMapScriptHeaderBank
 	call Function234f
@@ -396,7 +394,7 @@ Function2309:: ; 2309
 	ret
 ; 2317
 
-Function2317:: ; 2317
+LoadMapAttributes_IgnoreHidden:: ; 2317
 	call Function2326
 	call SwitchToMapScriptHeaderBank
 	call Function234f
@@ -664,7 +662,7 @@ Function2471:: ; 2471
 	ret
 ; 248a
 
-Function248a:: ; 248a
+RestoreFacingAfterWarp:: ; 248a
 	call GetMapScriptHeaderBank
 	rst Bankswitch
 
@@ -691,7 +689,7 @@ Function248a:: ; 248a
 	call Function24ba
 
 .asm_24b3
-	callba Function10486d
+	callba GetCoordOfUpperLeftCorner
 	ret
 ; 24ba
 
@@ -705,7 +703,7 @@ Function24ba:: ; 24ba
 	ret
 ; 24cd
 
-Function24cd:: ; 24cd
+LoadBlockData:: ; 24cd
 	ld hl, OverworldMap
 	ld bc, OverworldMapEnd - OverworldMap
 	ld a, 0
@@ -713,7 +711,7 @@ Function24cd:: ; 24cd
 	call ChangeMap
 	call FillMapConnections
 	ld a, $1
-	call Function263b
+	call RunMapCallback
 	ret
 ; 24e4
 
@@ -976,7 +974,8 @@ Function2631:: ; 2631
 	jr CallScript
 ; 263b
 
-Function263b:: ; 263b
+RunMapCallback:: ; 263b
+; Will run the first callback found in the map header with execution index equal to a.
 	ld b, a
 	ld a, [hROMBank]
 	push af
@@ -988,7 +987,7 @@ Function263b:: ; 263b
 	ld b, a
 	ld d, h
 	ld e, l
-	call Function2674
+	call ExecuteCallbackScript
 
 .done
 	pop af
@@ -1007,18 +1006,18 @@ Function2653:: ; 2653
 	ld l, a
 	or h
 	ret z
-	ld de, $0003
-.asm_2664
+	ld de, 3
+.loop
 	ld a, [hl]
 	cp b
-	jr z, .asm_266e
+	jr z, .done
 	add hl, de
 	dec c
-	jr nz, .asm_2664
+	jr nz, .loop
 	xor a
 	ret
 
-.asm_266e
+.done
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -1027,7 +1026,7 @@ Function2653:: ; 2653
 	ret
 ; 2674
 
-Function2674:: ; 2674
+ExecuteCallbackScript:: ; 2674
 	callba Function974f3
 	ld a, [ScriptMode]
 	push af
@@ -1449,7 +1448,7 @@ BufferScreen:: ; 2879
 	ret
 ; 289d
 
-Function289d:: ; 289d
+SaveScreen:: ; 289d
 	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
@@ -1499,7 +1498,7 @@ Function289d:: ; 289d
 	jr Function28f7
 
 
-Function28e3:: ; 28e3
+LoadNeighboringBlockData:: ; 28e3
 	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
@@ -1947,7 +1946,7 @@ FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call Function1d6e
-	callba Function8c084
+	callba FadeBlackBGMap
 	call ClearSprites
 	call Function2ed3
 	ret
@@ -1976,7 +1975,7 @@ Function2b5c:: ; 2b5c
 	call GetSGBLayout
 	callba Function49409
 	call Function3200
-	callba Function8c079
+	callba FadeInBGMap
 	call Function2ee4
 	ret
 ; 2b74
@@ -2308,23 +2307,23 @@ RADIO_TOWER_MUSIC EQU 7
 	jr .done
 ; 2cff
 
-Function2cff:: ; 2cff
-	call Function2d0d
+GetMapHeaderTimeOfDayNybble:: ; 2cff
+	call GetPhoneServiceTimeOfDayByte
 	and $f
 	ret
 ; 2d05
 
-Function2d05:: ; 2d05
-	call Function2d0d
+GetMapHeaderPhoneServiceNybble:: ; 2d05
+	call GetPhoneServiceTimeOfDayByte
 	and $f0
 	swap a
 	ret
 ; 2d0d
 
-Function2d0d:: ; 2d0d
+GetPhoneServiceTimeOfDayByte:: ; 2d0d
 	push hl
 	push bc
-	ld de, $0007
+	ld de, 7 ; phone service and time of day
 	call GetMapHeaderMember
 	ld a, c
 	pop bc
@@ -2336,7 +2335,7 @@ Function2d19:: ; 2d19
 	push de
 	push hl
 	push bc
-	ld de, $0008
+	ld de, 8 ; fishing group
 	call GetMapHeaderMember
 	ld a, c
 	pop bc
