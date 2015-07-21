@@ -3,7 +3,7 @@
 import os
 import argparse
 
-from extras.pokemontools import gfx
+from extras.pokemontools import gfx, lz
 
 
 # Graphics with inverted tilemaps that aren't covered by filepath_rules.
@@ -17,7 +17,7 @@ def filepath_rules(filepath):
 	args = {}
 
 	filedir, filename = os.path.split(filepath)
-	name, _, ext = filename.partition('.') # os.path.splitext only takes the last '.'
+	name, ext = os.path.splitext(filename)
 
 	if 'gfx/pics/' in filedir:
 		if name == 'front':
@@ -38,7 +38,7 @@ def filepath_rules(filepath):
 		args['palout'] = args['pal_file']
 
 	if args.get('pic'):
-		if ext == 'png':
+		if ext == '.png':
 			w, h = gfx.png.Reader(filepath).asRGBA8()[:2]
 			w = min(w/8, h/8)
 			args['pic_dimensions'] = w, w
@@ -46,31 +46,31 @@ def filepath_rules(filepath):
 
 
 def to_1bpp(filename, **kwargs):
-	filename, name, ext = gfx.try_decompress(filename)
+	_, ext = os.path.splitext(filename)
 	if   ext == '.1bpp': pass
 	elif ext == '.2bpp': gfx.export_2bpp_to_1bpp(filename, **kwargs)
 	elif ext == '.png':  gfx.export_png_to_1bpp(filename, **kwargs)
 
 def to_2bpp(filename, **kwargs):
-	filename, name, ext = gfx.try_decompress(filename)
+	_, ext = os.path.splitext(filename)
 	if   ext == '.1bpp': gfx.export_1bpp_to_2bpp(filename, **kwargs)
 	elif ext == '.2bpp': pass
 	elif ext == '.png':  gfx.export_png_to_2bpp(filename, **kwargs)
 
 def to_png(filename, **kwargs):
-	filename, name, ext = gfx.try_decompress(filename)
+	_, ext = os.path.splitext(filename)
 	if   ext == '.1bpp': gfx.export_1bpp_to_png(filename, **kwargs)
 	elif ext == '.2bpp': gfx.export_2bpp_to_png(filename, **kwargs)
 	elif ext == '.png':  pass
 
 def compress(filename, **kwargs):
 	data = open(filename, 'rb').read()
-	lz_data = gfx.Compressed(data).output
+	lz_data = lz.Compressed(data).output
 	open(filename + '.lz', 'wb').write(bytearray(lz_data))
 
 def decompress(filename, **kwargs):
 	lz_data = open(filename, 'rb').read()
-	data = gfx.Decompressed(lz_data).output
+	data = lz.Decompressed(lz_data).output
 	name, ext = os.path.splitext(filename)
 	open(name, 'wb').write(bytearray(data))
 
@@ -88,7 +88,8 @@ def main(method_name, filenames=None):
 	for filename in filenames:
 		args = filepath_rules(filename)
 		method = methods.get(method_name)
-		if method: method(filename, **args)
+		if method:
+			method(filename, **args)
 
 def get_args():
 	ap = argparse.ArgumentParser()
