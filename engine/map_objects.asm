@@ -1,7 +1,7 @@
 
 INCLUDE "engine/facings.asm"
 
-Data4273:: ; 4273
+ObjectStruct3_Data:: ; 4273
 	db $00, $00, $01, $02, $00, $00
 	db $06, $00, $01, $0c, $00, $00
 	db $03, $00, $01, $00, $00, $00
@@ -45,26 +45,26 @@ Data4273:: ; 4273
 
 Function4357:: ; 4357
 	push bc
-	ld hl, OBJECT_01
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	push af
 	ld h, b
 	ld l, c
-	ld bc, ObjectStruct2 - ObjectStruct1
+	ld bc, OBJECT_STRUCT_LENGTH
 	xor a
 	call ByteFill
 	pop af
-	cp $ff
-	jr z, .asm_4379
+	cp -1
+	jr z, .ok
 	bit 7, a
-	jr nz, .asm_4379
+	jr nz, .ok
 	call GetMapObject
-	ld hl, OBJECT_00
+	ld hl, OBJECT_SPRITE
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], -1
 
-.asm_4379
+.ok
 	pop bc
 	ret
 ; 437b
@@ -86,24 +86,24 @@ Function4386: ; 4386
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	add $1
+	add 1
 	sub e
-	jr c, .asm_43b2
-	cp $c
-	jr nc, .asm_43b2
+	jr c, .ok
+	cp MAPOBJECT_SCREEN_WIDTH
+	jr nc, .ok
 	ld a, [YCoord]
 	ld e, a
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
-	add $1
+	add 1
 	sub e
-	jr c, .asm_43b2
-	cp $b
-	jr nc, .asm_43b2
-	jr .asm_43dc
+	jr c, .ok
+	cp MAPOBJECT_SCREEN_HEIGHT
+	jr nc, .ok
+	jr .yes
 
-.asm_43b2
+.ok
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 6, [hl]
@@ -112,36 +112,36 @@ Function4386: ; 4386
 	ld hl, OBJECT_20
 	add hl, bc
 	ld a, [hl]
-	add $1
+	add 1
 	sub e
-	jr c, .asm_43de
-	cp $c
-	jr nc, .asm_43de
+	jr c, .ok2
+	cp MAPOBJECT_SCREEN_WIDTH
+	jr nc, .ok2
 	ld a, [YCoord]
 	ld e, a
 	ld hl, OBJECT_21
 	add hl, bc
 	ld a, [hl]
-	add $1
+	add 1
 	sub e
-	jr c, .asm_43de
-	cp $b
-	jr nc, .asm_43de
+	jr c, .ok2
+	cp MAPOBJECT_SCREEN_HEIGHT
+	jr nc, .ok2
 
-.asm_43dc
+.yes
 	and a
 	ret
 
-.asm_43de
+.ok2
 	ld hl, OBJECT_04
 	add hl, bc
 	bit 1, [hl]
-	jr nz, .asm_43eb
+	jr nz, .yes2
 	call Function4357
 	scf
 	ret
 
-.asm_43eb
+.yes2
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 6, [hl]
@@ -154,38 +154,38 @@ Function43f3: ; 43f3
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_4409
+	jr z, .zero
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 5, [hl]
-	jr nz, .asm_4426
-	cp $1
-	jr z, .asm_4414
-	jr .asm_4421
+	jr nz, .not_bit5
+	cp 1
+	jr z, .one
+	jr .ok
 
-.asm_4409
+.zero
 	call Function47bc
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 5, [hl]
-	jr nz, .asm_4426
+	jr nz, .not_bit5
 
-.asm_4414
+.one
 	call Function47dd
 	ld hl, OBJECT_09
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
-	cp $1
+	cp 1
 	ret z
 
-.asm_4421
+.ok
 	ld hl, Pointers4b45
 	rst JumpTable
 	ret
 
-.asm_4426
+.not_bit5
 	ret
 ; 4427
 
@@ -226,8 +226,9 @@ Function444d: ; 444d
 	ld a, [hl]
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
+rept 2
+	add hl,hl
+endr
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -274,26 +275,26 @@ Pointers445f: ; 445f
 ; 44a3
 
 Function44a3: ; 44a3
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], -1
 	ret
 ; 44aa
 
 Function44aa: ; 44aa
 	call GetSpriteDirection
-	or $0
-	ld hl, OBJECT_FACING
+	or 0
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
 ; 44b5
 
 Function44b5: ; 44b5
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
-	and $1
+	and 1
 	jr nz, Function44c1
 	jp Function44aa
 ; 44c1
@@ -307,16 +308,16 @@ Function44c1: ; 44c1
 	add hl, bc
 	ld a, [hl]
 	inc a
-	and $f
+	and %00001111
 	ld [hl], a
 	rrca
 	rrca
-	and $3
+	and %00000011
 	ld d, a
 	call GetSpriteDirection
-	or $0
+	or 0
 	or d
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
@@ -330,17 +331,17 @@ Function44e4: ; 44e4
 	ld hl, OBJECT_12
 	add hl, bc
 	ld a, [hl]
-	add $2
-	and $f
+	add 2
+	and %00001111
 	ld [hl], a
 	rrca
 	rrca
-	and $3
+	and %00000011
 	ld d, a
 	call GetSpriteDirection
-	or $0
+	or 0
 	or d
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
@@ -358,12 +359,12 @@ Function4508: ; 4508
 	rrca
 	rrca
 	rrca
-	and $3
+	and %00000011
 	ld d, a
 	call GetSpriteDirection
-	or $0
+	or 0
 	or d
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
@@ -371,11 +372,11 @@ Function4508: ; 4508
 
 Function4529: ; 4529
 	call Function453f
-	ld hl, OBJECT_08
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	or $0
-	ld hl, OBJECT_FACING
+	or 0
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
@@ -390,21 +391,21 @@ Function453f: ; 453f
 	ld hl, OBJECT_12
 	add hl, bc
 	ld a, [hl]
-	and $f0
+	and %11110000
 	ld e, a
 	ld a, [hl]
 	inc a
-	and $f
+	and %00001111
 	ld d, a
-	cp $4
-	jr c, .asm_4558
+	cp 4
+	jr c, .ok
 	ld d, 0
 	ld a, e
 	add $10
-	and $30
+	and %00110000
 	ld e, a
 
-.asm_4558
+.ok
 	ld a, d
 	or e
 	ld [hl], a
@@ -413,14 +414,14 @@ Function453f: ; 453f
 	ld hl, .Directions
 	add hl, de
 	ld a, [hl]
-	ld hl, OBJECT_08
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ret
 ; 456a
 
 .Directions ; 456a
-	db $00, $0c, $04, $08
+	db DOWN << 2, RIGHT << 2, UP << 2, LEFT << 2
 ; 456e
 
 Function456e: ; 456e
@@ -428,28 +429,28 @@ Function456e: ; 456e
 	rrca
 	rrca
 	add $10
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
 ; 457b
 
 Function457b: ; 457b
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], $15
 	ret
 ; 4582
 
 Function4582: ; 4582
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], $14
 	ret
 ; 4589
 
 Function4589: ; 4589
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], $17
 	ret
@@ -460,20 +461,20 @@ Function4590: ; 4590
 	add hl, bc
 	ld a, [hl]
 	inc a
-	and $f
+	and %00001111
 	ld [hl], a
-	and $8
+	and %00001000
 	jr z, Function45a4
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], $4
 	ret
 ; 45a4
 
 Function45a4: ; 45a4
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ret
 ; 45ab
 
@@ -483,34 +484,34 @@ Function45ab: ; 45ab
 	ld a, [hl]
 	inc a
 	ld [hl], a
-	and $c
+	and %00001100
 	rrca
 	rrca
 	add $18
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
 ; 45be
 
 Function45be: ; 45be
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], $16
 	ret
 ; 45c5
 
 Function45c5: ; 45c5
-	ld a, [VariableSprites + 3]
+	ld a, [VariableSprites + SPRITE_BIG_DOLL - SPRITE_VARS]
 	ld d, $17
-	cp $33
-	jr z, .asm_45d4
-	cp $47
-	jr z, .asm_45d4
+	cp SPRITE_BIG_SNORLAX
+	jr z, .ok
+	cp SPRITE_BIG_LAPRAS
+	jr z, .ok
 	ld d, $16
 
-.asm_45d4
-	ld hl, OBJECT_FACING
+.ok
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], d
 	ret
@@ -522,13 +523,13 @@ Function45da: ; 45da
 	inc [hl]
 	ld a, [hl]
 
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	and 2
 	ld a, $1c
-	jr z, .asm_45eb
+	jr z, .ok
 	inc a
-.asm_45eb
+.ok
 	ld [hl], a
 	ret
 ; 45ed
@@ -538,14 +539,14 @@ Function45ed: ; 45ed
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	and 4
 	ld a, $1e
-	jr z, .asm_45fe
+	jr z, .ok
 	inc a
 
-.asm_45fe
+.ok
 	ld [hl], a
 	ret
 ; 4600
@@ -605,13 +606,13 @@ Function463f: ; 463f
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 3, [hl]
-	jr z, .asm_464f
+	jr z, .ok
 	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
 	call Function4661
 
-.asm_464f
+.ok
 	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
@@ -626,17 +627,17 @@ Function463f: ; 463f
 
 Function4661: ; 4661
 	call Function188e
-	jr z, .asm_466b
+	jr z, .set
 	call Function1875
-	jr c, .asm_4672
+	jr c, .reset
 
-.asm_466b
+.set
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 3, [hl]
 	ret
 
-.asm_4672
+.reset
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 3, [hl]
@@ -655,33 +656,34 @@ Function467b: ; 467b
 	ld [hl], a
 	ld hl, OBJECT_27
 	add hl, bc
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 ; 4690
 
 Function4690: ; 4690
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_04
 	add hl, bc
 	bit 2, [hl]
-	jr nz, .asm_46a6
+	jr nz, .ok
 
+rept 2
 	add a
-	add a
-	and $c
-	ld hl, OBJECT_08
+endr
+	and %00001100
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 
-.asm_46a6
+.ok
 	; fallthrough
 ; 46a6
 
@@ -745,12 +747,13 @@ Function46d7: ; 46d7
 
 GetStepVector: ; 46e9
 ; Return (x, y, duration, speed) in (d, e, a, h).
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	and $f
+	and %00001111
+rept 2
 	add a
-	add a
+endr
 	ld l, a
 	ld h, 0
 	ld de, StepVectors
@@ -793,10 +796,10 @@ Function4730: ; 4730
 ; 4738
 
 Function4738: ; 4738
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	and $3
+	and %00000011
 	ld [wd151], a
 	call Function46d7
 	ld a, [wd14e]
@@ -814,7 +817,7 @@ Function4759: ; 4759
 	push bc
 	ld e, a
 	ld d, 0
-	ld hl, OBJECT_01
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	call GetMapObject
@@ -825,46 +828,46 @@ Function4759: ; 4759
 ; 4769
 
 Function4769: ; 4769
-	ld hl, OBJECT_01
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr z, .asm_477d
+	cp -1
+	jr z, .ok
 	push bc
 	call GetMapObject
-	ld hl, $0004
+	ld hl, MAPOBJECT_FACING
 	add hl, bc
 	ld a, [hl]
 	pop bc
 	ret
 
-.asm_477d
-	ld a, $6
+.ok
+	ld a, 6
 	ret
 ; 4780
 
-Function4780: ; 4780
+ClearObjectStructField27: ; 4780
 	ld hl, OBJECT_27
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ret
 ; 4787
 
-Function4787: ; 4787
+IncrementObjectStructField27: ; 4787
 	ld hl, OBJECT_27
 	add hl, bc
 	inc [hl]
 	ret
 ; 478d
 
-Function478d: ; 478d
+DecrementObjectStructField27: ; 478d
 	ld hl, OBJECT_27
 	add hl, bc
 	dec [hl]
 	ret
 ; 4793
 
-Function4793: ; 4793
+JumptoObjectStructField27: ; 4793
 	ld hl, OBJECT_27
 	add hl, bc
 	ld a, [hl]
@@ -873,21 +876,21 @@ Function4793: ; 4793
 	ret
 ; 479b
 
-Function479b: ; 479b
+ClearObjectStructField28: ; 479b
 	ld hl, OBJECT_28
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ret
 ; 47a2
 
-Function47a2: ; 47a2
+IncrementObjectStructField28: ; 47a2
 	ld hl, OBJECT_28
 	add hl, bc
 	inc [hl]
 	ret
 ; 47a8
 
-Function47a8: ; 47a8
+JumptoObjectStructField28: ; 47a8
 	ld hl, OBJECT_28
 	add hl, bc
 	ld a, [hl]
@@ -896,14 +899,14 @@ Function47a8: ; 47a8
 	ret
 ; 47b0
 
-Function47b0: ; 47b0
+GetValueObjectStructField28: ; 47b0
 	ld hl, OBJECT_28
 	add hl, bc
 	ld a, [hl]
 	ret
 ; 47b6
 
-Function47b6: ; 47b6
+SetValueObjectStructField28: ; 47b6
 	ld hl, OBJECT_28
 	add hl, bc
 	ld [hl], a
@@ -927,12 +930,12 @@ Function47bc: ; 47bc
 	call Function467b
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 47dd
 
 Function47dd: ; 47dd
-	call Function479b
+	call ClearObjectStructField28
 	call Function1a2f
 	ld a, [hl]
 	ld hl, .Pointers
@@ -978,49 +981,49 @@ Function4821: ; 4821
 Function4822: ; 4822
 	call Random
 	ld a, [hRandomAdd]
-	and 1
+	and %00000001
 	jp Function4af0
 ; 482c
 
 Function482c: ; 482c
 	call Random
 	ld a, [hRandomAdd]
-	and 1
-	or 2
+	and %00000001
+	or  %00000010
 	jp Function4af0
 ; 4838
 
 Function4838: ; 4838
 	call Random
 	ld a, [hRandomAdd]
-	and 3
+	and %00000011
 	jp Function4af0
 ; 4842
 
 Function4842: ; 4842
 	call Random
 	ld a, [hRandomAdd]
-	and $c
-	ld hl, OBJECT_08
+	and %00001100
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	jp Function4b1d
 ; 4851
 
 Function4851: ; 4851
-	ld hl, OBJECT_08
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	and $c
+	and %00001100
 	ld d, a
 	call Random
 	ld a, [hRandomAdd]
-	and $c
+	and %00001100
 	cp d
-	jr nz, .asm_4865
-	xor $c
+	jr nz, .keep
+	xor %00001100
 
-.asm_4865
+.keep
 	ld [hl], a
 	jp Function4b26
 ; 4869
@@ -1030,10 +1033,10 @@ Function4869: ; 4869
 	call Function467b
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $5
+	ld [hl], 5
 	ret
 ; 487c
 
@@ -1084,7 +1087,7 @@ Function48a6: ; 48a6
 ; 48ac
 
 Function48ac: ; 48ac
-	call Function4793
+	call JumptoObjectStructField27
 	dw Function48b3
 	dw Function48f8
 ; 48b3
@@ -1094,20 +1097,20 @@ Function48b3: ; 48b3
 	add hl, bc
 	ld a, [hl]
 	call CheckPitTile
-	jr z, .asm_48f5
+	jr z, .on_pit
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 2, [hl]
 	res 2, [hl]
-	jr z, .asm_48ee
+	jr z, .ok
 	ld hl, OBJECT_32
 	add hl, bc
 	ld a, [hl]
-	and $3
-	or $0
+	and %00000011
+	or 0
 	call Function4690
 	call Function6ec1
-	jr c, .asm_48eb
+	jr c, .ok2
 	ld de, SFX_STRENGTH
 	call PlaySFX
 	call Function5538
@@ -1117,24 +1120,24 @@ Function48b3: ; 48b3
 	ld [hl], $f
 	ret
 
-.asm_48eb
+.ok2
 	call Function462a
 
-.asm_48ee
-	ld hl, OBJECT_07
+.ok
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 
-.asm_48f5
-	call Function4787
+.on_pit
+	call IncrementObjectStructField27
 	; fallthrough
 ; 48f8
 
 Function48f8: ; 48f8
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 ; 48ff
 
@@ -1149,96 +1152,96 @@ Function48ff: ; 48ff
 	add hl, bc
 	ld a, [hl]
 	push bc
-	call Function1ae5
-	ld hl, OBJECT_07
+	call GetObjectStruct
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr z, .asm_494a
+	cp STANDING
+	jr z, .standing
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr z, .asm_492d
-	jr c, .asm_4929
-	ld a, $3
-	jr .asm_493d
+	jr z, .equal
+	jr c, .less
+	ld a, 3
+	jr .done
 
-.asm_4929
-	ld a, $2
-	jr .asm_493d
+.less
+	ld a, 2
+	jr .done
 
-.asm_492d
+.equal
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr z, .asm_494a
-	jr c, .asm_493b
-	ld a, $0
-	jr .asm_493d
+	jr z, .standing
+	jr c, .less2
+	ld a, 0
+	jr .done
 
-.asm_493b
-	ld a, $1
+.less2
+	ld a, 1
 
-.asm_493d
+.done
 	ld d, a
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	and $c
+	and %00001100
 	or d
 	pop bc
 	jp Function5412
 
-.asm_494a
+.standing
 	pop bc
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4958
 
 Function4958: ; 4958
 	call Function467b
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $9
+	ld [hl], 9
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $4
+	ld [hl], 4
 	ret
 ; 496e
 
 Function496e: ; 496e
 	call Function467b
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $a
+	ld [hl], 10
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $4
+	ld [hl], 4
 	ret
 ; 4984
 
 Function4984: ; 4984
-	call Function4793
+	call JumptoObjectStructField27
 	dw Function4996
 	dw Function499c
 	dw Function49b8
 ; 498d
 
 Function498d: ; 498d
-	call Function4793
+	call JumptoObjectStructField27
 	dw Function4996
 	dw Function499c
 	dw Function49c4
@@ -1246,14 +1249,14 @@ Function498d: ; 498d
 
 Function4996: ; 4996
 	call Function467b
-	call Function4787
+	call IncrementObjectStructField27
 	; fallthrough
 ; 499c
 
 Function499c: ; 499c
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ld hl, OBJECT_32
 	add hl, bc
 	ld a, [hl]
@@ -1263,46 +1266,46 @@ Function499c: ; 499c
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $3
-	call Function4787
+	ld [hl], 3
+	call IncrementObjectStructField27
 	ret
 ; 49b8
 
 Function49b8: ; 49b8
-	ld de, .data_49c0
+	ld de, .DirectionData_49c0
 	call Function49d0
 	jr Function4984
 ; 49c0
 
-.data_49c0 ; 49c0
-	db $0c, $08, $00, $04
+.DirectionData_49c0 ; 49c0
+	db RIGHT << 2, LEFT << 2, DOWN << 2, UP << 2
 ; 49c4
 
 Function49c4: ; 49c4
-	ld de, .data_49cc
+	ld de, .DirectionData_49cc
 	call Function49d0
 	jr Function498d
 ; 49cc
 
-.data_49cc ; 49cc
-	db $08, $0c, $04, $00
+.DirectionData_49cc ; 49cc
+	db LEFT << 2, RIGHT << 2, UP << 2, DOWN << 2
 ; 49d0
 
 Function49d0: ; 49d0
-	ld hl, OBJECT_08
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	and $c
+	and %00001100
 	rrca
 	rrca
 	push hl
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, de
 	ld a, [hl]
 	pop hl
 	ld [hl], a
-	call Function478d
+	call DecrementObjectStructField27
 	ret
 ; 49e5
 
@@ -1316,28 +1319,28 @@ Function49e5: ; 49e5
 	ld a, [hl]
 	inc a
 	add a
-	add $0
+	add 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, de
 	ld a, [hl]
 	and 3
 	ld d, $e
-	cp 0
-	jr z, .asm_4a0f
-	cp 1
-	jr z, .asm_4a0f
+	cp DOWN
+	jr z, .ok
+	cp UP
+	jr z, .ok
 	ld d, $c
 
-.asm_4a0f
+.ok
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], d
 	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], $13
@@ -1349,16 +1352,16 @@ Function4a21: ; 4a21
 	call Function4aa8
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $8
+	ld [hl], 8
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], $f0
 	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], $13
@@ -1379,15 +1382,16 @@ Function4a46: ; 4a46
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, de
 	ld a, [hl]
-	and 3
+	and %00000011
 	ld e, a
 	ld d, 0
 	ld hl, .data_4a81
-	add hl, de
-	add hl, de
+rept 2
+	add hl,de
+endr
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
@@ -1420,7 +1424,7 @@ Function4a89: ; 4a89
 	ld hl, OBJECT_STEP_DURATION
 	add hl, de
 	ld a, [hl]
-	add $ff
+	add -1
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -1435,7 +1439,7 @@ Function4aa8: ; 4aa8
 	add hl, bc
 	ld a, [hl]
 	push bc
-	call Function1ae5
+	call GetObjectStruct
 	ld d, b
 	ld e, c
 	pop bc
@@ -1451,7 +1455,7 @@ Function4abc: ; 4abc
 	call Function467b
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_32
 	add hl, bc
 	ld a, [hl]
@@ -1470,20 +1474,20 @@ Function4abc: ; 4abc
 
 Function4ade: ; 4ade
 	ld d, a
-	and $3f
+	and %00111111
 	ld e, a
 	ld a, d
 	rlca
 	rlca
-	and $3
+	and %00000011
 	ld d, a
 	inc d
-	ld a, $1
-.asm_4aeb
+	ld a, 1
+.loop
 	dec d
 	ret z
 	add a
-	jr .asm_4aeb
+	jr .loop
 ; 4af0
 
 Function4af0: ; 4af0
@@ -1493,20 +1497,20 @@ Function4af0: ; 4af0
 	call Function463f
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $2
+	ld [hl], 2
 	ld hl, wd4cf
 	ld a, [$ffaf]
 	cp [hl]
-	jr z, .asm_4b10
+	jr z, .ok
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], $7
 	ret
 
-.asm_4b10
+.ok
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $6
+	ld [hl], 6
 	ret
 
 Function4b17: ; 4b17
@@ -1518,14 +1522,14 @@ Function4b17: ; 4b17
 Function4b1d: ; 4b1d
 	call Random
 	ld a, [hRandomAdd]
-	and $7f
+	and %01111111
 	jr Function4b2d
 ; 4b26
 
 Function4b26: ; 4b26
 	call Random
 	ld a, [hRandomAdd]
-	and $1f
+	and %00011111
 	; fallthrough
 ; 4b2d
 
@@ -1533,15 +1537,15 @@ Function4b2d: ; 4b2d
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $3
+	ld [hl], 3
 	ret
 ; 4b45
 
@@ -1581,12 +1585,12 @@ Function4b79: ; 4b79
 	ret nz
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4b86
 
 Function4b86: ; 4b86
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4b8d
 	dw Function4ba9
 ; 4b8d
@@ -1603,7 +1607,7 @@ Function4b8d: ; 4b8d
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 3, [hl]
-	call Function47a2
+	call IncrementObjectStructField28
 	ret
 ; 4ba9
 
@@ -1617,12 +1621,12 @@ Function4ba9: ; 4ba9
 	call Function4600
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4bbf
 
 Function4bbf: ; 4bbf
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4bca
 	dw Function4bd2
 	dw Function4bf2
@@ -1632,7 +1636,7 @@ Function4bbf: ; 4bbf
 Function4bca: ; 4bca
 	ld hl, wd150
 	set 7, [hl]
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4bd2
 
@@ -1650,7 +1654,7 @@ Function4bd2: ; 4bd2
 	ld hl, wd150
 	set 6, [hl]
 	set 4, [hl]
-	call Function47a2
+	call IncrementObjectStructField28
 	ret
 ; 4bf2
 
@@ -1658,7 +1662,7 @@ Function4bf2: ; 4bf2
 	call Function46a6
 	ld hl, wd150
 	set 7, [hl]
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4bfd
 
@@ -1674,12 +1678,12 @@ Function4bfd: ; 4bfd
 	call Function4600
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4c18
 
 Function4c18: ; 4c18
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4c23
 	dw Function4c32
 	dw Function4c42
@@ -1689,30 +1693,30 @@ Function4c18: ; 4c18
 Function4c23: ; 4c23
 	ld hl, OBJECT_12
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4c32
 
 Function4c32: ; 4c32
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $4
+	ld [hl], 4
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
-	call Function47a2
+	call IncrementObjectStructField28
 	ret
 ; 4c42
 
 Function4c42: ; 4c42
 	ld hl, OBJECT_12
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_31
 	add hl, bc
 	ld [hl], $10
@@ -1722,14 +1726,14 @@ Function4c42: ; 4c42
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 3, [hl]
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4c5d
 
 Function4c5d: ; 4c5d
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $4
+	ld [hl], 4
 	ld hl, OBJECT_31
 	add hl, bc
 	inc [hl]
@@ -1747,15 +1751,15 @@ Function4c5d: ; 4c5d
 	ret nz
 	ld hl, OBJECT_12
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4c89
 
 Function4c89: ; 4c89
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4c9a
 	dw Function4caa
 	dw Function4cb3
@@ -1768,11 +1772,11 @@ Function4c89: ; 4c89
 Function4c9a: ; 4c9a
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
-	call Function47a2
+	call IncrementObjectStructField28
 	ret
 ; 4caa
 
@@ -1781,28 +1785,28 @@ Function4caa: ; 4caa
 	add hl, bc
 	dec [hl]
 	ret nz
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4cb3
 
 Function4cb3: ; 4cb3
 	ld hl, OBJECT_12
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_31
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
-	call Function47a2
+	call IncrementObjectStructField28
 	ret
 ; 4cc9
 
 Function4cc9: ; 4cc9
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $4
+	ld [hl], 4
 	ld hl, OBJECT_31
 	add hl, bc
 	inc [hl]
@@ -1818,7 +1822,7 @@ Function4cc9: ; 4cc9
 	add hl, bc
 	dec [hl]
 	ret nz
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4ceb
 
@@ -1826,14 +1830,14 @@ Function4ceb: ; 4ceb
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
-	call Function47a2
+	call IncrementObjectStructField28
 	ret
 ; 4cf5
 
 Function4cf5: ; 4cf5
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $4
+	ld [hl], 4
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -1843,18 +1847,18 @@ Function4cf5: ; 4cf5
 Function4d01: ; 4d01
 	ld hl, OBJECT_12
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4d14
 
 Function4d14: ; 4d14
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4d1f
 	dw Function4d2e
 	dw Function4d4f
@@ -1864,11 +1868,11 @@ Function4d14: ; 4d14
 Function4d1f: ; 4d1f
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4d2e
 
@@ -1879,17 +1883,17 @@ Function4d2e: ; 4d2e
 	ret nz
 	ld hl, OBJECT_11
 	add hl, bc
-	ld [hl], $2
+	ld [hl], 2
 	ld hl, OBJECT_12
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_31
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4d4f
 
@@ -1909,25 +1913,25 @@ Function4d4f: ; 4d4f
 	add hl, bc
 	dec [hl]
 	ret nz
-	call Function47a2
+	call IncrementObjectStructField28
 ;	fallthrough
 ; 4d6b
 
 Function4d6b: ; 4d6b
 	ld hl, OBJECT_12
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4d7e
 
 Function4d7e: ; 4d7e
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4d85
 	dw Function4d94
 ; 4d85
@@ -1935,11 +1939,11 @@ Function4d7e: ; 4d7e
 Function4d85: ; 4d85
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], $8
+	ld [hl], 8
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
-	ld [hl], $0
-	call Function47a2
+	ld [hl], 0
+	call IncrementObjectStructField28
 	; fallthrough
 ; 4d94
 
@@ -1955,10 +1959,10 @@ Function4d94: ; 4d94
 	ret nz
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4daf
 
@@ -1971,12 +1975,12 @@ Function4db5: ; 4db5
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld a, [hl]
-	and $1
-	ld a, $1
-	jr z, .asm_4dc2
-	ld a, $0
+	and %00000001
+	ld a, 1
+	jr z, .yes
+	ld a, 0
 
-.asm_4dc2
+.yes
 	ld hl, OBJECT_11
 	add hl, bc
 	ld [hl], a
@@ -1987,12 +1991,12 @@ Function4dc8: ; 4dc8
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld a, [hl]
-	and $1
-	ld a, $4
-	jr z, .asm_4dd5
-	ld a, $5
+	and %00000001
+	ld a, 4
+	jr z, .yes
+	ld a, 5
 
-.asm_4dd5
+.yes
 	ld hl, OBJECT_11
 	add hl, bc
 	ld [hl], a
@@ -2000,23 +2004,23 @@ Function4dc8: ; 4dc8
 ; 4ddd
 
 Function4ddd: ; 4ddd
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4df0
 
 Function4df0: ; 4df0
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -2031,12 +2035,12 @@ Function4dff: ; 4dff
 	ret nz
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4e0c
 
 Function4e0c: ; 4e0c
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4e13
 	dw Function4e21
 ; 4e13
@@ -2044,18 +2048,18 @@ Function4e0c: ; 4e0c
 Function4e13: ; 4e13
 	call Function4769
 	call Function1a47
-	ld hl, OBJECT_08
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
-	call Function47a2
+	call IncrementObjectStructField28
 	; fallthrough
 ; 4e21
 
 Function4e21: ; 4e21
 	call Function4fb2
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 ; 4e2b
 
@@ -2067,12 +2071,12 @@ Function4e2b: ; 4e2b
 	dec [hl]
 	ret nz
 	call Function4600
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4e47
 
@@ -2088,7 +2092,7 @@ Function4e47: ; 4e47
 
 Function4e56: ; 4e56
 ; AnimateStep?
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4e5d
 	dw Function4e65
 ; 4e5d
@@ -2096,7 +2100,7 @@ Function4e56: ; 4e56
 Function4e5d: ; 4e5d
 	ld hl, wd150
 	set 7, [hl]
-	call Function47a2
+	call IncrementObjectStructField28
 	; fallthrough
 ; 4e65
 
@@ -2109,17 +2113,17 @@ Function4e65: ; 4e65
 	ld hl, wd150
 	set 6, [hl]
 	call Function4600
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4e83
 
 Function4e83: ; 4e83
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4e8e
 	dw Function4ea4
 	dw Function4ead
@@ -2127,17 +2131,17 @@ Function4e83: ; 4e83
 ; 4e8e
 
 Function4e8e: ; 4e8e
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_12
 	add hl, bc
 	ld a, [hl]
-	ld [hl], $2
+	ld [hl], 2
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], $2
-	call Function47a2
+	ld [hl], 2
+	call IncrementObjectStructField28
 	; fallthrough
 ; 4ea4
 
@@ -2146,7 +2150,7 @@ Function4ea4: ; 4ea4
 	add hl, bc
 	dec [hl]
 	ret nz
-	call Function47a2
+	call IncrementObjectStructField28
 	; fallthrough
 ; 4ead
 
@@ -2154,13 +2158,13 @@ Function4ead: ; 4ead
 	ld hl, OBJECT_29
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_08
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $2
-	call Function47a2
+	call IncrementObjectStructField28
 	; fallthrough
 ; 4ec0
 
@@ -2171,7 +2175,7 @@ Function4ec0: ; 4ec0
 	ret nz
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4ecd
 
@@ -2188,7 +2192,7 @@ Function4ecd: ; 4ecd
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	ld hl, OBJECT_01
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	ld b, a
@@ -2198,12 +2202,12 @@ Function4ecd: ; 4ecd
 	add hl, bc
 	res 2, [hl]
 	call Function4600
-	ld hl, OBJECT_07
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4f04
 
@@ -2213,11 +2217,11 @@ Function4f04: ; 4f04
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, OBJECT_00
+	ld hl, OBJECT_SPRITE
 	add hl, de
 	ld a, [hl]
 	and a
-	jr z, .asm_4f30
+	jr z, .nope
 	ld hl, OBJECT_SPRITE_X
 	add hl, de
 	ld a, [hl]
@@ -2238,12 +2242,12 @@ Function4f04: ; 4f04
 	dec [hl]
 	ret nz
 
-.asm_4f30
+.nope
 	jp Function4357
 ; 4f33
 
 Function4f33: ; 4f33
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4f3a
 	dw Function4f43
 ; 4f3a
@@ -2253,7 +2257,7 @@ Function4f3a: ; 4f3a
 	ld hl, OBJECT_29
 	add hl, bc
 	ld [hl], a
-	call Function47a2
+	call IncrementObjectStructField28
 	; fallthrough
 ; 4f43
 
@@ -2267,7 +2271,7 @@ Function4f43: ; 4f43
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
-	jr z, .asm_4f68
+	jr z, .ok
 	ld a, [hl]
 	call Function4f6c
 	ld hl, OBJECT_29
@@ -2279,7 +2283,7 @@ Function4f43: ; 4f43
 	ld [wd14f], a
 	ret
 
-.asm_4f68
+.ok
 	call Function4357
 	ret
 ; 4f6c
@@ -2296,18 +2300,18 @@ Function4f6c: ; 4f6c
 ; 4f77
 
 Function4f77: ; 4f77
-	call Function47a8 ; ????
+	call JumptoObjectStructField28 ; ????
 ; 4f7a
 
 Function4f7a: ; 4f7a
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4f83
 	dw Function4f83
 	dw Function4f83
 ; 4f83
 
 Function4f83: ; 4f83
-	call Function47a8
+	call JumptoObjectStructField28
 	dw Function4f8a
 	dw Function4f99
 ; 4f8a
@@ -2319,7 +2323,7 @@ Function4f8a: ; 4f8a
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
-	call Function47a2
+	call IncrementObjectStructField28
 ; 4f99
 
 Function4f99: ; 4f99
@@ -2332,10 +2336,10 @@ Function4f99: ; 4f99
 	ld [hl], $60
 	ld hl, OBJECT_12
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], 1
 	ret
 ; 4fb2
 
@@ -2350,7 +2354,7 @@ Function4fb3: ; 4fb3
 	ld a, [hl]
 	srl a
 	srl a
-	and 7
+	and %00000111
 	ld l, a
 	ld h, 0
 	ld de, .y
@@ -2448,19 +2452,19 @@ Function503d: ; 503d
 ; 5041
 
 Function5041: ; 5041
-	call Function5055
-.asm_5044
+	call CopyMovementPointer
+.loop
 	xor a
 	ld [wc2ea], a
-	call Function505e
-	call Function506b
+	call GetMovementByte
+	call DoMovementFunction
 	ld a, [wc2ea]
 	and a
-	jr nz, .asm_5044
+	jr nz, .loop
 	ret
 ; 5055
 
-Function5055: ; 5055
+CopyMovementPointer: ; 5055
 	ld a, l
 	ld [wc2eb], a
 	ld a, h
@@ -2468,7 +2472,7 @@ Function5055: ; 5055
 	ret
 ; 505e
 
-Function505e: ; 505e
+GetMovementByte: ; 505e
 	ld hl, wc2eb
 	ld a, [hli]
 	ld h, [hl]
@@ -2477,12 +2481,12 @@ Function505e: ; 505e
 ; 5065
 
 Function5065: ; 5065
-	ld a, $1
+	ld a, 1
 	ld [wc2ea], a
 	ret
 ; 506b
 
-Function506b: ; 506b
+DoMovementFunction: ; 506b
 	push af
 	call Function54b8
 	pop af
@@ -2500,7 +2504,7 @@ INCLUDE "engine/movement.asm"
 Function54b8: ; 54b8
 	ld e, a
 	ld a, [wd4ce]
-	cp $ff
+	cp -1
 	ret z
 	ld a, [wd4cd]
 	ld d, a
@@ -2534,25 +2538,25 @@ Function54e6: ; 54e6
 	ld hl, wd4d0
 	ld a, [hl]
 	and a
-	jr z, .asm_5503
-	cp $ff
-	jr z, .asm_5503
+	jr z, .done
+	cp -1
+	jr z, .done
 	dec [hl]
 	ld e, a
 	ld d, 0
 	ld hl, wd4d1
 	add hl, de
 	inc e
-	ld a, $ff
-.asm_54fc
+	ld a, -1
+.loop
 	ld d, [hl]
 	ld [hld], a
 	ld a, d
 	dec e
-	jr nz, .asm_54fc
+	jr nz, .loop
 	ret
 
-.asm_5503
+.done
 	call Function550a
 	ret c
 	ld a, $3e
@@ -2561,20 +2565,20 @@ Function54e6: ; 54e6
 
 Function550a: ; 550a
 	ld a, [wd4cd]
-	cp $ff
-	jr z, .asm_5520
+	cp -1
+	jr z, .nope
 	push bc
-	call Function1ae5
-	ld hl, OBJECT_00
+	call GetObjectStruct
+	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	pop bc
 	and a
-	jr z, .asm_5520
+	jr z, .nope
 	and a
 	ret
 
-.asm_5520
+.nope
 	ld a, $ff
 	ld [wd4ce], a
 	ld a, $47
@@ -2657,31 +2661,31 @@ Function5579: ; 5579
 Function5582: ; 5582
 	ld de, ObjectStructs
 	ld a, $d
-.asm_5587
+.loop
 	push af
 	ld hl, OBJECT_04
 	add hl, de
 	bit 7, [hl]
-	jr z, .asm_55a1
-	ld hl, OBJECT_00
+	jr z, .next
+	ld hl, OBJECT_SPRITE
 	add hl, de
 	ld a, [hl]
 	and a
-	jr z, .asm_55a1
+	jr z, .next
 	push bc
 	xor a
-	ld bc, ObjectStruct2 - ObjectStruct1
+	ld bc, OBJECT_STRUCT_LENGTH
 	call ByteFill
 	pop bc
 
-.asm_55a1
-	ld hl, ObjectStruct2 - ObjectStruct1
+.next
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l
 	pop af
 	dec a
-	jr nz, .asm_5587
+	jr nz, .loop
 	ret
 ; 55ac
 
@@ -2696,9 +2700,9 @@ Function55ac: ; 55ac
 
 Function55b9: ; 55b9
 	ld hl, wc2f0
-	ld [hl], $ff
+	ld [hl], -1
 	inc hl
-	ld [hl], $ff
+	ld [hl], -1
 	inc hl
 	ld a, [de]
 	inc de
@@ -2722,7 +2726,7 @@ Function55b9: ; 55b9
 	inc hl
 	ld [hl], e
 	inc hl
-	ld [hl], $ff
+	ld [hl], -1
 	ret
 ; 55e0
 
@@ -2732,46 +2736,46 @@ Function55e0:: ; 55e0
 	ret z
 	ld bc, ObjectStructs
 	xor a
-.asm_55ea
+.loop
 	ld [$ffaf], a
-	call Function1af1
-	jr z, .asm_55f4
+	call GetObjectSprite
+	jr z, .ok
 	call Function565c
 
-.asm_55f4
-	ld hl, ObjectStruct2 - ObjectStruct1
+.ok
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ld a, [$ffaf]
 	inc a
-	cp $d
-	jr nz, .asm_55ea
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	ret
 ; 5602
 
 Function5602: ; 5602
 	call Function5645
-	ld a, $0
+	ld a, 0
 	call Function5629
 	ld a, [wd459]
 	bit 7, a
-	jr z, .asm_5619
+	jr z, .ok
 	ld a, [$ffe0]
 	and a
-	jr z, .asm_5619
+	jr z, .ok
 	call Function5629
 
-.asm_5619
-	call Function5920
+.ok
+	call RefreshMapAppearDisappear
 	ret
 ; 561d
 
 Function561d: ; 561d
 	call Function5645
-	ld a, $0
+	ld a, 0
 	call Function5629
-	call Function5920
+	call RefreshMapAppearDisappear
 	ret
 ; 5629
 
@@ -2779,15 +2783,15 @@ Function5629: ; 5629
 	cp $10
 	ret nc
 	call GetMapObject
-	ld hl, $0000
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	cp $d
 	ret nc
-	call Function1ae5
-	call Function1af1
+	call GetObjectStruct
+	call GetObjectSprite
 	ret z
 	call Function5673
 	ret
@@ -2796,17 +2800,17 @@ Function5629: ; 5629
 Function5645: ; 5645
 	xor a
 	ld bc, ObjectStructs
-.asm_5649
+.loop
 	ld [$ffaf], a
 	call Function5680
-	ld hl, ObjectStruct2 - ObjectStruct1
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ld a, [$ffaf]
 	inc a
-	cp $d
-	jr nz, .asm_5649
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	ret
 ; 565c
 
@@ -2832,9 +2836,9 @@ Function5673: ; 5673
 ; 5680
 
 Function5680: ; 5680
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	scf
 	ret
 ; 5688
@@ -2867,26 +2871,26 @@ Function56a3: ; 56a3
 	inc e
 	ld a, [XCoord]
 	cp d
-	jr z, .asm_56bc
-	jr nc, .asm_56cb
+	jr z, .equal_x
+	jr nc, .nope
 	add $b
 	cp d
-	jr c, .asm_56cb
+	jr c, .nope
 
-.asm_56bc
+.equal_x
 	ld a, [YCoord]
 	cp e
-	jr z, .asm_56c9
-	jr nc, .asm_56cb
+	jr z, .equal_y
+	jr nc, .nope
 	add $a
 	cp e
-	jr c, .asm_56cb
+	jr c, .nope
 
-.asm_56c9
+.equal_y
 	xor a
 	ret
 
-.asm_56cb
+.nope
 	scf
 	ret
 ; 56cd
@@ -2902,27 +2906,27 @@ Function56cd: ; 56cd
 	add [hl]
 	add d
 	cp $f0
-	jr nc, .asm_56e5
+	jr nc, .ok1
 	cp $a0
-	jp nc, .asm_5768
+	jp nc, .nope
 
-.asm_56e5
-	and $7
-	ld d, $2
-	cp $4
-	jr c, .asm_56ef
-	ld d, $3
+.ok1
+	and %00000111
+	ld d, 2
+	cp 4
+	jr c, .ok2
+	ld d, 3
 
-.asm_56ef
+.ok2
 	ld a, [hl]
 	srl a
 	srl a
 	srl a
 	cp $14
-	jr c, .asm_56fc
+	jr c, .ok3
 	sub $20
 
-.asm_56fc
+.ok3
 	ld [$ffbd], a
 	ld a, [wd14d]
 	ld e, a
@@ -2934,76 +2938,76 @@ Function56cd: ; 56cd
 	add [hl]
 	add e
 	cp $f0
-	jr nc, .asm_5715
+	jr nc, .ok4
 	cp $90
-	jr nc, .asm_5768
+	jr nc, .nope
 
-.asm_5715
-	and $7
-	ld e, $2
-	cp $4
-	jr c, .asm_571f
-	ld e, $3
+.ok4
+	and %00000111
+	ld e, 2
+	cp 4
+	jr c, .ok5
+	ld e, 3
 
-.asm_571f
+.ok5
 	ld a, [hl]
 	srl a
 	srl a
 	srl a
 	cp $12
-	jr c, .asm_572c
+	jr c, .ok6
 	sub $20
 
-.asm_572c
+.ok6
 	ld [$ffbe], a
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit 7, [hl]
-	jr z, .asm_573e
+	jr z, .ok7
 	ld a, d
-	add $2
+	add 2
 	ld d, a
 	ld a, e
-	add $2
+	add 2
 	ld e, a
 
-.asm_573e
+.ok7
 	ld a, d
 	ld [$ffbf], a
-.asm_5741
+.loop
 	ld a, [$ffbf]
 	ld d, a
 	ld a, [$ffbe]
 	add e
 	dec a
 	cp $12
-	jr nc, .asm_5763
+	jr nc, .ok9
 	ld b, a
-.asm_574d
+.next
 	ld a, [$ffbd]
 	add d
 	dec a
 	cp $14
-	jr nc, .asm_5760
+	jr nc, .ok8
 	ld c, a
 	push bc
 	call GetTileCoord
 	pop bc
 	ld a, [hl]
 	cp $60
-	jr nc, .asm_5768
+	jr nc, .nope
 
-.asm_5760
+.ok8
 	dec d
-	jr nz, .asm_574d
+	jr nz, .next
 
-.asm_5763
+.ok9
 	dec e
-	jr nz, .asm_5741
+	jr nz, .loop
 	and a
 	ret
 
-.asm_5768
+.nope
 	scf
 	ret
 ; 576a
@@ -3019,7 +3023,7 @@ Function5771: ; 5771
 	ld [wd14e], a
 	ld [wd14f], a
 	ld [wd150], a
-	ld a, $ff
+	ld a, -1
 	ld [wd151], a
 	ret
 ; 5781
@@ -3027,21 +3031,21 @@ Function5771: ; 5771
 Function5781: ; 5781
 	ld bc, ObjectStructs
 	xor a
-.asm_5785
+.loop
 	ld [$ffaf], a
-	call Function1af1
-	jr z, .asm_578f
+	call GetObjectSprite
+	jr z, .next
 	call Function437b
 
-.asm_578f
-	ld hl, ObjectStruct2 - ObjectStruct1
+.next
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ld a, [$ffaf]
 	inc a
-	cp $d
-	jr nz, .asm_5785
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	ret
 ; 579d
 
@@ -3053,8 +3057,8 @@ Function579d: ; 579d
 	ld [wd04e], a
 	ld [wd4e2], a
 	call Function57bc
-	callba Function149c6
-	call c, Function57d9
+	callba CheckWarpCollision
+	call c, SpawnInFacingDown
 	call Function57ca
 	ret
 ; 57bc
@@ -3062,11 +3066,11 @@ Function579d: ; 579d
 Function57bc: ; 57bc
 	ld hl, wd45b
 	bit 7, [hl]
-	jr nz, .asm_57c4
+	jr nz, .ok
 	ret
 
-.asm_57c4
-	ld a, $0
+.ok
+	ld a, 0
 	ld [PlayerAction], a
 	ret
 ; 57ca
@@ -3076,20 +3080,21 @@ Function57ca: ; 57ca
 	bit 5, [hl]
 	ret z
 	ld a, [wd45b]
-	and $3
+	and 3
+rept 2
 	add a
-	add a
+endr
 	jr Function57db
 ; 57d9
 
-Function57d9: ; 57d9
-	ld a, $0
+SpawnInFacingDown: ; 57d9
+	ld a, 0
 	; fallthrough
 ; 57db
 
 Function57db: ; 57db
 	ld bc, PlayerStruct
-	call Function1af8
+	call SetSpriteDirection
 	ret
 ; 57e2
 
@@ -3098,20 +3103,20 @@ Function57e2: ; 57e2
 	and $80
 	ret z
 	ld bc, $0000 ; debug?
-	ld hl, OBJECT_08
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
 	or d
 	ld [hl], a
 	ld a, d
 	swap a
-	and $7
+	and %00000111
 	ld d, a
 	ld bc, PlayerStruct
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	and $f8
+	and %11111000
 	or d
 	ld [hl], a
 	ret
@@ -3144,7 +3149,7 @@ Function581f:: ; 581f
 ; 5826
 
 Function5826: ; 5826
-	ld a, $ff
+	ld a, -1
 	ld [wd4cd], a
 	ret
 ; 582c
@@ -3160,7 +3165,7 @@ Function582c: ; 582c
 	ld [hl], $13
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ld a, [$ffb0]
 	ld [wd4ce], a
 	ret
@@ -3168,16 +3173,16 @@ Function582c: ; 582c
 
 Function5847: ; 5847
 	ld a, [wd4ce]
-	cp $ff
+	cp -1
 	ret z
-	call Function1ae5
+	call GetObjectStruct
 	callba Function58e3
-	ld a, $ff
+	ld a, -1
 	ld [wd4ce], a
 	ret
 ; 585c
 
-Function585c:: ; 585c
+SetFlagsForMovement_1:: ; 585c
 	ld a, c
 	call Function18de
 	ret c
@@ -3204,42 +3209,42 @@ Function586e: ; 586e
 Function587a: ; 587a
 	ld bc, ObjectStructs
 	xor a
-.asm_587e
+.loop
 	push af
-	call Function1af1
-	jr z, .asm_588a
+	call GetObjectSprite
+	jr z, .next
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 5, [hl]
 
-.asm_588a
-	ld hl, ObjectStruct2 - ObjectStruct1
+.next
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop af
 	inc a
-	cp $d
-	jr nz, .asm_587e
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	ret
 ; 5897
 
-Function5897:: ; 5897
+_SetFlagsForMovement_2:: ; 5897
 	ld a, [wd4cd]
-	cp $ff
+	cp -1
 	ret z
 	push bc
-	call Function1ae5
-	ld hl, OBJECT_01
+	call GetObjectStruct
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	pop bc
 	cp c
 	ret nz
 	ld a, [wd4ce]
-	cp $ff
+	cp -1
 	ret z
-	call Function1ae5
+	call GetObjectStruct
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 5, [hl]
@@ -3250,23 +3255,23 @@ Function58b9:: ; 58b9
 	push bc
 	ld bc, ObjectStructs
 	xor a
-.asm_58be
+.loop
 	push af
-	call Function1af1
-	jr z, .asm_58ca
+	call GetObjectSprite
+	jr z, .next
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 5, [hl]
 
-.asm_58ca
-	ld hl, ObjectStruct2 - ObjectStruct1
+.next
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop af
 	inc a
-	cp $d
-	jr nz, .asm_58be
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	pop bc
 	ret
 ; 58d8
@@ -3281,14 +3286,14 @@ Function58d8: ; 58d8
 ; 58e3
 
 Function58e3: ; 58e3
-	ld hl, OBJECT_01
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jp z, Function5903
 	push bc
 	call GetMapObject
-	ld hl, $0004
+	ld hl, MAPOBJECT_FACING
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -3297,7 +3302,7 @@ Function58e3: ; 58e3
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ret
 ; 5903
 
@@ -3315,14 +3320,14 @@ Function5903: ; 5903
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
 .data_591c
 	db 6, 7, 8, 9
 ; 5920
 
-Function5920:: ; 5920
+RefreshMapAppearDisappear:: ; 5920
 	ld a, [VramState]
 	bit 0, a
 	ret z
@@ -3330,7 +3335,7 @@ Function5920:: ; 5920
 	ld [$ffbd], a
 	ld a, [hOAMUpdate]
 	push af
-	ld a, $1
+	ld a, 1
 	ld [hOAMUpdate], a
 	call Function5991
 	call Function593a
@@ -3343,10 +3348,10 @@ Function593a: ; 593a
 	ld a, [VramState]
 	bit 1, a
 	ld b, $a0
-	jr z, .asm_5945
+	jr z, .ok
 	ld b, $70
 
-.asm_5945
+.ok
 	ld a, [$ffbd]
 	cp b
 	ret nc
@@ -3355,11 +3360,11 @@ Function593a: ; 593a
 	ld de, OBJECT_04
 	ld a, b
 	ld c, $a0
-.asm_5952
+.loop
 	ld [hl], c
 	add hl, de
 	cp l
-	jr nz, .asm_5952
+	jr nz, .loop
 	ret
 ; 5958
 
@@ -3372,12 +3377,12 @@ Function5958: ; 5958
 	ld a, [wd14d]
 	ld e, a
 	ld bc, ObjectStructs
-	ld a, $d
+	ld a, NUM_OBJECT_STRUCTS
 
-.asm_5968
+.loop
 	push af
-	call Function1af1
-	jr z, .asm_597c
+	call GetObjectSprite
+	jr z, .skip
 
 	ld hl, OBJECT_SPRITE_X
 	add hl, bc
@@ -3391,14 +3396,14 @@ Function5958: ; 5958
 	add e
 	ld [hl], a
 
-.asm_597c
-	ld hl, ObjectStruct2 - ObjectStruct1
+.skip
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop af
 	dec a
-	jr nz, .asm_5968
+	jr nz, .loop
 
 	xor a
 	ld [wd14c], a
@@ -3431,10 +3436,10 @@ Function59a4: ; 59a4
 	ld hl, wc2eb
 .loop
 	push hl
-	call Function1af1
+	call GetObjectSprite
 	jr z, .skip
 
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
 	cp -1
@@ -3453,7 +3458,7 @@ Function59a4: ; 59a4
 	jr .add
 
 .skip
-	ld hl, ObjectStruct2 - ObjectStruct1
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3461,7 +3466,7 @@ Function59a4: ; 59a4
 	jr .next
 
 .add
-	ld hl, ObjectStruct2 - ObjectStruct1
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3473,7 +3478,7 @@ Function59a4: ; 59a4
 .next
 	inc d
 	ld a, d
-	cp $d
+	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
 	ret
 ; 59f3
@@ -3483,7 +3488,7 @@ Function59f3: ; 59f3
 .next
 	ld a, [hli]
 	ld d, a
-	and $f0
+	and %11110000
 	ret z
 	cp c
 	jr nz, .next
@@ -3491,7 +3496,7 @@ Function59f3: ; 59f3
 	push bc
 	push hl
 	ld a, d
-	and $f
+	and %00001111
 	call Function5ac2
 	call Function5a0d
 	pop hl
@@ -3500,44 +3505,44 @@ Function59f3: ; 59f3
 ; 5a0d
 
 Function5a0d: ; 5a0d
-	ld hl, OBJECT_SPRITE
+	ld hl, OBJECT_SPRITE_TILE
 	add hl, bc
 	ld a, [hl]
-	and $7f
+	and %01111111
 	ld [$ffc1], a
 
 	xor a
 	bit 7, [hl]
-	jr nz, .asm_5a1d
-	or 8
-.asm_5a1d
+	jr nz, .skip1
+	or %00001000
+.skip1
 
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	ld e, [hl]
 	bit 7, e
-	jr z, .asm_5a28
-	or $80
-.asm_5a28
+	jr z, .skip2
+	or %10000000
+.skip2
 
 	bit 4, e
-	jr z, .asm_5a2e
-	or $10
-.asm_5a2e
+	jr z, .skip3
+	or %00010000
+.skip3
 
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld d, a
 	ld a, [hl]
-	and 7
+	and %00000111
 	or d
 	ld d, a
 
 	xor a
 	bit 3, e
-	jr z, .asm_5a3f
-	or $80
-.asm_5a3f
+	jr z, .skip4
+	or %10000000
+.skip4
 	ld [$ffc2], a
 
 	ld hl, OBJECT_SPRITE_X
@@ -3570,7 +3575,7 @@ Function5a0d: ; 5a0d
 	add e
 	ld [$ffc0], a
 
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
 	cp -1
@@ -3616,9 +3621,9 @@ Function5a0d: ; 5a0d
 
 	ld a, [$ffc1]
 	bit 2, e
-	jr z, .asm_5aa3
+	jr z, .nope1
 	xor a
-.asm_5aa3
+.nope1
 	add [hl]
 	inc hl
 
@@ -3627,11 +3632,11 @@ Function5a0d: ; 5a0d
 
 	ld a, e
 	bit 1, a
-	jr z, .asm_5aaf
+	jr z, .nope2
 	ld a, [$ffc2]
 	or e
-.asm_5aaf
-	and $f0
+.nope2
+	and %11110000
 	or d
 	ld [bc], a
 	inc c
@@ -3657,8 +3662,9 @@ Function5ac2: ; 5ac2
 	ld c, a
 	ld b, 0
 	ld hl, .Addresses
-	add hl, bc
-	add hl, bc
+rept 2
+	add hl,bc
+endr
 	ld c, [hl]
 	inc hl
 	ld b, [hl]

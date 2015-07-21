@@ -1,28 +1,12 @@
 Route10South_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerHikerJim:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_JIM
-
-	; trainer group && trainer id
-	db HIKER, JIM
-
-	; text when seen
-	dw HikerJimSeenText
-
-	; text when trainer beaten
-	dw HikerJimBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerJimScript
+	trainer EVENT_BEAT_HIKER_JIM, HIKER, JIM, HikerJimSeenText, HikerJimBeatenText, $0000, HikerJimScript
 
 HikerJimScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ HikerJimScript:
 	end
 
 TrainerPokefanmRobert:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_ROBERT
-
-	; trainer group && trainer id
-	db POKEFANM, ROBERT
-
-	; text when seen
-	dw PokefanmRobertSeenText
-
-	; text when trainer beaten
-	dw PokefanmRobertBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmRobertScript
+	trainer EVENT_BEAT_POKEFANM_ROBERT, POKEFANM, ROBERT, PokefanmRobertSeenText, PokefanmRobertBeatenText, $0000, PokefanmRobertScript
 
 PokefanmRobertScript:
 	talkaftercancel
@@ -107,18 +75,18 @@ Route10South_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $1, $6, 2, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 3, 5, $0, MapRoute10SouthSignpost0Script
+	signpost 3, 5, SIGNPOST_READ, MapRoute10SouthSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 7, 21, $8, $0, 255, 255, $b2, 3, TrainerHikerJim, -1
-	person_event SPRITE_POKEFAN_M, 14, 12, $a, $0, 255, 255, $82, 3, TrainerPokefanmRobert, -1
+	person_event SPRITE_POKEFAN_M, 7, 21, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerJim, -1
+	person_event SPRITE_POKEFAN_M, 14, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmRobert, -1

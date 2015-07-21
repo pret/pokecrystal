@@ -1,8 +1,8 @@
 TinTower6F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ItemFragment_0x185ae4:
@@ -12,17 +12,17 @@ TinTower6F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $9, $3, 1, GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
 	warp_def $f, $b, 1, GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 12, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ae4, EVENT_7C6
+	person_event SPRITE_POKE_BALL, 12, 12, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185ae4, EVENT_TIN_TOWER_6F_MAX_POTION

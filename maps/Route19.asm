@@ -1,8 +1,8 @@
 Route19_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -22,23 +22,7 @@ Route19_MapScriptHeader:
 	return
 
 TrainerSwimmerfDawn:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_DAWN
-
-	; trainer group && trainer id
-	db SWIMMERF, DAWN
-
-	; text when seen
-	dw SwimmerfDawnSeenText
-
-	; text when trainer beaten
-	dw SwimmerfDawnBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfDawnScript
+	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, $0000, SwimmerfDawnScript
 
 SwimmerfDawnScript:
 	talkaftercancel
@@ -49,23 +33,7 @@ SwimmerfDawnScript:
 	end
 
 TrainerSwimmermHarold:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_HAROLD
-
-	; trainer group && trainer id
-	db SWIMMERM, HAROLD
-
-	; text when seen
-	dw SwimmermHaroldSeenText
-
-	; text when trainer beaten
-	dw SwimmermHaroldBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermHaroldScript
+	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, $0000, SwimmermHaroldScript
 
 SwimmermHaroldScript:
 	talkaftercancel
@@ -76,23 +44,7 @@ SwimmermHaroldScript:
 	end
 
 TrainerSwimmermJerome:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_JEROME
-
-	; trainer group && trainer id
-	db SWIMMERM, JEROME
-
-	; text when seen
-	dw SwimmermJeromeSeenText
-
-	; text when trainer beaten
-	dw SwimmermJeromeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermJeromeScript
+	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, $0000, SwimmermJeromeScript
 
 SwimmermJeromeScript:
 	talkaftercancel
@@ -103,23 +55,7 @@ SwimmermJeromeScript:
 	end
 
 TrainerSwimmermTucker:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_TUCKER
-
-	; trainer group && trainer id
-	db SWIMMERM, TUCKER
-
-	; text when seen
-	dw SwimmermTuckerSeenText
-
-	; text when trainer beaten
-	dw SwimmermTuckerBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermTuckerScript
+	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, $0000, SwimmermTuckerScript
 
 SwimmermTuckerScript:
 	talkaftercancel
@@ -297,23 +233,23 @@ Route19_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $3, $7, 3, GROUP_ROUTE_19___FUCHSIA_GATE, MAP_ROUTE_19___FUCHSIA_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 13, 11, $0, MapRoute19Signpost0Script
-	signpost 1, 11, $0, MapRoute19Signpost1Script
+	signpost 13, 11, SIGNPOST_READ, MapRoute19Signpost0Script
+	signpost 1, 11, SIGNPOST_READ, MapRoute19Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_SWIMMER_GIRL, 27, 13, $8, $0, 255, 255, $a2, 0, TrainerSwimmerfDawn, -1
-	person_event SPRITE_SWIMMER_GUY, 32, 17, $a, $0, 255, 255, $82, 3, TrainerSwimmermHarold, -1
-	person_event SPRITE_SWIMMER_GUY, 21, 15, $a, $0, 255, 255, $82, 3, TrainerSwimmermJerome, -1
-	person_event SPRITE_SWIMMER_GUY, 27, 12, $7, $0, 255, 255, $82, 0, TrainerSwimmermTucker, -1
-	person_event SPRITE_FISHER, 9, 13, $6, $0, 255, 255, $80, 1, FisherScript_0x19ea4d, -1
-	person_event SPRITE_FISHER, 9, 15, $5, $1, 255, 255, $90, 1, FisherScript_0x19ea61, -1
+	person_event SPRITE_SWIMMER_GIRL, 27, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerSwimmerfDawn, -1
+	person_event SPRITE_SWIMMER_GUY, 32, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermHarold, -1
+	person_event SPRITE_SWIMMER_GUY, 21, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermJerome, -1
+	person_event SPRITE_SWIMMER_GUY, 27, 12, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerSwimmermTucker, -1
+	person_event SPRITE_FISHER, 9, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 1, FisherScript_0x19ea4d, -1
+	person_event SPRITE_FISHER, 9, 15, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, FisherScript_0x19ea61, -1

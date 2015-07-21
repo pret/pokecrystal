@@ -1,8 +1,8 @@
 MountMortarB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BlackBeltScript_0x7e1f6:
@@ -63,8 +63,7 @@ ItemFragment_0x7e248:
 	db PP_UP, 1
 
 MapMountMortarB1FSignpostItem0:
-	dw $0093
-	db MAX_REVIVE
+	dwb EVENT_MOUNT_MORTAR_B1F_HIDDEN_MAX_REVIVE, MAX_REVIVE
 	
 
 UnknownText_0x7e24d:
@@ -131,24 +130,24 @@ MountMortarB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $3, 5, GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
 	warp_def $1d, $13, 7, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 6, 4, $7, MapMountMortarB1FSignpostItem0
+	signpost 6, 4, SIGNPOST_ITEM, MapMountMortarB1FSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_POKE_BALL, 16, 33, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e240, EVENT_686
-	person_event SPRITE_POKE_BALL, 20, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e242, EVENT_687
-	person_event SPRITE_BOULDER, 14, 13, $19, $0, 255, 255, $0, 0, MountMortarB1FBoulder, -1
-	person_event SPRITE_BLACK_BELT, 8, 20, $6, $0, 255, 255, $b0, 0, BlackBeltScript_0x7e1f6, -1
-	person_event SPRITE_POKE_BALL, 28, 38, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e244, EVENT_7CA
-	person_event SPRITE_POKE_BALL, 7, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e246, EVENT_7CB
-	person_event SPRITE_POKE_BALL, 30, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e248, EVENT_7CC
+	person_event SPRITE_POKE_BALL, 16, 33, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e240, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 20, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e242, EVENT_MOUNT_MORTAR_B1F_CARBOS
+	person_event SPRITE_BOULDER, 14, 13, OW_LEFT | $11, $0, -1, -1, $0, 0, MountMortarB1FBoulder, -1
+	person_event SPRITE_BLACK_BELT, 8, 20, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BlackBeltScript_0x7e1f6, -1
+	person_event SPRITE_POKE_BALL, 28, 38, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e244, EVENT_MOUNT_MORTAR_B1F_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 7, 36, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e246, EVENT_MOUNT_MORTAR_B1F_MAX_ETHER
+	person_event SPRITE_POKE_BALL, 30, 25, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e248, EVENT_MOUNT_MORTAR_B1F_PP_UP

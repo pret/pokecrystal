@@ -1,8 +1,8 @@
 LavenderTown_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -105,7 +105,7 @@ LavenderTown_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 7
 	warp_def $5, $5, 1, GROUP_LAVENDER_POKECENTER_1F, MAP_LAVENDER_POKECENTER_1F
 	warp_def $9, $5, 1, GROUP_MR_FUJIS_HOUSE, MAP_MR_FUJIS_HOUSE
@@ -115,21 +115,21 @@ LavenderTown_MapEventHeader:
 	warp_def $b, $d, 1, GROUP_SOUL_HOUSE, MAP_SOUL_HOUSE
 	warp_def $5, $e, 1, GROUP_LAV_RADIO_TOWER_1F, MAP_LAV_RADIO_TOWER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 3, 11, $0, LavenderTownSign
-	signpost 7, 15, $0, KantoRadioStationSign
-	signpost 9, 3, $0, VolunteerPokemonHouseSign
-	signpost 13, 15, $0, SoulHouseSign
-	signpost 5, 6, $0, LavenderPokeCenterSignText
-	signpost 5, 2, $0, LavenderMartSignText
+	signpost 3, 11, SIGNPOST_READ, LavenderTownSign
+	signpost 7, 15, SIGNPOST_READ, KantoRadioStationSign
+	signpost 9, 3, SIGNPOST_READ, VolunteerPokemonHouseSign
+	signpost 13, 15, SIGNPOST_READ, SoulHouseSign
+	signpost 5, 6, SIGNPOST_READ, LavenderPokeCenterSignText
+	signpost 5, 2, SIGNPOST_READ, LavenderMartSignText
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 11, 16, $5, $1, 255, 255, $80, 0, PokefanMScript_0x1ad6e4, -1
-	person_event SPRITE_TEACHER, 19, 6, $5, $1, 255, 255, $90, 0, TeacherScript_0x1ad6e7, -1
-	person_event SPRITE_GRAMPS, 16, 18, $7, $0, 255, 255, $0, 0, GrampsScript_0x1ad6ea, -1
-	person_event SPRITE_YOUNGSTER, 15, 10, $5, $1, 255, 255, $a0, 1, YoungsterScript_0x1ad6ed, -1
+	person_event SPRITE_POKEFAN_M, 11, 16, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x1ad6e4, -1
+	person_event SPRITE_TEACHER, 19, 6, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x1ad6e7, -1
+	person_event SPRITE_GRAMPS, 16, 18, OW_UP | $3, $0, -1, -1, $0, 0, GrampsScript_0x1ad6ea, -1
+	person_event SPRITE_YOUNGSTER, 15, 10, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 1, YoungsterScript_0x1ad6ed, -1

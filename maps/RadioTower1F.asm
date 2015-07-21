@@ -1,8 +1,8 @@
 RadioTower1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ReceptionistScript_0x5cd29:
@@ -178,23 +178,7 @@ YoungsterScript_0x5ce54:
 	jumptextfaceplayer UnknownText_0x5d4ac
 
 TrainerGruntM3:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_3
-
-	; trainer group && trainer id
-	db GRUNTM, 3
-
-	; text when seen
-	dw GruntM3SeenText
-
-	; text when trainer beaten
-	dw GruntM3BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM3Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_3, GRUNTM, 3, GruntM3SeenText, GruntM3BeatenText, $0000, GruntM3Script
 
 GruntM3Script:
 	talkaftercancel
@@ -484,25 +468,25 @@ RadioTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $2, 11, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $3, 11, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $0, $f, 2, GROUP_RADIO_TOWER_2F, MAP_RADIO_TOWER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 0, 3, $0, MapRadioTower1FSignpost0Script
-	signpost 0, 13, $0, MapRadioTower1FSignpost1Script
+	signpost 0, 3, SIGNPOST_READ, MapRadioTower1FSignpost0Script
+	signpost 0, 13, SIGNPOST_READ, MapRadioTower1FSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_RECEPTIONIST, 10, 9, $8, $0, 255, 255, $80, 0, ReceptionistScript_0x5cd29, -1
-	person_event SPRITE_LASS, 8, 20, $8, $0, 255, 255, $80, 0, LassScript_0x5ce51, EVENT_6CF
-	person_event SPRITE_YOUNGSTER, 8, 19, $9, $0, 255, 255, $90, 0, YoungsterScript_0x5ce54, EVENT_6CF
-	person_event SPRITE_ROCKET, 5, 18, $6, $0, 255, 255, $2, 3, TrainerGruntM3, EVENT_6CE
-	person_event SPRITE_GENTLEMAN, 10, 12, $7, $0, 255, 255, $90, 0, GentlemanScript_0x5cd3d, EVENT_6CF
-	person_event SPRITE_COOLTRAINER_F, 10, 16, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x5cdd5, EVENT_6CF
+	person_event SPRITE_RECEPTIONIST, 10, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x5cd29, -1
+	person_event SPRITE_LASS, 8, 20, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x5ce51, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_YOUNGSTER, 8, 19, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x5ce54, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_ROCKET, 5, 18, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_GENTLEMAN, 10, 12, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 10, 16, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x5cdd5, EVENT_GOLDENROD_CITY_CIVILIANS

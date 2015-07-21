@@ -1,25 +1,25 @@
 LakeofRageMagikarpHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 FishingGuruScript_0x19a6ae:
 	faceplayer
 	loadfont
-	checkevent EVENT_03A
+	checkevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	iftrue UnknownScript_0x19a6fe
-	checkevent EVENT_039
+	checkevent EVENT_LAKE_OF_RAGE_ASKED_FOR_MAGIKARP
 	iftrue UnknownScript_0x19a6e0
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19a6d7
-	checkevent EVENT_038
+	checkevent EVENT_LAKE_OF_RAGE_EXPLAINED_WEIRD_MAGIKARP
 	iftrue UnknownScript_0x19a6d1
 	writetext UnknownText_0x19a72e
 	closetext
 	loadmovesprites
-	setevent EVENT_038
+	setevent EVENT_LAKE_OF_RAGE_EXPLAINED_WEIRD_MAGIKARP
 	end
 
 UnknownScript_0x19a6d1:
@@ -32,7 +32,7 @@ UnknownScript_0x19a6d7:
 	writetext UnknownText_0x19a890
 	closetext
 	loadmovesprites
-	setevent EVENT_039
+	setevent EVENT_LAKE_OF_RAGE_ASKED_FOR_MAGIKARP
 	end
 
 UnknownScript_0x19a6e0:
@@ -41,7 +41,7 @@ UnknownScript_0x19a6e0:
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
 	closetext
-	special Functionfbb32
+	special Special_CheckMagikarpLength
 	if_equal $0, UnknownScript_0x19a71c
 	if_equal $1, UnknownScript_0x19a722
 	if_equal $2, UnknownScript_0x19a716
@@ -55,12 +55,12 @@ UnknownScript_0x19a6fe:
 	writetext UnknownText_0x19a9c3
 	closetext
 	loadmovesprites
-	clearevent EVENT_03A
+	clearevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	end
 
 UnknownScript_0x19a711:
 	loadmovesprites
-	setevent EVENT_03A
+	setevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	end
 
 UnknownScript_0x19a716:
@@ -206,19 +206,19 @@ LakeofRageMagikarpHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
 	warp_def $7, $3, 2, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, MagikarpHouseBookshelf
-	signpost 1, 1, $0, MagikarpHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, MagikarpHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, MagikarpHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $0, 0, FishingGuruScript_0x19a6ae, -1
+	person_event SPRITE_FISHING_GURU, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x19a6ae, -1

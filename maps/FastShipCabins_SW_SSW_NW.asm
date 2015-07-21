@@ -1,28 +1,12 @@
 FastShipCabins_SW_SSW_NW_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerFirebreatherLyle:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_LYLE
-
-	; trainer group && trainer id
-	db FIREBREATHER, LYLE
-
-	; text when seen
-	dw FirebreatherLyleSeenText
-
-	; text when trainer beaten
-	dw FirebreatherLyleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherLyleScript
+	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, $0000, FirebreatherLyleScript
 
 FirebreatherLyleScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ FirebreatherLyleScript:
 	end
 
 TrainerBug_catcherKen:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_KEN
-
-	; trainer group && trainer id
-	db BUG_CATCHER, KEN
-
-	; text when seen
-	dw Bug_catcherKenSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherKenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherKenScript
+	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, $0000, Bug_catcherKenScript
 
 Bug_catcherKenScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ Bug_catcherKenScript:
 	end
 
 TrainerBeautyCassie:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_CASSIE
-
-	; trainer group && trainer id
-	db BEAUTY, CASSIE
-
-	; text when seen
-	dw BeautyCassieSeenText
-
-	; text when trainer beaten
-	dw BeautyCassieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyCassieScript
+	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, $0000, BeautyCassieScript
 
 BeautyCassieScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ BeautyCassieScript:
 	end
 
 TrainerGuitaristClyde:
-	; bit/flag number
-	dw EVENT_BEAT_GUITARIST_CLYDE
-
-	; trainer group && trainer id
-	db GUITARIST, CLYDE
-
-	; text when seen
-	dw GuitaristClydeSeenText
-
-	; text when trainer beaten
-	dw GuitaristClydeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GuitaristClydeScript
+	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, $0000, GuitaristClydeScript
 
 GuitaristClydeScript:
 	talkaftercancel
@@ -127,23 +63,23 @@ FastShipBed:
 	writetext FastShipBedText1
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
-	special Function1060a2
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
+	special Mobile_HealParty
 	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60
 	special RestartMapMusic
-	special Function8c0ab
+	special Special_FadeInQuickly
 	loadfont
 	writetext FastShipBedText2
 	closetext
 	loadmovesprites
-	checkevent EVENT_031
+	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue UnknownScript_0x75ae1
-	checkevent EVENT_032
+	checkevent EVENT_FAST_SHIP_FOUND_GIRL
 	iftrue UnknownScript_0x75ae2
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x75ae2
 UnknownScript_0x75ae1:
 	end
@@ -157,7 +93,7 @@ UnknownScript_0x75ae2:
 	writetext FastShipArrivedVermilionText
 	closetext
 	loadmovesprites
-	setevent EVENT_031
+	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 
 UnknownScript_0x75af7:
@@ -165,7 +101,7 @@ UnknownScript_0x75af7:
 	writetext FastShipArrivedOlivineText
 	closetext
 	loadmovesprites
-	setevent EVENT_031
+	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 
 FastShipCabinsNorthwestCabinTrashcan:
@@ -284,7 +220,7 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $0, $2, 5, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $13, $2, 6, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
@@ -292,18 +228,18 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 	warp_def $1f, $2, 7, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $1f, $3, 7, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 1, 7, $0, FastShipBed
-	signpost 2, 7, $0, FastShipBed
-	signpost 7, 7, $0, FastShipCabinsNorthwestCabinTrashcan
+	signpost 1, 7, SIGNPOST_READ, FastShipBed
+	signpost 2, 7, SIGNPOST_READ, FastShipBed
+	signpost 7, 7, SIGNPOST_READ, FastShipCabinsNorthwestCabinTrashcan
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 19, 5, $1e, $0, 255, 255, $82, 2, TrainerFirebreatherLyle, EVENT_739
-	person_event SPRITE_BUG_CATCHER, 19, 10, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherKen, EVENT_73B
-	person_event SPRITE_BUENA, 30, 5, $a, $0, 255, 255, $92, 3, TrainerBeautyCassie, EVENT_73A
-	person_event SPRITE_ROCKER, 32, 7, $1e, $0, 255, 255, $82, 2, TrainerGuitaristClyde, EVENT_73B
+	person_event SPRITE_FISHER, 19, 5, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_BUG_CATCHER, 19, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_BUENA, 30, 5, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_ROCKER, 32, 7, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

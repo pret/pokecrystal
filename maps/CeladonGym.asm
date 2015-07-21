@@ -1,8 +1,8 @@
 CeladonGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ErikaScript_0x72a6a:
@@ -42,23 +42,7 @@ UnknownScript_0x72aae:
 	end
 
 TrainerLassMichelle:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_MICHELLE
-
-	; trainer group && trainer id
-	db LASS, MICHELLE
-
-	; text when seen
-	dw LassMichelleSeenText
-
-	; text when trainer beaten
-	dw LassMichelleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassMichelleScript
+	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, $0000, LassMichelleScript
 
 LassMichelleScript:
 	talkaftercancel
@@ -69,23 +53,7 @@ LassMichelleScript:
 	end
 
 TrainerPicnickerTanya:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_TANYA
-
-	; trainer group && trainer id
-	db PICNICKER, TANYA
-
-	; text when seen
-	dw PicnickerTanyaSeenText
-
-	; text when trainer beaten
-	dw PicnickerTanyaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerTanyaScript
+	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, $0000, PicnickerTanyaScript
 
 PicnickerTanyaScript:
 	talkaftercancel
@@ -96,23 +64,7 @@ PicnickerTanyaScript:
 	end
 
 TrainerBeautyJulia:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_JULIA
-
-	; trainer group && trainer id
-	db BEAUTY, JULIA
-
-	; text when seen
-	dw BeautyJuliaSeenText
-
-	; text when trainer beaten
-	dw BeautyJuliaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyJuliaScript
+	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, $0000, BeautyJuliaScript
 
 BeautyJuliaScript:
 	talkaftercancel
@@ -123,23 +75,7 @@ BeautyJuliaScript:
 	end
 
 TrainerTwinsJoandzoe1:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_JO_AND_ZOE
-
-	; trainer group && trainer id
-	db TWINS, JOANDZOE1
-
-	; text when seen
-	dw TwinsJoandzoe1SeenText
-
-	; text when trainer beaten
-	dw TwinsJoandzoe1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsJoandzoe1Script
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, $0000, TwinsJoandzoe1Script
 
 TwinsJoandzoe1Script:
 	talkaftercancel
@@ -150,23 +86,7 @@ TwinsJoandzoe1Script:
 	end
 
 TrainerTwinsJoandzoe2:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_JO_AND_ZOE
-
-	; trainer group && trainer id
-	db TWINS, JOANDZOE2
-
-	; text when seen
-	dw TwinsJoandzoe2SeenText
-
-	; text when trainer beaten
-	dw TwinsJoandzoe2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsJoandzoe2Script
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, $0000, TwinsJoandzoe2Script
 
 TwinsJoandzoe2Script:
 	talkaftercancel
@@ -343,24 +263,24 @@ CeladonGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 8, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $11, $5, 8, GROUP_CELADON_CITY, MAP_CELADON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 15, 3, $0, CeladonGymStatue
-	signpost 15, 6, $0, CeladonGymStatue
+	signpost 15, 3, SIGNPOST_READ, CeladonGymStatue
+	signpost 15, 6, SIGNPOST_READ, CeladonGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_ERIKA, 7, 9, $6, $0, 255, 255, $a0, 0, ErikaScript_0x72a6a, -1
-	person_event SPRITE_LASS, 12, 11, $8, $0, 255, 255, $92, 2, TrainerLassMichelle, -1
-	person_event SPRITE_LASS, 12, 6, $9, $0, 255, 255, $a2, 2, TrainerPicnickerTanya, -1
-	person_event SPRITE_BUENA, 9, 7, $9, $0, 255, 255, $92, 2, TrainerBeautyJulia, -1
-	person_event SPRITE_TWIN, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe1, -1
-	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe2, -1
+	person_event SPRITE_ERIKA, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ErikaScript_0x72a6a, -1
+	person_event SPRITE_LASS, 12, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerLassMichelle, -1
+	person_event SPRITE_LASS, 12, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerTanya, -1
+	person_event SPRITE_BUENA, 9, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBeautyJulia, -1
+	person_event SPRITE_TWIN, 14, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe1, -1
+	person_event SPRITE_TWIN, 14, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe2, -1

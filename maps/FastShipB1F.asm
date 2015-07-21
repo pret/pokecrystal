@@ -1,12 +1,12 @@
 FastShipB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x7673a, $0000
 	dw UnknownScript_0x7673b, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x7673a:
@@ -16,7 +16,7 @@ UnknownScript_0x7673b:
 	end
 
 UnknownScript_0x7673c:
-	checkevent EVENT_72F
+	checkevent EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	iftrue UnknownScript_0x76766
 	applymovement $3, MovementData_0x76876
 	moveperson $2, $1e, $6
@@ -26,7 +26,7 @@ UnknownScript_0x7673c:
 	end
 
 UnknownScript_0x76751:
-	checkevent EVENT_72E
+	checkevent EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	iftrue UnknownScript_0x76766
 	applymovement $2, MovementData_0x76871
 	moveperson $3, $1f, $6
@@ -41,17 +41,17 @@ UnknownScript_0x76766:
 SailorScript_0x76767:
 	faceplayer
 	loadfont
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x767a0
-	checkevent EVENT_033
+	checkevent EVENT_FAST_SHIP_LAZY_SAILOR
 	iftrue UnknownScript_0x7678d
-	checkevent EVENT_034
+	checkevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
 	iftrue UnknownScript_0x76787
 	writetext UnknownText_0x7687b
 	closetext
 	loadmovesprites
-	setevent EVENT_034
-	clearevent EVENT_72D
+	setevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
+	clearevent EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
 	end
 
 UnknownScript_0x76787:
@@ -62,7 +62,7 @@ UnknownScript_0x76787:
 
 UnknownScript_0x7678d:
 	writetext UnknownText_0x7692e
-	checkevent EVENT_032
+	checkevent EVENT_FAST_SHIP_FOUND_GIRL
 	iffalse UnknownScript_0x76799
 	closetext
 	loadmovesprites
@@ -82,23 +82,7 @@ UnknownScript_0x767a0:
 	end
 
 TrainerSailorJeff:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_JEFF
-
-	; trainer group && trainer id
-	db SAILOR, JEFF
-
-	; text when seen
-	dw SailorJeffSeenText
-
-	; text when trainer beaten
-	dw SailorJeffBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorJeffScript
+	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, $0000, SailorJeffScript
 
 SailorJeffScript:
 	talkaftercancel
@@ -109,23 +93,7 @@ SailorJeffScript:
 	end
 
 TrainerPicnickerDebra:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_DEBRA
-
-	; trainer group && trainer id
-	db PICNICKER, DEBRA
-
-	; text when seen
-	dw PicnickerDebraSeenText
-
-	; text when trainer beaten
-	dw PicnickerDebraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerDebraScript
+	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, $0000, PicnickerDebraScript
 
 PicnickerDebraScript:
 	talkaftercancel
@@ -136,23 +104,7 @@ PicnickerDebraScript:
 	end
 
 TrainerJugglerFritz:
-	; bit/flag number
-	dw EVENT_BEAT_JUGGLER_FRITZ
-
-	; trainer group && trainer id
-	db JUGGLER, FRITZ
-
-	; text when seen
-	dw JugglerFritzSeenText
-
-	; text when trainer beaten
-	dw JugglerFritzBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw JugglerFritzScript
+	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, $0000, JugglerFritzScript
 
 JugglerFritzScript:
 	talkaftercancel
@@ -163,23 +115,7 @@ JugglerFritzScript:
 	end
 
 TrainerSailorGarrett:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_GARRETT
-
-	; trainer group && trainer id
-	db SAILOR, GARRETT
-
-	; text when seen
-	dw SailorGarrettSeenText
-
-	; text when trainer beaten
-	dw SailorGarrettBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorGarrettScript
+	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, $0000, SailorGarrettScript
 
 SailorGarrettScript:
 	talkaftercancel
@@ -190,23 +126,7 @@ SailorGarrettScript:
 	end
 
 TrainerFisherJonah:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_JONAH
-
-	; trainer group && trainer id
-	db FISHER, JONAH
-
-	; text when seen
-	dw FisherJonahSeenText
-
-	; text when trainer beaten
-	dw FisherJonahBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherJonahScript
+	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, $0000, FisherJonahScript
 
 FisherJonahScript:
 	talkaftercancel
@@ -217,23 +137,7 @@ FisherJonahScript:
 	end
 
 TrainerBlackbeltWai:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_WAI
-
-	; trainer group && trainer id
-	db BLACKBELT_T, WAI
-
-	; text when seen
-	dw BlackbeltWaiSeenText
-
-	; text when trainer beaten
-	dw BlackbeltWaiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltWaiScript
+	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, $0000, BlackbeltWaiScript
 
 BlackbeltWaiScript:
 	talkaftercancel
@@ -244,23 +148,7 @@ BlackbeltWaiScript:
 	end
 
 TrainerSailorKenneth:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_KENNETH
-
-	; trainer group && trainer id
-	db SAILOR, KENNETH
-
-	; text when seen
-	dw SailorKennethSeenText
-
-	; text when trainer beaten
-	dw SailorKennethBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorKennethScript
+	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, $0000, SailorKennethScript
 
 SailorKennethScript:
 	talkaftercancel
@@ -271,23 +159,7 @@ SailorKennethScript:
 	end
 
 TrainerTeacherShirley:
-	; bit/flag number
-	dw EVENT_BEAT_TEACHER_SHIRLEY
-
-	; trainer group && trainer id
-	db TEACHER, SHIRLEY
-
-	; text when seen
-	dw TeacherShirleySeenText
-
-	; text when trainer beaten
-	dw TeacherShirleyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TeacherShirleyScript
+	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, $0000, TeacherShirleyScript
 
 TeacherShirleyScript:
 	talkaftercancel
@@ -298,23 +170,7 @@ TeacherShirleyScript:
 	end
 
 TrainerSchoolboyNate:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_NATE
-
-	; trainer group && trainer id
-	db SCHOOLBOY, NATE
-
-	; text when seen
-	dw SchoolboyNateSeenText
-
-	; text when trainer beaten
-	dw SchoolboyNateBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyNateScript
+	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, $0000, SchoolboyNateScript
 
 SchoolboyNateScript:
 	talkaftercancel
@@ -325,23 +181,7 @@ SchoolboyNateScript:
 	end
 
 TrainerSchoolboyRicky:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_RICKY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, RICKY
-
-	; text when seen
-	dw SchoolboyRickySeenText
-
-	; text when trainer beaten
-	dw SchoolboyRickyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyRickyScript
+	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, $0000, SchoolboyRickyScript
 
 SchoolboyRickyScript:
 	talkaftercancel
@@ -600,31 +440,31 @@ FastShipB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $5, 11, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $d, $1f, 12, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $7, $1e, $0, UnknownScript_0x7673c, $0, $0
 	xy_trigger 0, $7, $1f, $0, UnknownScript_0x76751, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 9, 27, $0, FashShipB1FTrashcan
+	signpost 9, 27, SIGNPOST_READ, FashShipB1FTrashcan
 
-	; people-events
+.PersonEvents:
 	db 12
-	person_event SPRITE_SAILOR, 10, 34, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, EVENT_72E
-	person_event SPRITE_SAILOR, 10, 35, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, EVENT_72F
-	person_event SPRITE_SAILOR, 15, 13, $7, $0, 255, 255, $92, 3, TrainerSailorJeff, EVENT_739
-	person_event SPRITE_LASS, 8, 10, $7, $0, 255, 255, $a2, 1, TrainerPicnickerDebra, EVENT_739
-	person_event SPRITE_SUPER_NERD, 13, 30, $9, $0, 255, 255, $92, 1, TrainerJugglerFritz, EVENT_739
-	person_event SPRITE_SAILOR, 8, 21, $9, $0, 255, 255, $92, 4, TrainerSailorGarrett, EVENT_73A
-	person_event SPRITE_FISHER, 12, 29, $7, $0, 255, 255, $a2, 3, TrainerFisherJonah, EVENT_73A
-	person_event SPRITE_BLACK_BELT, 15, 19, $1f, $0, 255, 255, $b2, 3, TrainerBlackbeltWai, EVENT_73A
-	person_event SPRITE_SAILOR, 8, 27, $9, $0, 255, 255, $92, 4, TrainerSailorKenneth, EVENT_73B
-	person_event SPRITE_TEACHER, 15, 13, $7, $0, 255, 255, $82, 3, TrainerTeacherShirley, EVENT_73B
-	person_event SPRITE_YOUNGSTER, 13, 18, $3, $0, 255, 255, $92, 1, TrainerSchoolboyNate, EVENT_73B
-	person_event SPRITE_YOUNGSTER, 15, 18, $a, $0, 255, 255, $92, 1, TrainerSchoolboyRicky, EVENT_73B
+	person_event SPRITE_SAILOR, 10, 34, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
+	person_event SPRITE_SAILOR, 10, 35, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
+	person_event SPRITE_SAILOR, 15, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_LASS, 8, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SUPER_NERD, 13, 30, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SAILOR, 8, 21, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSailorGarrett, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_FISHER, 12, 29, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherJonah, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_BLACK_BELT, 15, 19, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBlackbeltWai, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_SAILOR, 8, 27, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSailorKenneth, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_TEACHER, 15, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerTeacherShirley, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_YOUNGSTER, 13, 18, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyNate, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_YOUNGSTER, 15, 18, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyRicky, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

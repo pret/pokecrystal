@@ -1,28 +1,12 @@
 MountMortar1FInside_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerPokemaniacMiller:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_MILLER
-
-	; trainer group && trainer id
-	db POKEMANIAC, MILLER
-
-	; text when seen
-	dw PokemaniacMillerSeenText
-
-	; text when trainer beaten
-	dw PokemaniacMillerBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacMillerScript
+	trainer EVENT_BEAT_POKEMANIAC_MILLER, POKEMANIAC, MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, $0000, PokemaniacMillerScript
 
 PokemaniacMillerScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokemaniacMillerScript:
 	end
 
 TrainerSupernerdMarkus:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_MARKUS
-
-	; trainer group && trainer id
-	db SUPER_NERD, MARKUS
-
-	; text when seen
-	dw SupernerdMarkusSeenText
-
-	; text when trainer beaten
-	dw SupernerdMarkusBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdMarkusScript
+	trainer EVENT_BEAT_SUPER_NERD_MARKUS, SUPER_NERD, MARKUS, SupernerdMarkusSeenText, SupernerdMarkusBeatenText, $0000, SupernerdMarkusScript
 
 SupernerdMarkusScript:
 	talkaftercancel
@@ -84,8 +52,7 @@ ItemFragment_0x7de88:
 	db ULTRA_BALL, 1
 
 MapMountMortar1FInsideSignpostItem0:
-	dw $0091
-	db MAX_REPEL
+	dwb EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL
 	
 
 PokemaniacMillerSeenText:
@@ -142,7 +109,7 @@ MountMortar1FInside_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $2f, $b, 5, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	warp_def $2f, $1d, 6, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
@@ -151,22 +118,22 @@ MountMortar1FInside_MapEventHeader:
 	warp_def $13, $3, 1, GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
 	warp_def $9, $9, 2, GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 11, 30, $7, MapMountMortar1FInsideSignpostItem0
+	signpost 11, 30, SIGNPOST_ITEM, MapMountMortar1FInsideSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 10
-	person_event SPRITE_BOULDER, 47, 25, $19, $0, 255, 255, $0, 0, MountMortar1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 42, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de7c, EVENT_67D
-	person_event SPRITE_POKE_BALL, 14, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de7e, EVENT_67E
-	person_event SPRITE_POKE_BALL, 31, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de80, EVENT_67F
-	person_event SPRITE_POKE_BALL, 24, 26, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de82, EVENT_7A6
-	person_event SPRITE_POKE_BALL, 23, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de84, EVENT_7A7
-	person_event SPRITE_SUPER_NERD, 47, 37, $8, $0, 255, 255, $92, 3, TrainerPokemaniacMiller, -1
-	person_event SPRITE_SUPER_NERD, 32, 28, $a, $0, 255, 255, $b2, 3, TrainerSupernerdMarkus, -1
-	person_event SPRITE_POKE_BALL, 20, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de86, EVENT_7C8
-	person_event SPRITE_POKE_BALL, 21, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x7de88, EVENT_7C9
+	person_event SPRITE_BOULDER, 47, 25, OW_LEFT | $11, $0, -1, -1, $0, 0, MountMortar1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 42, 39, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de7c, EVENT_MOUNT_MORTAR_1F_INSIDE_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 14, 20, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de7e, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 31, 14, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de80, EVENT_MOUNT_MORTAR_1F_INSIDE_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 24, 26, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de82, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_POTION
+	person_event SPRITE_POKE_BALL, 23, 39, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de84, EVENT_MOUNT_MORTAR_1F_INSIDE_NUGGET
+	person_event SPRITE_SUPER_NERD, 47, 37, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacMiller, -1
+	person_event SPRITE_SUPER_NERD, 32, 28, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerSupernerdMarkus, -1
+	person_event SPRITE_POKE_BALL, 20, 12, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de86, EVENT_MOUNT_MORTAR_1F_INSIDE_IRON
+	person_event SPRITE_POKE_BALL, 21, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7de88, EVENT_MOUNT_MORTAR_1F_INSIDE_ULTRA_BALL

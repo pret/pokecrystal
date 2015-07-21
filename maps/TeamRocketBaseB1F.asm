@@ -1,11 +1,11 @@
 TeamRocketBaseB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x6c65a, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -23,9 +23,9 @@ SecurityCamera1a:
 	checkevent EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
@@ -34,7 +34,7 @@ SecurityCamera1a:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
@@ -48,9 +48,9 @@ SecurityCamera1b:
 	checkevent EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
@@ -59,7 +59,7 @@ SecurityCamera1b:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
@@ -73,9 +73,9 @@ SecurityCamera2a:
 	checkevent EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $7
 	appear $2
@@ -84,7 +84,7 @@ SecurityCamera2a:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $c, $5
@@ -99,9 +99,9 @@ SecurityCamera2b:
 	checkevent EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $8
 	appear $2
@@ -110,7 +110,7 @@ SecurityCamera2b:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $c, $5
@@ -125,9 +125,9 @@ SecurityCamera3a:
 	checkevent EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $6
 	appear $2
@@ -136,7 +136,7 @@ SecurityCamera3a:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $19, $b
@@ -151,9 +151,9 @@ SecurityCamera3b:
 	checkevent EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $7
 	appear $2
@@ -162,7 +162,7 @@ SecurityCamera3b:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $19, $c
@@ -177,9 +177,9 @@ SecurityCamera4:
 	checkevent EVENT_SECURITY_CAMERA_4
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $11, $10
 	appear $2
@@ -188,7 +188,7 @@ SecurityCamera4:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $19, $b
@@ -203,9 +203,9 @@ SecurityCamera5:
 	checkevent EVENT_SECURITY_CAMERA_5
 	iftrue NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	checkevent EVENT_6DA
+	checkevent EVENT_TEAM_ROCKET_BASE_POPULATION
 	iftrue NoSecurityCamera
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $3, $10
 	appear $2
@@ -214,7 +214,7 @@ SecurityCamera5:
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, RIGHT
 	moveperson $2, $e, $10
@@ -445,9 +445,9 @@ ExplodingTrap22:
 	end
 
 VoltorbExplodingTrap:
-	special Function8c084
+	special FadeBlackBGMap
 	cry VOLTORB
-	special Function8c079
+	special FadeInBGMap
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadpokedata VOLTORB, 23
@@ -455,9 +455,9 @@ VoltorbExplodingTrap:
 	end
 
 GeodudeExplodingTrap:
-	special Function8c084
+	special FadeBlackBGMap
 	cry GEODUDE
-	special Function8c079
+	special FadeInBGMap
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadpokedata GEODUDE, 21
@@ -465,9 +465,9 @@ GeodudeExplodingTrap:
 	end
 
 KoffingExplodingTrap:
-	special Function8c084
+	special FadeBlackBGMap
 	cry KOFFING
-	special Function8c079
+	special FadeInBGMap
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadpokedata KOFFING, 21
@@ -478,23 +478,7 @@ NoExplodingTrap:
 	end
 
 TrainerScientistJed:
-	; bit/flag number
-	dw EVENT_BEAT_SCIENTIST_JED
-
-	; trainer group && trainer id
-	db SCIENTIST, JED
-
-	; text when seen
-	dw ScientistJedSeenText
-
-	; text when trainer beaten
-	dw ScientistJedBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw ScientistJedScript
+	trainer EVENT_BEAT_SCIENTIST_JED, SCIENTIST, JED, ScientistJedSeenText, ScientistJedBeatenText, $0000, ScientistJedScript
 
 ScientistJedScript:
 	talkaftercancel
@@ -505,23 +489,7 @@ ScientistJedScript:
 	end
 
 TrainerGruntM16:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_15
-
-	; trainer group && trainer id
-	db GRUNTM, 16
-
-	; text when seen
-	dw GruntM16SeenText
-
-	; text when trainer beaten
-	dw GruntM16BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM16Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_16, GRUNTM, 16, GruntM16SeenText, GruntM16BeatenText, $0000, GruntM16Script
 
 GruntM16Script:
 	talkaftercancel
@@ -569,8 +537,7 @@ ItemFragment_0x6cac8:
 	db GUARD_SPEC, 1
 
 MapTeamRocketBaseB1FSignpostItem8:
-	dw $0086
-	db REVIVE
+	dwb EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE, REVIVE
 	
 
 SecurityCameraMovement1:
@@ -761,14 +728,14 @@ TeamRocketBaseB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $2, $1b, 3, GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F
 	warp_def $e, $3, 1, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 	warp_def $f, $5, 4, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
 	warp_def $2, $19, 3, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 30
 	; There are five security cameras in the base.
 	; Walking in front of one triggers two Rocket Grunts.
@@ -805,23 +772,23 @@ TeamRocketBaseB1F_MapEventHeader:
 	xy_trigger 0, $d, $4, $0, ExplodingTrap21, $0, $0
 	xy_trigger 0, $d, $5, $0, ExplodingTrap22, $0, $0
 
-	; signposts
+.Signposts:
 	db 9
-	signpost 11, 19, $0, MapTeamRocketBaseB1FSignpost0Script
-	signpost 1, 24, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 1, 6, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 15, 8, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 15, 22, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 5, 24, $1, MapTeamRocketBaseB1FSignpost5Script
-	signpost 11, 20, $0, MapTeamRocketBaseB1FSignpost7Script
-	signpost 11, 21, $0, MapTeamRocketBaseB1FSignpost7Script
-	signpost 11, 3, $7, MapTeamRocketBaseB1FSignpostItem8
+	signpost 11, 19, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost0Script
+	signpost 1, 24, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 1, 6, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 15, 8, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 15, 22, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 5, 24, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
+	signpost 11, 20, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
+	signpost 11, 21, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
+	signpost 11, 3, SIGNPOST_ITEM, MapTeamRocketBaseB1FSignpostItem8
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_ROCKET, 4, 4, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6D9
-	person_event SPRITE_ROCKET, 8, 6, $9, $0, 255, 255, $2, 3, TrainerGruntM16, EVENT_6DA
-	person_event SPRITE_SCIENTIST, 16, 22, $8, $0, 255, 255, $92, 3, TrainerScientistJed, EVENT_6DA
-	person_event SPRITE_POKE_BALL, 10, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac4, EVENT_669
-	person_event SPRITE_POKE_BALL, 19, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac6, EVENT_66A
-	person_event SPRITE_POKE_BALL, 16, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac8, EVENT_66B
+	person_event SPRITE_ROCKET, 4, 4, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
+	person_event SPRITE_ROCKET, 8, 6, OW_LEFT | $1, $0, -1, -1, $2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 16, 22, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_POKE_BALL, 10, 31, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac4, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 19, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac6, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
+	person_event SPRITE_POKE_BALL, 16, 25, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac8, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC

@@ -281,5 +281,6 @@
 	charmap "<TARGET>", $59
 	charmap "<USER>",   $5a
 	charmap "<ENEMY>",  $3f
+	charmap "<PKMN>",   $4a
 
 	charmap "<PLAY_G>", $14 ; <PLAYER> + gender

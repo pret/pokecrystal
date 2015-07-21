@@ -1,28 +1,12 @@
 Route6_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerPokefanmRex:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_REX
-
-	; trainer group && trainer id
-	db POKEFANM, REX
-
-	; text when seen
-	dw PokefanmRexSeenText
-
-	; text when trainer beaten
-	dw PokefanmRexBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmRexScript
+	trainer EVENT_BEAT_POKEFANM_REX, POKEFANM, REX, PokefanmRexSeenText, PokefanmRexBeatenText, $0000, PokefanmRexScript
 
 PokefanmRexScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokefanmRexScript:
 	end
 
 TrainerPokefanmAllan:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_ALLAN
-
-	; trainer group && trainer id
-	db POKEFANM, ALLAN
-
-	; text when seen
-	dw PokefanmAllanSeenText
-
-	; text when trainer beaten
-	dw PokefanmAllanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmAllanScript
+	trainer EVENT_BEAT_POKEFANM_ALLAN, POKEFANM, ALLAN, PokefanmAllanSeenText, PokefanmAllanBeatenText, $0000, PokefanmAllanScript
 
 PokefanmAllanScript:
 	talkaftercancel
@@ -122,20 +90,20 @@ Route6_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $11, 1, GROUP_ROUTE_6_UNDERGROUND_ENTRANCE, MAP_ROUTE_6_UNDERGROUND_ENTRANCE
 	warp_def $1, $6, 3, GROUP_ROUTE_6_SAFFRON_GATE, MAP_ROUTE_6_SAFFRON_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 5, 19, $0, MapRoute6Signpost0Script
+	signpost 5, 19, SIGNPOST_READ, MapRoute6Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 8, 21, $6, $0, 255, 255, $b0, 2, PokefanMScript_0x1ad951, EVENT_771
-	person_event SPRITE_POKEFAN_M, 16, 13, $9, $0, 255, 255, $82, 0, TrainerPokefanmRex, -1
-	person_event SPRITE_POKEFAN_M, 16, 14, $8, $0, 255, 255, $82, 0, TrainerPokefanmAllan, -1
+	person_event SPRITE_POKEFAN_M, 8, 21, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 2, PokefanMScript_0x1ad951, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	person_event SPRITE_POKEFAN_M, 16, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerPokefanmRex, -1
+	person_event SPRITE_POKEFAN_M, 16, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerPokefanmAllan, -1

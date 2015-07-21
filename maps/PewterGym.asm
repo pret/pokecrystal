@@ -1,8 +1,8 @@
 PewterGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BrockScript_0x1a2864:
@@ -36,23 +36,7 @@ BrockScript_0x1a2864:
 	end
 
 TrainerCamperJerry:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_JERRY
-
-	; trainer group && trainer id
-	db CAMPER, JERRY
-
-	; text when seen
-	dw CamperJerrySeenText
-
-	; text when trainer beaten
-	dw CamperJerryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperJerryScript
+	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, $0000, CamperJerryScript
 
 CamperJerryScript:
 	talkaftercancel
@@ -223,21 +207,21 @@ PewterGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $d, $4, 2, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 	warp_def $d, $5, 2, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 11, 2, $0, PewterGymStatue
-	signpost 11, 7, $0, PewterGymStatue
+	signpost 11, 2, SIGNPOST_READ, PewterGymStatue
+	signpost 11, 7, SIGNPOST_READ, PewterGymStatue
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_BROCK, 5, 9, $6, $0, 255, 255, $b0, 0, BrockScript_0x1a2864, -1
-	person_event SPRITE_YOUNGSTER, 9, 6, $9, $0, 255, 255, $a2, 3, TrainerCamperJerry, -1
-	person_event SPRITE_GYM_GUY, 15, 10, $6, $0, 255, 255, $90, 1, PewterGymGuyScript, -1
+	person_event SPRITE_BROCK, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrockScript_0x1a2864, -1
+	person_event SPRITE_YOUNGSTER, 9, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperJerry, -1
+	person_event SPRITE_GYM_GUY, 15, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, PewterGymGuyScript, -1

@@ -1,12 +1,12 @@
 Route25_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x19ee9e, $0000
 	dw UnknownScript_0x19ee9f, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x19ee9e:
@@ -18,7 +18,7 @@ UnknownScript_0x19ee9f:
 UnknownScript_0x19eea0:
 	showemote $4, $2, 15
 	pause 30
-	showemote $0, $3, 10
+	showemote EMOTE_SHOCK, $3, 10
 	spriteface $2, DOWN
 	applymovement $3, MovementData_0x19efe8
 	disappear $3
@@ -44,7 +44,7 @@ UnknownScript_0x19eea0:
 UnknownScript_0x19eee0:
 	showemote $4, $2, 15
 	pause 30
-	showemote $0, $3, 10
+	showemote EMOTE_SHOCK, $3, 10
 	spriteface $2, DOWN
 	applymovement $3, MovementData_0x19efea
 	disappear $3
@@ -68,23 +68,7 @@ UnknownScript_0x19eee0:
 	end
 
 TrainerSchoolboyDudley:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_DUDLEY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, DUDLEY
-
-	; text when seen
-	dw SchoolboyDudleySeenText
-
-	; text when trainer beaten
-	dw SchoolboyDudleyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyDudleyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, $0000, SchoolboyDudleyScript
 
 SchoolboyDudleyScript:
 	talkaftercancel
@@ -95,23 +79,7 @@ SchoolboyDudleyScript:
 	end
 
 TrainerLassEllen:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_ELLEN
-
-	; trainer group && trainer id
-	db LASS, ELLEN
-
-	; text when seen
-	dw LassEllenSeenText
-
-	; text when trainer beaten
-	dw LassEllenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassEllenScript
+	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, $0000, LassEllenScript
 
 LassEllenScript:
 	talkaftercancel
@@ -122,23 +90,7 @@ LassEllenScript:
 	end
 
 TrainerSchoolboyJoe:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_JOE
-
-	; trainer group && trainer id
-	db SCHOOLBOY, JOE
-
-	; text when seen
-	dw SchoolboyJoeSeenText
-
-	; text when trainer beaten
-	dw SchoolboyJoeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyJoeScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, $0000, SchoolboyJoeScript
 
 SchoolboyJoeScript:
 	talkaftercancel
@@ -149,23 +101,7 @@ SchoolboyJoeScript:
 	end
 
 TrainerLassLaura:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_LAURA
-
-	; trainer group && trainer id
-	db LASS, LAURA
-
-	; text when seen
-	dw LassLauraSeenText
-
-	; text when trainer beaten
-	dw LassLauraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassLauraScript
+	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, $0000, LassLauraScript
 
 LassLauraScript:
 	talkaftercancel
@@ -176,23 +112,7 @@ LassLauraScript:
 	end
 
 TrainerCamperLloyd:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_LLOYD
-
-	; trainer group && trainer id
-	db CAMPER, LLOYD
-
-	; text when seen
-	dw CamperLloydSeenText
-
-	; text when trainer beaten
-	dw CamperLloydBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperLloydScript
+	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, $0000, CamperLloydScript
 
 CamperLloydScript:
 	talkaftercancel
@@ -203,23 +123,7 @@ CamperLloydScript:
 	end
 
 TrainerLassShannon:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_SHANNON
-
-	; trainer group && trainer id
-	db LASS, SHANNON
-
-	; text when seen
-	dw LassShannonSeenText
-
-	; text when trainer beaten
-	dw LassShannonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassShannonScript
+	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, $0000, LassShannonScript
 
 LassShannonScript:
 	talkaftercancel
@@ -230,23 +134,7 @@ LassShannonScript:
 	end
 
 TrainerSupernerdPat:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_PAT
-
-	; trainer group && trainer id
-	db SUPER_NERD, PAT
-
-	; text when seen
-	dw SupernerdPatSeenText
-
-	; text when trainer beaten
-	dw SupernerdPatBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdPatScript
+	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, $0000, SupernerdPatScript
 
 SupernerdPatScript:
 	talkaftercancel
@@ -292,8 +180,7 @@ ItemFragment_0x19efe3:
 	db PROTEIN, 1
 
 MapRoute25SignpostItem1:
-	dw $00f8
-	db POTION
+	dwb EVENT_ROUTE_25_HIDDEN_POTION, POTION
 	
 
 MovementData_0x19efe8:
@@ -536,30 +423,30 @@ Route25_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $2f, 1, GROUP_BILLS_HOUSE, MAP_BILLS_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $6, $2a, $0, UnknownScript_0x19eea0, $0, $0
 	xy_trigger 1, $7, $2a, $0, UnknownScript_0x19eee0, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 5, 45, $0, MapRoute25Signpost0Script
-	signpost 5, 4, $7, MapRoute25SignpostItem1
+	signpost 5, 45, SIGNPOST_READ, MapRoute25Signpost0Script
+	signpost 5, 4, SIGNPOST_ITEM, MapRoute25SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 11
-	person_event SPRITE_MISTY, 13, 50, $8, $0, 255, 255, $80, 0, ObjectEvent, EVENT_76E
-	person_event SPRITE_COOLTRAINER_M, 14, 50, $8, $0, 255, 255, $a0, 0, ObjectEvent, EVENT_76E
-	person_event SPRITE_YOUNGSTER, 12, 16, $6, $0, 255, 255, $92, 3, TrainerSchoolboyDudley, -1
-	person_event SPRITE_LASS, 15, 20, $7, $0, 255, 255, $92, 3, TrainerLassEllen, -1
-	person_event SPRITE_YOUNGSTER, 12, 25, $6, $0, 255, 255, $92, 1, TrainerSchoolboyJoe, -1
-	person_event SPRITE_LASS, 10, 26, $9, $0, 255, 255, $92, 3, TrainerLassLaura, -1
-	person_event SPRITE_YOUNGSTER, 8, 29, $6, $0, 255, 255, $a2, 2, TrainerCamperLloyd, -1
-	person_event SPRITE_LASS, 15, 32, $7, $0, 255, 255, $92, 1, TrainerLassShannon, -1
-	person_event SPRITE_SUPER_NERD, 11, 35, $6, $0, 255, 255, $b2, 1, TrainerSupernerdPat, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 41, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x19efac, -1
-	person_event SPRITE_POKE_BALL, 8, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x19efe3, EVENT_78B
+	person_event SPRITE_MISTY, 13, 50, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_COOLTRAINER_M, 14, 50, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_YOUNGSTER, 12, 16, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyDudley, -1
+	person_event SPRITE_LASS, 15, 20, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassEllen, -1
+	person_event SPRITE_YOUNGSTER, 12, 25, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyJoe, -1
+	person_event SPRITE_LASS, 10, 26, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassLaura, -1
+	person_event SPRITE_YOUNGSTER, 8, 29, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperLloyd, -1
+	person_event SPRITE_LASS, 15, 32, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassShannon, -1
+	person_event SPRITE_SUPER_NERD, 11, 35, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerSupernerdPat, -1
+	person_event SPRITE_COOLTRAINER_M, 12, 41, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x19efac, -1
+	person_event SPRITE_POKE_BALL, 8, 36, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN

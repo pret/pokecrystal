@@ -1,28 +1,12 @@
 UnionCaveB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerPokemaniacAndrew:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_ANDREW
-
-	; trainer group && trainer id
-	db POKEMANIAC, ANDREW
-
-	; text when seen
-	dw PokemaniacAndrewSeenText
-
-	; text when trainer beaten
-	dw PokemaniacAndrewBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacAndrewScript
+	trainer EVENT_BEAT_POKEMANIAC_ANDREW, POKEMANIAC, ANDREW, PokemaniacAndrewSeenText, PokemaniacAndrewBeatenText, $0000, PokemaniacAndrewScript
 
 PokemaniacAndrewScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokemaniacAndrewScript:
 	end
 
 TrainerPokemaniacCalvin:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_CALVIN
-
-	; trainer group && trainer id
-	db POKEMANIAC, CALVIN
-
-	; text when seen
-	dw PokemaniacCalvinSeenText
-
-	; text when trainer beaten
-	dw PokemaniacCalvinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacCalvinScript
+	trainer EVENT_BEAT_POKEMANIAC_CALVIN, POKEMANIAC, CALVIN, PokemaniacCalvinSeenText, PokemaniacCalvinBeatenText, $0000, PokemaniacCalvinScript
 
 PokemaniacCalvinScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ PokemaniacCalvinScript:
 	end
 
 TrainerHikerPhillip:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_PHILLIP
-
-	; trainer group && trainer id
-	db HIKER, PHILLIP
-
-	; text when seen
-	dw HikerPhillipSeenText
-
-	; text when trainer beaten
-	dw HikerPhillipBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerPhillipScript
+	trainer EVENT_BEAT_HIKER_PHILLIP, HIKER, PHILLIP, HikerPhillipSeenText, HikerPhillipBeatenText, $0000, HikerPhillipScript
 
 HikerPhillipScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ HikerPhillipScript:
 	end
 
 TrainerHikerLeonard:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_LEONARD
-
-	; trainer group && trainer id
-	db HIKER, LEONARD
-
-	; text when seen
-	dw HikerLeonardSeenText
-
-	; text when trainer beaten
-	dw HikerLeonardBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerLeonardScript
+	trainer EVENT_BEAT_HIKER_LEONARD, HIKER, LEONARD, HikerLeonardSeenText, HikerLeonardBeatenText, $0000, HikerLeonardScript
 
 HikerLeonardScript:
 	talkaftercancel
@@ -211,7 +147,7 @@ UnionCaveB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $3, $3, 7, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	warp_def $b, $3, 8, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
@@ -219,18 +155,18 @@ UnionCaveB1F_MapEventHeader:
 	warp_def $21, $3, 2, GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 	warp_def $1f, $11, 1, GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_POKEFAN_M, 8, 13, $a, $0, 255, 255, $b2, 3, TrainerHikerPhillip, -1
-	person_event SPRITE_POKEFAN_M, 11, 20, $6, $0, 255, 255, $b2, 3, TrainerHikerLeonard, -1
-	person_event SPRITE_SUPER_NERD, 36, 9, $8, $0, 255, 255, $92, 3, TrainerPokemaniacAndrew, -1
-	person_event SPRITE_SUPER_NERD, 34, 21, $8, $0, 255, 255, $92, 3, TrainerPokemaniacCalvin, -1
-	person_event SPRITE_POKE_BALL, 20, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a016, EVENT_65E
-	person_event SPRITE_BOULDER, 14, 11, $19, $0, 255, 255, $0, 0, UnionCaveB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 27, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a018, EVENT_65F
+	person_event SPRITE_POKEFAN_M, 8, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerPhillip, -1
+	person_event SPRITE_POKEFAN_M, 11, 20, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerLeonard, -1
+	person_event SPRITE_SUPER_NERD, 36, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacAndrew, -1
+	person_event SPRITE_SUPER_NERD, 34, 21, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacCalvin, -1
+	person_event SPRITE_POKE_BALL, 20, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a016, EVENT_UNION_CAVE_B1F_TM_SWIFT
+	person_event SPRITE_BOULDER, 14, 11, OW_LEFT | $11, $0, -1, -1, $0, 0, UnionCaveB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 27, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a018, EVENT_UNION_CAVE_B1F_X_DEFEND

@@ -1,8 +1,8 @@
 VermilionHouseFishingSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 FishingDude:
@@ -51,18 +51,18 @@ VermilionHouseFishingSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 1, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	warp_def $7, $3, 1, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 0, 3, $0, FishingDudesHousePhoto
+	signpost 0, 3, SIGNPOST_READ, FishingDudesHousePhoto
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 8, 6, $6, $0, 255, 255, $a0, 0, FishingDude, -1
+	person_event SPRITE_FISHING_GURU, 8, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingDude, -1

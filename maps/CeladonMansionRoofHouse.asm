@@ -1,8 +1,8 @@
 CeladonMansionRoofHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PharmacistScript_0x71afd:
@@ -117,17 +117,17 @@ CeladonMansionRoofHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_CELADON_MANSION_ROOF, MAP_CELADON_MANSION_ROOF
 	warp_def $7, $3, 3, GROUP_CELADON_MANSION_ROOF, MAP_CELADON_MANSION_ROOF
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_PHARMACIST, 6, 7, $6, $20, 255, 255, $a0, 0, PharmacistScript_0x71afd, -1
+	person_event SPRITE_PHARMACIST, 6, 7, OW_UP | $2, $20, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, PharmacistScript_0x71afd, -1

@@ -1,28 +1,12 @@
 DanceTheatre_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerKimono_girlNaoko2:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_NAOKO
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, NAOKO2
-
-	; text when seen
-	dw Kimono_girlNaoko2SeenText
-
-	; text when trainer beaten
-	dw Kimono_girlNaoko2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlNaoko2Script
+	trainer EVENT_BEAT_KIMONO_GIRL_NAOKO, KIMONO_GIRL, NAOKO2, Kimono_girlNaoko2SeenText, Kimono_girlNaoko2BeatenText, $0000, Kimono_girlNaoko2Script
 
 Kimono_girlNaoko2Script:
 	talkaftercancel
@@ -33,23 +17,7 @@ Kimono_girlNaoko2Script:
 	end
 
 TrainerKimono_girlSayo:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_SAYO
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, SAYO
-
-	; text when seen
-	dw Kimono_girlSayoSeenText
-
-	; text when trainer beaten
-	dw Kimono_girlSayoBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlSayoScript
+	trainer EVENT_BEAT_KIMONO_GIRL_SAYO, KIMONO_GIRL, SAYO, Kimono_girlSayoSeenText, Kimono_girlSayoBeatenText, $0000, Kimono_girlSayoScript
 
 Kimono_girlSayoScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ Kimono_girlSayoScript:
 	end
 
 TrainerKimono_girlZuki:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_ZUKI
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, ZUKI
-
-	; text when seen
-	dw Kimono_girlZukiSeenText
-
-	; text when trainer beaten
-	dw Kimono_girlZukiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlZukiScript
+	trainer EVENT_BEAT_KIMONO_GIRL_ZUKI, KIMONO_GIRL, ZUKI, Kimono_girlZukiSeenText, Kimono_girlZukiBeatenText, $0000, Kimono_girlZukiScript
 
 Kimono_girlZukiScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ Kimono_girlZukiScript:
 	end
 
 TrainerKimono_girlKuni:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_KUNI
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, KUNI
-
-	; text when seen
-	dw Kimono_girlKuniSeenText
-
-	; text when trainer beaten
-	dw Kimono_girlKuniBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlKuniScript
+	trainer EVENT_BEAT_KIMONO_GIRL_KUNI, KIMONO_GIRL, KUNI, Kimono_girlKuniSeenText, Kimono_girlKuniBeatenText, $0000, Kimono_girlKuniScript
 
 Kimono_girlKuniScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ Kimono_girlKuniScript:
 	end
 
 TrainerKimono_girlMiki:
-	; bit/flag number
-	dw EVENT_BEAT_KIMONO_GIRL_MIKI
-
-	; trainer group && trainer id
-	db KIMONO_GIRL, MIKI
-
-	; text when seen
-	dw Kimono_girlMikiSeenText
-
-	; text when trainer beaten
-	dw Kimono_girlMikiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Kimono_girlMikiScript
+	trainer EVENT_BEAT_KIMONO_GIRL_MIKI, KIMONO_GIRL, MIKI, Kimono_girlMikiSeenText, Kimono_girlMikiBeatenText, $0000, Kimono_girlMikiScript
 
 Kimono_girlMikiScript:
 	talkaftercancel
@@ -410,27 +330,27 @@ DanceTheatre_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $d, $5, 8, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $d, $6, 8, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 6, 5, $1, MapDanceTheatreSignpost1Script
-	signpost 6, 6, $1, MapDanceTheatreSignpost1Script
+	signpost 6, 5, SIGNPOST_UP, MapDanceTheatreSignpost1Script
+	signpost 6, 6, SIGNPOST_UP, MapDanceTheatreSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_KIMONO_GIRL, 6, 4, $1e, $0, 255, 255, $a2, 0, TrainerKimono_girlNaoko2, -1
-	person_event SPRITE_KIMONO_GIRL, 5, 6, $a, $0, 255, 255, $92, 0, TrainerKimono_girlSayo, -1
-	person_event SPRITE_KIMONO_GIRL, 6, 10, $3, $0, 255, 255, $82, 0, TrainerKimono_girlZuki, -1
-	person_event SPRITE_KIMONO_GIRL, 5, 13, $a, $0, 255, 255, $92, 0, TrainerKimono_girlKuni, -1
-	person_event SPRITE_KIMONO_GIRL, 6, 15, $1f, $0, 255, 255, $a2, 0, TrainerKimono_girlMiki, -1
-	person_event SPRITE_GENTLEMAN, 14, 11, $7, $0, 255, 255, $0, 0, GentlemanScript_0x994c6, -1
-	person_event SPRITE_RHYDON, 12, 10, $16, $0, 255, 255, $90, 0, RhydonScript_0x9951b, -1
-	person_event SPRITE_COOLTRAINER_M, 14, 14, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x99525, -1
-	person_event SPRITE_GRANNY, 10, 7, $7, $0, 255, 255, $0, 0, GrannyScript_0x99528, -1
+	person_event SPRITE_KIMONO_GIRL, 6, 4, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerKimono_girlNaoko2, -1
+	person_event SPRITE_KIMONO_GIRL, 5, 6, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerKimono_girlSayo, -1
+	person_event SPRITE_KIMONO_GIRL, 6, 10, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerKimono_girlZuki, -1
+	person_event SPRITE_KIMONO_GIRL, 5, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerKimono_girlKuni, -1
+	person_event SPRITE_KIMONO_GIRL, 6, 15, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerKimono_girlMiki, -1
+	person_event SPRITE_GENTLEMAN, 14, 11, OW_UP | $3, $0, -1, -1, $0, 0, GentlemanScript_0x994c6, -1
+	person_event SPRITE_RHYDON, 12, 10, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, RhydonScript_0x9951b, -1
+	person_event SPRITE_COOLTRAINER_M, 14, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x99525, -1
+	person_event SPRITE_GRANNY, 10, 7, OW_UP | $3, $0, -1, -1, $0, 0, GrannyScript_0x99528, -1

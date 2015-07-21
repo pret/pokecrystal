@@ -1,12 +1,12 @@
 Route27_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x1a0871, $0000
 	dw UnknownScript_0x1a0872, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x1a0871:
@@ -17,13 +17,13 @@ UnknownScript_0x1a0872:
 
 UnknownScript_0x1a0873:
 	spriteface $a, LEFT
-	showemote $0, $a, 15
+	showemote EMOTE_SHOCK, $a, 15
 	applymovement $a, MovementData_0x1a0a66
 	jump UnknownScript_0x1a088c
 
 UnknownScript_0x1a0881:
 	spriteface $a, LEFT
-	showemote $0, $a, 15
+	showemote EMOTE_SHOCK, $a, 15
 	applymovement $a, MovementData_0x1a0a69
 UnknownScript_0x1a088c:
 	spriteface $0, RIGHT
@@ -40,23 +40,7 @@ FisherScript_0x1a089c:
 	jumptextfaceplayer UnknownText_0x1a0a71
 
 TrainerPsychicGilbert:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_GILBERT
-
-	; trainer group && trainer id
-	db PSYCHIC_T, GILBERT
-
-	; text when seen
-	dw PsychicGilbertSeenText
-
-	; text when trainer beaten
-	dw PsychicGilbertBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicGilbertScript
+	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, $0000, PsychicGilbertScript
 
 PsychicGilbertScript:
 	talkaftercancel
@@ -67,33 +51,17 @@ PsychicGilbertScript:
 	end
 
 TrainerBird_keeperJose2:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_JOSE
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, JOSE2
-
-	; text when seen
-	dw Bird_keeperJose2SeenText
-
-	; text when trainer beaten
-	dw Bird_keeperJose2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperJose2Script
+	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, Bird_keeperJose2SeenText, Bird_keeperJose2BeatenText, $0000, Bird_keeperJose2Script
 
 Bird_keeperJose2Script:
-	writecode VAR_CALLERID, $d
+	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0x1a08ff
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
 	iftrue UnknownScript_0x1a0945
-	checkcellnum $d
+	checkcellnum PHONE_BIRDKEEPER_JOSE
 	iftrue UnknownScript_0x1a0963
 	checkevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a08e8
@@ -106,7 +74,7 @@ Bird_keeperJose2Script:
 UnknownScript_0x1a08e8:
 	scall UnknownScript_0x1a095b
 UnknownScript_0x1a08eb:
-	askforphonenumber $d
+	askforphonenumber PHONE_BIRDKEEPER_JOSE
 	if_equal $1, UnknownScript_0x1a096b
 	if_equal $2, UnknownScript_0x1a0967
 	trainertotext BIRD_KEEPER, JOSE2, $0
@@ -196,23 +164,7 @@ UnknownScript_0x1a0977:
 	end
 
 TrainerCooltrainermBlake:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_BLAKE
-
-	; trainer group && trainer id
-	db COOLTRAINERM, BLAKE
-
-	; text when seen
-	dw CooltrainermBlakeSeenText
-
-	; text when trainer beaten
-	dw CooltrainermBlakeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermBlakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, $0000, CooltrainermBlakeScript
 
 CooltrainermBlakeScript:
 	talkaftercancel
@@ -223,23 +175,7 @@ CooltrainermBlakeScript:
 	end
 
 TrainerCooltrainermBrian:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_BRIAN
-
-	; trainer group && trainer id
-	db COOLTRAINERM, BRIAN
-
-	; text when seen
-	dw CooltrainermBrianSeenText
-
-	; text when trainer beaten
-	dw CooltrainermBrianBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermBrianScript
+	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, $0000, CooltrainermBrianScript
 
 CooltrainermBrianScript:
 	talkaftercancel
@@ -250,31 +186,15 @@ CooltrainermBrianScript:
 	end
 
 TrainerCooltrainerfReena:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_REENA
-
-	; trainer group && trainer id
-	db COOLTRAINERF, REENA1
-
-	; text when seen
-	dw CooltrainerfReena1SeenText
-
-	; text when trainer beaten
-	dw CooltrainerfReena1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfReena1Script
+	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, $0000, CooltrainerfReena1Script
 
 CooltrainerfReena1Script:
-	writecode VAR_CALLERID, $e
+	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_REENA
 	iftrue UnknownScript_0x1a09e9
-	checkcellnum $e
+	checkcellnum PHONE_COOLTRAINERF_REENA
 	iftrue UnknownScript_0x1a0a3b
 	checkevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a09d2
@@ -287,7 +207,7 @@ CooltrainerfReena1Script:
 UnknownScript_0x1a09d2:
 	scall UnknownScript_0x1a0a33
 UnknownScript_0x1a09d5:
-	askforphonenumber $e
+	askforphonenumber PHONE_COOLTRAINERF_REENA
 	if_equal $1, UnknownScript_0x1a0a43
 	if_equal $2, UnknownScript_0x1a0a3f
 	trainertotext COOLTRAINERF, REENA1, $0
@@ -359,23 +279,7 @@ UnknownScript_0x1a0a47:
 	end
 
 TrainerCooltrainerfMegan:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_MEGAN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, MEGAN
-
-	; text when seen
-	dw CooltrainerfMeganSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfMeganBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfMeganScript
+	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, $0000, CooltrainerfMeganScript
 
 CooltrainerfMeganScript:
 	talkaftercancel
@@ -558,29 +462,29 @@ Route27_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $21, 1, GROUP_ROUTE_27_SANDSTORM_HOUSE, MAP_ROUTE_27_SANDSTORM_HOUSE
 	warp_def $5, $1a, 1, GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
 	warp_def $5, $24, 2, GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $a, $12, $0, UnknownScript_0x1a0873, $0, $0
 	xy_trigger 0, $a, $13, $0, UnknownScript_0x1a0881, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 7, 25, $0, MapRoute27Signpost0Script
+	signpost 7, 25, SIGNPOST_READ, MapRoute27Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_COOLTRAINER_M, 11, 52, $7, $0, 255, 255, $82, 3, TrainerCooltrainermBlake, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 62, $9, $0, 255, 255, $82, 4, TrainerCooltrainermBrian, -1
-	person_event SPRITE_COOLTRAINER_F, 14, 76, $7, $0, 255, 255, $82, 4, TrainerCooltrainerfReena, -1
-	person_event SPRITE_COOLTRAINER_F, 10, 41, $1f, $0, 255, 255, $82, 2, TrainerCooltrainerfMegan, -1
-	person_event SPRITE_YOUNGSTER, 11, 69, $8, $0, 255, 255, $92, 3, TrainerPsychicGilbert, -1
-	person_event SPRITE_YOUNGSTER, 17, 62, $9, $0, 255, 255, $92, 3, TrainerBird_keeperJose2, -1
-	person_event SPRITE_POKE_BALL, 16, 64, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a62, EVENT_6AB
-	person_event SPRITE_POKE_BALL, 16, 57, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a64, EVENT_6AC
-	person_event SPRITE_FISHER, 14, 25, $3, $0, 255, 255, $0, 3, FisherScript_0x1a089c, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 52, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermBlake, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 62, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainermBrian, -1
+	person_event SPRITE_COOLTRAINER_F, 14, 76, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainerfReena, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 41, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainerfMegan, -1
+	person_event SPRITE_YOUNGSTER, 11, 69, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicGilbert, -1
+	person_event SPRITE_YOUNGSTER, 17, 62, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperJose2, -1
+	person_event SPRITE_POKE_BALL, 16, 64, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a0a62, EVENT_ROUTE_27_TM_SOLARBEAM
+	person_event SPRITE_POKE_BALL, 16, 57, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a0a64, EVENT_ROUTE_27_RARE_CANDY
+	person_event SPRITE_FISHER, 14, 25, OW_DOWN | $3, $0, -1, -1, $0, 3, FisherScript_0x1a089c, -1

@@ -1,8 +1,8 @@
 CeladonGameCornerPrizeRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 GentlemanScript_0x726e9:
@@ -146,7 +146,7 @@ UnknownScript_0x727ed:
 	writetext UnknownText_0x729ad
 	closetext
 	writebyte PIKACHU
-	special Functionc230
+	special Special_GameCornerPrizeMonCheckDex
 	givepoke PIKACHU, 25, 0, 0
 	takecoins 2222
 	jump UnknownScript_0x727d3
@@ -164,7 +164,7 @@ UnknownScript_0x7281b:
 	writetext UnknownText_0x729ad
 	closetext
 	writebyte PORYGON
-	special Functionc230
+	special Special_GameCornerPrizeMonCheckDex
 	givepoke PORYGON, 15, 0, 0
 	takecoins 5555
 	jump UnknownScript_0x727d3
@@ -182,7 +182,7 @@ UnknownScript_0x72849:
 	writetext UnknownText_0x729ad
 	closetext
 	writebyte LARVITAR
-	special Functionc230
+	special Special_GameCornerPrizeMonCheckDex
 	givepoke LARVITAR, 40, 0, 0
 	takecoins 8888
 	jump UnknownScript_0x727d3
@@ -269,20 +269,20 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $5, $2, 7, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $5, $3, 7, GROUP_CELADON_CITY, MAP_CELADON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 2, $0, MapCeladonGameCornerPrizeRoomSignpost0Script
-	signpost 1, 4, $0, MapCeladonGameCornerPrizeRoomSignpost1Script
+	signpost 1, 2, SIGNPOST_READ, MapCeladonGameCornerPrizeRoomSignpost0Script
+	signpost 1, 4, SIGNPOST_READ, MapCeladonGameCornerPrizeRoomSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_GENTLEMAN, 6, 4, $6, $0, 255, 255, $80, 0, GentlemanScript_0x726e9, -1
-	person_event SPRITE_PHARMACIST, 8, 8, $4, $10, 255, 255, $a0, 0, PharmacistScript_0x726ec, -1
+	person_event SPRITE_GENTLEMAN, 6, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x726e9, -1
+	person_event SPRITE_PHARMACIST, 8, 8, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, PharmacistScript_0x726ec, -1

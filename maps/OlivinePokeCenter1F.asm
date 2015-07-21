@@ -1,8 +1,8 @@
 OlivinePokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 NurseScript_0x9c002:
@@ -45,21 +45,21 @@ OlivinePokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 1, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	warp_def $7, $4, 1, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x9c002, -1
-	person_event SPRITE_FISHING_GURU, 8, 12, $5, $1, 255, 255, $0, 0, FishingGuruScript_0x9c005, -1
-	person_event SPRITE_FISHER, 7, 6, $6, $0, 255, 255, $a0, 0, FisherScript_0x9c008, -1
-	person_event SPRITE_TEACHER, 5, 11, $6, $0, 255, 255, $0, 0, TeacherScript_0x9c00b, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x9c002, -1
+	person_event SPRITE_FISHING_GURU, 8, 12, OW_UP | $1, $1, -1, -1, $0, 0, FishingGuruScript_0x9c005, -1
+	person_event SPRITE_FISHER, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x9c008, -1
+	person_event SPRITE_TEACHER, 5, 11, OW_UP | $2, $0, -1, -1, $0, 0, TeacherScript_0x9c00b, -1

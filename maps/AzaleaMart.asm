@@ -1,8 +1,8 @@
 AzaleaMart_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ClerkScript_0x18e040:
@@ -44,19 +44,19 @@ AzaleaMart_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 	warp_def $7, $3, 3, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x18e040, -1
-	person_event SPRITE_COOLTRAINER_M, 9, 6, $7, $0, 255, 255, $0, 0, CooltrainerMScript_0x18e047, -1
-	person_event SPRITE_BUG_CATCHER, 6, 11, $5, $2, 255, 255, $80, 0, BugCatcherScript_0x18e04a, -1
+	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x18e040, -1
+	person_event SPRITE_COOLTRAINER_M, 9, 6, OW_UP | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x18e047, -1
+	person_event SPRITE_BUG_CATCHER, 6, 11, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x18e04a, -1

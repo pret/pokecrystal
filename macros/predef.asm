@@ -1,7 +1,6 @@
 add_predef: MACRO
 \1Predef::
-	dw \1
-	db BANK(\1)
+	dwb \1, BANK(\1)
 ENDM
 
 predef_id: MACRO

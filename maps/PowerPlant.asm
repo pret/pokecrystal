@@ -1,12 +1,12 @@
 PowerPlant_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x188dc3, $0000
 	dw UnknownScript_0x188dc4, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x188dc3:
@@ -17,7 +17,7 @@ UnknownScript_0x188dc4:
 
 UnknownScript_0x188dc5:
 	playsound SFX_CALL
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	waitbutton
 	pause 30
 	applymovement $2, MovementData_0x188ed5
@@ -139,7 +139,7 @@ PowerPlantManager:
 	closetext
 	loadmovesprites
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
-	clearevent EVENT_76D
+	clearevent EVENT_CERULEAN_GYM_ROCKET
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	domaptrigger GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM, $1
 	dotrigger $1
@@ -156,11 +156,11 @@ UnknownScript_0x188e93:
 	keeptextopen
 	takeitem MACHINE_PART, 1
 	setevent EVENT_RETURNED_MACHINE_PART
-	clearevent EVENT_772
-	setevent EVENT_771
-	setevent EVENT_76C
+	clearevent EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	setevent EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	setevent EVENT_ROUTE_24_ROCKET
 	setevent EVENT_RESTORED_POWER_TO_KANTO
-	clearevent EVENT_749
+	clearevent EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
 UnknownScript_0x188eac:
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue UnknownScript_0x188ec5
@@ -385,26 +385,26 @@ PowerPlant_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $2, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 	warp_def $11, $3, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $c, $5, $0, UnknownScript_0x188dc5, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, PowerPlantBookshelf
-	signpost 1, 1, $0, PowerPlantBookshelf
+	signpost 1, 0, SIGNPOST_READ, PowerPlantBookshelf
+	signpost 1, 1, SIGNPOST_READ, PowerPlantBookshelf
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_OFFICER, 18, 8, $6, $0, 255, 255, $a0, 0, OfficerScript_0x188df5, -1
-	person_event SPRITE_GYM_GUY, 13, 6, $3, $0, 255, 255, $90, 0, GymGuyScript_0x188e15, -1
-	person_event SPRITE_GYM_GUY, 15, 10, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188e29, -1
-	person_event SPRITE_OFFICER, 7, 13, $8, $0, 255, 255, $a0, 0, OfficerScript_0x188e3d, -1
-	person_event SPRITE_GYM_GUY, 6, 11, $5, $1, 255, 255, $90, 0, GymGuyScript_0x188e51, -1
-	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, PowerPlantManager, -1
-	person_event SPRITE_GYM_GUY, 9, 9, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188ecb, -1
+	person_event SPRITE_OFFICER, 18, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x188df5, -1
+	person_event SPRITE_GYM_GUY, 13, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188e15, -1
+	person_event SPRITE_GYM_GUY, 15, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188e29, -1
+	person_event SPRITE_OFFICER, 7, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x188e3d, -1
+	person_event SPRITE_GYM_GUY, 6, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188e51, -1
+	person_event SPRITE_FISHER, 14, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PowerPlantManager, -1
+	person_event SPRITE_GYM_GUY, 9, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188ecb, -1

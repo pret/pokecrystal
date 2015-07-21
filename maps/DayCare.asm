@@ -1,8 +1,8 @@
 DayCare_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -12,13 +12,13 @@ DayCare_MapScriptHeader:
 UnknownScript_0x62f7b:
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62f88
-	clearevent EVENT_6E5
-	setevent EVENT_6E6
+	clearevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	setevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	return
 
 UnknownScript_0x62f88:
-	setevent EVENT_6E5
-	clearevent EVENT_6E6
+	setevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	clearevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	return
 
 GrampsScript_0x62f8f:
@@ -50,7 +50,7 @@ UnknownScript_0x62fb6:
 	end
 
 UnknownScript_0x62fbd:
-	special Function166d6
+	special Special_DayCareMan
 	closetext
 	loadmovesprites
 	end
@@ -60,7 +60,7 @@ GrannyScript_0x62fc3:
 	loadfont
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62fd1
-	special Function1672a
+	special Special_DayCareLady
 	closetext
 	loadmovesprites
 	end
@@ -158,22 +158,22 @@ DayCare_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $5, $0, 3, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $6, $0, 4, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $7, $2, 5, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $7, $3, 5, GROUP_ROUTE_34, MAP_ROUTE_34
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, DayCareBookshelf
-	signpost 1, 1, $0, DayCareBookshelf
+	signpost 1, 0, SIGNPOST_READ, DayCareBookshelf
+	signpost 1, 1, SIGNPOST_READ, DayCareBookshelf
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x62f8f, EVENT_6E5
-	person_event SPRITE_GRANNY, 7, 9, $8, $0, 255, 255, $80, 0, GrannyScript_0x62fc3, -1
+	person_event SPRITE_GRAMPS, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, GrampsScript_0x62f8f, EVENT_DAYCARE_MAN_IN_DAYCARE
+	person_event SPRITE_GRANNY, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrannyScript_0x62fc3, -1

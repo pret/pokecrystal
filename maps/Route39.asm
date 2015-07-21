@@ -1,8 +1,8 @@
 Route39_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TaurosScript_0x1a5af5:
@@ -14,31 +14,15 @@ TaurosScript_0x1a5af5:
 	end
 
 TrainerPokefanmDerek1:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_DEREK
-
-	; trainer group && trainer id
-	db POKEFANM, DEREK1
-
-	; text when seen
-	dw PokefanmDerek1SeenText
-
-	; text when trainer beaten
-	dw PokefanmDerek1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmDerek1Script
+	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, $0000, PokefanmDerek1Script
 
 PokefanmDerek1Script:
-	writecode VAR_CALLERID, $1c
+	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue UnknownScript_0x1a5b4a
-	checkcellnum $1c
+	checkcellnum PHONE_POKEFANM_DEREK
 	iftrue UnknownScript_0x1a5b6e
 	checkpoke PIKACHU
 	iffalse UnknownScript_0x1a5b5c
@@ -53,7 +37,7 @@ PokefanmDerek1Script:
 UnknownScript_0x1a5b33:
 	scall UnknownScript_0x1a5b66
 UnknownScript_0x1a5b36:
-	askforphonenumber $1c
+	askforphonenumber PHONE_POKEFANM_DEREK
 	if_equal $1, UnknownScript_0x1a5b76
 	if_equal $2, UnknownScript_0x1a5b72
 	trainertotext POKEFANM, DEREK1, $0
@@ -109,23 +93,7 @@ UnknownScript_0x1a5b7e:
 	end
 
 TrainerPokefanfRuth:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANF_RUTH
-
-	; trainer group && trainer id
-	db POKEFANF, RUTH
-
-	; text when seen
-	dw PokefanfRuthSeenText
-
-	; text when trainer beaten
-	dw PokefanfRuthBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanfRuthScript
+	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, $0000, PokefanfRuthScript
 
 PokefanfRuthScript:
 	talkaftercancel
@@ -136,23 +104,7 @@ PokefanfRuthScript:
 	end
 
 TrainerSailorEugene:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_EUGENE
-
-	; trainer group && trainer id
-	db SAILOR, EUGENE
-
-	; text when seen
-	dw SailorEugeneSeenText
-
-	; text when trainer beaten
-	dw SailorEugeneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorEugeneScript
+	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, $0000, SailorEugeneScript
 
 SailorEugeneScript:
 	talkaftercancel
@@ -163,23 +115,7 @@ SailorEugeneScript:
 	end
 
 TrainerPsychicNorman:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_NORMAN
-
-	; trainer group && trainer id
-	db PSYCHIC_T, NORMAN
-
-	; text when seen
-	dw PsychicNormanSeenText
-
-	; text when trainer beaten
-	dw PsychicNormanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicNormanScript
+	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, $0000, PsychicNormanScript
 
 PsychicNormanScript:
 	talkaftercancel
@@ -232,8 +168,7 @@ FruitTreeScript_0x1a5bf4:
 	fruittree $f
 
 MapRoute39SignpostItem3:
-	dw $00aa
-	db NUGGET
+	dwb EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
 	
 
 UnknownText_0x1a5bf9:
@@ -401,30 +336,30 @@ Route39_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $1, 1, GROUP_ROUTE_39_BARN, MAP_ROUTE_39_BARN
 	warp_def $3, $5, 1, GROUP_ROUTE_39_FARMHOUSE, MAP_ROUTE_39_FARMHOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 31, 5, $0, MapRoute39Signpost0Script
-	signpost 5, 9, $0, MapRoute39Signpost1Script
-	signpost 7, 15, $0, MapRoute39Signpost2Script
-	signpost 13, 5, $7, MapRoute39SignpostItem3
+	signpost 31, 5, SIGNPOST_READ, MapRoute39Signpost0Script
+	signpost 5, 9, SIGNPOST_READ, MapRoute39Signpost1Script
+	signpost 7, 15, SIGNPOST_READ, MapRoute39Signpost2Script
+	signpost 13, 5, SIGNPOST_ITEM, MapRoute39SignpostItem3
 
-	; people-events
+.PersonEvents:
 	db 10
-	person_event SPRITE_SAILOR, 33, 17, $8, $0, 255, 255, $92, 5, TrainerSailorEugene, -1
-	person_event SPRITE_POKEFAN_M, 26, 14, $7, $0, 255, 255, $82, 4, TrainerPokefanmDerek1, -1
-	person_event SPRITE_POKEFAN_F, 23, 15, $9, $0, 255, 255, $82, 4, TrainerPokefanfRuth, -1
-	person_event SPRITE_TAUROS, 16, 7, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 15, 10, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 19, 8, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 17, 12, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 11, 17, $a, $0, 255, 255, $92, 1, TrainerPsychicNorman, -1
-	person_event SPRITE_FRUIT_TREE, 7, 13, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a5bf4, -1
-	person_event SPRITE_POKEFAN_F, 26, 8, $6, $0, 255, 255, $80, 0, PokefanFScript_0x1a5bbe, -1
+	person_event SPRITE_SAILOR, 33, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSailorEugene, -1
+	person_event SPRITE_POKEFAN_M, 26, 14, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanmDerek1, -1
+	person_event SPRITE_POKEFAN_F, 23, 15, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanfRuth, -1
+	person_event SPRITE_TAUROS, 16, 7, OW_UP | $12, $0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 15, 10, OW_UP | $12, $0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 19, 8, OW_UP | $12, $0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 17, 12, OW_UP | $12, $0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 11, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicNorman, -1
+	person_event SPRITE_FRUIT_TREE, 7, 13, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a5bf4, -1
+	person_event SPRITE_POKEFAN_F, 26, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x1a5bbe, -1

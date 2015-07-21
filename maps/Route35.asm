@@ -1,28 +1,12 @@
 Route35_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBird_keeperBryan:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_BRYAN
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, BRYAN
-
-	; text when seen
-	dw Bird_keeperBryanSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperBryanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperBryanScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BRYAN, BIRD_KEEPER, BRYAN, Bird_keeperBryanSeenText, Bird_keeperBryanBeatenText, $0000, Bird_keeperBryanScript
 
 Bird_keeperBryanScript:
 	talkaftercancel
@@ -33,29 +17,13 @@ Bird_keeperBryanScript:
 	end
 
 TrainerJugglerIrwin:
-	; bit/flag number
-	dw EVENT_BEAT_JUGGLER_IRWIN
-
-	; trainer group && trainer id
-	db JUGGLER, IRWIN1
-
-	; text when seen
-	dw JugglerIrwin1SeenText
-
-	; text when trainer beaten
-	dw JugglerIrwin1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw JugglerIrwin1Script
+	trainer EVENT_BEAT_JUGGLER_IRWIN, JUGGLER, IRWIN1, JugglerIrwin1SeenText, JugglerIrwin1BeatenText, $0000, JugglerIrwin1Script
 
 JugglerIrwin1Script:
-	writecode VAR_CALLERID, $16
+	writecode VAR_CALLERID, PHONE_JUGGLER_IRWIN
 	talkaftercancel
 	loadfont
-	checkcellnum $16
+	checkcellnum PHONE_JUGGLER_IRWIN
 	iftrue UnknownScript_0x19c90f
 	checkevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19c8ec
@@ -68,7 +36,7 @@ JugglerIrwin1Script:
 UnknownScript_0x19c8ec:
 	scall UnknownScript_0x19c907
 UnknownScript_0x19c8ef:
-	askforphonenumber $16
+	askforphonenumber PHONE_JUGGLER_IRWIN
 	if_equal $1, UnknownScript_0x19c917
 	if_equal $2, UnknownScript_0x19c913
 	trainertotext JUGGLER, IRWIN1, $0
@@ -104,23 +72,7 @@ UnknownScript_0x19c91b:
 	end
 
 TrainerCamperIvan:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_IVAN
-
-	; trainer group && trainer id
-	db CAMPER, IVAN
-
-	; text when seen
-	dw CamperIvanSeenText
-
-	; text when trainer beaten
-	dw CamperIvanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperIvanScript
+	trainer EVENT_BEAT_CAMPER_IVAN, CAMPER, IVAN, CamperIvanSeenText, CamperIvanBeatenText, $0000, CamperIvanScript
 
 CamperIvanScript:
 	talkaftercancel
@@ -131,23 +83,7 @@ CamperIvanScript:
 	end
 
 TrainerCamperElliot:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_ELLIOT
-
-	; trainer group && trainer id
-	db CAMPER, ELLIOT
-
-	; text when seen
-	dw CamperElliotSeenText
-
-	; text when trainer beaten
-	dw CamperElliotBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperElliotScript
+	trainer EVENT_BEAT_CAMPER_ELLIOT, CAMPER, ELLIOT, CamperElliotSeenText, CamperElliotBeatenText, $0000, CamperElliotScript
 
 CamperElliotScript:
 	talkaftercancel
@@ -158,23 +94,7 @@ CamperElliotScript:
 	end
 
 TrainerPicnickerBrooke:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_BROOKE
-
-	; trainer group && trainer id
-	db PICNICKER, BROOKE
-
-	; text when seen
-	dw PicnickerBrookeSeenText
-
-	; text when trainer beaten
-	dw PicnickerBrookeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerBrookeScript
+	trainer EVENT_BEAT_PICNICKER_BROOKE, PICNICKER, BROOKE, PicnickerBrookeSeenText, PicnickerBrookeBeatenText, $0000, PicnickerBrookeScript
 
 PicnickerBrookeScript:
 	talkaftercancel
@@ -185,23 +105,7 @@ PicnickerBrookeScript:
 	end
 
 TrainerPicnickerKim:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_KIM
-
-	; trainer group && trainer id
-	db PICNICKER, KIM
-
-	; text when seen
-	dw PicnickerKimSeenText
-
-	; text when trainer beaten
-	dw PicnickerKimBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerKimScript
+	trainer EVENT_BEAT_PICNICKER_KIM, PICNICKER, KIM, PicnickerKimSeenText, PicnickerKimBeatenText, $0000, PicnickerKimScript
 
 PicnickerKimScript:
 	talkaftercancel
@@ -212,33 +116,17 @@ PicnickerKimScript:
 	end
 
 TrainerBug_catcherArnie1:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_ARNIE
-
-	; trainer group && trainer id
-	db BUG_CATCHER, ARNIE1
-
-	; text when seen
-	dw Bug_catcherArnie1SeenText
-
-	; text when trainer beaten
-	dw Bug_catcherArnie1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherArnie1Script
+	trainer EVENT_BEAT_BUG_CATCHER_ARNIE, BUG_CATCHER, ARNIE1, Bug_catcherArnie1SeenText, Bug_catcherArnie1BeatenText, $0000, Bug_catcherArnie1Script
 
 Bug_catcherArnie1Script:
-	writecode VAR_CALLERID, $17
+	writecode VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_ARNIE
 	iftrue UnknownScript_0x19c9bb
 	checkflag ENGINE_YANMA_SWARM
 	iftrue UnknownScript_0x19ca2f
-	checkcellnum $17
+	checkcellnum PHONE_BUG_CATCHER_ARNIE
 	iftrue UnknownScript_0x19c90f
 	checkevent EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19c9a4
@@ -251,7 +139,7 @@ Bug_catcherArnie1Script:
 UnknownScript_0x19c9a4:
 	scall UnknownScript_0x19c907
 UnknownScript_0x19c9a7:
-	askforphonenumber $17
+	askforphonenumber PHONE_BUG_CATCHER_ARNIE
 	if_equal $1, UnknownScript_0x19c917
 	if_equal $2, UnknownScript_0x19c913
 	trainertotext BUG_CATCHER, ARNIE1, $0
@@ -325,23 +213,7 @@ UnknownScript_0x19ca2f:
 	end
 
 TrainerFirebreatherWalt:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_WALT
-
-	; trainer group && trainer id
-	db FIREBREATHER, WALT
-
-	; text when seen
-	dw FirebreatherWaltSeenText
-
-	; text when trainer beaten
-	dw FirebreatherWaltBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherWaltScript
+	trainer EVENT_BEAT_FIREBREATHER_WALT, FIREBREATHER, WALT, FirebreatherWaltSeenText, FirebreatherWaltBeatenText, $0000, FirebreatherWaltScript
 
 FirebreatherWaltScript:
 	talkaftercancel
@@ -581,30 +453,30 @@ Route35_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $21, $9, 1, GROUP_ROUTE_35_GOLDENROD_GATE, MAP_ROUTE_35_GOLDENROD_GATE
 	warp_def $21, $a, 2, GROUP_ROUTE_35_GOLDENROD_GATE, MAP_ROUTE_35_GOLDENROD_GATE
 	warp_def $5, $3, 3, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 1, $0, MapRoute35Signpost1Script
-	signpost 31, 11, $0, MapRoute35Signpost1Script
+	signpost 7, 1, SIGNPOST_READ, MapRoute35Signpost1Script
+	signpost 31, 11, SIGNPOST_READ, MapRoute35Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 11
-	person_event SPRITE_YOUNGSTER, 23, 8, $a, $0, 255, 255, $a2, 2, TrainerCamperIvan, -1
-	person_event SPRITE_YOUNGSTER, 24, 12, $6, $0, 255, 255, $a2, 3, TrainerCamperElliot, -1
-	person_event SPRITE_LASS, 24, 11, $6, $0, 255, 255, $a2, 3, TrainerPicnickerBrooke, -1
-	person_event SPRITE_LASS, 30, 14, $a, $0, 255, 255, $a2, 1, TrainerPicnickerKim, -1
-	person_event SPRITE_YOUNGSTER, 32, 18, $6, $0, 255, 255, $92, 0, TrainerBird_keeperBryan, -1
-	person_event SPRITE_FISHER, 14, 6, $1e, $0, 255, 255, $82, 2, TrainerFirebreatherWalt, -1
-	person_event SPRITE_BUG_CATCHER, 11, 20, $6, $2, 255, 255, $b2, 3, TrainerBug_catcherArnie1, -1
-	person_event SPRITE_SUPER_NERD, 14, 9, $a, $0, 255, 255, $92, 2, TrainerJugglerIrwin, -1
-	person_event SPRITE_OFFICER, 10, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x19ca49, -1
-	person_event SPRITE_FRUIT_TREE, 29, 6, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19ca7e, -1
-	person_event SPRITE_POKE_BALL, 20, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x19ca7c, EVENT_6B2
+	person_event SPRITE_YOUNGSTER, 23, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperIvan, -1
+	person_event SPRITE_YOUNGSTER, 24, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperElliot, -1
+	person_event SPRITE_LASS, 24, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPicnickerBrooke, -1
+	person_event SPRITE_LASS, 30, 14, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerPicnickerKim, -1
+	person_event SPRITE_YOUNGSTER, 32, 18, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerBird_keeperBryan, -1
+	person_event SPRITE_FISHER, 14, 6, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherWalt, -1
+	person_event SPRITE_BUG_CATCHER, 11, 20, OW_UP | $2, $2, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherArnie1, -1
+	person_event SPRITE_SUPER_NERD, 14, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerJugglerIrwin, -1
+	person_event SPRITE_OFFICER, 10, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x19ca49, -1
+	person_event SPRITE_FRUIT_TREE, 29, 6, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19ca7e, -1
+	person_event SPRITE_POKE_BALL, 20, 17, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x19ca7c, EVENT_ROUTE_35_TM_ROLLOUT

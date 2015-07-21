@@ -1,8 +1,8 @@
 CopycatsHouse2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -33,15 +33,15 @@ Copycat:
 	iftrue .Part1
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
-	variablesprite $b, $1
+	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part2
 
 .Part1
 	applymovement $7, MovementData_0x18afd0
 	faceplayer
-	variablesprite $b, $60
+	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part2
-	special Function14209
+	special RunCallback_04
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .Part7
 	loadfont
@@ -64,8 +64,8 @@ Copycat:
 	applymovement $7, MovementData_0x18afd0
 .Part6
 	faceplayer
-	variablesprite $b, $28
-	special Function14209
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b028
 	closetext
@@ -93,8 +93,8 @@ Copycat:
 	applymovement $7, MovementData_0x18afd0
 .Part11
 	faceplayer
-	variablesprite $b, $28
-	special Function14209
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b116
 	closetext
@@ -108,7 +108,7 @@ Copycat:
 	keeptextopen
 	takeitem LOST_ITEM, 1
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
-	clearevent EVENT_773
+	clearevent EVENT_COPYCATS_HOUSE_2F_DOLL
 	jump .Part14
 
 .Part13
@@ -129,15 +129,15 @@ Copycat:
 	iftrue .Part16
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
-	variablesprite $b, $1
+	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part17
 
 .Part16
 	applymovement $7, MovementData_0x18afd0
 	faceplayer
-	variablesprite $b, $60
+	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part17
-	special Function14209
+	special RunCallback_04
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part18
@@ -158,8 +158,8 @@ Copycat:
 	applymovement $7, MovementData_0x18afd0
 .Part21
 	faceplayer
-	variablesprite $b, $28
-	special Function14209
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b2f5
 	closetext
@@ -359,23 +359,23 @@ CopycatsHouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $0, $3, 3, GROUP_COPYCATS_HOUSE_1F, MAP_COPYCATS_HOUSE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, CopycatsHouse2FBookshelf
-	signpost 1, 1, $0, CopycatsHouse2FBookshelf
+	signpost 1, 0, SIGNPOST_READ, CopycatsHouse2FBookshelf
+	signpost 1, 1, SIGNPOST_READ, CopycatsHouse2FBookshelf
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $80, 0, Copycat, EVENT_6EE
-	person_event SPRITE_MOLTRES, 8, 10, $16, $0, 255, 255, $b0, 0, CopycatsDodrio, -1
-	person_event SPRITE_FAIRY, 5, 10, $6, $0, 255, 255, $80, 0, CopycatsHouse2FDoll, EVENT_773
-	person_event SPRITE_MONSTER, 5, 6, $6, $0, 255, 255, $a0, 0, CopycatsHouse2FDoll, -1
-	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, CopycatsHouse2FDoll, -1
-	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, Copycat, EVENT_6EF
+	person_event SPRITE_COPYCAT, 7, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Copycat, EVENT_COPYCAT_1
+	person_event SPRITE_MOLTRES, 8, 10, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CopycatsDodrio, -1
+	person_event SPRITE_FAIRY, 5, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
+	person_event SPRITE_MONSTER, 5, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CopycatsHouse2FDoll, -1
+	person_event SPRITE_BIRD, 5, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CopycatsHouse2FDoll, -1
+	person_event SPRITE_COPYCAT, 7, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, Copycat, EVENT_COPYCAT_2

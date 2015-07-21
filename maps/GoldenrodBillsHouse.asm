@@ -1,8 +1,8 @@
 GoldenrodBillsHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BillsHouseBill:
@@ -65,14 +65,14 @@ UnknownScript_0x54c33:
 BillsSister:
 	faceplayer
 	loadfont
-	checkcellnum $3
+	checkcellnum PHONE_BILL
 	iftrue UnknownScript_0x54c58
 	writetext UnknownText_0x54f9e
-	askforphonenumber $3
+	askforphonenumber PHONE_BILL
 	if_equal $1, UnknownScript_0x54c64
 	if_equal $2, UnknownScript_0x54c5e
 	waitbutton
-	addcellnum $3
+	addcellnum PHONE_BILL
 	writetext UnknownText_0x54fd9
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitbutton
@@ -241,22 +241,22 @@ GoldenrodBillsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 4, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $3, 4, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 1, 0, $0, BillsHouseBookshelf2
-	signpost 1, 1, $0, BillsHouseBookshelf1
-	signpost 1, 7, $0, BillsHouseRadio
+	signpost 1, 0, SIGNPOST_READ, BillsHouseBookshelf2
+	signpost 1, 1, SIGNPOST_READ, BillsHouseBookshelf1
+	signpost 1, 7, SIGNPOST_READ, BillsHouseRadio
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillsHouseBill, EVENT_MET_BILL
-	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, BillsMom, -1
-	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, BillsSister, -1
+	person_event SPRITE_BILL, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, BillsHouseBill, EVENT_MET_BILL
+	person_event SPRITE_POKEFAN_F, 7, 9, OW_UP | $2, $0, -1, -1, $0, 0, BillsMom, -1
+	person_event SPRITE_TWIN, 8, 9, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BillsSister, -1

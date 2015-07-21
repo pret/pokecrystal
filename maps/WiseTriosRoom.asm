@@ -1,12 +1,12 @@
 WiseTriosRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x98572, $0000
 	dw UnknownScript_0x98573, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -26,18 +26,18 @@ UnknownScript_0x98574:
 	iftrue UnknownScript_0x9858c
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x9858c
-	clearevent EVENT_7AB
-	setevent EVENT_7AC
+	clearevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
 UnknownScript_0x9858c:
-	setevent EVENT_7AB
-	clearevent EVENT_7AC
+	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	clearevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
 UnknownScript_0x98593:
-	setevent EVENT_7AB
-	setevent EVENT_7AC
+	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
 SageScript_0x9859a:
@@ -52,7 +52,7 @@ SageScript_0x985a0:
 UnknownScript_0x985a3:
 	spriteface $4, UP
 	spriteface $0, DOWN
-	showemote $0, $4, 20
+	showemote EMOTE_SHOCK, $4, 20
 	follow $0, $4
 	applymovement $0, MovementData_0x98622
 	stopfollow
@@ -66,23 +66,7 @@ UnknownScript_0x985a3:
 	end
 
 TrainerSageGaku:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_GAKU
-
-	; trainer group && trainer id
-	db SAGE, GAKU
-
-	; text when seen
-	dw SageGakuSeenText
-
-	; text when trainer beaten
-	dw SageGakuBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageGakuScript
+	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, $0000, SageGakuScript
 
 SageGakuScript:
 	loadfont
@@ -92,23 +76,7 @@ SageGakuScript:
 	end
 
 TrainerSageMasa:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_MASA
-
-	; trainer group && trainer id
-	db SAGE, MASA
-
-	; text when seen
-	dw SageMasaSeenText
-
-	; text when trainer beaten
-	dw SageMasaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageMasaScript
+	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, $0000, SageMasaScript
 
 SageMasaScript:
 	loadfont
@@ -118,29 +86,13 @@ SageMasaScript:
 	end
 
 TrainerSageKoji:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_KOJI
-
-	; trainer group && trainer id
-	db SAGE, KOJI
-
-	; text when seen
-	dw SageKojiSeenText
-
-	; text when trainer beaten
-	dw SageKojiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageKojiScript
+	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, $0000, SageKojiScript
 
 SageKojiScript:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9861b
 	pause 10
-	showemote $0, $7, 20
+	showemote EMOTE_SHOCK, $7, 20
 	loadfont
 	writetext UnknownText_0x98c6c
 	keeptextopen
@@ -393,24 +345,24 @@ WiseTriosRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $4, $7, 4, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $5, $7, 5, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $4, $1, 5, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $4, $7, $0, UnknownScript_0x985a3, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_SAGE, 6, 10, $3, $0, 255, 255, $0, 0, SageScript_0x9859a, EVENT_7AB
-	person_event SPRITE_SAGE, 11, 10, $5, $1, 255, 255, $0, 0, SageScript_0x9859d, EVENT_7AB
-	person_event SPRITE_SAGE, 9, 11, $8, $0, 255, 255, $0, 0, SageScript_0x985a0, EVENT_7AB
-	person_event SPRITE_SAGE, 6, 8, $6, $0, 255, 255, $2, 2, TrainerSageGaku, EVENT_7AC
-	person_event SPRITE_SAGE, 10, 8, $7, $0, 255, 255, $2, 2, TrainerSageMasa, EVENT_7AC
-	person_event SPRITE_SAGE, 8, 10, $8, $0, 255, 255, $2, 2, TrainerSageKoji, EVENT_7AC
+	person_event SPRITE_SAGE, 6, 10, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 11, 10, OW_UP | $1, $1, -1, -1, $0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 9, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 6, 8, OW_UP | $2, $0, -1, -1, $2, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 10, 8, OW_UP | $3, $0, -1, -1, $2, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 8, 10, OW_LEFT | $0, $0, -1, -1, $2, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2

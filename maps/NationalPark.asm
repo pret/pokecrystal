@@ -1,8 +1,8 @@
 NationalPark_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 LassScript_0x5c002:
@@ -56,31 +56,15 @@ GameboyKidScript_0x5c037:
 	end
 
 TrainerSchoolboyJack1:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_JACK
-
-	; trainer group && trainer id
-	db SCHOOLBOY, JACK1
-
-	; text when seen
-	dw SchoolboyJack1SeenText
-
-	; text when trainer beaten
-	dw SchoolboyJack1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyJack1Script
+	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, $0000, SchoolboyJack1Script
 
 SchoolboyJack1Script:
-	writecode VAR_CALLERID, $5
+	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0x5c088
-	checkcellnum $5
+	checkcellnum PHONE_SCHOOLBOY_JACK
 	iftrue UnknownScript_0x5c108
 	checkevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5c071
@@ -93,7 +77,7 @@ SchoolboyJack1Script:
 UnknownScript_0x5c071:
 	scall UnknownScript_0x5c100
 UnknownScript_0x5c074:
-	askforphonenumber $5
+	askforphonenumber PHONE_SCHOOLBOY_JACK
 	if_equal $1, UnknownScript_0x5c110
 	if_equal $2, UnknownScript_0x5c10c
 	trainertotext SCHOOLBOY, JACK1, $0
@@ -189,23 +173,7 @@ UnknownScript_0x5c114:
 	end
 
 TrainerPokefanmWilliam:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_WILLIAM
-
-	; trainer group && trainer id
-	db POKEFANM, WILLIAM
-
-	; text when seen
-	dw PokefanmWilliamSeenText
-
-	; text when trainer beaten
-	dw PokefanmWilliamBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmWilliamScript
+	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, $0000, PokefanmWilliamScript
 
 PokefanmWilliamScript:
 	talkaftercancel
@@ -216,31 +184,15 @@ PokefanmWilliamScript:
 	end
 
 TrainerPokefanfBeverly1:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANF_BEVERLY
-
-	; trainer group && trainer id
-	db POKEFANF, BEVERLY1
-
-	; text when seen
-	dw PokefanfBeverly1SeenText
-
-	; text when trainer beaten
-	dw PokefanfBeverly1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanfBeverly1Script
+	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, $0000, PokefanfBeverly1Script
 
 PokefanfBeverly1Script:
-	writecode VAR_CALLERID, $6
+	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0x5c177
-	checkcellnum $6
+	checkcellnum PHONE_POKEFAN_BEVERLY
 	iftrue UnknownScript_0x5c19b
 	checkpoke MARILL
 	iffalse UnknownScript_0x5c189
@@ -255,7 +207,7 @@ PokefanfBeverly1Script:
 UnknownScript_0x5c160:
 	scall UnknownScript_0x5c193
 UnknownScript_0x5c163:
-	askforphonenumber $6
+	askforphonenumber PHONE_POKEFAN_BEVERLY
 	if_equal $1, UnknownScript_0x5c1a3
 	if_equal $2, UnknownScript_0x5c19f
 	trainertotext POKEFANF, BEVERLY1, $0
@@ -311,23 +263,7 @@ UnknownScript_0x5c1ab:
 	end
 
 TrainerLassKrise:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_KRISE
-
-	; trainer group && trainer id
-	db LASS, KRISE
-
-	; text when seen
-	dw LassKriseSeenText
-
-	; text when trainer beaten
-	dw LassKriseBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassKriseScript
+	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, $0000, LassKriseScript
 
 LassKriseScript:
 	talkaftercancel
@@ -353,8 +289,7 @@ ItemFragment_0x5c1ce:
 	db TM_DIG, 1
 
 MapNationalParkSignpostItem2:
-	dw $0084
-	db FULL_HEAL
+	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
 UnknownText_0x5c1d3:
@@ -567,36 +502,36 @@ NationalPark_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $12, $21, 1, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $13, $21, 2, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $2f, $a, 1, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
 	warp_def $2f, $b, 2, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 44, 14, $0, MapNationalParkSignpost0Script
-	signpost 31, 27, $0, MapNationalParkSignpost1Script
-	signpost 47, 6, $7, MapNationalParkSignpostItem2
-	signpost 4, 12, $0, MapNationalParkSignpost3Script
+	signpost 44, 14, SIGNPOST_READ, MapNationalParkSignpost0Script
+	signpost 31, 27, SIGNPOST_READ, MapNationalParkSignpost1Script
+	signpost 47, 6, SIGNPOST_ITEM, MapNationalParkSignpostItem2
+	signpost 4, 12, SIGNPOST_READ, MapNationalParkSignpost3Script
 
-	; people-events
+.PersonEvents:
 	db 14
-	person_event SPRITE_LASS, 28, 19, $5, $1, 255, 255, $a0, 0, LassScript_0x5c002, -1
-	person_event SPRITE_POKEFAN_F, 8, 18, $6, $0, 255, 255, $0, 0, PokefanFScript_0x5c005, -1
-	person_event SPRITE_TEACHER, 44, 31, $6, $0, 255, 255, $a0, 0, TeacherScript_0x5c008, -1
-	person_event SPRITE_YOUNGSTER, 45, 15, $8, $0, 255, 255, $0, 0, YoungsterScript_0x5c023, -1
-	person_event SPRITE_YOUNGSTER, 45, 14, $6, $0, 255, 255, $80, 0, YoungsterScript_0x5c026, -1
-	person_event SPRITE_TEACHER, 45, 21, $2, $21, 255, 255, $0, 0, TeacherScript_0x5c029, -1
-	person_event SPRITE_GROWLITHE, 44, 30, $16, $0, 255, 255, $0, 0, GrowlitheScript_0x5c02c, -1
-	person_event SPRITE_YOUNGSTER, 27, 31, $a, $0, 255, 255, $92, 3, TrainerSchoolboyJack1, -1
-	person_event SPRITE_POKEFAN_F, 33, 22, $a, $0, 255, 255, $82, 2, TrainerPokefanfBeverly1, -1
-	person_event SPRITE_POKEFAN_M, 13, 20, $a, $0, 255, 255, $82, 2, TrainerPokefanmWilliam, -1
-	person_event SPRITE_LASS, 18, 12, $a, $0, 255, 255, $92, 3, TrainerLassKrise, -1
-	person_event SPRITE_POKE_BALL, 16, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c1cc, EVENT_658
-	person_event SPRITE_GAMEBOY_KID, 10, 30, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x5c037, -1
-	person_event SPRITE_POKE_BALL, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c1ce, EVENT_659
+	person_event SPRITE_LASS, 28, 19, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x5c002, -1
+	person_event SPRITE_POKEFAN_F, 8, 18, OW_UP | $2, $0, -1, -1, $0, 0, PokefanFScript_0x5c005, -1
+	person_event SPRITE_TEACHER, 44, 31, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5c008, -1
+	person_event SPRITE_YOUNGSTER, 45, 15, OW_LEFT | $0, $0, -1, -1, $0, 0, YoungsterScript_0x5c023, -1
+	person_event SPRITE_YOUNGSTER, 45, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x5c026, -1
+	person_event SPRITE_TEACHER, 45, 21, OW_DOWN | $2, $21, -1, -1, $0, 0, TeacherScript_0x5c029, -1
+	person_event SPRITE_GROWLITHE, 44, 30, OW_UP | $12, $0, -1, -1, $0, 0, GrowlitheScript_0x5c02c, -1
+	person_event SPRITE_YOUNGSTER, 27, 31, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyJack1, -1
+	person_event SPRITE_POKEFAN_F, 33, 22, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerPokefanfBeverly1, -1
+	person_event SPRITE_POKEFAN_M, 13, 20, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerPokefanmWilliam, -1
+	person_event SPRITE_LASS, 18, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassKrise, -1
+	person_event SPRITE_POKE_BALL, 16, 39, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c1cc, EVENT_NATIONAL_PARK_PARLYZ_HEAL
+	person_event SPRITE_GAMEBOY_KID, 10, 30, OW_UP | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x5c037, -1
+	person_event SPRITE_POKE_BALL, 47, 5, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c1ce, EVENT_NATIONAL_PARK_TM_DIG

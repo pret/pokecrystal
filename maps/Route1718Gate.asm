@@ -1,11 +1,11 @@
 Route1718Gate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x7360d, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x7360d:
@@ -20,7 +20,7 @@ UnknownScript_0x73611:
 	end
 
 UnknownScript_0x73617:
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $0, UP
 	loadfont
 	writetext UnknownText_0x7364d
@@ -54,21 +54,21 @@ Route1718Gate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $4, $0, 1, GROUP_ROUTE_17, MAP_ROUTE_17
 	warp_def $5, $0, 2, GROUP_ROUTE_17, MAP_ROUTE_17
 	warp_def $4, $9, 1, GROUP_ROUTE_18, MAP_ROUTE_18
 	warp_def $5, $9, 2, GROUP_ROUTE_18, MAP_ROUTE_18
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $4, $5, $0, UnknownScript_0x73611, $0, $0
 	xy_trigger 0, $5, $5, $0, UnknownScript_0x73611, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x7360e, -1
+	person_event SPRITE_OFFICER, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x7360e, -1

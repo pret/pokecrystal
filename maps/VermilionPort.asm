@@ -1,12 +1,12 @@
 VermilionPort_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -27,19 +27,19 @@ UnknownScript_0x74da6:
 	applymovement $0, MovementData_0x74ef3
 	appear $2
 	dotrigger $0
-	setevent EVENT_731
-	setevent EVENT_730
-	setevent EVENT_739
-	clearevent EVENT_733
-	setevent EVENT_030
-	setevent EVENT_000
+	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	clearevent EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
+	setevent EVENT_FAST_SHIP_FIRST_TIME
+	setevent EVENT_GAVE_KURT_APRICORNS
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	end
 
 SailorScript_0x74dc4:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
 	closetext
@@ -51,10 +51,10 @@ SailorScript_0x74dc4:
 	waitbutton
 	applymovement $0, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
-	setevent EVENT_73A
-	clearevent EVENT_73B
+	setevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	clearevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
 	clearevent EVENT_BEAT_BURGLAR_COREY
 	clearevent EVENT_BEAT_BUG_CATCHER_KEN
@@ -79,9 +79,9 @@ UnknownScript_0x74e1a:
 
 UnknownScript_0x74e20:
 	spriteface $3, RIGHT
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e86
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x74e86
 	spriteface $0, LEFT
 	loadfont
@@ -101,7 +101,7 @@ UnknownScript_0x74e20:
 	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement $0, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
 
@@ -145,7 +145,7 @@ UnknownScript_0x74e8d:
 SailorScript_0x74e97:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74eda
@@ -163,7 +163,7 @@ SailorScript_0x74e97:
 	writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement $0, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 
@@ -194,8 +194,7 @@ SuperNerdScript_0x74ee6:
 	end
 
 MapVermilionPortSignpostItem0:
-	dw $00eb
-	db IRON
+	dwb EVENT_VERMILION_PORT_HIDDEN_IRON, IRON
 	
 
 MovementData_0x74ef1:
@@ -303,21 +302,21 @@ VermilionPort_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $5, $9, 5, GROUP_VERMILION_PORT_PASSAGE, MAP_VERMILION_PORT_PASSAGE
 	warp_def $11, $7, 1, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $b, $7, $0, UnknownScript_0x74e20, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 13, 16, $7, MapVermilionPortSignpostItem0
+	signpost 13, 16, SIGNPOST_ITEM, MapVermilionPortSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_SAILOR, 21, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x74dc4, EVENT_72B
-	person_event SPRITE_SAILOR, 15, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x74e97, -1
-	person_event SPRITE_SUPER_NERD, 15, 15, $5, $2, 255, 255, $0, 0, SuperNerdScript_0x74ee6, -1
+	person_event SPRITE_SAILOR, 21, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
+	person_event SPRITE_SAILOR, 15, 10, OW_LEFT | $1, $0, -1, -1, $0, 0, SailorScript_0x74e97, -1
+	person_event SPRITE_SUPER_NERD, 15, 15, OW_UP | $1, $2, -1, -1, $0, 0, SuperNerdScript_0x74ee6, -1

@@ -1,12 +1,12 @@
 MrPokemonsHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x196e51, $0000
 	dw UnknownScript_0x196e55, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x196e51:
@@ -17,7 +17,7 @@ UnknownScript_0x196e55:
 	end
 
 UnknownScript_0x196e56:
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, DOWN
 	loadfont
 	writetext UnknownText_0x196f66
@@ -108,39 +108,39 @@ UnknownScript_0x196ec9:
 	writetext UnknownText_0x1970ed
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	playmusic MUSIC_HEAL
-	special Function1060a2
+	special Mobile_HealParty
 	special HealParty
 	pause 60
-	special Function8c0ab
+	special Special_FadeInQuickly
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x197134
 	closetext
 	loadmovesprites
-	setevent EVENT_6BD
-	setevent EVENT_792
-	clearevent EVENT_793
+	setevent EVENT_RIVAL_NEW_BARK_TOWN
+	setevent EVENT_KRISS_HOUSE_1F_NEIGHBOR
+	clearevent EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
 	dotrigger $1
 	domaptrigger GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, $1
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $3
-	specialphonecall $2
-	clearevent EVENT_702
+	specialphonecall ELMCALL_ROBBED
+	clearevent EVENT_COP_IN_ELMS_LAB
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x196f49
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x196f4d
-	setevent EVENT_641
+	setevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
 	end
 
 UnknownScript_0x196f49:
-	setevent EVENT_642
+	setevent EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	end
 
 UnknownScript_0x196f4d:
-	setevent EVENT_640
+	setevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	end
 
 MapMrPokemonsHouseSignpost1Script:
@@ -374,23 +374,23 @@ MrPokemonsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_ROUTE_30, MAP_ROUTE_30
 	warp_def $7, $3, 2, GROUP_ROUTE_30, MAP_ROUTE_30
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
-	signpost 1, 0, $0, MapMrPokemonsHouseSignpost1Script
-	signpost 1, 1, $0, MapMrPokemonsHouseSignpost1Script
-	signpost 1, 6, $0, MapMrPokemonsHouseSignpost3Script
-	signpost 1, 7, $0, MapMrPokemonsHouseSignpost3Script
-	signpost 4, 6, $0, MapMrPokemonsHouseSignpost4Script
+	signpost 1, 0, SIGNPOST_READ, MapMrPokemonsHouseSignpost1Script
+	signpost 1, 1, SIGNPOST_READ, MapMrPokemonsHouseSignpost1Script
+	signpost 1, 6, SIGNPOST_READ, MapMrPokemonsHouseSignpost3Script
+	signpost 1, 7, SIGNPOST_READ, MapMrPokemonsHouseSignpost3Script
+	signpost 4, 6, SIGNPOST_READ, MapMrPokemonsHouseSignpost4Script
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_GENTLEMAN, 9, 7, $9, $0, 255, 255, $0, 0, GentlemanScript_0x196e97, -1
-	person_event SPRITE_OAK, 9, 10, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C9
+	person_event SPRITE_GENTLEMAN, 9, 7, OW_LEFT | $1, $0, -1, -1, $0, 0, GentlemanScript_0x196e97, -1
+	person_event SPRITE_OAK, 9, 10, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK

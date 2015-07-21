@@ -1,28 +1,12 @@
 OlivineLighthouse3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBird_keeperTheo:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_THEO
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, THEO
-
-	; text when seen
-	dw Bird_keeperTheoSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperTheoBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperTheoScript
+	trainer EVENT_BEAT_BIRD_KEEPER_THEO, BIRD_KEEPER, THEO, Bird_keeperTheoSeenText, Bird_keeperTheoBeatenText, $0000, Bird_keeperTheoScript
 
 Bird_keeperTheoScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperTheoScript:
 	end
 
 TrainerGentlemanPreston:
-	; bit/flag number
-	dw EVENT_BEAT_GENTLEMAN_PRESTON
-
-	; trainer group && trainer id
-	db GENTLEMAN, PRESTON
-
-	; text when seen
-	dw GentlemanPrestonSeenText
-
-	; text when trainer beaten
-	dw GentlemanPrestonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GentlemanPrestonScript
+	trainer EVENT_BEAT_GENTLEMAN_PRESTON, GENTLEMAN, PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, $0000, GentlemanPrestonScript
 
 GentlemanPrestonScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ GentlemanPrestonScript:
 	end
 
 TrainerSailorTerrell:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_TERRELL
-
-	; trainer group && trainer id
-	db SAILOR, TERRELL
-
-	; text when seen
-	dw SailorTerrellSeenText
-
-	; text when trainer beaten
-	dw SailorTerrellBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorTerrellScript
+	trainer EVENT_BEAT_SAILOR_TERRELL, SAILOR, TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, $0000, SailorTerrellScript
 
 SailorTerrellScript:
 	talkaftercancel
@@ -158,7 +110,7 @@ OlivineLighthouse3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 9
 	warp_def $3, $d, 1, GROUP_OLIVINE_LIGHTHOUSE_4F, MAP_OLIVINE_LIGHTHOUSE_4F
 	warp_def $3, $5, 2, GROUP_OLIVINE_LIGHTHOUSE_2F, MAP_OLIVINE_LIGHTHOUSE_2F
@@ -170,15 +122,15 @@ OlivineLighthouse3F_MapEventHeader:
 	warp_def $3, $8, 7, GROUP_OLIVINE_LIGHTHOUSE_4F, MAP_OLIVINE_LIGHTHOUSE_4F
 	warp_def $3, $9, 8, GROUP_OLIVINE_LIGHTHOUSE_4F, MAP_OLIVINE_LIGHTHOUSE_4F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 6, 13, $6, $0, 255, 255, $92, 1, TrainerSailorTerrell, -1
-	person_event SPRITE_GENTLEMAN, 9, 17, $9, $0, 255, 255, $92, 4, TrainerGentlemanPreston, -1
-	person_event SPRITE_YOUNGSTER, 13, 7, $7, $0, 255, 255, $92, 3, TrainerBird_keeperTheo, -1
-	person_event SPRITE_POKE_BALL, 6, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x5b279, EVENT_664
+	person_event SPRITE_SAILOR, 6, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSailorTerrell, -1
+	person_event SPRITE_GENTLEMAN, 9, 17, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerGentlemanPreston, -1
+	person_event SPRITE_YOUNGSTER, 13, 7, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperTheo, -1
+	person_event SPRITE_POKE_BALL, 6, 12, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5b279, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER

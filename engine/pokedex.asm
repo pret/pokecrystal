@@ -899,10 +899,9 @@ asm_4065d: ; 4065d (10:465d)
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_40a3e + 2
+rept 4
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1339,10 +1338,9 @@ Function409f1: ; 409f1 (10:49f1)
 	jr z, .asm_40a39
 	push af
 	ld hl, Unknown_40a3e
+rept 4
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1883,15 +1881,9 @@ Function40fcd: ; 40fcd (10:4fcd)
 	ld e, a
 	ld d, 0
 	ld hl, Strings_40fe4
+rept 9
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld e, l
 	ld d, h
 	pop hl
@@ -2406,8 +2398,9 @@ Function41427: ; 41427
 Function41432: ; 41432
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

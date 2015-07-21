@@ -126,10 +126,12 @@ TextBoxPalette:: ; 1024
 ; Fill text box width c height b at hl with pal 7
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	ld a, TEXTBOX_PAL
 .col
 	push bc
@@ -169,7 +171,7 @@ Function1052:: ; 1052
 
 
 PrintText:: ; 1057
-	call Function106c
+	call SetUpTextBox
 Function105a:: ; 105a
 	push hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
@@ -183,10 +185,10 @@ PrintTextBoxText:: ; 1065
 	ret
 ; 106c
 
-Function106c:: ; 106c
+SetUpTextBox:: ; 106c
 	push hl
 	call SpeechTextBox
-	call Function1ad2
+	call DrawOnMap
 	call Function321c
 	pop hl
 	ret
@@ -385,7 +387,7 @@ Char3F:: ; 121b
 	ld de, String12a2
 	call PlaceString
 	push bc
-	callab Function39939
+	callab Battle_GetTrainerName
 	pop hl
 	ld de, StringBuffer1
 	jr Function126a
@@ -517,7 +519,7 @@ Paragraph:: ; 12f2
 .asm_1301
 
 	call Function13b6
-	call Functionaaf
+	call KeepTextOpen
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
 	call ClearBox
@@ -540,7 +542,7 @@ Char4B:: ; 131f
 	call Function13b6
 
 	push de
-	call Functionaaf
+	call KeepTextOpen
 	pop de
 
 	ld a, [InLinkBattle]
@@ -590,7 +592,7 @@ PromptText:: ; 135a
 .ok
 
 	call Function13b6
-	call Functionaaf
+	call KeepTextOpen
 	ld a, [InLinkBattle]
 	cp $3
 	jr z, DoneText
@@ -626,10 +628,12 @@ Function138c:: ; 138c
 	inc de
 	dec c
 	jr nz, .row
+rept 2
 	inc de
-	inc de
+endr
+rept 2
 	inc hl
-	inc hl
+endr
 	pop af
 	dec a
 	jr nz, .col
@@ -719,8 +723,9 @@ Function13f6:: ; 13f6
 	ld c, a
 	ld b, 0
 	ld hl, TextCommands
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -904,7 +909,7 @@ Text_06:: ; 149f
 	push hl
 	call Function13c7
 	push bc
-	call Functionaaf
+	call KeepTextOpen
 	pop bc
 	call Function13cd
 	pop hl
@@ -992,8 +997,9 @@ Text_PlaySound:: ; 1500
 	jr z, .done
 	cp b
 	jr z, .play
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .loop
 
 .play
@@ -1066,7 +1072,7 @@ Text_0D:: ; 1562
 ; display arrow
 	push hl
 	push bc
-	call Functionaaf
+	call KeepTextOpen
 	pop bc
 	pop hl
 	ret
@@ -1088,8 +1094,9 @@ Text_14:: ; 156a
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_24000
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, BANK(Unknown_24000)
 	call GetFarHalfword
 	ld d, h
@@ -1110,8 +1117,9 @@ Text_15:: ; 1582
 	ld c, a
 	ld b, 0
 	ld hl, .Days
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

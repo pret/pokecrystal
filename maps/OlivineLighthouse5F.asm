@@ -1,28 +1,12 @@
 OlivineLighthouse5F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBird_keeperDenis:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_DENIS
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, DENIS
-
-	; text when seen
-	dw Bird_keeperDenisSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperDenisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperDenisScript
+	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, $0000, Bird_keeperDenisScript
 
 Bird_keeperDenisScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperDenisScript:
 	end
 
 TrainerSailorErnest:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_ERNEST
-
-	; trainer group && trainer id
-	db SAILOR, ERNEST
-
-	; text when seen
-	dw SailorErnestSeenText
-
-	; text when trainer beaten
-	dw SailorErnestBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorErnestScript
+	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, $0000, SailorErnestScript
 
 SailorErnestScript:
 	talkaftercancel
@@ -69,8 +37,7 @@ ItemFragment_0x609ae:
 	db TM_SWAGGER, 1
 
 MapOlivineLighthouse5FSignpostItem0:
-	dw $0085
-	db HYPER_POTION
+	dwb EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION, HYPER_POTION
 	
 
 SailorErnestSeenText:
@@ -121,7 +88,7 @@ OlivineLighthouse5F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 7
 	warp_def $f, $9, 1, GROUP_OLIVINE_LIGHTHOUSE_6F, MAP_OLIVINE_LIGHTHOUSE_6F
 	warp_def $5, $3, 2, GROUP_OLIVINE_LIGHTHOUSE_4F, MAP_OLIVINE_LIGHTHOUSE_4F
@@ -131,17 +98,17 @@ OlivineLighthouse5F_MapEventHeader:
 	warp_def $5, $10, 2, GROUP_OLIVINE_LIGHTHOUSE_6F, MAP_OLIVINE_LIGHTHOUSE_6F
 	warp_def $5, $11, 3, GROUP_OLIVINE_LIGHTHOUSE_6F, MAP_OLIVINE_LIGHTHOUSE_6F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 13, 3, $7, MapOlivineLighthouse5FSignpostItem0
+	signpost 13, 3, SIGNPOST_ITEM, MapOlivineLighthouse5FSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_SAILOR, 15, 12, $a, $0, 255, 255, $92, 3, TrainerSailorErnest, -1
-	person_event SPRITE_YOUNGSTER, 7, 12, $8, $0, 255, 255, $92, 4, TrainerBird_keeperDenis, -1
-	person_event SPRITE_POKE_BALL, 16, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x609aa, EVENT_665
-	person_event SPRITE_POKE_BALL, 19, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x609ac, EVENT_666
-	person_event SPRITE_POKE_BALL, 17, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x609ae, EVENT_667
+	person_event SPRITE_SAILOR, 15, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorErnest, -1
+	person_event SPRITE_YOUNGSTER, 7, 12, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerBird_keeperDenis, -1
+	person_event SPRITE_POKE_BALL, 16, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609aa, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 19, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ac, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
+	person_event SPRITE_POKE_BALL, 17, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ae, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER

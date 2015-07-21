@@ -1,28 +1,12 @@
 Route12_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerFisherKyle:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_KYLE
-
-	; trainer group && trainer id
-	db FISHER, KYLE
-
-	; text when seen
-	dw FisherKyleSeenText
-
-	; text when trainer beaten
-	dw FisherKyleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherKyleScript
+	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, $0000, FisherKyleScript
 
 FisherKyleScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ FisherKyleScript:
 	end
 
 TrainerFisherMartin:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_MARTIN
-
-	; trainer group && trainer id
-	db FISHER, MARTIN
-
-	; text when seen
-	dw FisherMartinSeenText
-
-	; text when trainer beaten
-	dw FisherMartinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherMartinScript
+	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, $0000, FisherMartinScript
 
 FisherMartinScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ FisherMartinScript:
 	end
 
 TrainerFisherStephen:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_STEPHEN
-
-	; trainer group && trainer id
-	db FISHER, STEPHEN
-
-	; text when seen
-	dw FisherStephenSeenText
-
-	; text when trainer beaten
-	dw FisherStephenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherStephenScript
+	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, $0000, FisherStephenScript
 
 FisherStephenScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ FisherStephenScript:
 	end
 
 TrainerFisherBarney:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_BARNEY
-
-	; trainer group && trainer id
-	db FISHER, BARNEY
-
-	; text when seen
-	dw FisherBarneySeenText
-
-	; text when trainer beaten
-	dw FisherBarneyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherBarneyScript
+	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, $0000, FisherBarneyScript
 
 FisherBarneyScript:
 	talkaftercancel
@@ -126,8 +62,7 @@ ItemFragment_0x1a700d:
 	db NUGGET, 1
 
 MapRoute12SignpostItem2:
-	dw $00f3
-	db ELIXER
+	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
 	
 
 FisherMartinSeenText:
@@ -228,24 +163,24 @@ Route12_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $21, $b, 1, GROUP_ROUTE_12_SUPER_ROD_HOUSE, MAP_ROUTE_12_SUPER_ROD_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 27, 11, $0, MapRoute12Signpost0Script
-	signpost 9, 13, $0, MapRoute12Signpost1Script
-	signpost 13, 14, $7, MapRoute12SignpostItem2
+	signpost 27, 11, SIGNPOST_READ, MapRoute12Signpost0Script
+	signpost 9, 13, SIGNPOST_READ, MapRoute12Signpost1Script
+	signpost 13, 14, SIGNPOST_ITEM, MapRoute12SignpostItem2
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_FISHER, 17, 9, $a, $0, 255, 255, $a2, 1, TrainerFisherMartin, -1
-	person_event SPRITE_FISHER, 27, 18, $6, $0, 255, 255, $a2, 1, TrainerFisherStephen, -1
-	person_event SPRITE_FISHER, 42, 14, $8, $0, 255, 255, $a2, 5, TrainerFisherBarney, -1
-	person_event SPRITE_FISHER, 11, 10, $9, $0, 255, 255, $a2, 3, TrainerFisherKyle, -1
-	person_event SPRITE_POKE_BALL, 47, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700b, EVENT_788
-	person_event SPRITE_POKE_BALL, 55, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700d, EVENT_789
+	person_event SPRITE_FISHER, 17, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherMartin, -1
+	person_event SPRITE_FISHER, 27, 18, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherStephen, -1
+	person_event SPRITE_FISHER, 42, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerFisherBarney, -1
+	person_event SPRITE_FISHER, 11, 10, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherKyle, -1
+	person_event SPRITE_POKE_BALL, 47, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
+	person_event SPRITE_POKE_BALL, 55, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET

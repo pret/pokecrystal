@@ -1,7 +1,7 @@
 ; More overworld event handling.
 
 
-Function97c28:: ; 97c28
+WarpToSpawnPoint:: ; 97c28
 	ld hl, StatusFlags2
 	res 1, [hl]
 	res 2, [hl]
@@ -48,46 +48,46 @@ Function97c5f:: ; 97c5f
 	call GetFacingTileCoord
 	ld [EngineBuffer1], a
 	ld c, a
-	callba Function1365b
-	jr c, .asm_97cb9
+	callba CheckFacingTileForStd
+	jr c, .done
 
 	call CheckCutTreeTile
 	jr nz, .whirlpool
 	callba TryCutOW
-	jr .asm_97cb9
+	jr .done
 
 .whirlpool
 	ld a, [EngineBuffer1]
 	call CheckWhirlpoolTile
 	jr nz, .waterfall
 	callba TryWhirlpoolOW
-	jr .asm_97cb9
+	jr .done
 
 .waterfall
 	ld a, [EngineBuffer1]
 	call CheckWaterfallTile
 	jr nz, .headbutt
 	callba TryWaterfallOW
-	jr .asm_97cb9
+	jr .done
 
 .headbutt
 	ld a, [EngineBuffer1]
 	call CheckHeadbuttTreeTile
 	jr nz, .surf
 	callba TryHeadbuttOW
-	jr c, .asm_97cb9
-	jr .asm_97cb7
+	jr c, .done
+	jr .noevent
 
 .surf
 	callba TrySurfOW
-	jr nc, .asm_97cb7
-	jr .asm_97cb9
+	jr nc, .noevent
+	jr .done
 
-.asm_97cb7
+.noevent
 	xor a
 	ret
 
-.asm_97cb9
+.done
 	call PlayClickSFX
 	ld a, $ff
 	scf
@@ -125,8 +125,8 @@ Function97cc0:: ; 97cc0
 	jr .asm_97cf4
 
 .asm_97ced
-	ld a, BANK(UnknownScript_0x135eb)
-	ld hl, UnknownScript_0x135eb
+	ld a, BANK(BugCatchingContestBattleScript)
+	ld hl, BugCatchingContestBattleScript
 	jr .asm_97cf4
 
 .asm_97cf4
@@ -146,7 +146,7 @@ Function97cfd:: ; 97cfd
 	ld hl, StatusFlags
 	bit 5, [hl]
 	jr nz, .asm_97d21
-	ld a, [wd19a]
+	ld a, [wPermission]
 	cp $4
 	jr z, .asm_97d17
 	cp $7
@@ -271,21 +271,21 @@ Function97db3:: ; 97db3
 Function97db5: ; 97db5
 	ld hl, StatusFlags2
 	bit 4, [hl]
-	jr z, .asm_97df7
+	jr z, .NoCall
 	ld a, [PlayerState]
-	cp $1
-	jr nz, .asm_97df7
-	call Function2d05
+	cp 1
+	jr nz, .NoCall
+	call GetMapHeaderPhoneServiceNybble
 	and a
-	jr nz, .asm_97df7
+	jr nz, .NoCall
 	ld hl, wdca1 + 1
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	cp $ff
+	cp -1
 	jr nz, .asm_97dd8
 	ld a, e
-	cp $ff
+	cp -1
 	jr z, .asm_97ddc
 
 .asm_97dd8
@@ -297,34 +297,34 @@ Function97db5: ; 97db5
 .asm_97ddc
 	ld a, d
 	cp $4
-	jr c, .asm_97df7
-	ld a, [wdc31]
+	jr c, .NoCall
+	ld a, [wSpecialPhoneCallID]
 	and a
-	jr nz, .asm_97df7
-	ld a, $6
-	ld [wdc31], a
+	jr nz, .NoCall
+	ld a, 6
+	ld [wSpecialPhoneCallID], a
 	xor a
-	ld [wdc31 + 1], a
+	ld [wSpecialPhoneCallID + 1], a
 	ld hl, StatusFlags2
 	res 4, [hl]
 	scf
 	ret
 
-.asm_97df7
+.NoCall
 	xor a
 	ret
 ; 97df9
 
 Function97df9:: ; 97df9
 	ld hl, wd6de
-	ld de, $0006
-	ld c, $4
+	ld de, 6
+	ld c, 4
 	xor a
-.asm_97e02
+.loop
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .asm_97e02
+	jr nz, .loop
 	ret
 ; 97e08
 
@@ -439,9 +439,9 @@ Function97e79: ; 97e79
 	ld e, a
 	ld d, 0
 	ld hl, Table97e94
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	push af
 	ld a, [hli]

@@ -1,8 +1,8 @@
 Route2946Gate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 OfficerScript_0x7b5bb:
@@ -36,20 +36,20 @@ Route2946Gate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 1, GROUP_ROUTE_46, MAP_ROUTE_46
 	warp_def $0, $5, 2, GROUP_ROUTE_46, MAP_ROUTE_46
 	warp_def $7, $4, 1, GROUP_ROUTE_29, MAP_ROUTE_29
 	warp_def $7, $5, 1, GROUP_ROUTE_29, MAP_ROUTE_29
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x7b5bb, -1
-	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x7b5be, -1
+	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x7b5bb, -1
+	person_event SPRITE_YOUNGSTER, 8, 10, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x7b5be, -1

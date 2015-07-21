@@ -1,28 +1,12 @@
 OlivineLighthouse4F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerLassConnie:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_CONNIE
-
-	; trainer group && trainer id
-	db LASS, CONNIE1
-
-	; text when seen
-	dw LassConnie1SeenText
-
-	; text when trainer beaten
-	dw LassConnie1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassConnie1Script
+	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, $0000, LassConnie1Script
 
 LassConnie1Script:
 	talkaftercancel
@@ -33,23 +17,7 @@ LassConnie1Script:
 	end
 
 TrainerSailorKent:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_KENT
-
-	; trainer group && trainer id
-	db SAILOR, KENT
-
-	; text when seen
-	dw SailorKentSeenText
-
-	; text when trainer beaten
-	dw SailorKentBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorKentScript
+	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, $0000, SailorKentScript
 
 SailorKentScript:
 	talkaftercancel
@@ -113,7 +81,7 @@ OlivineLighthouse4F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 10
 	warp_def $3, $d, 1, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
 	warp_def $5, $3, 2, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
@@ -126,13 +94,13 @@ OlivineLighthouse4F_MapEventHeader:
 	warp_def $7, $10, 4, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
 	warp_def $7, $11, 5, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 18, 11, $8, $0, 255, 255, $92, 3, TrainerSailorKent, -1
-	person_event SPRITE_LASS, 6, 15, $6, $0, 255, 255, $92, 1, TrainerLassConnie, -1
+	person_event SPRITE_SAILOR, 18, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorKent, -1
+	person_event SPRITE_LASS, 6, 15, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassConnie, -1

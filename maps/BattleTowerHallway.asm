@@ -1,12 +1,12 @@
 BattleTowerHallway_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x9f5bb, $0000
 	dw UnknownScript_0x9f5c0, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x9f5bb:
@@ -79,7 +79,7 @@ BattleTowerHallway_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $1, $b, 1, GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR
 	warp_def $0, $5, 1, GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM
@@ -88,12 +88,12 @@ BattleTowerHallway_MapEventHeader:
 	warp_def $0, $d, 1, GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM
 	warp_def $0, $f, 1, GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_RECEPTIONIST, 6, 15, $6, $0, 255, 255, $0, 0, BattleTowerHallway_MapEventHeader, -1
+	person_event SPRITE_RECEPTIONIST, 6, 15, OW_UP | $2, $0, -1, -1, $0, 0, BattleTowerHallway_MapEventHeader, -1

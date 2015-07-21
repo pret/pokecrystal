@@ -1,8 +1,8 @@
 BlackthornDodrioTradeHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 Emy:
@@ -20,19 +20,19 @@ BlackthornDodrioTradeHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
 	warp_def $7, $3, 3, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, EmysHouseBookshelf
-	signpost 1, 1, $0, EmysHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, EmysHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, EmysHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_LASS, 7, 6, $3, $0, 255, 255, $a0, 0, Emy, -1
+	person_event SPRITE_LASS, 7, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Emy, -1

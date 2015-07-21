@@ -1,28 +1,12 @@
 Route4_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBird_keeperHank:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_HANK
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, HANK
-
-	; text when seen
-	dw Bird_keeperHankSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperHankBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperHankScript
+	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, $0000, Bird_keeperHankScript
 
 Bird_keeperHankScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperHankScript:
 	end
 
 TrainerPicnickerHope:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_HOPE
-
-	; trainer group && trainer id
-	db PICNICKER, HOPE
-
-	; text when seen
-	dw PicnickerHopeSeenText
-
-	; text when trainer beaten
-	dw PicnickerHopeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerHopeScript
+	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, $0000, PicnickerHopeScript
 
 PicnickerHopeScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ PicnickerHopeScript:
 	end
 
 TrainerPicnickerSharon:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_SHARON
-
-	; trainer group && trainer id
-	db PICNICKER, SHARON
-
-	; text when seen
-	dw PicnickerSharonSeenText
-
-	; text when trainer beaten
-	dw PicnickerSharonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerSharonScript
+	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, $0000, PicnickerSharonScript
 
 PicnickerSharonScript:
 	talkaftercancel
@@ -93,8 +45,7 @@ ItemFragment_0x1ae20f:
 	db HP_UP, 1
 
 MapRoute4SignpostItem1:
-	dw $00f1
-	db ULTRA_BALL
+	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
 Bird_keeperHankSeenText:
@@ -168,21 +119,21 @@ Route4_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $2, 2, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 3, $0, MapRoute4Signpost0Script
-	signpost 3, 10, $7, MapRoute4SignpostItem1
+	signpost 7, 3, SIGNPOST_READ, MapRoute4Signpost0Script
+	signpost 3, 10, SIGNPOST_ITEM, MapRoute4SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_YOUNGSTER, 13, 21, $6, $0, 255, 255, $92, 3, TrainerBird_keeperHank, -1
-	person_event SPRITE_LASS, 12, 13, $8, $0, 255, 255, $a2, 4, TrainerPicnickerHope, -1
-	person_event SPRITE_LASS, 10, 25, $9, $0, 255, 255, $a2, 4, TrainerPicnickerSharon, -1
-	person_event SPRITE_POKE_BALL, 7, 30, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ae20f, EVENT_787
+	person_event SPRITE_YOUNGSTER, 13, 21, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperHank, -1
+	person_event SPRITE_LASS, 12, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerPicnickerHope, -1
+	person_event SPRITE_LASS, 10, 25, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerPicnickerSharon, -1
+	person_event SPRITE_POKE_BALL, 7, 30, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1ae20f, EVENT_ROUTE_4_HP_UP

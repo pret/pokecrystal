@@ -262,10 +262,9 @@ Function8bc6:
 	bit 7, a
 	jr z, .asm_8bd7
 	and $7f
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 .asm_8bd7
 
 asm_8bd7
@@ -361,8 +360,9 @@ Function8c43: ; 8c43
 .asm_8c5a
 	ld l, c
 	ld h, $0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld bc, Palettes_a8be
 	add hl, bc
 	ld bc, $0004
@@ -398,8 +398,9 @@ Function8c8a: ; 8c8a
 	ld hl, Unknown_8f6a
 	ld b, 0
 	dec c
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -420,9 +421,9 @@ Function8c8a: ; 8c8a
 Function8cb4: ; 8cb4
 	ld l, e
 	ld h, 0
+rept 3
 	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld de, Palettes_8d05
 	add hl, de
 	call CheckCGB
@@ -433,8 +434,9 @@ Function8cb4: ; 8cb4
 	ld bc, $0010
 	call CopyBytes
 	pop hl
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld [wcda9 + 3], a
 	ld a, [hli]
@@ -556,9 +558,9 @@ Function9615: ; 9615
 Function9625: ; 9625
 	ld l, a
 	ld h, $0
+rept 3
 	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld bc, Palettes_9df6
 	add hl, bc
 	ret
@@ -639,15 +641,13 @@ Function9673: ; 9673
 	ld c, $8
 .asm_9683
 	ld a, $ff
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	xor a
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	dec c
 	jr nz, .asm_9683
 	pop af
@@ -806,8 +806,9 @@ Function9764: ; 9764
 Function976b: ; 976b
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
+rept 2
+	add hl,hl
+endr
 	ld bc, TrainerPalettes
 	add hl, bc
 	ret
@@ -896,9 +897,9 @@ Function97e5: ; 97e5
 Function97ee: ; 97ee
 	ld l, a
 	ld h, $0
+rept 3
 	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld bc, PokemonPalettes
 	add hl, bc
 	ret
@@ -912,10 +913,9 @@ Function97f9: ; 97f9
 	call CheckShininess
 	pop hl
 	ret nc
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	ret
 ; 9809
 
@@ -1139,8 +1139,9 @@ Function994a: ; 994a
 	jr nz, .asm_99a6
 	ld a, $20
 	ld [rJOYP], a
+rept 2
 	ld a, [rJOYP]
-	ld a, [rJOYP]
+endr
 	call Function9a7a
 	call Function9a7a
 	ld a, $30
@@ -1149,19 +1150,16 @@ Function994a: ; 994a
 	call Function9a7a
 	ld a, $10
 	ld [rJOYP], a
+rept 6
 	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
+endr
 	call Function9a7a
 	call Function9a7a
 	ld a, $30
 	ld [rJOYP], a
+rept 3
 	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
+endr
 	call Function9a7a
 	call Function9a7a
 	ld a, [rJOYP]
@@ -1943,21 +1941,22 @@ Functionb1de: ; b1de
 	callba Function494ac
 	jr c, .asm_b230
 
-	ld a, [wd19a]
+	ld a, [wPermission]
 	and 7
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_b279
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [TimeOfDayPal]
 	and 3
+rept 3
 	add a
-	add a
-	add a
+endr
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -1975,9 +1974,9 @@ Functionb1de: ; b1de
 	push hl
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
+rept 3
+	add hl,hl
+endr
 	ld de, TilesetBGPalette
 	add hl, de
 	ld e, l
@@ -2008,7 +2007,7 @@ Functionb1de: ; b1de
 	ld a, $5 ; BANK(Unkn2Pals)
 	call FarCopyWRAM
 
-	ld a, [wd19a]
+	ld a, [wPermission]
 	cp 1
 	jr z, .asm_b253
 	cp 2
@@ -2017,19 +2016,18 @@ Functionb1de: ; b1de
 	ld a, [MapGroup]
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
+rept 3
+	add hl,hl
+endr
 	ld de, RoofPals
 	add hl, de
 	ld a, [TimeOfDayPal]
 	and 3
 	cp NITE
 	jr c, .asm_b26d
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 .asm_b26d
 	ld de, Unkn1Pals + 8 * 6 + 2
 	ld bc, 4

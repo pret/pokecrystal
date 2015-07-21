@@ -1,36 +1,36 @@
 GoldenrodDeptStoreRoof_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x5671b
+	dbw 1, .CheckSaleChangeBlock
 
-	dbw 2, UnknownScript_0x5672b
+	dbw 2, .CheckSaleChangeClerk
 
-UnknownScript_0x5671b:
+.CheckSaleChangeBlock:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
-	iftrue UnknownScript_0x56722
+	iftrue .ChangeBlock
 	return
 
-UnknownScript_0x56722:
+.ChangeBlock:
 	changeblock $0, $2, $3f
 	changeblock $0, $4, $f
 	return
 
-UnknownScript_0x5672b:
+.CheckSaleChangeClerk:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
-	iftrue UnknownScript_0x56738
-	setevent EVENT_6F0
-	clearevent EVENT_6F1
+	iftrue .ChangeClerk
+	setevent EVENT_GOLDENROD_SALE_OFF
+	clearevent EVENT_GOLDENROD_SALE_ON
 	return
 
-UnknownScript_0x56738:
-	clearevent EVENT_6F0
-	setevent EVENT_6F1
+.ChangeClerk:
+	clearevent EVENT_GOLDENROD_SALE_OFF
+	setevent EVENT_GOLDENROD_SALE_ON
 	return
 
 ClerkScript_0x5673f:
@@ -209,27 +209,27 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $1, $d, 3, GROUP_GOLDENROD_DEPT_STORE_6F, MAP_GOLDENROD_DEPT_STORE_6F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 3, 15, $3, MapGoldenrodDeptStoreRoofSignpost0Script
-	signpost 5, 15, $3, MapGoldenrodDeptStoreRoofSignpost1Script
-	signpost 6, 15, $3, MapGoldenrodDeptStoreRoofSignpost2Script
-	signpost 0, 3, $1, MapGoldenrodDeptStoreRoofSignpost3Script
+	signpost 3, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost0Script
+	signpost 5, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost1Script
+	signpost 6, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost2Script
+	signpost 0, 3, SIGNPOST_UP, MapGoldenrodDeptStoreRoofSignpost3Script
 
-	; people-events
+.PersonEvents:
 	db 8
-	person_event SPRITE_CLERK, 8, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x5673f, EVENT_6F0
-	person_event SPRITE_POKEFAN_F, 7, 14, $5, $1, 255, 255, $80, 0, PokefanFScript_0x56746, -1
-	person_event SPRITE_FISHER, 5, 6, $7, $0, 255, 255, $90, 0, FisherScript_0x56749, -1
-	person_event SPRITE_TWIN, 8, 7, $2, $11, 255, 255, $a0, 0, TwinScript_0x56754, EVENT_6F1
-	person_event SPRITE_SUPER_NERD, 10, 18, $9, $0, 255, 255, $a0, 0, SuperNerdScript_0x56757, EVENT_6F1
-	person_event SPRITE_POKEFAN_M, 4, 11, $5, $1, 255, 255, $0, 0, PokefanMScript_0x5676a, EVENT_6F0
-	person_event SPRITE_TEACHER, 7, 9, $2, $11, 255, 255, $a0, 0, TeacherScript_0x5676d, EVENT_6F0
-	person_event SPRITE_BUG_CATCHER, 10, 5, $7, $0, 255, 255, $80, 0, BugCatcherScript_0x56770, EVENT_6F0
+	person_event SPRITE_CLERK, 8, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_POKEFAN_F, 7, 14, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x56746, -1
+	person_event SPRITE_FISHER, 5, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x56749, -1
+	person_event SPRITE_TWIN, 8, 7, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x56754, EVENT_GOLDENROD_SALE_ON
+	person_event SPRITE_SUPER_NERD, 10, 18, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x56757, EVENT_GOLDENROD_SALE_ON
+	person_event SPRITE_POKEFAN_M, 4, 11, OW_UP | $1, $1, -1, -1, $0, 0, PokefanMScript_0x5676a, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_TEACHER, 7, 9, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5676d, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_BUG_CATCHER, 10, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x56770, EVENT_GOLDENROD_SALE_OFF

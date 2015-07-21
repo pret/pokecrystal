@@ -1,8 +1,8 @@
 OlivineMart_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ClerkScript_0x9cac7:
@@ -44,19 +44,19 @@ OlivineMart_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 8, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	warp_def $7, $3, 8, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x9cac7, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 10, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x9cace, -1
-	person_event SPRITE_LASS, 10, 5, $8, $0, 255, 255, $0, 0, LassScript_0x9cad1, -1
+	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x9cac7, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 10, OW_UP | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x9cace, -1
+	person_event SPRITE_LASS, 10, 5, OW_LEFT | $0, $0, -1, -1, $0, 0, LassScript_0x9cad1, -1

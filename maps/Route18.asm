@@ -1,28 +1,12 @@
 Route18_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBird_keeperBoris:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_BORIS
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, BORIS
-
-	; text when seen
-	dw Bird_keeperBorisSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperBorisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperBorisScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, Bird_keeperBorisSeenText, Bird_keeperBorisBeatenText, $0000, Bird_keeperBorisScript
 
 Bird_keeperBorisScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperBorisScript:
 	end
 
 TrainerBird_keeperBob:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_BOB
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, BOB
-
-	; text when seen
-	dw Bird_keeperBobSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperBobBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperBobScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, Bird_keeperBobSeenText, Bird_keeperBobBeatenText, $0000, Bird_keeperBobScript
 
 Bird_keeperBobScript:
 	talkaftercancel
@@ -109,19 +77,19 @@ Route18_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $6, $2, 3, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
 	warp_def $7, $2, 4, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 5, 9, $0, MapRoute18Signpost0Script
+	signpost 5, 9, SIGNPOST_READ, MapRoute18Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 16, 13, $a, $0, 255, 255, $92, 3, TrainerBird_keeperBoris, -1
-	person_event SPRITE_YOUNGSTER, 10, 17, $6, $0, 255, 255, $92, 3, TrainerBird_keeperBob, -1
+	person_event SPRITE_YOUNGSTER, 16, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBoris, -1
+	person_event SPRITE_YOUNGSTER, 10, 17, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBob, -1

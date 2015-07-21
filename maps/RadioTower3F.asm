@@ -1,8 +1,8 @@
 RadioTower3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -77,23 +77,7 @@ UnknownScript_0x5e5a1:
 	end
 
 TrainerGruntM7:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_7
-
-	; trainer group && trainer id
-	db GRUNTM, 7
-
-	; text when seen
-	dw GruntM7SeenText
-
-	; text when trainer beaten
-	dw GruntM7BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM7Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, 7, GruntM7SeenText, GruntM7BeatenText, $0000, GruntM7Script
 
 GruntM7Script:
 	talkaftercancel
@@ -104,23 +88,7 @@ GruntM7Script:
 	end
 
 TrainerGruntM8:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_8
-
-	; trainer group && trainer id
-	db GRUNTM, 8
-
-	; text when seen
-	dw GruntM8SeenText
-
-	; text when trainer beaten
-	dw GruntM8BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM8Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, 8, GruntM8SeenText, GruntM8BeatenText, $0000, GruntM8Script
 
 GruntM8Script:
 	talkaftercancel
@@ -131,23 +99,7 @@ GruntM8Script:
 	end
 
 TrainerGruntM9:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_9
-
-	; trainer group && trainer id
-	db GRUNTM, 9
-
-	; text when seen
-	dw GruntM9SeenText
-
-	; text when trainer beaten
-	dw GruntM9BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM9Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, 9, GruntM9SeenText, GruntM9BeatenText, $0000, GruntM9Script
 
 GruntM9Script:
 	talkaftercancel
@@ -158,23 +110,7 @@ GruntM9Script:
 	end
 
 TrainerScientistMarc:
-	; bit/flag number
-	dw EVENT_BEAT_SCIENTIST_MARC
-
-	; trainer group && trainer id
-	db SCIENTIST, MARC
-
-	; text when seen
-	dw ScientistMarcSeenText
-
-	; text when trainer beaten
-	dw ScientistMarcBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw ScientistMarcScript
+	trainer EVENT_BEAT_SCIENTIST_MARC, SCIENTIST, MARC, ScientistMarcSeenText, ScientistMarcBeatenText, $0000, ScientistMarcScript
 
 ScientistMarcScript:
 	talkaftercancel
@@ -390,27 +326,27 @@ RadioTower3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $0, $0, 1, GROUP_RADIO_TOWER_2F, MAP_RADIO_TOWER_2F
 	warp_def $0, $7, 2, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 	warp_def $0, $11, 4, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 0, 3, $0, MapRadioTower3FSignpost0Script
-	signpost 0, 9, $0, MapRadioTower3FSignpost1Script
-	signpost 2, 14, $1, MapRadioTower3FSignpost2Script
+	signpost 0, 3, SIGNPOST_READ, MapRadioTower3FSignpost0Script
+	signpost 0, 9, SIGNPOST_READ, MapRadioTower3FSignpost1Script
+	signpost 2, 14, SIGNPOST_UP, MapRadioTower3FSignpost2Script
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_SUPER_NERD, 8, 11, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x5e553, EVENT_6D0
-	person_event SPRITE_GYM_GUY, 8, 7, $a, $0, 255, 255, $80, 0, GymGuyScript_0x5e556, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 15, $2, $11, 255, 255, $a0, 0, CooltrainerFScript_0x5e56a, -1
-	person_event SPRITE_ROCKET, 5, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM7, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 10, $6, $0, 255, 255, $2, 3, TrainerGruntM8, EVENT_6CE
-	person_event SPRITE_ROCKET, 10, 20, $7, $0, 255, 255, $2, 3, TrainerGruntM9, EVENT_6CE
-	person_event SPRITE_SCIENTIST, 10, 13, $7, $0, 255, 255, $92, 5, TrainerScientistMarc, EVENT_6CE
+	person_event SPRITE_SUPER_NERD, 8, 11, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_GYM_GUY, 8, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GymGuyScript_0x5e556, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 15, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x5e56a, -1
+	person_event SPRITE_ROCKET, 5, 9, OW_LEFT | $1, $0, -1, -1, $2, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 10, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 10, 20, OW_UP | $3, $0, -1, -1, $2, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SCIENTIST, 10, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

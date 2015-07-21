@@ -93,16 +93,18 @@ Function8ddb: ; 8ddb
 	ld a, [EnemyHPPal]
 	ld l, a
 	ld h, $0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld bc, Palettes_a8be
 	add hl, bc
 	call Function9643
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, $0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld bc, Palettes_a8be
 	add hl, bc
 	call Function9643
@@ -213,8 +215,9 @@ Function8edb: ; 8edb
 	ld a, [wcda1]
 	ld l, a
 	ld h, $0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld bc, Palettes_a8be
 	add hl, bc
 	call Function9643
@@ -488,8 +491,9 @@ Function90f8: ; 90f8
 Function9122: ; 9122
 	ld b, 0
 	ld hl, Jumptable_912d
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -797,8 +801,9 @@ Function9373: ; 9373
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, 0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld bc, Palettes_a8be
 	add hl, bc
 	call Function9643

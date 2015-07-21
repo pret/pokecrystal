@@ -1,8 +1,8 @@
 GoldenrodPPSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 FisherScript_0x5564a:
@@ -51,21 +51,21 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 7, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $3, 7, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 1, 0, $0, GoldenrodPPSpeechHouseBookshelf1
-	signpost 1, 1, $0, GoldenrodPPSpeechHouseBookshelf2
-	signpost 1, 7, $0, GoldenrodPPSpeechHouseRadio
+	signpost 1, 0, SIGNPOST_READ, GoldenrodPPSpeechHouseBookshelf1
+	signpost 1, 1, SIGNPOST_READ, GoldenrodPPSpeechHouseBookshelf2
+	signpost 1, 7, SIGNPOST_READ, GoldenrodPPSpeechHouseRadio
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_FISHER, 8, 6, $4, $10, 255, 255, $a0, 0, FisherScript_0x5564a, -1
-	person_event SPRITE_LASS, 7, 9, $8, $10, 255, 255, $0, 0, LassScript_0x5564d, -1
+	person_event SPRITE_FISHER, 8, 6, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x5564a, -1
+	person_event SPRITE_LASS, 7, 9, OW_LEFT | $0, $10, -1, -1, $0, 0, LassScript_0x5564d, -1

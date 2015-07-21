@@ -1,93 +1,93 @@
 DragonShrine_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18d01e, $0000
-	dw UnknownScript_0x18d022, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
-UnknownScript_0x18d01e:
-	priorityjump UnknownScript_0x18d023
+.Trigger1:
+	priorityjump DragonShrineTestScript
 	end
 
-UnknownScript_0x18d022:
+.Trigger2:
 	end
 
-UnknownScript_0x18d023:
+DragonShrineTestScript:
 	applymovement $0, MovementData_0x18d2bf
 	applymovement $2, MovementData_0x18d2c7
 	loadfont
 	writetext UnknownText_0x18d2ea
 	keeptextopen
-UnknownScript_0x18d030:
-	setevent EVENT_001
+.Question1:
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	writetext UnknownText_0x18d3bc
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d215
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0a9
-	if_equal $2, UnknownScript_0x18d0cb
-	if_equal $3, UnknownScript_0x18d0a9
+	if_equal $1, .RightAnswer
+	if_equal $2, .WrongAnswer
+	if_equal $3, .RightAnswer
 	end
 
-UnknownScript_0x18d049:
-	setevent EVENT_002
+.Question2:
+	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	writetext UnknownText_0x18d3d3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d234
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0a9
-	if_equal $2, UnknownScript_0x18d0a9
-	if_equal $3, UnknownScript_0x18d0cb
-UnknownScript_0x18d061:
-	setevent EVENT_003
+	if_equal $1, .RightAnswer
+	if_equal $2, .RightAnswer
+	if_equal $3, .WrongAnswer
+.Question3:
+	setevent EVENT_DRAGON_SHRINE_QUESTION_3
 	writetext UnknownText_0x18d3f3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d258
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0cb
-	if_equal $2, UnknownScript_0x18d0a9
-	if_equal $3, UnknownScript_0x18d0a9
-UnknownScript_0x18d079:
-	setevent EVENT_004
+	if_equal $1, .WrongAnswer
+	if_equal $2, .RightAnswer
+	if_equal $3, .RightAnswer
+.Question4:
+	setevent EVENT_DRAGON_SHRINE_QUESTION_4
 	writetext UnknownText_0x18d420
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d283
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0a9
-	if_equal $2, UnknownScript_0x18d0cb
-	if_equal $3, UnknownScript_0x18d0a9
-UnknownScript_0x18d091:
-	setevent EVENT_005
+	if_equal $1, .RightAnswer
+	if_equal $2, .WrongAnswer
+	if_equal $3, .RightAnswer
+.Question5:
+	setevent EVENT_DRAGON_SHRINE_QUESTION_5
 	writetext UnknownText_0x18d44a
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d2a5
 	interpretmenu2
 	writebackup
-	if_equal $1, UnknownScript_0x18d0cb
-	if_equal $2, UnknownScript_0x18d0a9
-	if_equal $3, UnknownScript_0x18d0cb
-UnknownScript_0x18d0a9:
-	checkevent EVENT_005
-	iftrue UnknownScript_0x18d100
+	if_equal $1, .WrongAnswer
+	if_equal $2, .RightAnswer
+	if_equal $3, .WrongAnswer
+.RightAnswer:
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
+	iftrue .PassedTheTest
 	writetext UnknownText_0x18d82d
 	keeptextopen
-	checkevent EVENT_004
-	iftrue UnknownScript_0x18d091
-	checkevent EVENT_003
-	iftrue UnknownScript_0x18d079
-	checkevent EVENT_002
-	iftrue UnknownScript_0x18d061
-	checkevent EVENT_001
-	iftrue UnknownScript_0x18d049
-UnknownScript_0x18d0cb:
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
+	iftrue .Question5
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
+	iftrue .Question4
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
+	iftrue .Question3
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	iftrue .Question2
+.WrongAnswer:
 	loadmovesprites
 	spriteface $2, LEFT
 	loadfont
@@ -101,22 +101,22 @@ UnknownScript_0x18d0cb:
 	loadmovesprites
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	loadfont
-	checkevent EVENT_005
-	iftrue UnknownScript_0x18d091
-	checkevent EVENT_004
-	iftrue UnknownScript_0x18d079
-	checkevent EVENT_003
-	iftrue UnknownScript_0x18d061
-	checkevent EVENT_002
-	iftrue UnknownScript_0x18d049
-	checkevent EVENT_001
-	iftrue UnknownScript_0x18d030
-UnknownScript_0x18d100:
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
+	iftrue .Question5
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
+	iftrue .Question4
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
+	iftrue .Question3
+	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
+	iftrue .Question2
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	iftrue .Question1
+.PassedTheTest:
 	writetext UnknownText_0x18d47c
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playmusic MUSIC_CLAIR
 	appear $5
 	waitbutton
@@ -147,7 +147,7 @@ UnknownScript_0x18d100:
 	writetext UnknownText_0x18d520
 	closetext
 	loadmovesprites
-	showemote $0, $5, 15
+	showemote EMOTE_SHOCK, $5, 15
 	loadfont
 	writetext UnknownText_0x18d9ae
 	closetext
@@ -160,7 +160,7 @@ UnknownScript_0x18d100:
 	playsound SFX_GET_BADGE
 	waitbutton
 	special RestartMapMusic
-	specialphonecall $8
+	specialphonecall ELMCALL_MASTERBALL
 	dotrigger $1
 	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
 	writetext UnknownText_0x18d9f2
@@ -184,30 +184,30 @@ UnknownScript_0x18d100:
 	playsound SFX_ENTER_DOOR
 	disappear $5
 	waitbutton
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	end
 
 ElderScript_0x18d1a5:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
-	iftrue UnknownScript_0x18d1f9
-	checkevent EVENT_006
-	iftrue UnknownScript_0x18d1ff
+	checkevent EVENT_GAVE_KURT_APRICORNS
+	iftrue .DontGiveDratiniYet
+	checkevent EVENT_JUST_RECEIVED_DRATINI
+	iftrue .ReceivedDratini
 	checkevent EVENT_GOT_DRATINI
-	iffalse UnknownScript_0x18d1c5
+	iffalse .GiveDratini
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
-	iftrue UnknownScript_0x18d1f3
+	iftrue .BeatRivalInMtMoon
 	writetext UnknownText_0x18d724
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1c5:
+.GiveDratini:
 	writetext UnknownText_0x18d604
 	closetext
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x18d1ed
+	if_equal 6, .PartyFull
 	writetext UnknownText_0x18d697
 	playsound SFX_CAUGHT_MON
 	waitbutton
@@ -215,31 +215,31 @@ UnknownScript_0x18d1c5:
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	special SpecialDratini
 	setevent EVENT_GOT_DRATINI
-	setevent EVENT_006
+	setevent EVENT_JUST_RECEIVED_DRATINI
 	writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1ed:
+.PartyFull:
 	writetext UnknownText_0x18d6ac
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1f3:
+.BeatRivalInMtMoon:
 	writetext UnknownText_0x18d782
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1f9:
+.DontGiveDratiniYet:
 	writetext UnknownText_0x18d5e5
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18d1ff:
+.ReceivedDratini:
 	writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites
@@ -668,20 +668,20 @@ DragonShrine_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $9, $4, 2, GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
 	warp_def $9, $5, 2, GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_ELDER, 5, 9, $6, $0, 255, 255, $0, 0, ElderScript_0x18d1a5, EVENT_000
-	person_event SPRITE_ELDER, 8, 6, $9, $0, 255, 255, $0, 0, ElderScript_0x18d205, EVENT_000
-	person_event SPRITE_ELDER, 8, 11, $8, $0, 255, 255, $0, 0, ElderScript_0x18d20d, EVENT_000
-	person_event SPRITE_CLAIR, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, EVENT_790
+	person_event SPRITE_ELDER, 5, 9, OW_UP | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 8, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_CLAIR, 12, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

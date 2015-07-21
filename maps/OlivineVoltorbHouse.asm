@@ -1,8 +1,8 @@
 OlivineVoltorbHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 Tim:
@@ -20,19 +20,19 @@ OlivineVoltorbHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	warp_def $7, $3, 3, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, TimsHouseBookshelf
-	signpost 1, 1, $0, TimsHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, TimsHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, TimsHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $80, 0, Tim, -1
+	person_event SPRITE_FISHING_GURU, 7, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Tim, -1

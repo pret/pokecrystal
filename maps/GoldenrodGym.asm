@@ -1,12 +1,12 @@
 GoldenrodGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x5400a, $0000
 	dw UnknownScript_0x5400b, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x5400a:
@@ -87,23 +87,7 @@ GoldenrodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerLassCarrie:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_CARRIE
-
-	; trainer group && trainer id
-	db LASS, CARRIE
-
-	; text when seen
-	dw LassCarrieSeenText
-
-	; text when trainer beaten
-	dw LassCarrieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassCarrieScript
+	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, $0000, LassCarrieScript
 
 LassCarrieScript:
 	talkaftercancel
@@ -114,7 +98,7 @@ LassCarrieScript:
 	end
 
 WhitneyCriesScript:
-	showemote $0, $4, 15
+	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, BridgetWalksUpMovement
 	spriteface $0, DOWN
 	loadfont
@@ -127,23 +111,7 @@ WhitneyCriesScript:
 	end
 
 TrainerLassBridget:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_BRIDGET
-
-	; trainer group && trainer id
-	db LASS, BRIDGET
-
-	; text when seen
-	dw LassBridgetSeenText
-
-	; text when trainer beaten
-	dw LassBridgetBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassBridgetScript
+	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, $0000, LassBridgetScript
 
 LassBridgetScript:
 	talkaftercancel
@@ -154,23 +122,7 @@ LassBridgetScript:
 	end
 
 TrainerBeautyVictoria:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_VICTORIA
-
-	; trainer group && trainer id
-	db BEAUTY, VICTORIA
-
-	; text when seen
-	dw BeautyVictoriaSeenText
-
-	; text when trainer beaten
-	dw BeautyVictoriaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyVictoriaScript
+	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, $0000, BeautyVictoriaScript
 
 BeautyVictoriaScript:
 	talkaftercancel
@@ -181,23 +133,7 @@ BeautyVictoriaScript:
 	end
 
 TrainerBeautySamantha:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_SAMANTHA
-
-	; trainer group && trainer id
-	db BEAUTY, SAMANTHA
-
-	; text when seen
-	dw BeautySamanthaSeenText
-
-	; text when trainer beaten
-	dw BeautySamanthaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautySamanthaScript
+	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, $0000, BeautySamanthaScript
 
 BeautySamanthaScript:
 	talkaftercancel
@@ -441,25 +377,25 @@ GoldenrodGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $2, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $11, $3, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $5, $8, $0, WhitneyCriesScript, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 15, 1, $0, GoldenrodGymStatue
-	signpost 15, 4, $0, GoldenrodGymStatue
+	signpost 15, 1, SIGNPOST_READ, GoldenrodGymStatue
+	signpost 15, 4, SIGNPOST_READ, GoldenrodGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_WHITNEY, 7, 12, $6, $0, 255, 255, $80, 0, WhitneyScript_0x5400c, -1
-	person_event SPRITE_LASS, 17, 13, $9, $0, 255, 255, $92, 4, TrainerLassCarrie, -1
-	person_event SPRITE_LASS, 10, 13, $8, $0, 255, 255, $92, 1, TrainerLassBridget, -1
-	person_event SPRITE_BUENA, 6, 4, $6, $0, 255, 255, $92, 3, TrainerBeautyVictoria, -1
-	person_event SPRITE_BUENA, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, -1
-	person_event SPRITE_GYM_GUY, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, -1
+	person_event SPRITE_WHITNEY, 7, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, WhitneyScript_0x5400c, -1
+	person_event SPRITE_LASS, 17, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerLassCarrie, -1
+	person_event SPRITE_LASS, 10, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassBridget, -1
+	person_event SPRITE_BUENA, 6, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautyVictoria, -1
+	person_event SPRITE_BUENA, 9, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautySamantha, -1
+	person_event SPRITE_GYM_GUY, 19, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GoldenrodGymGuyScript, -1

@@ -1,34 +1,18 @@
 Route45_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBlackbeltKenji:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_KENJI
-
-	; trainer group && trainer id
-	db BLACKBELT_T, KENJI3
-
-	; text when seen
-	dw BlackbeltKenji3SeenText
-
-	; text when trainer beaten
-	dw BlackbeltKenji3BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltKenji3Script
+	trainer EVENT_BEAT_BLACKBELT_KENJI, BLACKBELT_T, KENJI3, BlackbeltKenji3SeenText, BlackbeltKenji3BeatenText, $0000, BlackbeltKenji3Script
 
 BlackbeltKenji3Script:
-	writecode VAR_CALLERID, $22
+	writecode VAR_CALLERID, PHONE_BLACKBELT_KENJI
 	talkaftercancel
 	loadfont
-	checkcellnum $22
+	checkcellnum PHONE_BLACKBELT_KENJI
 	iftrue UnknownScript_0x19e0e4
 	checkevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19e0cd
@@ -42,7 +26,7 @@ BlackbeltKenji3Script:
 UnknownScript_0x19e0cd:
 	scall UnknownScript_0x19e11f
 UnknownScript_0x19e0d0:
-	askforphonenumber $22
+	askforphonenumber PHONE_BLACKBELT_KENJI
 	if_equal $1, UnknownScript_0x19e12f
 	if_equal $2, UnknownScript_0x19e12b
 	trainertotext BLACKBELT_T, KENJI3, $0
@@ -56,12 +40,12 @@ UnknownScript_0x19e0e4:
 	iftrue UnknownScript_0x19e10c
 	checknite
 	iftrue UnknownScript_0x19e112
-	checkevent EVENT_26A
+	checkevent EVENT_KENJI_ON_BREAK
 	iffalse UnknownScript_0x19e127
 	scall UnknownScript_0x19e137
 	verbosegiveitem PP_UP, 1
 	iffalse UnknownScript_0x19e118
-	clearevent EVENT_26A
+	clearevent EVENT_KENJI_ON_BREAK
 	special Function11485
 	jump UnknownScript_0x19e127
 
@@ -126,23 +110,7 @@ UnknownScript_0x19e146:
 	end
 
 TrainerHikerErik:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_ERIK
-
-	; trainer group && trainer id
-	db HIKER, ERIK
-
-	; text when seen
-	dw HikerErikSeenText
-
-	; text when trainer beaten
-	dw HikerErikBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerErikScript
+	trainer EVENT_BEAT_HIKER_ERIK, HIKER, ERIK, HikerErikSeenText, HikerErikBeatenText, $0000, HikerErikScript
 
 HikerErikScript:
 	talkaftercancel
@@ -153,23 +121,7 @@ HikerErikScript:
 	end
 
 TrainerHikerMichael:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_MICHAEL
-
-	; trainer group && trainer id
-	db HIKER, MICHAEL
-
-	; text when seen
-	dw HikerMichaelSeenText
-
-	; text when trainer beaten
-	dw HikerMichaelBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerMichaelScript
+	trainer EVENT_BEAT_HIKER_MICHAEL, HIKER, MICHAEL, HikerMichaelSeenText, HikerMichaelBeatenText, $0000, HikerMichaelScript
 
 HikerMichaelScript:
 	talkaftercancel
@@ -180,31 +132,15 @@ HikerMichaelScript:
 	end
 
 TrainerHikerParry:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_PARRY
-
-	; trainer group && trainer id
-	db HIKER, PARRY3
-
-	; text when seen
-	dw HikerParry3SeenText
-
-	; text when trainer beaten
-	dw HikerParry3BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerParry3Script
+	trainer EVENT_BEAT_HIKER_PARRY, HIKER, PARRY3, HikerParry3SeenText, HikerParry3BeatenText, $0000, HikerParry3Script
 
 HikerParry3Script:
-	writecode VAR_CALLERID, $23
+	writecode VAR_CALLERID, PHONE_HIKER_PARRY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_PARRY
 	iftrue UnknownScript_0x19e1b8
-	checkcellnum $23
+	checkcellnum PHONE_HIKER_PARRY
 	iftrue UnknownScript_0x19e127
 	checkevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19e1a1
@@ -217,7 +153,7 @@ HikerParry3Script:
 UnknownScript_0x19e1a1:
 	scall UnknownScript_0x19e11f
 UnknownScript_0x19e1a4:
-	askforphonenumber $23
+	askforphonenumber PHONE_HIKER_PARRY
 	if_equal $1, UnknownScript_0x19e12f
 	if_equal $2, UnknownScript_0x19e12b
 	trainertotext HIKER, PARRY1, $0
@@ -282,23 +218,7 @@ UnknownScript_0x19e219:
 	jump UnknownScript_0x19e127
 
 TrainerHikerTimothy:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_TIMOTHY
-
-	; trainer group && trainer id
-	db HIKER, TIMOTHY
-
-	; text when seen
-	dw HikerTimothySeenText
-
-	; text when trainer beaten
-	dw HikerTimothyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerTimothyScript
+	trainer EVENT_BEAT_HIKER_TIMOTHY, HIKER, TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, $0000, HikerTimothyScript
 
 HikerTimothyScript:
 	talkaftercancel
@@ -309,23 +229,7 @@ HikerTimothyScript:
 	end
 
 TrainerCooltrainermRyan:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_RYAN
-
-	; trainer group && trainer id
-	db COOLTRAINERM, RYAN
-
-	; text when seen
-	dw CooltrainermRyanSeenText
-
-	; text when trainer beaten
-	dw CooltrainermRyanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermRyanScript
+	trainer EVENT_BEAT_COOLTRAINERM_RYAN, COOLTRAINERM, RYAN, CooltrainermRyanSeenText, CooltrainermRyanBeatenText, $0000, CooltrainermRyanScript
 
 CooltrainermRyanScript:
 	talkaftercancel
@@ -336,23 +240,7 @@ CooltrainermRyanScript:
 	end
 
 TrainerCooltrainerfKelly:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_KELLY
-
-	; trainer group && trainer id
-	db COOLTRAINERF, KELLY
-
-	; text when seen
-	dw CooltrainerfKellySeenText
-
-	; text when trainer beaten
-	dw CooltrainerfKellyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfKellyScript
+	trainer EVENT_BEAT_COOLTRAINERF_KELLY, COOLTRAINERF, KELLY, CooltrainerfKellySeenText, CooltrainerfKellyBeatenText, $0000, CooltrainerfKellyScript
 
 CooltrainerfKellyScript:
 	talkaftercancel
@@ -409,8 +297,7 @@ ItemFragment_0x19e29c:
 	db MAX_POTION, 1
 
 MapRoute45SignpostItem1:
-	dw $00af
-	db PP_UP
+	dwb EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
 	
 
 HikerErikSeenText:
@@ -634,30 +521,30 @@ Route45_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $2, 1, GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 4, 10, $0, MapRoute45Signpost0Script
-	signpost 80, 13, $7, MapRoute45SignpostItem1
+	signpost 4, 10, SIGNPOST_READ, MapRoute45Signpost0Script
+	signpost 80, 13, SIGNPOST_ITEM, MapRoute45SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 13
-	person_event SPRITE_POKEFAN_M, 20, 14, $9, $0, 255, 255, $b2, 1, TrainerHikerErik, -1
-	person_event SPRITE_POKEFAN_M, 69, 19, $9, $0, 255, 255, $b2, 2, TrainerHikerMichael, -1
-	person_event SPRITE_POKEFAN_M, 32, 9, $7, $0, 255, 255, $b2, 2, TrainerHikerParry, -1
-	person_event SPRITE_POKEFAN_M, 69, 13, $8, $0, 255, 255, $b2, 1, TrainerHikerTimothy, -1
-	person_event SPRITE_BLACK_BELT, 54, 15, $a, $0, 255, 255, $b2, 2, TrainerBlackbeltKenji, -1
-	person_event SPRITE_COOLTRAINER_M, 22, 21, $8, $0, 255, 255, $82, 1, TrainerCooltrainermRyan, -1
-	person_event SPRITE_COOLTRAINER_F, 40, 9, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfKelly, -1
-	person_event SPRITE_FRUIT_TREE, 86, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19e294, -1
-	person_event SPRITE_POKE_BALL, 55, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e296, EVENT_6B8
-	person_event SPRITE_POKE_BALL, 70, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e298, EVENT_6B9
-	person_event SPRITE_POKE_BALL, 24, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29a, EVENT_6BA
-	person_event SPRITE_POKE_BALL, 37, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29c, EVENT_6BB
-	person_event SPRITE_YOUNGSTER, 74, 8, $3, $0, 255, 255, $a0, 0, YoungsterScript_0x19e269, -1
+	person_event SPRITE_POKEFAN_M, 20, 14, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerHikerErik, -1
+	person_event SPRITE_POKEFAN_M, 69, 19, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerMichael, -1
+	person_event SPRITE_POKEFAN_M, 32, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerParry, -1
+	person_event SPRITE_POKEFAN_M, 69, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerHikerTimothy, -1
+	person_event SPRITE_BLACK_BELT, 54, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBlackbeltKenji, -1
+	person_event SPRITE_COOLTRAINER_M, 22, 21, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermRyan, -1
+	person_event SPRITE_COOLTRAINER_F, 40, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfKelly, -1
+	person_event SPRITE_FRUIT_TREE, 86, 20, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19e294, -1
+	person_event SPRITE_POKE_BALL, 55, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e296, EVENT_ROUTE_45_NUGGET
+	person_event SPRITE_POKE_BALL, 70, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e298, EVENT_ROUTE_45_REVIVE
+	person_event SPRITE_POKE_BALL, 24, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e29a, EVENT_ROUTE_45_ELIXER
+	person_event SPRITE_POKE_BALL, 37, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x19e29c, EVENT_ROUTE_45_MAX_POTION
+	person_event SPRITE_YOUNGSTER, 74, 8, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x19e269, -1

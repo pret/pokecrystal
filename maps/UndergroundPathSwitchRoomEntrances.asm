@@ -1,12 +1,12 @@
 UndergroundPathSwitchRoomEntrances_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x7c9f5, $0000
 	dw UnknownScript_0x7c9f6, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -79,7 +79,7 @@ TeacherScript_0x7ca7d:
 
 UnknownScript_0x7ca80:
 	spriteface $0, RIGHT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_EXIT_BUILDING
@@ -98,7 +98,7 @@ UnknownScript_0x7ca80:
 
 UnknownScript_0x7caaa:
 	spriteface $0, RIGHT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_EXIT_BUILDING
@@ -116,9 +116,9 @@ UnknownScript_0x7caaa:
 	end
 
 UnknownScript_0x7cad4:
-	checkevent EVENT_6C5
+	checkevent EVENT_RIVAL_BURNED_TOWER
 	iftrue UnknownScript_0x7cae1
-	setevent EVENT_6C5
+	setevent EVENT_RIVAL_BURNED_TOWER
 	domaptrigger GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F, $1
 UnknownScript_0x7cae1:
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -126,7 +126,7 @@ UnknownScript_0x7cae1:
 	writetext UnknownText_0x7ce9d
 	closetext
 	loadmovesprites
-	setevent EVENT_6C1
+	setevent EVENT_RIVAL_UNDERGROUND_PATH
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x7cb09
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -166,23 +166,7 @@ UnknownScript_0x7cb29:
 	end
 
 TrainerGruntM11:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_11
-
-	; trainer group && trainer id
-	db GRUNTM, 11
-
-	; text when seen
-	dw GruntM11SeenText
-
-	; text when trainer beaten
-	dw GruntM11BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM11Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, 11, GruntM11SeenText, GruntM11BeatenText, $0000, GruntM11Script
 
 GruntM11Script:
 	talkaftercancel
@@ -193,23 +177,7 @@ GruntM11Script:
 	end
 
 TrainerGruntM25:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_20
-
-	; trainer group && trainer id
-	db GRUNTM, 25
-
-	; text when seen
-	dw GruntM25SeenText
-
-	; text when trainer beaten
-	dw GruntM25BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM25Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, 25, GruntM25SeenText, GruntM25BeatenText, $0000, GruntM25Script
 
 GruntM25Script:
 	talkaftercancel
@@ -220,23 +188,7 @@ GruntM25Script:
 	end
 
 TrainerBurglarDuncan:
-	; bit/flag number
-	dw EVENT_BEAT_BURGLAR_DUNCAN
-
-	; trainer group && trainer id
-	db BURGLAR, DUNCAN
-
-	; text when seen
-	dw BurglarDuncanSeenText
-
-	; text when trainer beaten
-	dw BurglarDuncanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BurglarDuncanScript
+	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, $0000, BurglarDuncanScript
 
 BurglarDuncanScript:
 	talkaftercancel
@@ -247,23 +199,7 @@ BurglarDuncanScript:
 	end
 
 TrainerBurglarEddie:
-	; bit/flag number
-	dw EVENT_BEAT_BURGLAR_EDDIE
-
-	; trainer group && trainer id
-	db BURGLAR, EDDIE
-
-	; text when seen
-	dw BurglarEddieSeenText
-
-	; text when trainer beaten
-	dw BurglarEddieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BurglarEddieScript
+	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, $0000, BurglarEddieScript
 
 BurglarEddieScript:
 	talkaftercancel
@@ -274,23 +210,7 @@ BurglarEddieScript:
 	end
 
 TrainerGruntM13:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_12
-
-	; trainer group && trainer id
-	db GRUNTM, 13
-
-	; text when seen
-	dw GruntM13SeenText
-
-	; text when trainer beaten
-	dw GruntM13BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM13Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, 13, GruntM13SeenText, GruntM13BeatenText, $0000, GruntM13Script
 
 GruntM13Script:
 	talkaftercancel
@@ -301,23 +221,7 @@ GruntM13Script:
 	end
 
 TrainerGruntF3:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_3
-
-	; trainer group && trainer id
-	db GRUNTF, 3
-
-	; text when seen
-	dw GruntF3SeenText
-
-	; text when trainer beaten
-	dw GruntF3BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF3Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, 3, GruntF3SeenText, GruntF3BeatenText, $0000, GruntF3Script
 
 GruntF3Script:
 	talkaftercancel
@@ -686,13 +590,11 @@ ItemFragment_0x7ce7f:
 	db FULL_HEAL, 1
 
 MapUndergroundPathSwitchRoomEntrancesSignpostItem4:
-	dw $008e
-	db MAX_POTION
+	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
 	
 
 MapUndergroundPathSwitchRoomEntrancesSignpostItem5:
-	dw $008f
-	db REVIVE
+	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
 	
 
 MovementData_0x7ce87:
@@ -993,7 +895,7 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 9
 	warp_def $3, $17, 6, GROUP_WAREHOUSE_ENTRANCE, MAP_WAREHOUSE_ENTRANCE
 	warp_def $a, $16, 1, GROUP_UNDERGROUND_WAREHOUSE, MAP_UNDERGROUND_WAREHOUSE
@@ -1005,30 +907,30 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	warp_def $1d, $14, 13, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $1d, $15, 13, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $4, $13, $0, UnknownScript_0x7ca80, $0, $0
 	xy_trigger 0, $5, $13, $0, UnknownScript_0x7caaa, $0, $0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 1, 16, $0, MapUndergroundPathSwitchRoomEntrancesSignpost0Script
-	signpost 1, 10, $0, MapUndergroundPathSwitchRoomEntrancesSignpost1Script
-	signpost 1, 2, $0, MapUndergroundPathSwitchRoomEntrancesSignpost2Script
-	signpost 11, 20, $0, MapUndergroundPathSwitchRoomEntrancesSignpost3Script
-	signpost 9, 8, $7, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
-	signpost 8, 1, $7, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
+	signpost 1, 16, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost0Script
+	signpost 1, 10, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost1Script
+	signpost 1, 2, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost2Script
+	signpost 11, 20, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost3Script
+	signpost 9, 8, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
+	signpost 8, 1, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
 
-	; people-events
+.PersonEvents:
 	db 11
-	person_event SPRITE_PHARMACIST, 16, 13, $9, $0, 255, 255, $a2, 2, TrainerBurglarDuncan, EVENT_6CE
-	person_event SPRITE_PHARMACIST, 12, 8, $8, $0, 255, 255, $a2, 2, TrainerBurglarEddie, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 21, $6, $0, 255, 255, $2, 3, TrainerGruntM13, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 15, $6, $0, 255, 255, $2, 3, TrainerGruntM11, EVENT_6CE
-	person_event SPRITE_ROCKET, 6, 7, $6, $0, 255, 255, $2, 3, TrainerGruntM25, EVENT_6CE
-	person_event SPRITE_ROCKET_GIRL, 16, 23, $6, $0, 255, 255, $82, 1, TrainerGruntF3, EVENT_6CE
-	person_event SPRITE_TEACHER, 31, 7, $6, $0, 255, 255, $0, 0, TeacherScript_0x7ca7d, -1
-	person_event SPRITE_SUPER_NERD, 31, 23, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x7ca7a, -1
-	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7d, EVENT_673
-	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7f, EVENT_674
-	person_event SPRITE_SILVER, 7, 27, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C1
+	person_event SPRITE_PHARMACIST, 16, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_PHARMACIST, 12, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 21, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 15, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 7, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 16, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_TEACHER, 31, 7, OW_UP | $2, $0, -1, -1, $0, 0, TeacherScript_0x7ca7d, -1
+	person_event SPRITE_SUPER_NERD, 31, 23, OW_UP | $2, $0, -1, -1, $0, 0, SuperNerdScript_0x7ca7a, -1
+	person_event SPRITE_POKE_BALL, 16, 5, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7d, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
+	person_event SPRITE_POKE_BALL, 13, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7ce7f, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
+	person_event SPRITE_SILVER, 7, 27, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH

@@ -1,28 +1,12 @@
 Route3_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerFirebreatherOtis:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_OTIS
-
-	; trainer group && trainer id
-	db FIREBREATHER, OTIS
-
-	; text when seen
-	dw FirebreatherOtisSeenText
-
-	; text when trainer beaten
-	dw FirebreatherOtisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherOtisScript
+	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, $0000, FirebreatherOtisScript
 
 FirebreatherOtisScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ FirebreatherOtisScript:
 	end
 
 TrainerYoungsterWarren:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_WARREN
-
-	; trainer group && trainer id
-	db YOUNGSTER, WARREN
-
-	; text when seen
-	dw YoungsterWarrenSeenText
-
-	; text when trainer beaten
-	dw YoungsterWarrenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterWarrenScript
+	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, $0000, YoungsterWarrenScript
 
 YoungsterWarrenScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ YoungsterWarrenScript:
 	end
 
 TrainerYoungsterJimmy:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_JIMMY
-
-	; trainer group && trainer id
-	db YOUNGSTER, JIMMY
-
-	; text when seen
-	dw YoungsterJimmySeenText
-
-	; text when trainer beaten
-	dw YoungsterJimmyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterJimmyScript
+	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, $0000, YoungsterJimmyScript
 
 YoungsterJimmyScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ YoungsterJimmyScript:
 	end
 
 TrainerFirebreatherBurt:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_BURT
-
-	; trainer group && trainer id
-	db FIREBREATHER, BURT
-
-	; text when seen
-	dw FirebreatherBurtSeenText
-
-	; text when trainer beaten
-	dw FirebreatherBurtBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherBurtScript
+	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, $0000, FirebreatherBurtScript
 
 FirebreatherBurtScript:
 	talkaftercancel
@@ -194,20 +130,20 @@ Route3_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $1, $34, 1, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 13, 49, $0, MapRoute3Signpost0Script
+	signpost 13, 49, SIGNPOST_READ, MapRoute3Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 16, 30, $7, $0, 255, 255, $82, 2, TrainerFirebreatherOtis, -1
-	person_event SPRITE_YOUNGSTER, 11, 14, $8, $0, 255, 255, $92, 3, TrainerYoungsterWarren, -1
-	person_event SPRITE_YOUNGSTER, 7, 20, $a, $0, 255, 255, $92, 1, TrainerYoungsterJimmy, -1
-	person_event SPRITE_FISHER, 9, 53, $a, $0, 255, 255, $82, 3, TrainerFirebreatherBurt, -1
+	person_event SPRITE_FISHER, 16, 30, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherOtis, -1
+	person_event SPRITE_YOUNGSTER, 11, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterWarren, -1
+	person_event SPRITE_YOUNGSTER, 7, 20, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerYoungsterJimmy, -1
+	person_event SPRITE_FISHER, 9, 53, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerFirebreatherBurt, -1

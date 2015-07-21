@@ -1,28 +1,12 @@
 Route1_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerSchoolboyDanny:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_DANNY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, DANNY
-
-	; text when seen
-	dw SchoolboyDannySeenText
-
-	; text when trainer beaten
-	dw SchoolboyDannyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyDannyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DANNY, SCHOOLBOY, DANNY, SchoolboyDannySeenText, SchoolboyDannyBeatenText, $0000, SchoolboyDannyScript
 
 SchoolboyDannyScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ SchoolboyDannyScript:
 	end
 
 TrainerCooltrainerfQuinn:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_QUINN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, QUINN
-
-	; text when seen
-	dw CooltrainerfQuinnSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfQuinnBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfQuinnScript
+	trainer EVENT_BEAT_COOLTRAINERF_QUINN, COOLTRAINERF, QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, $0000, CooltrainerfQuinnScript
 
 CooltrainerfQuinnScript:
 	talkaftercancel
@@ -111,18 +79,18 @@ Route1_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 27, 7, $0, MapRoute1Signpost0Script
+	signpost 27, 7, SIGNPOST_READ, MapRoute1Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_YOUNGSTER, 16, 8, $9, $0, 255, 255, $92, 4, TrainerSchoolboyDanny, -1
-	person_event SPRITE_COOLTRAINER_F, 29, 13, $a, $0, 255, 255, $82, 2, TrainerCooltrainerfQuinn, -1
-	person_event SPRITE_FRUIT_TREE, 11, 7, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac581, -1
+	person_event SPRITE_YOUNGSTER, 16, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSchoolboyDanny, -1
+	person_event SPRITE_COOLTRAINER_F, 29, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainerfQuinn, -1
+	person_event SPRITE_FRUIT_TREE, 11, 7, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1ac581, -1

@@ -1,16 +1,15 @@
 DiglettsCave_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PokefanMScript_0x74002:
 	jumptextfaceplayer UnknownText_0x74008
 
 MapDiglettsCaveSignpostItem0:
-	dw $00e4
-	db MAX_REVIVE
+	dwb EVENT_DIGLETTS_CAVE_HIDDEN_MAX_REVIVE, MAX_REVIVE
 	
 
 UnknownText_0x74008:
@@ -25,7 +24,7 @@ DiglettsCave_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $21, $3, 10, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	warp_def $1f, $5, 5, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
@@ -34,13 +33,13 @@ DiglettsCave_MapEventHeader:
 	warp_def $21, $11, 2, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 	warp_def $3, $3, 4, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 11, 6, $7, MapDiglettsCaveSignpostItem0
+	signpost 11, 6, SIGNPOST_ITEM, MapDiglettsCaveSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 35, 7, $6, $0, 255, 255, $0, 0, PokefanMScript_0x74002, -1
+	person_event SPRITE_POKEFAN_M, 35, 7, OW_UP | $2, $0, -1, -1, $0, 0, PokefanMScript_0x74002, -1

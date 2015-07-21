@@ -1,8 +1,8 @@
 VioletCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -46,7 +46,7 @@ UnknownScript_0x1a83d1:
 	applymovement $2, MovementData_0x1a8463
 	playsound SFX_ENTER_DOOR
 	disappear $2
-	clearevent EVENT_6CB
+	clearevent EVENT_EARLS_ACADEMY_EARL
 	waitbutton
 	end
 
@@ -90,8 +90,7 @@ FruitTreeScript_0x1a8425:
 	fruittree $9
 
 MapVioletCitySignpostItem6:
-	dw $00b0
-	db HYPER_POTION
+	dwb EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a842a:
 	big_step_down
@@ -275,7 +274,7 @@ VioletCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 9
 	warp_def $11, $9, 2, GROUP_VIOLET_MART, MAP_VIOLET_MART
 	warp_def $11, $12, 1, GROUP_VIOLET_GYM, MAP_VIOLET_GYM
@@ -287,26 +286,26 @@ VioletCity_MapEventHeader:
 	warp_def $18, $27, 1, GROUP_ROUTE_31_VIOLET_GATE, MAP_ROUTE_31_VIOLET_GATE
 	warp_def $19, $27, 2, GROUP_ROUTE_31_VIOLET_GATE, MAP_ROUTE_31_VIOLET_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 7
-	signpost 20, 24, $0, VioletCitySign
-	signpost 17, 15, $0, VioletGymSign
-	signpost 8, 24, $0, SproutTowerSign
-	signpost 17, 27, $0, EarlsPokemonAcademySign
-	signpost 25, 32, $0, VioletCityPokeCenterSign
-	signpost 17, 10, $0, VioletCityMartSign
-	signpost 14, 37, $7, MapVioletCitySignpostItem6
+	signpost 20, 24, SIGNPOST_READ, VioletCitySign
+	signpost 17, 15, SIGNPOST_READ, VioletGymSign
+	signpost 8, 24, SIGNPOST_READ, SproutTowerSign
+	signpost 17, 27, SIGNPOST_READ, EarlsPokemonAcademySign
+	signpost 25, 32, SIGNPOST_READ, VioletCityPokeCenterSign
+	signpost 17, 10, SIGNPOST_READ, VioletCityMartSign
+	signpost 14, 37, SIGNPOST_ITEM, MapVioletCitySignpostItem6
 
-	; people-events
+.PersonEvents:
 	db 8
-	person_event SPRITE_FISHER, 20, 17, $3, $0, 255, 255, $a0, 0, FisherScript_0x1a83bb, EVENT_6CA
-	person_event SPRITE_LASS, 32, 32, $2, $22, 255, 255, $a0, 0, LassScript_0x1a8403, -1
-	person_event SPRITE_SUPER_NERD, 18, 28, $2, $21, 255, 255, $80, 0, SuperNerdScript_0x1a8406, -1
-	person_event SPRITE_GRAMPS, 24, 21, $5, $1, 255, 255, $0, 0, GrampsScript_0x1a8409, -1
-	person_event SPRITE_YOUNGSTER, 22, 9, $3, $0, 255, 255, $a0, 0, YoungsterScript_0x1a840c, -1
-	person_event SPRITE_FRUIT_TREE, 33, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8425, -1
-	person_event SPRITE_POKE_BALL, 5, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8421, EVENT_643
-	person_event SPRITE_POKE_BALL, 9, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8423, EVENT_644
+	person_event SPRITE_FISHER, 20, 17, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a83bb, EVENT_VIOLET_CITY_EARL
+	person_event SPRITE_LASS, 32, 32, OW_DOWN | $2, $22, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x1a8403, -1
+	person_event SPRITE_SUPER_NERD, 18, 28, OW_DOWN | $2, $21, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a8406, -1
+	person_event SPRITE_GRAMPS, 24, 21, OW_UP | $1, $1, -1, -1, $0, 0, GrampsScript_0x1a8409, -1
+	person_event SPRITE_YOUNGSTER, 22, 9, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a840c, -1
+	person_event SPRITE_FRUIT_TREE, 33, 18, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8425, -1
+	person_event SPRITE_POKE_BALL, 5, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a8421, EVENT_VIOLET_CITY_PP_UP
+	person_event SPRITE_POKE_BALL, 9, 39, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a8423, EVENT_VIOLET_CITY_RARE_CANDY

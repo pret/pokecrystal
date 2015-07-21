@@ -1,11 +1,11 @@
 SeafoamGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x1ab4fa, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x1ab4fa:
@@ -159,17 +159,17 @@ SeafoamGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $5, 1, GROUP_ROUTE_20, MAP_ROUTE_20
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_BLAINE, 6, 9, $6, $0, 255, 255, $b0, 0, BlaineScript_0x1ab4fb, -1
-	person_event SPRITE_GYM_GUY, 9, 10, $7, $0, 255, 255, $90, 0, SeafoamGymGuyScript, EVENT_777
+	person_event SPRITE_BLAINE, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BlaineScript_0x1ab4fb, -1
+	person_event SPRITE_GYM_GUY, 9, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY

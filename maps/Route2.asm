@@ -1,28 +1,12 @@
 Route2_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBug_catcherRob:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_ROB
-
-	; trainer group && trainer id
-	db BUG_CATCHER, ROB
-
-	; text when seen
-	dw Bug_catcherRobSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherRobBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherRobScript
+	trainer EVENT_BEAT_BUG_CATCHER_ROB, BUG_CATCHER, ROB, Bug_catcherRobSeenText, Bug_catcherRobBeatenText, $0000, Bug_catcherRobScript
 
 Bug_catcherRobScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bug_catcherRobScript:
 	end
 
 TrainerBug_catcherEd:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_ED
-
-	; trainer group && trainer id
-	db BUG_CATCHER, ED
-
-	; text when seen
-	dw Bug_catcherEdSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherEdBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherEdScript
+	trainer EVENT_BEAT_BUG_CATCHER_ED, BUG_CATCHER, ED, Bug_catcherEdSeenText, Bug_catcherEdBeatenText, $0000, Bug_catcherEdScript
 
 Bug_catcherEdScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ Bug_catcherEdScript:
 	end
 
 TrainerBug_catcherDoug:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_DOUG
-
-	; trainer group && trainer id
-	db BUG_CATCHER, DOUG
-
-	; text when seen
-	dw Bug_catcherDougSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherDougBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherDougScript
+	trainer EVENT_BEAT_BUG_CATCHER_DOUG, BUG_CATCHER, DOUG, Bug_catcherDougSeenText, Bug_catcherDougBeatenText, $0000, Bug_catcherDougScript
 
 Bug_catcherDougScript:
 	talkaftercancel
@@ -108,24 +60,16 @@ FruitTreeScript_0x1ac306:
 	fruittree $19
 
 MapRoute2SignpostItem2:
-	dw $00ed
-	db MAX_ETHER
-	
+	dwb EVENT_ROUTE_2_HIDDEN_MAX_ETHER, MAX_ETHER
 
 MapRoute2SignpostItem3:
-	dw $00ee
-	db FULL_HEAL
-	
+	dwb EVENT_ROUTE_2_HIDDEN_FULL_HEAL, FULL_HEAL
 
 MapRoute2SignpostItem4:
-	dw $00ef
-	db FULL_RESTORE
-	
+	dwb EVENT_ROUTE_2_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
 MapRoute2SignpostItem5:
-	dw $00f0
-	db REVIVE
-	
+	dwb EVENT_ROUTE_2_HIDDEN_REVIVE, REVIVE
 
 Bug_catcherRobSeenText:
 	text "My bug #MON are"
@@ -196,7 +140,7 @@ Route2_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $f, $f, 1, GROUP_ROUTE_2_NUGGET_SPEECH_HOUSE, MAP_ROUTE_2_NUGGET_SPEECH_HOUSE
 	warp_def $1f, $f, 3, GROUP_ROUTE_2_GATE, MAP_ROUTE_2_GATE
@@ -204,25 +148,25 @@ Route2_MapEventHeader:
 	warp_def $1b, $11, 2, GROUP_ROUTE_2_GATE, MAP_ROUTE_2_GATE
 	warp_def $7, $c, 3, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 51, 7, $0, MapRoute2Signpost0Script
-	signpost 9, 11, $0, MapRoute2Signpost1Script
-	signpost 23, 7, $7, MapRoute2SignpostItem2
-	signpost 14, 4, $7, MapRoute2SignpostItem3
-	signpost 27, 4, $7, MapRoute2SignpostItem4
-	signpost 30, 11, $7, MapRoute2SignpostItem5
+	signpost 51, 7, SIGNPOST_READ, MapRoute2Signpost0Script
+	signpost 9, 11, SIGNPOST_READ, MapRoute2Signpost1Script
+	signpost 23, 7, SIGNPOST_ITEM, MapRoute2SignpostItem2
+	signpost 14, 4, SIGNPOST_ITEM, MapRoute2SignpostItem3
+	signpost 27, 4, SIGNPOST_ITEM, MapRoute2SignpostItem4
+	signpost 30, 11, SIGNPOST_ITEM, MapRoute2SignpostItem5
 
-	; people-events
+.PersonEvents:
 	db 8
-	person_event SPRITE_BUG_CATCHER, 49, 14, $8, $0, 255, 255, $b2, 5, TrainerBug_catcherRob, -1
-	person_event SPRITE_BUG_CATCHER, 8, 10, $1f, $0, 255, 255, $b2, 3, TrainerBug_catcherEd, -1
-	person_event SPRITE_BUG_CATCHER, 44, 4, $9, $0, 255, 255, $b2, 3, TrainerBug_catcherDoug, -1
-	person_event SPRITE_POKE_BALL, 33, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac2fe, EVENT_783
-	person_event SPRITE_POKE_BALL, 27, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac300, EVENT_784
-	person_event SPRITE_POKE_BALL, 6, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac302, EVENT_785
-	person_event SPRITE_POKE_BALL, 54, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac304, EVENT_786
-	person_event SPRITE_FRUIT_TREE, 18, 14, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac306, -1
+	person_event SPRITE_BUG_CATCHER, 49, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 5, TrainerBug_catcherRob, -1
+	person_event SPRITE_BUG_CATCHER, 8, 10, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherEd, -1
+	person_event SPRITE_BUG_CATCHER, 44, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherDoug, -1
+	person_event SPRITE_POKE_BALL, 33, 4, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1ac2fe, EVENT_ROUTE_2_DIRE_HIT
+	person_event SPRITE_POKE_BALL, 27, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1ac300, EVENT_ROUTE_2_MAX_POTION
+	person_event SPRITE_POKE_BALL, 6, 23, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1ac302, EVENT_ROUTE_2_CARBOS
+	person_event SPRITE_POKE_BALL, 54, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1ac304, EVENT_ROUTE_2_ELIXER
+	person_event SPRITE_FRUIT_TREE, 18, 14, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1ac306, -1

@@ -8,8 +8,9 @@ GetTrainerDVs: ; 270c4
 	ld b, 0
 
 	ld hl, TrainerClassDVs
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 
 	ld a, [hli]
 	ld b, a

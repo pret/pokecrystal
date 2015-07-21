@@ -1,8 +1,8 @@
 OlivineCafe_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 SailorScript_0x9c8c1:
@@ -77,19 +77,19 @@ OlivineCafe_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 7, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	warp_def $7, $3, 7, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_SAILOR, 7, 8, $8, $0, 255, 255, $0, 0, SailorScript_0x9c8c1, -1
-	person_event SPRITE_FISHING_GURU, 7, 11, $4, $10, 255, 255, $0, 0, FishingGuruScript_0x9c8d9, -1
-	person_event SPRITE_SAILOR, 10, 10, $7, $0, 255, 255, $0, 0, SailorScript_0x9c8dc, -1
+	person_event SPRITE_SAILOR, 7, 8, OW_LEFT | $0, $0, -1, -1, $0, 0, SailorScript_0x9c8c1, -1
+	person_event SPRITE_FISHING_GURU, 7, 11, OW_UP | $0, $10, -1, -1, $0, 0, FishingGuruScript_0x9c8d9, -1
+	person_event SPRITE_SAILOR, 10, 10, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x9c8dc, -1

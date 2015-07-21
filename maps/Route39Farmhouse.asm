@@ -1,8 +1,8 @@
 Route39Farmhouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PokefanMScript_0x9ceb4:
@@ -192,20 +192,20 @@ Route39Farmhouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_ROUTE_39, MAP_ROUTE_39
 	warp_def $7, $3, 2, GROUP_ROUTE_39, MAP_ROUTE_39
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, FarmhouseBookshelf
-	signpost 1, 1, $0, FarmhouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, FarmhouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, FarmhouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 6, 7, $6, $0, 255, 255, $90, 0, PokefanMScript_0x9ceb4, -1
-	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $b0, 0, PokefanFScript_0x9cf0e, -1
+	person_event SPRITE_POKEFAN_M, 6, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanMScript_0x9ceb4, -1
+	person_event SPRITE_POKEFAN_F, 8, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanFScript_0x9cf0e, -1

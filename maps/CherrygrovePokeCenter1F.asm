@@ -1,8 +1,8 @@
 CherrygrovePokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 NurseScript_0x19696d:
@@ -66,21 +66,21 @@ CherrygrovePokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 2, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	warp_def $7, $4, 2, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x19696d, -1
-	person_event SPRITE_FISHER, 7, 6, $7, $0, 255, 255, $80, 0, FisherScript_0x196970, -1
-	person_event SPRITE_GENTLEMAN, 10, 12, $7, $0, 255, 255, $0, 0, GentlemanScript_0x196973, -1
-	person_event SPRITE_TEACHER, 10, 5, $9, $0, 255, 255, $a0, 0, TeacherScript_0x196976, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x19696d, -1
+	person_event SPRITE_FISHER, 7, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x196970, -1
+	person_event SPRITE_GENTLEMAN, 10, 12, OW_UP | $3, $0, -1, -1, $0, 0, GentlemanScript_0x196973, -1
+	person_event SPRITE_TEACHER, 10, 5, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x196976, -1

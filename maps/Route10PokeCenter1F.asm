@@ -1,8 +1,8 @@
 Route10PokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 NurseScript_0x188bd4:
@@ -78,21 +78,21 @@ Route10PokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 1, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 	warp_def $7, $4, 1, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x188bd4, -1
-	person_event SPRITE_GENTLEMAN, 10, 11, $5, $1, 255, 255, $80, 0, GentlemanScript_0x188bd7, -1
-	person_event SPRITE_GYM_GUY, 6, 11, $3, $0, 255, 255, $a0, 0, GymGuyScript_0x188bda, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 5, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x188bee, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x188bd4, -1
+	person_event SPRITE_GENTLEMAN, 10, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x188bd7, -1
+	person_event SPRITE_GYM_GUY, 6, 11, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GymGuyScript_0x188bda, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 5, OW_UP | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x188bee, -1

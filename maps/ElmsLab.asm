@@ -1,5 +1,5 @@
 ElmsLab_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 6
 
 	; triggers
@@ -10,15 +10,15 @@ ElmsLab_MapScriptHeader:
 	dw UnknownScript_0x78b81, $0000
 	dw UnknownScript_0x78b82, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x78b83
+	dbw 2, ElmsLab_PutElmAtLaptop
 
 UnknownScript_0x78b7a:
-	priorityjump UnknownScript_0x78b8c
+	priorityjump ElmsLab_AutowalkUpToElm
 	end
 
 UnknownScript_0x78b7e:
@@ -36,50 +36,50 @@ UnknownScript_0x78b81:
 UnknownScript_0x78b82:
 	end
 
-UnknownScript_0x78b83:
+ElmsLab_PutElmAtLaptop:
 	checktriggers
-	iftrue UnknownScript_0x78b8b
+	iftrue .Skip
 	moveperson $2, $3, $4
-UnknownScript_0x78b8b:
+.Skip:
 	return
 
-UnknownScript_0x78b8c:
-	applymovement $0, MovementData_0x78f67
-	showemote $0, $2, 15
+ElmsLab_AutowalkUpToElm:
+	applymovement $0, ElmsLab_WalkUpToElmMovement
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, RIGHT
 	loadfont
-	writetext UnknownText_0x78fb6
-UnknownScript_0x78b9b:
+	writetext ElmText_Intro
+ElmsLab_RefuseLoop:
 	yesorno
-	iftrue UnknownScript_0x78ba5
-	writetext UnknownText_0x7911a
-	jump UnknownScript_0x78b9b
+	iftrue ElmsLab_ElmGetsEmail
+	writetext ElmText_Refused
+	jump ElmsLab_RefuseLoop
 
-UnknownScript_0x78ba5:
-	writetext UnknownText_0x790fa
+ElmsLab_ElmGetsEmail:
+	writetext ElmText_Accepted
 	keeptextopen
-	writetext UnknownText_0x7913a
+	writetext ElmText_ResearchAmbitions
 	closetext
 	loadmovesprites
 	playsound SFX_GLASS_TING
 	pause 30
-	showemote $0, $2, 10
+	showemote EMOTE_SHOCK, $2, 10
 	spriteface $2, DOWN
 	loadfont
-	writetext UnknownText_0x791ae
+	writetext ElmText_GotAnEmail
 	closetext
 	loadmovesprites
 	loadfont
 	spriteface $2, RIGHT
-	writetext UnknownText_0x791df
+	writetext ElmText_MissionFromMrPokemon
 	closetext
 	loadmovesprites
-	applymovement $2, MovementData_0x78fa0
+	applymovement $2, ElmsLab_ElmToDefaultPositionMovement1
 	spriteface $0, UP
-	applymovement $2, MovementData_0x78fa2
+	applymovement $2, ElmsLab_ElmToDefaultPositionMovement2
 	spriteface $0, RIGHT
 	loadfont
-	writetext UnknownText_0x792ff
+	writetext ElmText_ChooseAPokemon
 	closetext
 	dotrigger $1
 	loadmovesprites
@@ -89,21 +89,21 @@ ProfElmScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue UnknownScript_0x78bee
+	iftrue ElmCheckMasterBall
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue ElmGiveTicketScript
-UnknownScript_0x78bee:
+ElmCheckMasterBall:
 	checkevent EVENT_GOT_MASTER_BALL_FROM_ELM
-	iftrue UnknownScript_0x78bfa
+	iftrue ElmCheckEverstone
 	checkflag ENGINE_RISINGBADGE
 	iftrue ElmGiveMasterBallScript
-UnknownScript_0x78bfa:
+ElmCheckEverstone:
 	checkevent EVENT_GOT_EVERSTONE_FROM_ELM
-	iftrue UnknownScript_0x78e16
+	iftrue ElmScript_CallYou
 	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
-	iftrue UnknownScript_0x78e03
+	iftrue ElmGiveEverstoneScript
 	checkevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
-	iffalse UnknownScript_0x78c35
+	iffalse ElmCheckTogepiEgg
 	writebyte TOGEPI
 	special Functionc284
 	iftrue ShowElmTogepiScript
@@ -115,21 +115,21 @@ UnknownScript_0x78bfa:
 	loadmovesprites
 	end
 
-UnknownScript_0x78c22:
+ElmEggHatchedScript:
 	writebyte TOGEPI
 	special Functionc284
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
 	special Functionc284
 	iftrue ShowElmTogepiScript
-	jump UnknownScript_0x78c41
+	jump ElmCheckGotEggAgain
 
-UnknownScript_0x78c35:
+ElmCheckTogepiEgg:
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iffalse UnknownScript_0x78c41
+	iffalse ElmCheckGotEggAgain
 	checkevent EVENT_TOGEPI_HATCHED
-	iftrue UnknownScript_0x78c22
-UnknownScript_0x78c41:
+	iftrue ElmEggHatchedScript
+ElmCheckGotEggAgain:
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE ; why are we checking it again?
 	iftrue ElmWaitingEggHatchScript
 	checkflag ENGINE_ZEPHYRBADGE
@@ -140,7 +140,7 @@ UnknownScript_0x78c41:
 	iftrue ElmAfterTheftScript
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue ElmDescribesMrPokemonScript
-	writetext UnknownText_0x79375
+	writetext ElmText_LetYourMonBattleIt
 	closetext
 	loadmovesprites
 	end
@@ -252,7 +252,7 @@ ElmDirectionsScript:
 	writetext ElmDirectionsText1
 	closetext
 	loadmovesprites
-	addcellnum $4
+	addcellnum PHONE_ELM
 	loadfont
 	writetext GotElmsNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
@@ -270,7 +270,7 @@ ElmDirectionsScript:
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
-	setevent EVENT_6BE
+	setevent EVENT_RIVAL_CHERRYGROVE_CITY
 	dotrigger $5
 	domaptrigger GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $1
 	end
@@ -300,15 +300,15 @@ ElmsLabHealingMachine:
 .CanHeal
 	writetext ElmsLabHealingMachineText2
 	yesorno
-	iftrue UnknownScript_0x78d8a
+	iftrue ElmsLabHealingMachine_HealParty
 	loadmovesprites
 	end
 
-UnknownScript_0x78d8a:
-	special Function1060a2
+ElmsLabHealingMachine_HealParty:
+	special Mobile_HealParty
 	special HealParty
 	playmusic MUSIC_NONE
-	writebyte $1
+	writebyte 1 ; Machine is in Elm's Lab
 	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
@@ -339,8 +339,8 @@ ElmAfterTheftScript:
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
-	clearevent EVENT_715
-	setevent EVENT_714
+	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
+	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
 	closetext
 	loadmovesprites
@@ -369,28 +369,28 @@ ShowElmTogepiScript:
 	writetext ShowElmTogepiText1
 	closetext
 	loadmovesprites
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	setevent EVENT_SHOWED_TOGEPI_TO_ELM
 	loadfont
 	writetext ShowElmTogepiText2
 	keeptextopen
 	writetext ShowElmTogepiText3
 	keeptextopen
-UnknownScript_0x78e03:
+ElmGiveEverstoneScript:
 	writetext ElmGiveEverstoneText1
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
-	iffalse UnknownScript_0x78e1a
+	iffalse ElmScript_NoRoomForEverstone
 	writetext ElmGiveEverstoneText2
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_EVERSTONE_FROM_ELM
 	end
 
-UnknownScript_0x78e16:
-	writetext UnknownText_0x79c37
+ElmScript_CallYou:
+	writetext ElmText_CallYou
 	closetext
-UnknownScript_0x78e1a:
+ElmScript_NoRoomForEverstone:
 	loadmovesprites
 	end
 
@@ -419,95 +419,95 @@ ElmGiveTicketScript:
 ElmJumpBackScript1:
 	loadmovesprites
 	checkcode VAR_FACING
-	if_equal $0, UnknownScript_0x78e6d
-	if_equal $1, UnknownScript_0x78e67
-	if_equal $2, UnknownScript_0x78e73
-	if_equal $3, UnknownScript_0x78e79
+	if_equal DOWN, ElmJumpDownScript
+	if_equal UP, ElmJumpUpScript
+	if_equal LEFT, ElmJumpLeftScript
+	if_equal RIGHT, ElmJumpRightScript
 	end
 
 ElmJumpBackScript2:
 	loadmovesprites
 	checkcode VAR_FACING
-	if_equal $0, UnknownScript_0x78e67
-	if_equal $1, UnknownScript_0x78e6d
-	if_equal $2, UnknownScript_0x78e79
-	if_equal $3, UnknownScript_0x78e73
+	if_equal DOWN, ElmJumpUpScript
+	if_equal UP, ElmJumpDownScript
+	if_equal LEFT, ElmJumpRightScript
+	if_equal RIGHT, ElmJumpLeftScript
 	end
 
-UnknownScript_0x78e67:
-	applymovement $2, MovementData_0x78f90
+ElmJumpUpScript:
+	applymovement $2, ElmJumpUpMovement
 	loadfont
 	end
 
-UnknownScript_0x78e6d:
-	applymovement $2, MovementData_0x78f94
+ElmJumpDownScript:
+	applymovement $2, ElmJumpDownMovement
 	loadfont
 	end
 
-UnknownScript_0x78e73:
-	applymovement $2, MovementData_0x78f98
+ElmJumpLeftScript:
+	applymovement $2, ElmJumpLeftMovement
 	loadfont
 	end
 
-UnknownScript_0x78e79:
-	applymovement $2, MovementData_0x78f9c
+ElmJumpRightScript:
+	applymovement $2, ElmJumpRightMovement
 	loadfont
 	end
 
-UnknownScript_0x78e7f:
-	applymovement $3, MovementData_0x78f7e
+AideScript_WalkPotions1:
+	applymovement $3, AideWalksRight1
 	spriteface $0, DOWN
-	scall UnknownScript_0x78e9d
-	applymovement $3, MovementData_0x78f87
+	scall AideScript_GivePotions
+	applymovement $3, AideWalksLeft1
 	end
 
-UnknownScript_0x78e8e:
-	applymovement $3, MovementData_0x78f82
+AideScript_WalkPotions2:
+	applymovement $3, AideWalksRight2
 	spriteface $0, DOWN
-	scall UnknownScript_0x78e9d
-	applymovement $3, MovementData_0x78f8b
+	scall AideScript_GivePotions
+	applymovement $3, AideWalksLeft2
 	end
 
-UnknownScript_0x78e9d:
+AideScript_GivePotions:
 	loadfont
-	writetext UnknownText_0x79f38
+	writetext AideText_GiveYouPotions
 	keeptextopen
 	verbosegiveitem POTION, 1
-	writetext UnknownText_0x79f65
+	writetext AideText_AlwaysBusy
 	closetext
 	loadmovesprites
 	dotrigger $2
 	end
 
-UnknownScript_0x78ead:
-	applymovement $3, MovementData_0x78f7e
+AideScript_WalkBalls1:
+	applymovement $3, AideWalksRight1
 	spriteface $0, DOWN
-	scall UnknownScript_0x78ecb
-	applymovement $3, MovementData_0x78f87
+	scall AideScript_GiveYouBalls
+	applymovement $3, AideWalksLeft1
 	end
 
-UnknownScript_0x78ebc:
-	applymovement $3, MovementData_0x78f82
+AideScript_WalkBalls2:
+	applymovement $3, AideWalksRight2
 	spriteface $0, DOWN
-	scall UnknownScript_0x78ecb
-	applymovement $3, MovementData_0x78f8b
+	scall AideScript_GiveYouBalls
+	applymovement $3, AideWalksLeft2
 	end
 
-UnknownScript_0x78ecb:
+AideScript_GiveYouBalls:
 	loadfont
-	writetext UnknownText_0x7a078
+	writetext AideText_GiveYouBalls
 	keeptextopen
 	itemtotext POKE_BALL, $1
-	scall UnknownScript_0x78ee2
+	scall AideScript_ReceiveTheBalls
 	giveitem POKE_BALL, $5
-	writetext UnknownText_0x7a09a
+	writetext AideText_ExplainBalls
 	keeptextopen
 	itemnotify
 	loadmovesprites
 	dotrigger $2
 	end
 
-UnknownScript_0x78ee2:
+AideScript_ReceiveTheBalls:
 	jumpstd receiveitem
 	end
 
@@ -515,49 +515,49 @@ ElmsAideScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iftrue UnknownScript_0x78f0c
+	iftrue AideScript_AfterTheft
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x78f06
+	iftrue AideScript_ExplainBalls
 	checkevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
-	iftrue UnknownScript_0x78f00
-	writetext UnknownText_0x79f65
+	iftrue AideScript_TheftTestimony
+	writetext AideText_AlwaysBusy
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x78f00:
-	writetext UnknownText_0x79f95
+AideScript_TheftTestimony:
+	writetext AideText_TheftTestimony
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x78f06:
-	writetext UnknownText_0x7a09a
+AideScript_ExplainBalls:
+	writetext AideText_ExplainBalls
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x78f0c:
-	writetext UnknownText_0x79c65
+AideScript_AfterTheft:
+	writetext AideText_AfterTheft
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x78f12:
-	applymovement $0, MovementData_0x78f72
+MeetCopScript2:
+	applymovement $0, MeetCopScript2_StepLeft
 
 MeetCopScript:
-	applymovement $0, MovementData_0x78f74
+	applymovement $0, MeetCopScript_WalkUp
 CopScript:
 	spriteface $7, LEFT
 	loadfont
-	writetext UnknownText_0x7a0f0
+	writetext ElmsLabOfficerText1
 	keeptextopen
 	special SpecialNameRival
-	writetext UnknownText_0x7a1c0
+	writetext ElmsLabOfficerText2
 	closetext
 	loadmovesprites
-	applymovement $7, MovementData_0x78f78
+	applymovement $7, OfficerLeavesMovement
 	disappear $7
 	dotrigger $2
 	end
@@ -607,7 +607,7 @@ ElmsLabTrashcan2:
 ElmsLabBookshelf:
 	jumpstd difficultbookshelf
 
-MovementData_0x78f67:
+ElmsLab_WalkUpToElmMovement:
 	step_up
 	step_up
 	step_up
@@ -622,17 +622,17 @@ MovementData_0x78f70:
 	step_up
 	step_end
 
-MovementData_0x78f72:
+MeetCopScript2_StepLeft:
 	step_left
 	step_end
 
-MovementData_0x78f74:
+MeetCopScript_WalkUp:
 	step_up
 	step_up
 	turn_head_right
 	step_end
 
-MovementData_0x78f78:
+OfficerLeavesMovement:
 	step_down
 	step_down
 	step_down
@@ -640,61 +640,61 @@ MovementData_0x78f78:
 	step_down
 	step_end
 
-MovementData_0x78f7e:
+AideWalksRight1:
 	step_right
 	step_right
 	turn_head_up
 	step_end
 
-MovementData_0x78f82:
+AideWalksRight2:
 	step_right
 	step_right
 	step_right
 	turn_head_up
 	step_end
 
-MovementData_0x78f87:
+AideWalksLeft1:
 	step_left
 	step_left
 	turn_head_down
 	step_end
 
-MovementData_0x78f8b:
+AideWalksLeft2:
 	step_left
 	step_left
 	step_left
 	turn_head_down
 	step_end
 
-MovementData_0x78f90:
+ElmJumpUpMovement:
 	fix_facing
 	big_step_up
 	remove_fixed_facing
 	step_end
 
-MovementData_0x78f94:
+ElmJumpDownMovement:
 	fix_facing
 	big_step_down
 	remove_fixed_facing
 	step_end
 
-MovementData_0x78f98:
+ElmJumpLeftMovement:
 	fix_facing
 	big_step_left
 	remove_fixed_facing
 	step_end
 
-MovementData_0x78f9c:
+ElmJumpRightMovement:
 	fix_facing
 	big_step_right
 	remove_fixed_facing
 	step_end
 
-MovementData_0x78fa0:
+ElmsLab_ElmToDefaultPositionMovement1:
 	step_up
 	step_end
 
-MovementData_0x78fa2:
+ElmsLab_ElmToDefaultPositionMovement2:
 	step_right
 	step_right
 	step_up
@@ -722,7 +722,7 @@ AfterChikoritaMovement:
 	turn_head_up
 	step_end
 
-UnknownText_0x78fb6:
+ElmText_Intro:
 	text "ELM: <PLAY_G>!"
 	line "There you are!"
 
@@ -761,19 +761,19 @@ UnknownText_0x78fb6:
 	line "caught."
 	done
 
-UnknownText_0x790fa:
+ElmText_Accepted:
 	text "Thanks, <PLAY_G>!"
 
 	para "You're a great"
 	line "help!"
 	done
 
-UnknownText_0x7911a:
+ElmText_Refused:
 	text "But… Please, I"
 	line "need your help!"
 	done
 
-UnknownText_0x7913a:
+ElmText_ResearchAmbitions:
 	text "When I announce my"
 	line "findings, I'm sure"
 
@@ -787,7 +787,7 @@ UnknownText_0x7913a:
 	line "it!"
 	done
 
-UnknownText_0x791ae:
+ElmText_GotAnEmail:
 	text "Oh, hey! I got an"
 	line "e-mail!"
 
@@ -797,7 +797,7 @@ UnknownText_0x791ae:
 	para "Okay…"
 	done
 
-UnknownText_0x791df:
+ElmText_MissionFromMrPokemon:
 	text "Hey, listen."
 
 	para "I have an acquain-"
@@ -830,7 +830,7 @@ UnknownText_0x791df:
 	line "go in our place?"
 	done
 
-UnknownText_0x792ff:
+ElmText_ChooseAPokemon:
 	text "I want you to"
 	line "raise one of the"
 
@@ -844,7 +844,7 @@ UnknownText_0x792ff:
 	para "Go on. Pick one!"
 	done
 
-UnknownText_0x79375:
+ElmText_LetYourMonBattleIt:
 	text "If a wild #MON"
 	line "appears, let your"
 	cont "#MON battle it!"
@@ -1125,13 +1125,13 @@ ElmGiveEverstoneText2:
 	cont "to evolve."
 	done
 
-UnknownText_0x79c37:
+ElmText_CallYou:
 	text "ELM: <PLAY_G>, I'll"
 	line "call you if any-"
 	cont "thing comes up."
 	done
 
-UnknownText_0x79c65:
+AideText_AfterTheft:
 	text "…sigh… That"
 	line "stolen #MON."
 
@@ -1208,25 +1208,25 @@ ElmGiveTicketText2:
 	line "PROF.OAK in KANTO!"
 	done
 
-UnknownText_0x79f0b:
+ElmsLabSignpostText_Egg:
 	text "It's the #MON"
 	line "EGG being studied"
 	cont "by PROF.ELM."
 	done
 
-UnknownText_0x79f38:
+AideText_GiveYouPotions:
 	text "<PLAY_G>, I want"
 	line "you to have this"
 	cont "for your errand."
 	done
 
-UnknownText_0x79f65:
+AideText_AlwaysBusy:
 	text "There are only two"
 	line "of us, so we're"
 	cont "always busy."
 	done
 
-UnknownText_0x79f95:
+AideText_TheftTestimony:
 	text "There was a loud"
 	line "noise outside…"
 
@@ -1251,14 +1251,14 @@ UnknownText_0x79f95:
 	line "itself."
 	done
 
-UnknownText_0x7a078:
+AideText_GiveYouBalls:
 	text "<PLAY_G>!"
 
 	para "Use these on your"
 	line "#DEX quest!"
 	done
 
-UnknownText_0x7a09a:
+AideText_ExplainBalls:
 	text "To add to your"
 	line "#DEX, you have"
 	cont "to catch #MON."
@@ -1268,7 +1268,7 @@ UnknownText_0x7a09a:
 	cont "to get them."
 	done
 
-UnknownText_0x7a0f0:
+ElmsLabOfficerText1:
 	text "I heard a #MON"
 	line "was stolen here…"
 
@@ -1289,7 +1289,7 @@ UnknownText_0x7a0f0:
 	line "get his name?"
 	done
 
-UnknownText_0x7a1c0:
+ElmsLabOfficerText2:
 	text "OK! So <RIVAL>"
 	line "was his name."
 
@@ -1371,46 +1371,46 @@ ElmsLab_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $4, 1, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	warp_def $b, $5, 1, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 8
 	xy_trigger 1, $6, $4, $0, LabTryToLeaveScript, $0, $0
 	xy_trigger 1, $6, $5, $0, LabTryToLeaveScript, $0, $0
 	xy_trigger 3, $5, $4, $0, MeetCopScript, $0, $0
-	xy_trigger 3, $5, $5, $0, UnknownScript_0x78f12, $0, $0
-	xy_trigger 5, $8, $4, $0, UnknownScript_0x78e7f, $0, $0
-	xy_trigger 5, $8, $5, $0, UnknownScript_0x78e8e, $0, $0
-	xy_trigger 6, $8, $4, $0, UnknownScript_0x78ead, $0, $0
-	xy_trigger 6, $8, $5, $0, UnknownScript_0x78ebc, $0, $0
+	xy_trigger 3, $5, $5, $0, MeetCopScript2, $0, $0
+	xy_trigger 5, $8, $4, $0, AideScript_WalkPotions1, $0, $0
+	xy_trigger 5, $8, $5, $0, AideScript_WalkPotions2, $0, $0
+	xy_trigger 6, $8, $4, $0, AideScript_WalkBalls1, $0, $0
+	xy_trigger 6, $8, $5, $0, AideScript_WalkBalls2, $0, $0
 
-	; signposts
+.Signposts:
 	db 16
-	signpost 1, 2, $0, ElmsLabHealingMachine
-	signpost 1, 6, $0, ElmsLabBookshelf
-	signpost 1, 7, $0, ElmsLabBookshelf
-	signpost 1, 8, $0, ElmsLabBookshelf
-	signpost 1, 9, $0, ElmsLabBookshelf
-	signpost 7, 0, $0, ElmsLabTravelTip1
-	signpost 7, 1, $0, ElmsLabTravelTip2
-	signpost 7, 2, $0, ElmsLabTravelTip3
-	signpost 7, 3, $0, ElmsLabTravelTip4
-	signpost 7, 6, $0, ElmsLabBookshelf
-	signpost 7, 7, $0, ElmsLabBookshelf
-	signpost 7, 8, $0, ElmsLabBookshelf
-	signpost 7, 9, $0, ElmsLabBookshelf
-	signpost 3, 9, $0, ElmsLabTrashcan
-	signpost 0, 5, $0, ElmsLabWindow
-	signpost 5, 3, $2, ElmsLabPC
+	signpost 1, 2, SIGNPOST_READ, ElmsLabHealingMachine
+	signpost 1, 6, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 7, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 8, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 9, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 0, SIGNPOST_READ, ElmsLabTravelTip1
+	signpost 7, 1, SIGNPOST_READ, ElmsLabTravelTip2
+	signpost 7, 2, SIGNPOST_READ, ElmsLabTravelTip3
+	signpost 7, 3, SIGNPOST_READ, ElmsLabTravelTip4
+	signpost 7, 6, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 7, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 8, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 9, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 3, 9, SIGNPOST_READ, ElmsLabTrashcan
+	signpost 0, 5, SIGNPOST_READ, ElmsLabWindow
+	signpost 5, 3, SIGNPOST_DOWN, ElmsLabPC
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_ELM, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, -1
-	person_event SPRITE_SCIENTIST, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	person_event SPRITE_POKE_BALL, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, EVENT_640
-	person_event SPRITE_POKE_BALL, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, EVENT_641
-	person_event SPRITE_POKE_BALL, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, EVENT_642
-	person_event SPRITE_OFFICER, 7, 9, $7, $0, 255, 255, $90, 0, CopScript, EVENT_702
+	person_event SPRITE_ELM, 6, 9, OW_UP | $2, $0, -1, -1, $0, 0, ProfElmScript, -1
+	person_event SPRITE_SCIENTIST, 13, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	person_event SPRITE_POKE_BALL, 7, 10, OW_DOWN | $1, $0, -1, -1, $0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 7, 11, OW_DOWN | $1, $0, -1, -1, $0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 7, 12, OW_DOWN | $1, $0, -1, -1, $0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_OFFICER, 7, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CopScript, EVENT_COP_IN_ELMS_LAB

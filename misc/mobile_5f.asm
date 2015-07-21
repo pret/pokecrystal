@@ -442,12 +442,12 @@ Function17d224: ; 17d224
 .asm_17d23c
 	call LoadMenuDataHeader
 	call Function17d246
-	call Function1c17
+	call WriteBackup
 	ret
 ; 17d246
 
 Function17d246: ; 17d246
-	call Function1d81
+	call InterpretMenu2
 	jr c, .asm_17d264
 	ld a, [ScriptVar]
 	cp $5
@@ -723,8 +723,9 @@ Function17d474: ; 17d474
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_17d483
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -905,14 +906,16 @@ Function17d48d: ; 17d48d
 	ld a, [wcd42]
 	ld c, a
 	ld b, $0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, l
 	ld [wcd4b], a
 	ld a, h
 	ld [wcd4c], a
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, l
 	ld [wcd4d], a
 	ld a, h
@@ -938,8 +941,9 @@ Function17d5c4:
 .asm_17d5ce
 	srl a
 	jr c, .asm_17d5d6
+rept 2
 	inc c
-	inc c
+endr
 	jr .asm_17d5ce
 
 .asm_17d5d6
@@ -1026,10 +1030,12 @@ Function17d60b: ; 17d60b
 	ld [wcd4c], a
 	pop de
 	pop hl
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	dec c
-	dec c
+endr
 	jr z, .asm_17d684
 	push bc
 	push de
@@ -1075,15 +1081,17 @@ Function17d6a1: ; 17d6a1
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b1d3
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld [wcd47], a
 	ld a, [hl]
 	ld [BGMapPalBuffer], a
 	ld hl, $b1b3
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -1099,8 +1107,9 @@ Function17d6a1: ; 17d6a1
 	ld de, wcd60
 	ld bc, $0004
 	call CopyBytes
+rept 2
 	inc hl
-	inc hl
+endr
 	ld de, wcd64
 	ld bc, $0004
 	call CopyBytes
@@ -1136,8 +1145,9 @@ Function17d711:
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_17d72a
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1909,13 +1919,13 @@ Function17dc1f: ; 17dc1f
 	ld [wc70f], a
 	ld hl, wc708
 	call LoadMenuDataHeader
-	call Function1d81
+	call InterpretMenu2
 	jr nc, .asm_17dc6e
 	ld a, $2
 	ld [wcfa9], a
 
 .asm_17dc6e
-	call Function1c17
+	call WriteBackup
 	pop af
 	ld [rSVBK], a
 	ld a, [wcfa9]
@@ -1975,7 +1985,7 @@ Function17dcaf:
 	add hl, de
 	dec c
 	jr nz, .asm_17dcbb
-	call Function4b6
+	call FadeToWhite
 	ld a, $4
 	ld [rSVBK], a
 	ret
@@ -1991,8 +2001,9 @@ Function17dccf: ; 17dccf
 	ld a, [wcd2e]
 	ld c, a
 	ld b, $0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -2407,8 +2418,9 @@ Function17ded9: ; 17ded9
 	jr .asm_17df7b
 
 .asm_17df79
+rept 2
 	inc hl
-	inc hl
+endr
 
 .asm_17df7b
 	bit 4, b
@@ -2461,8 +2473,9 @@ Function17ded9: ; 17ded9
 	jr .asm_17dfd2
 
 .asm_17dfd0
+rept 2
 	inc hl
-	inc hl
+endr
 
 .asm_17dfd2
 	bit 5, b
@@ -2587,8 +2600,9 @@ Function17e026: ; 17e026
 	jr .asm_17e0a4
 
 .asm_17e0a2
+rept 2
 	inc hl
-	inc hl
+endr
 
 .asm_17e0a4
 	bit 4, b
@@ -2604,8 +2618,9 @@ Function17e026: ; 17e026
 	jr .asm_17e0b6
 
 .asm_17e0b4
+rept 2
 	inc hl
-	inc hl
+endr
 
 .asm_17e0b6
 	bit 5, b
@@ -2627,8 +2642,9 @@ Function17e026: ; 17e026
 	call CloseSRAM
 	pop hl
 	pop bc
+rept 2
 	inc hl
-	inc hl
+endr
 	jr asm_17e0ee
 
 .asm_17e0e1
@@ -2673,8 +2689,9 @@ Function17e0fd: ; 17e0fd
 	call ReceiveItem
 	pop hl
 	jr c, .asm_17e127
+rept 2
 	inc hl
-	inc hl
+endr
 
 .asm_17e127
 	ld a, [hli]
@@ -2701,11 +2718,12 @@ Function17e133: ; 17e133
 	ld a, [hli]
 	ld [ScriptVar], a
 	push hl
-	callba Function4a843
+	callba MobileCheckOwnMonAnywhere
 	pop hl
 	jr c, .asm_17e159
+rept 2
 	inc hl
-	inc hl
+endr
 
 .asm_17e159
 	ld a, [hli]
@@ -2741,8 +2759,9 @@ Function17e165: ; 17e165
 	call CheckItem
 	pop hl
 	jr c, .asm_17e195
+rept 2
 	inc hl
-	inc hl
+endr
 
 .asm_17e195
 	ld a, [hli]
@@ -3207,8 +3226,9 @@ Function17e451: ; 17e451
 	ld [wcd2e], a
 	ld c, a
 	ld b, $0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	push hl
 	ld hl, TileMap
 	ld bc, $0014
@@ -3433,8 +3453,9 @@ Function17e5af: ; 17e5af
 	ld l, a
 	ld a, [wcd4e]
 	ld h, a
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3499,8 +3520,9 @@ Function17e613: ; 17e613
 	ld [hli], a
 	ld a, [de]
 	inc de
+rept 2
 	dec a
-	dec a
+endr
 	jr z, .asm_17e63f
 	ld c, a
 	ld a, [wcd53]
@@ -3519,8 +3541,9 @@ Function17e613: ; 17e613
 	add hl, bc
 	ld a, [de]
 	dec de
+rept 2
 	dec a
-	dec a
+endr
 	jr z, .asm_17e674
 	ld b, a
 .asm_17e651
@@ -3529,8 +3552,9 @@ Function17e613: ; 17e613
 	add $3
 	ld [hli], a
 	ld a, [de]
+rept 2
 	dec a
-	dec a
+endr
 	jr z, .asm_17e664
 	ld c, a
 	ld a, $7f
@@ -3556,8 +3580,9 @@ Function17e613: ; 17e613
 	add $5
 	ld [hli], a
 	ld a, [de]
+rept 2
 	dec a
-	dec a
+endr
 	jr z, .asm_17e689
 	ld c, a
 	ld a, [wcd53]
@@ -3583,8 +3608,9 @@ Function17e691: ; 17e691
 	inc de
 	push af
 	ld a, [de]
+rept 2
 	inc de
-	inc de
+endr
 	and a
 .asm_17e69f
 	jr z, .asm_17e6a5
@@ -3736,8 +3762,9 @@ Function17f047: ; 17f047
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_17f061
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -3774,8 +3801,9 @@ Function17f081: ; 17f081
 	ld de, $0004
 	add hl, de
 	ld a, [hli]
+rept 2
 	inc hl
-	inc hl
+endr
 	ld e, l
 	ld d, h
 	ld l, c
@@ -3918,8 +3946,9 @@ Function17f154: ; 17f154
 	pop hl
 	call Function17f524
 	jr c, .asm_17f167
+rept 2
 	inc hl
-	inc hl
+endr
 	ld e, l
 	ld d, h
 	ld a, [de]
@@ -4107,8 +4136,9 @@ Function17f220: ; 17f220
 	ld e, a
 	ld d, 0
 	ld hl, .Genders
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -4370,8 +4400,9 @@ Function17f3f0: ; 17f3f0
 	ld a, [de]
 	ld c, a
 	ld b, $0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -4386,11 +4417,12 @@ Function17f3f0: ; 17f3f0
 	ld e, a
 	ld d, $0
 	pop hl
+rept 2
 	add hl, de
-	add hl, de
+endr
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld e, l
 	ld d, h
 	ld l, c
@@ -4451,8 +4483,9 @@ Function17f44f: ; 17f44f
 	ld de, $0005
 	add hl, de
 	ld a, [hli]
+rept 2
 	inc hl
-	inc hl
+endr
 	ld e, l
 	ld d, h
 	ld l, c
@@ -4695,8 +4728,9 @@ Function17f5ae: ; 17f5ae
 	ld e, a
 	ld d, 0
 	ld hl, Table17f5bd
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4770,8 +4804,9 @@ Function17f5e4: ; 17f5e4
 	ld e, a
 	ld d, $0
 	ld hl, Table_17f706
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [wc301]
 	ld e, a
 	ld a, [wc302]
@@ -4809,8 +4844,9 @@ Function17f5e4: ; 17f5e4
 	jr .asm_17f67d
 
 .asm_17f674
+rept 2
 	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .asm_17f65d
 
@@ -4828,8 +4864,9 @@ Function17f5e4: ; 17f5e4
 	ld e, a
 	ld d, 0
 	ld hl, Table_17f699
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]

@@ -266,6 +266,7 @@ SAFARI_BALL    EQU  8 ; MOON_STONE
 MOON_STONE_RED EQU 10 ; BURN_HEAL
 FULL_HEAL_RED  EQU 52 ; X_SPEED
 
+MAIL_MAX_LENGTH EQU $20
 
 ; pockets
 ITEM     EQU 1
@@ -291,7 +292,7 @@ CANT_TOSS   EQU 1 << 7
 	const HELD_7
 	const HELD_CLEANSE_TAG
 
-const_value = 10
+const_value SET 10
 	const HELD_HEAL_POISON
 	const HELD_HEAL_FREEZE
 	const HELD_HEAL_BURN
@@ -300,7 +301,7 @@ const_value = 10
 	const HELD_HEAL_STATUS
 	const HELD_HEAL_CONFUSION
 
-const_value = 20
+const_value SET 20
 	const HELD_PREVENT_POISON
 	const HELD_PREVENT_BURN
 	const HELD_PREVENT_FREEZE
@@ -308,7 +309,7 @@ const_value = 20
 	const HELD_PREVENT_PARALYZE
 	const HELD_PREVENT_CONFUSE
 
-const_value = 30
+const_value SET 30
 	const HELD_30
 	const HELD_ATTACK_UP
 	const HELD_DEFENSE_UP
@@ -318,12 +319,12 @@ const_value = 30
 	const HELD_ACCURACY_UP
 	const HELD_EVASION_UP
 
-const_value = 40
+const_value SET 40
 	const HELD_40
 	const HELD_41
 	const HELD_METAL_POWDER
 
-const_value = 50
+const_value SET 50
 	const HELD_NORMAL_BOOST
 	const HELD_FIGHTING_BOOST
 	const HELD_FLYING_BOOST
@@ -342,7 +343,7 @@ const_value = 50
 	const HELD_DARK_BOOST
 	const HELD_STEEL_BOOST
 
-const_value = 70
+const_value SET 70
 	const HELD_CATCH_CHANCE
 	const HELD_71
 	const HELD_ESCAPE
@@ -353,3 +354,13 @@ const_value = 70
 	const HELD_BRIGHTPOWDER
 	const HELD_4E
 	const HELD_FOCUS_BAND
+
+	const_def
+	const ITEMATTR_PRICE
+	const ITEMATTR_PRICE_HI
+	const ITEMATTR_EFFECT
+	const ITEMATTR_PARAM
+	const ITEMATTR_PERMISSIONS
+	const ITEMATTR_POCKET
+	const ITEMATTR_HELP
+NUM_ITEMATTRS EQU const_value

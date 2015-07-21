@@ -1,8 +1,8 @@
 Route16FuchsiaSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 SuperNerdScript_0x73373:
@@ -23,19 +23,19 @@ Route16FuchsiaSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 1, GROUP_ROUTE_16, MAP_ROUTE_16
 	warp_def $7, $3, 1, GROUP_ROUTE_16, MAP_ROUTE_16
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, Route16FuchsiaSpeechHouseBookshelf
-	signpost 1, 1, $0, Route16FuchsiaSpeechHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, Route16FuchsiaSpeechHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, Route16FuchsiaSpeechHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x73373, -1
+	person_event SPRITE_SUPER_NERD, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x73373, -1

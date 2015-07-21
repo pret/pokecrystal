@@ -1,28 +1,12 @@
 Route13_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerPokefanmAlex:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_ALEX
-
-	; trainer group && trainer id
-	db POKEFANM, ALEX
-
-	; text when seen
-	dw PokefanmAlexSeenText
-
-	; text when trainer beaten
-	dw PokefanmAlexBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmAlexScript
+	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, $0000, PokefanmAlexScript
 
 PokefanmAlexScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokefanmAlexScript:
 	end
 
 TrainerPokefanmJoshua:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_JOSHUA
-
-	; trainer group && trainer id
-	db POKEFANM, JOSHUA
-
-	; text when seen
-	dw PokefanmJoshuaSeenText
-
-	; text when trainer beaten
-	dw PokefanmJoshuaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmJoshuaScript
+	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, $0000, PokefanmJoshuaScript
 
 PokefanmJoshuaScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ PokefanmJoshuaScript:
 	end
 
 TrainerBird_keeperPerry:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_PERRY
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, PERRY
-
-	; text when seen
-	dw Bird_keeperPerrySeenText
-
-	; text when trainer beaten
-	dw Bird_keeperPerryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperPerryScript
+	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, $0000, Bird_keeperPerryScript
 
 Bird_keeperPerryScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ Bird_keeperPerryScript:
 	end
 
 TrainerBird_keeperBret:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_BRET
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, BRET
-
-	; text when seen
-	dw Bird_keeperBretSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperBretBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperBretScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, $0000, Bird_keeperBretScript
 
 Bird_keeperBretScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ Bird_keeperBretScript:
 	end
 
 TrainerHikerKenny:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_KENNY
-
-	; trainer group && trainer id
-	db HIKER, KENNY
-
-	; text when seen
-	dw HikerKennySeenText
-
-	; text when trainer beaten
-	dw HikerKennyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerKennyScript
+	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, $0000, HikerKennyScript
 
 HikerKennyScript:
 	talkaftercancel
@@ -150,8 +70,7 @@ MapRoute13Signpost2Script:
 	jumptext UnknownText_0x1a277d
 
 MapRoute13SignpostItem3:
-	dw $00f4
-	db CALCIUM
+	dwb EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
 	
 
 PokefanmAlexSeenText:
@@ -270,23 +189,23 @@ Route13_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 13, 29, $0, MapRoute13Signpost0Script
-	signpost 11, 41, $0, MapRoute13Signpost1Script
-	signpost 13, 17, $0, MapRoute13Signpost2Script
-	signpost 13, 30, $7, MapRoute13SignpostItem3
+	signpost 13, 29, SIGNPOST_READ, MapRoute13Signpost0Script
+	signpost 11, 41, SIGNPOST_READ, MapRoute13Signpost1Script
+	signpost 13, 17, SIGNPOST_READ, MapRoute13Signpost2Script
+	signpost 13, 30, SIGNPOST_ITEM, MapRoute13SignpostItem3
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 10, 46, $6, $0, 255, 255, $92, 2, TrainerBird_keeperPerry, -1
-	person_event SPRITE_YOUNGSTER, 10, 47, $6, $0, 255, 255, $92, 2, TrainerBird_keeperBret, -1
-	person_event SPRITE_POKEFAN_M, 12, 36, $8, $0, 255, 255, $82, 3, TrainerPokefanmJoshua, -1
-	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $82, 4, TrainerHikerKenny, -1
-	person_event SPRITE_POKEFAN_M, 10, 29, $9, $0, 255, 255, $82, 4, TrainerPokefanmAlex, -1
+	person_event SPRITE_YOUNGSTER, 10, 46, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperPerry, -1
+	person_event SPRITE_YOUNGSTER, 10, 47, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperBret, -1
+	person_event SPRITE_POKEFAN_M, 12, 36, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmJoshua, -1
+	person_event SPRITE_POKEFAN_M, 14, 18, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerHikerKenny, -1
+	person_event SPRITE_POKEFAN_M, 10, 29, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanmAlex, -1

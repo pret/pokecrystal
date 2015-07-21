@@ -41,6 +41,8 @@ hProduct           EQU $ffb3
 
 hMathBuffer        EQU $ffb8
 
+hMoneyTemp         EQU $ffc3
+
 hLCDStatCustom     EQU $ffc6
 
 hSerialSend        EQU $ffcd

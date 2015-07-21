@@ -1,8 +1,8 @@
 Route14_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TeacherScript_0x1ad47f:
@@ -14,23 +14,7 @@ TeacherScript_0x1ad47f:
 	end
 
 TrainerPokefanmCarter:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_CARTER
-
-	; trainer group && trainer id
-	db POKEFANM, CARTER
-
-	; text when seen
-	dw PokefanmCarterSeenText
-
-	; text when trainer beaten
-	dw PokefanmCarterBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmCarterScript
+	trainer EVENT_BEAT_POKEFANM_CARTER, POKEFANM, CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, $0000, PokefanmCarterScript
 
 PokefanmCarterScript:
 	talkaftercancel
@@ -41,23 +25,7 @@ PokefanmCarterScript:
 	end
 
 TrainerBird_keeperRoy:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_ROY
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, ROY
-
-	; text when seen
-	dw Bird_keeperRoySeenText
-
-	; text when trainer beaten
-	dw Bird_keeperRoyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperRoyScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROY, BIRD_KEEPER, ROY, Bird_keeperRoySeenText, Bird_keeperRoyBeatenText, $0000, Bird_keeperRoyScript
 
 Bird_keeperRoyScript:
 	talkaftercancel
@@ -68,23 +36,7 @@ Bird_keeperRoyScript:
 	end
 
 TrainerPokefanmTrevor:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_TREVOR
-
-	; trainer group && trainer id
-	db POKEFANM, TREVOR
-
-	; text when seen
-	dw PokefanmTrevorSeenText
-
-	; text when trainer beaten
-	dw PokefanmTrevorBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmTrevorScript
+	trainer EVENT_BEAT_POKEFANM_TREVOR, POKEFANM, TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, $0000, PokefanmTrevorScript
 
 PokefanmTrevorScript:
 	talkaftercancel
@@ -161,18 +113,18 @@ Route14_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 19, 15, $9, $0, 255, 255, $82, 3, TrainerPokefanmCarter, -1
-	person_event SPRITE_YOUNGSTER, 31, 15, $a, $0, 255, 255, $92, 3, TrainerBird_keeperRoy, -1
-	person_event SPRITE_POKEFAN_M, 15, 10, $a, $0, 255, 255, $82, 3, TrainerPokefanmTrevor, -1
-	person_event SPRITE_TEACHER, 9, 11, $5, $1, 255, 255, $a0, 4, TeacherScript_0x1ad47f, -1
+	person_event SPRITE_POKEFAN_M, 19, 15, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmCarter, -1
+	person_event SPRITE_YOUNGSTER, 31, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperRoy, -1
+	person_event SPRITE_POKEFAN_M, 15, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmTrevor, -1
+	person_event SPRITE_TEACHER, 9, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 4, TeacherScript_0x1ad47f, -1

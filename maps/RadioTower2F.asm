@@ -1,8 +1,8 @@
 RadioTower2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x5d6fd:
@@ -42,23 +42,7 @@ BlackBeltScript_0x5d722:
 	jumptextfaceplayer UnknownText_0x5da44
 
 TrainerGruntM4:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_4
-
-	; trainer group && trainer id
-	db GRUNTM, 4
-
-	; text when seen
-	dw GruntM4SeenText
-
-	; text when trainer beaten
-	dw GruntM4BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM4Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_4, GRUNTM, 4, GruntM4SeenText, GruntM4BeatenText, $0000, GruntM4Script
 
 GruntM4Script:
 	talkaftercancel
@@ -69,23 +53,7 @@ GruntM4Script:
 	end
 
 TrainerGruntM5:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_5
-
-	; trainer group && trainer id
-	db GRUNTM, 5
-
-	; text when seen
-	dw GruntM5SeenText
-
-	; text when trainer beaten
-	dw GruntM5BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM5Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_5, GRUNTM, 5, GruntM5SeenText, GruntM5BeatenText, $0000, GruntM5Script
 
 GruntM5Script:
 	talkaftercancel
@@ -96,23 +64,7 @@ GruntM5Script:
 	end
 
 TrainerGruntM6:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_6
-
-	; trainer group && trainer id
-	db GRUNTM, 6
-
-	; text when seen
-	dw GruntM6SeenText
-
-	; text when trainer beaten
-	dw GruntM6BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM6Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_6, GRUNTM, 6, GruntM6SeenText, GruntM6BeatenText, $0000, GruntM6Script
 
 GruntM6Script:
 	talkaftercancel
@@ -123,23 +75,7 @@ GruntM6Script:
 	end
 
 TrainerGruntF2:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_2
-
-	; trainer group && trainer id
-	db GRUNTF, 2
-
-	; text when seen
-	dw GruntF2SeenText
-
-	; text when trainer beaten
-	dw GruntF2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_2, GRUNTF, 2, GruntF2SeenText, GruntF2BeatenText, $0000, GruntF2Script
 
 GruntF2Script:
 	talkaftercancel
@@ -156,16 +92,16 @@ Buena:
 	iftrue UnknownScript_0x5d865
 	checkevent EVENT_MET_BUENA
 	iffalse UnknownScript_0x5d800
-	checkflag ENGINE_60
+	checkflag ENGINE_BUENAS_PASSWORD_2
 	iftrue UnknownScript_0x5d82f
 	checkcode VAR_HOUR
-	if_less_than $12, UnknownScript_0x5d893
-	checkflag ENGINE_5F
+	if_less_than 18, UnknownScript_0x5d893
+	checkflag ENGINE_BUENAS_PASSWORD
 	iffalse UnknownScript_0x5d80a
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d86b
 	checkcode VAR_BLUECARDBALANCE
-	if_equal $1e, UnknownScript_0x5d87f
+	if_equal 30, UnknownScript_0x5d87f
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
 	special Function4ae12
@@ -197,7 +133,7 @@ UnknownScript_0x5d7be:
 	writevarcode VAR_BLUECARDBALANCE
 	waitbutton
 	playsound SFX_TRANSACTION
-	setflag ENGINE_60
+	setflag ENGINE_BUENAS_PASSWORD_2
 	pause 20
 	spriteface $b, RIGHT
 	loadfont
@@ -220,7 +156,7 @@ UnknownScript_0x5d80a:
 	writetext UnknownText_0x5de10
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d81a
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
@@ -242,7 +178,7 @@ UnknownScript_0x5d82f:
 	writetext UnknownText_0x5df6c
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d83f
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
@@ -252,7 +188,7 @@ UnknownScript_0x5d83f:
 	end
 
 UnknownScript_0x5d845:
-	setflag ENGINE_60
+	setflag ENGINE_BUENAS_PASSWORD_2
 	loadfont
 	writetext UnknownText_0x5e01c
 	closetext
@@ -279,7 +215,7 @@ UnknownScript_0x5d86b:
 	writetext UnknownText_0x5e192
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d87b
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
@@ -291,7 +227,7 @@ UnknownScript_0x5d87f:
 	writetext UnknownText_0x5e0f1
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d88f
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
@@ -303,7 +239,7 @@ UnknownScript_0x5d893:
 	writetext UnknownText_0x5e131
 	closetext
 	loadmovesprites
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d8a3
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
@@ -311,7 +247,7 @@ UnknownScript_0x5d8a3:
 	end
 
 UnknownScript_0x5d8a4:
-	checkcellnum $25
+	checkcellnum PHONE_BUENA
 	iftrue UnknownScript_0x5d8fe
 	pause 20
 	spriteface $b, DOWN
@@ -320,7 +256,7 @@ UnknownScript_0x5d8a4:
 	pause 15
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
-	showemote $0, $b, 15
+	showemote EMOTE_SHOCK, $b, 15
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	loadfont
@@ -331,7 +267,7 @@ UnknownScript_0x5d8cc:
 	loadfont
 	writetext UnknownText_0x5e2bf
 UnknownScript_0x5d8d0:
-	askforphonenumber $25
+	askforphonenumber PHONE_BUENA
 	if_equal $1, UnknownScript_0x5d8f6
 	if_equal $2, UnknownScript_0x5d8ed
 	writetext UnknownText_0x5e2f3
@@ -342,7 +278,7 @@ UnknownScript_0x5d8d0:
 	closetext
 	loadmovesprites
 	spriteface $b, RIGHT
-	addcellnum $25
+	addcellnum PHONE_BUENA
 	end
 
 UnknownScript_0x5d8ed:
@@ -765,33 +701,33 @@ RadioTower2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $0, $0, 1, GROUP_RADIO_TOWER_3F, MAP_RADIO_TOWER_3F
 	warp_def $0, $f, 3, GROUP_RADIO_TOWER_1F, MAP_RADIO_TOWER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 0, 3, $0, MapRadioTower2FSignpost0Script
-	signpost 0, 5, $0, MapRadioTower2FSignpost1Script
-	signpost 1, 9, $0, RadioTower2FBookshelf
-	signpost 1, 10, $0, RadioTower2FBookshelf
-	signpost 1, 11, $0, RadioTower2FBookshelf
-	signpost 0, 13, $0, MapRadioTower2FSignpost5Script
+	signpost 0, 3, SIGNPOST_READ, MapRadioTower2FSignpost0Script
+	signpost 0, 5, SIGNPOST_READ, MapRadioTower2FSignpost1Script
+	signpost 1, 9, SIGNPOST_READ, RadioTower2FBookshelf
+	signpost 1, 10, SIGNPOST_READ, RadioTower2FBookshelf
+	signpost 1, 11, SIGNPOST_READ, RadioTower2FBookshelf
+	signpost 0, 13, SIGNPOST_READ, MapRadioTower2FSignpost5Script
 
-	; people-events
+.PersonEvents:
 	db 11
-	person_event SPRITE_SUPER_NERD, 10, 10, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x5d6fe, EVENT_6CF
-	person_event SPRITE_TEACHER, 6, 21, $5, $1, 255, 255, $80, 0, TeacherScript_0x5d701, -1
-	person_event SPRITE_ROCKET, 8, 5, $7, $0, 255, 255, $2, 3, TrainerGruntM4, EVENT_6CE
-	person_event SPRITE_ROCKET, 8, 12, $6, $0, 255, 255, $2, 3, TrainerGruntM5, EVENT_6CE
-	person_event SPRITE_ROCKET, 5, 8, $6, $0, 255, 255, $2, 2, TrainerGruntM6, EVENT_6CE
-	person_event SPRITE_ROCKET_GIRL, 9, 14, $7, $0, 255, 255, $82, 3, TrainerGruntF2, EVENT_6CE
-	person_event SPRITE_BLACK_BELT, 5, 4, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d71f, EVENT_6D1
-	person_event SPRITE_BLACK_BELT, 5, 5, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d722, EVENT_6D0
-	person_event SPRITE_JIGGLYPUFF, 5, 16, $16, $0, 255, 255, $0, 0, JigglypuffScript_0x5d715, -1
-	person_event SPRITE_BUENA, 9, 18, $9, $0, 255, 255, $80, 0, Buena, -1
-	person_event SPRITE_RECEPTIONIST, 11, 16, $9, $0, 255, 255, $a0, 0, ReceptionistScript_0x5d8ff, EVENT_6CF
+	person_event SPRITE_SUPER_NERD, 10, 10, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x5d6fe, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_TEACHER, 6, 21, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x5d701, -1
+	person_event SPRITE_ROCKET, 8, 5, OW_UP | $3, $0, -1, -1, $2, 3, TrainerGruntM4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 8, 12, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM5, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 5, 8, OW_UP | $2, $0, -1, -1, $2, 2, TrainerGruntM6, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 9, 14, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerGruntF2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_BLACK_BELT, 5, 4, OW_UP | $2, $0, -1, -1, $0, 0, BlackBeltScript_0x5d71f, EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS
+	person_event SPRITE_BLACK_BELT, 5, 5, OW_UP | $2, $0, -1, -1, $0, 0, BlackBeltScript_0x5d722, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_JIGGLYPUFF, 5, 16, OW_UP | $12, $0, -1, -1, $0, 0, JigglypuffScript_0x5d715, -1
+	person_event SPRITE_BUENA, 9, 18, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Buena, -1
+	person_event SPRITE_RECEPTIONIST, 11, 16, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x5d8ff, EVENT_GOLDENROD_CITY_CIVILIANS

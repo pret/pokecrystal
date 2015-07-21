@@ -1,8 +1,8 @@
 Route23_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -28,19 +28,19 @@ Route23_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $5, $9, 1, GROUP_INDIGO_PLATEAU_POKECENTER_1F, MAP_INDIGO_PLATEAU_POKECENTER_1F
 	warp_def $5, $a, 2, GROUP_INDIGO_PLATEAU_POKECENTER_1F, MAP_INDIGO_PLATEAU_POKECENTER_1F
 	warp_def $d, $9, 10, GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
 	warp_def $d, $a, 10, GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 7, 11, $0, IndigoPlateauSign
+	signpost 7, 11, SIGNPOST_READ, IndigoPlateauSign
 
-	; people-events
+.PersonEvents:
 	db 0

@@ -265,9 +265,9 @@ Functioncc23d: ; cc23d
 	ld a, [hl]
 	and $f0
 	ld [hli], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .asm_cc249
 	ret
@@ -341,8 +341,9 @@ Functioncc293: ; cc293
 	ld e, a
 	ld d, 0
 	ld hl, BattleAnimCommands
+rept 2
 	add hl, de
-	add hl, de
+endr
 
 	ld a, [hli]
 	ld h, [hl]
@@ -488,8 +489,9 @@ BattleAnimCmd_FD: ; cc348 (33:4348)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+rept 2
 	inc de
-	inc de
+endr
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -517,8 +519,9 @@ BattleAnimCmd_EF: ; cc383 (33:4383)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+rept 2
 	inc de
-	inc de
+endr
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -544,8 +547,9 @@ BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+rept 2
 	inc de
-	inc de
+endr
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -572,8 +576,9 @@ BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+rept 2
 	inc de
-	inc de
+endr
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -601,8 +606,9 @@ BattleAnimCmd_EE: ; cc3fa (33:43fa)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+rept 2
 	inc de
-	inc de
+endr
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -700,10 +706,9 @@ BattleAnimCmd_D5: ; cc485 (33:4485)
 	push hl
 	ld l, a
 	ld h, $0
+rept 4
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld de, $8310
 	add hl, de
 	ld a, [BattleAnimByte]
@@ -797,8 +802,9 @@ BattleAnimCmd_D9: ; cc52c (33:452c)
 	ld a, [hl]
 	and a
 	jr z, .asm_cc537
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_cc52f
 
 .asm_cc537
@@ -852,8 +858,9 @@ BattleAnimCmd_DA: ; cc57e (33:457e)
 	ld a, [hl]
 	and a
 	jr z, .asm_cc589
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_cc581
 
 .asm_cc589
@@ -1243,10 +1250,9 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 	ld e, a
 	ld d, 0
 	ld hl, Datacc871
+rept 4
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -1392,8 +1398,9 @@ Functioncc8d3: ; cc8d3
 	inc hl
 	ld d, [hl]
 	ld hl, BattleAnimations
+rept 2
 	add hl, de
-	add hl, de
+endr
 	call Function3ae1
 	call BattleAnimAssignPals
 	call BattleAnimDelayFrame

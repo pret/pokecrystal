@@ -158,12 +158,9 @@ PlayCryHeader:: ; 3be3
 	ld [MBC3RomBank], a
 
 	ld hl, CryHeaders
+rept 6
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 
 	ld e, [hl]
 	inc hl
@@ -321,7 +318,7 @@ Function3ca8:: ; 3ca8
 	ret
 ; 3cae
 
-Function3cae:: ; 3cae
+CrankUpTheVolume:: ; 3cae
 	ld a, 4 | 1 << 7
 	ld [MusicFade], a
 	ret
@@ -423,7 +420,7 @@ EnterMapMusic:: ; 3d03
 	ret
 ; 3d2f
 
-Function3d2f:: ; 3d2f
+TryRestartMapMusic:: ; 3d2f
 	ld a, [wc2c1]
 	and a
 	jr z, RestartMapMusic

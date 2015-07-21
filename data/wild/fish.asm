@@ -6,26 +6,18 @@ FishAction: ; 92402
 	push af
 	push bc
 	push hl
-	
+
 ; Get the fishing group for this map.
 	ld b, e
 	call GetFishGroupHeader
-	
+
 	ld hl, FishGroupHeaders
-	; encounter chance
+rept 7
 	add hl, de
-	; pointer to old rod data
-	add hl, de
-	add hl, de
-	; pointer to good rod data
-	add hl, de
-	add hl, de
-	; pointer to super rod data
-	add hl, de
-	add hl, de
-	
+endr
+
 	call Fish
-	
+
 	pop hl
 	pop bc
 	pop af
@@ -52,30 +44,31 @@ Fish: ; 9241a
 	inc hl
 	ld e, b
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 ; Encounter chance for this monster:
 	call Random
-	
+
 .CheckEncounter
 	cp [hl]
 	jr z, .ReadMon
 	jr c, .ReadMon
-	
+
 ; Next monster...
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	jr .CheckEncounter
-	
+
 .ReadMon
 ; We're done with the encounter chance
 	inc hl
-	
+
 ; Species 0 triggers a read from a time-based encounter table.
 	ld a, [hli]
 	ld d, a
@@ -85,30 +78,30 @@ Fish: ; 9241a
 ; Level
 	ld e, [hl]
 	ret
-	
+
 .NoBite
 	ld de, 0
 	ret
-	
+
 .TimeEncounter
 
 ; The level byte is repurposed as the index for the new table.
 	ld e, [hl]
 	ld d, 0
 	ld hl, TimeFishGroups
+rept 4
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 
 ; One nightmon, then one daymon
 	ld a, [TimeOfDay]
 	and 3
 	cp NITE
 	jr c, .TimeSpecies
+rept 2
 	inc hl
-	inc hl
-	
+endr
+
 .TimeSpecies
 	ld d, [hl]
 	inc hl
@@ -122,31 +115,31 @@ GetFishGroupHeader: ; 9245b
 ; Return fishing encounter group header d in de.
 
 	push hl
-	ld hl, wdc1e
+	ld hl, DailyFlags
 	bit 2, [hl]
 	pop hl
 	jr z, .end
-	
+
 ; Groups 11 and 12 have special attributes.
 	ld a, d
 	cp 11
 	jr z, .group11
 	cp 12
 	jr z, .group12
-	
+
 .end
 	dec d
 	ld e, d
 	ld d, 0
 	ret
-	
+
 .group11
 	ld a, [wdfce]
 	cp 1
 	jr nz, .end
 	ld d, 6
 	jr .end
-	
+
 .group12
 	ld a, [wdfce]
 	cp 2

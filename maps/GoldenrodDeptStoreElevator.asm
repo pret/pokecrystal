@@ -1,8 +1,8 @@
 GoldenrodDeptStoreElevator_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 MapGoldenrodDeptStoreElevatorSignpost0Script:
@@ -60,17 +60,17 @@ GoldenrodDeptStoreElevator_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $1, 255, GROUP_GOLDENROD_DEPT_STORE_1F, MAP_GOLDENROD_DEPT_STORE_1F
 	warp_def $3, $2, 255, GROUP_GOLDENROD_DEPT_STORE_1F, MAP_GOLDENROD_DEPT_STORE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 0, 3, $0, MapGoldenrodDeptStoreElevatorSignpost0Script
+	signpost 0, 3, SIGNPOST_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 0

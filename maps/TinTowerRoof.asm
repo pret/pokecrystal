@@ -1,8 +1,8 @@
 TinTowerRoof_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -48,16 +48,16 @@ TinTowerRoof_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $d, $9, 4, GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_HO_OH, 9, 13, $16, $0, 255, 255, $80, 0, HoOhScript_0x77244, EVENT_73C
+	person_event SPRITE_HO_OH, 9, 13, OW_UP | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, HoOhScript_0x77244, EVENT_TIN_TOWER_ROOF_HO_OH

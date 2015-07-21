@@ -1,12 +1,12 @@
 VictoryRoadGate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x9b9fb, $0000
 	dw UnknownScript_0x9b9fc, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x9b9fb:
@@ -98,7 +98,7 @@ VictoryRoadGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 8
 	warp_def $7, $11, 1, GROUP_ROUTE_22, MAP_ROUTE_22
 	warp_def $7, $12, 1, GROUP_ROUTE_22, MAP_ROUTE_22
@@ -109,15 +109,15 @@ VictoryRoadGate_MapEventHeader:
 	warp_def $7, $1, 2, GROUP_ROUTE_28, MAP_ROUTE_28
 	warp_def $7, $2, 2, GROUP_ROUTE_28, MAP_ROUTE_28
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $b, $a, $0, UnknownScript_0x9b9fd, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 15, 12, $9, $0, 255, 255, $0, 0, OfficerScript_0x9ba03, -1
-	person_event SPRITE_BLACK_BELT, 9, 11, $9, $0, 255, 255, $0, 0, BlackBeltScript_0x9ba21, EVENT_OPENED_MT_SILVER
-	person_event SPRITE_BLACK_BELT, 9, 16, $8, $0, 255, 255, $0, 0, BlackBeltScript_0x9ba24, EVENT_FOUGHT_SNORLAX
+	person_event SPRITE_OFFICER, 15, 12, OW_LEFT | $1, $0, -1, -1, $0, 0, OfficerScript_0x9ba03, -1
+	person_event SPRITE_BLACK_BELT, 9, 11, OW_LEFT | $1, $0, -1, -1, $0, 0, BlackBeltScript_0x9ba21, EVENT_OPENED_MT_SILVER
+	person_event SPRITE_BLACK_BELT, 9, 16, OW_LEFT | $0, $0, -1, -1, $0, 0, BlackBeltScript_0x9ba24, EVENT_FOUGHT_SNORLAX

@@ -1,8 +1,8 @@
 Route37_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -20,23 +20,7 @@ SunnyCallback:
 	return
 
 TrainerTwinsAnnandanne1:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_ANN_AND_ANNE
-
-	; trainer group && trainer id
-	db TWINS, ANNANDANNE1
-
-	; text when seen
-	dw TwinsAnnandanne1SeenText
-
-	; text when trainer beaten
-	dw TwinsAnnandanne1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsAnnandanne1Script
+	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE1, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, $0000, TwinsAnnandanne1Script
 
 TwinsAnnandanne1Script:
 	talkaftercancel
@@ -47,23 +31,7 @@ TwinsAnnandanne1Script:
 	end
 
 TrainerTwinsAnnandanne2:
-	; bit/flag number
-	dw EVENT_BEAT_TWINS_ANN_AND_ANNE
-
-	; trainer group && trainer id
-	db TWINS, ANNANDANNE2
-
-	; text when seen
-	dw TwinsAnnandanne2SeenText
-
-	; text when trainer beaten
-	dw TwinsAnnandanne2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsAnnandanne2Script
+	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE2, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, $0000, TwinsAnnandanne2Script
 
 TwinsAnnandanne2Script:
 	talkaftercancel
@@ -74,23 +42,7 @@ TwinsAnnandanne2Script:
 	end
 
 TrainerPsychicGreg:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_GREG
-
-	; trainer group && trainer id
-	db PSYCHIC_T, GREG
-
-	; text when seen
-	dw PsychicGregSeenText
-
-	; text when trainer beaten
-	dw PsychicGregBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicGregScript
+	trainer EVENT_BEAT_PSYCHIC_GREG, PSYCHIC_T, GREG, PsychicGregSeenText, PsychicGregBeatenText, $0000, PsychicGregScript
 
 PsychicGregScript:
 	talkaftercancel
@@ -156,8 +108,7 @@ FruitTreeScript_0x1a8e0d:
 	fruittree $13
 
 MapRoute37SignpostItem1:
-	dw $00a9
-	db ETHER
+	dwb EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
 	
 
 TwinsAnnandanne1SeenText:
@@ -285,23 +236,23 @@ Route37_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 3, 5, $0, MapRoute37Signpost0Script
-	signpost 2, 4, $7, MapRoute37SignpostItem1
+	signpost 3, 5, SIGNPOST_READ, MapRoute37Signpost0Script
+	signpost 2, 4, SIGNPOST_ITEM, MapRoute37SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_WEIRD_TREE, 16, 10, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne1, -1
-	person_event SPRITE_WEIRD_TREE, 16, 11, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne2, -1
-	person_event SPRITE_YOUNGSTER, 10, 10, $a, $0, 255, 255, $92, 1, TrainerPsychicGreg, -1
-	person_event SPRITE_FRUIT_TREE, 9, 17, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e09, -1
-	person_event SPRITE_BUG_CATCHER, 12, 20, $2, $11, 255, 255, $0, 0, SunnyScript, EVENT_75B
-	person_event SPRITE_FRUIT_TREE, 9, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0b, -1
-	person_event SPRITE_FRUIT_TREE, 11, 19, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0d, -1
+	person_event SPRITE_WEIRD_TREE, 16, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAnnandanne1, -1
+	person_event SPRITE_WEIRD_TREE, 16, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAnnandanne2, -1
+	person_event SPRITE_YOUNGSTER, 10, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicGreg, -1
+	person_event SPRITE_FRUIT_TREE, 9, 17, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e09, -1
+	person_event SPRITE_BUG_CATCHER, 12, 20, OW_DOWN | $2, $11, -1, -1, $0, 0, SunnyScript, EVENT_ROUTE_37_SUNNY_OF_SUNDAY
+	person_event SPRITE_FRUIT_TREE, 9, 20, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e0b, -1
+	person_event SPRITE_FRUIT_TREE, 11, 19, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a8e0d, -1

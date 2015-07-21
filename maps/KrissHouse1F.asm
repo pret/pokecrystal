@@ -1,12 +1,12 @@
 KrissHouse1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x7a4d6, $0000
 	dw UnknownScript_0x7a4d7, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x7a4d6:
@@ -16,13 +16,13 @@ UnknownScript_0x7a4d7:
 	end
 
 UnknownScript_0x7a4d8:
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $0, LEFT
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
@@ -39,11 +39,11 @@ UnknownScript_0x7a4f6:
 	setflag ENGINE_PHONE_CARD
 	addcellnum $1
 	dotrigger $1
-	setevent EVENT_6C7
-	clearevent EVENT_6C8
+	setevent EVENT_KRISS_HOUSE_MOM_1
+	clearevent EVENT_KRISS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
 	keeptextopen
-	special Function90913
+	special Special_SetDayOfWeek
 UnknownScript_0x7a519:
 	writetext UnknownText_0x7a742
 	yesorno
@@ -77,9 +77,9 @@ UnknownScript_0x7a549:
 	writetext UnknownText_0x7a850
 	closetext
 	loadmovesprites
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7a55d
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iffalse UnknownScript_0x7a564
 	jump UnknownScript_0x7a56b
 
@@ -109,11 +109,11 @@ UnknownScript_0x7a57e:
 
 MomScript_0x7a582:
 	faceplayer
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checktriggers
 	iffalse UnknownScript_0x7a572
 	loadfont
-	checkevent EVENT_076
+	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	iftrue UnknownScript_0x7a5af
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue UnknownScript_0x7a5b8
@@ -139,10 +139,10 @@ UnknownScript_0x7a5af:
 	end
 
 UnknownScript_0x7a5b5:
-	setevent EVENT_076
+	setevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 UnknownScript_0x7a5b8:
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	special Function16218
+	special Special_BankOfMom
 	closetext
 	loadmovesprites
 	end
@@ -384,28 +384,28 @@ KrissHouse1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $6, 2, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	warp_def $7, $7, 2, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	warp_def $0, $9, 1, GROUP_KRISS_HOUSE_2F, MAP_KRISS_HOUSE_2F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $4, $8, $0, UnknownScript_0x7a4d8, $0, $0
 	xy_trigger 0, $4, $9, $0, UnknownScript_0x7a4db, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 1, 0, $0, StoveScript
-	signpost 1, 1, $0, SinkScript
-	signpost 1, 2, $0, FridgeScript
-	signpost 1, 4, $0, TVScript
+	signpost 1, 0, SIGNPOST_READ, StoveScript
+	signpost 1, 1, SIGNPOST_READ, SinkScript
+	signpost 1, 2, SIGNPOST_READ, FridgeScript
+	signpost 1, 4, SIGNPOST_READ, TVScript
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 255, $0, 0, MomScript_0x7a582, EVENT_6C7
-	person_event SPRITE_MOM, 6, 6, $7, $0, 255, 1, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 2, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_MOM, 6, 4, $7, $0, 255, 4, $0, 0, MomScript_0x7a582, EVENT_6C8
-	person_event SPRITE_POKEFAN_F, 8, 8, $9, $0, 255, 255, $80, 0, NeighborScript, EVENT_792
+	person_event SPRITE_MOM, 8, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
+	person_event SPRITE_MOM, 6, 6, OW_UP | $3, $0, -1, 1, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 8, 11, OW_LEFT | $0, $0, -1, 2, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 6, 4, OW_UP | $3, $0, -1, 4, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_POKEFAN_F, 8, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR

@@ -1,11 +1,11 @@
 LavenderNameRater_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x7eaf1, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x7eaf1:
@@ -27,17 +27,17 @@ LavenderNameRater_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 4, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
 	warp_def $7, $3, 4, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_GENTLEMAN, 7, 6, $6, $0, 255, 255, $80, 0, LavenderNameRater, -1
+	person_event SPRITE_GENTLEMAN, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, LavenderNameRater, -1

@@ -1,8 +1,8 @@
 SaffronGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 SabrinaScript_0x189c2e:
@@ -39,23 +39,7 @@ SabrinaScript_0x189c2e:
 	end
 
 TrainerMediumRebecca:
-	; bit/flag number
-	dw EVENT_BEAT_MEDIUM_REBECCA
-
-	; trainer group && trainer id
-	db MEDIUM, REBECCA
-
-	; text when seen
-	dw MediumRebeccaSeenText
-
-	; text when trainer beaten
-	dw MediumRebeccaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw MediumRebeccaScript
+	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, $0000, MediumRebeccaScript
 
 MediumRebeccaScript:
 	talkaftercancel
@@ -66,23 +50,7 @@ MediumRebeccaScript:
 	end
 
 TrainerPsychicFranklin:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_FRANKLIN
-
-	; trainer group && trainer id
-	db PSYCHIC_T, FRANKLIN
-
-	; text when seen
-	dw PsychicFranklinSeenText
-
-	; text when trainer beaten
-	dw PsychicFranklinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicFranklinScript
+	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, $0000, PsychicFranklinScript
 
 PsychicFranklinScript:
 	talkaftercancel
@@ -93,23 +61,7 @@ PsychicFranklinScript:
 	end
 
 TrainerMediumDoris:
-	; bit/flag number
-	dw EVENT_BEAT_MEDIUM_DORIS
-
-	; trainer group && trainer id
-	db MEDIUM, DORIS
-
-	; text when seen
-	dw MediumDorisSeenText
-
-	; text when trainer beaten
-	dw MediumDorisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw MediumDorisScript
+	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, $0000, MediumDorisScript
 
 MediumDorisScript:
 	talkaftercancel
@@ -120,23 +72,7 @@ MediumDorisScript:
 	end
 
 TrainerPsychicJared:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_JARED
-
-	; trainer group && trainer id
-	db PSYCHIC_T, JARED
-
-	; text when seen
-	dw PsychicJaredSeenText
-
-	; text when trainer beaten
-	dw PsychicJaredBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicJaredScript
+	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, $0000, PsychicJaredScript
 
 PsychicJaredScript:
 	talkaftercancel
@@ -350,7 +286,7 @@ SaffronGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 32
 	warp_def $11, $8, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $11, $9, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
@@ -385,18 +321,18 @@ SaffronGym_MapEventHeader:
 	warp_def $3, $1, 16, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
 	warp_def $9, $b, 17, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 15, 8, $0, SaffronGymStatue
+	signpost 15, 8, SIGNPOST_READ, SaffronGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_SABRINA, 12, 13, $6, $0, 255, 255, $80, 0, SabrinaScript_0x189c2e, -1
-	person_event SPRITE_GRANNY, 20, 21, $a, $0, 255, 255, $b2, 3, TrainerMediumRebecca, -1
-	person_event SPRITE_YOUNGSTER, 20, 7, $a, $0, 255, 255, $92, 3, TrainerPsychicFranklin, -1
-	person_event SPRITE_GRANNY, 8, 7, $a, $0, 255, 255, $b2, 2, TrainerMediumDoris, -1
-	person_event SPRITE_YOUNGSTER, 8, 21, $a, $0, 255, 255, $92, 2, TrainerPsychicJared, -1
-	person_event SPRITE_GYM_GUY, 18, 13, $6, $0, 255, 255, $90, 0, SaffronGymGuyScript, -1
+	person_event SPRITE_SABRINA, 12, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SabrinaScript_0x189c2e, -1
+	person_event SPRITE_GRANNY, 20, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerMediumRebecca, -1
+	person_event SPRITE_YOUNGSTER, 20, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFranklin, -1
+	person_event SPRITE_GRANNY, 8, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerMediumDoris, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicJared, -1
+	person_event SPRITE_GYM_GUY, 18, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SaffronGymGuyScript, -1

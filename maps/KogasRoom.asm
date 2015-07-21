@@ -1,12 +1,12 @@
 KogasRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x180728, $0000
 	dw UnknownScript_0x18072c, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -21,7 +21,7 @@ UnknownScript_0x18072c:
 	end
 
 UnknownScript_0x18072d:
-	checkevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
+	checkevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x180737
 	changeblock $4, $e, $2a
 UnknownScript_0x180737:
@@ -40,7 +40,7 @@ UnknownScript_0x180742:
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
+	setevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	waitbutton
 	end
 
@@ -135,19 +135,19 @@ KogasRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $11, $4, 2, GROUP_WILLS_ROOM, MAP_WILLS_ROOM
 	warp_def $11, $5, 3, GROUP_WILLS_ROOM, MAP_WILLS_ROOM
 	warp_def $2, $4, 1, GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM
 	warp_def $2, $5, 2, GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_KOGA, 11, 9, $6, $0, 255, 255, $90, 0, KogaScript_0x18075a, -1
+	person_event SPRITE_KOGA, 11, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, KogaScript_0x18075a, -1

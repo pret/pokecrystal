@@ -1,8 +1,8 @@
 VioletGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 FalknerScript_0x683c2:
@@ -27,25 +27,25 @@ FalknerScript_0x683c2:
 	scall VioletGymTriggerRockets
 .FightDone
 	checkevent EVENT_GOT_TM31_MUD_SLAP
-	iftrue UnknownScript_0x68412
+	iftrue .SpeechAfterTM
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $2
-	specialphonecall $3
+	specialphonecall ELMCALL_ASSISTANT
 	writetext UnknownText_0x685c8
 	keeptextopen
 	verbosegiveitem TM_MUD_SLAP, 1
-	iffalse UnknownScript_0x68416
+	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x68412:
+.SpeechAfterTM:
 	writetext UnknownText_0x68735
 	closetext
-UnknownScript_0x68416:
+.NoRoomForMudSlap:
 	loadmovesprites
 	end
 
@@ -61,23 +61,7 @@ VioletGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBird_keeperRod:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_ROD
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, ROD
-
-	; text when seen
-	dw Bird_keeperRodSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperRodBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperRodScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, $0000, Bird_keeperRodScript
 
 Bird_keeperRodScript:
 	talkaftercancel
@@ -88,23 +72,7 @@ Bird_keeperRodScript:
 	end
 
 TrainerBird_keeperAbe:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_ABE
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, ABE
-
-	; text when seen
-	dw Bird_keeperAbeSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperAbeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperAbeScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, $0000, Bird_keeperAbeScript
 
 Bird_keeperAbeScript:
 	talkaftercancel
@@ -311,22 +279,22 @@ VioletGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $f, $4, 2, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $f, $5, 2, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 13, 3, $0, VioletGymStatue
-	signpost 13, 6, $0, VioletGymStatue
+	signpost 13, 3, SIGNPOST_READ, VioletGymStatue
+	signpost 13, 6, SIGNPOST_READ, VioletGymStatue
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_FALKNER, 5, 9, $6, $0, 255, 255, $90, 0, FalknerScript_0x683c2, -1
-	person_event SPRITE_YOUNGSTER, 10, 11, $8, $2, 255, 255, $92, 3, TrainerBird_keeperRod, -1
-	person_event SPRITE_YOUNGSTER, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, -1
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, -1
+	person_event SPRITE_FALKNER, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FalknerScript_0x683c2, -1
+	person_event SPRITE_YOUNGSTER, 10, 11, OW_LEFT | $0, $2, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperRod, -1
+	person_event SPRITE_YOUNGSTER, 14, 6, OW_LEFT | $1, $2, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperAbe, -1
+	person_event SPRITE_GYM_GUY, 17, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, VioletGymGuyScript, -1

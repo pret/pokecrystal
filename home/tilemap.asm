@@ -175,11 +175,13 @@ GetTileCoord:: ; 1d05
 	ld a, c
 	ld b, h
 	ld c, l
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	add hl, bc
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld c, a
 	xor a
 	ld b, a
@@ -203,11 +205,13 @@ GetAttrCoord:: ; 1d21
 	ld a, c
 	ld b, h
 	ld c, l
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	add hl, bc
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld c, a
 	xor a
 	ld b, a

@@ -1,11 +1,11 @@
 Route6SaffronGate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x1926e9, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x1926e9:
@@ -60,19 +60,19 @@ Route6SaffronGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 12, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $0, $5, 13, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $4, 2, GROUP_ROUTE_6, MAP_ROUTE_6
 	warp_def $7, $5, 2, GROUP_ROUTE_6, MAP_ROUTE_6
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x1926ea, -1
+	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x1926ea, -1

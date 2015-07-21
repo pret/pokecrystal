@@ -1,8 +1,8 @@
 CeladonMansion3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 CooltrainerMScript_0x71670:
@@ -187,26 +187,26 @@ CeladonMansion3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $0, 1, GROUP_CELADON_MANSION_ROOF, MAP_CELADON_MANSION_ROOF
 	warp_def $0, $1, 2, GROUP_CELADON_MANSION_2F, MAP_CELADON_MANSION_2F
 	warp_def $0, $6, 3, GROUP_CELADON_MANSION_2F, MAP_CELADON_MANSION_2F
 	warp_def $0, $7, 2, GROUP_CELADON_MANSION_ROOF, MAP_CELADON_MANSION_ROOF
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 8, 5, $1, MapCeladonMansion3FSignpost0Script
-	signpost 3, 4, $1, MapCeladonMansion3FSignpost1Script
-	signpost 6, 1, $1, MapCeladonMansion3FSignpost2Script
-	signpost 3, 1, $1, MapCeladonMansion3FSignpost3Script
+	signpost 8, 5, SIGNPOST_UP, MapCeladonMansion3FSignpost0Script
+	signpost 3, 4, SIGNPOST_UP, MapCeladonMansion3FSignpost1Script
+	signpost 6, 1, SIGNPOST_UP, MapCeladonMansion3FSignpost2Script
+	signpost 3, 1, SIGNPOST_UP, MapCeladonMansion3FSignpost3Script
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_COOLTRAINER_M, 10, 7, $3, $0, 255, 255, $80, 0, CooltrainerMScript_0x71670, -1
-	person_event SPRITE_GYM_GUY, 8, 7, $7, $0, 255, 255, $90, 0, GymGuyScript_0x71696, -1
-	person_event SPRITE_SUPER_NERD, 11, 4, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x716bc, -1
-	person_event SPRITE_FISHER, 8, 4, $7, $2, 255, 255, $80, 0, FisherScript_0x716bf, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 7, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x71670, -1
+	person_event SPRITE_GYM_GUY, 8, 7, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x71696, -1
+	person_event SPRITE_SUPER_NERD, 11, 4, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x716bc, -1
+	person_event SPRITE_FISHER, 8, 4, OW_UP | $3, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x716bf, -1

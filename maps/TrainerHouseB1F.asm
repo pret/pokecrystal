@@ -1,11 +1,11 @@
 TrainerHouseB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x9b38a, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x9b38a:
@@ -171,18 +171,18 @@ TrainerHouseB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $4, $9, 3, GROUP_TRAINER_HOUSE_1F, MAP_TRAINER_HOUSE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $3, $7, $0, UnknownScript_0x9b38b, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 5, 11, $6, $0, 255, 255, $a0, 0, ObjectEvent, -1
-	person_event SPRITE_CHRIS, 15, 10, $8, $0, 255, 255, $80, 0, ObjectEvent, -1
+	person_event SPRITE_RECEPTIONIST, 5, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, -1
+	person_event SPRITE_CHRIS, 15, 10, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, -1

@@ -1,8 +1,8 @@
 Route26DayofWeekSiblingsHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PokedexScript_0x7b1e4:
@@ -71,17 +71,17 @@ Route26DayofWeekSiblingsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_ROUTE_26, MAP_ROUTE_26
 	warp_def $7, $3, 3, GROUP_ROUTE_26, MAP_ROUTE_26
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_POKEDEX, 7, 7, $1, $0, 255, 255, $0, 0, PokedexScript_0x7b1e4, -1
+	person_event SPRITE_POKEDEX, 7, 7, OW_DOWN | $1, $0, -1, -1, $0, 0, PokedexScript_0x7b1e4, -1

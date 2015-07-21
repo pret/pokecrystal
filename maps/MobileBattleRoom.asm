@@ -1,22 +1,22 @@
 MobileBattleRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1935ce, $0000
-	dw UnknownScript_0x1935d2, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
-UnknownScript_0x1935ce:
-	priorityjump UnknownScript_0x1935d3
+.Trigger1:
+	priorityjump MobileBattleRoom_Initialize
 	end
 
-UnknownScript_0x1935d2:
+.Trigger2:
 	end
 
-UnknownScript_0x1935d3:
+MobileBattleRoom_Initialize:
 	dotrigger $1
 	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $5
 	end
@@ -24,45 +24,45 @@ UnknownScript_0x1935d3:
 MapMobileBattleRoomSignpost0Script:
 	refreshscreen $0
 	special Function1037c2
-	if_equal $1, UnknownScript_0x193619
+	if_equal $1, .one
 	special Function1037eb
-	iffalse UnknownScript_0x193624
-	if_equal $1, UnknownScript_0x1935f4
-	if_equal $2, UnknownScript_0x19360d
-	jump UnknownScript_0x193624
+	iffalse .false
+	if_equal $1, .one_
+	if_equal $2, .two_
+	jump .false
 
-UnknownScript_0x1935f4:
-	writetext UnknownText_0x193644
+.one_:
+	writetext MobileBattleRoom_HealText
 	pause 20
 	loadmovesprites
-	special Function8c084
+	special FadeBlackBGMap
 	playmusic MUSIC_HEAL
-	special Function1047eb
+	special LoadMapPalettes
 	pause 60
-	special Function8c079
+	special FadeInBGMap
 	special RestartMapMusic
 	refreshscreen $0
-UnknownScript_0x19360d:
-	special Function1060a2
+.two_:
+	special Mobile_HealParty
 	special HealParty
 	special Function10383c
-	iftrue UnknownScript_0x193624
-UnknownScript_0x193619:
+	iftrue .false
+.one:
 	special Function10387b
-	writetext UnknownText_0x193626
+	writetext MobileBattleRoom_EstablishingCommsText
 	closetext
 	reloadmappart
 	special Function101225
-UnknownScript_0x193624:
+.false:
 	loadmovesprites
 	end
 
-UnknownText_0x193626:
+MobileBattleRoom_EstablishingCommsText:
 	text "Establishing"
 	line "communications…"
 	done
 
-UnknownText_0x193644:
+MobileBattleRoom_HealText:
 	text "Your #MON will"
 	line "be fully healed"
 	cont "before battle."
@@ -72,17 +72,17 @@ MobileBattleRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $4, 6, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 	warp_def $7, $5, 6, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 2, 4, $1, MapMobileBattleRoomSignpost0Script
+	signpost 2, 4, SIGNPOST_UP, MapMobileBattleRoomSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 0

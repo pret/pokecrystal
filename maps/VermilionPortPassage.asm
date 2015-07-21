@@ -1,8 +1,8 @@
 VermilionPortPassage_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TeacherScript_0x7701a:
@@ -19,7 +19,7 @@ VermilionPortPassage_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $0, $f, 8, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	warp_def $0, $10, 9, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
@@ -27,12 +27,12 @@ VermilionPortPassage_MapEventHeader:
 	warp_def $2, $3, 3, GROUP_VERMILION_PORT_PASSAGE, MAP_VERMILION_PORT_PASSAGE
 	warp_def $e, $3, 1, GROUP_VERMILION_PORT, MAP_VERMILION_PORT
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_TEACHER, 5, 21, $8, $0, 255, 255, $0, 0, TeacherScript_0x7701a, -1
+	person_event SPRITE_TEACHER, 5, 21, OW_LEFT | $0, $0, -1, -1, $0, 0, TeacherScript_0x7701a, -1

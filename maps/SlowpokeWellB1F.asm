@@ -1,31 +1,15 @@
 SlowpokeWellB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 KurtScript_0x5a5d5:
 	jumptextfaceplayer UnknownText_0x5a6b5
 
 TrainerGruntM29:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_22
-
-	; trainer group && trainer id
-	db GRUNTM, 29
-
-	; text when seen
-	dw GruntM29SeenText
-
-	; text when trainer beaten
-	dw GruntM29BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM29Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, 29, GruntM29SeenText, GruntM29BeatenText, $0000, GruntM29Script
 
 GruntM29Script:
 	talkaftercancel
@@ -36,37 +20,21 @@ GruntM29Script:
 	end
 
 TrainerGruntM1:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_1
-
-	; trainer group && trainer id
-	db GRUNTM, 1
-
-	; text when seen
-	dw GruntM1SeenText
-
-	; text when trainer beaten
-	dw GruntM1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, 1, GruntM1SeenText, GruntM1BeatenText, $0000, GruntM1Script
 
 GruntM1Script:
 	loadfont
 	writetext TrainerGruntM1WhenTalkText
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	disappear $3
 	disappear $4
 	disappear $5
 	pause 15
-	special Function8c0ab
+	special Special_FadeInQuickly
 	disappear $8
 	moveperson $8, $b, $6
 	appear $8
@@ -77,41 +45,25 @@ GruntM1Script:
 	closetext
 	loadmovesprites
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
-	variablesprite $6, $4
+	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_SILVER
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $1
-	clearevent EVENT_6F3
-	clearevent EVENT_6E9
-	setevent EVENT_6F5
-	setevent EVENT_6F6
-	setevent EVENT_6FB
-	setevent EVENT_740
-	clearevent EVENT_6F9
-	clearevent EVENT_6FD
-	clearevent EVENT_73E
-	special Function8c084
+	clearevent EVENT_ILEX_FOREST_APPRENTICE
+	clearevent EVENT_ILEX_FOREST_FARFETCHD
+	setevent EVENT_CHARCOAL_KILN_FARFETCH_D
+	setevent EVENT_CHARCOAL_KILN_APPRENTICE
+	setevent EVENT_SLOWPOKE_WELL_SLOWPOKES
+	setevent EVENT_SLOWPOKE_WELL_KURT
+	clearevent EVENT_AZALEA_TOWN_SLOWPOKES
+	clearevent EVENT_KURTS_HOUSE_SLOWPOKE
+	clearevent EVENT_KURTS_HOUSE_KURT_1
+	special FadeBlackBGMap
 	special HealParty
 	pause 15
 	warp GROUP_KURTS_HOUSE, MAP_KURTS_HOUSE, $3, $3
 	end
 
 TrainerGruntM2:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_2
-
-	; trainer group && trainer id
-	db GRUNTM, 2
-
-	; text when seen
-	dw GruntM2SeenText
-
-	; text when trainer beaten
-	dw GruntM2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, 2, GruntM2SeenText, GruntM2BeatenText, $0000, GruntM2Script
 
 GruntM2Script:
 	talkaftercancel
@@ -122,23 +74,7 @@ GruntM2Script:
 	end
 
 TrainerGruntF1:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_1
-
-	; trainer group && trainer id
-	db GRUNTF, 1
-
-	; text when seen
-	dw GruntF1SeenText
-
-	; text when trainer beaten
-	dw GruntF1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, 1, GruntF1SeenText, GruntF1BeatenText, $0000, GruntF1Script
 
 GruntF1Script:
 	talkaftercancel
@@ -377,25 +313,25 @@ SlowpokeWellB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $f, $11, 6, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 	warp_def $b, $7, 1, GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_ROCKET, 11, 19, $6, $0, 255, 255, $2, 3, TrainerGruntM29, EVENT_6FC
-	person_event SPRITE_ROCKET, 6, 9, $6, $0, 255, 255, $2, 1, TrainerGruntM1, EVENT_6FC
-	person_event SPRITE_ROCKET, 10, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM2, EVENT_6FC
-	person_event SPRITE_ROCKET_GIRL, 8, 14, $9, $0, 255, 255, $82, 4, TrainerGruntF1, EVENT_6FC
-	person_event SPRITE_SLOWPOKE, 8, 11, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a681, EVENT_6FB
-	person_event SPRITE_SLOWPOKE, 6, 10, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a695, EVENT_6FB
-	person_event SPRITE_KURT, 18, 20, $7, $0, 255, 255, $0, 0, KurtScript_0x5a5d5, EVENT_740
-	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, SlowpokeWellB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, EVENT_662
+	person_event SPRITE_ROCKET, 11, 19, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 6, 9, OW_UP | $2, $0, -1, -1, $2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 10, 9, OW_LEFT | $1, $0, -1, -1, $2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET_GIRL, 8, 14, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_SLOWPOKE, 8, 11, OW_DOWN | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 6, 10, OW_DOWN | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_KURT, 18, 20, OW_UP | $3, $0, -1, -1, $0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
+	person_event SPRITE_BOULDER, 6, 7, OW_LEFT | $11, $0, -1, -1, $0, 0, SlowpokeWellB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 7, 14, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION

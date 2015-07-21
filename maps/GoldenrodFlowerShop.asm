@@ -1,8 +1,8 @@
 GoldenrodFlowerShop_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TeacherScript_0x5535d:
@@ -12,7 +12,7 @@ TeacherScript_0x5535d:
 	iftrue UnknownScript_0x55399
 	checkevent EVENT_MET_FLORIA
 	iffalse UnknownScript_0x5539f
-	checkevent EVENT_0BA
+	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
 	iffalse UnknownScript_0x5538f
 	checkflag ENGINE_PLAINBADGE
 	iffalse UnknownScript_0x5539c
@@ -24,7 +24,7 @@ TeacherScript_0x5535d:
 	setevent EVENT_GOT_SQUIRTBOTTLE
 	loadmovesprites
 	setevent EVENT_FLORIA_AT_SUDOWOODO
-	clearevent EVENT_768
+	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	end
 
 UnknownScript_0x5538f:
@@ -54,8 +54,8 @@ LassScript_0x553a2:
 	writetext UnknownText_0x55561
 	closetext
 	loadmovesprites
-	setevent EVENT_0BA
-	setevent EVENT_768
+	setevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
+	setevent EVENT_FLORIA_AT_FLOWER_SHOP
 	clearevent EVENT_FLORIA_AT_SUDOWOODO
 	end
 
@@ -159,18 +159,18 @@ GoldenrodFlowerShop_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 6, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $3, 6, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 8, 6, $9, $0, 255, 255, $0, 0, TeacherScript_0x5535d, -1
-	person_event SPRITE_LASS, 10, 9, $2, $11, 255, 255, $90, 0, LassScript_0x553a2, EVENT_768
+	person_event SPRITE_TEACHER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, TeacherScript_0x5535d, -1
+	person_event SPRITE_LASS, 10, 9, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x553a2, EVENT_FLORIA_AT_FLOWER_SHOP

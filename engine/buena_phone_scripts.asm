@@ -2,7 +2,7 @@ UnknownScript_0xa0b14:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xa0b73
 	checkcode VAR_HOUR
-	if_greater_than $11, UnknownScript_0xa0b4b
+	if_greater_than 17, UnknownScript_0xa0b4b
 	scall UnknownScript_0xa0b32
 	jump UnknownScript_0xa0c0e
 
@@ -37,7 +37,7 @@ UnknownScript_0xa0b4b:
 
 UnknownScript_0xa0b4f:
 	checkcode VAR_HOUR
-	if_greater_than $11, UnknownScript_0xa0b6e
+	if_greater_than 17, UnknownScript_0xa0b6e
 	checkmorn
 	iftrue UnknownScript_0xa0b64
 	checkday
@@ -68,27 +68,27 @@ UnknownScript_0xa0b73:
 UnknownScript_0xa0b77:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue UnknownScript_0xa0b82
-	random $b
+	random 11
 	jump UnknownScript_0xa0b84
 
 UnknownScript_0xa0b82:
-	random $e
+	random 14
 
 UnknownScript_0xa0b84:
-	if_equal $0, UnknownScript_0xa0bbc
-	if_equal $1, UnknownScript_0xa0bc2
-	if_equal $2, UnknownScript_0xa0bc8
-	if_equal $3, UnknownScript_0xa0bce
-	if_equal $4, UnknownScript_0xa0bd4
-	if_equal $5, UnknownScript_0xa0bda
-	if_equal $6, UnknownScript_0xa0be0
-	if_equal $7, UnknownScript_0xa0be6
-	if_equal $8, UnknownScript_0xa0bec
-	if_equal $9, UnknownScript_0xa0bf2
-	if_equal $a, UnknownScript_0xa0bf8
-	if_equal $b, UnknownScript_0xa0bfe
-	if_equal $c, UnknownScript_0xa0c04
-	if_equal $d, UnknownScript_0xa0c0a
+	if_equal 0, UnknownScript_0xa0bbc
+	if_equal 1, UnknownScript_0xa0bc2
+	if_equal 2, UnknownScript_0xa0bc8
+	if_equal 3, UnknownScript_0xa0bce
+	if_equal 4, UnknownScript_0xa0bd4
+	if_equal 5, UnknownScript_0xa0bda
+	if_equal 6, UnknownScript_0xa0be0
+	if_equal 7, UnknownScript_0xa0be6
+	if_equal 8, UnknownScript_0xa0bec
+	if_equal 9, UnknownScript_0xa0bf2
+	if_equal 10, UnknownScript_0xa0bf8
+	if_equal 11, UnknownScript_0xa0bfe
+	if_equal 12, UnknownScript_0xa0c04
+	if_equal 13, UnknownScript_0xa0c0a
 
 UnknownScript_0xa0bbc:
 	writetext UnknownText_0xa0efb
@@ -149,10 +149,10 @@ UnknownScript_0xa0c0d:
 	end
 
 UnknownScript_0xa0c0e:
-	random $3
-	if_equal $0, UnknownScript_0xa0c1c
-	if_equal $1, UnknownScript_0xa0c20
-	if_equal $2, UnknownScript_0xa0c24
+	random 3
+	if_equal 0, UnknownScript_0xa0c1c
+	if_equal 1, UnknownScript_0xa0c20
+	if_equal 2, UnknownScript_0xa0c24
 
 UnknownScript_0xa0c1c:
 	writetext UnknownText_0xa1c88

@@ -1,8 +1,8 @@
 OlivineHouseBeta_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TeacherScript_0x9c58f:
@@ -39,20 +39,20 @@ OlivineHouseBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 4, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	warp_def $7, $3, 4, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, OlivineHouseBetaBookshelf1
-	signpost 1, 1, $0, OlivineHouseBetaBookshelf2
+	signpost 1, 0, SIGNPOST_READ, OlivineHouseBetaBookshelf1
+	signpost 1, 1, SIGNPOST_READ, OlivineHouseBetaBookshelf2
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 7, 6, $3, $0, 255, 255, $0, 0, TeacherScript_0x9c58f, -1
-	person_event SPRITE_RHYDON, 8, 10, $4, $20, 255, 255, $0, 0, RhydonScript_0x9c592, -1
+	person_event SPRITE_TEACHER, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, TeacherScript_0x9c58f, -1
+	person_event SPRITE_RHYDON, 8, 10, OW_UP | $0, $20, -1, -1, $0, 0, RhydonScript_0x9c592, -1

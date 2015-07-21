@@ -1,8 +1,8 @@
 Route40_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -10,7 +10,7 @@ Route40_MapScriptHeader:
 	dbw 2, MonicaCallback
 
 MonicaCallback:
-	clearevent EVENT_7CF
+	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .MonicaAppears
 	disappear $a
@@ -21,23 +21,7 @@ MonicaCallback:
 	return
 
 TrainerSwimmerfElaine:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_ELAINE
-
-	; trainer group && trainer id
-	db SWIMMERF, ELAINE
-
-	; text when seen
-	dw SwimmerfElaineSeenText
-
-	; text when trainer beaten
-	dw SwimmerfElaineBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfElaineScript
+	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, $0000, SwimmerfElaineScript
 
 SwimmerfElaineScript:
 	talkaftercancel
@@ -48,23 +32,7 @@ SwimmerfElaineScript:
 	end
 
 TrainerSwimmerfPaula:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_PAULA
-
-	; trainer group && trainer id
-	db SWIMMERF, PAULA
-
-	; text when seen
-	dw SwimmerfPaulaSeenText
-
-	; text when trainer beaten
-	dw SwimmerfPaulaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfPaulaScript
+	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, $0000, SwimmerfPaulaScript
 
 SwimmerfPaulaScript:
 	talkaftercancel
@@ -75,23 +43,7 @@ SwimmerfPaulaScript:
 	end
 
 TrainerSwimmermSimon:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_SIMON
-
-	; trainer group && trainer id
-	db SWIMMERM, SIMON
-
-	; text when seen
-	dw SwimmermSimonSeenText
-
-	; text when trainer beaten
-	dw SwimmermSimonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermSimonScript
+	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, $0000, SwimmermSimonScript
 
 SwimmermSimonScript:
 	talkaftercancel
@@ -102,23 +54,7 @@ SwimmermSimonScript:
 	end
 
 TrainerSwimmermRandall:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_RANDALL
-
-	; trainer group && trainer id
-	db SWIMMERM, RANDALL
-
-	; text when seen
-	dw SwimmermRandallSeenText
-
-	; text when trainer beaten
-	dw SwimmermRandallBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermRandallScript
+	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, $0000, SwimmermRandallScript
 
 SwimmermRandallScript:
 	talkaftercancel
@@ -188,8 +124,7 @@ Route40Rock:
 	jumpstd smashrock
 
 MapRoute40SignpostItem1:
-	dw $00ab
-	db HYPER_POTION
+	dwb EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a621c:
 	step_right
@@ -395,29 +330,29 @@ Route40_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $9, 1, GROUP_ROUTE_40_BATTLE_TOWER_GATE, MAP_ROUTE_40_BATTLE_TOWER_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 10, 14, $0, MapRoute40Signpost0Script
-	signpost 8, 7, $7, MapRoute40SignpostItem1
+	signpost 10, 14, SIGNPOST_READ, MapRoute40Signpost0Script
+	signpost 8, 7, SIGNPOST_ITEM, MapRoute40SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 12
-	person_event SPRITE_OLIVINE_RIVAL, 19, 18, $9, $0, 255, 255, $82, 4, TrainerSwimmermSimon, -1
-	person_event SPRITE_OLIVINE_RIVAL, 34, 22, $8, $0, 255, 255, $82, 5, TrainerSwimmermRandall, -1
-	person_event SPRITE_SWIMMER_GIRL, 23, 7, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfElaine, -1
-	person_event SPRITE_SWIMMER_GIRL, 29, 14, $1f, $0, 255, 255, $a2, 3, TrainerSwimmerfPaula, -1
-	person_event SPRITE_ROCK, 15, 11, $18, $0, 255, 255, $0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 13, 10, $18, $0, 255, 255, $0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 12, 11, $18, $0, 255, 255, $0, 0, Route40Rock, -1
-	person_event SPRITE_LASS, 17, 15, $6, $0, 255, 255, $0, 0, LassScript_0x1a61c4, -1
-	person_event SPRITE_BUENA, 14, 12, $3, $0, 255, 255, $0, 0, MonicaScript, EVENT_75E
-	person_event SPRITE_POKEFAN_M, 10, 11, $9, $0, 255, 255, $0, 0, PokefanMScript_0x1a61c7, -1
-	person_event SPRITE_LASS, 8, 17, $3, $0, 255, 255, $a0, 0, LassScript_0x1a61d3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, $3, $0, 255, 255, $90, 0, StandingYoungsterScript_0x1a61d6, EVENT_7CF
+	person_event SPRITE_OLIVINE_RIVAL, 19, 18, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerSwimmermSimon, -1
+	person_event SPRITE_OLIVINE_RIVAL, 34, 22, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerSwimmermRandall, -1
+	person_event SPRITE_SWIMMER_GIRL, 23, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerSwimmerfElaine, -1
+	person_event SPRITE_SWIMMER_GIRL, 29, 14, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfPaula, -1
+	person_event SPRITE_ROCK, 15, 11, OW_LEFT | $10, $0, -1, -1, $0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 13, 10, OW_LEFT | $10, $0, -1, -1, $0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 12, 11, OW_LEFT | $10, $0, -1, -1, $0, 0, Route40Rock, -1
+	person_event SPRITE_LASS, 17, 15, OW_UP | $2, $0, -1, -1, $0, 0, LassScript_0x1a61c4, -1
+	person_event SPRITE_BUENA, 14, 12, OW_DOWN | $3, $0, -1, -1, $0, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
+	person_event SPRITE_POKEFAN_M, 10, 11, OW_LEFT | $1, $0, -1, -1, $0, 0, PokefanMScript_0x1a61c7, -1
+	person_event SPRITE_LASS, 8, 17, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x1a61d3, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

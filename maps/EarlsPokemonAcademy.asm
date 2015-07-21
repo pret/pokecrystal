@@ -1,8 +1,8 @@
 EarlsPokemonAcademy_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 AcademyEarl:
@@ -408,26 +408,26 @@ EarlsPokemonAcademy_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $f, $3, 3, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $f, $4, 3, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 1, 0, $0, AcademyBookshelf
-	signpost 1, 1, $0, AcademyBookshelf
-	signpost 0, 3, $0, AcademyBlackboard
-	signpost 0, 4, $0, AcademyBlackboard
+	signpost 1, 0, SIGNPOST_READ, AcademyBookshelf
+	signpost 1, 1, SIGNPOST_READ, AcademyBookshelf
+	signpost 0, 3, SIGNPOST_READ, AcademyBlackboard
+	signpost 0, 4, SIGNPOST_READ, AcademyBlackboard
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_FISHER, 6, 8, $6, $0, 255, 255, $a0, 0, AcademyEarl, EVENT_6CB
-	person_event SPRITE_YOUNGSTER, 9, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x68a83, -1
-	person_event SPRITE_GAMEBOY_KID, 15, 7, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x68a86, -1
-	person_event SPRITE_GAMEBOY_KID, 15, 8, $8, $0, 255, 255, $80, 0, GameboyKidScript_0x68a91, -1
-	person_event SPRITE_YOUNGSTER, 11, 8, $7, $0, 255, 255, $0, 0, YoungsterScript_0x68a9c, -1
-	person_event SPRITE_POKEDEX, 8, 6, $1, $0, 255, 255, $0, 0, AcademyNotebook, -1
+	person_event SPRITE_FISHER, 6, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
+	person_event SPRITE_YOUNGSTER, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x68a83, -1
+	person_event SPRITE_GAMEBOY_KID, 15, 7, OW_UP | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x68a86, -1
+	person_event SPRITE_GAMEBOY_KID, 15, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GameboyKidScript_0x68a91, -1
+	person_event SPRITE_YOUNGSTER, 11, 8, OW_UP | $3, $0, -1, -1, $0, 0, YoungsterScript_0x68a9c, -1
+	person_event SPRITE_POKEDEX, 8, 6, OW_DOWN | $1, $0, -1, -1, $0, 0, AcademyNotebook, -1

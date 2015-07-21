@@ -1,12 +1,12 @@
 Route42_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x1a9216, $0000
 	dw UnknownScript_0x1a9217, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x1a9216:
@@ -16,7 +16,7 @@ UnknownScript_0x1a9217:
 	end
 
 UnknownScript_0x1a9218:
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	pause 15
 	playsound SFX_WARP_FROM
 	applymovement $a, MovementData_0x1a9356
@@ -28,33 +28,17 @@ UnknownScript_0x1a9218:
 	end
 
 TrainerFisherTully1:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_TULLY
-
-	; trainer group && trainer id
-	db FISHER, TULLY1
-
-	; text when seen
-	dw FisherTully1SeenText
-
-	; text when trainer beaten
-	dw FisherTully1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherTully1Script
+	trainer EVENT_BEAT_FISHER_TULLY, FISHER, TULLY1, FisherTully1SeenText, FisherTully1BeatenText, $0000, FisherTully1Script
 
 FisherTully1Script:
-	writecode VAR_CALLERID, $1d
+	writecode VAR_CALLERID, PHONE_FISHER_TULLY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_TULLY
 	iftrue UnknownScript_0x1a927f
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
 	iftrue UnknownScript_0x1a92dc
-	checkcellnum $1d
+	checkcellnum PHONE_FISHER_TULLY
 	iftrue UnknownScript_0x1a92fd
 	checkevent EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a9268
@@ -67,7 +51,7 @@ FisherTully1Script:
 UnknownScript_0x1a9268:
 	scall UnknownScript_0x1a92f5
 UnknownScript_0x1a926b:
-	askforphonenumber $1d
+	askforphonenumber PHONE_FISHER_TULLY
 	if_equal $1, UnknownScript_0x1a9305
 	if_equal $2, UnknownScript_0x1a9301
 	trainertotext FISHER, TULLY1, $0
@@ -127,7 +111,7 @@ UnknownScript_0x1a92dc:
 	verbosegiveitem WATER_STONE, 1
 	iffalse UnknownScript_0x1a92ee
 	clearflag ENGINE_TULLY_HAS_WATER_STONE
-	setevent EVENT_103
+	setevent EVENT_TULLY_GAVE_WATER_STONE
 	jump UnknownScript_0x1a92fd
 
 UnknownScript_0x1a92ee:
@@ -170,23 +154,7 @@ UnknownScript_0x1a9311:
 	end
 
 TrainerPokemaniacShane:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_SHANE
-
-	; trainer group && trainer id
-	db POKEMANIAC, SHANE
-
-	; text when seen
-	dw PokemaniacShaneSeenText
-
-	; text when trainer beaten
-	dw PokemaniacShaneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacShaneScript
+	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, $0000, PokemaniacShaneScript
 
 PokemaniacShaneScript:
 	talkaftercancel
@@ -197,23 +165,7 @@ PokemaniacShaneScript:
 	end
 
 TrainerHikerBenjamin:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_BENJAMIN
-
-	; trainer group && trainer id
-	db HIKER, BENJAMIN
-
-	; text when seen
-	dw HikerBenjaminSeenText
-
-	; text when trainer beaten
-	dw HikerBenjaminBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerBenjaminScript
+	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, $0000, HikerBenjaminScript
 
 HikerBenjaminScript:
 	talkaftercancel
@@ -251,8 +203,7 @@ FruitTreeScript_0x1a9351:
 	fruittree $17
 
 MapRoute42SignpostItem4:
-	dw $00ad
-	db MAX_POTION
+	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
 	
 
 MovementData_0x1a9356:
@@ -363,7 +314,7 @@ Route42_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $8, $0, 3, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
 	warp_def $9, $0, 4, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
@@ -371,26 +322,26 @@ Route42_MapEventHeader:
 	warp_def $9, $1c, 2, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	warp_def $7, $2e, 3, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $e, $18, $0, UnknownScript_0x1a9218, $0, $0
 
-	; signposts
+.Signposts:
 	db 5
-	signpost 10, 4, $0, MapRoute42Signpost0Script
-	signpost 5, 7, $0, MapRoute42Signpost1Script
-	signpost 9, 45, $0, MapRoute42Signpost2Script
-	signpost 8, 54, $0, MapRoute42Signpost3Script
-	signpost 11, 16, $7, MapRoute42SignpostItem4
+	signpost 10, 4, SIGNPOST_READ, MapRoute42Signpost0Script
+	signpost 5, 7, SIGNPOST_READ, MapRoute42Signpost1Script
+	signpost 9, 45, SIGNPOST_READ, MapRoute42Signpost2Script
+	signpost 8, 54, SIGNPOST_READ, MapRoute42Signpost3Script
+	signpost 11, 16, SIGNPOST_ITEM, MapRoute42SignpostItem4
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_FISHER, 14, 44, $8, $0, 255, 255, $a2, 1, TrainerFisherTully1, -1
-	person_event SPRITE_POKEFAN_M, 13, 55, $a, $0, 255, 255, $b2, 3, TrainerHikerBenjamin, -1
-	person_event SPRITE_SUPER_NERD, 12, 51, $6, $0, 255, 255, $92, 3, TrainerPokemaniacShane, -1
-	person_event SPRITE_FRUIT_TREE, 20, 31, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a934d, -1
-	person_event SPRITE_FRUIT_TREE, 20, 32, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a934f, -1
-	person_event SPRITE_FRUIT_TREE, 20, 33, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a9351, -1
-	person_event SPRITE_POKE_BALL, 8, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a9349, EVENT_6B3
-	person_event SPRITE_POKE_BALL, 12, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a934b, EVENT_6B4
-	person_event SPRITE_SUICUNE, 20, 30, $1, $0, 255, 255, $90, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	person_event SPRITE_FISHER, 14, 44, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherTully1, -1
+	person_event SPRITE_POKEFAN_M, 13, 55, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerBenjamin, -1
+	person_event SPRITE_SUPER_NERD, 12, 51, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacShane, -1
+	person_event SPRITE_FRUIT_TREE, 20, 31, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a934d, -1
+	person_event SPRITE_FRUIT_TREE, 20, 32, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a934f, -1
+	person_event SPRITE_FRUIT_TREE, 20, 33, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a9351, -1
+	person_event SPRITE_POKE_BALL, 8, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 12, 37, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
+	person_event SPRITE_SUICUNE, 20, 30, OW_DOWN | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

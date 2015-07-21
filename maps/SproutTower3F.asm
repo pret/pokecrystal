@@ -1,12 +1,12 @@
 SproutTower3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x184945, $0000
 	dw UnknownScript_0x184946, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x184945:
@@ -17,7 +17,7 @@ UnknownScript_0x184946:
 
 UnknownScript_0x184947:
 	spriteface $0, UP
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
@@ -32,7 +32,7 @@ UnknownScript_0x184947:
 	writetext UnknownText_0x184a27
 	closetext
 	loadmovesprites
-	showemote $0, $8, 15
+	showemote EMOTE_SHOCK, $8, 15
 	spriteface $8, DOWN
 	pause 15
 	applymovement $8, MovementData_0x184a24
@@ -47,11 +47,11 @@ UnknownScript_0x184947:
 	pause 15
 	loadmovesprites
 	playsound SFX_WARP_TO
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $8
 	waitbutton
-	special Function8c0ab
+	special Special_FadeInQuickly
 	dotrigger $1
 	special RestartMapMusic
 	end
@@ -86,23 +86,7 @@ UnknownScript_0x1849d1:
 	end
 
 TrainerSageJin:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_JIN
-
-	; trainer group && trainer id
-	db SAGE, JIN
-
-	; text when seen
-	dw SageJinSeenText
-
-	; text when trainer beaten
-	dw SageJinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageJinScript
+	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, $0000, SageJinScript
 
 SageJinScript:
 	talkaftercancel
@@ -113,23 +97,7 @@ SageJinScript:
 	end
 
 TrainerSageTroy:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_TROY
-
-	; trainer group && trainer id
-	db SAGE, TROY
-
-	; text when seen
-	dw SageTroySeenText
-
-	; text when trainer beaten
-	dw SageTroyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageTroyScript
+	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, $0000, SageTroyScript
 
 SageTroyScript:
 	talkaftercancel
@@ -140,23 +108,7 @@ SageTroyScript:
 	end
 
 TrainerSageNeal:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_NEAL
-
-	; trainer group && trainer id
-	db SAGE, NEAL
-
-	; text when seen
-	dw SageNealSeenText
-
-	; text when trainer beaten
-	dw SageNealBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageNealScript
+	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, $0000, SageNealScript
 
 SageNealScript:
 	talkaftercancel
@@ -374,29 +326,29 @@ SproutTower3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $e, $a, 4, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $9, $b, $0, UnknownScript_0x184947, $0, $0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 1, 8, $0, MapSproutTower3FSignpost5Script
-	signpost 1, 11, $0, MapSproutTower3FSignpost5Script
-	signpost 0, 9, $0, MapSproutTower3FSignpost3Script
-	signpost 0, 10, $0, MapSproutTower3FSignpost3Script
-	signpost 15, 5, $0, MapSproutTower3FSignpost5Script
-	signpost 15, 14, $0, MapSproutTower3FSignpost5Script
+	signpost 1, 8, SIGNPOST_READ, MapSproutTower3FSignpost5Script
+	signpost 1, 11, SIGNPOST_READ, MapSproutTower3FSignpost5Script
+	signpost 0, 9, SIGNPOST_READ, MapSproutTower3FSignpost3Script
+	signpost 0, 10, SIGNPOST_READ, MapSproutTower3FSignpost3Script
+	signpost 15, 5, SIGNPOST_READ, MapSproutTower3FSignpost5Script
+	signpost 15, 14, SIGNPOST_READ, MapSproutTower3FSignpost5Script
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_SAGE, 17, 12, $9, $0, 255, 255, $92, 3, TrainerSageJin, -1
-	person_event SPRITE_SAGE, 12, 12, $6, $0, 255, 255, $92, 2, TrainerSageTroy, -1
-	person_event SPRITE_SAGE, 6, 14, $6, $0, 255, 255, $90, 0, SageLiScript, -1
-	person_event SPRITE_SAGE, 15, 15, $8, $0, 255, 255, $92, 3, TrainerSageNeal, -1
-	person_event SPRITE_POKE_BALL, 18, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a19, EVENT_649
-	person_event SPRITE_POKE_BALL, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, EVENT_64A
-	person_event SPRITE_SILVER, 8, 14, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER
+	person_event SPRITE_SAGE, 17, 12, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSageJin, -1
+	person_event SPRITE_SAGE, 12, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerSageTroy, -1
+	person_event SPRITE_SAGE, 6, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SageLiScript, -1
+	person_event SPRITE_SAGE, 15, 15, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSageNeal, -1
+	person_event SPRITE_POKE_BALL, 18, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x184a19, EVENT_SPROUT_TOWER_3F_POTION
+	person_event SPRITE_POKE_BALL, 5, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x184a1b, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
+	person_event SPRITE_SILVER, 8, 14, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER

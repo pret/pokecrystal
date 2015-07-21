@@ -1,8 +1,8 @@
 Route40BattleTowerGate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -10,7 +10,7 @@ Route40BattleTowerGate_MapScriptHeader:
 	dbw 2, UnknownScript_0x9f665
 
 UnknownScript_0x9f665:
-	clearevent EVENT_7CF
+	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	return
 
 RockerScript_0x9f669:
@@ -73,20 +73,20 @@ Route40BattleTowerGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $7, $4, 1, GROUP_ROUTE_40, MAP_ROUTE_40
 	warp_def $7, $5, 1, GROUP_ROUTE_40, MAP_ROUTE_40
 	warp_def $0, $4, 1, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
 	warp_def $0, $5, 2, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_ROCKER, 7, 7, $3, $0, 255, 255, $a0, 0, RockerScript_0x9f669, EVENT_7CF
-	person_event SPRITE_TWIN, 9, 11, $4, $10, 255, 255, $80, 0, TwinScript_0x9f66c, -1
+	person_event SPRITE_ROCKER, 7, 7, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, RockerScript_0x9f669, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_TWIN, 9, 11, OW_UP | $0, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, TwinScript_0x9f66c, -1

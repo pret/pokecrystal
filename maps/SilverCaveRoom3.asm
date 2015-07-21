@@ -1,8 +1,8 @@
 SilverCaveRoom3_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 RedScript_0x18c603:
@@ -22,11 +22,11 @@ RedScript_0x18c603:
 	writetext UnknownText_0x18c63f
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	pause 15
-	special Function8c0ab
+	special Special_FadeInQuickly
 	pause 30
 	special HealParty
 	refreshscreen $0
@@ -51,16 +51,16 @@ SilverCaveRoom3_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $21, $9, 2, GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_RED, 14, 13, $7, $0, 255, 255, $80, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER
+	person_event SPRITE_RED, 14, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER

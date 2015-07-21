@@ -1,8 +1,8 @@
 BlackthornGym2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -59,23 +59,7 @@ BlackthornGymBoulder:
 	jumpstd strengthboulder
 
 TrainerCooltrainermCody:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_CODY
-
-	; trainer group && trainer id
-	db COOLTRAINERM, CODY
-
-	; text when seen
-	dw CooltrainermCodySeenText
-
-	; text when trainer beaten
-	dw CooltrainermCodyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermCodyScript
+	trainer EVENT_BEAT_COOLTRAINERM_CODY, COOLTRAINERM, CODY, CooltrainermCodySeenText, CooltrainermCodyBeatenText, $0000, CooltrainermCodyScript
 
 CooltrainermCodyScript:
 	talkaftercancel
@@ -86,23 +70,7 @@ CooltrainermCodyScript:
 	end
 
 TrainerCooltrainerfFran:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_FRAN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, FRAN
-
-	; text when seen
-	dw CooltrainerfFranSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfFranBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfFranScript
+	trainer EVENT_BEAT_COOLTRAINERF_FRAN, COOLTRAINERF, FRAN, CooltrainerfFranSeenText, CooltrainerfFranBeatenText, $0000, CooltrainerfFranScript
 
 CooltrainerfFranScript:
 	talkaftercancel
@@ -161,7 +129,7 @@ BlackthornGym2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $7, $1, 3, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
 	warp_def $9, $7, 4, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
@@ -169,19 +137,19 @@ BlackthornGym2F_MapEventHeader:
 	warp_def $7, $8, 6, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
 	warp_def $3, $8, 7, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 5, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermCody, -1
-	person_event SPRITE_COOLTRAINER_F, 15, 8, $8, $0, 255, 255, $82, 1, TrainerCooltrainerfFran, -1
-	person_event SPRITE_BOULDER, 6, 12, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1
-	person_event SPRITE_BOULDER, 7, 6, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_2
-	person_event SPRITE_BOULDER, 20, 10, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_3
-	person_event SPRITE_BOULDER, 7, 7, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, -1
-	person_event SPRITE_BOULDER, 5, 10, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, -1
-	person_event SPRITE_BOULDER, 18, 12, $19, $0, 255, 255, $0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_COOLTRAINER_M, 5, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainermCody, -1
+	person_event SPRITE_COOLTRAINER_F, 15, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainerfFran, -1
+	person_event SPRITE_BOULDER, 6, 12, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1
+	person_event SPRITE_BOULDER, 7, 6, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_2
+	person_event SPRITE_BOULDER, 20, 10, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_3
+	person_event SPRITE_BOULDER, 7, 7, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_BOULDER, 5, 10, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_BOULDER, 18, 12, OW_LEFT | $11, $0, -1, -1, $0, 0, BlackthornGymBoulder, -1

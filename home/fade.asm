@@ -36,7 +36,7 @@ Function4a3:: ; 4a3
 	jr FadeOut
 ; 4b6
 
-Function4b6:: ; 4b6
+FadeToWhite:: ; 4b6
 	ld a, [hCGB]
 	and a
 	jr z, .asm_4c2

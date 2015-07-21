@@ -1,5 +1,5 @@
 TeamRocketBaseB2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 4
 
 	; triggers
@@ -8,7 +8,7 @@ TeamRocketBaseB2F_MapScriptHeader:
 	dw UnknownScript_0x6cf87, $0000
 	dw UnknownScript_0x6cf88, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -53,7 +53,7 @@ UnknownScript_0x6cfac:
 	closetext
 	loadmovesprites
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	applymovement $0, MovementData_0x6d21f
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	applymovement $3, MovementData_0x6d224
@@ -89,26 +89,26 @@ UnknownScript_0x6cfac:
 	loadtrainer EXECUTIVEF, 2
 	startbattle
 	disappear $5
-	setevent EVENT_6DD
-	setevent EVENT_6DE
-	setevent EVENT_6D6
+	setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
+	setevent EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
+	setevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	returnafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
 	loadfont
 	writetext UnknownText_0x6d4c6
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	disappear $3
 	disappear $c
 	disappear $d
 	disappear $e
 	pause 15
-	special Function8c0ab
+	special Special_FadeInQuickly
 	dotrigger $2
-	clearevent EVENT_6D6
+	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x6d5d8
@@ -155,19 +155,19 @@ UnknownScript_0x6d091:
 	writetext UnknownText_0x6da97
 	closetext
 	loadmovesprites
-	special Function8c084
-	special Function1060a2
+	special FadeBlackBGMap
+	special Mobile_HealParty
 	playsound SFX_FULL_HEAL
 	special HealParty
-	special Function8c079
+	special FadeInBGMap
 	loadfont
 	writetext UnknownText_0x6daf7
 	closetext
 	loadmovesprites
 	dotrigger $1
-	setevent EVENT_04C
+	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x6d0be
+	if_equal RIGHT, UnknownScript_0x6d0be
 	applymovement $4, MovementData_0x6d212
 	disappear $4
 	end
@@ -178,23 +178,7 @@ UnknownScript_0x6d0be:
 	end
 
 TrainerGruntM17:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_16
-
-	; trainer group && trainer id
-	db GRUNTM, 17
-
-	; text when seen
-	dw GruntM17SeenText
-
-	; text when trainer beaten
-	dw GruntM17BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM17Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_17, GRUNTM, 17, GruntM17SeenText, GruntM17BeatenText, $0000, GruntM17Script
 
 GruntM17Script:
 	talkaftercancel
@@ -205,23 +189,7 @@ GruntM17Script:
 	end
 
 TrainerGruntM18:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_17
-
-	; trainer group && trainer id
-	db GRUNTM, 18
-
-	; text when seen
-	dw GruntM18SeenText
-
-	; text when trainer beaten
-	dw GruntM18BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM18Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_18, GRUNTM, 18, GruntM18SeenText, GruntM18BeatenText, $0000, GruntM18Script
 
 GruntM18Script:
 	talkaftercancel
@@ -232,23 +200,7 @@ GruntM18Script:
 	end
 
 TrainerGruntM19:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_18
-
-	; trainer group && trainer id
-	db GRUNTM, 19
-
-	; text when seen
-	dw GruntM19SeenText
-
-	; text when trainer beaten
-	dw GruntM19BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM19Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_19, GRUNTM, 19, GruntM19SeenText, GruntM19BeatenText, $0000, GruntM19Script
 
 GruntM19Script:
 	talkaftercancel
@@ -265,11 +217,11 @@ VoltorbScript_0x6d101:
 	iftrue UnknownScript_0x6d182
 	disappear $6
 	disappear $9
-	checkevent EVENT_6E0
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E1
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E2
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -283,11 +235,11 @@ VoltorbScript_0x6d12c:
 	iftrue UnknownScript_0x6d182
 	disappear $7
 	disappear $a
-	checkevent EVENT_6E0
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E1
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E2
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -301,11 +253,11 @@ VoltorbScript_0x6d157:
 	iftrue UnknownScript_0x6d182
 	disappear $8
 	disappear $b
-	checkevent EVENT_6E0
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E1
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
-	checkevent EVENT_6E2
+	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
@@ -339,10 +291,10 @@ UnknownScript_0x6d184:
 	disappear $4
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT
 	clearflag ENGINE_ROCKET_SIGNAL_ON_CH20
-	setevent EVENT_6DC
-	setevent EVENT_757
+	setevent EVENT_ROUTE_43_GATE_ROCKETS
+	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
 	dotrigger $3
-	clearevent EVENT_735
+	clearevent EVENT_LAKE_OF_RAGE_CIVILIANS
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	setevent EVENT_SECURITY_CAMERA_1
 	setevent EVENT_SECURITY_CAMERA_2
@@ -352,7 +304,7 @@ UnknownScript_0x6d184:
 	end
 
 MapTeamRocketBaseB2FSignpostPtr1:
-	dw $0300
+	dw EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	dw MapTeamRocketBaseB2FSignpost1Script
 	
 
@@ -395,8 +347,7 @@ ItemFragment_0x6d20d:
 	db TM_THIEF, 1
 
 MapTeamRocketBaseB2FSignpostItem22:
-	dw $0087
-	db FULL_HEAL
+	dwb EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
 MovementData_0x6d212:
@@ -953,7 +904,7 @@ TeamRocketBaseB2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $e, $3, 2, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
 	warp_def $2, $3, 1, GROUP_TEAM_ROCKET_BASE_B3F, MAP_TEAM_ROCKET_BASE_B3F
@@ -961,7 +912,7 @@ TeamRocketBaseB2F_MapEventHeader:
 	warp_def $6, $3, 3, GROUP_TEAM_ROCKET_BASE_B3F, MAP_TEAM_ROCKET_BASE_B3F
 	warp_def $e, $1b, 4, GROUP_TEAM_ROCKET_BASE_B3F, MAP_TEAM_ROCKET_BASE_B3F
 
-	; xy triggers
+.XYTriggers:
 	db 9
 	xy_trigger 0, $e, $5, $0, UnknownScript_0x6d085, $0, $0
 	xy_trigger 0, $d, $4, $0, UnknownScript_0x6d08b, $0, $0
@@ -973,45 +924,45 @@ TeamRocketBaseB2F_MapEventHeader:
 	xy_trigger 2, $a, $c, $0, UnknownScript_0x6d07a, $0, $0
 	xy_trigger 2, $b, $c, $0, UnknownScript_0x6d07a, $0, $0
 
-	; signposts
+.Signposts:
 	db 23
-	signpost 12, 14, $6, MapTeamRocketBaseB2FSignpostPtr1
-	signpost 12, 15, $6, MapTeamRocketBaseB2FSignpostPtr1
-	signpost 9, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 16, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 15, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 14, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 13, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 8, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 6, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 5, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 12, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 13, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 14, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 15, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 16, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 5, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 6, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 8, 17, $0, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 26, $7, MapTeamRocketBaseB2FSignpostItem22
+	signpost 12, 14, SIGNPOST_IFNOTSET, MapTeamRocketBaseB2FSignpostPtr1
+	signpost 12, 15, SIGNPOST_IFNOTSET, MapTeamRocketBaseB2FSignpostPtr1
+	signpost 9, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 16, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 15, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 14, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 13, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 9, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 8, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 7, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 6, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 5, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 13, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 14, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 15, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 16, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 4, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 5, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 6, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 7, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 8, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 7, 26, SIGNPOST_ITEM, MapTeamRocketBaseB2FSignpostItem22
 
-	; people-events
+.PersonEvents:
 	db 14
-	person_event SPRITE_ROCKET, 20, 24, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6DE
-	person_event SPRITE_ROCKET_GIRL, 20, 24, $7, $0, 255, 255, $80, 0, ObjectEvent, EVENT_6DD
-	person_event SPRITE_LANCE, 17, 9, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6D6
-	person_event SPRITE_DRAGON, 17, 13, $9, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6DF
-	person_event SPRITE_VOLTORB, 9, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d101, EVENT_6E0
-	person_event SPRITE_VOLTORB, 11, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d12c, EVENT_6E1
-	person_event SPRITE_VOLTORB, 13, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d157, EVENT_6E2
-	person_event SPRITE_VOLTORB, 9, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E0
-	person_event SPRITE_VOLTORB, 11, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E1
-	person_event SPRITE_VOLTORB, 13, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6E2
-	person_event SPRITE_ROCKET, 17, 29, $6, $0, 255, 255, $2, 3, TrainerGruntM17, EVENT_6DA
-	person_event SPRITE_ROCKET, 5, 8, $a, $0, 255, 255, $2, 1, TrainerGruntM18, EVENT_6DA
-	person_event SPRITE_ROCKET, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, EVENT_6DA
-	person_event SPRITE_POKE_BALL, 14, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6d20d, EVENT_66C
+	person_event SPRITE_ROCKET, 20, 24, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
+	person_event SPRITE_ROCKET_GIRL, 20, 24, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
+	person_event SPRITE_LANCE, 17, 9, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_LANCE
+	person_event SPRITE_DRAGON, 17, 13, OW_LEFT | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_DRAGONITE
+	person_event SPRITE_VOLTORB, 9, 11, OW_UP | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d101, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	person_event SPRITE_VOLTORB, 11, 11, OW_UP | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d12c, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	person_event SPRITE_VOLTORB, 13, 11, OW_UP | $12, $0, -1, -1, $0, 0, VoltorbScript_0x6d157, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	person_event SPRITE_VOLTORB, 9, 26, OW_UP | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	person_event SPRITE_VOLTORB, 11, 26, OW_UP | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	person_event SPRITE_VOLTORB, 13, 26, OW_UP | $12, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	person_event SPRITE_ROCKET, 17, 29, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM17, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 5, 8, OW_LEFT | $2, $0, -1, -1, $2, 1, TrainerGruntM18, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 18, 25, OW_LEFT | $0, $0, -1, -1, $2, 4, TrainerGruntM19, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_POKE_BALL, 14, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6d20d, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF

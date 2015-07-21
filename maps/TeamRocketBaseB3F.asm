@@ -1,39 +1,39 @@
 TeamRocketBaseB3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 4
 
 	; triggers
-	dw UnknownScript_0x6dfe9, $0000
-	dw UnknownScript_0x6dfed, $0000
-	dw UnknownScript_0x6dfee, $0000
-	dw UnknownScript_0x6dfef, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
+	dw .Trigger3, $0000
+	dw .Trigger4, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x6dff0
+	dbw 1, .CheckGiovanniDoor
 
-UnknownScript_0x6dfe9:
+.Trigger1:
 	priorityjump LanceScript_0x6dffc
 	end
 
-UnknownScript_0x6dfed:
+.Trigger2:
 	end
 
-UnknownScript_0x6dfee:
+.Trigger3:
 	end
 
-UnknownScript_0x6dfef:
+.Trigger4:
 	end
 
-UnknownScript_0x6dff0:
+.CheckGiovanniDoor:
 	checkevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
-	iftrue UnknownScript_0x6dff7
+	iftrue .OpenSesame
 	return
 
-UnknownScript_0x6dff7:
+.OpenSesame:
 	changeblock $a, $8, $7
 	return
 
@@ -54,7 +54,7 @@ LanceScript_0x6dffc:
 
 UnknownScript_0x6e019:
 	spriteface $0, LEFT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	appear $a
 	applymovement $a, MovementData_0x6e164
@@ -83,7 +83,7 @@ UnknownScript_0x6e052:
 	applymovement $0, MovementData_0x6e13a
 UnknownScript_0x6e056:
 	pause 30
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, DOWN
 	loadfont
@@ -117,23 +117,7 @@ MoltresScript_0x6e091:
 	end
 
 TrainerGruntF5:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTF_5
-
-	; trainer group && trainer id
-	db GRUNTF, 5
-
-	; text when seen
-	dw GruntF5SeenText
-
-	; text when trainer beaten
-	dw GruntF5BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntF5Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_5, GRUNTF, 5, GruntF5SeenText, GruntF5BeatenText, $0000, GruntF5Script
 
 GruntF5Script:
 	talkaftercancel
@@ -145,23 +129,7 @@ GruntF5Script:
 	end
 
 TrainerGruntM28:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_21
-
-	; trainer group && trainer id
-	db GRUNTM, 28
-
-	; text when seen
-	dw GruntM28SeenText
-
-	; text when trainer beaten
-	dw GruntM28BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM28Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_28, GRUNTM, 28, GruntM28SeenText, GruntM28BeatenText, $0000, GruntM28Script
 
 GruntM28Script:
 	talkaftercancel
@@ -173,23 +141,7 @@ GruntM28Script:
 	end
 
 TrainerScientistRoss:
-	; bit/flag number
-	dw EVENT_BEAT_SCIENTIST_ROSS
-
-	; trainer group && trainer id
-	db SCIENTIST, ROSS
-
-	; text when seen
-	dw ScientistRossSeenText
-
-	; text when trainer beaten
-	dw ScientistRossBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw ScientistRossScript
+	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, $0000, ScientistRossScript
 
 ScientistRossScript:
 	talkaftercancel
@@ -200,23 +152,7 @@ ScientistRossScript:
 	end
 
 TrainerScientistMitch:
-	; bit/flag number
-	dw EVENT_BEAT_SCIENTIST_MITCH
-
-	; trainer group && trainer id
-	db SCIENTIST, MITCH
-
-	; text when seen
-	dw ScientistMitchSeenText
-
-	; text when trainer beaten
-	dw ScientistMitchBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw ScientistMitchScript
+	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, $0000, ScientistMitchScript
 
 ScientistMitchScript:
 	talkaftercancel
@@ -623,45 +559,45 @@ TeamRocketBaseB3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $2, $3, 2, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 	warp_def $2, $1b, 3, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 	warp_def $6, $3, 4, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 	warp_def $e, $1b, 5, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 
-	; xy triggers
+.XYTriggers:
 	db 3
 	xy_trigger 2, $8, $a, $0, UnknownScript_0x6e04b, $0, $0
 	xy_trigger 2, $8, $b, $0, UnknownScript_0x6e052, $0, $0
 	xy_trigger 1, $a, $8, $0, UnknownScript_0x6e019, $0, $0
 
-	; signposts
+.Signposts:
 	db 10
-	signpost 9, 10, $6, BossDoor
-	signpost 9, 11, $6, BossDoor
-	signpost 1, 10, $0, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 11, $0, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 12, $0, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 13, $0, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 4, $0, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 5, $0, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 6, $0, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 7, $0, MapTeamRocketBaseB3FSignpost9Script
+	signpost 9, 10, SIGNPOST_IFNOTSET, BossDoor
+	signpost 9, 11, SIGNPOST_IFNOTSET, BossDoor
+	signpost 1, 10, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 1, 11, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 1, 12, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 1, 13, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 13, 4, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 13, 5, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 13, 6, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 13, 7, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
 
-	; people-events
+.PersonEvents:
 	db 14
-	person_event SPRITE_LANCE, 18, 29, $6, $0, 255, 255, $0, 0, LanceScript_0x6dffc, EVENT_6D7
-	person_event SPRITE_ROCKET, 7, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6DB
-	person_event SPRITE_MOLTRES, 6, 11, $16, $0, 255, 255, $90, 0, MoltresScript_0x6e091, EVENT_6DA
-	person_event SPRITE_ROCKET_GIRL, 11, 25, $7, $0, 255, 255, $82, 0, TrainerGruntF5, EVENT_6DA
-	person_event SPRITE_ROCKET, 18, 9, $a, $0, 255, 255, $2, 3, TrainerGruntM28, EVENT_6DA
-	person_event SPRITE_SCIENTIST, 15, 27, $7, $0, 255, 255, $92, 0, TrainerScientistRoss, EVENT_6DA
-	person_event SPRITE_SCIENTIST, 19, 15, $9, $0, 255, 255, $92, 3, TrainerScientistMitch, EVENT_6DA
-	person_event SPRITE_ROCKET, 18, 28, $6, $0, 255, 255, $0, 0, RocketScript_0x6e048, EVENT_6DA
-	person_event SPRITE_SILVER, 9, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C0
-	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e120, EVENT_66D
-	person_event SPRITE_POKE_BALL, 16, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e122, EVENT_66E
-	person_event SPRITE_POKE_BALL, 13, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e124, EVENT_66F
-	person_event SPRITE_POKE_BALL, 6, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e126, EVENT_670
-	person_event SPRITE_POKE_BALL, 14, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e128, EVENT_654
+	person_event SPRITE_LANCE, 18, 29, OW_UP | $2, $0, -1, -1, $0, 0, LanceScript_0x6dffc, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	person_event SPRITE_ROCKET, 7, 12, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
+	person_event SPRITE_MOLTRES, 6, 11, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, MoltresScript_0x6e091, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET_GIRL, 11, 25, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerGruntF5, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 18, 9, OW_LEFT | $2, $0, -1, -1, $2, 3, TrainerGruntM28, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 15, 27, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 19, 15, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 18, 28, OW_UP | $2, $0, -1, -1, $0, 0, RocketScript_0x6e048, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SILVER, 9, 8, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_TEAM_ROCKET_BASE
+	person_event SPRITE_POKE_BALL, 16, 5, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e120, EVENT_TEAM_ROCKET_BASE_B3F_PROTEIN
+	person_event SPRITE_POKE_BALL, 16, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e122, EVENT_TEAM_ROCKET_BASE_B3F_X_SPECIAL
+	person_event SPRITE_POKE_BALL, 13, 32, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e124, EVENT_TEAM_ROCKET_BASE_B3F_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 6, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e126, EVENT_TEAM_ROCKET_BASE_B3F_ICE_HEAL
+	person_event SPRITE_POKE_BALL, 14, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6e128, EVENT_TEAM_ROCKET_BASE_B3F_ULTRA_BALL

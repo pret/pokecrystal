@@ -1,8 +1,8 @@
 Route35Goldenrodgate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 OfficerScript_0x69d37:
@@ -194,21 +194,21 @@ Route35Goldenrodgate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 1, GROUP_ROUTE_35, MAP_ROUTE_35
 	warp_def $0, $5, 2, GROUP_ROUTE_35, MAP_ROUTE_35
 	warp_def $7, $4, 12, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $5, 12, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x69d37, -1
-	person_event SPRITE_POKEFAN_F, 8, 10, $4, $10, 255, 255, $90, 0, PokefanFScript_0x69dc6, -1
-	person_event SPRITE_FISHER, 6, 7, $3, $0, 255, 255, $a0, 0, FisherScript_0x69dda, -1
+	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x69d37, -1
+	person_event SPRITE_POKEFAN_F, 8, 10, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanFScript_0x69dc6, -1
+	person_event SPRITE_FISHER, 6, 7, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x69dda, -1

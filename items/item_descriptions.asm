@@ -21,8 +21,9 @@ PrintItemDescription: ; 0x1c8955
 	dec a
 	ld c, a
 	ld b, 0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

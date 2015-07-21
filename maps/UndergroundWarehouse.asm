@@ -1,8 +1,8 @@
 UndergroundWarehouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -30,23 +30,7 @@ UnknownScript_0x7d950:
 	return
 
 TrainerGruntM24:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_19
-
-	; trainer group && trainer id
-	db GRUNTM, 24
-
-	; text when seen
-	dw GruntM24SeenText
-
-	; text when trainer beaten
-	dw GruntM24BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM24Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_24, GRUNTM, 24, GruntM24SeenText, GruntM24BeatenText, $0000, GruntM24Script
 
 GruntM24Script:
 	talkaftercancel
@@ -57,23 +41,7 @@ GruntM24Script:
 	end
 
 TrainerGruntM14:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_13
-
-	; trainer group && trainer id
-	db GRUNTM, 14
-
-	; text when seen
-	dw GruntM14SeenText
-
-	; text when trainer beaten
-	dw GruntM14BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM14Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_14, GRUNTM, 14, GruntM14SeenText, GruntM14BeatenText, $0000, GruntM14Script
 
 GruntM14Script:
 	talkaftercancel
@@ -84,23 +52,7 @@ GruntM14Script:
 	end
 
 TrainerGruntM15:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_GRUNTM_14
-
-	; trainer group && trainer id
-	db GRUNTM, 15
-
-	; text when seen
-	dw GruntM15SeenText
-
-	; text when trainer beaten
-	dw GruntM15BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GruntM15Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_15, GRUNTM, 15, GruntM15SeenText, GruntM15BeatenText, $0000, GruntM15Script
 
 GruntM15Script:
 	talkaftercancel
@@ -113,12 +65,12 @@ GruntM15Script:
 GentlemanScript_0x7d9bf:
 	faceplayer
 	loadfont
-	checkevent EVENT_04A
+	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue UnknownScript_0x7d9de
 	writetext UnknownText_0x7dbc6
 	keeptextopen
 	verbosegiveitem CARD_KEY, 1
-	setevent EVENT_04A
+	setevent EVENT_RECEIVED_CARD_KEY
 	setevent EVENT_WAREHOUSE_LAYOUT_1
 	clearevent EVENT_WAREHOUSE_LAYOUT_2
 	clearevent EVENT_WAREHOUSE_LAYOUT_3
@@ -256,24 +208,24 @@ UndergroundWarehouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $c, $2, 2, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 	warp_def $c, $3, 3, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 	warp_def $2, $11, 1, GROUP_GOLDENROD_DEPT_STORE_B1F, MAP_GOLDENROD_DEPT_STORE_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_ROCKET, 12, 13, $7, $0, 255, 255, $2, 3, TrainerGruntM24, EVENT_6CE
-	person_event SPRITE_ROCKET, 19, 12, $7, $0, 255, 255, $2, 3, TrainerGruntM14, EVENT_6CE
-	person_event SPRITE_ROCKET, 7, 18, $9, $0, 255, 255, $2, 4, TrainerGruntM15, EVENT_6CE
-	person_event SPRITE_GENTLEMAN, 12, 16, $3, $0, 255, 255, $0, 0, GentlemanScript_0x7d9bf, EVENT_6CE
-	person_event SPRITE_POKE_BALL, 19, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e4, EVENT_679
-	person_event SPRITE_POKE_BALL, 13, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e6, EVENT_67A
-	person_event SPRITE_POKE_BALL, 5, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e8, EVENT_655
+	person_event SPRITE_ROCKET, 12, 13, OW_UP | $3, $0, -1, -1, $2, 3, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 19, 12, OW_UP | $3, $0, -1, -1, $2, 3, TrainerGruntM14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 7, 18, OW_LEFT | $1, $0, -1, -1, $2, 4, TrainerGruntM15, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_GENTLEMAN, 12, 16, OW_DOWN | $3, $0, -1, -1, $0, 0, GentlemanScript_0x7d9bf, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_POKE_BALL, 19, 22, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e4, EVENT_UNDERGROUND_WAREHOUSE_MAX_ETHER
+	person_event SPRITE_POKE_BALL, 13, 17, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e6, EVENT_UNDERGROUND_WAREHOUSE_TM_SLEEP_TALK
+	person_event SPRITE_POKE_BALL, 5, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d9e8, EVENT_UNDERGROUND_WAREHOUSE_ULTRA_BALL

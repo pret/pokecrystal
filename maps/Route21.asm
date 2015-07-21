@@ -1,28 +1,12 @@
 Route21_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerSwimmermSeth:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_SETH
-
-	; trainer group && trainer id
-	db SWIMMERM, SETH
-
-	; text when seen
-	dw SwimmermSethSeenText
-
-	; text when trainer beaten
-	dw SwimmermSethBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermSethScript
+	trainer EVENT_BEAT_SWIMMERM_SETH, SWIMMERM, SETH, SwimmermSethSeenText, SwimmermSethBeatenText, $0000, SwimmermSethScript
 
 SwimmermSethScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ SwimmermSethScript:
 	end
 
 TrainerSwimmerfNikki:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_NIKKI
-
-	; trainer group && trainer id
-	db SWIMMERF, NIKKI
-
-	; text when seen
-	dw SwimmerfNikkiSeenText
-
-	; text when trainer beaten
-	dw SwimmerfNikkiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfNikkiScript
+	trainer EVENT_BEAT_SWIMMERF_NIKKI, SWIMMERF, NIKKI, SwimmerfNikkiSeenText, SwimmerfNikkiBeatenText, $0000, SwimmerfNikkiScript
 
 SwimmerfNikkiScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ SwimmerfNikkiScript:
 	end
 
 TrainerFisherArnold:
-	; bit/flag number
-	dw EVENT_BEAT_FISHER_ARNOLD
-
-	; trainer group && trainer id
-	db FISHER, ARNOLD
-
-	; text when seen
-	dw FisherArnoldSeenText
-
-	; text when trainer beaten
-	dw FisherArnoldBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherArnoldScript
+	trainer EVENT_BEAT_FISHER_ARNOLD, FISHER, ARNOLD, FisherArnoldSeenText, FisherArnoldBeatenText, $0000, FisherArnoldScript
 
 FisherArnoldScript:
 	talkaftercancel
@@ -136,17 +88,17 @@ Route21_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 20, 15, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNikki, -1
-	person_event SPRITE_SWIMMER_GUY, 34, 6, $9, $0, 255, 255, $82, 4, TrainerSwimmermSeth, -1
-	person_event SPRITE_FISHER, 26, 18, $7, $0, 255, 255, $a2, 1, TrainerFisherArnold, -1
+	person_event SPRITE_SWIMMER_GIRL, 20, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfNikki, -1
+	person_event SPRITE_SWIMMER_GUY, 34, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerSwimmermSeth, -1
+	person_event SPRITE_FISHER, 26, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherArnold, -1

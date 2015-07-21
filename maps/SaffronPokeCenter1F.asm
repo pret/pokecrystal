@@ -1,8 +1,8 @@
 SaffronPokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 NurseScript_0x18a47d:
@@ -109,21 +109,21 @@ SaffronPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $4, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18a47d, -1
-	person_event SPRITE_TEACHER, 6, 11, $2, $11, 255, 255, $a0, 0, TeacherScript_0x18a480, -1
-	person_event SPRITE_FISHER, 10, 12, $8, $0, 255, 255, $80, 0, FisherScript_0x18a48c, -1
-	person_event SPRITE_YOUNGSTER, 8, 5, $3, $0, 255, 255, $90, 0, YoungsterScript_0x18a4a0, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x18a47d, -1
+	person_event SPRITE_TEACHER, 6, 11, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x18a480, -1
+	person_event SPRITE_FISHER, 10, 12, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x18a48c, -1
+	person_event SPRITE_YOUNGSTER, 8, 5, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x18a4a0, -1

@@ -1,8 +1,8 @@
 CeladonDeptStoreElevator_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 MapCeladonDeptStoreElevatorSignpost0Script:
@@ -33,17 +33,17 @@ CeladonDeptStoreElevator_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $1, 255, GROUP_CELADON_DEPT_STORE_1F, MAP_CELADON_DEPT_STORE_1F
 	warp_def $3, $2, 255, GROUP_CELADON_DEPT_STORE_1F, MAP_CELADON_DEPT_STORE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 0, 3, $0, MapCeladonDeptStoreElevatorSignpost0Script
+	signpost 0, 3, SIGNPOST_READ, MapCeladonDeptStoreElevatorSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 0

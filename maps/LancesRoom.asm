@@ -1,12 +1,12 @@
 LancesRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x180e39, $0000
 	dw UnknownScript_0x180e3d, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -25,7 +25,7 @@ UnknownScript_0x180e3e:
 	iffalse UnknownScript_0x180e48
 	changeblock $4, $16, $34
 UnknownScript_0x180e48:
-	checkevent EVENT_312
+	checkevent EVENT_LANCES_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x180e52
 	changeblock $4, $0, $b
 UnknownScript_0x180e52:
@@ -75,7 +75,7 @@ LanceScript_0x180e7b:
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
 	pause 30
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, DOWN
 	pause 10
 	spriteface $0, DOWN
@@ -119,13 +119,13 @@ LanceScript_0x180e7b:
 	playsound SFX_EXIT_BUILDING
 	disappear $0
 	applymovement $3, MovementData_0x180f57
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	loadfont
 	writetext UnknownText_0x1813c5
 	pause 30
 	loadmovesprites
 	applymovement $3, MovementData_0x180f5b
-	special Function8c084
+	special FadeBlackBGMap
 	pause 15
 	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
 	end
@@ -341,23 +341,23 @@ LancesRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $17, $4, 3, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
 	warp_def $17, $5, 4, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
 	warp_def $1, $4, 1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
 	warp_def $1, $5, 2, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $5, $4, $0, UnknownScript_0x180e6a, $0, $0
 	xy_trigger 1, $5, $5, $0, UnknownScript_0x180e74, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_LANCE, 7, 9, $6, $0, 255, 255, $0, 0, LanceScript_0x180e7b, -1
-	person_event SPRITE_TEACHER, 11, 8, $7, $0, 255, 255, $a0, 0, ObjectEvent, EVENT_75F
-	person_event SPRITE_OAK, 11, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_75F
+	person_event SPRITE_LANCE, 7, 9, OW_UP | $2, $0, -1, -1, $0, 0, LanceScript_0x180e7b, -1
+	person_event SPRITE_TEACHER, 11, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_OAK, 11, 8, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

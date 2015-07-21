@@ -1,8 +1,8 @@
 CinnabarIsland_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -21,7 +21,7 @@ CinnabarIslandBlue:
 	playsound SFX_WARP_TO
 	applymovement $2, CinnabarIslandBlueTeleport
 	disappear $2
-	clearevent EVENT_776
+	clearevent EVENT_VIRIDIAN_GYM_BLUE
 	end
 
 CinnabarIslandGymSign:
@@ -34,8 +34,7 @@ CinnabarIslandPokeCenterSign:
 	jumpstd pokecentersign
 
 MapCinnabarIslandSignpostItem3:
-	dw $00fe
-	db RARE_CANDY
+	dwb EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY, RARE_CANDY
 
 CinnabarIslandBlueTeleport:
 	teleport_from
@@ -131,20 +130,20 @@ CinnabarIsland_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $b, $b, 1, GROUP_CINNABAR_POKECENTER_1F, MAP_CINNABAR_POKECENTER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 11, 12, $0, CinnabarIslandPokeCenterSign
-	signpost 11, 9, $0, CinnabarIslandGymSign
-	signpost 7, 7, $0, CinnabarIslandSign
-	signpost 1, 9, $7, MapCinnabarIslandSignpostItem3
+	signpost 11, 12, SIGNPOST_READ, CinnabarIslandPokeCenterSign
+	signpost 11, 9, SIGNPOST_READ, CinnabarIslandGymSign
+	signpost 7, 7, SIGNPOST_READ, CinnabarIslandSign
+	signpost 1, 9, SIGNPOST_ITEM, MapCinnabarIslandSignpostItem3
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_BLUE, 10, 13, $3, $0, 255, 255, $0, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	person_event SPRITE_BLUE, 10, 13, OW_DOWN | $3, $0, -1, -1, $0, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

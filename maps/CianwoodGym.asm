@@ -1,8 +1,8 @@
 CianwoodGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ChuckScript_0x9d60f:
@@ -76,23 +76,7 @@ CianwoodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBlackbeltYoshi:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_YOSHI
-
-	; trainer group && trainer id
-	db BLACKBELT_T, YOSHI
-
-	; text when seen
-	dw BlackbeltYoshiSeenText
-
-	; text when trainer beaten
-	dw BlackbeltYoshiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltYoshiScript
+	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, $0000, BlackbeltYoshiScript
 
 BlackbeltYoshiScript:
 	talkaftercancel
@@ -103,23 +87,7 @@ BlackbeltYoshiScript:
 	end
 
 TrainerBlackbeltLao:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_LAO
-
-	; trainer group && trainer id
-	db BLACKBELT_T, LAO
-
-	; text when seen
-	dw BlackbeltLaoSeenText
-
-	; text when trainer beaten
-	dw BlackbeltLaoBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltLaoScript
+	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, $0000, BlackbeltLaoScript
 
 BlackbeltLaoScript:
 	talkaftercancel
@@ -130,23 +98,7 @@ BlackbeltLaoScript:
 	end
 
 TrainerBlackbeltNob:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_NOB
-
-	; trainer group && trainer id
-	db BLACKBELT_T, NOB
-
-	; text when seen
-	dw BlackbeltNobSeenText
-
-	; text when trainer beaten
-	dw BlackbeltNobBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltNobScript
+	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, $0000, BlackbeltNobScript
 
 BlackbeltNobScript:
 	talkaftercancel
@@ -157,23 +109,7 @@ BlackbeltNobScript:
 	end
 
 TrainerBlackbeltLung:
-	; bit/flag number
-	dw EVENT_BEAT_BLACKBELT_LUNG
-
-	; trainer group && trainer id
-	db BLACKBELT_T, LUNG
-
-	; text when seen
-	dw BlackbeltLungSeenText
-
-	; text when trainer beaten
-	dw BlackbeltLungBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltLungScript
+	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, $0000, BlackbeltLungScript
 
 BlackbeltLungScript:
 	talkaftercancel
@@ -362,27 +298,27 @@ CianwoodGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 2, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 	warp_def $11, $5, 2, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 15, 3, $0, CianwoodGymStatue
-	signpost 15, 6, $0, CianwoodGymStatue
+	signpost 15, 3, SIGNPOST_READ, CianwoodGymStatue
+	signpost 15, 6, SIGNPOST_READ, CianwoodGymStatue
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_CHUCK, 5, 8, $6, $0, 255, 255, $b0, 0, ChuckScript_0x9d60f, -1
-	person_event SPRITE_BLACK_BELT, 16, 6, $9, $0, 255, 255, $b2, 3, TrainerBlackbeltYoshi, -1
-	person_event SPRITE_BLACK_BELT, 16, 11, $8, $0, 255, 255, $b2, 3, TrainerBlackbeltLao, -1
-	person_event SPRITE_BLACK_BELT, 13, 7, $9, $0, 255, 255, $b2, 2, TrainerBlackbeltNob, -1
-	person_event SPRITE_BLACK_BELT, 9, 9, $8, $0, 255, 255, $b2, 1, TrainerBlackbeltLung, -1
-	person_event SPRITE_BOULDER, 5, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 7, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 8, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 9, $19, $0, 255, 255, $0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_CHUCK, 5, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ChuckScript_0x9d60f, -1
+	person_event SPRITE_BLACK_BELT, 16, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBlackbeltYoshi, -1
+	person_event SPRITE_BLACK_BELT, 16, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBlackbeltLao, -1
+	person_event SPRITE_BLACK_BELT, 13, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBlackbeltNob, -1
+	person_event SPRITE_BLACK_BELT, 9, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerBlackbeltLung, -1
+	person_event SPRITE_BOULDER, 5, 9, OW_LEFT | $11, $0, -1, -1, $0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 11, 7, OW_LEFT | $11, $0, -1, -1, $0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 11, 8, OW_LEFT | $11, $0, -1, -1, $0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 11, 9, OW_LEFT | $11, $0, -1, -1, $0, 0, CianwoodGymBoulder, -1

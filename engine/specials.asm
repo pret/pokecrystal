@@ -2,9 +2,9 @@
 Special:: ; c01b
 ; Run script special de.
 	ld hl, SpecialsPointers
-	add hl, de
-	add hl, de
-	add hl, de
+rept 3
+	add hl,de
+endr
 	ld b, [hl]
 	inc hl
 	ld a, [hli]
@@ -16,64 +16,68 @@ Special:: ; c01b
 ; c029
 
 SpecialsPointers:: ; c029
-	add_special Function97c28
-	add_special Function29ce8
-	add_special Function29d11
-	add_special Function29d92
-	add_special Function29e66
-	add_special Function29e82
-	add_special Function29efa
-	add_special Function29eee
-	add_special Function29c92
-	add_special Function29cf1
-	add_special Function29cfa
-	add_special Function29bfb
-	add_special Function29c7b
-	add_special Function29ec4
-	add_special Function29ed9
-	add_special Function29eaf
-	add_special Function29f47
-	add_special Functionc2f6
-	add_special Functionc309
-	add_special Function1050b9
-	add_special Functionc34a
-	add_special Function4d9e5
-	add_special Function13a12
-	add_special Function13a31
-	add_special Function135db
-	add_special Functionfbb32
-	add_special Functionfbcd2
+	add_special WarpToSpawnPoint
+
+; Communications
+	add_special Special_SetBitsForLinkTradeRequest
+	add_special Special_WaitForLinkedFriend
+	add_special Special_CheckLinkTimeout
+	add_special Special_TryQuickSave
+	add_special Special_CheckBothSelectedSameRoom
+	add_special Special_FailedLinkToPast
+	add_special Special_CloseLink
+	add_special Special_AbortLink
+	add_special Special_SetBitsForBattleRequest
+	add_special Special_SetBitsForTimeCapsuleRequest
+	add_special Special_CheckTimeCapsuleCompatibility
+	add_special Special_EnterTimeCapsule
+	add_special Special_TradeCenter
+	add_special Special_Colosseum
+	add_special Special_TimeCapsule
+	add_special Special_CableClubCheckWhichChris
+	add_special Special_CheckMysteryGift
+	add_special Special_GetMysteryGiftItem
+	add_special Special_UnlockMysteryGift
+
+; Bug Catching Contest
+	add_special BugContestJudging
+	add_special CheckPartyFullAfterContest
+	add_special CheckFirstMonFainted
+	add_special ContestReturnMons
+	add_special Special_GiveParkBalls
+	add_special Special_CheckMagikarpLength
+	add_special Special_MagikarpHouseSign
 	add_special HealParty
-	add_special Function1559a
-	add_special Functionc2e7
-	add_special Function166d6
-	add_special Function1672a
-	add_special Function16936
+	add_special PokemonCenterPC
+	add_special Special_KrissHousePC
+	add_special Special_DayCareMan
+	add_special Special_DayCareLady
+	add_special Special_DayCareManOutside
 	add_special MoveDeletion
-	add_special Function16218
-	add_special Function8cc04
+	add_special Special_BankOfMom
+	add_special Special_MagnetTrain
 	add_special SpecialNameRival
-	add_special Function90913
-	add_special Functionc2c0
-	add_special Functionc2cd
-	add_special Functionc355
-	add_special Functionc360
-	add_special Functionc373
-	add_special Functionc380
-	add_special Functionc38d
-	add_special Functionc3db
-	add_special Function8c084
-	add_special Function8c092
-	add_special Function8c0b6
-	add_special Function8c079
-	add_special Function8c0ab
-	add_special Functiond91
+	add_special Special_SetDayOfWeek
+	add_special Special_TownMap
+	add_special Special_UnownPrinter
+	add_special MapRadio
+	add_special Special_UnownPuzzle
+	add_special Special_SlotMachine
+	add_special Special_CardFlip
+	add_special Special_DummyNonfunctionalGameCornerGame
+	add_special Special_WhiteBGMapBufferScreen
+	add_special FadeBlackBGMap
+	add_special Special_BattleTowerFade
+	add_special Special_FadeBlackQuickly
+	add_special FadeInBGMap
+	add_special Special_FadeInQuickly
+	add_special Special_ReloadSpritesNoPalettes
 	add_special WhiteBGMap
 	add_special UpdateTimePals
 	add_special ClearTileMap
-	add_special Function1ad2
-	add_special Functione4a
-	add_special Functionc230
+	add_special DrawOnMap
+	add_special Special_ReplaceKrisSprite
+	add_special Special_GameCornerPrizeMonCheckDex
 	add_special SpecialSeenMon
 	add_special WaitSFX
 	add_special PlayMapMusic
@@ -87,10 +91,10 @@ SpecialsPointers:: ; c029
 	add_special Functionc3ef
 	add_special Function17421
 	add_special Function17440
-	add_special Function139a8
+	add_special Special_SelectRandomBugContestContestants
 	add_special Functionc3fc
-	add_special Function26feb
-	add_special Function27043
+	add_special ToggleMaptileDecorations
+	add_special ToggleDecorationsVisibility
 	add_special SpecialGiveShuckle
 	add_special SpecialReturnShuckle
 	add_special Function73f7
@@ -105,12 +109,12 @@ SpecialsPointers:: ; c029
 	add_special Function88018
 	add_special SpecialNameRater
 	add_special Functionc2da
-	add_special Function718d
+	add_special GetFirstPokemonHappiness
 	add_special Function71ac
 	add_special Function2a4ab
 	add_special Function2a51f
 	add_special RandomPhoneMon
-	add_special Function14209
+	add_special RunCallback_04
 	add_special Functionfb841
 	add_special SpecialSnorlaxAwake
 	add_special Function7413
@@ -148,10 +152,10 @@ SpecialsPointers:: ; c029
 	add_special Function101225
 	add_special Function101231
 	add_special Function4925b
-	add_special Function8adef
+	add_special SpecialOmanyteChamber
 	add_special Function11c1ab
 	add_special Function170687
-	add_special Function8ae68
+	add_special Special_DisplayUnownWords
 	add_special Function17d224
 	add_special Function17d2b6
 	add_special Function17d2ce
@@ -170,17 +174,17 @@ SpecialsPointers:: ; c029
 	add_special SpecialMonCheck
 	add_special Functionc225
 	add_special Function170bd2
-	add_special Function10366e
+	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
 	add_special Function10383c
-	add_special Function1060a2
+	add_special Mobile_HealParty
 	add_special Function14168
 	add_special Function1037c2
 	add_special Function10630f
 	add_special Function103780
 	add_special Function10387b
 	add_special Function4ae12
-	add_special Function1047eb
+	add_special LoadMapPalettes
 	add_special Function4a927
 	add_special Function90a54
 	add_special Function90a88
@@ -198,7 +202,7 @@ Functionc225: ; c225
 	ret
 ; c230
 
-Functionc230: ; c230
+Special_GameCornerPrizeMonCheckDex: ; c230
 	ld a, [ScriptVar]
 	dec a
 	call CheckCaughtMon
@@ -263,7 +267,7 @@ Functionc298: ; c298
 SpecialNameRival: ; 0xc29d
 	ld b, $2 ; rival
 	ld de, RivalName
-	callba Function116b7
+	callba _NamingScreen
 	; default to "SILVER"
 	ld hl, RivalName
 	ld de, DefaultRivalName
@@ -279,14 +283,14 @@ SpecialNameRater: ; c2b9
 	ret
 ; c2c0
 
-Functionc2c0: ; c2c0
+Special_TownMap: ; c2c0
 	call FadeToMenu
 	callba Function9191c
 	call Function2b4d
 	ret
 ; c2cd
 
-Functionc2cd: ; c2cd
+Special_UnownPrinter: ; c2cd
 	call FadeToMenu
 	callba Function16be4
 	call Function2b4d
@@ -300,7 +304,7 @@ Functionc2da: ; c2da
 	ret
 ; c2e7
 
-Functionc2e7: ; c2e7
+Special_KrissHousePC: ; c2e7
 	xor a
 	ld [ScriptVar], a
 	callba Function156d9
@@ -309,21 +313,21 @@ Functionc2e7: ; c2e7
 	ret
 ; c2f6
 
-Functionc2f6: ; c2f6
+Special_CheckMysteryGift: ; c2f6
 	ld a, $0
 	call GetSRAMBank
 	ld a, [$abe2]
 	and a
-	jr z, .asm_c302
+	jr z, .no
 	inc a
 
-.asm_c302
+.no
 	ld [ScriptVar], a
 	call CloseSRAM
 	ret
 ; c309
 
-Functionc309: ; c309
+Special_GetMysteryGiftItem: ; c309
 	ld a, $0
 	call GetSRAMBank
 	ld a, [$abe2]
@@ -358,21 +362,21 @@ UnknownText_0xc345: ; 0xc345
 	db "@"
 ; 0xc34a
 
-Functionc34a: ; c34a
-	callba Function1369d
+BugContestJudging: ; c34a
+	callba _BugContestJudging
 	ld a, b
 	ld [ScriptVar], a
 	ret
 ; c355
 
-Functionc355: ; c355
+MapRadio: ; c355
 	ld a, [ScriptVar]
 	ld e, a
-	callba Function91a53
+	callba PlayRadio
 	ret
 ; c360
 
-Functionc360: ; c360
+Special_UnownPuzzle: ; c360
 	call FadeToMenu
 	callba Functione1190
 	ld a, [wd0ec]
@@ -381,34 +385,34 @@ Functionc360: ; c360
 	ret
 ; c373
 
-Functionc373: ; c373
-	call Functionc3ae
+Special_SlotMachine: ; c373
+	call Special_CheckCoins
 	ret c
-	ld a, BANK(Function926c7)
-	ld hl, Function926c7
-	call Functionc39a
+	ld a, BANK(_SlotMachine)
+	ld hl, _SlotMachine
+	call Special_StartGameCornerGame
 	ret
 ; c380
 
-Functionc380: ; c380
-	call Functionc3ae
+Special_CardFlip: ; c380
+	call Special_CheckCoins
 	ret c
-	ld a, BANK(Functione00ee)
-	ld hl, Functione00ee
-	call Functionc39a
+	ld a, BANK(_CardFlip)
+	ld hl, _CardFlip
+	call Special_StartGameCornerGame
 	ret
 ; c38d
 
-Functionc38d: ; c38d
-	call Functionc3ae
+Special_DummyNonfunctionalGameCornerGame: ; c38d
+	call Special_CheckCoins
 	ret c
-	ld a, BANK(Functione1e5b)
-	ld hl, Functione1e5b
-	call Functionc39a
+	ld a, BANK(_DummyGame)
+	ld hl, _DummyGame
+	call Special_StartGameCornerGame
 	ret
 ; c39a
 
-Functionc39a: ; c39a
+Special_StartGameCornerGame: ; c39a
 	call Function31cf
 	call FadeToMenu
 	ld hl, wd0e8
@@ -423,7 +427,7 @@ Functionc39a: ; c39a
 	ret
 ; c3ae
 
-Functionc3ae: ; c3ae
+Special_CheckCoins: ; c3ae
 	ld hl, Coins
 	ld a, [hli]
 	or [hl]
@@ -461,9 +465,9 @@ UnknownText_0xc3d6: ; 0xc3d6
 	db "@"
 ; 0xc3db
 
-Functionc3db: ; c3db
+Special_WhiteBGMapBufferScreen: ; c3db
 	call WhiteBGMap
-	call Function2879
+	call BufferScreen
 	ret
 ; c3e2
 
@@ -492,17 +496,18 @@ Functionc3fc: ; c3fc
 ; c403
 
 
-Functionc403:: ; c403
+LoadWildData:: ; c403
 	ld a, c
 	and a
-	jr nz, .asm_c410
+	jr nz, .swarm_route35
+; swarm dark cave violet entrance
 	ld a, d
 	ld [wdfcc], a
 	ld a, e
 	ld [wdfcd], a
 	ret
 
-.asm_c410
+.swarm_route35
 	ld a, d
 	ld [wdc5a], a
 	ld a, e

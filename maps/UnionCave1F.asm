@@ -1,28 +1,12 @@
 UnionCave1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerPokemaniacLarry:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_LARRY
-
-	; trainer group && trainer id
-	db POKEMANIAC, LARRY
-
-	; text when seen
-	dw PokemaniacLarrySeenText
-
-	; text when trainer beaten
-	dw PokemaniacLarryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacLarryScript
+	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, $0000, PokemaniacLarryScript
 
 PokemaniacLarryScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ PokemaniacLarryScript:
 	end
 
 TrainerHikerRussell:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_RUSSELL
-
-	; trainer group && trainer id
-	db HIKER, RUSSELL
-
-	; text when seen
-	dw HikerRussellSeenText
-
-	; text when trainer beaten
-	dw HikerRussellBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerRussellScript
+	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, $0000, HikerRussellScript
 
 HikerRussellScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ HikerRussellScript:
 	end
 
 TrainerHikerDaniel:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_DANIEL
-
-	; trainer group && trainer id
-	db HIKER, DANIEL
-
-	; text when seen
-	dw HikerDanielSeenText
-
-	; text when trainer beaten
-	dw HikerDanielBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerDanielScript
+	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, $0000, HikerDanielScript
 
 HikerDanielScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ HikerDanielScript:
 	end
 
 TrainerFirebreatherBill:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_BILL
-
-	; trainer group && trainer id
-	db FIREBREATHER, BILL
-
-	; text when seen
-	dw FirebreatherBillSeenText
-
-	; text when trainer beaten
-	dw FirebreatherBillBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherBillScript
+	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, $0000, FirebreatherBillScript
 
 FirebreatherBillScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ FirebreatherBillScript:
 	end
 
 TrainerFirebreatherRay:
-	; bit/flag number
-	dw EVENT_BEAT_FIREBREATHER_RAY
-
-	; trainer group && trainer id
-	db FIREBREATHER, RAY
-
-	; text when seen
-	dw FirebreatherRaySeenText
-
-	; text when trainer beaten
-	dw FirebreatherRayBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherRayScript
+	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, $0000, FirebreatherRayScript
 
 FirebreatherRayScript:
 	talkaftercancel
@@ -272,27 +192,27 @@ UnionCave1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $13, $5, 3, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	warp_def $21, $3, 4, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	warp_def $1f, $11, 1, GROUP_ROUTE_33, MAP_ROUTE_33
 	warp_def $3, $11, 4, GROUP_ROUTE_32, MAP_ROUTE_32
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_POKEFAN_M, 10, 7, $9, $0, 255, 255, $b2, 2, TrainerHikerDaniel, -1
-	person_event SPRITE_SUPER_NERD, 25, 8, $a, $0, 255, 255, $92, 3, TrainerPokemaniacLarry, -1
-	person_event SPRITE_POKEFAN_M, 12, 15, $a, $0, 255, 255, $b2, 1, TrainerHikerRussell, -1
-	person_event SPRITE_FISHER, 31, 19, $8, $0, 255, 255, $82, 4, TrainerFirebreatherRay, -1
-	person_event SPRITE_FISHER, 23, 18, $7, $0, 255, 255, $82, 4, TrainerFirebreatherBill, -1
-	person_event SPRITE_POKE_BALL, 25, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c00, EVENT_65A
-	person_event SPRITE_POKE_BALL, 6, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c02, EVENT_65B
-	person_event SPRITE_POKE_BALL, 21, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c04, EVENT_65C
-	person_event SPRITE_POKE_BALL, 37, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x59c06, EVENT_65D
+	person_event SPRITE_POKEFAN_M, 10, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerDaniel, -1
+	person_event SPRITE_SUPER_NERD, 25, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacLarry, -1
+	person_event SPRITE_POKEFAN_M, 12, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerHikerRussell, -1
+	person_event SPRITE_FISHER, 31, 19, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerFirebreatherRay, -1
+	person_event SPRITE_FISHER, 23, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerFirebreatherBill, -1
+	person_event SPRITE_POKE_BALL, 25, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c00, EVENT_UNION_CAVE_1F_GREAT_BALL
+	person_event SPRITE_POKE_BALL, 6, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c02, EVENT_UNION_CAVE_1F_X_ATTACK
+	person_event SPRITE_POKE_BALL, 21, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c04, EVENT_UNION_CAVE_1F_POTION
+	person_event SPRITE_POKE_BALL, 37, 16, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59c06, EVENT_UNION_CAVE_1F_AWAKENING

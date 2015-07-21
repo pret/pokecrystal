@@ -1,12 +1,12 @@
 MahoganyMart1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x6c356, $0000
 	dw UnknownScript_0x6c357, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -85,7 +85,7 @@ UnknownScript_0x6c38f:
 	loadfont
 	writetext UnknownText_0x6c59e
 	closetext
-	showemote $0, $2, 10
+	showemote EMOTE_SHOCK, $2, 10
 	playsound SFX_UNKNOWN_2A
 	changeblock $6, $2, $1e
 	reloadmappart
@@ -222,22 +222,22 @@ MahoganyMart1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 1, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
 	warp_def $7, $4, 1, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
 	warp_def $3, $7, 1, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_PHARMACIST, 7, 8, $6, $0, 255, 255, $0, 0, PharmacistScript_0x6c367, EVENT_6DA
-	person_event SPRITE_BLACK_BELT, 10, 5, $3, $0, 255, 255, $0, 0, BlackBeltScript_0x6c37b, EVENT_6DA
-	person_event SPRITE_LANCE, 10, 8, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6D5
-	person_event SPRITE_DRAGON, 10, 7, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6D5
-	person_event SPRITE_GRANNY, 7, 5, $9, $0, 255, 255, $0, 0, GrannyScript_0x6c3ee, EVENT_736
+	person_event SPRITE_PHARMACIST, 7, 8, OW_UP | $2, $0, -1, -1, $0, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_BLACK_BELT, 10, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_LANCE, 10, 8, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	person_event SPRITE_DRAGON, 10, 7, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	person_event SPRITE_GRANNY, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS

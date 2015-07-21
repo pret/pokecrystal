@@ -1,8 +1,8 @@
 Route30_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 YoungsterScript_0x1a1673:
@@ -26,31 +26,15 @@ YoungsterScript_0x1a1673:
 	end
 
 TrainerYoungsterJoey:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_JOEY
-
-	; trainer group && trainer id
-	db YOUNGSTER, JOEY1
-
-	; text when seen
-	dw YoungsterJoey1SeenText
-
-	; text when trainer beaten
-	dw YoungsterJoey1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterJoey1Script
+	trainer EVENT_BEAT_YOUNGSTER_JOEY, YOUNGSTER, JOEY1, YoungsterJoey1SeenText, YoungsterJoey1BeatenText, $0000, YoungsterJoey1Script
 
 YoungsterJoey1Script:
-	writecode VAR_CALLERID, $f
+	writecode VAR_CALLERID, PHONE_YOUNGSTER_JOEY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_JOEY
 	iftrue UnknownScript_0x1a16e0
-	checkcellnum $f
+	checkcellnum PHONE_YOUNGSTER_JOEY
 	iftrue UnknownScript_0x1a178f
 	checkevent EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a16c9
@@ -63,7 +47,7 @@ YoungsterJoey1Script:
 UnknownScript_0x1a16c9:
 	scall UnknownScript_0x1a1787
 UnknownScript_0x1a16cc:
-	askforphonenumber $f
+	askforphonenumber PHONE_YOUNGSTER_JOEY
 	if_equal $1, UnknownScript_0x1a1797
 	if_equal $2, UnknownScript_0x1a1793
 	trainertotext YOUNGSTER, JOEY1, $0
@@ -189,23 +173,7 @@ UnknownScript_0x1a17a6:
 	end
 
 TrainerYoungsterMikey:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_MIKEY
-
-	; trainer group && trainer id
-	db YOUNGSTER, MIKEY
-
-	; text when seen
-	dw YoungsterMikeySeenText
-
-	; text when trainer beaten
-	dw YoungsterMikeyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterMikeyScript
+	trainer EVENT_BEAT_YOUNGSTER_MIKEY, YOUNGSTER, MIKEY, YoungsterMikeySeenText, YoungsterMikeyBeatenText, $0000, YoungsterMikeyScript
 
 YoungsterMikeyScript:
 	talkaftercancel
@@ -216,23 +184,7 @@ YoungsterMikeyScript:
 	end
 
 TrainerBug_catcherDon:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_DON
-
-	; trainer group && trainer id
-	db BUG_CATCHER, DON
-
-	; text when seen
-	dw Bug_catcherDonSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherDonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherDonScript
+	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, Bug_catcherDonSeenText, Bug_catcherDonBeatenText, $0000, Bug_catcherDonScript
 
 Bug_catcherDonScript:
 	talkaftercancel
@@ -283,8 +235,7 @@ FruitTreeScript_0x1a17f9:
 	fruittree $5
 
 MapRoute30SignpostItem4:
-	dw $00a4
-	db POTION
+	dwb EVENT_ROUTE_30_HIDDEN_POTION, POTION
 	
 
 MovementData_0x1a17fe:
@@ -447,32 +398,32 @@ Route30_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $27, $7, 1, GROUP_ROUTE_30_BERRY_SPEECH_HOUSE, MAP_ROUTE_30_BERRY_SPEECH_HOUSE
 	warp_def $5, $11, 1, GROUP_MR_POKEMONS_HOUSE, MAP_MR_POKEMONS_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
-	signpost 43, 9, $0, MapRoute30Signpost0Script
-	signpost 29, 13, $0, MapRoute30Signpost1Script
-	signpost 5, 15, $0, MapRoute30Signpost2Script
-	signpost 21, 3, $0, MapRoute30Signpost3Script
-	signpost 9, 14, $7, MapRoute30SignpostItem4
+	signpost 43, 9, SIGNPOST_READ, MapRoute30Signpost0Script
+	signpost 29, 13, SIGNPOST_READ, MapRoute30Signpost1Script
+	signpost 5, 15, SIGNPOST_READ, MapRoute30Signpost2Script
+	signpost 21, 3, SIGNPOST_READ, MapRoute30Signpost3Script
+	signpost 9, 14, SIGNPOST_ITEM, MapRoute30SignpostItem4
 
-	; people-events
+.PersonEvents:
 	db 11
-	person_event SPRITE_YOUNGSTER, 30, 9, $7, $0, 255, 255, $90, 0, YoungsterScript_0x1a1673, EVENT_714
-	person_event SPRITE_YOUNGSTER, 32, 6, $9, $0, 255, 255, $92, 3, TrainerYoungsterJoey, EVENT_715
-	person_event SPRITE_YOUNGSTER, 27, 9, $6, $0, 255, 255, $92, 1, TrainerYoungsterMikey, -1
-	person_event SPRITE_BUG_CATCHER, 11, 5, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherDon, -1
-	person_event SPRITE_YOUNGSTER, 34, 11, $5, $1, 255, 255, $80, 0, YoungsterScript_0x1a17d2, -1
-	person_event SPRITE_MONSTER, 28, 9, $6, $0, 255, 255, $80, 0, ObjectEvent, EVENT_714
-	person_event SPRITE_MONSTER, 29, 9, $7, $0, 255, 255, $90, 0, ObjectEvent, EVENT_714
-	person_event SPRITE_FRUIT_TREE, 43, 9, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a17f7, -1
-	person_event SPRITE_FRUIT_TREE, 9, 15, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a17f9, -1
-	person_event SPRITE_COOLTRAINER_F, 17, 6, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x1a17e6, -1
-	person_event SPRITE_POKE_BALL, 39, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a17f5, EVENT_7B8
+	person_event SPRITE_YOUNGSTER, 30, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a1673, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_YOUNGSTER, 32, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
+	person_event SPRITE_YOUNGSTER, 27, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerYoungsterMikey, -1
+	person_event SPRITE_BUG_CATCHER, 11, 5, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherDon, -1
+	person_event SPRITE_YOUNGSTER, 34, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x1a17d2, -1
+	person_event SPRITE_MONSTER, 28, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_MONSTER, 29, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_FRUIT_TREE, 43, 9, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a17f7, -1
+	person_event SPRITE_FRUIT_TREE, 9, 15, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a17f9, -1
+	person_event SPRITE_COOLTRAINER_F, 17, 6, OW_UP | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x1a17e6, -1
+	person_event SPRITE_POKE_BALL, 39, 12, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a17f5, EVENT_ROUTE_30_ANTIDOTE

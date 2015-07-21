@@ -1,8 +1,8 @@
 UnionCaveB2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -33,23 +33,7 @@ SurfScript_0x5a31f:
 	end
 
 TrainerCooltrainermNick:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_NICK
-
-	; trainer group && trainer id
-	db COOLTRAINERM, NICK
-
-	; text when seen
-	dw CooltrainermNickSeenText
-
-	; text when trainer beaten
-	dw CooltrainermNickBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermNickScript
+	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, $0000, CooltrainermNickScript
 
 CooltrainermNickScript:
 	talkaftercancel
@@ -60,23 +44,7 @@ CooltrainermNickScript:
 	end
 
 TrainerCooltrainerfGwen:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_GWEN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, GWEN
-
-	; text when seen
-	dw CooltrainerfGwenSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfGwenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfGwenScript
+	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, $0000, CooltrainerfGwenScript
 
 CooltrainerfGwenScript:
 	talkaftercancel
@@ -87,23 +55,7 @@ CooltrainerfGwenScript:
 	end
 
 TrainerCooltrainerfEmma:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_EMMA
-
-	; trainer group && trainer id
-	db COOLTRAINERF, EMMA
-
-	; text when seen
-	dw CooltrainerfEmmaSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfEmmaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfEmmaScript
+	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, $0000, CooltrainerfEmmaScript
 
 CooltrainerfEmmaScript:
 	talkaftercancel
@@ -188,21 +140,21 @@ UnionCaveB2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $3, $5, 5, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_ROCKER, 23, 19, $6, $0, 255, 255, $82, 3, TrainerCooltrainermNick, -1
-	person_event SPRITE_COOLTRAINER_F, 17, 9, $a, $0, 255, 255, $82, 1, TrainerCooltrainerfGwen, -1
-	person_event SPRITE_COOLTRAINER_F, 34, 7, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfEmma, -1
-	person_event SPRITE_POKE_BALL, 6, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36a, EVENT_660
-	person_event SPRITE_POKE_BALL, 23, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36c, EVENT_661
-	person_event SPRITE_SURF, 35, 15, $24, $11, 255, 255, $90, 0, SurfScript_0x5a31f, EVENT_760
+	person_event SPRITE_ROCKER, 23, 19, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermNick, -1
+	person_event SPRITE_COOLTRAINER_F, 17, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainerfGwen, -1
+	person_event SPRITE_COOLTRAINER_F, 34, 7, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfEmma, -1
+	person_event SPRITE_POKE_BALL, 6, 20, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a36a, EVENT_UNION_CAVE_B2F_ELIXER
+	person_event SPRITE_POKE_BALL, 23, 16, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a36c, EVENT_UNION_CAVE_B2F_HYPER_POTION
+	person_event SPRITE_SURF, 35, 15, OW_UP | $20, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SurfScript_0x5a31f, EVENT_UNION_CAVE_B2F_LAPRAS

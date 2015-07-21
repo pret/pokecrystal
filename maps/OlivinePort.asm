@@ -1,12 +1,12 @@
 OlivinePort_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x748ac, $0000
 	dw UnknownScript_0x748ad, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x748ac:
@@ -20,14 +20,14 @@ UnknownScript_0x748b1:
 	applymovement $0, MovementData_0x74a32
 	appear $2
 	dotrigger $0
-	setevent EVENT_000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	blackoutmod GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	end
 
 SailorScript_0x748c0:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
 	closetext
@@ -39,12 +39,12 @@ SailorScript_0x748c0:
 	waitbutton
 	applymovement $0, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7490a
-	clearevent EVENT_73A
-	setevent EVENT_73B
+	clearevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	setevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	clearevent EVENT_BEAT_COOLTRAINERM_SEAN
 	clearevent EVENT_BEAT_COOLTRAINERF_CAROL
 	clearevent EVENT_BEAT_GENTLEMAN_EDWARD
@@ -69,13 +69,13 @@ UnknownScript_0x74919:
 
 UnknownScript_0x7491f:
 	spriteface $4, RIGHT
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7498b
-	checkevent EVENT_001
+	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x7498b
 	spriteface $0, LEFT
 	loadfont
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7494e
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x74977
@@ -94,7 +94,7 @@ UnknownScript_0x7494e:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement $0, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
@@ -138,9 +138,9 @@ UnknownScript_0x74992:
 SailorScript_0x7499c:
 	faceplayer
 	loadfont
-	checkevent EVENT_000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
-	checkevent EVENT_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x749c0
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x749f2
@@ -159,7 +159,7 @@ UnknownScript_0x749c0:
 	writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setevent EVENT_001
+	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f
@@ -227,8 +227,7 @@ CooltrainerFScript_0x74a22:
 	end
 
 MapOlivinePortSignpostItem0:
-	dw $00ea
-	db PROTEIN
+	dwb EVENT_OLIVINE_PORT_HIDDEN_PROTEIN, PROTEIN
 	
 
 MovementData_0x74a30:
@@ -383,25 +382,25 @@ OlivinePort_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $b, 5, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
 	warp_def $17, $7, 1, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $f, $7, $0, UnknownScript_0x7491f, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 22, 1, $7, MapOlivinePortSignpostItem0
+	signpost 22, 1, SIGNPOST_ITEM, MapOlivinePortSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_SAILOR, 27, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x748c0, EVENT_72A
-	person_event SPRITE_SAILOR, 19, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x749fe, EVENT_737
-	person_event SPRITE_SAILOR, 19, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x7499c, EVENT_738
-	person_event SPRITE_FISHING_GURU, 18, 8, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a01, EVENT_737
-	person_event SPRITE_FISHING_GURU, 18, 17, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a0c, EVENT_737
-	person_event SPRITE_YOUNGSTER, 19, 8, $6, $0, 255, 255, $0, 0, YoungsterScript_0x74a17, EVENT_738
-	person_event SPRITE_COOLTRAINER_F, 19, 15, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x74a22, EVENT_738
+	person_event SPRITE_SAILOR, 27, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
+	person_event SPRITE_SAILOR, 19, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 19, 10, OW_LEFT | $1, $0, -1, -1, $0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 18, 8, OW_UP | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 18, 17, OW_UP | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_YOUNGSTER, 19, 8, OW_UP | $2, $0, -1, -1, $0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_COOLTRAINER_F, 19, 15, OW_UP | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME

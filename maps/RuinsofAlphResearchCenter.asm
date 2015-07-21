@@ -1,12 +1,12 @@
 RuinsofAlphResearchCenter_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x59180, $0000
 	dw UnknownScript_0x59181, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -105,7 +105,7 @@ UnknownScript_0x5920b:
 	writetext UnknownText_0x594cb
 	closetext
 	loadmovesprites
-	clearevent EVENT_78F
+	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
 	end
 
 ScientistScript_0x59214:
@@ -134,7 +134,7 @@ UnknownScript_0x5922e:
 
 MapRuinsofAlphResearchCenterSignpost1Script:
 	loadfont
-	checkevent EVENT_704
+	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x59241
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59247
@@ -152,7 +152,7 @@ UnknownScript_0x59247:
 
 MapRuinsofAlphResearchCenterSignpost2Script:
 	loadfont
-	checkevent EVENT_704
+	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x5925a
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59260
@@ -165,7 +165,7 @@ UnknownScript_0x5925a:
 UnknownScript_0x59260:
 	writetext UnknownText_0x5982d
 	closetext
-	special Functionc2cd
+	special Special_UnownPrinter
 	loadmovesprites
 	end
 
@@ -396,22 +396,22 @@ RuinsofAlphResearchCenter_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 6, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	warp_def $7, $3, 6, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 5, 6, $0, MapRuinsofAlphResearchCenterSignpost0Script
-	signpost 4, 3, $0, MapRuinsofAlphResearchCenterSignpost1Script
-	signpost 1, 7, $0, MapRuinsofAlphResearchCenterSignpost2Script
+	signpost 5, 6, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost0Script
+	signpost 4, 3, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost1Script
+	signpost 1, 7, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost2Script
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 9, 8, $7, $0, 255, 255, $90, 0, ScientistScript_0x591e5, -1
-	person_event SPRITE_SCIENTIST, 6, 9, $2, $12, 255, 255, $90, 0, ScientistScript_0x59214, -1
-	person_event SPRITE_SCIENTIST, 9, 6, $7, $0, 255, 255, $90, 0, ScientistScript_0x591d1, EVENT_704
+	person_event SPRITE_SCIENTIST, 9, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591e5, -1
+	person_event SPRITE_SCIENTIST, 6, 9, OW_DOWN | $2, $12, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x59214, -1
+	person_event SPRITE_SCIENTIST, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST

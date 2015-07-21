@@ -1,12 +1,12 @@
 RuinsofAlphOutside_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x5800d, $0000
 	dw UnknownScript_0x5800e, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -100,23 +100,7 @@ YoungsterScript_0x5807e:
 	end
 
 TrainerPsychicNathan:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_NATHAN
-
-	; trainer group && trainer id
-	db PSYCHIC_T, NATHAN
-
-	; text when seen
-	dw PsychicNathanSeenText
-
-	; text when trainer beaten
-	dw PsychicNathanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicNathanScript
+	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, $0000, PsychicNathanScript
 
 PsychicNathanScript:
 	talkaftercancel
@@ -128,23 +112,7 @@ PsychicNathanScript:
 
 
 TrainerSuperNerdStan:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_STAN
-
-	; trainer group && trainer id
-	db SUPER_NERD, STAN
-
-	; text when seen
-	dw UnknownText_0x581e5
-
-	; text when trainer beaten
-	dw UnknownText_0x58217
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw UnknownScript_0x580a9
+	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, $0000, UnknownScript_0x580a9
 
 UnknownScript_0x580a9:
 	talkaftercancel
@@ -316,7 +284,7 @@ RuinsofAlphOutside_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 11
 	warp_def $11, $2, 1, GROUP_RUINS_OF_ALPH_HO_OH_CHAMBER, MAP_RUINS_OF_ALPH_HO_OH_CHAMBER
 	warp_def $7, $e, 1, GROUP_RUINS_OF_ALPH_KABUTO_CHAMBER, MAP_RUINS_OF_ALPH_KABUTO_CHAMBER
@@ -330,21 +298,21 @@ RuinsofAlphOutside_MapEventHeader:
 	warp_def $14, $d, 1, GROUP_ROUTE_32_RUINS_OF_ALPH_GATE, MAP_ROUTE_32_RUINS_OF_ALPH_GATE
 	warp_def $15, $d, 2, GROUP_ROUTE_32_RUINS_OF_ALPH_GATE, MAP_ROUTE_32_RUINS_OF_ALPH_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $e, $b, $0, UnknownScript_0x58031, $0, $0
 	xy_trigger 1, $f, $a, $0, UnknownScript_0x5803a, $0, $0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 8, 16, $0, MapRuinsofAlphOutsideSignpost0Script
-	signpost 16, 12, $0, MapRuinsofAlphOutsideSignpost1Script
-	signpost 12, 18, $0, MapRuinsofAlphOutsideSignpost2Script
+	signpost 8, 16, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost0Script
+	signpost 16, 12, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost1Script
+	signpost 12, 18, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost2Script
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 24, 8, $6, $0, 255, 255, $2, 1, TrainerPsychicNathan, -1
-	person_event SPRITE_SCIENTIST, 19, 15, $7, $0, 255, 255, $0, 0, ScientistScript_0x58043, EVENT_703
-	person_event SPRITE_FISHER, 21, 17, $3, $0, 255, 255, $a0, 0, FisherScript_0x58061, EVENT_78E
-	person_event SPRITE_YOUNGSTER, 15, 18, $2, $11, 255, 255, $b0, 0, YoungsterScript_0x58076, EVENT_78F
-	person_event SPRITE_YOUNGSTER, 12, 16, $7, $0, 255, 255, $80, 0, YoungsterScript_0x5807e, EVENT_78F
+	person_event SPRITE_YOUNGSTER, 24, 8, OW_UP | $2, $0, -1, -1, $2, 1, TrainerPsychicNathan, -1
+	person_event SPRITE_SCIENTIST, 19, 15, OW_UP | $3, $0, -1, -1, $0, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
+	person_event SPRITE_FISHER, 21, 17, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
+	person_event SPRITE_YOUNGSTER, 15, 18, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, YoungsterScript_0x58076, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	person_event SPRITE_YOUNGSTER, 12, 16, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS

@@ -1,12 +1,12 @@
 Route43Gate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x19abc5, $0000
 	dw UnknownScript_0x19abc9, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -40,10 +40,10 @@ UnknownScript_0x19abda:
 
 UnknownScript_0x19abea:
 	applymovement $0, MovementData_0x19aca2
-	showemote $0, $4, 15
+	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, MovementData_0x19acbb
 	spriteface $3, UP
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	applymovement $3, MovementData_0x19aca4
 	loadfont
 	writetext UnknownText_0x19acd2
@@ -72,10 +72,10 @@ UnknownScript_0x19ac28:
 	end
 
 UnknownScript_0x19ac38:
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	applymovement $3, MovementData_0x19acaf
 	spriteface $4, DOWN
-	showemote $0, $4, 15
+	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, MovementData_0x19acc7
 	loadfont
 	writetext UnknownText_0x19acd2
@@ -249,21 +249,21 @@ Route43Gate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 4, GROUP_ROUTE_43, MAP_ROUTE_43
 	warp_def $0, $5, 5, GROUP_ROUTE_43, MAP_ROUTE_43
 	warp_def $7, $4, 3, GROUP_ROUTE_43, MAP_ROUTE_43
 	warp_def $7, $5, 3, GROUP_ROUTE_43, MAP_ROUTE_43
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x19ac85, EVENT_735
-	person_event SPRITE_ROCKET, 8, 6, $6, $0, 255, 255, $0, 0, RocketScript_0x19ac82, EVENT_6DC
-	person_event SPRITE_ROCKET, 8, 11, $7, $0, 255, 255, $0, 0, RocketScript_0x19ac82, EVENT_6DC
+	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_ROCKET, 8, 6, OW_UP | $2, $0, -1, -1, $0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_ROCKET, 8, 11, OW_UP | $3, $0, -1, -1, $0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS

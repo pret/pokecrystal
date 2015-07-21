@@ -1,28 +1,12 @@
 Route46_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerCamperTed:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_TED
-
-	; trainer group && trainer id
-	db CAMPER, TED
-
-	; text when seen
-	dw CamperTedSeenText
-
-	; text when trainer beaten
-	dw CamperTedBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperTedScript
+	trainer EVENT_BEAT_CAMPER_TED, CAMPER, TED, CamperTedSeenText, CamperTedBeatenText, $0000, CamperTedScript
 
 CamperTedScript:
 	talkaftercancel
@@ -33,31 +17,15 @@ CamperTedScript:
 	end
 
 TrainerPicnickerErin1:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_ERIN
-
-	; trainer group && trainer id
-	db PICNICKER, ERIN1
-
-	; text when seen
-	dw PicnickerErin1SeenText
-
-	; text when trainer beaten
-	dw PicnickerErin1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerErin1Script
+	trainer EVENT_BEAT_PICNICKER_ERIN, PICNICKER, ERIN1, PicnickerErin1SeenText, PicnickerErin1BeatenText, $0000, PicnickerErin1Script
 
 PicnickerErin1Script:
-	writecode VAR_CALLERID, $24
+	writecode VAR_CALLERID, PHONE_PICNICKER_ERIN
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0x1a96da
-	checkcellnum $24
+	checkcellnum PHONE_PICNICKER_ERIN
 	iftrue UnknownScript_0x1a975b
 	checkevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a96c3
@@ -70,7 +38,7 @@ PicnickerErin1Script:
 UnknownScript_0x1a96c3:
 	scall UnknownScript_0x1a9753
 UnknownScript_0x1a96c6:
-	askforphonenumber $24
+	askforphonenumber PHONE_PICNICKER_ERIN
 	if_equal $1, UnknownScript_0x1a9763
 	if_equal $2, UnknownScript_0x1a975f
 	trainertotext PICNICKER, ERIN1, $0
@@ -172,23 +140,7 @@ UnknownScript_0x1a9772:
 	end
 
 TrainerHikerBailey:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_BAILEY
-
-	; trainer group && trainer id
-	db HIKER, BAILEY
-
-	; text when seen
-	dw HikerBaileySeenText
-
-	; text when trainer beaten
-	dw HikerBaileyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerBaileyScript
+	trainer EVENT_BEAT_HIKER_BAILEY, HIKER, BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, $0000, HikerBaileyScript
 
 HikerBaileyScript:
 	talkaftercancel
@@ -294,24 +246,24 @@ Route46_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $21, $7, 1, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
 	warp_def $21, $8, 2, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
 	warp_def $5, $e, 3, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 27, 9, $0, MapRoute46Signpost0Script
+	signpost 27, 9, SIGNPOST_READ, MapRoute46Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_POKEFAN_M, 23, 16, $8, $0, 255, 255, $b2, 2, TrainerHikerBailey, -1
-	person_event SPRITE_YOUNGSTER, 18, 8, $7, $0, 255, 255, $a2, 2, TrainerCamperTed, -1
-	person_event SPRITE_LASS, 17, 6, $6, $0, 255, 255, $a2, 2, TrainerPicnickerErin1, -1
-	person_event SPRITE_FRUIT_TREE, 9, 11, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a978f, -1
-	person_event SPRITE_FRUIT_TREE, 10, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a9791, -1
-	person_event SPRITE_POKE_BALL, 19, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a978d, EVENT_6BC
+	person_event SPRITE_POKEFAN_M, 23, 16, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerBailey, -1
+	person_event SPRITE_YOUNGSTER, 18, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperTed, -1
+	person_event SPRITE_LASS, 17, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerErin1, -1
+	person_event SPRITE_FRUIT_TREE, 9, 11, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a978f, -1
+	person_event SPRITE_FRUIT_TREE, 10, 12, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a9791, -1
+	person_event SPRITE_POKE_BALL, 19, 5, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED

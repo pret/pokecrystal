@@ -22,8 +22,9 @@ SECTION "rst28",ROM0[JumpTable]
 	push de
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

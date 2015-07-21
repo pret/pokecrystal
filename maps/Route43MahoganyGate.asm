@@ -1,8 +1,8 @@
 Route43MahoganyGate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 OfficerScript_0x19ab0b:
@@ -39,19 +39,19 @@ Route43MahoganyGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 1, GROUP_ROUTE_43, MAP_ROUTE_43
 	warp_def $0, $5, 2, GROUP_ROUTE_43, MAP_ROUTE_43
 	warp_def $7, $4, 5, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
 	warp_def $7, $5, 5, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x19ab0b, -1
+	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x19ab0b, -1

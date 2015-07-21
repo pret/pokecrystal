@@ -253,8 +253,9 @@ ParkBall: ; e8a2
 	jr z, .asm_e906
 	cp c
 	jr z, .asm_e8fe
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_e8f2
 
 .asm_e8fe
@@ -287,8 +288,9 @@ ParkBall: ; e8a2
 
 	ld h, d
 	ld l, e
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld d, h
 	ld e, l
 	ld a, d
@@ -603,7 +605,7 @@ ParkBall: ; e8a2
 	ld b, 0
 	callba Function116c1
 
-	call Function4b6
+	call FadeToWhite
 
 	call Functione51
 
@@ -685,7 +687,7 @@ ParkBall: ; e8a2
 	ld hl, UnknownText_0xedeb
 	call PrintText
 
-	call Function4b6
+	call FadeToWhite
 	call Functione51
 	jr .asm_ebe2
 
@@ -802,8 +804,9 @@ HeavyBallMultiplier:
 	dec a
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, BANK(PokedexDataPointerTable)
 	call GetFarHalfword
 
@@ -816,8 +819,9 @@ HeavyBallMultiplier:
 
 	call GetPokedexEntryBank
 	push bc
+rept 2
 	inc hl
-	inc hl
+endr
 	call GetFarHalfword
 
 	srl h
@@ -863,8 +867,9 @@ HeavyBallMultiplier:
 	ld a, c
 	cp [hl]
 	jr c, .heavymon
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .lookup
 
 .heavymon
@@ -923,8 +928,9 @@ GLOBAL EvosAttacksPointers
 	ld c, a
 	ld b, 0
 	ld hl, EvosAttacksPointers
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 	pop bc
@@ -936,9 +942,9 @@ GLOBAL EvosAttacksPointers
 	pop bc
 	ret nz
 
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 
 ; Moon Stone's constant from Pokémon Red is used.
 ; No Pokémon evolve with Burn Heal,
@@ -1177,7 +1183,7 @@ TownMap: ; ee01
 
 
 Bicycle: ; ee08
-	callba Functiond0b3
+	callba BikeFunction
 	ret
 ; ee0f
 
@@ -1415,7 +1421,7 @@ RareCandy: ; ef14
 	ld a, [hl]
 	adc b
 	ld [hl], a
-	callba Function2709e
+	callba LevelUpHappinessMod
 
 	ld a, $f8
 	call Functionf24a
@@ -2119,8 +2125,9 @@ Functionf395: ; f395 (3:7395)
 	jr z, .asm_f3a9
 	cp d
 	jr z, .done
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .next
 
 .asm_f3a9
@@ -2209,7 +2216,7 @@ Functionf419: ; f419 (3:7419)
 .asm_f440
 	push bc
 	ld hl, UnknownText_0xf44a
-	call Function1d67
+	call MenuTextBoxBackup
 	pop bc
 	jr Functionf419
 ; f44a (3:744a)
@@ -2224,7 +2231,7 @@ UnknownText_0xf44a: ; 0xf44a
 EscapeRope: ; f44f
 	xor a
 	ld [wd0ec], a
-	callba Functioncb95
+	callba EscapeRopeFunction
 
 	ld a, [wd0ec]
 	cp 1
@@ -2322,8 +2329,9 @@ XSpecial: ; f4c5
 .asm_f4ce
 	cp [hl]
 	jr z, .asm_f4d5
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_f4ce
 
 .asm_f4d5
@@ -2492,13 +2500,13 @@ SuperRod: ; f5ad
 ; f5b1
 
 Function_0xf5b1: ; f5b1
-	callba Functioncf8e
+	callba FishFunction
 	ret
 ; f5b8
 
 
 Itemfinder: ; f5b8
-	callba Function12580
+	callba ItemFinder
 	ret
 ; f5bf
 
@@ -2810,7 +2818,7 @@ GorgeousBox: ; f767
 ; f769
 
 Function_0xf769: ; f769
-	callba Function26f02
+	callba SetSpecificDecorationFlag
 
 	ld hl, UnknownText_0xf778
 	call PrintText

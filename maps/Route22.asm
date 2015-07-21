@@ -1,8 +1,8 @@
 Route22_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 MapRoute22Signpost0Script:
@@ -19,16 +19,16 @@ Route22_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $d, 1, GROUP_VICTORY_ROAD_GATE, MAP_VICTORY_ROAD_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 7, 15, $0, MapRoute22Signpost0Script
+	signpost 7, 15, SIGNPOST_READ, MapRoute22Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 0

@@ -1,28 +1,12 @@
 Route38_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBird_keeperToby:
-	; bit/flag number
-	dw EVENT_BEAT_BIRD_KEEPER_TOBY
-
-	; trainer group && trainer id
-	db BIRD_KEEPER, TOBY
-
-	; text when seen
-	dw Bird_keeperTobySeenText
-
-	; text when trainer beaten
-	dw Bird_keeperTobyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperTobyScript
+	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, $0000, Bird_keeperTobyScript
 
 Bird_keeperTobyScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ Bird_keeperTobyScript:
 	end
 
 TrainerSailorHarry:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_HARRY
-
-	; trainer group && trainer id
-	db SAILOR, HARRY
-
-	; text when seen
-	dw SailorHarrySeenText
-
-	; text when trainer beaten
-	dw SailorHarryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorHarryScript
+	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, $0000, SailorHarryScript
 
 SailorHarryScript:
 	talkaftercancel
@@ -60,33 +28,17 @@ SailorHarryScript:
 	end
 
 TrainerLassDana1:
-	; bit/flag number
-	dw EVENT_BEAT_LASS_DANA
-
-	; trainer group && trainer id
-	db LASS, DANA1
-
-	; text when seen
-	dw LassDana1SeenText
-
-	; text when trainer beaten
-	dw LassDana1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassDana1Script
+	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, $0000, LassDana1Script
 
 LassDana1Script:
-	writecode VAR_CALLERID, $1a
+	writecode VAR_CALLERID, PHONE_LASS_DANA
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_DANA
 	iftrue UnknownScript_0x1a1d82
-	checkflag ENGINE_LIZ_HAS_THUNDERSTONE
+	checkflag ENGINE_DANA_HAS_THUNDERSTONE
 	iftrue UnknownScript_0x1a1df6
-	checkcellnum $1a
+	checkcellnum PHONE_LASS_DANA
 	iftrue UnknownScript_0x1a1e17
 	checkevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a1d6b
@@ -99,7 +51,7 @@ LassDana1Script:
 UnknownScript_0x1a1d6b:
 	scall UnknownScript_0x1a1e0f
 UnknownScript_0x1a1d6e:
-	askforphonenumber $1a
+	askforphonenumber PHONE_LASS_DANA
 	if_equal $1, UnknownScript_0x1a1e1f
 	if_equal $2, UnknownScript_0x1a1e1b
 	trainertotext LASS, DANA1, $0
@@ -170,8 +122,8 @@ UnknownScript_0x1a1df6:
 	scall UnknownScript_0x1a1e27
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1a1e08
-	clearflag ENGINE_LIZ_HAS_THUNDERSTONE
-	setevent EVENT_102
+	clearflag ENGINE_DANA_HAS_THUNDERSTONE
+	setevent EVENT_DANA_GAVE_THUNDERSTONE
 	jump UnknownScript_0x1a1e17
 
 UnknownScript_0x1a1e08:
@@ -214,31 +166,15 @@ UnknownScript_0x1a1e2b:
 	end
 
 TrainerSchoolboyChad1:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_CHAD
-
-	; trainer group && trainer id
-	db SCHOOLBOY, CHAD1
-
-	; text when seen
-	dw SchoolboyChad1SeenText
-
-	; text when trainer beaten
-	dw SchoolboyChad1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyChad1Script
+	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, $0000, SchoolboyChad1Script
 
 SchoolboyChad1Script:
-	writecode VAR_CALLERID, $1b
+	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_CHAD
 	iftrue UnknownScript_0x1a1e75
-	checkcellnum $1b
+	checkcellnum PHONE_SCHOOLBOY_CHAD
 	iftrue UnknownScript_0x1a1ef5
 	checkevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a1e5e
@@ -251,7 +187,7 @@ SchoolboyChad1Script:
 UnknownScript_0x1a1e5e:
 	scall UnknownScript_0x1a1eed
 UnknownScript_0x1a1e61:
-	askforphonenumber $1b
+	askforphonenumber PHONE_SCHOOLBOY_CHAD
 	if_equal $1, UnknownScript_0x1a1efd
 	if_equal $2, UnknownScript_0x1a1ef9
 	trainertotext SCHOOLBOY, CHAD1, $0
@@ -347,23 +283,7 @@ UnknownScript_0x1a1f01:
 	end
 
 TrainerBeautyValerie:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_VALERIE
-
-	; trainer group && trainer id
-	db BEAUTY, VALERIE
-
-	; text when seen
-	dw BeautyValerieSeenText
-
-	; text when trainer beaten
-	dw BeautyValerieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyValerieScript
+	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, $0000, BeautyValerieScript
 
 BeautyValerieScript:
 	talkaftercancel
@@ -374,23 +294,7 @@ BeautyValerieScript:
 	end
 
 TrainerBeautyOlivia:
-	; bit/flag number
-	dw EVENT_BEAT_BEAUTY_OLIVIA
-
-	; trainer group && trainer id
-	db BEAUTY, OLIVIA
-
-	; text when seen
-	dw BeautyOliviaSeenText
-
-	; text when trainer beaten
-	dw BeautyOliviaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyOliviaScript
+	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, $0000, BeautyOliviaScript
 
 BeautyOliviaScript:
 	talkaftercancel
@@ -563,25 +467,25 @@ Route38_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $8, $23, 1, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
 	warp_def $9, $23, 2, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 33, $0, MapRoute38Signpost0Script
-	signpost 13, 5, $0, MapRoute38Signpost1Script
+	signpost 7, 33, SIGNPOST_READ, MapRoute38Signpost0Script
+	signpost 13, 5, SIGNPOST_READ, MapRoute38Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_STANDING_YOUNGSTER, 5, 8, $9, $0, 255, 255, $92, 1, TrainerSchoolboyChad1, -1
-	person_event SPRITE_LASS, 7, 19, $a, $0, 255, 255, $92, 2, TrainerLassDana1, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 19, 16, $a, $0, 255, 255, $92, 1, TrainerBird_keeperToby, -1
-	person_event SPRITE_BUENA, 13, 23, $6, $0, 255, 255, $92, 1, TrainerBeautyValerie, -1
-	person_event SPRITE_SAILOR, 9, 28, $1e, $0, 255, 255, $92, 2, TrainerSailorHarry, -1
-	person_event SPRITE_FRUIT_TREE, 14, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1f33, -1
-	person_event SPRITE_BUENA, 12, 9, $a, $0, 255, 255, $92, 1, TrainerBeautyOlivia, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 5, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyChad1, -1
+	person_event SPRITE_LASS, 7, 19, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerLassDana1, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 19, 16, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBird_keeperToby, -1
+	person_event SPRITE_BUENA, 13, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBeautyValerie, -1
+	person_event SPRITE_SAILOR, 9, 28, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerSailorHarry, -1
+	person_event SPRITE_FRUIT_TREE, 14, 16, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a1f33, -1
+	person_event SPRITE_BUENA, 12, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBeautyOlivia, -1

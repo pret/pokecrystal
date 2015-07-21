@@ -1,12 +1,12 @@
 Route29_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x1a0f59, $0000
 	dw UnknownScript_0x1a0f5a, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -35,7 +35,7 @@ TuscanyCallback:
 
 UnknownScript_0x1a0f6d:
 	spriteface $2, UP
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1a108d
 	spriteface $0, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
@@ -60,7 +60,7 @@ UnknownScript_0x1a0f6d:
 
 UnknownScript_0x1a0fa3:
 	spriteface $2, UP
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1a1094
 	spriteface $0, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
@@ -414,27 +414,27 @@ Route29_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $1, $1b, 3, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $8, $35, $0, UnknownScript_0x1a0f6d, $0, $0
 	xy_trigger 1, $9, $35, $0, UnknownScript_0x1a0fa3, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 51, $0, MapRoute29Signpost0Script
-	signpost 5, 3, $0, MapRoute29Signpost1Script
+	signpost 7, 51, SIGNPOST_READ, MapRoute29Signpost0Script
+	signpost 5, 3, SIGNPOST_READ, MapRoute29Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 16, 54, $3, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a0ff1, -1
-	person_event SPRITE_YOUNGSTER, 20, 31, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x1a1028, -1
-	person_event SPRITE_TEACHER, 15, 19, $5, $1, 255, 255, $a0, 0, TeacherScript_0x1a102b, -1
-	person_event SPRITE_FRUIT_TREE, 6, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1089, -1
-	person_event SPRITE_FISHER, 7, 29, $7, $0, 255, 255, $90, 0, FisherScript_0x1a102e, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 17, $6, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a1031, -1
-	person_event SPRITE_TEACHER, 16, 33, $3, $0, 255, 255, $0, 0, TuscanyScript, EVENT_759
-	person_event SPRITE_POKE_BALL, 6, 52, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a108b, EVENT_6AD
+	person_event SPRITE_COOLTRAINER_M, 16, 54, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x1a0ff1, -1
+	person_event SPRITE_YOUNGSTER, 20, 31, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a1028, -1
+	person_event SPRITE_TEACHER, 15, 19, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x1a102b, -1
+	person_event SPRITE_FRUIT_TREE, 6, 16, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a1089, -1
+	person_event SPRITE_FISHER, 7, 29, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x1a102e, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 17, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x1a1031, -1
+	person_event SPRITE_TEACHER, 16, 33, OW_DOWN | $3, $0, -1, -1, $0, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
+	person_event SPRITE_POKE_BALL, 6, 52, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a108b, EVENT_ROUTE_29_POTION

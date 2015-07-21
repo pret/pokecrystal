@@ -1,8 +1,8 @@
 ViridianNicknameSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PokefanMScript_0x9ae3a:
@@ -59,20 +59,20 @@ ViridianNicknameSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
 	warp_def $7, $3, 2, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 8, 6, $9, $0, 255, 255, $80, 0, PokefanMScript_0x9ae3a, -1
-	person_event SPRITE_LASS, 8, 9, $7, $0, 255, 255, $a0, 0, LassScript_0x9ae3d, -1
-	person_event SPRITE_MOLTRES, 6, 9, $16, $2, 255, 255, $b0, 0, MoltresScript_0x9ae40, -1
-	person_event SPRITE_GROWLITHE, 7, 10, $16, $2, 255, 255, $90, 0, GrowlitheScript_0x9ae4a, -1
+	person_event SPRITE_POKEFAN_M, 8, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x9ae3a, -1
+	person_event SPRITE_LASS, 8, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x9ae3d, -1
+	person_event SPRITE_MOLTRES, 6, 9, OW_UP | $12, $2, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MoltresScript_0x9ae40, -1
+	person_event SPRITE_GROWLITHE, 7, 10, OW_UP | $12, $2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrowlitheScript_0x9ae4a, -1

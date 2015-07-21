@@ -1,41 +1,25 @@
 Route33_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 LassScript_0x1ac002:
 	jumptextfaceplayer UnknownText_0x1ac1e7
 
 TrainerHikerAnthony:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_ANTHONY
-
-	; trainer group && trainer id
-	db HIKER, ANTHONY2
-
-	; text when seen
-	dw HikerAnthony2SeenText
-
-	; text when trainer beaten
-	dw HikerAnthony2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerAnthony2Script
+	trainer EVENT_BEAT_HIKER_ANTHONY, HIKER, ANTHONY2, HikerAnthony2SeenText, HikerAnthony2BeatenText, $0000, HikerAnthony2Script
 
 HikerAnthony2Script:
-	writecode VAR_CALLERID, $13
+	writecode VAR_CALLERID, PHONE_HIKER_ANTHONY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_ANTHONY
 	iftrue UnknownScript_0x1ac051
 	checkflag ENGINE_DUNSPARCE_SWARM
 	iftrue UnknownScript_0x1ac0c5
-	checkcellnum $13
+	checkcellnum PHONE_HIKER_ANTHONY
 	iftrue UnknownScript_0x1ac0d7
 	checkevent EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1ac03a
@@ -48,7 +32,7 @@ HikerAnthony2Script:
 UnknownScript_0x1ac03a:
 	scall UnknownScript_0x1ac0cf
 UnknownScript_0x1ac03d:
-	askforphonenumber $13
+	askforphonenumber PHONE_HIKER_ANTHONY
 	if_equal $1, UnknownScript_0x1ac0df
 	if_equal $2, UnknownScript_0x1ac0db
 	trainertotext HIKER, ANTHONY2, $0
@@ -209,19 +193,19 @@ Route33_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $9, $b, 3, GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 11, 11, $0, MapRoute33Signpost0Script
+	signpost 11, 11, SIGNPOST_READ, MapRoute33Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 17, 10, $a, $0, 255, 255, $b2, 2, TrainerHikerAnthony, -1
-	person_event SPRITE_LASS, 20, 17, $2, $11, 255, 255, $90, 0, LassScript_0x1ac002, -1
-	person_event SPRITE_FRUIT_TREE, 20, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac0ea, -1
+	person_event SPRITE_POKEFAN_M, 17, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerAnthony, -1
+	person_event SPRITE_LASS, 20, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x1ac002, -1
+	person_event SPRITE_FRUIT_TREE, 20, 18, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1ac0ea, -1

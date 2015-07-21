@@ -1,28 +1,12 @@
 Route8_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBikerDwayne:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_DWAYNE
-
-	; trainer group && trainer id
-	db BIKER, DWAYNE
-
-	; text when seen
-	dw BikerDwayneSeenText
-
-	; text when trainer beaten
-	dw BikerDwayneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerDwayneScript
+	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, $0000, BikerDwayneScript
 
 BikerDwayneScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ BikerDwayneScript:
 	end
 
 TrainerBikerHarris:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_HARRIS
-
-	; trainer group && trainer id
-	db BIKER, HARRIS
-
-	; text when seen
-	dw BikerHarrisSeenText
-
-	; text when trainer beaten
-	dw BikerHarrisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerHarrisScript
+	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, $0000, BikerHarrisScript
 
 BikerHarrisScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ BikerHarrisScript:
 	end
 
 TrainerBikerZeke:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_ZEKE
-
-	; trainer group && trainer id
-	db BIKER, ZEKE
-
-	; text when seen
-	dw BikerZekeSeenText
-
-	; text when trainer beaten
-	dw BikerZekeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerZekeScript
+	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, $0000, BikerZekeScript
 
 BikerZekeScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ BikerZekeScript:
 	end
 
 TrainerSupernerdSam:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_SAM
-
-	; trainer group && trainer id
-	db SUPER_NERD, SAM
-
-	; text when seen
-	dw SupernerdSamSeenText
-
-	; text when trainer beaten
-	dw SupernerdSamBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdSamScript
+	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, $0000, SupernerdSamScript
 
 SupernerdSamScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ SupernerdSamScript:
 	end
 
 TrainerSupernerdTom:
-	; bit/flag number
-	dw EVENT_BEAT_SUPER_NERD_TOM
-
-	; trainer group && trainer id
-	db SUPER_NERD, TOM
-
-	; text when seen
-	dw SupernerdTomSeenText
-
-	; text when trainer beaten
-	dw SupernerdTomBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdTomScript
+	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, $0000, SupernerdTomScript
 
 SupernerdTomScript:
 	talkaftercancel
@@ -248,24 +168,24 @@ Route8_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $4, $4, 3, GROUP_ROUTE_8_SAFFRON_GATE, MAP_ROUTE_8_SAFFRON_GATE
 	warp_def $5, $4, 4, GROUP_ROUTE_8_SAFFRON_GATE, MAP_ROUTE_8_SAFFRON_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 11, $0, MapRoute8Signpost0Script
-	signpost 5, 10, $0, MapRoute8Signpost1Script
+	signpost 7, 11, SIGNPOST_READ, MapRoute8Signpost0Script
+	signpost 5, 10, SIGNPOST_READ, MapRoute8Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_BIKER, 12, 14, $8, $0, 255, 255, $82, 5, TrainerBikerDwayne, -1
-	person_event SPRITE_BIKER, 13, 14, $8, $0, 255, 255, $a2, 5, TrainerBikerHarris, -1
-	person_event SPRITE_BIKER, 14, 14, $8, $0, 255, 255, $92, 5, TrainerBikerZeke, -1
-	person_event SPRITE_SUPER_NERD, 6, 27, $6, $0, 255, 255, $b2, 3, TrainerSupernerdSam, -1
-	person_event SPRITE_SUPER_NERD, 16, 35, $a, $0, 255, 255, $b2, 4, TrainerSupernerdTom, -1
-	person_event SPRITE_FRUIT_TREE, 9, 37, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x6c06c, -1
+	person_event SPRITE_BIKER, 12, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerBikerDwayne, -1
+	person_event SPRITE_BIKER, 13, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerBikerHarris, -1
+	person_event SPRITE_BIKER, 14, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerBikerZeke, -1
+	person_event SPRITE_SUPER_NERD, 6, 27, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerSupernerdSam, -1
+	person_event SPRITE_SUPER_NERD, 16, 35, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerSupernerdTom, -1
+	person_event SPRITE_FRUIT_TREE, 9, 37, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x6c06c, -1

@@ -1,8 +1,8 @@
 Route20_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -14,23 +14,7 @@ Route20_MapScriptHeader:
 	return
 
 TrainerSwimmerfNicole:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_NICOLE
-
-	; trainer group && trainer id
-	db SWIMMERF, NICOLE
-
-	; text when seen
-	dw SwimmerfNicoleSeenText
-
-	; text when trainer beaten
-	dw SwimmerfNicoleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfNicoleScript
+	trainer EVENT_BEAT_SWIMMERF_NICOLE, SWIMMERF, NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, $0000, SwimmerfNicoleScript
 
 SwimmerfNicoleScript:
 	talkaftercancel
@@ -41,23 +25,7 @@ SwimmerfNicoleScript:
 	end
 
 TrainerSwimmerfLori:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_LORI
-
-	; trainer group && trainer id
-	db SWIMMERF, LORI
-
-	; text when seen
-	dw SwimmerfLoriSeenText
-
-	; text when trainer beaten
-	dw SwimmerfLoriBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfLoriScript
+	trainer EVENT_BEAT_SWIMMERF_LORI, SWIMMERF, LORI, SwimmerfLoriSeenText, SwimmerfLoriBeatenText, $0000, SwimmerfLoriScript
 
 SwimmerfLoriScript:
 	talkaftercancel
@@ -68,23 +36,7 @@ SwimmerfLoriScript:
 	end
 
 TrainerSwimmermCameron:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_CAMERON
-
-	; trainer group && trainer id
-	db SWIMMERM, CAMERON
-
-	; text when seen
-	dw SwimmermCameronSeenText
-
-	; text when trainer beaten
-	dw SwimmermCameronBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermCameronScript
+	trainer EVENT_BEAT_SWIMMERM_CAMERON, SWIMMERM, CAMERON, SwimmermCameronSeenText, SwimmermCameronBeatenText, $0000, SwimmermCameronScript
 
 SwimmermCameronScript:
 	talkaftercancel
@@ -162,19 +114,19 @@ Route20_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $7, $26, 1, GROUP_SEAFOAM_GYM, MAP_SEAFOAM_GYM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 11, 37, $0, MapRoute20Signpost0Script
+	signpost 11, 37, SIGNPOST_READ, MapRoute20Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 12, 56, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNicole, -1
-	person_event SPRITE_SWIMMER_GIRL, 17, 49, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfLori, -1
-	person_event SPRITE_SWIMMER_GUY, 17, 16, $a, $0, 255, 255, $82, 3, TrainerSwimmermCameron, -1
+	person_event SPRITE_SWIMMER_GIRL, 12, 56, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfNicole, -1
+	person_event SPRITE_SWIMMER_GIRL, 17, 49, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfLori, -1
+	person_event SPRITE_SWIMMER_GUY, 17, 16, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermCameron, -1

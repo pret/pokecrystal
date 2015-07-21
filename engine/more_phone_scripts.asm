@@ -1476,7 +1476,7 @@ UnknownScript_0xa0a08:
 	iftrue UnknownScript_0xa0a1d
 	checknite
 	iftrue UnknownScript_0xa0a25
-	setevent EVENT_26A
+	setevent EVENT_KENJI_ON_BREAK
 	farwritetext UnknownText_0x66f11
 	keeptextopen
 	jump UnknownScript_0xa0484
@@ -1656,5 +1656,5 @@ UnknownScript_0xa0b04:
 UnknownScript_0xa0b09:
 	farwritetext UnknownText_0x174000
 	clearflag ENGINE_BIKE_SHOP_CALL_ENABLED
-	specialphonecall $0000
+	specialphonecall ELMCALL_NONE
 	end

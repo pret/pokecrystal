@@ -110,8 +110,9 @@ Functiond00a3: ; d00a3
 	ld c, e
 	ld b, 0
 	ld hl, PokeAnims
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -507,8 +508,9 @@ Functiond02f8: ; d02f8
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [w2_d174]
 	call GetFarHalfword
 	ld a, l
@@ -530,8 +532,9 @@ Functiond031b: ; d031b
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [w2_d177]
 	call GetFarHalfword
 	ld a, [w2_d177]
@@ -948,8 +951,9 @@ Functiond055c: ; d055c
 	dec a
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, c
 	ld [w2_d174], a
 	call GetFarHalfword
@@ -1018,8 +1022,9 @@ Functiond05ce: ; d05ce
 	dec a
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, b
 	call GetFarHalfword
 	ld a, l
@@ -1057,8 +1062,9 @@ Functiond061b: ; d061b
 	dec a
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [w2_d17a]
 	call GetFarHalfword
 	ld a, l

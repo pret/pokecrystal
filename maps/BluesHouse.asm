@@ -1,8 +1,8 @@
 BluesHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 DaisyScript_0x19b0d0:
@@ -30,10 +30,10 @@ UnknownScript_0x19b0de:
 	writetext UnknownText_0x19b266
 	closetext
 	loadmovesprites
-	special Function8c084
+	special FadeBlackBGMap
 	playmusic MUSIC_HEAL
 	pause 60
-	special Function8c079
+	special FadeInBGMap
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x19b296
@@ -145,17 +145,17 @@ BluesHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 	warp_def $7, $3, 2, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_DAISY, 7, 6, $3, $0, 255, 255, $0, 0, DaisyScript_0x19b0d0, -1
+	person_event SPRITE_DAISY, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, DaisyScript_0x19b0d0, -1

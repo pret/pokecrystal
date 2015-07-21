@@ -61,8 +61,9 @@ Functionc804a: ; c804a (32:404a)
 	ld e, [hl]
 	ld d, 0
 	ld hl, BattleBGEffects
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -708,9 +709,9 @@ Functionc83fa: ; c83fa (32:43fa)
 	ld l, a
 	ld a, [BattleAnimTemps + 2]
 	ld h, a
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hl]
 	cp $ff
 	jr z, Functionc8434
@@ -756,8 +757,9 @@ Functionc843b: ; c843b (32:443b)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Unknown_c849c
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -771,9 +773,9 @@ Functionc8458: ; c8458 (32:4458)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Unknown_c84a8
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld b, a
 	and $f
@@ -793,8 +795,9 @@ Functionc8458: ; c8458 (32:4458)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Unknown_c849c
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1012,8 +1015,9 @@ Functionc85ce: ; c85ce (32:45ce)
 	ld a, [hl]
 	cp $20
 	jr nc, .asm_c85fc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	call Functionc8f9a
 	ret
 .asm_c85fc
@@ -1388,8 +1392,9 @@ Functionc87de: ; c87de (32:47de)
 	call Functionc901b
 	ld hl, $2
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ret
 
 Functionc8801: ; c8801 (32:4801)
@@ -1792,8 +1797,9 @@ Functionc8a14: ; c8a14 (32:4a14)
 	call Functionc901b
 	ld hl, $3
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ret
 
 Functionc8a36: ; c8a36 (32:4a36)
@@ -1877,8 +1883,9 @@ Functionc8a9a: ; c8a9a (32:4a9a)
 	ld h, $d2
 .asm_c8aa5
 	ld [hl], e
+rept 2
 	inc hl
-	inc hl
+endr
 	dec a
 	jr nz, .asm_c8aa5
 	ret

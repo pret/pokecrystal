@@ -1,12 +1,12 @@
 Route36_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x19400d, $0000
 	dw UnknownScript_0x19400e, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -30,7 +30,7 @@ ArthurCallback:
 	return
 
 UnknownScript_0x19401b:
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface $0, UP
@@ -76,7 +76,7 @@ WateredWeirdTreeScript::
 	setevent EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b
 	disappear $4
-	variablesprite $4, $26
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	returnafterbattle
 	end
 
@@ -88,21 +88,21 @@ UnknownScript_0x19407b:
 	returnafterbattle
 	applymovement $4, MovementData_0x19424b
 	disappear $4
-	variablesprite $4, $26
-	special Function14209
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
+	special RunCallback_04
 	special Function14168
 	end
 
 LassScript_0x19408c:
 	faceplayer
 	loadfont
-	checkevent EVENT_0BA
+	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
 	iftrue UnknownScript_0x1940b3
 	setevent EVENT_MET_FLORIA
 	writetext UnknownText_0x1942f1
 	closetext
 	loadmovesprites
-	clearevent EVENT_768
+	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x1940ac
 	applymovement $9, MovementData_0x19424e
@@ -162,33 +162,17 @@ UnknownScript_0x1940ee:
 	end
 
 TrainerSchoolboyAlan1:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_ALAN
-
-	; trainer group && trainer id
-	db SCHOOLBOY, ALAN1
-
-	; text when seen
-	dw SchoolboyAlan1SeenText
-
-	; text when trainer beaten
-	dw SchoolboyAlan1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyAlan1Script
+	trainer EVENT_BEAT_SCHOOLBOY_ALAN, SCHOOLBOY, ALAN1, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, $0000, SchoolboyAlan1Script
 
 SchoolboyAlan1Script:
-	writecode VAR_CALLERID, $18
+	writecode VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_ALAN
 	iftrue UnknownScript_0x194140
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
 	iftrue UnknownScript_0x1941b4
-	checkcellnum $18
+	checkcellnum PHONE_SCHOOLBOY_ALAN
 	iftrue UnknownScript_0x1941d5
 	checkevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x194129
@@ -201,7 +185,7 @@ SchoolboyAlan1Script:
 UnknownScript_0x194129:
 	scall UnknownScript_0x1941cd
 UnknownScript_0x19412c:
-	askforphonenumber $18
+	askforphonenumber PHONE_SCHOOLBOY_ALAN
 	if_equal $1, UnknownScript_0x1941dd
 	if_equal $2, UnknownScript_0x1941d9
 	trainertotext SCHOOLBOY, ALAN1, $0
@@ -273,7 +257,7 @@ UnknownScript_0x1941b4:
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1941c6
 	clearflag ENGINE_ALAN_HAS_FIRE_STONE
-	setevent EVENT_101
+	setevent EVENT_ALAN_GAVE_FIRE_STONE
 	jump UnknownScript_0x1941d5
 
 UnknownScript_0x1941c6:
@@ -316,23 +300,7 @@ UnknownScript_0x1941e9:
 	end
 
 TrainerPsychicMark:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_MARK
-
-	; trainer group && trainer id
-	db PSYCHIC_T, MARK
-
-	; text when seen
-	dw PsychicMarkSeenText
-
-	; text when trainer beaten
-	dw PsychicMarkBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicMarkScript
+	trainer EVENT_BEAT_PSYCHIC_MARK, PSYCHIC_T, MARK, PsychicMarkSeenText, PsychicMarkBeatenText, $0000, PsychicMarkScript
 
 PsychicMarkScript:
 	talkaftercancel
@@ -690,33 +658,33 @@ Route36_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $8, $12, 3, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $9, $12, 4, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $d, $2f, 1, GROUP_ROUTE_36_RUINS_OF_ALPH_GATE, MAP_ROUTE_36_RUINS_OF_ALPH_GATE
 	warp_def $d, $30, 2, GROUP_ROUTE_36_RUINS_OF_ALPH_GATE, MAP_ROUTE_36_RUINS_OF_ALPH_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $7, $14, $0, UnknownScript_0x19401b, $0, $0
 	xy_trigger 1, $7, $16, $0, UnknownScript_0x19401b, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 1, 29, $0, MapRoute36Signpost0Script
-	signpost 11, 45, $0, MapRoute36Signpost1Script
-	signpost 7, 55, $0, MapRoute36Signpost2Script
-	signpost 7, 21, $0, MapRoute36Signpost3Script
+	signpost 1, 29, SIGNPOST_READ, MapRoute36Signpost0Script
+	signpost 11, 45, SIGNPOST_READ, MapRoute36Signpost1Script
+	signpost 7, 55, SIGNPOST_READ, MapRoute36Signpost2Script
+	signpost 7, 21, SIGNPOST_READ, MapRoute36Signpost3Script
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_YOUNGSTER, 17, 24, $9, $0, 255, 255, $92, 3, TrainerPsychicMark, -1
-	person_event SPRITE_YOUNGSTER, 18, 35, $8, $0, 255, 255, $92, 5, TrainerSchoolboyAlan1, -1
-	person_event SPRITE_WEIRD_TREE, 13, 39, $17, $0, 255, 255, $0, 0, WeirdTreeScript_0x19403c, EVENT_6F8
-	person_event SPRITE_LASS, 12, 55, $5, $2, 255, 255, $0, 0, LassScript_0x1940e0, -1
-	person_event SPRITE_FISHER, 13, 48, $8, $0, 255, 255, $0, 0, FisherScript_0x1940b9, -1
-	person_event SPRITE_FRUIT_TREE, 8, 25, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194247, -1
-	person_event SPRITE_YOUNGSTER, 10, 50, $2, $11, 255, 255, $0, 0, ArthurScript, EVENT_75A
-	person_event SPRITE_LASS, 16, 37, $6, $0, 255, 255, $90, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
-	person_event SPRITE_SUICUNE, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36
+	person_event SPRITE_YOUNGSTER, 17, 24, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicMark, -1
+	person_event SPRITE_YOUNGSTER, 18, 35, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSchoolboyAlan1, -1
+	person_event SPRITE_WEIRD_TREE, 13, 39, OW_UP | $13, $0, -1, -1, $0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
+	person_event SPRITE_LASS, 12, 55, OW_UP | $1, $2, -1, -1, $0, 0, LassScript_0x1940e0, -1
+	person_event SPRITE_FISHER, 13, 48, OW_LEFT | $0, $0, -1, -1, $0, 0, FisherScript_0x1940b9, -1
+	person_event SPRITE_FRUIT_TREE, 8, 25, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x194247, -1
+	person_event SPRITE_YOUNGSTER, 10, 50, OW_DOWN | $2, $11, -1, -1, $0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
+	person_event SPRITE_LASS, 16, 37, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
+	person_event SPRITE_SUICUNE, 10, 25, OW_DOWN | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36

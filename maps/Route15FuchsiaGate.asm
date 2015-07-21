@@ -1,8 +1,8 @@
 Route15FuchsiaGate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 OfficerScript_0x19679e:
@@ -20,19 +20,19 @@ Route15FuchsiaGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $4, $0, 8, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $5, $0, 9, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $4, $9, 1, GROUP_ROUTE_15, MAP_ROUTE_15
 	warp_def $5, $9, 2, GROUP_ROUTE_15, MAP_ROUTE_15
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x19679e, -1
+	person_event SPRITE_OFFICER, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x19679e, -1

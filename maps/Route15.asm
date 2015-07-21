@@ -1,28 +1,12 @@
 Route15_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerTeacherColette:
-	; bit/flag number
-	dw EVENT_BEAT_TEACHER_COLETTE
-
-	; trainer group && trainer id
-	db TEACHER, COLETTE
-
-	; text when seen
-	dw TeacherColetteSeenText
-
-	; text when trainer beaten
-	dw TeacherColetteBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TeacherColetteScript
+	trainer EVENT_BEAT_TEACHER_COLETTE, TEACHER, COLETTE, TeacherColetteSeenText, TeacherColetteBeatenText, $0000, TeacherColetteScript
 
 TeacherColetteScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ TeacherColetteScript:
 	end
 
 TrainerTeacherHillary:
-	; bit/flag number
-	dw EVENT_BEAT_TEACHER_HILLARY
-
-	; trainer group && trainer id
-	db TEACHER, HILLARY
-
-	; text when seen
-	dw TeacherHillarySeenText
-
-	; text when trainer beaten
-	dw TeacherHillaryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TeacherHillaryScript
+	trainer EVENT_BEAT_TEACHER_HILLARY, TEACHER, HILLARY, TeacherHillarySeenText, TeacherHillaryBeatenText, $0000, TeacherHillaryScript
 
 TeacherHillaryScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ TeacherHillaryScript:
 	end
 
 TrainerSchoolboyKipp:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_KIP
-
-	; trainer group && trainer id
-	db SCHOOLBOY, KIPP
-
-	; text when seen
-	dw SchoolboyKippSeenText
-
-	; text when trainer beaten
-	dw SchoolboyKippBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyKippScript
+	trainer EVENT_BEAT_SCHOOLBOY_KIP, SCHOOLBOY, KIPP, SchoolboyKippSeenText, SchoolboyKippBeatenText, $0000, SchoolboyKippScript
 
 SchoolboyKippScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ SchoolboyKippScript:
 	end
 
 TrainerSchoolboyTommy:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_TOMMY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, TOMMY
-
-	; text when seen
-	dw SchoolboyTommySeenText
-
-	; text when trainer beaten
-	dw SchoolboyTommyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyTommyScript
+	trainer EVENT_BEAT_SCHOOLBOY_TOMMY, SCHOOLBOY, TOMMY, SchoolboyTommySeenText, SchoolboyTommyBeatenText, $0000, SchoolboyTommyScript
 
 SchoolboyTommyScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ SchoolboyTommyScript:
 	end
 
 TrainerSchoolboyJohnny:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_JOHNNY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, JOHNNY
-
-	; text when seen
-	dw SchoolboyJohnnySeenText
-
-	; text when trainer beaten
-	dw SchoolboyJohnnyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyJohnnyScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOHNNY, SCHOOLBOY, JOHNNY, SchoolboyJohnnySeenText, SchoolboyJohnnyBeatenText, $0000, SchoolboyJohnnyScript
 
 SchoolboyJohnnyScript:
 	talkaftercancel
@@ -141,23 +61,7 @@ SchoolboyJohnnyScript:
 	end
 
 TrainerSchoolboyBilly:
-	; bit/flag number
-	dw EVENT_BEAT_SCHOOLBOY_BILLY
-
-	; trainer group && trainer id
-	db SCHOOLBOY, BILLY
-
-	; text when seen
-	dw SchoolboyBillySeenText
-
-	; text when trainer beaten
-	dw SchoolboyBillyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyBillyScript
+	trainer EVENT_BEAT_SCHOOLBOY_BILLY, SCHOOLBOY, BILLY, SchoolboyBillySeenText, SchoolboyBillyBeatenText, $0000, SchoolboyBillyScript
 
 SchoolboyBillyScript:
 	talkaftercancel
@@ -292,24 +196,24 @@ Route15_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $4, $2, 3, GROUP_ROUTE_15_FUCHSIA_GATE, MAP_ROUTE_15_FUCHSIA_GATE
 	warp_def $5, $2, 4, GROUP_ROUTE_15_FUCHSIA_GATE, MAP_ROUTE_15_FUCHSIA_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 9, 19, $0, MapRoute15Signpost0Script
+	signpost 9, 19, SIGNPOST_READ, MapRoute15Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_YOUNGSTER, 14, 14, $9, $0, 255, 255, $92, 4, TrainerSchoolboyKipp, -1
-	person_event SPRITE_YOUNGSTER, 17, 19, $7, $0, 255, 255, $92, 3, TrainerSchoolboyTommy, -1
-	person_event SPRITE_YOUNGSTER, 14, 37, $6, $0, 255, 255, $92, 3, TrainerSchoolboyJohnny, -1
-	person_event SPRITE_YOUNGSTER, 14, 31, $6, $0, 255, 255, $92, 3, TrainerSchoolboyBilly, -1
-	person_event SPRITE_TEACHER, 16, 34, $7, $0, 255, 255, $82, 4, TrainerTeacherColette, -1
-	person_event SPRITE_TEACHER, 14, 24, $a, $0, 255, 255, $82, 3, TrainerTeacherHillary, -1
-	person_event SPRITE_POKE_BALL, 9, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x1aa5e4, EVENT_78A
+	person_event SPRITE_YOUNGSTER, 14, 14, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSchoolboyKipp, -1
+	person_event SPRITE_YOUNGSTER, 17, 19, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyTommy, -1
+	person_event SPRITE_YOUNGSTER, 14, 37, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyJohnny, -1
+	person_event SPRITE_YOUNGSTER, 14, 31, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyBilly, -1
+	person_event SPRITE_TEACHER, 16, 34, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerTeacherColette, -1
+	person_event SPRITE_TEACHER, 14, 24, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerTeacherHillary, -1
+	person_event SPRITE_POKE_BALL, 9, 16, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1aa5e4, EVENT_ROUTE_15_PP_UP

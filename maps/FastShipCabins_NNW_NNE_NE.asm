@@ -1,28 +1,12 @@
 FastShipCabins_NNW_NNE_NE_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerCooltrainermSean:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERM_SEAN
-
-	; trainer group && trainer id
-	db COOLTRAINERM, SEAN
-
-	; text when seen
-	dw CooltrainermSeanSeenText
-
-	; text when trainer beaten
-	dw CooltrainermSeanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermSeanScript
+	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, $0000, CooltrainermSeanScript
 
 CooltrainermSeanScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ CooltrainermSeanScript:
 	end
 
 TrainerCooltrainerfCarol:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_CAROL
-
-	; trainer group && trainer id
-	db COOLTRAINERF, CAROL
-
-	; text when seen
-	dw CooltrainerfCarolSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfCarolBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfCarolScript
+	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, $0000, CooltrainerfCarolScript
 
 CooltrainerfCarolScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ CooltrainerfCarolScript:
 	end
 
 TrainerPokemaniacEthan:
-	; bit/flag number
-	dw EVENT_BEAT_POKEMANIAC_ETHAN
-
-	; trainer group && trainer id
-	db POKEMANIAC, ETHAN
-
-	; text when seen
-	dw PokemaniacEthanSeenText
-
-	; text when trainer beaten
-	dw PokemaniacEthanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokemaniacEthanScript
+	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, $0000, PokemaniacEthanScript
 
 PokemaniacEthanScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ PokemaniacEthanScript:
 	end
 
 TrainerHikerNoland:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_NOLAND
-
-	; trainer group && trainer id
-	db HIKER, NOLAND
-
-	; text when seen
-	dw HikerNolandSeenText
-
-	; text when trainer beaten
-	dw HikerNolandBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerNolandScript
+	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, $0000, HikerNolandScript
 
 HikerNolandScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ HikerNolandScript:
 	end
 
 TrainerGentlemanEdward:
-	; bit/flag number
-	dw EVENT_BEAT_GENTLEMAN_EDWARD
-
-	; trainer group && trainer id
-	db GENTLEMAN, EDWARD
-
-	; text when seen
-	dw GentlemanEdwardSeenText
-
-	; text when trainer beaten
-	dw GentlemanEdwardBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GentlemanEdwardScript
+	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, $0000, GentlemanEdwardScript
 
 GentlemanEdwardScript:
 	talkaftercancel
@@ -141,23 +61,7 @@ GentlemanEdwardScript:
 	end
 
 TrainerBurglarCorey:
-	; bit/flag number
-	dw EVENT_BEAT_BURGLAR_COREY
-
-	; trainer group && trainer id
-	db BURGLAR, COREY
-
-	; text when seen
-	dw BurglarCoreySeenText
-
-	; text when trainer beaten
-	dw BurglarCoreyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BurglarCoreyScript
+	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, $0000, BurglarCoreyScript
 
 BurglarCoreyScript:
 	talkaftercancel
@@ -184,7 +88,7 @@ SailorScript_0x755f1:
 	writetext UnknownText_0x758b1
 	closetext
 	loadmovesprites
-	setevent EVENT_033
+	setevent EVENT_FAST_SHIP_LAZY_SAILOR
 	domaptrigger GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F, $1
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x75629
@@ -357,27 +261,27 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $0, $2, 2, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $c, $2, 3, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $18, $2, 4, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 13, 6, $0, FastShipCabins_NNW_NNE_NETrashcan
-	signpost 19, 7, $0, FastShipCabins_NNW_NNE_NETrashcan
-	signpost 31, 7, $0, FastShipCabins_NNW_NNE_NETrashcan
+	signpost 13, 6, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
+	signpost 19, 7, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
+	signpost 31, 7, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_COOLTRAINER_M, 7, 8, $a, $0, 255, 255, $82, 2, TrainerCooltrainermSean, EVENT_73A
-	person_event SPRITE_COOLTRAINER_F, 9, 5, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfCarol, EVENT_73A
-	person_event SPRITE_SUPER_NERD, 9, 5, $7, $0, 255, 255, $92, 3, TrainerPokemaniacEthan, EVENT_73B
-	person_event SPRITE_POKEFAN_M, 21, 8, $7, $0, 255, 255, $b2, 3, TrainerHikerNoland, EVENT_739
-	person_event SPRITE_SAILOR, 30, 8, $3, $0, 255, 255, $90, 0, SailorScript_0x755f1, EVENT_72D
-	person_event SPRITE_GENTLEMAN, 34, 11, $3, $0, 255, 255, $92, 1, TrainerGentlemanEdward, EVENT_73A
-	person_event SPRITE_PHARMACIST, 34, 6, $7, $0, 255, 255, $a2, 4, TrainerBurglarCorey, EVENT_73B
+	person_event SPRITE_COOLTRAINER_M, 7, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermSean, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_COOLTRAINER_F, 9, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCarol, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_SUPER_NERD, 9, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacEthan, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_POKEFAN_M, 21, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerNoland, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SAILOR, 30, 8, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x755f1, EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
+	person_event SPRITE_GENTLEMAN, 34, 11, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerGentlemanEdward, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_PHARMACIST, 34, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerBurglarCorey, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

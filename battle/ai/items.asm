@@ -193,9 +193,9 @@ AI_TryItem: ; 38105
 	jr z, .has_item
 
 	dec de
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	jr .loop
 
 .has_item
@@ -213,8 +213,9 @@ AI_TryItem: ; 38105
 	pop de
 	pop hl
 
+rept 2
 	inc hl
-	inc hl
+endr
 	jr c, .loop
 
 .used_item

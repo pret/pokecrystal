@@ -1,8 +1,8 @@
 OlivinePortPassage_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PokefanMScript_0x76fac:
@@ -20,7 +20,7 @@ OlivinePortPassage_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $0, $f, 10, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	warp_def $0, $10, 11, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
@@ -28,12 +28,12 @@ OlivinePortPassage_MapEventHeader:
 	warp_def $2, $3, 3, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
 	warp_def $e, $3, 1, GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 5, 21, $8, $0, 255, 255, $0, 0, PokefanMScript_0x76fac, EVENT_733
+	person_event SPRITE_POKEFAN_M, 5, 21, OW_LEFT | $0, $0, -1, -1, $0, 0, PokefanMScript_0x76fac, EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M

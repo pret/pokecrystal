@@ -275,8 +275,9 @@ Music_GoldenrodCity_Ch3: ; eb584
 	vibrato $8, $23
 	notetype $c, $25
 Music_GoldenrodCity_branch_eb58c: ; eb58c
+rept 2
 	callchannel Music_GoldenrodCity_branch_eb5aa
-	callchannel Music_GoldenrodCity_branch_eb5aa
+endr
 	callchannel Music_GoldenrodCity_branch_eb5d2
 	note __, 3
 	octave 3

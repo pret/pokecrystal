@@ -1,28 +1,12 @@
 SproutTower2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerSageNico:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_NICO
-
-	; trainer group && trainer id
-	db SAGE, NICO
-
-	; text when seen
-	dw SageNicoSeenText
-
-	; text when trainer beaten
-	dw SageNicoBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageNicoScript
+	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, $0000, SageNicoScript
 
 SageNicoScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ SageNicoScript:
 	end
 
 TrainerSageEdmond:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_EDMOND
-
-	; trainer group && trainer id
-	db SAGE, EDMOND
-
-	; text when seen
-	dw SageEdmondSeenText
-
-	; text when trainer beaten
-	dw SageEdmondBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageEdmondScript
+	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, $0000, SageEdmondScript
 
 SageEdmondScript:
 	talkaftercancel
@@ -115,22 +83,22 @@ SproutTower2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $4, $6, 3, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
 	warp_def $6, $2, 4, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
 	warp_def $3, $11, 5, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
 	warp_def $e, $a, 1, GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 15, 12, $0, MapSproutTower2FSignpost0Script
+	signpost 15, 12, SIGNPOST_READ, MapSproutTower2FSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_SAGE, 7, 16, $a, $0, 255, 255, $92, 4, TrainerSageNico, -1
-	person_event SPRITE_SAGE, 18, 13, $8, $0, 255, 255, $92, 5, TrainerSageEdmond, -1
-	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x1847a7, EVENT_648
+	person_event SPRITE_SAGE, 7, 16, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSageNico, -1
+	person_event SPRITE_SAGE, 18, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSageEdmond, -1
+	person_event SPRITE_POKE_BALL, 5, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1847a7, EVENT_SPROUT_TOWER2F_X_ACCURACY

@@ -152,8 +152,9 @@ Function114243:: ; 114243
 Function11425c: ; 11425c
 	ld [wdc02], a
 	pop af
+rept 2
 	ld [$ff8c], a
-	ld [$ff8c], a
+endr
 	ld [$4000], a
 	ret
 ; 114268
@@ -427,7 +428,7 @@ Function1143b7: ; 1143b7
 	pop hl
 	push af
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -622,12 +623,13 @@ Function1144c8: ; 1144c8
 
 Function1144d1: ; 1144d1
 	call Function114561
+rept 2
 	dec de
-	dec de
+endr
 	push de
+rept 3
 	inc de
-	inc de
-	inc de
+endr
 	inc hl
 	ld a, [de]
 	ld [hli], a
@@ -673,7 +675,7 @@ Function1144d1: ; 1144d1
 .asm_11451c
 	pop hl
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -690,7 +692,7 @@ Function1144d1: ; 1144d1
 .asm_114537
 	ld hl, wdc06
 	ld a, [hl]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld hl, wdc09
@@ -989,8 +991,9 @@ Function1146a4: ; 1146a4
 	and a
 	jr nz, .asm_1146e8
 .asm_1146da
+rept 2
 	dec bc
-	dec bc
+endr
 	call Function1149cc
 	and a
 	jr nz, .asm_1146e4
@@ -1076,8 +1079,9 @@ Function1146fa: ; 1146fa
 	ld a, [wdc0e]
 	cp $3
 	jr nz, .asm_114773
+rept 2
 	dec bc
-	dec bc
+endr
 
 .asm_114773
 	call Function1149cc
@@ -1255,7 +1259,7 @@ Function114843: ; 114843
 Function114867: ; 114867
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -1283,7 +1287,7 @@ Function114867: ; 114867
 	inc e
 	call z, Function1148b9
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1313,7 +1317,7 @@ Function114867: ; 114867
 
 Function1148b9: ; 1148b9
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -1322,7 +1326,7 @@ Function1148b9: ; 1148b9
 Function1148c2: ; 1148c2
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -1375,7 +1379,7 @@ Function1148c2: ; 1148c2
 	inc e
 	call z, Function114944
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1413,7 +1417,7 @@ Function1148c2: ; 1148c2
 
 Function114944: ; 114944
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -1422,7 +1426,7 @@ Function114944: ; 114944
 Function11494d: ; 11494d
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -1467,7 +1471,7 @@ Function11494d: ; 11494d
 	inc e
 	call z, Function1149c3
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1505,7 +1509,7 @@ Function11494d: ; 11494d
 
 Function1149c3: ; 1149c3
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -1514,7 +1518,7 @@ Function1149c3: ; 1149c3
 Function1149cc: ; 1149cc
 	ld hl, wdc06
 	ld a, [hl]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	push de
@@ -1546,7 +1550,7 @@ Function1149cc: ; 1149cc
 	inc e
 	call z, Function114a0f
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1563,7 +1567,7 @@ Function1149cc: ; 1149cc
 
 Function114a0f: ; 114a0f
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -1861,18 +1865,15 @@ Function114b55: ; 114b55
 .asm_114b8c
 	pop hl
 	xor a
+rept 6
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	jr .asm_114b82
 
 .asm_114b96
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -1922,7 +1923,7 @@ Function114bbc: ; 114bbc
 	jr z, .asm_114bff
 	pop hl
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2030,8 +2031,9 @@ Function114c5e: ; 114c5e
 	inc de
 	cp $3f
 	jr nz, .asm_114c62
+rept 2
 	dec de
-	dec de
+endr
 .asm_114c75
 	ld a, [hli]
 	cp $3f
@@ -2051,8 +2053,9 @@ Function114c5e: ; 114c5e
 	ld a, [hli]
 	cp $3d
 	jr nz, .asm_114c84
+rept 2
 	dec bc
-	dec bc
+endr
 	ld a, l
 	ld [wdc03], a
 	ld a, h
@@ -2141,10 +2144,9 @@ Function114cd9: ; 114cd9
 	call Function114d99
 	pop hl
 	push hl
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, [hld]
 	cp b
 	jr c, .asm_114d2d
@@ -2152,7 +2154,7 @@ Function114cd9: ; 114cd9
 .asm_114d11
 	pop hl
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2317,8 +2319,9 @@ Function114d99: ; 114d99
 	add hl, de
 	ld b, h
 	ld c, l
+rept 2
 	inc bc
-	inc bc
+endr
 	xor a
 	ret
 ; 114df1
@@ -2456,7 +2459,7 @@ Function114e62: ; 114e62
 Function114ea0: ; 114ea0
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2481,7 +2484,7 @@ Function114ea0: ; 114ea0
 	inc e
 	call z, Function114ee0
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2502,7 +2505,7 @@ Function114ea0: ; 114ea0
 
 Function114ee0: ; 114ee0
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -2513,8 +2516,9 @@ Function114ee9: ; 114ee9
 	ld a, b
 	ld [hli], a
 	ld a, c
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -2740,7 +2744,7 @@ Function115020: ; 115020
 	push hl
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2767,7 +2771,7 @@ Function115020: ; 115020
 
 .asm_115046
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2786,7 +2790,7 @@ Function115020: ; 115020
 
 Function115059: ; 115059
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -2912,8 +2916,9 @@ Function1150b3: ; 1150b3
 
 .asm_11510b
 	pop hl
+rept 2
 	dec hl
-	dec hl
+endr
 	push de
 	call Function1158c2
 	pop de
@@ -2952,7 +2957,7 @@ Function1150b3: ; 1150b3
 Function115136: ; 115136
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -2979,7 +2984,7 @@ Function115136: ; 115136
 
 .asm_11515d
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2998,7 +3003,7 @@ Function115136: ; 115136
 
 Function115170: ; 115170
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -3007,7 +3012,7 @@ Function115170: ; 115170
 Function115179: ; 115179
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -3102,7 +3107,7 @@ Function115179: ; 115179
 	inc e
 	call z, Function11520e
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3117,7 +3122,7 @@ Function115179: ; 115179
 
 Function11520e: ; 11520e
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -3127,7 +3132,7 @@ Function115217: ; 115217
 	push hl
 	ld hl, wdc06
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld a, [hli]
@@ -3166,7 +3171,7 @@ Function115217: ; 115217
 
 .asm_115252
 	ld hl, wdc06
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3211,7 +3216,7 @@ Function115217: ; 115217
 
 Function115286: ; 115286
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -3429,8 +3434,9 @@ Function1153b5: ; 1153b5
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -3610,7 +3616,7 @@ Function1153d2: ; 1153d2
 	ld [de], a
 	ld hl, RightOrnament
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -3619,7 +3625,7 @@ Function1153d2: ; 1153d2
 	ld hl, $ddc8
 	call Function115d6a
 	ld hl, RightOrnament
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -3845,7 +3851,7 @@ Function1155d1: ; 1155d1
 
 Function11560a: ; 11560a
 	ld a, [wdc06]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld a, [wdc17]
 	ld [wdc00], a
 	ld [$ff8c], a
@@ -3920,7 +3926,7 @@ Function11560a: ; 11560a
 	inc hl
 	ld [hl], d
 	pop bc
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [$ff8c], a
 	ld [$4000], a
 	ld hl, wdc07
@@ -3942,7 +3948,7 @@ Function11560a: ; 11560a
 	jr nz, .asm_11564d
 
 .asm_1156a9
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [wdc06], a
 	xor a
 	ret
@@ -4285,7 +4291,7 @@ Function11581e: ; 11581e
 	pop hl
 	ld hl, wdc07
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -4294,7 +4300,7 @@ Function11581e: ; 11581e
 	ld hl, PartyMon5Speed
 	call Function115d6a
 	ld hl, wdc07
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -4330,7 +4336,7 @@ Function11581e: ; 11581e
 
 Function1158c2: ; 1158c2
 	ld a, e
-	ld [wdc20], a
+	ld [SwarmFlags], a
 	ld a, d
 	ld [wdc21], a
 	xor a
@@ -4351,7 +4357,7 @@ Function1158c2: ; 1158c2
 	ld l, c
 	ld h, b
 	xor a
-	ld [wdc1f], a
+	ld [WeeklyFlags], a
 
 .asm_1158e5
 	ld b, $3
@@ -4376,7 +4382,7 @@ Function1158c2: ; 1158c2
 	push hl
 	dec hl
 	ld a, c
-	ld [wdc1f], a
+	ld [WeeklyFlags], a
 .asm_115908
 	xor a
 	ld [hld], a
@@ -4388,26 +4394,25 @@ Function1158c2: ; 1158c2
 	ld bc, $0003
 
 .asm_115914
+rept 3
 	dec bc
-	dec bc
-	dec bc
+endr
 	ld a, c
 	ld [wdc19], a
 	ld a, b
 	ld [wdc1a], a
 	push de
 	push hl
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+rept 4
 	inc de
-	inc de
-	inc de
-	inc de
+endr
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -4442,8 +4447,9 @@ Function1158c2: ; 1158c2
 	ld a, $3f
 	and c
 	ld [hld], a
+rept 2
 	dec hl
-	dec hl
+endr
 	pop de
 	ld b, h
 	ld c, l
@@ -4492,15 +4498,16 @@ Function1158c2: ; 1158c2
 	ld a, $a
 	ld [hli], a
 	push hl
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
+rept 2
 	inc bc
-	inc bc
+endr
 	ld a, b
 	ld [hld], a
 	ld [hl], c
@@ -4517,7 +4524,7 @@ Function1158c2: ; 1158c2
 	jp nz, .asm_1158e5
 
 .asm_1159c4
-	ld a, [wdc1f]
+	ld a, [WeeklyFlags]
 	cp $0
 	jr z, .asm_1159d8
 	push hl
@@ -4776,8 +4783,9 @@ Function115b00: ; 115b00
 	ld a, [wdc23]
 	cp $4
 	jr z, .asm_115b43
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_115b43
 
 .asm_115b36
@@ -4847,7 +4855,7 @@ Function115b00: ; 115b00
 	pop hl
 	ld hl, wdc07
 	ld a, [hli]
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
 	ld [$4000], a
 	ld e, [hl]
@@ -4856,7 +4864,7 @@ Function115b00: ; 115b00
 	ld hl, wdc26
 	call Function115d6a
 	ld hl, wdc07
-	ld a, [wdc01]
+	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -4958,8 +4966,9 @@ Function115bc8: ; 115bc8
 	ret
 
 .asm_115c33
+rept 2
 	dec hl
-	dec hl
+endr
 	xor a
 	ld [hl], a
 	ld a, $1
@@ -4984,9 +4993,9 @@ Function115bc8: ; 115bc8
 
 Function115c49: ; 115c49
 	ld a, e
-	ld [wdc1f], a
+	ld [WeeklyFlags], a
 	ld a, d
-	ld [wdc20], a
+	ld [SwarmFlags], a
 	xor a
 	ld [de], a
 	inc de
@@ -5027,10 +5036,9 @@ Function115c49: ; 115c49
 	ld c, a
 	ld a, [wdc1a]
 	ld b, a
+rept 4
 	dec bc
-	dec bc
-	dec bc
-	dec bc
+endr
 .asm_115c8c
 	ld a, [de]
 	cp $d
@@ -5055,16 +5063,16 @@ Function115c49: ; 115c49
 	ld [wdc1a], a
 	push de
 	push hl
-	ld hl, wdc1f
+	ld hl, WeeklyFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+rept 3
 	inc de
-	inc de
-	inc de
+endr
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -5166,9 +5174,9 @@ Function115cfd: ; 115cfd
 .asm_115d38
 	push de
 	push hl
-	ld a, [wdc1f]
+	ld a, [WeeklyFlags]
 	ld l, a
-	ld a, [wdc20]
+	ld a, [SwarmFlags]
 	ld h, a
 	ld e, [hl]
 	inc hl
@@ -5230,7 +5238,7 @@ Function115d6a: ; 115d6a
 
 Function115d77: ; 115d77
 	push bc
-	ld bc, wdc01
+	ld bc, wCurrentMapSignpostCount
 	call Function115d80
 	pop bc
 	ret
@@ -5627,8 +5635,9 @@ Function1161b8: ; 1161b8
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1161c7
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -5919,7 +5928,7 @@ Function11636e: ; 11636e
 	call ByteFill
 	ld a, $90
 	ld [hWY], a
-	call Function1ad2
+	call DrawOnMap
 	pop af
 	ld [rSVBK], a
 	callba Function104061
@@ -5962,7 +5971,7 @@ Function1163c0: ; 1163c0
 	call DelayFrame
 	ld a, $90
 	ld [hWY], a
-	call Function1ad2
+	call DrawOnMap
 	callba Function14157
 	pop af
 	ld [rSVBK], a
@@ -6210,8 +6219,9 @@ Function11659d: ; 11659d
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1165af
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -7726,8 +7736,9 @@ Function117719: ; 117719 (45:7719)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_117728
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -8021,13 +8032,13 @@ Function1178e8: ; 1178e8 (45:78e8)
 	ld a, [wcd4e]
 	and a
 	jr nz, .asm_117939
-	call Function1c07
+	call ExitMenu
 	ld a, $1
 	ld [wcd4f], a
 	jp Function117a0a
 .asm_117939
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	jp Function117a0a
 
 Function117942: ; 117942 (45:7942)
@@ -8055,7 +8066,7 @@ Function117976: ; 117976 (45:7976)
 	ld hl, wcd4e
 	dec [hl]
 	ret nz
-	call Function1c07
+	call ExitMenu
 asm_11797e: ; 11797e (45:797e)
 	ld a, $80
 	ld [wcd49], a
@@ -8078,7 +8089,7 @@ Function1179a7: ; 1179a7 (45:79a7)
 	ld hl, wcd4e
 	dec [hl]
 	ret nz
-	call Function1c07
+	call ExitMenu
 	ld a, $1
 	ld [wcd49], a
 	ret
@@ -8195,8 +8206,9 @@ Function117ae9: ; 0x117ae9
 	ld e, a
 	ld d, $0
 	ld hl, Pointers117af8
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -8285,13 +8297,13 @@ Function117b4f:
 	ld a, [wcf64]
 	and a
 	jr nz, .asm_117ba4 ; 0x117b93 $f
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	jp Function117cdd
 .asm_117ba4
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	ld a, $80
 	ld [wcf63], a
@@ -8395,7 +8407,7 @@ Function117c4a:
 	add hl, de
 	dec c
 	jr nz, .asm_117c71 ; 0x117c7b $f4
-	call Function4b6
+	call FadeToWhite
 	pop af
 	ld [rSVBK], a
 	ld a, $80
@@ -9023,8 +9035,9 @@ Function1184a5: ; 1184a5
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1184b4
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9067,8 +9080,9 @@ Function1184ec: ; 1184ec
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1184fb
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9124,8 +9138,9 @@ Function11854d: ; 11854d
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11855c
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9156,8 +9171,9 @@ Function11857c: ; 11857c
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11858b
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9200,8 +9216,9 @@ Function1185c3: ; 1185c3
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1185d2
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9257,8 +9274,9 @@ Function118624: ; 118624
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_118633
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9304,8 +9322,9 @@ Function118671: ; 118671
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_118680
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9345,8 +9364,9 @@ Function1186b2: ; 1186b2
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1186c1
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9387,8 +9407,9 @@ Function1186f5: ; 1186f5 (46:46f5)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_118704
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9436,8 +9457,9 @@ Function118746: ; 118746
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_118755
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9861,7 +9883,7 @@ Function118982:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	call Function1c17
+	call WriteBackup
 	pop af
 	ld [rSVBK], a
 	ld a, [wcd38]
@@ -9885,7 +9907,7 @@ Function118982:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	call Function1c17
+	call WriteBackup
 	pop af
 	ld [rSVBK], a
 	ld a, $7
@@ -10071,8 +10093,9 @@ Function118b8c: ; 118b8c
 	jr nz, .asm_118b8c
 	dec hl
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ret
 ; 118b9a
 
@@ -10272,8 +10295,9 @@ asm_118e3e
 	ld a, [hld]
 	cp $2f
 	jr nz, .asm_118e3e
+rept 2
 	inc hl
-	inc hl
+endr
 	ld de, wcd85
 	ld c, $4
 .asm_118e4a
@@ -11132,8 +11156,9 @@ Function119413: ; 119413
 	ld c, a
 	ld a, [wd001]
 	ld b, a
+rept 2
 	dec bc
-	dec bc
+endr
 	ld hl, wd002
 	ld a, [hli]
 	ld e, a
@@ -11298,10 +11323,9 @@ Function119471: ; 119471 (46:5471)
 	ld a, $10
 	cp b
 	jr z, .asm_119536
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	jr .asm_11957a
 .asm_119536
 	ld a, [hli]
@@ -11324,8 +11348,9 @@ Function119471: ; 119471 (46:5471)
 .asm_119552
 	inc hl
 .asm_119553
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_11955b
 .asm_119557
 	ld de, $14
@@ -11670,8 +11695,9 @@ Function1196f2: ; 1196f2
 	ld a, [hld]
 	cp $58
 	jr z, .asm_11975b
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, d
 	dec a
 	jr z, .asm_11978e
@@ -12253,8 +12279,9 @@ Function119b6b: ; 119b6b
 	ld a, [de]
 	cp $d
 	jr nz, .asm_119b85
+rept 2
 	inc de
-	inc de
+endr
 .asm_119b93
 	ld a, [de]
 	inc de
@@ -12310,9 +12337,9 @@ Function119b6b: ; 119b6b
 	ld [hld], a
 	dec hl
 	pop de
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, h
 	cp $e0
 	jr c, .asm_119b93
@@ -12792,8 +12819,9 @@ Function119eee: ; 119eee (46:5eee)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_119efd
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -12896,7 +12924,7 @@ Function119f98: ; 119f98
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_119fef
-	call Function1c07
+	call ExitMenu
 	call Function11a63c
 	xor a
 	ld [ScriptVar], a
@@ -12904,7 +12932,7 @@ Function119f98: ; 119f98
 	ld a, [ScriptVar]
 	and a
 	jr z, .asm_119fd4
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	callba Function115dc3
 	ld a, [wcd33]
@@ -12927,8 +12955,8 @@ Function119f98: ; 119f98
 	ret
 
 .asm_119fef
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd45]
 	ld [wcf66], a
@@ -13003,7 +13031,7 @@ Function11a00e: ; 11a00e
 	callba Function117ab4
 	callba Function106462
 	callba Function106464
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	callba Function115d99
 	ld c, $0
@@ -13026,7 +13054,7 @@ Function11a0ca: ; 11a0ca
 	callba Function17d3f6
 	callba Function106462
 	callba Function106464
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	callba Function115d99
 	ld c, $0
@@ -13118,7 +13146,7 @@ Function11a192: ; 11a192
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a1b6
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13128,7 +13156,7 @@ Function11a192: ; 11a192
 	ret
 
 .asm_11a1b6
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd45]
 	ld [wcf66], a
@@ -13259,7 +13287,7 @@ Function11a235: ; 11a235
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a2c4
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd46]
 	cp $0
@@ -13281,7 +13309,7 @@ Function11a235: ; 11a235
 	call PlayClickSFX
 
 .asm_11a2c4
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	and a
 	ret
@@ -13360,7 +13388,7 @@ Function11a33a: ; 11a33a
 	ret
 
 .asm_11a346
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	callba Function115dc3
 	and a
@@ -13404,7 +13432,7 @@ Function11a38d: ; 11a38d
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a3b1
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13414,7 +13442,7 @@ Function11a38d: ; 11a38d
 	ret
 
 .asm_11a3b1
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd45]
 	ld [wcf66], a
@@ -13479,7 +13507,7 @@ Function11a41b: ; 11a41b
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a43f
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13489,7 +13517,7 @@ Function11a41b: ; 11a41b
 	ret
 
 .asm_11a43f
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, $1c
 	ld [wcf66], a
@@ -13550,7 +13578,7 @@ Function11a49e: ; 11a49e
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a4c7
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13562,7 +13590,7 @@ Function11a49e: ; 11a49e
 	ret
 
 .asm_11a4c7
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd46]
 	ld [wcf66], a
@@ -13597,7 +13625,7 @@ Function11a4fe: ; 11a4fe
 	ld a, [wcd44]
 	and a
 	jr nz, .asm_11a522
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	call Function11a63c
 	hlcoord 4, 2
@@ -13607,7 +13635,7 @@ Function11a4fe: ; 11a4fe
 	ret
 
 .asm_11a522
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ld a, [wcd45]
 	ld [wcf66], a
@@ -13636,7 +13664,7 @@ Function11a536: ; 11a536
 	jr z, .asm_11a562
 	call Function11a9f0
 	jr nz, .asm_11a562
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 
 .asm_11a562
@@ -13714,7 +13742,7 @@ Function11a5b9: ; 11a5b9
 	ld c, $12
 	call Function3eea
 	callba Function104061
-	call Function1ad2
+	call DrawOnMap
 	ld c, $0
 	callba Function115e18
 	ld a, $1
@@ -13987,8 +14015,9 @@ Function11a8fa: ; 11a8fa
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11a909
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -14130,7 +14159,7 @@ Function11a9ce: ; 11a9ce
 	callba Function106464
 	call Functiond90
 	callba Function2b5c
-	call Function1ad2
+	call DrawOnMap
 	ret
 ; 11a9f0
 
@@ -14544,7 +14573,7 @@ Function11adc4:
 	call Function11ad8a
 
 .asm_11ae2e
-	call Function1c07
+	call ExitMenu
 	callba Function104061
 	ret
 ; 11ae38
@@ -14649,8 +14678,8 @@ Function11ae98:
 	call Function11ad8a
 
 .asm_11aef7
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	ret
 ; 11af04
@@ -14740,8 +14769,8 @@ Function11af4e:
 	ld [ScriptVar], a
 
 .asm_11afaa
-	call Function1c07
-	call Function1c07
+	call ExitMenu
+	call ExitMenu
 	callba Function104061
 	ret
 ; 11afb7
@@ -14758,8 +14787,9 @@ asm_11afbd:
 	dec a
 	ld c, a
 	ld b, 0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, e
 	ld e, [hl]
 	inc hl
@@ -15229,8 +15259,9 @@ Function11b236: ; 11b236
 Function11b239: ; 11b239
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -15583,8 +15614,9 @@ Function11b46a: ; 11b46a
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11b479
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -15657,8 +15689,9 @@ Function11b483: ; 11b483
 	pop de
 	ld h, d
 	ld l, e
+rept 2
 	dec hl
-	dec hl
+endr
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -15890,8 +15923,9 @@ Function11b65a: ; 11b65a
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11b669
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -16469,7 +16503,7 @@ Unknown_11bb7d:
 
 SECTION "bank47", ROMX, BANK[$47]
 
-Function11c000:: ; 11c000
+StoreText:: ; 11c000
 	ld a, [rSVBK]
 	push af
 	ld a, $3
@@ -16520,8 +16554,9 @@ ENDC
 
 .asm_11c040
 	push af
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -16530,8 +16565,9 @@ ENDC
 	pop af
 	ld c, a
 	ld b, 0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -16920,8 +16956,9 @@ Function11c2ac: ; 11c2ac
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11c2bb
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -17012,10 +17049,12 @@ Function11c346: ; 11c346 (47:4346)
 
 Function11c35f: ; 11c35f (47:435f)
 	ld hl, wcd2f
+rept 2
 	inc [hl]
-	inc [hl]
+endr
+rept 2
 	dec hl
-	dec hl
+endr
 	dec [hl]
 	push af
 	ld de, wcd2d
@@ -17026,10 +17065,12 @@ Function11c35f: ; 11c35f (47:435f)
 
 Function11c373: ; 11c373 (47:4373)
 	ld hl, wcd30
+rept 2
 	inc [hl]
-	inc [hl]
+endr
+rept 2
 	dec hl
-	dec hl
+endr
 	dec [hl]
 	push af
 	ld de, wcd2d
@@ -17672,8 +17713,9 @@ Function11c770: ; 11c770 (47:4770)
 	ld a, [CreditsTimer]
 	ld c, a
 	ld b, 0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hl]
 	ld [wcd28], a
 	jr .asm_11c79f
@@ -17748,8 +17790,9 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	ld a, [wcd22]
 	ld e, a
 	ld d, $0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -17759,8 +17802,9 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	ld a, [wcd26]
 	ld e, a
 	ld d, $0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [wcd26]
 	ld e, a
 .asm_11c831
@@ -17927,8 +17971,9 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	ld c, a
 	ld b, $0
 	ld hl, wcd36
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -17948,8 +17993,9 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	ld a, [wcd22]
 	ld e, a
 	ld d, $0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -17959,12 +18005,14 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	ld a, [wcd26]
 	ld e, a
 	ld d, $0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [wcd25]
 	ld e, a
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -18152,8 +18200,9 @@ Function11ca6a: ; 11ca6a (47:4a6a)
 	ld hl, wcd36
 	ld c, a
 	ld b, $0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld [hl], b
 	inc hl
 	ld [hl], b
@@ -18267,8 +18316,9 @@ Function11cb52: ; 11cb52 (47:4b52)
 .asm_11cb58
 	dec a
 	jr z, .asm_11cb5f
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_11cb58
 .asm_11cb5f
 	ld a, [hli]
@@ -18327,8 +18377,9 @@ Function11cb66: ; 11cb66 (47:4b66)
 .asm_11cbba
 	dec a
 	jr z, .asm_11cbc1
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_11cbba
 .asm_11cbc1
 	ld a, [hli]
@@ -18776,8 +18827,9 @@ Function11cfce: ; 11cfce (47:4fce)
 	ld [hli], a
 	ld a, [de]
 	inc de
+rept 2
 	dec a
-	dec a
+endr
 	jr z, .asm_11cff6
 	ld c, a
 	ld a, $7a
@@ -18793,8 +18845,9 @@ Function11cfce: ; 11cfce (47:4fce)
 	add hl, bc
 	ld a, [de]
 	dec de
+rept 2
 	dec a
-	dec a
+endr
 	jr z, .asm_11d022
 	ld b, a
 .asm_11d005
@@ -18802,8 +18855,9 @@ Function11cfce: ; 11cfce (47:4fce)
 	ld a, $7c
 	ld [hli], a
 	ld a, [de]
+rept 2
 	dec a
-	dec a
+endr
 	jr z, .asm_11d015
 	ld c, a
 	ld a, $7f
@@ -18825,8 +18879,9 @@ Function11cfce: ; 11cfce (47:4fce)
 	ld a, $7d
 	ld [hli], a
 	ld a, [de]
+rept 2
 	dec a
-	dec a
+endr
 	jr z, .asm_11d031
 	ld c, a
 	ld a, $7a
@@ -18888,8 +18943,9 @@ Function11d035: ; 11d035 (47:5035)
 	ld a, [de]
 	cp $2
 	jr z, .asm_11d082
+rept 2
 	dec a
-	dec a
+endr
 .asm_11d078
 	push af
 	ld a, $7a
@@ -18915,8 +18971,9 @@ Function11d035: ; 11d035 (47:5035)
 	cp $2
 	ret z
 	push bc
+rept 2
 	dec a
-	dec a
+endr
 	ld c, a
 	ld b, a
 	ld de, $14
@@ -18952,8 +19009,9 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11d0c7
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -19588,8 +19646,9 @@ Function11d4aa: ; 11d4aa
 	ld hl, $0005
 	add hl, de
 	ld a, [bc]
+rept 2
 	inc bc
-	inc bc
+endr
 	push bc
 .asm_11d4cf
 	push af
@@ -21592,8 +21651,9 @@ Function16c943: ; 16c943
 	call Function16cae8
 
 .asm_16c9e1
+rept 2
 	inc e
-	inc e
+endr
 	ld a, e
 	cp $8
 	jr nz, .asm_16c969
@@ -21694,8 +21754,9 @@ Function16ca11: ; 16ca11
 	call Function16cae8
 
 .asm_16ca88
+rept 2
 	inc e
-	inc e
+endr
 	ld a, e
 	cp $8
 	jr nz, .asm_16ca28
@@ -22149,10 +22210,12 @@ Function16d61d: ; 16d61d
 	pop bc
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	ld a, $7
 .asm_16d630
 	push bc
@@ -22753,8 +22816,9 @@ Function17023a: ; 17023a
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_170249
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -22777,7 +22841,7 @@ Function17024d: ; 17024d
 	ld [wcfc0], a
 	xor a
 	ld [InLinkBattle], a
-	callba Function1060a2
+	callba Mobile_HealParty
 	callba HealParty
 	call Function1702b7
 	call Function170bf7
@@ -22980,8 +23044,9 @@ Function170394: ; 170394
 	ld a, $1
 	ld [hli], a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	jr .asm_1703ff
 
@@ -23009,8 +23074,9 @@ Function170394: ; 170394
 	predef Functione167
 	pop de
 	pop hl
+rept 2
 	dec de
-	dec de
+endr
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -23172,8 +23238,9 @@ Function170510: ; 170510
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_17051f
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -23383,8 +23450,9 @@ Function17064b: ; 17064b
 	ld [hli], a
 	dec c
 	jr nz, .asm_170653
+rept 2
 	inc hl
-	inc hl
+endr
 	dec b
 	jr nz, .asm_170651
 	ret
@@ -23421,8 +23489,9 @@ Function170687: ; 170687
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_170696
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -23522,7 +23591,7 @@ Function170729: ; 170729 (5c:4729)
 	ret
 
 Function170737: ; 170737 (5c:4737)
-	callba Function14dbb
+	callba SaveOptionsSelection
 	ret
 
 Function17073e: ; 17073e (5c:473e)
@@ -23852,13 +23921,13 @@ Function17093c: ; 17093c (5c:493c)
 	pop af
 	dec a
 	jr nz, .asm_17096e
+rept 4
 	dec hl
-	dec hl
-	dec hl
-	dec hl
+endr
 	ld a, $50
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	pop hl
 	ld a, EGG_TICKET
 	ld [CurItem], a
@@ -23908,8 +23977,9 @@ Function1709bb: ; 1709bb (5c:49bb)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1709e7
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -24213,8 +24283,9 @@ Function170c06: ; 170c06
 	inc [hl]
 
 .asm_170c15
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [$a89b]
 	add [hl]
 	ld [hld], a
@@ -24239,8 +24310,9 @@ Function170c06: ; 170c06
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hld]
 	sub c
 	ld c, a
@@ -24464,8 +24536,9 @@ Function171a36: ; 171a36 (5c:5a36)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_171a45
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -24589,9 +24662,9 @@ Function171aec: ; 171aec (5c:5aec)
 .asm_171b34
 	pop hl
 	ld bc, $14
+rept 3
 	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 	pop af
 	dec a
 	jr nz, .asm_171b1b
@@ -24729,7 +24802,7 @@ Function171c2c: ; 171c2c (5c:5c2c)
 	ld hl, wcd4c
 	dec [hl]
 	ret nz
-	call Function1c07
+	call ExitMenu
 	call WhiteBGMap
 	jr asm_171c60
 
@@ -24820,8 +24893,9 @@ Function171ccd: ; 171ccd (5c:5ccd)
 Function171cf0: ; 171cf0 (5c:5cf0)
 	xor a
 	hlcoord 4, 15
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld a, [wcd4b]
 	xor $1
 	ld [wcd4b], a

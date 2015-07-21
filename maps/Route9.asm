@@ -1,28 +1,12 @@
 Route9_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerCamperDean:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_DEAN
-
-	; trainer group && trainer id
-	db CAMPER, DEAN
-
-	; text when seen
-	dw CamperDeanSeenText
-
-	; text when trainer beaten
-	dw CamperDeanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperDeanScript
+	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, $0000, CamperDeanScript
 
 CamperDeanScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ CamperDeanScript:
 	end
 
 TrainerPicnickerHeidi:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_HEIDI
-
-	; trainer group && trainer id
-	db PICNICKER, HEIDI
-
-	; text when seen
-	dw PicnickerHeidiSeenText
-
-	; text when trainer beaten
-	dw PicnickerHeidiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerHeidiScript
+	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, $0000, PicnickerHeidiScript
 
 PicnickerHeidiScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ PicnickerHeidiScript:
 	end
 
 TrainerCamperSid:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_SID
-
-	; trainer group && trainer id
-	db CAMPER, SID
-
-	; text when seen
-	dw CamperSidSeenText
-
-	; text when trainer beaten
-	dw CamperSidBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperSidScript
+	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, $0000, CamperSidScript
 
 CamperSidScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ CamperSidScript:
 	end
 
 TrainerPicnickerEdna:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_EDNA
-
-	; trainer group && trainer id
-	db PICNICKER, EDNA
-
-	; text when seen
-	dw PicnickerEdnaSeenText
-
-	; text when trainer beaten
-	dw PicnickerEdnaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerEdnaScript
+	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, $0000, PicnickerEdnaScript
 
 PicnickerEdnaScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ PicnickerEdnaScript:
 	end
 
 TrainerHikerTim:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_TIM
-
-	; trainer group && trainer id
-	db HIKER, TIM
-
-	; text when seen
-	dw HikerTimSeenText
-
-	; text when trainer beaten
-	dw HikerTimBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerTimScript
+	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, $0000, HikerTimScript
 
 HikerTimScript:
 	talkaftercancel
@@ -141,23 +61,7 @@ HikerTimScript:
 	end
 
 TrainerHikerSidney:
-	; bit/flag number
-	dw EVENT_BEAT_HIKER_SIDNEY
-
-	; trainer group && trainer id
-	db HIKER, SIDNEY
-
-	; text when seen
-	dw HikerSidneySeenText
-
-	; text when trainer beaten
-	dw HikerSidneyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw HikerSidneyScript
+	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, $0000, HikerSidneyScript
 
 HikerSidneyScript:
 	talkaftercancel
@@ -171,8 +75,7 @@ MapRoute9Signpost0Script:
 	jumptext UnknownText_0x1ab2a2
 
 MapRoute9SignpostItem1:
-	dw $00f2
-	db ETHER
+	dwb EVENT_ROUTE_9_HIDDEN_ETHER, ETHER
 	
 
 CamperDeanSeenText:
@@ -299,23 +202,23 @@ Route9_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $f, $30, 1, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 15, $0, MapRoute9Signpost0Script
-	signpost 15, 41, $7, MapRoute9SignpostItem1
+	signpost 7, 15, SIGNPOST_READ, MapRoute9Signpost0Script
+	signpost 15, 41, SIGNPOST_ITEM, MapRoute9SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_YOUNGSTER, 15, 27, $8, $0, 255, 255, $a2, 3, TrainerCamperDean, -1
-	person_event SPRITE_LASS, 12, 43, $a, $0, 255, 255, $a2, 3, TrainerPicnickerHeidi, -1
-	person_event SPRITE_YOUNGSTER, 8, 15, $a, $0, 255, 255, $a2, 5, TrainerCamperSid, -1
-	person_event SPRITE_LASS, 19, 16, $7, $0, 255, 255, $a2, 1, TrainerPicnickerEdna, -1
-	person_event SPRITE_POKEFAN_M, 7, 32, $9, $0, 255, 255, $b2, 2, TrainerHikerTim, -1
-	person_event SPRITE_POKEFAN_M, 19, 40, $9, $0, 255, 255, $b2, 4, TrainerHikerSidney, -1
+	person_event SPRITE_YOUNGSTER, 15, 27, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperDean, -1
+	person_event SPRITE_LASS, 12, 43, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPicnickerHeidi, -1
+	person_event SPRITE_YOUNGSTER, 8, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerCamperSid, -1
+	person_event SPRITE_LASS, 19, 16, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerPicnickerEdna, -1
+	person_event SPRITE_POKEFAN_M, 7, 32, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerTim, -1
+	person_event SPRITE_POKEFAN_M, 19, 40, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerHikerSidney, -1

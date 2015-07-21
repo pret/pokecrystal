@@ -1,8 +1,8 @@
 SilphCo1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ReceptionistScript_0x18abe5:
@@ -55,18 +55,18 @@ SilphCo1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 7, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $3, 7, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 6, 8, $6, $0, 255, 255, $90, 0, ReceptionistScript_0x18abe5, -1
-	person_event SPRITE_OFFICER, 5, 17, $6, $0, 255, 255, $90, 0, OfficerScript_0x18abe8, -1
+	person_event SPRITE_RECEPTIONIST, 6, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ReceptionistScript_0x18abe5, -1
+	person_event SPRITE_OFFICER, 5, 17, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x18abe8, -1

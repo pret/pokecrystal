@@ -1,8 +1,8 @@
 Route31_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -15,37 +15,21 @@ UnknownScript_0x1a543c:
 	return
 
 UnknownScript_0x1a5443:
-	specialphonecall $7
+	specialphonecall MOMCALL_WORRIED
 	return
 
 TrainerBug_catcherWade1:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_WADE
-
-	; trainer group && trainer id
-	db BUG_CATCHER, WADE1
-
-	; text when seen
-	dw Bug_catcherWade1SeenText
-
-	; text when trainer beaten
-	dw Bug_catcherWade1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherWade1Script
+	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, Bug_catcherWade1SeenText, Bug_catcherWade1BeatenText, $0000, Bug_catcherWade1Script
 
 Bug_catcherWade1Script:
-	writecode VAR_CALLERID, $10
+	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_WADE
 	iftrue UnknownScript_0x1a5493
 	checkflag ENGINE_WADE_HAS_ITEM
 	iftrue UnknownScript_0x1a5507
-	checkcellnum $10
+	checkcellnum PHONE_BUG_CATCHER_WADE
 	iftrue UnknownScript_0x1a5558
 	checkevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a547c
@@ -58,7 +42,7 @@ Bug_catcherWade1Script:
 UnknownScript_0x1a547c:
 	scall UnknownScript_0x1a5550
 UnknownScript_0x1a547f:
-	askforphonenumber $10
+	askforphonenumber PHONE_BUG_CATCHER_WADE
 	if_equal $1, UnknownScript_0x1a5560
 	if_equal $2, UnknownScript_0x1a555c
 	trainertotext BUG_CATCHER, WADE1, $0
@@ -252,7 +236,7 @@ UnknownScript_0x1a55c7:
 	end
 
 ReceivedSpearowMailText:
-	db "DARK CAVE leads",$4E
+	db "DARK CAVE leads", $4E
 	db "to another road@"
 
 YoungsterScript_0x1a55ed:
@@ -430,26 +414,26 @@ Route31_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $6, $4, 3, GROUP_ROUTE_31_VIOLET_GATE, MAP_ROUTE_31_VIOLET_GATE
 	warp_def $7, $4, 4, GROUP_ROUTE_31_VIOLET_GATE, MAP_ROUTE_31_VIOLET_GATE
 	warp_def $5, $22, 1, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 5, 7, $0, MapRoute31Signpost0Script
-	signpost 5, 31, $0, MapRoute31Signpost1Script
+	signpost 5, 7, SIGNPOST_READ, MapRoute31Signpost0Script
+	signpost 5, 31, SIGNPOST_READ, MapRoute31Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_FISHER, 11, 21, $6, $0, 255, 255, $0, 0, FisherScript_0x1a5570, -1
-	person_event SPRITE_YOUNGSTER, 9, 13, $2, $11, 255, 255, $0, 0, YoungsterScript_0x1a55ed, -1
-	person_event SPRITE_BUG_CATCHER, 17, 25, $8, $0, 255, 255, $b2, 5, TrainerBug_catcherWade1, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 37, $2, $11, 255, 255, $0, 0, CooltrainerMScript_0x1a55f6, -1
-	person_event SPRITE_FRUIT_TREE, 11, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a55f9, -1
-	person_event SPRITE_POKE_BALL, 9, 33, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a55fb, EVENT_6AE
-	person_event SPRITE_POKE_BALL, 19, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a55fd, EVENT_6AF
+	person_event SPRITE_FISHER, 11, 21, OW_UP | $2, $0, -1, -1, $0, 0, FisherScript_0x1a5570, -1
+	person_event SPRITE_YOUNGSTER, 9, 13, OW_DOWN | $2, $11, -1, -1, $0, 0, YoungsterScript_0x1a55ed, -1
+	person_event SPRITE_BUG_CATCHER, 17, 25, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 5, TrainerBug_catcherWade1, -1
+	person_event SPRITE_COOLTRAINER_M, 12, 37, OW_DOWN | $2, $11, -1, -1, $0, 0, CooltrainerMScript_0x1a55f6, -1
+	person_event SPRITE_FRUIT_TREE, 11, 20, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a55f9, -1
+	person_event SPRITE_POKE_BALL, 9, 33, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
+	person_event SPRITE_POKE_BALL, 19, 23, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL

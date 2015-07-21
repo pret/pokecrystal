@@ -1,8 +1,8 @@
 MahoganyGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PryceScript_0x199a9e:
@@ -62,23 +62,7 @@ MahoganyGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerSkierRoxanne:
-	; bit/flag number
-	dw EVENT_BEAT_SKIER_ROXANNE
-
-	; trainer group && trainer id
-	db SKIER, ROXANNE
-
-	; text when seen
-	dw SkierRoxanneSeenText
-
-	; text when trainer beaten
-	dw SkierRoxanneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SkierRoxanneScript
+	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, $0000, SkierRoxanneScript
 
 SkierRoxanneScript:
 	talkaftercancel
@@ -89,23 +73,7 @@ SkierRoxanneScript:
 	end
 
 TrainerSkierClarissa:
-	; bit/flag number
-	dw EVENT_BEAT_SKIER_CLARISSA
-
-	; trainer group && trainer id
-	db SKIER, CLARISSA
-
-	; text when seen
-	dw SkierClarissaSeenText
-
-	; text when trainer beaten
-	dw SkierClarissaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SkierClarissaScript
+	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, $0000, SkierClarissaScript
 
 SkierClarissaScript:
 	talkaftercancel
@@ -116,23 +84,7 @@ SkierClarissaScript:
 	end
 
 TrainerBoarderRonald:
-	; bit/flag number
-	dw EVENT_BEAT_BOARDER_RONALD
-
-	; trainer group && trainer id
-	db BOARDER, RONALD
-
-	; text when seen
-	dw BoarderRonaldSeenText
-
-	; text when trainer beaten
-	dw BoarderRonaldBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BoarderRonaldScript
+	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, $0000, BoarderRonaldScript
 
 BoarderRonaldScript:
 	talkaftercancel
@@ -143,23 +95,7 @@ BoarderRonaldScript:
 	end
 
 TrainerBoarderBrad:
-	; bit/flag number
-	dw EVENT_BEAT_BOARDER_BRAD
-
-	; trainer group && trainer id
-	db BOARDER, BRAD
-
-	; text when seen
-	dw BoarderBradSeenText
-
-	; text when trainer beaten
-	dw BoarderBradBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BoarderBradScript
+	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, $0000, BoarderBradScript
 
 BoarderBradScript:
 	talkaftercancel
@@ -170,23 +106,7 @@ BoarderBradScript:
 	end
 
 TrainerBoarderDouglas:
-	; bit/flag number
-	dw EVENT_BEAT_BOARDER_DOUGLAS
-
-	; trainer group && trainer id
-	db BOARDER, DOUGLAS
-
-	; text when seen
-	dw BoarderDouglasSeenText
-
-	; text when trainer beaten
-	dw BoarderDouglasBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BoarderDouglasScript
+	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, $0000, BoarderDouglasScript
 
 BoarderDouglasScript:
 	talkaftercancel
@@ -447,25 +367,25 @@ MahoganyGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 3, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
 	warp_def $11, $5, 3, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 15, 3, $0, MahoganyGymStatue
-	signpost 15, 6, $0, MahoganyGymStatue
+	signpost 15, 3, SIGNPOST_READ, MahoganyGymStatue
+	signpost 15, 6, SIGNPOST_READ, MahoganyGymStatue
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_PRYCE, 7, 9, $6, $0, 255, 255, $b0, 0, PryceScript_0x199a9e, -1
-	person_event SPRITE_BUENA, 10, 8, $6, $0, 255, 255, $82, 1, TrainerSkierRoxanne, -1
-	person_event SPRITE_ROCKER, 21, 4, $7, $0, 255, 255, $92, 1, TrainerBoarderRonald, -1
-	person_event SPRITE_BUENA, 21, 13, $7, $0, 255, 255, $82, 1, TrainerSkierClarissa, -1
-	person_event SPRITE_ROCKER, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, -1
-	person_event SPRITE_ROCKER, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, -1
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, -1
+	person_event SPRITE_PRYCE, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PryceScript_0x199a9e, -1
+	person_event SPRITE_BUENA, 10, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerSkierRoxanne, -1
+	person_event SPRITE_ROCKER, 21, 4, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderRonald, -1
+	person_event SPRITE_BUENA, 21, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerSkierClarissa, -1
+	person_event SPRITE_ROCKER, 13, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderBrad, -1
+	person_event SPRITE_ROCKER, 8, 6, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderDouglas, -1
+	person_event SPRITE_GYM_GUY, 19, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MahoganyGymGuyScript, -1

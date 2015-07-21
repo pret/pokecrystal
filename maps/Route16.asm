@@ -1,8 +1,8 @@
 Route16_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -35,7 +35,7 @@ Route16_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $1, $3, 1, GROUP_ROUTE_16_FUCHSIA_SPEECH_HOUSE, MAP_ROUTE_16_FUCHSIA_SPEECH_HOUSE
 	warp_def $6, $e, 3, GROUP_ROUTE_16_GATE, MAP_ROUTE_16_GATE
@@ -43,12 +43,12 @@ Route16_MapEventHeader:
 	warp_def $6, $9, 1, GROUP_ROUTE_16_GATE, MAP_ROUTE_16_GATE
 	warp_def $7, $9, 2, GROUP_ROUTE_16_GATE, MAP_ROUTE_16_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 5, 5, $0, MapRoute16Signpost0Script
+	signpost 5, 5, SIGNPOST_READ, MapRoute16Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 0

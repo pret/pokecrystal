@@ -1,8 +1,8 @@
 OlivineLighthouse6F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 JasmineScript_0x60b91:
@@ -42,9 +42,9 @@ UnknownScript_0x60bab:
 	loadmovesprites
 	special RestartMapMusic
 	cry AMPHAROS
-	special Function8c084
+	special FadeBlackBGMap
 	pause 10
-	special Function8c079
+	special FadeInBGMap
 	loadfont
 	writetext UnknownText_0x60f3d
 	closetext
@@ -63,7 +63,7 @@ UnknownScript_0x60bab:
 	closetext
 	loadmovesprites
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
-	clearevent EVENT_6D3
+	clearevent EVENT_OLIVINE_GYM_JASMINE
 	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x60c17
 	if_equal $3, UnknownScript_0x60c1e
@@ -116,10 +116,10 @@ UnknownScript_0x60c51:
 	cry AMPHAROS
 	closetext
 	loadmovesprites
-	special Function8c084
-	special Function8c079
-	special Function8c084
-	special Function8c079
+	special FadeBlackBGMap
+	special FadeInBGMap
+	special FadeBlackBGMap
+	special FadeInBGMap
 	end
 
 ItemFragment_0x60c66:
@@ -256,20 +256,20 @@ OlivineLighthouse6F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $f, $9, 1, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
 	warp_def $5, $10, 6, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
 	warp_def $5, $11, 7, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_JASMINE, 12, 12, $6, $0, 255, 255, $80, 0, JasmineScript_0x60b91, EVENT_6D2
-	person_event SPRITE_MONSTER, 12, 13, $6, $0, 255, 255, $b0, 0, MonsterScript_0x60c3a, -1
-	person_event SPRITE_POKE_BALL, 8, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x60c66, EVENT_668
+	person_event SPRITE_JASMINE, 12, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, JasmineScript_0x60b91, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
+	person_event SPRITE_MONSTER, 12, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MonsterScript_0x60c3a, -1
+	person_event SPRITE_POKE_BALL, 8, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x60c66, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

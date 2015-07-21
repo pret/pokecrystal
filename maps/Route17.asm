@@ -1,8 +1,8 @@
 Route17_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -15,23 +15,7 @@ UnknownScript_0x1ad0ab:
 	return
 
 TrainerBikerCharles:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_CHARLES
-
-	; trainer group && trainer id
-	db BIKER, CHARLES
-
-	; text when seen
-	dw BikerCharlesSeenText
-
-	; text when trainer beaten
-	dw BikerCharlesBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerCharlesScript
+	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, $0000, BikerCharlesScript
 
 BikerCharlesScript:
 	talkaftercancel
@@ -42,23 +26,7 @@ BikerCharlesScript:
 	end
 
 TrainerBikerRiley:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_RILEY
-
-	; trainer group && trainer id
-	db BIKER, RILEY
-
-	; text when seen
-	dw BikerRileySeenText
-
-	; text when trainer beaten
-	dw BikerRileyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerRileyScript
+	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, $0000, BikerRileyScript
 
 BikerRileyScript:
 	talkaftercancel
@@ -69,23 +37,7 @@ BikerRileyScript:
 	end
 
 TrainerBikerJoel:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_JOEL
-
-	; trainer group && trainer id
-	db BIKER, JOEL
-
-	; text when seen
-	dw BikerJoelSeenText
-
-	; text when trainer beaten
-	dw BikerJoelBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerJoelScript
+	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, $0000, BikerJoelScript
 
 BikerJoelScript:
 	talkaftercancel
@@ -96,23 +48,7 @@ BikerJoelScript:
 	end
 
 TrainerBikerGlenn:
-	; bit/flag number
-	dw EVENT_BEAT_BIKER_GLENN
-
-	; trainer group && trainer id
-	db BIKER, GLENN
-
-	; text when seen
-	dw BikerGlennSeenText
-
-	; text when trainer beaten
-	dw BikerGlennBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BikerGlennScript
+	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, $0000, BikerGlennScript
 
 BikerGlennScript:
 	talkaftercancel
@@ -123,13 +59,11 @@ BikerGlennScript:
 	end
 
 MapRoute17SignpostItem0:
-	dw $00f6
-	db MAX_ETHER
+	dwb EVENT_ROUTE_17_HIDDEN_MAX_ETHER, MAX_ETHER
 	
 
 MapRoute17SignpostItem1:
-	dw $00f7
-	db MAX_ELIXER
+	dwb EVENT_ROUTE_17_HIDDEN_MAX_ELIXER, MAX_ELIXER
 	
 
 BikerRileySeenText:
@@ -201,22 +135,22 @@ Route17_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $52, $11, 1, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
 	warp_def $53, $11, 2, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 54, 9, $7, MapRoute17SignpostItem0
-	signpost 77, 8, $7, MapRoute17SignpostItem1
+	signpost 54, 9, SIGNPOST_ITEM, MapRoute17SignpostItem0
+	signpost 77, 8, SIGNPOST_ITEM, MapRoute17SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_BIKER, 21, 8, $a, $0, 255, 255, $b2, 4, TrainerBikerRiley, -1
-	person_event SPRITE_BIKER, 72, 13, $6, $0, 255, 255, $b2, 1, TrainerBikerJoel, -1
-	person_event SPRITE_BIKER, 57, 7, $a, $0, 255, 255, $b2, 3, TrainerBikerGlenn, -1
-	person_event SPRITE_BIKER, 84, 10, $9, $0, 255, 255, $b2, 4, TrainerBikerCharles, -1
+	person_event SPRITE_BIKER, 21, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerBikerRiley, -1
+	person_event SPRITE_BIKER, 72, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerBikerJoel, -1
+	person_event SPRITE_BIKER, 57, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBikerGlenn, -1
+	person_event SPRITE_BIKER, 84, 10, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerBikerCharles, -1

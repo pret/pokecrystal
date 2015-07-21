@@ -1,5 +1,5 @@
 RadioTower5F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ RadioTower5F_MapScriptHeader:
 	dw UnknownScript_0x6000f, $0000
 	dw UnknownScript_0x60010, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x6000e:
@@ -21,7 +21,7 @@ UnknownScript_0x60010:
 
 UnknownScript_0x60011:
 	spriteface $2, UP
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	loadfont
 	writetext UnknownText_0x60128
 	closetext
@@ -63,23 +63,7 @@ UnknownScript_0x60054:
 	end
 
 TrainerExecutivef1:
-	; bit/flag number
-	dw EVENT_BEAT_ROCKET_EXECUTIVEF_1
-
-	; trainer group && trainer id
-	db EXECUTIVEF, 1
-
-	; text when seen
-	dw Executivef1SeenText
-
-	; text when trainer beaten
-	dw Executivef1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Executivef1Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, 1, Executivef1SeenText, Executivef1BeatenText, $0000, Executivef1Script
 
 Executivef1Script:
 	talkaftercancel
@@ -106,24 +90,24 @@ UnknownScript_0x6006e:
 	writetext UnknownText_0x6050e
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $3
 	disappear $4
 	pause 15
-	special Function8c0ab
+	special Special_FadeInQuickly
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
 	setevent EVENT_CLEARED_RADIO_TOWER
 	clearflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	setevent EVENT_6CC
-	setevent EVENT_6CD
-	setevent EVENT_6CE
-	clearevent EVENT_736
+	setevent EVENT_GOLDENROD_CITY_ROCKET_SCOUT
+	setevent EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
+	setevent EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	clearevent EVENT_MAHOGANY_MART_OWNERS
 	clearflag ENGINE_ROCKETS_IN_MAHOGANY
-	clearevent EVENT_6CF
-	clearevent EVENT_6D0
-	setevent EVENT_6E3
-	clearevent EVENT_6E4
+	clearevent EVENT_GOLDENROD_CITY_CIVILIANS
+	clearevent EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	setevent EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
+	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
 	disappear $2
 	moveperson $2, $c, $0
@@ -140,7 +124,7 @@ UnknownScript_0x6006e:
 	dotrigger $2
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL
-	setevent EVENT_761
+	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump UnknownScript_0x600f1
 
 UnknownScript_0x600f1:
@@ -435,28 +419,28 @@ RadioTower5F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $0, $0, 1, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 	warp_def $0, $c, 3, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $3, $0, $0, UnknownScript_0x60011, $0, $0
 	xy_trigger 1, $5, $10, $0, UnknownScript_0x6006e, $0, $0
 
-	; signposts
+.Signposts:
 	db 5
-	signpost 0, 3, $0, MapRadioTower5FSignpost0Script
-	signpost 0, 11, $0, MapRadioTower5FSignpost2Script
-	signpost 0, 15, $0, MapRadioTower5FSignpost2Script
-	signpost 1, 16, $0, RadioTower5FBookshelf
-	signpost 1, 17, $0, RadioTower5FBookshelf
+	signpost 0, 3, SIGNPOST_READ, MapRadioTower5FSignpost0Script
+	signpost 0, 11, SIGNPOST_READ, MapRadioTower5FSignpost2Script
+	signpost 0, 15, SIGNPOST_READ, MapRadioTower5FSignpost2Script
+	signpost 1, 16, SIGNPOST_READ, RadioTower5FBookshelf
+	signpost 1, 17, SIGNPOST_READ, RadioTower5FBookshelf
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, Director, -1
-	person_event SPRITE_ROCKET, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6CE
-	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, EVENT_6CE
-	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, Ben, EVENT_6D0
-	person_event SPRITE_POKE_BALL, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, EVENT_7CD
+	person_event SPRITE_GENTLEMAN, 10, 7, OW_DOWN | $3, $0, -1, -1, $0, 0, Director, -1
+	person_event SPRITE_ROCKET, 9, 17, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 6, 21, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKER, 9, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_POKE_BALL, 9, 12, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL

@@ -1,8 +1,8 @@
 TinTower4F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ItemFragment_0x185a58:
@@ -15,30 +15,29 @@ ItemFragment_0x185a5c:
 	db ESCAPE_ROPE, 1
 
 MapTinTower4FSignpostItem0:
-	dw $007d
-	db MAX_POTION
+	dwb EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION, MAX_POTION
 	
 
 TinTower4F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $4, $2, 2, GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
 	warp_def $2, $10, 2, GROUP_TIN_TOWER_3F, MAP_TIN_TOWER_3F
 	warp_def $e, $2, 3, GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
 	warp_def $f, $11, 4, GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 6, 11, $7, MapTinTower4FSignpostItem0
+	signpost 6, 11, SIGNPOST_ITEM, MapTinTower4FSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 14, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a58, EVENT_64C
-	person_event SPRITE_POKE_BALL, 18, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a5a, EVENT_64D
-	person_event SPRITE_POKE_BALL, 16, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x185a5c, EVENT_64E
+	person_event SPRITE_POKE_BALL, 14, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a58, EVENT_TIN_TOWER_4F_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 18, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a5a, EVENT_TIN_TOWER_4F_PP_UP
+	person_event SPRITE_POKE_BALL, 16, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a5c, EVENT_TIN_TOWER_4F_ESCAPE_ROPE

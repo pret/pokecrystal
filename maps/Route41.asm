@@ -1,28 +1,12 @@
 Route41_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerSwimmerfKaylee:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_KAYLEE
-
-	; trainer group && trainer id
-	db SWIMMERF, KAYLEE
-
-	; text when seen
-	dw SwimmerfKayleeSeenText
-
-	; text when trainer beaten
-	dw SwimmerfKayleeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfKayleeScript
+	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, $0000, SwimmerfKayleeScript
 
 SwimmerfKayleeScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ SwimmerfKayleeScript:
 	end
 
 TrainerSwimmerfSusie:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_SUSIE
-
-	; trainer group && trainer id
-	db SWIMMERF, SUSIE
-
-	; text when seen
-	dw SwimmerfSusieSeenText
-
-	; text when trainer beaten
-	dw SwimmerfSusieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfSusieScript
+	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, $0000, SwimmerfSusieScript
 
 SwimmerfSusieScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ SwimmerfSusieScript:
 	end
 
 TrainerSwimmerfDenise:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_DENISE
-
-	; trainer group && trainer id
-	db SWIMMERF, DENISE
-
-	; text when seen
-	dw SwimmerfDeniseSeenText
-
-	; text when trainer beaten
-	dw SwimmerfDeniseBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfDeniseScript
+	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, $0000, SwimmerfDeniseScript
 
 SwimmerfDeniseScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ SwimmerfDeniseScript:
 	end
 
 TrainerSwimmerfKara:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_KARA
-
-	; trainer group && trainer id
-	db SWIMMERF, KARA
-
-	; text when seen
-	dw SwimmerfKaraSeenText
-
-	; text when trainer beaten
-	dw SwimmerfKaraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfKaraScript
+	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, $0000, SwimmerfKaraScript
 
 SwimmerfKaraScript:
 	talkaftercancel
@@ -114,23 +50,7 @@ SwimmerfKaraScript:
 	end
 
 TrainerSwimmerfWendy:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERF_WENDY
-
-	; trainer group && trainer id
-	db SWIMMERF, WENDY
-
-	; text when seen
-	dw SwimmerfWendySeenText
-
-	; text when trainer beaten
-	dw SwimmerfWendyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfWendyScript
+	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, $0000, SwimmerfWendyScript
 
 SwimmerfWendyScript:
 	talkaftercancel
@@ -141,23 +61,7 @@ SwimmerfWendyScript:
 	end
 
 TrainerSwimmermCharlie:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_CHARLIE
-
-	; trainer group && trainer id
-	db SWIMMERM, CHARLIE
-
-	; text when seen
-	dw SwimmermCharlieSeenText
-
-	; text when trainer beaten
-	dw SwimmermCharlieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermCharlieScript
+	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, $0000, SwimmermCharlieScript
 
 SwimmermCharlieScript:
 	talkaftercancel
@@ -168,23 +72,7 @@ SwimmermCharlieScript:
 	end
 
 TrainerSwimmermGeorge:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_GEORGE
-
-	; trainer group && trainer id
-	db SWIMMERM, GEORGE
-
-	; text when seen
-	dw SwimmermGeorgeSeenText
-
-	; text when trainer beaten
-	dw SwimmermGeorgeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermGeorgeScript
+	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, $0000, SwimmermGeorgeScript
 
 SwimmermGeorgeScript:
 	talkaftercancel
@@ -195,23 +83,7 @@ SwimmermGeorgeScript:
 	end
 
 TrainerSwimmermBerke:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_BERKE
-
-	; trainer group && trainer id
-	db SWIMMERM, BERKE
-
-	; text when seen
-	dw SwimmermBerkeSeenText
-
-	; text when trainer beaten
-	dw SwimmermBerkeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermBerkeScript
+	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, $0000, SwimmermBerkeScript
 
 SwimmermBerkeScript:
 	talkaftercancel
@@ -222,23 +94,7 @@ SwimmermBerkeScript:
 	end
 
 TrainerSwimmermKirk:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_KIRK
-
-	; trainer group && trainer id
-	db SWIMMERM, KIRK
-
-	; text when seen
-	dw SwimmermKirkSeenText
-
-	; text when trainer beaten
-	dw SwimmermKirkBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermKirkScript
+	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, $0000, SwimmermKirkScript
 
 SwimmermKirkScript:
 	talkaftercancel
@@ -249,23 +105,7 @@ SwimmermKirkScript:
 	end
 
 TrainerSwimmermMathew:
-	; bit/flag number
-	dw EVENT_BEAT_SWIMMERM_MATHEW
-
-	; trainer group && trainer id
-	db SWIMMERM, MATHEW
-
-	; text when seen
-	dw SwimmermMathewSeenText
-
-	; text when trainer beaten
-	dw SwimmermMathewBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermMathewScript
+	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, $0000, SwimmermMathewScript
 
 SwimmermMathewScript:
 	talkaftercancel
@@ -280,8 +120,7 @@ Route41Rock:
 	jumpstd smashrock
 
 MapRoute41SignpostItem0:
-	dw $00ac
-	db MAX_ETHER
+	dwb EVENT_ROUTE_41_HIDDEN_MAX_ETHER, MAX_ETHER
 
 SwimmermCharlieSeenText:
 	text "The water's warm"
@@ -494,29 +333,29 @@ Route41_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $11, $c, 1, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
 	warp_def $13, $24, 1, GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
 	warp_def $25, $c, 1, GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
 	warp_def $2d, $24, 1, GROUP_WHIRL_ISLAND_SE, MAP_WHIRL_ISLAND_SE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 35, 9, $7, MapRoute41SignpostItem0
+	signpost 35, 9, SIGNPOST_ITEM, MapRoute41SignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 10
-	person_event SPRITE_OLIVINE_RIVAL, 10, 36, $a, $0, 255, 255, $82, 3, TrainerSwimmermCharlie, -1
-	person_event SPRITE_OLIVINE_RIVAL, 12, 50, $a, $0, 255, 255, $82, 3, TrainerSwimmermGeorge, -1
-	person_event SPRITE_OLIVINE_RIVAL, 30, 24, $1e, $0, 255, 255, $82, 3, TrainerSwimmermBerke, -1
-	person_event SPRITE_OLIVINE_RIVAL, 34, 36, $1f, $0, 255, 255, $82, 3, TrainerSwimmermKirk, -1
-	person_event SPRITE_OLIVINE_RIVAL, 50, 23, $1e, $0, 255, 255, $82, 3, TrainerSwimmermMathew, -1
-	person_event SPRITE_SWIMMER_GIRL, 8, 21, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfKaylee, -1
-	person_event SPRITE_SWIMMER_GIRL, 23, 27, $7, $0, 255, 255, $a2, 3, TrainerSwimmerfSusie, -1
-	person_event SPRITE_SWIMMER_GIRL, 38, 31, $8, $0, 255, 255, $a2, 3, TrainerSwimmerfDenise, -1
-	person_event SPRITE_SWIMMER_GIRL, 32, 48, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfKara, -1
-	person_event SPRITE_SWIMMER_GIRL, 54, 13, $a, $0, 255, 255, $a2, 2, TrainerSwimmerfWendy, -1
+	person_event SPRITE_OLIVINE_RIVAL, 10, 36, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermCharlie, -1
+	person_event SPRITE_OLIVINE_RIVAL, 12, 50, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermGeorge, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30, 24, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermBerke, -1
+	person_event SPRITE_OLIVINE_RIVAL, 34, 36, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermKirk, -1
+	person_event SPRITE_OLIVINE_RIVAL, 50, 23, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermMathew, -1
+	person_event SPRITE_SWIMMER_GIRL, 8, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfKaylee, -1
+	person_event SPRITE_SWIMMER_GIRL, 23, 27, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfSusie, -1
+	person_event SPRITE_SWIMMER_GIRL, 38, 31, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfDenise, -1
+	person_event SPRITE_SWIMMER_GIRL, 32, 48, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerSwimmerfKara, -1
+	person_event SPRITE_SWIMMER_GIRL, 54, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerSwimmerfWendy, -1

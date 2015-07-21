@@ -45,8 +45,9 @@ HiddenPowerDamage: ; fbced
 
 ; Multiply by 5
 	ld b, a
+rept 2
 	add a
-	add a
+endr
 	add b
 
 ; Add Special & 3
@@ -74,8 +75,9 @@ HiddenPowerDamage: ; fbced
 	ld a, [hl]
 	and 3 << 4
 	swap a
+rept 2
 	add a
-	add a
+endr
 	or b
 
 ; Skip Normal

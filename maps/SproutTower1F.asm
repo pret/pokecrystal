@@ -1,8 +1,8 @@
 SproutTower1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 SageScript_0x1844fe:
@@ -18,23 +18,7 @@ TeacherScript_0x184507:
 	jumptextfaceplayer UnknownText_0x18469d
 
 TrainerSageChow:
-	; bit/flag number
-	dw EVENT_BEAT_SAGE_CHOW
-
-	; trainer group && trainer id
-	db SAGE, CHOW
-
-	; text when seen
-	dw SageChowSeenText
-
-	; text when trainer beaten
-	dw SageChowBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SageChowScript
+	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, $0000, SageChowScript
 
 SageChowScript:
 	talkaftercancel
@@ -114,7 +98,7 @@ SproutTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $f, $9, 7, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $f, $a, 7, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
@@ -122,19 +106,19 @@ SproutTower1F_MapEventHeader:
 	warp_def $6, $2, 2, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
 	warp_def $3, $11, 3, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 15, 7, $0, MapSproutTower1FSignpost1Script
-	signpost 15, 12, $0, MapSproutTower1FSignpost1Script
+	signpost 15, 7, SIGNPOST_READ, MapSproutTower1FSignpost1Script
+	signpost 15, 12, SIGNPOST_READ, MapSproutTower1FSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_SAGE, 8, 11, $6, $0, 255, 255, $90, 0, SageScript_0x1844fe, -1
-	person_event SPRITE_SAGE, 11, 10, $2, $11, 255, 255, $90, 0, SageScript_0x184501, -1
-	person_event SPRITE_GRANNY, 16, 15, $8, $0, 255, 255, $0, 0, GrannyScript_0x184504, -1
-	person_event SPRITE_TEACHER, 13, 13, $7, $0, 255, 255, $0, 0, TeacherScript_0x184507, -1
-	person_event SPRITE_SAGE, 9, 7, $7, $0, 255, 255, $92, 4, TrainerSageChow, -1
-	person_event SPRITE_POKE_BALL, 11, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x18451e, EVENT_647
+	person_event SPRITE_SAGE, 8, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SageScript_0x1844fe, -1
+	person_event SPRITE_SAGE, 11, 10, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SageScript_0x184501, -1
+	person_event SPRITE_GRANNY, 16, 15, OW_LEFT | $0, $0, -1, -1, $0, 0, GrannyScript_0x184504, -1
+	person_event SPRITE_TEACHER, 13, 13, OW_UP | $3, $0, -1, -1, $0, 0, TeacherScript_0x184507, -1
+	person_event SPRITE_SAGE, 9, 7, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSageChow, -1
+	person_event SPRITE_POKE_BALL, 11, 20, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18451e, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL

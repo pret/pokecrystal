@@ -1,8 +1,8 @@
 Route34_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -12,39 +12,39 @@ Route34_MapScriptHeader:
 UnknownScript_0x78005:
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x78014
-	clearevent EVENT_6E5
-	setevent EVENT_6E6
+	clearevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	setevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	jump UnknownScript_0x7801d
 
 UnknownScript_0x78014:
-	setevent EVENT_6E5
-	clearevent EVENT_6E6
+	setevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	clearevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	jump UnknownScript_0x7801d
 
 UnknownScript_0x7801d:
 	checkflag ENGINE_DAYCARE_MAN_HAS_MON
 	iffalse UnknownScript_0x78029
-	clearevent EVENT_6E7
+	clearevent EVENT_DAYCARE_MON_1
 	jump UnknownScript_0x7802f
 
 UnknownScript_0x78029:
-	setevent EVENT_6E7
+	setevent EVENT_DAYCARE_MON_1
 	jump UnknownScript_0x7802f
 
 UnknownScript_0x7802f:
 	checkflag ENGINE_DAYCARE_LADY_HAS_MON
 	iffalse UnknownScript_0x78039
-	clearevent EVENT_6E8
+	clearevent EVENT_DAYCARE_MON_2
 	return
 
 UnknownScript_0x78039:
-	setevent EVENT_6E8
+	setevent EVENT_DAYCARE_MON_2
 	return
 
 GrampsScript_0x7803d:
 	faceplayer
 	loadfont
-	special Function16936
+	special Special_DayCareManOutside
 	closetext
 	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a
@@ -76,33 +76,17 @@ DaycareMon2Script_0x7806b:
 	end
 
 TrainerCamperTodd1:
-	; bit/flag number
-	dw EVENT_BEAT_CAMPER_TODD
-
-	; trainer group && trainer id
-	db CAMPER, TODD1
-
-	; text when seen
-	dw CamperTodd1SeenText
-
-	; text when trainer beaten
-	dw CamperTodd1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperTodd1Script
+	trainer EVENT_BEAT_CAMPER_TODD, CAMPER, TODD1, CamperTodd1SeenText, CamperTodd1BeatenText, $0000, CamperTodd1Script
 
 CamperTodd1Script:
-	writecode VAR_CALLERID, $14
+	writecode VAR_CALLERID, PHONE_CAMPER_TODD
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_TODD
 	iftrue UnknownScript_0x780bd
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue UnknownScript_0x78131
-	checkcellnum $14
+	checkcellnum PHONE_CAMPER_TODD
 	iftrue UnknownScript_0x78143
 	checkevent EVENT_TODD_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x780a6
@@ -115,7 +99,7 @@ CamperTodd1Script:
 UnknownScript_0x780a6:
 	scall UnknownScript_0x7813b
 UnknownScript_0x780a9:
-	askforphonenumber $14
+	askforphonenumber PHONE_CAMPER_TODD
 	if_equal $1, UnknownScript_0x7814b
 	if_equal $2, UnknownScript_0x78147
 	trainertotext CAMPER, TODD1, $0
@@ -217,33 +201,17 @@ UnknownScript_0x7814f:
 	end
 
 TrainerPicnickerGina1:
-	; bit/flag number
-	dw EVENT_BEAT_PICNICKER_GINA
-
-	; trainer group && trainer id
-	db PICNICKER, GINA1
-
-	; text when seen
-	dw PicnickerGina1SeenText
-
-	; text when trainer beaten
-	dw PicnickerGina1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerGina1Script
+	trainer EVENT_BEAT_PICNICKER_GINA, PICNICKER, GINA1, PicnickerGina1SeenText, PicnickerGina1BeatenText, $0000, PicnickerGina1Script
 
 PicnickerGina1Script:
-	writecode VAR_CALLERID, $15
+	writecode VAR_CALLERID, PHONE_PICNICKER_GINA
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_GINA
 	iftrue UnknownScript_0x7819f
 	checkflag ENGINE_GINA_HAS_LEAF_STONE
 	iftrue UnknownScript_0x78213
-	checkcellnum $15
+	checkcellnum PHONE_PICNICKER_GINA
 	iftrue UnknownScript_0x78234
 	checkevent EVENT_GINA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x78188
@@ -256,7 +224,7 @@ PicnickerGina1Script:
 UnknownScript_0x78188:
 	scall UnknownScript_0x7822c
 UnknownScript_0x7818b:
-	askforphonenumber $15
+	askforphonenumber PHONE_PICNICKER_GINA
 	if_equal $1, UnknownScript_0x7823c
 	if_equal $2, UnknownScript_0x78238
 	trainertotext PICNICKER, GINA1, $0
@@ -328,7 +296,7 @@ UnknownScript_0x78213:
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x78225
 	clearflag ENGINE_GINA_HAS_LEAF_STONE
-	setevent EVENT_100
+	setevent EVENT_GINA_GAVE_LEAF_STONE
 	jump UnknownScript_0x78234
 
 UnknownScript_0x78225:
@@ -402,23 +370,7 @@ UnknownScript_0x78276:
 	end
 
 TrainerYoungsterSamuel:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_SAMUEL
-
-	; trainer group && trainer id
-	db YOUNGSTER, SAMUEL
-
-	; text when seen
-	dw YoungsterSamuelSeenText
-
-	; text when trainer beaten
-	dw YoungsterSamuelBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterSamuelScript
+	trainer EVENT_BEAT_YOUNGSTER_SAMUEL, YOUNGSTER, SAMUEL, YoungsterSamuelSeenText, YoungsterSamuelBeatenText, $0000, YoungsterSamuelScript
 
 YoungsterSamuelScript:
 	talkaftercancel
@@ -429,23 +381,7 @@ YoungsterSamuelScript:
 	end
 
 TrainerYoungsterIan:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_IAN
-
-	; trainer group && trainer id
-	db YOUNGSTER, IAN
-
-	; text when seen
-	dw YoungsterIanSeenText
-
-	; text when trainer beaten
-	dw YoungsterIanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterIanScript
+	trainer EVENT_BEAT_YOUNGSTER_IAN, YOUNGSTER, IAN, YoungsterIanSeenText, YoungsterIanBeatenText, $0000, YoungsterIanScript
 
 YoungsterIanScript:
 	talkaftercancel
@@ -456,23 +392,7 @@ YoungsterIanScript:
 	end
 
 TrainerPokefanmBrandon:
-	; bit/flag number
-	dw EVENT_BEAT_POKEFANM_BRANDON
-
-	; trainer group && trainer id
-	db POKEFANM, BRANDON
-
-	; text when seen
-	dw PokefanmBrandonSeenText
-
-	; text when trainer beaten
-	dw PokefanmBrandonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PokefanmBrandonScript
+	trainer EVENT_BEAT_POKEFANM_BRANDON, POKEFANM, BRANDON, PokefanmBrandonSeenText, PokefanmBrandonBeatenText, $0000, PokefanmBrandonScript
 
 PokefanmBrandonScript:
 	talkaftercancel
@@ -483,23 +403,7 @@ PokefanmBrandonScript:
 	end
 
 TrainerCooltrainerfIrene:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_IRENE
-
-	; trainer group && trainer id
-	db COOLTRAINERF, IRENE
-
-	; text when seen
-	dw CooltrainerfIreneSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfIreneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfIreneScript
+	trainer EVENT_BEAT_COOLTRAINERF_IRENE, COOLTRAINERF, IRENE, CooltrainerfIreneSeenText, CooltrainerfIreneBeatenText, $0000, CooltrainerfIreneScript
 
 CooltrainerfIreneScript:
 	talkaftercancel
@@ -518,23 +422,7 @@ UnknownScript_0x782d2:
 	end
 
 TrainerCooltrainerfJenn:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_JENN
-
-	; trainer group && trainer id
-	db COOLTRAINERF, JENN
-
-	; text when seen
-	dw CooltrainerfJennSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfJennBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfJennScript
+	trainer EVENT_BEAT_COOLTRAINERF_JENN, COOLTRAINERF, JENN, CooltrainerfJennSeenText, CooltrainerfJennBeatenText, $0000, CooltrainerfJennScript
 
 CooltrainerfJennScript:
 	talkaftercancel
@@ -553,23 +441,7 @@ UnknownScript_0x782f2:
 	end
 
 TrainerCooltrainerfKate:
-	; bit/flag number
-	dw EVENT_BEAT_COOLTRAINERF_KATE
-
-	; trainer group && trainer id
-	db COOLTRAINERF, KATE
-
-	; text when seen
-	dw CooltrainerfKateSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfKateBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfKateScript
+	trainer EVENT_BEAT_COOLTRAINERF_KATE, COOLTRAINERF, KATE, CooltrainerfKateSeenText, CooltrainerfKateBeatenText, $0000, CooltrainerfKateScript
 
 CooltrainerfKateScript:
 	talkaftercancel
@@ -604,13 +476,11 @@ ItemFragment_0x7832b:
 	db NUGGET, 1
 
 MapRoute34SignpostItem3:
-	dw $00a7
-	db RARE_CANDY
+	dwb EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
 MapRoute34SignpostItem4:
-	dw $00a8
-	db SUPER_POTION
+	dwb EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
 MovementData_0x78333:
@@ -884,37 +754,37 @@ Route34_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $25, $d, 1, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
 	warp_def $25, $e, 2, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
-	warp_def $e, $b, 1, GROUP_DAY_CARE, MAP_DAY_CARE
-	warp_def $f, $b, 2, GROUP_DAY_CARE, MAP_DAY_CARE
-	warp_def $f, $d, 3, GROUP_DAY_CARE, MAP_DAY_CARE
+	warp_def $e, $b, 1, GROUP_DAYCARE, MAP_DAYCARE
+	warp_def $f, $b, 2, GROUP_DAYCARE, MAP_DAYCARE
+	warp_def $f, $d, 3, GROUP_DAYCARE, MAP_DAYCARE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
-	signpost 6, 12, $0, MapRoute34Signpost0Script
-	signpost 33, 13, $0, MapRoute34Signpost1Script
-	signpost 13, 10, $0, MapRoute34Signpost2Script
-	signpost 32, 8, $7, MapRoute34SignpostItem3
-	signpost 19, 17, $7, MapRoute34SignpostItem4
+	signpost 6, 12, SIGNPOST_READ, MapRoute34Signpost0Script
+	signpost 33, 13, SIGNPOST_READ, MapRoute34Signpost1Script
+	signpost 13, 10, SIGNPOST_READ, MapRoute34Signpost2Script
+	signpost 32, 8, SIGNPOST_ITEM, MapRoute34SignpostItem3
+	signpost 19, 17, SIGNPOST_ITEM, MapRoute34SignpostItem4
 
-	; people-events
+.PersonEvents:
 	db 13
-	person_event SPRITE_YOUNGSTER, 11, 17, $8, $0, 255, 255, $a2, 5, TrainerCamperTodd1, -1
-	person_event SPRITE_YOUNGSTER, 36, 19, $6, $0, 255, 255, $92, 3, TrainerYoungsterSamuel, -1
-	person_event SPRITE_YOUNGSTER, 24, 15, $6, $0, 255, 255, $92, 3, TrainerYoungsterIan, -1
-	person_event SPRITE_LASS, 30, 14, $9, $0, 255, 255, $a2, 3, TrainerPicnickerGina1, -1
-	person_event SPRITE_OFFICER, 15, 13, $6, $0, 255, 255, $90, 0, OfficerScript_0x7824c, -1
-	person_event SPRITE_POKEFAN_M, 32, 22, $1e, $0, 255, 255, $82, 3, TrainerPokefanmBrandon, -1
-	person_event SPRITE_GRAMPS, 20, 19, $6, $0, 255, 255, $0, 0, GrampsScript_0x7803d, EVENT_6E6
-	person_event SPRITE_DAYCARE_MON_1, 22, 18, $16, $22, 255, 255, $0, 0, DaycareMon1Script_0x78065, EVENT_6E7
-	person_event SPRITE_DAYCARE_MON_2, 23, 21, $16, $22, 255, 255, $0, 0, DaycareMon2Script_0x7806b, EVENT_6E8
-	person_event SPRITE_COOLTRAINER_F, 52, 15, $8, $0, 255, 255, $82, 5, TrainerCooltrainerfIrene, -1
-	person_event SPRITE_COOLTRAINER_F, 52, 7, $9, $0, 255, 255, $82, 3, TrainerCooltrainerfJenn, -1
-	person_event SPRITE_COOLTRAINER_F, 55, 10, $7, $0, 255, 255, $82, 2, TrainerCooltrainerfKate, -1
-	person_event SPRITE_POKE_BALL, 34, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7832b, EVENT_7BC
+	person_event SPRITE_YOUNGSTER, 11, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerCamperTodd1, -1
+	person_event SPRITE_YOUNGSTER, 36, 19, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterSamuel, -1
+	person_event SPRITE_YOUNGSTER, 24, 15, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterIan, -1
+	person_event SPRITE_LASS, 30, 14, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPicnickerGina1, -1
+	person_event SPRITE_OFFICER, 15, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x7824c, -1
+	person_event SPRITE_POKEFAN_M, 32, 22, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmBrandon, -1
+	person_event SPRITE_GRAMPS, 20, 19, OW_UP | $2, $0, -1, -1, $0, 0, GrampsScript_0x7803d, EVENT_DAYCARE_MAN_ON_ROUTE_34
+	person_event SPRITE_DAYCARE_MON_1, 22, 18, OW_UP | $12, $22, -1, -1, $0, 0, DaycareMon1Script_0x78065, EVENT_DAYCARE_MON_1
+	person_event SPRITE_DAYCARE_MON_2, 23, 21, OW_UP | $12, $22, -1, -1, $0, 0, DaycareMon2Script_0x7806b, EVENT_DAYCARE_MON_2
+	person_event SPRITE_COOLTRAINER_F, 52, 15, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainerfIrene, -1
+	person_event SPRITE_COOLTRAINER_F, 52, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfJenn, -1
+	person_event SPRITE_COOLTRAINER_F, 55, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainerfKate, -1
+	person_event SPRITE_POKE_BALL, 34, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7832b, EVENT_ROUTE_34_NUGGET

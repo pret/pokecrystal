@@ -1,8 +1,8 @@
 Route24_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 RocketScript_0x1adbfa:
@@ -12,7 +12,7 @@ RocketScript_0x1adbfa:
 	writetext UnknownText_0x1adc2e
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1add67, $ffff
+	winlosstext UnknownText_0x1add67, -1
 	loadtrainer GRUNTM, 31
 	startbattle
 	reloadmapmusic
@@ -25,11 +25,11 @@ RocketScript_0x1adbfa:
 	writetext UnknownText_0x1adee1
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	pause 25
-	special Function8c0ab
+	special Special_FadeInQuickly
 	playmapmusic
 	end
 
@@ -119,15 +119,15 @@ Route24_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_ROCKET, 11, 12, $3, $0, 255, 255, $0, 0, RocketScript_0x1adbfa, EVENT_76C
+	person_event SPRITE_ROCKET, 11, 12, OW_DOWN | $3, $0, -1, -1, $0, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET

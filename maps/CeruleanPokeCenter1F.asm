@@ -1,8 +1,8 @@
 CeruleanPokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 NurseScript_0x18820f:
@@ -61,20 +61,20 @@ CeruleanPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 4, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 	warp_def $7, $4, 4, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18820f, -1
-	person_event SPRITE_SUPER_NERD, 8, 12, $5, $1, 255, 255, $0, 0, SuperNerdScript_0x188212, -1
-	person_event SPRITE_GYM_GUY, 9, 5, $2, $11, 255, 255, $a0, 0, GymGuyScript_0x18821e, -1
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x18820f, -1
+	person_event SPRITE_SUPER_NERD, 8, 12, OW_UP | $1, $1, -1, -1, $0, 0, SuperNerdScript_0x188212, -1
+	person_event SPRITE_GYM_GUY, 9, 5, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GymGuyScript_0x18821e, -1

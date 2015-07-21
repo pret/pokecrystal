@@ -1,12 +1,12 @@
 MahoganyTown_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -23,7 +23,7 @@ MahoganyTown_MapScriptHeader:
 	return
 
 UnknownScript_0x190013:
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1900a9
 	follow $0, $2
 	applymovement $0, MovementData_0x1900a7
@@ -246,7 +246,7 @@ MahoganyTown_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $7, $b, 1, GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F
 	warp_def $7, $11, 1, GROUP_MAHOGANY_RED_GYARADOS_SPEECH_HOUSE, MAP_MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
@@ -254,21 +254,21 @@ MahoganyTown_MapEventHeader:
 	warp_def $d, $f, 1, GROUP_MAHOGANY_POKECENTER_1F, MAP_MAHOGANY_POKECENTER_1F
 	warp_def $1, $9, 3, GROUP_ROUTE_43_MAHOGANY_GATE, MAP_ROUTE_43_MAHOGANY_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $8, $13, $0, UnknownScript_0x190013, $0, $0
 	xy_trigger 0, $9, $13, $0, UnknownScript_0x190013, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 5, 1, $0, MahoganyTownSign
-	signpost 7, 9, $0, MahoganyTownRagecandybarSign
-	signpost 13, 3, $0, MahoganyGymSign
-	signpost 13, 16, $0, MahoganyTownPokeCenterSign
+	signpost 5, 1, SIGNPOST_READ, MahoganyTownSign
+	signpost 7, 9, SIGNPOST_READ, MahoganyTownRagecandybarSign
+	signpost 13, 3, SIGNPOST_READ, MahoganyGymSign
+	signpost 13, 16, SIGNPOST_READ, MahoganyTownPokeCenterSign
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 12, 23, $6, $0, 255, 255, $0, 0, PokefanMScript_0x19002e, EVENT_756
-	person_event SPRITE_GRAMPS, 13, 10, $5, $1, 255, 255, $0, 0, GrampsScript_0x19007e, -1
-	person_event SPRITE_FISHER, 18, 10, $6, $0, 255, 255, $a0, 0, FisherScript_0x190092, EVENT_757
-	person_event SPRITE_LASS, 12, 16, $6, $0, 255, 255, $0, 0, LassScript_0x190095, EVENT_736
+	person_event SPRITE_POKEFAN_M, 12, 23, OW_UP | $2, $0, -1, -1, $0, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
+	person_event SPRITE_GRAMPS, 13, 10, OW_UP | $1, $1, -1, -1, $0, 0, GrampsScript_0x19007e, -1
+	person_event SPRITE_FISHER, 18, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	person_event SPRITE_LASS, 12, 16, OW_UP | $2, $0, -1, -1, $0, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS

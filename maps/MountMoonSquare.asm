@@ -1,11 +1,11 @@
 MountMoonSquare_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x77092, $0000
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -18,7 +18,7 @@ UnknownScript_0x77092:
 	end
 
 UnknownScript_0x77093:
-	setevent EVENT_0EC
+	setevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE 
 	return
 
 UnknownScript_0x77097:
@@ -27,11 +27,11 @@ UnknownScript_0x77097:
 
 UnknownScript_0x7709a:
 	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
-	iftrue UnknownScript_0x77117
+	iftrue .NoDancing
 	checkcode VAR_WEEKDAY
-	if_not_equal MONDAY, UnknownScript_0x77117
+	if_not_equal MONDAY, .NoDancing
 	checknite
-	iffalse UnknownScript_0x77117
+	iffalse .NoDancing
 	appear $2
 	appear $3
 	applymovement $0, MovementData_0x77121
@@ -59,7 +59,7 @@ UnknownScript_0x7709a:
 	stopfollow
 	spriteface $2, DOWN
 	pause 10
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, DOWN
 	cry CLEFAIRY
 	pause 15
@@ -68,16 +68,15 @@ UnknownScript_0x7709a:
 	disappear $2
 	disappear $3
 	stopfollow
-	clearevent EVENT_0EC
+	clearevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 	setflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	end
 
-UnknownScript_0x77117:
+.NoDancing:
 	end
 
 MapMountMoonSquareSignpostItem0:
-	dw $00ec
-	db MOON_STONE
+	dwb EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
 	
 
 MapMountMoonSquareSignpost1Script:
@@ -139,23 +138,23 @@ MountMoonSquare_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $5, $14, 5, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 	warp_def $b, $16, 6, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 	warp_def $7, $d, 1, GROUP_MOUNT_MOON_GIFT_SHOP, MAP_MOUNT_MOON_GIFT_SHOP
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $b, $7, $0, UnknownScript_0x7709a, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 7, $7, MapMountMoonSquareSignpostItem0
-	signpost 7, 17, $0, MapMountMoonSquareSignpost1Script
+	signpost 7, 7, SIGNPOST_ITEM, MapMountMoonSquareSignpostItem0
+	signpost 7, 17, SIGNPOST_READ, MapMountMoonSquareSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_FAIRY, 10, 10, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_779
-	person_event SPRITE_FAIRY, 10, 11, $6, $0, 255, 255, $0, 0, ObjectEvent, EVENT_779
-	person_event SPRITE_ROCK, 11, 11, $18, $0, 255, 255, $0, 0, MtMoonSquareRock, EVENT_778
+	person_event SPRITE_FAIRY, 10, 10, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_FAIRY, 10, 11, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_ROCK, 11, 11, OW_LEFT | $10, $0, -1, -1, $0, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK

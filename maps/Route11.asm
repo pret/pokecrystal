@@ -1,28 +1,12 @@
 Route11_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerYoungsterOwen:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_OWEN
-
-	; trainer group && trainer id
-	db YOUNGSTER, OWEN
-
-	; text when seen
-	dw YoungsterOwenSeenText
-
-	; text when trainer beaten
-	dw YoungsterOwenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterOwenScript
+	trainer EVENT_BEAT_YOUNGSTER_OWEN, YOUNGSTER, OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, $0000, YoungsterOwenScript
 
 YoungsterOwenScript:
 	talkaftercancel
@@ -33,23 +17,7 @@ YoungsterOwenScript:
 	end
 
 TrainerYoungsterJason:
-	; bit/flag number
-	dw EVENT_BEAT_YOUNGSTER_JASON
-
-	; trainer group && trainer id
-	db YOUNGSTER, JASON
-
-	; text when seen
-	dw YoungsterJasonSeenText
-
-	; text when trainer beaten
-	dw YoungsterJasonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterJasonScript
+	trainer EVENT_BEAT_YOUNGSTER_JASON, YOUNGSTER, JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, $0000, YoungsterJasonScript
 
 YoungsterJasonScript:
 	talkaftercancel
@@ -60,23 +28,7 @@ YoungsterJasonScript:
 	end
 
 TrainerPsychicHerman:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_HERMAN
-
-	; trainer group && trainer id
-	db PSYCHIC_T, HERMAN
-
-	; text when seen
-	dw PsychicHermanSeenText
-
-	; text when trainer beaten
-	dw PsychicHermanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicHermanScript
+	trainer EVENT_BEAT_PSYCHIC_HERMAN, PSYCHIC_T, HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, $0000, PsychicHermanScript
 
 PsychicHermanScript:
 	talkaftercancel
@@ -87,23 +39,7 @@ PsychicHermanScript:
 	end
 
 TrainerPsychicFidel:
-	; bit/flag number
-	dw EVENT_BEAT_PSYCHIC_FIDEL
-
-	; trainer group && trainer id
-	db PSYCHIC_T, FIDEL
-
-	; text when seen
-	dw PsychicFidelSeenText
-
-	; text when trainer beaten
-	dw PsychicFidelBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicFidelScript
+	trainer EVENT_BEAT_PSYCHIC_FIDEL, PSYCHIC_T, FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, $0000, PsychicFidelScript
 
 PsychicFidelScript:
 	talkaftercancel
@@ -120,8 +56,7 @@ FruitTreeScript_0x68055:
 	fruittree $18
 
 MapRoute11SignpostItem1:
-	dw $00f5
-	db REVIVE
+	dwb EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
 	
 
 YoungsterOwenSeenText:
@@ -208,21 +143,21 @@ Route11_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 3, $0, MapRoute11Signpost0Script
-	signpost 5, 32, $7, MapRoute11SignpostItem1
+	signpost 7, 3, SIGNPOST_READ, MapRoute11Signpost0Script
+	signpost 5, 32, SIGNPOST_ITEM, MapRoute11SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 18, 26, $a, $0, 255, 255, $92, 3, TrainerYoungsterOwen, -1
-	person_event SPRITE_YOUNGSTER, 8, 24, $6, $0, 255, 255, $92, 3, TrainerYoungsterJason, -1
-	person_event SPRITE_YOUNGSTER, 11, 32, $6, $0, 255, 255, $92, 1, TrainerPsychicHerman, -1
-	person_event SPRITE_YOUNGSTER, 10, 12, $a, $0, 255, 255, $92, 3, TrainerPsychicFidel, -1
-	person_event SPRITE_FRUIT_TREE, 6, 36, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x68055, -1
+	person_event SPRITE_YOUNGSTER, 18, 26, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterOwen, -1
+	person_event SPRITE_YOUNGSTER, 8, 24, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJason, -1
+	person_event SPRITE_YOUNGSTER, 11, 32, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicHerman, -1
+	person_event SPRITE_YOUNGSTER, 10, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFidel, -1
+	person_event SPRITE_FRUIT_TREE, 6, 36, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x68055, -1

@@ -1,28 +1,12 @@
 OlivineLighthouse2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerGentlemanAlfred:
-	; bit/flag number
-	dw EVENT_BEAT_GENTLEMAN_ALFRED
-
-	; trainer group && trainer id
-	db GENTLEMAN, ALFRED
-
-	; text when seen
-	dw GentlemanAlfredSeenText
-
-	; text when trainer beaten
-	dw GentlemanAlfredBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GentlemanAlfredScript
+	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, $0000, GentlemanAlfredScript
 
 GentlemanAlfredScript:
 	talkaftercancel
@@ -33,31 +17,15 @@ GentlemanAlfredScript:
 	end
 
 TrainerSailorHuey1:
-	; bit/flag number
-	dw EVENT_BEAT_SAILOR_HUEY
-
-	; trainer group && trainer id
-	db SAILOR, HUEY1
-
-	; text when seen
-	dw SailorHuey1SeenText
-
-	; text when trainer beaten
-	dw SailorHuey1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorHuey1Script
+	trainer EVENT_BEAT_SAILOR_HUEY, SAILOR, HUEY1, SailorHuey1SeenText, SailorHuey1BeatenText, $0000, SailorHuey1Script
 
 SailorHuey1Script:
-	writecode VAR_CALLERID, $7
+	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0x5afc7
-	checkcellnum $7
+	checkcellnum PHONE_SAILOR_HUEY
 	iftrue UnknownScript_0x5b05f
 	checkevent EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5afb0
@@ -68,7 +36,7 @@ SailorHuey1Script:
 UnknownScript_0x5afb0:
 	scall UnknownScript_0x5b057
 UnknownScript_0x5afb3:
-	askforphonenumber $7
+	askforphonenumber PHONE_SAILOR_HUEY
 	if_equal $1, UnknownScript_0x5b067
 	if_equal $2, UnknownScript_0x5b063
 	trainertotext SAILOR, HUEY1, $0
@@ -236,7 +204,7 @@ OlivineLighthouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $b, $3, 3, GROUP_OLIVINE_LIGHTHOUSE_1F, MAP_OLIVINE_LIGHTHOUSE_1F
 	warp_def $3, $5, 2, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
@@ -245,13 +213,13 @@ OlivineLighthouse2F_MapEventHeader:
 	warp_def $b, $10, 4, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
 	warp_def $b, $11, 5, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 7, 13, $9, $0, 255, 255, $92, 3, TrainerSailorHuey1, -1
-	person_event SPRITE_GENTLEMAN, 12, 21, $8, $0, 255, 255, $92, 3, TrainerGentlemanAlfred, -1
+	person_event SPRITE_SAILOR, 7, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorHuey1, -1
+	person_event SPRITE_GENTLEMAN, 12, 21, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerGentlemanAlfred, -1

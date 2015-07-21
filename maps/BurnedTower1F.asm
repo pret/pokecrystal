@@ -1,5 +1,5 @@
 BurnedTower1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ BurnedTower1F_MapScriptHeader:
 	dw UnknownScript_0x185bf6, $0000
 	dw UnknownScript_0x185bf7, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -37,7 +37,7 @@ UnknownScript_0x185bf8:
 
 UnknownScript_0x185c0d:
 	spriteface $3, DOWN
-	showemote $0, $3, 15
+	showemote EMOTE_SHOCK, $3, 15
 	applymovement $3, MovementData_0x185cd3
 	loadfont
 	writetext UnknownText_0x185ecc
@@ -48,7 +48,7 @@ UnknownScript_0x185c0d:
 	end
 
 UnknownScript_0x185c25:
-	showemote $0, $4, 15
+	showemote EMOTE_SHOCK, $4, 15
 	special Functionc48f
 	pause 15
 	spriteface $4, RIGHT
@@ -97,11 +97,11 @@ UnknownScript_0x185c80:
 	closetext
 	loadmovesprites
 	dotrigger $2
-	setevent EVENT_6C5
+	setevent EVENT_RIVAL_BURNED_TOWER
 	special Functionc48f
 	pause 15
 	earthquake 50
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	playsound SFX_ENTER_DOOR
 	waitbutton
 	changeblock $a, $8, $25
@@ -109,7 +109,7 @@ UnknownScript_0x185c80:
 	pause 15
 	applymovement $0, MovementData_0x185cd1
 	playsound SFX_KINESIS
-	showemote $0, $4, 20
+	showemote EMOTE_SHOCK, $4, 20
 	loadfont
 	writetext UnknownText_0x185e75
 	closetext
@@ -129,13 +129,11 @@ BurnedTower1FRock:
 	jumpstd smashrock
 
 MapBurnedTower1FSignpostItem0:
-	dw $0080
-	db ETHER
+	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ETHER, ETHER
 	
 
 MapBurnedTower1FSignpostItem1:
-	dw $00ff
-	db ULTRA_BALL
+	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
 ItemFragment_0x185ccb:
@@ -283,7 +281,7 @@ BurnedTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 14
 	warp_def $f, $9, 13, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $f, $a, 13, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
@@ -300,19 +298,19 @@ BurnedTower1F_MapEventHeader:
 	warp_def $e, $f, 5, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
 	warp_def $f, $7, 6, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $9, $b, $0, UnknownScript_0x185c25, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 8, $7, MapBurnedTower1FSignpostItem0
-	signpost 11, 13, $7, MapBurnedTower1FSignpostItem1
+	signpost 7, 8, SIGNPOST_ITEM, MapBurnedTower1FSignpostItem0
+	signpost 11, 13, SIGNPOST_ITEM, MapBurnedTower1FSignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_ROCK, 8, 19, $18, $0, 255, 255, $0, 0, BurnedTower1FRock, -1
-	person_event SPRITE_SUPER_NERD, 16, 16, $3, $0, 255, 255, $90, 0, SuperNerdScript_0x185cbc, EVENT_765
-	person_event SPRITE_SILVER, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, EVENT_6C5
-	person_event SPRITE_MORTY, 18, 18, $2, $11, 255, 255, $b0, 0, MortyScript_0x185cbf, EVENT_764
-	person_event SPRITE_POKE_BALL, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ccb, EVENT_656
+	person_event SPRITE_ROCK, 8, 19, OW_LEFT | $10, $0, -1, -1, $0, 0, BurnedTower1FRock, -1
+	person_event SPRITE_SUPER_NERD, 16, 16, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
+	person_event SPRITE_SILVER, 13, 12, OW_LEFT | $0, $0, -1, -1, $2, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
+	person_event SPRITE_MORTY, 18, 18, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
+	person_event SPRITE_POKE_BALL, 6, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP

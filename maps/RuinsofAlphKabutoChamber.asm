@@ -1,12 +1,12 @@
 RuinsofAlphKabutoChamber_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x5872b, $0000
 	dw UnknownScript_0x58736, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -32,7 +32,7 @@ UnknownScript_0x58737:
 	iftrue UnknownScript_0x58741
 	changeblock $4, $0, $2e
 UnknownScript_0x58741:
-	checkevent EVENT_2A1
+	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse UnknownScript_0x58748
 	return
 
@@ -44,7 +44,7 @@ UnknownScript_0x58748:
 UnknownScript_0x58751:
 	pause 30
 	earthquake 30
-	showemote $0, $0, 20
+	showemote EMOTE_SHOCK, $0, 20
 	pause 30
 	playsound SFX_STRENGTH
 	changeblock $4, $0, $30
@@ -60,19 +60,19 @@ ReceptionistScript_0x58769:
 MapRuinsofAlphKabutoChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $0
-	special Functionc360
+	special Special_UnownPuzzle
 	loadmovesprites
 	iftrue UnknownScript_0x58778
 	end
 
 UnknownScript_0x58778:
-	setevent EVENT_705
-	setevent EVENT_2A1
+	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	setevent EVENT_SOLVED_KABUTO_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_1
-	setevent EVENT_74E
+	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	changeblock $2, $2, $18
 	changeblock $4, $2, $19
 	reloadmappart
@@ -92,7 +92,7 @@ ScientistScript_0x587a8:
 	if_equal 26, UnknownScript_0x587cf
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587c9
-	checkevent EVENT_2A1
+	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse UnknownScript_0x587c0
 	writetext UnknownText_0x589b8
 	keeptextopen
@@ -125,7 +125,7 @@ MapRuinsofAlphKabutoChamberSignpost4Script:
 	loadfont
 	writetext UnknownText_0x58aa7
 	writebyte $0
-	special Function8ae68
+	special Special_DisplayUnownWords
 	loadmovesprites
 	end
 
@@ -135,7 +135,7 @@ MapRuinsofAlphKabutoChamberSignpost5Script:
 	loadfont
 	writetext UnknownText_0x58ad9
 	writebyte $0
-	special Function8ae68
+	special Special_DisplayUnownWords
 	loadmovesprites
 	end
 
@@ -262,7 +262,7 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $9, $3, 2, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	warp_def $9, $4, 2, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
@@ -270,19 +270,19 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 	warp_def $3, $4, 5, GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
 	warp_def $0, $4, 1, GROUP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM, MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 3, 2, $0, MapRuinsofAlphKabutoChamberSignpost1Script
-	signpost 3, 5, $0, MapRuinsofAlphKabutoChamberSignpost1Script
-	signpost 2, 3, $1, MapRuinsofAlphKabutoChamberSignpost2Script
-	signpost 2, 4, $1, MapRuinsofAlphKabutoChamberSignpost3Script
-	signpost 0, 3, $1, MapRuinsofAlphKabutoChamberSignpost4Script
-	signpost 0, 4, $1, MapRuinsofAlphKabutoChamberSignpost5Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphKabutoChamberSignpost1Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphKabutoChamberSignpost1Script
+	signpost 2, 3, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost2Script
+	signpost 2, 4, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost3Script
+	signpost 0, 3, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost4Script
+	signpost 0, 4, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost5Script
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 9, 9, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x58769, EVENT_74E
-	person_event SPRITE_SCIENTIST, 5, 7, $7, $0, 255, 255, $90, 0, ScientistScript_0x587a8, -1
+	person_event SPRITE_RECEPTIONIST, 9, 9, OW_UP | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
+	person_event SPRITE_SCIENTIST, 5, 7, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x587a8, -1

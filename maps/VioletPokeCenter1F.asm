@@ -1,8 +1,8 @@
 VioletPokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 NurseScript_0x694c9:
@@ -212,22 +212,22 @@ VioletPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 5, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $7, $4, 5, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x694c9, -1
-	person_event SPRITE_GAMEBOY_KID, 10, 11, $6, $0, 255, 255, $a0, 0, GameboyKidScript_0x69540, -1
-	person_event SPRITE_GENTLEMAN, 8, 5, $3, $0, 255, 255, $0, 0, GentlemanScript_0x69543, -1
-	person_event SPRITE_YOUNGSTER, 5, 12, $6, $0, 255, 255, $80, 0, YoungsterScript_0x69546, -1
-	person_event SPRITE_SCIENTIST, 7, 8, $6, $0, 255, 255, $90, 0, ScientistScript_0x694cc, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x694c9, -1
+	person_event SPRITE_GAMEBOY_KID, 10, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GameboyKidScript_0x69540, -1
+	person_event SPRITE_GENTLEMAN, 8, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, GentlemanScript_0x69543, -1
+	person_event SPRITE_YOUNGSTER, 5, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x69546, -1
+	person_event SPRITE_SCIENTIST, 7, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x694cc, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER

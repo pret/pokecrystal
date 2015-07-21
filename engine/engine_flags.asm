@@ -100,26 +100,26 @@
 	dwb wdc9d, %00000001 ; lucky number show
 	dwb StatusFlags2, %00001000
 
-	dwb wdc1e, %00000001 ; kurt making balls  ; $50
-	dwb wdc1e, %00000010
-	dwb wdc1e, %00000100 ; special wilddata?
-	dwb wdc1e, %00001000 ; time capsule (24h wait)
-	dwb wdc1e, %00010000 ; all fruit trees
-	dwb wdc1e, %00100000 ; shuckle given
-	dwb wdc1e, %01000000 ; goldenrod underground merchant closed
-	dwb wdc1e, %10000000 ; fought in trainer hall today
+	dwb DailyFlags, %00000001 ; kurt making balls  ; $50
+	dwb DailyFlags, %00000010
+	dwb DailyFlags, %00000100 ; special wilddata?
+	dwb DailyFlags, %00001000 ; time capsule (24h wait)
+	dwb DailyFlags, %00010000 ; all fruit trees
+	dwb DailyFlags, %00100000 ; shuckle given
+	dwb DailyFlags, %01000000 ; goldenrod underground merchant closed
+	dwb DailyFlags, %10000000 ; fought in trainer hall today
 
-	dwb wdc1f, %00000001 ; mt moon square clefairy  ; $58
-	dwb wdc1f, %00000010 ; union cave lapras
-	dwb wdc1f, %00000100 ; goldenrod underground haircut used
-	dwb wdc1f, %00001000 ; goldenrod mall happiness event floor05 person07
-	dwb wdc1f, %00010000 ; tea in blues house
-	dwb wdc1f, %00100000 ; indigo plateau rival fight
-	dwb wdc1f, %01000000
-	dwb wdc1f, %10000000
+	dwb WeeklyFlags, %00000001 ; mt moon square clefairy  ; $58
+	dwb WeeklyFlags, %00000010 ; union cave lapras
+	dwb WeeklyFlags, %00000100 ; goldenrod underground haircut used
+	dwb WeeklyFlags, %00001000 ; goldenrod mall happiness event floor05 person07
+	dwb WeeklyFlags, %00010000 ; tea in blues house
+	dwb WeeklyFlags, %00100000 ; indigo plateau rival fight
+	dwb WeeklyFlags, %01000000
+	dwb WeeklyFlags, %10000000
 
-	dwb wdc20, %00000001 ; $60
-	dwb wdc20, %00000010 ; goldenrod dept store sale is on
+	dwb SwarmFlags, %00000001 ; $60
+	dwb SwarmFlags, %00000010 ; goldenrod dept store sale is on
 
 	dwb GameTimerPause, %10000000 ; $62
 
@@ -194,5 +194,5 @@
 
 	dwb wd45b, %00000100 ; female player has been transformed into male
 
-	dwb wdc20, %00000100 ; dunsparce swarm   ; $a0
-	dwb wdc20, %00001000 ; yanma swarm
+	dwb SwarmFlags, %00000100 ; dunsparce swarm   ; $a0
+	dwb SwarmFlags, %00001000 ; yanma swarm

@@ -1,12 +1,12 @@
 VictoryRoad_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x74490, $0000
 	dw UnknownScript_0x74491, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x74490:
@@ -18,7 +18,7 @@ UnknownScript_0x74491:
 UnknownScript_0x74492:
 	moveperson $2, $12, $b
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	appear $2
@@ -32,7 +32,7 @@ UnknownScript_0x74492:
 
 UnknownScript_0x744b5:
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	appear $2
@@ -51,7 +51,7 @@ UnknownScript_0x744d4:
 	writetext UnknownText_0x7455f
 	closetext
 	loadmovesprites
-	setevent EVENT_6C2
+	setevent EVENT_RIVAL_VICTORY_ROAD
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x744ff
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -106,13 +106,11 @@ ItemFragment_0x74531:
 	db HP_UP, 1
 
 MapVictoryRoadSignpostItem0:
-	dw $009e
-	db MAX_POTION
+	dwb EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION, MAX_POTION
 	
 
 MapVictoryRoadSignpostItem1:
-	dw $009f
-	db FULL_HEAL
+	dwb EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
 MovementData_0x74539:
@@ -240,7 +238,7 @@ VictoryRoad_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 10
 	warp_def $43, $9, 5, GROUP_VICTORY_ROAD_GATE, MAP_VICTORY_ROAD_GATE
 	warp_def $31, $1, 3, GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
@@ -253,21 +251,21 @@ VictoryRoad_MapEventHeader:
 	warp_def $1b, $0, 8, GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
 	warp_def $5, $d, 3, GROUP_ROUTE_23, MAP_ROUTE_23
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $8, $c, $0, UnknownScript_0x74492, $0, $0
 	xy_trigger 0, $8, $d, $0, UnknownScript_0x744b5, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 29, 3, $7, MapVictoryRoadSignpostItem0
-	signpost 65, 3, $7, MapVictoryRoadSignpostItem1
+	signpost 29, 3, SIGNPOST_ITEM, MapVictoryRoadSignpostItem0
+	signpost 65, 3, SIGNPOST_ITEM, MapVictoryRoadSignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_SILVER, 17, 22, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_6C2
-	person_event SPRITE_POKE_BALL, 32, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x74529, EVENT_6A3
-	person_event SPRITE_POKE_BALL, 52, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452b, EVENT_6A4
-	person_event SPRITE_POKE_BALL, 33, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452d, EVENT_6A5
-	person_event SPRITE_POKE_BALL, 52, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452f, EVENT_6A6
-	person_event SPRITE_POKE_BALL, 42, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x74531, EVENT_6A7
+	person_event SPRITE_SILVER, 17, 22, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
+	person_event SPRITE_POKE_BALL, 32, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x74529, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
+	person_event SPRITE_POKE_BALL, 52, 16, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452b, EVENT_VICTORY_ROAD_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 33, 22, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452d, EVENT_VICTORY_ROAD_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 52, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7452f, EVENT_VICTORY_ROAD_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 42, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x74531, EVENT_VICTORY_ROAD_HP_UP

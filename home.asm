@@ -481,7 +481,7 @@ CallPointerAt:: ; 31be
 ; 31cd
 
 
-Function31cd:: ; 31cd
+ExitMenuCallScript:: ; 31cd
 ; Push pointer hl in the current bank to wd0e8.
 	ld a, [hROMBank]
 
@@ -499,13 +499,14 @@ Function31cf:: ; 31cf
 StringCmp:: ; 31db
 ; Compare c bytes at de and hl.
 ; Return z if they all match.
+.loop
 	ld a, [de]
 	cp [hl]
 	ret nz
 	inc de
 	inc hl
 	dec c
-	jr nz, StringCmp
+	jr nz, .loop
 	ret
 ; 0x31e4
 
@@ -714,14 +715,14 @@ ClearPalettes:: ; 3317
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	
+
 ; DMG: just change palettes to 0 (white)
 	xor a
 	ld [rBGP], a
 	ld [rOBP0], a
 	ld [rOBP1], a
 	ret
-	
+
 .cgb
 	ld a, [rSVBK]
 	push af
@@ -754,11 +755,11 @@ GetSGBLayout:: ; 3340
 	ld a, [hCGB]
 	and a
 	jr nz, .sgb
-	
+
 	ld a, [hSGB]
 	and a
 	ret z
-	
+
 .sgb
 	predef_jump Function864c ; LoadSGBLayout
 ; 334e
@@ -835,7 +836,12 @@ NamesPointers:: ; 33ab
 	dbw 0, PartyMonOT
 	dbw 0, OTPartyMonOT
 	dbw BANK(TrainerClassNames), TrainerClassNames
-	dbw $04, MoveDescriptions ; ????
+; 33c0
+
+Function33c0:
+	inc b
+	ld d, d
+	ld c, e
 ; 33c3
 
 GetName:: ; 33c3
@@ -866,9 +872,9 @@ GetName:: ; 33c3
 	ld e, a
 	ld d, 0
 	ld hl, NamesPointers
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	rst Bankswitch
 	ld a, [hli]
@@ -880,7 +886,7 @@ GetName:: ; 33c3
 	call GetNthString
 
 	ld de, StringBuffer1
-	ld bc, $000d
+	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 
 .done
@@ -961,8 +967,9 @@ GetPokemonName:: ; 343b
 	ld e, a
 	ld h, 0
 	ld l, a
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	add hl, de
 	add hl, hl
 	ld de, PokemonNames
@@ -1209,7 +1216,7 @@ Function3567:: ; 3567
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function3574
 
 	pop bc
@@ -1235,7 +1242,7 @@ Function3574:: ; 3574
 	call Function35de
 	jr nc, .asm_3597
 	call Function2631
-	callba Function96c56
+	callba EnableScriptMode
 	scf
 	ret
 
@@ -1336,8 +1343,9 @@ Function35de:: ; 35de
 	inc hl
 
 .asm_35f8
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_35e6
 
 .asm_35fc
@@ -1355,7 +1363,7 @@ CheckTrainerBattle2:: ; 3600
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call CheckTrainerBattle
 
 	pop bc
@@ -1380,14 +1388,14 @@ CheckTrainerBattle:: ; 360d
 	push de
 
 ; Has a sprite
-	ld hl, $0001
+	ld hl, MAPOBJECT_SPRITE
 	add hl, de
 	ld a, [hl]
 	and a
 	jr z, .next
 
 ; Is a trainer
-	ld hl, $0008
+	ld hl, MAPOBJECT_COLOR
 	add hl, de
 	ld a, [hl]
 	and $f
@@ -1395,19 +1403,19 @@ CheckTrainerBattle:: ; 360d
 	jr nz, .next
 
 ; Is visible on the map
-	ld hl, $0000
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, de
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .next
 
 ; Is facing the player...
-	call Function1ae5
+	call GetObjectStruct
 	call FacingPlayerDistance_bc
 	jr nc, .next
 
 ; ...within their sight range
-	ld hl, $0009
+	ld hl, MAPOBJECT_RANGE
 	add hl, de
 	ld a, [hl]
 	cp b
@@ -1416,7 +1424,7 @@ CheckTrainerBattle:: ; 360d
 ; And hasn't already been beaten
 	push bc
 	push de
-	ld hl, $000a
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -1430,7 +1438,7 @@ CheckTrainerBattle:: ; 360d
 	pop de
 	pop bc
 	and a
-	jr z, .asm_3666
+	jr z, .startbattle
 
 .next
 	pop de
@@ -1446,7 +1454,7 @@ CheckTrainerBattle:: ; 360d
 	xor a
 	ret
 
-.asm_3666
+.startbattle
 	pop de
 	pop af
 	ld [$ffe0], a
@@ -1458,9 +1466,9 @@ CheckTrainerBattle:: ; 360d
 ; 3674
 
 Function3674:: ; 3674
-	ld a, $1
+	ld a, 1
 	ld [CurFruit], a
-	ld a, $ff
+	ld a, -1
 	ld [wd040], a
 
 Function367e:: ; 367e
@@ -1468,7 +1476,7 @@ Function367e:: ; 367e
 	ld [EngineBuffer1], a
 	ld a, [$ffe0]
 	call GetMapObject
-	ld hl, $000a
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [EngineBuffer1]
 	call GetFarHalfword
@@ -1498,11 +1506,11 @@ FacingPlayerDistance:: ; 36ad
 ; Return carry if the sprite at bc is facing the player,
 ; and its distance in d.
 
-	ld hl, $0010 ; x
+	ld hl, OBJECT_MAP_X ; x
 	add hl, bc
 	ld d, [hl]
 
-	ld hl, $0011 ; y
+	ld hl, OBJECT_MAP_Y ; y
 	add hl, bc
 	ld e, [hl]
 
@@ -1565,13 +1573,13 @@ FacingPlayerDistance:: ; 36ad
 ; 36f5
 
 
-Function36f5:: ; 36f5
+CheckTrainerFlag:: ; 36f5
 	push bc
-	ld hl, $0001
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	call GetMapObject
-	ld hl, $000a
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -1581,7 +1589,7 @@ Function36f5:: ; 36f5
 	ld d, h
 	ld e, l
 	push de
-	ld b, $2
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	pop de
 	ld a, c
@@ -1594,19 +1602,19 @@ Function36f5:: ; 36f5
 Function3718:: ; 3718
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
-	jr .asm_3724
+	jr .canlose
 
 	ld hl, WalkingTile
-	jr .asm_3731
+	jr .ok
 
-.asm_3724
+.canlose
 	ld a, [wd0ee]
 	ld hl, WalkingTile
 	and $f
-	jr z, .asm_3731
+	jr z, .ok
 	ld hl, wd048 + 1
 
-.asm_3731
+.ok
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1784,7 +1792,7 @@ GetBaseData:: ; 3856
 	push af
 	ld a, BANK(BaseData)
 	rst Bankswitch
-	
+
 ; Egg doesn't have BaseData
 	ld a, [CurSpecies]
 	cp EGG
@@ -1799,16 +1807,16 @@ GetBaseData:: ; 3856
 	ld bc, BaseData1 - BaseData0
 	call CopyBytes
 	jr .end
-	
+
 .egg
 ; ????
 	ld de, UnknownEggPic
-	
+
 ; Sprite dimensions
 	ld b, $55 ; 5x5
 	ld hl, BasePicSize
 	ld [hl], b
-	
+
 ; ????
 	ld hl, BasePadding
 	ld [hl], e
@@ -1819,12 +1827,12 @@ GetBaseData:: ; 3856
 	inc hl
 	ld [hl], d
 	jr .end
-	
+
 .end
 ; Replace Pokedex # with species
 	ld a, [CurSpecies]
 	ld [BaseDexNo], a
-	
+
 	pop af
 	rst Bankswitch
 	pop hl
@@ -2102,10 +2110,12 @@ Function3eea:: ; 3eea
 	push bc
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	call Function3f35
 	pop bc
 	pop hl
@@ -2129,10 +2139,12 @@ Function3f0d:: ; 3f0d
 	push bc
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	call Function3f35
 	pop bc
 	pop hl
@@ -2253,8 +2265,9 @@ Function3f9f:: ; 3f9f
 	ld c, $8
 .asm_3fa5
 	ld a, [de]
+rept 2
 	inc de
-	inc de
+endr
 	cpl
 	ld [hl], $0
 	inc hl

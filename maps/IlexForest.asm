@@ -1,8 +1,8 @@
 IlexForest_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -293,7 +293,7 @@ UnknownScript_0x6ed50:
 	appear $2
 	loadvar FarfetchdPosition, $a
 	appear $4
-	setevent EVENT_6F7
+	setevent EVENT_CHARCOAL_KILN_BOSS
 	setevent EVENT_HERDED_FARFETCHD
 	end
 
@@ -344,12 +344,12 @@ BlackBeltScript_0x6edae:
 	writetext UnknownText_0x6f141
 	closetext
 	loadmovesprites
-	setevent EVENT_6E9
-	setevent EVENT_6F3
-	setevent EVENT_6F4
-	clearevent EVENT_6F5
-	clearevent EVENT_6F6
-	clearevent EVENT_6F7
+	setevent EVENT_ILEX_FOREST_FARFETCHD
+	setevent EVENT_ILEX_FOREST_APPRENTICE
+	setevent EVENT_ILEX_FOREST_CHARCOAL_MASTER
+	clearevent EVENT_CHARCOAL_KILN_FARFETCH_D
+	clearevent EVENT_CHARCOAL_KILN_APPRENTICE
+	clearevent EVENT_CHARCOAL_KILN_BOSS
 	end
 
 UnknownScript_0x6edd8:
@@ -376,23 +376,7 @@ UnknownScript_0x6edf7:
 	end
 
 TrainerBug_catcherWayne:
-	; bit/flag number
-	dw EVENT_BEAT_BUG_CATCHER_WAYNE
-
-	; trainer group && trainer id
-	db BUG_CATCHER, WAYNE
-
-	; text when seen
-	dw Bug_catcherWayneSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherWayneBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherWayneScript
+	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, Bug_catcherWayneSeenText, Bug_catcherWayneBeatenText, $0000, Bug_catcherWayneScript
 
 Bug_catcherWayneScript:
 	talkaftercancel
@@ -418,18 +402,15 @@ ItemFragment_0x6ee16:
 	db ETHER, 1
 
 MapIlexForestSignpostItem1:
-	dw $0088
-	db ETHER
+	dwb EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER
 	
 
 MapIlexForestSignpostItem2:
-	dw $0089
-	db SUPER_POTION
+	dwb EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
 MapIlexForestSignpostItem3:
-	dw $008a
-	db FULL_HEAL
+	dwb EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL, FULL_HEAL
 
 IlexForestBoulder:
 ; unused
@@ -460,14 +441,14 @@ UnknownScript_0x6ee38:
 UnknownScript_0x6ee42:
 	takeitem GS_BALL, 1
 	clearevent EVENT_FOREST_IS_RESTLESS
-	setevent EVENT_7A4
+	setevent EVENT_AZALEA_TOWN_KURT
 	disappear $8
-	clearevent EVENT_6EB
+	clearevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
 	writetext UnknownText_0x6f43b
 	closetext
 	loadmovesprites
 	pause 20
-	showemote $0, $0, 20
+	showemote EMOTE_SHOCK, $0, 20
 	special Functionc48f
 	applymovement $0, MovementData_0x6ef58
 	pause 30
@@ -950,33 +931,33 @@ IlexForest_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $5, $1, 3, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
 	warp_def $2a, $3, 1, GROUP_ILEX_FOREST_AZALEA_GATE, MAP_ILEX_FOREST_AZALEA_GATE
 	warp_def $2b, $3, 2, GROUP_ILEX_FOREST_AZALEA_GATE, MAP_ILEX_FOREST_AZALEA_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
-	signpost 17, 3, $0, MapIlexForestSignpost0Script
-	signpost 7, 11, $7, MapIlexForestSignpostItem1
-	signpost 14, 22, $7, MapIlexForestSignpostItem2
-	signpost 17, 1, $7, MapIlexForestSignpostItem3
-	signpost 22, 8, $1, MapIlexForestSignpost4Script
+	signpost 17, 3, SIGNPOST_READ, MapIlexForestSignpost0Script
+	signpost 7, 11, SIGNPOST_ITEM, MapIlexForestSignpostItem1
+	signpost 14, 22, SIGNPOST_ITEM, MapIlexForestSignpostItem2
+	signpost 17, 1, SIGNPOST_ITEM, MapIlexForestSignpostItem3
+	signpost 22, 8, SIGNPOST_UP, MapIlexForestSignpost4Script
 
-	; people-events
+.PersonEvents:
 	db 11
-	person_event SPRITE_BIRD, 35, 18, $3, $0, 255, 255, $b0, 0, BirdScript_0x6eb8f, EVENT_6E9
-	person_event SPRITE_YOUNGSTER, 32, 11, $6, $0, 255, 255, $a0, 0, YoungsterScript_0x6eb7b, EVENT_6F3
-	person_event SPRITE_BLACK_BELT, 32, 9, $9, $0, 255, 255, $0, 0, BlackBeltScript_0x6edae, EVENT_6F4
-	person_event SPRITE_ROCKER, 18, 19, $9, $0, 255, 255, $0, 0, RockerScript_0x6edde, -1
-	person_event SPRITE_POKE_BALL, 36, 24, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee10, EVENT_671
-	person_event SPRITE_KURT, 33, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_7A5
-	person_event SPRITE_LASS, 28, 7, $9, $0, 255, 255, $a0, 0, LassScript_0x6ee0d, EVENT_6ED
-	person_event SPRITE_YOUNGSTER, 5, 16, $7, $0, 255, 255, $a2, 0, TrainerBug_catcherWayne, -1
-	person_event SPRITE_POKE_BALL, 21, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee12, EVENT_7B9
-	person_event SPRITE_POKE_BALL, 11, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee14, EVENT_7BA
-	person_event SPRITE_POKE_BALL, 5, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee16, EVENT_7BB
+	person_event SPRITE_BIRD, 35, 18, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BirdScript_0x6eb8f, EVENT_ILEX_FOREST_FARFETCHD
+	person_event SPRITE_YOUNGSTER, 32, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6eb7b, EVENT_ILEX_FOREST_APPRENTICE
+	person_event SPRITE_BLACK_BELT, 32, 9, OW_LEFT | $1, $0, -1, -1, $0, 0, BlackBeltScript_0x6edae, EVENT_ILEX_FOREST_CHARCOAL_MASTER
+	person_event SPRITE_ROCKER, 18, 19, OW_LEFT | $1, $0, -1, -1, $0, 0, RockerScript_0x6edde, -1
+	person_event SPRITE_POKE_BALL, 36, 24, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee10, EVENT_ILEX_FOREST_REVIVE
+	person_event SPRITE_KURT, 33, 12, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
+	person_event SPRITE_LASS, 28, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x6ee0d, EVENT_ILEX_FOREST_LASS
+	person_event SPRITE_YOUNGSTER, 5, 16, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerBug_catcherWayne, -1
+	person_event SPRITE_POKE_BALL, 21, 13, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee12, EVENT_ILEX_FOREST_X_ATTACK
+	person_event SPRITE_POKE_BALL, 11, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee14, EVENT_ILEX_FOREST_ANTIDOTE
+	person_event SPRITE_POKE_BALL, 5, 31, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6ee16, EVENT_ILEX_FOREST_ETHER

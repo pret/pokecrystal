@@ -1,11 +1,11 @@
 IndigoPlateauPokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x180009, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -22,22 +22,22 @@ UnknownScript_0x18000a:
 	domaptrigger GROUP_KARENS_ROOM, MAP_KARENS_ROOM, $0
 	domaptrigger GROUP_LANCES_ROOM, MAP_LANCES_ROOM, $0
 	domaptrigger GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $0
-	clearevent EVENT_309
-	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	clearevent EVENT_KOGAS_ROOM_EXIT_OPEN
+	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
+	clearevent EVENT_KOGAS_ROOM_EXIT_OPEN
+	clearevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	clearevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_KARENS_ROOM_EXIT_OPEN
 	clearevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	clearevent EVENT_312
+	clearevent EVENT_LANCES_ROOM_EXIT_OPEN
 	clearevent EVENT_BEAT_ELITE_4_WILL
 	clearevent EVENT_BEAT_ELITE_4_KOGA
 	clearevent EVENT_BEAT_ELITE_4_BRUNO
 	clearevent EVENT_BEAT_ELITE_4_KAREN
 	clearevent EVENT_BEAT_CHAMPION_LANCE
-	setevent EVENT_75F
+	setevent EVENT_LANCES_ROOM_OAK_AND_MARY
 	return
 
 UnknownScript_0x180053:
@@ -54,7 +54,7 @@ UnknownScript_0x180053:
 	moveperson $5, $11, $9
 	appear $5
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	applymovement $5, MovementData_0x180164
@@ -75,7 +75,7 @@ UnknownScript_0x180094:
 	if_equal SATURDAY, UnknownScript_0x18012b
 	appear $5
 	spriteface $0, DOWN
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	applymovement $5, MovementData_0x18016b
@@ -86,7 +86,7 @@ UnknownScript_0x1800ce:
 	writetext UnknownText_0x1801f5
 	closetext
 	loadmovesprites
-	setevent EVENT_77B
+	setevent EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x1800f3
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -154,7 +154,7 @@ TeleportGuyScript:
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
-	special Function8c084
+	special FadeBlackBGMap
 	waitbutton
 	warp GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $d, $6
 	end
@@ -302,26 +302,26 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $d, $5, 1, GROUP_ROUTE_23, MAP_ROUTE_23
 	warp_def $d, $6, 2, GROUP_ROUTE_23, MAP_ROUTE_23
 	warp_def $d, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 	warp_def $3, $e, 1, GROUP_WILLS_ROOM, MAP_WILLS_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $4, $10, $0, UnknownScript_0x180053, $0, $0
 	xy_trigger 0, $4, $11, $0, UnknownScript_0x180094, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_NURSE, 11, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18012c, -1
-	person_event SPRITE_CLERK, 11, 15, $6, $0, 255, 255, $0, 0, ClerkScript_0x18012f, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, $22, 255, 255, $0, 0, CooltrainerMScript_0x180136, -1
-	person_event SPRITE_SILVER, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, EVENT_77B
-	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
-	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, AbraScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_NURSE, 11, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x18012c, -1
+	person_event SPRITE_CLERK, 11, 15, OW_UP | $2, $0, -1, -1, $0, 0, ClerkScript_0x18012f, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 15, OW_DOWN | $2, $22, -1, -1, $0, 0, CooltrainerMScript_0x180136, -1
+	person_event SPRITE_SILVER, 13, 20, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
+	person_event SPRITE_GRAMPS, 13, 5, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_JYNX, 13, 4, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, AbraScript, EVENT_TELEPORT_GUY
