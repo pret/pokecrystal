@@ -1,243 +1,155 @@
-Route19_MapScriptHeader: ; 0x19e9d9
-	; trigger count
+Route19_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x19e9de
-; 0x19e9de
+	dbw 1, .ClearRocks
 
-UnknownScript_0x19e9de: ; 0x19e9de
-	checkevent $00d7
-	iftrue UnknownScript_0x19e9fc
+.ClearRocks
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	iftrue .Done
 	changeblock $6, $6, $7a
 	changeblock $8, $6, $7a
 	changeblock $a, $6, $7a
 	changeblock $c, $8, $7a
 	changeblock $4, $8, $7a
 	changeblock $a, $a, $7a
-UnknownScript_0x19e9fc: ; 0x19e9fc
+.Done
 	return
-; 0x19e9fd
 
-TrainerSwimmerfDawn: ; 0x19e9fd
-	; bit/flag number
-	dw $3f3
+TrainerSwimmerfDawn:
+	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, $0000, SwimmerfDawnScript
 
-	; trainer group && trainer id
-	db SWIMMERF, DAWN
-
-	; text when seen
-	dw SwimmerfDawnSeenText
-
-	; text when trainer beaten
-	dw SwimmerfDawnBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfDawnScript
-; 0x19ea09
-
-SwimmerfDawnScript: ; 0x19ea09
+SwimmerfDawnScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19ebad
 	closetext
 	loadmovesprites
 	end
-; 0x19ea11
 
-TrainerSwimmermHarold: ; 0x19ea11
-	; bit/flag number
-	dw $594
+TrainerSwimmermHarold:
+	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, $0000, SwimmermHaroldScript
 
-	; trainer group && trainer id
-	db SWIMMERM, HAROLD
-
-	; text when seen
-	dw SwimmermHaroldSeenText
-
-	; text when trainer beaten
-	dw SwimmermHaroldBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermHaroldScript
-; 0x19ea1d
-
-SwimmermHaroldScript: ; 0x19ea1d
+SwimmermHaroldScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19eab4
 	closetext
 	loadmovesprites
 	end
-; 0x19ea25
 
-TrainerSwimmermJerome: ; 0x19ea25
-	; bit/flag number
-	dw $5a1
+TrainerSwimmermJerome:
+	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, $0000, SwimmermJeromeScript
 
-	; trainer group && trainer id
-	db SWIMMERM, JEROME
-
-	; text when seen
-	dw SwimmermJeromeSeenText
-
-	; text when trainer beaten
-	dw SwimmermJeromeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermJeromeScript
-; 0x19ea31
-
-SwimmermJeromeScript: ; 0x19ea31
+SwimmermJeromeScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19ec7e
 	closetext
 	loadmovesprites
 	end
-; 0x19ea39
 
-TrainerSwimmermTucker: ; 0x19ea39
-	; bit/flag number
-	dw $5a2
+TrainerSwimmermTucker:
+	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, $0000, SwimmermTuckerScript
 
-	; trainer group && trainer id
-	db SWIMMERM, TUCKER
-
-	; text when seen
-	dw SwimmermTuckerSeenText
-
-	; text when trainer beaten
-	dw SwimmermTuckerBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermTuckerScript
-; 0x19ea45
-
-SwimmermTuckerScript: ; 0x19ea45
+SwimmermTuckerScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19eb3b
 	closetext
 	loadmovesprites
 	end
-; 0x19ea4d
 
-FisherScript_0x19ea4d: ; 0x19ea4d
+FisherScript_0x19ea4d:
 	faceplayer
 	loadfont
-	checkevent $00d7
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue UnknownScript_0x19ea5b
 	writetext UnknownText_0x19ecaf
 	closetext
 	loadmovesprites
 	end
-; 0x19ea5b
 
-UnknownScript_0x19ea5b: ; 0x19ea5b
+UnknownScript_0x19ea5b:
 	writetext UnknownText_0x19ed24
 	closetext
 	loadmovesprites
 	end
-; 0x19ea61
 
-FisherScript_0x19ea61: ; 0x19ea61
+FisherScript_0x19ea61:
 	faceplayer
 	loadfont
-	checkevent $00d7
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue UnknownScript_0x19ea6f
 	writetext UnknownText_0x19ed45
 	closetext
 	loadmovesprites
 	end
-; 0x19ea6f
 
-UnknownScript_0x19ea6f: ; 0x19ea6f
+UnknownScript_0x19ea6f:
 	writetext UnknownText_0x19ed7d
 	closetext
 	loadmovesprites
 	end
-; 0x19ea75
 
-MapRoute19Signpost0Script: ; 0x19ea75
+MapRoute19Signpost0Script:
 	jumptext UnknownText_0x19edbc
-; 0x19ea78
 
-MapRoute19Signpost1Script: ; 0x19ea78
+MapRoute19Signpost1Script:
 	jumptext UnknownText_0x19ede5
-; 0x19ea7b
 
-SwimmermHaroldSeenText: ; 0x19ea7b
+SwimmermHaroldSeenText:
 	text "Have you ever gone"
 	line "swimming in the"
 	cont "sea at night?"
 	done
-; 0x19eaad
 
-SwimmermHaroldBeatenText: ; 0x19eaad
+SwimmermHaroldBeatenText:
 	text "Glub…"
 	done
-; 0x19eab4
 
-UnknownText_0x19eab4: ; 0x19eab4
+UnknownText_0x19eab4:
 	text "At night, the sea"
 	line "turns black. It"
 
 	para "feels like it will"
 	line "swallow you up."
 	done
-; 0x19eafa
 
-SwimmermTuckerSeenText: ; 0x19eafa
+SwimmermTuckerSeenText:
 	text "Pant, pant…"
 	line "Just… a little…"
 
 	para "farther… to…"
 	line "FUCHSIA…"
 	done
-; 0x19eb2d
 
-SwimmermTuckerBeatenText: ; 0x19eb2d
+SwimmermTuckerBeatenText:
 	text "I'm drowning!"
 	done
-; 0x19eb3b
 
-UnknownText_0x19eb3b: ; 0x19eb3b
+UnknownText_0x19eb3b:
 	text "I… asked my girl-"
 	line "friend to swim to"
 	cont "FUCHSIA… Gasp…"
 	done
-; 0x19eb6f
 
-SwimmerfDawnSeenText: ; 0x19eb6f
+SwimmerfDawnSeenText:
 	text "I'm disgusted by"
 	line "wimpy people!"
 	done
-; 0x19eb8e
 
-SwimmerfDawnBeatenText: ; 0x19eb8e
+SwimmerfDawnBeatenText:
 	text "I could beat you"
 	line "at swimming…"
 	done
-; 0x19ebad
 
-UnknownText_0x19ebad: ; 0x19ebad
+UnknownText_0x19ebad:
 	text "It's a quick swim"
 	line "between FUCHSIA"
 
@@ -249,9 +161,8 @@ UnknownText_0x19ebad: ; 0x19ebad
 
 	para "is! What a wimp!"
 	done
-; 0x19ec19
 
-SwimmermJeromeSeenText: ; 0x19ec19
+SwimmermJeromeSeenText:
 	text "Swimming?"
 	line "I'm lousy at it."
 
@@ -259,22 +170,19 @@ SwimmermJeromeSeenText: ; 0x19ec19
 	line "around in these"
 	cont "shallow waters."
 	done
-; 0x19ec66
 
-SwimmermJeromeBeatenText: ; 0x19ec66
+SwimmermJeromeBeatenText:
 	text "I thought I could"
 	line "win."
 	done
-; 0x19ec7e
 
-UnknownText_0x19ec7e: ; 0x19ec7e
+UnknownText_0x19ec7e:
 	text "I might be bad at"
 	line "swimming, but I"
 	cont "love the sea."
 	done
-; 0x19ecaf
 
-UnknownText_0x19ecaf: ; 0x19ecaf
+UnknownText_0x19ecaf:
 	text "Sorry. This road"
 	line "is closed for"
 	cont "construction."
@@ -285,39 +193,34 @@ UnknownText_0x19ecaf: ; 0x19ecaf
 	para "better go south"
 	line "from PALLET TOWN."
 	done
-; 0x19ed24
 
-UnknownText_0x19ed24: ; 0x19ed24
+UnknownText_0x19ed24:
 	text "I'm all sweaty."
 	line "Time for a swim!"
 	done
-; 0x19ed45
 
-UnknownText_0x19ed45: ; 0x19ed45
+UnknownText_0x19ed45:
 	text "Who knows how long"
 	line "it would take to"
 	cont "move this boulder…"
 	done
-; 0x19ed7d
 
-UnknownText_0x19ed7d: ; 0x19ed7d
+UnknownText_0x19ed7d:
 	text "The roadwork is"
 	line "finally finished."
 
 	para "Now I can go"
 	line "fishing again."
 	done
-; 0x19edbc
 
-UnknownText_0x19edbc: ; 0x19edbc
+UnknownText_0x19edbc:
 	text "ROUTE 19"
 
 	para "FUCHSIA CITY -"
 	line "SEAFOAM ISLANDS"
 	done
-; 0x19ede5
 
-UnknownText_0x19ede5: ; 0x19ede5
+UnknownText_0x19ede5:
 	text "Please be careful"
 	line "if you are swim-"
 	cont "ming to SEAFOAM"
@@ -325,30 +228,28 @@ UnknownText_0x19ede5: ; 0x19ede5
 
 	para "FUCHSIA POLICE"
 	done
-; 0x19ee31
 
-Route19_MapEventHeader: ; 0x19ee31
+Route19_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $3, $7, 3, GROUP_ROUTE_19___FUCHSIA_GATE, MAP_ROUTE_19___FUCHSIA_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 13, 11, $0, MapRoute19Signpost0Script
-	signpost 1, 11, $0, MapRoute19Signpost1Script
+	signpost 13, 11, SIGNPOST_READ, MapRoute19Signpost0Script
+	signpost 1, 11, SIGNPOST_READ, MapRoute19Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_SWIMMER_GIRL, 27, 13, $8, $0, 255, 255, $a2, 0, TrainerSwimmerfDawn, $ffff
-	person_event SPRITE_SWIMMER_GUY, 32, 17, $a, $0, 255, 255, $82, 3, TrainerSwimmermHarold, $ffff
-	person_event SPRITE_SWIMMER_GUY, 21, 15, $a, $0, 255, 255, $82, 3, TrainerSwimmermJerome, $ffff
-	person_event SPRITE_SWIMMER_GUY, 27, 12, $7, $0, 255, 255, $82, 0, TrainerSwimmermTucker, $ffff
-	person_event SPRITE_FISHER, 9, 13, $6, $0, 255, 255, $80, 1, FisherScript_0x19ea4d, $ffff
-	person_event SPRITE_FISHER, 9, 15, $5, $1, 255, 255, $90, 1, FisherScript_0x19ea61, $ffff
-; 0x19ee94
+	person_event SPRITE_SWIMMER_GIRL, 27, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerSwimmerfDawn, -1
+	person_event SPRITE_SWIMMER_GUY, 32, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermHarold, -1
+	person_event SPRITE_SWIMMER_GUY, 21, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermJerome, -1
+	person_event SPRITE_SWIMMER_GUY, 27, 12, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerSwimmermTucker, -1
+	person_event SPRITE_FISHER, 9, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 1, FisherScript_0x19ea4d, -1
+	person_event SPRITE_FISHER, 9, 15, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, FisherScript_0x19ea61, -1

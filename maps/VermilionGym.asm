@@ -1,16 +1,15 @@
-VermilionGym_MapScriptHeader: ; 0x1920a3
-	; trigger count
+VermilionGym_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x1920a5
 
-SurgeScript_0x1920a5: ; 0x1920a5
+SurgeScript_0x1920a5:
 	faceplayer
 	loadfont
-	checkflag $0025
-	iftrue UnknownScript_0x1920d9
+	checkflag ENGINE_THUNDERBADGE
+	iftrue .FightDone
 	writetext UnknownText_0x192142
 	closetext
 	loadmovesprites
@@ -26,108 +25,52 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	writetext UnknownText_0x192277
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0025
+	setflag ENGINE_THUNDERBADGE
 	writetext UnknownText_0x192291
 	closetext
 	loadmovesprites
 	end
-; 0x1920d9
 
-UnknownScript_0x1920d9: ; 0x1920d9
+.FightDone
 	writetext UnknownText_0x192303
 	closetext
 	loadmovesprites
 	end
-; 0x1920df
 
-TrainerGentlemanGregory: ; 0x1920df
-	; bit/flag number
-	dw $49c
+TrainerGentlemanGregory:
+	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, $0000, GentlemanGregoryScript
 
-	; trainer group && trainer id
-	db GENTLEMAN, GREGORY
-
-	; text when seen
-	dw GentlemanGregorySeenText
-
-	; text when trainer beaten
-	dw GentlemanGregoryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GentlemanGregoryScript
-; 0x1920eb
-
-GentlemanGregoryScript: ; 0x1920eb
+GentlemanGregoryScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1923b0
 	closetext
 	loadmovesprites
 	end
-; 0x1920f3
 
-TrainerGuitaristVincent: ; 0x1920f3
-	; bit/flag number
-	dw $494
+TrainerGuitaristVincent:
+	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, $0000, GuitaristVincentScript
 
-	; trainer group && trainer id
-	db GUITARIST, VINCENT
-
-	; text when seen
-	dw GuitaristVincentSeenText
-
-	; text when trainer beaten
-	dw GuitaristVincentBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GuitaristVincentScript
-; 0x1920ff
-
-GuitaristVincentScript: ; 0x1920ff
+GuitaristVincentScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19244b
 	closetext
 	loadmovesprites
 	end
-; 0x192107
 
-TrainerJugglerHorton: ; 0x192107
-	; bit/flag number
-	dw $497
+TrainerJugglerHorton:
+	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, $0000, JugglerHortonScript
 
-	; trainer group && trainer id
-	db JUGGLER, HORTON
-
-	; text when seen
-	dw JugglerHortonSeenText
-
-	; text when trainer beaten
-	dw JugglerHortonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw JugglerHortonScript
-; 0x192113
-
-JugglerHortonScript: ; 0x192113
+JugglerHortonScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1924d6
 	closetext
 	loadmovesprites
 	end
-; 0x19211b
 
-VermilionGymGuyScript: ; 0x19211b
+VermilionGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_LTSURGE
@@ -142,11 +85,9 @@ VermilionGymGuyScript: ; 0x19211b
 	closetext
 	loadmovesprites
 	end
-; 0x19212f
 
-MapVermilionGymSignpost14Script: ; 0x19212f
+MapVermilionGymSignpost14Script:
 	jumptext UnknownText_0x19261e
-; 0x192132
 
 VermilionGymStatue:
 	checkflag ENGINE_THUNDERBADGE
@@ -156,7 +97,7 @@ VermilionGymStatue:
 	trainertotext LT_SURGE, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x192142: ; 0x192142
+UnknownText_0x192142:
 	text "SURGE: Hey, you"
 	line "little tyke!"
 
@@ -178,24 +119,21 @@ UnknownText_0x192142: ; 0x192142
 	line "like I did my"
 	cont "enemies in war!"
 	done
-; 0x192238
 
-UnknownText_0x192238: ; 0x192238
+UnknownText_0x192238:
 	text "SURGE: Arrrgh!"
 	line "You are strong!"
 
 	para "OK, kid. You get"
 	line "THUNDERBADGE!"
 	done
-; 0x192277
 
-UnknownText_0x192277: ; 0x192277
+UnknownText_0x192277:
 	text "<PLAYER> received"
 	line "THUNDERBADGE."
 	done
-; 0x192291
 
-UnknownText_0x192291: ; 0x192291
+UnknownText_0x192291:
 	text "SURGE: THUNDER-"
 	line "BADGE increases"
 	cont "#MON's speed. "
@@ -206,9 +144,8 @@ UnknownText_0x192291: ; 0x192291
 	para "me. You wear it"
 	line "proudly, hear?"
 	done
-; 0x192303
 
-UnknownText_0x192303: ; 0x192303
+UnknownText_0x192303:
 	text "SURGE: Hey, kid!"
 	line "Still slugging and"
 	cont "chugging away?"
@@ -216,34 +153,30 @@ UnknownText_0x192303: ; 0x192303
 	para "My #MON and I"
 	line "are still at it!"
 	done
-; 0x192356
 
-GentlemanGregorySeenText: ; 0x192356
+GentlemanGregorySeenText:
 	text "You're here to"
 	line "defeat LT.SURGE?"
 
 	para "Not if I can help"
 	line "it!"
 	done
-; 0x19238c
 
-GentlemanGregoryBeatenText: ; 0x19238c
+GentlemanGregoryBeatenText:
 	text "Sorry I failed"
 	line "you, LT.SURGE,"
 	cont "sir!"
 	done
-; 0x1923b0
 
-UnknownText_0x1923b0: ; 0x1923b0
+UnknownText_0x1923b0:
 	text "When I was still"
 	line "in the army, LT."
 
 	para "SURGE saved my"
 	line "life."
 	done
-; 0x1923e8
 
-GuitaristVincentSeenText: ; 0x1923e8
+GuitaristVincentSeenText:
 	text "LT.SURGE recog-"
 	line "nized my potential"
 
@@ -253,45 +186,39 @@ GuitaristVincentSeenText: ; 0x1923e8
 	para "Think you can beat"
 	line "me?"
 	done
-; 0x192437
 
-GuitaristVincentBeatenText: ; 0x192437
+GuitaristVincentBeatenText:
 	text "Ooh, how shocking!"
 	done
-; 0x19244b
 
-UnknownText_0x19244b: ; 0x19244b
+UnknownText_0x19244b:
 	text "If the GYM's traps"
 	line "were working, you"
 
 	para "would have been"
 	line "toast…"
 	done
-; 0x192487
 
-JugglerHortonSeenText: ; 0x192487
+JugglerHortonSeenText:
 	text "I'm going to take"
 	line "you down! Prepare"
 	cont "to be shocked!"
 	done
-; 0x1924ba
 
-JugglerHortonBeatenText: ; 0x1924ba
+JugglerHortonBeatenText:
 	text "Gwaaah!"
 	line "I was overpowered…"
 	done
-; 0x1924d6
 
-UnknownText_0x1924d6: ; 0x1924d6
+UnknownText_0x1924d6:
 	text "Don't get too com-"
 	line "fortable about"
 
 	para "beating me…"
 	line "LT.SURGE is tough."
 	done
-; 0x192517
 
-VermilionGymGuyText: ; 0x192517
+VermilionGymGuyText:
 	text "Yo! CHAMP in"
 	line "making!"
 
@@ -312,60 +239,56 @@ VermilionGymGuyText: ; 0x192517
 	line "problem getting to"
 	cont "LT.SURGE."
 	done
-; 0x1925df
 
-VermilionGymGuyWinText: ; 0x1925df
+VermilionGymGuyWinText:
 	text "Whew! That was an"
 	line "electrifying bout!"
 
 	para "It sure made me"
 	line "nervous."
 	done
-; 0x19261e
 
-UnknownText_0x19261e: ; 0x19261e
+UnknownText_0x19261e:
 	text "Nope! Nothing here"
 	line "but trash."
 	done
-; 0x19263d
 
-VermilionGym_MapEventHeader: ; 0x19263d
+VermilionGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 7, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	warp_def $11, $5, 7, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 17
-	signpost 7, 1, $0, MapVermilionGymSignpost14Script
-	signpost 7, 3, $0, MapVermilionGymSignpost14Script
-	signpost 7, 5, $0, MapVermilionGymSignpost14Script
-	signpost 7, 7, $0, MapVermilionGymSignpost14Script
-	signpost 7, 9, $0, MapVermilionGymSignpost14Script
-	signpost 9, 1, $0, MapVermilionGymSignpost14Script
-	signpost 9, 3, $0, MapVermilionGymSignpost14Script
-	signpost 9, 5, $0, MapVermilionGymSignpost14Script
-	signpost 9, 7, $0, MapVermilionGymSignpost14Script
-	signpost 9, 9, $0, MapVermilionGymSignpost14Script
-	signpost 11, 1, $0, MapVermilionGymSignpost14Script
-	signpost 11, 3, $0, MapVermilionGymSignpost14Script
-	signpost 11, 5, $0, MapVermilionGymSignpost14Script
-	signpost 11, 7, $0, MapVermilionGymSignpost14Script
-	signpost 11, 9, $0, MapVermilionGymSignpost14Script
-	signpost 15, 3, $0, VermilionGymStatue
-	signpost 15, 6, $0, VermilionGymStatue
+	signpost 7, 1, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 7, 3, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 7, 5, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 7, 7, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 7, 9, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 1, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 3, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 5, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 7, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 9, 9, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 1, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 3, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 5, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 7, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 11, 9, SIGNPOST_READ, MapVermilionGymSignpost14Script
+	signpost 15, 3, SIGNPOST_READ, VermilionGymStatue
+	signpost 15, 6, SIGNPOST_READ, VermilionGymStatue
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_SURGE, 6, 9, $6, $0, 255, 255, $b0, 0, SurgeScript_0x1920a5, $ffff
-	person_event SPRITE_GENTLEMAN, 12, 12, $8, $0, 255, 255, $92, 4, TrainerGentlemanGregory, $ffff
-	person_event SPRITE_ROCKER, 11, 8, $6, $3, 255, 255, $82, 3, TrainerGuitaristVincent, $ffff
-	person_event SPRITE_SUPER_NERD, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, $ffff
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, $ffff
-; 0x1926e3
+	person_event SPRITE_SURGE, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, SurgeScript_0x1920a5, -1
+	person_event SPRITE_GENTLEMAN, 12, 12, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerGentlemanGregory, -1
+	person_event SPRITE_ROCKER, 11, 8, OW_UP | $2, $3, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerGuitaristVincent, -1
+	person_event SPRITE_SUPER_NERD, 14, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerJugglerHorton, -1
+	person_event SPRITE_GYM_GUY, 19, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, VermilionGymGuyScript, -1

@@ -40,8 +40,8 @@ Function2de2:: ; 2de2
 	call Function2e31
 	ld a, $90
 	ld [hWY], a
-	call Functione4a
-	callba Functionb8000
+	call Special_ReplaceKrisSprite
+	callba ReturnFromMapSetupScript
 	callba Function106594
 	ret
 ; 2e08
@@ -83,7 +83,7 @@ Function2e31:: ; 2e31
 	ld [hBGMapMode], a
 	ld a, $1
 	ld [hOAMUpdate], a
-	call Function1ad2
+	call DrawOnMap
 	xor a
 	ld [hOAMUpdate], a
 	call DelayFrame

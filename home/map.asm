@@ -1,6 +1,6 @@
 ; Functions dealing with rendering and interacting with maps.
 
-Function210f:: ; 210f
+Clearwc7e8:: ; 210f
 	ld hl, wc7e8
 	ld bc, $0018
 	ld a, $0
@@ -8,41 +8,49 @@ Function210f:: ; 210f
 	ret
 ; 211b
 
-Function211b:: ; 211b
+CheckTriggers:: ; 211b
+; Checks wCurrentMapTriggerPointer.  If it's empty, returns -1 in a.  Otherwise, returns the active trigger ID in a.
 	push hl
-	ld hl, BikeFlags + 2
+	ld hl, wCurrentMapTriggerPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
 	ld a, [hl]
-	jr nz, .asm_2128
-	ld a, $ff
+	jr nz, .triggerexists
+	ld a, -1
 
-.asm_2128
+.triggerexists
 	pop hl
 	ret
 ; 212a
 
 GetCurrentMapTrigger:: ; 212a
+; Grabs the wram map trigger pointer for the current map and loads it into wCurrentMapTriggerPointer.
+; If there are no triggers, both bytes of wCurrentMapTriggerPointer are wiped clean.
+; Copy the current map group and number into bc.  This is needed for GetMapTrigger.
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
+; Blank out wCurrentMapTriggerPointer; this is the default scenario.
 	xor a
-	ld [BikeFlags + 2], a
-	ld [BikeFlags + 3], a
+	ld [wCurrentMapTriggerPointer], a
+	ld [wCurrentMapTriggerPointer + 1], a
 	call GetMapTrigger
-	ret c
+	ret c ; The map is not in the trigger table
+; Load the trigger table pointer from de into wCurrentMapTriggerPointer
 	ld a, e
-	ld [BikeFlags + 2], a
+	ld [wCurrentMapTriggerPointer], a
 	ld a, d
-	ld [BikeFlags + 3], a
+	ld [wCurrentMapTriggerPointer + 1], a
 	xor a
 	ret
 ; 2147
 
 GetMapTrigger:: ; 2147
+; Searches the trigger table for the map group and number loaded in bc, and returns the wram pointer in de.
+; If the map is not in the trigger table, returns carry.
 	push bc
 	ld a, [hROMBank]
 	push af
@@ -50,34 +58,34 @@ GetMapTrigger:: ; 2147
 	rst Bankswitch
 
 	ld hl, MapTriggers
-.asm_2151
+.loop
 	push hl
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_2167
+	ld a, [hli] ; map group, or terminator
+	cp -1
+	jr z, .end ; the current map is not in the trigger table
 	cp b
-	jr nz, .asm_2160
-	ld a, [hli]
+	jr nz, .next ; map group did not match
+	ld a, [hli] ; map number
 	cp c
-	jr nz, .asm_2160
-	jr .asm_216a
+	jr nz, .next ; map number did not match
+	jr .found ; we found our map
 
-.asm_2160
+.next
 	pop hl
-	ld de, $0004
+	ld de, 4 ; size of an entry in the trigger table
 	add hl, de
-	jr .asm_2151
+	jr .loop
 
-.asm_2167
+.end
 	scf
-	jr .asm_216d
+	jr .done
 
-.asm_216a
+.found
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 
-.asm_216d
+.done
 	pop hl
 	pop bc
 	ld a, b
@@ -142,9 +150,9 @@ Function2198:: ; 2198
 	add a
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
+rept 3
+	add hl,hl
+endr
 	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
@@ -234,7 +242,7 @@ Function2252:: ; 2252
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function2266
 
 	pop de
@@ -295,8 +303,9 @@ Function2266:: ; 2266
 ; 22a3
 
 Function22a3:: ; 22a3
+rept 2
 	inc hl
-	inc hl
+endr
 	scf
 	ret
 ; 22a7
@@ -305,7 +314,7 @@ Function22a7:: ; 22a7
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function22b4
 
 	pop af
@@ -379,18 +388,18 @@ Function2300:: ; 2300
 ; 2309
 
 
-Function2309:: ; 2309
+LoadMapAttributes:: ; 2309
 	call Function2326
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function234f
 	xor a
 	call Function2336
 	ret
 ; 2317
 
-Function2317:: ; 2317
+LoadMapAttributes_IgnoreHidden:: ; 2317
 	call Function2326
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function234f
 	ld a, $1
 	call Function2336
@@ -412,8 +421,9 @@ Function2336:: ; 2336
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 2
 	inc hl
-	inc hl
+endr
 	call Function23da
 	call Function23f1
 	call Function2408
@@ -548,7 +558,7 @@ Function23da:: ; 23da
 Function23f1:: ; 23f1
 	ld a, [hli]
 	ld c, a
-	ld [wdbfe], a
+	ld [wCurrentMapXYTriggerCount], a
 	ld a, l
 	ld [wdbff], a
 	ld a, h
@@ -564,7 +574,7 @@ Function23f1:: ; 23f1
 Function2408:: ; 2408
 	ld a, [hli]
 	ld c, a
-	ld [wdc01], a
+	ld [wCurrentMapSignpostCount], a
 	ld a, l
 	ld [wdc02], a
 	ld a, h
@@ -656,7 +666,7 @@ Function2471:: ; 2471
 	ret
 ; 248a
 
-Function248a:: ; 248a
+RestoreFacingAfterWarp:: ; 248a
 	call GetMapScriptHeaderBank
 	rst Bankswitch
 
@@ -664,9 +674,9 @@ Function248a:: ; 248a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, [WarpNumber]
 	dec a
 	ld c, a
@@ -683,7 +693,7 @@ Function248a:: ; 248a
 	call Function24ba
 
 .asm_24b3
-	callba Function10486d
+	callba GetCoordOfUpperLeftCorner
 	ret
 ; 24ba
 
@@ -697,21 +707,21 @@ Function24ba:: ; 24ba
 	ret
 ; 24cd
 
-Function24cd:: ; 24cd
+LoadBlockData:: ; 24cd
 	ld hl, OverworldMap
 	ld bc, OverworldMapEnd - OverworldMap
 	ld a, 0
 	call ByteFill
-	call Function24e4
+	call ChangeMap
 	call FillMapConnections
 	ld a, $1
-	call Function263b
+	call RunMapCallback
 	ret
 ; 24e4
 
 
 
-Function24e4:: ; 24e4
+ChangeMap:: ; 24e4
 	ld a, [hROMBank]
 	push af
 
@@ -722,9 +732,9 @@ Function24e4:: ; 24e4
 	ld [hConnectionStripLength], a
 	ld c, a
 	ld b, 0
+rept 3
 	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 	ld c, 3
 	add hl, bc
 	ld a, [MapBlockDataBank]
@@ -938,7 +948,7 @@ FillEastConnectionStrip:: ; 25f6
 	ret
 ; 261b
 
-Function261b:: ; 261b
+LoadMapStatus:: ; 261b
 	ld [MapStatus], a
 	ret
 ; 261f
@@ -968,11 +978,12 @@ Function2631:: ; 2631
 	jr CallScript
 ; 263b
 
-Function263b:: ; 263b
+RunMapCallback:: ; 263b
+; Will run the first callback found in the map header with execution index equal to a.
 	ld b, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
+	call SwitchToMapScriptHeaderBank
 	call Function2653
 	jr nc, .done
 
@@ -980,7 +991,7 @@ Function263b:: ; 263b
 	ld b, a
 	ld d, h
 	ld e, l
-	call Function2674
+	call ExecuteCallbackScript
 
 .done
 	pop af
@@ -999,18 +1010,18 @@ Function2653:: ; 2653
 	ld l, a
 	or h
 	ret z
-	ld de, $0003
-.asm_2664
+	ld de, 3
+.loop
 	ld a, [hl]
 	cp b
-	jr z, .asm_266e
+	jr z, .done
 	add hl, de
 	dec c
-	jr nz, .asm_2664
+	jr nz, .loop
 	xor a
 	ret
 
-.asm_266e
+.done
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -1019,7 +1030,7 @@ Function2653:: ; 2653
 	ret
 ; 2674
 
-Function2674:: ; 2674
+ExecuteCallbackScript:: ; 2674
 	callba Function974f3
 	ld a, [ScriptMode]
 	push af
@@ -1027,7 +1038,7 @@ Function2674:: ; 2674
 	ld a, [hl]
 	push af
 	set 1, [hl]
-	callba Function96c56
+	callba EnableScriptMode
 	callba ScriptEvents
 	pop af
 	ld [ScriptFlags], a
@@ -1036,7 +1047,7 @@ Function2674:: ; 2674
 	ret
 ; 269a
 
-Function269a:: ; 269a
+MapTextbox:: ; 269a
 	ld a, [hROMBank]
 	push af
 
@@ -1059,7 +1070,7 @@ Function269a:: ; 269a
 	ret
 ; 26b7
 
-Function26b7:: ; 26b7
+Call_a_de:: ; 26b7
 ; Call a:de.
 
 	ld [hBuffer], a
@@ -1079,7 +1090,7 @@ Function26b7:: ; 26b7
 	ret
 ; 26c7
 
-Function26c7:: ; 26c7
+GetMovementData:: ; 26c7
 	ld a, [hROMBank]
 	push af
 	ld a, b
@@ -1315,8 +1326,9 @@ Function27d3:: ; 27d3
 	ld a, d
 	ld [hli], a
 	ld a, e
+rept 2
 	inc a
-	inc a
+endr
 	and $1f
 	ld b, a
 	ld a, e
@@ -1412,7 +1424,7 @@ Function2821:: ; 2821
 	ret
 ; 2879
 
-Function2879:: ; 2879
+BufferScreen:: ; 2879
 	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
@@ -1441,7 +1453,7 @@ Function2879:: ; 2879
 	ret
 ; 289d
 
-Function289d:: ; 289d
+SaveScreen:: ; 289d
 	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
@@ -1491,7 +1503,7 @@ Function289d:: ; 289d
 	jr Function28f7
 
 
-Function28e3:: ; 28e3
+LoadNeighboringBlockData:: ; 28e3
 	ld hl, wd194
 	ld a, [hli]
 	ld h, [hl]
@@ -1607,13 +1619,13 @@ Function298b:: ; 298b
 	ld a, [TileDown]
 	and $7
 	cp $2
-	jr z, .asm_299f
+	jr z, .ok
 	cp $6
-	jr z, .asm_299f
+	jr z, .ok
 	cp $7
 	ret nz
 
-.asm_299f
+.ok
 	ld a, [TilePermissions]
 	or $8
 	ld [TilePermissions], a
@@ -1626,13 +1638,13 @@ Function29a8:: ; 29a8
 	ld a, [TileUp]
 	and $7
 	cp $3
-	jr z, .asm_29bc
+	jr z, .ok
 	cp $4
-	jr z, .asm_29bc
+	jr z, .ok
 	cp $5
 	ret nz
 
-.asm_29bc
+.ok
 	ld a, [TilePermissions]
 	or $4
 	ld [TilePermissions], a
@@ -1645,13 +1657,13 @@ Function29c5:: ; 29c5
 	ld a, [TileRight]
 	and $7
 	cp $1
-	jr z, .asm_29d9
+	jr z, .ok
 	cp $5
-	jr z, .asm_29d9
+	jr z, .ok
 	cp $7
 	ret nz
 
-.asm_29d9
+.ok
 	ld a, [TilePermissions]
 	or $1
 	ld [TilePermissions], a
@@ -1664,13 +1676,13 @@ Function29e2:: ; 29e2
 	ld a, [TileLeft]
 	and $7
 	cp $0
-	jr z, .asm_29f6
+	jr z, .ok
 	cp $4
-	jr z, .asm_29f6
+	jr z, .ok
 	cp $6
 	ret nz
 
-.asm_29f6
+.ok
 	ld a, [TilePermissions]
 	or $2
 	ld [TilePermissions], a
@@ -1696,8 +1708,9 @@ GetFacingTileCoord:: ; 2a07
 	srl a
 	ld l, a
 	ld h, 0
-	add hl, hl
-	add hl, hl
+rept 2
+	add hl,hl
+endr
 	ld de, .Directions
 	add hl, de
 
@@ -1733,65 +1746,67 @@ GetFacingTileCoord:: ; 2a07
 
 
 Function2a3c:: ; 2a3c
-	call Function2a66
+	call GetBlockLocation
 	ld a, [hl]
 	and a
-	jr z, .asm_2a63
+	jr z, .nope
 	ld l, a
 	ld h, $0
-	add hl, hl
-	add hl, hl
+rept 2
+	add hl,hl
+endr
 	ld a, [TilesetCollisionAddress]
 	ld c, a
 	ld a, [TilesetCollisionAddress + 1]
 	ld b, a
 	add hl, bc
 	rr d
-	jr nc, .asm_2a56
+	jr nc, .nocarry
 	inc hl
 
-.asm_2a56
+.nocarry
 	rr e
-	jr nc, .asm_2a5c
+	jr nc, .nocarry2
+rept 2
 	inc hl
-	inc hl
+endr
 
-.asm_2a5c
+.nocarry2
 	ld a, [TilesetCollisionBank]
 	call GetFarByte
 	ret
 
-.asm_2a63
-	ld a, $ff
+.nope
+	ld a, -1
 	ret
 ; 2a66
 
-Function2a66:: ; 2a66
+GetBlockLocation:: ; 2a66
 	ld a, [MapWidth]
-	add $6
+	add 6
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, wc801
 	add hl, bc
 	ld a, e
 	srl a
-	jr z, .asm_2a84
+	jr z, .nope
 	and a
-.asm_2a78
+.loop
 	srl a
-	jr nc, .asm_2a7d
+	jr nc, .ok
 	add hl, bc
 
-.asm_2a7d
+.ok
 	sla c
 	rl b
 	and a
-	jr nz, .asm_2a78
+	jr nz, .loop
 
-.asm_2a84
+.nope
 	ld c, d
 	srl c
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ret
 ; 2a8b
@@ -1799,128 +1814,138 @@ Function2a66:: ; 2a66
 
 CheckFacingSign:: ; 2a8b
 	call GetFacingTileCoord
+; Load facing into b.
 	ld b, a
+; Convert the coordinates at de to within-boundaries coordinates.
 	ld a, d
 	sub 4
 	ld d, a
 	ld a, e
 	sub 4
 	ld e, a
-	ld a, [wdc01]
+; If there are no signposts, we don't need to be here.
+	ld a, [wCurrentMapSignpostCount]
 	and a
 	ret z
 	ld c, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
-	call Function2aaa
+	call SwitchToMapScriptHeaderBank
+	call CheckIfFacingTileCoordIsSign
 	pop hl
 	ld a, h
 	rst Bankswitch
 	ret
 ; 2aaa
 
-Function2aaa:: ; 2aaa
+CheckIfFacingTileCoordIsSign:: ; 2aaa
+; Checks to see if you are facing a signpost.  If so, copies it into EngineBuffer1 and sets carry.
 	ld hl, wdc02
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_2ab0
+.loop
 	push hl
 	ld a, [hli]
 	cp e
-	jr nz, .asm_2abb
+	jr nz, .next
 	ld a, [hli]
 	cp d
-	jr nz, .asm_2abb
-	jr .asm_2ac8
+	jr nz, .next
+	jr .copysign
 
-.asm_2abb
+.next
 	pop hl
-	ld a, 5
+	ld a, 5 ; signpost event length
 	add l
 	ld l, a
-	jr nc, .asm_2ac3
+	jr nc, .nocarry
 	inc h
 
-.asm_2ac3
+.nocarry
 	dec c
-	jr nz, .asm_2ab0
+	jr nz, .loop
 	xor a
 	ret
 
-.asm_2ac8
+.copysign
 	pop hl
 	ld de, EngineBuffer1
-	ld bc, 5
+	ld bc, 5 ; signpost event length
 	call CopyBytes
 	scf
 	ret
 ; 2ad4
 
-Function2ad4:: ; 2ad4
-	ld a, [wdbfe]
+CheckCurrentMapXYTriggers:: ; 2ad4
+; If there are no xy triggers, we don't need to be here.
+	ld a, [wCurrentMapXYTriggerCount]
 	and a
 	ret z
+; Copy the trigger count into c.
 	ld c, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
-	call Function2ae7
+	call SwitchToMapScriptHeaderBank
+	call CheckStandingOnXYTrigger
 	pop hl
 	ld a, h
 	rst Bankswitch
 	ret
 ; 2ae7
 
-Function2ae7:: ; 2ae7
+CheckStandingOnXYTrigger:: ; 2ae7
+; Checks to see if you are standing on an xy-trigger.  If yes, copies the trigger to EngineBuffer1 and sets carry.
 	ld hl, wdbff
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function211b
+; Load the active trigger ID into b
+	call CheckTriggers
 	ld b, a
+; Load your current coordinates into de.  This will be used to check if your position is in the xy-trigger table for the current map.
 	ld a, [MapX]
-	sub $4
+	sub 4
 	ld d, a
 	ld a, [MapY]
-	sub $4
+	sub 4
 	ld e, a
-.asm_2afd
+
+.loop
 	push hl
 	ld a, [hli]
 	cp b
-	jr z, .asm_2b06
-	cp $ff
-	jr nz, .asm_2b10
+	jr z, .got_id
+	cp -1
+	jr nz, .next
 
-.asm_2b06
+.got_id
 	ld a, [hli]
 	cp e
-	jr nz, .asm_2b10
+	jr nz, .next
 	ld a, [hli]
 	cp d
-	jr nz, .asm_2b10
-	jr .asm_2b1d
+	jr nz, .next
+	jr .copytrigger
 
-.asm_2b10
+.next
 	pop hl
-	ld a, $8
+	ld a, $8 ; xy-trigger size
 	add l
 	ld l, a
-	jr nc, .asm_2b18
+	jr nc, .nocarry
 	inc h
 
-.asm_2b18
+.nocarry
 	dec c
-	jr nz, .asm_2afd
+	jr nz, .loop
 	xor a
 	ret
 
-.asm_2b1d
+.copytrigger
 	pop hl
 	ld de, EngineBuffer1
-	ld bc, $0008
+	ld bc, $0008 ; xy-trigger size
 	call CopyBytes
 	scf
 	ret
@@ -1931,7 +1956,7 @@ FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call Function1d6e
-	callba Function8c084
+	callba FadeBlackBGMap
 	call ClearSprites
 	call Function2ed3
 	ret
@@ -1941,7 +1966,7 @@ FadeToMenu:: ; 2b29
 Function2b3c:: ; 2b3c
 	call WhiteBGMap
 	call Function2bae
-	call Function1ad2
+	call DrawOnMap
 	call Function1d7d
 	call Functiond90
 	jr Function2b5c
@@ -1951,7 +1976,7 @@ Function2b4d:: ; 2b4d
 	call WhiteBGMap
 	call Function1d7d
 	call Function2bae
-	call Function1ad2
+	call DrawOnMap
 	call Functiond90
 ; 2b5c
 
@@ -1960,7 +1985,7 @@ Function2b5c:: ; 2b5c
 	call GetSGBLayout
 	callba Function49409
 	call Function3200
-	callba Function8c079
+	callba FadeInBGMap
 	call Function2ee4
 	ret
 ; 2b74
@@ -1978,7 +2003,7 @@ Function2b74:: ; 0x2b74
 	call TextBox
 	ld hl, VramState
 	set 0, [hl]
-	call Function1ad2
+	call DrawOnMap
 	call Function3200
 	ld b, $9
 	call GetSGBLayout
@@ -2041,8 +2066,9 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 	ld c, b
 	ld b, 0
 	ld hl, MapGroupPointers
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 
 	ld a, [hli]
 	ld h, [hl]
@@ -2139,7 +2165,7 @@ Function2c3d:: ; 2c3d
 	ret
 ; 2c52
 
-Function2c52:: ; 2c52
+SwitchToMapScriptHeaderBank:: ; 2c52
 	ld a, [MapScriptHeaderBank]
 	rst Bankswitch
 	ret
@@ -2292,23 +2318,23 @@ RADIO_TOWER_MUSIC EQU 7
 	jr .done
 ; 2cff
 
-Function2cff:: ; 2cff
-	call Function2d0d
+GetMapHeaderTimeOfDayNybble:: ; 2cff
+	call GetPhoneServiceTimeOfDayByte
 	and $f
 	ret
 ; 2d05
 
-Function2d05:: ; 2d05
-	call Function2d0d
+GetMapHeaderPhoneServiceNybble:: ; 2d05
+	call GetPhoneServiceTimeOfDayByte
 	and $f0
 	swap a
 	ret
 ; 2d0d
 
-Function2d0d:: ; 2d0d
+GetPhoneServiceTimeOfDayByte:: ; 2d0d
 	push hl
 	push bc
-	ld de, $0007
+	ld de, 7 ; phone service and time of day
 	call GetMapHeaderMember
 	ld a, c
 	pop bc
@@ -2320,7 +2346,7 @@ Function2d19:: ; 2d19
 	push de
 	push hl
 	push bc
-	ld de, $0008
+	ld de, 8 ; fishing group
 	call GetMapHeaderMember
 	ld a, c
 	pop bc

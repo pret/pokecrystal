@@ -1,8 +1,8 @@
 EcruteakCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -81,8 +81,7 @@ EcruteakCityMartSign:
 	jumpstd martsign
 
 MapEcruteakCitySignpostItem7:
-	dw $00b4
-	db HYPER_POTION
+	dwb EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 UnusedMissingDaughterText:
 ; This text is neither used nor referenced in the final game.
@@ -257,7 +256,7 @@ EcruteakCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 15
 	warp_def $1a, $23, 1, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
 	warp_def $1b, $23, 2, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
@@ -275,26 +274,26 @@ EcruteakCity_MapEventHeader:
 	warp_def $12, $0, 3, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
 	warp_def $13, $0, 4, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 8
-	signpost 21, 15, $0, EcruteakCitySign
-	signpost 10, 38, $0, TinTowerSign
-	signpost 28, 8, $0, EcruteakGymSign
-	signpost 21, 21, $0, EcruteakDanceTheaterSign
-	signpost 10, 2, $0, BurnedTowerSign
-	signpost 27, 24, $0, EcruteakCityPokeCenterSign
-	signpost 21, 30, $0, EcruteakCityMartSign
-	signpost 14, 23, $7, MapEcruteakCitySignpostItem7
+	signpost 21, 15, SIGNPOST_READ, EcruteakCitySign
+	signpost 10, 38, SIGNPOST_READ, TinTowerSign
+	signpost 28, 8, SIGNPOST_READ, EcruteakGymSign
+	signpost 21, 21, SIGNPOST_READ, EcruteakDanceTheaterSign
+	signpost 10, 2, SIGNPOST_READ, BurnedTowerSign
+	signpost 27, 24, SIGNPOST_READ, EcruteakCityPokeCenterSign
+	signpost 21, 30, SIGNPOST_READ, EcruteakCityMartSign
+	signpost 14, 23, SIGNPOST_ITEM, MapEcruteakCitySignpostItem7
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_GRAMPS, 19, 22, $2, $11, 255, 255, $0, 0, GrampsScript_0x1a4009, $ffff
-	person_event SPRITE_GRAMPS, 25, 24, $3, $0, 255, 255, $0, 0, GrampsScript_0x1a400c, $ffff
-	person_event SPRITE_LASS, 33, 25, $5, $2, 255, 255, $90, 0, LassScript_0x1a4012, $ffff
-	person_event SPRITE_LASS, 13, 7, $7, $0, 255, 255, $0, 0, LassScript_0x1a4015, $ffff
-	person_event SPRITE_FISHER, 26, 13, $5, $1, 255, 255, $a0, 0, FisherScript_0x1a4029, $ffff
-	person_event SPRITE_YOUNGSTER, 18, 14, $2, $11, 255, 255, $80, 0, YoungsterScript_0x1a403d, $ffff
-	person_event SPRITE_GRAMPS, 11, 7, $2, $11, 255, 255, $a0, 0, GrampsScript_0x1a400f, $07a9
+	person_event SPRITE_GRAMPS, 19, 22, OW_DOWN | $2, $11, -1, -1, $0, 0, GrampsScript_0x1a4009, -1
+	person_event SPRITE_GRAMPS, 25, 24, OW_DOWN | $3, $0, -1, -1, $0, 0, GrampsScript_0x1a400c, -1
+	person_event SPRITE_LASS, 33, 25, OW_UP | $1, $2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x1a4012, -1
+	person_event SPRITE_LASS, 13, 7, OW_UP | $3, $0, -1, -1, $0, 0, LassScript_0x1a4015, -1
+	person_event SPRITE_FISHER, 26, 13, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a4029, -1
+	person_event SPRITE_YOUNGSTER, 18, 14, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x1a403d, -1
+	person_event SPRITE_GRAMPS, 11, 7, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GrampsScript_0x1a400f, EVENT_ECRUTEAK_CITY_GRAMPS

@@ -1,27 +1,25 @@
-RuinsofAlphOmanyteWordRoom_MapScriptHeader: ; 0x59b6c
-	; trigger count
+RuinsofAlphOmanyteWordRoom_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x59b6e
 
-RuinsofAlphOmanyteWordRoom_MapEventHeader: ; 0x59b6e
+RuinsofAlphOmanyteWordRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $9, 3, GROUP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM, MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
 	warp_def $7, $a, 4, GROUP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM, MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
 	warp_def $d, $11, 6, GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 0
-; 0x59b83

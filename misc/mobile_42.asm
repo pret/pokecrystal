@@ -339,8 +339,9 @@ Function10827b: ; 10827b
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_10828a
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -920,8 +921,9 @@ Function108763: ; 108763
 	ld a, [hSCX]
 	cp $e0
 	jr z, .asm_108791
+rept 2
 	dec a
-	dec a
+endr
 	ld [hSCX], a
 	cp $f8
 	jr nz, .asm_10878a
@@ -938,8 +940,9 @@ Function108763: ; 108763
 	ld a, [hSCY]
 	cp $f8
 	jr z, .asm_1087cb
+rept 2
 	dec a
-	dec a
+endr
 	ld [hSCY], a
 	cp $40
 	jr z, .asm_1087a9
@@ -1089,8 +1092,9 @@ Function108894: ; 108894
 	ld a, [hSCY]
 	cp $78
 	jr z, .asm_1088ee
+rept 2
 	inc a
-	inc a
+endr
 	ld [hSCY], a
 	cp $30
 	jr z, .asm_1088c5
@@ -1129,8 +1133,9 @@ Function108894: ; 108894
 	ld a, [hSCX]
 	cp $c
 	jr z, .asm_108906
+rept 2
 	inc a
-	inc a
+endr
 	ld [hSCX], a
 	cp $f8
 	jr nz, .asm_1088e7

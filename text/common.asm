@@ -230,7 +230,7 @@ MartSignText:
 	para "#MON MART"
 	done
 
-UnknownText_0x1b05bf: ; 0x1b05bf
+ContestResults_ReadyToJudgeText: ; 0x1b05bf
 	text "We will now judge"
 	line "the #MON you've"
 	cont "caught."
@@ -246,7 +246,7 @@ UnknownText_0x1b05bf: ; 0x1b05bf
 	done
 ; 0x1b0621
 
-UnknownText_0x1b0621: ; 0x1b0621
+ContestResults_PlayerWonAPrizeText: ; 0x1b0621
 	text "<PLAYER>, the No.@"
 	text_from_ram StringBuffer3
 	text ""
@@ -257,7 +257,7 @@ UnknownText_0x1b0621: ; 0x1b0621
 	done
 ; 0x1b0648
 
-UnknownText_0x1b0648: ; 0x1b0648
+ReceivedItemText: ; 0x1b0648
 	text "<PLAYER> received"
 	line "@"
 	text_from_ram StringBuffer4
@@ -265,26 +265,26 @@ UnknownText_0x1b0648: ; 0x1b0648
 	done
 ; 0x1b065b
 
-UnknownText_0x1b065b: ; 0x1b065b
+ContestResults_JoinUsNextTimeText: ; 0x1b065b
 	text "Please join us for"
 	line "the next Contest!"
 	done
 ; 0x1b0681
 
-UnknownText_0x1b0681: ; 0x1b0681
+ContestResults_ConsolationPrizeText: ; 0x1b0681
 	text "Everyone else gets"
 	line "a BERRY as a con-"
 	cont "solation prize!"
 	done
 ; 0x1b06b7
 
-UnknownText_0x1b06b7: ; 0x1b06b7
+ContestResults_DidNotWinText: ; 0x1b06b7
 	text "We hope you do"
 	line "better next time."
 	done
 ; 0x1b06d9
 
-UnknownText_0x1b06d9: ; 0x1b06d9
+ContestResults_ReturnPartyText: ; 0x1b06d9
 	text "We'll return the"
 	line "#MON we kept"
 
@@ -293,7 +293,7 @@ UnknownText_0x1b06d9: ; 0x1b06d9
 	done
 ; 0x1b070d
 
-UnknownText_0x1b070d: ; 0x1b070d
+ContestResults_PartyFullText: ; 0x1b070d
 	text "Your party's full,"
 	line "so the #MON was"
 
@@ -302,14 +302,14 @@ UnknownText_0x1b070d: ; 0x1b070d
 	done
 ; 0x1b074e
 
-UnknownText_0x1b074e: ; 0x1b074e
+GymStatue_CityGymText: ; 0x1b074e
 	text_from_ram StringBuffer3
 	text ""
 	line "#MON GYM"
 	done
 ; 0x1b075c
 
-UnknownText_0x1b075c: ; 0x1b075c
+GymStatue_WinningTrainersText: ; 0x1b075c
 	text "LEADER: @"
 	text_from_ram StringBuffer4
 	text ""
@@ -318,13 +318,13 @@ UnknownText_0x1b075c: ; 0x1b075c
 	done
 ; 0x1b077f
 
-UnknownText_0x1b077f: ; 0x1b077f
+CoinVendor_WelcomeText: ; 0x1b077f
 	text "Welcome to the"
 	line "GAME CORNER."
 	done
 ; 0x1b079c
 
-UnknownText_0x1b079c: ; 0x1b079c
+CoinVendor_NoCoinCaseText: ; 0x1b079c
 	text "Do you need game"
 	line "coins?"
 
@@ -334,7 +334,7 @@ UnknownText_0x1b079c: ; 0x1b079c
 	done
 ; 0x1b07e3
 
-UnknownText_0x1b07e3: ; 0x1b07e3
+CoinVendor_IntroText: ; 0x1b07e3
 	text "Do you need some"
 	line "game coins?"
 
@@ -344,31 +344,31 @@ UnknownText_0x1b07e3: ; 0x1b07e3
 	done
 ; 0x1b0830
 
-UnknownText_0x1b0830: ; 0x1b0830
+CoinVendor_Buy50CoinsText: ; 0x1b0830
 	text "Thank you!"
 	line "Here are 50 coins."
 	done
 ; 0x1b084f
 
-UnknownText_0x1b084f: ; 0x1b084f
+CoinVendor_Buy500CoinsText: ; 0x1b084f
 	text "Thank you! Here"
 	line "are 500 coins."
 	done
 ; 0x1b086f
 
-UnknownText_0x1b086f: ; 0x1b086f
+CoinVendor_NotEnoughMoneyText: ; 0x1b086f
 	text "You don't have"
 	line "enough money."
 	done
 ; 0x1b088c
 
-UnknownText_0x1b088c: ; 0x1b088c
+CoinVendor_CoinCaseFullText: ; 0x1b088c
 	text "Whoops! Your COIN"
 	line "CASE is full."
 	done
 ; 0x1b08ad
 
-UnknownText_0x1b08ad: ; 0x1b08ad
+CoinVendor_CancelText: ; 0x1b08ad
 	text "No coins for you?"
 	line "Come again!"
 	done

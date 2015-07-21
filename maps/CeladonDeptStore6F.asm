@@ -1,8 +1,8 @@
 CeladonDeptStore6F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -149,24 +149,24 @@ CeladonDeptStore6F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $0, $f, 2, GROUP_CELADON_DEPT_STORE_5F, MAP_CELADON_DEPT_STORE_5F
 	warp_def $0, $2, 1, GROUP_CELADON_DEPT_STORE_ELEVATOR, MAP_CELADON_DEPT_STORE_ELEVATOR
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 0, 14, $0, CeladonDeptStore6FDirectory
-	signpost 0, 3, $0, CeladonDeptStore1FElevatorButton
-	signpost 1, 8, $1, CeladonVendingMachine
-	signpost 1, 9, $1, CeladonVendingMachine
-	signpost 1, 10, $1, CeladonVendingMachine
-	signpost 1, 11, $1, CeladonVendingMachine
+	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore6FDirectory
+	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore1FElevatorButton
+	signpost 1, 8, SIGNPOST_UP, CeladonVendingMachine
+	signpost 1, 9, SIGNPOST_UP, CeladonVendingMachine
+	signpost 1, 10, SIGNPOST_UP, CeladonVendingMachine
+	signpost 1, 11, SIGNPOST_UP, CeladonVendingMachine
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_SUPER_NERD, 6, 13, $7, $0, 255, 255, $0, 0, SuperNerdScript_0x7117a, $ffff
-	person_event SPRITE_YOUNGSTER, 9, 16, $2, $12, 255, 255, $80, 0, YoungsterScript_0x7117d, $ffff
+	person_event SPRITE_SUPER_NERD, 6, 13, OW_UP | $3, $0, -1, -1, $0, 0, SuperNerdScript_0x7117a, -1
+	person_event SPRITE_YOUNGSTER, 9, 16, OW_DOWN | $2, $12, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x7117d, -1

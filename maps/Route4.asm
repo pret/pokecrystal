@@ -1,126 +1,65 @@
-Route4_MapScriptHeader: ; 0x1ae1ce
-	; trigger count
+Route4_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x1ae1d0
 
-TrainerBird_keeperHank: ; 0x1ae1d0
-	; bit/flag number
-	dw $402
+TrainerBird_keeperHank:
+	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, $0000, Bird_keeperHankScript
 
-	; trainer group && trainer id
-	db BIRD_KEEPER, HANK
-
-	; text when seen
-	dw Bird_keeperHankSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperHankBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperHankScript
-; 0x1ae1dc
-
-Bird_keeperHankScript: ; 0x1ae1dc
+Bird_keeperHankScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae258
 	closetext
 	loadmovesprites
 	end
-; 0x1ae1e4
 
-TrainerPicnickerHope: ; 0x1ae1e4
-	; bit/flag number
-	dw $483
+TrainerPicnickerHope:
+	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, $0000, PicnickerHopeScript
 
-	; trainer group && trainer id
-	db PICNICKER, HOPE
-
-	; text when seen
-	dw PicnickerHopeSeenText
-
-	; text when trainer beaten
-	dw PicnickerHopeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerHopeScript
-; 0x1ae1f0
-
-PicnickerHopeScript: ; 0x1ae1f0
+PicnickerHopeScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae320
 	closetext
 	loadmovesprites
 	end
-; 0x1ae1f8
 
-TrainerPicnickerSharon: ; 0x1ae1f8
-	; bit/flag number
-	dw $484
+TrainerPicnickerSharon:
+	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, $0000, PicnickerSharonScript
 
-	; trainer group && trainer id
-	db PICNICKER, SHARON
-
-	; text when seen
-	dw PicnickerSharonSeenText
-
-	; text when trainer beaten
-	dw PicnickerSharonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerSharonScript
-; 0x1ae204
-
-PicnickerSharonScript: ; 0x1ae204
+PicnickerSharonScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae369
 	closetext
 	loadmovesprites
 	end
-; 0x1ae20c
 
-MapRoute4Signpost0Script: ; 0x1ae20c
+MapRoute4Signpost0Script:
 	jumptext UnknownText_0x1ae384
-; 0x1ae20f
 
-ItemFragment_0x1ae20f: ; 0x1ae20f
+ItemFragment_0x1ae20f:
 	db HP_UP, 1
-; 0x1ae211
 
-MapRoute4SignpostItem1: ; 0x1ae211
-	dw $00f1
-	db ULTRA_BALL
+MapRoute4SignpostItem1:
+	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
-; 0x1ae214
 
-Bird_keeperHankSeenText: ; 0x1ae214
+Bird_keeperHankSeenText:
 	text "I'm raising my"
 	line "#MON. Want to"
 	cont "battle with me?"
 	done
-; 0x1ae241
 
-Bird_keeperHankBeatenText: ; 0x1ae241
+Bird_keeperHankBeatenText:
 	text "Ack! I lost that"
 	line "one…"
 	done
-; 0x1ae258
 
-UnknownText_0x1ae258: ; 0x1ae258
+UnknownText_0x1ae258:
 	text "If you have a"
 	line "specific #MON"
 
@@ -133,77 +72,68 @@ UnknownText_0x1ae258: ; 0x1ae258
 	para "That's how to do"
 	line "it."
 	done
-; 0x1ae2ce
 
-PicnickerHopeSeenText: ; 0x1ae2ce
+PicnickerHopeSeenText:
 	text "I have a feeling"
 	line "that I can win."
 
 	para "Let's see if I'm"
 	line "right!"
 	done
-; 0x1ae306
 
-PicnickerHopeBeatenText: ; 0x1ae306
+PicnickerHopeBeatenText:
 	text "Aww, you are too"
 	line "strong."
 	done
-; 0x1ae320
 
-UnknownText_0x1ae320: ; 0x1ae320
+UnknownText_0x1ae320:
 	text "I heard CLEFAIRY"
 	line "appear at MT.MOON."
 
 	para "But where could"
 	line "they be?"
 	done
-; 0x1ae35e
 
-PicnickerSharonSeenText: ; 0x1ae35e
+PicnickerSharonSeenText:
 	text "Um…"
 	line "I…"
 	done
-; 0x1ae366
 
-PicnickerSharonBeatenText: ; 0x1ae366
+PicnickerSharonBeatenText:
 	text "…"
 	done
-; 0x1ae369
 
-UnknownText_0x1ae369: ; 0x1ae369
+UnknownText_0x1ae369:
 	text "……I'll go train"
 	line "some more…"
 	done
-; 0x1ae384
 
-UnknownText_0x1ae384: ; 0x1ae384
+UnknownText_0x1ae384:
 	text "MT.MOON SQUARE"
 
 	para "Just go up the"
 	line "stairs."
 	done
-; 0x1ae3ab
 
-Route4_MapEventHeader: ; 0x1ae3ab
+Route4_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $2, 2, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 3, $0, MapRoute4Signpost0Script
-	signpost 3, 10, $7, MapRoute4SignpostItem1
+	signpost 7, 3, SIGNPOST_READ, MapRoute4Signpost0Script
+	signpost 3, 10, SIGNPOST_ITEM, MapRoute4SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_YOUNGSTER, 13, 21, $6, $0, 255, 255, $92, 3, TrainerBird_keeperHank, $ffff
-	person_event SPRITE_LASS, 12, 13, $8, $0, 255, 255, $a2, 4, TrainerPicnickerHope, $ffff
-	person_event SPRITE_LASS, 10, 25, $9, $0, 255, 255, $a2, 4, TrainerPicnickerSharon, $ffff
-	person_event SPRITE_POKE_BALL, 7, 30, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ae20f, $0787
-; 0x1ae3f4
+	person_event SPRITE_YOUNGSTER, 13, 21, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperHank, -1
+	person_event SPRITE_LASS, 12, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerPicnickerHope, -1
+	person_event SPRITE_LASS, 10, 25, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerPicnickerSharon, -1
+	person_event SPRITE_POKE_BALL, 7, 30, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1ae20f, EVENT_ROUTE_4_HP_UP

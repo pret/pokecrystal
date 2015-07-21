@@ -24,91 +24,91 @@ OverworldLoop:: ; 966b0
 ; 966cb
 
 
-Function966cb: ; 966cb
+ClearAllScriptFlags3: ; 966cb
 	xor a
 	ld [ScriptFlags3], a
 	ret
 ; 966d0
 
-Function966d0:: ; 966d0
+SetAll_ScriptFlags3:: ; 966d0
 	ld a, $ff
 	ld [ScriptFlags3], a
 	ret
 ; 966d6
 
-Function966d6: ; 966d6
+CheckBit5_ScriptFlags3: ; 966d6
 	ld hl, ScriptFlags3
 	bit 5, [hl]
 	ret
 ; 966dc
 
-Function966dc: ; 966dc
+ResetBit2_ScriptFlags3: ; 966dc
 	ld hl, ScriptFlags3
 	res 2, [hl]
 	ret
 ; 966e2
 
-Function966e2: ; 966e2
+ResetBit1_ScriptFlags3: ; 966e2
 	ld hl, ScriptFlags3
 	res 1, [hl]
 	ret
 ; 966e8
 
-Function966e8: ; 966e8
+ResetBit0_ScriptFlags3: ; 966e8
 	ld hl, ScriptFlags3
 	res 0, [hl]
 	ret
 ; 966ee
 
-Function966ee: ; 966ee
+ResetBit4_ScriptFlags3: ; 966ee
 	ld hl, ScriptFlags3
 	res 4, [hl]
 	ret
 ; 966f4
 
-Function966f4: ; 966f4
+SetBit2_ScriptFlags3: ; 966f4
 	ld hl, ScriptFlags3
 	set 2, [hl]
 	ret
 ; 966fa
 
-Function966fa: ; 966fa
+SetBit1_ScriptFlags3: ; 966fa
 	ld hl, ScriptFlags3
 	set 1, [hl]
 	ret
 ; 96700
 
-Function96700: ; 96700
+SetBit0_ScriptFlags3: ; 96700
 	ld hl, ScriptFlags3
 	set 0, [hl]
 	ret
 ; 96706
 
-Function96706: ; 96706
+SetBit4_ScriptFlags3: ; 96706
 	ld hl, ScriptFlags3
 	set 4, [hl]
 	ret
 ; 9670c
 
-Function9670c: ; 9670c
+CheckBit2_ScriptFlags3: ; 9670c
 	ld hl, ScriptFlags3
 	bit 2, [hl]
 	ret
 ; 96712
 
-Function96712: ; 96712
+CheckBit1_ScriptFlags3: ; 96712
 	ld hl, ScriptFlags3
 	bit 1, [hl]
 	ret
 ; 96718
 
-Function96718: ; 96718
+CheckBit0_ScriptFlags3: ; 96718
 	ld hl, ScriptFlags3
 	bit 0, [hl]
 	ret
 ; 9671e
 
-Function9671e: ; 9671e
+CheckBit4_ScriptFlags3: ; 9671e
 	ld hl, ScriptFlags3
 	bit 4, [hl]
 	ret
@@ -135,20 +135,20 @@ EnterMap: ; 9673e
 	ld [wd454], a
 	call Function968d1
 	callba RunMapSetupScript
-	call Function966cb
+	call ClearAllScriptFlags3
 
 	ld a, [$ff9f]
 	cp $f7
-	jr nz, .asm_9675a
-	call Function966d0
-.asm_9675a
+	jr nz, .dontset
+	call SetAll_ScriptFlags3
+.dontset
 
 	ld a, [$ff9f]
 	cp $f3
-	jr nz, .asm_96764
+	jr nz, .dontresetpoison
 	xor a
 	ld [PoisonStepCount], a
-.asm_96764
+.dontresetpoison
 
 	xor a
 	ld [$ff9f], a
@@ -197,7 +197,7 @@ MapEvents: ; 96795
 
 .events ; 967a1
 	call PlayerEvents
-	call Function966cb
+	call ClearAllScriptFlags3
 	callba ScriptEvents
 	ret
 ; 967ae
@@ -245,7 +245,7 @@ Function967d1: ; 967d1
 ; 967e1
 
 Function967e1: ; 967e1
-	callba Function5920
+	callba RefreshMapAppearDisappear
 	callba Functiond4d2
 	callba Functionb8098
 	ret
@@ -254,19 +254,19 @@ Function967e1: ; 967e1
 Function967f4: ; 967f4
 	ld a, [wd150]
 	bit 5, a
-	jr z, .asm_96806
+	jr z, .events
 	bit 6, a
-	jr z, .asm_9680c
+	jr z, .noevents
 	bit 4, a
-	jr nz, .asm_9680c
-	call Function966d0
+	jr nz, .noevents
+	call SetAll_ScriptFlags3
 
-.asm_96806
+.events
 	ld a, 0 ; events
 	ld [MapEventStatus], a
 	ret
 
-.asm_9680c
+.noevents
 	ld a, 1 ; no events
 	ld [MapEventStatus], a
 	ret
@@ -293,44 +293,44 @@ PlayerEvents: ; 9681f
 	call Function968e4
 
 	call CheckTrainerBattle3
-	jr c, .asm_96848
+	jr c, .ok
 
 	call CheckTileEvent
-	jr c, .asm_96848
+	jr c, .ok
 
 	call Function97c30
-	jr c, .asm_96848
+	jr c, .ok
 
 	call Function968ec
-	jr c, .asm_96848
+	jr c, .ok
 
 	call Function9693a
-	jr c, .asm_96848
+	jr c, .ok
 
 	call OWPlayerInput
-	jr c, .asm_96848
+	jr c, .ok
 
 	xor a
 	ret
 
 
-.asm_96848
+.ok
 	push af
-	callba Function96c56
+	callba EnableScriptMode
 	pop af
 
 	ld [ScriptRunning], a
 	call Function96beb
 	ld a, [ScriptRunning]
 	cp 4
-	jr z, .asm_96865
+	jr z, .ok2
 	cp 9
-	jr z, .asm_96865
+	jr z, .ok2
 
 	xor a
 	ld [wc2da], a
 
-.asm_96865
+.ok2
 	scf
 	ret
 ; 96867
@@ -340,13 +340,13 @@ CheckTrainerBattle3: ; 96867
 	nop
 	nop
 	call CheckTrainerBattle2
-	jr nc, .asm_96872
+	jr nc, .nope
 
 	ld a, 1
 	scf
 	ret
 
-.asm_96872
+.nope
 	xor a
 	ret
 ; 96874
@@ -355,60 +355,60 @@ CheckTrainerBattle3: ; 96867
 CheckTileEvent: ; 96874
 ; Check for warps, tile triggers or wild battles.
 
-	call Function9670c
-	jr z, .asm_96886
+	call CheckBit2_ScriptFlags3
+	jr z, .bit2
 
-	callba Function104820
-	jr c, .asm_968a6
+	callba CheckMovingOffEdgeOfMap
+	jr c, .return4
 
 	call Function2238
-	jr c, .asm_968aa
+	jr c, .return6
 
-.asm_96886
-	call Function96712
-	jr z, .asm_96890
+.bit2
+	call CheckBit1_ScriptFlags3
+	jr z, .bit1
 
-	call Function2ad4
-	jr c, .asm_968ba
+	call CheckCurrentMapXYTriggers
+	jr c, .movement
 
-.asm_96890
-	call Function96718
-	jr z, .asm_96899
+.bit1
+	call CheckBit0_ScriptFlags3
+	jr z, .bit0
 
 	call CountStep
 	ret c
 
-.asm_96899
-	call Function9671e
-	jr z, .asm_968a4
+.bit0
+	call CheckBit4_ScriptFlags3
+	jr z, .ok
 
 	call Function97cc0
 	ret c
-	jr .asm_968a4
+	jr .ok
 
-.asm_968a4
+.ok
 	xor a
 	ret
 
-.asm_968a6
+.return4
 	ld a, 4
 	scf
 	ret
 
-.asm_968aa
+.return6
 	ld a, [StandingTile]
 	call CheckPitTile
-	jr nz, .asm_968b6
+	jr nz, .pittile
 	ld a, 6
 	scf
 	ret
 
-.asm_968b6
+.pittile
 	ld a, 5
 	scf
 	ret
 
-.asm_968ba
+.movement
 	ld hl, MovementAnimation
 	ld a, [hli]
 	ld h, [hl]
@@ -450,7 +450,7 @@ Function968d8: ; 968d8
 ; 968e4
 
 Function968e4: ; 968e4
-	call Function966d6
+	call CheckBit5_ScriptFlags3
 	ret z
 	call Function2f3e
 	ret
@@ -459,12 +459,12 @@ Function968e4: ; 968e4
 Function968ec: ; 968ec
 	ld a, [wdc07]
 	and a
-	jr z, .asm_96938
+	jr z, .nope
 
 	ld c, a
-	call Function211b
+	call CheckTriggers
 	cp c
-	jr nc, .asm_96938
+	jr nc, .nope
 
 	ld e, a
 	ld d, 0
@@ -472,11 +472,10 @@ Function968ec: ; 968ec
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-
+rept 4
+	add hl,de
+endr
+	
 	call GetMapScriptHeaderBank
 	call GetFarHalfword
 	call GetMapScriptHeaderBank
@@ -485,12 +484,12 @@ Function968ec: ; 968ec
 	ld hl, ScriptFlags
 	res 3, [hl]
 
-	callba Function96c56
+	callba EnableScriptMode
 	callba ScriptEvents
 
 	ld hl, ScriptFlags
 	bit 3, [hl]
-	jr z, .asm_96938
+	jr z, .nope
 
 	ld hl, ScriptDelay + 2
 	ld a, [hli]
@@ -501,7 +500,7 @@ Function968ec: ; 968ec
 	scf
 	ret
 
-.asm_96938
+.nope
 	xor a
 	ret
 ; 9693a
@@ -531,8 +530,8 @@ Function9693a: ; 9693a
 	ret
 
 .elevator
-	ld a, BANK(UnknownScript_0x135f8)
-	ld hl, UnknownScript_0x135f8
+	ld a, BANK(BugCatchingContestOverScript)
+	ld hl, BugCatchingContestOverScript
 	call CallScript
 	scf
 	ret
@@ -608,25 +607,25 @@ TryObjectEvent: ; 969b5
 .IsObject
 	call PlayTalkObject
 	ld a, [hConnectedMapWidth]
-	call Function1ae5
-	ld hl, $0001
+	call GetObjectStruct
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	ld [$ffe0], a
 
 	ld a, [$ffe0]
 	call GetMapObject
-	ld hl, $0008
+	ld hl, MAPOBJECT_COLOR
 	add hl, bc
 	ld a, [hl]
-	and $f
+	and %00001111
 
 ; Bug: If IsInArray returns nc, data at bc will be executed as code.
 	push bc
 	ld de, 3
-	ld hl, .data_969ee
+	ld hl, .pointers
 	call IsInArray
-	jr nc, .asm_969ec
+	jr nc, .nope_bugged
 	pop bc
 
 	inc hl
@@ -635,11 +634,11 @@ TryObjectEvent: ; 969b5
 	ld l, a
 	jp [hl]
 
-.asm_969ec
+.nope_bugged
 	xor a
 	ret
 
-.data_969ee
+.pointers
 	dbw 0, .zero
 	dbw 1, .one
 	dbw 2, .two
@@ -647,11 +646,11 @@ TryObjectEvent: ; 969b5
 	dbw 4, .four
 	dbw 5, .five
 	dbw 6, .six
-	db $ff
+	db -1
 ; 96a04
 
 .zero ; 96a04
-	ld hl, $000a
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -663,7 +662,7 @@ TryObjectEvent: ; 969b5
 ; 96a12
 
 .one ; 96a12
-	ld hl, $000a
+	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -712,7 +711,7 @@ TryReadSign: ; 96a38
 	ret
 
 .IsSign
-	ld a, [MartPointer]
+	ld a, [wd040]
 	ld hl, .signs
 	rst JumpTable
 	ret
@@ -726,7 +725,7 @@ TryReadSign: ; 96a38
 	dw .ifset
 	dw .ifnotset
 	dw .itemifset
-	dw .asm_96aa2
+	dw .copy
 ; 96a59
 
 .up
@@ -767,13 +766,13 @@ TryReadSign: ; 96a38
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
-	ld a, BANK(UnknownScript_0x13625)
-	ld hl, UnknownScript_0x13625
+	ld a, BANK(SignpostItemScript)
+	ld hl, SignpostItemScript
 	call CallScript
 	scf
 	ret
 
-.asm_96aa2
+.copy
 	call CheckSignFlag
 	jr nz, .dontread
 	call GetMapScriptHeaderBank
@@ -785,18 +784,19 @@ TryReadSign: ; 96a38
 .ifset
 	call CheckSignFlag
 	jr z, .dontread
-	jr .asm_96ac1
+	jr .thenread
 
 .ifnotset
 	call CheckSignFlag
 	jr nz, .dontread
 
-.asm_96ac1
+.thenread
 	push hl
 	call PlayTalkObject
 	pop hl
+rept 2
 	inc hl
-	inc hl
+endr
 	call GetMapScriptHeaderBank
 	call GetFarHalfword
 	call GetMapScriptHeaderBank
@@ -820,7 +820,7 @@ CheckSignFlag: ; 96ad8
 	call GetFarHalfword
 	ld e, l
 	ld d, h
-	ld b, $2
+	ld b, $2 ; check
 	call EventFlagAction
 	ld a, c
 	and a
@@ -878,8 +878,8 @@ PlayerMovement: ; 96af0
 
 .three ; 96b20
 ; force the player to move in some direction
-	ld a, BANK(UnknownScript_0x1253d)
-	ld hl, UnknownScript_0x1253d
+	ld a, BANK(Script_ForcedMovement)
+	ld hl, Script_ForcedMovement
 	call CallScript
 ;	ld a, -1
 	ld c, a
@@ -941,8 +941,8 @@ SelectMenuScript: ; 96b5f
 StartMenuCallback:
 SelectMenuCallback: ; 96b66
 	copybytetovar $ffa0
-	if_equal $80, .Script
-	if_equal $ff, .Asm
+	if_equal %10000000, .Script
+	if_equal -1, .Asm
 	end
 ; 96b72
 
@@ -959,13 +959,13 @@ SelectMenuCallback: ; 96b66
 CountStep: ; 96b79
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_96bc9
+	jr nz, .done
 
 	callba Function90136
-	jr c, .asm_96bcb
+	jr c, .setminus1
 
 	call Function96bd7
-	jr c, .asm_96bcb
+	jr c, .setminus1
 
 	ld hl, PoisonStepCount
 	inc [hl]
@@ -981,7 +981,7 @@ CountStep: ; 96b79
 	jr nz, .asm_96bab
 
 	callba Function16f3e
-	jr nz, .asm_96bcf
+	jr nz, .set8
 
 .asm_96bab
 	callba DaycareStep
@@ -989,25 +989,25 @@ CountStep: ; 96b79
 	ld hl, PoisonStepCount
 	ld a, [hl]
 	cp 4
-	jr c, .asm_96bc3
+	jr c, .poisoned
 	ld [hl], 0
 
 	callba Function505da
-	jr c, .asm_96bcb
+	jr c, .setminus1
 
-.asm_96bc3
+.poisoned
 	callba Function97db3
 
-.asm_96bc9
+.done
 	xor a
 	ret
 
-.asm_96bcb
+.setminus1
 	ld a, -1
 	scf
 	ret
 
-.asm_96bcf
+.set8
 	ld a, 8
 	scf
 	ret
@@ -1015,7 +1015,7 @@ CountStep: ; 96b79
 
 
 Function96bd3: ; 96bd3
-	ld a, $7
+	ld a, 7
 	scf
 	ret
 ; 96bd7
@@ -1027,8 +1027,8 @@ Function96bd7: ; 96bd7
 	dec a
 	ld [wdca1], a
 	ret nz
-	ld a, BANK(UnknownScript_0x13619)
-	ld hl, UnknownScript_0x13619
+	ld a, BANK(RepelWoreOffScript)
+	ld hl, RepelWoreOffScript
 	call CallScript
 	scf
 	ret
@@ -1038,17 +1038,17 @@ Function96beb: ; 96beb
 	ld a, [ScriptRunning]
 	and a
 	ret z
-	cp $ff
+	cp -1
 	ret z
-	cp $a
+	cp 10
 	ret nc
 
 	ld c, a
 	ld b, 0
 	ld hl, ScriptPointers96c0c
-	add hl, bc
-	add hl, bc
-	add hl, bc
+rept 3
+	add hl,bc
+endr
 	ld a, [hli]
 	ld [ScriptBank], a
 	ld a, [hli]
@@ -1059,20 +1059,20 @@ Function96beb: ; 96beb
 ; 96c0c
 
 ScriptPointers96c0c: ; 96c0c
-	dbw BANK(UnknownScript_0x96c2d), UnknownScript_0x96c2d
-	dbw BANK(UnknownScript_0xbe675), UnknownScript_0xbe675
-	dbw BANK(UnknownScript_0xbe66a), UnknownScript_0xbe66a
-	dbw BANK(UnknownScript_0x122ce), UnknownScript_0x122ce
+	dbw BANK(Invalid_0x96c2d), Invalid_0x96c2d
+	dbw BANK(SeenByTrainerScript), SeenByTrainerScript
+	dbw BANK(TalkToTrainerScript), TalkToTrainerScript
+	dbw BANK(FindItemInBallScript), FindItemInBallScript
 	dbw BANK(UnknownScript_0x96c4d), UnknownScript_0x96c4d
-	dbw BANK(UnknownScript_0x96c34), UnknownScript_0x96c34
+	dbw BANK(WarpToNewMapScript), WarpToNewMapScript
 	dbw BANK(FallIntoMapScript), FallIntoMapScript
 	dbw BANK(UnknownScript_0x124c8), UnknownScript_0x124c8
-	dbw BANK(UnknownScript_0x96c2f), UnknownScript_0x96c2f
+	dbw BANK(HatchEggScript), HatchEggScript
 	dbw BANK(UnknownScript_0x96c4f), UnknownScript_0x96c4f
-	dbw BANK(UnknownScript_0x96c2d), UnknownScript_0x96c2d
+	dbw BANK(Invalid_0x96c2d), Invalid_0x96c2d
 ; 96c2d
 
-UnknownScript_0x96c2d: ; 96c2d
+Invalid_0x96c2d: ; 96c2d
 	end
 ; 96c2e
 
@@ -1080,12 +1080,12 @@ UnknownScript_0x96c2e: ; 96c2e
 	end
 ; 96c2f
 
-UnknownScript_0x96c2f: ; 96c2f
-	callasm Function16f5e
+HatchEggScript: ; 96c2f
+	callasm OverworldHatchEgg
 	end
 ; 96c34
 
-UnknownScript_0x96c34: ; 96c34
+WarpToNewMapScript: ; 96c34
 	warpsound
 	newloadmap $f5
 	end
@@ -1116,7 +1116,7 @@ UnknownScript_0x96c4d: ; 96c4d
 
 UnknownScript_0x96c4f: ; 96c4f
 	deactivatefacing $3
-	callasm Function96706
+	callasm SetBit4_ScriptFlags3
 	end
 ; 96c56
 

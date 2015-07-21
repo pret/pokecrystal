@@ -1,30 +1,27 @@
-DayCare_MapScriptHeader: ; 0x62f76
-	; trigger count
+DayCare_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
 
 	dbw 2, UnknownScript_0x62f7b
-; 0x62f7b
 
-UnknownScript_0x62f7b: ; 0x62f7b
-	checkflag $0005
+UnknownScript_0x62f7b:
+	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62f88
-	clearevent $06e5
-	setevent $06e6
+	clearevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	setevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	return
-; 0x62f88
 
-UnknownScript_0x62f88: ; 0x62f88
-	setevent $06e5
-	clearevent $06e6
+UnknownScript_0x62f88:
+	setevent EVENT_DAYCARE_MAN_IN_DAYCARE
+	clearevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	return
-; 0x62f8f
 
-GrampsScript_0x62f8f: ; 0x62f8f
+GrampsScript_0x62f8f:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_ODD_EGG
@@ -32,7 +29,7 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	writetext UnknownText_0x630ce
 	keeptextopen
 	loadmovesprites
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x62fb6
 	special Function117656
 	loadfont
@@ -44,51 +41,45 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	loadmovesprites
 	setevent EVENT_GOT_ODD_EGG
 	end
-; 0x62fb6
 
-UnknownScript_0x62fb6: ; 0x62fb6
+UnknownScript_0x62fb6:
 	loadfont
 	writetext UnknownText_0x63237
 	closetext
 	loadmovesprites
 	end
-; 0x62fbd
 
-UnknownScript_0x62fbd: ; 0x62fbd
-	special Function166d6
+UnknownScript_0x62fbd:
+	special Special_DayCareMan
 	closetext
 	loadmovesprites
 	end
-; 0x62fc3
 
-GrannyScript_0x62fc3: ; 0x62fc3
+GrannyScript_0x62fc3:
 	faceplayer
 	loadfont
-	checkflag $0005
+	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62fd1
-	special Function1672a
+	special Special_DayCareLady
 	closetext
 	loadmovesprites
 	end
-; 0x62fd1
 
-UnknownScript_0x62fd1: ; 0x62fd1
+UnknownScript_0x62fd1:
 	writetext UnknownText_0x62fda
 	closetext
 	loadmovesprites
 	end
-; 0x62fd7
 
 DayCareBookshelf:
 	jumpstd difficultbookshelf
 
-UnknownText_0x62fda: ; 0x62fda
+UnknownText_0x62fda:
 	text "Gramps was looking"
 	line "for you."
 	done
-; 0x62ff7
 
-UnknownText_0x62ff7: ; 0x62ff7
+UnknownText_0x62ff7:
 	text "I'm the DAY-CARE"
 	line "MAN."
 
@@ -110,9 +101,8 @@ UnknownText_0x62ff7: ; 0x62ff7
 	para "need it. You may"
 	line "as well have it."
 	done
-; 0x630ce
 
-UnknownText_0x630ce: ; 0x630ce
+UnknownText_0x630ce:
 	text "I'm the DAY-CARE"
 	line "MAN."
 
@@ -135,20 +125,17 @@ UnknownText_0x630ce: ; 0x630ce
 	para "Then fine, this is"
 	line "yours to keep!"
 	done
-; 0x631a1
 
-UnknownText_0x631a1: ; 0x631a1
+UnknownText_0x631a1:
 	text "Come again."
 	done
-; 0x631ae
 
-UnknownText_0x631ae: ; 0x631ae
+UnknownText_0x631ae:
 	text "<PLAYER> received"
 	line "ODD EGG!"
 	done
-; 0x631c3
 
-UnknownText_0x631c3: ; 0x631c3
+UnknownText_0x631c3:
 	text "I found that when"
 	line "I was caring for"
 
@@ -161,35 +148,32 @@ UnknownText_0x631c3: ; 0x631c3
 	para "EGG, so I'd kept"
 	line "it around."
 	done
-; 0x63237
 
-UnknownText_0x63237: ; 0x63237
+UnknownText_0x63237:
 	text "You've no room for"
 	line "this."
 	done
-; 0x63250
 
-DayCare_MapEventHeader: ; 0x63250
+DayCare_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $5, $0, 3, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $6, $0, 4, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $7, $2, 5, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $7, $3, 5, GROUP_ROUTE_34, MAP_ROUTE_34
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, DayCareBookshelf
-	signpost 1, 1, $0, DayCareBookshelf
+	signpost 1, 0, SIGNPOST_READ, DayCareBookshelf
+	signpost 1, 1, SIGNPOST_READ, DayCareBookshelf
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x62f8f, $06e5
-	person_event SPRITE_GRANNY, 7, 9, $8, $0, 255, 255, $80, 0, GrannyScript_0x62fc3, $ffff
-; 0x6328e
+	person_event SPRITE_GRAMPS, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, GrampsScript_0x62f8f, EVENT_DAYCARE_MAN_IN_DAYCARE
+	person_event SPRITE_GRANNY, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrannyScript_0x62fc3, -1

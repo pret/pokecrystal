@@ -1,8 +1,8 @@
 VermilionCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -48,7 +48,7 @@ UnknownScript_0x1aa9ab:
 	pause 15
 	cry SNORLAX
 	loadmovesprites
-	writecode $3, BATTLETYPE_FORCEITEM
+	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata SNORLAX, 50
 	startbattle
 	disappear $6
@@ -61,7 +61,7 @@ VermilionGymBadgeGuy:
 	loadfont
 	checkevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	iftrue .AlreadyGotItem
-	checkcode $7
+	checkcode VAR_BADGES
 	if_equal 16, .AllBadges
 	if_greater_than 13, .MostBadges
 	if_greater_than 9, .SomeBadges
@@ -117,8 +117,7 @@ VermilionCityMartSign:
 	jumpstd martsign
 
 MapVermilionCitySignpostItem7:
-	dw $00fc
-	db FULL_HEAL
+	dwb EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
 
 UnknownText_0x1aaa15:
 	text "VERMILION PORT is"
@@ -266,7 +265,7 @@ VermilionCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 10
 	warp_def $5, $5, 1, GROUP_VERMILION_HOUSE_FISHING_SPEECH_HOUSE, MAP_VERMILION_HOUSE_FISHING_SPEECH_HOUSE
 	warp_def $5, $9, 1, GROUP_VERMILION_POKECENTER_1F, MAP_VERMILION_POKECENTER_1F
@@ -279,25 +278,25 @@ VermilionCity_MapEventHeader:
 	warp_def $1f, $14, 2, GROUP_VERMILION_PORT_PASSAGE, MAP_VERMILION_PORT_PASSAGE
 	warp_def $7, $22, 1, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 8
-	signpost 3, 25, $0, VermilionCitySign
-	signpost 19, 5, $0, VermilionGymSign
-	signpost 13, 5, $0, PokemonFanClubSign
-	signpost 9, 33, $0, VermilionCityDiglettsCaveSign
-	signpost 15, 27, $0, VermilionCityPortSign
-	signpost 5, 10, $0, VermilionCityPokeCenterSign
-	signpost 13, 22, $0, VermilionCityMartSign
-	signpost 19, 12, $7, MapVermilionCitySignpostItem7
+	signpost 3, 25, SIGNPOST_READ, VermilionCitySign
+	signpost 19, 5, SIGNPOST_READ, VermilionGymSign
+	signpost 13, 5, SIGNPOST_READ, PokemonFanClubSign
+	signpost 9, 33, SIGNPOST_READ, VermilionCityDiglettsCaveSign
+	signpost 15, 27, SIGNPOST_READ, VermilionCityPortSign
+	signpost 5, 10, SIGNPOST_READ, VermilionCityPokeCenterSign
+	signpost 13, 22, SIGNPOST_READ, VermilionCityMartSign
+	signpost 19, 12, SIGNPOST_ITEM, MapVermilionCitySignpostItem7
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_TEACHER, 13, 22, $2, $11, 255, 255, $0, 0, TeacherScript_0x1aa983, $ffff
-	person_event SPRITE_GRAMPS, 10, 27, $9, $0, 255, 255, $0, 0, GrampsScript_0x1aa986, $ffff
-	person_event SPRITE_MACHOP, 11, 30, $16, $0, 255, 255, $90, 0, VermilionMachop, $ffff
-	person_event SPRITE_SUPER_NERD, 20, 18, $2, $11, 255, 255, $a0, 0, SuperNerdScript_0x1aa99b, $ffff
-	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, $0, 255, 255, $0, 0, VermilionSnorlax, $0770
-	person_event SPRITE_POKEFAN_M, 16, 35, $6, $0, 255, 255, $80, 0, VermilionGymBadgeGuy, $ffff
+	person_event SPRITE_TEACHER, 13, 22, OW_DOWN | $2, $11, -1, -1, $0, 0, TeacherScript_0x1aa983, -1
+	person_event SPRITE_GRAMPS, 10, 27, OW_LEFT | $1, $0, -1, -1, $0, 0, GrampsScript_0x1aa986, -1
+	person_event SPRITE_MACHOP, 11, 30, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, VermilionMachop, -1
+	person_event SPRITE_SUPER_NERD, 20, 18, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x1aa99b, -1
+	person_event SPRITE_BIG_SNORLAX, 12, 38, OW_UP | $11, $0, -1, -1, $0, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
+	person_event SPRITE_POKEFAN_M, 16, 35, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, VermilionGymBadgeGuy, -1

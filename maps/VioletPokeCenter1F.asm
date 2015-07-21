@@ -1,25 +1,23 @@
-VioletPokeCenter1F_MapScriptHeader: ; 0x694c7
-	; trigger count
+VioletPokeCenter1F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x694c9
 
-NurseScript_0x694c9: ; 0x694c9
+NurseScript_0x694c9:
 	jumpstd pokecenternurse
-; 0x694cc
 
-ScientistScript_0x694cc: ; 0x694cc
+ScientistScript_0x694cc:
 	faceplayer
 	loadfont
 	checkevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x6953a
 	writetext UnknownText_0x69555
-UnknownScript_0x694d7: ; 0x694d7
+UnknownScript_0x694d7:
 	yesorno
 	iffalse UnknownScript_0x69531
-	checkcode $1
+	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x6952b
 	giveegg TOGEPI, 5
 	stringtotext .eggname, $1
@@ -31,7 +29,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	writetext UnknownText_0x695c5
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $1, .UnknownScript_0x69511
 	spriteface $0, DOWN
 	applymovement $6, MovementData_0x69549
@@ -40,7 +38,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	waitbutton
 	end
 
-.UnknownScript_0x69511 ; 0x69511
+.UnknownScript_0x69511
 	applymovement $6, MovementData_0x6954e
 	spriteface $0, DOWN
 	applymovement $6, MovementData_0x69551
@@ -48,71 +46,59 @@ UnknownScript_0x694d7: ; 0x694d7
 	disappear $6
 	waitbutton
 	end
-; 0x69523
 
-.eggname ; 0x69523
+.eggname
 	db "EGG@"
-; 0x69527
 
-UnknownScript_0x69527: ; 0x69527
-	jumpstd $0030
+UnknownScript_0x69527:
+	jumpstd receivetogepiegg
 	end
-; 0x6952b
 
-UnknownScript_0x6952b: ; 0x6952b
+UnknownScript_0x6952b:
 	writetext UnknownText_0x69693
 	closetext
 	loadmovesprites
 	end
-; 0x69531
 
-UnknownScript_0x69531: ; 0x69531
+UnknownScript_0x69531:
 	writetext UnknownText_0x696f2
 	closetext
 	loadmovesprites
 	setevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	end
-; 0x6953a
 
-UnknownScript_0x6953a: ; 0x6953a
+UnknownScript_0x6953a:
 	writetext UnknownText_0x69712
 	jump UnknownScript_0x694d7
-; 0x69540
 
-GameboyKidScript_0x69540: ; 0x69540
+GameboyKidScript_0x69540:
 	jumptextfaceplayer UnknownText_0x69809
-; 0x69543
 
-GentlemanScript_0x69543: ; 0x69543
+GentlemanScript_0x69543:
 	jumptextfaceplayer UnknownText_0x6983c
-; 0x69546
 
-YoungsterScript_0x69546: ; 0x69546
+YoungsterScript_0x69546:
 	jumptextfaceplayer UnknownText_0x698b8
-; 0x69549
 
-MovementData_0x69549: ; 0x69549
+MovementData_0x69549:
 	step_down
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x6954e
 
-MovementData_0x6954e: ; 0x6954e
+MovementData_0x6954e:
 	step_left
 	step_down
 	step_end
-; 0x69551
 
-MovementData_0x69551: ; 0x69551
+MovementData_0x69551:
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x69555
 
-UnknownText_0x69555: ; 0x69555
+UnknownText_0x69555:
 	text "<PLAY_G>, long"
 	line "time, no see."
 
@@ -125,9 +111,8 @@ UnknownText_0x69555: ; 0x69555
 	para "Would you take the"
 	line "#MON EGG?"
 	done
-; 0x695c5
 
-UnknownText_0x695c5: ; 0x695c5
+UnknownText_0x695c5:
 	text "We discovered that"
 	line "a #MON will not"
 
@@ -146,9 +131,8 @@ UnknownText_0x695c5: ; 0x695c5
 	line "ELM when that EGG"
 	cont "hatches!"
 	done
-; 0x69693
 
-UnknownText_0x69693: ; 0x69693
+UnknownText_0x69693:
 	text "Oh, no. You can't"
 	line "carry any more"
 	cont "#MON with you."
@@ -157,21 +141,18 @@ UnknownText_0x69693: ; 0x69693
 	line "while you make"
 	cont "room for the EGG."
 	done
-; 0x696f2
 
-UnknownText_0x696f2: ; 0x696f2
+UnknownText_0x696f2:
 	text "B-but… PROF.ELM"
 	line "asked for you…"
 	done
-; 0x69712
 
-UnknownText_0x69712: ; 0x69712
+UnknownText_0x69712:
 	text "<PLAY_G>, will you"
 	line "take the EGG?"
 	done
-; 0x6972d
 
-UnknownText_0x6972d: ; 0x6972d
+UnknownText_0x6972d:
 	text "I've been thinking"
 	line "it'd be great to"
 
@@ -181,9 +162,8 @@ UnknownText_0x6972d: ; 0x6972d
 	para "friends who live"
 	line "far away."
 	done
-; 0x69791
 
-UnknownText_0x69791: ; 0x69791
+UnknownText_0x69791:
 	text "I just battled a"
 	line "friend in CIANWOOD"
 	cont "over a link."
@@ -194,16 +174,14 @@ UnknownText_0x69791: ; 0x69791
 	para "you can link with"
 	line "a friend far away."
 	done
-; 0x69809
 
-UnknownText_0x69809: ; 0x69809
+UnknownText_0x69809:
 	text "A guy named BILL"
 	line "made the #MON"
 	cont "PC storage system."
 	done
-; 0x6983c
 
-UnknownText_0x6983c: ; 0x6983c
+UnknownText_0x6983c:
 	text "It was around"
 	line "three years ago."
 
@@ -215,9 +193,8 @@ UnknownText_0x6983c: ; 0x6983c
 	line "vailed--a young"
 	cont "kid broke 'em up."
 	done
-; 0x698b8
 
-UnknownText_0x698b8: ; 0x698b8
+UnknownText_0x698b8:
 	text "#MON are smart."
 	line "They won't obey a"
 
@@ -230,29 +207,27 @@ UnknownText_0x698b8: ; 0x698b8
 	para "will just do as"
 	line "they please."
 	done
-; 0x69935
 
-VioletPokeCenter1F_MapEventHeader: ; 0x69935
+VioletPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 5, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $7, $4, 5, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x694c9, $ffff
-	person_event SPRITE_GAMEBOY_KID, 10, 11, $6, $0, 255, 255, $a0, 0, GameboyKidScript_0x69540, $ffff
-	person_event SPRITE_GENTLEMAN, 8, 5, $3, $0, 255, 255, $0, 0, GentlemanScript_0x69543, $ffff
-	person_event SPRITE_YOUNGSTER, 5, 12, $6, $0, 255, 255, $80, 0, YoungsterScript_0x69546, $ffff
-	person_event SPRITE_SCIENTIST, 7, 8, $6, $0, 255, 255, $90, 0, ScientistScript_0x694cc, $0700
-; 0x6998b
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x694c9, -1
+	person_event SPRITE_GAMEBOY_KID, 10, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GameboyKidScript_0x69540, -1
+	person_event SPRITE_GENTLEMAN, 8, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, GentlemanScript_0x69543, -1
+	person_event SPRITE_YOUNGSTER, 5, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x69546, -1
+	person_event SPRITE_SCIENTIST, 7, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x694cc, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER

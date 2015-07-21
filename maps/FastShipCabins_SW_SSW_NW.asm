@@ -1,119 +1,47 @@
-FastShipCabins_SW_SSW_NW_MapScriptHeader: ; 0x75a4d
-	; trigger count
+FastShipCabins_SW_SSW_NW_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x75a4f
 
-TrainerFirebreatherLyle: ; 0x75a4f
-	; bit/flag number
-	dw $44d
+TrainerFirebreatherLyle:
+	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, $0000, FirebreatherLyleScript
 
-	; trainer group && trainer id
-	db FIREBREATHER, LYLE
-
-	; text when seen
-	dw FirebreatherLyleSeenText
-
-	; text when trainer beaten
-	dw FirebreatherLyleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FirebreatherLyleScript
-; 0x75a5b
-
-FirebreatherLyleScript: ; 0x75a5b
+FirebreatherLyleScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x75b52
 	closetext
 	loadmovesprites
 	end
-; 0x75a63
 
-TrainerBug_catcherKen: ; 0x75a63
-	; bit/flag number
-	dw $540
+TrainerBug_catcherKen:
+	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, $0000, Bug_catcherKenScript
 
-	; trainer group && trainer id
-	db BUG_CATCHER, KEN
-
-	; text when seen
-	dw Bug_catcherKenSeenText
-
-	; text when trainer beaten
-	dw Bug_catcherKenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bug_catcherKenScript
-; 0x75a6f
-
-Bug_catcherKenScript: ; 0x75a6f
+Bug_catcherKenScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x75bd5
 	closetext
 	loadmovesprites
 	end
-; 0x75a77
 
-TrainerBeautyCassie: ; 0x75a77
-	; bit/flag number
-	dw $4b2
+TrainerBeautyCassie:
+	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, $0000, BeautyCassieScript
 
-	; trainer group && trainer id
-	db BEAUTY, CASSIE
-
-	; text when seen
-	dw BeautyCassieSeenText
-
-	; text when trainer beaten
-	dw BeautyCassieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyCassieScript
-; 0x75a83
-
-BeautyCassieScript: ; 0x75a83
+BeautyCassieScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x75c43
 	closetext
 	loadmovesprites
 	end
-; 0x75a8b
 
-TrainerGuitaristClyde: ; 0x75a8b
-	; bit/flag number
-	dw $493
+TrainerGuitaristClyde:
+	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, $0000, GuitaristClydeScript
 
-	; trainer group && trainer id
-	db GUITARIST, CLYDE
-
-	; text when seen
-	dw GuitaristClydeSeenText
-
-	; text when trainer beaten
-	dw GuitaristClydeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw GuitaristClydeScript
-; 0x75a97
-
-GuitaristClydeScript: ; 0x75a97
+GuitaristClydeScript:
 	talkaftercancel
 	special Function10630f
 	iftrue UnknownScript_0x75aa5
@@ -122,123 +50,110 @@ GuitaristClydeScript: ; 0x75a97
 	closetext
 	loadmovesprites
 	end
-; 0x75aa5
 
-UnknownScript_0x75aa5: ; 0x75aa5
+UnknownScript_0x75aa5:
 	loadfont
 	writetext UnknownText_0x75cfe
 	closetext
 	loadmovesprites
 	end
-; 0x75aac
 
 FastShipBed:
 	loadfont
 	writetext FastShipBedText1
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
-	special Function1060a2
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
+	special Mobile_HealParty
 	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60
 	special RestartMapMusic
-	special Function8c0ab
+	special Special_FadeInQuickly
 	loadfont
 	writetext FastShipBedText2
 	closetext
 	loadmovesprites
-	checkevent $0031
+	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue UnknownScript_0x75ae1
-	checkevent $0032
+	checkevent EVENT_FAST_SHIP_FOUND_GIRL
 	iftrue UnknownScript_0x75ae2
-	checkevent $0030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x75ae2
-UnknownScript_0x75ae1: ; 0x75ae1
+UnknownScript_0x75ae1:
 	end
-; 0x75ae2
 
-UnknownScript_0x75ae2: ; 0x75ae2
+UnknownScript_0x75ae2:
 	playsound SFX_ELEVATOR_END
 	pause 30
-	checkevent $002f
+	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue UnknownScript_0x75af7
 	loadfont
 	writetext FastShipArrivedVermilionText
 	closetext
 	loadmovesprites
-	setevent $0031
+	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
-; 0x75af7
 
-UnknownScript_0x75af7: ; 0x75af7
+UnknownScript_0x75af7:
 	loadfont
 	writetext FastShipArrivedOlivineText
 	closetext
 	loadmovesprites
-	setevent $0031
+	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
-; 0x75b01
 
-FastShipCabinsNorthwestCabinTrashcan: ; 0x75b01
+FastShipCabinsNorthwestCabinTrashcan:
 	jumpstd trashcan
 
-FirebreatherLyleSeenText: ; 0x75b04
+FirebreatherLyleSeenText:
 	text "I'm going to KANTO"
 	line "to put on fire-"
 	cont "breathing shows!"
 	done
-; 0x75b38
 
-FirebreatherLyleBeatenText: ; 0x75b38
+FirebreatherLyleBeatenText:
 	text "Fizzle… The"
 	line "flame's tiny…"
 	done
-; 0x75b52
 
-UnknownText_0x75b52: ; 0x75b52
+UnknownText_0x75b52:
 	text "I guess fire is"
 	line "weak on the sea."
 
 	para "It doesn't matter?"
 	line "Really?"
 	done
-; 0x75b8e
 
-Bug_catcherKenSeenText: ; 0x75b8e
+Bug_catcherKenSeenText:
 	text "I'm visiting my"
 	line "grandma to catch"
 	cont "me some bugs!"
 	done
-; 0x75bbd
 
-Bug_catcherKenBeatenText: ; 0x75bbd
+Bug_catcherKenBeatenText:
 	text "Ooh, wow."
 	line "You're tough!"
 	done
-; 0x75bd5
 
-UnknownText_0x75bd5: ; 0x75bd5
+UnknownText_0x75bd5:
 	text "You can find lots"
 	line "of #MON in the"
 	cont "trees of JOHTO!"
 	done
-; 0x75c07
 
-BeautyCassieSeenText: ; 0x75c07
+BeautyCassieSeenText:
 	text "I'm trying to"
 	line "forget my woes."
 	cont "Let's battle!"
 	done
-; 0x75c32
 
-BeautyCassieBeatenText: ; 0x75c32
+BeautyCassieBeatenText:
 	text "My heart weeps…"
 	done
-; 0x75c43
 
-UnknownText_0x75c43: ; 0x75c43
+UnknownText_0x75c43:
 	text "A voyage is best"
 	line "for getting over"
 	cont "a broken heart."
@@ -247,24 +162,21 @@ UnknownText_0x75c43: ; 0x75c43
 	line "trip is too short"
 	cont "for grieving."
 	done
-; 0x75ca6
 
-GuitaristClydeSeenText: ; 0x75ca6
+GuitaristClydeSeenText:
 	text "I'm going to audi-"
 	line "tion my songs at"
 
 	para "GOLDENROD's RADIO"
 	line "STATION."
 	done
-; 0x75ce4
 
-GuitaristClydeBeatenText: ; 0x75ce4
+GuitaristClydeBeatenText:
 	text "Yowza!"
 	line "Total distortion!"
 	done
-; 0x75cfe
 
-UnknownText_0x75cfe: ; 0x75cfe
+UnknownText_0x75cfe:
 	text "I was going to"
 	line "make my debut at"
 	cont "the BATTLE TOWER…"
@@ -273,16 +185,14 @@ UnknownText_0x75cfe: ; 0x75cfe
 	line "to VERMILION and"
 	cont "redo my training…"
 	done
-; 0x75d65
 
-UnknownText_0x75d65: ; 0x75d65
+UnknownText_0x75d65:
 	text "Speaking of the"
 	line "RADIO STATION,"
 
 	para "what's this week's"
 	line "lucky number?"
 	done
-; 0x75da4
 
 FastShipBedText1:
 	text "A comfy bed!"
@@ -306,11 +216,11 @@ FastShipArrivedVermilionText:
 	cont "VERMILION CITY."
 	done
 
-FastShipCabins_SW_SSW_NW_MapEventHeader: ; 0x75e42
+FastShipCabins_SW_SSW_NW_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $0, $2, 5, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $13, $2, 6, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
@@ -318,19 +228,18 @@ FastShipCabins_SW_SSW_NW_MapEventHeader: ; 0x75e42
 	warp_def $1f, $2, 7, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $1f, $3, 7, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 1, 7, $0, FastShipBed
-	signpost 2, 7, $0, FastShipBed
-	signpost 7, 7, $0, FastShipCabinsNorthwestCabinTrashcan
+	signpost 1, 7, SIGNPOST_READ, FastShipBed
+	signpost 2, 7, SIGNPOST_READ, FastShipBed
+	signpost 7, 7, SIGNPOST_READ, FastShipCabinsNorthwestCabinTrashcan
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 19, 5, $1e, $0, 255, 255, $82, 2, TrainerFirebreatherLyle, $0739
-	person_event SPRITE_BUG_CATCHER, 19, 10, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherKen, $073b
-	person_event SPRITE_BUENA, 30, 5, $a, $0, 255, 255, $92, 3, TrainerBeautyCassie, $073a
-	person_event SPRITE_ROCKER, 32, 7, $1e, $0, 255, 255, $82, 2, TrainerGuitaristClyde, $073b
-; 0x75ea4
+	person_event SPRITE_FISHER, 19, 5, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_BUG_CATCHER, 19, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_BUENA, 30, 5, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_ROCKER, 32, 7, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

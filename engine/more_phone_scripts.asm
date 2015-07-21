@@ -55,7 +55,7 @@ UnknownScript_0xa0074:
 	farjump UnknownScript_0xa053a
 
 UnknownScript_0xa007c:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xa00c2
 	if_equal $b, UnknownScript_0xa00c8
 	if_equal $d, UnknownScript_0xa00ce
@@ -160,7 +160,7 @@ UnknownScript_0xa0122:
 	end
 
 UnknownScript_0xa0128:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xa014a
 	if_equal $c, UnknownScript_0xa0150
 	if_equal $e, UnknownScript_0xa0156
@@ -211,7 +211,7 @@ UnknownScript_0xa0174:
 	end
 
 UnknownScript_0xa017a:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xa01c0
 	if_equal $b, UnknownScript_0xa01c6
 	if_equal $d, UnknownScript_0xa01cc
@@ -316,7 +316,7 @@ UnknownScript_0xa0220:
 	end
 
 UnknownScript_0xa0226:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xa0248
 	if_equal $c, UnknownScript_0xa024e
 	if_equal $e, UnknownScript_0xa0254
@@ -367,7 +367,7 @@ UnknownScript_0xa0272:
 	end
 
 UnknownScript_0xa0278:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xa02be
 	if_equal $b, UnknownScript_0xa02c4
 	if_equal $d, UnknownScript_0xa02ca
@@ -472,7 +472,7 @@ UnknownScript_0xa031e:
 	end
 
 UnknownScript_0xa0324:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xa0346
 	if_equal $c, UnknownScript_0xa034c
 	if_equal $e, UnknownScript_0xa0352
@@ -531,7 +531,7 @@ UnknownScript_0xa037e:
 	farjump UnknownScript_0xa053a
 
 UnknownScript_0xa0386:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xa03cc
 	if_equal $7, UnknownScript_0xa03d2
 	if_equal $b, UnknownScript_0xa03d8
@@ -636,7 +636,7 @@ UnknownScript_0xa042c:
 	end
 
 UnknownScript_0xa0432:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $c, UnknownScript_0xa0450
 	if_equal $e, UnknownScript_0xa0456
 	if_equal $12, UnknownScript_0xa045c
@@ -689,7 +689,7 @@ UnknownScript_0xa047f:
 	end
 
 UnknownScript_0xa0484:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $5, UnknownScript_0xa04d6
 	if_equal $7, UnknownScript_0xa04db
 	if_equal $b, UnknownScript_0xa04e0
@@ -792,7 +792,7 @@ UnknownScript_0xa0535:
 	end
 
 UnknownScript_0xa053a:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xa055c
 	if_equal $c, UnknownScript_0xa0561
 	if_equal $e, UnknownScript_0xa0566
@@ -855,7 +855,7 @@ UnknownScript_0xa05a0:
 	end
 
 UnknownScript_0xa05a4:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $10, UnknownScript_0xa05ae
 	if_equal $1c, UnknownScript_0xa05b6
 
@@ -895,7 +895,7 @@ UnknownScript_0xa05de:
 	jump UnknownScript_0xa0484
 
 UnknownScript_0xa05e6:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $d, UnknownScript_0xa0600
 	if_equal $10, UnknownScript_0xa0605
 	if_equal $18, UnknownScript_0xa060a
@@ -928,7 +928,7 @@ UnknownScript_0xa0619:
 	end
 
 UnknownScript_0xa061e:
-	checkcode $17
+	checkcode VAR_CALLERID
 	if_equal $6, UnknownScript_0xa0630
 	if_equal $15, UnknownScript_0xa0635
 	if_equal $1a, UnknownScript_0xa063a
@@ -1459,7 +1459,7 @@ UnknownScript_0xa09e6:
 	jump UnknownScript_0xa0484
 
 UnknownScript_0xa09ee:
-	checkcode $1a
+	checkcode VAR_KENJI_BREAK
 	if_equal $2, UnknownScript_0xa0a00
 	if_equal $1, UnknownScript_0xa0a08
 	farwritetext UnknownText_0x66e17
@@ -1476,7 +1476,7 @@ UnknownScript_0xa0a08:
 	iftrue UnknownScript_0xa0a1d
 	checknite
 	iftrue UnknownScript_0xa0a25
-	setevent $026a
+	setevent EVENT_KENJI_ON_BREAK
 	farwritetext UnknownText_0x66f11
 	keeptextopen
 	jump UnknownScript_0xa0484
@@ -1655,6 +1655,6 @@ UnknownScript_0xa0b04:
 
 UnknownScript_0xa0b09:
 	farwritetext UnknownText_0x174000
-	clearflag ENGINE_14
-	specialphonecall $0000
+	clearflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	specialphonecall ELMCALL_NONE
 	end

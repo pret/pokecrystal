@@ -1,27 +1,24 @@
-GoldenrodGym_MapScriptHeader: ; 0x54000
-	; trigger count
+GoldenrodGym_MapScriptHeader:
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x5400a, $0000
 	dw UnknownScript_0x5400b, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x5400a
 
-UnknownScript_0x5400a: ; 0x5400a
+UnknownScript_0x5400a:
 	end
-; 0x5400b
 
-UnknownScript_0x5400b: ; 0x5400b
+UnknownScript_0x5400b:
 	end
-; 0x5400c
 
-WhitneyScript_0x5400c: ; 0x5400c
+WhitneyScript_0x5400c:
 	faceplayer
 	checkevent EVENT_BEAT_WHITNEY
-	iftrue UnknownScript_0x54037
+	iftrue .FightDone
 	loadfont
 	writetext UnknownText_0x54122
 	closetext
@@ -37,20 +34,19 @@ WhitneyScript_0x5400c: ; 0x5400c
 	setevent EVENT_BEAT_BEAUTY_SAMANTHA
 	setevent EVENT_BEAT_LASS_CARRIE
 	setevent EVENT_BEAT_LASS_BRIDGET
-UnknownScript_0x54037: ; 0x54037
+.FightDone
 	loadfont
 	checkevent EVENT_MADE_WHITNEY_CRY
-	iffalse UnknownScript_0x54044
+	iffalse .StoppedCrying
 	writetext UnknownText_0x541f4
 	closetext
 	loadmovesprites
 	end
-; 0x54044
 
-UnknownScript_0x54044: ; 0x54044
+.StoppedCrying
 	checkevent EVENT_GOT_TM45_ATTRACT
 	iftrue UnknownScript_0x54077
-	checkflag $001d
+	checkflag ENGINE_PLAINBADGE
 	iftrue UnknownScript_0x54064
 	writetext UnknownText_0x54222
 	keeptextopen
@@ -58,74 +54,51 @@ UnknownScript_0x54044: ; 0x54044
 	writetext UnknownText_0x54273
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $001d
-	checkcode $7
-	scall UnknownScript_0x5407d
-UnknownScript_0x54064: ; 0x54064
+	setflag ENGINE_PLAINBADGE
+	checkcode VAR_BADGES
+	scall GoldenrodGymTriggerRockets
+UnknownScript_0x54064:
 	writetext UnknownText_0x5428b
 	keeptextopen
-	verbosegiveitem TM_45, 1
+	verbosegiveitem TM_ATTRACT, 1
 	iffalse UnknownScript_0x5407b
 	setevent EVENT_GOT_TM45_ATTRACT
 	writetext UnknownText_0x54302
 	closetext
 	loadmovesprites
 	end
-; 0x54077
 
-UnknownScript_0x54077: ; 0x54077
+UnknownScript_0x54077:
 	writetext UnknownText_0x54360
 	closetext
-UnknownScript_0x5407b: ; 0x5407b
+UnknownScript_0x5407b:
 	loadmovesprites
 	end
-; 0x5407d
 
-UnknownScript_0x5407d: ; 0x5407d
-	if_equal $7, UnknownScript_0x54089
-	if_equal $6, UnknownScript_0x54086
+GoldenrodGymTriggerRockets:
+	if_equal 7, .RadioTowerRockets
+	if_equal 6, .GoldenrodRockets
 	end
-; 0x54086
 
-UnknownScript_0x54086: ; 0x54086
+.GoldenrodRockets
 	jumpstd goldenrodrockets
-; 0x54089
 
-UnknownScript_0x54089: ; 0x54089
+.RadioTowerRockets
 	jumpstd radiotowerrockets
-; 0x5408c
 
-TrainerLassCarrie: ; 0x5408c
-	; bit/flag number
-	dw $515
+TrainerLassCarrie:
+	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, $0000, LassCarrieScript
 
-	; trainer group && trainer id
-	db LASS, CARRIE
-
-	; text when seen
-	dw LassCarrieSeenText
-
-	; text when trainer beaten
-	dw LassCarrieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassCarrieScript
-; 0x54098
-
-LassCarrieScript: ; 0x54098
+LassCarrieScript:
 	talkaftercancel
 	loadfont
 	writetext LassCarrieOWText
 	closetext
 	loadmovesprites
 	end
-; 0x540a0
 
-WhitneyCriesScript: ; 0x540a0
-	showemote $0, $4, 15
+WhitneyCriesScript:
+	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, BridgetWalksUpMovement
 	spriteface $0, DOWN
 	loadfont
@@ -136,96 +109,41 @@ WhitneyCriesScript: ; 0x540a0
 	dotrigger $0
 	clearevent EVENT_MADE_WHITNEY_CRY
 	end
-; 0x540bb
 
-TrainerLassBridget: ; 0x540bb
-	; bit/flag number
-	dw $516
+TrainerLassBridget:
+	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, $0000, LassBridgetScript
 
-	; trainer group && trainer id
-	db LASS, BRIDGET
-
-	; text when seen
-	dw LassBridgetSeenText
-
-	; text when trainer beaten
-	dw LassBridgetBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassBridgetScript
-; 0x540c7
-
-LassBridgetScript: ; 0x540c7
+LassBridgetScript:
 	talkaftercancel
 	loadfont
 	writetext LassBridgetOWText
 	closetext
 	loadmovesprites
 	end
-; 0x540cf
 
-TrainerBeautyVictoria: ; 0x540cf
-	; bit/flag number
-	dw $4ad
+TrainerBeautyVictoria:
+	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, $0000, BeautyVictoriaScript
 
-	; trainer group && trainer id
-	db BEAUTY, VICTORIA
-
-	; text when seen
-	dw BeautyVictoriaSeenText
-
-	; text when trainer beaten
-	dw BeautyVictoriaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyVictoriaScript
-; 0x540db
-
-BeautyVictoriaScript: ; 0x540db
+BeautyVictoriaScript:
 	talkaftercancel
 	loadfont
 	writetext BeautyVictoriaOWText
 	closetext
 	loadmovesprites
 	end
-; 0x540e3
 
-TrainerBeautySamantha: ; 0x540e3
-	; bit/flag number
-	dw $4ae
+TrainerBeautySamantha:
+	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, $0000, BeautySamanthaScript
 
-	; trainer group && trainer id
-	db BEAUTY, SAMANTHA
-
-	; text when seen
-	dw BeautySamanthaSeenText
-
-	; text when trainer beaten
-	dw BeautySamanthaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautySamanthaScript
-; 0x540ef
-
-BeautySamanthaScript: ; 0x540ef
+BeautySamanthaScript:
 	talkaftercancel
 	loadfont
 	writetext BeautySamanthaOWText
 	closetext
 	loadmovesprites
 	end
-; 0x540f7
 
-GoldenrodGymGuyScript: ; 0x540f7
+GoldenrodGymGuyScript:
 	faceplayer
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .GoldenrodGymGuyWinScript
@@ -241,7 +159,6 @@ GoldenrodGymGuyScript: ; 0x540f7
 	closetext
 	loadmovesprites
 	end
-; 0x5410c
 
 GoldenrodGymStatue:
 	checkflag ENGINE_PLAINBADGE
@@ -251,19 +168,17 @@ GoldenrodGymStatue:
 	trainertotext WHITNEY, 1, $1
 	jumpstd gymstatue2
 
-BridgetWalksUpMovement: ; 0x5411c
+BridgetWalksUpMovement:
 	step_left
 	turn_head_up
 	step_end
-; 0x5411f
 
-BridgetWalksAwayMovement: ; 0x5411f
+BridgetWalksAwayMovement:
 	step_right
 	turn_head_left
 	step_end
-; 0x54122
 
-UnknownText_0x54122: ; 0x54122
+UnknownText_0x54122:
 	text "Hi! I'm WHITNEY!"
 
 	para "Everyone was into"
@@ -277,9 +192,8 @@ UnknownText_0x54122: ; 0x54122
 	line "tle? I'm warning"
 	cont "you--I'm good!"
 	done
-; 0x541a5
 
-UnknownText_0x541a5: ; 0x541a5
+UnknownText_0x541a5:
 	text "Sob…"
 
 	para "…Waaaaaaah!"
@@ -289,9 +203,8 @@ UnknownText_0x541a5: ; 0x541a5
 	line "so serious! You…"
 	cont "you child, you!"
 	done
-; 0x541f4
 
-UnknownText_0x541f4: ; 0x541f4
+UnknownText_0x541f4:
 	text "Waaaaah!"
 
 	para "Waaaaah!"
@@ -299,9 +212,8 @@ UnknownText_0x541f4: ; 0x541f4
 	para "…Snivel, hic…"
 	line "…You meanie!"
 	done
-; 0x54222
 
-UnknownText_0x54222: ; 0x54222
+UnknownText_0x54222:
 	text "…Sniff…"
 
 	para "What? What do you"
@@ -311,15 +223,13 @@ UnknownText_0x54222: ; 0x54222
 	line "I forgot. Here's"
 	cont "PLAINBADGE."
 	done
-; 0x54273
 
-UnknownText_0x54273: ; 0x54273
+UnknownText_0x54273:
 	text "<PLAYER> received"
 	line "PLAINBADGE."
 	done
-; 0x5428b
 
-UnknownText_0x5428b: ; 0x5428b
+UnknownText_0x5428b:
 	text "PLAINBADGE lets"
 	line "your #MON use"
 
@@ -333,9 +243,8 @@ UnknownText_0x5428b: ; 0x5428b
 	para "Oh, you can have"
 	line "this too!"
 	done
-; 0x54302
 
-UnknownText_0x54302: ; 0x54302
+UnknownText_0x54302:
 	text "It's ATTRACT!"
 	line "It makes full use"
 
@@ -346,39 +255,34 @@ UnknownText_0x54302: ; 0x54302
 	line "fect for a cutie"
 	cont "like me?"
 	done
-; 0x54360
 
-UnknownText_0x54360: ; 0x54360
+UnknownText_0x54360:
 	text "Ah, that was a"
 	line "good cry!"
 
 	para "Come for a visit"
 	line "again! Bye-bye!"
 	done
-; 0x5439b
 
-LassCarrieSeenText: ; 0x5439b
+LassCarrieSeenText:
 	text "Don't let my"
 	line "#MON's cute"
 
 	para "looks fool you."
 	line "They can whip you!"
 	done
-; 0x543d6
 
-LassCarrieBeatenText: ; 0x543d6
+LassCarrieBeatenText:
 	text "Darn… I thought"
 	line "you were weak…"
 	done
-; 0x543f6
 
-LassCarrieOWText: ; 0x543f6
+LassCarrieOWText:
 	text "Do my #MON"
 	line "think I'm cute?"
 	done
-; 0x54411
 
-LassBridgetSeenText: ; 0x54411
+LassBridgetSeenText:
 	text "I like cute #-"
 	line "MON better than"
 	cont "strong #MON."
@@ -386,14 +290,12 @@ LassBridgetSeenText: ; 0x54411
 	para "But I have strong"
 	line "and cute #MON!"
 	done
-; 0x5445f
 
-LassBridgetBeatenText: ; 0x5445f
+LassBridgetBeatenText:
 	text "Oh, no, no, no!"
 	done
-; 0x54470
 
-LassBridgetOWText: ; 0x54470
+LassBridgetOWText:
 	text "I'm trying to beat"
 	line "WHITNEY, but…"
 	cont "It's depressing."
@@ -404,9 +306,8 @@ LassBridgetOWText: ; 0x54470
 	para "try harder next"
 	line "time!"
 	done
-; 0x544d4
 
-BridgetWhitneyCriesText: ; 0x544d4
+BridgetWhitneyCriesText:
 	text "Oh, no. You made"
 	line "WHITNEY cry."
 
@@ -416,51 +317,44 @@ BridgetWhitneyCriesText: ; 0x544d4
 	para "always cries when"
 	line "she loses."
 	done
-; 0x5452d
 
-BeautyVictoriaSeenText: ; 0x5452d
+BeautyVictoriaSeenText:
 	text "Oh, you are a cute"
 	line "little trainer! "
 
 	para "I like you, but I"
 	line "won't hold back!"
 	done
-; 0x54574
 
-BeautyVictoriaBeatenText: ; 0x54574
+BeautyVictoriaBeatenText:
 	text "Let's see… Oops,"
 	line "it's over?"
 	done
-; 0x5458f
 
-BeautyVictoriaOWText: ; 0x5458f
+BeautyVictoriaOWText:
 	text "Wow, you must be"
 	line "good to beat me!"
 	cont "Keep it up!"
 	done
-; 0x545be
 
-BeautySamanthaSeenText: ; 0x545be
+BeautySamanthaSeenText:
 	text "Give it your best"
 	line "shot, or I'll take"
 	cont "you down!"
 	done
-; 0x545ed
 
-BeautySamanthaBeatenText: ; 0x545ed
+BeautySamanthaBeatenText:
 	text "No! Oh, MEOWTH,"
 	line "I'm so sorry!"
 	done
-; 0x5460b
 
-BeautySamanthaOWText: ; 0x5460b
+BeautySamanthaOWText:
 	text "I taught MEOWTH"
 	line "moves for taking"
 	cont "on any type…"
 	done
-; 0x5463a
 
-GoldenrodGymGuyText: ; 0x5463a
+GoldenrodGymGuyText:
 	text "Yo! CHAMP in"
 	line "making!"
 
@@ -472,39 +366,36 @@ GoldenrodGymGuyText: ; 0x5463a
 	line "use fighting-type"
 	cont "#MON."
 	done
-; 0x546a7
 
-GoldenrodGymGuyWinText: ; 0x546a7
+GoldenrodGymGuyWinText:
 	text "You won? Great! I"
 	line "was busy admiring"
 	cont "the ladies here."
 	done
-; 0x546dd
 
-GoldenrodGym_MapEventHeader: ; 0x546dd
+GoldenrodGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $2, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $11, $3, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $5, $8, $0, WhitneyCriesScript, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 15, 1, $0, GoldenrodGymStatue
-	signpost 15, 4, $0, GoldenrodGymStatue
+	signpost 15, 1, SIGNPOST_READ, GoldenrodGymStatue
+	signpost 15, 4, SIGNPOST_READ, GoldenrodGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_WHITNEY, 7, 12, $6, $0, 255, 255, $80, 0, WhitneyScript_0x5400c, $ffff
-	person_event SPRITE_LASS, 17, 13, $9, $0, 255, 255, $92, 4, TrainerLassCarrie, $ffff
-	person_event SPRITE_LASS, 10, 13, $8, $0, 255, 255, $92, 1, TrainerLassBridget, $ffff
-	person_event SPRITE_BUENA, 6, 4, $6, $0, 255, 255, $92, 3, TrainerBeautyVictoria, $ffff
-	person_event SPRITE_BUENA, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, $ffff
-	person_event SPRITE_GYM_GUY, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, $ffff
-; 0x5474d
+	person_event SPRITE_WHITNEY, 7, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, WhitneyScript_0x5400c, -1
+	person_event SPRITE_LASS, 17, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerLassCarrie, -1
+	person_event SPRITE_LASS, 10, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassBridget, -1
+	person_event SPRITE_BUENA, 6, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautyVictoria, -1
+	person_event SPRITE_BUENA, 9, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautySamantha, -1
+	person_event SPRITE_GYM_GUY, 19, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GoldenrodGymGuyScript, -1

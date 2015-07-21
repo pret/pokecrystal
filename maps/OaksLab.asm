@@ -1,14 +1,12 @@
-OaksLab_MapScriptHeader: ; 0x19b3c5
-	; trigger count
+OaksLab_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x19b3c7
 
-UnknownScript_0x19b3c7: ; 0x19b3c7
+UnknownScript_0x19b3c7:
 	end
-; 0x19b3c8
 
 Oak:
 	faceplayer
@@ -21,7 +19,7 @@ Oak:
 	keeptextopen
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges
-	checkcode $7
+	checkcode VAR_BADGES
 	if_equal 16, .OpenMtSilver
 	if_equal 8, .Complain
 	jump .AhGood
@@ -51,17 +49,14 @@ Oak:
 	keeptextopen
 	jump .CheckPokedex
 
-ScientistScript_0x19b40f: ; 0x19b40f
+ScientistScript_0x19b40f:
 	jumptextfaceplayer UnknownText_0x19b7fb
-; 0x19b412
 
-ScientistScript_0x19b412: ; 0x19b412
+ScientistScript_0x19b412:
 	jumptextfaceplayer UnknownText_0x19b859
-; 0x19b415
 
-ScientistScript_0x19b415: ; 0x19b415
+ScientistScript_0x19b415:
 	jumptextfaceplayer UnknownText_0x19b8a7
-; 0x19b418
 
 OaksLabBookshelf:
 	jumpstd difficultbookshelf
@@ -183,7 +178,7 @@ OakYesKantoBadgesText:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x19b7fb: ; 0x19b7fb
+UnknownText_0x19b7fb:
 	text "The PROF's #MON"
 	line "TALK radio program"
 
@@ -193,9 +188,8 @@ UnknownText_0x19b7fb: ; 0x19b7fb
 	para "It's a shame--I'd"
 	line "like to hear it."
 	done
-; 0x19b859
 
-UnknownText_0x19b859: ; 0x19b859
+UnknownText_0x19b859:
 	text "Thanks to your"
 	line "work on the #-"
 	cont "DEX, the PROF's"
@@ -203,16 +197,14 @@ UnknownText_0x19b859: ; 0x19b859
 	para "research is coming"
 	line "along great."
 	done
-; 0x19b8a7
 
-UnknownText_0x19b8a7: ; 0x19b8a7
+UnknownText_0x19b8a7:
 	text "Don't tell anyone,"
 	line "but PROF.OAK'S"
 
 	para "#MON TALK isn't"
 	line "a live broadcast."
 	done
-; 0x19b8ea
 
 OaksLabPoster1Text:
 	text "Press START to"
@@ -257,43 +249,41 @@ OaksLabPCText:
 	para "ELM in NEW BARK"
 	line "TOWN 8-)"
 	done
-; 0x19ba33
 
-OaksLab_MapEventHeader: ; 0x19ba33
+OaksLab_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $4, 3, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 	warp_def $b, $5, 3, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 16
-	signpost 1, 6, $0, OaksLabBookshelf
-	signpost 1, 7, $0, OaksLabBookshelf
-	signpost 1, 8, $0, OaksLabBookshelf
-	signpost 1, 9, $0, OaksLabBookshelf
-	signpost 7, 0, $0, OaksLabBookshelf
-	signpost 7, 1, $0, OaksLabBookshelf
-	signpost 7, 2, $0, OaksLabBookshelf
-	signpost 7, 3, $0, OaksLabBookshelf
-	signpost 7, 6, $0, OaksLabBookshelf
-	signpost 7, 7, $0, OaksLabBookshelf
-	signpost 7, 8, $0, OaksLabBookshelf
-	signpost 7, 9, $0, OaksLabBookshelf
-	signpost 0, 4, $0, OaksLabPoster1
-	signpost 0, 5, $0, OaksLabPoster2
-	signpost 3, 9, $0, OaksLabTrashcan
-	signpost 1, 0, $0, OaksLabPC
+	signpost 1, 6, SIGNPOST_READ, OaksLabBookshelf
+	signpost 1, 7, SIGNPOST_READ, OaksLabBookshelf
+	signpost 1, 8, SIGNPOST_READ, OaksLabBookshelf
+	signpost 1, 9, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 0, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 1, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 2, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 3, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 6, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 7, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 8, SIGNPOST_READ, OaksLabBookshelf
+	signpost 7, 9, SIGNPOST_READ, OaksLabBookshelf
+	signpost 0, 4, SIGNPOST_READ, OaksLabPoster1
+	signpost 0, 5, SIGNPOST_READ, OaksLabPoster2
+	signpost 3, 9, SIGNPOST_READ, OaksLabTrashcan
+	signpost 1, 0, SIGNPOST_READ, OaksLabPC
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_OAK, 6, 8, $6, $0, 255, 255, $0, 0, Oak, $ffff
-	person_event SPRITE_SCIENTIST, 12, 5, $5, $1, 255, 255, $90, 0, ScientistScript_0x19b40f, $ffff
-	person_event SPRITE_SCIENTIST, 13, 12, $4, $10, 255, 255, $90, 0, ScientistScript_0x19b412, $ffff
-	person_event SPRITE_SCIENTIST, 8, 5, $2, $11, 255, 255, $90, 0, ScientistScript_0x19b415, $ffff
-; 0x19bac7
+	person_event SPRITE_OAK, 6, 8, OW_UP | $2, $0, -1, -1, $0, 0, Oak, -1
+	person_event SPRITE_SCIENTIST, 12, 5, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b40f, -1
+	person_event SPRITE_SCIENTIST, 13, 12, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b412, -1
+	person_event SPRITE_SCIENTIST, 8, 5, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b415, -1

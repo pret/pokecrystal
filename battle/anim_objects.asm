@@ -36,12 +36,9 @@ Functioncc9c4: ; cc9c4 (33:49c4)
 	ld e, a
 	ld d, 0
 	ld hl, BattleAnimObjects
+rept 6
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld e, l
 	ld d, h
 	ld hl, $0
@@ -71,8 +68,9 @@ Functioncc9c4: ; cc9c4 (33:49c4)
 	ld a, [BattleAnimTemps + 2]
 	ld [hli], a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld a, [BattleAnimTemps + 3]
 	ld [hli], a
 	xor a
@@ -80,8 +78,9 @@ Functioncc9c4: ; cc9c4 (33:49c4)
 	dec a
 	ld [hli], a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ret
 
@@ -516,8 +515,9 @@ Functionccfbe: ; ccfbe
 	ld e, [hl]
 	ld d, 0
 	ld hl, Jumptable_ccfce
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -670,10 +670,9 @@ Functioncd0a6: ; cd0a6 (33:50a6)
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
+rept 4
 	inc [hl]
-	inc [hl]
-	inc [hl]
-	inc [hl]
+endr
 	ld d, $10
 	push af
 	push de
@@ -937,8 +936,9 @@ Functioncd232: ; cd232 (33:5232)
 	ld [hl], a
 	ld hl, $7
 	add hl, bc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 .asm_cd245
 	call Functioncc9bd
@@ -1739,8 +1739,9 @@ Functioncd687: ; cd687 (33:5687)
 	ld [hl], a
 	ld hl, $f
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 
 Functioncd6c5: ; cd6c5 (33:56c5)
 	ret
@@ -1760,8 +1761,9 @@ Functioncd6d6: ; cd6d6 (33:56d6)
 	call Functioncc9bd
 	ret
 asm_cd6da: ; cd6da (33:56da)
+rept 2
 	inc a
-	inc a
+endr
 	ld [hl], a
 	sub $10
 	ret c
@@ -2128,8 +2130,9 @@ Functioncd8cc: ; cd8cc (33:58cc)
 	call Functionce7bf
 	ld hl, $f
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld a, [hl]
 	and $1f
 	ret nz
@@ -2550,8 +2553,9 @@ Functioncdb28: ; cdb28 (33:5b28)
 	ld a, [hl]
 	cp $98
 	ret nc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld hl, $1
 	add hl, bc
 	set 0, [hl]
@@ -2587,8 +2591,9 @@ Functioncdb65: ; cdb65 (33:5b65)
 	ld a, [hl]
 	cp $98
 	ret nc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
@@ -2722,8 +2727,9 @@ Functioncdc27: ; cdc27 (33:5c27)
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld d, $2
 	call Functionce734
 	ld hl, $9
@@ -2871,8 +2877,9 @@ Functioncdcfe: ; cdcfe (33:5cfe)
 	ld hl, $10
 	add hl, bc
 	ld a, [hl]
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld d, $10
 	call Functionce734
 	ld d, a
@@ -3083,8 +3090,9 @@ Functioncde28: ; cde28 (33:5e28)
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld d, $4
 	call Functionce734
 	ld hl, $9
@@ -3112,8 +3120,9 @@ Functioncde54: ; cde54 (33:5e54)
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ld d, $10
 	call Functionce734
 	ld hl, $a
@@ -3353,8 +3362,9 @@ Functioncdf8c: ; cdf8c (33:5f8c)
 	ld [hl], a
 	ld hl, $b
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld a, [hl]
 	and $7
 	ret nz
@@ -3394,8 +3404,9 @@ Functioncdfcb: ; cdfcb (33:5fcb)
 	ld [hl], a
 	ld hl, $b
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld a, [hl]
 	and $3
 	ret nz
@@ -3404,8 +3415,9 @@ Functioncdfcb: ; cdfcb (33:5fcb)
 	ld a, [hl]
 	cp $d0
 	jr z, .asm_ce007
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 .asm_ce007
 	call Functioncc9bd
@@ -3930,8 +3942,9 @@ Functionce2cc: ; ce2cc (33:62cc)
 	ld [hl], a
 	ld hl, $10
 	add hl, bc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 Functionce2fd: ; ce2fd (33:62fd)
@@ -4077,8 +4090,9 @@ Functionce3b4: ; ce3b4 (33:63b4)
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	push af
 	ld d, $2
 	call Functionce734
@@ -4317,8 +4331,9 @@ Functionce508: ; ce508 (33:6508)
 	ld a, [hl]
 	cp $10
 	jr nc, .asm_ce52e
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld d, a
 	ld hl, $b
 	add hl, bc
@@ -4428,12 +4443,14 @@ Functionce59a: ; ce59a (33:659a)
 	jr c, .asm_ce5b0
 	ld hl, $7
 	add hl, bc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ld hl, $8
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ret
 .asm_ce5b0
 	call Functioncc9bd
@@ -4446,8 +4463,9 @@ Functionce5b4: ; ce5b4 (33:65b4)
 	ld hl, $b
 	add hl, bc
 	ld a, [hl]
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	push af
 	push de
 	call Functionce734
@@ -4474,10 +4492,9 @@ Functionce5dc: ; ce5dc (33:65dc)
 	ld a, [hl]
 	cp $d0
 	jr z, .asm_ce5ea
+rept 4
 	dec [hl]
-	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 .asm_ce5ea
 	call Functioncc9bd
@@ -4510,10 +4527,9 @@ Functionce60a: ; ce60a (33:660a)
 	ld a, [hl]
 	cp $4
 	jr z, Functionce618
+rept 4
 	inc [hl]
-	inc [hl]
-	inc [hl]
-	inc [hl]
+endr
 	ret
 
 Functionce618: ; ce618 (33:6618)
@@ -4529,10 +4545,9 @@ Functionce622: ; ce622 (33:6622)
 	ld a, [hl]
 	cp $d8
 	ret z
+rept 4
 	dec [hl]
-	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 
 Functionce62f: ; ce62f (33:662f)
@@ -4567,8 +4582,9 @@ Functionce648: ; ce648 (33:6648)
 	ld [hl], a
 	ld hl, $9
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ret
 
 Functionce65c: ; ce65c (33:665c)
@@ -4754,8 +4770,9 @@ Functionce749: ; ce749 (33:6749)
 	ld a, d
 	ld d, 0
 	ld hl, Unknown_ce77f
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -4864,8 +4881,9 @@ Functionce7d1: ; ce7d1
 	ld [hl], a
 	ld hl, $000d
 	add hl, bc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	jr .asm_ce7d1
 
 .asm_ce815
@@ -4886,8 +4904,9 @@ Functionce823: ; ce823
 	ld e, [hl]
 	ld d, 0
 	ld hl, Unknown_ce85e
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -4904,8 +4923,9 @@ Functionce83c: ; ce83c
 	ld l, a
 	ld h, 0
 	ld de, Unknown_ceeae
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	add hl, de
 	ret
 ; ce846
@@ -4915,8 +4935,9 @@ Functionce846: ; ce846 (33:6846)
 	push hl
 	ld l, a
 	ld h, 0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld de, AnimObjGFX
 	add hl, de
 	ld c, [hl]

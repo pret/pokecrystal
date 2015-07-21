@@ -1,23 +1,20 @@
-EcruteakLugiaSpeechHouse_MapScriptHeader: ; 0x99332
-	; trigger count
+EcruteakLugiaSpeechHouse_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x99334
 
-GrampsScript_0x99334: ; 0x99334
+GrampsScript_0x99334:
 	jumptextfaceplayer UnknownText_0x9933d
-; 0x99337
 
-YoungsterScript_0x99337: ; 0x99337
+YoungsterScript_0x99337:
 	jumptextfaceplayer UnknownText_0x993ec
-; 0x9933a
 
 LugiaSpeechHouseRadio:
 	jumpstd radio2
 
-UnknownText_0x9933d: ; 0x9933d
+UnknownText_0x9933d:
 	text "This happened when"
 	line "I was young."
 
@@ -34,35 +31,32 @@ UnknownText_0x9933d: ; 0x9933d
 	para "It was like a bird"
 	line "and a dragon."
 	done
-; 0x993ec
 
-UnknownText_0x993ec: ; 0x993ec
+UnknownText_0x993ec:
 	text "Is there really a"
 	line "#MON that big?"
 
 	para "If it exists, it"
 	line "must be powerful."
 	done
-; 0x99431
 
-EcruteakLugiaSpeechHouse_MapEventHeader: ; 0x99431
+EcruteakLugiaSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $3, 7, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $7, $4, 7, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 1, 2, $0, LugiaSpeechHouseRadio
+	signpost 1, 2, SIGNPOST_READ, LugiaSpeechHouseRadio
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, $3, $0, 255, 255, $0, 0, GrampsScript_0x99334, $ffff
-	person_event SPRITE_YOUNGSTER, 8, 9, $8, $0, 255, 255, $0, 0, YoungsterScript_0x99337, $ffff
-; 0x99460
+	person_event SPRITE_GRAMPS, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, GrampsScript_0x99334, -1
+	person_event SPRITE_YOUNGSTER, 8, 9, OW_LEFT | $0, $0, -1, -1, $0, 0, YoungsterScript_0x99337, -1

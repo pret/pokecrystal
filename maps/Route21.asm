@@ -1,169 +1,104 @@
-Route21_MapScriptHeader: ; 0x1ac812
-	; trigger count
+Route21_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x1ac814
 
-TrainerSwimmermSeth: ; 0x1ac814
-	; bit/flag number
-	dw $5a5
+TrainerSwimmermSeth:
+	trainer EVENT_BEAT_SWIMMERM_SETH, SWIMMERM, SETH, SwimmermSethSeenText, SwimmermSethBeatenText, $0000, SwimmermSethScript
 
-	; trainer group && trainer id
-	db SWIMMERM, SETH
-
-	; text when seen
-	dw SwimmermSethSeenText
-
-	; text when trainer beaten
-	dw SwimmermSethBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermSethScript
-; 0x1ac820
-
-SwimmermSethScript: ; 0x1ac820
+SwimmermSethScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac873
 	closetext
 	loadmovesprites
 	end
-; 0x1ac828
 
-TrainerSwimmerfNikki: ; 0x1ac828
-	; bit/flag number
-	dw $3f8
+TrainerSwimmerfNikki:
+	trainer EVENT_BEAT_SWIMMERF_NIKKI, SWIMMERF, NIKKI, SwimmerfNikkiSeenText, SwimmerfNikkiBeatenText, $0000, SwimmerfNikkiScript
 
-	; trainer group && trainer id
-	db SWIMMERF, NIKKI
-
-	; text when seen
-	dw SwimmerfNikkiSeenText
-
-	; text when trainer beaten
-	dw SwimmerfNikkiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfNikkiScript
-; 0x1ac834
-
-SwimmerfNikkiScript: ; 0x1ac834
+SwimmerfNikkiScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac8f1
 	closetext
 	loadmovesprites
 	end
-; 0x1ac83c
 
-TrainerFisherArnold: ; 0x1ac83c
-	; bit/flag number
-	dw $450
+TrainerFisherArnold:
+	trainer EVENT_BEAT_FISHER_ARNOLD, FISHER, ARNOLD, FisherArnoldSeenText, FisherArnoldBeatenText, $0000, FisherArnoldScript
 
-	; trainer group && trainer id
-	db FISHER, ARNOLD
-
-	; text when seen
-	dw FisherArnoldSeenText
-
-	; text when trainer beaten
-	dw FisherArnoldBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherArnoldScript
-; 0x1ac848
-
-FisherArnoldScript: ; 0x1ac848
+FisherArnoldScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac95c
 	closetext
 	loadmovesprites
 	end
-; 0x1ac850
 
-SwimmermSethSeenText: ; 0x1ac850
+SwimmermSethSeenText:
 	text "Land ho! Gotta"
 	line "keep going!"
 	done
-; 0x1ac86c
 
-SwimmermSethBeatenText: ; 0x1ac86c
+SwimmermSethBeatenText:
 	text "Glug…"
 	done
-; 0x1ac873
 
-UnknownText_0x1ac873: ; 0x1ac873
+UnknownText_0x1ac873:
 	text "This arrogant guy"
 	line "was at CINNABAR's"
 	cont "volcano."
 	done
-; 0x1ac8a0
 
-SwimmerfNikkiSeenText: ; 0x1ac8a0
+SwimmerfNikkiSeenText:
 	text "If I win, you have"
 	line "to help me with my"
 	cont "suntan lotion!"
 	done
-; 0x1ac8d6
 
-SwimmerfNikkiBeatenText: ; 0x1ac8d6
+SwimmerfNikkiBeatenText:
 	text "I'm worried about"
 	line "sunburn…"
 	done
-; 0x1ac8f1
 
-UnknownText_0x1ac8f1: ; 0x1ac8f1
+UnknownText_0x1ac8f1:
 	text "I have to watch"
 	line "out for blemishes"
 	cont "caused by the sun."
 	done
-; 0x1ac927
 
-FisherArnoldSeenText: ; 0x1ac927
+FisherArnoldSeenText:
 	text "I'm bored by fish-"
 	line "ing. Let's battle!"
 	done
-; 0x1ac94c
 
-FisherArnoldBeatenText: ; 0x1ac94c
+FisherArnoldBeatenText:
 	text "Utter failure…"
 	done
-; 0x1ac95c
 
-UnknownText_0x1ac95c: ; 0x1ac95c
+UnknownText_0x1ac95c:
 	text "I'll just go back"
 	line "to fishing…"
 	done
-; 0x1ac97a
 
-Route21_MapEventHeader: ; 0x1ac97a
+Route21_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 20, 15, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNikki, $ffff
-	person_event SPRITE_SWIMMER_GUY, 34, 6, $9, $0, 255, 255, $82, 4, TrainerSwimmermSeth, $ffff
-	person_event SPRITE_FISHER, 26, 18, $7, $0, 255, 255, $a2, 1, TrainerFisherArnold, $ffff
-; 0x1ac9a7
+	person_event SPRITE_SWIMMER_GIRL, 20, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfNikki, -1
+	person_event SPRITE_SWIMMER_GUY, 34, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerSwimmermSeth, -1
+	person_event SPRITE_FISHER, 26, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherArnold, -1

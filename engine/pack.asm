@@ -62,7 +62,7 @@ Function10056: ; 10056 (4:4056)
 
 Function10067: ; 10067 (4:4067)
 	ld hl, MenuDataHeader_0x10a4f
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0d9]
 	ld [wcf88], a
 	ld a, [wd0df]
@@ -90,7 +90,7 @@ Function10094: ; 10094 (4:4094)
 
 Function100a6: ; 100a6 (4:40a6)
 	ld hl, MenuDataHeader_0x10a7f
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0da]
 	ld [wcf88], a
 	ld a, [wd0e0]
@@ -137,8 +137,8 @@ Function100e8: ; 100e8 (4:40e8)
 .asm_10110
 	push de
 	call LoadMenuDataHeader
-	call Function1d81
-	call Function1c07
+	call InterpretMenu2
+	call ExitMenu
 	pop hl
 	ret c
 	ld a, [wcfa9]
@@ -220,7 +220,7 @@ Function10186: ; 10186 (4:4186)
 
 Function10198: ; 10198 (4:4198)
 	ld hl, MenuDataHeader_0x10aaf
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0db]
 	ld [wcf88], a
 	ld a, [wd0e1]
@@ -289,8 +289,8 @@ Function101c5: ; 101c5 (4:41c5)
 .asm_10235
 	push de
 	call LoadMenuDataHeader
-	call Function1d81
-	call Function1c07
+	call InterpretMenu2
+	call ExitMenu
 	pop hl
 	ret c
 	ld a, [wcfa9]
@@ -495,15 +495,15 @@ Function10364: ; 10364
 	call Function10889
 	callba Function24fbf
 	push af
-	call Function1c07
+	call ExitMenu
 	pop af
 	jr c, .asm_1039c
 	call Function10a1d
 	ld hl, UnknownText_0x10ae9
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
 	push af
-	call Function1c07
+	call ExitMenu
 	pop af
 	jr c, .asm_1039c
 	ld hl, NumItems
@@ -709,7 +709,7 @@ Function104e9: ; 104e9 (4:44e9)
 
 Function104fa: ; 104fa (4:44fa)
 	ld hl, MenuDataHeader_0x10a4f
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0d9]
 	ld [wcf88], a
 	ld a, [wd0df]
@@ -737,7 +737,7 @@ Function10527: ; 10527 (4:4527)
 
 Function10539: ; 10539 (4:4539)
 	ld hl, MenuDataHeader_0x10a7f
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0da]
 	ld [wcf88], a
 	ld a, [wd0e0]
@@ -788,7 +788,7 @@ Function10594: ; 10594 (4:4594)
 
 Function105a6: ; 105a6 (4:45a6)
 	ld hl, MenuDataHeader_0x10aaf
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0db]
 	ld [wcf88], a
 	ld a, [wd0e1]
@@ -821,8 +821,8 @@ Function105dc: ; 105dc (4:45dc)
 .asm_105ed
 	push de
 	call LoadMenuDataHeader
-	call Function1d81
-	call Function1c07
+	call InterpretMenu2
+	call ExitMenu
 	pop hl
 	ret c
 	ld a, [wcfa9]
@@ -992,7 +992,7 @@ Function106d9: ; 106d9 (4:46d9)
 	xor a
 	call Function10762
 	ld hl, MenuDataHeader_0x10a67
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0d9]
 	ld [wcf88], a
 	ld a, [wd0df]
@@ -1008,7 +1008,7 @@ Function106ff: ; 106ff (4:46ff)
 	ld a, $2
 	call Function10762
 	ld hl, MenuDataHeader_0x10a97
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0da]
 	ld [wcf88], a
 	ld a, [wd0e0]
@@ -1033,7 +1033,7 @@ Function1073b: ; 1073b (4:473b)
 	ld a, $1
 	call Function10762
 	ld hl, MenuDataHeader_0x10ac7
-	call Function1d3c
+	call CopyMenuDataHeader
 	ld a, [wd0db]
 	ld [wcf88], a
 	ld a, [wd0e1]
@@ -1223,7 +1223,7 @@ Function1085a: ; 1085a (4:485a)
 	push hl
 	call Function10762
 	pop hl
-	call Function1d3c
+	call CopyMenuDataHeader
 	call Function350c
 	ret
 
@@ -1235,8 +1235,9 @@ Function10866: ; 10866 (4:4866)
 Function1086b: ; 1086b
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1285,8 +1286,9 @@ Function1089d: ; 1089d
 
 .asm_108b3
 	ld hl, PackGFXPointers
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -1673,7 +1675,7 @@ UnknownText_0x10b07: ; 0x10b07
 ; 0x10b0c
 
 UnknownText_0x10b0c: ; 0x10b0c
-	; 
+	;
 	text_jump UnknownText_0x1c0c83
 	db "@"
 ; 0x10b11

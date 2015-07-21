@@ -260,8 +260,9 @@ Function109926: ; 109926
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_109937
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -326,8 +327,9 @@ Function109986: ; 109986 (42:5986)
 	cp $30
 	jr c, Function109986
 	ld a, [wcf66]
+rept 2
 	dec a
-	dec a
+endr
 	ld [wcf66], a
 	ld hl, LYOverrides + $1f
 	call Function1099a3
@@ -397,8 +399,9 @@ ParseCredits: ; 1099aa
 	ld e, a
 	ld d, 0
 	ld hl, CreditsStrings
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -582,10 +585,9 @@ Function109aff: ; 109aff (42:5aff)
 	dec c
 	jr nz, .asm_109b08
 	pop hl
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	dec b
 	jr nz, .asm_109b01
 	ret
@@ -735,8 +737,9 @@ Function109bca: ; 109bca (42:5bca)
 	ld [hl], a
 	ld a, [wcf65]
 	and 3
+rept 2
 	add a
-	add a
+endr
 	add e
 	add a
 	ld e, a

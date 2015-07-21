@@ -1,33 +1,30 @@
-Route34IlexForestGate_MapScriptHeader: ; 0x62d28
-	; trigger count
+Route34IlexForestGate_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
 
 	dbw 2, UnknownScript_0x62d2d
-; 0x62d2d
 
-UnknownScript_0x62d2d: ; 0x62d2d
-	checkevent $00c0
+UnknownScript_0x62d2d:
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d38
 	disappear $2
 	appear $5
 	return
-; 0x62d38
 
-UnknownScript_0x62d38: ; 0x62d38
+UnknownScript_0x62d38:
 	disappear $5
 	appear $2
 	return
-; 0x62d3d
 
-UnknownScript_0x62d3d: ; 0x62d3d
-	checkevent $00c0
+UnknownScript_0x62d3d:
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d62
-	showemote $0, $5, 20
+	showemote EMOTE_SHOCK, $5, 20
 	spriteface $5, LEFT
 	spriteface $0, RIGHT
 	follow $0, $5
@@ -39,63 +36,56 @@ UnknownScript_0x62d3d: ; 0x62d3d
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x62d9a
-UnknownScript_0x62d62: ; 0x62d62
+UnknownScript_0x62d62:
 	end
-; 0x62d63
 
-TeacherScript_0x62d63: ; 0x62d63
+TeacherScript_0x62d63:
 	faceplayer
 	loadfont
-	checkevent $00c0
+	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue UnknownScript_0x62d84
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
 	iftrue UnknownScript_0x62d7e
 	writetext UnknownText_0x62d9d
 	keeptextopen
-	verbosegiveitem TM_12, 1
+	verbosegiveitem TM_SWEET_SCENT, 1
 	iffalse UnknownScript_0x62d82
 	setevent EVENT_GOT_TM12_SWEET_SCENT
-UnknownScript_0x62d7e: ; 0x62d7e
+UnknownScript_0x62d7e:
 	writetext UnknownText_0x62df6
 	closetext
-UnknownScript_0x62d82: ; 0x62d82
+UnknownScript_0x62d82:
 	loadmovesprites
 	end
-; 0x62d84
 
-UnknownScript_0x62d84: ; 0x62d84
+UnknownScript_0x62d84:
 	writetext UnknownText_0x62e41
 	keeptextopen
 	loadmovesprites
 	end
-; 0x62d8a
 
-ButterfreeScript_0x62d8a: ; 0x62d8a
+ButterfreeScript_0x62d8a:
 	loadfont
 	writetext UnknownText_0x62e83
 	cry BUTTERFREE
 	closetext
 	loadmovesprites
 	end
-; 0x62d94
 
-LassScript_0x62d94: ; 0x62d94
+LassScript_0x62d94:
 	jumptextfaceplayer UnknownText_0x62e97
-; 0x62d97
 
-MovementData_0x62d97: ; 0x62d97
+MovementData_0x62d97:
 	step_up
 	step_up
 	step_end
-; 0x62d9a
 
-MovementData_0x62d9a: ; 0x62d9a
+MovementData_0x62d9a:
 	step_down
 	step_right
 	step_end
-; 0x62d9d
 
-UnknownText_0x62d9d: ; 0x62d9d
+UnknownText_0x62d9d:
 	text "Oh, honey. You're"
 	line "making a #DEX?"
 
@@ -105,9 +95,8 @@ UnknownText_0x62d9d: ; 0x62d9d
 	para "appear. Try using"
 	line "this TM."
 	done
-; 0x62df6
 
-UnknownText_0x62df6: ; 0x62df6
+UnknownText_0x62df6:
 	text "It's SWEET SCENT."
 
 	para "Use it wherever"
@@ -116,23 +105,20 @@ UnknownText_0x62df6: ; 0x62df6
 	para "#MON will be"
 	line "enticed by it."
 	done
-; 0x62e41
 
-UnknownText_0x62e41: ; 0x62e41
+UnknownText_0x62e41:
 	text "Something's wrong"
 	line "in ILEX FOREST…"
 
 	para "You should stay"
 	line "away right now."
 	done
-; 0x62e83
 
-UnknownText_0x62e83: ; 0x62e83
+UnknownText_0x62e83:
 	text "BUTTERFREE: Freeh!"
 	done
-; 0x62e97
 
-UnknownText_0x62e97: ; 0x62e97
+UnknownText_0x62e97:
 	text "Did you see the"
 	line "shrine honoring"
 	cont "the protector?"
@@ -145,30 +131,28 @@ UnknownText_0x62e97: ; 0x62e97
 	line "must be a grass-"
 	cont "type #MON."
 	done
-; 0x62f20
 
-Route34IlexForestGate_MapEventHeader: ; 0x62f20
+Route34IlexForestGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 1, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $0, $5, 2, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $7, $4, 1, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 	warp_def $7, $5, 1, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $7, $4, $0, UnknownScript_0x62d3d, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_TEACHER, 7, 13, $8, $0, 255, 255, $90, 0, TeacherScript_0x62d63, $06ea
-	person_event SPRITE_BUTTERFREE, 8, 13, $16, $0, 255, 255, $80, 0, ButterfreeScript_0x62d8a, $ffff
-	person_event SPRITE_LASS, 8, 7, $4, $10, 255, 255, $a0, 0, LassScript_0x62d94, $06eb
-	person_event SPRITE_TEACHER, 11, 9, $7, $0, 255, 255, $90, 0, TeacherScript_0x62d63, $06ec
-; 0x62f76
+	person_event SPRITE_TEACHER, 7, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
+	person_event SPRITE_BUTTERFREE, 8, 13, OW_UP | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ButterfreeScript_0x62d8a, -1
+	person_event SPRITE_LASS, 8, 7, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x62d94, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
+	person_event SPRITE_TEACHER, 11, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY

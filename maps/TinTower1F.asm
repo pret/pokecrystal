@@ -1,12 +1,12 @@
-TinTower1F_MapScriptHeader: ; 0x18501a
-	; trigger count
+TinTower1F_MapScriptHeader:
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x18502a, $0000
 	dw UnknownScript_0x18502e, $0000
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -14,35 +14,31 @@ TinTower1F_MapScriptHeader: ; 0x18501a
 	dbw 2, UnknownScript_0x18502f
 
 	dbw 1, UnknownScript_0x185084
-; 0x18502a
 
-UnknownScript_0x18502a: ; 0x18502a
+UnknownScript_0x18502a:
 	priorityjump UnknownScript_0x18508f
 	end
-; 0x18502e
 
-UnknownScript_0x18502e: ; 0x18502e
+UnknownScript_0x18502e:
 	end
-; 0x18502f
 
-UnknownScript_0x18502f: ; 0x18502f
+UnknownScript_0x18502f:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x185047
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse UnknownScript_0x185050
 	special SpecialBeastsCheck
 	iffalse UnknownScript_0x185050
-	clearevent $07c5
-	setevent $07b6
-UnknownScript_0x185047: ; 0x185047
+	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
+UnknownScript_0x185047:
 	checkevent EVENT_FOUGHT_HO_OH
 	iffalse UnknownScript_0x18504f
 	appear $5
-UnknownScript_0x18504f: ; 0x18504f
+UnknownScript_0x18504f:
 	return
-; 0x185050
 
-UnknownScript_0x185050: ; 0x185050
+UnknownScript_0x185050:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue UnknownScript_0x185077
 	appear $2
@@ -51,42 +47,37 @@ UnknownScript_0x185050: ; 0x185050
 	iftrue UnknownScript_0x185065
 	appear $3
 	jump UnknownScript_0x185067
-; 0x185065
 
-UnknownScript_0x185065: ; 0x185065
+UnknownScript_0x185065:
 	disappear $3
-UnknownScript_0x185067: ; 0x185067
+UnknownScript_0x185067:
 	writebyte ENTEI
 	special SpecialMonCheck
 	iftrue UnknownScript_0x185074
 	appear $4
 	jump UnknownScript_0x185076
-; 0x185074
 
-UnknownScript_0x185074: ; 0x185074
+UnknownScript_0x185074:
 	disappear $4
-UnknownScript_0x185076: ; 0x185076
+UnknownScript_0x185076:
 	return
-; 0x185077
 
-UnknownScript_0x185077: ; 0x185077
+UnknownScript_0x185077:
 	disappear $2
 	disappear $3
 	disappear $4
-	clearevent $07b6
-	setevent $07c5
+	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	return
-; 0x185084
 
-UnknownScript_0x185084: ; 0x185084
+UnknownScript_0x185084:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x18508e
 	changeblock $a, $2, $9
-UnknownScript_0x18508e: ; 0x18508e
+UnknownScript_0x18508e:
 	return
-; 0x18508f
 
-UnknownScript_0x18508f: ; 0x18508f
+UnknownScript_0x18508f:
 	applymovement $0, MovementData_0x1851cb
 	pause 15
 	writebyte RAIKOU
@@ -101,7 +92,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	disappear $3
 	playsound SFX_EXIT_BUILDING
 	waitbutton
-UnknownScript_0x1850b6: ; 0x1850b6
+UnknownScript_0x1850b6:
 	writebyte ENTEI
 	special SpecialMonCheck
 	iftrue UnknownScript_0x1850d7
@@ -114,7 +105,7 @@ UnknownScript_0x1850b6: ; 0x1850b6
 	disappear $4
 	playsound SFX_EXIT_BUILDING
 	waitbutton
-UnknownScript_0x1850d7: ; 0x1850d7
+UnknownScript_0x1850d7:
 	spriteface $0, UP
 	pause 10
 	applymovement $0, MovementData_0x1851e8
@@ -122,7 +113,7 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	cry SUICUNE
 	pause 20
 	loadpokedata SUICUNE, 40
-	writecode $3, BATTLETYPE_SUICUNE
+	writecode VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
 	reloadmapmusic
 	disappear $2
@@ -171,31 +162,25 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	pause 20
 	playmapmusic
 	end
-; 0x185173
 
-SageScript_0x185173: ; 0x185173
+SageScript_0x185173:
 	jumptextfaceplayer UnknownText_0x185386
-; 0x185176
 
-SageScript_0x185176: ; 0x185176
+SageScript_0x185176:
 	jumptextfaceplayer UnknownText_0x185433
-; 0x185179
 
-SageScript_0x185179: ; 0x185179
+SageScript_0x185179:
 	jumptextfaceplayer UnknownText_0x185544
-; 0x18517c
 
-SageScript_0x18517c: ; 0x18517c
+SageScript_0x18517c:
 	checkevent EVENT_FOUGHT_HO_OH
 	iftrue UnknownScript_0x185185
 	jumptextfaceplayer UnknownText_0x1855ee
-; 0x185185
 
-UnknownScript_0x185185: ; 0x185185
+UnknownScript_0x185185:
 	jumptextfaceplayer UnknownText_0x185765
-; 0x185188
 
-SageScript_0x185188: ; 0x185188
+SageScript_0x185188:
 	faceplayer
 	loadfont
 	checkevent EVENT_FOUGHT_HO_OH
@@ -215,127 +200,110 @@ SageScript_0x185188: ; 0x185188
 	setevent EVENT_GOT_RAINBOW_WING
 	loadmovesprites
 	loadfont
-UnknownScript_0x1851b0: ; 0x1851b0
+UnknownScript_0x1851b0:
 	writetext UnknownText_0x18564a
 	closetext
 	loadmovesprites
 	end
-; 0x1851b6
 
-UnknownScript_0x1851b6: ; 0x1851b6
+UnknownScript_0x1851b6:
 	writetext UnknownText_0x185803
 	closetext
 	loadmovesprites
 	end
-; 0x1851bc
 
-SageScript_0x1851bc: ; 0x1851bc
+SageScript_0x1851bc:
 	checkevent EVENT_FOUGHT_HO_OH
 	iftrue UnknownScript_0x1851c5
 	jumptextfaceplayer UnknownText_0x185654
-; 0x1851c5
 
-UnknownScript_0x1851c5: ; 0x1851c5
+UnknownScript_0x1851c5:
 	jumptextfaceplayer UnknownText_0x1858d0
-; 0x1851c8
 
-SuperNerdScript_0x1851c8: ; 0x1851c8
+SuperNerdScript_0x1851c8:
 	jumptextfaceplayer UnknownText_0x1856a3
-; 0x1851cb
 
-MovementData_0x1851cb: ; 0x1851cb
+MovementData_0x1851cb:
 	slow_step_up
 	slow_step_up
 	slow_step_up
 	slow_step_up
 	step_end
-; 0x1851d0
 
-MovementData_0x1851d0: ; 0x1851d0
+MovementData_0x1851d0:
 	db $39 ; movement
 	fast_jump_step_down
 	db $38 ; movement
 	step_end
-; 0x1851d4
 
-MovementData_0x1851d4: ; 0x1851d4
+MovementData_0x1851d4:
 	db $39 ; movement
 	fast_jump_step_down
 	fast_jump_step_right
 	fast_jump_step_down
 	db $38 ; movement
 	step_end
-; 0x1851da
 
-MovementData_0x1851da: ; 0x1851da
+MovementData_0x1851da:
 	db $39 ; movement
 	fast_jump_step_down
 	db $38 ; movement
 	step_end
-; 0x1851de
 
-MovementData_0x1851de: ; 0x1851de
+MovementData_0x1851de:
 	db $39 ; movement
 	fast_jump_step_down
 	fast_jump_step_left
 	fast_jump_step_down
 	db $38 ; movement
 	step_end
-; 0x1851e4
 
-MovementData_0x1851e4: ; 0x1851e4
+MovementData_0x1851e4:
 	db $39 ; movement
 	fast_jump_step_down
 	db $38 ; movement
 	step_end
-; 0x1851e8
 
-MovementData_0x1851e8: ; 0x1851e8
+MovementData_0x1851e8:
 	fix_facing
 	big_step_down
 	remove_fixed_facing
 	step_end
-; 0x1851ec
 
-MovementData_0x1851ec: ; 0x1851ec
+MovementData_0x1851ec:
 	step_up
 	step_up
 	step_up
 	turn_head_left
 	step_end
-; 0x1851f1
 
-MovementData_0x1851f1: ; 0x1851f1
+MovementData_0x1851f1:
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x1851f5
 
-MovementData_0x1851f5: ; 0x1851f5
+MovementData_0x1851f5:
 	step_up
 	step_up
 	step_left
 	step_left
 	turn_head_up
 	step_end
-; 0x1851fb
 
-MovementData_0x1851fb: ; 0x1851fb
+MovementData_0x1851fb:
 	step_up
 	step_up
 	step_end
-; 0x1851fe
 
-MovementData_0x1851fe: ; 0x1851fe
+MovementData_0x1851fe:
 	step_up
 	step_right
 	step_right
 	step_up
 	step_end
-; 0x185203
 
-UnknownText_0x185203: ; 0x185203
+UnknownText_0x185203:
 	text "EUSINE: Awesome!"
 	line "Too awesome, even!"
 
@@ -372,9 +340,8 @@ UnknownText_0x185203: ; 0x185203
 
 	para "Later, <PLAYER>!"
 	done
-; 0x185386
 
-UnknownText_0x185386: ; 0x185386
+UnknownText_0x185386:
 	text "According to"
 	line "legend…"
 
@@ -393,9 +360,8 @@ UnknownText_0x185386: ; 0x185386
 	para "are testing us"
 	line "humans?"
 	done
-; 0x185433
 
-UnknownText_0x185433: ; 0x185433
+UnknownText_0x185433:
 	text "When the BRASS"
 	line "TOWER burned down,"
 
@@ -426,9 +392,8 @@ UnknownText_0x185433: ; 0x185433
 	para "That is what they"
 	line "say."
 	done
-; 0x185544
 
-UnknownText_0x185544: ; 0x185544
+UnknownText_0x185544:
 	text "The two TOWERS are"
 	line "said to have been"
 
@@ -444,29 +409,25 @@ UnknownText_0x185544: ; 0x185544
 	para "still remains"
 	line "important today."
 	done
-; 0x1855ee
 
-UnknownText_0x1855ee: ; 0x1855ee
+UnknownText_0x1855ee:
 	text "HO-OH appears to"
 	line "have descended"
 
 	para "upon this, the TIN"
 	line "TOWER!"
 	done
-; 0x185629
 
-UnknownText_0x185629: ; 0x185629
+UnknownText_0x185629:
 	text "This will protect"
 	line "you. Take it."
 	done
-; 0x18564a
 
-UnknownText_0x18564a: ; 0x18564a
+UnknownText_0x18564a:
 	text "Now, go."
 	done
-; 0x185654
 
-UnknownText_0x185654: ; 0x185654
+UnknownText_0x185654:
 	text "I believe you are"
 	line "being tested."
 
@@ -474,9 +435,8 @@ UnknownText_0x185654: ; 0x185654
 	line "from uncertainty,"
 	cont "and advance."
 	done
-; 0x1856a3
 
-UnknownText_0x1856a3: ; 0x1856a3
+UnknownText_0x1856a3:
 	text "I knew it."
 
 	para "I knew you'd get"
@@ -497,9 +457,8 @@ UnknownText_0x1856a3: ; 0x1856a3
 	para "to become a famous"
 	line "#MANIAC!"
 	done
-; 0x185765
 
-UnknownText_0x185765: ; 0x185765
+UnknownText_0x185765:
 	text "The legendary"
 	line "#MON are said"
 
@@ -515,9 +474,8 @@ UnknownText_0x185765: ; 0x185765
 	para "And the rain that"
 	line "put out the fire…"
 	done
-; 0x185803
 
-UnknownText_0x185803: ; 0x185803
+UnknownText_0x185803:
 	text "When the legendary"
 	line "#MON appeared…"
 
@@ -537,9 +495,8 @@ UnknownText_0x185803: ; 0x185803
 	line "fled, ignoring the"
 	cont "frightened people."
 	done
-; 0x1858d0
 
-UnknownText_0x1858d0: ; 0x1858d0
+UnknownText_0x1858d0:
 	text "Of the legendary"
 	line "#MON, SUICUNE"
 
@@ -558,34 +515,32 @@ UnknownText_0x1858d0: ; 0x1858d0
 	para "cooperative bond"
 	line "with SUICUNE."
 	done
-; 0x18598c
 
-TinTower1F_MapEventHeader: ; 0x18598c
+TinTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $f, $9, 12, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $f, $a, 12, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $2, $a, 2, GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 10
-	person_event SPRITE_SUICUNE, 13, 13, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b2
-	person_event SPRITE_RAIKOU, 13, 11, $1, $0, 255, 255, $b0, 0, ObjectEvent, $07b4
-	person_event SPRITE_ENTEI, 13, 16, $1, $0, 255, 255, $80, 0, ObjectEvent, $07b3
-	person_event SPRITE_SUPER_NERD, 7, 12, $3, $0, 255, 255, $90, 0, SuperNerdScript_0x1851c8, $07b5
-	person_event SPRITE_SAGE, 13, 9, $3, $0, 255, 255, $0, 0, SageScript_0x185173, $07b6
-	person_event SPRITE_SAGE, 15, 15, $3, $0, 255, 255, $0, 0, SageScript_0x185176, $07b6
-	person_event SPRITE_SAGE, 10, 18, $3, $0, 255, 255, $0, 0, SageScript_0x185179, $07b6
-	person_event SPRITE_SAGE, 6, 8, $4, $10, 255, 255, $0, 0, SageScript_0x18517c, $07c5
-	person_event SPRITE_SAGE, 5, 13, $6, $0, 255, 255, $0, 0, SageScript_0x185188, $07c5
-	person_event SPRITE_SAGE, 6, 18, $5, $1, 255, 255, $0, 0, SageScript_0x1851bc, $07c5
-; 0x185a23
+	person_event SPRITE_SUICUNE, 13, 13, OW_DOWN | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
+	person_event SPRITE_RAIKOU, 13, 11, OW_DOWN | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
+	person_event SPRITE_ENTEI, 13, 16, OW_DOWN | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
+	person_event SPRITE_SUPER_NERD, 7, 12, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x1851c8, EVENT_TIN_TOWER_1F_EUSINE
+	person_event SPRITE_SAGE, 13, 9, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x185173, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 15, 15, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x185176, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 10, 18, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x185179, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 6, 8, OW_UP | $0, $10, -1, -1, $0, 0, SageScript_0x18517c, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SAGE, 5, 13, OW_UP | $2, $0, -1, -1, $0, 0, SageScript_0x185188, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SAGE, 6, 18, OW_UP | $1, $1, -1, -1, $0, 0, SageScript_0x1851bc, EVENT_TIN_TOWER_1F_WISE_TRIO_2

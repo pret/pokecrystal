@@ -1,26 +1,24 @@
-SafariZoneMainOffice_MapScriptHeader: ; 0x195da5
-	; trigger count
+SafariZoneMainOffice_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x195da7
 
-SafariZoneMainOffice_MapEventHeader: ; 0x195da7
+SafariZoneMainOffice_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $7, $3, 2, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 0
-; 0x195db7

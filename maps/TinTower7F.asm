@@ -1,20 +1,18 @@
-TinTower7F_MapScriptHeader: ; 0x185b03
-	; trigger count
+TinTower7F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x185b05
 
-ItemFragment_0x185b05: ; 0x185b05
+ItemFragment_0x185b05:
 	db MAX_REVIVE, 1
-; 0x185b07
 
-TinTower7F_MapEventHeader: ; 0x185b07
+TinTower7F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $9, $3, 1, GROUP_TIN_TOWER_6F, MAP_TIN_TOWER_6F
 	warp_def $f, $a, 1, GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
@@ -22,13 +20,12 @@ TinTower7F_MapEventHeader: ; 0x185b07
 	warp_def $3, $8, 3, GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
 	warp_def $9, $6, 5, GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 5, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x185b05, $0650
-; 0x185b33
+	person_event SPRITE_POKE_BALL, 5, 20, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b05, EVENT_TIN_TOWER_7F_MAX_REVIVE

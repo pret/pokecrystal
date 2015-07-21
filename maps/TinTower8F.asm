@@ -1,28 +1,24 @@
-TinTower8F_MapScriptHeader: ; 0x185b33
-	; trigger count
+TinTower8F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x185b35
 
-ItemFragment_0x185b35: ; 0x185b35
+ItemFragment_0x185b35:
 	db NUGGET, 1
-; 0x185b37
 
-ItemFragment_0x185b37: ; 0x185b37
+ItemFragment_0x185b37:
 	db MAX_ELIXER, 1
-; 0x185b39
 
-ItemFragment_0x185b39: ; 0x185b39
+ItemFragment_0x185b39:
 	db FULL_RESTORE, 1
-; 0x185b3b
 
-TinTower8F_MapEventHeader: ; 0x185b3b
+TinTower8F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $5, $2, 2, GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
 	warp_def $b, $2, 1, GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
@@ -31,15 +27,14 @@ TinTower8F_MapEventHeader: ; 0x185b3b
 	warp_def $f, $e, 6, GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
 	warp_def $9, $6, 7, GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 17, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x185b35, $0651
-	person_event SPRITE_POKE_BALL, 10, 15, $1, $0, 255, 255, $1, 0, ItemFragment_0x185b37, $0652
-	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x185b39, $0653
-; 0x185b86
+	person_event SPRITE_POKE_BALL, 17, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b35, EVENT_TIN_TOWER_8F_NUGGET
+	person_event SPRITE_POKE_BALL, 10, 15, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b37, EVENT_TIN_TOWER_8F_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 5, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b39, EVENT_TIN_TOWER_8F_FULL_RESTORE

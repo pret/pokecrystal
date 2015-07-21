@@ -1,204 +1,117 @@
-Route12_MapScriptHeader: ; 0x1a6fb3
-	; trigger count
+Route12_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x1a6fb5
 
-TrainerFisherKyle: ; 0x1a6fb5
-	; bit/flag number
-	dw $451
+TrainerFisherKyle:
+	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, $0000, FisherKyleScript
 
-	; trainer group && trainer id
-	db FISHER, KYLE
-
-	; text when seen
-	dw FisherKyleSeenText
-
-	; text when trainer beaten
-	dw FisherKyleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherKyleScript
-; 0x1a6fc1
-
-FisherKyleScript: ; 0x1a6fc1
+FisherKyleScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a7238
 	closetext
 	loadmovesprites
 	end
-; 0x1a6fc9
 
-TrainerFisherMartin: ; 0x1a6fc9
-	; bit/flag number
-	dw $45a
+TrainerFisherMartin:
+	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, $0000, FisherMartinScript
 
-	; trainer group && trainer id
-	db FISHER, MARTIN
-
-	; text when seen
-	dw FisherMartinSeenText
-
-	; text when trainer beaten
-	dw FisherMartinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherMartinScript
-; 0x1a6fd5
-
-FisherMartinScript: ; 0x1a6fd5
+FisherMartinScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a704c
 	closetext
 	loadmovesprites
 	end
-; 0x1a6fdd
 
-TrainerFisherStephen: ; 0x1a6fdd
-	; bit/flag number
-	dw $45b
+TrainerFisherStephen:
+	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, $0000, FisherStephenScript
 
-	; trainer group && trainer id
-	db FISHER, STEPHEN
-
-	; text when seen
-	dw FisherStephenSeenText
-
-	; text when trainer beaten
-	dw FisherStephenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherStephenScript
-; 0x1a6fe9
-
-FisherStephenScript: ; 0x1a6fe9
+FisherStephenScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a70d4
 	closetext
 	loadmovesprites
 	end
-; 0x1a6ff1
 
-TrainerFisherBarney: ; 0x1a6ff1
-	; bit/flag number
-	dw $45c
+TrainerFisherBarney:
+	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, $0000, FisherBarneyScript
 
-	; trainer group && trainer id
-	db FISHER, BARNEY
-
-	; text when seen
-	dw FisherBarneySeenText
-
-	; text when trainer beaten
-	dw FisherBarneyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherBarneyScript
-; 0x1a6ffd
-
-FisherBarneyScript: ; 0x1a6ffd
+FisherBarneyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a716d
 	closetext
 	loadmovesprites
 	end
-; 0x1a7005
 
-MapRoute12Signpost0Script: ; 0x1a7005
+MapRoute12Signpost0Script:
 	jumptext UnknownText_0x1a72a0
-; 0x1a7008
 
-MapRoute12Signpost1Script: ; 0x1a7008
+MapRoute12Signpost1Script:
 	jumptext UnknownText_0x1a72c1
-; 0x1a700b
 
-ItemFragment_0x1a700b: ; 0x1a700b
+ItemFragment_0x1a700b:
 	db CALCIUM, 1
-; 0x1a700d
 
-ItemFragment_0x1a700d: ; 0x1a700d
+ItemFragment_0x1a700d:
 	db NUGGET, 1
-; 0x1a700f
 
-MapRoute12SignpostItem2: ; 0x1a700f
-	dw $00f3
-	db ELIXER
+MapRoute12SignpostItem2:
+	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
 	
-; 0x1a7012
 
-FisherMartinSeenText: ; 0x1a7012
+FisherMartinSeenText:
 	text "Patience is the"
 	line "key to both fish-"
 	cont "ing and #MON."
 	done
-; 0x1a7043
 
-FisherMartinBeatenText: ; 0x1a7043
+FisherMartinBeatenText:
 	text "Gwaaah!"
 	done
-; 0x1a704c
 
-UnknownText_0x1a704c: ; 0x1a704c
+UnknownText_0x1a704c:
 	text "I'm too impatient"
 	line "for fishing…"
 	done
-; 0x1a706b
 
-FisherStephenSeenText: ; 0x1a706b
+FisherStephenSeenText:
 	text "I feel so content,"
 	line "fishing while lis-"
 	cont "tening to some"
 	cont "tunes on my radio."
 	done
-; 0x1a70b4
 
-FisherStephenBeatenText: ; 0x1a70b4
+FisherStephenBeatenText:
 	text "My stupid radio"
 	line "distracted me!"
 	done
-; 0x1a70d4
 
-UnknownText_0x1a70d4: ; 0x1a70d4
+UnknownText_0x1a70d4:
 	text "Have you checked"
 	line "out KANTO's radio"
 
 	para "programs? We get a"
 	line "good variety here."
 	done
-; 0x1a711d
 
-FisherBarneySeenText: ; 0x1a711d
+FisherBarneySeenText:
 	text "What's most impor-"
 	line "tant in our every-"
 	cont "day lives?"
 	done
-; 0x1a714e
 
-FisherBarneyBeatenText: ; 0x1a714e
+FisherBarneyBeatenText:
 	text "The answer is"
 	line "coming up next!"
 	done
-; 0x1a716d
 
-UnknownText_0x1a716d: ; 0x1a716d
+UnknownText_0x1a716d:
 	text "I think electric-"
 	line "ity is the most"
 
@@ -214,19 +127,16 @@ UnknownText_0x1a716d: ; 0x1a716d
 	para "POWER PLANT went"
 	line "out of commission."
 	done
-; 0x1a7214
 
-FisherKyleSeenText: ; 0x1a7214
+FisherKyleSeenText:
 	text "Do you remember?"
 	done
-; 0x1a7226
 
-FisherKyleBeatenText: ; 0x1a7226
+FisherKyleBeatenText:
 	text "You do remember?"
 	done
-; 0x1a7238
 
-UnknownText_0x1a7238: ; 0x1a7238
+UnknownText_0x1a7238:
 	text "The tug you feel"
 	line "on the ROD when"
 
@@ -237,44 +147,40 @@ UnknownText_0x1a7238: ; 0x1a7238
 	line "feeling ever for"
 	cont "an angler like me."
 	done
-; 0x1a72a0
 
-UnknownText_0x1a72a0: ; 0x1a72a0
+UnknownText_0x1a72a0:
 	text "ROUTE 12"
 
 	para "NORTH TO LAVENDER"
 	line "TOWN"
 	done
-; 0x1a72c1
 
-UnknownText_0x1a72c1: ; 0x1a72c1
+UnknownText_0x1a72c1:
 	text "FISHING SPOT"
 	done
-; 0x1a72cf
 
-Route12_MapEventHeader: ; 0x1a72cf
+Route12_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $21, $b, 1, GROUP_ROUTE_12_SUPER_ROD_HOUSE, MAP_ROUTE_12_SUPER_ROD_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 27, 11, $0, MapRoute12Signpost0Script
-	signpost 9, 13, $0, MapRoute12Signpost1Script
-	signpost 13, 14, $7, MapRoute12SignpostItem2
+	signpost 27, 11, SIGNPOST_READ, MapRoute12Signpost0Script
+	signpost 9, 13, SIGNPOST_READ, MapRoute12Signpost1Script
+	signpost 13, 14, SIGNPOST_ITEM, MapRoute12SignpostItem2
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_FISHER, 17, 9, $a, $0, 255, 255, $a2, 1, TrainerFisherMartin, $ffff
-	person_event SPRITE_FISHER, 27, 18, $6, $0, 255, 255, $a2, 1, TrainerFisherStephen, $ffff
-	person_event SPRITE_FISHER, 42, 14, $8, $0, 255, 255, $a2, 5, TrainerFisherBarney, $ffff
-	person_event SPRITE_FISHER, 11, 10, $9, $0, 255, 255, $a2, 3, TrainerFisherKyle, $ffff
-	person_event SPRITE_POKE_BALL, 47, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700b, $0788
-	person_event SPRITE_POKE_BALL, 55, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700d, $0789
-; 0x1a7337
+	person_event SPRITE_FISHER, 17, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherMartin, -1
+	person_event SPRITE_FISHER, 27, 18, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherStephen, -1
+	person_event SPRITE_FISHER, 42, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerFisherBarney, -1
+	person_event SPRITE_FISHER, 11, 10, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherKyle, -1
+	person_event SPRITE_POKE_BALL, 47, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
+	person_event SPRITE_POKE_BALL, 55, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET

@@ -6,8 +6,9 @@ RunMapSetupScript:: ; 15363
 	ld c, a
 	ld b, 0
 	ld hl, MapSetupScripts
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -259,9 +260,9 @@ ReadMapSetupScript: ; 1541d
 	ld c, a
 	ld b, 0
 	ld hl, MapSetupCommands
+rept 3
 	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 
 	; bank
 	ld b, [hl]
@@ -293,76 +294,76 @@ ReadMapSetupScript: ; 1541d
 ; 15440
 
 MapSetupCommands: ; 15440
-	dbw BANK(EnableLCD), EnableLCD
-	dbw BANK(DisableLCD), DisableLCD
-	dbw BANK(SoundRestart), SoundRestart
-	dbw BANK(PlayMapMusic), PlayMapMusic
-	dbw BANK(RestartMapMusic), RestartMapMusic
-	dbw BANK(FadeToMapMusic), FadeToMapMusic
-	dbw BANK(Function15574), Function15574
-	dbw BANK(EnterMapMusic), EnterMapMusic
-	dbw BANK(Function15587), Function15587
-	dbw BANK(Function3cae), Function3cae
-	dbw BANK(Function24cd), Function24cd
-	dbw BANK(Function28e3), Function28e3
-	dbw BANK(Function289d), Function289d
-	dbw BANK(Function2879), Function2879
-	dbw BANK(Function1047cf), Function1047cf
-	dbw BANK(LoadTilesetHeader), LoadTilesetHeader
-	dbw BANK(Function104750), Function104750
-	dbw BANK(Function1047eb), Function1047eb
-	dbw BANK(Function29ff8), Function29ff8
-	dbw BANK(Function1047f0), Function1047f0
-	dbw BANK(Function1045b0), Function1045b0
-	dbw BANK(Function1045c4), Function1045c4
-	dbw BANK(Function154d7), Function154d7
-	dbw BANK(LoadSpawnPoint), LoadSpawnPoint
-	dbw BANK(EnterMapConnection), EnterMapConnection
-	dbw BANK(Function1046c6), Function1046c6
-	dbw BANK(Function2309), Function2309
-	dbw BANK(Function2317), Function2317
-	dbw BANK(WhiteBGMap), WhiteBGMap
-	dbw BANK(Function8c084), Function8c084
-	dbw BANK(Function8c079), Function8c079
-	dbw BANK(Function10486d), Function10486d
-	dbw BANK(Function248a), Function248a
-	dbw BANK(Function57d9), Function57d9
-	dbw BANK(Function8029), Function8029
-	dbw BANK(Function80b8), Function80b8
-	dbw BANK(Function154eb), Function154eb
-	dbw BANK(Function154f1), Function154f1
-	dbw BANK(Function2a30d), Function2a30d
-	dbw BANK(Function2a394), Function2a394
-	dbw BANK(Function15567), Function15567
-	dbw BANK(Function154cf), Function154cf
-	dbw BANK(Function154d3), Function154d3
-	dbw BANK(Function1556d), Function1556d
-	dbw BANK(Function154ca), Function154ca
-	dbw BANK(Functionb8000), Functionb8000
+	dbw BANK(EnableLCD), EnableLCD ; 00
+	dbw BANK(DisableLCD), DisableLCD ; 01
+	dbw BANK(SoundRestart), SoundRestart ; 02
+	dbw BANK(PlayMapMusic), PlayMapMusic ; 03
+	dbw BANK(RestartMapMusic), RestartMapMusic ; 04
+	dbw BANK(FadeToMapMusic), FadeToMapMusic ; 05
+	dbw BANK(FadeOutMapAndMusic), FadeOutMapAndMusic ; 06
+	dbw BANK(EnterMapMusic), EnterMapMusic ; 07
+	dbw BANK(ForceMapMusic), ForceMapMusic ; 08
+	dbw BANK(CrankUpTheVolume), CrankUpTheVolume ; 09
+	dbw BANK(LoadBlockData), LoadBlockData ; 0a
+	dbw BANK(LoadNeighboringBlockData), LoadNeighboringBlockData ; 0b
+	dbw BANK(SaveScreen), SaveScreen ; 0c
+	dbw BANK(BufferScreen), BufferScreen ; 0d
+	dbw BANK(LoadGraphics), LoadGraphics ; 0e
+	dbw BANK(LoadTilesetHeader), LoadTilesetHeader ; 0f
+	dbw BANK(LoadMapTimeOfDay), LoadMapTimeOfDay ; 10
+	dbw BANK(LoadMapPalettes), LoadMapPalettes ; 11
+	dbw BANK(LoadWildMonData), LoadWildMonData ; 12
+	dbw BANK(RefreshMapSprites), RefreshMapSprites ; 13
+	dbw BANK(RunCallback_05_03), RunCallback_05_03 ; 14
+	dbw BANK(RunCallback_03), RunCallback_03 ; 15
+	dbw BANK(LoadObjectsRunCallback_02), LoadObjectsRunCallback_02 ; 16
+	dbw BANK(LoadSpawnPoint), LoadSpawnPoint ; 17
+	dbw BANK(EnterMapConnection), EnterMapConnection ; 18
+	dbw BANK(LoadWarpData), LoadWarpData ; 19
+	dbw BANK(LoadMapAttributes), LoadMapAttributes ; 1a
+	dbw BANK(LoadMapAttributes_IgnoreHidden), LoadMapAttributes_IgnoreHidden ; 1b
+	dbw BANK(WhiteBGMap), WhiteBGMap ; 1c
+	dbw BANK(FadeBlackBGMap), FadeBlackBGMap ; 1d
+	dbw BANK(FadeInBGMap), FadeInBGMap ; 1e
+	dbw BANK(GetCoordOfUpperLeftCorner), GetCoordOfUpperLeftCorner ; 1f
+	dbw BANK(RestoreFacingAfterWarp), RestoreFacingAfterWarp ; 20
+	dbw BANK(SpawnInFacingDown), SpawnInFacingDown ; 21
+	dbw BANK(GetSpawnCoord), GetSpawnCoord ; 22
+	dbw BANK(RefreshPlayerCoords), RefreshPlayerCoords ; 23
+	dbw BANK(DelayClearingOldSprites), DelayClearingOldSprites ; 24
+	dbw BANK(DelayLoadingNewSprites), DelayLoadingNewSprites ; 25
+	dbw BANK(UpdateRoamMons), UpdateRoamMons ; 26
+	dbw BANK(RestoreRoamMons), RestoreRoamMons ; 27
+	dbw BANK(FadeOldMapMusic), FadeOldMapMusic ; 28
+	dbw BANK(ActivateMapAnims), ActivateMapAnims ; 29
+	dbw BANK(SuspendMapAnims), SuspendMapAnims ; 2a
+	dbw BANK(RetainOldPalettes), RetainOldPalettes ; 2b
+	dbw BANK(DontScrollText), DontScrollText ; 2c
+	dbw BANK(ReturnFromMapSetupScript), ReturnFromMapSetupScript ; 2d
 ; 154ca
 
 
-Function154ca: ; 154ca
+DontScrollText: ; 154ca
 	xor a
 	ld [wc2d7], a
 	ret
 ; 154cf
 
-Function154cf: ; 154cf
+ActivateMapAnims: ; 154cf
 	ld a, $1
 	ld [$ffde], a
 	ret
 ; 154d3
 
-Function154d3: ; 154d3
+SuspendMapAnims: ; 154d3
 	xor a
 	ld [$ffde], a
 	ret
 ; 154d7
 
-Function154d7: ; 154d7
+LoadObjectsRunCallback_02: ; 154d7
 	ld a, $2
-	call Function263b
+	call RunMapCallback
 	callba Function2454f
 	callba Function8177
 	ret
@@ -372,13 +373,13 @@ Function154ea: ; 154ea
 	ret
 ; 154eb
 
-Function154eb: ; 154eb
+DelayClearingOldSprites: ; 154eb
 	ld hl, wd45b
 	set 7, [hl]
 	ret
 ; 154f1
 
-Function154f1: ; 154f1
+DelayLoadingNewSprites: ; 154f1
 	ld hl, wd45b
 	set 6, [hl]
 	ret
@@ -386,14 +387,14 @@ Function154f1: ; 154f1
 Function154f7: ; 154f7
 	nop
 	call Function1550c
-	jr c, .asm_15508
+	jr c, .ok
 	call Function1554e
-	jr c, .asm_15508
+	jr c, .ok
 	call Function1551a
-	jr c, .asm_15508
+	jr c, .ok
 	ret
-.asm_15508
-	call Functione4a
+.ok
+	call Special_ReplaceKrisSprite
 	ret
 
 Function1550c: ; 1550c (5:550c)
@@ -401,89 +402,89 @@ Function1550c: ; 1550c (5:550c)
 	ld hl, BikeFlags
 	bit 1, [hl]
 	ret z
-	ld a, $1
+	ld a, PLAYER_BIKE
 	ld [PlayerState], a
 	scf
 	ret
 
 Function1551a: ; 1551a (5:551a)
 	ld a, [PlayerState]
-	cp $0
-	jr z, .asm_1554c
-	cp $2
-	jr z, .asm_1554c
-	cp $4
-	jr z, .asm_15545
-	cp $8
-	jr z, .asm_15545
+	cp PLAYER_NORMAL
+	jr z, .nope
+	cp PLAYER_SLIP
+	jr z, .nope
+	cp PLAYER_SURF
+	jr z, .surfing
+	cp PLAYER_SURF_PIKA
+	jr z, .surfing
 	call GetMapPermission
 	cp $3
-	jr z, .asm_1553e
+	jr z, .checkbiking
 	cp $5
-	jr z, .asm_1553e
+	jr z, .checkbiking
 	cp $7
-	jr z, .asm_1553e
-	jr .asm_1554c
-.asm_1553e
+	jr z, .checkbiking
+	jr .nope
+.checkbiking
 	ld a, [PlayerState]
-	cp $1
-	jr nz, .asm_1554c
-.asm_15545
-	ld a, $0
+	cp PLAYER_BIKE
+	jr nz, .nope
+.surfing
+	ld a, PLAYER_NORMAL
 	ld [PlayerState], a
 	scf
 	ret
-.asm_1554c
+.nope
 	and a
 	ret
 
 Function1554e: ; 1554e (5:554e)
 	call Function1852
-	jr nz, .asm_15565
+	jr nz, .ret_nc
 	ld a, [PlayerState]
-	cp $4
-	jr z, .asm_15563
-	cp $8
-	jr z, .asm_15563
-	ld a, $4
+	cp PLAYER_SURF
+	jr z, .surfing
+	cp PLAYER_SURF_PIKA
+	jr z, .surfing
+	ld a, PLAYER_SURF
 	ld [PlayerState], a
-.asm_15563
+.surfing
 	scf
 	ret
-.asm_15565
+.ret_nc
 	and a
 	ret
 ; 15567
 
-Function15567: ; 15567
+FadeOldMapMusic: ; 15567
 	ld a, 6
 	call SkipMusic
 	ret
 ; 1556d
 
-Function1556d: ; 1556d
+RetainOldPalettes: ; 1556d
 	callba _UpdateTimePals
 	ret
 
-Function15574: ; 15574
+FadeOutMapAndMusic: ; 15574
 	ld e, 0
 	ld a, [MusicFadeIDLo]
 	ld d, 0
 	ld a, [MusicFadeIDHi]
 	ld a, $4
 	ld [MusicFade], a
-	call Function4b6
+	call FadeToWhite
 	ret
 ; 15587
 
-Function15587: ; 15587
+ForceMapMusic: ; 15587
 	ld a, [PlayerState]
-	cp $1
-	jr nz, .asm_15596
+	cp PLAYER_BIKE
+	jr nz, .notbiking
 	call VolumeOff
 	ld a, $88
 	ld [MusicFade], a
-.asm_15596
-	call Function3d2f
+.notbiking
+	call TryRestartMapMusic
 	ret
 ; 1559a

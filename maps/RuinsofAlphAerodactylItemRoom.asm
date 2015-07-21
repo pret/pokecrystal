@@ -1,61 +1,53 @@
-RuinsofAlphAerodactylItemRoom_MapScriptHeader: ; 0x59ab4
-	; trigger count
+RuinsofAlphAerodactylItemRoom_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x59ab6
 
-ItemFragment_0x59ab6: ; 0x59ab6
+ItemFragment_0x59ab6:
 	db GOLD_BERRY, 1
-; 0x59ab8
 
-ItemFragment_0x59ab8: ; 0x59ab8
+ItemFragment_0x59ab8:
 	db MOON_STONE, 1
-; 0x59aba
 
-ItemFragment_0x59aba: ; 0x59aba
+ItemFragment_0x59aba:
 	db HEAL_POWDER, 1
-; 0x59abc
 
-ItemFragment_0x59abc: ; 0x59abc
+ItemFragment_0x59abc:
 	db ENERGY_ROOT, 1
-; 0x59abe
 
-MapRuinsofAlphAerodactylItemRoomSignpost1Script: ; 0x59abe
+MapRuinsofAlphAerodactylItemRoomSignpost1Script:
 	jumptext UnknownText_0x59ac1
-; 0x59ac1
 
-UnknownText_0x59ac1: ; 0x59ac1
+UnknownText_0x59ac1:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
 	done
-; 0x59ae6
 
-RuinsofAlphAerodactylItemRoom_MapEventHeader: ; 0x59ae6
+RuinsofAlphAerodactylItemRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $9, $3, 5, GROUP_RUINS_OF_ALPH_AERODACTYL_CHAMBER, MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER
 	warp_def $9, $4, 5, GROUP_RUINS_OF_ALPH_AERODACTYL_CHAMBER, MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER
 	warp_def $1, $3, 1, GROUP_RUINS_OF_ALPH_AERODACTYL_WORD_ROOM, MAP_RUINS_OF_ALPH_AERODACTYL_WORD_ROOM
 	warp_def $1, $4, 2, GROUP_RUINS_OF_ALPH_AERODACTYL_WORD_ROOM, MAP_RUINS_OF_ALPH_AERODACTYL_WORD_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 2, $0, MapRuinsofAlphAerodactylItemRoomSignpost1Script
-	signpost 1, 5, $0, MapRuinsofAlphAerodactylItemRoomSignpost1Script
+	signpost 1, 2, SIGNPOST_READ, MapRuinsofAlphAerodactylItemRoomSignpost1Script
+	signpost 1, 5, SIGNPOST_READ, MapRuinsofAlphAerodactylItemRoomSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab6, $07a0
-	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab8, $07a1
-	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59aba, $07a2
-	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59abc, $07a3
-; 0x59b3e
+	person_event SPRITE_POKE_BALL, 10, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59ab6, EVENT_PICKED_UP_GOLD_BERRY_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 10, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59ab8, EVENT_PICKED_UP_MOON_STONE_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59aba, EVENT_PICKED_UP_HEAL_POWDER_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 8, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x59abc, EVENT_PICKED_UP_ENERGY_ROOT_FROM_AERODACTYL_ITEM_ROOM

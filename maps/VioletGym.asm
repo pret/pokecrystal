@@ -1,16 +1,15 @@
-VioletGym_MapScriptHeader: ; 0x683c0
-	; trigger count
+VioletGym_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x683c2
 
-FalknerScript_0x683c2: ; 0x683c2
+FalknerScript_0x683c2:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_FALKNER
-	iftrue UnknownScript_0x683ec
+	iftrue .FightDone
 	writetext UnknownText_0x68473
 	closetext
 	loadmovesprites
@@ -23,108 +22,67 @@ FalknerScript_0x683c2: ; 0x683c2
 	writetext UnknownText_0x685af
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $001b
-	checkcode $7
-	scall UnknownScript_0x68418
-UnknownScript_0x683ec: ; 0x683ec
+	setflag ENGINE_ZEPHYRBADGE
+	checkcode VAR_BADGES
+	scall VioletGymTriggerRockets
+.FightDone
 	checkevent EVENT_GOT_TM31_MUD_SLAP
-	iftrue UnknownScript_0x68412
+	iftrue .SpeechAfterTM
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $2
-	specialphonecall $3
+	specialphonecall ELMCALL_ASSISTANT
 	writetext UnknownText_0x685c8
 	keeptextopen
-	verbosegiveitem TM_31, 1
-	iffalse UnknownScript_0x68416
+	verbosegiveitem TM_MUD_SLAP, 1
+	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648
 	closetext
 	loadmovesprites
 	end
-; 0x68412
 
-UnknownScript_0x68412: ; 0x68412
+.SpeechAfterTM:
 	writetext UnknownText_0x68735
 	closetext
-UnknownScript_0x68416: ; 0x68416
+.NoRoomForMudSlap:
 	loadmovesprites
 	end
-; 0x68418
 
-UnknownScript_0x68418: ; 0x68418
-	if_equal $7, UnknownScript_0x68424
-	if_equal $6, UnknownScript_0x68421
+VioletGymTriggerRockets:
+	if_equal 7, .RadioTowerRockets
+	if_equal 6, .GoldenrodRockets
 	end
-; 0x68421
 
-UnknownScript_0x68421: ; 0x68421
+.GoldenrodRockets
 	jumpstd goldenrodrockets
-; 0x68424
 
-UnknownScript_0x68424: ; 0x68424
+.RadioTowerRockets
 	jumpstd radiotowerrockets
-; 0x68427
 
-TrainerBird_keeperRod: ; 0x68427
-	; bit/flag number
-	dw $3fb
+TrainerBird_keeperRod:
+	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, $0000, Bird_keeperRodScript
 
-	; trainer group && trainer id
-	db BIRD_KEEPER, ROD
-
-	; text when seen
-	dw Bird_keeperRodSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperRodBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperRodScript
-; 0x68433
-
-Bird_keeperRodScript: ; 0x68433
+Bird_keeperRodScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x68837
 	closetext
 	loadmovesprites
 	end
-; 0x6843b
 
-TrainerBird_keeperAbe: ; 0x6843b
-	; bit/flag number
-	dw $3fc
+TrainerBird_keeperAbe:
+	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, $0000, Bird_keeperAbeScript
 
-	; trainer group && trainer id
-	db BIRD_KEEPER, ABE
-
-	; text when seen
-	dw Bird_keeperAbeSeenText
-
-	; text when trainer beaten
-	dw Bird_keeperAbeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Bird_keeperAbeScript
-; 0x68447
-
-Bird_keeperAbeScript: ; 0x68447
+Bird_keeperAbeScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x688c7
 	closetext
 	loadmovesprites
 	end
-; 0x6844f
 
-VioletGymGuyScript: ; 0x6844f
+VioletGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_FALKNER
@@ -139,7 +97,6 @@ VioletGymGuyScript: ; 0x6844f
 	closetext
 	loadmovesprites
 	end
-; 0x68463
 
 VioletGymStatue:
 	checkflag ENGINE_ZEPHYRBADGE
@@ -149,7 +106,7 @@ VioletGymStatue:
 	trainertotext FALKNER, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x68473: ; 0x68473
+UnknownText_0x68473:
 	text "I'm FALKNER, the"
 	line "VIOLET #MON GYM"
 	cont "leader!"
@@ -171,9 +128,8 @@ UnknownText_0x68473: ; 0x68473
 	para "magnificent bird"
 	line "#MON!"
 	done
-; 0x6854a
 
-UnknownText_0x6854a: ; 0x6854a
+UnknownText_0x6854a:
 	text "…Darn! My dad's"
 	line "cherished bird"
 	cont "#MON…"
@@ -185,15 +141,13 @@ UnknownText_0x6854a: ; 0x6854a
 	line "#MON LEAGUE"
 	cont "ZEPHYRBADGE."
 	done
-; 0x685af
 
-UnknownText_0x685af: ; 0x685af
+UnknownText_0x685af:
 	text "<PLAYER> received"
 	line "ZEPHYRBADGE."
 	done
-; 0x685c8
 
-UnknownText_0x685c8: ; 0x685c8
+UnknownText_0x685c8:
 	text "ZEPHYRBADGE"
 	line "raises the attack"
 	cont "power of #MON."
@@ -207,9 +161,8 @@ UnknownText_0x685c8: ; 0x685c8
 	para "Here--take this"
 	line "too."
 	done
-; 0x68648
 
-UnknownText_0x68648: ; 0x68648
+UnknownText_0x68648:
 	text "By using a TM, a"
 	line "#MON will"
 
@@ -233,9 +186,8 @@ UnknownText_0x68648: ; 0x68648
 	line "is both defensive"
 	cont "and offensive."
 	done
-; 0x68735
 
-UnknownText_0x68735: ; 0x68735
+UnknownText_0x68735:
 	text "There are #MON"
 	line "GYMS in cities and"
 	cont "towns ahead."
@@ -250,9 +202,8 @@ UnknownText_0x68735: ; 0x68735
 	para "the greatest bird"
 	line "master!"
 	done
-; 0x687cd
 
-Bird_keeperRodSeenText: ; 0x687cd
+Bird_keeperRodSeenText:
 	text "The keyword is"
 	line "guts!"
 
@@ -264,14 +215,12 @@ Bird_keeperRodSeenText: ; 0x687cd
 
 	para "Come on!"
 	done
-; 0x6882f
 
-Bird_keeperRodBeatenText: ; 0x6882f
+Bird_keeperRodBeatenText:
 	text "Gaaah!"
 	done
-; 0x68837
 
-UnknownText_0x68837: ; 0x68837
+UnknownText_0x68837:
 	text "FALKNER's skills"
 	line "are for real!"
 
@@ -279,29 +228,25 @@ UnknownText_0x68837: ; 0x68837
 	line "just because you"
 	cont "beat me!"
 	done
-; 0x6887f
 
-Bird_keeperAbeSeenText: ; 0x6887f
+Bird_keeperAbeSeenText:
 	text "Let me see if you"
 	line "are good enough to"
 	cont "face FALKNER!"
 	done
-; 0x688b3
 
-Bird_keeperAbeBeatenText: ; 0x688b3
+Bird_keeperAbeBeatenText:
 	text "This can't be"
 	line "true!"
 	done
-; 0x688c7
 
-UnknownText_0x688c7: ; 0x688c7
+UnknownText_0x688c7:
 	text "This is pathetic,"
 	line "losing to some"
 	cont "rookie trainer…"
 	done
-; 0x688f9
 
-VioletGymGuyText: ; 0x688f9
+VioletGymGuyText:
 	text "Hey! I'm no train-"
 	line "er but I can give"
 	cont "some advice!"
@@ -321,38 +266,35 @@ VioletGymGuyText: ; 0x688f9
 	para "flying-type. Keep"
 	line "this in mind."
 	done
-; 0x689c8
 
-VioletGymGuyWinText: ; 0x689c8
+VioletGymGuyWinText:
 	text "Nice battle! Keep"
 	line "it up, and you'll"
 
 	para "be the CHAMP in no"
 	line "time at all!"
 	done
-; 0x68a0c
 
-VioletGym_MapEventHeader: ; 0x68a0c
+VioletGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $f, $4, 2, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $f, $5, 2, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 13, 3, $0, VioletGymStatue
-	signpost 13, 6, $0, VioletGymStatue
+	signpost 13, 3, SIGNPOST_READ, VioletGymStatue
+	signpost 13, 6, SIGNPOST_READ, VioletGymStatue
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_FALKNER, 5, 9, $6, $0, 255, 255, $90, 0, FalknerScript_0x683c2, $ffff
-	person_event SPRITE_YOUNGSTER, 10, 11, $8, $2, 255, 255, $92, 3, TrainerBird_keeperRod, $ffff
-	person_event SPRITE_YOUNGSTER, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, $ffff
-	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, $ffff
-; 0x68a5a
+	person_event SPRITE_FALKNER, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FalknerScript_0x683c2, -1
+	person_event SPRITE_YOUNGSTER, 10, 11, OW_LEFT | $0, $2, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperRod, -1
+	person_event SPRITE_YOUNGSTER, 14, 6, OW_LEFT | $1, $2, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperAbe, -1
+	person_event SPRITE_GYM_GUY, 17, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, VioletGymGuyScript, -1

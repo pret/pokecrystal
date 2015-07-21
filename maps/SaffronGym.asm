@@ -1,16 +1,15 @@
-SaffronGym_MapScriptHeader: ; 0x189c2c
-	; trigger count
+SaffronGym_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x189c2e
 
-SabrinaScript_0x189c2e: ; 0x189c2e
+SabrinaScript_0x189c2e:
 	faceplayer
 	loadfont
-	checkflag $0028
-	iftrue UnknownScript_0x189c65
+	checkflag ENGINE_MARSHBADGE
+	iftrue .FightDone
 	writetext UnknownText_0x189cdf
 	closetext
 	loadmovesprites
@@ -27,137 +26,63 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	writetext UnknownText_0x189e95
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0028
+	setflag ENGINE_MARSHBADGE
 	writetext UnknownText_0x189ead
 	closetext
 	loadmovesprites
 	end
-; 0x189c65
 
-UnknownScript_0x189c65: ; 0x189c65
+.FightDone
 	writetext UnknownText_0x189f6c
 	closetext
 	loadmovesprites
 	end
-; 0x189c6b
 
-TrainerMediumRebecca: ; 0x189c6b
-	; bit/flag number
-	dw $590
+TrainerMediumRebecca:
+	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, $0000, MediumRebeccaScript
 
-	; trainer group && trainer id
-	db MEDIUM, REBECCA
-
-	; text when seen
-	dw MediumRebeccaSeenText
-
-	; text when trainer beaten
-	dw MediumRebeccaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw MediumRebeccaScript
-; 0x189c77
-
-MediumRebeccaScript: ; 0x189c77
+MediumRebeccaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18a034
 	closetext
 	loadmovesprites
 	end
-; 0x189c7f
 
-TrainerPsychicFranklin: ; 0x189c7f
-	; bit/flag number
-	dw $43b
+TrainerPsychicFranklin:
+	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, $0000, PsychicFranklinScript
 
-	; trainer group && trainer id
-	db PSYCHIC_T, FRANKLIN
-
-	; text when seen
-	dw PsychicFranklinSeenText
-
-	; text when trainer beaten
-	dw PsychicFranklinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicFranklinScript
-; 0x189c8b
-
-PsychicFranklinScript: ; 0x189c8b
+PsychicFranklinScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18a0a6
 	closetext
 	loadmovesprites
 	end
-; 0x189c93
 
-TrainerMediumDoris: ; 0x189c93
-	; bit/flag number
-	dw $591
+TrainerMediumDoris:
+	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, $0000, MediumDorisScript
 
-	; trainer group && trainer id
-	db MEDIUM, DORIS
-
-	; text when seen
-	dw MediumDorisSeenText
-
-	; text when trainer beaten
-	dw MediumDorisBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw MediumDorisScript
-; 0x189c9f
-
-MediumDorisScript: ; 0x189c9f
+MediumDorisScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18a136
 	closetext
 	loadmovesprites
 	end
-; 0x189ca7
 
-TrainerPsychicJared: ; 0x189ca7
-	; bit/flag number
-	dw $444
+TrainerPsychicJared:
+	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, $0000, PsychicJaredScript
 
-	; trainer group && trainer id
-	db PSYCHIC_T, JARED
-
-	; text when seen
-	dw PsychicJaredSeenText
-
-	; text when trainer beaten
-	dw PsychicJaredBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicJaredScript
-; 0x189cb3
-
-PsychicJaredScript: ; 0x189cb3
+PsychicJaredScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18a1b3
 	closetext
 	loadmovesprites
 	end
-; 0x189cbb
 
-SaffronGymGuyScript: ; 0x189cbb
+SaffronGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_SABRINA
@@ -172,7 +97,6 @@ SaffronGymGuyScript: ; 0x189cbb
 	closetext
 	loadmovesprites
 	end
-; 0x189ccf
 
 SaffronGymStatue:
 	checkflag ENGINE_MARSHBADGE
@@ -182,7 +106,7 @@ SaffronGymStatue:
 	trainertotext SABRINA, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x189cdf: ; 0x189cdf
+UnknownText_0x189cdf:
 	text "SABRINA: I knew"
 	line "you were coming…"
 
@@ -207,9 +131,8 @@ UnknownText_0x189cdf: ; 0x189cdf
 	line "I will show you my"
 	cont "psychic powers!"
 	done
-; 0x189df4
 
-UnknownText_0x189df4: ; 0x189df4
+UnknownText_0x189df4:
 	text "SABRINA: Your"
 	line "power…"
 
@@ -226,15 +149,13 @@ UnknownText_0x189df4: ; 0x189df4
 	line "earned yourself"
 	cont "MARSHBADGE."
 	done
-; 0x189e95
 
-UnknownText_0x189e95: ; 0x189e95
+UnknownText_0x189e95:
 	text "<PLAYER> received"
 	line "MARSHBADGE."
 	done
-; 0x189ead
 
-UnknownText_0x189ead: ; 0x189ead
+UnknownText_0x189ead:
 	text "SABRINA: MARSH-"
 	line "BADGE draws out"
 
@@ -251,9 +172,8 @@ UnknownText_0x189ead: ; 0x189ead
 	line "celebrated and"
 	cont "beloved CHAMPION!"
 	done
-; 0x189f6c
 
-UnknownText_0x189f6c: ; 0x189f6c
+UnknownText_0x189f6c:
 	text "SABRINA: Your love"
 	line "for your #MON"
 
@@ -266,82 +186,70 @@ UnknownText_0x189f6c: ; 0x189f6c
 	para "kind of psychic"
 	line "power…"
 	done
-; 0x189fe9
 
-MediumRebeccaSeenText: ; 0x189fe9
+MediumRebeccaSeenText:
 	text "The power of all"
 	line "those you defeated"
 	cont "comes to me!"
 	done
-; 0x18a01b
 
-MediumRebeccaBeatenText: ; 0x18a01b
+MediumRebeccaBeatenText:
 	text "Strong…"
 	line "Far too strong…"
 	done
-; 0x18a034
 
-UnknownText_0x18a034: ; 0x18a034
+UnknownText_0x18a034:
 	text "What is the source"
 	line "of your power?"
 	done
-; 0x18a057
 
-PsychicFranklinSeenText: ; 0x18a057
+PsychicFranklinSeenText:
 	text "Psychic power is"
 	line "the power of your"
 	cont "soul."
 	done
-; 0x18a081
 
-PsychicFranklinBeatenText: ; 0x18a081
+PsychicFranklinBeatenText:
 	text "Your soul has more"
 	line "power than mine!"
 	done
-; 0x18a0a6
 
-UnknownText_0x18a0a6: ; 0x18a0a6
+UnknownText_0x18a0a6:
 	text "You made your soul"
 	line "stronger, not just"
 	cont "your abilities."
 	done
-; 0x18a0dd
 
-MediumDorisSeenText: ; 0x18a0dd
+MediumDorisSeenText:
 	text "Fufufufu…"
 	line "I see it clearly."
 
 	para "I can see into"
 	line "your soul!"
 	done
-; 0x18a114
 
-MediumDorisBeatenText: ; 0x18a114
+MediumDorisBeatenText:
 	text "Though I read you,"
 	line "I still lost…"
 	done
-; 0x18a136
 
-UnknownText_0x18a136: ; 0x18a136
+UnknownText_0x18a136:
 	text "Darn! I forgot"
 	line "that I predicted I"
 	cont "would lose to you."
 	done
-; 0x18a16c
 
-PsychicJaredSeenText: ; 0x18a16c
+PsychicJaredSeenText:
 	text "The FIGHTING DOJO"
 	line "next door was once"
 	cont "this city's GYM."
 	done
-; 0x18a1a2
 
-PsychicJaredBeatenText: ; 0x18a1a2
+PsychicJaredBeatenText:
 	text "I was no match…"
 	done
-; 0x18a1b3
 
-UnknownText_0x18a1b3: ; 0x18a1b3
+UnknownText_0x18a1b3:
 	text "KARATE KING, the"
 	line "master of the"
 
@@ -349,9 +257,8 @@ UnknownText_0x18a1b3: ; 0x18a1b3
 	line "just destroyed by"
 	cont "SABRINA."
 	done
-; 0x18a201
 
-SaffronGymGuyText: ; 0x18a201
+SaffronGymGuyText:
 	text "Yo, CHAMP in"
 	line "making!"
 
@@ -369,19 +276,17 @@ SaffronGymGuyText: ; 0x18a201
 
 	para "Good luck!"
 	done
-; 0x18a2a0
 
-SaffronGymGuyWinText: ; 0x18a2a0
+SaffronGymGuyWinText:
 	text "That was another"
 	line "fantastic battle!"
 	done
-; 0x18a2c4
 
-SaffronGym_MapEventHeader: ; 0x18a2c4
+SaffronGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 32
 	warp_def $11, $8, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $11, $9, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
@@ -416,19 +321,18 @@ SaffronGym_MapEventHeader: ; 0x18a2c4
 	warp_def $3, $1, 16, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
 	warp_def $9, $b, 17, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 15, 8, $0, SaffronGymStatue
+	signpost 15, 8, SIGNPOST_READ, SaffronGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_SABRINA, 12, 13, $6, $0, 255, 255, $80, 0, SabrinaScript_0x189c2e, $ffff
-	person_event SPRITE_GRANNY, 20, 21, $a, $0, 255, 255, $b2, 3, TrainerMediumRebecca, $ffff
-	person_event SPRITE_YOUNGSTER, 20, 7, $a, $0, 255, 255, $92, 3, TrainerPsychicFranklin, $ffff
-	person_event SPRITE_GRANNY, 8, 7, $a, $0, 255, 255, $b2, 2, TrainerMediumDoris, $ffff
-	person_event SPRITE_YOUNGSTER, 8, 21, $a, $0, 255, 255, $92, 2, TrainerPsychicJared, $ffff
-	person_event SPRITE_GYM_GUY, 18, 13, $6, $0, 255, 255, $90, 0, SaffronGymGuyScript, $ffff
-; 0x18a3bd
+	person_event SPRITE_SABRINA, 12, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SabrinaScript_0x189c2e, -1
+	person_event SPRITE_GRANNY, 20, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerMediumRebecca, -1
+	person_event SPRITE_YOUNGSTER, 20, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFranklin, -1
+	person_event SPRITE_GRANNY, 8, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerMediumDoris, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicJared, -1
+	person_event SPRITE_GYM_GUY, 18, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SaffronGymGuyScript, -1

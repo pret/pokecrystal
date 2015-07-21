@@ -1,16 +1,15 @@
-PewterGym_MapScriptHeader: ; 0x1a2862
-	; trigger count
+PewterGym_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x1a2864
 
-BrockScript_0x1a2864: ; 0x1a2864
+BrockScript_0x1a2864:
 	faceplayer
 	loadfont
-	checkflag $0023
-	iftrue UnknownScript_0x1a2892
+	checkflag ENGINE_BOULDERBADGE
+	iftrue .FightDone
 	writetext UnknownText_0x1a28d0
 	closetext
 	loadmovesprites
@@ -24,50 +23,30 @@ BrockScript_0x1a2864: ; 0x1a2864
 	writetext UnknownText_0x1a2a3d
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0023
+	setflag ENGINE_BOULDERBADGE
 	writetext UnknownText_0x1a2a57
 	closetext
 	loadmovesprites
 	end
-; 0x1a2892
 
-UnknownScript_0x1a2892: ; 0x1a2892
+.FightDone
 	writetext UnknownText_0x1a2ada
 	closetext
 	loadmovesprites
 	end
-; 0x1a2898
 
-TrainerCamperJerry: ; 0x1a2898
-	; bit/flag number
-	dw $42b
+TrainerCamperJerry:
+	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, $0000, CamperJerryScript
 
-	; trainer group && trainer id
-	db CAMPER, JERRY
-
-	; text when seen
-	dw CamperJerrySeenText
-
-	; text when trainer beaten
-	dw CamperJerryBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CamperJerryScript
-; 0x1a28a4
-
-CamperJerryScript: ; 0x1a28a4
+CamperJerryScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a2c0f
 	closetext
 	loadmovesprites
 	end
-; 0x1a28ac
 
-PewterGymGuyScript: ; 0x1a28ac
+PewterGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_BROCK
@@ -82,7 +61,6 @@ PewterGymGuyScript: ; 0x1a28ac
 	closetext
 	loadmovesprites
 	end
-; 0x1a28c0
 
 PewterGymStatue:
 	checkflag ENGINE_BOULDERBADGE
@@ -92,7 +70,7 @@ PewterGymStatue:
 	trainertotext BROCK, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x1a28d0: ; 0x1a28d0
+UnknownText_0x1a28d0:
 	text "BROCK: Wow, it's"
 	line "not often that we"
 
@@ -116,9 +94,8 @@ UnknownText_0x1a28d0: ; 0x1a28d0
 
 	para "Come on!"
 	done
-; 0x1a29bb
 
-UnknownText_0x1a29bb: ; 0x1a29bb
+UnknownText_0x1a29bb:
 	text "BROCK: Your #-"
 	line "MON's powerful at-"
 	cont "tacks overcame my"
@@ -130,15 +107,13 @@ UnknownText_0x1a29bb: ; 0x1a29bb
 	para "Go ahead--take"
 	line "this BADGE."
 	done
-; 0x1a2a3d
 
-UnknownText_0x1a2a3d: ; 0x1a2a3d
+UnknownText_0x1a2a3d:
 	text "<PLAYER> received"
 	line "BOULDERBADGE."
 	done
-; 0x1a2a57
 
-UnknownText_0x1a2a57: ; 0x1a2a57
+UnknownText_0x1a2a57:
 	text "BROCK: <PLAY_G>,"
 	line "thanks. I enjoyed"
 
@@ -152,9 +127,8 @@ UnknownText_0x1a2a57: ; 0x1a2a57
 	para "#MON even more"
 	line "powerful."
 	done
-; 0x1a2ada
 
-UnknownText_0x1a2ada: ; 0x1a2ada
+UnknownText_0x1a2ada:
 	text "BROCK: The world"
 	line "is huge. There are"
 
@@ -166,9 +140,8 @@ UnknownText_0x1a2ada: ; 0x1a2ada
 	cont "come a lot strong-"
 	cont "er too."
 	done
-; 0x1a2b62
 
-CamperJerrySeenText: ; 0x1a2b62
+CamperJerrySeenText:
 	text "The trainers of"
 	line "this GYM use rock-"
 	cont "type #MON."
@@ -182,15 +155,13 @@ CamperJerrySeenText: ; 0x1a2b62
 	para "time. Are you"
 	line "ready for this?"
 	done
-; 0x1a2bf1
 
-CamperJerryBeatenText: ; 0x1a2bf1
+CamperJerryBeatenText:
 	text "I have to win"
 	line "these battles…"
 	done
-; 0x1a2c0f
 
-UnknownText_0x1a2c0f: ; 0x1a2c0f
+UnknownText_0x1a2c0f:
 	text "Hey, you! Trainer"
 	line "from JOHTO! BROCK"
 
@@ -200,9 +171,8 @@ UnknownText_0x1a2c0f: ; 0x1a2c0f
 	para "don't take him"
 	line "seriously."
 	done
-; 0x1a2c6e
 
-PewterGymGuyText: ; 0x1a2c6e
+PewterGymGuyText:
 	text "Yo! CHAMP in"
 	line "making! You're"
 
@@ -218,9 +188,8 @@ PewterGymGuyText: ; 0x1a2c6e
 	para "just like JOHTO's"
 	line "GYM LEADERS."
 	done
-; 0x1a2d07
 
-PewterGymGuyWinText: ; 0x1a2d07
+PewterGymGuyWinText:
 	text "Yo! CHAMP in"
 	line "making! That GYM"
 
@@ -233,28 +202,26 @@ PewterGymGuyWinText: ; 0x1a2d07
 	para "inspiring. I mean"
 	line "that seriously."
 	done
-; 0x1a2d88
 
-PewterGym_MapEventHeader: ; 0x1a2d88
+PewterGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $d, $4, 2, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 	warp_def $d, $5, 2, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 11, 2, $0, PewterGymStatue
-	signpost 11, 7, $0, PewterGymStatue
+	signpost 11, 2, SIGNPOST_READ, PewterGymStatue
+	signpost 11, 7, SIGNPOST_READ, PewterGymStatue
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_BROCK, 5, 9, $6, $0, 255, 255, $b0, 0, BrockScript_0x1a2864, $ffff
-	person_event SPRITE_YOUNGSTER, 9, 6, $9, $0, 255, 255, $a2, 3, TrainerCamperJerry, $ffff
-	person_event SPRITE_GYM_GUY, 15, 10, $6, $0, 255, 255, $90, 1, PewterGymGuyScript, $ffff
-; 0x1a2dc9
+	person_event SPRITE_BROCK, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrockScript_0x1a2864, -1
+	person_event SPRITE_YOUNGSTER, 9, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperJerry, -1
+	person_event SPRITE_GYM_GUY, 15, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, PewterGymGuyScript, -1

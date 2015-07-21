@@ -1,61 +1,53 @@
-DarkCaveVioletEntrance_MapScriptHeader: ; 0x18c68c
-	; trigger count
+DarkCaveVioletEntrance_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x18c68e
 
-ItemFragment_0x18c68e: ; 0x18c68e
+ItemFragment_0x18c68e:
 	db POTION, 1
-; 0x18c690
 
-ItemFragment_0x18c690: ; 0x18c690
+ItemFragment_0x18c690:
 	db FULL_HEAL, 1
-; 0x18c692
 
-ItemFragment_0x18c692: ; 0x18c692
+ItemFragment_0x18c692:
 	db HYPER_POTION, 1
-; 0x18c694
 
-ItemFragment_0x18c694: ; 0x18c694
+ItemFragment_0x18c694:
 	db DIRE_HIT, 1
-; 0x18c696
 
 DarkCaveVioletEntranceRock:
 	jumpstd smashrock
 
-MapDarkCaveVioletEntranceSignpostItem0: ; 0x18c699
-	dw $009d
-	db ELIXER
+MapDarkCaveVioletEntranceSignpostItem0:
+	dwb EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER, ELIXER
 	
-; 0x18c69c
 
-DarkCaveVioletEntrance_MapEventHeader: ; 0x18c69c
+DarkCaveVioletEntrance_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $f, $3, 3, GROUP_ROUTE_31, MAP_ROUTE_31
 	warp_def $1, $11, 2, GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 	warp_def $21, $23, 3, GROUP_ROUTE_46, MAP_ROUTE_46
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 3, 26, $7, MapDarkCaveVioletEntranceSignpostItem0
+	signpost 3, 26, SIGNPOST_ITEM, MapDarkCaveVioletEntranceSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 8
-	person_event SPRITE_POKE_BALL, 12, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c68e, $069e
-	person_event SPRITE_ROCK, 18, 20, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, $ffff
-	person_event SPRITE_ROCK, 10, 31, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, $ffff
-	person_event SPRITE_ROCK, 18, 11, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, $ffff
-	person_event SPRITE_ROCK, 35, 40, $18, $0, 255, 255, $0, 0, DarkCaveVioletEntranceRock, $ffff
-	person_event SPRITE_POKE_BALL, 26, 40, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c690, $069f
-	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c692, $06a0
-	person_event SPRITE_POKE_BALL, 32, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c694, $07ce
-; 0x18c71e
+	person_event SPRITE_POKE_BALL, 12, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c68e, EVENT_DARK_CAVE_VIOLET_ENTRANCE_POTION
+	person_event SPRITE_ROCK, 18, 20, OW_LEFT | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 10, 31, OW_LEFT | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 18, 11, OW_LEFT | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 35, 40, OW_LEFT | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_POKE_BALL, 26, 40, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c690, EVENT_DARK_CAVE_VIOLET_ENTRANCE_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 13, 39, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c692, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 32, 34, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c694, EVENT_DARK_CAVE_VIOLET_ENTRANCE_DIRE_HIT

@@ -1,55 +1,50 @@
-GoldenrodDeptStoreElevator_MapScriptHeader: ; 0x56697
-	; trigger count
+GoldenrodDeptStoreElevator_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x56699
 
-MapGoldenrodDeptStoreElevatorSignpost0Script: ; 0x56699
+MapGoldenrodDeptStoreElevatorSignpost0Script:
 	loadfont
 	elevator Elevator_0x566e0
 	loadmovesprites
-	iffalse UnknownScript_0x566df
+	iffalse .Done
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitbutton
-	checkevent $0307
-	iftrue UnknownScript_0x566df
-	checkevent $0304
-	iftrue UnknownScript_0x566cb
-	checkevent $0305
-	iftrue UnknownScript_0x566d5
-	checkevent $0306
-	iftrue UnknownScript_0x566c1
-UnknownScript_0x566c1: ;0x566c1
-	setevent $0304
-	clearevent $0305
-	clearevent $0306
+	checkevent EVENT_WAREHOUSE_BLOCKED_OFF
+	iftrue .Done
+	checkevent EVENT_WAREHOUSE_LAYOUT_1
+	iftrue .BoxLayout1
+	checkevent EVENT_WAREHOUSE_LAYOUT_2
+	iftrue .BoxLayout2
+	checkevent EVENT_WAREHOUSE_LAYOUT_3
+	iftrue .BoxLayout3
+.BoxLayout3
+	setevent EVENT_WAREHOUSE_LAYOUT_1
+	clearevent EVENT_WAREHOUSE_LAYOUT_2
+	clearevent EVENT_WAREHOUSE_LAYOUT_3
 	end
-; 0x566cb
 
-UnknownScript_0x566cb: ; 0x566cb
-	clearevent $0304
-	setevent $0305
-	clearevent $0306
+.BoxLayout1
+	clearevent EVENT_WAREHOUSE_LAYOUT_1
+	setevent EVENT_WAREHOUSE_LAYOUT_2
+	clearevent EVENT_WAREHOUSE_LAYOUT_3
 	end
-; 0x566d5
 
-UnknownScript_0x566d5: ; 0x566d5
-	clearevent $0304
-	clearevent $0305
-	setevent $0306
+.BoxLayout2
+	clearevent EVENT_WAREHOUSE_LAYOUT_1
+	clearevent EVENT_WAREHOUSE_LAYOUT_2
+	setevent EVENT_WAREHOUSE_LAYOUT_3
 	end
-; 0x566df
 
-UnknownScript_0x566df: ; 0x566df
+.Done
 	end
-; 0x566e0
 
 
-Elevator_0x566e0: ; 0x566e0
+Elevator_0x566e0:
 	db 7 ; floors
 	db _B1F, 2, GROUP_GOLDENROD_DEPT_STORE_B1F, MAP_GOLDENROD_DEPT_STORE_B1F
 	db _1F,  4, GROUP_GOLDENROD_DEPT_STORE_1F, MAP_GOLDENROD_DEPT_STORE_1F
@@ -59,25 +54,23 @@ Elevator_0x566e0: ; 0x566e0
 	db _5F,  3, GROUP_GOLDENROD_DEPT_STORE_5F, MAP_GOLDENROD_DEPT_STORE_5F
 	db _6F,  2, GROUP_GOLDENROD_DEPT_STORE_6F, MAP_GOLDENROD_DEPT_STORE_6F
 	db $ff ; end
-; 0x566fe
 
 
-GoldenrodDeptStoreElevator_MapEventHeader: ; 0x566fe
+GoldenrodDeptStoreElevator_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $1, 255, GROUP_GOLDENROD_DEPT_STORE_1F, MAP_GOLDENROD_DEPT_STORE_1F
 	warp_def $3, $2, 255, GROUP_GOLDENROD_DEPT_STORE_1F, MAP_GOLDENROD_DEPT_STORE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 0, 3, $0, MapGoldenrodDeptStoreElevatorSignpost0Script
+	signpost 0, 3, SIGNPOST_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 0
-; 0x56713

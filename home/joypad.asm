@@ -42,8 +42,9 @@ Joypad:: ; 935
 	ld a, D_PAD
 	ld [rJOYP], a
 ; Read twice to give the request time to take.
+rept 2
 	ld a, [rJOYP]
-	ld a, [rJOYP]
+endr
 	
 ; The Joypad register output is in the lo nybble (inversed).
 ; We make the hi nybble of our new container d-pad input.
@@ -59,12 +60,9 @@ Joypad:: ; 935
 	ld a, BUTTONS
 	ld [rJOYP], a
 ; Wait for input to stabilize.
+rept 6
 	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
+endr
 ; Buttons take the lo nybble.
 	cpl
 	and $f
@@ -211,8 +209,9 @@ GetJoypad:: ; 984
 	jr nz, .next
 	
 ; The current input is overwritten.
+rept 2
 	dec hl
-	dec hl
+endr
 	ld b, NO_INPUT
 	jr .finishauto
 	
@@ -312,7 +311,7 @@ Functiona36:: ; a36
 	jr Functiona36
 ; a46
 
-Functiona46:: ; a46
+CloseText:: ; a46
 	ld a, [hOAMUpdate]
 	push af
 	ld a, 1
@@ -387,7 +386,7 @@ Functionaa5:: ; aa5
 	ret
 ; aaf
 
-Functionaaf:: ; aaf
+KeepTextOpen:: ; aaf
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .asm_ac1

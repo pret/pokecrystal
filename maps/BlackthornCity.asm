@@ -1,8 +1,8 @@
 BlackthornCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -14,7 +14,7 @@ BlackthornCity_MapScriptHeader:
 	return
 
 .Santos
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_equal SATURDAY, .SantosAppears
 	disappear $9
 	return
@@ -83,7 +83,7 @@ SantosScript:
 	loadfont
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	iftrue SantosSaturdayScript
-	checkcode $b
+	checkcode VAR_WEEKDAY
 	if_not_equal SATURDAY, SantosNotSaturdayScript
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue .MetSantos
@@ -307,7 +307,7 @@ BlackthornCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 8
 	warp_def $b, $12, 1, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
 	warp_def $15, $d, 1, GROUP_BLACKTHORN_DRAGON_SPEECH_HOUSE, MAP_BLACKTHORN_DRAGON_SPEECH_HOUSE
@@ -318,27 +318,27 @@ BlackthornCity_MapEventHeader:
 	warp_def $9, $24, 2, GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
 	warp_def $1, $14, 1, GROUP_DRAGONS_DEN_1F, MAP_DRAGONS_DEN_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 7
-	signpost 24, 34, $0, BlackthornCitySign
-	signpost 13, 17, $0, BlackthornGymSign
-	signpost 31, 7, $0, MoveDeletersHouseSign
-	signpost 3, 21, $0, DragonDensSign
-	signpost 25, 5, $0, BlackthornCityTrainerTips
-	signpost 29, 16, $0, BlackthornCityMartSign
-	signpost 29, 22, $0, BlackthornCityPokeCenterSign
+	signpost 24, 34, SIGNPOST_READ, BlackthornCitySign
+	signpost 13, 17, SIGNPOST_READ, BlackthornGymSign
+	signpost 31, 7, SIGNPOST_READ, MoveDeletersHouseSign
+	signpost 3, 21, SIGNPOST_READ, DragonDensSign
+	signpost 25, 5, SIGNPOST_READ, BlackthornCityTrainerTips
+	signpost 29, 16, SIGNPOST_READ, BlackthornCityMartSign
+	signpost 29, 22, SIGNPOST_READ, BlackthornCityPokeCenterSign
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_SUPER_NERD, 16, 22, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, $06e3
-	person_event SPRITE_SUPER_NERD, 16, 23, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, $06e4
-	person_event SPRITE_GRAMPS, 6, 24, $6, $0, 255, 255, $0, 0, GrampsScript_0x1a4708, $074c
-	person_event SPRITE_GRAMPS, 6, 25, $8, $0, 255, 255, $0, 0, GrampsScript_0x1a470b, $074d
-	person_event SPRITE_BLACK_BELT, 35, 28, $5, $1, 255, 255, $90, 0, BlackBeltScript_0x1a470e, $ffff
-	person_event SPRITE_COOLTRAINER_F, 29, 13, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1a4722, $ffff
-	person_event SPRITE_YOUNGSTER, 19, 17, $5, $1, 255, 255, $0, 0, YoungsterScript_0x1a4725, $ffff
-	person_event SPRITE_YOUNGSTER, 24, 26, $6, $0, 255, 255, $0, 0, SantosScript, $075d
-	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1a4728, $ffff
+	person_event SPRITE_SUPER_NERD, 16, 22, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
+	person_event SPRITE_SUPER_NERD, 16, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
+	person_event SPRITE_GRAMPS, 6, 24, OW_UP | $2, $0, -1, -1, $0, 0, GrampsScript_0x1a4708, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
+	person_event SPRITE_GRAMPS, 6, 25, OW_LEFT | $0, $0, -1, -1, $0, 0, GrampsScript_0x1a470b, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
+	person_event SPRITE_BLACK_BELT, 35, 28, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x1a470e, -1
+	person_event SPRITE_COOLTRAINER_F, 29, 13, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x1a4722, -1
+	person_event SPRITE_YOUNGSTER, 19, 17, OW_UP | $1, $1, -1, -1, $0, 0, YoungsterScript_0x1a4725, -1
+	person_event SPRITE_YOUNGSTER, 24, 26, OW_UP | $2, $0, -1, -1, $0, 0, SantosScript, EVENT_BLACKTHORN_CITY_SANTOS_OF_SATURDAY
+	person_event SPRITE_COOLTRAINER_F, 23, 39, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x1a4728, -1

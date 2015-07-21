@@ -1,5 +1,5 @@
-RadioTower5F_MapScriptHeader: ; 0x60000
-	; trigger count
+RadioTower5F_MapScriptHeader:
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,25 +7,21 @@ RadioTower5F_MapScriptHeader: ; 0x60000
 	dw UnknownScript_0x6000f, $0000
 	dw UnknownScript_0x60010, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x6000e
 
-UnknownScript_0x6000e: ; 0x6000e
+UnknownScript_0x6000e:
 	end
-; 0x6000f
 
-UnknownScript_0x6000f: ; 0x6000f
+UnknownScript_0x6000f:
 	end
-; 0x60010
 
-UnknownScript_0x60010: ; 0x60010
+UnknownScript_0x60010:
 	end
-; 0x60011
 
-UnknownScript_0x60011: ; 0x60011
+UnknownScript_0x60011:
 	spriteface $2, UP
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	loadfont
 	writetext UnknownText_0x60128
 	closetext
@@ -47,9 +43,8 @@ UnknownScript_0x60011: ; 0x60011
 	verbosegiveitem BASEMENT_KEY, 1
 	loadmovesprites
 	dotrigger $1
-	setevent $0573
+	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
 	end
-; 0x60046
 
 Director:
 	faceplayer
@@ -61,43 +56,24 @@ Director:
 	loadmovesprites
 	end
 
-UnknownScript_0x60054: ; 0x60054
+UnknownScript_0x60054:
 	writetext UnknownText_0x60824
 	closetext
 	loadmovesprites
 	end
-; 0x6005a
 
-TrainerExecutivef1: ; 0x6005a
-	; bit/flag number
-	dw $56f
+TrainerExecutivef1:
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, 1, Executivef1SeenText, Executivef1BeatenText, $0000, Executivef1Script
 
-	; trainer group && trainer id
-	db EXECUTIVEF, 1
-
-	; text when seen
-	dw Executivef1SeenText
-
-	; text when trainer beaten
-	dw Executivef1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw Executivef1Script
-; 0x60066
-
-Executivef1Script: ; 0x60066
+Executivef1Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x60358
 	closetext
 	loadmovesprites
 	end
-; 0x6006e
 
-UnknownScript_0x6006e: ; 0x6006e
+UnknownScript_0x6006e:
 	applymovement $0, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, RIGHT
@@ -114,24 +90,24 @@ UnknownScript_0x6006e: ; 0x6006e
 	writetext UnknownText_0x6050e
 	closetext
 	loadmovesprites
-	special Function8c0b6
-	special Functiond91
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
 	disappear $3
 	disappear $4
 	pause 15
-	special Function8c0ab
-	setevent $0571
+	special Special_FadeInQuickly
+	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
 	setevent EVENT_CLEARED_RADIO_TOWER
-	clearflag $0013
-	setevent $06cc
-	setevent $06cd
-	setevent $06ce
-	clearevent $0736
-	clearflag $0017
-	clearevent $06cf
-	clearevent $06d0
-	setevent $06e3
-	clearevent $06e4
+	clearflag ENGINE_ROCKETS_IN_RADIO_TOWER
+	setevent EVENT_GOLDENROD_CITY_ROCKET_SCOUT
+	setevent EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
+	setevent EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	clearevent EVENT_MAHOGANY_MART_OWNERS
+	clearflag ENGINE_ROCKETS_IN_MAHOGANY
+	clearevent EVENT_GOLDENROD_CITY_CIVILIANS
+	clearevent EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	setevent EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
+	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
 	disappear $2
 	moveperson $2, $c, $0
@@ -148,45 +124,39 @@ UnknownScript_0x6006e: ; 0x6006e
 	dotrigger $2
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL
-	setevent $0761
+	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump UnknownScript_0x600f1
-; 0x600f1
 
-UnknownScript_0x600f1: ; 0x600f1
+UnknownScript_0x600f1:
 	applymovement $2, MovementData_0x6011a
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	end
-; 0x600fb
 
 Ben:
 	jumptextfaceplayer BenText
 
-ItemFragment_0x600fe: ; 0x600fe
+ItemFragment_0x600fe:
 	db ULTRA_BALL, 1
-; 0x60100
 
-MapRadioTower5FSignpost0Script: ; 0x60100
+MapRadioTower5FSignpost0Script:
 	jumptext UnknownText_0x608e0
-; 0x60103
 
-MapRadioTower5FSignpost2Script: ; 0x60103
+MapRadioTower5FSignpost2Script:
 	jumptext UnknownText_0x608f9
-; 0x60106
 
 RadioTower5FBookshelf:
 	jumpstd magazinebookshelf
 
-MovementData_0x60109: ; 0x60109
+MovementData_0x60109:
 	step_left
 	step_left
 	step_left
 	step_up
 	step_up
 	step_end
-; 0x6010f
 
-MovementData_0x6010f: ; 0x6010f
+MovementData_0x6010f:
 	step_down
 	step_down
 	step_right
@@ -198,9 +168,8 @@ MovementData_0x6010f: ; 0x6010f
 	step_down
 	step_left
 	step_end
-; 0x6011a
 
-MovementData_0x6011a: ; 0x6011a
+MovementData_0x6011a:
 	step_right
 	step_up
 	step_up
@@ -212,21 +181,18 @@ MovementData_0x6011a: ; 0x6011a
 	step_up
 	step_up
 	step_end
-; 0x60125
 
-MovementData_0x60125: ; 0x60125
+MovementData_0x60125:
 	step_left
 	step_left
 	step_end
-; 0x60128
 
-UnknownText_0x60128: ; 0x60128
+UnknownText_0x60128:
 	text "Y-you! You came to"
 	line "rescue me?"
 	done
-; 0x60147
 
-UnknownText_0x60147: ; 0x60147
+UnknownText_0x60147:
 	text "Is that what you"
 	line "were expecting?"
 
@@ -247,15 +213,13 @@ UnknownText_0x60147: ; 0x60147
 	line "you. But only if"
 	cont "you can beat me!"
 	done
-; 0x60223
 
-UnknownText_0x60223: ; 0x60223
+UnknownText_0x60223:
 	text "OK, OK. I'll tell"
 	line "you where he is."
 	done
-; 0x60246
 
-UnknownText_0x60246: ; 0x60246
+UnknownText_0x60246:
 	text "We stashed the"
 	line "real DIRECTOR in"
 
@@ -269,9 +233,8 @@ UnknownText_0x60246: ; 0x60246
 	para "But I doubt you'll"
 	line "get that far."
 	done
-; 0x602cb
 
-Executivef1SeenText: ; 0x602cb
+Executivef1SeenText:
 	text "Remember me from"
 	line "the HIDEOUT in"
 	cont "MAHOGANY TOWN?"
@@ -279,18 +242,16 @@ Executivef1SeenText: ; 0x602cb
 	para "I lost then, but I"
 	line "won't this time."
 	done
-; 0x6031e
 
-Executivef1BeatenText: ; 0x6031e
+Executivef1BeatenText:
 	text "This can't be"
 	line "happening!"
 
 	para "I fought hard, but"
 	line "I still lost…"
 	done
-; 0x60358
 
-UnknownText_0x60358: ; 0x60358
+UnknownText_0x60358:
 	text "<PLAYER>, isn't it?"
 
 	para "A brat like you"
@@ -303,9 +264,8 @@ UnknownText_0x60358: ; 0x60358
 	line "I really admire"
 	cont "your power."
 	done
-; 0x603d1
 
-UnknownText_0x603d1: ; 0x603d1
+UnknownText_0x603d1:
 	text "Oh? You managed to"
 	line "get this far?"
 
@@ -333,15 +293,13 @@ UnknownText_0x603d1: ; 0x603d1
 	line "to interfere with"
 	cont "our plans."
 	done
-; 0x604f3
 
-UnknownText_0x604f3: ; 0x604f3
+UnknownText_0x604f3:
 	text "No! Forgive me,"
 	line "GIOVANNI!"
 	done
-; 0x6050e
 
-UnknownText_0x6050e: ; 0x6050e
+UnknownText_0x6050e:
 	text "How could this be?"
 
 	para "Our dreams have"
@@ -358,9 +316,8 @@ UnknownText_0x6050e: ; 0x6050e
 
 	para "Farewell."
 	done
-; 0x605b2
 
-UnknownText_0x605b2: ; 0x605b2
+UnknownText_0x605b2:
 	text "DIRECTOR: <PLAY_G>,"
 	line "thank you!"
 
@@ -374,9 +331,8 @@ UnknownText_0x605b2: ; 0x605b2
 	line "much, but please"
 	cont "take this."
 	done
-; 0x6062c
 
-UnknownText_0x6062c: ; 0x6062c
+UnknownText_0x6062c:
 	text "There used to be a"
 	line "tower right here"
 	cont "in GOLDENROD CITY."
@@ -426,9 +382,8 @@ UnknownText_0x6062c: ; 0x6062c
 	para "OK, I better go to"
 	line "my OFFICE."
 	done
-; 0x60824
 
-UnknownText_0x60824: ; 0x60824
+UnknownText_0x60824:
 	text "DIRECTOR: Hello,"
 	line "<PLAY_G>!"
 
@@ -445,51 +400,47 @@ UnknownText_0x60824: ; 0x60824
 	line "if people enjoyed"
 	cont "our programs."
 	done
-; 0x608be
 
 BenText:
 	text "BEN: Do you listen"
 	line "to our music?"
 	done
 
-UnknownText_0x608e0: ; 0x608e0
+UnknownText_0x608e0:
 	text "5F DIRECTOR'S"
 	line "   OFFICE"
 	done
-; 0x608f9
 
-UnknownText_0x608f9: ; 0x608f9
+UnknownText_0x608f9:
 	text "5F STUDIO 1"
 	done
-; 0x60906
 
-RadioTower5F_MapEventHeader: ; 0x60906
+RadioTower5F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $0, $0, 1, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 	warp_def $0, $c, 3, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $3, $0, $0, UnknownScript_0x60011, $0, $0
 	xy_trigger 1, $5, $10, $0, UnknownScript_0x6006e, $0, $0
 
-	; signposts
+.Signposts:
 	db 5
-	signpost 0, 3, $0, MapRadioTower5FSignpost0Script
-	signpost 0, 11, $0, MapRadioTower5FSignpost2Script
-	signpost 0, 15, $0, MapRadioTower5FSignpost2Script
-	signpost 1, 16, $0, RadioTower5FBookshelf
-	signpost 1, 17, $0, RadioTower5FBookshelf
+	signpost 0, 3, SIGNPOST_READ, MapRadioTower5FSignpost0Script
+	signpost 0, 11, SIGNPOST_READ, MapRadioTower5FSignpost2Script
+	signpost 0, 15, SIGNPOST_READ, MapRadioTower5FSignpost2Script
+	signpost 1, 16, SIGNPOST_READ, RadioTower5FBookshelf
+	signpost 1, 17, SIGNPOST_READ, RadioTower5FBookshelf
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, Director, $ffff
-	person_event SPRITE_ROCKET, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, $06ce
-	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, $06ce
-	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, Ben, $06d0
-	person_event SPRITE_POKE_BALL, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, $07cd
-; 0x60980
+	person_event SPRITE_GENTLEMAN, 10, 7, OW_DOWN | $3, $0, -1, -1, $0, 0, Director, -1
+	person_event SPRITE_ROCKET, 9, 17, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 6, 21, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKER, 9, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_POKE_BALL, 9, 12, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL

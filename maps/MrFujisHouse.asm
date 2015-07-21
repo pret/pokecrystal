@@ -1,18 +1,15 @@
-MrFujisHouse_MapScriptHeader: ; 0x7e8c8
-	; trigger count
+MrFujisHouse_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x7e8ca
 
-SuperNerdScript_0x7e8ca: ; 0x7e8ca
+SuperNerdScript_0x7e8ca:
 	jumptextfaceplayer UnknownText_0x7e8f1
-; 0x7e8cd
 
-LassScript_0x7e8cd: ; 0x7e8cd
+LassScript_0x7e8cd:
 	jumptextfaceplayer UnknownText_0x7e940
-; 0x7e8d0
 
 MrFujisPsyduck:
 	loadfont
@@ -41,7 +38,7 @@ MrFujisPidgey:
 MrFujisHouseBookshelf:
 	jumpstd difficultbookshelf
 
-UnknownText_0x7e8f1: ; 0x7e8f1
+UnknownText_0x7e8f1:
 	text "MR.FUJI does live"
 	line "here, but he's not"
 
@@ -50,9 +47,8 @@ UnknownText_0x7e8f1: ; 0x7e8f1
 	para "He should be at"
 	line "the SOUL HOUSE."
 	done
-; 0x7e940
 
-UnknownText_0x7e940: ; 0x7e940
+UnknownText_0x7e940:
 	text "Some cold-hearted"
 	line "people stop caring"
 	cont "for their #MON."
@@ -63,7 +59,6 @@ UnknownText_0x7e940: ; 0x7e940
 	para "#MON and takes"
 	line "care of them."
 	done
-; 0x7e9b6
 
 MrFujisPsyduckText:
 	text "PSYDUCK: Gu-guwa?"
@@ -77,27 +72,27 @@ MrFujisPidgeyText:
 	text "PIDGEY: Pijji!"
 	done
 
-MrFujisHouse_MapEventHeader: ; 0x7e9ea
+MrFujisHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
 	warp_def $7, $3, 2, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, MrFujisHouseBookshelf
-	signpost 1, 1, $0, MrFujisHouseBookshelf
+	signpost 1, 0, SIGNPOST_READ, MrFujisHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, MrFujisHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_SUPER_NERD, 5, 8, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x7e8ca, $ffff
-	person_event SPRITE_LASS, 8, 7, $2, $11, 255, 255, $0, 0, LassScript_0x7e8cd, $ffff
-	person_event SPRITE_RHYDON, 8, 11, $16, $0, 255, 255, $0, 0, MrFujisPsyduck, $ffff
-	person_event SPRITE_GROWLITHE, 9, 9, $16, $0, 255, 255, $90, 0, MrFujisNidorino, $ffff
-	person_event SPRITE_MOLTRES, 7, 5, $16, $0, 255, 255, $b0, 0, MrFujisPidgey, $ffff
+	person_event SPRITE_SUPER_NERD, 5, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x7e8ca, -1
+	person_event SPRITE_LASS, 8, 7, OW_DOWN | $2, $11, -1, -1, $0, 0, LassScript_0x7e8cd, -1
+	person_event SPRITE_RHYDON, 8, 11, OW_UP | $12, $0, -1, -1, $0, 0, MrFujisPsyduck, -1
+	person_event SPRITE_GROWLITHE, 9, 9, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, MrFujisNidorino, -1
+	person_event SPRITE_MOLTRES, 7, 5, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MrFujisPidgey, -1

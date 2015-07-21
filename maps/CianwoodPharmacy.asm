@@ -1,11 +1,11 @@
 CianwoodPharmacy_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw CianwoodPharmacyTrigger, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 CianwoodPharmacyTrigger:
@@ -16,11 +16,11 @@ CianwoodPharmacist:
 	loadfont
 	checkevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	iftrue .Mart
-	checkevent $0037
+	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 	iffalse .Mart
 	writetext PharmacistGiveSecretpotionText
 	keeptextopen
-	giveitem SECRETPOTION, $1
+	giveitem SECRETPOTION, 1
 	writetext ReceivedSecretpotionText
 	playsound SFX_KEY_ITEM
 	waitbutton
@@ -75,19 +75,19 @@ CianwoodPharmacy_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 4, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 	warp_def $7, $3, 4, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, CianwoodPharmacyBookshelf
-	signpost 1, 1, $0, CianwoodPharmacyBookshelf
+	signpost 1, 0, SIGNPOST_READ, CianwoodPharmacyBookshelf
+	signpost 1, 1, SIGNPOST_READ, CianwoodPharmacyBookshelf
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_PHARMACIST, 7, 6, $6, $0, 255, 255, $80, 0, CianwoodPharmacist, $ffff
+	person_event SPRITE_PHARMACIST, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CianwoodPharmacist, -1

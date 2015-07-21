@@ -1,8 +1,8 @@
 BattleTowerOutside_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -13,7 +13,7 @@ BattleTowerOutside_MapScriptHeader:
 	return
 
 .Callback2
-	clearevent $07cf
+	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	return
 
 StandingYoungsterScript_0x9f85f:
@@ -126,23 +126,23 @@ BattleTowerOutside_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $15, $8, 3, GROUP_ROUTE_40_BATTLE_TOWER_GATE, MAP_ROUTE_40_BATTLE_TOWER_GATE
 	warp_def $15, $9, 4, GROUP_ROUTE_40_BATTLE_TOWER_GATE, MAP_ROUTE_40_BATTLE_TOWER_GATE
 	warp_def $9, $8, 1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F
 	warp_def $9, $9, 2, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 10, 10, $0, MapBattleTowerOutsideSignpost0Script
+	signpost 10, 10, SIGNPOST_READ, MapBattleTowerOutsideSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_STANDING_YOUNGSTER, 16, 10, $7, $0, 255, 255, $80, 0, StandingYoungsterScript_0x9f85f, $ffff
-	person_event SPRITE_BUENA, 15, 17, $2, $11, 255, 255, $a0, 0, BuenaScript_0x9f862, $ffff
-	person_event SPRITE_SAILOR, 22, 16, $5, $1, 255, 255, $0, 0, SailorScript_0x9f865, $07cf
-	person_event SPRITE_LASS, 28, 16, $3, $0, 255, 255, $a0, 0, ObjectEvent, $ffff
+	person_event SPRITE_STANDING_YOUNGSTER, 16, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, StandingYoungsterScript_0x9f85f, -1
+	person_event SPRITE_BUENA, 15, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BuenaScript_0x9f862, -1
+	person_event SPRITE_SAILOR, 22, 16, OW_UP | $1, $1, -1, -1, $0, 0, SailorScript_0x9f865, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_LASS, 28, 16, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, -1

@@ -1,5 +1,5 @@
-ElmsLab_MapScriptHeader: ; 0x78b5d
-	; trigger count
+ElmsLab_MapScriptHeader:
+.MapTriggers:
 	db 6
 
 	; triggers
@@ -10,110 +10,100 @@ ElmsLab_MapScriptHeader: ; 0x78b5d
 	dw UnknownScript_0x78b81, $0000
 	dw UnknownScript_0x78b82, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x78b83
-; 0x78b7a
+	dbw 2, ElmsLab_PutElmAtLaptop
 
-UnknownScript_0x78b7a: ; 0x78b7a
-	priorityjump UnknownScript_0x78b8c
+UnknownScript_0x78b7a:
+	priorityjump ElmsLab_AutowalkUpToElm
 	end
-; 0x78b7e
 
-UnknownScript_0x78b7e: ; 0x78b7e
+UnknownScript_0x78b7e:
 	end
-; 0x78b7f
 
-UnknownScript_0x78b7f: ; 0x78b7f
+UnknownScript_0x78b7f:
 	end
-; 0x78b80
 
-UnknownScript_0x78b80: ; 0x78b80
+UnknownScript_0x78b80:
 	end
-; 0x78b81
 
-UnknownScript_0x78b81: ; 0x78b81
+UnknownScript_0x78b81:
 	end
-; 0x78b82
 
-UnknownScript_0x78b82: ; 0x78b82
+UnknownScript_0x78b82:
 	end
-; 0x78b83
 
-UnknownScript_0x78b83: ; 0x78b83
+ElmsLab_PutElmAtLaptop:
 	checktriggers
-	iftrue UnknownScript_0x78b8b
+	iftrue .Skip
 	moveperson $2, $3, $4
-UnknownScript_0x78b8b: ; 0x78b8b
+.Skip:
 	return
-; 0x78b8c
 
-UnknownScript_0x78b8c: ; 0x78b8c
-	applymovement $0, MovementData_0x78f67
-	showemote $0, $2, 15
+ElmsLab_AutowalkUpToElm:
+	applymovement $0, ElmsLab_WalkUpToElmMovement
+	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, RIGHT
 	loadfont
-	writetext UnknownText_0x78fb6
-UnknownScript_0x78b9b: ; 0x78b9b
+	writetext ElmText_Intro
+ElmsLab_RefuseLoop:
 	yesorno
-	iftrue UnknownScript_0x78ba5
-	writetext UnknownText_0x7911a
-	jump UnknownScript_0x78b9b
-; 0x78ba5
+	iftrue ElmsLab_ElmGetsEmail
+	writetext ElmText_Refused
+	jump ElmsLab_RefuseLoop
 
-UnknownScript_0x78ba5: ; 0x78ba5
-	writetext UnknownText_0x790fa
+ElmsLab_ElmGetsEmail:
+	writetext ElmText_Accepted
 	keeptextopen
-	writetext UnknownText_0x7913a
+	writetext ElmText_ResearchAmbitions
 	closetext
 	loadmovesprites
 	playsound SFX_GLASS_TING
 	pause 30
-	showemote $0, $2, 10
+	showemote EMOTE_SHOCK, $2, 10
 	spriteface $2, DOWN
 	loadfont
-	writetext UnknownText_0x791ae
+	writetext ElmText_GotAnEmail
 	closetext
 	loadmovesprites
 	loadfont
 	spriteface $2, RIGHT
-	writetext UnknownText_0x791df
+	writetext ElmText_MissionFromMrPokemon
 	closetext
 	loadmovesprites
-	applymovement $2, MovementData_0x78fa0
+	applymovement $2, ElmsLab_ElmToDefaultPositionMovement1
 	spriteface $0, UP
-	applymovement $2, MovementData_0x78fa2
+	applymovement $2, ElmsLab_ElmToDefaultPositionMovement2
 	spriteface $0, RIGHT
 	loadfont
-	writetext UnknownText_0x792ff
+	writetext ElmText_ChooseAPokemon
 	closetext
 	dotrigger $1
 	loadmovesprites
 	end
-; 0x78be0
 
-ProfElmScript: ; 0x78be0
+ProfElmScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue UnknownScript_0x78bee
+	iftrue ElmCheckMasterBall
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue ElmGiveTicketScript
-UnknownScript_0x78bee: ; 0x78bee
+ElmCheckMasterBall:
 	checkevent EVENT_GOT_MASTER_BALL_FROM_ELM
-	iftrue UnknownScript_0x78bfa
-	checkflag $0022
+	iftrue ElmCheckEverstone
+	checkflag ENGINE_RISINGBADGE
 	iftrue ElmGiveMasterBallScript
-UnknownScript_0x78bfa: ; 0x78bfa
+ElmCheckEverstone:
 	checkevent EVENT_GOT_EVERSTONE_FROM_ELM
-	iftrue UnknownScript_0x78e16
+	iftrue ElmScript_CallYou
 	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
-	iftrue UnknownScript_0x78e03
+	iftrue ElmGiveEverstoneScript
 	checkevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
-	iffalse UnknownScript_0x78c35
+	iffalse ElmCheckTogepiEgg
 	writebyte TOGEPI
 	special Functionc284
 	iftrue ShowElmTogepiScript
@@ -124,27 +114,25 @@ UnknownScript_0x78bfa: ; 0x78bfa
 	closetext
 	loadmovesprites
 	end
-; 0x78c22
 
-UnknownScript_0x78c22: ; 0x78c22
+ElmEggHatchedScript:
 	writebyte TOGEPI
 	special Functionc284
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
 	special Functionc284
 	iftrue ShowElmTogepiScript
-	jump UnknownScript_0x78c41
-; 0x78c35
+	jump ElmCheckGotEggAgain
 
-UnknownScript_0x78c35: ; 0x78c35
+ElmCheckTogepiEgg:
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iffalse UnknownScript_0x78c41
+	iffalse ElmCheckGotEggAgain
 	checkevent EVENT_TOGEPI_HATCHED
-	iftrue UnknownScript_0x78c22
-UnknownScript_0x78c41: ; 0x78c41
+	iftrue ElmEggHatchedScript
+ElmCheckGotEggAgain:
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE ; why are we checking it again?
 	iftrue ElmWaitingEggHatchScript
-	checkflag $001b
+	checkflag ENGINE_ZEPHYRBADGE
 	iftrue ElmAideHasEggScript
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue ElmStudyingEggScript
@@ -152,13 +140,12 @@ UnknownScript_0x78c41: ; 0x78c41
 	iftrue ElmAfterTheftScript
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue ElmDescribesMrPokemonScript
-	writetext UnknownText_0x79375
+	writetext ElmText_LetYourMonBattleIt
 	closetext
 	loadmovesprites
 	end
-; 0x78c65
 
-LabTryToLeaveScript: ; 0x78c65
+LabTryToLeaveScript:
 	spriteface $2, DOWN
 	loadfont
 	writetext LabWhereGoingText
@@ -166,9 +153,8 @@ LabTryToLeaveScript: ; 0x78c65
 	loadmovesprites
 	applymovement $0, MovementData_0x78f70
 	end
-; 0x78c73
 
-CyndaquilPokeBallScript: ; 0x78c73
+CyndaquilPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface $2, DOWN
@@ -193,13 +179,12 @@ CyndaquilPokeBallScript: ; 0x78c73
 	keeptextopen
 	givepoke CYNDAQUIL, 5, BERRY, 0
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $3, ElmDirectionsScript
 	applymovement $0, AfterCyndaquilMovement
 	jump ElmDirectionsScript
-; 0x78cb5
 
-TotodilePokeBallScript: ; 0x78cb5
+TotodilePokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface $2, DOWN
@@ -226,9 +211,8 @@ TotodilePokeBallScript: ; 0x78cb5
 	loadmovesprites
 	applymovement $0, AfterTotodileMovement
 	jump ElmDirectionsScript
-; 0x78cf1
 
-ChikoritaPokeBallScript: ; 0x78cf1
+ChikoritaPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface $2, DOWN
@@ -255,22 +239,20 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	loadmovesprites
 	applymovement $0, AfterChikoritaMovement
 	jump ElmDirectionsScript
-; 0x78d2d
 
-DidntChooseStarterScript: ; 0x78d2d
+DidntChooseStarterScript:
 	writetext DidntChooseStarterText
 	closetext
 	loadmovesprites
 	end
-; 0x78d33
 
-ElmDirectionsScript: ; 0x78d33
+ElmDirectionsScript:
 	spriteface $0, UP
 	loadfont
 	writetext ElmDirectionsText1
 	closetext
 	loadmovesprites
-	addcellnum $4
+	addcellnum PHONE_ELM
 	loadfont
 	writetext GotElmsNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
@@ -288,26 +270,23 @@ ElmDirectionsScript: ; 0x78d33
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
-	setevent $06be
+	setevent EVENT_RIVAL_CHERRYGROVE_CITY
 	dotrigger $5
 	domaptrigger GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $1
 	end
-; 0x78d67
 
-ElmDescribesMrPokemonScript: ; 0x78d67
+ElmDescribesMrPokemonScript:
 	writetext ElmDescribesMrPokemonText
 	closetext
 	loadmovesprites
 	end
-; 0x78d6d
 
-LookAtElmPokeBallScript: ; 0x78d6d
+LookAtElmPokeBallScript:
 	loadfont
 	writetext ElmPokeBallText
 	closetext
 	loadmovesprites
 	end
-; 0x78d74
 
 ElmsLabHealingMachine:
 	loadfont
@@ -321,30 +300,27 @@ ElmsLabHealingMachine:
 .CanHeal
 	writetext ElmsLabHealingMachineText2
 	yesorno
-	iftrue UnknownScript_0x78d8a
+	iftrue ElmsLabHealingMachine_HealParty
 	loadmovesprites
 	end
-; 0x78d8a
 
-UnknownScript_0x78d8a: ; 0x78d8a
-	special Function1060a2
+ElmsLabHealingMachine_HealParty:
+	special Mobile_HealParty
 	special HealParty
 	playmusic MUSIC_NONE
-	writebyte $1
+	writebyte 1 ; Machine is in Elm's Lab
 	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	loadmovesprites
 	end
-; 0x78d9f
 
-ElmAfterTheftDoneScript: ; 0x78d9f
+ElmAfterTheftDoneScript:
 	closetext
 	loadmovesprites
 	end
-; 0x78da2
 
-ElmAfterTheftScript: ; 0x78da2
+ElmAfterTheftScript:
 	writetext ElmAfterTheftText1
 	checkitem MYSTERY_EGG
 	iffalse ElmAfterTheftDoneScript
@@ -361,70 +337,64 @@ ElmAfterTheftScript: ; 0x78da2
 	writetext ElmAfterTheftText5
 	keeptextopen
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	setflag $0010
+	setflag ENGINE_BUG_CONTEST_ON
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
-	clearevent $0715
-	setevent $0714
+	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
+	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
 	closetext
 	loadmovesprites
 	dotrigger $6
 	end
-; 0x78ddc
 
-ElmStudyingEggScript: ; 0x78ddc
+ElmStudyingEggScript:
 	writetext ElmStudyingEggText
 	closetext
 	loadmovesprites
 	end
-; 0x78de2
 
-ElmAideHasEggScript: ; 0x78de2
+ElmAideHasEggScript:
 	writetext ElmAideHasEggText
 	closetext
 	loadmovesprites
 	end
-; 0x78de8
 
-ElmWaitingEggHatchScript: ; 0x78de8
+ElmWaitingEggHatchScript:
 	writetext ElmWaitingEggHatchText
 	closetext
 	loadmovesprites
 	end
-; 0x78dee
 
-ShowElmTogepiScript: ; 0x78dee
+ShowElmTogepiScript:
 	writetext ShowElmTogepiText1
 	closetext
 	loadmovesprites
-	showemote $0, $2, 15
+	showemote EMOTE_SHOCK, $2, 15
 	setevent EVENT_SHOWED_TOGEPI_TO_ELM
 	loadfont
 	writetext ShowElmTogepiText2
 	keeptextopen
 	writetext ShowElmTogepiText3
 	keeptextopen
-UnknownScript_0x78e03: ; 0x78e03
+ElmGiveEverstoneScript:
 	writetext ElmGiveEverstoneText1
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
-	iffalse UnknownScript_0x78e1a
+	iffalse ElmScript_NoRoomForEverstone
 	writetext ElmGiveEverstoneText2
 	closetext
 	loadmovesprites
 	setevent EVENT_GOT_EVERSTONE_FROM_ELM
 	end
-; 0x78e16
 
-UnknownScript_0x78e16: ; 0x78e16
-	writetext UnknownText_0x79c37
+ElmScript_CallYou:
+	writetext ElmText_CallYou
 	closetext
-UnknownScript_0x78e1a: ; 0x78e1a
+ElmScript_NoRoomForEverstone:
 	loadmovesprites
 	end
-; 0x78e1c
 
-ElmGiveMasterBallScript: ; 0x78e1c
+ElmGiveMasterBallScript:
 	writetext ElmGiveMasterBallText1
 	keeptextopen
 	verbosegiveitem MASTER_BALL, 1
@@ -435,9 +405,8 @@ ElmGiveMasterBallScript: ; 0x78e1c
 .notdone
 	loadmovesprites
 	end
-; 0x78e2f
 
-ElmGiveTicketScript: ; 0x78e2f
+ElmGiveTicketScript:
 	writetext ElmGiveTicketText1
 	keeptextopen
 	verbosegiveitem S_S_TICKET, 1
@@ -446,175 +415,156 @@ ElmGiveTicketScript: ; 0x78e2f
 	closetext
 	loadmovesprites
 	end
-; 0x78e3f
 
-ElmJumpBackScript1: ; 0x78e3f
+ElmJumpBackScript1:
 	loadmovesprites
-	checkcode $9
-	if_equal $0, UnknownScript_0x78e6d
-	if_equal $1, UnknownScript_0x78e67
-	if_equal $2, UnknownScript_0x78e73
-	if_equal $3, UnknownScript_0x78e79
+	checkcode VAR_FACING
+	if_equal DOWN, ElmJumpDownScript
+	if_equal UP, ElmJumpUpScript
+	if_equal LEFT, ElmJumpLeftScript
+	if_equal RIGHT, ElmJumpRightScript
 	end
-; 0x78e53
 
-ElmJumpBackScript2: ; 0x78e53
+ElmJumpBackScript2:
 	loadmovesprites
-	checkcode $9
-	if_equal $0, UnknownScript_0x78e67
-	if_equal $1, UnknownScript_0x78e6d
-	if_equal $2, UnknownScript_0x78e79
-	if_equal $3, UnknownScript_0x78e73
+	checkcode VAR_FACING
+	if_equal DOWN, ElmJumpUpScript
+	if_equal UP, ElmJumpDownScript
+	if_equal LEFT, ElmJumpRightScript
+	if_equal RIGHT, ElmJumpLeftScript
 	end
-; 0x78e67
 
-UnknownScript_0x78e67: ; 0x78e67
-	applymovement $2, MovementData_0x78f90
+ElmJumpUpScript:
+	applymovement $2, ElmJumpUpMovement
 	loadfont
 	end
-; 0x78e6d
 
-UnknownScript_0x78e6d: ; 0x78e6d
-	applymovement $2, MovementData_0x78f94
+ElmJumpDownScript:
+	applymovement $2, ElmJumpDownMovement
 	loadfont
 	end
-; 0x78e73
 
-UnknownScript_0x78e73: ; 0x78e73
-	applymovement $2, MovementData_0x78f98
+ElmJumpLeftScript:
+	applymovement $2, ElmJumpLeftMovement
 	loadfont
 	end
-; 0x78e79
 
-UnknownScript_0x78e79: ; 0x78e79
-	applymovement $2, MovementData_0x78f9c
+ElmJumpRightScript:
+	applymovement $2, ElmJumpRightMovement
 	loadfont
 	end
-; 0x78e7f
 
-UnknownScript_0x78e7f: ; 0x78e7f
-	applymovement $3, MovementData_0x78f7e
+AideScript_WalkPotions1:
+	applymovement $3, AideWalksRight1
 	spriteface $0, DOWN
-	scall UnknownScript_0x78e9d
-	applymovement $3, MovementData_0x78f87
+	scall AideScript_GivePotions
+	applymovement $3, AideWalksLeft1
 	end
-; 0x78e8e
 
-UnknownScript_0x78e8e: ; 0x78e8e
-	applymovement $3, MovementData_0x78f82
+AideScript_WalkPotions2:
+	applymovement $3, AideWalksRight2
 	spriteface $0, DOWN
-	scall UnknownScript_0x78e9d
-	applymovement $3, MovementData_0x78f8b
+	scall AideScript_GivePotions
+	applymovement $3, AideWalksLeft2
 	end
-; 0x78e9d
 
-UnknownScript_0x78e9d: ; 0x78e9d
+AideScript_GivePotions:
 	loadfont
-	writetext UnknownText_0x79f38
+	writetext AideText_GiveYouPotions
 	keeptextopen
 	verbosegiveitem POTION, 1
-	writetext UnknownText_0x79f65
+	writetext AideText_AlwaysBusy
 	closetext
 	loadmovesprites
 	dotrigger $2
 	end
-; 0x78ead
 
-UnknownScript_0x78ead: ; 0x78ead
-	applymovement $3, MovementData_0x78f7e
+AideScript_WalkBalls1:
+	applymovement $3, AideWalksRight1
 	spriteface $0, DOWN
-	scall UnknownScript_0x78ecb
-	applymovement $3, MovementData_0x78f87
+	scall AideScript_GiveYouBalls
+	applymovement $3, AideWalksLeft1
 	end
-; 0x78ebc
 
-UnknownScript_0x78ebc: ; 0x78ebc
-	applymovement $3, MovementData_0x78f82
+AideScript_WalkBalls2:
+	applymovement $3, AideWalksRight2
 	spriteface $0, DOWN
-	scall UnknownScript_0x78ecb
-	applymovement $3, MovementData_0x78f8b
+	scall AideScript_GiveYouBalls
+	applymovement $3, AideWalksLeft2
 	end
-; 0x78ecb
 
-UnknownScript_0x78ecb: ; 0x78ecb
+AideScript_GiveYouBalls:
 	loadfont
-	writetext UnknownText_0x7a078
+	writetext AideText_GiveYouBalls
 	keeptextopen
 	itemtotext POKE_BALL, $1
-	scall UnknownScript_0x78ee2
+	scall AideScript_ReceiveTheBalls
 	giveitem POKE_BALL, $5
-	writetext UnknownText_0x7a09a
+	writetext AideText_ExplainBalls
 	keeptextopen
 	itemnotify
 	loadmovesprites
 	dotrigger $2
 	end
-; 0x78ee2
 
-UnknownScript_0x78ee2: ; 0x78ee2
-	jumpstd $002f
+AideScript_ReceiveTheBalls:
+	jumpstd receiveitem
 	end
-; 0x78ee6
 
-ElmsAideScript: ; 0x78ee6
+ElmsAideScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iftrue UnknownScript_0x78f0c
+	iftrue AideScript_AfterTheft
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x78f06
+	iftrue AideScript_ExplainBalls
 	checkevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
-	iftrue UnknownScript_0x78f00
-	writetext UnknownText_0x79f65
+	iftrue AideScript_TheftTestimony
+	writetext AideText_AlwaysBusy
 	closetext
 	loadmovesprites
 	end
-; 0x78f00
 
-UnknownScript_0x78f00: ; 0x78f00
-	writetext UnknownText_0x79f95
+AideScript_TheftTestimony:
+	writetext AideText_TheftTestimony
 	closetext
 	loadmovesprites
 	end
-; 0x78f06
 
-UnknownScript_0x78f06: ; 0x78f06
-	writetext UnknownText_0x7a09a
+AideScript_ExplainBalls:
+	writetext AideText_ExplainBalls
 	closetext
 	loadmovesprites
 	end
-; 0x78f0c
 
-UnknownScript_0x78f0c: ; 0x78f0c
-	writetext UnknownText_0x79c65
+AideScript_AfterTheft:
+	writetext AideText_AfterTheft
 	closetext
 	loadmovesprites
 	end
-; 0x78f12
 
-UnknownScript_0x78f12: ; 0x78f12
-	applymovement $0, MovementData_0x78f72
+MeetCopScript2:
+	applymovement $0, MeetCopScript2_StepLeft
 
-MeetCopScript: ; 0x78f16
-	applymovement $0, MovementData_0x78f74
-CopScript: ; 0x78f1a
+MeetCopScript:
+	applymovement $0, MeetCopScript_WalkUp
+CopScript:
 	spriteface $7, LEFT
 	loadfont
-	writetext UnknownText_0x7a0f0
+	writetext ElmsLabOfficerText1
 	keeptextopen
 	special SpecialNameRival
-	writetext UnknownText_0x7a1c0
+	writetext ElmsLabOfficerText2
 	closetext
 	loadmovesprites
-	applymovement $7, MovementData_0x78f78
+	applymovement $7, OfficerLeavesMovement
 	disappear $7
 	dotrigger $2
 	end
-; 0x78f33
 
 ElmsLabWindow:
 	loadfont
-	checkflag $0043
+	checkflag ENGINE_FLYPOINT_VIOLET
 	iftrue .Normal
 	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	iftrue .BreakIn
@@ -625,14 +575,12 @@ ElmsLabWindow:
 	closetext
 	loadmovesprites
 	end
-; 0x78f49
 
 .Normal
 	writetext ElmsLabWindowText1
 	closetext
 	loadmovesprites
 	end
-; 0x78f4f
 
 ElmsLabTravelTip1:
 	jumptext ElmsLabTravelTip1Text
@@ -649,9 +597,8 @@ ElmsLabTravelTip4:
 ElmsLabTrashcan:
 	jumptext ElmsLabTrashcanText
 
-ElmsLabPC: ; 0x78f5e
+ElmsLabPC:
 	jumptext ElmsLabPCText
-; 0x78f61
 
 ElmsLabTrashcan2:
 ; unused
@@ -660,7 +607,7 @@ ElmsLabTrashcan2:
 ElmsLabBookshelf:
 	jumpstd difficultbookshelf
 
-MovementData_0x78f67: ; 0x78f67
+ElmsLab_WalkUpToElmMovement:
 	step_up
 	step_up
 	step_up
@@ -670,130 +617,112 @@ MovementData_0x78f67: ; 0x78f67
 	step_up
 	turn_head_left
 	step_end
-; 0x78f70
 
-MovementData_0x78f70: ; 0x78f70
+MovementData_0x78f70:
 	step_up
 	step_end
-; 0x78f72
 
-MovementData_0x78f72: ; 0x78f72
+MeetCopScript2_StepLeft:
 	step_left
 	step_end
-; 0x78f74
 
-MovementData_0x78f74: ; 0x78f74
+MeetCopScript_WalkUp:
 	step_up
 	step_up
 	turn_head_right
 	step_end
-; 0x78f78
 
-MovementData_0x78f78: ; 0x78f78
+OfficerLeavesMovement:
 	step_down
 	step_down
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x78f7e
 
-MovementData_0x78f7e: ; 0x78f7e
+AideWalksRight1:
 	step_right
 	step_right
 	turn_head_up
 	step_end
-; 0x78f82
 
-MovementData_0x78f82: ; 0x78f82
+AideWalksRight2:
 	step_right
 	step_right
 	step_right
 	turn_head_up
 	step_end
-; 0x78f87
 
-MovementData_0x78f87: ; 0x78f87
+AideWalksLeft1:
 	step_left
 	step_left
 	turn_head_down
 	step_end
-; 0x78f8b
 
-MovementData_0x78f8b: ; 0x78f8b
+AideWalksLeft2:
 	step_left
 	step_left
 	step_left
 	turn_head_down
 	step_end
-; 0x78f90
 
-MovementData_0x78f90: ; 0x78f90
+ElmJumpUpMovement:
 	fix_facing
 	big_step_up
 	remove_fixed_facing
 	step_end
-; 0x78f94
 
-MovementData_0x78f94: ; 0x78f94
+ElmJumpDownMovement:
 	fix_facing
 	big_step_down
 	remove_fixed_facing
 	step_end
-; 0x78f98
 
-MovementData_0x78f98: ; 0x78f98
+ElmJumpLeftMovement:
 	fix_facing
 	big_step_left
 	remove_fixed_facing
 	step_end
-; 0x78f9c
 
-MovementData_0x78f9c: ; 0x78f9c
+ElmJumpRightMovement:
 	fix_facing
 	big_step_right
 	remove_fixed_facing
 	step_end
-; 0x78fa0
 
-MovementData_0x78fa0: ; 0x78fa0
+ElmsLab_ElmToDefaultPositionMovement1:
 	step_up
 	step_end
-; 0x78fa2
 
-MovementData_0x78fa2: ; 0x78fa2
+ElmsLab_ElmToDefaultPositionMovement2:
 	step_right
 	step_right
 	step_up
 	turn_head_down
 	step_end
-; 0x78fa7
 
-AfterCyndaquilMovement: ; 0x78fa7
+AfterCyndaquilMovement:
 	step_left
 	step_up
 	turn_head_up
 	step_end
-; 0x78fab
 
-AfterTotodileMovement: ; 0x78fab
-	step_left
-	step_left
-	step_up
-	turn_head_up
-	step_end
-; 0x78fb0
-
-AfterChikoritaMovement: ; 0x78fb0
-	step_left
+AfterTotodileMovement:
 	step_left
 	step_left
 	step_up
 	turn_head_up
 	step_end
-; 0x78fb6
 
-UnknownText_0x78fb6: ; 0x78fb6
+AfterChikoritaMovement:
+	step_left
+	step_left
+	step_left
+	step_up
+	turn_head_up
+	step_end
+
+ElmText_Intro:
 	text "ELM: <PLAY_G>!"
 	line "There you are!"
 
@@ -831,23 +760,20 @@ UnknownText_0x78fb6: ; 0x78fb6
 	para "that I recently"
 	line "caught."
 	done
-; 0x790fa
 
-UnknownText_0x790fa: ; 0x790fa
+ElmText_Accepted:
 	text "Thanks, <PLAY_G>!"
 
 	para "You're a great"
 	line "help!"
 	done
-; 0x7911a
 
-UnknownText_0x7911a: ; 0x7911a
+ElmText_Refused:
 	text "But… Please, I"
 	line "need your help!"
 	done
-; 0x7913a
 
-UnknownText_0x7913a: ; 0x7913a
+ElmText_ResearchAmbitions:
 	text "When I announce my"
 	line "findings, I'm sure"
 
@@ -860,9 +786,8 @@ UnknownText_0x7913a: ; 0x7913a
 	para "You can count on"
 	line "it!"
 	done
-; 0x791ae
 
-UnknownText_0x791ae: ; 0x791ae
+ElmText_GotAnEmail:
 	text "Oh, hey! I got an"
 	line "e-mail!"
 
@@ -871,9 +796,8 @@ UnknownText_0x791ae: ; 0x791ae
 
 	para "Okay…"
 	done
-; 0x791df
 
-UnknownText_0x791df: ; 0x791df
+ElmText_MissionFromMrPokemon:
 	text "Hey, listen."
 
 	para "I have an acquain-"
@@ -905,9 +829,8 @@ UnknownText_0x791df: ; 0x791df
 	para "<PLAY_G>, can you"
 	line "go in our place?"
 	done
-; 0x792ff
 
-UnknownText_0x792ff: ; 0x792ff
+ElmText_ChooseAPokemon:
 	text "I want you to"
 	line "raise one of the"
 
@@ -920,67 +843,58 @@ UnknownText_0x792ff: ; 0x792ff
 
 	para "Go on. Pick one!"
 	done
-; 0x79375
 
-UnknownText_0x79375: ; 0x79375
+ElmText_LetYourMonBattleIt:
 	text "If a wild #MON"
 	line "appears, let your"
 	cont "#MON battle it!"
 	done
-; 0x793a7
 
-LabWhereGoingText: ; 0x793a7
+LabWhereGoingText:
 	text "ELM: Wait! Where"
 	line "are you going?"
 	done
-; 0x793c8
 
-TakeCyndaquilText: ; 0x793c8
+TakeCyndaquilText:
 	text "ELM: You'll take"
 	line "CYNDAQUIL, the"
 	cont "fire #MON?"
 	done
-; 0x793f3
 
-TakeTotodileText: ; 0x793f3
+TakeTotodileText:
 	text "ELM: Do you want"
 	line "TOTODILE, the"
 	cont "water #MON?"
 	done
-; 0x7941f
 
-TakeChikoritaText: ; 0x7941f
+TakeChikoritaText:
 	text "ELM: So, you like"
 	line "CHIKORITA, the"
 	cont "grass #MON?"
 	done
-; 0x7944d
 
-DidntChooseStarterText: ; 0x7944d
+DidntChooseStarterText:
 	text "ELM: Think it over"
 	line "carefully."
 
 	para "Your partner is"
 	line "important."
 	done
-; 0x79487
 
-ChoseStarterText: ; 0x79487
+ChoseStarterText:
 	text "ELM: I think"
 	line "that's a great"
 	cont "#MON too!"
 	done
-; 0x794ad
 
-ReceivedStarterText: ; 0x794ad
+ReceivedStarterText:
 	text "<PLAYER> received"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
 	done
-; 0x794c0
 
-ElmDirectionsText1: ; 0x794c0
+ElmDirectionsText1:
 	text "MR.#MON lives a"
 	line "little bit beyond"
 
@@ -1000,7 +914,7 @@ ElmDirectionsText1: ; 0x794c0
 	line "anything comes up!"
 	done
 
-ElmDirectionsText2: ; 0x79581
+ElmDirectionsText2:
 	text "If your #MON is"
 	line "hurt, you should"
 
@@ -1011,17 +925,17 @@ ElmDirectionsText2: ; 0x79581
 	line "it anytime."
 	done
 
-ElmDirectionsText3: ; 0x795db
+ElmDirectionsText3:
 	text "<PLAY_G>, I'm"
 	line "counting on you!"
 	done
 
-GotElmsNumberText: ; 0x795f3
+GotElmsNumberText:
 	text "<PLAYER> got ELM's"
 	line "phone number."
 	done
 
-ElmDescribesMrPokemonText: ; 0x7960d
+ElmDescribesMrPokemonText:
 	text "MR.#MON goes"
 	line "everywhere and"
 	cont "finds rarities."
@@ -1031,7 +945,7 @@ ElmDescribesMrPokemonText: ; 0x7960d
 	cont "not very useful…"
 	done
 
-ElmPokeBallText: ; 0x79668
+ElmPokeBallText:
 	text "It contains a"
 	line "#MON caught by"
 	cont "PROF.ELM."
@@ -1047,7 +961,7 @@ ElmsLabHealingMachineText2:
 	line "heal your #MON?"
 	done
 
-ElmAfterTheftText1: ; 0x796cd
+ElmAfterTheftText1:
 	text "ELM: <PLAY_G>, this"
 	line "is terrible…"
 
@@ -1055,30 +969,26 @@ ElmAfterTheftText1: ; 0x796cd
 	line "MR.#MON's big"
 	cont "discovery?"
 	done
-; 0x79712
 
-ElmAfterTheftText2: ; 0x79712
+ElmAfterTheftText2:
 	text "<PLAYER> handed"
 	line "the MYSTERY EGG to"
 	cont "PROF.ELM."
 	done
-; 0x79739
 
-ElmAfterTheftText3: ; 0x79739
+ElmAfterTheftText3:
 	text "ELM: This?"
 	done
-; 0x79745
 
-ElmAfterTheftText4: ; 0x79745
+ElmAfterTheftText4:
 	text "But… Is it a"
 	line "#MON EGG?"
 
 	para "If it is, it is a"
 	line "great discovery!"
 	done
-; 0x79780
 
-ElmAfterTheftText5: ; 0x79780
+ElmAfterTheftText5:
 	text "ELM: What?!?"
 
 	para "PROF.OAK gave you"
@@ -1111,9 +1021,8 @@ ElmAfterTheftText5: ; 0x79780
 	line "would be the one"
 	cont "in VIOLET CITY."
 	done
-; 0x798cf
 
-ElmAfterTheftText6: ; 0x798cf
+ElmAfterTheftText6:
 	text "…<PLAY_G>. The"
 	line "road to the"
 
@@ -1124,18 +1033,16 @@ ElmAfterTheftText6: ; 0x798cf
 	line "make sure that you"
 	cont "talk to your mom."
 	done
-; 0x7993c
 
-ElmStudyingEggText: ; 0x7993c
+ElmStudyingEggText:
 	text "ELM: Don't give"
 	line "up! I'll call if"
 
 	para "I learn anything"
 	line "about that EGG!"
 	done
-; 0x7997d
 
-ElmAideHasEggText: ; 0x7997d
+ElmAideHasEggText:
 	text "ELM: <PLAY_G>?"
 	line "Didn't you meet my"
 	cont "assistant?"
@@ -1150,36 +1057,31 @@ ElmAideHasEggText: ; 0x7997d
 	line "missed him. Try to"
 	cont "catch him there."
 	done
-; 0x79a1b
 
-ElmWaitingEggHatchText: ; 0x79a1b
+ElmWaitingEggHatchText:
 	text "ELM: Hey, has that"
 	line "EGG changed any?"
 	done
-; 0x79a40
 
-UnknownText_0x79a40: ; 0x79a40
+UnknownText_0x79a40:
 	text "<PLAY_G>? I thought"
 	line "the EGG hatched."
 
 	para "Where is the"
 	line "#MON?"
 	done
-; 0x79a72
 
-ShowElmTogepiText1: ; 0x79a72
+ShowElmTogepiText1:
 	text "ELM: <PLAY_G>, you"
 	line "look great!"
 	done
-; 0x79a8b
 
-ShowElmTogepiText2: ; 0x79a8b
+ShowElmTogepiText2:
 	text "What?"
 	line "That #MON!?!"
 	done
-; 0x79a9f
 
-ShowElmTogepiText3: ; 0x79a9f
+ShowElmTogepiText3:
 	text "The EGG hatched!"
 	line "So, #MON are"
 	cont "born from EGGS…"
@@ -1191,9 +1093,8 @@ ShowElmTogepiText3: ; 0x79a9f
 	line "a lot of research"
 	cont "to be done."
 	done
-; 0x79b1c
 
-ElmGiveEverstoneText1: ; 0x79b1c
+ElmGiveEverstoneText1:
 	text "Thanks, <PLAY_G>!"
 	line "You're helping"
 
@@ -1204,9 +1105,8 @@ ElmGiveEverstoneText1: ; 0x79b1c
 	line "this as a token of"
 	cont "our appreciation."
 	done
-; 0x79b8d
 
-ElmGiveEverstoneText2: ; 0x79b8d
+ElmGiveEverstoneText2:
 	text "That's an"
 	line "EVERSTONE."
 
@@ -1224,16 +1124,14 @@ ElmGiveEverstoneText2: ; 0x79b8d
 	line "MON you don't want"
 	cont "to evolve."
 	done
-; 0x79c37
 
-UnknownText_0x79c37: ; 0x79c37
+ElmText_CallYou:
 	text "ELM: <PLAY_G>, I'll"
 	line "call you if any-"
 	cont "thing comes up."
 	done
-; 0x79c65
 
-UnknownText_0x79c65: ; 0x79c65
+AideText_AfterTheft:
 	text "…sigh… That"
 	line "stolen #MON."
 
@@ -1246,9 +1144,8 @@ UnknownText_0x79c65: ; 0x79c65
 	para "person turns bad"
 	line "itself."
 	done
-; 0x79cd0
 
-ElmGiveMasterBallText1: ; 0x79cd0
+ElmGiveMasterBallText1:
 	text "ELM: Hi, <PLAY_G>!"
 	line "Thanks to you, my"
 
@@ -1259,9 +1156,8 @@ ElmGiveMasterBallText1: ; 0x79cd0
 	line "token of my"
 	cont "appreciation."
 	done
-; 0x79d31
 
-ElmGiveMasterBallText2: ; 0x79d31
+ElmGiveMasterBallText2:
 	text "The MASTER BALL is"
 	line "the best!"
 
@@ -1281,9 +1177,8 @@ ElmGiveMasterBallText2: ; 0x79d31
 	para "use of it than I"
 	line "can, <PLAY_G>!"
 	done
-; 0x79df3
 
-ElmGiveTicketText1: ; 0x79df3
+ElmGiveTicketText1:
 	text "ELM: <PLAY_G>!"
 	line "There you are!"
 
@@ -1297,9 +1192,8 @@ ElmGiveTicketText1: ; 0x79df3
 	para "Now you can catch"
 	line "#MON in KANTO."
 	done
-; 0x79e6f
 
-ElmGiveTicketText2: ; 0x79e6f
+ElmGiveTicketText2:
 	text "The ship departs"
 	line "from OLIVINE CITY."
 
@@ -1313,30 +1207,26 @@ ElmGiveTicketText2: ; 0x79e6f
 	para "Give my regards to"
 	line "PROF.OAK in KANTO!"
 	done
-; 0x79f0b
 
-UnknownText_0x79f0b: ; 0x79f0b
+ElmsLabSignpostText_Egg:
 	text "It's the #MON"
 	line "EGG being studied"
 	cont "by PROF.ELM."
 	done
-; 0x79f38
 
-UnknownText_0x79f38: ; 0x79f38
+AideText_GiveYouPotions:
 	text "<PLAY_G>, I want"
 	line "you to have this"
 	cont "for your errand."
 	done
-; 0x79f65
 
-UnknownText_0x79f65: ; 0x79f65
+AideText_AlwaysBusy:
 	text "There are only two"
 	line "of us, so we're"
 	cont "always busy."
 	done
-; 0x79f95
 
-UnknownText_0x79f95: ; 0x79f95
+AideText_TheftTestimony:
 	text "There was a loud"
 	line "noise outside…"
 
@@ -1360,17 +1250,15 @@ UnknownText_0x79f95: ; 0x79f95
 	para "person turns bad"
 	line "itself."
 	done
-; 0x7a078
 
-UnknownText_0x7a078: ; 0x7a078
+AideText_GiveYouBalls:
 	text "<PLAY_G>!"
 
 	para "Use these on your"
 	line "#DEX quest!"
 	done
-; 0x7a09a
 
-UnknownText_0x7a09a: ; 0x7a09a
+AideText_ExplainBalls:
 	text "To add to your"
 	line "#DEX, you have"
 	cont "to catch #MON."
@@ -1379,9 +1267,8 @@ UnknownText_0x7a09a: ; 0x7a09a
 	line "at wild #MON"
 	cont "to get them."
 	done
-; 0x7a0f0
 
-UnknownText_0x7a0f0: ; 0x7a0f0
+ElmsLabOfficerText1:
 	text "I heard a #MON"
 	line "was stolen here…"
 
@@ -1401,16 +1288,14 @@ UnknownText_0x7a0f0: ; 0x7a0f0
 	para "Did you happen to"
 	line "get his name?"
 	done
-; 0x7a1c0
 
-UnknownText_0x7a1c0: ; 0x7a1c0
+ElmsLabOfficerText2:
 	text "OK! So <RIVAL>"
 	line "was his name."
 
 	para "Thanks for helping"
 	line "my investigation!"
 	done
-; 0x7a1fd
 
 ElmsLabWindowText1:
 	text "The window's open."
@@ -1482,50 +1367,50 @@ ElmsLabPCText:
 	line "screen…"
 	done
 
-ElmsLab_MapEventHeader: ; 0x7a3de
+ElmsLab_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $4, 1, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	warp_def $b, $5, 1, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 8
 	xy_trigger 1, $6, $4, $0, LabTryToLeaveScript, $0, $0
 	xy_trigger 1, $6, $5, $0, LabTryToLeaveScript, $0, $0
 	xy_trigger 3, $5, $4, $0, MeetCopScript, $0, $0
-	xy_trigger 3, $5, $5, $0, UnknownScript_0x78f12, $0, $0
-	xy_trigger 5, $8, $4, $0, UnknownScript_0x78e7f, $0, $0
-	xy_trigger 5, $8, $5, $0, UnknownScript_0x78e8e, $0, $0
-	xy_trigger 6, $8, $4, $0, UnknownScript_0x78ead, $0, $0
-	xy_trigger 6, $8, $5, $0, UnknownScript_0x78ebc, $0, $0
+	xy_trigger 3, $5, $5, $0, MeetCopScript2, $0, $0
+	xy_trigger 5, $8, $4, $0, AideScript_WalkPotions1, $0, $0
+	xy_trigger 5, $8, $5, $0, AideScript_WalkPotions2, $0, $0
+	xy_trigger 6, $8, $4, $0, AideScript_WalkBalls1, $0, $0
+	xy_trigger 6, $8, $5, $0, AideScript_WalkBalls2, $0, $0
 
-	; signposts
+.Signposts:
 	db 16
-	signpost 1, 2, $0, ElmsLabHealingMachine
-	signpost 1, 6, $0, ElmsLabBookshelf
-	signpost 1, 7, $0, ElmsLabBookshelf
-	signpost 1, 8, $0, ElmsLabBookshelf
-	signpost 1, 9, $0, ElmsLabBookshelf
-	signpost 7, 0, $0, ElmsLabTravelTip1
-	signpost 7, 1, $0, ElmsLabTravelTip2
-	signpost 7, 2, $0, ElmsLabTravelTip3
-	signpost 7, 3, $0, ElmsLabTravelTip4
-	signpost 7, 6, $0, ElmsLabBookshelf
-	signpost 7, 7, $0, ElmsLabBookshelf
-	signpost 7, 8, $0, ElmsLabBookshelf
-	signpost 7, 9, $0, ElmsLabBookshelf
-	signpost 3, 9, $0, ElmsLabTrashcan
-	signpost 0, 5, $0, ElmsLabWindow
-	signpost 5, 3, $2, ElmsLabPC
+	signpost 1, 2, SIGNPOST_READ, ElmsLabHealingMachine
+	signpost 1, 6, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 7, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 8, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 1, 9, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 0, SIGNPOST_READ, ElmsLabTravelTip1
+	signpost 7, 1, SIGNPOST_READ, ElmsLabTravelTip2
+	signpost 7, 2, SIGNPOST_READ, ElmsLabTravelTip3
+	signpost 7, 3, SIGNPOST_READ, ElmsLabTravelTip4
+	signpost 7, 6, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 7, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 8, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 7, 9, SIGNPOST_READ, ElmsLabBookshelf
+	signpost 3, 9, SIGNPOST_READ, ElmsLabTrashcan
+	signpost 0, 5, SIGNPOST_READ, ElmsLabWindow
+	signpost 5, 3, SIGNPOST_DOWN, ElmsLabPC
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_ELM, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, $ffff
-	person_event SPRITE_SCIENTIST, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, $0701
-	person_event SPRITE_POKE_BALL, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, $0640
-	person_event SPRITE_POKE_BALL, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, $0641
-	person_event SPRITE_POKE_BALL, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, $0642
-	person_event SPRITE_OFFICER, 7, 9, $7, $0, 255, 255, $90, 0, CopScript, $0702
+	person_event SPRITE_ELM, 6, 9, OW_UP | $2, $0, -1, -1, $0, 0, ProfElmScript, -1
+	person_event SPRITE_SCIENTIST, 13, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	person_event SPRITE_POKE_BALL, 7, 10, OW_DOWN | $1, $0, -1, -1, $0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 7, 11, OW_DOWN | $1, $0, -1, -1, $0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 7, 12, OW_DOWN | $1, $0, -1, -1, $0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_OFFICER, 7, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CopScript, EVENT_COP_IN_ELMS_LAB

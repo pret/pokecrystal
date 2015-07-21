@@ -1,16 +1,14 @@
-SilphCo1F_MapScriptHeader: ; 0x18abe3
-	; trigger count
+SilphCo1F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x18abe5
 
-ReceptionistScript_0x18abe5: ; 0x18abe5
+ReceptionistScript_0x18abe5:
 	jumptextfaceplayer UnknownText_0x18ac03
-; 0x18abe8
 
-OfficerScript_0x18abe8: ; 0x18abe8
+OfficerScript_0x18abe8:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_UP_GRADE
@@ -20,22 +18,20 @@ OfficerScript_0x18abe8: ; 0x18abe8
 	verbosegiveitem UP_GRADE, 1
 	iffalse UnknownScript_0x18ac01
 	setevent EVENT_GOT_UP_GRADE
-UnknownScript_0x18abfd: ; 0x18abfd
+UnknownScript_0x18abfd:
 	writetext UnknownText_0x18aca8
 	closetext
-UnknownScript_0x18ac01: ; 0x18ac01
+UnknownScript_0x18ac01:
 	loadmovesprites
 	end
-; 0x18ac03
 
-UnknownText_0x18ac03: ; 0x18ac03
+UnknownText_0x18ac03:
 	text "Welcome. This is"
 	line "SILPH CO.'s HEAD"
 	cont "OFFICE BUILDING."
 	done
-; 0x18ac36
 
-UnknownText_0x18ac36: ; 0x18ac36
+UnknownText_0x18ac36:
 	text "Only employees are"
 	line "permitted to go"
 	cont "upstairs."
@@ -46,34 +42,31 @@ UnknownText_0x18ac36: ; 0x18ac36
 	para "have this neat"
 	line "little souvenir."
 	done
-; 0x18aca8
 
-UnknownText_0x18aca8: ; 0x18aca8
+UnknownText_0x18aca8:
 	text "It's SILPH CO.'s"
 	line "latest product."
 
 	para "It's not for sale"
 	line "anywhere yet."
 	done
-; 0x18ace7
 
-SilphCo1F_MapEventHeader: ; 0x18ace7
+SilphCo1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 7, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $3, 7, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 6, 8, $6, $0, 255, 255, $90, 0, ReceptionistScript_0x18abe5, $ffff
-	person_event SPRITE_OFFICER, 5, 17, $6, $0, 255, 255, $90, 0, OfficerScript_0x18abe8, $ffff
-; 0x18ad11
+	person_event SPRITE_RECEPTIONIST, 6, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ReceptionistScript_0x18abe5, -1
+	person_event SPRITE_OFFICER, 5, 17, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x18abe8, -1

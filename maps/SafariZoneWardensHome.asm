@@ -1,8 +1,8 @@
 SafariZoneWardensHome_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 WardensGranddaughter:
@@ -77,21 +77,21 @@ SafariZoneWardensHome_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 6, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $7, $3, 6, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 1, 0, $0, WardensHomeBookshelf
-	signpost 1, 1, $0, WardensHomeBookshelf
-	signpost 0, 7, $0, WardenPhoto
-	signpost 0, 9, $0, SafariZonePhoto
+	signpost 1, 0, SIGNPOST_READ, WardensHomeBookshelf
+	signpost 1, 1, SIGNPOST_READ, WardensHomeBookshelf
+	signpost 0, 7, SIGNPOST_READ, WardenPhoto
+	signpost 0, 9, SIGNPOST_READ, SafariZonePhoto
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_LASS, 8, 6, $9, $0, 255, 255, $a0, 0, WardensGranddaughter, $ffff
+	person_event SPRITE_LASS, 8, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, WardensGranddaughter, -1

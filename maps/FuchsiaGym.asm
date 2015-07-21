@@ -1,14 +1,13 @@
-FuchsiaGym_MapScriptHeader: ; 0x195db7
-	; trigger count
+FuchsiaGym_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x195db9
 
-JanineScript_0x195db9: ; 0x195db9
-	checkflag $0027
-	iftrue UnknownScript_0x195e00
+JanineScript_0x195db9:
+	checkflag ENGINE_SOULBADGE
+	iftrue .FightDone
 	applymovement $2, MovementData_0x195f27
 	faceplayer
 	loadfont
@@ -20,52 +19,49 @@ JanineScript_0x195db9: ; 0x195db9
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_JANINE
-	setevent $0517
-	setevent $051a
-	setevent $0482
-	setevent $041e
-	variablesprite $7, $28
-	variablesprite $8, $28
-	variablesprite $9, $28
-	variablesprite $a, $27
-	special Function14209
+	setevent EVENT_BEAT_LASS_ALICE
+	setevent EVENT_BEAT_LASS_LINDA
+	setevent EVENT_BEAT_PICNICKER_CINDY
+	setevent EVENT_BEAT_CAMPER_BARRY
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0027
+	setflag ENGINE_SOULBADGE
 	jump UnknownScript_0x195e02
-; 0x195e00
-
-UnknownScript_0x195e00: ; 0x195e00
+.FightDone
 	faceplayer
 	loadfont
-UnknownScript_0x195e02: ; 0x195e02
+UnknownScript_0x195e02:
 	checkevent EVENT_GOT_TM06_TOXIC
 	iftrue UnknownScript_0x195e15
 	writetext UnknownText_0x196002
 	keeptextopen
-	verbosegiveitem TM_06, 1
+	verbosegiveitem TM_TOXIC, 1
 	iffalse UnknownScript_0x195e15
 	setevent EVENT_GOT_TM06_TOXIC
-UnknownScript_0x195e15: ; 0x195e15
+UnknownScript_0x195e15:
 	writetext UnknownText_0x196074
 	closetext
 	loadmovesprites
 	end
-; 0x195e1b
 
-FuschiaGym1Script_0x195e1b: ; 0x195e1b
-	checkevent $0517
+FuschiaGym1Script_0x195e1b:
+	checkevent EVENT_BEAT_LASS_ALICE
 	iftrue UnknownScript_0x195e2c
 	applymovement $3, MovementData_0x195f27
 	faceplayer
-	variablesprite $7, $28
-	special Function14209
-UnknownScript_0x195e2c: ; 0x195e2c
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	special RunCallback_04
+UnknownScript_0x195e2c:
 	faceplayer
 	loadfont
-	checkevent $0517
+	checkevent EVENT_BEAT_LASS_ALICE
 	iftrue UnknownScript_0x195e4f
 	writetext UnknownText_0x1960e6
 	closetext
@@ -75,34 +71,31 @@ UnknownScript_0x195e2c: ; 0x195e2c
 	startbattle
 	iftrue UnknownScript_0x195e4a
 	returnafterbattle
-	setevent $0517
+	setevent EVENT_BEAT_LASS_ALICE
 	end
-; 0x195e4a
 
-UnknownScript_0x195e4a: ; 0x195e4a
-	variablesprite $7, $a
+UnknownScript_0x195e4a:
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
 	returnafterbattle
 	end
-; 0x195e4f
 
-UnknownScript_0x195e4f: ; 0x195e4f
+UnknownScript_0x195e4f:
 	writetext UnknownText_0x196139
 	closetext
 	loadmovesprites
 	end
-; 0x195e55
 
-FuschiaGym2Script_0x195e55: ; 0x195e55
-	checkevent $051a
+FuschiaGym2Script_0x195e55:
+	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue UnknownScript_0x195e66
 	applymovement $4, MovementData_0x195f27
 	faceplayer
-	variablesprite $8, $28
-	special Function14209
-UnknownScript_0x195e66: ; 0x195e66
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
+	special RunCallback_04
+UnknownScript_0x195e66:
 	faceplayer
 	loadfont
-	checkevent $051a
+	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue UnknownScript_0x195e89
 	writetext UnknownText_0x196166
 	closetext
@@ -112,34 +105,31 @@ UnknownScript_0x195e66: ; 0x195e66
 	startbattle
 	iftrue UnknownScript_0x195e84
 	returnafterbattle
-	setevent $051a
+	setevent EVENT_BEAT_LASS_LINDA
 	end
-; 0x195e84
 
-UnknownScript_0x195e84: ; 0x195e84
-	variablesprite $8, $a
+UnknownScript_0x195e84:
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
 	returnafterbattle
 	end
-; 0x195e89
 
-UnknownScript_0x195e89: ; 0x195e89
+UnknownScript_0x195e89:
 	writetext UnknownText_0x196199
 	closetext
 	loadmovesprites
 	end
-; 0x195e8f
 
-FuschiaGym3Script_0x195e8f: ; 0x195e8f
-	checkevent $0482
+FuschiaGym3Script_0x195e8f:
+	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue UnknownScript_0x195ea0
 	applymovement $5, MovementData_0x195f27
 	faceplayer
-	variablesprite $9, $28
-	special Function14209
-UnknownScript_0x195ea0: ; 0x195ea0
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
+	special RunCallback_04
+UnknownScript_0x195ea0:
 	faceplayer
 	loadfont
-	checkevent $0482
+	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue UnknownScript_0x195ec3
 	writetext UnknownText_0x1961bb
 	closetext
@@ -149,34 +139,31 @@ UnknownScript_0x195ea0: ; 0x195ea0
 	startbattle
 	iftrue UnknownScript_0x195ebe
 	returnafterbattle
-	setevent $0482
+	setevent EVENT_BEAT_PICNICKER_CINDY
 	end
-; 0x195ebe
 
-UnknownScript_0x195ebe: ; 0x195ebe
-	variablesprite $9, $a
+UnknownScript_0x195ebe:
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
 	returnafterbattle
 	end
-; 0x195ec3
 
-UnknownScript_0x195ec3: ; 0x195ec3
+UnknownScript_0x195ec3:
 	writetext UnknownText_0x19620c
 	closetext
 	loadmovesprites
 	end
-; 0x195ec9
 
-FuschiaGym4Script_0x195ec9: ; 0x195ec9
-	checkevent $041e
+FuschiaGym4Script_0x195ec9:
+	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue UnknownScript_0x195eda
 	applymovement $6, MovementData_0x195f27
 	faceplayer
-	variablesprite $a, $27
-	special Function14209
-UnknownScript_0x195eda: ; 0x195eda
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
+	special RunCallback_04
+UnknownScript_0x195eda:
 	faceplayer
 	loadfont
-	checkevent $041e
+	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue UnknownScript_0x195efd
 	writetext UnknownText_0x196228
 	closetext
@@ -186,24 +173,21 @@ UnknownScript_0x195eda: ; 0x195eda
 	startbattle
 	iftrue UnknownScript_0x195ef8
 	returnafterbattle
-	setevent $041e
+	setevent EVENT_BEAT_CAMPER_BARRY
 	end
-; 0x195ef8
 
-UnknownScript_0x195ef8: ; 0x195ef8
-	variablesprite $a, $a
+UnknownScript_0x195ef8:
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
 	returnafterbattle
 	end
-; 0x195efd
 
-UnknownScript_0x195efd: ; 0x195efd
+UnknownScript_0x195efd:
 	writetext UnknownText_0x19626b
 	closetext
 	loadmovesprites
 	end
-; 0x195f03
 
-FuchsiaGymGuyScript: ; 0x195f03
+FuchsiaGymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_JANINE
@@ -218,7 +202,6 @@ FuchsiaGymGuyScript: ; 0x195f03
 	closetext
 	loadmovesprites
 	end
-; 0x195f17
 
 FuchsiaGymStatue:
 	checkflag ENGINE_SOULBADGE
@@ -228,7 +211,7 @@ FuchsiaGymStatue:
 	trainertotext JANINE, 1, $1
 	jumpstd gymstatue2
 
-MovementData_0x195f27: ; 0x195f27
+MovementData_0x195f27:
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -243,9 +226,8 @@ MovementData_0x195f27: ; 0x195f27
 	turn_head_right
 	turn_head_down
 	step_end
-; 0x195f35
 
-UnknownText_0x195f35: ; 0x195f35
+UnknownText_0x195f35:
 	text "Fufufufu…"
 
 	para "I'm sorry to dis-"
@@ -258,9 +240,8 @@ UnknownText_0x195f35: ; 0x195f35
 	para "JANINE of FUCHSIA"
 	line "GYM, that's me!"
 	done
-; 0x195fa1
 
-UnknownText_0x195fa1: ; 0x195fa1
+UnknownText_0x195fa1:
 	text "JANINE: You're a"
 	line "tough one. You"
 	cont "definitely won…"
@@ -268,15 +249,13 @@ UnknownText_0x195fa1: ; 0x195fa1
 	para "Here's SOULBADGE."
 	line "Take it."
 	done
-; 0x195feb
 
-UnknownText_0x195feb: ; 0x195feb
+UnknownText_0x195feb:
 	text "<PLAYER> received"
 	line "SOULBADGE."
 	done
-; 0x196002
 
-UnknownText_0x196002: ; 0x196002
+UnknownText_0x196002:
 	text "JANINE: You're so"
 	line "tough! I have a"
 	cont "special gift!"
@@ -287,9 +266,8 @@ UnknownText_0x196002: ; 0x196002
 	para "steadily saps the"
 	line "victim's HP."
 	done
-; 0x196074
 
-UnknownText_0x196074: ; 0x196074
+UnknownText_0x196074:
 	text "JANINE: I'm going"
 	line "to really apply"
 
@@ -300,9 +278,8 @@ UnknownText_0x196074: ; 0x196074
 	line "better than both"
 	cont "Father and you!"
 	done
-; 0x1960e6
 
-UnknownText_0x1960e6: ; 0x1960e6
+UnknownText_0x1960e6:
 	text "Fufufu!"
 
 	para "I'm JANINE, the"
@@ -311,39 +288,33 @@ UnknownText_0x1960e6: ; 0x1960e6
 	para "No, I'm not!"
 	line "Gotcha, sucker!"
 	done
-; 0x196126
 
-UnknownText_0x196126: ; 0x196126
+UnknownText_0x196126:
 	text "I had you fooled…"
 	done
-; 0x196139
 
-UnknownText_0x196139: ; 0x196139
+UnknownText_0x196139:
 	text "How will you dis-"
 	line "tinguish our real"
 	cont "LEADER?"
 	done
-; 0x196166
 
-UnknownText_0x196166: ; 0x196166
+UnknownText_0x196166:
 	text "Fooled you!"
 	line "Hahaha!"
 	done
-; 0x19617b
 
-UnknownText_0x19617b: ; 0x19617b
+UnknownText_0x19617b:
 	text "Ooh… I lost…"
 	line "You're not weak…"
 	done
-; 0x196199
 
-UnknownText_0x196199: ; 0x196199
+UnknownText_0x196199:
 	text "Well? Wasn't my"
 	line "disguise perfect?"
 	done
-; 0x1961bb
 
-UnknownText_0x1961bb: ; 0x1961bb
+UnknownText_0x1961bb:
 	text "I'm JANINE!"
 
 	para "How did you know I"
@@ -351,42 +322,36 @@ UnknownText_0x1961bb: ; 0x1961bb
 
 	para "Let's battle!"
 	done
-; 0x1961f1
 
-UnknownText_0x1961f1: ; 0x1961f1
+UnknownText_0x1961f1:
 	text "Darn it!"
 	line "I wanted to win!"
 	done
-; 0x19620c
 
-UnknownText_0x19620c: ; 0x19620c
+UnknownText_0x19620c:
 	text "You must be"
 	line "getting tired."
 	done
-; 0x196228
 
-UnknownText_0x196228: ; 0x196228
+UnknownText_0x196228:
 	text "Wahahaha!"
 
 	para "You betcha!"
 	line "I'm JANINE!"
 	done
-; 0x19624a
 
-UnknownText_0x19624a: ; 0x19624a
+UnknownText_0x19624a:
 	text "My disguise was"
 	line "right on! Dang!"
 	done
-; 0x19626b
 
-UnknownText_0x19626b: ; 0x19626b
+UnknownText_0x19626b:
 	text "Hey, you. Was my"
 	line "disguise cute or"
 	cont "what, huh?"
 	done
-; 0x196299
 
-FuchsiaGymGuyText: ; 0x196299
+FuchsiaGymGuyText:
 	text "Yo, CHAMP in"
 	line "making!"
 
@@ -400,38 +365,35 @@ FuchsiaGymGuyText: ; 0x196299
 	para "Which of them is"
 	line "the real JANINE?"
 	done
-; 0x196325
 
-FuchsiaGymGuyWinText: ; 0x196325
+FuchsiaGymGuyWinText:
 	text "That was a great"
 	line "battle, trainer"
 	cont "from JOHTO!"
 	done
-; 0x196353
 
-FuchsiaGym_MapEventHeader: ; 0x196353
+FuchsiaGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 3, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $11, $5, 3, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 15, 3, $0, FuchsiaGymStatue
-	signpost 15, 6, $0, FuchsiaGymStatue
+	signpost 15, 3, SIGNPOST_READ, FuchsiaGymStatue
+	signpost 15, 6, SIGNPOST_READ, FuchsiaGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_JANINE, 14, 5, $3, $0, 255, 255, $90, 0, JanineScript_0x195db9, $ffff
-	person_event SPRITE_FUSCHIA_GYM_1, 11, 9, $a, $0, 255, 255, $90, 0, FuschiaGym1Script_0x195e1b, $ffff
-	person_event SPRITE_FUSCHIA_GYM_2, 15, 9, $a, $0, 255, 255, $90, 0, FuschiaGym2Script_0x195e55, $ffff
-	person_event SPRITE_FUSCHIA_GYM_3, 8, 13, $a, $0, 255, 255, $90, 0, FuschiaGym3Script_0x195e8f, $ffff
-	person_event SPRITE_FUSCHIA_GYM_4, 6, 8, $a, $0, 255, 255, $90, 0, FuschiaGym4Script_0x195ec9, $ffff
-	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 0, FuchsiaGymGuyScript, $ffff
-; 0x1963bb
+	person_event SPRITE_JANINE, 14, 5, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, JanineScript_0x195db9, -1
+	person_event SPRITE_FUCHSIA_GYM_1, 11, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FuschiaGym1Script_0x195e1b, -1
+	person_event SPRITE_FUCHSIA_GYM_2, 15, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FuschiaGym2Script_0x195e55, -1
+	person_event SPRITE_FUCHSIA_GYM_3, 8, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FuschiaGym3Script_0x195e8f, -1
+	person_event SPRITE_FUCHSIA_GYM_4, 6, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FuschiaGym4Script_0x195ec9, -1
+	person_event SPRITE_GYM_GUY, 19, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FuchsiaGymGuyScript, -1

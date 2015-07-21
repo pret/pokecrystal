@@ -114,8 +114,9 @@ Function1000ba: ; 1000ba
 	ld a, [wcd25]
 	ld e, a
 	ld d, $0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [CreditsTimer]
 	call GetFarHalfword
 	ld a, [CreditsTimer]
@@ -308,7 +309,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	callba Function8c084
+	callba FadeBlackBGMap
 	callba Function106464
 	call HideSprites
 	call DelayFrame
@@ -326,7 +327,7 @@ Function100232: ; 100232
 	push de
 	callba Function106464
 	call Function3f20
-	call Function1ad2
+	call DrawOnMap
 	hlcoord 1, 2
 	pop de
 	call PlaceString
@@ -796,7 +797,7 @@ Function1004f4: ; 1004f4
 Function100504: ; 100504
 	push de
 	call Function3f20
-	call Function1ad2
+	call DrawOnMap
 	pop de
 	hlcoord 4, 2
 	call PlaceString
@@ -829,7 +830,7 @@ Jumptable_10052a: ; 10052a
 
 Function100534: ; 100534
 	call Function100513
-	call Function1ad2
+	call DrawOnMap
 	call Function321c
 	ld a, [wcd28]
 	inc a
@@ -903,7 +904,7 @@ Function100597: ; 100597
 	ld [wcfa9], a
 
 .asm_1005a6
-	call Function1c07
+	call ExitMenu
 	ld a, [wcd26]
 	set 7, a
 	ld [wcd26], a
@@ -954,7 +955,7 @@ Function1005e1: ; 1005e1
 	xor a
 	ld [wcfa9], a
 .asm_1005f0
-	call Function1c07
+	call ExitMenu
 	ld a, [wcd26]
 	set 7, a
 	ld [wcd26], a
@@ -1157,9 +1158,9 @@ Function1006fd: ; 1006fd
 	ld hl, $a800
 	call GetSRAMBank
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	call CloseSRAM
 	ret
 ; 10070d
@@ -1792,7 +1793,7 @@ Function100b12: ; 100b12
 	call Function100ed4
 	ld a, [wcf88]
 	ld [wd0d2], a
-	call Function1c07
+	call ExitMenu
 	ret
 ; 100b45
 
@@ -1828,7 +1829,7 @@ Function100b7a: ; 100b7a
 	rst FarCall
 	callba Function24085
 	callba MobileTextBorder
-	call Function1ad2
+	call DrawOnMap
 	call Function321c
 	callba Function2411a
 	ld hl, wcfa5
@@ -1892,8 +1893,9 @@ Function100bc2: ; 100bc2
 	ld a, [wcfa9]
 	ld b, a
 	ld a, [wd0eb]
+rept 2
 	inc a
-	inc a
+endr
 	cp b
 	jp nz, .asm_100bcb
 	ld a, $1
@@ -2078,11 +2080,11 @@ Function100d22: ; 100d22
 
 Function100d67: ; 100d67
 	ld hl, MenuDataHeader_100d88
-	call Function1d3c
+	call CopyMenuDataHeader
 	xor a
 	ld [hBGMapMode], a
 	call Function1cbb
-	call Function1ad2
+	call DrawOnMap
 	call Function1c89
 	call WaitBGMap
 	call Function1c66
@@ -2513,8 +2515,9 @@ Unknown_10102c: ; 10102c
 Function101050: ; 101050
 	call Function10107d
 	ld a, [OTPartyCount]
+rept 2
 	ld hl, $c608
-	ld hl, $c608
+endr
 	ld bc, $01b3
 	call Function1010de
 	ld hl, wc7bb
@@ -2809,7 +2812,7 @@ Jumptable_101247: ; 101247
 ; 101251
 
 Function101251: ; 101251
-	call Function1ad2
+	call DrawOnMap
 	call ResetWindow
 	ld hl, UnknownText_0x1021f4
 	call Function1021e0
@@ -2826,7 +2829,7 @@ Function101265: ; 101265
 ; 10126c
 
 Function10126c: ; 10126c
-	call Function1ad2
+	call DrawOnMap
 	callba Script_reloadmappart
 	ld hl, UnknownText_0x1021f4
 	call Function1021e0
@@ -3015,7 +3018,7 @@ Function1013aa: ; 1013aa
 	call Function1d7d
 	call Function2bae
 	callba Function106464
-	call Function1ad2
+	call DrawOnMap
 	call Function2b5c
 	ret
 ; 1013c0
@@ -4171,7 +4174,7 @@ Function101b70: ; 101b70
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	call Function1ad2
+	call DrawOnMap
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a
@@ -4494,7 +4497,7 @@ Function101d95: ; 101d95
 
 Function101db2: ; 101db2
 	callba Function103302
-	call Function1c07
+	call ExitMenu
 	ld hl, wcd29
 	set 5, [hl]
 	jr c, .asm_101dca
@@ -4696,8 +4699,9 @@ Function101ee2: ; 101ee2
 Function101ee4: ; 101ee4
 	ld d, 0
 	ld hl, Unknown_101ef5
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -4972,16 +4976,16 @@ Function102142: ; 102142
 	call Function10218d
 	call Function102180
 	ld hl, UnknownText_0x1021d1
-	call Function1d4f
+	call MenuTextBox
 	ld de, SFX_LEVEL_UP
 	call PlaySFX
 	call Functiona36
-	call Function1c07
+	call ExitMenu
 	call Function10219f
 	ld hl, UnknownText_0x1021d6
-	call Function1d4f
+	call MenuTextBox
 	call YesNoBox
-	call Function1c07
+	call ExitMenu
 	jr c, .asm_10217c
 	call Function1021b8
 	jr c, .asm_10217c
@@ -5051,9 +5055,9 @@ UnknownText_0x1021db: ; 1021d1
 ; 1021e0
 
 Function1021e0: ; 1021e0
-	call Function1d4f
+	call MenuTextBox
 	call Functiona36
-	call Function1c07
+	call ExitMenu
 	ret
 ; 1021ea
 
@@ -6207,7 +6211,7 @@ Function102984: ; 102984
 
 Function102996: ; 102996
 	call Function1029af
-	call Function1c07
+	call ExitMenu
 	scf
 	ret
 ; 10299e
@@ -6281,7 +6285,7 @@ Function1029fe: ; 1029fe
 	and [hl]
 	ret z
 	push af
-	call Function1c07
+	call ExitMenu
 	pop af
 	ld a, [wcfa9]
 	cp $1
@@ -7143,9 +7147,9 @@ Function1030cd: ; 1030cd
 	ld a, [wcf44]
 	ld l, a
 	ld h, 0
+rept 3
 	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld bc, Unknown_103112
 	add hl, bc
 	ld b, $30
@@ -7164,8 +7168,9 @@ Function1030cd: ; 1030cd
 	inc hl
 	push hl
 
+rept 2
 	add a
-	add a
+endr
 
 	add Unknown_10327a % $100
 	ld l, a
@@ -7316,7 +7321,7 @@ Function103309: ; 103309
 	ld a, [hl]
 	ld [wd1ee], a
 	call Function1034be
-	call Function1ad2
+	call DrawOnMap
 	callba Function104000
 	ld a, $1
 	ld [wd1f0], a
@@ -7628,8 +7633,9 @@ Function1035c6: ; 1035c6
 	callba Function10138b
 	ld b, 0
 	ld hl, Unknown_1035d7
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -7685,8 +7691,8 @@ Function103612: ; 103612
 	ld [wcf88], a
 
 .asm_103622
-	call Function1d81
-	call Function1c17
+	call InterpretMenu2
+	call WriteBackup
 	jr c, .asm_10363b
 	ld a, [wcfa9]
 	ld [ScriptVar], a
@@ -7733,7 +7739,7 @@ Function103654: ; 103654
 	ret
 ; 10366e
 
-Function10366e: ; 10366e
+Mobile_SelectThreeMons: ; 10366e
 	callba Function10632f
 	bit 7, c
 	jr z, .asm_10369b
@@ -7773,8 +7779,8 @@ Function10366e: ; 10366e
 	jr c, .asm_1036f4
 	ld hl, MenuDataHeader_103747
 	call LoadMenuDataHeader
-	call Function1d81
-	call Function1c07
+	call InterpretMenu2
+	call ExitMenu
 	jr c, .asm_1036f4
 	ld a, [wcfa9]
 	cp $1
@@ -7815,7 +7821,7 @@ Function1036f9: ; 1036f9
 
 Function103700: ; 103700
 	ld c, $a
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	bit 4, [hl]
 	jr z, .asm_10370f
 	callba Function1008a6
@@ -7913,11 +7919,11 @@ Function103780: ; 103780
 
 Function10378c: ; 10378c
 	ld c, $0
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	bit 4, [hl]
 	jr nz, .asm_10379c
 	ld c, $1
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	set 4, [hl]
 
 .asm_10379c
@@ -7939,7 +7945,7 @@ Function10378c: ; 10378c
 	ld a, c
 	and a
 	ret z
-	ld hl, wdc20
+	ld hl, SwarmFlags
 	res 4, [hl]
 	ret
 ; 1037c2
@@ -8030,8 +8036,9 @@ Function10383c: ; 10383c
 	ld [wdc60], a
 	xor a
 	ld hl, wdc5c
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld hl, UnknownText_0x103876
 	call PrintText

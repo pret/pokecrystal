@@ -1139,7 +1139,7 @@ UnknownText_0x1c10dd: ; 1c10dd
 	prompt
 ; 1c10fa
 
-UnknownText_0x1c10fa: ; 1c10fa
+ContestJudging_FirstPlaceText: ; 1c10fa
 	text "This Bug-Catching"
 	line "Contest winner is@"
 	interpret_data
@@ -1154,7 +1154,7 @@ UnknownText_0x1c10fa: ; 1c10fa
 	db "@"
 ; 1c113f
 
-UnknownText_0x1c113f: ; 1c113f
+ContestJudging_FirstPlaceScoreText: ; 1c113f
 	text ""
 	para "The winning score"
 	line "was @"
@@ -1163,7 +1163,7 @@ UnknownText_0x1c113f: ; 1c113f
 	prompt
 ; 1c1166
 
-UnknownText_0x1c1166: ; 1c1166
+ContestJudging_SecondPlaceText: ; 1c1166
 	text "Placing second was"
 	line "@"
 	text_from_ram wd016
@@ -1175,7 +1175,7 @@ UnknownText_0x1c1166: ; 1c1166
 	db "@"
 ; 1c1196
 
-UnknownText_0x1c1196: ; 1c1196
+ContestJudging_SecondPlaceScoreText: ; 1c1196
 	text ""
 	para "The score was"
 	line "@"
@@ -1184,7 +1184,7 @@ UnknownText_0x1c1196: ; 1c1196
 	prompt
 ; 1c11b5
 
-UnknownText_0x1c11b5: ; 1c11b5
+ContestJudging_ThirdPlaceText: ; 1c11b5
 	text "Placing third was"
 	line "@"
 	text_from_ram wd016
@@ -1196,7 +1196,7 @@ UnknownText_0x1c11b5: ; 1c11b5
 	db "@"
 ; 1c11e4
 
-UnknownText_0x1c11e4: ; 1c11e4
+ContestJudging_ThirdPlaceScoreText: ; 1c11e4
 	text ""
 	para "The score was"
 	line "@"

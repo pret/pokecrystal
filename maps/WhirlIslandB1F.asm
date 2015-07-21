@@ -1,57 +1,45 @@
-WhirlIslandB1F_MapScriptHeader: ; 0x18c40e
-	; trigger count
+WhirlIslandB1F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x18c410
 
-ItemFragment_0x18c410: ; 0x18c410
+ItemFragment_0x18c410:
 	db FULL_RESTORE, 1
-; 0x18c412
 
-ItemFragment_0x18c412: ; 0x18c412
+ItemFragment_0x18c412:
 	db CARBOS, 1
-; 0x18c414
 
-ItemFragment_0x18c414: ; 0x18c414
+ItemFragment_0x18c414:
 	db CALCIUM, 1
-; 0x18c416
 
-ItemFragment_0x18c416: ; 0x18c416
+ItemFragment_0x18c416:
 	db NUGGET, 1
-; 0x18c418
 
-ItemFragment_0x18c418: ; 0x18c418
+ItemFragment_0x18c418:
 	db ESCAPE_ROPE, 1
-; 0x18c41a
 
 WhirlIslandB1FBoulder:
 	jumpstd strengthboulder
 
-MapWhirlIslandB1FSignpostItem0: ; 0x18c41d
-	dw $0097
-	db RARE_CANDY
+MapWhirlIslandB1FSignpostItem0:
+	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_RARE_CANDY, RARE_CANDY
 	
-; 0x18c420
 
-MapWhirlIslandB1FSignpostItem1: ; 0x18c420
-	dw $0098
-	db ULTRA_BALL
+MapWhirlIslandB1FSignpostItem1:
+	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
-; 0x18c423
 
-MapWhirlIslandB1FSignpostItem2: ; 0x18c423
-	dw $0099
-	db FULL_RESTORE
+MapWhirlIslandB1FSignpostItem2:
+	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
-; 0x18c426
 
-WhirlIslandB1F_MapEventHeader: ; 0x18c426
+WhirlIslandB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 9
 	warp_def $5, $5, 2, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
 	warp_def $3, $23, 2, GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
@@ -63,21 +51,20 @@ WhirlIslandB1F_MapEventHeader: ; 0x18c426
 	warp_def $1b, $d, 2, GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
 	warp_def $15, $11, 1, GROUP_WHIRL_ISLAND_CAVE, MAP_WHIRL_ISLAND_CAVE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 4, 30, $7, MapWhirlIslandB1FSignpostItem0
-	signpost 18, 36, $7, MapWhirlIslandB1FSignpostItem1
-	signpost 23, 2, $7, MapWhirlIslandB1FSignpostItem2
+	signpost 4, 30, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem0
+	signpost 18, 36, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem1
+	signpost 23, 2, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem2
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_POKE_BALL, 17, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c410, $0691
-	person_event SPRITE_POKE_BALL, 22, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c412, $0692
-	person_event SPRITE_POKE_BALL, 27, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c414, $0693
-	person_event SPRITE_POKE_BALL, 12, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c416, $0694
-	person_event SPRITE_POKE_BALL, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, $0695
-	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, WhirlIslandB1FBoulder, $ffff
-; 0x18c4b6
+	person_event SPRITE_POKE_BALL, 17, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c410, EVENT_WHIRL_ISLAND_B1F_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 22, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c412, EVENT_WHIRL_ISLAND_B1F_CARBOS
+	person_event SPRITE_POKE_BALL, 27, 37, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c414, EVENT_WHIRL_ISLAND_B1F_CALCIUM
+	person_event SPRITE_POKE_BALL, 12, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c416, EVENT_WHIRL_ISLAND_B1F_NUGGET
+	person_event SPRITE_POKE_BALL, 30, 23, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c418, EVENT_WHIRL_ISLAND_B1F_ESCAPE_ROPE
+	person_event SPRITE_BOULDER, 30, 27, OW_LEFT | $11, $0, -1, -1, $0, 0, WhirlIslandB1FBoulder, -1

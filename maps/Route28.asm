@@ -1,43 +1,37 @@
-Route28_MapScriptHeader: ; 0x1a540b
-	; trigger count
+Route28_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x1a540d
 
-MapRoute28Signpost0Script: ; 0x1a540d
+MapRoute28Signpost0Script:
 	jumptext UnknownText_0x1a5413
-; 0x1a5410
 
-MapRoute28SignpostItem1: ; 0x1a5410
-	dw $00a3
-	db RARE_CANDY
+MapRoute28SignpostItem1:
+	dwb EVENT_ROUTE_28_HIDDEN_RARE_CANDY, RARE_CANDY
 	
-; 0x1a5413
 
-UnknownText_0x1a5413: ; 0x1a5413
+UnknownText_0x1a5413:
 	text "ROUTE 28"
 	done
-; 0x1a541d
 
-Route28_MapEventHeader: ; 0x1a541d
+Route28_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $7, 1, GROUP_ROUTE_28_FAMOUS_SPEECH_HOUSE, MAP_ROUTE_28_FAMOUS_SPEECH_HOUSE
 	warp_def $5, $21, 7, GROUP_VICTORY_ROAD_GATE, MAP_VICTORY_ROAD_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 5, 31, $0, MapRoute28Signpost0Script
-	signpost 2, 25, $7, MapRoute28SignpostItem1
+	signpost 5, 31, SIGNPOST_READ, MapRoute28Signpost0Script
+	signpost 2, 25, SIGNPOST_ITEM, MapRoute28SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 0
-; 0x1a5437

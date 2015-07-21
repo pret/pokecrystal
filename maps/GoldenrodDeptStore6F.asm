@@ -1,8 +1,8 @@
 GoldenrodDeptStore6F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 GoldenrodVendingMachine:
@@ -149,25 +149,25 @@ GoldenrodDeptStore6F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $0, $f, 2, GROUP_GOLDENROD_DEPT_STORE_5F, MAP_GOLDENROD_DEPT_STORE_5F
 	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
 	warp_def $0, $d, 1, GROUP_GOLDENROD_DEPT_STORE_ROOF, MAP_GOLDENROD_DEPT_STORE_ROOF
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 0, 14, $0, GoldenrodDeptStore6FDirectory
-	signpost 0, 3, $0, GoldenrodDeptStore6FElevatorButton
-	signpost 1, 8, $1, GoldenrodVendingMachine
-	signpost 1, 9, $1, GoldenrodVendingMachine
-	signpost 1, 10, $1, GoldenrodVendingMachine
-	signpost 1, 11, $1, GoldenrodVendingMachine
+	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore6FDirectory
+	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore6FElevatorButton
+	signpost 1, 8, SIGNPOST_UP, GoldenrodVendingMachine
+	signpost 1, 9, SIGNPOST_UP, GoldenrodVendingMachine
+	signpost 1, 10, SIGNPOST_UP, GoldenrodVendingMachine
+	signpost 1, 11, SIGNPOST_UP, GoldenrodVendingMachine
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_LASS, 6, 14, $5, $1, 255, 255, $a0, 0, LassScript_0x564bf, $ffff
-	person_event SPRITE_SUPER_NERD, 6, 12, $7, $0, 255, 255, $80, 0, SuperNerdScript_0x564c2, $ffff
+	person_event SPRITE_LASS, 6, 14, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x564bf, -1
+	person_event SPRITE_SUPER_NERD, 6, 12, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x564c2, -1

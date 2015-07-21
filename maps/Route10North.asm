@@ -1,8 +1,8 @@
 Route10North_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PowerPlantSign:
@@ -19,18 +19,18 @@ Route10North_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $1, $b, 1, GROUP_ROUTE_10_POKECENTER_1F, MAP_ROUTE_10_POKECENTER_1F
 	warp_def $9, $3, 1, GROUP_POWER_PLANT, MAP_POWER_PLANT
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 11, 5, $0, PowerPlantSign
-	signpost 1, 12, $0, Route10PokeCenterSign
+	signpost 11, 5, SIGNPOST_READ, PowerPlantSign
+	signpost 1, 12, SIGNPOST_READ, Route10PokeCenterSign
 
-	; people-events
+.PersonEvents:
 	db 0

@@ -1,8 +1,8 @@
 CharcoalKiln_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 CharcoalKilnBoss:
@@ -143,26 +143,26 @@ FarfetchdText:
 	text "FARFETCH'D: Kwaa!"
 	done
 
-CharcoalKiln_MapEventHeader: ; 0x18dff8
+CharcoalKiln_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 	warp_def $7, $3, 2, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 1, 0, $0, CharcoalKilnBookshelf
-	signpost 1, 1, $0, CharcoalKilnBookshelf
-	signpost 1, 7, $0, CharcoalKilnRadio
+	signpost 1, 0, SIGNPOST_READ, CharcoalKilnBookshelf
+	signpost 1, 1, SIGNPOST_READ, CharcoalKilnBookshelf
+	signpost 1, 7, SIGNPOST_READ, CharcoalKilnRadio
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_BLACK_BELT, 7, 6, $3, $0, 255, 255, $0, 0, CharcoalKilnBoss, $06f7
-	person_event SPRITE_YOUNGSTER, 7, 9, $2, $11, 255, 255, $0, 0, CharcoalKilnApprentice, $06f6
-	person_event SPRITE_MOLTRES, 10, 9, $16, $22, 255, 255, $b0, 0, CharcoalKilnFarfetchd, $06f5
+	person_event SPRITE_BLACK_BELT, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, CharcoalKilnBoss, EVENT_CHARCOAL_KILN_BOSS
+	person_event SPRITE_YOUNGSTER, 7, 9, OW_DOWN | $2, $11, -1, -1, $0, 0, CharcoalKilnApprentice, EVENT_CHARCOAL_KILN_APPRENTICE
+	person_event SPRITE_MOLTRES, 10, 9, OW_UP | $12, $22, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CharcoalKilnFarfetchd, EVENT_CHARCOAL_KILN_FARFETCH_D

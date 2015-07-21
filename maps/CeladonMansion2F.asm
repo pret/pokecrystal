@@ -1,8 +1,8 @@
 CeladonMansion2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 CeladonMansion2FComputer:
@@ -53,21 +53,21 @@ CeladonMansion2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $0, 4, GROUP_CELADON_MANSION_1F, MAP_CELADON_MANSION_1F
 	warp_def $0, $1, 2, GROUP_CELADON_MANSION_3F, MAP_CELADON_MANSION_3F
 	warp_def $0, $6, 3, GROUP_CELADON_MANSION_3F, MAP_CELADON_MANSION_3F
 	warp_def $0, $7, 5, GROUP_CELADON_MANSION_1F, MAP_CELADON_MANSION_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 3, 0, $0, CeladonMansion2FComputer
-	signpost 8, 5, $1, CeladonMansion2FSign
-	signpost 3, 2, $0, CeladonMansion2FBookshelf
+	signpost 3, 0, SIGNPOST_READ, CeladonMansion2FComputer
+	signpost 8, 5, SIGNPOST_UP, CeladonMansion2FSign
+	signpost 3, 2, SIGNPOST_READ, CeladonMansion2FBookshelf
 
-	; people-events
+.PersonEvents:
 	db 0

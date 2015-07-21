@@ -1,26 +1,22 @@
-SaffronPokeCenter1F_MapScriptHeader: ; 0x18a47b
-	; trigger count
+SaffronPokeCenter1F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x18a47d
 
-NurseScript_0x18a47d: ; 0x18a47d
+NurseScript_0x18a47d:
 	jumpstd pokecenternurse
-; 0x18a480
 
-TeacherScript_0x18a480: ; 0x18a480
+TeacherScript_0x18a480:
 	special Function10630f
 	iftrue UnknownScript_0x18a489
 	jumptextfaceplayer UnknownText_0x18a4a3
-; 0x18a489
 
-UnknownScript_0x18a489: ; 0x18a489
+UnknownScript_0x18a489:
 	jumptextfaceplayer UnknownText_0x18a532
-; 0x18a48c
 
-FisherScript_0x18a48c: ; 0x18a48c
+FisherScript_0x18a48c:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -29,20 +25,17 @@ FisherScript_0x18a48c: ; 0x18a48c
 	closetext
 	loadmovesprites
 	end
-; 0x18a49a
 
-UnknownScript_0x18a49a: ; 0x18a49a
+UnknownScript_0x18a49a:
 	writetext UnknownText_0x18a62e
 	closetext
 	loadmovesprites
 	end
-; 0x18a4a0
 
-YoungsterScript_0x18a4a0: ; 0x18a4a0
+YoungsterScript_0x18a4a0:
 	jumptextfaceplayer UnknownText_0x18a6c5
-; 0x18a4a3
 
-UnknownText_0x18a4a3: ; 0x18a4a3
+UnknownText_0x18a4a3:
 	text "What are JOHTO's"
 	line "#MON CENTERS"
 	cont "like?"
@@ -57,9 +50,8 @@ UnknownText_0x18a4a3: ; 0x18a4a3
 	line "without worrying,"
 	cont "then!"
 	done
-; 0x18a532
 
-UnknownText_0x18a532: ; 0x18a532
+UnknownText_0x18a532:
 	text "What are JOHTO's"
 	line "#MON CENTERS"
 	cont "like?"
@@ -76,9 +68,8 @@ UnknownText_0x18a532: ; 0x18a532
 	para "catch a MARILL and"
 	line "trade it to me!"
 	done
-; 0x18a5d3
 
-UnknownText_0x18a5d3: ; 0x18a5d3
+UnknownText_0x18a5d3:
 	text "I just happened to"
 	line "come through ROCK"
 
@@ -86,9 +77,8 @@ UnknownText_0x18a5d3: ; 0x18a5d3
 	line "some commotion at"
 	cont "the POWER PLANT."
 	done
-; 0x18a62e
 
-UnknownText_0x18a62e: ; 0x18a62e
+UnknownText_0x18a62e:
 	text "Caves collapse"
 	line "easily."
 
@@ -103,9 +93,8 @@ UnknownText_0x18a62e: ; 0x18a62e
 	line "that's common"
 	cont "knowledge."
 	done
-; 0x18a6c5
 
-UnknownText_0x18a6c5: ; 0x18a6c5
+UnknownText_0x18a6c5:
 	text "SILPH CO.'s HEAD"
 	line "OFFICE and the"
 
@@ -115,28 +104,26 @@ UnknownText_0x18a6c5: ; 0x18a6c5
 	para "places to see in"
 	line "SAFFRON."
 	done
-; 0x18a722
 
-SaffronPokeCenter1F_MapEventHeader: ; 0x18a722
+SaffronPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $4, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18a47d, $ffff
-	person_event SPRITE_TEACHER, 6, 11, $2, $11, 255, 255, $a0, 0, TeacherScript_0x18a480, $ffff
-	person_event SPRITE_FISHER, 10, 12, $8, $0, 255, 255, $80, 0, FisherScript_0x18a48c, $ffff
-	person_event SPRITE_YOUNGSTER, 8, 5, $3, $0, 255, 255, $90, 0, YoungsterScript_0x18a4a0, $ffff
-; 0x18a76b
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x18a47d, -1
+	person_event SPRITE_TEACHER, 6, 11, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x18a480, -1
+	person_event SPRITE_FISHER, 10, 12, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x18a48c, -1
+	person_event SPRITE_YOUNGSTER, 8, 5, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x18a4a0, -1

@@ -690,7 +690,7 @@ faceperson: macro
 	enum variablesprite_command
 variablesprite: macro
 	db variablesprite_command
-	db \1 ; byte
+	db \1 - SPRITE_VARS ; byte
 	db \2 ; sprite
 	endm
 

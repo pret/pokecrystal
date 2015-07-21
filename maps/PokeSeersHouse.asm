@@ -1,36 +1,33 @@
-PokeSeersHouse_MapScriptHeader: ; 0x9e36c
-	; trigger count
+PokeSeersHouse_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x9e36e
 
-SeerScript: ; 0x9e36e
+SeerScript:
 	faceplayer
 	loadfont
 	special SpecialPokeSeer
 	closetext
 	loadmovesprites
 	end
-; 0x9e376
 
-PokeSeersHouse_MapEventHeader: ; 0x9e376
+PokeSeersHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 7, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 	warp_def $7, $3, 7, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_GRANNY, 7, 6, $6, $0, 255, 255, $80, 0, SeerScript, $ffff
-; 0x9e393
+	person_event SPRITE_GRANNY, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SeerScript, -1

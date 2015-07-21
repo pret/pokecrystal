@@ -542,7 +542,7 @@ UnknownText_0x1c4c08: ; 0x1c4c08
 	text_from_ram StringBuffer2
 	text "(S)"
 	line "will be ¥@"
-	deciram $ffc3, $36
+	deciram hMoneyTemp, $36
 	text "."
 	done
 ; 0x1c4c28
@@ -574,7 +574,7 @@ UnknownText_0x1c4cae: ; 0x1c4cae
 	text_from_ram StringBuffer2
 	text "(S)"
 	line "will be ¥@"
-	deciram $ffc3, $36
+	deciram hMoneyTemp, $36
 	text "."
 	done
 ; 0x1c4cce
@@ -619,7 +619,7 @@ UnknownText_0x1c4db0: ; 0x1c4db0
 	text_from_ram StringBuffer2
 	text " costs"
 	line "¥@"
-	deciram $ffc3, $36
+	deciram hMoneyTemp, $36
 	text ". Want it?"
 	done
 ; 0x1c4dcd
@@ -671,7 +671,7 @@ UnknownText_0x1c4e89: ; 0x1c4e89
 	text_from_ram StringBuffer2
 	text "(S)"
 	line "will cost ¥@"
-	deciram $ffc3, $36
+	deciram hMoneyTemp, $36
 	text "."
 	done
 ; 0x1c4eab
@@ -713,7 +713,7 @@ UnknownText_0x1c4f33: ; 0x1c4f33
 UnknownText_0x1c4f3e: ; 0x1c4f3e
 	text "I can pay you"
 	line "¥@"
-	deciram $ffc3, $36
+	deciram hMoneyTemp, $36
 	text "."
 
 	para "Is that OK?"
@@ -763,7 +763,7 @@ UnknownText_0x1c500d: ; 0x1c500d
 
 UnknownText_0x1c502e: ; 0x1c502e
 	text "Got ¥@"
-	deciram $ffc3, $36
+	deciram hMoneyTemp, $36
 	text " for"
 	line "@"
 	text_from_ram StringBuffer2

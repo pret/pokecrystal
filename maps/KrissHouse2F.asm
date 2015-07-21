@@ -1,38 +1,33 @@
-KrissHouse2F_MapScriptHeader: ; 0x7abab
-	; trigger count
+KrissHouse2F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x7abb4
+	dbw 5, .InitializeRoom
 
-	dbw 1, UnknownScript_0x7abc5
-; 0x7abb3
+	dbw 1, .SetSpawn
 
-UnknownScript_0x7abb3: ; 0x7abb3
+.Null:
 	end
-; 0x7abb4
 
-UnknownScript_0x7abb4: ; 0x7abb4
-	special Function27043
-	setevent $0007
-	checkevent $0036
-	iftrue UnknownScript_0x7abc4
+.InitializeRoom:
+	special ToggleDecorationsVisibility
+	setevent EVENT_IN_YOUR_ROOM
+	checkevent EVENT_INITIALIZED_EVENTS
+	iftrue .SkipInizialization
 	jumpstd initializeevents
 	return
-; 0x7abc4
 
-UnknownScript_0x7abc4: ; 0x7abc4
+.SkipInizialization:
 	return
-; 0x7abc5
 
-UnknownScript_0x7abc5: ; 0x7abc5
-	special Function26feb
+.SetSpawn:
+	special ToggleMaptileDecorations
 	return
-; 0x7abc9
 
 
 	db 0, 0, 0 ; filler
@@ -51,7 +46,7 @@ GameConsole:
 	describedecoration $4
 
 KrissHousePoster:
-	dw $02cc ; event
+	dw EVENT_KRISS_ROOM_POSTER ; event
 	dw .Script
 .Script
 	describedecoration $0
@@ -89,7 +84,7 @@ KrissHouseBookshelf:
 
 KrissHousePC:
 	loadfont
-	special Functionc2e7
+	special Special_KrissHousePC
 	iftrue .Warp
 	loadmovesprites
 	end
@@ -117,27 +112,27 @@ KrisRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-KrissHouse2F_MapEventHeader: ; 0x7ac99
+KrissHouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $0, $7, 3, GROUP_KRISS_HOUSE_1F, MAP_KRISS_HOUSE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 1, 2, $1, KrissHousePC
-	signpost 1, 3, $0, KrissHouseRadio
-	signpost 1, 5, $0, KrissHouseBookshelf
-	signpost 0, 6, $5, KrissHousePoster
+	signpost 1, 2, SIGNPOST_UP, KrissHousePC
+	signpost 1, 3, SIGNPOST_READ, KrissHouseRadio
+	signpost 1, 5, SIGNPOST_READ, KrissHouseBookshelf
+	signpost 0, 6, SIGNPOST_IFSET, KrissHousePoster
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_CONSOLE, 6, 8, $1, $0, 255, 255, $0, 0, GameConsole, $0741
-	person_event SPRITE_DOLL_1, 8, 8, $1, $0, 255, 255, $0, 0, Doll1, $0742
-	person_event SPRITE_DOLL_2, 8, 9, $1, $0, 255, 255, $0, 0, Doll2, $0743
-	person_event SPRITE_BIG_DOLL, 5, 4, $21, $0, 255, 255, $0, 0, BigDoll, $0744
+	person_event SPRITE_CONSOLE, 6, 8, OW_DOWN | $1, $0, -1, -1, $0, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
+	person_event SPRITE_DOLL_1, 8, 8, OW_DOWN | $1, $0, -1, -1, $0, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
+	person_event SPRITE_DOLL_2, 8, 9, OW_DOWN | $1, $0, -1, -1, $0, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
+	person_event SPRITE_BIG_DOLL, 5, 4, OW_DOWN | $21, $0, -1, -1, $0, 0, BigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL

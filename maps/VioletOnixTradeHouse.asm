@@ -1,25 +1,22 @@
-VioletOnixTradeHouse_MapScriptHeader: ; 0x6998b
-	; trigger count
+VioletOnixTradeHouse_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x6998d
 
-PokefanMScript_0x6998d: ; 0x6998d
+PokefanMScript_0x6998d:
 	jumptextfaceplayer UnknownText_0x69997
-; 0x69990
 
-YoungsterScript_0x69990: ; 0x69990
+YoungsterScript_0x69990:
 	faceplayer
 	loadfont
 	trade $1
 	closetext
 	loadmovesprites
 	end
-; 0x69997
 
-UnknownText_0x69997: ; 0x69997
+UnknownText_0x69997:
 	text "A #MON you get"
 	line "in a trade grows"
 	cont "quickly."
@@ -30,25 +27,23 @@ UnknownText_0x69997: ; 0x69997
 	para "BADGE, they may"
 	line "disobey you."
 	done
-; 0x69a01
 
-VioletOnixTradeHouse_MapEventHeader: ; 0x69a01
+VioletOnixTradeHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $3, 6, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $7, $4, 6, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 7, 6, $3, $0, 255, 255, $0, 0, PokefanMScript_0x6998d, $ffff
-	person_event SPRITE_YOUNGSTER, 9, 10, $4, $20, 255, 255, $80, 0, YoungsterScript_0x69990, $ffff
-; 0x69a2b
+	person_event SPRITE_POKEFAN_M, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, PokefanMScript_0x6998d, -1
+	person_event SPRITE_YOUNGSTER, 9, 10, OW_UP | $0, $20, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x69990, -1

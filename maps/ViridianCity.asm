@@ -1,8 +1,8 @@
 ViridianCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -32,14 +32,14 @@ UnknownScript_0x1a9a5b:
 GrampsScript_0x1a9a61:
 	faceplayer
 	loadfont
-	checkevent $0775
-	iftrue UnknownScript_0x1a9a6f
+	checkevent EVENT_BLUE_IN_CINNABAR
+	iftrue .BlueReturned
 	writetext UnknownText_0x1a9c11
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1a9a6f:
+.BlueReturned
 	writetext UnknownText_0x1a9c7e
 	closetext
 	loadmovesprites
@@ -52,7 +52,7 @@ FisherScript_0x1a9a75:
 	iftrue UnknownScript_0x1a9a8a
 	writetext UnknownText_0x1a9cc4
 	keeptextopen
-	verbosegiveitem TM_42, 1
+	verbosegiveitem TM_DREAM_EATER, 1
 	iffalse UnknownScript_0x1a9a8e
 	setevent EVENT_GOT_TM42_DREAM_EATER
 UnknownScript_0x1a9a8a:
@@ -215,7 +215,7 @@ ViridianCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $7, $20, 1, GROUP_VIRIDIAN_GYM, MAP_VIRIDIAN_GYM
 	warp_def $9, $15, 1, GROUP_VIRIDIAN_NICKNAME_SPEECH_HOUSE, MAP_VIRIDIAN_NICKNAME_SPEECH_HOUSE
@@ -223,21 +223,21 @@ ViridianCity_MapEventHeader:
 	warp_def $13, $1d, 2, GROUP_VIRIDIAN_MART, MAP_VIRIDIAN_MART
 	warp_def $19, $17, 1, GROUP_VIRIDIAN_POKECENTER_1F, MAP_VIRIDIAN_POKECENTER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
-	signpost 17, 17, $0, ViridianCitySign
-	signpost 7, 27, $0, ViridianGymSign
-	signpost 1, 19, $0, ViridianCityWelcomeSign
-	signpost 15, 21, $0, TrainerHouseSign
-	signpost 25, 24, $0, ViridianCityPokeCenterSign
-	signpost 19, 30, $0, ViridianCityMartSign
+	signpost 17, 17, SIGNPOST_READ, ViridianCitySign
+	signpost 7, 27, SIGNPOST_READ, ViridianGymSign
+	signpost 1, 19, SIGNPOST_READ, ViridianCityWelcomeSign
+	signpost 15, 21, SIGNPOST_READ, TrainerHouseSign
+	signpost 25, 24, SIGNPOST_READ, ViridianCityPokeCenterSign
+	signpost 19, 30, SIGNPOST_READ, ViridianCityMartSign
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_GRAMPS, 9, 22, $2, $22, 255, 255, $0, 0, GrampsScript_0x1a9a4c, $ffff
-	person_event SPRITE_GRAMPS, 12, 34, $6, $0, 255, 255, $90, 0, GrampsScript_0x1a9a61, $ffff
-	person_event SPRITE_FISHER, 27, 10, $6, $0, 255, 255, $80, 0, FisherScript_0x1a9a75, $ffff
-	person_event SPRITE_YOUNGSTER, 25, 21, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x1a9a90, $ffff
+	person_event SPRITE_GRAMPS, 9, 22, OW_DOWN | $2, $22, -1, -1, $0, 0, GrampsScript_0x1a9a4c, -1
+	person_event SPRITE_GRAMPS, 12, 34, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x1a9a61, -1
+	person_event SPRITE_FISHER, 27, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x1a9a75, -1
+	person_event SPRITE_YOUNGSTER, 25, 21, OW_DOWN | $2, $33, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a9a90, -1

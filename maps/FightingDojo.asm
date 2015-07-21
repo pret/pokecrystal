@@ -1,28 +1,23 @@
-FightingDojo_MapScriptHeader: ; 0x189b5f
-	; trigger count
+FightingDojo_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x189b61
 
-BlackBeltScript_0x189b61: ; 0x189b61
+BlackBeltScript_0x189b61:
 	jumptextfaceplayer UnknownText_0x189b6c
-; 0x189b64
 
-MapFightingDojoSignpost0Script: ; 0x189b64
+MapFightingDojoSignpost0Script:
 	jumptext UnknownText_0x189bc0
-; 0x189b67
 
-MapFightingDojoSignpost1Script: ; 0x189b67
+MapFightingDojoSignpost1Script:
 	jumptext UnknownText_0x189be0
-; 0x189b6a
 
-ItemFragment_0x189b6a: ; 0x189b6a
+ItemFragment_0x189b6a:
 	db FOCUS_BAND, 1
-; 0x189b6c
 
-UnknownText_0x189b6c: ; 0x189b6c
+UnknownText_0x189b6c:
 	text "Hello!"
 
 	para "KARATE KING, the"
@@ -32,39 +27,35 @@ UnknownText_0x189b6c: ; 0x189b6c
 	line "cave in JOHTO for"
 	cont "training."
 	done
-; 0x189bc0
 
-UnknownText_0x189bc0: ; 0x189bc0
+UnknownText_0x189bc0:
 	text "What goes around"
 	line "comes around!"
 	done
-; 0x189be0
 
-UnknownText_0x189be0: ; 0x189be0
+UnknownText_0x189be0:
 	text "Enemies on every"
 	line "side!"
 	done
-; 0x189bf8
 
-FightingDojo_MapEventHeader: ; 0x189bf8
+FightingDojo_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $4, 1, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $b, $5, 1, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 0, 4, $0, MapFightingDojoSignpost0Script
-	signpost 0, 5, $0, MapFightingDojoSignpost1Script
+	signpost 0, 4, SIGNPOST_READ, MapFightingDojoSignpost0Script
+	signpost 0, 5, SIGNPOST_READ, MapFightingDojoSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_BLACK_BELT, 8, 8, $6, $0, 255, 255, $90, 0, BlackBeltScript_0x189b61, $ffff
-	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x189b6a, $077d
-; 0x189c2c
+	person_event SPRITE_BLACK_BELT, 8, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x189b61, -1
+	person_event SPRITE_POKE_BALL, 5, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x189b6a, EVENT_PICKED_UP_FOCUS_BAND

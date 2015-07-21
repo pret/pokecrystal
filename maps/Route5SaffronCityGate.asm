@@ -1,16 +1,14 @@
-Route5SaffronCityGate_MapScriptHeader: ; 0x18b5b7
-	; trigger count
+Route5SaffronCityGate_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x18b5b9
 
-OfficerScript_0x18b5b9: ; 0x18b5b9
+OfficerScript_0x18b5b9:
 	jumptextfaceplayer UnknownText_0x18b5bc
-; 0x18b5bc
 
-UnknownText_0x18b5bc: ; 0x18b5bc
+UnknownText_0x18b5bc:
 	text "You're from JOHTO,"
 	line "aren't you?"
 
@@ -18,26 +16,24 @@ UnknownText_0x18b5bc: ; 0x18b5bc
 	line "KANTO? It's nice,"
 	cont "don't you agree?"
 	done
-; 0x18b60b
 
-Route5SaffronCityGate_MapEventHeader: ; 0x18b60b
+Route5SaffronCityGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 2, GROUP_ROUTE_5, MAP_ROUTE_5
 	warp_def $0, $5, 3, GROUP_ROUTE_5, MAP_ROUTE_5
 	warp_def $7, $4, 9, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $5, 9, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x18b5b9, $ffff
-; 0x18b632
+	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x18b5b9, -1

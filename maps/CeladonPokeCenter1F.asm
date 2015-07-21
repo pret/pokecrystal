@@ -1,28 +1,23 @@
-CeladonPokeCenter1F_MapScriptHeader: ; 0x71e20
-	; trigger count
+CeladonPokeCenter1F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x71e22
 
-NurseScript_0x71e22: ; 0x71e22
+NurseScript_0x71e22:
 	jumpstd pokecenternurse
-; 0x71e25
 
-GentlemanScript_0x71e25: ; 0x71e25
-	jumpstd $0033
-; 0x71e28
+GentlemanScript_0x71e25:
+	jumpstd happinesschecknpc
 
-CooltrainerFScript_0x71e28: ; 0x71e28
+CooltrainerFScript_0x71e28:
 	jumptextfaceplayer UnknownText_0x71e70
-; 0x71e2b
 
-PharmacistScript_0x71e2b: ; 0x71e2b
+PharmacistScript_0x71e2b:
 	jumptextfaceplayer UnknownText_0x71ec1
-; 0x71e2e
 
-SuperNerdScript_0x71e2e: ; 0x71e2e
+SuperNerdScript_0x71e2e:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x71f22
@@ -34,48 +29,43 @@ SuperNerdScript_0x71e2e: ; 0x71e2e
 	iftrue UnknownScript_0x71e48
 	writetext UnknownText_0x7201a
 	closetext
-UnknownScript_0x71e46: ; 0x71e46
+UnknownScript_0x71e46:
 	loadmovesprites
 	end
-; 0x71e48
 
-UnknownScript_0x71e48: ; 0x71e48
+UnknownScript_0x71e48:
 	writetext UnknownText_0x71f65
 	closetext
 	loadmovesprites
-	checkcode $9
+	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x71e5a
 	applymovement $6, MovementData_0x71e6b
 	jump UnknownScript_0x71e5e
-; 0x71e5a
 
-UnknownScript_0x71e5a: ; 0x71e5a
+UnknownScript_0x71e5a:
 	applymovement $6, MovementData_0x71e65
-UnknownScript_0x71e5e: ; 0x71e5e
+UnknownScript_0x71e5e:
 	disappear $6
 	playsound SFX_EXIT_BUILDING
 	waitbutton
 	end
-; 0x71e65
 
-MovementData_0x71e65: ; 0x71e65
+MovementData_0x71e65:
 	step_left
 	step_down
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x71e6b
 
-MovementData_0x71e6b: ; 0x71e6b
+MovementData_0x71e6b:
 	step_down
 	step_down
 	step_down
 	step_down
 	step_end
-; 0x71e70
 
-UnknownText_0x71e70: ; 0x71e70
+UnknownText_0x71e70:
 	text "ERIKA is a master"
 	line "of grass #MON."
 
@@ -83,9 +73,8 @@ UnknownText_0x71e70: ; 0x71e70
 	line "pay if you don't"
 	cont "watch yourself."
 	done
-; 0x71ec1
 
-UnknownText_0x71ec1: ; 0x71ec1
+UnknownText_0x71ec1:
 	text "TEAM ROCKET's"
 	line "hideout is in the"
 
@@ -95,9 +84,8 @@ UnknownText_0x71ec1: ; 0x71ec1
 	para "Oh, wait. That was"
 	line "three years ago."
 	done
-; 0x71f22
 
-UnknownText_0x71f22: ; 0x71f22
+UnknownText_0x71f22:
 	text "EUSINE: Hi!"
 
 	para "I'm back visiting"
@@ -106,9 +94,8 @@ UnknownText_0x71f22: ; 0x71f22
 	para "It's been quite a"
 	line "while."
 	done
-; 0x71f65
 
-UnknownText_0x71f65: ; 0x71f65
+UnknownText_0x71f65:
 	text "<PLAYER>, have you"
 	line "heard?"
 
@@ -128,9 +115,8 @@ UnknownText_0x71f65: ; 0x71f65
 	para "I'll be seeing"
 	line "you, <PLAYER>!"
 	done
-; 0x7201a
 
-UnknownText_0x7201a: ; 0x7201a
+UnknownText_0x7201a:
 	text "Oh, by the way,"
 	line "<PLAYER>."
 
@@ -151,29 +137,27 @@ UnknownText_0x7201a: ; 0x7201a
 	para "I'm counting on"
 	line "you, <PLAYER>!"
 	done
-; 0x720b8
 
-CeladonPokeCenter1F_MapEventHeader: ; 0x720b8
+CeladonPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 5, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $7, $4, 5, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x71e22, $ffff
-	person_event SPRITE_GENTLEMAN, 9, 5, $5, $1, 255, 255, $0, 0, GentlemanScript_0x71e25, $ffff
-	person_event SPRITE_PHARMACIST, 7, 4, $6, $0, 255, 255, $80, 0, PharmacistScript_0x71e2b, $ffff
-	person_event SPRITE_COOLTRAINER_F, 10, 12, $5, $1, 255, 255, $a0, 0, CooltrainerFScript_0x71e28, $ffff
-	person_event SPRITE_SUPER_NERD, 7, 8, $6, $0, 255, 255, $90, 0, SuperNerdScript_0x71e2e, $07b7
-; 0x7210e
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x71e22, -1
+	person_event SPRITE_GENTLEMAN, 9, 5, OW_UP | $1, $1, -1, -1, $0, 0, GentlemanScript_0x71e25, -1
+	person_event SPRITE_PHARMACIST, 7, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PharmacistScript_0x71e2b, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 12, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x71e28, -1
+	person_event SPRITE_SUPER_NERD, 7, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x71e2e, EVENT_SET_WHEN_FOUGHT_HO_OH

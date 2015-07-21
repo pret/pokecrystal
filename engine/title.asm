@@ -345,8 +345,9 @@ Function10ef1c: ; 10ef1c
 	ld b, a
 	ld a, e
 	ld [hli], a
+rept 2
 	inc e
-	inc e
+endr
 	ld a, $80
 	ld [hli], a
 	dec c
@@ -371,9 +372,9 @@ AnimateTitleCrystal: ; 10ef32
 	ld a, [hl]
 	add 2
 	ld [hli], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop
 	

@@ -1,28 +1,23 @@
-SoulHouse_MapScriptHeader: ; 0x7ec45
-	; trigger count
+SoulHouse_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x7ec47
 
-GrampsScript_0x7ec47: ; 0x7ec47
+GrampsScript_0x7ec47:
 	jumptextfaceplayer UnknownText_0x7ec53
-; 0x7ec4a
 
-TeacherScript_0x7ec4a: ; 0x7ec4a
+TeacherScript_0x7ec4a:
 	jumptextfaceplayer UnknownText_0x7ed4d
-; 0x7ec4d
 
-LassScript_0x7ec4d: ; 0x7ec4d
+LassScript_0x7ec4d:
 	jumptextfaceplayer UnknownText_0x7edb1
-; 0x7ec50
 
-GrannyScript_0x7ec50: ; 0x7ec50
+GrannyScript_0x7ec50:
 	jumptextfaceplayer UnknownText_0x7eddb
-; 0x7ec53
 
-UnknownText_0x7ec53: ; 0x7ec53
+UnknownText_0x7ec53:
 	text "MR.FUJI: Welcome."
 
 	para "Hmm… You appear to"
@@ -46,9 +41,8 @@ UnknownText_0x7ec53: ; 0x7ec53
 	para "I'm sure that will"
 	line "make them happy."
 	done
-; 0x7ed4d
 
-UnknownText_0x7ed4d: ; 0x7ed4d
+UnknownText_0x7ed4d:
 	text "There are other"
 	line "graves of #MON"
 	cont "here, I think."
@@ -57,43 +51,39 @@ UnknownText_0x7ed4d: ; 0x7ed4d
 	line "chambers that only"
 	cont "MR.FUJI may enter."
 	done
-; 0x7edb1
 
-UnknownText_0x7edb1: ; 0x7edb1
+UnknownText_0x7edb1:
 	text "I came with my mom"
 	line "to visit #MON"
 	cont "graves…"
 	done
-; 0x7eddb
 
-UnknownText_0x7eddb: ; 0x7eddb
+UnknownText_0x7eddb:
 	text "The #MON that"
 	line "lived with me…"
 
 	para "I loved them like"
 	line "my grandchildren…"
 	done
-; 0x7ee1d
 
-SoulHouse_MapEventHeader: ; 0x7ee1d
+SoulHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $4, 6, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
 	warp_def $7, $5, 6, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_GRAMPS, 6, 8, $6, $0, 255, 255, $90, 0, GrampsScript_0x7ec47, $ffff
-	person_event SPRITE_TEACHER, 7, 11, $5, $1, 255, 255, $90, 0, TeacherScript_0x7ec4a, $ffff
-	person_event SPRITE_LASS, 9, 6, $7, $0, 255, 255, $90, 0, LassScript_0x7ec4d, $ffff
-	person_event SPRITE_GRANNY, 7, 5, $7, $0, 255, 255, $90, 0, GrannyScript_0x7ec50, $ffff
-; 0x7ee61
+	person_event SPRITE_GRAMPS, 6, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x7ec47, -1
+	person_event SPRITE_TEACHER, 7, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7ec4a, -1
+	person_event SPRITE_LASS, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x7ec4d, -1
+	person_event SPRITE_GRANNY, 7, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrannyScript_0x7ec50, -1

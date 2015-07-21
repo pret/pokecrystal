@@ -1,25 +1,22 @@
-FastShipB1F_MapScriptHeader: ; 0x76730
-	; trigger count
+FastShipB1F_MapScriptHeader:
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x7673a, $0000
 	dw UnknownScript_0x7673b, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x7673a
 
-UnknownScript_0x7673a: ; 0x7673a
+UnknownScript_0x7673a:
 	end
-; 0x7673b
 
-UnknownScript_0x7673b: ; 0x7673b
+UnknownScript_0x7673b:
 	end
-; 0x7673c
 
-UnknownScript_0x7673c: ; 0x7673c
-	checkevent $072f
+UnknownScript_0x7673c:
+	checkevent EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	iftrue UnknownScript_0x76766
 	applymovement $3, MovementData_0x76876
 	moveperson $2, $1e, $6
@@ -27,10 +24,9 @@ UnknownScript_0x7673c: ; 0x7673c
 	pause 5
 	disappear $3
 	end
-; 0x76751
 
-UnknownScript_0x76751: ; 0x76751
-	checkevent $072e
+UnknownScript_0x76751:
+	checkevent EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	iftrue UnknownScript_0x76766
 	applymovement $2, MovementData_0x76871
 	moveperson $3, $1f, $6
@@ -38,370 +34,181 @@ UnknownScript_0x76751: ; 0x76751
 	pause 5
 	disappear $2
 	end
-; 0x76766
 
-UnknownScript_0x76766: ; 0x76766
+UnknownScript_0x76766:
 	end
-; 0x76767
 
-SailorScript_0x76767: ; 0x76767
+SailorScript_0x76767:
 	faceplayer
 	loadfont
-	checkevent $0030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x767a0
-	checkevent $0033
+	checkevent EVENT_FAST_SHIP_LAZY_SAILOR
 	iftrue UnknownScript_0x7678d
-	checkevent $0034
+	checkevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
 	iftrue UnknownScript_0x76787
 	writetext UnknownText_0x7687b
 	closetext
 	loadmovesprites
-	setevent $0034
-	clearevent $072d
+	setevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
+	clearevent EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
 	end
-; 0x76787
 
-UnknownScript_0x76787: ; 0x76787
+UnknownScript_0x76787:
 	writetext UnknownText_0x76907
 	closetext
 	loadmovesprites
 	end
-; 0x7678d
 
-UnknownScript_0x7678d: ; 0x7678d
+UnknownScript_0x7678d:
 	writetext UnknownText_0x7692e
-	checkevent $0032
+	checkevent EVENT_FAST_SHIP_FOUND_GIRL
 	iffalse UnknownScript_0x76799
 	closetext
 	loadmovesprites
 	end
-; 0x76799
 
-UnknownScript_0x76799: ; 0x76799
+UnknownScript_0x76799:
 	keeptextopen
 	writetext UnknownText_0x7696d
 	closetext
 	loadmovesprites
 	end
-; 0x767a0
 
-UnknownScript_0x767a0: ; 0x767a0
+UnknownScript_0x767a0:
 	writetext UnknownText_0x7699d
 	closetext
 	loadmovesprites
 	end
-; 0x767a6
 
-TrainerSailorJeff: ; 0x767a6
-	; bit/flag number
-	dw $57a
+TrainerSailorJeff:
+	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, $0000, SailorJeffScript
 
-	; trainer group && trainer id
-	db SAILOR, JEFF
-
-	; text when seen
-	dw SailorJeffSeenText
-
-	; text when trainer beaten
-	dw SailorJeffBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorJeffScript
-; 0x767b2
-
-SailorJeffScript: ; 0x767b2
+SailorJeffScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76a38
 	closetext
 	loadmovesprites
 	end
-; 0x767ba
 
-TrainerPicnickerDebra: ; 0x767ba
-	; bit/flag number
-	dw $485
+TrainerPicnickerDebra:
+	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, $0000, PicnickerDebraScript
 
-	; trainer group && trainer id
-	db PICNICKER, DEBRA
-
-	; text when seen
-	dw PicnickerDebraSeenText
-
-	; text when trainer beaten
-	dw PicnickerDebraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerDebraScript
-; 0x767c6
-
-PicnickerDebraScript: ; 0x767c6
+PicnickerDebraScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76a99
 	closetext
 	loadmovesprites
 	end
-; 0x767ce
 
-TrainerJugglerFritz: ; 0x767ce
-	; bit/flag number
-	dw $496
+TrainerJugglerFritz:
+	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, $0000, JugglerFritzScript
 
-	; trainer group && trainer id
-	db JUGGLER, FRITZ
-
-	; text when seen
-	dw JugglerFritzSeenText
-
-	; text when trainer beaten
-	dw JugglerFritzBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw JugglerFritzScript
-; 0x767da
-
-JugglerFritzScript: ; 0x767da
+JugglerFritzScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76b02
 	closetext
 	loadmovesprites
 	end
-; 0x767e2
 
-TrainerSailorGarrett: ; 0x767e2
-	; bit/flag number
-	dw $57b
+TrainerSailorGarrett:
+	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, $0000, SailorGarrettScript
 
-	; trainer group && trainer id
-	db SAILOR, GARRETT
-
-	; text when seen
-	dw SailorGarrettSeenText
-
-	; text when trainer beaten
-	dw SailorGarrettBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorGarrettScript
-; 0x767ee
-
-SailorGarrettScript: ; 0x767ee
+SailorGarrettScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76b7a
 	closetext
 	loadmovesprites
 	end
-; 0x767f6
 
-TrainerFisherJonah: ; 0x767f6
-	; bit/flag number
-	dw $459
+TrainerFisherJonah:
+	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, $0000, FisherJonahScript
 
-	; trainer group && trainer id
-	db FISHER, JONAH
-
-	; text when seen
-	dw FisherJonahSeenText
-
-	; text when trainer beaten
-	dw FisherJonahBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw FisherJonahScript
-; 0x76802
-
-FisherJonahScript: ; 0x76802
+FisherJonahScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76c22
 	closetext
 	loadmovesprites
 	end
-; 0x7680a
 
-TrainerBlackbeltWai: ; 0x7680a
-	; bit/flag number
-	dw $4ac
+TrainerBlackbeltWai:
+	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, $0000, BlackbeltWaiScript
 
-	; trainer group && trainer id
-	db BLACKBELT_T, WAI
-
-	; text when seen
-	dw BlackbeltWaiSeenText
-
-	; text when trainer beaten
-	dw BlackbeltWaiBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BlackbeltWaiScript
-; 0x76816
-
-BlackbeltWaiScript: ; 0x76816
+BlackbeltWaiScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76c9e
 	closetext
 	loadmovesprites
 	end
-; 0x7681e
 
-TrainerSailorKenneth: ; 0x7681e
-	; bit/flag number
-	dw $57c
+TrainerSailorKenneth:
+	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, $0000, SailorKennethScript
 
-	; trainer group && trainer id
-	db SAILOR, KENNETH
-
-	; text when seen
-	dw SailorKennethSeenText
-
-	; text when trainer beaten
-	dw SailorKennethBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorKennethScript
-; 0x7682a
-
-SailorKennethScript: ; 0x7682a
+SailorKennethScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76d5f
 	closetext
 	loadmovesprites
 	end
-; 0x76832
 
-TrainerTeacherShirley: ; 0x76832
-	; bit/flag number
-	dw $5b7
+TrainerTeacherShirley:
+	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, $0000, TeacherShirleyScript
 
-	; trainer group && trainer id
-	db TEACHER, SHIRLEY
-
-	; text when seen
-	dw TeacherShirleySeenText
-
-	; text when trainer beaten
-	dw TeacherShirleyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TeacherShirleyScript
-; 0x7683e
-
-TeacherShirleyScript: ; 0x7683e
+TeacherShirleyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76de1
 	closetext
 	loadmovesprites
 	end
-; 0x76846
 
-TrainerSchoolboyNate: ; 0x76846
-	; bit/flag number
-	dw $476
+TrainerSchoolboyNate:
+	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, $0000, SchoolboyNateScript
 
-	; trainer group && trainer id
-	db SCHOOLBOY, NATE
-
-	; text when seen
-	dw SchoolboyNateSeenText
-
-	; text when trainer beaten
-	dw SchoolboyNateBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyNateScript
-; 0x76852
-
-SchoolboyNateScript: ; 0x76852
+SchoolboyNateScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76e3d
 	closetext
 	loadmovesprites
 	end
-; 0x7685a
 
-TrainerSchoolboyRicky: ; 0x7685a
-	; bit/flag number
-	dw $477
+TrainerSchoolboyRicky:
+	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, $0000, SchoolboyRickyScript
 
-	; trainer group && trainer id
-	db SCHOOLBOY, RICKY
-
-	; text when seen
-	dw SchoolboyRickySeenText
-
-	; text when trainer beaten
-	dw SchoolboyRickyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SchoolboyRickyScript
-; 0x76866
-
-SchoolboyRickyScript: ; 0x76866
+SchoolboyRickyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76eb6
 	closetext
 	loadmovesprites
 	end
-; 0x7686e
 
 FashShipB1FTrashcan:
 	jumpstd trashcan
 
-MovementData_0x76871: ; 0x76871
+MovementData_0x76871:
 	fix_facing
 	big_step_right
 	remove_fixed_facing
 	turn_head_down
 	step_end
-; 0x76876
 
-MovementData_0x76876: ; 0x76876
+MovementData_0x76876:
 	fix_facing
 	big_step_left
 	remove_fixed_facing
 	turn_head_down
 	step_end
-; 0x7687b
 
-UnknownText_0x7687b: ; 0x7687b
+UnknownText_0x7687b:
 	text "Hey, kid. Could I"
 	line "get you to look"
 	cont "for my buddy?"
@@ -414,34 +221,30 @@ UnknownText_0x7687b: ; 0x7687b
 	line "him, but I'm on"
 	cont "duty right now."
 	done
-; 0x76907
 
-UnknownText_0x76907: ; 0x76907
+UnknownText_0x76907:
 	text "Oh, gee…"
 
 	para "The CAPTAIN will"
 	line "be furious…"
 	done
-; 0x7692e
 
-UnknownText_0x7692e: ; 0x7692e
+UnknownText_0x7692e:
 	text "Thanks, kid!"
 	line "I chewed him out"
 
 	para "good so he'll quit"
 	line "slacking off!"
 	done
-; 0x7696d
 
-UnknownText_0x7696d: ; 0x7696d
+UnknownText_0x7696d:
 	text "A little girl?"
 
 	para "I may have seen"
 	line "her go by here."
 	done
-; 0x7699d
 
-UnknownText_0x7699d: ; 0x7699d
+UnknownText_0x7699d:
 	text "The dining room is"
 	line "up ahead."
 
@@ -449,92 +252,79 @@ UnknownText_0x7699d: ; 0x7699d
 	line "end lead to the"
 	cont "CAPTAIN's cabin."
 	done
-; 0x769ed
 
-SailorJeffSeenText: ; 0x769ed
+SailorJeffSeenText:
 	text "Nothing beats a"
 	line "battle when I'm"
 	cont "on my break."
 	done
-; 0x76a1a
 
-SailorJeffBeatenText: ; 0x76a1a
+SailorJeffBeatenText:
 	text "Win or lose, my"
 	line "break's over!"
 	done
-; 0x76a38
 
-UnknownText_0x76a38: ; 0x76a38
+UnknownText_0x76a38:
 	text "I guess I can't"
 	line "win if I don't get"
 	cont "serious."
 	done
-; 0x76a63
 
-PicnickerDebraSeenText: ; 0x76a63
+PicnickerDebraSeenText:
 	text "I'm so bored."
 	line "Want to battle?"
 	done
-; 0x76a81
 
-PicnickerDebraBeatenText: ; 0x76a81
+PicnickerDebraBeatenText:
 	text "Yow! You're too"
 	line "strong!"
 	done
-; 0x76a99
 
-UnknownText_0x76a99: ; 0x76a99
+UnknownText_0x76a99:
 	text "SAFFRON, CELADON…"
 	line "I hear there are"
 
 	para "many big cities"
 	line "in KANTO."
 	done
-; 0x76ad7
 
-JugglerFritzSeenText: ; 0x76ad7
+JugglerFritzSeenText:
 	text "Urrf…"
 	line "I'm seasick!"
 	done
-; 0x76aea
 
-JugglerFritzBeatenText: ; 0x76aea
+JugglerFritzBeatenText:
 	text "I can't move any-"
 	line "more…"
 	done
-; 0x76b02
 
-UnknownText_0x76b02: ; 0x76b02
+UnknownText_0x76b02:
 	text "No more ships for"
 	line "me. Next time,"
 
 	para "I'm taking the"
 	line "MAGNET TRAIN."
 	done
-; 0x76b40
 
-SailorGarrettSeenText: ; 0x76b40
+SailorGarrettSeenText:
 	text "This is where we"
 	line "sailors work!"
 	done
-; 0x76b60
 
-SailorGarrettBeatenText: ; 0x76b60
+SailorGarrettBeatenText:
 	text "I lost on my home"
 	line "field…"
 	done
-; 0x76b7a
 
-UnknownText_0x76b7a: ; 0x76b7a
+UnknownText_0x76b7a:
 	text "We get different"
 	line "passengers from"
 
 	para "VERMILION CITY to"
 	line "OLIVINE CITY."
 	done
-; 0x76bbc
 
-FisherJonahSeenText: ; 0x76bbc
+FisherJonahSeenText:
 	text "Even though we're"
 	line "out on the sea, I"
 	cont "can't fish!"
@@ -542,36 +332,31 @@ FisherJonahSeenText: ; 0x76bbc
 	para "This is boring!"
 	line "Let's battle!"
 	done
-; 0x76c08
 
-FisherJonahBeatenText: ; 0x76c08
+FisherJonahBeatenText:
 	text "I… I'm not bored"
 	line "anymore…"
 	done
-; 0x76c22
 
-UnknownText_0x76c22: ; 0x76c22
+UnknownText_0x76c22:
 	text "I plan to fish off"
 	line "VERMILION's pier."
 	done
-; 0x76c47
 
-BlackbeltWaiSeenText: ; 0x76c47
+BlackbeltWaiSeenText:
 	text "I'm building up my"
 	line "legs by bracing"
 
 	para "against the ship's"
 	line "rocking!"
 	done
-; 0x76c85
 
-BlackbeltWaiBeatenText: ; 0x76c85
+BlackbeltWaiBeatenText:
 	text "Rocked and rolled"
 	line "over!"
 	done
-; 0x76c9e
 
-UnknownText_0x76c9e: ; 0x76c9e
+UnknownText_0x76c9e:
 	text "I couldn't find"
 	line "the KARATE KING in"
 	cont "JOHTO."
@@ -580,24 +365,21 @@ UnknownText_0x76c9e: ; 0x76c9e
 	line "be training in a"
 	cont "cave somewhere."
 	done
-; 0x76cf9
 
-SailorKennethSeenText: ; 0x76cf9
+SailorKennethSeenText:
 	text "I'm a sailor man!"
 
 	para "But I'm training"
 	line "#MON, so I can"
 	cont "become the CHAMP!"
 	done
-; 0x76d3c
 
-SailorKennethBeatenText: ; 0x76d3c
+SailorKennethBeatenText:
 	text "My lack of train-"
 	line "ing is obvious…"
 	done
-; 0x76d5f
 
-UnknownText_0x76d5f: ; 0x76d5f
+UnknownText_0x76d5f:
 	text "Eight BADGES!"
 	line "They must prove"
 
@@ -607,93 +389,82 @@ UnknownText_0x76d5f: ; 0x76d5f
 	para "No wonder you're"
 	line "so good!"
 	done
-; 0x76db6
 
-TeacherShirleySeenText: ; 0x76db6
+TeacherShirleySeenText:
 	text "Don't lay a finger"
 	line "on my students!"
 	done
-; 0x76dd9
 
-TeacherShirleyBeatenText: ; 0x76dd9
+TeacherShirleyBeatenText:
 	text "Aaack!"
 	done
-; 0x76de1
 
-UnknownText_0x76de1: ; 0x76de1
+UnknownText_0x76de1:
 	text "We're on a field"
 	line "trip to the RUINS"
 	cont "outside VIOLET."
 	done
-; 0x76e14
 
-SchoolboyNateSeenText: ; 0x76e14
+SchoolboyNateSeenText:
 	text "Do you know the"
 	line "RUINS OF ALPH?"
 	done
-; 0x76e34
 
-SchoolboyNateBeatenText: ; 0x76e34
+SchoolboyNateBeatenText:
 	text "Yaargh!"
 	done
-; 0x76e3d
 
-UnknownText_0x76e3d: ; 0x76e3d
+UnknownText_0x76e3d:
 	text "Radios pick up"
 	line "strange signals"
 	cont "inside the RUINS."
 	done
-; 0x76e6f
 
-SchoolboyRickySeenText: ; 0x76e6f
+SchoolboyRickySeenText:
 	text "There are some odd"
 	line "stone panels in"
 	cont "the RUINS OF ALPH."
 	done
-; 0x76ea6
 
-SchoolboyRickyBeatenText: ; 0x76ea6
+SchoolboyRickyBeatenText:
 	text "I was done in!"
 	done
-; 0x76eb6
 
-UnknownText_0x76eb6: ; 0x76eb6
+UnknownText_0x76eb6:
 	text "I read that there"
 	line "are four of those"
 	cont "stone panels."
 	done
-; 0x76ee9
 
-FastShipB1F_MapEventHeader: ; 0x76ee9
+FastShipB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $5, 11, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $d, $1f, 12, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $7, $1e, $0, UnknownScript_0x7673c, $0, $0
 	xy_trigger 0, $7, $1f, $0, UnknownScript_0x76751, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 9, 27, $0, FashShipB1FTrashcan
+	signpost 9, 27, SIGNPOST_READ, FashShipB1FTrashcan
 
-	; people-events
+.PersonEvents:
 	db 12
-	person_event SPRITE_SAILOR, 10, 34, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, $072e
-	person_event SPRITE_SAILOR, 10, 35, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, $072f
-	person_event SPRITE_SAILOR, 15, 13, $7, $0, 255, 255, $92, 3, TrainerSailorJeff, $0739
-	person_event SPRITE_LASS, 8, 10, $7, $0, 255, 255, $a2, 1, TrainerPicnickerDebra, $0739
-	person_event SPRITE_SUPER_NERD, 13, 30, $9, $0, 255, 255, $92, 1, TrainerJugglerFritz, $0739
-	person_event SPRITE_SAILOR, 8, 21, $9, $0, 255, 255, $92, 4, TrainerSailorGarrett, $073a
-	person_event SPRITE_FISHER, 12, 29, $7, $0, 255, 255, $a2, 3, TrainerFisherJonah, $073a
-	person_event SPRITE_BLACK_BELT, 15, 19, $1f, $0, 255, 255, $b2, 3, TrainerBlackbeltWai, $073a
-	person_event SPRITE_SAILOR, 8, 27, $9, $0, 255, 255, $92, 4, TrainerSailorKenneth, $073b
-	person_event SPRITE_TEACHER, 15, 13, $7, $0, 255, 255, $82, 3, TrainerTeacherShirley, $073b
-	person_event SPRITE_YOUNGSTER, 13, 18, $3, $0, 255, 255, $92, 1, TrainerSchoolboyNate, $073b
-	person_event SPRITE_YOUNGSTER, 15, 18, $a, $0, 255, 255, $92, 1, TrainerSchoolboyRicky, $073b
-; 0x76faa
+	person_event SPRITE_SAILOR, 10, 34, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
+	person_event SPRITE_SAILOR, 10, 35, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
+	person_event SPRITE_SAILOR, 15, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_LASS, 8, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SUPER_NERD, 13, 30, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SAILOR, 8, 21, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSailorGarrett, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_FISHER, 12, 29, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherJonah, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_BLACK_BELT, 15, 19, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBlackbeltWai, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_SAILOR, 8, 27, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSailorKenneth, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_TEACHER, 15, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerTeacherShirley, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_YOUNGSTER, 13, 18, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyNate, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_YOUNGSTER, 15, 18, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyRicky, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

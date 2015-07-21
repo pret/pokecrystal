@@ -1,41 +1,37 @@
-Route5UndergroundEntrance_MapScriptHeader: ; 0x18b553
-	; trigger count
+Route5UndergroundEntrance_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x18b555
 
-TeacherScript_0x18b555: ; 0x18b555
+TeacherScript_0x18b555:
 	jumptextfaceplayer UnknownText_0x18b558
-; 0x18b558
 
-UnknownText_0x18b558: ; 0x18b558
+UnknownText_0x18b558:
 	text "Many cities in"
 	line "JOHTO have long"
 
 	para "histories. I'd"
 	line "love to visit!"
 	done
-; 0x18b595
 
-Route5UndergroundEntrance_MapEventHeader: ; 0x18b595
+Route5UndergroundEntrance_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 1, GROUP_ROUTE_5, MAP_ROUTE_5
 	warp_def $7, $4, 1, GROUP_ROUTE_5, MAP_ROUTE_5
 	warp_def $3, $4, 1, GROUP_UNDERGROUND, MAP_UNDERGROUND
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_TEACHER, 6, 6, $2, $11, 255, 255, $a0, 0, TeacherScript_0x18b555, $ffff
-; 0x18b5b7
+	person_event SPRITE_TEACHER, 6, 6, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x18b555, -1

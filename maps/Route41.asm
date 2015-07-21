@@ -1,311 +1,128 @@
-Route41_MapScriptHeader: ; 0x1a683f
-	; trigger count
+Route41_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x1a6841
 
-TrainerSwimmerfKaylee: ; 0x1a6841
-	; bit/flag number
-	dw $3ea
+TrainerSwimmerfKaylee:
+	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, $0000, SwimmerfKayleeScript
 
-	; trainer group && trainer id
-	db SWIMMERF, KAYLEE
-
-	; text when seen
-	dw SwimmerfKayleeSeenText
-
-	; text when trainer beaten
-	dw SwimmerfKayleeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfKayleeScript
-; 0x1a684d
-
-SwimmerfKayleeScript: ; 0x1a684d
+SwimmerfKayleeScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6c7f
 	closetext
 	loadmovesprites
 	end
-; 0x1a6855
 
-TrainerSwimmerfSusie: ; 0x1a6855
-	; bit/flag number
-	dw $3eb
+TrainerSwimmerfSusie:
+	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, $0000, SwimmerfSusieScript
 
-	; trainer group && trainer id
-	db SWIMMERF, SUSIE
-
-	; text when seen
-	dw SwimmerfSusieSeenText
-
-	; text when trainer beaten
-	dw SwimmerfSusieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfSusieScript
-; 0x1a6861
-
-SwimmerfSusieScript: ; 0x1a6861
+SwimmerfSusieScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6d11
 	closetext
 	loadmovesprites
 	end
-; 0x1a6869
 
-TrainerSwimmerfDenise: ; 0x1a6869
-	; bit/flag number
-	dw $3ec
+TrainerSwimmerfDenise:
+	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, $0000, SwimmerfDeniseScript
 
-	; trainer group && trainer id
-	db SWIMMERF, DENISE
-
-	; text when seen
-	dw SwimmerfDeniseSeenText
-
-	; text when trainer beaten
-	dw SwimmerfDeniseBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfDeniseScript
-; 0x1a6875
-
-SwimmerfDeniseScript: ; 0x1a6875
+SwimmerfDeniseScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6d79
 	closetext
 	loadmovesprites
 	end
-; 0x1a687d
 
-TrainerSwimmerfKara: ; 0x1a687d
-	; bit/flag number
-	dw $3ed
+TrainerSwimmerfKara:
+	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, $0000, SwimmerfKaraScript
 
-	; trainer group && trainer id
-	db SWIMMERF, KARA
-
-	; text when seen
-	dw SwimmerfKaraSeenText
-
-	; text when trainer beaten
-	dw SwimmerfKaraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfKaraScript
-; 0x1a6889
-
-SwimmerfKaraScript: ; 0x1a6889
+SwimmerfKaraScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6e58
 	closetext
 	loadmovesprites
 	end
-; 0x1a6891
 
-TrainerSwimmerfWendy: ; 0x1a6891
-	; bit/flag number
-	dw $3ee
+TrainerSwimmerfWendy:
+	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, $0000, SwimmerfWendyScript
 
-	; trainer group && trainer id
-	db SWIMMERF, WENDY
-
-	; text when seen
-	dw SwimmerfWendySeenText
-
-	; text when trainer beaten
-	dw SwimmerfWendyBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmerfWendyScript
-; 0x1a689d
-
-SwimmerfWendyScript: ; 0x1a689d
+SwimmerfWendyScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6ec2
 	closetext
 	loadmovesprites
 	end
-; 0x1a68a5
 
-TrainerSwimmermCharlie: ; 0x1a68a5
-	; bit/flag number
-	dw $597
+TrainerSwimmermCharlie:
+	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, $0000, SwimmermCharlieScript
 
-	; trainer group && trainer id
-	db SWIMMERM, CHARLIE
-
-	; text when seen
-	dw SwimmermCharlieSeenText
-
-	; text when trainer beaten
-	dw SwimmermCharlieBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermCharlieScript
-; 0x1a68b1
-
-SwimmermCharlieScript: ; 0x1a68b1
+SwimmermCharlieScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a696e
 	closetext
 	loadmovesprites
 	end
-; 0x1a68b9
 
-TrainerSwimmermGeorge: ; 0x1a68b9
-	; bit/flag number
-	dw $598
+TrainerSwimmermGeorge:
+	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, $0000, SwimmermGeorgeScript
 
-	; trainer group && trainer id
-	db SWIMMERM, GEORGE
-
-	; text when seen
-	dw SwimmermGeorgeSeenText
-
-	; text when trainer beaten
-	dw SwimmermGeorgeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermGeorgeScript
-; 0x1a68c5
-
-SwimmermGeorgeScript: ; 0x1a68c5
+SwimmermGeorgeScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a69d4
 	closetext
 	loadmovesprites
 	end
-; 0x1a68cd
 
-TrainerSwimmermBerke: ; 0x1a68cd
-	; bit/flag number
-	dw $599
+TrainerSwimmermBerke:
+	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, $0000, SwimmermBerkeScript
 
-	; trainer group && trainer id
-	db SWIMMERM, BERKE
-
-	; text when seen
-	dw SwimmermBerkeSeenText
-
-	; text when trainer beaten
-	dw SwimmermBerkeBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermBerkeScript
-; 0x1a68d9
-
-SwimmermBerkeScript: ; 0x1a68d9
+SwimmermBerkeScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6aa4
 	closetext
 	loadmovesprites
 	end
-; 0x1a68e1
 
-TrainerSwimmermKirk: ; 0x1a68e1
-	; bit/flag number
-	dw $59a
+TrainerSwimmermKirk:
+	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, $0000, SwimmermKirkScript
 
-	; trainer group && trainer id
-	db SWIMMERM, KIRK
-
-	; text when seen
-	dw SwimmermKirkSeenText
-
-	; text when trainer beaten
-	dw SwimmermKirkBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermKirkScript
-; 0x1a68ed
-
-SwimmermKirkScript: ; 0x1a68ed
+SwimmermKirkScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6b6c
 	closetext
 	loadmovesprites
 	end
-; 0x1a68f5
 
-TrainerSwimmermMathew: ; 0x1a68f5
-	; bit/flag number
-	dw $59b
+TrainerSwimmermMathew:
+	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, $0000, SwimmermMathewScript
 
-	; trainer group && trainer id
-	db SWIMMERM, MATHEW
-
-	; text when seen
-	dw SwimmermMathewSeenText
-
-	; text when trainer beaten
-	dw SwimmermMathewBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SwimmermMathewScript
-; 0x1a6901
-
-SwimmermMathewScript: ; 0x1a6901
+SwimmermMathewScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6bed
 	closetext
 	loadmovesprites
 	end
-; 0x1a6909
 
 Route41Rock:
 ; unused
 	jumpstd smashrock
 
-MapRoute41SignpostItem0: ; 0x1a690c
-	dw $00ac
-	db MAX_ETHER
-; 0x1a690f
+MapRoute41SignpostItem0:
+	dwb EVENT_ROUTE_41_HIDDEN_MAX_ETHER, MAX_ETHER
 
-SwimmermCharlieSeenText: ; 0x1a690f
+SwimmermCharlieSeenText:
 	text "The water's warm"
 	line "here. I'm loose"
 	cont "and limber."
@@ -313,34 +130,29 @@ SwimmermCharlieSeenText: ; 0x1a690f
 	para "Sure, I'll take"
 	line "you on!"
 	done
-; 0x1a6952
 
-SwimmermCharlieBeatenText: ; 0x1a6952
+SwimmermCharlieBeatenText:
 	text "Yikes! I've got"
 	line "prune skin!"
 	done
-; 0x1a696e
 
-UnknownText_0x1a696e: ; 0x1a696e
+UnknownText_0x1a696e:
 	text "Isn't it relaxing"
 	line "just floating like"
 	cont "this?"
 	done
-; 0x1a6999
 
-SwimmermGeorgeSeenText: ; 0x1a6999
+SwimmermGeorgeSeenText:
 	text "I'm a bit tired."
 	line "If I win, lend me"
 	cont "your #MON."
 	done
-; 0x1a69c7
 
-SwimmermGeorgeBeatenText: ; 0x1a69c7
+SwimmermGeorgeBeatenText:
 	text "Pant, pant…"
 	done
-; 0x1a69d4
 
-UnknownText_0x1a69d4: ; 0x1a69d4
+UnknownText_0x1a69d4:
 	text "It's so far to"
 	line "CIANWOOD."
 
@@ -350,9 +162,8 @@ UnknownText_0x1a69d4: ; 0x1a69d4
 
 	para "What should I do?"
 	done
-; 0x1a6a2e
 
-SwimmermBerkeSeenText: ; 0x1a6a2e
+SwimmermBerkeSeenText:
 	text "See those islands"
 	line "that are blocked"
 	cont "by whirlpools?"
@@ -360,15 +171,13 @@ SwimmermBerkeSeenText: ; 0x1a6a2e
 	para "There just has to"
 	line "be a secret!"
 	done
-; 0x1a6a80
 
-SwimmermBerkeBeatenText: ; 0x1a6a80
+SwimmermBerkeBeatenText:
 	text "What's the secret"
 	line "to your strength?"
 	done
-; 0x1a6aa4
 
-UnknownText_0x1a6aa4: ; 0x1a6aa4
+UnknownText_0x1a6aa4:
 	text "It was a dark and"
 	line "stormy night…"
 
@@ -380,67 +189,58 @@ UnknownText_0x1a6aa4: ; 0x1a6aa4
 	line "feathers from its"
 	cont "silver wings."
 	done
-; 0x1a6b26
 
-SwimmermKirkSeenText: ; 0x1a6b26
+SwimmermKirkSeenText:
 	text "The waves are wild"
 	line "here."
 
 	para "They tire you out"
 	line "while you swim."
 	done
-; 0x1a6b62
 
-SwimmermKirkBeatenText: ; 0x1a6b62
+SwimmermKirkBeatenText:
 	text "I'm beat!"
 	done
-; 0x1a6b6c
 
-UnknownText_0x1a6b6c: ; 0x1a6b6c
+UnknownText_0x1a6b6c:
 	text "The currents keep"
 	line "me from reaching"
 	cont "that island."
 	done
-; 0x1a6b9d
 
-SwimmermMathewSeenText: ; 0x1a6b9d
+SwimmermMathewSeenText:
 	text "Are you seeking"
 	line "the secrets of"
 	cont "WHIRL ISLANDS?"
 	done
-; 0x1a6bcc
 
-SwimmermMathewBeatenText: ; 0x1a6bcc
+SwimmermMathewBeatenText:
 	text "Ooh, you've got"
 	line "great endurance!"
 	done
-; 0x1a6bed
 
-UnknownText_0x1a6bed: ; 0x1a6bed
+UnknownText_0x1a6bed:
 	text "A secret about"
 	line "WHIRL ISLANDS…"
 
 	para "It's pitch-black"
 	line "inside!"
 	done
-; 0x1a6c24
 
-SwimmerfKayleeSeenText: ; 0x1a6c24
+SwimmerfKayleeSeenText:
 	text "I'm on my way to"
 	line "WHIRL ISLANDS."
 
 	para "I'm going explor-"
 	line "ing with friends."
 	done
-; 0x1a6c67
 
-SwimmerfKayleeBeatenText: ; 0x1a6c67
+SwimmerfKayleeBeatenText:
 	text "Is that how you do"
 	line "it?"
 	done
-; 0x1a6c7f
 
-UnknownText_0x1a6c7f: ; 0x1a6c7f
+UnknownText_0x1a6c7f:
 	text "There's supposed"
 	line "to be a big #-"
 	cont "MON deep beneath"
@@ -449,40 +249,34 @@ UnknownText_0x1a6c7f: ; 0x1a6c7f
 	para "I wonder what it"
 	line "could be?"
 	done
-; 0x1a6cda
 
-SwimmerfSusieSeenText: ; 0x1a6cda
+SwimmerfSusieSeenText:
 	text "You look so ele-"
 	line "gant, riding your"
 	cont "#MON."
 	done
-; 0x1a6d04
 
-SwimmerfSusieBeatenText: ; 0x1a6d04
+SwimmerfSusieBeatenText:
 	text "I'm crushed…"
 	done
-; 0x1a6d11
 
-UnknownText_0x1a6d11: ; 0x1a6d11
+UnknownText_0x1a6d11:
 	text "Wasn't there a hit"
 	line "song about a boy"
 	cont "riding a LAPRAS?"
 	done
-; 0x1a6d46
 
-SwimmerfDeniseSeenText: ; 0x1a6d46
+SwimmerfDeniseSeenText:
 	text "The weather is so"
 	line "beautiful, I'm in"
 	cont "a daze!"
 	done
-; 0x1a6d72
 
-SwimmerfDeniseBeatenText: ; 0x1a6d72
+SwimmerfDeniseBeatenText:
 	text "Ohhh!"
 	done
-; 0x1a6d79
 
-UnknownText_0x1a6d79: ; 0x1a6d79
+UnknownText_0x1a6d79:
 	text "A sunburn is the"
 	line "worst for skin."
 
@@ -492,9 +286,8 @@ UnknownText_0x1a6d79: ; 0x1a6d79
 	para "I won't pollute"
 	line "the water."
 	done
-; 0x1a6dd0
 
-SwimmerfKaraSeenText: ; 0x1a6dd0
+SwimmerfKaraSeenText:
 	text "If you need to"
 	line "rest, just tread"
 	cont "water."
@@ -505,34 +298,29 @@ SwimmerfKaraSeenText: ; 0x1a6dd0
 	para "can keep on going"
 	line "strong."
 	done
-; 0x1a6e33
 
-SwimmerfKaraBeatenText: ; 0x1a6e33
+SwimmerfKaraBeatenText:
 	text "Oh! You have more"
 	line "energy than I do."
 	done
-; 0x1a6e58
 
-UnknownText_0x1a6e58: ; 0x1a6e58
+UnknownText_0x1a6e58:
 	text "I heard roars from"
 	line "deep inside the"
 	cont "ISLANDS."
 	done
-; 0x1a6e85
 
-SwimmerfWendySeenText: ; 0x1a6e85
+SwimmerfWendySeenText:
 	text "At night, STARYU"
 	line "gather near the"
 	cont "water's surface."
 	done
-; 0x1a6eb7
 
-SwimmerfWendyBeatenText: ; 0x1a6eb7
+SwimmerfWendyBeatenText:
 	text "Oh, dear…"
 	done
-; 0x1a6ec2
 
-UnknownText_0x1a6ec2: ; 0x1a6ec2
+UnknownText_0x1a6ec2:
 	text "The clusters of"
 	line "STARYU light up"
 	cont "at the same time."
@@ -540,36 +328,34 @@ UnknownText_0x1a6ec2: ; 0x1a6ec2
 	para "It's so beautiful,"
 	line "it's scary."
 	done
-; 0x1a6f12
 
-Route41_MapEventHeader: ; 0x1a6f12
+Route41_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $11, $c, 1, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
 	warp_def $13, $24, 1, GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
 	warp_def $25, $c, 1, GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
 	warp_def $2d, $24, 1, GROUP_WHIRL_ISLAND_SE, MAP_WHIRL_ISLAND_SE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 35, 9, $7, MapRoute41SignpostItem0
+	signpost 35, 9, SIGNPOST_ITEM, MapRoute41SignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 10
-	person_event SPRITE_OLIVINE_RIVAL, 10, 36, $a, $0, 255, 255, $82, 3, TrainerSwimmermCharlie, $ffff
-	person_event SPRITE_OLIVINE_RIVAL, 12, 50, $a, $0, 255, 255, $82, 3, TrainerSwimmermGeorge, $ffff
-	person_event SPRITE_OLIVINE_RIVAL, 30, 24, $1e, $0, 255, 255, $82, 3, TrainerSwimmermBerke, $ffff
-	person_event SPRITE_OLIVINE_RIVAL, 34, 36, $1f, $0, 255, 255, $82, 3, TrainerSwimmermKirk, $ffff
-	person_event SPRITE_OLIVINE_RIVAL, 50, 23, $1e, $0, 255, 255, $82, 3, TrainerSwimmermMathew, $ffff
-	person_event SPRITE_SWIMMER_GIRL, 8, 21, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfKaylee, $ffff
-	person_event SPRITE_SWIMMER_GIRL, 23, 27, $7, $0, 255, 255, $a2, 3, TrainerSwimmerfSusie, $ffff
-	person_event SPRITE_SWIMMER_GIRL, 38, 31, $8, $0, 255, 255, $a2, 3, TrainerSwimmerfDenise, $ffff
-	person_event SPRITE_SWIMMER_GIRL, 32, 48, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfKara, $ffff
-	person_event SPRITE_SWIMMER_GIRL, 54, 13, $a, $0, 255, 255, $a2, 2, TrainerSwimmerfWendy, $ffff
-; 0x1a6fb3
+	person_event SPRITE_OLIVINE_RIVAL, 10, 36, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermCharlie, -1
+	person_event SPRITE_OLIVINE_RIVAL, 12, 50, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermGeorge, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30, 24, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermBerke, -1
+	person_event SPRITE_OLIVINE_RIVAL, 34, 36, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermKirk, -1
+	person_event SPRITE_OLIVINE_RIVAL, 50, 23, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermMathew, -1
+	person_event SPRITE_SWIMMER_GIRL, 8, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfKaylee, -1
+	person_event SPRITE_SWIMMER_GIRL, 23, 27, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfSusie, -1
+	person_event SPRITE_SWIMMER_GIRL, 38, 31, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfDenise, -1
+	person_event SPRITE_SWIMMER_GIRL, 32, 48, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerSwimmerfKara, -1
+	person_event SPRITE_SWIMMER_GIRL, 54, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerSwimmerfWendy, -1

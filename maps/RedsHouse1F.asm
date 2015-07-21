@@ -1,11 +1,11 @@
 RedsHouse1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw .Trigger, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 .Trigger
@@ -77,21 +77,21 @@ RedsHouse1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $2, 1, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 	warp_def $7, $3, 1, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 	warp_def $0, $7, 1, GROUP_REDS_HOUSE_2F, MAP_REDS_HOUSE_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 1, 0, $0, RedsHouse1FBookshelf
-	signpost 1, 1, $0, RedsHouse1FBookshelf
-	signpost 1, 2, $0, RedsHouse1FTV
+	signpost 1, 0, SIGNPOST_READ, RedsHouse1FBookshelf
+	signpost 1, 1, SIGNPOST_READ, RedsHouse1FBookshelf
+	signpost 1, 2, SIGNPOST_READ, RedsHouse1FTV
 
-	; people-events
+.PersonEvents:
 	db 1
-	person_event SPRITE_REDS_MOM, 7, 9, $8, $0, 255, 255, $0, 0, RedsMom, $ffff
+	person_event SPRITE_REDS_MOM, 7, 9, OW_LEFT | $0, $0, -1, -1, $0, 0, RedsMom, -1

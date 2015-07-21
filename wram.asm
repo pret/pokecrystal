@@ -1307,6 +1307,7 @@ Options2:: ; cfd1
 	ds 1
 
 	ds 2
+OptionsEnd::
 wcfd4:: ds 1
 wcfd5:: ds 1
 wcfd6:: ds 1
@@ -1320,10 +1321,15 @@ SECTION "WRAM 1", WRAMX, BANK [1]
 wd000:: ds 1
 wd001:: ds 1
 wd002::
+PhoneScriptBank::
 DefaultFlypoint:: ; d002
 	ds 1
-wd003:: ds 1
-wd004:: ds 1
+wd003::
+PhoneCallerLo::
+	ds 1
+wd004::
+PhoneCallerHi::
+	ds 1
 wd005::
 StartFlypoint:: ; d005
 	ds 1
@@ -1376,6 +1382,7 @@ EngineBuffer1:: ; d03e
 	ds 1
 wd03f::
 CurFruit:: ; d03f
+MartPointerBank::
 	ds 1
 
 wd040::
@@ -1397,9 +1404,11 @@ WalkingX:: ; d045
 WalkingY:: ; d046
 	ds 1
 WalkingTile:: ; d047
+wWinTextPointer::
 	ds 1
 
-wd048:: ds 3
+wd048:: ds 1
+wLossTextPointer:: ds 2
 wd04b:: ds 2
 wd04d:: ds 1
 wd04e:: ds 2
@@ -1541,7 +1550,7 @@ wd195:: ds 1
 wd196:: ds 1
 wd197:: ds 2
 wd199:: ds 1
-wd19a:: ds 3
+wPermission:: ds 3
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d
@@ -1952,7 +1961,6 @@ wd4cf:: ds 1
 wd4d0:: ds 1
 wd4d1:: ds 5
 
-
 ObjectStructs::
 
 PlayerStruct:: ; d4d6
@@ -2002,29 +2010,29 @@ PlayerSpriteY:: ; d4ee
 	ds 15
 
 ObjectStruct1:: ; d4fe
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct2:: ; d526
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct3:: ; d54e
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct4:: ; d576
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct5:: ; d59e
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct6:: ; d5c6
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct7:: ; d5ee
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct8:: ; d616
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct9:: ; d63e
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct10:: ; d666
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct11:: ; d68e
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ObjectStruct12:: ; d6b6
-	ds 40
+	ds OBJECT_STRUCT_LENGTH
 ; d6de
 
 wd6de::
@@ -2216,35 +2224,37 @@ wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 
 SECTION "Events", WRAMX, BANK [1]
 
-wd9f2:: ds 1
-	ds 1
-wd9f4:: ds 1
-wd9f5:: ds 1
-wd9f6:: ds 1
-wd9f7:: ds 1
-wd9f8:: ds 1
-wd9f9:: ds 1
-wd9fa:: ds 1
-wd9fb:: ds 1
-wd9fc:: ds 1
-wd9fd:: ds 1
-wd9fe:: ds 1
-wd9ff:: ds 1
+wJackFightCount::    ds 1
+                     ds 1
+wHueyFightCount::    ds 1
+wGavenFightCount::   ds 1
+wBethFightCount::    ds 1
+wJoseFightCount::    ds 1
+wReenaFightCount::   ds 1
+wJoeyFightCount::    ds 1
+wWadeFightCount::    ds 1
+wRalphFightCount::   ds 1
+wLizFightCount::     ds 1
+wAnthonyFightCount:: ds 1
+wToddFightCount::    ds 1
+wGinaFightCount::    ds 1
 
 wda00:: ds 1
-wda01:: ds 1
-wda02:: ds 1
-wda03:: ds 1
-wda04:: ds 1
-wda05:: ds 1
-wda06:: ds 1
-wda07:: ds 1
-wda08:: ds 1
-wda09:: ds 1
-wda0a:: ds 1
-wda0b:: ds 1
-wda0c:: ds 1
-wda0d:: ds 1
+
+wArnieFightCount::   ds 1
+wAlanFightCount::    ds 1
+wDanaFightCount::    ds 1
+wChadFightCount::    ds 1
+                     ds 1
+wTullyFightCount::   ds 1
+wBrentFightCount::   ds 1
+wTiffanyFightCount:: ds 1
+wVanceFightCount::   ds 1
+wWiltonFightCount::  ds 1
+                     ds 1
+wParryFightCount::   ds 1
+wErinFightCount::    ds 1
+
 	ds 100
 
 EventFlags:: ; da72
@@ -2253,7 +2263,7 @@ EventFlags:: ; da72
 ;PoliceAtElmsLabEvent:: ; db52
 ;SalesmanMahoganyTownEvent:: ; db5c
 ;RedGyaradosEvent:: ; db5c
-	flag_array 2000
+	flag_array NUM_EVENTS
 ; db6c
 
 	ds 6
@@ -2274,16 +2284,18 @@ BikeFlags:: ; dbf5
 ; bit 2: downhill
 	ds 1
 
-	ds 3
+	ds 1
+wCurrentMapTriggerPointer:: ; dbf7
+	ds 2
 
 wdbf9:: ds 2
 wdbfb:: ds 1
 wdbfc:: ds 1
 wdbfd:: ds 1
-wdbfe:: ds 1
+wCurrentMapXYTriggerCount:: ds 1
 wdbff:: ds 1
 wdc00:: ds 1
-wdc01:: ds 1
+wCurrentMapSignpostCount:: ds 1
 wdc02:: ds 1
 wdc03:: ds 1
 wdc04:: ds 1
@@ -2323,9 +2335,9 @@ wdc19:: ds 1
 wdc1a:: ds 1
 wdc1b:: ds 1
 wdc1c:: ds 2
-wdc1e:: ds 1
-wdc1f:: ds 1
-wdc20:: ds 1
+DailyFlags:: ds 1
+WeeklyFlags:: ds 1
+SwarmFlags:: ds 1
 wdc21:: ds 1
 wdc22:: ds 1
 wdc23:: ds 1
@@ -2338,7 +2350,8 @@ FruitTreeFlags:: ; dc27
 	ds 5
 
 wdc2d:: ds 4
-wdc31:: ds 4
+wSpecialPhoneCallID:: ds 2
+wdc33:: ds 2
 wdc35:: ds 4
 wdc39:: ds 1
 wdc3a:: ds 1
@@ -2418,7 +2431,7 @@ PartySpecies:: ; dcd8
 	ds PARTY_LENGTH ; species of each Pokémon in party
 PartyEnd:: ; dcde
 	ds 1 ; legacy functions don't check PartyCount
-		 
+		
 PartyMons::
 PartyMon1:: party_struct PartyMon1 ; dcdf
 PartyMon2:: party_struct PartyMon2 ; dd0f

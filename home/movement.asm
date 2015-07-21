@@ -102,8 +102,9 @@ Function1b92:: ; 1b92
 	push hl
 	ld l, b
 	ld h, 0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -131,12 +132,13 @@ Function1bb1:: ; 1bb1
 	dec b
 	jr nz, .asm_1bb8
 	ld a, $1
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	pop bc
 	pop hl
 	ret
@@ -193,7 +195,7 @@ Function1c00:: ; 1c00
 	ret
 ; 1c07
 
-Function1c07:: ; 0x1c07
+ExitMenu:: ; 0x1c07
 	push af
 	callab Function243e8
 	pop af
@@ -203,11 +205,11 @@ Function1c10:: ; 0x1c10
 	callab Function2446d
 	ret
 
-Function1c17:: ; 0x1c17
+WriteBackup:: ; 0x1c17
 	push af
-	call Function1c07
+	call ExitMenu
 	call Function321c
-	call Function1ad2
+	call DrawOnMap
 	pop af
 	ret
 

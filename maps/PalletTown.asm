@@ -1,8 +1,8 @@
 PalletTown_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -71,23 +71,23 @@ PalletTown_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $5, $5, 1, GROUP_REDS_HOUSE_1F, MAP_REDS_HOUSE_1F
 	warp_def $5, $d, 1, GROUP_BLUES_HOUSE, MAP_BLUES_HOUSE
 	warp_def $b, $c, 1, GROUP_OAKS_LAB, MAP_OAKS_LAB
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 9, 7, $0, PalletTownSign
-	signpost 5, 3, $0, RedsHouseSign
-	signpost 13, 13, $0, OaksLabSign
-	signpost 5, 11, $0, BluesHouseSign
+	signpost 9, 7, SIGNPOST_READ, PalletTownSign
+	signpost 5, 3, SIGNPOST_READ, RedsHouseSign
+	signpost 13, 13, SIGNPOST_READ, OaksLabSign
+	signpost 5, 11, SIGNPOST_READ, BluesHouseSign
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 12, 7, $2, $22, 255, 255, $0, 0, TeacherScript_0x1ac6d5, $ffff
-	person_event SPRITE_FISHER, 18, 16, $5, $2, 255, 255, $a0, 0, FisherScript_0x1ac6d8, $ffff
+	person_event SPRITE_TEACHER, 12, 7, OW_DOWN | $2, $22, -1, -1, $0, 0, TeacherScript_0x1ac6d5, -1
+	person_event SPRITE_FISHER, 18, 16, OW_UP | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1ac6d8, -1

@@ -1,5 +1,5 @@
-NUM_POKEMON EQU 251
 
+; pokemon
 const_value set 1
 	const BULBASAUR
 	const IVYSAUR
@@ -253,4 +253,37 @@ const_value set 1
 	const HO_OH
 	const CELEBI
 
+const_value SET const_value + -1
+
+NUM_POKEMON EQU const_value
+
 EGG EQU 253
+
+; pokemon structure in RAM
+MON_SPECIES            EQUS "PartyMon1Species - PartyMon1"
+MON_ITEM               EQUS "PartyMon1Item - PartyMon1"
+MON_MOVES              EQUS "PartyMon1Moves - PartyMon1"
+MON_ID                 EQUS "PartyMon1ID - PartyMon1"
+MON_EXP                EQUS "PartyMon1Exp - PartyMon1"
+MON_HP_EXP             EQUS "PartyMon1HPExp - PartyMon1"
+MON_ATK_EXP            EQUS "PartyMon1AtkExp - PartyMon1"
+MON_DEF_EXP            EQUS "PartyMon1DefExp - PartyMon1"
+MON_SPD_EXP            EQUS "PartyMon1SpdExp - PartyMon1"
+MON_SPC_EXP            EQUS "PartyMon1SpcExp - PartyMon1"
+MON_DVS                EQUS "PartyMon1DVs - PartyMon1"
+MON_PP                 EQUS "PartyMon1PP - PartyMon1"
+MON_HAPPINESS          EQUS "PartyMon1Happiness - PartyMon1"
+MON_PKRUS              EQUS "PartyMon1PokerusStatus - PartyMon1"
+MON_CAUGHTTIME         EQUS "PartyMon1CaughtTime - PartyMon1"
+MON_CAUGHTGENDER       EQUS "PartyMon1CaughtGender - PartyMon1"
+MON_LEVEL              EQUS "PartyMon1Level - PartyMon1"
+MON_STATUS             EQUS "PartyMon1Status - PartyMon1"
+MON_HP                 EQUS "PartyMon1HP - PartyMon1"
+MON_MAXHP              EQUS "PartyMon1MaxHP - PartyMon1"
+MON_ATK                EQUS "PartyMon1Attack - PartyMon1"
+MON_DEF                EQUS "PartyMon1Defense - PartyMon1"
+MON_SPD                EQUS "PartyMon1Speed - PartyMon1"
+MON_SAT                EQUS "PartyMon1SpclAtk - PartyMon1"
+MON_SDF                EQUS "PartyMon1SpclDef - PartyMon1"
+BOXMON_STRUCT_LENGTH   EQUS "PartyMon1Status - PartyMon1"
+PARTYMON_STRUCT_LENGTH EQUS "PartyMon1StatsEnd - PartyMon1"

@@ -1,25 +1,23 @@
-ViridianPokeCenter2FBeta_MapScriptHeader: ; 0x9b838
-	; trigger count
+ViridianPokeCenter2FBeta_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x9b83a
 
-ViridianPokeCenter2FBeta_MapEventHeader: ; 0x9b83a
+ViridianPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $7, $0, 3, GROUP_VIRIDIAN_POKECENTER_1F, MAP_VIRIDIAN_POKECENTER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 0
-; 0x9b845

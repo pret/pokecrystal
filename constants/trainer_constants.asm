@@ -1,625 +1,609 @@
-NUM_TRAINER_CLASSES EQU $44
-
 ; trainer groups
-FALKNER      EQU $01
-WHITNEY      EQU $02
-BUGSY        EQU $03
-MORTY        EQU $04
-PRYCE        EQU $05
-JASMINE      EQU $06
-CHUCK        EQU $07
-CLAIR        EQU $08
-RIVAL1       EQU $09
-POKEMON_PROF EQU $0A
-WILL         EQU $0B
-CAL          EQU $0C
-BRUNO        EQU $0D
-KAREN        EQU $0E
-KOGA         EQU $0F
-CHAMPION     EQU $10
-BROCK        EQU $11
-MISTY        EQU $12
-LT_SURGE     EQU $13
-SCIENTIST    EQU $14
-ERIKA        EQU $15
-YOUNGSTER    EQU $16
-SCHOOLBOY    EQU $17
-BIRD_KEEPER  EQU $18
-LASS         EQU $19
-JANINE       EQU $1A
-COOLTRAINERM EQU $1B
-COOLTRAINERF EQU $1C
-BEAUTY       EQU $1D
-POKEMANIAC   EQU $1E
-GRUNTM       EQU $1F
-GENTLEMAN    EQU $20
-SKIER        EQU $21
-TEACHER      EQU $22
-SABRINA      EQU $23
-BUG_CATCHER  EQU $24
-FISHER       EQU $25
-SWIMMERM     EQU $26
-SWIMMERF     EQU $27
-SAILOR       EQU $28
-SUPER_NERD   EQU $29
-RIVAL2       EQU $2A
-GUITARIST    EQU $2B
-HIKER        EQU $2C
-BIKER        EQU $2D
-BLAINE       EQU $2E
-BURGLAR      EQU $2F
-FIREBREATHER EQU $30
-JUGGLER      EQU $31
-BLACKBELT_T  EQU $32
-EXECUTIVEM   EQU $33
-PSYCHIC_T    EQU $34
-PICNICKER    EQU $35
-CAMPER       EQU $36
-EXECUTIVEF   EQU $37
-SAGE         EQU $38
-MEDIUM       EQU $39
-BOARDER      EQU $3A
-POKEFANM     EQU $3B
-KIMONO_GIRL  EQU $3C
-TWINS        EQU $3D
-POKEFANF     EQU $3E
-RED          EQU $3F
-BLUE         EQU $40
-OFFICER      EQU $41
-GRUNTF       EQU $42
-MYSTICALMAN  EQU $43
+	enum_start 1
+	trainerclass FALKNER ; 1
 
-; Rival1
-RIVAL1_1 EQU $01
-RIVAL1_2 EQU $02
-RIVAL1_3 EQU $03
-RIVAL1_4 EQU $04
-RIVAL1_5 EQU $05
-RIVAL1_6 EQU $06
-RIVAL1_7 EQU $07
-RIVAL1_8 EQU $08
-RIVAL1_9 EQU $09
-RIVAL1_10 EQU $0a
-RIVAL1_11 EQU $0b
-RIVAL1_12 EQU $0c
-RIVAL1_13 EQU $0d
-RIVAL1_14 EQU $0e
-RIVAL1_15 EQU $0f
+	trainerclass WHITNEY ; 2
 
-; PokemonProf
-; no trainers
+	trainerclass BUGSY ; 3
 
-; SpecialPKMN1
-CAL1 EQU $01
-CAL2 EQU $02
-CAL3 EQU $03
+	trainerclass MORTY ; 4
 
-; Champion
-LANCE EQU $01
+	trainerclass PRYCE ; 5
 
-; Scientist
-ROSS EQU $01
-MITCH EQU $02
-JED EQU $03
-MARC EQU $04
-RICH EQU $05
+	trainerclass JASMINE ; 6
 
-; Youngster
-JOEY1 EQU $01
-MIKEY EQU $02
-ALBERT EQU $03
-GORDON EQU $04
-SAMUEL EQU $05
-IAN EQU $06
-JOEY2 EQU $07
-JOEY3 EQU $08
-WARREN EQU $09
-JIMMY EQU $0a
-OWEN EQU $0b
-JASON EQU $0c
-JOEY4 EQU $0d
-JOEY5 EQU $0e
+	trainerclass CHUCK ; 7
 
-; Schoolboy
-JACK1 EQU $01
-KIPP EQU $02
-ALAN1 EQU $03
-JOHNNY EQU $04
-DANNY EQU $05
-TOMMY EQU $06
-DUDLEY EQU $07
-JOE EQU $08
-BILLY EQU $09
-CHAD1 EQU $0a
-NATE EQU $0b
-RICKY EQU $0c
-JACK2 EQU $0d
-JACK3 EQU $0e
-ALAN2 EQU $0f
-ALAN3 EQU $10
-CHAD2 EQU $11
-CHAD3 EQU $12
-JACK4 EQU $13
-JACK5 EQU $14
-ALAN4 EQU $15
-ALAN5 EQU $16
-CHAD4 EQU $17
-CHAD5 EQU $18
+	trainerclass CLAIR ; 8
 
-; BirdKeeper
-ROD EQU $01
-ABE EQU $02
-BRYAN EQU $03
-THEO EQU $04
-TOBY EQU $05
-DENIS EQU $06
-VANCE1 EQU $07
-HANK EQU $08
-ROY EQU $09
-BORIS EQU $0a
-BOB EQU $0b
-JOSE1 EQU $0c
-PETER EQU $0d
-JOSE2 EQU $0e
-PERRY EQU $0f
-BRET EQU $10
-JOSE3 EQU $11
-VANCE2 EQU $12
-VANCE3 EQU $13
+	trainerclass RIVAL1 ; 9
+	const RIVAL1_1
+	const RIVAL1_2
+	const RIVAL1_3
+	const RIVAL1_4
+	const RIVAL1_5
+	const RIVAL1_6
+	const RIVAL1_7
+	const RIVAL1_8
+	const RIVAL1_9
+	const RIVAL1_10
+	const RIVAL1_11
+	const RIVAL1_12
+	const RIVAL1_13
+	const RIVAL1_14
+	const RIVAL1_15
 
-; Lass
-CARRIE EQU $01
-BRIDGET EQU $02
-ALICE EQU $03
-KRISE EQU $04
-CONNIE1 EQU $05
-LINDA EQU $06
-LAURA EQU $07
-SHANNON EQU $08
-MICHELLE EQU $09
-DANA1 EQU $0a
-ELLEN EQU $0b
-CONNIE2 EQU $0c
-CONNIE3 EQU $0d
-DANA2 EQU $0e
-DANA3 EQU $0f
-DANA4 EQU $10
-DANA5 EQU $11
+	trainerclass POKEMON_PROF ; a
 
-; CooltrainerM
-NICK EQU $01
-AARON EQU $02
-PAUL EQU $03
-CODY EQU $04
-MIKE EQU $05
-GAVEN1 EQU $06
-GAVEN2 EQU $07
-RYAN EQU $08
-JAKE EQU $09
-GAVEN3 EQU $0a
-BLAKE EQU $0b
-BRIAN EQU $0c
-ERICK EQU $0d
-ANDY EQU $0e
-TYLER EQU $0f
-SEAN EQU $10
-KEVIN EQU $11
-STEVE EQU $12
-ALLEN EQU $13
-DARIN EQU $14
+	trainerclass WILL ; b
 
-; CooltrainerF
-GWEN EQU $01
-LOIS EQU $02
-FRAN EQU $03
-LOLA EQU $04
-KATE EQU $05
-IRENE EQU $06
-KELLY EQU $07
-JOYCE EQU $08
-BETH1 EQU $09
-REENA1 EQU $0a
-MEGAN EQU $0b
-BETH2 EQU $0c
-CAROL EQU $0d
-QUINN EQU $0e
-EMMA EQU $0f
-CYBIL EQU $10
-JENN EQU $11
-BETH3 EQU $12
-REENA2 EQU $13
-REENA3 EQU $14
-CARA EQU $15
+	trainerclass CAL ; c
+	const CAL1
+	const CAL2
+	const CAL3
 
-; Beauty
-VICTORIA EQU $01
-SAMANTHA EQU $02
-JULIE EQU $03
-JACLYN EQU $04
-BRENDA EQU $05
-CASSIE EQU $06
-CAROLINE EQU $07
-CARLENE EQU $08
-JESSICA EQU $09
-RACHAEL EQU $0a
-ANGELICA EQU $0b
-KENDRA EQU $0c
-VERONICA EQU $0d
-JULIA EQU $0e
-THERESA EQU $0f
-VALERIE EQU $10
-OLIVIA EQU $11
+	trainerclass BRUNO ; d
 
-; Pokemaniac
-LARRY EQU $01
-ANDREW EQU $02
-CALVIN EQU $03
-SHANE EQU $04
-BEN EQU $05
-BRENT1 EQU $06
-RON EQU $07
-ETHAN EQU $08
-BRENT2 EQU $09
-BRENT3 EQU $0a
-ISSAC EQU $0b
-DONALD EQU $0c
-ZACH EQU $0d
-BRENT4 EQU $0e
-MILLER EQU $0f
+	trainerclass KAREN ; e
 
-; Gentleman
-PRESTON EQU $01
-EDWARD EQU $02
-GREGORY EQU $03
-VIRGIL EQU $04
-ALFRED EQU $05
+	trainerclass KOGA ; f
 
-; Skier
-ROXANNE EQU $01
-CLARISSA EQU $02
+	trainerclass CHAMPION ; 10
+	const LANCE
 
-; Teacher
-COLETTE EQU $01
-HILLARY EQU $02
-SHIRLEY EQU $03
+	trainerclass BROCK ; 11
 
-; BugCatcher
-DON EQU $01
-ROB EQU $02
-ED EQU $03
-WADE1 EQU $04
-BUG_CATCHER_BENNY EQU $05
-AL EQU $06
-JOSH EQU $07
-ARNIE1 EQU $08
-KEN EQU $09
-WADE2 EQU $0a
-WADE3 EQU $0b
-DOUG EQU $0c
-ARNIE2 EQU $0d
-ARNIE3 EQU $0e
-WADE4 EQU $0f
-WADE5 EQU $10
-ARNIE4 EQU $11
-ARNIE5 EQU $12
-WAYNE EQU $13
+	trainerclass MISTY ; 12
 
-; Fisher
-JUSTIN EQU $01
-RALPH1 EQU $02
-ARNOLD EQU $03
-KYLE EQU $04
-HENRY EQU $05
-MARVIN EQU $06
-TULLY1 EQU $07
-ANDRE EQU $08
-RAYMOND EQU $09
-WILTON1 EQU $0a
-EDGAR EQU $0b
-JONAH EQU $0c
-MARTIN EQU $0d
-STEPHEN EQU $0e
-BARNEY EQU $0f
-RALPH2 EQU $10
-RALPH3 EQU $11
-TULLY2 EQU $12
-TULLY3 EQU $13
-WILTON2 EQU $14
-SCOTT EQU $15
-WILTON3 EQU $16
-RALPH4 EQU $17
-RALPH5 EQU $18
-TULLY4 EQU $19
+	trainerclass LT_SURGE ; 13
 
-; SwimmerM
-HAROLD EQU $01
-SIMON EQU $02
-RANDALL EQU $03
-CHARLIE EQU $04
-GEORGE EQU $05
-BERKE EQU $06
-KIRK EQU $07
-MATHEW EQU $08
-HAL EQU $09
-PATON EQU $0a
-DARYL EQU $0b
-WALTER EQU $0c
-TONY EQU $0d
-JEROME EQU $0e
-TUCKER EQU $0f
-RICK EQU $10
-CAMERON EQU $11
-SETH EQU $12
-JAMES EQU $13
-LEWIS EQU $14
-PARKER EQU $15
+	trainerclass SCIENTIST ; 14
+	const ROSS
+	const MITCH
+	const JED
+	const MARC
+	const RICH
 
-; SwimmerF
-ELAINE EQU $01
-PAULA EQU $02
-KAYLEE EQU $03
-SUSIE EQU $04
-DENISE EQU $05
-KARA EQU $06
-WENDY EQU $07
-LISA EQU $08
-JILL EQU $09
-MARY EQU $0a
-KATIE EQU $0b
-DAWN EQU $0c
-TARA EQU $0d
-NICOLE EQU $0e
-LORI EQU $0f
-JODY EQU $10
-NIKKI EQU $11
-DIANA EQU $12
-BRIANA EQU $13
+	trainerclass ERIKA ; 15
 
-; Sailor
-EUGENE EQU $01
-HUEY1 EQU $02
-TERRELL EQU $03
-KENT EQU $04
-ERNEST EQU $05
-JEFF EQU $06
-GARRETT EQU $07
-KENNETH EQU $08
-STANLY EQU $09
-HARRY EQU $0a
-HUEY2 EQU $0b
-HUEY3 EQU $0c
-HUEY4 EQU $0d
+	trainerclass YOUNGSTER ; 16
+	const JOEY1
+	const MIKEY
+	const ALBERT
+	const GORDON
+	const SAMUEL
+	const IAN
+	const JOEY2
+	const JOEY3
+	const WARREN
+	const JIMMY
+	const OWEN
+	const JASON
+	const JOEY4
+	const JOEY5
 
-; SuperNerd
-STAN EQU $01
-ERIC EQU $02
-GREGG EQU $03
-JAY EQU $04
-DAVE EQU $05
-SAM EQU $06
-TOM EQU $07
-PAT EQU $08
-SHAWN EQU $09
-TERU EQU $0a
-RUSS EQU $0b
-NORTON EQU $0c
-HUGH EQU $0d
-MARKUS EQU $0e
+	trainerclass SCHOOLBOY ; 17
+	const JACK1
+	const KIPP
+	const ALAN1
+	const JOHNNY
+	const DANNY
+	const TOMMY
+	const DUDLEY
+	const JOE
+	const BILLY
+	const CHAD1
+	const NATE
+	const RICKY
+	const JACK2
+	const JACK3
+	const ALAN2
+	const ALAN3
+	const CHAD2
+	const CHAD3
+	const JACK4
+	const JACK5
+	const ALAN4
+	const ALAN5
+	const CHAD4
+	const CHAD5
 
-; Guitarist
-CLYDE EQU $01
-VINCENT EQU $02
+	trainerclass BIRD_KEEPER ; 18
+	const ROD
+	const ABE
+	const BRYAN
+	const THEO
+	const TOBY
+	const DENIS
+	const VANCE1
+	const HANK
+	const ROY
+	const BORIS
+	const BOB
+	const JOSE1
+	const PETER
+	const JOSE2
+	const PERRY
+	const BRET
+	const JOSE3
+	const VANCE2
+	const VANCE3
 
-; Hiker
-ANTHONY1 EQU $01
-RUSSELL EQU $02
-PHILLIP EQU $03
-LEONARD EQU $04
-ANTHONY2 EQU $05
-BENJAMIN EQU $06
-ERIK EQU $07
-MICHAEL EQU $08
-PARRY1 EQU $09
-TIMOTHY EQU $0a
-BAILEY EQU $0b
-ANTHONY3 EQU $0c
-TIM EQU $0d
-NOLAND EQU $0e
-SIDNEY EQU $0f
-KENNY EQU $10
-JIM EQU $11
-DANIEL EQU $12
-PARRY2 EQU $13
-PARRY3 EQU $14
-ANTHONY4 EQU $15
-ANTHONY5 EQU $16
+	trainerclass LASS ; 19
+	const CARRIE
+	const BRIDGET
+	const ALICE
+	const KRISE
+	const CONNIE1
+	const LINDA
+	const LAURA
+	const SHANNON
+	const MICHELLE
+	const DANA1
+	const ELLEN
+	const CONNIE2
+	const CONNIE3
+	const DANA2
+	const DANA3
+	const DANA4
+	const DANA5
 
-; Biker
-BIKER_BENNY EQU $01
-KAZU EQU $02
-DWAYNE EQU $03
-HARRIS EQU $04
-ZEKE EQU $05
-CHARLES EQU $06
-RILEY EQU $07
-JOEL EQU $08
-GLENN EQU $09
+	trainerclass JANINE ; 1a
 
-; Burglar
-DUNCAN EQU $01
-EDDIE EQU $02
-COREY EQU $03
+	trainerclass COOLTRAINERM ; 1b
+	const NICK
+	const AARON
+	const PAUL
+	const CODY
+	const MIKE
+	const GAVEN1
+	const GAVEN2
+	const RYAN
+	const JAKE
+	const GAVEN3
+	const BLAKE
+	const BRIAN
+	const ERICK
+	const ANDY
+	const TYLER
+	const SEAN
+	const KEVIN
+	const STEVE
+	const ALLEN
+	const DARIN
 
-; Firebreather
-OTIS EQU $01
-DICK EQU $02
-NED EQU $03
-BURT EQU $04
-BILL EQU $05
-WALT EQU $06
-RAY EQU $07
-LYLE EQU $08
+	trainerclass COOLTRAINERF ; 1c
+	const GWEN
+	const LOIS
+	const FRAN
+	const LOLA
+	const KATE
+	const IRENE
+	const KELLY
+	const JOYCE
+	const BETH1
+	const REENA1
+	const MEGAN
+	const BETH2
+	const CAROL
+	const QUINN
+	const EMMA
+	const CYBIL
+	const JENN
+	const BETH3
+	const REENA2
+	const REENA3
+	const CARA
 
-; Juggler
-IRWIN1 EQU $01
-FRITZ EQU $02
-HORTON EQU $03
-IRWIN2 EQU $04
-IRWIN3 EQU $05
-IRWIN4 EQU $06
+	trainerclass BEAUTY ; 1d
+	const VICTORIA
+	const SAMANTHA
+	const JULIE
+	const JACLYN
+	const BRENDA
+	const CASSIE
+	const CAROLINE
+	const CARLENE
+	const JESSICA
+	const RACHAEL
+	const ANGELICA
+	const KENDRA
+	const VERONICA
+	const JULIA
+	const THERESA
+	const VALERIE
+	const OLIVIA
 
-; Blackbelt
-KENJI1 EQU $01
-YOSHI EQU $02
-KENJI2 EQU $03
-LAO EQU $04
-NOB EQU $05
-KIYO EQU $06
-LUNG EQU $07
-KENJI3 EQU $08
-WAI EQU $09
+	trainerclass POKEMANIAC ; 1e
+	const LARRY
+	const ANDREW
+	const CALVIN
+	const SHANE
+	const BEN
+	const BRENT1
+	const RON
+	const ETHAN
+	const BRENT2
+	const BRENT3
+	const ISSAC
+	const DONALD
+	const ZACH
+	const BRENT4
+	const MILLER
 
-; Psychic
-NATHAN EQU $01
-FRANKLIN EQU $02
-HERMAN EQU $03
-FIDEL EQU $04
-GREG EQU $05
-NORMAN EQU $06
-MARK EQU $07
-PHIL EQU $08
-RICHARD EQU $09
-GILBERT EQU $0a
-JARED EQU $0b
-RODNEY EQU $0c
+	trainerclass GRUNTM ; 1f
 
-; Picnicker
-LIZ1 EQU $01
-GINA1 EQU $02
-BROOKE EQU $03
-KIM EQU $04
-CINDY EQU $05
-HOPE EQU $06
-SHARON EQU $07
-DEBRA EQU $08
-GINA2 EQU $09
-ERIN1 EQU $0a
-LIZ2 EQU $0b
-LIZ3 EQU $0c
-HEIDI EQU $0d
-EDNA EQU $0e
-GINA3 EQU $0f
-TIFFANY1 EQU $10
-TIFFANY2 EQU $11
-ERIN2 EQU $12
-TANYA EQU $13
-TIFFANY3 EQU $14
-ERIN3 EQU $15
-LIZ4 EQU $16
-LIZ5 EQU $17
-GINA4 EQU $18
-GINA5 EQU $19
-TIFFANY4 EQU $1a
+	trainerclass GENTLEMAN ; 20
+	const PRESTON
+	const EDWARD
+	const GREGORY
+	const VIRGIL
+	const ALFRED
 
-; Camper
-ROLAND EQU $01
-TODD1 EQU $02
-IVAN EQU $03
-ELLIOT EQU $04
-BARRY EQU $05
-LLOYD EQU $06
-DEAN EQU $07
-SID EQU $08
-HARVEY EQU $09
-DALE EQU $0a
-TED EQU $0b
-TODD2 EQU $0c
-TODD3 EQU $0d
-THOMAS EQU $0e
-LEROY EQU $0f
-DAVID EQU $10
-JOHN EQU $11
-JERRY EQU $12
-SPENCER EQU $13
-TODD4 EQU $14
-TODD5 EQU $15
-QUENTIN EQU $16
+	trainerclass SKIER ; 21
+	const ROXANNE
+	const CLARISSA
 
-; Sage
-CHOW EQU $01
-NICO EQU $02
-JIN EQU $03
-TROY EQU $04
-JEFFREY EQU $05
-PING EQU $06
-EDMOND EQU $07
-NEAL EQU $08
-LI EQU $09
-GAKU EQU $0a
-MASA EQU $0b
-KOJI EQU $0c
+	trainerclass TEACHER ; 22
+	const COLETTE
+	const HILLARY
+	const SHIRLEY
 
-; Medium
-MARTHA EQU $01
-GRACE EQU $02
-BETHANY EQU $03
-MARGRET EQU $04
-ETHEL EQU $05
-REBECCA EQU $06
-DORIS EQU $07
+	trainerclass SABRINA ; 23
 
-; Boarder
-RONALD EQU $01
-BRAD EQU $02
-DOUGLAS EQU $03
+	trainerclass BUG_CATCHER ; 24
+	const DON
+	const ROB
+	const ED
+	const WADE1
+	const BUG_CATCHER_BENNY
+	const AL
+	const JOSH
+	const ARNIE1
+	const KEN
+	const WADE2
+	const WADE3
+	const DOUG
+	const ARNIE2
+	const ARNIE3
+	const WADE4
+	const WADE5
+	const ARNIE4
+	const ARNIE5
+	const WAYNE
 
-; PokefanM
-WILLIAM EQU $01
-DEREK1 EQU $02
-ROBERT EQU $03
-JOSHUA EQU $04
-CARTER EQU $05
-TREVOR EQU $06
-BRANDON EQU $07
-JEREMY EQU $08
-COLIN EQU $09
-DEREK2 EQU $0a
-DEREK3 EQU $0b
-ALEX EQU $0c
-REX EQU $0d
-ALLAN EQU $0e
+	trainerclass FISHER ; 25
+	const JUSTIN
+	const RALPH1
+	const ARNOLD
+	const KYLE
+	const HENRY
+	const MARVIN
+	const TULLY1
+	const ANDRE
+	const RAYMOND
+	const WILTON1
+	const EDGAR
+	const JONAH
+	const MARTIN
+	const STEPHEN
+	const BARNEY
+	const RALPH2
+	const RALPH3
+	const TULLY2
+	const TULLY3
+	const WILTON2
+	const SCOTT
+	const WILTON3
+	const RALPH4
+	const RALPH5
+	const TULLY4
 
-; KimonoGirl
-NAOKO1 EQU $01
-NAOKO2 EQU $02
-SAYO EQU $03
-ZUKI EQU $04
-KUNI EQU $05
-MIKI EQU $06
+	trainerclass SWIMMERM ; 26
+	const HAROLD
+	const SIMON
+	const RANDALL
+	const CHARLIE
+	const GEORGE
+	const BERKE
+	const KIRK
+	const MATHEW
+	const HAL
+	const PATON
+	const DARYL
+	const WALTER
+	const TONY
+	const JEROME
+	const TUCKER
+	const RICK
+	const CAMERON
+	const SETH
+	const JAMES
+	const LEWIS
+	const PARKER
 
-; Twins
-AMYANDMAY1 EQU $01
-ANNANDANNE1 EQU $02
-ANNANDANNE2 EQU $03
-AMYANDMAY2 EQU $04
-JOANDZOE1 EQU $05
-JOANDZOE2 EQU $06
-MEGANDPEG1 EQU $07
-MEGANDPEG2 EQU $08
-LEAANDPIA1 EQU $09
-LEAANDPIA2 EQU $0a
+	trainerclass SWIMMERF ; 27
+	const ELAINE
+	const PAULA
+	const KAYLEE
+	const SUSIE
+	const DENISE
+	const KARA
+	const WENDY
+	const LISA
+	const JILL
+	const MARY
+	const KATIE
+	const DAWN
+	const TARA
+	const NICOLE
+	const LORI
+	const JODY
+	const NIKKI
+	const DIANA
+	const BRIANA
 
-; PokefanF
-BEVERLY1 EQU $01
-RUTH EQU $02
-BEVERLY2 EQU $03
-BEVERLY3 EQU $04
-GEORGIA EQU $05
-JAIME EQU $06
+	trainerclass SAILOR ; 28
+	const EUGENE
+	const HUEY1
+	const TERRELL
+	const KENT
+	const ERNEST
+	const JEFF
+	const GARRETT
+	const KENNETH
+	const STANLY
+	const HARRY
+	const HUEY2
+	const HUEY3
+	const HUEY4
 
-; Officer
-KEITH EQU $01
-DIRK EQU $02
+	trainerclass SUPER_NERD ; 29
+	const STAN
+	const ERIC
+	const GREGG
+	const JAY
+	const DAVE
+	const SAM
+	const TOM
+	const PAT
+	const SHAWN
+	const TERU
+	const RUSS
+	const NORTON
+	const HUGH
+	const MARKUS
 
-; Mysticalman
-EUSINE EQU $01
+	trainerclass RIVAL2 ; 2a
+
+	trainerclass GUITARIST ; 2b
+	const CLYDE
+	const VINCENT
+
+	trainerclass HIKER ; 2c
+	const ANTHONY1
+	const RUSSELL
+	const PHILLIP
+	const LEONARD
+	const ANTHONY2
+	const BENJAMIN
+	const ERIK
+	const MICHAEL
+	const PARRY1
+	const TIMOTHY
+	const BAILEY
+	const ANTHONY3
+	const TIM
+	const NOLAND
+	const SIDNEY
+	const KENNY
+	const JIM
+	const DANIEL
+	const PARRY2
+	const PARRY3
+	const ANTHONY4
+	const ANTHONY5
+
+	trainerclass BIKER ; 2d
+	const BIKER_BENNY
+	const KAZU
+	const DWAYNE
+	const HARRIS
+	const ZEKE
+	const CHARLES
+	const RILEY
+	const JOEL
+	const GLENN
+
+	trainerclass BLAINE ; 2e
+
+	trainerclass BURGLAR ; 2f
+	const DUNCAN
+	const EDDIE
+	const COREY
+
+	trainerclass FIREBREATHER ; 30
+	const OTIS
+	const DICK
+	const NED
+	const BURT
+	const BILL
+	const WALT
+	const RAY
+	const LYLE
+
+	trainerclass JUGGLER ; 31
+	const IRWIN1
+	const FRITZ
+	const HORTON
+	const IRWIN2
+	const IRWIN3
+	const IRWIN4
+
+	trainerclass BLACKBELT_T ; 32
+	const KENJI1
+	const YOSHI
+	const KENJI2
+	const LAO
+	const NOB
+	const KIYO
+	const LUNG
+	const KENJI3
+	const WAI
+
+	trainerclass EXECUTIVEM ; 33
+
+	trainerclass PSYCHIC_T ; 34
+	const NATHAN
+	const FRANKLIN
+	const HERMAN
+	const FIDEL
+	const GREG
+	const NORMAN
+	const MARK
+	const PHIL
+	const RICHARD
+	const GILBERT
+	const JARED
+	const RODNEY
+
+	trainerclass PICNICKER ; 35
+	const LIZ1
+	const GINA1
+	const BROOKE
+	const KIM
+	const CINDY
+	const HOPE
+	const SHARON
+	const DEBRA
+	const GINA2
+	const ERIN1
+	const LIZ2
+	const LIZ3
+	const HEIDI
+	const EDNA
+	const GINA3
+	const TIFFANY1
+	const TIFFANY2
+	const ERIN2
+	const TANYA
+	const TIFFANY3
+	const ERIN3
+	const LIZ4
+	const LIZ5
+	const GINA4
+	const GINA5
+	const TIFFANY4
+
+	trainerclass CAMPER ; 36
+	const ROLAND
+	const TODD1
+	const IVAN
+	const ELLIOT
+	const BARRY
+	const LLOYD
+	const DEAN
+	const SID
+	const HARVEY
+	const DALE
+	const TED
+	const TODD2
+	const TODD3
+	const THOMAS
+	const LEROY
+	const DAVID
+	const JOHN
+	const JERRY
+	const SPENCER
+	const TODD4
+	const TODD5
+	const QUENTIN
+
+	trainerclass EXECUTIVEF ; 37
+
+	trainerclass SAGE ; 38
+	const CHOW
+	const NICO
+	const JIN
+	const TROY
+	const JEFFREY
+	const PING
+	const EDMOND
+	const NEAL
+	const LI
+	const GAKU
+	const MASA
+	const KOJI
+
+	trainerclass MEDIUM ; 39
+	const MARTHA
+	const GRACE
+	const BETHANY
+	const MARGRET
+	const ETHEL
+	const REBECCA
+	const DORIS
+
+	trainerclass BOARDER ; 3a
+	const RONALD
+	const BRAD
+	const DOUGLAS
+
+	trainerclass POKEFANM ; 3b
+	const WILLIAM
+	const DEREK1
+	const ROBERT
+	const JOSHUA
+	const CARTER
+	const TREVOR
+	const BRANDON
+	const JEREMY
+	const COLIN
+	const DEREK2
+	const DEREK3
+	const ALEX
+	const REX
+	const ALLAN
+
+	trainerclass KIMONO_GIRL ; 3c
+	const NAOKO1
+	const NAOKO2
+	const SAYO
+	const ZUKI
+	const KUNI
+	const MIKI
+
+	trainerclass TWINS ; 3d
+	const AMYANDMAY1
+	const ANNANDANNE1
+	const ANNANDANNE2
+	const AMYANDMAY2
+	const JOANDZOE1
+	const JOANDZOE2
+	const MEGANDPEG1
+	const MEGANDPEG2
+	const LEAANDPIA1
+	const LEAANDPIA2
+
+	trainerclass POKEFANF ; 3e
+	const BEVERLY1
+	const RUTH
+	const BEVERLY2
+	const BEVERLY3
+	const GEORGIA
+	const JAIME
+
+	trainerclass RED ; 3f
+
+	trainerclass BLUE ; 40
+
+	trainerclass OFFICER ; 41
+	const KEITH
+	const DIRK
+
+	trainerclass GRUNTF ; 42
+
+	trainerclass MYSTICALMAN ; 43
+	const EUSINE
+
+NUM_TRAINER_CLASSES EQU __enum__

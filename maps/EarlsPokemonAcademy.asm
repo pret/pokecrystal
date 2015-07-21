@@ -1,8 +1,8 @@
-EarlsPokemonAcademy_MapScriptHeader: ; 0x68a5a
-	; trigger count
+EarlsPokemonAcademy_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 AcademyEarl:
@@ -30,11 +30,10 @@ AcademyEarl:
 	loadmovesprites
 	end
 
-YoungsterScript_0x68a83: ; 0x68a83
+YoungsterScript_0x68a83:
 	jumptextfaceplayer UnknownText_0x68d80
-; 0x68a86
 
-GameboyKidScript_0x68a86: ; 0x68a86
+GameboyKidScript_0x68a86:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x68dda
@@ -42,9 +41,8 @@ GameboyKidScript_0x68a86: ; 0x68a86
 	loadmovesprites
 	spriteface $4, DOWN
 	end
-; 0x68a91
 
-GameboyKidScript_0x68a91: ; 0x68a91
+GameboyKidScript_0x68a91:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x68e07
@@ -52,11 +50,9 @@ GameboyKidScript_0x68a91: ; 0x68a91
 	loadmovesprites
 	spriteface $5, DOWN
 	end
-; 0x68a9c
 
-YoungsterScript_0x68a9c: ; 0x68a9c
+YoungsterScript_0x68a9c:
 	jumptextfaceplayer UnknownText_0x68e39
-; 0x68a9f
 
 AcademyBlackboard:
 	loadfont
@@ -144,7 +140,7 @@ AcademyStickerMachine:
 AcademyBookshelf:
 	jumpstd difficultbookshelf
 
-MovementData_0x68b2d: ; 0x68b2d
+MovementData_0x68b2d:
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -159,9 +155,8 @@ MovementData_0x68b2d: ; 0x68b2d
 	turn_head_right
 	turn_head_down
 	step_end
-; 0x68b3b
 
-UnknownText_0x68b3b: ; 0x68b3b
+UnknownText_0x68b3b:
 	text "EARL, I am!"
 
 	para "Wonderful are"
@@ -175,9 +170,8 @@ UnknownText_0x68b3b: ; 0x68b3b
 	line "know? Want to be"
 	cont "a winner is you?"
 	done
-; 0x68bbd
 
-UnknownText_0x68bbd: ; 0x68bbd
+UnknownText_0x68bbd:
 	text "Good! Teach you,"
 	line "I will!"
 
@@ -192,16 +186,14 @@ UnknownText_0x68bbd: ; 0x68bbd
 	para "More from me you"
 	line "want to hear?"
 	done
-; 0x68c51
 
-UnknownText_0x68c51: ; 0x68c51
+UnknownText_0x68c51:
 	text "So, want to know"
 	line "how to raise"
 	cont "#MON well?"
 	done
-; 0x68c7b
 
-UnknownText_0x68c7b: ; 0x68c7b
+UnknownText_0x68c7b:
 	text "Fine! Teach you,"
 	line "I will!"
 
@@ -221,9 +213,8 @@ UnknownText_0x68c7b: ; 0x68c7b
 	line "#MON strong"
 	cont "become!"
 	done
-; 0x68d31
 
-UnknownText_0x68d31: ; 0x68d31
+UnknownText_0x68d31:
 	text "Oh! Smart student"
 	line "you are! Nothing"
 	cont "more do I teach!"
@@ -231,9 +222,8 @@ UnknownText_0x68d31: ; 0x68d31
 	para "Good to #MON"
 	line "you must be!"
 	done
-; 0x68d80
 
-UnknownText_0x68d80: ; 0x68d80
+UnknownText_0x68d80:
 	text "I'm taking notes"
 	line "of the teacher's"
 	cont "lecture."
@@ -242,23 +232,20 @@ UnknownText_0x68d80: ; 0x68d80
 	line "the stuff on the"
 	cont "blackboard too."
 	done
-; 0x68dda
 
-UnknownText_0x68dda: ; 0x68dda
+UnknownText_0x68dda:
 	text "I traded my best"
 	line "#MON to the"
 	cont "guy beside me."
 	done
-; 0x68e07
 
-UnknownText_0x68e07: ; 0x68e07
+UnknownText_0x68e07:
 	text "Huh? The #MON I"
 	line "just got is hold-"
 	cont "ing something!"
 	done
-; 0x68e39
 
-UnknownText_0x68e39: ; 0x68e39
+UnknownText_0x68e39:
 	text "A #MON holding"
 	line "a BERRY will heal"
 	cont "itself in battle."
@@ -270,7 +257,6 @@ UnknownText_0x68e39: ; 0x68e39
 	para "It sure is tough"
 	line "taking notes…"
 	done
-; 0x68eb2
 
 AcademyBlackboardText:
 	text "The blackboard"
@@ -418,31 +404,30 @@ AcademyStickerMachineText:
 	para "stickers!"
 	done
 
-EarlsPokemonAcademy_MapEventHeader: ; 0x69375
+EarlsPokemonAcademy_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $f, $3, 3, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $f, $4, 3, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 1, 0, $0, AcademyBookshelf
-	signpost 1, 1, $0, AcademyBookshelf
-	signpost 0, 3, $0, AcademyBlackboard
-	signpost 0, 4, $0, AcademyBlackboard
+	signpost 1, 0, SIGNPOST_READ, AcademyBookshelf
+	signpost 1, 1, SIGNPOST_READ, AcademyBookshelf
+	signpost 0, 3, SIGNPOST_READ, AcademyBlackboard
+	signpost 0, 4, SIGNPOST_READ, AcademyBlackboard
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_FISHER, 6, 8, $6, $0, 255, 255, $a0, 0, AcademyEarl, $06cb
-	person_event SPRITE_YOUNGSTER, 9, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x68a83, $ffff
-	person_event SPRITE_GAMEBOY_KID, 15, 7, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x68a86, $ffff
-	person_event SPRITE_GAMEBOY_KID, 15, 8, $8, $0, 255, 255, $80, 0, GameboyKidScript_0x68a91, $ffff
-	person_event SPRITE_YOUNGSTER, 11, 8, $7, $0, 255, 255, $0, 0, YoungsterScript_0x68a9c, $ffff
-	person_event SPRITE_POKEDEX, 8, 6, $1, $0, 255, 255, $0, 0, AcademyNotebook, $ffff
-; 0x693e7
+	person_event SPRITE_FISHER, 6, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
+	person_event SPRITE_YOUNGSTER, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x68a83, -1
+	person_event SPRITE_GAMEBOY_KID, 15, 7, OW_UP | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x68a86, -1
+	person_event SPRITE_GAMEBOY_KID, 15, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GameboyKidScript_0x68a91, -1
+	person_event SPRITE_YOUNGSTER, 11, 8, OW_UP | $3, $0, -1, -1, $0, 0, YoungsterScript_0x68a9c, -1
+	person_event SPRITE_POKEDEX, 8, 6, OW_DOWN | $1, $0, -1, -1, $0, 0, AcademyNotebook, -1

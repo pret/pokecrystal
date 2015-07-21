@@ -1,23 +1,20 @@
-OlivineHouseBeta_MapScriptHeader: ; 0x9c58d
-	; trigger count
+OlivineHouseBeta_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x9c58f
 
-TeacherScript_0x9c58f: ; 0x9c58f
+TeacherScript_0x9c58f:
 	jumptextfaceplayer UnknownText_0x9c5a2
-; 0x9c592
 
-RhydonScript_0x9c592: ; 0x9c592
+RhydonScript_0x9c592:
 	loadfont
 	writetext UnknownText_0x9c5f0
 	cry RHYDON
 	closetext
 	loadmovesprites
 	end
-; 0x9c59c
 
 OlivineHouseBetaBookshelf1:
 	jumpstd picturebookshelf
@@ -25,7 +22,7 @@ OlivineHouseBetaBookshelf1:
 OlivineHouseBetaBookshelf2:
 	jumpstd magazinebookshelf
 
-UnknownText_0x9c5a2: ; 0x9c5a2
+UnknownText_0x9c5a2:
 	text "When my #MON"
 	line "got sick, the"
 
@@ -33,32 +30,29 @@ UnknownText_0x9c5a2: ; 0x9c5a2
 	line "ECRUTEAK made some"
 	cont "medicine for me."
 	done
-; 0x9c5f0
 
-UnknownText_0x9c5f0: ; 0x9c5f0
+UnknownText_0x9c5f0:
 	text "RHYDON: Gugooh!"
 	done
-; 0x9c601
 
-OlivineHouseBeta_MapEventHeader: ; 0x9c601
+OlivineHouseBeta_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 4, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	warp_def $7, $3, 4, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 1, 0, $0, OlivineHouseBetaBookshelf1
-	signpost 1, 1, $0, OlivineHouseBetaBookshelf2
+	signpost 1, 0, SIGNPOST_READ, OlivineHouseBetaBookshelf1
+	signpost 1, 1, SIGNPOST_READ, OlivineHouseBetaBookshelf2
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 7, 6, $3, $0, 255, 255, $0, 0, TeacherScript_0x9c58f, $ffff
-	person_event SPRITE_RHYDON, 8, 10, $4, $20, 255, 255, $0, 0, RhydonScript_0x9c592, $ffff
-; 0x9c635
+	person_event SPRITE_TEACHER, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, TeacherScript_0x9c58f, -1
+	person_event SPRITE_RHYDON, 8, 10, OW_UP | $0, $20, -1, -1, $0, 0, RhydonScript_0x9c592, -1

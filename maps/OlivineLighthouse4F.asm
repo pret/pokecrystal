@@ -1,70 +1,33 @@
-OlivineLighthouse4F_MapScriptHeader: ; 0x5b4e8
-	; trigger count
+OlivineLighthouse4F_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x5b4ea
 
-TrainerLassConnie1: ; 0x5b4ea
-	; bit/flag number
-	dw $519
+TrainerLassConnie:
+	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, $0000, LassConnie1Script
 
-	; trainer group && trainer id
-	db LASS, CONNIE1
-
-	; text when seen
-	dw LassConnie1SeenText
-
-	; text when trainer beaten
-	dw LassConnie1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassConnie1Script
-; 0x5b4f6
-
-LassConnie1Script: ; 0x5b4f6
+LassConnie1Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b63c
 	closetext
 	loadmovesprites
 	end
-; 0x5b4fe
 
-TrainerSailorKent: ; 0x5b4fe
-	; bit/flag number
-	dw $578
+TrainerSailorKent:
+	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, $0000, SailorKentScript
 
-	; trainer group && trainer id
-	db SAILOR, KENT
-
-	; text when seen
-	dw SailorKentSeenText
-
-	; text when trainer beaten
-	dw SailorKentBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SailorKentScript
-; 0x5b50a
-
-SailorKentScript: ; 0x5b50a
+SailorKentScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b584
 	closetext
 	loadmovesprites
 	end
-; 0x5b512
 
-SailorKentSeenText: ; 0x5b512
+SailorKentSeenText:
 	text "JASMINE must be"
 	line "worried sick about"
 	cont "the #MON here."
@@ -72,24 +35,21 @@ SailorKentSeenText: ; 0x5b512
 	para "She won't even"
 	line "smile these days."
 	done
-; 0x5b565
 
-SailorKentBeatenText: ; 0x5b565
+SailorKentBeatenText:
 	text "I can't manage a"
 	line "smile either…"
 	done
-; 0x5b584
 
-UnknownText_0x5b584: ; 0x5b584
+UnknownText_0x5b584:
 	text "Speaking of sick,"
 	line "I've heard there's"
 
 	para "a good PHARMACY in"
 	line "CIANWOOD."
 	done
-; 0x5b5c5
 
-LassConnie1SeenText: ; 0x5b5c5
+LassConnie1SeenText:
 	text "JASMINE is this"
 	line "city's GYM LEADER."
 
@@ -99,14 +59,12 @@ LassConnie1SeenText: ; 0x5b5c5
 	para "Nobody had better"
 	line "get in my way!"
 	done
-; 0x5b62b
 
-LassConnie1BeatenText: ; 0x5b62b
+LassConnie1BeatenText:
 	text "Aaack! My #MON!"
 	done
-; 0x5b63c
 
-UnknownText_0x5b63c: ; 0x5b63c
+UnknownText_0x5b63c:
 	text "Right. Anybody"
 	line "would be worried"
 	cont "if his or her own"
@@ -118,13 +76,12 @@ UnknownText_0x5b63c: ; 0x5b63c
 	para "JASMINE can come"
 	line "back to the GYM."
 	done
-; 0x5b6c0
 
-OlivineLighthouse4F_MapEventHeader: ; 0x5b6c0
+OlivineLighthouse4F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 10
 	warp_def $3, $d, 1, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
 	warp_def $5, $3, 2, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
@@ -137,14 +94,13 @@ OlivineLighthouse4F_MapEventHeader: ; 0x5b6c0
 	warp_def $7, $10, 4, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
 	warp_def $7, $11, 5, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 18, 11, $8, $0, 255, 255, $92, 3, TrainerSailorKent, $ffff
-	person_event SPRITE_LASS, 6, 15, $6, $0, 255, 255, $92, 1, TrainerLassConnie1, $ffff
-; 0x5b712
+	person_event SPRITE_SAILOR, 18, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorKent, -1
+	person_event SPRITE_LASS, 6, 15, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassConnie, -1

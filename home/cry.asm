@@ -66,12 +66,9 @@ LoadCryHeader:: ; 37f3
 	rst Bankswitch
 
 	ld hl, CryHeaders
+rept 6
 	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 
 	ld e, [hl]
 	inc hl

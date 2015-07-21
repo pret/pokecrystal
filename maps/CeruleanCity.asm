@@ -1,8 +1,8 @@
 CeruleanCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -86,7 +86,7 @@ YoungsterScript_0x184064:
 	writetext UnknownText_0x1842a9
 	closetext
 	loadmovesprites
-	checkevent $00fa
+	checkevent EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 	iffalse UnknownScript_0x184072
 	end
 
@@ -108,7 +108,7 @@ UnknownScript_0x184072:
 	waitbutton
 	playsound SFX_TRANSACTION
 	waitbutton
-	showemote $0, $7, 15
+	showemote EMOTE_SHOCK, $7, 15
 	spriteface $7, LEFT
 	loadfont
 	writetext UnknownText_0x1842ee
@@ -141,8 +141,7 @@ CeruleanCityMartSign:
 	jumpstd martsign
 
 MapCeruleanCitySignpostItem8:
-	dw $00fa
-	db BERSERK_GENE
+	dwb EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY, BERSERK_GENE
 
 UnknownText_0x1840bc:
 	text "KANTO's POWER"
@@ -274,7 +273,7 @@ CeruleanCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $f, $7, 1, GROUP_CERULEAN_GYM_BADGE_SPEECH_HOUSE, MAP_CERULEAN_GYM_BADGE_SPEECH_HOUSE
 	warp_def $11, $1c, 1, GROUP_CERULEAN_POLICE_STATION, MAP_CERULEAN_POLICE_STATION
@@ -283,26 +282,26 @@ CeruleanCity_MapEventHeader:
 	warp_def $17, $1e, 1, GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM
 	warp_def $1d, $19, 2, GROUP_CERULEAN_MART, MAP_CERULEAN_MART
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 9
-	signpost 23, 23, $0, CeruleanCitySign
-	signpost 25, 27, $0, CeruleanGymSign
-	signpost 29, 11, $0, CeruleanBikeShopSign
-	signpost 17, 25, $0, CeruleanPoliceSign
-	signpost 7, 23, $0, CeruleanCapeSign
-	signpost 29, 14, $0, CeruleanLockedDoor
-	signpost 21, 20, $0, CeruleanCityPokeCenterSign
-	signpost 29, 26, $0, CeruleanCityMartSign
-	signpost 12, 2, $7, MapCeruleanCitySignpostItem8
+	signpost 23, 23, SIGNPOST_READ, CeruleanCitySign
+	signpost 25, 27, SIGNPOST_READ, CeruleanGymSign
+	signpost 29, 11, SIGNPOST_READ, CeruleanBikeShopSign
+	signpost 17, 25, SIGNPOST_READ, CeruleanPoliceSign
+	signpost 7, 23, SIGNPOST_READ, CeruleanCapeSign
+	signpost 29, 14, SIGNPOST_READ, CeruleanLockedDoor
+	signpost 21, 20, SIGNPOST_READ, CeruleanCityPokeCenterSign
+	signpost 29, 26, SIGNPOST_READ, CeruleanCityMartSign
+	signpost 12, 2, SIGNPOST_ITEM, MapCeruleanCitySignpostItem8
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_COOLTRAINER_M, 27, 19, $2, $22, 255, 255, $90, 0, CooltrainerMScript_0x184009, $ffff
-	person_event SPRITE_SUPER_NERD, 19, 27, $2, $11, 255, 255, $90, 0, SuperNerdScript_0x18401d, $ffff
-	person_event SPRITE_SLOWPOKE, 28, 24, $1, $0, 255, 255, $0, 0, CeruleanCitySlowbro, $ffff
-	person_event SPRITE_COOLTRAINER_F, 28, 25, $8, $0, 255, 255, $a0, 0, CooltrainerFScript_0x18402a, $ffff
-	person_event SPRITE_FISHER, 30, 34, $5, $1, 255, 255, $80, 0, FisherScript_0x18404a, $ffff
-	person_event SPRITE_YOUNGSTER, 16, 10, $3, $1, 255, 255, $80, 0, YoungsterScript_0x184064, $ffff
+	person_event SPRITE_COOLTRAINER_M, 27, 19, OW_DOWN | $2, $22, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerMScript_0x184009, -1
+	person_event SPRITE_SUPER_NERD, 19, 27, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x18401d, -1
+	person_event SPRITE_SLOWPOKE, 28, 24, OW_DOWN | $1, $0, -1, -1, $0, 0, CeruleanCitySlowbro, -1
+	person_event SPRITE_COOLTRAINER_F, 28, 25, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x18402a, -1
+	person_event SPRITE_FISHER, 30, 34, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x18404a, -1
+	person_event SPRITE_YOUNGSTER, 16, 10, OW_DOWN | $3, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x184064, -1

@@ -67,11 +67,13 @@ warp_def: macro
 
 
 map_header: MACRO
-	; label, tileset, permission, location, music, time of day, fishing group
+	; label, tileset, permission, location, music, phone service flag, time of day, fishing group
 \1_MapHeader:
 	db BANK(\1_SecondMapHeader), \2, \3
 	dw \1_SecondMapHeader
-	db \4, \5, \6, \7
+	db \4, \5
+	dn \6, \7
+	db \8
 ENDM
 
 
@@ -159,4 +161,19 @@ if "\1" == "east"
 	dw OverworldMap + \2_WIDTH + 7
 endc
 
+ENDM
+
+mapgroup: MACRO
+; map id, height, width
+\1\@  EQUS "GROUP_\1"
+\1\@2 EQUS "MAP_\1"
+\1\@ EQU const_value
+	enum \1\@2
+\1_HEIGHT EQU \2
+\1_WIDTH EQU \3
+ENDM
+
+newgroup: MACRO
+const_value = const_value + 1
+	enum_start 1
 ENDM

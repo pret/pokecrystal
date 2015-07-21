@@ -1,8 +1,8 @@
-KrissNeighborsHouse_MapScriptHeader: ; 0x7acec
-	; trigger count
+KrissNeighborsHouse_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 KrissNeighborsDaughter:
@@ -94,26 +94,25 @@ KrisNeighborRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-KrissNeighborsHouse_MapEventHeader: ; 0x7aeb0
+KrissNeighborsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	warp_def $7, $3, 3, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
-	signpost 1, 0, $0, KrissNeighborsHouseBookshelf
-	signpost 1, 1, $0, KrissNeighborsHouseBookshelf
-	signpost 1, 7, $0, KrissNeighborsHouseRadio
+	signpost 1, 0, SIGNPOST_READ, KrissNeighborsHouseBookshelf
+	signpost 1, 1, SIGNPOST_READ, KrissNeighborsHouseBookshelf
+	signpost 1, 7, SIGNPOST_READ, KrissNeighborsHouseRadio
 
-	; people-events
+.PersonEvents:
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, KrissNeighborsDaughter, $ffff
-	person_event SPRITE_POKEFAN_F, 7, 9, $8, $0, 255, 255, $80, 0, KrissNeighbor, $0793
-; 0x7aee9
+	person_event SPRITE_COOLTRAINER_F, 7, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighborsDaughter, -1
+	person_event SPRITE_POKEFAN_F, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR

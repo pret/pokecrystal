@@ -1,220 +1,132 @@
-Route11_MapScriptHeader: ; 0x68000
-	; trigger count
+Route11_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x68002
 
-TrainerYoungsterOwen: ; 0x68002
-	; bit/flag number
-	dw $5b3
+TrainerYoungsterOwen:
+	trainer EVENT_BEAT_YOUNGSTER_OWEN, YOUNGSTER, OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, $0000, YoungsterOwenScript
 
-	; trainer group && trainer id
-	db YOUNGSTER, OWEN
-
-	; text when seen
-	dw YoungsterOwenSeenText
-
-	; text when trainer beaten
-	dw YoungsterOwenBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterOwenScript
-; 0x6800e
-
-YoungsterOwenScript: ; 0x6800e
+YoungsterOwenScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x680b2
 	closetext
 	loadmovesprites
 	end
-; 0x68016
 
-TrainerYoungsterJason: ; 0x68016
-	; bit/flag number
-	dw $5b4
+TrainerYoungsterJason:
+	trainer EVENT_BEAT_YOUNGSTER_JASON, YOUNGSTER, JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, $0000, YoungsterJasonScript
 
-	; trainer group && trainer id
-	db YOUNGSTER, JASON
-
-	; text when seen
-	dw YoungsterJasonSeenText
-
-	; text when trainer beaten
-	dw YoungsterJasonBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw YoungsterJasonScript
-; 0x68022
-
-YoungsterJasonScript: ; 0x68022
+YoungsterJasonScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6814a
 	closetext
 	loadmovesprites
 	end
-; 0x6802a
 
-TrainerPsychicHerman: ; 0x6802a
-	; bit/flag number
-	dw $43c
+TrainerPsychicHerman:
+	trainer EVENT_BEAT_PSYCHIC_HERMAN, PSYCHIC_T, HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, $0000, PsychicHermanScript
 
-	; trainer group && trainer id
-	db PSYCHIC_T, HERMAN
-
-	; text when seen
-	dw PsychicHermanSeenText
-
-	; text when trainer beaten
-	dw PsychicHermanBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicHermanScript
-; 0x68036
-
-PsychicHermanScript: ; 0x68036
+PsychicHermanScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6817b
 	closetext
 	loadmovesprites
 	end
-; 0x6803e
 
-TrainerPsychicFidel: ; 0x6803e
-	; bit/flag number
-	dw $43d
+TrainerPsychicFidel:
+	trainer EVENT_BEAT_PSYCHIC_FIDEL, PSYCHIC_T, FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, $0000, PsychicFidelScript
 
-	; trainer group && trainer id
-	db PSYCHIC_T, FIDEL
-
-	; text when seen
-	dw PsychicFidelSeenText
-
-	; text when trainer beaten
-	dw PsychicFidelBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PsychicFidelScript
-; 0x6804a
-
-PsychicFidelScript: ; 0x6804a
+PsychicFidelScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x681ec
 	closetext
 	loadmovesprites
 	end
-; 0x68052
 
-MapRoute11Signpost0Script: ; 0x68052
+MapRoute11Signpost0Script:
 	jumptext UnknownText_0x68238
-; 0x68055
 
-FruitTreeScript_0x68055: ; 0x68055
+FruitTreeScript_0x68055:
 	fruittree $18
-; 0x68057
 
-MapRoute11SignpostItem1: ; 0x68057
-	dw $00f5
-	db REVIVE
+MapRoute11SignpostItem1:
+	dwb EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
 	
-; 0x6805a
 
-YoungsterOwenSeenText: ; 0x6805a
+YoungsterOwenSeenText:
 	text "There's no cheat-"
 	line "ing in #MON."
 
 	para "Let's keep it fair"
 	line "and square!"
 	done
-; 0x68097
 
-YoungsterOwenBeatenText: ; 0x68097
+YoungsterOwenBeatenText:
 	text "Huh? How did this"
 	line "happen?"
 	done
-; 0x680b2
 
-UnknownText_0x680b2: ; 0x680b2
+UnknownText_0x680b2:
 	text "I fought fair and"
 	line "square with honor."
 
 	para "I don't regret"
 	line "this at all."
 	done
-; 0x680f3
 
-YoungsterJasonSeenText: ; 0x680f3
+YoungsterJasonSeenText:
 	text "It itches and"
 	line "tickles a bit when"
 
 	para "I wear shorts in"
 	line "the grass."
 	done
-; 0x68131
 
-YoungsterJasonBeatenText: ; 0x68131
+YoungsterJasonBeatenText:
 	text "Aiyaaah!"
 	line "I got stomped!"
 	done
-; 0x6814a
 
-UnknownText_0x6814a: ; 0x6814a
+UnknownText_0x6814a:
 	text "I'm going to catch"
 	line "more #MON in"
 	cont "the grass."
 	done
-; 0x68175
 
-PsychicHermanSeenText: ; 0x68175
+PsychicHermanSeenText:
 	text "…"
 	done
-; 0x68178
 
-PsychicHermanBeatenText: ; 0x68178
+PsychicHermanBeatenText:
 	text "…"
 	done
-; 0x6817b
 
-UnknownText_0x6817b: ; 0x6817b
+UnknownText_0x6817b:
 	text "…"
 
 	para "I lost while I had"
 	line "my eyes closed…"
 	done
-; 0x681a1
 
-PsychicFidelSeenText: ; 0x681a1
+PsychicFidelSeenText:
 	text "I can see it…"
 
 	para "Everything to see"
 	line "about you…"
 	done
-; 0x681cd
 
-PsychicFidelBeatenText: ; 0x681cd
+PsychicFidelBeatenText:
 	text "I couldn't foresee"
 	line "your power…"
 	done
-; 0x681ec
 
-UnknownText_0x681ec: ; 0x681ec
+UnknownText_0x681ec:
 	text "Strength in con-"
 	line "viction…"
 
@@ -222,33 +134,30 @@ UnknownText_0x681ec: ; 0x681ec
 	line "cause you believe"
 	cont "in your #MON."
 	done
-; 0x68238
 
-UnknownText_0x68238: ; 0x68238
+UnknownText_0x68238:
 	text "ROUTE 11"
 	done
-; 0x68242
 
-Route11_MapEventHeader: ; 0x68242
+Route11_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 7, 3, $0, MapRoute11Signpost0Script
-	signpost 5, 32, $7, MapRoute11SignpostItem1
+	signpost 7, 3, SIGNPOST_READ, MapRoute11Signpost0Script
+	signpost 5, 32, SIGNPOST_ITEM, MapRoute11SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 18, 26, $a, $0, 255, 255, $92, 3, TrainerYoungsterOwen, $ffff
-	person_event SPRITE_YOUNGSTER, 8, 24, $6, $0, 255, 255, $92, 3, TrainerYoungsterJason, $ffff
-	person_event SPRITE_YOUNGSTER, 11, 32, $6, $0, 255, 255, $92, 1, TrainerPsychicHerman, $ffff
-	person_event SPRITE_YOUNGSTER, 10, 12, $a, $0, 255, 255, $92, 3, TrainerPsychicFidel, $ffff
-	person_event SPRITE_FRUIT_TREE, 6, 36, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x68055, $ffff
-; 0x68293
+	person_event SPRITE_YOUNGSTER, 18, 26, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterOwen, -1
+	person_event SPRITE_YOUNGSTER, 8, 24, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJason, -1
+	person_event SPRITE_YOUNGSTER, 11, 32, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicHerman, -1
+	person_event SPRITE_YOUNGSTER, 10, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFidel, -1
+	person_event SPRITE_FRUIT_TREE, 6, 36, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x68055, -1

@@ -1,63 +1,57 @@
-DragonsDenB1F_MapScriptHeader: ; 0x18c890
-	; trigger count
+DragonsDenB1F_MapScriptHeader:
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x18c89d, $0000
 	dw UnknownScript_0x18c89e, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
 
 	dbw 5, UnknownScript_0x18c89f
-; 0x18c89d
 
-UnknownScript_0x18c89d: ; 0x18c89d
+UnknownScript_0x18c89d:
 	end
-; 0x18c89e
 
-UnknownScript_0x18c89e: ; 0x18c89e
+UnknownScript_0x18c89e:
 	end
-; 0x18c89f
 
-UnknownScript_0x18c89f: ; 0x18c89f
+UnknownScript_0x18c89f:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue UnknownScript_0x18c8a8
 	disappear $4
 	return
-; 0x18c8a8
 
-UnknownScript_0x18c8a8: ; 0x18c8a8
-	checkcode $b
+UnknownScript_0x18c8a8:
+	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, UnknownScript_0x18c8b5
 	if_equal THURSDAY, UnknownScript_0x18c8b5
 	disappear $4
 	return
-; 0x18c8b5
 
-UnknownScript_0x18c8b5: ; 0x18c8b5
+UnknownScript_0x18c8b5:
 	appear $4
 	return
-; 0x18c8b8
 
-UnknownScript_0x18c8b8: ; 0x18c8b8
+UnknownScript_0x18c8b8:
 	appear $3
 	loadfont
 	writetext UnknownText_0x18c9b8
 	pause 30
 	loadmovesprites
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	spriteface $0, LEFT
 	playmusic MUSIC_CLAIR
 	applymovement $3, MovementData_0x18c9ae
 	loadfont
 	writetext UnknownText_0x18c9bf
 	keeptextopen
-	giveitem TM_24, $1
+	giveitem TM_DRAGONBREATH, $1
 	iffalse UnknownScript_0x18c8f4
-	itemtotext TM_24, $0
+	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x18c9fb
 	playsound SFX_ITEM
 	waitbutton
@@ -69,13 +63,12 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	closetext
 	loadmovesprites
 	jump UnknownScript_0x18c8f9
-; 0x18c8f4
 
-UnknownScript_0x18c8f4: ; 0x18c8f4
+UnknownScript_0x18c8f4:
 	writetext UnknownText_0x18ca8b
 	closetext
 	loadmovesprites
-UnknownScript_0x18c8f9: ; 0x18c8f9
+UnknownScript_0x18c8f9:
 	applymovement $3, MovementData_0x18c9b3
 	special Functionc48f
 	pause 30
@@ -83,125 +76,52 @@ UnknownScript_0x18c8f9: ; 0x18c8f9
 	disappear $3
 	dotrigger $0
 	end
-; 0x18c90a
 
-TrainerCooltrainermDarin: ; 0x18c90a
-	; bit/flag number
-	dw $5bd
+TrainerCooltrainermDarin:
+	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, $0000, CooltrainermDarinScript
 
-	; trainer group && trainer id
-	db COOLTRAINERM, DARIN
-
-	; text when seen
-	dw CooltrainermDarinSeenText
-
-	; text when trainer beaten
-	dw CooltrainermDarinBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainermDarinScript
-; 0x18c916
-
-CooltrainermDarinScript: ; 0x18c916
+CooltrainermDarinScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18cd82
 	closetext
 	loadmovesprites
 	end
-; 0x18c91e
 
-TrainerCooltrainerfCara: ; 0x18c91e
-	; bit/flag number
-	dw $5be
+TrainerCooltrainerfCara:
+	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, $0000, CooltrainerfCaraScript
 
-	; trainer group && trainer id
-	db COOLTRAINERF, CARA
-
-	; text when seen
-	dw CooltrainerfCaraSeenText
-
-	; text when trainer beaten
-	dw CooltrainerfCaraBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw CooltrainerfCaraScript
-; 0x18c92a
-
-CooltrainerfCaraScript: ; 0x18c92a
+CooltrainerfCaraScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18ce11
 	closetext
 	loadmovesprites
 	end
-; 0x18c932
 
-TrainerTwinsLeaandpia1: ; 0x18c932
-	; bit/flag number
-	dw $5bf
+TrainerTwinsLeaandpia1:
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, $0000, TwinsLeaandpia1Script
 
-	; trainer group && trainer id
-	db TWINS, LEAANDPIA1
-
-	; text when seen
-	dw TwinsLeaandpia1SeenText
-
-	; text when trainer beaten
-	dw TwinsLeaandpia1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsLeaandpia1Script
-; 0x18c93e
-
-TwinsLeaandpia1Script: ; 0x18c93e
+TwinsLeaandpia1Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18ced3
 	closetext
 	loadmovesprites
 	end
-; 0x18c946
 
-TrainerTwinsLeaandpia2: ; 0x18c946
-	; bit/flag number
-	dw $5bf
+TrainerTwinsLeaandpia2:
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, $0000, TwinsLeaandpia2Script
 
-	; trainer group && trainer id
-	db TWINS, LEAANDPIA1
-
-	; text when seen
-	dw TwinsLeaandpia2SeenText
-
-	; text when trainer beaten
-	dw TwinsLeaandpia2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsLeaandpia2Script
-; 0x18c952
-
-TwinsLeaandpia2Script: ; 0x18c952
+TwinsLeaandpia2Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18cf0f
 	closetext
 	loadmovesprites
 	end
-; 0x18c95a
 
-PokeBallScript_0x18c95a: ; 0x18c95a
+PokeBallScript_0x18c95a:
 	giveitem DRAGON_FANG, $1
 	iffalse UnknownScript_0x18c970
 	disappear $2
@@ -213,9 +133,8 @@ PokeBallScript_0x18c95a: ; 0x18c95a
 	itemnotify
 	loadmovesprites
 	end
-; 0x18c970
 
-UnknownScript_0x18c970: ; 0x18c970
+UnknownScript_0x18c970:
 	loadfont
 	itemtotext DRAGON_FANG, $0
 	writetext UnknownText_0x18cf41
@@ -224,94 +143,77 @@ UnknownScript_0x18c970: ; 0x18c970
 	closetext
 	loadmovesprites
 	end
-; 0x18c97e
 
-SilverScript_0x18c97e: ; 0x18c97e
+SilverScript_0x18c97e:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	loadfont
-	checkevent $0000
+	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x18c995
 	writetext UnknownText_0x18cc83
 	closetext
 	loadmovesprites
-	setevent $0000
+	setevent EVENT_GAVE_KURT_APRICORNS
 	special RestartMapMusic
 	end
-; 0x18c995
 
-UnknownScript_0x18c995: ; 0x18c995
+UnknownScript_0x18c995:
 	writetext UnknownText_0x18cd2d
 	closetext
 	loadmovesprites
 	special RestartMapMusic
 	end
-; 0x18c99e
 
-MapDragonsDenB1FSignpost0Script: ; 0x18c99e
+MapDragonsDenB1FSignpost0Script:
 	jumptext UnknownText_0x18cc2e
-; 0x18c9a1
 
-ItemFragment_0x18c9a1: ; 0x18c9a1
+ItemFragment_0x18c9a1:
 	db CALCIUM, 1
-; 0x18c9a3
 
-ItemFragment_0x18c9a3: ; 0x18c9a3
+ItemFragment_0x18c9a3:
 	db MAX_ELIXER, 1
-; 0x18c9a5
 
-MapDragonsDenB1FSignpostItem1: ; 0x18c9a5
-	dw $00a0
-	db REVIVE
-; 0x18c9a8
+MapDragonsDenB1FSignpostItem1:
+	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_REVIVE, REVIVE
 
-MapDragonsDenB1FSignpostItem2: ; 0x18c9a8
-	dw $00a1
-	db MAX_POTION
-; 0x18c9ab
+MapDragonsDenB1FSignpostItem2:
+	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
-MapDragonsDenB1FSignpostItem3: ; 0x18c9ab
-	dw $00a2
-	db MAX_ELIXER
-; 0x18c9ae
+MapDragonsDenB1FSignpostItem3:
+	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_ELIXER, MAX_ELIXER
 
-MovementData_0x18c9ae: ; 0x18c9ae
+MovementData_0x18c9ae:
 	slow_step_right
 	slow_step_right
 	slow_step_right
 	slow_step_right
 	step_end
-; 0x18c9b3
 
-MovementData_0x18c9b3: ; 0x18c9b3
+MovementData_0x18c9b3:
 	slow_step_left
 	slow_step_left
 	slow_step_left
 	slow_step_left
 	step_end
-; 0x18c9b8
 
-UnknownText_0x18c9b8: ; 0x18c9b8
+UnknownText_0x18c9b8:
 	text "Wait!"
 	done
-; 0x18c9bf
 
-UnknownText_0x18c9bf: ; 0x18c9bf
+UnknownText_0x18c9bf:
 	text "CLAIR: I'm sorry"
 	line "about this."
 
 	para "Here, take this as"
 	line "my apology."
 	done
-; 0x18c9fb
 
-UnknownText_0x18c9fb: ; 0x18c9fb
+UnknownText_0x18c9fb:
 	text "<PLAYER> received"
 	line "TM24."
 	done
-; 0x18ca0d
 
-UnknownText_0x18ca0d: ; 0x18ca0d
+UnknownText_0x18ca0d:
 	text "That contains"
 	line "DRAGONBREATH."
 
@@ -323,9 +225,8 @@ UnknownText_0x18ca0d: ; 0x18ca0d
 	line "it, you don't have"
 	cont "to take it."
 	done
-; 0x18ca8b
 
-UnknownText_0x18ca8b: ; 0x18ca8b
+UnknownText_0x18ca8b:
 	text "Oh? You don't have"
 	line "any room for this."
 
@@ -335,9 +236,8 @@ UnknownText_0x18ca8b: ; 0x18ca8b
 	para "room, then come"
 	line "see me there."
 	done
-; 0x18caf1
 
-UnknownText_0x18caf1: ; 0x18caf1
+UnknownText_0x18caf1:
 	text "CLAIR: What's the"
 	line "matter? Aren't you"
 
@@ -369,9 +269,8 @@ UnknownText_0x18caf1: ; 0x18caf1
 	para "Give it everything"
 	line "you've got."
 	done
-; 0x18cc2e
 
-UnknownText_0x18cc2e: ; 0x18cc2e
+UnknownText_0x18cc2e:
 	text "DRAGON SHRINE"
 
 	para "A shrine honoring"
@@ -380,9 +279,8 @@ UnknownText_0x18cc2e: ; 0x18cc2e
 	para "said to have lived"
 	line "in DRAGON'S DEN."
 	done
-; 0x18cc83
 
-UnknownText_0x18cc83: ; 0x18cc83
+UnknownText_0x18cc83:
 	text "…"
 	line "What? <PLAYER>?"
 
@@ -401,9 +299,8 @@ UnknownText_0x18cc83: ; 0x18cc83
 	para "the greatest #-"
 	line "MON trainer…"
 	done
-; 0x18cd2d
 
-UnknownText_0x18cd2d: ; 0x18cd2d
+UnknownText_0x18cd2d:
 	text "…"
 
 	para "Whew…"
@@ -411,20 +308,17 @@ UnknownText_0x18cd2d: ; 0x18cd2d
 	para "Learn to stay out"
 	line "of my way…"
 	done
-; 0x18cd53
 
-CooltrainermDarinSeenText: ; 0x18cd53
+CooltrainermDarinSeenText:
 	text "You! How dare you"
 	line "enter uninvited!"
 	done
-; 0x18cd77
 
-CooltrainermDarinBeatenText: ; 0x18cd77
+CooltrainermDarinBeatenText:
 	text "S-strong!"
 	done
-; 0x18cd82
 
-UnknownText_0x18cd82: ; 0x18cd82
+UnknownText_0x18cd82:
 	text "The SHRINE ahead"
 	line "is home to the"
 
@@ -434,20 +328,17 @@ UnknownText_0x18cd82: ; 0x18cd82
 	para "You're not allowed"
 	line "to just go in!"
 	done
-; 0x18cde4
 
-CooltrainerfCaraSeenText: ; 0x18cde4
+CooltrainerfCaraSeenText:
 	text "You shouldn't be"
 	line "in here!"
 	done
-; 0x18cdfe
 
-CooltrainerfCaraBeatenText: ; 0x18cdfe
+CooltrainerfCaraBeatenText:
 	text "Oh yikes, I lost!"
 	done
-; 0x18ce11
 
-UnknownText_0x18ce11: ; 0x18ce11
+UnknownText_0x18ce11:
 	text "Soon I'm going to"
 	line "get permission"
 
@@ -463,87 +354,77 @@ UnknownText_0x18ce11: ; 0x18ce11
 	para "our MASTER's"
 	line "approval."
 	done
-; 0x18ceab
 
-TwinsLeaandpia1SeenText: ; 0x18ceab
+TwinsLeaandpia1SeenText:
 	text "It's a stranger we"
 	line "don't know."
 	done
-; 0x18cec9
 
-TwinsLeaandpia1BeatenText: ; 0x18cec9
+TwinsLeaandpia1BeatenText:
 	text "Ouchies."
 	done
-; 0x18ced3
 
-UnknownText_0x18ced3: ; 0x18ced3
+UnknownText_0x18ced3:
 	text "It was like having"
 	line "to battle LANCE."
 	done
-; 0x18cef8
 
-TwinsLeaandpia2SeenText: ; 0x18cef8
+TwinsLeaandpia2SeenText:
 	text "Who are you?"
 	done
-; 0x18cf06
 
-TwinsLeaandpia2BeatenText: ; 0x18cf06
+TwinsLeaandpia2BeatenText:
 	text "Meanie."
 	done
-; 0x18cf0f
 
-UnknownText_0x18cf0f: ; 0x18cf0f
+UnknownText_0x18cf0f:
 	text "We'll tell on you."
 
 	para "MASTER will be"
 	line "angry with you."
 	done
-; 0x18cf41
 
-UnknownText_0x18cf41: ; 0x18cf41
+UnknownText_0x18cf41:
 	text "<PLAYER> found"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
 	done
-; 0x18cf51
 
-UnknownText_0x18cf51: ; 0x18cf51
+UnknownText_0x18cf51:
 	text "But <PLAYER> can't"
 	line "carry any more"
 	cont "items."
 	done
-; 0x18cf73
 
-DragonsDenB1F_MapEventHeader: ; 0x18cf73
+DragonsDenB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $14, 3, GROUP_DRAGONS_DEN_1F, MAP_DRAGONS_DEN_1F
 	warp_def $1d, $13, 1, GROUP_DRAGON_SHRINE, MAP_DRAGON_SHRINE
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $1e, $13, $0, UnknownScript_0x18c8b8, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 24, 18, $0, MapDragonsDenB1FSignpost0Script
-	signpost 29, 33, $7, MapDragonsDenB1FSignpostItem1
-	signpost 17, 21, $7, MapDragonsDenB1FSignpostItem2
-	signpost 15, 31, $7, MapDragonsDenB1FSignpostItem3
+	signpost 24, 18, SIGNPOST_READ, MapDragonsDenB1FSignpost0Script
+	signpost 29, 33, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem1
+	signpost 17, 21, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem2
+	signpost 15, 31, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem3
 
-	; people-events
+.PersonEvents:
 	db 9
-	person_event SPRITE_POKE_BALL, 20, 39, $1, $0, 255, 255, $0, 0, PokeBallScript_0x18c95a, $06a8
-	person_event SPRITE_CLAIR, 34, 18, $7, $0, 255, 255, $90, 0, ObjectEvent, $06d8
-	person_event SPRITE_SILVER, 27, 24, $2, $22, 255, 255, $0, 0, SilverScript_0x18c97e, $06c6
-	person_event SPRITE_COOLTRAINER_M, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, $ffff
-	person_event SPRITE_COOLTRAINER_F, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, $ffff
-	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia1, $ffff
-	person_event SPRITE_TWIN, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, $ffff
-	person_event SPRITE_POKE_BALL, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, $07bf
-	person_event SPRITE_POKE_BALL, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, $07c0
-; 0x18d014
+	person_event SPRITE_POKE_BALL, 20, 39, OW_DOWN | $1, $0, -1, -1, $0, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
+	person_event SPRITE_CLAIR, 34, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
+	person_event SPRITE_SILVER, 27, 24, OW_DOWN | $2, $22, -1, -1, $0, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN
+	person_event SPRITE_COOLTRAINER_M, 12, 24, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainermDarin, -1
+	person_event SPRITE_COOLTRAINER_F, 12, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCara, -1
+	person_event SPRITE_TWIN, 21, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsLeaandpia1, -1
+	person_event SPRITE_TWIN, 22, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsLeaandpia2, -1
+	person_event SPRITE_POKE_BALL, 8, 34, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c9a1, EVENT_DRAGONS_DEN_B1F_CALCIUM
+	person_event SPRITE_POKE_BALL, 24, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c9a3, EVENT_DRAGONS_DEN_B1F_MAX_ELIXER

@@ -91,7 +91,7 @@ UpdateBattleMonInParty:: ; 399c
 
 	ld a, [CurBattleMon]
 
-Function399f:: ; 399f
+UpdateBattleMon:: ; 399f
 	ld hl, PartyMon1Level
 	call GetPartyLocation
 
@@ -153,8 +153,9 @@ GetBattleVarAddr:: ; 39e7
 	ld hl, .battlevarpairs
 	ld c, a
 	ld b, 0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 
 	ld a, [hli]
 	ld h, [hl]
@@ -174,8 +175,9 @@ GetBattleVarAddr:: ; 39e7
 	ld b, 0
 
 	ld hl, .vars
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 
 	ld a, [hli]
 	ld h, [hl]
@@ -260,7 +262,7 @@ GetBattleVarAddr:: ; 39e7
 ; 3a90
 
 
-Function3a90:: ; 3a90
+FarJumpText:: ; 3a90
 	inc hl
 	ld a, [hROMBank]
 	push af
@@ -310,7 +312,7 @@ BattleTextBox:: ; 3ac3
 	push hl
 	call SpeechTextBox
 	call MobileTextBorder
-	call Function1ad2
+	call DrawOnMap
 	call Function321c
 	pop hl
 	call PrintTextBoxText

@@ -1,81 +1,52 @@
-MountMortar2FInside_MapScriptHeader: ; 0x7e0c8
-	; trigger count
+MountMortar2FInside_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x7e0ca
 
-TrainerSupernerdHugh: ; 0x7e0ca
-	; bit/flag number
-	dw $5c5
+TrainerSupernerdHugh:
+	trainer EVENT_BEAT_SUPER_NERD_HUGH, SUPER_NERD, HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, $0000, SupernerdHughScript
 
-	; trainer group && trainer id
-	db SUPER_NERD, HUGH
-
-	; text when seen
-	dw SupernerdHughSeenText
-
-	; text when trainer beaten
-	dw SupernerdHughBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw SupernerdHughScript
-; 0x7e0d6
-
-SupernerdHughScript: ; 0x7e0d6
+SupernerdHughScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7e10e
 	closetext
 	loadmovesprites
 	end
-; 0x7e0de
 
-ItemFragment_0x7e0de: ; 0x7e0de
+ItemFragment_0x7e0de:
 	db MAX_POTION, 1
-; 0x7e0e0
 
-ItemFragment_0x7e0e0: ; 0x7e0e0
+ItemFragment_0x7e0e0:
 	db RARE_CANDY, 1
-; 0x7e0e2
 
-ItemFragment_0x7e0e2: ; 0x7e0e2
-	db TM_40, 1
-; 0x7e0e4
+ItemFragment_0x7e0e2:
+	db TM_DEFENSE_CURL, 1
 
-ItemFragment_0x7e0e4: ; 0x7e0e4
+ItemFragment_0x7e0e4:
 	db DRAGON_SCALE, 1
-; 0x7e0e6
 
-ItemFragment_0x7e0e6: ; 0x7e0e6
+ItemFragment_0x7e0e6:
 	db ELIXER, 1
-; 0x7e0e8
 
-ItemFragment_0x7e0e8: ; 0x7e0e8
+ItemFragment_0x7e0e8:
 	db ESCAPE_ROPE, 1
-; 0x7e0ea
 
-MapMountMortar2FInsideSignpostItem0: ; 0x7e0ea
-	dw $0092
-	db FULL_RESTORE
+MapMountMortar2FInsideSignpostItem0:
+	dwb EVENT_MOUNT_MORTAR_2F_INSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
-; 0x7e0ed
 
-SupernerdHughSeenText: ; 0x7e0ed
+SupernerdHughSeenText:
 	text "Yo! MARKUS!"
 	done
-; 0x7e0fa
 
-SupernerdHughBeatenText: ; 0x7e0fa
+SupernerdHughBeatenText:
 	text "Sorry, my mistake."
 	done
-; 0x7e10e
 
-UnknownText_0x7e10e: ; 0x7e10e
+UnknownText_0x7e10e:
 	text "I'm investigating"
 	line "MT.MORTAR, but my"
 	cont "pal's gone AWOL."
@@ -86,31 +57,29 @@ UnknownText_0x7e10e: ; 0x7e10e
 	para "SLOWPOKE that can"
 	line "use STRENGTH?"
 	done
-; 0x7e184
 
-MountMortar2FInside_MapEventHeader: ; 0x7e184
+MountMortar2FInside_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $21, $11, 4, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	warp_def $5, $3, 6, GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 8, 24, $7, MapMountMortar2FInsideSignpostItem0
+	signpost 8, 24, SIGNPOST_ITEM, MapMountMortar2FInsideSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 7
-	person_event SPRITE_POKE_BALL, 26, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0de, $0680
-	person_event SPRITE_POKE_BALL, 37, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e0, $0681
-	person_event SPRITE_POKE_BALL, 21, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e2, $0682
-	person_event SPRITE_POKE_BALL, 9, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e4, $0683
-	person_event SPRITE_POKE_BALL, 15, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e6, $0684
-	person_event SPRITE_POKE_BALL, 9, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e8, $0685
-	person_event SPRITE_SUPER_NERD, 30, 17, $a, $0, 255, 255, $b2, 2, TrainerSupernerdHugh, $ffff
-; 0x7e1f4
+	person_event SPRITE_POKE_BALL, 26, 32, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0de, EVENT_MOUNT_MORTAR_2F_INSIDE_MAX_POTION
+	person_event SPRITE_POKE_BALL, 37, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e0, EVENT_MOUNT_MORTAR_2F_INSIDE_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 21, 23, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e2, EVENT_MOUNT_MORTAR_2F_INSIDE_TM_DEFENSE_CURL
+	person_event SPRITE_POKE_BALL, 9, 20, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e4, EVENT_MOUNT_MORTAR_2F_INSIDE_DRAGON_SCALE
+	person_event SPRITE_POKE_BALL, 15, 13, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e6, EVENT_MOUNT_MORTAR_2F_INSIDE_ELIXER
+	person_event SPRITE_POKE_BALL, 9, 32, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e8, EVENT_MOUNT_MORTAR_2F_INSIDE_ESCAPE_ROPE
+	person_event SPRITE_SUPER_NERD, 30, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdHugh, -1

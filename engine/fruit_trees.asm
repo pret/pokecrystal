@@ -43,7 +43,7 @@ GetCurTreeFruit: ; 44041
 ; 4404c
 
 TryResetFruitTrees: ; 4404c
-	ld hl, wdc1e
+	ld hl, DailyFlags
 	bit 4, [hl]
 	ret nz
 	jp ResetFruitTrees
@@ -66,11 +66,11 @@ PickedFruitTree: ; 4405f
 ResetFruitTrees: ; 4406a
 	xor a
 	ld hl, FruitTreeFlags
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
-	ld hl, wdc1e
+	ld hl, DailyFlags
 	set 4, [hl]
 	ret
 ; 44078

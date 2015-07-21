@@ -1,12 +1,12 @@
 CherrygroveCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -68,7 +68,7 @@ CherrygroveCityGuideGent:
 	keeptextopen
 	stringtotext .mapcardname, $1
 	scall .UnknownScript_0x19c097
-	setflag $0001
+	setflag ENGINE_MAP_CARD
 	writetext GotMapCardText
 	keeptextopen
 	writetext GuideGentPokegearText
@@ -85,7 +85,7 @@ CherrygroveCityGuideGent:
 	end
 
 .UnknownScript_0x19c097
-	jumpstd $002f
+	jumpstd receiveitem
 	end
 
 .mapcardname
@@ -102,7 +102,7 @@ UnknownScript_0x19c0aa:
 
 UnknownScript_0x19c0ae:
 	spriteface $0, RIGHT
-	showemote $0, $0, 15
+	showemote EMOTE_SHOCK, $0, 15
 	special Functionc48f
 	pause 15
 	appear $3
@@ -120,7 +120,7 @@ UnknownScript_0x19c0ae:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
 	loadtrainer RIVAL1, RIVAL1_3
-	writecode $3, BATTLETYPE_CANLOSE
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	reloadmap
@@ -131,7 +131,7 @@ UnknownScript_0x19c0ee:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
 	loadtrainer RIVAL1, RIVAL1_1
-	writecode $3, BATTLETYPE_CANLOSE
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	reloadmap
@@ -142,7 +142,7 @@ UnknownScript_0x19c104:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
 	loadtrainer RIVAL1, RIVAL1_2
-	writecode $3, BATTLETYPE_CANLOSE
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	reloadmap
@@ -177,7 +177,7 @@ UnknownScript_0x19c12f:
 TeacherScript_0x19c146:
 	faceplayer
 	loadfont
-	checkflag $0001
+	checkflag ENGINE_MAP_CARD
 	iftrue UnknownScript_0x19c154
 	writetext UnknownText_0x19c650
 	closetext
@@ -193,7 +193,7 @@ UnknownScript_0x19c154:
 YoungsterScript_0x19c15a:
 	faceplayer
 	loadfont
-	checkflag $000b
+	checkflag ENGINE_POKEDEX
 	iftrue UnknownScript_0x19c168
 	writetext UnknownText_0x19c6d6
 	closetext
@@ -548,7 +548,7 @@ CherrygroveCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $3, $17, 2, GROUP_CHERRYGROVE_MART, MAP_CHERRYGROVE_MART
 	warp_def $3, $1d, 1, GROUP_CHERRYGROVE_POKECENTER_1F, MAP_CHERRYGROVE_POKECENTER_1F
@@ -556,22 +556,22 @@ CherrygroveCity_MapEventHeader:
 	warp_def $9, $19, 1, GROUP_GUIDE_GENTS_HOUSE, MAP_GUIDE_GENTS_HOUSE
 	warp_def $b, $1f, 1, GROUP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, MAP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $6, $21, $0, UnknownScript_0x19c0ae, $0, $0
 	xy_trigger 1, $7, $21, $0, UnknownScript_0x19c0aa, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 8, 30, $0, CherrygroveCitySign
-	signpost 9, 23, $0, GuideGentsHouseSign
-	signpost 3, 24, $0, CherrygroveCityMartSign
-	signpost 3, 30, $0, CherrygroveCityPokeCenterSign
+	signpost 8, 30, SIGNPOST_READ, CherrygroveCitySign
+	signpost 9, 23, SIGNPOST_READ, GuideGentsHouseSign
+	signpost 3, 24, SIGNPOST_READ, CherrygroveCityMartSign
+	signpost 3, 30, SIGNPOST_READ, CherrygroveCityPokeCenterSign
 
-	; people-events
+.PersonEvents:
 	db 5
-	person_event SPRITE_GRAMPS, 10, 36, $6, $0, 255, 255, $0, 0, CherrygroveCityGuideGent, $06fe
-	person_event SPRITE_SILVER, 10, 43, $3, $0, 255, 255, $0, 0, ObjectEvent, $06be
-	person_event SPRITE_TEACHER, 16, 31, $5, $1, 255, 255, $90, 0, TeacherScript_0x19c146, $ffff
-	person_event SPRITE_YOUNGSTER, 11, 27, $5, $1, 255, 255, $80, 0, YoungsterScript_0x19c15a, $ffff
-	person_event SPRITE_FISHER, 16, 11, $9, $0, 255, 255, $a0, 0, MysticWaterGuy, $ffff
+	person_event SPRITE_GRAMPS, 10, 36, OW_UP | $2, $0, -1, -1, $0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
+	person_event SPRITE_SILVER, 10, 43, OW_DOWN | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
+	person_event SPRITE_TEACHER, 16, 31, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x19c146, -1
+	person_event SPRITE_YOUNGSTER, 11, 27, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x19c15a, -1
+	person_event SPRITE_FISHER, 16, 11, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, MysticWaterGuy, -1

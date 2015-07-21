@@ -1,12 +1,12 @@
 NewBarkTown_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -20,7 +20,7 @@ NewBarkTown_MapScriptHeader:
 
 .FlyPoint
 	setflag ENGINE_FLYPOINT_NEW_BARK
-	clearevent $0076
+	clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	return
 
 UnknownScript_0x1a8016:
@@ -284,27 +284,27 @@ NewBarkTown_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $3, $6, 1, GROUP_ELMS_LAB, MAP_ELMS_LAB
 	warp_def $5, $d, 1, GROUP_KRISS_HOUSE_1F, MAP_KRISS_HOUSE_1F
 	warp_def $b, $3, 1, GROUP_KRISS_NEIGHBORS_HOUSE, MAP_KRISS_NEIGHBORS_HOUSE
 	warp_def $d, $b, 1, GROUP_ELMS_HOUSE, MAP_ELMS_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $8, $1, $0, UnknownScript_0x1a8016, $0, $0
 	xy_trigger 0, $9, $1, $0, UnknownScript_0x1a8041, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
-	signpost 8, 8, $0, MapNewBarkTownSignpost0Script
-	signpost 5, 11, $0, MapNewBarkTownSignpost1Script
-	signpost 3, 3, $0, MapNewBarkTownSignpost2Script
-	signpost 13, 9, $0, MapNewBarkTownSignpost3Script
+	signpost 8, 8, SIGNPOST_READ, MapNewBarkTownSignpost0Script
+	signpost 5, 11, SIGNPOST_READ, MapNewBarkTownSignpost1Script
+	signpost 3, 3, SIGNPOST_READ, MapNewBarkTownSignpost2Script
+	signpost 13, 9, SIGNPOST_READ, MapNewBarkTownSignpost3Script
 
-	; people-events
+.PersonEvents:
 	db 3
-	person_event SPRITE_TEACHER, 12, 10, $3, $1, 255, 255, $0, 0, TeacherScript_0x1a806f, $ffff
-	person_event SPRITE_FISHER, 13, 16, $4, $10, 255, 255, $a0, 0, FisherScript_0x1a809b, $ffff
-	person_event SPRITE_SILVER, 6, 7, $9, $0, 255, 255, $0, 0, SilverScript_0x1a809e, $06bd
+	person_event SPRITE_TEACHER, 12, 10, OW_DOWN | $3, $1, -1, -1, $0, 0, TeacherScript_0x1a806f, -1
+	person_event SPRITE_FISHER, 13, 16, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a809b, -1
+	person_event SPRITE_SILVER, 6, 7, OW_LEFT | $1, $0, -1, -1, $0, 0, SilverScript_0x1a809e, EVENT_RIVAL_NEW_BARK_TOWN

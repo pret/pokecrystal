@@ -1,31 +1,26 @@
-FuchsiaPokeCenter1F_MapScriptHeader: ; 0x196452
-	; trigger count
+FuchsiaPokeCenter1F_MapScriptHeader:
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x196458, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x196458
 
-UnknownScript_0x196458: ; 0x196458
+UnknownScript_0x196458:
 	end
-; 0x196459
 
-NurseScript_0x196459: ; 0x196459
+NurseScript_0x196459:
 	jumpstd pokecenternurse
-; 0x19645c
 
-CooltrainerMScript_0x19645c: ; 0x19645c
+CooltrainerMScript_0x19645c:
 	jumptextfaceplayer UnknownText_0x196494
-; 0x19645f
 
-CooltrainerFScript_0x19645f: ; 0x19645f
+CooltrainerFScript_0x19645f:
 	jumptextfaceplayer UnknownText_0x1964dc
-; 0x196462
 
-JanineImpersonatorScript_0x196462: ; 0x196462
+JanineImpersonatorScript_0x196462:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x19652e
@@ -33,20 +28,19 @@ JanineImpersonatorScript_0x196462: ; 0x196462
 	loadmovesprites
 	applymovement $5, MovementData_0x196486
 	faceplayer
-	variablesprite $c, $a
-	special Function14209
+	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_JANINE
+	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x19654e
 	closetext
 	loadmovesprites
 	applymovement $5, MovementData_0x196486
 	faceplayer
-	variablesprite $c, $28
-	special Function14209
+	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
+	special RunCallback_04
 	end
-; 0x196486
 
-MovementData_0x196486: ; 0x196486
+MovementData_0x196486:
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -61,9 +55,8 @@ MovementData_0x196486: ; 0x196486
 	turn_head_right
 	turn_head_down
 	step_end
-; 0x196494
 
-UnknownText_0x196494: ; 0x196494
+UnknownText_0x196494:
 	text "Hey! You have a"
 	line "brand new kind of"
 	cont "#DEX."
@@ -71,9 +64,8 @@ UnknownText_0x196494: ; 0x196494
 	para "Did PROF.OAK give"
 	line "that to you?"
 	done
-; 0x1964dc
 
-UnknownText_0x1964dc: ; 0x1964dc
+UnknownText_0x1964dc:
 	text "I got quite a"
 	line "shock at the GYM."
 
@@ -81,40 +73,36 @@ UnknownText_0x1964dc: ; 0x1964dc
 	line "these girls who"
 	cont "looked identical."
 	done
-; 0x19652e
 
-UnknownText_0x19652e: ; 0x19652e
+UnknownText_0x19652e:
 	text "I'm JANINE! Hocus-"
 	line "pocus… Poof!"
 	done
-; 0x19654e
 
-UnknownText_0x19654e: ; 0x19654e
+UnknownText_0x19654e:
 	text "See? I look just"
 	line "like her now!"
 	done
-; 0x19656e
 
-FuchsiaPokeCenter1F_MapEventHeader: ; 0x19656e
+FuchsiaPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 5, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $7, $4, 5, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $a0, 0, NurseScript_0x196459, $ffff
-	person_event SPRITE_COOLTRAINER_M, 8, 12, $5, $1, 255, 255, $0, 0, CooltrainerMScript_0x19645c, $ffff
-	person_event SPRITE_COOLTRAINER_F, 8, 5, $5, $1, 255, 255, $0, 0, CooltrainerFScript_0x19645f, $ffff
-	person_event SPRITE_JANINE_IMPERSONATOR, 7, 9, $6, $0, 255, 255, $90, 0, JanineImpersonatorScript_0x196462, $ffff
-; 0x1965b7
+	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, NurseScript_0x196459, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 12, OW_UP | $1, $1, -1, -1, $0, 0, CooltrainerMScript_0x19645c, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 5, OW_UP | $1, $1, -1, -1, $0, 0, CooltrainerFScript_0x19645f, -1
+	person_event SPRITE_JANINE_IMPERSONATOR, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, JanineImpersonatorScript_0x196462, -1

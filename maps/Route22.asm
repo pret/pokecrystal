@@ -1,38 +1,34 @@
-Route22_MapScriptHeader: ; 0x7c000
-	; trigger count
+Route22_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x7c002
 
-MapRoute22Signpost0Script: ; 0x7c002
+MapRoute22Signpost0Script:
 	jumptext UnknownText_0x7c005
-; 0x7c005
 
-UnknownText_0x7c005: ; 0x7c005
+UnknownText_0x7c005:
 	text "#MON LEAGUE"
 
 	para "VICTORY ROAD"
 	line "ENTRANCE"
 	done
-; 0x7c028
 
-Route22_MapEventHeader: ; 0x7c028
+Route22_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $d, 1, GROUP_VICTORY_ROAD_GATE, MAP_VICTORY_ROAD_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
-	signpost 7, 15, $0, MapRoute22Signpost0Script
+	signpost 7, 15, SIGNPOST_READ, MapRoute22Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 0
-; 0x7c038

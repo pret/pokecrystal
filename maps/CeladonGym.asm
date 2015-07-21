@@ -1,16 +1,15 @@
-CeladonGym_MapScriptHeader: ; 0x72a68
-	; trigger count
+CeladonGym_MapScriptHeader:
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
-; 0x72a6a
 
-ErikaScript_0x72a6a: ; 0x72a6a
+ErikaScript_0x72a6a:
 	faceplayer
 	loadfont
-	checkflag $0026
-	iftrue UnknownScript_0x72a9b
+	checkflag ENGINE_RAINBOWBADGE
+	iftrue .FightDone
 	writetext UnknownText_0x72b28
 	closetext
 	loadmovesprites
@@ -18,7 +17,7 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	loadtrainer ERIKA, 1
 	startbattle
 	returnafterbattle
-	setevent $04c8
+	setevent EVENT_BEAT_ERIKA
 	setevent EVENT_BEAT_LASS_MICHELLE
 	setevent EVENT_BEAT_PICNICKER_TANYA
 	setevent EVENT_BEAT_BEAUTY_JULIA
@@ -27,166 +26,75 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	writetext UnknownText_0x72c96
 	playsound SFX_GET_BADGE
 	waitbutton
-	setflag $0026
-UnknownScript_0x72a9b: ; 0x72a9b
+	setflag ENGINE_RAINBOWBADGE
+.FightDone
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
 	iftrue UnknownScript_0x72aae
 	writetext UnknownText_0x72cb0
 	keeptextopen
-	verbosegiveitem TM_19, 1
+	verbosegiveitem TM_GIGA_DRAIN, 1
 	iffalse UnknownScript_0x72aae
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
-UnknownScript_0x72aae: ; 0x72aae
+UnknownScript_0x72aae:
 	writetext UnknownText_0x72d8f
 	closetext
 	loadmovesprites
 	end
-; 0x72ab4
 
-TrainerLassMichelle: ; 0x72ab4
-	; bit/flag number
-	dw $51d
+TrainerLassMichelle:
+	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, $0000, LassMichelleScript
 
-	; trainer group && trainer id
-	db LASS, MICHELLE
-
-	; text when seen
-	dw LassMichelleSeenText
-
-	; text when trainer beaten
-	dw LassMichelleBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw LassMichelleScript
-; 0x72ac0
-
-LassMichelleScript: ; 0x72ac0
+LassMichelleScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x72e30
 	closetext
 	loadmovesprites
 	end
-; 0x72ac8
 
-TrainerPicnickerTanya: ; 0x72ac8
-	; bit/flag number
-	dw $490
+TrainerPicnickerTanya:
+	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, $0000, PicnickerTanyaScript
 
-	; trainer group && trainer id
-	db PICNICKER, TANYA
-
-	; text when seen
-	dw PicnickerTanyaSeenText
-
-	; text when trainer beaten
-	dw PicnickerTanyaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw PicnickerTanyaScript
-; 0x72ad4
-
-PicnickerTanyaScript: ; 0x72ad4
+PicnickerTanyaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x72e8e
 	closetext
 	loadmovesprites
 	end
-; 0x72adc
 
-TrainerBeautyJulia: ; 0x72adc
-	; bit/flag number
-	dw $4ba
+TrainerBeautyJulia:
+	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, $0000, BeautyJuliaScript
 
-	; trainer group && trainer id
-	db BEAUTY, JULIA
-
-	; text when seen
-	dw BeautyJuliaSeenText
-
-	; text when trainer beaten
-	dw BeautyJuliaBeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw BeautyJuliaScript
-; 0x72ae8
-
-BeautyJuliaScript: ; 0x72ae8
+BeautyJuliaScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x72f01
 	closetext
 	loadmovesprites
 	end
-; 0x72af0
 
-TrainerTwinsJoandzoe1: ; 0x72af0
-	; bit/flag number
-	dw $468
+TrainerTwinsJoandzoe1:
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, $0000, TwinsJoandzoe1Script
 
-	; trainer group && trainer id
-	db TWINS, JOANDZOE1
-
-	; text when seen
-	dw TwinsJoandzoe1SeenText
-
-	; text when trainer beaten
-	dw TwinsJoandzoe1BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsJoandzoe1Script
-; 0x72afc
-
-TwinsJoandzoe1Script: ; 0x72afc
+TwinsJoandzoe1Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x72f70
 	closetext
 	loadmovesprites
 	end
-; 0x72b04
 
-TrainerTwinsJoandzoe2: ; 0x72b04
-	; bit/flag number
-	dw $468
+TrainerTwinsJoandzoe2:
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, $0000, TwinsJoandzoe2Script
 
-	; trainer group && trainer id
-	db TWINS, JOANDZOE2
-
-	; text when seen
-	dw TwinsJoandzoe2SeenText
-
-	; text when trainer beaten
-	dw TwinsJoandzoe2BeatenText
-
-	; script when lost
-	dw $0000
-
-	; script when talk again
-	dw TwinsJoandzoe2Script
-; 0x72b10
-
-TwinsJoandzoe2Script: ; 0x72b10
+TwinsJoandzoe2Script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x72fc0
 	closetext
 	loadmovesprites
 	end
-; 0x72b18
 
 CeladonGymStatue:
 	checkflag ENGINE_RAINBOWBADGE
@@ -196,7 +104,7 @@ CeladonGymStatue:
 	trainertotext ERIKA, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x72b28: ; 0x72b28
+UnknownText_0x72b28:
 	text "ERIKA: Hello…"
 	line "Lovely weather,"
 
@@ -223,9 +131,8 @@ UnknownText_0x72b28: ; 0x72b28
 	para "Very well, but I"
 	line "shall not lose."
 	done
-; 0x72c3e
 
-UnknownText_0x72c3e: ; 0x72c3e
+UnknownText_0x72c3e:
 	text "ERIKA: Oh!"
 	line "I concede defeat…"
 
@@ -235,15 +142,13 @@ UnknownText_0x72c3e: ; 0x72c3e
 	para "I shall give you"
 	line "RAINBOWBADGE…"
 	done
-; 0x72c96
 
-UnknownText_0x72c96: ; 0x72c96
+UnknownText_0x72c96:
 	text "<PLAYER> received"
 	line "RAINBOWBADGE."
 	done
-; 0x72cb0
 
-UnknownText_0x72cb0: ; 0x72cb0
+UnknownText_0x72cb0:
 	text "ERIKA: That was a"
 	line "delightful match."
 
@@ -263,9 +168,8 @@ UnknownText_0x72cb0: ; 0x72cb0
 	para "Please use it if"
 	line "it pleases you…"
 	done
-; 0x72d8f
 
-UnknownText_0x72d8f: ; 0x72d8f
+UnknownText_0x72d8f:
 	text "ERIKA: Losing"
 	line "leaves a bitter"
 	cont "aftertaste…"
@@ -276,124 +180,107 @@ UnknownText_0x72d8f: ; 0x72d8f
 	para "trainers spurs me"
 	line "to do better…"
 	done
-; 0x72dfc
 
-LassMichelleSeenText: ; 0x72dfc
+LassMichelleSeenText:
 	text "Do you think a"
 	line "girls-only GYM"
 	cont "is rare?"
 	done
-; 0x72e24
 
-LassMichelleBeatenText: ; 0x72e24
+LassMichelleBeatenText:
 	text "Oh, bleah!"
 	done
-; 0x72e30
 
-UnknownText_0x72e30: ; 0x72e30
+UnknownText_0x72e30:
 	text "I just got care-"
 	line "less, that's all!"
 	done
-; 0x72e53
 
-PicnickerTanyaSeenText: ; 0x72e53
+PicnickerTanyaSeenText:
 	text "Oh, a battle?"
 	line "That's kind of"
 	cont "scary, but OK!"
 	done
-; 0x72e7f
 
-PicnickerTanyaBeatenText: ; 0x72e7f
+PicnickerTanyaBeatenText:
 	text "Oh, that's it?"
 	done
-; 0x72e8e
 
-UnknownText_0x72e8e: ; 0x72e8e
+UnknownText_0x72e8e:
 	text "Oh, look at all"
 	line "your BADGES. No"
 
 	para "wonder I couldn't"
 	line "win!"
 	done
-; 0x72ec5
 
-BeautyJuliaSeenText: ; 0x72ec5
+BeautyJuliaSeenText:
 	text "Were you looking"
 	line "at these flowers"
 	cont "or at me?"
 	done
-; 0x72ef2
 
-BeautyJuliaBeatenText: ; 0x72ef2
+BeautyJuliaBeatenText:
 	text "How annoying!"
 	done
-; 0x72f01
 
-UnknownText_0x72f01: ; 0x72f01
+UnknownText_0x72f01:
 	text "How do I go about"
 	line "becoming ladylike"
 	cont "like ERIKA?"
 	done
-; 0x72f32
 
-TwinsJoandzoe1SeenText: ; 0x72f32
+TwinsJoandzoe1SeenText:
 	text "We'll show you"
 	line "#MON moves that"
 	cont "ERIKA taught us!"
 	done
-; 0x72f62
 
-TwinsJoandzoe1BeatenText: ; 0x72f62
+TwinsJoandzoe1BeatenText:
 	text "Oh… We lost…"
 	done
-; 0x72f70
 
-UnknownText_0x72f70: ; 0x72f70
+UnknownText_0x72f70:
 	text "ERIKA will get you"
 	line "back for us!"
 	done
-; 0x72f91
 
-TwinsJoandzoe2SeenText: ; 0x72f91
+TwinsJoandzoe2SeenText:
 	text "We're going to"
 	line "protect ERIKA!"
 	done
-; 0x72faf
 
-TwinsJoandzoe2BeatenText: ; 0x72faf
+TwinsJoandzoe2BeatenText:
 	text "We couldn't win…"
 	done
-; 0x72fc0
 
-UnknownText_0x72fc0: ; 0x72fc0
+UnknownText_0x72fc0:
 	text "ERIKA is much,"
 	line "much stronger!"
 	done
-; 0x72fdf
 
-CeladonGym_MapEventHeader: ; 0x72fdf
+CeladonGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 8, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $11, $5, 8, GROUP_CELADON_CITY, MAP_CELADON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
-	signpost 15, 3, $0, CeladonGymStatue
-	signpost 15, 6, $0, CeladonGymStatue
+	signpost 15, 3, SIGNPOST_READ, CeladonGymStatue
+	signpost 15, 6, SIGNPOST_READ, CeladonGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
-	person_event SPRITE_ERIKA, 7, 9, $6, $0, 255, 255, $a0, 0, ErikaScript_0x72a6a, $ffff
-	person_event SPRITE_LASS, 12, 11, $8, $0, 255, 255, $92, 2, TrainerLassMichelle, $ffff
-	person_event SPRITE_LASS, 12, 6, $9, $0, 255, 255, $a2, 2, TrainerPicnickerTanya, $ffff
-	person_event SPRITE_BUENA, 9, 7, $9, $0, 255, 255, $92, 2, TrainerBeautyJulia, $ffff
-	person_event SPRITE_TWIN, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe1, $ffff
-	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe2, $ffff
-; 0x73047
+	person_event SPRITE_ERIKA, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ErikaScript_0x72a6a, -1
+	person_event SPRITE_LASS, 12, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerLassMichelle, -1
+	person_event SPRITE_LASS, 12, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerTanya, -1
+	person_event SPRITE_BUENA, 9, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBeautyJulia, -1
+	person_event SPRITE_TWIN, 14, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe1, -1
+	person_event SPRITE_TWIN, 14, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsJoandzoe2, -1
