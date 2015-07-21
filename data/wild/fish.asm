@@ -60,9 +60,9 @@ endr
 	jr c, .ReadMon
 
 ; Next monster...
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	jr .CheckEncounter
 
 .ReadMon
@@ -98,8 +98,9 @@ endr
 	and 3
 	cp NITE
 	jr c, .TimeSpecies
+rept 2
 	inc hl
-	inc hl
+endr
 
 .TimeSpecies
 	ld d, [hl]

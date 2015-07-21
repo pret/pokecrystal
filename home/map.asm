@@ -303,8 +303,9 @@ Function2266:: ; 2266
 ; 22a3
 
 Function22a3:: ; 22a3
+rept 2
 	inc hl
-	inc hl
+endr
 	scf
 	ret
 ; 22a7
@@ -420,8 +421,9 @@ Function2336:: ; 2336
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 2
 	inc hl
-	inc hl
+endr
 	call Function23da
 	call Function23f1
 	call Function2408
@@ -672,9 +674,9 @@ RestoreFacingAfterWarp:: ; 248a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, [WarpNumber]
 	dec a
 	ld c, a
@@ -730,9 +732,9 @@ ChangeMap:: ; 24e4
 	ld [hConnectionStripLength], a
 	ld c, a
 	ld b, 0
+rept 3
 	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 	ld c, 3
 	add hl, bc
 	ld a, [MapBlockDataBank]
@@ -1324,8 +1326,9 @@ Function27d3:: ; 27d3
 	ld a, d
 	ld [hli], a
 	ld a, e
+rept 2
 	inc a
-	inc a
+endr
 	and $1f
 	ld b, a
 	ld a, e
@@ -1764,8 +1767,9 @@ endr
 .nocarry
 	rr e
 	jr nc, .nocarry2
+rept 2
 	inc hl
-	inc hl
+endr
 
 .nocarry2
 	ld a, [TilesetCollisionBank]
@@ -2062,8 +2066,9 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 	ld c, b
 	ld b, 0
 	ld hl, MapGroupPointers
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 
 	ld a, [hli]
 	ld h, [hl]

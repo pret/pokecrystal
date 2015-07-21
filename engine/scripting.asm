@@ -861,8 +861,9 @@ Script_trainertext: ; 0x9710f
 	ld c, a
 	ld b, 0
 	ld hl, WalkingX
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1121,8 +1122,9 @@ Script_faceplayer: ; 0x9722e
 	ld e, a
 	callba GetRelativeFacing
 	ld a, d
+rept 2
 	add a
-	add a
+endr
 	ld e, a
 	ld a, [$ffe0]
 	ld d, a
@@ -1155,8 +1157,9 @@ Script_faceperson: ; 0x97248
 	pop bc
 	ret c
 	ld a, d
+rept 2
 	add a
-	add a
+endr
 	ld e, a
 	ld d, c
 	call ApplyPersonFacing
@@ -1177,8 +1180,9 @@ Script_spriteface: ; 0x97274
 .asm_97280
 	ld d, a
 	call GetScriptByte
+rept 2
 	add a
-	add a
+endr
 	ld e, a
 	call ApplyPersonFacing
 	ret
@@ -1638,9 +1642,9 @@ ScriptCall: ; 0x974cb
 	inc [hl]
 	ld d, $0
 	ld hl, wd43d
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	pop de
 	ld a, [ScriptBank]
 	ld [hli], a
@@ -1811,9 +1815,9 @@ StdScript: ; 0x9757b
 	call GetScriptByte
 	ld d, a
 	ld hl, StdScripts
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, BANK(StdScripts)
 	call GetFarByte
 	ld b, a

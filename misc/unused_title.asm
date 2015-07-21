@@ -10,9 +10,9 @@ UnusedTitleScreen: ; 10c000
 	ld [hBGMapMode], a
 
 	ld hl, wcf63
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 	ld hl, UnusedTitleBG_GFX

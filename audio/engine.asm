@@ -413,10 +413,9 @@ UpdateChannels: ; e8125
 	; hl << 4
 	; each wavepattern is $0f bytes long
 	; so seeking is done in $10s
+rept 4
 	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld de, WaveSamples
 	add hl, de
 	; load wavepattern into $ff30-$ff3f
@@ -1292,8 +1291,9 @@ GetNoiseSample: ; e86c5
 	ld d, $00
 	; load ptr to noise sample set in hl
 	ld hl, Drumkits
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1306,8 +1306,9 @@ GetNoiseSample: ; e86c5
 	; use 'pitch' to seek noise sample set
 	ld e, a
 	ld d, $00
+rept 2
 	add hl, de
-	add hl, de
+endr
 	; load sample pointer into NoiseSampleAddress
 	ld a, [hli]
 	ld [NoiseSampleAddressLo], a
@@ -1328,8 +1329,9 @@ ParseMusicCommand: ; e870f
 	ld d, $00
 	; seek command pointer
 	ld hl, MusicCommands
+rept 2
 	add hl, de
-	add hl, de
+endr
 	; jump to the new pointer
 	ld a, [hli]
 	ld h, [hl]
@@ -1572,8 +1574,9 @@ MusicFB: ; e8817
 	inc hl
 	ld d, [hl]
 	; skip pointer
+rept 2
 	inc de
-	inc de
+endr
 	; update address
 	ld [hl], d
 	dec hl
@@ -1623,8 +1626,9 @@ MusicEE; e883e
 	inc hl
 	ld d, [hl]
 	; skip pointer
+rept 2
 	inc de
-	inc de
+endr
 	; update address
 	ld [hl], d
 	dec hl
@@ -2378,9 +2382,9 @@ _PlayCryHeader:: ; e8b79
 	
 ; 3-byte pointers (bank, address)
 	ld hl, Cries
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	
 	ld a, [hli]
 	ld [MusicBank], a
@@ -2595,9 +2599,9 @@ PlayStereoSFX:: ; e8ca6
 	
 ; get sfx ptr
 	ld hl, SFX
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	
 ; bank
 	ld a, [hli]
@@ -2692,8 +2696,9 @@ LoadChannel: ; e8d1b
 	ld c, a
 	ld b, $00
 	ld hl, ChannelPointers
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld c, [hl]
 	inc hl
 	ld b, [hl] ; bc = channel pointer
@@ -3157,8 +3162,9 @@ ClearChannels:: ; e8fe9
 ; doesn't seem to be used, but functionally identical to SoundRestart
 	ld hl, rNR50
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld a, $80
 	ld [hli], a
 	ld hl, rNR10

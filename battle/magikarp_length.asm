@@ -141,8 +141,9 @@ CalcMagikarpLength: ; fbbfc
 	; hl = de * 10
 	ld h, d
 	ld l, e
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	add hl, de
 	add hl, hl
 

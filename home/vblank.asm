@@ -19,8 +19,9 @@ VBlank:: ; 283
 	ld e, a
 	ld d, 0
 	ld hl, .VBlanks
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

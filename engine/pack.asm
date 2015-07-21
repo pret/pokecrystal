@@ -1235,8 +1235,9 @@ Function10866: ; 10866 (4:4866)
 Function1086b: ; 1086b
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1285,8 +1286,9 @@ Function1089d: ; 1089d
 
 .asm_108b3
 	ld hl, PackGFXPointers
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]

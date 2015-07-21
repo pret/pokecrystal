@@ -967,8 +967,9 @@ GetPokemonName:: ; 343b
 	ld e, a
 	ld h, 0
 	ld l, a
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	add hl, de
 	add hl, hl
 	ld de, PokemonNames
@@ -1342,8 +1343,9 @@ Function35de:: ; 35de
 	inc hl
 
 .asm_35f8
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_35e6
 
 .asm_35fc
@@ -2108,10 +2110,12 @@ Function3eea:: ; 3eea
 	push bc
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	call Function3f35
 	pop bc
 	pop hl
@@ -2135,10 +2139,12 @@ Function3f0d:: ; 3f0d
 	push bc
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	call Function3f35
 	pop bc
 	pop hl
@@ -2259,8 +2265,9 @@ Function3f9f:: ; 3f9f
 	ld c, $8
 .asm_3fa5
 	ld a, [de]
+rept 2
 	inc de
-	inc de
+endr
 	cpl
 	ld [hl], $0
 	inc hl

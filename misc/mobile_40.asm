@@ -114,8 +114,9 @@ Function1000ba: ; 1000ba
 	ld a, [wcd25]
 	ld e, a
 	ld d, $0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [CreditsTimer]
 	call GetFarHalfword
 	ld a, [CreditsTimer]
@@ -1157,9 +1158,9 @@ Function1006fd: ; 1006fd
 	ld hl, $a800
 	call GetSRAMBank
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	call CloseSRAM
 	ret
 ; 10070d
@@ -1892,8 +1893,9 @@ Function100bc2: ; 100bc2
 	ld a, [wcfa9]
 	ld b, a
 	ld a, [wd0eb]
+rept 2
 	inc a
-	inc a
+endr
 	cp b
 	jp nz, .asm_100bcb
 	ld a, $1
@@ -2513,8 +2515,9 @@ Unknown_10102c: ; 10102c
 Function101050: ; 101050
 	call Function10107d
 	ld a, [OTPartyCount]
+rept 2
 	ld hl, $c608
-	ld hl, $c608
+endr
 	ld bc, $01b3
 	call Function1010de
 	ld hl, wc7bb
@@ -4696,8 +4699,9 @@ Function101ee2: ; 101ee2
 Function101ee4: ; 101ee4
 	ld d, 0
 	ld hl, Unknown_101ef5
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -7143,9 +7147,9 @@ Function1030cd: ; 1030cd
 	ld a, [wcf44]
 	ld l, a
 	ld h, 0
+rept 3
 	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld bc, Unknown_103112
 	add hl, bc
 	ld b, $30
@@ -7164,8 +7168,9 @@ Function1030cd: ; 1030cd
 	inc hl
 	push hl
 
+rept 2
 	add a
-	add a
+endr
 
 	add Unknown_10327a % $100
 	ld l, a
@@ -7628,8 +7633,9 @@ Function1035c6: ; 1035c6
 	callba Function10138b
 	ld b, 0
 	ld hl, Unknown_1035d7
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -8030,8 +8036,9 @@ Function10383c: ; 10383c
 	ld [wdc60], a
 	xor a
 	ld hl, wdc5c
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld hl, UnknownText_0x103876
 	call PrintText

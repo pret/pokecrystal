@@ -3108,9 +3108,9 @@ Function7420: ; 7420
 .loop
 	sub [hl]
 	jr c, .ok
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	jr .loop
 
 .ok
@@ -4443,8 +4443,9 @@ HealPartyMon: ; c677
 	; bc = PartyMon1HP - PartyMon1Species
 	ld b, h
 	ld c, l
+rept 2
 	dec bc
-	dec bc
+endr
 
 	ld a, [hli]
 	ld [bc], a
@@ -6880,8 +6881,9 @@ endr
 	dec hl
 	ld b, h
 	ld c, l
+rept 2
 	inc hl
-	inc hl
+endr
 .loop2
 	ld a, [hli]
 	ld [bc], a
@@ -7746,8 +7748,9 @@ Functiond784: ; d784
 	push hl
 	add hl, de
 	ld a, " "
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hld], a
 	dec hl
 	ld a, [wd1ec]
@@ -8030,10 +8033,9 @@ Functiond906: ; d906
 
 .asm_d950
 	pop de
+rept 4
 	inc de
-	inc de
-	inc de
-	inc de
+endr
 	ld a, [PlayerID]
 	ld [de], a
 	inc de
@@ -8100,15 +8102,15 @@ Functiond906: ; d906
 	inc de
 	push hl
 	push de
+rept 2
 	inc hl
-	inc hl
+endr
 	call FillPP
 	pop de
 	pop hl
+rept 4
 	inc de
-	inc de
-	inc de
-	inc de
+endr
 	ld a, $46
 	ld [de], a
 	inc de
@@ -8522,8 +8524,9 @@ Functiondb3f: ; db3f
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_dc9e
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld [de], a
 	ld a, [hl]
@@ -9271,8 +9274,9 @@ Functione17b: ; e17b
 	ld a, c
 	cp $6
 	jr nz, .asm_e193
+rept 2
 	dec hl
-	dec hl
+endr
 
 .asm_e193
 	sla c
@@ -9309,14 +9313,15 @@ Functione17b: ; e17b
 	ld a, [hl]
 	swap a
 	and $1
+rept 3
 	add a
-	add a
-	add a
+endr
 	ld b, a
 	ld a, [hli]
 	and $1
+rept 2
 	add a
-	add a
+endr
 	add b
 	ld b, a
 	ld a, [hl]
@@ -9518,8 +9523,9 @@ GivePoke:: ; e277
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop hl
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [ScriptBank]
 	call GetFarHalfword
 	pop bc
@@ -10371,25 +10377,22 @@ Function11452:: ; 11452
 	ret nc
 	xor a
 	ld hl, DailyFlags
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld hl, wdc4c
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld hl, wdc50
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld hl, wdc54
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld hl, wdc58
 	ld a, [hl]
 	and a
@@ -10644,16 +10647,17 @@ Function115d2: ; 115d2
 ; 115d6
 
 Function115d6: ; 115d6
+rept 2
 	inc hl
-	inc hl
+endr
 	xor a
 	jr Function115eb
 ; 115db
 
 Function115db: ; 115db
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, [hSeconds]
 	ld c, a
 	sub [hl]
@@ -11484,8 +11488,9 @@ Function11a8b: ; 11a8b (4:5a8b)
 	jr nz, .asm_11ade
 	ld a, $4
 .asm_11ade
+rept 2
 	dec a
-	dec a
+endr
 	ld e, a
 	add a
 	add e
@@ -12177,8 +12182,9 @@ Function1210c: ; 1210c (4:610c)
 	jr nz, .asm_1215f
 	ld a, $4
 .asm_1215f
+rept 2
 	dec a
-	dec a
+endr
 	ld e, a
 	add a
 	add e
@@ -12253,8 +12259,9 @@ Function121b2: ; 121b2
 	jr nz, .asm_121c3
 	push hl
 	ld hl, wc6d2
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	jr .asm_121c8
 
 .asm_121c3
@@ -12582,9 +12589,9 @@ Function12469: ; 12469
 	ld [hld], a
 	ld a, e
 	ld [hli], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .asm_12486
 	pop de
@@ -13079,8 +13086,9 @@ endr
 	push de
 	ld a, [MenuSelection]
 	call .GetMenuAccountTextPointer
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -13095,10 +13103,9 @@ endr
 	cp $ff
 	jr z, .none
 	call .GetMenuAccountTextPointer
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -15063,8 +15070,9 @@ Function1347d: ; 1347d
 	call GetFarByte
 	cp $ff
 	jr z, .asm_134be
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [EngineBuffer1]
 	call GetFarByte
 	inc hl
@@ -15765,8 +15773,9 @@ Function138b0: ; 138b0
 	pop de
 	jr nz, .done
 	ld a, e
+rept 2
 	inc a
-	inc a
+endr
 	ld [wd00e], a
 	dec a
 	ld c, a
@@ -15778,8 +15787,9 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 2
 	inc hl
-	inc hl
+endr
 .loop2
 	call Random
 	and 3
@@ -15855,8 +15865,9 @@ ContestScore: ; 13900
 	ld a, [wContestMonDVs + 0]
 	ld b, a
 	and 2
+rept 2
 	add a
-	add a
+endr
 	ld c, a
 
 	swap b
@@ -15875,10 +15886,12 @@ ContestScore: ; 13900
 	ld a, b
 	and 2
 	srl a
+rept 2
 	add c
-	add c
+endr
+rept 2
 	add d
-	add d
+endr
 
 	call .AddContestStat
 
@@ -15956,8 +15969,9 @@ Special_SelectRandomBugContestContestants: ; 139a8
 	ld b, RESET_FLAG
 	call EventFlagAction
 	pop hl
+rept 2
 	inc hl
-	inc hl
+endr
 	pop bc
 	dec c
 	jr nz, .loop1
@@ -16378,8 +16392,9 @@ GetTimeOfDay:: ; 14032
 	cp [hl]
 	jr c, .match
 ; else, get the next entry
+rept 2
 	inc hl
-	inc hl
+endr
 ; try again
 	jr .check
 
@@ -16917,8 +16932,9 @@ AddSpriteGFX: ; 142e5
 	jr z, .exists
 	and a
 	jr z, .new
+rept 2
 	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop
 
@@ -16980,8 +16996,9 @@ SortUsedSprites: ; 1431e
 	ld a, [de]
 	and a
 	jr nz, .FoundLastSprite
+rept 2
 	dec de
-	dec de
+endr
 	dec c
 	jr nz, .FindLastSprite
 .FoundLastSprite
@@ -17023,14 +17040,16 @@ SortUsedSprites: ; 1431e
 ; Keep doing this until everything's in order.
 
 .loop
+rept 2
 	dec de
-	dec de
+endr
 	dec c
 	jr nz, .CheckFollowing
 
 	pop hl
+rept 2
 	inc hl
-	inc hl
+endr
 	pop de
 	pop bc
 	dec c
@@ -20436,8 +20455,9 @@ endr
 
 Function15c91: ; 15c91
 	call Function15ca3
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hl]
 	and a
 	jp z, Function15d83
@@ -21387,8 +21407,9 @@ Function162e0: ; 162e0
 	call PrintText
 	xor a
 	ld hl, StringBuffer2
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
@@ -21454,8 +21475,9 @@ Function16373: ; 16373
 	call PrintText
 	xor a
 	ld hl, StringBuffer2
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
@@ -22748,8 +22770,9 @@ Function16a66: ; 16a66
 	ld hl, wEggMonHappiness
 	ld [hli], a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld a, [CurPartyLevel]
 	ld [wEggMonLevel], a
@@ -25135,9 +25158,9 @@ Function2446d:: ; 2446d
 	ld a, $1
 	ld [hli], a
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ret
 ; 244c3
 
@@ -26338,8 +26361,9 @@ Function24c64: ; 24c64
 	ld a, [hl]
 	call Function24c94
 .asm_24c89
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_24c73
 
 .asm_24c8d
@@ -27142,9 +27166,9 @@ Function2513b: ; 2513b (9:513b)
 	call WaitBGMap
 	ld hl, wcf63
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ret
 
@@ -27398,10 +27422,9 @@ Function2536c: ; 2536c (9:536c)
 	ld c, $4
 .asm_2537c
 	call Function253f4
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .asm_2537c
 	hlcoord 2, 13
@@ -27409,10 +27432,9 @@ Function2536c: ; 2536c (9:536c)
 	ld c, $4
 .asm_2538d
 	call Function253f4
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .asm_2538d
 	xor a
@@ -27782,10 +27804,9 @@ FindOakRating: ; 0x2666b
 	ld a, [hli]
 	cp c
 	jr nc, .match
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	jr .loop
 
 .match
@@ -30101,9 +30122,9 @@ Function28434: ; 28434
 	jr nz, .asm_28441
 	ld hl, wc608
 	ld a, $fd
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld b, $c8
 	xor a
 .asm_28457
@@ -30607,12 +30628,14 @@ Function286ba: ; 286ba
 	ld a, $46
 	ld [hli], a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	pop hl
+rept 2
 	inc de
-	inc de
+endr
 	ret
 ; 28771
 
@@ -30722,9 +30745,9 @@ Function287e3: ; 287e3
 	callba Function16d673
 	xor a
 	ld hl, wcf51
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld a, $1
 	ld [wcfa9], a
@@ -33656,13 +33679,15 @@ LoadWildMonData: ; 29ff8
 	jr c, .asm_2a006
 	ld hl, wd25a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	jr .asm_2a011
 .asm_2a006
+rept 2
 	inc hl
-	inc hl
+endr
 	ld de, wd25a
 	ld bc, $3
 	call CopyBytes
@@ -33670,8 +33695,9 @@ LoadWildMonData: ; 29ff8
 	call Function2a21d
 	ld a, $0
 	jr nc, .asm_2a01b
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hl]
 .asm_2a01b
 	ld [wd25d], a
@@ -33712,9 +33738,9 @@ Function2a052: ; 2a052
 	ld b, a
 	ld a, [hli]
 	ld c, a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, $15
 	call Function2a088
 	jr nc, .asm_2a067
@@ -33759,8 +33785,9 @@ Function2a088: ; 2a088
 	ld a, [wd265]
 	cp [hl]
 	jr z, .asm_2a098
+rept 2
 	inc hl
-	inc hl
+endr
 	pop af
 	dec a
 	jr nz, .asm_2a089
@@ -33918,14 +33945,15 @@ Function2a14f: ; 2a14f
 	call Function2a2ce
 	jp c, .asm_2a1c9
 
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	call Function1852
 	ld de, Unknown_2a1d9
 	jr z, .asm_2a174
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [TimeOfDay]
 	ld bc, $e
 	call AddNTimes
@@ -34035,10 +34063,9 @@ Function2a1df:: ; 2a1df
 
 .asm_2a1f2
 ; to PartyMonLevel
+rept 4
 	dec hl
-	dec hl
-	dec hl
-	dec hl
+endr
 
 	ld a, [CurPartyLevel]
 	cp [hl]
@@ -34235,9 +34262,9 @@ Function2a2ce: ; 2a2ce
 	ld a, e
 	cp [hl]
 	jr nz, .asm_2a30a
+rept 3
 	dec hl
-	dec hl
-	dec hl
+endr
 	ld a, [hli]
 	ld [wd22e], a
 	ld a, [hl]
@@ -34955,9 +34982,9 @@ Function2c075: ; 2c075
 	jr z, .asm_2c08b
 
 .asm_2c07f
+rept 3
 	dec hl
-	dec hl
-	dec hl
+endr
 	ld a, [hl]
 	and a
 	ld b, $32
@@ -34966,9 +34993,9 @@ Function2c075: ; 2c075
 	jr .asm_2c08e
 
 .asm_2c08b
+rept 3
 	dec hl
-	dec hl
-	dec hl
+endr
 
 .asm_2c08e
 	ld a, b
@@ -36010,9 +36037,9 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	jr .asm_2ca85
 .asm_2ca77
 	call Function2ca86
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	push de
 	ld de, String_2caae
 	call PlaceString
@@ -36493,9 +36520,9 @@ ClearBattleRAM: ; 2ef18
 	ld [wd0ee], a
 
 	ld hl, wd0d8
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 	ld [wd0e4], a
@@ -37000,9 +37027,9 @@ TrainerType4: ; 3989d
 Function3991b: ; 3991b (e:591b)
 	ld hl, $ffb3
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld a, [wc652] ; base reward
 	ld [hli], a
 	ld a, [CurPartyLevel]
@@ -37884,9 +37911,9 @@ AIChooseMove: ; 440ce
 ; The default score is 20. Unusable moves are given a score of 80.
 	ld a, 20
 	ld hl, Buffer1
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 ; Don't pick disabled moves.
@@ -38205,8 +38232,9 @@ Function4424d: ; 4424d
 	ld d, l
 	ld e, h
 	pop hl
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, d
 	or e
 	jr z, .asm_442b0
@@ -38350,10 +38378,9 @@ Function44355: ; 44355
 	inc hl
 	cp $50
 	jr nz, .asm_4435b
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr z, .asm_44374
 .asm_4436b
@@ -39503,8 +39530,9 @@ Function48444: ; 48444 (12:4444)
 .asm_4844b
 	and a
 	jr z, .asm_48453
+rept 2
 	inc hl
-	inc hl
+endr
 	dec a
 	jr .asm_4844b
 .asm_48453
@@ -39729,12 +39757,13 @@ Function486bf: ; 486bf (12:46bf)
 	pop af
 	ld [hli], a
 	ld a, $1
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ret
 
 Function48725: ; 48725 (12:4725)
@@ -39785,9 +39814,9 @@ Function4873c: ; 4873c (12:473c)
 	ld a, $1
 	ld [hli], a
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ret
 
 Function4876f: ; 4876f (12:476f)
@@ -39854,10 +39883,9 @@ Function487ec: ; 487ec (12:47ec)
 	ld de, wd473
 	call Function487ff
 	pop hl
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	ld de, String_4880d
 	call PlaceString
 	ret
@@ -40655,10 +40683,12 @@ Function48cdc: ; 48cdc (12:4cdc)
 	pop bc
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	ld a, $0
 .asm_48ced
 	push bc
@@ -41594,9 +41624,9 @@ Function49797: ; 49797
 	hlcoord 2, 16, AttrMap
 	ld [hli], a
 	ld a, $7
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld a, $2
 	ld [hl], a
 	hlcoord 2, 17, AttrMap
@@ -41718,9 +41748,9 @@ Function498f9: ; 498f9
 	ld c, $4
 .loop
 	ld [hli], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	inc a
 	dec c
 	jr nz, .loop
@@ -42544,8 +42574,9 @@ Function4a071: ; 4a071 (12:6071)
 	add $2
 	ld [hli], a
 	ld a, $1
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ret
 
 Function4a098: ; 4a098 (12:6098)
@@ -42627,8 +42658,9 @@ Function4a118: ; 4a118 (12:6118)
 	add $2
 	ld [hli], a
 	ld a, $1
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ret
 
 Function4a13b: ; 4a13b (12:613b)
@@ -42902,8 +42934,9 @@ Function4a373: ; 4a373 (12:6373)
 	add $2
 	ld [hli], a
 	ld a, $1
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ret
 ; 4a39a (12:639a)
 
@@ -43214,12 +43247,13 @@ Function4a680: ; 4a680 (12:6680)
 	add $2
 	ld [hli], a
 	ld a, $1
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ret
 
 Function4a6ab: ; 4a6ab (12:66ab)
@@ -44159,8 +44193,9 @@ Function4abc3: ; 4abc3
 	ld a, [wcfa9]
 	ld [wcfa9], a
 	ld a, [PartyCount]
+rept 2
 	inc a
-	inc a
+endr
 	ld b, a
 	ld a, [wcfa9]
 	cp b
@@ -44890,8 +44925,9 @@ Function4d15b:: ; 4d15b
 	ld a, [wd197]
 	and a
 	jr z, .asm_4d170
+rept 2
 	inc hl
-	inc hl
+endr
 
 .asm_4d170
 	decoord 0, 0
@@ -45115,10 +45151,12 @@ Function4d35b: ; 4d35b
 	pop bc
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	ld a, $7
 .asm_4d36e
 	push bc
@@ -46894,8 +46932,9 @@ Function4e0e7: ; 4e0e7 (13:60e7)
 	inc a
 	ld d, a
 	callba Function50e47
+rept 2
 	ld hl, TempMonExp + 2
-	ld hl, TempMonExp + 2
+endr
 	ld a, [$ffb6]
 	sub [hl]
 	dec hl
@@ -46911,8 +46950,9 @@ Function4e0e7: ; 4e0e7 (13:60e7)
 .asm_4e111
 	ld hl, Buffer1 ; wd1ea (aliases: MagikarpLength)
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ret
 ; 4e119 (13:6119)
@@ -47488,8 +47528,9 @@ Function4e5b7: ; 4e5b7 (13:65b7)
 	ld a, $1
 	ld [hli], a
 	ld a, $5
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], $ff
 	ret
 ; 4e5da (13:65da)
@@ -47692,8 +47733,9 @@ Function4e726: ; 4e726
 	call Function4e741
 	pop bc
 	inc b
+rept 2
 	dec c
-	dec c
+endr
 	jr nz, .asm_4e72c
 	and a
 	ret
@@ -47849,8 +47891,9 @@ Function4e80c: ; 4e80c
 	ld a, [$ff9b]
 	and $e
 	srl a
+rept 2
 	inc a
-	inc a
+endr
 	and $7
 	ld b, a
 	ld hl, Sprites + 3
@@ -47859,9 +47902,9 @@ Function4e80c: ; 4e80c
 	ld a, [hl]
 	or b
 	ld [hli], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .asm_4e823
 	pop bc
@@ -48091,10 +48134,12 @@ Function4e9ab: ; 4e9ab
 	ld a, d
 	ld [hSCX], a
 	call Function4e9f1
+rept 2
 	inc e
-	inc e
+endr
+rept 2
 	dec d
-	dec d
+endr
 	pop af
 	push af
 	cp $1
@@ -48116,8 +48161,9 @@ Function4e9d6: ; 4e9d6
 	ld c, $12
 	ld de, $0004
 .asm_4e9de
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	add hl, de
 	dec c
 	jr nz, .asm_4e9de
@@ -48356,8 +48402,9 @@ Function5009b: ; 5009b
 	jr nz, .asm_500a7
 
 .asm_500bf
+rept 2
 	dec hl
-	dec hl
+endr
 	ld de, String_500c8
 	call PlaceString
 	ret
@@ -48465,8 +48512,9 @@ Function50138: ; 50138
 	pop de
 	ld a, $f3
 	ld [hli], a
+rept 2
 	inc de
-	inc de
+endr
 	ld bc, $0203
 	call PrintNum
 
@@ -48669,16 +48717,19 @@ Function50268: ; 50268
 	ld a, [hli]
 	and a
 	jr z, .asm_5029f
+rept 2
 	inc hl
-	inc hl
+endr
 	cp EVOLVE_ITEM
 	jr nz, .asm_50287
+rept 2
 	dec hl
-	dec hl
+endr
 	ld a, [CurItem]
 	cp [hl]
+rept 2
 	inc hl
-	inc hl
+endr
 	jr nz, .asm_50287
 	ld de, String_502a3
 	ret
@@ -50116,9 +50167,9 @@ Function50c50: ; 50c50
 
 .asm_50c6f
 	pop hl
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld d, h
 	ld e, l
 	ld hl, TempMonMoves
@@ -50230,8 +50281,9 @@ Function50cdb: ; 50cdb
 
 Function50d0a: ; 50d0a
 	push de
+rept 2
 	inc de
-	inc de
+endr
 	ld a, [de]
 	ld b, a
 	inc de
@@ -50451,8 +50503,9 @@ Function50e1b: ; 50e1b
 Function50e47: ; 50e47
 
 	ld a, [BaseGrowthRate]
+rept 2
 	add a
-	add a
+endr
 	ld c, a
 	ld b, 0
 	ld hl, GrowthRates
@@ -53080,8 +53133,9 @@ Function81c33: ; 81c33
 	ld a, [wc608 + 3]
 	ld [hli], a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld hl, wcda9
 	call Function81f0c
@@ -53097,9 +53151,9 @@ Function81c33: ; 81c33
 ; 81ca7
 
 Function81ca7: ; 81ca7
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, [de]
 	call Function81cbc
 	ld a, [de]
@@ -53376,8 +53430,9 @@ String_81e4d: db "おぼえられない@" ; cannot be taught
 Function81e55: ; 81e55
 	cp $32
 	jr c, .asm_81e5b
+rept 2
 	inc a
-	inc a
+endr
 
 .asm_81e5b
 	add $bf
@@ -53490,8 +53545,9 @@ Function81ee3: ; 81ee3
 	inc de
 	ld [hli], a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	dec c
 	jr nz, .asm_81ee3
 	ret
@@ -53626,8 +53682,9 @@ Function81f5e: ; 81f5e
 	ld a, b
 	ld [hli], a
 	ld a, [de]
+rept 2
 	add a
-	add a
+endr
 	add $18
 	ld [hli], a
 	xor a
@@ -53718,22 +53775,19 @@ Function821d8: ; 821d8
 
 Function821de: ; 821de
 	add hl, de
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld bc, $0010
 	add hl, bc
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld bc, $0010
 	add hl, bc
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ret
 ; 821f4
 
@@ -54332,9 +54386,9 @@ Function841e2: ; 841e2 (21:41e2)
 Function841fb: ; 841fb (21:41fb)
 	xor a
 	ld hl, wca82
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld hl, wca86
 	ld [hli], a
@@ -55762,8 +55816,9 @@ Function865b5: ; 865b5
 	ld a, [hli]
 	ld [TempMonSpecies], a
 	ld [CurPartySpecies], a
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld [TempMonDVs], a
 	ld a, [hli]
@@ -55824,8 +55879,9 @@ Function86643: ; 86643
 	ld a, [hSCX]
 	and a
 	ret z
+rept 2
 	dec a
-	dec a
+endr
 	ld [hSCX], a
 	call DelayFrame
 	jr .asm_86643
@@ -57892,8 +57948,9 @@ Function896eb: ; 896eb
 Function896f5: ; 896f5
 	call Function8971f
 	call Function89736
+rept 2
 	inc hl
-	inc hl
+endr
 	ld b, 2
 
 ClearScreenArea: ; 0x896ff
@@ -57919,8 +57976,9 @@ ClearScreenArea: ; 0x896ff
 	jr nz, .loop
 
 	dec hl
+rept 2
 	inc c
-	inc c
+endr
 .asm_89713
 	ld a, $36
 	ld [hli], a
@@ -57954,8 +58012,9 @@ Function8971f: ; 8971f
 
 Function89736: ; 89736
 	push hl
+rept 2
 	inc hl
-	inc hl
+endr
 	ld e, c
 	ld d, $0
 	add hl, de
@@ -57991,8 +58050,9 @@ Function8975b: ; 8975b
 	ld [hli], a
 	ld a, $d
 	ld [hl], a
+rept 2
 	dec hl
-	dec hl
+endr
 	ld a, $4
 	ld e, $3
 .asm_89769
@@ -58757,8 +58817,9 @@ Function89b97: ; 89b97 (22:5b97)
 	and a
 	jr z, .asm_89bae
 .asm_89ba9
+rept 2
 	inc hl
-	inc hl
+endr
 	dec a
 	jr nz, .asm_89ba9
 .asm_89bae
@@ -59274,10 +59335,9 @@ Function89efd: ; 89efd (22:5efd)
 	ld a, $ff
 	ld [hli], a
 	xor a
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 .asm_89f09
 	ld hl, wd012
@@ -59368,8 +59428,9 @@ Function89f77: ; 89f77 (22:5f77)
 	ld [hli], a
 	ld a, c
 	ld [hli], a
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, $8
 	add c
 	ld c, a
@@ -59500,9 +59561,9 @@ Function8a055: ; 8a055 (22:6055)
 	ld a, $5
 	call Function8a5a3
 	pop hl
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, $6
 	call Function8a5a3
 	call Function3238
@@ -61478,8 +61539,9 @@ Function8aee9: ; 8aee9
 
 .asm_8aef5
 	call Function8aefd
+rept 2
 	inc hl
-	inc hl
+endr
 	inc de
 	jr .asm_8aee9
 ; 8aefd
@@ -61506,8 +61568,9 @@ Function8af09: ; 8af09
 	jr z, .asm_8af19
 	ld c, a
 	call Function8af1c
+rept 2
 	inc hl
-	inc hl
+endr
 	inc de
 	jr .asm_8af0b
 
@@ -62081,9 +62144,9 @@ Function8b27a: ; 8b27a
 ; 8b281
 
 Function8b281: ; 8b281
+rept 3
 	inc de
-	inc de
-	inc de
+endr
 	ld a, [de]
 	ld l, a
 	inc de
@@ -62124,8 +62187,9 @@ Function8b29d: ; 8b29d
 Function8b2a9: ; 8b2a9
 	push bc
 	call Function8b281
+rept 2
 	inc hl
-	inc hl
+endr
 	ld b, $0
 rept 2
 	add hl, bc
@@ -62578,8 +62642,9 @@ Function8b4d8: ; 8b4d8 (22:74d8)
 	ld hl, Unknown_8b529
 	call Function8b50a
 	push hl
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -62594,8 +62659,9 @@ Function8b4ea: ; 8b4ea (22:74ea)
 	ld hl, Unknown_8b529
 	call Function8b50a
 	push hl
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -62963,10 +63029,12 @@ Function8b73e: ; 8b73e
 Function8b744: ; 8b744
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	xor a
 .asm_8b74d
 	push bc
@@ -63565,9 +63633,9 @@ Special_BattleTowerFade: ; 8c092
 	ld b, $4
 .asm_8c09c
 	call DmgToCgbTimePals
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld c, $7
 	call DelayFrames
 	dec b
@@ -63609,12 +63677,9 @@ Function8c0c1: ; 8c0c1
 	ld [hli], a
 	ld a, d
 	ld [hli], a
+rept 6
 	inc hl
-	inc hl
-	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .asm_8c0d4
 	pop af
@@ -63725,9 +63790,9 @@ DmgToCgbTimePals: ; 8c14e
 Function8c15e: ; 8c15e
 .asm_8c15e
 	call DmgToCgbTimePals
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld c, $2
 	call DelayFrames
 	dec b
@@ -63738,9 +63803,9 @@ Function8c15e: ; 8c15e
 Function8c16d: ; 8c16d
 .asm_8c16d
 	call DmgToCgbTimePals
+rept 3
 	dec hl
-	dec hl
-	dec hl
+endr
 	ld c, $2
 	call DelayFrames
 	dec b
@@ -63909,8 +63974,9 @@ Function8c26d: ; 8c26d
 	ld [hBGMapMode], a
 	ld hl, wcf63
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	call Function8c6d8
 	ret
@@ -64849,8 +64915,9 @@ Function8ca23: ; 8ca23 (23:4a23)
 	ld a, $20
 	ld [wcf64], a
 	ld hl, wcf63
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ret
 
 Function8ca3c: ; 8ca3c (23:4a3c)
@@ -65048,9 +65115,9 @@ Function8cb82: ; 8cb82 (23:4b82)
 	ld c, $4
 .asm_8cb88
 	ld [hli], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	inc a
 	dec c
 	jr nz, .asm_8cb88
@@ -65217,8 +65284,9 @@ Function8cc99: ; 8cc99
 	ld d, a
 	ld hl, wcf64
 	ld a, [hl]
+rept 2
 	add d
-	add d
+endr
 	ld [hl], a
 	ret
 ; 8ccc4
@@ -65267,9 +65335,9 @@ Function8ccc9: ; 8ccc9
 	xor a
 	ld [hli], a
 	ld a, [wd192]
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld de, MUSIC_MAGNET_TRAIN
 	call PlayMusic2
 	ret
@@ -65514,15 +65582,17 @@ Function8ce7a: ; 8ce7a
 	inc a
 	ld d, a
 	ld a, e
+rept 2
 	add d
-	add d
+endr
 	ld [wcf65], a
 	ld hl, wc3c0
 	ld a, [wd191]
 	ld d, a
 	ld a, [hl]
+rept 2
 	add d
-	add d
+endr
 	ld [hl], a
 	ret
 
@@ -65754,18 +65824,19 @@ endr
 	ld a, d
 	ld [hli], a
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	xor a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	dec a
 	ld [hli], a
 	xor a
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld a, c
 	ld [wc3b8], a
@@ -66024,8 +66095,9 @@ Function8d132: ; 8d132
 	ld [hl], a
 	ld hl, $000a
 	add hl, bc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	jr .asm_8d132
 
 .asm_8d17b
@@ -66360,8 +66432,9 @@ Function8d381: ; 8d381 (23:5381)
 	ld a, [hl]
 	and a
 	jr z, .asm_8d3ba
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ld d, a
 	and $1f
 	jr nz, .asm_8d395
@@ -66644,8 +66717,9 @@ Function8d52a: ; 8d52a (23:552a)
 	ld hl, $4
 	add hl, bc
 	ld a, [hl]
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	cp $b0
 	jr nc, .asm_8d53f
 	and $3
@@ -66714,9 +66788,9 @@ Function8d57f: ; 8d57f (23:557f)
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
+rept 3
 	inc [hl]
-	inc [hl]
-	inc [hl]
+endr
 	push af
 	push de
 	call Function8d6de
@@ -66745,8 +66819,9 @@ Function8d5b0: ; 8d5b0 (23:55b0)
 	ret c
 	ld hl, $5
 	add hl, bc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
@@ -66772,8 +66847,9 @@ Function8d5e2: ; 8d5e2 (23:55e2)
 	ld a, [hl]
 	cp $b8
 	jr nc, .asm_8d603
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld hl, $5
 	add hl, bc
 	dec [hl]
@@ -66799,8 +66875,9 @@ Function8d607: ; 8d607 (23:5607)
 	ret z
 	ld hl, $5
 	add hl, bc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
@@ -66875,9 +66952,9 @@ Function8d680: ; 8d680 (23:5680)
 	ld hl, $b
 	add hl, bc
 	ld d, [hl]
+rept 3
 	inc [hl]
-	inc [hl]
-	inc [hl]
+endr
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
@@ -68387,8 +68464,9 @@ Function8e79d: ; 8e79d
 	call Function8e7c6
 	call DelayFrame
 	pop bc
+rept 2
 	inc d
-	inc d
+endr
 	dec c
 	jr nz, .asm_8e7b5
 	call ClearSprites
@@ -68624,10 +68702,9 @@ Function8e908: ; 8e908 (23:6908)
 	ld [CurIcon], a
 	call Function8e9db
 	ld a, [$ffb0]
+rept 4
 	add a
-	add a
-	add a
-	add a
+endr
 	add $1c
 	ld d, a
 	ld e, $10
@@ -69163,8 +69240,9 @@ Function90136:: ; 90136 (24:4136)
 	call _hl_
 	jr nc, .asm_90171
 	call Function90178
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld e, a
 	push hl
@@ -69411,8 +69489,9 @@ Phone_CallerTextboxWithName2: ; 902c9
 	call Phone_CallerTextbox
 	hlcoord 1, 2
 	ld [hl], $62
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [PhoneScriptBank]
 	ld b, a
 	ld a, [PhoneCallerLo]
@@ -69511,8 +69590,9 @@ Function90363: ; 90363 (24:4363)
 	call Phone_CallerTextbox
 	hlcoord 1, 1
 	ld [hl], $62
+rept 2
 	inc hl
-	inc hl
+endr
 	ld d, h
 	ld e, l
 	pop bc
@@ -69962,8 +70042,9 @@ Function907f1: ; 907f1
 	push hl
 	call Function907de
 	pop de
+rept 2
 	inc de
-	inc de
+endr
 	ld a, $9c
 	ld [de], a
 	inc de
@@ -69977,9 +70058,9 @@ Function907f1: ; 907f1
 	ld [hl], a
 	pop hl
 	call Function90859
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ret
 ; 90810
 
@@ -71586,8 +71667,9 @@ Function912d8: ; 912d8 (24:52d8)
 	ld [hli], a
 	dec c
 	jr nz, .asm_912e1
+rept 2
 	inc hl
-	inc hl
+endr
 	dec b
 	jr nz, .asm_912df
 	ld a, [wc6d2]
@@ -71979,8 +72061,9 @@ Function9164e: ; 9164e (24:564e)
 	ld a, [hl]
 	and a
 	ret z
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	jr .update
 
 .up
@@ -71988,8 +72071,9 @@ Function9164e: ; 9164e (24:564e)
 	ld a, [hl]
 	cp 80
 	ret nc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 
 .update
 
@@ -72003,8 +72087,9 @@ UpdateRadioStation: ; 9166f (24:566f)
 	jr z, .asm_91682
 	cp d
 	jr z, .asm_91686
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_91676
 
 .asm_91682
@@ -73874,9 +73959,9 @@ Function9282c: ; 9282c
 	ld a, [hl]
 	xor $20
 	ld [hli], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .asm_92839
 	ret
@@ -74364,9 +74449,9 @@ Function92b22: ; 92b22 (24:6b22)
 	ld a, [hl]
 	add d
 	ld [hli], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec e
 	jr nz, .asm_92b49
 	ret
@@ -74426,8 +74511,9 @@ Function92b83: ; 92b83 (24:6b83)
 	add $8
 	ld [hli], a
 	ld a, [de]
+rept 2
 	inc a
-	inc a
+endr
 	ld [hli], a
 	srl a
 	srl a
@@ -74846,8 +74932,9 @@ Function92dca: ; 92dca
 	ld [hl], $0
 	ld hl, $0000
 	add hl, bc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ld a, $1
 	ld [wcf64], a
 	ret
@@ -75530,10 +75617,9 @@ Function931ba: ; 931ba
 	hlcoord 18, 17
 	ld [hl], $ee
 	ld hl, UnknownText_0x931db
+rept 4
 	inc bc
-	inc bc
-	inc bc
-	inc bc
+endr
 	ret
 ; 931db
 
@@ -75662,8 +75748,9 @@ Function93289: ; 93289 (24:7289)
 	ld hl, $6
 	add hl, bc
 	ld a, [hl]
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	cp $48
 	jr nc, .asm_932a3
 	and $3
@@ -76019,10 +76106,12 @@ Functionb8101: ; b8101 (2e:4101)
 Functionb8115: ; b8115
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	ld a, $87
 .asm_b811f
 	push bc
@@ -76082,13 +76171,15 @@ Functionb8164: ; b8164
 	jr .asm_b816a
 
 .asm_b8168
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 
 .asm_b816a
 	inc a
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	dec a
 	dec c
 	jr nz, .asm_b8168
@@ -76515,9 +76606,9 @@ SelectTreeMon: ; b841f
 .loop
 	sub [hl]
 	jr c, .ok
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	jr .loop
 
 .ok
@@ -76897,10 +76988,9 @@ endr
 	jr .loop
 
 .done
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 
 .not3
 	call Random
@@ -77477,10 +77567,9 @@ endr
 	pop hl
 	pop af
 	call Functionb8b11
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, l
 	ld [wd26b], a
 	ld a, h
@@ -78881,8 +78970,9 @@ Functionb92b8: ; b92b8
 	cp $ff
 	jr z, .asm_b92e6
 	inc c
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_b92d9
 
 .asm_b92e6
@@ -79710,8 +79800,9 @@ Functionb991e: ; b991e
 .asm_b991e
 	ld a, [de]
 	inc de
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	dec c
 	jr nz, .asm_b991e
 	ret
@@ -80304,13 +80395,13 @@ _CardFlip: ; e00ee (38:40ee)
 	ld [wcf65], a
 	ld de, MUSIC_GAME_CORNER
 	call PlayMusic
-.asm_e0170
+.MasterLoop
 	ld a, [wcf63]
 	bit 7, a
-	jr nz, .asm_e017c
-	call Functione0191
-	jr .asm_e0170
-.asm_e017c
+	jr nz, .leavethegame
+	call .CardFlip
+	jr .MasterLoop
+.leavethegame
 	call WaitSFX
 	ld de, SFX_QUIT_SLOTS
 	call PlaySFX
@@ -80320,11 +80411,11 @@ _CardFlip: ; e00ee (38:40ee)
 	res 4, [hl]
 	ret
 
-Functione0191: ; e0191 (38:4191)
+.CardFlip: ; e0191 (38:4191)
 	ld a, [wcf63]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_e01a0
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -80334,62 +80425,62 @@ endr
 	jp [hl]
 ; e01a0 (38:41a0)
 
-Jumptable_e01a0: ; e01a0
-	dw Functione01b5
-	dw Functione01d2
-	dw Functione0217
-	dw Functione02b7
-	dw Functione02da
-	dw Functione0314
-	dw Functione031e
-	dw Functione0360
+.Jumptable: ; e01a0
+	dw .AskPlayWithThree
+	dw .DeductCoins
+	dw .ChooseACard
+	dw .PlaceYourBet
+	dw .CheckTheCard
+	dw .TabulateTheResult
+	dw .PlayAgain
+	dw .Quit
 ; e01b0
 
-Functione01b0: ; e01b0
+.Increment: ; e01b0
 	ld hl, wcf63
 	inc [hl]
 	ret
 ; e01b5
 
-Functione01b5: ; e01b5
-	ld hl, UnknownText_0xe01cd
+.AskPlayWithThree: ; e01b5
+	ld hl, .PlayWithThreeCoinsText
 	call Functione0489
 	call YesNoBox
-	jr c, .asm_e01c7
+	jr c, .SaidNo
 	call Functione0366
-	call Functione01b0
+	call .Increment
 	ret
 
-.asm_e01c7
+.SaidNo
 	ld a, $7
 	ld [wcf63], a
 	ret
 ; e01cd
 
-UnknownText_0xe01cd: ; 0xe01cd
+.PlayWithThreeCoinsText: ; 0xe01cd
 	; Play with three coins?
 	text_jump UnknownText_0x1c5793
 	db "@"
 ; 0xe01d2
 
-Functione01d2: ; e01d2
+.DeductCoins: ; e01d2
 	ld a, [Coins]
 	ld h, a
 	ld a, [Coins + 1]
 	ld l, a
 	ld a, h
 	and a
-	jr nz, .asm_e01ef
+	jr nz, .deduct ; You have at least 256 coins.
 	ld a, l
 	cp 3
-	jr nc, .asm_e01ef
-	ld hl, UnknownText_0xe0212
+	jr nc, .deduct ; You have at least 3 coins.
+	ld hl, .NotEnoughCoinsText
 	call Functione0489
 	ld a, $7
 	ld [wcf63], a
 	ret
 
-.asm_e01ef
+.deduct
 	ld de, -3
 	add hl, de
 	ld a, h
@@ -80404,17 +80495,17 @@ Functione01d2: ; e01d2
 	ld a, $1
 	ld [hBGMapMode], a
 	call WaitSFX
-	call Functione01b0
+	call .Increment
 	ret
 ; e0212
 
-UnknownText_0xe0212: ; 0xe0212
+.NotEnoughCoinsText: ; 0xe0212
 	; Not enough coins…
 	text_jump UnknownText_0x1c57ab
 	db "@"
 ; 0xe0217
 
-Functione0217: ; e0217
+.ChooseACard: ; e0217
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
@@ -80438,15 +80529,15 @@ Functione0217: ; e0217
 	hlcoord 2, 6
 	call Functione03c1
 	call WaitBGMap
-	ld hl, UnknownText_0xe02b2
+	ld hl, .ChooseACardText
 	call Functione0489
 	xor a
 	ld [wcf66], a
-.asm_e025c
+.loop
 	call Functiona57
 	ld a, [$ffa9]
 	and $1
-	jr nz, .asm_e027c
+	jr nz, .next
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call Functione0849
@@ -80456,13 +80547,13 @@ Functione0217: ; e0217
 	ld a, [hl]
 	xor $1
 	ld [hl], a
-	jr .asm_e025c
+	jr .loop
 
-.asm_e027c
+.next
 	ld de, SFX_SLOT_MACHINE_START
 	call PlaySFX
 	ld a, $3
-.asm_e0284
+.loop2
 	push af
 	call Functione0849
 	ld c, $4
@@ -80472,7 +80563,7 @@ Functione0217: ; e0217
 	call DelayFrames
 	pop af
 	dec a
-	jr nz, .asm_e0284
+	jr nz, .loop2
 	ld hl, wcf66
 	ld a, [hl]
 	push af
@@ -80483,41 +80574,41 @@ Functione0217: ; e0217
 	call Functione04e5
 	pop af
 	ld [wcf66], a
-	call Functione01b0
+	call .Increment
 	ret
 ; e02b2
 
-UnknownText_0xe02b2: ; 0xe02b2
+.ChooseACardText: ; 0xe02b2
 	; Choose a card.
 	text_jump UnknownText_0x1c57be
 	db "@"
 ; 0xe02b7
 
-Functione02b7: ; e02b7
-	ld hl, UnknownText_0xe02d5
+.PlaceYourBet: ; e02b7
+	ld hl, .PlaceYourBetText
 	call Functione0489
-.asm_e02bd
+.betloop
 	call Functiona57
 	ld a, [$ffa9]
 	and $1
-	jr nz, .asm_e02d1
+	jr nz, .betdone
 	call Functione089c
 	call Functione0960
 	call DelayFrame
-	jr .asm_e02bd
+	jr .betloop
 
-.asm_e02d1
-	call Functione01b0
+.betdone
+	call .Increment
 	ret
 ; e02d5
 
-UnknownText_0xe02d5: ; 0xe02d5
+.PlaceYourBetText: ; 0xe02d5
 	; Place your bet.
 	text_jump UnknownText_0x1c57ce
 	db "@"
 ; 0xe02da
 
-Functione02da: ; e02da
+.CheckTheCard: ; e02da
 	xor a
 	ld [$ff9b], a
 	call Functione0960
@@ -80544,62 +80635,62 @@ endr
 	call Functione03ac
 	call Functione03ec
 	call Function3200
-	call Functione01b0
+	call .Increment
 	ret
 ; e0314
 
-Functione0314: ; e0314
+.TabulateTheResult: ; e0314
 	call Functione0637
 	call Functiona80
-	call Functione01b0
+	call .Increment
 	ret
 ; e031e
 
-Functione031e: ; e031e
+.PlayAgain: ; e031e
 	call ClearSprites
-	ld hl, UnknownText_0xe0356
+	ld hl, .PlayAgainText
 	call Functione0489
 	call YesNoBox
-	jr nc, .asm_e0330
-	call Functione01b0
+	jr nc, .Continue
+	call .Increment
 	ret
 
-.asm_e0330
+.Continue
 	ld a, [wc6e8]
 	inc a
 	ld [wc6e8], a
 	cp $c
-	jr c, .asm_e034d
+	jr c, .KeepTheCurrentDeck
 	call Functione04c1
 	ld a, $1
 	ld [hBGMapMode], a
 	call Functione0366
-	ld hl, UnknownText_0xe035b
+	ld hl, .CardsShuffledText
 	call PrintText
-	jr .asm_e0350
+	jr .LoopAround
 
-.asm_e034d
+.KeepTheCurrentDeck
 	call Functione0534
 
-.asm_e0350
+.LoopAround
 	ld a, $1
 	ld [wcf63], a
 	ret
 ; e0356
 
-UnknownText_0xe0356: ; 0xe0356
+.PlayAgainText: ; 0xe0356
 	; Want to play again?
 	text_jump UnknownText_0x1c57df
 	db "@"
 ; 0xe035b
 
-UnknownText_0xe035b: ; 0xe035b
+.CardsShuffledText: ; 0xe035b
 	; The cards have been shuffled.
 	text_jump UnknownText_0x1c57f4
 	db "@"
 ; 0xe0360
 
-Functione0360: ; e0360
+.Quit: ; e0360
 	ld hl, wcf63
 	set 7, [hl]
 	ret
@@ -81519,8 +81610,9 @@ Functione08b8: ; e08b8
 	ld [hl], a
 	cp $3
 	jr c, .asm_e08e2
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	jp Functione0959
 
 .asm_e08e2
@@ -81548,8 +81640,9 @@ Functione08ef: ; e08ef
 	ld [hl], a
 	cp $4
 	ret nc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	jr Functione0959
 
 Functione090a: ; e090a
@@ -81578,8 +81671,9 @@ Functione090a: ; e090a
 	ld [hl], a
 	cp $3
 	jr c, .asm_e0931
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	jr Functione0959
 
 .asm_e0931
@@ -81607,8 +81701,9 @@ Functione093d: ; e093d
 	ld [hl], a
 	cp $6
 	ret nc
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 
 Functione0959: ; e0959
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
@@ -82720,10 +82815,9 @@ Functione16c7: ; e16c7
 	ld l, a
 	call Functione16e2
 	pop hl
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	pop af
 	dec a
 	jr nz, .asm_e16cc
@@ -82920,10 +83014,9 @@ Functione1efb: ; e1efb
 	xor a
 	ld [wc708], a
 	ld hl, wc703
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld [wc709], a
 
@@ -83116,8 +83209,9 @@ Functione2010: ; e2010
 	ld [wc6fd], a
 	ld hl, wc709
 	ld e, [hl]
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ld d, $0
 	hlcoord 5, 0
 	add hl, de
@@ -83150,9 +83244,9 @@ Functione2084: ; e2084
 	call Functione2128
 	ld hl, UnknownText_0xe2093
 	pop bc
+rept 3
 	inc bc
-	inc bc
-	inc bc
+endr
 	ret
 ; e2093
 
@@ -84709,9 +84803,9 @@ endr
 	ld de, $28
 	add hl, de
 	pop de
+rept 3
 	inc de
-	inc de
-	inc de
+endr
 	pop af
 	dec a
 	jr nz, .asm_e2c53
@@ -87625,8 +87719,9 @@ Functione4d36: ; e4d36 (39:4d36)
 	ret z
 	cp c
 	jr z, .asm_e4d48
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_e4d3d
 .asm_e4d48
 	ld a, [hli]
@@ -88295,15 +88390,16 @@ Functione51dc: ; e51dc (39:51dc)
 	ret
 
 Functione5223: ; e5223 (39:5223)
+rept 3
 	add a
-	add a
-	add a
+endr
 	ld e, a
 	ld d, $0
 	ld hl, BGPals
 	add hl, de
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [wcf65]
 	and $3f
 	cp $1f
@@ -88410,9 +88506,9 @@ Functione5348: ; e5348 (39:5348)
 .asm_e5353
 	ld a, [wcf65]
 	and $7
+rept 3
 	add a
-	add a
-	add a
+endr
 	ld c, a
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -88460,17 +88556,16 @@ Palette_e5395: ; e5395
 ; e539d
 
 Functione539d: ; e539d (39:539d)
+rept 3
 	add a
-	add a
-	add a
+endr
 	ld e, a
 	ld d, $0
 	ld hl, BGPals
 	add hl, de
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, [wcf65]
 	add a
 	ld c, a
@@ -88718,8 +88813,9 @@ Functione552f: ; e552f (39:552f)
 .asm_e5548
 	ld hl, LYOverrides + $5f
 	ld a, [hl]
+rept 2
 	inc a
-	inc a
+endr
 	ld bc, $31
 	call ByteFill
 	ld a, [LYOverrides + 0]
@@ -90409,8 +90505,9 @@ DoWeatherModifiers: ; fbda4
 	jr z, .ApplyModifier
 
 .NextWeatherType
+rept 2
 	inc de
-	inc de
+endr
 	jr .CheckWeatherType
 
 
@@ -90435,8 +90532,9 @@ DoWeatherModifiers: ; fbda4
 	jr z, .ApplyModifier
 
 .NextWeatherMove
+rept 2
 	inc de
-	inc de
+endr
 	jr .CheckWeatherMove
 
 .ApplyModifier
@@ -93579,20 +93677,18 @@ Function105033: ; 105033 (41:5033)
 Function105038: ; 105038 (41:5038)
 	ld a, $20
 	ld [rJOYP], a ; $ff00+$0
+rept 2
 	ld a, [rJOYP] ; $ff00+$0
-	ld a, [rJOYP] ; $ff00+$0
+endr
 	cpl
 	and $f
 	swap a
 	ld b, a
 	ld a, $10
 	ld [rJOYP], a ; $ff00+$0
+rept 6
 	ld a, [rJOYP] ; $ff00+$0
-	ld a, [rJOYP] ; $ff00+$0
-	ld a, [rJOYP] ; $ff00+$0
-	ld a, [rJOYP] ; $ff00+$0
-	ld a, [rJOYP] ; $ff00+$0
-	ld a, [rJOYP] ; $ff00+$0
+endr
 	cpl
 	and $f
 	or b
@@ -93953,20 +94049,18 @@ Function1056eb: ; 1056eb (41:56eb)
 	ld b, $8
 .asm_1056f2
 	dec [hl]
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	dec b
 	jr nz, .asm_1056f2
 	ld hl, Sprites + $20
 	ld b, $8
 .asm_1056ff
 	inc [hl]
+rept 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+endr
 	dec b
 	jr nz, .asm_1056ff
 	dec c
@@ -94762,9 +94856,9 @@ Function105fe3: mobile ; 105fe3
 	inc [hl]
 	jr nz, .asm_106001
 	ld a, $ff
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 .asm_106001
@@ -94792,9 +94886,9 @@ Function106008: mobile ; 106008
 	inc [hl]
 	jr nz, .asm_106027
 	ld a, $ff
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 .asm_106027
@@ -95179,19 +95273,19 @@ Function1061ef:: ; 1061ef
 	ld de, ._9
 
 .asm_106256
+rept 3
 	inc de
-	inc de
-	inc de
+endr
+rept 2
 	dec a
-	dec a
+endr
 .asm_10625b
 	push af
 	call Function1062b2
 	call Function1062ff
+rept 4
 	inc de
-	inc de
-	inc de
-	inc de
+endr
 	pop af
 	dec a
 	jr nz, .asm_10625b
@@ -95262,9 +95356,9 @@ Function1062b2: ; 1062b2
 	sbc b
 	ld [hMathBuffer], a
 	ld a, [de]
+rept 3
 	inc de
-	inc de
-	inc de
+endr
 	ld b, a
 	ld a, [hProduct]
 	sbc b

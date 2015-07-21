@@ -253,8 +253,9 @@ ParkBall: ; e8a2
 	jr z, .asm_e906
 	cp c
 	jr z, .asm_e8fe
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_e8f2
 
 .asm_e8fe
@@ -287,8 +288,9 @@ ParkBall: ; e8a2
 
 	ld h, d
 	ld l, e
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld d, h
 	ld e, l
 	ld a, d
@@ -802,8 +804,9 @@ HeavyBallMultiplier:
 	dec a
 	ld e, a
 	ld d, 0
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, BANK(PokedexDataPointerTable)
 	call GetFarHalfword
 
@@ -816,8 +819,9 @@ HeavyBallMultiplier:
 
 	call GetPokedexEntryBank
 	push bc
+rept 2
 	inc hl
-	inc hl
+endr
 	call GetFarHalfword
 
 	srl h
@@ -863,8 +867,9 @@ HeavyBallMultiplier:
 	ld a, c
 	cp [hl]
 	jr c, .heavymon
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .lookup
 
 .heavymon
@@ -923,8 +928,9 @@ GLOBAL EvosAttacksPointers
 	ld c, a
 	ld b, 0
 	ld hl, EvosAttacksPointers
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 	pop bc
@@ -936,9 +942,9 @@ GLOBAL EvosAttacksPointers
 	pop bc
 	ret nz
 
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 
 ; Moon Stone's constant from Pokémon Red is used.
 ; No Pokémon evolve with Burn Heal,
@@ -2119,8 +2125,9 @@ Functionf395: ; f395 (3:7395)
 	jr z, .asm_f3a9
 	cp d
 	jr z, .done
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .next
 
 .asm_f3a9
@@ -2322,8 +2329,9 @@ XSpecial: ; f4c5
 .asm_f4ce
 	cp [hl]
 	jr z, .asm_f4d5
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_f4ce
 
 .asm_f4d5

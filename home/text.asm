@@ -126,10 +126,12 @@ TextBoxPalette:: ; 1024
 ; Fill text box width c height b at hl with pal 7
 	ld de, AttrMap - TileMap
 	add hl, de
+rept 2
 	inc b
-	inc b
+endr
+rept 2
 	inc c
-	inc c
+endr
 	ld a, TEXTBOX_PAL
 .col
 	push bc
@@ -626,10 +628,12 @@ Function138c:: ; 138c
 	inc de
 	dec c
 	jr nz, .row
+rept 2
 	inc de
-	inc de
+endr
+rept 2
 	inc hl
-	inc hl
+endr
 	pop af
 	dec a
 	jr nz, .col
@@ -719,8 +723,9 @@ Function13f6:: ; 13f6
 	ld c, a
 	ld b, 0
 	ld hl, TextCommands
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -992,8 +997,9 @@ Text_PlaySound:: ; 1500
 	jr z, .done
 	cp b
 	jr z, .play
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .loop
 
 .play
@@ -1088,8 +1094,9 @@ Text_14:: ; 156a
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_24000
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, BANK(Unknown_24000)
 	call GetFarHalfword
 	ld d, h
@@ -1110,8 +1117,9 @@ Text_15:: ; 1582
 	ld c, a
 	ld b, 0
 	ld hl, .Days
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

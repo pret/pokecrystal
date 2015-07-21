@@ -12,7 +12,7 @@ RocketScript_0x1adbfa:
 	writetext UnknownText_0x1adc2e
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1add67, $ffff
+	winlosstext UnknownText_0x1add67, -1
 	loadtrainer GRUNTM, 31
 	startbattle
 	reloadmapmusic

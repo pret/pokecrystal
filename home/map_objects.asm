@@ -28,8 +28,9 @@ Function180e:: ; 180e
 .loop
 	cp [hl]
 	jr z, .found
+rept 2
 	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop
 	ld a, [UsedSprites + 1]
@@ -511,8 +512,9 @@ rept OBJECT_STRUCT_3_DATA_WIDTH
 endr
 	ld a, BANK(ObjectStruct3_Data)
 	call GetFarByte
+rept 2
 	add a
-	add a
+endr
 	and $c
 	pop de
 	pop bc

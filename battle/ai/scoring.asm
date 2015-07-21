@@ -133,16 +133,18 @@ AI_Setup: ; 385e0
 	call AI_50_50
 	jr c, .checkmove
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	jr .checkmove
 
 .discourage
 	call Random
 	cp 30
 	jr c, .checkmove
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	jr .checkmove
 ; 38635
 
@@ -262,8 +264,9 @@ AI_Offensive: ; 386a2
 	and a
 	jr nz, .checkmove
 
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	jr .checkmove
 ; 386be
 
@@ -417,8 +420,9 @@ AI_Smart_Sleep: ; 387e3
 .asm_387f0
 	call AI_50_50
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 387f7
 
@@ -529,8 +533,9 @@ AI_Smart_LockOn: ; 3881d
 	call AI_50_50
 	ret c
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_38882
@@ -555,8 +560,9 @@ AI_Smart_LockOn: ; 3881d
 	cp 180
 	jr nc, .asm_3888b
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	jr .asm_3888b
 
 .asm_388a2
@@ -596,9 +602,9 @@ AI_Smart_Explosion: ; 388a6
 	ret c
 
 .asm_388c6
+rept 3
 	inc [hl]
-	inc [hl]
-	inc [hl]
+endr
 	ret
 ; 388ca
 
@@ -610,9 +616,9 @@ AI_Smart_DreamEater: ; 388ca
 	call Random
 	cp 25
 	ret c
+rept 3
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 388d4
 
@@ -639,8 +645,9 @@ AI_Smart_EvasionUp: ; 388d4
 	jr nc, .asm_38911
 
 .asm_388ef
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_388f2
@@ -669,8 +676,9 @@ AI_Smart_EvasionUp: ; 388d4
 	jr c, .asm_38911
 
 .asm_3890f
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 
 ; 30% chance to end up here if enemy's HP is full and player is not badly poisoned.	
 ; 77% chance to end up here if enemy's HP is above 50% but not full.
@@ -714,8 +722,9 @@ AI_Smart_EvasionUp: ; 388d4
 	call Random
 	cp $50
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 ; Player is seeded.
@@ -747,8 +756,9 @@ AI_Smart_AlwaysHit: ; 38947
 	call AI_80_20
 	ret c
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 3895b
 
@@ -818,8 +828,9 @@ AI_Smart_AccuracyDown: ; 38985
 	jr nc, .asm_389bf
 
 .asm_3899d
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_389a0
@@ -848,8 +859,9 @@ AI_Smart_AccuracyDown: ; 38985
 	jr c, .asm_389bf
 
 .asm_389bd
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 
 ; We only end up here if the move has not been already encouraged.	
 .asm_389bf
@@ -888,8 +900,9 @@ AI_Smart_AccuracyDown: ; 38985
 	call Random
 	cp $50
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 ; Player is seeded.
@@ -997,8 +1010,9 @@ AI_Smart_Moonlight: ; 38a3a
 	call Random
 	cp $19
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38a4e
 
@@ -1079,8 +1093,9 @@ AI_Smart_Bind: ; 38a71
 	ret nc
 	call AI_50_50
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38a9c
 
@@ -1185,8 +1200,9 @@ AI_Smart_SpDefenseUp2: ; 38aed
 .asm_38b09
 	call AI_80_20
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_38b10
@@ -1208,9 +1224,9 @@ AI_Smart_Fly: ; 38b12
 	call AICompareSpeed
 	ret nc
 	
+rept 3
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38b20
 
@@ -1239,8 +1255,9 @@ AI_Smart_Paralyze: ; 38b26
 	ret nc
 	call AI_80_20
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_38b3a
@@ -1272,8 +1289,9 @@ AI_Smart_SpeedDownHit: ; 38b40
 	call Random
 	cp 30
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38b5c
 
@@ -1510,14 +1528,15 @@ AI_Smart_Encore: ; 38c3b
 	call Random
 	cp $46
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_38c81
+rept 3
 	inc [hl]
-	inc [hl]
-	inc [hl]
+endr
 	ret
 
 .EncoreMoves:
@@ -1587,15 +1606,15 @@ AI_Smart_SleepTalk: ; 38cba
 	cp $1
 	jr z, .asm_38cc7
 
+rept 3
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_38cc7
+rept 3
 	inc [hl]
-	inc [hl]
-	inc [hl]
+endr
 	ret
 ; 38ccb
 
@@ -1607,9 +1626,9 @@ AI_Smart_DefrostOpponent: ; 38ccb
 	ld a, [EnemyMonStatus]
 	and $20
 	ret z
+rept 3
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38cd5
 
@@ -1666,8 +1685,9 @@ AI_Smart_Spite: ; 38cd5
 	call Random
 	cp $64
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38d16
 
@@ -1708,9 +1728,9 @@ AI_Smart_HealBell: ; 38d1f
 	jr z, .next
 
 	; status
+rept 3
 	dec hl
-	dec hl
-	dec hl
+endr
 	ld a, [hl]
 	or c
 	ld c, a
@@ -1735,8 +1755,9 @@ AI_Smart_HealBell: ; 38d1f
 	ret z
 	call AI_50_50
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .no_status
@@ -1774,9 +1795,9 @@ AI_Smart_PriorityHit: ; 38d5a
 	ld a, [BattleMonHP]
 	sbc b
 	ret nc
+rept 3
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38d93
 
@@ -1900,9 +1921,9 @@ AI_Smart_MeanLook: ; 38dfb
 .asm_38e26
 	call AI_80_20
 	ret c
+rept 3
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38e2e
 
@@ -1952,11 +1973,9 @@ AI_Smart_FlameWheel: ; 38e50
 	ld a, [EnemyMonStatus]
 	bit FRZ, a
 	ret z
+rept 5
 	dec [hl]
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38e5c
 
@@ -1988,13 +2007,15 @@ AI_Smart_Curse: ; 38e5c
 	ret nc
 	call AI_80_20
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_38e90
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 .asm_38e92
 	inc [hl]
 .asm_38e93
@@ -2044,8 +2065,9 @@ AI_Smart_Curse: ; 38e5c
 	call AI_50_50
 	ret c
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38ed2
 
@@ -2097,8 +2119,9 @@ AI_Smart_Protect: ; 38ed2
 	call Random
 	cp 20
 	ret c
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ret
 ; 38f1d
 
@@ -2128,8 +2151,9 @@ AI_Smart_Foresight: ; 38f1d
 	call Random
 	cp 100
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 38f4a
 
@@ -2235,9 +2259,9 @@ AI_Smart_Endure: ; 38fac
 	call AI_80_20
 	ret c
 
+rept 3
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_38fcb
@@ -2248,8 +2272,9 @@ AI_Smart_Endure: ; 38fac
 	call AI_50_50
 	ret c
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_38fd8
@@ -2271,14 +2296,15 @@ AI_Smart_FuryCutter: ; 38fdb
 
 	cp 2
 	jr c, .end
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 
 	cp 3
 	jr c, .end
+rept 3
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 
 .end
 
@@ -2318,8 +2344,9 @@ AI_Smart_Rollout: ; 38fef
 	call Random
 	cp 200
 	ret nc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .asm_39020
@@ -2379,8 +2406,9 @@ AI_Smart_Earthquake: ; 39044
 
 	call AICompareSpeed
 	ret nc
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 .could_dig
@@ -2427,8 +2455,9 @@ AI_Smart_Pursuit: ; 39072
 .asm_3907d
 	call AI_50_50
 	ret c
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 39084
 
@@ -2453,8 +2482,9 @@ AI_Smart_RapidSpin: ; 39084
 	call AI_80_20
 	ret c
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 3909e
 
@@ -2581,9 +2611,9 @@ AI_Smart_WeatherMove: ; 3910d
 ; 3911e
 
 AIBadWeatherType: ; 3911e
+rept 3
 	inc [hl]
-	inc [hl]
-	inc [hl]
+endr
 	ret
 ; 39122
 
@@ -2606,8 +2636,9 @@ AIGoodWeatherType: ; 39122
 	ret nz
 
 .good
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 39134
 
@@ -2702,8 +2733,9 @@ AI_Smart_PsychUp: ; 39152
 	ret
 
 .asm_39188
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ret
 ; 3918b
 
@@ -2788,8 +2820,9 @@ AI_Smart_Gust: ; 391d5
 	call AICompareSpeed
 	ret nc
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 
 ; Try to predict if the player will use Fly this turn.	
@@ -2816,8 +2849,9 @@ AI_Smart_FutureSight: ; 391f3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 39200
 
@@ -2852,16 +2886,18 @@ AI_Smart_Solarbeam: ; 3920b
 	cp 25 ; 1/10
 	ret c
 
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 	ret
 
 .asm_3921e
 	call AI_80_20
 	ret c
 
+rept 2
 	dec [hl]
-	dec [hl]
+endr
 	ret
 ; 39225
 
@@ -2955,8 +2991,9 @@ AICheckPlayerHalfHP: ; 3926e
 	ld c, [hl]
 	sla c
 	rl b
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -2976,8 +3013,9 @@ AICheckEnemyHalfHP: ; 39281
 	ld c, [hl]
 	sla c
 	rl b
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -3001,8 +3039,9 @@ AICheckEnemyQuarterHP: ; 39298
 	rl b
 	sla c
 	rl b
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -3024,8 +3063,9 @@ AICheckPlayerQuarterHP: ; 392b3
 	rl b
 	sla c
 	rl b
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -3529,11 +3569,9 @@ AI_Risky: ; 394a9
 	jr nc, .nextmove
 
 	pop hl
+rept 5
 	dec [hl]
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	push hl
 
 .nextmove

@@ -552,16 +552,16 @@ Function17aa22: ; 17aa22 (5e:6a22)
 	push de
 	ld a, $3
 	call Function17aae0
+rept 3
 	add a
-	add a
-	add a
+endr
 	add $0
 	push af
 	ld a, $4
 	call Function17aae0
+rept 3
 	add a
-	add a
-	add a
+endr
 	add $8
 	ld c, a
 	pop af
@@ -658,13 +658,15 @@ Function17aaa9: ; 17aaa9 (5e:6aa9)
 Function17aac3: ; 17aac3 (5e:6ac3)
 	ld a, $b
 	push hl
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	pop hl
 	ld de, $14
 	add hl, de
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ret
 
 Function17aad0: ; 17aad0 (5e:6ad0)

@@ -74,8 +74,9 @@ Function86b4: ; 86b4
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, 0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
@@ -89,8 +90,9 @@ Function86b4: ; 86b4
 	ld a, [EnemyHPPal]
 	ld l, a
 	ld h, $0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
@@ -137,8 +139,9 @@ Function873c: ; 873c
 	call CopyBytes
 	ld hl, wcda9 + 1
 	ld [hl], $10
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [PlayerHPPal]
 	add $2f
 	ld [hl], a
@@ -161,8 +164,9 @@ Function8763: ; 8763
 	ld a, [wcda1]
 	ld l, a
 	ld h, $0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
@@ -303,10 +307,9 @@ Function8860: ; 8860
 Function8867: ; 8867
 	ld b, 0
 	ld hl, Unknown_8878
+rept 4
 	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -461,9 +464,9 @@ Function8969: ; 8969
 	ld a, [CurPartySpecies]
 	ld l, a
 	ld h, 0
+rept 3
 	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld de, PokemonPalettes
 	add hl, de
 	ld a, [wcf65]

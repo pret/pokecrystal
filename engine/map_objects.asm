@@ -656,9 +656,9 @@ Function467b: ; 467b
 	ld [hl], a
 	ld hl, OBJECT_27
 	add hl, bc
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -675,8 +675,9 @@ Function4690: ; 4690
 	bit 2, [hl]
 	jr nz, .ok
 
+rept 2
 	add a
-	add a
+endr
 	and %00001100
 	ld hl, OBJECT_FACING
 	add hl, bc
@@ -750,8 +751,9 @@ GetStepVector: ; 46e9
 	add hl, bc
 	ld a, [hl]
 	and %00001111
+rept 2
 	add a
-	add a
+endr
 	ld l, a
 	ld h, 0
 	ld de, StepVectors
@@ -3079,8 +3081,9 @@ Function57ca: ; 57ca
 	ret z
 	ld a, [wd45b]
 	and 3
+rept 2
 	add a
-	add a
+endr
 	jr Function57db
 ; 57d9
 

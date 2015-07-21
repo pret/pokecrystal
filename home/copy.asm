@@ -195,8 +195,9 @@ FarCopyBytesDouble:: ; e9b
 .loop
 	ld a, [de]
 	inc de
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 .dec
 	dec c
 	jr nz, .loop
@@ -406,9 +407,9 @@ Copy1bpp:: ; fa4
 	push af
 	ld h, 0
 	ld l, c
+rept 3
 	add hl, hl
-	add hl, hl
-	add hl, hl
+endr
 	ld b, h
 	ld c, l
 	pop af

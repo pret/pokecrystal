@@ -111,8 +111,9 @@ Function1db8:: ; 0x1db8
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 2
 	inc hl
-	inc hl
+endr
 	pop af
 	call GetNthString
 	ld d, h
@@ -439,8 +440,9 @@ Function1f8d:: ; 1f8d
 	push de
 	ld a, [MenuSelection]
 	call Function1fb1
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -451,8 +453,9 @@ Function1f8d:: ; 1f8d
 
 Function1f9e:: ; 1f9e
 	call Function1fb1
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -475,10 +478,9 @@ Function1fb1:: ; 1fb1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+rept 4
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ret
 ; 1fbf
 
@@ -497,8 +499,9 @@ Function1fbf:: ; 1fbf
 	ld [rSVBK], a
 	xor a
 	ld hl, $dfff
+rept 2
 	ld [hld], a
-	ld [hld], a
+endr
 	ld a, l
 	ld [wcf71], a
 	ld a, h

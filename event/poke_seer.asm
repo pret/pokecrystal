@@ -287,8 +287,9 @@ PrintSeerText: ; 4f26d
 	ld e, a
 	ld d, 0
 	ld hl, SeerTexts
+rept 2
 	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

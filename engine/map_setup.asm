@@ -6,8 +6,9 @@ RunMapSetupScript:: ; 15363
 	ld c, a
 	ld b, 0
 	ld hl, MapSetupScripts
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -259,9 +260,9 @@ ReadMapSetupScript: ; 1541d
 	ld c, a
 	ld b, 0
 	ld hl, MapSetupCommands
+rept 3
 	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 
 	; bank
 	ld b, [hl]

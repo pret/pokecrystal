@@ -1840,8 +1840,9 @@ HandleWeather: ; 3cb9e
 	dec a
 	ld c, a
 	ld b, 0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2552,8 +2553,9 @@ Function3d02b: ; 3d02b
 	dec a
 	ld c, a
 	ld b, 0
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2591,8 +2593,9 @@ Function3d099: ; 3d099
 	rl [hl]
 	ret nc
 	ld a, $ff
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ret
 ; 3d0ab
@@ -3756,10 +3759,9 @@ NewEnemyMonStatus: ; 3d834
 	ld [LastPlayerCounterMove], a
 	ld [LastEnemyMove], a
 	ld hl, EnemySubStatus1
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld [EnemyDisableCount], a
 	ld [EnemyFuryCutterCount], a
@@ -4033,9 +4035,9 @@ Function3da0d: ; 3da0d
 	ld de, BattleMonDVs
 	ld bc, 2 + NUM_MOVES + 1 ; DVs, PP, happiness ; BattleMonLevel - BattleMonDVs
 	call CopyBytes
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld de, BattleMonLevel
 	ld bc, 1 + 1 + 1 + 2 + 2 * 6 ; level, status, unused, stats
 	call CopyBytes
@@ -4125,9 +4127,9 @@ Function3dabd: ; 3dabd
 	ld de, EnemyMonDVs
 	ld bc, 2 + NUM_MOVES + 1
 	call CopyBytes
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld de, EnemyMonLevel
 	ld bc, 1 + 1 + 1 + 2 + 2 * 6
 	call CopyBytes
@@ -4250,15 +4252,14 @@ NewBattleMonStatus: ; 3dbde
 	ld [LastPlayerCounterMove], a
 	ld [LastPlayerMove], a
 	ld hl, PlayerSubStatus1
+rept 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld hl, PlayerUsedMoves
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld [PlayerDisableCount], a
 	ld [PlayerFuryCutterCount], a
@@ -4694,16 +4695,18 @@ Function3deb6: ; 3deb6
 	ld a, [hli]
 	cp $ff
 	jr z, .asm_3def9
+rept 2
 	inc hl
-	inc hl
+endr
 	cp b
 	jr nz, .asm_3dec7
 	pop bc
 	ld a, [bc]
 	ld [wd265], a
 	push bc
+rept 2
 	dec hl
-	dec hl
+endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -5769,8 +5772,9 @@ Function3e4bc: ; 3e4bc
 	ld a, [wcfa9]
 	ld b, a
 	ld a, [wd0eb]
+rept 2
 	inc a
-	inc a
+endr
 	cp b
 	jp nz, .asm_3e57a
 	ld a, $1
@@ -5953,8 +5957,9 @@ Function3e75f: ; 3e75f
 	ld bc, $0102
 	call PrintNum
 	pop hl
+rept 2
 	inc hl
-	inc hl
+endr
 	ld [hl], "/"
 	inc hl
 	ld de, wd265
@@ -6583,9 +6588,9 @@ LoadEnemyMon: ; 3e8eb
 	xor a
 	ld h, d
 	ld l, e
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 ; Make sure the predef knows this isn't a partymon
 	ld [MagikarpLength], a
@@ -6758,8 +6763,9 @@ CheckUnownLetter: ; 3eb75
 
 .next
 ; Make sure we haven't gone past the end of the table
+rept 2
 	inc e
-	inc e
+endr
 	ld a, e
 	cp a, .Set1 - .LetterSets
 	jr c, .loop
@@ -7109,8 +7115,9 @@ BadgeStatBoosts: ; 3ed45
 ; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
 	ld d, a
 	and %00000100
+rept 2
 	add a
-	add a
+endr
 	ld b, a
 	ld a, d
 	and %00010000
@@ -7129,8 +7136,9 @@ BadgeStatBoosts: ; 3ed45
 	ld a, b
 	srl b
 	call c, BoostStat
+rept 2
 	inc hl
-	inc hl
+endr
 ; Check every other badge.
 	srl b
 	dec c
@@ -7259,8 +7267,9 @@ _BattleRandom:: ; 3edd8
 
 	; a * 5 + 1
 	ld c, a
+rept 2
 	add a
-	add a
+endr
 	add c
 	inc a
 
@@ -7392,8 +7401,9 @@ Function3ee3b: ; 3ee3b
 	ld [de], a
 
 .asm_3eea9
+rept 2
 	inc de
-	inc de
+endr
 	dec c
 	jr nz, .asm_3ee7c
 	xor a
@@ -7468,8 +7478,9 @@ Function3ee3b: ; 3ee3b
 	inc [hl]
 	jr nz, .asm_3ef3d
 	ld a, $ff
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 .asm_3ef3d
@@ -7797,8 +7808,9 @@ Function3f136: ; 3f136
 	inc [hl]
 	jr nz, .asm_3f186
 	ld a, $ff
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 .asm_3f186
@@ -8690,8 +8702,9 @@ Function3f71d: ; 3f71d
 	rl [hl]
 	jr nc, .asm_3f73d
 	ld a, $ff
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 .asm_3f73d
@@ -9083,11 +9096,13 @@ Function3fa42: ; 3fa42
 	ld d, $5
 .asm_3fa62
 	push hl
+rept 2
 	inc hl
-	inc hl
+endr
 	ld a, [hl]
+rept 2
 	dec hl
-	dec hl
+endr
 	and a
 	jr z, .asm_3fa85
 	push de
@@ -9187,16 +9202,18 @@ Function3fac8: ; 3fac8
 	ld c, $1
 .asm_3faed
 	ld a, b
+rept 2
 	add b
-	add b
+endr
 	ld e, a
 	ld d, $0
 	ld hl, DefaultFlypoint
 	add hl, de
 	push hl
 	ld a, c
+rept 2
 	add c
-	add c
+endr
 	ld e, a
 	ld d, $0
 	ld hl, DefaultFlypoint

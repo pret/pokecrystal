@@ -50,8 +50,9 @@ DoMove: ; 3402c
 	ld c, a
 	ld b, 0
 	ld hl, MoveEffectsPointers
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	ld a, BANK(MoveEffectsPointers)
 	call GetFarHalfword
 
@@ -100,8 +101,9 @@ DoMove: ; 3402c
 	ld c, a
 	ld b, 0
 	ld hl, BattleCommandPointers
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 	pop bc
 
 	ld a, BANK(BattleCommandPointers)
@@ -1062,8 +1064,9 @@ BattleCommand04: ; 34555
 	jp nz, EndMoveEffect
 
 	; SubStatus5
+rept 2
 	inc de
-	inc de
+endr
 
 	ld a, [de]
 	bit SUBSTATUS_TRANSFORMED, a
@@ -1259,8 +1262,9 @@ BattleCommand05: ; 34631
 	jr nc, .ScopeLens
 
 ; +2 critical level
+rept 2
 	inc c
-	inc c
+endr
 
 .ScopeLens
 	push bc
@@ -1500,8 +1504,9 @@ BattleCommand07: ; 346d2
 	pop hl
 
 .asm_347b3
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_34743
 
 .end
@@ -1746,11 +1751,9 @@ Function348de: ; 348de
 	jr c, .loop
 
 	; neutral
+rept 5
 	inc c
-	inc c
-	inc c
-	inc c
-	inc c
+endr
 	cp 10
 	jr z, .loop
 
@@ -2239,8 +2242,9 @@ Function34b77: ; 34b77
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
+rept 2
 	inc hl
-	inc hl
+endr
 	srl c
 	rl b
 	srl c
@@ -3344,8 +3348,9 @@ EndMoveEffect: ; 352a3
 	ld a, [BattleScriptBufferLoc + 1]
 	ld h, a
 	ld a, $ff
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ret
 ; 352b1
@@ -3983,9 +3988,9 @@ Function355dd: ; 355dd
 	sla c
 	rl b
 .asm_35604
+rept 3
 	dec hl
-	dec hl
-	dec hl
+endr
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
@@ -4039,8 +4044,9 @@ BattleCommand62: ; 35612
 
 	xor a
 	ld hl, hDividend
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 
 ; Level * 2
@@ -4061,8 +4067,9 @@ BattleCommand62: ; 35612
 	pop bc
 
 ; + 2
+rept 2
 	inc [hl]
-	inc [hl]
+endr
 
 ; * bp
 	inc hl
@@ -4523,9 +4530,9 @@ BattleCommand41: ; 35864
 	set SUBSTATUS_ENCORED, [hl]
 	call BattleRandom
 	and $3
+rept 3
 	inc a
-	inc a
-	inc a
+endr
 	ld [de], a
 	call Function36abf
 	jr nz, .asm_3591a
@@ -4650,8 +4657,9 @@ BattleCommand42: ; 35926
 	ld [wd1ec], a
 	ld a, [hl]
 	ld [wd1ed], a
+rept 2
 	dec de
-	dec de
+endr
 	ld a, [de]
 	dec de
 	add b
@@ -4664,12 +4672,12 @@ BattleCommand42: ; 35926
 	ld a, [CurDamage + 1]
 	rr a
 	ld [CurDamage + 1], a
+rept 3
 	inc hl
-	inc hl
-	inc hl
+endr
+rept 3
 	inc de
-	inc de
-	inc de
+endr
 
 	; fallthrough
 ; 359ac
@@ -5142,8 +5150,9 @@ BattleCommand4a: ; 35c0f
 	call GetMoveName
 	call BattleRandom
 	and 3
+rept 2
 	inc a
-	inc a
+endr
 	ld b, a
 	ld a, [hl]
 	and $3f
@@ -6854,8 +6863,9 @@ Function3661d: ; 3661d
 	dec c
 	ld b, 0
 	ld hl, Table0x364e6
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 
 	xor a
 	ld [hMultiplicand], a
@@ -7009,8 +7019,9 @@ BattleCommand22: ; 366e5
 	ld [wEnemyMoveStruct + MOVE_EFFECT], a
 	call BattleRandom
 	and 1
+rept 2
 	inc a
-	inc a
+endr
 	ld [bc], a
 	ld a, 1
 	ld [wc689], a
@@ -7046,8 +7057,9 @@ BattleCommand3e: ; 3671a
 	set 7, [hl]
 	call BattleRandom
 	and $1
+rept 2
 	inc a
-	inc a
+endr
 	inc de
 	ld [de], a
 .asm_3674c
@@ -7885,9 +7897,9 @@ BattleCommand3b: ; 36c2d
 	ret nz
 	call BattleRandom
 	and 3
+rept 3
 	inc a
-	inc a
-	inc a
+endr
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -7899,8 +7911,9 @@ BattleCommand3b: ; 36c2d
 	ld a, [hli]
 	cp b
 	jr z, .asm_36c69
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .asm_36c61
 
 .asm_36c69
@@ -7981,8 +7994,9 @@ BattleCommand27: ; 36cb2
 	ld [Buffer2], a
 	ld a, [hl]
 	ld [Buffer1], a
+rept 2
 	dec hl
-	dec hl
+endr
 	ld a, [hl]
 	ld [wd1ec], a
 	sub c
@@ -8083,8 +8097,9 @@ Function36d70: ; 36d70
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
 	and 3
+rept 2
 	inc a
-	inc a
+endr
 	ld [bc], a
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -8263,8 +8278,9 @@ BattleCommand31: ; 36e7c
 	rr b
 	srl a
 	rr b
+rept 2
 	dec hl
-	dec hl
+endr
 	ld a, b
 	ld [de], a
 	ld a, [hld]
@@ -8853,8 +8869,9 @@ BattleCommand2d: ; 371cd
 	ld a, [hli]
 	ld [de], a
 	inc hl
+rept 2
 	inc de
-	inc de
+endr
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, [hBattleTurn]
@@ -9655,8 +9672,9 @@ BattleCommand66: ; 37991
 	ld a, [hli]
 	cp b
 	jr nc, .ok
+rept 2
 	inc hl
-	inc hl
+endr
 	jr .loop
 .ok
 	ld d, [hl]
@@ -10045,14 +10063,16 @@ BattleCommand6a6c: ; 37b7e
 	inc c
 	cp WEATHER_SUN
 	jr z, .Heal
+rept 2
 	dec c
-	dec c
+endr
 
 .Heal
 	ld b, 0
 	ld hl, .Multipliers
+rept 2
 	add hl, bc
-	add hl, bc
+endr
 
 	ld a, [hli]
 	ld h, [hl]

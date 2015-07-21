@@ -158,12 +158,9 @@ PlayCryHeader:: ; 3be3
 	ld [MBC3RomBank], a
 
 	ld hl, CryHeaders
+rept 6
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 
 	ld e, [hl]
 	inc hl

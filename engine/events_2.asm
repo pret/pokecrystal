@@ -439,9 +439,9 @@ Function97e79: ; 97e79
 	ld e, a
 	ld d, 0
 	ld hl, Table97e94
+rept 3
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	push af
 	ld a, [hli]

@@ -102,8 +102,9 @@ Function1b92:: ; 1b92
 	push hl
 	ld l, b
 	ld h, 0
+rept 2
 	add hl, hl
-	add hl, hl
+endr
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -131,12 +132,13 @@ Function1bb1:: ; 1bb1
 	dec b
 	jr nz, .asm_1bb8
 	ld a, $1
+rept 2
 	ld [hli], a
-	ld [hli], a
+endr
 	xor a
+rept 3
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	pop bc
 	pop hl
 	ret
