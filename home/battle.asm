@@ -91,7 +91,7 @@ UpdateBattleMonInParty:: ; 399c
 
 	ld a, [CurBattleMon]
 
-Function399f:: ; 399f
+UpdateBattleMon:: ; 399f
 	ld hl, PartyMon1Level
 	call GetPartyLocation
 
@@ -262,7 +262,7 @@ endr
 ; 3a90
 
 
-Function3a90:: ; 3a90
+FarJumpText:: ; 3a90
 	inc hl
 	ld a, [hROMBank]
 	push af

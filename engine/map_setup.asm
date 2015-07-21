@@ -485,6 +485,6 @@ ForceMapMusic: ; 15587
 	ld a, $88
 	ld [MusicFade], a
 .notbiking
-	call Function3d2f
+	call TryRestartMapMusic
 	ret
 ; 1559a

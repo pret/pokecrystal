@@ -56,7 +56,7 @@ Functiondfd:: ; dfd
 	ld a, b
 	rst Bankswitch
 
-.asm_e09
+.loop
 	ld a, d
 	ld [rHDMA1], a
 	ld a, e
@@ -70,27 +70,27 @@ Functiondfd:: ; dfd
 	ld [rHDMA4], a
 	ld a, c
 	cp $8
-	jr c, .asm_e3c
+	jr c, .done
 	sub $8
 	ld c, a
 	ld a, $f
 	ld [hDMATransfer], a
 	call DelayFrame
 	ld a, l
-	add $0
+	add 0
 	ld l, a
 	ld a, h
-	adc $1
+	adc 1
 	ld h, a
 	ld a, e
-	add $0
+	add 0
 	ld e, a
 	ld a, d
-	adc $1
+	adc 1
 	ld d, a
-	jr .asm_e09
+	jr .loop
 
-.asm_e3c
+.done
 	ld a, c
 	and $7f
 	ld [hDMATransfer], a

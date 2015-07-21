@@ -4360,7 +4360,7 @@ Function3dc5b: ; 3dc5b
 	jr z, .asm_3dcc0
 
 	ld a, [wc71a]
-	call Function399f
+	call UpdateBattleMon
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]

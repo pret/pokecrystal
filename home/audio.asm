@@ -420,7 +420,7 @@ EnterMapMusic:: ; 3d03
 	ret
 ; 3d2f
 
-Function3d2f:: ; 3d2f
+TryRestartMapMusic:: ; 3d2f
 	ld a, [wc2c1]
 	and a
 	jr z, RestartMapMusic
