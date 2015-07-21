@@ -1,8 +1,8 @@
 CopycatsHouse2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -359,19 +359,19 @@ CopycatsHouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $0, $3, 3, GROUP_COPYCATS_HOUSE_1F, MAP_COPYCATS_HOUSE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 1, 0, SIGNPOST_READ, CopycatsHouse2FBookshelf
 	signpost 1, 1, SIGNPOST_READ, CopycatsHouse2FBookshelf
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_COPYCAT, 7, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Copycat, EVENT_COPYCAT_1
 	person_event SPRITE_MOLTRES, 8, 10, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CopycatsDodrio, -1

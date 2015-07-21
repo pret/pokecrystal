@@ -1,8 +1,8 @@
 FuchsiaCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -124,7 +124,7 @@ FuchsiaCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 11
 	warp_def $d, $5, 2, GROUP_FUCHSIA_MART, MAP_FUCHSIA_MART
 	warp_def $d, $16, 1, GROUP_SAFARI_ZONE_MAIN_OFFICE, MAP_SAFARI_ZONE_MAIN_OFFICE
@@ -138,10 +138,10 @@ FuchsiaCity_MapEventHeader:
 	warp_def $23, $7, 1, GROUP_ROUTE_19___FUCHSIA_GATE, MAP_ROUTE_19___FUCHSIA_GATE
 	warp_def $23, $8, 2, GROUP_ROUTE_19___FUCHSIA_GATE, MAP_ROUTE_19___FUCHSIA_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 8
 	signpost 15, 21, SIGNPOST_READ, FuchsiaCitySign
 	signpost 29, 5, SIGNPOST_READ, FuchsiaGymSign
@@ -152,7 +152,7 @@ FuchsiaCity_MapEventHeader:
 	signpost 27, 20, SIGNPOST_READ, FuchsiaCityPokeCenterSign
 	signpost 13, 6, SIGNPOST_READ, FuchsiaCityMartSign
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_YOUNGSTER, 22, 27, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x194b22, -1
 	person_event SPRITE_POKEFAN_M, 12, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x194b25, -1

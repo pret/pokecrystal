@@ -1,12 +1,12 @@
 Route43Gate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x19abc5, $0000
 	dw UnknownScript_0x19abc9, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -249,20 +249,20 @@ Route43Gate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 4, GROUP_ROUTE_43, MAP_ROUTE_43
 	warp_def $0, $5, 5, GROUP_ROUTE_43, MAP_ROUTE_43
 	warp_def $7, $4, 3, GROUP_ROUTE_43, MAP_ROUTE_43
 	warp_def $7, $5, 3, GROUP_ROUTE_43, MAP_ROUTE_43
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
 	person_event SPRITE_ROCKET, 8, 6, OW_UP | $2, $0, -1, -1, $0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS

@@ -1,8 +1,8 @@
 Route30_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 YoungsterScript_0x1a1673:
@@ -398,15 +398,15 @@ Route30_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $27, $7, 1, GROUP_ROUTE_30_BERRY_SPEECH_HOUSE, MAP_ROUTE_30_BERRY_SPEECH_HOUSE
 	warp_def $5, $11, 1, GROUP_MR_POKEMONS_HOUSE, MAP_MR_POKEMONS_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
 	signpost 43, 9, SIGNPOST_READ, MapRoute30Signpost0Script
 	signpost 29, 13, SIGNPOST_READ, MapRoute30Signpost1Script
@@ -414,7 +414,7 @@ Route30_MapEventHeader:
 	signpost 21, 3, SIGNPOST_READ, MapRoute30Signpost3Script
 	signpost 9, 14, SIGNPOST_ITEM, MapRoute30SignpostItem4
 
-	; people-events
+.PersonEvents:
 	db 11
 	person_event SPRITE_YOUNGSTER, 30, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a1673, EVENT_ROUTE_30_BATTLE
 	person_event SPRITE_YOUNGSTER, 32, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY

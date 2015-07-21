@@ -1,12 +1,12 @@
 BattleTowerBattleRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x9f419, $0000
 	dw UnknownScript_0x9f420, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x9f419:
@@ -142,18 +142,18 @@ BattleTowerBattleRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $3, 4, GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY
 	warp_def $7, $4, 4, GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_YOUNGSTER, 4, 8, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
 	person_event SPRITE_RECEPTIONIST, 10, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ObjectEvent, -1

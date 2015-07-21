@@ -1,8 +1,8 @@
 GoldenrodDeptStore2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ClerkScript_0x55b5d:
@@ -97,21 +97,21 @@ GoldenrodDeptStore2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $0, $c, 1, GROUP_GOLDENROD_DEPT_STORE_3F, MAP_GOLDENROD_DEPT_STORE_3F
 	warp_def $0, $f, 3, GROUP_GOLDENROD_DEPT_STORE_1F, MAP_GOLDENROD_DEPT_STORE_1F
 	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore2FDirectory
 	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore2FElevatorButton
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_CLERK, 9, 17, OW_UP | $3, $0, -1, -1, $0, 0, ClerkScript_0x55b5d, -1
 	person_event SPRITE_CLERK, 10, 17, OW_LEFT | $0, $0, -1, -1, $0, 0, ClerkScript_0x55b65, -1

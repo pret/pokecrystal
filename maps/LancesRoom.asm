@@ -1,12 +1,12 @@
 LancesRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x180e39, $0000
 	dw UnknownScript_0x180e3d, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -341,22 +341,22 @@ LancesRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $17, $4, 3, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
 	warp_def $17, $5, 4, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
 	warp_def $1, $4, 1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
 	warp_def $1, $5, 2, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $5, $4, $0, UnknownScript_0x180e6a, $0, $0
 	xy_trigger 1, $5, $5, $0, UnknownScript_0x180e74, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_LANCE, 7, 9, OW_UP | $2, $0, -1, -1, $0, 0, LanceScript_0x180e7b, -1
 	person_event SPRITE_TEACHER, 11, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

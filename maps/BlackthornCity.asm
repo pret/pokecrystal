@@ -1,8 +1,8 @@
 BlackthornCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -307,7 +307,7 @@ BlackthornCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 8
 	warp_def $b, $12, 1, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
 	warp_def $15, $d, 1, GROUP_BLACKTHORN_DRAGON_SPEECH_HOUSE, MAP_BLACKTHORN_DRAGON_SPEECH_HOUSE
@@ -318,10 +318,10 @@ BlackthornCity_MapEventHeader:
 	warp_def $9, $24, 2, GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
 	warp_def $1, $14, 1, GROUP_DRAGONS_DEN_1F, MAP_DRAGONS_DEN_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 7
 	signpost 24, 34, SIGNPOST_READ, BlackthornCitySign
 	signpost 13, 17, SIGNPOST_READ, BlackthornGymSign
@@ -331,7 +331,7 @@ BlackthornCity_MapEventHeader:
 	signpost 29, 16, SIGNPOST_READ, BlackthornCityMartSign
 	signpost 29, 22, SIGNPOST_READ, BlackthornCityPokeCenterSign
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_SUPER_NERD, 16, 22, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
 	person_event SPRITE_SUPER_NERD, 16, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM

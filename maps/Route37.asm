@@ -1,8 +1,8 @@
 Route37_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -236,18 +236,18 @@ Route37_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 3, 5, SIGNPOST_READ, MapRoute37Signpost0Script
 	signpost 2, 4, SIGNPOST_ITEM, MapRoute37SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_WEIRD_TREE, 16, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAnnandanne1, -1
 	person_event SPRITE_WEIRD_TREE, 16, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAnnandanne2, -1

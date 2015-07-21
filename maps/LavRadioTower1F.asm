@@ -1,8 +1,8 @@
 LavRadioTower1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ReceptionistScript_0x7ee63:
@@ -218,20 +218,20 @@ LavRadioTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 7, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
 	warp_def $7, $3, 7, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 11, SIGNPOST_READ, MapLavRadioTower1FSignpost0Script
 	signpost 0, 5, SIGNPOST_READ, MapLavRadioTower1FSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_RECEPTIONIST, 10, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x7ee63, -1
 	person_event SPRITE_OFFICER, 5, 19, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x7ee66, -1

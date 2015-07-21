@@ -1,8 +1,8 @@
 WarehouseEntrance_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 3
 
 	; callbacks
@@ -647,7 +647,7 @@ WarehouseEntrance_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $2, $3, 7, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 	warp_def $22, $3, 4, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
@@ -656,10 +656,10 @@ WarehouseEntrance_MapEventHeader:
 	warp_def $1f, $16, 3, GROUP_WAREHOUSE_ENTRANCE, MAP_WAREHOUSE_ENTRANCE
 	warp_def $1b, $16, 1, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
 	signpost 6, 18, SIGNPOST_READ, BasementDoorScript
 	signpost 6, 19, SIGNPOST_READ, MapWarehouseEntranceSignpost1Script
@@ -667,7 +667,7 @@ WarehouseEntrance_MapEventHeader:
 	signpost 18, 4, SIGNPOST_ITEM, MapWarehouseEntranceSignpostItem3
 	signpost 8, 17, SIGNPOST_ITEM, MapWarehouseEntranceSignpostItem4
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_SUPER_NERD, 35, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerSupernerdEric, -1
 	person_event SPRITE_SUPER_NERD, 13, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdTeru, -1

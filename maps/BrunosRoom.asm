@@ -1,12 +1,12 @@
 BrunosRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x180993, $0000
 	dw UnknownScript_0x180997, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -130,19 +130,19 @@ BrunosRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $11, $4, 3, GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM
 	warp_def $11, $5, 4, GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM
 	warp_def $2, $4, 1, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
 	warp_def $2, $5, 2, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_BRUNO, 11, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrunoScript_0x1809c5, -1

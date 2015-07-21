@@ -1,5 +1,5 @@
 AzaleaTown_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ AzaleaTown_MapScriptHeader:
 	dw .Trigger2, $0000
 	dw .Trigger3, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -450,7 +450,7 @@ AzaleaTown_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 8
 	warp_def $9, $f, 1, GROUP_AZALEA_POKECENTER_1F, MAP_AZALEA_POKECENTER_1F
 	warp_def $d, $15, 1, GROUP_CHARCOAL_KILN, MAP_CHARCOAL_KILN
@@ -461,13 +461,13 @@ AzaleaTown_MapEventHeader:
 	warp_def $a, $2, 3, GROUP_ILEX_FOREST_AZALEA_GATE, MAP_ILEX_FOREST_AZALEA_GATE
 	warp_def $b, $2, 4, GROUP_ILEX_FOREST_AZALEA_GATE, MAP_ILEX_FOREST_AZALEA_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 3
 	xy_trigger 1, $a, $5, $0, UnknownScript_0x198018, $0, $0
 	xy_trigger 1, $b, $5, $0, UnknownScript_0x198034, $0, $0
 	xy_trigger 2, $6, $9, $0, UnknownScript_0x1980e5, $0, $0
 
-	; signposts
+.Signposts:
 	db 9
 	signpost 9, 19, SIGNPOST_READ, AzaleaTownSign
 	signpost 9, 10, SIGNPOST_READ, KurtsHouseSign
@@ -479,7 +479,7 @@ AzaleaTown_MapEventHeader:
 	signpost 9, 3, SIGNPOST_READ, AzaleaTownIlextForestSign
 	signpost 6, 31, SIGNPOST_ITEM, MapAzaleaTownSignpostItem8
 
-	; people-events
+.PersonEvents:
 	db 12
 	person_event SPRITE_AZALEA_ROCKET, 13, 35, OW_UP | $2, $0, -1, -1, $0, 0, AzaleaRocketScript_0x1980ab, EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	person_event SPRITE_GRAMPS, 13, 25, OW_DOWN | $2, $21, -1, -1, $0, 0, GrampsScript_0x1980b1, -1

@@ -1,11 +1,11 @@
 IndigoPlateauPokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x180009, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -302,22 +302,22 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $d, $5, 1, GROUP_ROUTE_23, MAP_ROUTE_23
 	warp_def $d, $6, 2, GROUP_ROUTE_23, MAP_ROUTE_23
 	warp_def $d, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 	warp_def $3, $e, 1, GROUP_WILLS_ROOM, MAP_WILLS_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $4, $10, $0, UnknownScript_0x180053, $0, $0
 	xy_trigger 0, $4, $11, $0, UnknownScript_0x180094, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_NURSE, 11, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x18012c, -1
 	person_event SPRITE_CLERK, 11, 15, OW_UP | $2, $0, -1, -1, $0, 0, ClerkScript_0x18012f, -1

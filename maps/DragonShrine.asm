@@ -1,12 +1,12 @@
 DragonShrine_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 .Trigger1:
@@ -668,18 +668,18 @@ DragonShrine_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $9, $4, 2, GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
 	warp_def $9, $5, 2, GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_ELDER, 5, 9, OW_UP | $2, $0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
 	person_event SPRITE_ELDER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS

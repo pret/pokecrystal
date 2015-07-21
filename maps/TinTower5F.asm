@@ -1,8 +1,8 @@
 TinTower5F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ItemFragment_0x185aa9:
@@ -20,21 +20,21 @@ TinTower5F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $f, $b, 2, GROUP_TIN_TOWER_6F, MAP_TIN_TOWER_6F
 	warp_def $4, $2, 1, GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
 	warp_def $e, $2, 3, GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
 	warp_def $f, $11, 4, GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 14, 16, SIGNPOST_ITEM, MapTinTower5FSignpostItem0
 	signpost 15, 3, SIGNPOST_ITEM, MapTinTower5FSignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_POKE_BALL, 13, 13, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185aa9, EVENT_TIN_TOWER_5F_RARE_CANDY

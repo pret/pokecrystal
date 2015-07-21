@@ -1,8 +1,8 @@
 NationalParkBugContest_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 YoungsterScript_0x5c8ec:
@@ -211,24 +211,24 @@ NationalParkBugContest_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $12, $21, 1, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $13, $21, 1, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $2f, $a, 1, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
 	warp_def $2f, $b, 1, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 44, 14, SIGNPOST_READ, MapNationalParkBugContestSignpost0Script
 	signpost 31, 27, SIGNPOST_READ, MapNationalParkBugContestSignpost1Script
 	signpost 47, 6, SIGNPOST_ITEM, MapNationalParkBugContestSignpostItem2
 	signpost 4, 12, SIGNPOST_READ, MapNationalParkBugContestSignpost3Script
 
-	; people-events
+.PersonEvents:
 	db 12
 	person_event SPRITE_YOUNGSTER, 33, 23, OW_DOWN | $2, $22, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x5c8ec, EVENT_BUG_CATCHING_CONTESTANT_1A
 	person_event SPRITE_YOUNGSTER, 26, 32, OW_DOWN | $2, $22, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x5c8f4, EVENT_BUG_CATCHING_CONTESTANT_2A

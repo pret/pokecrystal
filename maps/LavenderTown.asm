@@ -1,8 +1,8 @@
 LavenderTown_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -105,7 +105,7 @@ LavenderTown_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 7
 	warp_def $5, $5, 1, GROUP_LAVENDER_POKECENTER_1F, MAP_LAVENDER_POKECENTER_1F
 	warp_def $9, $5, 1, GROUP_MR_FUJIS_HOUSE, MAP_MR_FUJIS_HOUSE
@@ -115,10 +115,10 @@ LavenderTown_MapEventHeader:
 	warp_def $b, $d, 1, GROUP_SOUL_HOUSE, MAP_SOUL_HOUSE
 	warp_def $5, $e, 1, GROUP_LAV_RADIO_TOWER_1F, MAP_LAV_RADIO_TOWER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
 	signpost 3, 11, SIGNPOST_READ, LavenderTownSign
 	signpost 7, 15, SIGNPOST_READ, KantoRadioStationSign
@@ -127,7 +127,7 @@ LavenderTown_MapEventHeader:
 	signpost 5, 6, SIGNPOST_READ, LavenderPokeCenterSignText
 	signpost 5, 2, SIGNPOST_READ, LavenderMartSignText
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_POKEFAN_M, 11, 16, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x1ad6e4, -1
 	person_event SPRITE_TEACHER, 19, 6, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x1ad6e7, -1

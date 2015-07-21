@@ -1,5 +1,5 @@
 Route36NationalParkgate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ Route36NationalParkgate_MapScriptHeader:
 	dw UnknownScript_0x6ab12, $0000
 	dw UnknownScript_0x6ab13, $0000
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -846,21 +846,21 @@ Route36NationalParkgate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $4, $0, 1, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
 	warp_def $5, $0, 2, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
 	warp_def $4, $9, 1, GROUP_ROUTE_36, MAP_ROUTE_36
 	warp_def $5, $9, 2, GROUP_ROUTE_36, MAP_ROUTE_36
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 0, 6, SIGNPOST_READ, MapRoute36NationalParkgateSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 12
 	person_event SPRITE_OFFICER, 7, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6abe0, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	person_event SPRITE_YOUNGSTER, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad06, EVENT_BUG_CATCHING_CONTESTANT_1B

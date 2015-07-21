@@ -1,8 +1,8 @@
 BlackthornGym1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -384,7 +384,7 @@ BlackthornGym1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 7
 	warp_def $11, $4, 1, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
 	warp_def $11, $5, 1, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
@@ -394,15 +394,15 @@ BlackthornGym1F_MapEventHeader:
 	warp_def $7, $7, 4, GROUP_BLACKTHORN_GYM_2F, MAP_BLACKTHORN_GYM_2F
 	warp_def $6, $7, 5, GROUP_BLACKTHORN_GYM_2F, MAP_BLACKTHORN_GYM_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 15, 3, SIGNPOST_READ, BlackthornGymStatue
 	signpost 15, 6, SIGNPOST_READ, BlackthornGymStatue
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_CLAIR, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClairScript_0x194e24, -1
 	person_event SPRITE_COOLTRAINER_M, 10, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermMike, -1

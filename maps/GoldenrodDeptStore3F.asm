@@ -1,8 +1,8 @@
 GoldenrodDeptStore3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ClerkScript_0x55db8:
@@ -55,21 +55,21 @@ GoldenrodDeptStore3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $0, $c, 1, GROUP_GOLDENROD_DEPT_STORE_2F, MAP_GOLDENROD_DEPT_STORE_2F
 	warp_def $0, $f, 2, GROUP_GOLDENROD_DEPT_STORE_4F, MAP_GOLDENROD_DEPT_STORE_4F
 	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore3FDirectory
 	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore3FElevatorButton
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_CLERK, 5, 10, OW_UP | $2, $0, -1, -1, $0, 0, ClerkScript_0x55db8, -1
 	person_event SPRITE_SUPER_NERD, 9, 16, OW_LEFT | $2, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x55dc0, -1

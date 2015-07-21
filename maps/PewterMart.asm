@@ -1,8 +1,8 @@
 PewterMart_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ClerkScript_0x1a2dcb:
@@ -44,18 +44,18 @@ PewterMart_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 	warp_def $7, $3, 3, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x1a2dcb, -1
 	person_event SPRITE_YOUNGSTER, 6, 13, OW_UP | $1, $2, -1, -1, $0, 0, YoungsterScript_0x1a2dd2, -1

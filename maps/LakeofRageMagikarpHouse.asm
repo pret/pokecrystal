@@ -1,8 +1,8 @@
 LakeofRageMagikarpHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 FishingGuruScript_0x19a6ae:
@@ -206,19 +206,19 @@ LakeofRageMagikarpHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
 	warp_def $7, $3, 2, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 1, 0, SIGNPOST_READ, MagikarpHouseBookshelf
 	signpost 1, 1, SIGNPOST_READ, MagikarpHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x19a6ae, -1

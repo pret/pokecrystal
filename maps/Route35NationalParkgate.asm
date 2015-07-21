@@ -1,5 +1,5 @@
 Route35NationalParkgate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ Route35NationalParkgate_MapScriptHeader:
 	dw Route35NationalParkgate_Trigger2, $0000
 	dw Route35NationalParkgate_Trigger3, $0000
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -442,21 +442,21 @@ Route35NationalParkgate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $3, 3, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
 	warp_def $0, $4, 4, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
 	warp_def $7, $3, 3, GROUP_ROUTE_35, MAP_ROUTE_35
 	warp_def $7, $4, 3, GROUP_ROUTE_35, MAP_ROUTE_35
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 0, 5, SIGNPOST_READ, MapRoute36NationalParkgateSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_OFFICER, 5, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	person_event SPRITE_YOUNGSTER, 9, 10, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER

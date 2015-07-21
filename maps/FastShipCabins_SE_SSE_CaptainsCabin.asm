@@ -1,8 +1,8 @@
 FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x75ea6:
@@ -453,7 +453,7 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $7, $2, 8, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $7, $3, 8, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
@@ -462,14 +462,14 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 	warp_def $21, $2, 10, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $21, $3, 10, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 25, 4, SIGNPOST_READ, FastShipCaptainsCabinTrashcan
 
-	; people-events
+.PersonEvents:
 	db 11
 	person_event SPRITE_CAPTAIN, 29, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CaptainScript_0x75ea7, -1
 	person_event SPRITE_GENTLEMAN, 21, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x75f1f, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN

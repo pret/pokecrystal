@@ -1,12 +1,12 @@
 MobileBattleRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 .Trigger1:
@@ -72,17 +72,17 @@ MobileBattleRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $4, 6, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 	warp_def $7, $5, 6, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 2, 4, SIGNPOST_UP, MapMobileBattleRoomSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 0

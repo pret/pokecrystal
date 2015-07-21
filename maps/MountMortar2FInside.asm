@@ -1,8 +1,8 @@
 MountMortar2FInside_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerSupernerdHugh:
@@ -62,19 +62,19 @@ MountMortar2FInside_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $21, $11, 4, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	warp_def $5, $3, 6, GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 8, 24, SIGNPOST_ITEM, MapMountMortar2FInsideSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_POKE_BALL, 26, 32, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0de, EVENT_MOUNT_MORTAR_2F_INSIDE_MAX_POTION
 	person_event SPRITE_POKE_BALL, 37, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e0e0, EVENT_MOUNT_MORTAR_2F_INSIDE_RARE_CANDY

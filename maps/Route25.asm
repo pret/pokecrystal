@@ -1,12 +1,12 @@
 Route25_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x19ee9e, $0000
 	dw UnknownScript_0x19ee9f, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x19ee9e:
@@ -423,21 +423,21 @@ Route25_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $2f, 1, GROUP_BILLS_HOUSE, MAP_BILLS_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $6, $2a, $0, UnknownScript_0x19eea0, $0, $0
 	xy_trigger 1, $7, $2a, $0, UnknownScript_0x19eee0, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 5, 45, SIGNPOST_READ, MapRoute25Signpost0Script
 	signpost 5, 4, SIGNPOST_ITEM, MapRoute25SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 11
 	person_event SPRITE_MISTY, 13, 50, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	person_event SPRITE_COOLTRAINER_M, 14, 50, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND

@@ -1,5 +1,5 @@
 FastShip1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ FastShip1F_MapScriptHeader:
 	dw .Trigger2, $0000
 	dw .Trigger3, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 .Trigger1:
@@ -285,7 +285,7 @@ FastShip1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 12
 	warp_def $1, $19, 255, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $8, $1b, 1, GROUP_FAST_SHIP_CABINS_NNW_NNE_NE, MAP_FAST_SHIP_CABINS_NNW_NNE_NE
@@ -300,15 +300,15 @@ FastShip1F_MapEventHeader:
 	warp_def $c, $6, 1, GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F
 	warp_def $e, $1e, 2, GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 2, $6, $18, $0, UnknownScript_0x751eb, $0, $0
 	xy_trigger 2, $6, $19, $0, UnknownScript_0x751e7, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_SAILOR, 6, 29, OW_UP | $2, $0, -1, -1, $0, 0, SailorScript_0x75160, -1
 	person_event SPRITE_SAILOR, 11, 18, OW_LEFT | $1, $0, -1, -1, $0, 0, SailorScript_0x751d0, -1

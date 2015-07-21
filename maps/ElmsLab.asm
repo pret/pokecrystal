@@ -1,5 +1,5 @@
 ElmsLab_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 6
 
 	; triggers
@@ -10,7 +10,7 @@ ElmsLab_MapScriptHeader:
 	dw UnknownScript_0x78b81, $0000
 	dw UnknownScript_0x78b82, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -1371,12 +1371,12 @@ ElmsLab_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $4, 1, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	warp_def $b, $5, 1, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 8
 	xy_trigger 1, $6, $4, $0, LabTryToLeaveScript, $0, $0
 	xy_trigger 1, $6, $5, $0, LabTryToLeaveScript, $0, $0
@@ -1387,7 +1387,7 @@ ElmsLab_MapEventHeader:
 	xy_trigger 6, $8, $4, $0, AideScript_WalkBalls1, $0, $0
 	xy_trigger 6, $8, $5, $0, AideScript_WalkBalls2, $0, $0
 
-	; signposts
+.Signposts:
 	db 16
 	signpost 1, 2, SIGNPOST_READ, ElmsLabHealingMachine
 	signpost 1, 6, SIGNPOST_READ, ElmsLabBookshelf
@@ -1406,7 +1406,7 @@ ElmsLab_MapEventHeader:
 	signpost 0, 5, SIGNPOST_READ, ElmsLabWindow
 	signpost 5, 3, SIGNPOST_DOWN, ElmsLabPC
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_ELM, 6, 9, OW_UP | $2, $0, -1, -1, $0, 0, ProfElmScript, -1
 	person_event SPRITE_SCIENTIST, 13, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB

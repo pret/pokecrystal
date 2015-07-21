@@ -1,8 +1,8 @@
 SilverCaveRoom3_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 RedScript_0x18c603:
@@ -51,16 +51,16 @@ SilverCaveRoom3_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $21, $9, 2, GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_RED, 14, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER

@@ -1,8 +1,8 @@
 RadioTower3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -326,22 +326,22 @@ RadioTower3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $0, $0, 1, GROUP_RADIO_TOWER_2F, MAP_RADIO_TOWER_2F
 	warp_def $0, $7, 2, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 	warp_def $0, $11, 4, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 0, 3, SIGNPOST_READ, MapRadioTower3FSignpost0Script
 	signpost 0, 9, SIGNPOST_READ, MapRadioTower3FSignpost1Script
 	signpost 2, 14, SIGNPOST_UP, MapRadioTower3FSignpost2Script
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_SUPER_NERD, 8, 11, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	person_event SPRITE_GYM_GUY, 8, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GymGuyScript_0x5e556, -1

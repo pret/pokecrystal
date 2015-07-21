@@ -1,8 +1,8 @@
 CeruleanPoliceStation_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 FishingGuruScript_0x18804a:
@@ -42,18 +42,18 @@ CeruleanPoliceStation_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 	warp_def $7, $3, 2, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_FISHING_GURU, 5, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingGuruScript_0x18804a, -1
 	person_event SPRITE_POKEFAN_F, 8, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanFScript_0x18804d, -1

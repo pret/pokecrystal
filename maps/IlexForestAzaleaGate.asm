@@ -1,8 +1,8 @@
 IlexForestAzaleaGate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 OfficerScript_0x62c7a:
@@ -30,20 +30,20 @@ IlexForestAzaleaGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $4, $0, 2, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 	warp_def $5, $0, 3, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 	warp_def $4, $9, 7, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 	warp_def $5, $9, 8, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_OFFICER, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x62c7a, -1
 	person_event SPRITE_GRANNY, 7, 5, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x62c7d, -1

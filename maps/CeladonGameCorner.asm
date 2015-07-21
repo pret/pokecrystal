@@ -1,8 +1,8 @@
 CeladonGameCorner_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ClerkScript_0x7211d:
@@ -274,15 +274,15 @@ CeladonGameCorner_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $d, $e, 6, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $d, $f, 6, GROUP_CELADON_CITY, MAP_CELADON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 38
 	signpost 6, 1, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
 	signpost 7, 1, SIGNPOST_READ, MapCeladonGameCornerSignpost11Script
@@ -323,7 +323,7 @@ CeladonGameCorner_MapEventHeader:
 	signpost 0, 15, SIGNPOST_READ, MapCeladonGameCornerSignpost36Script
 	signpost 0, 9, SIGNPOST_READ, MapCeladonGameCornerSignpost37Script
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_CLERK, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ClerkScript_0x7211d, -1
 	person_event SPRITE_RECEPTIONIST, 6, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x72120, -1

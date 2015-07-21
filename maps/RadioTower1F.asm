@@ -1,8 +1,8 @@
 RadioTower1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ReceptionistScript_0x5cd29:
@@ -468,21 +468,21 @@ RadioTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $2, 11, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $3, 11, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $0, $f, 2, GROUP_RADIO_TOWER_2F, MAP_RADIO_TOWER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 3, SIGNPOST_READ, MapRadioTower1FSignpost0Script
 	signpost 0, 13, SIGNPOST_READ, MapRadioTower1FSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_RECEPTIONIST, 10, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x5cd29, -1
 	person_event SPRITE_LASS, 8, 20, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x5ce51, EVENT_GOLDENROD_CITY_CIVILIANS

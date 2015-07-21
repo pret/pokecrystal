@@ -1,12 +1,12 @@
 BurnedTowerB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x18615e, $0000
 	dw UnknownScript_0x18615f, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -233,7 +233,7 @@ BurnedTowerB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $9, $a, 3, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
 	warp_def $7, $11, 7, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
@@ -242,14 +242,14 @@ BurnedTowerB1F_MapEventHeader:
 	warp_def $e, $11, 12, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
 	warp_def $f, $7, 14, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $6, $a, $0, UnknownScript_0x18616b, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_BOULDER, 12, 21, OW_LEFT | $11, $0, -1, -1, $0, 0, BurnedTowerB1FBoulder, -1
 	person_event SPRITE_RAIKOU, 7, 11, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1

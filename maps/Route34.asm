@@ -1,8 +1,8 @@
 Route34_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -754,7 +754,7 @@ Route34_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $25, $d, 1, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
 	warp_def $25, $e, 2, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
@@ -762,10 +762,10 @@ Route34_MapEventHeader:
 	warp_def $f, $b, 2, GROUP_DAYCARE, MAP_DAYCARE
 	warp_def $f, $d, 3, GROUP_DAYCARE, MAP_DAYCARE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
 	signpost 6, 12, SIGNPOST_READ, MapRoute34Signpost0Script
 	signpost 33, 13, SIGNPOST_READ, MapRoute34Signpost1Script
@@ -773,7 +773,7 @@ Route34_MapEventHeader:
 	signpost 32, 8, SIGNPOST_ITEM, MapRoute34SignpostItem3
 	signpost 19, 17, SIGNPOST_ITEM, MapRoute34SignpostItem4
 
-	; people-events
+.PersonEvents:
 	db 13
 	person_event SPRITE_YOUNGSTER, 11, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerCamperTodd1, -1
 	person_event SPRITE_YOUNGSTER, 36, 19, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterSamuel, -1

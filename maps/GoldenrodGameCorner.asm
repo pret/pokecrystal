@@ -1,8 +1,8 @@
 GoldenrodGameCorner_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -435,15 +435,15 @@ GoldenrodGameCorner_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $d, $2, 10, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $d, $3, 10, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 31
 	signpost 6, 6, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
 	signpost 7, 6, SIGNPOST_READ, MapGoldenrodGameCornerSignpost17Script
@@ -477,7 +477,7 @@ GoldenrodGameCorner_MapEventHeader:
 	signpost 11, 18, SIGNPOST_RIGHT, MapGoldenrodGameCornerSignpost29Script
 	signpost 1, 12, SIGNPOST_LEFT, MapGoldenrodGameCornerSignpost30Script
 
-	; people-events
+.PersonEvents:
 	db 12
 	person_event SPRITE_CLERK, 6, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ClerkScript_0x56c25, -1
 	person_event SPRITE_RECEPTIONIST, 6, 20, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x56c28, -1

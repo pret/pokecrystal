@@ -1,8 +1,8 @@
 TrainerHouse1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ReceptionistScript_0x9af67:
@@ -134,22 +134,22 @@ TrainerHouse1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $d, $2, 3, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
 	warp_def $d, $3, 3, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
 	warp_def $2, $8, 1, GROUP_TRAINER_HOUSE_B1F, MAP_TRAINER_HOUSE_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 0, 5, SIGNPOST_READ, MapTrainerHouse1FSignpost0Script
 	signpost 0, 7, SIGNPOST_READ, MapTrainerHouse1FSignpost1Script
 	signpost 10, 7, SIGNPOST_READ, MapTrainerHouse1FSignpost2Script
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_RECEPTIONIST, 15, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x9af67, -1
 	person_event SPRITE_COOLTRAINER_M, 15, 11, OW_UP | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x9af6a, -1

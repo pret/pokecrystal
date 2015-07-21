@@ -1,8 +1,8 @@
 FightingDojo_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BlackBeltScript_0x189b61:
@@ -42,20 +42,20 @@ FightingDojo_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $4, 1, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $b, $5, 1, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 4, SIGNPOST_READ, MapFightingDojoSignpost0Script
 	signpost 0, 5, SIGNPOST_READ, MapFightingDojoSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_BLACK_BELT, 8, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x189b61, -1
 	person_event SPRITE_POKE_BALL, 5, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x189b6a, EVENT_PICKED_UP_FOCUS_BAND

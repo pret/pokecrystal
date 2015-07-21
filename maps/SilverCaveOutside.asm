@@ -1,8 +1,8 @@
 SilverCaveOutside_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -29,19 +29,19 @@ SilverCaveOutside_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $13, $17, 1, GROUP_SILVER_CAVE_POKECENTER_1F, MAP_SILVER_CAVE_POKECENTER_1F
 	warp_def $b, $12, 1, GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 19, 24, SIGNPOST_READ, MtSilverPokeCenterSign
 	signpost 13, 17, SIGNPOST_READ, MtSilverSign
 	signpost 25, 9, SIGNPOST_ITEM, MapSilverCaveOutsideSignpostItem2
 
-	; people-events
+.PersonEvents:
 	db 0

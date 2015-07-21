@@ -1,8 +1,8 @@
 Route7_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 MapRoute7Signpost0Script:
@@ -38,18 +38,18 @@ Route7_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $6, $f, 1, GROUP_ROUTE_7_SAFFRON_GATE, MAP_ROUTE_7_SAFFRON_GATE
 	warp_def $7, $f, 2, GROUP_ROUTE_7_SAFFRON_GATE, MAP_ROUTE_7_SAFFRON_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 11, 5, SIGNPOST_READ, MapRoute7Signpost0Script
 	signpost 9, 6, SIGNPOST_READ, MapRoute7Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 0

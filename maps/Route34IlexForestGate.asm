@@ -1,8 +1,8 @@
 Route34IlexForestGate_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -136,21 +136,21 @@ Route34IlexForestGate_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $0, $4, 1, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $0, $5, 2, GROUP_ROUTE_34, MAP_ROUTE_34
 	warp_def $7, $4, 1, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 	warp_def $7, $5, 1, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $7, $4, $0, UnknownScript_0x62d3d, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_TEACHER, 7, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
 	person_event SPRITE_BUTTERFREE, 8, 13, OW_UP | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ButterfreeScript_0x62d8a, -1

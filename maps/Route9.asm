@@ -1,8 +1,8 @@
 Route9_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerCamperDean:
@@ -202,19 +202,19 @@ Route9_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $f, $30, 1, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 7, 15, SIGNPOST_READ, MapRoute9Signpost0Script
 	signpost 15, 41, SIGNPOST_ITEM, MapRoute9SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_YOUNGSTER, 15, 27, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperDean, -1
 	person_event SPRITE_LASS, 12, 43, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPicnickerHeidi, -1

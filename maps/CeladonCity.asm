@@ -1,8 +1,8 @@
 CeladonCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -229,7 +229,7 @@ CeladonCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 9
 	warp_def $9, $4, 1, GROUP_CELADON_DEPT_STORE_1F, MAP_CELADON_DEPT_STORE_1F
 	warp_def $9, $10, 1, GROUP_CELADON_MANSION_1F, MAP_CELADON_MANSION_1F
@@ -241,10 +241,10 @@ CeladonCity_MapEventHeader:
 	warp_def $1d, $a, 1, GROUP_CELADON_GYM, MAP_CELADON_GYM
 	warp_def $1d, $19, 1, GROUP_CELADON_CAFE, MAP_CELADON_CAFE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 8
 	signpost 21, 23, SIGNPOST_READ, CeladonCitySign
 	signpost 31, 11, SIGNPOST_READ, CeladonGymSign
@@ -255,7 +255,7 @@ CeladonCity_MapEventHeader:
 	signpost 9, 30, SIGNPOST_READ, CeladonCityPokeCenterSign
 	signpost 21, 37, SIGNPOST_ITEM, MapCeladonCitySignpostItem7
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_FISHER, 15, 30, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a9f43, -1
 	person_event SPRITE_POLIWAG, 15, 31, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CeladonCityPoliwrath, -1

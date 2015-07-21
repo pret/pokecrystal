@@ -1,8 +1,8 @@
 Route33_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 LassScript_0x1ac002:
@@ -193,18 +193,18 @@ Route33_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $9, $b, 3, GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 11, 11, SIGNPOST_READ, MapRoute33Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_POKEFAN_M, 17, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerAnthony, -1
 	person_event SPRITE_LASS, 20, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x1ac002, -1

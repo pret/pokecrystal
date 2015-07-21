@@ -1,11 +1,11 @@
 TeamRocketBaseB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x6c65a, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -728,14 +728,14 @@ TeamRocketBaseB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $2, $1b, 3, GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F
 	warp_def $e, $3, 1, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 	warp_def $f, $5, 4, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
 	warp_def $2, $19, 3, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 30
 	; There are five security cameras in the base.
 	; Walking in front of one triggers two Rocket Grunts.
@@ -772,7 +772,7 @@ TeamRocketBaseB1F_MapEventHeader:
 	xy_trigger 0, $d, $4, $0, ExplodingTrap21, $0, $0
 	xy_trigger 0, $d, $5, $0, ExplodingTrap22, $0, $0
 
-	; signposts
+.Signposts:
 	db 9
 	signpost 11, 19, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost0Script
 	signpost 1, 24, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
@@ -784,7 +784,7 @@ TeamRocketBaseB1F_MapEventHeader:
 	signpost 11, 21, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
 	signpost 11, 3, SIGNPOST_ITEM, MapTeamRocketBaseB1FSignpostItem8
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_ROCKET, 4, 4, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
 	person_event SPRITE_ROCKET, 8, 6, OW_LEFT | $1, $0, -1, -1, $2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION

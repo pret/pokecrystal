@@ -1,8 +1,8 @@
 MountMortarB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BlackBeltScript_0x7e1f6:
@@ -130,19 +130,19 @@ MountMortarB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $3, 5, GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
 	warp_def $1d, $13, 7, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 6, 4, SIGNPOST_ITEM, MapMountMortarB1FSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_POKE_BALL, 16, 33, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e240, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
 	person_event SPRITE_POKE_BALL, 20, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e242, EVENT_MOUNT_MORTAR_B1F_CARBOS

@@ -1,8 +1,8 @@
 UnionCave1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerPokemaniacLarry:
@@ -192,20 +192,20 @@ UnionCave1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $13, $5, 3, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	warp_def $21, $3, 4, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	warp_def $1f, $11, 1, GROUP_ROUTE_33, MAP_ROUTE_33
 	warp_def $3, $11, 4, GROUP_ROUTE_32, MAP_ROUTE_32
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_POKEFAN_M, 10, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerDaniel, -1
 	person_event SPRITE_SUPER_NERD, 25, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacLarry, -1

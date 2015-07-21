@@ -1,8 +1,8 @@
 DarkCaveVioletEntrance_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ItemFragment_0x18c68e:
@@ -28,20 +28,20 @@ DarkCaveVioletEntrance_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $f, $3, 3, GROUP_ROUTE_31, MAP_ROUTE_31
 	warp_def $1, $11, 2, GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 	warp_def $21, $23, 3, GROUP_ROUTE_46, MAP_ROUTE_46
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 3, 26, SIGNPOST_ITEM, MapDarkCaveVioletEntranceSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 8
 	person_event SPRITE_POKE_BALL, 12, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c68e, EVENT_DARK_CAVE_VIOLET_ENTRANCE_POTION
 	person_event SPRITE_ROCK, 18, 20, OW_LEFT | $10, $0, -1, -1, $0, 0, DarkCaveVioletEntranceRock, -1

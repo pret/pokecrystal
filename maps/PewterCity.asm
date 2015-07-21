@@ -1,8 +1,8 @@
 PewterCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -151,7 +151,7 @@ PewterCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $d, $1d, 1, GROUP_PEWTER_NIDORAN_SPEECH_HOUSE, MAP_PEWTER_NIDORAN_SPEECH_HOUSE
 	warp_def $11, $10, 1, GROUP_PEWTER_GYM, MAP_PEWTER_GYM
@@ -159,10 +159,10 @@ PewterCity_MapEventHeader:
 	warp_def $19, $d, 1, GROUP_PEWTER_POKECENTER_1F, MAP_PEWTER_POKECENTER_1F
 	warp_def $1d, $7, 1, GROUP_PEWTER_SNOOZE_SPEECH_HOUSE, MAP_PEWTER_SNOOZE_SPEECH_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 7
 	signpost 23, 25, SIGNPOST_READ, PewterCitySign
 	signpost 17, 11, SIGNPOST_READ, PewterGymSign
@@ -172,7 +172,7 @@ PewterCity_MapEventHeader:
 	signpost 25, 14, SIGNPOST_READ, PewterCityPokeCenterSign
 	signpost 17, 24, SIGNPOST_READ, PewterCityMartSign
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_COOLTRAINER_F, 15, 23, OW_DOWN | $2, $22, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x18c009, -1
 	person_event SPRITE_BUG_CATCHER, 33, 18, OW_DOWN | $2, $22, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x18c00c, -1

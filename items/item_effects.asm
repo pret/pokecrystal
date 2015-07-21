@@ -2506,7 +2506,7 @@ Function_0xf5b1: ; f5b1
 
 
 Itemfinder: ; f5b8
-	callba Function12580
+	callba ItemFinder
 	ret
 ; f5bf
 

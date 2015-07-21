@@ -1,8 +1,8 @@
 Route35_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBird_keeperBryan:
@@ -453,21 +453,21 @@ Route35_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $21, $9, 1, GROUP_ROUTE_35_GOLDENROD_GATE, MAP_ROUTE_35_GOLDENROD_GATE
 	warp_def $21, $a, 2, GROUP_ROUTE_35_GOLDENROD_GATE, MAP_ROUTE_35_GOLDENROD_GATE
 	warp_def $5, $3, 3, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 7, 1, SIGNPOST_READ, MapRoute35Signpost1Script
 	signpost 31, 11, SIGNPOST_READ, MapRoute35Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 11
 	person_event SPRITE_YOUNGSTER, 23, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperIvan, -1
 	person_event SPRITE_YOUNGSTER, 24, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperElliot, -1

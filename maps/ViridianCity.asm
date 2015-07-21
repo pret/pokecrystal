@@ -1,8 +1,8 @@
 ViridianCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -215,7 +215,7 @@ ViridianCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $7, $20, 1, GROUP_VIRIDIAN_GYM, MAP_VIRIDIAN_GYM
 	warp_def $9, $15, 1, GROUP_VIRIDIAN_NICKNAME_SPEECH_HOUSE, MAP_VIRIDIAN_NICKNAME_SPEECH_HOUSE
@@ -223,10 +223,10 @@ ViridianCity_MapEventHeader:
 	warp_def $13, $1d, 2, GROUP_VIRIDIAN_MART, MAP_VIRIDIAN_MART
 	warp_def $19, $17, 1, GROUP_VIRIDIAN_POKECENTER_1F, MAP_VIRIDIAN_POKECENTER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
 	signpost 17, 17, SIGNPOST_READ, ViridianCitySign
 	signpost 7, 27, SIGNPOST_READ, ViridianGymSign
@@ -235,7 +235,7 @@ ViridianCity_MapEventHeader:
 	signpost 25, 24, SIGNPOST_READ, ViridianCityPokeCenterSign
 	signpost 19, 30, SIGNPOST_READ, ViridianCityMartSign
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_GRAMPS, 9, 22, OW_DOWN | $2, $22, -1, -1, $0, 0, GrampsScript_0x1a9a4c, -1
 	person_event SPRITE_GRAMPS, 12, 34, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x1a9a61, -1

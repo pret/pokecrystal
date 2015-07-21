@@ -1,8 +1,8 @@
 ViridianGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BlueScript_0x9aa26:
@@ -168,20 +168,20 @@ ViridianGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 1, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
 	warp_def $11, $5, 1, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 13, 3, SIGNPOST_READ, ViridianGymStatue
 	signpost 13, 6, SIGNPOST_READ, ViridianGymStatue
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_BLUE, 7, 9, OW_UP | $2, $0, -1, -1, $0, 0, BlueScript_0x9aa26, EVENT_VIRIDIAN_GYM_BLUE
 	person_event SPRITE_GYM_GUY, 17, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE

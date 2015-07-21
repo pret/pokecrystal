@@ -1,8 +1,8 @@
 FuchsiaMart_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ClerkScript_0x195ce8:
@@ -36,18 +36,18 @@ FuchsiaMart_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 1, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $7, $3, 1, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x195ce8, -1
 	person_event SPRITE_FISHER, 6, 7, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x195cef, -1

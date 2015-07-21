@@ -1,11 +1,11 @@
 MountMoonSquare_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x77092, $0000
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -138,22 +138,22 @@ MountMoonSquare_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $5, $14, 5, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 	warp_def $b, $16, 6, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 	warp_def $7, $d, 1, GROUP_MOUNT_MOON_GIFT_SHOP, MAP_MOUNT_MOON_GIFT_SHOP
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $b, $7, $0, UnknownScript_0x7709a, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 7, 7, SIGNPOST_ITEM, MapMountMoonSquareSignpostItem0
 	signpost 7, 17, SIGNPOST_READ, MapMountMoonSquareSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_FAIRY, 10, 10, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
 	person_event SPRITE_FAIRY, 10, 11, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY

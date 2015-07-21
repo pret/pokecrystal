@@ -1,8 +1,8 @@
 DarkCaveBlackthornEntrance_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PharmacistScript_0x18c720:
@@ -60,18 +60,18 @@ DarkCaveBlackthornEntrance_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $17, 1, GROUP_ROUTE_45, MAP_ROUTE_45
 	warp_def $19, $3, 2, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_PHARMACIST, 7, 11, OW_DOWN | $3, $0, -1, -1, $0, 0, PharmacistScript_0x18c720, -1
 	person_event SPRITE_POKE_BALL, 28, 25, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c73b, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE

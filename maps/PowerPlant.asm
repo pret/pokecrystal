@@ -1,12 +1,12 @@
 PowerPlant_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x188dc3, $0000
 	dw UnknownScript_0x188dc4, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x188dc3:
@@ -385,21 +385,21 @@ PowerPlant_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $2, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 	warp_def $11, $3, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $c, $5, $0, UnknownScript_0x188dc5, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 1, 0, SIGNPOST_READ, PowerPlantBookshelf
 	signpost 1, 1, SIGNPOST_READ, PowerPlantBookshelf
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_OFFICER, 18, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x188df5, -1
 	person_event SPRITE_GYM_GUY, 13, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GymGuyScript_0x188e15, -1

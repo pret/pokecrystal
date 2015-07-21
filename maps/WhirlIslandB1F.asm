@@ -1,8 +1,8 @@
 WhirlIslandB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ItemFragment_0x18c410:
@@ -39,7 +39,7 @@ WhirlIslandB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 9
 	warp_def $5, $5, 2, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
 	warp_def $3, $23, 2, GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
@@ -51,16 +51,16 @@ WhirlIslandB1F_MapEventHeader:
 	warp_def $1b, $d, 2, GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
 	warp_def $15, $11, 1, GROUP_WHIRL_ISLAND_CAVE, MAP_WHIRL_ISLAND_CAVE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 4, 30, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem0
 	signpost 18, 36, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem1
 	signpost 23, 2, SIGNPOST_ITEM, MapWhirlIslandB1FSignpostItem2
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_POKE_BALL, 17, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c410, EVENT_WHIRL_ISLAND_B1F_FULL_RESTORE
 	person_event SPRITE_POKE_BALL, 22, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c412, EVENT_WHIRL_ISLAND_B1F_CARBOS

@@ -1,12 +1,12 @@
 UndergroundPathSwitchRoomEntrances_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x7c9f5, $0000
 	dw UnknownScript_0x7c9f6, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -895,7 +895,7 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 9
 	warp_def $3, $17, 6, GROUP_WAREHOUSE_ENTRANCE, MAP_WAREHOUSE_ENTRANCE
 	warp_def $a, $16, 1, GROUP_UNDERGROUND_WAREHOUSE, MAP_UNDERGROUND_WAREHOUSE
@@ -907,12 +907,12 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	warp_def $1d, $14, 13, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $1d, $15, 13, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $4, $13, $0, UnknownScript_0x7ca80, $0, $0
 	xy_trigger 0, $5, $13, $0, UnknownScript_0x7caaa, $0, $0
 
-	; signposts
+.Signposts:
 	db 6
 	signpost 1, 16, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost0Script
 	signpost 1, 10, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost1Script
@@ -921,7 +921,7 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	signpost 9, 8, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
 	signpost 8, 1, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
 
-	; people-events
+.PersonEvents:
 	db 11
 	person_event SPRITE_PHARMACIST, 16, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_PHARMACIST, 12, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

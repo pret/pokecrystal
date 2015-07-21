@@ -1,8 +1,8 @@
 Route46_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerCamperTed:
@@ -246,20 +246,20 @@ Route46_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $21, $7, 1, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
 	warp_def $21, $8, 2, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
 	warp_def $5, $e, 3, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 27, 9, SIGNPOST_READ, MapRoute46Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_POKEFAN_M, 23, 16, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerBailey, -1
 	person_event SPRITE_YOUNGSTER, 18, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperTed, -1

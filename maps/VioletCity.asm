@@ -1,8 +1,8 @@
 VioletCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -274,7 +274,7 @@ VioletCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 9
 	warp_def $11, $9, 2, GROUP_VIOLET_MART, MAP_VIOLET_MART
 	warp_def $11, $12, 1, GROUP_VIOLET_GYM, MAP_VIOLET_GYM
@@ -286,10 +286,10 @@ VioletCity_MapEventHeader:
 	warp_def $18, $27, 1, GROUP_ROUTE_31_VIOLET_GATE, MAP_ROUTE_31_VIOLET_GATE
 	warp_def $19, $27, 2, GROUP_ROUTE_31_VIOLET_GATE, MAP_ROUTE_31_VIOLET_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 7
 	signpost 20, 24, SIGNPOST_READ, VioletCitySign
 	signpost 17, 15, SIGNPOST_READ, VioletGymSign
@@ -299,7 +299,7 @@ VioletCity_MapEventHeader:
 	signpost 17, 10, SIGNPOST_READ, VioletCityMartSign
 	signpost 14, 37, SIGNPOST_ITEM, MapVioletCitySignpostItem6
 
-	; people-events
+.PersonEvents:
 	db 8
 	person_event SPRITE_FISHER, 20, 17, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a83bb, EVENT_VIOLET_CITY_EARL
 	person_event SPRITE_LASS, 32, 32, OW_DOWN | $2, $22, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x1a8403, -1

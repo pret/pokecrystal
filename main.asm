@@ -12789,8 +12789,8 @@ MovementData_0x12579: ; 0x12579
 ; 0x12580
 
 
-Function12580: ; 12580
-	callba Functionb8172
+ItemFinder: ; 12580
+	callba CheckForSignpostItems
 	jr c, .asm_1258d
 	ld hl, UnknownScript_0x125ba
 	jr .asm_12590
@@ -41327,7 +41327,7 @@ Function494ac: ; 494ac
 	ret
 
 .ice_path
-	ld a, [wRoofPalette] ; permission
+	ld a, [wPermission] ; permission
 	and 7
 	cp 3 ; Hall of Fame
 	jr z, .do_nothing
@@ -52472,7 +52472,7 @@ VarActionTable: ; 80671
 	dwb MapGroup,      $00
 	dwb MapNumber,     $00
 	dwb Function806ff, $80
-	dwb wRoofPalette,         $00
+	dwb wPermission,         $00
 	dwb Function80715, $80
 	dwb wd46c,         $00
 	dwb XCoord,        $00
@@ -64097,7 +64097,7 @@ Function8c365: ; 8c365 (23:4365)
 	jr nc, .asm_8c375
 	set 0, e
 .asm_8c375
-	ld a, [wRoofPalette]
+	ld a, [wPermission]
 	cp $4
 	jr z, .asm_8c386
 	cp $5
@@ -65623,13 +65623,13 @@ Function8ceae: ; 8ceae
 	ld [rSVBK], a
 	ld a, [TimeOfDayPal]
 	push af
-	ld a, [wRoofPalette]
+	ld a, [wPermission]
 	push af
 	ld a, [TimeOfDay]
 	and $3
 	ld [TimeOfDayPal], a
 	ld a, $1
-	ld [wRoofPalette], a
+	ld [wPermission], a
 	ld b, $9
 	call GetSGBLayout
 	call UpdateTimePals
@@ -65640,7 +65640,7 @@ Function8ceae: ; 8ceae
 	ld a, [rOBP1]
 	ld [wcfc9], a
 	pop af
-	ld [wRoofPalette], a
+	ld [wPermission], a
 	pop af
 	ld [TimeOfDayPal], a
 	pop af
@@ -69283,7 +69283,7 @@ Function90178: ; 90178 (24:4178)
 	ret
 
 Function90188: ; 90188
-	ld a, [wRoofPalette]
+	ld a, [wPermission]
 	cp $1
 	jr z, .asm_90195
 	cp $2
@@ -76090,15 +76090,15 @@ Functionb8101: ; b8101 (2e:4101)
 	ld c, $0
 	push hl
 	ld hl, StringBuffer1
-.asm_b8107
+.loop
 	ld a, [hli]
 	cp $50
-	jr z, .asm_b8113
+	jr z, .stop
 	cp $25
-	jr z, .asm_b8107
+	jr z, .loop
 	inc c
-	jr .asm_b8107
-.asm_b8113
+	jr .loop
+.stop
 	pop hl
 	ret
 
@@ -76113,19 +76113,19 @@ rept 2
 	inc c
 endr
 	ld a, $87
-.asm_b811f
+.loop
 	push bc
 	push hl
-.asm_b8121
+.inner_loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_b8121
+	jr nz, .inner_loop
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .asm_b811f
+	jr nz, .loop
 	ret
 ; b812f
 
@@ -76134,94 +76134,105 @@ Functionb812f: ; b812f
 	ld a, $61
 	ld [hli], a
 	ld a, $62
-	call Functionb8164
+	call .Fill5Words
 	ld a, $64
 	ld [hli], a
 	ld a, $65
 	ld [hli], a
-	call Functionb815b
+	call .Fill18Bytes
 	ld a, $6b
 	ld [hli], a
 	ld a, $66
 	ld [hli], a
-	call Functionb815b
+	call .Fill18Bytes
 	ld a, $6c
 	ld [hli], a
 	ld a, $67
 	ld [hli], a
 	ld a, $68
-	call Functionb8164
+	call .Fill5Words
 	ld a, $6a
 	ld [hl], a
 	ret
 ; b815b
 
-Functionb815b: ; b815b
-	ld c, $12
+.Fill18Bytes: ; b815b
+	ld c, 18
 	ld a, $6d
-.asm_b815f
+.loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_b815f
+	jr nz, .loop
 	ret
 ; b8164
 
-Functionb8164: ; b8164
-	ld c, $5
-	jr .asm_b816a
+.Fill5Words: ; b8164
+	ld c, 5
+	jr .enterloop
 
-.asm_b8168
+.continueloop
 rept 2
 	ld [hli], a
 endr
 
-.asm_b816a
+.enterloop
 	inc a
 rept 2
 	ld [hli], a
 endr
 	dec a
 	dec c
-	jr nz, .asm_b8168
+	jr nz, .continueloop
 	ret
 ; b8172
 
-Functionb8172: ; b8172
+CheckForSignpostItems: ; b8172
+; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.
 	call GetMapScriptHeaderBank
 	ld [Buffer1], a
+; Get the coordinate of the bottom right corner of the screen, and load it in wd1ec/wd1ed.
 	ld a, [XCoord]
-	add $5
+	add SCREEN_WIDTH / 4
 	ld [wd1ed], a
 	ld a, [YCoord]
-	add $4
+	add SCREEN_HEIGHT / 4
 	ld [wd1ec], a
+; Get the pointer for the first signpost header in the map...
 	ld hl, wdc02
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+; ... before even checking to see if there are any signposts on this map.
 	ld a, [wCurrentMapSignpostCount]
 	and a
-	jr z, .asm_b81dd
-.asm_b8194
+	jr z, .nosignpostitems
+; For i = 1:wCurrentMapSignpostCount...
+.loop
+; Store the counter in Buffer2, and store the signpost header pointer in the stack.
 	ld [Buffer2], a
 	push hl
-	call Functionb81e2
+; Get the Y coordinate of the signpost.
+	call .GetFarByte
 	ld e, a
+; Is the Y coordinate of the signpost on the screen?  If not, go to the next signpost.
 	ld a, [wd1ec]
 	sub e
-	jr c, .asm_b81d2
-	cp $9
-	jr nc, .asm_b81d2
-	call Functionb81e2
+	jr c, .next
+	cp SCREEN_HEIGHT / 2
+	jr nc, .next
+; Is the X coordinate of the signpost on the screen?  If not, go to the next signpost.
+	call .GetFarByte
 	ld d, a
 	ld a, [wd1ed]
 	sub d
-	jr c, .asm_b81d2
-	cp $a
-	jr nc, .asm_b81d2
-	call Functionb81e2
-	cp $7
-	jr nz, .asm_b81d2
+	jr c, .next
+	cp SCREEN_WIDTH / 2
+	jr nc, .next
+; Is this signpost a hidden item?  If not, go to the next signpost.
+	call .GetFarByte
+	cp SIGNPOST_ITEM
+	jr nz, .next
+; Has this item already been found?  If not, set off the Itemfinder.
 	ld a, [Buffer1]
 	call GetFarHalfword
 	ld a, [Buffer1]
@@ -76232,27 +76243,29 @@ Functionb8172: ; b8172
 	call EventFlagAction
 	ld a, c
 	and a
-	jr z, .asm_b81df
+	jr z, .itemnearby
 
-.asm_b81d2
+.next
+; Restore the signpost header pointer and increment it by the length of a signpost header.
 	pop hl
-	ld bc, $0005
+	ld bc, 5
 	add hl, bc
+; Restore the signpost counter and decrement it.  If it hits zero, there are no hidden items in range.
 	ld a, [Buffer2]
 	dec a
-	jr nz, .asm_b8194
+	jr nz, .loop
 
-.asm_b81dd
+.nosignpostitems
 	xor a
 	ret
 
-.asm_b81df
+.itemnearby
 	pop hl
 	scf
 	ret
 ; b81e2
 
-Functionb81e2: ; b81e2
+.GetFarByte: ; b81e2
 	ld a, [Buffer1]
 	call GetFarByte
 	inc hl

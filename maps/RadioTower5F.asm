@@ -1,5 +1,5 @@
 RadioTower5F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ RadioTower5F_MapScriptHeader:
 	dw UnknownScript_0x6000f, $0000
 	dw UnknownScript_0x60010, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x6000e:
@@ -419,17 +419,17 @@ RadioTower5F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $0, $0, 1, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 	warp_def $0, $c, 3, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $3, $0, $0, UnknownScript_0x60011, $0, $0
 	xy_trigger 1, $5, $10, $0, UnknownScript_0x6006e, $0, $0
 
-	; signposts
+.Signposts:
 	db 5
 	signpost 0, 3, SIGNPOST_READ, MapRadioTower5FSignpost0Script
 	signpost 0, 11, SIGNPOST_READ, MapRadioTower5FSignpost2Script
@@ -437,7 +437,7 @@ RadioTower5F_MapEventHeader:
 	signpost 1, 16, SIGNPOST_READ, RadioTower5FBookshelf
 	signpost 1, 17, SIGNPOST_READ, RadioTower5FBookshelf
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_GENTLEMAN, 10, 7, OW_DOWN | $3, $0, -1, -1, $0, 0, Director, -1
 	person_event SPRITE_ROCKET, 9, 17, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

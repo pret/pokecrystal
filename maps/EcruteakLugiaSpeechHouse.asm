@@ -1,8 +1,8 @@
 EcruteakLugiaSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 GrampsScript_0x99334:
@@ -44,19 +44,19 @@ EcruteakLugiaSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $3, 7, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $7, $4, 7, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 1, 2, SIGNPOST_READ, LugiaSpeechHouseRadio
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_GRAMPS, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, GrampsScript_0x99334, -1
 	person_event SPRITE_YOUNGSTER, 8, 9, OW_LEFT | $0, $0, -1, -1, $0, 0, YoungsterScript_0x99337, -1

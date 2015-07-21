@@ -1,8 +1,8 @@
 Route8_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBikerDwayne:
@@ -168,20 +168,20 @@ Route8_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $4, $4, 3, GROUP_ROUTE_8_SAFFRON_GATE, MAP_ROUTE_8_SAFFRON_GATE
 	warp_def $5, $4, 4, GROUP_ROUTE_8_SAFFRON_GATE, MAP_ROUTE_8_SAFFRON_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 7, 11, SIGNPOST_READ, MapRoute8Signpost0Script
 	signpost 5, 10, SIGNPOST_READ, MapRoute8Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_BIKER, 12, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerBikerDwayne, -1
 	person_event SPRITE_BIKER, 13, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerBikerHarris, -1

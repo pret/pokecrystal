@@ -1,8 +1,8 @@
 WhirlIslandLugiaChamber_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -47,16 +47,16 @@ WhirlIslandLugiaChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $d, $9, 3, GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_LUGIA, 9, 13, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LugiaScript_0x18c518, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA

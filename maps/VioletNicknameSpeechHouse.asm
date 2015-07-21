@@ -1,8 +1,8 @@
 VioletNicknameSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TeacherScript_0x693e9:
@@ -43,18 +43,18 @@ VioletNicknameSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $3, 4, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $7, $4, 4, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_TEACHER, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, TeacherScript_0x693e9, -1
 	person_event SPRITE_LASS, 8, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x693ec, -1

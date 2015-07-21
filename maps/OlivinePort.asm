@@ -1,12 +1,12 @@
 OlivinePort_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x748ac, $0000
 	dw UnknownScript_0x748ad, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x748ac:
@@ -382,20 +382,20 @@ OlivinePort_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $b, 5, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
 	warp_def $17, $7, 1, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $f, $7, $0, UnknownScript_0x7491f, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 22, 1, SIGNPOST_ITEM, MapOlivinePortSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_SAILOR, 27, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	person_event SPRITE_SAILOR, 19, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME

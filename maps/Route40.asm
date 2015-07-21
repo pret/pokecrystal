@@ -1,8 +1,8 @@
 Route40_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -330,19 +330,19 @@ Route40_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $9, 1, GROUP_ROUTE_40_BATTLE_TOWER_GATE, MAP_ROUTE_40_BATTLE_TOWER_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 10, 14, SIGNPOST_READ, MapRoute40Signpost0Script
 	signpost 8, 7, SIGNPOST_ITEM, MapRoute40SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 12
 	person_event SPRITE_OLIVINE_RIVAL, 19, 18, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerSwimmermSimon, -1
 	person_event SPRITE_OLIVINE_RIVAL, 34, 22, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerSwimmermRandall, -1

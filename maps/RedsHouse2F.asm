@@ -1,8 +1,8 @@
 RedsHouse2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 MapRedsHouse2FSignpost0Script:
@@ -29,17 +29,17 @@ RedsHouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $0, $7, 3, GROUP_REDS_HOUSE_1F, MAP_REDS_HOUSE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 5, 3, SIGNPOST_READ, MapRedsHouse2FSignpost0Script
 	signpost 1, 0, SIGNPOST_READ, MapRedsHouse2FSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 0

@@ -1,12 +1,12 @@
 WiseTriosRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x98572, $0000
 	dw UnknownScript_0x98573, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -345,20 +345,20 @@ WiseTriosRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $4, $7, 4, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $5, $7, 5, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $4, $1, 5, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $4, $7, $0, UnknownScript_0x985a3, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_SAGE, 6, 10, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	person_event SPRITE_SAGE, 11, 10, OW_UP | $1, $1, -1, -1, $0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1

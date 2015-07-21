@@ -1,8 +1,8 @@
 DanceTheatre_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerKimono_girlNaoko2:
@@ -330,20 +330,20 @@ DanceTheatre_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $d, $5, 8, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $d, $6, 8, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 6, 5, SIGNPOST_UP, MapDanceTheatreSignpost1Script
 	signpost 6, 6, SIGNPOST_UP, MapDanceTheatreSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_KIMONO_GIRL, 6, 4, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerKimono_girlNaoko2, -1
 	person_event SPRITE_KIMONO_GIRL, 5, 6, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 0, TrainerKimono_girlSayo, -1

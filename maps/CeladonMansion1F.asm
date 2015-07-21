@@ -1,8 +1,8 @@
 CeladonMansion1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 CeladonMansionManager:
@@ -72,7 +72,7 @@ CeladonMansion1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $9, $6, 2, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $9, $7, 2, GROUP_CELADON_CITY, MAP_CELADON_CITY
@@ -80,16 +80,16 @@ CeladonMansion1F_MapEventHeader:
 	warp_def $0, $0, 1, GROUP_CELADON_MANSION_2F, MAP_CELADON_MANSION_2F
 	warp_def $0, $7, 4, GROUP_CELADON_MANSION_2F, MAP_CELADON_MANSION_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 8, 5, SIGNPOST_UP, CeladonMansionManagersSuiteSign
 	signpost 3, 0, SIGNPOST_READ, CeladonMansion1fBookshelf
 	signpost 3, 2, SIGNPOST_READ, CeladonMansion1fBookshelf
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_GRANNY, 9, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, CeladonMansionManager, -1
 	person_event SPRITE_GROWLITHE, 10, 6, OW_UP | $12, $0, -1, -1, $0, 0, CeladonMansion1FMeowth, -1

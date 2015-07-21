@@ -1,12 +1,12 @@
 TradeCenter_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -58,20 +58,20 @@ TradeCenter_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $4, 2, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 	warp_def $7, $5, 2, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 4, 4, SIGNPOST_RIGHT, MapTradeCenterSignpost1Script
 	signpost 4, 5, SIGNPOST_LEFT, MapTradeCenterSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_CHRIS, 8, 7, OW_LEFT | $1, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
 	person_event SPRITE_CHRIS, 8, 10, OW_LEFT | $0, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT

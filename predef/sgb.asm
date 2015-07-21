@@ -551,7 +551,7 @@ Function8a0c: ; 8a0c
 	ret
 
 .asm_8a16
-	ld a, [wRoofPalette]
+	ld a, [wPermission]
 	cp $2
 	jr z, .asm_8a39
 	cp $4

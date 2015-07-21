@@ -1,8 +1,8 @@
 Route11_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerYoungsterOwen:
@@ -143,18 +143,18 @@ Route11_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 7, 3, SIGNPOST_READ, MapRoute11Signpost0Script
 	signpost 5, 32, SIGNPOST_ITEM, MapRoute11SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_YOUNGSTER, 18, 26, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterOwen, -1
 	person_event SPRITE_YOUNGSTER, 8, 24, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterJason, -1

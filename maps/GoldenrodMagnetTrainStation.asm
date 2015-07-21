@@ -1,11 +1,11 @@
 GoldenrodMagnetTrainStation_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x550eb, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x550eb:
@@ -166,21 +166,21 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $11, $8, 5, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $11, $9, 5, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $5, $6, 4, GROUP_SAFFRON_TRAIN_STATION, MAP_SAFFRON_TRAIN_STATION
 	warp_def $5, $b, 3, GROUP_SAFFRON_TRAIN_STATION, MAP_SAFFRON_TRAIN_STATION
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $6, $b, $0, UnknownScript_0x55130, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_OFFICER, 13, 13, OW_UP | $2, $0, -1, -1, $0, 0, OfficerScript_0x550ec, -1
 	person_event SPRITE_GENTLEMAN, 18, 15, OW_DOWN | $2, $22, -1, -1, $0, 0, GentlemanScript_0x55143, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN

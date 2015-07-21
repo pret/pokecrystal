@@ -1,8 +1,8 @@
 Route12_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerFisherKyle:
@@ -163,20 +163,20 @@ Route12_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $21, $b, 1, GROUP_ROUTE_12_SUPER_ROD_HOUSE, MAP_ROUTE_12_SUPER_ROD_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 27, 11, SIGNPOST_READ, MapRoute12Signpost0Script
 	signpost 9, 13, SIGNPOST_READ, MapRoute12Signpost1Script
 	signpost 13, 14, SIGNPOST_ITEM, MapRoute12SignpostItem2
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_FISHER, 17, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherMartin, -1
 	person_event SPRITE_FISHER, 27, 18, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherStephen, -1

@@ -1,8 +1,8 @@
 RadioTower2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x5d6fd:
@@ -701,15 +701,15 @@ RadioTower2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $0, $0, 1, GROUP_RADIO_TOWER_3F, MAP_RADIO_TOWER_3F
 	warp_def $0, $f, 3, GROUP_RADIO_TOWER_1F, MAP_RADIO_TOWER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
 	signpost 0, 3, SIGNPOST_READ, MapRadioTower2FSignpost0Script
 	signpost 0, 5, SIGNPOST_READ, MapRadioTower2FSignpost1Script
@@ -718,7 +718,7 @@ RadioTower2F_MapEventHeader:
 	signpost 1, 11, SIGNPOST_READ, RadioTower2FBookshelf
 	signpost 0, 13, SIGNPOST_READ, MapRadioTower2FSignpost5Script
 
-	; people-events
+.PersonEvents:
 	db 11
 	person_event SPRITE_SUPER_NERD, 10, 10, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x5d6fe, EVENT_GOLDENROD_CITY_CIVILIANS
 	person_event SPRITE_TEACHER, 6, 21, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x5d701, -1

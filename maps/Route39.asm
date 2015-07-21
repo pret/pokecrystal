@@ -1,8 +1,8 @@
 Route39_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TaurosScript_0x1a5af5:
@@ -336,22 +336,22 @@ Route39_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $1, 1, GROUP_ROUTE_39_BARN, MAP_ROUTE_39_BARN
 	warp_def $3, $5, 1, GROUP_ROUTE_39_FARMHOUSE, MAP_ROUTE_39_FARMHOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 31, 5, SIGNPOST_READ, MapRoute39Signpost0Script
 	signpost 5, 9, SIGNPOST_READ, MapRoute39Signpost1Script
 	signpost 7, 15, SIGNPOST_READ, MapRoute39Signpost2Script
 	signpost 13, 5, SIGNPOST_ITEM, MapRoute39SignpostItem3
 
-	; people-events
+.PersonEvents:
 	db 10
 	person_event SPRITE_SAILOR, 33, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSailorEugene, -1
 	person_event SPRITE_POKEFAN_M, 26, 14, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanmDerek1, -1

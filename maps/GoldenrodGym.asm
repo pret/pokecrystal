@@ -1,12 +1,12 @@
 GoldenrodGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x5400a, $0000
 	dw UnknownScript_0x5400b, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x5400a:
@@ -377,21 +377,21 @@ GoldenrodGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $2, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $11, $3, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $5, $8, $0, WhitneyCriesScript, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 15, 1, SIGNPOST_READ, GoldenrodGymStatue
 	signpost 15, 4, SIGNPOST_READ, GoldenrodGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_WHITNEY, 7, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, WhitneyScript_0x5400c, -1
 	person_event SPRITE_LASS, 17, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerLassCarrie, -1

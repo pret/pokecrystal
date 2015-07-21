@@ -1,8 +1,8 @@
 Route26_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerCooltrainermJake:
@@ -406,20 +406,20 @@ Route26_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $5, $7, 3, GROUP_VICTORY_ROAD_GATE, MAP_VICTORY_ROAD_GATE
 	warp_def $39, $f, 1, GROUP_ROUTE_26_HEAL_SPEECH_HOUSE, MAP_ROUTE_26_HEAL_SPEECH_HOUSE
 	warp_def $47, $5, 1, GROUP_ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE, MAP_ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 6, 8, SIGNPOST_READ, MapRoute26Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 8
 	person_event SPRITE_COOLTRAINER_M, 28, 18, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermJake, -1
 	person_event SPRITE_COOLTRAINER_M, 42, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermGaven3, -1

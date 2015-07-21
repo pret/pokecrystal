@@ -1,8 +1,8 @@
 MahoganyGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PryceScript_0x199a9e:
@@ -367,20 +367,20 @@ MahoganyGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 3, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
 	warp_def $11, $5, 3, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 15, 3, SIGNPOST_READ, MahoganyGymStatue
 	signpost 15, 6, SIGNPOST_READ, MahoganyGymStatue
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_PRYCE, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PryceScript_0x199a9e, -1
 	person_event SPRITE_BUENA, 10, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerSkierRoxanne, -1

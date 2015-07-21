@@ -1,5 +1,5 @@
 Route32_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ Route32_MapScriptHeader:
 	dw UnknownScript_0x190461, $0000
 	dw UnknownScript_0x190462, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -923,19 +923,19 @@ Route32_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $49, $b, 1, GROUP_ROUTE_32_POKECENTER_1F, MAP_ROUTE_32_POKECENTER_1F
 	warp_def $2, $4, 3, GROUP_ROUTE_32_RUINS_OF_ALPH_GATE, MAP_ROUTE_32_RUINS_OF_ALPH_GATE
 	warp_def $3, $4, 4, GROUP_ROUTE_32_RUINS_OF_ALPH_GATE, MAP_ROUTE_32_RUINS_OF_ALPH_GATE
 	warp_def $4f, $6, 4, GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $8, $12, $0, UnknownScript_0x1904ab, $0, $0
 	xy_trigger 1, $47, $7, $0, UnknownScript_0x1904e9, $0, $0
 
-	; signposts
+.Signposts:
 	db 6
 	signpost 5, 13, SIGNPOST_READ, Route32Sign
 	signpost 1, 9, SIGNPOST_READ, Route32RuinsSign
@@ -944,7 +944,7 @@ Route32_MapEventHeader:
 	signpost 67, 12, SIGNPOST_ITEM, MapRoute32SignpostItem4
 	signpost 40, 11, SIGNPOST_ITEM, MapRoute32SignpostItem5
 
-	; people-events
+.PersonEvents:
 	db 14
 	person_event SPRITE_FISHER, 53, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherJustin, -1
 	person_event SPRITE_FISHER, 60, 16, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherRalph1, -1

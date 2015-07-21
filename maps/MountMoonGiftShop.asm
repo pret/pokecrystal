@@ -1,8 +1,8 @@
 MountMoonGiftShop_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 GrampsScript_0x771a8:
@@ -25,18 +25,18 @@ MountMoonGiftShop_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $3, 3, GROUP_MOUNT_MOON_SQUARE, MAP_MOUNT_MOON_SQUARE
 	warp_def $7, $4, 3, GROUP_MOUNT_MOON_SQUARE, MAP_MOUNT_MOON_SQUARE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_GRAMPS, 7, 8, OW_UP | $2, $0, -1, 1, $0, 0, GrampsScript_0x771a8, -1
 	person_event SPRITE_GRAMPS, 6, 5, OW_LEFT | $1, $0, -1, 2, $0, 0, GrampsScript_0x771a8, -1

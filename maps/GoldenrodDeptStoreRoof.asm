@@ -1,8 +1,8 @@
 GoldenrodDeptStoreRoof_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -209,21 +209,21 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $1, $d, 3, GROUP_GOLDENROD_DEPT_STORE_6F, MAP_GOLDENROD_DEPT_STORE_6F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 3, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost0Script
 	signpost 5, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost1Script
 	signpost 6, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost2Script
 	signpost 0, 3, SIGNPOST_UP, MapGoldenrodDeptStoreRoofSignpost3Script
 
-	; people-events
+.PersonEvents:
 	db 8
 	person_event SPRITE_CLERK, 8, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
 	person_event SPRITE_POKEFAN_F, 7, 14, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x56746, -1

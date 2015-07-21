@@ -1,12 +1,12 @@
 CherrygroveCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -548,7 +548,7 @@ CherrygroveCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $3, $17, 2, GROUP_CHERRYGROVE_MART, MAP_CHERRYGROVE_MART
 	warp_def $3, $1d, 1, GROUP_CHERRYGROVE_POKECENTER_1F, MAP_CHERRYGROVE_POKECENTER_1F
@@ -556,19 +556,19 @@ CherrygroveCity_MapEventHeader:
 	warp_def $9, $19, 1, GROUP_GUIDE_GENTS_HOUSE, MAP_GUIDE_GENTS_HOUSE
 	warp_def $b, $1f, 1, GROUP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, MAP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $6, $21, $0, UnknownScript_0x19c0ae, $0, $0
 	xy_trigger 1, $7, $21, $0, UnknownScript_0x19c0aa, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 8, 30, SIGNPOST_READ, CherrygroveCitySign
 	signpost 9, 23, SIGNPOST_READ, GuideGentsHouseSign
 	signpost 3, 24, SIGNPOST_READ, CherrygroveCityMartSign
 	signpost 3, 30, SIGNPOST_READ, CherrygroveCityPokeCenterSign
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_GRAMPS, 10, 36, OW_UP | $2, $0, -1, -1, $0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
 	person_event SPRITE_SILVER, 10, 43, OW_DOWN | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY

@@ -1550,7 +1550,7 @@ wd195:: ds 1
 wd196:: ds 1
 wd197:: ds 2
 wd199:: ds 1
-wRoofPalette:: ds 3
+wPermission:: ds 3
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d

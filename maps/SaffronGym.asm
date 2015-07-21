@@ -1,8 +1,8 @@
 SaffronGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 SabrinaScript_0x189c2e:
@@ -286,7 +286,7 @@ SaffronGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 32
 	warp_def $11, $8, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $11, $9, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
@@ -321,14 +321,14 @@ SaffronGym_MapEventHeader:
 	warp_def $3, $1, 16, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
 	warp_def $9, $b, 17, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 15, 8, SIGNPOST_READ, SaffronGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_SABRINA, 12, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SabrinaScript_0x189c2e, -1
 	person_event SPRITE_GRANNY, 20, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerMediumRebecca, -1

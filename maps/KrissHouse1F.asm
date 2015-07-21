@@ -1,12 +1,12 @@
 KrissHouse1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x7a4d6, $0000
 	dw UnknownScript_0x7a4d7, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x7a4d6:
@@ -384,25 +384,25 @@ KrissHouse1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $6, 2, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	warp_def $7, $7, 2, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	warp_def $0, $9, 1, GROUP_KRISS_HOUSE_2F, MAP_KRISS_HOUSE_2F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $4, $8, $0, UnknownScript_0x7a4d8, $0, $0
 	xy_trigger 0, $4, $9, $0, UnknownScript_0x7a4db, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 1, 0, SIGNPOST_READ, StoveScript
 	signpost 1, 1, SIGNPOST_READ, SinkScript
 	signpost 1, 2, SIGNPOST_READ, FridgeScript
 	signpost 1, 4, SIGNPOST_READ, TVScript
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_MOM, 8, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
 	person_event SPRITE_MOM, 6, 6, OW_UP | $3, $0, -1, 1, $0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2

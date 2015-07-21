@@ -1,12 +1,12 @@
 BattleTower1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x9e39d, $0000
 	dw UnknownScript_0x9e3d3, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x9e39d:
@@ -795,20 +795,20 @@ BattleTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $9, $7, 3, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
 	warp_def $9, $8, 4, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
 	warp_def $0, $7, 1, GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 6, 6, SIGNPOST_READ, MapBattleTower1FSignpost0Script
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_RECEPTIONIST, 10, 11, OW_UP | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x9e3e2, -1
 	person_event SPRITE_YOUNGSTER, 13, 18, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, YoungsterScript_0x9e55d, -1

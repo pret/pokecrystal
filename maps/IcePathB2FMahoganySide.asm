@@ -1,8 +1,8 @@
 IcePathB2FMahoganySide_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BoulderScript_0x7e5a3:
@@ -27,7 +27,7 @@ IcePathB2FMahoganySide_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $1, $11, 2, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
 	warp_def $b, $9, 1, GROUP_ICE_PATH_B3F, MAP_ICE_PATH_B3F
@@ -36,14 +36,14 @@ IcePathB2FMahoganySide_MapEventHeader:
 	warp_def $c, $4, 5, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
 	warp_def $c, $c, 6, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 17, 0, SIGNPOST_ITEM, MapIcePathB2FMahoganySideSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_BOULDER, 7, 15, OW_DOWN | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_1A
 	person_event SPRITE_BOULDER, 11, 8, OW_DOWN | $1, $0, -1, -1, $0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_2A

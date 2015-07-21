@@ -1,8 +1,8 @@
 CeladonCafe_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 SuperNerdScript_0x73049:
@@ -204,20 +204,20 @@ CeladonCafe_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $6, 9, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $7, $7, 9, GROUP_CELADON_CITY, MAP_CELADON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 5, SIGNPOST_READ, EatathonContestPoster
 	signpost 1, 7, SIGNPOST_READ, CeladonCafeTrashcan
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_SUPER_NERD, 7, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, SuperNerdScript_0x73049, -1
 	person_event SPRITE_FISHER, 10, 8, OW_LEFT | $0, $0, -1, -1, $0, 0, FisherScript_0x73051, -1

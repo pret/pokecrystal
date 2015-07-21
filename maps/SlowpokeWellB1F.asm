@@ -1,8 +1,8 @@
 SlowpokeWellB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 KurtScript_0x5a5d5:
@@ -313,18 +313,18 @@ SlowpokeWellB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $f, $11, 6, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 	warp_def $b, $7, 1, GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_ROCKET, 11, 19, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
 	person_event SPRITE_ROCKET, 6, 9, OW_UP | $2, $0, -1, -1, $2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS

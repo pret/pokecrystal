@@ -1,12 +1,12 @@
 MountMoon_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x74089, $0000
 	dw UnknownScript_0x7408d, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x74089:
@@ -163,7 +163,7 @@ MountMoon_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 8
 	warp_def $3, $3, 1, GROUP_ROUTE_3, MAP_ROUTE_3
 	warp_def $f, $f, 1, GROUP_ROUTE_4, MAP_ROUTE_4
@@ -174,12 +174,12 @@ MountMoon_MapEventHeader:
 	warp_def $3, $19, 3, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 	warp_def $d, $19, 4, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_SILVER, 7, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

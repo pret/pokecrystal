@@ -1,12 +1,12 @@
 Route42_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x1a9216, $0000
 	dw UnknownScript_0x1a9217, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x1a9216:
@@ -314,7 +314,7 @@ Route42_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $8, $0, 3, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
 	warp_def $9, $0, 4, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
@@ -322,11 +322,11 @@ Route42_MapEventHeader:
 	warp_def $9, $1c, 2, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	warp_def $7, $2e, 3, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $e, $18, $0, UnknownScript_0x1a9218, $0, $0
 
-	; signposts
+.Signposts:
 	db 5
 	signpost 10, 4, SIGNPOST_READ, MapRoute42Signpost0Script
 	signpost 5, 7, SIGNPOST_READ, MapRoute42Signpost1Script
@@ -334,7 +334,7 @@ Route42_MapEventHeader:
 	signpost 8, 54, SIGNPOST_READ, MapRoute42Signpost3Script
 	signpost 11, 16, SIGNPOST_ITEM, MapRoute42SignpostItem4
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_FISHER, 14, 44, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherTully1, -1
 	person_event SPRITE_POKEFAN_M, 13, 55, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerBenjamin, -1

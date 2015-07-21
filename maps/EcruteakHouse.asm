@@ -1,12 +1,12 @@
 EcruteakHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -280,7 +280,7 @@ EcruteakHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $11, $4, 3, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $11, $5, 3, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
@@ -288,15 +288,15 @@ EcruteakHouse_MapEventHeader:
 	warp_def $f, $11, 3, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
 	warp_def $3, $11, 3, GROUP_WISE_TRIOS_ROOM, MAP_WISE_TRIOS_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $7, $4, $0, EcruteakHouse_XYTrigger1, $0, $0
 	xy_trigger 0, $7, $5, $0, EcruteakHouse_XYTrigger2, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_SAGE, 10, 8, OW_UP | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
 	person_event SPRITE_SAGE, 10, 9, OW_UP | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2

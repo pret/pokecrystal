@@ -1,8 +1,8 @@
 SilverCaveRoom1_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ItemFragment_0x18c554:
@@ -29,20 +29,20 @@ SilverCaveRoom1_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $21, $9, 2, GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
 	warp_def $1, $f, 1, GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 23, 16, SIGNPOST_ITEM, MapSilverCaveRoom1SignpostItem0
 	signpost 12, 17, SIGNPOST_ITEM, MapSilverCaveRoom1SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_POKE_BALL, 13, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c554, EVENT_SILVER_CAVE_ROOM_1_MAX_ELIXER
 	person_event SPRITE_POKE_BALL, 33, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c556, EVENT_SILVER_CAVE_ROOM_1_PROTEIN

@@ -1,12 +1,12 @@
 VermilionPort_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -302,20 +302,20 @@ VermilionPort_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $5, $9, 5, GROUP_VERMILION_PORT_PASSAGE, MAP_VERMILION_PORT_PASSAGE
 	warp_def $11, $7, 1, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $b, $7, $0, UnknownScript_0x74e20, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 13, 16, SIGNPOST_ITEM, MapVermilionPortSignpostItem0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_SAILOR, 21, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	person_event SPRITE_SAILOR, 15, 10, OW_LEFT | $1, $0, -1, -1, $0, 0, SailorScript_0x74e97, -1

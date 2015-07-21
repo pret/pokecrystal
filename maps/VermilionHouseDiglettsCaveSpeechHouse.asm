@@ -1,8 +1,8 @@
 VermilionHouseDiglettsCaveSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 GentlemanScript_0x192031:
@@ -21,17 +21,17 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 6, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	warp_def $7, $3, 6, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_GENTLEMAN, 7, 5, OW_UP | $0, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x192031, -1

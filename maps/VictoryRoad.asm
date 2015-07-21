@@ -1,12 +1,12 @@
 VictoryRoad_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x74490, $0000
 	dw UnknownScript_0x74491, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x74490:
@@ -238,7 +238,7 @@ VictoryRoad_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 10
 	warp_def $43, $9, 5, GROUP_VICTORY_ROAD_GATE, MAP_VICTORY_ROAD_GATE
 	warp_def $31, $1, 3, GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
@@ -251,17 +251,17 @@ VictoryRoad_MapEventHeader:
 	warp_def $1b, $0, 8, GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
 	warp_def $5, $d, 3, GROUP_ROUTE_23, MAP_ROUTE_23
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $8, $c, $0, UnknownScript_0x74492, $0, $0
 	xy_trigger 0, $8, $d, $0, UnknownScript_0x744b5, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 29, 3, SIGNPOST_ITEM, MapVictoryRoadSignpostItem0
 	signpost 65, 3, SIGNPOST_ITEM, MapVictoryRoadSignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_SILVER, 17, 22, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
 	person_event SPRITE_POKE_BALL, 32, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x74529, EVENT_VICTORY_ROAD_TM_EARTHQUAKE

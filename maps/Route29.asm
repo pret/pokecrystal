@@ -1,12 +1,12 @@
 Route29_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x1a0f59, $0000
 	dw UnknownScript_0x1a0f5a, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -414,21 +414,21 @@ Route29_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $1, $1b, 3, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $8, $35, $0, UnknownScript_0x1a0f6d, $0, $0
 	xy_trigger 1, $9, $35, $0, UnknownScript_0x1a0fa3, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 7, 51, SIGNPOST_READ, MapRoute29Signpost0Script
 	signpost 5, 3, SIGNPOST_READ, MapRoute29Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 8
 	person_event SPRITE_COOLTRAINER_M, 16, 54, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x1a0ff1, -1
 	person_event SPRITE_YOUNGSTER, 20, 31, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a1028, -1

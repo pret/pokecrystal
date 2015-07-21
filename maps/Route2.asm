@@ -1,8 +1,8 @@
 Route2_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBug_catcherRob:
@@ -140,7 +140,7 @@ Route2_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $f, $f, 1, GROUP_ROUTE_2_NUGGET_SPEECH_HOUSE, MAP_ROUTE_2_NUGGET_SPEECH_HOUSE
 	warp_def $1f, $f, 3, GROUP_ROUTE_2_GATE, MAP_ROUTE_2_GATE
@@ -148,10 +148,10 @@ Route2_MapEventHeader:
 	warp_def $1b, $11, 2, GROUP_ROUTE_2_GATE, MAP_ROUTE_2_GATE
 	warp_def $7, $c, 3, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 6
 	signpost 51, 7, SIGNPOST_READ, MapRoute2Signpost0Script
 	signpost 9, 11, SIGNPOST_READ, MapRoute2Signpost1Script
@@ -160,7 +160,7 @@ Route2_MapEventHeader:
 	signpost 27, 4, SIGNPOST_ITEM, MapRoute2SignpostItem4
 	signpost 30, 11, SIGNPOST_ITEM, MapRoute2SignpostItem5
 
-	; people-events
+.PersonEvents:
 	db 8
 	person_event SPRITE_BUG_CATCHER, 49, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 5, TrainerBug_catcherRob, -1
 	person_event SPRITE_BUG_CATCHER, 8, 10, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherEd, -1

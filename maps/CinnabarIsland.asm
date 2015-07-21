@@ -1,8 +1,8 @@
 CinnabarIsland_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -130,20 +130,20 @@ CinnabarIsland_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $b, $b, 1, GROUP_CINNABAR_POKECENTER_1F, MAP_CINNABAR_POKECENTER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 11, 12, SIGNPOST_READ, CinnabarIslandPokeCenterSign
 	signpost 11, 9, SIGNPOST_READ, CinnabarIslandGymSign
 	signpost 7, 7, SIGNPOST_READ, CinnabarIslandSign
 	signpost 1, 9, SIGNPOST_ITEM, MapCinnabarIslandSignpostItem3
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_BLUE, 10, 13, OW_DOWN | $3, $0, -1, -1, $0, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

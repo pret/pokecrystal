@@ -1,8 +1,8 @@
 KrissHouse2F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -116,21 +116,21 @@ KrissHouse2F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $0, $7, 3, GROUP_KRISS_HOUSE_1F, MAP_KRISS_HOUSE_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 1, 2, SIGNPOST_UP, KrissHousePC
 	signpost 1, 3, SIGNPOST_READ, KrissHouseRadio
 	signpost 1, 5, SIGNPOST_READ, KrissHouseBookshelf
 	signpost 0, 6, SIGNPOST_IFSET, KrissHousePoster
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_CONSOLE, 6, 8, OW_DOWN | $1, $0, -1, -1, $0, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
 	person_event SPRITE_DOLL_1, 8, 8, OW_DOWN | $1, $0, -1, -1, $0, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1

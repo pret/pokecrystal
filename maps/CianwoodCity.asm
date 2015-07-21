@@ -1,12 +1,12 @@
 CianwoodCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -374,7 +374,7 @@ CianwoodCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 7
 	warp_def $29, $11, 1, GROUP_MANIAS_HOUSE, MAP_MANIAS_HOUSE
 	warp_def $2b, $8, 1, GROUP_CIANWOOD_GYM, MAP_CIANWOOD_GYM
@@ -384,11 +384,11 @@ CianwoodCity_MapEventHeader:
 	warp_def $25, $f, 1, GROUP_CIANWOOD_LUGIA_SPEECH_HOUSE, MAP_CIANWOOD_LUGIA_SPEECH_HOUSE
 	warp_def $11, $5, 1, GROUP_POKE_SEERS_HOUSE, MAP_POKE_SEERS_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $10, $b, $0, UnknownScript_0x1a001e, $0, $0
 
-	; signposts
+.Signposts:
 	db 8
 	signpost 34, 20, SIGNPOST_READ, CianwoodCitySign
 	signpost 45, 7, SIGNPOST_READ, CianwoodGymSign
@@ -399,7 +399,7 @@ CianwoodCity_MapEventHeader:
 	signpost 19, 4, SIGNPOST_ITEM, MapCianwoodCitySignpostItem6
 	signpost 29, 5, SIGNPOST_ITEM, MapCianwoodCitySignpostItem7
 
-	; people-events
+.PersonEvents:
 	db 12
 	person_event SPRITE_STANDING_YOUNGSTER, 41, 25, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, StandingYoungsterScript_0x1a00b3, -1
 	person_event SPRITE_POKEFAN_M, 37, 21, OW_UP | $1, $1, -1, -1, $0, 0, PokefanMScript_0x1a00b6, -1

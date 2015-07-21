@@ -1,12 +1,12 @@
 Route36_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x19400d, $0000
 	dw UnknownScript_0x19400e, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -658,26 +658,26 @@ Route36_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $8, $12, 3, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $9, $12, 4, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $d, $2f, 1, GROUP_ROUTE_36_RUINS_OF_ALPH_GATE, MAP_ROUTE_36_RUINS_OF_ALPH_GATE
 	warp_def $d, $30, 2, GROUP_ROUTE_36_RUINS_OF_ALPH_GATE, MAP_ROUTE_36_RUINS_OF_ALPH_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $7, $14, $0, UnknownScript_0x19401b, $0, $0
 	xy_trigger 1, $7, $16, $0, UnknownScript_0x19401b, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 1, 29, SIGNPOST_READ, MapRoute36Signpost0Script
 	signpost 11, 45, SIGNPOST_READ, MapRoute36Signpost1Script
 	signpost 7, 55, SIGNPOST_READ, MapRoute36Signpost2Script
 	signpost 7, 21, SIGNPOST_READ, MapRoute36Signpost3Script
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_YOUNGSTER, 17, 24, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicMark, -1
 	person_event SPRITE_YOUNGSTER, 18, 35, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSchoolboyAlan1, -1

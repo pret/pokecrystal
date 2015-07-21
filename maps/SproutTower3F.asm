@@ -1,12 +1,12 @@
 SproutTower3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x184945, $0000
 	dw UnknownScript_0x184946, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x184945:
@@ -326,15 +326,15 @@ SproutTower3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $e, $a, 4, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $9, $b, $0, UnknownScript_0x184947, $0, $0
 
-	; signposts
+.Signposts:
 	db 6
 	signpost 1, 8, SIGNPOST_READ, MapSproutTower3FSignpost5Script
 	signpost 1, 11, SIGNPOST_READ, MapSproutTower3FSignpost5Script
@@ -343,7 +343,7 @@ SproutTower3F_MapEventHeader:
 	signpost 15, 5, SIGNPOST_READ, MapSproutTower3FSignpost5Script
 	signpost 15, 14, SIGNPOST_READ, MapSproutTower3FSignpost5Script
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_SAGE, 17, 12, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSageJin, -1
 	person_event SPRITE_SAGE, 12, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerSageTroy, -1

@@ -1,8 +1,8 @@
 GoldenrodBillsHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BillsHouseBill:
@@ -241,21 +241,21 @@ GoldenrodBillsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 4, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $3, 4, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 1, 0, SIGNPOST_READ, BillsHouseBookshelf2
 	signpost 1, 1, SIGNPOST_READ, BillsHouseBookshelf1
 	signpost 1, 7, SIGNPOST_READ, BillsHouseRadio
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_BILL, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, BillsHouseBill, EVENT_MET_BILL
 	person_event SPRITE_POKEFAN_F, 7, 9, OW_UP | $2, $0, -1, -1, $0, 0, BillsMom, -1

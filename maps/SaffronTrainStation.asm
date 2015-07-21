@@ -1,11 +1,11 @@
 SaffronTrainStation_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw UnknownScript_0x18a81d, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x18a81d:
@@ -215,21 +215,21 @@ SaffronTrainStation_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $11, $8, 6, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $11, $9, 6, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $5, $6, 4, GROUP_GOLDENROD_MAGNET_TRAIN_STATION, MAP_GOLDENROD_MAGNET_TRAIN_STATION
 	warp_def $5, $b, 3, GROUP_GOLDENROD_MAGNET_TRAIN_STATION, MAP_GOLDENROD_MAGNET_TRAIN_STATION
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 0, $6, $b, $0, UnknownScript_0x18a862, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_OFFICER, 13, 13, OW_UP | $2, $0, -1, -1, $0, 0, OfficerScript_0x18a81e, -1
 	person_event SPRITE_GYM_GUY, 18, 14, OW_DOWN | $2, $11, -1, -1, $0, 0, GymGuyScript_0x18a875, -1

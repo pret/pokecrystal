@@ -1,12 +1,12 @@
 DragonsDenB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x18c89d, $0000
 	dw UnknownScript_0x18c89e, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -401,23 +401,23 @@ DragonsDenB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $14, 3, GROUP_DRAGONS_DEN_1F, MAP_DRAGONS_DEN_1F
 	warp_def $1d, $13, 1, GROUP_DRAGON_SHRINE, MAP_DRAGON_SHRINE
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $1e, $13, $0, UnknownScript_0x18c8b8, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 24, 18, SIGNPOST_READ, MapDragonsDenB1FSignpost0Script
 	signpost 29, 33, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem1
 	signpost 17, 21, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem2
 	signpost 15, 31, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem3
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_POKE_BALL, 20, 39, OW_DOWN | $1, $0, -1, -1, $0, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
 	person_event SPRITE_CLAIR, 34, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR

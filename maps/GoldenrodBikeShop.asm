@@ -1,8 +1,8 @@
 GoldenrodBikeShop_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x5474f:
@@ -103,15 +103,15 @@ GoldenrodBikeShop_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $3, 2, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 9
 	signpost 2, 1, SIGNPOST_READ, MapGoldenrodBikeShopSignpost8Script
 	signpost 3, 0, SIGNPOST_READ, MapGoldenrodBikeShopSignpost8Script
@@ -123,6 +123,6 @@ GoldenrodBikeShop_MapEventHeader:
 	signpost 6, 6, SIGNPOST_READ, MapGoldenrodBikeShopSignpost8Script
 	signpost 6, 7, SIGNPOST_READ, MapGoldenrodBikeShopSignpost8Script
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_CLERK, 6, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ClerkScript_0x54750, -1

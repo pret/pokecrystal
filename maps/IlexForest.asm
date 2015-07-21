@@ -1,8 +1,8 @@
 IlexForest_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -931,16 +931,16 @@ IlexForest_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $5, $1, 3, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
 	warp_def $2a, $3, 1, GROUP_ILEX_FOREST_AZALEA_GATE, MAP_ILEX_FOREST_AZALEA_GATE
 	warp_def $2b, $3, 2, GROUP_ILEX_FOREST_AZALEA_GATE, MAP_ILEX_FOREST_AZALEA_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
 	signpost 17, 3, SIGNPOST_READ, MapIlexForestSignpost0Script
 	signpost 7, 11, SIGNPOST_ITEM, MapIlexForestSignpostItem1
@@ -948,7 +948,7 @@ IlexForest_MapEventHeader:
 	signpost 17, 1, SIGNPOST_ITEM, MapIlexForestSignpostItem3
 	signpost 22, 8, SIGNPOST_UP, MapIlexForestSignpost4Script
 
-	; people-events
+.PersonEvents:
 	db 11
 	person_event SPRITE_BIRD, 35, 18, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BirdScript_0x6eb8f, EVENT_ILEX_FOREST_FARFETCHD
 	person_event SPRITE_YOUNGSTER, 32, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6eb7b, EVENT_ILEX_FOREST_APPRENTICE

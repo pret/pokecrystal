@@ -1,8 +1,8 @@
 Route31_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -414,21 +414,21 @@ Route31_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $6, $4, 3, GROUP_ROUTE_31_VIOLET_GATE, MAP_ROUTE_31_VIOLET_GATE
 	warp_def $7, $4, 4, GROUP_ROUTE_31_VIOLET_GATE, MAP_ROUTE_31_VIOLET_GATE
 	warp_def $5, $22, 1, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 5, 7, SIGNPOST_READ, MapRoute31Signpost0Script
 	signpost 5, 31, SIGNPOST_READ, MapRoute31Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_FISHER, 11, 21, OW_UP | $2, $0, -1, -1, $0, 0, FisherScript_0x1a5570, -1
 	person_event SPRITE_YOUNGSTER, 9, 13, OW_DOWN | $2, $11, -1, -1, $0, 0, YoungsterScript_0x1a55ed, -1

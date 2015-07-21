@@ -1,8 +1,8 @@
 CeruleanTradeSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 GrannyScript_0x188133:
@@ -51,18 +51,18 @@ CeruleanTradeSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 	warp_def $7, $3, 3, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_GRANNY, 8, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrannyScript_0x188133, -1
 	person_event SPRITE_GRAMPS, 6, 5, OW_DOWN | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GrampsScript_0x188136, -1

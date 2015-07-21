@@ -1,11 +1,11 @@
 Route28FamousSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 1
 
 	; triggers
 	dw .Trigger, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 .Trigger
@@ -72,20 +72,20 @@ Route28FamousSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 1, GROUP_ROUTE_28, MAP_ROUTE_28
 	warp_def $7, $3, 1, GROUP_ROUTE_28, MAP_ROUTE_28
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 1, 0, SIGNPOST_READ, CelebrityHouseBookshelf
 	signpost 1, 1, SIGNPOST_READ, CelebrityHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_COOLTRAINER_F, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Celebrity, -1
 	person_event SPRITE_MOLTRES, 9, 10, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CelebritysFearow, -1

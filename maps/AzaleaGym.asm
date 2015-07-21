@@ -1,8 +1,8 @@
 AzaleaGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BugsyScript_0x18ec1e:
@@ -356,20 +356,20 @@ AzaleaGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $f, $4, 5, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 	warp_def $f, $5, 5, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 13, 3, SIGNPOST_READ, AzaleaGymStatue
 	signpost 13, 6, SIGNPOST_READ, AzaleaGymStatue
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_BUGSY, 11, 9, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BugsyScript_0x18ec1e, -1
 	person_event SPRITE_BUG_CATCHER, 7, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBug_catcherBug_catcher_benny, -1

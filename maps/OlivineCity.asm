@@ -1,12 +1,12 @@
 OlivineCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -289,7 +289,7 @@ OlivineCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 11
 	warp_def $15, $d, 1, GROUP_OLIVINE_POKECENTER_1F, MAP_OLIVINE_POKECENTER_1F
 	warp_def $b, $a, 1, GROUP_OLIVINE_GYM, MAP_OLIVINE_GYM
@@ -303,12 +303,12 @@ OlivineCity_MapEventHeader:
 	warp_def $1b, $13, 1, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
 	warp_def $1b, $14, 2, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $c, $d, $0, UnknownScript_0x1a8833, $0, $0
 	xy_trigger 0, $d, $d, $0, UnknownScript_0x1a886b, $0, $0
 
-	; signposts
+.Signposts:
 	db 7
 	signpost 11, 17, SIGNPOST_READ, OlivineCitySign
 	signpost 24, 20, SIGNPOST_READ, OlivineCityPortSign
@@ -318,7 +318,7 @@ OlivineCity_MapEventHeader:
 	signpost 21, 14, SIGNPOST_READ, OlivineCityPokeCenterSign
 	signpost 17, 20, SIGNPOST_READ, OlivineCityMartSign
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_SAILOR, 31, 30, OW_UP | $0, $10, -1, -1, $0, 0, SailorScript_0x1a88a3, -1
 	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, StandingYoungsterScript_0x1a88a6, -1

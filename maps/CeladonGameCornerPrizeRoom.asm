@@ -1,8 +1,8 @@
 CeladonGameCornerPrizeRoom_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 GentlemanScript_0x726e9:
@@ -269,20 +269,20 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $5, $2, 7, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $5, $3, 7, GROUP_CELADON_CITY, MAP_CELADON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 1, 2, SIGNPOST_READ, MapCeladonGameCornerPrizeRoomSignpost0Script
 	signpost 1, 4, SIGNPOST_READ, MapCeladonGameCornerPrizeRoomSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_GENTLEMAN, 6, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x726e9, -1
 	person_event SPRITE_PHARMACIST, 8, 8, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, PharmacistScript_0x726ec, -1

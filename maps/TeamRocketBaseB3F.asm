@@ -1,5 +1,5 @@
 TeamRocketBaseB3F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 4
 
 	; triggers
@@ -8,7 +8,7 @@ TeamRocketBaseB3F_MapScriptHeader:
 	dw .Trigger3, $0000
 	dw .Trigger4, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -559,20 +559,20 @@ TeamRocketBaseB3F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $2, $3, 2, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 	warp_def $2, $1b, 3, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 	warp_def $6, $3, 4, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 	warp_def $e, $1b, 5, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
 
-	; xy triggers
+.XYTriggers:
 	db 3
 	xy_trigger 2, $8, $a, $0, UnknownScript_0x6e04b, $0, $0
 	xy_trigger 2, $8, $b, $0, UnknownScript_0x6e052, $0, $0
 	xy_trigger 1, $a, $8, $0, UnknownScript_0x6e019, $0, $0
 
-	; signposts
+.Signposts:
 	db 10
 	signpost 9, 10, SIGNPOST_IFNOTSET, BossDoor
 	signpost 9, 11, SIGNPOST_IFNOTSET, BossDoor
@@ -585,7 +585,7 @@ TeamRocketBaseB3F_MapEventHeader:
 	signpost 13, 6, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
 	signpost 13, 7, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
 
-	; people-events
+.PersonEvents:
 	db 14
 	person_event SPRITE_LANCE, 18, 29, OW_UP | $2, $0, -1, -1, $0, 0, LanceScript_0x6dffc, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
 	person_event SPRITE_ROCKET, 7, 12, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE

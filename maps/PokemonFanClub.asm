@@ -1,8 +1,8 @@
 PokemonFanClub_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 GentlemanScript_0x1917e9:
@@ -292,20 +292,20 @@ PokemonFanClub_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	warp_def $7, $3, 3, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 7, SIGNPOST_READ, MapPokemonFanClubSignpost0Script
 	signpost 0, 9, SIGNPOST_READ, MapPokemonFanClubSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_GENTLEMAN, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, GentlemanScript_0x1917e9, -1
 	person_event SPRITE_RECEPTIONIST, 5, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x191821, -1

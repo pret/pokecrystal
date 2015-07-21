@@ -1,12 +1,12 @@
 MrPokemonsHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x196e51, $0000
 	dw UnknownScript_0x196e55, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x196e51:
@@ -374,15 +374,15 @@ MrPokemonsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_ROUTE_30, MAP_ROUTE_30
 	warp_def $7, $3, 2, GROUP_ROUTE_30, MAP_ROUTE_30
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
 	signpost 1, 0, SIGNPOST_READ, MapMrPokemonsHouseSignpost1Script
 	signpost 1, 1, SIGNPOST_READ, MapMrPokemonsHouseSignpost1Script
@@ -390,7 +390,7 @@ MrPokemonsHouse_MapEventHeader:
 	signpost 1, 7, SIGNPOST_READ, MapMrPokemonsHouseSignpost3Script
 	signpost 4, 6, SIGNPOST_READ, MapMrPokemonsHouseSignpost4Script
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_GENTLEMAN, 9, 7, OW_LEFT | $1, $0, -1, -1, $0, 0, GentlemanScript_0x196e97, -1
 	person_event SPRITE_OAK, 9, 10, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK

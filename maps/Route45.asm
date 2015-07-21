@@ -1,8 +1,8 @@
 Route45_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBlackbeltKenji:
@@ -521,19 +521,19 @@ Route45_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $5, $2, 1, GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 4, 10, SIGNPOST_READ, MapRoute45Signpost0Script
 	signpost 80, 13, SIGNPOST_ITEM, MapRoute45SignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 13
 	person_event SPRITE_POKEFAN_M, 20, 14, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerHikerErik, -1
 	person_event SPRITE_POKEFAN_M, 69, 19, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerMichael, -1

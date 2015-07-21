@@ -1,8 +1,8 @@
 Route12SuperRodHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 FishingGuruScript_0x7f484:
@@ -80,17 +80,17 @@ Route12SuperRodHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 1, GROUP_ROUTE_12, MAP_ROUTE_12
 	warp_def $7, $3, 1, GROUP_ROUTE_12, MAP_ROUTE_12
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FishingGuruScript_0x7f484, -1

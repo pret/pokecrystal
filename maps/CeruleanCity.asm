@@ -1,8 +1,8 @@
 CeruleanCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -273,7 +273,7 @@ CeruleanCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 6
 	warp_def $f, $7, 1, GROUP_CERULEAN_GYM_BADGE_SPEECH_HOUSE, MAP_CERULEAN_GYM_BADGE_SPEECH_HOUSE
 	warp_def $11, $1c, 1, GROUP_CERULEAN_POLICE_STATION, MAP_CERULEAN_POLICE_STATION
@@ -282,10 +282,10 @@ CeruleanCity_MapEventHeader:
 	warp_def $17, $1e, 1, GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM
 	warp_def $1d, $19, 2, GROUP_CERULEAN_MART, MAP_CERULEAN_MART
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 9
 	signpost 23, 23, SIGNPOST_READ, CeruleanCitySign
 	signpost 25, 27, SIGNPOST_READ, CeruleanGymSign
@@ -297,7 +297,7 @@ CeruleanCity_MapEventHeader:
 	signpost 29, 26, SIGNPOST_READ, CeruleanCityMartSign
 	signpost 12, 2, SIGNPOST_ITEM, MapCeruleanCitySignpostItem8
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_COOLTRAINER_M, 27, 19, OW_DOWN | $2, $22, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerMScript_0x184009, -1
 	person_event SPRITE_SUPER_NERD, 19, 27, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x18401d, -1

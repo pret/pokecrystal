@@ -1,8 +1,8 @@
 SaffronCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -261,7 +261,7 @@ SaffronCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 15
 	warp_def $3, $1a, 1, GROUP_FIGHTING_DOJO, MAP_FIGHTING_DOJO
 	warp_def $3, $22, 1, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
@@ -279,10 +279,10 @@ SaffronCity_MapEventHeader:
 	warp_def $16, $27, 1, GROUP_ROUTE_8_SAFFRON_GATE, MAP_ROUTE_8_SAFFRON_GATE
 	warp_def $17, $27, 2, GROUP_ROUTE_8_SAFFRON_GATE, MAP_ROUTE_8_SAFFRON_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 8
 	signpost 5, 21, SIGNPOST_READ, SaffronCitySign
 	signpost 5, 33, SIGNPOST_READ, SaffronGymSign
@@ -293,7 +293,7 @@ SaffronCity_MapEventHeader:
 	signpost 29, 10, SIGNPOST_READ, SaffronCityPokeCenterSign
 	signpost 11, 26, SIGNPOST_READ, SaffronCityMartSign
 
-	; people-events
+.PersonEvents:
 	db 8
 	person_event SPRITE_LASS, 18, 11, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x19932a, -1
 	person_event SPRITE_POKEFAN_M, 34, 23, OW_UP | $1, $2, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x19933e, -1

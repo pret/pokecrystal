@@ -1,8 +1,8 @@
 Route43_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -497,7 +497,7 @@ Route43_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $33, $9, 1, GROUP_ROUTE_43_MAHOGANY_GATE, MAP_ROUTE_43_MAHOGANY_GATE
 	warp_def $33, $a, 2, GROUP_ROUTE_43_MAHOGANY_GATE, MAP_ROUTE_43_MAHOGANY_GATE
@@ -505,16 +505,16 @@ Route43_MapEventHeader:
 	warp_def $1f, $11, 1, GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE
 	warp_def $1f, $12, 2, GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 3, 13, SIGNPOST_READ, MapRoute43Signpost0Script
 	signpost 49, 11, SIGNPOST_READ, MapRoute43Signpost1Script
 	signpost 38, 16, SIGNPOST_READ, MapRoute43Signpost2Script
 
-	; people-events
+.PersonEvents:
 	db 8
 	person_event SPRITE_SUPER_NERD, 9, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPokemaniacBen, -1
 	person_event SPRITE_SUPER_NERD, 24, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacBrent1, -1

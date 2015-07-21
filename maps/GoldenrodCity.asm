@@ -1,8 +1,8 @@
 GoldenrodCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -543,7 +543,7 @@ GoldenrodCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 15
 	warp_def $7, $18, 1, GROUP_GOLDENROD_GYM, MAP_GOLDENROD_GYM
 	warp_def $1d, $1d, 1, GROUP_GOLDENROD_BIKE_SHOP, MAP_GOLDENROD_BIKE_SHOP
@@ -561,10 +561,10 @@ GoldenrodCity_MapEventHeader:
 	warp_def $1d, $b, 5, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 	warp_def $1b, $f, 1, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 12
 	signpost 14, 10, SIGNPOST_READ, GoldenrodCityStationSign
 	signpost 17, 4, SIGNPOST_READ, GoldenrodCityRadioTowerSign
@@ -579,7 +579,7 @@ GoldenrodCity_MapEventHeader:
 	signpost 27, 16, SIGNPOST_UP, GoldenrodCityPokeCenterSign
 	signpost 6, 30, SIGNPOST_READ, GoldenrodCityFlowerShopSign
 
-	; people-events
+.PersonEvents:
 	db 15
 	person_event SPRITE_POKEFAN_M, 22, 11, OW_UP | $3, $0, -1, -1, $0, 0, PokefanMScript_0x1989e3, EVENT_GOLDENROD_CITY_CIVILIANS
 	person_event SPRITE_YOUNGSTER, 21, 34, OW_DOWN | $2, $11, -1, -1, $0, 0, YoungsterScript_0x1989e6, EVENT_GOLDENROD_CITY_CIVILIANS

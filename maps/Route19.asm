@@ -1,8 +1,8 @@
 Route19_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -233,19 +233,19 @@ Route19_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $3, $7, 3, GROUP_ROUTE_19___FUCHSIA_GATE, MAP_ROUTE_19___FUCHSIA_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 13, 11, SIGNPOST_READ, MapRoute19Signpost0Script
 	signpost 1, 11, SIGNPOST_READ, MapRoute19Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_SWIMMER_GIRL, 27, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerSwimmerfDawn, -1
 	person_event SPRITE_SWIMMER_GUY, 32, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermHarold, -1

@@ -1,12 +1,12 @@
 EcruteakPokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x98e5f, $0000
 	dw UnknownScript_0x98e63, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x98e5f:
@@ -205,19 +205,19 @@ EcruteakPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $3, 6, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $7, $4, 6, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x98eb0, -1
 	person_event SPRITE_POKEFAN_M, 10, 11, OW_LEFT | $2, $0, -1, -1, $0, 0, PokefanMScript_0x98eb3, -1

@@ -1,8 +1,8 @@
 NationalPark_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 LassScript_0x5c002:
@@ -502,24 +502,24 @@ NationalPark_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $12, $21, 1, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $13, $21, 2, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $2f, $a, 1, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
 	warp_def $2f, $b, 2, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 44, 14, SIGNPOST_READ, MapNationalParkSignpost0Script
 	signpost 31, 27, SIGNPOST_READ, MapNationalParkSignpost1Script
 	signpost 47, 6, SIGNPOST_ITEM, MapNationalParkSignpostItem2
 	signpost 4, 12, SIGNPOST_READ, MapNationalParkSignpost3Script
 
-	; people-events
+.PersonEvents:
 	db 14
 	person_event SPRITE_LASS, 28, 19, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x5c002, -1
 	person_event SPRITE_POKEFAN_F, 8, 18, OW_UP | $2, $0, -1, -1, $0, 0, PokefanFScript_0x5c005, -1

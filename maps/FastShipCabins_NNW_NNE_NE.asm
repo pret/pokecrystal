@@ -1,8 +1,8 @@
 FastShipCabins_NNW_NNE_NE_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerCooltrainermSean:
@@ -261,22 +261,22 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $0, $2, 2, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $c, $2, 3, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $18, $2, 4, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 13, 6, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
 	signpost 19, 7, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
 	signpost 31, 7, SIGNPOST_READ, FastShipCabins_NNW_NNE_NETrashcan
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_COOLTRAINER_M, 7, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermSean, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	person_event SPRITE_COOLTRAINER_F, 9, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCarol, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND

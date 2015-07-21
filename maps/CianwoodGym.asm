@@ -1,8 +1,8 @@
 CianwoodGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ChuckScript_0x9d60f:
@@ -298,20 +298,20 @@ CianwoodGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 2, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 	warp_def $11, $5, 2, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 15, 3, SIGNPOST_READ, CianwoodGymStatue
 	signpost 15, 6, SIGNPOST_READ, CianwoodGymStatue
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_CHUCK, 5, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ChuckScript_0x9d60f, -1
 	person_event SPRITE_BLACK_BELT, 16, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBlackbeltYoshi, -1

@@ -1,12 +1,12 @@
 EcruteakGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x99d53, $0000
 	dw UnknownScript_0x99d57, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x99d53:
@@ -383,7 +383,7 @@ EcruteakGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 33
 	warp_def $11, $4, 10, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $11, $5, 10, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
@@ -419,15 +419,15 @@ EcruteakGym_MapEventHeader:
 	warp_def $c, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
 	warp_def $d, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 15, 3, SIGNPOST_READ, EcruteakGymStatue
 	signpost 15, 6, SIGNPOST_READ, EcruteakGymStatue
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_MORTY, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MortyScript_0x99d58, -1
 	person_event SPRITE_SAGE, 11, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSageJeffrey, -1

@@ -1,8 +1,8 @@
 Route38_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerBird_keeperToby:
@@ -467,20 +467,20 @@ Route38_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $8, $23, 1, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
 	warp_def $9, $23, 2, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 7, 33, SIGNPOST_READ, MapRoute38Signpost0Script
 	signpost 13, 5, SIGNPOST_READ, MapRoute38Signpost1Script
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_STANDING_YOUNGSTER, 5, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSchoolboyChad1, -1
 	person_event SPRITE_LASS, 7, 19, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerLassDana1, -1

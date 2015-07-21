@@ -1,12 +1,12 @@
 Route27_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x1a0871, $0000
 	dw UnknownScript_0x1a0872, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x1a0871:
@@ -462,22 +462,22 @@ Route27_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $7, $21, 1, GROUP_ROUTE_27_SANDSTORM_HOUSE, MAP_ROUTE_27_SANDSTORM_HOUSE
 	warp_def $5, $1a, 1, GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
 	warp_def $5, $24, 2, GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $a, $12, $0, UnknownScript_0x1a0873, $0, $0
 	xy_trigger 0, $a, $13, $0, UnknownScript_0x1a0881, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 7, 25, SIGNPOST_READ, MapRoute27Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 9
 	person_event SPRITE_COOLTRAINER_M, 11, 52, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermBlake, -1
 	person_event SPRITE_COOLTRAINER_M, 10, 62, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainermBrian, -1

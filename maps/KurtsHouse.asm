@@ -1,8 +1,8 @@
 KurtsHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -676,15 +676,15 @@ KurtsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $3, 4, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 	warp_def $7, $4, 4, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 7
 	signpost 1, 6, SIGNPOST_READ, KurtsHouseRadio
 	signpost 0, 8, SIGNPOST_READ, KurtsHouseOakPhoto
@@ -694,7 +694,7 @@ KurtsHouse_MapEventHeader:
 	signpost 1, 3, SIGNPOST_READ, KurtsHouseBookshelf
 	signpost 1, 4, SIGNPOST_READ, KurtsHouseCelebiStatue
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_KURT, 6, 7, OW_UP | $2, $0, -1, -1, $0, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
 	person_event SPRITE_TWIN, 7, 9, OW_DOWN | $3, $0, -1, -1, $0, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1

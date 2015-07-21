@@ -1,8 +1,8 @@
 CeladonDeptStore4F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ClerkScript_0x70f0d:
@@ -49,21 +49,21 @@ CeladonDeptStore4F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 3
 	warp_def $0, $c, 1, GROUP_CELADON_DEPT_STORE_5F, MAP_CELADON_DEPT_STORE_5F
 	warp_def $0, $f, 2, GROUP_CELADON_DEPT_STORE_3F, MAP_CELADON_DEPT_STORE_3F
 	warp_def $0, $2, 1, GROUP_CELADON_DEPT_STORE_ELEVATOR, MAP_CELADON_DEPT_STORE_ELEVATOR
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore4FDirectory
 	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore4FElevatorButton
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_CLERK, 9, 17, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x70f0d, -1
 	person_event SPRITE_SUPER_NERD, 10, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x70f15, -1

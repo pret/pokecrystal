@@ -1,8 +1,8 @@
 MrPsychicsHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 MrPsychic:
@@ -48,19 +48,19 @@ MrPsychicsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 5, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $3, 5, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 1, 0, SIGNPOST_READ, MrPsychicsHouseBookshelf
 	signpost 1, 1, SIGNPOST_READ, MrPsychicsHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_FISHING_GURU, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, MrPsychic, -1

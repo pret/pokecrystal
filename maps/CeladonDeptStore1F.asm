@@ -1,8 +1,8 @@
 CeladonDeptStore1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ReceptionistScript_0x709e0:
@@ -72,22 +72,22 @@ CeladonDeptStore1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $7, $7, 1, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $7, $8, 1, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $0, $f, 2, GROUP_CELADON_DEPT_STORE_2F, MAP_CELADON_DEPT_STORE_2F
 	warp_def $0, $2, 1, GROUP_CELADON_DEPT_STORE_ELEVATOR, MAP_CELADON_DEPT_STORE_ELEVATOR
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore1FDirectory
 	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore1FElevatorButton
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_RECEPTIONIST, 5, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x709e0, -1
 	person_event SPRITE_GENTLEMAN, 8, 15, OW_DOWN | $2, $11, -1, -1, $0, 0, GentlemanScript_0x709e3, -1

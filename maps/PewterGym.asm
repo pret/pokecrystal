@@ -1,8 +1,8 @@
 PewterGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 BrockScript_0x1a2864:
@@ -207,20 +207,20 @@ PewterGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $d, $4, 2, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 	warp_def $d, $5, 2, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 11, 2, SIGNPOST_READ, PewterGymStatue
 	signpost 11, 7, SIGNPOST_READ, PewterGymStatue
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_BROCK, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrockScript_0x1a2864, -1
 	person_event SPRITE_YOUNGSTER, 9, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperJerry, -1

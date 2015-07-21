@@ -1,12 +1,12 @@
 HallOfFame_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 .Trigger1:
@@ -113,17 +113,17 @@ HallOfFame_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $d, $4, 3, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
 	warp_def $d, $5, 4, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_LANCE, 16, 8, OW_UP | $3, $0, -1, -1, PAL_OW_RED << 4 | $0, 0, ObjectEvent, -1

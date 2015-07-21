@@ -1,8 +1,8 @@
 GoldenrodPokeComCenter2FMobile_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ScientistScript_0x625d1:
@@ -267,21 +267,21 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $1f, $0, 3, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
 	warp_def $1f, $1, 3, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 26, 6, SIGNPOST_UP, MapGoldenrodPokeComCenter2FMobileSignpost0Script
 	signpost 28, 6, SIGNPOST_UP, MapGoldenrodPokeComCenter2FMobileSignpost1Script
 	signpost 26, 3, SIGNPOST_UP, MapGoldenrodPokeComCenter2FMobileSignpost2Script
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_SCIENTIST, 32, 8, OW_UP | $0, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, ScientistScript_0x625d1, -1
 	person_event SPRITE_SCIENTIST, 31, 11, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x625d4, -1

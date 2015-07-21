@@ -1,8 +1,8 @@
 CherrygroveGymSpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PokefanMScript_0x196ae1:
@@ -44,20 +44,20 @@ CherrygroveGymSpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 3, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	warp_def $7, $3, 3, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 1, 0, SIGNPOST_READ, CherrygroveGymSpeechHouseBookshelf
 	signpost 1, 1, SIGNPOST_READ, CherrygroveGymSpeechHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 2
 	person_event SPRITE_POKEFAN_M, 7, 6, OW_UP | $2, $0, -1, -1, $0, 0, PokefanMScript_0x196ae1, -1
 	person_event SPRITE_BUG_CATCHER, 9, 9, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x196ae4, -1

@@ -1,8 +1,8 @@
 CeladonGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ErikaScript_0x72a6a:
@@ -263,20 +263,20 @@ CeladonGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 8, GROUP_CELADON_CITY, MAP_CELADON_CITY
 	warp_def $11, $5, 8, GROUP_CELADON_CITY, MAP_CELADON_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 15, 3, SIGNPOST_READ, CeladonGymStatue
 	signpost 15, 6, SIGNPOST_READ, CeladonGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_ERIKA, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ErikaScript_0x72a6a, -1
 	person_event SPRITE_LASS, 12, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerLassMichelle, -1

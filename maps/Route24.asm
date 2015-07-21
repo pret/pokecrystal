@@ -1,8 +1,8 @@
 Route24_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 RocketScript_0x1adbfa:
@@ -119,15 +119,15 @@ Route24_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_ROCKET, 11, 12, OW_DOWN | $3, $0, -1, -1, $0, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET

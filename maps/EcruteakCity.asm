@@ -1,8 +1,8 @@
 EcruteakCity_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -256,7 +256,7 @@ EcruteakCity_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 15
 	warp_def $1a, $23, 1, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
 	warp_def $1b, $23, 2, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
@@ -274,10 +274,10 @@ EcruteakCity_MapEventHeader:
 	warp_def $12, $0, 3, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
 	warp_def $13, $0, 4, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 8
 	signpost 21, 15, SIGNPOST_READ, EcruteakCitySign
 	signpost 10, 38, SIGNPOST_READ, TinTowerSign
@@ -288,7 +288,7 @@ EcruteakCity_MapEventHeader:
 	signpost 21, 30, SIGNPOST_READ, EcruteakCityMartSign
 	signpost 14, 23, SIGNPOST_ITEM, MapEcruteakCitySignpostItem7
 
-	; people-events
+.PersonEvents:
 	db 7
 	person_event SPRITE_GRAMPS, 19, 22, OW_DOWN | $2, $11, -1, -1, $0, 0, GrampsScript_0x1a4009, -1
 	person_event SPRITE_GRAMPS, 25, 24, OW_DOWN | $3, $0, -1, -1, $0, 0, GrampsScript_0x1a400c, -1

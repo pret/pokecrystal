@@ -1,5 +1,5 @@
 BurnedTower1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 3
 
 	; triggers
@@ -7,7 +7,7 @@ BurnedTower1F_MapScriptHeader:
 	dw UnknownScript_0x185bf6, $0000
 	dw UnknownScript_0x185bf7, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -281,7 +281,7 @@ BurnedTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 14
 	warp_def $f, $9, 13, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	warp_def $f, $a, 13, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
@@ -298,16 +298,16 @@ BurnedTower1F_MapEventHeader:
 	warp_def $e, $f, 5, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
 	warp_def $f, $7, 6, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
 
-	; xy triggers
+.XYTriggers:
 	db 1
 	xy_trigger 1, $9, $b, $0, UnknownScript_0x185c25, $0, $0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 7, 8, SIGNPOST_ITEM, MapBurnedTower1FSignpostItem0
 	signpost 11, 13, SIGNPOST_ITEM, MapBurnedTower1FSignpostItem1
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_ROCK, 8, 19, OW_LEFT | $10, $0, -1, -1, $0, 0, BurnedTower1FRock, -1
 	person_event SPRITE_SUPER_NERD, 16, 16, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE

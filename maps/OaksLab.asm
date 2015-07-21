@@ -1,8 +1,8 @@
 OaksLab_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x19b3c7:
@@ -254,15 +254,15 @@ OaksLab_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $4, 3, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 	warp_def $b, $5, 3, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 16
 	signpost 1, 6, SIGNPOST_READ, OaksLabBookshelf
 	signpost 1, 7, SIGNPOST_READ, OaksLabBookshelf
@@ -281,7 +281,7 @@ OaksLab_MapEventHeader:
 	signpost 3, 9, SIGNPOST_READ, OaksLabTrashcan
 	signpost 1, 0, SIGNPOST_READ, OaksLabPC
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_OAK, 6, 8, OW_UP | $2, $0, -1, -1, $0, 0, Oak, -1
 	person_event SPRITE_SCIENTIST, 12, 5, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b40f, -1

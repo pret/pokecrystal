@@ -1,12 +1,12 @@
 FastShipB1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x7673a, $0000
 	dw UnknownScript_0x7673b, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x7673a:
@@ -440,21 +440,21 @@ FastShipB1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $b, $5, 11, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 	warp_def $d, $1f, 12, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $7, $1e, $0, UnknownScript_0x7673c, $0, $0
 	xy_trigger 0, $7, $1f, $0, UnknownScript_0x76751, $0, $0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 9, 27, SIGNPOST_READ, FashShipB1FTrashcan
 
-	; people-events
+.PersonEvents:
 	db 12
 	person_event SPRITE_SAILOR, 10, 34, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	person_event SPRITE_SAILOR, 10, 35, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT

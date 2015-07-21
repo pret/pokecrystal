@@ -1,8 +1,8 @@
 Route39Barn_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TwinScript_0x9cc76:
@@ -187,18 +187,18 @@ Route39Barn_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $3, 1, GROUP_ROUTE_39, MAP_ROUTE_39
 	warp_def $7, $4, 1, GROUP_ROUTE_39, MAP_ROUTE_39
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_TWIN, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, TwinScript_0x9cc76, -1
 	person_event SPRITE_TWIN, 7, 8, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x9cc90, -1

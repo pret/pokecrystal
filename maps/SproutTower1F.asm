@@ -1,8 +1,8 @@
 SproutTower1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 SageScript_0x1844fe:
@@ -98,7 +98,7 @@ SproutTower1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $f, $9, 7, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	warp_def $f, $a, 7, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
@@ -106,15 +106,15 @@ SproutTower1F_MapEventHeader:
 	warp_def $6, $2, 2, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
 	warp_def $3, $11, 3, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 15, 7, SIGNPOST_READ, MapSproutTower1FSignpost1Script
 	signpost 15, 12, SIGNPOST_READ, MapSproutTower1FSignpost1Script
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_SAGE, 8, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SageScript_0x1844fe, -1
 	person_event SPRITE_SAGE, 11, 10, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SageScript_0x184501, -1

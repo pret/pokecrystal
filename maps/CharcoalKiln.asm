@@ -1,8 +1,8 @@
 CharcoalKiln_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 CharcoalKilnBoss:
@@ -147,21 +147,21 @@ CharcoalKiln_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 2, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 	warp_def $7, $3, 2, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 1, 0, SIGNPOST_READ, CharcoalKilnBookshelf
 	signpost 1, 1, SIGNPOST_READ, CharcoalKilnBookshelf
 	signpost 1, 7, SIGNPOST_READ, CharcoalKilnRadio
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_BLACK_BELT, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, CharcoalKilnBoss, EVENT_CHARCOAL_KILN_BOSS
 	person_event SPRITE_YOUNGSTER, 7, 9, OW_DOWN | $2, $11, -1, -1, $0, 0, CharcoalKilnApprentice, EVENT_CHARCOAL_KILN_APPRENTICE

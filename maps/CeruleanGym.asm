@@ -1,12 +1,12 @@
 CeruleanGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw UnknownScript_0x1883d9, $0000
 	dw UnknownScript_0x1883da, $0000
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 UnknownScript_0x1883d9:
@@ -361,21 +361,21 @@ CeruleanGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $f, $4, 5, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 	warp_def $f, $5, 5, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 3
 	signpost 8, 3, SIGNPOST_ITEM, MapCeruleanGymSignpostItem0
 	signpost 13, 2, SIGNPOST_READ, CeruleanGymStatue1
 	signpost 13, 6, SIGNPOST_READ, CeruleanGymStatue2
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_ROCKET, 14, 8, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
 	person_event SPRITE_MISTY, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM

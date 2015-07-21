@@ -1,8 +1,8 @@
 GoldenrodDeptStore1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 ReceptionistScript_0x55981:
@@ -76,22 +76,22 @@ GoldenrodDeptStore1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $7, $7, 9, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $8, 9, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $0, $f, 2, GROUP_GOLDENROD_DEPT_STORE_2F, MAP_GOLDENROD_DEPT_STORE_2F
 	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore1FDirectory
 	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore1FElevatorButton
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_RECEPTIONIST, 5, 14, OW_UP | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x55981, -1
 	person_event SPRITE_POKEFAN_F, 8, 9, OW_UP | $2, $0, -1, -1, $0, 0, PokefanFScript_0x55987, -1

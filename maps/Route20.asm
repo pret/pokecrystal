@@ -1,8 +1,8 @@
 Route20_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -114,18 +114,18 @@ Route20_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 1
 	warp_def $7, $26, 1, GROUP_SEAFOAM_GYM, MAP_SEAFOAM_GYM
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 1
 	signpost 11, 37, SIGNPOST_READ, MapRoute20Signpost0Script
 
-	; people-events
+.PersonEvents:
 	db 3
 	person_event SPRITE_SWIMMER_GIRL, 12, 56, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfNicole, -1
 	person_event SPRITE_SWIMMER_GIRL, 17, 49, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfLori, -1

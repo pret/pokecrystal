@@ -1,8 +1,8 @@
 FuchsiaGym_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 JanineScript_0x195db9:
@@ -376,20 +376,20 @@ FuchsiaGym_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $11, $4, 3, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	warp_def $11, $5, 3, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 15, 3, SIGNPOST_READ, FuchsiaGymStatue
 	signpost 15, 6, SIGNPOST_READ, FuchsiaGymStatue
 
-	; people-events
+.PersonEvents:
 	db 6
 	person_event SPRITE_JANINE, 14, 5, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, JanineScript_0x195db9, -1
 	person_event SPRITE_FUCHSIA_GYM_1, 11, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FuschiaGym1Script_0x195e1b, -1

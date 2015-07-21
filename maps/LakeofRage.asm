@@ -1,12 +1,12 @@
 LakeofRage_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 2
 
 	; callbacks
@@ -491,15 +491,15 @@ LakeofRage_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $3, $7, 1, GROUP_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE, MAP_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE
 	warp_def $1f, $1b, 1, GROUP_LAKE_OF_RAGE_MAGIKARP_HOUSE, MAP_LAKE_OF_RAGE_MAGIKARP_HOUSE
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 5
 	signpost 27, 21, SIGNPOST_READ, MapLakeofRageSignpost0Script
 	signpost 31, 25, SIGNPOST_READ, MapLakeofRageSignpost1Script
@@ -507,7 +507,7 @@ LakeofRage_MapEventHeader:
 	signpost 4, 4, SIGNPOST_ITEM, MapLakeofRageSignpostItem3
 	signpost 5, 35, SIGNPOST_ITEM, MapLakeofRageSignpostItem4
 
-	; people-events
+.PersonEvents:
 	db 12
 	person_event SPRITE_LANCE, 32, 25, OW_UP | $3, $0, -1, -1, $0, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
 	person_event SPRITE_GRAMPS, 30, 24, OW_UP | $3, $0, -1, -1, $0, 0, GrampsScript_0x7008e, -1

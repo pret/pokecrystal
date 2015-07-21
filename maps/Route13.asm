@@ -1,8 +1,8 @@
 Route13_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 TrainerPokefanmAlex:
@@ -189,20 +189,20 @@ Route13_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 0
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 13, 29, SIGNPOST_READ, MapRoute13Signpost0Script
 	signpost 11, 41, SIGNPOST_READ, MapRoute13Signpost1Script
 	signpost 13, 17, SIGNPOST_READ, MapRoute13Signpost2Script
 	signpost 13, 30, SIGNPOST_ITEM, MapRoute13SignpostItem3
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_YOUNGSTER, 10, 46, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperPerry, -1
 	person_event SPRITE_YOUNGSTER, 10, 47, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerBird_keeperBret, -1

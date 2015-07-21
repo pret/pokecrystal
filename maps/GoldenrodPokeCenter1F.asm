@@ -1,8 +1,8 @@
 GoldenrodPokeCenter1F_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 NurseScript_0x60f91:
@@ -801,22 +801,22 @@ GoldenrodPokeCenter1F_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 4
 	warp_def $7, $3, 15, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $7, $4, 15, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
 	warp_def $6, $0, 1, GROUP_GOLDENROD_POKECOM_CENTER_2F_MOBILE, MAP_GOLDENROD_POKECOM_CENTER_2F_MOBILE
 	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $7, $3, $0, UnknownScript_0x60f94, $0, $0
 	xy_trigger 0, $7, $4, $0, UnknownScript_0x60fd9, $0, $0
 
-	; signposts
+.Signposts:
 	db 0
 
-	; people-events
+.PersonEvents:
 	db 5
 	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x60f91, -1
 	person_event SPRITE_LINK_RECEPTIONIST, 12, 20, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, -1

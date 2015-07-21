@@ -1,8 +1,8 @@
 Route30BerrySpeechHouse_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 0
 
-	; callback count
+.MapCallbacks:
 	db 0
 
 PokefanMScript_0x196d64:
@@ -47,19 +47,19 @@ Route30BerrySpeechHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 2
 	warp_def $7, $2, 1, GROUP_ROUTE_30, MAP_ROUTE_30
 	warp_def $7, $3, 1, GROUP_ROUTE_30, MAP_ROUTE_30
 
-	; xy triggers
+.XYTriggers:
 	db 0
 
-	; signposts
+.Signposts:
 	db 2
 	signpost 1, 0, SIGNPOST_READ, Route30BerrySpeechHouseBookshelf
 	signpost 1, 1, SIGNPOST_READ, Route30BerrySpeechHouseBookshelf
 
-	; people-events
+.PersonEvents:
 	db 1
 	person_event SPRITE_POKEFAN_M, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x196d64, -1

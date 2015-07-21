@@ -1,12 +1,12 @@
 MahoganyTown_MapScriptHeader:
-	; trigger count
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 
-	; callback count
+.MapCallbacks:
 	db 1
 
 	; callbacks
@@ -246,7 +246,7 @@ MahoganyTown_MapEventHeader:
 	; filler
 	db 0, 0
 
-	; warps
+.Warps:
 	db 5
 	warp_def $7, $b, 1, GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F
 	warp_def $7, $11, 1, GROUP_MAHOGANY_RED_GYARADOS_SPEECH_HOUSE, MAP_MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
@@ -254,19 +254,19 @@ MahoganyTown_MapEventHeader:
 	warp_def $d, $f, 1, GROUP_MAHOGANY_POKECENTER_1F, MAP_MAHOGANY_POKECENTER_1F
 	warp_def $1, $9, 3, GROUP_ROUTE_43_MAHOGANY_GATE, MAP_ROUTE_43_MAHOGANY_GATE
 
-	; xy triggers
+.XYTriggers:
 	db 2
 	xy_trigger 0, $8, $13, $0, UnknownScript_0x190013, $0, $0
 	xy_trigger 0, $9, $13, $0, UnknownScript_0x190013, $0, $0
 
-	; signposts
+.Signposts:
 	db 4
 	signpost 5, 1, SIGNPOST_READ, MahoganyTownSign
 	signpost 7, 9, SIGNPOST_READ, MahoganyTownRagecandybarSign
 	signpost 13, 3, SIGNPOST_READ, MahoganyGymSign
 	signpost 13, 16, SIGNPOST_READ, MahoganyTownPokeCenterSign
 
-	; people-events
+.PersonEvents:
 	db 4
 	person_event SPRITE_POKEFAN_M, 12, 23, OW_UP | $2, $0, -1, -1, $0, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
 	person_event SPRITE_GRAMPS, 13, 10, OW_UP | $1, $1, -1, -1, $0, 0, GrampsScript_0x19007e, -1
