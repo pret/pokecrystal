@@ -323,7 +323,7 @@ Special_ReloadSpritesNoPalettes:: ; d91
 ; db1
 
 
-Functiondb1:: ; db1
+FarCallFunction4c000:: ; db1
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function4c000)
@@ -334,7 +334,7 @@ Functiondb1:: ; db1
 	ret
 ; dbd
 
-Functiondbd:: ; dbd
+FarCallFunction4c03f:: ; dbd
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function4c03f)

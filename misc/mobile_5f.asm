@@ -14,8 +14,8 @@ Function17c000: ; 17c000
 	call Functione5f
 
 	ld hl, HaveWantMap
-	ld de, TileMap
-	ld bc, AttrMap
+	decoord 0, 0
+	bccoord 0, 0, AttrMap
 
 	ld a, SCREEN_HEIGHT
 .y
@@ -746,8 +746,8 @@ Function17d48d: ; 17d48d
 	ld bc, $0040
 	call CopyBytes
 	ld hl, TileAttrmap_17eb8e
-	ld de, TileMap
-	ld bc, AttrMap
+	decoord 0, 0
+	bccoord 0, 0, AttrMap
 	ld a, $12
 .asm_17d4a4
 	push af
@@ -862,7 +862,7 @@ Function17d48d: ; 17d48d
 	ld b, a
 	push hl
 	pop de
-	ld hl, TileMap
+	hlcoord 0, 0
 	add hl, bc
 	call PlaceString
 	push de
@@ -1310,7 +1310,7 @@ Function17d818: ; 17d818
 	call Function17e447
 	ld e, l
 	ld d, h
-	ld hl, TileMap
+	hlcoord 0, 0
 	add hl, bc
 	call PlaceString
 	ret
@@ -1335,7 +1335,7 @@ Function17d833: ; 17d833
 	call Function17e43d
 	ld c, l
 	ld b, h
-	ld hl, TileMap
+	hlcoord 0, 0
 	add hl, de
 	ld e, l
 	ld d, h
@@ -1505,7 +1505,7 @@ Function17d93a: ; 17d93a
 	ld h, a
 	ld a, [wc70b]
 	ld c, a
-	ld de, TileMap
+	decoord 0, 0
 	add hl, de
 	ld e, l
 	ld d, h
@@ -1543,7 +1543,7 @@ Function17d98b: ; 17d98b
 	ld de, VTiles2
 	callba GetTrainerPic
 	pop hl
-	ld de, TileMap
+	decoord 0, 0
 	add hl, de
 	ld bc, $0707
 	predef FillBox
@@ -2051,12 +2051,12 @@ Function17dd13: ; 17dd13
 	call Function17e41e
 	call Function17e447
 	push hl
-	ld hl, TileMap
+	hlcoord 0, 0
 	add hl, bc
 	push hl
 	pop bc
 	pop hl
-	call Function13e5
+	call PlaceWholeStringInBoxAtOnce
 	ret
 ; 17dd30
 
@@ -2073,7 +2073,7 @@ Function17dd30: ; 17dd30
 	push af
 	call Function17e41e
 	pop af
-	ld hl, TileMap
+	hlcoord 0, 0
 	add hl, de
 	call Function17e600
 	ret
@@ -3230,7 +3230,7 @@ rept 2
 	add hl, bc
 endr
 	push hl
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $0014
 	ld a, [wcd23]
 	call AddNTimes
@@ -3308,7 +3308,7 @@ Function17e4dd: ; 17e4dd
 	and $1
 	ret z
 	ld a, [wcd29]
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $0014
 	call AddNTimes
 	ld a, [wcd28]
@@ -3345,7 +3345,7 @@ Function17e51b: ; 17e51b
 	sub [hl]
 	inc a
 	ld [wcd4f], a
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $0014
 	ld a, [wcd23]
 	dec a
@@ -3395,7 +3395,7 @@ Function17e566: ; 17e566
 
 Function17e571: ; 17e571
 	push af
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $0014
 	ld a, [wcd23]
 	call AddNTimes
@@ -3437,7 +3437,7 @@ Function17e5af: ; 17e5af
 	ld l, a
 	ld a, [wcd44]
 	ld h, a
-	ld bc, TileMap
+	bccoord 0, 0
 	add hl, bc
 	ld bc, $ffec
 	add hl, bc
@@ -3471,7 +3471,7 @@ endr
 	ld l, a
 	ld a, [wcd44]
 	ld h, a
-	ld bc, TileMap
+	bccoord 0, 0
 	add hl, bc
 	call PlaceString
 	ret
@@ -3496,7 +3496,7 @@ Function17e600: ; 17e600
 
 Function17e613: ; 17e613
 	push hl
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $0014
 	ld a, [de]
 	inc de
@@ -3633,7 +3633,7 @@ endr
 	push af
 	push hl
 	push hl
-	ld bc, TileMap
+	bccoord 0, 0
 	add hl, bc
 	ld a, [hl]
 	cp $7f
@@ -3648,7 +3648,7 @@ endr
 
 .asm_17e6c7
 	pop hl
-	ld bc, AttrMap
+	bccoord 0, 0, AttrMap
 	add hl, bc
 	ld [hl], a
 	pop hl
@@ -3672,7 +3672,7 @@ Function17e6de: ; 17e6de
 	ld l, a
 	ld a, [wc709]
 	ld h, a
-	ld de, AttrMap
+	decoord 0, 0, AttrMap
 	add hl, de
 	pop af
 	ld b, $7
@@ -4456,7 +4456,7 @@ Function17f41d: ; 17f41d
 	jr .asm_17f42c
 
 .asm_17f439
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld de, SCREEN_WIDTH
 	ld a, c
 .asm_17f440
@@ -4769,12 +4769,12 @@ Function17f5e4: ; 17f5e4
 	ld a, d
 	ld [MusicFadeIDHi], a
 	ld a, " "
-	ld hl, TileMap
-	ld bc, $0168
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ld a, $6
-	ld hl, AttrMap
-	ld bc, $0168
+	hlcoord 0, 0, AttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	hlcoord 2, 1
 	ld b, $1

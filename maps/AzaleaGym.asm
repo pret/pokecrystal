@@ -27,7 +27,7 @@ BugsyScript_0x18ec1e:
 	scall AzaleaGymTriggerRockets
 .FightDone
 	checkevent EVENT_GOT_TM49_FURY_CUTTER
-	iftrue UnknownScript_0x18ec6d
+	iftrue .GotFuryCutter
 	setevent EVENT_BEAT_TWINS_AMY_AND_MAY
 	setevent EVENT_BEAT_BUG_CATCHER_BENNY
 	setevent EVENT_BEAT_BUG_CATCHER_AL
@@ -35,17 +35,17 @@ BugsyScript_0x18ec1e:
 	writetext UnknownText_0x18ee2b
 	keeptextopen
 	verbosegiveitem TM_FURY_CUTTER, 1
-	iffalse UnknownScript_0x18ec71
+	iffalse .NoRoomForFuryCutter
 	setevent EVENT_GOT_TM49_FURY_CUTTER
 	writetext UnknownText_0x18eefa
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18ec6d:
+.GotFuryCutter:
 	writetext UnknownText_0x18ef98
 	closetext
-UnknownScript_0x18ec71:
+.NoRoomForFuryCutter:
 	loadmovesprites
 	end
 
@@ -61,9 +61,9 @@ AzaleaGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerTwinsAmyandmay1:
-	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, $0000, TwinsAmyandmay1Script
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, $0000, .AfterScript
 
-TwinsAmyandmay1Script:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f1fc
@@ -72,9 +72,9 @@ TwinsAmyandmay1Script:
 	end
 
 TrainerTwinsAmyandmay2:
-	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, $0000, TwinsAmyandmay2Script
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, $0000, .AfterScript
 
-TwinsAmyandmay2Script:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f269
@@ -83,9 +83,9 @@ TwinsAmyandmay2Script:
 	end
 
 TrainerBug_catcherBug_catcher_benny:
-	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherBug_catcher_bennySeenText, Bug_catcherBug_catcher_bennyBeatenText, $0000, Bug_catcherBug_catcher_bennyScript
+	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherBug_catcher_bennySeenText, Bug_catcherBug_catcher_bennyBeatenText, $0000, .AfterScript
 
-Bug_catcherBug_catcher_bennyScript:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f053
@@ -94,9 +94,9 @@ Bug_catcherBug_catcher_bennyScript:
 	end
 
 TrainerBug_catcherAl:
-	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, $0000, Bug_catcherAlScript
+	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, $0000, .AfterScript
 
-Bug_catcherAlScript:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f0d3
@@ -105,9 +105,9 @@ Bug_catcherAlScript:
 	end
 
 TrainerBug_catcherJosh:
-	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, $0000, Bug_catcherJoshScript
+	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, $0000, .AfterScript
 
-Bug_catcherJoshScript:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f17e

@@ -497,7 +497,7 @@ Function10830e: ; 10830e
 	call Function3b2a
 	ld de, SFX_BALL_POOF
 	call PlaySFX
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $00f0
 	ld a, $7f
 	call ByteFill
@@ -632,7 +632,7 @@ Function10842c: ; 10842c
 	call Function3b2a
 	ld de, SFX_BALL_POOF
 	call PlaySFX
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $00f0
 	ld a, $7f
 	call ByteFill
@@ -1386,8 +1386,8 @@ Function108abe: ; 108abe
 ; 108ac8
 
 Function108ac8: ; 108ac8
-	ld hl, TileMap
-	ld bc, $0168
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $7f
 	call ByteFill
 	ret

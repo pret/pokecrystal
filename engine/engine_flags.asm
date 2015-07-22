@@ -29,9 +29,9 @@
 	dwb StatusFlags, %01000000 ; credits skip
 	dwb StatusFlags, %10000000 ; bug contest on   ; $10
 	dwb StatusFlags2, %00000100 ; bug contest timer
-	dwb StatusFlags2, %00000010 ; rockets in radio tower
-	dwb StatusFlags2, %00000001 ; bike shop call enabled (1024 bike steps reqd)
-	dwb StatusFlags2, %00010000
+	dwb StatusFlags2, %00000010
+	dwb StatusFlags2, %00000001 ; rockets in radio tower
+	dwb StatusFlags2, %00010000 ; bike shop call enabled (1024 bike steps reqd)
 	dwb StatusFlags2, %00100000 ; give pokerus; berry -> berry juice when trading?
 	dwb StatusFlags2, %01000000
 	dwb StatusFlags2, %10000000 ; rockets in mahogany

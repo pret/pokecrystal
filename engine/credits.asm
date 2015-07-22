@@ -527,7 +527,7 @@ Function109a95: ; 109a95 (42:5a95)
 	ld a, $c
 	ld [hBGMapAddress], a ; $ff00+$d6
 	ld a, $28
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $168
 	call ByteFill
 	ld a, $7f
@@ -540,7 +540,7 @@ Function109a95: ; 109a95 (42:5a95)
 	hlcoord 0, 17
 	ld a, $20
 	call Function109b1d
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld bc, $50
 	xor a
 	call ByteFill
@@ -560,7 +560,7 @@ Function109a95: ; 109a95 (42:5a95)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld [hBGMapAddress], a ; $ff00+$d6
-	ld hl, TileMap
+	hlcoord 0, 0
 	call Function109aff
 	call Function3200
 	ret

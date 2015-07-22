@@ -209,7 +209,7 @@ WriteBackup:: ; 0x1c17
 	push af
 	call ExitMenu
 	call Function321c
-	call DrawOnMap
+	call UpdateSprites
 	pop af
 	ret
 

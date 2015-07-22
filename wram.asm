@@ -356,21 +356,13 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-wc314:: ds 1
-wc315:: ds 1
-wc316:: ds 1
-wc317:: ds 1
-wc318:: ds 1
-wc319:: ds 1
-wc31a:: ds 1
-wc31b:: ds 1
-wc31c:: ds 1
-wc31d:: ds 1
-wc31e:: ds 1
-wc31f:: ds 1
-wc320:: ds 4
-wc324:: ds 34
-wc346:: ds 94
+wPartyMon1MenuIconAnim:: ds 16 ; c314
+wPartyMon2MenuIconAnim:: ds 16 ; c324
+wPartyMon3MenuIconAnim:: ds 16 ; c334
+wPartyMon4MenuIconAnim:: ds 16 ; c344
+wPartyMon5MenuIconAnim:: ds 16 ; c354
+wPartyMon6MenuIconAnim:: ds 16 ; c364
+wc374:: ds 64
 wc3a4:: ds 8
 wc3ac:: ds 8
 wc3b4:: ds 1

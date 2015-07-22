@@ -5,17 +5,17 @@ GoldenrodFlowerShop_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TeacherScript_0x5535d:
+FlowerShopTeacherScript:
 	checkevent EVENT_FOUGHT_SUDOWOODO
-	iftrue UnknownScript_0x5538f
+	iftrue .Lalala
 	checkevent EVENT_GOT_SQUIRTBOTTLE
-	iftrue UnknownScript_0x55399
+	iftrue .GotSquirtbottle
 	checkevent EVENT_MET_FLORIA
-	iffalse UnknownScript_0x5539f
+	iffalse .HaventMetFloria
 	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
-	iffalse UnknownScript_0x5538f
+	iffalse .Lalala
 	checkflag ENGINE_PLAINBADGE
-	iffalse UnknownScript_0x5539c
+	iffalse .NoPlainBadge
 	faceplayer
 	loadfont
 	writetext UnknownText_0x554c2
@@ -27,7 +27,7 @@ TeacherScript_0x5535d:
 	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	end
 
-UnknownScript_0x5538f:
+.Lalala:
 	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x5552e
@@ -35,22 +35,22 @@ UnknownScript_0x5538f:
 	loadmovesprites
 	end
 
-UnknownScript_0x55399:
+.GotSquirtbottle:
 	jumptextfaceplayer UnknownText_0x5550d
 
-UnknownScript_0x5539c:
+.NoPlainBadge:
 	jumptextfaceplayer UnknownText_0x55463
 
-UnknownScript_0x5539f:
+.HaventMetFloria:
 	jumptextfaceplayer UnknownText_0x553d4
 
-LassScript_0x553a2:
+FlowerShopFloriaScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_FOUGHT_SUDOWOODO
-	iftrue UnknownScript_0x553c5
+	iftrue .FoughtSudowoodo
 	checkevent EVENT_GOT_SQUIRTBOTTLE
-	iftrue UnknownScript_0x553bf
+	iftrue .GotSquirtbottle
 	writetext UnknownText_0x55561
 	closetext
 	loadmovesprites
@@ -59,13 +59,13 @@ LassScript_0x553a2:
 	clearevent EVENT_FLORIA_AT_SUDOWOODO
 	end
 
-UnknownScript_0x553bf:
+.GotSquirtbottle:
 	writetext UnknownText_0x555e6
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x553c5:
+.FoughtSudowoodo:
 	writetext UnknownText_0x55604
 	closetext
 	loadmovesprites
@@ -172,5 +172,5 @@ GoldenrodFlowerShop_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, TeacherScript_0x5535d, -1
-	person_event SPRITE_LASS, 10, 9, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x553a2, EVENT_FLORIA_AT_FLOWER_SHOP
+	person_event SPRITE_TEACHER, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, FlowerShopTeacherScript, -1
+	person_event SPRITE_LASS, 10, 9, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FlowerShopFloriaScript, EVENT_FLORIA_AT_FLOWER_SHOP

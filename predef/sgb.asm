@@ -1,7 +1,7 @@
-Function864c: ; 864c
+Predef_LoadSGBLayout: ; 864c
 ; LoadSGBLayout
 	call CheckCGB
-	jp nz, Function8d59
+	jp nz, Predef_LoadSGBLayoutCGB
 
 	ld a, b
 	cp $ff
@@ -14,57 +14,57 @@ Function864c: ; 864c
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld de, Table866f
+	ld de, .Jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, Function8a60
+	ld de, .Finish
 	push de
 	jp [hl]
 ; 866f
 
-Table866f: ; 866f
-	dw Function86ad
-	dw Function86b4
-	dw Function875c
-	dw Function8763
-	dw Function87b2
-	dw Function8852
-	dw Function8859
-	dw Function8867
-	dw Function8860
-	dw Function88b1
-	dw Function87ab
-	dw Function88cd
-	dw Function8884
-	dw Function891a
-	dw Function873c
-	dw Function8897
-	dw Function882a
-	dw Function889e
-	dw Function8928
-	dw Function8890
-	dw Function884b
-	dw Function891a
-	dw Function8823
-	dw Function87e9
-	dw Function8921
-	dw Function89a6
-	dw Function89ad
-	dw Function89d9
-	dw Function89e0
-	dw Function8860
-	dw Function8969
+.Jumptable: ; 866f
+	dw .SGB00
+	dw .SGB01
+	dw .SGB02
+	dw .SGB03
+	dw .SGB04
+	dw .SGB05
+	dw .SGB06
+	dw .SGB07
+	dw .SGB08_1d
+	dw .SGB09
+	dw .SGB0a
+	dw .SGB0b
+	dw .SGB0c
+	dw .SGB0d_15
+	dw .SGB0e
+	dw .SGB0f
+	dw .SGB10
+	dw .SGB11
+	dw .SGB12
+	dw .SGB13
+	dw .SGB14
+	dw .SGB0d_15
+	dw .SGB16
+	dw .SGB17
+	dw .SGB18
+	dw .SGB19
+	dw .SGB1a
+	dw .SGB1b
+	dw .SGB1c
+	dw .SGB08_1d
+	dw .SGB1e
 ; 86ad
 
-Function86ad: ; 86ad
+.SGB00: ; 86ad
 	ld hl, PalPacket_9c66
 	ld de, BlkPacket_9aa6
 	ret
 ; 86b4
 
-Function86b4: ; 86b4
+.SGB01: ; 86b4
 	ld hl, BlkPacket_9aa6
 	call Function9809
 	ld hl, PalPacket_9ce6
@@ -132,7 +132,7 @@ endr
 	ret
 ; 873c
 
-Function873c: ; 873c
+.SGB0e: ; 873c
 	ld hl, PalPacket_9bd6
 	ld de, wcda9
 	ld bc, $0010
@@ -150,13 +150,13 @@ endr
 	ret
 ; 875c
 
-Function875c: ; 875c
+.SGB02: ; 875c
 	ld hl, PalPacket_9c76
 	ld de, BlkPacket_9a86
 	ret
 ; 8763
 
-Function8763: ; 8763
+.SGB03: ; 8763
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
 	ld bc, $0010
@@ -193,13 +193,13 @@ endr
 	ret
 ; 87ab
 
-Function87ab: ; 87ab
+.SGB0a: ; 87ab
 	ld hl, PalPacket_9c56
 	ld de, wcda9 + 1
 	ret
 ; 87b2
 
-Function87b2: ; 87b2
+.SGB04: ; 87b2
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
 	ld bc, $0010
@@ -227,7 +227,7 @@ Function87b2: ; 87b2
 	ret
 ; 87e9
 
-Function87e9: ; 87e9
+.SGB17: ; 87e9
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
 	ld bc, $0010
@@ -256,13 +256,13 @@ Function87e9: ; 87e9
 	ret
 ; 8823
 
-Function8823: ; 8823
-	call Function87b2
+.SGB16: ; 8823
+	call .SGB04
 	ld de, BlkPacket_9af6
 	ret
 ; 882a
 
-Function882a: ; 882a
+.SGB10: ; 882a
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
 	ld bc, $0010
@@ -280,33 +280,33 @@ Function882a: ; 882a
 	ret
 ; 884b
 
-Function884b: ; 884b
+.SGB14: ; 884b
 	ld hl, PalPacket_9c36
 	ld de, BlkPacket_9a86
 	ret
 ; 8852
 
-Function8852: ; 8852
+.SGB05: ; 8852
 	ld hl, PalPacket_9c96
 	ld de, BlkPacket_9b06
 	ret
 ; 8859
 
-Function8859: ; 8859
+.SGB06: ; 8859
 	ld hl, PalPacket_9ca6
 	ld de, BlkPacket_9b76
 	ret
 ; 8860
 
-Function8860: ; 8860
+.SGB08_1d: ; 8860
 	ld hl, PalPacket_9cb6
 	ld de, BlkPacket_9a86
 	ret
 ; 8867
 
-Function8867: ; 8867
+.SGB07: ; 8867
 	ld b, 0
-	ld hl, Unknown_8878
+	ld hl, .BlkPacketTable_SGB07
 rept 4
 	add hl, bc
 endr
@@ -320,13 +320,13 @@ endr
 	ret
 ; 8878
 
-Unknown_8878: ; 8878
+.BlkPacketTable_SGB07: ; 8878
 	dw BlkPacket_9a86, PalPacket_9be6
 	dw BlkPacket_9a96, PalPacket_9c06
 	dw BlkPacket_9a86, PalPacket_9c16
 ; 8884
 
-Function8884: ; 8884
+.SGB0c: ; 8884
 	ld hl, PalPacket_9b96
 	ld de, BlkPacket_9b56
 	ld a, $8
@@ -334,19 +334,19 @@ Function8884: ; 8884
 	ret
 ; 8890
 
-Function8890: ; 8890
+.SGB13: ; 8890
 	ld hl, PalPacket_9ba6
 	ld de, BlkPacket_9b86
 	ret
 ; 8897
 
-Function8897: ; 8897
+.SGB0f: ; 8897
 	ld hl, PalPacket_9c46
 	ld de, BlkPacket_9a86
 	ret
 ; 889e
 
-Function889e: ; 889e
+.SGB11: ; 889e
 	ld hl, BlkPacket_9a86
 	ld de, PlayerLightScreenCount
 	ld bc, $0010
@@ -356,12 +356,12 @@ Function889e: ; 889e
 	ret
 ; 88b1
 
-Function88b1: ; 88b1
+.SGB09: ; 88b1
 	ld hl, PalPacket_9bd6
 	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
-	call Function8a0c
+	call .GetPermission
 	ld hl, wcda9 + 1
 	ld [hld], a
 	ld de, BlkPacket_9a86
@@ -370,7 +370,7 @@ Function88b1: ; 88b1
 	ret
 ; 88cd
 
-Function88cd: ; 88cd
+.SGB0b: ; 88cd
 	push bc
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
@@ -414,19 +414,19 @@ Function88cd: ; 88cd
 	ret
 ; 891a
 
-Function891a: ; 891a
+.SGB0d_15: ; 891a
 	ld hl, PalPacket_9cb6
 	ld de, BlkPacket_9a86
 	ret
 ; 8921
 
-Function8921: ; 8921
+.SGB18: ; 8921
 	ld hl, PalPacket_9bc6
 	ld de, BlkPacket_9a86
 	ret
 ; 8928
 
-Function8928: ; 8928
+.SGB12: ; 8928
 	ld hl, PalPacket_9bd6
 	ld de, wcda9
 	ld bc, $0010
@@ -435,7 +435,7 @@ Function8928: ; 8928
 	ld de, wcda9 + $10
 	ld bc, $0010
 	call CopyBytes
-	call Function8a0c
+	call .GetPermission
 	ld hl, wcda9 + 1
 	ld [hl], a
 	ld hl, wcda9 + 3
@@ -456,7 +456,7 @@ Function8928: ; 8928
 	ret
 ; 8969
 
-Function8969: ; 8969
+.SGB1e: ; 8969
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
 	ld bc, $0010
@@ -489,13 +489,13 @@ endr
 	ret
 ; 89a6
 
-Function89a6: ; 89a6
+.SGB19: ; 89a6
 	ld hl, PalPacket_9cd6
 	ld de, BlkPacket_9a86
 	ret
 ; 89ad
 
-Function89ad: ; 89ad
+.SGB1a: ; 89ad
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
 	ld bc, $0010
@@ -516,13 +516,13 @@ Function89ad: ; 89ad
 	ret
 ; 89d9
 
-Function89d9: ; 89d9
+.SGB1b: ; 89d9
 	ld hl, PalPacket_9cc6
 	ld de, BlkPacket_9a86
 	ret
 ; 89e0
 
-Function89e0: ; 89e0
+.SGB1c: ; 89e0
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
 	ld bc, $0010
@@ -543,7 +543,7 @@ Function89e0: ; 89e0
 	ret
 ; 8a0c
 
-Function8a0c: ; 8a0c
+.GetPermission: ; 8a0c
 	ld a, [TimeOfDayPal]
 	cp $2
 	jr c, .asm_8a16
@@ -565,7 +565,7 @@ Function8a0c: ; 8a0c
 	ld a, [MapGroup]
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_8a45
+	ld hl, .Unknown_8a45
 	add hl, de
 	ld a, [hl]
 	ret
@@ -587,7 +587,7 @@ Function8a0c: ; 8a0c
 	ret
 ; 8a45
 
-Unknown_8a45: ; 8a45
+.Unknown_8a45: ; 8a45
 	db $00
 	db $12
 	db $14
@@ -617,7 +617,7 @@ Unknown_8a45: ; 8a45
 	db $0d
 ; 8a60
 
-Function8a60: ; 8a60
+.Finish: ; 8a60
 	push de
 	call Function9809
 	pop hl

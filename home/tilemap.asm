@@ -186,7 +186,7 @@ endr
 	xor a
 	ld b, a
 	add hl, bc
-	ld bc, TileMap
+	bccoord 0, 0
 	add hl, bc
 	ret
 ; 1d19
@@ -216,7 +216,7 @@ endr
 	xor a
 	ld b, a
 	add hl, bc
-	ld bc, AttrMap
+	bccoord 0, 0, AttrMap
 	add hl, bc
 	ret
 ; 1d35

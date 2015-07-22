@@ -623,7 +623,7 @@ ResetVramState_Bit0:: ; 1acc
 ; 1ad2
 
 
-DrawOnMap:: ; 1ad2
+UpdateSprites:: ; 1ad2
 	ld a, [VramState]
 	bit 0, a
 	ret z

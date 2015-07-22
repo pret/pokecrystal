@@ -475,7 +475,7 @@ Script_loadmenudata: ; 0x96efa
 	ld de, LoadMenuDataHeader
 	ld a, [ScriptBank]
 	call Call_a_de
-	call DrawOnMap
+	call UpdateSprites
 	ret
 ; 0x96f0f
 
@@ -483,7 +483,7 @@ Script_writebackup: ; 0x96f0f
 ; script command 0x50
 
 	call WriteBackup
-	call DrawOnMap
+	call UpdateSprites
 	ret
 ; 0x96f16
 
@@ -1212,7 +1212,7 @@ ApplyPersonFacing: ; 0x9728b
 	jr nz, .asm_972b5 ; 0x972b0 $3
 	call Function972bc
 .asm_972b5
-	call DrawOnMap
+	call UpdateSprites
 	ret
 .not_visible
 	pop de
@@ -1222,8 +1222,8 @@ ApplyPersonFacing: ; 0x9728b
 
 Function972bc: ; 0x972bc
 	call Function217a
-	ld hl, TileMap
-	ld bc, $0168
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .asm_972c5
 	res 7, [hl]
 	inc hl
@@ -2970,7 +2970,7 @@ Script_reloadmappart:: ; 0x97ae3
 	call Function2173
 	call Function2914
 	callba Function104061
-	call DrawOnMap
+	call UpdateSprites
 	ret
 ; 0x97af6
 

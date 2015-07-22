@@ -135,7 +135,7 @@ Route35NationalParkgate_LeaveTheRestBehind:
 	if_equal 0, Route35NationalParkgate_NoRoomInBox
 
 Route35NationalParkgate_LessThanFullParty: ; 6a27d
-	special Function71ac
+	special CheckFirstMonIsEgg
 	if_equal $1, Route35NationalParkgate_FirstMonIsEgg
 	writetext UnknownText_0x6a4c6
 	yesorno

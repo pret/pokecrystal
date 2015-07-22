@@ -1,16 +1,21 @@
 PlayRadioShow: ; b8612
+; If we're already in the radio program proper, we don't need to be here.
 	ld a, [wd002]
 	cp 8
 	jr nc, .ok
+; If Team Rocket is not occupying the radio tower, we don't need to be here.
 	ld a, [StatusFlags2]
-	bit 0, a
+	bit 0, a ; checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	jr z, .ok
+; If we're in Kanto, we don't need to be here.
 	call IsInJohto
 	and a
 	jr nz, .ok
+; Team Rocket broadcasts on all stations.
 	ld a, 7
 	ld [wd002], a
 .ok
+; Jump to the currently loaded station.  The index to which we need to jump is in wd002.
 	ld a, [wd002]
 	ld e, a
 	ld d, 0
@@ -24,114 +29,121 @@ endr
 	jp [hl]
 
 RadioJumptable: ; b863a (2e:463a)
-	dw MaryOakShow1
-	dw MaryOakShow2
-	dw BenMonMusic1
-	dw DJReed1
-	dw Functionb8f12
-	dw Functionb8cbf
-	dw Functionb8b50
-	dw Functionb8e72
-	dw Functionb8ef7
-	dw Functionb8f00
-	dw Functionb8f09
-	dw Functionb8752
-	dw Functionb875a
-	dw Functionb8762
-	dw Functionb8810
-	dw Functionb8818
-	dw Functionb883e
-	dw Functionb8854
-	dw Functionb88d9
-	dw Functionb8a6c
-	dw Functionb8aa4
-	dw Functionb8aac
-	dw Functionb8ab4
-	dw Functionb8b40
-	dw Functionb8b48
-	dw Functionb8b63
-	dw Functionb8b6b
-	dw Functionb8b7d
-	dw Functionb8b8f
-	dw Functionb8b5b
-	dw Functionb8bf5
-	dw Functionb8bfd
-	dw Functionb8c05
-	dw Functionb8c0d
-	dw Functionb8c15
-	dw Functionb8c1d
-	dw Functionb8c25
-	dw Functionb8c3e
-	dw Functionb8c46
-	dw Functionb8c4e
-	dw Functionb8c56
-	dw Functionb8c5e
-	dw Functionb8c6e
-	dw Functionb8c76
-	dw Functionb8cca
-	dw Functionb8cd2
-	dw Functionb8cf2
-	dw Functionb8d56
-	dw Functionb8ded
-	dw Functionb8e28
-	dw Functionb8e7d
-	dw Functionb8e85
-	dw Functionb8e8d
-	dw Functionb8e95
-	dw Functionb8e9d
-	dw Functionb8ea5
-	dw Functionb8ead
-	dw Functionb8eb5
-	dw Functionb8ebd
-	dw Functionb896e
-	dw Functionb8994
-	dw Functionb89a9
-	dw Functionb89c6
-	dw Functionb89d7
-	dw Functionb8f3f
-	dw Functionb8f47
-	dw Functionb8f55
-	dw Functionb909c
-	dw Functionb90a4
-	dw Functionb90ac
-	dw Functionb90c5
-	dw Functionb90d2
-	dw Functionb90da
-	dw Functionb90e2
-	dw Functionb90ea
-	dw Functionb90f2
-	dw Functionb90fa
-	dw Functionb9102
-	dw Functionb910a
-	dw Functionb9112
-	dw Functionb911a
-	dw Functionb9122
-	dw Functionb912a
-	dw Functionb9152
-	dw Functionb8728
-	dw Functionb8abc
-	dw Functionb8ac4
-	dw Functionb8acc
+	dw OaksPkmnTalk1  ; $00
+	dw PokedexShow1 ; $01
+	dw BenMonMusic1  ; $02
+	dw LuckyNumberShow1 ; $03
+	dw BuenasPassword1 ; $04
+	dw PeoplePlaces1 ; $05
+	dw FernMonMusic1 ; $06
+	dw RocketRadio1 ; $07
+	dw PokeFluteRadio ; $08
+	dw EvolutionRadio ; $09
+	dw UnownRadio ; $0a
+; OaksPkmnTalk
+	dw OaksPkmnTalk2  ; $0b
+	dw OaksPkmnTalk3  ; $0c
+	dw OaksPkmnTalk4  ; $0d
+	dw OaksPkmnTalk5  ; $0e
+	dw OaksPkmnTalk6  ; $0f
+	dw OaksPkmnTalk7  ; $10
+	dw OaksPkmnTalk8  ; $11
+	dw OaksPkmnTalk9  ; $12
+	dw OaksPkmnTalk10 ; $13
+	dw OaksPkmnTalk11 ; $14
+	dw OaksPkmnTalk12 ; $15
+	dw OaksPkmnTalk13 ; $16
+; Ben Music
+	dw BenMonMusic2  ; $17
+	dw BenMonMusic3  ; $18
+	dw BenFernMusic4 ; $19
+	dw BenFernMusic5 ; $1a
+	dw BenFernMusic6 ; $1b
+	dw BenFernMusic7 ; $1c
+	dw FernMonMusic2 ; $1d
+; Lucky Number Show
+	dw LuckyNumberShow2 ; $1e
+	dw LuckyNumberShow3 ; $1f
+	dw LuckyNumberShow4 ; $20
+	dw LuckyNumberShow5 ; $21
+	dw LuckyNumberShow6 ; $22
+	dw LuckyNumberShow7 ; $23
+	dw LuckyNumberShow8 ; $24
+	dw LuckyNumberShow9 ; $25
+	dw LuckyNumberShow10 ; $26
+	dw LuckyNumberShow11 ; $27
+	dw LuckyNumberShow12 ; $28
+	dw LuckyNumberShow13 ; $29
+	dw LuckyNumberShow14 ; $2a
+	dw LuckyNumberShow15 ; $2b
+	dw LuckyNumberShow16 ; $2c
+	dw LuckyNumberShow17 ; $2d
+	dw LuckyNumberShow18 ; $2e
+	dw LuckyNumberShow19 ; $2f
+	dw LuckyNumberShow20 ; $30
+	dw LuckyNumberShow21 ; $31
+; Rocket Radio
+	dw RocketRadio2 ; $32
+	dw RocketRadio3 ; $33
+	dw RocketRadio4 ; $34
+	dw RocketRadio5 ; $35
+	dw RocketRadio6 ; $36
+	dw RocketRadio7 ; $37
+	dw RocketRadio8 ; $38
+	dw RocketRadio9 ; $39
+	dw RocketRadio10 ; $3a
+; More Pokemon Channel stuff
+	dw OaksPkmnTalk14 ; $3b
+	dw OaksPkmnTalk15 ; $3c
+	dw OaksPkmnTalk16 ; $3d
+	dw OaksPkmnTalk17 ; $3e
+	dw OaksPkmnTalk18 ; $3f
+; Buenas Password
+	dw BuenasPassword2 ; $40
+	dw BuenasPassword3 ; $41
+	dw BuenasPassword4 ; $42
+	dw BuenasPassword5 ; $43
+	dw BuenasPassword6 ; $44
+	dw BuenasPassword7 ; $45
+	dw BuenasPassword8 ; $46
+	dw BuenasPassword9 ; $47
+	dw BuenasPassword10 ; $48
+	dw BuenasPassword11 ; $49
+	dw BuenasPassword12 ; $4a
+	dw BuenasPassword13 ; $4b
+	dw BuenasPassword14 ; $4c
+	dw BuenasPassword15 ; $4d
+	dw BuenasPassword16 ; $4e
+	dw BuenasPassword17 ; $4f
+	dw BuenasPassword18 ; $50
+	dw BuenasPassword19 ; $51
+	dw BuenasPassword20 ; $52
+	dw BuenasPassword21 ; $53
+	dw RadioScroll ; $54
+; More Pokemon Channel stuff
+	dw OaksPkmnTalk19 ; $55
+	dw OaksPkmnTalk20 ; $56
+	dw OaksPkmnTalk21 ; $57
 
 
-Functionb86ea: ; b86ea (2e:46ea)
+PrintRadioLine: ; b86ea (2e:46ea)
 	ld [wd003], a
 	ld hl, wd00c
 	ld a, [wd005]
 	cp $2
-	jr nc, .asm_b870a
+	jr nc, .print
 	inc hl
 	ld [hl], $0
 	inc a
 	ld [wd005], a
 	cp $2
-	jr nz, .asm_b870a
+	jr nz, .print
 	bccoord 1, 16
-	call Function13e5
-	jr .asm_b870d
-.asm_b870a
+	call PlaceWholeStringInBoxAtOnce
+	jr .skip
+.print
 	call PrintTextBoxText
-.asm_b870d
+.skip
 	ld a, $54
 	ld [wd002], a
 	ld a, $64
@@ -141,59 +153,60 @@ Functionb86ea: ; b86ea (2e:46ea)
 
 Functionb8718: ; b8718
 	push hl
-	ld b, $28
-.asm_b871b
+	ld b, SCREEN_WIDTH * 2
+.greater_than_10
 	ld a, [hl]
-	cp $e8
-	jr nz, .asm_b8722
-	ld [hl], $7f
+	cp "."
+	jr nz, .next
+	ld [hl], " "
 
-.asm_b8722
+.next
 	inc hl
 	dec b
-	jr nz, .asm_b871b
+	jr nz, .greater_than_10
 	pop hl
 	ret
 ; b8728
 
-Functionb8728: ; b8728 (2e:4728)
+RadioScroll: ; b8728 (2e:4728)
 	ld hl, wd004
 	ld a, [hl]
 	and a
-	jr z, .asm_b8731
+	jr z, .proceed
 	dec [hl]
 	ret
-.asm_b8731
+.proceed
 	ld a, [wd003]
 	ld [wd002], a
 	ld a, [wd005]
-	cp $1
-	call nz, Functionb8a0b
-	jp Functionb8a17
+	cp 1
+	call nz, CopyBottomLineToTopLine
+	jp ClearBottomLine
 
-MaryOakShow1: ; b8742 (2e:4742)
+OaksPkmnTalk1: ; b8742 (2e:4742)
 	ld a, $5
 	ld [wd006], a
-	call Functionb91eb
+	call StartRadioStation
 	ld hl, UnknownText_0xb8820
 	ld a, $b
 	jp NextRadioLine
 
-Functionb8752: ; b8752 (2e:4752)
+OaksPkmnTalk2: ; b8752 (2e:4752)
 	ld hl, UnknownText_0xb8825
 	ld a, $c
 	jp NextRadioLine
 
-Functionb875a: ; b875a (2e:475a)
+OaksPkmnTalk3: ; b875a (2e:475a)
 	ld hl, UnknownText_0xb882a
 	ld a, $d
 	jp NextRadioLine
 
-Functionb8762: ; b8762 (2e:4762)
+OaksPkmnTalk4: ; b8762 (2e:4762)
+; Choose a random root, and a random Pokemon from that route.
 	call Random
 	and $1f
 	cp $f
-	jr nc, Functionb8762
+	jr nc, OaksPkmnTalk4
 	ld hl, Unknown_b87f2
 	ld c, a
 	ld b, 0
@@ -206,10 +219,10 @@ endr
 	push bc
 
 	ld hl, WildMons1
-.loop
+.greater_than_10
 	ld a, BANK(WildMons1)
 	call GetFarByte
-	cp $ff
+	cp -1
 	jr z, .done2
 	inc hl
 	cp b
@@ -222,28 +235,28 @@ endr
 	dec hl
 	ld de, $2f
 	add hl, de
-	jr .loop
+	jr .greater_than_10
 
 .done
 rept 4
 	inc hl
 endr
 
-.not3
+.both_bits_set
 	call Random
 	and 3
 	cp 3
-	jr z, .not3
+	jr z, .both_bits_set
 
 	ld bc, $e
 	call AddNTimes
-.loop2
+.greater_than_102
 	call Random
 	and 7
 	cp 2
-	jr c, .loop2
+	jr c, .greater_than_102
 	cp 5
-	jr nc, .loop2
+	jr nc, .greater_than_102
 	ld e, a
 	ld d, 0
 rept 2
@@ -265,14 +278,14 @@ endr
 	ld e, a
 	callba GetLandmarkName
 	ld hl, UnknownText_0xb882f
-	call Functionb91dc
+	call CopyRadioTextToRAM
 	ld a, $e
-	jp Functionb86ea
+	jp PrintRadioLine
 
 .done2
 	pop bc
 	ld a, $0
-	jp Functionb86ea
+	jp PrintRadioLine
 ; b87f2 (2e:47f2)
 
 Unknown_b87f2: ; b87f2
@@ -293,12 +306,12 @@ Unknown_b87f2: ; b87f2
 	map ROUTE_31
 ; b8810
 
-Functionb8810: ; b8810 (2e:4810)
+OaksPkmnTalk5: ; b8810 (2e:4810)
 	ld hl, UnknownText_0xb8834
 	ld a, $f
 	jp NextRadioLine
 
-Functionb8818: ; b8818 (2e:4818)
+OaksPkmnTalk6: ; b8818 (2e:4818)
 	ld hl, UnknownText_0xb8839
 	ld a, $10
 	jp NextRadioLine
@@ -340,7 +353,7 @@ UnknownText_0xb8839: ; 0xb8839
 	db "@"
 ; 0xb883e
 
-Functionb883e: ; b883e (2e:483e)
+OaksPkmnTalk7: ; b883e (2e:483e)
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
@@ -355,7 +368,7 @@ UnknownText_0xb884f: ; 0xb884f
 	db "@"
 ; 0xb8854
 
-Functionb8854: ; b8854 (2e:4854)
+OaksPkmnTalk8: ; b8854 (2e:4854)
 	call Random
 	and $f
 	ld e, a
@@ -486,7 +499,7 @@ UnknownText_0xb88d4: ; 0xb88d4
 	db "@"
 ; 0xb88d9
 
-Functionb88d9: ; b88d9 (2e:48d9)
+OaksPkmnTalk9: ; b88d9 (2e:48d9)
 	call Random
 	and $f
 	ld e, a
@@ -502,11 +515,11 @@ endr
 	dec a
 	ld [wd006], a
 	ld a, $d
-	jr nz, .asm_b88fb
+	jr nz, .nope
 	ld a, $5
 	ld [wd006], a
 	ld a, $3b
-.asm_b88fb
+.nope
 	jp NextRadioLine
 ; b88fe (2e:48fe)
 
@@ -625,7 +638,7 @@ UnknownText_0xb8969: ; 0xb8969
 	db "@"
 ; 0xb896e
 
-Functionb896e: ; b896e (2e:496e)
+OaksPkmnTalk14: ; b896e (2e:496e)
 	callba Function91868
 	ld hl, UnknownText_0xb8993
 	call PrintText
@@ -649,7 +662,7 @@ UnknownText_0xb8993: ; 0xb8993
 	db "@"
 ; 0xb8994
 
-Functionb8994: ; b8994 (2e:4994)
+OaksPkmnTalk15: ; b8994 (2e:4994)
 	ld hl, wd004
 	dec [hl]
 	ret nz
@@ -663,7 +676,7 @@ String_b89a4:
 	db "#MON@"
 ; b89a9
 
-Functionb89a9: ; b89a9 (2e:49a9)
+OaksPkmnTalk16: ; b89a9 (2e:49a9)
 	ld hl, wd004
 	dec [hl]
 	ret nz
@@ -677,7 +690,7 @@ String_b89b9:
 	db "#MON Channel@"
 ; b89c6
 
-Functionb89c6: ; b89c6 (2e:49c6)
+OaksPkmnTalk17: ; b89c6 (2e:49c6)
 	ld hl, wd004
 	dec [hl]
 	ret nz
@@ -691,12 +704,12 @@ String_b89d6:
 	db "@"
 ; b89d7
 
-Functionb89d7: ; b89d7 (2e:49d7)
+OaksPkmnTalk18: ; b89d7 (2e:49d7)
 	ld hl, wd004
 	dec [hl]
 	ret nz
 	ld de, $1d
-	callab Function91854
+	callab RadioMusicNone
 	ld hl, UnknownText_0xb89ff
 	call PrintText
 	ld a, $d
@@ -720,20 +733,20 @@ Functionb8a00: ; b8a00 (2e:4a00)
 	ld [wd004], a
 	jp PlaceString
 
-Functionb8a0b: ; b8a0b (2e:4a0b)
+CopyBottomLineToTopLine: ; b8a0b (2e:4a0b)
 	hlcoord 0, 15
 	decoord 0, 13
-	ld bc, $28
+	ld bc, SCREEN_WIDTH * 2
 	jp CopyBytes
 
-Functionb8a17: ; b8a17 (2e:4a17)
+ClearBottomLine: ; b8a17 (2e:4a17)
 	hlcoord 1, 15
 	ld bc, $12
-	ld a, $7f
+	ld a, " "
 	call ByteFill
 	hlcoord 1, 16
 	ld bc, $12
-	ld a, $7f
+	ld a, " "
 	jp ByteFill
 
 Functionb8a2d: ; b8a2d (2e:4a2d)
@@ -761,8 +774,8 @@ Functionb8a2d: ; b8a2d (2e:4a2d)
 	db BANK(PokedexEntries4)
 ; b8a46
 
-MaryOakShow2: ; b8a46 (2e:4a46)
-	call Functionb91eb
+PokedexShow1: ; b8a46 (2e:4a46)
+	call StartRadioStation
 .asm_b8a49
 	call Random
 	cp CELEBI
@@ -782,7 +795,7 @@ MaryOakShow2: ; b8a46 (2e:4a46)
 	ld a, $13
 	jp NextRadioLine
 
-Functionb8a6c: ; b8a6c (2e:4a6c)
+OaksPkmnTalk10: ; b8a6c (2e:4a6c)
 	ld a, [CurPartySpecies]
 	dec a
 	ld hl, PokedexDataPointerTable
@@ -800,7 +813,7 @@ endr
 	dec hl
 	ld [hl], $57
 	ld hl, wd26b
-	call Functionb91dc
+	call CopyRadioTextToRAM
 	pop hl
 	pop af
 	call Functionb8b11
@@ -812,37 +825,37 @@ endr
 	ld a, h
 	ld [wd26c], a
 	ld a, $14
-	jp Functionb86ea
+	jp PrintRadioLine
 
-Functionb8aa4: ; b8aa4 (2e:4aa4)
+OaksPkmnTalk11: ; b8aa4 (2e:4aa4)
 	call Functionb8ad4
 	ld a, $15
-	jp Functionb86ea
+	jp PrintRadioLine
 
-Functionb8aac: ; b8aac (2e:4aac)
+OaksPkmnTalk12: ; b8aac (2e:4aac)
 	call Functionb8ad4
 	ld a, $16
-	jp Functionb86ea
+	jp PrintRadioLine
 
-Functionb8ab4: ; b8ab4 (2e:4ab4)
+OaksPkmnTalk13: ; b8ab4 (2e:4ab4)
 	call Functionb8ad4
 	ld a, $55
-	jp Functionb86ea
+	jp PrintRadioLine
 
-Functionb8abc: ; b8abc (2e:4abc)
+OaksPkmnTalk19: ; b8abc (2e:4abc)
 	call Functionb8ad4
 	ld a, $56
-	jp Functionb86ea
+	jp PrintRadioLine
 
-Functionb8ac4: ; b8ac4 (2e:4ac4)
+OaksPkmnTalk20: ; b8ac4 (2e:4ac4)
 	call Functionb8ad4
 	ld a, $57
-	jp Functionb86ea
+	jp PrintRadioLine
 
-Functionb8acc: ; b8acc (2e:4acc)
+OaksPkmnTalk21: ; b8acc (2e:4acc)
 	call Functionb8ad4
 	ld a, $1
-	jp Functionb86ea
+	jp PrintRadioLine
 
 Functionb8ad4: ; b8ad4 (2e:4ad4)
 	ld a, [wd26b]
@@ -856,7 +869,7 @@ Functionb8ad4: ; b8ad4 (2e:4ad4)
 	dec hl
 	ld [hl], $57
 	ld hl, wd26b
-	call Functionb91dc
+	call CopyRadioTextToRAM
 	pop hl
 	pop af
 	call Functionb8b11
@@ -915,33 +928,33 @@ BenMonMusic1: ; b8b35 (2e:4b35)
 	ld a, $17
 	jp NextRadioLine
 
-Functionb8b40: ; b8b40 (2e:4b40)
+BenMonMusic2: ; b8b40 (2e:4b40)
 	ld hl, UnknownText_0xb8baf
 	ld a, $18
 	jp NextRadioLine
 
-Functionb8b48: ; b8b48 (2e:4b48)
+BenMonMusic3: ; b8b48 (2e:4b48)
 	ld hl, UnknownText_0xb8bb4
 	ld a, $19
 	jp NextRadioLine
 
-Functionb8b50: ; b8b50 (2e:4b50)
+FernMonMusic1: ; b8b50 (2e:4b50)
 	call Functionb8b90
 	ld hl, UnknownText_0xb8bb9
 	ld a, $1d
 	jp NextRadioLine
 
-Functionb8b5b: ; b8b5b (2e:4b5b)
+FernMonMusic2: ; b8b5b (2e:4b5b)
 	ld hl, UnknownText_0xb8bbe
 	ld a, $19
 	jp NextRadioLine
 
-Functionb8b63: ; b8b63 (2e:4b63)
+BenFernMusic4: ; b8b63 (2e:4b63)
 	ld hl, UnknownText_0xb8bc3
 	ld a, $1a
 	jp NextRadioLine
 
-Functionb8b6b: ; b8b6b (2e:4b6b)
+BenFernMusic5: ; b8b6b (2e:4b6b)
 	call GetWeekday
 	and 1
 	ld hl, UnknownText_0xb8bc8
@@ -951,7 +964,7 @@ Functionb8b6b: ; b8b6b (2e:4b6b)
 	ld a, $1b
 	jp NextRadioLine
 
-Functionb8b7d: ; b8b7d (2e:4b7d)
+BenFernMusic6: ; b8b7d (2e:4b7d)
 	call GetWeekday
 	and 1
 	ld hl, UnknownText_0xb8bd2
@@ -961,11 +974,11 @@ Functionb8b7d: ; b8b7d (2e:4b7d)
 	ld a, $1c
 	jp NextRadioLine
 
-Functionb8b8f: ; b8b8f (2e:4b8f)
+BenFernMusic7: ; b8b8f (2e:4b8f)
 	ret
 
 Functionb8b90: ; b8b90 (2e:4b90)
-	call Function1052
+	call RadioTerminator
 	call PrintText
 	ld de, MUSIC_POKEMON_MARCH
 	call GetWeekday
@@ -973,7 +986,7 @@ Functionb8b90: ; b8b90 (2e:4b90)
 	jr z, .done
 	ld de, MUSIC_POKEMON_LULLABY
 .done
-	callab Function91854
+	callab RadioMusicNone
 	ret
 ; b8baa (2e:4baa)
 
@@ -1037,8 +1050,8 @@ UnknownText_0xb8bd7: ; 0xb8bd7
 	db "@"
 ; 0xb8bdc
 
-DJReed1: ; b8bdc (2e:4bdc)
-	call Functionb91eb
+LuckyNumberShow1: ; b8bdc (2e:4bdc)
+	call StartRadioStation
 	callab Functionc434
 	jr nc, .asm_b8bed
 	callab Functionc422
@@ -1047,37 +1060,37 @@ DJReed1: ; b8bdc (2e:4bdc)
 	ld a, $1e
 	jp NextRadioLine
 
-Functionb8bf5: ; b8bf5 (2e:4bf5)
+LuckyNumberShow2: ; b8bf5 (2e:4bf5)
 	ld hl, UnknownText_0xb8c83
 	ld a, $1f
 	jp NextRadioLine
 
-Functionb8bfd: ; b8bfd (2e:4bfd)
+LuckyNumberShow3: ; b8bfd (2e:4bfd)
 	ld hl, UnknownText_0xb8c88
 	ld a, $20
 	jp NextRadioLine
 
-Functionb8c05: ; b8c05 (2e:4c05)
+LuckyNumberShow4: ; b8c05 (2e:4c05)
 	ld hl, UnknownText_0xb8c8d
 	ld a, $21
 	jp NextRadioLine
 
-Functionb8c0d: ; b8c0d (2e:4c0d)
+LuckyNumberShow5: ; b8c0d (2e:4c0d)
 	ld hl, UnknownText_0xb8c92
 	ld a, $22
 	jp NextRadioLine
 
-Functionb8c15: ; b8c15 (2e:4c15)
+LuckyNumberShow6: ; b8c15 (2e:4c15)
 	ld hl, UnknownText_0xb8c97
 	ld a, $23
 	jp NextRadioLine
 
-Functionb8c1d: ; b8c1d (2e:4c1d)
+LuckyNumberShow7: ; b8c1d (2e:4c1d)
 	ld hl, UnknownText_0xb8c9c
 	ld a, $24
 	jp NextRadioLine
 
-Functionb8c25: ; b8c25 (2e:4c25)
+LuckyNumberShow8: ; b8c25 (2e:4c25)
 	ld hl, StringBuffer1
 	ld de, wdc9f
 	ld bc, $8205
@@ -1088,27 +1101,27 @@ Functionb8c25: ; b8c25 (2e:4c25)
 	ld a, $25
 	jp NextRadioLine
 
-Functionb8c3e: ; b8c3e (2e:4c3e)
+LuckyNumberShow9: ; b8c3e (2e:4c3e)
 	ld hl, UnknownText_0xb8ca6
 	ld a, $26
 	jp NextRadioLine
 
-Functionb8c46: ; b8c46 (2e:4c46)
+LuckyNumberShow10: ; b8c46 (2e:4c46)
 	ld hl, UnknownText_0xb8c9c
 	ld a, $27
 	jp NextRadioLine
 
-Functionb8c4e: ; b8c4e (2e:4c4e)
+LuckyNumberShow11: ; b8c4e (2e:4c4e)
 	ld hl, UnknownText_0xb8ca1
 	ld a, $28
 	jp NextRadioLine
 
-Functionb8c56: ; b8c56 (2e:4c56)
+LuckyNumberShow12: ; b8c56 (2e:4c56)
 	ld hl, UnknownText_0xb8cab
 	ld a, $29
 	jp NextRadioLine
 
-Functionb8c5e: ; b8c5e (2e:4c5e)
+LuckyNumberShow13: ; b8c5e (2e:4c5e)
 	ld hl, UnknownText_0xb8cb0
 	call Random
 	and a
@@ -1118,12 +1131,12 @@ Functionb8c5e: ; b8c5e (2e:4c5e)
 .asm_b8c6b
 	jp NextRadioLine
 
-Functionb8c6e: ; b8c6e (2e:4c6e)
+LuckyNumberShow14: ; b8c6e (2e:4c6e)
 	ld hl, UnknownText_0xb8cb5
 	ld a, $2b
 	jp NextRadioLine
 
-Functionb8c76: ; b8c76 (2e:4c76)
+LuckyNumberShow15: ; b8c76 (2e:4c76)
 	ld hl, UnknownText_0xb8cba
 	ld a, $3
 	jp NextRadioLine
@@ -1207,18 +1220,18 @@ UnknownText_0xb8cba: ; 0xb8cba
 	db "@"
 ; 0xb8cbf
 
-Functionb8cbf: ; b8cbf (2e:4cbf)
-	call Functionb91eb
+PeoplePlaces1: ; b8cbf (2e:4cbf)
+	call StartRadioStation
 	ld hl, UnknownText_0xb8ce3
 	ld a, $2c
 	jp NextRadioLine
 
-Functionb8cca: ; b8cca (2e:4cca)
+LuckyNumberShow16: ; b8cca (2e:4cca)
 	ld hl, UnknownText_0xb8ce8
 	ld a, $2d
 	jp NextRadioLine
 
-Functionb8cd2: ; b8cd2 (2e:4cd2)
+LuckyNumberShow17: ; b8cd2 (2e:4cd2)
 	ld hl, UnknownText_0xb8ced
 	call Random
 	cp $7b
@@ -1247,12 +1260,12 @@ UnknownText_0xb8ced: ; 0xb8ced
 	db "@"
 ; 0xb8cf2
 
-Functionb8cf2: ; b8cf2 (2e:4cf2)
+LuckyNumberShow18: ; b8cf2 (2e:4cf2)
 	call Random
-	and $7f
+	and " "
 	inc a
 	cp $43
-	jr nc, Functionb8cf2
+	jr nc, LuckyNumberShow18
 	push af
 	ld hl, Unknown_b8d3e
 	ld a, [StatusFlags]
@@ -1270,7 +1283,7 @@ Functionb8cf2: ; b8cf2 (2e:4cf2)
 	push bc
 	call IsInArray
 	pop bc
-	jr c, Functionb8cf2
+	jr c, LuckyNumberShow18
 	push bc
 	callab Function3952d
 	ld de, StringBuffer1
@@ -1295,7 +1308,7 @@ UnknownText_0xb8d51: ; 0xb8d51
 	db "@"
 ; 0xb8d56
 
-Functionb8d56: ; b8d56 (2e:4d56)
+LuckyNumberShow19: ; b8d56 (2e:4d56)
 	call Random
 	and $f
 	ld e, a
@@ -1435,10 +1448,10 @@ UnknownText_0xb8de8: ; 0xb8de8
 	db "@"
 ; 0xb8ded
 
-Functionb8ded: ; b8ded (2e:4ded)
+LuckyNumberShow20: ; b8ded (2e:4ded)
 	call Random
 	cp $9
-	jr nc, Functionb8ded
+	jr nc, LuckyNumberShow20
 	ld hl, Unknown_b8e11
 	ld c, a
 	ld b, 0
@@ -1474,7 +1487,7 @@ UnknownText_0xb8e23: ; 0xb8e23
 	db "@"
 ; 0xb8e28
 
-Functionb8e28: ; b8e28 (2e:4e28)
+LuckyNumberShow21: ; b8e28 (2e:4e28)
 	call Random
 	and $f
 	ld e, a
@@ -1486,7 +1499,7 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Functionb91dc
+	call CopyRadioTextToRAM
 	call Random
 	cp $a
 	ld a, $5
@@ -1497,7 +1510,7 @@ endr
 	jr c, .asm_b8e4f
 	ld a, $30
 .asm_b8e4f
-	jp Functionb86ea
+	jp PrintRadioLine
 ; b8e52 (2e:4e52)
 
 Unknown_b8e52: ; b8e52
@@ -1519,53 +1532,53 @@ Unknown_b8e52: ; b8e52
 	dw UnknownText_0xb8de8
 ; b8e72
 
-Functionb8e72: ; b8e72 (2e:4e72)
-	call Functionb91eb
+RocketRadio1: ; b8e72 (2e:4e72)
+	call StartRadioStation
 	ld hl, UnknownText_0xb8ec5
 	ld a, $32
 	jp NextRadioLine
 
-Functionb8e7d: ; b8e7d (2e:4e7d)
+RocketRadio2: ; b8e7d (2e:4e7d)
 	ld hl, UnknownText_0xb8eca
 	ld a, $33
 	jp NextRadioLine
 
-Functionb8e85: ; b8e85 (2e:4e85)
+RocketRadio3: ; b8e85 (2e:4e85)
 	ld hl, UnknownText_0xb8ecf
 	ld a, $34
 	jp NextRadioLine
 
-Functionb8e8d: ; b8e8d (2e:4e8d)
+RocketRadio4: ; b8e8d (2e:4e8d)
 	ld hl, UnknownText_0xb8ed4
 	ld a, $35
 	jp NextRadioLine
 
-Functionb8e95: ; b8e95 (2e:4e95)
+RocketRadio5: ; b8e95 (2e:4e95)
 	ld hl, UnknownText_0xb8ed9
 	ld a, $36
 	jp NextRadioLine
 
-Functionb8e9d: ; b8e9d (2e:4e9d)
+RocketRadio6: ; b8e9d (2e:4e9d)
 	ld hl, UnknownText_0xb8ede
 	ld a, $37
 	jp NextRadioLine
 
-Functionb8ea5: ; b8ea5 (2e:4ea5)
+RocketRadio7: ; b8ea5 (2e:4ea5)
 	ld hl, UnknownText_0xb8ee3
 	ld a, $38
 	jp NextRadioLine
 
-Functionb8ead: ; b8ead (2e:4ead)
+RocketRadio8: ; b8ead (2e:4ead)
 	ld hl, UnknownText_0xb8ee8
 	ld a, $39
 	jp NextRadioLine
 
-Functionb8eb5: ; b8eb5 (2e:4eb5)
+RocketRadio9: ; b8eb5 (2e:4eb5)
 	ld hl, UnknownText_0xb8eed
 	ld a, $3a
 	jp NextRadioLine
 
-Functionb8ebd: ; b8ebd (2e:4ebd)
+RocketRadio10: ; b8ebd (2e:4ebd)
 	ld hl, UnknownText_0xb8ef2
 	ld a, $7
 	jp NextRadioLine
@@ -1631,34 +1644,35 @@ UnknownText_0xb8ef2: ; 0xb8ef2
 	db "@"
 ; 0xb8ef7
 
-Functionb8ef7: ; b8ef7 (2e:4ef7)
-	call Functionb91eb
+PokeFluteRadio: ; b8ef7 (2e:4ef7)
+	call StartRadioStation
 	ld a, $1
 	ld [wd005], a
 	ret
 
-Functionb8f00: ; b8f00 (2e:4f00)
-	call Functionb91eb
+EvolutionRadio: ; b8f00 (2e:4f00)
+	call StartRadioStation
 	ld a, $1
 	ld [wd005], a
 	ret
 
-Functionb8f09: ; b8f09 (2e:4f09)
-	call Functionb91eb
+UnownRadio: ; b8f09 (2e:4f09)
+	call StartRadioStation
 	ld a, $1
 	ld [wd005], a
 	ret
 
-Functionb8f12: ; b8f12 (2e:4f12)
-	call Functionb9169
+BuenasPassword1: ; b8f12 (2e:4f12)
+; Determine if we need to be here
+	call BuenasPasswordCheckMidnight
 	jp nc, Functionb8f22
 	ld a, [wd005]
 	and a
-	jp z, Functionb912a
-	jp Functionb90c5
+	jp z, BuenasPassword20
+	jp BuenasPassword8
 
 Functionb8f22: ; b8f22 (2e:4f22)
-	call Functionb91eb
+	call StartRadioStation
 	ld a, [hBGMapMode] ; $ff00+$d4
 	push af
 	xor a
@@ -1672,53 +1686,61 @@ Functionb8f22: ; b8f22 (2e:4f22)
 	ld a, $40
 	jp NextRadioLine
 
-Functionb8f3f: ; b8f3f (2e:4f3f)
+BuenasPassword2: ; b8f3f (2e:4f3f)
 	ld hl, UnknownText_0xb9187
 	ld a, $41
 	jp NextRadioLine
 
-Functionb8f47: ; b8f47 (2e:4f47)
-	call Functionb9169
+BuenasPassword3: ; b8f47 (2e:4f47)
+	call BuenasPasswordCheckMidnight
 	ld hl, UnknownText_0xb918c
-	jp c, Functionb90b9
+	jp c, BuenasPasswordAfterMidnight
 	ld a, $42
 	jp NextRadioLine
 
-Functionb8f55: ; b8f55 (2e:4f55)
-	call Functionb9169
-	jp c, Functionb90c5
+BuenasPassword4: ; b8f55 (2e:4f55)
+	call BuenasPasswordCheckMidnight
+	jp c, BuenasPassword8
 	ld a, [wdc4a]
+; If we already generated the password today, we don't need to generate a new one.
 	ld hl, WeeklyFlags
 	bit 7, [hl]
-	jr nz, .asm_b8f83
-.asm_b8f65
+	jr nz, .AlreadyGotIt
+; There are only 11 groups to choose from.
+.greater_than_11
 	call Random
 	and $f
 	cp $b
-	jr nc, .asm_b8f65
+	jr nc, .greater_than_11
+; Store it in the high nybble of e.
 	swap a
 	ld e, a
-.asm_b8f71
+; For each group, choose one of the three passwords.
+.greater_than_three
 	call Random
 	and $3
 	cp $3
-	jr nc, .asm_b8f71
+	jr nc, .greater_than_three
+; The high nybble of wdc4a will now contain the password group index, and the low nybble contains the actual password.
 	add e
 	ld [wdc4a], a
+; Set the flag so that we don't generate a new password this week.
 	ld hl, WeeklyFlags
 	set 7, [hl]
-.asm_b8f83
+.AlreadyGotIt
 	ld c, a
-	call Functionb8f8f
+	call GetBuenasPassword
 	ld hl, UnknownText_0xb9191
 	ld a, $43
 	jp NextRadioLine
 
-Functionb8f8f: ; b8f8f
+GetBuenasPassword: ; b8f8f
+; The password indices are held in c.  High nybble contains the group index, low nybble contains the word index.
+; Load the password group pointer in hl.
 	ld a, c
 	swap a
 	and $f
-	ld hl, Unknown_b8ff9
+	ld hl, PasswordTable
 	ld d, 0
 	ld e, a
 rept 2
@@ -1727,15 +1749,17 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+; Get the password type and store it in b.
 	ld a, [hli]
 	ld b, a
 	push hl
 	inc hl
+; Get the password index.
 	ld a, c
 	and $f
 	ld c, a
 	push hl
-	ld hl, Jumptable_b8fb8
+	ld hl, .StringFunctionJumpTable
 	ld e, b
 rept 2
 	add hl, de
@@ -1743,7 +1767,7 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	pop de
+	pop de ; de now contains the pointer to the value of this week's password, in Blue Card Points.
 	call _hl_
 	pop hl
 	ld c, [hl]
@@ -1751,29 +1775,29 @@ endr
 ; b8fb8
 
 
-Jumptable_b8fb8: ; b8fb8 (2e:4fb8)
-	dw Functionb8fc0
-	dw Functionb8fc7
-	dw Functionb8fce
-	dw Functionb8fde
+.StringFunctionJumpTable: ; b8fb8 (2e:4fb8)
+	dw .Mon
+	dw .Item
+	dw .Move
+	dw .RawString
 
 
-Functionb8fc0: ; b8fc0 (2e:4fc0)
-	call Functionb8fd5
+.Mon: ; b8fc0 (2e:4fc0)
+	call .GetTheIndex
 	call GetPokemonName
 	ret
 
-Functionb8fc7: ; b8fc7 (2e:4fc7)
-	call Functionb8fd5
+.Item: ; b8fc7 (2e:4fc7)
+	call .GetTheIndex
 	call GetItemName
 	ret
 
-Functionb8fce: ; b8fce (2e:4fce)
-	call Functionb8fd5
+.Move: ; b8fce (2e:4fce)
+	call .GetTheIndex
 	call GetMoveName
 	ret
 
-Functionb8fd5: ; b8fd5 (2e:4fd5)
+.GetTheIndex: ; b8fd5 (2e:4fd5)
 	ld h, 0
 	ld l, c
 	add hl, de
@@ -1781,74 +1805,76 @@ Functionb8fd5: ; b8fd5 (2e:4fd5)
 	ld [wd265], a
 	ret
 
-Functionb8fde: ; b8fde (2e:4fde)
+.RawString: ; b8fde (2e:4fde)
+; Get the string from the table...
 	ld a, c
 	and a
-	jr z, .asm_b8feb
-.asm_b8fe2
+	jr z, .skip
+.read_loop
 	ld a, [de]
 	inc de
-	cp $50
-	jr nz, .asm_b8fe2
+	cp "@"
+	jr nz, .read_loop
 	dec c
-	jr nz, .asm_b8fe2
-.asm_b8feb
+	jr nz, .read_loop
+; ... and copy it into StringBuffer1.
+.skip
 	ld hl, StringBuffer1
-.asm_b8fee
+.copy_loop
 	ld a, [de]
 	inc de
 	ld [hli], a
-	cp $50
-	jr nz, .asm_b8fee
+	cp "@"
+	jr nz, .copy_loop
 	ld de, StringBuffer1
 	ret
 ; b8ff9 (2e:4ff9)
 
-Unknown_b8ff9: ; b8ff9
-	dw Unknown_b900f
-	dw Unknown_b9014
-	dw Unknown_b9019
-	dw Unknown_b901e
-	dw Unknown_b9023
-	dw Unknown_b9028
-	dw Unknown_b902d
-	dw Unknown_b905a
-	dw Unknown_b906d
-	dw Unknown_b9072
-	dw Unknown_b9077
+PasswordTable: ; b8ff9
+	dw .JohtoStarters
+	dw .Beverages
+	dw .HealingItems
+	dw .Balls
+	dw .Pokemon1
+	dw .Pokemon2
+	dw .JohtoTowns
+	dw .Types
+	dw .Moves
+	dw .XItems
+	dw .RadioStations
 ; b900f
-
-Unknown_b900f: db 0, 10, CYNDAQUIL, TOTODILE, CHIKORITA
-Unknown_b9014: db 1, 12, FRESH_WATER, SODA_POP, LEMONADE
-Unknown_b9019: db 1, 12, POTION, ANTIDOTE, PARLYZ_HEAL
-Unknown_b901e: db 1, 12, POKE_BALL, GREAT_BALL, ULTRA_BALL
-Unknown_b9023: db 0, 10, PIKACHU, RATTATA, GEODUDE
-Unknown_b9028: db 0, 10, HOOTHOOT, SPINARAK, DROWZEE
-Unknown_b902d: db 3, 16, "NEW BARK TOWN@", "CHERRYGROVE CITY@", "AZALEA TOWN@"
-Unknown_b905a: db 3,  6, "FLYING@", "BUG@", "GRASS@"
-Unknown_b906d: db 2, 12, TACKLE, GROWL, MUD_SLAP
-Unknown_b9072: db 1, 12, X_ATTACK, X_DEFEND, X_SPEED
-Unknown_b9077: db 3, 13, "#MON Talk@", "#MON Music@", "Lucky Channel@"
+                     ; string type, points, option 1, option 2, option 3
+.JohtoStarters:      db BUENA_MON,    10, CYNDAQUIL, TOTODILE, CHIKORITA
+.Beverages:          db BUENA_ITEM,   12, FRESH_WATER, SODA_POP, LEMONADE
+.HealingItems:       db BUENA_ITEM,   12, POTION, ANTIDOTE, PARLYZ_HEAL
+.Balls:              db BUENA_ITEM,   12, POKE_BALL, GREAT_BALL, ULTRA_BALL
+.Pokemon1:           db BUENA_MON,    10, PIKACHU, RATTATA, GEODUDE
+.Pokemon2:           db BUENA_MON,    10, HOOTHOOT, SPINARAK, DROWZEE
+.JohtoTowns:         db BUENA_STRING, 16, "NEW BARK TOWN@", "CHERRYGROVE CITY@", "AZALEA TOWN@"
+.Types:              db BUENA_STRING,  6, "FLYING@", "BUG@", "GRASS@"
+.Moves:              db BUENA_MOVE,   12, TACKLE, GROWL, MUD_SLAP
+.XItems:             db BUENA_ITEM,   12, X_ATTACK, X_DEFEND, X_SPEED
+.RadioStations:      db BUENA_STRING, 13, "#MON Talk@", "#MON Music@", "Lucky Channel@"
 ; b909c
 
-Functionb909c: ; b909c (2e:509c)
+BuenasPassword5: ; b909c (2e:509c)
 	ld hl, UnknownText_0xb9196
 	ld a, $44
 	jp NextRadioLine
 
-Functionb90a4: ; b90a4 (2e:50a4)
+BuenasPassword6: ; b90a4 (2e:50a4)
 	ld hl, UnknownText_0xb919b
 	ld a, $45
 	jp NextRadioLine
 
-Functionb90ac: ; b90ac (2e:50ac)
-	call Functionb9169
+BuenasPassword7: ; b90ac (2e:50ac)
+	call BuenasPasswordCheckMidnight
 	ld hl, UnknownText_0xb91a0
-	jr c, Functionb90b9
+	jr c, BuenasPasswordAfterMidnight
 	ld a, $4
 	jp NextRadioLine
 
-Functionb90b9: ; b90b9 (2e:50b9)
+BuenasPasswordAfterMidnight: ; b90b9 (2e:50b9)
 	push hl
 	ld hl, WeeklyFlags
 	res 7, [hl]
@@ -1856,69 +1882,69 @@ Functionb90b9: ; b90b9 (2e:50b9)
 	ld a, $46
 	jp NextRadioLine
 
-Functionb90c5: ; b90c5 (2e:50c5)
+BuenasPassword8: ; b90c5 (2e:50c5)
 	ld hl, WeeklyFlags
 	res 7, [hl]
 	ld hl, UnknownText_0xb91d2
 	ld a, $47
 	jp NextRadioLine
 
-Functionb90d2: ; b90d2 (2e:50d2)
+BuenasPassword9: ; b90d2 (2e:50d2)
 	ld hl, UnknownText_0xb91a5
 	ld a, $48
 	jp NextRadioLine
 
-Functionb90da: ; b90da (2e:50da)
+BuenasPassword10: ; b90da (2e:50da)
 	ld hl, UnknownText_0xb91aa
 	ld a, $49
 	jp NextRadioLine
 
-Functionb90e2: ; b90e2 (2e:50e2)
+BuenasPassword11: ; b90e2 (2e:50e2)
 	ld hl, UnknownText_0xb91af
 	ld a, $4a
 	jp NextRadioLine
 
-Functionb90ea: ; b90ea (2e:50ea)
+BuenasPassword12: ; b90ea (2e:50ea)
 	ld hl, UnknownText_0xb91b4
 	ld a, $4b
 	jp NextRadioLine
 
-Functionb90f2: ; b90f2 (2e:50f2)
+BuenasPassword13: ; b90f2 (2e:50f2)
 	ld hl, UnknownText_0xb91b9
 	ld a, $4c
 	jp NextRadioLine
 
-Functionb90fa: ; b90fa (2e:50fa)
+BuenasPassword14: ; b90fa (2e:50fa)
 	ld hl, UnknownText_0xb91be
 	ld a, $4d
 	jp NextRadioLine
 
-Functionb9102: ; b9102 (2e:5102)
+BuenasPassword15: ; b9102 (2e:5102)
 	ld hl, UnknownText_0xb91c3
 	ld a, $4e
 	jp NextRadioLine
 
-Functionb910a: ; b910a (2e:510a)
+BuenasPassword16: ; b910a (2e:510a)
 	ld hl, UnknownText_0xb91c8
 	ld a, $4f
 	jp NextRadioLine
 
-Functionb9112: ; b9112 (2e:5112)
+BuenasPassword17: ; b9112 (2e:5112)
 	ld hl, UnknownText_0xb91cd
 	ld a, $50
 	jp NextRadioLine
 
-Functionb911a: ; b911a (2e:511a)
+BuenasPassword18: ; b911a (2e:511a)
 	ld hl, UnknownText_0xb91d2
 	ld a, $51
 	jp NextRadioLine
 
-Functionb9122: ; b9122 (2e:5122)
+BuenasPassword19: ; b9122 (2e:5122)
 	ld hl, UnknownText_0xb91d2
 	ld a, $52
 	jp NextRadioLine
 
-Functionb912a: ; b912a (2e:512a)
+BuenasPassword20: ; b912a (2e:512a)
 	ld a, [hBGMapMode] ; $ff00+$d4
 	push af
 	callba NoRadioMusic
@@ -1935,18 +1961,18 @@ Functionb912a: ; b912a (2e:512a)
 	ld a, $53
 	jp NextRadioLine
 
-Functionb9152: ; b9152 (2e:5152)
+BuenasPassword21: ; b9152 (2e:5152)
 	ld a, $4
 	ld [wd002], a
 	xor a
 	ld [wd005], a
-	call Functionb9169
-	jp nc, Functionb8f12
+	call BuenasPasswordCheckMidnight
+	jp nc, BuenasPassword1
 	ld hl, UnknownText_0xb91d7
 	ld a, $53
 	jp NextRadioLine
 
-Functionb9169: ; b9169 (2e:5169)
+BuenasPasswordCheckMidnight: ; b9169 (2e:5169)
 	call UpdateTime
 	ld a, [hHours] ; $ff00+$94
 	cp $12
@@ -2065,19 +2091,19 @@ UnknownText_0xb91d7: ; 0xb91d7
 	db "@"
 ; 0xb91dc
 
-Functionb91dc: ; b91dc (2e:51dc)
+CopyRadioTextToRAM: ; b91dc (2e:51dc)
 	ld a, [hl]
-	cp $16 ; TX_FAR
+	cp TX_FAR
 	jp z, FarJumpText
 	ld de, wd00c
-	ld bc, $28
+	ld bc, SCREEN_WIDTH * 2
 	jp CopyBytes
 
-Functionb91eb: ; b91eb (2e:51eb)
+StartRadioStation: ; b91eb (2e:51eb)
 	ld a, [wd005]
 	and a
 	ret nz
-	call Function1052
+	call RadioTerminator
 	call PrintText
 	ld hl, RadioChannelSongs
 	ld a, [wd002]
@@ -2089,7 +2115,7 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	callab Function91854
+	callab RadioMusicNone
 	ret
 ; b920b (2e:520b)
 
@@ -2109,7 +2135,7 @@ RadioChannelSongs: ; b920b
 
 NextRadioLine: ; b9221 (2e:5221)
 	push af
-	call Functionb91dc
+	call CopyRadioTextToRAM
 	pop af
-	jp Functionb86ea
+	jp PrintRadioLine
 ; b9229

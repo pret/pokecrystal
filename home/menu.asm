@@ -75,7 +75,7 @@ InterpretMenu2:: ; 0x1d81
 	xor a
 	ld [hBGMapMode], a
 	call Function1cbb
-	call DrawOnMap
+	call UpdateSprites
 	call Function1c89
 	call Function321c
 	call Function1c66

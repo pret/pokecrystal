@@ -359,12 +359,12 @@ __enum__ = $51
 
 	enum movement_fish_got_bite
 fish_got_bite: macro
-	db movement_fish_got_bite
+	db movement_fish_got_bite ; $51
 	endm
 
 	enum movement_fish_got_bite_2
 fish_got_bite_2: macro
-	db movement_fish_got_bite_2
+	db movement_fish_got_bite_2 ; $52
 	endm
 
 	enum movement_hide_emote
@@ -381,4 +381,11 @@ show_emote: macro
 step_shake: macro
 	db movement_step_shake ; $55
 	db \1 ; displacement
+	endm
+
+__enum__ = $57
+	enum movement_rock_smash
+rock_smash: macro
+	db movement_rock_smash ; $57
+	db \1
 	endm

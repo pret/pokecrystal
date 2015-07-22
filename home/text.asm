@@ -37,7 +37,7 @@ Functionfb8::
 ClearTileMap:: ; fc8
 ; Fill TileMap with blank tiles.
 
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld a, " "
 	ld bc, TileMapEnd - TileMap
 	call ByteFill
@@ -52,7 +52,7 @@ ClearTileMap:: ; fc8
 
 ClearScreen:: ; fdb
 	ld a, TEXTBOX_PAL
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	jr ClearTileMap
@@ -163,7 +163,7 @@ TestText:: ; 1048
 	done
 ; 1052
 
-Function1052:: ; 1052
+RadioTerminator:: ; 1052
 	ld hl, .stop
 	ret
 .stop	db "@"
@@ -181,14 +181,14 @@ Function105a:: ; 105a
 
 PrintTextBoxText:: ; 1065
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
-	call Function13e5
+	call PlaceWholeStringInBoxAtOnce
 	ret
 ; 106c
 
 SetUpTextBox:: ; 106c
 	push hl
 	call SpeechTextBox
-	call DrawOnMap
+	call UpdateSprites
 	call Function321c
 	pop hl
 	ret
@@ -478,7 +478,7 @@ Char16:: ; 12b9
 	jr .asm_12c4
 
 .asm_12d1
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld de, SCREEN_WIDTH
 	ld a, c
 .asm_12d8
@@ -697,7 +697,7 @@ Function13e0:: ; 13e0
 ; 13e5
 
 
-Function13e5:: ; 13e5
+PlaceWholeStringInBoxAtOnce:: ; 13e5
 	ld a, [TextBoxFrame + 1]
 	push af
 	set 1, a
@@ -780,7 +780,7 @@ Text_00:: ; 143e
 ; 1449
 
 Text_01:: ; 1449
-; TX_RAM
+; text_from_ram
 ; write text from a ram address
 ; little endian
 ; [$01][addr]
@@ -798,7 +798,7 @@ Text_01:: ; 1449
 ; 1455
 
 Text_16:: ; 1455
-; TX_FAR
+; text_jump
 ; write text from a different bank
 ; little endian
 ; [$16][addr][bank]

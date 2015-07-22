@@ -8824,9 +8824,9 @@ Function3f836: ; 3f836
 	call GetSRAMBank
 	call Function3f85f
 	call CloseSRAM
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	xor a
-	ld bc, $0168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	call Function3200
 	ld b, $8

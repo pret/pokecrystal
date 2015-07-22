@@ -312,7 +312,7 @@ BattleTextBox:: ; 3ac3
 	push hl
 	call SpeechTextBox
 	call MobileTextBorder
-	call DrawOnMap
+	call UpdateSprites
 	call Function321c
 	pop hl
 	call PrintTextBoxText

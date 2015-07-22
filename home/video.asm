@@ -169,7 +169,7 @@ UpdateBGMap:: ; 164c
 	ld a, 1
 	ld [rVBK], a
 
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	call .update
 
 	ld a, 0
@@ -178,7 +178,7 @@ UpdateBGMap:: ; 164c
 
 
 .Tiles
-	ld hl, TileMap
+	hlcoord 0, 0
 
 
 .update

@@ -217,7 +217,7 @@ Function309d:: ; 309d
 	push af
 	ld a, 2
 	ld [rSVBK], a
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld de, w2_d000
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
@@ -241,7 +241,7 @@ Function30bf:: ; 30bf
 	ld a, 2
 	ld [rSVBK], a
 	ld hl, w2_d000
-	ld de, TileMap
+	decoord 0, 0
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
@@ -271,7 +271,7 @@ IsInArray:: ; 30e1
 	ld c, a
 .loop
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .NotInArray
 	cp c
 	jr z, .InArray
@@ -626,11 +626,11 @@ Function3246:: ; 3246
 	di
 	ld a, $1
 	ld [rVBK], a
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	call Function327b
 	ld a, $0
 	ld [rVBK], a
-	ld hl, TileMap
+	hlcoord 0, 0
 	call Function327b
 .wait2
 	ld a, [rLY]
@@ -761,7 +761,7 @@ GetSGBLayout:: ; 3340
 	ret z
 
 .sgb
-	predef_jump Function864c ; LoadSGBLayout
+	predef_jump Predef_LoadSGBLayout ; LoadSGBLayout
 ; 334e
 
 
@@ -2153,11 +2153,11 @@ endr
 ; 3f20
 
 Function3f20:: ; 3f20
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld b, $6
 	ld c, $14
 	call Function3f35
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld b, $4
 	ld c, $12
 	call Function3f47

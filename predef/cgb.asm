@@ -13,7 +13,7 @@ Function8d59: ; 8d59
 	ld a, [SGBPredef]
 
 .asm_8d61
-	cp $fc
+	cp -4
 	jp z, Function96f3
 	call Function9673
 	ld l, a
@@ -121,8 +121,8 @@ endr
 
 Function8e23: ; 8e23
 	call Function8e85
-	ld hl, AttrMap
-	ld bc, $0168
+	hlcoord 0, 0, AttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $2
 	call ByteFill
 	hlcoord 0, 4, AttrMap
@@ -133,7 +133,7 @@ Function8e23: ; 8e23
 	ld bc, $070a
 	ld a, $1
 	call Function9663
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld bc, $040a
 	ld a, $2
 	call Function9663
@@ -233,7 +233,7 @@ endr
 	ld a, $5
 	call FarCopyWRAM
 	call Function9699
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld bc, $0814
 	ld a, $1
 	call Function9663
@@ -717,8 +717,8 @@ Function9289: ; 9289
 	ld a, $24
 	call Function9625
 	call Function9630
-	ld hl, AttrMap
-	ld bc, $0168
+	hlcoord 0, 0, AttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, [PlayerGender]
 	and a
 	ld a, $1
@@ -864,7 +864,7 @@ Function93d3: ; 93d3
 	ld a, $5
 	call FarCopyWRAM
 	call Function9699
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld bc, $010a
 	ld a, $1
 	call Function9663
@@ -948,7 +948,7 @@ Palettes_9469: ; 9469
 Function9499: ; 9499
 	call Function91c8
 	ld de, $0014
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld a, [wcf82]
 .asm_94a5
 	and a
@@ -1093,7 +1093,7 @@ Function9591: ; 9591
 	ld bc, $0112
 	ld a, $1
 	call Function9663
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld bc, $1102
 	ld a, $1
 	call Function9663

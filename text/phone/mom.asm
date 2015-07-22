@@ -8,12 +8,12 @@ MomPhoneGreetingText: ; 0x1b4000
 UnknownText_0x1b4021: ; 0x1b4021
 	text "Oh, so you're in"
 	line "@"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text "…"
 
 	para "Isn't that where"
 	line "@"
-	TX_RAM StringBuffer4
+	text_from_ram StringBuffer4
 	text ""
 	para "is? Did you go"
 	line "take a look?"
@@ -22,7 +22,7 @@ UnknownText_0x1b4021: ; 0x1b4021
 MomPhoneGenericAreaText: ; 0x1b406b
 	text "Really, you're in"
 	line "@"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text "?"
 
 	para "I've never gone"
@@ -33,7 +33,7 @@ MomPhoneGenericAreaText: ; 0x1b406b
 MomPhoneNewBarkText: ; 0x1b40b1
 	text "What? You're in"
 	line "@"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text "?"
 
 	para "Come see your MOM"
@@ -43,7 +43,7 @@ MomPhoneNewBarkText: ; 0x1b40b1
 MomPhoneCherrygroveText: ; 0x1b40e4
 	text "You're visiting"
 	line "@"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text "?"
 
 	para "How about coming"
@@ -53,7 +53,7 @@ MomPhoneCherrygroveText: ; 0x1b40e4
 UnknownText_0x1b411c: ; 0x1b411c
 	text "Wow, you're in"
 	line "@"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text "?"
 
 	para "Good luck on your"
@@ -74,7 +74,7 @@ UnknownText_0x1b4150: ; 0x1b4150
 UnknownText_0x1b41a7: ; 0x1b41a7
 	text "By the way, you've"
 	line "saved up ¥@"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text "."
 
 	para "Do you want to"
@@ -97,7 +97,7 @@ UnknownText_0x1b420d: ; 0x1b420d
 UnknownText_0x1b4249: ; 0x1b4249
 	text "By the way, you've"
 	line "saved up ¥@"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text "."
 
 	para "Want to start"
