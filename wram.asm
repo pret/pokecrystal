@@ -362,10 +362,10 @@ wPartyMon3MenuIconAnim:: ds 16 ; c334
 wPartyMon4MenuIconAnim:: ds 16 ; c344
 wPartyMon5MenuIconAnim:: ds 16 ; c354
 wPartyMon6MenuIconAnim:: ds 16 ; c364
-wc374:: ds 64
-wc3a4:: ds 8
-wc3ac:: ds 8
-wc3b4:: ds 1
+wc374:: ds 48 ; c374
+wc3a4:: ds 8 ; c3b4
+wc3ac:: ds 8 ; c3bc
+wc3b4:: ds 1 ; c3
 wc3b5:: ds 1
 
 CurIcon:: ; c3b6

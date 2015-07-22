@@ -6,7 +6,7 @@ CheckCGB: ; 8d55
 	ret
 ; 8d59
 
-Function8d59: ; 8d59
+Predef_LoadSGBLayoutCGB: ; 8d59
 	ld a, b
 	cp $ff
 	jr nz, .asm_8d61
