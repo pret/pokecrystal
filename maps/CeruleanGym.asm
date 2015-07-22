@@ -48,7 +48,7 @@ UnknownScript_0x1883de:
 	waitbutton
 	special RestartMapMusic
 	pause 15
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	pause 15
 	end
 

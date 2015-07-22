@@ -37,14 +37,14 @@ UnknownScript_0x1a0f6d:
 	spriteface $2, UP
 	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1a108d
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
 	writetext UnknownText_0x1a10df
 	yesorno
 	iffalse UnknownScript_0x1a0fd9
 	loadmovesprites
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x1a109a
 	stopfollow
 	loadpokedata RATTATA, 5
@@ -62,14 +62,14 @@ UnknownScript_0x1a0fa3:
 	spriteface $2, UP
 	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1a1094
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
 	writetext UnknownText_0x1a10df
 	yesorno
 	iffalse UnknownScript_0x1a0fe5
 	loadmovesprites
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x1a10a1
 	stopfollow
 	loadpokedata RATTATA, 5

@@ -3167,11 +3167,11 @@ TalkToTrainerScript:: ; 0xbe66a
 SeenByTrainerScript:: ; 0xbe675
 	loadtrainerdata
 	playrammusic
-	showemote EMOTE_SHOCK, -2, 30
+	showemote EMOTE_SHOCK, LAST_TALKED, 30
 	callasm Function831e
 	applymovement2 MovementBuffer
-	writepersonxy -2
-	faceperson $0, -2
+	writepersonxy LAST_TALKED
+	faceperson PLAYER, LAST_TALKED
 	jump StartBattleWithMapTrainerScript
 ; 0xbe68a
 

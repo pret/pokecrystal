@@ -42,8 +42,8 @@ UnknownScript_0x18c8b8:
 	writetext UnknownText_0x18c9b8
 	pause 30
 	loadmovesprites
-	showemote EMOTE_SHOCK, $0, 15
-	spriteface $0, LEFT
+	showemote EMOTE_SHOCK, PLAYER, 15
+	spriteface PLAYER, LEFT
 	playmusic MUSIC_CLAIR
 	applymovement $3, MovementData_0x18c9ae
 	loadfont

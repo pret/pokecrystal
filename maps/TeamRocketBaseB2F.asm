@@ -52,12 +52,12 @@ UnknownScript_0x6cfac:
 	writetext UnknownText_0x6d2ad
 	closetext
 	loadmovesprites
-	spriteface $0, DOWN
-	showemote EMOTE_SHOCK, $0, 15
-	applymovement $0, MovementData_0x6d21f
+	spriteface PLAYER, DOWN
+	showemote EMOTE_SHOCK, PLAYER, 15
+	applymovement PLAYER, MovementData_0x6d21f
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	applymovement $3, MovementData_0x6d224
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	applymovement $2, MovementData_0x6d22f
 	loadfont
 	writetext UnknownText_0x6d2c3
@@ -65,7 +65,7 @@ UnknownScript_0x6cfac:
 	loadmovesprites
 	cry DRAGONITE
 	spriteface $3, LEFT
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	appear $5
 	applymovement $5, MovementData_0x6d236
 	applymovement $3, MovementData_0x6d23b
@@ -76,7 +76,7 @@ UnknownScript_0x6cfac:
 	writetext UnknownText_0x6d38c
 	closetext
 	loadmovesprites
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	applymovement $3, MovementData_0x6d241
 	loadfont
 	writetext UnknownText_0x6d3bd
@@ -115,12 +115,12 @@ UnknownScript_0x6cfac:
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x6d250
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x6d64e
 	closetext
 	loadmovesprites
-	follow $4, $0
+	follow $4, PLAYER
 	applymovement $4, MovementData_0x6d254
 	stopfollow
 	applymovement $4, MovementData_0x6d258
@@ -132,7 +132,7 @@ UnknownScript_0x6cfac:
 	disappear $4
 
 UnknownScript_0x6d075:
-	applymovement $0, MovementData_0x6d271
+	applymovement PLAYER, MovementData_0x6d271
 	end
 
 UnknownScript_0x6d07a:
@@ -140,15 +140,15 @@ UnknownScript_0x6d07a:
 	writetext UnknownText_0x6d7ea
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x6d278
+	applymovement PLAYER, MovementData_0x6d278
 	end
 
 UnknownScript_0x6d085:
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	jump UnknownScript_0x6d091
 
 UnknownScript_0x6d08b:
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	spriteface $4, LEFT
 UnknownScript_0x6d091:
 	loadfont
@@ -225,7 +225,7 @@ VoltorbScript_0x6d101:
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
-	applymovement $0, MovementData_0x6d28c
+	applymovement PLAYER, MovementData_0x6d28c
 	jump UnknownScript_0x6d184
 
 VoltorbScript_0x6d12c:
@@ -243,7 +243,7 @@ VoltorbScript_0x6d12c:
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
-	applymovement $0, MovementData_0x6d299
+	applymovement PLAYER, MovementData_0x6d299
 	jump UnknownScript_0x6d184
 
 VoltorbScript_0x6d157:
@@ -261,7 +261,7 @@ VoltorbScript_0x6d157:
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special PlayMapMusic
-	applymovement $0, MovementData_0x6d2a4
+	applymovement PLAYER, MovementData_0x6d2a4
 	jump UnknownScript_0x6d184
 
 UnknownScript_0x6d182:
@@ -272,7 +272,7 @@ UnknownScript_0x6d184:
 	moveperson $4, $12, $6
 	appear $4
 	applymovement $4, MovementData_0x6d27a
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x6d809
 	keeptextopen
@@ -286,7 +286,7 @@ UnknownScript_0x6d184:
 	writetext UnknownText_0x6d994
 	closetext
 	loadmovesprites
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	applymovement $4, MovementData_0x6d283
 	disappear $4
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT

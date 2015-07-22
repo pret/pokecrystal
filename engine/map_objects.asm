@@ -2761,7 +2761,7 @@ Function5602: ; 5602
 	ld a, [wd459]
 	bit 7, a
 	jr z, .ok
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	and a
 	jr z, .ok
 	call Function5629

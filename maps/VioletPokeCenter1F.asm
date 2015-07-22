@@ -31,7 +31,7 @@ UnknownScript_0x694d7:
 	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $1, .UnknownScript_0x69511
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	applymovement $6, MovementData_0x69549
 	playsound SFX_EXIT_BUILDING
 	disappear $6
@@ -40,7 +40,7 @@ UnknownScript_0x694d7:
 
 .UnknownScript_0x69511
 	applymovement $6, MovementData_0x6954e
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	applymovement $6, MovementData_0x69551
 	playsound SFX_EXIT_BUILDING
 	disappear $6

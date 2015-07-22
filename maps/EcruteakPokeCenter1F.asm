@@ -22,7 +22,7 @@ UnknownScript_0x98e64:
 	appear $6
 	waitbutton
 	applymovement $6, MovementData_0x98ec5
-	applymovement $0, MovementData_0x98ed4
+	applymovement PLAYER, MovementData_0x98ed4
 	spriteface $2, UP
 	pause 10
 	spriteface $2, DOWN
@@ -42,7 +42,7 @@ UnknownScript_0x98e95:
 	writetext UnknownText_0x98f22
 	closetext
 	loadmovesprites
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	applymovement $6, MovementData_0x98ece
 	playsound SFX_EXIT_BUILDING
 	disappear $6

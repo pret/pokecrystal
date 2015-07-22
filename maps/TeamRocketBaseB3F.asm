@@ -38,7 +38,7 @@ TeamRocketBaseB3F_MapScriptHeader:
 	return
 
 LanceScript_0x6dffc:
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	pause 5
 	spriteface $4, RIGHT
 	pause 20
@@ -53,19 +53,19 @@ LanceScript_0x6dffc:
 	end
 
 UnknownScript_0x6e019:
-	spriteface $0, LEFT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, LEFT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	appear $a
 	applymovement $a, MovementData_0x6e164
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x6e267
 	closetext
 	loadmovesprites
 	playsound SFX_TACKLE
-	applymovement $0, MovementData_0x6e175
+	applymovement PLAYER, MovementData_0x6e175
 	applymovement $a, MovementData_0x6e16d
 	disappear $a
 	dotrigger $2
@@ -76,11 +76,11 @@ RocketScript_0x6e048:
 	jumptextfaceplayer UnknownText_0x6e235
 
 UnknownScript_0x6e04b:
-	applymovement $0, MovementData_0x6e133
+	applymovement PLAYER, MovementData_0x6e133
 	jump UnknownScript_0x6e056
 
 UnknownScript_0x6e052:
-	applymovement $0, MovementData_0x6e13a
+	applymovement PLAYER, MovementData_0x6e13a
 UnknownScript_0x6e056:
 	pause 30
 	showemote EMOTE_SHOCK, $3, 15

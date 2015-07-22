@@ -32,7 +32,7 @@ UnknownScript_0x1804df:
 	return
 
 UnknownScript_0x1804e0:
-	applymovement $0, MovementData_0x18052c
+	applymovement PLAYER, MovementData_0x18052c
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80

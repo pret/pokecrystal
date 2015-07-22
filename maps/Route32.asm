@@ -77,15 +77,15 @@ UnknownScript_0x1904a9:
 
 UnknownScript_0x1904ab:
 	spriteface $9, LEFT
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x190790
 	closetext
 	loadmovesprites
-	follow $0, $9
-	applymovement $0, MovementData_0x190789
+	follow PLAYER, $9
+	applymovement PLAYER, MovementData_0x190789
 	stopfollow
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	scall UnknownScript_0x190470
 	applymovement $9, MovementData_0x19078c
 	applymovement $9, MovementData_0x19078e
@@ -110,7 +110,7 @@ UnknownScript_0x1904e7:
 
 UnknownScript_0x1904e9:
 	spriteface $b, DOWN
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	jump UnknownScript_0x1904f3
 
 FisherScript_0x1904f2:

@@ -43,7 +43,7 @@ UnknownScript_0x5858d:
 UnknownScript_0x58596:
 	pause 30
 	earthquake 30
-	showemote EMOTE_SHOCK, $0, 20
+	showemote EMOTE_SHOCK, PLAYER, 20
 	pause 30
 	playsound SFX_STRENGTH
 	changeblock $4, $0, $30
@@ -67,13 +67,13 @@ UnknownScript_0x585ba:
 	setflag ENGINE_UNLOCKED_UNOWNS_4
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
-	showemote EMOTE_SHOCK, $0, 15
+	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock $2, $2, $18
 	changeblock $4, $2, $19
 	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
-	applymovement $0, MovementData_0x58610
+	applymovement PLAYER, MovementData_0x58610
 	playsound SFX_KINESIS
 	waitbutton
 	pause 20

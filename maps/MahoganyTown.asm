@@ -25,10 +25,10 @@ MahoganyTown_MapScriptHeader:
 UnknownScript_0x190013:
 	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1900a9
-	follow $0, $2
-	applymovement $0, MovementData_0x1900a7
+	follow PLAYER, $2
+	applymovement PLAYER, MovementData_0x1900a7
 	stopfollow
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	scall UnknownScript_0x19002f
 	applymovement $2, MovementData_0x1900ad
 	end

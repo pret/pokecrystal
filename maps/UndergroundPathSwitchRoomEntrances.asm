@@ -78,15 +78,15 @@ TeacherScript_0x7ca7d:
 	jumptextfaceplayer UnknownText_0x7d1d0
 
 UnknownScript_0x7ca80:
-	spriteface $0, RIGHT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, RIGHT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear $c
 	waitbutton
 	applymovement $c, MovementData_0x7ce87
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	scall UnknownScript_0x7cad4
 	applymovement $c, MovementData_0x7ce92
 	playsound SFX_EXIT_BUILDING
@@ -97,15 +97,15 @@ UnknownScript_0x7ca80:
 	end
 
 UnknownScript_0x7caaa:
-	spriteface $0, RIGHT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, RIGHT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear $c
 	waitbutton
 	applymovement $c, MovementData_0x7ce8c
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	scall UnknownScript_0x7cad4
 	applymovement $c, MovementData_0x7ce97
 	playsound SFX_EXIT_BUILDING

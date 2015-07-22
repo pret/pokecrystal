@@ -75,14 +75,14 @@ EcruteakGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 UnknownScript_0x99dc6:
-	applymovement $0, MovementData_0x99e5d
+	applymovement PLAYER, MovementData_0x99e5d
 	applymovement $8, MovementData_0x99e63
 	loadfont
 	writetext UnknownText_0x9a49c
 	closetext
 	loadmovesprites
-	follow $0, $8
-	applymovement $0, MovementData_0x99e5f
+	follow PLAYER, $8
+	applymovement PLAYER, MovementData_0x99e5f
 	stopfollow
 	special FadeBlackBGMap
 	playsound SFX_ENTER_DOOR
