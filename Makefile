@@ -7,7 +7,7 @@ MD5 := md5sum -c --quiet
 .SECONDEXPANSION:
 
 poketools := extras/pokemontools
-gfx       := $(PYTHON) $(poketools)/gfx.py
+gfx       := $(PYTHON) gfx.py
 includes  := $(PYTHON) $(poketools)/scan_includes.py
 
 
@@ -79,12 +79,13 @@ pngs:
 	find . -iname "*.[12]bpp" -exec touch {} +
 	find . -iname "*.lz"      -exec touch {} +
 
-%.2bpp: %.png ; @$(gfx) 2bpp $<
-%.1bpp: %.png ; @$(gfx) 1bpp $<
-%.lz:   %     ; @$(gfx) lz $<
+%.2bpp: %.png ; $(gfx) 2bpp $<
+%.1bpp: %.png ; $(gfx) 1bpp $<
+%.lz:   %     ; $(gfx) lz $<
 
 
-%.pal: ;
+%.pal: %.2bpp ;
+gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/front.2bpp ;
 %.bin: ;
 %.blk: ;
 %.tilemap: ;

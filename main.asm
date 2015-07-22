@@ -27707,8 +27707,8 @@ CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 
 LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
 LeaderGFX2: INCBIN "gfx/misc/leaders.w24.2bpp"
-BadgeGFX:   INCBIN "gfx/misc/badges.w16.2bpp"
-BadgeGFX2:  INCBIN "gfx/misc/badges.w16.2bpp"
+BadgeGFX:   INCBIN "gfx/misc/badges.2bpp"
+BadgeGFX2:  INCBIN "gfx/misc/badges.2bpp"
 
 CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
 
@@ -40954,7 +40954,7 @@ PackFGFXPointers: ; 48e93
 ; 48e9b
 
 PackFGFX: ; 48e9b
-INCBIN "gfx/misc/pack_f.w40.2bpp"
+INCBIN "gfx/misc/pack_f.2bpp"
 ; 4925b
 
 Function4925b: ; 4925b
@@ -77938,7 +77938,7 @@ Functioncbce5: ; cbce5
 ; cbd2e
 
 TheEndGFX:: ; cbd2e
-INCBIN "gfx/credits/theend.w64.2bpp"
+INCBIN "gfx/credits/theend.2bpp"
 ; cbe2e
 
 
@@ -78113,7 +78113,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 SECTION "bank36", ROMX, BANK[$36]
 
-FontInversed: INCBIN "gfx/misc/font_inversed.w128.1bpp"
+FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
 
 
 SECTION "Pic Animations 3", ROMX, BANK[$36]
@@ -87175,7 +87175,7 @@ FontExtra:
 INCBIN "gfx/misc/font_extra.2bpp"
 
 Font:
-INCBIN "gfx/misc/font.w128.1bpp"
+INCBIN "gfx/misc/font.1bpp"
 
 FontBattleExtra:
 INCBIN "gfx/misc/font_battle_extra.2bpp"
@@ -87250,7 +87250,7 @@ INCBIN "gfx/unknown/0f9424.2bpp"
 ; f9434
 
 Footprints: ; f9434
-INCBIN "gfx/misc/footprints.w128.1bpp"
+INCBIN "gfx/misc/footprints.1bpp"
 ; fb434
 
 Unknown_fb434:
