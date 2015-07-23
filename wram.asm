@@ -1711,7 +1711,7 @@ IsInBattle:: ; d22d
 ; 2: trainer battle
 	ds 1
 
-wd22e:: ds 1
+TempWildMonSpecies:: ds 1
 OtherTrainerClass:: ; d22f
 ; class (Youngster, Bug Catcher, etc.) of opposing trainer
 ; 0 if opponent is a wild Pokémon, not a trainer

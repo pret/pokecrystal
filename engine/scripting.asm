@@ -1470,7 +1470,7 @@ Script_loadpikachudata: ; 0x973f0
 ; script command 0x5a
 
 	ld a, PIKACHU
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld a, 5
 	ld [CurPartyLevel], a
 	ret
@@ -1505,7 +1505,7 @@ Script_loadpokedata: ; 0x97412
 	ld a, $80
 	ld [wd459], a
 	call GetScriptByte
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	call GetScriptByte
 	ld [CurPartyLevel], a
 	ret

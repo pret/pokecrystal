@@ -8441,7 +8441,7 @@ Function3f54e: ; 3f54e
 	ld a, [OtherTrainerClass]
 	and a
 	jr nz, .asm_3f55a
-	ld a, [wd22e]
+	ld a, [TempWildMonSpecies]
 	ld [CurPartySpecies], a
 
 .asm_3f55a
@@ -8658,7 +8658,7 @@ Function3f6d0: ; 3f6d0
 	ld [IsInBattle], a
 	ld [BattleType], a
 	ld [AttackMissed], a
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld [OtherTrainerClass], a
 	ld [wd266], a
 	ld [wd267], a

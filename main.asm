@@ -138,7 +138,7 @@ NewGame: ; 5b6b
 	ld a, 1
 	ld [wc2d8], a
 
-	ld a, 0 ; SPAWN_HOME
+	ld a, SPAWN_HOME
 	ld [wd001], a
 
 	ld a, $f1
@@ -459,14 +459,14 @@ Continue: ; 5d65
 	ret
 
 .asm_5dd7
-	ld a, $e ; SPAWN_NEW_BARK
+	ld a, SPAWN_NEW_BARK
 	ld [wd001], a
 	call Function5de7
 	jp Function5e5d
 ; 5de2
 
 Function5de2: ; 5de2
-	ld a, $1a ; SPAWN_MT_SILVER
+	ld a, SPAWN_MT_SILVER
 	ld [wd001], a
 ; 5de7
 
@@ -6087,7 +6087,7 @@ RockSmashScript: ; cf32
 	disappear -2
 
 	callasm RockMonEncounter
-	copybytetovar wd22e
+	copybytetovar TempWildMonSpecies
 	iffalse .done
 	battlecheck
 	startbattle
@@ -6199,7 +6199,7 @@ FishFunction: ; cf8e
 	ld a, d
 	and a
 	jr z, .nonibble
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld a, e
 	ld [CurPartyLevel], a
 	ld a, BATTLETYPE_FISH
@@ -29545,7 +29545,7 @@ Function27a28: ; 27a28
 
 SECTION "bankA", ROMX, BANK[$A]
 
-Function28000: ; 28000
+LinkCommunications: ; 28000
 	call WhiteBGMap
 	ld c, $50
 	call DelayFrames
@@ -30352,11 +30352,11 @@ Function28595: ; 28595
 	ld de, OverworldMap
 	ld a, $fd
 	ld b, $6
-.asm_2859c
+.loop1
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_2859c
+	jr nz, .loop1
 	ld hl, PlayerName
 	ld bc, $000b
 	call CopyBytes
@@ -30385,7 +30385,7 @@ Function28595: ; 28595
 	call GetSRAMBank
 	ld hl, $a600
 	ld b, $6
-.asm_285ef
+.loop2
 	push bc
 	ld bc, $0021
 	call CopyBytes
@@ -30393,10 +30393,10 @@ Function28595: ; 28595
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_285ef
+	jr nz, .loop2
 	ld hl, $a600
 	ld b, $6
-.asm_28603
+.loop3
 	push bc
 	ld bc, $0021
 	add hl, bc
@@ -30404,11 +30404,11 @@ Function28595: ; 28595
 	call CopyBytes
 	pop bc
 	dec b
-	jr nz, .asm_28603
+	jr nz, .loop3
 	ld b, $6
 	ld de, $a600
 	ld hl, wc9f9
-.asm_2861a
+.loop4
 	push bc
 	push hl
 	push de
@@ -30417,18 +30417,18 @@ Function28595: ; 28595
 	pop de
 	ld a, c
 	or a
-	jr z, .asm_2863f
+	jr z, .next
 	sub $3
-	jr nc, .asm_28635
+	jr nc, .skip
 	callba Function1df1e6
-	jr .asm_2863f
+	jr .next
 
-.asm_28635
+.skip
 	cp $2
-	jr nc, .asm_2863f
+	jr nc, .next
 	callba Function1df220
 
-.asm_2863f
+.next
 	pop de
 	ld hl, $002f
 	add hl, de
@@ -30439,40 +30439,40 @@ Function28595: ; 28595
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_2861a
+	jr nz, .loop4
 	call CloseSRAM
 	ld hl, wc9f9
 	ld bc, $00c6
-.asm_28658
+.loop5
 	ld a, [hl]
 	cp $fe
-	jr nz, .asm_2865f
+	jr nz, .skip2
 	ld [hl], $21
 
-.asm_2865f
+.skip2
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_28658
+	jr nz, .loop5
 	ld hl, wcabf
 	ld de, wcb13
 	ld b, $54
 	ld c, $0
-.asm_2866f
+.loop6
 	inc c
 	ld a, [hl]
 	cp $fe
-	jr nz, .asm_2867a
+	jr nz, .skip3
 	ld [hl], $ff
 	ld a, c
 	ld [de], a
 	inc de
 
-.asm_2867a
+.skip3
 	inc hl
 	dec b
-	jr nz, .asm_2866f
+	jr nz, .loop6
 	ld a, $ff
 	ld [de], a
 	ret
@@ -30480,11 +30480,11 @@ Function28595: ; 28595
 
 Function28682: ; 28682
 	ld c, $5
-.asm_28684
+.loop
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_28684
+	jr nz, .loop
 	ret
 ; 2868a
 
@@ -30499,12 +30499,12 @@ Function2868a: ; 2868a
 	ld [hl], b
 	ld hl, OTPartyMon1Species
 	ld c, $6
-.asm_2869b
+.loop
 	push bc
 	call Function286ba
 	pop bc
 	dec c
-	jr nz, .asm_2869b
+	jr nz, .loop
 	pop hl
 	ld bc, $0108
 	add hl, bc
@@ -30646,19 +30646,19 @@ Function28771: ; 28771
 	ret z
 	push hl
 	ld hl, .TimeCapsuleAlt
-.asm_28778
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_28783
+	jr z, .end
 	cp b
-	jr z, .asm_28782
+	jr z, .found
 	inc hl
-	jr .asm_28778
+	jr .loop
 
-.asm_28782
+.found
 	ld b, [hl]
 
-.asm_28783
+.end
 	pop hl
 	ret
 
@@ -33561,7 +33561,7 @@ Special_TimeCapsule: ; 29eaf
 	ld a, $1
 	ld [InLinkBattle], a
 	call Function2ed3
-	callab Function28000
+	callab LinkCommunications
 	call Function2ee4
 	xor a
 	ld [hVBlank], a
@@ -33572,7 +33572,7 @@ Special_TradeCenter: ; 29ec4
 	ld a, $2
 	ld [InLinkBattle], a
 	call Function2ed3
-	callab Function28000
+	callab LinkCommunications
 	call Function2ee4
 	xor a
 	ld [hVBlank], a
@@ -33583,7 +33583,7 @@ Special_Colosseum: ; 29ed9
 	ld a, $3
 	ld [InLinkBattle], a
 	call Function2ed3
-	callab Function28000
+	callab LinkCommunications
 	call Function2ee4
 	xor a
 	ld [hVBlank], a
@@ -33676,7 +33676,7 @@ Function29fe4: ; 29fe4
 ; 29ff8
 
 LoadWildMonData: ; 29ff8
-	call Function2a205
+	call _GrassWildmonLookup
 	jr c, .asm_2a006
 	ld hl, wd25a
 	xor a
@@ -33693,7 +33693,7 @@ endr
 	ld bc, $3
 	call CopyBytes
 .asm_2a011
-	call Function2a21d
+	call _WaterWildmonLookup
 	ld a, $0
 	jr nc, .asm_2a01b
 rept 2
@@ -33713,9 +33713,9 @@ Function2a01f: ; 2a01f
 	and a
 	jr nz, .asm_2a043
 	decoord 0, 0
-	ld hl, WildMons1
+	ld hl, JohtoGrassWildMons
 	call Function2a052
-	ld hl, WildMons2
+	ld hl, JohtoWaterWildMons
 	call Function2a06e
 	call Function2a0b7
 	call Function2a0cf
@@ -33723,9 +33723,9 @@ Function2a01f: ; 2a01f
 
 .asm_2a043
 	decoord 0, 0
-	ld hl, WildMons3
+	ld hl, KantoGrassWildMons
 	call Function2a052
-	ld hl, WildMons4
+	ld hl, KantoWaterWildMons
 	jp Function2a06e
 ; 2a052
 
@@ -33859,38 +33859,38 @@ Function2a0cf: ; 2a0cf
 	ret
 ; 2a0e7
 
-Function2a0e7:: ; 2a0e7
+TryWildEncounter:: ; 2a0e7
 ; Try to trigger a wild encounter.
-	call Function2a103
-	jr nc, .asm_2a0f8
-	call Function2a14f
-	jr nz, .asm_2a0f8
-	call Function2a1df
-	jr nc, .asm_2a0f8
+	call .EncounterRate
+	jr nc, .no_battle
+	call ChooseWildEncounter
+	jr nz, .no_battle
+	call CheckRepelEffect
+	jr nc, .no_battle
 	xor a
 	ret
 
-.asm_2a0f8
+.no_battle
 	xor a ; BATTLETYPE_NORMAL
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld [BattleType], a
 	ld a, 1
 	and a
 	ret
 ; 2a103
 
-Function2a103: ; 2a103
-	call Function2a111
-	call Function2a124
-	call Function2a138
+.EncounterRate: ; 2a103
+	call GetMapEncounterRate
+	call ApplyMusicEffectOnEncounterRate
+	call ApplyCleanseTagEffectOnEncounterRate
 	call Random
 	cp b
 	ret
 ; 2a111
 
-Function2a111: ; 2a111
+GetMapEncounterRate: ; 2a111
 	ld hl, wd25a
-	call Function1852
+	call CheckOnWater
 	ld a, 3
 	jr z, .asm_2a11e
 	ld a, [TimeOfDay]
@@ -33902,25 +33902,25 @@ Function2a111: ; 2a111
 	ret
 ; 2a124
 
-Function2a124:: ; 2a124
+ApplyMusicEffectOnEncounterRate:: ; 2a124
 ; Pokemon March and Ruins of Alph signal double encounter rate.
 ; Pokemon Lullaby halves encounter rate.
 	ld a, [wMapMusic]
 	cp MUSIC_POKEMON_MARCH
-	jr z, .asm_2a135
+	jr z, .double
 	cp MUSIC_RUINS_OF_ALPH_RADIO
-	jr z, .asm_2a135
+	jr z, .double
 	cp MUSIC_POKEMON_LULLABY
 	ret nz
 	srl b
 	ret
 
-.asm_2a135
+.double
 	sla b
 	ret
 ; 2a138
 
-Function2a138:: ; 2a138
+ApplyCleanseTagEffectOnEncounterRate:: ; 2a138
 ; Cleanse Tag halves encounter rate.
 	ld hl, PartyMon1Item
 	ld de, PartyMon2 - PartyMon1
@@ -33929,140 +33929,146 @@ Function2a138:: ; 2a138
 .loop
 	ld a, [hl]
 	cp CLEANSE_TAG
-	jr z, .asm_2a14c
+	jr z, .cleansetag
 	add hl, de
 	dec c
 	jr nz, .loop
 	ret
 
-.asm_2a14c
+.cleansetag
 	srl b
 	ret
 ; 2a14f
 
-Function2a14f: ; 2a14f
-	call Function2a200
-	jp nc, .asm_2a1c1
-	call Function2a2ce
-	jp c, .asm_2a1c9
+ChooseWildEncounter: ; 2a14f
+	call LoadWildMonDataPointer
+	jp nc, .nowildbattle
+	call CheckEncounterRoamMon
+	jp c, .startwildbattle
 
 rept 3
 	inc hl
 endr
-	call Function1852
-	ld de, Unknown_2a1d9
-	jr z, .asm_2a174
+	call CheckOnWater
+	ld de, .WaterMonTable
+	jr z, .watermon
 rept 2
 	inc hl
 endr
 	ld a, [TimeOfDay]
 	ld bc, $e
 	call AddNTimes
-	ld de, Unknown_2a1cb
+	ld de, .GrassMonTable
 
-.asm_2a174
+.watermon
+; hl contains the pointer to the wild mon data, let's save that to the stack
 	push hl
-.asm_2a175
+.randomloop
 	call Random
 	cp 100
-	jr nc, .asm_2a175
-	inc a
+	jr nc, .randomloop
+	inc a ; 1 <= a <= 100
 	ld b, a
 	ld h, d
 	ld l, e
-.asm_2a180
+; This next loop chooses which mon to load up.
+.prob_bracket_loop
 	ld a, [hli]
 	cp b
-	jr nc, .asm_2a187
+	jr nc, .got_it
 	inc hl
-	jr .asm_2a180
+	jr .prob_bracket_loop
 
-.asm_2a187
+.got_it
 	ld c, [hl]
 	ld b, 0
 	pop hl
-	add hl, bc
+	add hl, bc ; this selects our mon
 	ld a, [hli]
 	ld b, a
-	call Function1852
-	jr nz, .asm_2a1aa
-
+; If the Pokemon is encountered by surfing, we need to give the levels some variety.
+	call CheckOnWater
+	jr nz, .ok
+; Check if we buff the wild mon, and by how much.
 	call Random
-	cp 89
-	jr c, .asm_2a1aa
+	cp 35 percent
+	jr c, .ok
 	inc b
-	cp 165
-	jr c, .asm_2a1aa
+	cp 65 percent
+	jr c, .ok
 	inc b
-	cp 216
-	jr c, .asm_2a1aa
+	cp 85 percent
+	jr c, .ok
 	inc b
-	cp 242
-	jr c, .asm_2a1aa
+	cp 95 percent
+	jr c, .ok
 	inc b
-
-.asm_2a1aa
+; Store the level
+.ok
 	ld a, b
 	ld [CurPartyLevel], a
 	ld b, [hl]
-	call Function2a4a0
-	jr c, .asm_2a1c1
+	; ld a, b
+	call ValidateTempWildMonSpecies
+	jr c, .nowildbattle
 
 	ld a, b
 	cp UNOWN
-	jr nz, .asm_2a1bf
+	jr nz, .done
 
 	ld a, [UnlockedUnowns]
 	and a
-	jr z, .asm_2a1c1
+	jr z, .nowildbattle
 
-.asm_2a1bf
-	jr .asm_2a1c5
+.done
+	jr .loadwildmon
 
-.asm_2a1c1
+.nowildbattle
 	ld a, 1
 	and a
 	ret
 
-.asm_2a1c5
+.loadwildmon
 	ld a, b
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 
-.asm_2a1c9
+.startwildbattle
 	xor a
 	ret
 ; 2a1cb
 
-Unknown_2a1cb: ; 2a1cb
-	db 30,  $0
-	db 60,  $2
-	db 80,  $4
-	db 90,  $6
-	db 95,  $8
-	db 99,  $a
-	db 100, $c
+.GrassMonTable: ; 2a1cb
+	db 30,  $0 ; 30% chance
+	db 60,  $2 ; 30% chance
+	db 80,  $4 ; 20% chance
+	db 90,  $6 ; 10% chance
+	db 95,  $8 ;  5% chance
+	db 99,  $a ;  4% chance
+	db 100, $c ;  1% chance
 ; 2a1d9
 
-Unknown_2a1d9: ; 2a1d9
-	db 60,  $0
-	db 90,  $2
-	db 100, $4
+.WaterMonTable: ; 2a1d9
+	db 60,  $0 ; 60% chance
+	db 90,  $2 ; 30% chance
+	db 100, $4 ; 10% chance
 ; 2a1df
 
-Function2a1df:: ; 2a1df
+CheckRepelEffect:: ; 2a1df
+; If there is no active Repel, there's no need to be here.
 	ld a, [wdca1]
 	and a
-	jr z, .asm_2a1fe
+	jr z, .encounter
+; Get the first Pokemon in your party that isn't fainted.
 	ld hl, PartyMon1HP
 	ld bc, PartyMon2 - PartyMon1 - 1
-.asm_2a1eb
+.loop
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_2a1f2
+	jr nz, .ok
 	add hl, bc
-	jr .asm_2a1eb
+	jr .loop
 
-.asm_2a1f2
+.ok
 ; to PartyMonLevel
 rept 4
 	dec hl
@@ -34070,42 +34076,42 @@ endr
 
 	ld a, [CurPartyLevel]
 	cp [hl]
-	jr nc, .asm_2a1fe
+	jr nc, .encounter
 	and a
 	ret
 
-.asm_2a1fe
+.encounter
 	scf
 	ret
 ; 2a200
 
-Function2a200: ; 2a200
-	call Function1852
-	jr z, Function2a21d
+LoadWildMonDataPointer: ; 2a200
+	call CheckOnWater
+	jr z, _WaterWildmonLookup
 
-Function2a205: ; 2a205
-	ld hl, WildMons5
-	ld bc, $002f
-	call asm_2a23d
+_GrassWildmonLookup: ; 2a205
+	ld hl, SwarmGrassWildMons
+	ld bc, GRASS_WILDDATA_LENGTH
+	call _SwarmWildmonCheck
 	ret c
-	ld hl, WildMons1
-	ld de, WildMons3
-	call asm_2a235
-	ld bc, $002f
-	jr asm_2a27a
+	ld hl, JohtoGrassWildMons
+	ld de, KantoGrassWildMons
+	call _JohtoWildmonCheck
+	ld bc, GRASS_WILDDATA_LENGTH
+	jr _NormalWildmonOK
 
-Function2a21d: ; 2a21d
-	ld hl, WildMons6
-	ld bc, $0009
-	call asm_2a23d
+_WaterWildmonLookup: ; 2a21d
+	ld hl, SwarmWaterWildMons
+	ld bc, WATER_WILDDATA_LENGTH
+	call _SwarmWildmonCheck
 	ret c
-	ld hl, WildMons2
-	ld de, WildMons4
-	call asm_2a235
-	ld bc, $0009
-	jr asm_2a27a
+	ld hl, JohtoWaterWildMons
+	ld de, KantoWaterWildMons
+	call _JohtoWildmonCheck
+	ld bc, WATER_WILDDATA_LENGTH
+	jr _NormalWildmonOK
 
-asm_2a235
+_JohtoWildmonCheck
 	call IsInJohto
 	and a
 	ret z
@@ -34113,51 +34119,51 @@ asm_2a235
 	ld l, e
 	ret
 
-asm_2a23d
-	call Function2a27f
+_SwarmWildmonCheck
+	call CopyCurrMapDE
 	push hl
 	ld hl, SwarmFlags
 	bit 2, [hl]
 	pop hl
-	jr z, .asm_2a25c
+	jr z, .CheckYanma
 	ld a, [wdfcc]
 	cp d
-	jr nz, .asm_2a25c
+	jr nz, .CheckYanma
 	ld a, [wdfcd]
 	cp e
-	jr nz, .asm_2a25c
-	call Function2a288
-	jr nc, asm_2a278
+	jr nz, .CheckYanma
+	call LookUpWildmonsForMapDE
+	jr nc, _NoSwarmWildmon
 	scf
 	ret
 
-.asm_2a25c
+.CheckYanma
 	push hl
 	ld hl, SwarmFlags
 	bit 3, [hl]
 	pop hl
-	jr z, asm_2a278
+	jr z, _NoSwarmWildmon
 	ld a, [wdc5a]
 	cp d
-	jr nz, asm_2a278
+	jr nz, _NoSwarmWildmon
 	ld a, [wdc5b]
 	cp e
-	jr nz, asm_2a278
-	call Function2a288
-	jr nc, asm_2a278
+	jr nz, _NoSwarmWildmon
+	call LookUpWildmonsForMapDE
+	jr nc, _NoSwarmWildmon
 	scf
 	ret
 
-asm_2a278
+_NoSwarmWildmon
 	and a
 	ret
 
-asm_2a27a
-	call Function2a27f
-	jr Function2a288
+_NormalWildmonOK
+	call CopyCurrMapDE
+	jr LookUpWildmonsForMapDE
 ; 2a27f
 
-Function2a27f: ; 2a27f
+CopyCurrMapDE: ; 2a27f
 	ld a, [MapGroup]
 	ld d, a
 	ld a, [MapNumber]
@@ -34165,30 +34171,30 @@ Function2a27f: ; 2a27f
 	ret
 ; 2a288
 
-Function2a288: ; 2a288
+LookUpWildmonsForMapDE: ; 2a288
 	push hl
 	ld a, [hl]
 	inc a
-	jr z, .asm_2a29a
+	jr z, .nope
 	ld a, d
 	cp [hl]
-	jr nz, .asm_2a296
+	jr nz, .next
 	inc hl
 	ld a, e
 	cp [hl]
-	jr z, .asm_2a29d
+	jr z, .yup
 
-.asm_2a296
+.next
 	pop hl
 	add hl, bc
-	jr Function2a288
+	jr LookUpWildmonsForMapDE
 
-.asm_2a29a
+.nope
 	pop hl
 	and a
 	ret
 
-.asm_2a29d
+.yup
 	pop hl
 	scf
 	ret
@@ -34240,34 +34246,39 @@ InitRoamMons: ; 2a2a0
 ; 2a2ce
 
 
-Function2a2ce: ; 2a2ce
+CheckEncounterRoamMon: ; 2a2ce
 	push hl
-	call Function1852
-	jr z, .asm_2a30a
-	call Function2a27f
+; Don't trigger an encounter if we're on water.
+	call CheckOnWater
+	jr z, .DontEncounterRoamMon
+; Load the current map group and number to de
+	call CopyCurrMapDE
+; Randomly select a beast.
 	call Random
-	cp 100
-	jr nc, .asm_2a30a
-	and 3
-	jr z, .asm_2a30a
-	dec a
+	cp 100 ; 25/64 chance
+	jr nc, .DontEncounterRoamMon
+	and %00000011 ; Of that, a 3/4 chance.  Running total: 75/256, or around 29.3%.
+	jr z, .DontEncounterRoamMon
+	dec a ; 1/3 chance that it's Entei, 1/3 chance that it's Raikou
+; Compare its current location with yours
 	ld hl, wRoamMon1MapGroup
 	ld c, a
 	ld b, 0
-	ld a, 7
+	ld a, 7 ; length of the RoamMon struct
 	call AddNTimes
 	ld a, d
 	cp [hl]
-	jr nz, .asm_2a30a
+	jr nz, .DontEncounterRoamMon
 	inc hl
 	ld a, e
 	cp [hl]
-	jr nz, .asm_2a30a
+	jr nz, .DontEncounterRoamMon
+; We've decided to take on a beast, so stage its information for battle.
 rept 3
 	dec hl
 endr
 	ld a, [hli]
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld a, [hl]
 	ld [CurPartyLevel], a
 	ld a, BATTLETYPE_ROAMING
@@ -34277,7 +34288,7 @@ endr
 	scf
 	ret
 
-.asm_2a30a
+.DontEncounterRoamMon
 	pop hl
 	and a
 	ret
@@ -34287,7 +34298,7 @@ endr
 UpdateRoamMons: ; 2a30d
 	ld a, [wRoamMon1MapGroup]
 	cp $ff
-	jr z, .asm_2a324
+	jr z, .SkipRaikou
 	ld b, a
 	ld a, [wRoamMon1MapNumber]
 	ld c, a
@@ -34297,10 +34308,10 @@ UpdateRoamMons: ; 2a30d
 	ld a, c
 	ld [wRoamMon1MapNumber], a
 
-.asm_2a324
+.SkipRaikou
 	ld a, [wRoamMon2MapGroup]
 	cp $ff
-	jr z, .asm_2a33b
+	jr z, .SkipEntei
 	ld b, a
 	ld a, [wRoamMon2MapNumber]
 	ld c, a
@@ -34310,10 +34321,10 @@ UpdateRoamMons: ; 2a30d
 	ld a, c
 	ld [wRoamMon2MapNumber], a
 
-.asm_2a33b
+.SkipEntei
 	ld a, [wRoamMon3MapGroup]
 	cp $ff
-	jr z, .asm_2a352
+	jr z, .SkipSuicune
 	ld b, a
 	ld a, [wRoamMon3MapNumber]
 	ld c, a
@@ -34323,7 +34334,7 @@ UpdateRoamMons: ; 2a30d
 	ld a, c
 	ld [wRoamMon3MapNumber], a
 
-.asm_2a352
+.SkipSuicune
 	jp Function2a3f6
 ; 2a355
 
@@ -34487,15 +34498,16 @@ RoamMaps: ; 2a40f
 	db $ff
 ; 2a4a0
 
-Function2a4a0: ; 2a4a0
+ValidateTempWildMonSpecies: ; 2a4a0
+; Due to a development oversight, this function is called with the wild Pokemon's level, not its species, in a.
 	and a
-	jr z, .asm_2a4a9
-	cp $fc
-	jr nc, .asm_2a4a9
-	and a
+	jr z, .nowildmon ; = 0
+	cp NUM_POKEMON + 1 ; 252
+	jr nc, .nowildmon ; >= 252
+	and a ; 1 <= Species <= 251
 	ret
 
-.asm_2a4a9
+.nowildmon
 	scf
 	ret
 ; 2a4ab
@@ -34504,12 +34516,12 @@ Function2a4ab: ; 2a4ab
 	callba Function90439
 	ld d, b
 	ld e, c
-	ld hl, WildMons1
+	ld hl, JohtoGrassWildMons
 	ld bc, $002f
-	call Function2a288
+	call LookUpWildmonsForMapDE
 	jr c, .asm_2a4c6
-	ld hl, WildMons3
-	call Function2a288
+	ld hl, KantoGrassWildMons
+	call LookUpWildmonsForMapDE
 	jr nc, .asm_2a514
 
 .asm_2a4c6
@@ -34576,12 +34588,12 @@ Function2a51f: ; 2a51f
 	callba Function90439
 	ld d, b
 	ld e, c
-	ld hl, WildMons1
+	ld hl, JohtoGrassWildMons
 	ld bc, $002f
-	call Function2a288
+	call LookUpWildmonsForMapDE
 	jr c, .asm_2a538
-	ld hl, WildMons3
-	call Function2a288
+	ld hl, KantoGrassWildMons
+	call LookUpWildmonsForMapDE
 
 .asm_2a538
 	ld bc, $0005
@@ -34698,22 +34710,22 @@ endr
 ; 2a5e9
 
 
-WildMons1: ; 0x2a5e9
+JohtoGrassWildMons: ; 0x2a5e9
 INCLUDE "data/wild/johto_grass.asm"
 
-WildMons2: ; 0x2b11d
+JohtoWaterWildMons: ; 0x2b11d
 INCLUDE "data/wild/johto_water.asm"
 
-WildMons3: ; 0x2b274
+KantoGrassWildMons: ; 0x2b274
 INCLUDE "data/wild/kanto_grass.asm"
 
-WildMons4: ; 0x2b7f7
+KantoWaterWildMons: ; 0x2b7f7
 INCLUDE "data/wild/kanto_water.asm"
 
-WildMons5: ; 0x2b8d0
+SwarmGrassWildMons: ; 0x2b8d0
 INCLUDE "data/wild/swarm_grass.asm"
 
-WildMons6: ; 0x2b92f
+SwarmWaterWildMons: ; 0x2b92f
 INCLUDE "data/wild/swarm_water.asm"
 
 
@@ -49429,11 +49441,11 @@ Function506ef: ; 506ef
 	ld hl, StatusFlags2
 	bit 2, [hl]
 	jr nz, .asm_50712
-	callba Function2a111
+	callba GetMapEncounterRate
 	ld a, b
 	and a
 	jr z, .asm_5071e
-	callba Function2a14f
+	callba ChooseWildEncounter
 	jr nz, .asm_5071e
 	jr .asm_50718
 
@@ -50412,42 +50424,42 @@ Function50db9: ; 50db9
 	ld a, [wd263]
 
 	cp $1
-	jr nz, .asm_50dca
+	jr nz, .check_party_ot_name
 	ld hl, OTPartyCount
 	ld de, OTPartyMonOT
 	ld a, ENEMY_OT_NAME
-	jr .asm_50dfc
-.asm_50dca
+	jr .done
+.check_party_ot_name
 
 	cp $4
-	jr nz, .asm_50dd8
+	jr nz, .check_mon_name
 	ld hl, PartyCount
 	ld de, PartyMonOT
 	ld a, PARTY_OT_NAME
-	jr .asm_50dfc
-.asm_50dd8
+	jr .done
+.check_mon_name
 
 	cp $5
-	jr nz, .asm_50de6
+	jr nz, .check_item_name
 	ld hl, OBPals + 8 * 6
 	ld de, PokemonNames
 	ld a, PKMN_NAME
-	jr .asm_50dfc
-.asm_50de6
+	jr .done
+.check_item_name
 
 	cp $2
-	jr nz, .asm_50df4
+	jr nz, .check_ob_item_name
 	ld hl, NumItems
 	ld de, ItemNames
 	ld a, ITEM_NAME
-	jr .asm_50dfc
-.asm_50df4
+	jr .done
+.check_ob_item_name
 
 	ld hl, OBPals + 8 * 6
 	ld de, ItemNames
 	ld a, ITEM_NAME
 
-.asm_50dfc
+.done
 	ld [wcf61], a
 	ld a, l
 	ld [wd100], a
@@ -76344,7 +76356,7 @@ TreeMonEncounter: ; b81ea
 	callba Function1060ef
 
 	xor a
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld [CurPartyLevel], a
 
 	ld hl, TreeMonMaps
@@ -76372,7 +76384,7 @@ TreeMonEncounter: ; b81ea
 RockMonEncounter: ; b8219
 
 	xor a
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld [CurPartyLevel], a
 
 	ld hl, RockMonMaps
@@ -76697,7 +76709,7 @@ endr
 	jr z, NoTreeMon
 
 	ld a, [hli]
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld a, [hl]
 	ld [CurPartyLevel], a
 	scf
@@ -76705,7 +76717,7 @@ endr
 
 NoTreeMon: ; b843b
 	xor a
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld [CurPartyLevel], a
 	ret
 ; b8443

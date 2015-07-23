@@ -218,16 +218,16 @@ endr
 	ld c, [hl]
 	push bc
 
-	ld hl, WildMons1
+	ld hl, JohtoGrassWildMons
 .greater_than_10
-	ld a, BANK(WildMons1)
+	ld a, BANK(JohtoGrassWildMons)
 	call GetFarByte
 	cp -1
 	jr z, .done2
 	inc hl
 	cp b
 	jr nz, .next
-	ld a, BANK(WildMons1)
+	ld a, BANK(JohtoGrassWildMons)
 	call GetFarByte
 	cp c
 	jr z, .done
@@ -263,7 +263,7 @@ rept 2
 	add hl, de
 endr
 	inc hl
-	ld a, BANK(WildMons1)
+	ld a, BANK(JohtoGrassWildMons)
 	call GetFarByte
 	ld [wd265], a
 	ld [CurPartySpecies], a

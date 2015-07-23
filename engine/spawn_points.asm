@@ -4,46 +4,42 @@ SpawnPoints: ; 0x152ab
 	const_def
 
 spawn: MACRO
-; name, map, y, x
-\1\@ EQUS "SPAWN_\1"
-	const \1\@
-	map \2
-	db \3, \4
+; map, y, x
+	map \1
+	db \2, \3
 ENDM
 
-	spawn HOME,        KRISS_HOUSE_2F,              3,  3
-	spawn DEBUG,       VIRIDIAN_POKECENTER_1F,      5,  3
+	spawn KRISS_HOUSE_2F,              3,  3
+	spawn VIRIDIAN_POKECENTER_1F,      5,  3
 
-	spawn PALLET,      PALLET_TOWN,                 5,  6
-	spawn VIRIDIAN,    VIRIDIAN_CITY,              23, 26
-	spawn PEWTER,      PEWTER_CITY,                13, 26
-	spawn CERULEAN,    CERULEAN_CITY,              19, 22
-	spawn ROCK_TUNNEL, ROUTE_10_NORTH,             11,  2
-	spawn VERMILION,   VERMILION_CITY,              9,  6
-	spawn LAVENDER,    LAVENDER_TOWN,               5,  6
-	spawn SAFFRON,     SAFFRON_CITY,                9, 30
-	spawn CELADON,     CELADON_CITY,               29, 10
-	spawn FUCHSIA,     FUCHSIA_CITY,               19, 28
-	spawn CINNABAR,    CINNABAR_ISLAND,            11, 12
-	spawn INDIGO,      ROUTE_23,                    9,  6
+	spawn PALLET_TOWN,                 5,  6
+	spawn VIRIDIAN_CITY,              23, 26
+	spawn PEWTER_CITY,                13, 26
+	spawn CERULEAN_CITY,              19, 22
+	spawn ROUTE_10_NORTH,             11,  2
+	spawn VERMILION_CITY,              9,  6
+	spawn LAVENDER_TOWN,               5,  6
+	spawn SAFFRON_CITY,                9, 30
+	spawn CELADON_CITY,               29, 10
+	spawn FUCHSIA_CITY,               19, 28
+	spawn CINNABAR_ISLAND,            11, 12
+	spawn ROUTE_23,                    9,  6
 
-	spawn NEW_BARK,    NEW_BARK_TOWN,              13,  6
-	spawn CHERRYGROVE, CHERRYGROVE_CITY,           29,  4
-	spawn VIOLET,      VIOLET_CITY,                31, 26
-	spawn UNION_CAVE,  ROUTE_32,                   11, 74
-	spawn AZALEA,      AZALEA_TOWN,                15, 10
-	spawn CIANWOOD,    CIANWOOD_CITY,              23, 44
-	spawn GOLDENROD,   GOLDENROD_CITY,             15, 28
-	spawn OLIVINE,     OLIVINE_CITY,               13, 22
-	spawn ECRUTEAK,    ECRUTEAK_CITY,              23, 28
-	spawn MAHOGANY,    MAHOGANY_TOWN,              15, 14
-	spawn LAKE,        LAKE_OF_RAGE,               21, 29
-	spawn BLACKTHORN,  BLACKTHORN_CITY,            21, 30
-	spawn MT_SILVER,   SILVER_CAVE_OUTSIDE,        23, 20
-	spawn FAST_SHIP,   FAST_SHIP_CABINS_SW_SSW_NW,  6,  2
-NUM_SPAWNS EQU const_value
-const_value = -1
-	spawn N_A,         N_A,                        -1, -1
+	spawn NEW_BARK_TOWN,              13,  6
+	spawn CHERRYGROVE_CITY,           29,  4
+	spawn VIOLET_CITY,                31, 26
+	spawn ROUTE_32,                   11, 74
+	spawn AZALEA_TOWN,                15, 10
+	spawn CIANWOOD_CITY,              23, 44
+	spawn GOLDENROD_CITY,             15, 28
+	spawn OLIVINE_CITY,               13, 22
+	spawn ECRUTEAK_CITY,              23, 28
+	spawn MAHOGANY_TOWN,              15, 14
+	spawn LAKE_OF_RAGE,               21, 29
+	spawn BLACKTHORN_CITY,            21, 30
+	spawn SILVER_CAVE_OUTSIDE,        23, 20
+	spawn FAST_SHIP_CABINS_SW_SSW_NW,  6,  2
+	spawn N_A,                        -1, -1
 
 
 

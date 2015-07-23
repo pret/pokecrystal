@@ -439,7 +439,7 @@ Function1551a: ; 1551a (5:551a)
 	ret
 
 Function1554e: ; 1554e (5:554e)
-	call Function1852
+	call CheckOnWater
 	jr nz, .ret_nc
 	ld a, [PlayerState]
 	cp PLAYER_SURF

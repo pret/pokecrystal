@@ -626,7 +626,7 @@ Function463f: ; 463f
 ; 4661
 
 Function4661: ; 4661
-	call Function188e
+	call CheckSuperTallGrassTile
 	jr z, .set
 	call Function1875
 	jr c, .reset
