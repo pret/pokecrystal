@@ -41,8 +41,8 @@ OlivineHouseBeta_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	warp_def $7, $3, 4, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
+	warp_def $7, $2, 4, OLIVINE_CITY
+	warp_def $7, $3, 4, OLIVINE_CITY
 
 .XYTriggers:
 	db 0

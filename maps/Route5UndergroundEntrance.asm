@@ -22,9 +22,9 @@ Route5UndergroundEntrance_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, GROUP_ROUTE_5, MAP_ROUTE_5
-	warp_def $7, $4, 1, GROUP_ROUTE_5, MAP_ROUTE_5
-	warp_def $3, $4, 1, GROUP_UNDERGROUND, MAP_UNDERGROUND
+	warp_def $7, $3, 1, ROUTE_5
+	warp_def $7, $4, 1, ROUTE_5
+	warp_def $3, $4, 1, UNDERGROUND
 
 .XYTriggers:
 	db 0

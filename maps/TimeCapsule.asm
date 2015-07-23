@@ -34,7 +34,7 @@ TimeCapsule_SetWhichChris:
 
 TimeCapsule_Initialize:
 	dotrigger $1
-	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $3
+	domaptrigger POKECENTER_2F, $3
 	end
 
 MapTimeCapsuleSignpost1Script:
@@ -60,8 +60,8 @@ TimeCapsule_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 4, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $7, $5, 4, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $4, 4, POKECENTER_2F
+	warp_def $7, $5, 4, POKECENTER_2F
 
 .XYTriggers:
 	db 0

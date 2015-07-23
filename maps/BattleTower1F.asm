@@ -102,9 +102,9 @@ UnknownScript_0x9e44e:
 	special Function170687
 UnknownScript_0x9e454:
 	musicfadeout MUSIC_NONE, $8
-	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0
-	domaptrigger GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR, $0
-	domaptrigger GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY, $0
+	domaptrigger BATTLE_TOWER_BATTLE_ROOM, $0
+	domaptrigger BATTLE_TOWER_ELEVATOR, $0
+	domaptrigger BATTLE_TOWER_HALLWAY, $0
 	follow $2, $0
 	applymovement $2, MovementData_0x9e571
 	writebyte $a
@@ -797,9 +797,9 @@ BattleTower1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $9, $7, 3, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
-	warp_def $9, $8, 4, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
-	warp_def $0, $7, 1, GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR
+	warp_def $9, $7, 3, BATTLE_TOWER_OUTSIDE
+	warp_def $9, $8, 4, BATTLE_TOWER_OUTSIDE
+	warp_def $0, $7, 1, BATTLE_TOWER_ELEVATOR
 
 .XYTriggers:
 	db 0

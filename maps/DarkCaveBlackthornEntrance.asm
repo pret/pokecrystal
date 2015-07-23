@@ -62,8 +62,8 @@ DarkCaveBlackthornEntrance_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $17, 1, GROUP_ROUTE_45, MAP_ROUTE_45
-	warp_def $19, $3, 2, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
+	warp_def $3, $17, 1, ROUTE_45
+	warp_def $19, $3, 2, DARK_CAVE_VIOLET_ENTRANCE
 
 .XYTriggers:
 	db 0

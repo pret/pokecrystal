@@ -269,8 +269,8 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $1f, $0, 3, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
-	warp_def $1f, $1, 3, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
+	warp_def $1f, $0, 3, GOLDENROD_POKECENTER_1F
+	warp_def $1f, $1, 3, GOLDENROD_POKECENTER_1F
 
 .XYTriggers:
 	db 0

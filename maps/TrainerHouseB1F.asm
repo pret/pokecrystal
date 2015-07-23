@@ -173,7 +173,7 @@ TrainerHouseB1F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $4, $9, 3, GROUP_TRAINER_HOUSE_1F, MAP_TRAINER_HOUSE_1F
+	warp_def $4, $9, 3, TRAINER_HOUSE_1F
 
 .XYTriggers:
 	db 1

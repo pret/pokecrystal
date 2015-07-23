@@ -282,11 +282,11 @@ EcruteakHouse_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $11, $4, 3, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $11, $5, 3, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $3, $5, 4, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
-	warp_def $f, $11, 3, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
-	warp_def $3, $11, 3, GROUP_WISE_TRIOS_ROOM, MAP_WISE_TRIOS_ROOM
+	warp_def $11, $4, 3, ECRUTEAK_CITY
+	warp_def $11, $5, 3, ECRUTEAK_CITY
+	warp_def $3, $5, 4, ECRUTEAK_HOUSE
+	warp_def $f, $11, 3, ECRUTEAK_HOUSE
+	warp_def $3, $11, 3, WISE_TRIOS_ROOM
 
 .XYTriggers:
 	db 2

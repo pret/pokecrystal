@@ -23,8 +23,8 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $7, $3, 6, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	warp_def $7, $2, 6, VERMILION_CITY
+	warp_def $7, $3, 6, VERMILION_CITY
 
 .XYTriggers:
 	db 0

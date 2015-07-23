@@ -33,7 +33,7 @@ UnknownScript_0x74da6:
 	clearevent EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
 	setevent EVENT_FAST_SHIP_FIRST_TIME
 	setevent EVENT_GAVE_KURT_APRICORNS
-	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	blackoutmod VERMILION_CITY
 	end
 
 SailorScript_0x74dc4:
@@ -67,8 +67,8 @@ SailorScript_0x74dc4:
 	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
 	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear $2
-	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
-	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
+	domaptrigger FAST_SHIP_1F, $1
+	warp FAST_SHIP_1F, $19, $1
 	end
 
 UnknownScript_0x74e1a:
@@ -304,8 +304,8 @@ VermilionPort_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $5, $9, 5, GROUP_VERMILION_PORT_PASSAGE, MAP_VERMILION_PORT_PASSAGE
-	warp_def $11, $7, 1, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $5, $9, 5, VERMILION_PORT_PASSAGE
+	warp_def $11, $7, 1, FAST_SHIP_1F
 
 .XYTriggers:
 	db 1

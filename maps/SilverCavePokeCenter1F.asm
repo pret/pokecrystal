@@ -31,9 +31,9 @@ SilverCavePokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
-	warp_def $7, $4, 1, GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 1, SILVER_CAVE_OUTSIDE
+	warp_def $7, $4, 1, SILVER_CAVE_OUTSIDE
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0

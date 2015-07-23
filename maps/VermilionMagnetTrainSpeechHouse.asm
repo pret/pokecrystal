@@ -35,8 +35,8 @@ VermilionMagnetTrainSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $7, $3, 4, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	warp_def $7, $2, 4, VERMILION_CITY
+	warp_def $7, $3, 4, VERMILION_CITY
 
 .XYTriggers:
 	db 0

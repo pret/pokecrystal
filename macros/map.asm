@@ -61,8 +61,7 @@ warp_def: macro
 	db \1 ; y
 	db \2 ; x
 	db \3 ; warp_to
-	db \4 ; map group
-	db \5 ; map number
+	map \4 ; map
 	endm
 
 
@@ -176,4 +175,9 @@ ENDM
 newgroup: MACRO
 const_value = const_value + 1
 	enum_start 1
+ENDM
+
+elevfloor: MACRO
+	db \1, \2
+	map \3
 ENDM

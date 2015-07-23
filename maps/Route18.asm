@@ -79,8 +79,8 @@ Route18_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $6, $2, 3, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
-	warp_def $7, $2, 4, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
+	warp_def $6, $2, 3, ROUTE_17_18_GATE
+	warp_def $7, $2, 4, ROUTE_17_18_GATE
 
 .XYTriggers:
 	db 0

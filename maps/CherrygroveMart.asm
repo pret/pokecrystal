@@ -72,8 +72,8 @@ CherrygroveMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
-	warp_def $7, $3, 1, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	warp_def $7, $2, 1, CHERRYGROVE_CITY
+	warp_def $7, $3, 1, CHERRYGROVE_CITY
 
 .XYTriggers:
 	db 0

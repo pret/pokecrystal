@@ -85,8 +85,8 @@ OlivineGoodRodHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	warp_def $7, $3, 6, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
+	warp_def $7, $2, 6, OLIVINE_CITY
+	warp_def $7, $3, 6, OLIVINE_CITY
 
 .XYTriggers:
 	db 0

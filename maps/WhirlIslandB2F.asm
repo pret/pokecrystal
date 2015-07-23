@@ -20,10 +20,10 @@ WhirlIslandB2F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $5, $b, 7, GROUP_WHIRL_ISLAND_B1F, MAP_WHIRL_ISLAND_B1F
-	warp_def $b, $7, 8, GROUP_WHIRL_ISLAND_B1F, MAP_WHIRL_ISLAND_B1F
-	warp_def $19, $7, 1, GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
-	warp_def $1f, $d, 5, GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
+	warp_def $5, $b, 7, WHIRL_ISLAND_B1F
+	warp_def $b, $7, 8, WHIRL_ISLAND_B1F
+	warp_def $19, $7, 1, WHIRL_ISLAND_LUGIA_CHAMBER
+	warp_def $1f, $d, 5, WHIRL_ISLAND_SW
 
 .XYTriggers:
 	db 0

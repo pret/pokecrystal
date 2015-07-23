@@ -24,10 +24,10 @@ RockTunnelB1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $3, $3, 6, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
-	warp_def $9, $11, 4, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
-	warp_def $3, $17, 3, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
-	warp_def $17, $19, 5, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
+	warp_def $3, $3, 6, ROCK_TUNNEL_1F
+	warp_def $9, $11, 4, ROCK_TUNNEL_1F
+	warp_def $3, $17, 3, ROCK_TUNNEL_1F
+	warp_def $17, $19, 5, ROCK_TUNNEL_1F
 
 .XYTriggers:
 	db 0

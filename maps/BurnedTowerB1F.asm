@@ -78,8 +78,8 @@ UnknownScript_0x18616b:
 	dotrigger $1
 	setevent EVENT_RELEASED_THE_BEASTS
 	special InitRoamMons
-	domaptrigger GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM, $1
-	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $1
+	domaptrigger ECRUTEAK_GYM, $1
+	domaptrigger CIANWOOD_CITY, $1
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	setevent EVENT_ECRUTEAK_GYM_GRAMPS
 	clearevent EVENT_ECRUTEAK_CITY_GRAMPS
@@ -235,12 +235,12 @@ BurnedTowerB1F_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $9, $a, 3, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $7, $11, 7, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $8, $a, 9, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $d, $3, 10, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $e, $11, 12, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $f, $7, 14, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
+	warp_def $9, $a, 3, BURNED_TOWER_1F
+	warp_def $7, $11, 7, BURNED_TOWER_1F
+	warp_def $8, $a, 9, BURNED_TOWER_1F
+	warp_def $d, $3, 10, BURNED_TOWER_1F
+	warp_def $e, $11, 12, BURNED_TOWER_1F
+	warp_def $f, $7, 14, BURNED_TOWER_1F
 
 .XYTriggers:
 	db 1

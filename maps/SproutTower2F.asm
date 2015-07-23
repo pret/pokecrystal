@@ -85,10 +85,10 @@ SproutTower2F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $6, 3, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
-	warp_def $6, $2, 4, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
-	warp_def $3, $11, 5, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
-	warp_def $e, $a, 1, GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F
+	warp_def $4, $6, 3, SPROUT_TOWER_1F
+	warp_def $6, $2, 4, SPROUT_TOWER_1F
+	warp_def $3, $11, 5, SPROUT_TOWER_1F
+	warp_def $e, $a, 1, SPROUT_TOWER_3F
 
 .XYTriggers:
 	db 0

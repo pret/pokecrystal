@@ -116,7 +116,7 @@ Route20_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $26, 1, GROUP_SEAFOAM_GYM, MAP_SEAFOAM_GYM
+	warp_def $7, $26, 1, SEAFOAM_GYM
 
 .XYTriggers:
 	db 0

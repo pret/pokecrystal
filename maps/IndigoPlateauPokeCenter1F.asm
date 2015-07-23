@@ -16,12 +16,12 @@ UnknownScript_0x180009:
 	end
 
 UnknownScript_0x18000a:
-	domaptrigger GROUP_WILLS_ROOM, MAP_WILLS_ROOM, $0
-	domaptrigger GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM, $0
-	domaptrigger GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM, $0
-	domaptrigger GROUP_KARENS_ROOM, MAP_KARENS_ROOM, $0
-	domaptrigger GROUP_LANCES_ROOM, MAP_LANCES_ROOM, $0
-	domaptrigger GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $0
+	domaptrigger WILLS_ROOM, $0
+	domaptrigger KOGAS_ROOM, $0
+	domaptrigger BRUNOS_ROOM, $0
+	domaptrigger KARENS_ROOM, $0
+	domaptrigger LANCES_ROOM, $0
+	domaptrigger HALL_OF_FAME, $0
 	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
@@ -156,7 +156,7 @@ TeleportGuyScript:
 	playsound SFX_WARP_TO
 	special FadeBlackBGMap
 	waitbutton
-	warp GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $d, $6
+	warp NEW_BARK_TOWN, $d, $6
 	end
 
 .No
@@ -304,10 +304,10 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $d, $5, 1, GROUP_ROUTE_23, MAP_ROUTE_23
-	warp_def $d, $6, 2, GROUP_ROUTE_23, MAP_ROUTE_23
-	warp_def $d, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $3, $e, 1, GROUP_WILLS_ROOM, MAP_WILLS_ROOM
+	warp_def $d, $5, 1, ROUTE_23
+	warp_def $d, $6, 2, ROUTE_23
+	warp_def $d, $0, 1, POKECENTER_2F
+	warp_def $3, $e, 1, WILLS_ROOM
 
 .XYTriggers:
 	db 2

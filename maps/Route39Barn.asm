@@ -189,8 +189,8 @@ Route39Barn_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 1, GROUP_ROUTE_39, MAP_ROUTE_39
-	warp_def $7, $4, 1, GROUP_ROUTE_39, MAP_ROUTE_39
+	warp_def $7, $3, 1, ROUTE_39
+	warp_def $7, $4, 1, ROUTE_39
 
 .XYTriggers:
 	db 0

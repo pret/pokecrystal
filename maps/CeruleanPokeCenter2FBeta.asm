@@ -11,7 +11,7 @@ CeruleanPokeCenter2FBeta_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $0, 1, GROUP_CERULEAN_POKECENTER_1F, MAP_CERULEAN_POKECENTER_1F
+	warp_def $7, $0, 1, CERULEAN_POKECENTER_1F
 
 .XYTriggers:
 	db 0

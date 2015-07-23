@@ -168,10 +168,10 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $8, 5, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $11, $9, 5, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $5, $6, 4, GROUP_SAFFRON_TRAIN_STATION, MAP_SAFFRON_TRAIN_STATION
-	warp_def $5, $b, 3, GROUP_SAFFRON_TRAIN_STATION, MAP_SAFFRON_TRAIN_STATION
+	warp_def $11, $8, 5, GOLDENROD_CITY
+	warp_def $11, $9, 5, GOLDENROD_CITY
+	warp_def $5, $6, 4, SAFFRON_TRAIN_STATION
+	warp_def $5, $b, 3, SAFFRON_TRAIN_STATION
 
 .XYTriggers:
 	db 1

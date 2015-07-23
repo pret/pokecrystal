@@ -170,8 +170,8 @@ ViridianGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $11, $4, 1, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
-	warp_def $11, $5, 1, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
+	warp_def $11, $4, 1, VIRIDIAN_CITY
+	warp_def $11, $5, 1, VIRIDIAN_CITY
 
 .XYTriggers:
 	db 0

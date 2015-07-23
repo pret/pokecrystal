@@ -208,8 +208,8 @@ LakeofRageMagikarpHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
-	warp_def $7, $3, 2, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
+	warp_def $7, $2, 2, LAKE_OF_RAGE
+	warp_def $7, $3, 2, LAKE_OF_RAGE
 
 .XYTriggers:
 	db 0

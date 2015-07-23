@@ -57,8 +57,8 @@ SilphCo1F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 7, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $7, $3, 7, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
+	warp_def $7, $2, 7, SAFFRON_CITY
+	warp_def $7, $3, 7, SAFFRON_CITY
 
 .XYTriggers:
 	db 0

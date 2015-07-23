@@ -22,11 +22,11 @@ OlivinePortPassage_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $0, $f, 10, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	warp_def $0, $10, 11, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	warp_def $4, $f, 4, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
-	warp_def $2, $3, 3, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
-	warp_def $e, $3, 1, GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT
+	warp_def $0, $f, 10, OLIVINE_CITY
+	warp_def $0, $10, 11, OLIVINE_CITY
+	warp_def $4, $f, 4, OLIVINE_PORT_PASSAGE
+	warp_def $2, $3, 3, OLIVINE_PORT_PASSAGE
+	warp_def $e, $3, 1, OLIVINE_PORT
 
 .XYTriggers:
 	db 0

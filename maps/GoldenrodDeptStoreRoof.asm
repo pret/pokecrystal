@@ -211,7 +211,7 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $1, $d, 3, GROUP_GOLDENROD_DEPT_STORE_6F, MAP_GOLDENROD_DEPT_STORE_6F
+	warp_def $1, $d, 3, GOLDENROD_DEPT_STORE_6F
 
 .XYTriggers:
 	db 0

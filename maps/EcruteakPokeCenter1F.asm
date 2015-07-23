@@ -207,9 +207,9 @@ EcruteakPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 6, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $7, $4, 6, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 6, ECRUTEAK_CITY
+	warp_def $7, $4, 6, ECRUTEAK_CITY
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0

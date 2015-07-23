@@ -138,10 +138,10 @@ Route34IlexForestGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 1, GROUP_ROUTE_34, MAP_ROUTE_34
-	warp_def $0, $5, 2, GROUP_ROUTE_34, MAP_ROUTE_34
-	warp_def $7, $4, 1, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
-	warp_def $7, $5, 1, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
+	warp_def $0, $4, 1, ROUTE_34
+	warp_def $0, $5, 2, ROUTE_34
+	warp_def $7, $4, 1, ILEX_FOREST
+	warp_def $7, $5, 1, ILEX_FOREST
 
 .XYTriggers:
 	db 1

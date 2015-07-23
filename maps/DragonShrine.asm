@@ -162,7 +162,7 @@ DragonShrineTestScript:
 	special RestartMapMusic
 	specialphonecall ELMCALL_MASTERBALL
 	dotrigger $1
-	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
+	domaptrigger DRAGONS_DEN_B1F, $1
 	writetext UnknownText_0x18d9f2
 	keeptextopen
 	writetext UnknownText_0x18da0b
@@ -670,8 +670,8 @@ DragonShrine_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $9, $4, 2, GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
-	warp_def $9, $5, 2, GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
+	warp_def $9, $4, 2, DRAGONS_DEN_B1F
+	warp_def $9, $5, 2, DRAGONS_DEN_B1F
 
 .XYTriggers:
 	db 0

@@ -89,7 +89,7 @@ KrissHousePC:
 	loadmovesprites
 	end
 .Warp
-	warp 0, 0, $0, $0
+	warp NONE, $0, $0
 	end
 
 KrisRadioText1:
@@ -118,7 +118,7 @@ KrissHouse2F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $0, $7, 3, GROUP_KRISS_HOUSE_1F, MAP_KRISS_HOUSE_1F
+	warp_def $0, $7, 3, KRISS_HOUSE_1F
 
 .XYTriggers:
 	db 0

@@ -53,7 +53,7 @@ UnknownScript_0x70035:
 	disappear $2
 	clearevent EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	setevent EVENT_DECIDED_TO_HELP_LANCE
-	domaptrigger GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F, $1
+	domaptrigger MAHOGANY_MART_1F, $1
 	end
 
 UnknownScript_0x7004e:
@@ -493,8 +493,8 @@ LakeofRage_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $7, 1, GROUP_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE, MAP_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE
-	warp_def $1f, $1b, 1, GROUP_LAKE_OF_RAGE_MAGIKARP_HOUSE, MAP_LAKE_OF_RAGE_MAGIKARP_HOUSE
+	warp_def $3, $7, 1, LAKE_OF_RAGE_HIDDEN_POWER_HOUSE
+	warp_def $1f, $1b, 1, LAKE_OF_RAGE_MAGIKARP_HOUSE
 
 .XYTriggers:
 	db 0

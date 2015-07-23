@@ -756,11 +756,11 @@ Route34_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $25, $d, 1, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
-	warp_def $25, $e, 2, GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE
-	warp_def $e, $b, 1, GROUP_DAYCARE, MAP_DAYCARE
-	warp_def $f, $b, 2, GROUP_DAYCARE, MAP_DAYCARE
-	warp_def $f, $d, 3, GROUP_DAYCARE, MAP_DAYCARE
+	warp_def $25, $d, 1, ROUTE_34_ILEX_FOREST_GATE
+	warp_def $25, $e, 2, ROUTE_34_ILEX_FOREST_GATE
+	warp_def $e, $b, 1, DAYCARE
+	warp_def $f, $b, 2, DAYCARE
+	warp_def $f, $d, 3, DAYCARE
 
 .XYTriggers:
 	db 0

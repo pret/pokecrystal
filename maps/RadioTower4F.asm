@@ -242,10 +242,10 @@ RadioTower4F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $0, 1, GROUP_RADIO_TOWER_5F, MAP_RADIO_TOWER_5F
-	warp_def $0, $9, 2, GROUP_RADIO_TOWER_3F, MAP_RADIO_TOWER_3F
-	warp_def $0, $c, 2, GROUP_RADIO_TOWER_5F, MAP_RADIO_TOWER_5F
-	warp_def $0, $11, 3, GROUP_RADIO_TOWER_3F, MAP_RADIO_TOWER_3F
+	warp_def $0, $0, 1, RADIO_TOWER_5F
+	warp_def $0, $9, 2, RADIO_TOWER_3F
+	warp_def $0, $c, 2, RADIO_TOWER_5F
+	warp_def $0, $11, 3, RADIO_TOWER_3F
 
 .XYTriggers:
 	db 0

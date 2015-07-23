@@ -14,11 +14,11 @@ TinTower7F_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $9, $3, 1, GROUP_TIN_TOWER_6F, MAP_TIN_TOWER_6F
-	warp_def $f, $a, 1, GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
-	warp_def $7, $c, 4, GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
-	warp_def $3, $8, 3, GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
-	warp_def $9, $6, 5, GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
+	warp_def $9, $3, 1, TIN_TOWER_6F
+	warp_def $f, $a, 1, TIN_TOWER_8F
+	warp_def $7, $c, 4, TIN_TOWER_7F
+	warp_def $3, $8, 3, TIN_TOWER_7F
+	warp_def $9, $6, 5, TIN_TOWER_9F
 
 .XYTriggers:
 	db 0

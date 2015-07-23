@@ -523,7 +523,7 @@ Route45_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $5, $2, 1, GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
+	warp_def $5, $2, 1, DARK_CAVE_BLACKTHORN_ENTRANCE
 
 .XYTriggers:
 	db 0

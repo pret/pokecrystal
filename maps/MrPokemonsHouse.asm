@@ -34,7 +34,7 @@ UnknownScript_0x196e56:
 	waitbutton
 	itemnotify
 	setevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
-	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	blackoutmod CHERRYGROVE_CITY
 	writetext UnknownText_0x196feb
 	keeptextopen
 	spriteface $2, RIGHT
@@ -124,8 +124,8 @@ UnknownScript_0x196ec9:
 	setevent EVENT_KRISS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
 	dotrigger $1
-	domaptrigger GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, $1
-	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $3
+	domaptrigger CHERRYGROVE_CITY, $1
+	domaptrigger ELMS_LAB, $3
 	specialphonecall ELMCALL_ROBBED
 	clearevent EVENT_COP_IN_ELMS_LAB
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
@@ -376,8 +376,8 @@ MrPokemonsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_ROUTE_30, MAP_ROUTE_30
-	warp_def $7, $3, 2, GROUP_ROUTE_30, MAP_ROUTE_30
+	warp_def $7, $2, 2, ROUTE_30
+	warp_def $7, $3, 2, ROUTE_30
 
 .XYTriggers:
 	db 0

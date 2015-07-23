@@ -147,8 +147,8 @@ BluesHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
-	warp_def $7, $3, 2, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
+	warp_def $7, $2, 2, PALLET_TOWN
+	warp_def $7, $3, 2, PALLET_TOWN
 
 .XYTriggers:
 	db 0

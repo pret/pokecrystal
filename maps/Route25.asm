@@ -425,7 +425,7 @@ Route25_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $5, $2f, 1, GROUP_BILLS_HOUSE, MAP_BILLS_HOUSE
+	warp_def $5, $2f, 1, BILLS_HOUSE
 
 .XYTriggers:
 	db 2

@@ -19,8 +19,8 @@ PokeSeersHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 7, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
-	warp_def $7, $3, 7, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
+	warp_def $7, $2, 7, CIANWOOD_CITY
+	warp_def $7, $3, 7, CIANWOOD_CITY
 
 .XYTriggers:
 	db 0

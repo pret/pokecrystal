@@ -151,8 +151,8 @@ CeladonDeptStore6F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $0, $f, 2, GROUP_CELADON_DEPT_STORE_5F, MAP_CELADON_DEPT_STORE_5F
-	warp_def $0, $2, 1, GROUP_CELADON_DEPT_STORE_ELEVATOR, MAP_CELADON_DEPT_STORE_ELEVATOR
+	warp_def $0, $f, 2, CELADON_DEPT_STORE_5F
+	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0

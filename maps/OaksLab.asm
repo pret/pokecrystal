@@ -256,8 +256,8 @@ OaksLab_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $b, $4, 3, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
-	warp_def $b, $5, 3, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
+	warp_def $b, $4, 3, PALLET_TOWN
+	warp_def $b, $5, 3, PALLET_TOWN
 
 .XYTriggers:
 	db 0

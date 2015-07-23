@@ -74,10 +74,10 @@ CeladonDeptStore1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $7, $7, 1, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $7, $8, 1, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $0, $f, 2, GROUP_CELADON_DEPT_STORE_2F, MAP_CELADON_DEPT_STORE_2F
-	warp_def $0, $2, 1, GROUP_CELADON_DEPT_STORE_ELEVATOR, MAP_CELADON_DEPT_STORE_ELEVATOR
+	warp_def $7, $7, 1, CELADON_CITY
+	warp_def $7, $8, 1, CELADON_CITY
+	warp_def $0, $f, 2, CELADON_DEPT_STORE_2F
+	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0

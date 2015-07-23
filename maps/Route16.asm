@@ -37,11 +37,11 @@ Route16_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $1, $3, 1, GROUP_ROUTE_16_FUCHSIA_SPEECH_HOUSE, MAP_ROUTE_16_FUCHSIA_SPEECH_HOUSE
-	warp_def $6, $e, 3, GROUP_ROUTE_16_GATE, MAP_ROUTE_16_GATE
-	warp_def $7, $e, 4, GROUP_ROUTE_16_GATE, MAP_ROUTE_16_GATE
-	warp_def $6, $9, 1, GROUP_ROUTE_16_GATE, MAP_ROUTE_16_GATE
-	warp_def $7, $9, 2, GROUP_ROUTE_16_GATE, MAP_ROUTE_16_GATE
+	warp_def $1, $3, 1, ROUTE_16_FUCHSIA_SPEECH_HOUSE
+	warp_def $6, $e, 3, ROUTE_16_GATE
+	warp_def $7, $e, 4, ROUTE_16_GATE
+	warp_def $6, $9, 1, ROUTE_16_GATE
+	warp_def $7, $9, 2, ROUTE_16_GATE
 
 .XYTriggers:
 	db 0

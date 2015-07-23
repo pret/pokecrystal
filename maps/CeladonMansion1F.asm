@@ -74,11 +74,11 @@ CeladonMansion1F_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $9, $6, 2, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $9, $7, 2, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $0, $3, 3, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $0, $0, 1, GROUP_CELADON_MANSION_2F, MAP_CELADON_MANSION_2F
-	warp_def $0, $7, 4, GROUP_CELADON_MANSION_2F, MAP_CELADON_MANSION_2F
+	warp_def $9, $6, 2, CELADON_CITY
+	warp_def $9, $7, 2, CELADON_CITY
+	warp_def $0, $3, 3, CELADON_CITY
+	warp_def $0, $0, 1, CELADON_MANSION_2F
+	warp_def $0, $7, 4, CELADON_MANSION_2F
 
 .XYTriggers:
 	db 0

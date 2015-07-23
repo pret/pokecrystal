@@ -30,8 +30,8 @@ GuideGentsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
-	warp_def $7, $3, 4, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	warp_def $7, $2, 4, CHERRYGROVE_CITY
+	warp_def $7, $3, 4, CHERRYGROVE_CITY
 
 .XYTriggers:
 	db 0

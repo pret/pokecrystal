@@ -11,10 +11,10 @@ SafariZoneFuchsiaGateBeta_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 1, GROUP_SAFARI_ZONE_BETA, MAP_SAFARI_ZONE_BETA
-	warp_def $0, $5, 2, GROUP_SAFARI_ZONE_BETA, MAP_SAFARI_ZONE_BETA
-	warp_def $7, $4, 7, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $7, $5, 7, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
+	warp_def $0, $4, 1, SAFARI_ZONE_BETA
+	warp_def $0, $5, 2, SAFARI_ZONE_BETA
+	warp_def $7, $4, 7, FUCHSIA_CITY
+	warp_def $7, $5, 7, FUCHSIA_CITY
 
 .XYTriggers:
 	db 0

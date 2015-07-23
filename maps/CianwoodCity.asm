@@ -41,7 +41,7 @@ UnknownScript_0x1a001e:
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_42
-	domaptrigger GROUP_ROUTE_42, MAP_ROUTE_42, $1
+	domaptrigger ROUTE_42, $1
 	checkevent EVENT_FOUGHT_EUSINE
 	iftrue .Done
 	setevent EVENT_FOUGHT_EUSINE
@@ -376,13 +376,13 @@ CianwoodCity_MapEventHeader:
 
 .Warps:
 	db 7
-	warp_def $29, $11, 1, GROUP_MANIAS_HOUSE, MAP_MANIAS_HOUSE
-	warp_def $2b, $8, 1, GROUP_CIANWOOD_GYM, MAP_CIANWOOD_GYM
-	warp_def $2b, $17, 1, GROUP_CIANWOOD_POKECENTER_1F, MAP_CIANWOOD_POKECENTER_1F
-	warp_def $2f, $f, 1, GROUP_CIANWOOD_PHARMACY, MAP_CIANWOOD_PHARMACY
-	warp_def $1f, $9, 1, GROUP_CIANWOOD_CITY_PHOTO_STUDIO, MAP_CIANWOOD_CITY_PHOTO_STUDIO
-	warp_def $25, $f, 1, GROUP_CIANWOOD_LUGIA_SPEECH_HOUSE, MAP_CIANWOOD_LUGIA_SPEECH_HOUSE
-	warp_def $11, $5, 1, GROUP_POKE_SEERS_HOUSE, MAP_POKE_SEERS_HOUSE
+	warp_def $29, $11, 1, MANIAS_HOUSE
+	warp_def $2b, $8, 1, CIANWOOD_GYM
+	warp_def $2b, $17, 1, CIANWOOD_POKECENTER_1F
+	warp_def $2f, $f, 1, CIANWOOD_PHARMACY
+	warp_def $1f, $9, 1, CIANWOOD_CITY_PHOTO_STUDIO
+	warp_def $25, $f, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
+	warp_def $11, $5, 1, POKE_SEERS_HOUSE
 
 .XYTriggers:
 	db 1

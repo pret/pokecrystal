@@ -194,10 +194,10 @@ UnionCave1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $13, $5, 3, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
-	warp_def $21, $3, 4, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
-	warp_def $1f, $11, 1, GROUP_ROUTE_33, MAP_ROUTE_33
-	warp_def $3, $11, 4, GROUP_ROUTE_32, MAP_ROUTE_32
+	warp_def $13, $5, 3, UNION_CAVE_B1F
+	warp_def $21, $3, 4, UNION_CAVE_B1F
+	warp_def $1f, $11, 1, ROUTE_33
+	warp_def $3, $11, 4, ROUTE_32
 
 .XYTriggers:
 	db 0

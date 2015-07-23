@@ -90,9 +90,9 @@ FuchsiaPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 5, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $7, $4, 5, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 5, FUCHSIA_CITY
+	warp_def $7, $4, 5, FUCHSIA_CITY
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0

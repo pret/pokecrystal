@@ -442,8 +442,8 @@ FastShipB1F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $b, $5, 11, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $d, $1f, 12, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $b, $5, 11, FAST_SHIP_1F
+	warp_def $d, $1f, 12, FAST_SHIP_1F
 
 .XYTriggers:
 	db 2

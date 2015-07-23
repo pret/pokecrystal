@@ -30,9 +30,9 @@ DarkCaveVioletEntrance_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $f, $3, 3, GROUP_ROUTE_31, MAP_ROUTE_31
-	warp_def $1, $11, 2, GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
-	warp_def $21, $23, 3, GROUP_ROUTE_46, MAP_ROUTE_46
+	warp_def $f, $3, 3, ROUTE_31
+	warp_def $1, $11, 2, DARK_CAVE_BLACKTHORN_ENTRANCE
+	warp_def $21, $23, 3, ROUTE_46
 
 .XYTriggers:
 	db 0

@@ -283,20 +283,20 @@ BurnedTower1F_MapEventHeader:
 
 .Warps:
 	db 14
-	warp_def $f, $9, 13, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $f, $a, 13, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $9, $a, 1, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $5, $5, 1, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $6, $5, 1, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $6, $4, 1, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $4, $f, 2, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $5, $f, 2, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $7, $a, 3, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $e, $5, 4, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $e, $4, 4, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $e, $e, 5, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $e, $f, 5, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
-	warp_def $f, $7, 6, GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
+	warp_def $f, $9, 13, ECRUTEAK_CITY
+	warp_def $f, $a, 13, ECRUTEAK_CITY
+	warp_def $9, $a, 1, BURNED_TOWER_B1F
+	warp_def $5, $5, 1, BURNED_TOWER_B1F
+	warp_def $6, $5, 1, BURNED_TOWER_B1F
+	warp_def $6, $4, 1, BURNED_TOWER_B1F
+	warp_def $4, $f, 2, BURNED_TOWER_B1F
+	warp_def $5, $f, 2, BURNED_TOWER_B1F
+	warp_def $7, $a, 3, BURNED_TOWER_B1F
+	warp_def $e, $5, 4, BURNED_TOWER_B1F
+	warp_def $e, $4, 4, BURNED_TOWER_B1F
+	warp_def $e, $e, 5, BURNED_TOWER_B1F
+	warp_def $e, $f, 5, BURNED_TOWER_B1F
+	warp_def $f, $7, 6, BURNED_TOWER_B1F
 
 .XYTriggers:
 	db 1

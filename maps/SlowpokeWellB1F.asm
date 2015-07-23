@@ -46,7 +46,7 @@ GruntM1Script:
 	loadmovesprites
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
 	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_SILVER
-	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $1
+	domaptrigger AZALEA_TOWN, $1
 	clearevent EVENT_ILEX_FOREST_APPRENTICE
 	clearevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_CHARCOAL_KILN_FARFETCH_D
@@ -59,7 +59,7 @@ GruntM1Script:
 	special FadeBlackBGMap
 	special HealParty
 	pause 15
-	warp GROUP_KURTS_HOUSE, MAP_KURTS_HOUSE, $3, $3
+	warp KURTS_HOUSE, $3, $3
 	end
 
 TrainerGruntM2:
@@ -315,8 +315,8 @@ SlowpokeWellB1F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $11, 6, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $b, $7, 1, GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
+	warp_def $f, $11, 6, AZALEA_TOWN
+	warp_def $b, $7, 1, SLOWPOKE_WELL_B2F
 
 .XYTriggers:
 	db 0

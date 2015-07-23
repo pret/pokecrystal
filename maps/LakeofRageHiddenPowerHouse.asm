@@ -70,8 +70,8 @@ LakeofRageHiddenPowerHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
-	warp_def $7, $3, 1, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
+	warp_def $7, $2, 1, LAKE_OF_RAGE
+	warp_def $7, $3, 1, LAKE_OF_RAGE
 
 .XYTriggers:
 	db 0

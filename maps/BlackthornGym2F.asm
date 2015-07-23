@@ -131,11 +131,11 @@ BlackthornGym2F_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $7, $1, 3, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
-	warp_def $9, $7, 4, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
-	warp_def $5, $2, 5, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
-	warp_def $7, $8, 6, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
-	warp_def $3, $8, 7, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
+	warp_def $7, $1, 3, BLACKTHORN_GYM_1F
+	warp_def $9, $7, 4, BLACKTHORN_GYM_1F
+	warp_def $5, $2, 5, BLACKTHORN_GYM_1F
+	warp_def $7, $8, 6, BLACKTHORN_GYM_1F
+	warp_def $3, $8, 7, BLACKTHORN_GYM_1F
 
 .XYTriggers:
 	db 0

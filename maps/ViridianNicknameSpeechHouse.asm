@@ -61,8 +61,8 @@ ViridianNicknameSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
-	warp_def $7, $3, 2, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
+	warp_def $7, $2, 2, VIRIDIAN_CITY
+	warp_def $7, $3, 2, VIRIDIAN_CITY
 
 .XYTriggers:
 	db 0

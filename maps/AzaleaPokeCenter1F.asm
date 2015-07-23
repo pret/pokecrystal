@@ -78,9 +78,9 @@ AzaleaPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $7, $4, 1, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 1, AZALEA_TOWN
+	warp_def $7, $4, 1, AZALEA_TOWN
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0

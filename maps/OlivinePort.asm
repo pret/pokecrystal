@@ -21,7 +21,7 @@ UnknownScript_0x748b1:
 	appear $2
 	dotrigger $0
 	setevent EVENT_GAVE_KURT_APRICORNS
-	blackoutmod GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
+	blackoutmod OLIVINE_CITY
 	end
 
 SailorScript_0x748c0:
@@ -57,8 +57,8 @@ SailorScript_0x748c0:
 UnknownScript_0x7490a:
 	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear $2
-	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
-	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
+	domaptrigger FAST_SHIP_1F, $1
+	warp FAST_SHIP_1F, $19, $1
 	end
 
 UnknownScript_0x74919:
@@ -384,8 +384,8 @@ OlivinePort_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $b, 5, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
-	warp_def $17, $7, 1, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $7, $b, 5, OLIVINE_PORT_PASSAGE
+	warp_def $17, $7, 1, FAST_SHIP_1F
 
 .XYTriggers:
 	db 1

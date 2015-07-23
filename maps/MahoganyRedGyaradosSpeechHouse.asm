@@ -62,8 +62,8 @@ MahoganyRedGyaradosSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $3, 2, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
+	warp_def $7, $2, 2, MAHOGANY_TOWN
+	warp_def $7, $3, 2, MAHOGANY_TOWN
 
 .XYTriggers:
 	db 0

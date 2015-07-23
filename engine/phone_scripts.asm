@@ -1001,7 +1001,7 @@ UnknownScript_0xbd6a6:
 	iftrue UnknownScript_0xbd6bd
 	setflag ENGINE_DUNSPARCE_SWARM
 	pokenamemem DUNSPARCE, $1
-	loadwilddata $0, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
+	loadwilddata $0, DARK_CAVE_VIOLET_ENTRANCE
 	displaylocation DARK_CAVE, $2
 	farjump UnknownScript_0xa05de
 
@@ -1224,7 +1224,7 @@ UnknownScript_0xbd887:
 	iftrue UnknownScript_0xbd8a2
 	setflag ENGINE_YANMA_SWARM
 	pokenamemem YANMA, $1
-	loadwilddata $1, GROUP_ROUTE_35, MAP_ROUTE_35
+	loadwilddata $1, ROUTE_35
 	displaylocation ROUTE_35, $2
 	farjump UnknownScript_0xa05ce
 

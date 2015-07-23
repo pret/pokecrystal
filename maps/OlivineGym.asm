@@ -199,8 +199,8 @@ OlivineGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $4, 2, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	warp_def $f, $5, 2, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
+	warp_def $f, $4, 2, OLIVINE_CITY
+	warp_def $f, $5, 2, OLIVINE_CITY
 
 .XYTriggers:
 	db 0

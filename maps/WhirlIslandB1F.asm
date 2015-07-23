@@ -41,15 +41,15 @@ WhirlIslandB1F_MapEventHeader:
 
 .Warps:
 	db 9
-	warp_def $5, $5, 2, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
-	warp_def $3, $23, 2, GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
-	warp_def $9, $1d, 3, GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
-	warp_def $1f, $9, 3, GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
-	warp_def $1f, $17, 2, GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
-	warp_def $1d, $1f, 2, GROUP_WHIRL_ISLAND_SE, MAP_WHIRL_ISLAND_SE
-	warp_def $15, $19, 1, GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
-	warp_def $1b, $d, 2, GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
-	warp_def $15, $11, 1, GROUP_WHIRL_ISLAND_CAVE, MAP_WHIRL_ISLAND_CAVE
+	warp_def $5, $5, 2, WHIRL_ISLAND_NW
+	warp_def $3, $23, 2, WHIRL_ISLAND_NE
+	warp_def $9, $1d, 3, WHIRL_ISLAND_NE
+	warp_def $1f, $9, 3, WHIRL_ISLAND_SW
+	warp_def $1f, $17, 2, WHIRL_ISLAND_SW
+	warp_def $1d, $1f, 2, WHIRL_ISLAND_SE
+	warp_def $15, $19, 1, WHIRL_ISLAND_B2F
+	warp_def $1b, $d, 2, WHIRL_ISLAND_B2F
+	warp_def $15, $11, 1, WHIRL_ISLAND_CAVE
 
 .XYTriggers:
 	db 0

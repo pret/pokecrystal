@@ -77,8 +77,8 @@ CianwoodPharmacy_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
-	warp_def $7, $3, 4, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
+	warp_def $7, $2, 4, CIANWOOD_CITY
+	warp_def $7, $3, 4, CIANWOOD_CITY
 
 .XYTriggers:
 	db 0

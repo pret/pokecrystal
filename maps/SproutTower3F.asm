@@ -328,7 +328,7 @@ SproutTower3F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $e, $a, 4, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
+	warp_def $e, $a, 4, SPROUT_TOWER_2F
 
 .XYTriggers:
 	db 1

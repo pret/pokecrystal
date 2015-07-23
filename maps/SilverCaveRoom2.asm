@@ -24,10 +24,10 @@ SilverCaveRoom2_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $1f, $11, 2, GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
-	warp_def $5, $b, 1, GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
-	warp_def $15, $d, 1, GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
-	warp_def $3, $17, 2, GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
+	warp_def $1f, $11, 2, SILVER_CAVE_ROOM_1
+	warp_def $5, $b, 1, SILVER_CAVE_ROOM_3
+	warp_def $15, $d, 1, SILVER_CAVE_ITEM_ROOMS
+	warp_def $3, $17, 2, SILVER_CAVE_ITEM_ROOMS
 
 .XYTriggers:
 	db 0

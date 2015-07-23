@@ -37,8 +37,8 @@ VermilionMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $7, $3, 5, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	warp_def $7, $2, 5, VERMILION_CITY
+	warp_def $7, $3, 5, VERMILION_CITY
 
 .XYTriggers:
 	db 0

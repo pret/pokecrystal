@@ -100,11 +100,11 @@ SproutTower1F_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $f, $9, 7, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
-	warp_def $f, $a, 7, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
-	warp_def $4, $6, 1, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
-	warp_def $6, $2, 2, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
-	warp_def $3, $11, 3, GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
+	warp_def $f, $9, 7, VIOLET_CITY
+	warp_def $f, $a, 7, VIOLET_CITY
+	warp_def $4, $6, 1, SPROUT_TOWER_2F
+	warp_def $6, $2, 2, SPROUT_TOWER_2F
+	warp_def $3, $11, 3, SPROUT_TOWER_2F
 
 .XYTriggers:
 	db 0

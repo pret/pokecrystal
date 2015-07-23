@@ -165,7 +165,7 @@ Route12_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $21, $b, 1, GROUP_ROUTE_12_SUPER_ROD_HOUSE, MAP_ROUTE_12_SUPER_ROD_HOUSE
+	warp_def $21, $b, 1, ROUTE_12_SUPER_ROD_HOUSE
 
 .XYTriggers:
 	db 0

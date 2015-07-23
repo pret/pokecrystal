@@ -136,9 +136,9 @@ TrainerHouse1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $d, $2, 3, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
-	warp_def $d, $3, 3, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
-	warp_def $2, $8, 1, GROUP_TRAINER_HOUSE_B1F, MAP_TRAINER_HOUSE_B1F
+	warp_def $d, $2, 3, VIRIDIAN_CITY
+	warp_def $d, $3, 3, VIRIDIAN_CITY
+	warp_def $2, $8, 1, TRAINER_HOUSE_B1F
 
 .XYTriggers:
 	db 0

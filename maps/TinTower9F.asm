@@ -22,13 +22,13 @@ TinTower9F_MapEventHeader:
 
 .Warps:
 	db 7
-	warp_def $3, $c, 2, GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
-	warp_def $5, $2, 3, GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
-	warp_def $7, $c, 4, GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
-	warp_def $9, $7, 1, GROUP_TIN_TOWER_ROOF, MAP_TIN_TOWER_ROOF
-	warp_def $7, $10, 5, GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
-	warp_def $d, $6, 5, GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
-	warp_def $d, $8, 6, GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
+	warp_def $3, $c, 2, TIN_TOWER_8F
+	warp_def $5, $2, 3, TIN_TOWER_8F
+	warp_def $7, $c, 4, TIN_TOWER_8F
+	warp_def $9, $7, 1, TIN_TOWER_ROOF
+	warp_def $7, $10, 5, TIN_TOWER_7F
+	warp_def $d, $6, 5, TIN_TOWER_8F
+	warp_def $d, $8, 6, TIN_TOWER_8F
 
 .XYTriggers:
 	db 0

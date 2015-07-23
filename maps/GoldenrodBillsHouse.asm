@@ -243,8 +243,8 @@ GoldenrodBillsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $7, $3, 4, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $7, $2, 4, GOLDENROD_CITY
+	warp_def $7, $3, 4, GOLDENROD_CITY
 
 .XYTriggers:
 	db 0

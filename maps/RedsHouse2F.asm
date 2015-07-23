@@ -31,7 +31,7 @@ RedsHouse2F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $0, $7, 3, GROUP_REDS_HOUSE_1F, MAP_REDS_HOUSE_1F
+	warp_def $0, $7, 3, REDS_HOUSE_1F
 
 .XYTriggers:
 	db 0

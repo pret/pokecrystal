@@ -14,8 +14,8 @@ TohjoFalls_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $d, 2, GROUP_ROUTE_27, MAP_ROUTE_27
-	warp_def $f, $19, 3, GROUP_ROUTE_27, MAP_ROUTE_27
+	warp_def $f, $d, 2, ROUTE_27
+	warp_def $f, $19, 3, ROUTE_27
 
 .XYTriggers:
 	db 0

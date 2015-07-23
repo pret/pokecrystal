@@ -89,7 +89,7 @@ SailorScript_0x755f1:
 	closetext
 	loadmovesprites
 	setevent EVENT_FAST_SHIP_LAZY_SAILOR
-	domaptrigger GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F, $1
+	domaptrigger FAST_SHIP_B1F, $1
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x75629
 	applymovement $6, MovementData_0x75637
@@ -263,9 +263,9 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $2, 2, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $c, $2, 3, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $18, $2, 4, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $0, $2, 2, FAST_SHIP_1F
+	warp_def $c, $2, 3, FAST_SHIP_1F
+	warp_def $18, $2, 4, FAST_SHIP_1F
 
 .XYTriggers:
 	db 0

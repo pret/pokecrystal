@@ -338,8 +338,8 @@ Route39_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $1, 1, GROUP_ROUTE_39_BARN, MAP_ROUTE_39_BARN
-	warp_def $3, $5, 1, GROUP_ROUTE_39_FARMHOUSE, MAP_ROUTE_39_FARMHOUSE
+	warp_def $3, $1, 1, ROUTE_39_BARN
+	warp_def $3, $5, 1, ROUTE_39_FARMHOUSE
 
 .XYTriggers:
 	db 0

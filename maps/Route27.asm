@@ -464,9 +464,9 @@ Route27_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $21, 1, GROUP_ROUTE_27_SANDSTORM_HOUSE, MAP_ROUTE_27_SANDSTORM_HOUSE
-	warp_def $5, $1a, 1, GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
-	warp_def $5, $24, 2, GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
+	warp_def $7, $21, 1, ROUTE_27_SANDSTORM_HOUSE
+	warp_def $5, $1a, 1, TOHJO_FALLS
+	warp_def $5, $24, 2, TOHJO_FALLS
 
 .XYTriggers:
 	db 2

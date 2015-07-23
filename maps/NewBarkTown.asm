@@ -286,10 +286,10 @@ NewBarkTown_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $3, $6, 1, GROUP_ELMS_LAB, MAP_ELMS_LAB
-	warp_def $5, $d, 1, GROUP_KRISS_HOUSE_1F, MAP_KRISS_HOUSE_1F
-	warp_def $b, $3, 1, GROUP_KRISS_NEIGHBORS_HOUSE, MAP_KRISS_NEIGHBORS_HOUSE
-	warp_def $d, $b, 1, GROUP_ELMS_HOUSE, MAP_ELMS_HOUSE
+	warp_def $3, $6, 1, ELMS_LAB
+	warp_def $5, $d, 1, KRISS_HOUSE_1F
+	warp_def $b, $3, 1, KRISS_NEIGHBORS_HOUSE
+	warp_def $d, $b, 1, ELMS_HOUSE
 
 .XYTriggers:
 	db 2

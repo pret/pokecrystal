@@ -358,8 +358,8 @@ AzaleaGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $4, 5, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $f, $5, 5, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
+	warp_def $f, $4, 5, AZALEA_TOWN
+	warp_def $f, $5, 5, AZALEA_TOWN
 
 .XYTriggers:
 	db 0

@@ -53,9 +53,9 @@ MahoganyPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 4, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $4, 4, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 4, MAHOGANY_TOWN
+	warp_def $7, $4, 4, MAHOGANY_TOWN
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0

@@ -136,9 +136,9 @@ WillsRoom_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $11, $5, 4, GROUP_INDIGO_PLATEAU_POKECENTER_1F, MAP_INDIGO_PLATEAU_POKECENTER_1F
-	warp_def $2, $4, 1, GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM
-	warp_def $2, $5, 2, GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM
+	warp_def $11, $5, 4, INDIGO_PLATEAU_POKECENTER_1F
+	warp_def $2, $4, 1, KOGAS_ROOM
+	warp_def $2, $5, 2, KOGAS_ROOM
 
 .XYTriggers:
 	db 0

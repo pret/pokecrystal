@@ -470,9 +470,9 @@ RadioTower1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $2, 11, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $7, $3, 11, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $0, $f, 2, GROUP_RADIO_TOWER_2F, MAP_RADIO_TOWER_2F
+	warp_def $7, $2, 11, GOLDENROD_CITY
+	warp_def $7, $3, 11, GOLDENROD_CITY
+	warp_def $0, $f, 2, RADIO_TOWER_2F
 
 .XYTriggers:
 	db 0

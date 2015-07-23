@@ -14,8 +14,8 @@ TinTower3F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $e, $a, 1, GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
-	warp_def $2, $10, 2, GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
+	warp_def $e, $a, 1, TIN_TOWER_2F
+	warp_def $2, $10, 2, TIN_TOWER_4F
 
 .XYTriggers:
 	db 0

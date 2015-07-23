@@ -74,8 +74,8 @@ Route28FamousSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_ROUTE_28, MAP_ROUTE_28
-	warp_def $7, $3, 1, GROUP_ROUTE_28, MAP_ROUTE_28
+	warp_def $7, $2, 1, ROUTE_28
+	warp_def $7, $3, 1, ROUTE_28
 
 .XYTriggers:
 	db 0

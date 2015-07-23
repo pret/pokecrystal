@@ -132,7 +132,7 @@ CinnabarIsland_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $b, $b, 1, GROUP_CINNABAR_POKECENTER_1F, MAP_CINNABAR_POKECENTER_1F
+	warp_def $b, $b, 1, CINNABAR_POKECENTER_1F
 
 .XYTriggers:
 	db 0

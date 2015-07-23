@@ -332,8 +332,8 @@ DanceTheatre_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $d, $5, 8, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $d, $6, 8, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
+	warp_def $d, $5, 8, ECRUTEAK_CITY
+	warp_def $d, $6, 8, ECRUTEAK_CITY
 
 .XYTriggers:
 	db 0

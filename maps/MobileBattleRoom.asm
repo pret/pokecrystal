@@ -18,7 +18,7 @@ MobileBattleRoom_MapScriptHeader:
 
 MobileBattleRoom_Initialize:
 	dotrigger $1
-	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $5
+	domaptrigger POKECENTER_2F, $5
 	end
 
 MapMobileBattleRoomSignpost0Script:
@@ -74,8 +74,8 @@ MobileBattleRoom_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 6, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $7, $5, 6, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $4, 6, POKECENTER_2F
+	warp_def $7, $5, 6, POKECENTER_2F
 
 .XYTriggers:
 	db 0

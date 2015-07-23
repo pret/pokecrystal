@@ -378,8 +378,8 @@ FuchsiaGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $11, $4, 3, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $11, $5, 3, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
+	warp_def $11, $4, 3, FUCHSIA_CITY
+	warp_def $11, $5, 3, FUCHSIA_CITY
 
 .XYTriggers:
 	db 0

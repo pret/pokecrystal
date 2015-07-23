@@ -204,7 +204,7 @@ Route9_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $f, $30, 1, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
+	warp_def $f, $30, 1, ROCK_TUNNEL_1F
 
 .XYTriggers:
 	db 0

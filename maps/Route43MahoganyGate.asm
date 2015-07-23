@@ -41,10 +41,10 @@ Route43MahoganyGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 1, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $0, $5, 2, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $7, $4, 5, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $5, 5, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
+	warp_def $0, $4, 1, ROUTE_43
+	warp_def $0, $5, 2, ROUTE_43
+	warp_def $7, $4, 5, MAHOGANY_TOWN
+	warp_def $7, $5, 5, MAHOGANY_TOWN
 
 .XYTriggers:
 	db 0

@@ -66,9 +66,9 @@ PewterPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 4, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
-	warp_def $7, $4, 4, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 4, PEWTER_CITY
+	warp_def $7, $4, 4, PEWTER_CITY
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0

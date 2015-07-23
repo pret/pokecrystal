@@ -47,10 +47,10 @@ Route32RuinsofAlphGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 10, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $5, $0, 11, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $4, $9, 2, GROUP_ROUTE_32, MAP_ROUTE_32
-	warp_def $5, $9, 3, GROUP_ROUTE_32, MAP_ROUTE_32
+	warp_def $4, $0, 10, RUINS_OF_ALPH_OUTSIDE
+	warp_def $5, $0, 11, RUINS_OF_ALPH_OUTSIDE
+	warp_def $4, $9, 2, ROUTE_32
+	warp_def $5, $9, 3, ROUTE_32
 
 .XYTriggers:
 	db 0

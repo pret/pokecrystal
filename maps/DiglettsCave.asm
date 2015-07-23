@@ -26,12 +26,12 @@ DiglettsCave_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $21, $3, 10, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $1f, $5, 5, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
-	warp_def $5, $f, 5, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $3, $11, 6, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
-	warp_def $21, $11, 2, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
-	warp_def $3, $3, 4, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
+	warp_def $21, $3, 10, VERMILION_CITY
+	warp_def $1f, $5, 5, DIGLETTS_CAVE
+	warp_def $5, $f, 5, ROUTE_2
+	warp_def $3, $11, 6, DIGLETTS_CAVE
+	warp_def $21, $11, 2, DIGLETTS_CAVE
+	warp_def $3, $3, 4, DIGLETTS_CAVE
 
 .XYTriggers:
 	db 0

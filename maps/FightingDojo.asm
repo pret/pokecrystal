@@ -44,8 +44,8 @@ FightingDojo_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $b, $4, 1, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $b, $5, 1, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
+	warp_def $b, $4, 1, SAFFRON_CITY
+	warp_def $b, $5, 1, SAFFRON_CITY
 
 .XYTriggers:
 	db 0

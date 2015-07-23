@@ -29,12 +29,12 @@ IcePathB2FMahoganySide_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $1, $11, 2, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
-	warp_def $b, $9, 1, GROUP_ICE_PATH_B3F, MAP_ICE_PATH_B3F
-	warp_def $4, $b, 3, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
-	warp_def $6, $4, 4, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
-	warp_def $c, $4, 5, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
-	warp_def $c, $c, 6, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
+	warp_def $1, $11, 2, ICE_PATH_B1F
+	warp_def $b, $9, 1, ICE_PATH_B3F
+	warp_def $4, $b, 3, ICE_PATH_B1F
+	warp_def $6, $4, 4, ICE_PATH_B1F
+	warp_def $c, $4, 5, ICE_PATH_B1F
+	warp_def $c, $c, 6, ICE_PATH_B1F
 
 .XYTriggers:
 	db 0

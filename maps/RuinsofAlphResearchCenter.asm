@@ -398,8 +398,8 @@ RuinsofAlphResearchCenter_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $7, $3, 6, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
+	warp_def $7, $2, 6, RUINS_OF_ALPH_OUTSIDE
+	warp_def $7, $3, 6, RUINS_OF_ALPH_OUTSIDE
 
 .XYTriggers:
 	db 0

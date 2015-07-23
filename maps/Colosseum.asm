@@ -39,12 +39,12 @@ ColosseumScript_SetWhichChris:
 	return
 
 ColosseumScript_InitializeCB:
-	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $2
+	domaptrigger POKECENTER_2F, $2
 	return
 
 ColosseumScript_Initialize:
 	dotrigger $1
-	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $2
+	domaptrigger POKECENTER_2F, $2
 	end
 
 MapColosseumSignpost1Script:
@@ -70,8 +70,8 @@ Colosseum_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 3, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $7, $5, 3, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $4, 3, POKECENTER_2F
+	warp_def $7, $5, 3, POKECENTER_2F
 
 .XYTriggers:
 	db 0

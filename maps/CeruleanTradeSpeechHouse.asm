@@ -53,8 +53,8 @@ CeruleanTradeSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
-	warp_def $7, $3, 3, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	warp_def $7, $2, 3, CERULEAN_CITY
+	warp_def $7, $3, 3, CERULEAN_CITY
 
 .XYTriggers:
 	db 0

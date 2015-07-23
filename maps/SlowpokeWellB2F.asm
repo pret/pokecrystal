@@ -63,7 +63,7 @@ SlowpokeWellB2F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $b, $9, 2, GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
+	warp_def $b, $9, 2, SLOWPOKE_WELL_B1F
 
 .XYTriggers:
 	db 0

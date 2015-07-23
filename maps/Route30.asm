@@ -400,8 +400,8 @@ Route30_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $27, $7, 1, GROUP_ROUTE_30_BERRY_SPEECH_HOUSE, MAP_ROUTE_30_BERRY_SPEECH_HOUSE
-	warp_def $5, $11, 1, GROUP_MR_POKEMONS_HOUSE, MAP_MR_POKEMONS_HOUSE
+	warp_def $27, $7, 1, ROUTE_30_BERRY_SPEECH_HOUSE
+	warp_def $5, $11, 1, MR_POKEMONS_HOUSE
 
 .XYTriggers:
 	db 0

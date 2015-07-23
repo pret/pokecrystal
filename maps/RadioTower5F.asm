@@ -122,7 +122,7 @@ UnknownScript_0x6006e:
 	closetext
 	loadmovesprites
 	dotrigger $2
-	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
+	domaptrigger ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump UnknownScript_0x600f1
@@ -421,8 +421,8 @@ RadioTower5F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $0, $0, 1, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
-	warp_def $0, $c, 3, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
+	warp_def $0, $0, 1, RADIO_TOWER_4F
+	warp_def $0, $c, 3, RADIO_TOWER_4F
 
 .XYTriggers:
 	db 2

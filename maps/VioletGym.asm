@@ -30,7 +30,7 @@ FalknerScript_0x683c2:
 	iftrue .SpeechAfterTM
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
-	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $2
+	domaptrigger ELMS_LAB, $2
 	specialphonecall ELMCALL_ASSISTANT
 	writetext UnknownText_0x685c8
 	keeptextopen
@@ -281,8 +281,8 @@ VioletGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $4, 2, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
-	warp_def $f, $5, 2, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
+	warp_def $f, $4, 2, VIOLET_CITY
+	warp_def $f, $5, 2, VIOLET_CITY
 
 .XYTriggers:
 	db 0

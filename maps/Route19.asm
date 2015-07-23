@@ -235,7 +235,7 @@ Route19_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $3, $7, 3, GROUP_ROUTE_19___FUCHSIA_GATE, MAP_ROUTE_19___FUCHSIA_GATE
+	warp_def $3, $7, 3, ROUTE_19___FUCHSIA_GATE
 
 .XYTriggers:
 	db 0

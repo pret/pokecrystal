@@ -22,8 +22,8 @@ BlackthornDodrioTradeHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
-	warp_def $7, $3, 3, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
+	warp_def $7, $2, 3, BLACKTHORN_CITY
+	warp_def $7, $3, 3, BLACKTHORN_CITY
 
 .XYTriggers:
 	db 0

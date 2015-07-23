@@ -43,8 +43,8 @@ UnknownScript_0x1883de:
 	clearevent EVENT_ROUTE_24_ROCKET
 	clearevent EVENT_ROUTE_25_MISTY_BOYFRIEND
 	dotrigger $0
-	domaptrigger GROUP_ROUTE_25, MAP_ROUTE_25, $1
-	domaptrigger GROUP_POWER_PLANT, MAP_POWER_PLANT, $0
+	domaptrigger ROUTE_25, $1
+	domaptrigger POWER_PLANT, $0
 	waitbutton
 	special RestartMapMusic
 	pause 15
@@ -363,8 +363,8 @@ CeruleanGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $4, 5, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
-	warp_def $f, $5, 5, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	warp_def $f, $4, 5, CERULEAN_CITY
+	warp_def $f, $5, 5, CERULEAN_CITY
 
 .XYTriggers:
 	db 0

@@ -17,8 +17,8 @@ SilverCaveItemRooms_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $d, 3, GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
-	warp_def $f, $7, 4, GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
+	warp_def $3, $d, 3, SILVER_CAVE_ROOM_2
+	warp_def $f, $7, 4, SILVER_CAVE_ROOM_2
 
 .XYTriggers:
 	db 0

@@ -100,14 +100,14 @@ VictoryRoadGate_MapEventHeader:
 
 .Warps:
 	db 8
-	warp_def $7, $11, 1, GROUP_ROUTE_22, MAP_ROUTE_22
-	warp_def $7, $12, 1, GROUP_ROUTE_22, MAP_ROUTE_22
-	warp_def $11, $9, 1, GROUP_ROUTE_26, MAP_ROUTE_26
-	warp_def $11, $a, 1, GROUP_ROUTE_26, MAP_ROUTE_26
-	warp_def $0, $9, 1, GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
-	warp_def $0, $a, 1, GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
-	warp_def $7, $1, 2, GROUP_ROUTE_28, MAP_ROUTE_28
-	warp_def $7, $2, 2, GROUP_ROUTE_28, MAP_ROUTE_28
+	warp_def $7, $11, 1, ROUTE_22
+	warp_def $7, $12, 1, ROUTE_22
+	warp_def $11, $9, 1, ROUTE_26
+	warp_def $11, $a, 1, ROUTE_26
+	warp_def $0, $9, 1, VICTORY_ROAD
+	warp_def $0, $a, 1, VICTORY_ROAD
+	warp_def $7, $1, 2, ROUTE_28
+	warp_def $7, $2, 2, ROUTE_28
 
 .XYTriggers:
 	db 1

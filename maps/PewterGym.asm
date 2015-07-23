@@ -209,8 +209,8 @@ PewterGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $d, $4, 2, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
-	warp_def $d, $5, 2, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
+	warp_def $d, $4, 2, PEWTER_CITY
+	warp_def $d, $5, 2, PEWTER_CITY
 
 .XYTriggers:
 	db 0

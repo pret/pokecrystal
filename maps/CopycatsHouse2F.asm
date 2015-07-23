@@ -361,7 +361,7 @@ CopycatsHouse2F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $0, $3, 3, GROUP_COPYCATS_HOUSE_1F, MAP_COPYCATS_HOUSE_1F
+	warp_def $0, $3, 3, COPYCATS_HOUSE_1F
 
 .XYTriggers:
 	db 0

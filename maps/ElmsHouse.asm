@@ -85,8 +85,8 @@ ElmsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
-	warp_def $7, $3, 4, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
+	warp_def $7, $2, 4, NEW_BARK_TOWN
+	warp_def $7, $3, 4, NEW_BARK_TOWN
 
 .XYTriggers:
 	db 0

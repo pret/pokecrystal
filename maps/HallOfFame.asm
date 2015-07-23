@@ -37,7 +37,7 @@ HallOfFameScript:
 	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
+	domaptrigger SPROUT_TOWER_3F, $1
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue .SkipPhoneCall
@@ -115,8 +115,8 @@ HallOfFame_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $d, $4, 3, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
-	warp_def $d, $5, 4, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
+	warp_def $d, $4, 3, LANCES_ROOM
+	warp_def $d, $5, 4, LANCES_ROOM
 
 .XYTriggers:
 	db 0

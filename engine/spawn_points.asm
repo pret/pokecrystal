@@ -89,7 +89,7 @@ IsSpawnPoint: ; 15344
 
 .next
 	push bc
-	ld bc, 4
+	ld bc, 4 ; length of a spawn table entry
 	add hl, bc
 	pop bc
 	inc c

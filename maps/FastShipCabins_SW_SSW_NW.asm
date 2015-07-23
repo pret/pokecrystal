@@ -222,11 +222,11 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $0, $2, 5, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $13, $2, 6, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $13, $3, 6, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $1f, $2, 7, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $1f, $3, 7, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $0, $2, 5, FAST_SHIP_1F
+	warp_def $13, $2, 6, FAST_SHIP_1F
+	warp_def $13, $3, 6, FAST_SHIP_1F
+	warp_def $1f, $2, 7, FAST_SHIP_1F
+	warp_def $1f, $3, 7, FAST_SHIP_1F
 
 .XYTriggers:
 	db 0

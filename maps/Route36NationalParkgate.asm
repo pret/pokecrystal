@@ -85,7 +85,7 @@ Route36NationalParkgate_MapScriptHeader:
 	playsound SFX_EXIT_BUILDING
 	special FadeBlackBGMap
 	waitbutton
-	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing $2, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 
 .CopyContestants:
@@ -169,7 +169,7 @@ Route36OfficerScriptContest:
 	special FadeBlackBGMap
 	waitbutton
 	special Special_SelectRandomBugContestContestants
-	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing $2, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 
 .LeaveMonsWithOfficer:
@@ -848,10 +848,10 @@ Route36NationalParkgate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 1, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
-	warp_def $5, $0, 2, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
-	warp_def $4, $9, 1, GROUP_ROUTE_36, MAP_ROUTE_36
-	warp_def $5, $9, 2, GROUP_ROUTE_36, MAP_ROUTE_36
+	warp_def $4, $0, 1, NATIONAL_PARK
+	warp_def $5, $0, 2, NATIONAL_PARK
+	warp_def $4, $9, 1, ROUTE_36
+	warp_def $5, $9, 2, ROUTE_36
 
 .XYTriggers:
 	db 0

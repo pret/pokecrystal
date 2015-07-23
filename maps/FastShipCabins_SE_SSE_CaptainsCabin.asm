@@ -68,7 +68,7 @@ UnknownScript_0x75f09:
 	writetext UnknownText_0x76143
 	keeptextopen
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
+	domaptrigger FAST_SHIP_1F, $0
 	jump UnknownScript_0x75f37
 
 GentlemanScript_0x75f1f:
@@ -81,7 +81,7 @@ GentlemanScript_0x75f1f:
 	writetext UnknownText_0x760ae
 	closetext
 	loadmovesprites
-	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
+	domaptrigger FAST_SHIP_1F, $0
 	end
 
 UnknownScript_0x75f37:
@@ -455,12 +455,12 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $7, $2, 8, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $7, $3, 8, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $13, $2, 9, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $13, $3, 9, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $21, $2, 10, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $21, $3, 10, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $7, $2, 8, FAST_SHIP_1F
+	warp_def $7, $3, 8, FAST_SHIP_1F
+	warp_def $13, $2, 9, FAST_SHIP_1F
+	warp_def $13, $3, 9, FAST_SHIP_1F
+	warp_def $21, $2, 10, FAST_SHIP_1F
+	warp_def $21, $3, 10, FAST_SHIP_1F
 
 .XYTriggers:
 	db 0

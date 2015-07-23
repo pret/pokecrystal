@@ -403,8 +403,8 @@ DragonsDenB1F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $14, 3, GROUP_DRAGONS_DEN_1F, MAP_DRAGONS_DEN_1F
-	warp_def $1d, $13, 1, GROUP_DRAGON_SHRINE, MAP_DRAGON_SHRINE
+	warp_def $3, $14, 3, DRAGONS_DEN_1F
+	warp_def $1d, $13, 1, DRAGON_SHRINE
 
 .XYTriggers:
 	db 1

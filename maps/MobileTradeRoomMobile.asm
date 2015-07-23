@@ -18,7 +18,7 @@ MobileTradeRoomMobile_MapScriptHeader:
 
 MobileTradeRoomMobile_Initialize:
 	dotrigger $1
-	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $4
+	domaptrigger POKECENTER_2F, $4
 	end
 
 MapMobileTradeRoomMobileSignpost0Script:
@@ -42,8 +42,8 @@ MobileTradeRoomMobile_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 5, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $7, $5, 5, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $4, 5, POKECENTER_2F
+	warp_def $7, $5, 5, POKECENTER_2F
 
 .XYTriggers:
 	db 0

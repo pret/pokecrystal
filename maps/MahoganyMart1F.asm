@@ -224,9 +224,9 @@ MahoganyMart1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $4, 1, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $3, $7, 1, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
+	warp_def $7, $3, 1, MAHOGANY_TOWN
+	warp_def $7, $4, 1, MAHOGANY_TOWN
+	warp_def $3, $7, 1, TEAM_ROCKET_BASE_B1F
 
 .XYTriggers:
 	db 0

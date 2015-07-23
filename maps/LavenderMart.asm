@@ -48,8 +48,8 @@ LavenderMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $3, 5, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $2, 5, LAVENDER_TOWN
+	warp_def $7, $3, 5, LAVENDER_TOWN
 
 .XYTriggers:
 	db 0

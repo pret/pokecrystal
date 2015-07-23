@@ -356,8 +356,8 @@ BillsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_ROUTE_25, MAP_ROUTE_25
-	warp_def $7, $3, 1, GROUP_ROUTE_25, MAP_ROUTE_25
+	warp_def $7, $2, 1, ROUTE_25
+	warp_def $7, $3, 1, ROUTE_25
 
 .XYTriggers:
 	db 0

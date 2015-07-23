@@ -27,8 +27,8 @@ GoldenrodNameRatersHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 8, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $7, $3, 8, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $7, $2, 8, GOLDENROD_CITY
+	warp_def $7, $3, 8, GOLDENROD_CITY
 
 .XYTriggers:
 	db 0

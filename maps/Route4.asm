@@ -121,7 +121,7 @@ Route4_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $5, $2, 2, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
+	warp_def $5, $2, 2, MOUNT_MOON
 
 .XYTriggers:
 	db 0

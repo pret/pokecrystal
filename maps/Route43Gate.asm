@@ -23,11 +23,11 @@ UnknownScript_0x19abc9:
 UnknownScript_0x19abca:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19abd5
-	domaptrigger GROUP_ROUTE_43, MAP_ROUTE_43, $0
+	domaptrigger ROUTE_43, $0
 	return
 
 UnknownScript_0x19abd5:
-	domaptrigger GROUP_ROUTE_43, MAP_ROUTE_43, $1
+	domaptrigger ROUTE_43, $1
 	return
 
 UnknownScript_0x19abda:
@@ -251,10 +251,10 @@ Route43Gate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 4, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $0, $5, 5, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $7, $4, 3, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $7, $5, 3, GROUP_ROUTE_43, MAP_ROUTE_43
+	warp_def $0, $4, 4, ROUTE_43
+	warp_def $0, $5, 5, ROUTE_43
+	warp_def $7, $4, 3, ROUTE_43
+	warp_def $7, $5, 3, ROUTE_43
 
 .XYTriggers:
 	db 0

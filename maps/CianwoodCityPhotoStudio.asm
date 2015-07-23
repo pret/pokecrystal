@@ -51,8 +51,8 @@ CianwoodCityPhotoStudio_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
-	warp_def $7, $3, 5, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
+	warp_def $7, $2, 5, CIANWOOD_CITY
+	warp_def $7, $3, 5, CIANWOOD_CITY
 
 .XYTriggers:
 	db 0

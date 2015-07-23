@@ -34,7 +34,7 @@ TradeCenter_SetWhichChris:
 
 TradeCenter_Initialize:
 	dotrigger $1
-	domaptrigger GROUP_POKECENTER_2F, MAP_POKECENTER_2F, $1
+	domaptrigger POKECENTER_2F, $1
 	end
 
 MapTradeCenterSignpost1Script:
@@ -60,8 +60,8 @@ TradeCenter_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 2, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $7, $5, 2, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $4, 2, POKECENTER_2F
+	warp_def $7, $5, 2, POKECENTER_2F
 
 .XYTriggers:
 	db 0

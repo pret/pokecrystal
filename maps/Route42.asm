@@ -24,7 +24,7 @@ UnknownScript_0x1a9218:
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	domaptrigger GROUP_ROUTE_36, MAP_ROUTE_36, $1
+	domaptrigger ROUTE_36, $1
 	end
 
 TrainerFisherTully1:
@@ -316,11 +316,11 @@ Route42_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $8, $0, 3, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
-	warp_def $9, $0, 4, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
-	warp_def $5, $a, 1, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
-	warp_def $9, $1c, 2, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
-	warp_def $7, $2e, 3, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
+	warp_def $8, $0, 3, ROUTE_42_ECRUTEAK_GATE
+	warp_def $9, $0, 4, ROUTE_42_ECRUTEAK_GATE
+	warp_def $5, $a, 1, MOUNT_MORTAR_1F_OUTSIDE
+	warp_def $9, $1c, 2, MOUNT_MORTAR_1F_OUTSIDE
+	warp_def $7, $2e, 3, MOUNT_MORTAR_1F_OUTSIDE
 
 .XYTriggers:
 	db 1

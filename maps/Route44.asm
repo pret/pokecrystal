@@ -500,7 +500,7 @@ Route44_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $38, 1, GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
+	warp_def $7, $38, 1, ICE_PATH_1F
 
 .XYTriggers:
 	db 0

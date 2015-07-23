@@ -386,9 +386,9 @@ KrissHouse1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $6, 2, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
-	warp_def $7, $7, 2, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
-	warp_def $0, $9, 1, GROUP_KRISS_HOUSE_2F, MAP_KRISS_HOUSE_2F
+	warp_def $7, $6, 2, NEW_BARK_TOWN
+	warp_def $7, $7, 2, NEW_BARK_TOWN
+	warp_def $0, $9, 1, KRISS_HOUSE_2F
 
 .XYTriggers:
 	db 2

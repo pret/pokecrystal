@@ -36,7 +36,7 @@ MortyScript_0x99d58:
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymTriggerRockets
-	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
+	domaptrigger ECRUTEAK_HOUSE, $1
 	setevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone
@@ -87,7 +87,7 @@ UnknownScript_0x99dc6:
 	special FadeBlackBGMap
 	playsound SFX_ENTER_DOOR
 	waitbutton
-	warp GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, $6, $1b
+	warp ECRUTEAK_CITY, $6, $1b
 	end
 
 TrainerSageJeffrey:
@@ -385,39 +385,39 @@ EcruteakGym_MapEventHeader:
 
 .Warps:
 	db 33
-	warp_def $11, $4, 10, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $11, $5, 10, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $e, $4, 4, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $4, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $4, $3, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $4, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $5, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $7, $6, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $4, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $3, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $5, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $7, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $5, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $6, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $9, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $a, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $b, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $a, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $a, $5, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $3, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $5, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $a, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $b, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $d, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
+	warp_def $11, $4, 10, ECRUTEAK_CITY
+	warp_def $11, $5, 10, ECRUTEAK_CITY
+	warp_def $e, $4, 4, ECRUTEAK_GYM
+	warp_def $4, $2, 3, ECRUTEAK_GYM
+	warp_def $4, $3, 3, ECRUTEAK_GYM
+	warp_def $4, $4, 3, ECRUTEAK_GYM
+	warp_def $5, $4, 3, ECRUTEAK_GYM
+	warp_def $7, $6, 3, ECRUTEAK_GYM
+	warp_def $4, $7, 3, ECRUTEAK_GYM
+	warp_def $6, $2, 3, ECRUTEAK_GYM
+	warp_def $6, $3, 3, ECRUTEAK_GYM
+	warp_def $6, $4, 3, ECRUTEAK_GYM
+	warp_def $6, $5, 3, ECRUTEAK_GYM
+	warp_def $6, $7, 3, ECRUTEAK_GYM
+	warp_def $7, $7, 3, ECRUTEAK_GYM
+	warp_def $8, $4, 3, ECRUTEAK_GYM
+	warp_def $8, $5, 3, ECRUTEAK_GYM
+	warp_def $8, $6, 3, ECRUTEAK_GYM
+	warp_def $8, $7, 3, ECRUTEAK_GYM
+	warp_def $8, $2, 3, ECRUTEAK_GYM
+	warp_def $9, $2, 3, ECRUTEAK_GYM
+	warp_def $a, $2, 3, ECRUTEAK_GYM
+	warp_def $b, $2, 3, ECRUTEAK_GYM
+	warp_def $a, $4, 3, ECRUTEAK_GYM
+	warp_def $a, $5, 3, ECRUTEAK_GYM
+	warp_def $c, $2, 3, ECRUTEAK_GYM
+	warp_def $c, $3, 3, ECRUTEAK_GYM
+	warp_def $c, $4, 3, ECRUTEAK_GYM
+	warp_def $c, $5, 3, ECRUTEAK_GYM
+	warp_def $a, $7, 3, ECRUTEAK_GYM
+	warp_def $b, $7, 3, ECRUTEAK_GYM
+	warp_def $c, $7, 3, ECRUTEAK_GYM
+	warp_def $d, $7, 3, ECRUTEAK_GYM
 
 .XYTriggers:
 	db 0

@@ -27,10 +27,10 @@ Route38EcruteakGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 1, GROUP_ROUTE_38, MAP_ROUTE_38
-	warp_def $5, $0, 2, GROUP_ROUTE_38, MAP_ROUTE_38
-	warp_def $4, $9, 14, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $5, $9, 15, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
+	warp_def $4, $0, 1, ROUTE_38
+	warp_def $5, $0, 2, ROUTE_38
+	warp_def $4, $9, 14, ECRUTEAK_CITY
+	warp_def $5, $9, 15, ECRUTEAK_CITY
 
 .XYTriggers:
 	db 0

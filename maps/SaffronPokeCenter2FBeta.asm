@@ -11,7 +11,7 @@ SaffronPokeCenter2FBeta_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $0, 3, GROUP_SAFFRON_POKECENTER_1F, MAP_SAFFRON_POKECENTER_1F
+	warp_def $7, $0, 3, SAFFRON_POKECENTER_1F
 
 .XYTriggers:
 	db 0

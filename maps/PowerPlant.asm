@@ -141,7 +141,7 @@ PowerPlantManager:
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	clearevent EVENT_CERULEAN_GYM_ROCKET
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
-	domaptrigger GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM, $1
+	domaptrigger CERULEAN_GYM, $1
 	dotrigger $1
 	end
 
@@ -387,8 +387,8 @@ PowerPlant_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $11, $2, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
-	warp_def $11, $3, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
+	warp_def $11, $2, 2, ROUTE_10_NORTH
+	warp_def $11, $3, 2, ROUTE_10_NORTH
 
 .XYTriggers:
 	db 1

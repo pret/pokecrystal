@@ -73,9 +73,9 @@ CopycatsHouse1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $2, 8, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $7, $3, 8, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $0, $2, 1, GROUP_COPYCATS_HOUSE_2F, MAP_COPYCATS_HOUSE_2F
+	warp_def $7, $2, 8, SAFFRON_CITY
+	warp_def $7, $3, 8, SAFFRON_CITY
+	warp_def $0, $2, 1, COPYCATS_HOUSE_2F
 
 .XYTriggers:
 	db 0

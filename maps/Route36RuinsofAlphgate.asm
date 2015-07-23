@@ -36,10 +36,10 @@ Route36RuinsofAlphgate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 3, GROUP_ROUTE_36, MAP_ROUTE_36
-	warp_def $0, $5, 4, GROUP_ROUTE_36, MAP_ROUTE_36
-	warp_def $7, $4, 9, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $7, $5, 9, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
+	warp_def $0, $4, 3, ROUTE_36
+	warp_def $0, $5, 4, ROUTE_36
+	warp_def $7, $4, 9, RUINS_OF_ALPH_OUTSIDE
+	warp_def $7, $5, 9, RUINS_OF_ALPH_OUTSIDE
 
 .XYTriggers:
 	db 0

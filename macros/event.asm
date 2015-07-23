@@ -120,16 +120,14 @@ ptcallasm: macro
 	enum checkmaptriggers_command
 checkmaptriggers: macro
 	db checkmaptriggers_command
-	db \1 ; map_group
-	db \2 ; map_id
+	map \1 ; map
 	endm
 
 	enum domaptrigger_command
 domaptrigger: macro
 	db domaptrigger_command
-	db \1 ; map_group
-	db \2 ; map_id
-	db \3 ; trigger_id
+	map \1 ; map
+	db \2 ; trigger_id
 	endm
 
 	enum checktriggers_command
@@ -385,24 +383,21 @@ xycompare: macro
 warpmod: macro
 	db warpmod_command
 	db \1 ; warp_id
-	db \2 ; map_group
-	db \3 ; map_id
+	map \2 ; map
 	endm
 
 	enum blackoutmod_command
 blackoutmod: macro
 	db blackoutmod_command
-	db \1 ; map_group
-	db \2 ; map_id
+	map \1 ; map
 	endm
 
 	enum warp_command
 warp: macro
 	db warp_command
-	db \1 ; map_group
-	db \2 ; map_id
-	db \3 ; x
-	db \4 ; y
+	map \1 ; map
+	db \2 ; x
+	db \3 ; y
 	endm
 
 	enum readmoney_command
@@ -997,8 +992,7 @@ verbosegiveitem2: macro
 loadwilddata: macro
 	db loadwilddata_command
 	db \1 ; flag
-	db \2 ; map_group
-	db \3 ; map_id
+	map \2 ; map
 	endm
 
 	enum halloffame_command
@@ -1015,10 +1009,9 @@ credits: macro
 warpfacing: macro
 	db warpfacing_command
 	db \1 ; facing
-	db \2 ; map_group
-	db \3 ; map_id
-	db \4 ; x
-	db \5 ; y
+	map \2 ; map
+	db \3 ; x
+	db \4 ; y
 	endm
 
 	enum storetext_command

@@ -38,10 +38,10 @@ Route2946Gate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 1, GROUP_ROUTE_46, MAP_ROUTE_46
-	warp_def $0, $5, 2, GROUP_ROUTE_46, MAP_ROUTE_46
-	warp_def $7, $4, 1, GROUP_ROUTE_29, MAP_ROUTE_29
-	warp_def $7, $5, 1, GROUP_ROUTE_29, MAP_ROUTE_29
+	warp_def $0, $4, 1, ROUTE_46
+	warp_def $0, $5, 2, ROUTE_46
+	warp_def $7, $4, 1, ROUTE_29
+	warp_def $7, $5, 1, ROUTE_29
 
 .XYTriggers:
 	db 0

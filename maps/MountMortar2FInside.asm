@@ -64,8 +64,8 @@ MountMortar2FInside_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $21, $11, 4, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
-	warp_def $5, $3, 6, GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
+	warp_def $21, $11, 4, MOUNT_MORTAR_1F_OUTSIDE
+	warp_def $5, $3, 6, MOUNT_MORTAR_1F_INSIDE
 
 .XYTriggers:
 	db 0

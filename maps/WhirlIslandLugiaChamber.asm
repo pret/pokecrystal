@@ -49,7 +49,7 @@ WhirlIslandLugiaChamber_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $d, $9, 3, GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
+	warp_def $d, $9, 3, WHIRL_ISLAND_B2F
 
 .XYTriggers:
 	db 0

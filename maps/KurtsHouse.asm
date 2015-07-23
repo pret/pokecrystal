@@ -307,7 +307,7 @@ KurtScript_0x18e178:
 	clearevent EVENT_AZALEA_TOWN_KURT
 	waitbutton
 	special RestartMapMusic
-	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $2
+	domaptrigger AZALEA_TOWN, $2
 	end
 
 KurtScript_0x18e3bd:
@@ -678,8 +678,8 @@ KurtsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 4, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $7, $4, 4, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
+	warp_def $7, $3, 4, AZALEA_TOWN
+	warp_def $7, $4, 4, AZALEA_TOWN
 
 .XYTriggers:
 	db 0

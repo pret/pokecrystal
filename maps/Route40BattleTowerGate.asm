@@ -75,10 +75,10 @@ Route40BattleTowerGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $7, $4, 1, GROUP_ROUTE_40, MAP_ROUTE_40
-	warp_def $7, $5, 1, GROUP_ROUTE_40, MAP_ROUTE_40
-	warp_def $0, $4, 1, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
-	warp_def $0, $5, 2, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
+	warp_def $7, $4, 1, ROUTE_40
+	warp_def $7, $5, 1, ROUTE_40
+	warp_def $0, $4, 1, BATTLE_TOWER_OUTSIDE
+	warp_def $0, $5, 2, BATTLE_TOWER_OUTSIDE
 
 .XYTriggers:
 	db 0

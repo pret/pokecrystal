@@ -72,8 +72,8 @@ SoulHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 6, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $5, 6, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $4, 6, LAVENDER_TOWN
+	warp_def $7, $5, 6, LAVENDER_TOWN
 
 .XYTriggers:
 	db 0

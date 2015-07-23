@@ -142,11 +142,11 @@ Route2_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $f, $f, 1, GROUP_ROUTE_2_NUGGET_SPEECH_HOUSE, MAP_ROUTE_2_NUGGET_SPEECH_HOUSE
-	warp_def $1f, $f, 3, GROUP_ROUTE_2_GATE, MAP_ROUTE_2_GATE
-	warp_def $1b, $10, 1, GROUP_ROUTE_2_GATE, MAP_ROUTE_2_GATE
-	warp_def $1b, $11, 2, GROUP_ROUTE_2_GATE, MAP_ROUTE_2_GATE
-	warp_def $7, $c, 3, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
+	warp_def $f, $f, 1, ROUTE_2_NUGGET_SPEECH_HOUSE
+	warp_def $1f, $f, 3, ROUTE_2_GATE
+	warp_def $1b, $10, 1, ROUTE_2_GATE
+	warp_def $1b, $11, 2, ROUTE_2_GATE
+	warp_def $7, $c, 3, DIGLETTS_CAVE
 
 .XYTriggers:
 	db 0

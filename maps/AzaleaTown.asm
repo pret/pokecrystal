@@ -452,14 +452,14 @@ AzaleaTown_MapEventHeader:
 
 .Warps:
 	db 8
-	warp_def $9, $f, 1, GROUP_AZALEA_POKECENTER_1F, MAP_AZALEA_POKECENTER_1F
-	warp_def $d, $15, 1, GROUP_CHARCOAL_KILN, MAP_CHARCOAL_KILN
-	warp_def $5, $15, 2, GROUP_AZALEA_MART, MAP_AZALEA_MART
-	warp_def $5, $9, 1, GROUP_KURTS_HOUSE, MAP_KURTS_HOUSE
-	warp_def $f, $a, 1, GROUP_AZALEA_GYM, MAP_AZALEA_GYM
-	warp_def $7, $1f, 1, GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
-	warp_def $a, $2, 3, GROUP_ILEX_FOREST_AZALEA_GATE, MAP_ILEX_FOREST_AZALEA_GATE
-	warp_def $b, $2, 4, GROUP_ILEX_FOREST_AZALEA_GATE, MAP_ILEX_FOREST_AZALEA_GATE
+	warp_def $9, $f, 1, AZALEA_POKECENTER_1F
+	warp_def $d, $15, 1, CHARCOAL_KILN
+	warp_def $5, $15, 2, AZALEA_MART
+	warp_def $5, $9, 1, KURTS_HOUSE
+	warp_def $f, $a, 1, AZALEA_GYM
+	warp_def $7, $1f, 1, SLOWPOKE_WELL_B1F
+	warp_def $a, $2, 3, ILEX_FOREST_AZALEA_GATE
+	warp_def $b, $2, 4, ILEX_FOREST_AZALEA_GATE
 
 .XYTriggers:
 	db 3

@@ -730,10 +730,10 @@ TeamRocketBaseB1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $2, $1b, 3, GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F
-	warp_def $e, $3, 1, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
-	warp_def $f, $5, 4, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
-	warp_def $2, $19, 3, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
+	warp_def $2, $1b, 3, MAHOGANY_MART_1F
+	warp_def $e, $3, 1, TEAM_ROCKET_BASE_B2F
+	warp_def $f, $5, 4, TEAM_ROCKET_BASE_B1F
+	warp_def $2, $19, 3, TEAM_ROCKET_BASE_B1F
 
 .XYTriggers:
 	db 30

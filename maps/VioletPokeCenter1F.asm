@@ -25,7 +25,7 @@ UnknownScript_0x694d7:
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
 	clearevent EVENT_TOGEPI_HATCHED
-	domaptrigger GROUP_ROUTE_32, MAP_ROUTE_32, $1
+	domaptrigger ROUTE_32, $1
 	writetext UnknownText_0x695c5
 	closetext
 	loadmovesprites
@@ -214,9 +214,9 @@ VioletPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 5, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
-	warp_def $7, $4, 5, GROUP_VIOLET_CITY, MAP_VIOLET_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 5, VIOLET_CITY
+	warp_def $7, $4, 5, VIOLET_CITY
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0

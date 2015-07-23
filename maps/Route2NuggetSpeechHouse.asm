@@ -55,8 +55,8 @@ Route2NuggetSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $7, $3, 1, GROUP_ROUTE_2, MAP_ROUTE_2
+	warp_def $7, $2, 1, ROUTE_2
+	warp_def $7, $3, 1, ROUTE_2
 
 .XYTriggers:
 	db 0

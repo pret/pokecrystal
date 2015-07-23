@@ -379,8 +379,8 @@ GoldenrodGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $11, $2, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $11, $3, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $11, $2, 1, GOLDENROD_CITY
+	warp_def $11, $3, 1, GOLDENROD_CITY
 
 .XYTriggers:
 	db 1

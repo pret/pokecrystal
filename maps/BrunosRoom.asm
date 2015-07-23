@@ -132,10 +132,10 @@ BrunosRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $4, 3, GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM
-	warp_def $11, $5, 4, GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM
-	warp_def $2, $4, 1, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
-	warp_def $2, $5, 2, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
+	warp_def $11, $4, 3, KOGAS_ROOM
+	warp_def $11, $5, 4, KOGAS_ROOM
+	warp_def $2, $4, 1, KARENS_ROOM
+	warp_def $2, $5, 2, KARENS_ROOM
 
 .XYTriggers:
 	db 0

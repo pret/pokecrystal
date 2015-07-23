@@ -1,5 +1,8 @@
-GROUP_N_A EQU -1
-MAP_N_A   EQU -1
+GROUP_N_A  EQU -1
+MAP_N_A    EQU -1
+
+GROUP_NONE EQU 0
+MAP_NONE   EQU 0
 
 ; map group ids
 	const_def

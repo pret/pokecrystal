@@ -288,38 +288,38 @@ SaffronGym_MapEventHeader:
 
 .Warps:
 	db 32
-	warp_def $11, $8, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $11, $9, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $f, $b, 18, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $f, $13, 19, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $b, $13, 20, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $b, $1, 21, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $3, $5, 22, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $5, $b, 23, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $f, $1, 24, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $3, $13, 25, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $11, $f, 26, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $11, $5, 27, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $9, $5, 28, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $3, $9, 29, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $9, $f, 30, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $5, $f, 31, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $5, $1, 32, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $11, $13, 3, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $9, $13, 4, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $9, $1, 5, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $5, $5, 6, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $3, $b, 7, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $11, $1, 8, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $5, $13, 9, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $f, $f, 10, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $f, $5, 11, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $b, $5, 12, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $5, $9, 13, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $b, $f, 14, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $3, $f, 15, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $3, $1, 16, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
-	warp_def $9, $b, 17, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
+	warp_def $11, $8, 2, SAFFRON_CITY
+	warp_def $11, $9, 2, SAFFRON_CITY
+	warp_def $f, $b, 18, SAFFRON_GYM
+	warp_def $f, $13, 19, SAFFRON_GYM
+	warp_def $b, $13, 20, SAFFRON_GYM
+	warp_def $b, $1, 21, SAFFRON_GYM
+	warp_def $3, $5, 22, SAFFRON_GYM
+	warp_def $5, $b, 23, SAFFRON_GYM
+	warp_def $f, $1, 24, SAFFRON_GYM
+	warp_def $3, $13, 25, SAFFRON_GYM
+	warp_def $11, $f, 26, SAFFRON_GYM
+	warp_def $11, $5, 27, SAFFRON_GYM
+	warp_def $9, $5, 28, SAFFRON_GYM
+	warp_def $3, $9, 29, SAFFRON_GYM
+	warp_def $9, $f, 30, SAFFRON_GYM
+	warp_def $5, $f, 31, SAFFRON_GYM
+	warp_def $5, $1, 32, SAFFRON_GYM
+	warp_def $11, $13, 3, SAFFRON_GYM
+	warp_def $9, $13, 4, SAFFRON_GYM
+	warp_def $9, $1, 5, SAFFRON_GYM
+	warp_def $5, $5, 6, SAFFRON_GYM
+	warp_def $3, $b, 7, SAFFRON_GYM
+	warp_def $11, $1, 8, SAFFRON_GYM
+	warp_def $5, $13, 9, SAFFRON_GYM
+	warp_def $f, $f, 10, SAFFRON_GYM
+	warp_def $f, $5, 11, SAFFRON_GYM
+	warp_def $b, $5, 12, SAFFRON_GYM
+	warp_def $5, $9, 13, SAFFRON_GYM
+	warp_def $b, $f, 14, SAFFRON_GYM
+	warp_def $3, $f, 15, SAFFRON_GYM
+	warp_def $3, $1, 16, SAFFRON_GYM
+	warp_def $9, $b, 17, SAFFRON_GYM
 
 .XYTriggers:
 	db 0

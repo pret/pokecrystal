@@ -561,10 +561,10 @@ TeamRocketBaseB3F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $2, $3, 2, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
-	warp_def $2, $1b, 3, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
-	warp_def $6, $3, 4, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
-	warp_def $e, $1b, 5, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
+	warp_def $2, $3, 2, TEAM_ROCKET_BASE_B2F
+	warp_def $2, $1b, 3, TEAM_ROCKET_BASE_B2F
+	warp_def $6, $3, 4, TEAM_ROCKET_BASE_B2F
+	warp_def $e, $1b, 5, TEAM_ROCKET_BASE_B2F
 
 .XYTriggers:
 	db 3

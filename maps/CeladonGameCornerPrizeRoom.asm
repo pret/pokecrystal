@@ -271,8 +271,8 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $5, $2, 7, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $5, $3, 7, GROUP_CELADON_CITY, MAP_CELADON_CITY
+	warp_def $5, $2, 7, CELADON_CITY
+	warp_def $5, $3, 7, CELADON_CITY
 
 .XYTriggers:
 	db 0

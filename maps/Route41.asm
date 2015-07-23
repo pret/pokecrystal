@@ -335,10 +335,10 @@ Route41_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $c, 1, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
-	warp_def $13, $24, 1, GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
-	warp_def $25, $c, 1, GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
-	warp_def $2d, $24, 1, GROUP_WHIRL_ISLAND_SE, MAP_WHIRL_ISLAND_SE
+	warp_def $11, $c, 1, WHIRL_ISLAND_NW
+	warp_def $13, $24, 1, WHIRL_ISLAND_NE
+	warp_def $25, $c, 1, WHIRL_ISLAND_SW
+	warp_def $2d, $24, 1, WHIRL_ISLAND_SE
 
 .XYTriggers:
 	db 0

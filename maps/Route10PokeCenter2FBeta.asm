@@ -11,7 +11,7 @@ Route10PokeCenter2FBeta_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $0, 3, GROUP_ROUTE_10_POKECENTER_1F, MAP_ROUTE_10_POKECENTER_1F
+	warp_def $7, $0, 3, ROUTE_10_POKECENTER_1F
 
 .XYTriggers:
 	db 0

@@ -119,11 +119,11 @@ UnknownScript_0x1850d7:
 	disappear $2
 	setevent EVENT_FOUGHT_SUICUNE
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_42
-	domaptrigger GROUP_ROUTE_42, MAP_ROUTE_42, $0
+	domaptrigger ROUTE_42, $0
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	domaptrigger GROUP_ROUTE_36, MAP_ROUTE_36, $0
+	domaptrigger ROUTE_36, $0
 	setevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $0
+	domaptrigger CIANWOOD_CITY, $0
 	dotrigger $1
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	returnafterbattle
@@ -522,9 +522,9 @@ TinTower1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $f, $9, 12, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $f, $a, 12, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $2, $a, 2, GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
+	warp_def $f, $9, 12, ECRUTEAK_CITY
+	warp_def $f, $a, 12, ECRUTEAK_CITY
+	warp_def $2, $a, 2, TIN_TOWER_2F
 
 .XYTriggers:
 	db 0

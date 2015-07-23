@@ -149,11 +149,11 @@ UnionCaveB1F_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $3, $3, 7, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $b, $3, 8, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $13, $7, 1, GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
-	warp_def $21, $3, 2, GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
-	warp_def $1f, $11, 1, GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
+	warp_def $3, $3, 7, RUINS_OF_ALPH_OUTSIDE
+	warp_def $b, $3, 8, RUINS_OF_ALPH_OUTSIDE
+	warp_def $13, $7, 1, UNION_CAVE_1F
+	warp_def $21, $3, 2, UNION_CAVE_1F
+	warp_def $1f, $11, 1, UNION_CAVE_B2F
 
 .XYTriggers:
 	db 0

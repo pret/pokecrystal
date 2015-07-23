@@ -77,7 +77,7 @@ Route35NationalParkgate_GoBackIn:
 	playsound SFX_ENTER_DOOR
 	special FadeBlackBGMap
 	waitbutton
-	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing $1, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
 OfficerScript_0x6a204:
@@ -115,7 +115,7 @@ Route35NationalParkgate_OkayToProceed:
 	special FadeBlackBGMap
 	waitbutton
 	special Special_SelectRandomBugContestContestants
-	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing $1, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
 Route35NationalParkgate_EnterContest:
@@ -444,10 +444,10 @@ Route35NationalParkgate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $3, 3, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
-	warp_def $0, $4, 4, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
-	warp_def $7, $3, 3, GROUP_ROUTE_35, MAP_ROUTE_35
-	warp_def $7, $4, 3, GROUP_ROUTE_35, MAP_ROUTE_35
+	warp_def $0, $3, 3, NATIONAL_PARK
+	warp_def $0, $4, 4, NATIONAL_PARK
+	warp_def $7, $3, 3, ROUTE_35
+	warp_def $7, $4, 3, ROUTE_35
 
 .XYTriggers:
 	db 0
