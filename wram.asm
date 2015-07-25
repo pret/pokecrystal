@@ -356,12 +356,7 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-wPartyMon1MenuIconAnim:: ds 16 ; c314
-wPartyMon2MenuIconAnim:: ds 16 ; c324
-wPartyMon3MenuIconAnim:: ds 16 ; c334
-wPartyMon4MenuIconAnim:: ds 16 ; c344
-wPartyMon5MenuIconAnim:: ds 16 ; c354
-wPartyMon6MenuIconAnim:: ds 16 ; c364
+wPartyMonMenuIconAnims:: ds 96 ; c314
 wc374:: ds 48 ; c374
 wc3a4:: ds 8 ; c3b4
 wc3ac:: ds 8 ; c3bc
@@ -2280,7 +2275,7 @@ BikeFlags:: ; dbf5
 wCurrentMapTriggerPointer:: ; dbf7
 	ds 2
 
-wdbf9:: ds 2
+wCurrentCaller:: ds 2
 wdbfb:: ds 1
 wdbfc:: ds 1
 wdbfd:: ds 1
@@ -2353,9 +2348,9 @@ wdc41:: ds 1
 wdc42:: ds 8
 wdc4a:: ds 1
 wdc4b:: ds 1
-wdc4c:: ds 4
-wdc50:: ds 4
-wdc54:: ds 4
+wDailyRematchFlags:: ds 4
+wDailyPhoneItemFlags:: ds 4
+wDailyPhoneTimeOfDayFlags:: ds 4
 wdc58:: ds 2
 wdc5a:: ds 1
 wdc5b:: ds 1
@@ -2592,7 +2587,14 @@ LYOverrides:: ; d100
 	ds SCREEN_HEIGHT_PX
 LYOverridesEnd::
 
-	ds $100 - SCREEN_HEIGHT_PX
+	ds 1
+w5_d191:: ds 1
+w5_d192:: ds 1
+w5_d193:: ds 1
+w5_d194:: ds 1
+w5_d195:: ds 1
+
+ds 106
 
 LYOverridesBackup:: ; d200
 	ds SCREEN_HEIGHT_PX

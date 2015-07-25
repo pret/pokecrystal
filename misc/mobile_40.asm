@@ -173,7 +173,7 @@ Function1000fa: ; 1000fa
 	xor a
 	ld [InLinkBattle], a
 	ld a, $4
-	ld [wPartyMon1MenuIconAnim + 5], a
+	ld [wPartyMonMenuIconAnims + 5], a
 	callba Function11619d
 	ld hl, wcd29
 	set 6, [hl]
@@ -4356,7 +4356,7 @@ Function101cc2: ; 101cc2 ; unreferenced
 
 Function101cc8: ; 101cc8
 	ld a, $1
-	ld [wPartyMon1MenuIconAnim], a
+	ld [wPartyMonMenuIconAnims], a
 	ld a, $1
 	ld [wc30d], a
 	ld hl, wcd29
@@ -4369,7 +4369,7 @@ Function101cc8: ; 101cc8
 
 Function101cdf: ; 101cdf
 	ld a, $6
-	ld [wPartyMon1MenuIconAnim], a
+	ld [wPartyMonMenuIconAnims], a
 	ld a, $1
 	ld [wc30d], a
 	ld hl, wcd29
@@ -4382,7 +4382,7 @@ Function101cdf: ; 101cdf
 
 Function101cf6: ; 101cf6
 	ld a, $b
-	ld [wPartyMon1MenuIconAnim + 1], a
+	ld [wPartyMonMenuIconAnims + 1], a
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a
@@ -4391,7 +4391,7 @@ Function101cf6: ; 101cf6
 
 Function101d03: ; 101d03
 	ld a, $e
-	ld [wPartyMon1MenuIconAnim + 1], a
+	ld [wPartyMonMenuIconAnims + 1], a
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a

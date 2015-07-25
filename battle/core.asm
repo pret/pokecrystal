@@ -2365,7 +2365,7 @@ Function3cf14: ; 3cf14
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call Function3d432
-	ld de, SFX_UNKNOWN_2A
+	ld de, SFX_FAINT
 	call PlaySFX
 	hlcoord 1, 0
 	lb bc, 4, 10
@@ -4388,7 +4388,7 @@ Function3dc5b: ; 3dc5b
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
-	ld de, SFX_UNKNOWN_2A
+	ld de, SFX_FAINT
 	call PlaySFX
 	call WaitSFX
 	call Function3d432

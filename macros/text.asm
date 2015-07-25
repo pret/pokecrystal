@@ -12,7 +12,7 @@ page   EQUS "db $50,"     ; Start a new Pokedex page.
 dex    EQUS "db $e8, $50" ; End a Pokedex entry.
 
 
-TX_RAM EQU 1
+TX_RAM EQU $01
 TX_FAR EQU $16
 
 text_jump: MACRO

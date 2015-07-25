@@ -87,5 +87,5 @@ ENDM
 	trigger_def MOUNT_MOON_SQUARE,                      wMountMoonSquareTrigger
 	trigger_def MOBILE_TRADE_ROOM_MOBILE,               wMobileTradeRoomMobileTrigger
 	trigger_def MOBILE_BATTLE_ROOM,                     wMobileBattleRoomTrigger
-	db $ff
+	db -1
 ; 4d15b

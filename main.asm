@@ -201,7 +201,7 @@ _ResetWRAM: ; 5bae
 	ld [wd84b], a
 
 	ld hl, PartyCount
-	call InitializePartyAndBag
+	call InitList
 
 	xor a
 	ld [wCurBox], a
@@ -212,20 +212,20 @@ _ResetWRAM: ; 5bae
 	ld a, 1
 	call GetSRAMBank
 	ld hl, sBoxCount
-	call InitializePartyAndBag
+	call InitList
 	call CloseSRAM
 
 	ld hl, NumItems
-	call InitializePartyAndBag
+	call InitList
 
 	ld hl, NumKeyItems
-	call InitializePartyAndBag
+	call InitList
 
 	ld hl, NumBalls
-	call InitializePartyAndBag
+	call InitList
 
 	ld hl, PCItems
-	call InitializePartyAndBag
+	call InitList
 
 	xor a
 	ld [wRoamMon1Species], a
@@ -293,7 +293,7 @@ ENDC
 	ret
 ; 5ca1
 
-InitializePartyAndBag: ; 5ca1
+InitList: ; 5ca1
 ; Loads 0 in the count and -1 in the first item or mon slot.
 	xor a
 	ld [hli], a
@@ -445,7 +445,7 @@ Continue: ; 5d65
 	call ClearTileMap
 	ld c, $14
 	call DelayFrames
-	callba RestoreRoamMons
+	callba JumpRoamMons
 	callba Function105091
 	callba Function140ae
 	ld a, [wd4b5]
@@ -1070,7 +1070,7 @@ Function61cd: ; 61cd
 Function620b: ; 620b
 	callab Functione4579
 	jr c, Function6219
-	callba Functione48ac
+	callba CrystalIntro
 
 Function6219: ; 6219
 	ld a, [rSVBK]
@@ -2978,7 +2978,7 @@ SpecialGiveShuckle: ; 7305
 ; Engine flag for this event.
 	ld hl, DailyFlags
 	set 5, [hl]
-
+; setflag ENGINE_SHUCKLE_GIVEN
 	ld a, 1
 	ld [ScriptVar], a
 	ret
@@ -10382,15 +10382,15 @@ rept 3
 	ld [hli], a
 endr
 	ld [hl], a
-	ld hl, wdc4c
+	ld hl, wDailyRematchFlags
 rept 4
 	ld [hli], a
 endr
-	ld hl, wdc50
+	ld hl, wDailyPhoneItemFlags
 rept 4
 	ld [hli], a
 endr
-	ld hl, wdc54
+	ld hl, wDailyPhoneTimeOfDayFlags
 rept 4
 	ld [hli], a
 endr
@@ -15549,7 +15549,7 @@ endr
 	push hl
 	push bc
 ; Get the Trainer Class name and copy it into wd016.
-	callab Function3952d
+	callab GetTrainerClassName
 	ld hl, StringBuffer1
 	ld de, wd016
 	ld bc, TRAINER_CLASS_NAME_LENGTH
@@ -33892,9 +33892,9 @@ GetMapEncounterRate: ; 2a111
 	ld hl, wd25a
 	call CheckOnWater
 	ld a, 3
-	jr z, .asm_2a11e
+	jr z, .ok
 	ld a, [TimeOfDay]
-.asm_2a11e
+.ok
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -34012,7 +34012,7 @@ endr
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
 
-	ld a, b
+	ld a, b ; This is in the wrong place.
 	cp UNOWN
 	jr nz, .done
 
@@ -34297,12 +34297,12 @@ endr
 
 UpdateRoamMons: ; 2a30d
 	ld a, [wRoamMon1MapGroup]
-	cp $ff
+	cp GROUP_N_A
 	jr z, .SkipRaikou
 	ld b, a
 	ld a, [wRoamMon1MapNumber]
 	ld c, a
-	call Function2a355
+	call .Update
 	ld a, b
 	ld [wRoamMon1MapGroup], a
 	ld a, c
@@ -34310,12 +34310,12 @@ UpdateRoamMons: ; 2a30d
 
 .SkipRaikou
 	ld a, [wRoamMon2MapGroup]
-	cp $ff
+	cp GROUP_N_A
 	jr z, .SkipEntei
 	ld b, a
 	ld a, [wRoamMon2MapNumber]
 	ld c, a
-	call Function2a355
+	call .Update
 	ld a, b
 	ld [wRoamMon2MapGroup], a
 	ld a, c
@@ -34323,55 +34323,59 @@ UpdateRoamMons: ; 2a30d
 
 .SkipEntei
 	ld a, [wRoamMon3MapGroup]
-	cp $ff
+	cp GROUP_N_A
 	jr z, .SkipSuicune
 	ld b, a
 	ld a, [wRoamMon3MapNumber]
 	ld c, a
-	call Function2a355
+	call .Update
 	ld a, b
 	ld [wRoamMon3MapGroup], a
 	ld a, c
 	ld [wRoamMon3MapNumber], a
 
 .SkipSuicune
-	jp Function2a3f6
+	jp _BackUpMapIndices
 ; 2a355
 
 
-Function2a355: ; 2a355
+.Update: ; 2a355
 	ld hl, RoamMaps
-.asm_2a358
+.loop
+; Are we at the end of the table?
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
+; Is this the correct entry?
 	ld a, b
 	cp [hl]
-	jr nz, .asm_2a365
+	jr nz, .next
 	inc hl
 	ld a, c
 	cp [hl]
-	jr z, .asm_2a36b
-
-.asm_2a365
+	jr z, .yes
+; We don't have the correct entry yet, so let's continue.  A 0 terminates each entry.
+.next
 	ld a, [hli]
 	and a
-	jr nz, .asm_2a365
-	jr .asm_2a358
+	jr nz, .next
+	jr .loop
 
-.asm_2a36b
+; We have the correct entry now, so let's choose a random map from it.
+.yes
 	inc hl
 	ld d, h
 	ld e, l
-.asm_2a36e
+.update_loop
 	ld h, d
 	ld l, e
+; Choose which map to warp to.
 	call Random
-	and $1f
-	jr z, Function2a3cd
+	and $1f ; 1/8n chance it moves to a completely random map, where n is the number of roaming connections from the current map.
+	jr z, JumpRoamMon
 	and 3
 	cp [hl]
-	jr nc, .asm_2a36e
+	jr nc, .update_loop ; invalid index, try again
 	inc hl
 	ld c, a
 	ld b, $0
@@ -34380,89 +34384,89 @@ rept 2
 endr
 	ld a, [wdfe7]
 	cp [hl]
-	jr nz, .asm_2a390
+	jr nz, .done
 	inc hl
 	ld a, [wdfe6]
 	cp [hl]
-	jr z, .asm_2a36e
+	jr z, .update_loop
 	dec hl
 
-.asm_2a390
+.done
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ret
 
-RestoreRoamMons: ; 2a394
+JumpRoamMons: ; 2a394
 	ld a, [wRoamMon1MapGroup]
-	cp $ff
-	jr z, .asm_2a3a6
-	call Function2a3cd
+	cp GROUP_N_A
+	jr z, .SkipRaikou
+	call JumpRoamMon
 	ld a, b
 	ld [wRoamMon1MapGroup], a
 	ld a, c
 	ld [wRoamMon1MapNumber], a
-.asm_2a3a6
+.SkipRaikou
 
 	ld a, [wRoamMon2MapGroup]
-	cp $ff
-	jr z, .asm_2a3b8
-	call Function2a3cd
+	cp GROUP_N_A
+	jr z, .SkipEntei
+	call JumpRoamMon
 	ld a, b
 	ld [wRoamMon2MapGroup], a
 	ld a, c
 	ld [wRoamMon2MapNumber], a
-.asm_2a3b8
+.SkipEntei
 
 	ld a, [wRoamMon3MapGroup]
-	cp $ff
-	jr z, .asm_2a3ca
-	call Function2a3cd
+	cp GROUP_N_A
+	jr z, .SkipSuicune
+	call JumpRoamMon
 	ld a, b
 	ld [wRoamMon3MapGroup], a
 	ld a, c
 	ld [wRoamMon3MapNumber], a
-.asm_2a3ca
+.SkipSuicune
 
-	jp Function2a3f6
+	jp _BackUpMapIndices
 
-Function2a3cd: ; 2a3cd
-.asm_2a3cd
+JumpRoamMon: ; 2a3cd
+.loop
 	ld hl, RoamMaps
-.asm_2a3d0
-	call Random
-	and $f
-	cp $10
-	jr nc, .asm_2a3d0
+.innerloop1 ; This loop is completely unnecessary.
+	call Random ; Choose a random number
+	and $f ; Take the lower nybble only.  This gives a number between 0 and 15.
+	cp $10 ; If the number is greater than or equal to 16, loop back and try again.
+	jr nc, .innerloop1 ; I'm sure you can guess why this check is bogus.
 	inc a
 	ld b, a
-.asm_2a3db
+.innerloop2 ; Loop to get hl to the address of the chosen roam map.
 	dec b
-	jr z, .asm_2a3e4
-.asm_2a3de
+	jr z, .ok
+.innerloop3 ; Loop to skip the current roam map, which is terminated by a 0.
 	ld a, [hli]
 	and a
-	jr nz, .asm_2a3de
-	jr .asm_2a3db
-
-.asm_2a3e4
+	jr nz, .innerloop3
+	jr .innerloop2
+; Check to see if the selected map is the one the player is currently in.  If so, try again.
+.ok
 	ld a, [MapGroup]
 	cp [hl]
-	jr nz, .asm_2a3f2
+	jr nz, .done
 	inc hl
 	ld a, [MapNumber]
 	cp [hl]
-	jr z, .asm_2a3cd
+	jr z, .loop
 	dec hl
-
-.asm_2a3f2
+; Return the map group and number in bc.
+.done
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ret
 ; 2a3f6
 
-Function2a3f6: ; 2a3f6
+_BackUpMapIndices: ; 2a3f6
 	ld a, [wdfe4]
 	ld [wdfe6], a
 	ld a, [wdfe5]
@@ -34495,7 +34499,7 @@ RoamMaps: ; 2a40f
 	roam_map ROUTE_44, 3, ROUTE_42, ROUTE_43, ROUTE_45
 	roam_map ROUTE_45, 2, ROUTE_44, ROUTE_46
 	roam_map ROUTE_46, 2, ROUTE_45, ROUTE_29
-	db $ff
+	db -1
 ; 2a4a0
 
 ValidateTempWildMonSpecies: ; 2a4a0
@@ -34512,55 +34516,59 @@ ValidateTempWildMonSpecies: ; 2a4a0
 	ret
 ; 2a4ab
 
-Function2a4ab: ; 2a4ab
-	callba Function90439
+RandomPhoneRareWildMon: ; 2a4ab
+; Related to the phone?
+	callba GetCallerLocation
 	ld d, b
 	ld e, c
 	ld hl, JohtoGrassWildMons
-	ld bc, $002f
+	ld bc, GRASS_WILDDATA_LENGTH
 	call LookUpWildmonsForMapDE
-	jr c, .asm_2a4c6
+	jr c, .GetGrassmon
 	ld hl, KantoGrassWildMons
 	call LookUpWildmonsForMapDE
-	jr nc, .asm_2a514
+	jr nc, .done
 
-.asm_2a4c6
+.GetGrassmon
 	push hl
-	ld bc, $000d
+	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
 	add hl, bc
 	ld a, [TimeOfDay]
-	ld bc, $000e
+	ld bc, 7 * 2
 	call AddNTimes
-.asm_2a4d4
+.randloop1
 	call Random
 	and $3
-	jr z, .asm_2a4d4
+	jr z, .randloop1
 	dec a
 	ld c, a
 	ld b, $0
 rept 2
 	add hl, bc
 endr
+; We now have the pointer to one of the last (rarest) three wild Pokemon found in that area.
 	inc hl
-	ld c, [hl]
+	ld c, [hl] ; Contains the species index of this rare Pokemon
 	pop hl
-	ld de, $0005
+	ld de, 5 + 0 * 2
 	add hl, de
-	inc hl
-	ld b, $4
-.asm_2a4eb
+	inc hl ; Species index of the most common Pokemon on that route
+	ld b, 4
+.loop2
 	ld a, [hli]
-	cp c
-	jr z, .asm_2a514
+	cp c ; Compare this most common Pokemon with the rare one stored in c.
+	jr z, .done
 	inc hl
 	dec b
-	jr nz, .asm_2a4eb
+	jr nz, .loop2
+; This Pokemon truly is rare.
 	push bc
 	dec c
 	ld a, c
 	call CheckSeenMon
 	pop bc
-	jr nz, .asm_2a514
+	jr nz, .done
+; Since we haven't seen it, have the caller tell us about it.
 	ld de, StringBuffer1
 	call CopyName1
 	ld a, c
@@ -34572,7 +34580,7 @@ endr
 	ld [ScriptVar], a
 	ret
 
-.asm_2a514
+.done
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -34584,30 +34592,30 @@ UnknownText_0x2a51a: ; 0x2a51a
 	db "@"
 ; 0x2a51f
 
-Function2a51f: ; 2a51f
-	callba Function90439
+RandomPhoneWildMon: ; 2a51f
+	callba GetCallerLocation
 	ld d, b
 	ld e, c
 	ld hl, JohtoGrassWildMons
-	ld bc, $002f
+	ld bc, GRASS_WILDDATA_LENGTH
 	call LookUpWildmonsForMapDE
-	jr c, .asm_2a538
+	jr c, .ok
 	ld hl, KantoGrassWildMons
 	call LookUpWildmonsForMapDE
 
-.asm_2a538
-	ld bc, $0005
+.ok
+	ld bc, 5 + 0 * 2
 	add hl, bc
 	ld a, [TimeOfDay]
 	inc a
-	ld bc, $000e
-.asm_2a543
+	ld bc, 7 * 2
+.loop
 	dec a
-	jr z, .asm_2a549
+	jr z, .done
 	add hl, bc
-	jr .asm_2a543
+	jr .loop
 
-.asm_2a549
+.done
 	call Random
 	and $3
 	ld c, a
@@ -34621,13 +34629,13 @@ endr
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	jp CopyBytes
 ; 2a567
 
 RandomPhoneMon: ; 2a567
 ; Get a random monster owned by the trainer who's calling.
-	callba Function90439
+	callba GetCallerLocation
 	ld hl, TrainerGroups
 	ld a, d
 	dec a
@@ -36656,7 +36664,7 @@ AIScoring: ; 38591
 INCLUDE "battle/ai/scoring.asm"
 
 
-Function3952d: ; 3952d
+GetTrainerClassName: ; 3952d
 	ld hl, RivalName
 	ld a, c
 	cp RIVAL1
@@ -43953,7 +43961,7 @@ Function4aa7a: ; 4aa7a
 	push hl
 	cp -1
 	jr z, .done
-	ld hl, wPartyMon1MenuIconAnim
+	ld hl, wPartyMonMenuIconAnims
 	inc a
 	ld d, a
 .inner_loop
@@ -44591,18 +44599,18 @@ Function4ae5e: ; 4ae5e
 
 SECTION "bank13", ROMX, BANK[$13]
 
-Function4c000:: ; 4c000
+SwapTextboxPalettes:: ; 4c000
 	hlcoord 0, 0
 	decoord 0, 0, AttrMap
 	ld b, $12
-.asm_4c008
+.loop
 	push bc
-	ld c, $14
-.asm_4c00b
+	ld c, SCREEN_WIDTH
+.innerloop
 	ld a, [hl]
 	push hl
 	srl a
-	jr c, .asm_4c021
+	jr c, .UpperNybble
 	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
@@ -44611,9 +44619,9 @@ Function4c000:: ; 4c000
 	ld h, a
 	ld a, [hl]
 	and $f
-	jr .asm_4c031
+	jr .next
 
-.asm_4c021
+.UpperNybble
 	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
@@ -44624,28 +44632,28 @@ Function4c000:: ; 4c000
 	swap a
 	and $f
 
-.asm_4c031
+.next
 	pop hl
 	ld [de], a
 	res 7, [hl]
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_4c00b
+	jr nz, .innerloop
 	pop bc
 	dec b
-	jr nz, .asm_4c008
+	jr nz, .loop
 	ret
 ; 4c03f
 
-Function4c03f:: ; 4c03f
+ScrollBGMapPalettes:: ; 4c03f
 	ld hl, BGMapBuffer
 	ld de, BGMapPalBuffer
-.asm_4c045
+.loop
 	ld a, [hl]
 	push hl
 	srl a
-	jr c, .asm_4c05b
+	jr c, .UpperNybble
 	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
@@ -44654,9 +44662,9 @@ Function4c03f:: ; 4c03f
 	ld h, a
 	ld a, [hl]
 	and $f
-	jr .asm_4c06b
+	jr .next
 
-.asm_4c05b
+.UpperNybble
 	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
@@ -44667,14 +44675,14 @@ Function4c03f:: ; 4c03f
 	swap a
 	and $f
 
-.asm_4c06b
+.next
 	pop hl
 	ld [de], a
 	res 7, [hl]
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_4c045
+	jr nz, .loop
 	ret
 ; 4c075
 
@@ -52363,7 +52371,7 @@ EngineFlagAction:: ; 80430
 
 .ceiling
 	ld a, e
-	cp $a2
+	cp NUM_ENGINE_FLAGS
 	jr c, .read
 
 ; Invalid flags are treated as flag 00.
@@ -52493,7 +52501,7 @@ VarActionTable: ; 80671
 	dwb wSpecialPhoneCallID,         $00
 	dwb wcf64,         $00
 	dwb wdca4,         $00
-	dwb wdbf9,         $40
+	dwb wCurrentCaller,         $40
 	dwb wdc4b,         $40
 	dwb wdc4a,         $40
 	dwb wdc58,         $00
@@ -65200,33 +65208,33 @@ Function8cbe6: ; 8cbe6 (23:4be6)
 Special_MagnetTrain: ; 8cc04
 	ld a, [ScriptVar]
 	and a
-	jr nz, .asm_8cc14
-	ld a, $1
+	jr nz, .ToGoldenrod
+	ld a, 1 ; forwards
 	lb bc, $40, $60
 	ld de, $fca0
-	jr .asm_8cc1c
+	jr .continue
 
-.asm_8cc14
-	ld a, $ff
+.ToGoldenrod
+	ld a, -1 ; backwards
 	lb bc, $c0, $a0
 	ld de, $b460
 
-.asm_8cc1c
+.continue
 	ld h, a
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	ld a, h
-	ld [wd191], a
+	ld [w5_d191], a
 	ld a, c
-	ld [wd192], a
+	ld [w5_d192], a
 	ld a, b
-	ld [wd193], a
+	ld [w5_d193], a
 	ld a, e
-	ld [wd194], a
+	ld [w5_d194], a
 	ld a, d
-	ld [wd195], a
+	ld [w5_d195], a
 	ld a, [hSCX]
 	push af
 	ld a, [hSCY]
@@ -65236,24 +65244,24 @@ Special_MagnetTrain: ; 8cc04
 	ld a, [hl]
 	push af
 	ld [hl], $1
-.asm_8cc48
+.loop
 	ld a, [wcf63]
 	and a
-	jr z, .asm_8cc66
+	jr z, .initialize
 	bit 7, a
-	jr nz, .asm_8cc6b
+	jr nz, .done
 	callab Function8cf69
 	call Function8cdf7
 	call Function8cc99
 	call Function3b0c
 	call DelayFrame
-	jr .asm_8cc48
+	jr .loop
 
-.asm_8cc66
+.initialize
 	call Function8ceae
-	jr .asm_8cc48
+	jr .loop
 
-.asm_8cc6b
+.done
 	pop af
 	ld [hVBlank], a
 	call WhiteBGMap
@@ -65661,10 +65669,26 @@ Function8ceae: ; 8ceae
 	ret
 ; 8ceff
 
-MagnetTrainTilemap1: db $1f, $05, $06, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0b, $0c, $1f
-MagnetTrainTilemap2: db $14, $15, $16, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1b, $1c, $1d
-MagnetTrainTilemap3: db $24, $25, $26, $27, $07, $2f, $29, $28, $28, $28, $28, $28, $28, $29, $07, $2f, $2a, $2b, $2c, $2d
-MagnetTrainTilemap4: db $20, $1f, $2e, $1f, $17, $00, $2e, $1f, $1f, $1f, $1f, $1f, $1f, $2e, $17, $00, $1f, $2e, $1f, $0f
+MagnetTrainTilemap1:
+	db $1f, $05, $06, $0a, $0a
+	db $0a, $09, $0a, $0a, $0a
+	db $0a, $0a, $0a, $09, $0a
+	db $0a, $0a, $0b, $0c, $1f
+MagnetTrainTilemap2:
+	db $14, $15, $16, $1a, $1a
+	db $1a, $19, $1a, $1a, $1a
+	db $1a, $1a, $1a, $19, $1a
+	db $1a, $1a, $1b, $1c, $1d
+MagnetTrainTilemap3:
+	db $24, $25, $26, $27, $07
+	db $2f, $29, $28, $28, $28
+	db $28, $28, $28, $29, $07
+	db $2f, $2a, $2b, $2c, $2d
+MagnetTrainTilemap4:
+	db $20, $1f, $2e, $1f, $17
+	db $00, $2e, $1f, $1f, $1f
+	db $1f, $1f, $1f, $2e, $17
+	db $00, $1f, $2e, $1f, $0f
 ; 8cf4f
 
 Function8cf4f: ; 8cf4f
@@ -65708,7 +65732,7 @@ Function8cf69: ; 8cf69
 ; 8cf7a
 
 Function8cf7a: ; 8cf7a
-	ld hl, wPartyMon1MenuIconAnim
+	ld hl, wPartyMonMenuIconAnims
 	ld e, 10 ; Do this first loop 10 times
 .loop
 	ld a, [hl]
@@ -65719,7 +65743,7 @@ Function8cf7a: ; 8cf7a
 	push hl
 	push de
 	call Function8d24b
-	call Function8d04c
+	call LoadBouncingMonIcon
 	pop de
 	pop hl
 	jr c, .done
@@ -65745,68 +65769,68 @@ Function8cf7a: ; 8cf7a
 ; 8cfa8
 
 Function8cfa8: ; 8cfa8 (23:4fa8)
-	ld hl, wPartyMon1MenuIconAnim
+	ld hl, wPartyMonMenuIconAnims
 	ld e, $a
-.asm_8cfad
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_8cfbf
+	jr z, .next
 	ld c, l
 	ld b, h
 	push hl
 	push de
 	call Function8d24b
-	call Function8d04c
+	call LoadBouncingMonIcon
 	pop de
 	pop hl
-	jr c, .asm_8cfd5
-.asm_8cfbf
+	jr c, .done
+.next
 	ld bc, $10
 	add hl, bc
 	dec e
-	jr nz, .asm_8cfad
+	jr nz, .loop
 	ld a, [wc3b5]
 	ld l, a
 	ld h, $c4
-.asm_8cfcc
+.loop2
 	ld a, l
 	cp $40
-	jr nc, .asm_8cfd5
+	jr nc, .done
 	xor a
 	ld [hli], a
-	jr .asm_8cfcc
-.asm_8cfd5
+	jr .loop2
+.done
 	ret
 
 Function8cfd6:: ; 8cfd6
 	push de
 	push af
-	ld hl, wPartyMon1MenuIconAnim
-	ld e, $a
-.asm_8cfdd
+	ld hl, wPartyMonMenuIconAnims
+	ld e, 2 * 4 + 2 ; 4 tiles for each frame, then one frame each for mail and item
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_8cfec
+	jr z, .found
 	ld bc, $0010
 	add hl, bc
 	dec e
-	jr nz, .asm_8cfdd
+	jr nz, .loop
 	pop af
 	pop de
 	scf
 	ret
 
-.asm_8cfec
+.found
 	ld c, l
 	ld b, h
 	ld hl, wc3b4
 	inc [hl]
 	ld a, [hl]
 	and a
-	jr nz, .asm_8cff7
+	jr nz, .initialized
 	inc [hl]
 
-.asm_8cff7
+.initialized
 	pop af
 	ld e, a
 	ld d, 0
@@ -65867,7 +65891,7 @@ Function8d036: ; 8d036
 
 
 Function8d03d: ; 8d03d (23:503d)
-	ld hl, wPartyMon1MenuIconAnim
+	ld hl, wPartyMonMenuIconAnims
 	ld bc, $10
 	ld e, $a
 	xor a
@@ -65879,14 +65903,14 @@ Function8d03d: ; 8d03d (23:503d)
 	ret
 
 
-Function8d04c: ; 8d04c
-; Populate Sprites with the bounding mon icons
+LoadBouncingMonIcon: ; 8d04c
+; Populate Sprites with the bouncing mon icons
 	call Function8d0ec
 	call Function8d132
 	cp $fd
-	jr z, .asm_8d0b9
+	jr z, .done
 	cp $fc
-	jr z, .asm_8d0b6
+	jr z, .almost
 	call Function8d1a2
 	ld a, [wc3ba]
 	add [hl]
@@ -65901,7 +65925,7 @@ Function8d04c: ; 8d04c
 	ld d, Sprites / $100
 	ld a, [hli]
 	ld c, a
-.asm_8d071
+.loop
 	ld a, [wc3bc]
 	ld b, a
 	ld a, [wc3be]
@@ -65940,20 +65964,20 @@ Function8d04c: ; 8d04c
 	ld a, e
 	ld [wc3b5], a
 	cp SpritesEnd % $100
-	jr nc, .asm_8d0bb
+	jr nc, .outofroom
 	dec c
-	jr nz, .asm_8d071
+	jr nz, .loop
 	pop bc
-	jr .asm_8d0b9
+	jr .done
 
-.asm_8d0b6
+.almost
 	call Function8d036
 
-.asm_8d0b9
+.done
 	and a
 	ret
 
-.asm_8d0bb
+.outofroom
 	pop bc
 	scf
 	ret
@@ -65964,12 +65988,12 @@ Function8d0be: ; 8d0be
 	ld a, [hl]
 	ld hl, wc3b8
 	bit 6, [hl]
-	jr z, .asm_8d0cc
+	jr z, .ok
 	add $8
 	xor $ff
 	inc a
 
-.asm_8d0cc
+.ok
 	pop hl
 	ret
 ; 8d0ce
@@ -65979,12 +66003,12 @@ Function8d0ce: ; 8d0ce
 	ld a, [hl]
 	ld hl, wc3b8
 	bit 5, [hl]
-	jr z, .asm_8d0dc
+	jr z, .ok
 	add $8
 	xor $ff
 	inc a
 
-.asm_8d0dc
+.ok
 	pop hl
 	ret
 ; 8d0de
@@ -66026,20 +66050,20 @@ Function8d109: ; 8d109
 	ld hl, wc300
 	ld b, a
 	ld c, $a
-.asm_8d111
+.loop
 	ld a, [hli]
 	cp b
-	jr z, .asm_8d11c
+	jr z, .ok
 	inc hl
 	dec c
-	jr nz, .asm_8d111
+	jr nz, .loop
 	xor a
-	jr .asm_8d11d
+	jr .done
 
-.asm_8d11c
+.ok
 	ld a, [hl]
 
-.asm_8d11d
+.done
 	pop bc
 	pop hl
 	ret
@@ -66065,23 +66089,23 @@ Function8d132: ; 8d132
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_8d142
+	jr z, .ok
 	dec [hl]
 	call Function8d189
 	ld a, [hli]
 	push af
-	jr .asm_8d163
+	jr .skip
 
-.asm_8d142
+.ok
 	ld hl, $000a
 	add hl, bc
 	inc [hl]
 	call Function8d189
 	ld a, [hli]
 	cp $fe
-	jr z, .asm_8d17b
+	jr z, .minus_2
 	cp $ff
-	jr z, .asm_8d16d
+	jr z, .minus_1
 	push af
 	ld a, [hl]
 	push hl
@@ -66094,7 +66118,7 @@ Function8d132: ; 8d132
 	ld [hl], a
 	pop hl
 
-.asm_8d163
+.skip
 	ld a, [hl]
 	and $c0
 	srl a
@@ -66102,7 +66126,7 @@ Function8d132: ; 8d132
 	pop af
 	ret
 
-.asm_8d16d
+.minus_1
 	xor a
 	ld hl, $0008
 	add hl, bc
@@ -66114,7 +66138,7 @@ rept 2
 endr
 	jr .loop
 
-.asm_8d17b
+.minus_2
 	xor a
 	ld hl, $0008
 	add hl, bc
@@ -66157,7 +66181,7 @@ endr
 	ret
 ; 8d1ac
 
-Function8d1ac: ; 8d1ac
+Function8d1ac: ; unreferenced
 	push hl
 	ld l, a
 	ld h, 0
@@ -66234,7 +66258,7 @@ Function8d24b: ; 8d24b
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, Jumptable_8d25b
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -66245,53 +66269,53 @@ endr
 ; 8d25b
 
 
-Jumptable_8d25b: ; 8d25b (23:525b)
-	dw Function8d2a1
-	dw Function8d2a2
-	dw Function8d2b9
-	dw Function8d2ea
-	dw Function8d302
-	dw Function8d36c
-	dw Function8d37a
-	dw Function8d381
-	dw Function8d3c3
-	dw Function8d422
-	dw Function8d429
-	dw Function8d43e
-	dw Function8d373
-	dw Function8d46e
-	dw Function8d47c
-	dw Function8d475
-	dw Function8d483
-	dw Function8d52a
-	dw Function8d543
-	dw Function8d54a
-	dw Function8d578
-	dw Function8d57f
-	dw Function8d5b0
-	dw Function8d5e2
-	dw Function8d607
-	dw Function8d35a
-	dw Function8d6b7
-	dw Function8d630
-	dw Function8d637
-	dw Function8d63e
-	dw Function8d666
-	dw Function8d6be
-	dw Function8d680
-	dw Function8d6a2
-	dw Function8d6ae
+.Jumptable: ; 8d25b (23:525b)
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
+	dw .four
+	dw .five
+	dw .six
+	dw .seven
+	dw .eight
+	dw .nine
+	dw .ten
+	dw .eleven
+	dw .twelve
+	dw .thirteen
+	dw .fourteen
+	dw .fifteen
+	dw .sixteen
+	dw .seventeen
+	dw .eighteen
+	dw .nineteen
+	dw .twenty
+	dw .twentyone
+	dw .twentytwo
+	dw .twentythree
+	dw .twentyfour
+	dw .twentyfive
+	dw .twentysix
+	dw .twentyseven
+	dw .twentyeight
+	dw .twentynine
+	dw .thirty
+	dw .thirtyone
+	dw .thirtytwo
+	dw .thirtythree
+	dw .thirtyfour
 
 
-Function8d2a1: ; 8d2a1 (23:52a1)
+.zero: ; 8d2a1 (23:52a1)
 	ret
 
-Function8d2a2: ; 8d2a2 (23:52a2)
+.one: ; 8d2a2 (23:52a2)
 	ld a, [wcfa9]
 	ld hl, $0
 	add hl, bc
 	cp [hl]
-	jr z, Function8d2b9
+	jr z, .two
 	ld hl, $4
 	add hl, bc
 	ld [hl], $10
@@ -66300,7 +66324,7 @@ Function8d2a2: ; 8d2a2 (23:52a2)
 	ld [hl], $0
 	ret
 
-Function8d2b9: ; 8d2b9 (23:52b9)
+.two: ; 8d2b9 (23:52b9)
 	ld hl, $4
 	add hl, bc
 	ld [hl], $18
@@ -66337,7 +66361,7 @@ Function8d2b9: ; 8d2b9 (23:52b9)
 	ld [hl], a
 	ret
 
-Function8d2ea: ; 8d2ea (23:52ea)
+.three: ; 8d2ea (23:52ea)
 	ld a, [wcfa9]
 	ld hl, $0
 	add hl, bc
@@ -66353,17 +66377,17 @@ Function8d2ea: ; 8d2ea (23:52ea)
 	ld [hl], $18
 	ret
 
-Function8d302: ; 8d302 (23:5302)
-	call Function8d6c5
+.four: ; 8d302 (23:5302)
+	call .anonymous_jumptable
 	jp [hl]
 ; 8d306 (23:5306)
 
-; Anonymous jumptable (see Function8d6c5)
-	dw Function8d30a
-	dw Function8d321
+; Anonymous jumptable (see .anonymous_jumptable)
+	dw .four_zero
+	dw .four_one
 ; 8d30a
 
-Function8d30a: ; 8d30a
+.four_zero: ; 8d30a
 	call Function8d6d8
 	ld hl, $0000
 	add hl, bc
@@ -66378,7 +66402,7 @@ Function8d30a: ; 8d30a
 	add hl, bc
 	ld [hl], a
 
-Function8d321: ; 8d321
+.four_one: ; 8d321
 	ld hl, $0004
 	add hl, bc
 	ld a, [hl]
@@ -66415,7 +66439,7 @@ Function8d321: ; 8d321
 	ret
 ; 8d35a
 
-Function8d35a: ; 8d35a (23:535a)
+.twentyfive: ; 8d35a (23:535a)
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
@@ -66428,19 +66452,19 @@ Function8d35a: ; 8d35a (23:535a)
 	ld [hl], a
 	ret
 
-Function8d36c: ; 8d36c (23:536c)
+.five: ; 8d36c (23:536c)
 	callab Function11a3b
 	ret
 
-Function8d373: ; 8d373 (23:5373)
+.twelve: ; 8d373 (23:5373)
 	callab Function120c1
 	ret
 
-Function8d37a: ; 8d37a (23:537a)
-	callab Functione46ed
+.six: ; 8d37a (23:537a)
+	callab GameFreakLogoJumper
 	ret
 
-Function8d381: ; 8d381 (23:5381)
+.seven: ; 8d381 (23:5381)
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
@@ -66485,7 +66509,7 @@ endr
 	call Function8d036
 	ret
 
-Function8d3c3: ; 8d3c3 (23:53c3)
+.eight: ; 8d3c3 (23:53c3)
 	ld hl, $c
 	add hl, bc
 	ld a, [hli]
@@ -66551,11 +66575,11 @@ Function8d3c3: ; 8d3c3 (23:53c3)
 	call Function8d036
 	ret
 
-Function8d422: ; 8d422 (23:5422)
+.nine: ; 8d422 (23:5422)
 	callab Function9321d
 	ret
 
-Function8d429: ; 8d429 (23:5429)
+.ten: ; 8d429 (23:5429)
 	callab Function932ac
 	ld hl, wcf64
 	ld a, [hl]
@@ -66566,7 +66590,7 @@ Function8d429: ; 8d429 (23:5429)
 	call Function8d120
 	ret
 
-Function8d43e: ; 8d43e (23:543e)
+.eleven: ; 8d43e (23:543e)
 	ld hl, $b
 	add hl, bc
 	ld a, [hl]
@@ -66596,33 +66620,33 @@ Function8d43e: ; 8d43e (23:543e)
 	ld [hl], a
 	ret
 
-Function8d46e: ; 8d46e (23:546e)
+.thirteen: ; 8d46e (23:546e)
 	callab Functione00ed
 	ret
 
-Function8d475: ; 8d475 (23:5475)
+.fifteen: ; 8d475 (23:5475)
 	callab Function90d41
 	ret
 
-Function8d47c: ; 8d47c (23:547c)
+.fourteen: ; 8d47c (23:547c)
 	callab Functione21a1
 	ret
 
-Function8d483: ; 8d483 (23:5483)
-	call Function8d6c5
+.sixteen: ; 8d483 (23:5483)
+	call .anonymous_jumptable
 	jp [hl]
 ; 8d487 (23:5487)
 
-; Anonymous jumptable (see Function8d6c5)
-	dw Function8d493
-	dw Function8d4d5
-	dw Function8d4a5
-	dw Function8d4b8
-	dw Function8d4e8
-	dw Function8d526
+; Anonymous jumptable (see .anonymous_jumptable)
+	dw .sixteen_zero
+	dw .sixteen_one
+	dw .sixteen_two
+	dw .sixteen_three
+	dw .sixteen_four
+	dw .sixteen_five
 ; 8d493
 
-Function8d493: ; 8d493
+.sixteen_zero: ; 8d493
 	ld a, $14
 	call Function8d120
 	ld hl, $000b
@@ -66634,7 +66658,7 @@ Function8d493: ; 8d493
 	ret
 ; 8d4a5
 
-Function8d4a5: ; 8d4a5
+.sixteen_two: ; 8d4a5
 	ld hl, $000c
 	add hl, bc
 	ld a, [hl]
@@ -66649,7 +66673,7 @@ Function8d4a5: ; 8d4a5
 	add hl, bc
 	ld [hl], $40
 
-Function8d4b8: ; 8d4b8
+.sixteen_three: ; 8d4b8
 	ld hl, $000c
 	add hl, bc
 	ld a, [hl]
@@ -66666,10 +66690,10 @@ Function8d4b8: ; 8d4b8
 .asm_8d4cd
 	ld de, SFX_GOT_SAFARI_BALLS
 	call PlaySFX
-	jr Function8d526
+	jr .sixteen_five
 ; 8d4d5
 
-Function8d4d5: ; 8d4d5
+.sixteen_one: ; 8d4d5
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $4
@@ -66682,7 +66706,7 @@ Function8d4d5: ; 8d4d5
 	ret
 ; 8d4e8
 
-Function8d4e8: ; 8d4e8
+.sixteen_four: ; 8d4e8
 	ld hl, $000d
 	add hl, bc
 	ld a, [hl]
@@ -66722,12 +66746,12 @@ Function8d4e8: ; 8d4e8
 	call Function8d6d8
 	ret
 
-Function8d526: ; 8d526
+.sixteen_five: ; 8d526
 	call Function8d036
 	ret
 ; 8d52a
 
-Function8d52a: ; 8d52a (23:552a)
+.seventeen: ; 8d52a (23:552a)
 	ld hl, $4
 	add hl, bc
 	ld a, [hl]
@@ -66745,11 +66769,11 @@ endr
 	call Function8d036
 	ret
 
-Function8d543: ; 8d543 (23:5543)
+.eighteen: ; 8d543 (23:5543)
 	callab Function29676
 	ret
 
-Function8d54a: ; 8d54a (23:554a)
+.nineteen: ; 8d54a (23:554a)
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
@@ -66780,11 +66804,11 @@ Function8d54a: ; 8d54a (23:554a)
 	call Function8d036
 	ret
 
-Function8d578: ; 8d578 (23:5578)
+.twenty: ; 8d578 (23:5578)
 	callab Function91640
 	ret
 
-Function8d57f: ; 8d57f (23:557f)
+.twentyone: ; 8d57f (23:557f)
 	ld hl, $d
 	add hl, bc
 	ld e, [hl]
@@ -66819,7 +66843,7 @@ endr
 	ld [hl], a
 	ret
 
-Function8d5b0: ; 8d5b0 (23:55b0)
+.twentytwo: ; 8d5b0 (23:55b0)
 	ld hl, $5
 	add hl, bc
 	ld a, [hl]
@@ -66855,7 +66879,7 @@ endr
 	ld [hl], a
 	ret
 
-Function8d5e2: ; 8d5e2 (23:55e2)
+.twentythree: ; 8d5e2 (23:55e2)
 	ld hl, $4
 	add hl, bc
 	ld a, [hl]
@@ -66881,7 +66905,7 @@ endr
 	call Function8d036
 	ret
 
-Function8d607: ; 8d607 (23:5607)
+.twentyfour: ; 8d607 (23:5607)
 	ld hl, $5
 	add hl, bc
 	ld a, [hl]
@@ -66911,15 +66935,15 @@ endr
 	ld [hl], a
 	ret
 
-Function8d630: ; 8d630 (23:5630)
+.twentyseven: ; 8d630 (23:5630)
 	callba Function108bc7
 	ret
 
-Function8d637: ; 8d637 (23:5637)
+.twentyeight: ; 8d637 (23:5637)
 	callba Function108be0
 	ret
 
-Function8d63e: ; 8d63e (23:563e)
+.twentynine: ; 8d63e (23:563e)
 	ld a, [wcf65]
 	and a
 	jr nz, .asm_8d645
@@ -66944,7 +66968,7 @@ Function8d63e: ; 8d63e (23:563e)
 	call Function8d120
 	ret
 
-Function8d666: ; 8d666 (23:5666)
+.thirty: ; 8d666 (23:5666)
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
@@ -66962,7 +66986,7 @@ Function8d666: ; 8d666 (23:5666)
 .asm_8d67f
 	ret
 
-Function8d680: ; 8d680 (23:5680)
+.thirtytwo: ; 8d680 (23:5680)
 	ld hl, $b
 	add hl, bc
 	ld d, [hl]
@@ -66986,7 +67010,7 @@ endr
 	ld [hl], a
 	ret
 
-Function8d6a2: ; 8d6a2 (23:56a2)
+.thirtythree: ; 8d6a2 (23:56a2)
 	ld a, [wcf64]
 	cp $40
 	ret nz
@@ -66994,7 +67018,7 @@ Function8d6a2: ; 8d6a2 (23:56a2)
 	call Function8d120
 	ret
 
-Function8d6ae: ; 8d6ae (23:56ae)
+.thirtyfour: ; 8d6ae (23:56ae)
 	ld hl, $5
 	add hl, bc
 	ld a, [hl]
@@ -67002,15 +67026,15 @@ Function8d6ae: ; 8d6ae (23:56ae)
 	ld [hl], a
 	ret
 
-Function8d6b7: ; 8d6b7 (23:56b7)
+.twentysix: ; 8d6b7 (23:56b7)
 	callba Function11d0b6
 	ret
 
-Function8d6be: ; 8d6be (23:56be)
+.thirtyone: ; 8d6be (23:56be)
 	callba Function49aa2
 	ret
 
-Function8d6c5: ; 8d6c5 (23:56c5)
+.anonymous_jumptable: ; 8d6c5 (23:56c5)
 	ld hl, [sp+$0]
 	ld e, [hl]
 	inc hl
@@ -68487,6 +68511,7 @@ Unknown_8e72a:
 ; 8e72a
 
 
+
 Function8e72a: ; 8e72a
 	add $10
 Function8e72c: ; 8e72c
@@ -68981,7 +69006,7 @@ GetGFXUnlessMobile: ; 8ea3f
 ; 8ea4a
 
 Function8ea4a: ; 8ea4a
-	ld hl, wPartyMon1MenuIconAnim
+	ld hl, wPartyMonMenuIconAnims
 	ld e, $6
 	ld a, [wcfa9]
 	ld d, a
@@ -69015,7 +69040,7 @@ Function8ea4a: ; 8ea4a
 ; 8ea71
 
 Function8ea71: ; 8ea71
-	ld hl, wPartyMon1MenuIconAnim
+	ld hl, wPartyMonMenuIconAnims
 	ld e, $6
 .loop
 	ld a, [hl]
@@ -69037,7 +69062,7 @@ Function8ea71: ; 8ea71
 ; 8ea8c (23:6a8c)
 
 Function8ea8c: ; 8ea8c
-	ld hl, wPartyMon1MenuIconAnim
+	ld hl, wPartyMonMenuIconAnims
 	ld e, $6
 	ld a, [wd0e3]
 	ld d, a
@@ -69320,7 +69345,7 @@ Function90136:: ; 90136 (24:4136)
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, Unknown_90627
+	ld hl, SpecialPhoneCallList
 	ld a, 6
 	call AddNTimes
 	ld a, [hli]
@@ -69366,7 +69391,7 @@ Function90178: ; 90178 (24:4178)
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, Unknown_90627
+	ld hl, SpecialPhoneCallList
 	ld a, 6
 	call AddNTimes
 	ret
@@ -69395,7 +69420,7 @@ Function90199: ; 90199 (24:4199)
 	and a
 	jr nz, .asm_901e7
 	ld a, b
-	ld [wdbf9], a
+	ld [wCurrentCaller], a
 	ld hl, PhoneContacts
 	ld bc, 12
 	call AddNTimes
@@ -69464,7 +69489,7 @@ Function9020d: ; 9020d (24:420d)
 	nop
 	nop
 	ld a, e
-	ld [wdbf9], a
+	ld [wCurrentCaller], a
 	and a
 	jr nz, .asm_9021d
 	ld a, BANK(Unknown_90233)
@@ -69544,7 +69569,7 @@ Function9027c: ; 9027c (24:427c)
 	ret
 
 Phone_CallerTextboxWithName: ; 90292 (24:4292)
-	ld a, [wdbf9]
+	ld a, [wCurrentCaller]
 	ld b, a
 	call Function90363
 	ret
@@ -69691,8 +69716,8 @@ endr
 
 Phone_CallerTextbox: ; 90375
 	hlcoord 0, 0
-	ld b, $2
-	ld c, $12
+	ld b, 2
+	ld c, SCREEN_WIDTH - 2
 	call TextBox
 	ret
 ; 90380
@@ -69702,13 +69727,13 @@ Function90380: ; 90380 (24:4380)
 	ld h, d
 	ld l, e
 	ld a, b
-	call Function9039a
-	call Function903a9
+	call GetCallerTrainerClass
+	call GetCallerName
 	ret
 
 Function9038a: ; 9038a (24:438a)
 	ld a, c
-	call Function9039a
+	call GetCallerTrainerClass
 	ld a, c
 	ret nz
 	ld a, b
@@ -69719,10 +69744,10 @@ Function9038a: ; 9038a (24:438a)
 	ld c, $1
 	ret
 
-Function9039a: ; 9039a
+GetCallerTrainerClass: ; 9039a
 	push hl
-	ld hl, PhoneContacts
-	ld bc, 12
+	ld hl, PhoneContacts + 0 ; PHONE_CONTACT_TRAINER_CLASS
+	ld bc, 12 ; PHONE_TABLE_WIDTH
 	call AddNTimes
 	ld a, [hli]
 	ld b, [hl]
@@ -69732,12 +69757,12 @@ Function9039a: ; 9039a
 ; 903a9
 
 
-Function903a9: ; 903a9 (24:43a9)
+GetCallerName: ; 903a9 (24:43a9)
 	ld a, c
 	and a
-	jr z, .asm_903c5
+	jr z, .NotTrainer
 
-	call Function90423
+	call Phone_GetTrainerName
 	push hl
 	push bc
 	call PlaceString
@@ -69745,17 +69770,17 @@ Function903a9: ; 903a9 (24:43a9)
 	ld [bc], a
 	pop bc
 	pop hl
-	ld de, 20 + 3
+	ld de, SCREEN_WIDTH + 3
 	add hl, de
-	call Function9042e
+	call Phone_GetTrainerClassName
 	call PlaceString
 	ret
 
-.asm_903c5
+.NotTrainer
 	push hl
 	ld c, b
 	ld b, 0
-	ld hl, Unknown_903d6
+	ld hl, NonTrainerCallerNames
 rept 2
 	add hl, bc
 endr
@@ -69767,23 +69792,23 @@ endr
 	ret
 ; 903d6 (24:43d6)
 
-Unknown_903d6: ; 903d6
-	dw String_903e2
-	dw String_903ed
-	dw String_90402
-	dw String_903f2
-	dw String_903f8
-	dw String_9040d
+NonTrainerCallerNames: ; 903d6
+	dw .none
+	dw .mom
+	dw .bikeshop
+	dw .bill
+	dw .elm
+	dw .buena
 
-String_903e2: db "----------@"
-String_903ed: db "MOM:@"
-String_903f2: db "BILL:@"
-String_903f8: db "PROF.ELM:@"
-String_90402: db "BIKE SHOP:@"
-String_9040d: db "BUENA:", $22, "   DISC JOCKEY@"
+.none: db "----------@"
+.mom: db "MOM:@"
+.bill: db "BILL:@"
+.elm: db "PROF.ELM:@"
+.bikeshop: db "BIKE SHOP:@"
+.buena: db "BUENA:", $22, "   DISC JOCKEY@"
 ; 90423
 
-Function90423: ; 90423 (24:4423)
+Phone_GetTrainerName: ; 90423 (24:4423)
 	push hl
 	push bc
 	callba GetTrainerName
@@ -69791,23 +69816,23 @@ Function90423: ; 90423 (24:4423)
 	pop hl
 	ret
 
-Function9042e: ; 9042e (24:442e)
+Phone_GetTrainerClassName: ; 9042e (24:442e)
 	push hl
 	push bc
-	callba Function3952d
+	callba GetTrainerClassName
 	pop bc
 	pop hl
 	ret
 
-Function90439: ; 90439
-	ld a, [wdbf9]
-	call Function9039a
+GetCallerLocation: ; 90439
+	ld a, [wCurrentCaller]
+	call GetCallerTrainerClass
 	ld d, c
 	ld e, b
 	push de
-	ld a, [wdbf9]
-	ld hl, PhoneContacts + 2
-	ld bc, 12
+	ld a, [wCurrentCaller]
+	ld hl, PhoneContacts + 2 ; PHONE_CONTACT_MAP_GROUP
+	ld bc, 12 ; PHONE_TABLE_WIDTH
 	call AddNTimes
 	ld b, [hl]
 	inc hl
@@ -69836,72 +69861,72 @@ ENDM
 	phone 0, 2, OAKS_LAB,                       0, UnusedPhoneScript, 0, UnusedPhoneScript
 	phone 0, 3, N_A,                            7, BillPhoneScript1, 0, BillPhoneScript2
 	phone 0, 4, ELMS_LAB,                       7, ElmPhoneScript1, 0, ElmPhoneScript2
-	phone SCHOOLBOY, JACK1, NATIONAL_PARK,      7, UnknownScript_0xbd0d0, 7, UnknownScript_0xbd0fa
-	phone POKEFANF, BEVERLY1, NATIONAL_PARK,    7, UnknownScript_0xbd13f, 7, UnknownScript_0xbd158
-	phone SAILOR, HUEY1, OLIVINE_LIGHTHOUSE_2F, 7, UnknownScript_0xbd17c, 7, UnknownScript_0xbd1a9
+	phone SCHOOLBOY, JACK1, NATIONAL_PARK,      7, JackPhoneScript1, 7, JackPhoneScript2
+	phone POKEFANF, BEVERLY1, NATIONAL_PARK,    7, BeverlyPhoneScript1, 7, BeverlyPhoneScript2
+	phone SAILOR, HUEY1, OLIVINE_LIGHTHOUSE_2F, 7, HueyPhoneScript1, 7, HueyPhoneScript2
 	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
 	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
 	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
-	phone COOLTRAINERM, GAVEN3, ROUTE_26,       7, UnknownScript_0xbd1da, 7, UnknownScript_0xbd204
-	phone COOLTRAINERF, BETH1, ROUTE_26,        7, UnknownScript_0xbd23d, 7, UnknownScript_0xbd267
-	phone BIRD_KEEPER, JOSE2, ROUTE_27,         7, UnknownScript_0xbd294, 7, UnknownScript_0xbd2cb
-	phone COOLTRAINERF, REENA1, ROUTE_27,       7, UnknownScript_0xbd31c, 7, UnknownScript_0xbd346
-	phone YOUNGSTER, JOEY1, ROUTE_30,           7, UnknownScript_0xbd373, 7, UnknownScript_0xbd3a0
-	phone BUG_CATCHER, WADE1, ROUTE_31,         7, UnknownScript_0xbd3d1, 7, UnknownScript_0xbd428
-	phone FISHER, RALPH1, ROUTE_32,             7, UnknownScript_0xbd4d2, 7, UnknownScript_0xbd509
-	phone PICNICKER, LIZ1, ROUTE_32,            7, UnknownScript_0xbd560, 7, UnknownScript_0xbd58d
-	phone HIKER, ANTHONY2, ROUTE_33,            7, UnknownScript_0xbd634, 7, UnknownScript_0xbd66b
-	phone CAMPER, TODD1, ROUTE_34,              7, UnknownScript_0xbd6c1, 7, UnknownScript_0xbd6f5
-	phone PICNICKER, GINA1, ROUTE_34,           7, UnknownScript_0xbd743, 7, UnknownScript_0xbd784
-	phone JUGGLER, IRWIN1, ROUTE_35,            7, UnknownScript_0xbd7e7, 7, UnknownScript_0xbd7fd
-	phone BUG_CATCHER, ARNIE1, ROUTE_35,        7, UnknownScript_0xbd813, 7, UnknownScript_0xbd84a
-	phone SCHOOLBOY, ALAN1, ROUTE_36,           7, UnknownScript_0xbd8a6, 7, UnknownScript_0xbd8dd
+	phone COOLTRAINERM, GAVEN3, ROUTE_26,       7, GavenPhoneScript1, 7, GavenPhoneScript2
+	phone COOLTRAINERF, BETH1, ROUTE_26,        7, BethPhoneScript1, 7, BethPhoneScript2
+	phone BIRD_KEEPER, JOSE2, ROUTE_27,         7, JosePhoneScript1, 7, JosePhoneScript2
+	phone COOLTRAINERF, REENA1, ROUTE_27,       7, ReenaPhoneScript1, 7, ReenaPhoneScript2
+	phone YOUNGSTER, JOEY1, ROUTE_30,           7, JoeyPhoneScript1, 7, JoeyPhoneScript2
+	phone BUG_CATCHER, WADE1, ROUTE_31,         7, WadePhoneScript1, 7, WadePhoneScript2
+	phone FISHER, RALPH1, ROUTE_32,             7, RalphPhoneScript1, 7, RalphPhoneScript2
+	phone PICNICKER, LIZ1, ROUTE_32,            7, LizPhoneScript1, 7, LizPhoneScript2
+	phone HIKER, ANTHONY2, ROUTE_33,            7, AnthonyPhoneScript1, 7, AnthonyPhoneScript2
+	phone CAMPER, TODD1, ROUTE_34,              7, ToddPhoneScript1, 7, ToddPhoneScript2
+	phone PICNICKER, GINA1, ROUTE_34,           7, GinaPhoneScript1, 7, GinaPhoneScript2
+	phone JUGGLER, IRWIN1, ROUTE_35,            7, IrwinPhoneScript1, 7, IrwinPhoneScript2
+	phone BUG_CATCHER, ARNIE1, ROUTE_35,        7, ArniePhoneScript1, 7, ArniePhoneScript2
+	phone SCHOOLBOY, ALAN1, ROUTE_36,           7, AlanPhoneScript1, 7, AlanPhoneScript2
 	phone 0, 0, N_A,                            0, UnusedPhoneScript, 0, UnusedPhoneScript
-	phone LASS, DANA1, ROUTE_38,                7, UnknownScript_0xbd930, 7, UnknownScript_0xbd967
-	phone SCHOOLBOY, CHAD1, ROUTE_38,           7, UnknownScript_0xbd9c6, 7, UnknownScript_0xbd9f0
-	phone POKEFANM, DEREK1, ROUTE_39,           7, UnknownScript_0xbda35, 7, UnknownScript_0xbda6e
-	phone FISHER, TULLY1, ROUTE_42,             7, UnknownScript_0xbdaac, 7, UnknownScript_0xbdae3
-	phone POKEMANIAC, BRENT1, ROUTE_43,         7, UnknownScript_0xbdb36, 7, UnknownScript_0xbdb60
-	phone PICNICKER, TIFFANY3, ROUTE_43,        7, UnknownScript_0xbdb99, 7, UnknownScript_0xbdbd0
-	phone BIRD_KEEPER, VANCE1, ROUTE_44,        7, UnknownScript_0xbdc73, 7, UnknownScript_0xbdc9d
-	phone FISHER, WILTON1, ROUTE_44,            7, UnknownScript_0xbdcce, 7, UnknownScript_0xbdd05
-	phone BLACKBELT_T, KENJI3, ROUTE_45,        7, UnknownScript_0xbdd71, 7, UnknownScript_0xbdd7d
-	phone HIKER, PARRY1, ROUTE_45,              7, UnknownScript_0xbdd89, 7, UnknownScript_0xbddb3
-	phone PICNICKER, ERIN1, ROUTE_46,           7, UnknownScript_0xbdde4, 7, UnknownScript_0xbde0e
-	phone 0, 5, GOLDENROD_DEPT_STORE_ROOF,      7, UnknownScript_0xa0b14, 7, UnknownScript_0xa0b26
+	phone LASS, DANA1, ROUTE_38,                7, DanaPhoneScript1, 7, DanaPhoneScript2
+	phone SCHOOLBOY, CHAD1, ROUTE_38,           7, ChadPhoneScript1, 7, ChadPhoneScript2
+	phone POKEFANM, DEREK1, ROUTE_39,           7, DerekPhoneScript1, 7, DerekPhoneScript2
+	phone FISHER, TULLY1, ROUTE_42,             7, TullyPhoneScript1, 7, TullyPhoneScript2
+	phone POKEMANIAC, BRENT1, ROUTE_43,         7, BrentPhoneScript1, 7, BrentPhoneScript2
+	phone PICNICKER, TIFFANY3, ROUTE_43,        7, TiffanyPhoneScript1, 7, TiffanyPhoneScript2
+	phone BIRD_KEEPER, VANCE1, ROUTE_44,        7, VancePhoneScript1, 7, VancePhoneScript2
+	phone FISHER, WILTON1, ROUTE_44,            7, WiltonPhoneScript1, 7, WiltonPhoneScript2
+	phone BLACKBELT_T, KENJI3, ROUTE_45,        7, KenjiPhoneScript1, 7, KenjiPhoneScript2
+	phone HIKER, PARRY1, ROUTE_45,              7, ParryPhoneScript1, 7, ParryPhoneScript2
+	phone PICNICKER, ERIN1, ROUTE_46,           7, ErinPhoneScript1, 7, ErinPhoneScript2
+	phone 0, 5, GOLDENROD_DEPT_STORE_ROOF,      7, BuenaPhoneScript1, 7, BuenaPhoneScript2
 ; 90627
 
-Unknown_90627: ; 90627
+SpecialPhoneCallList: ; 90627
 	dw Function90188
-	db $04
+	db 4
 	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
 
 	dw Function90188
-	db $04
+	db 4
 	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
 
 	dw Function90188
-	db $04
+	db 4
 	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
 
 	dw Function90188
-	db $04
+	db 4
 	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
 
 	dw Function90197
-	db $04
+	db 4
 	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
 
 	dw Function90197
-	db $02
-	dbw BANK(UnknownScript_0xa0b09), UnknownScript_0xa0b09 ; bike shop
+	db 2
+	dbw BANK(BikeShopPhoneScript), BikeShopPhoneScript ; bike shop
 
 	dw Function90197
-	db $01
+	db 1
 	dbw BANK(MomPhoneLectureScript), MomPhoneLectureScript
 
 	dw Function90188
-	db $04
+	db 4
 	dbw BANK(ElmPhoneScript2), ElmPhoneScript2
 ; 90657
 
@@ -72062,7 +72087,7 @@ Function91492: ; 91492
 
 
 Function914ab: ; 914ab (24:54ab)
-	ld hl, wPartyMon2MenuIconAnim
+	ld hl, wPartyMonMenuIconAnims + 16
 	ld bc, $90
 	xor a
 	call ByteFill
@@ -84948,12 +84973,12 @@ Functione46dd: ; e46dd
 
 
 
-Functione46ed: ; e46ed (39:46ed)
+GameFreakLogoJumper: ; e46ed (39:46ed)
 	ld hl, $b
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, Jumptable_e46fd
+	ld hl, GameFreakLogoScenes
 rept 2
 	add hl, de
 endr
@@ -84962,21 +84987,21 @@ endr
 	ld l, a
 	jp [hl]
 
-Jumptable_e46fd: ; e46fd (39:46fd)
-	dw Functione4707
-	dw Functione470d
-	dw Functione4759
-	dw Functione4776
-	dw Functione47ab
+GameFreakLogoScenes: ; e46fd (39:46fd)
+	dw GameFreakLogoScene1
+	dw GameFreakLogoScene2
+	dw GameFreakLogoScene3
+	dw GameFreakLogoScene4
+	dw GameFreakLogoScene5
 
 
-Functione4707: ; e4707 (39:4707)
+GameFreakLogoScene1: ; e4707 (39:4707)
 	ld hl, $b
 	add hl, bc
 	inc [hl]
 	ret
 
-Functione470d: ; e470d (39:470d)
+GameFreakLogoScene2: ; e470d (39:470d)
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
@@ -85021,7 +85046,7 @@ Functione470d: ; e470d (39:470d)
 	call PlaySFX
 	ret
 
-Functione4759: ; e4759 (39:4759)
+GameFreakLogoScene3: ; e4759 (39:4759)
 	ld hl, $d
 	add hl, bc
 	ld a, [hl]
@@ -85040,7 +85065,7 @@ Functione4759: ; e4759 (39:4759)
 	call PlaySFX
 	ret
 
-Functione4776: ; e4776 (39:4776)
+GameFreakLogoScene4: ; e4776 (39:4776)
 	ld hl, $d
 	add hl, bc
 	ld a, [hl]
@@ -85051,7 +85076,7 @@ Functione4776: ; e4776 (39:4776)
 	srl a
 	ld e, a
 	ld d, $0
-	ld hl, Unknown_e47ac
+	ld hl, GameFreakLogoPalettes
 rept 2
 	add hl, de
 endr
@@ -85074,11 +85099,11 @@ endr
 	inc [hl]
 	call Functione4687
 
-Functione47ab: ; e47ab (39:47ab)
+GameFreakLogoScene5: ; e47ab (39:47ab)
 	ret
 ; e47ac (39:47ac)
 
-Unknown_e47ac: ; e47ac
+GameFreakLogoPalettes: ; e47ac
 ; Ditto's color as it turns into the Game Freak logo.
 ; Fade from pink to orange.
 ; One color per step.
@@ -85104,7 +85129,7 @@ GameFreakLogo: ; e47cc
 INCBIN "gfx/splash/logo.1bpp"
 ; e48ac
 
-Functione48ac: ; e48ac
+CrystalIntro: ; e48ac
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -85114,25 +85139,24 @@ Functione48ac: ; e48ac
 	ld a, [hVBlank]
 	push af
 	call Functione4901
-
-Functione48bc: ; e48bc
+.loop: ; e48bc
 	call Functiona57
 	ld a, [$ffa9]
 	and $f
-	jr nz, .asm_e48db
+	jr nz, .ShutOffMusic
 	ld a, [wcf63]
 	bit 7, a
-	jr nz, .asm_e48e1
-	call Functione490f
+	jr nz, .done
+	call IntroSceneJumper
 	callba Function8cf69
 	call DelayFrame
-	jp Functione48bc
+	jp .loop
 
-.asm_e48db
+.ShutOffMusic
 	ld de, MUSIC_NONE
 	call PlayMusic
 
-.asm_e48e1
+.done
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
@@ -85163,7 +85187,7 @@ Functione4901: ; e4901
 	ret
 ; e490f
 
-Functione490f: ; e490f
+IntroSceneJumper: ; e490f
 	ld a, [wcf63]
 	ld e, a
 	ld d, 0
@@ -89331,7 +89355,7 @@ Functionfd017: ; fd017
 	inc [hl]
 .ok
 	ld a, 1
-	ld [wdbf9], a
+	ld [wCurrentCaller], a
 	ld bc, wd03f
 	ld hl, 0
 	add hl, bc

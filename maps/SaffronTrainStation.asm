@@ -3,30 +3,30 @@ SaffronTrainStation_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x18a81d, $0000
+	dw .Trigger1, $0000
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x18a81d:
+.Trigger1:
 	end
 
 OfficerScript_0x18a81e:
 	faceplayer
 	loadfont
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x18a82c
+	iftrue .MagnetTrainToGoldenrod
 	writetext UnknownText_0x18a8a9
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18a82c:
+.MagnetTrainToGoldenrod:
 	writetext UnknownText_0x18a8dd
 	yesorno
-	iffalse UnknownScript_0x18a85c
+	iffalse .DecidedNotToRide
 	checkitem PASS
-	iffalse UnknownScript_0x18a856
+	iffalse .PassNotInBag
 	writetext UnknownText_0x18a917
 	closetext
 	loadmovesprites
@@ -36,27 +36,27 @@ UnknownScript_0x18a82c:
 	special Special_MagnetTrain
 	warpcheck
 	newloadmap $f9
-	applymovement $0, MovementData_0x18a854
+	applymovement $0, .MovementBoardTheTrain
 	wait $14
 	end
 
-MovementData_0x18a854:
+.MovementBoardTheTrain:
 	turn_head_down
 	step_end
 
-UnknownScript_0x18a856:
+.PassNotInBag:
 	writetext UnknownText_0x18a956
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18a85c:
+.DecidedNotToRide:
 	writetext UnknownText_0x18a978
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18a862:
+Script_ArriveFromGoldenrod:
 	applymovement $2, MovementData_0x18a88f
 	applymovement $0, MovementData_0x18a8a1
 	applymovement $2, MovementData_0x18a894
@@ -224,7 +224,7 @@ SaffronTrainStation_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $6, $b, $0, UnknownScript_0x18a862, $0, $0
+	xy_trigger 0, $6, $b, $0, Script_ArriveFromGoldenrod, $0, $0
 
 .Signposts:
 	db 0

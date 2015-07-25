@@ -215,7 +215,7 @@ INCLUDE "home/copy2.asm"
 Function309d:: ; 309d
 	ld a, [rSVBK]
 	push af
-	ld a, 2
+	ld a, BANK(w2_d000)
 	ld [rSVBK], a
 	hlcoord 0, 0
 	ld de, w2_d000
@@ -238,7 +238,7 @@ Function30b4:: ; 30b4
 Function30bf:: ; 30bf
 	ld a, [rSVBK]
 	push af
-	ld a, 2
+	ld a, BANK(w2_d000)
 	ld [rSVBK], a
 	ld hl, w2_d000
 	decoord 0, 0
@@ -251,9 +251,11 @@ Function30bf:: ; 30bf
 
 
 CopyName1:: ; 30d6
+; Copies the name from de to StringBuffer2
 	ld hl, StringBuffer2
 
 CopyName2:: ; 30d9
+; Copies the name from de to hl
 .loop
 	ld a, [de]
 	inc de
@@ -299,17 +301,6 @@ SkipNames:: ; 0x30f4
 	jr nz, .loop
 	ret
 ; 0x30fe
-
-AddNTimes:: ; 0x30fe
-; Add bc * a to hl.
-	and a
-	ret z
-.loop
-	add hl, bc
-	dec a
-	jr nz, .loop
-	ret
-; 0x3105
 
 
 INCLUDE "home/math.asm"
@@ -727,7 +718,7 @@ ClearPalettes:: ; 3317
 	ld a, [rSVBK]
 	push af
 
-	ld a, 5
+	ld a, BANK(BGPals)
 	ld [rSVBK], a
 
 ; Fill BGPals and OBPals with $ffff (white)
@@ -1273,11 +1264,11 @@ Function3599:: ; 3599
 ; 35b0
 
 Function35b0:: ; 35b0
-	ld hl, wdbf9 + 3
+	ld hl, wCurrentCaller + 3
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wdbf9 + 2]
+	ld a, [wCurrentCaller + 2]
 	and a
 	jr z, .asm_35d3
 
@@ -1311,7 +1302,7 @@ Function35b0:: ; 35b0
 .asm_35d5
 	pop af
 	ld d, a
-	ld a, [wdbf9 + 2]
+	ld a, [wCurrentCaller + 2]
 	sub d
 	inc a
 	scf

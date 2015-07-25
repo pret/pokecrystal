@@ -5,8 +5,8 @@ map: MACRO
 ;	db GROUP_\1, MAP_\1
 
 \1\@  EQUS "GROUP_\1"
-\1\@2 EQUS "MAP_\1"
-	db \1\@, \1\@2
+\1\@_2 EQUS "MAP_\1"
+	db \1\@, \1\@_2
 ENDM
 
 roam_map: MACRO
@@ -165,9 +165,9 @@ ENDM
 mapgroup: MACRO
 ; map id, height, width
 \1\@  EQUS "GROUP_\1"
-\1\@2 EQUS "MAP_\1"
+\1\@_2 EQUS "MAP_\1"
 \1\@ EQU const_value
-	enum \1\@2
+	enum \1\@_2
 \1_HEIGHT EQU \2
 \1_WIDTH EQU \3
 ENDM

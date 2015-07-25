@@ -111,8 +111,8 @@ SpecialsPointers:: ; c029
 	add_special Functionc2da
 	add_special GetFirstPokemonHappiness
 	add_special CheckFirstMonIsEgg
-	add_special Function2a4ab
-	add_special Function2a51f
+	add_special RandomPhoneRareWildMon
+	add_special RandomPhoneWildMon
 	add_special RandomPhoneMon
 	add_special RunCallback_04
 	add_special Functionfb841

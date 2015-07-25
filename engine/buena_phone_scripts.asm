@@ -1,4 +1,4 @@
-UnknownScript_0xa0b14:
+BuenaPhoneScript1:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xa0b73
 	checkcode VAR_HOUR
@@ -6,7 +6,7 @@ UnknownScript_0xa0b14:
 	scall UnknownScript_0xa0b32
 	jump UnknownScript_0xa0c0e
 
-UnknownScript_0xa0b26:
+BuenaPhoneScript2:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xa0b73
 	scall UnknownScript_0xa0b4f

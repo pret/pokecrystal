@@ -97,7 +97,7 @@ GetMapTrigger:: ; 2147
 
 Function2173:: ; 2173
 	call Function217a
-	call FarCallFunction4c000
+	call FarCallSwapTextboxPalettes
 	ret
 ; 217a
 
@@ -1204,7 +1204,7 @@ Function272a:: ; 272a
 	ld de, BGMapBuffer
 	call Function27b7
 	ld c, $28
-	call FarCallFunction4c03f
+	call FarCallScrollBGMapPalettes
 	ld a, [wd152]
 	ld e, a
 	ld a, [wd153]
@@ -1220,7 +1220,7 @@ Function2748:: ; 2748
 	ld de, BGMapBuffer
 	call Function27b7
 	ld c, $28
-	call FarCallFunction4c03f
+	call FarCallScrollBGMapPalettes
 	ld a, [wd152]
 	ld l, a
 	ld a, [wd153]
@@ -1243,7 +1243,7 @@ Function2771:: ; 2771
 	ld de, BGMapBuffer
 	call Function27c0
 	ld c, $24
-	call FarCallFunction4c03f
+	call FarCallScrollBGMapPalettes
 	ld a, [wd152]
 	ld e, a
 	ld a, [wd153]
@@ -1259,7 +1259,7 @@ Function278f:: ; 278f
 	ld de, BGMapBuffer
 	call Function27c0
 	ld c, $24
-	call FarCallFunction4c03f
+	call FarCallScrollBGMapPalettes
 	ld a, [wd152]
 	ld e, a
 	and $e0

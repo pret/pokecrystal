@@ -86,7 +86,7 @@ UnknownScript_0x6c38f:
 	writetext UnknownText_0x6c59e
 	closetext
 	showemote EMOTE_SHOCK, $2, 10
-	playsound SFX_UNKNOWN_2A
+	playsound SFX_FAINT
 	changeblock $6, $2, $1e
 	reloadmappart
 	loadmovesprites

@@ -1285,7 +1285,7 @@ LuckyNumberShow18: ; b8cf2 (2e:4cf2)
 	pop bc
 	jr c, LuckyNumberShow18
 	push bc
-	callab Function3952d
+	callab GetTrainerClassName
 	ld de, StringBuffer1
 	call CopyName1
 	pop bc
