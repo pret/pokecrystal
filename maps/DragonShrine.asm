@@ -17,7 +17,7 @@ DragonShrine_MapScriptHeader:
 	end
 
 DragonShrineTestScript:
-	applymovement $0, MovementData_0x18d2bf
+	applymovement PLAYER, MovementData_0x18d2bf
 	applymovement $2, MovementData_0x18d2c7
 	loadfont
 	writetext UnknownText_0x18d2ea
@@ -116,15 +116,15 @@ DragonShrineTestScript:
 	closetext
 	loadmovesprites
 	playsound SFX_ENTER_DOOR
-	showemote EMOTE_SHOCK, $0, 15
+	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_CLAIR
 	appear $5
 	waitbutton
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	pause 30
 	applymovement $5, MovementData_0x18d2d4
 	spriteface $5, RIGHT
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x18d916
@@ -171,7 +171,7 @@ DragonShrineTestScript:
 	applymovement $2, MovementData_0x18d2ce
 	spriteface $5, UP
 	applymovement $2, MovementData_0x18d2d1
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x18d5a3
 	closetext

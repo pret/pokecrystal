@@ -30,13 +30,13 @@ UnknownScript_0x1a8016:
 	writetext UnknownText_0x1a8134
 	closetext
 	loadmovesprites
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	applymovement $2, MovementData_0x1a80d4
 	loadfont
 	writetext UnknownText_0x1a813e
 	closetext
 	loadmovesprites
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x1a80e0
 	stopfollow
 	loadfont
@@ -53,14 +53,14 @@ UnknownScript_0x1a8041:
 	writetext UnknownText_0x1a8134
 	closetext
 	loadmovesprites
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	applymovement $2, MovementData_0x1a80d9
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x1a813e
 	closetext
 	loadmovesprites
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x1a80e6
 	stopfollow
 	loadfont
@@ -115,14 +115,14 @@ SilverScript_0x1a809e:
 	writetext UnknownText_0x1a82cd
 	closetext
 	loadmovesprites
-	follow $0, $4
-	applymovement $0, MovementData_0x1a80ed
+	follow PLAYER, $4
+	applymovement PLAYER, MovementData_0x1a80ed
 	stopfollow
 	pause 5
 	spriteface $4, DOWN
 	pause 5
 	playsound SFX_TACKLE
-	applymovement $0, MovementData_0x1a80f0
+	applymovement PLAYER, MovementData_0x1a80f0
 	applymovement $4, MovementData_0x1a80f5
 	end
 

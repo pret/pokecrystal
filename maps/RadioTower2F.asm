@@ -112,9 +112,9 @@ Buena:
 	spriteface $b, RIGHT
 	checkcode VAR_FACING
 	if_not_equal $3, UnknownScript_0x5d7be
-	applymovement $0, MovementData_0x5d921
+	applymovement PLAYER, MovementData_0x5d921
 UnknownScript_0x5d7be:
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x5dedd
 	closetext
@@ -252,7 +252,7 @@ UnknownScript_0x5d8a4:
 	pause 20
 	spriteface $b, DOWN
 	pause 15
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	pause 15
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc

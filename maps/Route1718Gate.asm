@@ -21,12 +21,12 @@ UnknownScript_0x73611:
 
 UnknownScript_0x73617:
 	showemote EMOTE_SHOCK, $2, 15
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x7364d
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x73629
+	applymovement PLAYER, MovementData_0x73629
 	end
 
 MovementData_0x73629:

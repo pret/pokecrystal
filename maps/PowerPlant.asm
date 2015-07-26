@@ -28,12 +28,12 @@ UnknownScript_0x188dc5:
 	closetext
 	loadmovesprites
 	spriteface $2, LEFT
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x188f7f
 	closetext
 	loadmovesprites
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	applymovement $2, MovementData_0x188eda
 	dotrigger $0
 	end

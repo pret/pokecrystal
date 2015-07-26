@@ -24,7 +24,7 @@ VermilionPort_MapScriptHeader:
 	return
 
 UnknownScript_0x74da6:
-	applymovement $0, MovementData_0x74ef3
+	applymovement PLAYER, MovementData_0x74ef3
 	appear $2
 	dotrigger $0
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
@@ -49,7 +49,7 @@ SailorScript_0x74dc4:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	waitbutton
-	applymovement $0, MovementData_0x74ef1
+	applymovement PLAYER, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
 	special FadeBlackBGMap
 	waitbutton
@@ -83,7 +83,7 @@ UnknownScript_0x74e20:
 	iftrue UnknownScript_0x74e86
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x74e86
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	loadfont
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74e72
@@ -102,28 +102,28 @@ UnknownScript_0x74e20:
 	closetext
 	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
-	applymovement $0, MovementData_0x74ef8
+	applymovement PLAYER, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
 
 UnknownScript_0x74e68:
 	writetext UnknownText_0x74ff2
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x74ef5
+	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 UnknownScript_0x74e72:
 	writetext UnknownText_0x75059
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x74ef5
+	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 UnknownScript_0x74e7c:
 	writetext UnknownText_0x75080
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x74ef5
+	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 UnknownScript_0x74e86:
@@ -139,7 +139,7 @@ UnknownScript_0x74e8d:
 	writetext UnknownText_0x74fa7
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x74ef5
+	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 SailorScript_0x74e97:
@@ -164,7 +164,7 @@ SailorScript_0x74e97:
 	closetext
 	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
-	applymovement $0, MovementData_0x74efe
+	applymovement PLAYER, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 
 UnknownScript_0x74ed4:

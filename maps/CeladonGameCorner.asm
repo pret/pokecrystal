@@ -57,7 +57,7 @@ FisherScript_0x72144:
 	writetext UnknownText_0x72345
 	closetext
 	loadmovesprites
-	spriteface $fe, LEFT
+	spriteface LAST_TALKED, LEFT
 	end
 
 .UnknownScript_0x72172
@@ -71,14 +71,14 @@ UnknownScript_0x7217b:
 	writetext UnknownText_0x7238a
 	closetext
 	loadmovesprites
-	spriteface $fe, LEFT
+	spriteface LAST_TALKED, LEFT
 	end
 
 UnknownScript_0x72184:
 	writetext UnknownText_0x723d9
 	closetext
 	loadmovesprites
-	spriteface $fe, LEFT
+	spriteface LAST_TALKED, LEFT
 	end
 
 CeladonGymGuyScript:

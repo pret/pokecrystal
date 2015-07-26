@@ -17,8 +17,8 @@ UnknownScript_0x74491:
 
 UnknownScript_0x74492:
 	moveperson $2, $12, $b
-	spriteface $0, DOWN
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, DOWN
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	appear $2
@@ -31,8 +31,8 @@ UnknownScript_0x74492:
 	end
 
 UnknownScript_0x744b5:
-	spriteface $0, DOWN
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, DOWN
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	appear $2
@@ -45,7 +45,7 @@ UnknownScript_0x744b5:
 	end
 
 UnknownScript_0x744d4:
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x7455f

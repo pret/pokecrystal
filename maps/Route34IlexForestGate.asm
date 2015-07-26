@@ -26,11 +26,11 @@ UnknownScript_0x62d3d:
 	iffalse UnknownScript_0x62d62
 	showemote EMOTE_SHOCK, $5, 20
 	spriteface $5, LEFT
-	spriteface $0, RIGHT
-	follow $0, $5
-	applymovement $0, MovementData_0x62d97
+	spriteface PLAYER, RIGHT
+	follow PLAYER, $5
+	applymovement PLAYER, MovementData_0x62d97
 	stopfollow
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	loadfont
 	writetext UnknownText_0x62e41
 	closetext

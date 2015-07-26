@@ -39,7 +39,7 @@ UnknownScript_0x19abda:
 	end
 
 UnknownScript_0x19abea:
-	applymovement $0, MovementData_0x19aca2
+	applymovement PLAYER, MovementData_0x19aca2
 	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, MovementData_0x19acbb
 	spriteface $3, UP

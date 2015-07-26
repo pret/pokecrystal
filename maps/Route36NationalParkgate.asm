@@ -56,7 +56,7 @@ Route36NationalParkgate_MapScriptHeader:
 	return
 
 .LeftTheContestEarly:
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	checkcode VAR_CONTESTMINUTES
 	addvar $1
@@ -72,7 +72,7 @@ Route36NationalParkgate_MapScriptHeader:
 	scall .CopyContestants
 	disappear $2
 	appear $d
-	applymovement $0, MovementData_0x6add1
+	applymovement PLAYER, MovementData_0x6add1
 	pause 15
 	special Special_FadeInQuickly
 	jumpstd bugcontestresults
@@ -81,7 +81,7 @@ Route36NationalParkgate_MapScriptHeader:
 	writetext UnknownText_0x6b300
 	closetext
 	loadmovesprites
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
 	special FadeBlackBGMap
 	waitbutton
@@ -164,7 +164,7 @@ Route36OfficerScriptContest:
 	loadmovesprites
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special Special_GiveParkBalls
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
 	special FadeBlackBGMap
 	waitbutton

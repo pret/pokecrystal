@@ -26,7 +26,7 @@ UnknownScript_0x1a0881:
 	showemote EMOTE_SHOCK, $a, 15
 	applymovement $a, MovementData_0x1a0a69
 UnknownScript_0x1a088c:
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x1a0a6b
 	keeptextopen

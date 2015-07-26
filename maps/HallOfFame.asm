@@ -17,16 +17,16 @@ HallOfFame_MapScriptHeader:
 	end
 
 HallOfFameScript:
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, HallOfFame_WalkUpWithLance
 	stopfollow
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext HallOfFame_LanceText
 	closetext
 	loadmovesprites
 	spriteface $2, UP
-	applymovement $0, HallOfFame_SlowlyApproachMachine
+	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
 	dotrigger $1
 	pause 15
 	writebyte 2 ; Machine is in the Hall of Fame

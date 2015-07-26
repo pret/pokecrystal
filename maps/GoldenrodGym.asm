@@ -100,7 +100,7 @@ LassCarrieScript:
 WhitneyCriesScript:
 	showemote EMOTE_SHOCK, $4, 15
 	applymovement $4, BridgetWalksUpMovement
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	loadfont
 	writetext BridgetWhitneyCriesText
 	closetext

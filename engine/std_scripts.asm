@@ -108,7 +108,7 @@ PokeCenterNurseScript:
 	farwritetext UnknownText_0x1b01bd
 	pause 20
 	special Mobile_HealParty
-	spriteface $fe, LEFT
+	spriteface LAST_TALKED, LEFT
 	pause 10
 	special HealParty
 	playmusic MUSIC_NONE
@@ -116,7 +116,7 @@ PokeCenterNurseScript:
 	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
-	spriteface $fe, DOWN
+	spriteface LAST_TALKED, DOWN
 	pause 10
 
 	checkphonecall ; elm already called about pokerus
@@ -133,9 +133,9 @@ PokeCenterNurseScript:
 .done
 	farwritetext UnknownText_0x1b020b
 
-	spriteface $fe, UP
+	spriteface LAST_TALKED, UP
 	pause 10
-	spriteface $fe, DOWN
+	spriteface LAST_TALKED, DOWN
 	pause 10
 
 	closetext
@@ -308,7 +308,7 @@ BugContestResultsWarpScript:
 	clearevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
 	setevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	warp ROUTE_36_NATIONAL_PARK_GATE, $0, $4
-	applymovement $0, Movement_ContestResults_WalkAfterWarp
+	applymovement PLAYER, Movement_ContestResults_WalkAfterWarp
 
 BugContestResultsScript:
 	clearflag ENGINE_BUG_CONTEST_TIMER

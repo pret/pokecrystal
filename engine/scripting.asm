@@ -1046,7 +1046,7 @@ Script_cry: ; 0x971d1
 GetScriptPerson: ; 0x971e3
 	and a
 	ret z
-	cp $fe
+	cp LAST_TALKED
 	ret z
 	dec a
 	ret
@@ -1059,7 +1059,7 @@ Script_setlasttalked: ; 0x971ea
 
 	call GetScriptByte
 	call GetScriptPerson
-	ld [$ffe0], a
+	ld [hLastTalked], a
 	ret
 ; 0x971f3
 
@@ -1106,7 +1106,7 @@ Script_applymovement2: ; 0x97228
 ; parameters:
 ;     data (MovementPointerLabelParam)
 
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	ld c, a
 	jp ApplyMovement
 ; 0x9722e
@@ -1114,11 +1114,11 @@ Script_applymovement2: ; 0x97228
 Script_faceplayer: ; 0x9722e
 ; script command 0x6b
 
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	and a
 	ret z
 	ld d, $0
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	ld e, a
 	callba GetRelativeFacing
 	ld a, d
@@ -1126,7 +1126,7 @@ rept 2
 	add a
 endr
 	ld e, a
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	ld d, a
 	call ApplyPersonFacing
 	ret
@@ -1140,17 +1140,17 @@ Script_faceperson: ; 0x97248
 
 	call GetScriptByte
 	call GetScriptPerson
-	cp $fe
-	jr c, .asm_97254 ; 0x97250 $2
-	ld a, [$ffe0]
-.asm_97254
+	cp LAST_TALKED
+	jr c, .ok
+	ld a, [hLastTalked]
+.ok
 	ld e, a
 	call GetScriptByte
 	call GetScriptPerson
-	cp $fe
-	jr nz, .asm_97261 ; 0x9725d $2
-	ld a, [$ffe0]
-.asm_97261
+	cp LAST_TALKED
+	jr nz, .ok2
+	ld a, [hLastTalked]
+.ok2
 	ld d, a
 	push de
 	callba GetRelativeFacing
@@ -1174,10 +1174,10 @@ Script_spriteface: ; 0x97274
 
 	call GetScriptByte
 	call GetScriptPerson
-	cp $fe
-	jr nz, .asm_97280 ; 0x9727c $2
-	ld a, [$ffe0]
-.asm_97280
+	cp LAST_TALKED
+	jr nz, .ok
+	ld a, [hLastTalked]
+.ok
 	ld d, a
 	call GetScriptByte
 rept 2
@@ -1271,10 +1271,10 @@ Script_disappear: ; 0x972ee
 
 	call GetScriptByte
 	call GetScriptPerson
-	cp -2
-	jr nz, .skip ; 0x972f6 $2
-	ld a, [$ffe0]
-.skip
+	cp LAST_TALKED
+	jr nz, .ok
+	ld a, [hLastTalked]
+.ok
 	call DeleteObjectStruct
 	ld a, [$ffaf]
 	ld b, 1 ; set
@@ -1354,10 +1354,10 @@ Script_writepersonxy: ; 0x9735b
 
 	call GetScriptByte
 	call GetScriptPerson
-	cp $fe
-	jr nz, .asm_97367 ; 0x97363 $2
-	ld a, [$ffe0]
-.asm_97367
+	cp LAST_TALKED
+	jr nz, .ok
+	ld a, [hLastTalked]
+.ok
 	ld b, a
 	callba Function80a1
 	ret
@@ -1405,10 +1405,10 @@ Script_showemote: ; 0x97396
 	ld [ScriptVar], a
 	call GetScriptByte
 	call GetScriptPerson
-	cp $fe
-	jr z, .asm_973a8 ; 0x973a4 $2
-	ld [$ffe0], a
-.asm_973a8
+	cp LAST_TALKED
+	jr z, .ok
+	ld [hLastTalked], a
+.ok
 	call GetScriptByte
 	ld [ScriptDelay], a
 	ld b, BANK(ShowEmoteScript)
@@ -1454,7 +1454,7 @@ Script_earthquake: ; 0x973c7
 ; 0x973e6
 
 UnknownScript_0x973e6: ; 973e6
-	applymovement $0, wd002
+	applymovement PLAYER, wd002
 	end
 ; 973eb
 

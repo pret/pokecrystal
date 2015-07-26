@@ -34,35 +34,35 @@ CherrygroveCityGuideGent:
 	closetext
 	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x19c195
 	loadfont
 	writetext GuideGentPokeCenterText
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c19b
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext GuideGentMartText
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1a3
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext GuideGentRoute30Text
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1ac
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	loadfont
 	writetext GuideGentSeaText
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x19c1b6
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	pause 60
 	spriteface $2, LEFT
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext GuideGentGiftText
 	keeptextopen
@@ -76,7 +76,7 @@ CherrygroveCityGuideGent:
 	loadmovesprites
 	stopfollow
 	special RestartMapMusic
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	applymovement $2, MovementData_0x19c1cb
 	playsound SFX_ENTER_DOOR
 	disappear $2
@@ -101,13 +101,13 @@ UnknownScript_0x19c0aa:
 	moveperson $3, $27, $7
 
 UnknownScript_0x19c0ae:
-	spriteface $0, RIGHT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, RIGHT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	appear $3
 	applymovement $3, MovementData_0x19c1ce
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x19c4e2
@@ -165,8 +165,8 @@ UnknownScript_0x19c126:
 	loadmovesprites
 UnknownScript_0x19c12f:
 	playsound SFX_TACKLE
-	applymovement $0, MovementData_0x19c1d4
-	spriteface $0, LEFT
+	applymovement PLAYER, MovementData_0x19c1d4
+	spriteface PLAYER, LEFT
 	applymovement $3, MovementData_0x19c1da
 	disappear $3
 	dotrigger $0

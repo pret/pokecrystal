@@ -105,14 +105,14 @@ UnknownScript_0x9e454:
 	domaptrigger BATTLE_TOWER_BATTLE_ROOM, $0
 	domaptrigger BATTLE_TOWER_ELEVATOR, $0
 	domaptrigger BATTLE_TOWER_HALLWAY, $0
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x9e571
 	writebyte $a
 	special Function170687
 	warpsound
 	disappear $2
 	stopfollow
-	applymovement $0, MovementData_0x9e576
+	applymovement PLAYER, MovementData_0x9e576
 	warpcheck
 	end
 

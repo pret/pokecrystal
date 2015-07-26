@@ -34,7 +34,7 @@ UnknownScript_0x7709a:
 	iffalse .NoDancing
 	appear $2
 	appear $3
-	applymovement $0, MovementData_0x77121
+	applymovement PLAYER, MovementData_0x77121
 	pause 15
 	appear $4
 	spriteface $2, RIGHT

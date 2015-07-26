@@ -31,12 +31,12 @@ OfficerScript_0x550ec:
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x55146
-	applymovement $0, MovementData_0x5514f
+	applymovement PLAYER, MovementData_0x5514f
 	writebyte $0
 	special Special_MagnetTrain
 	warpcheck
 	newloadmap $f9
-	applymovement $0, .MovementBoardTheTrain
+	applymovement PLAYER, .MovementBoardTheTrain
 	wait $14
 	end
 
@@ -58,7 +58,7 @@ OfficerScript_0x550ec:
 
 Script_ArriveFromSaffron:
 	applymovement $2, MovementData_0x55146
-	applymovement $0, MovementData_0x55158
+	applymovement PLAYER, MovementData_0x55158
 	applymovement $2, MovementData_0x5514b
 	loadfont
 	writetext UnknownText_0x5526a

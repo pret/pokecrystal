@@ -17,8 +17,8 @@ UnknownScript_0x7408d:
 	end
 
 UnknownScript_0x7408e:
-	spriteface $0, RIGHT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, RIGHT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	applymovement $2, MovementData_0x740f9

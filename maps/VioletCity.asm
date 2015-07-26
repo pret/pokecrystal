@@ -32,9 +32,9 @@ UnknownScript_0x1a83d1:
 	closetext
 	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x1a842a
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	applymovement $2, MovementData_0x1a8465
 	stopfollow
 	special RestartMapMusic

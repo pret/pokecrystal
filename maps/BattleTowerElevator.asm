@@ -17,20 +17,20 @@ UnknownScript_0x9f567:
 	end
 
 UnknownScript_0x9f568:
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x9f58f
-	applymovement $0, MovementData_0x9f592
+	applymovement PLAYER, MovementData_0x9f592
 	writebyte $a
 	special Function170687
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitbutton
-	follow $2, $0
+	follow $2, PLAYER
 	applymovement $2, MovementData_0x9e578
 	stopfollow
 	warpsound
 	disappear $2
-	applymovement $0, MovementData_0x9e578
+	applymovement PLAYER, MovementData_0x9e578
 	warpcheck
 	end
 

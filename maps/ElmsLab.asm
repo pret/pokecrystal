@@ -44,7 +44,7 @@ ElmsLab_PutElmAtLaptop:
 	return
 
 ElmsLab_AutowalkUpToElm:
-	applymovement $0, ElmsLab_WalkUpToElmMovement
+	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
 	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, RIGHT
 	loadfont
@@ -75,9 +75,9 @@ ElmsLab_ElmGetsEmail:
 	closetext
 	loadmovesprites
 	applymovement $2, ElmsLab_ElmToDefaultPositionMovement1
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	applymovement $2, ElmsLab_ElmToDefaultPositionMovement2
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext ElmText_ChooseAPokemon
 	closetext
@@ -151,7 +151,7 @@ LabTryToLeaveScript:
 	writetext LabWhereGoingText
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x78f70
+	applymovement PLAYER, MovementData_0x78f70
 	end
 
 CyndaquilPokeBallScript:
@@ -181,7 +181,7 @@ CyndaquilPokeBallScript:
 	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $3, ElmDirectionsScript
-	applymovement $0, AfterCyndaquilMovement
+	applymovement PLAYER, AfterCyndaquilMovement
 	jump ElmDirectionsScript
 
 TotodilePokeBallScript:
@@ -209,7 +209,7 @@ TotodilePokeBallScript:
 	keeptextopen
 	givepoke TOTODILE, 5, BERRY, 0
 	loadmovesprites
-	applymovement $0, AfterTotodileMovement
+	applymovement PLAYER, AfterTotodileMovement
 	jump ElmDirectionsScript
 
 ChikoritaPokeBallScript:
@@ -237,7 +237,7 @@ ChikoritaPokeBallScript:
 	keeptextopen
 	givepoke CHIKORITA, 5, BERRY, 0
 	loadmovesprites
-	applymovement $0, AfterChikoritaMovement
+	applymovement PLAYER, AfterChikoritaMovement
 	jump ElmDirectionsScript
 
 DidntChooseStarterScript:
@@ -247,7 +247,7 @@ DidntChooseStarterScript:
 	end
 
 ElmDirectionsScript:
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext ElmDirectionsText1
 	closetext
@@ -456,14 +456,14 @@ ElmJumpRightScript:
 
 AideScript_WalkPotions1:
 	applymovement $3, AideWalksRight1
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	scall AideScript_GivePotions
 	applymovement $3, AideWalksLeft1
 	end
 
 AideScript_WalkPotions2:
 	applymovement $3, AideWalksRight2
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	scall AideScript_GivePotions
 	applymovement $3, AideWalksLeft2
 	end
@@ -481,14 +481,14 @@ AideScript_GivePotions:
 
 AideScript_WalkBalls1:
 	applymovement $3, AideWalksRight1
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	scall AideScript_GiveYouBalls
 	applymovement $3, AideWalksLeft1
 	end
 
 AideScript_WalkBalls2:
 	applymovement $3, AideWalksRight2
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	scall AideScript_GiveYouBalls
 	applymovement $3, AideWalksLeft2
 	end
@@ -544,10 +544,10 @@ AideScript_AfterTheft:
 	end
 
 MeetCopScript2:
-	applymovement $0, MeetCopScript2_StepLeft
+	applymovement PLAYER, MeetCopScript2_StepLeft
 
 MeetCopScript:
-	applymovement $0, MeetCopScript_WalkUp
+	applymovement PLAYER, MeetCopScript_WalkUp
 CopScript:
 	spriteface $7, LEFT
 	loadfont

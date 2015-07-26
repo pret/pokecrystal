@@ -17,7 +17,7 @@ UnknownScript_0x748ad:
 	end
 
 UnknownScript_0x748b1:
-	applymovement $0, MovementData_0x74a32
+	applymovement PLAYER, MovementData_0x74a32
 	appear $2
 	dotrigger $0
 	setevent EVENT_GAVE_KURT_APRICORNS
@@ -37,7 +37,7 @@ SailorScript_0x748c0:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	waitbutton
-	applymovement $0, MovementData_0x74a30
+	applymovement PLAYER, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
 	special FadeBlackBGMap
 	waitbutton
@@ -73,7 +73,7 @@ UnknownScript_0x7491f:
 	iftrue UnknownScript_0x7498b
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x7498b
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	loadfont
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7494e
@@ -95,28 +95,28 @@ UnknownScript_0x7494e:
 	closetext
 	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
-	applymovement $0, MovementData_0x74a37
+	applymovement PLAYER, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
 UnknownScript_0x7496d:
 	writetext UnknownText_0x74b41
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x74a34
+	applymovement PLAYER, MovementData_0x74a34
 	end
 
 UnknownScript_0x74977:
 	writetext UnknownText_0x74ba8
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x74a34
+	applymovement PLAYER, MovementData_0x74a34
 	end
 
 UnknownScript_0x74981:
 	writetext UnknownText_0x74bce
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x74a34
+	applymovement PLAYER, MovementData_0x74a34
 	end
 
 UnknownScript_0x7498b:
@@ -132,7 +132,7 @@ UnknownScript_0x74992:
 	writetext UnknownText_0x74af6
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x74a34
+	applymovement PLAYER, MovementData_0x74a34
 	end
 
 SailorScript_0x7499c:
@@ -162,11 +162,11 @@ UnknownScript_0x749c0:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
-	applymovement $0, MovementData_0x74a3f
+	applymovement PLAYER, MovementData_0x74a3f
 	jump SailorScript_0x748c0
 
 UnknownScript_0x749e5:
-	applymovement $0, MovementData_0x74a49
+	applymovement PLAYER, MovementData_0x74a49
 	jump SailorScript_0x748c0
 
 UnknownScript_0x749ec:

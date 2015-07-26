@@ -239,7 +239,7 @@ PharmacistScript_0x56df1:
 	writetext UnknownText_0x56f55
 	closetext
 	loadmovesprites
-	spriteface $fe, LEFT
+	spriteface LAST_TALKED, LEFT
 	end
 
 PokefanMScript_0x56dfc:

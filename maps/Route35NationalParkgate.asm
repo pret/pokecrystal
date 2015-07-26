@@ -55,7 +55,7 @@ Route35NationalParkgate_IsContestDay:
 	return
 
 Route35NationalParkGate_LeavingContestEarly:
-	applymovement $0, MovementData_0x6a2e2
+	applymovement PLAYER, MovementData_0x6a2e2
 	spriteface $2, RIGHT
 	loadfont
 	checkcode VAR_CONTESTMINUTES
@@ -121,11 +121,11 @@ Route35NationalParkgate_OkayToProceed:
 Route35NationalParkgate_EnterContest:
 	checkcode VAR_FACING
 	if_equal LEFT, Route35NationalParkgate_FacingLeft
-	applymovement $0, MovementData_0x6a2e5
+	applymovement PLAYER, MovementData_0x6a2e5
 	end
 
 Route35NationalParkgate_FacingLeft:
-	applymovement $0, MovementData_0x6a2e9
+	applymovement PLAYER, MovementData_0x6a2e9
 	end
 
 Route35NationalParkgate_LeaveTheRestBehind:

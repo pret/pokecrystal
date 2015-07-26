@@ -16,7 +16,7 @@ UnknownScript_0x9b9fc:
 	end
 
 UnknownScript_0x9b9fd:
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	jump UnknownScript_0x9ba04
 
 OfficerScript_0x9ba03:
@@ -30,7 +30,7 @@ UnknownScript_0x9ba04:
 	writetext UnknownText_0x9ba5f
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x9ba27
+	applymovement PLAYER, MovementData_0x9ba27
 	end
 
 UnknownScript_0x9ba19:

@@ -77,7 +77,7 @@ UnknownScript_0x6c38f:
 	writetext UnknownText_0x6c549
 	closetext
 	loadmovesprites
-	follow $4, $0
+	follow $4, PLAYER
 	applymovement $4, MovementData_0x6c40a
 	applymovement $2, MovementData_0x6c403
 	applymovement $4, MovementData_0x6c40e

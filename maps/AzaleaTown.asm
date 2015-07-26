@@ -28,23 +28,23 @@ AzaleaTown_MapScriptHeader:
 
 UnknownScript_0x198018:
 	moveperson $b, $b, $b
-	spriteface $0, RIGHT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, RIGHT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x198134
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	jump UnknownScript_0x198049
 
 UnknownScript_0x198034:
-	spriteface $0, RIGHT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, RIGHT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x19813c
-	spriteface $0, UP
+	spriteface PLAYER, UP
 UnknownScript_0x198049:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
@@ -88,7 +88,7 @@ UnknownScript_0x198091:
 	writetext UnknownText_0x198233
 	closetext
 	loadmovesprites
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	applymovement $b, MovementData_0x198144
 	playsound SFX_EXIT_BUILDING
 	disappear $b
@@ -146,7 +146,7 @@ WoosterScript:
 	end
 
 UnknownScript_0x1980e5:
-	applymovement $0, MovementData_0x198148
+	applymovement PLAYER, MovementData_0x198148
 	loadfont
 	writetext UnknownText_0x1985df
 	keeptextopen

@@ -32,7 +32,7 @@ UnknownScript_0x180e52:
 	return
 
 UnknownScript_0x180e53:
-	applymovement $0, MovementData_0x180f33
+	applymovement PLAYER, MovementData_0x180f33
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -45,12 +45,12 @@ UnknownScript_0x180e53:
 
 UnknownScript_0x180e6a:
 	special Functionc48f
-	applymovement $0, MovementData_0x180f38
+	applymovement PLAYER, MovementData_0x180f38
 	jump LanceScript_0x180e7b
 
 UnknownScript_0x180e74:
 	special Functionc48f
-	applymovement $0, MovementData_0x180f3c
+	applymovement PLAYER, MovementData_0x180f3c
 LanceScript_0x180e7b:
 	spriteface $2, LEFT
 	loadfont
@@ -78,7 +78,7 @@ LanceScript_0x180e7b:
 	showemote EMOTE_SHOCK, $2, 15
 	spriteface $2, DOWN
 	pause 10
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	appear $3
 	applymovement $3, MovementData_0x180f41
 	loadfont
@@ -97,27 +97,27 @@ LanceScript_0x180e7b:
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x180f4c
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	loadfont
 	writetext UnknownText_0x18134b
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x180f4f
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x18137b
 	closetext
 	loadmovesprites
-	follow $2, $0
+	follow $2, PLAYER
 	spriteface $3, UP
 	spriteface $4, UP
 	applymovement $2, MovementData_0x180f53
 	stopfollow
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	applymovement $0, MovementData_0x180f55
+	applymovement PLAYER, MovementData_0x180f55
 	playsound SFX_EXIT_BUILDING
-	disappear $0
+	disappear PLAYER
 	applymovement $3, MovementData_0x180f57
 	showemote EMOTE_SHOCK, $3, 15
 	loadfont

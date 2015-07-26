@@ -1448,7 +1448,7 @@ CheckTrainerBattle:: ; 360d
 .startbattle
 	pop de
 	pop af
-	ld [$ffe0], a
+	ld [hLastTalked], a
 	ld a, b
 	ld [CurFruit], a
 	ld a, c
@@ -1465,7 +1465,7 @@ Function3674:: ; 3674
 Function367e:: ; 367e
 	call GetMapScriptHeaderBank
 	ld [EngineBuffer1], a
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	call GetMapObject
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc

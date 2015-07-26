@@ -39,7 +39,7 @@ GruntM1Script:
 	moveperson $8, $b, $6
 	appear $8
 	applymovement $8, KurtSlowpokeWellVictoryMovementData
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext KurtLeaveSlowpokeWellText
 	closetext

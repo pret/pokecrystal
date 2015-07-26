@@ -43,12 +43,12 @@ UnknownScript_0x5802c:
 
 UnknownScript_0x58031:
 	spriteface $3, UP
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	jump UnknownScript_0x58044
 
 UnknownScript_0x5803a:
 	spriteface $3, LEFT
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	jump UnknownScript_0x58044
 
 ScientistScript_0x58043:
@@ -59,11 +59,11 @@ UnknownScript_0x58044:
 	closetext
 	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
-	follow $3, $0
+	follow $3, PLAYER
 	applymovement $3, MovementData_0x580ba
 	disappear $3
 	stopfollow
-	applymovement $0, MovementData_0x580c5
+	applymovement PLAYER, MovementData_0x580c5
 	domaptrigger RUINS_OF_ALPH_RESEARCH_CENTER, $1
 	warpcheck
 	end
