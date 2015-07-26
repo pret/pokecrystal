@@ -393,7 +393,7 @@ LoadMapAttributes:: ; 2309
 	call SwitchToMapScriptHeaderBank
 	call Function234f
 	xor a
-	call Function2336
+	call ReadMapEventHeader
 	ret
 ; 2317
 
@@ -402,7 +402,7 @@ LoadMapAttributes_IgnoreHidden:: ; 2317
 	call SwitchToMapScriptHeaderBank
 	call Function234f
 	ld a, $1
-	call Function2336
+	call ReadMapEventHeader
 	ret
 ; 2326
 
@@ -415,7 +415,7 @@ Function2326:: ; 2326
 	ret
 ; 2336
 
-Function2336:: ; 2336
+ReadMapEventHeader:: ; 2336
 	push af
 	ld hl, MapEventHeaderPointer
 	ld a, [hli]
@@ -424,13 +424,13 @@ Function2336:: ; 2336
 rept 2
 	inc hl
 endr
-	call Function23da
-	call Function23f1
-	call Function2408
+	call ReadWarps
+	call ReadCoordEvents
+	call ReadSignposts
 	pop af
 	and a
 	ret nz
-	call Function241f
+	call ReadObjectEvents
 	ret
 ; 234f
 
@@ -539,7 +539,7 @@ Function23c3:: ; 23c3
 	ret
 ; 23da
 
-Function23da:: ; 23da
+ReadWarps:: ; 23da
 	ld a, [hli]
 	ld c, a
 	ld [wdbfb], a
@@ -555,7 +555,7 @@ Function23da:: ; 23da
 	ret
 ; 23f1
 
-Function23f1:: ; 23f1
+ReadCoordEvents:: ; 23f1
 	ld a, [hli]
 	ld c, a
 	ld [wCurrentMapXYTriggerCount], a
@@ -571,7 +571,7 @@ Function23f1:: ; 23f1
 	ret
 ; 2408
 
-Function2408:: ; 2408
+ReadSignposts:: ; 2408
 	ld a, [hli]
 	ld c, a
 	ld [wCurrentMapSignpostCount], a
@@ -587,7 +587,7 @@ Function2408:: ; 2408
 	ret
 ; 241f
 
-Function241f:: ; 241f
+ReadObjectEvents:: ; 241f
 	push hl
 	call Function2471
 	pop de
@@ -651,12 +651,12 @@ Function2457:: ; 2457
 
 Function2471:: ; 2471
 	ld hl, ObjectStruct1
-	ld bc, 40 * 12
+	ld bc, OBJECT_STRUCT_LENGTH * (NUM_OBJECT_STRUCTS - 1)
 	xor a
 	call ByteFill
 	ld hl, ObjectStruct1
-	ld de, 40
-	ld c, $c
+	ld de, OBJECT_STRUCT_LENGTH
+	ld c, NUM_OBJECT_STRUCTS - 1
 	xor a
 .asm_2484
 	ld [hl], a

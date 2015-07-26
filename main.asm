@@ -25236,7 +25236,7 @@ MenuDataHeader_0x24547: ; 0x24547
 Function2454f: ; 2454f
 	ld hl, wd81e
 	xor a
-	ld bc, $10
+	ld bc, NUM_OBJECTS
 	call ByteFill
 	nop
 	ld bc, MapObjects
@@ -25254,13 +25254,13 @@ Function2454f: ; 2454f
 	ld [de], a
 	inc de
 	pop bc
-	ld hl, $10
+	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop af
 	inc a
-	cp $10
+	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
 

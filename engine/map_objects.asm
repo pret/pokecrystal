@@ -2660,7 +2660,7 @@ Function5579: ; 5579
 
 Function5582: ; 5582
 	ld de, ObjectStructs
-	ld a, $d
+	ld a, NUM_OBJECT_STRUCTS
 .loop
 	push af
 	ld hl, OBJECT_04
@@ -2780,7 +2780,7 @@ Function561d: ; 561d
 ; 5629
 
 Function5629: ; 5629
-	cp $10
+	cp NUM_OBJECTS
 	ret nc
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
@@ -2788,7 +2788,7 @@ Function5629: ; 5629
 	ld a, [hl]
 	cp -1
 	ret z
-	cp $d
+	cp NUM_OBJECT_STRUCTS
 	ret nc
 	call GetObjectStruct
 	call GetObjectSprite
