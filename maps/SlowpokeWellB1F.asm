@@ -326,12 +326,12 @@ SlowpokeWellB1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_ROCKET, 11, 19, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET, 6, 9, OW_UP | $2, $0, -1, -1, $2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET, 10, 9, OW_LEFT | $1, $0, -1, -1, $2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET_GIRL, 8, 14, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_SLOWPOKE, 8, 11, OW_DOWN | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	person_event SPRITE_SLOWPOKE, 6, 10, OW_DOWN | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	person_event SPRITE_KURT, 18, 20, OW_UP | $3, $0, -1, -1, $0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
-	person_event SPRITE_BOULDER, 6, 7, OW_LEFT | $11, $0, -1, -1, $0, 0, SlowpokeWellB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 7, 14, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION
+	person_event SPRITE_ROCKET, 11, 19, $6, 0, 0, -1, -1, $2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 6, 9, $6, 0, 0, -1, -1, $2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 10, 9, $9, 0, 0, -1, -1, $2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET_GIRL, 8, 14, $9, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_SLOWPOKE, 8, 11, $1, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 6, 10, $1, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_KURT, 18, 20, $7, 0, 0, -1, -1, $0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
+	person_event SPRITE_BOULDER, 6, 7, $19, 0, 0, -1, -1, $0, 0, SlowpokeWellB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 7, 14, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION

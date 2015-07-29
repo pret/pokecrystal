@@ -38,4 +38,4 @@ TinTower9F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 5, 13, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b88, EVENT_TIN_TOWER_9F_HP_UP
+	person_event SPRITE_POKE_BALL, 5, 13, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x185b88, EVENT_TIN_TOWER_9F_HP_UP

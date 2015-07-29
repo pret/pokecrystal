@@ -257,6 +257,6 @@ GoldenrodBillsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_BILL, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, BillsHouseBill, EVENT_MET_BILL
-	person_event SPRITE_POKEFAN_F, 7, 9, OW_UP | $2, $0, -1, -1, $0, 0, BillsMom, -1
-	person_event SPRITE_TWIN, 8, 9, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BillsSister, -1
+	person_event SPRITE_BILL, 7, 6, $9, 0, 0, -1, -1, $0, 0, BillsHouseBill, EVENT_MET_BILL
+	person_event SPRITE_POKEFAN_F, 7, 9, $6, 0, 0, -1, -1, $0, 0, BillsMom, -1
+	person_event SPRITE_TWIN, 8, 9, $2, 1, 1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BillsSister, -1

@@ -61,4 +61,4 @@ Route19FuchsiaGate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x1ab3f6, -1
+	person_event SPRITE_OFFICER, 8, 4, $9, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x1ab3f6, -1

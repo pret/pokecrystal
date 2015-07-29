@@ -40,5 +40,5 @@ FuchsiaBillSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_F, 7, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x1963bd, -1
-	person_event SPRITE_YOUNGSTER, 8, 10, OW_UP | $0, $10, -1, -1, $0, 0, YoungsterScript_0x1963c0, -1
+	person_event SPRITE_POKEFAN_F, 7, 6, $9, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x1963bd, -1
+	person_event SPRITE_YOUNGSTER, 8, 10, $4, 1, 0, -1, -1, $0, 0, YoungsterScript_0x1963c0, -1

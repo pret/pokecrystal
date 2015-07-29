@@ -42,5 +42,5 @@ RockTunnel1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 22, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x743b5, EVENT_ROCK_TUNNEL_1F_ELIXER
-	person_event SPRITE_POKE_BALL, 19, 14, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x743b7, EVENT_ROCK_TUNNEL_1F_TM_STEEL_WING
+	person_event SPRITE_POKE_BALL, 22, 8, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x743b5, EVENT_ROCK_TUNNEL_1F_ELIXER
+	person_event SPRITE_POKE_BALL, 19, 14, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x743b7, EVENT_ROCK_TUNNEL_1F_TM_STEEL_WING

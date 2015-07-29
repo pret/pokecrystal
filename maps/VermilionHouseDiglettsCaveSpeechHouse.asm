@@ -34,4 +34,4 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GENTLEMAN, 7, 5, OW_UP | $0, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x192031, -1
+	person_event SPRITE_GENTLEMAN, 7, 5, $4, 1, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x192031, -1

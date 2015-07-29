@@ -28,4 +28,4 @@ TinTower7F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 5, 20, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185b05, EVENT_TIN_TOWER_7F_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 5, 20, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x185b05, EVENT_TIN_TOWER_7F_MAX_REVIVE

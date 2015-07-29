@@ -156,8 +156,8 @@ CeladonPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x71e22, -1
-	person_event SPRITE_GENTLEMAN, 9, 5, OW_UP | $1, $1, -1, -1, $0, 0, GentlemanScript_0x71e25, -1
-	person_event SPRITE_PHARMACIST, 7, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PharmacistScript_0x71e2b, -1
-	person_event SPRITE_COOLTRAINER_F, 10, 12, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x71e28, -1
-	person_event SPRITE_SUPER_NERD, 7, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x71e2e, EVENT_SET_WHEN_FOUGHT_HO_OH
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, $0, 0, NurseScript_0x71e22, -1
+	person_event SPRITE_GENTLEMAN, 9, 5, $5, 0, 1, -1, -1, $0, 0, GentlemanScript_0x71e25, -1
+	person_event SPRITE_PHARMACIST, 7, 4, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PharmacistScript_0x71e2b, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 12, $5, 0, 1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x71e28, -1
+	person_event SPRITE_SUPER_NERD, 7, 8, $6, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x71e2e, EVENT_SET_WHEN_FOUGHT_HO_OH

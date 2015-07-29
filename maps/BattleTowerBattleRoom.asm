@@ -155,5 +155,5 @@ BattleTowerBattleRoom_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 4, 8, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	person_event SPRITE_RECEPTIONIST, 10, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ObjectEvent, -1
+	person_event SPRITE_YOUNGSTER, 4, 8, $6, 0, 0, -1, -1, $0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	person_event SPRITE_RECEPTIONIST, 10, 5, $9, 0, 0, -1, -1, $0, 0, ObjectEvent, -1

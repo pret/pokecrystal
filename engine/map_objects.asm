@@ -2,44 +2,44 @@
 INCLUDE "engine/facings.asm"
 
 ObjectStruct3_Data:: ; 4273
-	db $00, $00, $01, $02, $00, $00
-	db $06, $00, $01, $0c, $00, $00
-	db $03, $00, $01, $00, $00, $00
-	db $04, $00, $01, $00, $00, $00
-	db $01, $00, $01, $00, $00, $00
-	db $02, $00, $01, $00, $00, $00
-	db $06, $00, $01, $00, $00, $00
-	db $06, $01, $01, $00, $00, $00
-	db $06, $02, $01, $00, $00, $00
-	db $06, $03, $01, $00, $00, $00
-	db $05, $00, $01, $00, $00, $00
-	db $07, $00, $01, $02, $00, $00
-	db $08, $00, $01, $00, $00, $00
-	db $09, $00, $01, $00, $00, $00
-	db $0a, $00, $01, $00, $00, $00
-	db $0b, $00, $01, $00, $00, $00
-	db $0c, $00, $01, $00, $00, $00
-	db $0d, $00, $01, $00, $00, $00
-	db $0e, $00, $01, $00, $00, $00
-	db $0f, $00, $01, $02, $00, $00
-	db $10, $00, $01, $02, $00, $00
-	db $15, $00, $09, $2e, $01, $c0
-	db $16, $00, $0a, $2e, $00, $00
-	db $06, $00, $01, $0c, $00, $00
-	db $06, $00, $01, $2e, $10, $00
-	db $11, $00, $01, $2e, $00, $40
-	db $12, $00, $01, $02, $00, $00
-	db $13, $00, $00, $8e, $01, $00
-	db $14, $00, $08, $8e, $02, $00
-	db $17, $00, $00, $82, $00, $00
-	db $19, $02, $01, $00, $00, $00
-	db $18, $03, $01, $00, $00, $00
-	db $11, $00, $0c, $2e, $01, $c0
-	db $11, $00, $0d, $2e, $01, $c0
-	db $1a, $00, $0e, $8e, $01, $00
-	db $1b, $00, $0f, $8e, $02, $00
-	db $03, $00, $01, $00, $00, $20
-	db $00, $00, $01, $00, $00, $00
+	db $00, $00, $01, $02, $00, $00 ; 00
+	db $06, $00, $01, $0c, $00, $00 ; 01
+	db $03, $00, $01, $00, $00, $00 ; 02
+	db $04, $00, $01, $00, $00, $00 ; 03
+	db $01, $00, $01, $00, $00, $00 ; 04
+	db $02, $00, $01, $00, $00, $00 ; 05
+	db $06, $00, $01, $00, $00, $00 ; 06
+	db $06, $01, $01, $00, $00, $00 ; 07
+	db $06, $02, $01, $00, $00, $00 ; 08
+	db $06, $03, $01, $00, $00, $00 ; 09
+	db $05, $00, $01, $00, $00, $00 ; 0a
+	db $07, $00, $01, $02, $00, $00 ; 0b
+	db $08, $00, $01, $00, $00, $00 ; 0c
+	db $09, $00, $01, $00, $00, $00 ; 0d
+	db $0a, $00, $01, $00, $00, $00 ; 0e
+	db $0b, $00, $01, $00, $00, $00 ; 0f
+	db $0c, $00, $01, $00, $00, $00 ; 10
+	db $0d, $00, $01, $00, $00, $00 ; 11
+	db $0e, $00, $01, $00, $00, $00 ; 12
+	db $0f, $00, $01, $02, $00, $00 ; 13
+	db $10, $00, $01, $02, $00, $00 ; 14
+	db $15, $00, $09, $2e, $01, $c0 ; 15
+	db $16, $00, $0a, $2e, $00, $00 ; 16
+	db $06, $00, $01, $0c, $00, $00 ; 17
+	db $06, $00, $01, $2e, $10, $00 ; 18
+	db $11, $00, $01, $2e, $00, $40 ; 19
+	db $12, $00, $01, $02, $00, $00 ; 1a
+	db $13, $00, $00, $8e, $01, $00 ; 1b
+	db $14, $00, $08, $8e, $02, $00 ; 1c
+	db $17, $00, $00, $82, $00, $00 ; 1d
+	db $19, $02, $01, $00, $00, $00 ; 1e
+	db $18, $03, $01, $00, $00, $00 ; 1f
+	db $11, $00, $0c, $2e, $01, $c0 ; 20
+	db $11, $00, $0d, $2e, $01, $c0 ; 21
+	db $1a, $00, $0e, $8e, $01, $00 ; 22
+	db $1b, $00, $0f, $8e, $02, $00 ; 23
+	db $03, $00, $01, $00, $00, $20 ; 24
+	db $00, $00, $01, $00, $00, $00 ; 25
 ; 4357
 
 
@@ -238,40 +238,40 @@ endr
 ; 445f
 
 Pointers445f: ; 445f
-	dw Function44a3
-	dw Function44a3
-	dw Function44b5
-	dw Function44aa
-	dw Function44c1
-	dw Function44aa
-	dw Function4508
-	dw Function44aa
-	dw Function4529
-	dw Function44aa
-	dw Function4539
-	dw Function44a3
-	dw Function456e
-	dw Function456e
-	dw Function457b
-	dw Function44a3
-	dw Function4582
-	dw Function4582
-	dw Function4589
-	dw Function4589
-	dw Function4590
-	dw Function45a4
-	dw Function45ab
-	dw Function44aa
-	dw Function45be
-	dw Function45be
-	dw Function45c5
-	dw Function45c5
-	dw Function45da
-	dw Function44a3
-	dw Function45ed
-	dw Function44a3
-	dw Function44e4
-	dw Function44aa
+	dw Function44a3 ; 00
+	dw Function44a3 ; 01
+	dw Function44b5 ; 02
+	dw Function44aa ; 03
+	dw Function44c1 ; 04
+	dw Function44aa ; 05
+	dw Function4508 ; 06
+	dw Function44aa ; 07
+	dw Function4529 ; 08
+	dw Function44aa ; 09
+	dw Function4539 ; 0a
+	dw Function44a3 ; 0b
+	dw Function456e ; 0c
+	dw Function456e ; 0d
+	dw Function457b ; 0e
+	dw Function44a3 ; 0f
+	dw Function4582 ; 10
+	dw Function4582 ; 11
+	dw Function4589 ; 12
+	dw Function4589 ; 13
+	dw Function4590 ; 14
+	dw Function45a4 ; 15
+	dw Function45ab ; 16
+	dw Function44aa ; 17
+	dw Function45be ; 18
+	dw Function45be ; 19
+	dw Function45c5 ; 1a
+	dw Function45c5 ; 1b
+	dw Function45da ; 1c
+	dw Function44a3 ; 1d
+	dw Function45ed ; 1e
+	dw Function44a3 ; 1f
+	dw Function44e4 ; 20
+	dw Function44aa ; 21
 ; 44a3
 
 Function44a3: ; 44a3
@@ -835,7 +835,7 @@ Function4769: ; 4769
 	jr z, .ok
 	push bc
 	call GetMapObject
-	ld hl, MAPOBJECT_FACING
+	ld hl, MAPOBJECT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -944,34 +944,34 @@ Function47dd: ; 47dd
 ; 47e9
 
 .Pointers ; 47e9
-	dw Function4821
-	dw Function4822
-	dw Function482c
-	dw Function4838
-	dw Function4842
-	dw Function4851
-	dw Function4869
-	dw Function487c
-	dw Function4882
-	dw Function4888
-	dw Function488e
-	dw Function4891
-	dw Function4894
-	dw Function4897
-	dw Function489d
-	dw Function48a0
-	dw Function48a6
-	dw Function48ac
-	dw Function48ff
-	dw Function49e5
-	dw Function4a21
-	dw Function4958
-	dw Function496e
-	dw Function4abc
-	dw Function498d
-	dw Function4984
-	dw Function4a46
-	dw Function4a89
+	dw Function4821 ; 00
+	dw Function4822 ; 01
+	dw Function482c ; 02
+	dw Function4838 ; 03
+	dw Function4842 ; 04
+	dw Function4851 ; 05
+	dw Function4869 ; 06
+	dw Function487c ; 07
+	dw Function4882 ; 08
+	dw Function4888 ; 09
+	dw Function488e ; 0a
+	dw Function4891 ; 0b
+	dw Function4894 ; 0c
+	dw Function4897 ; 0d
+	dw Function489d ; 0e
+	dw Function48a0 ; 0f
+	dw Function48a6 ; 10
+	dw Function48ac ; 11
+	dw Function48ff ; 12
+	dw Function49e5 ; 13
+	dw Function4a21 ; 14
+	dw Function4958 ; 15
+	dw Function496e ; 16
+	dw Function4abc ; 17
+	dw Function498d ; 18
+	dw Function4984 ; 19
+	dw Function4a46 ; 1a
+	dw Function4a89 ; 1b
 ; 4821
 
 Function4821: ; 4821
@@ -3293,7 +3293,7 @@ Function58e3: ; 58e3
 	jp z, Function5903
 	push bc
 	call GetMapObject
-	ld hl, MAPOBJECT_FACING
+	ld hl, MAPOBJECT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	pop bc

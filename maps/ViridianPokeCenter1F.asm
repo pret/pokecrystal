@@ -83,7 +83,7 @@ ViridianPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x9b690, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 12, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x9b693, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerFScript_0x9b6a7, -1
-	person_event SPRITE_BUG_CATCHER, 10, 5, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BugCatcherScript_0x9b6aa, -1
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, $0, 0, NurseScript_0x9b690, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 12, $5, 0, 1, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x9b693, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 9, $7, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerFScript_0x9b6a7, -1
+	person_event SPRITE_BUG_CATCHER, 10, 5, $9, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BugCatcherScript_0x9b6aa, -1

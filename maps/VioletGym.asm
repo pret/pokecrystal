@@ -294,7 +294,7 @@ VioletGym_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FALKNER, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FalknerScript_0x683c2, -1
-	person_event SPRITE_YOUNGSTER, 10, 11, OW_LEFT | $0, $2, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperRod, -1
-	person_event SPRITE_YOUNGSTER, 14, 6, OW_LEFT | $1, $2, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperAbe, -1
-	person_event SPRITE_GYM_GUY, 17, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, VioletGymGuyScript, -1
+	person_event SPRITE_FALKNER, 5, 9, $6, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FalknerScript_0x683c2, -1
+	person_event SPRITE_YOUNGSTER, 10, 11, $8, 0, 2, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperRod, -1
+	person_event SPRITE_YOUNGSTER, 14, 6, $9, 0, 2, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperAbe, -1
+	person_event SPRITE_GYM_GUY, 17, 11, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, VioletGymGuyScript, -1

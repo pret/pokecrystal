@@ -41,4 +41,4 @@ Route2Gate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SCIENTIST, 8, 10, OW_UP | $0, $20, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x9b952, -1
+	person_event SPRITE_SCIENTIST, 8, 10, $4, 2, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x9b952, -1

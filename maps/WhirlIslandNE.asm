@@ -26,4 +26,4 @@ WhirlIslandNE_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 15, 15, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c396, EVENT_WHIRL_ISLAND_NE_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 15, 15, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x18c396, EVENT_WHIRL_ISLAND_NE_ULTRA_BALL

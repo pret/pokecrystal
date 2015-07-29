@@ -57,6 +57,6 @@ OlivineMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x9cac7, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 10, OW_UP | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x9cace, -1
-	person_event SPRITE_LASS, 10, 5, OW_LEFT | $0, $0, -1, -1, $0, 0, LassScript_0x9cad1, -1
+	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, $0, 0, ClerkScript_0x9cac7, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 10, $5, 0, 2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x9cace, -1
+	person_event SPRITE_LASS, 10, 5, $8, 0, 0, -1, -1, $0, 0, LassScript_0x9cad1, -1

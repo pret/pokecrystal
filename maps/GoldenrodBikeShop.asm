@@ -125,4 +125,4 @@ GoldenrodBikeShop_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_CLERK, 6, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ClerkScript_0x54750, -1
+	person_event SPRITE_CLERK, 6, 11, $8, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ClerkScript_0x54750, -1

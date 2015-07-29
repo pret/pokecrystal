@@ -353,13 +353,13 @@ Route39_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_SAILOR, 33, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSailorEugene, -1
-	person_event SPRITE_POKEFAN_M, 26, 14, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanmDerek1, -1
-	person_event SPRITE_POKEFAN_F, 23, 15, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanfRuth, -1
-	person_event SPRITE_TAUROS, 16, 7, OW_UP | $12, $0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 15, 10, OW_UP | $12, $0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 19, 8, OW_UP | $12, $0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 17, 12, OW_UP | $12, $0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 11, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicNorman, -1
-	person_event SPRITE_FRUIT_TREE, 7, 13, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a5bf4, -1
-	person_event SPRITE_POKEFAN_F, 26, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x1a5bbe, -1
+	person_event SPRITE_SAILOR, 33, 17, $8, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSailorEugene, -1
+	person_event SPRITE_POKEFAN_M, 26, 14, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanmDerek1, -1
+	person_event SPRITE_POKEFAN_F, 23, 15, $9, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerPokefanfRuth, -1
+	person_event SPRITE_TAUROS, 16, 7, $16, 0, 0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 15, 10, $16, 0, 0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 19, 8, $16, 0, 0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 17, 12, $16, 0, 0, -1, -1, $0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 11, 17, $a, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerPsychicNorman, -1
+	person_event SPRITE_FRUIT_TREE, 7, 13, $1, 0, 0, -1, -1, $0, 0, FruitTreeScript_0x1a5bf4, -1
+	person_event SPRITE_POKEFAN_F, 26, 8, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x1a5bbe, -1

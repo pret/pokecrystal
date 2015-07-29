@@ -549,7 +549,7 @@ Function1a71:: ; 1a71
 	ld d, 0
 	ld hl, ObjectStruct3_Data + 1
 rept OBJECT_STRUCT_3_DATA_WIDTH
-	add hl,de
+	add hl, de
 endr
 	ld b, h
 	ld c, l

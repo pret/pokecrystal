@@ -320,7 +320,7 @@ OlivineCity_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 31, 30, OW_UP | $0, $10, -1, -1, $0, 0, SailorScript_0x1a88a3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, StandingYoungsterScript_0x1a88a6, -1
-	person_event SPRITE_SAILOR, 25, 21, OW_DOWN | $2, $11, -1, -1, $0, 0, SailorScript_0x1a88ba, -1
-	person_event SPRITE_OLIVINE_RIVAL, 15, 14, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY
+	person_event SPRITE_SAILOR, 31, 30, $4, 1, 0, -1, -1, $0, 0, SailorScript_0x1a88a3, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, StandingYoungsterScript_0x1a88a6, -1
+	person_event SPRITE_SAILOR, 25, 21, $2, 1, 1, -1, -1, $0, 0, SailorScript_0x1a88ba, -1
+	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, 0, 0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY

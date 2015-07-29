@@ -257,12 +257,12 @@ CeladonCity_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_FISHER, 15, 30, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a9f43, -1
-	person_event SPRITE_POLIWAG, 15, 31, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CeladonCityPoliwrath, -1
-	person_event SPRITE_TEACHER, 28, 24, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x1a9f50, -1
-	person_event SPRITE_GRAMPS, 20, 18, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x1a9f53, -1
-	person_event SPRITE_GRAMPS, 35, 12, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrampsScript_0x1a9f56, -1
-	person_event SPRITE_YOUNGSTER, 17, 22, OW_UP | $1, $2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a9f59, -1
-	person_event SPRITE_YOUNGSTER, 37, 28, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a9f5c, -1
-	person_event SPRITE_TEACHER, 18, 10, OW_DOWN | $2, $22, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x1a9f5f, -1
-	person_event SPRITE_LASS, 26, 11, OW_UP | $0, $20, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x1a9f62, -1
+	person_event SPRITE_FISHER, 15, 30, $9, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a9f43, -1
+	person_event SPRITE_POLIWAG, 15, 31, $16, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CeladonCityPoliwrath, -1
+	person_event SPRITE_TEACHER, 28, 24, $5, 0, 2, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x1a9f50, -1
+	person_event SPRITE_GRAMPS, 20, 18, $6, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x1a9f53, -1
+	person_event SPRITE_GRAMPS, 35, 12, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrampsScript_0x1a9f56, -1
+	person_event SPRITE_YOUNGSTER, 17, 22, $5, 0, 2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x1a9f59, -1
+	person_event SPRITE_YOUNGSTER, 37, 28, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a9f5c, -1
+	person_event SPRITE_TEACHER, 18, 10, $2, 2, 2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x1a9f5f, -1
+	person_event SPRITE_LASS, 26, 11, $4, 2, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, LassScript_0x1a9f62, -1

@@ -278,10 +278,10 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_COOLTRAINER_M, 7, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermSean, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_COOLTRAINER_F, 9, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCarol, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_SUPER_NERD, 9, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacEthan, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_POKEFAN_M, 21, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerNoland, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SAILOR, 30, 8, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x755f1, EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
-	person_event SPRITE_GENTLEMAN, 34, 11, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerGentlemanEdward, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_PHARMACIST, 34, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerBurglarCorey, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_COOLTRAINER_M, 7, 8, $a, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermSean, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_COOLTRAINER_F, 9, 5, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCarol, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_SUPER_NERD, 9, 5, $7, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacEthan, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_POKEFAN_M, 21, 8, $7, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerNoland, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SAILOR, 30, 8, $3, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x755f1, EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
+	person_event SPRITE_GENTLEMAN, 34, 11, $3, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerGentlemanEdward, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_PHARMACIST, 34, 6, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerBurglarCorey, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

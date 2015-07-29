@@ -38,4 +38,4 @@ Route16FuchsiaSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SUPER_NERD, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x73373, -1
+	person_event SPRITE_SUPER_NERD, 7, 6, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x73373, -1

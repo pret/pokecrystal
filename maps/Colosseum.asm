@@ -83,5 +83,5 @@ Colosseum_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_CHRIS, 8, 7, OW_LEFT | $1, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CHRIS, 8, 10, OW_LEFT | $0, $0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT
+	person_event SPRITE_CHRIS, 8, 7, $9, 0, 0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_CHRIS, 8, 10, $8, 0, 0, -1, -1, $0, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT

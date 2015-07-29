@@ -48,5 +48,5 @@ VermilionMagnetTrainSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_F, 7, 6, OW_LEFT | $0, $0, -1, -1, $0, 0, PokefanFScript_0x191eb7, -1
-	person_event SPRITE_YOUNGSTER, 7, 4, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x191eba, -1
+	person_event SPRITE_POKEFAN_F, 7, 6, $8, 0, 0, -1, -1, $0, 0, PokefanFScript_0x191eb7, -1
+	person_event SPRITE_YOUNGSTER, 7, 4, $a, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x191eba, -1

@@ -299,9 +299,9 @@ CeruleanCity_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_COOLTRAINER_M, 27, 19, OW_DOWN | $2, $22, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerMScript_0x184009, -1
-	person_event SPRITE_SUPER_NERD, 19, 27, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x18401d, -1
-	person_event SPRITE_SLOWPOKE, 28, 24, OW_DOWN | $1, $0, -1, -1, $0, 0, CeruleanCitySlowbro, -1
-	person_event SPRITE_COOLTRAINER_F, 28, 25, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x18402a, -1
-	person_event SPRITE_FISHER, 30, 34, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x18404a, -1
-	person_event SPRITE_YOUNGSTER, 16, 10, OW_DOWN | $3, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x184064, -1
+	person_event SPRITE_COOLTRAINER_M, 27, 19, $2, 2, 2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerMScript_0x184009, -1
+	person_event SPRITE_SUPER_NERD, 19, 27, $2, 1, 1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x18401d, -1
+	person_event SPRITE_SLOWPOKE, 28, 24, $1, 0, 0, -1, -1, $0, 0, CeruleanCitySlowbro, -1
+	person_event SPRITE_COOLTRAINER_F, 28, 25, $8, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x18402a, -1
+	person_event SPRITE_FISHER, 30, 34, $5, 0, 1, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x18404a, -1
+	person_event SPRITE_YOUNGSTER, 16, 10, $3, 0, 1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x184064, -1

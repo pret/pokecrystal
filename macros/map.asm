@@ -2,11 +2,11 @@ map: MACRO
 ; This is a silly hack to get around an rgbds bug.
 
 ; Ideally:
-;	db GROUP_\1, MAP_\1
+	db GROUP_\1, MAP_\1
 
-\1\@  EQUS "GROUP_\1"
-\1\@_2 EQUS "MAP_\1"
-	db \1\@, \1\@_2
+; \1\@  EQUS "GROUP_\1"
+; \1\@_2 EQUS "MAP_\1"
+	; db \1\@, \1\@_2
 ENDM
 
 roam_map: MACRO
@@ -23,16 +23,16 @@ roam_map: MACRO
 	db 0
 ENDM
 
-
 person_event: macro
 	db \1 ; sprite
 	db \2 ; y
 	db \3 ; x
-	db \4 ; facing
-	db \5 ; movement
-	db \6 ; clock_hour
-	db \7 ; clock_daytime
-	db \8 ; color_function
+	db \4 ; movement function
+	dn \5, \6 ; radius: y, x
+	db \7 ; clock_hour
+	db \8 ; clock_daytime
+	db \9 ; color_function
+	shift
 	db \9 ; sight_range
 	shift
 	dw \9 ; pointer
@@ -163,14 +163,16 @@ endc
 ENDM
 
 mapgroup: MACRO
-; map id, height, width
-\1\@  EQUS "GROUP_\1"
-\1\@_2 EQUS "MAP_\1"
-\1\@ EQU const_value
-	enum \1\@_2
+GROUP_\1 EQU const_value
+	enum MAP_\1
 \1_HEIGHT EQU \2
 \1_WIDTH EQU \3
 ENDM
+; map id, height, width
+; \1\@  EQUS "GROUP_\1"
+; \1\@_2 EQUS "MAP_\1"
+; \1\@ EQU const_value
+	; enum \1\@_2
 
 newgroup: MACRO
 const_value = const_value + 1

@@ -75,5 +75,5 @@ Route5CleanseTagSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRANNY, 9, 6, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x18b634, -1
-	person_event SPRITE_TEACHER, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x18b64f, -1
+	person_event SPRITE_GRANNY, 9, 6, $1f, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x18b634, -1
+	person_event SPRITE_TEACHER, 7, 9, $8, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x18b64f, -1

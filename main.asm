@@ -3221,7 +3221,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, 0, 0, OW_LEFT | $3, $ff, -1, -1, $0, 0, $0000, -1
+	person_event SPRITE_CHRIS, 0, 0, $0b, 15, 15, -1, -1, $0, 0, $0000, -1
 	; db $01, $00, $00, $0b, $ff, $ff, $ff, $00, $00, $00, $00, $ff, $ff
 ; 807e
 
@@ -3365,7 +3365,7 @@ Function811d: ; 811d
 	ld [wc2f3], a
 
 .no_color
-	ld hl, MAPOBJECT_FACING
+	ld hl, MAPOBJECT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	ld [wc2f4], a
@@ -3381,7 +3381,7 @@ Function811d: ; 811d
 	add hl, bc
 	ld a, [hl]
 	ld [wc2f7], a
-	ld hl, MAPOBJECT_MOVEMENT
+	ld hl, MAPOBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
 	ld [wc2f8], a
@@ -6060,7 +6060,7 @@ GetFacingObject: ; cf0d
 	ld a, [hl]
 	ld [hLastTalked], a
 	call GetMapObject
-	ld hl, MAPOBJECT_FACING
+	ld hl, MAPOBJECT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	ld d, a
@@ -9508,7 +9508,7 @@ GivePoke:: ; e277
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wd050
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop af
 	and a
@@ -9520,7 +9520,7 @@ GivePoke:: ; e277
 	push hl
 	ld a, [ScriptBank]
 	call GetFarHalfword
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop hl
@@ -9548,7 +9548,7 @@ endr
 	ld [de], a
 	inc hl
 	inc de
-	cp $50
+	cp "@"
 	jr nz, .asm_e32f
 	ld a, [ScriptBank]
 	call GetFarByte
@@ -49524,7 +49524,7 @@ Function50753: ; 50753
 	jr c, .asm_50774
 
 	ld a, d
-	cp 23
+	cp $17
 	jr nz, .asm_50774
 
 	ld a, $1
@@ -49539,6 +49539,7 @@ Function50753: ; 50753
 
 
 _CardKey: ; 50779
+; Are we even in the right map to use this?
 	ld a, [MapGroup]
 	cp GROUP_RADIO_TOWER_3F
 	jr nz, .nope
@@ -49546,7 +49547,7 @@ _CardKey: ; 50779
 	ld a, [MapNumber]
 	cp MAP_RADIO_TOWER_3F
 	jr nz, .nope
-
+; Are we facing the slot?
 	ld a, [PlayerDirection]
 	and $c
 	cp OW_UP
@@ -49559,8 +49560,8 @@ _CardKey: ; 50779
 	ld a, e
 	cp 6
 	jr nz, .nope
-
-	ld hl, UnknownScript_0x507af
+; Let's use the Card Key.
+	ld hl, .CardKeyScript
 	call ExitMenuCallScript
 	ld a, $1
 	ld [wd0ec], a
@@ -49572,13 +49573,14 @@ _CardKey: ; 50779
 	ret
 ; 507af
 
-UnknownScript_0x507af: ; 0x507af
+.CardKeyScript: ; 0x507af
 	loadmovesprites
 	farjump MapRadioTower3FSignpost2Script
 ; 0x507b4
 
 
 _BasementKey: ; 507b4
+; Are we even in the right map to use this?
 	ld a, [MapGroup]
 	cp GROUP_WAREHOUSE_ENTRANCE
 	jr nz, .nope
@@ -49586,7 +49588,7 @@ _BasementKey: ; 507b4
 	ld a, [MapNumber]
 	cp MAP_WAREHOUSE_ENTRANCE
 	jr nz, .nope
-
+; Are we on the tile in front of the door?
 	call GetFacingTileCoord
 	ld a, d
 	cp 22
@@ -49594,8 +49596,8 @@ _BasementKey: ; 507b4
 	ld a, e
 	cp 10
 	jr nz, .nope
-
-	ld hl, UnlockBasementDoorScript
+; Let's use the Basement Key
+	ld hl, .BasementKeyScript
 	call ExitMenuCallScript
 	ld a, 1
 	ld [wd0ec], a
@@ -49607,7 +49609,7 @@ _BasementKey: ; 507b4
 	ret
 ; 507e1
 
-UnlockBasementDoorScript: ; 0x507e1
+.BasementKeyScript: ; 0x507e1
 	loadmovesprites
 	farjump BasementDoorScript
 ; 0x507e6
@@ -49699,23 +49701,23 @@ Function5084a: ; 5084a
 	ld hl, PartyMon1Species
 	ld bc, PartyMon2 - PartyMon1
 	and a
-	jr z, .asm_5087b
+	jr z, .copywholestruct
 	ld hl, OTPartyMon1Species
 	ld bc, OTPartyMon2 - OTPartyMon1
-	cp $1
-	jr z, .asm_5087b
-	ld bc, $0020
+	cp OTPARTYMON
+	jr z, .copywholestruct
+	ld bc, BOXMON_STRUCT_LENGTH
 	callab Functione5bb
-	jr .asm_5088a
+	jr .done
 
-.asm_5087b
+.copywholestruct
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, TempMonSpecies
 	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 
-.asm_5088a
+.done
 	ret
 ; 5088b
 
@@ -49778,41 +49780,41 @@ Function50893: ; 50893
 Function508d5: ; 508d5
 	ld a, [MonType]
 	and a ; PARTYMON
-	jr z, .asm_508e7
+	jr z, .partymon
 	cp OTPARTYMON
-	jr z, .asm_508ec
+	jr z, .otpartymon
 	cp BOXMON
-	jr z, .asm_508f1
-	cp $3
-	jr z, .asm_50900
+	jr z, .boxmon
+	cp BREEDMON
+	jr z, .breedmon
 	; WILDMON
 
-.asm_508e7
+.partymon
 	ld hl, PartySpecies
-	jr .asm_50905
+	jr .done
 
-.asm_508ec
+.otpartymon
 	ld hl, OTPartySpecies
-	jr .asm_50905
+	jr .done
 
-.asm_508f1
+.boxmon
 	ld a, 1 ; BANK(sBoxSpecies)
 	call GetSRAMBank
 	ld hl, sBoxSpecies
-	call .asm_50905
+	call .done
 	call CloseSRAM
 	ret
 
-.asm_50900
+.breedmon
 	ld a, [wBreedMon1Species]
-	jr .asm_50909
+	jr .done2
 
-.asm_50905
+.done
 	ld d, 0
 	add hl, de
 	ld a, [hl]
 
-.asm_50909
+.done2
 	ld [CurPartySpecies], a
 	ret
 ; 5090d
@@ -73073,10 +73075,12 @@ Flypoints: ; 91c5e
 	const_def
 
 flypoint: MACRO
-\1\@FLY   EQUS "FLY_\1"
-\1\@SPAWN EQUS "SPAWN_\1"
-	const \1\@FLY
-	db \2, \1\@SPAWN
+; \1\@FLY   EQUS "FLY_\1"
+; \1\@SPAWN EQUS "SPAWN_\1"
+	; const \1\@FLY
+	; db \2, \1\@SPAWN
+	const FLY_\1
+	db \2, SPAWN_\1
 ENDM
 
 ; Johto

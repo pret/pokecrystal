@@ -89,5 +89,5 @@ PalletTown_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 12, 7, OW_DOWN | $2, $22, -1, -1, $0, 0, TeacherScript_0x1ac6d5, -1
-	person_event SPRITE_FISHER, 18, 16, OW_UP | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1ac6d8, -1
+	person_event SPRITE_TEACHER, 12, 7, $2, 2, 2, -1, -1, $0, 0, TeacherScript_0x1ac6d5, -1
+	person_event SPRITE_FISHER, 18, 16, $5, 0, 2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1ac6d8, -1

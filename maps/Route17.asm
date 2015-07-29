@@ -150,7 +150,7 @@ Route17_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_BIKER, 21, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerBikerRiley, -1
-	person_event SPRITE_BIKER, 72, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerBikerJoel, -1
-	person_event SPRITE_BIKER, 57, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBikerGlenn, -1
-	person_event SPRITE_BIKER, 84, 10, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerBikerCharles, -1
+	person_event SPRITE_BIKER, 21, 8, $a, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerBikerRiley, -1
+	person_event SPRITE_BIKER, 72, 13, $6, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerBikerJoel, -1
+	person_event SPRITE_BIKER, 57, 7, $a, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBikerGlenn, -1
+	person_event SPRITE_BIKER, 84, 10, $9, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerBikerCharles, -1

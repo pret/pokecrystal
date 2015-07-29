@@ -64,4 +64,4 @@ Route26HealSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_TEACHER, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7b125, -1
+	person_event SPRITE_TEACHER, 7, 6, $6, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7b125, -1

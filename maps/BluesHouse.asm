@@ -158,4 +158,4 @@ BluesHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_DAISY, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, DaisyScript_0x19b0d0, -1
+	person_event SPRITE_DAISY, 7, 6, $3, 0, 0, -1, -1, $0, 0, DaisyScript_0x19b0d0, -1

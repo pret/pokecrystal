@@ -91,5 +91,5 @@ Route18_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 16, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBoris, -1
-	person_event SPRITE_YOUNGSTER, 10, 17, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBob, -1
+	person_event SPRITE_YOUNGSTER, 16, 13, $a, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBoris, -1
+	person_event SPRITE_YOUNGSTER, 10, 17, $6, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBob, -1
