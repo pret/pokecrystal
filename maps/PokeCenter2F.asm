@@ -302,7 +302,7 @@ LinkReceptionistScript_TimeCapsule:
 	special Special_SetBitsForTimeCapsuleRequest
 	faceplayer
 	loadfont
-	writetext Text_TimeCapsuleRecptionistIntro
+	writetext Text_TimeCapsuleReceptionistIntro
 	yesorno
 	iffalse .Cancel
 	special Special_CheckTimeCapsuleCompatibility
@@ -839,7 +839,7 @@ Text_TradeReceptionistIntro:
 	line "trade?"
 	done
 
-Text_TimeCapsuleRecptionistIntro:
+Text_TimeCapsuleReceptionistIntro:
 	text "Welcome to CABLE"
 	line "CLUB TIME CAPSULE."
 
