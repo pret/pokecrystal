@@ -125,6 +125,6 @@ RuinsofAlphInnerChamber_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_FISHER, 11, 7, $3, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x58f7d, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	person_event SPRITE_TEACHER, 17, 18, $2, 1, 1, -1, -1, $0, 0, TeacherScript_0x58f80, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	person_event SPRITE_GRAMPS, 23, 15, $7, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x58f83, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	person_event SPRITE_FISHER, 11, 7, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x58f7d, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	person_event SPRITE_TEACHER, 17, 18, $2, 1, 1, -1, -1, 0, 0, 0, TeacherScript_0x58f80, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	person_event SPRITE_GRAMPS, 23, 15, $7, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, GrampsScript_0x58f83, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS

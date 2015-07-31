@@ -513,14 +513,14 @@ Route44_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_FISHER, 7, 39, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherWilton1, -1
-	person_event SPRITE_FISHER, 17, 23, $9, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherEdgar, -1
-	person_event SPRITE_YOUNGSTER, 13, 14, $1f, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicPhil, -1
-	person_event SPRITE_SUPER_NERD, 6, 47, $1f, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPokemaniacZach, -1
-	person_event SPRITE_YOUNGSTER, 9, 55, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerBird_keeperVance1, -1
-	person_event SPRITE_COOLTRAINER_M, 19, 45, $8, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainermAllen, -1
-	person_event SPRITE_COOLTRAINER_F, 18, 35, $8, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerCooltrainerfCybil, -1
-	person_event SPRITE_FRUIT_TREE, 9, 13, $1, 0, 0, -1, -1, $0, 0, FruitTreeScript_0x19da40, -1
-	person_event SPRITE_POKE_BALL, 12, 34, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x19da42, EVENT_ROUTE_44_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 8, 49, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x19da44, EVENT_ROUTE_44_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 13, 18, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x19da46, EVENT_ROUTE_44_MAX_REPEL
+	person_event SPRITE_FISHER, 7, 39, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherWilton1, -1
+	person_event SPRITE_FISHER, 17, 23, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherEdgar, -1
+	person_event SPRITE_YOUNGSTER, 13, 14, $1f, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPsychicPhil, -1
+	person_event SPRITE_SUPER_NERD, 6, 47, $1f, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerPokemaniacZach, -1
+	person_event SPRITE_YOUNGSTER, 9, 55, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, TrainerBird_keeperVance1, -1
+	person_event SPRITE_COOLTRAINER_M, 19, 45, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 5, TrainerCooltrainermAllen, -1
+	person_event SPRITE_COOLTRAINER_F, 18, 35, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 5, TrainerCooltrainerfCybil, -1
+	person_event SPRITE_FRUIT_TREE, 9, 13, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19da40, -1
+	person_event SPRITE_POKE_BALL, 12, 34, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da42, EVENT_ROUTE_44_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 8, 49, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da44, EVENT_ROUTE_44_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 13, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da46, EVENT_ROUTE_44_MAX_REPEL

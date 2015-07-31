@@ -219,8 +219,8 @@ EcruteakPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, $0, 0, NurseScript_0x98eb0, -1
-	person_event SPRITE_POKEFAN_M, 10, 11, $a, 0, 0, -1, -1, $0, 0, PokefanMScript_0x98eb3, -1
-	person_event SPRITE_COOLTRAINER_F, 8, 5, $3, 0, 0, -1, -1, $0, 0, CooltrainerFScript_0x98ebf, -1
-	person_event SPRITE_GYM_GUY, 5, 11, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GymGuyScript_0x98ec2, -1
-	person_event SPRITE_BILL, 11, 4, $9, 0, 0, -1, -1, $0, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x98eb0, -1
+	person_event SPRITE_POKEFAN_M, 10, 11, $a, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x98eb3, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 5, $3, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x98ebf, -1
+	person_event SPRITE_GYM_GUY, 5, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GymGuyScript_0x98ec2, -1
+	person_event SPRITE_BILL, 11, 4, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL

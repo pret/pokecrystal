@@ -148,4 +148,4 @@ WillsRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_WILL, 11, 9, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, WillScript_0x1804f8, -1
+	person_event SPRITE_WILL, 11, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, WillScript_0x1804f8, -1

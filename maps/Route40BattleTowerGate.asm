@@ -88,5 +88,5 @@ Route40BattleTowerGate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_ROCKER, 7, 7, $3, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, RockerScript_0x9f669, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
-	person_event SPRITE_TWIN, 9, 11, $4, 1, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, TwinScript_0x9f66c, -1
+	person_event SPRITE_ROCKER, 7, 7, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, RockerScript_0x9f669, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_TWIN, 9, 11, $4, 1, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, TwinScript_0x9f66c, -1

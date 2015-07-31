@@ -232,9 +232,9 @@ GoldenrodDeptStore5F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_CLERK, 9, 12, $7, 0, 0, -1, -1, $0, 0, ClerkScript_0x5609c, -1
-	person_event SPRITE_LASS, 10, 7, $2, 1, 1, -1, -1, $0, 0, LassScript_0x56130, -1
-	person_event SPRITE_COOLTRAINER_M, 7, 10, $3, 0, 0, -1, -1, $0, 0, CooltrainerMScript_0x56133, -1
-	person_event SPRITE_POKEFAN_M, 9, 17, $2, 2, 2, -1, -1, $0, 0, PokefanMScript_0x5613a, -1
-	person_event SPRITE_TWIN, 5, 13, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x56118, -1
-	person_event SPRITE_RECEPTIONIST, 9, 11, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY
+	person_event SPRITE_CLERK, 9, 12, $7, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x5609c, -1
+	person_event SPRITE_LASS, 10, 7, $2, 1, 1, -1, -1, 0, 0, 0, LassScript_0x56130, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 10, $3, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x56133, -1
+	person_event SPRITE_POKEFAN_M, 9, 17, $2, 2, 2, -1, -1, 0, 0, 0, PokefanMScript_0x5613a, -1
+	person_event SPRITE_TWIN, 5, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TwinScript_0x56118, -1
+	person_event SPRITE_RECEPTIONIST, 9, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY

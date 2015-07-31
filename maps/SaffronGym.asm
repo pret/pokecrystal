@@ -330,9 +330,9 @@ SaffronGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SABRINA, 12, 13, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SabrinaScript_0x189c2e, -1
-	person_event SPRITE_GRANNY, 20, 21, $a, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerMediumRebecca, -1
-	person_event SPRITE_YOUNGSTER, 20, 7, $a, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicFranklin, -1
-	person_event SPRITE_GRANNY, 8, 7, $a, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerMediumDoris, -1
-	person_event SPRITE_YOUNGSTER, 8, 21, $a, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicJared, -1
-	person_event SPRITE_GYM_GUY, 18, 13, $6, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SaffronGymGuyScript, -1
+	person_event SPRITE_SABRINA, 12, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SabrinaScript_0x189c2e, -1
+	person_event SPRITE_GRANNY, 20, 21, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerMediumRebecca, -1
+	person_event SPRITE_YOUNGSTER, 20, 7, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPsychicFranklin, -1
+	person_event SPRITE_GRANNY, 8, 7, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerMediumDoris, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 2, TrainerPsychicJared, -1
+	person_event SPRITE_GYM_GUY, 18, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SaffronGymGuyScript, -1

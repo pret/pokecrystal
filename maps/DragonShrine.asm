@@ -681,7 +681,7 @@ DragonShrine_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_ELDER, 5, 9, $6, 0, 0, -1, -1, $0, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_ELDER, 8, 6, $9, 0, 0, -1, -1, $0, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_ELDER, 8, 11, $8, 0, 0, -1, -1, $0, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CLAIR, 12, 8, $7, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
+	person_event SPRITE_ELDER, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 8, 6, $9, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 8, 11, $8, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_CLAIR, 12, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

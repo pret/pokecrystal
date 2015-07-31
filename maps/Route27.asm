@@ -479,12 +479,12 @@ Route27_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_COOLTRAINER_M, 11, 52, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermBlake, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 62, $9, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainermBrian, -1
-	person_event SPRITE_COOLTRAINER_F, 14, 76, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainerfReena, -1
-	person_event SPRITE_COOLTRAINER_F, 10, 41, $1f, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainerfMegan, -1
-	person_event SPRITE_YOUNGSTER, 11, 69, $8, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPsychicGilbert, -1
-	person_event SPRITE_YOUNGSTER, 17, 62, $9, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperJose2, -1
-	person_event SPRITE_POKE_BALL, 16, 64, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x1a0a62, EVENT_ROUTE_27_TM_SOLARBEAM
-	person_event SPRITE_POKE_BALL, 16, 57, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x1a0a64, EVENT_ROUTE_27_RARE_CANDY
-	person_event SPRITE_FISHER, 14, 25, $3, 0, 0, -1, -1, $0, 3, FisherScript_0x1a089c, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 52, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermBlake, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 62, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 4, TrainerCooltrainermBrian, -1
+	person_event SPRITE_COOLTRAINER_F, 14, 76, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 4, TrainerCooltrainerfReena, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 41, $1f, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerCooltrainerfMegan, -1
+	person_event SPRITE_YOUNGSTER, 11, 69, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPsychicGilbert, -1
+	person_event SPRITE_YOUNGSTER, 17, 62, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBird_keeperJose2, -1
+	person_event SPRITE_POKE_BALL, 16, 64, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a0a62, EVENT_ROUTE_27_TM_SOLARBEAM
+	person_event SPRITE_POKE_BALL, 16, 57, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a0a64, EVENT_ROUTE_27_RARE_CANDY
+	person_event SPRITE_FISHER, 14, 25, $3, 0, 0, -1, -1, 0, 0, 3, FisherScript_0x1a089c, -1

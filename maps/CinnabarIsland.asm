@@ -146,4 +146,4 @@ CinnabarIsland_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_BLUE, 10, 13, $3, 0, 0, -1, -1, $0, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	person_event SPRITE_BLUE, 10, 13, $3, 0, 0, -1, -1, 0, 0, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

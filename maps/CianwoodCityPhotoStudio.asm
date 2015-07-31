@@ -62,4 +62,4 @@ CianwoodCityPhotoStudio_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FishingGuruScript_0x9e0e0, -1
+	person_event SPRITE_FISHING_GURU, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FishingGuruScript_0x9e0e0, -1

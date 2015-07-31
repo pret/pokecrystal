@@ -209,6 +209,6 @@ Route35Goldenrodgate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 8, 4, $9, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x69d37, -1
-	person_event SPRITE_POKEFAN_F, 8, 10, $4, 1, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanFScript_0x69dc6, -1
-	person_event SPRITE_FISHER, 6, 7, $3, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x69dda, -1
+	person_event SPRITE_OFFICER, 8, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, OfficerScript_0x69d37, -1
+	person_event SPRITE_POKEFAN_F, 8, 10, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PokefanFScript_0x69dc6, -1
+	person_event SPRITE_FISHER, 6, 7, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x69dda, -1

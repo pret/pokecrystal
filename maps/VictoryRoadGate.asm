@@ -118,6 +118,6 @@ VictoryRoadGate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 15, 12, $9, 0, 0, -1, -1, $0, 0, OfficerScript_0x9ba03, -1
-	person_event SPRITE_BLACK_BELT, 9, 11, $9, 0, 0, -1, -1, $0, 0, BlackBeltScript_0x9ba21, EVENT_OPENED_MT_SILVER
-	person_event SPRITE_BLACK_BELT, 9, 16, $8, 0, 0, -1, -1, $0, 0, BlackBeltScript_0x9ba24, EVENT_FOUGHT_SNORLAX
+	person_event SPRITE_OFFICER, 15, 12, $9, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x9ba03, -1
+	person_event SPRITE_BLACK_BELT, 9, 11, $9, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x9ba21, EVENT_OPENED_MT_SILVER
+	person_event SPRITE_BLACK_BELT, 9, 16, $8, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x9ba24, EVENT_FOUGHT_SNORLAX

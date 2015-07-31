@@ -3221,7 +3221,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, 0, 0, $0b, 15, 15, -1, -1, $0, 0, $0000, -1
+	person_event SPRITE_CHRIS, 0, 0, $0b, 15, 15, -1, -1, 0, 0, 0, $0000, -1
 	; db $01, $00, $00, $0b, $ff, $ff, $ff, $00, $00, $00, $00, $ff, $ff
 ; 807e
 

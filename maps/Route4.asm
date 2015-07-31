@@ -133,7 +133,7 @@ Route4_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_YOUNGSTER, 13, 21, $6, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperHank, -1
-	person_event SPRITE_LASS, 12, 13, $8, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerPicnickerHope, -1
-	person_event SPRITE_LASS, 10, 25, $9, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerPicnickerSharon, -1
-	person_event SPRITE_POKE_BALL, 7, 30, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x1ae20f, EVENT_ROUTE_4_HP_UP
+	person_event SPRITE_YOUNGSTER, 13, 21, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBird_keeperHank, -1
+	person_event SPRITE_LASS, 12, 13, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 4, TrainerPicnickerHope, -1
+	person_event SPRITE_LASS, 10, 25, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 4, TrainerPicnickerSharon, -1
+	person_event SPRITE_POKE_BALL, 7, 30, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1ae20f, EVENT_ROUTE_4_HP_UP

@@ -75,6 +75,6 @@ CeruleanPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, $0, 0, NurseScript_0x18820f, -1
-	person_event SPRITE_SUPER_NERD, 8, 12, $5, 0, 1, -1, -1, $0, 0, SuperNerdScript_0x188212, -1
-	person_event SPRITE_GYM_GUY, 9, 5, $2, 1, 1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GymGuyScript_0x18821e, -1
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18820f, -1
+	person_event SPRITE_SUPER_NERD, 8, 12, $5, 0, 1, -1, -1, 0, 0, 0, SuperNerdScript_0x188212, -1
+	person_event SPRITE_GYM_GUY, 9, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GymGuyScript_0x18821e, -1

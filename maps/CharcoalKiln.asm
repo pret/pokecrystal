@@ -163,6 +163,6 @@ CharcoalKiln_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_BLACK_BELT, 7, 6, $3, 0, 0, -1, -1, $0, 0, CharcoalKilnBoss, EVENT_CHARCOAL_KILN_BOSS
-	person_event SPRITE_YOUNGSTER, 7, 9, $2, 1, 1, -1, -1, $0, 0, CharcoalKilnApprentice, EVENT_CHARCOAL_KILN_APPRENTICE
-	person_event SPRITE_MOLTRES, 10, 9, $16, 2, 2, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, CharcoalKilnFarfetchd, EVENT_CHARCOAL_KILN_FARFETCH_D
+	person_event SPRITE_BLACK_BELT, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, CharcoalKilnBoss, EVENT_CHARCOAL_KILN_BOSS
+	person_event SPRITE_YOUNGSTER, 7, 9, $2, 1, 1, -1, -1, 0, 0, 0, CharcoalKilnApprentice, EVENT_CHARCOAL_KILN_APPRENTICE
+	person_event SPRITE_MOLTRES, 10, 9, $16, 2, 2, -1, -1, 8 + PAL_OW_BROWN, 0, 0, CharcoalKilnFarfetchd, EVENT_CHARCOAL_KILN_FARFETCH_D

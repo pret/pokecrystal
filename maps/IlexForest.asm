@@ -950,14 +950,14 @@ IlexForest_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_BIRD, 35, 18, $3, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BirdScript_0x6eb8f, EVENT_ILEX_FOREST_FARFETCHD
-	person_event SPRITE_YOUNGSTER, 32, 11, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6eb7b, EVENT_ILEX_FOREST_APPRENTICE
-	person_event SPRITE_BLACK_BELT, 32, 9, $9, 0, 0, -1, -1, $0, 0, BlackBeltScript_0x6edae, EVENT_ILEX_FOREST_CHARCOAL_MASTER
-	person_event SPRITE_ROCKER, 18, 19, $9, 0, 0, -1, -1, $0, 0, RockerScript_0x6edde, -1
-	person_event SPRITE_POKE_BALL, 36, 24, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x6ee10, EVENT_ILEX_FOREST_REVIVE
-	person_event SPRITE_KURT, 33, 12, $7, 0, 0, -1, -1, $0, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
-	person_event SPRITE_LASS, 28, 7, $9, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x6ee0d, EVENT_ILEX_FOREST_LASS
-	person_event SPRITE_YOUNGSTER, 5, 16, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $82, 0, TrainerBug_catcherWayne, -1
-	person_event SPRITE_POKE_BALL, 21, 13, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x6ee12, EVENT_ILEX_FOREST_X_ATTACK
-	person_event SPRITE_POKE_BALL, 11, 21, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x6ee14, EVENT_ILEX_FOREST_ANTIDOTE
-	person_event SPRITE_POKE_BALL, 5, 31, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x6ee16, EVENT_ILEX_FOREST_ETHER
+	person_event SPRITE_BIRD, 35, 18, $3, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, BirdScript_0x6eb8f, EVENT_ILEX_FOREST_FARFETCHD
+	person_event SPRITE_YOUNGSTER, 32, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x6eb7b, EVENT_ILEX_FOREST_APPRENTICE
+	person_event SPRITE_BLACK_BELT, 32, 9, $9, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x6edae, EVENT_ILEX_FOREST_CHARCOAL_MASTER
+	person_event SPRITE_ROCKER, 18, 19, $9, 0, 0, -1, -1, 0, 0, 0, RockerScript_0x6edde, -1
+	person_event SPRITE_POKE_BALL, 36, 24, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee10, EVENT_ILEX_FOREST_REVIVE
+	person_event SPRITE_KURT, 33, 12, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
+	person_event SPRITE_LASS, 28, 7, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x6ee0d, EVENT_ILEX_FOREST_LASS
+	person_event SPRITE_YOUNGSTER, 5, 16, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 0, TrainerBug_catcherWayne, -1
+	person_event SPRITE_POKE_BALL, 21, 13, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee12, EVENT_ILEX_FOREST_X_ATTACK
+	person_event SPRITE_POKE_BALL, 11, 21, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee14, EVENT_ILEX_FOREST_ANTIDOTE
+	person_event SPRITE_POKE_BALL, 5, 31, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee16, EVENT_ILEX_FOREST_ETHER

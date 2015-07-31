@@ -93,7 +93,7 @@ GoldenrodDeptStore1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_RECEPTIONIST, 5, 14, $6, 0, 0, -1, -1, $0, 0, ReceptionistScript_0x55981, -1
-	person_event SPRITE_POKEFAN_F, 8, 9, $6, 0, 0, -1, -1, $0, 0, PokefanFScript_0x55987, -1
-	person_event SPRITE_BUG_CATCHER, 9, 9, $5, 0, 1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BugCatcherScript_0x5598a, -1
-	person_event SPRITE_GENTLEMAN, 9, 15, $2, 1, 1, -1, -1, $0, 0, GentlemanScript_0x55984, -1
+	person_event SPRITE_RECEPTIONIST, 5, 14, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x55981, -1
+	person_event SPRITE_POKEFAN_F, 8, 9, $6, 0, 0, -1, -1, 0, 0, 0, PokefanFScript_0x55987, -1
+	person_event SPRITE_BUG_CATCHER, 9, 9, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugCatcherScript_0x5598a, -1
+	person_event SPRITE_GENTLEMAN, 9, 15, $2, 1, 1, -1, -1, 0, 0, 0, GentlemanScript_0x55984, -1

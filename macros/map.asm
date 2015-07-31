@@ -31,7 +31,8 @@ person_event: macro
 	dn \5, \6 ; radius: y, x
 	db \7 ; clock_hour
 	db \8 ; clock_daytime
-	db \9 ; color_function
+	shift
+	dn \8, \9 ; color_function
 	shift
 	db \9 ; sight_range
 	shift

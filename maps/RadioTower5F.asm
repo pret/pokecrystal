@@ -439,8 +439,8 @@ RadioTower5F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_GENTLEMAN, 10, 7, $3, 0, 0, -1, -1, $0, 0, Director, -1
-	person_event SPRITE_ROCKET, 9, 17, $8, 0, 0, -1, -1, $0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, 0, 0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKER, 9, 17, $8, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_POKE_BALL, 9, 12, $1, 0, 0, -1, -1, $1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL
+	person_event SPRITE_GENTLEMAN, 10, 7, $3, 0, 0, -1, -1, 0, 0, 0, Director, -1
+	person_event SPRITE_ROCKET, 9, 17, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKER, 9, 17, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_POKE_BALL, 9, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL

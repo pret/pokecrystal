@@ -358,6 +358,6 @@ LancesRoom_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_LANCE, 7, 9, $6, 0, 0, -1, -1, $0, 0, LanceScript_0x180e7b, -1
-	person_event SPRITE_TEACHER, 11, 8, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
-	person_event SPRITE_OAK, 11, 8, $7, 0, 0, -1, -1, $0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_LANCE, 7, 9, $6, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x180e7b, -1
+	person_event SPRITE_TEACHER, 11, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_OAK, 11, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

@@ -862,15 +862,15 @@ Route36NationalParkgate_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_OFFICER, 7, 4, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Route36OfficerScriptContest, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
-	person_event SPRITE_YOUNGSTER, 9, 6, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad06, EVENT_BUG_CATCHING_CONTESTANT_1B
-	person_event SPRITE_YOUNGSTER, 9, 8, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6ad1a, EVENT_BUG_CATCHING_CONTESTANT_2B
-	person_event SPRITE_ROCKER, 10, 6, $7, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, RockerScript_0x6ad2e, EVENT_BUG_CATCHING_CONTESTANT_3B
-	person_event SPRITE_POKEFAN_M, 9, 10, $7, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x6ad42, EVENT_BUG_CATCHING_CONTESTANT_4B
-	person_event SPRITE_YOUNGSTER, 11, 6, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad56, EVENT_BUG_CATCHING_CONTESTANT_5B
-	person_event SPRITE_YOUNGSTER, 10, 9, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6ad6a, EVENT_BUG_CATCHING_CONTESTANT_6B
-	person_event SPRITE_LASS, 10, 7, $7, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x6ad7e, EVENT_BUG_CATCHING_CONTESTANT_7B
-	person_event SPRITE_YOUNGSTER, 11, 8, $7, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad92, EVENT_BUG_CATCHING_CONTESTANT_8B
-	person_event SPRITE_YOUNGSTER, 11, 10, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6ada6, EVENT_BUG_CATCHING_CONTESTANT_9B
-	person_event SPRITE_YOUNGSTER, 10, 10, $7, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x6adba, EVENT_BUG_CATCHING_CONTESTANT_10B
-	person_event SPRITE_OFFICER, 6, 7, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6acf4, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
+	person_event SPRITE_OFFICER, 7, 4, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, Route36OfficerScriptContest, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
+	person_event SPRITE_YOUNGSTER, 9, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6ad06, EVENT_BUG_CATCHING_CONTESTANT_1B
+	person_event SPRITE_YOUNGSTER, 9, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x6ad1a, EVENT_BUG_CATCHING_CONTESTANT_2B
+	person_event SPRITE_ROCKER, 10, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, RockerScript_0x6ad2e, EVENT_BUG_CATCHING_CONTESTANT_3B
+	person_event SPRITE_POKEFAN_M, 9, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x6ad42, EVENT_BUG_CATCHING_CONTESTANT_4B
+	person_event SPRITE_YOUNGSTER, 11, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6ad56, EVENT_BUG_CATCHING_CONTESTANT_5B
+	person_event SPRITE_YOUNGSTER, 10, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x6ad6a, EVENT_BUG_CATCHING_CONTESTANT_6B
+	person_event SPRITE_LASS, 10, 7, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_0x6ad7e, EVENT_BUG_CATCHING_CONTESTANT_7B
+	person_event SPRITE_YOUNGSTER, 11, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6ad92, EVENT_BUG_CATCHING_CONTESTANT_8B
+	person_event SPRITE_YOUNGSTER, 11, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x6ada6, EVENT_BUG_CATCHING_CONTESTANT_9B
+	person_event SPRITE_YOUNGSTER, 10, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_0x6adba, EVENT_BUG_CATCHING_CONTESTANT_10B
+	person_event SPRITE_OFFICER, 6, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x6acf4, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

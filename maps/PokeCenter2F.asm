@@ -1040,7 +1040,7 @@ PokeCenter2F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_Trade, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_Battle, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_TimeCapsule, -1
-	person_event SPRITE_OFFICER, 5, 5, $6, 0, 0, -1, -1, $0, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_Trade, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_Battle, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_TimeCapsule, -1
+	person_event SPRITE_OFFICER, 5, 5, $6, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY

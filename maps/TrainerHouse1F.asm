@@ -151,8 +151,8 @@ TrainerHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 15, 4, $9, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x9af67, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 11, $7, 0, 0, -1, -1, $0, 0, CooltrainerMScript_0x9af6a, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 10, $6, 0, 2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x9af6d, -1
-	person_event SPRITE_YOUNGSTER, 12, 8, $5, 0, 2, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x9af70, -1
-	person_event SPRITE_GENTLEMAN, 8, 6, $9, 0, 0, -1, -1, $0, 0, GentlemanScript_0x9af73, -1
+	person_event SPRITE_RECEPTIONIST, 15, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ReceptionistScript_0x9af67, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 11, $7, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x9af6a, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 10, $6, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x9af6d, -1
+	person_event SPRITE_YOUNGSTER, 12, 8, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x9af70, -1
+	person_event SPRITE_GENTLEMAN, 8, 6, $9, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x9af73, -1

@@ -479,15 +479,15 @@ GoldenrodGameCorner_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_CLERK, 6, 7, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ClerkScript_0x56c25, -1
-	person_event SPRITE_RECEPTIONIST, 6, 20, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x56c28, -1
-	person_event SPRITE_RECEPTIONIST, 6, 22, $6, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x56d01, -1
-	person_event SPRITE_PHARMACIST, 11, 12, $8, 0, 0, -1, 2, (PAL_OW_BLUE << 4) | $80, 0, PharmacistScript_0x56df1, -1
-	person_event SPRITE_PHARMACIST, 11, 12, $8, 0, 0, -1, 4, (PAL_OW_BLUE << 4) | $80, 0, PharmacistScript_0x56df1, -1
-	person_event SPRITE_POKEFAN_M, 14, 15, $9, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x56dfc, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 18, $8, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CooltrainerMScript_0x56e07, -1
-	person_event SPRITE_POKEFAN_F, 10, 21, $9, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanFScript_0x56e12, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 14, $2, 1, 2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x56e1d, -1
-	person_event SPRITE_GENTLEMAN, 14, 9, $9, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x56e20, -1
-	person_event SPRITE_POKEFAN_M, 13, 6, $2, 1, 1, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x56e2b, -1
-	person_event SPRITE_POKEFAN_M, 14, 21, $9, 0, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x56c1a, EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
+	person_event SPRITE_CLERK, 6, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ClerkScript_0x56c25, -1
+	person_event SPRITE_RECEPTIONIST, 6, 20, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x56c28, -1
+	person_event SPRITE_RECEPTIONIST, 6, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x56d01, -1
+	person_event SPRITE_PHARMACIST, 11, 12, $8, 0, 0, -1, 2, 8 + PAL_OW_BLUE, 0, 0, PharmacistScript_0x56df1, -1
+	person_event SPRITE_PHARMACIST, 11, 12, $8, 0, 0, -1, 4, 8 + PAL_OW_BLUE, 0, 0, PharmacistScript_0x56df1, -1
+	person_event SPRITE_POKEFAN_M, 14, 15, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x56dfc, -1
+	person_event SPRITE_COOLTRAINER_M, 12, 18, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CooltrainerMScript_0x56e07, -1
+	person_event SPRITE_POKEFAN_F, 10, 21, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanFScript_0x56e12, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 14, $2, 1, 2, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x56e1d, -1
+	person_event SPRITE_GENTLEMAN, 14, 9, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GentlemanScript_0x56e20, -1
+	person_event SPRITE_POKEFAN_M, 13, 6, $2, 1, 1, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x56e2b, -1
+	person_event SPRITE_POKEFAN_M, 14, 21, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x56c1a, EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR

@@ -71,6 +71,6 @@ GoldenrodDeptStore3F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 5, 10, $6, 0, 0, -1, -1, $0, 0, ClerkScript_0x55db8, -1
-	person_event SPRITE_SUPER_NERD, 9, 16, $a, 1, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x55dc0, -1
-	person_event SPRITE_ROCKER, 9, 6, $4, 1, 0, -1, -1, $0, 0, RockerScript_0x55dc3, -1
+	person_event SPRITE_CLERK, 5, 10, $6, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x55db8, -1
+	person_event SPRITE_SUPER_NERD, 9, 16, $a, 1, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x55dc0, -1
+	person_event SPRITE_ROCKER, 9, 6, $4, 1, 0, -1, -1, 0, 0, 0, RockerScript_0x55dc3, -1

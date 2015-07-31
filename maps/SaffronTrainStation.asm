@@ -231,7 +231,7 @@ SaffronTrainStation_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_OFFICER, 13, 13, $6, 0, 0, -1, -1, $0, 0, OfficerScript_0x18a81e, -1
-	person_event SPRITE_GYM_GUY, 18, 14, $2, 1, 1, -1, -1, $0, 0, GymGuyScript_0x18a875, -1
-	person_event SPRITE_TEACHER, 15, 10, $9, 0, 0, -1, -1, $0, 0, TeacherScript_0x18a889, EVENT_SAFFRON_TRAIN_STATION_POPULATION
-	person_event SPRITE_LASS, 14, 10, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x18a88c, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	person_event SPRITE_OFFICER, 13, 13, $6, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x18a81e, -1
+	person_event SPRITE_GYM_GUY, 18, 14, $2, 1, 1, -1, -1, 0, 0, 0, GymGuyScript_0x18a875, -1
+	person_event SPRITE_TEACHER, 15, 10, $9, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x18a889, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	person_event SPRITE_LASS, 14, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x18a88c, EVENT_SAFFRON_TRAIN_STATION_POPULATION

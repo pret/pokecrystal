@@ -58,5 +58,5 @@ BlackthornDragonSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRANNY, 7, 6, $3, 0, 0, -1, -1, $0, 0, GrannyScript_0x195949, -1
-	person_event SPRITE_EKANS, 9, 9, $16, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, EkansScript_0x19594c, -1
+	person_event SPRITE_GRANNY, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x195949, -1
+	person_event SPRITE_EKANS, 9, 9, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, EkansScript_0x19594c, -1

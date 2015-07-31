@@ -283,6 +283,6 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 32, 8, $4, 1, 0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ScientistScript_0x625d1, -1
-	person_event SPRITE_SCIENTIST, 31, 11, $7, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x625d4, -1
-	person_event SPRITE_SCIENTIST, 33, 11, $7, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ScientistScript_0x625d7, -1
+	person_event SPRITE_SCIENTIST, 32, 8, $4, 1, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ScientistScript_0x625d1, -1
+	person_event SPRITE_SCIENTIST, 31, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x625d4, -1
+	person_event SPRITE_SCIENTIST, 33, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ScientistScript_0x625d7, -1

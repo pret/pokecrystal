@@ -570,8 +570,8 @@ CherrygroveCity_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_GRAMPS, 10, 36, $6, 0, 0, -1, -1, $0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
-	person_event SPRITE_SILVER, 10, 43, $3, 0, 0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
-	person_event SPRITE_TEACHER, 16, 31, $5, 0, 1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x19c146, -1
-	person_event SPRITE_YOUNGSTER, 11, 27, $5, 0, 1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x19c15a, -1
-	person_event SPRITE_FISHER, 16, 11, $9, 0, 0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, MysticWaterGuy, -1
+	person_event SPRITE_GRAMPS, 10, 36, $6, 0, 0, -1, -1, 0, 0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
+	person_event SPRITE_SILVER, 10, 43, $3, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
+	person_event SPRITE_TEACHER, 16, 31, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x19c146, -1
+	person_event SPRITE_YOUNGSTER, 11, 27, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x19c15a, -1
+	person_event SPRITE_FISHER, 16, 11, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, MysticWaterGuy, -1

@@ -212,4 +212,4 @@ ManiasHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_ROCKER, 8, 6, $3, 0, 0, -1, -1, $0, 0, RockerScript_0x9d278, -1
+	person_event SPRITE_ROCKER, 8, 6, $3, 0, 0, -1, -1, 0, 0, 0, RockerScript_0x9d278, -1

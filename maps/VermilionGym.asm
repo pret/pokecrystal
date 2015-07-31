@@ -287,8 +287,8 @@ VermilionGym_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SURGE, 6, 9, $6, 0, 0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, SurgeScript_0x1920a5, -1
-	person_event SPRITE_GENTLEMAN, 12, 12, $8, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerGentlemanGregory, -1
-	person_event SPRITE_ROCKER, 11, 8, $6, 0, 3, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerGuitaristVincent, -1
-	person_event SPRITE_SUPER_NERD, 14, 4, $9, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerJugglerHorton, -1
-	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, (PAL_OW_BLUE << 4) | $80, 1, VermilionGymGuyScript, -1
+	person_event SPRITE_SURGE, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, SurgeScript_0x1920a5, -1
+	person_event SPRITE_GENTLEMAN, 12, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerGentlemanGregory, -1
+	person_event SPRITE_ROCKER, 11, 8, $6, 0, 3, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerGuitaristVincent, -1
+	person_event SPRITE_SUPER_NERD, 14, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerJugglerHorton, -1
+	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 1, VermilionGymGuyScript, -1

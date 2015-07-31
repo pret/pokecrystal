@@ -310,7 +310,7 @@ FastShip1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 6, 29, $6, 0, 0, -1, -1, $0, 0, SailorScript_0x75160, -1
-	person_event SPRITE_SAILOR, 11, 18, $9, 0, 0, -1, -1, $0, 0, SailorScript_0x751d0, -1
-	person_event SPRITE_SAILOR, 21, 26, $5, 0, 2, -1, -1, $0, 0, SailorScript_0x751e4, -1
-	person_event SPRITE_GENTLEMAN, 10, 23, $9, 0, 0, -1, -1, $0, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
+	person_event SPRITE_SAILOR, 6, 29, $6, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x75160, -1
+	person_event SPRITE_SAILOR, 11, 18, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x751d0, -1
+	person_event SPRITE_SAILOR, 21, 26, $5, 0, 2, -1, -1, 0, 0, 0, SailorScript_0x751e4, -1
+	person_event SPRITE_GENTLEMAN, 10, 23, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
