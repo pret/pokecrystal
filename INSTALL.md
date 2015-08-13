@@ -44,7 +44,7 @@ To build **pokecrystal.gbc**:
 
 To build on Windows, use [**Cygwin**](http://cygwin.com/install.html) (32-bit).
 
-In the installer, select the following packages: `make` `git` `python` `python-setuptools` `gcc` `libsasl2` `ca-certificates`
+In the installer, select the following packages: `make` `git` `python` `python-setuptools` `gcc-core` `libsasl2-3` `ca-certificates`
 
 Then get the most recent version of [**rgbds**](https://github.com/bentley/rgbds/releases/).
 Put `rgbasm.exe`, `rgblink.exe` and `rgbfix.exe` in `C:\cygwin\usr\local\bin`.
