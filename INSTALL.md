@@ -10,6 +10,7 @@ Note that this requires python2.7 for the moment.
 	cd ..
 
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
+	easy_install pypng
 	cd pokecrystal
 
 To build **pokecrystal.gbc**:
@@ -33,6 +34,7 @@ In the shell, run:
 	cd ..
 
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
+	easy_install pypng
 	cd pokecrystal
 
 To build **pokecrystal.gbc**:
@@ -52,6 +54,7 @@ Put `rgbasm.exe`, `rgblink.exe` and `rgbfix.exe` in `C:\cygwin\usr\local\bin`.
 In the **Cygwin terminal**:
 
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
+	easy_install pypng
 	cd pokecrystal
 
 To build:
