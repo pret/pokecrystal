@@ -8497,14 +8497,14 @@ Functiondb3f: ; db3f
 	pop hl
 	ld b, h
 	ld c, l
-	ld hl, $001f
+	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld [hl], a
-	ld hl, $0024
+	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, $000a
+	ld hl, PartyMon1DVs - PartyMon1StatExp
 	add hl, bc
 	push bc
 	ld b, $1
@@ -8707,21 +8707,21 @@ Functiondd64: ; dd64
 	push hl
 	call Functionde1a
 	pop hl
-	ld bc, $0020
+	ld bc, PartyMon1Status - PartyMon1 
 	call CopyBytes
 	call GetBaseData
 	call Functionde1a
 	ld b, d
 	ld c, e
-	ld hl, $001f
+	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [CurPartyLevel]
 	ld [hl], a
-	ld hl, $0024
+	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, $000a
+	ld hl, PartyMon1DVs - PartyMon1StatExp
 	add hl, bc
 	push bc
 	ld b, $1
@@ -8744,7 +8744,7 @@ Functiondd64: ; dd64
 	ld d, a
 	callab Function50e47
 	pop bc
-	ld hl, $0008
+	ld hl, PartyMon1Exp - PartyMon1
 	add hl, bc
 	ld a, [hMultiplicand]
 	ld [hli], a
@@ -9295,7 +9295,7 @@ endr
 	srl c
 	pop hl
 	push bc
-	ld bc, $000b
+	ld bc, PartyMon1StatExp - PartyMon1
 	add hl, bc
 	pop bc
 	ld a, c
@@ -9507,7 +9507,7 @@ GivePoke:: ; e277
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wd050
-	ld bc, $000b
+	ld bc, PartyMon1StatExp - PartyMon1
 	call CopyBytes
 	pop af
 	and a
@@ -9519,7 +9519,7 @@ GivePoke:: ; e277
 	push hl
 	ld a, [ScriptBank]
 	call GetFarHalfword
-	ld bc, $000b
+	ld bc, PartyMon1StatExp - PartyMon1
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop hl
@@ -9943,7 +9943,7 @@ Functione5bb: ; e5bb
 	ld bc, $0020
 	call AddNTimes
 	ld de, TempMonSpecies
-	ld bc, $0020
+	ld bc, PartyMon1Status - PartyMon1
 	ld a, $1
 	call GetSRAMBank
 	call CopyBytes
@@ -10009,9 +10009,9 @@ Functione5d9: ; e5d9
 	push hl
 	push bc
 	ld a, c
-	ld bc, $001f
+	ld bc, PartyMon1Level - PartyMon1
 	add hl, bc
-	ld bc, $0020
+	ld bc, PartyMon1Status - PartyMon1
 	call AddNTimes
 	ld a, [hl]
 	ld [de], a
@@ -10021,9 +10021,9 @@ Functione5d9: ; e5d9
 	push hl
 	push bc
 	ld a, c
-	ld bc, $0015
+	ld bc, PartyMon1DVs - PartyMon1
 	add hl, bc
-	ld bc, $0020
+	ld bc, PartyMon1Status - PartyMon1
 	call AddNTimes
 	ld a, [hli]
 	and $f0
