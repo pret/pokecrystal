@@ -26,12 +26,12 @@ DiglettsCave_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $21, $3, 10, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $1f, $5, 5, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
-	warp_def $5, $f, 5, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $3, $11, 6, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
-	warp_def $21, $11, 2, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
-	warp_def $3, $3, 4, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
+	warp_def $21, $3, 10, VERMILION_CITY
+	warp_def $1f, $5, 5, DIGLETTS_CAVE
+	warp_def $5, $f, 5, ROUTE_2
+	warp_def $3, $11, 6, DIGLETTS_CAVE
+	warp_def $21, $11, 2, DIGLETTS_CAVE
+	warp_def $3, $3, 4, DIGLETTS_CAVE
 
 .XYTriggers:
 	db 0
@@ -42,4 +42,4 @@ DiglettsCave_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 35, 7, OW_UP | $2, $0, -1, -1, $0, 0, PokefanMScript_0x74002, -1
+	person_event SPRITE_POKEFAN_M, 35, 7, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x74002, -1

@@ -89,14 +89,14 @@ IcePathB1F_MapEventHeader:
 
 .Warps:
 	db 8
-	warp_def $f, $3, 3, GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
-	warp_def $3, $11, 1, GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $2, $b, 3, GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $7, $4, 4, GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $c, $5, 5, GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $d, $c, 6, GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $19, $5, 4, GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
-	warp_def $1b, $b, 1, GROUP_ICE_PATH_B2F_BLACKTHORN_SIDE, MAP_ICE_PATH_B2F_BLACKTHORN_SIDE
+	warp_def $f, $3, 3, ICE_PATH_1F
+	warp_def $3, $11, 1, ICE_PATH_B2F_MAHOGANY_SIDE
+	warp_def $2, $b, 3, ICE_PATH_B2F_MAHOGANY_SIDE
+	warp_def $7, $4, 4, ICE_PATH_B2F_MAHOGANY_SIDE
+	warp_def $c, $5, 5, ICE_PATH_B2F_MAHOGANY_SIDE
+	warp_def $d, $c, 6, ICE_PATH_B2F_MAHOGANY_SIDE
+	warp_def $19, $5, 4, ICE_PATH_1F
+	warp_def $1b, $b, 1, ICE_PATH_B2F_BLACKTHORN_SIDE
 
 .XYTriggers:
 	db 0
@@ -107,8 +107,8 @@ IcePathB1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_BOULDER, 11, 15, OW_LEFT | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
-	person_event SPRITE_BOULDER, 12, 11, OW_LEFT | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
-	person_event SPRITE_BOULDER, 13, 12, OW_LEFT | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
-	person_event SPRITE_BOULDER, 11, 21, OW_LEFT | $11, $0, -1, -1, $0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
-	person_event SPRITE_POKE_BALL, 39, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e50d, EVENT_ICE_PATH_B1F_IRON
+	person_event SPRITE_BOULDER, 11, 15, $19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
+	person_event SPRITE_BOULDER, 12, 11, $19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
+	person_event SPRITE_BOULDER, 13, 12, $19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
+	person_event SPRITE_BOULDER, 11, 21, $19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
+	person_event SPRITE_POKE_BALL, 39, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e50d, EVENT_ICE_PATH_B1F_IRON

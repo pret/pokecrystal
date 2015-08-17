@@ -132,8 +132,8 @@ MountMortarB1F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $3, 5, GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
-	warp_def $1d, $13, 7, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
+	warp_def $3, $3, 5, MOUNT_MORTAR_1F_INSIDE
+	warp_def $1d, $13, 7, MOUNT_MORTAR_1F_OUTSIDE
 
 .XYTriggers:
 	db 0
@@ -144,10 +144,10 @@ MountMortarB1F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_POKE_BALL, 16, 33, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e240, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
-	person_event SPRITE_POKE_BALL, 20, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e242, EVENT_MOUNT_MORTAR_B1F_CARBOS
-	person_event SPRITE_BOULDER, 14, 13, OW_LEFT | $11, $0, -1, -1, $0, 0, MountMortarB1FBoulder, -1
-	person_event SPRITE_BLACK_BELT, 8, 20, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BlackBeltScript_0x7e1f6, -1
-	person_event SPRITE_POKE_BALL, 28, 38, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e244, EVENT_MOUNT_MORTAR_B1F_FULL_RESTORE
-	person_event SPRITE_POKE_BALL, 7, 36, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e246, EVENT_MOUNT_MORTAR_B1F_MAX_ETHER
-	person_event SPRITE_POKE_BALL, 30, 25, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e248, EVENT_MOUNT_MORTAR_B1F_PP_UP
+	person_event SPRITE_POKE_BALL, 16, 33, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e240, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 20, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e242, EVENT_MOUNT_MORTAR_B1F_CARBOS
+	person_event SPRITE_BOULDER, 14, 13, $19, 0, 0, -1, -1, 0, 0, 0, MountMortarB1FBoulder, -1
+	person_event SPRITE_BLACK_BELT, 8, 20, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, BlackBeltScript_0x7e1f6, -1
+	person_event SPRITE_POKE_BALL, 28, 38, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e244, EVENT_MOUNT_MORTAR_B1F_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 7, 36, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e246, EVENT_MOUNT_MORTAR_B1F_MAX_ETHER
+	person_event SPRITE_POKE_BALL, 30, 25, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e248, EVENT_MOUNT_MORTAR_B1F_PP_UP

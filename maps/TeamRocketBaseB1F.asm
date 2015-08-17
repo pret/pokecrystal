@@ -730,10 +730,10 @@ TeamRocketBaseB1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $2, $1b, 3, GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F
-	warp_def $e, $3, 1, GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F
-	warp_def $f, $5, 4, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
-	warp_def $2, $19, 3, GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F
+	warp_def $2, $1b, 3, MAHOGANY_MART_1F
+	warp_def $e, $3, 1, TEAM_ROCKET_BASE_B2F
+	warp_def $f, $5, 4, TEAM_ROCKET_BASE_B1F
+	warp_def $2, $19, 3, TEAM_ROCKET_BASE_B1F
 
 .XYTriggers:
 	db 30
@@ -786,9 +786,9 @@ TeamRocketBaseB1F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ROCKET, 4, 4, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
-	person_event SPRITE_ROCKET, 8, 6, OW_LEFT | $1, $0, -1, -1, $2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 16, 22, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_POKE_BALL, 10, 31, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac4, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
-	person_event SPRITE_POKE_BALL, 19, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac6, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
-	person_event SPRITE_POKE_BALL, 16, 25, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x6cac8, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC
+	person_event SPRITE_ROCKET, 4, 4, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
+	person_event SPRITE_ROCKET, 8, 6, $9, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 16, 22, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_POKE_BALL, 10, 31, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac4, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 19, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac6, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
+	person_event SPRITE_POKE_BALL, 16, 25, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac8, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC

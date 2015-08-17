@@ -194,8 +194,8 @@ Route39Farmhouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_ROUTE_39, MAP_ROUTE_39
-	warp_def $7, $3, 2, GROUP_ROUTE_39, MAP_ROUTE_39
+	warp_def $7, $2, 2, ROUTE_39
+	warp_def $7, $3, 2, ROUTE_39
 
 .XYTriggers:
 	db 0
@@ -207,5 +207,5 @@ Route39Farmhouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 6, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanMScript_0x9ceb4, -1
-	person_event SPRITE_POKEFAN_F, 8, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanFScript_0x9cf0e, -1
+	person_event SPRITE_POKEFAN_M, 6, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PokefanMScript_0x9ceb4, -1
+	person_event SPRITE_POKEFAN_F, 8, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanFScript_0x9cf0e, -1

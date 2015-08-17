@@ -68,9 +68,9 @@ CeladonDeptStore2F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $c, 1, GROUP_CELADON_DEPT_STORE_3F, MAP_CELADON_DEPT_STORE_3F
-	warp_def $0, $f, 3, GROUP_CELADON_DEPT_STORE_1F, MAP_CELADON_DEPT_STORE_1F
-	warp_def $0, $2, 1, GROUP_CELADON_DEPT_STORE_ELEVATOR, MAP_CELADON_DEPT_STORE_ELEVATOR
+	warp_def $0, $c, 1, CELADON_DEPT_STORE_3F
+	warp_def $0, $f, 3, CELADON_DEPT_STORE_1F
+	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -82,7 +82,7 @@ CeladonDeptStore2F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_CLERK, 9, 17, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x70bad, -1
-	person_event SPRITE_CLERK, 9, 18, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClerkScript_0x70bb5, -1
-	person_event SPRITE_POKEFAN_M, 6, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x70bbd, -1
-	person_event SPRITE_YOUNGSTER, 6, 10, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x70bc0, -1
+	person_event SPRITE_CLERK, 9, 17, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ClerkScript_0x70bad, -1
+	person_event SPRITE_CLERK, 9, 18, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ClerkScript_0x70bb5, -1
+	person_event SPRITE_POKEFAN_M, 6, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x70bbd, -1
+	person_event SPRITE_YOUNGSTER, 6, 10, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x70bc0, -1

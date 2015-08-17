@@ -49,8 +49,8 @@ Route30BerrySpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_ROUTE_30, MAP_ROUTE_30
-	warp_def $7, $3, 1, GROUP_ROUTE_30, MAP_ROUTE_30
+	warp_def $7, $2, 1, ROUTE_30
+	warp_def $7, $3, 1, ROUTE_30
 
 .XYTriggers:
 	db 0
@@ -62,4 +62,4 @@ Route30BerrySpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x196d64, -1
+	person_event SPRITE_POKEFAN_M, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x196d64, -1

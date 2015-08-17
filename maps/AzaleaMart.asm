@@ -46,8 +46,8 @@ AzaleaMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $7, $3, 3, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
+	warp_def $7, $2, 3, AZALEA_TOWN
+	warp_def $7, $3, 3, AZALEA_TOWN
 
 .XYTriggers:
 	db 0
@@ -57,6 +57,6 @@ AzaleaMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x18e040, -1
-	person_event SPRITE_COOLTRAINER_M, 9, 6, OW_UP | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x18e047, -1
-	person_event SPRITE_BUG_CATCHER, 6, 11, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x18e04a, -1
+	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x18e040, -1
+	person_event SPRITE_COOLTRAINER_M, 9, 6, $7, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x18e047, -1
+	person_event SPRITE_BUG_CATCHER, 6, 11, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, BugCatcherScript_0x18e04a, -1

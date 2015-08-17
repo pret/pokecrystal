@@ -32,10 +32,10 @@ IlexForestAzaleaGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 2, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
-	warp_def $5, $0, 3, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
-	warp_def $4, $9, 7, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $5, $9, 8, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
+	warp_def $4, $0, 2, ILEX_FOREST
+	warp_def $5, $0, 3, ILEX_FOREST
+	warp_def $4, $9, 7, AZALEA_TOWN
+	warp_def $5, $9, 8, AZALEA_TOWN
 
 .XYTriggers:
 	db 0
@@ -45,5 +45,5 @@ IlexForestAzaleaGate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x62c7a, -1
-	person_event SPRITE_GRANNY, 7, 5, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrannyScript_0x62c7d, -1
+	person_event SPRITE_OFFICER, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, OfficerScript_0x62c7a, -1
+	person_event SPRITE_GRANNY, 7, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, GrannyScript_0x62c7d, -1

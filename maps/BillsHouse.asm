@@ -356,8 +356,8 @@ BillsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_ROUTE_25, MAP_ROUTE_25
-	warp_def $7, $3, 1, GROUP_ROUTE_25, MAP_ROUTE_25
+	warp_def $7, $2, 1, ROUTE_25
+	warp_def $7, $3, 1, ROUTE_25
 
 .XYTriggers:
 	db 0
@@ -367,4 +367,4 @@ BillsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 7, 6, OW_UP | $3, $20, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x189538, -1
+	person_event SPRITE_GRAMPS, 7, 6, $7, 2, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrampsScript_0x189538, -1

@@ -89,7 +89,7 @@ SailorScript_0x755f1:
 	closetext
 	loadmovesprites
 	setevent EVENT_FAST_SHIP_LAZY_SAILOR
-	domaptrigger GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F, $1
+	domaptrigger FAST_SHIP_B1F, $1
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x75629
 	applymovement $6, MovementData_0x75637
@@ -263,9 +263,9 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $2, 2, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $c, $2, 3, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $18, $2, 4, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $0, $2, 2, FAST_SHIP_1F
+	warp_def $c, $2, 3, FAST_SHIP_1F
+	warp_def $18, $2, 4, FAST_SHIP_1F
 
 .XYTriggers:
 	db 0
@@ -278,10 +278,10 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_COOLTRAINER_M, 7, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermSean, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_COOLTRAINER_F, 9, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfCarol, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_SUPER_NERD, 9, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacEthan, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_POKEFAN_M, 21, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerNoland, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SAILOR, 30, 8, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x755f1, EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
-	person_event SPRITE_GENTLEMAN, 34, 11, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerGentlemanEdward, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_PHARMACIST, 34, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerBurglarCorey, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_COOLTRAINER_M, 7, 8, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerCooltrainermSean, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_COOLTRAINER_F, 9, 5, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainerfCarol, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_SUPER_NERD, 9, 5, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPokemaniacEthan, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_POKEFAN_M, 21, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerHikerNoland, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SAILOR, 30, 8, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SailorScript_0x755f1, EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
+	person_event SPRITE_GENTLEMAN, 34, 11, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerGentlemanEdward, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_PHARMACIST, 34, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 4, TrainerBurglarCorey, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

@@ -102,9 +102,9 @@ UnknownScript_0x9e44e:
 	special Function170687
 UnknownScript_0x9e454:
 	musicfadeout MUSIC_NONE, $8
-	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0
-	domaptrigger GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR, $0
-	domaptrigger GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY, $0
+	domaptrigger BATTLE_TOWER_BATTLE_ROOM, $0
+	domaptrigger BATTLE_TOWER_ELEVATOR, $0
+	domaptrigger BATTLE_TOWER_HALLWAY, $0
 	follow $2, PLAYER
 	applymovement $2, MovementData_0x9e571
 	writebyte $a
@@ -797,9 +797,9 @@ BattleTower1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $9, $7, 3, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
-	warp_def $9, $8, 4, GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE
-	warp_def $0, $7, 1, GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR
+	warp_def $9, $7, 3, BATTLE_TOWER_OUTSIDE
+	warp_def $9, $8, 4, BATTLE_TOWER_OUTSIDE
+	warp_def $0, $7, 1, BATTLE_TOWER_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -810,8 +810,8 @@ BattleTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 10, 11, OW_UP | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x9e3e2, -1
-	person_event SPRITE_YOUNGSTER, 13, 18, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, YoungsterScript_0x9e55d, -1
-	person_event SPRITE_COOLTRAINER_F, 13, 8, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x9e568, -1
-	person_event SPRITE_BUG_CATCHER, 7, 5, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BugCatcherScript_0x9e56b, -1
-	person_event SPRITE_GRANNY, 7, 18, OW_UP | $0, $10, -1, -1, $0, 0, GrannyScript_0x9e56e, -1
+	person_event SPRITE_RECEPTIONIST, 10, 11, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x9e3e2, -1
+	person_event SPRITE_YOUNGSTER, 13, 18, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, YoungsterScript_0x9e55d, -1
+	person_event SPRITE_COOLTRAINER_F, 13, 8, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x9e568, -1
+	person_event SPRITE_BUG_CATCHER, 7, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BugCatcherScript_0x9e56b, -1
+	person_event SPRITE_GRANNY, 7, 18, $4, 1, 0, -1, -1, 0, 0, 0, GrannyScript_0x9e56e, -1

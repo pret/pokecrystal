@@ -83,16 +83,16 @@ OlivineLighthouse4F_MapEventHeader:
 
 .Warps:
 	db 10
-	warp_def $3, $d, 1, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
-	warp_def $5, $3, 2, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
-	warp_def $7, $9, 3, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
-	warp_def $5, $9, 3, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
-	warp_def $9, $10, 6, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
-	warp_def $9, $11, 7, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
-	warp_def $3, $8, 8, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
-	warp_def $3, $9, 9, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
-	warp_def $7, $10, 4, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
-	warp_def $7, $11, 5, GROUP_OLIVINE_LIGHTHOUSE_5F, MAP_OLIVINE_LIGHTHOUSE_5F
+	warp_def $3, $d, 1, OLIVINE_LIGHTHOUSE_3F
+	warp_def $5, $3, 2, OLIVINE_LIGHTHOUSE_5F
+	warp_def $7, $9, 3, OLIVINE_LIGHTHOUSE_5F
+	warp_def $5, $9, 3, OLIVINE_LIGHTHOUSE_3F
+	warp_def $9, $10, 6, OLIVINE_LIGHTHOUSE_3F
+	warp_def $9, $11, 7, OLIVINE_LIGHTHOUSE_3F
+	warp_def $3, $8, 8, OLIVINE_LIGHTHOUSE_3F
+	warp_def $3, $9, 9, OLIVINE_LIGHTHOUSE_3F
+	warp_def $7, $10, 4, OLIVINE_LIGHTHOUSE_5F
+	warp_def $7, $11, 5, OLIVINE_LIGHTHOUSE_5F
 
 .XYTriggers:
 	db 0
@@ -102,5 +102,5 @@ OlivineLighthouse4F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 18, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorKent, -1
-	person_event SPRITE_LASS, 6, 15, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassConnie, -1
+	person_event SPRITE_SAILOR, 18, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSailorKent, -1
+	person_event SPRITE_LASS, 6, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerLassConnie, -1

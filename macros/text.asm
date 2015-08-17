@@ -12,19 +12,19 @@ page   EQUS "db $50,"     ; Start a new Pokedex page.
 dex    EQUS "db $e8, $50" ; End a Pokedex entry.
 
 
-TX_RAM: MACRO
-	db 1
-	dw \1
-	ENDM
+TX_RAM EQU $01
+TX_FAR EQU $16
 
-TX_FAR: MACRO
-	db $16
+text_jump: MACRO
+	db TX_FAR
 	dw \1
 	db BANK(\1)
 	ENDM
 
-
-text_from_ram EQUS "TX_RAM"
+text_from_ram: MACRO
+	db TX_RAM
+	dw \1
+	ENDM
 
 text_dunno1: macro
 	db 5
@@ -81,4 +81,3 @@ current_day: macro
 	db $15
 	endm
 
-text_jump EQUS "TX_FAR"

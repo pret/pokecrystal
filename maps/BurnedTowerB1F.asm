@@ -78,8 +78,8 @@ UnknownScript_0x18616b:
 	dotrigger $1
 	setevent EVENT_RELEASED_THE_BEASTS
 	special InitRoamMons
-	domaptrigger GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM, $1
-	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $1
+	domaptrigger ECRUTEAK_GYM, $1
+	domaptrigger CIANWOOD_CITY, $1
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	setevent EVENT_ECRUTEAK_GYM_GRAMPS
 	clearevent EVENT_ECRUTEAK_CITY_GRAMPS
@@ -235,12 +235,12 @@ BurnedTowerB1F_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $9, $a, 3, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $7, $11, 7, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $8, $a, 9, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $d, $3, 10, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $e, $11, 12, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $f, $7, 14, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
+	warp_def $9, $a, 3, BURNED_TOWER_1F
+	warp_def $7, $11, 7, BURNED_TOWER_1F
+	warp_def $8, $a, 9, BURNED_TOWER_1F
+	warp_def $d, $3, 10, BURNED_TOWER_1F
+	warp_def $e, $11, 12, BURNED_TOWER_1F
+	warp_def $f, $7, 14, BURNED_TOWER_1F
 
 .XYTriggers:
 	db 1
@@ -251,12 +251,12 @@ BurnedTowerB1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_BOULDER, 12, 21, OW_LEFT | $11, $0, -1, -1, $0, 0, BurnedTowerB1FBoulder, -1
-	person_event SPRITE_RAIKOU, 7, 11, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_ENTEI, 7, 16, OW_UP | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_SUICUNE, 8, 14, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_RAIKOU, 7, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_ENTEI, 7, 16, OW_UP | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_SUICUNE, 8, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_SILVER << 4) | $80, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_POKE_BALL, 8, 20, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x186231, EVENT_BURNED_TOWER_B1F_TM_ENDURE
-	person_event SPRITE_SUPER_NERD, 16, 14, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER
+	person_event SPRITE_BOULDER, 12, 21, $19, 0, 0, -1, -1, 0, 0, 0, BurnedTowerB1FBoulder, -1
+	person_event SPRITE_RAIKOU, 7, 11, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_ENTEI, 7, 16, $16, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_SUICUNE, 8, 14, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_RAIKOU, 7, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_ENTEI, 7, 16, $6, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_SUICUNE, 8, 14, $6, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_POKE_BALL, 8, 20, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x186231, EVENT_BURNED_TOWER_B1F_TM_ENDURE
+	person_event SPRITE_SUPER_NERD, 16, 14, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER

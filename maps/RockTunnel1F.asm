@@ -25,12 +25,12 @@ RockTunnel1F_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $3, $f, 1, GROUP_ROUTE_9, MAP_ROUTE_9
-	warp_def $19, $b, 1, GROUP_ROUTE_10_SOUTH, MAP_ROUTE_10_SOUTH
-	warp_def $3, $5, 3, GROUP_ROCK_TUNNEL_B1F, MAP_ROCK_TUNNEL_B1F
-	warp_def $9, $f, 2, GROUP_ROCK_TUNNEL_B1F, MAP_ROCK_TUNNEL_B1F
-	warp_def $3, $1b, 4, GROUP_ROCK_TUNNEL_B1F, MAP_ROCK_TUNNEL_B1F
-	warp_def $d, $1b, 1, GROUP_ROCK_TUNNEL_B1F, MAP_ROCK_TUNNEL_B1F
+	warp_def $3, $f, 1, ROUTE_9
+	warp_def $19, $b, 1, ROUTE_10_SOUTH
+	warp_def $3, $5, 3, ROCK_TUNNEL_B1F
+	warp_def $9, $f, 2, ROCK_TUNNEL_B1F
+	warp_def $3, $1b, 4, ROCK_TUNNEL_B1F
+	warp_def $d, $1b, 1, ROCK_TUNNEL_B1F
 
 .XYTriggers:
 	db 0
@@ -42,5 +42,5 @@ RockTunnel1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 22, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x743b5, EVENT_ROCK_TUNNEL_1F_ELIXER
-	person_event SPRITE_POKE_BALL, 19, 14, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x743b7, EVENT_ROCK_TUNNEL_1F_TM_STEEL_WING
+	person_event SPRITE_POKE_BALL, 22, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x743b5, EVENT_ROCK_TUNNEL_1F_ELIXER
+	person_event SPRITE_POKE_BALL, 19, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x743b7, EVENT_ROCK_TUNNEL_1F_TM_STEEL_WING

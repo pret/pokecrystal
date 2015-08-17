@@ -297,7 +297,7 @@ Function8bec: ; 8bec
 	ld a, [EnemyLightScreenCount]
 	ld c, a
 	ld a, [EnemyReflectCount]
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld de, $0014
 .asm_8c04
 	and a
@@ -661,8 +661,8 @@ endr
 
 
 Function9699: ; 9699
-	ld hl, AttrMap
-	ld bc, $0168
+	hlcoord 0, 0, AttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
 	ret
@@ -694,7 +694,7 @@ Function96b3: ; 96b3
 	ret
 
 .asm_96d0
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld de, VBGMap0
 	ld b, $12
 	ld a, $1

@@ -21,7 +21,7 @@ UnknownScript_0x748b1:
 	appear $2
 	dotrigger $0
 	setevent EVENT_GAVE_KURT_APRICORNS
-	blackoutmod GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
+	blackoutmod OLIVINE_CITY
 	end
 
 SailorScript_0x748c0:
@@ -57,8 +57,8 @@ SailorScript_0x748c0:
 UnknownScript_0x7490a:
 	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear $2
-	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
-	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
+	domaptrigger FAST_SHIP_1F, $1
+	warp FAST_SHIP_1F, $19, $1
 	end
 
 UnknownScript_0x74919:
@@ -384,8 +384,8 @@ OlivinePort_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $b, 5, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
-	warp_def $17, $7, 1, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $7, $b, 5, OLIVINE_PORT_PASSAGE
+	warp_def $17, $7, 1, FAST_SHIP_1F
 
 .XYTriggers:
 	db 1
@@ -397,10 +397,10 @@ OlivinePort_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SAILOR, 27, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	person_event SPRITE_SAILOR, 19, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_SAILOR, 19, 10, OW_LEFT | $1, $0, -1, -1, $0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	person_event SPRITE_FISHING_GURU, 18, 8, OW_UP | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_FISHING_GURU, 18, 17, OW_UP | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_YOUNGSTER, 19, 8, OW_UP | $2, $0, -1, -1, $0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	person_event SPRITE_COOLTRAINER_F, 19, 15, OW_UP | $2, $0, -1, -1, $0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 27, 11, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
+	person_event SPRITE_SAILOR, 19, 11, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 19, 10, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 18, 8, $7, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 18, 17, $7, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_YOUNGSTER, 19, 8, $6, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_COOLTRAINER_F, 19, 15, $6, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME

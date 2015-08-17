@@ -44,7 +44,7 @@ BillPhoneNotFullText: ; 0x1b452a
 
 	para "<PLAY_G>, your BOX"
 	line "has room for @"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text ""
 	cont "more #MON."
 
@@ -59,7 +59,7 @@ BillPhoneNearlyFullText: ; 0x1b4587
 	para "<PLAY_G>, your BOX"
 	line "has room for only"
 	cont "@"
-	TX_RAM StringBuffer3
+	text_from_ram StringBuffer3
 	text " more #MON."
 
 	para "Maybe you should"

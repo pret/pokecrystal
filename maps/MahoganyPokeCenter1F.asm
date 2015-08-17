@@ -53,9 +53,9 @@ MahoganyPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 4, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $4, 4, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 4, MAHOGANY_TOWN
+	warp_def $7, $4, 4, MAHOGANY_TOWN
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0
@@ -65,7 +65,7 @@ MahoganyPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x19a356, -1
-	person_event SPRITE_POKEFAN_M, 6, 11, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x19a359, -1
-	person_event SPRITE_YOUNGSTER, 7, 5, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x19a35c, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 6, OW_LEFT | $0, $0, -1, -1, $0, 0, CooltrainerFScript_0x19a35f, -1
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x19a356, -1
+	person_event SPRITE_POKEFAN_M, 6, 11, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x19a359, -1
+	person_event SPRITE_YOUNGSTER, 7, 5, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x19a35c, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $8, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x19a35f, -1

@@ -53,8 +53,8 @@ VermilionHouseFishingSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $7, $3, 1, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	warp_def $7, $2, 1, VERMILION_CITY
+	warp_def $7, $3, 1, VERMILION_CITY
 
 .XYTriggers:
 	db 0
@@ -65,4 +65,4 @@ VermilionHouseFishingSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 8, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingDude, -1
+	person_event SPRITE_FISHING_GURU, 8, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FishingDude, -1

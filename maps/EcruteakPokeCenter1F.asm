@@ -207,9 +207,9 @@ EcruteakPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 6, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $7, $4, 6, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 6, ECRUTEAK_CITY
+	warp_def $7, $4, 6, ECRUTEAK_CITY
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0
@@ -219,8 +219,8 @@ EcruteakPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x98eb0, -1
-	person_event SPRITE_POKEFAN_M, 10, 11, OW_LEFT | $2, $0, -1, -1, $0, 0, PokefanMScript_0x98eb3, -1
-	person_event SPRITE_COOLTRAINER_F, 8, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, CooltrainerFScript_0x98ebf, -1
-	person_event SPRITE_GYM_GUY, 5, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GymGuyScript_0x98ec2, -1
-	person_event SPRITE_BILL, 11, 4, OW_LEFT | $1, $0, -1, -1, $0, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x98eb0, -1
+	person_event SPRITE_POKEFAN_M, 10, 11, $a, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x98eb3, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 5, $3, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x98ebf, -1
+	person_event SPRITE_GYM_GUY, 5, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GymGuyScript_0x98ec2, -1
+	person_event SPRITE_BILL, 11, 4, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL

@@ -79,8 +79,8 @@ Route18_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $6, $2, 3, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
-	warp_def $7, $2, 4, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
+	warp_def $6, $2, 3, ROUTE_17_18_GATE
+	warp_def $7, $2, 4, ROUTE_17_18_GATE
 
 .XYTriggers:
 	db 0
@@ -91,5 +91,5 @@ Route18_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 16, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBoris, -1
-	person_event SPRITE_YOUNGSTER, 10, 17, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperBob, -1
+	person_event SPRITE_YOUNGSTER, 16, 13, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBird_keeperBoris, -1
+	person_event SPRITE_YOUNGSTER, 10, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBird_keeperBob, -1

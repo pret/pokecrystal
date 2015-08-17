@@ -109,9 +109,9 @@ GoldenrodDeptStoreB1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $2, $11, 3, GROUP_UNDERGROUND_WAREHOUSE, MAP_UNDERGROUND_WAREHOUSE
-	warp_def $4, $9, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
-	warp_def $4, $a, 2, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def $2, $11, 3, UNDERGROUND_WAREHOUSE
+	warp_def $4, $9, 1, GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def $4, $a, 2, GOLDENROD_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -121,11 +121,11 @@ GoldenrodDeptStoreB1F_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_POKE_BALL, 19, 14, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d7c3, EVENT_GOLDENROD_DEPT_STORE_B1F_ETHER
-	person_event SPRITE_POKE_BALL, 6, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d7c5, EVENT_GOLDENROD_DEPT_STORE_B1F_AMULET_COIN
-	person_event SPRITE_POKE_BALL, 7, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d7c7, EVENT_GOLDENROD_DEPT_STORE_B1F_BURN_HEAL
-	person_event SPRITE_POKE_BALL, 19, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7d7c9, EVENT_GOLDENROD_DEPT_STORE_B1F_ULTRA_BALL
-	person_event SPRITE_BLACK_BELT, 14, 13, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BlackBeltScript_0x7d7b0, -1
-	person_event SPRITE_BLACK_BELT, 12, 8, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, BlackBeltScript_0x7d7b3, -1
-	person_event SPRITE_BLACK_BELT, 17, 10, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x7d7b6, -1
-	person_event SPRITE_MACHOP, 11, 11, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, MachopScript_0x7d7b9, -1
+	person_event SPRITE_POKE_BALL, 19, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c3, EVENT_GOLDENROD_DEPT_STORE_B1F_ETHER
+	person_event SPRITE_POKE_BALL, 6, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c5, EVENT_GOLDENROD_DEPT_STORE_B1F_AMULET_COIN
+	person_event SPRITE_POKE_BALL, 7, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c7, EVENT_GOLDENROD_DEPT_STORE_B1F_BURN_HEAL
+	person_event SPRITE_POKE_BALL, 19, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c9, EVENT_GOLDENROD_DEPT_STORE_B1F_ULTRA_BALL
+	person_event SPRITE_BLACK_BELT, 14, 13, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BlackBeltScript_0x7d7b0, -1
+	person_event SPRITE_BLACK_BELT, 12, 8, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, BlackBeltScript_0x7d7b3, -1
+	person_event SPRITE_BLACK_BELT, 17, 10, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BlackBeltScript_0x7d7b6, -1
+	person_event SPRITE_MACHOP, 11, 11, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, MachopScript_0x7d7b9, -1

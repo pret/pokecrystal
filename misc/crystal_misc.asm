@@ -645,7 +645,7 @@ Function17aaa9: ; 17aaa9 (5e:6aa9)
 	call Function17aae3
 	ld c, a
 	ld b, $0
-	ld hl, AttrMap ; AttrMap + 0 + 0 * SCREEN_WIDTH
+	hlcoord 0, 0, AttrMap
 	add hl, bc
 	push hl
 	ld a, $4
@@ -766,7 +766,7 @@ Function17abcf: ; 17abcf (5e:6bcf)
 Function17ac0c: ; 17ac0c (5e:6c0c)
 	call Function17ac1d
 	call Function17ac2a
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld b, $2
 	ld c, $12
 	call Function17ac46

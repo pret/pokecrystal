@@ -24,10 +24,10 @@ TinTower4F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $2, 2, GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
-	warp_def $2, $10, 2, GROUP_TIN_TOWER_3F, MAP_TIN_TOWER_3F
-	warp_def $e, $2, 3, GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
-	warp_def $f, $11, 4, GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
+	warp_def $4, $2, 2, TIN_TOWER_5F
+	warp_def $2, $10, 2, TIN_TOWER_3F
+	warp_def $e, $2, 3, TIN_TOWER_5F
+	warp_def $f, $11, 4, TIN_TOWER_5F
 
 .XYTriggers:
 	db 0
@@ -38,6 +38,6 @@ TinTower4F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 14, 18, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a58, EVENT_TIN_TOWER_4F_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 18, 21, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a5a, EVENT_TIN_TOWER_4F_PP_UP
-	person_event SPRITE_POKE_BALL, 16, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a5c, EVENT_TIN_TOWER_4F_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 14, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a58, EVENT_TIN_TOWER_4F_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 18, 21, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a5a, EVENT_TIN_TOWER_4F_PP_UP
+	person_event SPRITE_POKE_BALL, 16, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a5c, EVENT_TIN_TOWER_4F_ESCAPE_ROPE

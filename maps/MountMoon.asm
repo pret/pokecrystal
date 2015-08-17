@@ -165,14 +165,14 @@ MountMoon_MapEventHeader:
 
 .Warps:
 	db 8
-	warp_def $3, $3, 1, GROUP_ROUTE_3, MAP_ROUTE_3
-	warp_def $f, $f, 1, GROUP_ROUTE_4, MAP_ROUTE_4
-	warp_def $3, $d, 7, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
-	warp_def $b, $f, 8, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
-	warp_def $5, $19, 1, GROUP_MOUNT_MOON_SQUARE, MAP_MOUNT_MOON_SQUARE
-	warp_def $f, $19, 2, GROUP_MOUNT_MOON_SQUARE, MAP_MOUNT_MOON_SQUARE
-	warp_def $3, $19, 3, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
-	warp_def $d, $19, 4, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
+	warp_def $3, $3, 1, ROUTE_3
+	warp_def $f, $f, 1, ROUTE_4
+	warp_def $3, $d, 7, MOUNT_MOON
+	warp_def $b, $f, 8, MOUNT_MOON
+	warp_def $5, $19, 1, MOUNT_MOON_SQUARE
+	warp_def $f, $19, 2, MOUNT_MOON_SQUARE
+	warp_def $3, $19, 3, MOUNT_MOON
+	warp_def $d, $19, 4, MOUNT_MOON
 
 .XYTriggers:
 	db 0
@@ -182,4 +182,4 @@ MountMoon_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SILVER, 7, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	person_event SPRITE_SILVER, 7, 11, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

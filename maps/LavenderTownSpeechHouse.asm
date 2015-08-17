@@ -31,8 +31,8 @@ LavenderTownSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $3, 3, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $2, 3, LAVENDER_TOWN
+	warp_def $7, $3, 3, LAVENDER_TOWN
 
 .XYTriggers:
 	db 0
@@ -44,4 +44,4 @@ LavenderTownSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_F, 7, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanFScript_0x7ea47, -1
+	person_event SPRITE_POKEFAN_F, 7, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PokefanFScript_0x7ea47, -1

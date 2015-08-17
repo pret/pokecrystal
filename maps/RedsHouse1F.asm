@@ -79,9 +79,9 @@ RedsHouse1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $2, 1, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
-	warp_def $7, $3, 1, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
-	warp_def $0, $7, 1, GROUP_REDS_HOUSE_2F, MAP_REDS_HOUSE_2F
+	warp_def $7, $2, 1, PALLET_TOWN
+	warp_def $7, $3, 1, PALLET_TOWN
+	warp_def $0, $7, 1, REDS_HOUSE_2F
 
 .XYTriggers:
 	db 0
@@ -94,4 +94,4 @@ RedsHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_REDS_MOM, 7, 9, OW_LEFT | $0, $0, -1, -1, $0, 0, RedsMom, -1
+	person_event SPRITE_REDS_MOM, 7, 9, $8, 0, 0, -1, -1, 0, 0, 0, RedsMom, -1

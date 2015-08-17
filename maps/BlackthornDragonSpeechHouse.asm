@@ -47,8 +47,8 @@ BlackthornDragonSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
-	warp_def $7, $3, 2, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
+	warp_def $7, $2, 2, BLACKTHORN_CITY
+	warp_def $7, $3, 2, BLACKTHORN_CITY
 
 .XYTriggers:
 	db 0
@@ -58,5 +58,5 @@ BlackthornDragonSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRANNY, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, GrannyScript_0x195949, -1
-	person_event SPRITE_EKANS, 9, 9, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, EkansScript_0x19594c, -1
+	person_event SPRITE_GRANNY, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x195949, -1
+	person_event SPRITE_EKANS, 9, 9, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, EkansScript_0x19594c, -1

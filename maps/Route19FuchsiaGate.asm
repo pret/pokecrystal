@@ -48,10 +48,10 @@ Route19FuchsiaGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 10, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $0, $5, 11, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $7, $4, 1, GROUP_ROUTE_19, MAP_ROUTE_19
-	warp_def $7, $5, 1, GROUP_ROUTE_19, MAP_ROUTE_19
+	warp_def $0, $4, 10, FUCHSIA_CITY
+	warp_def $0, $5, 11, FUCHSIA_CITY
+	warp_def $7, $4, 1, ROUTE_19
+	warp_def $7, $5, 1, ROUTE_19
 
 .XYTriggers:
 	db 0
@@ -61,4 +61,4 @@ Route19FuchsiaGate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x1ab3f6, -1
+	person_event SPRITE_OFFICER, 8, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, OfficerScript_0x1ab3f6, -1

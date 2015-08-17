@@ -291,17 +291,17 @@ OlivineCity_MapEventHeader:
 
 .Warps:
 	db 11
-	warp_def $15, $d, 1, GROUP_OLIVINE_POKECENTER_1F, MAP_OLIVINE_POKECENTER_1F
-	warp_def $b, $a, 1, GROUP_OLIVINE_GYM, MAP_OLIVINE_GYM
-	warp_def $b, $19, 1, GROUP_OLIVINE_VOLTORB_HOUSE, MAP_OLIVINE_VOLTORB_HOUSE
-	warp_def $0, $0, 1, GROUP_OLIVINE_HOUSE_BETA, MAP_OLIVINE_HOUSE_BETA
-	warp_def $b, $1d, 1, GROUP_OLIVINE_PUNISHMENT_SPEECH_HOUSE, MAP_OLIVINE_PUNISHMENT_SPEECH_HOUSE
-	warp_def $f, $d, 1, GROUP_OLIVINE_GOOD_ROD_HOUSE, MAP_OLIVINE_GOOD_ROD_HOUSE
-	warp_def $15, $7, 1, GROUP_OLIVINE_CAFE, MAP_OLIVINE_CAFE
-	warp_def $11, $13, 2, GROUP_OLIVINE_MART, MAP_OLIVINE_MART
-	warp_def $1b, $1d, 1, GROUP_OLIVINE_LIGHTHOUSE_1F, MAP_OLIVINE_LIGHTHOUSE_1F
-	warp_def $1b, $13, 1, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
-	warp_def $1b, $14, 2, GROUP_OLIVINE_PORT_PASSAGE, MAP_OLIVINE_PORT_PASSAGE
+	warp_def $15, $d, 1, OLIVINE_POKECENTER_1F
+	warp_def $b, $a, 1, OLIVINE_GYM
+	warp_def $b, $19, 1, OLIVINE_VOLTORB_HOUSE
+	warp_def $0, $0, 1, OLIVINE_HOUSE_BETA
+	warp_def $b, $1d, 1, OLIVINE_PUNISHMENT_SPEECH_HOUSE
+	warp_def $f, $d, 1, OLIVINE_GOOD_ROD_HOUSE
+	warp_def $15, $7, 1, OLIVINE_CAFE
+	warp_def $11, $13, 2, OLIVINE_MART
+	warp_def $1b, $1d, 1, OLIVINE_LIGHTHOUSE_1F
+	warp_def $1b, $13, 1, OLIVINE_PORT_PASSAGE
+	warp_def $1b, $14, 2, OLIVINE_PORT_PASSAGE
 
 .XYTriggers:
 	db 2
@@ -320,7 +320,7 @@ OlivineCity_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 31, 30, OW_UP | $0, $10, -1, -1, $0, 0, SailorScript_0x1a88a3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, OW_DOWN | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, StandingYoungsterScript_0x1a88a6, -1
-	person_event SPRITE_SAILOR, 25, 21, OW_DOWN | $2, $11, -1, -1, $0, 0, SailorScript_0x1a88ba, -1
-	person_event SPRITE_OLIVINE_RIVAL, 15, 14, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY
+	person_event SPRITE_SAILOR, 31, 30, $4, 1, 0, -1, -1, 0, 0, 0, SailorScript_0x1a88a3, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, StandingYoungsterScript_0x1a88a6, -1
+	person_event SPRITE_SAILOR, 25, 21, $2, 1, 1, -1, -1, 0, 0, 0, SailorScript_0x1a88ba, -1
+	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY

@@ -49,8 +49,8 @@ BattleTowerElevator_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $1, 1, GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY
-	warp_def $3, $2, 1, GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY
+	warp_def $3, $1, 1, BATTLE_TOWER_HALLWAY
+	warp_def $3, $2, 1, BATTLE_TOWER_HALLWAY
 
 .XYTriggers:
 	db 0
@@ -60,4 +60,4 @@ BattleTowerElevator_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RECEPTIONIST, 6, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, MovementData_0x9f58f, -1
+	person_event SPRITE_RECEPTIONIST, 6, 5, $9, 0, 0, -1, -1, 0, 0, 0, MovementData_0x9f58f, -1

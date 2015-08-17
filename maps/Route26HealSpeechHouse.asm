@@ -51,8 +51,8 @@ Route26HealSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_ROUTE_26, MAP_ROUTE_26
-	warp_def $7, $3, 2, GROUP_ROUTE_26, MAP_ROUTE_26
+	warp_def $7, $2, 2, ROUTE_26
+	warp_def $7, $3, 2, ROUTE_26
 
 .XYTriggers:
 	db 0
@@ -64,4 +64,4 @@ Route26HealSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_TEACHER, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7b125, -1
+	person_event SPRITE_TEACHER, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x7b125, -1

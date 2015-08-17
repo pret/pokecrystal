@@ -31,8 +31,8 @@ SilverCaveRoom1_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $21, $9, 2, GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
-	warp_def $1, $f, 1, GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
+	warp_def $21, $9, 2, SILVER_CAVE_OUTSIDE
+	warp_def $1, $f, 1, SILVER_CAVE_ROOM_2
 
 .XYTriggers:
 	db 0
@@ -44,7 +44,7 @@ SilverCaveRoom1_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKE_BALL, 13, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c554, EVENT_SILVER_CAVE_ROOM_1_MAX_ELIXER
-	person_event SPRITE_POKE_BALL, 33, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c556, EVENT_SILVER_CAVE_ROOM_1_PROTEIN
-	person_event SPRITE_POKE_BALL, 34, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c558, EVENT_SILVER_CAVE_ROOM_1_ESCAPE_ROPE
-	person_event SPRITE_POKE_BALL, 22, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c55a, EVENT_SILVER_CAVE_ROOM_1_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 13, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c554, EVENT_SILVER_CAVE_ROOM_1_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 33, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c556, EVENT_SILVER_CAVE_ROOM_1_PROTEIN
+	person_event SPRITE_POKE_BALL, 34, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c558, EVENT_SILVER_CAVE_ROOM_1_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 22, 11, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c55a, EVENT_SILVER_CAVE_ROOM_1_ULTRA_BALL

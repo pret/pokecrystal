@@ -11,7 +11,7 @@ VermilionPokeCenter2FBeta_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $0, 3, GROUP_VERMILION_POKECENTER_1F, MAP_VERMILION_POKECENTER_1F
+	warp_def $7, $0, 3, VERMILION_POKECENTER_1F
 
 .XYTriggers:
 	db 0

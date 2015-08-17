@@ -333,7 +333,7 @@ MapSetupCommands: ; 15440
 	dbw BANK(DelayClearingOldSprites), DelayClearingOldSprites ; 24
 	dbw BANK(DelayLoadingNewSprites), DelayLoadingNewSprites ; 25
 	dbw BANK(UpdateRoamMons), UpdateRoamMons ; 26
-	dbw BANK(RestoreRoamMons), RestoreRoamMons ; 27
+	dbw BANK(JumpRoamMons), JumpRoamMons ; 27
 	dbw BANK(FadeOldMapMusic), FadeOldMapMusic ; 28
 	dbw BANK(ActivateMapAnims), ActivateMapAnims ; 29
 	dbw BANK(SuspendMapAnims), SuspendMapAnims ; 2a
@@ -439,7 +439,7 @@ Function1551a: ; 1551a (5:551a)
 	ret
 
 Function1554e: ; 1554e (5:554e)
-	call Function1852
+	call CheckOnWater
 	jr nz, .ret_nc
 	ld a, [PlayerState]
 	cp PLAYER_SURF

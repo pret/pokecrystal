@@ -309,14 +309,14 @@ BlackthornCity_MapEventHeader:
 
 .Warps:
 	db 8
-	warp_def $b, $12, 1, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
-	warp_def $15, $d, 1, GROUP_BLACKTHORN_DRAGON_SPEECH_HOUSE, MAP_BLACKTHORN_DRAGON_SPEECH_HOUSE
-	warp_def $17, $1d, 1, GROUP_BLACKTHORN_DODRIO_TRADE_HOUSE, MAP_BLACKTHORN_DODRIO_TRADE_HOUSE
-	warp_def $1d, $f, 2, GROUP_BLACKTHORN_MART, MAP_BLACKTHORN_MART
-	warp_def $1d, $15, 1, GROUP_BLACKTHORN_POKECENTER_1F, MAP_BLACKTHORN_POKECENTER_1F
-	warp_def $1f, $9, 1, GROUP_MOVE_DELETERS_HOUSE, MAP_MOVE_DELETERS_HOUSE
-	warp_def $9, $24, 2, GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
-	warp_def $1, $14, 1, GROUP_DRAGONS_DEN_1F, MAP_DRAGONS_DEN_1F
+	warp_def $b, $12, 1, BLACKTHORN_GYM_1F
+	warp_def $15, $d, 1, BLACKTHORN_DRAGON_SPEECH_HOUSE
+	warp_def $17, $1d, 1, BLACKTHORN_DODRIO_TRADE_HOUSE
+	warp_def $1d, $f, 2, BLACKTHORN_MART
+	warp_def $1d, $15, 1, BLACKTHORN_POKECENTER_1F
+	warp_def $1f, $9, 1, MOVE_DELETERS_HOUSE
+	warp_def $9, $24, 2, ICE_PATH_1F
+	warp_def $1, $14, 1, DRAGONS_DEN_1F
 
 .XYTriggers:
 	db 0
@@ -333,12 +333,12 @@ BlackthornCity_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_SUPER_NERD, 16, 22, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
-	person_event SPRITE_SUPER_NERD, 16, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
-	person_event SPRITE_GRAMPS, 6, 24, OW_UP | $2, $0, -1, -1, $0, 0, GrampsScript_0x1a4708, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
-	person_event SPRITE_GRAMPS, 6, 25, OW_LEFT | $0, $0, -1, -1, $0, 0, GrampsScript_0x1a470b, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
-	person_event SPRITE_BLACK_BELT, 35, 28, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, BlackBeltScript_0x1a470e, -1
-	person_event SPRITE_COOLTRAINER_F, 29, 13, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x1a4722, -1
-	person_event SPRITE_YOUNGSTER, 19, 17, OW_UP | $1, $1, -1, -1, $0, 0, YoungsterScript_0x1a4725, -1
-	person_event SPRITE_YOUNGSTER, 24, 26, OW_UP | $2, $0, -1, -1, $0, 0, SantosScript, EVENT_BLACKTHORN_CITY_SANTOS_OF_SATURDAY
-	person_event SPRITE_COOLTRAINER_F, 23, 39, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x1a4728, -1
+	person_event SPRITE_SUPER_NERD, 16, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
+	person_event SPRITE_SUPER_NERD, 16, 23, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
+	person_event SPRITE_GRAMPS, 6, 24, $6, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a4708, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
+	person_event SPRITE_GRAMPS, 6, 25, $8, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a470b, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
+	person_event SPRITE_BLACK_BELT, 35, 28, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BlackBeltScript_0x1a470e, -1
+	person_event SPRITE_COOLTRAINER_F, 29, 13, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x1a4722, -1
+	person_event SPRITE_YOUNGSTER, 19, 17, $5, 0, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a4725, -1
+	person_event SPRITE_YOUNGSTER, 24, 26, $6, 0, 0, -1, -1, 0, 0, 0, SantosScript, EVENT_BLACKTHORN_CITY_SANTOS_OF_SATURDAY
+	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x1a4728, -1

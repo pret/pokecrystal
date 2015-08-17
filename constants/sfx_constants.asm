@@ -42,7 +42,7 @@
 	const SFX_ELEVATOR_END
 	const SFX_THROW_BALL
 	const SFX_BALL_POOF
-	const SFX_UNKNOWN_2A
+	const SFX_FAINT
 	const SFX_RUN
 	const SFX_SLOT_MACHINE_START
 	const SFX_FANFARE

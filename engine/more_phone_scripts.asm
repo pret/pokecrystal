@@ -27,7 +27,7 @@ UnknownScript_0xa0036:
 	farjump UnknownScript_0xa0055
 
 UnknownScript_0xa003e:
-	special Function2a51f
+	special RandomPhoneWildMon
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xa0051
 	farscall UnknownScript_0xa017a
@@ -37,7 +37,7 @@ UnknownScript_0xa0051:
 	farjump UnknownScript_0xa006c
 
 UnknownScript_0xa0055:
-	special Function2a51f
+	special RandomPhoneWildMon
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xa0068
 	farscall UnknownScript_0xa0226
@@ -851,7 +851,7 @@ UnknownScript_0xa059c:
 	farjump UnknownScript_0xa053a
 
 UnknownScript_0xa05a0:
-	special Function2a4ab
+	special RandomPhoneRareWildMon
 	end
 
 UnknownScript_0xa05a4:
@@ -1653,7 +1653,7 @@ UnknownScript_0xa0b04:
 	farwritetext UnknownText_0x17717c
 	end
 
-UnknownScript_0xa0b09:
+BikeShopPhoneScript:
 	farwritetext UnknownText_0x174000
 	clearflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	specialphonecall ELMCALL_NONE

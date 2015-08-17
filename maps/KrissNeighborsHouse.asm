@@ -100,8 +100,8 @@ KrissNeighborsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
-	warp_def $7, $3, 3, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
+	warp_def $7, $2, 3, NEW_BARK_TOWN
+	warp_def $7, $3, 3, NEW_BARK_TOWN
 
 .XYTriggers:
 	db 0
@@ -114,5 +114,5 @@ KrissNeighborsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighborsDaughter, -1
-	person_event SPRITE_POKEFAN_F, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, KrissNeighborsDaughter, -1
+	person_event SPRITE_POKEFAN_F, 7, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR

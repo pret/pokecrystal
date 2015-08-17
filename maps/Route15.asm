@@ -198,8 +198,8 @@ Route15_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $4, $2, 3, GROUP_ROUTE_15_FUCHSIA_GATE, MAP_ROUTE_15_FUCHSIA_GATE
-	warp_def $5, $2, 4, GROUP_ROUTE_15_FUCHSIA_GATE, MAP_ROUTE_15_FUCHSIA_GATE
+	warp_def $4, $2, 3, ROUTE_15_FUCHSIA_GATE
+	warp_def $5, $2, 4, ROUTE_15_FUCHSIA_GATE
 
 .XYTriggers:
 	db 0
@@ -210,10 +210,10 @@ Route15_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_YOUNGSTER, 14, 14, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSchoolboyKipp, -1
-	person_event SPRITE_YOUNGSTER, 17, 19, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyTommy, -1
-	person_event SPRITE_YOUNGSTER, 14, 37, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyJohnny, -1
-	person_event SPRITE_YOUNGSTER, 14, 31, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyBilly, -1
-	person_event SPRITE_TEACHER, 16, 34, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerTeacherColette, -1
-	person_event SPRITE_TEACHER, 14, 24, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerTeacherHillary, -1
-	person_event SPRITE_POKE_BALL, 9, 16, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1aa5e4, EVENT_ROUTE_15_PP_UP
+	person_event SPRITE_YOUNGSTER, 14, 14, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerSchoolboyKipp, -1
+	person_event SPRITE_YOUNGSTER, 17, 19, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSchoolboyTommy, -1
+	person_event SPRITE_YOUNGSTER, 14, 37, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSchoolboyJohnny, -1
+	person_event SPRITE_YOUNGSTER, 14, 31, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSchoolboyBilly, -1
+	person_event SPRITE_TEACHER, 16, 34, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 4, TrainerTeacherColette, -1
+	person_event SPRITE_TEACHER, 14, 24, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerTeacherHillary, -1
+	person_event SPRITE_POKE_BALL, 9, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1aa5e4, EVENT_ROUTE_15_PP_UP

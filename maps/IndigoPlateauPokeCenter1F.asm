@@ -16,12 +16,12 @@ UnknownScript_0x180009:
 	end
 
 UnknownScript_0x18000a:
-	domaptrigger GROUP_WILLS_ROOM, MAP_WILLS_ROOM, $0
-	domaptrigger GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM, $0
-	domaptrigger GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM, $0
-	domaptrigger GROUP_KARENS_ROOM, MAP_KARENS_ROOM, $0
-	domaptrigger GROUP_LANCES_ROOM, MAP_LANCES_ROOM, $0
-	domaptrigger GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $0
+	domaptrigger WILLS_ROOM, $0
+	domaptrigger KOGAS_ROOM, $0
+	domaptrigger BRUNOS_ROOM, $0
+	domaptrigger KARENS_ROOM, $0
+	domaptrigger LANCES_ROOM, $0
+	domaptrigger HALL_OF_FAME, $0
 	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
@@ -156,7 +156,7 @@ TeleportGuyScript:
 	playsound SFX_WARP_TO
 	special FadeBlackBGMap
 	waitbutton
-	warp GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $d, $6
+	warp NEW_BARK_TOWN, $d, $6
 	end
 
 .No
@@ -304,10 +304,10 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $d, $5, 1, GROUP_ROUTE_23, MAP_ROUTE_23
-	warp_def $d, $6, 2, GROUP_ROUTE_23, MAP_ROUTE_23
-	warp_def $d, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $3, $e, 1, GROUP_WILLS_ROOM, MAP_WILLS_ROOM
+	warp_def $d, $5, 1, ROUTE_23
+	warp_def $d, $6, 2, ROUTE_23
+	warp_def $d, $0, 1, POKECENTER_2F
+	warp_def $3, $e, 1, WILLS_ROOM
 
 .XYTriggers:
 	db 2
@@ -319,9 +319,9 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_NURSE, 11, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x18012c, -1
-	person_event SPRITE_CLERK, 11, 15, OW_UP | $2, $0, -1, -1, $0, 0, ClerkScript_0x18012f, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 15, OW_DOWN | $2, $22, -1, -1, $0, 0, CooltrainerMScript_0x180136, -1
-	person_event SPRITE_SILVER, 13, 20, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
-	person_event SPRITE_GRAMPS, 13, 5, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
-	person_event SPRITE_JYNX, 13, 4, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, AbraScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_NURSE, 11, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18012c, -1
+	person_event SPRITE_CLERK, 11, 15, $6, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x18012f, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, 2, 2, -1, -1, 0, 0, 0, CooltrainerMScript_0x180136, -1
+	person_event SPRITE_SILVER, 13, 20, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
+	person_event SPRITE_GRAMPS, 13, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
+	person_event SPRITE_JYNX, 13, 4, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, AbraScript, EVENT_TELEPORT_GUY

@@ -63,7 +63,7 @@ SlowpokeWellB2F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $b, $9, 2, GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
+	warp_def $b, $9, 2, SLOWPOKE_WELL_B1F
 
 .XYTriggers:
 	db 0
@@ -73,5 +73,5 @@ SlowpokeWellB2F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GYM_GUY, 8, 9, OW_DOWN | $2, $21, -1, -1, $0, 1, GymGuyScript_0x5ad0b, -1
-	person_event SPRITE_POKE_BALL, 9, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5ad28, EVENT_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE
+	person_event SPRITE_GYM_GUY, 8, 9, $2, 2, 1, -1, -1, 0, 0, 1, GymGuyScript_0x5ad0b, -1
+	person_event SPRITE_POKE_BALL, 9, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5ad28, EVENT_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE

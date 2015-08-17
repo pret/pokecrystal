@@ -160,10 +160,10 @@ DayCare_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $5, $0, 3, GROUP_ROUTE_34, MAP_ROUTE_34
-	warp_def $6, $0, 4, GROUP_ROUTE_34, MAP_ROUTE_34
-	warp_def $7, $2, 5, GROUP_ROUTE_34, MAP_ROUTE_34
-	warp_def $7, $3, 5, GROUP_ROUTE_34, MAP_ROUTE_34
+	warp_def $5, $0, 3, ROUTE_34
+	warp_def $6, $0, 4, ROUTE_34
+	warp_def $7, $2, 5, ROUTE_34
+	warp_def $7, $3, 5, ROUTE_34
 
 .XYTriggers:
 	db 0
@@ -175,5 +175,5 @@ DayCare_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, GrampsScript_0x62f8f, EVENT_DAYCARE_MAN_IN_DAYCARE
-	person_event SPRITE_GRANNY, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GrannyScript_0x62fc3, -1
+	person_event SPRITE_GRAMPS, 7, 6, $9, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x62f8f, EVENT_DAYCARE_MAN_IN_DAYCARE
+	person_event SPRITE_GRANNY, 7, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GrannyScript_0x62fc3, -1

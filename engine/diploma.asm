@@ -14,8 +14,8 @@ Function1dd709: ; 1dd709
 	ld de, VTiles2
 	call Decompress
 	ld hl, Tilemap_1ddc4b
-	ld de, TileMap
-	ld bc, $0168
+	decoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call CopyBytes
 	ld de, String_1dd760
 	hlcoord 2, 5
@@ -54,13 +54,13 @@ String_1dd768:
 ; 1dd7ae
 
 Function1dd7ae: ; 1dd7ae
-	ld hl, TileMap
-	ld bc, $0168
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $7f
 	call ByteFill
 	ld hl, Tilemap_1dddb3
-	ld de, TileMap
-	ld bc, $0168
+	decoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call CopyBytes
 	ld de, String_1dd7fa
 	hlcoord 8, 0

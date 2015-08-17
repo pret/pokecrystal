@@ -57,9 +57,9 @@ GoldenrodDeptStore3F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $c, 1, GROUP_GOLDENROD_DEPT_STORE_2F, MAP_GOLDENROD_DEPT_STORE_2F
-	warp_def $0, $f, 2, GROUP_GOLDENROD_DEPT_STORE_4F, MAP_GOLDENROD_DEPT_STORE_4F
-	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def $0, $c, 1, GOLDENROD_DEPT_STORE_2F
+	warp_def $0, $f, 2, GOLDENROD_DEPT_STORE_4F
+	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -71,6 +71,6 @@ GoldenrodDeptStore3F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 5, 10, OW_UP | $2, $0, -1, -1, $0, 0, ClerkScript_0x55db8, -1
-	person_event SPRITE_SUPER_NERD, 9, 16, OW_LEFT | $2, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x55dc0, -1
-	person_event SPRITE_ROCKER, 9, 6, OW_UP | $0, $10, -1, -1, $0, 0, RockerScript_0x55dc3, -1
+	person_event SPRITE_CLERK, 5, 10, $6, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x55db8, -1
+	person_event SPRITE_SUPER_NERD, 9, 16, $a, 1, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x55dc0, -1
+	person_event SPRITE_ROCKER, 9, 6, $4, 1, 0, -1, -1, 0, 0, 0, RockerScript_0x55dc3, -1

@@ -22,8 +22,8 @@ BlackthornDodrioTradeHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
-	warp_def $7, $3, 3, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
+	warp_def $7, $2, 3, BLACKTHORN_CITY
+	warp_def $7, $3, 3, BLACKTHORN_CITY
 
 .XYTriggers:
 	db 0
@@ -35,4 +35,4 @@ BlackthornDodrioTradeHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LASS, 7, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, Emy, -1
+	person_event SPRITE_LASS, 7, 6, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, Emy, -1

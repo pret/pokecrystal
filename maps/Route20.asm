@@ -116,7 +116,7 @@ Route20_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $26, 1, GROUP_SEAFOAM_GYM, MAP_SEAFOAM_GYM
+	warp_def $7, $26, 1, SEAFOAM_GYM
 
 .XYTriggers:
 	db 0
@@ -127,6 +127,6 @@ Route20_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 12, 56, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfNicole, -1
-	person_event SPRITE_SWIMMER_GIRL, 17, 49, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfLori, -1
-	person_event SPRITE_SWIMMER_GUY, 17, 16, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermCameron, -1
+	person_event SPRITE_SWIMMER_GIRL, 12, 56, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfNicole, -1
+	person_event SPRITE_SWIMMER_GIRL, 17, 49, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfLori, -1
+	person_event SPRITE_SWIMMER_GUY, 17, 16, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermCameron, -1

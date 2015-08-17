@@ -43,8 +43,8 @@ UnknownScript_0x1883de:
 	clearevent EVENT_ROUTE_24_ROCKET
 	clearevent EVENT_ROUTE_25_MISTY_BOYFRIEND
 	dotrigger $0
-	domaptrigger GROUP_ROUTE_25, MAP_ROUTE_25, $1
-	domaptrigger GROUP_POWER_PLANT, MAP_POWER_PLANT, $0
+	domaptrigger ROUTE_25, $1
+	domaptrigger POWER_PLANT, $0
 	waitbutton
 	special RestartMapMusic
 	pause 15
@@ -363,8 +363,8 @@ CeruleanGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $4, 5, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
-	warp_def $f, $5, 5, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	warp_def $f, $4, 5, CERULEAN_CITY
+	warp_def $f, $5, 5, CERULEAN_CITY
 
 .XYTriggers:
 	db 0
@@ -377,9 +377,9 @@ CeruleanGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ROCKET, 14, 8, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
-	person_event SPRITE_MISTY, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 10, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 13, 5, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GUY, 13, 12, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_GYM_GUY, 17, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_ROCKET, 14, 8, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
+	person_event SPRITE_MISTY, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_GYM_GUY, 17, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM

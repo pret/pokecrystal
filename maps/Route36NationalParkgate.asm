@@ -3,59 +3,59 @@ Route36NationalParkgate_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x6ab11, $0000
-	dw UnknownScript_0x6ab12, $0000
-	dw UnknownScript_0x6ab13, $0000
+	dw .Trigger1, $0000
+	dw .Trigger2, $0000
+	dw .Trigger3, $0000
 
 .MapCallbacks:
 	db 2
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x6ab17
+	dbw 5, .CheckIfContestRunning
 
-	dbw 2, UnknownScript_0x6ab23
+	dbw 2, .CheckIfContestAvailable
 
-UnknownScript_0x6ab11:
+.Trigger1:
 	end
 
-UnknownScript_0x6ab12:
+.Trigger2:
 	end
 
-UnknownScript_0x6ab13:
-	priorityjump UnknownScript_0x6ab47
+.Trigger3:
+	priorityjump .LeftTheContestEarly
 	end
 
-UnknownScript_0x6ab17:
+.CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue UnknownScript_0x6ab20
+	iftrue .BugContestIsRunning
 	dotrigger $0
 	return
 
-UnknownScript_0x6ab20:
+.BugContestIsRunning:
 	dotrigger $2
 	return
 
-UnknownScript_0x6ab23:
+.CheckIfContestAvailable:
 	checkevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
-	iftrue UnknownScript_0x6ab46
+	iftrue .Return
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, UnknownScript_0x6ab42
-	if_equal THURSDAY, UnknownScript_0x6ab42
-	if_equal SATURDAY, UnknownScript_0x6ab42
+	if_equal TUESDAY, .SetContestOfficer
+	if_equal THURSDAY, .SetContestOfficer
+	if_equal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue UnknownScript_0x6ab42
+	iftrue .SetContestOfficer
 	disappear $2
 	appear $d
 	return
 
-UnknownScript_0x6ab42:
+.SetContestOfficer:
 	appear $2
 	disappear $d
-UnknownScript_0x6ab46:
+.Return:
 	return
 
-UnknownScript_0x6ab47:
+.LeftTheContestEarly:
 	spriteface PLAYER, UP
 	loadfont
 	checkcode VAR_CONTESTMINUTES
@@ -63,13 +63,13 @@ UnknownScript_0x6ab47:
 	RAM2MEM $0
 	writetext UnknownText_0x6b284
 	yesorno
-	iffalse UnknownScript_0x6ab76
+	iffalse .GoBackToContest
 	writetext UnknownText_0x6b2c5
 	closetext
 	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	scall UnknownScript_0x6ab8c
+	scall .CopyContestants
 	disappear $2
 	appear $d
 	applymovement PLAYER, MovementData_0x6add1
@@ -77,7 +77,7 @@ UnknownScript_0x6ab47:
 	special Special_FadeInQuickly
 	jumpstd bugcontestresults
 
-UnknownScript_0x6ab76:
+.GoBackToContest:
 	writetext UnknownText_0x6b300
 	closetext
 	loadmovesprites
@@ -85,72 +85,72 @@ UnknownScript_0x6ab76:
 	playsound SFX_EXIT_BUILDING
 	special FadeBlackBGMap
 	waitbutton
-	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing $2, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 
-UnknownScript_0x6ab8c:
+.CopyContestants:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_1A
-	iftrue UnknownScript_0x6ab94
+	iftrue .Not1
 	appear $3
-UnknownScript_0x6ab94:
+.Not1:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_2A
-	iftrue UnknownScript_0x6ab9c
+	iftrue .Not2
 	appear $4
-UnknownScript_0x6ab9c:
+.Not2:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_3A
-	iftrue UnknownScript_0x6aba4
+	iftrue .Not3
 	appear $5
-UnknownScript_0x6aba4:
+.Not3:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_4A
-	iftrue UnknownScript_0x6abac
+	iftrue .Not4
 	appear $6
-UnknownScript_0x6abac:
+.Not4:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_5A
-	iftrue UnknownScript_0x6abb4
+	iftrue .Not5
 	appear $7
-UnknownScript_0x6abb4:
+.Not5:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_6A
-	iftrue UnknownScript_0x6abbc
+	iftrue .Not6
 	appear $8
-UnknownScript_0x6abbc:
+.Not6:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_7A
-	iftrue UnknownScript_0x6abc4
+	iftrue .Not7
 	appear $9
-UnknownScript_0x6abc4:
+.Not7:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_8A
-	iftrue UnknownScript_0x6abcc
+	iftrue .Not8
 	appear $a
-UnknownScript_0x6abcc:
+.Not8:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_9A
-	iftrue UnknownScript_0x6abd4
+	iftrue .Not9
 	appear $b
-UnknownScript_0x6abd4:
+.Not9:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_10A
-	iftrue UnknownScript_0x6abdc
+	iftrue .Not10
 	appear $c
-UnknownScript_0x6abdc:
-	special DrawOnMap
+.Not10:
+	special UpdateSprites
 	end
 
-OfficerScript_0x6abe0:
+Route36OfficerScriptContest:
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, UnknownScript_0x6acf1
-	if_equal MONDAY, UnknownScript_0x6acf1
-	if_equal WEDNESDAY, UnknownScript_0x6acf1
-	if_equal FRIDAY, UnknownScript_0x6acf1
+	if_equal SUNDAY, _ContestNotOn
+	if_equal MONDAY, _ContestNotOn
+	if_equal WEDNESDAY, _ContestNotOn
+	if_equal FRIDAY, _ContestNotOn
 	faceplayer
 	loadfont
 	checkflag ENGINE_DAILY_BUG_CONTEST
-	iftrue UnknownScript_0x6ac91
-	scall UnknownScript_0x6ad02
+	iftrue Route36Officer_ContestHasConcluded
+	scall Route36Parkgate_DayToText
 	writetext UnknownText_0x6add5
 	yesorno
-	iffalse UnknownScript_0x6ac73
+	iffalse .DecidedNotToJoinContest
 	checkcode VAR_PARTYCOUNT
-	if_greater_than $1, UnknownScript_0x6ac41
+	if_greater_than $1, .LeaveMonsWithOfficer
 	special CheckFirstMonFainted
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
-UnknownScript_0x6ac10:
+.ResumeStartingContest:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext UnknownText_0x6ae87
@@ -169,22 +169,22 @@ UnknownScript_0x6ac10:
 	special FadeBlackBGMap
 	waitbutton
 	special Special_SelectRandomBugContestContestants
-	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing $2, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 
-UnknownScript_0x6ac41:
+.LeaveMonsWithOfficer:
 	checkcode VAR_PARTYCOUNT
-	if_less_than $6, UnknownScript_0x6ac4d
+	if_less_than $6, .ContinueLeavingMons
 	checkcode VAR_BOXSPACE
-	if_equal $0, UnknownScript_0x6ac85
-UnknownScript_0x6ac4d:
-	special Function71ac
-	if_equal $1, UnknownScript_0x6ac8b
+	if_equal $0, .BoxFull
+.ContinueLeavingMons:
+	special CheckFirstMonIsEgg
+	if_equal $1, .FirstMonIsEgg
 	writetext UnknownText_0x6afb0
 	yesorno
-	iffalse UnknownScript_0x6ac79
+	iffalse .RefusedToLeaveMons
 	special CheckFirstMonFainted
-	iftrue UnknownScript_0x6ac7f
+	iftrue .FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6b021
 	keeptextopen
@@ -192,108 +192,108 @@ UnknownScript_0x6ac4d:
 	playsound SFX_GOT_SAFARI_BALLS
 	waitbutton
 	keeptextopen
-	jump UnknownScript_0x6ac10
+	jump .ResumeStartingContest
 
-UnknownScript_0x6ac73:
+.DecidedNotToJoinContest:
 	writetext UnknownText_0x6b0c6
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6ac79:
+.RefusedToLeaveMons:
 	writetext UnknownText_0x6b081
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6ac7f:
+.FirstMonIsFainted:
 	writetext UnknownText_0x6b0f2
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6ac85:
+.BoxFull:
 	writetext UnknownText_0x6b166
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6ac8b:
+.FirstMonIsEgg:
 	writetext UnknownText_0x6b209
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6ac91:
+Route36Officer_ContestHasConcluded:
 	checkevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
-	iftrue UnknownScript_0x6acaf
+	iftrue .Sunstone
 	checkevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
-	iftrue UnknownScript_0x6acbe
+	iftrue .Everstone
 	checkevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	iftrue UnknownScript_0x6accd
+	iftrue .GoldBerry
 	checkevent EVENT_CONTEST_OFFICER_HAS_BERRY
-	iftrue UnknownScript_0x6acdc
+	iftrue .Berry
 	writetext UnknownText_0x6b32b
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6acaf:
+.Sunstone:
 	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem SUN_STONE, 1
-	iffalse UnknownScript_0x6aceb
+	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	loadmovesprites
 	end
 
-UnknownScript_0x6acbe:
+.Everstone:
 	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
-	iffalse UnknownScript_0x6aceb
+	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	loadmovesprites
 	end
 
-UnknownScript_0x6accd:
+.GoldBerry:
 	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem GOLD_BERRY, 1
-	iffalse UnknownScript_0x6aceb
+	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	loadmovesprites
 	end
 
-UnknownScript_0x6acdc:
+.Berry:
 	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem BERRY, 1
-	iffalse UnknownScript_0x6aceb
+	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	loadmovesprites
 	end
 
-UnknownScript_0x6aceb:
+.BagFull:
 	writetext UnknownText_0x6b910
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6acf1:
+_ContestNotOn:
 	jumptextfaceplayer UnknownText_0x6b370
 
 OfficerScript_0x6acf4:
 	faceplayer
 	loadfont
 	checkflag ENGINE_DAILY_BUG_CONTEST
-	iftrue UnknownScript_0x6ac91
+	iftrue Route36Officer_ContestHasConcluded
 	writetext UnknownText_0x6b370
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x6ad02:
+Route36Parkgate_DayToText:
 	jumpstd daytotext
 	end
 
@@ -848,10 +848,10 @@ Route36NationalParkgate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 1, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
-	warp_def $5, $0, 2, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
-	warp_def $4, $9, 1, GROUP_ROUTE_36, MAP_ROUTE_36
-	warp_def $5, $9, 2, GROUP_ROUTE_36, MAP_ROUTE_36
+	warp_def $4, $0, 1, NATIONAL_PARK
+	warp_def $5, $0, 2, NATIONAL_PARK
+	warp_def $4, $9, 1, ROUTE_36
+	warp_def $5, $9, 2, ROUTE_36
 
 .XYTriggers:
 	db 0
@@ -862,15 +862,15 @@ Route36NationalParkgate_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_OFFICER, 7, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6abe0, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
-	person_event SPRITE_YOUNGSTER, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad06, EVENT_BUG_CATCHING_CONTESTANT_1B
-	person_event SPRITE_YOUNGSTER, 9, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6ad1a, EVENT_BUG_CATCHING_CONTESTANT_2B
-	person_event SPRITE_ROCKER, 10, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, RockerScript_0x6ad2e, EVENT_BUG_CATCHING_CONTESTANT_3B
-	person_event SPRITE_POKEFAN_M, 9, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x6ad42, EVENT_BUG_CATCHING_CONTESTANT_4B
-	person_event SPRITE_YOUNGSTER, 11, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad56, EVENT_BUG_CATCHING_CONTESTANT_5B
-	person_event SPRITE_YOUNGSTER, 10, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6ad6a, EVENT_BUG_CATCHING_CONTESTANT_6B
-	person_event SPRITE_LASS, 10, 7, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x6ad7e, EVENT_BUG_CATCHING_CONTESTANT_7B
-	person_event SPRITE_YOUNGSTER, 11, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6ad92, EVENT_BUG_CATCHING_CONTESTANT_8B
-	person_event SPRITE_YOUNGSTER, 11, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x6ada6, EVENT_BUG_CATCHING_CONTESTANT_9B
-	person_event SPRITE_YOUNGSTER, 10, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, YoungsterScript_0x6adba, EVENT_BUG_CATCHING_CONTESTANT_10B
-	person_event SPRITE_OFFICER, 6, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6acf4, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
+	person_event SPRITE_OFFICER, 7, 4, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, Route36OfficerScriptContest, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
+	person_event SPRITE_YOUNGSTER, 9, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6ad06, EVENT_BUG_CATCHING_CONTESTANT_1B
+	person_event SPRITE_YOUNGSTER, 9, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x6ad1a, EVENT_BUG_CATCHING_CONTESTANT_2B
+	person_event SPRITE_ROCKER, 10, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, RockerScript_0x6ad2e, EVENT_BUG_CATCHING_CONTESTANT_3B
+	person_event SPRITE_POKEFAN_M, 9, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x6ad42, EVENT_BUG_CATCHING_CONTESTANT_4B
+	person_event SPRITE_YOUNGSTER, 11, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6ad56, EVENT_BUG_CATCHING_CONTESTANT_5B
+	person_event SPRITE_YOUNGSTER, 10, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x6ad6a, EVENT_BUG_CATCHING_CONTESTANT_6B
+	person_event SPRITE_LASS, 10, 7, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_0x6ad7e, EVENT_BUG_CATCHING_CONTESTANT_7B
+	person_event SPRITE_YOUNGSTER, 11, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6ad92, EVENT_BUG_CATCHING_CONTESTANT_8B
+	person_event SPRITE_YOUNGSTER, 11, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x6ada6, EVENT_BUG_CATCHING_CONTESTANT_9B
+	person_event SPRITE_YOUNGSTER, 10, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_0x6adba, EVENT_BUG_CATCHING_CONTESTANT_10B
+	person_event SPRITE_OFFICER, 6, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x6acf4, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

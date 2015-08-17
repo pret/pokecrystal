@@ -1,20 +1,22 @@
-NO_AI          EQU 0
-AI_BASIC       EQU 1 << 0
-AI_SETUP       EQU 1 << 1
-AI_TYPES       EQU 1 << 2
-AI_OFFENSIVE   EQU 1 << 3
-AI_SMART       EQU 1 << 4
-AI_OPPORTUNIST EQU 1 << 5
-AI_AGGRESSIVE  EQU 1 << 6
-AI_CAUTIOUS    EQU 1 << 7
-AI_STATUS      EQU 1 << 8
-AI_RISKY       EQU 1 << 9
-AI_10          EQU 1 << 10
-AI_11          EQU 1 << 11
-AI_12          EQU 1 << 12
-AI_13          EQU 1 << 13
-AI_14          EQU 1 << 14
-AI_15          EQU 1 << 15
+	const_def
+	const       NO_AI
+const_value = 0
+	shift_const AI_BASIC
+	shift_const AI_SETUP
+	shift_const AI_TYPES
+	shift_const AI_OFFENSIVE
+	shift_const AI_SMART
+	shift_const AI_OPPORTUNIST
+	shift_const AI_AGGRESSIVE
+	shift_const AI_CAUTIOUS
+	shift_const AI_STATUS
+	shift_const AI_RISKY
+	shift_const AI_10
+	shift_const AI_11
+	shift_const AI_12
+	shift_const AI_13
+	shift_const AI_14
+	shift_const AI_15
 
 
 TrainerClassAttributes: ; 3959c

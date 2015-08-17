@@ -127,7 +127,7 @@ LanceScript_0x180e7b:
 	applymovement $3, MovementData_0x180f5b
 	special FadeBlackBGMap
 	pause 15
-	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
+	warpfacing $1, HALL_OF_FAME, $4, $d
 	end
 
 MovementData_0x180f33:
@@ -343,10 +343,10 @@ LancesRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $17, $4, 3, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
-	warp_def $17, $5, 4, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
-	warp_def $1, $4, 1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
-	warp_def $1, $5, 2, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
+	warp_def $17, $4, 3, KARENS_ROOM
+	warp_def $17, $5, 4, KARENS_ROOM
+	warp_def $1, $4, 1, HALL_OF_FAME
+	warp_def $1, $5, 2, HALL_OF_FAME
 
 .XYTriggers:
 	db 2
@@ -358,6 +358,6 @@ LancesRoom_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_LANCE, 7, 9, OW_UP | $2, $0, -1, -1, $0, 0, LanceScript_0x180e7b, -1
-	person_event SPRITE_TEACHER, 11, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
-	person_event SPRITE_OAK, 11, 8, OW_UP | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_LANCE, 7, 9, $6, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x180e7b, -1
+	person_event SPRITE_TEACHER, 11, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_OAK, 11, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

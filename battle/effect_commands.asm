@@ -6448,7 +6448,7 @@ BattleCommand8c: ; 363b8
 	jp BattleTextBox
 
 .stat
-	TX_FAR UnknownText_0x1c0cc6
+	text_jump UnknownText_0x1c0cc6
 	start_asm
 
 	ld hl, .up
@@ -6459,11 +6459,11 @@ BattleCommand8c: ; 363b8
 	ret
 
 .wayup
-	TX_FAR UnknownText_0x1c0cd0
+	text_jump UnknownText_0x1c0cd0
 	db "@"
 
 .up
-	TX_FAR UnknownText_0x1c0ce0
+	text_jump UnknownText_0x1c0ce0
 	db "@"
 
 ; 363e9
@@ -6482,7 +6482,7 @@ BattleCommand8d: ; 363e9
 	jp BattleTextBox
 
 .stat
-	TX_FAR UnknownText_0x1c0ceb
+	text_jump UnknownText_0x1c0ceb
 	start_asm
 
 	ld hl, .fell
@@ -6493,10 +6493,10 @@ BattleCommand8d: ; 363e9
 	ret
 
 .sharplyfell
-	TX_FAR UnknownText_0x1c0cf5
+	text_jump UnknownText_0x1c0cf5
 	db "@"
 .fell
-	TX_FAR UnknownText_0x1c0d06
+	text_jump UnknownText_0x1c0d06
 	db "@"
 
 ; 3641a
@@ -7804,7 +7804,7 @@ BattleCommand39: ; 36b4d
 	jp EndMoveEffect
 
 .UsedText
-	TX_FAR UnknownText_0x1c0d0e ; "[USER]"
+	text_jump UnknownText_0x1c0d0e ; "[USER]"
 	start_asm
 
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -7837,32 +7837,32 @@ BattleCommand39: ; 36b4d
 
 .RazorWind
 ; 'made a whirlwind!'
-	TX_FAR UnknownText_0x1c0d12
+	text_jump UnknownText_0x1c0d12
 	db "@"
 
 .Solarbeam
 ; 'took in sunlight!'
-	TX_FAR UnknownText_0x1c0d26
+	text_jump UnknownText_0x1c0d26
 	db "@"
 
 .SkullBash
 ; 'lowered its head!'
-	TX_FAR UnknownText_0x1c0d3a
+	text_jump UnknownText_0x1c0d3a
 	db "@"
 
 .SkyAttack
 ; 'is glowing!'
-	TX_FAR UnknownText_0x1c0d4e
+	text_jump UnknownText_0x1c0d4e
 	db "@"
 
 .Fly
 ; 'flew up high!'
-	TX_FAR UnknownText_0x1c0d5c
+	text_jump UnknownText_0x1c0d5c
 	db "@"
 
 .Dig
 ; 'dug a hole!'
-	TX_FAR UnknownText_0x1c0d6c
+	text_jump UnknownText_0x1c0d6c
 	db "@"
 ; 36c2c
 

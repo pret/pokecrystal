@@ -335,10 +335,10 @@ Route41_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $c, 1, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
-	warp_def $13, $24, 1, GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
-	warp_def $25, $c, 1, GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
-	warp_def $2d, $24, 1, GROUP_WHIRL_ISLAND_SE, MAP_WHIRL_ISLAND_SE
+	warp_def $11, $c, 1, WHIRL_ISLAND_NW
+	warp_def $13, $24, 1, WHIRL_ISLAND_NE
+	warp_def $25, $c, 1, WHIRL_ISLAND_SW
+	warp_def $2d, $24, 1, WHIRL_ISLAND_SE
 
 .XYTriggers:
 	db 0
@@ -349,13 +349,13 @@ Route41_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_OLIVINE_RIVAL, 10, 36, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermCharlie, -1
-	person_event SPRITE_OLIVINE_RIVAL, 12, 50, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermGeorge, -1
-	person_event SPRITE_OLIVINE_RIVAL, 30, 24, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermBerke, -1
-	person_event SPRITE_OLIVINE_RIVAL, 34, 36, OW_RIGHT | $13, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermKirk, -1
-	person_event SPRITE_OLIVINE_RIVAL, 50, 23, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerSwimmermMathew, -1
-	person_event SPRITE_SWIMMER_GIRL, 8, 21, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfKaylee, -1
-	person_event SPRITE_SWIMMER_GIRL, 23, 27, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfSusie, -1
-	person_event SPRITE_SWIMMER_GIRL, 38, 31, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerSwimmerfDenise, -1
-	person_event SPRITE_SWIMMER_GIRL, 32, 48, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerSwimmerfKara, -1
-	person_event SPRITE_SWIMMER_GIRL, 54, 13, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerSwimmerfWendy, -1
+	person_event SPRITE_OLIVINE_RIVAL, 10, 36, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermCharlie, -1
+	person_event SPRITE_OLIVINE_RIVAL, 12, 50, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermGeorge, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30, 24, $1e, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermBerke, -1
+	person_event SPRITE_OLIVINE_RIVAL, 34, 36, $1f, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermKirk, -1
+	person_event SPRITE_OLIVINE_RIVAL, 50, 23, $1e, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermMathew, -1
+	person_event SPRITE_SWIMMER_GIRL, 8, 21, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfKaylee, -1
+	person_event SPRITE_SWIMMER_GIRL, 23, 27, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfSusie, -1
+	person_event SPRITE_SWIMMER_GIRL, 38, 31, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfDenise, -1
+	person_event SPRITE_SWIMMER_GIRL, 32, 48, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 4, TrainerSwimmerfKara, -1
+	person_event SPRITE_SWIMMER_GIRL, 54, 13, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, TrainerSwimmerfWendy, -1

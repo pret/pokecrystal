@@ -1,3 +1,14 @@
+AddNTimes:: ; 0x30fe
+; Add bc * a to hl.
+	and a
+	ret z
+.loop
+	add hl, bc
+	dec a
+	jr nz, .loop
+	ret
+; 0x3105
+
 SimpleMultiply:: ; 3105
 ; Return a * c.
 	and a

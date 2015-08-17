@@ -173,7 +173,7 @@ Function1000fa: ; 1000fa
 	xor a
 	ld [InLinkBattle], a
 	ld a, $4
-	ld [wc319], a
+	ld [wPartyMonMenuIconAnims + 5], a
 	callba Function11619d
 	ld hl, wcd29
 	set 6, [hl]
@@ -327,7 +327,7 @@ Function100232: ; 100232
 	push de
 	callba Function106464
 	call Function3f20
-	call DrawOnMap
+	call UpdateSprites
 	hlcoord 1, 2
 	pop de
 	call PlaceString
@@ -797,7 +797,7 @@ Function1004f4: ; 1004f4
 Function100504: ; 100504
 	push de
 	call Function3f20
-	call DrawOnMap
+	call UpdateSprites
 	pop de
 	hlcoord 4, 2
 	call PlaceString
@@ -830,7 +830,7 @@ Jumptable_10052a: ; 10052a
 
 Function100534: ; 100534
 	call Function100513
-	call DrawOnMap
+	call UpdateSprites
 	call Function321c
 	ld a, [wcd28]
 	inc a
@@ -1514,10 +1514,10 @@ Function100902: ; 100902
 
 
 Function100970: ; 100970
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld de, wdc00
 	call Function1009a5
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld de, $dd68
 	call Function1009a5
 	call Function1009d2
@@ -1527,18 +1527,18 @@ Function100970: ; 100970
 
 Function100989: ; 100989
 	ld hl, wdc00
-	ld de, TileMap
+	decoord 0, 0
 	call Function1009a5
 	call Function1009ae
 	callba Function104061
 	ld hl, $dd68
-	ld de, AttrMap
+	decoord 0, 0, AttrMap
 	call Function1009a5
 	ret
 ; 1009a5
 
 Function1009a5: ; 1009a5
-	ld bc, $0168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $3
 	call FarCopyWRAM
 	ret
@@ -1550,7 +1550,7 @@ Function1009ae: ; 1009ae
 	ld a, $3
 	ld [rSVBK], a
 	ld hl, $d800
-	ld de, AttrMap
+	decoord 0, 0, AttrMap
 	ld c, $14
 	ld b, $12
 .asm_1009bf
@@ -1829,7 +1829,7 @@ Function100b7a: ; 100b7a
 	rst FarCall
 	callba Function24085
 	callba MobileTextBorder
-	call DrawOnMap
+	call UpdateSprites
 	call Function321c
 	callba Function2411a
 	ld hl, wcfa5
@@ -2084,7 +2084,7 @@ Function100d67: ; 100d67
 	xor a
 	ld [hBGMapMode], a
 	call Function1cbb
-	call DrawOnMap
+	call UpdateSprites
 	call Function1c89
 	call WaitBGMap
 	call Function1c66
@@ -2812,7 +2812,7 @@ Jumptable_101247: ; 101247
 ; 101251
 
 Function101251: ; 101251
-	call DrawOnMap
+	call UpdateSprites
 	call ResetWindow
 	ld hl, UnknownText_0x1021f4
 	call Function1021e0
@@ -2829,7 +2829,7 @@ Function101265: ; 101265
 ; 10126c
 
 Function10126c: ; 10126c
-	call DrawOnMap
+	call UpdateSprites
 	callba Script_reloadmappart
 	ld hl, UnknownText_0x1021f4
 	call Function1021e0
@@ -3018,7 +3018,7 @@ Function1013aa: ; 1013aa
 	call Function1d7d
 	call Function2bae
 	callba Function106464
-	call DrawOnMap
+	call UpdateSprites
 	call Function2b5c
 	ret
 ; 1013c0
@@ -4174,7 +4174,7 @@ Function101b70: ; 101b70
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	call DrawOnMap
+	call UpdateSprites
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a
@@ -4356,7 +4356,7 @@ Function101cc2: ; 101cc2 ; unreferenced
 
 Function101cc8: ; 101cc8
 	ld a, $1
-	ld [wc314], a
+	ld [wPartyMonMenuIconAnims], a
 	ld a, $1
 	ld [wc30d], a
 	ld hl, wcd29
@@ -4369,7 +4369,7 @@ Function101cc8: ; 101cc8
 
 Function101cdf: ; 101cdf
 	ld a, $6
-	ld [wc314], a
+	ld [wPartyMonMenuIconAnims], a
 	ld a, $1
 	ld [wc30d], a
 	ld hl, wcd29
@@ -4382,7 +4382,7 @@ Function101cdf: ; 101cdf
 
 Function101cf6: ; 101cf6
 	ld a, $b
-	ld [wc315], a
+	ld [wPartyMonMenuIconAnims + 1], a
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a
@@ -4391,7 +4391,7 @@ Function101cf6: ; 101cf6
 
 Function101d03: ; 101d03
 	ld a, $e
-	ld [wc315], a
+	ld [wPartyMonMenuIconAnims + 1], a
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a
@@ -6747,11 +6747,11 @@ Function102d48: ; 102d48
 Function102d9a: ; 102d9a
 	ld a, $7f
 	ld hl, SpritesEnd
-	ld bc, $0168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ld a, $7
-	ld hl, AttrMap
-	ld bc, $0168
+	hlcoord 0, 0, AttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	callba Function104000
 	ret
@@ -7321,7 +7321,7 @@ Function103309: ; 103309
 	ld a, [hl]
 	ld [wd1ee], a
 	call Function1034be
-	call DrawOnMap
+	call UpdateSprites
 	callba Function104000
 	ld a, $1
 	ld [wd1f0], a
@@ -7566,7 +7566,7 @@ Function1034f1: ; 1034f1
 	ld [wd1f2], a
 
 Function1034f7: ; 10134f7
-	ld hl, TileMap
+	hlcoord 0, 0
 	add hl, bc
 	ld a, [wd1ef]
 	ld bc, SCREEN_WIDTH

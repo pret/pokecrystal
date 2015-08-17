@@ -164,8 +164,8 @@ EcruteakItemfinderHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 11, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $7, $4, 11, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
+	warp_def $7, $3, 11, ECRUTEAK_CITY
+	warp_def $7, $4, 11, ECRUTEAK_CITY
 
 .XYTriggers:
 	db 0
@@ -176,5 +176,5 @@ EcruteakItemfinderHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_COOLTRAINER_M, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerMScript_0x9a5fb, -1
-	person_event SPRITE_POKEDEX, 7, 7, OW_DOWN | $1, $0, -1, -1, $0, 0, PokedexScript_0x9a620, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerMScript_0x9a5fb, -1
+	person_event SPRITE_POKEDEX, 7, 7, $1, 0, 0, -1, -1, 0, 0, 0, PokedexScript_0x9a620, -1

@@ -14,8 +14,8 @@ TinTower3F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $e, $a, 1, GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
-	warp_def $2, $10, 2, GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
+	warp_def $e, $a, 1, TIN_TOWER_2F
+	warp_def $2, $10, 2, TIN_TOWER_4F
 
 .XYTriggers:
 	db 0
@@ -25,4 +25,4 @@ TinTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 18, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x185a37, EVENT_TIN_TOWER_3F_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 18, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a37, EVENT_TIN_TOWER_3F_FULL_HEAL

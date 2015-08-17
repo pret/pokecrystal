@@ -36,7 +36,7 @@ MortyScript_0x99d58:
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymTriggerRockets
-	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
+	domaptrigger ECRUTEAK_HOUSE, $1
 	setevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone
@@ -87,7 +87,7 @@ UnknownScript_0x99dc6:
 	special FadeBlackBGMap
 	playsound SFX_ENTER_DOOR
 	waitbutton
-	warp GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, $6, $1b
+	warp ECRUTEAK_CITY, $6, $1b
 	end
 
 TrainerSageJeffrey:
@@ -385,39 +385,39 @@ EcruteakGym_MapEventHeader:
 
 .Warps:
 	db 33
-	warp_def $11, $4, 10, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $11, $5, 10, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $e, $4, 4, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $4, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $4, $3, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $4, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $5, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $7, $6, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $4, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $3, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $5, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $6, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $7, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $5, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $6, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $8, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $9, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $a, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $b, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $a, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $a, $5, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $2, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $3, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $4, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $5, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $a, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $b, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $c, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $d, $7, 3, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
+	warp_def $11, $4, 10, ECRUTEAK_CITY
+	warp_def $11, $5, 10, ECRUTEAK_CITY
+	warp_def $e, $4, 4, ECRUTEAK_GYM
+	warp_def $4, $2, 3, ECRUTEAK_GYM
+	warp_def $4, $3, 3, ECRUTEAK_GYM
+	warp_def $4, $4, 3, ECRUTEAK_GYM
+	warp_def $5, $4, 3, ECRUTEAK_GYM
+	warp_def $7, $6, 3, ECRUTEAK_GYM
+	warp_def $4, $7, 3, ECRUTEAK_GYM
+	warp_def $6, $2, 3, ECRUTEAK_GYM
+	warp_def $6, $3, 3, ECRUTEAK_GYM
+	warp_def $6, $4, 3, ECRUTEAK_GYM
+	warp_def $6, $5, 3, ECRUTEAK_GYM
+	warp_def $6, $7, 3, ECRUTEAK_GYM
+	warp_def $7, $7, 3, ECRUTEAK_GYM
+	warp_def $8, $4, 3, ECRUTEAK_GYM
+	warp_def $8, $5, 3, ECRUTEAK_GYM
+	warp_def $8, $6, 3, ECRUTEAK_GYM
+	warp_def $8, $7, 3, ECRUTEAK_GYM
+	warp_def $8, $2, 3, ECRUTEAK_GYM
+	warp_def $9, $2, 3, ECRUTEAK_GYM
+	warp_def $a, $2, 3, ECRUTEAK_GYM
+	warp_def $b, $2, 3, ECRUTEAK_GYM
+	warp_def $a, $4, 3, ECRUTEAK_GYM
+	warp_def $a, $5, 3, ECRUTEAK_GYM
+	warp_def $c, $2, 3, ECRUTEAK_GYM
+	warp_def $c, $3, 3, ECRUTEAK_GYM
+	warp_def $c, $4, 3, ECRUTEAK_GYM
+	warp_def $c, $5, 3, ECRUTEAK_GYM
+	warp_def $a, $7, 3, ECRUTEAK_GYM
+	warp_def $b, $7, 3, ECRUTEAK_GYM
+	warp_def $c, $7, 3, ECRUTEAK_GYM
+	warp_def $d, $7, 3, ECRUTEAK_GYM
 
 .XYTriggers:
 	db 0
@@ -429,10 +429,10 @@ EcruteakGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_MORTY, 5, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MortyScript_0x99d58, -1
-	person_event SPRITE_SAGE, 11, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerSageJeffrey, -1
-	person_event SPRITE_SAGE, 17, 7, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSagePing, -1
-	person_event SPRITE_GRANNY, 9, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerMediumMartha, -1
-	person_event SPRITE_GRANNY, 13, 11, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerMediumGrace, -1
-	person_event SPRITE_GYM_GUY, 19, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, EcruteakGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 18, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS
+	person_event SPRITE_MORTY, 5, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
+	person_event SPRITE_SAGE, 11, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerSageJeffrey, -1
+	person_event SPRITE_SAGE, 17, 7, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSagePing, -1
+	person_event SPRITE_GRANNY, 9, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, TrainerMediumMartha, -1
+	person_event SPRITE_GRANNY, 13, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, TrainerMediumGrace, -1
+	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, EcruteakGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 18, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS

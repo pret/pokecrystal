@@ -47,8 +47,8 @@ BlackthornMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
-	warp_def $7, $3, 4, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
+	warp_def $7, $2, 4, BLACKTHORN_CITY
+	warp_def $7, $3, 4, BLACKTHORN_CITY
 
 .XYTriggers:
 	db 0
@@ -58,6 +58,6 @@ BlackthornMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x195a5d, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 11, OW_UP | $1, $2, -1, -1, $0, 0, CooltrainerMScript_0x195a64, -1
-	person_event SPRITE_BLACK_BELT, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BlackBeltScript_0x195a67, -1
+	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x195a5d, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 11, $5, 0, 2, -1, -1, 0, 0, 0, CooltrainerMScript_0x195a64, -1
+	person_event SPRITE_BLACK_BELT, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BlackBeltScript_0x195a67, -1

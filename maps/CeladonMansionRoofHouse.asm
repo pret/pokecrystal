@@ -119,8 +119,8 @@ CeladonMansionRoofHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_CELADON_MANSION_ROOF, MAP_CELADON_MANSION_ROOF
-	warp_def $7, $3, 3, GROUP_CELADON_MANSION_ROOF, MAP_CELADON_MANSION_ROOF
+	warp_def $7, $2, 3, CELADON_MANSION_ROOF
+	warp_def $7, $3, 3, CELADON_MANSION_ROOF
 
 .XYTriggers:
 	db 0
@@ -130,4 +130,4 @@ CeladonMansionRoofHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_PHARMACIST, 6, 7, OW_UP | $2, $20, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, PharmacistScript_0x71afd, -1
+	person_event SPRITE_PHARMACIST, 6, 7, $6, 2, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PharmacistScript_0x71afd, -1

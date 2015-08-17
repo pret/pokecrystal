@@ -286,10 +286,10 @@ NewBarkTown_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $3, $6, 1, GROUP_ELMS_LAB, MAP_ELMS_LAB
-	warp_def $5, $d, 1, GROUP_KRISS_HOUSE_1F, MAP_KRISS_HOUSE_1F
-	warp_def $b, $3, 1, GROUP_KRISS_NEIGHBORS_HOUSE, MAP_KRISS_NEIGHBORS_HOUSE
-	warp_def $d, $b, 1, GROUP_ELMS_HOUSE, MAP_ELMS_HOUSE
+	warp_def $3, $6, 1, ELMS_LAB
+	warp_def $5, $d, 1, KRISS_HOUSE_1F
+	warp_def $b, $3, 1, KRISS_NEIGHBORS_HOUSE
+	warp_def $d, $b, 1, ELMS_HOUSE
 
 .XYTriggers:
 	db 2
@@ -305,6 +305,6 @@ NewBarkTown_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_TEACHER, 12, 10, OW_DOWN | $3, $1, -1, -1, $0, 0, TeacherScript_0x1a806f, -1
-	person_event SPRITE_FISHER, 13, 16, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a809b, -1
-	person_event SPRITE_SILVER, 6, 7, OW_LEFT | $1, $0, -1, -1, $0, 0, SilverScript_0x1a809e, EVENT_RIVAL_NEW_BARK_TOWN
+	person_event SPRITE_TEACHER, 12, 10, $3, 0, 1, -1, -1, 0, 0, 0, TeacherScript_0x1a806f, -1
+	person_event SPRITE_FISHER, 13, 16, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x1a809b, -1
+	person_event SPRITE_SILVER, 6, 7, $9, 0, 0, -1, -1, 0, 0, 0, SilverScript_0x1a809e, EVENT_RIVAL_NEW_BARK_TOWN

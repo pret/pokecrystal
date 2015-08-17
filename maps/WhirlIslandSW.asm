@@ -14,11 +14,11 @@ WhirlIslandSW_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $7, $5, 3, GROUP_ROUTE_41, MAP_ROUTE_41
-	warp_def $3, $11, 5, GROUP_WHIRL_ISLAND_B1F, MAP_WHIRL_ISLAND_B1F
-	warp_def $3, $3, 4, GROUP_WHIRL_ISLAND_B1F, MAP_WHIRL_ISLAND_B1F
-	warp_def $f, $3, 3, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
-	warp_def $f, $11, 4, GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
+	warp_def $7, $5, 3, ROUTE_41
+	warp_def $3, $11, 5, WHIRL_ISLAND_B1F
+	warp_def $3, $3, 4, WHIRL_ISLAND_B1F
+	warp_def $f, $3, 3, WHIRL_ISLAND_NW
+	warp_def $f, $11, 4, WHIRL_ISLAND_B2F
 
 .XYTriggers:
 	db 0
@@ -28,4 +28,4 @@ WhirlIslandSW_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 6, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c3bc, EVENT_WHIRL_ISLAND_SW_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 6, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c3bc, EVENT_WHIRL_ISLAND_SW_ULTRA_BALL

@@ -24,7 +24,7 @@ UnknownScript_0x1a9218:
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	domaptrigger GROUP_ROUTE_36, MAP_ROUTE_36, $1
+	domaptrigger ROUTE_36, $1
 	end
 
 TrainerFisherTully1:
@@ -316,11 +316,11 @@ Route42_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $8, $0, 3, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
-	warp_def $9, $0, 4, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
-	warp_def $5, $a, 1, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
-	warp_def $9, $1c, 2, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
-	warp_def $7, $2e, 3, GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
+	warp_def $8, $0, 3, ROUTE_42_ECRUTEAK_GATE
+	warp_def $9, $0, 4, ROUTE_42_ECRUTEAK_GATE
+	warp_def $5, $a, 1, MOUNT_MORTAR_1F_OUTSIDE
+	warp_def $9, $1c, 2, MOUNT_MORTAR_1F_OUTSIDE
+	warp_def $7, $2e, 3, MOUNT_MORTAR_1F_OUTSIDE
 
 .XYTriggers:
 	db 1
@@ -336,12 +336,12 @@ Route42_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_FISHER, 14, 44, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherTully1, -1
-	person_event SPRITE_POKEFAN_M, 13, 55, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerBenjamin, -1
-	person_event SPRITE_SUPER_NERD, 12, 51, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacShane, -1
-	person_event SPRITE_FRUIT_TREE, 20, 31, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a934d, -1
-	person_event SPRITE_FRUIT_TREE, 20, 32, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a934f, -1
-	person_event SPRITE_FRUIT_TREE, 20, 33, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a9351, -1
-	person_event SPRITE_POKE_BALL, 8, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 12, 37, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
-	person_event SPRITE_SUICUNE, 20, 30, OW_DOWN | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	person_event SPRITE_FISHER, 14, 44, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherTully1, -1
+	person_event SPRITE_POKEFAN_M, 13, 55, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerHikerBenjamin, -1
+	person_event SPRITE_SUPER_NERD, 12, 51, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPokemaniacShane, -1
+	person_event SPRITE_FRUIT_TREE, 20, 31, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934d, -1
+	person_event SPRITE_FRUIT_TREE, 20, 32, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934f, -1
+	person_event SPRITE_FRUIT_TREE, 20, 33, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9351, -1
+	person_event SPRITE_POKE_BALL, 8, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 12, 37, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
+	person_event SPRITE_SUICUNE, 20, 30, $1, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

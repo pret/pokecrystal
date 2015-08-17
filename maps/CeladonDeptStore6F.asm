@@ -151,8 +151,8 @@ CeladonDeptStore6F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $0, $f, 2, GROUP_CELADON_DEPT_STORE_5F, MAP_CELADON_DEPT_STORE_5F
-	warp_def $0, $2, 1, GROUP_CELADON_DEPT_STORE_ELEVATOR, MAP_CELADON_DEPT_STORE_ELEVATOR
+	warp_def $0, $f, 2, CELADON_DEPT_STORE_5F
+	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -168,5 +168,5 @@ CeladonDeptStore6F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SUPER_NERD, 6, 13, OW_UP | $3, $0, -1, -1, $0, 0, SuperNerdScript_0x7117a, -1
-	person_event SPRITE_YOUNGSTER, 9, 16, OW_DOWN | $2, $12, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x7117d, -1
+	person_event SPRITE_SUPER_NERD, 6, 13, $7, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7117a, -1
+	person_event SPRITE_YOUNGSTER, 9, 16, $2, 1, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x7117d, -1

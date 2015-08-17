@@ -11,7 +11,7 @@ FuchsiaPokeCenter2FBeta_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $0, 3, GROUP_FUCHSIA_POKECENTER_1F, MAP_FUCHSIA_POKECENTER_1F
+	warp_def $7, $0, 3, FUCHSIA_POKECENTER_1F
 
 .XYTriggers:
 	db 0

@@ -36,10 +36,10 @@ Route36RuinsofAlphgate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 3, GROUP_ROUTE_36, MAP_ROUTE_36
-	warp_def $0, $5, 4, GROUP_ROUTE_36, MAP_ROUTE_36
-	warp_def $7, $4, 9, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $7, $5, 9, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
+	warp_def $0, $4, 3, ROUTE_36
+	warp_def $0, $5, 4, ROUTE_36
+	warp_def $7, $4, 9, RUINS_OF_ALPH_OUTSIDE
+	warp_def $7, $5, 9, RUINS_OF_ALPH_OUTSIDE
 
 .XYTriggers:
 	db 0
@@ -49,5 +49,5 @@ Route36RuinsofAlphgate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x6aa1a, -1
-	person_event SPRITE_GRAMPS, 9, 11, OW_DOWN | $2, $21, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, GrampsScript_0x6aa1d, -1
+	person_event SPRITE_OFFICER, 8, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, OfficerScript_0x6aa1a, -1
+	person_event SPRITE_GRAMPS, 9, 11, $2, 2, 1, -1, -1, 8 + PAL_OW_BROWN, 0, 0, GrampsScript_0x6aa1d, -1

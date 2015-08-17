@@ -2365,7 +2365,7 @@ Function3cf14: ; 3cf14
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call Function3d432
-	ld de, SFX_UNKNOWN_2A
+	ld de, SFX_FAINT
 	call PlaySFX
 	hlcoord 1, 0
 	lb bc, 4, 10
@@ -4388,7 +4388,7 @@ Function3dc5b: ; 3dc5b
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
-	ld de, SFX_UNKNOWN_2A
+	ld de, SFX_FAINT
 	call PlaySFX
 	call WaitSFX
 	call Function3d432
@@ -8441,7 +8441,7 @@ Function3f54e: ; 3f54e
 	ld a, [OtherTrainerClass]
 	and a
 	jr nz, .asm_3f55a
-	ld a, [wd22e]
+	ld a, [TempWildMonSpecies]
 	ld [CurPartySpecies], a
 
 .asm_3f55a
@@ -8658,7 +8658,7 @@ Function3f6d0: ; 3f6d0
 	ld [IsInBattle], a
 	ld [BattleType], a
 	ld [AttackMissed], a
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 	ld [OtherTrainerClass], a
 	ld [wd266], a
 	ld [wd267], a
@@ -8824,9 +8824,9 @@ Function3f836: ; 3f836
 	call GetSRAMBank
 	call Function3f85f
 	call CloseSRAM
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	xor a
-	ld bc, $0168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	call Function3200
 	ld b, $8

@@ -215,9 +215,9 @@ INCLUDE "home/copy2.asm"
 Function309d:: ; 309d
 	ld a, [rSVBK]
 	push af
-	ld a, 2
+	ld a, BANK(w2_d000)
 	ld [rSVBK], a
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld de, w2_d000
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
@@ -238,10 +238,10 @@ Function30b4:: ; 30b4
 Function30bf:: ; 30bf
 	ld a, [rSVBK]
 	push af
-	ld a, 2
+	ld a, BANK(w2_d000)
 	ld [rSVBK], a
 	ld hl, w2_d000
-	ld de, TileMap
+	decoord 0, 0
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
@@ -251,9 +251,11 @@ Function30bf:: ; 30bf
 
 
 CopyName1:: ; 30d6
+; Copies the name from de to StringBuffer2
 	ld hl, StringBuffer2
 
 CopyName2:: ; 30d9
+; Copies the name from de to hl
 .loop
 	ld a, [de]
 	inc de
@@ -271,7 +273,7 @@ IsInArray:: ; 30e1
 	ld c, a
 .loop
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .NotInArray
 	cp c
 	jr z, .InArray
@@ -299,17 +301,6 @@ SkipNames:: ; 0x30f4
 	jr nz, .loop
 	ret
 ; 0x30fe
-
-AddNTimes:: ; 0x30fe
-; Add bc * a to hl.
-	and a
-	ret z
-.loop
-	add hl, bc
-	dec a
-	jr nz, .loop
-	ret
-; 0x3105
 
 
 INCLUDE "home/math.asm"
@@ -626,11 +617,11 @@ Function3246:: ; 3246
 	di
 	ld a, $1
 	ld [rVBK], a
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	call Function327b
 	ld a, $0
 	ld [rVBK], a
-	ld hl, TileMap
+	hlcoord 0, 0
 	call Function327b
 .wait2
 	ld a, [rLY]
@@ -727,7 +718,7 @@ ClearPalettes:: ; 3317
 	ld a, [rSVBK]
 	push af
 
-	ld a, 5
+	ld a, BANK(BGPals)
 	ld [rSVBK], a
 
 ; Fill BGPals and OBPals with $ffff (white)
@@ -761,7 +752,7 @@ GetSGBLayout:: ; 3340
 	ret z
 
 .sgb
-	predef_jump Function864c ; LoadSGBLayout
+	predef_jump Predef_LoadSGBLayout ; LoadSGBLayout
 ; 334e
 
 
@@ -1273,11 +1264,11 @@ Function3599:: ; 3599
 ; 35b0
 
 Function35b0:: ; 35b0
-	ld hl, wdbf9 + 3
+	ld hl, wCurrentCaller + 3
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wdbf9 + 2]
+	ld a, [wCurrentCaller + 2]
 	and a
 	jr z, .asm_35d3
 
@@ -1311,7 +1302,7 @@ Function35b0:: ; 35b0
 .asm_35d5
 	pop af
 	ld d, a
-	ld a, [wdbf9 + 2]
+	ld a, [wCurrentCaller + 2]
 	sub d
 	inc a
 	scf
@@ -2153,11 +2144,11 @@ endr
 ; 3f20
 
 Function3f20:: ; 3f20
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld b, $6
 	ld c, $14
 	call Function3f35
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld b, $4
 	ld c, $12
 	call Function3f47

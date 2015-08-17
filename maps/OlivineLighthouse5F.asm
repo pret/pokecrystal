@@ -90,13 +90,13 @@ OlivineLighthouse5F_MapEventHeader:
 
 .Warps:
 	db 7
-	warp_def $f, $9, 1, GROUP_OLIVINE_LIGHTHOUSE_6F, MAP_OLIVINE_LIGHTHOUSE_6F
-	warp_def $5, $3, 2, GROUP_OLIVINE_LIGHTHOUSE_4F, MAP_OLIVINE_LIGHTHOUSE_4F
-	warp_def $7, $9, 3, GROUP_OLIVINE_LIGHTHOUSE_4F, MAP_OLIVINE_LIGHTHOUSE_4F
-	warp_def $7, $10, 9, GROUP_OLIVINE_LIGHTHOUSE_4F, MAP_OLIVINE_LIGHTHOUSE_4F
-	warp_def $7, $11, 10, GROUP_OLIVINE_LIGHTHOUSE_4F, MAP_OLIVINE_LIGHTHOUSE_4F
-	warp_def $5, $10, 2, GROUP_OLIVINE_LIGHTHOUSE_6F, MAP_OLIVINE_LIGHTHOUSE_6F
-	warp_def $5, $11, 3, GROUP_OLIVINE_LIGHTHOUSE_6F, MAP_OLIVINE_LIGHTHOUSE_6F
+	warp_def $f, $9, 1, OLIVINE_LIGHTHOUSE_6F
+	warp_def $5, $3, 2, OLIVINE_LIGHTHOUSE_4F
+	warp_def $7, $9, 3, OLIVINE_LIGHTHOUSE_4F
+	warp_def $7, $10, 9, OLIVINE_LIGHTHOUSE_4F
+	warp_def $7, $11, 10, OLIVINE_LIGHTHOUSE_4F
+	warp_def $5, $10, 2, OLIVINE_LIGHTHOUSE_6F
+	warp_def $5, $11, 3, OLIVINE_LIGHTHOUSE_6F
 
 .XYTriggers:
 	db 0
@@ -107,8 +107,8 @@ OlivineLighthouse5F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SAILOR, 15, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorErnest, -1
-	person_event SPRITE_YOUNGSTER, 7, 12, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerBird_keeperDenis, -1
-	person_event SPRITE_POKE_BALL, 16, 19, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609aa, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
-	person_event SPRITE_POKE_BALL, 19, 10, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ac, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
-	person_event SPRITE_POKE_BALL, 17, 6, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x609ae, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER
+	person_event SPRITE_SAILOR, 15, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSailorErnest, -1
+	person_event SPRITE_YOUNGSTER, 7, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerBird_keeperDenis, -1
+	person_event SPRITE_POKE_BALL, 16, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609aa, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 19, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609ac, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
+	person_event SPRITE_POKE_BALL, 17, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609ae, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER

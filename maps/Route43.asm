@@ -12,11 +12,11 @@ Route43_MapScriptHeader:
 UnknownScript_0x19d051:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19d05c
-	domaptrigger GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE, $0
+	domaptrigger ROUTE_43_GATE, $0
 	return
 
 UnknownScript_0x19d05c:
-	domaptrigger GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE, $1
+	domaptrigger ROUTE_43_GATE, $1
 	return
 
 TrainerCamperSpencer:
@@ -499,11 +499,11 @@ Route43_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $33, $9, 1, GROUP_ROUTE_43_MAHOGANY_GATE, MAP_ROUTE_43_MAHOGANY_GATE
-	warp_def $33, $a, 2, GROUP_ROUTE_43_MAHOGANY_GATE, MAP_ROUTE_43_MAHOGANY_GATE
-	warp_def $23, $11, 3, GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE
-	warp_def $1f, $11, 1, GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE
-	warp_def $1f, $12, 2, GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE
+	warp_def $33, $9, 1, ROUTE_43_MAHOGANY_GATE
+	warp_def $33, $a, 2, ROUTE_43_MAHOGANY_GATE
+	warp_def $23, $11, 3, ROUTE_43_GATE
+	warp_def $1f, $11, 1, ROUTE_43_GATE
+	warp_def $1f, $12, 2, ROUTE_43_GATE
 
 .XYTriggers:
 	db 0
@@ -516,11 +516,11 @@ Route43_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_SUPER_NERD, 9, 17, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPokemaniacBen, -1
-	person_event SPRITE_SUPER_NERD, 24, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerPokemaniacBrent1, -1
-	person_event SPRITE_SUPER_NERD, 11, 18, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPokemaniacRon, -1
-	person_event SPRITE_FISHER, 20, 8, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 4, TrainerFisherMarvin, -1
-	person_event SPRITE_LASS, 29, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerTiffany3, -1
-	person_event SPRITE_YOUNGSTER, 44, 17, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperSpencer, -1
-	person_event SPRITE_FRUIT_TREE, 30, 5, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x19d266, -1
-	person_event SPRITE_POKE_BALL, 36, 16, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER
+	person_event SPRITE_SUPER_NERD, 9, 17, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 2, TrainerPokemaniacBen, -1
+	person_event SPRITE_SUPER_NERD, 24, 17, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPokemaniacBrent1, -1
+	person_event SPRITE_SUPER_NERD, 11, 18, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 2, TrainerPokemaniacRon, -1
+	person_event SPRITE_FISHER, 20, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 4, TrainerFisherMarvin, -1
+	person_event SPRITE_LASS, 29, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, TrainerPicnickerTiffany3, -1
+	person_event SPRITE_YOUNGSTER, 44, 17, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerCamperSpencer, -1
+	person_event SPRITE_FRUIT_TREE, 30, 5, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19d266, -1
+	person_event SPRITE_POKE_BALL, 36, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER

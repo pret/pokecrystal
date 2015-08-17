@@ -218,9 +218,9 @@ GoldenrodDeptStore5F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $c, 1, GROUP_GOLDENROD_DEPT_STORE_4F, MAP_GOLDENROD_DEPT_STORE_4F
-	warp_def $0, $f, 1, GROUP_GOLDENROD_DEPT_STORE_6F, MAP_GOLDENROD_DEPT_STORE_6F
-	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def $0, $c, 1, GOLDENROD_DEPT_STORE_4F
+	warp_def $0, $f, 1, GOLDENROD_DEPT_STORE_6F
+	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -232,9 +232,9 @@ GoldenrodDeptStore5F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_CLERK, 9, 12, OW_UP | $3, $0, -1, -1, $0, 0, ClerkScript_0x5609c, -1
-	person_event SPRITE_LASS, 10, 7, OW_DOWN | $2, $11, -1, -1, $0, 0, LassScript_0x56130, -1
-	person_event SPRITE_COOLTRAINER_M, 7, 10, OW_DOWN | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x56133, -1
-	person_event SPRITE_POKEFAN_M, 9, 17, OW_DOWN | $2, $22, -1, -1, $0, 0, PokefanMScript_0x5613a, -1
-	person_event SPRITE_TWIN, 5, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x56118, -1
-	person_event SPRITE_RECEPTIONIST, 9, 11, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY
+	person_event SPRITE_CLERK, 9, 12, $7, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x5609c, -1
+	person_event SPRITE_LASS, 10, 7, $2, 1, 1, -1, -1, 0, 0, 0, LassScript_0x56130, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 10, $3, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x56133, -1
+	person_event SPRITE_POKEFAN_M, 9, 17, $2, 2, 2, -1, -1, 0, 0, 0, PokefanMScript_0x5613a, -1
+	person_event SPRITE_TWIN, 5, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TwinScript_0x56118, -1
+	person_event SPRITE_RECEPTIONIST, 9, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY

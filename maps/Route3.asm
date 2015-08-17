@@ -132,7 +132,7 @@ Route3_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $1, $34, 1, GROUP_MOUNT_MOON, MAP_MOUNT_MOON
+	warp_def $1, $34, 1, MOUNT_MOON
 
 .XYTriggers:
 	db 0
@@ -143,7 +143,7 @@ Route3_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 16, 30, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherOtis, -1
-	person_event SPRITE_YOUNGSTER, 11, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerYoungsterWarren, -1
-	person_event SPRITE_YOUNGSTER, 7, 20, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerYoungsterJimmy, -1
-	person_event SPRITE_FISHER, 9, 53, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerFirebreatherBurt, -1
+	person_event SPRITE_FISHER, 16, 30, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerFirebreatherOtis, -1
+	person_event SPRITE_YOUNGSTER, 11, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerYoungsterWarren, -1
+	person_event SPRITE_YOUNGSTER, 7, 20, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerYoungsterJimmy, -1
+	person_event SPRITE_FISHER, 9, 53, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerFirebreatherBurt, -1

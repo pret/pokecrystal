@@ -31,9 +31,9 @@ SilverCavePokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
-	warp_def $7, $4, 1, GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 1, SILVER_CAVE_OUTSIDE
+	warp_def $7, $4, 1, SILVER_CAVE_OUTSIDE
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0
@@ -43,5 +43,5 @@ SilverCavePokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x1ae59a, -1
-	person_event SPRITE_GRANNY, 9, 5, OW_LEFT | $0, $12, -1, -1, $0, 0, GrannyScript_0x1ae59d, -1
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x1ae59a, -1
+	person_event SPRITE_GRANNY, 9, 5, $8, 1, 2, -1, -1, 0, 0, 0, GrannyScript_0x1ae59d, -1

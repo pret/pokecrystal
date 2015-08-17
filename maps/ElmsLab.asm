@@ -272,7 +272,7 @@ ElmDirectionsScript:
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
 	dotrigger $5
-	domaptrigger GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $1
+	domaptrigger NEW_BARK_TOWN, $1
 	end
 
 ElmDescribesMrPokemonScript:
@@ -338,7 +338,7 @@ ElmAfterTheftScript:
 	keeptextopen
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
-	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
+	domaptrigger ROUTE_29, $1
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
@@ -1373,8 +1373,8 @@ ElmsLab_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $b, $4, 1, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
-	warp_def $b, $5, 1, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
+	warp_def $b, $4, 1, NEW_BARK_TOWN
+	warp_def $b, $5, 1, NEW_BARK_TOWN
 
 .XYTriggers:
 	db 8
@@ -1408,9 +1408,9 @@ ElmsLab_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ELM, 6, 9, OW_UP | $2, $0, -1, -1, $0, 0, ProfElmScript, -1
-	person_event SPRITE_SCIENTIST, 13, 6, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	person_event SPRITE_POKE_BALL, 7, 10, OW_DOWN | $1, $0, -1, -1, $0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_POKE_BALL, 7, 11, OW_DOWN | $1, $0, -1, -1, $0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_POKE_BALL, 7, 12, OW_DOWN | $1, $0, -1, -1, $0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_OFFICER, 7, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CopScript, EVENT_COP_IN_ELMS_LAB
+	person_event SPRITE_ELM, 6, 9, $6, 0, 0, -1, -1, 0, 0, 0, ProfElmScript, -1
+	person_event SPRITE_SCIENTIST, 13, 6, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	person_event SPRITE_POKE_BALL, 7, 10, $1, 0, 0, -1, -1, 0, 0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 7, 11, $1, 0, 0, -1, -1, 0, 0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 7, 12, $1, 0, 0, -1, -1, 0, 0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_OFFICER, 7, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CopScript, EVENT_COP_IN_ELMS_LAB

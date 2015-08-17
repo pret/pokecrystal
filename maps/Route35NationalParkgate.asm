@@ -77,7 +77,7 @@ Route35NationalParkgate_GoBackIn:
 	playsound SFX_ENTER_DOOR
 	special FadeBlackBGMap
 	waitbutton
-	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing $1, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
 OfficerScript_0x6a204:
@@ -115,7 +115,7 @@ Route35NationalParkgate_OkayToProceed:
 	special FadeBlackBGMap
 	waitbutton
 	special Special_SelectRandomBugContestContestants
-	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing $1, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
 Route35NationalParkgate_EnterContest:
@@ -135,7 +135,7 @@ Route35NationalParkgate_LeaveTheRestBehind:
 	if_equal 0, Route35NationalParkgate_NoRoomInBox
 
 Route35NationalParkgate_LessThanFullParty: ; 6a27d
-	special Function71ac
+	special CheckFirstMonIsEgg
 	if_equal $1, Route35NationalParkgate_FirstMonIsEgg
 	writetext UnknownText_0x6a4c6
 	yesorno
@@ -444,10 +444,10 @@ Route35NationalParkgate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $3, 3, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
-	warp_def $0, $4, 4, GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
-	warp_def $7, $3, 3, GROUP_ROUTE_35, MAP_ROUTE_35
-	warp_def $7, $4, 3, GROUP_ROUTE_35, MAP_ROUTE_35
+	warp_def $0, $3, 3, NATIONAL_PARK
+	warp_def $0, $4, 4, NATIONAL_PARK
+	warp_def $7, $3, 3, ROUTE_35
+	warp_def $7, $4, 3, ROUTE_35
 
 .XYTriggers:
 	db 0
@@ -458,6 +458,6 @@ Route35NationalParkgate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 5, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
-	person_event SPRITE_YOUNGSTER, 9, 10, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
-	person_event SPRITE_OFFICER, 7, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
+	person_event SPRITE_OFFICER, 5, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
+	person_event SPRITE_YOUNGSTER, 9, 10, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
+	person_event SPRITE_OFFICER, 7, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

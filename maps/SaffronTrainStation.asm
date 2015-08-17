@@ -3,30 +3,30 @@ SaffronTrainStation_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x18a81d, $0000
+	dw .Trigger1, $0000
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x18a81d:
+.Trigger1:
 	end
 
 OfficerScript_0x18a81e:
 	faceplayer
 	loadfont
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x18a82c
+	iftrue .MagnetTrainToGoldenrod
 	writetext UnknownText_0x18a8a9
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18a82c:
+.MagnetTrainToGoldenrod:
 	writetext UnknownText_0x18a8dd
 	yesorno
-	iffalse UnknownScript_0x18a85c
+	iffalse .DecidedNotToRide
 	checkitem PASS
-	iffalse UnknownScript_0x18a856
+	iffalse .PassNotInBag
 	writetext UnknownText_0x18a917
 	closetext
 	loadmovesprites
@@ -36,27 +36,27 @@ UnknownScript_0x18a82c:
 	special Special_MagnetTrain
 	warpcheck
 	newloadmap $f9
-	applymovement PLAYER, MovementData_0x18a854
+	applymovement PLAYER, .MovementBoardTheTrain
 	wait $14
 	end
 
-MovementData_0x18a854:
+.MovementBoardTheTrain:
 	turn_head_down
 	step_end
 
-UnknownScript_0x18a856:
+.PassNotInBag:
 	writetext UnknownText_0x18a956
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18a85c:
+.DecidedNotToRide:
 	writetext UnknownText_0x18a978
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18a862:
+Script_ArriveFromGoldenrod:
 	applymovement $2, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a8a1
 	applymovement $2, MovementData_0x18a894
@@ -217,21 +217,21 @@ SaffronTrainStation_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $8, 6, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $11, $9, 6, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $5, $6, 4, GROUP_GOLDENROD_MAGNET_TRAIN_STATION, MAP_GOLDENROD_MAGNET_TRAIN_STATION
-	warp_def $5, $b, 3, GROUP_GOLDENROD_MAGNET_TRAIN_STATION, MAP_GOLDENROD_MAGNET_TRAIN_STATION
+	warp_def $11, $8, 6, SAFFRON_CITY
+	warp_def $11, $9, 6, SAFFRON_CITY
+	warp_def $5, $6, 4, GOLDENROD_MAGNET_TRAIN_STATION
+	warp_def $5, $b, 3, GOLDENROD_MAGNET_TRAIN_STATION
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $6, $b, $0, UnknownScript_0x18a862, $0, $0
+	xy_trigger 0, $6, $b, $0, Script_ArriveFromGoldenrod, $0, $0
 
 .Signposts:
 	db 0
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_OFFICER, 13, 13, OW_UP | $2, $0, -1, -1, $0, 0, OfficerScript_0x18a81e, -1
-	person_event SPRITE_GYM_GUY, 18, 14, OW_DOWN | $2, $11, -1, -1, $0, 0, GymGuyScript_0x18a875, -1
-	person_event SPRITE_TEACHER, 15, 10, OW_LEFT | $1, $0, -1, -1, $0, 0, TeacherScript_0x18a889, EVENT_SAFFRON_TRAIN_STATION_POPULATION
-	person_event SPRITE_LASS, 14, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x18a88c, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	person_event SPRITE_OFFICER, 13, 13, $6, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x18a81e, -1
+	person_event SPRITE_GYM_GUY, 18, 14, $2, 1, 1, -1, -1, 0, 0, 0, GymGuyScript_0x18a875, -1
+	person_event SPRITE_TEACHER, 15, 10, $9, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x18a889, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	person_event SPRITE_LASS, 14, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x18a88c, EVENT_SAFFRON_TRAIN_STATION_POPULATION

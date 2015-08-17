@@ -208,8 +208,8 @@ LakeofRageMagikarpHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
-	warp_def $7, $3, 2, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
+	warp_def $7, $2, 2, LAKE_OF_RAGE
+	warp_def $7, $3, 2, LAKE_OF_RAGE
 
 .XYTriggers:
 	db 0
@@ -221,4 +221,4 @@ LakeofRageMagikarpHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, FishingGuruScript_0x19a6ae, -1
+	person_event SPRITE_FISHING_GURU, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x19a6ae, -1

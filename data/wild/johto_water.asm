@@ -1,231 +1,231 @@
 ; Johto Pokémon in water
 
-	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	db $05 ; encounter rate
-	db 15,WOOPER
-	db 20,QUAGSIRE
-	db 15,QUAGSIRE
+	map RUINS_OF_ALPH_OUTSIDE
+	db 2 percent ; encounter rate
+	db 15, WOOPER
+	db 20, QUAGSIRE
+	db 15, QUAGSIRE
 
-	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
-	db $05 ; encounter rate
-	db 15,WOOPER
-	db 20,QUAGSIRE
-	db 15,QUAGSIRE
+	map UNION_CAVE_1F
+	db 2 percent ; encounter rate
+	db 15, WOOPER
+	db 20, QUAGSIRE
+	db 15, QUAGSIRE
 
-	db GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
-	db $05 ; encounter rate
-	db 15,WOOPER
-	db 20,QUAGSIRE
-	db 15,QUAGSIRE
+	map UNION_CAVE_B1F
+	db 2 percent ; encounter rate
+	db 15, WOOPER
+	db 20, QUAGSIRE
+	db 15, QUAGSIRE
 
-	db GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
-	db $0a ; encounter rate
-	db 15,TENTACOOL
-	db 20,QUAGSIRE
-	db 20,TENTACRUEL
+	map UNION_CAVE_B2F
+	db 4 percent ; encounter rate
+	db 15, TENTACOOL
+	db 20, QUAGSIRE
+	db 20, TENTACRUEL
 
-	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
-	db $05 ; encounter rate
-	db 15,SLOWPOKE
-	db 20,SLOWPOKE
-	db 10,SLOWPOKE
+	map SLOWPOKE_WELL_B1F
+	db 2 percent ; encounter rate
+	db 15, SLOWPOKE
+	db 20, SLOWPOKE
+	db 10, SLOWPOKE
 
-	db GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
-	db $05 ; encounter rate
-	db 15,SLOWPOKE
-	db 20,SLOWPOKE
-	db 20,SLOWBRO
+	map SLOWPOKE_WELL_B2F
+	db 2 percent ; encounter rate
+	db 15, SLOWPOKE
+	db 20, SLOWPOKE
+	db 20, SLOWBRO
 
-	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
-	db $05 ; encounter rate
-	db 15,PSYDUCK
-	db 10,PSYDUCK
-	db 15,GOLDUCK
+	map ILEX_FOREST
+	db 2 percent ; encounter rate
+	db 15, PSYDUCK
+	db 10, PSYDUCK
+	db 15, GOLDUCK
 
-	db GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
-	db $0a ; encounter rate
-	db 15,GOLDEEN
-	db 20,MARILL
-	db 20,SEAKING
+	map MOUNT_MORTAR_1F_OUTSIDE
+	db 4 percent ; encounter rate
+	db 15, GOLDEEN
+	db 20, MARILL
+	db 20, SEAKING
 
-	db GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
-	db $05 ; encounter rate
-	db 20,GOLDEEN
-	db 25,MARILL
-	db 25,SEAKING
+	map MOUNT_MORTAR_2F_INSIDE
+	db 2 percent ; encounter rate
+	db 20, GOLDEEN
+	db 25, MARILL
+	db 25, SEAKING
 
-	db GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
-	db $05 ; encounter rate
-	db 15,GOLDEEN
-	db 20,MARILL
-	db 20,SEAKING
+	map MOUNT_MORTAR_B1F
+	db 2 percent ; encounter rate
+	db 15, GOLDEEN
+	db 20, MARILL
+	db 20, SEAKING
 
-	db GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
-	db $0a ; encounter rate
-	db 20,TENTACOOL
-	db 15,HORSEA
-	db 20,TENTACRUEL
+	map WHIRL_ISLAND_SW
+	db 4 percent ; encounter rate
+	db 20, TENTACOOL
+	db 15, HORSEA
+	db 20, TENTACRUEL
 
-	db GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
-	db $0a ; encounter rate
-	db 15,HORSEA
-	db 20,HORSEA
-	db 20,TENTACRUEL
+	map WHIRL_ISLAND_B2F
+	db 4 percent ; encounter rate
+	db 15, HORSEA
+	db 20, HORSEA
+	db 20, TENTACRUEL
 
-	db GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
-	db $0a ; encounter rate
-	db 20,HORSEA
-	db 20,TENTACRUEL
-	db 20,SEADRA
+	map WHIRL_ISLAND_LUGIA_CHAMBER
+	db 4 percent ; encounter rate
+	db 20, HORSEA
+	db 20, TENTACRUEL
+	db 20, SEADRA
 
-	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
-	db $05 ; encounter rate
-	db 35,SEAKING
-	db 35,GOLDUCK
-	db 35,GOLDEEN
+	map SILVER_CAVE_ROOM_2
+	db 2 percent ; encounter rate
+	db 35, SEAKING
+	db 35, GOLDUCK
+	db 35, GOLDEEN
 
-	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
-	db $05 ; encounter rate
-	db 15,MAGIKARP
-	db 10,MAGIKARP
-	db 5,MAGIKARP
+	map DARK_CAVE_VIOLET_ENTRANCE
+	db 2 percent ; encounter rate
+	db 15, MAGIKARP
+	db 10, MAGIKARP
+	db 5, MAGIKARP
 
-	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
-	db $05 ; encounter rate
-	db 15,MAGIKARP
-	db 10,MAGIKARP
-	db 5,MAGIKARP
+	map DARK_CAVE_BLACKTHORN_ENTRANCE
+	db 2 percent ; encounter rate
+	db 15, MAGIKARP
+	db 10, MAGIKARP
+	db 5, MAGIKARP
 
-	db GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
-	db $0a ; encounter rate
-	db 15,MAGIKARP
-	db 10,MAGIKARP
-	db 10,DRATINI
+	map DRAGONS_DEN_B1F
+	db 4 percent ; encounter rate
+	db 15, MAGIKARP
+	db 10, MAGIKARP
+	db 10, DRATINI
 
-	db GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT
-	db $05 ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	map OLIVINE_PORT
+	db 2 percent ; encounter rate
+	db 20, TENTACOOL
+	db 15, TENTACOOL
+	db 20, TENTACRUEL
 
-	db GROUP_ROUTE_30, MAP_ROUTE_30
-	db $05 ; encounter rate
-	db 20,POLIWAG
-	db 15,POLIWAG
-	db 20,POLIWHIRL
+	map ROUTE_30
+	db 2 percent ; encounter rate
+	db 20, POLIWAG
+	db 15, POLIWAG
+	db 20, POLIWHIRL
 
-	db GROUP_ROUTE_31, MAP_ROUTE_31
-	db $05 ; encounter rate
-	db 20,POLIWAG
-	db 15,POLIWAG
-	db 20,POLIWHIRL
+	map ROUTE_31
+	db 2 percent ; encounter rate
+	db 20, POLIWAG
+	db 15, POLIWAG
+	db 20, POLIWHIRL
 
-	db GROUP_ROUTE_32, MAP_ROUTE_32
-	db $0f ; encounter rate
-	db 15,TENTACOOL
-	db 20,QUAGSIRE
-	db 20,TENTACRUEL
+	map ROUTE_32
+	db 6 percent ; encounter rate
+	db 15, TENTACOOL
+	db 20, QUAGSIRE
+	db 20, TENTACRUEL
 
-	db GROUP_ROUTE_34, MAP_ROUTE_34
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	map ROUTE_34
+	db 6 percent ; encounter rate
+	db 20, TENTACOOL
+	db 15, TENTACOOL
+	db 20, TENTACRUEL
 
-	db GROUP_ROUTE_35, MAP_ROUTE_35
-	db $0a ; encounter rate
-	db 20,PSYDUCK
-	db 15,PSYDUCK
-	db 20,GOLDUCK
+	map ROUTE_35
+	db 4 percent ; encounter rate
+	db 20, PSYDUCK
+	db 15, PSYDUCK
+	db 20, GOLDUCK
 
-	db GROUP_ROUTE_40, MAP_ROUTE_40
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	map ROUTE_40
+	db 6 percent ; encounter rate
+	db 20, TENTACOOL
+	db 15, TENTACOOL
+	db 20, TENTACRUEL
 
-	db GROUP_ROUTE_41, MAP_ROUTE_41
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 20,TENTACRUEL
-	db 20,MANTINE
+	map ROUTE_41
+	db 6 percent ; encounter rate
+	db 20, TENTACOOL
+	db 20, TENTACRUEL
+	db 20, MANTINE
 
-	db GROUP_ROUTE_42, MAP_ROUTE_42
-	db $0a ; encounter rate
-	db 20,GOLDEEN
-	db 15,GOLDEEN
-	db 20,SEAKING
+	map ROUTE_42
+	db 4 percent ; encounter rate
+	db 20, GOLDEEN
+	db 15, GOLDEEN
+	db 20, SEAKING
 
-	db GROUP_ROUTE_43, MAP_ROUTE_43
-	db $05 ; encounter rate
-	db 20,MAGIKARP
-	db 15,MAGIKARP
-	db 10,MAGIKARP
+	map ROUTE_43
+	db 2 percent ; encounter rate
+	db 20, MAGIKARP
+	db 15, MAGIKARP
+	db 10, MAGIKARP
 
-	db GROUP_ROUTE_44, MAP_ROUTE_44
-	db $05 ; encounter rate
-	db 25,POLIWAG
-	db 20,POLIWAG
-	db 25,POLIWHIRL
+	map ROUTE_44
+	db 2 percent ; encounter rate
+	db 25, POLIWAG
+	db 20, POLIWAG
+	db 25, POLIWHIRL
 
-	db GROUP_ROUTE_45, MAP_ROUTE_45
-	db $05 ; encounter rate
-	db 20,MAGIKARP
-	db 15,MAGIKARP
-	db 5,MAGIKARP
+	map ROUTE_45
+	db 2 percent ; encounter rate
+	db 20, MAGIKARP
+	db 15, MAGIKARP
+	db 5, MAGIKARP
 
-	db GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	map NEW_BARK_TOWN
+	db 6 percent ; encounter rate
+	db 20, TENTACOOL
+	db 15, TENTACOOL
+	db 20, TENTACRUEL
 
-	db GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	map CHERRYGROVE_CITY
+	db 6 percent ; encounter rate
+	db 20, TENTACOOL
+	db 15, TENTACOOL
+	db 20, TENTACRUEL
 
-	db GROUP_VIOLET_CITY, MAP_VIOLET_CITY
-	db $05 ; encounter rate
-	db 20,POLIWAG
-	db 15,POLIWAG
-	db 20,POLIWHIRL
+	map VIOLET_CITY
+	db 2 percent ; encounter rate
+	db 20, POLIWAG
+	db 15, POLIWAG
+	db 20, POLIWHIRL
 
-	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	map CIANWOOD_CITY
+	db 6 percent ; encounter rate
+	db 20, TENTACOOL
+	db 15, TENTACOOL
+	db 20, TENTACRUEL
 
-	db GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	map OLIVINE_CITY
+	db 6 percent ; encounter rate
+	db 20, TENTACOOL
+	db 15, TENTACOOL
+	db 20, TENTACRUEL
 
-	db GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	db $05 ; encounter rate
-	db 20,POLIWAG
-	db 15,POLIWAG
-	db 20,POLIWHIRL
+	map ECRUTEAK_CITY
+	db 2 percent ; encounter rate
+	db 20, POLIWAG
+	db 15, POLIWAG
+	db 20, POLIWHIRL
 
-	db GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
-	db $0f ; encounter rate
-	db 15,MAGIKARP
-	db 10,MAGIKARP
-	db 15,GYARADOS
+	map LAKE_OF_RAGE
+	db 6 percent ; encounter rate
+	db 15, MAGIKARP
+	db 10, MAGIKARP
+	db 15, GYARADOS
 
-	db GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
-	db $0a ; encounter rate
-	db 15,MAGIKARP
-	db 10,MAGIKARP
-	db 5,MAGIKARP
+	map BLACKTHORN_CITY
+	db 4 percent ; encounter rate
+	db 15, MAGIKARP
+	db 10, MAGIKARP
+	db 5, MAGIKARP
 
-	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
-	db $05 ; encounter rate
-	db 35,POLIWHIRL
-	db 40,POLIWHIRL
-	db 35,POLIWAG
+	map SILVER_CAVE_OUTSIDE
+	db 2 percent ; encounter rate
+	db 35, POLIWHIRL
+	db 40, POLIWHIRL
+	db 35, POLIWAG
 
-	db $ff ; end
+	db -1 ; end

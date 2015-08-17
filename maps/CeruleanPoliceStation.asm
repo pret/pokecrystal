@@ -44,8 +44,8 @@ CeruleanPoliceStation_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
-	warp_def $7, $3, 2, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	warp_def $7, $2, 2, CERULEAN_CITY
+	warp_def $7, $3, 2, CERULEAN_CITY
 
 .XYTriggers:
 	db 0
@@ -55,6 +55,6 @@ CeruleanPoliceStation_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_FISHING_GURU, 5, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FishingGuruScript_0x18804a, -1
-	person_event SPRITE_POKEFAN_F, 8, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, PokefanFScript_0x18804d, -1
-	person_event SPRITE_DIGLETT, 9, 7, OW_UP | $12, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, DiglettScript_0x188050, -1
+	person_event SPRITE_FISHING_GURU, 5, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FishingGuruScript_0x18804a, -1
+	person_event SPRITE_POKEFAN_F, 8, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PokefanFScript_0x18804d, -1
+	person_event SPRITE_DIGLETT, 9, 7, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, DiglettScript_0x188050, -1

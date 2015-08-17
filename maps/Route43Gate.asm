@@ -23,11 +23,11 @@ UnknownScript_0x19abc9:
 UnknownScript_0x19abca:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19abd5
-	domaptrigger GROUP_ROUTE_43, MAP_ROUTE_43, $0
+	domaptrigger ROUTE_43, $0
 	return
 
 UnknownScript_0x19abd5:
-	domaptrigger GROUP_ROUTE_43, MAP_ROUTE_43, $1
+	domaptrigger ROUTE_43, $1
 	return
 
 UnknownScript_0x19abda:
@@ -251,10 +251,10 @@ Route43Gate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 4, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $0, $5, 5, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $7, $4, 3, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $7, $5, 3, GROUP_ROUTE_43, MAP_ROUTE_43
+	warp_def $0, $4, 4, ROUTE_43
+	warp_def $0, $5, 5, ROUTE_43
+	warp_def $7, $4, 3, ROUTE_43
+	warp_def $7, $5, 3, ROUTE_43
 
 .XYTriggers:
 	db 0
@@ -264,6 +264,6 @@ Route43Gate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_ROCKET, 8, 6, OW_UP | $2, $0, -1, -1, $0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
-	person_event SPRITE_ROCKET, 8, 11, OW_UP | $3, $0, -1, -1, $0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_OFFICER, 8, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_ROCKET, 8, 6, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_ROCKET, 8, 11, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS

@@ -1404,7 +1404,7 @@ Function10955: ; 10955
 	hlcoord 5, 1
 	lb bc, 11, 15
 	call ClearBox
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld a, $28
 	ld c, $14
 .asm_1098a
@@ -1489,8 +1489,8 @@ Function10a1d: ; 10a1d
 ; 10a2a
 
 Function10a2a: ; 10a2a
-	ld hl, TileMap
-	ld bc, $0168
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $7f
 	call ByteFill
 	ret

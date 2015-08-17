@@ -124,7 +124,7 @@ Route14_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 19, 15, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmCarter, -1
-	person_event SPRITE_YOUNGSTER, 31, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBird_keeperRoy, -1
-	person_event SPRITE_POKEFAN_M, 15, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmTrevor, -1
-	person_event SPRITE_TEACHER, 9, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 4, TeacherScript_0x1ad47f, -1
+	person_event SPRITE_POKEFAN_M, 19, 15, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerPokefanmCarter, -1
+	person_event SPRITE_YOUNGSTER, 31, 15, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBird_keeperRoy, -1
+	person_event SPRITE_POKEFAN_M, 15, 10, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerPokefanmTrevor, -1
+	person_event SPRITE_TEACHER, 9, 11, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 4, TeacherScript_0x1ad47f, -1

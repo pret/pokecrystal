@@ -379,8 +379,8 @@ GoldenrodGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $11, $2, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $11, $3, 1, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $11, $2, 1, GOLDENROD_CITY
+	warp_def $11, $3, 1, GOLDENROD_CITY
 
 .XYTriggers:
 	db 1
@@ -393,9 +393,9 @@ GoldenrodGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_WHITNEY, 7, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, WhitneyScript_0x5400c, -1
-	person_event SPRITE_LASS, 17, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerLassCarrie, -1
-	person_event SPRITE_LASS, 10, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerLassBridget, -1
-	person_event SPRITE_BUENA, 6, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautyVictoria, -1
-	person_event SPRITE_BUENA, 9, 23, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautySamantha, -1
-	person_event SPRITE_GYM_GUY, 19, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GoldenrodGymGuyScript, -1
+	person_event SPRITE_WHITNEY, 7, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, WhitneyScript_0x5400c, -1
+	person_event SPRITE_LASS, 17, 13, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerLassCarrie, -1
+	person_event SPRITE_LASS, 10, 13, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerLassBridget, -1
+	person_event SPRITE_BUENA, 6, 4, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBeautyVictoria, -1
+	person_event SPRITE_BUENA, 9, 23, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBeautySamantha, -1
+	person_event SPRITE_GYM_GUY, 19, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GoldenrodGymGuyScript, -1

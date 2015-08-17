@@ -204,7 +204,7 @@ Route9_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $f, $30, 1, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
+	warp_def $f, $30, 1, ROCK_TUNNEL_1F
 
 .XYTriggers:
 	db 0
@@ -216,9 +216,9 @@ Route9_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_YOUNGSTER, 15, 27, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerCamperDean, -1
-	person_event SPRITE_LASS, 12, 43, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerPicnickerHeidi, -1
-	person_event SPRITE_YOUNGSTER, 8, 15, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerCamperSid, -1
-	person_event SPRITE_LASS, 19, 16, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerPicnickerEdna, -1
-	person_event SPRITE_POKEFAN_M, 7, 32, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerTim, -1
-	person_event SPRITE_POKEFAN_M, 19, 40, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerHikerSidney, -1
+	person_event SPRITE_YOUNGSTER, 15, 27, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerCamperDean, -1
+	person_event SPRITE_LASS, 12, 43, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerPicnickerHeidi, -1
+	person_event SPRITE_YOUNGSTER, 8, 15, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 5, TrainerCamperSid, -1
+	person_event SPRITE_LASS, 19, 16, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerPicnickerEdna, -1
+	person_event SPRITE_POKEFAN_M, 7, 32, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerHikerTim, -1
+	person_event SPRITE_POKEFAN_M, 19, 40, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 4, TrainerHikerSidney, -1

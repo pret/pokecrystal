@@ -373,14 +373,14 @@ Script_LeftCableTradeCenter:
 	special Special_AbortLink
 	scall Script_CleanUpFemaleFlagAfterTrade
 	dotrigger $0
-	domaptrigger GROUP_TRADE_CENTER, MAP_TRADE_CENTER, $0
+	domaptrigger TRADE_CENTER, $0
 	end
 
 Script_LeftMobileTradeRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileTradeRoom
 	dotrigger $0
-	domaptrigger GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE, $0
+	domaptrigger MOBILE_TRADE_ROOM_MOBILE, $0
 	end
 
 Script_WalkOutOfMobileTradeRoom:
@@ -393,14 +393,14 @@ Script_LeftCableColosseum:
 	special Special_AbortLink
 	scall Script_CleanUpFemaleFlagAfterBattle
 	dotrigger $0
-	domaptrigger GROUP_COLOSSEUM, MAP_COLOSSEUM, $0
+	domaptrigger COLOSSEUM, $0
 	end
 
 Script_LeftMobileBattleRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileBattleRoom
 	dotrigger $0
-	domaptrigger GROUP_MOBILE_BATTLE_ROOM, MAP_MOBILE_BATTLE_ROOM, $0
+	domaptrigger MOBILE_BATTLE_ROOM, $0
 	end
 
 Script_WalkOutOfMobileBattleRoom:
@@ -576,7 +576,7 @@ Script_LeftTimeCapsule:
 	applymovement $4, MovementData_0x192d01
 .Done:
 	dotrigger $0
-	domaptrigger GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE, $0
+	domaptrigger TIME_CAPSULE, $0
 	end
 
 MapPokeCenter2FSignpost0Script:
@@ -1024,12 +1024,12 @@ PokeCenter2F_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $7, $0, -1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $0, $5, 1, GROUP_TRADE_CENTER, MAP_TRADE_CENTER
-	warp_def $0, $9, 1, GROUP_COLOSSEUM, MAP_COLOSSEUM
-	warp_def $2, $d, 1, GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE
-	warp_def $0, $6, 1, GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE
-	warp_def $0, $a, 1, GROUP_MOBILE_BATTLE_ROOM, MAP_MOBILE_BATTLE_ROOM
+	warp_def $7, $0, -1, POKECENTER_2F
+	warp_def $0, $5, 1, TRADE_CENTER
+	warp_def $0, $9, 1, COLOSSEUM
+	warp_def $2, $d, 1, TIME_CAPSULE
+	warp_def $0, $6, 1, MOBILE_TRADE_ROOM_MOBILE
+	warp_def $0, $a, 1, MOBILE_BATTLE_ROOM
 
 .XYTriggers:
 	db 0
@@ -1040,7 +1040,7 @@ PokeCenter2F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_Trade, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_Battle, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LinkReceptionistScript_TimeCapsule, -1
-	person_event SPRITE_OFFICER, 5, 5, OW_UP | $2, $0, -1, -1, $0, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_Trade, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_Battle, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_TimeCapsule, -1
+	person_event SPRITE_OFFICER, 5, 5, $6, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY

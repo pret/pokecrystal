@@ -41,8 +41,8 @@ OlivinePunishmentSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	warp_def $7, $3, 5, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
+	warp_def $7, $2, 5, OLIVINE_CITY
+	warp_def $7, $3, 5, OLIVINE_CITY
 
 .XYTriggers:
 	db 0
@@ -54,5 +54,5 @@ OlivinePunishmentSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 6, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, OlivinePunishmentSpeechHouseDad, -1
-	person_event SPRITE_LASS, 9, 9, OW_UP | $1, $2, -1, -1, $0, 0, OlivinePunishmentSpeechHouseDaughter, -1
+	person_event SPRITE_POKEFAN_M, 6, 5, $3, 0, 0, -1, -1, 0, 0, 0, OlivinePunishmentSpeechHouseDad, -1
+	person_event SPRITE_LASS, 9, 9, $5, 0, 2, -1, -1, 0, 0, 0, OlivinePunishmentSpeechHouseDaughter, -1

@@ -3,30 +3,30 @@ GoldenrodMagnetTrainStation_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x550eb, $0000
+	dw .Trigger1, $0000
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x550eb:
+.Trigger1:
 	end
 
 OfficerScript_0x550ec:
 	faceplayer
 	loadfont
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue UnknownScript_0x550fa
+	iftrue .MagnetTrainToSaffron
 	writetext UnknownText_0x55160
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x550fa:
+.MagnetTrainToSaffron:
 	writetext UnknownText_0x551b7
 	yesorno
-	iffalse UnknownScript_0x5512a
+	iffalse .DecidedNotToRide
 	checkitem PASS
-	iffalse UnknownScript_0x55124
+	iffalse .PassNotInBag
 	writetext UnknownText_0x551ed
 	closetext
 	loadmovesprites
@@ -36,27 +36,27 @@ UnknownScript_0x550fa:
 	special Special_MagnetTrain
 	warpcheck
 	newloadmap $f9
-	applymovement PLAYER, MovementData_0x55122
+	applymovement PLAYER, .MovementBoardTheTrain
 	wait $14
 	end
 
-MovementData_0x55122:
+.MovementBoardTheTrain:
 	turn_head_down
 	step_end
 
-UnknownScript_0x55124:
+.PassNotInBag:
 	writetext UnknownText_0x5522c
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x5512a:
+.DecidedNotToRide:
 	writetext UnknownText_0x5524f
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x55130:
+Script_ArriveFromSaffron:
 	applymovement $2, MovementData_0x55146
 	applymovement PLAYER, MovementData_0x55158
 	applymovement $2, MovementData_0x5514b
@@ -168,19 +168,19 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $8, 5, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $11, $9, 5, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $5, $6, 4, GROUP_SAFFRON_TRAIN_STATION, MAP_SAFFRON_TRAIN_STATION
-	warp_def $5, $b, 3, GROUP_SAFFRON_TRAIN_STATION, MAP_SAFFRON_TRAIN_STATION
+	warp_def $11, $8, 5, GOLDENROD_CITY
+	warp_def $11, $9, 5, GOLDENROD_CITY
+	warp_def $5, $6, 4, SAFFRON_TRAIN_STATION
+	warp_def $5, $b, 3, SAFFRON_TRAIN_STATION
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $6, $b, $0, UnknownScript_0x55130, $0, $0
+	xy_trigger 0, $6, $b, $0, Script_ArriveFromSaffron, $0, $0
 
 .Signposts:
 	db 0
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 13, 13, OW_UP | $2, $0, -1, -1, $0, 0, OfficerScript_0x550ec, -1
-	person_event SPRITE_GENTLEMAN, 18, 15, OW_DOWN | $2, $22, -1, -1, $0, 0, GentlemanScript_0x55143, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
+	person_event SPRITE_OFFICER, 13, 13, $6, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x550ec, -1
+	person_event SPRITE_GENTLEMAN, 18, 15, $2, 2, 2, -1, -1, 0, 0, 0, GentlemanScript_0x55143, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN

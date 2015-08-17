@@ -136,9 +136,9 @@ TrainerHouse1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $d, $2, 3, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
-	warp_def $d, $3, 3, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
-	warp_def $2, $8, 1, GROUP_TRAINER_HOUSE_B1F, MAP_TRAINER_HOUSE_B1F
+	warp_def $d, $2, 3, VIRIDIAN_CITY
+	warp_def $d, $3, 3, VIRIDIAN_CITY
+	warp_def $2, $8, 1, TRAINER_HOUSE_B1F
 
 .XYTriggers:
 	db 0
@@ -151,8 +151,8 @@ TrainerHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 15, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x9af67, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 11, OW_UP | $3, $0, -1, -1, $0, 0, CooltrainerMScript_0x9af6a, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 10, OW_UP | $2, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, CooltrainerFScript_0x9af6d, -1
-	person_event SPRITE_YOUNGSTER, 12, 8, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x9af70, -1
-	person_event SPRITE_GENTLEMAN, 8, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, GentlemanScript_0x9af73, -1
+	person_event SPRITE_RECEPTIONIST, 15, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ReceptionistScript_0x9af67, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 11, $7, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x9af6a, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 10, $6, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x9af6d, -1
+	person_event SPRITE_YOUNGSTER, 12, 8, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x9af70, -1
+	person_event SPRITE_GENTLEMAN, 8, 6, $9, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x9af73, -1

@@ -138,10 +138,10 @@ Route34IlexForestGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 1, GROUP_ROUTE_34, MAP_ROUTE_34
-	warp_def $0, $5, 2, GROUP_ROUTE_34, MAP_ROUTE_34
-	warp_def $7, $4, 1, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
-	warp_def $7, $5, 1, GROUP_ILEX_FOREST, MAP_ILEX_FOREST
+	warp_def $0, $4, 1, ROUTE_34
+	warp_def $0, $5, 2, ROUTE_34
+	warp_def $7, $4, 1, ILEX_FOREST
+	warp_def $7, $5, 1, ILEX_FOREST
 
 .XYTriggers:
 	db 1
@@ -152,7 +152,7 @@ Route34IlexForestGate_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_TEACHER, 7, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
-	person_event SPRITE_BUTTERFREE, 8, 13, OW_UP | $12, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ButterfreeScript_0x62d8a, -1
-	person_event SPRITE_LASS, 8, 7, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x62d94, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	person_event SPRITE_TEACHER, 11, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY
+	person_event SPRITE_TEACHER, 7, 13, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
+	person_event SPRITE_BUTTERFREE, 8, 13, $16, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ButterfreeScript_0x62d8a, -1
+	person_event SPRITE_LASS, 8, 7, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x62d94, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
+	person_event SPRITE_TEACHER, 11, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY

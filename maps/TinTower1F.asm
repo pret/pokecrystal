@@ -119,11 +119,11 @@ UnknownScript_0x1850d7:
 	disappear $2
 	setevent EVENT_FOUGHT_SUICUNE
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_42
-	domaptrigger GROUP_ROUTE_42, MAP_ROUTE_42, $0
+	domaptrigger ROUTE_42, $0
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	domaptrigger GROUP_ROUTE_36, MAP_ROUTE_36, $0
+	domaptrigger ROUTE_36, $0
 	setevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $0
+	domaptrigger CIANWOOD_CITY, $0
 	dotrigger $1
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	returnafterbattle
@@ -522,9 +522,9 @@ TinTower1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $f, $9, 12, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $f, $a, 12, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $2, $a, 2, GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
+	warp_def $f, $9, 12, ECRUTEAK_CITY
+	warp_def $f, $a, 12, ECRUTEAK_CITY
+	warp_def $2, $a, 2, TIN_TOWER_2F
 
 .XYTriggers:
 	db 0
@@ -534,13 +534,13 @@ TinTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_SUICUNE, 13, 13, OW_DOWN | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
-	person_event SPRITE_RAIKOU, 13, 11, OW_DOWN | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
-	person_event SPRITE_ENTEI, 13, 16, OW_DOWN | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
-	person_event SPRITE_SUPER_NERD, 7, 12, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x1851c8, EVENT_TIN_TOWER_1F_EUSINE
-	person_event SPRITE_SAGE, 13, 9, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x185173, EVENT_TIN_TOWER_1F_WISE_TRIO_1
-	person_event SPRITE_SAGE, 15, 15, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x185176, EVENT_TIN_TOWER_1F_WISE_TRIO_1
-	person_event SPRITE_SAGE, 10, 18, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x185179, EVENT_TIN_TOWER_1F_WISE_TRIO_1
-	person_event SPRITE_SAGE, 6, 8, OW_UP | $0, $10, -1, -1, $0, 0, SageScript_0x18517c, EVENT_TIN_TOWER_1F_WISE_TRIO_2
-	person_event SPRITE_SAGE, 5, 13, OW_UP | $2, $0, -1, -1, $0, 0, SageScript_0x185188, EVENT_TIN_TOWER_1F_WISE_TRIO_2
-	person_event SPRITE_SAGE, 6, 18, OW_UP | $1, $1, -1, -1, $0, 0, SageScript_0x1851bc, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SUICUNE, 13, 13, $1, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
+	person_event SPRITE_RAIKOU, 13, 11, $1, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
+	person_event SPRITE_ENTEI, 13, 16, $1, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
+	person_event SPRITE_SUPER_NERD, 7, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x1851c8, EVENT_TIN_TOWER_1F_EUSINE
+	person_event SPRITE_SAGE, 13, 9, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185173, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 15, 15, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185176, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 10, 18, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185179, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 6, 8, $4, 1, 0, -1, -1, 0, 0, 0, SageScript_0x18517c, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SAGE, 5, 13, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185188, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SAGE, 6, 18, $5, 0, 1, -1, -1, 0, 0, 0, SageScript_0x1851bc, EVENT_TIN_TOWER_1F_WISE_TRIO_2

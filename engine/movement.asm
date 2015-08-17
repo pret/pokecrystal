@@ -727,7 +727,7 @@ Function5412: ; 5412
 	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
-	call Function188e
+	call CheckSuperTallGrassTile
 	jr z, .asm_542d
 
 	call Function1875

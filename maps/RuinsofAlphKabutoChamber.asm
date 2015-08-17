@@ -70,7 +70,7 @@ UnknownScript_0x58778:
 	setevent EVENT_SOLVED_KABUTO_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_1
 	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
+	domaptrigger RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock $2, $2, $18
@@ -264,11 +264,11 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $9, $3, 2, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $9, $4, 2, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $3, $3, 4, GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def $3, $4, 5, GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def $0, $4, 1, GROUP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM, MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM
+	warp_def $9, $3, 2, RUINS_OF_ALPH_OUTSIDE
+	warp_def $9, $4, 2, RUINS_OF_ALPH_OUTSIDE
+	warp_def $3, $3, 4, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_def $3, $4, 5, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_def $0, $4, 1, RUINS_OF_ALPH_KABUTO_ITEM_ROOM
 
 .XYTriggers:
 	db 0
@@ -284,5 +284,5 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 9, 9, OW_UP | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	person_event SPRITE_SCIENTIST, 5, 7, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x587a8, -1
+	person_event SPRITE_RECEPTIONIST, 9, 9, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
+	person_event SPRITE_SCIENTIST, 5, 7, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x587a8, -1

@@ -97,7 +97,7 @@ GetMapTrigger:: ; 2147
 
 Function2173:: ; 2173
 	call Function217a
-	call Functiondb1
+	call FarCallSwapTextboxPalettes
 	ret
 ; 217a
 
@@ -110,7 +110,7 @@ Function217a:: ; 217a
 
 	call Function2198
 	ld a, $60
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, TileMapEnd - TileMap
 	call ByteFill
 
@@ -1143,7 +1143,7 @@ ObjectEvent:: ; 0x26ef
 ; 0x26f2
 
 ObjectEventText::
-	TX_FAR _ObjectEventText
+	text_jump _ObjectEventText
 	db "@"
 ; 0x26f7
 
@@ -1200,11 +1200,11 @@ Function271e:: ; 271e
 
 
 Function272a:: ; 272a
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld de, BGMapBuffer
 	call Function27b7
 	ld c, $28
-	call Functiondbd
+	call FarCallScrollBGMapPalettes
 	ld a, [wd152]
 	ld e, a
 	ld a, [wd153]
@@ -1220,7 +1220,7 @@ Function2748:: ; 2748
 	ld de, BGMapBuffer
 	call Function27b7
 	ld c, $28
-	call Functiondbd
+	call FarCallScrollBGMapPalettes
 	ld a, [wd152]
 	ld l, a
 	ld a, [wd153]
@@ -1239,11 +1239,11 @@ Function2748:: ; 2748
 ; 2771
 
 Function2771:: ; 2771
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld de, BGMapBuffer
 	call Function27c0
 	ld c, $24
-	call Functiondbd
+	call FarCallScrollBGMapPalettes
 	ld a, [wd152]
 	ld e, a
 	ld a, [wd153]
@@ -1259,7 +1259,7 @@ Function278f:: ; 278f
 	ld de, BGMapBuffer
 	call Function27c0
 	ld c, $24
-	call Functiondbd
+	call FarCallScrollBGMapPalettes
 	ld a, [wd152]
 	ld e, a
 	and $e0
@@ -1966,7 +1966,7 @@ FadeToMenu:: ; 2b29
 Function2b3c:: ; 2b3c
 	call WhiteBGMap
 	call Function2bae
-	call DrawOnMap
+	call UpdateSprites
 	call Function1d7d
 	call Functiond90
 	jr Function2b5c
@@ -1976,7 +1976,7 @@ Function2b4d:: ; 2b4d
 	call WhiteBGMap
 	call Function1d7d
 	call Function2bae
-	call DrawOnMap
+	call UpdateSprites
 	call Functiond90
 ; 2b5c
 
@@ -2003,7 +2003,7 @@ Function2b74:: ; 0x2b74
 	call TextBox
 	ld hl, VramState
 	set 0, [hl]
-	call DrawOnMap
+	call UpdateSprites
 	call Function3200
 	ld b, $9
 	call GetSGBLayout

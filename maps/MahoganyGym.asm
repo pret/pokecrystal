@@ -369,8 +369,8 @@ MahoganyGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $11, $4, 3, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $11, $5, 3, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
+	warp_def $11, $4, 3, MAHOGANY_TOWN
+	warp_def $11, $5, 3, MAHOGANY_TOWN
 
 .XYTriggers:
 	db 0
@@ -382,10 +382,10 @@ MahoganyGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_PRYCE, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PryceScript_0x199a9e, -1
-	person_event SPRITE_BUENA, 10, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerSkierRoxanne, -1
-	person_event SPRITE_ROCKER, 21, 4, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderRonald, -1
-	person_event SPRITE_BUENA, 21, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerSkierClarissa, -1
-	person_event SPRITE_ROCKER, 13, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderBrad, -1
-	person_event SPRITE_ROCKER, 8, 6, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 1, TrainerBoarderDouglas, -1
-	person_event SPRITE_GYM_GUY, 19, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, MahoganyGymGuyScript, -1
+	person_event SPRITE_PRYCE, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PryceScript_0x199a9e, -1
+	person_event SPRITE_BUENA, 10, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerSkierRoxanne, -1
+	person_event SPRITE_ROCKER, 21, 4, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerBoarderRonald, -1
+	person_event SPRITE_BUENA, 21, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerSkierClarissa, -1
+	person_event SPRITE_ROCKER, 13, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerBoarderBrad, -1
+	person_event SPRITE_ROCKER, 8, 6, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerBoarderDouglas, -1
+	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, MahoganyGymGuyScript, -1

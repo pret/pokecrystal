@@ -22,8 +22,8 @@ MoveDeletersHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
-	warp_def $7, $3, 6, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
+	warp_def $7, $2, 6, BLACKTHORN_CITY
+	warp_def $7, $3, 6, BLACKTHORN_CITY
 
 .XYTriggers:
 	db 0
@@ -35,4 +35,4 @@ MoveDeletersHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SUPER_NERD, 7, 6, OW_UP | $2, $0, -1, -1, $0, 0, MoveDeleter, -1
+	person_event SPRITE_SUPER_NERD, 7, 6, $6, 0, 0, -1, -1, 0, 0, 0, MoveDeleter, -1

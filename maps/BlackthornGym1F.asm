@@ -386,13 +386,13 @@ BlackthornGym1F_MapEventHeader:
 
 .Warps:
 	db 7
-	warp_def $11, $4, 1, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
-	warp_def $11, $5, 1, GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
-	warp_def $7, $1, 1, GROUP_BLACKTHORN_GYM_2F, MAP_BLACKTHORN_GYM_2F
-	warp_def $9, $7, 2, GROUP_BLACKTHORN_GYM_2F, MAP_BLACKTHORN_GYM_2F
-	warp_def $6, $2, 3, GROUP_BLACKTHORN_GYM_2F, MAP_BLACKTHORN_GYM_2F
-	warp_def $7, $7, 4, GROUP_BLACKTHORN_GYM_2F, MAP_BLACKTHORN_GYM_2F
-	warp_def $6, $7, 5, GROUP_BLACKTHORN_GYM_2F, MAP_BLACKTHORN_GYM_2F
+	warp_def $11, $4, 1, BLACKTHORN_CITY
+	warp_def $11, $5, 1, BLACKTHORN_CITY
+	warp_def $7, $1, 1, BLACKTHORN_GYM_2F
+	warp_def $9, $7, 2, BLACKTHORN_GYM_2F
+	warp_def $6, $2, 3, BLACKTHORN_GYM_2F
+	warp_def $7, $7, 4, BLACKTHORN_GYM_2F
+	warp_def $6, $7, 5, BLACKTHORN_GYM_2F
 
 .XYTriggers:
 	db 0
@@ -404,8 +404,8 @@ BlackthornGym1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_CLAIR, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ClairScript_0x194e24, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermMike, -1
-	person_event SPRITE_COOLTRAINER_M, 18, 5, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermPaul, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerCooltrainerfLola, -1
-	person_event SPRITE_GYM_GUY, 19, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, BlackthornGymGuyScript, -1
+	person_event SPRITE_CLAIR, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ClairScript_0x194e24, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermMike, -1
+	person_event SPRITE_COOLTRAINER_M, 18, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermPaul, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerCooltrainerfLola, -1
+	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, BlackthornGymGuyScript, -1

@@ -206,12 +206,12 @@ OlivineLighthouse2F_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $b, $3, 3, GROUP_OLIVINE_LIGHTHOUSE_1F, MAP_OLIVINE_LIGHTHOUSE_1F
-	warp_def $3, $5, 2, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
-	warp_def $d, $10, 4, GROUP_OLIVINE_LIGHTHOUSE_1F, MAP_OLIVINE_LIGHTHOUSE_1F
-	warp_def $d, $11, 5, GROUP_OLIVINE_LIGHTHOUSE_1F, MAP_OLIVINE_LIGHTHOUSE_1F
-	warp_def $b, $10, 4, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
-	warp_def $b, $11, 5, GROUP_OLIVINE_LIGHTHOUSE_3F, MAP_OLIVINE_LIGHTHOUSE_3F
+	warp_def $b, $3, 3, OLIVINE_LIGHTHOUSE_1F
+	warp_def $3, $5, 2, OLIVINE_LIGHTHOUSE_3F
+	warp_def $d, $10, 4, OLIVINE_LIGHTHOUSE_1F
+	warp_def $d, $11, 5, OLIVINE_LIGHTHOUSE_1F
+	warp_def $b, $10, 4, OLIVINE_LIGHTHOUSE_3F
+	warp_def $b, $11, 5, OLIVINE_LIGHTHOUSE_3F
 
 .XYTriggers:
 	db 0
@@ -221,5 +221,5 @@ OlivineLighthouse2F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 7, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSailorHuey1, -1
-	person_event SPRITE_GENTLEMAN, 12, 21, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerGentlemanAlfred, -1
+	person_event SPRITE_SAILOR, 7, 13, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSailorHuey1, -1
+	person_event SPRITE_GENTLEMAN, 12, 21, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerGentlemanAlfred, -1

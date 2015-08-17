@@ -78,10 +78,10 @@ GoldenrodDeptStore1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $7, $7, 9, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $7, $8, 9, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $0, $f, 2, GROUP_GOLDENROD_DEPT_STORE_2F, MAP_GOLDENROD_DEPT_STORE_2F
-	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def $7, $7, 9, GOLDENROD_CITY
+	warp_def $7, $8, 9, GOLDENROD_CITY
+	warp_def $0, $f, 2, GOLDENROD_DEPT_STORE_2F
+	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -93,7 +93,7 @@ GoldenrodDeptStore1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_RECEPTIONIST, 5, 14, OW_UP | $2, $0, -1, -1, $0, 0, ReceptionistScript_0x55981, -1
-	person_event SPRITE_POKEFAN_F, 8, 9, OW_UP | $2, $0, -1, -1, $0, 0, PokefanFScript_0x55987, -1
-	person_event SPRITE_BUG_CATCHER, 9, 9, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BugCatcherScript_0x5598a, -1
-	person_event SPRITE_GENTLEMAN, 9, 15, OW_DOWN | $2, $11, -1, -1, $0, 0, GentlemanScript_0x55984, -1
+	person_event SPRITE_RECEPTIONIST, 5, 14, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x55981, -1
+	person_event SPRITE_POKEFAN_F, 8, 9, $6, 0, 0, -1, -1, 0, 0, 0, PokefanFScript_0x55987, -1
+	person_event SPRITE_BUG_CATCHER, 9, 9, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugCatcherScript_0x5598a, -1
+	person_event SPRITE_GENTLEMAN, 9, 15, $2, 1, 1, -1, -1, 0, 0, 0, GentlemanScript_0x55984, -1

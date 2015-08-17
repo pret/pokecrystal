@@ -74,11 +74,11 @@ CeladonMansion1F_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $9, $6, 2, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $9, $7, 2, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $0, $3, 3, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $0, $0, 1, GROUP_CELADON_MANSION_2F, MAP_CELADON_MANSION_2F
-	warp_def $0, $7, 4, GROUP_CELADON_MANSION_2F, MAP_CELADON_MANSION_2F
+	warp_def $9, $6, 2, CELADON_CITY
+	warp_def $9, $7, 2, CELADON_CITY
+	warp_def $0, $3, 3, CELADON_CITY
+	warp_def $0, $0, 1, CELADON_MANSION_2F
+	warp_def $0, $7, 4, CELADON_MANSION_2F
 
 .XYTriggers:
 	db 0
@@ -91,7 +91,7 @@ CeladonMansion1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_GRANNY, 9, 5, OW_DOWN | $3, $0, -1, -1, $0, 0, CeladonMansionManager, -1
-	person_event SPRITE_GROWLITHE, 10, 6, OW_UP | $12, $0, -1, -1, $0, 0, CeladonMansion1FMeowth, -1
-	person_event SPRITE_CLEFAIRY, 8, 7, OW_UP | $12, $0, -1, -1, $0, 0, CeladonMansion1FClefairy, -1
-	person_event SPRITE_GROWLITHE, 8, 8, OW_UP | $12, $2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CeladonMansion1FNidoranF, -1
+	person_event SPRITE_GRANNY, 9, 5, $3, 0, 0, -1, -1, 0, 0, 0, CeladonMansionManager, -1
+	person_event SPRITE_GROWLITHE, 10, 6, $16, 0, 0, -1, -1, 0, 0, 0, CeladonMansion1FMeowth, -1
+	person_event SPRITE_CLEFAIRY, 8, 7, $16, 0, 0, -1, -1, 0, 0, 0, CeladonMansion1FClefairy, -1
+	person_event SPRITE_GROWLITHE, 8, 8, $16, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CeladonMansion1FNidoranF, -1

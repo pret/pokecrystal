@@ -96,8 +96,8 @@ Route27SandstormHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_ROUTE_27, MAP_ROUTE_27
-	warp_def $7, $3, 1, GROUP_ROUTE_27, MAP_ROUTE_27
+	warp_def $7, $2, 1, ROUTE_27
+	warp_def $7, $3, 1, ROUTE_27
 
 .XYTriggers:
 	db 0
@@ -109,4 +109,4 @@ Route27SandstormHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRANNY, 8, 6, OW_UP | $2, $0, -1, -1, $0, 0, SandstormHouseWoman, -1
+	person_event SPRITE_GRANNY, 8, 6, $6, 0, 0, -1, -1, 0, 0, 0, SandstormHouseWoman, -1

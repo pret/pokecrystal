@@ -70,8 +70,8 @@ LakeofRageHiddenPowerHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
-	warp_def $7, $3, 1, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
+	warp_def $7, $2, 1, LAKE_OF_RAGE
+	warp_def $7, $3, 1, LAKE_OF_RAGE
 
 .XYTriggers:
 	db 0
@@ -83,4 +83,4 @@ LakeofRageHiddenPowerHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHER, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, HiddenPowerGuy, -1
+	person_event SPRITE_FISHER, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, HiddenPowerGuy, -1

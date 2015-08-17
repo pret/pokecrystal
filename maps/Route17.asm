@@ -137,8 +137,8 @@ Route17_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $52, $11, 1, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
-	warp_def $53, $11, 2, GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE
+	warp_def $52, $11, 1, ROUTE_17_18_GATE
+	warp_def $53, $11, 2, ROUTE_17_18_GATE
 
 .XYTriggers:
 	db 0
@@ -150,7 +150,7 @@ Route17_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_BIKER, 21, 8, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerBikerRiley, -1
-	person_event SPRITE_BIKER, 72, 13, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 1, TrainerBikerJoel, -1
-	person_event SPRITE_BIKER, 57, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBikerGlenn, -1
-	person_event SPRITE_BIKER, 84, 10, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerBikerCharles, -1
+	person_event SPRITE_BIKER, 21, 8, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 4, TrainerBikerRiley, -1
+	person_event SPRITE_BIKER, 72, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, TrainerBikerJoel, -1
+	person_event SPRITE_BIKER, 57, 7, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBikerGlenn, -1
+	person_event SPRITE_BIKER, 84, 10, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 4, TrainerBikerCharles, -1

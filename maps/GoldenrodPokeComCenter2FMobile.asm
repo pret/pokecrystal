@@ -269,8 +269,8 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $1f, $0, 3, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
-	warp_def $1f, $1, 3, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
+	warp_def $1f, $0, 3, GOLDENROD_POKECENTER_1F
+	warp_def $1f, $1, 3, GOLDENROD_POKECENTER_1F
 
 .XYTriggers:
 	db 0
@@ -283,6 +283,6 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 32, 8, OW_UP | $0, $10, -1, -1, (PAL_OW_RED << 4) | $80, 0, ScientistScript_0x625d1, -1
-	person_event SPRITE_SCIENTIST, 31, 11, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x625d4, -1
-	person_event SPRITE_SCIENTIST, 33, 11, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ScientistScript_0x625d7, -1
+	person_event SPRITE_SCIENTIST, 32, 8, $4, 1, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ScientistScript_0x625d1, -1
+	person_event SPRITE_SCIENTIST, 31, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x625d4, -1
+	person_event SPRITE_SCIENTIST, 33, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ScientistScript_0x625d7, -1

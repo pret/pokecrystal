@@ -105,7 +105,7 @@ Function97cc0:: ; 97cc0
 	ld hl, StatusFlags2
 	bit 2, [hl]
 	jr nz, .asm_97cdb
-	callba Function2a0e7
+	callba TryWildEncounter
 	jr nz, .asm_97ce2
 	jr .asm_97ce6
 
@@ -167,10 +167,10 @@ Function97cfd:: ; 97cfd
 ; 97d23
 
 Function97d23: ; 97d23
-	call Function97d64
+	call TryWildEncounter_BugContest
 	ret nc
 	call Function97d31
-	callba Function2a1df
+	callba CheckRepelEffect
 	ret
 ; 97d31
 
@@ -196,7 +196,7 @@ Function97d31:: ; 97d31
 
 ; Species
 	ld a, [hli]
-	ld [wd22e], a
+	ld [TempWildMonSpecies], a
 
 ; Min level
 	ld a, [hli]
@@ -228,16 +228,16 @@ Function97d31:: ; 97d31
 	ret
 ; 97d64
 
-Function97d64: ; 97d64
+TryWildEncounter_BugContest: ; 97d64
 	ld a, [StandingTile]
-	call Function188e
+	call CheckSuperTallGrassTile
 	ld b, $66
 	jr z, .asm_97d70
 	ld b, $33
 
 .asm_97d70
-	callba Function2a124
-	callba Function2a138
+	callba ApplyMusicEffectOnEncounterRate
+	callba ApplyCleanseTagEffectOnEncounterRate
 	call Random
 	ld a, [hRandomAdd]
 	cp b

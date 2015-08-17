@@ -84,7 +84,7 @@ Function184a:: ; 184a
 	ret
 ; 1852
 
-Function1852:: ; 1852
+CheckOnWater:: ; 1852
 	ld a, [StandingTile]
 	call GetTileCollision
 	sub 1
@@ -147,7 +147,7 @@ Function1875:: ; 1875
 	ret
 ; 188e
 
-Function188e:: ; 188e
+CheckSuperTallGrassTile:: ; 188e
 	cp $14
 	ret z
 	cp $1c
@@ -549,7 +549,7 @@ Function1a71:: ; 1a71
 	ld d, 0
 	ld hl, ObjectStruct3_Data + 1
 rept OBJECT_STRUCT_3_DATA_WIDTH
-	add hl,de
+	add hl, de
 endr
 	ld b, h
 	ld c, l
@@ -623,7 +623,7 @@ ResetVramState_Bit0:: ; 1acc
 ; 1ad2
 
 
-DrawOnMap:: ; 1ad2
+UpdateSprites:: ; 1ad2
 	ld a, [VramState]
 	bit 0, a
 	ret z

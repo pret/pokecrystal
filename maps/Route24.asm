@@ -130,4 +130,4 @@ Route24_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_ROCKET, 11, 12, OW_DOWN | $3, $0, -1, -1, $0, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET
+	person_event SPRITE_ROCKET, 11, 12, $3, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET

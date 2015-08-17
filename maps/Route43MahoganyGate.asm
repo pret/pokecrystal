@@ -41,10 +41,10 @@ Route43MahoganyGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 1, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $0, $5, 2, GROUP_ROUTE_43, MAP_ROUTE_43
-	warp_def $7, $4, 5, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $5, 5, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
+	warp_def $0, $4, 1, ROUTE_43
+	warp_def $0, $5, 2, ROUTE_43
+	warp_def $7, $4, 5, MAHOGANY_TOWN
+	warp_def $7, $5, 5, MAHOGANY_TOWN
 
 .XYTriggers:
 	db 0
@@ -54,4 +54,4 @@ Route43MahoganyGate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 8, 4, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, OfficerScript_0x19ab0b, -1
+	person_event SPRITE_OFFICER, 8, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, OfficerScript_0x19ab0b, -1

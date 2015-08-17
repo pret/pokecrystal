@@ -298,7 +298,7 @@ ElmPhoneScript2: ; 0xbd081
 
 ; Jack
 
-UnknownScript_0xbd0d0:
+JackPhoneScript1:
 	trainertotext SCHOOLBOY, JACK1, $0
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0xbd0f3
@@ -317,7 +317,7 @@ UnknownScript_0xbd0f3:
 	displaylocation NATIONAL_PARK, $2
 	farjump UnknownScript_0xa0a2d
 
-UnknownScript_0xbd0fa:
+JackPhoneScript2:
 	trainertotext SCHOOLBOY, JACK1, $0
 	farscall UnknownScript_0xbe1b6
 	farscall UnknownScript_0xbde3f
@@ -350,7 +350,7 @@ UnknownScript_0xbd13b:
 
 ; Beverly
 
-UnknownScript_0xbd13f:
+BeverlyPhoneScript1:
 	trainertotext POKEFANF, BEVERLY1, $0
 	farscall UnknownScript_0xbe0b6
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
@@ -361,7 +361,7 @@ UnknownScript_0xbd151:
 	displaylocation NATIONAL_PARK, $2
 	farjump UnknownScript_0xa0aa5
 
-UnknownScript_0xbd158:
+BeverlyPhoneScript2:
 	trainertotext POKEFANF, BEVERLY1, $0
 	farscall UnknownScript_0xbe41e
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
@@ -379,7 +379,7 @@ UnknownScript_0xbd172:
 
 ; Huey
 
-UnknownScript_0xbd17c:
+HueyPhoneScript1:
 	trainertotext SAILOR, HUEY1, $0
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0xbd1a2
@@ -399,7 +399,7 @@ UnknownScript_0xbd1a2:
 	displaylocation LIGHTHOUSE, $2
 	farjump UnknownScript_0xa0a32
 
-UnknownScript_0xbd1a9:
+HueyPhoneScript2:
 	trainertotext SAILOR, HUEY1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_HUEY
@@ -423,7 +423,7 @@ UnknownScript_0xbd1d0:
 
 ; Gaven
 
-UnknownScript_0xbd1da:
+GavenPhoneScript1:
 	trainertotext COOLTRAINERM, GAVEN3, $0
 	checkflag ENGINE_GAVEN
 	iftrue UnknownScript_0xbd1fd
@@ -442,7 +442,7 @@ UnknownScript_0xbd1fd:
 	displaylocation ROUTE_26, $2
 	farjump UnknownScript_0xa0a37
 
-UnknownScript_0xbd204:
+GavenPhoneScript2:
 	trainertotext COOLTRAINERM, GAVEN3, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_GAVEN
@@ -470,7 +470,7 @@ UnknownScript_0xbd239:
 
 ; Beth
 
-UnknownScript_0xbd23d:
+BethPhoneScript1:
 	trainertotext COOLTRAINERF, BETH1, $0
 	checkflag ENGINE_BETH
 	iftrue UnknownScript_0xbd260
@@ -489,7 +489,7 @@ UnknownScript_0xbd260:
 	displaylocation ROUTE_26, $2
 	farjump UnknownScript_0xa0a3c
 
-UnknownScript_0xbd267:
+BethPhoneScript2:
 	trainertotext COOLTRAINERF, BETH1, $0
 	farscall UnknownScript_0xbe41e
 	checkflag ENGINE_BETH
@@ -512,7 +512,7 @@ UnknownScript_0xbd28a:
 
 ; Jose
 
-UnknownScript_0xbd294:
+JosePhoneScript1:
 	trainertotext BIRD_KEEPER, JOSE2, $0
 	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0xbd2bd
@@ -537,7 +537,7 @@ UnknownScript_0xbd2c4:
 	displaylocation ROUTE_27, $2
 	farjump UnknownScript_0xa0a41
 
-UnknownScript_0xbd2cb:
+JosePhoneScript2:
 	trainertotext BIRD_KEEPER, JOSE2, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_JOSE
@@ -574,7 +574,7 @@ UnknownScript_0xbd312:
 
 ; Reena
 
-UnknownScript_0xbd31c:
+ReenaPhoneScript1:
 	trainertotext COOLTRAINERF, REENA1, $0
 	checkflag ENGINE_REENA
 	iftrue UnknownScript_0xbd33f
@@ -593,7 +593,7 @@ UnknownScript_0xbd33f:
 	displaylocation ROUTE_27, $2
 	farjump UnknownScript_0xa0a46
 
-UnknownScript_0xbd346:
+ReenaPhoneScript2:
 	trainertotext COOLTRAINERF, REENA1, $0
 	farscall UnknownScript_0xbe41e
 	checkflag ENGINE_REENA
@@ -616,7 +616,7 @@ UnknownScript_0xbd369:
 
 ; Joey
 
-UnknownScript_0xbd373:
+JoeyPhoneScript1:
 	trainertotext YOUNGSTER, JOEY1, $0
 	checkflag ENGINE_JOEY
 	iftrue UnknownScript_0xbd399
@@ -636,7 +636,7 @@ UnknownScript_0xbd399:
 	displaylocation ROUTE_30, $2
 	farjump UnknownScript_0xa0a4b
 
-UnknownScript_0xbd3a0:
+JoeyPhoneScript2:
 	trainertotext YOUNGSTER, JOEY1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_JOEY
@@ -660,7 +660,7 @@ UnknownScript_0xbd3c7:
 
 ; Wade
 
-UnknownScript_0xbd3d1:
+WadePhoneScript1:
 	trainertotext BUG_CATCHER, WADE1, $0
 	checkflag ENGINE_WADE
 	iftrue UnknownScript_0xbd41a
@@ -698,7 +698,7 @@ UnknownScript_0xbd421:
 	displaylocation ROUTE_31, $2
 	farjump UnknownScript_0xa0ab5
 
-UnknownScript_0xbd428:
+WadePhoneScript2:
 	trainertotext BUG_CATCHER, WADE1, $0
 	farscall UnknownScript_0xbe1b6
 	farscall UnknownScript_0xbde3f
@@ -776,7 +776,7 @@ UnknownScript_0xbd4ce:
 
 ; Ralph
 
-UnknownScript_0xbd4d2:
+RalphPhoneScript1:
 	trainertotext FISHER, RALPH1, $0
 	checkflag ENGINE_RALPH
 	iftrue UnknownScript_0xbd4fb
@@ -801,7 +801,7 @@ UnknownScript_0xbd502:
 	displaylocation ROUTE_32, $2
 	farjump UnknownScript_0xa0af5
 
-UnknownScript_0xbd509:
+RalphPhoneScript2:
 	trainertotext FISHER, RALPH1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_FLYPOINT_GOLDENROD
@@ -841,7 +841,7 @@ UnknownScript_0xbd55c:
 
 ; Liz
 
-UnknownScript_0xbd560:
+LizPhoneScript1:
 	trainertotext PICNICKER, LIZ1, $0
 	checkflag ENGINE_LIZ
 	iftrue UnknownScript_0xbd586
@@ -861,7 +861,7 @@ UnknownScript_0xbd586:
 	displaylocation ROUTE_32, $2
 	farjump UnknownScript_0xa0a5a
 
-UnknownScript_0xbd58d:
+LizPhoneScript2:
 	trainertotext PICNICKER, LIZ1, $0
 	farscall UnknownScript_0xbde45
 	if_equal $0, UnknownScript_0xbd5d0
@@ -946,7 +946,7 @@ UnknownScript_0xbd630:
 
 ; Anthony
 
-UnknownScript_0xbd634:
+AnthonyPhoneScript1:
 	trainertotext HIKER, ANTHONY2, $0
 	checkflag ENGINE_ANTHONY
 	iftrue UnknownScript_0xbd65d
@@ -971,7 +971,7 @@ UnknownScript_0xbd664:
 	displaylocation ROUTE_33, $2
 	farjump UnknownScript_0xa0afa
 
-UnknownScript_0xbd66b:
+AnthonyPhoneScript2:
 	trainertotext HIKER, ANTHONY2, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_FLYPOINT_GOLDENROD
@@ -1001,7 +1001,7 @@ UnknownScript_0xbd6a6:
 	iftrue UnknownScript_0xbd6bd
 	setflag ENGINE_DUNSPARCE_SWARM
 	pokenamemem DUNSPARCE, $1
-	loadwilddata $0, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
+	loadwilddata $0, DARK_CAVE_VIOLET_ENTRANCE
 	displaylocation DARK_CAVE, $2
 	farjump UnknownScript_0xa05de
 
@@ -1010,7 +1010,7 @@ UnknownScript_0xbd6bd:
 
 ; Todd
 
-UnknownScript_0xbd6c1:
+ToddPhoneScript1:
 	trainertotext CAMPER, TODD1, $0
 	checkflag ENGINE_TODD
 	iftrue UnknownScript_0xbd6ea
@@ -1034,7 +1034,7 @@ UnknownScript_0xbd6ea:
 UnknownScript_0xbd6f1:
 	farjump UnknownScript_0xa0b04
 
-UnknownScript_0xbd6f5:
+ToddPhoneScript2:
 	trainertotext CAMPER, TODD1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_TODD
@@ -1072,7 +1072,7 @@ UnknownScript_0xbd73c:
 
 ; Gina
 
-UnknownScript_0xbd743:
+GinaPhoneScript1:
 	trainertotext PICNICKER, GINA1, $0
 	checkflag ENGINE_GINA
 	iftrue UnknownScript_0xbd776
@@ -1102,7 +1102,7 @@ UnknownScript_0xbd77d:
 	displaylocation ROUTE_34, $2
 	farjump UnknownScript_0xa0abd
 
-UnknownScript_0xbd784:
+GinaPhoneScript2:
 	trainertotext PICNICKER, GINA1, $0
 	farscall UnknownScript_0xbe41e
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
@@ -1147,7 +1147,7 @@ UnknownScript_0xbd7dd:
 
 ; Irwin
 
-UnknownScript_0xbd7e7:
+IrwinPhoneScript1:
 	trainertotext JUGGLER, IRWIN1, $0
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
@@ -1157,7 +1157,7 @@ UnknownScript_0xbd7e7:
 UnknownScript_0xbd7f9:
 	farjump UnknownScript_0xa05be
 
-UnknownScript_0xbd7fd:
+IrwinPhoneScript2:
 	trainertotext JUGGLER, IRWIN1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
@@ -1169,7 +1169,7 @@ UnknownScript_0xbd80f:
 
 ; Arnie
 
-UnknownScript_0xbd813:
+ArniePhoneScript1:
 	trainertotext BUG_CATCHER, ARNIE1, $0
 	checkflag ENGINE_ARNIE
 	iftrue UnknownScript_0xbd83c
@@ -1194,7 +1194,7 @@ UnknownScript_0xbd843:
 	displaylocation ROUTE_35, $2
 	farjump UnknownScript_0xa0aff
 
-UnknownScript_0xbd84a:
+ArniePhoneScript2:
 	trainertotext BUG_CATCHER, ARNIE1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_ARNIE
@@ -1224,7 +1224,7 @@ UnknownScript_0xbd887:
 	iftrue UnknownScript_0xbd8a2
 	setflag ENGINE_YANMA_SWARM
 	pokenamemem YANMA, $1
-	loadwilddata $1, GROUP_ROUTE_35, MAP_ROUTE_35
+	loadwilddata $1, ROUTE_35
 	displaylocation ROUTE_35, $2
 	farjump UnknownScript_0xa05ce
 
@@ -1236,7 +1236,7 @@ UnknownScript_0xbd8a2:
 
 ; Alan
 
-UnknownScript_0xbd8a6:
+AlanPhoneScript1:
 	trainertotext SCHOOLBOY, ALAN1, $0
 	checkflag ENGINE_ALAN
 	iftrue UnknownScript_0xbd8cf
@@ -1261,7 +1261,7 @@ UnknownScript_0xbd8d6:
 	displaylocation ROUTE_36, $2
 	farjump UnknownScript_0xa0ac5
 
-UnknownScript_0xbd8dd:
+AlanPhoneScript2:
 	trainertotext SCHOOLBOY, ALAN1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_ALAN
@@ -1299,7 +1299,7 @@ UnknownScript_0xbd926:
 
 ; Dana
 
-UnknownScript_0xbd930:
+DanaPhoneScript1:
 	trainertotext LASS, DANA1, $0
 	checkflag ENGINE_DANA
 	iftrue UnknownScript_0xbd959
@@ -1324,7 +1324,7 @@ UnknownScript_0xbd960:
 	displaylocation ROUTE_38, $2
 	farjump UnknownScript_0xa0acd
 
-UnknownScript_0xbd967:
+DanaPhoneScript2:
 	trainertotext LASS, DANA1, $0
 	farscall UnknownScript_0xbe41e
 	checkflag ENGINE_DANA
@@ -1367,7 +1367,7 @@ UnknownScript_0xbd9bc:
 
 ; Chad
 
-UnknownScript_0xbd9c6:
+ChadPhoneScript1:
 	trainertotext SCHOOLBOY, CHAD1, $0
 	checkflag ENGINE_CHAD
 	iftrue UnknownScript_0xbd9e9
@@ -1386,7 +1386,7 @@ UnknownScript_0xbd9e9:
 	displaylocation ROUTE_38, $2
 	farjump UnknownScript_0xa0a7d
 
-UnknownScript_0xbd9f0:
+ChadPhoneScript2:
 	trainertotext SCHOOLBOY, CHAD1, $0
 	farscall UnknownScript_0xbe1b6
 	farscall UnknownScript_0xbde3f
@@ -1417,7 +1417,7 @@ UnknownScript_0xbda2d:
 UnknownScript_0xbda31:
 	farjump UnknownScript_0xa0754
 
-UnknownScript_0xbda35:
+DerekPhoneScript1:
 	trainertotext POKEFANM, DEREK1, $0
 	farscall UnknownScript_0xbde4e
 	checkflag ENGINE_DEREK_HAS_NUGGET
@@ -1441,7 +1441,7 @@ UnknownScript_0xbda67:
 	displaylocation ROUTE_39, $2
 	farjump UnknownScript_0xa0ad5
 
-UnknownScript_0xbda6e:
+DerekPhoneScript2:
 	trainertotext POKEFANM, DEREK1, $0
 	farscall UnknownScript_0xbe1b6
 	farscall UnknownScript_0xbde3f
@@ -1466,7 +1466,7 @@ UnknownScript_0xbdaa2:
 	displaylocation ROUTE_39, $2
 	farjump UnknownScript_0xa05e6
 
-UnknownScript_0xbdaac:
+TullyPhoneScript1:
 	trainertotext FISHER, TULLY1, $0
 	checkflag ENGINE_TULLY
 	iftrue UnknownScript_0xbdad5
@@ -1491,7 +1491,7 @@ UnknownScript_0xbdadc:
 	displaylocation ROUTE_42, $2
 	farjump UnknownScript_0xa0add
 
-UnknownScript_0xbdae3:
+TullyPhoneScript2:
 	trainertotext FISHER, TULLY1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_TULLY
@@ -1527,7 +1527,7 @@ UnknownScript_0xbdb2c:
 	displaylocation ROUTE_42, $2
 	farjump UnknownScript_0xa05e6
 
-UnknownScript_0xbdb36:
+BrentPhoneScript1:
 	trainertotext POKEMANIAC, BRENT1, $0
 	checkflag ENGINE_BRENT
 	iftrue UnknownScript_0xbdb59
@@ -1546,7 +1546,7 @@ UnknownScript_0xbdb59:
 	displaylocation ROUTE_43, $2
 	farjump UnknownScript_0xa0a87
 
-UnknownScript_0xbdb60:
+BrentPhoneScript2:
 	trainertotext POKEMANIAC, BRENT1, $0
 	farscall UnknownScript_0xbe1b6
 	farscall UnknownScript_0xbde3f
@@ -1572,7 +1572,7 @@ UnknownScript_0xbdb8b:
 UnknownScript_0xbdb95:
 	farjump UnknownScript_0xa07ce
 
-UnknownScript_0xbdb99:
+TiffanyPhoneScript1:
 	trainertotext PICNICKER, TIFFANY3, $0
 	checkflag ENGINE_TIFFANY
 	iftrue UnknownScript_0xbdbc2
@@ -1597,7 +1597,7 @@ UnknownScript_0xbdbc9:
 	displaylocation ROUTE_43, $2
 	farjump UnknownScript_0xa0ae5
 
-UnknownScript_0xbdbd0:
+TiffanyPhoneScript2:
 	trainertotext PICNICKER, TIFFANY3, $0
 	farscall UnknownScript_0xbde45
 	if_equal $0, UnknownScript_0xbdc21
@@ -1673,7 +1673,7 @@ UnknownScript_0xbdc69:
 
 ; Vance
 
-UnknownScript_0xbdc73:
+VancePhoneScript1:
 	trainertotext BIRD_KEEPER, VANCE1, $0
 	checkflag ENGINE_VANCE
 	iftrue UnknownScript_0xbdc96
@@ -1692,7 +1692,7 @@ UnknownScript_0xbdc96:
 	displaylocation ROUTE_44, $2
 	farjump UnknownScript_0xa0a91
 
-UnknownScript_0xbdc9d:
+VancePhoneScript2:
 	trainertotext BIRD_KEEPER, VANCE1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_VANCE
@@ -1714,7 +1714,7 @@ UnknownScript_0xbdcc4:
 	setflag ENGINE_VANCE
 	farjump UnknownScript_0xa0376
 
-UnknownScript_0xbdcce:
+WiltonPhoneScript1:
 	trainertotext FISHER, WILTON1, $0
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0xbdcf7
@@ -1739,7 +1739,7 @@ UnknownScript_0xbdcfe:
 	displaylocation ROUTE_44, $2
 	farjump UnknownScript_0xa0aed
 
-UnknownScript_0xbdd05:
+WiltonPhoneScript2:
 	trainertotext FISHER, WILTON1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_WILTON
@@ -1792,19 +1792,19 @@ UnknownScript_0xbdd6d:
 
 ; Kenji
 
-UnknownScript_0xbdd71:
+KenjiPhoneScript1:
 	trainertotext BLACKBELT_T, KENJI3, $0
 	farscall UnknownScript_0xbde4e
 	farjump UnknownScript_0xa09ee
 
-UnknownScript_0xbdd7d:
+KenjiPhoneScript2:
 	trainertotext BLACKBELT_T, KENJI3, $0
 	farscall UnknownScript_0xbe1b6
 	farjump UnknownScript_0xa064c
 
 ; Parry
 
-UnknownScript_0xbdd89:
+ParryPhoneScript1:
 	trainertotext HIKER, PARRY1, $0
 	checkflag ENGINE_PARRY
 	iftrue UnknownScript_0xbddac
@@ -1823,7 +1823,7 @@ UnknownScript_0xbddac:
 	displaylocation ROUTE_45, $2
 	farjump UnknownScript_0xa0a9b
 
-UnknownScript_0xbddb3:
+ParryPhoneScript2:
 	trainertotext HIKER, PARRY1, $0
 	farscall UnknownScript_0xbe1b6
 	checkflag ENGINE_PARRY
@@ -1847,7 +1847,7 @@ UnknownScript_0xbddda:
 
 ; Erin
 
-UnknownScript_0xbdde4:
+ErinPhoneScript1:
 	trainertotext PICNICKER, ERIN1, $0
 	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0xbde07
@@ -1866,7 +1866,7 @@ UnknownScript_0xbde07:
 	displaylocation ROUTE_46, $2
 	farjump UnknownScript_0xa0aa0
 
-UnknownScript_0xbde0e:
+ErinPhoneScript2:
 	trainertotext PICNICKER, ERIN1, $0
 	farscall UnknownScript_0xbe41e
 	checkflag ENGINE_ERIN

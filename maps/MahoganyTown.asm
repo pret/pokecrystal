@@ -248,11 +248,11 @@ MahoganyTown_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $7, $b, 1, GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F
-	warp_def $7, $11, 1, GROUP_MAHOGANY_RED_GYARADOS_SPEECH_HOUSE, MAP_MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
-	warp_def $d, $6, 1, GROUP_MAHOGANY_GYM, MAP_MAHOGANY_GYM
-	warp_def $d, $f, 1, GROUP_MAHOGANY_POKECENTER_1F, MAP_MAHOGANY_POKECENTER_1F
-	warp_def $1, $9, 3, GROUP_ROUTE_43_MAHOGANY_GATE, MAP_ROUTE_43_MAHOGANY_GATE
+	warp_def $7, $b, 1, MAHOGANY_MART_1F
+	warp_def $7, $11, 1, MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
+	warp_def $d, $6, 1, MAHOGANY_GYM
+	warp_def $d, $f, 1, MAHOGANY_POKECENTER_1F
+	warp_def $1, $9, 3, ROUTE_43_MAHOGANY_GATE
 
 .XYTriggers:
 	db 2
@@ -268,7 +268,7 @@ MahoganyTown_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 12, 23, OW_UP | $2, $0, -1, -1, $0, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
-	person_event SPRITE_GRAMPS, 13, 10, OW_UP | $1, $1, -1, -1, $0, 0, GrampsScript_0x19007e, -1
-	person_event SPRITE_FISHER, 18, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	person_event SPRITE_LASS, 12, 16, OW_UP | $2, $0, -1, -1, $0, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS
+	person_event SPRITE_POKEFAN_M, 12, 23, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
+	person_event SPRITE_GRAMPS, 13, 10, $5, 0, 1, -1, -1, 0, 0, 0, GrampsScript_0x19007e, -1
+	person_event SPRITE_FISHER, 18, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	person_event SPRITE_LASS, 12, 16, $6, 0, 0, -1, -1, 0, 0, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS

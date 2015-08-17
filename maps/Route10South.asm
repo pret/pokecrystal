@@ -77,7 +77,7 @@ Route10South_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $1, $6, 2, GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
+	warp_def $1, $6, 2, ROCK_TUNNEL_1F
 
 .XYTriggers:
 	db 0
@@ -88,5 +88,5 @@ Route10South_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 7, 21, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerHikerJim, -1
-	person_event SPRITE_POKEFAN_M, 14, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmRobert, -1
+	person_event SPRITE_POKEFAN_M, 7, 21, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerHikerJim, -1
+	person_event SPRITE_POKEFAN_M, 14, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerPokefanmRobert, -1

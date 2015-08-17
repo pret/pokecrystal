@@ -137,8 +137,8 @@ GoldenrodHappinessRater_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $7, $3, 3, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $7, $2, 3, GOLDENROD_CITY
+	warp_def $7, $3, 3, GOLDENROD_CITY
 
 .XYTriggers:
 	db 0
@@ -151,6 +151,6 @@ GoldenrodHappinessRater_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_TEACHER, 8, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x54953, -1
-	person_event SPRITE_POKEFAN_M, 7, 9, OW_LEFT | $0, $0, -1, -1, $0, 0, PokefanMScript_0x54997, -1
-	person_event SPRITE_TWIN, 10, 9, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TwinScript_0x5499a, -1
+	person_event SPRITE_TEACHER, 8, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x54953, -1
+	person_event SPRITE_POKEFAN_M, 7, 9, $8, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x54997, -1
+	person_event SPRITE_TWIN, 10, 9, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TwinScript_0x5499a, -1

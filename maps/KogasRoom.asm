@@ -137,10 +137,10 @@ KogasRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $4, 2, GROUP_WILLS_ROOM, MAP_WILLS_ROOM
-	warp_def $11, $5, 3, GROUP_WILLS_ROOM, MAP_WILLS_ROOM
-	warp_def $2, $4, 1, GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM
-	warp_def $2, $5, 2, GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM
+	warp_def $11, $4, 2, WILLS_ROOM
+	warp_def $11, $5, 3, WILLS_ROOM
+	warp_def $2, $4, 1, BRUNOS_ROOM
+	warp_def $2, $5, 2, BRUNOS_ROOM
 
 .XYTriggers:
 	db 0
@@ -150,4 +150,4 @@ KogasRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_KOGA, 11, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, KogaScript_0x18075a, -1
+	person_event SPRITE_KOGA, 11, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, KogaScript_0x18075a, -1

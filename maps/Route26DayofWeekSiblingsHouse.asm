@@ -73,8 +73,8 @@ Route26DayofWeekSiblingsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_ROUTE_26, MAP_ROUTE_26
-	warp_def $7, $3, 3, GROUP_ROUTE_26, MAP_ROUTE_26
+	warp_def $7, $2, 3, ROUTE_26
+	warp_def $7, $3, 3, ROUTE_26
 
 .XYTriggers:
 	db 0
@@ -84,4 +84,4 @@ Route26DayofWeekSiblingsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEDEX, 7, 7, OW_DOWN | $1, $0, -1, -1, $0, 0, PokedexScript_0x7b1e4, -1
+	person_event SPRITE_POKEDEX, 7, 7, $1, 0, 0, -1, -1, 0, 0, 0, PokedexScript_0x7b1e4, -1

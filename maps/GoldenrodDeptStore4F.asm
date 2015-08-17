@@ -77,9 +77,9 @@ GoldenrodDeptStore4F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $c, 1, GROUP_GOLDENROD_DEPT_STORE_5F, MAP_GOLDENROD_DEPT_STORE_5F
-	warp_def $0, $f, 2, GROUP_GOLDENROD_DEPT_STORE_3F, MAP_GOLDENROD_DEPT_STORE_3F
-	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def $0, $c, 1, GOLDENROD_DEPT_STORE_5F
+	warp_def $0, $f, 2, GOLDENROD_DEPT_STORE_3F
+	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -91,7 +91,7 @@ GoldenrodDeptStore4F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_CLERK, 9, 17, OW_UP | $3, $0, -1, -1, $0, 0, ClerkScript_0x55ee9, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 15, OW_LEFT | $1, $0, -1, -1, $0, 0, CooltrainerMScript_0x55ef1, -1
-	person_event SPRITE_BUG_CATCHER, 6, 11, OW_UP | $1, $1, -1, -1, $0, 0, BugCatcherScript_0x55ef4, -1
-	person_event SPRITE_GAMEBOY_KID, 5, 9, OW_UP | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x55ef7, -1
+	person_event SPRITE_CLERK, 9, 17, $7, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x55ee9, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 15, $9, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x55ef1, -1
+	person_event SPRITE_BUG_CATCHER, 6, 11, $5, 0, 1, -1, -1, 0, 0, 0, BugCatcherScript_0x55ef4, -1
+	person_event SPRITE_GAMEBOY_KID, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, GameboyKidScript_0x55ef7, -1

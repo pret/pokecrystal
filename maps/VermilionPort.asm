@@ -33,7 +33,7 @@ UnknownScript_0x74da6:
 	clearevent EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
 	setevent EVENT_FAST_SHIP_FIRST_TIME
 	setevent EVENT_GAVE_KURT_APRICORNS
-	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	blackoutmod VERMILION_CITY
 	end
 
 SailorScript_0x74dc4:
@@ -67,8 +67,8 @@ SailorScript_0x74dc4:
 	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
 	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear $2
-	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
-	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
+	domaptrigger FAST_SHIP_1F, $1
+	warp FAST_SHIP_1F, $19, $1
 	end
 
 UnknownScript_0x74e1a:
@@ -304,8 +304,8 @@ VermilionPort_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $5, $9, 5, GROUP_VERMILION_PORT_PASSAGE, MAP_VERMILION_PORT_PASSAGE
-	warp_def $11, $7, 1, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $5, $9, 5, VERMILION_PORT_PASSAGE
+	warp_def $11, $7, 1, FAST_SHIP_1F
 
 .XYTriggers:
 	db 1
@@ -317,6 +317,6 @@ VermilionPort_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SAILOR, 21, 11, OW_UP | $3, $0, -1, -1, $0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	person_event SPRITE_SAILOR, 15, 10, OW_LEFT | $1, $0, -1, -1, $0, 0, SailorScript_0x74e97, -1
-	person_event SPRITE_SUPER_NERD, 15, 15, OW_UP | $1, $2, -1, -1, $0, 0, SuperNerdScript_0x74ee6, -1
+	person_event SPRITE_SAILOR, 21, 11, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
+	person_event SPRITE_SAILOR, 15, 10, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74e97, -1
+	person_event SPRITE_SUPER_NERD, 15, 15, $5, 0, 2, -1, -1, 0, 0, 0, SuperNerdScript_0x74ee6, -1

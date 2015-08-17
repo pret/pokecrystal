@@ -222,11 +222,11 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $0, $2, 5, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $13, $2, 6, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $13, $3, 6, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $1f, $2, 7, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $1f, $3, 7, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $0, $2, 5, FAST_SHIP_1F
+	warp_def $13, $2, 6, FAST_SHIP_1F
+	warp_def $13, $3, 6, FAST_SHIP_1F
+	warp_def $1f, $2, 7, FAST_SHIP_1F
+	warp_def $1f, $3, 7, FAST_SHIP_1F
 
 .XYTriggers:
 	db 0
@@ -239,7 +239,7 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 19, 5, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_BUG_CATCHER, 19, 10, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_BUENA, 30, 5, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_ROCKER, 32, 7, OW_RIGHT | $12, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_FISHER, 19, 5, $1e, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_BUG_CATCHER, 19, 10, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_BUENA, 30, 5, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_ROCKER, 32, 7, $1e, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

@@ -30,8 +30,8 @@ GuideGentsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
-	warp_def $7, $3, 4, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	warp_def $7, $2, 4, CHERRYGROVE_CITY
+	warp_def $7, $3, 4, CHERRYGROVE_CITY
 
 .XYTriggers:
 	db 0
@@ -43,4 +43,4 @@ GuideGentsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	person_event SPRITE_GRAMPS, 7, 6, $9, 0, 0, -1, -1, 0, 0, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE

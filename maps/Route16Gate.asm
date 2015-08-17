@@ -65,10 +65,10 @@ Route16Gate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 4, GROUP_ROUTE_16, MAP_ROUTE_16
-	warp_def $5, $0, 5, GROUP_ROUTE_16, MAP_ROUTE_16
-	warp_def $4, $9, 2, GROUP_ROUTE_16, MAP_ROUTE_16
-	warp_def $5, $9, 3, GROUP_ROUTE_16, MAP_ROUTE_16
+	warp_def $4, $0, 4, ROUTE_16
+	warp_def $5, $0, 5, ROUTE_16
+	warp_def $4, $9, 2, ROUTE_16
+	warp_def $5, $9, 3, ROUTE_16
 
 .XYTriggers:
 	db 2
@@ -80,4 +80,4 @@ Route16Gate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x733ea, -1
+	person_event SPRITE_OFFICER, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, OfficerScript_0x733ea, -1

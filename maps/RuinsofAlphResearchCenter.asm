@@ -398,8 +398,8 @@ RuinsofAlphResearchCenter_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	warp_def $7, $3, 6, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
+	warp_def $7, $2, 6, RUINS_OF_ALPH_OUTSIDE
+	warp_def $7, $3, 6, RUINS_OF_ALPH_OUTSIDE
 
 .XYTriggers:
 	db 0
@@ -412,6 +412,6 @@ RuinsofAlphResearchCenter_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 9, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591e5, -1
-	person_event SPRITE_SCIENTIST, 6, 9, OW_DOWN | $2, $12, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x59214, -1
-	person_event SPRITE_SCIENTIST, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
+	person_event SPRITE_SCIENTIST, 9, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x591e5, -1
+	person_event SPRITE_SCIENTIST, 6, 9, $2, 1, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x59214, -1
+	person_event SPRITE_SCIENTIST, 9, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST

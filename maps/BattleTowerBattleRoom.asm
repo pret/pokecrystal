@@ -85,14 +85,14 @@ UnknownScript_0x9f4a3:
 	special Function170687
 	loadmovesprites
 	special FadeBlackBGMap
-	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
+	warpfacing $1, BATTLE_TOWER_1F, $7, $7
 	loadfont
 	jump UnknownScript_0x9e4b0
 
 UnknownScript_0x9f4c2:
 	pause 60
 	special Special_BattleTowerFade
-	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
+	warpfacing $1, BATTLE_TOWER_1F, $7, $7
 	writebyte $4
 	special Function170687
 	loadfont
@@ -104,7 +104,7 @@ UnknownScript_0x9f4c2:
 UnknownScript_0x9f4d9:
 	pause 60
 	special Special_BattleTowerFade
-	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
+	warpfacing $1, BATTLE_TOWER_1F, $7, $7
 BattleTowerBattleRoomScript_0x9f4e4:
 	loadfont
 	writetext UnknownText_0x9eaef
@@ -144,8 +144,8 @@ BattleTowerBattleRoom_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 4, GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY
-	warp_def $7, $4, 4, GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY
+	warp_def $7, $3, 4, BATTLE_TOWER_HALLWAY
+	warp_def $7, $4, 4, BATTLE_TOWER_HALLWAY
 
 .XYTriggers:
 	db 0
@@ -155,5 +155,5 @@ BattleTowerBattleRoom_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 4, 8, OW_UP | $2, $0, -1, -1, $0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	person_event SPRITE_RECEPTIONIST, 10, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ObjectEvent, -1
+	person_event SPRITE_YOUNGSTER, 4, 8, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	person_event SPRITE_RECEPTIONIST, 10, 5, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1

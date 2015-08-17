@@ -27,7 +27,7 @@ BugsyScript_0x18ec1e:
 	scall AzaleaGymTriggerRockets
 .FightDone
 	checkevent EVENT_GOT_TM49_FURY_CUTTER
-	iftrue UnknownScript_0x18ec6d
+	iftrue .GotFuryCutter
 	setevent EVENT_BEAT_TWINS_AMY_AND_MAY
 	setevent EVENT_BEAT_BUG_CATCHER_BENNY
 	setevent EVENT_BEAT_BUG_CATCHER_AL
@@ -35,17 +35,17 @@ BugsyScript_0x18ec1e:
 	writetext UnknownText_0x18ee2b
 	keeptextopen
 	verbosegiveitem TM_FURY_CUTTER, 1
-	iffalse UnknownScript_0x18ec71
+	iffalse .NoRoomForFuryCutter
 	setevent EVENT_GOT_TM49_FURY_CUTTER
 	writetext UnknownText_0x18eefa
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18ec6d:
+.GotFuryCutter:
 	writetext UnknownText_0x18ef98
 	closetext
-UnknownScript_0x18ec71:
+.NoRoomForFuryCutter:
 	loadmovesprites
 	end
 
@@ -61,9 +61,9 @@ AzaleaGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerTwinsAmyandmay1:
-	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, $0000, TwinsAmyandmay1Script
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, $0000, .AfterScript
 
-TwinsAmyandmay1Script:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f1fc
@@ -72,9 +72,9 @@ TwinsAmyandmay1Script:
 	end
 
 TrainerTwinsAmyandmay2:
-	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, $0000, TwinsAmyandmay2Script
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, $0000, .AfterScript
 
-TwinsAmyandmay2Script:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f269
@@ -83,9 +83,9 @@ TwinsAmyandmay2Script:
 	end
 
 TrainerBug_catcherBug_catcher_benny:
-	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherBug_catcher_bennySeenText, Bug_catcherBug_catcher_bennyBeatenText, $0000, Bug_catcherBug_catcher_bennyScript
+	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherBug_catcher_bennySeenText, Bug_catcherBug_catcher_bennyBeatenText, $0000, .AfterScript
 
-Bug_catcherBug_catcher_bennyScript:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f053
@@ -94,9 +94,9 @@ Bug_catcherBug_catcher_bennyScript:
 	end
 
 TrainerBug_catcherAl:
-	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, $0000, Bug_catcherAlScript
+	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, $0000, .AfterScript
 
-Bug_catcherAlScript:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f0d3
@@ -105,9 +105,9 @@ Bug_catcherAlScript:
 	end
 
 TrainerBug_catcherJosh:
-	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, $0000, Bug_catcherJoshScript
+	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, $0000, .AfterScript
 
-Bug_catcherJoshScript:
+.AfterScript:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f17e
@@ -358,8 +358,8 @@ AzaleaGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $4, 5, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $f, $5, 5, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
+	warp_def $f, $4, 5, AZALEA_TOWN
+	warp_def $f, $5, 5, AZALEA_TOWN
 
 .XYTriggers:
 	db 0
@@ -371,10 +371,10 @@ AzaleaGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_BUGSY, 11, 9, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BugsyScript_0x18ec1e, -1
-	person_event SPRITE_BUG_CATCHER, 7, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerBug_catcherBug_catcher_benny, -1
-	person_event SPRITE_BUG_CATCHER, 12, 12, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherAl, -1
-	person_event SPRITE_BUG_CATCHER, 6, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerBug_catcherJosh, -1
-	person_event SPRITE_TWIN, 14, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAmyandmay1, -1
-	person_event SPRITE_TWIN, 14, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsAmyandmay2, -1
-	person_event SPRITE_GYM_GUY, 17, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, AzaleaGymGuyScript, -1
+	person_event SPRITE_BUGSY, 11, 9, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugsyScript_0x18ec1e, -1
+	person_event SPRITE_BUG_CATCHER, 7, 9, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerBug_catcherBug_catcher_benny, -1
+	person_event SPRITE_BUG_CATCHER, 12, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBug_catcherAl, -1
+	person_event SPRITE_BUG_CATCHER, 6, 4, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBug_catcherJosh, -1
+	person_event SPRITE_TWIN, 14, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay1, -1
+	person_event SPRITE_TWIN, 14, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay2, -1
+	person_event SPRITE_GYM_GUY, 17, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, AzaleaGymGuyScript, -1

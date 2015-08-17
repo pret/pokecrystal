@@ -55,8 +55,8 @@ Route2NuggetSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $7, $3, 1, GROUP_ROUTE_2, MAP_ROUTE_2
+	warp_def $7, $2, 1, ROUTE_2
+	warp_def $7, $3, 1, ROUTE_2
 
 .XYTriggers:
 	db 0
@@ -66,4 +66,4 @@ Route2NuggetSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHER, 8, 6, OW_UP | $0, $20, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x9b847, -1
+	person_event SPRITE_FISHER, 8, 6, $4, 2, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FisherScript_0x9b847, -1

@@ -128,10 +128,10 @@ BattleTowerOutside_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $15, $8, 3, GROUP_ROUTE_40_BATTLE_TOWER_GATE, MAP_ROUTE_40_BATTLE_TOWER_GATE
-	warp_def $15, $9, 4, GROUP_ROUTE_40_BATTLE_TOWER_GATE, MAP_ROUTE_40_BATTLE_TOWER_GATE
-	warp_def $9, $8, 1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F
-	warp_def $9, $9, 2, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F
+	warp_def $15, $8, 3, ROUTE_40_BATTLE_TOWER_GATE
+	warp_def $15, $9, 4, ROUTE_40_BATTLE_TOWER_GATE
+	warp_def $9, $8, 1, BATTLE_TOWER_1F
+	warp_def $9, $9, 2, BATTLE_TOWER_1F
 
 .XYTriggers:
 	db 0
@@ -142,7 +142,7 @@ BattleTowerOutside_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_STANDING_YOUNGSTER, 16, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, StandingYoungsterScript_0x9f85f, -1
-	person_event SPRITE_BUENA, 15, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BuenaScript_0x9f862, -1
-	person_event SPRITE_SAILOR, 22, 16, OW_UP | $1, $1, -1, -1, $0, 0, SailorScript_0x9f865, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
-	person_event SPRITE_LASS, 28, 16, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 16, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, StandingYoungsterScript_0x9f85f, -1
+	person_event SPRITE_BUENA, 15, 17, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BuenaScript_0x9f862, -1
+	person_event SPRITE_SAILOR, 22, 16, $5, 0, 1, -1, -1, 0, 0, 0, SailorScript_0x9f865, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_LASS, 28, 16, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, -1

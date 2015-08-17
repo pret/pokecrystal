@@ -18,8 +18,8 @@ IcePathB2FBlackthornSide_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $3, 8, GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
-	warp_def $3, $3, 2, GROUP_ICE_PATH_B3F, MAP_ICE_PATH_B3F
+	warp_def $f, $3, 8, ICE_PATH_B1F
+	warp_def $3, $3, 2, ICE_PATH_B3F
 
 .XYTriggers:
 	db 0
@@ -30,4 +30,4 @@ IcePathB2FBlackthornSide_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 20, 12, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x7e646, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST
+	person_event SPRITE_POKE_BALL, 20, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e646, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST

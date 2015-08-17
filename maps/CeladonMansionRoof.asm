@@ -36,9 +36,9 @@ CeladonMansionRoof_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $1, $1, 1, GROUP_CELADON_MANSION_3F, MAP_CELADON_MANSION_3F
-	warp_def $1, $6, 4, GROUP_CELADON_MANSION_3F, MAP_CELADON_MANSION_3F
-	warp_def $5, $2, 1, GROUP_CELADON_MANSION_ROOF_HOUSE, MAP_CELADON_MANSION_ROOF_HOUSE
+	warp_def $1, $1, 1, CELADON_MANSION_3F
+	warp_def $1, $6, 4, CELADON_MANSION_3F
+	warp_def $5, $2, 1, CELADON_MANSION_ROOF_HOUSE
 
 .XYTriggers:
 	db 0
@@ -49,4 +49,4 @@ CeladonMansionRoof_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHER, 9, 11, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, FisherScript_0x71a39, -1
+	person_event SPRITE_FISHER, 9, 11, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FisherScript_0x71a39, -1

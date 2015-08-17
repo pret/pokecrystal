@@ -132,10 +132,10 @@ BrunosRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $4, 3, GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM
-	warp_def $11, $5, 4, GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM
-	warp_def $2, $4, 1, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
-	warp_def $2, $5, 2, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
+	warp_def $11, $4, 3, KOGAS_ROOM
+	warp_def $11, $5, 4, KOGAS_ROOM
+	warp_def $2, $4, 1, KARENS_ROOM
+	warp_def $2, $5, 2, KARENS_ROOM
 
 .XYTriggers:
 	db 0
@@ -145,4 +145,4 @@ BrunosRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_BRUNO, 11, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, BrunoScript_0x1809c5, -1
+	person_event SPRITE_BRUNO, 11, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, BrunoScript_0x1809c5, -1

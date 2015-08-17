@@ -23,8 +23,8 @@ PewterSnoozeSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
-	warp_def $7, $3, 5, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
+	warp_def $7, $2, 5, PEWTER_CITY
+	warp_def $7, $3, 5, PEWTER_CITY
 
 .XYTriggers:
 	db 0
@@ -36,4 +36,4 @@ PewterSnoozeSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x1a3059, -1
+	person_event SPRITE_GRAMPS, 7, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrampsScript_0x1a3059, -1

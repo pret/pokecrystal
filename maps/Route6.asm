@@ -92,8 +92,8 @@ Route6_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $11, 1, GROUP_ROUTE_6_UNDERGROUND_ENTRANCE, MAP_ROUTE_6_UNDERGROUND_ENTRANCE
-	warp_def $1, $6, 3, GROUP_ROUTE_6_SAFFRON_GATE, MAP_ROUTE_6_SAFFRON_GATE
+	warp_def $3, $11, 1, ROUTE_6_UNDERGROUND_ENTRANCE
+	warp_def $1, $6, 3, ROUTE_6_SAFFRON_GATE
 
 .XYTriggers:
 	db 0
@@ -104,6 +104,6 @@ Route6_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 8, 21, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $80, 2, PokefanMScript_0x1ad951, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
-	person_event SPRITE_POKEFAN_M, 16, 13, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerPokefanmRex, -1
-	person_event SPRITE_POKEFAN_M, 16, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 0, TrainerPokefanmAllan, -1
+	person_event SPRITE_POKEFAN_M, 8, 21, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 2, PokefanMScript_0x1ad951, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	person_event SPRITE_POKEFAN_M, 16, 13, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 0, TrainerPokefanmRex, -1
+	person_event SPRITE_POKEFAN_M, 16, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 0, TrainerPokefanmAllan, -1

@@ -62,8 +62,8 @@ DarkCaveBlackthornEntrance_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $17, 1, GROUP_ROUTE_45, MAP_ROUTE_45
-	warp_def $19, $3, 2, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
+	warp_def $3, $17, 1, ROUTE_45
+	warp_def $19, $3, 2, DARK_CAVE_VIOLET_ENTRANCE
 
 .XYTriggers:
 	db 0
@@ -73,6 +73,6 @@ DarkCaveBlackthornEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_PHARMACIST, 7, 11, OW_DOWN | $3, $0, -1, -1, $0, 0, PharmacistScript_0x18c720, -1
-	person_event SPRITE_POKE_BALL, 28, 25, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c73b, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
-	person_event SPRITE_POKE_BALL, 26, 11, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c73d, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE
+	person_event SPRITE_PHARMACIST, 7, 11, $3, 0, 0, -1, -1, 0, 0, 0, PharmacistScript_0x18c720, -1
+	person_event SPRITE_POKE_BALL, 28, 25, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c73b, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
+	person_event SPRITE_POKE_BALL, 26, 11, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c73d, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE

@@ -173,7 +173,7 @@ TrainerHouseB1F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $4, $9, 3, GROUP_TRAINER_HOUSE_1F, MAP_TRAINER_HOUSE_1F
+	warp_def $4, $9, 3, TRAINER_HOUSE_1F
 
 .XYTriggers:
 	db 1
@@ -184,5 +184,5 @@ TrainerHouseB1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 5, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ObjectEvent, -1
-	person_event SPRITE_CHRIS, 15, 10, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ObjectEvent, -1
+	person_event SPRITE_RECEPTIONIST, 5, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, -1
+	person_event SPRITE_CHRIS, 15, 10, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, -1

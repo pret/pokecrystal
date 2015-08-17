@@ -85,10 +85,10 @@ SproutTower2F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $6, 3, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
-	warp_def $6, $2, 4, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
-	warp_def $3, $11, 5, GROUP_SPROUT_TOWER_1F, MAP_SPROUT_TOWER_1F
-	warp_def $e, $a, 1, GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F
+	warp_def $4, $6, 3, SPROUT_TOWER_1F
+	warp_def $6, $2, 4, SPROUT_TOWER_1F
+	warp_def $3, $11, 5, SPROUT_TOWER_1F
+	warp_def $e, $a, 1, SPROUT_TOWER_3F
 
 .XYTriggers:
 	db 0
@@ -99,6 +99,6 @@ SproutTower2F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SAGE, 7, 16, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 4, TrainerSageNico, -1
-	person_event SPRITE_SAGE, 18, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerSageEdmond, -1
-	person_event SPRITE_POKE_BALL, 5, 7, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1847a7, EVENT_SPROUT_TOWER2F_X_ACCURACY
+	person_event SPRITE_SAGE, 7, 16, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerSageNico, -1
+	person_event SPRITE_SAGE, 18, 13, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 5, TrainerSageEdmond, -1
+	person_event SPRITE_POKE_BALL, 5, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1847a7, EVENT_SPROUT_TOWER2F_X_ACCURACY

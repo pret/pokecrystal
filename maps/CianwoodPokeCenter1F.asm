@@ -131,9 +131,9 @@ CianwoodPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 3, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
-	warp_def $7, $4, 3, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 3, CIANWOOD_CITY
+	warp_def $7, $4, 3, CIANWOOD_CITY
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0
@@ -143,7 +143,7 @@ CianwoodPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x9dbcf, -1
-	person_event SPRITE_LASS, 9, 5, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x9dbd2, -1
-	person_event SPRITE_GYM_GUY, 7, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CianwoodGymGuyScript, -1
-	person_event SPRITE_SUPER_NERD, 10, 12, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x9dbea, -1
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x9dbcf, -1
+	person_event SPRITE_LASS, 9, 5, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x9dbd2, -1
+	person_event SPRITE_GYM_GUY, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CianwoodGymGuyScript, -1
+	person_event SPRITE_SUPER_NERD, 10, 12, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x9dbea, -1

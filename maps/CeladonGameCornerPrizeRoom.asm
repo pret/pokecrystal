@@ -271,8 +271,8 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $5, $2, 7, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $5, $3, 7, GROUP_CELADON_CITY, MAP_CELADON_CITY
+	warp_def $5, $2, 7, CELADON_CITY
+	warp_def $5, $3, 7, CELADON_CITY
 
 .XYTriggers:
 	db 0
@@ -284,5 +284,5 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GENTLEMAN, 6, 4, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GentlemanScript_0x726e9, -1
-	person_event SPRITE_PHARMACIST, 8, 8, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, PharmacistScript_0x726ec, -1
+	person_event SPRITE_GENTLEMAN, 6, 4, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GentlemanScript_0x726e9, -1
+	person_event SPRITE_PHARMACIST, 8, 8, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PharmacistScript_0x726ec, -1

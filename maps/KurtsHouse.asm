@@ -307,7 +307,7 @@ KurtScript_0x18e178:
 	clearevent EVENT_AZALEA_TOWN_KURT
 	waitbutton
 	special RestartMapMusic
-	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $2
+	domaptrigger AZALEA_TOWN, $2
 	end
 
 KurtScript_0x18e3bd:
@@ -678,8 +678,8 @@ KurtsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 4, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
-	warp_def $7, $4, 4, GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN
+	warp_def $7, $3, 4, AZALEA_TOWN
+	warp_def $7, $4, 4, AZALEA_TOWN
 
 .XYTriggers:
 	db 0
@@ -696,8 +696,8 @@ KurtsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_KURT, 6, 7, OW_UP | $2, $0, -1, -1, $0, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
-	person_event SPRITE_TWIN, 7, 9, OW_DOWN | $3, $0, -1, -1, $0, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
-	person_event SPRITE_SLOWPOKE, 7, 10, OW_DOWN | $1, $0, -1, -1, $0, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
-	person_event SPRITE_KURT, 7, 18, OW_UP | $3, $0, -1, -1, $0, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
-	person_event SPRITE_TWIN, 8, 15, OW_LEFT | $1, $0, -1, -1, $0, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2
+	person_event SPRITE_KURT, 6, 7, $6, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
+	person_event SPRITE_TWIN, 7, 9, $3, 0, 0, -1, -1, 0, 0, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
+	person_event SPRITE_SLOWPOKE, 7, 10, $1, 0, 0, -1, -1, 0, 0, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
+	person_event SPRITE_KURT, 7, 18, $7, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
+	person_event SPRITE_TWIN, 8, 15, $9, 0, 0, -1, -1, 0, 0, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2

@@ -107,13 +107,13 @@ LavenderTown_MapEventHeader:
 
 .Warps:
 	db 7
-	warp_def $5, $5, 1, GROUP_LAVENDER_POKECENTER_1F, MAP_LAVENDER_POKECENTER_1F
-	warp_def $9, $5, 1, GROUP_MR_FUJIS_HOUSE, MAP_MR_FUJIS_HOUSE
-	warp_def $d, $3, 1, GROUP_LAVENDER_TOWN_SPEECH_HOUSE, MAP_LAVENDER_TOWN_SPEECH_HOUSE
-	warp_def $d, $7, 1, GROUP_LAVENDER_NAME_RATER, MAP_LAVENDER_NAME_RATER
-	warp_def $5, $1, 2, GROUP_LAVENDER_MART, MAP_LAVENDER_MART
-	warp_def $b, $d, 1, GROUP_SOUL_HOUSE, MAP_SOUL_HOUSE
-	warp_def $5, $e, 1, GROUP_LAV_RADIO_TOWER_1F, MAP_LAV_RADIO_TOWER_1F
+	warp_def $5, $5, 1, LAVENDER_POKECENTER_1F
+	warp_def $9, $5, 1, MR_FUJIS_HOUSE
+	warp_def $d, $3, 1, LAVENDER_TOWN_SPEECH_HOUSE
+	warp_def $d, $7, 1, LAVENDER_NAME_RATER
+	warp_def $5, $1, 2, LAVENDER_MART
+	warp_def $b, $d, 1, SOUL_HOUSE
+	warp_def $5, $e, 1, LAV_RADIO_TOWER_1F
 
 .XYTriggers:
 	db 0
@@ -129,7 +129,7 @@ LavenderTown_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 11, 16, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x1ad6e4, -1
-	person_event SPRITE_TEACHER, 19, 6, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x1ad6e7, -1
-	person_event SPRITE_GRAMPS, 16, 18, OW_UP | $3, $0, -1, -1, $0, 0, GrampsScript_0x1ad6ea, -1
-	person_event SPRITE_YOUNGSTER, 15, 10, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 1, YoungsterScript_0x1ad6ed, -1
+	person_event SPRITE_POKEFAN_M, 11, 16, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x1ad6e4, -1
+	person_event SPRITE_TEACHER, 19, 6, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x1ad6e7, -1
+	person_event SPRITE_GRAMPS, 16, 18, $7, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1ad6ea, -1
+	person_event SPRITE_YOUNGSTER, 15, 10, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 1, YoungsterScript_0x1ad6ed, -1

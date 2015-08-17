@@ -53,8 +53,8 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 7, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $7, $3, 7, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $7, $2, 7, GOLDENROD_CITY
+	warp_def $7, $3, 7, GOLDENROD_CITY
 
 .XYTriggers:
 	db 0
@@ -67,5 +67,5 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_FISHER, 8, 6, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x5564a, -1
-	person_event SPRITE_LASS, 7, 9, OW_LEFT | $0, $10, -1, -1, $0, 0, LassScript_0x5564d, -1
+	person_event SPRITE_FISHER, 8, 6, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x5564a, -1
+	person_event SPRITE_LASS, 7, 9, $8, 1, 0, -1, -1, 0, 0, 0, LassScript_0x5564d, -1

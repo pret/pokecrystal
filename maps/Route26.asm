@@ -408,9 +408,9 @@ Route26_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $5, $7, 3, GROUP_VICTORY_ROAD_GATE, MAP_VICTORY_ROAD_GATE
-	warp_def $39, $f, 1, GROUP_ROUTE_26_HEAL_SPEECH_HOUSE, MAP_ROUTE_26_HEAL_SPEECH_HOUSE
-	warp_def $47, $5, 1, GROUP_ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE, MAP_ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE
+	warp_def $5, $7, 3, VICTORY_ROAD_GATE
+	warp_def $39, $f, 1, ROUTE_26_HEAL_SPEECH_HOUSE
+	warp_def $47, $5, 1, ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE
 
 .XYTriggers:
 	db 0
@@ -421,11 +421,11 @@ Route26_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 28, 18, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerCooltrainermJake, -1
-	person_event SPRITE_COOLTRAINER_M, 42, 13, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainermGaven3, -1
-	person_event SPRITE_COOLTRAINER_F, 60, 14, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerCooltrainerfJoyce, -1
-	person_event SPRITE_COOLTRAINER_F, 12, 9, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 4, TrainerCooltrainerfBeth1, -1
-	person_event SPRITE_YOUNGSTER, 83, 17, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 2, TrainerPsychicRichard, -1
-	person_event SPRITE_FISHER, 96, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherScott, -1
-	person_event SPRITE_FRUIT_TREE, 58, 18, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a4ec2, -1
-	person_event SPRITE_POKE_BALL, 19, 13, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a4ec4, EVENT_ROUTE_26_MAX_ELIXER
+	person_event SPRITE_COOLTRAINER_M, 28, 18, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerCooltrainermJake, -1
+	person_event SPRITE_COOLTRAINER_M, 42, 13, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermGaven3, -1
+	person_event SPRITE_COOLTRAINER_F, 60, 14, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainerfJoyce, -1
+	person_event SPRITE_COOLTRAINER_F, 12, 9, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 4, TrainerCooltrainerfBeth1, -1
+	person_event SPRITE_YOUNGSTER, 83, 17, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 2, TrainerPsychicRichard, -1
+	person_event SPRITE_FISHER, 96, 14, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerFisherScott, -1
+	person_event SPRITE_FRUIT_TREE, 58, 18, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a4ec2, -1
+	person_event SPRITE_POKE_BALL, 19, 13, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a4ec4, EVENT_ROUTE_26_MAX_ELIXER

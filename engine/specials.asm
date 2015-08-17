@@ -75,7 +75,7 @@ SpecialsPointers:: ; c029
 	add_special WhiteBGMap
 	add_special UpdateTimePals
 	add_special ClearTileMap
-	add_special DrawOnMap
+	add_special UpdateSprites
 	add_special Special_ReplaceKrisSprite
 	add_special Special_GameCornerPrizeMonCheckDex
 	add_special SpecialSeenMon
@@ -110,9 +110,9 @@ SpecialsPointers:: ; c029
 	add_special SpecialNameRater
 	add_special Functionc2da
 	add_special GetFirstPokemonHappiness
-	add_special Function71ac
-	add_special Function2a4ab
-	add_special Function2a51f
+	add_special CheckFirstMonIsEgg
+	add_special RandomPhoneRareWildMon
+	add_special RandomPhoneWildMon
 	add_special RandomPhoneMon
 	add_special RunCallback_04
 	add_special Functionfb841

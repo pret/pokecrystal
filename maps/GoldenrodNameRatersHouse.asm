@@ -27,8 +27,8 @@ GoldenrodNameRatersHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 8, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $7, $3, 8, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $7, $2, 8, GOLDENROD_CITY
+	warp_def $7, $3, 8, GOLDENROD_CITY
 
 .XYTriggers:
 	db 0
@@ -41,4 +41,4 @@ GoldenrodNameRatersHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GENTLEMAN, 8, 6, OW_UP | $2, $2, -1, -1, $0, 0, GentlemanScript_0x5577c, -1
+	person_event SPRITE_GENTLEMAN, 8, 6, $6, 0, 2, -1, -1, 0, 0, 0, GentlemanScript_0x5577c, -1

@@ -170,8 +170,8 @@ Route8_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $4, $4, 3, GROUP_ROUTE_8_SAFFRON_GATE, MAP_ROUTE_8_SAFFRON_GATE
-	warp_def $5, $4, 4, GROUP_ROUTE_8_SAFFRON_GATE, MAP_ROUTE_8_SAFFRON_GATE
+	warp_def $4, $4, 3, ROUTE_8_SAFFRON_GATE
+	warp_def $5, $4, 4, ROUTE_8_SAFFRON_GATE
 
 .XYTriggers:
 	db 0
@@ -183,9 +183,9 @@ Route8_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_BIKER, 12, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerBikerDwayne, -1
-	person_event SPRITE_BIKER, 13, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerBikerHarris, -1
-	person_event SPRITE_BIKER, 14, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerBikerZeke, -1
-	person_event SPRITE_SUPER_NERD, 6, 27, OW_UP | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 3, TrainerSupernerdSam, -1
-	person_event SPRITE_SUPER_NERD, 16, 35, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 4, TrainerSupernerdTom, -1
-	person_event SPRITE_FRUIT_TREE, 9, 37, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x6c06c, -1
+	person_event SPRITE_BIKER, 12, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 5, TrainerBikerDwayne, -1
+	person_event SPRITE_BIKER, 13, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 5, TrainerBikerHarris, -1
+	person_event SPRITE_BIKER, 14, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 5, TrainerBikerZeke, -1
+	person_event SPRITE_SUPER_NERD, 6, 27, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerSupernerdSam, -1
+	person_event SPRITE_SUPER_NERD, 16, 35, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 4, TrainerSupernerdTom, -1
+	person_event SPRITE_FRUIT_TREE, 9, 37, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x6c06c, -1

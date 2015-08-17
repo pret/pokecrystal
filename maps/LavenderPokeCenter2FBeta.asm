@@ -11,7 +11,7 @@ LavenderPokeCenter2FBeta_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $0, 3, GROUP_LAVENDER_POKECENTER_1F, MAP_LAVENDER_POKECENTER_1F
+	warp_def $7, $0, 3, LAVENDER_POKECENTER_1F
 
 .XYTriggers:
 	db 0

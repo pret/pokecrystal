@@ -46,8 +46,8 @@ EcruteakLugiaSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 7, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $7, $4, 7, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
+	warp_def $7, $3, 7, ECRUTEAK_CITY
+	warp_def $7, $4, 7, ECRUTEAK_CITY
 
 .XYTriggers:
 	db 0
@@ -58,5 +58,5 @@ EcruteakLugiaSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, GrampsScript_0x99334, -1
-	person_event SPRITE_YOUNGSTER, 8, 9, OW_LEFT | $0, $0, -1, -1, $0, 0, YoungsterScript_0x99337, -1
+	person_event SPRITE_GRAMPS, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x99334, -1
+	person_event SPRITE_YOUNGSTER, 8, 9, $8, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x99337, -1

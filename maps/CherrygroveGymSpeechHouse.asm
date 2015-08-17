@@ -46,8 +46,8 @@ CherrygroveGymSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
-	warp_def $7, $3, 3, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	warp_def $7, $2, 3, CHERRYGROVE_CITY
+	warp_def $7, $3, 3, CHERRYGROVE_CITY
 
 .XYTriggers:
 	db 0
@@ -59,5 +59,5 @@ CherrygroveGymSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 7, 6, OW_UP | $2, $0, -1, -1, $0, 0, PokefanMScript_0x196ae1, -1
-	person_event SPRITE_BUG_CATCHER, 9, 9, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, BugCatcherScript_0x196ae4, -1
+	person_event SPRITE_POKEFAN_M, 7, 6, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x196ae1, -1
+	person_event SPRITE_BUG_CATCHER, 9, 9, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, BugCatcherScript_0x196ae4, -1

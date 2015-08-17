@@ -76,9 +76,9 @@ VermilionPokeCenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 2, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $7, $4, 2, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $3, 2, VERMILION_CITY
+	warp_def $7, $4, 2, VERMILION_CITY
+	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
 	db 0
@@ -88,7 +88,7 @@ VermilionPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, OW_UP | $2, $0, -1, -1, $0, 0, NurseScript_0x191603, -1
-	person_event SPRITE_FISHING_GURU, 6, 11, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FishingGuruScript_0x191606, -1
-	person_event SPRITE_SAILOR, 9, 10, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SailorScript_0x19161a, -1
-	person_event SPRITE_BUG_CATCHER, 9, 5, OW_DOWN | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BugCatcherScript_0x19161d, -1
+	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x191603, -1
+	person_event SPRITE_FISHING_GURU, 6, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FishingGuruScript_0x191606, -1
+	person_event SPRITE_SAILOR, 9, 10, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SailorScript_0x19161a, -1
+	person_event SPRITE_BUG_CATCHER, 9, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugCatcherScript_0x19161d, -1

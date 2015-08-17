@@ -256,8 +256,8 @@ OaksLab_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $b, $4, 3, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
-	warp_def $b, $5, 3, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
+	warp_def $b, $4, 3, PALLET_TOWN
+	warp_def $b, $5, 3, PALLET_TOWN
 
 .XYTriggers:
 	db 0
@@ -283,7 +283,7 @@ OaksLab_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_OAK, 6, 8, OW_UP | $2, $0, -1, -1, $0, 0, Oak, -1
-	person_event SPRITE_SCIENTIST, 12, 5, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b40f, -1
-	person_event SPRITE_SCIENTIST, 13, 12, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b412, -1
-	person_event SPRITE_SCIENTIST, 8, 5, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x19b415, -1
+	person_event SPRITE_OAK, 6, 8, $6, 0, 0, -1, -1, 0, 0, 0, Oak, -1
+	person_event SPRITE_SCIENTIST, 12, 5, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x19b40f, -1
+	person_event SPRITE_SCIENTIST, 13, 12, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x19b412, -1
+	person_event SPRITE_SCIENTIST, 8, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x19b415, -1

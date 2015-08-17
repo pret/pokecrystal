@@ -248,9 +248,9 @@ Route46_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $21, $7, 1, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
-	warp_def $21, $8, 2, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
-	warp_def $5, $e, 3, GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
+	warp_def $21, $7, 1, ROUTE_29_46_GATE
+	warp_def $21, $8, 2, ROUTE_29_46_GATE
+	warp_def $5, $e, 3, DARK_CAVE_VIOLET_ENTRANCE
 
 .XYTriggers:
 	db 0
@@ -261,9 +261,9 @@ Route46_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_POKEFAN_M, 23, 16, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerHikerBailey, -1
-	person_event SPRITE_YOUNGSTER, 18, 8, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerCamperTed, -1
-	person_event SPRITE_LASS, 17, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 2, TrainerPicnickerErin1, -1
-	person_event SPRITE_FRUIT_TREE, 9, 11, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a978f, -1
-	person_event SPRITE_FRUIT_TREE, 10, 12, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x1a9791, -1
-	person_event SPRITE_POKE_BALL, 19, 5, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED
+	person_event SPRITE_POKEFAN_M, 23, 16, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerHikerBailey, -1
+	person_event SPRITE_YOUNGSTER, 18, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, TrainerCamperTed, -1
+	person_event SPRITE_LASS, 17, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, TrainerPicnickerErin1, -1
+	person_event SPRITE_FRUIT_TREE, 9, 11, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a978f, -1
+	person_event SPRITE_FRUIT_TREE, 10, 12, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9791, -1
+	person_event SPRITE_POKE_BALL, 19, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED

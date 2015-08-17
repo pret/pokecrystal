@@ -24,10 +24,10 @@ SilverCaveRoom2_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $1f, $11, 2, GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
-	warp_def $5, $b, 1, GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
-	warp_def $15, $d, 1, GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
-	warp_def $3, $17, 2, GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
+	warp_def $1f, $11, 2, SILVER_CAVE_ROOM_1
+	warp_def $5, $b, 1, SILVER_CAVE_ROOM_3
+	warp_def $15, $d, 1, SILVER_CAVE_ITEM_ROOMS
+	warp_def $3, $17, 2, SILVER_CAVE_ITEM_ROOMS
 
 .XYTriggers:
 	db 0
@@ -38,6 +38,6 @@ SilverCaveRoom2_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 14, 28, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c5b2, EVENT_SILVER_CAVE_ROOM_2_CALCIUM
-	person_event SPRITE_POKE_BALL, 28, 26, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c5b4, EVENT_SILVER_CAVE_ROOM_2_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 24, 8, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x18c5b6, EVENT_SILVER_CAVE_ROOM_2_PP_UP
+	person_event SPRITE_POKE_BALL, 14, 28, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b2, EVENT_SILVER_CAVE_ROOM_2_CALCIUM
+	person_event SPRITE_POKE_BALL, 28, 26, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b4, EVENT_SILVER_CAVE_ROOM_2_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 24, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b6, EVENT_SILVER_CAVE_ROOM_2_PP_UP

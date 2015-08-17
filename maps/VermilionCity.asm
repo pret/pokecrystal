@@ -267,16 +267,16 @@ VermilionCity_MapEventHeader:
 
 .Warps:
 	db 10
-	warp_def $5, $5, 1, GROUP_VERMILION_HOUSE_FISHING_SPEECH_HOUSE, MAP_VERMILION_HOUSE_FISHING_SPEECH_HOUSE
-	warp_def $5, $9, 1, GROUP_VERMILION_POKECENTER_1F, MAP_VERMILION_POKECENTER_1F
-	warp_def $d, $7, 1, GROUP_POKEMON_FAN_CLUB, MAP_POKEMON_FAN_CLUB
-	warp_def $d, $d, 1, GROUP_VERMILION_MAGNET_TRAIN_SPEECH_HOUSE, MAP_VERMILION_MAGNET_TRAIN_SPEECH_HOUSE
-	warp_def $d, $15, 2, GROUP_VERMILION_MART, MAP_VERMILION_MART
-	warp_def $11, $15, 1, GROUP_VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE, MAP_VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE
-	warp_def $13, $a, 1, GROUP_VERMILION_GYM, MAP_VERMILION_GYM
-	warp_def $1f, $13, 1, GROUP_VERMILION_PORT_PASSAGE, MAP_VERMILION_PORT_PASSAGE
-	warp_def $1f, $14, 2, GROUP_VERMILION_PORT_PASSAGE, MAP_VERMILION_PORT_PASSAGE
-	warp_def $7, $22, 1, GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
+	warp_def $5, $5, 1, VERMILION_HOUSE_FISHING_SPEECH_HOUSE
+	warp_def $5, $9, 1, VERMILION_POKECENTER_1F
+	warp_def $d, $7, 1, POKEMON_FAN_CLUB
+	warp_def $d, $d, 1, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE
+	warp_def $d, $15, 2, VERMILION_MART
+	warp_def $11, $15, 1, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE
+	warp_def $13, $a, 1, VERMILION_GYM
+	warp_def $1f, $13, 1, VERMILION_PORT_PASSAGE
+	warp_def $1f, $14, 2, VERMILION_PORT_PASSAGE
+	warp_def $7, $22, 1, DIGLETTS_CAVE
 
 .XYTriggers:
 	db 0
@@ -294,9 +294,9 @@ VermilionCity_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_TEACHER, 13, 22, OW_DOWN | $2, $11, -1, -1, $0, 0, TeacherScript_0x1aa983, -1
-	person_event SPRITE_GRAMPS, 10, 27, OW_LEFT | $1, $0, -1, -1, $0, 0, GrampsScript_0x1aa986, -1
-	person_event SPRITE_MACHOP, 11, 30, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, VermilionMachop, -1
-	person_event SPRITE_SUPER_NERD, 20, 18, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, SuperNerdScript_0x1aa99b, -1
-	person_event SPRITE_BIG_SNORLAX, 12, 38, OW_UP | $11, $0, -1, -1, $0, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
-	person_event SPRITE_POKEFAN_M, 16, 35, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, VermilionGymBadgeGuy, -1
+	person_event SPRITE_TEACHER, 13, 22, $2, 1, 1, -1, -1, 0, 0, 0, TeacherScript_0x1aa983, -1
+	person_event SPRITE_GRAMPS, 10, 27, $9, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1aa986, -1
+	person_event SPRITE_MACHOP, 11, 30, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, VermilionMachop, -1
+	person_event SPRITE_SUPER_NERD, 20, 18, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SuperNerdScript_0x1aa99b, -1
+	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, 0, 0, -1, -1, 0, 0, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
+	person_event SPRITE_POKEFAN_M, 16, 35, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, VermilionGymBadgeGuy, -1

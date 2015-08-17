@@ -81,12 +81,12 @@ BattleTowerHallway_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $1, $b, 1, GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR
-	warp_def $0, $5, 1, GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM
-	warp_def $0, $7, 1, GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM
-	warp_def $0, $9, 1, GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM
-	warp_def $0, $d, 1, GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM
-	warp_def $0, $f, 1, GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM
+	warp_def $1, $b, 1, BATTLE_TOWER_ELEVATOR
+	warp_def $0, $5, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def $0, $7, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def $0, $9, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def $0, $d, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def $0, $f, 1, BATTLE_TOWER_BATTLE_ROOM
 
 .XYTriggers:
 	db 0
@@ -96,4 +96,4 @@ BattleTowerHallway_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RECEPTIONIST, 6, 15, OW_UP | $2, $0, -1, -1, $0, 0, BattleTowerHallway_MapEventHeader, -1
+	person_event SPRITE_RECEPTIONIST, 6, 15, $6, 0, 0, -1, -1, 0, 0, 0, BattleTowerHallway_MapEventHeader, -1

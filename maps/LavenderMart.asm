@@ -48,8 +48,8 @@ LavenderMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $3, 5, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $2, 5, LAVENDER_TOWN
+	warp_def $7, $3, 5, LAVENDER_TOWN
 
 .XYTriggers:
 	db 0
@@ -59,6 +59,6 @@ LavenderMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x7eb1c, -1
-	person_event SPRITE_POKEFAN_M, 10, 10, OW_UP | $1, $2, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x7eb23, -1
-	person_event SPRITE_ROCKER, 6, 13, OW_DOWN | $3, $0, -1, -1, $0, 0, RockerScript_0x7eb26, -1
+	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x7eb1c, -1
+	person_event SPRITE_POKEFAN_M, 10, 10, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x7eb23, -1
+	person_event SPRITE_ROCKER, 6, 13, $3, 0, 0, -1, -1, 0, 0, 0, RockerScript_0x7eb26, -1

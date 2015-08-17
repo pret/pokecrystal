@@ -328,9 +328,9 @@ RadioTower3F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $0, 1, GROUP_RADIO_TOWER_2F, MAP_RADIO_TOWER_2F
-	warp_def $0, $7, 2, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
-	warp_def $0, $11, 4, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
+	warp_def $0, $0, 1, RADIO_TOWER_2F
+	warp_def $0, $7, 2, RADIO_TOWER_4F
+	warp_def $0, $11, 4, RADIO_TOWER_4F
 
 .XYTriggers:
 	db 0
@@ -343,10 +343,10 @@ RadioTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SUPER_NERD, 8, 11, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_GYM_GUY, 8, 7, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, GymGuyScript_0x5e556, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 15, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, CooltrainerFScript_0x5e56a, -1
-	person_event SPRITE_ROCKET, 5, 9, OW_LEFT | $1, $0, -1, -1, $2, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 6, 10, OW_UP | $2, $0, -1, -1, $2, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 10, 20, OW_UP | $3, $0, -1, -1, $2, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_SCIENTIST, 10, 13, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SUPER_NERD, 8, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_GYM_GUY, 8, 7, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GymGuyScript_0x5e556, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 15, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5e56a, -1
+	person_event SPRITE_ROCKET, 5, 9, $9, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 10, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 10, 20, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SCIENTIST, 10, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

@@ -258,21 +258,21 @@ EcruteakCity_MapEventHeader:
 
 .Warps:
 	db 15
-	warp_def $1a, $23, 1, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
-	warp_def $1b, $23, 2, GROUP_ROUTE_42_ECRUTEAK_GATE, MAP_ROUTE_42_ECRUTEAK_GATE
-	warp_def $b, $12, 1, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
-	warp_def $2, $14, 1, GROUP_WISE_TRIOS_ROOM, MAP_WISE_TRIOS_ROOM
-	warp_def $3, $14, 2, GROUP_WISE_TRIOS_ROOM, MAP_WISE_TRIOS_ROOM
-	warp_def $1b, $17, 1, GROUP_ECRUTEAK_POKECENTER_1F, MAP_ECRUTEAK_POKECENTER_1F
-	warp_def $15, $5, 1, GROUP_ECRUTEAK_LUGIA_SPEECH_HOUSE, MAP_ECRUTEAK_LUGIA_SPEECH_HOUSE
-	warp_def $15, $17, 1, GROUP_DANCE_THEATRE, MAP_DANCE_THEATRE
-	warp_def $15, $1d, 2, GROUP_ECRUTEAK_MART, MAP_ECRUTEAK_MART
-	warp_def $1b, $6, 1, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
-	warp_def $1b, $d, 1, GROUP_ECRUTEAK_ITEMFINDER_HOUSE, MAP_ECRUTEAK_ITEMFINDER_HOUSE
-	warp_def $7, $25, 1, GROUP_TIN_TOWER_1F, MAP_TIN_TOWER_1F
-	warp_def $5, $5, 1, GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
-	warp_def $12, $0, 3, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
-	warp_def $13, $0, 4, GROUP_ROUTE_38_ECRUTEAK_GATE, MAP_ROUTE_38_ECRUTEAK_GATE
+	warp_def $1a, $23, 1, ROUTE_42_ECRUTEAK_GATE
+	warp_def $1b, $23, 2, ROUTE_42_ECRUTEAK_GATE
+	warp_def $b, $12, 1, ECRUTEAK_HOUSE
+	warp_def $2, $14, 1, WISE_TRIOS_ROOM
+	warp_def $3, $14, 2, WISE_TRIOS_ROOM
+	warp_def $1b, $17, 1, ECRUTEAK_POKECENTER_1F
+	warp_def $15, $5, 1, ECRUTEAK_LUGIA_SPEECH_HOUSE
+	warp_def $15, $17, 1, DANCE_THEATRE
+	warp_def $15, $1d, 2, ECRUTEAK_MART
+	warp_def $1b, $6, 1, ECRUTEAK_GYM
+	warp_def $1b, $d, 1, ECRUTEAK_ITEMFINDER_HOUSE
+	warp_def $7, $25, 1, TIN_TOWER_1F
+	warp_def $5, $5, 1, BURNED_TOWER_1F
+	warp_def $12, $0, 3, ROUTE_38_ECRUTEAK_GATE
+	warp_def $13, $0, 4, ROUTE_38_ECRUTEAK_GATE
 
 .XYTriggers:
 	db 0
@@ -290,10 +290,10 @@ EcruteakCity_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_GRAMPS, 19, 22, OW_DOWN | $2, $11, -1, -1, $0, 0, GrampsScript_0x1a4009, -1
-	person_event SPRITE_GRAMPS, 25, 24, OW_DOWN | $3, $0, -1, -1, $0, 0, GrampsScript_0x1a400c, -1
-	person_event SPRITE_LASS, 33, 25, OW_UP | $1, $2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x1a4012, -1
-	person_event SPRITE_LASS, 13, 7, OW_UP | $3, $0, -1, -1, $0, 0, LassScript_0x1a4015, -1
-	person_event SPRITE_FISHER, 26, 13, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1a4029, -1
-	person_event SPRITE_YOUNGSTER, 18, 14, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x1a403d, -1
-	person_event SPRITE_GRAMPS, 11, 7, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, GrampsScript_0x1a400f, EVENT_ECRUTEAK_CITY_GRAMPS
+	person_event SPRITE_GRAMPS, 19, 22, $2, 1, 1, -1, -1, 0, 0, 0, GrampsScript_0x1a4009, -1
+	person_event SPRITE_GRAMPS, 25, 24, $3, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a400c, -1
+	person_event SPRITE_LASS, 33, 25, $5, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_0x1a4012, -1
+	person_event SPRITE_LASS, 13, 7, $7, 0, 0, -1, -1, 0, 0, 0, LassScript_0x1a4015, -1
+	person_event SPRITE_FISHER, 26, 13, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x1a4029, -1
+	person_event SPRITE_YOUNGSTER, 18, 14, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x1a403d, -1
+	person_event SPRITE_GRAMPS, 11, 7, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GrampsScript_0x1a400f, EVENT_ECRUTEAK_CITY_GRAMPS

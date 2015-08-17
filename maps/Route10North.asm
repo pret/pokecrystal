@@ -21,8 +21,8 @@ Route10North_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $1, $b, 1, GROUP_ROUTE_10_POKECENTER_1F, MAP_ROUTE_10_POKECENTER_1F
-	warp_def $9, $3, 1, GROUP_POWER_PLANT, MAP_POWER_PLANT
+	warp_def $1, $b, 1, ROUTE_10_POKECENTER_1F
+	warp_def $9, $3, 1, POWER_PLANT
 
 .XYTriggers:
 	db 0

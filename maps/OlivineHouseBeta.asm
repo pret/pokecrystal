@@ -41,8 +41,8 @@ OlivineHouseBeta_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	warp_def $7, $3, 4, GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
+	warp_def $7, $2, 4, OLIVINE_CITY
+	warp_def $7, $3, 4, OLIVINE_CITY
 
 .XYTriggers:
 	db 0
@@ -54,5 +54,5 @@ OlivineHouseBeta_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 7, 6, OW_DOWN | $3, $0, -1, -1, $0, 0, TeacherScript_0x9c58f, -1
-	person_event SPRITE_RHYDON, 8, 10, OW_UP | $0, $20, -1, -1, $0, 0, RhydonScript_0x9c592, -1
+	person_event SPRITE_TEACHER, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x9c58f, -1
+	person_event SPRITE_RHYDON, 8, 10, $4, 2, 0, -1, -1, 0, 0, 0, RhydonScript_0x9c592, -1

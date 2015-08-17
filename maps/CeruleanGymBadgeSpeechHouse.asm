@@ -19,8 +19,8 @@ CeruleanGymBadgeSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
-	warp_def $7, $3, 1, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	warp_def $7, $2, 1, CERULEAN_CITY
+	warp_def $7, $3, 1, CERULEAN_CITY
 
 .XYTriggers:
 	db 0
@@ -30,4 +30,4 @@ CeruleanGymBadgeSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, PokefanMScript_0x188002, -1
+	person_event SPRITE_POKEFAN_M, 7, 6, $9, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x188002, -1

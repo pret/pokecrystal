@@ -61,8 +61,8 @@ ViridianNicknameSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
-	warp_def $7, $3, 2, GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
+	warp_def $7, $2, 2, VIRIDIAN_CITY
+	warp_def $7, $3, 2, VIRIDIAN_CITY
 
 .XYTriggers:
 	db 0
@@ -72,7 +72,7 @@ ViridianNicknameSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 8, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, PokefanMScript_0x9ae3a, -1
-	person_event SPRITE_LASS, 8, 9, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x9ae3d, -1
-	person_event SPRITE_MOLTRES, 6, 9, OW_UP | $12, $2, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, MoltresScript_0x9ae40, -1
-	person_event SPRITE_GROWLITHE, 7, 10, OW_UP | $12, $2, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrowlitheScript_0x9ae4a, -1
+	person_event SPRITE_POKEFAN_M, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x9ae3a, -1
+	person_event SPRITE_LASS, 8, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x9ae3d, -1
+	person_event SPRITE_MOLTRES, 6, 9, $16, 0, 2, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MoltresScript_0x9ae40, -1
+	person_event SPRITE_GROWLITHE, 7, 10, $16, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrowlitheScript_0x9ae4a, -1

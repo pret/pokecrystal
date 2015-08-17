@@ -22,9 +22,9 @@ Route5UndergroundEntrance_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, GROUP_ROUTE_5, MAP_ROUTE_5
-	warp_def $7, $4, 1, GROUP_ROUTE_5, MAP_ROUTE_5
-	warp_def $3, $4, 1, GROUP_UNDERGROUND, MAP_UNDERGROUND
+	warp_def $7, $3, 1, ROUTE_5
+	warp_def $7, $4, 1, ROUTE_5
+	warp_def $3, $4, 1, UNDERGROUND
 
 .XYTriggers:
 	db 0
@@ -34,4 +34,4 @@ Route5UndergroundEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_TEACHER, 6, 6, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x18b555, -1
+	person_event SPRITE_TEACHER, 6, 6, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x18b555, -1

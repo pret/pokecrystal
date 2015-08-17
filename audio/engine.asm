@@ -805,7 +805,7 @@ LoadNote: ; e83d1
 
 Functione8466: ; e8466
 ; handle vibrato and other things
-; unknowns: wc292, $c294
+; unknowns: wc292, wc294
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	bit 2, [hl]

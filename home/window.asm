@@ -83,7 +83,7 @@ Function2e31:: ; 2e31
 	ld [hBGMapMode], a
 	ld a, $1
 	ld [hOAMUpdate], a
-	call DrawOnMap
+	call UpdateSprites
 	xor a
 	ld [hOAMUpdate], a
 	call DelayFrame

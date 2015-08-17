@@ -151,9 +151,9 @@ GoldenrodDeptStore6F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $f, 2, GROUP_GOLDENROD_DEPT_STORE_5F, MAP_GOLDENROD_DEPT_STORE_5F
-	warp_def $0, $2, 1, GROUP_GOLDENROD_DEPT_STORE_ELEVATOR, MAP_GOLDENROD_DEPT_STORE_ELEVATOR
-	warp_def $0, $d, 1, GROUP_GOLDENROD_DEPT_STORE_ROOF, MAP_GOLDENROD_DEPT_STORE_ROOF
+	warp_def $0, $f, 2, GOLDENROD_DEPT_STORE_5F
+	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def $0, $d, 1, GOLDENROD_DEPT_STORE_ROOF
 
 .XYTriggers:
 	db 0
@@ -169,5 +169,5 @@ GoldenrodDeptStore6F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_LASS, 6, 14, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x564bf, -1
-	person_event SPRITE_SUPER_NERD, 6, 12, OW_UP | $3, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x564c2, -1
+	person_event SPRITE_LASS, 6, 14, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x564bf, -1
+	person_event SPRITE_SUPER_NERD, 6, 12, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x564c2, -1

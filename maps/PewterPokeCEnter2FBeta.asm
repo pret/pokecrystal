@@ -11,7 +11,7 @@ PewterPokeCEnter2FBeta_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $0, 3, GROUP_PEWTER_POKECENTER_1F, MAP_PEWTER_POKECENTER_1F
+	warp_def $7, $0, 3, PEWTER_POKECENTER_1F
 
 .XYTriggers:
 	db 0

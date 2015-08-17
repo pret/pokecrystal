@@ -1912,7 +1912,7 @@ Functionf24a: ; f24a (3:724a)
 Functionf279: ; f279 (3:7279)
 	xor a
 	ld [hBGMapMode], a
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, TileMapEnd - TileMap
 	ld a, " "
 	call ByteFill

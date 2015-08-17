@@ -62,8 +62,8 @@ MahoganyRedGyaradosSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
-	warp_def $7, $3, 2, GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN
+	warp_def $7, $2, 2, MAHOGANY_TOWN
+	warp_def $7, $3, 2, MAHOGANY_TOWN
 
 .XYTriggers:
 	db 0
@@ -73,5 +73,5 @@ MahoganyRedGyaradosSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_BLACK_BELT, 7, 6, OW_LEFT | $1, $0, -1, -1, $0, 0, BlackBeltScript_0x19997f, -1
-	person_event SPRITE_TEACHER, 9, 10, OW_UP | $0, $10, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x199982, -1
+	person_event SPRITE_BLACK_BELT, 7, 6, $9, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x19997f, -1
+	person_event SPRITE_TEACHER, 9, 10, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x199982, -1

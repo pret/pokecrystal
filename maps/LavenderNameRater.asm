@@ -29,8 +29,8 @@ LavenderNameRater_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $3, 4, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $2, 4, LAVENDER_TOWN
+	warp_def $7, $3, 4, LAVENDER_TOWN
 
 .XYTriggers:
 	db 0
@@ -40,4 +40,4 @@ LavenderNameRater_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GENTLEMAN, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, LavenderNameRater, -1
+	person_event SPRITE_GENTLEMAN, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, LavenderNameRater, -1

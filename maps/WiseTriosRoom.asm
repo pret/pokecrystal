@@ -347,9 +347,9 @@ WiseTriosRoom_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $4, $7, 4, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $5, $7, 5, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $4, $1, 5, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
+	warp_def $4, $7, 4, ECRUTEAK_CITY
+	warp_def $5, $7, 5, ECRUTEAK_CITY
+	warp_def $4, $1, 5, ECRUTEAK_HOUSE
 
 .XYTriggers:
 	db 1
@@ -360,9 +360,9 @@ WiseTriosRoom_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SAGE, 6, 10, OW_DOWN | $3, $0, -1, -1, $0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 11, 10, OW_UP | $1, $1, -1, -1, $0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 9, 11, OW_LEFT | $0, $0, -1, -1, $0, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 6, 8, OW_UP | $2, $0, -1, -1, $2, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	person_event SPRITE_SAGE, 10, 8, OW_UP | $3, $0, -1, -1, $2, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	person_event SPRITE_SAGE, 8, 10, OW_LEFT | $0, $0, -1, -1, $2, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 6, 10, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 11, 10, $5, 0, 1, -1, -1, 0, 0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 9, 11, $8, 0, 0, -1, -1, 0, 0, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 6, 8, $6, 0, 0, -1, -1, 0, 2, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 10, 8, $7, 0, 0, -1, -1, 0, 2, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 8, 10, $8, 0, 0, -1, -1, 0, 2, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2

@@ -77,8 +77,8 @@ CianwoodPharmacy_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
-	warp_def $7, $3, 4, GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
+	warp_def $7, $2, 4, CIANWOOD_CITY
+	warp_def $7, $3, 4, CIANWOOD_CITY
 
 .XYTriggers:
 	db 0
@@ -90,4 +90,4 @@ CianwoodPharmacy_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_PHARMACIST, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, CianwoodPharmacist, -1
+	person_event SPRITE_PHARMACIST, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CianwoodPharmacist, -1

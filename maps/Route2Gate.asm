@@ -28,10 +28,10 @@ Route2Gate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 3, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $0, $5, 4, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $7, $4, 2, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $7, $5, 2, GROUP_ROUTE_2, MAP_ROUTE_2
+	warp_def $0, $4, 3, ROUTE_2
+	warp_def $0, $5, 4, ROUTE_2
+	warp_def $7, $4, 2, ROUTE_2
+	warp_def $7, $5, 2, ROUTE_2
 
 .XYTriggers:
 	db 0
@@ -41,4 +41,4 @@ Route2Gate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SCIENTIST, 8, 10, OW_UP | $0, $20, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ScientistScript_0x9b952, -1
+	person_event SPRITE_SCIENTIST, 8, 10, $4, 2, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x9b952, -1

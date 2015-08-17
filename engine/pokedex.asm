@@ -212,7 +212,7 @@ Function4013c: ; 4013c (10:413c)
 	ld [hBGMapMode], a ; $ff00+$d4
 	call ClearSprites
 	xor a
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld bc, $168
 	call ByteFill
 	callba Function1de171
@@ -725,7 +725,7 @@ Function4050a: ; 4050a (10:450a)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	xor a
-	ld hl, AttrMap
+	hlcoord 0, 0, AttrMap
 	ld bc, $168
 	call ByteFill
 	call Function41ae1
@@ -1071,10 +1071,10 @@ Function4074c: ; 4074c (10:474c)
 	ld de, Unknown_407f2
 	call Function40acd
 	ld a, $32
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $168
 	call ByteFill
-	ld hl, TileMap
+	hlcoord 0, 0
 	lb bc, 7, 7
 	call Function40ad5
 	hlcoord 0, 9
@@ -1135,7 +1135,7 @@ Unknown_407f2: ; 407f2
 
 Function407fd: ; 407fd
 	call Function40aa6
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld bc, $0f12
 	call Function40ad5
 	hlcoord 19, 0
@@ -1259,7 +1259,7 @@ String_4094c: ; 4094c
 
 Function40962: ; 40962 (10:4962)
 	call Function40aa6
-	ld hl, TileMap
+	hlcoord 0, 0
 	lb bc, 7, 7
 	call Function40ad5
 	hlcoord 0, 11
@@ -1387,9 +1387,9 @@ Unknown_40a3e: ; 40a3e
 ; 40aa6
 
 Function40aa6: ; 40aa6
-	ld hl, TileMap
+	hlcoord 0, 0
 	ld a, $32
-	ld bc, $0168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ret
 ; 40ab2

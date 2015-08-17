@@ -11,8 +11,8 @@ WhirlIslandCave_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $5, $7, 9, GROUP_WHIRL_ISLAND_B1F, MAP_WHIRL_ISLAND_B1F
-	warp_def $d, $3, 4, GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
+	warp_def $5, $7, 9, WHIRL_ISLAND_B1F
+	warp_def $d, $3, 4, WHIRL_ISLAND_NW
 
 .XYTriggers:
 	db 0

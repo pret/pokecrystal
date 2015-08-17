@@ -40,8 +40,8 @@ Route7_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $6, $f, 1, GROUP_ROUTE_7_SAFFRON_GATE, MAP_ROUTE_7_SAFFRON_GATE
-	warp_def $7, $f, 2, GROUP_ROUTE_7_SAFFRON_GATE, MAP_ROUTE_7_SAFFRON_GATE
+	warp_def $6, $f, 1, ROUTE_7_SAFFRON_GATE
+	warp_def $7, $f, 2, ROUTE_7_SAFFRON_GATE
 
 .XYTriggers:
 	db 0

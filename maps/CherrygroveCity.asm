@@ -550,11 +550,11 @@ CherrygroveCity_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $3, $17, 2, GROUP_CHERRYGROVE_MART, MAP_CHERRYGROVE_MART
-	warp_def $3, $1d, 1, GROUP_CHERRYGROVE_POKECENTER_1F, MAP_CHERRYGROVE_POKECENTER_1F
-	warp_def $7, $11, 1, GROUP_CHERRYGROVE_GYM_SPEECH_HOUSE, MAP_CHERRYGROVE_GYM_SPEECH_HOUSE
-	warp_def $9, $19, 1, GROUP_GUIDE_GENTS_HOUSE, MAP_GUIDE_GENTS_HOUSE
-	warp_def $b, $1f, 1, GROUP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, MAP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
+	warp_def $3, $17, 2, CHERRYGROVE_MART
+	warp_def $3, $1d, 1, CHERRYGROVE_POKECENTER_1F
+	warp_def $7, $11, 1, CHERRYGROVE_GYM_SPEECH_HOUSE
+	warp_def $9, $19, 1, GUIDE_GENTS_HOUSE
+	warp_def $b, $1f, 1, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
 
 .XYTriggers:
 	db 2
@@ -570,8 +570,8 @@ CherrygroveCity_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_GRAMPS, 10, 36, OW_UP | $2, $0, -1, -1, $0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
-	person_event SPRITE_SILVER, 10, 43, OW_DOWN | $3, $0, -1, -1, $0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
-	person_event SPRITE_TEACHER, 16, 31, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x19c146, -1
-	person_event SPRITE_YOUNGSTER, 11, 27, OW_UP | $1, $1, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x19c15a, -1
-	person_event SPRITE_FISHER, 16, 11, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, MysticWaterGuy, -1
+	person_event SPRITE_GRAMPS, 10, 36, $6, 0, 0, -1, -1, 0, 0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
+	person_event SPRITE_SILVER, 10, 43, $3, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
+	person_event SPRITE_TEACHER, 16, 31, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x19c146, -1
+	person_event SPRITE_YOUNGSTER, 11, 27, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x19c15a, -1
+	person_event SPRITE_FISHER, 16, 11, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, MysticWaterGuy, -1

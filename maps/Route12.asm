@@ -165,7 +165,7 @@ Route12_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $21, $b, 1, GROUP_ROUTE_12_SUPER_ROD_HOUSE, MAP_ROUTE_12_SUPER_ROD_HOUSE
+	warp_def $21, $b, 1, ROUTE_12_SUPER_ROD_HOUSE
 
 .XYTriggers:
 	db 0
@@ -178,9 +178,9 @@ Route12_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_FISHER, 17, 9, OW_LEFT | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherMartin, -1
-	person_event SPRITE_FISHER, 27, 18, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 1, TrainerFisherStephen, -1
-	person_event SPRITE_FISHER, 42, 14, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 5, TrainerFisherBarney, -1
-	person_event SPRITE_FISHER, 11, 10, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $82, 3, TrainerFisherKyle, -1
-	person_event SPRITE_POKE_BALL, 47, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
-	person_event SPRITE_POKE_BALL, 55, 9, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET
+	person_event SPRITE_FISHER, 17, 9, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherMartin, -1
+	person_event SPRITE_FISHER, 27, 18, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherStephen, -1
+	person_event SPRITE_FISHER, 42, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 5, TrainerFisherBarney, -1
+	person_event SPRITE_FISHER, 11, 10, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerFisherKyle, -1
+	person_event SPRITE_POKE_BALL, 47, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
+	person_event SPRITE_POKE_BALL, 55, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET

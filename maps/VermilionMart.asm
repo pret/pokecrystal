@@ -37,8 +37,8 @@ VermilionMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
-	warp_def $7, $3, 5, GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	warp_def $7, $2, 5, VERMILION_CITY
+	warp_def $7, $3, 5, VERMILION_CITY
 
 .XYTriggers:
 	db 0
@@ -48,6 +48,6 @@ VermilionMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, OW_LEFT | $1, $0, -1, -1, $0, 0, ClerkScript_0x191f7e, -1
-	person_event SPRITE_SUPER_NERD, 6, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x191f85, -1
-	person_event SPRITE_BUENA, 10, 12, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, BuenaScript_0x191f88, -1
+	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x191f7e, -1
+	person_event SPRITE_SUPER_NERD, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x191f85, -1
+	person_event SPRITE_BUENA, 10, 12, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BuenaScript_0x191f88, -1

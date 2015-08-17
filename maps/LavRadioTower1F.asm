@@ -220,8 +220,8 @@ LavRadioTower1F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 7, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $3, 7, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $2, 7, LAVENDER_TOWN
+	warp_def $7, $3, 7, LAVENDER_TOWN
 
 .XYTriggers:
 	db 0
@@ -233,8 +233,8 @@ LavRadioTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 10, 10, OW_UP | $3, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ReceptionistScript_0x7ee63, -1
-	person_event SPRITE_OFFICER, 5, 19, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, OfficerScript_0x7ee66, -1
-	person_event SPRITE_SUPER_NERD, 7, 5, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, SuperNerdScript_0x7ee69, -1
-	person_event SPRITE_GENTLEMAN, 5, 13, OW_UP | $3, $0, -1, -1, $0, 0, GentlemanScript_0x7ee6c, -1
-	person_event SPRITE_SUPER_NERD, 10, 18, OW_LEFT | $1, $0, -1, -1, $0, 0, SuperNerdScript_0x7eea2, -1
+	person_event SPRITE_RECEPTIONIST, 10, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ReceptionistScript_0x7ee63, -1
+	person_event SPRITE_OFFICER, 5, 19, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x7ee66, -1
+	person_event SPRITE_SUPER_NERD, 7, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x7ee69, -1
+	person_event SPRITE_GENTLEMAN, 5, 13, $7, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7ee6c, -1
+	person_event SPRITE_SUPER_NERD, 10, 18, $9, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7eea2, -1

@@ -72,8 +72,8 @@ SoulHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 6, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $5, 6, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $4, 6, LAVENDER_TOWN
+	warp_def $7, $5, 6, LAVENDER_TOWN
 
 .XYTriggers:
 	db 0
@@ -83,7 +83,7 @@ SoulHouse_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_GRAMPS, 6, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x7ec47, -1
-	person_event SPRITE_TEACHER, 7, 11, OW_UP | $1, $1, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, TeacherScript_0x7ec4a, -1
-	person_event SPRITE_LASS, 9, 6, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LassScript_0x7ec4d, -1
-	person_event SPRITE_GRANNY, 7, 5, OW_UP | $3, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrannyScript_0x7ec50, -1
+	person_event SPRITE_GRAMPS, 6, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrampsScript_0x7ec47, -1
+	person_event SPRITE_TEACHER, 7, 11, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x7ec4a, -1
+	person_event SPRITE_LASS, 9, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_0x7ec4d, -1
+	person_event SPRITE_GRANNY, 7, 5, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrannyScript_0x7ec50, -1

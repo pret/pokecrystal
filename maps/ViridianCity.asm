@@ -217,11 +217,11 @@ ViridianCity_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $7, $20, 1, GROUP_VIRIDIAN_GYM, MAP_VIRIDIAN_GYM
-	warp_def $9, $15, 1, GROUP_VIRIDIAN_NICKNAME_SPEECH_HOUSE, MAP_VIRIDIAN_NICKNAME_SPEECH_HOUSE
-	warp_def $f, $17, 1, GROUP_TRAINER_HOUSE_1F, MAP_TRAINER_HOUSE_1F
-	warp_def $13, $1d, 2, GROUP_VIRIDIAN_MART, MAP_VIRIDIAN_MART
-	warp_def $19, $17, 1, GROUP_VIRIDIAN_POKECENTER_1F, MAP_VIRIDIAN_POKECENTER_1F
+	warp_def $7, $20, 1, VIRIDIAN_GYM
+	warp_def $9, $15, 1, VIRIDIAN_NICKNAME_SPEECH_HOUSE
+	warp_def $f, $17, 1, TRAINER_HOUSE_1F
+	warp_def $13, $1d, 2, VIRIDIAN_MART
+	warp_def $19, $17, 1, VIRIDIAN_POKECENTER_1F
 
 .XYTriggers:
 	db 0
@@ -237,7 +237,7 @@ ViridianCity_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_GRAMPS, 9, 22, OW_DOWN | $2, $22, -1, -1, $0, 0, GrampsScript_0x1a9a4c, -1
-	person_event SPRITE_GRAMPS, 12, 34, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GrampsScript_0x1a9a61, -1
-	person_event SPRITE_FISHER, 27, 10, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, FisherScript_0x1a9a75, -1
-	person_event SPRITE_YOUNGSTER, 25, 21, OW_DOWN | $2, $33, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x1a9a90, -1
+	person_event SPRITE_GRAMPS, 9, 22, $2, 2, 2, -1, -1, 0, 0, 0, GrampsScript_0x1a9a4c, -1
+	person_event SPRITE_GRAMPS, 12, 34, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrampsScript_0x1a9a61, -1
+	person_event SPRITE_FISHER, 27, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FisherScript_0x1a9a75, -1
+	person_event SPRITE_YOUNGSTER, 25, 21, $2, 3, 3, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a9a90, -1

@@ -126,17 +126,17 @@ FuchsiaCity_MapEventHeader:
 
 .Warps:
 	db 11
-	warp_def $d, $5, 2, GROUP_FUCHSIA_MART, MAP_FUCHSIA_MART
-	warp_def $d, $16, 1, GROUP_SAFARI_ZONE_MAIN_OFFICE, MAP_SAFARI_ZONE_MAIN_OFFICE
-	warp_def $1b, $8, 1, GROUP_FUCHSIA_GYM, MAP_FUCHSIA_GYM
-	warp_def $1b, $b, 1, GROUP_FUCHSIA_BILL_SPEECH_HOUSE, MAP_FUCHSIA_BILL_SPEECH_HOUSE
-	warp_def $1b, $13, 1, GROUP_FUCHSIA_POKECENTER_1F, MAP_FUCHSIA_POKECENTER_1F
-	warp_def $1b, $1b, 1, GROUP_SAFARI_ZONE_WARDENS_HOME, MAP_SAFARI_ZONE_WARDENS_HOME
-	warp_def $3, $12, 3, GROUP_SAFARI_ZONE_FUCHSIA_GATE_BETA, MAP_SAFARI_ZONE_FUCHSIA_GATE_BETA
-	warp_def $16, $25, 1, GROUP_ROUTE_15_FUCHSIA_GATE, MAP_ROUTE_15_FUCHSIA_GATE
-	warp_def $17, $25, 2, GROUP_ROUTE_15_FUCHSIA_GATE, MAP_ROUTE_15_FUCHSIA_GATE
-	warp_def $23, $7, 1, GROUP_ROUTE_19___FUCHSIA_GATE, MAP_ROUTE_19___FUCHSIA_GATE
-	warp_def $23, $8, 2, GROUP_ROUTE_19___FUCHSIA_GATE, MAP_ROUTE_19___FUCHSIA_GATE
+	warp_def $d, $5, 2, FUCHSIA_MART
+	warp_def $d, $16, 1, SAFARI_ZONE_MAIN_OFFICE
+	warp_def $1b, $8, 1, FUCHSIA_GYM
+	warp_def $1b, $b, 1, FUCHSIA_BILL_SPEECH_HOUSE
+	warp_def $1b, $13, 1, FUCHSIA_POKECENTER_1F
+	warp_def $1b, $1b, 1, SAFARI_ZONE_WARDENS_HOME
+	warp_def $3, $12, 3, SAFARI_ZONE_FUCHSIA_GATE_BETA
+	warp_def $16, $25, 1, ROUTE_15_FUCHSIA_GATE
+	warp_def $17, $25, 2, ROUTE_15_FUCHSIA_GATE
+	warp_def $23, $7, 1, ROUTE_19___FUCHSIA_GATE
+	warp_def $23, $8, 2, ROUTE_19___FUCHSIA_GATE
 
 .XYTriggers:
 	db 0
@@ -154,7 +154,7 @@ FuchsiaCity_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_YOUNGSTER, 22, 27, OW_DOWN | $2, $11, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, YoungsterScript_0x194b22, -1
-	person_event SPRITE_POKEFAN_M, 12, 17, OW_DOWN | $2, $11, -1, -1, (PAL_OW_BROWN << 4) | $80, 0, PokefanMScript_0x194b25, -1
-	person_event SPRITE_TEACHER, 18, 20, OW_DOWN | $2, $11, -1, -1, (PAL_OW_RED << 4) | $80, 0, TeacherScript_0x194b28, -1
-	person_event SPRITE_FRUIT_TREE, 5, 12, OW_DOWN | $1, $0, -1, -1, $0, 0, FruitTreeScript_0x194b43, -1
+	person_event SPRITE_YOUNGSTER, 22, 27, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x194b22, -1
+	person_event SPRITE_POKEFAN_M, 12, 17, $2, 1, 1, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x194b25, -1
+	person_event SPRITE_TEACHER, 18, 20, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, TeacherScript_0x194b28, -1
+	person_event SPRITE_FRUIT_TREE, 5, 12, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194b43, -1

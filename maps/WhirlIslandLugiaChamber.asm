@@ -49,7 +49,7 @@ WhirlIslandLugiaChamber_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $d, $9, 3, GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
+	warp_def $d, $9, 3, WHIRL_ISLAND_B2F
 
 .XYTriggers:
 	db 0
@@ -59,4 +59,4 @@ WhirlIslandLugiaChamber_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LUGIA, 9, 13, OW_UP | $12, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, LugiaScript_0x18c518, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
+	person_event SPRITE_LUGIA, 9, 13, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LugiaScript_0x18c518, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA

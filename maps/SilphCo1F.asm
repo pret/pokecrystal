@@ -57,8 +57,8 @@ SilphCo1F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 7, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $7, $3, 7, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
+	warp_def $7, $2, 7, SAFFRON_CITY
+	warp_def $7, $3, 7, SAFFRON_CITY
 
 .XYTriggers:
 	db 0
@@ -68,5 +68,5 @@ SilphCo1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 6, 8, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, ReceptionistScript_0x18abe5, -1
-	person_event SPRITE_OFFICER, 5, 17, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, OfficerScript_0x18abe8, -1
+	person_event SPRITE_RECEPTIONIST, 6, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ReceptionistScript_0x18abe5, -1
+	person_event SPRITE_OFFICER, 5, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, OfficerScript_0x18abe8, -1

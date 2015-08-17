@@ -68,7 +68,7 @@ UnknownScript_0x75f09:
 	writetext UnknownText_0x76143
 	keeptextopen
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
+	domaptrigger FAST_SHIP_1F, $0
 	jump UnknownScript_0x75f37
 
 GentlemanScript_0x75f1f:
@@ -81,7 +81,7 @@ GentlemanScript_0x75f1f:
 	writetext UnknownText_0x760ae
 	closetext
 	loadmovesprites
-	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
+	domaptrigger FAST_SHIP_1F, $0
 	end
 
 UnknownScript_0x75f37:
@@ -455,12 +455,12 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $7, $2, 8, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $7, $3, 8, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $13, $2, 9, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $13, $3, 9, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $21, $2, 10, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
-	warp_def $21, $3, 10, GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F
+	warp_def $7, $2, 8, FAST_SHIP_1F
+	warp_def $7, $3, 8, FAST_SHIP_1F
+	warp_def $13, $2, 9, FAST_SHIP_1F
+	warp_def $13, $3, 9, FAST_SHIP_1F
+	warp_def $21, $2, 10, FAST_SHIP_1F
+	warp_def $21, $3, 10, FAST_SHIP_1F
 
 .XYTriggers:
 	db 0
@@ -471,14 +471,14 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_CAPTAIN, 29, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, CaptainScript_0x75ea7, -1
-	person_event SPRITE_GENTLEMAN, 21, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_BLUE << 4) | $80, 0, GentlemanScript_0x75f1f, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
-	person_event SPRITE_TWIN, 21, 7, OW_LEFT | $2, $0, -1, -1, $0, 0, TwinScript_0x75f6d, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
-	person_event SPRITE_TWIN, 29, 6, OW_LEFT | $2, $0, -1, -1, $0, 0, TwinScript_0x75ebb, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
-	person_event SPRITE_POKEFAN_M, 10, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_RED << 4) | $82, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_TWIN, 8, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_TWIN, 8, 7, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SUPER_NERD, 9, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 5, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_POKEFAN_M, 7, 6, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_POKEFAN_F, 9, 9, OW_LEFT | $1, $0, -1, -1, (PAL_OW_RED << 4) | $82, 1, TrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_SUPER_NERD, 19, 5, OW_DOWN | $3, $0, -1, -1, (PAL_OW_BROWN << 4) | $82, 2, TrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_CAPTAIN, 29, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CaptainScript_0x75ea7, -1
+	person_event SPRITE_GENTLEMAN, 21, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GentlemanScript_0x75f1f, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	person_event SPRITE_TWIN, 21, 7, $a, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x75f6d, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	person_event SPRITE_TWIN, 29, 6, $a, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x75ebb, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
+	person_event SPRITE_POKEFAN_M, 10, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_TWIN, 8, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_TWIN, 8, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SUPER_NERD, 9, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 5, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_POKEFAN_M, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_POKEFAN_F, 9, 9, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_SUPER_NERD, 19, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND

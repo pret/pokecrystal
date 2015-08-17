@@ -85,8 +85,8 @@ ElmsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
-	warp_def $7, $3, 4, GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
+	warp_def $7, $2, 4, NEW_BARK_TOWN
+	warp_def $7, $3, 4, NEW_BARK_TOWN
 
 .XYTriggers:
 	db 0
@@ -99,5 +99,5 @@ ElmsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 9, 5, OW_UP | $0, $10, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, ElmsWife, -1
-	person_event SPRITE_BUG_CATCHER, 8, 9, OW_UP | $3, $0, -1, -1, $0, 0, ElmsSon, -1
+	person_event SPRITE_TEACHER, 9, 5, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ElmsWife, -1
+	person_event SPRITE_BUG_CATCHER, 8, 9, $7, 0, 0, -1, -1, 0, 0, 0, ElmsSon, -1

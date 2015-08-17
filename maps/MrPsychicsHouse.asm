@@ -50,8 +50,8 @@ MrPsychicsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $7, $3, 5, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
+	warp_def $7, $2, 5, SAFFRON_CITY
+	warp_def $7, $3, 5, SAFFRON_CITY
 
 .XYTriggers:
 	db 0
@@ -63,4 +63,4 @@ MrPsychicsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 9, OW_LEFT | $0, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, MrPsychic, -1
+	person_event SPRITE_FISHING_GURU, 7, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, MrPsychic, -1

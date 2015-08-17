@@ -282,11 +282,11 @@ EcruteakHouse_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $11, $4, 3, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $11, $5, 3, GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	warp_def $3, $5, 4, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
-	warp_def $f, $11, 3, GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE
-	warp_def $3, $11, 3, GROUP_WISE_TRIOS_ROOM, MAP_WISE_TRIOS_ROOM
+	warp_def $11, $4, 3, ECRUTEAK_CITY
+	warp_def $11, $5, 3, ECRUTEAK_CITY
+	warp_def $3, $5, 4, ECRUTEAK_HOUSE
+	warp_def $f, $11, 3, ECRUTEAK_HOUSE
+	warp_def $3, $11, 3, WISE_TRIOS_ROOM
 
 .XYTriggers:
 	db 2
@@ -298,7 +298,7 @@ EcruteakHouse_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAGE, 10, 8, OW_UP | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
-	person_event SPRITE_SAGE, 10, 9, OW_UP | $2, $0, -1, -1, $0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
-	person_event SPRITE_SAGE, 13, 10, OW_DOWN | $2, $11, -1, -1, $0, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
-	person_event SPRITE_GRAMPS, 15, 7, OW_DOWN | $2, $11, -1, -1, $0, 0, GrampsScript_0x980c4, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	person_event SPRITE_SAGE, 10, 8, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
+	person_event SPRITE_SAGE, 10, 9, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
+	person_event SPRITE_SAGE, 13, 10, $2, 1, 1, -1, -1, 0, 0, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	person_event SPRITE_GRAMPS, 15, 7, $2, 1, 1, -1, -1, 0, 0, 0, GrampsScript_0x980c4, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE

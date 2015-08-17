@@ -356,24 +356,11 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-wc314:: ds 1
-wc315:: ds 1
-wc316:: ds 1
-wc317:: ds 1
-wc318:: ds 1
-wc319:: ds 1
-wc31a:: ds 1
-wc31b:: ds 1
-wc31c:: ds 1
-wc31d:: ds 1
-wc31e:: ds 1
-wc31f:: ds 1
-wc320:: ds 4
-wc324:: ds 34
-wc346:: ds 94
-wc3a4:: ds 8
-wc3ac:: ds 8
-wc3b4:: ds 1
+wPartyMonMenuIconAnims:: ds 96 ; c314
+wc374:: ds 48 ; c374
+wc3a4:: ds 8 ; c3b4
+wc3ac:: ds 8 ; c3bc
+wc3b4:: ds 1 ; c3
 wc3b5:: ds 1
 
 CurIcon:: ; c3b6
@@ -1719,7 +1706,7 @@ IsInBattle:: ; d22d
 ; 2: trainer battle
 	ds 1
 
-wd22e:: ds 1
+TempWildMonSpecies:: ds 1
 OtherTrainerClass:: ; d22f
 ; class (Youngster, Bug Catcher, etc.) of opposing trainer
 ; 0 if opponent is a wild Pokémon, not a trainer
@@ -2288,7 +2275,7 @@ BikeFlags:: ; dbf5
 wCurrentMapTriggerPointer:: ; dbf7
 	ds 2
 
-wdbf9:: ds 2
+wCurrentCaller:: ds 2
 wdbfb:: ds 1
 wdbfc:: ds 1
 wdbfd:: ds 1
@@ -2361,9 +2348,9 @@ wdc41:: ds 1
 wdc42:: ds 8
 wdc4a:: ds 1
 wdc4b:: ds 1
-wdc4c:: ds 4
-wdc50:: ds 4
-wdc54:: ds 4
+wDailyRematchFlags:: ds 4
+wDailyPhoneItemFlags:: ds 4
+wDailyPhoneTimeOfDayFlags:: ds 4
 wdc58:: ds 2
 wdc5a:: ds 1
 wdc5b:: ds 1
@@ -2600,7 +2587,14 @@ LYOverrides:: ; d100
 	ds SCREEN_HEIGHT_PX
 LYOverridesEnd::
 
-	ds $100 - SCREEN_HEIGHT_PX
+	ds 1
+w5_d191:: ds 1
+w5_d192:: ds 1
+w5_d193:: ds 1
+w5_d194:: ds 1
+w5_d195:: ds 1
+
+ds 106
 
 LYOverridesBackup:: ; d200
 	ds SCREEN_HEIGHT_PX

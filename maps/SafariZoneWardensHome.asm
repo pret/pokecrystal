@@ -79,8 +79,8 @@ SafariZoneWardensHome_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $7, $3, 6, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
+	warp_def $7, $2, 6, FUCHSIA_CITY
+	warp_def $7, $3, 6, FUCHSIA_CITY
 
 .XYTriggers:
 	db 0
@@ -94,4 +94,4 @@ SafariZoneWardensHome_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LASS, 8, 6, OW_LEFT | $1, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, WardensGranddaughter, -1
+	person_event SPRITE_LASS, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, WardensGranddaughter, -1

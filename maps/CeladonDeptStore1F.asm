@@ -74,10 +74,10 @@ CeladonDeptStore1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $7, $7, 1, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $7, $8, 1, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $0, $f, 2, GROUP_CELADON_DEPT_STORE_2F, MAP_CELADON_DEPT_STORE_2F
-	warp_def $0, $2, 1, GROUP_CELADON_DEPT_STORE_ELEVATOR, MAP_CELADON_DEPT_STORE_ELEVATOR
+	warp_def $7, $7, 1, CELADON_CITY
+	warp_def $7, $8, 1, CELADON_CITY
+	warp_def $0, $f, 2, CELADON_DEPT_STORE_2F
+	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
 
 .XYTriggers:
 	db 0
@@ -89,6 +89,6 @@ CeladonDeptStore1F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_RECEPTIONIST, 5, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, ReceptionistScript_0x709e0, -1
-	person_event SPRITE_GENTLEMAN, 8, 15, OW_DOWN | $2, $11, -1, -1, $0, 0, GentlemanScript_0x709e3, -1
-	person_event SPRITE_TEACHER, 7, 9, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x709e6, -1
+	person_event SPRITE_RECEPTIONIST, 5, 14, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x709e0, -1
+	person_event SPRITE_GENTLEMAN, 8, 15, $2, 1, 1, -1, -1, 0, 0, 0, GentlemanScript_0x709e3, -1
+	person_event SPRITE_TEACHER, 7, 9, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x709e6, -1

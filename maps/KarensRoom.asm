@@ -140,10 +140,10 @@ KarensRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $4, 3, GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM
-	warp_def $11, $5, 4, GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM
-	warp_def $2, $4, 1, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
-	warp_def $2, $5, 2, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
+	warp_def $11, $4, 3, BRUNOS_ROOM
+	warp_def $11, $5, 4, BRUNOS_ROOM
+	warp_def $2, $4, 1, LANCES_ROOM
+	warp_def $2, $5, 2, LANCES_ROOM
 
 .XYTriggers:
 	db 0
@@ -153,4 +153,4 @@ KarensRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_KAREN, 11, 9, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, KarenScript_0x180bee, -1
+	person_event SPRITE_KAREN, 11, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, KarenScript_0x180bee, -1

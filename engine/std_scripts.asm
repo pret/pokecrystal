@@ -298,7 +298,7 @@ RadioTowerRocketsScript:
 	clearevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
 	specialphonecall ELMCALL_WEIRDBROADCAST
-	domaptrigger GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN, $1
+	domaptrigger MAHOGANY_TOWN, $1
 	end
 
 BugContestResultsWarpScript:
@@ -307,7 +307,7 @@ BugContestResultsWarpScript:
 	setevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	clearevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
 	setevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
-	warp GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE, $0, $4
+	warp ROUTE_36_NATIONAL_PARK_GATE, $0, $4
 	applymovement PLAYER, Movement_ContestResults_WalkAfterWarp
 
 BugContestResultsScript:
@@ -356,7 +356,7 @@ BugContestResults_DidNotLeaveMons
 BugContestResults_CleanUp
 	loadmovesprites
 	dotrigger $0
-	domaptrigger GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE, $0
+	domaptrigger ROUTE_35_NATIONAL_PARK_GATE, $0
 	setevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_2A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_3A

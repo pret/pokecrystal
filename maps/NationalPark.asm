@@ -504,10 +504,10 @@ NationalPark_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $12, $21, 1, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
-	warp_def $13, $21, 2, GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE
-	warp_def $2f, $a, 1, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
-	warp_def $2f, $b, 2, GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE
+	warp_def $12, $21, 1, ROUTE_36_NATIONAL_PARK_GATE
+	warp_def $13, $21, 2, ROUTE_36_NATIONAL_PARK_GATE
+	warp_def $2f, $a, 1, ROUTE_35_NATIONAL_PARK_GATE
+	warp_def $2f, $b, 2, ROUTE_35_NATIONAL_PARK_GATE
 
 .XYTriggers:
 	db 0
@@ -521,17 +521,17 @@ NationalPark_MapEventHeader:
 
 .PersonEvents:
 	db 14
-	person_event SPRITE_LASS, 28, 19, OW_UP | $1, $1, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, LassScript_0x5c002, -1
-	person_event SPRITE_POKEFAN_F, 8, 18, OW_UP | $2, $0, -1, -1, $0, 0, PokefanFScript_0x5c005, -1
-	person_event SPRITE_TEACHER, 44, 31, OW_UP | $2, $0, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, TeacherScript_0x5c008, -1
-	person_event SPRITE_YOUNGSTER, 45, 15, OW_LEFT | $0, $0, -1, -1, $0, 0, YoungsterScript_0x5c023, -1
-	person_event SPRITE_YOUNGSTER, 45, 14, OW_UP | $2, $0, -1, -1, (PAL_OW_RED << 4) | $80, 0, YoungsterScript_0x5c026, -1
-	person_event SPRITE_TEACHER, 45, 21, OW_DOWN | $2, $21, -1, -1, $0, 0, TeacherScript_0x5c029, -1
-	person_event SPRITE_GROWLITHE, 44, 30, OW_UP | $12, $0, -1, -1, $0, 0, GrowlitheScript_0x5c02c, -1
-	person_event SPRITE_YOUNGSTER, 27, 31, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerSchoolboyJack1, -1
-	person_event SPRITE_POKEFAN_F, 33, 22, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerPokefanfBeverly1, -1
-	person_event SPRITE_POKEFAN_M, 13, 20, OW_LEFT | $2, $0, -1, -1, (PAL_OW_RED << 4) | $82, 2, TrainerPokefanmWilliam, -1
-	person_event SPRITE_LASS, 18, 12, OW_LEFT | $2, $0, -1, -1, (PAL_OW_BLUE << 4) | $82, 3, TrainerLassKrise, -1
-	person_event SPRITE_POKE_BALL, 16, 39, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c1cc, EVENT_NATIONAL_PARK_PARLYZ_HEAL
-	person_event SPRITE_GAMEBOY_KID, 10, 30, OW_UP | $2, $0, -1, -1, $0, 0, GameboyKidScript_0x5c037, -1
-	person_event SPRITE_POKE_BALL, 47, 5, OW_DOWN | $1, $0, -1, -1, $1, 0, ItemFragment_0x5c1ce, EVENT_NATIONAL_PARK_TM_DIG
+	person_event SPRITE_LASS, 28, 19, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x5c002, -1
+	person_event SPRITE_POKEFAN_F, 8, 18, $6, 0, 0, -1, -1, 0, 0, 0, PokefanFScript_0x5c005, -1
+	person_event SPRITE_TEACHER, 44, 31, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x5c008, -1
+	person_event SPRITE_YOUNGSTER, 45, 15, $8, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x5c023, -1
+	person_event SPRITE_YOUNGSTER, 45, 14, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x5c026, -1
+	person_event SPRITE_TEACHER, 45, 21, $2, 2, 1, -1, -1, 0, 0, 0, TeacherScript_0x5c029, -1
+	person_event SPRITE_GROWLITHE, 44, 30, $16, 0, 0, -1, -1, 0, 0, 0, GrowlitheScript_0x5c02c, -1
+	person_event SPRITE_YOUNGSTER, 27, 31, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSchoolboyJack1, -1
+	person_event SPRITE_POKEFAN_F, 33, 22, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerPokefanfBeverly1, -1
+	person_event SPRITE_POKEFAN_M, 13, 20, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerPokefanmWilliam, -1
+	person_event SPRITE_LASS, 18, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerLassKrise, -1
+	person_event SPRITE_POKE_BALL, 16, 39, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c1cc, EVENT_NATIONAL_PARK_PARLYZ_HEAL
+	person_event SPRITE_GAMEBOY_KID, 10, 30, $6, 0, 0, -1, -1, 0, 0, 0, GameboyKidScript_0x5c037, -1
+	person_event SPRITE_POKE_BALL, 47, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c1ce, EVENT_NATIONAL_PARK_TM_DIG

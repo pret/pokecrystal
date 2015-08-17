@@ -73,9 +73,9 @@ PalletTown_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $5, $5, 1, GROUP_REDS_HOUSE_1F, MAP_REDS_HOUSE_1F
-	warp_def $5, $d, 1, GROUP_BLUES_HOUSE, MAP_BLUES_HOUSE
-	warp_def $b, $c, 1, GROUP_OAKS_LAB, MAP_OAKS_LAB
+	warp_def $5, $5, 1, REDS_HOUSE_1F
+	warp_def $5, $d, 1, BLUES_HOUSE
+	warp_def $b, $c, 1, OAKS_LAB
 
 .XYTriggers:
 	db 0
@@ -89,5 +89,5 @@ PalletTown_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 12, 7, OW_DOWN | $2, $22, -1, -1, $0, 0, TeacherScript_0x1ac6d5, -1
-	person_event SPRITE_FISHER, 18, 16, OW_UP | $1, $2, -1, -1, (PAL_OW_GREEN << 4) | $80, 0, FisherScript_0x1ac6d8, -1
+	person_event SPRITE_TEACHER, 12, 7, $2, 2, 2, -1, -1, 0, 0, 0, TeacherScript_0x1ac6d5, -1
+	person_event SPRITE_FISHER, 18, 16, $5, 0, 2, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x1ac6d8, -1
