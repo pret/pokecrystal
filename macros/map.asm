@@ -1,12 +1,5 @@
 map: MACRO
-; This is a silly hack to get around an rgbds bug.
-
-; Ideally:
 	db GROUP_\1, MAP_\1
-
-; \1\@  EQUS "GROUP_\1"
-; \1\@_2 EQUS "MAP_\1"
-	; db \1\@, \1\@_2
 ENDM
 
 roam_map: MACRO

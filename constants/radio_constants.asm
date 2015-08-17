@@ -1,0 +1,18 @@
+	const_def
+	const OAKS_POKEMON_TALK
+	const POKEDEX_SHOW
+	const POKEMON_MUSIC
+	const LUCKY_CHANNEL
+	const BUENAS_PASSWORD
+	const PLACES_AND_PEOPLE
+	const LETS_ALL_SING
+	const ROCKET_RADIO
+	const POKE_FLUTE_RADIO
+	const UNOWN_RADIO
+	const EVOLUTION_RADIO
+
+	const_def
+	const BUENA_MON
+	const BUENA_ITEM
+	const BUENA_MOVE
+	const BUENA_STRING
