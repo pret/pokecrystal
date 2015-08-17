@@ -611,9 +611,9 @@ TryObjectEvent: ; 969b5
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
-	ld [$ffe0], a
+	ld [hLastTalked], a
 
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	call GetMapObject
 	ld hl, MAPOBJECT_COLOR
 	add hl, bc
@@ -1094,7 +1094,7 @@ WarpToNewMapScript: ; 96c34
 FallIntoMapScript: ; 96c38
 	newloadmap $f6
 	playsound SFX_KINESIS
-	applymovement $0, MovementData_0x96c48
+	applymovement PLAYER, MovementData_0x96c48
 	playsound SFX_STRENGTH
 	scall UnknownScript_0x96c4a
 	end

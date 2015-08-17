@@ -18,7 +18,7 @@ UnknownScript_0x9f420:
 	end
 
 UnknownScript_0x9f421:
-	applymovement $0, MovementData_0x9e58c
+	applymovement PLAYER, MovementData_0x9e58c
 UnknownScript_0x9f425:
 	writebyte $2
 	special Function170b44
@@ -40,7 +40,7 @@ UnknownScript_0x9f425:
 	warpsound
 	disappear $2
 	applymovement $3, MovementData_0x9e59c
-	applymovement $0, MovementData_0x9e5a7
+	applymovement PLAYER, MovementData_0x9e5a7
 	loadfont
 	writetext UnknownText_0x9ee92
 	closetext
@@ -57,7 +57,7 @@ UnknownScript_0x9f425:
 	iffalse UnknownScript_0x9f483
 UnknownScript_0x9f477:
 	loadmovesprites
-	applymovement $0, MovementData_0x9e5a9
+	applymovement PLAYER, MovementData_0x9e5a9
 	applymovement $3, MovementData_0x9e5a1
 	jump UnknownScript_0x9f425
 

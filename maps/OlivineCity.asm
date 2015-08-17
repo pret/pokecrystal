@@ -23,8 +23,8 @@ OlivineCity_MapScriptHeader:
 	return
 
 UnknownScript_0x1a8833:
-	spriteface $0, LEFT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, LEFT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_ENTER_DOOR
@@ -36,8 +36,8 @@ UnknownScript_0x1a8833:
 	writetext UnknownText_0x1a88fa
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x1a88f4
-	spriteface $0, RIGHT
+	applymovement PLAYER, MovementData_0x1a88f4
+	spriteface PLAYER, RIGHT
 	applymovement $5, MovementData_0x1a88db
 	dotrigger $1
 	disappear $5
@@ -47,8 +47,8 @@ UnknownScript_0x1a8833:
 	end
 
 UnknownScript_0x1a886b:
-	spriteface $0, LEFT
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, LEFT
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	pause 15
 	playsound SFX_ENTER_DOOR
@@ -60,8 +60,8 @@ UnknownScript_0x1a886b:
 	writetext UnknownText_0x1a88fa
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x1a88f7
-	spriteface $0, RIGHT
+	applymovement PLAYER, MovementData_0x1a88f7
+	spriteface PLAYER, RIGHT
 	applymovement $5, MovementData_0x1a88e8
 	disappear $5
 	dotrigger $1

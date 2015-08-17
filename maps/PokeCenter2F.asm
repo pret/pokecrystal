@@ -164,7 +164,7 @@ LinkReceptionistScript_Trade:
 
 BattleTradeMobile_WalkIn:
 	applymovement2 MovementData_0x192cce
-	applymovement $0, MovementData_0x192ce7
+	applymovement PLAYER, MovementData_0x192ce7
 	end
 
 LinkReceptionistScript_Battle:
@@ -385,7 +385,7 @@ Script_LeftMobileTradeRoom:
 
 Script_WalkOutOfMobileTradeRoom:
 	applymovement $2, MovementData_0x192d0b
-	applymovement $0, MovementData_0x192d0f
+	applymovement PLAYER, MovementData_0x192d0f
 	applymovement $2, MovementData_0x192d14
 	end
 
@@ -405,7 +405,7 @@ Script_LeftMobileBattleRoom:
 
 Script_WalkOutOfMobileBattleRoom:
 	applymovement $3, MovementData_0x192d0b
-	applymovement $0, MovementData_0x192d0f
+	applymovement PLAYER, MovementData_0x192d0f
 	applymovement $3, MovementData_0x192d14
 	end
 
@@ -413,56 +413,56 @@ PokeCenter2F_CheckGender:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Female
 	applymovement2 MovementData_0x192cca
-	applymovement $0, MovementData_0x192cde
+	applymovement PLAYER, MovementData_0x192cde
 	end
 
 .Female:
 	applymovement2 MovementData_0x192cd8
-	applymovement $0, MovementData_0x192ce2
+	applymovement PLAYER, MovementData_0x192ce2
 	loadfont
 	writetext Text_OhPleaseWait
 	closetext
 	loadmovesprites
 	applymovement2 MovementData_0x192cdc
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	loadfont
 	writetext Text_ChangeTheLook
 	closetext
 	loadmovesprites
 	playsound SFX_TINGLE
-	applymovement $0, MovementData_0x192d17
+	applymovement PLAYER, MovementData_0x192d17
 	writebyte $80
 	special Functionc225
-	applymovement $0, MovementData_0x192d1c
+	applymovement PLAYER, MovementData_0x192d1c
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special Special_ReplaceKrisSprite
 	loadfont
 	writetext Text_LikeTheLook
 	closetext
 	loadmovesprites
-	showemote EMOTE_SHOCK, $0, 15
-	applymovement $0, MovementData_0x192ce5
+	showemote EMOTE_SHOCK, PLAYER, 15
+	applymovement PLAYER, MovementData_0x192ce5
 	end
 
 Script_CleanUpFemaleFlagAfterTrade:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
 	applymovement $2, MovementData_0x192d04
-	applymovement $0, MovementData_0x192cf5
+	applymovement PLAYER, MovementData_0x192cf5
 	applymovement $2, MovementData_0x192cfe
 	end
 
 .Female:
 	applymovement $2, MovementData_0x192d04
-	applymovement $0, MovementData_0x192d28
+	applymovement PLAYER, MovementData_0x192d28
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
-	applymovement $0, MovementData_0x192d17
+	applymovement PLAYER, MovementData_0x192d17
 	writebyte $90
 	special Functionc225
-	applymovement $0, MovementData_0x192d1c
+	applymovement PLAYER, MovementData_0x192d1c
 	special Special_ReplaceKrisSprite
-	applymovement $0, MovementData_0x192d2a
+	applymovement PLAYER, MovementData_0x192d2a
 	applymovement $2, MovementData_0x192cfe
 	end
 
@@ -470,21 +470,21 @@ Script_CleanUpFemaleFlagAfterBattle:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
 	applymovement $3, MovementData_0x192d04
-	applymovement $0, MovementData_0x192cf5
+	applymovement PLAYER, MovementData_0x192cf5
 	applymovement $3, MovementData_0x192cfe
 	end
 
 .Female:
 	applymovement $3, MovementData_0x192d04
-	applymovement $0, MovementData_0x192d28
+	applymovement PLAYER, MovementData_0x192d28
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
-	applymovement $0, MovementData_0x192d17
+	applymovement PLAYER, MovementData_0x192d17
 	writebyte $90
 	special Functionc225
-	applymovement $0, MovementData_0x192d1c
+	applymovement PLAYER, MovementData_0x192d1c
 	special Special_ReplaceKrisSprite
-	applymovement $0, MovementData_0x192d2a
+	applymovement PLAYER, MovementData_0x192d2a
 	applymovement $3, MovementData_0x192cfe
 	end
 
@@ -495,17 +495,17 @@ TimeCapsuleScript_CheckPlayerGender:
 	if_equal LEFT, .MaleFacingLeft
 	if_equal RIGHT, .MaleFacingRight
 	applymovement2 MovementData_0x192cd2
-	applymovement $0, MovementData_0x192cec
+	applymovement PLAYER, MovementData_0x192cec
 	end
 
 .MaleFacingLeft:
 	applymovement2 MovementData_0x192cd2
-	applymovement $0, MovementData_0x192cef
+	applymovement PLAYER, MovementData_0x192cef
 	end
 
 .MaleFacingRight:
 	applymovement2 MovementData_0x192cd5
-	applymovement $0, MovementData_0x192cf2
+	applymovement PLAYER, MovementData_0x192cf2
 	end
 
 .Female:
@@ -513,17 +513,17 @@ TimeCapsuleScript_CheckPlayerGender:
 	if_equal RIGHT, .FemaleFacingRight
 	if_equal LEFT, .FemaleFacingLeft
 	applymovement2 MovementData_0x192d33
-	applymovement $0, MovementData_0x192d2d
+	applymovement PLAYER, MovementData_0x192d2d
 	jump .FemaleContinue
 
 .FemaleFacingRight:
 	applymovement2 MovementData_0x192d36
-	applymovement $0, MovementData_0x192d2f
+	applymovement PLAYER, MovementData_0x192d2f
 	jump .FemaleContinue
 
 .FemaleFacingLeft:
 	applymovement2 MovementData_0x192d33
-	applymovement $0, MovementData_0x192d31
+	applymovement PLAYER, MovementData_0x192d31
 .FemaleContinue:
 	loadfont
 	writetext Text_OhPleaseWait
@@ -531,26 +531,26 @@ TimeCapsuleScript_CheckPlayerGender:
 	loadmovesprites
 	checkcode VAR_FACING
 	if_not_equal UP, .FemaleChangeApperance
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 .FemaleChangeApperance:
 	loadfont
 	writetext Text_ChangeTheLook
 	closetext
 	loadmovesprites
 	playsound SFX_TINGLE
-	applymovement $0, MovementData_0x192d17
+	applymovement PLAYER, MovementData_0x192d17
 	writebyte $80
 	special Functionc225
-	applymovement $0, MovementData_0x192d22
-	faceperson $0, $4
+	applymovement PLAYER, MovementData_0x192d22
+	faceperson PLAYER, $4
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special Special_ReplaceKrisSprite
 	loadfont
 	writetext Text_LikeTheLook
 	closetext
 	loadmovesprites
-	showemote EMOTE_SHOCK, $0, 15
-	applymovement $0, MovementData_0x192d2d
+	showemote EMOTE_SHOCK, PLAYER, 15
+	applymovement PLAYER, MovementData_0x192d2d
 	end
 
 Script_LeftTimeCapsule:
@@ -558,21 +558,21 @@ Script_LeftTimeCapsule:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
 	applymovement $4, MovementData_0x192d08
-	applymovement $0, MovementData_0x192cf9
+	applymovement PLAYER, MovementData_0x192cf9
 	applymovement $4, MovementData_0x192d01
 	jump .Done
 
 .Female:
 	applymovement $4, MovementData_0x192d08
-	applymovement $0, MovementData_0x192cfc
+	applymovement PLAYER, MovementData_0x192cfc
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
-	applymovement $0, MovementData_0x192d17
+	applymovement PLAYER, MovementData_0x192d17
 	writebyte $90
 	special Functionc225
-	applymovement $0, MovementData_0x192d1c
+	applymovement PLAYER, MovementData_0x192d1c
 	special Special_ReplaceKrisSprite
-	applymovement $0, MovementData_0x192cfc
+	applymovement PLAYER, MovementData_0x192cfc
 	applymovement $4, MovementData_0x192d01
 .Done:
 	dotrigger $0

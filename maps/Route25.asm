@@ -31,9 +31,9 @@ UnknownScript_0x19eea0:
 	writetext UnknownText_0x19f006
 	closetext
 	loadmovesprites
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	applymovement $2, MovementData_0x19effa
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	applymovement $2, MovementData_0x19f000
 	disappear $2
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
@@ -57,9 +57,9 @@ UnknownScript_0x19eee0:
 	writetext UnknownText_0x19f006
 	closetext
 	loadmovesprites
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	applymovement $2, MovementData_0x19effd
-	spriteface $0, LEFT
+	spriteface PLAYER, LEFT
 	applymovement $2, MovementData_0x19f000
 	disappear $2
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM

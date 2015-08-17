@@ -74,7 +74,7 @@ Executivef1Script:
 	end
 
 UnknownScript_0x6006e:
-	applymovement $0, MovementData_0x60125
+	applymovement PLAYER, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, RIGHT
 	loadfont
@@ -113,7 +113,7 @@ UnknownScript_0x6006e:
 	moveperson $2, $c, $0
 	appear $2
 	applymovement $2, MovementData_0x6010f
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x605b2
 	keeptextopen

@@ -53,7 +53,7 @@ UnknownScript_0x185c25:
 	pause 15
 	spriteface $4, RIGHT
 	pause 15
-	applymovement $0, MovementData_0x185ccd
+	applymovement PLAYER, MovementData_0x185ccd
 	applymovement $4, MovementData_0x185ccf
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
@@ -101,13 +101,13 @@ UnknownScript_0x185c80:
 	special Functionc48f
 	pause 15
 	earthquake 50
-	showemote EMOTE_SHOCK, $0, 15
+	showemote EMOTE_SHOCK, PLAYER, 15
 	playsound SFX_ENTER_DOOR
 	waitbutton
 	changeblock $a, $8, $25
 	reloadmappart
 	pause 15
-	applymovement $0, MovementData_0x185cd1
+	applymovement PLAYER, MovementData_0x185cd1
 	playsound SFX_KINESIS
 	showemote EMOTE_SHOCK, $4, 20
 	loadfont

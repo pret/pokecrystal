@@ -30,13 +30,13 @@ ArthurCallback:
 	return
 
 UnknownScript_0x19401b:
-	showemote EMOTE_SHOCK, $0, 15
+	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	applymovement $a, MovementData_0x194262
 	disappear $a
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

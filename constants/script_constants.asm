@@ -1,4 +1,6 @@
 ; script vars
+PLAYER      EQU  0
+LAST_TALKED EQU -2
 
 	const_def
 	const VAR_STRINGBUFFER2

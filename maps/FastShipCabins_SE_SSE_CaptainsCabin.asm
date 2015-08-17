@@ -38,10 +38,10 @@ TwinScript_0x75ebb:
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear $5
-	applymovement $0, MovementData_0x76004
+	applymovement PLAYER, MovementData_0x76004
 	moveperson $4, $3, $13
 	appear $4
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	spriteface $4, UP
 	special Special_FadeInQuickly
 	spriteface $3, DOWN

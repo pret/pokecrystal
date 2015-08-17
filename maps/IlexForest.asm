@@ -448,11 +448,11 @@ UnknownScript_0x6ee42:
 	closetext
 	loadmovesprites
 	pause 20
-	showemote EMOTE_SHOCK, $0, 20
+	showemote EMOTE_SHOCK, PLAYER, 20
 	special Functionc48f
-	applymovement $0, MovementData_0x6ef58
+	applymovement PLAYER, MovementData_0x6ef58
 	pause 30
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	pause 20
 	clearflag ENGINE_HAVE_EXAMINED_GS_BALL
 	special Function4989a

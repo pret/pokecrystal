@@ -23,7 +23,7 @@ UnknownScript_0x196e56:
 	writetext UnknownText_0x196f66
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x196f5a
+	applymovement PLAYER, MovementData_0x196f5a
 	loadfont
 	writetext UnknownText_0x196fa8
 	keeptextopen
@@ -84,7 +84,7 @@ UnknownScript_0x196ec7:
 UnknownScript_0x196ec9:
 	playmusic MUSIC_PROF_OAK
 	applymovement $3, MovementData_0x196f5d
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x197185
 	keeptextopen
@@ -96,14 +96,14 @@ UnknownScript_0x196ec9:
 	writetext UnknownText_0x1973de
 	closetext
 	loadmovesprites
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	applymovement $3, MovementData_0x196f61
 	playsound SFX_EXIT_BUILDING
 	disappear $3
 	waitbutton
 	special RestartMapMusic
 	pause 15
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x1970ed
 	closetext

@@ -44,7 +44,7 @@ KurtScript_0x18e178:
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
 	if_equal UP, .RunAround
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e466
 	playsound SFX_EXIT_BUILDING
@@ -54,7 +54,7 @@ KurtScript_0x18e178:
 	end
 
 .RunAround:
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e46c
 	playsound SFX_EXIT_BUILDING
@@ -292,13 +292,13 @@ KurtScript_0x18e178:
 	showemote EMOTE_SHOCK, $2, 30
 	checkcode VAR_FACING
 	if_equal UP, .GSBallRunAround
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e466
 	jump .KurtHasLeftTheBuilding
 
 .GSBallRunAround:
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement $2, MovementData_0x18e46c
 .KurtHasLeftTheBuilding:

@@ -16,7 +16,7 @@ UnknownScript_0x1a9217:
 	end
 
 UnknownScript_0x1a9218:
-	showemote EMOTE_SHOCK, $0, 15
+	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
 	applymovement $a, MovementData_0x1a9356

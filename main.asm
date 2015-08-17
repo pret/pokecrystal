@@ -3671,14 +3671,14 @@ Function830d: ; 830d
 ; 831e
 
 Function831e: ; 831e
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	call Function1b1e
 	ld a, $3e
 	call Function1b3f
 	ld a, [wd03f]
 	dec a
 	jr z, Function833b
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	ld b, a
 	ld c, 0
 	ld d, 1
@@ -5009,7 +5009,7 @@ UsedSurfScript: ; c986
 	special PlayMapMusic
 ; step into the water
 	special Function8379 ; (slow_step_x, step_end)
-	applymovement $0, MovementBuffer ; PLAYER, MovementBuffer
+	applymovement PLAYER, MovementBuffer ; PLAYER, MovementBuffer
 	end
 ; c9a2
 
@@ -5301,7 +5301,7 @@ Script_UsedWaterfall: ; 0xcb20
 	loadmovesprites
 	playsound SFX_BUBBLEBEAM
 .loop
-	applymovement $0, WaterfallStep
+	applymovement PLAYER, WaterfallStep
 	callasm CheckContinueWaterfall
 	iffalse .loop
 	end
@@ -5497,13 +5497,13 @@ UsedDigOrEscapeRopeScript: ; 0xcc3c
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
-	applymovement $0, MovementData_0xcc59
+	applymovement PLAYER, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
 	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, $0
 	newloadmap $f5
 	playsound SFX_WARP_FROM
-	applymovement $0, MovementData_0xcc5d
+	applymovement PLAYER, MovementData_0xcc5d
 	end
 ; 0xcc59
 
@@ -5595,13 +5595,13 @@ Script_UsedTeleport: ; 0xccbb
 	reloadmappart
 	loadmovesprites
 	playsound SFX_WARP_TO
-	applymovement $0, MovementData_0xcce1
+	applymovement PLAYER, MovementData_0xcce1
 	farscall UnknownScript_0x122c1
 	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, $0
 	newloadmap $f4
 	playsound SFX_WARP_FROM
-	applymovement $0, MovementData_0xcce3
+	applymovement PLAYER, MovementData_0xcce3
 	end
 ; 0xcce1
 
@@ -6057,7 +6057,7 @@ GetFacingObject: ; cf0d
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
-	ld [$ffe0], a
+	ld [hLastTalked], a
 	call GetMapObject
 	ld hl, MAPOBJECT_FACING
 	add hl, bc
@@ -6264,16 +6264,16 @@ Script_GotABite: ; 0xd035
 	scall Script_FishCastRod
 	callasm Fishing_CheckFacingUp
 	iffalse .FacingUp
-	applymovement $0, MovementData_0xd062
+	applymovement PLAYER, MovementData_0xd062
 	jump .FightTheHookedPokemon
 ; 0xd046
 
 .FacingUp: ; 0xd046
-	applymovement $0, MovementData_0xd05c
+	applymovement PLAYER, MovementData_0xd05c
 
 .FightTheHookedPokemon: ; 0xd04a
 	pause 40
-	applymovement $0, MovementData_0xd069
+	applymovement PLAYER, MovementData_0xd069
 	writetext UnknownText_0xd0a4
 	callasm PutTheRodAway
 	loadmovesprites
@@ -6328,7 +6328,7 @@ Script_FishCastRod: ; 0xd07c
 	loademote $9
 	callasm Functionb84b3
 	loademote $0
-	applymovement $0, MovementData_0xd093
+	applymovement PLAYER, MovementData_0xd093
 	pause 40
 	end
 ; 0xd093
@@ -12317,7 +12317,7 @@ UnknownScript_0x122c1: ; 0x122c1
 FindItemInBallScript:: ; 0x122ce
 	callasm Function122f8
 	iffalse NoRoomForItemInBallScript
-	disappear $fe
+	disappear LAST_TALKED
 	loadfont
 	writetext UnknownText_0x122ee
 	playsound SFX_ITEM
@@ -12729,22 +12729,22 @@ Script_ForcedMovement:: ; 0x1253d
 ; 0x12550
 
 UnknownScript_0x12550: ; 0x12550
-	applymovement $0, MovementData_0x12564
+	applymovement PLAYER, MovementData_0x12564
 	end
 ; 0x12555
 
 UnknownScript_0x12555: ; 0x12555
-	applymovement $0, MovementData_0x1256b
+	applymovement PLAYER, MovementData_0x1256b
 	end
 ; 0x1255a
 
 UnknownScript_0x1255a: ; 0x1255a
-	applymovement $0, MovementData_0x12572
+	applymovement PLAYER, MovementData_0x12572
 	end
 ; 0x1255f
 
 UnknownScript_0x1255f: ; 0x1255f
-	applymovement $0, MovementData_0x12579
+	applymovement PLAYER, MovementData_0x12579
 	end
 ; 0x12564
 
@@ -25236,7 +25236,7 @@ MenuDataHeader_0x24547: ; 0x24547
 Function2454f: ; 2454f
 	ld hl, wd81e
 	xor a
-	ld bc, $10
+	ld bc, NUM_OBJECTS
 	call ByteFill
 	nop
 	ld bc, MapObjects
@@ -25254,13 +25254,13 @@ Function2454f: ; 2454f
 	ld [de], a
 	inc de
 	pop bc
-	ld hl, $10
+	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop af
 	inc a
-	cp $10
+	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
 

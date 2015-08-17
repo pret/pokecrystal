@@ -12,7 +12,7 @@ UnknownScript_0x9b38a:
 	end
 
 UnknownScript_0x9b38b:
-	spriteface $0, UP
+	spriteface PLAYER, UP
 	loadfont
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue UnknownScript_0x9b3f7
@@ -35,7 +35,7 @@ UnknownScript_0x9b3aa:
 	writetext UnknownText_0x9b4a2
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x9b401
+	applymovement PLAYER, MovementData_0x9b401
 	loadfont
 	writetext UnknownText_0x9b587
 	closetext
@@ -55,21 +55,21 @@ UnknownScript_0x9b3dc:
 	startbattle
 	returnafterbattle
 UnknownScript_0x9b3e8:
-	applymovement $0, MovementData_0x9b40f
+	applymovement PLAYER, MovementData_0x9b40f
 	end
 
 UnknownScript_0x9b3ed:
 	writetext UnknownText_0x9b4d6
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x9b41d
+	applymovement PLAYER, MovementData_0x9b41d
 	end
 
 UnknownScript_0x9b3f7:
 	writetext UnknownText_0x9b51d
 	closetext
 	loadmovesprites
-	applymovement $0, MovementData_0x9b41d
+	applymovement PLAYER, MovementData_0x9b41d
 	end
 
 MovementData_0x9b401:

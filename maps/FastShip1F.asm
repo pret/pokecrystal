@@ -22,7 +22,7 @@ FastShip1F_MapScriptHeader:
 
 .PriorityJump2:
 	applymovement $2, MovementData_0x7520e
-	applymovement $0, MovementData_0x75217
+	applymovement PLAYER, MovementData_0x75217
 	applymovement $2, MovementData_0x75211
 	pause 30
 	playsound SFX_BOAT
@@ -88,12 +88,12 @@ SailorScript_0x75160:
 	checkcode VAR_FACING
 	if_equal RIGHT, .YouAreFacingRight
 	applymovement $2, MovementData_0x7520e
-	applymovement $0, MovementData_0x75235
+	applymovement PLAYER, MovementData_0x75235
 	end
 
 .YouAreFacingRight:
 	applymovement $2, MovementData_0x75214
-	applymovement $0, MovementData_0x75238
+	applymovement PLAYER, MovementData_0x75238
 	end
 
 SailorScript_0x751d0:
@@ -122,13 +122,13 @@ UnknownScript_0x751eb:
 	appear $5
 	applymovement $5, MovementData_0x7521b
 	playsound SFX_TACKLE
-	applymovement $0, MovementData_0x7522e
+	applymovement PLAYER, MovementData_0x7522e
 	applymovement $5, MovementData_0x75220
 	loadfont
 	writetext UnknownText_0x75412
 	closetext
 	loadmovesprites
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	applymovement $5, MovementData_0x75222
 	disappear $5
 	dotrigger $0

@@ -16,8 +16,8 @@ UnknownScript_0x184946:
 	end
 
 UnknownScript_0x184947:
-	spriteface $0, UP
-	showemote EMOTE_SHOCK, $0, 15
+	spriteface PLAYER, UP
+	showemote EMOTE_SHOCK, PLAYER, 15
 	special Functionc48f
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
@@ -26,7 +26,7 @@ UnknownScript_0x184947:
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
 	earthquake 79
-	applymovement $0, MovementData_0x184a1d
+	applymovement PLAYER, MovementData_0x184a1d
 	applymovement $8, MovementData_0x184a22
 	loadfont
 	writetext UnknownText_0x184a27

@@ -51,12 +51,12 @@ SageScript_0x985a0:
 
 UnknownScript_0x985a3:
 	spriteface $4, UP
-	spriteface $0, DOWN
+	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, $4, 20
-	follow $0, $4
-	applymovement $0, MovementData_0x98622
+	follow PLAYER, $4
+	applymovement PLAYER, MovementData_0x98622
 	stopfollow
-	spriteface $0, RIGHT
+	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x98712
 	closetext

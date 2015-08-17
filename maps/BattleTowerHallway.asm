@@ -17,7 +17,7 @@ UnknownScript_0x9f5c0:
 	end
 
 UnknownScript_0x9f5c1:
-	follow $2, $0
+	follow $2, PLAYER
 	callasm Function_0x9f5cb
 	jump UnknownScript_0x9f5dc
 
@@ -65,13 +65,13 @@ UnknownScript_0x9f618:
 	jump UnknownScript_0x9f61f
 
 UnknownScript_0x9f61f:
-	faceperson $0, $2
+	faceperson PLAYER, $2
 	loadfont
 	writetext UnknownText_0x9ec26
 	closetext
 	loadmovesprites
 	stopfollow
-	applymovement $0, MovementData_0x9e576
+	applymovement PLAYER, MovementData_0x9e576
 	warpcheck
 	end
 
