@@ -3060,7 +3060,7 @@ Function17e367: ; 17e367
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function14c10
+	callba SaveGameData_
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3086,7 +3086,7 @@ Function17e395: ; 17e395
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function14e0c
+	callba SaveBox
 	pop af
 	ld [rSVBK], a
 	ret

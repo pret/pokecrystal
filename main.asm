@@ -209,7 +209,7 @@ _ResetWRAM: ; 5bae
 
 	call SetDefaultBoxNames
 
-	ld a, 1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 	call InitList
@@ -239,9 +239,9 @@ _ResetWRAM: ; 5bae
 	ld [wRoamMon2MapNumber], a
 	ld [wRoamMon3MapNumber], a
 
-	ld a, 0
+	ld a, BANK(s0_abe2)
 	call GetSRAMBank
-	ld hl, $abe2
+	ld hl, s0_abe2
 	xor a
 	ld [hli], a
 	dec a
@@ -28832,7 +28832,7 @@ Function28177: ; 28177
 	ld [wc2d7], a
 	pop af
 	ld [Options], a
-	callba Function1500c
+	callba LoadPokemonData
 	jp Function28b22
 
 .asm_283a9
@@ -34330,12 +34330,12 @@ Function2c642: ; 2c642 (b:4642)
 	call Function2c6ac
 	ld [de], a
 	inc de
-	ld a, $0
+	ld a, BANK(s0_abe4)
 	call GetSRAMBank
-	ld a, [$abe4]
+	ld a, [s0_abe4]
 	ld [de], a
 	inc de
-	ld a, [$abe5]
+	ld a, [s0_abe4 + 1]
 	ld [de], a
 	ld a, $14
 	ld [wca00], a
@@ -35637,9 +35637,9 @@ endr
 	jp Function3991b
 
 .cal2
-	ld a, $0
+	ld a, BANK(sMysteryGiftTrainer)
 	call GetSRAMBank
-	ld de, $ac0a
+	ld de, sMysteryGiftTrainer
 	call TrainerType2
 	call CloseSRAM
 	jr .done
@@ -37488,47 +37488,48 @@ GivePokeItem:: ; 446cc
 	jp CloseSRAM
 ; 44725
 
+
 Function44725: ; 44725
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
-	ld hl, $a600
-	ld de, $a71a
-	ld bc, $011a
+	ld hl, s0_a600
+	ld de, s0_a71a
+	ld bc, $11a
 	call CopyBytes
-	ld hl, $a834
-	ld de, $aa0b
-	ld bc, $01d7
+	ld hl, s0_a834
+	ld de, s0_aa0b
+	ld bc, $1d7
 	call CopyBytes
 	jp CloseSRAM
 ; 44745
 
-
 Function44745: ; 44745 (11:4745)
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
-	ld hl, $a71a
-	ld de, $a600
+	ld hl, s0_a71a
+	ld de, s0_a600
 	ld bc, $11a
 	call CopyBytes
-	ld hl, $aa0b
-	ld de, $a834
+	ld hl, s0_aa0b
+	ld de, s0_a834
 	ld bc, $1d7
 	call CopyBytes
 	jp CloseSRAM
 
 Function44765: ; 44765 (11:4765)
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	xor a
-	ld hl, $a600
+	ld hl, s0_a600
 	ld bc, $11a
 	call ByteFill
 	xor a
-	ld hl, $a834
+	ld hl, s0_a834
 	ld bc, $1d7
 	call ByteFill
 	jp CloseSRAM
 ; 44781 (11:4781)
+
 
 Function44781: ; 44781
 	ld a, [PartyCount]
@@ -54451,15 +54452,17 @@ HallOfFame:: ; 0x8640e
 	set 6, [hl] ; hall of fame
 
 	callba Function14da0
+
 	ld hl, wd95e
 	ld a, [hl]
 	cp 200
-	jr nc, .ok ; 0x86433 $1
+	jr nc, .ok
 	inc [hl]
 .ok
-	callba Function14b85
-	call Function8653f
-	callba Function14b5f
+	callba SaveGameData
+	call GetHallOfFameParty
+	callba AddHallOfFameEntry
+
 	xor a
 	ld [wc2cd], a
 	call Function864c3
@@ -54565,7 +54568,7 @@ Function8650c: ; 8650c
 	decoord 6, 5
 	ld c, $6
 	predef Functiond066e
-	ld c, $3c
+	ld c, 60
 	call DelayFrames
 	and a
 	ret
@@ -54576,9 +54579,9 @@ String_8652c:
 ; 8653f
 
 
-Function8653f: ; 8653f
+GetHallOfFameParty: ; 8653f
 	ld hl, OverworldMap
-	ld bc, $0062
+	ld bc, HOF_LENGTH
 	xor a
 	call ByteFill
 	ld a, [wd95e]
@@ -54587,39 +54590,34 @@ Function8653f: ; 8653f
 	inc de
 	ld hl, PartySpecies
 	ld c, 0
-.asm_86556
+.next
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_865b1
+	jr z, .done
 	cp EGG
-	jr nz, .asm_86562
+	jr nz, .mon
 	inc c
-	jr .asm_86556
+	jr .next
 
-.asm_86562
+.mon
 	push hl
 	push de
 	push bc
+
 	ld a, c
-	ld hl, PartyMon1Species
+	ld hl, PartyMons
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld c, l
 	ld b, h
-	ld hl, $0000
+
+	ld hl, PartyMon1Species - PartyMon1
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld hl, $0006
-	add hl, bc
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	inc de
-	ld hl, $0015
+
+	ld hl, PartyMon1ID - PartyMon1
 	add hl, bc
 	ld a, [hli]
 	ld [de], a
@@ -54627,30 +54625,42 @@ Function8653f: ; 8653f
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld hl, $001f
+
+	ld hl, PartyMon1DVs - PartyMon1
+	add hl, bc
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc de
+
+	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
+
 	pop bc
 	push bc
 	ld a, c
 	ld hl, PartyMonNicknames
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call AddNTimes
-	ld bc, $000a
+	ld bc, PKMN_NAME_LENGTH - 1
 	call CopyBytes
+
 	pop bc
 	inc c
 	pop de
-	ld hl, $0010
+	ld hl, HOF_MON_LENGTH
 	add hl, de
 	ld e, l
 	ld d, h
 	pop hl
-	jr .asm_86556
+	jr .next
 
-.asm_865b1
+.done
 	ld a, $ff
 	ld [de], a
 	ret
@@ -82434,7 +82444,7 @@ Functione3267: ; e3267
 	call Functione3316
 	ld a, $1
 	ld [wc2cd], a
-	callba Function14b85
+	callba SaveGameData
 	xor a
 	ld [wc2cd], a
 	call Functione32fa
@@ -89618,7 +89628,7 @@ UnknownText_0x104a20: ; 104a20
 
 Function104a25: ; 104a25 (41:4a25)
 	call Function105106
-	ld a, [$abe5]
+	ld a, [s0_abe5]
 	cp $5
 	jp CloseSRAM
 
@@ -89628,9 +89638,9 @@ Function104a30: ; 104a30 (41:4a30)
 	ld b, a
 	ld a, [wc902]
 	ld c, a
-	ld a, [$abe5]
+	ld a, [s0_abe5]
 	ld d, a
-	ld hl, $abe6
+	ld hl, s0_abe6
 .asm_104a42
 	ld a, d
 	and a
@@ -89652,10 +89662,10 @@ Function104a30: ; 104a30 (41:4a30)
 
 Function104a56: ; 104a56 (41:4a56)
 	call Function105106
-	ld hl, $abe5
+	ld hl, s0_abe5
 	ld a, [hl]
 	inc [hl]
-	ld hl, $abe6
+	ld hl, s0_abe6
 	ld e, a
 	ld d, $0
 rept 2
@@ -89670,9 +89680,9 @@ endr
 Function104a71: ; 104a71 (41:4a71)
 	call Function105106
 	ld a, $1
-	ld [$abfd], a
+	ld [s0_abfd], a
 	ld hl, wc903
-	ld de, $abfe
+	ld de, s0_abfe
 	ld bc, $b
 	call CopyBytes
 	ld a, $1
@@ -90538,7 +90548,7 @@ Function105069: ; 105069 (41:5069)
 	call Function105106
 	ld d, $0
 	ld b, $2
-	ld hl, $abf0
+	ld hl, s0_abf0
 	predef_id FlagPredef
 	push hl
 	push bc
@@ -90563,7 +90573,7 @@ Function105091: ; 105091 (41:5091)
 	push bc
 	ld d, $0
 	ld b, $2
-	ld hl, $abf0
+	ld hl, s0_abf0
 	predef FlagPredef
 	ld a, c
 	and a
@@ -90575,31 +90585,29 @@ Function105091: ; 105091 (41:5091)
 .asm_1050b0
 	inc c
 	ld a, c
-	cp $2b
+	cp $2a + 1
 	jr c, .asm_105096
 	jp CloseSRAM
 
 Special_UnlockMysteryGift: ; 1050b9
 	call Function105106
-	ld hl, $abe3
+	ld hl, s0_abe3
 	ld a, [hl]
 	inc a
 	jr nz, .ok
 	ld [hld], a
 	ld [hl], a
-
 .ok
 	jp CloseSRAM
 ; 1050c8
 
 Function1050c8: ; 1050c8
 	call Function105106
-	ld a, [$abe5]
+	ld a, [s0_abe5]
 	cp $ff
 	jr z, .asm_1050d6
 	xor a
-	ld [$abe5], a
-
+	ld [s0_abe5], a
 .asm_1050d6
 	jp CloseSRAM
 ; 1050d9
@@ -90607,8 +90615,8 @@ Function1050c8: ; 1050c8
 
 Function1050d9: ; 1050d9
 	call Function105106
-	ld hl, $abe2
-	ld de, $abe4
+	ld hl, s0_abe2
+	ld de, s0_abe4
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -90620,8 +90628,8 @@ Function1050d9: ; 1050d9
 
 Function1050ea: ; 1050ea (41:50ea)
 	call Function105106
-	ld hl, $abe4
-	ld de, $abe2
+	ld hl, s0_abe4
+	ld de, s0_abe2
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -90641,7 +90649,7 @@ Function1050fb: ; 1050fb (41:50fb)
 
 
 Function105106: ; 105106
-	ld a, $0
+	ld a, BANK(s0_abe4)
 	jp GetSRAMBank
 ; 10510b
 

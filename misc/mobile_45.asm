@@ -16886,7 +16886,7 @@ Function11c1ca: ; 11c1ca
 	call EnableLCD
 	callba Function104061
 	callba Function8cf53
-	callba Function1500c
+	callba LoadPokemonData
 	callba Function40c30
 	ld a, [rSVBK]
 	push af
@@ -22846,7 +22846,7 @@ Function17024d: ; 17024d
 	call Function1702b7
 	call Function170bf7
 	predef StartBattle
-	callba Function1500c
+	callba LoadPokemonData
 	callba HealParty
 	ld a, [wd0ee]
 	ld [ScriptVar], a
@@ -23591,7 +23591,7 @@ Function170729: ; 170729 (5c:4729)
 	ret
 
 Function170737: ; 170737 (5c:4737)
-	callba SaveOptionsSelection
+	callba SaveOptions
 	ret
 
 Function17073e: ; 17073e (5c:473e)

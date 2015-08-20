@@ -401,7 +401,7 @@ Function1002c9: ; 1002c9
 	bit 0, [hl]
 	ret z
 	callba Function3f6d0
-	callba Function1500c
+	callba LoadPokemonData
 	ret
 ; 1002dc
 
@@ -4036,7 +4036,7 @@ Function101a4f: ; 101a4f
 	xor a
 	ld [wc2d7], a
 	callba Function3f6d0
-	callba Function1500c
+	callba LoadPokemonData
 	call Function1013c0
 	ld a, [wcd25]
 	inc a

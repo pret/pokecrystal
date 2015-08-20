@@ -26,10 +26,10 @@ Function14a58: ; 14a58
 	call SetWRAMStateForSave
 	callba Function14056
 	callba Function1050d9
-	call SavePartyData
+	call SavePokemonData
 	call Function14e13
-	call LoadSavedPartyData
-	call Function14e8b
+	call SaveBackupPokemonData
+	call SaveBackupChecksum
 	callba Function44725
 	callba Function1406a
 	call ClearWRAMStateAfterSave
@@ -48,11 +48,11 @@ Function14a83: ; 14a83 (5:4a83)
 	jr c, .refused
 	call SetWRAMStateForSave
 	call SavingDontTurnOffThePower
-	call Function14e0c
+	call SaveBox
 	pop de
 	ld a, e
 	ld [wCurBox], a
-	call Function15021
+	call LoadBox
 	call SavedTheGame
 	call ClearWRAMStateAfterSave
 	and a
@@ -76,11 +76,11 @@ Function14ab2: ; 14ab2
 Function14ac2: ; 14ac2
 	call SetWRAMStateForSave
 	push de
-	call Function14e0c
+	call SaveBox
 	pop de
 	ld a, e
 	ld [wCurBox], a
-	call Function15021
+	call LoadBox
 	call ClearWRAMStateAfterSave
 	ret
 ; 14ad5
@@ -88,7 +88,7 @@ Function14ac2: ; 14ac2
 Function14ad5: ; 14ad5
 	call SetWRAMStateForSave
 	push de
-	call Function14e0c
+	call SaveBox
 	pop de
 	ld a, e
 	ld [wCurBox], a
@@ -96,20 +96,20 @@ Function14ad5: ; 14ad5
 	ld [wcfcd], a
 	callba Function14056
 	callba Function1050d9
-	call Function14da9
-	call SaveOptionsSelection
+	call ValidateSave
+	call SaveOptions
 	call SavePlayerData
-	call SavePartyData
+	call SavePokemonData
 	call Function14e13
-	call Function14e2d
-	call LoadSavedOptions
-	call LoadSavedPlayerData
-	call LoadSavedPartyData
-	call Function14e8b
+	call ValidateBackupSave
+	call SaveBackupOptions
+	call SaveBackupPlayerData
+	call SaveBackupPokemonData
+	call SaveBackupChecksum
 	callba Function44725
 	callba Function106187
 	callba Function1406a
-	call Function15021
+	call LoadBox
 	call ClearWRAMStateAfterSave
 	ld de, SFX_SAVE
 	call PlaySFX
@@ -150,12 +150,12 @@ ClearWRAMStateAfterSave: ; 14b5a
 ; 14b5f
 
 
-Function14b5f: ; 14b5f
-	ld a, $1
+AddHallOfFameEntry: ; 14b5f
+	ld a, BANK(sHallOfFame)
 	call GetSRAMBank
-	ld hl, $bdd9
-	ld de, $be3b
-	ld bc, $0b1a
+	ld hl, sHallOfFame + HOF_LENGTH * (NUM_HOF_TEAMS - 1) - 1
+	ld de, sHallOfFame + HOF_LENGTH * NUM_HOF_TEAMS - 1
+	ld bc, HOF_LENGTH * (NUM_HOF_TEAMS - 1)
 .loop
 	ld a, [hld]
 	ld [de], a
@@ -165,28 +165,28 @@ Function14b5f: ; 14b5f
 	or b
 	jr nz, .loop
 	ld hl, OverworldMap
-	ld de, $b2c0
-	ld bc, 7 * 14
+	ld de, sHallOfFame
+	ld bc, HOF_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ret
 ; 14b85
 
-Function14b85: ; 14b85
-	call Function14c10
+SaveGameData: ; 14b85
+	call SaveGameData_
 	ret
 ; 14b89
 
 CheckForExistingSaveFile: ; 14b89
 	ld a, [wcfcd]
 	and a
-	jr z, .getridofpreviousplayersave
+	jr z, .erase
 	call Function14bcb
 	jr z, .yoursavefile
 	ld hl, UnknownText_0x15297
 	call SaveTheGame_yesorno
 	jr nz, .refused
-	jr .getridofpreviousplayersave
+	jr .erase
 
 .yoursavefile
 	ld hl, UnknownText_0x15292
@@ -194,8 +194,8 @@ CheckForExistingSaveFile: ; 14b89
 	jr nz, .refused
 	jr .ok
 
-.getridofpreviousplayersave
-	call GetRidOfPreviousPlayersSave
+.erase
+	call ErasePreviousSave
 
 .ok
 	and a
@@ -223,9 +223,9 @@ SaveTheGame_yesorno: ; 14baf
 ; 14bcb
 
 Function14bcb: ; 14bcb
-	ld a, $1
+	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, $a009
+	ld hl, sPlayerData + (PlayerID - wPlayerData)
 	ld a, [hli]
 	ld c, [hl]
 	ld b, a
@@ -241,7 +241,7 @@ Function14bcb: ; 14bcb
 _SavingDontTurnOffThePower: ; 14be3
 	call SavingDontTurnOffThePower
 SavedTheGame: ; 14be6
-	call Function14c10
+	call SaveGameData_
 	; wait 32 frames
 	ld c, $20
 	call DelayFrames
@@ -267,74 +267,77 @@ SavedTheGame: ; 14be6
 ; 14c10
 
 
-Function14c10: ; 14c10
+SaveGameData_: ; 14c10
 	ld a, 1
 	ld [wcfcd], a
 	callba Function14056
 	callba Function1050d9
-	call Function14da9
-	call SaveOptionsSelection
+	call ValidateSave
+	call SaveOptions
 	call SavePlayerData
-	call SavePartyData
-	call Function14e0c
+	call SavePokemonData
+	call SaveBox
 	call Function14e13
-	call Function14e2d
-	call LoadSavedOptions
-	call LoadSavedPlayerData
-	call LoadSavedPartyData
-	call Function14e8b
-	call Function14c6b
+	call ValidateBackupSave
+	call SaveBackupOptions
+	call SaveBackupPlayerData
+	call SaveBackupPokemonData
+	call SaveBackupChecksum
+	call UpdateStackTop
 	callba Function44725
 	callba Function106187
 	callba Function1406a
-	ld a, $1
+	ld a, BANK(s1_be45)
 	call GetSRAMBank
-	ld a, [$be45]
+	ld a, [s1_be45]
 	cp $4
-	jr nz, .asm_14c67
+	jr nz, .ok
 	xor a
-	ld [$be45], a
-
-.asm_14c67
+	ld [s1_be45], a
+.ok
 	call CloseSRAM
 	ret
 ; 14c6b
 
-Function14c6b: ; 14c6b
-	call Function14c90
-	ld a, $0
+UpdateStackTop: ; 14c6b
+; sStackTop appears to be unused.
+; It could have been used to debug stack overflow during saving.
+	call FindStackTop
+	ld a, BANK(sStackTop)
 	call GetSRAMBank
-	ld a, [$bf10]
+	ld a, [sStackTop + 0]
 	ld e, a
-	ld a, [$bf11]
+	ld a, [sStackTop + 1]
 	ld d, a
 	or e
-	jr z, .asm_14c84
+	jr z, .update
 	ld a, e
 	sub l
 	ld a, d
 	sbc h
-	jr c, .asm_14c8c
+	jr c, .done
 
-.asm_14c84
+.update
 	ld a, l
-	ld [$bf10], a
+	ld [sStackTop + 0], a
 	ld a, h
-	ld [$bf11], a
+	ld [sStackTop + 1], a
 
-.asm_14c8c
+.done
 	call CloseSRAM
 	ret
 ; 14c90
 
-Function14c90: ; 14c90
-	ld hl, wc000
-.asm_14c93
+FindStackTop: ; 14c90
+; Find the furthest point that sp has traversed to.
+; This is distinct from the current value of sp.
+	ld hl, Stack - $ff
+.loop
 	ld a, [hl]
 	or a
 	ret nz
 	inc hl
-	jr .asm_14c93
+	jr .loop
 ; 14c99
 
 SavingDontTurnOffThePower: ; 14c99
@@ -363,49 +366,49 @@ SavingDontTurnOffThePower: ; 14c99
 ; 14cbb
 
 
-GetRidOfPreviousPlayersSave: ; 14cbb
-	call Function151fb
-	call Function14d06
-	call Function14ce2
-	call Function14cf4
+ErasePreviousSave: ; 14cbb
+	call EraseBoxes
+	call EraseHallOfFame
+	call EraseLinkBattleStats
+	call EraseMysteryGift
 	call Function14d68
 	call Function14d5c
-	ld a, $0
+	ld a, BANK(sStackTop)
 	call GetSRAMBank
 	xor a
-	ld [$bf10], a
-	ld [$bf11], a
+	ld [sStackTop + 0], a
+	ld [sStackTop + 1], a
 	call CloseSRAM
 	ld a, $1
 	ld [wd4b4], a
 	ret
 ; 14ce2
 
-Function14ce2: ; 14ce2
-	ld a, $1
+EraseLinkBattleStats: ; 14ce2
+	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
-	ld hl, $b260
-	ld bc, $0060
+	ld hl, sLinkBattleStats
+	ld bc, sLinkBattleStatsEnd - sLinkBattleStats
 	xor a
 	call ByteFill
 	jp CloseSRAM
 ; 14cf4
 
-Function14cf4: ; 14cf4
-	ld a, $0
+EraseMysteryGift: ; 14cf4
+	ld a, BANK(s0_abe4)
 	call GetSRAMBank
-	ld hl, $abe4
-	ld bc, $004c
+	ld hl, s0_abe4
+	ld bc, s0_abe4End - s0_abe4
 	xor a
 	call ByteFill
 	jp CloseSRAM
 ; 14d06
 
-Function14d06: ; 14d06
-	ld a, $1
+EraseHallOfFame: ; 14d06
+	ld a, BANK(sHallOfFame)
 	call GetSRAMBank
-	ld hl, $b2c0
-	ld bc, $0b7c
+	ld hl, sHallOfFame
+	ld bc, sHallOfFameEnd - sHallOfFame
 	xor a
 	call ByteFill
 	jp CloseSRAM
@@ -434,10 +437,10 @@ Unknown_14d2c: ; 14d2c
 ; 14d5c
 
 Function14d5c: ; 14d5c
-	ld a, $1
+	ld a, BANK(s1_be45)
 	call GetSRAMBank
 	xor a
-	ld [$be45], a
+	ld [s1_be45], a
 	jp CloseSRAM
 ; 14d68
 
@@ -486,176 +489,175 @@ Function14da0: ; 14da0
 	ld a, [wd4b4]
 	and a
 	ret nz
-	call GetRidOfPreviousPlayersSave
+	call ErasePreviousSave
 	ret
 ; 14da9
 
-Function14da9: ; 14da9
-	ld a, $1
+ValidateSave: ; 14da9
+	ld a, BANK(s1_a008)
 	call GetSRAMBank
-	ld a, 99
-	ld [$a008], a
-	ld a, " "
-	ld [$ad0f], a
+	ld a, $63
+	ld [s1_a008], a
+	ld a, $7f
+	ld [s1_ad0f], a
 	jp CloseSRAM
 ; 14dbb
 
-SaveOptionsSelection: ; 14dbb
-; Copy Options to SRA1:a000
-	ld a, $1
+SaveOptions: ; 14dbb
+	ld a, BANK(sOptions)
 	call GetSRAMBank
 	ld hl, Options
-	ld de, $a000
+	ld de, sOptions
 	ld bc, OptionsEnd - Options
 	call CopyBytes
 	ld a, [Options]
 	and $ef
-	ld [$a000], a
+	ld [sOptions], a
 	jp CloseSRAM
 ; 14dd7
 
 SavePlayerData: ; 14dd7
-; Copy 2122 bytes starting at PlayerID to SRA1:a009
-	ld a, $1
+	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, PlayerID
-	ld de, $a009
-	ld bc, VisitedSpawns - PlayerID
+	ld hl, wPlayerData
+	ld de, sPlayerData
+	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, VisitedSpawns
-	ld de, $a833
-	ld bc, PartyCount - VisitedSpawns
+	ld hl, wMapData
+	ld de, sMapData
+	ld bc, wMapDataEnd - wMapData
 	call CopyBytes
 	jp CloseSRAM
 ; 14df7
 
-SavePartyData: ; 14df7
-; Copy your party to SRA1:a865.
-	ld a, $1
+SavePokemonData: ; 14df7
+	ld a, BANK(sPokemonData)
 	call GetSRAMBank
-	ld hl, PartyCount
-	ld de, $a865
-	ld bc, wdff5 - PartyCount
+	ld hl, wPokemonData
+	ld de, sPokemonData
+	ld bc, wPokemonDataEnd - wPokemonData
 	call CopyBytes
 	call CloseSRAM
 	ret
 ; 14e0c
 
-Function14e0c: ; 14e0c
-	call Function150d8
-	call Function150f9
+SaveBox: ; 14e0c
+	call GetBoxAddress
+	call SaveBoxAddress
 	ret
 ; 14e13
 
 Function14e13: ; 14e13
-	ld hl, $a009
-	ld bc, $0b7a
-	ld a, $1
+	ld hl, sGameData
+	ld bc, sGameDataEnd - sGameData
+	ld a, BANK(sGameData)
 	call GetSRAMBank
-	call Function15273
+	call Checksum
 	ld a, e
-	ld [$ad0d], a
+	ld [sChecksum + 0], a
 	ld a, d
-	ld [$ad0e], a
+	ld [sChecksum + 1], a
 	call CloseSRAM
 	ret
 ; 14e2d
 
-Function14e2d: ; 14e2d
-	ld a, $0
+ValidateBackupSave: ; 14e2d
+	ld a, BANK(s0_b208)
 	call GetSRAMBank
-	ld a, 99
-	ld [$b208], a
-	ld a, " "
-	ld [$bf0f], a
+	ld a, $63
+	ld [s0_b208], a
+	ld a, $7f
+	ld [s0_bf0f], a
 	call CloseSRAM
 	ret
 ; 14e40
 
-LoadSavedOptions: ; 14e40
-	ld a, $0
+SaveBackupOptions: ; 14e40
+	ld a, BANK(sBackupOptions)
 	call GetSRAMBank
 	ld hl, Options
-	ld de, $b200
+	ld de, sBackupOptions
 	ld bc, OptionsEnd - Options
 	call CopyBytes
 	call CloseSRAM
 	ret
 ; 14e55
 
-LoadSavedPlayerData: ; 14e55
-	ld a, $0
+SaveBackupPlayerData: ; 14e55
+	ld a, BANK(sBackupPlayerData)
 	call GetSRAMBank
-	ld hl, PlayerID
-	ld de, $b209
-	ld bc, VisitedSpawns - PlayerID
+	ld hl, wPlayerData
+	ld de, sBackupPlayerData
+	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, VisitedSpawns
-	ld de, $ba33
-	ld bc, PartyCount - VisitedSpawns
+	ld hl, wMapData
+	ld de, sBackupMapData
+	ld bc, wMapDataEnd - wMapData
 	call CopyBytes
 	call CloseSRAM
 	ret
 ; 14e76
 
-LoadSavedPartyData: ; 14e76
-	ld a, $0
+SaveBackupPokemonData: ; 14e76
+	ld a, BANK(sBackupPokemonData)
 	call GetSRAMBank
-	ld hl, PartyCount
-	ld de, $ba65
-	ld bc, wdff5 - PartyCount
+	ld hl, wPokemonData
+	ld de, sBackupPokemonData
+	ld bc, wPokemonDataEnd - wPokemonData
 	call CopyBytes
 	call CloseSRAM
 	ret
 ; 14e8b
 
-Function14e8b: ; 14e8b
-	ld hl, $b209
-	ld bc, $0b7a
-	ld a, $0
+SaveBackupChecksum: ; 14e8b
+	ld hl, sBackupGameData
+	ld bc, sBackupGameDataEnd - sBackupGameData
+	ld a, BANK(sBackupGameData)
 	call GetSRAMBank
-	call Function15273
+	call Checksum
 	ld a, e
-	ld [$bf0d], a
+	ld [sBackupChecksum + 0], a
 	ld a, d
-	ld [$bf0e], a
+	ld [sBackupChecksum + 1], a
 	call CloseSRAM
 	ret
 ; 14ea5
 
 
 TryLoadSaveFile: ; 14ea5 (5:4ea5)
-	call Function15028
-	jr nz, .trytowrite
-	call Function14fd7
-	call Function1500c
-	call Function15021
+	call VerifyChecksum
+	jr nz, .backup
+	call LoadPlayerData
+	call LoadPokemonData
+	call LoadBox
 	callba Function44745
 	callba Function10619d
 	callba Function1050ea
-	call Function14e2d
-	call LoadSavedOptions
-	call LoadSavedPlayerData
-	call LoadSavedPartyData
-	call Function14e8b
+	call ValidateBackupSave
+	call SaveBackupOptions
+	call SaveBackupPlayerData
+	call SaveBackupPokemonData
+	call SaveBackupChecksum
 	and a
 	ret
-.trytowrite
-	call Function1507c
+
+.backup
+	call VerifyBackupChecksum
 	jr nz, .corrupt
-	call Function15046
-	call Function15067
-	call Function15021
+	call LoadBackupPlayerData
+	call LoadBackupPokemonData
+	call LoadBox
 	callba Function44745
 	callba Function10619d
 	callba Function1050ea
-	call Function14da9
-	call SaveOptionsSelection
+	call ValidateSave
+	call SaveOptions
 	call SavePlayerData
-	call SavePartyData
+	call SavePokemonData
 	call Function14e13
 	and a
 	ret
+
 .corrupt
 	ld a, [Options]
 	push af
@@ -675,39 +677,41 @@ Function14f1c: ; 14f1c
 	call Function14f84
 	ld a, [wcfcd]
 	and a
-	jr z, .asm_14f46
-	ld a, $1
-	call GetSRAMBank
-	ld hl, $a044
-	ld de, StartDay
-	ld bc, $0008
-	call CopyBytes
-	ld hl, $a3da
-	ld de, StatusFlags
-	ld a, [hl]
-	ld [de], a
-	call CloseSRAM
-	ret
+	jr z, .backup
 
-.asm_14f46
-	call Function14faf
-	ld a, [wcfcd]
-	and a
-	jr z, .asm_14f6c
-	ld a, $0
+	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, $b244
+	ld hl, sPlayerData + StartDay - wPlayerData
 	ld de, StartDay
 	ld bc, 8
 	call CopyBytes
-	ld hl, $b5da
+	ld hl, sPlayerData + StatusFlags - wPlayerData
 	ld de, StatusFlags
 	ld a, [hl]
 	ld [de], a
 	call CloseSRAM
 	ret
 
-.asm_14f6c
+.backup
+	call Function14faf
+	ld a, [wcfcd]
+	and a
+	jr z, .corrupt
+
+	ld a, BANK(sBackupPlayerData)
+	call GetSRAMBank
+	ld hl, sBackupPlayerData + StartDay - wPlayerData
+	ld de, StartDay
+	ld bc, 8
+	call CopyBytes
+	ld hl, sBackupPlayerData + StatusFlags - wPlayerData
+	ld de, StatusFlags
+	ld a, [hl]
+	ld [de], a
+	call CloseSRAM
+	ret
+
+.corrupt
 	ld hl, DefaultOptions
 	ld de, Options
 	ld bc, OptionsEnd - Options
@@ -728,15 +732,15 @@ DefaultOptions: ; 14f7c
 ; 14f84
 
 Function14f84: ; 14f84
-	ld a, $1
+	ld a, BANK(s1_a008)
 	call GetSRAMBank
-	ld a, [$a008]
-	cp 99
+	ld a, [s1_a008]
+	cp $63
 	jr nz, .nope
-	ld a, [$ad0f]
-	cp " "
+	ld a, [s1_ad0f]
+	cp $7f
 	jr nz, .nope
-	ld hl, $a000
+	ld hl, sOptions
 	ld de, Options
 	ld bc, OptionsEnd - Options
 	call CopyBytes
@@ -750,15 +754,15 @@ Function14f84: ; 14f84
 ; 14faf
 
 Function14faf: ; 14faf
-	ld a, $0
+	ld a, BANK(s0_b208)
 	call GetSRAMBank
-	ld a, [$b208]
-	cp 99
+	ld a, [s0_b208]
+	cp $63
 	jr nz, .nope
-	ld a, [$bf0f]
-	cp " "
+	ld a, [s0_bf0f]
+	cp $7f
 	jr nz, .nope
-	ld hl, $b200
+	ld hl, sBackupOptions
 	ld de, Options
 	ld bc, OptionsEnd - Options
 	call CopyBytes
@@ -771,56 +775,55 @@ Function14faf: ; 14faf
 ; 14fd7
 
 
-Function14fd7: ; 14fd7 (5:4fd7)
-	ld a, $1
+LoadPlayerData: ; 14fd7 (5:4fd7)
+	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, $a009
-	ld de, PlayerID
-	ld bc, VisitedSpawns - PlayerID
+	ld hl, sPlayerData
+	ld de, wPlayerData
+	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, $a833
-	ld de, VisitedSpawns
-	ld bc, PartyCount - VisitedSpawns
+	ld hl, sMapData
+	ld de, wMapData
+	ld bc, wMapDataEnd - wMapData
 	call CopyBytes
 	call CloseSRAM
-	ld a, $1
+	ld a, BANK(s1_be45)
 	call GetSRAMBank
-	ld a, [$be45]
+	ld a, [s1_be45]
 	cp $4
 	jr nz, .asm_15008
 	ld a, $3
-	ld [$be45], a
+	ld [s1_be45], a
 .asm_15008
 	call CloseSRAM
 	ret
 
-Function1500c: ; 1500c
-	ld a, $1
+LoadPokemonData: ; 1500c
+	ld a, BANK(sPokemonData)
 	call GetSRAMBank
-	ld hl, $a865
-	ld de, PartyCount
-	ld bc, wdff5 - PartyCount
+	ld hl, sPokemonData
+	ld de, wPokemonData
+	ld bc, wPokemonDataEnd - wPokemonData
 	call CopyBytes
 	call CloseSRAM
 	ret
 ; 15021
 
-
-Function15021: ; 15021 (5:5021)
-	call Function150d8
-	call Function1517d
+LoadBox: ; 15021 (5:5021)
+	call GetBoxAddress
+	call LoadBoxAddress
 	ret
 
-Function15028: ; 15028 (5:5028)
-	ld hl, $a009
-	ld bc, $b7a
-	ld a, $1
+VerifyChecksum: ; 15028 (5:5028)
+	ld hl, sGameData
+	ld bc, sGameDataEnd - sGameData
+	ld a, BANK(sGameData)
 	call GetSRAMBank
-	call Function15273
-	ld a, [$ad0d]
+	call Checksum
+	ld a, [sChecksum + 0]
 	cp e
 	jr nz, .asm_15040
-	ld a, [$ad0e]
+	ld a, [sChecksum + 1]
 	cp d
 .asm_15040
 	push af
@@ -828,40 +831,40 @@ Function15028: ; 15028 (5:5028)
 	pop af
 	ret
 
-Function15046: ; 15046 (5:5046)
-	ld a, $0
+LoadBackupPlayerData: ; 15046 (5:5046)
+	ld a, BANK(sBackupPlayerData)
 	call GetSRAMBank
-	ld hl, $b209
-	ld de, PlayerID
-	ld bc, VisitedSpawns - PlayerID
+	ld hl, sBackupPlayerData
+	ld de, wPlayerData
+	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, $ba33
-	ld de, VisitedSpawns
-	ld bc, PartyCount - VisitedSpawns
-	call CopyBytes
-	call CloseSRAM
-	ret
-
-Function15067: ; 15067 (5:5067)
-	ld a, $0
-	call GetSRAMBank
-	ld hl, $ba65
-	ld de, PartyCount
-	ld bc, wdff5 - PartyCount
+	ld hl, sBackupMapData
+	ld de, wMapData
+	ld bc, wMapDataEnd - wMapData
 	call CopyBytes
 	call CloseSRAM
 	ret
 
-Function1507c: ; 1507c (5:507c)
-	ld hl, $b209
-	ld bc, $b7a
-	ld a, $0
+LoadBackupPokemonData: ; 15067 (5:5067)
+	ld a, BANK(sBackupPokemonData)
 	call GetSRAMBank
-	call Function15273
-	ld a, [$bf0d]
+	ld hl, sBackupPokemonData
+	ld de, wPokemonData
+	ld bc, wPokemonDataEnd - wPokemonData
+	call CopyBytes
+	call CloseSRAM
+	ret
+
+VerifyBackupChecksum: ; 1507c (5:507c)
+	ld hl, sBackupGameData
+	ld bc, sBackupGameDataEnd - sBackupGameData
+	ld a, BANK(sBackupGameData)
+	call GetSRAMBank
+	call Checksum
+	ld a, [sBackupChecksum + 0]
 	cp e
 	jr nz, .asm_15094
-	ld a, [$bf0e]
+	ld a, [sBackupChecksum + 1]
 	cp d
 .asm_15094
 	push af
@@ -871,47 +874,54 @@ Function1507c: ; 1507c (5:507c)
 
 
 Function1509a: ; 1509a
-	ld a, $1
+	ld a, BANK(sCrystalData)
 	call GetSRAMBank
-	ld hl, PlayerGender
-	ld de, $be3d
-	ld bc, wd479 - PlayerGender
+	ld hl, wCrystalData
+	ld de, sCrystalData
+	ld bc, wCrystalDataEnd - wCrystalData
 	call CopyBytes
+
+	; XXX $a60e-f is a static address left over from JP Crystal.
+	; It appears to correspond to event flags 0x160-0x16f in that version.
 	ld hl, wd479
 	ld a, [hli]
-	ld [$a60e], a
+	ld [$a60e + 0], a
 	ld a, [hli]
-	ld [$a60f], a
-	jp CloseSRAM
-; 150b9
+	ld [$a60e + 1], a
 
-
-Function150b9: ; 150b9 (5:50b9)
-	ld a, $1
-	call GetSRAMBank
-	ld hl, $be3d
-	ld de, PlayerGender
-	ld bc, wd479 - PlayerGender
-	call CopyBytes
-	ld hl, wd479
-	ld a, [$a60e]
-	ld [hli], a
-	ld a, [$a60f]
-	ld [hli], a
 	jp CloseSRAM
 
 
-Function150d8: ; 150d8
+Function150b9: ; 150b9
+	ld a, BANK(sCrystalData)
+	call GetSRAMBank
+	ld hl, sCrystalData
+	ld de, wCrystalData
+	ld bc, wCrystalDataEnd - wCrystalData
+	call CopyBytes
+
+	; XXX $a60e-f is a static address left over from JP Crystal.
+	; It appears to correspond to event flags 0x160-0x16f in that version.
+	ld hl, wd479
+	ld a, [$a60e + 0]
+	ld [hli], a
+	ld a, [$a60e + 1]
+	ld [hli], a
+
+	jp CloseSRAM
+
+
+GetBoxAddress: ; 150d8
 	ld a, [wCurBox]
 	cp NUM_BOXES
-	jr c, .asm_150e3
+	jr c, .ok
 	xor a
 	ld [wCurBox], a
 
-.asm_150e3
+.ok
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_1522d
+	ld hl, BoxAddresses
 rept 5
 	add hl, de
 endr
@@ -928,129 +938,141 @@ endr
 	ret
 ; 150f9
 
-Function150f9: ; 150f9
+SaveBoxAddress: ; 150f9
 	push hl
+
 	push af
 	push de
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, sBoxCount
-	ld de, wc608
-	ld bc, $01e0
+	ld hl, sBox
+	ld de, wMisc
+	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
 	pop de
 	pop af
+
 	push af
 	push de
 	call GetSRAMBank
-	ld hl, wc608
-	ld bc, $01e0
+	ld hl, wMisc
+	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, $aef0
-	ld de, wc608
-	ld bc, $01e0
+	ld hl, sBox + (wMiscEnd - wMisc)
+	ld de, wMisc
+	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
 	pop de
 	pop af
-	ld hl, $01e0
+
+	ld hl, (wMiscEnd - wMisc)
 	add hl, de
 	ld e, l
 	ld d, h
+
 	push af
 	push de
 	call GetSRAMBank
-	ld hl, wc608
-	ld bc, $01e0
+	ld hl, wMisc
+	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, $b0d0
-	ld de, wc608
-	ld bc, $008e
+	ld hl, sBox + (wMiscEnd - wMisc) * 2
+	ld de, wMisc
+	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
 	call CopyBytes
 	call CloseSRAM
 	pop de
 	pop af
-	ld hl, $01e0
+
+	ld hl, (wMiscEnd - wMisc)
 	add hl, de
 	ld e, l
 	ld d, h
+
 	call GetSRAMBank
-	ld hl, wc608
-	ld bc, $008e
+	ld hl, wMisc
+	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
 	call CopyBytes
 	call CloseSRAM
+
 	pop hl
 	ret
 ; 1517d
 
 
-Function1517d: ; 1517d (5:517d)
+LoadBoxAddress: ; 1517d (5:517d)
 	push hl
 	ld l, e
 	ld h, d
+
 	push af
 	push hl
 	call GetSRAMBank
-	ld de, wc608
-	ld bc, $1e0
+	ld de, wMisc
+	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, wc608
-	ld de, $ad10
-	ld bc, $1e0
+	ld hl, wMisc
+	ld de, sBox
+	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
 	pop hl
 	pop af
-	ld de, $1e0
+
+	ld de, (wMiscEnd - wMisc)
 	add hl, de
+
 	push af
 	push hl
 	call GetSRAMBank
-	ld de, wc608
-	ld bc, $1e0
+	ld de, wMisc
+	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, wc608
-	ld de, $aef0
-	ld bc, $1e0
+	ld hl, wMisc
+	ld de, sBox + (wMiscEnd - wMisc)
+	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
 	pop hl
 	pop af
-	ld de, $1e0
+
+	ld de, (wMiscEnd - wMisc)
 	add hl, de
 	call GetSRAMBank
-	ld de, wc608
-	ld bc, $8e
+	ld de, wMisc
+	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
 	call CopyBytes
 	call CloseSRAM
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, wc608
-	ld de, $b0d0
-	ld bc, $8e
+	ld hl, wMisc
+	ld de, sBox + (wMiscEnd - wMisc) * 2
+	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
 	call CopyBytes
 	call CloseSRAM
+
 	pop hl
 	ret
 
 
-Function151fb: ; 151fb
-	ld hl, Unknown_1522d
-	ld c, $e
-.outerloop
+EraseBoxes: ; 151fb
+	ld hl, BoxAddresses
+	ld c, NUM_BOXES
+.next
 	push bc
 	ld a, [hli]
 	call GetSRAMBank
@@ -1064,15 +1086,15 @@ Function151fb: ; 151fb
 	ld a, -1
 	ld [de], a
 	inc de
-	ld bc, $044c
-.loop
+	ld bc, sBoxEnd - (sBox + 2)
+.clear
 	xor a
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .loop
+	jr nz, .clear
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -1085,31 +1107,30 @@ Function151fb: ; 151fb
 	call CloseSRAM
 	pop bc
 	dec c
-	jr nz, .outerloop
+	jr nz, .next
 	ret
 ; 1522d
 
-Unknown_1522d: ; 1522d
+BoxAddresses: ; 1522d
 ; dbww bank, address, address
-	dbww $02, $a000, $a44e ; 2, $a000, $a44e
-	dbww $02, $a450, $a89e ; 2, $a450, $a89e
-	dbww $02, $a8a0, $acee ; 2, $a8a0, $acee
-	dbww $02, $acf0, $b13e ; 2, $acf0, $b13e
-	dbww $02, $b140, $b58e ; 2, $b140, $b5de
-	dbww $02, $b590, $b9de ; 2, $b590, $b9de
-	dbww $02, $b9e0, $be2e ; 2, $b9e0, $be2e
-
-	dbww $03, $a000, $a44e ; 3, $a000, $a44e
-	dbww $03, $a450, $a89e ; 3, $a450, $a89e
-	dbww $03, $a8a0, $acee ; 3, $a8a0, $acee
-	dbww $03, $acf0, $b13e ; 3, $acf0, $b13e
-	dbww $03, $b140, $b58e ; 3, $b140, $b58e
-	dbww $03, $b590, $b9de ; 3, $b590, $b9de
-	dbww $03, $b9e0, $be2e ; 3, $b9e0, $be2e
+	dbww BANK(sBox1),  sBox1,  sBox1End
+	dbww BANK(sBox2),  sBox2,  sBox2End
+	dbww BANK(sBox3),  sBox3,  sBox3End
+	dbww BANK(sBox4),  sBox4,  sBox4End
+	dbww BANK(sBox5),  sBox5,  sBox5End
+	dbww BANK(sBox6),  sBox6,  sBox6End
+	dbww BANK(sBox7),  sBox7,  sBox7End
+	dbww BANK(sBox8),  sBox8,  sBox8End
+	dbww BANK(sBox9),  sBox9,  sBox9End
+	dbww BANK(sBox10), sBox10, sBox10End
+	dbww BANK(sBox11), sBox11, sBox11End
+	dbww BANK(sBox12), sBox12, sBox12End
+	dbww BANK(sBox13), sBox13, sBox13End
+	dbww BANK(sBox14), sBox14, sBox14End
 ; 15273
 
 
-Function15273: ; 15273
+Checksum: ; 15273
 	ld de, 0
 .loop
 	ld a, [hli]

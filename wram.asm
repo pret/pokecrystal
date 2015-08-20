@@ -69,6 +69,19 @@ battle_struct: MACRO
 \1Type2::     db
 ENDM
 
+box: MACRO
+\1::
+\1Count::           ds 1
+\1Species::         ds MONS_PER_BOX + 1
+\1Mons::
+\1Mon1::            box_struct \1Mon1
+\1Mon2::            ds box_struct_length * (MONS_PER_BOX +- 1)
+\1MonOT::           ds NAME_LENGTH * MONS_PER_BOX
+\1MonNicknames::    ds PKMN_NAME_LENGTH * MONS_PER_BOX
+\1MonNicknamesEnd::
+\1End::             ds 2 ; padding
+ENDM
+
 
 channel_struct: MACRO
 ; Addreses are Channel1 (c101).
@@ -428,6 +441,7 @@ TileMapEnd::
 
 SECTION "Battle", WRAM0
 
+wMisc::
 wBattle::
 
 wc608::
@@ -864,6 +878,9 @@ IF DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
 	ds 3
+
+wMiscEnd::
+
 wc7e8:: ds 24
 
 
@@ -1295,6 +1312,7 @@ Options2:: ; cfd1
 
 	ds 2
 OptionsEnd::
+
 wcfd4:: ds 1
 wcfd5:: ds 1
 wcfd6:: ds 1
@@ -1885,6 +1903,7 @@ wd466:: ds 6
 wd46c:: ds 1
 wd46d:: ds 5
 
+wCrystalData::
 PlayerGender:: ; d472
 ; bit 0:
 ;	0 male
@@ -1896,7 +1915,11 @@ wd475:: ds 1
 wd476:: ds 1
 wd477:: ds 1
 wd478:: ds 1
+wCrystalDataEnd::
+
 wd479:: ds 2
+
+wPlayerData::
 
 PlayerID:: ; d47b
 	ds 2
@@ -2124,7 +2147,7 @@ FarfetchdPosition:: ; d964
 	ds 13
 
 
-SECTION "Map Triggers", WRAMX, BANK [1]
+;SECTION "Map Triggers", WRAMX, BANK [1]
 
 wPokecenter2FTrigger::                       ds 1 ; d972
 wTradeCenterTrigger::                        ds 1 ; d973
@@ -2209,7 +2232,7 @@ wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 	ds 49
 
 
-SECTION "Events", WRAMX, BANK [1]
+;SECTION "Events", WRAMX, BANK [1]
 
 wJackFightCount::    ds 1
                      ds 1
@@ -2374,6 +2397,11 @@ wdca0:: ds 1
 wdca1:: ds 3
 wdca4:: ds 1
 
+wPlayerDataEnd::
+
+
+wMapData::
+
 VisitedSpawns:: ; dca5
 	flag_array 27
 
@@ -2409,8 +2437,12 @@ XCoord:: ; dcb8
 wdcbf:: ds 1
 	ds 23
 
+wMapDataEnd::
+
 
 SECTION "Party", WRAMX, BANK [1]
+
+wPokemonData::
 
 PartyCount:: ; dcd7
 	ds 1 ; number of Pokémon in party
@@ -2436,8 +2468,6 @@ PartyMonNicknamesEnd::
 	ds 22
 
 
-SECTION "Pokedex", WRAMX, BANK [1]
-
 PokedexCaught:: ; de99
 	flag_array NUM_POKEMON
 EndPokedexCaught::
@@ -2453,8 +2483,6 @@ UnlockedUnowns:: ; def3
 
 wdef4:: ds 1
 
-
-SECTION "Daycare", WRAMX, BANK [1]
 
 wDaycareMan:: ; def5
 ; bit 7: active
@@ -2492,8 +2520,6 @@ wEggMon::  box_struct wEggMon ; df7b
 wdf9b:: ds 1
 
 
-SECTION "Misc Pokemon", WRAMX, BANK [1]
-
 wdf9c::
 wContestMon:: party_struct wContestMon ; df9c
 
@@ -2527,6 +2553,8 @@ wdfec:: ds 1
 
 	ds 5
 wdff5::
+
+wPokemonDataEnd::
 
 
 SECTION "Pic Animations", WRAMX, BANK [2]
@@ -2647,21 +2675,104 @@ w6_d600:: ds $600
 SECTION "Scratch", SRAM, BANK [0]
 
 
+SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
+
+s0_a600:: ds $11a
+s0_a71a:: ds $11a
+s0_a834:: ds $1d7
+s0_aa0b:: ds $1d7
+
+s0_abe2:: ds 1
+s0_abe3:: ds 1
+s0_abe4:: ds 1
+s0_abe5:: ds 1
+s0_abe6:: ds 10
+s0_abf0:: ds $d
+s0_abfd:: ds 1
+s0_abfe:: ds 12
+sMysteryGiftTrainer:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 1
+	ds 1
+s0_abe4End::
+
+	ds $b200 - $ac30
+
+sBackupOptions:: ds OptionsEnd - Options
+
+s0_b208:: ds 1
+
+sBackupGameData::
+sBackupPlayerData::  ds wPlayerDataEnd - wPlayerData
+sBackupMapData::     ds wMapDataEnd - wMapData
+sBackupPokemonData:: ds wPokemonDataEnd - wPokemonData
+sBackupGameDataEnd::
+
+; bd83
+	ds $18a
+; bf0d
+
+sBackupChecksum:: ds 2
+s0_bf0f:: ds 1
+sStackTop:: ds 2
+
+
 SECTION "SRAM Bank 1", SRAM, BANK [1]
 
-SECTION "BoxMons", SRAM [$ad10], BANK [1]
+sOptions:: ds OptionsEnd - Options
 
-sBoxCount::   ds 1 ; ad10
-sBoxSpecies:: ds MONS_PER_BOX ; ad11
+s1_a008:: ds 1
+
+sGameData::
+sPlayerData::  ds wPlayerDataEnd - wPlayerData
+sMapData::     ds wMapDataEnd - wMapData
+sPokemonData:: ds wPokemonDataEnd - wPokemonData
+sGameDataEnd::
+
+; ab83
+	ds $18a
+; ad0d
+
+sChecksum::   ds 2
+s1_ad0f::     ds 1
+
+; ad10
+	box sBox
+; b160
+
+	ds $100
+
+sLinkBattleStats:: ; b260
+sLinkBattleWins::   ds 2
+sLinkBattleLosses:: ds 2
+sLinkBattleDraws::  ds 2
+	ds $5a
+sLinkBattleStatsEnd::
+
+sHallOfFame:: ; b2c0
+	ds HOF_LENGTH * NUM_HOF_TEAMS
+sHallOfFameEnd::
+
+; be3c
 	ds 1
+sCrystalData::
+	ds wCrystalDataEnd - wCrystalData
+	ds 1
+s1_be45:: ds 1
 
-sBoxMons:: ; ad26
-sBoxMon1:: box_struct sBoxMon1
-sBoxMon2::
-	ds box_struct_length * (MONS_PER_BOX +- 1)
 
-sBoxMonOT:: ds NAME_LENGTH * MONS_PER_BOX ; afa6
+SECTION "Boxes 1-7",  SRAM, BANK [2]
+	box sBox1
+	box sBox2
+	box sBox3
+	box sBox4
+	box sBox5
+	box sBox6
+	box sBox7
 
-sBoxMonNicknames:: ds PKMN_NAME_LENGTH * MONS_PER_BOX ; b082
-sBoxMonNicknamesEnd::
-; b15e
+SECTION "Boxes 8-14", SRAM, BANK [3]
+	box sBox8
+	box sBox9
+	box sBox10
+	box sBox11
+	box sBox12
+	box sBox13
+	box sBox14

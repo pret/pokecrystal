@@ -33,6 +33,11 @@ HP_RED    EQU 2
 MONS_PER_BOX EQU 20
 NUM_BOXES    EQU 14
 
+; hall of fame
+HOF_MON_LENGTH = 1 + 2 + 2 + 1 + (PKMN_NAME_LENGTH +- 1) ; species, id, dvs, level, nick
+HOF_LENGTH = 1 + HOF_MON_LENGTH * PARTY_LENGTH + 1 ; win count, party, terminator
+NUM_HOF_TEAMS = 30
+
 
 ; flag manipulation
 RESET_FLAG EQU 0
