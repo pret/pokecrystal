@@ -2421,12 +2421,12 @@ Function4143b: ; 4143b
 	ret
 
 .asm_4145b
-	ld a, $0
+	ld a, BANK(sScratch)
 	call GetSRAMBank
 	callba Function1de0d7
 	ld hl, VTiles2
-	ld de, $a000
-	ld c, $31
+	ld de, sScratch
+	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp

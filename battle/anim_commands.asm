@@ -982,7 +982,7 @@ BattleAnimCmd_DD: ; cc640 (33:4640)
 
 GetSubstitutePic: ; cc64c
 
-	ld hl, $a000
+	ld hl, sScratch
 	ld bc, $310
 .loop
 	xor a
@@ -997,40 +997,40 @@ GetSubstitutePic: ; cc64c
 	jr z, .player
 
 	ld hl, MonsterSpriteGFX
-	ld de, $a000 + $130
+	ld de, sScratch + $130
 	call CopyMonsterSpriteTile
 	ld hl, MonsterSpriteGFX + $10
-	ld de, $a000 + $1a0
+	ld de, sScratch + $1a0
 	call CopyMonsterSpriteTile
 	ld hl, MonsterSpriteGFX + $20
-	ld de, $a000 + $140
+	ld de, sScratch + $140
 	call CopyMonsterSpriteTile
 	ld hl, MonsterSpriteGFX + $30
-	ld de, $a000 + $1b0
+	ld de, sScratch + $1b0
 	call CopyMonsterSpriteTile
 
 	ld hl, $9000
-	ld de, $a000
+	ld de, sScratch
 	lb bc, BANK(GetSubstitutePic), 7 * 7
 	call Request2bpp
 	jr .done
 
 .player
 	ld hl, MonsterSpriteGFX + $40
-	ld de, $a000 + $100
+	ld de, sScratch + $100
 	call CopyMonsterSpriteTile
 	ld hl, MonsterSpriteGFX + $50
-	ld de, $a000 + $160
+	ld de, sScratch + $160
 	call CopyMonsterSpriteTile
 	ld hl, MonsterSpriteGFX + $60
-	ld de, $a000 + $110
+	ld de, sScratch + $110
 	call CopyMonsterSpriteTile
 	ld hl, MonsterSpriteGFX + $70
-	ld de, $a000 + $170
+	ld de, sScratch + $170
 	call CopyMonsterSpriteTile
 
 	ld hl, $9310
-	ld de, $a000
+	ld de, sScratch
 	lb bc, BANK(GetSubstitutePic), 6 * 6
 	call Request2bpp
 
@@ -1061,7 +1061,7 @@ BattleAnimCmd_E2: ; cc6cf (33:46cf)
 	ret
 
 GetMinimizePic: ; cc6e7 (33:46e7)
-	ld hl, $a000
+	ld hl, sScratch
 	ld bc, $310
 .loop
 	xor a
@@ -1078,7 +1078,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	ld de, $a1a0
 	call CopyMinimizePic
 	ld hl, $9000
-	ld de, $a000
+	ld de, sScratch
 	lb bc, BANK(GetMinimizePic), $31
 	ret
 
@@ -1086,7 +1086,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	ld de, $a160
 	call CopyMinimizePic
 	ld hl, $9310
-	ld de, $a000
+	ld de, sScratch
 	lb bc, BANK(GetMinimizePic), $24
 	ret
 

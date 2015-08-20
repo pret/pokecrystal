@@ -10055,20 +10055,20 @@ Functione5d9: ; e5d9
 ; e66e
 
 Unknown_e66e: ; e66e
-	dbw 2, $a000
-	dbw 2, $a450
-	dbw 2, $a8a0
-	dbw 2, $acf0
-	dbw 2, $b140
-	dbw 2, $b590
-	dbw 2, $b9e0
-	dbw 3, $a000
-	dbw 3, $a450
-	dbw 3, $a8a0
-	dbw 3, $acf0
-	dbw 3, $b140
-	dbw 3, $b590
-	dbw 3, $b9e0
+	dbw BANK(sBox1),  sBox1
+	dbw BANK(sBox2),  sBox2
+	dbw BANK(sBox3),  sBox3
+	dbw BANK(sBox4),  sBox4
+	dbw BANK(sBox5),  sBox5
+	dbw BANK(sBox6),  sBox6
+	dbw BANK(sBox7),  sBox7
+	dbw BANK(sBox8),  sBox8
+	dbw BANK(sBox9),  sBox9
+	dbw BANK(sBox10), sBox10
+	dbw BANK(sBox11), sBox11
+	dbw BANK(sBox12), sBox12
+	dbw BANK(sBox13), sBox13
+	dbw BANK(sBox14), sBox14
 ; e698
 
 Functione698: ; e698
@@ -21770,10 +21770,10 @@ Function16cff: ; 16cff
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld a, $0
+	ld a, BANK(sScratch)
 	call GetSRAMBank
 	ld de, w6_d000
-	ld hl, $a000
+	ld hl, sScratch
 	ld a, [hROMBank]
 	ld b, a
 	ld c, $31
@@ -21793,12 +21793,12 @@ Function16d20: ; 16d20
 	call PlaceString
 	xor a
 	call GetSRAMBank
-	ld hl, $a000
+	ld hl, sScratch
 	ld bc, $0310
 	xor a
 	call ByteFill
 	ld hl, $9310
-	ld de, $a000
+	ld de, sScratch
 	ld c, $31
 	ld a, [hROMBank]
 	ld b, a
@@ -21816,10 +21816,11 @@ UnownDexDoWhatString:
 	db "Do what?@"
 
 UnownDexMenuString:
-	db $ef, " PRINT", $4e
-	db $f5, " CANCEL", $4e
-	db $df, " PREVIOUS", $4e
-	db $eb, " NEXT@"
+	db   $ef, " PRINT"
+	next $f5, " CANCEL"
+	next $df, " PREVIOUS"
+	next $eb, " NEXT"
+	db   "@"
 
 UnownDexVacantString:
 	db "VACANT@"
@@ -23884,14 +23885,14 @@ Function24423: ; 24423
 	xor a
 	call GetSRAMBank
 	hlcoord 0, 0
-	ld de, $a000
+	ld de, sScratch
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call CopyBytes
 	call CloseSRAM
 	call Function2173
 	xor a
 	call GetSRAMBank
-	ld hl, $a000
+	ld hl, sScratch
 	decoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .asm_2444c
@@ -26187,9 +26188,9 @@ Function25299: ; 25299 (9:5299)
 ; 252ec (9:52ec)
 
 String_252ec: ; 252ec
-	db "NAME/", $4e
-	db $4e
-	db "MONEY@"
+	db   "NAME/"
+	next ""
+	next "MONEY@"
 
 Tilemap_252f9: ; 252f9
 	db $27, $28, $ff ; ID NO
@@ -26226,8 +26227,9 @@ Function2530a: ; 2530a (9:530a)
 ; 2534c (9:534c)
 
 String_2534c: ; 2534c
-	db "#DEX", $4e
-	db "PLAY TIME@"
+	db   "#DEX"
+	next "PLAY TIME"
+	db   "@"
 
 String_2535b: ; 2535b
 	db "@"
@@ -31370,10 +31372,10 @@ Function29573: ; 29573
 ; 29591
 
 String29591: ; 29591
-	db "─── №.", $4e
-	db $4e
-	db "OT/", $4e
-	db $73, "№.@"
+	db   "─── №."
+	next ""
+	next "OT/"
+	next $73, "№.@"
 ; 295a1
 
 Function295a1: ; 295a1
@@ -31393,9 +31395,9 @@ Function295a1: ; 295a1
 ; 295c2
 
 String295c2: ; 295c2
-	db "EGG", $4e
-	db "OT/?????", $4e
-	db $73, "№.?????@"
+	db   "EGG"
+	next "OT/?????"
+	next $73, "№.?????@"
 ; 295d8
 
 Function295d8: ; 295d8
@@ -42392,21 +42394,20 @@ CheckOwnMon: ; 0x4a7ba
 ; 0x4a810
 
 BoxAddressTable1: ; 4a810
-	;  bank, address
-	dbw $02, $a000
-	dbw $02, $a450
-	dbw $02, $a8a0
-	dbw $02, $acf0
-	dbw $02, $b140
-	dbw $02, $b590
-	dbw $02, $b9e0
-	dbw $03, $a000
-	dbw $03, $a450
-	dbw $03, $a8a0
-	dbw $03, $acf0
-	dbw $03, $b140
-	dbw $03, $b590
-	dbw $03, $b9e0
+	dbw BANK(sBox1),  sBox1
+	dbw BANK(sBox2),  sBox2
+	dbw BANK(sBox3),  sBox3
+	dbw BANK(sBox4),  sBox4
+	dbw BANK(sBox5),  sBox5
+	dbw BANK(sBox6),  sBox6
+	dbw BANK(sBox7),  sBox7
+	dbw BANK(sBox8),  sBox8
+	dbw BANK(sBox9),  sBox9
+	dbw BANK(sBox10), sBox10
+	dbw BANK(sBox11), sBox11
+	dbw BANK(sBox12), sBox12
+	dbw BANK(sBox13), sBox13
+	dbw BANK(sBox14), sBox14
 ; 4a83a
 
 UpdateOTPointer: ; 0x4a83a
@@ -42555,21 +42556,20 @@ Function4a8dc: ; 4a8dc
 ; 4a8f4
 
 BoxAddressTable2: ; 4a8f4
-	;  bank, address
-	dbw $02, $a000
-	dbw $02, $a450
-	dbw $02, $a8a0
-	dbw $02, $acf0
-	dbw $02, $b140
-	dbw $02, $b590
-	dbw $02, $b9e0
-	dbw $03, $a000
-	dbw $03, $a450
-	dbw $03, $a8a0
-	dbw $03, $acf0
-	dbw $03, $b140
-	dbw $03, $b590
-	dbw $03, $b9e0
+	dbw BANK(sBox1),  sBox1
+	dbw BANK(sBox2),  sBox2
+	dbw BANK(sBox3),  sBox3
+	dbw BANK(sBox4),  sBox4
+	dbw BANK(sBox5),  sBox5
+	dbw BANK(sBox6),  sBox6
+	dbw BANK(sBox7),  sBox7
+	dbw BANK(sBox8),  sBox8
+	dbw BANK(sBox9),  sBox9
+	dbw BANK(sBox10), sBox10
+	dbw BANK(sBox11), sBox11
+	dbw BANK(sBox12), sBox12
+	dbw BANK(sBox13), sBox13
+	dbw BANK(sBox14), sBox14
 ; 4a91e
 
 Function4a91e: ; 4a91e
@@ -44720,21 +44720,20 @@ Function4d939: ; 4d939
 ; 4d99f
 
 Unknown_4d99f: ; 4d99f
-	;  bank, address
-	dbw $02, $a000
-	dbw $02, $a450
-	dbw $02, $a8a0
-	dbw $02, $acf0
-	dbw $02, $b140
-	dbw $02, $b590
-	dbw $02, $b9e0
-	dbw $03, $a000
-	dbw $03, $a450
-	dbw $03, $a8a0
-	dbw $03, $acf0
-	dbw $03, $b140
-	dbw $03, $b590
-	dbw $03, $b9e0
+	dbw BANK(sBox1),  sBox1
+	dbw BANK(sBox2),  sBox2
+	dbw BANK(sBox3),  sBox3
+	dbw BANK(sBox4),  sBox4
+	dbw BANK(sBox5),  sBox5
+	dbw BANK(sBox6),  sBox6
+	dbw BANK(sBox7),  sBox7
+	dbw BANK(sBox8),  sBox8
+	dbw BANK(sBox9),  sBox9
+	dbw BANK(sBox10), sBox10
+	dbw BANK(sBox11), sBox11
+	dbw BANK(sBox12), sBox12
+	dbw BANK(sBox13), sBox13
+	dbw BANK(sBox14), sBox14
 ; 4d9c9
 
 UnknownText_0x4d9c9: ; 0x4d9c9
@@ -77077,7 +77076,7 @@ Functione0000: ; e0000
 	push de
 	xor a
 	call GetSRAMBank
-	ld hl, $a000
+	ld hl, sScratch
 	ld bc, $0000
 .asm_e000b
 	push bc
@@ -77105,11 +77104,11 @@ endr
 	cp $31
 	jr c, .asm_e000b
 	ld hl, OverworldMap
-	ld de, $a000
+	ld de, sScratch
 	ld bc, $0310
 	call CopyBytes
 	pop hl
-	ld de, $a000
+	ld de, sScratch
 	ld c, $31
 	ld a, [hROMBank]
 	ld b, a
@@ -82612,20 +82611,20 @@ endr
 
 Unknown_e33a6: ; e33a6
 	;  bank, address
-	dbw $02, $a000
-	dbw $02, $a450
-	dbw $02, $a8a0
-	dbw $02, $acf0
-	dbw $02, $b140
-	dbw $02, $b590
-	dbw $02, $b9e0
-	dbw $03, $a000
-	dbw $03, $a450
-	dbw $03, $a8a0
-	dbw $03, $acf0
-	dbw $03, $b140
-	dbw $03, $b590
-	dbw $03, $b9e0
+	dbw BANK(sBox1),  sBox1
+	dbw BANK(sBox2),  sBox2
+	dbw BANK(sBox3),  sBox3
+	dbw BANK(sBox4),  sBox4
+	dbw BANK(sBox5),  sBox5
+	dbw BANK(sBox6),  sBox6
+	dbw BANK(sBox7),  sBox7
+	dbw BANK(sBox8),  sBox8
+	dbw BANK(sBox9),  sBox9
+	dbw BANK(sBox10), sBox10
+	dbw BANK(sBox11), sBox11
+	dbw BANK(sBox12), sBox12
+	dbw BANK(sBox13), sBox13
+	dbw BANK(sBox14), sBox14
 ; e33d0
 
 Functione33d0: ; e33d0 (38:73d0)
@@ -82843,21 +82842,20 @@ endr
 ; e36a5 (38:76a5)
 
 Unknown_e36a5: ; e36a5
-	;  bank, address
-	dbw $02, $a000
-	dbw $02, $a450
-	dbw $02, $a8a0
-	dbw $02, $acf0
-	dbw $02, $b140
-	dbw $02, $b590
-	dbw $02, $b9e0
-	dbw $03, $a000
-	dbw $03, $a450
-	dbw $03, $a8a0
-	dbw $03, $acf0
-	dbw $03, $b140
-	dbw $03, $b590
-	dbw $03, $b9e0
+	dbw BANK(sBox1),  sBox1
+	dbw BANK(sBox2),  sBox2
+	dbw BANK(sBox3),  sBox3
+	dbw BANK(sBox4),  sBox4
+	dbw BANK(sBox5),  sBox5
+	dbw BANK(sBox6),  sBox6
+	dbw BANK(sBox7),  sBox7
+	dbw BANK(sBox8),  sBox8
+	dbw BANK(sBox9),  sBox9
+	dbw BANK(sBox10), sBox10
+	dbw BANK(sBox11), sBox11
+	dbw BANK(sBox12), sBox12
+	dbw BANK(sBox13), sBox13
+	dbw BANK(sBox14), sBox14
 ; e36cf
 
 Functione36cf: ; e36cf (38:76cf)
@@ -93166,7 +93164,7 @@ INCBIN "gfx/unknown/1ddf33.2bpp.lz"
 
 Function1de0d7: ; 1de0d7
 	ld hl, LZ_1de0e1
-	ld de, $a000
+	ld de, sScratch
 	call Decompress
 	ret
 ; 1de0e1

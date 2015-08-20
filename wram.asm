@@ -2674,6 +2674,8 @@ w6_d600:: ds $600
 
 SECTION "Scratch", SRAM, BANK [0]
 
+sScratch::
+
 
 SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
 

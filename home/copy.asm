@@ -137,15 +137,15 @@ Functione6c:: ; e6c
 
 Functione73:: ; e73
 	push de
-	ld a, $0
+	ld a, BANK(sScratch)
 	call GetSRAMBank
 	push bc
-	ld de, $a000
+	ld de, sScratch
 	ld a, b
 	call FarDecompress
 	pop bc
 	pop hl
-	ld de, $a000
+	ld de, sScratch
 	call Request2bpp
 	call CloseSRAM
 	ret
