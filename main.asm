@@ -93527,6 +93527,7 @@ INCLUDE "text/battle_tower.asm"
 
 SECTION "bank7C", ROMX, BANK[$7C]
 
+Unknown_1f0000::
 INCBIN "unknown/1f0000.bin"
 
 

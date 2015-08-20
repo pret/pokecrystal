@@ -2598,7 +2598,10 @@ w2_d188:: ds 1
 
 SECTION "WRAM 3", WRAMX, BANK [3]
 
-	ds $800
+	ds $100
+
+w3_d100::
+	ds $700
 
 w3_d800:: ds 1
 
@@ -2759,6 +2762,18 @@ sCrystalData::
 	ds wCrystalDataEnd - wCrystalData
 	ds 1
 s1_be45:: ds 1
+
+sBattleTower:: ; be46
+sbe46:: ds 1
+sbe47:: ds 1
+sbe48:: ds 7
+sbe4f:: ds 2
+sbe51:: ds 1
+sbe52:: ds 1
+sbe53:: ds 1
+sbe54:: ds 1
+sbe55:: ds 1
+sbe56:: ds 1
 
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]

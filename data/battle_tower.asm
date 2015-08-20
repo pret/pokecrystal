@@ -4,14 +4,14 @@ Function1f8000: ; 1f8000
 	ld a, $3
 	ld [rSVBK], a
 	xor a
-	ld hl, wd100
+	ld hl, w3_d100
 	ld bc, $00e0
 	call ByteFill
 	ld a, $ff
-	ld [wd10c], a
-	ld [wd147], a
-	ld [wd182], a
-	ld de, wd100
+	ld [w3_d100 + $0c], a
+	ld [w3_d100 + $47], a
+	ld [w3_d100 + $82], a
+	ld de, w3_d100
 	ld a, [hRandomAdd]
 	ld b, a
 .asm_1f8022
@@ -28,18 +28,18 @@ ELSE
 ENDC
 	jr nc, .asm_1f8022
 	ld b, a
-	ld a, $1
+	ld a, BANK(sbe46)
 	call GetSRAMBank
 	ld c, $7
-	ld hl, $be48
+	ld hl, sbe48
 .asm_1f803a
 	ld a, [hli]
 	cp b
 	jr z, .asm_1f8022
 	dec c
 	jr nz, .asm_1f803a
-	ld hl, $be48
-	ld a, [$be46]
+	ld hl, sbe48
+	ld a, [sbe46]
 	ld c, a
 	ld a, b
 	ld b, 0
@@ -54,12 +54,12 @@ ENDC
 	call CopyBytes
 	call Function1f8081
 	pop af
-	ld hl, Function1f8000
+	ld hl, Unknown_1f0000
 	ld bc, $0024
 	call AddNTimes
 	ld bc, $0024
 .asm_1f8070
-	ld a, $7c
+	ld a, BANK(Unknown_1f0000)
 	call GetFarByte
 	ld [de], a
 	inc hl
@@ -77,7 +77,7 @@ Function1f8081: ; 1f8081
 	ld c, $3
 .loop
 	push bc
-	ld a, $1
+	ld a, BANK(sbe51)
 	call GetSRAMBank
 
 .asm_1f8089
@@ -104,40 +104,40 @@ Function1f8081: ; 1f8081
 	ld b, a
 	ld a, [hld]
 	ld c, a
-	ld a, [wd10b]
+	ld a, [w3_d100 + $0b]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [wd10c]
+	ld a, [w3_d100 + $0c]
 	cp c
 	jr z, .asm_1f8089
-	ld a, [wd146]
+	ld a, [w3_d100 + $46]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [wd147]
+	ld a, [w3_d100 + $47]
 	cp c
 	jr z, .asm_1f8089
-	ld a, [wd181]
+	ld a, [w3_d100 + $81]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [wd182]
+	ld a, [w3_d100 + $82]
 	cp c
 	jr z, .asm_1f8089
-	ld a, [$be51]
+	ld a, [sbe51]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [$be52]
+	ld a, [sbe52]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [$be53]
+	ld a, [sbe53]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [$be54]
+	ld a, [sbe54]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [$be55]
+	ld a, [sbe55]
 	cp b
 	jr z, .asm_1f8089
-	ld a, [$be56]
+	ld a, [sbe56]
 	cp b
 	jr z, .asm_1f8089
 
@@ -166,18 +166,18 @@ Function1f8081: ; 1f8081
 	dec c
 	jp nz, .loop
 
-	ld a, [$be51]
-	ld [$be54], a
-	ld a, [$be52]
-	ld [$be55], a
-	ld a, [$be53]
-	ld [$be56], a
-	ld a, [wd10b]
-	ld [$be51], a
-	ld a, [wd146]
-	ld [$be52], a
-	ld a, [wd181]
-	ld [$be53], a
+	ld a, [sbe51]
+	ld [sbe54], a
+	ld a, [sbe52]
+	ld [sbe55], a
+	ld a, [sbe53]
+	ld [sbe56], a
+	ld a, [w3_d100 + $0b]
+	ld [sbe51], a
+	ld a, [w3_d100 + $46]
+	ld [sbe52], a
+	ld a, [w3_d100 + $81]
+	ld [sbe53], a
 	call CloseSRAM
 	ret
 ; 1f814e
