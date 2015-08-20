@@ -881,8 +881,7 @@ Function1509a: ; 1509a
 	ld bc, wCrystalDataEnd - wCrystalData
 	call CopyBytes
 
-	; XXX $a60e-f is a static address left over from JP Crystal.
-	; It appears to correspond to event flags 0x160-0x16f in that version.
+	; XXX SRAM bank 7
 	ld hl, wd479
 	ld a, [hli]
 	ld [$a60e + 0], a
@@ -900,8 +899,7 @@ Function150b9: ; 150b9
 	ld bc, wCrystalDataEnd - wCrystalData
 	call CopyBytes
 
-	; XXX $a60e-f is a static address left over from JP Crystal.
-	; It appears to correspond to event flags 0x160-0x16f in that version.
+	; XXX SRAM bank 7
 	ld hl, wd479
 	ld a, [$a60e + 0]
 	ld [hli], a
