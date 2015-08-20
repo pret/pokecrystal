@@ -8820,7 +8820,7 @@ Function3f830: ; 3f830
 
 
 Function3f836: ; 3f836
-	ld a, $1
+	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 	call Function3f85f
 	call CloseSRAM
@@ -8925,7 +8925,7 @@ Function3f85f: ; 3f85f
 	call PlaceString
 
 	hlcoord 6, 4
-	ld de, $b260
+	ld de, sLinkBattleWins
 	call .asm_3f92b
 	jr c, .asm_3f92a
 
@@ -8933,14 +8933,14 @@ Function3f85f: ; 3f85f
 	call PrintNum
 
 	hlcoord 11, 4
-	ld de, $b262
+	ld de, sLinkBattleLosses
 	call .asm_3f92b
 
 	ld bc, $0204
 	call PrintNum
 
 	hlcoord 16, 4
-	ld de, $b264
+	ld de, sLinkBattleDraws
 	call .asm_3f92b
 
 	ld bc, $0204
