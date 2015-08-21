@@ -1075,7 +1075,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	and a
 	jr z, .player
 
-	ld de, $a1a0
+	ld de, sScratch + $1a0
 	call CopyMinimizePic
 	ld hl, $9000
 	ld de, sScratch
@@ -1083,7 +1083,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	ret
 
 .player
-	ld de, $a160
+	ld de, sScratch + $160
 	call CopyMinimizePic
 	ld hl, $9310
 	ld de, sScratch

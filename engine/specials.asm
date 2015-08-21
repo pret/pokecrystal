@@ -314,9 +314,9 @@ Special_KrissHousePC: ; c2e7
 ; c2f6
 
 Special_CheckMysteryGift: ; c2f6
-	ld a, $0
+	ld a, BANK(s0_abe2)
 	call GetSRAMBank
-	ld a, [$abe2]
+	ld a, [s0_abe2]
 	and a
 	jr z, .no
 	inc a
@@ -328,9 +328,9 @@ Special_CheckMysteryGift: ; c2f6
 ; c309
 
 Special_GetMysteryGiftItem: ; c309
-	ld a, $0
+	ld a, BANK(s0_abe2)
 	call GetSRAMBank
-	ld a, [$abe2]
+	ld a, [s0_abe2]
 	ld [CurItem], a
 	ld a, $1
 	ld [wd10c], a
@@ -338,7 +338,7 @@ Special_GetMysteryGiftItem: ; c309
 	call ReceiveItem
 	jr nc, .asm_c33d
 	xor a
-	ld [$abe2], a
+	ld [s0_abe2], a
 	call CloseSRAM
 	ld a, [CurItem]
 	ld [wd265], a
@@ -639,8 +639,8 @@ Functionc4ac: ; c4ac
 ; c4b9
 
 SpecialTrainerHouse: ; 0xc4b9
-	ld a, 0
+	ld a, BANK(s0_abfd)
 	call GetSRAMBank
-	ld a, [$abfd] ; XXX what is this memory location?
+	ld a, [s0_abfd]
 	ld [ScriptVar], a
 	jp CloseSRAM

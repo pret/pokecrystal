@@ -2543,17 +2543,17 @@ Function41a24: ; 41a24
 ; 41a2c
 
 Function41a2c: ; 41a2c
-	ld a, $0
+	ld a, BANK(sScratch)
 	call GetSRAMBank
 	ld hl, UnownFont
-	ld de, $a188
+	ld de, sScratch + $188
 	ld bc, $270
 	ld a, BANK(UnownFont)
 	call FarCopyBytes
-	ld hl, $a188
+	ld hl, sScratch + $188
 	ld bc, $1b0
 	call Function41504
-	ld de, $a188
+	ld de, sScratch + $188
 	ld hl, $9400
 	lb bc, BANK(Function41a2c), $1b
 	call Request2bpp
