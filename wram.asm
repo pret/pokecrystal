@@ -2692,14 +2692,23 @@ s0_abe3:: ds 1
 s0_abe4:: ds 1
 s0_abe5:: ds 1
 s0_abe6:: ds 10
-s0_abf0:: ds $d
+s0_abf0:: ds 10
+s0_abfa:: ds 2
+	ds 1
 s0_abfd:: ds 1
 s0_abfe:: ds 12
 sMysteryGiftTrainer:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 1
 	ds 1
 s0_abe4End::
 
-	ds $b200 - $ac30
+	ds $30
+
+s0_ac60:: ds 8
+s0_ac68:: ds 1
+s0_ac69:: ds 1
+s0_ac6a:: ds 1
+
+	ds $b200 - $ac6b
 
 sBackupOptions:: ds OptionsEnd - Options
 
@@ -2756,11 +2765,11 @@ sHallOfFame:: ; b2c0
 	ds HOF_LENGTH * NUM_HOF_TEAMS
 sHallOfFameEnd::
 
-; be3c
-	ds 1
+s1_be3c:: ds 1
+
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData
-	ds 1
+s1_be44:: ds 1
 s1_be45:: ds 1
 
 sBattleTower:: ; be46

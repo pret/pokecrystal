@@ -385,29 +385,29 @@ InitializeWorld: ; 5d23
 ; 5d33
 
 Function5d33: ; 5d33
-	ld a, $0
+	ld a, BANK(s0_ac68)
 	call GetSRAMBank
 	ld a, [CurDay]
 	inc a
 	ld b, a
-	ld a, [$ac68]
+	ld a, [s0_ac68]
 	cp b
-	ld a, [$ac6a]
+	ld a, [s0_ac6a]
 	ld c, a
-	ld a, [$ac69]
+	ld a, [s0_ac69]
 	jr z, .skip
 	ld a, b
-	ld [$ac68], a
+	ld [s0_ac68], a
 	call Random
 	ld c, a
 	call Random
 
 .skip
 	ld [wdc9f], a
-	ld [$ac69], a
+	ld [s0_ac69], a
 	ld a, c
 	ld [wdca0], a
-	ld [$ac6a], a
+	ld [s0_ac6a], a
 	jp CloseSRAM
 ; 5d65
 
@@ -9176,13 +9176,13 @@ Functione039: ; e039
 	ld a, [InLinkBattle]
 	and a
 	ret nz
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	ld hl, PartyCount
 	ld a, [CurPartyMon]
 	cp [hl]
 	jr z, .asm_e131
-	ld hl, $a600
+	ld hl, s0_a600
 	ld bc, $002f
 	call AddNTimes
 	push hl
@@ -10544,9 +10544,9 @@ Function11542: ; 11542
 ; 11548
 
 Function11548: ; 11548
-	ld a, $0
+	ld a, BANK(s0_abfa)
 	call GetSRAMBank
-	ld hl, $abfa
+	ld hl, s0_abfa
 	ld a, [hli]
 	ld [Buffer1], a
 	ld a, [hl]
@@ -10561,13 +10561,13 @@ Function11548: ; 11548
 	callba Function1050c8
 
 .asm_11572
-	ld a, $0
+	ld a, BANK(s0_abfa)
 	call GetSRAMBank
 	ld hl, Buffer1
 	ld a, [hli]
-	ld [$abfa], a
+	ld [s0_abfa], a
 	ld a, [hl]
-	ld [$abfb], a
+	ld [s0_abfa + 1], a
 	call CloseSRAM
 	ret
 ; 11586
@@ -13933,14 +13933,14 @@ Function12cfe: ; 12cfe (4:6cfe)
 	ld a, [CurItem]
 	ld [de], a
 	ld a, [CurPartyMon]
-	ld hl, $a600
+	ld hl, s0_a600
 	ld bc, $2f
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, DefaultFlypoint
 	ld bc, $2f
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	call CopyBytes
 	call CloseSRAM
@@ -16447,10 +16447,10 @@ Function1406a: ; 1406a
 	ld a, $c
 	ld [MBC3SRamBank], a
 	res 7, [hl]
-	ld a, $0
+	ld a, BANK(s0_ac60)
 	ld [MBC3SRamBank], a
 	xor a
-	ld [$ac60], a
+	ld [s0_ac60], a
 	call CloseSRAM
 	ret
 ; 14089
@@ -28778,9 +28778,9 @@ Function28177: ; 28177
 	ld de, OTPartyMon1Species
 	ld bc, $01a4
 	call CopyBytes
-	ld a, $a8
+	ld a, OTPartyMonOT % $100
 	ld [wd102], a
-	ld a, $d3
+	ld a, OTPartyMonOT / $100
 	ld [wd103], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -29208,9 +29208,9 @@ Function28595: ; 28595
 	ld de, wc9f4
 	ld a, $20
 	call Function28682
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
-	ld hl, $a600
+	ld hl, s0_a600
 	ld b, $6
 .loop2
 	push bc
@@ -29221,7 +29221,7 @@ Function28595: ; 28595
 	pop bc
 	dec b
 	jr nz, .loop2
-	ld hl, $a600
+	ld hl, s0_a600
 	ld b, $6
 .loop3
 	push bc
@@ -29233,7 +29233,7 @@ Function28595: ; 28595
 	dec b
 	jr nz, .loop3
 	ld b, $6
-	ld de, $a600
+	ld de, s0_a600
 	ld hl, wc9f9
 .loop4
 	push bc
@@ -30118,11 +30118,11 @@ Function28b87: ; 28b87
 	jp Function28ea3
 
 .asm_28c7b
-	ld hl, $a600
+	ld hl, s0_a600
 	ld a, [DefaultFlypoint]
 	ld bc, $002f
 	call AddNTimes
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	ld d, h
 	ld e, l
@@ -30142,7 +30142,7 @@ Function28b87: ; 28b87
 	jr .asm_28c96
 
 .asm_28ca6
-	ld hl, $a600
+	ld hl, s0_a600
 	ld a, [PartyCount]
 	dec a
 	ld bc, $002f
@@ -34294,9 +34294,9 @@ Function2c642: ; 2c642 (b:4642)
 	ld a, $1
 	ld [de], a
 	inc de
-	ld a, $1
+	ld a, BANK(sGameData)
 	call GetSRAMBank
-	ld hl, $a009
+	ld hl, sPlayerData + PlayerID - wPlayerData
 	ld a, [hli]
 	ld [de], a
 	ld b, a
@@ -34306,12 +34306,12 @@ Function2c642: ; 2c642 (b:4642)
 	ld c, a
 	inc de
 	push bc
-	ld hl, $a00b
-	ld bc, $b
+	ld hl, sPlayerData + PlayerName - wPlayerData
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	push de
-	ld hl, $aa27
-	ld b, $20
+	ld hl, sPokemonData + PokedexCaught - wPokemonData
+	ld b, (NUM_POKEMON + 7) / 8
 	call CountSetBits
 	pop de
 	pop bc
@@ -35909,16 +35909,16 @@ GetTrainerName:: ; 3994c
 	cp CAL
 	jr nz, .not_cal2
 
-	ld a, $0
+	ld a, BANK(s0_abfd)
 	call GetSRAMBank
-	ld a, [$abfd]
+	ld a, [s0_abfd]
 	and a
 	call CloseSRAM
 	jr z, .not_cal2
 
-	ld a, $0
+	ld a, BANK(s0_abfe)
 	call GetSRAMBank
-	ld hl, $abfe
+	ld hl, s0_abfe
 	call CopyTrainerName
 	jp CloseSRAM
 
@@ -37260,16 +37260,16 @@ Function4456e: ; 4456e
 	cp $a
 	jr nc, .asm_445be
 	ld bc, $002f
-	ld hl, $a835
+	ld hl, s0_a834 + 1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld a, [CurPartyMon]
 	ld bc, $002f
-	ld hl, $a600
+	ld hl, s0_a600
 	call AddNTimes
 	push hl
-	ld a, $0
+	ld a, BANK(s0_a834)
 	call GetSRAMBank
 	ld bc, $002f
 	call CopyBytes
@@ -37280,7 +37280,7 @@ Function4456e: ; 4456e
 	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	ld [hl], $0
-	ld hl, $a834
+	ld hl, s0_a834
 	inc [hl]
 	call CloseSRAM
 	xor a
@@ -37292,11 +37292,11 @@ Function4456e: ; 4456e
 ; 445c0
 
 Function445c0: ; 445c0 (11:45c0)
-	ld a, $0
+	ld a, BANK(s0_a834)
 	call GetSRAMBank
 	ld a, b
 	push bc
-	ld hl, $a835
+	ld hl, s0_a834 + 1
 	ld bc, $2f
 	call AddNTimes
 	push hl
@@ -37319,14 +37319,14 @@ Function445c0: ; 445c0 (11:45c0)
 	xor a
 	ld bc, $2f
 	call ByteFill
-	ld hl, $a834
+	ld hl, s0_a834
 	dec [hl]
 	jp CloseSRAM
 ; 445f4 (11:45f4)
 
 Function445f4: ; 445f4
 	ld a, b
-	ld hl, $a835
+	ld hl, s0_a834 + 1
 	ld bc, $2f
 	call AddNTimes
 	ld d, h
@@ -37335,17 +37335,17 @@ Function445f4: ; 445f4
 	ret
 
 Function44607: ; 44607
-	ld a, $0
+	ld a, BANK(s0_a834)
 	call GetSRAMBank
 	push bc
 	ld a, b
 	ld bc, $2f
-	ld hl, $a835
+	ld hl, s0_a834 + 1
 	call AddNTimes
 	push hl
 	ld a, [CurPartyMon]
 	ld bc, $2f
-	ld hl, $a600
+	ld hl, s0_a600
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -37368,9 +37368,9 @@ Function44607: ; 44607
 ; 44648 (11:4648)
 
 Function44648: ; 44648
-	ld a, $0
+	ld a, BANK(s0_a834)
 	call GetSRAMBank
-	ld a, [$a834]
+	ld a, [s0_a834]
 	ld c, a
 	jp CloseSRAM
 ; 44654
@@ -37389,10 +37389,10 @@ Function44654:: ; 44654
 	callba ItemIsMail
 	ld a, $3
 	jr nc, .asm_446c6
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	ld a, [CurPartyMon]
-	ld hl, $a600
+	ld hl, s0_a600
 	ld bc, $002f
 	call AddNTimes
 	ld d, h
@@ -37454,14 +37454,14 @@ GivePokeItem:: ; 446cc
 	pop af
 	push bc
 	push af
-	ld hl, $a600
+	ld hl, s0_a600
 	ld bc, $002f
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, wd002
 	ld bc, $0021
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	call CopyBytes
 	pop af
@@ -37576,9 +37576,9 @@ _KrisMailBoxMenu: ; 0x447a0
 InitMail: ; 0x447b9
 ; initialize wd0f2 and beyond with incrementing values, one per mail
 ; set z if no mail
-	ld a, $0
+	ld a, BANK(s0_a834)
 	call GetSRAMBank
-	ld a, [$a834]
+	ld a, [s0_a834]
 	call CloseSRAM
 	ld hl, wd0f2
 	ld [hli], a
@@ -37604,10 +37604,10 @@ InitMail: ; 0x447b9
 
 Function447da: ; 0x447da
 	dec a
-	ld hl, $a856
+	ld hl, s0_a834 + 1 + $21
 	ld bc, $002f
 	call AddNTimes
-	ld a, $0
+	ld a, BANK(s0_a834)
 	call GetSRAMBank
 	ld de, StringBuffer2
 	push de
@@ -37731,10 +37731,10 @@ Function4484a: ; 0x4484a
 
 .Function448bb: ; 0x448bb
 	push af
-	ld a, $0
+	ld a, BANK(s0_a834)
 	call GetSRAMBank
 	pop af
-	ld hl, $a863
+	ld hl, s0_a834 + 1 + $2e
 	ld bc, $002f
 	call AddNTimes
 	ld a, [hl]
@@ -41060,9 +41060,9 @@ Function49da4: ; 49da4
 	cp $1
 	ld a, $1
 	ret nz
-	ld a, $0
+	ld a, BANK(s0_abe5)
 	call GetSRAMBank
-	ld a, [$abe5]
+	ld a, [s0_abe5]
 	cp $ff
 	call CloseSRAM
 	jr nz, .done
@@ -41450,9 +41450,9 @@ Function4a0b9: ; 4a0b9 (12:60b9)
 Function4a0c2: ; 4a0c2 (12:60c2)
 	ld a, $2
 	call Function1ff8
-	ld a, $1
+	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, $a00b
+	ld hl, sPlayerData + PlayerName - wPlayerData
 	ld de, PlayerName
 	ld bc, $6
 	call CopyBytes
@@ -43735,11 +43735,11 @@ Function4cf80: ; 4cf80 (13:4f80)
 
 
 Function4cffe:: ; 4cffe
-	ld a, $1
+	ld a, BANK(s1_a008)
 	call GetSRAMBank
-	ld a, [$a008]
+	ld a, [s1_a008]
 	ld b, a
-	ld a, [$ad0f]
+	ld a, [s1_ad0f]
 	ld c, a
 	call CloseSRAM
 	ld a, b
@@ -44080,10 +44080,10 @@ Function4d3b1: ; 4d3b1
 	ret z
 	call Function4d41e
 	jr c, .asm_4d3f7
-	ld a, $0
+	ld a, BANK(s0_ac60)
 	call GetSRAMBank
 	ld a, $80
-	ld [$ac60], a
+	ld [s0_ac60], a
 	call CloseSRAM
 	ld hl, UnknownText_0x4d3fe
 	call PrintText
@@ -44295,16 +44295,16 @@ Function4d501: ; 4d501
 ; 4d50f
 
 Function4d50f: ; 4d50f
-	ld a, $1
+	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld de, $0000
-	ld hl, $a009
+	ld hl, sPlayerData + PlayerID - wPlayerData
 	ld c, $2
 	call Function4d533
-	ld hl, $a00b
+	ld hl, sPlayerData + PlayerName - wPlayerData
 	ld c, $5
 	call Function4d53e
-	ld hl, $a3dc
+	ld hl, sPlayerData + Money - wPlayerData
 	ld c, $3
 	call Function4d533
 	call CloseSRAM
@@ -45584,7 +45584,7 @@ Function4df66: ; 4df66 (13:5f66)
 Unknown_4df77: ; 4df77
 	dw PartyMonNicknames
 	dw OTPartyMonNicknames
-	dw $b082
+	dw sBoxMonNicknames
 	dw wd002
 ; 4df7f
 
@@ -46253,7 +46253,7 @@ Function4e505: ; 4e505 (13:6505)
 	ld a, [MonType]
 	cp BOXMON
 	jr nz, .asm_4e522
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	push de
 	call CopyBytes
@@ -49607,17 +49607,17 @@ Function50f62: ; 50f62 (14:4f62)
 	pop de
 	ld hl, DefaultFlypoint
 	call Function51039
-	ld hl, $a600
+	ld hl, s0_a600
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
 	ld bc, $2f
 	call AddNTimes
 	push hl
 	ld de, DefaultFlypoint
 	ld bc, $2f
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	call CopyBytes
-	ld hl, $a600
+	ld hl, s0_a600
 	ld a, [wd1ec]
 	ld bc, $2f
 	call AddNTimes
@@ -54863,18 +54863,18 @@ String_8670c:
 
 Function8671c: ; 8671c
 	ld a, [wcf63]
-	cp $1e
+	cp NUM_HOF_TEAMS
 	jr nc, .asm_86746
-	ld hl, $b2c0
-	ld bc, $0062
+	ld hl, sHallOfFame
+	ld bc, HOF_LENGTH
 	call AddNTimes
-	ld a, $1
+	ld a, BANK(sHallOfFame)
 	call GetSRAMBank
 	ld a, [hl]
 	and a
 	jr z, .asm_86743
 	ld de, wc608
-	ld bc, $0062
+	ld bc, HOF_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	and a
@@ -75719,7 +75719,7 @@ INCLUDE "engine/radio.asm"
 
 Functionb9229: ; b9229
 	ld a, [CurPartyMon]
-	ld hl, $a600
+	ld hl, s0_a600
 	ld bc, $002f
 	call AddNTimes
 	ld d, h
@@ -75733,7 +75733,7 @@ Functionb9237: ; b9237
 	call Functione5f
 	pop de
 	push de
-	ld a, $0
+	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	callba Function1de5c8
 	call CloseSRAM
@@ -81586,22 +81586,25 @@ endr
 	ld a, [hl]
 	ld [de], a
 	ret
+
 .asm_e2bf5
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, $ad45
+	ld hl, sBoxMon1Level
 	ld bc, $20
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	ld [TempMonLevel], a
-	ld hl, $ad27
+
+	ld hl, sBoxMon1Item
 	ld bc, $20
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	ld [TempMonItem], a
-	ld hl, $ad3b
+
+	ld hl, sBoxMon1DVs
 	ld bc, $20
 	ld a, e
 	call AddNTimes
@@ -81611,6 +81614,7 @@ endr
 	inc de
 	ld a, [hl]
 	ld [de], a
+
 	call CloseSRAM
 	ret
 
@@ -81733,20 +81737,20 @@ Functione2c6e: ; e2c6e (38:6c6e)
 	jr .asm_e2d23
 .asm_e2cf1
 	push hl
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, $ad11
+	ld hl, sBoxSpecies
 	ld d, $0
 	add hl, de
 	ld a, [hl]
 	and a
 	jr z, .asm_e2d1f
-	ld hl, $b082
-	ld bc, $b
+	ld hl, sBoxMonNicknames
+	ld bc, PKMN_NAME_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, StringBuffer1
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	pop hl
@@ -81845,9 +81849,9 @@ Functione2d30: ; e2d30 (38:6d30)
 	ld [wcb2c], a
 	ret
 .asm_e2db7
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, $ad11
+	ld hl, sBoxSpecies
 .asm_e2dbf
 	ld a, [hl]
 	cp $ff
@@ -82149,16 +82153,16 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 	jr z, .asm_e3020
 	cp $f
 	jr nz, .asm_e3048
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, $ad11
+	ld hl, sBoxSpecies
 	call Functione3357
-	ld hl, $b082
+	ld hl, sBoxMonNicknames
 	call Functione3363
-	ld hl, $afa6
+	ld hl, sBoxMonOT
 	call Functione3376
-	ld hl, $ad26
-	ld bc, $20
+	ld hl, sBoxMons
+	ld bc, sBoxMon2 - sBoxMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, wd018
@@ -82265,10 +82269,10 @@ Functione30fa: ; e30fa (38:70fa)
 	ld hl, wcb2a
 	add [hl]
 	ld [CurPartyMon], a
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	ld a, [CurPartyMon]
-	ld hl, $b082
+	ld hl, sBoxMonNicknames
 	call GetNick
 	call CloseSRAM
 	xor a
@@ -82832,10 +82836,10 @@ endr
 	xor a
 	ret
 .asm_e3697
-	ld a, 1
+	ld a, BANK(sBoxCount)
 	ld b, a
 	call GetSRAMBank
-	ld hl, $ad10
+	ld hl, sBoxCount
 	ld a, [hl]
 	call CloseSRAM
 	ret
@@ -89546,7 +89550,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld c, a
 	callba Function2c708
 	ld a, c
-	ld [$abe4], a
+	ld [s0_abe4], a
 	ld [wd265], a
 	call CloseSRAM
 	call GetItemName
@@ -90653,38 +90657,38 @@ Function105106: ; 105106
 
 
 Function10510b: ; 10510b (41:510b)
-	ld a, $1
+	ld a, BANK(sPokemonData)
 	call GetSRAMBank
 	ld de, OverworldMap
-	ld bc, $a86d
-	ld hl, $a866
+	ld bc, sPokemonData + PartyMons - wPokemonData
+	ld hl, sPokemonData + PartySpecies - wPokemonData
 .asm_105119
 	ld a, [hli]
 	cp $ff
 	jr z, .asm_105148
-	cp $fd
+	cp EGG
 	jr z, .asm_10513e
 	push hl
-	ld hl, $1f
+	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld hl, $0
+	ld hl, PartyMon1Species - PartyMon1
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld hl, $2
+	ld hl, PartyMon1Moves - PartyMon1
 	add hl, bc
 	push bc
-	ld bc, $4
+	ld bc, NUM_MOVES
 	call CopyBytes
 	pop bc
 	pop hl
 .asm_10513e
 	push hl
-	ld hl, $30
+	ld hl, PartyMon2 - PartyMon1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -90932,6 +90936,7 @@ String_10572e: ; 10572e
 	next "ビーボタン", $1f, "おすと"
 	next "つうしん",   $1f, "ちゅうし します"
 	db   "@"
+
 ; 10575e
 
 Text_10575e: ; 10575e
@@ -90967,21 +90972,21 @@ Function105777: ; 105777 (41:5777)
 
 Function10578c: ; 10578c (41:578c)
 	ld de, OverworldMap
-	ld a, $1
+	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, $a00b
-	ld bc, $b
+	ld hl, sPlayerData + PlayerName - wPlayerData
+	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld hl, $a009
-	ld bc, $2
+	ld hl, sPlayerData + PlayerID - wPlayerData
+	ld bc, 2
 	call CopyBytes
-	ld hl, $a3d8
-	ld bc, $2
+	ld hl, sPlayerData + wd84a - wPlayerData
+	ld bc, 2
 	call CopyBytes
 	call CloseSRAM
-	ld a, $1
+	ld a, BANK(sCrystalData)
 	call GetSRAMBank
-	ld a, [$be3d]
+	ld a, [sCrystalData + 0]
 	ld [de], a
 	inc de
 	ld a, $4
@@ -91981,28 +91986,28 @@ Function10616e: ; 10616e
 
 
 Function106187: ; 106187
-	ld a, $1
+	ld a, BANK(s1_be3c)
 	call GetSRAMBank
-	ld a, [$be3c]
+	ld a, [s1_be3c]
 	push af
-	ld a, $1
+	ld a, BANK(s1_be44)
 	call GetSRAMBank
 	pop af
-	ld [$be44], a
+	ld [s1_be44], a
 	call CloseSRAM
 	ret
 ; 10619d
 
 
 Function10619d: ; 10619d (41:619d)
-	ld a, $1
+	ld a, BANK(s1_be44)
 	call GetSRAMBank
-	ld a, [$be44]
+	ld a, [s1_be44]
 	push af
-	ld a, $1
+	ld a, BANK(s1_be3c)
 	call GetSRAMBank
 	pop af
-	ld [$be3c], a
+	ld [s1_be3c], a
 	call CloseSRAM
 	ret
 ; 1061b3 (41:61b3)
@@ -92020,10 +92025,10 @@ Function1061b3: ; 1061b3
 ; 1061c0
 
 Function1061c0: ; 1061c0 (41:61c0)
-	ld a, $1
+	ld a, BANK(s1_be3c)
 	call GetSRAMBank
 	xor a
-	ld [$be3c], a
+	ld [s1_be3c], a
 	call CloseSRAM
 	ret
 ; 1061cd (41:61cd)

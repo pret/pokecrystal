@@ -216,10 +216,10 @@ ParkBall: ; e8a2
 	cp PARTY_LENGTH
 	jr nz, .asm_e8c0
 
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
-	ld a, [$ad10]
-	cp 20
+	ld a, [sBoxCount]
+	cp MONS_PER_BOX
 	call CloseSRAM
 	jp z, Ball_BoxIsFullMessage
 
@@ -622,22 +622,21 @@ endr
 
 	callba Function4db83
 
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 
-	ld a, [$ad10]
+	ld a, [sBoxCount]
 	cp MONS_PER_BOX
 	jr nz, .asm_eb5b
 	ld hl, wd0ee
 	set 7, [hl]
-
 .asm_eb5b
 	ld a, [CurItem]
 	cp FRIEND_BALL
 	jr nz, .asm_eb67
+	; Bug: overwrites the happiness of the first mon in the box!
 	ld a, FRIEND_BALL_HAPPINESS
-	ld [$ad41], a
-
+	ld [sBoxMon1Happiness], a
 .asm_eb67
 	call CloseSRAM
 

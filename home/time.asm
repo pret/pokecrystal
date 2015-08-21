@@ -280,18 +280,18 @@ SetClock:: ; 691
 Function6c4:: ; 6c4
 	xor a
 	push af
-	ld a, $0
+	ld a, BANK(s0_ac60)
 	call GetSRAMBank
 	pop af
-	ld [$ac60], a
+	ld [s0_ac60], a
 	call CloseSRAM
 	ret
 ; 6d3
 
 Function6d3:: ; 6d3
-	ld hl, $ac60
+	ld hl, s0_ac60
 	push af
-	ld a, $0
+	ld a, BANK(s0_ac60)
 	call GetSRAMBank
 	pop af
 	or [hl]
@@ -301,9 +301,9 @@ Function6d3:: ; 6d3
 ; 6e3
 
 Function6e3:: ; 6e3
-	ld a, $0
+	ld a, BANK(s0_ac60)
 	call GetSRAMBank
-	ld a, [$ac60]
+	ld a, [s0_ac60]
 	call CloseSRAM
 	ret
 ; 6ef
