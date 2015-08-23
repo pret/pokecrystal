@@ -1,4 +1,4 @@
-Function1f8000: ; 1f8000
+Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	ld a, [rSVBK]
 	push af
 	ld a, $3
@@ -52,7 +52,7 @@ ENDC
 	call AddNTimes
 	ld bc, 11
 	call CopyBytes
-	call Function1f8081
+	call Function_LoadRandomBattleTowerPkmn
 	pop af
 	ld hl, Unknown_1f0000
 	ld bc, $0024
@@ -73,14 +73,16 @@ ENDC
 	ret
 ; 1f8081
 
-Function1f8081: ; 1f8081
-	ld c, $3
+Function_LoadRandomBattleTowerPkmn: ; 1f8081
+	ld c, $3		
 .loop
 	push bc
 	ld a, BANK(sbe51)
 	call GetSRAMBank
 
 .asm_1f8089
+	; From Which LevelGroup are the Pkmn loaded
+	; a = 1..10
 	ld a, [$d800]
 	dec a
 	ld hl, BattleTowerMons
@@ -97,7 +99,9 @@ Function1f8081: ; 1f8081
 	and $1f
 	cp (BattleTowerMons2 - BattleTowerMons1) / ($3b)
 	jr nc, .asm_1f8099
+	; in register 'a' is the chosen Pkmn of the LevelGroup
 
+	; Check if Pkmn was already loaded before
 	ld bc, $3b
 	call AddNTimes
 	ld a, [hli]

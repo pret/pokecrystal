@@ -24179,7 +24179,7 @@ Function170b16: ; 170b16 (5c:4b16)
 	ret
 
 Function170b44: ; 170b44
-	callba Function1f8000
+	callba Function_LoadOpponentTrainerAndPokemons
 	ld a, [rSVBK]
 	push af
 	ld a, $3
