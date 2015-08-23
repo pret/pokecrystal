@@ -60873,12 +60873,12 @@ UnknownText_0x8b1fc: ; 0x8b1fc
 	db "@"
 ; 0x8b201
 
-Function8b201: ; 8b201
+CheckForBattleTowerRules: ; 8b201
 	ld hl, StringBuffer2
 	ld [hl], "3"
 	inc hl
 	ld [hl], "@"
-	ld de, Unknown_8b215
+	ld de, CheckForBattleTowerRules_FunctionsText
 	call Function8b25b
 	ret z
 	call Function8b231
@@ -60886,29 +60886,29 @@ Function8b201: ; 8b201
 	ret
 ; 8b215
 
-Unknown_8b215: ; 8b215
+CheckForBattleTowerRules_FunctionsText: ; 8b215
 	db 4
-	dw Unknown_8b21a
-	dw Unknown_8b222
+	dw CheckForBattleTowerRules_Functions
+	dw CheckForBattleTowerRules_Text
 
-Unknown_8b21a: ; 8b21a
-	dw Function8b2da
+CheckForBattleTowerRules_Functions: ; 8b21a
+	dw Function_PartyCountEq3
 	dw Function8b2e2
 	dw Function8b32a
-	dw Function8b331
+	dw Function_HasPartyAnEgg
 ; 8b222
 
-Unknown_8b222: ; 8b222
-	dw UnknownText_0x8b22c
-	dw UnknownText_0x8b247
-	dw UnknownText_0x8b24c
-	dw UnknownText_0x8b251
-	dw UnknownText_0x8b256
+CheckForBattleTowerRules_Text: ; 8b222
+	dw JumpText_ExcuseMeYoureNotReady
+	dw JumbText_OnlyThreePkmnMayBeEntered
+	dw JumpText_ThePkmnMustAllBeDifferentKinds
+	dw JumpText_ThePkmnMustNotHoldTheSameItems
+	dw JumpText_YouCantTakeAnEgg
 ; 8b22c
 
-UnknownText_0x8b22c: ; 0x8b22c
+JumpText_ExcuseMeYoureNotReady: ; 0x8b22c
 	; Excuse me. You're not ready.
-	text_jump UnknownText_0x1c5944
+	text_jump Text_ExcuseMeYoureNotReady
 	db "@"
 ; 0x8b231
 
@@ -60936,27 +60936,27 @@ UnknownText_0x8b242: ; 0x8b242
 	db "@"
 ; 0x8b247
 
-UnknownText_0x8b247: ; 0x8b247
+JumbText_OnlyThreePkmnMayBeEntered: ; 0x8b247
 	; Only three #MON may be entered.
-	text_jump UnknownText_0x1c59c3
+	text_jump Text_OnlyThreePkmnMayBeEntered
 	db "@"
 ; 0x8b24c
 
-UnknownText_0x8b24c: ; 0x8b24c
+JumpText_ThePkmnMustAllBeDifferentKinds: ; 0x8b24c
 	; The @  #MON must all be different kinds.
-	text_jump UnknownText_0x1c59e5
+	text_jump Text_ThePkmnMustAllBeDifferentKinds
 	db "@"
 ; 0x8b251
 
-UnknownText_0x8b251: ; 0x8b251
+JumpText_ThePkmnMustNotHoldTheSameItems: ; 0x8b251
 	; The @  #MON must not hold the same items.
-	text_jump UnknownText_0x1c5a13
+	text_jump Text_ThePkmnMustNotHoldTheSameItems
 	db "@"
 ; 0x8b256
 
-UnknownText_0x8b256: ; 0x8b256
+JumpText_YouCantTakeAnEgg: ; 0x8b256
 	; You can't take an EGG!
-	text_jump UnknownText_0x1c5a42
+	text_jump Text_YouCantTakeAnEgg
 	db "@"
 ; 0x8b25b
 
@@ -61085,7 +61085,7 @@ Function8b2c1: ; 8b2c1
 	ret
 ; 8b2da
 
-Function8b2da: ; 8b2da
+Function_PartyCountEq3: ; 8b2da
 	ld a, [PartyCount]
 	cp 3
 	ret z
@@ -61169,7 +61169,7 @@ Function8b32a: ; 8b32a
 	ret
 ; 8b331
 
-Function8b331: ; 8b331
+Function_HasPartyAnEgg: ; 8b331
 	ld hl, PartyCount
 	ld a, [hli]
 	ld c, a

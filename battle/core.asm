@@ -3280,7 +3280,7 @@ Function3d4c3: ; 3d4c3
 	call Function3d7a0
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
-	call Function3d7c7
+	call Function_SetEnemyPkmnAndSendOutAnimation
 	call BreakAttraction
 	call Function3d57a
 	ret
@@ -3299,8 +3299,8 @@ Function3d4e1: ; 3d4e1
 	call Function3d74b
 	push af
 	call Function3d7a0
-	call Function3d7b8
-	call Function3d7c7
+	call Function_BattleTextEnemySentOut
+	call Function_SetEnemyPkmnAndSendOutAnimation
 	pop af
 	ret c
 	xor a
@@ -3323,8 +3323,8 @@ Function3d517: ; 3d517
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call Function3d7a0
-	call Function3d7b8
-	jp Function3d7c7
+	call Function_BattleTextEnemySentOut
+	jp Function_SetEnemyPkmnAndSendOutAnimation
 ; 3d533
 
 Function3d533: ; 3d533
@@ -3697,14 +3697,14 @@ Function3d7a0: ; 3d7a0
 	jp Function3ee27
 ; 3d7b8
 
-Function3d7b8: ; 3d7b8
+Function_BattleTextEnemySentOut: ; 3d7b8
 	callab Battle_GetTrainerName
-	ld hl, BattleText_0x80af8
+	ld hl, BattleText_EnemySentOut
 	call StdBattleTextBox
 	jp WaitBGMap
 ; 3d7c7
 
-Function3d7c7: ; 3d7c7
+Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	ld a, [TempEnemyMonSpecies]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a

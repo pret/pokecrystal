@@ -73,7 +73,7 @@ UnknownScript_0x9e3fc:
 UnknownScript_0x9e40f:
 	writebyte $1a
 	special Function170687
-	special Function170bd3
+	special SpecialCheckForBattleTowerRules
 	if_not_equal $0, UnknownScript_0x9e4bb
 	writetext UnknownText_0x9ef1f
 	yesorno
@@ -190,7 +190,7 @@ UnknownScript_0x9e4ea:
 	writebyte $19
 	special Function170687
 	if_not_equal $0, UnknownScript_0x9e549
-	special Function170bd3
+	special SpecialCheckForBattleTowerRules
 	if_not_equal $0, UnknownScript_0x9e4bb
 	writebyte $5
 	special Function170687

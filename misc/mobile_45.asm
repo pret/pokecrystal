@@ -24237,8 +24237,8 @@ Function170bd2: ; 170bd2
 	ret
 ; 170bd3
 
-Function170bd3: ; 170bd3
-	callba Function8b201
+SpecialCheckForBattleTowerRules: ; 170bd3
+	callba CheckForBattleTowerRules
 	jr c, .asm_170bde
 	xor a
 	jr .asm_170be0

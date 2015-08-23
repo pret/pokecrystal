@@ -144,7 +144,7 @@ SpecialsPointers:: ; c029
 	add_special Function17021d
 	add_special Function170b44
 	add_special Function11ba38
-	add_special Function170bd3
+	add_special SpecialCheckForBattleTowerRules
 	add_special Function117656
 	add_special Reset
 	add_special Function1011f1

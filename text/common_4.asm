@@ -1262,7 +1262,7 @@ UnknownText_0x1c5937: ; 0x1c5937
 	done
 ; 0x1c5944
 
-UnknownText_0x1c5944: ; 0x1c5944
+Text_ExcuseMeYoureNotReady: ; 0x1c5944
 	text "Excuse me."
 	line "You're not ready."
 	para ""
@@ -1289,14 +1289,14 @@ UnknownText_0x1c59a3: ; 0x1c59a3
 	done
 ; 0x1c59c3
 
-UnknownText_0x1c59c3: ; 0x1c59c3
+Text_OnlyThreePkmnMayBeEntered: ; 0x1c59c3
 	text "Only three #MON"
 	line "may be entered."
 	para ""
 	done
 ; 0x1c59e5
 
-UnknownText_0x1c59e5: ; 0x1c59e5
+Text_ThePkmnMustAllBeDifferentKinds: ; 0x1c59e5
 	text "The @"
 	text_from_ram StringBuffer2
 	text " #MON"
@@ -1306,7 +1306,7 @@ UnknownText_0x1c59e5: ; 0x1c59e5
 	done
 ; 0x1c5a13
 
-UnknownText_0x1c5a13: ; 0x1c5a13
+Text_ThePkmnMustNotHoldTheSameItems: ; 0x1c5a13
 	text "The @"
 	text_from_ram StringBuffer2
 	text " #MON"
@@ -1316,7 +1316,7 @@ UnknownText_0x1c5a13: ; 0x1c5a13
 	done
 ; 0x1c5a42
 
-UnknownText_0x1c5a42: ; 0x1c5a42
+Text_YouCantTakeAnEgg: ; 0x1c5a42
 	text "You can't take an"
 	line "EGG!"
 	para ""

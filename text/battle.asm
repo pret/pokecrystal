@@ -271,7 +271,7 @@ BattleText_0x80aca: ; 0x80aca
 	done
 ; 0x80af8
 
-BattleText_0x80af8: ; 0x80af8
+BattleText_EnemySentOut: ; 0x80af8
 	text "<ENEMY>"
 	line "sent out"
 	cont "@"

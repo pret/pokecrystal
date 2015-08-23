@@ -74,7 +74,7 @@ ENDC
 ; 1f8081
 
 Function_LoadRandomBattleTowerPkmn: ; 1f8081
-	ld c, $3		
+	ld c, $3
 .loop
 	push bc
 	ld a, BANK(sbe51)
