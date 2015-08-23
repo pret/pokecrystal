@@ -2938,7 +2938,7 @@ SpecialGiveShuckle: ; 7305
 
 ; Caught data.
 	ld b, 0
-	callba Function4dba3
+	callba SetPkmnCaughtData
 
 ; Holding a Berry.
 	ld bc, PartyMon2 - PartyMon1
@@ -9562,7 +9562,7 @@ endr
 	ld [hli], a
 	ld [hl], $e9
 	pop bc
-	callba Function4dba3
+	callba SetPkmnCaughtData
 	jr .asm_e3b2
 
 .asm_e35e
@@ -9604,7 +9604,7 @@ endr
 	callba Function4db49
 
 .asm_e3a6
-	callba Function4db3b
+	callba GiveANickname_YesNo
 	pop de
 	jr c, .asm_e3b2
 	call Functione3de
@@ -44804,7 +44804,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld de, wd050
 	ld bc, $000b
 	call CopyBytes
-	call Function4db3b
+	call GiveANickname_YesNo
 	jr c, .asm_4da66
 	ld a, [PartyCount]
 	dec a
@@ -44868,7 +44868,7 @@ Function4daa3: ; 4daa3
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
-	call Function4db3b
+	call GiveANickname_YesNo
 	ld hl, StringBuffer1
 	jr c, .asm_4daf7
 	ld a, BOXMON
@@ -44915,13 +44915,13 @@ Function4db35: ; 4db35
 ; 4db3b
 
 
-Function4db3b: ; 4db3b
-	ld hl, UnknownText_0x4db44
+GiveANickname_YesNo: ; 4db3b
+	ld hl, TextJump_GiveANickname
 	call PrintText
 	jp YesNoBox
 ; 4db44
 
-UnknownText_0x4db44: ; 0x4db44
+TextJump_GiveANickname: ; 0x4db44
 	; Give a nickname to the @  you received?
 	text_jump UnknownText_0x1c12fc
 	db "@"
@@ -44987,7 +44987,7 @@ Function4db92: ; 4db92
 	ret
 ; 4dba3
 
-Function4dba3: ; 4dba3
+SetPkmnCaughtData: ; 4dba3
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1CaughtLevel
@@ -87759,7 +87759,7 @@ Functionfcc63: ; fcc63
 	jr c, .asm_fcd1c
 	ld b, 1
 .asm_fcd1c
-	callba Function4dba3
+	callba SetPkmnCaughtData
 
 	ld e, TRADE_NICK
 	call GetTradeAttribute

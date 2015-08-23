@@ -2388,7 +2388,7 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld b, a
 	push hl
-	callba Function4dba3
+	callba SetPkmnCaughtData
 	pop hl
 	pop bc
 	jr .asm_17df5e
