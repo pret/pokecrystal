@@ -9615,7 +9615,7 @@ endr
 	ld a, b
 	and a
 	ret z
-	ld hl, UnknownText_0xe3d9
+	ld hl, TextJump_WasSentToBillsPC
 	call PrintText
 	ld a, $1
 	call GetSRAMBank
@@ -9635,9 +9635,9 @@ Functione3d4: ; e3d4
 	ret
 ; e3d9
 
-UnknownText_0xe3d9: ; 0xe3d9
+TextJump_WasSentToBillsPC: ; 0xe3d9
 	; was sent to BILL's PC.
-	text_jump UnknownText_0x1c0feb
+	text_jump Text_WasSentToBillsPC
 	db "@"
 ; 0xe3de
 

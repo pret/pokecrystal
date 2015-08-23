@@ -1074,7 +1074,7 @@ UnknownText_0x1c0fdd: ; 1c0fdd
 	done
 ; 1c0feb
 
-UnknownText_0x1c0feb: ; 1c0feb
+Text_WasSentToBillsPC: ; 1c0feb
 	text_from_ram StringBuffer1
 	text " was"
 	line "sent to BILL's PC."
