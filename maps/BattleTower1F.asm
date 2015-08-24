@@ -59,37 +59,37 @@ ReceptionistScript_0x9e3e2:
 	keeptextopen
 	writebyte $0
 	special Function170687
-	if_not_equal $0, UnknownScript_0x9e3fc
+	if_not_equal $0, Script_Menu_ChallengeExplanationCancel
 	jump UnknownScript_0x9e49e
 
-UnknownScript_0x9e3fc:
-	writetext UnknownText_0x9e5ea
+Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
+	writetext Text_WantToGoIntoABattleRoom
 	writebyte $1
-	special Function17d224
-	if_equal $1, UnknownScript_0x9e40f
+	special Special_Menu_ChallengeExplanationCancel
+	if_equal $1, Script_ChoseChallenge
 	if_equal $2, UnknownScript_0x9e4a5
 	jump UnknownScript_0x9e4b0
 
-UnknownScript_0x9e40f:
+Script_ChoseChallenge: ; 0x9e40f
 	writebyte $1a
 	special Function170687
 	special SpecialCheckForBattleTowerRules
-	if_not_equal $0, UnknownScript_0x9e4bb
-	writetext UnknownText_0x9ef1f
+	if_not_equal $0, Script_CloseText
+	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $0
 	special Special_TryQuickSave
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $1
 	writebyte $1
 	special Function170687
 	special Function1700b0
-	if_equal $a, UnknownScript_0x9e3fc
+	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, UnknownScript_0x9e550
 	writebyte $11
 	special Function170687
-	writetext UnknownText_0x9e60a
+	writetext Text_RightThisWayToYourBattleRoom
 	closetext
 	loadmovesprites
 	writebyte $1e
@@ -145,7 +145,7 @@ UnknownScript_0x9e4a5:
 UnknownScript_0x9e4a8:
 	writebyte $1
 	special Function170687
-	jump UnknownScript_0x9e3fc
+	jump Script_Menu_ChallengeExplanationCancel
 
 UnknownScript_0x9e4b0:
 	writetext UnknownText_0x9ec09
@@ -158,22 +158,22 @@ UnknownScript_0x9e4b6:
 	loadmovesprites
 	end
 
-UnknownScript_0x9e4bb:
+Script_CloseText: ; 0x9e4bb
 	closetext
 	loadmovesprites
 	end
 
 
 UnknownScript_0x9e4be:
-	writetext UnknownText_0x9ef1f
+	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	special Special_TryQuickSave
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	writebyte $1
 	special Function170687
 	special Function1700ba
-	if_equal $a, UnknownScript_0x9e3fc
+	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, UnknownScript_0x9e550
 	writetext UnknownText_0x9e9eb
 	spriteface $2, LEFT
@@ -191,7 +191,7 @@ UnknownScript_0x9e4ea:
 	special Function170687
 	if_not_equal $0, UnknownScript_0x9e549
 	special SpecialCheckForBattleTowerRules
-	if_not_equal $0, UnknownScript_0x9e4bb
+	if_not_equal $0, Script_CloseText
 	writebyte $5
 	special Function170687
 	if_equal $0, UnknownScript_0x9e512
@@ -202,19 +202,19 @@ UnknownScript_0x9e512:
 	writetext UnknownText_0x9ec6d
 UnknownScript_0x9e515:
 	yesorno
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	writetext UnknownText_0x9ef79
 	yesorno
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $0
 	special Special_TryQuickSave
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $1
 	writebyte $6
 	special Function170687
 	writebyte $12
 	special Function170687
-	writetext UnknownText_0x9e60a
+	writetext Text_RightThisWayToYourBattleRoom
 	closetext
 	jump UnknownScript_0x9e44e
 
@@ -226,12 +226,12 @@ UnknownScript_0x9e53b:
 UnknownScript_0x9e542:
 	writetext UnknownText_0x9f1e5
 	closetext
-	jump UnknownScript_0x9e3fc
+	jump Script_Menu_ChallengeExplanationCancel
 
 UnknownScript_0x9e549:
 	writetext UnknownText_0x9f217
 	closetext
-	jump UnknownScript_0x9e3fc
+	jump Script_Menu_ChallengeExplanationCancel
 
 UnknownScript_0x9e550:
 	special Function17f53d
@@ -354,12 +354,12 @@ UnknownText_0x9e5ab:
 	line "to a BATTLE ROOM."
 	done
 
-UnknownText_0x9e5ea:
+Text_WantToGoIntoABattleRoom: ; 0x9e5ea
 	text "Want to go into a"
 	line "BATTLE ROOM?"
 	done
 
-UnknownText_0x9e60a:
+Text_RightThisWayToYourBattleRoom: ; 0x9e60a
 	text "Right this way to"
 	line "your BATTLE ROOM."
 	done
@@ -556,7 +556,7 @@ UnknownText_0x9ec26:
 	line "way."
 	done
 
-UnknownText_0x9ec3d:
+UnknownText_0x9ec3d: ; 0x9ec3d
 	text "Would you like to"
 	line "hear about the"
 	cont "BATTLE TOWER?"
@@ -647,7 +647,7 @@ UnknownText_0x9eee0:
 	line "the CENTER."
 	done
 
-UnknownText_0x9ef1f:
+Text_SaveBeforeEnteringBattleRoom: ; 0x9ef1f
 	text "Before entering"
 	line "the BATTLE ROOM,"
 

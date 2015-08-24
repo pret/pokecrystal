@@ -425,7 +425,7 @@ Function17d1f1: ; 17d1f1
 	ret
 ; 17d224
 
-Function17d224: ; 17d224
+Special_Menu_ChallengeExplanationCancel: ; 17d224
 	ld a, [ScriptVar]
 	and a
 	jr nz, .asm_17d234

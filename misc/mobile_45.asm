@@ -23500,38 +23500,38 @@ endr
 
 
 Jumptable_170696: ; 170696 (5c:4696)
-	dw Function17075f
-	dw Function170788
-	dw Function170778
-	dw Function170799
-	dw Function17079d
-	dw Function1707ac
-	dw Function1707f4
-	dw Function170868
-	dw Function170881
-	dw Function17089a
-	dw Function1708b1
-	dw Function1708b9
-	dw Function1708c8
-	dw Function1708f0
-	dw Function17093c
-	dw Function1709aa
-	dw Function1709bb
-	dw Function170a9c
-	dw Function170aa0
-	dw Function170aaf
-	dw Function170abe
-	dw Function170ad7
-	dw Function170807
-	dw Function17081d
-	dw Function170ae8
-	dw Function170b16
-	dw Function1706d6
-	dw Function1706ee
-	dw Function17071b
-	dw Function170729
-	dw Function17073e
-	dw Function170737
+	dw Function17075f ; 0x00
+	dw Function170788 ; 0x01
+	dw Function170778 ; 0x02
+	dw Function170799 ; 0x03
+	dw Function17079d ; 0x04
+	dw Function1707ac ; 0x05
+	dw Function1707f4 ; 0x06
+	dw Function170868 ; 0x07
+	dw Function170881 ; 0x08
+	dw Function17089a ; 0x09
+	dw Function1708b1 ; 0x0a
+	dw Function1708b9 ; 0x0b
+	dw Function1708c8 ; 0x0c
+	dw Function1708f0 ; 0x0d
+	dw Function17093c ; 0x0e
+	dw Function1709aa ; 0x0f
+	dw Function1709bb ; 0x10
+	dw Function170a9c ; 0x11
+	dw Function170aa0 ; 0x12
+	dw Function170aaf ; 0x13
+	dw Function170abe ; 0x14
+	dw Function170ad7 ; 0x15
+	dw Function170807 ; 0x16
+	dw Function17081d ; 0x17
+	dw Function170ae8 ; 0x18
+	dw Function170b16 ; 0x19
+	dw Function1706d6 ; 0x1a
+	dw Function1706ee ; 0x1b
+	dw Function17071b ; 0x1c
+	dw Function170729 ; 0x1d
+	dw Function17073e ; 0x1e
+	dw Function170737 ; 0x1f
 
 
 Function1706d6: ; 1706d6 (5c:46d6)

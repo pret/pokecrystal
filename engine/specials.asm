@@ -156,7 +156,7 @@ SpecialsPointers:: ; c029
 	add_special Function11c1ab
 	add_special Function170687
 	add_special Special_DisplayUnownWords
-	add_special Function17d224
+	add_special Special_Menu_ChallengeExplanationCancel
 	add_special Function17d2b6
 	add_special Function17d2ce
 	add_special Function17f53d
