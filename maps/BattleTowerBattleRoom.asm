@@ -42,7 +42,7 @@ UnknownScript_0x9f425:
 	applymovement $3, MovementData_0x9e59c
 	applymovement PLAYER, MovementData_0x9e5a7
 	loadfont
-	writetext UnknownText_0x9ee92
+	writetext Text_YourPkmnWillBeHealedToFullHealth
 	closetext
 	loadmovesprites
 	playmusic MUSIC_HEAL
@@ -52,7 +52,7 @@ UnknownScript_0x9f425:
 	special FadeInBGMap
 	special RestartMapMusic
 	loadfont
-	writetext UnknownText_0x9eebc
+	writetext Text_NextUpOpponentNo
 	yesorno
 	iffalse UnknownScript_0x9f483
 UnknownScript_0x9f477:
@@ -62,7 +62,7 @@ UnknownScript_0x9f477:
 	jump UnknownScript_0x9f425
 
 UnknownScript_0x9f483:
-	writetext UnknownText_0x9ef5e
+	writetext Text_SaveAndEndTheSession
 	yesorno
 	iffalse UnknownScript_0x9f4a3
 	writebyte $7
@@ -76,7 +76,7 @@ UnknownScript_0x9f483:
 	special FadeBlackBGMap
 	special Reset
 UnknownScript_0x9f4a3:
-	writetext UnknownText_0x9efbf
+	writetext Text_CancelYourBattleRoomChallenge
 	yesorno
 	iffalse UnknownScript_0x9f477
 	writebyte $4
@@ -126,7 +126,7 @@ UnknownScript_0x9f4f7:
 	special Function170687
 	loadfont
 	writetext UnknownText_0x9ea49
-	writetext UnknownText_0x9ec09
+	writetext Text_WeHopeToServeYouAgain
 	closetext
 	loadmovesprites
 	end

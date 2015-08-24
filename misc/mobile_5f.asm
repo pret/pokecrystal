@@ -425,19 +425,29 @@ Function17d1f1: ; 17d1f1
 	ret
 ; 17d224
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Parameter: [ScriptVar] = 0..1
+;
+; if [ScriptVar] == 0
+;    Show japanese menu options
+;    - News - News - ??? - Cancel
+; if [ScriptVar] == 1
+;    Show BattleTower-Menu with 3 options in english language
+;    - Challenge - Explanation - Cancel
 Special_Menu_ChallengeExplanationCancel: ; 17d224
 	ld a, [ScriptVar]
 	and a
 	jr nz, .asm_17d234
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, MenuDataHeader_17d26a
+	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
 	jr .asm_17d23c
 
 .asm_17d234
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, MenuDataHeader_17d28f
+	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
 
 .asm_17d23c
 	call LoadMenuDataHeader
@@ -488,14 +498,14 @@ MenuData2_17d272: ; 17d272
 	db "やめる@"
 ; 17d28f
 
-MenuDataHeader_17d28f: ; 17d28f
+MenuDataHeader_ChallengeExplanationCancel: ; 17d28f
 	db $40 ; flags
 	db  0,  0 ; start coords
 	db  7, 14 ; end coords
-	dw MenuData2_17d297
+	dw MenuData2_ChallengeExplanationCancel
 	db 1 ; default option
 
-MenuData2_17d297: ; 17d297
+MenuData2_ChallengeExplanationCancel: ; 17d297
 	db $a0 ; flags
 	db 3
 	db "Challenge@"

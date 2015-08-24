@@ -67,7 +67,7 @@ UnknownScript_0x9f618:
 UnknownScript_0x9f61f:
 	faceperson PLAYER, $2
 	loadfont
-	writetext UnknownText_0x9ec26
+	writetext Text_PleaseStepThisWay
 	closetext
 	loadmovesprites
 	stopfollow
