@@ -129,18 +129,18 @@ Function3c0e5: ; 3c0e5
 	ld [wd0ee], a
 	ld a, [InLinkBattle]
 	and a
-	ld hl, BattleText_0x807bd
+	ld hl, BattleText_WildFled
 	jr z, .asm_3c115
 	ld a, [wd0ee]
 	and $c0
 	ld [wd0ee], a
-	ld hl, BattleText_0x807cf
+	ld hl, BattleText_EnemyFled
 	call Function3d2e0
 	jr nc, .asm_3c115
 	ld hl, wcd2a
 	bit 4, [hl]
 	jr nz, .asm_3c118
-	ld hl, BattleText_0x81863
+	ld hl, BattleText_LinkErrorBattleCanceled
 
 .asm_3c115
 	call StdBattleTextBox
@@ -159,6 +159,7 @@ Function3c0e5: ; 3c0e5
 	ld [BattleEnded], a
 	ret
 ; 3c12f
+
 
 Function3c12f: ; 3c12f
 .loop
@@ -939,7 +940,7 @@ Function3c5fe: ; 3c5fe
 	call SetEnemyTurn
 	ld a, $1
 	ld [wc70f], a
-	callab Function38000
+	callab AI_SwitchOrTryItem
 	jr c, .asm_3c62f
 	call Function3c6de
 	call Function3d2e0
@@ -980,7 +981,7 @@ Function3c664: ; 3c664
 	xor a
 	ld [wc70f], a
 	call SetEnemyTurn
-	callab Function38000
+	callab AI_SwitchOrTryItem
 	push af
 	call Function3c6cf
 	pop bc
@@ -4013,7 +4014,7 @@ Function3d8b3: ; 3d8b3
 	ld hl, wcd2a
 	bit 4, [hl]
 	jr nz, .asm_3da05
-	ld hl, BattleText_0x81863
+	ld hl, BattleText_LinkErrorBattleCanceled
 	call StdBattleTextBox
 
 .asm_3da05
@@ -5160,7 +5161,7 @@ LoadBattleMenu2: ; 3e19b
 	ld hl, wcd2a
 	bit 4, [hl]
 	jr nz, .error
-	ld hl, BattleText_0x81863
+	ld hl, BattleText_LinkErrorBattleCanceled
 	call StdBattleTextBox
 	ld c, 60
 	call DelayFrames
@@ -7327,9 +7328,11 @@ Function3ee3b: ; 3ee3b
 	ld a, [InLinkBattle]
 	and a
 	ret nz
+
 	ld a, [wcfc0]
 	bit 0, a
 	ret nz
+
 	call Function3f0d4
 	xor a
 	ld [CurPartyMon], a

@@ -12,14 +12,13 @@ BattleTowerHallway_MapScriptHeader:
 UnknownScript_0x9f5bb:
 	priorityjump UnknownScript_0x9f5c1
 	dotrigger $1
-
 UnknownScript_0x9f5c0:
 	end
 
 UnknownScript_0x9f5c1:
 	follow $2, PLAYER
 	callasm Function_0x9f5cb
-	jump UnknownScript_0x9f5dc
+	jump Script_WalkToChosenBattleRoom
 
 
 Function_0x9f5cb:
@@ -36,35 +35,38 @@ Function_0x9f5cb:
 	ret
 
 
-UnknownScript_0x9f5dc:
-	if_equal $3, UnknownScript_0x9f603
-	if_equal $4, UnknownScript_0x9f603
-	if_equal $5, UnknownScript_0x9f60a
-	if_equal $6, UnknownScript_0x9f60a
-	if_equal $7, UnknownScript_0x9f611
-	if_equal $8, UnknownScript_0x9f611
-	if_equal $9, UnknownScript_0x9f618
-	if_equal $a, UnknownScript_0x9f618
+; enter different rooms for different levels to battle against
+; at least it should look like that
+; because all warps lead to the same room
+Script_WalkToChosenBattleRoom: ; 0x9f5dc
+	if_equal 3, Script_WalkToBattleRoomL30L40
+	if_equal 4, Script_WalkToBattleRoomL30L40
+	if_equal 5, Script_WalkToBattleRoomL50L60
+	if_equal 6, Script_WalkToBattleRoomL50L60
+	if_equal 7, Script_WalkToBattleRoomL70L80
+	if_equal 8, Script_WalkToBattleRoomL70L80
+	if_equal 9, Script_WalkToBattleRoomL90L100
+	if_equal 10, Script_WalkToBattleRoomL90L100
 	applymovement $2, MovementData_0x9e57a
-	jump UnknownScript_0x9f61f
+	jump Script_PlayerEntersBattleRoom
 
-UnknownScript_0x9f603:
+Script_WalkToBattleRoomL30L40: ; 0x9f603
 	applymovement $2, MovementData_0x9e57c
-	jump UnknownScript_0x9f61f
+	jump Script_PlayerEntersBattleRoom
 
-UnknownScript_0x9f60a:
+Script_WalkToBattleRoomL50L60: ; 0x9f60a
 	applymovement $2, MovementData_0x9e586
-	jump UnknownScript_0x9f61f
+	jump Script_PlayerEntersBattleRoom
 
-UnknownScript_0x9f611:
+Script_WalkToBattleRoomL70L80: ; 0x9f611
 	applymovement $2, MovementData_0x9e584
-	jump UnknownScript_0x9f61f
+	jump Script_PlayerEntersBattleRoom
 
-UnknownScript_0x9f618:
+Script_WalkToBattleRoomL90L100: ; 0x9f618
 	applymovement $2, MovementData_0x9e582
-	jump UnknownScript_0x9f61f
+	jump Script_PlayerEntersBattleRoom
 
-UnknownScript_0x9f61f:
+Script_PlayerEntersBattleRoom: ; 0x9f61f
 	faceperson PLAYER, $2
 	loadfont
 	writetext Text_PleaseStepThisWay

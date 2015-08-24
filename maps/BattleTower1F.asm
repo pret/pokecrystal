@@ -67,7 +67,7 @@ Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 	writebyte $1
 	special Special_Menu_ChallengeExplanationCancel
 	if_equal $1, Script_ChoseChallenge
-	if_equal $2, UnknownScript_0x9e4a5
+	if_equal $2, Script_BattleTowerExplanation
 	jump UnknownScript_0x9e4b0
 
 Script_ChoseChallenge: ; 0x9e40f
@@ -116,7 +116,7 @@ UnknownScript_0x9e454:
 	warpcheck
 	end
 
-UnknownScript_0x9e47a:
+Script_GivePlayerHisPrize: ; 0x9e47a
 	writebyte $1c
 	special Function170687
 	writebyte $1b
@@ -124,7 +124,7 @@ UnknownScript_0x9e47a:
 	if_equal $12, Script_YourPackIsStuffedFull
 	itemtotext $0, $1
 	giveitem $ff, $5
-	writetext UnknownText_0x9eb7e
+	writetext Text_PlayerGotFive
 	writebyte $1d
 	special Function170687
 	loadmovesprites
@@ -140,7 +140,7 @@ Script_BattleTowerIntroductionYesNo: ; 0x9e49e
 	writetext Text_WouldYouLikeToHearAboutTheBattleTower
 	yesorno
 	iffalse UnknownScript_0x9e4a8
-UnknownScript_0x9e4a5:
+Script_BattleTowerExplanation: ; 0x9e4a5
 	writetext Text_BattleTowerIntroduction_2
 UnknownScript_0x9e4a8:
 	writebyte $1
@@ -479,7 +479,7 @@ Text_ThankYou: ; 0x9ea3c
 	para ""
 	done
 
-UnknownText_0x9ea49:
+Text_ThanksForVisiting: ; 0x9ea49
 	text "Thanks for"
 	line "visiting!"
 	done
@@ -502,7 +502,7 @@ UnknownText_0x9ea5f:
 	para ""
 	done
 
-UnknownText_0x9eaef:
+Text_CongratulationsYouveBeatenAllTheTrainers: ; 0x9eaef
 	text "Congratulations!"
 
 	para "You've beaten all"
@@ -522,7 +522,7 @@ UnknownText_0x9eb45:
 	line "CENTER?"
 	done
 
-UnknownText_0x9eb7e:
+Text_PlayerGotFive: ; 0x9eb7e
 	text "<PLAYER> got five"
 	line "@"
 	text_from_ram StringBuffer4
@@ -699,7 +699,7 @@ UnknownText_0x9f076:
 	line "tomorrow."
 	done
 
-UnknownText_0x9f0c1:
+Text_TooMuchTimeElapsedNoRegister: ; 0x9f0c1
 	text "Sorry, but it's"
 	line "not possible to"
 

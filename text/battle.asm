@@ -44,7 +44,7 @@ WantsToBattleText:: ; 0x807a9
 	prompt
 ; 0x807bd
 
-BattleText_0x807bd: ; 0x807bd
+BattleText_WildFled: ; 0x807bd
 	text "Wild @"
 	text_from_ram EnemyMonNick
 	text ""
@@ -52,7 +52,7 @@ BattleText_0x807bd: ; 0x807bd
 	prompt
 ; 0x807cf
 
-BattleText_0x807cf: ; 0x807cf
+BattleText_EnemyFled: ; 0x807cf
 	text "Enemy @"
 	text_from_ram EnemyMonNick
 	text ""
@@ -1282,7 +1282,7 @@ IgnoredOrders2Text: ; 0x81850
 	prompt
 ; 0x81863
 
-BattleText_0x81863: ; 0x81863
+BattleText_LinkErrorBattleCanceled: ; 0x81863
 	text "Link error…"
 
 	para "The battle has"

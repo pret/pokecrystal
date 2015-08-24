@@ -1295,7 +1295,7 @@ UnknownText_0x1bcf99: ; 0x1bcf99
 	done
 ; 0x1bcf9c
 
-UnknownText_0x1bcf9c: ; 0x1bcf9c
+Text_EnemyWithdrew: ; 0x1bcf9c
 	text "<ENEMY>"
 	line "withdrew"
 	cont "@"
@@ -1304,7 +1304,7 @@ UnknownText_0x1bcf9c: ; 0x1bcf9c
 	prompt
 ; 0x1bcfaf
 
-UnknownText_0x1bcfaf: ; 0x1bcfaf
+Text_EnemyUsedOn: ; 0x1bcfaf
 	text "<ENEMY>"
 	line "used @"
 	text_from_ram wd050
@@ -1315,19 +1315,19 @@ UnknownText_0x1bcfaf: ; 0x1bcfaf
 	prompt
 ; 0x1bcfc7
 
-UnknownText_0x1bcfc7: ; 0x1bcfc7
+Text_ThatCantBeUsedRightNow: ; 0x1bcfc7
 	text "That can't be used"
 	line "right now."
 	prompt
 ; 0x1bcfe5
 
-UnknownText_0x1bcfe5: ; 0x1bcfe5
+Text_ThatItemCantBePutInThePack: ; 0x1bcfe5
 	text "That item can't be"
 	line "put in the PACK."
 	done
 ; 0x1bd009
 
-UnknownText_0x1bd009: ; 0x1bd009
+Text_TheItemWasPutInThePack: ; 0x1bd009
 	text "The @"
 	text_from_ram StringBuffer1
 	text ""
@@ -1336,18 +1336,18 @@ UnknownText_0x1bd009: ; 0x1bd009
 	done
 ; 0x1bd029
 
-UnknownText_0x1bd029: ; 0x1bd029
+Text_RemainingTime: ; 0x1bd029
 	text "Remaining Time"
 	done
 ; 0x1bd039
 
-UnknownText_0x1bd039: ; 0x1bd039
+Text_YourPkmnsHPWasHealed: ; 0x1bd039
 	text "Your #MON's HP"
 	line "was healed."
 	prompt
 ; 0x1bd054
 
-UnknownText_0x1bd054: ; 0x1bd054
+Text_Warping: ; 0x1bd054
 	text "Warping…"
 	done
 ; 0x1bd05e
@@ -1372,7 +1372,7 @@ UnknownText_0x1bd09a: ; 0x1bd09a
 	prompt
 ; 0x1bd0bd
 
-UnknownText_0x1bd0bd: ; 0x1bd0bd
+Text_BreedingIsNotPossible: ; 0x1bd0bd
 	text "Breeding is not"
 	line "possible."
 	prompt

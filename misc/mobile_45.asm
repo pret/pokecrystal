@@ -9739,11 +9739,11 @@ Function118922: ; 118922
 	ld a, [wcd38]
 	and a
 	jr nz, .asm_11892d
-	ld hl, UnknownText_0x11aba5
+	ld hl, Text_WhatLevelDoYouWantToChallenge
 	jr .asm_118930
 
 .asm_11892d
-	ld hl, UnknownText_0x11abcb
+	ld hl, Text_CheckBattleRoomListByMaxLevel
 
 .asm_118930
 	call Function11a9c0
@@ -9770,13 +9770,13 @@ Function118936:
 	ld a, [StatusFlags]
 	bit 6, a
 	jr nz, .asm_11896b
-	ld hl, Strings_119d64
-	ld a, $5
+	ld hl, Strings_Ll0ToL40 ; Address to list of strings with the choosable levels
+	ld a, 5 ; 4 levels to choose from, including 'Cancel'-option
 	jr .asm_118970
 
 .asm_11896b
-	ld hl, Strings_119d0c
-	ld a, $b
+	ld hl, Strings_L10ToL100 ; Address to list of strings with the choosable levels
+	ld a, 11 ; 10 levels to choose from, including 'Cancel'-option
 
 .asm_118970
 	ld [wcd4a], a
@@ -12537,7 +12537,7 @@ MenuData_119cff: ; 119cff
 String_119d07:
 	db "   ▼@"
 
-Strings_119d0c:
+Strings_L10ToL100: ; 119d0c
 	db " L:10 @@"
 	db " L:20 @@"
 	db " L:30 @@"
@@ -12550,7 +12550,7 @@ Strings_119d0c:
 	db " L:100@@"
 	db "CANCEL@@"
 
-Strings_119d64:
+Strings_Ll0ToL40: ; 119d64
 	db " L:10 @@"
 	db " L:20 @@"
 	db " L:30 @@"
@@ -14274,13 +14274,13 @@ UnknownText_0x11ab8b: ; 0x11ab8b
 	done
 ; 0x11aba5
 
-UnknownText_0x11aba5: ; 0x11aba5
+Text_WhatLevelDoYouWantToChallenge: ; 0x11aba5
 	text "What level do you"
 	line "want to challenge?"
 	done
 ; 0x11abcb
 
-UnknownText_0x11abcb: ; 0x11abcb
+Text_CheckBattleRoomListByMaxLevel: ; 0x11abcb
 	text "Check BATTLE ROOM"
 	line "list by max level?"
 	done
@@ -24178,7 +24178,7 @@ Function170b16: ; 170b16 (5c:4b16)
 	ld [ScriptVar], a
 	ret
 
-Function170b44: ; 170b44
+Function_LoadOpponentTrainerAndPokemons170b44: ; 0x170b44
 	callba Function_LoadOpponentTrainerAndPokemons
 	ld a, [rSVBK]
 	push af
