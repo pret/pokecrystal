@@ -14,11 +14,11 @@ Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	ld de, w3_d100
 	ld a, [hRandomAdd]
 	ld b, a
-.asm_1f8022
+.asm_1f8022 ; loop to find a random trainer
 	call Random
 	ld a, [hRandomAdd]
 	add b
-	ld b, a
+	ld b, a ; b contains the nr of the trainer
 IF DEF(CRYSTAL11)
 	and $7f
 	cp $46
@@ -31,14 +31,14 @@ ENDC
 	ld a, BANK(sbe46)
 	call GetSRAMBank
 	ld c, $7
-	ld hl, sbe48
+	ld hl, sBTTrainers
 .asm_1f803a
 	ld a, [hli]
 	cp b
 	jr z, .asm_1f8022
 	dec c
-	jr nz, .asm_1f803a
-	ld hl, sbe48
+	jr nz, .asm_1f803a ; c <= 7  initialise all 7 trainers?
+	ld hl, sBTTrainers
 	ld a, [sbe46]
 	ld c, a
 	ld a, b
@@ -77,10 +77,10 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	ld c, $3
 .loop
 	push bc
-	ld a, BANK(sbe51)
+	ld a, BANK(sBTPkmnPrevTrainer1)
 	call GetSRAMBank
 
-.asm_1f8089
+.FindARandomBattleTowerPkmn
 	; From Which LevelGroup are the Pkmn loaded
 	; a = 1..10
 	ld a, [$d800]
@@ -102,6 +102,8 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	; in register 'a' is the chosen Pkmn of the LevelGroup
 
 	; Check if Pkmn was already loaded before
+	; Check current and the 2 previous teams
+	; includes check if item is double at the current team
 	ld bc, $3b
 	call AddNTimes
 	ld a, [hli]
@@ -110,40 +112,40 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	ld c, a
 	ld a, [w3_d100 + $0b]
 	cp b
-	jr z, .asm_1f8089
+	jr z, .FindARandomBattleTowerPkmn
 	ld a, [w3_d100 + $0c]
 	cp c
-	jr z, .asm_1f8089
+	jr z, .FindARandomBattleTowerPkmn
 	ld a, [w3_d100 + $46]
 	cp b
-	jr z, .asm_1f8089
+	jr z, .FindARandomBattleTowerPkmn
 	ld a, [w3_d100 + $47]
 	cp c
-	jr z, .asm_1f8089
+	jr z, .FindARandomBattleTowerPkmn
 	ld a, [w3_d100 + $81]
 	cp b
-	jr z, .asm_1f8089
+	jr z, .FindARandomBattleTowerPkmn
 	ld a, [w3_d100 + $82]
 	cp c
-	jr z, .asm_1f8089
-	ld a, [sbe51]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer1]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe52]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer2]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe53]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer3]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe54]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer1]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe55]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer2]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe56]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer3]
 	cp b
-	jr z, .asm_1f8089
+	jr z, .FindARandomBattleTowerPkmn
 
 	ld bc, $3b
 	call CopyBytes
@@ -170,18 +172,18 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	dec c
 	jp nz, .loop
 
-	ld a, [sbe51]
-	ld [sbe54], a
-	ld a, [sbe52]
-	ld [sbe55], a
-	ld a, [sbe53]
-	ld [sbe56], a
+	ld a, [sBTPkmnPrevTrainer1]
+	ld [sBTPkmnPrevPrevTrainer1], a
+	ld a, [sBTPkmnPrevTrainer2]
+	ld [sBTPkmnPrevPrevTrainer2], a
+	ld a, [sBTPkmnPrevTrainer3]
+	ld [sBTPkmnPrevPrevTrainer3], a
 	ld a, [w3_d100 + $0b]
-	ld [sbe51], a
+	ld [sBTPkmnPrevTrainer1], a
 	ld a, [w3_d100 + $46]
-	ld [sbe52], a
+	ld [sBTPkmnPrevTrainer2], a
 	ld a, [w3_d100 + $81]
-	ld [sbe53], a
+	ld [sBTPkmnPrevTrainer3], a
 	call CloseSRAM
 	ret
 ; 1f814e

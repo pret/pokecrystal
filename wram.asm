@@ -2600,8 +2600,24 @@ SECTION "WRAM 3", WRAMX, BANK [3]
 
 	ds $100
 
-w3_d100::
-	ds $700
+w3_d100:: ; BattleTower OpponentTrainer-Data (lengt = 0xe0)
+	ds $6
+BT_OTTrainerPkmn1:: ; w3_d10b
+	ds $1
+BT_OTTrainerPkmn1Item::
+	ds $3b-1
+BT_OTTrainerPkmn2:: ; w3_d146
+	ds $1
+BT_OTTrainerPkmn2Item::
+	ds $3b-1
+BT_OTTrainerPkmn3:: ; w3_d181
+	ds $1
+BT_OTTrainerPkmn3Item::
+	ds $3b-1
+	
+	ds $29
+	
+	ds $620
 
 w3_d800:: ds 1
 
@@ -2772,17 +2788,24 @@ sCrystalData::
 s1_be44:: ds 1
 s1_be45:: ds 1
 
+; data of the BattleTower must be in SRAM because you can save and leave between battles
 sBattleTower:: ; be46
 sbe46:: ds 1
 sbe47:: ds 1
-sbe48:: ds 7
+; The 7 trainers of the BattleTower are saved here, so nobody appears more than once
+sBTTrainers:: ; sbe48
+	ds 7
 sbe4f:: ds 2
-sbe51:: ds 1
-sbe52:: ds 1
-sbe53:: ds 1
-sbe54:: ds 1
-sbe55:: ds 1
-sbe56:: ds 1
+; Pkmn of previous trainer
+sBTPkmnOfTrainers::
+sBTPkmnPrevTrainer1::
+	ds 1
+sBTPkmnPrevTrainer2:: ds 1
+sBTPkmnPrevTrainer3:: ds 1
+; Pkmn of preprevious trainer
+sBTPkmnPrevPrevTrainer1:: ds 1
+sBTPkmnPrevPrevTrainer2:: ds 1
+sBTPkmnPrevPrevTrainer3:: ds 1
 
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]
