@@ -54,12 +54,12 @@ ENDC
 	call CopyBytes
 	call Function_LoadRandomBattleTowerPkmn
 	pop af
-	ld hl, Unknown_1f0000
+	ld hl, BattleTowerTrainerData
 	ld bc, $0024
 	call AddNTimes
 	ld bc, $0024
 .asm_1f8070
-	ld a, BANK(Unknown_1f0000)
+	ld a, BANK(BattleTowerTrainerData)
 	call GetFarByte
 	ld [de], a
 	inc hl

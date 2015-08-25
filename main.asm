@@ -8803,7 +8803,7 @@ Functionde44: ; de44
 
 
 Functionde6e: ; de6e
-	ld a, 1 ; BANK(sBoxCount)
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld de, sBoxCount
 	ld a, [de]
@@ -9067,7 +9067,7 @@ Functione039: ; e039
 	and a
 	jr z, .asm_e04a
 
-	ld a, 1 ; BANK(sBoxCount)
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 
@@ -51399,7 +51399,7 @@ Function806ff: ; 806ff
 
 Function80715: ; 80715
 ; Remaining slots in the current box.
-	ld a, 1 ; BANK(sBoxCount)
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 	ld a, MONS_PER_BOX
@@ -93532,7 +93532,8 @@ INCLUDE "text/battle_tower.asm"
 
 SECTION "bank7C", ROMX, BANK[$7C]
 
-Unknown_1f0000::
+BattleTowerTrainerData:: ; What exactly it is, I don't know
+; Size is 70 (Nr of Trainers in BattleTower) * 0x24 (Nr of Bytes that are copied)
 INCBIN "unknown/1f0000.bin"
 
 

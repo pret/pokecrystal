@@ -2544,7 +2544,7 @@ endr
 ; 17e026
 
 Function17e026: ; 17e026
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	call CloseSRAM
@@ -2559,7 +2559,7 @@ Function17e026: ; 17e026
 	callba Function4db83
 	pop hl
 	pop bc
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	bit 1, b
 	jr z, .asm_17e067
@@ -4304,9 +4304,9 @@ Function17f334: ; 17f334
 	ld a, [wcd55]
 	bit 7, a
 	jr nz, .asm_17f355
-	ld a, $1
+	ld a, BANK(sCrystalData)
 	call GetSRAMBank
-	ld a, [$be3f]
+	ld a, [sCrystalData + 2]
 	jr .asm_17f35d
 
 .asm_17f355
@@ -4348,9 +4348,9 @@ Function17f382: ; 17f382
 	ld a, [wcd55]
 	bit 7, a
 	jr nz, .asm_17f3a3
-	ld a, $1
+	ld a, BANK(sCrystalData)
 	call GetSRAMBank
-	ld de, $be40
+	ld de, sCrystalData + 3
 	jr .asm_17f3ab
 
 .asm_17f3a3

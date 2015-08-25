@@ -2795,9 +2795,10 @@ sbe47:: ds 1
 ; The 7 trainers of the BattleTower are saved here, so nobody appears more than once
 sBTTrainers:: ; sbe48
 	ds 7
-sbe4f:: ds 2
+sbe4f:: ds 1
+sbe50:: ds 1
 ; Pkmn of previous trainer
-sBTPkmnOfTrainers::
+sBTPkmnOfTrainers:: ; 0xbe51
 sBTPkmnPrevTrainer1::
 	ds 1
 sBTPkmnPrevTrainer2:: ds 1
