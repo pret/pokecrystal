@@ -23170,9 +23170,9 @@ Function1704a2: ; 1704a2
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, LYOverrides
+	ld hl, $d100 ; this is NOT LYOverrides
 	ld de, $c608
-	ld bc, $00e0
+	ld bc, BT_OTrainerEnd - BT_OTrainer
 	call CopyBytes
 	pop af
 	ld [rSVBK], a

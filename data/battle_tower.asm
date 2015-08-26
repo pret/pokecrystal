@@ -3,15 +3,22 @@ Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	push af
 	ld a, $3
 	ld [rSVBK], a
+	
+	; Fill BT_OTrainer with zeros
 	xor a
-	ld hl, w3_d100
-	ld bc, $00e0
+	ld hl, BT_OTrainer
+	ld bc, BT_OTrainerEnd - BT_OTrainer
 	call ByteFill
+	
+	; Write $ff into the Item-Slots
 	ld a, $ff
-	ld [w3_d100 + $0c], a
-	ld [w3_d100 + $47], a
-	ld [w3_d100 + $82], a
-	ld de, w3_d100
+	ld [BT_OTPkmn1Item], a
+	ld [BT_OTPkmn2Item], a
+	ld [BT_OTPkmn3Item], a
+	
+	; Set BT_OTTrainer as start address to write the following data to
+	ld de, BT_OTrainer
+
 	ld a, [hRandomAdd]
 	ld b, a
 .asm_1f8022 ; loop to find a random trainer
@@ -110,22 +117,22 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	ld b, a
 	ld a, [hld]
 	ld c, a
-	ld a, [w3_d100 + $0b]
+	ld a, [BT_OTPkmn1]
 	cp b
 	jr z, .FindARandomBattleTowerPkmn
-	ld a, [w3_d100 + $0c]
+	ld a, [BT_OTPkmn1Item]
 	cp c
 	jr z, .FindARandomBattleTowerPkmn
-	ld a, [w3_d100 + $46]
+	ld a, [BT_OTPkmn2]
 	cp b
 	jr z, .FindARandomBattleTowerPkmn
-	ld a, [w3_d100 + $47]
+	ld a, [BT_OTPkmn2Item]
 	cp c
 	jr z, .FindARandomBattleTowerPkmn
-	ld a, [w3_d100 + $81]
+	ld a, [BT_OTPkmn3]
 	cp b
 	jr z, .FindARandomBattleTowerPkmn
-	ld a, [w3_d100 + $82]
+	ld a, [BT_OTPkmn3Item]
 	cp c
 	jr z, .FindARandomBattleTowerPkmn
 	ld a, [sBTPkmnPrevTrainer1]
@@ -178,11 +185,11 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	ld [sBTPkmnPrevPrevTrainer2], a
 	ld a, [sBTPkmnPrevTrainer3]
 	ld [sBTPkmnPrevPrevTrainer3], a
-	ld a, [w3_d100 + $0b]
+	ld a, [BT_OTPkmn1]
 	ld [sBTPkmnPrevTrainer1], a
-	ld a, [w3_d100 + $46]
+	ld a, [BT_OTPkmn2]
 	ld [sBTPkmnPrevTrainer2], a
-	ld a, [w3_d100 + $81]
+	ld a, [BT_OTPkmn3]
 	ld [sBTPkmnPrevTrainer3], a
 	call CloseSRAM
 	ret

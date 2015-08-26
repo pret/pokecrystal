@@ -2600,22 +2600,25 @@ SECTION "WRAM 3", WRAMX, BANK [3]
 
 	ds $100
 
+BT_OTrainer::
 w3_d100:: ; BattleTower OpponentTrainer-Data (lengt = 0xe0)
 	ds $6
-BT_OTTrainerPkmn1:: ; w3_d10b
+	ds $5
+BT_OTPkmn1:: ; w3_d10b
 	ds $1
-BT_OTTrainerPkmn1Item::
+BT_OTPkmn1Item::
 	ds $3b-1
-BT_OTTrainerPkmn2:: ; w3_d146
+BT_OTPkmn2:: ; w3_d146
 	ds $1
-BT_OTTrainerPkmn2Item::
+BT_OTPkmn2Item::
 	ds $3b-1
-BT_OTTrainerPkmn3:: ; w3_d181
+BT_OTPkmn3:: ; w3_d181
 	ds $1
-BT_OTTrainerPkmn3Item::
+BT_OTPkmn3Item::
 	ds $3b-1
 	
-	ds $29
+	ds $24
+BT_OTrainerEnd::
 	
 	ds $620
 
