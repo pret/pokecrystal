@@ -72,17 +72,12 @@ pokecrystal.gbc: $(crystal_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
-compress := gfx/trainers/beauty
-compress2 := gfx/pics/egg/front
-
 
 pngs:
-#	-exec $(gfx) unlz $(compress2).2bpp.lz
-#	-exec $(gfx) png $(compress2).2bpp
 	find . -iname "*.lz"      -exec $(gfx) unlz {} +
 	find . -iname "*.[12]bpp" -exec $(gfx) png  {} +
-#	find . -iname "*.[12]bpp" -exec touch {} +
-#	find . -iname "*.lz"      -exec touch {} +
+	find . -iname "*.[12]bpp" -exec touch {} +
+	find . -iname "*.lz"      -exec touch {} +
 
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
