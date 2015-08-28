@@ -22874,19 +22874,20 @@ Function17024d: ; 17024d
 	ret
 ; 1702b7
 
+; Initialise the BattleTower-Trainer and his Pkmn
 Function1702b7: ; 1702b7
 	call Function1704a2
 	ld de, $c643
 	ld c, $b
 	callba Function17d073
 	jr nc, .asm_1702db
-	ld a, [$c608 + 11]
+	ld a, [BT_OTTempCopy + 11]
 	ld [wd265], a
 	call GetPokemonName
 	ld l, e
 	ld h, d
 	ld de, $c643
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
 .asm_1702db
@@ -22900,7 +22901,7 @@ Function1702b7: ; 1702b7
 	ld l, e
 	ld h, d
 	ld de, $c67e
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
 .asm_1702fc
@@ -22914,7 +22915,7 @@ Function1702b7: ; 1702b7
 	ld l, e
 	ld h, d
 	ld de, $c686 + 51
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
 .asm_17031d
@@ -22923,7 +22924,7 @@ Function1702b7: ; 1702b7
 	ld [$c688], a
 	ld [$c68a + 57], a
 	call Function170c98
-	ld de, $c608
+	ld de, BT_OTTempCopy
 	ld c, $a
 	callba Function17d073
 	jr nc, .asm_17033d
@@ -22931,7 +22932,7 @@ Function1702b7: ; 1702b7
 	jr .asm_170340
 
 .asm_17033d
-	ld hl, $c608
+	ld hl, BT_OTTempCopy ; 0xc608
 
 .asm_170340
 	ld de, wd26b
@@ -22939,7 +22940,7 @@ Function1702b7: ; 1702b7
 	call CopyBytes
 	ld a, $50
 	ld [de], a
-	ld hl, $c608 + 10
+	ld hl, BT_OTTempCopy + $a
 	ld a, [hli]
 	ld [OtherTrainerClass], a
 	ld a, $ea
@@ -22948,9 +22949,11 @@ Function1702b7: ; 1702b7
 	ld [wcd21], a
 	ld de, OTPartyMon1Species
 	ld bc, OTPartyCount
-	ld a, $3
+	ld a, $3				; Number of Pkmn the BattleTower-Trainer has
 	ld [bc], a
 	inc bc
+
+	; Copy Pkmn into Memory from the address in hl
 .asm_170367
 	push af
 	ld a, [hl]

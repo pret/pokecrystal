@@ -884,6 +884,16 @@ wMiscEnd::
 wc7e8:: ds 24
 
 
+RSSET $c608 ;$c000+(wc608-wc000) ; compute the address through doesn't seem to work
+BT_OTTempCopy    RW   1
+str_tData     RB   256
+str_bCount    RB   1
+str_SIZEOF    RB   0
+
+GLOBAL BT_OTTempCopy
+
+
+
 SECTION "Overworld Map", WRAM0 [$c800]
 
 wc800::
@@ -1818,6 +1828,7 @@ wd25e:: ds 4
 wd262:: ds 1
 wd263:: ds 1
 wd264:: ds 1
+GetPokemonName_Parameter::
 wd265:: ds 1
 wd266:: ds 1
 wd267:: ds 1
