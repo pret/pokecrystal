@@ -76,8 +76,8 @@ pokecrystal.gbc: $(crystal_obj)
 pngs:
 	find . -iname "*.lz"      -exec $(gfx) unlz {} +
 	find . -iname "*.[12]bpp" -exec $(gfx) png  {} +
-	find . -iname "*.[12]bpp" -exec touch {} +
-	find . -iname "*.lz"      -exec touch {} +
+	find . -iname "*.[12]bpp" -exec touch {} \;
+	find . -iname "*.lz"      -exec touch {} \;
 
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
