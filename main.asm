@@ -8340,7 +8340,7 @@ Functionda96: ; da96
 ; db3f
 
 Functiondb3f: ; db3f
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [wd10b]
 	and a
@@ -9566,7 +9566,7 @@ endr
 	jr .asm_e3b2
 
 .asm_e35e
-	ld a, $1
+	ld a, BANK(sBoxMonOT)
 	call GetSRAMBank
 	ld de, sBoxMonOT
 .asm_e366
@@ -9617,7 +9617,7 @@ endr
 	ret z
 	ld hl, TextJump_WasSentToBillsPC
 	call PrintText
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	ld hl, wd050
 	ld de, sBoxMonNicknames
@@ -9945,7 +9945,7 @@ Functione5bb: ; e5bb
 	call AddNTimes
 	ld de, TempMonSpecies
 	ld bc, $0020
-	ld a, $1
+	ld a, BANK(sBoxMon1Species)
 	call GetSRAMBank
 	call CopyBytes
 	call CloseSRAM
@@ -9969,7 +9969,7 @@ Functione5d9: ; e5d9
 	jr .asm_e5f6
 
 .asm_e5f1
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	ld hl, sBoxCount
 
 .asm_e5f6
@@ -42221,7 +42221,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	jr nz, .partymon
 
 	; Run CheckOwnMon on each Pokémon in the PC.
-	ld a, 1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	and a
@@ -42443,7 +42443,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	call Function4a91e
 	dec d
 	jr nz, .asm_4a851
-	ld a, 1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	and a
@@ -44546,7 +44546,7 @@ Function4d87a: ; 4d87a
 	pop bc
 	dec d
 	jr nz, .asm_4d88d
-	ld a, $1
+	ld a, BANK(sBoxMon1ID)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	and a
@@ -44847,7 +44847,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 ; 4daa3
 
 Function4daa3: ; 4daa3
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 	ld a, [hl]
@@ -44878,7 +44878,7 @@ Function4daa3: ; 4daa3
 	ld hl, wd050
 
 .asm_4daf7
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	ld de, sBoxMonNicknames
 	ld bc, PKMN_NAME_LENGTH
@@ -44886,13 +44886,13 @@ Function4daa3: ; 4daa3
 	call CloseSRAM
 
 .asm_4db08
-	ld a, $1
+	ld a, BANK(sBoxMon1Level)
 	call GetSRAMBank
 	ld a, [sBoxMon1Level]
 	ld [CurPartyLevel], a
 	call CloseSRAM
 	call Function4db83
-	ld a, $1
+	ld a, BANK(sBoxMon1CaughtLocation)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLocation
 	ld a, [hl]
@@ -44968,7 +44968,7 @@ Function4db53: ; 4db53
 ; 4db83
 
 Function4db83: ; 4db83
-	ld a, $1
+	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLevel
 	call Function4db53
@@ -44978,7 +44978,7 @@ Function4db83: ; 4db83
 
 Function4db92: ; 4db92
 	push bc
-	ld a, $1
+	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLevel
 	pop bc
@@ -48623,7 +48623,7 @@ Function508d5: ; 508d5
 	jr .done
 
 .boxmon
-	ld a, 1 ; BANK(sBoxSpecies)
+	ld a, BANK(sBoxSpecies)
 	call GetSRAMBank
 	ld hl, sBoxSpecies
 	call .done
@@ -50156,7 +50156,7 @@ Function512f2: ; 512f2
 ; 51322
 
 Function51322: ; 51322
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 	call Function513cb
