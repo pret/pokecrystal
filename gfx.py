@@ -21,12 +21,10 @@ def filepath_rules(filepath):
 
 	
 	if 'gfx/pics/' in filedir:
-		#print("test2 %s") % filename
 		if name == 'front':
 			args['pal_file'] = os.path.join(filedir, 'normal.pal')
 			if os.path.exists(os.path.join(filedir, 'normal.pal')) != True:
 				args['pal_file'] = None
-			#args['pic'] = True
 			#args['animate'] = True
 			if ext == '.png':
 				w, h = gfx.png.Reader(filepath).asRGBA8()[:2]
@@ -38,7 +36,6 @@ def filepath_rules(filepath):
 			args['pal_file'] = os.path.join(filedir, 'normal.pal') #shiny.pal
 			if os.path.exists(os.path.join(filedir, 'normal.pal')) != True:
 				args['pal_file'] = None
-			#args['pic'] = True
 			if ext == '.png':
 				w, h = gfx.png.Reader(filepath).asRGBA8()[:2]
 				w = min(w/8, h/8)
@@ -47,8 +44,6 @@ def filepath_rules(filepath):
 				args['pic_dimensions'] = 7, 6
 
 	elif 'gfx/trainers' in filedir:
-		#print("test3")
-		#args['pic'] = True
 		if ext == '.png':
 			w, h = gfx.png.Reader(filepath).asRGBA8()[:2]
 			args['width'] = w
@@ -63,14 +58,6 @@ def filepath_rules(filepath):
 
 #	if args.get('pal_file'):
 #		args['palout'] = args['pal_file']
-
-	#if args.get('pic'):
-	#	if ext == '.png':
-	#		w, h = gfx.png.Reader(filepath).asRGBA8()[:2]
-	#		w = min(w/8, h/8)
-	#		args['pic_dimensions'] = w, w
-	#args['pic_dimensions'] = 7, 7
-	#print "w = %i" % (w)
 	return args
 
 
