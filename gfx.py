@@ -19,7 +19,6 @@ def filepath_rules(filepath):
 	filedir, filename = os.path.split(filepath)
 	name, ext = os.path.splitext(filename)
 
-	
 	if 'gfx/pics/' in filedir:
 		if name == 'front':
 			args['pal_file'] = os.path.join(filedir, 'normal.pal')
@@ -41,7 +40,7 @@ def filepath_rules(filepath):
 				w = min(w/8, h/8)
 				args['pic_dimensions'] = w, w
 			else:
-				args['pic_dimensions'] = 7, 6
+				args['pic_dimensions'] = 6, 6
 
 	elif 'gfx/trainers' in filedir:
 		if ext == '.png':
