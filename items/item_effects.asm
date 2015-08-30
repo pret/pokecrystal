@@ -618,7 +618,7 @@ endr
 .asm_eb3c
 	call ClearSprites
 
-	predef Functionde6e
+	predef SentPkmnIntoBox
 
 	callba Function4db83
 

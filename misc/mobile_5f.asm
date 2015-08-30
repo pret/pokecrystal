@@ -2555,7 +2555,7 @@ Function17e026: ; 17e026
 	push bc
 	push hl
 	callba LoadEnemyMon
-	callba Functionde6e
+	callba SentPkmnIntoBox
 	callba Function4db83
 	pop hl
 	pop bc

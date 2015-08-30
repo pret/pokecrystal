@@ -8799,10 +8799,11 @@ Functionde44: ; de44
 	call AddNTimes
 	ld bc, sBoxMon1End - sBoxMon1
 	jp CopyBytes
-; de6e
 
 
-Functionde6e: ; de6e
+SentPkmnIntoBox: ; de6e
+; Sents the Pkmn into one of Bills Boxes
+; the data comes mainly from 'EnemyMon:'
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld de, sBoxCount
@@ -8811,6 +8812,7 @@ Functionde6e: ; de6e
 	jp nc, Functiondf42
 	inc a
 	ld [de], a
+
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	ld c, a
@@ -8823,23 +8825,29 @@ Functionde6e: ; de6e
 	ld [de], a
 	inc a
 	jr nz, .asm_de85
+
 	call GetBaseData
 	call ShiftBoxMon
+
 	ld hl, PlayerName
 	ld de, sBoxMonOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
+
 	ld de, sBoxMonNicknames
 	ld hl, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
+
 	ld hl, EnemyMon
 	ld de, sBoxMon1
 	ld bc, 1 + 1 + NUM_MOVES ; species + item + moves
 	call CopyBytes
+
 	ld hl, PlayerID
 	ld a, [hli]
 	ld [de], a
@@ -8861,6 +8869,7 @@ Functionde6e: ; de6e
 	ld a, [$ffb6]
 	ld [de], a
 	inc de
+
 	xor a
 	ld b, $a
 .asm_dee5
@@ -8868,6 +8877,7 @@ Functionde6e: ; de6e
 	inc de
 	dec b
 	jr nz, .asm_dee5
+
 	ld hl, EnemyMonDVs
 	ld b, 2 + NUM_MOVES ; DVs and PP ; EnemyMonHappiness - EnemyMonDVs
 .asm_deef
@@ -8876,6 +8886,7 @@ Functionde6e: ; de6e
 	inc de
 	dec b
 	jr nz, .asm_deef
+
 	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
@@ -8909,6 +8920,7 @@ Functionde6e: ; de6e
 	call CopyBytes
 	ld b, 0
 	call Functiondcb6
+
 	call CloseSRAM
 	scf
 	ret
@@ -9482,7 +9494,7 @@ GivePoke:: ; e277
 	ld a, [CurPartySpecies]
 	ld [TempEnemyMonSpecies], a
 	callab LoadEnemyMon
-	call Functionde6e
+	call SentPkmnIntoBox
 	jp nc, Functione3d4
 	ld a, $2
 	ld [MonType], a
