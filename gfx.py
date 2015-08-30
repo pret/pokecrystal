@@ -20,6 +20,10 @@ def filepath_rules(filepath):
 	name, ext = os.path.splitext(filename)
 
 	if 'gfx/pics/' in filedir:
+		if 'unown' in filedir:
+			index = filedir.find('unown_')
+			if index != -1:
+				filedir = filedir[:index + len('unown')] + filedir[index + len('unown_a'):]
 		if name == 'front':
 			args['pal_file'] = os.path.join(filedir, 'normal.pal')
 			args['pic'] = True
@@ -35,7 +39,10 @@ def filepath_rules(filepath):
 		args['pic'] = True
 
 	if args.get('pal_file'):
-		args['palout'] = args['pal_file']
+		if os.path.exists(args['pal_file']):
+			args['palout'] = args['pal_file']
+		else:
+			del args['pal_file']
 
 	if args.get('pic'):
 		if ext == '.png':
