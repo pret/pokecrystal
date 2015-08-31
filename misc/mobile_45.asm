@@ -22877,54 +22877,55 @@ Function17024d: ; 17024d
 ; Initialise the BattleTower-Trainer and his Pkmn
 Function1702b7: ; 1702b7
 	call Function1704a2
-	ld de, $c643
+	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn1Name ; $c643
 	ld c, $b
 	callba Function17d073
 	jr nc, .asm_1702db
-	ld a, [BT_OTTempCopy + 11]
+
+	ld a, [wBT_OTTempCopy + wBT_OTTempCopy_Pkmn1]
 	ld [wd265], a
 	call GetPokemonName
 	ld l, e
 	ld h, d
-	ld de, $c643
+	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn1Name ; $c643
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
 .asm_1702db
-	ld de, $c67e
+	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn2Name ; $c67e
 	ld c, $b
 	callba Function17d073
 	jr nc, .asm_1702fc
-	ld a, [$c64e]
+	ld a, [wBT_OTTempCopy + wBT_OTTempCopy_Pkmn2] ; [$c64e]
 	ld [wd265], a
 	call GetPokemonName
 	ld l, e
 	ld h, d
-	ld de, $c67e
+	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn2Name ; $c67e
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
 .asm_1702fc
-	ld de, $c686 + 51
+	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn3Name ; $c686 + 51 = $c6b9
 	ld c, $b
 	callba Function17d073
 	jr nc, .asm_17031d
-	ld a, [$c689]
+	ld a, [wBT_OTTempCopy + wBT_OTTempCopy_Pkmn3] ; [$c689]
 	ld [wd265], a
 	call GetPokemonName
 	ld l, e
 	ld h, d
-	ld de, $c686 + 51
+	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn3Name ; $c686 + 51 = $c6b9
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
 .asm_17031d
 	ld a, $50
-	ld [$c64d], a
-	ld [$c688], a
-	ld [$c68a + 57], a
+	ld [wBT_OTTempCopy + wBT_OTTempCopy_45], a ; $c64d
+	ld [wBT_OTTempCopy + wBT_OTTempCopy_80], a ; $c688
+	ld [wBT_OTTempCopy + wBT_OTTempCopy_BB], a ; $c68a + 57 = $c6c3
 	call Function170c98
-	ld de, BT_OTTempCopy
+	ld de, wBT_OTTempCopy
 	ld c, $a
 	callba Function17d073
 	jr nc, .asm_17033d
@@ -22932,7 +22933,7 @@ Function1702b7: ; 1702b7
 	jr .asm_170340
 
 .asm_17033d
-	ld hl, BT_OTTempCopy ; 0xc608
+	ld hl, wBT_OTTempCopy ; 0xc608
 
 .asm_170340
 	ld de, wd26b
@@ -22940,20 +22941,20 @@ Function1702b7: ; 1702b7
 	call CopyBytes
 	ld a, $50
 	ld [de], a
-	ld hl, BT_OTTempCopy + $a
+	ld hl, wBT_OTTempCopy + wBT_OTTempCopy_TrainerClass
 	ld a, [hli]
 	ld [OtherTrainerClass], a
 	ld a, $ea
 	ld [BGMapBuffer], a
 	ld a, $d3
 	ld [wcd21], a
-	ld de, OTPartyMon1Species
-	ld bc, OTPartyCount
-	ld a, $3				; Number of Pkmn the BattleTower-Trainer has
-	ld [bc], a
-	inc bc
 
 	; Copy Pkmn into Memory from the address in hl
+	ld de, OTPartyMon1Species
+	ld bc, OTPartyCount
+	ld a, BATTLETOWER_NROFPKMNS		; Number of Pkmn the BattleTower-Trainer has
+	ld [bc], a
+	inc bc
 .asm_170367
 	push af
 	ld a, [hl]
@@ -24182,7 +24183,7 @@ Function170b16: ; 170b16 (5c:4b16)
 	ld [ScriptVar], a
 	ret
 
-Function_LoadOpponentTrainerAndPokemons170b44: ; 0x170b44
+Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
 	callba Function_LoadOpponentTrainerAndPokemons
 	ld a, [rSVBK]
 	push af
@@ -24199,6 +24200,9 @@ Function_LoadOpponentTrainerAndPokemons170b44: ; 0x170b44
 	add hl, bc
 	ld a, [hl]
 	ld [wcd49], a
+
+; Load sprite of the opponent trainer
+; because s/he is chosen randomly and appears out of nowhere
 	ld a, [ScriptVar]
 	dec a
 	sla a

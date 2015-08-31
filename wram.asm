@@ -443,6 +443,7 @@ SECTION "Battle", WRAM0
 
 wMisc::
 wBattle::
+wBT_OTTempCopy:: ; also used to copy the data of the BattleTower-Trainer and the 3 Pkmn
 
 wc608::
 wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
@@ -884,13 +885,21 @@ wMiscEnd::
 wc7e8:: ds 24
 
 
-RSSET $c608 ;$c000+(wc608-wc000) ; compute the address through doesn't seem to work
-BT_OTTempCopy    RW   1
-str_tData     RB   256
-str_bCount    RB   1
-str_SIZEOF    RB   0
+RSSET 0 ; Offsets for wBT_OTTempCopy:: @ $c608
+wBT_OTTempCopy_0			RB   $a			; $c608
+wBT_OTTempCopy_TrainerClass	RB   $1			; $c608 + $a = $c612
+wBT_OTTempCopy_Pkmn1		RB   $30		; $c608 + $b = $c613
+wBT_OTTempCopy_Pkmn1Name	RB   $A			; $c608 + $3b = $c643
+wBT_OTTempCopy_45			RB   $1			; $c608 + $45 = $c64d
+wBT_OTTempCopy_Pkmn2		RB   $30		; $c608 + $46 = $c64e
+wBT_OTTempCopy_Pkmn2Name	RB   $A			; $c608 + $76 = $c67e
+wBT_OTTempCopy_80			RB   $1			; $c608 + $80 = $c688
+wBT_OTTempCopy_Pkmn3		RB   $30		; $c608 + $81 = $c689
+wBT_OTTempCopy_Pkmn3Name	RB   $A			; $c608 + $b1 = $c6b9
+wBT_OTTempCopy_BB			RB   $1			; $c608 + $bb = $c6c3
+;str_SIZEOF    RB   0
 
-GLOBAL BT_OTTempCopy
+GLOBAL wBT_OTTempCopy_TrainerClass, wBT_OTTempCopy_Pkmn1, wBT_OTTempCopy_Pkmn1Name, wBT_OTTempCopy_45, wBT_OTTempCopy_Pkmn2, wBT_OTTempCopy_Pkmn2Name, wBT_OTTempCopy_80, wBT_OTTempCopy_Pkmn3, wBT_OTTempCopy_Pkmn3Name, wBT_OTTempCopy_BB
 
 
 

@@ -35,9 +35,11 @@ ELSE
 ENDC
 	jr nc, .asm_1f8022
 	ld b, a
+
 	ld a, BANK(sbe46)
 	call GetSRAMBank
-	ld c, $7
+
+	ld c, BATTLETOWER_NROFTRAINERS
 	ld hl, sBTTrainers
 .asm_1f803a
 	ld a, [hli]
@@ -45,6 +47,7 @@ ENDC
 	jr z, .asm_1f8022
 	dec c
 	jr nz, .asm_1f803a ; c <= 7  initialise all 7 trainers?
+
 	ld hl, sBTTrainers
 	ld a, [sbe46]
 	ld c, a
@@ -53,18 +56,22 @@ ENDC
 	add hl, bc
 	ld [hl], a
 	call CloseSRAM
+
 	push af
+; Copy name (10 bytes) and class (1 byte) of trainer
 	ld hl, BattleTowerTrainers
 	ld bc, 11
 	call AddNTimes
 	ld bc, 11
 	call CopyBytes
+
 	call Function_LoadRandomBattleTowerPkmn
 	pop af
+
 	ld hl, BattleTowerTrainerData
-	ld bc, $0024
+	ld bc, BATTLETOWER_TRAINERDATALENGTH
 	call AddNTimes
-	ld bc, $0024
+	ld bc, BATTLETOWER_TRAINERDATALENGTH
 .asm_1f8070
 	ld a, BANK(BattleTowerTrainerData)
 	call GetFarByte
@@ -78,10 +85,9 @@ ENDC
 	pop af
 	ld [rSVBK], a
 	ret
-; 1f8081
 
 Function_LoadRandomBattleTowerPkmn: ; 1f8081
-	ld c, $3
+	ld c, BATTLETOWER_NROFPKMNS
 .loop
 	push bc
 	ld a, BANK(sBTPkmnPrevTrainer1)
@@ -156,6 +162,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 
 	ld bc, $3b
 	call CopyBytes
+
 	ld a, [wd265]
 	push af
 	push de
@@ -172,6 +179,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	pop de
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
+
 	pop de
 	pop af
 	ld [wd265], a

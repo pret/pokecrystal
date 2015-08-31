@@ -21,7 +21,7 @@ Script_BattleRoom: ; 0x9f421
 ; beat all 7 opponents in a row
 Script_BattleRoomLoop: ; 0x9f425
 	writebyte $2
-	special Function_LoadOpponentTrainerAndPokemons170b44
+	special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
 	appear $2
 	warpsound
 	waitbutton
