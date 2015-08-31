@@ -73,9 +73,11 @@ def filepath_rules(filepath):
 			w = min(w/8, h/8)
 			args['pic_dimensions'] = w, w
 		elif ext == '.2bpp':
-			if pokemon_name:
+			if pokemon_name and name == 'front':
 				w, h = get_pokemon_dimensions(pokemon_name)
 				args['pic_dimensions'] = w, w
+			elif pokemon_name and name == 'back':
+				args['pic_dimensions'] = 6, 6
 			else:
 				args['pic_dimensions'] = 7, 7
 	return args
