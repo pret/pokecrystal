@@ -61,7 +61,34 @@ def filepath_rules(filepath):
 	elif 'gfx/intro' in filedir and name == 'suicune_jump':
 		args['pic'] = True
 
+	elif 'gfx/intro' in filedir and name == 'suicune_back':
+		args['pic'] = True
+
+	elif 'gfx/intro' in filedir and name == 'suicune_run':
+		args['pic'] = True
+
 	elif 'gfx/intro' in filedir and name == 'unowns':
+		args['pic'] = True
+
+	elif 'gfx/intro' in filedir and name == 'crystal_unowns':
+		args['pic'] = True
+
+	elif 'gfx/intro' in filedir and name == 'pichu_wooper':
+		args['pic'] = True
+
+	elif 'gfx/misc' in filedir and name == 'card_status':
+		args['pic'] = True
+
+	elif 'gfx/misc' in filedir and name == 'copyright':
+		args['pic'] = True
+
+	elif 'gfx/misc' in filedir and name == 'fishing':
+		args['pic'] = True
+
+	elif 'gfx/pokedex' in filedir and name == 'select_start':
+		args['pic'] = True
+
+	elif 'gfx/pokedex' in filedir and name == 'slowpoke':
 		args['pic'] = True
 
 	elif os.path.join(filedir, name) in pics:
@@ -86,7 +113,25 @@ def filepath_rules(filepath):
 				args['pic_dimensions'] = 6, 6
 			elif 'gfx/intro' in filedir and name == 'suicune_jump':
 				args['pic_dimensions'] = 16, 16
+			elif 'gfx/intro' in filedir and name == 'suicune_back':
+				args['pic_dimensions'] = 16, 16
+			elif 'gfx/intro' in filedir and name == 'suicune_run':
+				args['pic_dimensions'] = 16, 16
 			elif 'gfx/intro' in filedir and name == 'unowns':
+				args['pic_dimensions'] = 16, 16
+			elif 'gfx/intro' in filedir and name == 'crystal_unowns':
+				args['pic_dimensions'] = 16, 16
+			elif 'gfx/intro' in filedir and name == 'pichu_wooper':
+				args['pic_dimensions'] = 16, 16
+			elif 'gfx/misc' in filedir and name == 'card_status':
+				args['pic_dimensions'] = 9, 9
+			elif 'gfx/misc' in filedir and name == 'copyright':
+				args['pic_dimensions'] = 7, 7
+			elif 'gfx/misc' in filedir and name == 'fishing':
+				args['pic_dimensions'] = 2, 2
+			elif 'gfx/pokedex' in filedir and name == 'select_start':
+				args['pic_dimensions'] = 3, 3
+			elif 'gfx/pokedex' in filedir and name == 'slowpoke':
 				args['pic_dimensions'] = 16, 16
 			else:
 				args['pic_dimensions'] = 7, 7
