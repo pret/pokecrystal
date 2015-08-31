@@ -12,6 +12,26 @@ pics = [
 	'gfx/shrink2',
 ]
 
+base_stats = None
+def get_base_stats():
+	global base_stats
+	if not base_stats:
+		base_stats = open('data/base_stats.asm').read()
+	return base_stats
+
+def get_pokemon_dimensions(name):
+	if name == 'egg':
+		return 5, 5
+	if name.startswith('unown_'):
+		name = 'unown'
+	base_stats = get_base_stats()
+	start = base_stats.find(name.title() + 'BaseData:')
+	start = base_stats.find('\tdn ', start)
+	end = base_stats.find('\n', start)
+	line = base_stats[start:end].replace(',', ' ')
+	w, h = map(int, line.split()[1:3])
+	return w, h
+
 def filepath_rules(filepath):
 	"""Infer attributes of certain graphics by their location in the filesystem."""
 	args = {}
@@ -19,9 +39,12 @@ def filepath_rules(filepath):
 	filedir, filename = os.path.split(filepath)
 	name, ext = os.path.splitext(filename)
 
+	pokemon_name = ''
+
 	if 'gfx/pics/' in filedir:
-		if 'unown' in filedir:
-			index = filedir.find('unown_')
+		pokemon_name = filedir.split('/')[3]
+		if pokemon_name.startswith('unown_'):
+			index = filedir.find(pokemon_name)
 			if index != -1:
 				filedir = filedir[:index + len('unown')] + filedir[index + len('unown_a'):]
 		if name == 'front':
@@ -49,6 +72,12 @@ def filepath_rules(filepath):
 			w, h = gfx.png.Reader(filepath).asRGBA8()[:2]
 			w = min(w/8, h/8)
 			args['pic_dimensions'] = w, w
+		elif ext == '.2bpp':
+			if pokemon_name:
+				w, h = get_pokemon_dimensions(pokemon_name)
+				args['pic_dimensions'] = w, w
+			else:
+				args['pic_dimensions'] = 7, 7
 	return args
 
 
