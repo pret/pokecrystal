@@ -58,6 +58,12 @@ def filepath_rules(filepath):
 	elif 'gfx/trainers' in filedir:
 		args['pic'] = True
 
+	elif 'gfx/intro' in filedir and name == 'suicune_jump':
+		args['pic'] = True
+
+	elif 'gfx/intro' in filedir and name == 'unowns':
+		args['pic'] = True
+
 	elif os.path.join(filedir, name) in pics:
 		args['pic'] = True
 
@@ -78,6 +84,10 @@ def filepath_rules(filepath):
 				args['pic_dimensions'] = w, w
 			elif pokemon_name and name == 'back':
 				args['pic_dimensions'] = 6, 6
+			elif 'gfx/intro' in filedir and name == 'suicune_jump':
+				args['pic_dimensions'] = 16, 16
+			elif 'gfx/intro' in filedir and name == 'unowns':
+				args['pic_dimensions'] = 16, 16
 			else:
 				args['pic_dimensions'] = 7, 7
 	return args
