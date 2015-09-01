@@ -42,7 +42,7 @@ def filepath_rules(filepath):
 	pokemon_name = ''
 
 	if 'gfx/pics/' in filedir:
-		pokemon_name = filedir.split('/')[3]
+		pokemon_name = filedir.split('/')[-1]
 		if pokemon_name.startswith('unown_'):
 			index = filedir.find(pokemon_name)
 			if index != -1:
