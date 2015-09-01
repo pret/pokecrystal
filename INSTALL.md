@@ -12,6 +12,7 @@ Note that this requires python2.7 for the moment.
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
 	easy_install pypng
 	cd pokecrystal
+	make init
 
 To build **pokecrystal.gbc**:
 
@@ -36,6 +37,7 @@ In the shell, run:
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
 	easy_install pypng
 	cd pokecrystal
+	make init
 
 To build **pokecrystal.gbc**:
 
@@ -56,6 +58,7 @@ In the **Cygwin terminal**:
 	git clone --recursive git://github.com/kanzure/pokecrystal.git
 	easy_install pypng
 	cd pokecrystal
+	make init
 
 To build:
 
@@ -77,7 +80,7 @@ VirtualBox. Follow these steps:
 	cd vagrantbox
 	vagrant init pokecrystal
 	vagrant up
-	vagrant ssh -c "cd /vagrant && git clone --recursive git://github.com/kanzure/pokecrystal.git"
+	vagrant ssh -c "cd /vagrant && git clone --recursive git://github.com/kanzure/pokecrystal.git && cd pokecrystal && make init"
 	vagrant ssh
 ```
 
