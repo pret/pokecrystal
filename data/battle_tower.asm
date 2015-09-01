@@ -36,7 +36,7 @@ ENDC
 	jr nc, .asm_1f8022
 	ld b, a
 
-	ld a, BANK(sbe46)
+	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
 	call GetSRAMBank
 
 	ld c, BATTLETOWER_NROFTRAINERS
@@ -49,12 +49,13 @@ ENDC
 	jr nz, .asm_1f803a ; c <= 7  initialise all 7 trainers?
 
 	ld hl, sBTTrainers
-	ld a, [sbe46]
+	ld a, [sNrOfBeatenBattleTowerTrainers]
 	ld c, a
 	ld a, b
 	ld b, 0
 	add hl, bc
 	ld [hl], a
+
 	call CloseSRAM
 
 	push af
@@ -82,9 +83,12 @@ ENDC
 	ld a, b
 	or c
 	jr nz, .asm_1f8070
+
 	pop af
 	ld [rSVBK], a
+
 	ret
+
 
 Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	ld c, BATTLETOWER_NROFPKMNS
@@ -96,7 +100,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 .FindARandomBattleTowerPkmn
 	; From Which LevelGroup are the Pkmn loaded
 	; a = 1..10
-	ld a, [$d800]
+	ld a, [wBTChoiceOfLvlGroup] ; [$d800]
 	dec a
 	ld hl, BattleTowerMons
 	ld bc, BattleTowerMons2 - BattleTowerMons1
@@ -117,7 +121,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	; Check if Pkmn was already loaded before
 	; Check current and the 2 previous teams
 	; includes check if item is double at the current team
-	ld bc, $3b
+	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH + $b
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
@@ -160,17 +164,17 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	cp b
 	jr z, .FindARandomBattleTowerPkmn
 
-	ld bc, $3b
+	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH + $b
 	call CopyBytes
 
 	ld a, [wd265]
 	push af
 	push de
-	ld hl, -$3b
+	ld hl, - (BATTLETOWER_PKMNSTRUCTLENGTH + $b)
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
-	ld bc, $0030
+	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH
 	add hl, bc
 	push hl
 	call GetPokemonName

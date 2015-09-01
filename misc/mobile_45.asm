@@ -9728,12 +9728,12 @@ Function118903: ; 118903 (46:4903)
 	ld [wcd3c], a
 	call Function119ed8
 	jp Function119e2e
-; 11891c (46:491c)
+
 
 Function11891c: ; 11891c
 	call Function118b42
 	jp Function119e2e
-; 118922
+
 
 Function118922: ; 118922
 	ld a, [wcd38]
@@ -9770,13 +9770,13 @@ Function118936:
 	ld a, [StatusFlags]
 	bit 6, a
 	jr nz, .asm_11896b
-	ld hl, Strings_Ll0ToL40 ; Address to list of strings with the choosable levels
-	ld a, 5 ; 4 levels to choose from, including 'Cancel'-option
+	ld hl, Strings_Ll0ToL40		; Address to list of strings with the choosable levels
+	ld a, 5						; 4 levels to choose from, including 'Cancel'-option
 	jr .asm_118970
 
 .asm_11896b
-	ld hl, Strings_L10ToL100 ; Address to list of strings with the choosable levels
-	ld a, 11 ; 10 levels to choose from, including 'Cancel'-option
+	ld hl, Strings_L10ToL100	; Address to list of strings with the choosable levels
+	ld a, 11					; 10 levels to choose from, including 'Cancel'-option
 
 .asm_118970
 	ld [wcd4a], a
@@ -9915,7 +9915,8 @@ Function118982:
 	ld a, $0
 	ld [wcd46], a
 	ret
-; 118a54
+
+
 
 Function118a54: ; 118a54
 	ld a, [wcd55]
@@ -22852,13 +22853,13 @@ Function17024d: ; 17024d
 	ld [ScriptVar], a
 	and a
 	jr nz, .asm_1702a9
-	ld a, BANK(sbe46)
+	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
 	call GetSRAMBank
-	ld a, [sbe46]
-	ld [wcf64], a
+	ld a, [sNrOfBeatenBattleTowerTrainers]
+	ld [wNrOfBeatenBattleTowerTrainers], a ; wcf64
 	call CloseSRAM
 	ld hl, StringBuffer3
-	ld a, [wcf64]
+	ld a, [wNrOfBeatenBattleTowerTrainers] ; wcf64
 	add $f7
 	ld [hli], a
 	ld a, $50
@@ -22872,13 +22873,13 @@ Function17024d: ; 17024d
 	ld a, $1
 	ld [wcf63], a
 	ret
-; 1702b7
+
 
 ; Initialise the BattleTower-Trainer and his Pkmn
 Function1702b7: ; 1702b7
-	call Function1704a2
+	call CopyBTTrainer_FromBT_OTrainer_TowBT_OTTempCopy
 	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn1Name ; $c643
-	ld c, $b
+	ld c, PKMN_NAME_LENGTH
 	callba Function17d073
 	jr nc, .asm_1702db
 
@@ -22893,7 +22894,7 @@ Function1702b7: ; 1702b7
 
 .asm_1702db
 	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn2Name ; $c67e
-	ld c, $b
+	ld c, PKMN_NAME_LENGTH
 	callba Function17d073
 	jr nc, .asm_1702fc
 	ld a, [wBT_OTTempCopy + wBT_OTTempCopy_Pkmn2] ; [$c64e]
@@ -22907,7 +22908,7 @@ Function1702b7: ; 1702b7
 
 .asm_1702fc
 	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn3Name ; $c686 + 51 = $c6b9
-	ld c, $b
+	ld c, PKMN_NAME_LENGTH
 	callba Function17d073
 	jr nc, .asm_17031d
 	ld a, [wBT_OTTempCopy + wBT_OTTempCopy_Pkmn3] ; [$c689]
@@ -22961,7 +22962,7 @@ Function1702b7: ; 1702b7
 	ld [bc], a
 	inc bc
 	push bc
-	ld bc, $0030
+	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH
 	call CopyBytes
 	push de
 	ld a, [BGMapBuffer]
@@ -23167,16 +23168,18 @@ Unknown_17047e:
 	db $0f, $05, $14, $07
 	db $05, $05, $11, $0c
 	db $0c, $06, $06, $04
-; 1704a2
 
-Function1704a2: ; 1704a2
+
+CopyBTTrainer_FromBT_OTrainer_TowBT_OTTempCopy: ; 1704a2
+; copy the BattleTower-Trainer data that lies at 'BT_OTrainer' to 'wBT_OTTempCopy'
 	ld a, [rSVBK]
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, $d100 ; this is NOT LYOverrides
-	ld de, $c608
-	ld bc, BT_OTrainerEnd - BT_OTrainer
+	ld hl, BT_OTrainer ; $d100
+	ld de, wBT_OTTempCopy ; $c608
+	ld bc, BT_OTrainerEnd - BT_OTrainer ; $e0 = $a + $1 + 3*$3b + $24
+                                        ;	  = $a + $1 + BATTLETOWER_NROFPKMNS * (BATTLETOWER_PKMNSTRUCTLENGTH + PKMN_NAME_LENGTH) + BATTLETOWER_TRAINERDATALENGTH
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -23184,7 +23187,7 @@ Function1704a2: ; 1704a2
 	call GetSRAMBank
 	ld a, $2
 	ld [s1_be45], a
-	ld hl, sbe46
+	ld hl, sNrOfBeatenBattleTowerTrainers
 	inc [hl]
 	call CloseSRAM
 Function1704c9:
@@ -23260,14 +23263,17 @@ Jumptable_17051f: ; 17051f
 Function170525: ; 170525
 	ld a, $5
 	call GetSRAMBank
+
 	ld hl, $a89c
 	ld de, StringBuffer3
 	ld bc, $0016
 	call CopyBytes
+
 	ld hl, $a8b2
 	ld de, $c608
 	ld bc, $0096
 	call CopyBytes
+
 	call CloseSRAM
 	hlcoord 1, 1
 	ld de, StringBuffer3
@@ -23285,9 +23291,11 @@ Function170525: ; 170525
 	call Function1705f0
 	jr Function1705b2
 
+
 Function170571:
 	call Function32f9
 	call Function1705b2
+
 
 Function170577:
 	ld hl, hJoyPressed
@@ -23530,7 +23538,7 @@ Jumptable_170696: ; 170696 (5c:4696)
 	dw Function17081d ; 0x17
 	dw Function170ae8 ; 0x18
 	dw Function170b16 ; 0x19
-	dw Function1706d6 ; 0x1a
+	dw ResetBattleTowerTrainersSRAM ; 0x1a
 	dw Function1706ee ; 0x1b
 	dw Function17071b ; 0x1c
 	dw Function170729 ; 0x1d
@@ -23539,21 +23547,26 @@ Jumptable_170696: ; 170696 (5c:4696)
 
 
 ; Reset the save memory for BattleTower-Trainers (Counter and all 7 TrainerBytes)
-Function1706d6: ; 1706d6 (5c:46d6)
+ResetBattleTowerTrainersSRAM: ; 1706d6 (5c:46d6)
 	ld a, BANK(sBTTrainers)
 	call GetSRAMBank
+
 	ld a, $ff
 	ld hl, sBTTrainers
-	ld bc, $7
+	ld bc, BATTLETOWER_NROFTRAINERS
 	call ByteFill
+
 	xor a
-	ld [sbe46], a
+	ld [sNrOfBeatenBattleTowerTrainers], a
+
 	call CloseSRAM
+
 	ret
 
 Function1706ee: ; 1706ee (5c:46ee)
 	ld a, BANK(sbe50)
 	call GetSRAMBank
+
 	ld a, [sbe50]
 	call CloseSRAM
 	ld [ScriptVar], a

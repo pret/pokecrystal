@@ -443,7 +443,7 @@ SECTION "Battle", WRAM0
 
 wMisc::
 wBattle::
-wBT_OTTempCopy:: ; also used to copy the data of the BattleTower-Trainer and the 3 Pkmn
+wBT_OTTempCopy:: ; used to copy the data of the BattleTower-Trainer and the 3 Pkmn
 
 wc608::
 wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
@@ -886,7 +886,7 @@ wc7e8:: ds 24
 
 
 RSSET 0 ; Offsets for wBT_OTTempCopy:: @ $c608
-wBT_OTTempCopy_0			RB   $a			; $c608
+wBT_OTTempCopy_0			RB   $A			; $c608
 wBT_OTTempCopy_TrainerClass	RB   $1			; $c608 + $a = $c612
 wBT_OTTempCopy_Pkmn1		RB   $30		; $c608 + $b = $c613
 wBT_OTTempCopy_Pkmn1Name	RB   $A			; $c608 + $3b = $c643
@@ -897,7 +897,6 @@ wBT_OTTempCopy_80			RB   $1			; $c608 + $80 = $c688
 wBT_OTTempCopy_Pkmn3		RB   $30		; $c608 + $81 = $c689
 wBT_OTTempCopy_Pkmn3Name	RB   $A			; $c608 + $b1 = $c6b9
 wBT_OTTempCopy_BB			RB   $1			; $c608 + $bb = $c6c3
-;str_SIZEOF    RB   0
 
 GLOBAL wBT_OTTempCopy_TrainerClass, wBT_OTTempCopy_Pkmn1, wBT_OTTempCopy_Pkmn1Name, wBT_OTTempCopy_45, wBT_OTTempCopy_Pkmn2, wBT_OTTempCopy_Pkmn2Name, wBT_OTTempCopy_80, wBT_OTTempCopy_Pkmn3, wBT_OTTempCopy_Pkmn3Name, wBT_OTTempCopy_BB
 
@@ -1191,6 +1190,7 @@ CurSpecies:: ; cf60
 
 wcf61:: ds 2
 wcf63:: ds 1
+wNrOfBeatenBattleTowerTrainers::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
@@ -2621,9 +2621,11 @@ SECTION "WRAM 3", WRAMX, BANK [3]
 	ds $100
 
 BT_OTrainer::
-w3_d100:: ; BattleTower OpponentTrainer-Data (lengt = 0xe0)
-	ds $6
-	ds $5
+w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + $24)
+BT_OTrainer_Name::
+	ds $A
+BT_OTrainer_TrainerClass::
+	ds $1
 BT_OTPkmn1:: ; w3_d10b
 	ds $1
 BT_OTPkmn1Item::
@@ -2642,6 +2644,7 @@ BT_OTrainerEnd::
 	
 	ds $620
 
+wBTChoiceOfLvlGroup::
 w3_d800:: ds 1
 
 
@@ -2813,6 +2816,7 @@ s1_be45:: ds 1
 
 ; data of the BattleTower must be in SRAM because you can save and leave between battles
 sBattleTower:: ; be46
+sNrOfBeatenBattleTowerTrainers::
 sbe46:: ds 1
 sbe47:: ds 1
 ; The 7 trainers of the BattleTower are saved here, so nobody appears more than once

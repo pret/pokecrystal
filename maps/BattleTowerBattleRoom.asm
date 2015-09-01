@@ -34,8 +34,8 @@ Script_BattleRoomLoop: ; 0x9f425
 	special FadeBlackBGMap
 	reloadmap
 	if_not_equal $0, UnknownScript_0x9f4c2
-	copybytetovar wcf64
-	if_equal $7, Script_BeatenAllTrainers
+	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
+	if_equal BATTLETOWER_NROFTRAINERS, Script_BeatenAllTrainers
 	applymovement $2, MovementData_0x9e597
 	warpsound
 	disappear $2
