@@ -700,7 +700,7 @@ BattleCommand02: ; 343db
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -3841,7 +3841,7 @@ BattleCommanda1: ; 35461
 	and a
 	jr nz, .asm_35532
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35532
 
@@ -5544,7 +5544,7 @@ BattleCommand14: ; 35e5c
 
 	call AnimateCurrentMove
 	ld b, $7
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr z, .asm_35ea4
 	ld b, $3
@@ -5587,7 +5587,7 @@ Function35ece: ; 35ece
 	and a
 	jr nz, .asm_35eec
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35eec
 
@@ -5676,18 +5676,23 @@ BattleCommand2f: ; 35f2c
 	call GetBattleVar
 	and a
 	jr nz, .asm_35fb8
+
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35f89
+
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .asm_35f89
-	ld a, [wcfc0]
+
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35f89
+
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .asm_35f89
+
 	call BattleRandom
 	cp $40
 	jr c, .asm_35fb8
@@ -6323,11 +6328,12 @@ BattleCommand1d: ; 362e3
 	ld a, [hBattleTurn]
 	and a
 	jr z, .DidntMiss
+
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .DidntMiss
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .DidntMiss
 
@@ -8168,18 +8174,23 @@ BattleCommand30: ; 36dc7
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36e0e
+
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .asm_36e0e
-	ld a, [wcfc0]
+
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_36e0e
+
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .asm_36e0e
+
 	call BattleRandom
 	cp $40
 	jr c, .asm_36e52
+
 .asm_36e0e
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr

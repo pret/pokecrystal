@@ -2462,7 +2462,7 @@ Function3cfa4: ; 3cfa4
 	ld a, [InLinkBattle]
 	and a
 	ret nz
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_3d006
 	call Function3ebd8
@@ -3068,7 +3068,7 @@ LostBattle: ; 3d38e
 	ld a, 1
 	ld [BattleEnded], a
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_3d3bd
 
@@ -5175,7 +5175,7 @@ BattleMenu_Pack: ; 3e1c7
 	and a
 	jp nz, ItemsCantBeUsed
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jp nz, ItemsCantBeUsed
 
@@ -6214,7 +6214,8 @@ LoadEnemyMon: ; 3e8eb
 	and a
 	jp nz, Function3dabd
 
-	ld a, [wcfc0] ; ????
+; and also not in a BattleTower-Battle
+	ld a, [InBattleTowerBattle] ; ????
 	bit 0, a
 	jp nz, Function3dabd
 
@@ -7107,7 +7108,7 @@ BadgeStatBoosts: ; 3ed45
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -7329,7 +7330,7 @@ Function3ee3b: ; 3ee3b
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret nz
 
@@ -8716,7 +8717,7 @@ endr
 	call Function3d0be
 	ld hl, BattleText_0x80730
 	call StdBattleTextBox
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret z
 	call ClearTileMap

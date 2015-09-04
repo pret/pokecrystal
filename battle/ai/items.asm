@@ -21,7 +21,7 @@ AI_SwitchOrTryItem: ; 38000
 	jr nz, DontSwitch
 
 	ld hl, TrainerClassAttributes + 5
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle] ; Load always the first TrainerClass for BattleTower-Trainers
 	and a
 	jr nz, .ok
 	ld a, [TrainerClass]
@@ -157,7 +157,8 @@ CheckSubstatusCantRun: ; 380ff
 
 
 AI_TryItem: ; 38105
-	ld a, [wcfc0]
+	; items are not allowed in the BattleTower
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 

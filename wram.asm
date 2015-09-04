@@ -1279,7 +1279,13 @@ GameTimerPause:: ; cfbc
 	ds 1
 
 wcfbe:: ds 2
-wcfc0:: ds 2
+
+InBattleTowerBattle:: ; cfc0
+; 0 not in BattleTower-Battle
+; 1 BattleTower-Battle
+	ds 1
+
+	ds 1
 
 FXAnimID::
 FXAnimIDLo:: ; cfc2
@@ -2618,6 +2624,7 @@ w2_d188:: ds 1
 
 SECTION "WRAM 3", WRAMX, BANK [3]
 
+w3_d000:: ; d000
 	ds $100
 
 BT_OTrainer::
@@ -2640,9 +2647,11 @@ BT_OTPkmn3Item::
 	ds $3b-1
 	
 	ds $24
-BT_OTrainerEnd::
+BT_OTrainerEnd:: ; we_d1e0
 	
-	ds $620
+	ds $20
+	
+	ds $600
 
 wBTChoiceOfLvlGroup::
 w3_d800:: ds 1

@@ -16530,7 +16530,7 @@ ENDC
 	sub $19
 
 .asm_11c021
-	ld hl, Unknown_11f332
+	ld hl, BTTrainerTexts
 	jr .asm_11c033
 
 .asm_11c026
@@ -20672,14 +20672,14 @@ Unknown_11f2f0:
 	db $01, $01, $00, $00, $00, $01
 
 
-Unknown_11f332:
-	dw Unknown_11f338
-	dw Unknown_11f36a
-	dw Unknown_11f39c
+BTTrainerTexts: ; 11f332
+	dw BTTrainerGreetings
+	dw BTTrainerPlayerLostTexts
+	dw BTTrainerPlayerWonTexts
 
-Unknown_11f338: ; 11f338
-	dw UnknownText_0x11f42e
-	dw UnknownText_0x11f43d
+BTTrainerGreetings: ; 11f338
+	dw BattleTowerTextJump_0x11f42e
+	dw BattleTowerTextJump_0x11f43d
 	dw UnknownText_0x11f44c
 	dw UnknownText_0x11f45b
 	dw UnknownText_0x11f46a
@@ -20704,8 +20704,8 @@ Unknown_11f338: ; 11f338
 	dw UnknownText_0x11f587
 	dw UnknownText_0x11f596
 
-Unknown_11f36a: ; 11f36a
-	dw UnknownText_0x11f433
+BTTrainerPlayerLostTexts: ; 11f36a
+	dw BattleTowerTextJump_0x11f433
 	dw UnknownText_0x11f442
 	dw UnknownText_0x11f451
 	dw UnknownText_0x11f460
@@ -20731,7 +20731,7 @@ Unknown_11f36a: ; 11f36a
 	dw UnknownText_0x11f58c
 	dw UnknownText_0x11f59b
 
-Unknown_11f39c: ; 11f39c
+BTTrainerPlayerWonTexts: ; 11f39c
 	dw UnknownText_0x11f438
 	dw UnknownText_0x11f447
 	dw UnknownText_0x11f456
@@ -20816,20 +20816,20 @@ Unknown_11f410: ; 11f410
 	dw UnknownText_0x11f681
 
 
-UnknownText_0x11f42e: ; 0x11f42e
-	text_jump UnknownText_0x1ec000
+BattleTowerTextJump_0x11f42e: ; 0x11f42e
+	text_jump BattleTowerText_0x1ec000
 	db "@"
 
-UnknownText_0x11f433: ; 0x11f433
-	text_jump UnknownText_0x1ec03b
+BattleTowerTextJump_0x11f433: ; 0x11f433
+	text_jump BattleTowerText_0x1ec03b
 	db "@"
 
 UnknownText_0x11f438: ; 0x11f438
 	text_jump UnknownText_0x1ec060
 	db "@"
 
-UnknownText_0x11f43d: ; 0x11f43d
-	text_jump UnknownText_0x1ec080
+BattleTowerTextJump_0x11f43d: ; 0x11f43d
+	text_jump BattleTowerText_0x1ec080
 	db "@"
 
 UnknownText_0x11f442: ; 0x11f442
@@ -22804,7 +22804,7 @@ Function17021e: ; 17021e
 
 Function17022c: ; 17022c
 .asm_17022c
-	call Function17023a
+	call Jumpto_BattleTowerBattleFunction
 	call DelayFrame
 	ld a, [wcf63]
 	cp $1
@@ -22812,11 +22812,11 @@ Function17022c: ; 17022c
 	ret
 ; 17023a
 
-Function17023a: ; 17023a
+Jumpto_BattleTowerBattleFunction: ; 17023a
 	ld a, [wcf63]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_170249
+	ld hl, Jumptable_BattleTowerBattleFunctions
 rept 2
 	add hl, de
 endr
@@ -22826,20 +22826,20 @@ endr
 	jp [hl]
 ; 170249
 
-Jumptable_170249: ; 170249
-	dw Function17024d
-	dw Function1704c9
+Jumptable_BattleTowerBattleFunctions: ; 170249
+	dw RunBattleTowerBattle
+	dw SkipBattleTowerBattle
 ; 17024d
 
-Function17024d: ; 17024d
+RunBattleTowerBattle: ; 17024d
 	ld a, [Options]
 	push af
 	ld hl, Options
 	set 6, [hl]
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	push af
 	or $1
-	ld [wcfc0], a
+	ld [InBattleTowerBattle], a
 	xor a
 	ld [InLinkBattle], a
 	callba Mobile_HealParty
@@ -22867,7 +22867,7 @@ Function17024d: ; 17024d
 
 .asm_1702a9
 	pop af
-	ld [wcfc0], a
+	ld [InBattleTowerBattle], a
 	pop af
 	ld [Options], a
 	ld a, $1
@@ -22875,8 +22875,8 @@ Function17024d: ; 17024d
 	ret
 
 
-; Initialise the BattleTower-Trainer and his Pkmn
 Function1702b7: ; 1702b7
+; Initialise the BattleTower-Trainer and his Pkmn
 	call CopyBTTrainer_FromBT_OTrainer_TowBT_OTTempCopy
 	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn1Name ; $c643
 	ld c, PKMN_NAME_LENGTH
@@ -23190,7 +23190,7 @@ CopyBTTrainer_FromBT_OTrainer_TowBT_OTTempCopy: ; 1704a2
 	ld hl, sNrOfBeatenBattleTowerTrainers
 	inc [hl]
 	call CloseSRAM
-Function1704c9:
+SkipBattleTowerBattle: ; 1704c9
 	ret
 ; 1704ca
 

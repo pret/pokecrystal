@@ -35575,7 +35575,7 @@ INCLUDE "trainers/attributes.asm"
 
 
 ReadTrainerParty: ; 39771
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret nz
 
@@ -35906,7 +35906,7 @@ endr
 
 
 Battle_GetTrainerName:: ; 39939
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ld hl, wd26b
 	jp nz, CopyTrainerName
@@ -36818,7 +36818,9 @@ endr
 .ApplyLayers
 	ld hl, TrainerClassAttributes + 3
 
-	ld a, [wcfc0]
+	; If we have a battle in BattleTower just load the Attributes of the first TrainerClass (Falkner)
+	; so we have always the same AI, regardless of the loaded cass of trainer
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_4412f
 
@@ -87453,7 +87455,7 @@ DoBadgeTypeBoosts: ; fbe24
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
