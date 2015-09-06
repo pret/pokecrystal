@@ -1458,37 +1458,37 @@ BattleCommand07: ; 346d2
 	ld [AttackMissed], a
 	xor a
 .asm_34775
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	add b
 	ld [TypeModifier], a
 
 	xor a
-	ld [$ffb4], a
+	ld [hMultiplicand + 0], a
 
 	ld hl, CurDamage
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hld]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 
 	call Multiply
 
-	ld a, [$ffb4]
+	ld a, [hProduct + 1]
 	ld b, a
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	or b
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	or b
 	jr z, .asm_347ab
 
 	ld a, $a
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	or b
 	jr nz, .asm_347ab
 
@@ -1572,11 +1572,11 @@ Function347d3: ; 347d3
 	jr .asm_347e7
 .asm_3480b
 	xor a
-	ld [$ffb3], a
-	ld [$ffb4], a
-	ld [$ffb5], a
+	ld [hDividend + 0], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, [hli]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [wd265]
 	ld [hMultiplier], a
 	call Multiply
@@ -1586,7 +1586,7 @@ Function347d3: ; 347d3
 	ld b, 4
 	call Divide
 	pop bc
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld [wd265], a
 	jr .asm_347e7
 
@@ -2305,12 +2305,12 @@ BattleCommand08: ; 34cfd
 .go
 ; Start with the maximum damage.
 	xor a
-	ld [$ffb4], a
+	ld [hMultiplicand + 0], a
 	dec hl
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 
 ; Multiply by 85-100%...
 .loop
@@ -2319,20 +2319,20 @@ BattleCommand08: ; 34cfd
 	cp $d9 ; 85%
 	jr c, .loop
 
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 
 ; ...divide by 100%...
 	ld a, $ff ; 100%
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
 
 ; ...to get .85-1.00x damage.
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld hl, CurDamage
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld [hl], a
 	ret
 ; 34d32
@@ -2594,10 +2594,10 @@ BattleCommand09: ; 34d32
 	sub c
 	ld c, a
 	xor a
-	ld [$ffb4], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	push hl
 	ld d, $2
 
@@ -2611,15 +2611,15 @@ BattleCommand09: ; 34d32
 	add hl, bc
 	pop bc
 	ld a, [hli]
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld b, a
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	or b
 	jr nz, .asm_34ea2
 	ld [$ffb5], a
@@ -4344,18 +4344,18 @@ BattleCommand3f: ; 35726
 .asm_3579d
 	xor a
 	ld [$ffb3], a
-	ld [$ffb4], a
+	ld [hMultiplicand + 0], a
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hli]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, $30
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld a, b
 	and a
 	jr z, .asm_357d6
@@ -4365,22 +4365,22 @@ BattleCommand3f: ; 35726
 	rr a
 	srl b
 	rr a
-	ld [$ffb7], a
-	ld a, [$ffb5]
+	ld [hDivisor], a
+	ld a, [hProduct + 2]
 	ld b, a
 	srl b
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	rr a
 	srl b
 	rr a
-	ld [$ffb6], a
+	ld [hDividend + 3], a
 	ld a, b
-	ld [$ffb5], a
+	ld [hDividend + 2], a
 
 .asm_357d6
 	ld b, $4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld b, a
 	ld hl, .FlailPower
 
@@ -6874,7 +6874,7 @@ rept 2
 endr
 
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, [de]
 	ld [hMultiplicand + 1], a
 	inc de
@@ -9470,7 +9470,7 @@ BattleCommand60: ; 3784b
 	ld hl, EnemyMonHappiness
 .ok
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a
 	ld a, [hl]
 	ld [hMultiplicand + 2], a
@@ -9595,18 +9595,18 @@ BattleCommand63: ; 3790e
 .asm_3791a
 	ld a, $ff
 	sub [hl]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	xor a
-	ld [$ffb4], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, 10
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 	ld a, 25
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld b, 4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld d, a
 	pop bc
 	ret

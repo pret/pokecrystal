@@ -809,6 +809,7 @@ wc716:: ds 1
 wc717:: ds 1
 wc718:: ds 1
 wc719:: ds 1
+LastPlayerMon:: ; c71a
 wc71a:: ds 1
 LastPlayerMove:: ; c71b
 	ds 1

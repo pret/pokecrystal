@@ -31,13 +31,16 @@ hConnectedMapWidth EQU $ffb0
 
 hPastLeadingZeroes EQU $ffb3
 
-hDividend          EQU $ffb3
-hDivisor           EQU $ffb7
-hQuotient          EQU $ffb4
+hStringCmpString1  EQU $ffb1
+hStringCmpString2  EQU $ffb5
 
-hMultiplicand      EQU $ffb4
-hMultiplier        EQU $ffb7
-hProduct           EQU $ffb3
+hDividend          EQU $ffb3 ; length in b register, before 'call Divide' (max 4 bytes)
+hDivisor           EQU $ffb7 ; 1 byte long
+hQuotient          EQU $ffb4 ; result (3 bytes long)
+
+hMultiplicand      EQU $ffb4 ; 3 bytes long
+hMultiplier        EQU $ffb7 ; 1 byte long
+hProduct           EQU $ffb3 ; result (4 bytes long)
 
 hMathBuffer        EQU $ffb8
 

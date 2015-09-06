@@ -4464,11 +4464,11 @@ Functionc699: ; c699
 	jr z, .zero
 	push hl
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, b
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, c
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, $30
 	ld [hMultiplier], a
 	call Multiply
@@ -4479,23 +4479,23 @@ Functionc699: ; c699
 	rr e
 	srl d
 	rr e
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	srl b
 	rr a
 	srl b
 	rr a
-	ld [$ffb6], a
+	ld [hDividend + 3], a
 	ld a, b
-	ld [$ffb5], a
+	ld [hDividend + 2], a
 
 .divide
 	ld a, e
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld e, a
 	pop hl
 	and a
@@ -9390,22 +9390,22 @@ endr
 	inc d
 
 .asm_e20f
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, d
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, [CurPartyLevel]
 	ld [hMultiplier], a
 	call Multiply
-	ld a, [hMultiplicand]
-	ld [hProduct], a
-	ld a, [$ffb5]
-	ld [hMultiplicand], a
-	ld a, [$ffb6]
-	ld [$ffb5], a
+	ld a, [hProduct + 1]
+	ld [hDividend + 0], a
+	ld a, [hProduct + 2]
+	ld [hDividend + 1], a
+	ld a, [hProduct + 3]
+	ld [hDividend + 2], a
 	ld a, $64
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld a, $3
 	ld b, a
 	call Divide
@@ -9415,11 +9415,11 @@ endr
 	jr nz, .asm_e24e
 	ld a, [CurPartyLevel]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	add b
 	ld [$ffb6], a
 	jr nc, .asm_e24c
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	inc a
 	ld [$ffb5], a
 
@@ -25877,11 +25877,11 @@ Function2509f: ; 2509f
 
 Function250a9: ; 250a9
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, [Buffer1]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [Buffer2]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [wd10c]
 	ld [hMultiplier], a
 	push hl
@@ -35885,7 +35885,7 @@ TrainerType4: ; 3989d
 ; 3991b
 
 Function3991b: ; 3991b (e:591b)
-	ld hl, $ffb3
+	ld hl, hMultiplicand - 1
 	xor a
 rept 3
 	ld [hli], a
@@ -35898,9 +35898,9 @@ endr
 	ld hl, wc686
 	xor a
 	ld [hli], a
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld [hl], a
 	ret
 
@@ -39638,8 +39638,8 @@ Function48d4a: ; 48d4a (12:4d4a)
 	add c
 	ld [hld], a
 	xor a
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
 	srl a
 	srl a
@@ -39651,13 +39651,13 @@ Function48d4a: ; 48d4a (12:4d4a)
 	ld a, [hli]
 	and $f
 	add b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, 100
-	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
+	ld [hMultiplier], a
 	call Multiply
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld c, a
 	ld e, [hl]
 	add e
@@ -39672,10 +39672,10 @@ Function48d4a: ; 48d4a (12:4d4a)
 
 Function48d94: ; 48d94 (12:4d94)
 	xor a
-	ld [$ffb3], a
+	ld [hDividend + 0], a
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, [hli]
-	ld [$ffb3], a
+	ld [hDividend + 0], a
 	ld a, [hl]
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, 100
@@ -39691,7 +39691,7 @@ Function48d94: ; 48d94 (12:4d94)
 	sla b
 	or b
 	ld [hld], a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld c, 10
 	call SimpleDivide
 	sla b
@@ -49389,11 +49389,11 @@ endr
 	ld b, $4
 	call Divide
 
-	ld a, [hMultiplicand]
+	ld a, [hMultiplicand + 0]
 	push af
-	ld a, [$ffb5]
+	ld a, [hMultiplicand + 1]
 	push af
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	push af
 
 	call Function50eed
@@ -49402,33 +49402,33 @@ endr
 	ld [hMultiplier], a
 	call Multiply
 
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	push af
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	push af
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	push af
 	ld a, [hli]
 	push af
 
 	xor a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, d
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [hli]
 	ld [hMultiplier], a
 	call Multiply
 
 	ld b, [hl]
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	sub b
 	ld [$ffb6], a
 	ld b, $0
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	sbc b
 	ld [$ffb5], a
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	sbc b
 	ld [hMultiplicand], a
 
@@ -49482,10 +49482,10 @@ endr
 
 Function50eed: ; 50eed
 	xor a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, d
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld [hMultiplier], a
 	jp Multiply
 ; 50efa
@@ -87396,12 +87396,12 @@ endr
 
 .ApplyModifier
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld hl, CurDamage
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 
 	inc de
 	ld a, [de]
@@ -87410,18 +87410,18 @@ endr
 	call Multiply
 
 	ld a, 10
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
 
-	ld a, [hMultiplicand]
+	ld a, [hQuotient + 0]
 	and a
 	ld bc, $ffff
 	jr nz, .Update
 
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld c, a
 	or b
 	jr nz, .Update

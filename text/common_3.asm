@@ -129,29 +129,29 @@ UnknownText_0x1c02c9: ; 1c02c9
 	prompt
 ; 1c02df
 
-UnknownText_0x1c02df: ; 1c02df
+Text_GoPkmn: ; 1c02df
 	text "Go! @"
 	db "@"
 ; 1c02e6
 
-UnknownText_0x1c02e6: ; 1c02e6
+Text_DoItPkmn: ; 1c02e6
 	text "Do it! @"
 	db "@"
 ; 1c02f0
 
-UnknownText_0x1c02f0: ; 1c02f0
+Text_GoForItPkmn: ; 1c02f0
 	text "Go for it,"
 	line "@"
 	db "@"
 ; 1c02fe
 
-UnknownText_0x1c02fe: ; 1c02fe
+Text_YourFoesWeakGetmPkmn: ; 1c02fe
 	text "Your foe's weak!"
 	line "Get'm, @"
 	db "@"
 ; 1c0317
 
-UnknownText_0x1c0317: ; 1c0317
+Text_BattleMonNick01: ; 1c0317
 	text_from_ram BattleMonNick
 	text "!"
 	done
