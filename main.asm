@@ -1887,10 +1887,9 @@ CheckNickErrors:: ; 669f
 ; 66cf
 
 .textcommands ; 66cf
-; table definining which characters
-; are actually text commands
+; table defining which characters are actually text commands
 ; format:
-;       >=   <
+	;   ≥    <
 	db $00, $05
 	db $14, $19
 	db $1d, $26
@@ -36819,7 +36818,7 @@ endr
 	ld hl, TrainerClassAttributes + 3
 
 	; If we have a battle in BattleTower just load the Attributes of the first TrainerClass (Falkner)
-	; so we have always the same AI, regardless of the loaded cass of trainer
+	; so we have always the same AI, regardless of the loaded class of trainer
 	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_4412f
@@ -83115,7 +83114,7 @@ StringOptions: ; e4241
 
 
 GetOptionPointer: ; e42d6
-	ld a, [wcf63] ;load the cusror position to a
+	ld a, [wcf63] ;load the cursor position to a
 	ld e, a ;copy it to de
 	ld d, 0
 	ld hl, .Pointers
