@@ -41,10 +41,10 @@ UnknownScript_0x9e3d3:
 
 MapBattleTower1FSignpost0Script:
 	loadfont
-	writetext UnknownText_0x9ed3c
+	writetext Text_ReadBattleTowerRules
 	yesorno
 	iffalse UnknownScript_0x9e3e0
-	writetext UnknownText_0x9ed72
+	writetext Text_BattleTowerRules
 	closetext
 UnknownScript_0x9e3e0:
 	loadmovesprites
@@ -55,41 +55,41 @@ ReceptionistScript_0x9e3e2:
 	special Function170687
 	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
 	loadfont
-	writetext UnknownText_0x9e5ab
+	writetext Text_BattleTowerWelcomesYou
 	keeptextopen
 	writebyte $0
 	special Function170687
-	if_not_equal $0, UnknownScript_0x9e3fc
-	jump UnknownScript_0x9e49e
+	if_not_equal $0, Script_Menu_ChallengeExplanationCancel
+	jump Script_BattleTowerIntroductionYesNo
 
-UnknownScript_0x9e3fc:
-	writetext UnknownText_0x9e5ea
+Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
+	writetext Text_WantToGoIntoABattleRoom
 	writebyte $1
-	special Function17d224
-	if_equal $1, UnknownScript_0x9e40f
-	if_equal $2, UnknownScript_0x9e4a5
+	special Special_Menu_ChallengeExplanationCancel
+	if_equal $1, Script_ChoseChallenge
+	if_equal $2, Script_BattleTowerExplanation
 	jump UnknownScript_0x9e4b0
 
-UnknownScript_0x9e40f:
+Script_ChoseChallenge: ; 0x9e40f
 	writebyte $1a
 	special Function170687
-	special Function170bd3
-	if_not_equal $0, UnknownScript_0x9e4bb
-	writetext UnknownText_0x9ef1f
+	special SpecialCheckForBattleTowerRules
+	if_not_equal $0, Script_CloseText
+	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $0
 	special Special_TryQuickSave
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $1
 	writebyte $1
 	special Function170687
 	special Function1700b0
-	if_equal $a, UnknownScript_0x9e3fc
+	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, UnknownScript_0x9e550
 	writebyte $11
 	special Function170687
-	writetext UnknownText_0x9e60a
+	writetext Text_RightThisWayToYourBattleRoom
 	closetext
 	loadmovesprites
 	writebyte $1e
@@ -116,39 +116,39 @@ UnknownScript_0x9e454:
 	warpcheck
 	end
 
-UnknownScript_0x9e47a:
+Script_GivePlayerHisPrize: ; 0x9e47a
 	writebyte $1c
 	special Function170687
 	writebyte $1b
 	special Function170687
-	if_equal $12, UnknownScript_0x9e498
+	if_equal $12, Script_YourPackIsStuffedFull
 	itemtotext $0, $1
 	giveitem $ff, $5
-	writetext UnknownText_0x9eb7e
+	writetext Text_PlayerGotFive
 	writebyte $1d
 	special Function170687
 	loadmovesprites
 	end
 
-UnknownScript_0x9e498:
-	writetext UnknownText_0x9eb94
+Script_YourPackIsStuffedFull: ; 0x9e498
+	writetext Text_YourPackIsStuffedFull
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9e49e:
-	writetext UnknownText_0x9ec3d
+Script_BattleTowerIntroductionYesNo: ; 0x9e49e
+	writetext Text_WouldYouLikeToHearAboutTheBattleTower
 	yesorno
 	iffalse UnknownScript_0x9e4a8
-UnknownScript_0x9e4a5:
-	writetext UnknownText_0x9e886
+Script_BattleTowerExplanation: ; 0x9e4a5
+	writetext Text_BattleTowerIntroduction_2
 UnknownScript_0x9e4a8:
 	writebyte $1
 	special Function170687
-	jump UnknownScript_0x9e3fc
+	jump Script_Menu_ChallengeExplanationCancel
 
 UnknownScript_0x9e4b0:
-	writetext UnknownText_0x9ec09
+	writetext Text_WeHopeToServeYouAgain
 	closetext
 	loadmovesprites
 	end
@@ -158,26 +158,26 @@ UnknownScript_0x9e4b6:
 	loadmovesprites
 	end
 
-UnknownScript_0x9e4bb:
+Script_CloseText: ; 0x9e4bb
 	closetext
 	loadmovesprites
 	end
 
 
 UnknownScript_0x9e4be:
-	writetext UnknownText_0x9ef1f
+	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	special Special_TryQuickSave
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	writebyte $1
 	special Function170687
 	special Function1700ba
-	if_equal $a, UnknownScript_0x9e3fc
+	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, UnknownScript_0x9e550
-	writetext UnknownText_0x9e9eb
+	writetext Text_ReceivedAListOfLeadersOnTheHonorRoll
 	spriteface $2, LEFT
-	writetext UnknownText_0x9ea1b
+	writetext Text_PleaseConfirmOnThisMonitor
 	closetext
 	spriteface $2, DOWN
 	loadmovesprites
@@ -186,12 +186,12 @@ UnknownScript_0x9e4be:
 UnknownScript_0x9e4ea:
 	writebyte $18
 	special Function170687
-	if_not_equal $0, UnknownScript_0x9e542
+	if_not_equal $0, Script_APkmnLevelExceeds
 	writebyte $19
 	special Function170687
-	if_not_equal $0, UnknownScript_0x9e549
-	special Function170bd3
-	if_not_equal $0, UnknownScript_0x9e4bb
+	if_not_equal $0, Script_MayNotEnterABattleRoomUnderL70
+	special SpecialCheckForBattleTowerRules
+	if_not_equal $0, Script_CloseText
 	writebyte $5
 	special Function170687
 	if_equal $0, UnknownScript_0x9e512
@@ -202,19 +202,19 @@ UnknownScript_0x9e512:
 	writetext UnknownText_0x9ec6d
 UnknownScript_0x9e515:
 	yesorno
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	writetext UnknownText_0x9ef79
 	yesorno
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $0
 	special Special_TryQuickSave
-	iffalse UnknownScript_0x9e3fc
+	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $1
 	writebyte $6
 	special Function170687
 	writebyte $12
 	special Function170687
-	writetext UnknownText_0x9e60a
+	writetext Text_RightThisWayToYourBattleRoom
 	closetext
 	jump UnknownScript_0x9e44e
 
@@ -223,15 +223,15 @@ UnknownScript_0x9e53b:
 	closetext
 	jump UnknownScript_0x9e4b0
 
-UnknownScript_0x9e542:
-	writetext UnknownText_0x9f1e5
+Script_APkmnLevelExceeds: ; 0x9e542
+	writetext Text_APkmnLevelExceeds
 	closetext
-	jump UnknownScript_0x9e3fc
+	jump Script_Menu_ChallengeExplanationCancel
 
-UnknownScript_0x9e549:
-	writetext UnknownText_0x9f217
+Script_MayNotEnterABattleRoomUnderL70: ; 0x9e549
+	writetext Text_MayNotEnterABattleRoomUnderL70
 	closetext
-	jump UnknownScript_0x9e3fc
+	jump Script_Menu_ChallengeExplanationCancel
 
 UnknownScript_0x9e550:
 	special Function17f53d
@@ -247,20 +247,20 @@ UnknownScript_0x9e555:
 YoungsterScript_0x9e55d:
 	faceplayer
 	loadfont
-	writetext UnknownText_0x9f264
+	writetext Text_BattleTowerYoungster
 	closetext
 	loadmovesprites
 	spriteface $3, RIGHT
 	end
 
 CooltrainerFScript_0x9e568:
-	jumptextfaceplayer UnknownText_0x9f2a4
+	jumptextfaceplayer Text_BattleTowerCooltrainerF
 
 BugCatcherScript_0x9e56b:
-	jumptextfaceplayer UnknownText_0x9f35b
+	jumptextfaceplayer Text_BattleTowerBugCatcher
 
 GrannyScript_0x9e56e:
-	jumptextfaceplayer UnknownText_0x9f2e3
+	jumptextfaceplayer Text_BattleTowerGranny
 
 MovementData_0x9e571:
 	step_up
@@ -346,7 +346,7 @@ MovementData_0x9e5a9:
 	turn_head_right
 	step_end
 
-UnknownText_0x9e5ab:
+Text_BattleTowerWelcomesYou: ; 0x9e5ab
 	text "BATTLE TOWER"
 	line "welcomes you!"
 
@@ -354,17 +354,17 @@ UnknownText_0x9e5ab:
 	line "to a BATTLE ROOM."
 	done
 
-UnknownText_0x9e5ea:
+Text_WantToGoIntoABattleRoom: ; 0x9e5ea
 	text "Want to go into a"
 	line "BATTLE ROOM?"
 	done
 
-UnknownText_0x9e60a:
+Text_RightThisWayToYourBattleRoom: ; 0x9e60a
 	text "Right this way to"
 	line "your BATTLE ROOM."
 	done
 
-UnknownText_0x9e62f:
+Text_BattleTowerIntroduction_1: ; 0x9e62f
 	text "BATTLE TOWER is a"
 	line "facility made for"
 	cont "#MON battles."
@@ -424,7 +424,7 @@ UnknownText_0x9e62f:
 	para ""
 	done
 
-UnknownText_0x9e886:
+Text_BattleTowerIntroduction_2: ; 0x9e886
 	text "BATTLE TOWER is a"
 	line "facility made for"
 	cont "#MON battles."
@@ -460,7 +460,7 @@ UnknownText_0x9e886:
 	para ""
 	done
 
-UnknownText_0x9e9eb:
+Text_ReceivedAListOfLeadersOnTheHonorRoll: ; 0x9e9eb
 	text "Received a list of"
 	line "LEADERS on the"
 	cont "HONOR ROLL."
@@ -468,18 +468,18 @@ UnknownText_0x9e9eb:
 	para ""
 	done
 
-UnknownText_0x9ea1b:
+Text_PleaseConfirmOnThisMonitor: ; 0x9ea1b
 	text "Please confirm on"
 	line "this monitor."
 	done
 
-UnknownText_0x9ea3c:
+Text_ThankYou: ; 0x9ea3c
 	text "Thank you!"
 
 	para ""
 	done
 
-UnknownText_0x9ea49:
+Text_ThanksForVisiting: ; 0x9ea49
 	text "Thanks for"
 	line "visiting!"
 	done
@@ -502,7 +502,7 @@ UnknownText_0x9ea5f:
 	para ""
 	done
 
-UnknownText_0x9eaef:
+Text_CongratulationsYouveBeatenAllTheTrainers: ; 0x9eaef
 	text "Congratulations!"
 
 	para "You've beaten all"
@@ -522,7 +522,7 @@ UnknownText_0x9eb45:
 	line "CENTER?"
 	done
 
-UnknownText_0x9eb7e:
+Text_PlayerGotFive: ; 0x9eb7e
 	text "<PLAYER> got five"
 	line "@"
 	text_from_ram StringBuffer4
@@ -531,7 +531,7 @@ UnknownText_0x9eb7e:
 	text_waitbutton
 	db "@"
 
-UnknownText_0x9eb94:
+Text_YourPackIsStuffedFull: ; 0x9eb94
 	text "Oops, your PACK is"
 	line "stuffed full."
 
@@ -539,24 +539,24 @@ UnknownText_0x9eb94:
 	line "and come back."
 	done
 
-UnknownText_0x9ebd6:
+Text_YourRegistrationIsComplete: ; 0x9ebd6
 	text "Your registration"
 	line "is complete."
 
 	para "Please come again!"
 	done
 
-UnknownText_0x9ec09:
+Text_WeHopeToServeYouAgain: ; 0x9ec09
 	text "We hope to serve"
 	line "you again."
 	done
 
-UnknownText_0x9ec26:
+Text_PleaseStepThisWay: ; 0x9ec26
 	text "Please step this"
 	line "way."
 	done
 
-UnknownText_0x9ec3d:
+Text_WouldYouLikeToHearAboutTheBattleTower: ; 0x9ec3d
 	text "Would you like to"
 	line "hear about the"
 	cont "BATTLE TOWER?"
@@ -582,19 +582,19 @@ UnknownText_0x9ecb0:
 	cont "deleted. OK?"
 	done
 
-UnknownText_0x9ed1e:
+Text_CheckTheLeaderHonorRoll: ; 0x9ed1e
 	text "Check the LEADER"
 	line "HONOR ROLL?"
 	done
 
-UnknownText_0x9ed3c:
+Text_ReadBattleTowerRules: ; 0x9ed3c
 	text "BATTLE TOWER rules"
 	line "are written here."
 
 	para "Read the rules?"
 	done
 
-UnknownText_0x9ed72:
+Text_BattleTowerRules: ; 0x9ed72
 	text "Three #MON may"
 	line "enter battles."
 
@@ -626,13 +626,13 @@ UnknownText_0x9ee18:
 	line "invalid."
 	done
 
-UnknownText_0x9ee92:
+Text_YourPkmnWillBeHealedToFullHealth: ; 0x9ee92
 	text "Your #MON will"
 	line "be healed to full"
 	cont "health."
 	done
 
-UnknownText_0x9eebc:
+Text_NextUpOpponentNo: ; 0x9eebc
 	text "Next up, opponent"
 	line "no.@"
 	text_from_ram StringBuffer3
@@ -647,7 +647,7 @@ UnknownText_0x9eee0:
 	line "the CENTER."
 	done
 
-UnknownText_0x9ef1f:
+Text_SaveBeforeEnteringBattleRoom: ; 0x9ef1f
 	text "Before entering"
 	line "the BATTLE ROOM,"
 
@@ -655,7 +655,7 @@ UnknownText_0x9ef1f:
 	line "be saved."
 	done
 
-UnknownText_0x9ef5e:
+Text_SaveAndEndTheSession: ; 0x9ef5e
 	text "SAVE and end the"
 	line "session?"
 	done
@@ -668,7 +668,7 @@ UnknownText_0x9ef79:
 	line "the previous ROOM."
 	done
 
-UnknownText_0x9efbf:
+Text_CancelYourBattleRoomChallenge: ; 0x9efbf
 	text "Cancel your BATTLE"
 	line "ROOM challenge?"
 	done
@@ -699,7 +699,7 @@ UnknownText_0x9f076:
 	line "tomorrow."
 	done
 
-UnknownText_0x9f0c1:
+Text_TooMuchTimeElapsedNoRegister: ; 0x9f0c1
 	text "Sorry, but it's"
 	line "not possible to"
 
@@ -730,7 +730,7 @@ UnknownText_0x9f151:
 	cont "challenge."
 	done
 
-UnknownText_0x9f1e5:
+Text_APkmnLevelExceeds: ; 0x9f1e5
 	text "One or more of"
 	line "your #MON's"
 	cont "levels exceeds @"
@@ -738,7 +738,7 @@ UnknownText_0x9f1e5:
 	text "."
 	done
 
-UnknownText_0x9f217:
+Text_MayNotEnterABattleRoomUnderL70: ; 0x9f217
 	text_from_ram wcd49
 	text " may not"
 	line "enter a BATTLE"
@@ -750,7 +750,7 @@ UnknownText_0x9f217:
 	text "."
 	done
 
-UnknownText_0x9f264:
+Text_BattleTowerYoungster: ; 0x9f264
 	text "Destroyed by the"
 	line "first opponent in"
 
@@ -758,7 +758,7 @@ UnknownText_0x9f264:
 	line "I'm no good…"
 	done
 
-UnknownText_0x9f2a4:
+Text_BattleTowerCooltrainerF: ; 0x9f2a4
 	text "There are lots of"
 	line "BATTLE ROOMS, but"
 
@@ -766,7 +766,7 @@ UnknownText_0x9f2a4:
 	line "them all!"
 	done
 
-UnknownText_0x9f2e3:
+Text_BattleTowerGranny: ; 0x9f2e3
 	text "It's a grueling"
 	line "task, not being"
 
@@ -780,7 +780,7 @@ UnknownText_0x9f2e3:
 	line "winning battles."
 	done
 
-UnknownText_0x9f35b:
+Text_BattleTowerBugCatcher: ; 0x9f35b
 	text "I'm trying to see"
 	line "how far I can go"
 

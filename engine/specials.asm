@@ -142,9 +142,9 @@ SpecialsPointers:: ; c029
 	add_special Function170215
 	add_special Function1704e1
 	add_special Function17021d
-	add_special Function170b44
+	add_special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
 	add_special Function11ba38
-	add_special Function170bd3
+	add_special SpecialCheckForBattleTowerRules
 	add_special Function117656
 	add_special Reset
 	add_special Function1011f1
@@ -156,7 +156,7 @@ SpecialsPointers:: ; c029
 	add_special Function11c1ab
 	add_special Function170687
 	add_special Special_DisplayUnownWords
-	add_special Function17d224
+	add_special Special_Menu_ChallengeExplanationCancel
 	add_special Function17d2b6
 	add_special Function17d2ce
 	add_special Function17f53d

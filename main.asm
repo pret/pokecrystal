@@ -2938,7 +2938,7 @@ SpecialGiveShuckle: ; 7305
 
 ; Caught data.
 	ld b, 0
-	callba Function4dba3
+	callba SetPkmnCaughtData
 
 ; Holding a Berry.
 	ld bc, PartyMon2 - PartyMon1
@@ -4464,11 +4464,11 @@ Functionc699: ; c699
 	jr z, .zero
 	push hl
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, b
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, c
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, $30
 	ld [hMultiplier], a
 	call Multiply
@@ -4479,23 +4479,23 @@ Functionc699: ; c699
 	rr e
 	srl d
 	rr e
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	srl b
 	rr a
 	srl b
 	rr a
-	ld [$ffb6], a
+	ld [hDividend + 3], a
 	ld a, b
-	ld [$ffb5], a
+	ld [hDividend + 2], a
 
 .divide
 	ld a, e
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld e, a
 	pop hl
 	and a
@@ -8340,7 +8340,7 @@ Functionda96: ; da96
 ; db3f
 
 Functiondb3f: ; db3f
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [wd10b]
 	and a
@@ -8799,11 +8799,12 @@ Functionde44: ; de44
 	call AddNTimes
 	ld bc, sBoxMon1End - sBoxMon1
 	jp CopyBytes
-; de6e
 
 
-Functionde6e: ; de6e
-	ld a, 1 ; BANK(sBoxCount)
+SentPkmnIntoBox: ; de6e
+; Sents the Pkmn into one of Bills Boxes
+; the data comes mainly from 'EnemyMon:'
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld de, sBoxCount
 	ld a, [de]
@@ -8811,6 +8812,7 @@ Functionde6e: ; de6e
 	jp nc, Functiondf42
 	inc a
 	ld [de], a
+
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	ld c, a
@@ -8823,23 +8825,29 @@ Functionde6e: ; de6e
 	ld [de], a
 	inc a
 	jr nz, .asm_de85
+
 	call GetBaseData
 	call ShiftBoxMon
+
 	ld hl, PlayerName
 	ld de, sBoxMonOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
+
 	ld de, sBoxMonNicknames
 	ld hl, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
+
 	ld hl, EnemyMon
 	ld de, sBoxMon1
 	ld bc, 1 + 1 + NUM_MOVES ; species + item + moves
 	call CopyBytes
+
 	ld hl, PlayerID
 	ld a, [hli]
 	ld [de], a
@@ -8861,6 +8869,7 @@ Functionde6e: ; de6e
 	ld a, [$ffb6]
 	ld [de], a
 	inc de
+
 	xor a
 	ld b, $a
 .asm_dee5
@@ -8868,6 +8877,7 @@ Functionde6e: ; de6e
 	inc de
 	dec b
 	jr nz, .asm_dee5
+
 	ld hl, EnemyMonDVs
 	ld b, 2 + NUM_MOVES ; DVs and PP ; EnemyMonHappiness - EnemyMonDVs
 .asm_deef
@@ -8876,6 +8886,7 @@ Functionde6e: ; de6e
 	inc de
 	dec b
 	jr nz, .asm_deef
+
 	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
@@ -8909,6 +8920,7 @@ Functionde6e: ; de6e
 	call CopyBytes
 	ld b, 0
 	call Functiondcb6
+
 	call CloseSRAM
 	scf
 	ret
@@ -9067,7 +9079,7 @@ Functione039: ; e039
 	and a
 	jr z, .asm_e04a
 
-	ld a, 1 ; BANK(sBoxCount)
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 
@@ -9378,22 +9390,22 @@ endr
 	inc d
 
 .asm_e20f
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, d
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, [CurPartyLevel]
 	ld [hMultiplier], a
 	call Multiply
-	ld a, [hMultiplicand]
-	ld [hProduct], a
-	ld a, [$ffb5]
-	ld [hMultiplicand], a
-	ld a, [$ffb6]
-	ld [$ffb5], a
+	ld a, [hProduct + 1]
+	ld [hDividend + 0], a
+	ld a, [hProduct + 2]
+	ld [hDividend + 1], a
+	ld a, [hProduct + 3]
+	ld [hDividend + 2], a
 	ld a, $64
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld a, $3
 	ld b, a
 	call Divide
@@ -9403,11 +9415,11 @@ endr
 	jr nz, .asm_e24e
 	ld a, [CurPartyLevel]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	add b
 	ld [$ffb6], a
 	jr nc, .asm_e24c
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	inc a
 	ld [$ffb5], a
 
@@ -9482,7 +9494,7 @@ GivePoke:: ; e277
 	ld a, [CurPartySpecies]
 	ld [TempEnemyMonSpecies], a
 	callab LoadEnemyMon
-	call Functionde6e
+	call SentPkmnIntoBox
 	jp nc, Functione3d4
 	ld a, $2
 	ld [MonType], a
@@ -9562,11 +9574,11 @@ endr
 	ld [hli], a
 	ld [hl], $e9
 	pop bc
-	callba Function4dba3
+	callba SetPkmnCaughtData
 	jr .asm_e3b2
 
 .asm_e35e
-	ld a, $1
+	ld a, BANK(sBoxMonOT)
 	call GetSRAMBank
 	ld de, sBoxMonOT
 .asm_e366
@@ -9604,7 +9616,7 @@ endr
 	callba Function4db49
 
 .asm_e3a6
-	callba Function4db3b
+	callba GiveANickname_YesNo
 	pop de
 	jr c, .asm_e3b2
 	call Functione3de
@@ -9615,9 +9627,9 @@ endr
 	ld a, b
 	and a
 	ret z
-	ld hl, UnknownText_0xe3d9
+	ld hl, TextJump_WasSentToBillsPC
 	call PrintText
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	ld hl, wd050
 	ld de, sBoxMonNicknames
@@ -9635,9 +9647,9 @@ Functione3d4: ; e3d4
 	ret
 ; e3d9
 
-UnknownText_0xe3d9: ; 0xe3d9
+TextJump_WasSentToBillsPC: ; 0xe3d9
 	; was sent to BILL's PC.
-	text_jump UnknownText_0x1c0feb
+	text_jump Text_WasSentToBillsPC
 	db "@"
 ; 0xe3de
 
@@ -9945,7 +9957,7 @@ Functione5bb: ; e5bb
 	call AddNTimes
 	ld de, TempMonSpecies
 	ld bc, $0020
-	ld a, $1
+	ld a, BANK(sBoxMon1Species)
 	call GetSRAMBank
 	call CopyBytes
 	call CloseSRAM
@@ -9969,7 +9981,7 @@ Functione5d9: ; e5d9
 	jr .asm_e5f6
 
 .asm_e5f1
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	ld hl, sBoxCount
 
 .asm_e5f6
@@ -25865,11 +25877,11 @@ Function2509f: ; 2509f
 
 Function250a9: ; 250a9
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, [Buffer1]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [Buffer2]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [wd10c]
 	ld [hMultiplier], a
 	push hl
@@ -35563,7 +35575,7 @@ INCLUDE "trainers/attributes.asm"
 
 
 ReadTrainerParty: ; 39771
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret nz
 
@@ -35873,7 +35885,7 @@ TrainerType4: ; 3989d
 ; 3991b
 
 Function3991b: ; 3991b (e:591b)
-	ld hl, $ffb3
+	ld hl, hMultiplicand - 1
 	xor a
 rept 3
 	ld [hli], a
@@ -35886,15 +35898,15 @@ endr
 	ld hl, wc686
 	xor a
 	ld [hli], a
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld [hl], a
 	ret
 
 
 Battle_GetTrainerName:: ; 39939
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ld hl, wd26b
 	jp nz, CopyTrainerName
@@ -36806,7 +36818,9 @@ endr
 .ApplyLayers
 	ld hl, TrainerClassAttributes + 3
 
-	ld a, [wcfc0]
+	; If we have a battle in BattleTower just load the Attributes of the first TrainerClass (Falkner)
+	; so we have always the same AI, regardless of the loaded cass of trainer
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_4412f
 
@@ -39624,8 +39638,8 @@ Function48d4a: ; 48d4a (12:4d4a)
 	add c
 	ld [hld], a
 	xor a
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
 	srl a
 	srl a
@@ -39637,13 +39651,13 @@ Function48d4a: ; 48d4a (12:4d4a)
 	ld a, [hli]
 	and $f
 	add b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, 100
-	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
+	ld [hMultiplier], a
 	call Multiply
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld c, a
 	ld e, [hl]
 	add e
@@ -39658,10 +39672,10 @@ Function48d4a: ; 48d4a (12:4d4a)
 
 Function48d94: ; 48d94 (12:4d94)
 	xor a
-	ld [$ffb3], a
+	ld [hDividend + 0], a
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, [hli]
-	ld [$ffb3], a
+	ld [hDividend + 0], a
 	ld a, [hl]
 	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, 100
@@ -39677,7 +39691,7 @@ Function48d94: ; 48d94 (12:4d94)
 	sla b
 	or b
 	ld [hld], a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld c, 10
 	call SimpleDivide
 	sla b
@@ -42221,7 +42235,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	jr nz, .partymon
 
 	; Run CheckOwnMon on each Pokémon in the PC.
-	ld a, 1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	and a
@@ -42443,7 +42457,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	call Function4a91e
 	dec d
 	jr nz, .asm_4a851
-	ld a, 1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	and a
@@ -44546,7 +44560,7 @@ Function4d87a: ; 4d87a
 	pop bc
 	dec d
 	jr nz, .asm_4d88d
-	ld a, $1
+	ld a, BANK(sBoxMon1ID)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	and a
@@ -44804,7 +44818,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld de, wd050
 	ld bc, $000b
 	call CopyBytes
-	call Function4db3b
+	call GiveANickname_YesNo
 	jr c, .asm_4da66
 	ld a, [PartyCount]
 	dec a
@@ -44847,7 +44861,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 ; 4daa3
 
 Function4daa3: ; 4daa3
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 	ld a, [hl]
@@ -44868,7 +44882,7 @@ Function4daa3: ; 4daa3
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
-	call Function4db3b
+	call GiveANickname_YesNo
 	ld hl, StringBuffer1
 	jr c, .asm_4daf7
 	ld a, BOXMON
@@ -44878,7 +44892,7 @@ Function4daa3: ; 4daa3
 	ld hl, wd050
 
 .asm_4daf7
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	ld de, sBoxMonNicknames
 	ld bc, PKMN_NAME_LENGTH
@@ -44886,13 +44900,13 @@ Function4daa3: ; 4daa3
 	call CloseSRAM
 
 .asm_4db08
-	ld a, $1
+	ld a, BANK(sBoxMon1Level)
 	call GetSRAMBank
 	ld a, [sBoxMon1Level]
 	ld [CurPartyLevel], a
 	call CloseSRAM
 	call Function4db83
-	ld a, $1
+	ld a, BANK(sBoxMon1CaughtLocation)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLocation
 	ld a, [hl]
@@ -44915,13 +44929,13 @@ Function4db35: ; 4db35
 ; 4db3b
 
 
-Function4db3b: ; 4db3b
-	ld hl, UnknownText_0x4db44
+GiveANickname_YesNo: ; 4db3b
+	ld hl, TextJump_GiveANickname
 	call PrintText
 	jp YesNoBox
 ; 4db44
 
-UnknownText_0x4db44: ; 0x4db44
+TextJump_GiveANickname: ; 0x4db44
 	; Give a nickname to the @  you received?
 	text_jump UnknownText_0x1c12fc
 	db "@"
@@ -44968,7 +44982,7 @@ Function4db53: ; 4db53
 ; 4db83
 
 Function4db83: ; 4db83
-	ld a, $1
+	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLevel
 	call Function4db53
@@ -44978,7 +44992,7 @@ Function4db83: ; 4db83
 
 Function4db92: ; 4db92
 	push bc
-	ld a, $1
+	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLevel
 	pop bc
@@ -44987,7 +45001,7 @@ Function4db92: ; 4db92
 	ret
 ; 4dba3
 
-Function4dba3: ; 4dba3
+SetPkmnCaughtData: ; 4dba3
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1CaughtLevel
@@ -48623,7 +48637,7 @@ Function508d5: ; 508d5
 	jr .done
 
 .boxmon
-	ld a, 1 ; BANK(sBoxSpecies)
+	ld a, BANK(sBoxSpecies)
 	call GetSRAMBank
 	ld hl, sBoxSpecies
 	call .done
@@ -49375,11 +49389,11 @@ endr
 	ld b, $4
 	call Divide
 
-	ld a, [hMultiplicand]
+	ld a, [hMultiplicand + 0]
 	push af
-	ld a, [$ffb5]
+	ld a, [hMultiplicand + 1]
 	push af
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	push af
 
 	call Function50eed
@@ -49388,33 +49402,33 @@ endr
 	ld [hMultiplier], a
 	call Multiply
 
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	push af
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	push af
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	push af
 	ld a, [hli]
 	push af
 
 	xor a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, d
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [hli]
 	ld [hMultiplier], a
 	call Multiply
 
 	ld b, [hl]
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	sub b
 	ld [$ffb6], a
 	ld b, $0
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	sbc b
 	ld [$ffb5], a
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	sbc b
 	ld [hMultiplicand], a
 
@@ -49468,10 +49482,10 @@ endr
 
 Function50eed: ; 50eed
 	xor a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, d
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld [hMultiplier], a
 	jp Multiply
 ; 50efa
@@ -50156,7 +50170,7 @@ Function512f2: ; 512f2
 ; 51322
 
 Function51322: ; 51322
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 	call Function513cb
@@ -51399,7 +51413,7 @@ Function806ff: ; 806ff
 
 Function80715: ; 80715
 ; Remaining slots in the current box.
-	ld a, 1 ; BANK(sBoxCount)
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 	ld a, MONS_PER_BOX
@@ -60873,12 +60887,12 @@ UnknownText_0x8b1fc: ; 0x8b1fc
 	db "@"
 ; 0x8b201
 
-Function8b201: ; 8b201
+CheckForBattleTowerRules: ; 8b201
 	ld hl, StringBuffer2
 	ld [hl], "3"
 	inc hl
 	ld [hl], "@"
-	ld de, Unknown_8b215
+	ld de, CheckForBattleTowerRules_FunctionsText
 	call Function8b25b
 	ret z
 	call Function8b231
@@ -60886,29 +60900,29 @@ Function8b201: ; 8b201
 	ret
 ; 8b215
 
-Unknown_8b215: ; 8b215
+CheckForBattleTowerRules_FunctionsText: ; 8b215
 	db 4
-	dw Unknown_8b21a
-	dw Unknown_8b222
+	dw CheckForBattleTowerRules_Functions
+	dw CheckForBattleTowerRules_Text
 
-Unknown_8b21a: ; 8b21a
-	dw Function8b2da
+CheckForBattleTowerRules_Functions: ; 8b21a
+	dw Function_PartyCountEq3
 	dw Function8b2e2
 	dw Function8b32a
-	dw Function8b331
+	dw Function_HasPartyAnEgg
 ; 8b222
 
-Unknown_8b222: ; 8b222
-	dw UnknownText_0x8b22c
-	dw UnknownText_0x8b247
-	dw UnknownText_0x8b24c
-	dw UnknownText_0x8b251
-	dw UnknownText_0x8b256
+CheckForBattleTowerRules_Text: ; 8b222
+	dw JumpText_ExcuseMeYoureNotReady
+	dw JumbText_OnlyThreePkmnMayBeEntered
+	dw JumpText_ThePkmnMustAllBeDifferentKinds
+	dw JumpText_ThePkmnMustNotHoldTheSameItems
+	dw JumpText_YouCantTakeAnEgg
 ; 8b22c
 
-UnknownText_0x8b22c: ; 0x8b22c
+JumpText_ExcuseMeYoureNotReady: ; 0x8b22c
 	; Excuse me. You're not ready.
-	text_jump UnknownText_0x1c5944
+	text_jump Text_ExcuseMeYoureNotReady
 	db "@"
 ; 0x8b231
 
@@ -60936,27 +60950,27 @@ UnknownText_0x8b242: ; 0x8b242
 	db "@"
 ; 0x8b247
 
-UnknownText_0x8b247: ; 0x8b247
+JumbText_OnlyThreePkmnMayBeEntered: ; 0x8b247
 	; Only three #MON may be entered.
-	text_jump UnknownText_0x1c59c3
+	text_jump Text_OnlyThreePkmnMayBeEntered
 	db "@"
 ; 0x8b24c
 
-UnknownText_0x8b24c: ; 0x8b24c
+JumpText_ThePkmnMustAllBeDifferentKinds: ; 0x8b24c
 	; The @  #MON must all be different kinds.
-	text_jump UnknownText_0x1c59e5
+	text_jump Text_ThePkmnMustAllBeDifferentKinds
 	db "@"
 ; 0x8b251
 
-UnknownText_0x8b251: ; 0x8b251
+JumpText_ThePkmnMustNotHoldTheSameItems: ; 0x8b251
 	; The @  #MON must not hold the same items.
-	text_jump UnknownText_0x1c5a13
+	text_jump Text_ThePkmnMustNotHoldTheSameItems
 	db "@"
 ; 0x8b256
 
-UnknownText_0x8b256: ; 0x8b256
+JumpText_YouCantTakeAnEgg: ; 0x8b256
 	; You can't take an EGG!
-	text_jump UnknownText_0x1c5a42
+	text_jump Text_YouCantTakeAnEgg
 	db "@"
 ; 0x8b25b
 
@@ -61085,7 +61099,7 @@ Function8b2c1: ; 8b2c1
 	ret
 ; 8b2da
 
-Function8b2da: ; 8b2da
+Function_PartyCountEq3: ; 8b2da
 	ld a, [PartyCount]
 	cp 3
 	ret z
@@ -61169,7 +61183,7 @@ Function8b32a: ; 8b32a
 	ret
 ; 8b331
 
-Function8b331: ; 8b331
+Function_HasPartyAnEgg: ; 8b331
 	ld hl, PartyCount
 	ld a, [hli]
 	ld c, a
@@ -87382,12 +87396,12 @@ endr
 
 .ApplyModifier
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld hl, CurDamage
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 
 	inc de
 	ld a, [de]
@@ -87396,18 +87410,18 @@ endr
 	call Multiply
 
 	ld a, 10
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
 
-	ld a, [hMultiplicand]
+	ld a, [hQuotient + 0]
 	and a
 	ld bc, $ffff
 	jr nz, .Update
 
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld c, a
 	or b
 	jr nz, .Update
@@ -87441,7 +87455,7 @@ DoBadgeTypeBoosts: ; fbe24
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -87759,7 +87773,7 @@ Functionfcc63: ; fcc63
 	jr c, .asm_fcd1c
 	ld b, 1
 .asm_fcd1c
-	callba Function4dba3
+	callba SetPkmnCaughtData
 
 	ld e, TRADE_NICK
 	call GetTradeAttribute
@@ -93532,7 +93546,8 @@ INCLUDE "text/battle_tower.asm"
 
 SECTION "bank7C", ROMX, BANK[$7C]
 
-Unknown_1f0000::
+BattleTowerTrainerData:: ; What exactly it is, I don't know
+; Size is 70 (Nr of Trainers in BattleTower) * 0x24 (Nr of Bytes that are copied)
 INCBIN "unknown/1f0000.bin"
 
 

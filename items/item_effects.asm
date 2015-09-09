@@ -273,7 +273,7 @@ endr
 	jp z, .asm_e98e
 
 	ld a, b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 
 	ld hl, EnemyMonHP
 	ld b, [hl]
@@ -318,9 +318,9 @@ endr
 	sub c
 	ld [hMultiplier], a
 	xor a
-	ld [hProduct], a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
+	ld [hDividend + 0], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	call Multiply
 	pop bc
 
@@ -329,7 +329,7 @@ endr
 	ld b, $4
 	call Divide
 
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	and a
 	jr nz, .statuscheck
 	ld a, 1
@@ -618,7 +618,7 @@ endr
 .asm_eb3c
 	call ClearSprites
 
-	predef Functionde6e
+	predef SentPkmnIntoBox
 
 	callba Function4db83
 

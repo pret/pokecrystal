@@ -443,6 +443,7 @@ SECTION "Battle", WRAM0
 
 wMisc::
 wBattle::
+wBT_OTTempCopy:: ; used to copy the data of the BattleTower-Trainer and the 3 Pkmn
 
 wc608::
 wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
@@ -808,6 +809,7 @@ wc716:: ds 1
 wc717:: ds 1
 wc718:: ds 1
 wc719:: ds 1
+LastPlayerMon:: ; c71a
 wc71a:: ds 1
 LastPlayerMove:: ; c71b
 	ds 1
@@ -882,6 +884,23 @@ ENDC
 wMiscEnd::
 
 wc7e8:: ds 24
+
+
+RSSET 0 ; Offsets for wBT_OTTempCopy:: @ $c608
+wBT_OTTempCopy_0			RB   $A			; $c608
+wBT_OTTempCopy_TrainerClass	RB   $1			; $c608 + $a = $c612
+wBT_OTTempCopy_Pkmn1		RB   $30		; $c608 + $b = $c613
+wBT_OTTempCopy_Pkmn1Name	RB   $A			; $c608 + $3b = $c643
+wBT_OTTempCopy_45			RB   $1			; $c608 + $45 = $c64d
+wBT_OTTempCopy_Pkmn2		RB   $30		; $c608 + $46 = $c64e
+wBT_OTTempCopy_Pkmn2Name	RB   $A			; $c608 + $76 = $c67e
+wBT_OTTempCopy_80			RB   $1			; $c608 + $80 = $c688
+wBT_OTTempCopy_Pkmn3		RB   $30		; $c608 + $81 = $c689
+wBT_OTTempCopy_Pkmn3Name	RB   $A			; $c608 + $b1 = $c6b9
+wBT_OTTempCopy_BB			RB   $1			; $c608 + $bb = $c6c3
+
+GLOBAL wBT_OTTempCopy_TrainerClass, wBT_OTTempCopy_Pkmn1, wBT_OTTempCopy_Pkmn1Name, wBT_OTTempCopy_45, wBT_OTTempCopy_Pkmn2, wBT_OTTempCopy_Pkmn2Name, wBT_OTTempCopy_80, wBT_OTTempCopy_Pkmn3, wBT_OTTempCopy_Pkmn3Name, wBT_OTTempCopy_BB
+
 
 
 SECTION "Overworld Map", WRAM0 [$c800]
@@ -1172,6 +1191,7 @@ CurSpecies:: ; cf60
 
 wcf61:: ds 2
 wcf63:: ds 1
+wNrOfBeatenBattleTowerTrainers::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
@@ -1260,7 +1280,13 @@ GameTimerPause:: ; cfbc
 	ds 1
 
 wcfbe:: ds 2
-wcfc0:: ds 2
+
+InBattleTowerBattle:: ; cfc0
+; 0 not in BattleTower-Battle
+; 1 BattleTower-Battle
+	ds 1
+
+	ds 1
 
 FXAnimID::
 FXAnimIDLo:: ; cfc2
@@ -1818,6 +1844,7 @@ wd25e:: ds 4
 wd262:: ds 1
 wd263:: ds 1
 wd264:: ds 1
+GetPokemonName_Parameter::
 wd265:: ds 1
 wd266:: ds 1
 wd267:: ds 1
@@ -2598,11 +2625,36 @@ w2_d188:: ds 1
 
 SECTION "WRAM 3", WRAMX, BANK [3]
 
+w3_d000:: ; d000
 	ds $100
 
-w3_d100::
-	ds $700
+BT_OTrainer::
+w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + $24)
+BT_OTrainer_Name::
+	ds $A
+BT_OTrainer_TrainerClass::
+	ds $1
+BT_OTPkmn1:: ; w3_d10b
+	ds $1
+BT_OTPkmn1Item::
+	ds $3b-1
+BT_OTPkmn2:: ; w3_d146
+	ds $1
+BT_OTPkmn2Item::
+	ds $3b-1
+BT_OTPkmn3:: ; w3_d181
+	ds $1
+BT_OTPkmn3Item::
+	ds $3b-1
+	
+	ds $24
+BT_OTrainerEnd:: ; we_d1e0
+	
+	ds $20
+	
+	ds $600
 
+wBTChoiceOfLvlGroup::
 w3_d800:: ds 1
 
 
@@ -2772,17 +2824,26 @@ sCrystalData::
 s1_be44:: ds 1
 s1_be45:: ds 1
 
+; data of the BattleTower must be in SRAM because you can save and leave between battles
 sBattleTower:: ; be46
+sNrOfBeatenBattleTowerTrainers::
 sbe46:: ds 1
 sbe47:: ds 1
-sbe48:: ds 7
-sbe4f:: ds 2
-sbe51:: ds 1
-sbe52:: ds 1
-sbe53:: ds 1
-sbe54:: ds 1
-sbe55:: ds 1
-sbe56:: ds 1
+; The 7 trainers of the BattleTower are saved here, so nobody appears more than once
+sBTTrainers:: ; sbe48
+	ds 7
+sbe4f:: ds 1
+sbe50:: ds 1
+; Pkmn of previous trainer
+sBTPkmnOfTrainers:: ; 0xbe51
+sBTPkmnPrevTrainer1::
+	ds 1
+sBTPkmnPrevTrainer2:: ds 1
+sBTPkmnPrevTrainer3:: ds 1
+; Pkmn of preprevious trainer
+sBTPkmnPrevPrevTrainer1:: ds 1
+sBTPkmnPrevPrevTrainer2:: ds 1
+sBTPkmnPrevPrevTrainer3:: ds 1
 
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]

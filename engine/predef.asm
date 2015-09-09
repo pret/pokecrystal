@@ -39,7 +39,7 @@ PredefPointers:: ; 856b
 	add_predef Functiond88c
 	add_predef Functionda96
 	add_predef Functiondb3f ; $8
-	add_predef Functionde6e
+	add_predef SentPkmnIntoBox
 	add_predef GiveEgg
 	add_predef Functionc6e0
 	add_predef Functione167

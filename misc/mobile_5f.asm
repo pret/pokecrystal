@@ -425,19 +425,29 @@ Function17d1f1: ; 17d1f1
 	ret
 ; 17d224
 
-Function17d224: ; 17d224
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Parameter: [ScriptVar] = 0..1
+;
+; if [ScriptVar] == 0
+;    Show japanese menu options
+;    - News - News - ??? - Cancel
+; if [ScriptVar] == 1
+;    Show BattleTower-Menu with 3 options in english language
+;    - Challenge - Explanation - Cancel
+Special_Menu_ChallengeExplanationCancel: ; 17d224
 	ld a, [ScriptVar]
 	and a
 	jr nz, .asm_17d234
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, MenuDataHeader_17d26a
+	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
 	jr .asm_17d23c
 
 .asm_17d234
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, MenuDataHeader_17d28f
+	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
 
 .asm_17d23c
 	call LoadMenuDataHeader
@@ -488,14 +498,14 @@ MenuData2_17d272: ; 17d272
 	db "やめる@"
 ; 17d28f
 
-MenuDataHeader_17d28f: ; 17d28f
+MenuDataHeader_ChallengeExplanationCancel: ; 17d28f
 	db $40 ; flags
 	db  0,  0 ; start coords
 	db  7, 14 ; end coords
-	dw MenuData2_17d297
+	dw MenuData2_ChallengeExplanationCancel
 	db 1 ; default option
 
-MenuData2_17d297: ; 17d297
+MenuData2_ChallengeExplanationCancel: ; 17d297
 	db $a0 ; flags
 	db 3
 	db "Challenge@"
@@ -2388,7 +2398,7 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld b, a
 	push hl
-	callba Function4dba3
+	callba SetPkmnCaughtData
 	pop hl
 	pop bc
 	jr .asm_17df5e
@@ -2534,7 +2544,7 @@ endr
 ; 17e026
 
 Function17e026: ; 17e026
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	call CloseSRAM
@@ -2545,11 +2555,11 @@ Function17e026: ; 17e026
 	push bc
 	push hl
 	callba LoadEnemyMon
-	callba Functionde6e
+	callba SentPkmnIntoBox
 	callba Function4db83
 	pop hl
 	pop bc
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	bit 1, b
 	jr z, .asm_17e067
@@ -4294,9 +4304,9 @@ Function17f334: ; 17f334
 	ld a, [wcd55]
 	bit 7, a
 	jr nz, .asm_17f355
-	ld a, $1
+	ld a, BANK(sCrystalData)
 	call GetSRAMBank
-	ld a, [$be3f]
+	ld a, [sCrystalData + 2]
 	jr .asm_17f35d
 
 .asm_17f355
@@ -4338,9 +4348,9 @@ Function17f382: ; 17f382
 	ld a, [wcd55]
 	bit 7, a
 	jr nz, .asm_17f3a3
-	ld a, $1
+	ld a, BANK(sCrystalData)
 	call GetSRAMBank
-	ld de, $be40
+	ld de, sCrystalData + 3
 	jr .asm_17f3ab
 
 .asm_17f3a3

@@ -1,24 +1,31 @@
-Function1f8000: ; 1f8000
+Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	ld a, [rSVBK]
 	push af
 	ld a, $3
 	ld [rSVBK], a
+	
+	; Fill BT_OTrainer with zeros
 	xor a
-	ld hl, w3_d100
-	ld bc, $00e0
+	ld hl, BT_OTrainer
+	ld bc, BT_OTrainerEnd - BT_OTrainer
 	call ByteFill
+	
+	; Write $ff into the Item-Slots
 	ld a, $ff
-	ld [w3_d100 + $0c], a
-	ld [w3_d100 + $47], a
-	ld [w3_d100 + $82], a
-	ld de, w3_d100
+	ld [BT_OTPkmn1Item], a
+	ld [BT_OTPkmn2Item], a
+	ld [BT_OTPkmn3Item], a
+	
+	; Set BT_OTTrainer as start address to write the following data to
+	ld de, BT_OTrainer
+
 	ld a, [hRandomAdd]
 	ld b, a
-.asm_1f8022
+.asm_1f8022 ; loop to find a random trainer
 	call Random
 	ld a, [hRandomAdd]
 	add b
-	ld b, a
+	ld b, a ; b contains the nr of the trainer
 IF DEF(CRYSTAL11)
 	and $7f
 	cp $46
@@ -28,38 +35,46 @@ ELSE
 ENDC
 	jr nc, .asm_1f8022
 	ld b, a
-	ld a, BANK(sbe46)
+
+	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
 	call GetSRAMBank
-	ld c, $7
-	ld hl, sbe48
+
+	ld c, BATTLETOWER_NROFTRAINERS
+	ld hl, sBTTrainers
 .asm_1f803a
 	ld a, [hli]
 	cp b
 	jr z, .asm_1f8022
 	dec c
-	jr nz, .asm_1f803a
-	ld hl, sbe48
-	ld a, [sbe46]
+	jr nz, .asm_1f803a ; c <= 7  initialise all 7 trainers?
+
+	ld hl, sBTTrainers
+	ld a, [sNrOfBeatenBattleTowerTrainers]
 	ld c, a
 	ld a, b
 	ld b, 0
 	add hl, bc
 	ld [hl], a
+
 	call CloseSRAM
+
 	push af
+; Copy name (10 bytes) and class (1 byte) of trainer
 	ld hl, BattleTowerTrainers
 	ld bc, 11
 	call AddNTimes
 	ld bc, 11
 	call CopyBytes
-	call Function1f8081
+
+	call Function_LoadRandomBattleTowerPkmn
 	pop af
-	ld hl, Unknown_1f0000
-	ld bc, $0024
+
+	ld hl, BattleTowerTrainerData
+	ld bc, BATTLETOWER_TRAINERDATALENGTH
 	call AddNTimes
-	ld bc, $0024
+	ld bc, BATTLETOWER_TRAINERDATALENGTH
 .asm_1f8070
-	ld a, BANK(Unknown_1f0000)
+	ld a, BANK(BattleTowerTrainerData)
 	call GetFarByte
 	ld [de], a
 	inc hl
@@ -68,20 +83,24 @@ ENDC
 	ld a, b
 	or c
 	jr nz, .asm_1f8070
+
 	pop af
 	ld [rSVBK], a
-	ret
-; 1f8081
 
-Function1f8081: ; 1f8081
-	ld c, $3
+	ret
+
+
+Function_LoadRandomBattleTowerPkmn: ; 1f8081
+	ld c, BATTLETOWER_NROFPKMNS
 .loop
 	push bc
-	ld a, BANK(sbe51)
+	ld a, BANK(sBTPkmnPrevTrainer1)
 	call GetSRAMBank
 
-.asm_1f8089
-	ld a, [$d800]
+.FindARandomBattleTowerPkmn
+	; From Which LevelGroup are the Pkmn loaded
+	; a = 1..10
+	ld a, [wBTChoiceOfLvlGroup] ; [$d800]
 	dec a
 	ld hl, BattleTowerMons
 	ld bc, BattleTowerMons2 - BattleTowerMons1
@@ -97,60 +116,65 @@ Function1f8081: ; 1f8081
 	and $1f
 	cp (BattleTowerMons2 - BattleTowerMons1) / ($3b)
 	jr nc, .asm_1f8099
+	; in register 'a' is the chosen Pkmn of the LevelGroup
 
-	ld bc, $3b
+	; Check if Pkmn was already loaded before
+	; Check current and the 2 previous teams
+	; includes check if item is double at the current team
+	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH + $b
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
 	ld a, [hld]
 	ld c, a
-	ld a, [w3_d100 + $0b]
+	ld a, [BT_OTPkmn1]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [w3_d100 + $0c]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn1Item]
 	cp c
-	jr z, .asm_1f8089
-	ld a, [w3_d100 + $46]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn2]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [w3_d100 + $47]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn2Item]
 	cp c
-	jr z, .asm_1f8089
-	ld a, [w3_d100 + $81]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn3]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [w3_d100 + $82]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn3Item]
 	cp c
-	jr z, .asm_1f8089
-	ld a, [sbe51]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer1]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe52]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer2]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe53]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer3]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe54]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer1]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe55]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer2]
 	cp b
-	jr z, .asm_1f8089
-	ld a, [sbe56]
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer3]
 	cp b
-	jr z, .asm_1f8089
+	jr z, .FindARandomBattleTowerPkmn
 
-	ld bc, $3b
+	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH + $b
 	call CopyBytes
+
 	ld a, [wd265]
 	push af
 	push de
-	ld hl, -$3b
+	ld hl, - (BATTLETOWER_PKMNSTRUCTLENGTH + $b)
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
-	ld bc, $0030
+	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH
 	add hl, bc
 	push hl
 	call GetPokemonName
@@ -159,6 +183,7 @@ Function1f8081: ; 1f8081
 	pop de
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
+
 	pop de
 	pop af
 	ld [wd265], a
@@ -166,18 +191,18 @@ Function1f8081: ; 1f8081
 	dec c
 	jp nz, .loop
 
-	ld a, [sbe51]
-	ld [sbe54], a
-	ld a, [sbe52]
-	ld [sbe55], a
-	ld a, [sbe53]
-	ld [sbe56], a
-	ld a, [w3_d100 + $0b]
-	ld [sbe51], a
-	ld a, [w3_d100 + $46]
-	ld [sbe52], a
-	ld a, [w3_d100 + $81]
-	ld [sbe53], a
+	ld a, [sBTPkmnPrevTrainer1]
+	ld [sBTPkmnPrevPrevTrainer1], a
+	ld a, [sBTPkmnPrevTrainer2]
+	ld [sBTPkmnPrevPrevTrainer2], a
+	ld a, [sBTPkmnPrevTrainer3]
+	ld [sBTPkmnPrevPrevTrainer3], a
+	ld a, [BT_OTPkmn1]
+	ld [sBTPkmnPrevTrainer1], a
+	ld a, [BT_OTPkmn2]
+	ld [sBTPkmnPrevTrainer2], a
+	ld a, [BT_OTPkmn3]
+	ld [sBTPkmnPrevTrainer3], a
 	call CloseSRAM
 	ret
 ; 1f814e

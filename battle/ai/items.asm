@@ -1,4 +1,4 @@
-Function38000: ; 38000
+AI_SwitchOrTryItem: ; 38000
 	and a
 
 	ld a, [IsInBattle]
@@ -21,7 +21,7 @@ Function38000: ; 38000
 	jr nz, DontSwitch
 
 	ld hl, TrainerClassAttributes + 5
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle] ; Load always the first TrainerClass for BattleTower-Trainers
 	and a
 	jr nz, .ok
 	ld a, [TrainerClass]
@@ -73,6 +73,7 @@ SwitchOften: ; 38045
 	ld a, [wc717]
 	and $f
 	inc a
+	; In register 'a' is the number (1-6) of the Pkmn to switch to
 	ld [wc718], a
 	jp AI_TrySwitch
 ; 38083
@@ -148,7 +149,7 @@ SwitchSometimes: ; 380c1
 ; 380ff
 
 
-Function380ff: ; 380ff
+CheckSubstatusCantRun: ; 380ff
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	ret
@@ -156,7 +157,8 @@ Function380ff: ; 380ff
 
 
 AI_TryItem: ; 38105
-	ld a, [wcfc0]
+	; items are not allowed in the BattleTower
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -565,7 +567,7 @@ Function383a3: ; 383a3 (e:43a3)
 	call AIUsedItemSound
 	call AI_HealStatus
 	ld a, FULL_HEAL
-	jp Function38568
+	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
 Function383ae: ; 383ae (e:43ae)
 	ld a, MAX_POTION
@@ -658,7 +660,7 @@ Function383f8: ; 383f8
 .asm_38436
 
 Function38436: ; 38436
-	call Function38571
+	call PrintText_UsedItemOn
 	hlcoord 2, 2
 	xor a
 	ld [wd10a], a
@@ -715,7 +717,7 @@ AI_Switch: ; 3846c
 	call CopyBytes
 	pop af
 	jr c, .asm_384a3
-	ld hl, UnknownText_0x384d0
+	ld hl, TextJump_EnemyWithdrew
 	call PrintText
 .asm_384a3
 	ld a, $1
@@ -735,8 +737,8 @@ AI_Switch: ; 3846c
 	ret
 ; 384d0
 
-UnknownText_0x384d0: ; 384d0
-	text_jump UnknownText_0x1bcf9c
+TextJump_EnemyWithdrew: ; 384d0
+	text_jump Text_EnemyWithdrew
 	db "@"
 ; 384d5
 
@@ -744,7 +746,7 @@ Function384d5: ; 384d5
 	call AIUsedItemSound
 	call AI_HealStatus
 	ld a, FULL_HEAL_RED
-	jp Function38568
+	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ; 384e0
 
 AI_HealStatus: ; 384e0
@@ -765,7 +767,7 @@ Function384f7: ; 384f7
 	ld hl, EnemySubStatus4
 	set SUBSTATUS_X_ACCURACY, [hl]
 	ld a, X_ACCURACY
-	jp Function38568
+	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ; 38504
 
 Function38504: ; 38504
@@ -773,7 +775,7 @@ Function38504: ; 38504
 	ld hl, EnemySubStatus4
 	set SUBSTATUS_MIST, [hl]
 	ld a, GUARD_SPEC
-	jp Function38568
+	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ; 38511
 
 Function38511: ; 38511
@@ -781,7 +783,7 @@ Function38511: ; 38511
 	ld hl, EnemySubStatus4
 	set SUBSTATUS_FOCUS_ENERGY, [hl]
 	ld a, DIRE_HIT
-	jp Function38568
+	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ; 3851e
 
 Function3851e: ; 3851e
@@ -832,23 +834,29 @@ Function38553: ; 38553
 	ld b, SP_ATTACK
 	ld a, X_SPECIAL
 
+
+; Parameter
+; a = ITEM_CONSTANT
+; b = BATTLE_CONSTANT (ATTACK, DEFENSE, SPEED, SP_ATTACK, SP_DEFENSE, ACCURACY, EVASION)
 Function38557:
 	ld [wd1f1], a
 	push bc
-	call Function38571
+	call PrintText_UsedItemOn
 	pop bc
 	callba Function361ef
 	jp AIUpdateHUD
 ; 38568
 
 
-Function38568: ; 38568
+; Parameter
+; a = ITEM_CONSTANT
+PrintText_UsedItemOn_AND_AIUpdateHUD: ; 38568
 	ld [wd1f1], a
-	call Function38571
+	call PrintText_UsedItemOn
 	jp AIUpdateHUD
 ; 38571
 
-Function38571: ; 38571
+PrintText_UsedItemOn: ; 38571
 	ld a, [wd1f1]
 	ld [wd265], a
 	call GetItemName
@@ -856,11 +864,11 @@ Function38571: ; 38571
 	ld de, wd050
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
-	ld hl, UnknownText_0x3858c
+	ld hl, TextJump_EnemyUsedOn
 	jp PrintText
 ; 3858c
 
-UnknownText_0x3858c: ; 3858c
-	text_jump UnknownText_0x1bcfaf
+TextJump_EnemyUsedOn: ; 3858c
+	text_jump Text_EnemyUsedOn
 	db "@"
 ; 38591
