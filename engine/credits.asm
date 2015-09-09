@@ -187,7 +187,7 @@ Function109847:: ; 109847
 	ld [hLCDStatCustom], a
 
 	call GetCreditsPalette
-	call Function32f9
+	call SetPalettes
 	ld a, [hVBlank]
 	push af
 	ld a, $5
@@ -447,7 +447,7 @@ endr
 	xor a
 	ld [wcf64], a ; frame
 	call GetCreditsPalette
-	call Function32f9 ; update hw pal registers
+	call SetPalettes ; update hw pal registers
 	jr .loop
 	
 .clear

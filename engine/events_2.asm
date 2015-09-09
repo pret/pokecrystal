@@ -278,7 +278,7 @@ Function97db5: ; 97db5
 	call GetMapHeaderPhoneServiceNybble
 	and a
 	jr nz, .NoCall
-	ld hl, wdca1 + 1
+	ld hl, wdca2
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]

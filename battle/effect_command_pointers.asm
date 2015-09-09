@@ -8,7 +8,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand04 ; 34555
 	dw BattleCommand05 ; 34631
 	dw BattleCommand06 ; 352dc
-	dw BattleCommand07 ; 346d2
+	dw BattleCommand07_CalcDamageTypeMultiplier ; 346d2
 	dw BattleCommand08 ; 34cfd
 	dw BattleCommand09 ; 34d32
 	dw BattleCommand0a ; 34eee
@@ -99,7 +99,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand5f ; 377ce
 	dw BattleCommand60 ; 3784b
 	dw BattleCommand61 ; 37874
-	dw BattleCommand62 ; 35612
+	dw BattleCommand62_DamageCalcWithStats ; 35612
 	dw BattleCommand63 ; 3790e
 	dw BattleCommand64 ; 37939
 	dw BattleCommand65 ; 37972
@@ -170,7 +170,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommanda6 ; 365af
 	dw BattleCommanda7 ; 365c3
 	dw BattleCommanda8 ; 355b5
-	dw BattleCommanda9 ; 355d5
+	dw BattleCommanda9_IfAttackMissedResetDamage ; 355d5
 	dw BattleCommandaa ; 37e80
 	dw BattleCommandab ; 34f57
 	dw BattleCommandac ; 3658f

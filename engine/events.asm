@@ -1021,12 +1021,14 @@ Function96bd3: ; 96bd3
 ; 96bd7
 
 Function96bd7: ; 96bd7
-	ld a, [wdca1]
+	ld a, [RepelStepsLeft]
 	and a
 	ret z
+
 	dec a
-	ld [wdca1], a
+	ld [RepelStepsLeft], a
 	ret nz
+
 	ld a, BANK(RepelWoreOffScript)
 	ld hl, RepelWoreOffScript
 	call CallScript

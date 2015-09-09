@@ -705,7 +705,7 @@ endr
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	ret z
-	cp 2
+	cp BATTLETYPE_DEBUG
 	ret z
 	cp BATTLETYPE_CONTEST
 	jr z, .used_park_ball
@@ -1880,7 +1880,7 @@ Functionf21c: ; f21c (3:721c)
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	callba PartyMenuSelect
 	ret
@@ -1897,7 +1897,7 @@ Functionf24a: ; f24a (3:724a)
 	callba WritePartyMenuTilemap
 	callba Function50566
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	pop bc
 	pop de
@@ -2254,18 +2254,19 @@ Repel: ; f46a
 ; f46c
 
 Function_0xf46c: ; f46c
-	ld a, [wdca1]
+	ld a, [RepelStepsLeft]
 	and a
-	ld hl, UnknownText_0xf47d
+	ld hl, TextJump_RepelUsedEarlierIsStillInEffect
 	jp nz, PrintText
-	ld a, b
-	ld [wdca1], a
-	jp Functionf789
-; f47d
 
-UnknownText_0xf47d: ; 0xf47d
+	ld a, b
+	ld [RepelStepsLeft], a
+	jp Functionf789
+
+
+TextJump_RepelUsedEarlierIsStillInEffect: ; 0xf47d
 	; The REPEL used earlier is still in effect.
-	text_jump UnknownText_0x1c5bcd
+	text_jump Text_RepelUsedEarlierIsStillInEffect
 	db "@"
 ; 0xf482
 

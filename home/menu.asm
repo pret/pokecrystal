@@ -66,7 +66,7 @@ MenuDataHeader_0x1d75:: ; 1d75
 	db 1 ; default option
 ; 1d7d
 
-Function1d7d:: ; 1d7d
+Call_ExitMenu:: ; 1d7d
 	call ExitMenu
 	ret
 ; 1d81

@@ -819,13 +819,13 @@ LastEnemyMove:: ; c71c
 wc71d:: ds 1
 wc71e:: ds 1
 wc71f:: ds 1
-wc720:: ds 4
+wc720:: ds 4 ; copy from/to EnemyMonBaseStats, length=7
 wc724:: ds 3
 wc727:: ds 2
 wc729:: ds 2
 wc72b:: ds 1
 wc72c:: ds 1
-wc72d:: ds 1
+wc72d:: ds 1 ; if 0 then PrintButItFailed
 wc72e:: ds 1
 wc72f:: ds 1
 wc730:: ds 1
@@ -887,17 +887,17 @@ wc7e8:: ds 24
 
 
 RSSET 0 ; Offsets for wBT_OTTempCopy:: @ $c608
-wBT_OTTempCopy_0			RB   $A			; $c608
-wBT_OTTempCopy_TrainerClass	RB   $1			; $c608 + $a = $c612
-wBT_OTTempCopy_Pkmn1		RB   $30		; $c608 + $b = $c613
-wBT_OTTempCopy_Pkmn1Name	RB   $A			; $c608 + $3b = $c643
-wBT_OTTempCopy_45			RB   $1			; $c608 + $45 = $c64d
-wBT_OTTempCopy_Pkmn2		RB   $30		; $c608 + $46 = $c64e
-wBT_OTTempCopy_Pkmn2Name	RB   $A			; $c608 + $76 = $c67e
-wBT_OTTempCopy_80			RB   $1			; $c608 + $80 = $c688
-wBT_OTTempCopy_Pkmn3		RB   $30		; $c608 + $81 = $c689
-wBT_OTTempCopy_Pkmn3Name	RB   $A			; $c608 + $b1 = $c6b9
-wBT_OTTempCopy_BB			RB   $1			; $c608 + $bb = $c6c3
+wBT_OTTempCopy_0            RB   $A			; $c608
+wBT_OTTempCopy_TrainerClass RB   $1			; $c608 + $a = $c612
+wBT_OTTempCopy_Pkmn1        RB   $30		; $c608 + $b = $c613
+wBT_OTTempCopy_Pkmn1Name    RB   $A			; $c608 + $3b = $c643
+wBT_OTTempCopy_45           RB   $1			; $c608 + $45 = $c64d
+wBT_OTTempCopy_Pkmn2        RB   $30		; $c608 + $46 = $c64e
+wBT_OTTempCopy_Pkmn2Name    RB   $A			; $c608 + $76 = $c67e
+wBT_OTTempCopy_80           RB   $1			; $c608 + $80 = $c688
+wBT_OTTempCopy_Pkmn3        RB   $30		; $c608 + $81 = $c689
+wBT_OTTempCopy_Pkmn3Name    RB   $A			; $c608 + $b1 = $c6b9
+wBT_OTTempCopy_BB           RB   $1			; $c608 + $bb = $c6c3
 
 GLOBAL wBT_OTTempCopy_TrainerClass, wBT_OTTempCopy_Pkmn1, wBT_OTTempCopy_Pkmn1Name, wBT_OTTempCopy_45, wBT_OTTempCopy_Pkmn2, wBT_OTTempCopy_Pkmn2Name, wBT_OTTempCopy_80, wBT_OTTempCopy_Pkmn3, wBT_OTTempCopy_Pkmn3Name, wBT_OTTempCopy_BB
 
@@ -1758,17 +1758,17 @@ OtherTrainerClass:: ; d22f
 
 BattleType:: ; d230
 ; $00 normal
-; $01
-; $02
-; $03 dude
+; $01 can lose
+; $02 debug
+; $03 dude/tutorial
 ; $04 fishing
 ; $05 roaming
-; $06
+; $06 contest
 ; $07 shiny
 ; $08 headbutt/rock smash
-; $09
+; $09 trap
 ; $0a force Item1
-; $0b
+; $0b celebi
 ; $0c suicune
 	ds 1
 
@@ -2421,7 +2421,9 @@ wdc7c:: ds 33
 wdc9d:: ds 2
 wdc9f:: ds 1
 wdca0:: ds 1
-wdca1:: ds 3
+RepelStepsLeft:: ; If a Repel is in use, it contains the nr of steps it's still active
+	ds 1
+wdca2:: ds 2
 wdca4:: ds 1
 
 wPlayerDataEnd::
@@ -2586,7 +2588,9 @@ wPokemonDataEnd::
 
 SECTION "Pic Animations", WRAMX, BANK [2]
 
-w2_d000:: ds $168
+w2_d000::
+; 20x18 grid of 8x8 tiles
+	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
 
 w2_d168:: ds 1
 w2_d169:: ds 1

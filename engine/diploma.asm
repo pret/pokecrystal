@@ -33,7 +33,7 @@ Function1dd709: ; 1dd709
 	call WaitBGMap
 	ld b, $8
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	ret
 ; 1dd760

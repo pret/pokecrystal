@@ -1967,14 +1967,14 @@ Function2b3c:: ; 2b3c
 	call WhiteBGMap
 	call Function2bae
 	call UpdateSprites
-	call Function1d7d
+	call Call_ExitMenu
 	call Functiond90
 	jr Function2b5c
 ; 2b4d
 
 Function2b4d:: ; 2b4d
 	call WhiteBGMap
-	call Function1d7d
+	call Call_ExitMenu
 	call Function2bae
 	call UpdateSprites
 	call Functiond90

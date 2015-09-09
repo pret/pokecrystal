@@ -50,7 +50,7 @@ PredefPointers:: ; 856b
 	add_predef PrintMoveDesc
 	add_predef UpdatePlayerHUD
 	add_predef FillBox
-	add_predef Function3d873
+	add_predef CheckPlayerPartyForFitPkmn
 	add_predef UpdateEnemyHUD
 	add_predef StartBattle
 	add_predef FillInExpBar

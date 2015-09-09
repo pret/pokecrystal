@@ -1428,7 +1428,7 @@ UnknownText_0x1c5bac: ; 0x1c5bac
 	prompt
 ; 0x1c5bcd
 
-UnknownText_0x1c5bcd: ; 0x1c5bcd
+Text_RepelUsedEarlierIsStillInEffect: ; 0x1c5bcd
 	text "The REPEL used"
 	line "earlier is still"
 	cont "in effect."
@@ -1674,7 +1674,7 @@ UnknownText_0x1c5fd1: ; 0x1c5fd1
 	prompt
 ; 0x1c5fde
 
-UnknownText_0x1c5fde: ; 0x1c5fde
+Text_DSTIsThatOK: ; 0x1c5fde
 	text " DST,"
 	line "is that OK?"
 	done

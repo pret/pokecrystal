@@ -410,7 +410,7 @@ Functionac6:: ; ac6
 	ld a, [InputType]
 	or a
 	jr z, .asm_ad9
-	callba Function1de28a
+	callba Start_DudeAutoInput_A
 .asm_ad9
 	call Functionaf5
 	call Functiona57

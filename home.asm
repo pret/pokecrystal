@@ -70,6 +70,7 @@ Function2ebb:: ; 2ebb
 	ld a, [wc2cc]
 	bit 1, a
 	ret z
+
 	ld a, [hJoyDown]
 	bit 1, a ; B_BUTTON
 	ret
@@ -212,7 +213,8 @@ HideSprites:: ; 3016
 INCLUDE "home/copy2.asm"
 
 
-Function309d:: ; 309d
+LoadTileMapToTempTileMap:: ; 309d
+; Load TileMap into TempTileMap
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(w2_d000)
@@ -226,16 +228,17 @@ Function309d:: ; 309d
 	ret
 ; 30b4
 
-Function30b4:: ; 30b4
+Call_LoadTempTileMapToTileMap:: ; 30b4
 	xor a
 	ld [hBGMapMode], a
-	call Function30bf
+	call LoadTempTileMapToTileMap
 	ld a, 1
 	ld [hBGMapMode], a
 	ret
 ; 30bf
 
-Function30bf:: ; 30bf
+LoadTempTileMapToTileMap:: ; 30bf
+; Load TempTileMap into TileMap
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(w2_d000)
@@ -676,11 +679,12 @@ endr
 ; 32f9
 
 
-
-Function32f9:: ; 32f9
+SetPalettes:: ; 32f9
+; Inits the Palettes
+; depending on the system the monochromes palettes or color palettes
 	ld a, [hCGB]
 	and a
-	jr nz, .asm_3309
+	jr nz, .SetPalettesForGameBoyColor
 	ld a, $e4
 	ld [rBGP], a
 	ld a, $d0
@@ -688,7 +692,7 @@ Function32f9:: ; 32f9
 	ld [rOBP1], a
 	ret
 
-.asm_3309
+.SetPalettesForGameBoyColor
 	push de
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -959,10 +963,10 @@ GetPokemonName:: ; 343b
 	ld h, 0
 	ld l, a
 rept 2
-	add hl, hl
+	add hl, hl ; hl = hl * 4
 endr
-	add hl, de
-	add hl, hl
+	add hl, de ; hl = (hl*4) + de
+	add hl, hl ; hl = (5*hl) + (5*hl)
 	ld de, PokemonNames
 	add hl, de
 
@@ -1159,7 +1163,7 @@ Function3524:: ; 3524
 	ld hl, VramState
 	bit 0, [hl]
 	jp nz, UpdateTimePals
-	jp Function32f9
+	jp SetPalettes
 ; 352f
 
 Function352f:: ; 352f
@@ -1760,7 +1764,7 @@ Function383d:: ; 383d
 Function3842:: ; 3842
 	ld [wd265], a
 	ld de, wd265
-	ld b, 1 << 6 + 1
+	ld b, 1 << 6 + 1 ; 65
 	jp PrintNum
 ; 384d
 

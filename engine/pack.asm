@@ -594,7 +594,7 @@ Function103fd: ; 103fd
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	callba PartyMenuSelect
 	jr c, .asm_10475
@@ -1112,7 +1112,7 @@ Function107bb: ; 107bb
 	ld a, [InputType]
 	or a
 	jr z, .asm_107ca
-	callba Function1de28f
+	callba Start_DudeAutoInput_RightA
 
 .asm_107ca
 	call Function107d7
@@ -1507,7 +1507,7 @@ Function10a40: ; 10a40
 	call WaitBGMap
 	ld b, $14
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	ret
 ; 10a4f

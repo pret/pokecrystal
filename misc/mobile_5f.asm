@@ -706,7 +706,7 @@ Function17d405:
 	ld de, Unkn1Pals
 	ld bc, $0040
 	call CopyBytes
-	call Function32f9
+	call SetPalettes
 	pop af
 	ld [rSVBK], a
 	ret
@@ -938,7 +938,7 @@ endr
 ; 17d5be
 
 Function17d5be: ; 17d5be
-	call Function32f9
+	call SetPalettes
 	call Function17e438
 
 Function17d5c4:
@@ -1508,7 +1508,7 @@ Function17d93a: ; 17d93a
 	ld a, [wc70c]
 	ld e, a
 	callba Function8bc6
-	call Function32f9
+	call SetPalettes
 	ld a, [wc708]
 	ld l, a
 	ld a, [wc709]
@@ -1544,7 +1544,7 @@ Function17d98b: ; 17d98b
 	ld a, [wc70b]
 	ld e, a
 	callba Function8bbd
-	call Function32f9
+	call SetPalettes
 	ld a, [wc708]
 	ld e, a
 	ld a, [wc709]
@@ -4764,7 +4764,7 @@ Function17f5c3: ; 17f5c3
 Function17f5d2: ; 17f5d2
 	call Function17f5e4
 	callba Function104000
-	call Function32f9
+	call SetPalettes
 	ld a, $1
 	ld [wc303], a
 	ret
