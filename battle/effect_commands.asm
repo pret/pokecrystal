@@ -285,7 +285,7 @@ CheckPlayerTurn:
 	cp $80
 	jr nc, .not_confused
 
-	; clear confussion-dependent substatus
+	; clear confusion-dependent substatus
 	ld hl, PlayerSubStatus3
 	ld a, [hl]
 	and 1 << SUBSTATUS_CONFUSED

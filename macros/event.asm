@@ -1039,7 +1039,7 @@ name: macro
 	db name_command
 	db \1 ; type
 	db \2 ; id
-	db \3 ; mempry
+	db \3 ; memory
 	endm
 
 	enum wait_command
