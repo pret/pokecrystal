@@ -22177,7 +22177,7 @@ Function16d42e: ; 16d42e
 ; 16d43b
 
 Function16d43b: ; 16d43b
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
@@ -22327,7 +22327,7 @@ Function16d6ca: ; 16d6ca
 ; 16d6ce
 
 Function16d6ce: ; 16d6ce
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function16d6e1
 	callba Function87d
 	call Call_ExitMenu

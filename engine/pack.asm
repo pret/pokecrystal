@@ -164,7 +164,7 @@ MenuData2_0x1012c: ; 0x1012c
 
 Jumptable_10137: ; 10137
 	dw Function10159
-	dw Function10492
+	dw Function10492_ret
 ; 1013b
 
 MenuDataHeader_0x1013b: ; 0x1013b
@@ -186,7 +186,7 @@ MenuData2_0x10143: ; 0x10143
 Jumptable_10153: ; 10153
 	dw Function10159
 	dw Function103fd
-	dw Function10492
+	dw Function10492_ret
 ; 10159
 
 Function10159: ; 10159
@@ -322,7 +322,7 @@ Jumptable_1026a: ; 1026a
 	dw Function103fd
 	dw Function10364
 	dw Function103c2
-	dw Function10492
+	dw Function10492_ret
 ; 10274
 
 MenuDataHeader_0x10274: ; 0x10274
@@ -346,7 +346,7 @@ Jumptable_10291: ; 10291
 	dw Function10311
 	dw Function103fd
 	dw Function10364
-	dw Function10492
+	dw Function10492_ret
 ; 10299
 
 MenuDataHeader_0x10299: ; 0x10299
@@ -366,7 +366,7 @@ MenuData2_0x102a1: ; 0x102a1
 
 Jumptable_102ac: ; 102ac
 	dw Function10311
-	dw Function10492
+	dw Function10492_ret
 ; 102b0
 
 MenuDataHeader_0x102b0: ; 0x102b0
@@ -388,7 +388,7 @@ MenuData2_0x102b8: ; 0x102b8
 Jumptable_102c7: ; 102c7
 	dw Function10311
 	dw Function103c2
-	dw Function10492
+	dw Function10492_ret
 ; 102cd
 
 MenuDataHeader_0x102cd: ; 0x102cd
@@ -412,7 +412,7 @@ Jumptable_102ea: ; 102ea
 	dw Function103fd
 	dw Function10364
 	dw Function103c2
-	dw Function10492
+	dw Function10492_ret
 ; 102f2
 
 MenuDataHeader_0x102f2: ; 0x102f2
@@ -434,7 +434,7 @@ MenuData2_0x102fa: ; 0x102fa
 Jumptable_1030b: ; 1030b
 	dw Function103fd
 	dw Function10364
-	dw Function10492
+	dw Function10492_ret
 ; 10311
 
 Function10311: ; 10311
@@ -476,7 +476,7 @@ Function10338: ; 10338 (4:4338)
 	call Function10a40
 	ret
 .asm_1034e
-	ld hl, UnknownText_0x10af8
+	ld hl, TextJump_YouDontHaveAPkmn
 	call Function10889
 	ret
 
@@ -598,12 +598,15 @@ Function103fd: ; 103fd
 	call DelayFrame
 	callba PartyMenuSelect
 	jr c, .asm_10475
+
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr nz, .asm_10453
-	ld hl, UnknownText_0x1048d
+
+	ld hl, TextJump_AnEGGCantHoldAnItem
 	call PrintText
 	jr .asm_10427
+
 .asm_10453
 	ld a, [wcf63]
 	push af
@@ -630,18 +633,18 @@ Function103fd: ; 103fd
 	ret
 
 Function10486: ; 10486 (4:4486)
-	ld hl, UnknownText_0x10af8
+	ld hl, TextJump_YouDontHaveAPkmn
 	call Function10889
 	ret
 ; 1048d (4:448d)
 
-UnknownText_0x1048d: ; 0x1048d
+TextJump_AnEGGCantHoldAnItem: ; 0x1048d
 	; An EGG can't hold an item.
-	text_jump UnknownText_0x1c0b7f
+	text_jump Text_AnEGGCantHoldAnItem
 	db "@"
 ; 0x10492
 
-Function10492: ; 10492
+Function10492_ret: ; 10492
 	ret
 ; 10493
 
@@ -1650,9 +1653,9 @@ UnknownText_0x10af3: ; 0x10af3
 	db "@"
 ; 0x10af8
 
-UnknownText_0x10af8: ; 0x10af8
+TextJump_YouDontHaveAPkmn: ; 0x10af8
 	; You don't have a #MON!
-	text_jump UnknownText_0x1c0c17
+	text_jump Text_YouDontHaveAPkmn
 	db "@"
 ; 0x10afd
 
@@ -1680,9 +1683,10 @@ UnknownText_0x10b0c: ; 0x10b0c
 	db "@"
 ; 0x10b11
 
-UnknownText_0x10b11: ; 0x10b11
-	; You can't use it in a battle.
-	text_jump UnknownText_0x1c0c85
+TextJump_YouCantUseItInABattle: ; 0x10b11
+	; Doesn't seem to be used anywhere
+	; "You can't use it in a battle."
+	text_jump Text_YouCantUseItInABattle
 	db "@"
 ; 0x10b16
 

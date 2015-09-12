@@ -2875,7 +2875,7 @@ Function3d1f8: ; 3d1f8
 
 Function3d227: ; 3d227
 	call EmptyBattleTextBox
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function3d2f7
 	call ForcePickPartyMonInBattle
 	ld a, [InLinkBattle]
@@ -3289,11 +3289,11 @@ Function3d4ae: ; 3d4ae
 
 
 Function3d4c3: ; 3d4c3
-	call Function3d557
+	call ResetEnemyBattleVars
 	ld a, [wc718]
 	dec a
 	ld b, a
-	call Function3d6ca
+	call LoadEnemyPkmnToSwitchTo
 	call Function3d7a0
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
@@ -3307,12 +3307,12 @@ Function3d4c3: ; 3d4c3
 Function3d4e1: ; 3d4e1
 	call Function3d714
 	jr nc, Function3d517
-	call Function3d557
+	call ResetEnemyBattleVars
 	call Function3d533
 	jr c, .asm_3d4f1
-	call Function3d599
+	call FindPkmnInOTPartyToSwitchIntoBattle
 .asm_3d4f1
-	call Function3d6ca
+	call LoadEnemyPkmnToSwitchTo
 	call Function3d74b
 	push af
 	call Function3d7a0
@@ -3331,12 +3331,13 @@ Function3d4e1: ; 3d4e1
 ; 3d517
 
 Function3d517: ; 3d517
-	call Function3d557
+	call ResetEnemyBattleVars
 	call Function3d533
 	jr c, .asm_3d522
-	call Function3d599
+	call FindPkmnInOTPartyToSwitchIntoBattle
 .asm_3d522
-	call Function3d6ca
+	; 'b' contains the PartyNr of the Pkmn the AI will switch to
+	call LoadEnemyPkmnToSwitchTo
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call Function3d7a0
@@ -3345,6 +3346,7 @@ Function3d517: ; 3d517
 ; 3d533
 
 Function3d533: ; 3d533
+; returns carry if: ???
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_3d541
@@ -3358,6 +3360,7 @@ Function3d533: ; 3d533
 	ld a, [wc718]
 	and a
 	jr z, .asm_3d54b
+
 	dec a
 	ld b, a
 	jr .asm_3d555
@@ -3367,6 +3370,7 @@ Function3d533: ; 3d533
 	and a
 	ld b, $0
 	jr nz, .asm_3d555
+
 	and a
 	ret
 
@@ -3375,7 +3379,8 @@ Function3d533: ; 3d533
 	ret
 ; 3d557
 
-Function3d557: ; 3d557
+ResetEnemyBattleVars: ; 3d557
+; and draw empty TextBox
 	xor a
 	ld [LastEnemyCounterMove], a
 	ld [LastPlayerCounterMove], a
@@ -3389,7 +3394,7 @@ Function3d557: ; 3d557
 	ld a, $8
 	call Function3d490
 	call EmptyBattleTextBox
-	jp Function1d6e
+	jp LoadMenuDataHeader_0x1d75
 ; 3d57a
 
 Function3d57a: ; 3d57a
@@ -3408,7 +3413,7 @@ Function3d581: ; 3d581
 	predef_jump FlagPredef
 ; 3d599
 
-Function3d599: ; 3d599
+FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
 	ld b, $ff
 	ld a, $1
 	ld [Buffer1], a
@@ -3435,8 +3440,8 @@ Function3d599: ; 3d599
 	or c
 	pop bc
 	jr z, .asm_3d5d0
-	call Function3d5d7
-	call Function3d618
+	call LookUpTheEffectivenessOfEveryMove
+	call IsThePlayerPkmnTypesEffectiveAgainstOTPkmn
 	jr .asm_3d5a3
 
 .asm_3d5d0
@@ -3445,7 +3450,7 @@ Function3d599: ; 3d599
 	jr .asm_3d5a3
 ; 3d5d7
 
-Function3d5d7: ; 3d5d7
+LookUpTheEffectivenessOfEveryMove: ; 3d5d7
 	push bc
 	ld hl, OTPartyMon1Moves
 	ld a, b
@@ -3469,11 +3474,11 @@ Function3d5d7: ; 3d5d7
 	ld a, BANK(Moves)
 	call FarCopyBytes
 	call SetEnemyTurn
-	callab Function347c8
+	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
 	pop bc
 	pop de
 	pop hl
-	ld a, [wd265]
+	ld a, [wd265] ; Get The Effectiveness Modifier
 	cp 10 + 1 ; 1.0 + 0.1
 	jr c, .loop
 	ld hl, Buffer1
@@ -3483,7 +3488,9 @@ Function3d5d7: ; 3d5d7
 	ret
 ; 3d618
 
-Function3d618: ; 3d618
+IsThePlayerPkmnTypesEffectiveAgainstOTPkmn: ; 3d618
+; Calculates the effectiveness of the types of the PlayerPkmn
+; against the OTPkmn
 	push bc
 	ld hl, OTPartyCount
 	ld a, b
@@ -3503,13 +3510,13 @@ Function3d618: ; 3d618
 	ld a, [BattleMonType1]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	call SetPlayerTurn
-	callab Function347c8
+	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
 	ld a, [wd265]
 	cp 10 + 1 ; 1.0 + 0.1
 	jr nc, .asm_3d663
 	ld a, [BattleMonType2]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
-	callab Function347c8
+	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
 	ld a, [wd265]
 	cp 10 + 1 ; 1.0 + 0.1
 	jr nc, .asm_3d663
@@ -3595,7 +3602,8 @@ Function3d672: ; 3d672
 	ret
 ; 3d6ca
 
-Function3d6ca: ; 3d6ca
+LoadEnemyPkmnToSwitchTo: ; 3d6ca
+	; 'b' contains the PartyNr of the Pkmn the AI will switch to
 	ld a, b
 	ld [CurPartyMon], a
 	ld hl, OTPartyMon1Level
@@ -5203,7 +5211,7 @@ BattleMenu_Pack: ; 3e1c7
 	and a
 	jp nz, ItemsCantBeUsed
 
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -5298,10 +5306,10 @@ Function3e234: ; 3e234
 ; 3e28d
 
 BattleMenu_PKMN: ; 3e28d
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 Function3e290:
 	call ExitMenu
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call WhiteBGMap
 Function3e299:
 	call Function3d2fa
@@ -5437,7 +5445,7 @@ Function3e3ad: ; 3e3ad
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_3e3c1
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function3e8e4
 	call WriteBackup
 

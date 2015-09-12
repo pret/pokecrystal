@@ -132,7 +132,7 @@ NewGame: ; 5b6b
 	ld [wc2cc], a
 	call ResetWRAM
 	call Function5b44
-	call Function5b8f
+	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
 	call InitializeWorld
 	ld a, 1
@@ -146,10 +146,10 @@ NewGame: ; 5b6b
 	jp Function5e5d
 ; 5b8f
 
-Function5b8f: ; 5b8f
-	callba Function10632f
+AreYouABoyOrAreYouAGirl: ; 5b8f
+	callba Function10632f ; some mobile stuff
 	jr c, .ok
-	callba Function48dcb
+	callba AreYouABoyOrAreYouAGirl_Menu
 	ret
 
 .ok
@@ -415,7 +415,7 @@ Continue: ; 5d65
 	callba TryLoadSaveFile
 	jr c, .FailToLoad
 	callba Function150b9
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function5e85
 	ld a, $1
 	ld [hBGMapMode], a
@@ -5182,7 +5182,7 @@ FlyFunction: ; ca3b
 .outdoors
 	xor a
 	ld [$ffde], a
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearSprites
 	callba _FlyMap
 	ld a, e
@@ -9654,7 +9654,7 @@ TextJump_WasSentToBillsPC: ; 0xe3d9
 
 Functione3de: ; e3de
 	push de
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function2ed3
 	pop de
 	push de
@@ -9695,7 +9695,7 @@ UnknownText_0xe417: ; 0xe417
 Functione41c: ; e41c (3:641c)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearPCItemScreen
 	ld hl, Options
 	ld a, [hl]
@@ -9791,7 +9791,7 @@ Functione4cb: ; e4cb
 ; e4cd
 
 Functione4cd: ; e4cd
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function44781
 	jr nc, .asm_e4e0
 	ld hl, UnknownText_0xe4f9
@@ -9818,7 +9818,7 @@ UnknownText_0xe4f9: ; 0xe4f9
 ; 0xe4fe
 
 Functione4fe: ; e4fe (3:64fe)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Functione2391
 	call Function222a
 	call ClearPCItemScreen
@@ -9894,7 +9894,7 @@ Functione538: ; e538
 
 
 Functione559: ; e559 (3:6559)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Functione2583
 	call Function222a
 	call ClearPCItemScreen
@@ -13673,7 +13673,7 @@ GiveTakePartyMonItem: ; 12b60
 	cp 1
 	jr nz, .asm_12ba0
 
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearPalettes
 	call Function12ba9
 	call ClearPalettes
@@ -14073,7 +14073,7 @@ UnknownText_0x12dfb: ; 0x12dfb
 
 
 OpenPartyStats: ; 12e00
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearSprites
 ; PartyMon
 	xor a
@@ -15133,7 +15133,7 @@ Function134c0: ; 134c0
 ; 134dd
 
 Function134dd: ; 134dd
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, Elevator_WhichFloorText
 	call PrintText
 	call Elevator_GetCurrentFloorText
@@ -18513,7 +18513,7 @@ UnknownText_0x157cc: ; 0x157cc
 ; 0x157d1
 
 KrisWithdrawItemMenu: ; 0x157d1
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba ClearPCItemScreen
 .asm_157da
 	call Function15985
@@ -18592,7 +18592,7 @@ Function157e9: ; 0x157e9
 
 
 KrisTossItemMenu: ; 0x1585f
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba ClearPCItemScreen
 .asm_15868
 	call Function15985
@@ -18629,7 +18629,7 @@ KrisDepositItemMenu: ; 0x1588b
 	call Function158b8
 	jr c, .asm_158b6
 	call Function2ed3
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function106a5
 .asm_1589c
 	callba Function106be
@@ -18933,7 +18933,7 @@ MartDialog: ; 15a61
 
 HerbShop: ; 15a6e
 	call ReadMart
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15e4a
 	call Function15fcd
 	call Function15c62
@@ -18947,7 +18947,7 @@ BargainShop: ; 15a84
 	ld de, BargainShopData
 	call LoadMartPointer
 	call Function15c25
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15e6d
 	call Function15fcd
 	call Function15c62
@@ -18966,7 +18966,7 @@ BargainShop: ; 15a84
 
 Pharmacist: ; 15aae
 	call ReadMart
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15e90
 	call Function15fcd
 	call Function15c62
@@ -18987,7 +18987,7 @@ RooftopSale: ; 15ac4
 .ok
 	call LoadMartPointer
 	call Function15c25
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15f83
 	call Function15fcd
 	call Function15c62
@@ -19072,7 +19072,7 @@ Function15b47: ; 15b47
 ; 15b62
 
 Function15b62: ; 15b62
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15f83
 	call PrintText
 	ld a, $1
@@ -19125,7 +19125,7 @@ Function15ba3: ; 15ba3
 ; 15baf
 
 Function15baf: ; 15baf
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15fb9
 	call PrintText
 	ld a, $1
@@ -20205,7 +20205,7 @@ Function16290: ; 16290
 Function162a8: ; 162a8
 	ld hl, UnknownText_0x1665d
 	call PrintText
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, MenuDataHeader_0x166b5
 	call CopyMenuDataHeader
 	call InterpretMenu2
@@ -20250,7 +20250,7 @@ endr
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function16517
 	call Function1656b
 	call Function16571
@@ -20318,7 +20318,7 @@ endr
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function16512
 	call Function1656b
 	call Function16571
@@ -22110,7 +22110,7 @@ Function16f3e:: ; 16f3e
 
 OverworldHatchEgg:: ; 16f5e
 	call ResetWindow
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function16f70
 	call Function2b4d
 	call RestartMapMusic
@@ -22952,7 +22952,7 @@ Function20021: ; 20021 (8:4021)
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearTileMap
 	ld hl, UnknownText_0x2004c
 	call PrintText
@@ -27183,7 +27183,7 @@ Function2695b: ; 2695b
 	ld d, 0
 	add hl, de
 	ld [hl], -1
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, MenuDataHeader_0x269c5
 	call CopyMenuDataHeader
 	xor a
@@ -28280,7 +28280,7 @@ Function2715c: ; 2715c
 	callba Function3ed9f
 	call ClearSGB
 	call WriteBackup
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call WaitBGMap
 	jp SetPalettes
 ; 27192
@@ -30061,7 +30061,7 @@ Function28b87: ; 28b87
 	ld hl, UnknownText_0x28eb8
 	bccoord 1, 14
 	call PlaceWholeStringInBoxAtOnce
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	hlcoord 10, 7
 	ld b, $3
 	ld c, $7
@@ -37573,7 +37573,7 @@ Function44781: ; 44781
 _KrisMailBoxMenu: ; 0x447a0
 	call InitMail
 	jr z, .nomail
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function44806
 	jp WriteBackup
 
@@ -39701,15 +39701,15 @@ Function48d94: ; 48d94 (12:4d94)
 	ld [hl], a
 	ret
 
-Function48dcb: ; 48dcb (12:4dcb)
+AreYouABoyOrAreYouAGirl_Menu: ; 48dcb (12:4dcb)
 	call Function48e14
 	call Function48e47
 	call Function48e64
 	call Function3200
 	call SetPalettes
-	ld hl, UnknownText_0x48e0f
+	ld hl, TextJump_AreYouABoyOrAreYouAGirl
 	call PrintText
-	ld hl, MenuDataHeader_0x48dfc
+	ld hl, MenuDataHeader_BoyGirl
 	call LoadMenuDataHeader
 	call Function3200
 	call InterpretMenu2
@@ -39722,24 +39722,24 @@ Function48dcb: ; 48dcb (12:4dcb)
 	ret
 ; 48dfc (12:4dfc)
 
-MenuDataHeader_0x48dfc: ; 0x48dfc
+MenuDataHeader_BoyGirl: ; 0x48dfc
 	db $40 ; flags
 	db 04, 06 ; start coords
 	db 09, 12 ; end coords
-	dw MenuData2_0x48e04
+	dw MenuData2_BoyGirl
 	db 1 ; default option
 ; 0x48e04
 
-MenuData2_0x48e04: ; 0x48e04
+MenuData2_BoyGirl: ; 0x48e04
 	db $a1 ; flags
 	db 2 ; items
 	db "Boy@"
 	db "Girl@"
 ; 0x48e0f
 
-UnknownText_0x48e0f: ; 0x48e0f
+TextJump_AreYouABoyOrAreYouAGirl: ; 0x48e0f
 	; Are you a boy? Or are you a girl?
-	text_jump UnknownText_0x1c0ca3
+	text_jump Text_AreYouABoyOrAreYouAGirl
 	db "@"
 ; 0x48e14
 
@@ -41446,7 +41446,7 @@ Function4a098: ; 4a098 (12:6098)
 	call Function1ff8
 	call Function1bee
 	call WaitBGMap
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function89de0
 	call Call_ExitMenu
 	call Function49351
@@ -41665,7 +41665,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call Function4a6d8
 	call Function1bee
 	call WaitBGMap
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa4b]
@@ -55105,7 +55105,7 @@ UnknownText_0x88013: ; 0x88013
 ; 0x88018
 
 Function88018: ; 88018
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld c, $1
 	xor a
 	ld [wd0e4], a
@@ -58704,7 +58704,7 @@ UnknownText_0x8a23c: ; 0x8a23c
 ; 0x8a241
 
 Function8a241: ; 8a241 (22:6241)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function891fe
 	call Function8a262
 	jr nc, .asm_8a254
@@ -59232,7 +59232,7 @@ Palette_8a624: ; 8a624
 ; 8a62c
 
 Function8a62c: ; 8a62c (22:662c)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function891fe
 	xor a
 	call Function8b94a
@@ -59662,7 +59662,7 @@ Function8a999: ; 8a999 (22:6999)
 	jr c, .asm_8a9bb
 	push bc
 	push de
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	pop de
 	dec e
 	ld a, e
@@ -59918,7 +59918,7 @@ Function8ab77: ; 8ab77 (22:6b77)
 
 Function8ab93: ; 8ab93 (22:6b93)
 	call WhiteBGMap
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function105688
 	call ClearSprites
 	call Function891fe
@@ -69228,7 +69228,7 @@ Special_SetDayOfWeek: ; 90913
 	hlcoord 0, 12
 	ld bc, $0412
 	call TextBox
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x90a3f
 	call PrintText
 	hlcoord 9, 3
@@ -80548,7 +80548,7 @@ BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 	ret
 
 BillsPCDepositFuncStats: ; e24c8 (38:64c8)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -80567,7 +80567,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	push af
 	ld de, String_e34f4
 	call Functione2a6e
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	lb bc, 14, 11
 	call PlaceYesNoBox
 	ld a, [wcfa9]
@@ -80813,7 +80813,7 @@ BillsPCWithdrawFuncWithdraw: ; e26a1 (38:66a1)
 	ret
 
 BillsPCWithdrawFuncStats: ; e26c0 (38:66c0)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -80830,7 +80830,7 @@ BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
 	jr c, .asm_e2720
 	ld de, String_e34f4
 	call Functione2a6e
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	lb bc, 14, 11
 	call PlaceYesNoBox
 	ld a, [wcfa9]
@@ -81073,7 +81073,7 @@ Functione2887: ; e2887
 ; e28a5
 
 Functione28a5: ; e28a5
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -82708,7 +82708,7 @@ String_e3597: db "No releasing EGGS!@"
 ; e35aa
 
 Functione35aa: ; e35aa (38:75aa)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Functione35e2
 .asm_e35b0
 	xor a

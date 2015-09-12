@@ -689,7 +689,7 @@ UnknownText_0x1c0b65: ; 1c0b65
 	done
 ; 1c0b7f
 
-UnknownText_0x1c0b7f: ; 1c0b7f
+Text_AnEGGCantHoldAnItem: ; 1c0b7f
 	text "An EGG can't hold"
 	line "an item."
 	prompt
@@ -731,7 +731,7 @@ UnknownText_0x1c0bee: ; 1c0bee
 	prompt
 ; 1c0c17
 
-UnknownText_0x1c0c17: ; 1c0c17
+Text_YouDontHaveAPkmn: ; 1c0c17
 	text "You don't have a"
 	line "#MON!"
 	prompt
@@ -762,13 +762,13 @@ UnknownText_0x1c0c83: ; 1c0c83
 	done
 ; 1c0c85
 
-UnknownText_0x1c0c85: ; 1c0c85
+Text_YouCantUseItInABattle: ; 1c0c85
 	text "You can't use it"
 	line "in a battle."
 	prompt
 ; 1c0ca3
 
-UnknownText_0x1c0ca3: ; 1c0ca3
+Text_AreYouABoyOrAreYouAGirl: ; 1c0ca3
 	text "Are you a boy?"
 	line "Or are you a girl?"
 	done

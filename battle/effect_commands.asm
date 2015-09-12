@@ -1510,7 +1510,7 @@ endr
 	jr .asm_34743
 
 .end
-	call Function347c8
+	call HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
 	ld a, [wd265]
 	ld b, a
 	ld a, [TypeModifier]
@@ -1521,7 +1521,7 @@ endr
 ; 347c8
 
 
-Function347c8: ; 347c8
+HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn: ; 347c8
 	ld hl, EnemyMonType1
 	ld a, [hBattleTurn]
 	and a
@@ -1599,7 +1599,7 @@ Function347d3: ; 347d3
 
 
 BattleCommanda3: ; 34833
-	call Function347c8
+	call HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
 	ld a, [wd265]
 	and a
 	ld a, 10 ; 1.0
@@ -4775,7 +4775,7 @@ BattleCommand44: ; 359e6
 	push hl
 	ld a, d
 	ld [hl], a
-	call Function347c8
+	call HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
 	pop hl
 	pop af
 	ld [hl], a
@@ -9733,7 +9733,7 @@ BattleCommand67: ; 379c9
 	call DelayFrames
 
 ; Transition into switchmon menu
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function3d2f7
 
 	callba ForcePickSwitchMonInBattle
@@ -9807,7 +9807,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	ld a, 1
 	ld [wd0ec], a
 
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, Function3e8e4
 	call CallBattleCore
 	call WriteBackup
@@ -9823,7 +9823,7 @@ BatonPass_LinkEnemySwitch: ; 37a82
 	and a
 	ret z
 
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, Function3e8e4
 	call CallBattleCore
 

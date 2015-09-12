@@ -1955,7 +1955,7 @@ CheckStandingOnXYTrigger:: ; 2ae7
 FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba FadeBlackBGMap
 	call ClearSprites
 	call Function2ed3
