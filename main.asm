@@ -3728,7 +3728,7 @@ Function8341: ; 8341
 	ret
 ; 8379
 
-Function8379: ; 8379
+Special_SurfStartStep: ; 8379
 	call Function1b1e
 	call Function8388
 	call Function1b3f
@@ -5008,7 +5008,7 @@ UsedSurfScript: ; c986
 	special Special_ReplaceKrisSprite
 	special PlayMapMusic
 ; step into the water
-	special Function8379 ; (slow_step_x, step_end)
+	special Special_SurfStartStep ; (slow_step_x, step_end)
 	applymovement PLAYER, MovementBuffer ; PLAYER, MovementBuffer
 	end
 ; c9a2
@@ -40555,13 +40555,13 @@ Unknown_4985a: ; unreferenced
 	db $a8, $00, $b5, $b0, $de, $e8, $fc, $1c
 	db $ba, $66, $f7, $0e, $ba, $5e, $43, $bd
 
-Function4989a: ; 4989a
+Special_CelebiShrineEvent: ; 4989a
 	call DelayFrame
 	ld a, [VramState]
 	push af
 	xor a
 	ld [VramState], a
-	call Function49912
+	call LoadCelebiGFX
 	ld de, $0750
 	ld a, $2c
 	call Function3b2a
@@ -40623,7 +40623,7 @@ endr
 	ret
 ; 49912
 
-Function49912: ; 49912
+LoadCelebiGFX: ; 49912
 	callba Function8cf53
 	ld de, SpecialCelebiLeafGFX
 	ld hl, VTiles1
@@ -45031,26 +45031,26 @@ Function4dbb8: ; 4dbb8 (13:5bb8)
 	ld [CurPartyLevel], a
 	ret
 
-Function4dbd2: ; 4dbd2
+_FindGreaterThanThatLevel: ; 4dbd2
 	ld hl, PartyMon1Level
-	call Function4dc31
+	call FindGreaterThanThatLevel
 	ret
 ; 4dbd9
 
-Function4dbd9: ; 4dbd9
+_FindAtLeastThatHappy: ; 4dbd9
 	ld hl, PartyMon1Happiness
-	call Function4dc0a
+	call FindAtLeastThatHappy
 	ret
 ; 4dbe0
 
-Function4dbe0: ; 4dbe0
+_FindThatSpecies: ; 4dbe0
 	ld hl, PartyMon1Species
-	jp Function4dc56
+	jp FindThatSpecies
 ; 4dbe6
 
-Function4dbe6: ; 4dbe6
+_FindThatSpeciesYourTrainerID: ; 4dbe6
 	ld hl, PartyMon1Species
-	call Function4dc56
+	call FindThatSpecies
 	ret z
 	ld a, c
 	ld hl, PartyMon1ID
@@ -45058,25 +45058,27 @@ Function4dbe6: ; 4dbe6
 	call AddNTimes
 	ld a, [PlayerID]
 	cp [hl]
-	jr nz, .asm_4dc08
+	jr nz, .nope
 	inc hl
 	ld a, [PlayerID + 1]
 	cp [hl]
-	jr nz, .asm_4dc08
+	jr nz, .nope
 	ld a, $1
 	and a
 	ret
 
-.asm_4dc08
+.nope
 	xor a
 	ret
 ; 4dc0a
 
-Function4dc0a: ; 4dc0a
+FindAtLeastThatHappy: ; 4dc0a
+; Sets the bits for the Pokemon that have a happiness greater than or equal to b.
+; The lowest bits are used.  Sets z if no Pokemon in your party is at least that happy.
 	ld c, $0
 	ld a, [PartyCount]
 	ld d, a
-.asm_4dc10
+.loop
 	ld a, d
 	dec a
 	push hl
@@ -45087,29 +45089,29 @@ Function4dc0a: ; 4dc0a
 	ld a, b
 	cp [hl]
 	pop hl
-	jr z, .asm_4dc22
-	jr nc, .asm_4dc26
+	jr z, .greater_equal
+	jr nc, .lower
 
-.asm_4dc22
+.greater_equal
 	ld a, c
 	or $1
 	ld c, a
 
-.asm_4dc26
+.lower
 	sla c
 	dec d
-	jr nz, .asm_4dc10
-	call Function4dc67
+	jr nz, .loop
+	call RetroactivelyIgnoreEggs
 	ld a, c
 	and a
 	ret
 ; 4dc31
 
-Function4dc31: ; 4dc31
+FindGreaterThanThatLevel: ; 4dc31
 	ld c, $0
 	ld a, [PartyCount]
 	ld d, a
-.asm_4dc37
+.loop
 	ld a, d
 	dec a
 	push hl
@@ -45120,52 +45122,52 @@ Function4dc31: ; 4dc31
 	ld a, b
 	cp [hl]
 	pop hl
-	jr c, .asm_4dc4b
+	jr c, .greater
 	ld a, c
 	or $1
 	ld c, a
 
-.asm_4dc4b
+.greater
 	sla c
 	dec d
-	jr nz, .asm_4dc37
-	call Function4dc67
+	jr nz, .loop
+	call RetroactivelyIgnoreEggs
 	ld a, c
 	and a
 	ret
 ; 4dc56
 
-Function4dc56: ; 4dc56
-	ld c, $ff
+FindThatSpecies: ; 4dc56
+	ld c, -1
 	ld hl, PartySpecies
-.asm_4dc5b
+.loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	ret z
 	inc c
 	cp b
-	jr nz, .asm_4dc5b
+	jr nz, .loop
 	ld a, $1
 	and a
 	ret
 ; 4dc67
 
-Function4dc67: ; 4dc67
-	ld e, $fe
+RetroactivelyIgnoreEggs: ; 4dc67
+	ld e, -2
 	ld hl, PartySpecies
-.asm_4dc6c
+.loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	ret z
 	cp EGG
-	jr nz, .asm_4dc77
+	jr nz, .skip_notegg
 	ld a, c
 	and e
 	ld c, a
 
-.asm_4dc77
+.skip_notegg
 	rlc e
-	jr .asm_4dc6c
+	jr .loop
 ; 4dc7b
 
 
@@ -48282,7 +48284,7 @@ UnknownScript_0x506e9: ; 0x506e9
 ; 0x506ef
 
 SweetScentEncounter: ; 506ef
-	callba Function97cfd
+	callba CanUseSweetScent
 	jr nc, .no_battle
 	ld hl, StatusFlags2
 	bit 2, [hl]
@@ -48296,7 +48298,7 @@ SweetScentEncounter: ; 506ef
 	jr .start_battle
 
 .not_in_bug_contest
-	callba Function97d31
+	callba ChooseWildEncounter_BugContest
 
 .start_battle
 	ld a, $1

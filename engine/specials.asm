@@ -83,11 +83,11 @@ SpecialsPointers:: ; c029
 	add_special PlayMapMusic
 	add_special RestartMapMusic
 	add_special HealMachineAnim
-	add_special Function8379
-	add_special Functionc25a
-	add_special Functionc268
-	add_special Functionc276
-	add_special Functionc284
+	add_special Special_SurfStartStep
+	add_special Special_FindGreaterThanThatLevel
+	add_special Special_FindAtLeastThatHappy
+	add_special Special_FindThatSpecies
+	add_special Special_FindThatSpeciesYourTrainerID
 	add_special Functionc3ef
 	add_special Function17421
 	add_special Function17440
@@ -163,7 +163,7 @@ SpecialsPointers:: ; c029
 	add_special Function103612
 	add_special SpecialHoOhChamber
 	add_special Function102142
-	add_special Function4989a
+	add_special Special_CelebiShrineEvent
 	add_special Function49bf9
 	add_special SpecialPokeSeer
 	add_special SpecialBuenasPassword
@@ -225,40 +225,40 @@ SpecialSeenMon: ; c252
 	ret
 ; c25a
 
-Functionc25a: ; c25a
+Special_FindGreaterThanThatLevel: ; c25a
 	ld a, [ScriptVar]
 	ld b, a
-	callba Function4dbd2
-	jr z, Functionc298
-	jr Functionc292
+	callba _FindGreaterThanThatLevel
+	jr z, FoundNone
+	jr FoundOne
 
-Functionc268: ; c268
+Special_FindAtLeastThatHappy: ; c268
 	ld a, [ScriptVar]
 	ld b, a
-	callba Function4dbd9
-	jr z, Functionc298
-	jr Functionc292
+	callba _FindAtLeastThatHappy
+	jr z, FoundNone
+	jr FoundOne
 
-Functionc276: ; c276
+Special_FindThatSpecies: ; c276
 	ld a, [ScriptVar]
 	ld b, a
-	callba Function4dbe0
-	jr z, Functionc298
-	jr Functionc292
+	callba _FindThatSpecies
+	jr z, FoundNone
+	jr FoundOne
 
-Functionc284: ; c284
+Special_FindThatSpeciesYourTrainerID: ; c284
 	ld a, [ScriptVar]
 	ld b, a
-	callba Function4dbe6
-	jr z, Functionc298
-	jr Functionc292
+	callba _FindThatSpeciesYourTrainerID
+	jr z, FoundNone
+	jr FoundOne
 
-Functionc292: ; c292
+FoundOne: ; c292
 	ld a, $1
 	ld [ScriptVar], a
 	ret
 
-Functionc298: ; c298
+FoundNone: ; c298
 	xor a
 	ld [ScriptVar], a
 	ret

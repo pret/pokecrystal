@@ -382,7 +382,7 @@ CheckTileEvent: ; 96874
 	call CheckBit4_ScriptFlags3
 	jr z, .ok
 
-	call Function97cc0
+	call RockSmashEncounter
 	ret c
 	jr .ok
 
@@ -582,7 +582,7 @@ CheckAPressOW: ; 96999
 	ret c
 	call TryReadSign
 	ret c
-	call Function97c5f
+	call CheckFacingTileEvent
 	ret c
 	xor a
 	ret
