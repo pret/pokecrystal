@@ -25284,11 +25284,11 @@ Function24d19: ; 24d19
 	ld hl, MenuDataHeader_0x24d3f
 	call LoadMenuDataHeader
 	call Function24d47
-	call Function24d91
+	call PopulateMonMenu
 
 	ld a, 1
 	ld [hBGMapMode], a
-	call Function24d59
+	call MonMenuLoop
 	ld [MenuSelection], a
 
 	call ExitMenu
@@ -25316,8 +25316,8 @@ Function24d47: ; 24d47
 	ret
 ; 24d59
 
-Function24d59: ; 24d59
-.asm_24d59
+MonMenuLoop: ; 24d59
+.loop
 	ld a, $a0
 	ld [wcf91], a
 	ld a, [Buffer1]
@@ -25330,16 +25330,16 @@ Function24d59: ; 24d59
 	call PlaySFX
 	ld a, [hJoyPressed]
 	bit 0, a ; A
-	jr nz, .asm_24d84
+	jr nz, .select
 	bit 1, a ; B
-	jr nz, .asm_24d81
-	jr .asm_24d59
+	jr nz, .cancel
+	jr .loop
 
-.asm_24d81
+.cancel
 	ld a, 18 ; CANCEL
 	ret
 
-.asm_24d84
+.select
 	ld a, [wcfa9]
 	dec a
 	ld c, a
@@ -25350,42 +25350,42 @@ Function24d59: ; 24d59
 	ret
 ; 24d91
 
-Function24d91: ; 24d91
+PopulateMonMenu: ; 24d91
 	call Function1cfd
-	ld bc, $002a
+	ld bc, $002a ; 42
 	add hl, bc
 	ld de, Buffer2
-.asm_24d9b
+.loop
 	ld a, [de]
 	inc de
-	cp $ff
+	cp -1
 	ret z
 	push de
 	push hl
-	call Function24db0
+	call GetMonMenuString
 	pop hl
 	call PlaceString
-	ld bc, $0028
+	ld bc, $0028 ; 40
 	add hl, bc
 	pop de
-	jr .asm_24d9b
+	jr .loop
 ; 24db0
 
-Function24db0: ; 24db0
+GetMonMenuString: ; 24db0
 	ld hl, MonMenuOptions + 1
-	ld de, $0003
+	ld de, 3
 	call IsInArray
 	dec hl
 	ld a, [hli]
-	cp $1
-	jr z, .asm_24dc8
+	cp 1
+	jr z, .NotMove
 	inc hl
 	ld a, [hl]
 	ld [wd265], a
 	call GetMoveName
 	ret
 
-.asm_24dc8
+.NotMove
 	inc hl
 	ld a, [hl]
 	dec a
@@ -25400,35 +25400,35 @@ Function24dd4: ; 24dd4
 	call Function24e68
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_24e3f
+	jr z, .egg
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_24e03
+	jr nz, .skip
 	ld a, PartyMon1Moves - PartyMon1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
 	ld c, NUM_MOVES
-.asm_24ded
+.loop
 	push bc
 	push de
 	ld a, [de]
 	and a
-	jr z, .asm_24dfd
+	jr z, .next
 	push hl
 	call Function24e52
 	pop hl
-	jr nc, .asm_24dfd
+	jr nc, .next
 	call Function24e83
 
-.asm_24dfd
+.next
 	pop de
 	inc de
 	pop bc
 	dec c
-	jr nz, .asm_24ded
+	jr nz, .loop
 
-.asm_24e03
+.skip
 	ld a, $f
 	call Function24e83
 	ld a, $10
@@ -25437,7 +25437,7 @@ Function24dd4: ; 24dd4
 	call Function24e83
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_24e2f
+	jr nz, .skip2
 	push hl
 	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
@@ -25445,24 +25445,24 @@ Function24dd4: ; 24dd4
 	callba ItemIsMail
 	pop hl
 	ld a, $14
-	jr c, .asm_24e2c
+	jr c, .ok
 	ld a, $11
 
-.asm_24e2c
+.ok
 	call Function24e83
 
-.asm_24e2f
+.skip2
 	ld a, [Buffer1]
 	cp $8
-	jr z, .asm_24e3b
+	jr z, .ok2
 	ld a, $12
 	call Function24e83
 
-.asm_24e3b
+.ok2
 	call Function24e76
 	ret
 
-.asm_24e3f
+.egg
 	ld a, $f
 	call Function24e83
 	ld a, $10
@@ -48260,7 +48260,7 @@ UnknownScript_0x506c8: ; 0x506c8
 	callasm GetPartyNick
 	writetext UnknownText_0x50726
 	closetext
-	callasm Function506ef
+	callasm SweetScentEncounter
 	iffalse UnknownScript_0x506e9
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue UnknownScript_0x506e5
@@ -48281,29 +48281,29 @@ UnknownScript_0x506e9: ; 0x506e9
 	end
 ; 0x506ef
 
-Function506ef: ; 506ef
+SweetScentEncounter: ; 506ef
 	callba Function97cfd
-	jr nc, .asm_5071e
+	jr nc, .no_battle
 	ld hl, StatusFlags2
 	bit 2, [hl]
-	jr nz, .asm_50712
+	jr nz, .not_in_bug_contest
 	callba GetMapEncounterRate
 	ld a, b
 	and a
-	jr z, .asm_5071e
+	jr z, .no_battle
 	callba ChooseWildEncounter
-	jr nz, .asm_5071e
-	jr .asm_50718
+	jr nz, .no_battle
+	jr .start_battle
 
-.asm_50712
+.not_in_bug_contest
 	callba Function97d31
 
-.asm_50718
+.start_battle
 	ld a, $1
 	ld [ScriptVar], a
 	ret
 
-.asm_5071e
+.no_battle
 	xor a
 	ld [ScriptVar], a
 	ld [BattleType], a
