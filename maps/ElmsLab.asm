@@ -105,10 +105,10 @@ ElmCheckEverstone:
 	checkevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	iffalse ElmCheckTogepiEgg
 	writebyte TOGEPI
-	special Functionc284
+	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special Functionc284
+	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writetext UnknownText_0x79a40
 	closetext
@@ -117,10 +117,10 @@ ElmCheckEverstone:
 
 ElmEggHatchedScript:
 	writebyte TOGEPI
-	special Functionc284
+	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special Functionc284
+	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	jump ElmCheckGotEggAgain
 
