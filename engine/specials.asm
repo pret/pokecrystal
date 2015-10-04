@@ -186,8 +186,8 @@ SpecialsPointers:: ; c029
 	add_special Function4ae12
 	add_special LoadMapPalettes
 	add_special Function4a927
-	add_special Function90a54
-	add_special Function90a88
+	add_special Special_InitialSetDSTFlag
+	add_special Special_InitialClearDSTFlag
 	add_special SpecialNone
 ; c224
 
@@ -314,9 +314,9 @@ Special_KrissHousePC: ; c2e7
 ; c2f6
 
 Special_CheckMysteryGift: ; c2f6
-	ld a, BANK(s0_abe2)
+	ld a, BANK(sMysteryGiftItem)
 	call GetSRAMBank
-	ld a, [s0_abe2]
+	ld a, [sMysteryGiftItem]
 	and a
 	jr z, .no
 	inc a
@@ -328,9 +328,9 @@ Special_CheckMysteryGift: ; c2f6
 ; c309
 
 Special_GetMysteryGiftItem: ; c309
-	ld a, BANK(s0_abe2)
+	ld a, BANK(sMysteryGiftItem)
 	call GetSRAMBank
-	ld a, [s0_abe2]
+	ld a, [sMysteryGiftItem]
 	ld [CurItem], a
 	ld a, $1
 	ld [wd10c], a
@@ -338,12 +338,12 @@ Special_GetMysteryGiftItem: ; c309
 	call ReceiveItem
 	jr nc, .asm_c33d
 	xor a
-	ld [s0_abe2], a
+	ld [sMysteryGiftItem], a
 	call CloseSRAM
 	ld a, [CurItem]
 	ld [wd265], a
 	call GetItemName
-	ld hl, UnknownText_0xc345
+	ld hl, .ReceiveItemText
 	call PrintText
 	ld a, $1
 	ld [ScriptVar], a
@@ -356,7 +356,7 @@ Special_GetMysteryGiftItem: ; c309
 	ret
 ; c345
 
-UnknownText_0xc345: ; 0xc345
+.ReceiveItemText: ; 0xc345
 	; received item
 	text_jump UnknownText_0x1bd3be
 	db "@"
@@ -639,8 +639,8 @@ Functionc4ac: ; c4ac
 ; c4b9
 
 SpecialTrainerHouse: ; 0xc4b9
-	ld a, BANK(s0_abfd)
+	ld a, BANK(sMysteryGiftTrainerHouseFlag)
 	call GetSRAMBank
-	ld a, [s0_abfd]
+	ld a, [sMysteryGiftTrainerHouseFlag]
 	ld [ScriptVar], a
 	jp CloseSRAM

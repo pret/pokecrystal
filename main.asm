@@ -239,9 +239,9 @@ _ResetWRAM: ; 5bae
 	ld [wRoamMon2MapNumber], a
 	ld [wRoamMon3MapNumber], a
 
-	ld a, BANK(s0_abe2)
+	ld a, BANK(sMysteryGiftItem)
 	call GetSRAMBank
-	ld hl, s0_abe2
+	ld hl, sMysteryGiftItem
 	xor a
 	ld [hli], a
 	dec a
@@ -29292,7 +29292,7 @@ Function28926: ; 28926
 
 .asm_28946
 	ld a, $7f
-	ld [TileMap + 11 + 16 * SCREEN_WIDTH], a
+	ldcoord 11, 16
 	ld a, $13
 	ld [wcfa8], a
 	ld a, $1
@@ -29324,7 +29324,7 @@ Function28926: ; 28926
 
 .asm_2898d
 	ld a, $7f
-	ld [TileMap + 1 + 16 * SCREEN_WIDTH], a
+	ldcoord 1, 16
 	ld a, $23
 	ld [wcfa8], a
 	ld a, $1
@@ -29470,7 +29470,7 @@ Function28ac9: ; 28ac9
 Function28ade: ; 28ade
 .asm_28ade
 	ld a, $ed
-	ld [TileMap + 9 + 17 * SCREEN_WIDTH], a
+	ldcoord 9, 17
 .asm_28ae3
 	call Functiona57
 	ld a, [$ffa9]
@@ -29480,7 +29480,7 @@ Function28ade: ; 28ade
 	jr nz, .asm_28b0b
 	push af
 	ld a, $7f
-	ld [TileMap + 9 + 17 * SCREEN_WIDTH], a
+	ldcoord 9, 17
 	pop af
 	bit 6, a
 	jr z, .asm_28b03
@@ -29495,7 +29495,7 @@ Function28ade: ; 28ade
 
 .asm_28b0b
 	ld a, $ec
-	ld [TileMap + 9 + 17 * SCREEN_WIDTH], a
+	ldcoord 9, 17
 	ld a, $f
 	ld [wcf56], a
 	callba Function16d6ce
@@ -35456,9 +35456,9 @@ GetTrainerName:: ; 3994c
 	cp CAL
 	jr nz, .not_cal2
 
-	ld a, BANK(s0_abfd)
+	ld a, BANK(sMysteryGiftTrainerHouseFlag)
 	call GetSRAMBank
-	ld a, [s0_abfd]
+	ld a, [sMysteryGiftTrainerHouseFlag]
 	and a
 	call CloseSRAM
 	jr z, .not_cal2
@@ -39988,8 +39988,8 @@ Function49797: ; 49797
 	ld a, $4
 	call Function49336
 	ld a, $3
-	ld [AttrMap + 0 + 1 * SCREEN_WIDTH], a ; (0, 1)
-	ld [AttrMap + 0 + 14 * SCREEN_WIDTH], a ; (0, 14)
+	ldcoord 0, 1, AttrMap
+	ldcoord 0, 14, AttrMap
 	hlcoord 2, 0, AttrMap
 	ld bc, $0812
 	ld a, $5
@@ -62694,7 +62694,7 @@ Unknown_8c490: ; 8c490
 macro_8c490: MACRO
 	db \1
 	dw \2
-	dw TileMap + SCREEN_WIDTH * \4 + \3
+	dwcoord \3, \4
 ENDM
 
 	macro_8c490 0, Unknown_8c538,  1,  6
@@ -63241,10 +63241,10 @@ Function8c913: ; 8c913
 ; 8c938
 
 Unknown_8c938: ; 8c938
-	dw TileMap +  8 + 10 * SCREEN_WIDTH
-	dw TileMap +  8 +  6 * SCREEN_WIDTH
-	dw TileMap +  6 +  8 * SCREEN_WIDTH
-	dw TileMap + 10 +  8 * SCREEN_WIDTH
+	dwcoord 8, 10
+	dwcoord 8, 6
+	dwcoord 6, 8
+	dwcoord 10, 8
 ; 8c940
 
 Function8c940: ; 8c940
@@ -68913,7 +68913,7 @@ UnknownText_0x90a4f: ; 0x90a4f
 	db "@"
 ; 0x90a54
 
-Function90a54: ; 90a54
+Special_InitialSetDSTFlag: ; 90a54
 	ld a, [wDST]
 	set 7, a
 	ld [wDST], a
@@ -68944,7 +68944,7 @@ UnknownText_0x90a83: ; 0x90a83
 	db "@"
 ; 0x90a88
 
-Function90a88: ; 90a88
+Special_InitialClearDSTFlag: ; 90a88
 	ld a, [wDST]
 	res 7, a
 	ld [wDST], a
@@ -74100,13 +74100,13 @@ UnknownText_0x931b9: ; 0x931b9
 Function931ba: ; 931ba
 	ld a, [EffectFailed]
 	add $25
-	ld [TileMap + 2 + 13 * SCREEN_WIDTH], a
+	ldcoord 2, 13
 	inc a
-	ld [TileMap + 2 + 14 * SCREEN_WIDTH], a
+	ldcoord 2, 14
 	inc a
-	ld [TileMap + 3 + 13 * SCREEN_WIDTH], a
+	ldcoord 3, 13
 	inc a
-	ld [TileMap + 3 + 14 * SCREEN_WIDTH], a
+	ldcoord 3, 14
 	hlcoord 18, 17
 	ld [hl], $ee
 	ld hl, UnknownText_0x931db
@@ -89233,7 +89233,7 @@ endr
 Function104a71: ; 104a71 (41:4a71)
 	call Function105106
 	ld a, $1
-	ld [s0_abfd], a
+	ld [sMysteryGiftTrainerHouseFlag], a
 	ld hl, wc903
 	ld de, s0_abfe
 	ld bc, $b
@@ -90168,7 +90168,7 @@ Function1050c8: ; 1050c8
 
 Function1050d9: ; 1050d9
 	call Function105106
-	ld hl, s0_abe2
+	ld hl, sMysteryGiftItem
 	ld de, s0_abe4
 	ld a, [hli]
 	ld [de], a
@@ -90182,7 +90182,7 @@ Function1050d9: ; 1050d9
 Function1050ea: ; 1050ea (41:50ea)
 	call Function105106
 	ld hl, s0_abe4
-	ld de, s0_abe2
+	ld de, sMysteryGiftItem
 	ld a, [hli]
 	ld [de], a
 	inc de

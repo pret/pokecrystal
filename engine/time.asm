@@ -297,21 +297,21 @@ Function11548: ; 11548
 ; 11586
 
 Function11586: ; 11586
-	cp $ff
-	jr z, .asm_11595
+	cp -1
+	jr z, .skip
 	ld c, a
 	ld a, [hl]
 	sub c
-	jr nc, .asm_11590
+	jr nc, .ok
 	xor a
 
-.asm_11590
+.ok
 	ld [hl], a
-	jr z, .asm_11595
+	jr z, .skip
 	xor a
 	ret
 
-.asm_11595
+.skip
 	xor a
 	ld [hl], a
 	scf
