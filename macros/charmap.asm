@@ -282,5 +282,22 @@
 	charmap "<USER>",   $5a
 	charmap "<ENEMY>",  $3f
 	charmap "<PKMN>",   $4a
-
+	charmap "<PK>",     $e1
+	charmap "<MN>",     $e2
+	charmap "<PO>",     $70
+	charmap "<KE>",     $71
+	charmap "<MOM>",    $49
+	charmap "<POKE>",   $24
 	charmap "<PLAY_G>", $14 ; <PLAYER> + gender
+	charmap "<PARA>",   $51
+	charmap "<LINE>",   $4f
+	charmap "<NEXT>",   $4e
+	charmap "<CONT>",   $55
+	charmap "<DONE>",   $57
+	charmap "<PROMPT>", $58
+	charmap "<DAY>",    $15
+	charmap "<PC>",     $5b
+	charmap "<TM>",     $5c
+	charmap "<TRNER>",  $5d
+	charmap "<ROCKET>", $5e
+	charmap "<......>", $56

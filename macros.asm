@@ -104,6 +104,13 @@ dwcoord: MACRO
 	endr
 	ENDM
 
+ldcoord: MACRO
+	if _NARG < 3
+	ld [TileMap + SCREEN_WIDTH * (\2) + (\1)], a
+	else
+	ld [\3 + SCREEN_WIDTH * (\2) + (\1)], a
+	endc
+	ENDM
 
 ; pic animations
 frame: MACRO

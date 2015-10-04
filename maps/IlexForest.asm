@@ -455,7 +455,7 @@ UnknownScript_0x6ee42:
 	spriteface PLAYER, DOWN
 	pause 20
 	clearflag ENGINE_HAVE_EXAMINED_GS_BALL
-	special Function4989a
+	special Special_CelebiShrineEvent
 	loadpokedata CELEBI, 30
 	startbattle
 	returnafterbattle

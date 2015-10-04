@@ -830,3 +830,10 @@ NUM_SPAWNS EQU const_value
 	const SPRITEMOVEFN_1F
 	const SPRITEMOVEFN_20
 	const SPRITEMOVEFN_21
+
+	const_def
+	const PALETTE_AUTO
+	const PALETTE_DAY
+	const PALETTE_NITE
+	const PALETTE_MORN
+	const PALETTE_DARK

@@ -221,49 +221,65 @@ else
 endc
 	jp z, \2
 endm
-	dict $15, Char15
-	dict $4f, Line
-	dict $4e, NextLine
-	dict $16, Char16
+
+dict2: macro
+if \1 == 0
+	and a
+else
+	cp \1
+endc
+	jr nz, \@
+	ld a, \2
+\@:
+endm
+
+dict3: macro
+if \1 == 0
+	and a
+else
+	cp \1
+endc
+	jr z, \2
+endm
+
+	dict "<DAY>", Char15
+	dict "<LINE>", LineChar
+	dict "<NEXT>", NextLineChar
+	dict TX_FAR, TextFar
 	dict $00, NullChar
-	dict $4c, Function1337
+	dict $4c, Char4C
 	dict $4b, Char4B
-	dict $51, Paragraph
-	dict $49, PrintMomsName
-	dict $52, PrintPlayerName
-	dict $53, PrintRivalName
+	dict "<PARA>", Paragraph
+	dict "<MOM>", PrintMomsName
+	dict "<PLAYER>", PrintPlayerName
+	dict "<RIVAL>", PrintRivalName
 	dict $35, Char35
 	dict $36, Char36
 	dict $37, Char37
-	dict $38, PrintRedsName
-	dict $39, PrintGreensName
-	dict $54, Char54
-	dict $5b, Char5B
-	dict $5e, Char5E
-	dict $5c, Char5C
-	dict $5d, Char5D
+	dict "<RED>", PrintRedsName
+	dict "<GREEN>", PrintGreensName
+	dict "#", PlacePOKe
+	dict "<PC>", PCChar
+	dict "<ROCKET>", RocketChar
+	dict "<TM>", TMChar
+	dict "<TRNER>", TrainerChar
 	dict $23, Char23
 	dict $22, Char22
-	dict $55, ContText
-	dict $56, Char56
-	dict $57, DoneText
-	dict $58, PromptText
-	dict $4a, Char4A
-	dict $24, Char24
+	dict "<CONT>", ContText
+	dict "<......>", SixDotsChar
+	dict "<DONE>", DoneText
+	dict "<PROMPT>", PromptText
+	dict "<PKMN>", PlacePKMN
+	dict $24, PlacePOKE
 	dict $25, NextChar
-	cp $1f
-	jr nz, .ok
-	ld a, $7f
-.ok
+	dict2 $1f, " "
 	dict $5f, Char5F
-	dict $59, Char59
-	dict $5a, Char5A
-	dict $3f, Char3F
-	dict $14, Char14
-	cp $e4 ; handakuten
-	jr z, .place
-	cp $e5 ; dakuten
-	jr z, .place
+	dict "<TARGET>", PlaceMoveTargetsName
+	dict "<USER>", PlaceMoveUsersName
+	dict "<ENEMY>", PlaceEnemysName
+	dict "<PLAY_G>", PlaceGenderedPlayerName
+	dict3 $e4, .place
+	dict3 $e5, .place
 
 	jr .nope
 	ld b, a
@@ -319,7 +335,7 @@ Char15:: ; 117b
 print_name: macro
 	push de
 	ld de, \1
-	jp Function126a
+	jp PlaceCommandCharacter
 endm
 
 PrintMomsName:   print_name MomsName   ; 1186
@@ -328,46 +344,46 @@ PrintRivalName:  print_name RivalName  ; 1194
 PrintRedsName:   print_name RedsName   ; 119b
 PrintGreensName: print_name GreensName ; 11a2
 
-Char5D: print_name Char5DText ; 11a9
-Char5C: print_name Char5CText ; 11b0
-Char5B: print_name Char5BText ; 11b7
-Char5E: print_name Char5EText ; 11be
-Char54: print_name Char54Text ; 11c5
+TrainerChar: print_name TrainerCharText ; 11a9
+TMChar: print_name TMCharText ; 11b0
+PCChar: print_name PCCharText ; 11b7
+RocketChar: print_name RocketCharText ; 11be
+PlacePOKe: print_name PlacePOKeText ; 11c5
 Char23: print_name Char23Text ; 11cc
-Char56: print_name Char56Text ; 11d3
-Char4A: print_name Char4AText ; 11da
-Char24: print_name Char24Text ; 11e1
+SixDotsChar: print_name SixDotsCharText ; 11d3
+PlacePKMN: print_name PlacePKMNText ; 11da
+PlacePOKE: print_name PlacePOKEText ; 11e1
 Char35: print_name Char35Text ; 11e8
 Char36: print_name Char36Text ; 11ef
 Char37: print_name Char37Text ; 11f6
 
 
-Char59:: ; 11fd
+PlaceMoveTargetsName:: ; 11fd
 	ld a, [hBattleTurn]
 	xor 1
-	jr Char59_5A
+	jr PlaceMoveTargetsName_5A
 
-Char5A:: ; 1203
+PlaceMoveUsersName:: ; 1203
 	ld a, [hBattleTurn]
 
-Char59_5A: ; 1205
+PlaceMoveTargetsName_5A: ; 1205
 	push de
 	and a
 	jr nz, .enemy
 
 	ld de, BattleMonNick
-	jr Function126a
+	jr PlaceCommandCharacter
 
 .enemy
-	ld de, Char5AText ; Enemy
+	ld de, EnemyText ; Enemy
 	call PlaceString
 	ld h, b
 	ld l, c
 	ld de, EnemyMonNick
-	jr Function126a
+	jr PlaceCommandCharacter
 
 
-Char3F:: ; 121b
+PlaceEnemysName:: ; 121b
 	push de
 
 	ld a, [InLinkBattle]
@@ -390,18 +406,18 @@ Char3F:: ; 121b
 	callab Battle_GetTrainerName
 	pop hl
 	ld de, StringBuffer1
-	jr Function126a
+	jr PlaceCommandCharacter
 
 .rival
 	ld de, RivalName
-	jr Function126a
+	jr PlaceCommandCharacter
 
 .linkbattle
 	ld de, OTName
-	jr Function126a
+	jr PlaceCommandCharacter
 
 
-Char14:: ; 1252
+PlaceGenderedPlayerName:: ; 1252
 	push de
 	ld de, PlayerName
 	call PlaceString
@@ -410,12 +426,12 @@ Char14:: ; 1252
 	ld a, [PlayerGender]
 	bit 0, a
 	ld de, String12a5
-	jr z, Function126a
+	jr z, PlaceCommandCharacter
 	ld de, String12a6
-	jr Function126a
+	jr PlaceCommandCharacter
 
 
-Function126a:: ; 126a
+PlaceCommandCharacter:: ; 126a
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -423,16 +439,16 @@ Function126a:: ; 126a
 	jp NextChar
 ; 0x1273
 
-Char5CText:: db "TM@" ; 1273
-Char5DText:: db "TRAINER@" ; 1276
-Char5BText:: db "PC@" ; 127e
-Char5EText:: db "ROCKET@" ; 1281
-Char54Text:: db "POKé@" ; 1288
+TMCharText:: db "TM@" ; 1273
+TrainerCharText:: db "TRAINER@" ; 1276
+PCCharText:: db "PC@" ; 127e
+RocketCharText:: db "ROCKET@" ; 1281
+PlacePOKeText:: db "POKé@" ; 1288
 Char23Text:: db "こうげき@" ; 128d
-Char56Text:: db "……@" ; 1292
-Char5AText:: db "Enemy @" ; 1295
-Char4AText:: db $e1, $e2, "@" ; PK MN ; 129c
-Char24Text:: db $70, $71, "@" ; PO KE ; 129f
+SixDotsCharText:: db "……@" ; 1292
+EnemyText:: db "Enemy @" ; 1295
+PlacePKMNText:: db "<PK><MN>@" ; PK MN ; 129c
+PlacePOKEText:: db "<PO><KE>@" ; PO KE ; 129f
 String12a2:: db " @" ; 12a2
 Char35Text::
 Char36Text::
@@ -441,7 +457,7 @@ String12a5:: db "@" ; 12a5
 String12a6:: db "@" ; 12a6
 ; 12a7
 
-NextLine:: ; 12a7
+NextLineChar:: ; 12a7
 	pop hl
 	ld bc, SCREEN_WIDTH * 2
 	add hl, bc
@@ -457,7 +473,7 @@ Char22:: ; 12b0
 	jp NextChar
 ; 12b9
 
-Char16:: ; 12b9
+TextFar:: ; 12b9
 	pop hl
 	push de
 	ld bc, -TileMap + $10000
@@ -500,7 +516,7 @@ Char16:: ; 12b9
 ; 12ea
 
 
-Line:: ; 12ea
+LineChar:: ; 12ea
 	pop hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	push hl
@@ -549,7 +565,7 @@ Char4B:: ; 131f
 	or a
 	call z, Function13cd
 
-Function1337:: ; 1337
+Char4C:: ; 1337
 	push de
 	call Function138c
 	call Function138c

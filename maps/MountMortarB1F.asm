@@ -30,7 +30,7 @@ UnknownScript_0x7e217:
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON
 	waitbutton
-	givepoke TYROGUE, 10, 0, 0
+	givepoke TYROGUE, 10
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 UnknownScript_0x7e231:
 	writetext UnknownText_0x7e36a

@@ -8786,7 +8786,7 @@ Function3f77c: ; 3f77c
 	callba Function106187
 	ld c, $c8
 	call DelayFrames
-	ld a, $1
+	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 	call Function3fa42
 	call Function3f85f
@@ -8861,7 +8861,7 @@ Function3f85f: ; 3f85f
 	call .asm_3f8e0
 	hlcoord 0, 8
 	ld b, $5
-	ld de, $b268
+	ld de, sLinkBattleStats + $8
 .asm_3f870
 	push bc
 	push hl
