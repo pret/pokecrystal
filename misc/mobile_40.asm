@@ -407,10 +407,10 @@ Function1002c9: ; 1002c9
 
 Function1002dc: ; 1002dc
 	ld a, $f8
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	callba RunMapSetupScript
 	xor a
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	call Functione51
 	ret
 ; 1002ed

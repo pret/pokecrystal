@@ -17,6 +17,7 @@ hSeconds           EQU $ff98
 
 hROMBank           EQU $ff9d
 hVBlank            EQU $ff9e
+hMapEntryMethod    EQU $ff9f
 
 hJoypadReleased    EQU $ffa2
 hJoypadPressed     EQU $ffa3

@@ -2359,7 +2359,7 @@ Function17ded9: ; 17ded9
 	ld [MonType], a
 	push hl
 	push bc
-	predef Functiond88c
+	predef TryAddMonToParty
 	callba Function4db49
 	pop bc
 	pop hl

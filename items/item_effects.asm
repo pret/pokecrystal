@@ -562,7 +562,7 @@ endr
 	ld [MonType], a
 	call ClearSprites
 
-	predef Functiond88c
+	predef TryAddMonToParty
 
 	callba Function4db49
 
@@ -691,7 +691,7 @@ endr
 	jr .asm_ebe2
 
 .asm_ebd1
-	callba Functione6ce
+	callba BugContest_SetCaughtContestMon
 	jr .asm_ebe2
 
 .asm_ebd9

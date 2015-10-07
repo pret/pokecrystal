@@ -142,8 +142,8 @@ NewGame: ; 5b6b
 	ld [wd001], a
 
 	ld a, $f1
-	ld [$ff9f], a
-	jp Function5e5d
+	ld [hMapEntryMethod], a
+	jp FinishContinueFunction
 ; 5b8f
 
 Function5b8f: ; 5b8f
@@ -421,18 +421,18 @@ Continue: ; 5d65
 	ld [hBGMapMode], a
 	ld c, $14
 	call DelayFrames
-	call Function5e34
-	jr nc, .asm_5d8c
+	call ConfirmContinue
+	jr nc, .Check1Pass
 	call WriteBackup
 	jr .FailToLoad
 
-.asm_5d8c
+.Check1Pass
 	call Function5e48
-	jr nc, .asm_5d96
+	jr nc, .Check2Pass
 	call WriteBackup
 	jr .FailToLoad
 
-.asm_5d96
+.Check2Pass
 	ld a, $8
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
@@ -443,38 +443,38 @@ Continue: ; 5d65
 	call Function5df0
 	call WriteBackup
 	call ClearTileMap
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	callba JumpRoamMons
 	callba Function105091
 	callba Function140ae
-	ld a, [wd4b5]
-	cp $1
-	jr z, .asm_5dd7
+	ld a, [wSpawnAfterChampion]
+	cp SPAWN_LANCE
+	jr z, .SpawnAfterE4
 	ld a, $f2
-	ld [$ff9f], a
-	jp Function5e5d
+	ld [hMapEntryMethod], a
+	jp FinishContinueFunction
 
 .FailToLoad
 	ret
 
-.asm_5dd7
+.SpawnAfterE4
 	ld a, SPAWN_NEW_BARK
 	ld [wd001], a
-	call Function5de7
-	jp Function5e5d
+	call PostCreditsSpawn
+	jp FinishContinueFunction
 ; 5de2
 
-Function5de2: ; 5de2
+SpawnAfterRed: ; 5de2
 	ld a, SPAWN_MT_SILVER
 	ld [wd001], a
 ; 5de7
 
-Function5de7: ; 5de7
+PostCreditsSpawn: ; 5de7
 	xor a
-	ld [wd4b5], a
+	ld [wSpawnAfterChampion], a
 	ld a, $f1
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	ret
 ; 5df0
 
@@ -506,40 +506,40 @@ Function5df0: ; 5df0
 	ret
 ; 5e34
 
-Function5e34: ; 5e34
-.asm_5e34
+ConfirmContinue: ; 5e34
+.loop
 	call DelayFrame
 	call GetJoypad
 	ld hl, hJoyPressed
 	bit 0, [hl]
-	jr nz, .asm_5e47
+	jr nz, .PressA
 	bit 1, [hl]
-	jr z, .asm_5e34
+	jr z, .loop
 	scf
 	ret
 
-.asm_5e47
+.PressA
 	ret
 ; 5e48
 
 Function5e48: ; 5e48
 	call Function6e3
 	and $80
-	jr z, .asm_5e5b
+	jr z, .pass
 	callba Function20021
 	ld a, c
 	and a
-	jr z, .asm_5e5b
+	jr z, .pass
 	scf
 	ret
 
-.asm_5e5b
+.pass
 	xor a
 	ret
 ; 5e5d
 
-Function5e5d: ; 5e5d
-.asm_5e5d
+FinishContinueFunction: ; 5e5d
+.loop
 	xor a
 	ld [wc2c1], a
 	ld [InLinkBattle], a
@@ -549,14 +549,14 @@ Function5e5d: ; 5e5d
 	ld hl, wd83e
 	set 1, [hl]
 	callba OverworldLoop
-	ld a, [wd4b5]
-	cp $2
-	jr z, .asm_5e80
+	ld a, [wSpawnAfterChampion]
+	cp SPAWN_RED
+	jr z, .AfterRed
 	jp Reset
 
-.asm_5e80
-	call Function5de2
-	jr .asm_5e5d
+.AfterRed
+	call SpawnAfterRed
+	jr .loop
 ; 5e85
 
 Function5e85: ; 5e85
@@ -2354,7 +2354,7 @@ CheckFacingObject:: ; 6fd9
 .asm_6ff1
 	ld bc, ObjectStructs ; redundant
 	ld a, 0
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	call Function7041
 	ret nc
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -2382,7 +2382,7 @@ Function7009: ; 7009
 ; 7015
 
 Function7015: ; 7015
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	call GetObjectStruct
 	call Function7021
 	call Function7041
@@ -2450,7 +2450,7 @@ Function7041: ; 7041
 	jr nz, .ok
 
 .ok2
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld l, a
 	ld a, [$ffb0]
 	cp l
@@ -2467,7 +2467,7 @@ Function7041: ; 7041
 	ld a, [hl]
 	cp e
 	jr nz, .nope
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld l, a
 	ld a, [$ffb0]
 	cp l
@@ -2932,7 +2932,7 @@ SpecialGiveShuckle: ; 7305
 	ld a, 15
 	ld [CurPartyLevel], a
 
-	predef Functiond88c
+	predef TryAddMonToParty
 	jr nc, .NotGiven
 
 ; Caught data.
@@ -3205,7 +3205,7 @@ GetSpawnCoord: ; 8029
 .ok
 	ld [hl], e
 	ld a, $0
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld bc, MapObjects
 	ld a, $0
 	ld [$ffb0], a
@@ -3262,7 +3262,7 @@ Function80a1:: ; 80a1
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld b, a
 	call Function807e
 	and a
@@ -3343,7 +3343,7 @@ Function811d: ; 811d
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld [hl], a
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld [wc2f0], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
@@ -3391,7 +3391,7 @@ Function8177: ; 8177
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3432,7 +3432,7 @@ Function8177: ; 8177
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -3476,7 +3476,7 @@ Function81ea: ; 81ea
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3511,7 +3511,7 @@ Function81ea: ; 81ea
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -3534,7 +3534,7 @@ Function823e: ; 823e
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3569,7 +3569,7 @@ Function823e: ; 823e
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -7915,40 +7915,47 @@ Functiond839: ; d839
 ; d88c
 
 
-Functiond88c: ; d88c
+TryAddMonToParty: ; d88c
+	; Whose is it?
 	ld de, PartyCount
 	ld a, [MonType]
 	and $f
-	jr z, .asm_d899
+	jr z, .getpartylocation
 	ld de, OTPartyCount
 
-.asm_d899
+.getpartylocation
+	; Do we have room for it?
 	ld a, [de]
 	inc a
 	cp PARTY_LENGTH + 1
 	ret nc
+	; Increase the party count
 	ld [de], a
-	ld a, [de]
-	ld [$ffae], a
+	ld a, [de] ; Why are we doing this?
+	ld [$ffae], a ; HRAM backup
 	add e
 	ld e, a
-	jr nc, .asm_d8a7
+	jr nc, .loadspecies
 	inc d
 
-.asm_d8a7
+.loadspecies
+	; Load the species of the Pokemon into the party list.
+	; The terminator is usually here, but it'll be back.
 	ld a, [CurPartySpecies]
 	ld [de], a
+	; Load the terminator into the next slot.
 	inc de
-	ld a, $ff
+	ld a, -1
 	ld [de], a
+	; Now let's load the OT name.
 	ld hl, PartyMonOT
 	ld a, [MonType]
 	and $f
-	jr z, .asm_d8bc
+	jr z, .loadOTname
 	ld hl, OTPartyMonOT
 
-.asm_d8bc
-	ld a, [$ffae]
+.loadOTname
+	ld a, [$ffae] ; Restore index from backup
 	dec a
 	call SkipNames
 	ld d, h
@@ -7958,7 +7965,7 @@ Functiond88c: ; d88c
 	call CopyBytes
 	ld a, [MonType]
 	and a
-	jr nz, .asm_d8f0
+	jr nz, .skipnickname
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
@@ -7972,19 +7979,19 @@ Functiond88c: ; d88c
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-.asm_d8f0
+.skipnickname
 	ld hl, PartyMon1Species
 	ld a, [MonType]
 	and $f
-	jr z, .asm_d8fd
+	jr z, .initializeStats
 	ld hl, OTPartyMon1Species
 
-.asm_d8fd
+.initializeStats
 	ld a, [$ffae]
 	dec a
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
-Functiond906: ; d906
+GeneratePartyMonStats: ; d906
 	ld e, l
 	ld d, h
 	push hl
@@ -7997,10 +8004,10 @@ Functiond906: ; d906
 	ld a, [IsInBattle]
 	and a
 	ld a, $0
-	jr z, .asm_d922
+	jr z, .skipitem
 	ld a, [EnemyMonItem]
 
-.asm_d922
+.skipitem
 	ld [de], a
 	inc de
 	push de
@@ -8008,10 +8015,10 @@ Functiond906: ; d906
 	ld l, e
 	ld a, [IsInBattle]
 	and a
-	jr z, .asm_d943
+	jr z, .randomlygeneratemoves
 	ld a, [MonType]
 	and a
-	jr nz, .asm_d943
+	jr nz, .randomlygeneratemoves
 	ld de, EnemyMonMoves
 	rept NUM_MOVES + -1
 	ld a, [de]
@@ -8020,9 +8027,9 @@ Functiond906: ; d906
 	endr
 	ld a, [de]
 	ld [hl], a
-	jr .asm_d950
+	jr .next
 
-.asm_d943
+.randomlygeneratemoves
 	xor a
 	rept NUM_MOVES + -1
 	ld [hli], a
@@ -8031,7 +8038,7 @@ Functiond906: ; d906
 	ld [Buffer1], a
 	predef FillMoves
 
-.asm_d950
+.next
 	pop de
 rept 4
 	inc de
@@ -8058,22 +8065,22 @@ endr
 	inc de
 	xor a
 	ld b, $a
-.asm_d97a
+.loop
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_d97a
+	jr nz, .loop
 	pop hl
 	push hl
 	ld a, [MonType]
 	and $f
-	jr z, .asm_d992
+	jr z, .generateDVs
 	push hl
 	callba GetTrainerDVs
 	pop hl
-	jr .asm_d9b5
+	jr .initializetrainermonstats
 
-.asm_d992
+.generateDVs
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	dec a
@@ -8087,13 +8094,13 @@ endr
 	push hl
 	ld a, [IsInBattle]
 	and a
-	jr nz, .asm_d9f3
+	jr nz, .copywildmonstats
 	call Random
 	ld b, a
 	call Random
 	ld c, a
 
-.asm_d9b5
+.initializetrainermonstats
 	ld a, b
 	ld [de], a
 	inc de
@@ -8111,7 +8118,7 @@ endr
 rept 4
 	inc de
 endr
-	ld a, $46
+	ld a, 70
 	ld [de], a
 	inc de
 	xor a
@@ -8129,7 +8136,7 @@ endr
 	inc de
 	ld [de], a
 	inc de
-	ld bc, $000a
+	ld bc, 10
 	add hl, bc
 	ld a, $1
 	ld c, a
@@ -8141,9 +8148,9 @@ endr
 	ld a, [$ffb6]
 	ld [de], a
 	inc de
-	jr .asm_da29
+	jr .next2
 
-.asm_d9f3
+.copywildmonstats
 	ld a, [EnemyMonDVs]
 	ld [de], a
 	inc de
@@ -8154,12 +8161,12 @@ endr
 	push hl
 	ld hl, EnemyMonPP
 	ld b, NUM_MOVES
-.asm_da03
+.wildmonpploop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_da03
+	jr nz, .wildmonpploop
 	pop hl
 
 	ld a, BASE_HAPPINESS
@@ -8189,30 +8196,30 @@ endr
 	ld [de], a
 	inc de
 
-.asm_da29
+.next2
 	ld a, [IsInBattle]
 	dec a
-	jr nz, .asm_da3b
+	jr nz, .generatestats
 	ld hl, EnemyMonMaxHP
-	ld bc, $000c
+	ld bc, 12
 	call CopyBytes
 	pop hl
-	jr .asm_da45
+	jr .next3
 
-.asm_da3b
+.generatestats
 	pop hl
 	ld bc, $000a
 	add hl, bc
 	ld b, $0
 	call Functione167
 
-.asm_da45
+.next3
 	ld a, [MonType]
 	and $f
-	jr nz, .asm_da6b
+	jr nz, .done
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr nz, .asm_da6b
+	jr nz, .done
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
@@ -8221,8 +8228,8 @@ endr
 	predef GetUnownLetter
 	callab Functionfba18
 
-.asm_da6b
-	scf
+.done
+	scf ; When this function returns, the carry flag indicates success vs failure.
 	ret
 ; da6d
 
@@ -8992,7 +8999,7 @@ GiveEgg:: ; df8c
 	push bc
 	call CheckSeenMon
 	push bc
-	call Functiond88c
+	call TryAddMonToParty
 	pop bc
 	ld a, c
 	and a
@@ -9463,8 +9470,8 @@ GivePoke:: ; e277
 	push bc
 	xor a
 	ld [MonType], a
-	call Functiond88c
-	jr nc, .asm_e2b0
+	call TryAddMonToParty
+	jr nc, .failed
 	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
 	dec a
@@ -9489,7 +9496,7 @@ GivePoke:: ; e277
 	ld [hl], a
 	jr .asm_e2e1
 
-.asm_e2b0
+.failed
 	ld a, [CurPartySpecies]
 	ld [TempEnemyMonSpecies], a
 	callab LoadEnemyMon
@@ -10113,43 +10120,43 @@ Functione6b3: ; e6b3
 ; e6ce
 
 
-Functione6ce: ; e6ce
-	ld a, [wdf9c]
+BugContest_SetCaughtContestMon: ; e6ce
+	ld a, [wContestMon]
 	and a
-	jr z, .asm_e6ea
+	jr z, .firstcatch
 	ld [wd265], a
-	callba Functioncc0c7
-	callba Functioncc000
+	callba DisplayAlreadyCaughtText
+	callba DisplayCaughtContestMonStats
 	lb bc, 14, 7
 	call PlaceYesNoBox
 	ret c
 
-.asm_e6ea
-	call Functione6fd
+.firstcatch
+	call .generatestats
 	ld a, [TempEnemyMonSpecies]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, UnknownText_0xe71d
+	ld hl, .caughttext
 	call PrintText
 	ret
 ; e6fd
 
-Functione6fd: ; e6fd
+.generatestats: ; e6fd
 	ld a, [TempEnemyMonSpecies]
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
 	call GetBaseData
 	xor a
 	ld bc, PartyMon2 - PartyMon1
-	ld hl, wdf9c
+	ld hl, wContestMon
 	call ByteFill
 	xor a
 	ld [MonType], a
-	ld hl, wdf9c
-	jp Functiond906
+	ld hl, wContestMon
+	jp GeneratePartyMonStats
 ; e71d
 
-UnknownText_0xe71d: ; 0xe71d
+.caughttext: ; 0xe71d
 	; Caught @ !
 	text_jump UnknownText_0x1c10c0
 	db "@"
@@ -14837,7 +14844,7 @@ endr
 
 Special_GiveParkBalls: ; 135db
 	xor a
-	ld [wdf9c], a
+	ld [wContestMon], a
 	ld a, 20
 	ld [wdc79], a
 	callba Function11490
@@ -15230,7 +15237,7 @@ Function13819: ; 13819
 	ld hl, wd00e
 	ld a, 1
 	ld [hli], a
-	ld a, [wdf9c]
+	ld a, [wContestMon]
 	ld [hli], a
 	ld a, [hProduct]
 	ld [hli], a
@@ -24671,7 +24678,7 @@ Function24be7: ; 24be7
 	hlcoord 1, 1
 	ld de, String24c4b
 	call PlaceString
-	ld a, [wdf9c]
+	ld a, [wContestMon]
 	and a
 	ld de, String24c59
 	jr z, .asm_24c1e
@@ -24681,7 +24688,7 @@ Function24be7: ; 24be7
 .asm_24c1e
 	hlcoord 8, 1
 	call PlaceString
-	ld a, [wdf9c]
+	ld a, [wContestMon]
 	and a
 	jr z, .asm_24c3e
 	hlcoord 1, 3
@@ -35216,7 +35223,7 @@ TrainerType1: ; 397eb
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	predef Functiond88c
+	predef TryAddMonToParty
 	pop hl
 	jr .loop
 ; 39806
@@ -35237,7 +35244,7 @@ TrainerType2: ; 39806
 	ld [MonType], a
 
 	push hl
-	predef Functiond88c
+	predef TryAddMonToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Moves
@@ -35313,7 +35320,7 @@ TrainerType3: ; 39871
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	predef Functiond88c
+	predef TryAddMonToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
@@ -35344,7 +35351,7 @@ TrainerType4: ; 3989d
 	ld [MonType], a
 
 	push hl
-	predef Functiond88c
+	predef TryAddMonToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
@@ -44308,7 +44315,7 @@ Function4d9d3: ; 4d9d3
 ; 4d9e5
 
 CheckPartyFullAfterContest: ; 4d9e5
-	ld a, [wdf9c]
+	ld a, [wContestMon]
 	and a
 	jp z, Function4db35
 	ld [CurPartySpecies], a
@@ -44323,7 +44330,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld c, a
 	ld b, $0
 	add hl, bc
-	ld a, [wdf9c]
+	ld a, [wContestMon]
 	ld [hli], a
 	ld [CurSpecies], a
 	ld a, $ff
@@ -44335,7 +44342,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wdf9c
+	ld hl, wContestMon
 	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 	ld a, [PartyCount]
@@ -44389,7 +44396,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	or b
 	ld [hl], a
 	xor a
-	ld [wdf9c], a
+	ld [wContestMon], a
 	and a
 	ld [ScriptVar], a
 	ret
@@ -44405,7 +44412,7 @@ Function4daa3: ; 4daa3
 	jr nc, .asm_4db08
 	xor a
 	ld [CurPartyMon], a
-	ld hl, wdf9c
+	ld hl, wContestMon
 	ld de, wd018
 	ld bc, sBoxMon2 - sBoxMon1
 	call CopyBytes
@@ -44451,7 +44458,7 @@ Function4daa3: ; 4daa3
 	ld [hl], a
 	call CloseSRAM
 	xor a
-	ld [wdf9c], a
+	ld [wContestMon], a
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -50505,7 +50512,7 @@ GetMovementAction: ; 802ec
 IsNPCInFront: ; 80341
 
 	ld a, 0
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld a, [MapX]
 	ld d, a
 	ld a, [WalkingX]
@@ -53994,8 +54001,8 @@ HallOfFame:: ; 0x8640e
 	ld a, 1
 	ld [wc2cd], a
 	call Function2ed3
-	ld a, 1
-	ld [wd4b5], a
+	ld a, SPAWN_LANCE
+	ld [wSpawnAfterChampion], a
 
 	; Enable the Pokégear map to cycle through all of Kanto
 	ld hl, StatusFlags
@@ -54022,7 +54029,7 @@ HallOfFame:: ; 0x8640e
 	ret
 ; 0x86455
 
-Function86455:: ; 86455
+RedCredits:: ; 86455
 	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
 	ld a, MUSIC_NONE / $100
@@ -54037,8 +54044,8 @@ Function86455:: ; 86455
 	ld c, $8
 	call DelayFrames
 	call Function2ed3
-	ld a, $2
-	ld [wd4b5], a
+	ld a, SPAWN_RED
+	ld [wSpawnAfterChampion], a
 	ld a, [StatusFlags]
 	ld b, a
 	callba Function109847
@@ -62349,8 +62356,8 @@ Function8c20f: ; 8c20f
 	call DelayFrame
 	xor a
 	ld [hLCDStatCustom], a
-	ld [$ffc7], a
-	ld [$ffc8], a
+	ld [hLCDStatCustom + 1], a
+	ld [hLCDStatCustom + 2], a
 	ld [hSCY], a
 	ld a, $1
 	ld [rSVBK], a
@@ -62600,9 +62607,9 @@ Function8c3e8: ; 8c3e8 (23:43e8)
 	ld a, $43
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	xor a
-	ld [$ffc7], a
+	ld [hLCDStatCustom + 1], a
 	ld a, $90
-	ld [$ffc8], a
+	ld [hLCDStatCustom + 2], a
 	xor a
 	ld [wcf64], a
 	ld [wcf65], a
@@ -63654,8 +63661,8 @@ Special_MagnetTrain: ; 8cc04
 	call WhiteBGMap
 	xor a
 	ld [hLCDStatCustom], a
-	ld [$ffc7], a
-	ld [$ffc8], a
+	ld [hLCDStatCustom + 1], a
+	ld [hLCDStatCustom + 2], a
 	ld [hSCX], a
 	ld [Requested2bppSource], a
 	ld [Requested2bppSource + 1], a
@@ -76437,7 +76444,7 @@ INCBIN "gfx/credits/theend.2bpp"
 
 SECTION "bank33", ROMX, BANK[$33]
 
-Functioncc000: ; cc000
+DisplayCaughtContestMonStats: ; cc000
 
 	call WhiteBGMap
 	call ClearTileMap
@@ -76475,7 +76482,7 @@ Functioncc000: ; cc000
 	ld de, .Health
 	call PlaceString
 
-	ld a, [wdf9c]
+	ld a, [wContestMon]
 	ld [wd265], a
 	call GetPokemonName
 	ld de, StringBuffer1
@@ -76533,13 +76540,13 @@ SwitchMonText: ; cc0c2
 	db "@"
 ; cc0c7
 
-Functioncc0c7: ; cc0c7
+DisplayAlreadyCaughtText: ; cc0c7
 	call GetPokemonName
-	ld hl, AlreadyCaughtText
+	ld hl, .AlreadyCaughtText
 	jp PrintText
 ; cc0d0
 
-AlreadyCaughtText: ; 0xcc0d0
+.AlreadyCaughtText: ; 0xcc0d0
 	; You already caught a @ .
 	text_jump UnknownText_0x1c10dd
 	db "@"
@@ -87300,7 +87307,7 @@ Functionfcc63: ; fcc63
 	ld [MonType], a
 	ld [wd10b], a
 	callab Functione039
-	predef Functiond88c
+	predef TryAddMonToParty
 
 	ld e, TRADE_DIALOG
 	call GetTradeAttribute
@@ -88399,10 +88406,10 @@ Function104263: ; 104263 (41:4263)
 	ld c, $0
 
 Function104265: ; 104265 (41:4265)
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	push af
 	ld a, c
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld c, $12
 .asm_10426d
 	ld b, $14
@@ -88412,7 +88419,7 @@ Function104265: ; 104265 (41:4265)
 	ld [hli], a
 	dec b
 	jr nz, .asm_10426f
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld b, $c
 .asm_104279
 	ld [hli], a
@@ -88421,7 +88428,7 @@ Function104265: ; 104265 (41:4265)
 	dec c
 	jr nz, .asm_10426d
 	pop af
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ret
 
 

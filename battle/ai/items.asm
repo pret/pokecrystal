@@ -787,17 +787,17 @@ Function38511: ; 38511
 ; 3851e
 
 Function3851e: ; 3851e
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld hl, EnemyMonMaxHP
 	ld a, [hli]
-	ld [hProduct], a
+	ld [hDividend], a
 	ld a, [hl]
-	ld [hMultiplicand], a
+	ld [hDividend + 1], a
 	ld b, $2
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld c, a
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld b, a
 	ld hl, EnemyMonHP + 1
 	ld a, [hld]

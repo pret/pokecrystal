@@ -1842,7 +1842,7 @@ wd25e:: ds 4
 wd262:: ds 1
 wd263:: ds 1
 wd264:: ds 1
-GetPokemonName_Parameter::
+wNamedObjectIndexBuffer::
 wd265:: ds 1
 wd266:: ds 1
 wd267:: ds 1
@@ -1956,7 +1956,7 @@ RedsName::   ds NAME_LENGTH ; d49e
 GreensName:: ds NAME_LENGTH ; d4a9
 
 wd4b4:: ds 1
-wd4b5:: ds 1
+wSpawnAfterChampion:: ds 1
 
 ; init time set at newgame
 StartDay:: ; d4b6

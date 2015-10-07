@@ -121,7 +121,7 @@ StartMap: ; 96724
 	xor a
 	ld [ScriptRunning], a
 	ld hl, MapStatus
-	ld bc, $3e
+	ld bc, $3e ; 62
 	call ByteFill
 	callba Function113e5
 	call ClearJoypad
@@ -137,13 +137,13 @@ EnterMap: ; 9673e
 	callba RunMapSetupScript
 	call ClearAllScriptFlags3
 
-	ld a, [$ff9f]
+	ld a, [hMapEntryMethod]
 	cp $f7
 	jr nz, .dontset
 	call SetAll_ScriptFlags3
 .dontset
 
-	ld a, [$ff9f]
+	ld a, [hMapEntryMethod]
 	cp $f3
 	jr nz, .dontresetpoison
 	xor a
@@ -151,7 +151,7 @@ EnterMap: ; 9673e
 .dontresetpoison
 
 	xor a
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	ld a, 2 ; HandleMap
 	ld [MapStatus], a
 	ret
