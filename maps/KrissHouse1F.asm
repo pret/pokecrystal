@@ -48,13 +48,13 @@ UnknownScript_0x7a519:
 	writetext UnknownText_0x7a742
 	yesorno
 	iffalse UnknownScript_0x7a52a
-	special Function90a54
+	special Special_InitialSetDSTFlag
 	yesorno
 	iffalse UnknownScript_0x7a519
 	jump UnknownScript_0x7a531
 
 UnknownScript_0x7a52a:
-	special Function90a88
+	special Special_InitialClearDSTFlag
 	yesorno
 	iffalse UnknownScript_0x7a519
 UnknownScript_0x7a531:

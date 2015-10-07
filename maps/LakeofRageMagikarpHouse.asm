@@ -37,7 +37,7 @@ UnknownScript_0x19a6d7:
 
 UnknownScript_0x19a6e0:
 	writebyte MAGIKARP
-	special Functionc276
+	special Special_FindThatSpecies
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
 	closetext

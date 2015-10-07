@@ -211,7 +211,7 @@ ElderScript_0x18d1a5:
 	writetext UnknownText_0x18d697
 	playsound SFX_CAUGHT_MON
 	waitbutton
-	givepoke DRATINI, 15, 0, 0
+	givepoke DRATINI, 15
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	special SpecialDratini
 	setevent EVENT_GOT_DRATINI

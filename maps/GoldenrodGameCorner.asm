@@ -176,7 +176,7 @@ UnknownScript_0x56d26:
 	closetext
 	writebyte ABRA
 	special Special_GameCornerPrizeMonCheckDex
-	givepoke ABRA, 5, 0, 0
+	givepoke ABRA, 5
 	takecoins 100
 	jump UnknownScript_0x56d0c
 
@@ -194,7 +194,7 @@ UnknownScript_0x56d54:
 	closetext
 	writebyte CUBONE
 	special Special_GameCornerPrizeMonCheckDex
-	givepoke CUBONE, 15, 0, 0
+	givepoke CUBONE, 15
 	takecoins 800
 	jump UnknownScript_0x56d0c
 
@@ -212,7 +212,7 @@ UnknownScript_0x56d82:
 	closetext
 	writebyte WOBBUFFET
 	special Special_GameCornerPrizeMonCheckDex
-	givepoke WOBBUFFET, 15, 0, 0
+	givepoke WOBBUFFET, 15
 	takecoins 1500
 	jump UnknownScript_0x56d0c
 

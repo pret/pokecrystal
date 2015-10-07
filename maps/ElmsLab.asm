@@ -105,10 +105,10 @@ ElmCheckEverstone:
 	checkevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	iffalse ElmCheckTogepiEgg
 	writebyte TOGEPI
-	special Functionc284
+	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special Functionc284
+	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writetext UnknownText_0x79a40
 	closetext
@@ -117,10 +117,10 @@ ElmCheckEverstone:
 
 ElmEggHatchedScript:
 	writebyte TOGEPI
-	special Functionc284
+	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special Functionc284
+	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	jump ElmCheckGotEggAgain
 
@@ -177,7 +177,7 @@ CyndaquilPokeBallScript:
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
-	givepoke CYNDAQUIL, 5, BERRY, 0
+	givepoke CYNDAQUIL, 5, BERRY
 	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $3, ElmDirectionsScript
@@ -207,7 +207,7 @@ TotodilePokeBallScript:
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
-	givepoke TOTODILE, 5, BERRY, 0
+	givepoke TOTODILE, 5, BERRY
 	loadmovesprites
 	applymovement PLAYER, AfterTotodileMovement
 	jump ElmDirectionsScript
@@ -235,7 +235,7 @@ ChikoritaPokeBallScript:
 	playsound SFX_CAUGHT_MON
 	waitbutton
 	keeptextopen
-	givepoke CHIKORITA, 5, BERRY, 0
+	givepoke CHIKORITA, 5, BERRY
 	loadmovesprites
 	applymovement PLAYER, AfterChikoritaMovement
 	jump ElmDirectionsScript

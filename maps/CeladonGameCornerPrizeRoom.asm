@@ -147,7 +147,7 @@ UnknownScript_0x727ed:
 	closetext
 	writebyte PIKACHU
 	special Special_GameCornerPrizeMonCheckDex
-	givepoke PIKACHU, 25, 0, 0
+	givepoke PIKACHU, 25
 	takecoins 2222
 	jump UnknownScript_0x727d3
 
@@ -165,7 +165,7 @@ UnknownScript_0x7281b:
 	closetext
 	writebyte PORYGON
 	special Special_GameCornerPrizeMonCheckDex
-	givepoke PORYGON, 15, 0, 0
+	givepoke PORYGON, 15
 	takecoins 5555
 	jump UnknownScript_0x727d3
 
@@ -183,7 +183,7 @@ UnknownScript_0x72849:
 	closetext
 	writebyte LARVITAR
 	special Special_GameCornerPrizeMonCheckDex
-	givepoke LARVITAR, 40, 0, 0
+	givepoke LARVITAR, 40
 	takecoins 8888
 	jump UnknownScript_0x727d3
 

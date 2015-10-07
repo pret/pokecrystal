@@ -44,7 +44,7 @@ Function97c4f:: ; 97c4f
 	ret
 ; 97c5f
 
-Function97c5f:: ; 97c5f
+CheckFacingTileEvent:: ; 97c5f
 	call GetFacingTileCoord
 	ld [EngineBuffer1], a
 	ld c, a
@@ -95,41 +95,41 @@ Function97c5f:: ; 97c5f
 ; 97cc0
 
 
-Function97cc0:: ; 97cc0
+RockSmashEncounter:: ; 97cc0
 ; Rock Smash encounter
 
 	call Function968c7
-	jr c, .asm_97ce2
-	call Function97cfd
-	jr nc, .asm_97ce2
+	jr c, .nope
+	call CanUseSweetScent
+	jr nc, .nope
 	ld hl, StatusFlags2
 	bit 2, [hl]
-	jr nz, .asm_97cdb
+	jr nz, .bug_contest
 	callba TryWildEncounter
-	jr nz, .asm_97ce2
-	jr .asm_97ce6
+	jr nz, .nope
+	jr .ok
 
-.asm_97cdb
-	call Function97d23
-	jr nc, .asm_97ce2
-	jr .asm_97ced
+.bug_contest
+	call _TryWildEncounter_BugContest
+	jr nc, .nope
+	jr .ok_bug_contest
 
-.asm_97ce2
+.nope
 	ld a, 1
 	and a
 	ret
 
-.asm_97ce6
+.ok
 	ld a, BANK(RockSmashBattleScript)
 	ld hl, RockSmashBattleScript
-	jr .asm_97cf4
+	jr .done
 
-.asm_97ced
+.ok_bug_contest
 	ld a, BANK(BugCatchingContestBattleScript)
 	ld hl, BugCatchingContestBattleScript
-	jr .asm_97cf4
+	jr .done
 
-.asm_97cf4
+.done
 	call CallScript
 	scf
 	ret
@@ -142,45 +142,45 @@ RockSmashBattleScript: ; 97cf9
 	end
 ; 97cfd
 
-Function97cfd:: ; 97cfd
+CanUseSweetScent:: ; 97cfd
 	ld hl, StatusFlags
 	bit 5, [hl]
-	jr nz, .asm_97d21
+	jr nz, .no
 	ld a, [wPermission]
 	cp $4
-	jr z, .asm_97d17
+	jr z, .ice_check
 	cp $7
-	jr z, .asm_97d17
+	jr z, .ice_check
 	callba Function149dd
-	jr nc, .asm_97d21
+	jr nc, .no
 
-.asm_97d17
+.ice_check
 	ld a, [StandingTile]
 	call CheckIceTile
-	jr z, .asm_97d21
+	jr z, .no
 	scf
 	ret
 
-.asm_97d21
+.no
 	and a
 	ret
 ; 97d23
 
-Function97d23: ; 97d23
+_TryWildEncounter_BugContest: ; 97d23
 	call TryWildEncounter_BugContest
 	ret nc
-	call Function97d31
+	call ChooseWildEncounter_BugContest
 	callba CheckRepelEffect
 	ret
 ; 97d31
 
-Function97d31:: ; 97d31
+ChooseWildEncounter_BugContest:: ; 97d31
 ; Pick a random mon out of ContestMons.
 
-.asm_97d31
+.loop
 	call Random
 	cp 100 << 1
-	jr nc, .asm_97d31
+	jr nc, .loop
 	srl a
 
 	ld hl, ContestMons
@@ -232,10 +232,10 @@ TryWildEncounter_BugContest: ; 97d64
 	ld a, [StandingTile]
 	call CheckSuperTallGrassTile
 	ld b, $66
-	jr z, .asm_97d70
+	jr z, .ok
 	ld b, $33
 
-.asm_97d70
+.ok
 	callba ApplyMusicEffectOnEncounterRate
 	callba ApplyCleanseTagEffectOnEncounterRate
 	call Random

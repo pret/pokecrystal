@@ -658,27 +658,27 @@ endr
 	ld b, $0
 	callba Function116c1
 
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 
 	ld hl, wd050
-	ld de, $b082
-	ld bc, $000b
+	ld de, sBoxMonNicknames
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-	ld hl, $b082
+	ld hl, sBoxMonNicknames
 	ld de, StringBuffer1
 	call InitName
 
 	call CloseSRAM
 
 .asm_ebaf
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 
-	ld hl, $b082
+	ld hl, sBoxMonNicknames
 	ld de, wd050
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
 	call CloseSRAM
