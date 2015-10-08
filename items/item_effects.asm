@@ -558,7 +558,7 @@ endr
 	cp PARTY_LENGTH
 	jr z, .asm_eb3c
 
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	call ClearSprites
 
@@ -600,7 +600,7 @@ endr
 	ld d, h
 	ld e, l
 	push de
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld b, 0
 	callba Function116c1
@@ -980,7 +980,7 @@ LoveBallMultiplier:
 	push bc
 	ld a, [TempBattleMonSpecies]
 	ld [CurPartySpecies], a
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
@@ -1425,7 +1425,7 @@ RareCandy: ; ef14
 	ld a, $f8
 	call Functionf24a
 
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 
@@ -1440,7 +1440,7 @@ RareCandy: ; ef14
 
 	call Functiona80
 
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld a, [CurPartySpecies]
 	ld [wd265], a
@@ -2340,7 +2340,7 @@ endr
 	ld [hBattleTurn], a
 	ld [AttackMissed], a
 	ld [EffectFailed], a
-	callba Function361ef
+	callba CheckIfStatCanBeRaised
 	call WaitSFX
 
 	callba BattleCommand8c
@@ -2703,7 +2703,7 @@ Functionf6e0: ; f6e0
 ; f6e8
 
 Functionf6e8: ; f6e8
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	call Functionf8ec
 	ld hl, PartyMon1PP
@@ -3188,7 +3188,7 @@ Functionf8b9: ; f8b9
 	ld a, PartyMon1Moves - PartyMon1
 	call GetPartyParamLocation
 	pop de
-	xor a
+	xor a ; PARTYMON
 	ld [wcfa9], a
 	ld [MonType], a
 	ld c, NUM_MOVES
@@ -3229,27 +3229,27 @@ Functionf8ec: ; f8ec
 
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
-	jr z, .asm_f91a
+	jr z, .asm_f91a ; PARTYMON
 
 	ld hl, OTPartyMon1Moves
 	dec a
-	jr z, .asm_f91a
+	jr z, .asm_f91a ; OTPARTYMON
 
 	ld hl, TempMonMoves
 	dec a
-	jr z, .asm_f915
+	jr z, .asm_f915 ; BOXMON
 
-	ld hl, TempMonMoves
+	ld hl, TempMonMoves ; Wasted cycles
 	dec a
-	jr z, .asm_f915
+	jr z, .asm_f915 ; BREEDMON
 
-	ld hl, BattleMonMoves
+	ld hl, BattleMonMoves ; WILDMON
 
-.asm_f915
+.asm_f915 ; BOXMON, BREEDMON, WILDMON
 	call Functionf969
 	jr .asm_f91d
 
-.asm_f91a
+.asm_f91a ; PARTYMON, OTPARTYMON
 	call Functionf963
 
 .asm_f91d

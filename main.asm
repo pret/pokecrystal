@@ -7920,7 +7920,7 @@ TryAddMonToParty: ; d88c
 	ld de, PartyCount
 	ld a, [MonType]
 	and $f
-	jr z, .getpartylocation
+	jr z, .getpartylocation ; PARTYMON
 	ld de, OTPartyCount
 
 .getpartylocation
@@ -9468,7 +9468,7 @@ endr
 GivePoke:: ; e277
 	push de
 	push bc
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	call TryAddMonToParty
 	jr nc, .failed

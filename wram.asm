@@ -1914,7 +1914,7 @@ wd44e:: ds 1
 wd44f:: ds 1
 wd450:: ds 1
 wd451:: ds 1
-wd452:: ds 1
+wWildEncounterCooldown:: ds 1
 wd453:: ds 1
 wd454:: ds 1
 	ds 4

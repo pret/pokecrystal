@@ -1036,13 +1036,13 @@ BattleCommand04: ; 34555
 
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_34570
+	jr z, .proceed
 
 	ld hl, EnemyMonPP
 	ld de, EnemySubStatus3
 	ld bc, EnemyTurnsTaken
 
-.asm_34570
+.proceed
 
 ; If we've gotten this far, this counts as a turn.
 	ld a, [bc]
@@ -6100,7 +6100,7 @@ BattleCommand7d: ; 361e0
 	jr BattleCommand1c
 BattleCommand1c: ; 361e4
 ; statup
-	call Function361ef
+	call CheckIfStatCanBeRaised
 	ld a, [FailedMessage]
 	and a
 	ret nz
@@ -6108,7 +6108,7 @@ BattleCommand1c: ; 361e4
 ; 361ef
 
 
-Function361ef: ; 361ef
+CheckIfStatCanBeRaised: ; 361ef
 	ld a, b
 	ld [LoweredStat], a
 	ld hl, PlayerStatLevels

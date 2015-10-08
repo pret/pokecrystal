@@ -4821,7 +4821,7 @@ DrawPlayerHUD: ; 3df58
 	; HP bar
 	hlcoord 10, 9
 	ld b, 1
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef DrawPlayerHP
 
@@ -4903,7 +4903,7 @@ PrintPlayerHUD: ; 3dfbf
 	pop hl
 	dec hl
 
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
@@ -4981,7 +4981,7 @@ DrawEnemyHUD: ; 3e043
 	ld a, [hl]
 	ld [de], a
 
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
@@ -5358,7 +5358,7 @@ Function3e308: ; 3e308
 	call EnableLCD
 	call ClearSprites
 	call LowVolume
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	callba Function4dc7b
 	call MaxVolume
@@ -7535,7 +7535,7 @@ endr
 	ld [hld], a
 
 .asm_3ef74
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	callab Function50e1b
@@ -7647,7 +7647,7 @@ endr
 	call Function309d
 
 .asm_3f057
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	hlcoord 9, 0
@@ -7661,7 +7661,7 @@ endr
 	call DelayFrames
 	call Functiona80
 	call Function30b4
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld a, [CurSpecies]
 	ld [wd265], a
@@ -7802,7 +7802,7 @@ Function3f136: ; 3f136
 	push af
 	xor a
 	ld [DefaultFlypoint], a
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	ld a, [TempMonLevel]

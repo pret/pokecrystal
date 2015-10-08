@@ -2656,7 +2656,7 @@ Script_giveegg: ; 0x97968
 ;     level (DecimalParam)
 ; if no room in the party, return 0 in ScriptVar; else, return 2
 
-	xor a
+	xor a ; PARTYMON
 	ld [ScriptVar], a
 	ld [MonType], a
 	call GetScriptByte
