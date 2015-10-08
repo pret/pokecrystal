@@ -15686,7 +15686,7 @@ Function11b483: ; 11b483
 	pop de
 	push de
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop de
 	ld h, d
 	ld l, e
@@ -16102,7 +16102,7 @@ Function11b6b4: ; 11b6b4
 	ld hl, $c616 + 1
 	ld de, $c62c + 5
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	ld de, $c62c + 5
 	ld hl, $c62c + 3
 	ld a, [de]
@@ -23076,7 +23076,7 @@ endr
 	ld hl, $000a
 	add hl, bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop de
 	pop hl
 rept 2

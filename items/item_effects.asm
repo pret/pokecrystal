@@ -1288,7 +1288,7 @@ Functionee8c: ; ee8c
 	ld a, PartyMon1HPExp - 1 - PartyMon1
 	call GetPartyParamLocation
 	ld b, $1
-	predef_jump Functione167
+	predef_jump CalcPkmnStats
 ; ee9f
 
 Functionee9f: ; ee9f
@@ -1427,7 +1427,7 @@ RareCandy: ; ef14
 
 	xor a
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 
 	hlcoord 9, 0
 	ld b, 10

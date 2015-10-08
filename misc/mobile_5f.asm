@@ -2465,7 +2465,7 @@ endr
 	ld e, l
 	push hl
 	ld b, $0
-	callba Functione167
+	callba CalcPkmnStats
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1HP

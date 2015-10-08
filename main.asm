@@ -8204,7 +8204,7 @@ endr
 	ld bc, $000a
 	add hl, bc
 	ld b, $0
-	call Functione167
+	call CalcPkmnStats
 
 .asm_da45
 	ld a, [MonType]
@@ -8263,6 +8263,7 @@ Functionda96: ; da96
 	cp PARTY_LENGTH
 	scf
 	ret z
+
 	inc a
 	ld [hl], a
 	ld c, a
@@ -8336,30 +8337,37 @@ Functionda96: ; da96
 
 	and a
 	ret
-; db3f
 
-Functiondb3f: ; db3f
+
+SentGetPkmnIntoFromBox: ; db3f
+; Sents/Gets Pkmn into/from Box depending on Parameter
+; wd10b == 0: get Pkmn into Party
+; wd10b == 1: sent Pkmn into Box
+
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [wd10b]
 	and a
-	jr z, .asm_db60
+	jr z, .check_IfPartyIsFull
 	cp $2
-	jr z, .asm_db60
+	jr z, .check_IfPartyIsFull
 	cp $3
 	ld hl, wBreedMon1Species
 	jr z, .asm_db9b
+
+    ; we want to sent a Pkmn into the Box
+    ; so check if there's enough space
 	ld hl, sBoxCount
 	ld a, [hl]
 	cp MONS_PER_BOX
 	jr nz, .asm_db69
-	jp Functiondcb1
+	jp CloseSRAM_And_SetCFlag
 
-.asm_db60
+.check_IfPartyIsFull
 	ld hl, PartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
-	jp z, Functiondcb1
+	jp z, CloseSRAM_And_SetCFlag
 
 .asm_db69
 	inc a
@@ -8387,7 +8395,7 @@ Functiondb3f: ; db3f
 	ld a, [sBoxCount]
 
 .asm_db97
-	dec a
+	dec a ; PartyCount - 1
 	call AddNTimes
 
 .asm_db9b
@@ -8490,7 +8498,7 @@ Functiondb3f: ; db3f
 	srl a
 	add $2
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	callab Function50e1b
 	ld a, d
 	ld [CurPartyLevel], a
@@ -8508,7 +8516,7 @@ Functiondb3f: ; db3f
 	add hl, bc
 	push bc
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	pop bc
 	ld a, [wd10b]
 	and a
@@ -8553,7 +8561,7 @@ endr
 	ret
 ; dcb1
 
-Functiondcb1: ; dcb1
+CloseSRAM_And_SetCFlag: ; dcb1
 	call CloseSRAM
 	scf
 	ret
@@ -8561,7 +8569,6 @@ Functiondcb1: ; dcb1
 
 
 Functiondcb6: ; dcb6
-
 	ld a, b
 	ld hl, sBoxMons
 	ld bc, sBoxMon1End - sBoxMon1
@@ -8725,7 +8732,7 @@ Functiondd64: ; dd64
 	add hl, bc
 	push bc
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	dec a
@@ -9039,7 +9046,7 @@ GiveEgg:: ; df8c
 	dec a
 	ld hl, PartyMonNicknames
 	call SkipNames
-	ld de, Stringe035
+	ld de, String_Egg
 	call CopyName2
 	ld a, [PartyCount]
 	dec a
@@ -9066,12 +9073,11 @@ GiveEgg:: ; df8c
 	ret
 ; e035
 
-Stringe035: ; e035
+String_Egg: ; e035
 	db "EGG@"
 ; e039
 
 Functione039: ; e039
-
 	ld hl, PartyCount
 
 	ld a, [wd10b]
@@ -9239,7 +9245,7 @@ Functione134: ; e134
 	ld a, PartyMon1Exp + 2 - PartyMon1
 	call GetPartyParamLocation
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	pop de
 	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
@@ -9251,7 +9257,12 @@ Functione134: ; e134
 	ret
 ; e167
 
-Functione167: ; e167
+CalcPkmnStats: ; e167
+; Calculates all 6 Stats of a Pkmn
+; b = 0 or 1
+; 'c' counts from 1-6 and points with 'BaseStats' to the base value
+; results in $ffb5 and $ffb6 are saved in [de]
+
 	ld c, $0
 .asm_e169
 	inc c
@@ -9269,14 +9280,16 @@ Functione167: ; e167
 ; e17b
 
 Functione17b: ; e17b
+; 'c' is 1-6 and points to the BaseStat
+
 	push hl
 	push de
 	push bc
 	ld a, b
 	ld d, a
 	push hl
-	ld hl, BaseHP
-	dec hl
+	ld hl, BaseStats
+	dec hl ; has to be decreased, because 'c' begins with 1
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
@@ -14171,7 +14184,7 @@ Function13172: ; 13172
 	hlcoord 5, 1
 	call PlaceString
 	push bc
-	callba Function5084a
+	callba CopyPkmnToTempMon
 	pop hl
 	call PrintLevel
 	ld hl, PlayerHPPal
@@ -14188,7 +14201,7 @@ Function131ef: ; 131ef
 	ld [hBGMapMode], a
 	ld [wd0e3], a
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	ld hl, TempMonMoves
 	ld de, wd25e
 	ld bc, NUM_MOVES
@@ -15726,7 +15739,7 @@ Function13a47: ; 13a47
 	ld hl, PartyMon1Exp + 2 - PartyMon1
 	add hl, bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop hl
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
@@ -20929,7 +20942,7 @@ Function169ac: ; 169ac
 	pop hl
 	push bc
 	ld b, $0
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, PartyMon1HP - PartyMon1
 	add hl, bc
@@ -21733,7 +21746,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld bc, PartyMon1Exp + 2 - PartyMon1
 	add hl, bc
 	ld b, $0
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
@@ -35655,7 +35668,7 @@ endr
 	push hl
 	xor a
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	pop hl
 
 .asm_42230
@@ -35865,7 +35878,7 @@ endr
 	ld hl, TempMonExp + 2
 	ld de, TempMonMaxHP
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 
 	ld a, [CurPartyMon]
 	ld hl, PartyMons
@@ -44935,7 +44948,7 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 	call CopyBytes
 	jr .asm_4de2a
 .asm_4de10
-	callba Function5084a
+	callba CopyPkmnToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_4de2a
@@ -48065,10 +48078,13 @@ UnknownText_0x50845: ; 0x50845
 	db "@"
 ; 0x5084a
 
-Function5084a: ; 5084a
+CopyPkmnToTempMon: ; 5084a
+; gets the BaseData of a Pkmn
+; and copys the PkmnStructure to TempMon
+
 	ld a, [CurPartyMon]
 	ld e, a
-	call Function508d5
+	call GetPkmnSpecies
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call GetBaseData
@@ -48089,7 +48105,7 @@ Function5084a: ; 5084a
 .copywholestruct
 	ld a, [CurPartyMon]
 	call AddNTimes
-	ld de, TempMonSpecies
+	ld de, TempMon
 	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 
@@ -48121,7 +48137,7 @@ Function50893: ; 50893
 	add hl, bc
 	push bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, TempMonHP - TempMon
 	add hl, bc
@@ -48153,7 +48169,10 @@ Function50893: ; 50893
 	ret
 ; 508d5
 
-Function508d5: ; 508d5
+GetPkmnSpecies: ; 508d5
+; [MonType] has the type of the Pkmn
+; e = Nr. of Pkmn (i.e. [CurPartyMon])
+
 	ld a, [MonType]
 	and a ; PARTYMON
 	jr z, .partymon
@@ -48656,7 +48675,7 @@ Function50cdb: ; 50cdb
 	call GetNick
 	pop hl
 	call PlaceString
-	call Function5084a
+	call CopyPkmnToTempMon
 	pop hl
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -48877,15 +48896,15 @@ Function50e1b: ; 50e1b
 	call Function50e47
 	push hl
 	ld hl, TempMonExp + 2
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	ld c, a
 	ld a, [hld]
 	sub c
-	ld a, [$ffb5]
+	ld a, [hMultiplicand + 1]
 	ld c, a
 	ld a, [hld]
 	sbc c
-	ld a, [hMultiplicand]
+	ld a, [hMultiplicand + 0]
 	ld c, a
 	ld a, [hl]
 	sbc c
@@ -49131,12 +49150,12 @@ Function50f62: ; 50f62 (14:4f62)
 	ld bc, $30
 	call CopyBytes
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	call SkipNames
 	push hl
 	call Function51036
 	ld a, [wd1ec]
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	call SkipNames
 	pop de
 	push hl
@@ -81727,7 +81746,7 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 	call Functione3357
 	ld hl, PartyMonNicknames
 	call Functione3363
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	call Functione3376
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, $30
@@ -81774,8 +81793,8 @@ Functione307c: ; e307c (38:707c)
 	call GetNick
 	ld a, $1
 	ld [wd10b], a
-	predef Functiondb3f
-	jr c, .asm_e30e4
+	predef SentGetPkmnIntoFromBox
+	jr c, .asm_boxisfull
 	xor a
 	ld [wd10b], a
 	callba Functione039
@@ -81792,7 +81811,7 @@ Functione307c: ; e307c (38:707c)
 	call TextBox
 	call WaitBGMap
 	hlcoord 1, 16
-	ld de, String_e3563
+	ld de, String_Stored
 	call PlaceString
 	ld l, c
 	ld h, b
@@ -81804,8 +81823,9 @@ Functione307c: ; e307c (38:707c)
 	call DelayFrames
 	and a
 	ret
-.asm_e30e4
-	ld de, String_e3575
+
+.asm_boxisfull
+	ld de, String_TheBoxIsFull
 	call Functione2a6e
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -81828,8 +81848,8 @@ Functione30fa: ; e30fa (38:70fa)
 	call CloseSRAM
 	xor a
 	ld [wd10b], a
-	predef Functiondb3f
-	jr c, .asm_e316a
+	predef SentGetPkmnIntoFromBox
+	jr c, .party_is_full
 	ld a, $1
 	ld [wd10b], a
 	callba Functione039
@@ -81846,7 +81866,7 @@ Functione30fa: ; e30fa (38:70fa)
 	call TextBox
 	call WaitBGMap
 	hlcoord 1, 16
-	ld de, String_e356b
+	ld de, String_Got
 	call PlaceString
 	ld l, c
 	ld h, b
@@ -81858,8 +81878,9 @@ Functione30fa: ; e30fa (38:70fa)
 	call DelayFrames
 	and a
 	ret
-.asm_e316a
-	ld de, String_e3586
+
+.party_is_full
+	ld de, String_ThePartysFull
 	call Functione2a6e
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -81868,6 +81889,7 @@ Functione30fa: ; e30fa (38:70fa)
 	call DelayFrames
 	scf
 	ret
+
 
 Functione3180: ; e3180 (38:7180)
 	hlcoord 0, 0
@@ -82237,11 +82259,11 @@ String_e3531: db "No more usable ", $e1, $e2, "!@"
 String_e3544: db "Remove MAIL.@"
 String_e3551: db "Released ", $e1, $e2, ".@"
 String_e355e: db "Bye,@"
-String_e3563: db "Stored @"
-String_e356b: db "Got @"
+String_Stored: db "Stored @"
+String_Got: db "Got @"
 String_e3570: db "Non.@"
-String_e3575: db "The BOX is full.@"
-String_e3586: db "The party's full!@"
+String_TheBoxIsFull: db "The BOX is full.@"
+String_ThePartysFull: db "The party's full!@"
 String_e3597: db "No releasing EGGS!@"
 ; e35aa
 
@@ -92417,7 +92439,7 @@ Function1dc381: ; 1dc381
 
 	xor a
 	ld [MonType], a
-	callba Function5084a
+	callba CopyPkmnToTempMon
 	hlcoord 0, 7
 	ld b, $9
 	ld c, $12
@@ -92501,7 +92523,7 @@ Function1dc47b: ; 1dc47b
 	call Functione58
 	xor a
 	ld [MonType], a
-	callba Function5084a
+	callba CopyPkmnToTempMon
 	hlcoord 0, 0
 	ld b, 15
 	ld c, 18

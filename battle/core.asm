@@ -3738,7 +3738,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	call GetBaseData
 	ld a, OTPARTYMON
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	call Function3f47c
 
 	xor a
@@ -6514,7 +6514,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, EnemyMonMaxHP
 	ld b, $00
 	ld hl, LinkBattleRNs + 7 ; ?
-	predef Functione167
+	predef CalcPkmnStats
 
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
@@ -7561,7 +7561,7 @@ endr
 .asm_3ef74
 	xor a
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	callab Function50e1b
 	pop bc
 	ld hl, PartyMon1Level - PartyMon1
@@ -7597,7 +7597,7 @@ endr
 	add hl, bc
 	push bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	pop de
 	ld hl, $0025
@@ -7673,7 +7673,7 @@ endr
 .asm_3f057
 	xor a
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	hlcoord 9, 0
 	ld b, $a
 	ld c, $9
@@ -7828,7 +7828,7 @@ Function3f136: ; 3f136
 	ld [DefaultFlypoint], a
 	xor a
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	ld a, [TempMonLevel]
 	ld b, a
 	ld e, a
