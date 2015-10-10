@@ -1783,8 +1783,8 @@ AI_Smart_PriorityHit: ; 38d5a
 	ld [hBattleTurn], a
 	push hl
 	callab EnemyAttackDamage
-	callab BattleCommand62_DamageCalcWithStats
-	callab BattleCommand07_CalcDamageTypeMultiplier
+	callab BattleCommand_DamageCalcWithStats
+	callab BattleCommand_CalcDamageTypeMultiplier
 	pop hl
 	ld a, [CurDamage + 1]
 	ld c, a
@@ -3380,8 +3380,8 @@ AIDamageCalc: ; 393e7
 
 .asm_39400
 	callab EnemyAttackDamage
-	callab BattleCommand62_DamageCalcWithStats
-	callab BattleCommand07_CalcDamageTypeMultiplier
+	callab BattleCommand_DamageCalcWithStats
+	callab BattleCommand_CalcDamageTypeMultiplier
 	ret
 
 .ConstantDamageEffects

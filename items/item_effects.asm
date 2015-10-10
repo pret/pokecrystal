@@ -562,7 +562,7 @@ endr
 	ld [MonType], a
 	call ClearSprites
 
-	predef Functiond88c
+	predef AddPkmnToParty
 
 	callba Function4db49
 
@@ -1143,13 +1143,13 @@ Functionedce: ; edce
 	ld de, MUSIC_CAPTURE
 	call PlayMusic
 	pop bc
-	ld hl, UnknownText_0xede6
+	ld hl, TextJump_Waitbutton
 	ret
 ; ede6
 
-UnknownText_0xede6: ; 0xede6
+TextJump_Waitbutton: ; 0xede6
 	; @
-	text_jump UnknownText_0x1c5b35
+	text_jump Text_Waitbutton_2
 	db "@"
 ; 0xedeb
 
@@ -1262,7 +1262,7 @@ Calcium: ; ee3d
 	ld bc, $000d
 	call CopyBytes
 
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 
 	ld hl, UnknownText_0xeea6
 	call PrintText
@@ -1518,7 +1518,7 @@ Functionefda: ; efda (3:6fda)
 	ld a, b
 	ld [PartyMenuActionText], a
 	call Functionf030
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 	call Functionf279
 	call Functionf795
 	ld a, $0
@@ -2525,18 +2525,18 @@ Mysteryberry: ; f5bf
 	call Functionf1f9
 	jp c, Functionf6e0
 
-.asm_f5cd
+.restart_func
 	ld a, [wd002]
 	cp MAX_ELIXER
 	jp z, Functionf6af
 	cp ELIXER
 	jp z, Functionf6af
 
-	ld hl, UnknownText_0xf725
+	ld hl, TextJump_RaiseThePPOfWhichMove
 	ld a, [wd002]
 	cp PP_UP
 	jr z, .asm_f5e7
-	ld hl, UnknownText_0xf72a
+	ld hl, TextJump_RestoreThePPOfWhichMove
 
 .asm_f5e7
 	call PrintText
@@ -2547,7 +2547,7 @@ Mysteryberry: ; f5bf
 	ld [CurMoveNum], a
 	ld a, $2
 	ld [wd235], a
-	callba Function3e4bc
+	callba MoveSelectionScreen
 
 	pop bc
 	ld a, b
@@ -2555,7 +2555,7 @@ Mysteryberry: ; f5bf
 	jr nz, .asm_f5c5
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
-	call Functionf963
+	call Add_CurPartyMon_Times
 
 	push hl
 	ld a, [hl]
@@ -2570,29 +2570,29 @@ Mysteryberry: ; f5bf
 
 	ld a, [hl]
 	cp $a6
-	jr z, .asm_f62f
+	jr z, .pp_is_maxed_out
 
 	ld bc, $0015
 	add hl, bc
 	ld a, [hl]
 	cp $c0
-	jr c, .asm_f637
+	jr c, .increase_pp
 
-.asm_f62f
-	ld hl, UnknownText_0xf72f
+.pp_is_maxed_out
+	ld hl, TextJump_PPIsMaxedOut
 	call PrintText
-	jr .asm_f5cd
+	jr .restart_func
 
-.asm_f637
+.increase_pp
 	ld a, [hl]
 	add $40
 	ld [hl], a
 	ld a, $1
 	ld [wd265], a
 	call Functionf84c
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 
-	ld hl, UnknownText_0xf734
+	ld hl, TextJump_PPsIncreased
 	call PrintText
 
 Functionf64c: ; f64c
@@ -2615,7 +2615,7 @@ Functionf652: ; f652
 	call .asm_f677
 
 .asm_f66c
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 	ld hl, UnknownText_0xf739
 	call PrintText
 	jr Functionf64c
@@ -2673,7 +2673,7 @@ Functionf6af: ; f6af
 	push bc
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
-	call Functionf963
+	call Add_CurPartyMon_Times
 	ld a, [hl]
 	and a
 	jr z, .asm_f6ce
@@ -2709,7 +2709,7 @@ Functionf6e8: ; f6e8
 	call Functionf8ec
 	ld hl, PartyMon1PP
 	ld bc, PartyMon2 - PartyMon1
-	call Functionf963
+	call Add_CurPartyMon_Times
 	ld a, [wd265]
 	ld b, a
 	ld a, [hl]
@@ -2749,27 +2749,27 @@ Functionf6e8: ; f6e8
 	ret
 ; f725
 
-UnknownText_0xf725: ; 0xf725
+TextJump_RaiseThePPOfWhichMove: ; 0xf725
 	; Raise the PP of which move?
-	text_jump UnknownText_0x1c5c8a
+	text_jump Text_RaiseThePPOfWhichMove
 	db "@"
 ; 0xf72a
 
-UnknownText_0xf72a: ; 0xf72a
+TextJump_RestoreThePPOfWhichMove: ; 0xf72a
 	; Restore the PP of which move?
-	text_jump UnknownText_0x1c5ca7
+	text_jump Text_RestoreThePPOfWhichMove
 	db "@"
 ; 0xf72f
 
-UnknownText_0xf72f: ; 0xf72f
+TextJump_PPIsMaxedOut: ; 0xf72f
 	; 's PP is maxed out.
-	text_jump UnknownText_0x1c5cc6
+	text_jump Text_PPIsMaxedOut
 	db "@"
 ; 0xf734
 
-UnknownText_0xf734: ; 0xf734
+TextJump_PPsIncreased: ; 0xf734
 	; 's PP increased.
-	text_jump UnknownText_0x1c5cdd
+	text_jump Text_PPsIncreased
 	db "@"
 ; 0xf739
 
@@ -2926,7 +2926,7 @@ ItemB3: ; f77d
 ; f780
 
 
-Functionf780: ; f780
+Play_SFX_FULL_HEAL: ; f780
 	push de
 	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
@@ -2937,7 +2937,7 @@ Functionf780: ; f780
 Functionf789: ; f789
 	ld hl, UsedItemText
 	call PrintText
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 	call Functiona80
 	; fallthrough
 ; f795
@@ -3251,7 +3251,7 @@ Functionf8ec: ; f8ec
 	jr .asm_f91d
 
 .asm_f91a
-	call Functionf963
+	call Add_CurPartyMon_Times
 
 .asm_f91d
 	ld a, [hl]
@@ -3298,7 +3298,7 @@ Functionf8ec: ; f8ec
 	ret
 ; f963
 
-Functionf963: ; f963
+Add_CurPartyMon_Times: ; f963
 	ld a, [CurPartyMon]
 	call AddNTimes
 

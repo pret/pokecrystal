@@ -2932,7 +2932,7 @@ SpecialGiveShuckle: ; 7305
 	ld a, 15
 	ld [CurPartyLevel], a
 
-	predef Functiond88c
+	predef AddPkmnToParty
 	jr nc, .NotGiven
 
 ; Caught data.
@@ -7915,7 +7915,8 @@ Functiond839: ; d839
 ; d88c
 
 
-Functiond88c: ; d88c
+AddPkmnToParty: ; d88c
+; Check if to copy wild Pkmn or generate new Pkmn
 	ld de, PartyCount
 	ld a, [MonType]
 	and $f
@@ -8176,12 +8177,15 @@ endr
 	ld [de], a
 	inc de
 	ld hl, EnemyMonStatus
+    ; Copy EnemyMonStatus
 	ld a, [hli]
 	ld [de], a
 	inc de
+    ; Copy EnemyMonUnused
 	ld a, [hli]
 	ld [de], a
 	inc de
+    ; Copy EnemyMonHP
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -8194,16 +8198,17 @@ endr
 	dec a
 	jr nz, .asm_da3b
 	ld hl, EnemyMonMaxHP
-	ld bc, $000c
+	ld bc, 2*6 ; MaxHP + 5 Stats
 	call CopyBytes
 	pop hl
 	jr .asm_da45
 
 .asm_da3b
 	pop hl
-	ld bc, $000a
+	ld bc, 2*5 ; 5 Stats
 	add hl, bc
-	ld b, $0
+	ld b, $0 ; if b = 1, then the Stats of the Pkmn are calculated
+             ; only the current HP aren't set to MaxHP after this
 	call CalcPkmnStats
 
 .asm_da45
@@ -8225,6 +8230,7 @@ endr
 	scf
 	ret
 ; da6d
+
 
 FillPP: ; da6d
 	push bc
@@ -8876,8 +8882,9 @@ SentPkmnIntoBox: ; de6e
 	ld [de], a
 	inc de
 
+    ; Set all 5 Experience Values to 0
 	xor a
-	ld b, $a
+	ld b, 2*5
 .asm_dee5
 	ld [de], a
 	inc de
@@ -8920,10 +8927,12 @@ SentPkmnIntoBox: ; de6e
 	ld de, TempMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
+
 	ld hl, sBoxMon1PP
 	ld de, TempMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
+
 	ld b, 0
 	call Functiondcb6
 
@@ -8931,6 +8940,7 @@ SentPkmnIntoBox: ; de6e
 	scf
 	ret
 ; df42
+
 
 Functiondf42: ; df42
 	call CloseSRAM
@@ -8999,7 +9009,7 @@ GiveEgg:: ; df8c
 	push bc
 	call CheckSeenMon
 	push bc
-	call Functiond88c
+	call AddPkmnToParty
 	pop bc
 	ld a, c
 	and a
@@ -9476,7 +9486,7 @@ GivePoke:: ; e277
 	push bc
 	xor a
 	ld [MonType], a
-	call Functiond88c
+	call AddPkmnToParty
 	jr nc, .asm_e2b0
 	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
@@ -9658,6 +9668,7 @@ Functione3d4: ; e3d4
 	ld b, $2
 	ret
 ; e3d9
+
 
 TextJump_WasSentToBillsPC: ; 0xe3d9
 	; was sent to BILL's PC.
@@ -35229,7 +35240,7 @@ TrainerType1: ; 397eb
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	predef Functiond88c
+	predef AddPkmnToParty
 	pop hl
 	jr .loop
 ; 39806
@@ -35250,7 +35261,7 @@ TrainerType2: ; 39806
 	ld [MonType], a
 
 	push hl
-	predef Functiond88c
+	predef AddPkmnToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Moves
@@ -35326,7 +35337,7 @@ TrainerType3: ; 39871
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	predef Functiond88c
+	predef AddPkmnToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
@@ -35357,7 +35368,7 @@ TrainerType4: ; 3989d
 	ld [MonType], a
 
 	push hl
-	predef Functiond88c
+	predef AddPkmnToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
@@ -87322,7 +87333,7 @@ Functionfcc63: ; fcc63
 	ld [MonType], a
 	ld [wd10b], a
 	callab Functione039
-	predef Functiond88c
+	predef AddPkmnToParty
 
 	ld e, TRADE_DIALOG
 	call GetTradeAttribute

@@ -645,7 +645,7 @@ Function3c434: ; 3c434
 	ld [wd235], a
 	inc a ; POUND
 	ld [FXAnimIDLo], a
-	call Function3e4bc
+	call MoveSelectionScreen
 	push af
 	call Call_LoadTempTileMapToTileMap
 	call UpdateBattleHuds
@@ -5584,7 +5584,7 @@ CheckAmuletCoin: ; 3e4a8
 	ret
 ; 3e4bc
 
-Function3e4bc: ; 3e4bc
+MoveSelectionScreen: ; 3e4bc
 	call IsMobileBattle
 	jr nz, .asm_3e4c8
 	callba Function100b9f
@@ -5784,7 +5784,7 @@ Function3e4bc: ; 3e4bc
 .asm_3e613
 	call StdBattleTextBox
 	call Call_LoadTempTileMapToTileMap
-	jp Function3e4bc
+	jp MoveSelectionScreen
 ; 3e61c
 
 .string_3e61c ; 3e61c
@@ -5869,7 +5869,7 @@ endr
 .asm_3e69e
 	xor a
 	ld [wd0e3], a
-	jp Function3e4bc
+	jp MoveSelectionScreen
 
 .asm_3e6a5
 	push hl
@@ -5896,7 +5896,7 @@ endr
 .asm_3e6bf
 	ld a, [wcfa9]
 	ld [wd0e3], a
-	jp Function3e4bc
+	jp MoveSelectionScreen
 ; 3e6c8
 
 MoveInfoBox: ; 3e6c8

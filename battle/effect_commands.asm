@@ -385,9 +385,9 @@ CantMove: ; 341f0
 
 
 Function34216: ; 34216
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call CantMove
-	jp SwitchTurn
+	jp BattleCommand_SwitchTurn
 ; 3421f
 
 
@@ -539,7 +539,7 @@ CheckEnemyTurn: ; 3421f
 	ld hl, HurtItselfText
 	call StdBattleTextBox
 	call Function355dd
-	call BattleCommand62_DamageCalcWithStats
+	call BattleCommand_DamageCalcWithStats
 	call BattleCommand0a
 	xor a
 	ld [wcfca], a
@@ -652,7 +652,7 @@ HitConfusion: ; 343a5
 	ld [CriticalHit], a
 
 	call Function355dd
-	call BattleCommand62_DamageCalcWithStats
+	call BattleCommand_DamageCalcWithStats
 	call BattleCommand0a
 
 	xor a
@@ -1336,7 +1336,7 @@ BattleCommand4f: ; 346cd
 ; 346d2
 
 
-BattleCommand07_CalcDamageTypeMultiplier: ; 346d2
+BattleCommand_CalcDamageTypeMultiplier: ; 346d2
 ; STAB = Same Type Attack Bonus
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -2872,8 +2872,7 @@ BattleCommand91_92: ; 34feb
 ; 34ffd
 
 
-SwitchTurn: ; 34ffd
-BattleCommand93: ; 34ffd
+BattleCommand_SwitchTurn: ; 34ffd
 ; switchturn
 
 	ld a, [hBattleTurn]
@@ -3246,7 +3245,7 @@ BattleCommand11: ; 351c0
 	predef Functionc6e0
 	call RefreshBattleHuds
 
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	xor a
 	ld [wcfca], a
 	ld [FXAnimIDHi], a
@@ -3254,7 +3253,7 @@ BattleCommand11: ; 351c0
 	ld [wc689], a
 	ld a, $c2
 	call Function37e44
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 
 	jr .asm_3524d ; 3522f $1c
 
@@ -3305,10 +3304,10 @@ BattleCommand12: ; 35250
 	ret z
 	ld [de], a
 
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	ld hl, RageBuildingText
 	call StdBattleTextBox
-	jp SwitchTurn
+	jp BattleCommand_SwitchTurn
 ; 3527b
 
 
@@ -3953,10 +3952,9 @@ Function355bd: ; 355bd
 	call GetPartyLocation
 	pop bc
 	ret
-; 355d5
 
 
-BattleCommanda9_IfAttackMissedResetDamage: ; 355d5
+BattleCommand_IfAttackMissedResetDamage: ; 355d5
 ; clearmissdamage
 	ld a, [AttackMissed]
 	and a
@@ -4004,7 +4002,7 @@ endr
 ; 35612
 
 
-BattleCommand62_DamageCalcWithStats: ; 35612
+BattleCommand_DamageCalcWithStats: ; 35612
 ; damagecalc
 
 ; Return a damage value for move power d, player level e, enemy defense c and player attack b.
@@ -4412,7 +4410,7 @@ BattleCommand3f: ; 35726
 	call EnemyAttackDamage
 
 .notEnemysTurn
-	call BattleCommand62_DamageCalcWithStats
+	call BattleCommand_DamageCalcWithStats
 	pop hl
 	ld [hl], 1
 	ret
@@ -4754,7 +4752,7 @@ BattleCommand44: ; 359e6
 	cp CURSE_T
 	jr z, .asm_35a50
 	call AnimateCurrentMove
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 
 .asm_35a13
 	call BattleRandom
@@ -4783,7 +4781,7 @@ BattleCommand44: ; 359e6
 	ld a, [wd265]
 	cp $a
 	jr nc, .asm_35a13
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 
 	ld a, [hl]
 	ld [wd265], a
@@ -5457,13 +5455,13 @@ Function35de0: ; 35de0
 	ld hl, SubFadedText
 	call StdBattleTextBox
 
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call BattleCommanda7
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	call z, Function37ec7
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarAddr
@@ -6539,15 +6537,15 @@ Function3641a: ; 3641a
 	and a
 	jr z, .Player
 
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call Function365d7
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	jr .end
 
 .Player
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call Function365fd
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 .end
 	ld a, 1
 	and a
@@ -6828,7 +6826,7 @@ Function365d7: ; 365d7
 	ld hl, BadgeStatBoosts
 	call CallBattleCore
 
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 
 	ld hl, Function3ec39
 	call CallBattleCore
@@ -6836,7 +6834,7 @@ Function365d7: ; 365d7
 	ld hl, Function3ec76
 	call CallBattleCore
 
-	jp SwitchTurn
+	jp BattleCommand_SwitchTurn
 ; 365fd
 
 
@@ -6848,7 +6846,7 @@ Function365fd: ; 365fd
 	ld a, $5
 	call Function3661d
 
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 
 	ld hl, Function3ec39
 	call CallBattleCore
@@ -6856,7 +6854,7 @@ Function365fd: ; 365fd
 	ld hl, Function3ec76
 	call CallBattleCore
 
-	jp SwitchTurn
+	jp BattleCommand_SwitchTurn
 ; 3661d
 
 
@@ -7056,10 +7054,10 @@ BattleCommand3e: ; 3671a
 	ld [de], a
 	jr nz, .asm_3674c ; 36730 $1a
 	res 1, [hl]
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call Function37962
 	push af
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	pop af
 	jr nz, .asm_3674c ; 3673f $b
 	set 7, [hl]
@@ -8823,10 +8821,10 @@ BattleCommand2c: ; 3713e
 	call CallBattleCore
 .asm_371a9
 	call AnimateCurrentMove
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	ld hl, Function3ccef
 	call CallBattleCore
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call UpdateUserInParty
 	call RefreshBattleHuds
 	ld hl, RegainedHealthText
@@ -9500,7 +9498,7 @@ BattleCommand61: ; 37874
 	push de
 .asm_3787d
 
-	call BattleCommand07_CalcDamageTypeMultiplier
+	call BattleCommand_CalcDamageTypeMultiplier
 
 	ld a, [InLinkBattle]
 	cp $3
@@ -9544,7 +9542,7 @@ BattleCommand61: ; 37874
 	ld a, $3
 	ld [wc689], a
 	call AnimateCurrentMove
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	ld hl, AICheckPlayerMaxHP
 	ld a, [hBattleTurn]
 	and a
@@ -9557,18 +9555,18 @@ BattleCommand61: ; 37874
 
 	ld hl, GetQuarterMaxHP
 	call CallBattleCore
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	ld hl, Function3ccef
 	call CallBattleCore
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	ld hl, RegainedHealthText
 	call StdBattleTextBox
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call UpdateOpponentInParty
 	jr .asm_37904 ; 378f1 $11
 
 .asm_378f3
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call Function37ed5
 	jr nc, .asm_37904 ; 378f9 $9
 	call AnimateFailedMove
@@ -10094,11 +10092,11 @@ endr
 	rst FarCall
 
 	call AnimateCurrentMove
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 
 	callab Function3ccef
 
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call UpdateUserInParty
 
 ; 'regained health!'
@@ -10596,11 +10594,11 @@ Function37e54: ; 37e54
 	push hl
 	push de
 	push bc
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 
 	callab PlayBattleAnim
 
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	pop bc
 	pop de
 	pop hl
