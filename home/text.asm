@@ -273,7 +273,7 @@ endm
 	dict $24, PlacePOKE
 	dict $25, NextChar
 	dict2 $1f, " "
-	dict $5f, Char5F
+	dict "<DEXEND>", PlaceDexEnd
 	dict "<TARGET>", PlaceMoveTargetsName
 	dict "<USER>", PlaceMoveUsersName
 	dict "<ENEMY>", PlaceEnemysName
@@ -590,7 +590,7 @@ ContText:: ; 1345
 ; 1356
 
 
-Char5F:: ; 1356
+PlaceDexEnd:: ; 1356
 ; Legacy: ends a Pokédex entry (Red).
 ; Dex entries are now regular strings.
 	ld [hl], "."

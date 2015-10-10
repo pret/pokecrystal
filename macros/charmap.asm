@@ -301,3 +301,5 @@
 	charmap "<TRNER>",  $5d
 	charmap "<ROCKET>", $5e
 	charmap "<......>", $56
+	charmap "<START>",  $00
+	charmap "<DEXEND>", $5f

@@ -9768,10 +9768,10 @@ MenuData2_0xe477: ; 0xe477
 ; 0xe47f
 
 Strings_e47f: ; e47f
-	db "WITHDRAW ", $e1, $e2, "@"
-	db "DEPOSIT ", $e1, $e2, "@"
+	db "WITHDRAW <PK><MN>@"
+	db "DEPOSIT <PK><MN>@"
 	db "CHANGE BOX@"
-	db "MOVE ", $e1, $e2, " W/O MAIL@"
+	db "MOVE <PK><MN> W/O MAIL@"
 	db "SEE YA!@"
 
 Jumptable_e4ba: ; e4ba (3:64ba)
@@ -47515,22 +47515,22 @@ PartyMenuStrings: ; 0x504d2
 ChooseAMonString: ; 0x504e4
 	db "Choose a #MON.@"
 UseOnWhichPKMNString: ; 0x504f3
-	db "Use on which ", $e1, $e2, "?@"
+	db "Use on which <PK><MN>?@"
 WhichPKMNString: ; 0x50504
-	db "Which ", $e1, $e2, "?@"
+	db "Which <PK><MN>?@"
 TeachWhichPKMNString: ; 0x5050e
-	db "Teach which ", $e1, $e2, "?@"
+	db "Teach which <PK><MN>?@"
 MoveToWhereString: ; 0x5051e
 	db "Move to where?@"
 ChooseAFemalePKMNString: ; 0x5052d  ; UNUSED
-	db "Choose a ♀", $e1, $e2, ".@"
+	db "Choose a ♀<PK><MN>.@"
 ChooseAMalePKMNString: ; 0x5053b    ; UNUSED
-	db "Choose a ♂", $e1, $e2, ".@"
+	db "Choose a ♂<PK><MN>.@"
 ToWhichPKMNString: ; 0x50549
-	db "To which ", $e1, $e2, "?@"
+	db "To which <PK><MN>?@"
 
 YouHaveNoPKMNString: ; 0x50556
-	db "You have no ", $e1, $e2, "!@"
+	db "You have no <PK><MN>!@"
 
 
 Function50566: ; 50566
@@ -66891,20 +66891,15 @@ Unknown_8e6a5: ; 8e6a5
 
 
 Unknown_8e706: ; 8e706
-	dbbw $80, $01, Unknown_8e72a
-	dbbw $80, $01, Unknown_8e72a
-	dbbw $80, $01, Unknown_8e72a
-	dbbw $80, $01, Unknown_8e72a
-	dbbw $10, $37, Unknown_8e72a
-	dbbw $10, $11, Unknown_8e72a
-	dbbw $10, $39, Unknown_8e72a
-	dbbw $10, $24, Unknown_8e72a
-	dbbw $10, $21, Unknown_8e72a
-
-Unknown_8e72a:
-; 8e72a
-
-
+	dbbw $80, $01, Function8e72a
+	dbbw $80, $01, Function8e72a
+	dbbw $80, $01, Function8e72a
+	dbbw $80, $01, Function8e72a
+	dbbw $10, $37, Function8e72a
+	dbbw $10, $11, Function8e72a
+	dbbw $10, $39, Function8e72a
+	dbbw $10, $24, Function8e72a
+	dbbw $10, $21, Function8e72a
 
 Function8e72a: ; 8e72a
 	add $10
@@ -69886,7 +69881,7 @@ Function910f9: ; 910f9 (24:50f9)
 	ld hl, $3
 	add hl, bc
 	ld [hl], $8
-	call Function9163e
+	call _UpdateRadioStation
 	ld hl, wcf63
 	inc [hl]
 	ret
@@ -70541,410 +70536,7 @@ ClockTilemapRLE: ; 915db
 INCBIN "gfx/unknown/0915db.tilemap.rle"
 ; 9163e
 
-Function9163e: ; 9163e (24:563e)
-	jr UpdateRadioStation
-
-Function91640: ; 91640 (24:5640)
-	push bc
-	call Function9164e
-	pop bc
-	ld a, [wd958]
-	ld hl, $6
-	add hl, bc
-	ld [hl], a
-	ret
-
-Function9164e: ; 9164e (24:564e)
-	ld hl, $ffa9
-	ld a, [hl]
-	and D_DOWN
-	jr nz, .down
-	ld a, [hl]
-	and D_UP
-	jr nz, .up
-	ret
-
-.down
-	ld hl, wd958
-	ld a, [hl]
-	and a
-	ret z
-rept 2
-	dec [hl]
-endr
-	jr .update
-
-.up
-	ld hl, wd958
-	ld a, [hl]
-	cp 80
-	ret nc
-rept 2
-	inc [hl]
-endr
-
-.update
-
-UpdateRadioStation: ; 9166f (24:566f)
-	ld hl, wd958
-	ld d, [hl]
-	ld hl, RadioChannels
-.asm_91676
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_91682
-	cp d
-	jr z, .asm_91686
-rept 2
-	inc hl
-endr
-	jr .asm_91676
-
-.asm_91682
-	call NoRadioStation
-	ret
-
-.asm_91686
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, .asm_9168e
-	push de
-	jp [hl]
-.asm_9168e
-	ld a, [wc6d9]
-	and a
-	ret z
-	xor a
-	ld [hBGMapMode], a
-	hlcoord 2, 9
-	call PlaceString
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-; 916a1 (24:56a1)
-
-Function916a1: ; 916a1
-	ld [wc6d9], a
-	ld a, [hli]
-	ld [wc6da], a
-	ld a, [hli]
-	ld [wc6db], a
-	ret
-; 916ad
-
-
-RadioChannels:
-; frequencies and the shows that play on them.
-; frequency value given here = 4 × ingame_frequency − 2
-	dbw 16, .PkmnTalkAndPokedexShow
-	dbw 28, .PokemonMusic
-	dbw 32, .LuckyChannel
-	dbw 40, .BuenasPassword
-	dbw 52, .RuinsOfAlphRadio
-	dbw 64, .PlacesAndPeople
-	dbw 72, .LetsAllSing
-	dbw 78, .PokeFluteRadio
-	dbw 80, .EvolutionRadio
-	db $ff
-
-.PkmnTalkAndPokedexShow
-; Pokédex Show in the morning
-; Oak's Pokémon Talk in the afternoon and evening
-	call .InJohto
-	jr nc, .NoSignal
-	ld a, [TimeOfDay]
-	and a
-	jp z, Function91766
-	jp Function91753
-
-.PokemonMusic
-	call .InJohto
-	jr nc, .NoSignal
-	jp Function9177b
-
-.LuckyChannel
-	call .InJohto
-	jr nc, .NoSignal
-	jp Function91790
-
-.BuenasPassword
-	call .InJohto
-	jr nc, .NoSignal
-	jp Function917a5
-
-.RuinsOfAlphRadio
-	ld a, [wc6d8]
-	cp RUINS_OF_ALPH
-	jr nz, .NoSignal
-	jp Function917d5
-
-.PlacesAndPeople
-	call .InJohto
-	jr c, .NoSignal
-	ld a, [wPokegearFlags]
-	bit 3, a
-	jr z, .NoSignal
-	jp Function917ea
-
-.LetsAllSing
-	call .InJohto
-	jr c, .NoSignal
-	ld a, [wPokegearFlags]
-	bit 3, a
-	jr z, .NoSignal
-	jp Function917ff
-
-.PokeFluteRadio
-	call .InJohto
-	jr c, .NoSignal
-	ld a, [wPokegearFlags]
-	bit 3, a
-	jr z, .NoSignal
-	jp Function91829
-
-.EvolutionRadio
-; This station airs in the Lake of Rage area when Rocket are still in Mahogany.
-
-	ld a, [StatusFlags]
-	bit 4, a
-	jr z, .NoSignal
-
-	ld a, [wc6d8]
-	cp MAHOGANY_TOWN
-	jr z, .ok
-	cp ROUTE_43
-	jr z, .ok
-	cp LAKE_OF_RAGE
-	jr nz, .NoSignal
-.ok
-	jp Function9183e
-
-.NoSignal
-	call NoRadioStation
-	ret
-
-.InJohto
-; if in Johto or on the S.S. Aqua, set carry
-; otherwise clear carry
-	ld a, [wc6d8]
-	cp FAST_SHIP
-	jr z, .johto
-	cp KANTO_LANDMARK
-	jr c, .johto
-.kanto
-	and a
-	ret
-.johto
-	scf
-	ret
-
-
-
-Function91753: ; 91753 (24:5753)
-	xor a ; OAKS_POKEMON_TALK
-	ld [wd002], a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, OaksPkmnTalkName
-	ret
-
-Function91766: ; 91766 (24:5766)
-	ld a, POKEDEX_SHOW
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, PokedexShowName
-	ret
-
-Function9177b: ; 9177b (24:577b)
-	ld a, POKEMON_MUSIC
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, PokemonMusicName
-	ret
-
-Function91790: ; 91790 (24:5790)
-	ld a, LUCKY_CHANNEL
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, LuckyChannelName
-	ret
-
-Function917a5: ; 917a5 (24:57a5)
-	ld a, BUENAS_PASSWORD
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, NotBuenasPasswordName
-	ld a, [StatusFlags2]
-	bit 0, a
-	ret z
-	ld de, BuenasPasswordName
-	ret
-; 917c3 (24:57c3)
-
-BuenasPasswordName:    db "BUENA'S PASSWORD@"
-NotBuenasPasswordName: db "@"
-
-Function917d5: ; 917d5 (24:57d5)
-	ld a, UNOWN_RADIO
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, UnknownStationName
-	ret
-
-Function917ea: ; 917ea (24:57ea)
-	ld a, PLACES_AND_PEOPLE
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, PlacesAndPeopleName
-	ret
-
-Function917ff: ; 917ff (24:57ff)
-	ld a, LETS_ALL_SING
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, LetsAllSingName
-	ret
-; 91814 (24:5814)
-
-Function91814: ; 91814
-	ld a, ROCKET_RADIO
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, LetsAllSingName
-	ret
-; 91829
-
-Function91829: ; 91829 (24:5829)
-	ld a, POKE_FLUTE_RADIO
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, PokeFluteStationName
-	ret
-
-Function9183e: ; 9183e (24:583e)
-	ld a, EVOLUTION_RADIO
-	ld [wd002], a
-	xor a
-	ld [wd005], a
-	ld a, BANK(PlayRadioShow)
-	ld hl, PlayRadioShow
-	call Function9187c
-	ld de, UnknownStationName
-	ret
-; 91853 (24:5853)
-
-Function91853: ; 91853
-	ret
-
-RadioMusicNone: ; 91854 (24:5854)
-	push de
-	ld a, e
-	ld [wc6dc], a
-	ld de, MUSIC_NONE
-	call PlayMusic
-	pop de
-	ld a, e
-	ld [wMapMusic], a
-	call PlayMusic
-	ret
-
-Function91868: ; 91868 (24:5868)
-	push de
-	ld a, $fe
-	ld [wc6dc], a
-	ld de, MUSIC_NONE
-	call PlayMusic
-	pop de
-	ld de, MUSIC_POKEMON_CHANNEL
-	call PlayMusic
-	ret
-
-Function9187c: ; 9187c (24:587c)
-	ld [wc6d9], a
-	ld a, l
-	ld [wc6da], a
-	ld a, h
-	ld [wc6db], a
-	ret
-
-NoRadioStation: ; 91888 (24:5888)
-	call NoRadioMusic
-	call NoRadioName
-	xor a
-	ld [wc6d9], a
-	ld [wc6da], a
-	ld [wc6db], a
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	ret
-
-NoRadioMusic: ; 9189d (24:589d)
-	ld de, MUSIC_NONE
-	call PlayMusic
-	ld a, $ff
-	ld [wc6dc], a
-	ret
-
-NoRadioName: ; 918a9 (24:58a9)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	hlcoord 1, 8
-	ld bc, $312
-	call ClearBox
-	hlcoord 0, 12
-	ld bc, $412
-	call TextBox
-	ret
-; 918bf
-
-OaksPkmnTalkName:     db "OAK's ", $e1, $e2, " Talk@"
-PokedexShowName:      db "#DEX Show@"
-PokemonMusicName:     db "#MON Music@"
-LuckyChannelName:     db "Lucky Channel@"
-UnknownStationName:   db "?????@"
-PlacesAndPeopleName:  db "Places & People@"
-LetsAllSingName:      db "Let's All Sing!@"
-PokeFluteStationName: db "# FLUTE@"
-; 9191c
+INCLUDE "engine/radio2.asm"
 
 Function9191c: ; 9191c
 	ld hl, Options
@@ -71181,14 +70773,14 @@ endr
 
 .StationPointers: ; 91ab9
 	dw Function91acb
-	dw Function91753
-	dw Function91766
-	dw Function9177b
-	dw Function91790
-	dw Function917d5
-	dw Function917ea
-	dw Function917ff
-	dw Function91814
+	dw LoadStation_OaksPokemonTalk
+	dw LoadStation_PokedexShow
+	dw LoadStation_PokemonMusic
+	dw LoadStation_LuckyChannel
+	dw LoadStation_UnownRadio
+	dw LoadStation_PlacesAndPeople
+	dw LoadStation_LetsAllSing
+	dw LoadStation_RocketRadio
 ; 91acb
 
 Function91acb: ; 91acb
@@ -71198,11 +70790,11 @@ Function91acb: ; 91acb
 	call UpdateTime
 	ld a, [TimeOfDay]
 	and a
-	jp z, Function91766
-	jp Function91753
+	jp z, LoadStation_PokedexShow
+	jp LoadStation_OaksPokemonTalk
 
 .kanto
-	jp Function917ea
+	jp LoadStation_PlacesAndPeople
 ; 91ae1
 
 Function91ae1: ; 91ae1
@@ -74428,11 +74020,14 @@ SECTION "bank2E", ROMX, BANK[$2E]
 ReturnFromMapSetupScript:: ; b8000
 	xor a
 	ld [hBGMapMode], a
-	callba Functionb800a
+	; For some reson, GameFreak chose to use a callba here instead of just falling through.
+	; No other function in the game references the function at 2E:400A, here labeled
+	; ReturnFromMapSetupScript.inefficientcallba.
+	callba .inefficientcallba ; this is a waste of 6 ROM bytes and 2 stack bytes
 	ret
 ; b800a
 
-Functionb800a: ; b800a
+.inefficientcallba: ; b800a
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
@@ -74447,7 +74042,7 @@ Functionb800a: ; b800a
 	jr nz, .asm_b8029
 
 .asm_b8024
-	ld a, $ff
+	ld a, -1
 	ld [wc2d9], a
 
 .asm_b8029
@@ -79976,7 +79571,7 @@ Functione23e9: ; e23e9 (38:63e9)
 	call ClearSprites
 	call Functione2d30
 	call Functione2a8e
-	ld de, String_e34dd
+	ld de, PCString_ChooseaPKMN
 	call Functione2a6e
 	ld a, $5
 	ld [wcb2d], a
@@ -80041,7 +79636,7 @@ Functione245d: ; e245d (38:645d)
 	ld [CurPartySpecies], a
 	ld a, $17
 	call Functione33d0
-	ld de, String_e34ea
+	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
 	ld [wcfa9], a
@@ -80088,7 +79683,7 @@ BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 	ld [wcb2a], a
 	ret
 .asm_e24c1
-	ld de, String_e34ea
+	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ret
 
@@ -80110,7 +79705,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	jr c, BillsPCDepositFuncCancel
 	ld a, [wcfa9]
 	push af
-	ld de, String_e34f4
+	ld de, PCString_ReleasePKMN
 	call Functione2a6e
 	call Function1d6e
 	lb bc, 14, 11
@@ -80136,7 +79731,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	pop af
 	ret
 .asm_e252c
-	ld de, String_e34ea
+	ld de, PCString_WhatsUp
 	call Functione2a6e
 	pop af
 	ld [wcfa9], a
@@ -80220,15 +79815,15 @@ Functione2583: ; e2583 (38:6583)
 
 Functione25c8: ; e25c8 (38:65c8)
 	ld a, [wcf63]
-	ld hl, Jumptable_e25d2
+	ld hl, .jumptable
 	call Functione33df
 	jp [hl]
 
-Jumptable_e25d2: ; e25d2 (38:65d2)
+.jumptable: ; e25d2 (38:65d2)
 	dw Functione25dc
 	dw Functione2612
 	dw Functione2655
-	dw Functione2675
+	dw BillsPC_Withdraw
 	dw Functione2992
 
 
@@ -80240,7 +79835,7 @@ Functione25dc: ; e25dc (38:65dc)
 	call ClearSprites
 	call Functione2d30
 	call Functione2a8e
-	ld de, String_e34dd
+	ld de, PCString_ChooseaPKMN
 	call Functione2a6e
 	ld a, $5
 	ld [wcb2d], a
@@ -80306,26 +79901,26 @@ Functione2655: ; e2655 (38:6655)
 	ld [CurPartySpecies], a
 	ld a, $17
 	call Functione33d0
-	ld de, String_e34ea
+	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
 	ld [wcfa9], a
 	call Functione298d
 	ret
 
-Functione2675: ; e2675 (38:6675)
-	ld hl, BillsPCWithdrawMenuDataHeader
+BillsPC_Withdraw: ; e2675 (38:6675)
+	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [wcfa9]
 	call Function1d4b
 	call InterpretMenu2
-	jp c, BillsPCWithdrawFuncCancel
+	jp c, .cancel
 	ld a, [wcfa9]
 	dec a
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, BillsPCWithdrawJumptable
+	ld hl, .jumptable
 rept 2
 	add hl, de
 endr
@@ -80334,30 +79929,30 @@ endr
 	ld l, a
 	jp [hl]
 
-BillsPCWithdrawJumptable: ; e2699 (38:6699) #mark
-	dw BillsPCWithdrawFuncWithdraw ; Withdraw
-	dw BillsPCWithdrawFuncStats ; Stats
-	dw BillsPCWithdrawFuncRelease ; Release
-	dw BillsPCWithdrawFuncCancel ; Cancel
+.jumptable: ; e2699 (38:6699) #mark
+	dw .withdraw ; Withdraw
+	dw .stats ; Stats
+	dw .release ; Release
+	dw .cancel ; Cancel
 
 
-BillsPCWithdrawFuncWithdraw: ; e26a1 (38:66a1)
+.withdraw: ; e26a1 (38:66a1)
 	call Functione2f18
-	jp c, BillsPCWithdrawFuncCancel
-	call Functione30fa
-	jr c, .asm_e26b9
+	jp c, .cancel
+	call TryWithdrawPokemon
+	jr c, .FailedWithdraw
 	ld a, $0
 	ld [wcf63], a
 	xor a
 	ld [wcb2b], a
 	ld [wcb2a], a
 	ret
-.asm_e26b9
-	ld de, String_e34ea
+.FailedWithdraw
+	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ret
 
-BillsPCWithdrawFuncStats: ; e26c0 (38:66c0)
+.stats: ; e26c0 (38:66c0)
 	call Function1d6e
 	call Functione2f7e
 	call ExitMenu
@@ -80368,12 +79963,12 @@ BillsPCWithdrawFuncStats: ; e26c0 (38:66c0)
 	call Functione33d0
 	ret
 
-BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
+.release: ; e26d8 (38:66d8)
 	ld a, [wcfa9]
 	push af
 	call Functione2f5f
-	jr c, .asm_e2720
-	ld de, String_e34f4
+	jr c, .FailedRelease
+	ld de, PCString_ReleasePKMN
 	call Functione2a6e
 	call Function1d6e
 	lb bc, 14, 11
@@ -80382,7 +79977,7 @@ BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
 	dec a
 	call ExitMenu
 	and a
-	jr nz, .asm_e2720
+	jr nz, .FailedRelease
 	ld a, [wcb2b]
 	ld hl, wcb2a
 	add [hl]
@@ -80398,28 +79993,28 @@ BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
 	ld [wcb2a], a
 	pop af
 	ret
-.asm_e2720
-	ld de, String_e34ea
+.FailedRelease
+	ld de, PCString_WhatsUp
 	call Functione2a6e
 	pop af
 	ld [wcfa9], a
 	ret
 
-BillsPCWithdrawFuncCancel: ; e272b (38:672b)
+.cancel: ; e272b (38:672b)
 	ld a, $0
 	ld [wcf63], a
 	ret
 ; e2731 (38:6731)
 
-BillsPCWithdrawMenuDataHeader: ; 0xe2731
+.MenuDataHeader: ; 0xe2731
 	db $40 ; flags
 	db 04, 09 ; start coords
 	db 13, 19 ; end coords
-	dw BillsPCWithdrawMenuData
+	dw .MenuData
 	db 1 ; default option
 ; 0xe2739
 
-BillsPCWithdrawMenuData: ; 0xe2739
+.MenuData: ; 0xe2739
 	db $80 ; flags
 	db 4 ; items
 	db "WITHDRAW@"
@@ -80491,7 +80086,7 @@ Functione27ba: ; e27ba
 	ld [hBGMapMode], a
 	call ClearSprites
 	call Functione2d30
-	ld de, String_e34dd
+	ld de, PCString_ChooseaPKMN
 	call Functione2a6e
 	ld a, $5
 	ld [wcb2d], a
@@ -80567,7 +80162,7 @@ Functione283d: ; e283d
 	ld [CurPartySpecies], a
 	ld a, $17
 	call Functione33d0
-	ld de, String_e34ea
+	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
 	ld [wcfa9], a
@@ -80655,7 +80250,7 @@ Functione28df: ; e28df
 	xor a
 	ld [hBGMapMode], a
 	call Functione2d30
-	ld de, String_e3500
+	ld de, PCString_MoveToWhere
 	call Functione2a6e
 	ld a, $5
 	ld [wcb2d], a
@@ -80967,7 +80562,7 @@ Functione2a8e: ; e2a8e (38:6a8e)
 ; e2abd (38:6abd)
 
 String_e2abd:
-	db "PARTY ", $e1, $e2, "@"
+	db "PARTY <PK><MN>@"
 ; e2ac6
 
 PCMonInfo: ; e2ac6 (38:6ac6)
@@ -81594,7 +81189,7 @@ Functione2ee5: ; e2ee5
 	ret
 
 .asm_e2f02
-	ld de, String_e3521
+	ld de, PCString_TheresNoRoom
 	call Functione2a6e
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -81608,31 +81203,31 @@ Functione2ee5: ; e2ee5
 Functione2f18: ; e2f18 (38:6f18)
 	ld a, [wcb2e]
 	and a
-	jr nz, .asm_e2f3d
+	jr nz, .Okay
 	ld a, [wcb2c]
 	cp $3
-	jr c, .asm_e2f49
+	jr c, .ItsYourLastPokemon
 	ld a, [wcb2b]
 	ld hl, wcb2a
 	add [hl]
 	ld [CurPartyMon], a
 	callba Functione538
-	jr c, .asm_e2f44
+	jr c, .AllOthersFainted
 	ld a, [wcb32]
 	and a
-	jr nz, .asm_e2f3f
-.asm_e2f3d
+	jr nz, .HasMail
+.Okay
 	and a
 	ret
-.asm_e2f3f
-	ld de, String_e3544
-	jr .asm_e2f4c
-.asm_e2f44
-	ld de, String_e3531
-	jr .asm_e2f4c
-.asm_e2f49
-	ld de, String_e350f
-.asm_e2f4c
+.HasMail
+	ld de, PCString_RemoveMail
+	jr .NotOkay
+.AllOthersFainted
+	ld de, PCString_NoMoreUsablePKMN
+	jr .NotOkay
+.ItsYourLastPokemon
+	ld de, PCString_ItsYourLastPKMN
+.NotOkay
 	call Functione2a6e
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -81649,7 +81244,7 @@ Functione2f5f: ; e2f5f (38:6f5f)
 	and a
 	ret
 .asm_e2f68
-	ld de, String_e3597
+	ld de, PCString_NoReleasingEGGS
 	call Functione2a6e
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -81799,7 +81394,7 @@ Functione307c: ; e307c (38:707c)
 	call TextBox
 	call WaitBGMap
 	hlcoord 1, 16
-	ld de, String_e3563
+	ld de, PCString_Stored
 	call PlaceString
 	ld l, c
 	ld h, b
@@ -81812,7 +81407,7 @@ Functione307c: ; e307c (38:707c)
 	and a
 	ret
 .asm_e30e4
-	ld de, String_e3575
+	ld de, PCString_BoxFull
 	call Functione2a6e
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -81822,7 +81417,7 @@ Functione307c: ; e307c (38:707c)
 	scf
 	ret
 
-Functione30fa: ; e30fa (38:70fa)
+TryWithdrawPokemon: ; e30fa (38:70fa)
 	ld a, [wcb2b]
 	ld hl, wcb2a
 	add [hl]
@@ -81836,7 +81431,7 @@ Functione30fa: ; e30fa (38:70fa)
 	xor a
 	ld [wd10b], a
 	predef Functiondb3f
-	jr c, .asm_e316a
+	jr c, .PartyFull
 	ld a, $1
 	ld [wd10b], a
 	callba Functione039
@@ -81853,7 +81448,7 @@ Functione30fa: ; e30fa (38:70fa)
 	call TextBox
 	call WaitBGMap
 	hlcoord 1, 16
-	ld de, String_e356b
+	ld de, PCString_Got
 	call PlaceString
 	ld l, c
 	ld h, b
@@ -81865,8 +81460,8 @@ Functione30fa: ; e30fa (38:70fa)
 	call DelayFrames
 	and a
 	ret
-.asm_e316a
-	ld de, String_e3586
+.PartyFull
+	ld de, PCString_PartyFull
 	call Functione2a6e
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -81900,7 +81495,7 @@ Functione3180: ; e3180 (38:7180)
 	ld [wd265], a
 	call GetPokemonName
 	hlcoord 1, 16
-	ld de, String_e3551
+	ld de, PCString_ReleasedPKMN
 	call PlaceString
 	ld c, 80
 	call DelayFrames
@@ -81908,7 +81503,7 @@ Functione3180: ; e3180 (38:7180)
 	ld bc, $112
 	call TextBox
 	hlcoord 1, 16
-	ld de, String_e355e
+	ld de, PCString_Bye
 	call PlaceString
 	ld l, c
 	ld h, b
@@ -82234,22 +81829,22 @@ PCSelectLZ: INCBIN "gfx/pc.2bpp.lz"
 PCMailGFX:  INCBIN "gfx/pc_mail.2bpp"
 ; e34dd
 
-String_e34dd: db "Choose a ", $e1, $e2, ".@"
-String_e34ea: db "What's up?@"
-String_e34f4: db "Release ", $e1, $e2, "?@"
-String_e3500: db "Move to where?@"
-String_e350f: db "It's your last ", $e1, $e2, "!@"
-String_e3521: db "There's no room!@"
-String_e3531: db "No more usable ", $e1, $e2, "!@"
-String_e3544: db "Remove MAIL.@"
-String_e3551: db "Released ", $e1, $e2, ".@"
-String_e355e: db "Bye,@"
-String_e3563: db "Stored @"
-String_e356b: db "Got @"
-String_e3570: db "Non.@"
-String_e3575: db "The BOX is full.@"
-String_e3586: db "The party's full!@"
-String_e3597: db "No releasing EGGS!@"
+PCString_ChooseaPKMN: db "Choose a <PK><MN>.@"
+PCString_WhatsUp: db "What's up?@"
+PCString_ReleasePKMN: db "Release <PK><MN>?@"
+PCString_MoveToWhere: db "Move to where?@"
+PCString_ItsYourLastPKMN: db "It's your last <PK><MN>!@"
+PCString_TheresNoRoom: db "There's no room!@"
+PCString_NoMoreUsablePKMN: db "No more usable <PK><MN>!@"
+PCString_RemoveMail: db "Remove MAIL.@"
+PCString_ReleasedPKMN: db "Released <PK><MN>.@"
+PCString_Bye: db "Bye,@"
+PCString_Stored: db "Stored @"
+PCString_Got: db "Got @"
+PCString_Non: db "Non.@"
+PCString_BoxFull: db "The BOX is full.@"
+PCString_PartyFull: db "The party's full!@"
+PCString_NoReleasingEGGS: db "No releasing EGGS!@"
 ; e35aa
 
 Functione35aa: ; e35aa (38:75aa)

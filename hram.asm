@@ -26,6 +26,7 @@ hJoypadSum         EQU $ffa5
 hJoyReleased       EQU $ffa6
 hJoyPressed        EQU $ffa7
 hJoyDown           EQU $ffa8
+hJoyLast           EQU $ffa9
 
 hConnectionStripLength EQU $ffaf
 hConnectedMapWidth EQU $ffb0
