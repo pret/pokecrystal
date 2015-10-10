@@ -248,7 +248,7 @@ _ResetWRAM: ; 5bae
 	ld [hl], a
 	call CloseSRAM
 
-	call Function5d33
+	call LoadOrRegenerateLuckyIDNumber
 	call InitializeRalphName
 
 	xor a
@@ -384,30 +384,30 @@ InitializeWorld: ; 5d23
 	ret
 ; 5d33
 
-Function5d33: ; 5d33
-	ld a, BANK(s0_ac68)
+LoadOrRegenerateLuckyIDNumber: ; 5d33
+	ld a, BANK(sLuckyIDNumber)
 	call GetSRAMBank
 	ld a, [CurDay]
 	inc a
 	ld b, a
-	ld a, [s0_ac68]
+	ld a, [sLuckyNumberDay]
 	cp b
-	ld a, [s0_ac6a]
+	ld a, [sLuckyIDNumber + 1]
 	ld c, a
-	ld a, [s0_ac69]
+	ld a, [sLuckyIDNumber]
 	jr z, .skip
 	ld a, b
-	ld [s0_ac68], a
+	ld [sLuckyNumberDay], a
 	call Random
 	ld c, a
 	call Random
 
 .skip
-	ld [wdc9f], a
-	ld [s0_ac69], a
+	ld [wLuckyIDNumber], a
+	ld [sLuckyIDNumber], a
 	ld a, c
-	ld [wdca0], a
-	ld [s0_ac6a], a
+	ld [wLuckyIDNumber + 1], a
+	ld [sLuckyIDNumber + 1], a
 	jp CloseSRAM
 ; 5d65
 
@@ -419,7 +419,7 @@ Continue: ; 5d65
 	call Function5e85
 	ld a, $1
 	ld [hBGMapMode], a
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	call ConfirmContinue
 	jr nc, .Check1Pass
@@ -4099,59 +4099,62 @@ INCLUDE "engine/specials.asm"
 
 
 _PrintNum:: ; c4c7
-; Print c digits of the b-byte value at hl.
+; Print c digits of the b-byte value from de to hl.
 ; Allows 2 to 7 digits. For 1-digit numbers, add
 ; the value to char "0" instead of calling PrintNum.
 ; Some extra flags can be given in bits 5-7 of b.
+; Bit 5: money if set (unless left-aligned without leading zeros)
+; Bit 6: right-aligned if set
+; Bit 7: print leading zeros if set
 
 	push bc
 
 	bit 5, b
 	jr z, .main
 	bit 7, b
-	jr nz, .bit_7
+	jr nz, .moneyflag
 	bit 6, b
 	jr z, .main
 
-.bit_7
-	ld a, $f0
+.moneyflag ; 101xxxxx or 011xxxxx
+	ld a, "¥"
 	ld [hli], a
-	res 5, b
+	res 5, b ; 100xxxxx or 010xxxxx
 
 .main
 	xor a
-	ld [$ffb3], a
-	ld [$ffb4], a
-	ld [$ffb5], a
+	ld [hPrintNum1], a
+	ld [hPrintNum2], a
+	ld [hPrintNum3], a
 	ld a, b
 	and $f
 	cp 1
 	jr z, .byte
 	cp 2
 	jr z, .word
-
+; maximum 3 bytes
 .long
 	ld a, [de]
-	ld [$ffb4], a
+	ld [hPrintNum2], a
 	inc de
 	ld a, [de]
-	ld [$ffb5], a
+	ld [hPrintNum3], a
 	inc de
 	ld a, [de]
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	jr .start
 
 .word
 	ld a, [de]
-	ld [$ffb5], a
+	ld [hPrintNum3], a
 	inc de
 	ld a, [de]
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	jr .start
 
 .byte
 	ld a, [de]
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 
 .start
 	push de
@@ -4178,51 +4181,51 @@ _PrintNum:: ; c4c7
 
 .seven
 	ld a, 1000000 / $10000 % $100
-	ld [$ffb7], a
+	ld [hPrintNum5], a
 	ld a, 1000000 / $100 % $100
-	ld [$ffb8], a
+	ld [hPrintNum6], a
 	ld a, 1000000 % $100
-	ld [$ffb9], a
+	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .six
 	ld a, 100000 / $10000 % $100
-	ld [$ffb7], a
+	ld [hPrintNum5], a
 	ld a, 100000 / $100 % $100
-	ld [$ffb8], a
+	ld [hPrintNum6], a
 	ld a, 100000 % $100
-	ld [$ffb9], a
+	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .five
 	xor a
-	ld [$ffb7], a
+	ld [hPrintNum5], a
 	ld a, 10000 / $100
-	ld [$ffb8], a
+	ld [hPrintNum6], a
 	ld a, 10000 % $100
-	ld [$ffb9], a
+	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .four
 	xor a
-	ld [$ffb7], a
+	ld [hPrintNum5], a
 	ld a, 1000 / $100
-	ld [$ffb8], a
+	ld [hPrintNum6], a
 	ld a, 1000 % $100
-	ld [$ffb9], a
+	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .three
 	xor a
-	ld [$ffb7], a
+	ld [hPrintNum5], a
 	xor a
-	ld [$ffb8], a
+	ld [hPrintNum6], a
 	ld a, 100
-	ld [$ffb9], a
+	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
@@ -4230,11 +4233,11 @@ _PrintNum:: ; c4c7
 	dec e
 	jr nz, .two_skip
 	ld a, "0"
-	ld [$ffb3], a
+	ld [hPrintNum1], a
 .two_skip
 
 	ld c, 0
-	ld a, [$ffb6]
+	ld a, [hPrintNum4]
 .mod_10
 	cp 10
 	jr c, .modded_10
@@ -4244,7 +4247,7 @@ _PrintNum:: ; c4c7
 .modded_10
 
 	ld b, a
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	or c
 	jr nz, .money
 	call .PrintLeadingZero
@@ -4257,7 +4260,7 @@ _PrintNum:: ; c4c7
 	add c
 	ld [hl], a
 	pop af
-	ld [$ffb3], a
+	ld [hPrintNum1], a
 	inc e
 	dec e
 	jr nz, .money_leading_zero
@@ -4278,7 +4281,7 @@ _PrintNum:: ; c4c7
 
 .PrintYen: ; c5ba
 	push af
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	and a
 	jr nz, .stop
 	bit 5, d
@@ -4296,68 +4299,68 @@ _PrintNum:: ; c4c7
 	dec e
 	jr nz, .ok
 	ld a, "0"
-	ld [$ffb3], a
+	ld [hPrintNum1], a
 .ok
 	ld c, 0
 .loop
-	ld a, [$ffb7]
+	ld a, [hPrintNum5]
 	ld b, a
-	ld a, [$ffb4]
+	ld a, [hPrintNum2]
 	ld [$ffba], a
 	cp b
 	jr c, .skip1
 	sub b
-	ld [$ffb4], a
-	ld a, [$ffb8]
+	ld [hPrintNum2], a
+	ld a, [hPrintNum6]
 	ld b, a
-	ld a, [$ffb5]
+	ld a, [hPrintNum3]
 	ld [$ffbb], a
 	cp b
 	jr nc, .skip2
-	ld a, [$ffb4]
+	ld a, [hPrintNum2]
 	or 0
 	jr z, .skip3
 	dec a
-	ld [$ffb4], a
-	ld a, [$ffb5]
+	ld [hPrintNum2], a
+	ld a, [hPrintNum3]
 .skip2
 	sub b
-	ld [$ffb5], a
-	ld a, [$ffb9]
+	ld [hPrintNum3], a
+	ld a, [hPrintNum7]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hPrintNum4]
 	ld [$ffbc], a
 	cp b
 	jr nc, .skip4
-	ld a, [$ffb5]
+	ld a, [hPrintNum3]
 	and a
 	jr nz, .skip5
-	ld a, [$ffb4]
+	ld a, [hPrintNum2]
 	and a
 	jr z, .skip6
 	dec a
-	ld [$ffb4], a
+	ld [hPrintNum2], a
 	xor a
 .skip5
 	dec a
-	ld [$ffb5], a
-	ld a, [$ffb6]
+	ld [hPrintNum3], a
+	ld a, [hPrintNum4]
 .skip4
 	sub b
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	inc c
 	jr .loop
 .skip6
 	ld a, [$ffbb]
-	ld [$ffb5], a
+	ld [hPrintNum3], a
 .skip3
 	ld a, [$ffba]
-	ld [$ffb4], a
+	ld [hPrintNum2], a
 .skip1
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	or c
 	jr z, .PrintLeadingZero
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	and a
 	jr nz, .done
 	bit 5, d
@@ -4369,7 +4372,7 @@ _PrintNum:: ; c4c7
 	ld a, "0"
 	add c
 	ld [hl], a
-	ld [$ffb3], a
+	ld [hPrintNum1], a
 	inc e
 	dec e
 	ret nz
@@ -4391,7 +4394,7 @@ _PrintNum:: ; c4c7
 	jr nz, .inc
 	bit 6, d ; left alignment or right alignment?
 	jr z, .inc
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	and a
 	ret z
 .inc
@@ -7758,7 +7761,7 @@ endr
 	ld a, [wd1ed]
 	ld [StringBuffer2], a
 	ld de, StringBuffer2
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 	pop hl
 	ret
@@ -14262,7 +14265,7 @@ Function13256: ; 13256
 	jr c, .asm_132a7
 	ld [wd265], a
 	ld de, wd265
-	ld bc, $0103
+	lb bc, 1, 3
 	call PrintNum
 	jr .asm_132ad
 
@@ -20100,28 +20103,28 @@ Function1651a: ; 1651a
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, $0612
+	lb bc, 6, 18
 	call TextBox
 	hlcoord 1, 2
 	ld de, String_16699
 	call PlaceString
 	hlcoord 12, 2
 	ld de, wd851
-	ld bc, $2306
+	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 1, 4
 	ld de, String_166b0
 	call PlaceString
 	hlcoord 12, 4
 	ld de, Money
-	ld bc, $2306
+	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 1, 6
 	pop de
 	call PlaceString
 	hlcoord 12, 6
 	ld de, StringBuffer2
-	ld bc, $a306
+	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
 	call UpdateSprites
 	call Function3238
@@ -20129,7 +20132,7 @@ Function1651a: ; 1651a
 ; 1656b
 
 Function1656b: ; 1656b
-	ld c, $a
+	ld c, 10
 	call DelayFrames
 	ret
 ; 16571
@@ -20153,7 +20156,7 @@ Function16571: ; 16571
 	call ByteFill
 	hlcoord 12, 6
 	ld de, StringBuffer2
-	ld bc, $a306
+	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
 	ld a, [$ff9b]
 	and $10
@@ -24523,7 +24526,7 @@ Function24ac3: ; 0x24ac3
 	ld [hl], $f1
 	inc hl
 	ld de, wcf75
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 
 .done
@@ -24551,7 +24554,7 @@ Function24b01: ; 24b01
 	ld de, $0015
 	add hl, de
 	ld de, Money
-	ld bc, $2306
+	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	ret
 ; 24b15
@@ -24584,7 +24587,7 @@ Function24b25: ; 24b25
 	ld de, String24b8e
 	call PlaceString
 	ld de, Coins
-	ld bc, $0204
+	lb bc, 2, 4
 	hlcoord 13, 1
 	call PrintNum
 	ret
@@ -24600,14 +24603,14 @@ Function24b4e: ; 24b4e
 	call PlaceString
 	hlcoord 12, 1
 	ld de, Money
-	ld bc, $2306
+	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 6, 3
 	ld de, CoinString
 	call PlaceString
 	hlcoord 15, 3
 	ld de, Coins
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	ret
 ; 24b83
@@ -24631,7 +24634,7 @@ Function24b8f: ; 24b8f
 	call TextBox
 	hlcoord 1, 1
 	ld de, wdc7a
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 	hlcoord 4, 1
 	ld de, String24bcf
@@ -24641,7 +24644,7 @@ Function24b8f: ; 24b8f
 	call PlaceString
 	hlcoord 5, 3
 	ld de, wdc79
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 	pop af
 	ld [Options], a
@@ -24673,7 +24676,7 @@ Function24be7: ; 24be7
 	call PlaceString
 	hlcoord 8, 5
 	ld de, wdc79
-	ld bc, $4102
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	hlcoord 1, 1
 	ld de, String24c4b
@@ -25211,7 +25214,7 @@ Strings24f5f: ; 24f5f
 Function24f7c: ; 24f7c
 	hlcoord 17, 13
 	ld de, wdc79
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 ; 24f89
@@ -25243,7 +25246,7 @@ Strings24f9a: ; 24f9a
 Function24fb2: ; 24fb2
 	hlcoord 13, 16
 	ld de, wdc79
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 ; 24fbf
@@ -25388,7 +25391,7 @@ Function25072: ; 25072
 	ld [hl], $f1
 	inc hl
 	ld de, wd10c
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld a, [wcf86]
 	ld e, a
@@ -25460,7 +25463,7 @@ Function250d1: ; 250d1
 	pop hl
 	inc hl
 	ld de, hMoneyTemp
-	ld bc, $2306
+	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	call WaitBGMap
 	ret
@@ -25724,11 +25727,11 @@ Function25299: ; 25299 (9:5299)
 	call PlaceString
 	hlcoord 5, 4
 	ld de, PlayerID
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	hlcoord 7, 6
 	ld de, Money
-	ld bc, $2306
+	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 1, 3
 	ld de, Tilemap_252fc
@@ -25928,7 +25931,7 @@ Function25415: ; 25415 (9:5415)
 	call PrintNum
 	inc hl
 	ld de, GameTimeMinutes
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld a, [$ff9b]
 	and $1f
@@ -26172,7 +26175,7 @@ ClearOakRatingBuffer: ; 0x2665a
 	ld bc, $000d
 	call ByteFill
 	pop hl
-	ld bc, $4103
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
 	call PrintNum
 	ret
 ; 0x2666b
@@ -30964,7 +30967,7 @@ Function295d8: ; 295d8
 
 Function295e3: ; 295e3
 	hlcoord 10, 0
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ld [hl], $7f
 	ret
@@ -31002,7 +31005,7 @@ Unknown_2960e: ; 2960e
 
 Function29611: ; 29611
 	hlcoord 7, 6
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
 ; 2961b
@@ -34388,7 +34391,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	cp $33
 	jr nc, .asm_2ca22
 	ld de, wd265
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	jr .asm_2ca38
 .asm_2ca22
@@ -34398,7 +34401,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	ld [hl], $87
 	inc hl
 	ld de, wd265
-	ld bc, $4102
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	pop af
 	ld [wd265], a
@@ -36618,7 +36621,7 @@ Function4424d: ; 4424d
 	ld a, $5d
 	ld [hli], a
 	ld de, wd265
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ld a, [wd265]
 	dec a
@@ -36648,7 +36651,7 @@ endr
 	ld d, h
 	ld e, l
 	hlcoord 12, 7
-	ld bc, $0224
+	lb bc, 2, 36
 	call PrintNum
 	hlcoord 14, 7
 	ld [hl], $5e
@@ -36672,7 +36675,7 @@ endr
 	ld d, h
 	ld e, l
 	hlcoord 11, 9
-	ld bc, $0245
+	lb bc, 2, 69
 	call PrintNum
 	pop de
 
@@ -40729,7 +40732,7 @@ Function49e3d: ; 49e3d
 	ld [hl], ":"
 	inc hl
 	ld de, hMinutes
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 ; 49e70
@@ -44081,62 +44084,62 @@ CheckPokerus: ; 4d860
 	ret
 ; 4d87a
 
-Function4d87a: ; 4d87a
+Special_CheckForLuckyNumberWinners: ; 4d87a
 	xor a
 	ld [ScriptVar], a
-	ld [wd265], a
+	ld [wFoundMatchingIDInParty], a
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld d, a
 	ld hl, PartyMon1ID
 	ld bc, PartySpecies
-.asm_4d88d
+.PartyLoop
 	ld a, [bc]
 	inc bc
 	cp EGG
-	call nz, Function4d939
+	call nz, .CompareLuckyNumberToMonID
 	push bc
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
 	dec d
-	jr nz, .asm_4d88d
-	ld a, BANK(sBoxMon1ID)
+	jr nz, .PartyLoop
+	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	and a
-	jr z, .asm_4d8c8
+	jr z, .SkipOpenBox
 	ld d, a
 	ld hl, sBoxMon1ID
 	ld bc, sBoxSpecies
-.asm_4d8af
+.OpenBoxLoop
 	ld a, [bc]
 	inc bc
 	cp EGG
-	jr z, .asm_4d8bf
-	call Function4d939
-	jr nc, .asm_4d8bf
-	ld a, $1
-	ld [wd265], a
+	jr z, .SkipOpenBoxMon
+	call .CompareLuckyNumberToMonID
+	jr nc, .SkipOpenBoxMon
+	ld a, 1
+	ld [wFoundMatchingIDInParty], a
 
-.asm_4d8bf
+.SkipOpenBoxMon
 	push bc
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, sBoxMon2 - sBoxMon1 ; box_struct_length
 	add hl, bc
 	pop bc
 	dec d
-	jr nz, .asm_4d8af
+	jr nz, .OpenBoxLoop
 
-.asm_4d8c8
+.SkipOpenBox
 	call CloseSRAM
 	ld c, $0
-.asm_4d8cd
+.BoxesLoop
 	ld a, [wCurBox]
 	and $f
 	cp c
-	jr z, .asm_4d90b
-	ld hl, Unknown_4d99f
+	jr z, .SkipBox
+	ld hl, .BoxBankAddresses
 	ld b, 0
 rept 3
 	add hl, bc
@@ -44145,91 +44148,91 @@ endr
 	call GetSRAMBank
 	ld a, [hli]
 	ld h, [hl]
-	ld l, a
+	ld l, a ; hl now contains the address of the loaded box in SRAM
 	ld a, [hl]
 	and a
-	jr z, .asm_4d90b
+	jr z, .SkipBox ; no mons in this box
 	push bc
 	ld b, h
 	ld c, l
 	inc bc
-	ld de, $001c
+	ld de, MONS_PER_BOX + NUM_MOVES + 4
 	add hl, de
 	ld d, a
-.asm_4d8f1
+.BoxNLoop
 	ld a, [bc]
 	inc bc
 	cp EGG
-	jr z, .asm_4d901
+	jr z, .SkipBoxMon
 
-	call Function4d939
-	jr nc, .asm_4d901
-	ld a, $1
-	ld [wd265], a
+	call .CompareLuckyNumberToMonID
+	jr nc, .SkipBoxMon
+	ld a, 1
+	ld [wFoundMatchingIDInParty], a
 
-.asm_4d901
+.SkipBoxMon
 	push bc
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, sBoxMon2 - sBoxMon1 ; box_struct_length
 	add hl, bc
 	pop bc
 	dec d
-	jr nz, .asm_4d8f1
+	jr nz, .BoxNLoop
 	pop bc
 
-.asm_4d90b
+.SkipBox
 	inc c
 	ld a, c
 	cp NUM_BOXES
-	jr c, .asm_4d8cd
+	jr c, .BoxesLoop
 
 	call CloseSRAM
 	ld a, [ScriptVar]
 	and a
-	ret z
+	ret z ; found nothing
 	callba Function1060cd
-	ld a, [wd265]
+	ld a, [wFoundMatchingIDInParty]
 	and a
 	push af
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, UnknownText_0x4d9c9
+	ld hl, .FoundPartymonText
 	pop af
-	jr z, .asm_4d936
-	ld hl, UnknownText_0x4d9ce
+	jr z, .print
+	ld hl, .FoundBoxmonText
 
-.asm_4d936
+.print
 	jp PrintText
 ; 4d939
 
-Function4d939: ; 4d939
+.CompareLuckyNumberToMonID: ; 4d939
 	push bc
 	push de
 	push hl
 	ld d, h
 	ld e, l
 	ld hl, Buffer1
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
-	ld hl, DefaultFlypoint
-	ld de, wdc9f
-	ld bc, $8205
+	ld hl, LuckyNumberDigit1Buffer
+	ld de, wLuckyIDNumber
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
-	ld b, $5
-	ld c, $0
-	ld hl, EndFlypoint
-	ld de, wd1ee
-.asm_4d95d
+	ld b, 5
+	ld c, 0
+	ld hl, LuckyNumberDigit5Buffer
+	ld de, Buffer5
+.loop
 	ld a, [de]
 	cp [hl]
-	jr nz, .asm_4d967
+	jr nz, .done
 	dec de
 	dec hl
 	inc c
 	dec b
-	jr nz, .asm_4d95d
+	jr nz, .loop
 
-.asm_4d967
+.done
 	pop hl
 	push hl
 	ld de, -6
@@ -44239,25 +44242,25 @@ Function4d939: ; 4d939
 	pop de
 	push af
 	ld a, c
-	ld b, $1
-	cp $5
-	jr z, .asm_4d984
-	ld b, $2
-	cp $3
-	jr nc, .asm_4d984
-	ld b, $3
-	cp $2
-	jr nz, .asm_4d99b
+	ld b, 1
+	cp 5
+	jr z, .okay
+	ld b, 2
+	cp 3
+	jr nc, .okay
+	ld b, 3
+	cp 2
+	jr nz, .nomatch
 
-.asm_4d984
+.okay
 	inc b
 	ld a, [ScriptVar]
 	and a
-	jr z, .asm_4d98e
+	jr z, .foundmatch
 	cp b
-	jr c, .asm_4d99b
+	jr c, .nomatch
 
-.asm_4d98e
+.foundmatch
 	dec b
 	ld a, b
 	ld [ScriptVar], a
@@ -44268,14 +44271,14 @@ Function4d939: ; 4d939
 	scf
 	ret
 
-.asm_4d99b
+.nomatch
 	pop bc
 	pop bc
 	and a
 	ret
 ; 4d99f
 
-Unknown_4d99f: ; 4d99f
+.BoxBankAddresses: ; 4d99f
 	dbw BANK(sBox1),  sBox1
 	dbw BANK(sBox2),  sBox2
 	dbw BANK(sBox3),  sBox3
@@ -44292,13 +44295,13 @@ Unknown_4d99f: ; 4d99f
 	dbw BANK(sBox14), sBox14
 ; 4d9c9
 
-UnknownText_0x4d9c9: ; 0x4d9c9
+.FoundPartymonText: ; 0x4d9c9
 	; Congratulations! We have a match with the ID number of @  in your party.
 	text_jump UnknownText_0x1c1261
 	db "@"
 ; 0x4d9ce
 
-UnknownText_0x4d9ce: ; 0x4d9ce
+.FoundBoxmonText: ; 0x4d9ce
 	; Congratulations! We have a match with the ID number of @  in your PC BOX.
 	text_jump UnknownText_0x1c12ae
 	db "@"
@@ -44306,10 +44309,10 @@ UnknownText_0x4d9ce: ; 0x4d9ce
 
 Function4d9d3: ; 4d9d3
 	ld hl, StringBuffer3
-	ld de, wdc9f
-	ld bc, $8205
+	ld de, wLuckyIDNumber
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
-	ld a, $50
+	ld a, "@"
 	ld [StringBuffer3 + 5], a
 	ret
 ; 4d9e5
@@ -44323,7 +44326,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	call GetBaseData
 	ld hl, PartyCount
 	ld a, [hl]
-	cp $6
+	cp 6
 	jp nc, Function4daa3
 	inc a
 	ld [hl], a
@@ -45085,7 +45088,7 @@ Function4deea: ; 4deea (13:5eea)
 	ld [hl], "."
 	inc hl
 	hlcoord 10, 0
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	ld de, wd265
 	call PrintNum
 	hlcoord 14, 0
@@ -45459,7 +45462,7 @@ Function4e1cc: ; 4e1cc (13:61cc)
 	hlcoord 0, 12
 	call PlaceString
 	hlcoord 2, 10
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	ld de, TempMonID
 	call PrintNum
 	ld hl, Unknown_4e216
@@ -46911,7 +46914,7 @@ Function50138: ; 50138
 	ld d, h
 	pop hl
 	push de
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 	pop de
 	ld a, $f3
@@ -46919,7 +46922,7 @@ Function50138: ; 50138
 rept 2
 	inc de
 endr
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 
 .asm_5016b
@@ -46960,7 +46963,7 @@ Function50176: ; 50176
 	ld [hli], a
 	ld bc, $4102
 .asm_501a1
-	ld bc, $4103
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
 	call PrintNum
 
 .asm_501a7
@@ -48372,7 +48375,7 @@ DrawHP: ; 50b10
 	jr nz, .asm_50b66
 	ld de, TempMonMaxHP
 .asm_50b66
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 
 	ld a, "/"
@@ -48380,7 +48383,7 @@ DrawHP: ; 50b10
 
 ; Print max HP
 	ld de, TempMonMaxHP
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 	pop hl
 	pop de
@@ -48608,12 +48611,12 @@ endr
 	ld l, e
 	push hl
 	ld de, StringBuffer1 + 4
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 	ld a, $f3
 	ld [hli], a
 	ld de, wd265
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 	pop hl
 	ld a, [Buffer1]
@@ -51365,7 +51368,7 @@ Function81adb: ; 81adb
 	ld [wd265], a
 	hlcoord 0, 1
 	ld de, wd265
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ld a, [DefaultFlypoint]
 	and a
@@ -54388,7 +54391,7 @@ Function86692: ; 86692
 	call PlaceString
 	hlcoord 2, 2
 	ld de, wc608
-	ld bc, $0103
+	lb bc, 1, 3
 	call PrintNum
 	hlcoord 11, 2
 
@@ -54494,7 +54497,7 @@ Function86748: ; 86748
 	ld [hl], $f2
 	hlcoord 3, 13
 	ld de, wd265
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	call GetBasePokemonName
 	hlcoord 7, 13
@@ -54528,7 +54531,7 @@ Function86748: ; 86748
 	ld [hl], $f3
 	hlcoord 10, 16
 	ld de, TempMonID
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
 ; 86810
@@ -54599,19 +54602,19 @@ Function86810: ; 86810
 	ld [hl], $f3
 	hlcoord 4, 6
 	ld de, PlayerID
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	hlcoord 1, 8
 	ld de, .PlayTime
 	call PlaceString
 	hlcoord 3, 9
 	ld de, GameTimeHours
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 	ld [hl], $63
 	inc hl
 	ld de, GameTimeMinutes
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	call WaitBGMap
 	callba Function26601
@@ -54808,7 +54811,7 @@ Function88126: ; 88126
 	ld [hl], $f1
 	inc hl
 	ld de, wd10c
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
 ; 88139
 
@@ -56679,7 +56682,7 @@ Function898aa: ; 898aa
 	push bc
 	hlcoord 6, 1
 	ld de, MenuSelection
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	pop bc
 	ret
@@ -56732,7 +56735,7 @@ Function898f3: ; 898f3
 	call Function8934a
 	jr c, .asm_8990a
 	hlcoord 5, 5
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	jr .asm_89913
 
@@ -56892,7 +56895,7 @@ Function899b2: ; 899b2 (22:59b2)
 
 Function899c9: ; 899c9 (22:59c9)
 	ld de, PlayerID
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
 
@@ -60272,7 +60275,7 @@ Function8b09e: ; 8b09e
 	ld [hli], a
 	ld [hld], a
 	pop de
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 	ret
 ; 8b0ca
@@ -61668,7 +61671,7 @@ Function8b880: ; 8b880
 	ld h, d
 	ld l, e
 	ld de, MenuSelection
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 ; 8b88c
@@ -68628,7 +68631,7 @@ Function90867: ; 90867 (24:4867)
 	ld [hli], a
 	ld [hl], a
 	pop hl
-	ld bc, $4102
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	ret
 ; 90874 (24:4874)
@@ -68701,7 +68704,7 @@ UnknownText_0x908b8: ; 0x908b8
 	ld [hl], ":"
 	inc hl
 	ld de, BattleMonNick + 5
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld b, h
 	ld c, l
@@ -69046,17 +69049,17 @@ UnknownText_0x90b13: ; 0x90b13
 ; 0x90b23
 
 Function90b23: ; 90b23
-	ld bc, $0103
+	lb bc, 1, 3
 	call PrintNum
 	ld [hl], "."
 	inc hl
 	inc de
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld [hl], ":"
 	inc hl
 	inc de
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 ; 90b3e
@@ -72012,11 +72015,11 @@ Function927d4: ; 927d4
 Function927f8: ; 927f8 (24:67f8)
 	hlcoord 5, 1
 	ld de, Coins
-	ld bc, $8204
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	hlcoord 11, 1
 	ld de, wc711
-	ld bc, $8204
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	ret
 ; 92811 (24:6811)
@@ -76102,7 +76105,7 @@ DisplayCaughtContestMonStats: ; cc000
 
 	hlcoord 11, 4
 	ld de, wContestMonMaxHP
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 
 	hlcoord 11, 10
@@ -76858,7 +76861,7 @@ Functione049c: ; e049c
 	call PlaceString
 	hlcoord 15, 16
 	ld de, Coins
-	ld bc, $8204
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	ret
 ; e04bc
@@ -81940,7 +81943,7 @@ Functione3632: ; e3632
 	ld [wd265], a
 	hlcoord 13, 11
 	ld de, wd265
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 	ld de, String_e3668
 	call PlaceString
@@ -86393,12 +86396,12 @@ Functionfbbdb: ; fbbdb
 	call Functionfbbae
 	ld hl, StringBuffer1
 	ld de, Buffer1
-	ld bc, $4102
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	ld [hl], $6e
 	inc hl
 	ld de, Buffer2
-	ld bc, $4102
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	ld [hl], $6f
 	inc hl
@@ -92030,7 +92033,7 @@ Function1dc381: ; 1dc381
 	ld [hl], $71
 	inc hl
 	ld de, TempMonMaxHP
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 	ld a, [CurPartySpecies]
 	ld [wd265], a
@@ -92050,7 +92053,7 @@ Function1dc381: ; 1dc381
 	ld [hl], $e8
 	inc hl
 	ld de, wd265
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	hlcoord 1, 9
 	ld de, String1dc550
@@ -92064,7 +92067,7 @@ Function1dc381: ; 1dc381
 	call PlaceString
 	hlcoord 4, 11
 	ld de, TempMonID
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	hlcoord 1, 14
 	ld de, String1dc554
@@ -92146,7 +92149,7 @@ Function1dc47b: ; 1dc47b
 ; 1dc507
 
 Function1dc507: ; 1dc507
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNum
 	ret
 ; 1dc50e
@@ -92242,7 +92245,7 @@ Function1dd6a9: ; 1dd6a9
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	pop bc
 	ret
@@ -92280,7 +92283,7 @@ Function1dd6bb: ; 1dd6bb (77:56bb)
 	push hl
 	pop de
 	pop hl
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	pop bc
 	ld de, String_1dd6fc

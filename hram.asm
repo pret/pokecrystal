@@ -44,6 +44,13 @@ hMultiplicand      EQU $ffb4 ; 3 bytes long
 hMultiplier        EQU $ffb7 ; 1 byte long
 hProduct           EQU $ffb3 ; result (4 bytes long)
 
+hPrintNum1         EQU $ffb3
+hPrintNum2         EQU $ffb4
+hPrintNum3         EQU $ffb5
+hPrintNum4         EQU $ffb6
+hPrintNum5         EQU $ffb7
+hPrintNum6         EQU $ffb8
+hPrintNum7         EQU $ffb9
 hMathBuffer        EQU $ffb8
 
 hMoneyTemp         EQU $ffc3

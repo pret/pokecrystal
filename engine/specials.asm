@@ -102,9 +102,9 @@ SpecialsPointers:: ; c029
 	add_special Function24b25
 	add_special Function24b4e
 	add_special Function24ae8
-	add_special Function4d87a
-	add_special Functionc434
-	add_special Functionc422
+	add_special Special_CheckForLuckyNumberWinners
+	add_special Special_CheckLuckyNumberShowFlag
+	add_special Special_ResetLuckyNumberShowFlag
 	add_special Function4d9d3
 	add_special Function88018
 	add_special SpecialNameRater
@@ -522,15 +522,15 @@ SpecialCheckPokerus: ; c419
 	jp ScriptReturnCarry
 ; c422
 
-Functionc422: ; c422
+Special_ResetLuckyNumberShowFlag: ; c422
 	callba Function1152b
-	ld hl, wdc9d
+	ld hl, wLuckyNumberShowFlag
 	res 0, [hl]
-	callba Function5d33
+	callba LoadOrRegenerateLuckyIDNumber
 	ret
 ; c434
 
-Functionc434: ; c434
+Special_CheckLuckyNumberShowFlag: ; c434
 	callba Function11542
 	jp ScriptReturnCarry
 ; c43d

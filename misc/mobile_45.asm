@@ -13368,11 +13368,11 @@ Function11a302: ; 11a302
 	call PlaceString
 	hlcoord 9, 4
 	ld de, wcd68
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	hlcoord 14, 4
 	ld de, wcd67
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld a, $80
 	ld [wcd44], a

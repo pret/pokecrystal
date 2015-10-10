@@ -1097,7 +1097,7 @@ Function100697: ; 100697
 	ret
 
 .asm_1006b4
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 
@@ -1484,7 +1484,7 @@ Function100902: ; 100902
 	hlcoord 4, 11
 	call PlaceString
 	hlcoord 8, 11
-	ld bc, $0102
+	lb bc, 1, 2
 	ld de, StringBuffer2
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS

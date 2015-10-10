@@ -147,12 +147,12 @@ PrintRadioLine: ; b86ea (2e:46ea)
 .skip
 	ld a, RADIO_SCROLL
 	ld [wd002], a
-	ld a, $64
+	ld a, 100
 	ld [wd004], a
 	ret
 ; b8718 (2e:4718)
 
-Functionb8718: ; b8718
+ReplacePeriodsWithSpaces: ; b8718
 	push hl
 	ld b, SCREEN_WIDTH * 2
 .loop
@@ -379,7 +379,7 @@ OaksPkmnTalk8: ; b8854 (2e:4854)
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, .descriptors
+	ld hl, .Descriptors
 rept 2
 	add hl, de
 endr
@@ -390,7 +390,7 @@ endr
 	jp NextRadioLine
 ; b8869 (2e:4869)
 
-.descriptors: ; b8869
+.Descriptors: ; b8869
 	dw .sweetadorably
 	dw .wigglyslickly
 	dw .aptlynamed
@@ -510,7 +510,7 @@ OaksPkmnTalk9: ; b88d9 (2e:48d9)
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, .descriptors
+	ld hl, .Descriptors
 rept 2
 	add hl, de
 endr
@@ -529,7 +529,7 @@ endr
 	jp NextRadioLine
 ; b88fe (2e:48fe)
 
-.descriptors: ; b88fe
+.Descriptors: ; b88fe
 	dw .cute
 	dw .weird
 	dw .pleasant
@@ -653,7 +653,7 @@ OaksPkmnTalk10: ; b896e (2e:496e)
 	call PrintText
 	ld a, OAKS_POKEMON_TALK_11
 	ld [wd002], a
-	ld a, $64
+	ld a, 100
 	ld [wd004], a
 	ret
 ; b898e (2e:498e)
@@ -1058,10 +1058,10 @@ UnknownText_0xb8bd7: ; 0xb8bd7
 
 LuckyNumberShow1: ; b8bdc (2e:4bdc)
 	call StartRadioStation
-	callab Functionc434
-	jr nc, .asm_b8bed
-	callab Functionc422
-.asm_b8bed
+	callab Special_CheckLuckyNumberShowFlag
+	jr nc, .dontreset
+	callab Special_ResetLuckyNumberShowFlag
+.dontreset
 	ld hl, UnknownText_0xb8c7e
 	ld a, LUCKY_NUMBER_SHOW_2
 	jp NextRadioLine
@@ -1098,8 +1098,8 @@ LuckyNumberShow7: ; b8c1d (2e:4c1d)
 
 LuckyNumberShow8: ; b8c25 (2e:4c25)
 	ld hl, StringBuffer1
-	ld de, wdc9f
-	ld bc, $8205
+	ld de, wLuckyIDNumber
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ld a, "@"
 	ld [StringBuffer1 + 5], a
@@ -1275,7 +1275,7 @@ PeoplePlaces4: ; People
 	push af
 	ld hl, .E4Names
 	ld a, [StatusFlags]
-	bit 6, a
+	bit 6, a ; ENGINE_CREDITS_SKIP
 	jr z, .ok
 	ld hl, .KantoLeaderNames
 	ld a, [KantoBadges]
@@ -1498,7 +1498,7 @@ PeoplePlaces7: ; b8e28 (2e:4e28)
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, .descriptors
+	ld hl, .Descriptors
 rept 2
 	add hl, de
 endr
@@ -1519,7 +1519,7 @@ endr
 	jp PrintRadioLine
 ; b8e52 (2e:4e52)
 
-.descriptors: ; b8e52
+.Descriptors: ; b8e52
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy

@@ -1541,7 +1541,7 @@ Function40b6a: ; 40b6a (10:4b6a)
 	ld de, -20
 	add hl, de
 	ld de, wd265
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	pop hl
 	ret

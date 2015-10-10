@@ -5966,7 +5966,7 @@ Function3e75f: ; 3e75f
 .ok
 	push hl
 	ld de, StringBuffer1
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 	pop hl
 rept 2
@@ -5974,8 +5974,8 @@ rept 2
 endr
 	ld [hl], "/"
 	inc hl
-	ld de, wd265
-	ld bc, $0102
+	ld de, wNamedObjectIndexBuffer
+	lb bc, 1, 2
 	call PrintNum
 	ret
 ; 3e786
@@ -8892,20 +8892,20 @@ Function3f85f: ; 3f85f
 	add hl, de
 	push hl
 	ld de, wd00d
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	pop hl
 	ld de, $0005
 	add hl, de
 	push hl
 	ld de, wd00f
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	pop hl
 	ld de, $0005
 	add hl, de
 	ld de, wd011
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	jr .asm_3f8cf
 
@@ -8945,21 +8945,21 @@ Function3f85f: ; 3f85f
 	call .asm_3f92b
 	jr c, .asm_3f92a
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 	hlcoord 11, 4
 	ld de, sLinkBattleLosses
 	call .asm_3f92b
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 	hlcoord 16, 4
 	ld de, sLinkBattleDraws
 	call .asm_3f92b
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 .asm_3f92a

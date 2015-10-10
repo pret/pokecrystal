@@ -2232,7 +2232,7 @@ Script_readmoney: ; 0x97732
 	call ResetStringBuffer1
 	call GetMoneyAccount
 	ld hl, StringBuffer1
-	ld bc, $4306
+	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
 	call PrintNum
 	ld de, StringBuffer1
 	jp ConvertMemToText
@@ -2246,7 +2246,7 @@ Script_readcoins: ; 0x97747
 	call ResetStringBuffer1
 	ld hl, StringBuffer1
 	ld de, Coins
-	ld bc, $4206
+	lb bc, PRINTNUM_RIGHTALIGN | 2, 6
 	call PrintNum
 	ld de, StringBuffer1
 	jp ConvertMemToText
@@ -2260,7 +2260,7 @@ Script_RAM2MEM: ; 0x9775c
 	call ResetStringBuffer1
 	ld de, ScriptVar
 	ld hl, StringBuffer1
-	ld bc, $4103
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
 	call PrintNum
 	ld de, StringBuffer1
 	jp ConvertMemToText

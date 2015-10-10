@@ -5347,7 +5347,7 @@ Function17ff3c: ; 17ff3c
 	ld [wc300], a
 	hlcoord 14, 2
 	ld de, wc300
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	pop af
 	ld [wc300], a

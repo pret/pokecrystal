@@ -4,7 +4,7 @@ flag_array: MACRO
 	ds ((\1) + 7) / 8
 ENDM
 
-box_struct_length EQU 24 + NUM_MOVES * 2
+box_struct_length EQU 24 + NUM_MOVES * 2 ; 32
 box_struct: MACRO
 \1Species::        db
 \1Item::           db
@@ -30,6 +30,7 @@ box_struct: MACRO
 \1End::
 ENDM
 
+party_struct_length EQU box_struct_length + 16
 party_struct: MACRO
 	box_struct \1
 \1Status::         db
@@ -1352,17 +1353,22 @@ wd001:: ds 1
 wd002::
 PhoneScriptBank::
 DefaultFlypoint:: ; d002
+LuckyNumberDigit1Buffer::
 	ds 1
 wd003::
+LuckyNumberDigit2Buffer::
 PhoneCallerLo::
 	ds 1
 wd004::
+LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 	ds 1
 wd005::
+LuckyNumberDigit4Buffer::
 StartFlypoint:: ; d005
 	ds 1
 wd006::
+LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 	ds 1
 
@@ -1717,8 +1723,11 @@ MovementType::
 Buffer2:: ; d1eb
 	ds 1
 
+Buffer3::
 wd1ec:: ds 1
+Buffer4::
 wd1ed:: ds 1
+Buffer5::
 wd1ee:: ds 1
 wd1ef:: ds 1
 wd1f0:: ds 1
@@ -1842,6 +1851,7 @@ wd25e:: ds 4
 wd262:: ds 1
 wd263:: ds 1
 wd264:: ds 1
+wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::
 wd265:: ds 1
 wd266:: ds 1
@@ -2384,7 +2394,8 @@ FruitTreeFlags:: ; dc27
 
 	ds 5
 
-wdc2d:: ds 4
+wLuckyNumberDayBuffer:: ds 2
+	ds 2
 wSpecialPhoneCallID:: ds 2
 wdc33:: ds 2
 wdc35:: ds 4
@@ -2416,9 +2427,8 @@ wdc77:: ds 2
 wdc79:: ds 1
 wdc7a:: ds 2
 wdc7c:: ds 33
-wdc9d:: ds 2
-wdc9f:: ds 1
-wdca0:: ds 1
+wLuckyNumberShowFlag:: ds 2
+wLuckyIDNumber:: ds 2
 wdca1:: ds 3
 wdca4:: ds 1
 
