@@ -4359,9 +4359,9 @@ Function17f382: ; 17f382
 	ld de, $b2f4
 
 .asm_17f3ab
-	ld a, $82
+	ld a, PRINTNUM_LEADINGZEROS | 2
 	ld b, a
-	ld a, $3
+	ld a, 3
 	ld c, a
 	call PrintNum
 	call CloseSRAM

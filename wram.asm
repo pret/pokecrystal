@@ -1191,6 +1191,7 @@ CurSpecies:: ; cf60
 wcf61:: ds 2
 wcf63:: ds 1
 wNrOfBeatenBattleTowerTrainers::
+wMomBankDigitCursorPosition::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
@@ -2579,9 +2580,9 @@ wdfe4:: ds 1
 wdfe5:: ds 1
 wdfe6:: ds 1
 wdfe7:: ds 1
-wdfe8:: ds 1
-wdfe9:: ds 1
-	ds 1
+wBestMagikarpLengthFeet:: ds 1
+wBestMagikarpLengthInches:: ds 1
+wMagikarpRecordHoldersName:: ds 1
 	ds 1
 wdfec:: ds 1
 	ds 3

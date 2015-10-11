@@ -217,7 +217,7 @@ Function4013c: ; 4013c (10:413c)
 	call ByteFill
 	callba Function1de171
 	hlcoord 0, 17
-	ld de, Unknown_407f2
+	ld de, String_START_SEARCH
 	call Function40acd
 	ld a, $7
 	ld [wc7d3], a
@@ -246,7 +246,7 @@ Function4013c: ; 4013c (10:413c)
 	call Function41148
 	callba Function1de171
 	hlcoord 0, 17
-	ld de, Unknown_407f2
+	ld de, String_START_SEARCH
 	call Function40acd
 	ld a, $7
 	ld [wc7d3], a
@@ -1068,7 +1068,7 @@ Function40741: ; 40741
 
 Function4074c: ; 4074c (10:474c)
 	hlcoord 0, 17
-	ld de, Unknown_407f2
+	ld de, String_START_SEARCH
 	call Function40acd
 	ld a, $32
 	hlcoord 0, 0
@@ -1081,27 +1081,27 @@ Function4074c: ; 4074c (10:474c)
 	ld bc, $607
 	call Function40ad5
 	hlcoord 1, 11
-	ld de, Unknown_407e1
+	ld de, String_SEEN
 	call Function40acd
 	ld hl, PokedexSeen ; wdeb9 (aliases: EndPokedexSeen)
 	ld b, EndPokedexSeen - PokedexSeen
 	call CountSetBits
 	ld de, wd265
 	hlcoord 5, 12
-	ld bc, $103
+	lb bc, 1, 3
 	call PrintNum
 	hlcoord 1, 14
-	ld de, Unknown_407e6
+	ld de, String_OWN
 	call Function40acd
 	ld hl, PokedexCaught
 	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	ld de, wd265
 	hlcoord 5, 15
-	ld bc, $103
+	lb bc, 1, 3
 	call PrintNum
 	hlcoord 1, 17
-	ld de, Unknown_407ea
+	ld de, String_SELECT_OPTION
 	call Function40acd
 	hlcoord 8, 1
 	ld b, $7
@@ -1123,13 +1123,13 @@ Function4074c: ; 4074c (10:474c)
 	ret
 ; 407e1 (10:47e1)
 
-Unknown_407e1: ; 407e1
+String_SEEN: ; 407e1
 	db "SEEN", $ff
-Unknown_407e6: ; 407e6
+String_OWN: ; 407e6
 	db "OWN", $ff
-Unknown_407ea: ; 407ea
+String_SELECT_OPTION: ; 407ea
 	db $3b, $48, $49, $4a, $44, $45, $46, $47 ; SELECT > OPTION
-Unknown_407f2: ; 407f2
+String_START_SEARCH: ; 407f2
 	db $3c, $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $3c, $ff ; START > SEARCH
 ; 407fd
 
@@ -1270,7 +1270,7 @@ Function40962: ; 40962 (10:4962)
 	call PlaceString
 	ld de, wc7d7
 	hlcoord 1, 16
-	ld bc, $103
+	lb bc, 1, 3
 	call PrintNum
 	hlcoord 8, 0
 	ld [hl], $59

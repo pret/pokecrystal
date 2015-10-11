@@ -331,7 +331,7 @@ Functiona57:: ; a57
 	jr z, .asm_a63
 	ld a, [hJoyDown]
 .asm_a63
-	ld [$ffa9], a
+	ld [hJoyLast], a
 	ld a, [hJoyPressed]
 	and a
 	jr z, .asm_a70
@@ -344,7 +344,7 @@ Functiona57:: ; a57
 	and a
 	jr z, .asm_a7a
 	xor a
-	ld [$ffa9], a
+	ld [hJoyLast], a
 	ret
 
 .asm_a7a

@@ -249,7 +249,7 @@ _ResetWRAM: ; 5bae
 	call CloseSRAM
 
 	call LoadOrRegenerateLuckyIDNumber
-	call InitializeRalphName
+	call InitializeMagikarpHouse
 
 	xor a
 	ld [MonType], a
@@ -335,8 +335,8 @@ SetDefaultBoxNames: ; 5ca6
 	db "BOX@"
 ; 5cd3
 
-InitializeRalphName: ; 5cd3
-	ld hl, wdfe8
+InitializeMagikarpHouse: ; 5cd3
+	ld hl, wBestMagikarpLengthFeet
 	ld a, $3
 	ld [hli], a
 	ld a, $6
@@ -721,7 +721,7 @@ DisplayGameTime: ; 5f84
 	ld [hl], $6d
 	inc hl
 	ld de, GameTimeMinutes
-	lb bc, $81, 2
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
 ; 5f99
 
@@ -18724,7 +18724,7 @@ GetMartPrice: ; 15bf0
 	ld [StringBuffer2 + 1], a
 	ld hl, StringBuffer1
 	ld de, StringBuffer2
-	lb bc, $82, 6 ; 6 digits
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 6 ; 6 digits
 	call PrintNum
 	pop hl
 
@@ -19463,8 +19463,8 @@ MaxMoney: ; 15ff7
 
 
 TakeMoney:: ; 15ffa
-	ld a, $3
-	call Function16035
+	ld a, 3
+	call CheckMoney2
 	jr nc, .asm_16009
 	xor a
 	ld [de], a
@@ -19527,33 +19527,33 @@ CheckFunds: ; 1600d
 	ret
 ; 16035
 
-Function16035: ; 16035
-	ld a, $3
-Function16037: ; 16037
+CheckMoney2: ; 16035
+	ld a, 3
+CheckFunds2: ; 16037
 	push hl
 	push de
 	push bc
 	ld h, b
 	ld l, c
 	ld b, a
-	ld c, $0
-.asm_1603f
+	ld c, 0
+.loop
 	dec a
-	jr z, .asm_16046
+	jr z, .done
 	inc de
 	inc hl
-	jr .asm_1603f
+	jr .loop
 
-.asm_16046
+.done
 	and a
-.asm_16047
+.loop2
 	ld a, [de]
 	sbc [hl]
 	ld [de], a
 	dec de
 	dec hl
 	dec b
-	jr nz, .asm_16047
+	jr nz, .loop2
 	pop bc
 	pop de
 	pop hl
@@ -19593,14 +19593,14 @@ Function16055: ; 16055
 ; 1606f
 
 GiveCoins:: ; 1606f
-	ld a, $2
+	ld a, 2
 	ld de, Coins
 	call Function16055
-	ld a, $2
-	ld bc, Unknown_1608d
+	ld a, 2
+	ld bc, .maxcoins
 	call CheckFunds
 	jr c, .asm_1608b
-	ld hl, Unknown_1608d
+	ld hl, .maxcoins
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -19614,15 +19614,15 @@ GiveCoins:: ; 1606f
 	ret
 ; 1608d
 
-Unknown_1608d: ; 1608d
+.maxcoins: ; 1608d
 	bigdw 9999
 ; 1608f
 
 
 TakeCoins:: ; 1608f
-	ld a, $2
+	ld a, 2
 	ld de, Coins
-	call Function16037
+	call CheckFunds2
 	jr nc, .asm_1609f
 	xor a
 	ld [de], a
@@ -19645,757 +19645,7 @@ CheckCoins:: ; 160a1
 
 INCLUDE "items/marts.asm"
 
-
-Special_BankOfMom: ; 16218
-	ld a, [$ffaa]
-	push af
-	ld a, $1
-	ld [$ffaa], a
-	xor a
-	ld [wcf63], a
-.asm_16223
-	ld a, [wcf63]
-	bit 7, a
-	jr nz, .asm_1622f
-	call Function16233
-	jr .asm_16223
-
-.asm_1622f
-	pop af
-	ld [$ffaa], a
-	ret
-; 16233
-
-Function16233: ; 16233
-	ld a, [wcf63]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_16242
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 16242
-
-Jumptable_16242: ; 16242
-	dw Function16254
-	dw Function1626a
-	dw Function16290
-	dw Function162a8
-	dw Function162e0
-	dw Function16373
-	dw Function16406
-	dw Function1642d
-	dw Function16433
-; 16254
-
-Function16254: ; 16254
-	ld a, [wd854]
-	bit 7, a
-	jr nz, .asm_16264
-	set 7, a
-	ld [wd854], a
-	ld a, $1
-	jr .asm_16266
-
-.asm_16264
-	ld a, $2
-
-.asm_16266
-	ld [wcf63], a
-	ret
-; 1626a
-
-Function1626a: ; 1626a
-	ld hl, UnknownText_0x16649
-	call PrintText
-	call YesNoBox
-	jr c, .asm_1627f
-	ld hl, UnknownText_0x1664e
-	call PrintText
-	ld a, $81
-	jr .asm_16281
-
-.asm_1627f
-	ld a, $80
-
-.asm_16281
-	ld [wd854], a
-	ld hl, UnknownText_0x16653
-	call PrintText
-	ld a, $8
-	ld [wcf63], a
-	ret
-; 16290
-
-Function16290: ; 16290
-	ld hl, UnknownText_0x16658
-	call PrintText
-	call YesNoBox
-	jr c, .asm_1629f
-	ld a, $3
-	jr .asm_162a4
-
-.asm_1629f
-	call DSTChecks
-	ld a, $7
-
-.asm_162a4
-	ld [wcf63], a
-	ret
-; 162a8
-
-Function162a8: ; 162a8
-	ld hl, UnknownText_0x1665d
-	call PrintText
-	call Function1d6e
-	ld hl, MenuDataHeader_0x166b5
-	call CopyMenuDataHeader
-	call InterpretMenu2
-	call WriteBackup
-	jr c, .asm_162ce
-	ld a, [wcfa9]
-	cp $1
-	jr z, .asm_162d2
-	cp $2
-	jr z, .asm_162d6
-	cp $3
-	jr z, .asm_162da
-
-.asm_162ce
-	ld a, $7
-	jr .asm_162dc
-
-.asm_162d2
-	ld a, $5
-	jr .asm_162dc
-
-.asm_162d6
-	ld a, $4
-	jr .asm_162dc
-
-.asm_162da
-	ld a, $6
-
-.asm_162dc
-	ld [wcf63], a
-	ret
-; 162e0
-
-Function162e0: ; 162e0
-	ld hl, UnknownText_0x16662
-	call PrintText
-	xor a
-	ld hl, StringBuffer2
-rept 2
-	ld [hli], a
-endr
-	ld [hl], a
-	ld a, $5
-	ld [wcf64], a
-	call Function1d6e
-	call Function16517
-	call Function1656b
-	call Function16571
-	call WriteBackup
-	jr c, .asm_1636d
-	ld hl, StringBuffer2
-	ld a, [hli]
-	or [hl]
-	inc hl
-	or [hl]
-	jr z, .asm_1636d
-	ld de, Money
-	ld bc, StringBuffer2
-	callba CheckMoney
-	jr c, .asm_1635f
-	ld hl, StringBuffer2
-	ld de, StringBuffer2 + 3
-	ld bc, $0003
-	call CopyBytes
-	ld bc, wd851
-	ld de, StringBuffer2
-	callba GiveMoney
-	jr c, .asm_16366
-	ld bc, StringBuffer2 + 3
-	ld de, Money
-	callba TakeMoney
-	ld hl, StringBuffer2
-	ld de, wd851
-	ld bc, $0003
-	call CopyBytes
-	ld de, SFX_TRANSACTION
-	call PlaySFX
-	call WaitSFX
-	ld hl, UnknownText_0x1668a
-	call PrintText
-	ld a, $8
-	jr .asm_1636f
-
-.asm_1635f
-	ld hl, UnknownText_0x1667b
-	call PrintText
-	ret
-
-.asm_16366
-	ld hl, UnknownText_0x16680
-	call PrintText
-	ret
-
-.asm_1636d
-	ld a, $7
-
-.asm_1636f
-	ld [wcf63], a
-	ret
-; 16373
-
-Function16373: ; 16373
-	ld hl, UnknownText_0x16667
-	call PrintText
-	xor a
-	ld hl, StringBuffer2
-rept 2
-	ld [hli], a
-endr
-	ld [hl], a
-	ld a, $5
-	ld [wcf64], a
-	call Function1d6e
-	call Function16512
-	call Function1656b
-	call Function16571
-	call WriteBackup
-	jr c, .asm_16400
-	ld hl, StringBuffer2
-	ld a, [hli]
-	or [hl]
-	inc hl
-	or [hl]
-	jr z, .asm_16400
-	ld hl, StringBuffer2
-	ld de, StringBuffer2 + 3
-	ld bc, $0003
-	call CopyBytes
-	ld de, wd851
-	ld bc, StringBuffer2
-	callba CheckMoney
-	jr c, .asm_163f2
-	ld bc, Money
-	ld de, StringBuffer2
-	callba GiveMoney
-	jr c, .asm_163f9
-	ld bc, StringBuffer2 + 3
-	ld de, wd851
-	callba TakeMoney
-	ld hl, StringBuffer2
-	ld de, Money
-	ld bc, $0003
-	call CopyBytes
-	ld de, SFX_TRANSACTION
-	call PlaySFX
-	call WaitSFX
-	ld hl, UnknownText_0x1668f
-	call PrintText
-	ld a, $8
-	jr .asm_16402
-
-.asm_163f2
-	ld hl, UnknownText_0x16671
-	call PrintText
-	ret
-
-.asm_163f9
-	ld hl, UnknownText_0x16676
-	call PrintText
-	ret
-
-.asm_16400
-	ld a, $7
-
-.asm_16402
-	ld [wcf63], a
-	ret
-; 16406
-
-Function16406: ; 16406
-	ld hl, UnknownText_0x1666c
-	call PrintText
-	call YesNoBox
-	jr c, .asm_16422
-	ld a, $81
-	ld [wd854], a
-	ld hl, UnknownText_0x16685
-	call PrintText
-	ld a, $8
-	ld [wcf63], a
-	ret
-
-.asm_16422
-	ld a, $80
-	ld [wd854], a
-	ld a, $7
-	ld [wcf63], a
-	ret
-; 1642d
-
-Function1642d: ; 1642d
-	ld hl, UnknownText_0x16694
-	call PrintText
-
-Function16433: ; 16433
-	ld hl, wcf63
-	set 7, [hl]
-	ret
-; 16439
-
-DSTChecks: ; 16439
-; check the time; avoid changing DST if doing so would change the current day
-	ld a, [wDST]
-	bit 7, a
-	ld a, [hHours]
-	jr z, .asm_16447
-	and a ; within one hour of 00:00?
-	jr z, .LostBooklet
-	jr .loop
-
-.asm_16447
-	cp 23 ; within one hour of 23:00?
-	jr nz, .loop
-	; fallthrough
-
-.LostBooklet
-	call Function164ea
-	bccoord 1, 14
-	ld hl, UnknownText_0x164f4
-	call PlaceWholeStringInBoxAtOnce
-	call YesNoBox
-	ret c
-	call Function164ea
-	bccoord 1, 14
-	ld hl, LostInstructionBookletText
-	call PlaceWholeStringInBoxAtOnce
-	ret
-
-.loop
-	call Function164ea
-	bccoord 1, 14
-	ld a, [wDST]
-	bit 7, a
-	jr z, .asm_16497
-	ld hl, UnknownText_0x16508
-	call PlaceWholeStringInBoxAtOnce
-	call YesNoBox
-	ret c
-	ld a, [wDST]
-	res 7, a
-	ld [wDST], a
-	call Function164d1
-	call Function164ea
-	bccoord 1, 14
-	ld hl, UnknownText_0x1650d
-	call PlaceWholeStringInBoxAtOnce
-	ret
-
-.asm_16497
-	ld hl, UnknownText_0x164fe
-	call PlaceWholeStringInBoxAtOnce
-	call YesNoBox
-	ret c
-	ld a, [wDST]
-	set 7, a
-	ld [wDST], a
-	call Function164b9
-	call Function164ea
-	bccoord 1, 14
-	ld hl, UnknownText_0x16503
-	call PlaceWholeStringInBoxAtOnce
-	ret
-; 164b9
-
-Function164b9: ; 164b9
-	ld a, [StartHour]
-	add 1
-	sub 24
-	jr nc, .asm_164c4
-	add 24
-.asm_164c4
-	ld [StartHour], a
-	ccf
-	ld a, [StartDay]
-	adc 0
-	ld [StartDay], a
-	ret
-; 164d1
-
-Function164d1: ; 164d1
-	ld a, [StartHour]
-	sub 1
-	jr nc, .asm_164da
-	add 24
-.asm_164da
-	ld [StartHour], a
-	ld a, [StartDay]
-	sbc 0
-	jr nc, .asm_164e6
-	add 7
-.asm_164e6
-	ld [StartDay], a
-	ret
-; 164ea
-
-Function164ea: ; 164ea
-	hlcoord 1, 14
-	ld bc, $0312
-	call ClearBox
-	ret
-; 164f4
-
-UnknownText_0x164f4: ; 0x164f4
-	; Do you want to adjust your clock for Daylight Saving Time?
-	text_jump UnknownText_0x1c6095
-	db "@"
-; 0x164f9
-
-LostInstructionBookletText: ; 0x164f9
-	; I lost the instruction booklet for the POKéGEAR.
-	; Come back again in a while.
-	text_jump UnknownText_0x1c60d1
-	db "@"
-; 0x164fe
-
-UnknownText_0x164fe: ; 0x164fe
-	; Do you want to switch to Daylight Saving Time?
-	text_jump UnknownText_0x1c6000
-	db "@"
-; 0x16503
-
-UnknownText_0x16503: ; 0x16503
-	; I set the clock forward by one hour.
-	text_jump UnknownText_0x1c6030
-	db "@"
-; 0x16508
-
-UnknownText_0x16508: ; 0x16508
-	; Is Daylight Saving Time over?
-	text_jump UnknownText_0x1c6056
-	db "@"
-; 0x1650d
-
-UnknownText_0x1650d: ; 0x1650d
-	; I put the clock back one hour.
-	text_jump UnknownText_0x1c6075
-	db "@"
-; 0x16512
-
-Function16512: ; 16512
-	ld de, String_1669f
-	jr Function1651a
-
-Function16517: ; 16517
-	ld de, String_166a8
-
-Function1651a: ; 1651a
-	push de
-	xor a
-	ld [hBGMapMode], a
-	hlcoord 0, 0
-	lb bc, 6, 18
-	call TextBox
-	hlcoord 1, 2
-	ld de, String_16699
-	call PlaceString
-	hlcoord 12, 2
-	ld de, wd851
-	lb bc, PRINTNUM_MONEY | 3, 6
-	call PrintNum
-	hlcoord 1, 4
-	ld de, String_166b0
-	call PlaceString
-	hlcoord 12, 4
-	ld de, Money
-	lb bc, PRINTNUM_MONEY | 3, 6
-	call PrintNum
-	hlcoord 1, 6
-	pop de
-	call PlaceString
-	hlcoord 12, 6
-	ld de, StringBuffer2
-	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
-	call PrintNum
-	call UpdateSprites
-	call Function3238
-	ret
-; 1656b
-
-Function1656b: ; 1656b
-	ld c, 10
-	call DelayFrames
-	ret
-; 16571
-
-Function16571: ; 16571
-.asm_16571
-	call Functiona57
-	ld hl, hJoyPressed
-	ld a, [hl]
-	and $2
-	jr nz, .asm_165b5
-	ld a, [hl]
-	and $1
-	jr nz, .asm_165b7
-	call Function165b9
-	xor a
-	ld [hBGMapMode], a
-	hlcoord 12, 6
-	ld bc, $0007
-	ld a, $7f
-	call ByteFill
-	hlcoord 12, 6
-	ld de, StringBuffer2
-	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
-	call PrintNum
-	ld a, [$ff9b]
-	and $10
-	jr nz, .asm_165b0
-	hlcoord 13, 6
-	ld a, [wcf64]
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld [hl], $7f
-
-.asm_165b0
-	call WaitBGMap
-	jr .asm_16571
-
-.asm_165b5
-	scf
-	ret
-
-.asm_165b7
-	and a
-	ret
-; 165b9
-
-Function165b9: ; 165b9
-	ld hl, $ffa9
-	ld a, [hl]
-	and $40
-	jr nz, .asm_165e3
-	ld a, [hl]
-	and $80
-	jr nz, .asm_165f5
-	ld a, [hl]
-	and $20
-	jr nz, .asm_165d2
-	ld a, [hl]
-	and $10
-	jr nz, .asm_165da
-	and a
-	ret
-
-.asm_165d2
-	ld hl, wcf64
-	ld a, [hl]
-	and a
-	ret z
-	dec [hl]
-	ret
-
-.asm_165da
-	ld hl, wcf64
-	ld a, [hl]
-	cp $5
-	ret nc
-	inc [hl]
-	ret
-
-.asm_165e3
-	ld hl, Unknown_16613
-	call Function16607
-	ld c, l
-	ld b, h
-	ld de, StringBuffer2
-	callba GiveMoney
-	ret
-
-.asm_165f5
-	ld hl, Unknown_16613
-	call Function16607
-	ld c, l
-	ld b, h
-	ld de, StringBuffer2
-	callba TakeMoney
-	ret
-; 16607
-
-Function16607: ; 16607
-	ld a, [wcf64]
-	push de
-	ld e, a
-	ld d, 0
-rept 3
-	add hl, de
-endr
-	pop de
-	ret
-; 16613
-
-Unknown_16613: ; 16613
-	dt 100000
-	dt 10000
-	dt 1000
-	dt 100
-	dt 10
-	dt 1
-
-	dt 100000
-	dt 10000
-	dt 1000
-	dt 100
-	dt 10
-	dt 1
-
-	dt 900000
-	dt 90000
-	dt 9000
-	dt 900
-	dt 90
-	dt 9
-; 16649
-
-UnknownText_0x16649: ; 0x16649
-	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
-	text_jump UnknownText_0x1bd77f
-	db "@"
-; 0x1664e
-
-UnknownText_0x1664e: ; 0x1664e
-	; OK, I'll take care of your money.
-	text_jump UnknownText_0x1bd868
-	db "@"
-; 0x16653
-
-UnknownText_0x16653: ; 0x16653
-	; Be careful. #MON are your friends. You need to work as a team. Now, go on!
-	text_jump UnknownText_0x1bd88e
-	db "@"
-; 0x16658
-
-UnknownText_0x16658: ; 0x16658
-	; Hi! Welcome home! You're trying very hard, I see. I've kept your room tidy. Or is this about your money?
-	text_jump UnknownText_0x1bd8da
-	db "@"
-; 0x1665d
-
-UnknownText_0x1665d: ; 0x1665d
-	; What do you want to do?
-	text_jump UnknownText_0x1bd942
-	db "@"
-; 0x16662
-
-UnknownText_0x16662: ; 0x16662
-	; How much do you want to save?
-	text_jump UnknownText_0x1bd95b
-	db "@"
-; 0x16667
-
-UnknownText_0x16667: ; 0x16667
-	; How much do you want to take?
-	text_jump UnknownText_0x1bd97a
-	db "@"
-; 0x1666c
-
-UnknownText_0x1666c: ; 0x1666c
-	; Do you want to save some money?
-	text_jump UnknownText_0x1bd999
-	db "@"
-; 0x16671
-
-UnknownText_0x16671: ; 0x16671
-	; You haven't saved that much.
-	text_jump UnknownText_0x1bd9ba
-	db "@"
-; 0x16676
-
-UnknownText_0x16676: ; 0x16676
-	; You can't take that much.
-	text_jump UnknownText_0x1bd9d7
-	db "@"
-; 0x1667b
-
-UnknownText_0x1667b: ; 0x1667b
-	; You don't have that much.
-	text_jump UnknownText_0x1bd9f1
-	db "@"
-; 0x16680
-
-UnknownText_0x16680: ; 0x16680
-	; You can't save that much.
-	text_jump UnknownText_0x1bda0b
-	db "@"
-; 0x16685
-
-UnknownText_0x16685: ; 0x16685
-	; OK, I'll save your money. Trust me! , stick with it!
-	text_jump UnknownText_0x1bda25
-	db "@"
-; 0x1668a
-
-UnknownText_0x1668a: ; 0x1668a
-	; Your money's safe here! Get going!
-	text_jump UnknownText_0x1bda5b
-	db "@"
-; 0x1668f
-
-UnknownText_0x1668f: ; 0x1668f
-	; , don't give up!
-	text_jump UnknownText_0x1bda7e
-	db "@"
-; 0x16694
-
-UnknownText_0x16694: ; 0x16694
-	; Just do what you can.
-	text_jump UnknownText_0x1bda90
-	db "@"
-; 0x16699
-
-String_16699: ; 16699
-	db "SAVED@"
-; 1669f
-
-String_1669f: ; 1669f
-	db "WITHDRAW@"
-; 166a8
-
-String_166a8: ; 166a8
-	db "DEPOSIT@"
-; 166b0
-
-String_166b0: ; 166b0
-	db "HELD@"
-; 166b5
-
-MenuDataHeader_0x166b5: ; 0x166b5
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 10, 10 ; end coords
-	dw MenuData2_0x166bd
-	db 1 ; default option
-; 0x166bd
-
-MenuData2_0x166bd: ; 0x166bd
-	db $80 ; flags
-	db 4 ; items
-	db "GET@"
-	db "SAVE@"
-	db "CHANGE@"
-	db "CANCEL@"
-; 0x166d6
+INCLUDE "event/mom.asm"
 
 Special_DayCareMan: ; 166d6
 	ld hl, wDaycareMan
@@ -20497,11 +19747,11 @@ Function1678f: ; 1678f
 
 Function16798: ; 16798
 	ld a, [PartyCount]
-	cp $2
+	cp 2
 	jr c, .asm_167e5
-	ld a, $4
+	ld a, 4
 	call Function1689b
-	ld b, $6
+	ld b, 6
 	callba Function5001d
 	jr c, .asm_167dd
 	ld a, [CurPartySpecies]
@@ -22274,10 +21524,10 @@ INCBIN "gfx/unknown/017393.2bpp"
 Function173b3: ; 173b3 (5:73b3)
 	callba Function8cf53
 	ld hl, Unknown_173ef
-.asm_173bc
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_173e5
+	jr z, .done
 	ld e, a
 	ld a, [hli]
 	ld d, a
@@ -22302,8 +21552,8 @@ Function173b3: ; 173b3 (5:73b3)
 	add hl, bc
 	ld [hl], d
 	pop hl
-	jr .asm_173bc
-.asm_173e5
+	jr .loop
+.done
 	ld de, SFX_EGG_HATCH
 	call PlaySFX
 	call Function1727f
@@ -23811,13 +23061,13 @@ Function2466f: ; 2466f
 Function24673: ; 24673
 	ld a, [wcf91]
 	bit 7, a
-	jp z, Function2ec8
+	jp z, xor_a_dec_a
 	ld a, [wcfa9]
 	dec a
 	call Function248d5
 	ld a, [MenuSelection]
 	cp $ff
-	jp z, Function2ec8
+	jp z, xor_a_dec_a
 	call Function246fc
 	dec a
 	ld [wcf77], a
@@ -23829,7 +23079,7 @@ Function24673: ; 24673
 Function24695: ; 24695
 	ld a, [wcf91]
 	bit 6, a
-	jp z, Function2ec8
+	jp z, xor_a_dec_a
 	ld a, $8
 	scf
 	ret
@@ -23838,10 +23088,10 @@ Function24695: ; 24695
 Function246a1: ; 246a1
 	ld hl, wcfa6
 	bit 7, [hl]
-	jp z, Function2ec8
+	jp z, xor_a_dec_a
 	ld a, [wcf91]
 	bit 3, a
-	jp z, Function2ec8
+	jp z, xor_a_dec_a
 	ld a, $20
 	scf
 	ret
@@ -23850,10 +23100,10 @@ Function246a1: ; 246a1
 Function246b5: ; 246b5
 	ld hl, wcfa6
 	bit 7, [hl]
-	jp z, Function2ec8
+	jp z, xor_a_dec_a
 	ld a, [wcf91]
 	bit 2, a
-	jp z, Function2ec8
+	jp z, xor_a_dec_a
 	ld a, $10
 	scf
 	ret
@@ -23862,22 +23112,22 @@ Function246b5: ; 246b5
 Function246c9: ; 246c9
 	ld hl, wcfa6
 	bit 7, [hl]
-	jp z, Function2ec6
+	jp z, xor_a
 	ld hl, wd0e4
 	ld a, [hl]
 	and a
 	jr z, .asm_246dc
 	dec [hl]
-	jp Function2ec6
+	jp xor_a
 
 .asm_246dc
-	jp Function2ec8
+	jp xor_a_dec_a
 ; 246df
 
 Function246df: ; 246df
 	ld hl, wcfa6
 	bit 7, [hl]
-	jp z, Function2ec6
+	jp z, xor_a
 	ld hl, wd0e4
 	ld a, [wcf92]
 	add [hl]
@@ -23886,10 +23136,10 @@ Function246df: ; 246df
 	cp b
 	jr c, .asm_246f9
 	inc [hl]
-	jp Function2ec6
+	jp xor_a
 
 .asm_246f9
-	jp Function2ec8
+	jp xor_a_dec_a
 ; 246fc
 
 Function246fc: ; 246fc
@@ -24577,8 +23827,8 @@ MenuDataHeader_0x24b1d: ; 0x24b1d
 
 Function24b25: ; 24b25
 	hlcoord 11, 0
-	ld b, $1
-	ld c, $7
+	ld b, 1
+	ld c, 7
 	call TextBox
 	hlcoord 12, 0
 	ld de, CoinString
@@ -25737,7 +24987,7 @@ Function25299: ; 25299 (9:5299)
 	ld de, Tilemap_252fc
 	call Function253a8
 	hlcoord 14, 1
-	ld bc, $507
+	lb bc, 5, 7
 	xor a
 	ld [$ffad], a
 	predef FillBox
@@ -25768,7 +25018,7 @@ Function2530a: ; 2530a (9:530a)
 	call CountSetBits
 	ld de, wd265
 	hlcoord 15, 10
-	ld bc, $103
+	lb bc, 1, 3
 	call PrintNum
 	call Function25415
 	hlcoord 2, 8
@@ -25927,7 +25177,7 @@ Function253f4: ; 253f4 (9:53f4)
 Function25415: ; 25415 (9:5415)
 	hlcoord 11, 12
 	ld de, GameTimeHours
-	ld bc, $204
+	lb bc, 2, 4
 	call PrintNum
 	inc hl
 	ld de, GameTimeMinutes
@@ -34431,7 +33681,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	ld a, b
 	ld [wd265], a
 	ld de, wd265
-	ld bc, $102
+	lb bc, 1, 2
 	call PrintNum
 .asm_2ca6f
 	pop bc
@@ -38300,12 +37550,12 @@ endr
 
 Function487ff: ; 487ff (12:47ff)
 	push hl
-	ld a, $7f
+	ld a, " "
 	ld [hli], a
 	ld [hl], a
 	pop hl
-	ld b, $81
-	ld c, $3
+	ld b, PRINTNUM_LEADINGZEROS | 1
+	ld c, 3
 	call PrintNum
 	ret
 ; 4880d (12:480d)
@@ -45294,12 +44544,12 @@ Function4e013: ; 4e013 (13:6013)
 	hlcoord 17, 14
 	call Function4e0d3
 	hlcoord 13, 10
-	ld bc, $307
+	lb bc, 3, 7
 	ld de, TempMonExp
 	call PrintNum
 	call Function4e0e7
 	hlcoord 13, 13
-	ld bc, $307
+	lb bc, 3, 7
 	ld de, Buffer1 ; wd1ea (aliases: MagikarpLength)
 	call PrintNum
 	ld de, String_4e136
@@ -48403,7 +47653,7 @@ PrintTempMonStats: ; 50b7b
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld de, TempMonAttack
-	ld bc, $0203
+	lb bc, 2, 3
 	call .PrintStat
 	ld de, TempMonDefense
 	call .PrintStat
@@ -86312,384 +85562,11 @@ UnownWord25: unownword "YIELD"
 UnownWord26: unownword "ZOOM"
 ; fbb32
 
-Special_CheckMagikarpLength: ; fbb32
-	callba SelectMonFromParty
-	jr c, .declined
-	ld a, [CurPartySpecies]
-	cp MAGIKARP
-	jr nz, .not_magikarp
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
-	call AddNTimes
-	push hl
-	ld bc, MON_DVS
-	add hl, bc
-	ld d, h
-	ld e, l
-	pop hl
-	ld bc, MON_ID
-	add hl, bc
-	ld b, h
-	ld c, l
-	call CalcMagikarpLength
-	call Functionfbbdb
-	callba Function105f33
-	ld hl, UnknownText_0xfbba9
-	call PrintText
-	ld hl, Buffer1
-	ld de, wdfe8
-	ld c, $2
-	call StringCmp
-	jr nc, .not_long_enough
-	ld hl, Buffer1
-	ld de, wdfe8
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	inc de
-	ld a, [CurPartyMon]
-	ld hl, PartyMonOT
-	call SkipNames
-	call CopyBytes
-	ld a, $3
-	ld [ScriptVar], a
-	ret
-
-.not_long_enough
-	ld a, $2
-	ld [ScriptVar], a
-	ret
-
-.declined
-	ld a, $1
-	ld [ScriptVar], a
-	ret
-
-.not_magikarp
-	xor a
-	ld [ScriptVar], a
-	ret
-; fbba9
-
-UnknownText_0xfbba9: ; 0xfbba9
-	; Let me measure that MAGIKARP. …Hm, it measures @ .
-	text_jump UnknownText_0x1c1203
-	db "@"
-; 0xfbbae
-
-Functionfbbae: ; fbbae
-	ld hl, $96e0
-	ld de, GFX_fbbbb
-	lb bc, BANK(GFX_fbbbb), $02
-	call Request2bpp
-	ret
-; fbbbb
-
-GFX_fbbbb: ; fbbb
-INCBIN "gfx/unknown/0fbbbb.2bpp"
-; fbbdb
-
-Functionfbbdb: ; fbbdb
-	call Functionfbbae
-	ld hl, StringBuffer1
-	ld de, Buffer1
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
-	call PrintNum
-	ld [hl], $6e
-	inc hl
-	ld de, Buffer2
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
-	call PrintNum
-	ld [hl], $6f
-	inc hl
-	ld [hl], "@"
-	ret
-; fbbfc
-
-INCLUDE "battle/magikarp_length.asm"
-
-Special_MagikarpHouseSign: ; fbcd2
-	ld a, [wdfe8]
-	ld [Buffer1], a
-	ld a, [wdfe9]
-	ld [Buffer2], a
-	call Functionfbbdb
-	ld hl, UnknownText_0xfbce8
-	call PrintText
-	ret
-; fbce8
-
-UnknownText_0xfbce8: ; 0xfbce8
-	; "CURRENT RECORD"
-	text_jump UnknownText_0x1c123a
-	db "@"
-; 0xfbced
+INCLUDE "event/magikarp.asm"
 
 INCLUDE "battle/hidden_power.asm"
 
-Functionfbd54: ; fbd54
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_fbd61
-	call Functionfbd96
-	jr .asm_fbd64
-.asm_fbd61
-	call Functionfbd9d
-.asm_fbd64
-	call ClearBox
-	jr Functionfbd91
-
-Functionfbd69: ; fbd69 (3e:7d69)
-	callba BattleCommanda6
-	jr Functionfbd77
-
-Functionfbd71: ; fbd71 (3e:7d71)
-	callba BattleCommanda7
-
-Functionfbd77: ; fbd77 (3e:7d77)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_fbd85
-	call Functionfbd96
-	xor a
-	jr .asm_fbd8a
-.asm_fbd85
-	call Functionfbd9d
-	ld a, $31
-.asm_fbd8a
-	ld [$ffad], a
-	predef FillBox
-Functionfbd91: ; fbd91 (3e:7d91)
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	ret
-
-Functionfbd96: ; fbd96 (3e:7d96)
-	hlcoord 12, 0
-	ld bc, $707
-	ret
-
-Functionfbd9d: ; fbd9d (3e:7d9d)
-	hlcoord 2, 6
-	ld bc, $606
-	ret
-
-
-DoWeatherModifiers: ; fbda4
-
-	ld de, .WeatherTypeModifiers
-	ld a, [Weather]
-	ld b, a
-	ld a, [wd265] ; move type
-	ld c, a
-
-.CheckWeatherType
-	ld a, [de]
-	inc de
-	cp $ff
-	jr z, .asm_fbdc0
-
-	cp b
-	jr nz, .NextWeatherType
-
-	ld a, [de]
-	cp c
-	jr z, .ApplyModifier
-
-.NextWeatherType
-rept 2
-	inc de
-endr
-	jr .CheckWeatherType
-
-
-.asm_fbdc0
-	ld de, .WeatherMoveModifiers
-
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	ld c, a
-
-.CheckWeatherMove
-	ld a, [de]
-	inc de
-	cp $ff
-	jr z, .done
-
-	cp b
-	jr nz, .NextWeatherMove
-
-	ld a, [de]
-	cp c
-	jr z, .ApplyModifier
-
-.NextWeatherMove
-rept 2
-	inc de
-endr
-	jr .CheckWeatherMove
-
-.ApplyModifier
-	xor a
-	ld [hMultiplicand + 0], a
-	ld hl, CurDamage
-	ld a, [hli]
-	ld [hMultiplicand + 1], a
-	ld a, [hl]
-	ld [hMultiplicand + 2], a
-
-	inc de
-	ld a, [de]
-	ld [hMultiplier], a
-
-	call Multiply
-
-	ld a, 10
-	ld [hDivisor], a
-	ld b, $4
-	call Divide
-
-	ld a, [hQuotient + 0]
-	and a
-	ld bc, $ffff
-	jr nz, .Update
-
-	ld a, [hQuotient + 1]
-	ld b, a
-	ld a, [hQuotient + 2]
-	ld c, a
-	or b
-	jr nz, .Update
-
-	ld bc, 1
-
-.Update
-	ld a, b
-	ld [CurDamage], a
-	ld a, c
-	ld [CurDamage + 1], a
-
-.done
-	ret
-
-.WeatherTypeModifiers
-	db WEATHER_RAIN, WATER, 15
-	db WEATHER_RAIN, FIRE,  05
-	db WEATHER_SUN,  FIRE,  15
-	db WEATHER_SUN,  WATER, 05
-	db $ff
-
-.WeatherMoveModifiers
-	db WEATHER_RAIN, EFFECT_SOLARBEAM, 05
-	db $ff
-; fbe24
-
-
-DoBadgeTypeBoosts: ; fbe24
-	ld a, [InLinkBattle]
-	and a
-	ret nz
-
-	ld a, [InBattleTowerBattle]
-	and a
-	ret nz
-
-	ld a, [hBattleTurn]
-	and a
-	ret nz
-
-	push de
-	push bc
-
-	ld hl, .BadgeTypes
-
-	ld a, [KantoBadges]
-	ld b, a
-	ld a, [JohtoBadges]
-	ld c, a
-
-.CheckBadge
-	ld a, [hl]
-	cp $ff
-	jr z, .done
-
-	srl b
-	rr c
-	jr nc, .NextBadge
-
-	ld a, [wd265] ; move type
-	cp [hl]
-	jr z, .ApplyBoost
-
-.NextBadge
-	inc hl
-	jr .CheckBadge
-
-.ApplyBoost
-	ld a, [CurDamage]
-	ld h, a
-	ld d, a
-	ld a, [CurDamage + 1]
-	ld l, a
-	ld e, a
-
-	srl d
-	rr e
-	srl d
-	rr e
-	srl d
-	rr e
-
-	ld a, e
-	or d
-	jr nz, .asm_fbe6f
-	ld e, 1
-
-.asm_fbe6f
-	add hl, de
-	jr nc, .Update
-
-	ld hl, $ffff
-
-.Update
-	ld a, h
-	ld [CurDamage], a
-	ld a, l
-	ld [CurDamage + 1], a
-
-.done
-	pop bc
-	pop de
-	ret
-
-.BadgeTypes
-	db FLYING   ; zephyrbadge
-	db BUG      ; hivebadge
-	db NORMAL   ; plainbadge
-	db GHOST    ; fogbadge
-	db STEEL    ; mineralbadge
-	db FIGHTING ; stormbadge
-	db ICE      ; glacierbadge
-	db DRAGON   ; risingbadge
-
-	db ROCK     ; boulderbadge
-	db WATER    ; cascadebadge
-	db ELECTRIC ; thunderbadge
-	db GRASS    ; rainbowbadge
-	db POISON   ; soulbadge
-	db PSYCHIC  ; marshbadge
-	db FIRE     ; volcanobadge
-	db GROUND   ; earthbadge
-	db $ff
-; fbe91
-
+INCLUDE "battle/misc.asm"
 
 SECTION "bank3F", ROMX, BANK[$3F]
 
@@ -86732,7 +85609,7 @@ NPCTrade:: ; fcba8
 	jr c, .done
 
 ; Select givemon from party
-	ld b, $6
+	ld b, 6
 	callba Function5001d
 	ld a, TRADE_CANCEL
 	jr c, .done
@@ -90697,7 +89574,7 @@ Mobile_HallOfFame2:: mobile ; 0x105ef6
 	ret
 ; 105f33
 
-Function105f33: mobile ; 105f33
+MagikarpLength_Mobile: mobile ; 105f33
 	ld a, $5
 	call GetSRAMBank
 	ld de, Buffer1
@@ -92253,7 +91130,7 @@ Function1dd6a9: ; 1dd6a9
 
 Function1dd6bb: ; 1dd6bb (77:56bb)
 	ld a, b
-	cp $c
+	cp 12
 	push af
 	jr c, .asm_1dd6c7
 	jr z, .asm_1dd6cc
@@ -92272,7 +91149,7 @@ Function1dd6bb: ; 1dd6bb (77:56bb)
 	pop de
 	pop hl
 	ld [hl], $7f
-	ld bc, $102
+	lb bc, 1, 2
 	call PrintNum
 	ld [hl], $9c
 	inc hl

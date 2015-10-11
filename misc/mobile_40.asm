@@ -1843,7 +1843,7 @@ Function100b9f: ; 100b9f
 	callba Function3e786
 	ret z
 	call Function100dd8
-	jp c, Function2ec8
+	jp c, xor_a_dec_a
 	call Function100e72
 	call Function100bc2
 	push af

@@ -75,12 +75,12 @@ Function2ebb:: ; 2ebb
 	ret
 ; 2ec6
 
-Function2ec6:: ; 2ec6
+xor_a:: ; 2ec6
 	xor a
 	ret
 ; 2ec8
 
-Function2ec8:: ; 2ec8
+xor_a_dec_a:: ; 2ec8
 	xor a
 	dec a
 	ret
@@ -1760,7 +1760,7 @@ Function383d:: ; 383d
 Function3842:: ; 3842
 	ld [wd265], a
 	ld de, wd265
-	ld b, 1 << 6 + 1
+	ld b, PRINTNUM_RIGHTALIGN | 1
 	jp PrintNum
 ; 384d
 
