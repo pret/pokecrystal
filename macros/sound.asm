@@ -29,6 +29,21 @@ A_ EQU 10
 A# EQU 11
 B_ EQU 12
 
+; Drumkit5
+;__ EQU 0
+D5Snare9 EQU 1 ; c
+D5Snare10 EQU 2 ; c#
+D5Snare11 EQU 3 ; d
+D5Drum27 EQU 4 ; d#
+D5Drum28 EQU 5 ; e
+D5Drum29 EQU 6 ; f
+D5Drum05 EQU 7 ; f#
+D5Triangle1 EQU 8 ; g
+D5Crash1 EQU 9 ; g#
+D5Snare14 EQU 10 ; a
+D5Snare13 EQU 11 ; a#
+D5Kick2 EQU 12 ; b
+
 
 octave: macro
 	db $d8 - (\1)
@@ -57,10 +72,23 @@ dutycycle: macro
 	db \1 ; duty_cycle
 	endm
 
+; parameter is directly written
+; in hardware register NRX2
+; FF12 - NR12 - Channel 1 Volume Envelope (R/W)
+; Bit 7-4 - Initial Volume of envelope (0-0Fh) (0=No Sound)
+; Bit 3   - Envelope Direction (0=Decrease, 1=Increase)
+; Bit 2-0 - Number of envelope sweep (n: 0-7)
+;           (If zero, stop envelope operation.)
 intensity: macro
 	db $dc
 	db \1 ; intensity
 	endm
+
+intensity_own: MACRO
+	db $dc
+	db (\1 << 4) | \2
+ENDM
+
 
 soundinput: macro
 	db $dd
@@ -76,17 +104,33 @@ togglesfx: macro
 	db $df
 	endm
 
+
 unknownmusic0xe0: macro
 	db $e0
 	db \1 ; unknown
 	db \2 ; unknown
 	endm
 
+unknownmusic0xe0_own: macro ; maybe pitchbend???
+	db $e0
+	db \1 ; unknown
+	db (\2 << 4) | \3 ; unknown
+	endm
+
+
 vibrato: macro
 	db $e1
 	db \1 ; delay
 	db \2 ; extent
 	endm
+
+; format: vibrato delay (in frames), extent, rate (# frames per cycle)
+vibrato_red: MACRO
+	db $e1
+	db \1
+	db (\2 << 4) | \3
+ENDM
+
 
 unknownmusic0xe2: macro
 	db $e2
@@ -103,10 +147,27 @@ panning: macro
 	db \1 ; tracks
 	endm
 
+
+; parameter is directly written
+; in hardware register NR50
+; FF24 - NR50 - Channel control / ON-OFF / Volume (R/W)
+; The volume bits specify the "Master Volume" for Left/Right sound output.
+; Bit 7   - Output Vin to SO2 terminal (1=Enable)
+; Bit 6-4 - SO2 output level (volume)  (0-7)
+; Bit 3   - Output Vin to SO1 terminal (1=Enable)
+; Bit 2-0 - SO1 output level (volume)  (0-7)
 volume: macro
 	db $e5
 	db \1 ; volume
 	endm
+
+volume_red: MACRO
+; \1: SO2 output level (volume)  (0-7)
+; \2: SO1 output level (volume)  (0-7)
+	db $e5
+	db (\1 << 4) | \2
+ENDM
+
 
 tone: macro
 	db $e6

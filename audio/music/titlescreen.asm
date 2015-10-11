@@ -7,16 +7,18 @@ Music_TitleScreen: ; eb808
 
 Music_TitleScreen_Ch1: ; eb814
 	tempo 134
-	volume $77
+	volume_red 7, 7
 	dutycycle $3
 	tone $0002
-	vibrato $10, $12
+	vibrato_red $10, 1, 2
 	stereopanning $f0
 	notetype $c, $a7
-	intensity $a0
+
+	intensity_own $a, 0
 	octave 3
 	note __, 4
-	intensity $a7
+
+	intensity_own $a, 7
 	octave 2
 	note G_, 1
 	note __, 2
@@ -903,231 +905,231 @@ Music_TitleScreen_Ch4: ; ebc5c
 	stereopanning $f0
 	notetype $c
 	note __, 4
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 6
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 3
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 4
-	note D#, 2
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 1
-	note C_, 2
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 6
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 3
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 4
+	note D5Drum27, 2
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
 	notetype $6
-	note D_, 1
-	note D_, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C_, 1
-	note C_, 1
+	note D5Snare11, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
 	notetype $c
 	callchannel Music_TitleScreen_branch_ebd77
 	callchannel Music_TitleScreen_branch_ebd81
 	callchannel Music_TitleScreen_branch_ebd81
-	note C_, 2
-	note D#, 2
-	note C_, 2
-	note D#, 2
-	note D#, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Drum27, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
 	notetype $6
-	note C#, 1
-	note C#, 1
-	note C_, 1
-	note C_, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
 	notetype $c
 	callchannel Music_TitleScreen_branch_ebd77
-	note C_, 2
-	note D#, 2
-	note C_, 2
-	note F_, 2
-	note D#, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note C_, 2
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Snare9, 2
+	note D5Drum29, 2
+	note D5Drum27, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Snare9, 2
 	callchannel Music_TitleScreen_branch_ebd81
-	note C_, 2
-	note D#, 2
-	note C_, 2
-	note D#, 2
-	note D#, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note C_, 1
-	note C_, 1
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Drum27, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
 	callchannel Music_TitleScreen_branch_ebd77
 	callchannel Music_TitleScreen_branch_ebd81
 	callchannel Music_TitleScreen_branch_ebd81
-	note C_, 2
-	note D#, 2
-	note C_, 2
-	note D#, 2
-	note D#, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Drum27, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
 	notetype $6
-	note C#, 1
-	note D_, 1
-	note D_, 1
-	note C#, 1
+	note D5Snare10, 1
+	note D5Snare11, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
 	notetype $c
 	callchannel Music_TitleScreen_branch_ebd77
 	callchannel Music_TitleScreen_branch_ebd81
-	note C_, 2
-	note D#, 2
-	note C_, 2
-	note F_, 2
-	note D#, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
-	note D#, 2
-	note C_, 2
-	note D#, 2
-	note D#, 2
-	note C_, 1
-	note C_, 1
-	note C_, 2
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Snare9, 2
+	note D5Drum29, 2
+	note D5Drum27, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Snare9, 2
+	note D5Drum27, 2
+	note D5Drum27, 2
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 2
 	notetype $6
-	note D_, 1
-	note D_, 1
-	note C#, 1
-	note C#, 1
+	note D5Snare11, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
 	notetype $c
-	note A_, 2
-	note D#, 4
-	note A_, 4
-	note D#, 2
-	note A_, 4
-	note A_, 2
-	note D#, 4
-	note A_, 4
-	note D#, 2
-	note A_, 2
-	note A_, 2
-	note A_, 2
-	note D#, 4
-	note A_, 4
-	note D#, 2
-	note A_, 4
-	note A_, 4
-	note A_, 4
-	note A_, 2
-	note D_, 1
-	note D_, 1
-	note C#, 1
-	note C#, 1
-	note C_, 1
-	note C_, 1
+	note D5Snare14, 2
+	note D5Drum27, 4
+	note D5Snare14, 4
+	note D5Drum27, 2
+	note D5Snare14, 4
+	note D5Snare14, 2
+	note D5Drum27, 4
+	note D5Snare14, 4
+	note D5Drum27, 2
+	note D5Snare14, 2
+	note D5Snare14, 2
+	note D5Snare14, 2
+	note D5Drum27, 4
+	note D5Snare14, 4
+	note D5Drum27, 2
+	note D5Snare14, 4
+	note D5Snare14, 4
+	note D5Snare14, 4
+	note D5Snare14, 2
+	note D5Snare11, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
 	callchannel Music_TitleScreen_branch_ebd8b
 	callchannel Music_TitleScreen_branch_ebd93
-	note C#, 1
-	note D_, 1
-	note D_, 1
-	note C#, 1
-	notetype $c
-	callchannel Music_TitleScreen_branch_ebd8b
-	callchannel Music_TitleScreen_branch_ebd93
-	note D_, 1
-	note D_, 1
-	note C#, 1
-	note C#, 1
+	note D5Snare10, 1
+	note D5Snare11, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
 	notetype $c
 	callchannel Music_TitleScreen_branch_ebd8b
 	callchannel Music_TitleScreen_branch_ebd93
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
+	note D5Snare11, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
 	notetype $c
-	note G#, 16
+	callchannel Music_TitleScreen_branch_ebd8b
+	callchannel Music_TitleScreen_branch_ebd93
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	notetype $c
+	note D5Crash1, 16
 Music_TitleScreen_branch_ebd40: ; ebd40
 	note __, 16
 	loopchannel 6, Music_TitleScreen_branch_ebd40
 	note __, 12
 	notetype $6
-	note D_, 1
-	note C#, 1
-	note D_, 1
-	note C#, 1
-	note D_, 1
-	note C#, 1
-	note C_, 1
-	note C_, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
 	notetype $c
-	note C_, 4
-	note C_, 6
-	note C_, 1
-	note C_, 1
-	note C_, 4
-	note C_, 4
-	note C_, 6
-	note C_, 1
-	note C_, 1
-	note C_, 4
-	note C_, 4
-	note C_, 6
-	note C_, 1
-	note C_, 1
-	note C_, 4
-	note C_, 4
-	note C_, 4
+	note D5Snare9, 4
+	note D5Snare9, 6
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 4
+	note D5Snare9, 4
+	note D5Snare9, 6
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 4
+	note D5Snare9, 4
+	note D5Snare9, 6
+	note D5Snare9, 1
+	note D5Snare9, 1
+	note D5Snare9, 4
+	note D5Snare9, 4
+	note D5Snare9, 4
 	notetype $8
-	note C_, 2
-	note C_, 2
-	note C_, 2
+	note D5Snare9, 2
+	note D5Snare9, 2
+	note D5Snare9, 2
 	notetype $6
-	note C#, 1
-	note C#, 1
-	note D_, 1
-	note D_, 1
-	note C#, 1
-	note C#, 1
-	note C_, 1
-	note C_, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare11, 1
+	note D5Snare11, 1
+	note D5Snare10, 1
+	note D5Snare10, 1
+	note D5Snare9, 1
+	note D5Snare9, 1
 	notetype $c
-	note C_, 4
-	note B_, 4
+	note D5Snare9, 4
+	note D5Kick2, 4
 	endchannel
 ; ebd77
 
