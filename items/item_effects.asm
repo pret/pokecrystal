@@ -2521,6 +2521,7 @@ Mysteryberry: ; f5bf
 	ld [wd002], a
 
 .asm_f5c5
+    ; Party Screen opens to choose on which Pkmn to use the Item
 	ld b, $1
 	call Functionf1f9
 	jp c, Functionf6e0
@@ -2548,8 +2549,8 @@ Mysteryberry: ; f5bf
 	ld a, $2
 	ld [wd235], a
 	callba MoveSelectionScreen
-
 	pop bc
+
 	ld a, b
 	ld [CurMoveNum], a
 	jr nz, .asm_f5c5
@@ -2562,8 +2563,8 @@ Mysteryberry: ; f5bf
 	ld [wd265], a
 	call GetMoveName
 	call CopyName1
-
 	pop hl
+
 	ld a, [wd002]
 	cp PP_UP
 	jp nz, Functionf6a7
@@ -2575,7 +2576,7 @@ Mysteryberry: ; f5bf
 	ld bc, $0015
 	add hl, bc
 	ld a, [hl]
-	cp $c0
+	cp 3 << 6 ; have 3 PP Ups already been used?
 	jr c, .increase_pp
 
 .pp_is_maxed_out
@@ -2585,7 +2586,7 @@ Mysteryberry: ; f5bf
 
 .increase_pp
 	ld a, [hl]
-	add $40
+	add 1 << 6 ; increase PP Up count by 1
 	ld [hl], a
 	ld a, $1
 	ld [wd265], a
