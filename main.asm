@@ -2786,18 +2786,18 @@ endr
 	db  +3,  +2,  +1 ; Battled a Gym Leader
 	db  +1,  +1,  +0 ; Learned a move
 	db  -1,  -1,  -1 ; Lost to an enemy
-	db  -5,  -5, -10
+	db  -5,  -5, -10 ; Fainted due to poison
 	db  -5,  -5, -10 ; Lost to a much weaker enemy
-	db  +1,  +1,  +1
-	db  +3,  +3,  +1
-	db  +5,  +5,  +2
-	db  +1,  +1,  +1
-	db  +3,  +3,  +1
-	db +10, +10,  +4
+	db  +1,  +1,  +1 ; Haircut?
+	db  +3,  +3,  +1 ; Haircut?
+	db  +5,  +5,  +2 ; Haircut?
+	db  +1,  +1,  +1 ; Haircut?
+	db  +3,  +3,  +1 ; Haircut?
+	db +10, +10,  +4 ; Haircut?
 	db  -5,  -5, -10 ; Used Heal Powder or Energypowder (bitter)
 	db -10, -10, -15 ; Used Energy Root (bitter)
 	db -15, -15, -20 ; Used Revival Herb (bitter)
-	db  +3,  +3,  +1
+	db  +3,  +3,  +1 ; Massage?
 	db +10,  +6,  +4 ; Gained a level in the place where it was caught
 ; 725a
 
@@ -3081,18 +3081,18 @@ Function73f7: ; 73f7
 	ret
 ; 7413
 
-Function7413: ; 7413
-	ld hl, Data7459
-	jr Function7420
+Special_YoungerHaircutBrother: ; 7413
+	ld hl, Data_YoungerHaircutBrother
+	jr MassageOrHaircut
 
-Function7418: ; 7418
-	ld hl, Data7462
-	jr Function7420
+Special_OlderHaircutBrother: ; 7418
+	ld hl, Data_OlderHaircutBrother
+	jr MassageOrHaircut
 
-Function741d: ; 741d
-	ld hl, Data746b
+Special_DaisyMassage: ; 741d
+	ld hl, Data_DaisyMassage
 
-Function7420: ; 7420
+MassageOrHaircut: ; 7420
 	push hl
 	callba SelectMonFromParty
 	pop hl
@@ -3105,6 +3105,13 @@ Function7420: ; 7420
 	call CopyPokemonName_Buffer1_Buffer3
 	pop hl
 	call Random
+; Bug: Subtracting $ff from $ff fails to set c.
+; This can result in overflow into the next data array.
+; In the case of getting a massage from Daisy, we bleed
+; into CopyPokemonName_Buffer1_Buffer3, which passes
+; $d0 to ChangeHappiness and returns $73 to the script.
+; The end result is that there is a 0.4% chance your
+; Pokemon's happiness will not change at all.
 .loop
 	sub [hl]
 	jr c, .ok
@@ -3127,23 +3134,23 @@ endr
 	ret
 
 .egg
-	ld a, $1
+	ld a, 1
 	ld [ScriptVar], a
 	ret
 ; 7459
 
-Data7459: ; 7459
-	db $4c, $02, $09
-	db $80, $03, $0a
-	db $ff, $04, $0b
+Data_YoungerHaircutBrother: ; 7459
+	db $4c, 2, HAPPINESS_YOUNGCUT1 ; 30% chance
+	db $80, 3, HAPPINESS_YOUNGCUT2 ; 20% chance
+	db $ff, 4, HAPPINESS_YOUNGCUT3 ; 50% chance
 
-Data7462: ; 7462
-	db $9a, $02, $0c
-	db $4c, $03, $0d
-	db $ff, $04, $0e
+Data_OlderHaircutBrother: ; 7462
+	db $9a, 2, HAPPINESS_OLDERCUT1 ; 60% chance
+	db $4c, 3, HAPPINESS_OLDERCUT2 ; 10% chance
+	db $ff, 4, HAPPINESS_OLDERCUT3 ; 30% chance
 
-Data746b: ; 746b
-	db $ff, $02, $12
+Data_DaisyMassage: ; 746b
+	db $ff, 2, HAPPINESS_MASSAGE ; 99.6% chance
 ; 746e
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
@@ -27048,9 +27055,9 @@ LevelUpHappinessMod: ; 2709e
 	ld c, a
 	call GetWorldMapLocation
 	cp d
-	ld c, 1
+	ld c, HAPPINESS_GAINLEVEL
 	jr nz, .ok
-	ld c, 19
+	ld c, HAPPINESS_GAINLEVELATHOME
 
 .ok
 	callab ChangeHappiness
@@ -33151,73 +33158,77 @@ Function2c642: ; 2c642 (b:4642)
 	call CloseSRAM
 	ld hl, OverworldMap
 	ld de, wc950
-	ld bc, $14
+	ld bc, SCREEN_WIDTH
 	jp CopyBytes
 
 Function2c6ac: ; 2c6ac (b:46ac)
 	push de
 	call Random
-	cp $19
-	jr c, .asm_2c6cc
+	cp $19 ; 10 percent
+	jr c, .tenpercent
 	call Random
 	and $7
 	ld d, a
 	rl d
 	ld e, $80
-.asm_2c6be
+.loop
 	rlc e
 	dec a
-	jr nz, .asm_2c6be
+	jr nz, .loop
 	ld a, e
 	and c
-	jr z, .asm_2c6c9
+	jr z, .skip
 	ld a, $1
-.asm_2c6c9
+.skip
 	add d
-	jr .asm_2c706
-.asm_2c6cc
+	jr .done
+
+.tenpercent
 	call Random
-	cp $32
-	jr c, .asm_2c6ed
+	cp $32 ; 20 percent
+	jr c, .twopercent
 	call Random
 	and $3
 	ld d, a
 	rl d
 	ld e, $80
-.asm_2c6dd
+.loop2
 	rlc e
 	dec a
-	jr nz, .asm_2c6dd
+	jr nz, .loop2
 	ld a, e
 	and b
-	jr z, .asm_2c6e8
+	jr z, .skip2
 	ld a, $1
-.asm_2c6e8
+.skip2
 	add d
 	add $10
-	jr .asm_2c706
-.asm_2c6ed
+	jr .done
+
+.twopercent
 	call Random
-	cp $32
-	jr c, .asm_2c6fd
+	cp $32 ; 50 ; 20 percent
+	jr c, .pointfourpercent
 	ld a, b
 	swap a
 	and $7
 	add $18
-	jr .asm_2c706
-.asm_2c6fd
+	jr .done
+
+.pointfourpercent
 	ld a, b
 	and $80
 	ld a, $20
-	jr z, .asm_2c706
+	jr z, .done
 	ld a, $21
-.asm_2c706
+
+.done
 	pop de
 	ret
 
-Function2c708: ; 2c708 (b:4708)
+MysteryGiftGetItem: ; 2c708 (b:4708)
 	ld a, c
-	cp $25
+	cp $25 ; 37
 	jr nc, Function2c722
 	ld hl, Unknown_2c725
 	ld b, 0
@@ -33225,9 +33236,9 @@ Function2c708: ; 2c708 (b:4708)
 	ld c, [hl]
 	ret
 
-Function2c715: ; 2c715 (b:4715)
+MysteryGiftGetDecoration: ; 2c715 (b:4715)
 	ld a, c
-	cp $25
+	cp $25 ; 37
 	jr nc, Function2c722
 	ld hl, Unknown_2c74a
 	ld b, 0
@@ -33236,32 +33247,90 @@ Function2c715: ; 2c715 (b:4715)
 	ret
 
 Function2c722: ; 2c722 (b:4722)
-	ld c, $4
+	ld c, DECO_POLKADOT_BED ; GREAT_BALL
 	ret
 ; 2c725 (b:4725)
 
 Unknown_2c725: ; 2c725
 ; May or may not be items.
-	db $ad, $4e, $54, $50, $4f
-	db $4a, $29, $33, $31, $53
-	db $2c, $35, $21, $b9, $ba
-	db $bc, $6d, $ae, $27, $04
-	db $2a, $2b, $41, $3f, $18
-	db $16, $22, $17, $40, $15
-	db $28, $8c, $1a, $3e, $20
-	db $bb, $bd
+	db BERRY
+	db PRZCUREBERRY
+	db MINT_BERRY
+	db ICE_BERRY
+	db BURNT_BERRY
+	db PSNCUREBERRY
+	db GUARD_SPEC
+	db X_DEFEND
+	db X_ATTACK
+	db BITTER_BERRY
+	db DIRE_HIT
+	db X_SPECIAL
+	db X_ACCURACY
+	db EON_MAIL
+	db MORPH_MAIL
+	db MUSIC_MAIL
+	db MIRACLEBERRY
+	db GOLD_BERRY
+	db REVIVE
+	db GREAT_BALL
+	db SUPER_REPEL
+	db MAX_REPEL
+	db ELIXER
+	db ETHER
+	db WATER_STONE
+	db FIRE_STONE
+	db LEAF_STONE
+	db THUNDERSTONE
+	db MAX_ETHER
+	db MAX_ELIXER
+	db MAX_REVIVE
+	db SCOPE_LENS
+	db HP_UP
+	db PP_UP
+	db RARE_CANDY
+	db BLUESKY_MAIL
+	db MIRAGE_MAIL
 ; 2c74a
 
 Unknown_2c74a: ; 2c74a
 ; May or may not be items.
-	db $16, $1a, $1b, $1c, $1d
-	db $1e, $1f, $20, $21, $22
-	db $0d, $0e, $10, $23, $25
-	db $26, $08, $09, $0f, $11
-	db $17, $19, $01, $02, $04
-	db $05, $06, $07, $0a, $12
-	db $29, $0c, $2a, $14, $03
-	db $24, $27
+	db DECO_SNES
+	db DECO_BIG_SNORLAX_DOLL
+	db DECO_BIG_ONIX_DOLL
+	db DECO_BIG_LAPRAS_DOLL
+	db DECO_1D
+	db DECO_PIKACHU_DOLL
+	db DECO_SURF_PIKACHU_DOLL
+	db DECO_CLEFAIRY_DOLL
+	db DECO_JIGGLYPUFF_DOLL
+	db DECO_BULBASAUR_DOLL
+	db DECO_TROPICPLANT
+	db DECO_JUMBOPLANT
+	db DECO_TOWN_MAP
+	db DECO_CHARMANDER_DOLL
+	db DECO_POLIWAG_DOLL
+	db DECO_DIGLETT_DOLL
+	db DECO_BLUE_CARPET
+	db DECO_YELLOW_CARPET
+	db DECO_0F
+	db DECO_PIKACHU_POSTER
+	db DECO_N64
+	db DECO_19
+	db DECO_01
+	db DECO_FEATHERY_BED
+	db DECO_POLKADOT_BED
+	db DECO_PIKACHU_BED
+	db DECO_06
+	db DECO_RED_CARPET
+	db DECO_GREEN_CARPET
+	db DECO_CLEFAIRY_POSTER
+	db DECO_ODDISH_DOLL
+	db DECO_MAGNAPLANT
+	db DECO_GENGAR_DOLL
+	db DECO_14
+	db DECO_PINK_BED
+	db DECO_SQUIRTLE_DOLL
+	db DECO_STARMIE_DOLL
 ; 2c76f
 
 Function2c76f: ; 2c76f (b:476f)
@@ -33294,16 +33363,16 @@ Function2c798: ; 2c798 (b:4798)
 	ld [CurItem], a
 	ret
 
-Function2c7a7: ; 2c7a7 (b:47a7)
+ConvertCurItemIntoCurTMHM: ; 2c7a7 (b:47a7)
 	ld a, [CurItem]
 	ld c, a
 	callab GetTMHMNumber
 	ld a, c
-	ld [wd265], a
+	ld [wCurTMHM], a
 	ret
 
 GetTMHMItemMove: ; 2c7b6 (b:47b6)
-	call Function2c7a7
+	call ConvertCurItemIntoCurTMHM
 	predef GetTMHMMove
 	ret
 
@@ -33314,23 +33383,23 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	res 4, [hl]
 	ld a, [CurItem]
 	cp TM01
-	jr c, .asm_2c7f5
+	jr c, .NotTMHM
 	call GetTMHMItemMove
-	ld a, [wd265]
+	ld a, [wCurTMHM]
 	ld [wd262], a
 	call GetMoveName
 	call CopyName1
-	ld hl, UnknownText_0x2c8bf
+	ld hl, UnknownText_0x2c8bf ; Booted up a TM
 	ld a, [CurItem]
 	cp HM01
-	jr c, .asm_2c7e9
-	ld hl, UnknownText_0x2c8c4
-.asm_2c7e9
+	jr c, .TM
+	ld hl, UnknownText_0x2c8c4 ; Booted up an HM
+.TM
 	call PrintText
 	ld hl, UnknownText_0x2c8c9
 	call PrintText
 	call YesNoBox
-.asm_2c7f5
+.NotTMHM
 	pop bc
 	ld a, b
 	ld [Options], a
@@ -33340,7 +33409,7 @@ Function2c7bf: ; 2c7bf (b:47bf)
 Function2c7fb: ; 2c7fb
 	ld hl, StringBuffer2
 	ld de, wd066
-	ld bc, $000c
+	ld bc, $c
 	call CopyBytes
 	call WhiteBGMap
 
@@ -33350,7 +33419,7 @@ Function2c80a: ; 2c80a
 	callba Function503e0
 	ld a, $3
 	ld [PartyMenuActionText], a
-.asm_2c821
+.loopback
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
@@ -33360,17 +33429,17 @@ Function2c80a: ; 2c80a
 	push af
 	ld a, [CurPartySpecies]
 	cp EGG
-	pop bc
-	jr z, .asm_2c854
+	pop bc ; now contains the former contents of af
+	jr z, .egg
 	push bc
 	ld hl, wd066
 	ld de, StringBuffer2
-	ld bc, $000c
+	ld bc, $c
 	call CopyBytes
-	pop af
+	pop af ; now contains the original contents of af
 	ret
 
-.asm_2c854
+.egg
 	push hl
 	push de
 	push bc
@@ -33382,7 +33451,7 @@ Function2c80a: ; 2c80a
 	pop bc
 	pop de
 	pop hl
-	jr .asm_2c821
+	jr .loopback
 ; 2c867
 
 Function2c867: ; 2c867
@@ -33396,35 +33465,35 @@ Function2c867: ; 2c867
 
 	ld a, c
 	and a
-	jr nz, .asm_2c88b
+	jr nz, .compatible
 	push de
 	ld de, SFX_WRONG
 	call PlaySFX
 	pop de
 	ld hl, UnknownText_0x2c8ce
 	call PrintText
-	jr .asm_2c8b6
-.asm_2c88b
+	jr .nope
 
+.compatible
 	callab KnowsMove
-	jr c, .asm_2c8b6
+	jr c, .nope
 
 	predef LearnMove
 	ld a, b
 	and a
-	jr z, .asm_2c8b6
+	jr z, .nope
 
 	callba Function106049
 	ld a, [CurItem]
 	call IsHM
 	ret c
 
-	ld c, $5
+	ld c, HAPPINESS_LEARNMOVE
 	callab ChangeHappiness
 	call Function2cb0c
 	jr .asm_2c8bd
 
-.asm_2c8b6
+.nope
 	and a
 	ret
 
@@ -33584,7 +33653,7 @@ Function2c9af: ; 2c9af (b:49af)
 Function2c9b1: ; 2c9b1 (b:49b1)
 	ld a, b
 	bit 7, a
-	jr nz, .asm_2c9c5
+	jr nz, .skip
 	ld hl, wd0e2
 	ld a, [hl]
 	and a
@@ -33592,19 +33661,20 @@ Function2c9b1: ; 2c9b1 (b:49b1)
 	dec [hl]
 	call Function2c9e2
 	jp Function2c946
-.asm_2c9c5
+
+.skip
 	call Function2cab5
 	ld b, $5
-.asm_2c9ca
+.loop
 	inc c
 	ld a, c
-	cp $3a
+	cp NUM_TMS + NUM_HMS + 1
 	jp nc, Function2c915
 	ld a, [hli]
 	and a
-	jr z, .asm_2c9ca
+	jr z, .loop
 	dec b
-	jr nz, .asm_2c9ca
+	jr nz, .loop
 	ld hl, wd0e2
 	inc [hl]
 	call Function2c9e2
@@ -33617,18 +33687,18 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 
 	hlcoord 5, 2
 	ld bc, $a0f
-	ld a, $7f
+	ld a, " "
 	call ClearBox
 	call Function2cab5
 	ld d, $5
-.asm_2c9fa
+.loop2
 	inc c
 	ld a, c
-	cp $3a
-	jr nc, .asm_2ca77
+	cp NUM_TMS + NUM_HMS + 1
+	jr nc, .NotTMHM
 	ld a, [hli]
 	and a
-	jr z, .asm_2c9fa
+	jr z, .loop2
 	ld b, a
 	ld a, c
 	ld [wd265], a
@@ -33638,24 +33708,25 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	call Function2ca86
 	push hl
 	ld a, [wd265]
-	cp $33
-	jr nc, .asm_2ca22
+	cp NUM_TMS + 1
+	jr nc, .HM
 	ld de, wd265
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
-	jr .asm_2ca38
-.asm_2ca22
+	jr .okay
+
+.HM
 	push af
-	sub $32
+	sub NUM_TMS
 	ld [wd265], a
-	ld [hl], $87
+	ld [hl], "H"
 	inc hl
 	ld de, wd265
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	pop af
 	ld [wd265], a
-.asm_2ca38
+.okay
 	predef GetTMHMMove
 	ld a, [wd265]
 	ld [wd262], a
@@ -33669,13 +33740,13 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	pop bc
 	ld a, c
 	push bc
-	cp $33
-	jr nc, .asm_2ca6f
+	cp NUM_TMS + 1
+	jr nc, .hm2
 	ld bc, $1d
 	add hl, bc
 	ld [hl], $f1
 	inc hl
-	ld a, $f6
+	ld a, "0" ; why are we doing this?
 	pop bc
 	push bc
 	ld a, b
@@ -33683,14 +33754,15 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	ld de, wd265
 	lb bc, 1, 2
 	call PrintNum
-.asm_2ca6f
+.hm2
 	pop bc
 	pop de
 	pop hl
 	dec d
-	jr nz, .asm_2c9fa
-	jr .asm_2ca85
-.asm_2ca77
+	jr nz, .loop2
+	jr .done
+
+.NotTMHM
 	call Function2ca86
 rept 3
 	inc hl
@@ -33699,25 +33771,25 @@ endr
 	ld de, String_2caae
 	call PlaceString
 	pop de
-.asm_2ca85
+.done
 	ret
 
 Function2ca86: ; 2ca86 (b:4a86)
 	hlcoord 5, 0
 	ld bc, $28
-	ld a, $6
+	ld a, 6
 	sub d
 	ld e, a
-.asm_2ca90
+.loop
 	add hl, bc
 	dec e
-	jr nz, .asm_2ca90
+	jr nz, .loop
 	ret
 ; 2ca95 (b:4a95)
 
 Function2ca95: ; 2ca95
 	pop hl
-	ld bc, $0003
+	ld bc, 3
 	add hl, bc
 	predef GetTMHMMove
 	ld a, [wd265]
@@ -33738,14 +33810,14 @@ Function2cab5: ; 2cab5 (b:4ab5)
 	ld a, [wd0e2]
 	ld b, a
 	inc b
-	ld c, $0
-.asm_2cabf
+	ld c, 0
+.loop
 	inc c
 	ld a, [hli]
 	and a
-	jr z, .asm_2cabf
+	jr z, .loop
 	dec b
-	jr nz, .asm_2cabf
+	jr nz, .loop
 	dec hl
 	dec c
 	ret
@@ -33767,7 +33839,7 @@ Function2cad6: ; 2cad6 (b:4ad6)
 ; 2cadf (b:4adf)
 
 Function2cadf: ; 2cadf
-	call Function2c7a7
+	call ConvertCurItemIntoCurTMHM
 	call Function2cafa
 	ld hl, UnknownText_0x2caf0
 	jr nc, .asm_2caed
@@ -33805,7 +33877,7 @@ Function2cafa: ; 2cafa
 ; 2cb0c
 
 Function2cb0c: ; 2cb0c (b:4b0c)
-	call Function2c7a7
+	call ConvertCurItemIntoCurTMHM
 	ld a, [wd265]
 	dec a
 	ld hl, TMsHMs
@@ -38704,7 +38776,7 @@ Function492b9: ; 492b9
 	and a
 	jr z, .didnt_learn
 
-	ld c, $5
+	ld c, HAPPINESS_LEARNMOVE
 	callab ChangeHappiness
 	jr .learned
 
@@ -47013,7 +47085,7 @@ Function5067b: ; 5067b
 	ld a, [de]
 	and 2
 	jr z, .asm_5069c
-	ld c, 7
+	ld c, HAPPINESS_POISONFAINT
 	callba ChangeHappiness
 	callba GetPartyNick
 	ld hl, PoisonFaintText
@@ -87561,30 +87633,31 @@ DoMysteryGift: ; 1048ba (41:48ba)
 .asm_104963
 	ld a, [wc90f]
 	and a
-	jr z, .asm_104990
+	jr z, .item
 	ld a, [wc911]
 	ld c, a
-	callba Function2c715
+	callba MysteryGiftGetDecoration
 	push bc
 	call Function105069
 	pop bc
-	jr nz, .asm_104990
+	jr nz, .item
 	callab GetDecorationName_c
 	ld h, d
 	ld l, e
 	ld de, StringBuffer1
-	ld bc, $d
+	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 	ld hl, UnknownText_0x104a20
 	jr Function1049c5
-.asm_104990
+
+.item
 	call Function105106
 	ld a, [wc910]
 	ld c, a
-	callba Function2c708
+	callba MysteryGiftGetItem
 	ld a, c
 	ld [s0_abe4], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call CloseSRAM
 	call GetItemName
 	ld hl, UnknownText_0x104a1b

@@ -149,3 +149,15 @@ bcd: MACRO
 	shift
 	endr
 ENDM
+
+ln: MACRO
+	if _NARG == 5
+	lb \1, \2 << 4 + \3, \4 << 4 + \5
+	else
+	if _NARG == 3
+	ld \1, \2 << 4 + \3
+	else
+	fail "incorrect number of arguments for ln"
+	endc
+	endc
+ENDM

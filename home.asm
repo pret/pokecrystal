@@ -1115,7 +1115,7 @@ IsHMMove:: ; 34e7
 	db FLASH
 	db WATERFALL
 	db WHIRLPOOL
-	db $ff
+	db -1
 ; 34f8
 
 
@@ -1125,7 +1125,7 @@ GetMoveName:: ; 34f8
 	ld a, MOVE_NAME
 	ld [wcf61], a
 
-	ld a, [wd265] ; move id
+	ld a, [wNamedObjectIndexBuffer] ; move id
 	ld [CurSpecies], a
 
 	call GetName

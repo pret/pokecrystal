@@ -117,9 +117,9 @@ SpecialsPointers:: ; c029
 	add_special RunCallback_04
 	add_special Functionfb841
 	add_special SpecialSnorlaxAwake
-	add_special Function7413
-	add_special Function7418
-	add_special Function741d
+	add_special Special_YoungerHaircutBrother
+	add_special Special_OlderHaircutBrother
+	add_special Special_DaisyMassage
 	add_special Functionc472
 	add_special ProfOaksPCBoot
 	add_special SpecialGameboyCheck

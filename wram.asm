@@ -1854,6 +1854,7 @@ wd263:: ds 1
 wd264:: ds 1
 wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::
+wCurTMHM::
 wd265:: ds 1
 wd266:: ds 1
 wd267:: ds 1

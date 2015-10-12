@@ -1259,7 +1259,7 @@ Calcium: ; ee3d
 	ld h, [hl]
 	ld l, a
 	ld de, StringBuffer2
-	ld bc, $000d
+	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 
 	call Functionf780
@@ -1267,7 +1267,7 @@ Calcium: ; ee3d
 	ld hl, UnknownText_0xeea6
 	call PrintText
 
-	ld c, $2
+	ld c, HAPPINESS_USEDITEM
 	callba ChangeHappiness
 
 	jp Functionf795
@@ -1464,7 +1464,7 @@ HealPowder: ; efad
 
 	cp $0
 	jr nz, .asm_efc9
-	ld c, $f
+	ld c, HAPPINESS_BITTERPOWDER
 	callba ChangeHappiness
 
 	call LooksBitterMessage
@@ -1632,7 +1632,7 @@ RevivalHerb: ; f0a9
 	cp 0
 	jr nz, .asm_f0c5
 
-	ld c, $11
+	ld c, HAPPINESS_REVIVALHERB
 	callba ChangeHappiness
 	call LooksBitterMessage
 	ld a, 0
@@ -1780,12 +1780,12 @@ GoldBerry: ; f186
 
 
 Energypowder: ; f18c
-	ld c, $f
+	ld c, HAPPINESS_BITTERPOWDER
 	jr Functionf192
 ; f190
 
 EnergyRoot: ; f190
-	ld c, $10
+	ld c, HAPPINESS_ENERGYROOT
 ; f192
 
 Functionf192: ; f192
@@ -2348,7 +2348,7 @@ endr
 
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
-	ld c, $3
+	ld c, HAPPINESS_USEDXITEM
 	callba ChangeHappiness
 	ret
 ; f504

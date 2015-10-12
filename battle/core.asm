@@ -2815,21 +2815,22 @@ Function3d1aa: ; 3d1aa
 	ld [hl], a
 	ld [BattleMonStatus], a
 	call UpdateBattleMonInParty
-	ld c, $6
+	ld c, HAPPINESS_FAINTED
+	; If TheirLevel > (YourLevel + 30), use a different parameter
 	ld a, [BattleMonLevel]
-	add $1e
+	add 30
 	ld b, a
 	ld a, [EnemyMonLevel]
 	cp b
 	jr c, .asm_3d1dc
-	ld c, $8
+	ld c, HAPPINESS_BEATENBYSTRONGFOE
 
 .asm_3d1dc
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	callab ChangeHappiness
 	ld a, [wd0ee]
-	and $c0
+	and %11000000
 	add $1
 	ld [wd0ee], a
 	ld a, [wc6f7]
@@ -8526,28 +8527,28 @@ Function3f594: ; 3f594
 	ld [IsInBattle], a
 
 	call IsJohtoGymLeader
-	jr nc, .asm_3f606
+	jr nc, .done
 	xor a
 	ld [CurPartyMon], a
 	ld a, [PartyCount]
 	ld b, a
-.asm_3f5ea
+.partyloop
 	push bc
 	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_3f5fc
-	ld c, $4
+	jr z, .skipfaintedmon
+	ld c, HAPPINESS_GYMBATTLE
 	callab ChangeHappiness
-.asm_3f5fc
+.skipfaintedmon
 	pop bc
 	dec b
-	jr z, .asm_3f606
+	jr z, .done
 	ld hl, CurPartyMon
 	inc [hl]
-	jr .asm_3f5ea
-.asm_3f606
+	jr .partyloop
+.done
 	ret
 ; 3f607
 
