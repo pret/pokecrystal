@@ -16,7 +16,7 @@ ClearBox:: ; fb6
 
 	ld a, " "
 
-Functionfb8::
+FillBoxWithByte::
 .col
 	push bc
 	push hl

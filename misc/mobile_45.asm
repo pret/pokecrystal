@@ -8345,7 +8345,7 @@ Function117bb6:
 	ld a, [wd001]
 	cp $f
 	jr nz, .asm_117c16 ; 0x117c01 $13
-	ld hl, wMagikarpRecordHoldersName + 2
+	ld hl, $e000 - 20
 	ld de, wcd69
 	ld c, $10
 .asm_117c0b
@@ -15254,7 +15254,7 @@ Function11b22a: ; 11b22a
 ; 11b236
 
 Function11b236: ; 11b236
-	jp Functionfb8
+	jp FillBoxWithByte
 ; 11b239
 
 Function11b239: ; 11b239

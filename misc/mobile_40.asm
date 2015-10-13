@@ -7557,7 +7557,7 @@ Function1034e0: ; 1034e0
 	add hl, bc
 	pop bc
 	ld a, $6
-	call Functionfb8
+	call FillBoxWithByte
 	ret
 ; 1034f1
 

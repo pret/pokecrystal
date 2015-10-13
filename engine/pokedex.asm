@@ -2360,7 +2360,7 @@ Function413f5: ; 413f5 (10:53f5)
 	ret
 
 Function413fe: ; 413fe (10:53fe)
-	jp Functionfb8
+	jp FillBoxWithByte
 
 Function41401: ; 41401 (10:5401)
 	ld a, [rSVBK] ; $ff00+$70
