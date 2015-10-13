@@ -99,7 +99,7 @@ Tileset01Anim: ; 0xfc0a3
 
 TilesetAnimfc0d7: ; 0xfc0d7
 	dwtile $03, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dwtile $03, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -113,7 +113,7 @@ TilesetAnimfc0d7: ; 0xfc0d7
 
 TilesetAnimfc103: ; 0xfc103
 	dwtile $14, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dwtile $14, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -153,32 +153,32 @@ Tileset15Anim: ; 0xfc15f
 
 TilesetAnimfc17f: ; 0xfc17f
 	dwtile $53, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileDown
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dwtile $53, VTiles2, WriteTileFromBuffer
 	dwtile $03, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dwtile $03, VTiles2, WriteTileFromBuffer
 	dwtile $53, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileDown
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dwtile $53, VTiles2, WriteTileFromBuffer
 	dw NULL,  DoneTileAnimation
 ; 0xfc1af
 
 TilesetAnimfc1af: ; 0xfc1af
 	dwtile $54, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileDown
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dwtile $54, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dwtile $03, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dwtile $03, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dwtile $54, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileDown
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dwtile $54, VTiles2, WriteTileFromBuffer
 	dw NULL,  DoneTileAnimation
 ; 0xfc1e7
@@ -187,7 +187,7 @@ Tileset24Anim: ; 0xfc1e7
 Tileset30Anim: ; 0xfc1e7
 	dwtile $14, VTiles2, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw AttrMapEnd, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw NULL,  FlickeringCaveEntrancePalette
 	dwtile $14, VTiles2, WriteTileFromBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
@@ -195,11 +195,11 @@ Tileset30Anim: ; 0xfc1e7
 	dw NULL,  FlickeringCaveEntrancePalette
 	dwtile $40, VTiles2, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
 	dwtile $40, VTiles2, WriteTileFromBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
@@ -209,7 +209,7 @@ Tileset30Anim: ; 0xfc1e7
 Tileset29Anim: ; 0xfc233
 	dwtile $35, VTiles2, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw AttrMapEnd, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dw NULL,  FlickeringCaveEntrancePalette
 	dwtile $35, VTiles2, WriteTileFromBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
@@ -217,11 +217,11 @@ Tileset29Anim: ; 0xfc233
 	dw NULL,  FlickeringCaveEntrancePalette
 	dwtile $31, VTiles2, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw AttrMapEnd, ScrollTileDown
+	dw wcf41, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
 	dwtile $31, VTiles2, WriteTileFromBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
@@ -249,7 +249,7 @@ Tileset23Anim: ; 0xfc27f
 
 TilesetAnimfc2bf: ; 0xfc2bf
 	dwtile $4f, VTiles2, WriteTileToBuffer
-	dw AttrMapEnd, ScrollTileRightLeft
+	dw wcf41, ScrollTileRightLeft
 	dwtile $4f, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -860,14 +860,14 @@ AnimateWhirlpoolTile: ; fc678
 	
 	
 WriteTileFromBuffer: ; fc696
-; Write tiledata at AttrMapEnd to de.
-; AttrMapEnd is loaded to sp for WriteTile.
+; Write tiledata at wcf41 to de.
+; wcf41 is loaded to sp for WriteTile.
 
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
 	
-	ld hl, AttrMapEnd
+	ld hl, wcf41
 	ld sp, hl
 	
 	ld h, d
@@ -877,7 +877,7 @@ WriteTileFromBuffer: ; fc696
 	
 	
 WriteTileToBuffer: ; fc6a2
-; Write tiledata de to AttrMapEnd.
+; Write tiledata de to wcf41.
 ; de is loaded to sp for WriteTile.
 
 	ld hl, [sp+0]
@@ -888,7 +888,7 @@ WriteTileToBuffer: ; fc6a2
 	ld l, e
 	ld sp, hl
 	
-	ld hl, AttrMapEnd
+	ld hl, wcf41
 	
 	; fallthrough
 
