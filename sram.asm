@@ -58,6 +58,7 @@ sOptions:: ds OptionsEnd - Options
 s1_a008:: ds 1
 
 sGameData::
+sPlayerID::
 sPlayerData::  ds wPlayerDataEnd - wPlayerData
 sMapData::     ds wMapDataEnd - wMapData
 sPokemonData:: ds wPokemonDataEnd - wPokemonData

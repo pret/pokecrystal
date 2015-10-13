@@ -1956,8 +1956,8 @@ wCrystalDataEnd::
 
 wd479:: ds 2
 
+wGameData::
 wPlayerData::
-
 PlayerID:: ; d47b
 	ds 2
 
@@ -2587,6 +2587,7 @@ wMagikarpRecordHoldersName:: ds NAME_LENGTH
 wdff5::
 
 wPokemonDataEnd::
+wGameDataEnd::
 
 SECTION "Pic Animations", WRAMX, BANK [2]
 

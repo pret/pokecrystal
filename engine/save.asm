@@ -225,7 +225,7 @@ SaveTheGame_yesorno: ; 14baf
 Function14bcb: ; 14bcb
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, sPlayerData + (PlayerID - wPlayerData)
+	ld hl, sPlayerID
 	ld a, [hli]
 	ld c, [hl]
 	ld b, a

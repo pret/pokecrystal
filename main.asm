@@ -173,12 +173,12 @@ _ResetWRAM: ; 5bae
 	call ByteFill
 
 	ld hl, wd000
-	ld bc, PlayerID - wd000
+	ld bc, wGameData - wd000
 	xor a
 	call ByteFill
 
-	ld hl, PlayerID
-	ld bc, wPokemonDataEnd - PlayerID
+	ld hl, wGameData
+	ld bc, wGameDataEnd - wGameData
 	xor a
 	call ByteFill
 
@@ -61427,11 +61427,15 @@ endr
 	ret
 ; 8c0e5
 
+brightlevel: MACRO
+	db (\1 << 6) | (\2 << 4) | (\3 << 2) | \4
+ENDM
+
 Function8c0e5: ; 8c0e5
-	ld hl, Unknown_8c10f
+	ld hl, .BrightnessLevels
 	ld a, [wc2d0]
-	cp $4
-	jr z, .asm_8c0fc
+	cp $4 ; Dark cave, needs Flash
+	jr z, .DarkCave
 	and $7
 	add l
 	ld l, a
@@ -61441,28 +61445,28 @@ Function8c0e5: ; 8c0e5
 	ld a, [hl]
 	ld [wd847], a
 	ret
-.asm_8c0fc
+.DarkCave
 	ld a, [StatusFlags]
 	bit 2, a
-	jr nz, .asm_8c109
-	ld a, $ff
+	jr nz, .UsedFlash
+	ld a, $ff ; 3, 3, 3, 3
 	ld [wd847], a
 	ret
-.asm_8c109
-	ld a, $aa
+.UsedFlash
+	ld a, $aa ; 2, 2, 2, 2
 	ld [wd847], a
 	ret
 ; 8c10f (23:410f)
 
-Unknown_8c10f: ; 8c10f
-	db $e4 ; 3210
-	db $55 ; 1111
-	db $aa ; 2222
-	db $00 ; 0000
-	db $ff ; 3333
-	db $e4 ; 3210
-	db $e4 ; 3210
-	db $e4 ; 3210
+.BrightnessLevels: ; 8c10f
+	brightlevel 3, 2, 1, 0
+	brightlevel 1, 1, 1, 1
+	brightlevel 2, 2, 2, 2
+	brightlevel 0, 0, 0, 0
+	brightlevel 3, 3, 3, 3
+	brightlevel 3, 2, 1, 0
+	brightlevel 3, 2, 1, 0
+	brightlevel 3, 2, 1, 0
 ; 8c117
 
 GetTimePalette: ; 8c117
