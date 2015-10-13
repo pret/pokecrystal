@@ -1499,7 +1499,7 @@ Function4af0: ; 4af0
 	add hl, bc
 	ld [hl], 2
 	ld hl, wd4cf
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	cp [hl]
 	jr z, .ok
 	ld hl, OBJECT_09
@@ -2508,7 +2508,7 @@ Function54b8: ; 54b8
 	ret z
 	ld a, [wd4cd]
 	ld d, a
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	cp d
 	ret nz
 	ld a, e
@@ -2651,7 +2651,7 @@ Function5565: ; 5565
 
 Function5579: ; 5579
 	push bc
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld c, a
 	call Function5582
 	pop bc
@@ -2712,7 +2712,7 @@ Function55b9: ; 55b9
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld [hli], a
 	push hl
 	ld hl, OBJECT_MAP_X
@@ -2737,7 +2737,7 @@ Function55e0:: ; 55e0
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	call GetObjectSprite
 	jr z, .ok
 	call Function565c
@@ -2747,7 +2747,7 @@ Function55e0:: ; 55e0
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2801,13 +2801,13 @@ Function5645: ; 5645
 	xor a
 	ld bc, ObjectStructs
 .loop
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	call Function5680
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -3032,7 +3032,7 @@ Function5781: ; 5781
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	call GetObjectSprite
 	jr z, .next
 	call Function437b
@@ -3042,7 +3042,7 @@ Function5781: ; 5781
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop

@@ -8345,7 +8345,7 @@ Function117bb6:
 	ld a, [wd001]
 	cp $f
 	jr nz, .asm_117c16 ; 0x117c01 $13
-	ld hl, wdfec
+	ld hl, $e000 - 20
 	ld de, wcd69
 	ld c, $10
 .asm_117c0b
@@ -13368,11 +13368,11 @@ Function11a302: ; 11a302
 	call PlaceString
 	hlcoord 9, 4
 	ld de, wcd68
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	hlcoord 14, 4
 	ld de, wcd67
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld a, $80
 	ld [wcd44], a
@@ -15254,7 +15254,7 @@ Function11b22a: ; 11b22a
 ; 11b236
 
 Function11b236: ; 11b236
-	jp Functionfb8
+	jp FillBoxWithByte
 ; 11b239
 
 Function11b239: ; 11b239

@@ -331,7 +331,7 @@ Functiona57:: ; a57
 	jr z, .asm_a63
 	ld a, [hJoyDown]
 .asm_a63
-	ld [$ffa9], a
+	ld [hJoyLast], a
 	ld a, [hJoyPressed]
 	and a
 	jr z, .asm_a70
@@ -344,7 +344,7 @@ Functiona57:: ; a57
 	and a
 	jr z, .asm_a7a
 	xor a
-	ld [$ffa9], a
+	ld [hJoyLast], a
 	ret
 
 .asm_a7a
@@ -354,12 +354,12 @@ Functiona57:: ; a57
 ; a80
 
 Functiona80:: ; a80
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	push af
 	ld a, [$ffb0]
 	push af
 	xor a
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld a, $6
 	ld [$ffb0], a
 .asm_a8d
@@ -374,7 +374,7 @@ Functiona80:: ; a80
 	pop af
 	ld [$ffb0], a
 	pop af
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ret
 ; aa5
 
@@ -452,9 +452,9 @@ Functionb06:: ; b06
 	cp b
 	pop bc
 	jr nz, .asm_b27
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	dec a
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ret nz
 	ld a, [$ffb0]
 	dec a
@@ -463,20 +463,20 @@ Functionb06:: ; b06
 	ld a, $7a
 	ld [hl], a
 	ld a, $ff
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld a, $6
 	ld [$ffb0], a
 	ret
 
 .asm_b27
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	and a
 	ret z
 	dec a
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ret nz
 	dec a
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld a, [$ffb0]
 	dec a
 	ld [$ffb0], a

@@ -27,9 +27,8 @@ s0_abe4End::
 	ds $30
 
 s0_ac60:: ds 8
-s0_ac68:: ds 1
-s0_ac69:: ds 1
-s0_ac6a:: ds 1
+sLuckyNumberDay:: ds 1
+sLuckyIDNumber:: ds 2
 
 	ds $b200 - $ac6b
 

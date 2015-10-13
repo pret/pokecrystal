@@ -10,6 +10,9 @@
 	charmap "└", $7d
 	charmap "┘", $7e
 	charmap " ", $7f
+	charmap "<FOOT>", $6e
+	charmap "<INCH>", $6f
+	
 
 	charmap "A", $80
 	charmap "B", $81
@@ -301,3 +304,5 @@
 	charmap "<TRNER>",  $5d
 	charmap "<ROCKET>", $5e
 	charmap "<......>", $56
+	charmap "<START>",  $00
+	charmap "<DEXEND>", $5f

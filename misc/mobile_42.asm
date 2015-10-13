@@ -1343,7 +1343,7 @@ Function108a87: ; 108a87
 
 Function108a92: ; 108a92
 	hlcoord 9, 0
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ret
 ; 108a9c
@@ -1380,7 +1380,7 @@ Unknown_108abb: ; 108abb
 
 Function108abe: ; 108abe
 	hlcoord 8, 6
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
 ; 108ac8
