@@ -81,7 +81,7 @@ Special_CheckMagikarpLength: ; fbb32
 ; 0xfbbae
 
 Magikarp_LoadFeetInchesChars: ; fbbae
-	ld hl, VTiles2 + "<FOOT>" * $10
+	ld hl, VTiles2 + "′" * $10
 	ld de, .feetinchchars
 	lb bc, BANK(.feetinchchars), 2
 	call Request2bpp
@@ -98,12 +98,12 @@ PrintMagikarpLength: ; fbbdb
 	ld de, Buffer1
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
-	ld [hl], "<FOOT>"
+	ld [hl], "′"
 	inc hl
 	ld de, Buffer2
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
-	ld [hl], "<INCH>"
+	ld [hl], "″"
 	inc hl
 	ld [hl], "@"
 	ret
@@ -127,9 +127,9 @@ CalcMagikarpLength: ; fbbfc
 
 ; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
-; if bc < 10:     [MagikarpLength] = c + 190
-; if bc >= $ff00: [MagikarpLength] = c + 1370
-; else:           [MagikarpLength] = z * 100 + (bc - x) / y
+; if bc < 10:    [MagikarpLength] = c + 190
+; if bc ≥ $ff00: [MagikarpLength] = c + 1370
+; else:          [MagikarpLength] = z × 100 + (bc − x) / y
 
 ; X, Y, and Z depend on the value of b as follows:
 
@@ -216,7 +216,7 @@ CalcMagikarpLength: ; fbbfc
 	ld a, [hQuotient + 2]
 	ld c, a
 
-	; de = c + 100 * (2 + i)
+	; de = c + 100 × (2 + i)
 	xor a
 	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a
@@ -249,7 +249,7 @@ CalcMagikarpLength: ; fbbfc
 	ld e, l
 
 .done
-	; hl = de * 10
+	; hl = de × 10
 	ld h, d
 	ld l, e
 rept 2
