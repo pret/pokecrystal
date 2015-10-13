@@ -8345,7 +8345,7 @@ Function117bb6:
 	ld a, [wd001]
 	cp $f
 	jr nz, .asm_117c16 ; 0x117c01 $13
-	ld hl, wdfec
+	ld hl, wMagikarpRecordHoldersName + 2
 	ld de, wcd69
 	ld c, $10
 .asm_117c0b

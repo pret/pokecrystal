@@ -178,7 +178,7 @@ _ResetWRAM: ; 5bae
 	call ByteFill
 
 	ld hl, PlayerID
-	ld bc, wdff5 - PlayerID
+	ld bc, wPokemonDataEnd - PlayerID
 	xor a
 	call ByteFill
 
@@ -2781,23 +2781,23 @@ endr
 
 .Actions
 	db  +5,  +3,  +2 ; Gained a level
-	db  +5,  +3,  +2 ; Used a stat-boosting item (vitamin or X-item)
-	db  +1,  +1,  +0
+	db  +5,  +3,  +2 ; Vitamin
+	db  +1,  +1,  +0 ; X Item
 	db  +3,  +2,  +1 ; Battled a Gym Leader
 	db  +1,  +1,  +0 ; Learned a move
 	db  -1,  -1,  -1 ; Lost to an enemy
 	db  -5,  -5, -10 ; Fainted due to poison
-	db  -5,  -5, -10 ; Lost to a much weaker enemy
-	db  +1,  +1,  +1 ; Haircut?
-	db  +3,  +3,  +1 ; Haircut?
-	db  +5,  +5,  +2 ; Haircut?
-	db  +1,  +1,  +1 ; Haircut?
-	db  +3,  +3,  +1 ; Haircut?
-	db +10, +10,  +4 ; Haircut?
+	db  -5,  -5, -10 ; Lost to a much stronger enemy
+	db  +1,  +1,  +1 ; Haircut (Y1)
+	db  +3,  +3,  +1 ; Haircut (Y2)
+	db  +5,  +5,  +2 ; Haircut (Y3)
+	db  +1,  +1,  +1 ; Haircut (O1)
+	db  +3,  +3,  +1 ; Haircut (O2)
+	db +10, +10,  +4 ; Haircut (O3)
 	db  -5,  -5, -10 ; Used Heal Powder or Energypowder (bitter)
 	db -10, -10, -15 ; Used Energy Root (bitter)
 	db -15, -15, -20 ; Used Revival Herb (bitter)
-	db  +3,  +3,  +1 ; Massage?
+	db  +3,  +3,  +1 ; Grooming
 	db +10,  +6,  +4 ; Gained a level in the place where it was caught
 ; 725a
 
@@ -16846,51 +16846,51 @@ EmotesPointers: ; 144d
 
 	dw ShockEmote
 	db $40, BANK(ShockEmote)
-	dw $8f80
+	dwtile $78, VTiles1
 
 	dw QuestionEmote
 	db $40, BANK(QuestionEmote)
-	dw $8f80
+	dwtile $78, VTiles1
 
 	dw HappyEmote
 	db $40, BANK(HappyEmote)
-	dw $8f80
+	dwtile $78, VTiles1
 
 	dw SadEmote
 	db $40, BANK(SadEmote)
-	dw $8f80
+	dwtile $78, VTiles1
 
 	dw HeartEmote
 	db $40, BANK(HeartEmote)
-	dw $8f80
+	dwtile $78, VTiles1
 
 	dw BoltEmote
 	db $40, BANK(BoltEmote)
-	dw $8f80
+	dwtile $78, VTiles1
 
 	dw SleepEmote
 	db $40, BANK(SleepEmote)
-	dw $8f80
+	dwtile $78, VTiles1
 
 	dw FishEmote
 	db $40, BANK(FishEmote)
-	dw $8f80
+	dwtile $78, VTiles1
 
 	dw FishingRodGFX + $00
 	db $10, BANK(FishingRodGFX)
-	dw $8fc0
+	dwtile $7c, VTiles1
 
 	dw FishingRodGFX + $10
 	db $20, BANK(FishingRodGFX)
-	dw $8fc0
+	dwtile $7c, VTiles1
 
 	dw FishingRodGFX + $30
 	db $20, BANK(FishingRodGFX)
-	dw $8fe0
+	dwtile $7e, VTiles1
 
 	dw FishingRodGFX + $50
 	db $10, BANK(FishingRodGFX)
-	dw $8fe0
+	dwtile $7e, VTiles1
 
 ; 14495
 
@@ -66216,15 +66216,18 @@ Unknown_8e6a5: ; 8e6a5
 
 
 Unknown_8e706: ; 8e706
-	dbbw $80, $01, Function8e72a
-	dbbw $80, $01, Function8e72a
-	dbbw $80, $01, Function8e72a
-	dbbw $80, $01, Function8e72a
-	dbbw $10, $37, Function8e72a
-	dbbw $10, $11, Function8e72a
-	dbbw $10, $39, Function8e72a
-	dbbw $10, $24, Function8e72a
-	dbbw $10, $21, Function8e72a
+	dbbw $80, $01, Unknown_8e72a
+	dbbw $80, $01, Unknown_8e72a
+	dbbw $80, $01, Unknown_8e72a
+	dbbw $80, $01, Unknown_8e72a
+	dbbw $10, $37, Unknown_8e72a
+	dbbw $10, $11, Unknown_8e72a
+	dbbw $10, $39, Unknown_8e72a
+	dbbw $10, $24, Unknown_8e72a
+	dbbw $10, $21, Unknown_8e72a
+
+Unknown_8e72a:
+	; nothing to see here
 
 Function8e72a: ; 8e72a
 	add $10

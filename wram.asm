@@ -2583,16 +2583,10 @@ wdfe6:: ds 1
 wdfe7:: ds 1
 wBestMagikarpLengthFeet:: ds 1
 wBestMagikarpLengthInches:: ds 1
-wMagikarpRecordHoldersName:: ds 1
-	ds 1
-wdfec:: ds 1
-	ds 3
-
-	ds 5
+wMagikarpRecordHoldersName:: ds NAME_LENGTH
 wdff5::
 
 wPokemonDataEnd::
-
 
 SECTION "Pic Animations", WRAMX, BANK [2]
 

@@ -1222,7 +1222,7 @@ UnknownText_0x1c123a: ; 1c123a
 	text_from_ram StringBuffer1
 	text " caught by"
 	line "@"
-	text_from_ram wBestMagikarpLengthInches + 1
+	text_from_ram wMagikarpRecordHoldersName
 	text_waitbutton
 	db "@"
 ; 1c1260
