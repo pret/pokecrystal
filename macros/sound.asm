@@ -60,6 +60,7 @@ notetype: macro
 forceoctave: macro
 	db $d9
 	db \1 ; octave
+    ; (\1 << 4) | \2
 	endm
 
 tempo: macro
@@ -72,6 +73,7 @@ dutycycle: macro
 	db \1 ; duty_cycle
 	endm
 
+intensity: macro ; names: volenvelope
 ; parameter is directly written
 ; in hardware register NRX2
 ; FF12 - NR12 - Channel 1 Volume Envelope (R/W)
@@ -79,23 +81,27 @@ dutycycle: macro
 ; Bit 3   - Envelope Direction (0=Decrease, 1=Increase)
 ; Bit 2-0 - Number of envelope sweep (n: 0-7)
 ;           (If zero, stop envelope operation.)
-intensity: macro
 	db $dc
+	if _NARG == 1
 	db \1 ; intensity
+    endc
+	if _NARG == 2
+	db (\1 << 4) | \2
+    endc
 	endm
 
-intensity_own: MACRO
-	db $dc
-	db (\1 << 4) | \2
-ENDM
-
-
 soundinput: macro
+; Loads Parameter into 'SoundInput'
+; Sets 3rd Bit in ChannelXNoteFlags 
+; which later loads 'SoundInput' into NR10
 	db $dd
 	db \1 ; input
 	endm
 
 unknownmusic0xde: macro
+; Rotates through 4 Settings of Wave Duty every frame
+; begins with Bits 0-1, then 2-3, 4-5, 6-7
+; Bit6-7 of wc292 are written into NR11 to set the Wave Pattern Duty
 	db $de
 	db \1 ; unknown
 	endm
@@ -105,32 +111,25 @@ togglesfx: macro
 	endm
 
 
-unknownmusic0xe0: macro
+unknownmusic0xe0: macro ; maybe pitchbend???
 	db $e0
 	db \1 ; unknown
 	db \2 ; unknown
 	endm
 
-unknownmusic0xe0_own: macro ; maybe pitchbend???
-	db $e0
-	db \1 ; unknown
-	db (\2 << 4) | \3 ; unknown
-	endm
-
 
 vibrato: macro
 	db $e1
+	if _NARG == 2
 	db \1 ; delay
 	db \2 ; extent
-	endm
-
+    endc
 ; format: vibrato delay (in frames), extent, rate (# frames per cycle)
-vibrato_red: MACRO
-	db $e1
+	if _NARG == 3
 	db \1
 	db (\2 << 4) | \3
-ENDM
-
+    endc
+	endm
 
 unknownmusic0xe2: macro
 	db $e2
@@ -147,7 +146,7 @@ panning: macro
 	db \1 ; tracks
 	endm
 
-
+volume: macro
 ; parameter is directly written
 ; in hardware register NR50
 ; FF24 - NR50 - Channel control / ON-OFF / Volume (R/W)
@@ -156,18 +155,16 @@ panning: macro
 ; Bit 6-4 - SO2 output level (volume)  (0-7)
 ; Bit 3   - Output Vin to SO1 terminal (1=Enable)
 ; Bit 2-0 - SO1 output level (volume)  (0-7)
-volume: macro
 	db $e5
+	if _NARG == 1
 	db \1 ; volume
-	endm
-
-volume_red: MACRO
+    endc
 ; \1: SO2 output level (volume)  (0-7)
 ; \2: SO1 output level (volume)  (0-7)
-	db $e5
+	if _NARG == 2
 	db (\1 << 4) | \2
-ENDM
-
+    endc
+	endm
 
 tone: macro
 	db $e6

@@ -82,18 +82,17 @@ box: MACRO
 \1End::             ds 2 ; padding
 ENDM
 
-
 channel_struct: MACRO
-; Addreses are Channel1 (c101).
+; Addresses are Channel1 (c101).
 \1MusicID::           dw
 \1MusicBank::         db
-\1Flags::             db ; 0:on/off 1:subroutine 4:noise
-\1Flags2::            db ; 0:vibrato on/off 2:duty
+\1Flags::             db ; 0:on/off 1:subroutine 2:loop 3:sfx on/off??? 4:noise
+\1Flags2::            db ; 0:vibrato on/off 1:note on/off??? 2:duty 3:set by MusicE2 4:set by MusicE6 5:set by MusicE8 6:set by MusicE7
 \1Flags3::            db ; 0:vibrato up/down
 \1MusicAddress::      dw
 \1LastMusicAddress::  dw
                       dw
-\1NoteFlags::         db ; 5:rest
+\1NoteFlags::         db ; 3:sweep on/off 4:noise sample 5:rest
 \1Condition::         db ; conditional jumps
 \1DutyCycle::         db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
 \1Intensity::         db ; hi:pressure lo:velocity
@@ -102,31 +101,34 @@ channel_struct: MACRO
 \1FrequencyHi::       db
 \1Pitch::             db ; 0:rest 1-c:note
 \1Octave::            db ; 7-0 (0 is highest)
-\1StartingOctave::    db ; raises existing octaves (to repeat phrases)
+\1StartingOctave::    db ; raises existing octaves (to repeat phrases) 0-3:pitch 4-7:octave
 \1NoteDuration::      db ; frames remaining for the current note
-                      ds 1 ; c117
-                      ds 1 ; c118
+\1_16::               db ; c117
+                      db ; c118
 \1LoopCount::         db
 \1Tempo::             dw
 \1Tracks::            db ; hi:left lo:right
-                      ds 1 ; c11d
+\1_1c::               ds 1 ; c11d
 \1VibratoDelayCount:: db ; initialized by \1VibratoDelay
 \1VibratoDelay::      db ; number of frames a note plays until vibrato starts
 \1VibratoExtent::     db
 \1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
-                      ds 1 ; c122
-                      ds 1 ; c123
-                      ds 1 ; c124
-                      ds 1 ; c125
-                      ds 1 ; c126
-                      ds 1 ; c127
+\1_21::               db ; c122
+\1_22::               db ; c123
+\1_23::               db ; c124
+\1_24::               db ; c125
+\1_25::               db ; c126
+                      db ; c127
 \1CryPitch::          dw
-                      ds 4
+\1_29::               db
+\1_2a::               db
+                      db
+\1_2c::               db
 \1NoteLength::        db ; frames per 16th note
-                      ds 1 ; c12f
-                      ds 1 ; c130
-                      ds 1 ; c131
-                      ds 1 ; c132
+\1_2e::               db ; c12f
+\1_2f::               db ; c130
+\1_30::               db ; c131
+                      db ; c132
 ENDM
 
 SECTION "CHR0", VRAM [$8000], BANK [0]
@@ -168,12 +170,12 @@ Channel7:: channel_struct Channel7 ; c22d
 Channel8:: channel_struct Channel8 ; c25f
 
 	ds 1 ; c291
-wc292:: ds 1
+wc292:: ds 1 ; Bit6-7 are used as temporary memory for Wave Pattern Duty to write into registers NRX1
 wc293:: ds 1
 wc294:: ds 1
 wc295:: ds 1
 wc296:: ds 1
-wc297:: ds 1
+wc297:: ds 1 ; temp memory for 1st parameter of MusicE0
 
 CurMusicByte:: ; c298
 	ds 1
