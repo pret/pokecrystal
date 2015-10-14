@@ -1,6 +1,6 @@
 
 RunMapSetupScript:: ; 15363
-	ld a, [$ff9f]
+	ld a, [hMapEntryMethod]
 	and $f
 	dec a
 	ld c, a

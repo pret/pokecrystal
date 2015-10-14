@@ -194,7 +194,7 @@ OlderHaircutBrotherScript:
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	keeptextopen
-	special Function7413
+	special Special_YoungerHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -277,7 +277,7 @@ YoungerHaircutBrotherScript:
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	keeptextopen
-	special Function7418
+	special Special_OlderHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -342,21 +342,21 @@ YoungerHaircutBrotherScript:
 	end
 
 UnknownScript_0x7c2bb:
-	writetext UnknownText_0x7c8bf
+	writetext HaircutBrosText_SlightlyHappier
 	special Functionc472
 	closetext
 	loadmovesprites
 	end
 
 UnknownScript_0x7c2c4:
-	writetext UnknownText_0x7c8dc
+	writetext HaircutBrosText_Happier
 	special Functionc472
 	closetext
 	loadmovesprites
 	end
 
 UnknownScript_0x7c2cd:
-	writetext UnknownText_0x7c8ee
+	writetext HaircutBrosText_MuchHappier
 	special Functionc472
 	closetext
 	loadmovesprites
@@ -615,19 +615,19 @@ UnknownText_0x7c87b:
 	line "done for today."
 	done
 
-UnknownText_0x7c8bf:
+HaircutBrosText_SlightlyHappier:
 	text_from_ram StringBuffer3
 	text " looks a"
 	line "little happier."
 	done
 
-UnknownText_0x7c8dc:
+HaircutBrosText_Happier:
 	text_from_ram StringBuffer3
 	text " looks"
 	line "happy."
 	done
 
-UnknownText_0x7c8ee:
+HaircutBrosText_MuchHappier:
 	text_from_ram StringBuffer3
 	text " looks"
 	line "delighted!"

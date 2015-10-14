@@ -240,14 +240,14 @@ Functioncc220: ; cc220
 	ld a, $80
 	ld [hBGMapAddress], a
 	ld a, $9a
-	ld [$ffd7], a
+	ld [hBGMapAddress + 1], a
 	call Function3200
 	ld a, $60
 	ld [hWY], a
 	xor a
 	ld [hBGMapAddress], a
 	ld a, $98
-	ld [$ffd7], a
+	ld [hBGMapAddress + 1], a
 	call BattleAnimDelayFrame
 	ret
 ; cc23d

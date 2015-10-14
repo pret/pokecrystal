@@ -36,7 +36,7 @@ PredefPointers:: ; 856b
 	add_predef FlagPredef
 	add_predef Functionc699
 	add_predef FillPP
-	add_predef Functiond88c
+	add_predef TryAddMonToParty
 	add_predef Functionda96
 	add_predef Functiondb3f ; $8
 	add_predef SentPkmnIntoBox

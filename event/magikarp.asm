@@ -1,3 +1,114 @@
+
+
+Special_CheckMagikarpLength: ; fbb32
+	; Returns 3 if you select a Magikarp that beats the previous record.
+	; Returns 2 if you select a Magikarp, but the current record is longer.
+	; Returns 1 if you press B in the Pokemon selection menu.
+	; Returns 0 if the Pokemon you select is not a Magikarp.
+
+	; Let's start by selecting a Magikarp.
+	callba SelectMonFromParty
+	jr c, .declined
+	ld a, [CurPartySpecies]
+	cp MAGIKARP
+	jr nz, .not_magikarp
+	
+	; Now let's compute its length based on its DVs and ID.
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1Species
+	ld bc, PartyMon2 - PartyMon1
+	call AddNTimes
+	push hl
+	ld bc, MON_DVS
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	ld bc, MON_ID
+	add hl, bc
+	ld b, h
+	ld c, l
+	call CalcMagikarpLength
+	call PrintMagikarpLength
+	callba MagikarpLength_Mobile
+	ld hl, .MeasureItText
+	call PrintText
+	
+	; Did we beat the record?
+	ld hl, Buffer1
+	ld de, wBestMagikarpLengthFeet
+	ld c, 2
+	call StringCmp
+	jr nc, .not_long_enough
+	
+	; NEW RECORD!!! Let's save that.
+	ld hl, Buffer1
+	ld de, wBestMagikarpLengthFeet
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc de
+	ld a, [CurPartyMon]
+	ld hl, PartyMonOT
+	call SkipNames
+	call CopyBytes
+	ld a, 3
+	ld [ScriptVar], a
+	ret
+
+.not_long_enough
+	ld a, 2
+	ld [ScriptVar], a
+	ret
+
+.declined
+	ld a, 1
+	ld [ScriptVar], a
+	ret
+
+.not_magikarp
+	xor a
+	ld [ScriptVar], a
+	ret
+; fbba9
+
+.MeasureItText: ; 0xfbba9
+	; Let me measure that MAGIKARP. …Hm, it measures @ .
+	text_jump UnknownText_0x1c1203
+	db "@"
+; 0xfbbae
+
+Magikarp_LoadFeetInchesChars: ; fbbae
+	ld hl, VTiles2 + "′" * $10
+	ld de, .feetinchchars
+	lb bc, BANK(.feetinchchars), 2
+	call Request2bpp
+	ret
+; fbbbb
+
+.feetinchchars: ; fbbb
+INCBIN "gfx/unknown/0fbbbb.2bpp"
+; fbbdb
+
+PrintMagikarpLength: ; fbbdb
+	call Magikarp_LoadFeetInchesChars
+	ld hl, StringBuffer1
+	ld de, Buffer1
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	call PrintNum
+	ld [hl], "′"
+	inc hl
+	ld de, Buffer2
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	call PrintNum
+	ld [hl], "″"
+	inc hl
+	ld [hl], "@"
+	ret
+; fbbfc
+
 CalcMagikarpLength: ; fbbfc
 ; Return Magikarp's length (in mm) at MagikarpLength (big endian).
 ;
@@ -16,9 +127,9 @@ CalcMagikarpLength: ; fbbfc
 
 ; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
-; if bc < 10:     [MagikarpLength] = c + 190
-; if bc >= $ff00: [MagikarpLength] = c + 1370
-; else:           [MagikarpLength] = z * 100 + (bc - x) / y
+; if bc < 10:    [MagikarpLength] = c + 190
+; if bc ≥ $ff00: [MagikarpLength] = c + 1370
+; else:          [MagikarpLength] = z × 100 + (bc − x) / y
 
 ; X, Y, and Z depend on the value of b as follows:
 
@@ -105,7 +216,7 @@ CalcMagikarpLength: ; fbbfc
 	ld a, [hQuotient + 2]
 	ld c, a
 
-	; de = c + 100 * (2 + i)
+	; de = c + 100 × (2 + i)
 	xor a
 	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a
@@ -138,7 +249,7 @@ CalcMagikarpLength: ; fbbfc
 	ld e, l
 
 .done
-	; hl = de * 10
+	; hl = de × 10
 	ld h, d
 	ld l, e
 rept 2
@@ -213,3 +324,22 @@ endr
 	dwb 65410, 2
 	dwb 65510, 1 ; not used
 ; fbcd2
+
+
+
+Special_MagikarpHouseSign: ; fbcd2
+	ld a, [wBestMagikarpLengthFeet]
+	ld [Buffer1], a
+	ld a, [wBestMagikarpLengthInches]
+	ld [Buffer2], a
+	call PrintMagikarpLength
+	ld hl, .CurrentRecordtext
+	call PrintText
+	ret
+; fbce8
+
+.CurrentRecordtext: ; 0xfbce8
+	; "CURRENT RECORD"
+	text_jump UnknownText_0x1c123a
+	db "@"
+; 0xfbced

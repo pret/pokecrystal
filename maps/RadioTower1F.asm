@@ -26,10 +26,10 @@ GentlemanScript_0x5cd3d:
 	loadfont
 	writetext UnknownText_0x5ceba
 	keeptextopen
-	special Functionc434
-	iffalse UnknownScript_0x5cd4c
-	special Functionc422
-UnknownScript_0x5cd4c:
+	special Special_CheckLuckyNumberShowFlag
+	iffalse .skip
+	special Special_ResetLuckyNumberShowFlag
+.skip:
 	special Function4d9d3
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue .GameOver
@@ -45,7 +45,7 @@ UnknownScript_0x5cd4c:
 	playsound SFX_DEX_FANFARE_20_49
 	waitbutton
 	keeptextopen
-	special Function4d87a
+	special Special_CheckForLuckyNumberWinners
 	loadmovesprites
 	applymovement $6, MovementData_0x5ce74
 	loadfont
@@ -66,7 +66,7 @@ UnknownScript_0x5cd4c:
 	waitbutton
 	keeptextopen
 	giveitem MASTER_BALL, 1
-	iffalse UnknownScript_0x5cdcf
+	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
@@ -77,7 +77,7 @@ UnknownScript_0x5cd4c:
 	waitbutton
 	keeptextopen
 	giveitem EXP_SHARE, 1
-	iffalse UnknownScript_0x5cdcf
+	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
@@ -88,7 +88,7 @@ UnknownScript_0x5cd4c:
 	waitbutton
 	keeptextopen
 	giveitem PP_UP, 1
-	iffalse UnknownScript_0x5cdcf
+	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
@@ -99,7 +99,7 @@ UnknownScript_0x5cd4c:
 	loadmovesprites
 	end
 
-UnknownScript_0x5cdcf:
+.BagFull:
 	writetext UnknownText_0x5d0e6
 	closetext
 	loadmovesprites

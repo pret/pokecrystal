@@ -2359,7 +2359,7 @@ Function17ded9: ; 17ded9
 	ld [MonType], a
 	push hl
 	push bc
-	predef Functiond88c
+	predef TryAddMonToParty
 	callba Function4db49
 	pop bc
 	pop hl
@@ -4359,9 +4359,9 @@ Function17f382: ; 17f382
 	ld de, $b2f4
 
 .asm_17f3ab
-	ld a, $82
+	ld a, PRINTNUM_LEADINGZEROS | 2
 	ld b, a
-	ld a, $3
+	ld a, 3
 	ld c, a
 	call PrintNum
 	call CloseSRAM
@@ -5347,7 +5347,7 @@ Function17ff3c: ; 17ff3c
 	ld [wc300], a
 	hlcoord 14, 2
 	ld de, wc300
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	pop af
 	ld [wc300], a

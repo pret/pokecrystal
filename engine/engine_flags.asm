@@ -97,7 +97,7 @@
 	dwb VisitedSpawns + 3, %00000100 ; silver cave
 	dwb VisitedSpawns + 3, %00010000 ; unused
 
-	dwb wdc9d, %00000001 ; lucky number show
+	dwb wLuckyNumberShowFlag, %00000001 ; lucky number show
 	dwb StatusFlags2, %00001000
 
 	dwb DailyFlags, %00000001 ; kurt making balls  ; $50

@@ -26,7 +26,7 @@ NameRater: ; fb6ed
 	ld hl, NameRaterWhichNameText
 	call PrintText
 ; Load the new nickname into StringBuffer2
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld a, [CurPartySpecies]
 	ld [wd265], a

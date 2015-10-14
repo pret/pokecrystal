@@ -2815,21 +2815,22 @@ Function3d1aa: ; 3d1aa
 	ld [hl], a
 	ld [BattleMonStatus], a
 	call UpdateBattleMonInParty
-	ld c, $6
+	ld c, HAPPINESS_FAINTED
+	; If TheirLevel > (YourLevel + 30), use a different parameter
 	ld a, [BattleMonLevel]
-	add $1e
+	add 30
 	ld b, a
 	ld a, [EnemyMonLevel]
 	cp b
 	jr c, .asm_3d1dc
-	ld c, $8
+	ld c, HAPPINESS_BEATENBYSTRONGFOE
 
 .asm_3d1dc
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	callab ChangeHappiness
 	ld a, [wd0ee]
-	and $c0
+	and %11000000
 	add $1
 	ld [wd0ee], a
 	ld a, [wc6f7]
@@ -3233,7 +3234,7 @@ Function3d444: ; 3d444
 
 
 Function3d490: ; 3d490
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld c, a
 .asm_3d493
 	push bc
@@ -3257,7 +3258,7 @@ Function3d490: ; 3d490
 ; 3d4ae
 
 Function3d4ae: ; 3d4ae
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld c, a
 	cp $8
 	jr nz, .back
@@ -4821,7 +4822,7 @@ DrawPlayerHUD: ; 3df58
 	; HP bar
 	hlcoord 10, 9
 	ld b, 1
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef DrawPlayerHP
 
@@ -4903,7 +4904,7 @@ PrintPlayerHUD: ; 3dfbf
 	pop hl
 	dec hl
 
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
@@ -4981,7 +4982,7 @@ DrawEnemyHUD: ; 3e043
 	ld a, [hl]
 	ld [de], a
 
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
@@ -5358,7 +5359,7 @@ Function3e308: ; 3e308
 	call EnableLCD
 	call ClearSprites
 	call LowVolume
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	callba Function4dc7b
 	call MaxVolume
@@ -5966,7 +5967,7 @@ Function3e75f: ; 3e75f
 .ok
 	push hl
 	ld de, StringBuffer1
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 	pop hl
 rept 2
@@ -5974,8 +5975,8 @@ rept 2
 endr
 	ld [hl], "/"
 	inc hl
-	ld de, wd265
-	ld bc, $0102
+	ld de, wNamedObjectIndexBuffer
+	lb bc, 1, 2
 	call PrintNum
 	ret
 ; 3e786
@@ -7535,7 +7536,7 @@ endr
 	ld [hld], a
 
 .asm_3ef74
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	callab Function50e1b
@@ -7647,7 +7648,7 @@ endr
 	call Function309d
 
 .asm_3f057
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	hlcoord 9, 0
@@ -7661,7 +7662,7 @@ endr
 	call DelayFrames
 	call Functiona80
 	call Function30b4
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld a, [CurSpecies]
 	ld [wd265], a
@@ -7802,7 +7803,7 @@ Function3f136: ; 3f136
 	push af
 	xor a
 	ld [DefaultFlypoint], a
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	ld a, [TempMonLevel]
@@ -8526,28 +8527,28 @@ Function3f594: ; 3f594
 	ld [IsInBattle], a
 
 	call IsJohtoGymLeader
-	jr nc, .asm_3f606
+	jr nc, .done
 	xor a
 	ld [CurPartyMon], a
 	ld a, [PartyCount]
 	ld b, a
-.asm_3f5ea
+.partyloop
 	push bc
 	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_3f5fc
-	ld c, $4
+	jr z, .skipfaintedmon
+	ld c, HAPPINESS_GYMBATTLE
 	callab ChangeHappiness
-.asm_3f5fc
+.skipfaintedmon
 	pop bc
 	dec b
-	jr z, .asm_3f606
+	jr z, .done
 	ld hl, CurPartyMon
 	inc [hl]
-	jr .asm_3f5ea
-.asm_3f606
+	jr .partyloop
+.done
 	ret
 ; 3f607
 
@@ -8892,20 +8893,20 @@ Function3f85f: ; 3f85f
 	add hl, de
 	push hl
 	ld de, wd00d
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	pop hl
 	ld de, $0005
 	add hl, de
 	push hl
 	ld de, wd00f
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	pop hl
 	ld de, $0005
 	add hl, de
 	ld de, wd011
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	jr .asm_3f8cf
 
@@ -8945,21 +8946,21 @@ Function3f85f: ; 3f85f
 	call .asm_3f92b
 	jr c, .asm_3f92a
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 	hlcoord 11, 4
 	ld de, sLinkBattleLosses
 	call .asm_3f92b
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 	hlcoord 16, 4
 	ld de, sLinkBattleDraws
 	call .asm_3f92b
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 .asm_3f92a
@@ -9442,7 +9443,7 @@ Function3fc30: ; 3fc30
 Function3fc5b: ; 3fc5b
 	ld hl, Sprites
 	xor a
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld b, $6
 	ld e, $a8
 .asm_3fc65
@@ -9453,10 +9454,10 @@ Function3fc5b: ; 3fc5b
 	inc hl
 	ld [hl], e
 	inc hl
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld [hli], a
 	inc a
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld a, $1
 	ld [hli], a
 	ld a, d
@@ -9464,9 +9465,9 @@ Function3fc5b: ; 3fc5b
 	ld d, a
 	dec c
 	jr nz, .asm_3fc69
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	add $3
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld a, e
 	add $8
 	ld e, a

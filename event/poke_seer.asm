@@ -166,7 +166,7 @@ GetCaughtLevel: ; 4f18c
 	ld [wd038 + 2], a
 	ld hl, wd036
 	ld de, wd038 + 2
-	ld bc, $4103
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
 	call PrintNum
 	ret
 
