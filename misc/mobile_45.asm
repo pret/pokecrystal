@@ -5268,7 +5268,7 @@ Function115d80: ; 115d80
 
 Function115d99: ; 115d99
 	ld de, GFX_11601a
-	ld hl, $8600
+	ld hl, VTiles0 tile $60
 	lb bc, BANK(GFX_11601a), $14
 	call Get2bpp
 	xor a
@@ -22297,7 +22297,7 @@ Function16d696: ; 16d696
 
 Function16d69a: ; 16d69a
 	ld de, GFX_16cfc1 + $300
-	ld hl, $9760
+	ld hl, VTiles2 tile $76
 	lb bc, BANK(GFX_16cfc1), 8
 	call Get2bpp
 	ret
@@ -24486,7 +24486,7 @@ Function170d02: ; 170d02
 	ld a, $1
 	ld [rVBK], a
 	ld de, GFX_171848
-	ld hl, $8c10
+	ld hl, VTiles1 tile $41
 	lb bc, BANK(GFX_171848), $18
 	call Get2bpp
 	xor a
@@ -24869,11 +24869,11 @@ String_171c73: ; 171c73
 Function171c87: ; 171c87 (5c:5c87)
 	call DisableLCD
 	ld hl, GFX_171db1
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld bc, $6e0
 	call CopyBytes
 	ld hl, LZ_172abd
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Decompress
 	call EnableLCD
 	ld hl, Tilemap_172491
@@ -24941,11 +24941,11 @@ endr
 Function171d2b: ; 171d2b (5c:5d2b)
 	call DisableLCD
 	ld hl, GFX_171db1
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld bc, $6e0
 	call CopyBytes
 	ld hl, LZ_172abd
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Decompress
 	call EnableLCD
 	ld hl, Tilemap_172685
@@ -25040,7 +25040,7 @@ Function172e78: ; 172e78 (5c:6e78)
 	call ByteFill
 	call DisableLCD
 	ld hl, GFX_172f1f
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld bc, $610
 	call CopyBytes
 	call EnableLCD

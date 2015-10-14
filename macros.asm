@@ -162,16 +162,4 @@ ln: MACRO
 	endc
 ENDM
 
-dwtile: MACRO
-	dw (\1 << 4) + \2
-	if _NARG > 2
-	rept _NARG + -2
-	dw \3
-	shift
-	endr
-	endc
-ENDM
-
-ldtile: MACRO
-	ld \1, (\2 << 4) + \3
-ENDM
+tile EQUS "+ $10 *"

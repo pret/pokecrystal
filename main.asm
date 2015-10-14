@@ -1429,7 +1429,7 @@ Copyright: ; 63e2
 	call ClearTileMap
 	call Functione5f
 	ld de, CopyrightGFX
-	ld hl, VTiles2 + $600 ; tile $60
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
 	hlcoord 2, 7
@@ -10585,7 +10585,7 @@ String_117e6: ; 117e6
 
 Function117f5: ; 117f5 (4:57f5)
 	ld de, PokeBallSpriteGFX
-	ld hl, $8000
+	ld hl, VTiles0 tile $00
 	lb bc, BANK(PokeBallSpriteGFX), $4
 	call Request2bpp
 	xor a
@@ -10623,7 +10623,7 @@ String_11839: ; 11839
 
 Function11847: ; 11847 (4:5847)
 	push de
-	ld hl, $8000
+	ld hl, VTiles0 tile $00
 	ld c, $4
 	push bc
 	call Request2bpp
@@ -10632,7 +10632,7 @@ Function11847: ; 11847 (4:5847)
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $8040
+	ld hl, VTiles0 tile $04
 	call Request2bpp
 	xor a
 	ld hl, wc300
@@ -11289,22 +11289,22 @@ Function11c51: ; 11c51
 	call Functione5f
 
 	ld de, GFX_11e65
-	ld hl, $8eb0
+	ld hl, VTiles1 tile $6b
 	lb bc, BANK(GFX_11e65), 1
 	call Get1bpp
 
 	ld de, GFX_11e6d
-	ld hl, $8f20
+	ld hl, VTiles1 tile $72
 	lb bc, BANK(GFX_11e6d), 1
 	call Get1bpp
 
-	ld de, $9600
+	ld de, VTiles2 tile $60
 	ld hl, GFX_11cb7
 	ld bc, $10
 	ld a, BANK(GFX_11cb7)
 	call FarCopyBytes
 
-	ld de, $87e0
+	ld de, VTiles0 tile $7e
 	ld hl, GFX_11cc7
 	ld bc, $20
 	ld a, BANK(GFX_11cc7)
@@ -11404,7 +11404,7 @@ Function11e9a: ; 11e9a (4:5e9a)
 	call WhiteBGMap
 	call DisableLCD
 	call Function11c51
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	ld hl, GFX_11ef4
 	ld bc, $80
 	ld a, BANK(GFX_11ef4)
@@ -12009,7 +12009,7 @@ Jumptable_12377: ; 12377
 Function12383: ; 12383
 	call Function12434
 	ld de, GFX_123fc
-	ld hl, $87c0
+	ld hl, VTiles0 tile $7c
 	lb bc, BANK(GFX_123fc), $2
 	call Request2bpp
 	ret
@@ -16846,51 +16846,51 @@ EmotesPointers: ; 144d
 
 	dw ShockEmote
 	db $40, BANK(ShockEmote)
-	dwtile $78, VTiles1
+	dw VTiles1 tile $78
 
 	dw QuestionEmote
 	db $40, BANK(QuestionEmote)
-	dwtile $78, VTiles1
+	dw VTiles1 tile $78
 
 	dw HappyEmote
 	db $40, BANK(HappyEmote)
-	dwtile $78, VTiles1
+	dw VTiles1 tile $78
 
 	dw SadEmote
 	db $40, BANK(SadEmote)
-	dwtile $78, VTiles1
+	dw VTiles1 tile $78
 
 	dw HeartEmote
 	db $40, BANK(HeartEmote)
-	dwtile $78, VTiles1
+	dw VTiles1 tile $78
 
 	dw BoltEmote
 	db $40, BANK(BoltEmote)
-	dwtile $78, VTiles1
+	dw VTiles1 tile $78
 
 	dw SleepEmote
 	db $40, BANK(SleepEmote)
-	dwtile $78, VTiles1
+	dw VTiles1 tile $78
 
 	dw FishEmote
 	db $40, BANK(FishEmote)
-	dwtile $78, VTiles1
+	dw VTiles1 tile $78
 
 	dw FishingRodGFX + $00
 	db $10, BANK(FishingRodGFX)
-	dwtile $7c, VTiles1
+	dw VTiles1 tile $7c
 
 	dw FishingRodGFX + $10
 	db $20, BANK(FishingRodGFX)
-	dwtile $7c, VTiles1
+	dw VTiles1 tile $7c
 
 	dw FishingRodGFX + $30
 	db $20, BANK(FishingRodGFX)
-	dwtile $7e, VTiles1
+	dw VTiles1 tile $7e
 
 	dw FishingRodGFX + $50
 	db $10, BANK(FishingRodGFX)
-	dwtile $7e, VTiles1
+	dw VTiles1 tile $7e
 
 ; 14495
 
@@ -20440,12 +20440,12 @@ Function16be4: ; 16be4
 	call ClearTileMap
 
 	ld de, UnownDexATile
-	ld hl, $8ef0
+	ld hl, VTiles1 tile $6f
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
 	ld de, UnownDexBTile
-	ld hl, $8f50
+	ld hl, VTiles1 tile $75
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
@@ -20574,7 +20574,7 @@ Function16cc8: ; 16cc8
 	ld [$ffad], a
 	lb bc, 7, 7
 	predef FillBox
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	callba Functione0000
 	ret
 ; 16cff
@@ -20611,7 +20611,7 @@ Function16d20: ; 16d20
 	ld bc, $0310
 	xor a
 	call ByteFill
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, sScratch
 	ld c, $31
 	ld a, [hROMBank]
@@ -21418,15 +21418,15 @@ Function1728f: ; 1728f (5:728f)
 	callba Function8000
 	call DisableLCD
 	ld hl, EggHatchGFX
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	ld bc, $20
 	ld a, BANK(EggHatchGFX)
 	call FarCopyBytes
 	callba Function8cf53
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld a, [wcf63]
 	call Function1723c
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld a, EGG
 	call Function17224
 	ld de, MUSIC_EVOLUTION
@@ -24786,12 +24786,12 @@ Function2513b: ; 2513b (9:513b)
 	call DisableLCD
 	callba Function8833e
 	ld hl, CardRightCornerGFX
-	ld de, $91c0
+	ld de, VTiles2 tile $1c
 	ld bc, $10
 	ld a, BANK(CardRightCornerGFX)
 	call FarCopyBytes
 	ld hl, CardStatusGFX
-	ld de, $9290
+	ld de, VTiles2 tile $29
 	ld bc, $60 + $500
 	ld a, BANK(CardStatusGFX)
 	call FarCopyBytes
@@ -24853,7 +24853,7 @@ Function251b6: ; 251b6 (9:51b6)
 	call Function253b0
 	call WaitBGMap
 	ld de, CardStatusGFX
-	ld hl, $9290
+	ld hl, VTiles2 tile $29
 	lb bc, BANK(CardStatusGFX), $6 + $50
 	call Request2bpp
 	call Function2530a
@@ -24889,11 +24889,11 @@ Function251f4: ; 251f4 (9:51f4)
 	call Function253b0
 	call WaitBGMap
 	ld de, LeaderGFX
-	ld hl, $9290
+	ld hl, VTiles2 tile $29
 	lb bc, BANK(LeaderGFX), $56
 	call Request2bpp
 	ld de, BadgeGFX
-	ld hl, $8000
+	ld hl, VTiles0 tile $00
 	lb bc, BANK(BadgeGFX), $2c
 	call Request2bpp
 	call Function2536c
@@ -24938,11 +24938,11 @@ Function2524c: ; 2524c (9:524c)
 	call Function253b0
 	call WaitBGMap
 	ld de, LeaderGFX2
-	ld hl, $9290
+	ld hl, VTiles2 tile $29
 	lb bc, BANK(LeaderGFX2), $56
 	call Request2bpp
 	ld de, BadgeGFX2
-	ld hl, $8000
+	ld hl, VTiles0 tile $00
 	lb bc, BANK(BadgeGFX2), $2c
 	call Request2bpp
 	call Function2536c
@@ -29384,15 +29384,15 @@ Function28fdb: ; 28fdb
 	ld a, $7f
 	call ByteFill
 	ld hl, TradeGameBoyLZ
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	call Decompress
 	ld hl, TradeArrowGFX
-	ld de, $8ed0
+	ld de, VTiles1 tile $6d
 	ld bc, $0010
 	ld a, BANK(TradeArrowGFX)
 	call FarCopyBytes
 	ld hl, TradeArrowGFX + $10
-	ld de, $8ee0
+	ld de, VTiles1 tile $6e
 	ld bc, $0010
 	ld a, BANK(TradeArrowGFX)
 	call FarCopyBytes
@@ -29412,7 +29412,7 @@ Function28fdb: ; 28fdb
 	call Function29491
 	ld a, [wc702]
 	ld hl, wc72f
-	ld de, $8310
+	ld de, VTiles0 tile $31
 	call Function29491
 	ld a, [wc6d0]
 	ld de, wc6d1
@@ -30070,7 +30070,7 @@ Function294bb: ; 294bb
 	jr Function294c3
 
 Function294c0: ; 294c0
-	ld de, $8310
+	ld de, VTiles0 tile $31
 
 Function294c3: ; 294c3
 	call DelayFrame
@@ -30637,15 +30637,15 @@ Function2981d: ; 2981d
 Function2982b: ; 2982b
 	call DelayFrame
 	ld de, TradeBallGFX
-	ld hl, $8620
+	ld hl, VTiles0 tile $62
 	lb bc, BANK(TradeBallGFX), $6
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8680
+	ld hl, VTiles0 tile $68
 	lb bc, BANK(TradePoofGFX), $c
 	call Request2bpp
 	ld de, TradeCableGFX
-	ld hl, $8740
+	ld hl, VTiles0 tile $74
 	lb bc, BANK(TradeCableGFX), $4
 	call Request2bpp
 	xor a
@@ -30660,7 +30660,7 @@ Function2985a: ; 2985a
 	ld e, $3
 	callab Function8e83f
 	ld de, TradeBubbleGFX
-	ld hl, $8720
+	ld hl, VTiles0 tile $72
 	lb bc, BANK(TradeBubbleGFX), $4
 	call Request2bpp
 	xor a
@@ -32792,7 +32792,7 @@ Function2c143: ; 2c143
 
 Function2c165: ; 2c165
 	ld de, GFX_2c172
-	ld hl, $8310
+	ld hl, VTiles0 tile $31
 	lb bc, BANK(GFX_2c172), 4
 	call Functiondc9
 	ret
@@ -36763,11 +36763,11 @@ Function4802f: ; 4802f (12:402f)
 	call Function486bf
 	call Functione5f
 	ld de, GFX_488c3
-	ld hl, $9100
+	ld hl, VTiles2 tile $10
 	lb bc, BANK(GFX_488c3), 1
 	call Request1bpp
 	ld de, GFX_488cb
-	ld hl, $9110
+	ld hl, VTiles2 tile $11
 	lb bc, BANK(GFX_488cb), 1
 	call Request1bpp
 	call Function4a3a7
@@ -38652,7 +38652,7 @@ Palette_48e5c: ; 48e5c
 
 Function48e64: ; 48e64 (12:4e64)
 	ld de, GFX_48e71
-	ld hl, $9000
+	ld hl, VTiles2 tile $00
 	lb bc, BANK(GFX_48e71), 1
 	call Get2bpp
 	ret
@@ -38670,7 +38670,7 @@ endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, $9500
+	ld hl, VTiles2 tile $50
 	lb bc, BANK(PackFGFX), 15
 	call Request2bpp
 	ret
@@ -39498,7 +39498,7 @@ LoadCelebiGFX: ; 49912
 	lb bc, BANK(SpecialCelebiLeafGFX), 4
 	call Request2bpp
 	ld de, SpecialCelebiGFX
-	ld hl, $8840
+	ld hl, VTiles1 tile $04
 	lb bc, BANK(SpecialCelebiGFX), $10
 	call Request2bpp
 	xor a
@@ -40772,7 +40772,7 @@ Function4a449: ; 4a449
 
 Function4a485: ; 4a485 (12:6485)
 	ld de, GFX_49c0c
-	ld hl, $9000
+	ld hl, VTiles2 tile $00
 	lb bc, BANK(GFX_49c0c), $d
 	call Get2bpp
 	ret
@@ -44882,7 +44882,7 @@ Function4e289: ; 4e289 (13:6289)
 	call IsAPokemon
 	ret c
 	call Function4e307
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	predef Function5108b
 	hlcoord 0, 0
 	ld d, $0
@@ -44970,7 +44970,7 @@ Function4e307: ; 4e307 (13:6307)
 	ld [rVBK], a ; $ff00+$4f
 	ld de, GFX_f9204
 	lb bc, BANK(GFX_f9204), 1
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	call Get2bpp
 	pop af
 	ld [rVBK], a ; $ff00+$4f
@@ -45085,7 +45085,7 @@ Function4e497: ; 4e497 (13:6497)
 	ld a, $1
 	ld [wc2c6], a
 	call Function4e307
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	predef Function5108b
 	pop de
 	hlcoord 0, 0
@@ -45334,7 +45334,7 @@ _EvolutionAnimation: ; 4e607
 	call Function4e708
 
 	ld de, VTiles2
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld bc, $0031
 	call Request2bpp
 
@@ -50434,7 +50434,7 @@ Function81948: ; 81948
 
 Function8197c: ; 8197c
 	ld hl, DebugColorTestGFX + $10
-	ld de, $96a0
+	ld de, VTiles2 tile $6a
 	ld bc, $0160
 	call CopyBytes
 	ld hl, DebugColorTestGFX
@@ -50704,7 +50704,7 @@ Function81adb: ; 81adb
 	ld [wc2c6], a
 	hlcoord 12, 3
 	call Function378b
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	predef GetBackpic
 	ld a, $31
 	ld [$ffad], a
@@ -51458,7 +51458,7 @@ TilesetColorTest:
 	xor a
 	ld [hBGMapMode], a
 	ld de, DebugColorTestGFX + $10
-	ld hl, $96a0
+	ld hl, VTiles2 tile $6a
 	lb bc, BANK(DebugColorTestGFX), $16
 	call Request2bpp
 	ld de, DebugColorTestGFX
@@ -53569,7 +53569,7 @@ endr
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $7f
 	call ByteFill
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	predef GetBackpic
 	ld a, $31
 	ld [$ffad], a
@@ -53860,7 +53860,7 @@ Function86748: ; 86748
 
 Function86810: ; 86810
 	call WhiteBGMap
-	ld hl, $9630
+	ld hl, VTiles2 tile $63
 	ld de, FontExtra + $d0
 	lb bc, BANK(FontExtra), 1
 	call Request2bpp
@@ -54511,12 +54511,12 @@ Function8833e: ; 8833e
 	jr z, .GotClass
 	ld hl, KrisCardPic
 .GotClass
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld bc, $230
 	ld a, BANK(ChrisCardPic) ; BANK(KrisCardPic)
 	call FarCopyBytes
 	ld hl, CardGFX
-	ld de, $9230
+	ld de, VTiles2 tile $23
 	ld bc, $60
 	ld a, BANK(CardGFX)
 	call FarCopyBytes
@@ -54546,7 +54546,7 @@ GetPlayerBackpic: ; 88825
 GetChrisBackpic: ; 88830
 	ld hl, ChrisBackpic
 	ld b, BANK(ChrisBackpic)
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld c, 7 * 7
 	predef DecompressPredef
 	ret
@@ -54631,7 +54631,7 @@ INCBIN "gfx/misc/kris.7x7.2bpp"
 GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret
@@ -55195,12 +55195,12 @@ INCBIN "gfx/unknown/08940b.2bpp"
 ; 8942b
 
 Function8942b: ; 8942b (22:542b)
-	ld de, $8020
+	ld de, VTiles0 tile $02
 	ld hl, MobileAdapterGFX + $7d0
 	ld bc, $80
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
-	ld de, $80a0
+	ld de, VTiles0 tile $0a
 	ld hl, MobileAdapterGFX + $c60
 	ld bc, $40
 	ld a, BANK(MobileAdapterGFX)
@@ -55222,7 +55222,7 @@ Function89448: ; 89448 (22:5448)
 
 Function89455: ; 89455 (22:5455)
 	ld hl, MobileAdapterGFX + $7d0
-	ld de, $90c0
+	ld de, VTiles2 tile $0c
 	ld bc, $490
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
@@ -55235,7 +55235,7 @@ Function89464: ; 89464
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ld hl, MobileAdapterGFX + $660
-	ld de, $9200
+	ld de, VTiles2 tile $20
 	ld bc, $170
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
@@ -55870,7 +55870,7 @@ Function897af: ; 897af
 	ld [TrainerClass], a
 	xor a
 	ld [CurPartySpecies], a
-	ld de, $9370
+	ld de, VTiles2 tile $37
 	callba GetTrainerPic
 	pop bc
 	ret
@@ -55918,7 +55918,7 @@ Function89807: ; 89807 (22:5807)
 	ld hl, MobileAdapterGFX + $200 + $230
 .asm_89814
 	call DisableLCD
-	ld de, $9370
+	ld de, VTiles2 tile $37
 	ld bc, $230
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
@@ -60660,12 +60660,12 @@ Function8b690: ; 8b690
 	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
 	ld hl, GFX_17afa5 + $514 + $160 - $10
-	ld de, $9610
+	ld de, VTiles2 tile $61
 	ld bc, $10
 	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
 	ld hl, GFX_17afa5 + $514 + $160
-	ld de, $8ee0
+	ld de, VTiles1 tile $6e
 	ld bc, $10
 	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
@@ -61735,7 +61735,7 @@ Function8c2a0: ; 8c2a0
 
 Function8c2aa: ; 8c2aa
 	ld de, GFX_8c2f4
-	ld hl, $8fe0
+	ld hl, VTiles1 tile $7e
 	ld b, BANK(GFX_8c2f4)
 	ld c, 2
 	call Request2bpp
@@ -61744,7 +61744,7 @@ Function8c2aa: ; 8c2aa
 	ld a, $1
 	ld [rVBK], a
 	ld de, GFX_8c2f4
-	ld hl, $8fe0
+	ld hl, VTiles1 tile $7e
 	ld b, BANK(GFX_8c2f4)
 	ld c, 2
 	call Request2bpp
@@ -62498,7 +62498,7 @@ ShakeHeadbuttTree: ; 8c80a
 	lb bc, BANK(GFX_8c9cc), 4
 	call Request2bpp
 	ld de, HeadbuttTreeGFX
-	ld hl, $8840
+	ld hl, VTiles1 tile $04
 	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
 	call Function8cad3
@@ -62874,7 +62874,7 @@ endr
 Function8cb9b: ; 8cb9b (23:4b9b)
 	callab Function8cf53
 	ld de, GFX_8c9cc
-	ld hl, $8800
+	ld hl, VTiles1 tile $00
 	lb bc, BANK(GFX_8c9cc), 4
 	call Request2bpp
 	ld a, [CurPartyMon]
@@ -63071,7 +63071,7 @@ Function8ccc9: ; 8ccc9
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, $8040
+	ld hl, VTiles0 tile $04
 	ld c, $4
 	call Request2bpp
 	call Function8cda6
@@ -63097,19 +63097,19 @@ DrawMagnetTrain: ; 8cd27
 	inc a
 	cp $12
 	jr c, .asm_8cd2b
-	ld hl, $98c0
+	ld hl, VBGMap0 tile $0c
 	ld de, MagnetTrainTilemap1
 	ld c, 20
 	call .FillLine
-	ld hl, $98e0
+	ld hl, VBGMap0 tile $0e
 	ld de, MagnetTrainTilemap2
 	ld c, 20
 	call .FillLine
-	ld hl, $9900
+	ld hl, VBGMap0 tile $10
 	ld de, MagnetTrainTilemap3
 	ld c, 20
 	call .FillLine
-	ld hl, $9920
+	ld hl, VBGMap0 tile $12
 	ld de, MagnetTrainTilemap4
 	ld c, 20
 	call .FillLine
@@ -63198,13 +63198,13 @@ SetMagnetTrainPals: ; 8cdc3
 	call ByteFill
 
 	; train
-	ld hl, $9880
+	ld hl, VBGMap0 tile $08
 	ld bc, $0140
 	xor a
 	call ByteFill
 
 	; more bushes
-	ld hl, $99c0
+	ld hl, VBGMap0 tile $1c
 	ld bc, $0080
 	ld a, $2
 	call ByteFill
@@ -67708,15 +67708,15 @@ Function90672: ; 90672 (24:4672)
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Functione51
 	ld de, GFX_908fb
-	ld hl, $9000
+	ld hl, VTiles2 tile $00
 	lb bc, BANK(GFX_908fb), 1
 	call Request1bpp
 	ld de, GFX_90903
-	ld hl, $9010
+	ld hl, VTiles2 tile $01
 	lb bc, BANK(GFX_90903), 1
 	call Request1bpp
 	ld de, GFX_9090b
-	ld hl, $9020
+	ld hl, VTiles2 tile $02
 	lb bc, BANK(GFX_9090b), 1
 	call Request1bpp
 	call Function90783
@@ -68087,11 +68087,11 @@ Special_SetDayOfWeek: ; 90913
 	ld a, $1
 	ld [$ffaa], a
 	ld de, GFX_90903
-	ld hl, $8ef0
+	ld hl, VTiles1 tile $6f
 	lb bc, BANK(GFX_90903), 1
 	call Request1bpp
 	ld de, GFX_9090b
-	ld hl, $8f50
+	ld hl, VTiles1 tile $75
 	lb bc, BANK(GFX_9090b), 1
 	call Request1bpp
 	xor a
@@ -68567,7 +68567,7 @@ Function90c4e: ; 90c4e
 	ld a, b
 
 	push af
-	ld de, $8100
+	ld de, VTiles0 tile $10
 	ld bc, $40
 	call FarCopyBytes
 	pop af
@@ -68576,14 +68576,14 @@ Function90c4e: ; 90c4e
 
 	ld de, $c0
 	add hl, de
-	ld de, $8140
+	ld de, VTiles0 tile $14
 	ld bc, $40
 	call FarCopyBytes
 	ret
 
 .ssaqua
 	ld hl, FastShipGFX
-	ld de, $8100
+	ld de, VTiles0 tile $10
 	ld bc, $80
 	call CopyBytes
 	ret
@@ -70157,7 +70157,7 @@ _FlyMap: ; 91af3
 	callba Function8cf53
 	call Function91ff2
 	ld de, GFX_922e1
-	ld hl, $9300
+	ld hl, VTiles2 tile $30
 	lb bc, BANK(GFX_922e1), 6
 	call Request1bpp
 	call FlyMap
@@ -70566,11 +70566,11 @@ Function91d11: ; 91d11
 	ld a, $1
 	ld [$ffaa], a
 	ld de, GFX_922d1
-	ld hl, $87f0
+	ld hl, VTiles0 tile $7f
 	lb bc, BANK(GFX_922d1), 1
 	call Request2bpp ; actually 1bpp
 	call Function91ed0
-	ld hl, $8780
+	ld hl, VTiles0 tile $78
 	ld c, $4
 	call Request2bpp
 	call Function91ff2
@@ -70992,7 +70992,7 @@ TownMapPlayerIcon: ; 91fa6
 	callba GetPlayerIcon
 
 ; Standing icon
-	ld hl, $8100
+	ld hl, VTiles0 tile $10
 	ld c, 4 ; # tiles
 	call Request2bpp
 
@@ -71001,7 +71001,7 @@ TownMapPlayerIcon: ; 91fa6
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, $8140
+	ld hl, VTiles0 tile $14
 	ld c, 4 ; # tiles
 	ld a, BANK(ChrisSpriteGFX) ; does nothing
 	call Request2bpp
@@ -71076,7 +71076,7 @@ Function92311: ; 92311
 	callba Function8cf53
 	call Function91ff2
 	ld de, GFX_922e1
-	ld hl, $9300
+	ld hl, VTiles2 tile $30
 	lb bc, BANK(GFX_922e1), 6
 	call Request1bpp
 	call FillKantoMap
@@ -71228,7 +71228,7 @@ Function926f7: ; 926f7 (24:66f7)
 	call PlayMusic
 	call DelayFrame
 	call DisableLCD
-	ld hl, $9800
+	ld hl, VBGMap0 tile $00
 	ld bc, $400
 	ld a, $7f
 	call ByteFill
@@ -71240,16 +71240,16 @@ Function926f7: ; 926f7 (24:66f7)
 	xor a
 	call ByteFill
 	ld hl, Slots2LZ
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Decompress
 	ld hl, Slots3LZ
-	ld de, $8400
+	ld de, VTiles0 tile $40
 	call Decompress
 	ld hl, Slots1LZ
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Decompress
 	ld hl, Slots2LZ
-	ld de, $9250
+	ld de, VTiles2 tile $25
 	call Decompress
 	ld hl, SlotsTilemap
 	decoord 0, 0
@@ -73481,7 +73481,7 @@ Functionb8098:: ; b8098 (2e:4098)
 
 Functionb80c6: ; b80c6
 	ld de, GFX_f9344
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_f9344), $e
 	call Get2bpp
 	ret
@@ -74166,13 +74166,13 @@ Functionb84b3: ; b84b3
 	ld de, KrisFishingGFX
 .asm_b84c7
 
-	ld hl, $8020
+	ld hl, VTiles0 tile $02
 	call Functionb84e3
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	call Functionb84e3
-	ld hl, $80a0
+	ld hl, VTiles0 tile $0a
 	call Functionb84e3
-	ld hl, $9000 - $40
+	ld hl, VTiles2 tile $00 - $40
 	call Functionb84e3
 
 	pop af
@@ -74335,7 +74335,7 @@ Unknown_b92f8: ; b92f8
 
 Functionb9317: ; b9317
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, Unknown_b9d46
 	ld c, $40
 	call Functionb9915
@@ -74349,7 +74349,7 @@ Functionb9317: ; b9317
 
 Functionb9335: ; b9335
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, Unknown_b9dc6
 	ld c, $40
 	call Functionb9915
@@ -74419,7 +74419,7 @@ Functionb9351: ; b9351
 
 Functionb93d2: ; b93d2
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, Unknown_b997e
 	ld c, $8
 	call Functionb9915
@@ -74438,7 +74438,7 @@ Functionb93d2: ; b93d2
 	ld de, MailPikaGFX
 	ld c, $30
 	call Functionb991e
-	ld hl, $93d0
+	ld hl, VTiles2 tile $3d
 	ld de, Unknown_b9c9e
 	ld c, $20
 	call Functionb990c
@@ -74468,7 +74468,7 @@ Functionb93d2: ; b93d2
 
 Functionb944b: ; b944b
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, Unknown_b9e26
 	ld c, $28
 	call Functionb9915
@@ -74530,7 +74530,7 @@ Functionb9491: ; b9491
 
 Functionb94d6: ; b94d6
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld bc, $0028
 	call Functionb97f8
 	ld de, Unknown_b9c96
@@ -74606,7 +74606,7 @@ Functionb94d6: ; b94d6
 
 Functionb9582: ; b9582
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, Unknown_b997e
 	ld c, $8
 	call Functionb9915
@@ -74693,7 +74693,7 @@ Functionb9636: ; b9636
 
 Functionb963e: ; b963e
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, Unknown_b9d86
 	ld c, $40
 	call Functionb990c
@@ -74747,14 +74747,14 @@ Functionb963e: ; b963e
 
 Functionb96ca: ; b96ca
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, Unknown_b9e4e
 	ld c, $28
 	call Functionb9915
 	ld de, Unknown_b995e
 	ld c, $8
 	call Functionb9915
-	ld hl, $93d0
+	ld hl, VTiles2 tile $3d
 	ld de, Unknown_b9bfe
 	ld c, $20
 	call Functionb990c
@@ -74777,7 +74777,7 @@ Functionb96ca: ; b96ca
 
 Functionb9710: ; b9710
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, Unknown_b9e06
 	ld c, $20
 	call Functionb9915
@@ -74819,7 +74819,7 @@ Functionb9710: ; b9710
 
 Functionb9776: ; b9776
 	push bc
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld bc, $0028
 	call Functionb97f8
 	ld de, Unknown_b992e
@@ -75688,20 +75688,20 @@ _CardFlip: ; e00ee (38:40ee)
 	call Functione51
 	call Functione5f
 	ld hl, LZ_e0d16
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Decompress
 	ld hl, LZ_e0ea8
-	ld de, $93e0
+	ld de, VTiles2 tile $3e
 	call Decompress
 	ld hl, LZ_e0cdb
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Decompress
 	ld hl, GFX_e0cf6
-	ld de, $8ef0
+	ld de, VTiles1 tile $6f
 	ld bc, $10
 	call CopyBytes
 	ld hl, GFX_e0d06
-	ld de, $8f50
+	ld de, VTiles1 tile $75
 	ld bc, $10
 	call CopyBytes
 	call Functione0521
@@ -76278,7 +76278,7 @@ Functione0509: ; e0509
 ; e0521
 
 Functione0521: ; e0521 (38:4521)
-	ld de, $8f60
+	ld de, VTiles1 tile $76
 	ld hl, $8f62
 	ld bc, $9e
 	call CopyBytes
@@ -77399,11 +77399,11 @@ Functione1190: ; e1190
 	xor a
 	call ByteFill
 	ld hl, GFX_e17c5
-	ld de, $8e00
+	ld de, VTiles1 tile $60
 	ld bc, $0040
 	call CopyBytes
 	ld hl, LZ_e1805
-	ld de, $8ed0
+	ld de, VTiles1 tile $6d
 	call Decompress
 	call Functione17a3
 	hlcoord 0, 0
@@ -78250,10 +78250,10 @@ Functione1e67: ; e1e67 (38:5e67)
 	call GetSGBLayout
 	callab Function8cf53
 	ld hl, LZ_e2221
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Decompress
 	ld hl, Unknown_e00ed
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	ld bc, $40
 	ld a, BANK(Unknown_e00ed)
 	call FarCopyBytes
@@ -79950,7 +79950,7 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 	ld hl, TempMonDVs
 	predef GetUnownLetter
 	call GetBaseData
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	predef GetFrontpic
 	xor a
 	ld [wcb32], a
@@ -81138,18 +81138,18 @@ endr
 
 Functione33e8: ; e33e8 (38:73e8)
 	call DisableLCD
-	ld hl, $9000
+	ld hl, VTiles2 tile $00
 	ld bc, $310
 	xor a
 	call ByteFill
 	call Functione51
 	call Functione58
 	ld hl, PCMailGFX
-	ld de, $95c0
+	ld de, VTiles2 tile $5c
 	ld bc, $40
 	call CopyBytes
 	ld hl, PCSelectLZ
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Decompress
 	ld a, 6
 	call SkipMusic
@@ -82574,18 +82574,18 @@ IntroScene1: ; e495b (39:495b)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap001
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroUnownsGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroPulseGFX
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap002
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -82650,15 +82650,15 @@ IntroScene3: ; e49fd (39:49fd)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap003
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroBackgroundGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap004
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -82712,18 +82712,18 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap005
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroUnownsGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroPulseGFX
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap006
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -82806,21 +82806,21 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap003
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld hl, IntroPichuWooperGFX
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Functione54c2
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroSuicuneRunGFX
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Functione54de
 	ld hl, IntroBackgroundGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap004
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -82962,15 +82962,15 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap007
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroUnownsGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap008
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -83084,18 +83084,18 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap003
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroSuicuneRunGFX
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Functione54de
 	ld hl, IntroBackgroundGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap004
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -83188,22 +83188,22 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap009
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroSuicuneJumpGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroUnownBackGFX
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Functione54c2
 	ld de, GFX_e7a5d
-	ld hl, $8800
+	ld hl, VTiles1 tile $00
 	lb bc, BANK(GFX_e7a5d), 1
 	call Request2bpp
 	ld hl, IntroTilemap010
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	call Functione541b
 	ld a, [rSVBK] ; $ff00+$70
@@ -83270,15 +83270,15 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap011
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroSuicuneCloseGFX
-	ld de, $8800
+	ld de, VTiles1 tile $00
 	call Functione54de
 	ld hl, IntroTilemap012
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -83336,22 +83336,22 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap013
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroSuicuneBackGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroUnownsGFX
-	ld de, $8800
+	ld de, VTiles1 tile $00
 	call Functione54c2
 	ld de, GFX_e7a5d
-	ld hl, $8ff0
+	ld hl, VTiles1 tile $7f
 	lb bc, BANK(GFX_e7a5d), 1
 	call Request2bpp
 	ld hl, IntroTilemap014
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	call Functione541b
 	ld a, [rSVBK] ; $ff00+$70
@@ -83512,15 +83512,15 @@ IntroScene26: ; e50bb (39:50bb)
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroTilemap015
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld hl, IntroCrystalUnownsGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap017
-	ld de, $9800
+	ld de, VBGMap0 tile $00
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -84730,15 +84730,15 @@ Functionfb449:: ; fb449
 
 Functionfb48a:: ; fb48a
 	ld de, GFX_f9214
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_f9214), 1
 	call Functionddc
 	ld de, GFX_f8f24
-	ld hl, $9620
+	ld hl, VTiles2 tile $62
 	lb bc, BANK(GFX_f8f24), 1
 	call Functiondc9
 	ld de, FontExtra + $30
-	ld hl, $9630
+	ld hl, VTiles2 tile $63
 	lb bc, BANK(FontExtra), $16
 	call Functiondc9
 	jr Functionfb4cc
@@ -84746,7 +84746,7 @@ Functionfb48a:: ; fb48a
 
 Functionfb4b0:: ; fb4b0
 	ld de, GFX_f9424
-	ld hl, $9610
+	ld hl, VTiles2 tile $61
 	ld b, BANK(GFX_f9424)
 	ld c, 1
 	call Functiondc9
@@ -84755,7 +84755,7 @@ Functionfb4b0:: ; fb4b0
 
 Functionfb4be:: ; fb4be
 	ld de, FontBattleExtra
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), $19
 	call Functiondc9
 	jr Functionfb4cc
@@ -84769,10 +84769,10 @@ Functionfb4cc: ; fb4cc
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, $9790
+	ld hl, VTiles2 tile $79
 	lb bc, BANK(Frames), 6
 	call Functionddc
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	ld de, GFX_f9204
 	lb bc, BANK(GFX_f9204), 1
 	call Functionddc
@@ -84781,10 +84781,10 @@ Functionfb4cc: ; fb4cc
 
 Functionfb4f2: ; fb4f2
 	ld de, FontBattleExtra
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), $c
 	call Functiondc9
-	ld hl, $9700
+	ld hl, VTiles2 tile $70
 	ld de, FontBattleExtra + $100
 	lb bc, BANK(FontBattleExtra), 3
 	call Functiondc9
@@ -84792,19 +84792,19 @@ Functionfb4f2: ; fb4f2
 
 Functionfb50d: ; fb50d
 	ld de, GFX_f8ac0
-	ld hl, $96c0
+	ld hl, VTiles2 tile $6c
 	lb bc, BANK(GFX_f8ac0), 4
 	call Functionddc
 	ld de, GFX_f8ae0
-	ld hl, $9730
+	ld hl, VTiles2 tile $73
 	lb bc, BANK(GFX_f8ae0), 6
 	call Functionddc
 	ld de, GFX_f8b10
-	ld hl, $9550
+	ld hl, VTiles2 tile $55
 	lb bc, BANK(GFX_f8b10), 9
 	call Functiondc9
 	ld de, GFX_f9214 + $90
-	ld hl, $95e0
+	ld hl, VTiles2 tile $5e
 	lb bc, BANK(GFX_f9214), 2
 	call Functiondc9
 	ret
@@ -84813,25 +84813,25 @@ Functionfb50d: ; fb50d
 Functionfb53e: ; fb53e
 	call Functionfb4be
 	ld de, GFX_f8ac0
-	ld hl, $96c0
+	ld hl, VTiles2 tile $6c
 	lb bc, BANK(GFX_f8ac0), 4
 	call Functionddc
 	ld de, GFX_f8ae0
-	ld hl, $9780
+	ld hl, VTiles2 tile $78
 	lb bc, BANK(GFX_f8ae0), 1
 	call Functionddc
 	ld de, GFX_f8ae0 + $18
-	ld hl, $9760
+	ld hl, VTiles2 tile $76
 	lb bc, BANK(GFX_f8ae0), 2
 	call Functionddc
 	ld de, GFX_f8b10
-	ld hl, $9550
+	ld hl, VTiles2 tile $55
 	lb bc, BANK(GFX_f8b10), 8
 	call Functiondc9
 
 Functionfb571: ; fb571
 	ld de, GFX_f89b0
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	lb bc, BANK(GFX_f89b0), $11
 	call Functiondc9
 	ret
@@ -87094,13 +87094,13 @@ Function104309:
 	ld [rVBK], a ; $ff00+$4f
 	ld c, $8
 	ld hl, w6_d000 + $80
-	ld de, $9c00
+	ld de, VBGMap1 tile $00
 	call Function104209
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ld c, $8
 	ld hl, w6_d000
-	ld de, $9c00
+	ld de, VBGMap1 tile $00
 	call Function104209
 	ret
 
@@ -87395,13 +87395,13 @@ Function104770: ; 104770 (41:4770)
 	ld [rVBK], a ; $ff00+$4f
 	xor a
 	ld bc, $400
-	ld hl, $9800
+	ld hl, VBGMap0 tile $00
 	call ByteFill
 	pop af
 	ld [rVBK], a ; $ff00+$4f
 	ld a, $60
 	ld bc, $400
-	ld hl, $9800
+	ld hl, VBGMap0 tile $00
 	call ByteFill
 	ret
 
@@ -87416,7 +87416,7 @@ Function1047a3: ; 1047a3 (41:47a3)
 	ld [rVBK], a ; $ff00+$4f
 
 Function1047b4: ; 1047b4 (41:47b4)
-	ld hl, $9800
+	ld hl, VBGMap0 tile $00
 	ld c, $14
 	ld b, $12
 .asm_1047bb
@@ -88818,7 +88818,7 @@ Function105153: ; 105153 (41:5153)
 	call WhiteBGMap
 	call DisableLCD
 	ld hl, MysteryGiftGFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld a, BANK(MysteryGiftGFX)
 	ld bc, $430
 	call FarCopyBytes
@@ -89117,12 +89117,12 @@ Function1057d7: ; 1057d7 (41:57d7)
 	call WhiteBGMap
 	call DisableLCD
 	ld hl, MysteryGiftJP_GFX
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld a, BANK(MysteryGiftJP_GFX)
 	ld bc, $400
 	call FarCopyBytes
 	ld hl, MysteryGiftJP_GFX + $400
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	ld a, BANK(MysteryGiftJP_GFX)
 	ld bc, $80
 	call FarCopyBytes
@@ -90596,20 +90596,20 @@ Function106463: ; 106463
 
 Function106464:: ; 106464
 	ld de, GFX_f9214
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_f9214), 1
 	call Get2bpp
 	ld de, GFX_f9424
-	ld hl, $9610
+	ld hl, VTiles2 tile $61
 	lb bc, BANK(GFX_f9424), 1
 	call Get2bpp
 	ld de, GFX_106514
-	ld hl, $9620
+	ld hl, VTiles2 tile $62
 	ld c, 9
 	ld b, BANK(GFX_106514)
 	call Get2bpp
 	ld de, $40b0
-	ld hl, $96b0
+	ld hl, VTiles2 tile $6b
 	ld b, $f ; XXX no graphics at 0f:40b0
 	call Get2bpp
 	callba Functionfb4cc
@@ -90624,11 +90624,11 @@ Function10649b: ; 10649b
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, $9790
+	ld hl, VTiles2 tile $79
 	ld c, $6
 	ld b, BANK(Frames)
 	call Function1064c3
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	ld de, GFX_f9204
 	ld c, $1
 	ld b, BANK(GFX_f9204)
@@ -90704,7 +90704,7 @@ Function106594:: ; 106594
 	lb bc, BANK(GFX_1065ad), $80
 	call Get2bpp
 	ld de, GFX_1065ad + $800
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	lb bc, BANK(GFX_1065ad), 1
 	call Get2bpp
 	ret
@@ -90962,17 +90962,17 @@ Function1dc381: ; 1dc381
 	call Functione58
 
 	ld de, MobileHPIcon
-	ld hl, $9710
+	ld hl, VTiles2 tile $71
 	lb bc, BANK(MobileHPIcon), 1
 	call Request1bpp
 
 	ld de, MobileLvIcon
-	ld hl, $96e0
+	ld hl, VTiles2 tile $6e
 	lb bc, BANK(MobileLvIcon), 1
 	call Request1bpp
 
 	ld de, ShinyIcon
-	ld hl, $93f0
+	ld hl, VTiles2 tile $3f
 	lb bc, BANK(ShinyIcon), 1
 	call Get2bpp
 
@@ -91263,14 +91263,14 @@ INCLUDE "engine/diploma.asm"
 
 Function1ddf1c: ; 1ddf1c
 	ld hl, LZ_1ddf33
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	call Decompress
 	ret
 ; 1ddf26
 
 Function1ddf26: ; 1ddf26 (77:5f26)
 	ld hl, LZ_1ddf33
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	lb bc, BANK(LZ_1ddf33), $3a
 	call Functione73
 	ret

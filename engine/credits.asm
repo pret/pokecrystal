@@ -148,17 +148,17 @@ Function109847:: ; 109847
 	jr nz, .asm_10986a
 
 	ld de, CreditsBorderGFX
-	ld hl, $9200
+	ld hl, VTiles2 tile $20
 	lb bc, BANK(CreditsBorderGFX), $09
 	call Request2bpp
 
 	ld de, CopyrightGFX
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
 
 	ld de, TheEndGFX
-	ld hl, $9400
+	ld hl, VTiles2 tile $40
 	lb bc, BANK(TheEndGFX), $10
 	call Request2bpp
 

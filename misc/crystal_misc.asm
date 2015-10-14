@@ -721,17 +721,17 @@ Function17aba0: ; 17aba0 (5e:6ba0)
 	push af
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $9000
+	ld hl, VTiles2 tile $00
 	ld de, GFX_17afa5
 	lb bc, BANK(GFX_17afa5), $80
 	call Get2bpp
 	pop af
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $8000
+	ld hl, VTiles0 tile $00
 	ld de, GFX_17afa5 + $4c0
 	lb bc, BANK(GFX_17afa5), 5
 	call Get2bpp
-	ld hl, $8050
+	ld hl, VTiles0 tile $05
 	ld de, GFX_11601a
 	lb bc, BANK(GFX_11601a), 4
 	call Get2bpp

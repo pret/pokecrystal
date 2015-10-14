@@ -836,7 +836,7 @@ Function405df: ; 405df (10:45df)
 
 .asm_40603
 	ld hl, PokedexLZ
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	lb bc, BANK(PokedexLZ), $3a
 	call Functione73
 
@@ -2460,7 +2460,7 @@ Function4147b: ; 4147b
 	push hl
 	ld e, l
 	ld d, h
-	ld hl, $9620
+	ld hl, VTiles2 tile $62
 	lb bc, BANK(Footprints), 2
 	call Request1bpp
 	pop hl
@@ -2472,7 +2472,7 @@ Function4147b: ; 4147b
 
 	ld e, l
 	ld d, h
-	ld hl, $9640
+	ld hl, VTiles2 tile $64
 	lb bc, BANK(Footprints), 2
 	call Request1bpp
 
@@ -2488,7 +2488,7 @@ Function414b7: ; 414b7
 	call ByteFill
 	call Function414fb
 	call Functione5f
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	ld bc, $0200
 	call Function41504
 	call Function41a24
@@ -2498,7 +2498,7 @@ Function414b7: ; 414b7
 
 .asm_414e0
 	ld hl, PokedexLZ
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	call Decompress
 
 .asm_414e9
@@ -2554,7 +2554,7 @@ Function41a2c: ; 41a2c
 	ld bc, $1b0
 	call Function41504
 	ld de, sScratch + $188
-	ld hl, $9400
+	ld hl, VTiles2 tile $40
 	lb bc, BANK(Function41a2c), $1b
 	call Request2bpp
 	call CloseSRAM
@@ -2575,7 +2575,7 @@ Function41a58: ; 41a58 (10:5a58)
 	ld a, UNOWN
 	ld [CurPartySpecies], a
 	call GetBaseData
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	predef GetFrontpic
 	pop af
 	ld [UnownLetter], a

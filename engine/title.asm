@@ -53,27 +53,27 @@ _TitleScreen: ; 10ed67
 ; Apply logo gradient:
 
 ; lines 3-4
-	ld hl, $9860 ; (0,3)
+	ld hl, VBGMap0 tile $06 ; (0,3)
 	ld bc, $0040 ; 2 rows
 	ld a, 2
 	call ByteFill
 ; line 5
-	ld hl, $98a0 ; (0,5)
+	ld hl, VBGMap0 tile $0a ; (0,5)
 	ld bc, $0020 ; 1 row
 	ld a, 3
 	call ByteFill
 ; line 6
-	ld hl, $98c0 ; (0,6)
+	ld hl, VBGMap0 tile $0c ; (0,6)
 	ld bc, $0020 ; 1 row
 	ld a, 4
 	call ByteFill
 ; line 7
-	ld hl, $98e0 ; (0,7)
+	ld hl, VBGMap0 tile $0e ; (0,7)
 	ld bc, $0020 ; 1 row
 	ld a, 5
 	call ByteFill
 ; lines 8-9
-	ld hl, $9900 ; (0,8)
+	ld hl, VBGMap0 tile $10 ; (0,8)
 	ld bc, $0040 ; 2 rows
 	ld a, 6
 	call ByteFill
@@ -86,7 +86,7 @@ _TitleScreen: ; 10ed67
 	call ByteFill
 	
 ; Suicune gfx
-	ld hl, $9980 ; (0,12)
+	ld hl, VBGMap0 tile $18 ; (0,12)
 	ld bc, $00c0 ; the rest of the screen
 	ld a, 8
 	call ByteFill

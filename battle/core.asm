@@ -5348,12 +5348,12 @@ Function3e2f5: ; 3e2f5
 
 Function3e308: ; 3e308
 	call DisableLCD
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, VTiles0
 	ld bc, $0110
 	call CopyBytes
 	ld hl, VTiles2
-	ld de, $8110
+	ld de, VTiles0 tile $11
 	ld bc, $0310
 	call CopyBytes
 	call EnableLCD
@@ -5365,10 +5365,10 @@ Function3e308: ; 3e308
 	call MaxVolume
 	call DisableLCD
 	ld hl, VTiles0
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld bc, $0110
 	call CopyBytes
-	ld hl, $8110
+	ld hl, VTiles0 tile $11
 	ld de, VTiles2
 	ld bc, $0310
 	call CopyBytes
@@ -7210,15 +7210,15 @@ Function3eda6: ; 3eda6
 
 Function3edad: ; 3edad
 	ld de, GFX_f8ac0
-	ld hl, $96c0
+	ld hl, VTiles2 tile $6c
 	lb bc, BANK(GFX_f8ac0), 4
 	call Get1bpp
 	ld de, GFX_f8ae0
-	ld hl, $9730
+	ld hl, VTiles2 tile $73
 	lb bc, BANK(GFX_f8ae0), 6
 	call Get1bpp
 	ld de, GFX_f8b10
-	ld hl, $9550
+	ld hl, VTiles2 tile $55
 	lb bc, BANK(GFX_f8b10), 8
 	jp Get2bpp
 ; 3edd1
@@ -8333,7 +8333,7 @@ Function3f447: ; 3f447
 	ld [CurPartySpecies], a
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	predef GetBackpic
 	pop af
 	ld [CurPartySpecies], a
@@ -9411,7 +9411,7 @@ GetBattleBackpic: ; 3fbff
 	ld hl, ChrisBackpic
 
 .Decompress
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld c, $31
 	predef DecompressPredef
 	ret
@@ -9424,7 +9424,7 @@ Function3fc30: ; 3fc30
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, VTiles0
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld a, [hROMBank]
 	ld b, a
 	ld c, $31

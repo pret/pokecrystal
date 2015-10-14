@@ -1292,7 +1292,7 @@ endr
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, $9500
+	ld hl, VTiles2 tile $50
 	lb bc, BANK(PackGFX), 15
 	call Request2bpp
 	ret

@@ -60,7 +60,7 @@ Function17c000: ; 17c000
 	ld [rSVBK], a
 
 	ld hl, MobileSelectGFX
-	ld de, $8300
+	ld de, VTiles0 tile $30
 	ld bc, $200
 	call CopyBytes
 
@@ -629,7 +629,7 @@ Function17d370: ; 17d370
 	call ClearScreen
 	callba Function104061
 	call DisableLCD
-	ld hl, $8ee0
+	ld hl, VTiles1 tile $6e
 	ld de, $c608
 	ld bc, $0010
 	call CopyBytes
@@ -640,17 +640,17 @@ Function17d370: ; 17d370
 	ld bc, $0480
 	call CopyBytes
 	xor a
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	ld bc, $0010
 	call ByteFill
 	ld hl, $c608
-	ld de, $8ee0
+	ld de, VTiles1 tile $6e
 	ld bc, $0010
 	call CopyBytes
 	xor a
 	ld [rVBK], a
 	ld hl, GFX_17eb7e
-	ld de, $9600
+	ld de, VTiles2 tile $60
 	ld bc, $0010
 	call CopyBytes
 	call EnableLCD
@@ -677,7 +677,7 @@ Function17d3f6: ; 17d3f6
 
 Function17d405:
 	call DisableLCD
-	ld hl, $8ee0
+	ld hl, VTiles1 tile $6e
 	ld de, $c608
 	ld bc, $0010
 	call CopyBytes
@@ -688,11 +688,11 @@ Function17d405:
 	ld bc, $0480
 	call CopyBytes
 	xor a
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	ld bc, $0010
 	call ByteFill
 	ld hl, $c608
-	ld de, $8ee0
+	ld de, VTiles1 tile $6e
 	ld bc, $0010
 	call CopyBytes
 	xor a
@@ -2980,7 +2980,7 @@ Function17e2a7: ; 17e2a7
 	ld [wcf66], a
 	callba Function118233
 	ld de, GFX_17eb7e
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_17eb7e), 1
 	call Get2bpp
 	ld a, [wc300]

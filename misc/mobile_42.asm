@@ -141,7 +141,7 @@ Function1080b7: ; 1080b7
 	ld a, $0
 	ld [rVBK], a
 	ld hl, LZ_108d27
-	ld de, $8200
+	ld de, VTiles0 tile $20
 	call Decompress
 	call EnableLCD
 	xor a
@@ -158,7 +158,7 @@ Function1080b7: ; 1080b7
 	lb bc, BANK(TradeBallGFX), $06
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	lb bc, BANK(TradePoofGFX), $0c
 	call Request2bpp
 	xor a
@@ -167,11 +167,11 @@ Function1080b7: ; 1080b7
 	ld [hl], $0
 	ld a, [$c6d0]
 	ld hl, $c6fd
-	ld de, $8300
+	ld de, VTiles0 tile $30
 	call Function1081e9
 	ld a, [wc702]
 	ld hl, wc72f
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	call Function1081e9
 	ld a, [$c6d0]
 	ld de, $c6d1
@@ -587,7 +587,7 @@ Function10842c: ; 10842c
 	lb bc, BANK(TradeBallGFX), $06
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	lb bc, BANK(TradePoofGFX), $0c
 	call Request2bpp
 	ld a, [$c6fd]
@@ -661,7 +661,7 @@ Function1084d7: ; 1084d7
 	lb bc, BANK(TradeBallGFX), $06
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	lb bc, BANK(TradePoofGFX), $0c
 	call Request2bpp
 	xor a
@@ -730,7 +730,7 @@ Function108589: ; 108589
 	lb bc, BANK(TradeBallGFX), $06
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	lb bc, BANK(TradePoofGFX), $0c
 	call Request2bpp
 	xor a
@@ -832,7 +832,7 @@ Function108689: ; 108689
 	ld a, $0
 	ld [rVBK], a
 	ld hl, LZ_108d27
-	ld de, $8200
+	ld de, VTiles0 tile $20
 	call Decompress
 	call Function108c80
 	call Function108c6d
@@ -876,7 +876,7 @@ Function1086f4: ; 1086f4
 	ld a, $0
 	ld [rVBK], a
 	ld hl, LZ_108d27
-	ld de, $8200
+	ld de, VTiles0 tile $20
 	call Decompress
 	call Function108c80
 	call Function108c6d
@@ -1195,11 +1195,11 @@ Function10893d: ; 10893d
 ; 10895e
 
 Function10895e: ; 10895e
-	ld de, $8300
+	ld de, VTiles0 tile $30
 	jr asm_108966
 
 Function108963:
-	ld de, $9310
+	ld de, VTiles2 tile $31
 
 asm_108966
 	call DelayFrame
@@ -1405,7 +1405,7 @@ Function108ad4: ; 108ad4
 .asm_108adf
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $94a0
+	ld hl, VTiles2 tile $4a
 	lb bc, $42, $10
 	call Functiondc9
 	call DelayFrame

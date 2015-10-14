@@ -709,7 +709,7 @@ BattleAnimCmd_D5: ; cc485 (33:4485)
 rept 4
 	add hl, hl
 endr
-	ld de, $8310
+	ld de, VTiles0 tile $31
 	add hl, de
 	ld a, [BattleAnimByte]
 	call Functionce846
@@ -817,13 +817,13 @@ endr
 	ld a, $49
 	ld [hl], a
 
-	ld hl, $8730
-	ld de, $9060
+	ld hl, VTiles0 tile $73
+	ld de, VTiles2 tile $06
 	ld a, $70
 	ld [BattleAnimTemps], a
 	ld a, $7
 	call Functioncc561
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld a, $60
 	ld [BattleAnimTemps], a
 	ld a, $6
@@ -873,13 +873,13 @@ endr
 	ld a, $43
 	ld [hl], a
 
-	ld hl, $8660
-	ld de, $9050
+	ld hl, VTiles0 tile $66
+	ld de, VTiles2 tile $05
 	ld a, $70
 	ld [BattleAnimTemps], a
 	ld a, $7
 	call Functioncc5b3
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld a, $60
 	ld [BattleAnimTemps], a
 	ld a, $6
@@ -932,7 +932,7 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	ld [CurPartySpecies], a ; CurPartySpecies
 	ld hl, BattleMonDVs ; BattleMonDVs
 	predef GetUnownLetter
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	predef GetFrontpic
 	jr .done
 
@@ -941,7 +941,7 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	ld [CurPartySpecies], a ; CurPartySpecies
 	ld hl, EnemyMonDVs ; EnemyMonDVs
 	predef GetUnownLetter
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	predef GetBackpic
 
 .done
@@ -953,19 +953,19 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 
 BattleAnimCmd_E8: ; cc622 (33:4622)
 
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
 	jr z, .player
 
-	ld hl, $9000
+	ld hl, VTiles2 tile $00
 	ld b, 0
 	ld c, $31
 	call Request2bpp
 	ret
 
 .player
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld b, 0
 	ld c, $24
 	call Request2bpp
@@ -1009,7 +1009,7 @@ GetSubstitutePic: ; cc64c
 	ld de, sScratch + $1b0
 	call CopyMonsterSpriteTile
 
-	ld hl, $9000
+	ld hl, VTiles2 tile $00
 	ld de, sScratch
 	lb bc, BANK(GetSubstitutePic), 7 * 7
 	call Request2bpp
@@ -1029,7 +1029,7 @@ GetSubstitutePic: ; cc64c
 	ld de, sScratch + $170
 	call CopyMonsterSpriteTile
 
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, sScratch
 	lb bc, BANK(GetSubstitutePic), 6 * 6
 	call Request2bpp
@@ -1077,7 +1077,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 
 	ld de, sScratch + $1a0
 	call CopyMinimizePic
-	ld hl, $9000
+	ld hl, VTiles2 tile $00
 	ld de, sScratch
 	lb bc, BANK(GetMinimizePic), $31
 	ret
@@ -1085,7 +1085,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 .player
 	ld de, sScratch + $160
 	call CopyMinimizePic
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, sScratch
 	lb bc, BANK(GetMinimizePic), $24
 	ret
@@ -1110,7 +1110,7 @@ BattleAnimCmd_E9: ; cc735 (33:4735)
 	xor a
 	call GetSRAMBank
 	call GetMinimizePic
-	ld hl, $8000
+	ld hl, VTiles0 tile $00
 	call Request2bpp
 	call CloseSRAM
 	pop af
@@ -1159,14 +1159,14 @@ BattleAnimCmd_E6: ; cc776 (33:4776)
 
 	ld hl, BattleMonDVs ; BattleMonDVs
 	predef GetUnownLetter
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	predef GetFrontpic
 	jr .done
 
 .player
 	ld hl, EnemyMonDVs ; EnemyMonDVs
 	predef GetUnownLetter
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	predef GetBackpic
 
 .done
