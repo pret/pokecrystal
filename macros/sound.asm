@@ -101,7 +101,7 @@ soundinput: macro
 unknownmusic0xde: macro
 ; Rotates through 4 Settings of Wave Duty every frame
 ; begins with Bits 0-1, then 2-3, 4-5, 6-7
-; Bit6-7 of wc292 are written into NR11 to set the Wave Pattern Duty
+; Bit6-7 of TempNRX1 are written into NR11 to set the Wave Pattern Duty
 	db $de
 	db \1 ; unknown
 	endm
@@ -126,8 +126,7 @@ vibrato: macro
     endc
 ; format: vibrato delay (in frames), extent, rate (# frames per cycle)
 	if _NARG == 3
-	db \1
-	db (\2 << 4) | \3
+	db \1, (\2 << 4) | \3
     endc
 	endm
 

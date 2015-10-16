@@ -1,3 +1,70 @@
+; HW sound channel register base addresses
+HW_CH1_BASE EQU (rNR10 % $10000)
+HW_CH2_BASE EQU ((rNR21 % $10000) - 1)
+HW_CH3_BASE EQU (rNR30 % $10000)
+HW_CH4_BASE EQU ((rNR41 % $10000) - 1)
+
+; HW sound channel enable bit masks
+HW_CH1_ENABLE_MASK EQU %00010001
+HW_CH2_ENABLE_MASK EQU %00100010
+HW_CH3_ENABLE_MASK EQU %01000100
+HW_CH4_ENABLE_MASK EQU %10001000
+
+; HW sound channel disable bit masks
+HW_CH1_DISABLE_MASK EQU (~HW_CH1_ENABLE_MASK & $ff)
+HW_CH2_DISABLE_MASK EQU (~HW_CH2_ENABLE_MASK & $ff)
+HW_CH3_DISABLE_MASK EQU (~HW_CH3_ENABLE_MASK & $ff)
+HW_CH4_DISABLE_MASK EQU (~HW_CH4_ENABLE_MASK & $ff)
+
+; ChannelFlags
+	const_def
+
+	const ChannelFlags_OnOff      ; 0 - 0:Off 1:On
+	const ChannelFlags_Subroutine ; 1
+	const ChannelFlags_Loop       ; 2
+	const ChannelFlagsBit3
+	const ChannelFlags_Noise      ; 4
+	const ChannelFlagsBit5
+	const ChannelFlagsBit6        ; Not found
+	const ChannelFlagsBit7        ; Not found
+
+; ChannelFlags2
+	const_def
+
+	const ChannelFlags2_Vibrato   ; 0 - 0:Off 1:On
+	const ChannelFlags2Bit1
+	const ChannelFlags2_DutyCycle ; 2 - 0:Off 1:On
+	const ChannelFlags2Bit3       ; Unused
+	const ChannelFlags2Bit4
+	const ChannelFlags2Bit5       ; Unused
+	const ChannelFlags2Bit6       ; Unused
+	const ChannelFlags2Bit7
+
+; ChannelFlags3
+	const_def
+
+	const ChannelFlags3_VibratoDir ; 0 - 0:Up 1:Down
+	const ChannelFlags3Bit1
+	const ChannelFlags3Bit2        ; Not found
+	const ChannelFlags3Bit3        ; Not found
+	const ChannelFlags3Bit4        ; Not found
+	const ChannelFlags3Bit5        ; Not found
+	const ChannelFlags3Bit6        ; Not found
+	const ChannelFlags3Bit7        ; Not found
+
+; ChannelNoteFlags
+	const_def
+
+	const ChannelNoteFlagsBit0
+	const ChannelNoteFlagsBit1
+	const ChannelNoteFlagsBit2     ; Not found
+	const ChannelNoteFlags_Sweep   ; 3 - 0:Off 1:On
+	const ChannelNoteFlagsBit4
+	const ChannelNoteFlags_Rest
+	const ChannelNoteFlagsBit6
+	const ChannelNoteFlagsBit7     ; Not found
+
+
 	const_def
 
 	const MUSIC_NONE

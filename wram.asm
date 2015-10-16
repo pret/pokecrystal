@@ -171,12 +171,12 @@ Channel7:: channel_struct Channel7 ; c22d
 Channel8:: channel_struct Channel8 ; c25f
 
 	ds 1 ; c291
-wc292:: ds 1 ; Bit6-7 are used as temporary memory for Wave Pattern Duty to write into registers NRX1
-wc293:: ds 1
-wc294:: ds 1
-wc295:: ds 1
-wc296:: ds 1
-wc297:: ds 1 ; temp memory for 1st parameter of MusicE0
+TempNRX1:: ds 1 ; c292 - temporary memory that gets written into NRX1
+TempNRX2:: ds 1 ; c293 - temporary memory that gets written into NRX2
+TempNRX3:: ds 1 ; c294 - temporary memory that gets written into NRX3
+TempNRX4:: ds 1 ; c295 - temporary memory that gets written into NRX4
+wc296:: ds 1 ; only used by Function3d9f (which in unreferenced)
+wc297:: ds 1 ; temp memory for 1st parameter of MusicE0, used by LoadNote and gets subtracted by 1 there
 
 CurMusicByte:: ; c298
 	ds 1

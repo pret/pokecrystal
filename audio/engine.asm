@@ -1,5 +1,3 @@
-INCLUDE "constants/soundengine_flags.asm"
-
 ; The entire sound engine. Uses section "audio" in WRAM.
 
 ; Interfaces are in bank 0.
@@ -131,15 +129,15 @@ _UpdateSound:: ; e805c
 	ld hl, Channel1DutyCycle - Channel1
 	add hl, bc
 	ld a, [hli]
-	ld [wc292], a
+	ld [TempNRX1], a
 	; intensity
 	ld a, [hli]
-	ld [wc293], a
+	ld [TempNRX2], a
 	; frequency
 	ld a, [hli]
-	ld [wc294], a
+	ld [TempNRX3], a
 	ld a, [hl]
-	ld [wc295], a
+	ld [TempNRX4], a
 	;
 	call Functione8466 ; handle vibrato and other things
 	call HandleNoise
@@ -263,14 +261,14 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e8184
 	jr .asm_e8175
 .asm_e816b
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR13], a
-	ld a, [wc295]
+	ld a, [TempNRX4]
 	ld [rNR14], a
 .asm_e8175
 	bit ChannelNoteFlagsBit0, [hl]
 	ret z
-	ld a, [wc292]
+	ld a, [TempNRX1]
 	ld d, a
 	ld a, [rNR11]
 	and a, $3f ; sound length
@@ -278,32 +276,32 @@ UpdateChannels: ; e8125
 	ld [rNR11], a
 	ret
 .asm_e8184
-	ld a, [wc292]
+	ld a, [TempNRX1]
 	ld d, a
 	ld a, [rNR11]
 	and a, $3f ; sound length
 	or d
 	ld [rNR11], a
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR13], a
 	ret
 .ch1rest
 	ld a, [rNR52]
 	and a, %10001110 ; ch1 off
 	ld [rNR52], a
-	ld hl, rNR10
+	ld hl, HW_CH1_BASE
 	call ClearChannel
 	ret
 .asm_e81a2
-	ld hl, wc292
+	ld hl, TempNRX1
 	ld a, $3f ; sound length
 	or [hl]
 	ld [rNR11], a
-	ld a, [wc293]
+	ld a, [TempNRX2]
 	ld [rNR12], a
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR13], a
-	ld a, [wc295]
+	ld a, [TempNRX4]
 	or a, $80
 	ld [rNR14], a
 	ret
@@ -320,7 +318,7 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e81e6
 	bit ChannelNoteFlagsBit0, [hl]
 	ret z
-	ld a, [wc292]
+	ld a, [TempNRX1]
 	ld d, a
 	ld a, [rNR21]
 	and a, $3f ; sound length
@@ -328,38 +326,38 @@ UpdateChannels: ; e8125
 	ld [rNR21], a
 	ret
 .asm_e81db ; unused
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR23], a
-	ld a, [wc295]
+	ld a, [TempNRX4]
 	ld [rNR24], a
 	ret
 .asm_e81e6
-	ld a, [wc292]
+	ld a, [TempNRX1]
 	ld d, a
 	ld a, [rNR21]
 	and a, $3f ; sound length
 	or d
 	ld [rNR21], a
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR23], a
 	ret
 .ch2rest
 	ld a, [rNR52]
 	and a, %10001101 ; ch2 off
 	ld [rNR52], a
-	ld hl, $ff15
+	ld hl, HW_CH2_BASE
 	call ClearChannel
 	ret
 .asm_e8204
-	ld hl, wc292
+	ld hl, TempNRX1
 	ld a, $3f ; sound length
 	or [hl]
 	ld [rNR21], a
-	ld a, [wc293]
+	ld a, [TempNRX2]
 	ld [rNR22], a
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR23], a
-	ld a, [wc295]
+	ld a, [TempNRX4]
 	or a, $80 ; initial (restart)
 	ld [rNR24], a
 	ret
@@ -376,20 +374,20 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e823a
 	ret
 .asm_e822f ; unused
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR33], a
-	ld a, [wc295]
+	ld a, [TempNRX4]
 	ld [rNR34], a
 	ret
 .asm_e823a
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR33], a
 	ret
 .ch3rest
 	ld a, [rNR52]
 	and a, %10001011 ; ch3 off
 	ld [rNR52], a
-	ld hl, rNR30
+	ld hl, HW_CH3_BASE
 	call ClearChannel
 	ret
 .asm_e824d
@@ -400,15 +398,15 @@ UpdateChannels: ; e8125
 	call .asm_e8268
 	ld a, $80
 	ld [rNR30], a
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR33], a
-	ld a, [wc295]
+	ld a, [TempNRX4]
 	or a, $80
 	ld [rNR34], a
 	ret
 .asm_e8268
 	push hl
-	ld a, [wc293]
+	ld a, [TempNRX2]
 	and a, $0f ; only 0-9 are valid
 	ld l, a
 	ld h, $00
@@ -454,7 +452,7 @@ endr
 	ld a, [hli]
 	ld [$ff3f], a
 	pop hl
-	ld a, [wc293]
+	ld a, [TempNRX2]
 	and a, $f0
 	sla a
 	ld [rNR32], a
@@ -470,22 +468,22 @@ endr
 	jr nz, .asm_e82d4
 	ret
 .asm_e82c1 ; unused
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR43], a
 	ret
 .ch4rest
 	ld a, [rNR52]
 	and a, %10000111 ; ch4 off
 	ld [rNR52], a
-	ld hl, $ff1f
+	ld hl, HW_CH4_BASE
 	call ClearChannel
 	ret
 .asm_e82d4
 	ld a, $3f ; sound length
 	ld [rNR41], a
-	ld a, [wc293]
+	ld a, [TempNRX2]
 	ld [rNR42], a
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld [rNR43], a
 	ld a, $80
 	ld [rNR44], a
@@ -807,7 +805,6 @@ LoadNote: ; e83d1
 
 Functione8466: ; e8466
 ; handle vibrato and other things
-; unknowns: wc292, wc294
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	bit ChannelFlags2_DutyCycle, [hl]
@@ -819,7 +816,7 @@ Functione8466: ; e8466
 	rlca
 	ld [hl], a
 	and a, $c0
-	ld [wc292], a
+	ld [TempNRX1], a
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	set ChannelNoteFlagsBit0, [hl]
@@ -833,14 +830,14 @@ Functione8466: ; e8466
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wc294
+	ld hl, TempNRX3
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, wc294
+	ld hl, TempNRX3
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -881,7 +878,7 @@ Functione8466: ; e8466
 	or [hl]
 	ld [hl], a
 	; ????
-	ld a, [wc294]
+	ld a, [TempNRX3]
 	ld e, a
 	; toggle vibrato up/down
 	ld hl, Channel1Flags3 - Channel1
@@ -913,7 +910,7 @@ Functione8466: ; e8466
 	jr nc, .asm_e84ef
 	ld a, $ff
 .asm_e84ef
-	ld [wc294], a
+	ld [TempNRX3], a
 	;
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
@@ -1085,12 +1082,12 @@ ReadNoiseSample: ; e85af
 	ld [wc2a2], a
 	ld a, [de]
 	inc de
-	ld [wc293], a
+	ld [TempNRX2], a
 	ld a, [de]
 	inc de
-	ld [wc294], a
+	ld [TempNRX3], a
 	xor a
-	ld [wc295], a
+	ld [TempNRX4], a
 
 	ld hl, NoiseSampleAddress
 	ld [hl], e
