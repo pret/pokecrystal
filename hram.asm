@@ -15,6 +15,8 @@ hMinutes           EQU $ff96
 
 hSeconds           EQU $ff98
 
+hVBlankCounter     EQU $ff9b
+
 hROMBank           EQU $ff9d
 hVBlank            EQU $ff9e
 hMapEntryMethod    EQU $ff9f
@@ -27,6 +29,7 @@ hJoyReleased       EQU $ffa6
 hJoyPressed        EQU $ffa7
 hJoyDown           EQU $ffa8
 hJoyLast           EQU $ffa9
+hInMenu            EQU $ffaa
 
 hConnectionStripLength EQU $ffaf
 hConnectedMapWidth EQU $ffb0
@@ -44,6 +47,8 @@ hMultiplicand      EQU $ffb4 ; 3 bytes long
 hMultiplier        EQU $ffb7 ; 1 byte long
 hProduct           EQU $ffb3 ; result (4 bytes long)
 
+hMathBuffer        EQU $ffb8
+
 hPrintNum1         EQU $ffb3
 hPrintNum2         EQU $ffb4
 hPrintNum3         EQU $ffb5
@@ -51,7 +56,6 @@ hPrintNum4         EQU $ffb6
 hPrintNum5         EQU $ffb7
 hPrintNum6         EQU $ffb8
 hPrintNum7         EQU $ffb9
-hMathBuffer        EQU $ffb8
 
 hMoneyTemp         EQU $ffc3
 
@@ -81,7 +85,7 @@ hLastTalked        EQU $ffe0
 hRandom            EQU $ffe1
 hRandomAdd         EQU $ffe1
 hRandomSub         EQU $ffe2
-
+hSecondsBackup     EQU $ffe3
 hBattleTurn        EQU $ffe4
 hCGBPalUpdate      EQU $ffe5
 hCGB               EQU $ffe6

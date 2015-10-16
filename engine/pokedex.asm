@@ -16,10 +16,10 @@ Pokedex: ; 40000
 	push af
 	xor a
 	ld [VramState], a
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 
 	xor a
 	ld [$ffde], a
@@ -44,7 +44,7 @@ Pokedex: ; 40000
 	ld [wd959], a
 
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	pop af
 	ld [VramState], a
 	pop af
@@ -844,7 +844,7 @@ Function405df: ; 405df (10:45df)
 	ret
 
 Function40610: ; 40610 (10:4610)
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and D_RIGHT
 	jr nz, .right
@@ -913,7 +913,7 @@ Function4066c: ; 4066c (10:466c)
 	ld [wc7e2], a
 	ld a, [wc7d0]
 	ld [wc7e3], a
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
 	jr nz, .up
@@ -964,7 +964,7 @@ Function406c5: ; 406c5 (10:46c5)
 	ld d, a
 	ld a, [wc7d2]
 	ld e, a
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
 	jr nz, Function406ea
@@ -1799,7 +1799,7 @@ Function40f4f: ; 40f4f (10:4f4f)
 	ld a, [wc7d8]
 	cp $2
 	jr nc, .asm_40f63
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and $20
 	jr nz, .asm_40f65
@@ -2274,7 +2274,7 @@ Function4135a: ; 4135a (10:535a)
 	jr nz, .asm_413c1
 	call Function413f5
 	jr c, .asm_413bf
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and D_LEFT | D_UP
 	and b

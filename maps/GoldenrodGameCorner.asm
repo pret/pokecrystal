@@ -49,7 +49,7 @@ ReceptionistScript_0x56c28:
 	iffalse UnknownScript_0x56cc3
 	writetext UnknownText_0x56e8b
 UnknownScript_0x56c36: ; 056c36
-	special Function24b25
+	special Special_DisplayCoinCaseBalance
 	loadmenudata MenuDataHeader_0x56cc9
 	interpretmenu2
 	writebackup
@@ -153,7 +153,7 @@ ReceptionistScript_0x56d01:
 	iffalse UnknownScript_0x56cc3
 UnknownScript_0x56d0c:
 	writetext UnknownText_0x56e8b
-	special Function24b25
+	special Special_DisplayCoinCaseBalance
 	loadmenudata MenuDataHeader_0x56db0
 	interpretmenu2
 	writebackup

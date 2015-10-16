@@ -159,11 +159,11 @@ Function1bd3:: ; 1bd3
 Function1bdd:: ; 1bdd
 	push bc
 	push af
-	ld a, [$ffa9]
-	and $f0
+	ld a, [hJoyLast]
+	and D_PAD
 	ld b, a
 	ld a, [hJoyPressed]
-	and $f
+	and BUTTONS
 	or b
 	ld b, a
 	pop af
@@ -214,7 +214,7 @@ WriteBackup:: ; 0x1c17
 	ret
 
 Function1c23:: ; 0x1c23
-	call Function1cfd
+	call GetMemTileCoord
 	call Function1c30
 	call Function1d19
 	call Function1c30

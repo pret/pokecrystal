@@ -3137,7 +3137,7 @@ Function5803:: ; 5803
 Function5815: ; 5815
 	call Function18de
 	ret c
-	ld a, [$ffb0]
+	ld a, [hConnectedMapWidth]
 	ld [wd4cd], a
 	ret
 ; 581f
@@ -3166,7 +3166,7 @@ Function582c: ; 582c
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
-	ld a, [$ffb0]
+	ld a, [hConnectedMapWidth]
 	ld [wd4ce], a
 	ret
 ; 5847

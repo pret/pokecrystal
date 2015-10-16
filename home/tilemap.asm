@@ -99,7 +99,7 @@ Function1c89:: ; 1c89
 	ld a, [wcf91]
 	bit 4, a
 	ret z
-	call Function1cfd
+	call GetMemTileCoord
 	ld a, [de]
 	ld c, a
 	inc de
@@ -109,7 +109,7 @@ Function1c89:: ; 1c89
 ; 1cbb
 
 Function1cbb:: ; 1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	call Function1c53
 	dec b
 	dec c
@@ -139,7 +139,7 @@ Function1cc6:: ; 1cc6
 ; 1ce1
 
 Function1ce1:: ; 1ce1
-	call Function1cfd
+	call GetMemTileCoord
 	ld bc, $0015
 	add hl, bc
 	call Function1c53
@@ -150,7 +150,7 @@ Function1ce1:: ; 1ce1
 ; 1cf1
 
 Function1cf1:: ; 1cf1
-	call Function1cfd
+	call GetMemTileCoord
 	call Function1c53
 	inc c
 	inc b
@@ -159,7 +159,7 @@ Function1cf1:: ; 1cf1
 ; 1cfd
 
 
-Function1cfd:: ; 1cfd
+GetMemTileCoord:: ; 1cfd
 	ld a, [wcf83]
 	ld c, a
 	ld a, [wcf82]

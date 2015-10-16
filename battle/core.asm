@@ -8870,7 +8870,7 @@ Function3f85f: ; 3f85f
 	ld a, [de]
 	and a
 	jr z, .asm_3f8c9
-	ld a, [wd4b4]
+	ld a, [wSavedAtLeastOnce]
 	and a
 	jr z, .asm_3f8c9
 	push hl
@@ -8967,7 +8967,7 @@ Function3f85f: ; 3f85f
 	ret
 
 .asm_3f92b
-	ld a, [wd4b4]
+	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
 	ld de, .Scores
@@ -8981,9 +8981,9 @@ Function3f85f: ; 3f85f
 ; 3f947
 
 .Format ; 3f947
-	db "  ---  ", $22, "         -    -    -@"
+	db "  ---  <LNBRK>         -    -    -@"
 .Record ; 3f964
-	db $52, "'s RECORD@"
+	db "<PLAYER>'s RECORD@"
 .Result ; 3f96e
 	db "RESULT WIN LOSE DRAW@"
 .Total ; 3f983

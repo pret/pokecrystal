@@ -193,7 +193,7 @@ Function109847:: ; 109847
 	ld a, $5
 	ld [hVBlank], a
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	xor a
 	ld [hBGMapMode], a
 	ld [CreditsPos], a

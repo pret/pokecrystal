@@ -2010,7 +2010,7 @@ Function100cb5: ; 100cb5
 	cp b
 	jr z, .asm_100d17
 	ld [wd0d8], a
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	ld b, a
 	bit 1, b
 	jr nz, .asm_100d17
@@ -2497,7 +2497,7 @@ Unknown_100ff3: ; 100ff3
 	dbwww $80, PlayerName, NAME_LENGTH, NULL
 	dbwww $80, PlayerName, NAME_LENGTH, NULL
 	dbwww $80, PlayerID, 2, NULL
-	dbwww $80, wd84a, 2, NULL
+	dbwww $80, wSecretID, 2, NULL
 	dbwww $80, PlayerGender, 1, NULL
 	dbwww $04, $a603, 8, NULL
 	dbwww $04, $a007, $30, NULL

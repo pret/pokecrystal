@@ -106,6 +106,7 @@
 	charmap "♂", $ef
 	charmap "¥", $f0
 	charmap "×", $f1
+	charmap "·", $f2
 	charmap "/", $f3
 	charmap ",", $f4
 	charmap "♀", $f5
@@ -306,3 +307,4 @@
 	charmap "<......>", $56
 	charmap "<START>",  $00
 	charmap "<DEXEND>", $5f
+	charmap "<LNBRK>",  $22

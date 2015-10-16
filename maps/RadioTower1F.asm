@@ -30,7 +30,7 @@ GentlemanScript_0x5cd3d:
 	iffalse .skip
 	special Special_ResetLuckyNumberShowFlag
 .skip:
-	special Function4d9d3
+	special Special_PrintTodaysLuckyNumber
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue .GameOver
 	writetext UnknownText_0x5cf3a

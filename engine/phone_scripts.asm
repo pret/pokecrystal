@@ -833,7 +833,7 @@ UnknownScript_0xbd544:
 	pokenamemem QWILFISH, $1
 	displaylocation ROUTE_32, $2
 	writebyte $1
-	special Functionc3fc
+	special Special_ActivateFishingSwarm
 	farjump UnknownScript_0xa05d6
 
 UnknownScript_0xbd55c:

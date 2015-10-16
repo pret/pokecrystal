@@ -17,19 +17,19 @@ ClearBox:: ; fb6
 	ld a, " "
 
 FillBoxWithByte::
-.col
+.row
 	push bc
 	push hl
-.row
+.col
 	ld [hli], a
 	dec c
-	jr nz, .row
+	jr nz, .col
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .col
+	jr nz, .row
 	ret
 ; fc8
 
@@ -61,8 +61,11 @@ ClearScreen:: ; fdb
 
 
 TextBox:: ; fe8
-; Draw a text box width c height b at hl.
-; Dimensions do not include the border.
+; Draw a text box at hl with room for
+; b lines of c characters each.
+; Places a border around the textbox,
+; then switches the palette to the
+; text black-and-white scheme.
 	push bc
 	push hl
 	call TextBoxBorder
@@ -263,14 +266,14 @@ endm
 	dict "<ROCKET>", RocketChar
 	dict "<TM>", TMChar
 	dict "<TRNER>", TrainerChar
-	dict $23, Char23
-	dict $22, Char22
+	dict $23, PlaceKougeki
+	dict "<LNBRK>", Char22
 	dict "<CONT>", ContText
 	dict "<......>", SixDotsChar
 	dict "<DONE>", DoneText
 	dict "<PROMPT>", PromptText
 	dict "<PKMN>", PlacePKMN
-	dict $24, PlacePOKE
+	dict "<POKE>", PlacePOKE
 	dict $25, NextChar
 	dict2 $1f, " "
 	dict "<DEXEND>", PlaceDexEnd
@@ -349,7 +352,7 @@ TMChar: print_name TMCharText ; 11b0
 PCChar: print_name PCCharText ; 11b7
 RocketChar: print_name RocketCharText ; 11be
 PlacePOKe: print_name PlacePOKeText ; 11c5
-Char23: print_name Char23Text ; 11cc
+PlaceKougeki: print_name KougekiText ; 11cc
 SixDotsChar: print_name SixDotsCharText ; 11d3
 PlacePKMN: print_name PlacePKMNText ; 11da
 PlacePOKE: print_name PlacePOKEText ; 11e1
@@ -444,7 +447,7 @@ TrainerCharText:: db "TRAINER@" ; 1276
 PCCharText:: db "PC@" ; 127e
 RocketCharText:: db "ROCKET@" ; 1281
 PlacePOKeText:: db "POKé@" ; 1288
-Char23Text:: db "こうげき@" ; 128d
+KougekiText:: db "こうげき@" ; 128d
 SixDotsCharText:: db "……@" ; 1292
 EnemyText:: db "Enemy @" ; 1295
 PlacePKMNText:: db "<PK><MN>@" ; PK MN ; 129c

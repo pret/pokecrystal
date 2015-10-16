@@ -43,7 +43,7 @@ MoveTutor:
 	writetext UnknownText_0x199042
 	yesorno
 	iffalse .Refused
-	special Function24b25
+	special Special_DisplayCoinCaseBalance
 	writetext UnknownText_0x199090
 	yesorno
 	iffalse .Refused2
@@ -114,7 +114,7 @@ MoveTutor:
 	takecoins 4000
 	waitbutton
 	playsound SFX_TRANSACTION
-	special Function24b25
+	special Special_DisplayCoinCaseBalance
 	writetext UnknownText_0x19918b
 	closetext
 	loadmovesprites

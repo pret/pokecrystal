@@ -65,13 +65,13 @@ UnknownScript_0x7805b:
 
 DaycareMon1Script_0x78065:
 	loadfont
-	special Function17421
+	special Special_DayCareMon1
 	loadmovesprites
 	end
 
 DaycareMon2Script_0x7806b:
 	loadfont
-	special Function17440
+	special Special_DayCareMon2
 	loadmovesprites
 	end
 

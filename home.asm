@@ -1184,15 +1184,15 @@ Function352f:: ; 352f
 Function354b:: ; 354b
 	call DelayFrame
 
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Functiona57
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and D_RIGHT + D_LEFT + D_UP + D_DOWN
 	ld c, a
 	ld a, [hJoyPressed]
@@ -2220,7 +2220,7 @@ Function3f6e:: ; 3f6e
 ; 3f7c
 
 Function3f7c:: ; 3f7c
-	call Function1cfd
+	call GetMemTileCoord
 	call Function1c53
 	dec b
 	dec c

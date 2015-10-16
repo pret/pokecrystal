@@ -39,7 +39,7 @@ Joypad:: ; 935
 	
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
-	ld a, D_PAD
+	ld a, R_DPAD
 	ld [rJOYP], a
 ; Read twice to give the request time to take.
 rept 2
@@ -57,7 +57,7 @@ endr
 	
 ; Buttons make 8 total inputs (A, B, Select, Start).
 ; We can fit this into one byte.
-	ld a, BUTTONS
+	ld a, R_BUTTONS
 	ld [rJOYP], a
 ; Wait for input to stabilize.
 rept 6
@@ -285,7 +285,7 @@ Functiona1b:: ; a1b
 	cp D_UP | SELECT | B_BUTTON
 	jr z, .asm_a34
 
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and START | A_BUTTON
 	jr nz, .asm_a34
 
@@ -325,29 +325,29 @@ CloseText:: ; a46
 
 Functiona57:: ; a57
 	call GetJoypad
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	and a
 	ld a, [hJoyPressed]
-	jr z, .asm_a63
+	jr z, .ok
 	ld a, [hJoyDown]
-.asm_a63
+.ok
 	ld [hJoyLast], a
 	ld a, [hJoyPressed]
 	and a
-	jr z, .asm_a70
+	jr z, .checkframedelay
 	ld a, 15
 	ld [TextDelayFrames], a
 	ret
 
-.asm_a70
+.checkframedelay
 	ld a, [TextDelayFrames]
 	and a
-	jr z, .asm_a7a
+	jr z, .restartframedelay
 	xor a
 	ld [hJoyLast], a
 	ret
 
-.asm_a7a
+.restartframedelay
 	ld a, 5
 	ld [TextDelayFrames], a
 	ret
@@ -356,23 +356,23 @@ Functiona57:: ; a57
 Functiona80:: ; a80
 	ld a, [hConnectionStripLength]
 	push af
-	ld a, [$ffb0]
+	ld a, [hConnectedMapWidth]
 	push af
 	xor a
 	ld [hConnectionStripLength], a
 	ld a, $6
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 .asm_a8d
 	push hl
 	hlcoord 18, 17
 	call Functionb06
 	pop hl
 	call Functiona57
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and $3
 	jr z, .asm_a8d
 	pop af
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	pop af
 	ld [hConnectionStripLength], a
 	ret
@@ -380,7 +380,7 @@ Functiona80:: ; a80
 
 Functionaa5:: ; aa5
 	call Functiona57
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and A_BUTTON | B_BUTTON
 	jr z, Functionaa5
 	ret
@@ -456,16 +456,16 @@ Functionb06:: ; b06
 	dec a
 	ld [hConnectionStripLength], a
 	ret nz
-	ld a, [$ffb0]
+	ld a, [hConnectedMapWidth]
 	dec a
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ret nz
 	ld a, $7a
 	ld [hl], a
 	ld a, $ff
 	ld [hConnectionStripLength], a
 	ld a, $6
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ret
 
 .asm_b27
@@ -477,12 +477,12 @@ Functionb06:: ; b06
 	ret nz
 	dec a
 	ld [hConnectionStripLength], a
-	ld a, [$ffb0]
+	ld a, [hConnectedMapWidth]
 	dec a
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ret nz
 	ld a, $6
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ld a, $ee
 	ld [hl], a
 	ret

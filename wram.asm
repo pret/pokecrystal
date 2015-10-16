@@ -145,8 +145,10 @@ VBGMap1::
 
 SECTION "Stack", WRAM0
 wc000::
+StackBottom::
 	ds $ff
 Stack::
+StackTop::
 	ds 1
 
 
@@ -1224,8 +1226,11 @@ wcf76:: ds 1
 wcf77:: ds 1
 wcf78:: ds 9
 wcf81:: ds 1
+
+; dw related to tilemap
 wcf82:: ds 1
 wcf83:: ds 1
+
 wcf84:: ds 1
 wcf85:: ds 1
 wcf86:: ds 1
@@ -1342,38 +1347,46 @@ OptionsEnd::
 wcfd4:: ds 1
 wcfd5:: ds 1
 wcfd6:: ds 1
-wcfd7:: ds 1
+wcfd7:: ds 1 ; related to time
 
 	ds 40
 
 
 SECTION "WRAM 1", WRAMX, BANK [1]
 
+MiscBuffer0::
 wd000:: ds 1
+MiscBuffer1::
 wd001:: ds 1
 wd002::
+MiscBuffer2::
 PhoneScriptBank::
 DefaultFlypoint:: ; d002
 LuckyNumberDigit1Buffer::
 	ds 1
 wd003::
+MiscBuffer3::
 LuckyNumberDigit2Buffer::
 PhoneCallerLo::
 	ds 1
 wd004::
+MiscBuffer4::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 	ds 1
 wd005::
+MiscBuffer5::
 LuckyNumberDigit4Buffer::
 StartFlypoint:: ; d005
 	ds 1
 wd006::
+MiscBuffer6::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 	ds 1
 
 wd007::
+MiscBuffer7::
 MovementBuffer:: ; d007
 	ds 1
 
@@ -1447,6 +1460,7 @@ wd048:: ds 1
 wLossTextPointer:: ds 2
 wd04b:: ds 2
 wd04d:: ds 1
+MenuItemsListEnd::
 wd04e:: ds 2
 wd050:: ds 10
 wd05a:: ds 12
@@ -1521,6 +1535,7 @@ wd105:: ds 1
 CurItem:: ; d106
 	ds 1
 
+ItemCountBuffer:: ; d107
 wd107:: ds 1
 
 CurPartySpecies:: ; d108
@@ -1716,7 +1731,6 @@ EvolvableFlags:: ; d1e8
 	flag_array PARTY_LENGTH
 
 wd1e9:: ds 1
-wd1ea::
 MagikarpLength::
 Buffer1:: ; d1ea
 	ds 1
@@ -1967,7 +1981,7 @@ RivalName::  ds NAME_LENGTH ; d493
 RedsName::   ds NAME_LENGTH ; d49e
 GreensName:: ds NAME_LENGTH ; d4a9
 
-wd4b4:: ds 1
+wSavedAtLeastOnce:: ds 1
 wSpawnAfterChampion:: ds 1
 
 ; init time set at newgame
@@ -2106,7 +2120,7 @@ CurTimeOfDay:: ; d848
 
 	ds 1
 
-wd84a:: ds 1
+wSecretID:: ds 1
 wd84b:: ds 1
 StatusFlags:: ; d84c
 	ds 1
@@ -2402,8 +2416,8 @@ wSpecialPhoneCallID:: ds 2
 wdc33:: ds 2
 wdc35:: ds 4
 wdc39:: ds 1
-wdc3a:: ds 1
-wdc3b:: ds 5
+wdc3a:: ds 1 ; related to time
+wdc3b:: ds 5 ; related to time
 wdc40:: ds 1
 wdc41:: ds 1
 wdc42:: ds 8
@@ -2562,7 +2576,7 @@ wContestMon:: party_struct wContestMon ; df9c
 
 wdfcc:: ds 1
 wdfcd:: ds 1
-wdfce:: ds 1
+wFishingSwarmFlag:: ds 1
 
 roam_struct: MACRO
 \1Species::   db
@@ -2728,7 +2742,8 @@ w5_d422:: ds $40
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
-w6_d000:: ds $600
+w6_d000:: ds $400
+w6_d400:: ds $200
 w6_d600:: ds $600
 
 INCLUDE "sram.asm"

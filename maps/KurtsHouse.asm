@@ -127,7 +127,7 @@ KurtScript_0x18e178:
 	writetext UnknownText_0x18e736
 	keeptextopen
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
-	special Function88018
+	special Special_SelectApricornForKurt
 	if_equal $0, .Cancel
 	if_equal BLU_APRICORN, .Blu
 	if_equal YLW_APRICORN, .Ylw

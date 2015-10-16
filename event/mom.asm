@@ -1,8 +1,8 @@
 Special_BankOfMom: ; 16218
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	xor a
 	ld [wcf63], a
 .asm_16223
@@ -14,7 +14,7 @@ Special_BankOfMom: ; 16218
 
 .asm_1622f
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 ; 16233
 

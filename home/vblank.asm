@@ -146,7 +146,7 @@ VBlank0:: ; 2b1
 	rst Bankswitch
 
 	ld a, [hSeconds]
-	ld [$ffe3], a
+	ld [hSecondsBackup], a
 
 	ret
 ; 325

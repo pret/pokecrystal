@@ -1157,8 +1157,8 @@ MenuData2_0x107f7: ; 0x107f7
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, OTPartyMons
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 10807
 
@@ -1181,8 +1181,8 @@ MenuData2_0x10816: ; 0x10816
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, OTPartyMon1Exp + 2
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 10826
 
@@ -1214,8 +1214,8 @@ MenuData2_0x1084a: ; 0x1084a
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, OTPartyMon1CaughtGender
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 1085a
 
@@ -1525,8 +1525,8 @@ MenuData2_0x10a57: ; 0x10a57
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumItems
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 10a67
 
@@ -1543,8 +1543,8 @@ MenuData2_0x10a6f: ; 0x10a6f
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumItems
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 10a7f
 
@@ -1561,8 +1561,8 @@ MenuData2_0x10a87: ; 0x10a87
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, NumKeyItems
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 10a97
 
@@ -1579,8 +1579,8 @@ MenuData2_0x10a9f: ; 0x10a9f
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, NumKeyItems
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 10aaf
 
@@ -1597,8 +1597,8 @@ MenuData2_0x10ab7: ; 0x10ab7
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumBalls
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 10ac7
 
@@ -1615,8 +1615,8 @@ MenuData2_0x10acf: ; 0x10acf
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumBalls
-	dbw BANK(Function24ab4), Function24ab4
-	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
+	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
 	dbw BANK(Function244c3), Function244c3
 ; 10adf
 

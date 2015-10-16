@@ -62,7 +62,7 @@ Function11415: ; 11415
 	ret
 ; 11420
 
-Function11420: ; 11420
+CheckDayDependentEventHL: ; 11420
 	inc hl
 	push hl
 	call Function115cf
@@ -98,7 +98,7 @@ Function1144c: ; 1144c
 
 Function11452:: ; 11452
 	ld hl, wdc1c
-	call Function11420
+	call CheckDayDependentEventHL
 	ret nc
 	xor a
 	ld hl, DailyFlags
@@ -217,7 +217,7 @@ Function114fc: ; 114fc
 	ret
 ; 1150c
 
-Function1150c: ; 1150c
+Function1150c: ; Specific version of CheckDayDependentEventHL when hl = $dc3a
 	ld hl, wdc3b
 	call Function115cf
 	call Function115c8
@@ -262,9 +262,9 @@ Function1152b: ; 1152b
 	ret
 ; 11542
 
-Function11542: ; 11542
+CheckLuckyNumberShowFlag: ; 11542
 	ld hl, wLuckyNumberDayBuffer
-	jp Function11420
+	jp CheckDayDependentEventHL
 ; 11548
 
 Function11548: ; 11548
@@ -277,7 +277,7 @@ Function11548: ; 11548
 	ld [Buffer2], a
 	call CloseSRAM
 	ld hl, Buffer1
-	call Function11420
+	call CheckDayDependentEventHL
 	jr nc, .asm_11572
 	ld hl, Buffer1
 	call Function11413

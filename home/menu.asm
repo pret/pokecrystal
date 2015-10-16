@@ -81,16 +81,16 @@ InterpretMenu2:: ; 0x1d81
 	call Function1c66
 	ld a, [wcf91]
 	bit 7, a
-	jr z, .asm_1da7 ; 0x1d98 $d
+	jr z, .cancel ; 0x1d98 $d
 	call Function1c10
 	call Function1bc9
 	call Function1ff8
 	bit 1, a
-	jr z, .asm_1da9 ; 0x1da5 $2
-.asm_1da7
+	jr z, .okay ; 0x1da5 $2
+.cancel
 	scf
 	ret
-.asm_1da9
+.okay
 	and a
 	ret
 ; 0x1dab
@@ -165,15 +165,15 @@ Function1dfe:: ; 1dfe
 	call DelayFrames
 	call WriteBackup
 	pop af
-	jr c, .asm_1e16
+	jr c, .no
 	ld a, [wcfa9]
 	cp 2 ; no
-	jr z, .asm_1e16
+	jr z, .no
 	and a
 	ret
 
-.asm_1e16
-	ld a, $2
+.no
+	ld a, 2
 	ld [wcfa9], a
 	scf
 	ret
@@ -308,7 +308,7 @@ Function1ebd:: ; 1ebd
 ; 1eda
 
 Function1eda:: ; 1eda
-	call Function1cfd
+	call GetMemTileCoord
 	ld bc, $002a
 	add hl, bc
 .asm_1ee1
@@ -521,13 +521,13 @@ Function1ff0:: ; 1ff0
 Function1ff8:: ; 1ff8
 	push af
 	and $3
-	jr z, .asm_2007
+	jr z, .nosound
 	ld hl, wcf81
 	bit 3, [hl]
-	jr nz, .asm_2007
+	jr nz, .nosound
 	call PlayClickSFX
 
-.asm_2007
+.nosound
 	pop af
 	ret
 ; 2009

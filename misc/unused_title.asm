@@ -547,7 +547,7 @@ Function10ed51: ; 10ed51
 	call _TitleScreen
 .loop
 	call Functiona57
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	ld b, a
 	and 1
 	jr nz, .done

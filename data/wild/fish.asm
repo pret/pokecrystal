@@ -134,14 +134,14 @@ GetFishGroupHeader: ; 9245b
 	ret
 
 .group11
-	ld a, [wdfce]
+	ld a, [wFishingSwarmFlag]
 	cp 1
 	jr nz, .end
 	ld d, 6
 	jr .end
 
 .group12
-	ld a, [wdfce]
+	ld a, [wFishingSwarmFlag]
 	cp 2
 	jr nz, .end
 	ld d, 7

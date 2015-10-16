@@ -1809,7 +1809,7 @@ CoinVendor_IntroScript: ; 0xbcde0
 	farwritetext CoinVendor_IntroText
 
 CoinVendor_SellCoinsMenuScript: ; 0xbcde4
-	special Function24b4e
+	special Special_DisplayMoneyAndCoinBalance
 	loadmenudata CoinVendor_MenuDataHeader
 	interpretmenu2
 	writebackup

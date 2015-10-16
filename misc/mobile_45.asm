@@ -7656,13 +7656,13 @@ Function117656: ; 117656
 ; 11765d
 
 Function11765d: ; 11765d (45:765d)
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Function11766b
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 
 Function11766b: ; 11766b (45:766b)
@@ -7798,7 +7798,7 @@ Function117764: ; 117764 (45:7764)
 	ld a, [hl]
 	and $2
 	jr nz, asm_1177d6
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and $40
 	jr nz, asm_1177f1
@@ -7973,11 +7973,11 @@ Function1178aa: ; 1178aa (45:78aa)
 	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	ld hl, MenuDataHeader_1179bd
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	callba Function104061
 	hlcoord 16, 8
 	ld de, String_1179c5
@@ -8076,7 +8076,7 @@ Function117984: ; 117984 (45:7984)
 	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	callba Function104061
 	hlcoord 1, 14
 	ld de, String_1179e1
@@ -8150,13 +8150,13 @@ INCBIN "data/mobile/ascii-sym.txt"
 ; Mobile Stadium option from the continue/newgame menu.
 ; XXX better function names
 MobileStudium: ; 0x117a7f
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Function117a8d
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 ; 0x117a8d
 
@@ -8236,7 +8236,7 @@ Function117b14:
 	ld hl, Data117cbc
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	jp Function117cdd
 
 Function117b28:
@@ -8248,7 +8248,7 @@ Function117b31:
 	ld hl, Data117cc4
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	hlcoord 16, 8
 	ld de, YesNo117ccc
 	call PlaceString
@@ -8386,7 +8386,7 @@ Function117c4a:
 	ld hl, Data117cbc
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	callba Function104061
 	ld hl, MobileStadiumSuccessText
 	call PrintText
@@ -9756,7 +9756,7 @@ Function118936:
 	ld hl, MenuDataHeader_119cf7
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	call Function321c
 	hlcoord 16, 8, AttrMap
 	ld a, $40
@@ -13211,7 +13211,7 @@ Function11a207: ; 11a207
 	ld hl, MenuDataHeader_11a2de
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	call Function321c
 	hlcoord 16, 8
 	ld de, String_11a2cf
@@ -14328,10 +14328,10 @@ Function11ac51: ; 11ac51
 	push af
 	xor a
 	ld [VramState], a
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	xor a
 	ld [$ffde], a
 	ld [wcd49], a
@@ -14358,7 +14358,7 @@ Function11ac51: ; 11ac51
 .asm_11aca8
 	call ClearSprites
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	pop af
 	ld [VramState], a
 	pop af
@@ -14428,7 +14428,7 @@ Function11ad1b: ; 11ad1b
 	ld a, [wcfa9]
 	ld [wcd82], a
 	dec a
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ld a, $10
 	ld [wc3b7], a
 	ld hl, Function8e83f
@@ -15099,7 +15099,7 @@ Function11b175: ; 11b175
 	ld d, a
 	ld a, [wc7d2]
 	ld e, a
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and $40
 	jr nz, .asm_11b19a
@@ -15780,11 +15780,11 @@ Function11b538: ; 11b538
 	ld [wcd2b], a
 	ld [bc], a
 	inc bc
-	ld a, [wd84a]
+	ld a, [wSecretID]
 	ld [wcd2c], a
 	ld [bc], a
 	inc bc
-	ld a, [wd84b]
+	ld a, [wSecretID + 1]
 	ld [wcd2d], a
 	ld [bc], a
 	inc bc
@@ -16832,13 +16832,13 @@ Function11c156: ; 11c156
 ; 11c1ab
 
 Function11c1ab: ; 11c1ab
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Function11c1b9
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 ; 11c1b9
 
@@ -17154,7 +17154,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	ld a, [de]
 	and $1
 	jr nz, .asm_11c42c
-	ld de, $ffa9
+	ld de, hJoyLast
 	ld a, [de]
 	and $40
 	jr nz, .asm_11c47c
@@ -17326,7 +17326,7 @@ Function11c53d: ; 11c53d (47:453d)
 	and A_BUTTON
 	jr nz, .a
 
-	ld de, $ffa9
+	ld de, hJoyLast
 
 	ld a, [de]
 	and D_UP
@@ -17570,7 +17570,7 @@ Function11c675: ; 11c675 (47:4675)
 	ret
 
 .select
-	ld de, $ffa9
+	ld de, hJoyLast
 	ld a, [de]
 	and D_UP
 	jr nz, .asm_11c708
@@ -18644,7 +18644,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	and B_BUTTON
 	jr nz, .b
 
-	ld de, $ffa9
+	ld de, hJoyLast
 	ld a, [de]
 	and D_UP
 	jr nz, .up
@@ -22362,7 +22362,7 @@ Function16d70c: ; 16d70c
 Function16d713: ; 16d713
 	push bc
 	push af
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and $f0
 	ld b, a
 	ld a, [hJoyPressed]
@@ -22701,9 +22701,9 @@ Function170139: ; 170139
 	ld [hli], a
 	ld a, [PlayerID + 1]
 	ld [hli], a
-	ld a, [wd84a]
+	ld a, [wSecretID]
 	ld [hli], a
-	ld a, [wd84b]
+	ld a, [wSecretID + 1]
 	ld [hli], a
 	ld e, l
 	ld d, h
@@ -24504,13 +24504,13 @@ GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
 
 Function1719c8: ; 1719c8 (5c:59c8)
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Function1719d6
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 
 Function1719d6: ; 1719d6 (5c:59d6)
@@ -24801,7 +24801,7 @@ Function171beb: ; 171beb (5c:5beb)
 	ld hl, MenuDataHeader_171c6b
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	callba Function104061
 	hlcoord 1, 14
 	ld de, String_171c73

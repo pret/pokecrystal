@@ -34,7 +34,6 @@ POKEDEX_ENTRIES_4         EQU $74
 ; engine/events.o
 ; engine/scripting.o
 ; engine/events_2.o
-
 EVENTS                    EQU $25
 
 
