@@ -27,7 +27,7 @@ Pokedex: ; 40000
 	call DelayFrame
 
 .main
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .exit

@@ -151,7 +151,7 @@ endr
 	add hl, bc
 	call Function8aee9
 	call Function3200
-	call Functiona36
+	call JoyWaitAorB
 	call PlayClickSFX
 	call WriteBackup
 	ret

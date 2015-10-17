@@ -714,7 +714,7 @@ Function17d405:
 
 Function17d45a: ; 17d45a
 .asm_17d45a
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcd77]
 	bit 7, a
 	jr nz, .asm_17d46f
@@ -3144,7 +3144,7 @@ Function17e3f0: ; 17e3f0
 	call Function17e415
 	call Function17e41e
 .asm_17e3f6
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and $1
@@ -4678,7 +4678,7 @@ Function17f53d: ; 17f53d
 
 Function17f555: ; 17f555
 .asm_17f555
-	call Functiona57
+	call JoyTextDelay
 	call Function17f5ae
 	ld a, [wc303]
 	bit 7, a

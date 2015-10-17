@@ -11,7 +11,7 @@ SEER_LEVEL_ONLY EQU 7
 SpecialPokeSeer: ; 4f0bc
 	ld a, SEER_INTRO
 	call PrintSeerText
-	call Functiona36
+	call JoyWaitAorB
 
 	ld b, $6
 	callba SelectMonFromParty

@@ -615,11 +615,11 @@ Function3246:: ; 3246
 	jr c, .wait
 
 	di
-	ld a, $1
+	ld a, 1 ; BANK(VTiles3)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
 	call Function327b
-	ld a, $0
+	ld a, 0 ; BANK(VTiles0)
 	ld [rVBK], a
 	hlcoord 0, 0
 	call Function327b
@@ -639,7 +639,7 @@ Function3246:: ; 3246
 Function327b:: ; 327b
 	ld [hSPBuffer], sp
 	ld sp, hl
-	ld a, [$ffd7]
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	ld l, 0
 	ld a, 18
@@ -1188,7 +1188,7 @@ Function354b:: ; 354b
 	push af
 	ld a, $1
 	ld [hInMenu], a
-	call Functiona57
+	call JoyTextDelay
 	pop af
 	ld [hInMenu], a
 

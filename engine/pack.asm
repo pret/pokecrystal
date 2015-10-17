@@ -4,7 +4,7 @@ Pack: ; 10000
 	set 4, [hl]
 	call Function1068a
 .loop
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .done
@@ -651,7 +651,7 @@ BattlePack: ; 10493
 	set 4, [hl]
 	call Function1068a
 .asm_1049b
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_104ad

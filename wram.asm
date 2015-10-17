@@ -130,18 +130,7 @@ channel_struct: MACRO
                       ds 1 ; c132
 ENDM
 
-SECTION "CHR0", VRAM [$8000], BANK [0]
-VTiles0::
-SECTION "CHR1", VRAM [$8800], BANK [0]
-VTiles1::
-SECTION "CHR2", VRAM [$9000], BANK [0]
-VTiles2::
-SECTION "BG0",  VRAM [$9800], BANK [0]
-VBGMap0::
-SECTION "BG1",  VRAM [$9C00], BANK [0]
-VBGMap1::
-
-
+INCLUDE "vram.asm"
 
 SECTION "Stack", WRAM0
 wc000::
@@ -1191,14 +1180,18 @@ CurSpecies:: ; cf60
 	ds 1
 
 wcf61:: ds 2
+wIntroSceneIndex::
 wcf63:: ds 1
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
+wIntroSceneFrameCounter::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
+wTitleScreenTimerLo::
 wcf65:: ds 1
+wTitleScreenTimerHi::
 wcf66:: ds 1
 
 Requested2bpp:: ; cf67

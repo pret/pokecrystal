@@ -2181,7 +2181,7 @@ Functionf3df: ; f3df (3:73df)
 	call Functionf1db
 	ld a, $f5
 	call Functionf24a
-	call Functiona36
+	call JoyWaitAorB
 .asm_f413
 	ld a, b
 	inc a

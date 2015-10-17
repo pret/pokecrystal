@@ -194,7 +194,7 @@ Function8921f: ; 8921f (22:521f)
 	ret
 
 Function89235: ; 89235 (22:5235)
-	call Functiona36
+	call JoyWaitAorB
 	call PlayClickSFX
 	ret
 
@@ -3655,7 +3655,7 @@ Function8a78c: ; 8a78c (22:678c)
 	call InitName
 	call CloseSRAM
 	call DelayFrame
-	call Functiona57
+	call JoyTextDelay
 	call Function891de
 	call WhiteBGMap
 	call Function893cc
@@ -3731,7 +3731,7 @@ Function8a818: ; 8a818 (22:6818)
 	ld de, .string_8a868
 	call PlaceString
 	call WaitBGMap
-	call Functiona36
+	call JoyWaitAorB
 .asm_8a863
 	call CloseSRAM
 	scf
@@ -3750,7 +3750,7 @@ Function8a818: ; 8a818 (22:6818)
 	hlcoord 1, 13
 	call PlaceString
 	call WaitBGMap
-	call Functiona36
+	call JoyWaitAorB
 	and a
 	ret
 ; 8a88b (22:688b)
@@ -3805,7 +3805,7 @@ Function8a8c3: ; 8a8c3 (22:68c3)
 	ld de, String_8a926
 	call PlaceString
 	call WaitBGMap
-	call Functiona36
+	call JoyWaitAorB
 .asm_8a90f
 	call Function89448
 	call Function891fe
@@ -4057,7 +4057,7 @@ Function8aab6: ; 8aab6 (22:6ab6)
 	ld de, String_8aaf0
 	call PlaceString
 	call WaitBGMap
-	call Functiona36
+	call JoyWaitAorB
 .asm_8aaeb
 	call CloseSRAM
 	scf

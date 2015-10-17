@@ -141,7 +141,7 @@ SpecialBuenaPrize: ; 8afd4
 	call WriteBackup
 	ld hl, UnknownText_0x8b08b
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	call PlayClickSFX
 	ret
 ; 8b072

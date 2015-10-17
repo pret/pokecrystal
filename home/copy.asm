@@ -211,6 +211,7 @@ endr
 
 
 Request2bpp:: ; eba
+; Load 2bpp at b:de to occupy c tiles of hl.
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -228,14 +229,14 @@ Request2bpp:: ; eba
 	ld [$ffd3], a
 	ld a, [InLinkBattle]
 	cp $4
-	jr nz, .asm_edc
+	jr nz, .okay
 	ld a, [$ffe9]
 	and a
-	jr nz, .asm_edc
+	jr nz, .okay
 	ld a, $6
 	ld [$ffd3], a
 
-.asm_edc
+.okay
 	ld a, e
 	ld [Requested2bppSource], a
 	ld a, d
@@ -245,11 +246,11 @@ Request2bpp:: ; eba
 	ld a, h
 	ld [Requested2bppDest + 1], a
 
-.asm_eec
+.loop
 	ld a, c
 	ld hl, $ffd3
 	cp [hl]
-	jr nc, .asm_f08
+	jr nc, .iterate
 
 	ld [Requested2bpp], a
 .wait
@@ -268,19 +269,19 @@ Request2bpp:: ; eba
 	ld [hBGMapMode], a
 	ret
 
-.asm_f08
+.iterate
 	ld a, [$ffd3]
 	ld [Requested2bpp], a
-.asm_f0d
+.wait2
 	call DelayFrame
 	ld a, [Requested2bpp]
 	and a
-	jr nz, .asm_f0d
+	jr nz, .wait2
 	ld a, c
 	ld hl, $ffd3
 	sub [hl]
 	ld c, a
-	jr .asm_eec
+	jr .loop
 ; f1e
 
 
@@ -302,14 +303,14 @@ Request1bpp:: ; f1e
 	ld [$ffd3], a
 	ld a, [InLinkBattle]
 	cp $4
-	jr nz, .asm_f40
+	jr nz, .NotMobile
 	ld a, [$ffe9]
 	and a
-	jr nz, .asm_f40
+	jr nz, .NotMobile
 	ld a, $6
 	ld [$ffd3], a
 
-.asm_f40
+.NotMobile
 	ld a, e
 	ld [Requested1bppSource], a
 	ld a, d
@@ -318,11 +319,11 @@ Request1bpp:: ; f1e
 	ld [Requested1bppDest], a
 	ld a, h
 	ld [Requested1bppDest + 1], a
-.asm_f50
+.loop
 	ld a, c
 	ld hl, $ffd3
 	cp [hl]
-	jr nc, .asm_f6c
+	jr nc, .iterate
 
 	ld [Requested1bpp], a
 .wait
@@ -341,19 +342,21 @@ Request1bpp:: ; f1e
 	ld [hBGMapMode], a
 	ret
 
-.asm_f6c
+.iterate
 	ld a, [$ffd3]
 	ld [Requested1bpp], a
-.asm_f71
+
+.wait2
 	call DelayFrame
 	ld a, [Requested1bpp]
 	and a
-	jr nz, .asm_f71
+	jr nz, .wait2
+
 	ld a, c
 	ld hl, $ffd3
 	sub [hl]
 	ld c, a
-	jr .asm_f50
+	jr .loop
 ; f82
 
 

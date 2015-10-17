@@ -7716,7 +7716,7 @@ Function117699: ; 117699 (45:7699)
 	ret
 
 Function1176ee: ; 1176ee (45:76ee)
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcd49]
 	bit 7, a
 	jr nz, .asm_117709
@@ -8189,7 +8189,7 @@ Function117ab4: ; 0x117ab4
 ; 0x117acd
 
 Function117acd: ; 0x117acd
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_117ae2 ; 0x117ad5 $b
@@ -8493,7 +8493,7 @@ asm_11800b
 	ld a, $3
 	ld [rSVBK], a
 .asm_118024
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $1b
@@ -8534,7 +8534,7 @@ Function11805f: ; 11805f
 	ld a, $3
 	ld [rSVBK], a
 .asm_11807d
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $1b
@@ -8572,7 +8572,7 @@ Function1180b8: ; 1180b8
 	ld a, $3
 	ld [rSVBK], a
 .asm_1180d1
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $28
@@ -8627,7 +8627,7 @@ Function118125: ; 118125
 	ld a, $3
 	ld [rSVBK], a
 .asm_11813e
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $f
@@ -8712,7 +8712,7 @@ Function1181da: ; 1181da
 	ld a, $3
 	ld [rSVBK], a
 .asm_1181f8
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $28
@@ -8750,7 +8750,7 @@ Function118233: ; 118233
 	ld a, $3
 	ld [rSVBK], a
 .asm_11824c
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $1e
@@ -8787,7 +8787,7 @@ Function118284: ; 118284
 	ld a, $3
 	ld [rSVBK], a ; $ff00+$70
 .asm_11829d
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $20
@@ -8824,7 +8824,7 @@ Function1182d5: ; 1182d5
 	ld a, $3
 	ld [rSVBK], a
 .asm_1182ee
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $1b
@@ -8862,7 +8862,7 @@ Function118329: ; 118329
 	ld a, $3
 	ld [rSVBK], a
 .asm_118342
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $18
@@ -8899,7 +8899,7 @@ Function11837a: ; 11837a
 	ld a, $3
 	ld [rSVBK], a
 .asm_118393
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $19
@@ -14342,7 +14342,7 @@ Function11ac51: ; 11ac51
 	call Function11ad1b
 	call DelayFrame
 .asm_11ac82
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_11aca8
@@ -16935,7 +16935,7 @@ Function11c277: ; 11c277 (47:4277)
 
 Function11c283: ; 11c283
 .asm_11c283
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyPressed]
 	ld [hJoypadPressed], a
 	ld a, [wcf63]
@@ -22187,7 +22187,7 @@ Function16d43b: ; 16d43b
 	call GetSGBLayout
 	call Function32f9
 	call WaitBGMap
-	call Functiona36
+	call JoyWaitAorB
 	call Function1d7d
 	ret
 ; 16d465
@@ -22518,7 +22518,7 @@ Function16d7e7: ; 16d7e7
 	callba Function8cf62
 
 .asm_16d7f4
-	call Functiona57
+	call JoyTextDelay
 	call Function16d713
 	and a
 	ret z
@@ -23228,7 +23228,7 @@ Function1704f1: ; 1704f1
 	call ClearSprites
 	call ClearScreen
 .asm_1704fa
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_17050f
@@ -24539,7 +24539,7 @@ Function1719ed: ; 1719ed (5c:59ed)
 	ret
 
 Function171a11: ; 171a11 (5c:5a11)
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcd49]
 	bit 7, a
 	jr nz, .asm_171a2c

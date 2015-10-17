@@ -1,5 +1,5 @@
 SECTION "Scratch", SRAM, BANK [0]
-
+SRAM_Begin::
 sScratch::
 
 
@@ -49,6 +49,8 @@ sBackupGameDataEnd::
 sBackupChecksum:: ds 2
 s0_bf0f:: ds 1
 sStackTop:: ds 2
+	ds $ee
+SRAM_End::
 
 
 SECTION "SRAM Bank 1", SRAM, BANK [1]

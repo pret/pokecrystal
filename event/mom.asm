@@ -491,7 +491,7 @@ Function1656b: ; 1656b
 
 Function16571: ; 16571
 .loop
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON

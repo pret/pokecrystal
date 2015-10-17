@@ -546,7 +546,7 @@ UnusedTitleFG_OAM: ; 10ecb1
 Function10ed51: ; 10ed51
 	call _TitleScreen
 .loop
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	ld b, a
 	and 1

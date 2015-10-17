@@ -155,7 +155,7 @@ Function17a781: ; 17a781 (5e:6781)
 	push af
 	ld a, $1
 	ld [hInMenu], a
-	call Functiona57
+	call JoyTextDelay
 	pop af
 	ld [hInMenu], a
 	ret

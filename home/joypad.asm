@@ -273,42 +273,44 @@ StopAutoInput:: ; a0a
 ; a1b
 
 
-Functiona1b:: ; a1b
+JoyTitleScreenInput:: ; a1b
+.loop
 
 	call DelayFrame
 
 	push bc
-	call Functiona57
+	call JoyTextDelay
 	pop bc
 
 	ld a, [hJoyDown]
 	cp D_UP | SELECT | B_BUTTON
-	jr z, .asm_a34
+	jr z, .keycombo
 
 	ld a, [hJoyLast]
 	and START | A_BUTTON
-	jr nz, .asm_a34
+	jr nz, .keycombo
 
 	dec c
-	jr nz, Functiona1b
+	jr nz, .loop
 
 	and a
 	ret
 
-.asm_a34
+.keycombo
 	scf
 	ret
 ; a36
 
 
-Functiona36:: ; a36
+JoyWaitAorB:: ; a36
+.loop
 	call DelayFrame
 	call GetJoypad
 	ld a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	ret nz
 	call RTC
-	jr Functiona36
+	jr .loop
 ; a46
 
 CloseText:: ; a46
@@ -317,13 +319,13 @@ CloseText:: ; a46
 	ld a, 1
 	ld [hOAMUpdate], a
 	call WaitBGMap
-	call Functiona36
+	call JoyWaitAorB
 	pop af
 	ld [hOAMUpdate], a
 	ret
 ; a57
 
-Functiona57:: ; a57
+JoyTextDelay:: ; a57
 	call GetJoypad
 	ld a, [hInMenu]
 	and a
@@ -367,7 +369,7 @@ Functiona80:: ; a80
 	hlcoord 18, 17
 	call Functionb06
 	pop hl
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	and $3
 	jr z, .asm_a8d
@@ -379,7 +381,7 @@ Functiona80:: ; a80
 ; aa5
 
 Functionaa5:: ; aa5
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	and A_BUTTON | B_BUTTON
 	jr z, Functionaa5
@@ -413,7 +415,7 @@ Functionac6:: ; ac6
 	callba Function1de28a
 .asm_ad9
 	call Functionaf5
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyPressed]
 	and $3
 	jr nz, .asm_af1

@@ -332,7 +332,7 @@ Function100232: ; 100232
 	pop de
 	call PlaceString
 	call Function100320
-	call Functiona36
+	call JoyWaitAorB
 	ret
 ; 10024d
 
@@ -432,7 +432,7 @@ Function100301: ; 100301
 	callba Function10202c
 	callba Function115dd3
 	call Function100320
-	call Functiona36
+	call JoyWaitAorB
 	ret
 ; 100320
 
@@ -4979,7 +4979,7 @@ Function102142: ; 102142
 	call MenuTextBox
 	ld de, SFX_LEVEL_UP
 	call PlaySFX
-	call Functiona36
+	call JoyWaitAorB
 	call ExitMenu
 	call Function10219f
 	ld hl, UnknownText_0x1021d6
@@ -5022,7 +5022,7 @@ Function10219f: ; 10219f
 	call Function10218d
 	ld de, $c608 + 1
 	callba Function8ac4e
-	call Functiona36
+	call JoyWaitAorB
 	call PlayClickSFX
 	call Function1013aa
 	ret
@@ -5056,7 +5056,7 @@ UnknownText_0x1021db: ; 1021d1
 
 Function1021e0: ; 1021e0
 	call MenuTextBox
-	call Functiona36
+	call JoyWaitAorB
 	call ExitMenu
 	ret
 ; 1021ea
@@ -7749,7 +7749,7 @@ Mobile_SelectThreeMons: ; 10366e
 	jr c, .asm_103696
 	callba Function8b1e1
 	jr nc, .asm_103690
-	call Functiona36
+	call JoyWaitAorB
 	jr .asm_103696
 
 .asm_103690
@@ -7772,7 +7772,7 @@ Mobile_SelectThreeMons: ; 10366e
 	call YesNoBox
 	jr c, .asm_1036b5
 	call Function1036f9
-	call Functiona36
+	call JoyWaitAorB
 
 .asm_1036b5
 	call Function103700
@@ -7794,7 +7794,7 @@ Mobile_SelectThreeMons: ; 10366e
 .asm_1036d9
 	callba Function8b1e1
 	jr nc, .asm_1036e6
-	call Functiona36
+	call JoyWaitAorB
 	jr .asm_1036f4
 
 .asm_1036e6
@@ -7804,7 +7804,7 @@ Mobile_SelectThreeMons: ; 10366e
 
 .asm_1036ec
 	call Function1036f9
-	call Functiona36
+	call JoyWaitAorB
 	jr .asm_1036b5
 
 .asm_1036f4
@@ -7859,7 +7859,7 @@ Function103700: ; 103700
 .asm_10373c
 	ld hl, UnknownText_0x10377b
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	scf
 	ret
 ; 103747
@@ -7981,10 +7981,10 @@ Function1037eb: ; 1037eb
 	jr nc, .asm_103807
 	ld hl, UnknownText_0x103819
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	ld hl, UnknownText_0x10381e
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -8042,7 +8042,7 @@ endr
 	ld [hl], a
 	ld hl, UnknownText_0x103876
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	callba Script_reloadmappart
 	callba Function4a94e
 	jr c, .asm_103870
@@ -8074,7 +8074,7 @@ Function10387b: ; 10387b
 	ld [StringBuffer2], a
 	ld hl, UnknownText_0x103898
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	ret
 ; 103898
 

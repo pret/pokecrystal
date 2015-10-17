@@ -947,7 +947,7 @@ ShrinkPlayer: ; 610f
 	ld c, 3
 	call DelayFrames
 
-	call Function61cd
+	call Intro_PlacePlayerSprite
 	call Functione5f
 
 	ld c, 50
@@ -1020,7 +1020,7 @@ ShrinkFrame: ; 61b4
 	ret
 ; 61cd
 
-Function61cd: ; 61cd
+Intro_PlacePlayerSprite: ; 61cd
 
 	callba GetPlayerIcon
 	ld c, $c
@@ -1028,7 +1028,7 @@ Function61cd: ; 61cd
 	call Request2bpp
 
 	ld hl, Sprites
-	ld de, .data_61fe
+	ld de, .sprites
 	ld a, [de]
 	inc de
 
@@ -1058,12 +1058,12 @@ Function61cd: ; 61cd
 	ret
 ; 61fe
 
-.data_61fe ; 61fe
+.sprites ; 61fe
 	db 4
-	db $4c, $48, $00
-	db $4c, $50, $01
-	db $54, $48, $02
-	db $54, $50, $03
+	db $4c, $48, 0
+	db $4c, $50, 1
+	db $54, $48, 2
+	db $54, $50, 3
 ; 620b
 
 
@@ -1123,7 +1123,7 @@ endr
 	dw Function6389
 	dw Function620b
 	dw Function620b
-	dw Function6392
+	dw ResetClock
 ; 6274
 
 
@@ -1378,18 +1378,19 @@ Function6389: ; 6389
 	jp Init
 ; 6392
 
-Function6392: ; 6392
-	callba Function4d3b1
+ResetClock: ; 6392
+	callba _ResetClock
 	jp Init
 ; 639b
 
 Function639b: ; 639b
+	; If bit 0 or 1 of [wcf65] is set, we don't need to be here.
 	ld a, [wcf65]
 	and $3
 	ret nz
 	ld bc, wc3a4
 	ld hl, $000a
-	add hl, bc
+	add hl, bc ; over-the-top compicated way to load wc3ae into hl
 	ld l, [hl]
 	ld h, 0
 rept 2
@@ -1397,8 +1398,9 @@ rept 2
 endr
 	ld de, Data63ca
 	add hl, de
+	; If bit 2 of [wcf65] is set, get the second dw; else, get the first dw
 	ld a, [wcf65]
-	and $4
+	and %00000100
 	srl a
 	srl a
 	ld e, a
@@ -1417,12 +1419,12 @@ endr
 ; 63ca
 
 Data63ca: ; 63ca
-	db $5c, $50, $00, $00
-	db $5c, $68, $5c, $58
-	db $5c, $68, $5c, $78
-	db $5c, $88, $5c, $78
-	db $00, $00, $5c, $78
-	db $00, $00, $5c, $58
+	dw $505c, $0000
+	dw $685c, $585c
+	dw $685c, $785c
+	dw $885c, $785c
+	dw $0000, $785c
+	dw $0000, $585c
 ; 63e2
 
 Copyright: ; 63e2
@@ -10752,7 +10754,7 @@ Function118ca: ; 118ca
 ; 11915
 
 Function11915: ; 11915
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_11930
@@ -11492,7 +11494,7 @@ Function11fa9: ; 11fa9 (4:5fa9)
 	ret
 
 Function11fc0: ; 11fc0 (4:5fc0)
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_11fdb
@@ -18956,7 +18958,7 @@ Function15cef: ; 15cef
 	call TakeMoney
 	ld a, $4
 	call Function15c7d
-	call Functiona36
+	call JoyWaitAorB
 
 .asm_15d68
 	call SpeechTextBox
@@ -18970,14 +18972,14 @@ Function15cef: ; 15cef
 .asm_15d6f
 	ld a, $3
 	call Function15c7d
-	call Functiona36
+	call JoyWaitAorB
 	and a
 	ret
 
 .asm_15d79
 	ld a, $2
 	call Function15c7d
-	call Functiona36
+	call JoyWaitAorB
 	and a
 	ret
 ; 15d83
@@ -19036,7 +19038,7 @@ endr
 .asm_15dd8
 	ld a, $5
 	call Function15c7d
-	call Functiona36
+	call JoyWaitAorB
 	scf
 	ret
 ; 15de2
@@ -19341,7 +19343,7 @@ Function15efd: ; 15efd
 	call PrintTextBoxText
 	call Function15fc3
 	callba Function24af0
-	call Functiona36
+	call JoyWaitAorB
 
 .asm_15f6e
 	call ExitMenu
@@ -19435,7 +19437,7 @@ Function15fc3: ; 15fc3
 
 Function15fcd: ; 15fcd
 	call MenuTextBox
-	call Functiona36
+	call JoyWaitAorB
 	call ExitMenu
 	ret
 ; 15fd7
@@ -20490,7 +20492,7 @@ Function16be4: ; 16be4
 	call Function32f9
 
 .asm_16c6b
-	call Functiona57
+	call JoyTextDelay
 
 	ld a, [hJoyPressed]
 	and B_BUTTON
@@ -22364,7 +22366,7 @@ Function24259: ; 24259
 	callab Function8cf62
 
 .asm_24266
-	call Functiona57
+	call JoyTextDelay
 	call Function1bdd
 	and a
 	ret z
@@ -24765,7 +24767,7 @@ Function25105: ; 25105
 	call Function2513b
 .asm_25117
 	call UpdateTime
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_25132
@@ -25367,7 +25369,7 @@ ProfOaksPC: ; 0x265d3
 .shutdown
 	ld hl, OakPCText4
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	call ExitMenu
 	ret
 ; 0x265ee
@@ -25377,7 +25379,7 @@ ProfOaksPCBoot ; 0x265ee
 	call PrintText
 	call Rate
 	call PlaySFX ; sfx loaded by previous Rate function call
-	call Functiona36
+	call JoyWaitAorB
 	call WaitSFX
 	ret
 ; 0x26601
@@ -25389,7 +25391,7 @@ Function26601: ; 0x26601
 	call PlayMusic
 	pop de
 	call PlaySFX
-	call Functiona36
+	call JoyWaitAorB
 	call WaitSFX
 	ret
 ; 0x26616
@@ -25409,7 +25411,7 @@ Rate: ; 0x26616
 	call ClearOakRatingBuffers
 	ld hl, OakPCText3
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	ld a, [wd003]
 	ld hl, OakRatings
 	call FindOakRating
@@ -28742,7 +28744,7 @@ Function28ade: ; 28ade
 	ld a, $ed
 	ldcoord 9, 17
 .asm_28ae3
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	and a
 	jr z, .asm_28ae3
@@ -37593,7 +37595,7 @@ Function4876f: ; 4876f (12:476f)
 	ld a, [wd473]
 	push af
 .asm_487c6
-	call Functiona57
+	call JoyTextDelay
 	call Function4880e
 	jr nc, .asm_487c6
 	ld a, $1
@@ -37791,7 +37793,7 @@ Function488d3: ; 488d3 (12:48d3)
 
 asm_48922: ; 48922 (12:4922)
 	push bc
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyDown] ; $ff00+$a8
 	and a
 	jp z, Function4896e
@@ -40596,7 +40598,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call CloseSRAM
 	ld hl, UnknownText_0x4a35d
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 .asm_4a338
 	call ExitMenu
 .asm_4a33b
@@ -42407,59 +42409,59 @@ TileCollisionTable:: ; 4ce1f
 ; 11 talkable water
 ; 1f talkable wall
 
-	db $00, $00, $00, $00, $00, $00, $00, $0f
-	db $00, $00, $00, $00, $00, $00, $00, $0f
-	db $00, $00, $1f, $00, $00, $1f, $00, $00
-	db $00, $00, $1f, $00, $00, $1f, $00, $00
-	db $01, $01, $11, $00, $11, $01, $01, $0f
-	db $01, $01, $11, $00, $11, $01, $01, $0f
-	db $01, $01, $01, $01, $01, $01, $01, $01
-	db $01, $01, $01, $01, $01, $01, $01, $01
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE
+	db NULL + LANDTILE, NULL + LANDTILE, TALK + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, TALK + WATRTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, TALK + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, TALK + WATRTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + WALLTILE, NULL + WALLTILE, TALK + WALLTILE, NULL + LANDTILE, TALK + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WATRTILE
+	db NULL + WALLTILE, NULL + WALLTILE, TALK + WALLTILE, NULL + LANDTILE, TALK + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WATRTILE
+	db NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE
+	db NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE
 
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $0f, $00, $00, $00, $00, $00
-	db $00, $00, $0f, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
 
-	db $0f, $0f, $0f, $0f, $0f, $00, $00, $00
-	db $0f, $0f, $0f, $0f, $0f, $00, $00, $00
-	db $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
-	db $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	db NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE
+	db NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
 
-	db $01, $01, $01, $01, $01, $01, $01, $01
-	db $01, $01, $01, $01, $01, $01, $01, $01
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $0f
+	db NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE
+	db NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
+	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE
 ; 4cf1f
 
-Function4cf1f: ; 4cf1f
+EmptyAllSRAMBanks: ; 4cf1f
 	ld a, $0
-	call Function4cf34
+	call .EmptyBank
 	ld a, $1
-	call Function4cf34
+	call .EmptyBank
 	ld a, $2
-	call Function4cf34
+	call .EmptyBank
 	ld a, $3
-	call Function4cf34
+	call .EmptyBank
 	ret
 ; 4cf34
 
-Function4cf34: ; 4cf34
+.EmptyBank: ; 4cf34
 	call GetSRAMBank
-	ld hl, sScratch
-	ld bc, StackBottom - sScratch
+	ld hl, SRAM_Begin
+	ld bc, SRAM_End - SRAM_Begin
 	xor a
 	call ByteFill
 	call CloseSRAM
@@ -42471,6 +42473,8 @@ Function4cf45: ; 4cf45 (13:4f45)
 	ld a, [hCGB] ; $ff00+$e6
 	and a
 	jp z, WaitBGMap
+
+; The following is a modified version of Function3246.
 	ld a, [hBGMapMode] ; $ff00+$d4
 	push af
 	xor a
@@ -42479,24 +42483,26 @@ Function4cf45: ; 4cf45 (13:4f45)
 	push af
 	xor a
 	ld [$ffde], a
-.asm_4cf57
+.WaitLY
 	ld a, [rLY] ; $ff00+$44
 	cp $60
-	jr c, .asm_4cf57
+	jr c, .WaitLY
+
 	di
-	ld a, $1
+	ld a, 1 ; BANK(VBGMap2)
 	ld [rVBK], a ; $ff00+$4f
 	hlcoord 0, 0, AttrMap
 	call Function4cf80
-	ld a, $0
+	ld a, 0 ; BANK(VBGMap0)
 	ld [rVBK], a ; $ff00+$4f
 	hlcoord 0, 0
 	call Function4cf80
-.asm_4cf72
+.WaitLY2
 	ld a, [rLY] ; $ff00+$44
 	cp $60
-	jr c, .asm_4cf72
+	jr c, .WaitLY2
 	ei
+
 	pop af
 	ld [$ffde], a
 	pop af
@@ -42508,111 +42514,35 @@ Function4cf80: ; 4cf80 (13:4f80)
 	ld sp, hl
 	ld a, [hBGMapAddress + 1]
 	ld h, a
-	ld l, $0
-	ld a, $12
+	ld l, 0
+	ld a, 18
 	ld [$ffd3], a
-	ld b, $2
-	ld c, $41
-.asm_4cf91
+	ld b, 1 << 1
+	ld c, rSTAT % $100
+
+.loop
+rept 20 / 2
 	pop de
-.asm_4cf92
+.loop\@
 	ld a, [$ff00+c]
 	and b
-	jr nz, .asm_4cf92
+	jr nz, .loop\@
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	pop de
-.asm_4cf9b
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cf9b
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4cfa4
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cfa4
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4cfad
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cfad
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4cfb6
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cfb6
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4cfbf
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cfbf
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4cfc8
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cfc8
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4cfd1
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cfd1
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4cfda
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cfda
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4cfe3
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4cfe3
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	ld de, $c
+endr
+
+	ld de, 32 - 20
 	add hl, de
 	ld a, [$ffd3]
 	dec a
 	ld [$ffd3], a
-	jr nz, .asm_4cf91
+	jr nz, .loop
+
 	ld a, [hSPBuffer] ; $ff00+$d9
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
@@ -42627,15 +42557,15 @@ Function4cffe:: ; 4cffe
 	ld c, a
 	call CloseSRAM
 	ld a, b
-	cp $63
-	jr nz, .asm_4d01b
+	cp 99
+	jr nz, .ok
 	ld a, c
-	cp $7f
-	jr nz, .asm_4d01b
+	cp " "
+	jr nz, .ok
 	ld c, $1
 	ret
 
-.asm_4d01b
+.ok
 	ld c, $0
 	ret
 ; 4d01e
@@ -42690,6 +42620,8 @@ Function4d188: ; 4d188
 	ld a, [wc2ce]
 	cp $0
 	jp z, WaitBGMap
+
+; What follows is a modified version of Function3246.
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -42698,24 +42630,26 @@ Function4d188: ; 4d188
 	push af
 	xor a
 	ld [$ffde], a
-.asm_4d1a2
+.wait
 	ld a, [rLY]
 	cp $8f
-	jr c, .asm_4d1a2
+	jr c, .wait
+
 	di
-	ld a, $1
+	ld a, 1 ; BANK(VBGMap2)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
 	call Function4d1cb
-	ld a, $0
+	ld a, 0 ; BANK(VBGMap0)
 	ld [rVBK], a
 	hlcoord 0, 0
 	call Function4d1cb
-.asm_4d1bd
+.wait2
 	ld a, [rLY]
 	cp $8f
-	jr c, .asm_4d1bd
+	jr c, .wait2
 	ei
+
 	pop af
 	ld [$ffde], a
 	pop af
@@ -42728,111 +42662,35 @@ Function4d1cb: ; 4d1cb
 	ld sp, hl
 	ld a, [hBGMapAddress + 1]
 	ld h, a
-	ld l, $0
-	ld a, $12
+	ld l, 0
+	ld a, 18
 	ld [$ffd3], a
-	ld b, $2
-	ld c, $41
-.asm_4d1dc
+	ld b, 1 << 1 ; not in v/hblank
+	ld c, rSTAT % $100
+
+.loop
+rept 20 / 2
 	pop de
-.asm_4d1dd
+.loop\@
 	ld a, [$ff00+c]
 	and b
-	jr nz, .asm_4d1dd
+	jr nz, .loop\@
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	pop de
-.asm_4d1e6
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d1e6
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4d1ef
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d1ef
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4d1f8
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d1f8
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4d201
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d201
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4d20a
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d20a
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4d213
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d213
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4d21c
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d21c
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4d225
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d225
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_4d22e
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_4d22e
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	ld de, $000c
+endr
+
+	ld de, 32 - 20
 	add hl, de
 	ld a, [$ffd3]
 	dec a
 	ld [$ffd3], a
-	jr nz, .asm_4d1dc
+	jr nz, .loop
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
@@ -42889,19 +42747,19 @@ rept 2
 	inc c
 endr
 	ld a, $7
-.asm_4d36e
+.row
 	push bc
 	push hl
-.asm_4d370
+.col
 	ld [hli], a
 	dec c
-	jr nz, .asm_4d370
+	jr nz, .col
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .asm_4d36e
+	jr nz, .row
 	ret
 ; 4d37e
 
@@ -42916,36 +42774,36 @@ Function4d37e: ; 4d37e
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
-.asm_4d38d
+.loop
 	push hl
-	ld a, $79
+	ld a, "┌"
 	ld [hli], a
-	ld a, $7f
+	ld a, " "
 	call Function4d3ab
-	ld [hl], $7a
+	ld [hl], "─"
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, .asm_4d38d
-	ld a, $7b
+	jr nz, .loop
+	ld a, "┐"
 	ld [hli], a
-	ld a, $7c
+	ld a, "│"
 	call Function4d3ab
-	ld [hl], $7d
+	ld [hl], "└"
 	ret
 ; 4d3ab
 
 Function4d3ab: ; 4d3ab
 	ld d, c
-.asm_4d3ac
+.loop
 	ld [hli], a
 	dec d
-	jr nz, .asm_4d3ac
+	jr nz, .loop
 	ret
 ; 4d3b1
 
-Function4d3b1: ; 4d3b1
+_ResetClock: ; 4d3b1
 	callba Function8000
 	ld b, $8
 	call GetSGBLayout
@@ -42953,67 +42811,67 @@ Function4d3b1: ; 4d3b1
 	call Functione5f
 	ld de, MUSIC_MAIN_MENU
 	call PlayMusic
-	ld hl, UnknownText_0x4d408
+	ld hl, .text_askreset
 	call PrintText
-	ld hl, MenuDataHeader_0x4d40d
+	ld hl, .NoYes_MenuDataHeader
 	call CopyMenuDataHeader
 	call InterpretMenu2
 	ret c
 	ld a, [wcfa9]
 	cp $1
 	ret z
-	call Function4d41e
-	jr c, .asm_4d3f7
+	call ClockResetPassword
+	jr c, .wrongpassword
 	ld a, BANK(s0_ac60)
 	call GetSRAMBank
 	ld a, $80
 	ld [s0_ac60], a
 	call CloseSRAM
-	ld hl, UnknownText_0x4d3fe
+	ld hl, .text_okay
 	call PrintText
 	ret
 
-.asm_4d3f7
-	ld hl, UnknownText_0x4d403
+.wrongpassword
+	ld hl, .text_wrong
 	call PrintText
 	ret
 ; 4d3fe
 
-UnknownText_0x4d3fe: ; 0x4d3fe
+.text_okay: ; 0x4d3fe
 	; Password OK. Select CONTINUE & reset settings.
 	text_jump UnknownText_0x1c55db
 	db "@"
 ; 0x4d403
 
-UnknownText_0x4d403: ; 0x4d403
+.text_wrong: ; 0x4d403
 	; Wrong password!
 	text_jump UnknownText_0x1c560b
 	db "@"
 ; 0x4d408
 
-UnknownText_0x4d408: ; 0x4d408
+.text_askreset: ; 0x4d408
 	; Reset the clock?
 	text_jump UnknownText_0x1c561c
 	db "@"
 ; 0x4d40d
 
-MenuDataHeader_0x4d40d: ; 0x4d40d
+.NoYes_MenuDataHeader: ; 0x4d40d
 	db $00 ; flags
 	db 07, 14 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x4d415
+	dw .NoYes_MenuData2
 	db 1 ; default option
 ; 0x4d415
 
-MenuData2_0x4d415: ; 0x4d415
+.NoYes_MenuData2: ; 0x4d415
 	db $c0 ; flags
 	db 2 ; items
 	db "NO@"
 	db "YES@"
 ; 0x4d41e
 
-Function4d41e: ; 4d41e
-	call Function4d50f
+ClockResetPassword: ; 4d41e
+	call .CalculatePassword
 	push de
 	ld hl, StringBuffer2
 	ld bc, 5
@@ -43021,58 +42879,58 @@ Function4d41e: ; 4d41e
 	call ByteFill
 	ld a, $4
 	ld [StringBuffer2 + 5], a
-	ld hl, UnknownText_0x4d463
+	ld hl, .pleaseenterpasswordtext
 	call PrintText
-.asm_4d437
-	call Function4d468
-.asm_4d43a
-	call Functiona57
+.loop
+	call .updateIDdisplay
+.loop2
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	ld b, a
 	and A_BUTTON
-	jr nz, .asm_4d453
+	jr nz, .confirm
 	ld a, b
 	and D_PAD
-	jr z, .asm_4d43a
-	call Function4d490
+	jr z, .loop2
+	call .dpadinput
 	ld c, $3
 	call DelayFrames
-	jr .asm_4d437
+	jr .loop
 
-.asm_4d453
-	call Function4d4e0
+.confirm
+	call .ConvertDecIDToBytes
 	pop de
 	ld a, e
 	cp l
-	jr nz, .asm_4d461
+	jr nz, .nope
 	ld a, d
 	cp h
-	jr nz, .asm_4d461
+	jr nz, .nope
 	and a
 	ret
 
-.asm_4d461
+.nope
 	scf
 	ret
 ; 4d463
 
-UnknownText_0x4d463: ; 0x4d463
+.pleaseenterpasswordtext: ; 0x4d463
 	; Please enter the password.
 	text_jump UnknownText_0x1c562e
 	db "@"
 ; 0x4d468
 
-Function4d468: ; 4d468
+.updateIDdisplay: ; 4d468
 	hlcoord 14, 15
 	ld de, StringBuffer2
-	ld c, $5
-.asm_4d470
+	ld c, 5
+.loop3
 	ld a, [de]
-	add $f6
+	add "0"
 	ld [hli], a
 	inc de
 	dec c
-	jr nz, .asm_4d470
+	jr nz, .loop3
 	hlcoord 14, 16
 	ld bc, 5
 	ld a, " "
@@ -43086,22 +42944,22 @@ Function4d468: ; 4d468
 	ret
 ; 4d490
 
-Function4d490: ; 4d490
+.dpadinput: ; 4d490
 	ld a, b
-	and $20
-	jr nz, .asm_4d4a5
+	and D_LEFT
+	jr nz, .left
 	ld a, b
-	and $10
-	jr nz, .asm_4d4af
+	and D_RIGHT
+	jr nz, .right
 	ld a, b
-	and $40
-	jr nz, .asm_4d4ba
+	and D_UP
+	jr nz, .up
 	ld a, b
-	and $80
-	jr nz, .asm_4d4c8
+	and D_DOWN
+	jr nz, .down
 	ret
 
-.asm_4d4a5
+.left
 	ld a, [StringBuffer2 + 5]
 	and a
 	ret z
@@ -43109,7 +42967,7 @@ Function4d490: ; 4d490
 	ld [StringBuffer2 + 5], a
 	ret
 
-.asm_4d4af
+.right
 	ld a, [StringBuffer2 + 5]
 	cp $4
 	ret z
@@ -43117,34 +42975,34 @@ Function4d490: ; 4d490
 	ld [StringBuffer2 + 5], a
 	ret
 
-.asm_4d4ba
-	call Function4d4d5
+.up
+	call .getcurrentdigit
 	ld a, [hl]
-	cp $9
-	jr z, .asm_4d4c5
+	cp 9
+	jr z, .wraparound_up
 	inc a
 	ld [hl], a
 	ret
 
-.asm_4d4c5
+.wraparound_up
 	ld [hl], $0
 	ret
 
-.asm_4d4c8
-	call Function4d4d5
+.down
+	call .getcurrentdigit
 	ld a, [hl]
 	and a
-	jr z, .asm_4d4d2
+	jr z, .wraparound_down
 	dec a
 	ld [hl], a
 	ret
 
-.asm_4d4d2
-	ld [hl], $9
+.wraparound_down
+	ld [hl], 9
 	ret
 ; 4d4d5
 
-Function4d4d5: ; 4d4d5
+.getcurrentdigit: ; 4d4d5
 	ld a, [StringBuffer2 + 5]
 	ld e, a
 	ld d, $0
@@ -43153,19 +43011,19 @@ Function4d4d5: ; 4d4d5
 	ret
 ; 4d4e0
 
-Function4d4e0: ; 4d4e0
+.ConvertDecIDToBytes: ; 4d4e0
 	ld hl, 0
 	ld de, StringBuffer2 + 4
 	ld bc, 1
-	call Function4d501
+	call .ConvertToBytes
 	ld bc, 10
-	call Function4d501
+	call .ConvertToBytes
 	ld bc, 100
-	call Function4d501
+	call .ConvertToBytes
 	ld bc, 1000
-	call Function4d501
+	call .ConvertToBytes
 	ld bc, 10000
-Function4d501: ; 4d501
+.ConvertToBytes: ; 4d501
 	ld a, [de]
 	dec de
 	push hl
@@ -43178,25 +43036,24 @@ Function4d501: ; 4d501
 	ret
 ; 4d50f
 
-Function4d50f: ; 4d50f
+.CalculatePassword: ; 4d50f
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld de, $0000
-	ld hl, sPlayerData + PlayerID - wPlayerData
+	ld hl, sPlayerData + (PlayerID - wPlayerData)
 	ld c, $2
-	call Function4d533
-	ld hl, sPlayerData + PlayerName - wPlayerData
+	call .ComponentFromNumber
+	ld hl, sPlayerData + (PlayerName - wPlayerData)
 	ld c, $5
-	call Function4d53e
-	ld hl, sPlayerData + Money - wPlayerData
+	call .ComponentFromString
+	ld hl, sPlayerData + (Money - wPlayerData)
 	ld c, $3
-	call Function4d533
+	call .ComponentFromNumber
 	call CloseSRAM
 	ret
 ; 4d533
 
-Function4d533: ; 4d533
-.asm_4d533
+.ComponentFromNumber: ; 4d533
 	ld a, [hli]
 	add e
 	ld e, a
@@ -43204,12 +43061,11 @@ Function4d533: ; 4d533
 	adc d
 	ld d, a
 	dec c
-	jr nz, .asm_4d533
+	jr nz, .ComponentFromNumber
 	ret
 ; 4d53e
 
-Function4d53e: ; 4d53e
-.asm_4d53e
+.ComponentFromString: ; 4d53e
 	ld a, [hli]
 	cp "@"
 	ret z
@@ -43219,7 +43075,7 @@ Function4d53e: ; 4d53e
 	adc d
 	ld d, a
 	dec c
-	jr nz, .asm_4d53e
+	jr nz, .ComponentFromString
 	ret
 ; 4d54c
 
@@ -43240,7 +43096,7 @@ Function4d54c: ; 4d54c
 	ld a, [wcfa9]
 	cp $1
 	ret z
-	callba Function4cf1f
+	callba EmptyAllSRAMBanks
 	ret
 ; 4d580
 
@@ -45520,7 +45376,7 @@ Function4e779: ; 4e779
 .asm_4e779
 	call DelayFrame
 	push bc
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyDown]
 	pop bc
 	and B_BUTTON
@@ -50592,7 +50448,7 @@ Palette_81a34: ; 81a34
 ; 81a74
 
 Function81a74: ; 81a74
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	cp $4
 	jr nc, .asm_81a8b
@@ -52438,7 +52294,7 @@ Function843e6: ; 843e6 (21:43e6)
 
 Function843f0: ; 843f0
 .asm_843f0
-	call Functiona57
+	call JoyTextDelay
 	call Function846f6
 	jr c, .asm_8440f
 	ld a, [wcf63]
@@ -52656,7 +52512,7 @@ Function84560: ; 84560
 	ld a, $9
 	ld [wcf65], a
 .asm_84597
-	call Functiona57
+	call JoyTextDelay
 	call Function846f6
 	jr c, .asm_845c0
 	ld a, [wcf63]
@@ -53652,7 +53508,7 @@ Function86665: ; 86665
 	call Function86692
 	jr c, .asm_86690
 .asm_8666e
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyLast
 	ld a, [hl]
 	and B_BUTTON
@@ -56601,6 +56457,7 @@ endr
 	add hl, bc
 	ld a, [wc3b4]
 	ld [hli], a
+; read from the table
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -56611,6 +56468,7 @@ endr
 	call Function8d109
 	ld [hli], a
 	pop de
+
 	ld hl, $0004
 	add hl, bc
 	ld a, e
@@ -56908,6 +56766,8 @@ endr
 ; 8d189
 
 Function8d189: ; 8d189
+	; Get the [bc+10]th entry in the data table
+	; indexed at [bc+1] in Unknown_8d6e6
 	ld hl, $0001
 	add hl, bc
 	ld e, [hl]
@@ -56962,51 +56822,51 @@ endr
 ; 8d1c4
 
 Unknown_8d1c4: ; 8d1c4
-	db $01, $01, $00
-	db $07, $04, $00
-	db $08, $05, $05
-	db $0a, $06, $00
-	db $0b, $07, $06
-	db $0c, $08, $06
-	db $0d, $09, $07
-	db $0e, $0a, $07
-	db $10, $0b, $07
-	db $08, $0c, $05
-	db $11, $00, $00
-	db $12, $0d, $08
-	db $12, $0e, $08
-	db $12, $0f, $08
-	db $13, $10, $00
-	db $15, $00, $00
-	db $16, $11, $00
-	db $17, $12, $00
-	db $18, $12, $00
-	db $19, $13, $00
-	db $1a, $14, $00
-	db $1b, $00, $00
-	db $1d, $15, $00
-	db $1e, $00, $00
-	db $1d, $17, $00
-	db $1f, $00, $00
-	db $24, $19, $00
-	db $25, $00, $00
-	db $20, $13, $00
-	db $26, $1a, $00
-	db $2d, $00, $00
-	db $2e, $00, $00
-	db $2f, $00, $00
-	db $30, $00, $00
-	db $31, $00, $00
-	db $32, $1b, $00
-	db $33, $1c, $00
-	db $34, $00, $00
-	db $35, $1d, $00
-	db $37, $1e, $00
-	db $38, $1e, $00
-	db $39, $20, $00
-	db $3f, $21, $00
-	db $3e, $22, $00
-	db $40, $00, $00
+	db $01, $01, $00 ; 00
+	db $07, $04, $00 ; 01
+	db $08, $05, $05 ; 02
+	db $0a, $06, $00 ; 03
+	db $0b, $07, $06 ; 04
+	db $0c, $08, $06 ; 05
+	db $0d, $09, $07 ; 06
+	db $0e, $0a, $07 ; 07
+	db $10, $0b, $07 ; 08
+	db $08, $0c, $05 ; 09
+	db $11, $00, $00 ; 0a
+	db $12, $0d, $08 ; 0b
+	db $12, $0e, $08 ; 0c
+	db $12, $0f, $08 ; 0d
+	db $13, $10, $00 ; 0e
+	db $15, $00, $00 ; 0f
+	db $16, $11, $00 ; 10
+	db $17, $12, $00 ; 11
+	db $18, $12, $00 ; 12
+	db $19, $13, $00 ; 13
+	db $1a, $14, $00 ; 14
+	db $1b, $00, $00 ; 15
+	db $1d, $15, $00 ; 16
+	db $1e, $00, $00 ; 17
+	db $1d, $17, $00 ; 18
+	db $1f, $00, $00 ; 19
+	db $24, $19, $00 ; 1a
+	db $25, $00, $00 ; 1b
+	db $20, $13, $00 ; 1c
+	db $26, $1a, $00 ; 1d
+	db $2d, $00, $00 ; 1e
+	db $2e, $00, $00 ; 1f
+	db $2f, $00, $00 ; 20
+	db $30, $00, $00 ; 21
+	db $31, $00, $00 ; 22
+	db $32, $1b, $00 ; 23
+	db $33, $1c, $00 ; 24
+	db $34, $00, $00 ; 25
+	db $35, $1d, $00 ; 26
+	db $37, $1e, $00 ; 27
+	db $38, $1e, $00 ; 28
+	db $39, $20, $00 ; 29
+	db $3f, $21, $00 ; 2a
+	db $3e, $22, $00 ; 2b
+	db $40, $00, $00 ; 2c
 ; 8d24b
 
 
@@ -59253,19 +59113,16 @@ Unknown_8e6a5: ; 8e6a5
 ; 8e706
 
 
-Unknown_8e706: ; 8e706
-	dbbw $80, $01, Unknown_8e72a
-	dbbw $80, $01, Unknown_8e72a
-	dbbw $80, $01, Unknown_8e72a
-	dbbw $80, $01, Unknown_8e72a
-	dbbw $10, $37, Unknown_8e72a
-	dbbw $10, $11, Unknown_8e72a
-	dbbw $10, $39, Unknown_8e72a
-	dbbw $10, $24, Unknown_8e72a
-	dbbw $10, $21, Unknown_8e72a
-
-Unknown_8e72a:
-	; nothing to see here
+Unknown_8e706: ; Broken 2bpp pointers
+	dbbw $80, $01, $672a ; 128-tile 2bpp at 1:672a (inside Multiply)
+	dbbw $80, $01, $672a
+	dbbw $80, $01, $672a
+	dbbw $80, $01, $672a
+	dbbw $10, $37, $672a ; 16-tile 2bpp at 37:672a (within Tileset11GFX)
+	dbbw $10, $11, $672a ; 16-tile 2bpp at 11:672a (empty data)
+	dbbw $10, $39, $672a ; 16-tile 2bpp at 39:672a (empty data)
+	dbbw $10, $24, $672a ; 16-tile 2bpp at 24:672a (inside Function926f7)
+	dbbw $10, $21, $672a ; 16-tile 2bpp at 21:672a (inside Function8671c)
 
 Function8e72a: ; 8e72a
 	add $10
@@ -59281,7 +59138,7 @@ Function8e72c: ; 8e72c
 	and $1f
 	call Function8e741
 	ld a, h
-	xor $ff
+	xor $ff ; cpl
 	inc a
 	ret
 ; 8e741
@@ -60780,7 +60637,7 @@ Function90672: ; 90672 (24:4672)
 	ld c, $a
 	call DelayFrames
 .asm_9070d
-	call Functiona57
+	call JoyTextDelay
 	call Function90795
 	jr nc, .asm_9070d
 	ld a, [wc608 + 20]
@@ -60807,7 +60664,7 @@ Function90672: ; 90672 (24:4672)
 	ld c, 10
 	call DelayFrames
 .asm_90752
-	call Functiona57
+	call JoyTextDelay
 	call Function90810
 	jr nc, .asm_90752
 	ld a, [BattleMonNick + 5]
@@ -61151,7 +61008,7 @@ Special_SetDayOfWeek: ; 90913
 	ld c, $a
 	call DelayFrames
 .asm_9096a
-	call Functiona57
+	call JoyTextDelay
 	call Function90993
 	jr nc, .asm_9096a
 	call ExitMenu
@@ -61498,7 +61355,7 @@ Function90b8d: ; 90b8d (24:4b8d)
 
 .loop
 	call UpdateTime
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .done
@@ -62654,7 +62511,7 @@ Function91342: ; 91342 (24:5342)
 
 .asm_91398
 	push de
-	call Functiona57
+	call JoyTextDelay
 	pop de
 	ld hl, hJoyPressed
 	ld a, [hl]
@@ -62978,7 +62835,7 @@ Function9191c: ; 9191c
 
 Function919b0: ; 919b0
 .asm_919b0
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON
@@ -63081,7 +62938,7 @@ PlayRadio: ; 91a53
 	ld c, 100
 	call DelayFrames
 .loop
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	jr nz, .stop
@@ -63200,7 +63057,7 @@ _FlyMap: ; 91af3
 	call GetSGBLayout
 	call Function32f9
 .loop
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON
@@ -63626,7 +63483,7 @@ Function91d11: ; 91d11
 	xor a
 	call Function91e1e
 .asm_91d6e
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON
@@ -64132,7 +63989,7 @@ Function92311: ; 92311
 	call GetSGBLayout
 	call Function32f9
 .loop
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON
@@ -68894,7 +68751,7 @@ endr
 	xor a
 	ld [wcf66], a
 .loop
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	and A_BUTTON
 	jr nz, .next
@@ -68948,7 +68805,7 @@ endr
 	ld hl, .PlaceYourBetText
 	call Functione0489
 .betloop
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	and A_BUTTON
 	jr nz, .betdone
@@ -70472,7 +70329,7 @@ Functione1190: ; e1190
 	ld [wd0ec], a
 	call DelayFrame
 .asm_e1217
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_e123d
@@ -71793,7 +71650,7 @@ Functione21a1: ; e21a1 (38:61a1)
 	ld a, [wcf63]
 	cp $7
 	jr nc, .asm_e21c8
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoypadPressed ; $ffa3
 	ld a, [hl]
 	and A_BUTTON
@@ -71900,7 +71757,7 @@ Functione2391: ; e2391 (38:6391)
 	ld [wcb2e], a
 	call DelayFrame
 .asm_e23b4
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_e23c6
@@ -72162,7 +72019,7 @@ Functione2583: ; e2583 (38:6583)
 	ld [wcb2e], a
 	call DelayFrame
 .asm_e25a7
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_e25b9
@@ -72411,7 +72268,7 @@ Functione2759: ; e2759
 	ld [wcb2e], a
 	call DelayFrame
 .asm_e2781
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_e2793
@@ -74578,7 +74435,7 @@ _OptionsMenu: ; e41d0
 	call GetSGBLayout
 	call Function32f9
 .asm_e4217
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyPressed]
 	and START | B_BUTTON
 	jr nz, .ExitOptions
@@ -75154,7 +75011,7 @@ Functione4579: ; e4579
 	callba GBCOnlyScreen
 	call Functione45e8
 .asm_e45c0
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	and BUTTONS
 	jr nz, .asm_e45de
@@ -75502,7 +75359,7 @@ CrystalIntro: ; e48ac
 	push af
 	call Functione4901
 .loop: ; e48bc
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyLast]
 	and BUTTONS
 	jr nz, .ShutOffMusic
@@ -75596,7 +75453,7 @@ IntroScenes: ; e491e (39:491e)
 
 
 NextIntroScene: ; e4956 (39:4956)
-	ld hl, wcf63
+	ld hl, wIntroSceneIndex
 	inc [hl]
 	ret
 
@@ -75647,32 +75504,32 @@ IntroScene1: ; e495b (39:495b)
 	callba Function8cf53
 	call Functione549e
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
 
 IntroScene2: ; e49d6 (39:49d6)
 ; First Unown (A) fades in, pulses, then fades out.
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $80
-	jr nc, .asm_e49f9
+	jr nc, .endscene
 	cp $60
-	jr nz, .asm_e49f1
+	jr nz, .DontPlaySound
 	push af
 	ld de, $5858
 	call Functione51dc
 	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
-.asm_e49f1
+.DontPlaySound
 	ld [wcf65], a
 	xor a
 	call Functione5223
 	ret
-.asm_e49f9
+.endscene
 	call NextIntroScene
 	ret
 
@@ -75720,20 +75577,20 @@ IntroScene3: ; e49fd (39:49fd)
 	call Functione5516
 	call Functione549e
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	call NextIntroScene
 	ret
 
 IntroScene4: ; e4a69 (39:4a69)
 ; Scroll the outdoor panorama for a bit.
 	call Functione552f
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	cp $80
-	jr z, .asm_e4a76
+	jr z, .endscene
 	inc [hl]
 	ret
-.asm_e4a76
+.endscene
 	call NextIntroScene
 	ret
 
@@ -75796,39 +75653,39 @@ IntroScene6: ; e4af7 (39:4af7)
 	ld a, [hl]
 	inc [hl]
 	cp $80
-	jr nc, .asm_e4b3b
+	jr nc, .endscene
 	cp $60
-	jr z, .asm_e4b24
+	jr z, .SecondUnown
 	cp $40
-	jr nc, .asm_e4b32
+	jr nc, .StopUnown
 	cp $20
-	jr z, .asm_e4b0e
-	jr .asm_e4b1c
-.asm_e4b0e
+	jr z, .FirstUnown
+	jr .NoUnown
+.FirstUnown
 	push af
 	ld de, $3878
 	call Functione51dc
 	ld de, SFX_INTRO_UNOWN_2
 	call PlaySFX
 	pop af
-.asm_e4b1c
+.NoUnown
 	ld [wcf65], a
 	xor a
 	call Functione5223
 	ret
-.asm_e4b24
+.SecondUnown
 	push af
 	ld de, $7030
 	call Functione51dc
 	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
-.asm_e4b32
+.StopUnown
 	ld [wcf65], a
 	ld a, $1
 	call Functione5223
 	ret
-.asm_e4b3b
+.endscene
 	call NextIntroScene
 	ret
 
@@ -75888,14 +75745,14 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld [wc3c0], a
 	call Functione549e
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
 
 IntroScene8: ; e4bd3 (39:4bd3)
 ; Scroll the scene, then show Suicune running across the screen.
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $40
@@ -76032,7 +75889,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	callba Function8cf53
 	call Functione549e
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
@@ -76040,7 +75897,7 @@ IntroScene11: ; e4c86 (39:4c86)
 IntroScene12: ; e4cfa (39:4cfa)
 ; Even more Unown.
 	call Functione4d36
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $c0
@@ -76074,20 +75931,20 @@ IntroScene12: ; e4cfa (39:4cfa)
 	ret
 
 Functione4d36: ; e4d36 (39:4d36)
-	ld a, [wcf64]
+	ld a, [wIntroSceneFrameCounter]
 	ld c, a
-	ld hl, Unknown_e4d54
-.asm_e4d3d
+	ld hl, .UnownSounds
+.loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	ret z
 	cp c
-	jr z, .asm_e4d48
+	jr z, .playsound
 rept 2
 	inc hl
 endr
-	jr .asm_e4d3d
-.asm_e4d48
+	jr .loop
+.playsound
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -76098,7 +75955,7 @@ endr
 	ret
 ; e4d54 (39:4d54)
 
-Unknown_e4d54: ; e4d54
+.UnownSounds: ; e4d54
 	dbw $00, SFX_INTRO_UNOWN_3
 	dbw $20, SFX_INTRO_UNOWN_2
 	dbw $40, SFX_INTRO_UNOWN_1
@@ -76633,7 +76490,7 @@ IntroScene28: ; e5152 (39:5152)
 	ret
 
 .done
-	ld hl, wcf63
+	ld hl, wIntroSceneIndex
 	set 7, [hl]
 	ret
 
@@ -80056,16 +79913,16 @@ endr
 ; 1042b2
 
 Function1042b2:: ; 1042b2
-.asm_1042b2
+.loop
 	ld a, c
 	cp $10
-	jp c, Function1042d6
-	jp z, Function1042d6
+	jp c, .asm_1042d6
+	jp z, .asm_1042d6
 	push bc
 	push hl
 	push de
 	ld c, $10
-	call Function1042d6
+	call .asm_1042d6
 	pop de
 	ld hl, $0080
 	add hl, de
@@ -80078,10 +79935,10 @@ Function1042b2:: ; 1042b2
 	ld a, c
 	sub $10
 	ld c, a
-	jr .asm_1042b2
+	jr .loop
 ; 1042d6
 
-Function1042d6: ; 1042d6
+.asm_1042d6: ; 1042d6
 	ld a, [rSVBK]
 	push af
 	ld a, $6
