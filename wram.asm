@@ -1179,7 +1179,7 @@ MonType:: ; cf5f
 CurSpecies:: ; cf60
 	ds 1
 
-wcf61:: ds 2
+wNamedObjectTypeBuffer:: ds 2
 wIntroSceneIndex::
 wcf63:: ds 1
 wNrOfBeatenBattleTowerTrainers::
@@ -1594,7 +1594,8 @@ wd195:: ds 1
 wd196:: ds 1
 wd197:: ds 2
 wd199:: ds 1
-wPermission:: ds 3
+wPermission:: ds 1
+	ds 2
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d
@@ -1855,7 +1856,7 @@ CurDamage:: ; d256
 	ds 2
 wd25a:: ds 3
 wd25d:: ds 1
-wd25e:: ds 4
+wListMoves_MoveIndicesBuffer:: ds 4
 wd262:: ds 1
 wd263:: ds 1
 wd264:: ds 1

@@ -5587,7 +5587,7 @@ Function3e4bc: ; 3e4bc
 	call GetPartyParamLocation
 
 .asm_3e4e2
-	ld de, wd25e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
 	xor a
@@ -8589,7 +8589,7 @@ Function3f607: ; 3f607
 
 Function3f662: ; 3f662
 	ld hl, EnemyMonMoves
-	ld de, wd25e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld b, NUM_MOVES
 .loop
 	ld a, [de]

@@ -1959,7 +1959,7 @@ Function100c74: ; 100c74
 	ld c, 8
 	call TextBox
 	ld hl, BattleMonMoves
-	ld de, wd25e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, SCREEN_WIDTH * 2

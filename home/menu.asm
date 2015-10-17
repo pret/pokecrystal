@@ -131,9 +131,9 @@ YesNoBox:: ; 1dcf
 PlaceYesNoBox:: ; 1dd2
 	jr _YesNoBox
 
-Function1dd4:: ; 1dd4
+PlaceGenericTwoOptionBox:: ; 1dd4
 	call LoadMenuDataHeader
-	jr Function1dfe
+	jr InterpretTwoOptionMenu
 
 _YesNoBox:: ; 1dd9
 ; Return nc (yes) or c (no).
@@ -141,13 +141,15 @@ _YesNoBox:: ; 1dd9
 	ld hl, YesNoMenuDataHeader
 	call CopyMenuDataHeader
 	pop bc
+; This seems to be an overflow prevention, but
+; it was coded wrong.
 	ld a, b
-	cp $e
-	jr nz, .asm_1de9
-	ld a, $e
+	cp SCREEN_WIDTH - 6
+	jr nz, .okay ; should this be "jr nc"?
+	ld a, SCREEN_WIDTH - 6
 	ld b, a
 
-.asm_1de9
+.okay
 	ld a, b
 	ld [wcf83], a
 	add $5
@@ -158,7 +160,7 @@ _YesNoBox:: ; 1dd9
 	ld [wcf84], a
 	call Function1c00
 
-Function1dfe:: ; 1dfe
+InterpretTwoOptionMenu:: ; 1dfe
 	call InterpretMenu2
 	push af
 	ld c, $f

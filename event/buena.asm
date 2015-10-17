@@ -86,7 +86,7 @@ SpecialBuenaPrize: ; 8afd4
 	call Function8b0e2
 	jr z, .asm_8b05f
 	ld [wcf75], a
-	call GetBuenaPrize
+	call Buena_getprize
 	ld a, [hl]
 	ld [wd265], a
 	call GetItemName
@@ -95,7 +95,7 @@ SpecialBuenaPrize: ; 8afd4
 	call YesNoBox
 	jr c, .asm_8afeb
 	ld a, [wcf75]
-	call GetBuenaPrize
+	call Buena_getprize
 	inc hl
 	ld a, [hld]
 	ld c, a
@@ -205,7 +205,7 @@ Function8b09e: ; 8b09e
 	call GetMemTileCoord
 	ld bc, $0015
 	add hl, bc
-	ld de, String_8b0ca
+	ld de, .Points_string
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -219,7 +219,7 @@ Function8b09e: ; 8b09e
 	ret
 ; 8b0ca
 
-String_8b0ca:
+.Points_string:
 	db "Points@"
 ; 8b0d1
 
@@ -230,19 +230,19 @@ MenuDataHeader_0x8b0d1: ; 0x8b0d1
 ; 8b0d6
 
 Function8b0d6: ; 8b0d6
-	ld hl, MenuDataHeader_0x8b0dd
+	ld hl, .menudataheader
 	call LoadMenuDataHeader
 	ret
 ; 8b0dd
 
-MenuDataHeader_0x8b0dd: ; 0x8b0dd
+.menudataheader: ; 0x8b0dd
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 11, 17 ; end coords
 ; 8b0e2
 
 Function8b0e2: ; 8b0e2
-	ld hl, MenuDataHeader_0x8b113
+	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [MenuSelection]
 	ld [wcf88], a
@@ -268,45 +268,46 @@ Function8b0e2: ; 8b0e2
 	ret
 ; 8b113
 
-MenuDataHeader_0x8b113: ; 0x8b113
+.MenuDataHeader: ; 0x8b113
 	db $40 ; flags
 	db 01, 01 ; start coords
 	db 09, 16 ; end coords
-	dw MenuData2_0x8b11c
+	dw .MenuData2
 	db 1 ; default option
 ; 0x8b11b
 
 	db 0
 
-MenuData2_0x8b11c: ; 0x8b11c
+.MenuData2: ; 0x8b11c
 	db $10 ; flags
 	db 4 ; items
 	db $d, $1
-	dbw BANK(Unknown_8b129), Unknown_8b129
-	dbw BANK(BuenaPrizeItem), BuenaPrizeItem
-	dbw BANK(BuenaPrizePoints), BuenaPrizePoints
+	dba .indices
+	dba .prizeitem
+	dba .prizepoints
 ; 8b129
 
-Unknown_8b129: ; 8b129
+.indices: ; 8b129
 	db 9
-	db 1, 2, 3, 4, 5, 6, 7, 8, 9, $ff
+	db 1, 2, 3, 4, 5, 6, 7, 8, 9
+	db -1
 ; 8b134
 
-BuenaPrizeItem: ; 8b134
+.prizeitem: ; 8b134
 	ld a, [MenuSelection]
-	call GetBuenaPrize
+	call Buena_getprize
 	ld a, [hl]
 	push de
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	pop hl
 	call PlaceString
 	ret
 ; 8b147
 
-BuenaPrizePoints: ; 8b147
+.prizepoints: ; 8b147
 	ld a, [MenuSelection]
-	call GetBuenaPrize
+	call Buena_getprize
 	inc hl
 	ld a, [hl]
 	ld c, "0"
@@ -315,9 +316,9 @@ BuenaPrizePoints: ; 8b147
 	ret
 ; 8b154
 
-GetBuenaPrize: ; 8b154
+Buena_getprize: ; 8b154
 	dec a
-	ld hl, BuenaPrizes
+	ld hl, .prizes
 	ld b, 0
 	ld c, a
 rept 2
@@ -326,7 +327,7 @@ endr
 	ret
 ; 8b15e
 
-BuenaPrizes: ; 8b15e
+.prizes: ; 8b15e
 	db ULTRA_BALL,   2
 	db FULL_RESTORE, 2
 	db NUGGET,       3

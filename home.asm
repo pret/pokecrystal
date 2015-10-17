@@ -836,7 +836,7 @@ Function33c0:
 ; 33c3
 
 GetName:: ; 33c3
-; Return name CurSpecies from name list wcf61 in StringBuffer1.
+; Return name CurSpecies from name list wNamedObjectTypeBuffer in StringBuffer1.
 
 	ld a, [hROMBank]
 	push af
@@ -844,7 +844,7 @@ GetName:: ; 33c3
 	push bc
 	push de
 
-	ld a, [wcf61]
+	ld a, [wNamedObjectTypeBuffer]
 	cp PKMN_NAME
 	jr nz, .NotPokeName
 
@@ -858,7 +858,7 @@ GetName:: ; 33c3
 	jr .done
 
 .NotPokeName
-	ld a, [wcf61]
+	ld a, [wNamedObjectTypeBuffer]
 	dec a
 	ld e, a
 	ld d, 0
@@ -994,7 +994,7 @@ GetItemName:: ; 3468
 
 	ld [CurSpecies], a
 	ld a, ITEM_NAME
-	ld [wcf61], a
+	ld [wNamedObjectTypeBuffer], a
 	call GetName
 	jr .Copied
 .TM
@@ -1123,7 +1123,7 @@ GetMoveName:: ; 34f8
 	push hl
 
 	ld a, MOVE_NAME
-	ld [wcf61], a
+	ld [wNamedObjectTypeBuffer], a
 
 	ld a, [wNamedObjectIndexBuffer] ; move id
 	ld [CurSpecies], a
@@ -1736,7 +1736,7 @@ PrintLevel:: ; 382d
 ; Print TempMonLevel at hl
 
 	ld a, [TempMonLevel]
-	ld [hl], LV_CHAR
+	ld [hl], "<LV>"
 	inc hl
 
 ; How many digits?
@@ -1752,7 +1752,7 @@ PrintLevel:: ; 382d
 
 Function383d:: ; 383d
 ; Print :L and all 3 digits
-	ld [hl], LV_CHAR
+	ld [hl], "<LV>"
 	inc hl
 	ld c, 3
 ; 3842
@@ -1766,7 +1766,7 @@ Function3842:: ; 3842
 
 
 Function384d:: ; 384d
-	ld hl, wd25e
+	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
 	ld b, 0
 	add hl, bc

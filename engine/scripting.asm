@@ -2202,7 +2202,7 @@ Script_name: ; 0x97716
 ;     memory (SingleByteParam)
 
 	call GetScriptByte
-	ld [wcf61], a
+	ld [wNamedObjectTypeBuffer], a
 
 ContinueToGetName: ; 0x9771c
 	call GetScriptByte
@@ -2219,7 +2219,7 @@ Script_trainerclassname: ; 0x9772b
 ;     memory (SingleByteParam)
 
 	ld a, TRAINER_NAME
-	ld [wcf61], a
+	ld [wNamedObjectTypeBuffer], a
 	jr ContinueToGetName ; 0x97730 $ea
 ; 0x97732
 

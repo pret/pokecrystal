@@ -7,8 +7,10 @@ SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
 
 s0_a600:: ds $11a
 s0_a71a:: ds $11a
-s0_a834:: ds $1d7
-s0_aa0b:: ds $1d7
+s0_a834:: ds 1
+s0_a835:: ds 10 * (PartyMon1StatsEnd - PartyMon1Item)
+s0_aa0b:: ds 1
+s0_aa0c:: ds 10 * (PartyMon1StatsEnd - PartyMon1Item)
 
 sMysteryGiftItem:: ds 1
 s0_abe3:: ds 1

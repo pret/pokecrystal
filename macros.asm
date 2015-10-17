@@ -78,6 +78,13 @@ bigdw: MACRO ; big-endian word
 	dx 2, \1
 	ENDM
 
+dba: MACRO ; dbw bank, address
+	dbw BANK(\1), \1
+	ENDM
+
+dab: MACRO ; dwb address, bank
+	dwb \1, BANK(\1)
+	ENDM
 
 lb: MACRO ; r, hi, lo
 	ld \1, (\2) << 8 + (\3)

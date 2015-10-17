@@ -149,3 +149,10 @@ const_value = 1
 	const HAPPINESS_MASSAGE           ; 12
 	const HAPPINESS_GAINLEVELATHOME   ; 13
 	
+
+	const_def
+	const LINK_NULL
+	const LINK_TIMECAPSULE
+	const LINK_TRADECENTER
+	const LINK_COLOSSEUM
+	const LINK_MOBILE
