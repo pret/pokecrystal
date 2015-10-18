@@ -111,7 +111,7 @@ Function5b44: ; 5b44
 	call ClearTileMap
 	call Functione5f
 	call Functione51
-	call Function1fbf
+	call ResetTextRelatedRAM
 	ret
 ; 5b54
 
@@ -1461,7 +1461,7 @@ CopyrightString: ; 63fd
 
 GameInit:: ; 642e
 	callba Function14f1c
-	call Function1fbf
+	call ResetTextRelatedRAM
 	call WhiteBGMap
 	call ClearTileMap
 	ld a, $98
@@ -1481,6 +1481,7 @@ Function6454:: ; 6454
 	call DelayFrame
 	ld a, [hOAMUpdate]
 	push af
+
 	ld a, $1
 	ld [hOAMUpdate], a
 	ld a, [hBGMapMode]
@@ -1488,6 +1489,7 @@ Function6454:: ; 6454
 	xor a
 	ld [hBGMapMode], a
 	call Function6473
+
 	pop af
 	ld [hBGMapMode], a
 	pop af
@@ -1504,7 +1506,7 @@ Function6473: ; 6473
 	ld a, $90
 	ld [hWY], a
 	call Function2173
-	ld a, $9c
+	ld a, VBGMap1 / $100
 	call Function64b9
 	call Function2e20
 	callba Function49409
@@ -1514,8 +1516,8 @@ Function6473: ; 6473
 	xor a
 	ld [hBGMapMode], a
 	ld [hWY], a
-	callba Function64db
-	ld a, $98
+	callba Function64db ; no need to callba
+	ld a, VBGMap0 / $100
 	call Function64b9
 	xor a
 	ld [wd152], a
@@ -1540,7 +1542,9 @@ Function64bf:: ; 64bf
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
+
 	call Function64cd
+
 	pop af
 	ld [hOAMUpdate], a
 	ret
@@ -12419,7 +12423,7 @@ UnknownText_0x125c8: ; 0x125c8
 
 StartMenu:: ; 125cd
 
-	call Function1fbf
+	call ResetTextRelatedRAM
 
 	ld de, SFX_MENU
 	call PlaySFX
@@ -14393,7 +14397,7 @@ SelectMenu:: ; 13327
 	jp UseRegisteredItem
 
 .NotRegistered
-	call Function2e08
+	call LoadFont
 	ld b, BANK(ItemMayBeRegisteredText)
 	ld hl, ItemMayBeRegisteredText
 	call MapTextbox
@@ -14527,7 +14531,7 @@ UseRegisteredItem: ; 133c3
 ; 133df
 
 .NoFunction ; 133df
-	call Function2e08
+	call LoadFont
 	call CantUseItem
 	call Function2dcf
 	and a
@@ -14535,7 +14539,7 @@ UseRegisteredItem: ; 133c3
 ; 133ea
 
 .Current ; 133ea
-	call Function2e08
+	call LoadFont
 	call DoItemEffect
 	call Function2dcf
 	and a
@@ -32782,7 +32786,7 @@ Function2c10d: ; 2c10d
 	ld de, OTPartyCount
 	call Function2c059
 	ld hl, wcfc4
-	ld a, $50
+	ld a, "@"
 	ld [hli], a
 	ld [hl], $68
 	ld hl, Sprites + $18
@@ -32792,7 +32796,7 @@ Function2c10d: ; 2c10d
 Function2c143: ; 2c143
 	ld de, Buffer1
 	ld c, $6
-.asm_2c148
+.loop
 	ld a, [wcfc5]
 	ld [hli], a
 	ld a, [wcfc4]
@@ -32808,7 +32812,7 @@ Function2c143: ; 2c143
 	ld [wcfc4], a
 	inc de
 	dec c
-	jr nz, .asm_2c148
+	jr nz, .loop
 	ret
 ; 2c165
 
@@ -32828,20 +32832,20 @@ Function2c1b2: ; 2c1b2
 	call WhiteBGMap
 	call Functione5f
 	hlcoord 2, 3
-	ld b, $9
-	ld c, $e
+	ld b, 9
+	ld c, 14
 	call TextBox
 	hlcoord 4, 5
 	ld de, PlayerName
 	call PlaceString
 	hlcoord 4, 10
-	ld de, wd26b
+	ld de, OTPlayerName
 	call PlaceString
 	hlcoord 9, 8
 	ld a, $69
 	ld [hli], a
 	ld [hl], $6a
-	callba Function2c10d
+	callba Function2c10d ; no need to callba
 	ld b, $8
 	call GetSGBLayout
 	call Function32f9
@@ -34113,9 +34117,12 @@ ConvertBerriesToBerryJuice: ; 2ede6
 ; 2ee18
 
 Function2ee18: ; 2ee18
+; If we're not in a communications room,
+; we don't need to be here.
 	ld a, [InLinkBattle]
 	and a
 	ret z
+
 	callba Function2c1b2
 	ld c, 150
 	call DelayFrames
@@ -34132,20 +34139,21 @@ Function2ee2f: ; 2ee2f
 	ld b, 6
 	ld hl, PartyMon1HP
 	ld de, PartyMon2 - PartyMon1 - 1
-.asm_2ee3d
+
+.loop
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_2ee45
+	jr nz, .okay
 	add hl, de
 	dec b
-	jr nz, .asm_2ee3d
+	jr nz, .loop
 
-.asm_2ee45
+.okay
 	ld de, PartyMon1Level - PartyMon1HP
 	add hl, de
 	ld a, [hl]
 	ld [BattleMonLevel], a
-	predef Function8c20f
+	predef Predef_StartBattle
 	callba Function3ed9f
 	ld a, 1
 	ld [hBGMapMode], a
@@ -34305,7 +34313,7 @@ endr
 
 	callab ResetEnemyStatLevels
 
-	call Function1fbf
+	call ResetTextRelatedRAM
 
 	ld hl, hBGMapAddress
 	xor a
@@ -40135,7 +40143,7 @@ Function49ed0: ; 49ed0
 	call ClearTileMap
 	call Functione5f
 	call Functione51
-	call Function1fbf
+	call ResetTextRelatedRAM
 	ret
 ; 49ee0
 
@@ -54554,7 +54562,7 @@ endr
 ; 8c20f
 
 
-Function8c20f: ; 8c20f
+Predef_StartBattle: ; 8c20f
 	call Function8c26d
 	ld a, [rBGP]
 	ld [wcfc7], a
@@ -54581,13 +54589,16 @@ Function8c20f: ; 8c20f
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld hl, Unkn1Pals
 	ld bc, $0040
 	xor a
 	call ByteFill
+
 	pop af
 	ld [rSVBK], a
-	ld a, $ff
+
+	ld a, %11111111
 	ld [wcfc7], a
 	call DmgToCgbBGPals
 	call DelayFrame
@@ -54596,6 +54607,7 @@ Function8c20f: ; 8c20f
 	ld [hLCDStatCustom + 1], a
 	ld [hLCDStatCustom + 2], a
 	ld [hSCY], a
+
 	ld a, $1
 	ld [rSVBK], a
 	pop af
@@ -54619,7 +54631,7 @@ Function8c26d: ; 8c26d
 	call Function8c2aa
 
 .resume
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ld [hWY], a
 	call DelayFrame
 	xor a
@@ -54630,7 +54642,7 @@ rept 2
 	ld [hli], a
 endr
 	ld [hl], a
-	call Function8c6d8
+	call WipeLYOverrides
 	ret
 ; 8c2a0
 
@@ -54647,15 +54659,18 @@ Function8c2aa: ; 8c2aa
 	ld b, BANK(GFX_8c2f4)
 	ld c, 2
 	call Request2bpp
+
 	ld a, [rVBK]
 	push af
 	ld a, $1
 	ld [rVBK], a
+
 	ld de, GFX_8c2f4
-	ld hl, VTiles1 tile $7e
+	ld hl, VTiles4 tile $7e
 	ld b, BANK(GFX_8c2f4)
 	ld c, 2
 	call Request2bpp
+
 	pop af
 	ld [rVBK], a
 	ret
@@ -54669,6 +54684,7 @@ Function8c2cf: ; 8c2cf
 	push hl
 	ld hl, w6_d000
 	ld bc, $28 * $10
+
 .loop
 	ld [hl], -1
 	inc hl
@@ -54676,6 +54692,7 @@ Function8c2cf: ; 8c2cf
 	ld a, c
 	or b
 	jr nz, .loop
+
 	pop hl
 	ld de, w6_d000
 	ld b, BANK(Function8c2cf) ; BANK(@)
@@ -54705,7 +54722,7 @@ endr
 ; 8c323
 
 .jumptable: ; 8c323 (23:4323)
-	dw .DetermineWhichAnimation ; 00
+	dw StartTrainerBattle_DetermineWhichAnimation ; 00
 
 	; Animation 1: cave
 	dw StartTrainerBattle_LoadPokeBallGraphics ; 01
@@ -54751,7 +54768,7 @@ endr
 	dw StartTrainerBattle_Finish ; 20
 
 
-.DetermineWhichAnimation: ; 8c365 (23:4365)
+StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 ; The screen flashes a different number of
 ; times depending on the level of your lead
 ; Pokemon relative to the opponent's.
@@ -55272,27 +55289,27 @@ PokeBallTransition:
 	db %00001111, %11110000
 	db %00000011, %11000000
 
-Function8c6d8: ; 8c6d8
+WipeLYOverrides: ; 8c6d8
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, LYOverrides
-	call Function8c6ef
+	call .wipe
 	ld hl, LYOverridesBackup
-	call Function8c6ef
+	call .wipe
 	pop af
 	ld [rSVBK], a
 	ret
 ; 8c6ef
 
-Function8c6ef: ; 8c6ef
+.wipe: ; 8c6ef
 	xor a
-	ld c, $90
-.asm_8c6f2
+	ld c, SCREEN_HEIGHT_PX
+.loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_8c6f2
+	jr nz, .loop
 	ret
 ; 8c6f7
 
@@ -55341,7 +55358,7 @@ endr
 	sine_wave $100
 ; 8c768
 
-macro_8c792: macro
+zoombox: macro
 ; width, height, start y, start x
 	db \1, \2
 	dwcoord \3, \4
@@ -55379,20 +55396,20 @@ StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 ; 8c792 (23:4792)
 
 .boxes: ; 8c792
-	macro_8c792  4,  2,  8, 8
-	macro_8c792  6,  4,  7, 7
-	macro_8c792  8,  6,  6, 6
-	macro_8c792 10,  8,  5, 5
-	macro_8c792 12, 10,  4, 4
-	macro_8c792 14, 12,  3, 3
-	macro_8c792 16, 14,  2, 2
-	macro_8c792 18, 16,  1, 1
-	macro_8c792 20, 18,  0, 0
+	zoombox  4,  2,  8, 8
+	zoombox  6,  4,  7, 7
+	zoombox  8,  6,  6, 6
+	zoombox 10,  8,  5, 5
+	zoombox 12, 10,  4, 4
+	zoombox 14, 12,  3, 3
+	zoombox 16, 14,  2, 2
+	zoombox 18, 16,  1, 1
+	zoombox 20, 18,  0, 0
 	db -1
 ; 8c7b7
 
 .Copy: ; 8c7b7 (23:47b7)
-	ld a, -1
+	ld a, $ff
 .row
 	push bc
 	push hl

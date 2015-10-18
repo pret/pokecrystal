@@ -3011,7 +3011,7 @@ Script_reloadandreturn: ; 0x97b16
 Script_loadfont: ; 0x97b1c
 ; script command 0x47
 
-	call Function2e08
+	call LoadFont
 	ret
 ; 0x97b20
 

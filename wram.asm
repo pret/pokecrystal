@@ -1872,14 +1872,13 @@ TimeOfDay:: ; d269
 	ds 1
 
 	ds 1
+SECTION "Enemy Party", WRAMX, BANK [1]
+OTPlayerName::
 wd26b:: ds 1
 wd26c:: ds 1
 wd26d:: ds 4
 wd271:: ds 5
 wd276:: ds 10
-
-
-SECTION "Enemy Party", WRAMX, BANK [1]
 
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
@@ -2741,3 +2740,7 @@ w6_d400:: ds $200
 w6_d600:: ds $600
 
 INCLUDE "sram.asm"
+
+SECTION "WRAM 7", WRAMX, BANK [7]
+w7_d000:: ds $1000 - 1
+w7_dfff:: ds 1

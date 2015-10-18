@@ -5268,7 +5268,7 @@ Function3e234: ; 3e234
 	call Function3df2c
 	call WaitBGMap
 	call Function309d
-	call Function1fbf
+	call ResetTextRelatedRAM
 	call Function3ee27
 	and a
 	ret
@@ -5279,7 +5279,7 @@ Function3e234: ; 3e234
 	ld a, [wd0ee]
 	and $c0
 	ld [wd0ee], a
-	call Function1fbf
+	call ResetTextRelatedRAM
 	call Function32f9
 	scf
 	ret

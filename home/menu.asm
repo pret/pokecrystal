@@ -486,21 +486,23 @@ endr
 	ret
 ; 1fbf
 
-Function1fbf:: ; 1fbf
+ResetTextRelatedRAM:: ; 1fbf
 	ld hl, wcf71
-	call Function1ff0
+	call .bytefill
 	ld hl, wcf81
-	call Function1ff0
+	call .bytefill
 	ld hl, wcf91
-	call Function1ff0
+	call .bytefill
 	ld hl, wcfa1
-	call Function1ff0
+	call .bytefill
+
 	ld a, [rSVBK]
 	push af
 	ld a, $7
 	ld [rSVBK], a
+
 	xor a
-	ld hl, $dfff
+	ld hl, w7_dfff
 rept 2
 	ld [hld], a
 endr
@@ -508,12 +510,13 @@ endr
 	ld [wcf71], a
 	ld a, h
 	ld [wcf72], a
+
 	pop af
 	ld [rSVBK], a
 	ret
 ; 1ff0
 
-Function1ff0:: ; 1ff0
+.bytefill: ; 1ff0
 	ld bc, $0010
 	xor a
 	call ByteFill
