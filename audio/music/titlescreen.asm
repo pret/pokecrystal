@@ -7,18 +7,16 @@ Music_TitleScreen: ; eb808
 
 Music_TitleScreen_Ch1: ; eb814
 	tempo 134
-	volume_red 7, 7
-	dutycycle $3
-	tone $0002
-	vibrato_red $10, 1, 2
+	volume $7, $7
+	setwaveduty $3
+	setpitchoffset $0002
+	vibrato $10, $1, $2
 	stereopanning $f0
-	notetype $c, $a7
-
-	intensity_own $a, 0
+	notetype $c, $a, $0, $7
+	volenvelope $a, $0, $0
 	octave 3
 	note __, 4
-
-	intensity_own $a, 7
+	volenvelope $a, $0, $7
 	octave 2
 	note G_, 1
 	note __, 2
@@ -63,14 +61,14 @@ Music_TitleScreen_Ch1: ; eb814
 	note F_, 6
 	note C_, 4
 	note D_, 6
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D#, 1
 	note E_, 1
 	note F_, 6
 	note E_, 1
 	note D#, 1
 	note D_, 8
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	note C_, 4
 	octave 2
 	note B_, 4
@@ -90,21 +88,21 @@ Music_TitleScreen_Ch1: ; eb814
 	note E_, 4
 	note E_, 4
 	note C_, 4
-	notetype $8, $a0
+	notetype $8, $a, $0, $0
 	octave 2
 	note B_, 6
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	note B_, 6
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	octave 3
 	note F_, 4
 	note E_, 4
 	note C_, 4
-	notetype $8, $a0
+	notetype $8, $a, $0, $0
 	note D_, 6
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	note D_, 6
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	note __, 3
 	octave 2
 	note B_, 3
@@ -123,14 +121,14 @@ Music_TitleScreen_Ch1: ; eb814
 	note F_, 9
 	note C_, 6
 	note D_, 9
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note D#, 1
 	note E_, 1
 	note F_, 6
 	note E_, 1
 	note D#, 1
 	note D_, 8
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	note C_, 4
 	octave 2
 	note B_, 4
@@ -141,7 +139,7 @@ Music_TitleScreen_Ch1: ; eb814
 	note B_, 3
 	octave 3
 	note D_, 9
-	notetype $8, $b7
+	notetype $8, $b, $0, $7
 	note G_, 3
 	note A_, 4
 	note G_, 4
@@ -153,29 +151,29 @@ Music_TitleScreen_Ch1: ; eb814
 	note G_, 3
 	note D_, 6
 	note G_, 3
-	notetype $8, $54
+	notetype $8, $5, $0, $4
 	octave 2
 	note G_, 3
 	note B_, 3
-	notetype $8, $94
+	notetype $8, $9, $0, $4
 	octave 3
 	note D_, 3
 	note G_, 3
 	tempo 136
-	notetype $8, $b4
+	notetype $8, $b, $0, $4
 	note F_, 3
 	note A_, 3
-	notetype $8, $d4
+	notetype $8, $d, $0, $4
 	octave 4
 	note C_, 3
 	note F_, 3
 	tempo 138
-	notetype $8, $b4
+	notetype $8, $b, $0, $4
 	note D_, 9
 	note C_, 9
 	octave 3
 	note A#, 6
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note F_, 1
 	note E_, 1
 	note D_, 1
@@ -187,7 +185,7 @@ Music_TitleScreen_Ch1: ; eb814
 	note E_, 6
 	octave 3
 	note G_, 2
-	notetype $8, $b7
+	notetype $8, $b, $0, $7
 	note A_, 4
 	note G_, 4
 	note F_, 4
@@ -212,18 +210,18 @@ Music_TitleScreen_Ch1: ; eb814
 	note E_, 4
 	note E_, 4
 	note C_, 4
-	notetype $c, $a0
+	notetype $c, $a, $0, $0
 	note D_, 6
-	notetype $c, $a7
+	notetype $c, $a, $0, $7
 	note D_, 10
-	intensity $a0
+	volenvelope $a, $0, $0
 	note C_, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	note C_, 8
-	intensity $a0
+	volenvelope $a, $0, $0
 	octave 2
 	note B_, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	note B_, 8
 	octave 3
 	note C_, 8
@@ -242,11 +240,11 @@ Music_TitleScreen_Ch1: ; eb814
 	note F#, 1
 	note F_, 8
 	note E_, 8
-	intensity $a0
+	volenvelope $a, $0, $0
 	note D_, 16
-	intensity $a7
+	volenvelope $a, $0, $7
 	note D_, 16
-	intensity $a3
+	volenvelope $a, $0, $3
 	octave 2
 	note G_, 1
 	note __, 3
@@ -260,14 +258,14 @@ Music_TitleScreen_Ch1: ; eb814
 	note __, 3
 	note G_, 1
 	note __, 3
-	notetype $8, $b2
+	notetype $8, $b, $0, $2
 	note A_, 2
 	note A_, 2
 	note A_, 2
 	note A_, 2
 	note A_, 2
 	note F#, 2
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note G_, 1
 	note __, 3
 	octave 1
@@ -277,7 +275,7 @@ Music_TitleScreen_Ch1: ; eb814
 ; eb96d
 
 Music_TitleScreen_branch_eb96d: ; eb96d
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	note D_, 1
 Music_TitleScreen_branch_eb971: ; eb971
 	note __, 1
@@ -292,15 +290,15 @@ Music_TitleScreen_branch_eb971: ; eb971
 	note D_, 1
 	octave 1
 	note A_, 1
-	notetype $8, $b7
+	notetype $8, $b, $0, $7
 	endchannel
 ; eb984
 
 Music_TitleScreen_Ch2: ; eb984
-	dutycycle $3
-	vibrato $14, $12
-	notetype $c, $c7
-	intensity $a4
+	setwaveduty $3
+	vibrato $14, $1, $2
+	notetype $c, $c, $0, $7
+	volenvelope $a, $0, $4
 	octave 1
 	note G_, 1
 	octave 2
@@ -308,18 +306,18 @@ Music_TitleScreen_Ch2: ; eb984
 	note G_, 1
 	octave 3
 	note C_, 1
-	intensity $c2
+	volenvelope $c, $0, $2
 	octave 3
 	note B_, 1
 	note __, 2
 	note A_, 1
-	intensity $b0
+	volenvelope $b, $0, $0
 	note G_, 6
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G_, 6
 	note __, 16
 	note __, 16
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 4
 	note C_, 1
 	note __, 2
@@ -334,25 +332,25 @@ Music_TitleScreen_Ch2: ; eb984
 	octave 4
 	note D_, 8
 	stereopanning $f0
-	intensity $97
+	volenvelope $9, $0, $7
 	octave 2
 	note A_, 4
 	note F_, 4
 	stereopanning $ff
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 4
 	note F_, 6
 	note E_, 1
 	note D#, 1
 	note D_, 8
 	stereopanning $f0
-	intensity $97
+	volenvelope $9, $0, $7
 	octave 2
 	note A_, 6
 	octave 3
 	note C_, 2
 	stereopanning $f
-	intensity $a3
+	volenvelope $a, $0, $3
 	octave 4
 	note D_, 4
 	note D_, 2
@@ -361,20 +359,20 @@ Music_TitleScreen_Ch2: ; eb984
 	octave 3
 	note B_, 4
 	stereopanning $ff
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 3
 	note G_, 6
 	note B_, 2
 	octave 4
 	note D_, 8
 	stereopanning $f0
-	intensity $97
+	volenvelope $9, $0, $7
 	octave 2
 	note A_, 2
 	note F_, 4
 	note A_, 2
 	stereopanning $ff
-	notetype $8, $c7
+	notetype $8, $c, $0, $7
 	octave 4
 	note C_, 4
 	octave 3
@@ -383,47 +381,47 @@ Music_TitleScreen_Ch2: ; eb984
 	note C_, 4
 	note D_, 12
 	stereopanning $f0
-	notetype $8, $b7
+	notetype $8, $b, $0, $7
 	octave 2
 	note A_, 9
 	stereopanning $f
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note G_, 1
 	note A_, 1
 	note B_, 6
 	note E_, 1
 	note F#, 1
 	note G_, 4
-	notetype $c, $4b
+	notetype $c, $4, $1, $3
 	note A_, 4
 	stereopanning $ff
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 3
 	note G_, 6
 	note B_, 2
 	octave 4
 	note D_, 8
 	stereopanning $f0
-	intensity $97
+	volenvelope $9, $0, $7
 	octave 2
 	note A_, 2
 	note F_, 6
 	stereopanning $ff
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 4
 	note F_, 6
 	note E_, 1
 	note D#, 1
 	note D_, 8
 	stereopanning $f0
-	intensity $97
+	volenvelope $9, $0, $7
 	octave 3
 	note C_, 2
 	octave 2
 	note A_, 6
 	note B_, 6
 	note G_, 2
-	notetype $8, $c7
+	notetype $8, $c, $0, $7
 	note F_, 4
 	note G_, 4
 	note F_, 4
@@ -434,55 +432,55 @@ Music_TitleScreen_Ch2: ; eb984
 	octave 4
 	note D_, 12
 	stereopanning $f0
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	octave 3
 	note D_, 4
 	note C_, 4
 	note D_, 4
 	stereopanning $ff
-	notetype $8, $c7
+	notetype $8, $c, $0, $7
 	octave 4
 	note F_, 4
 	note E_, 4
 	note F_, 4
 	note G_, 9
 	note A#, 3
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	note G_, 8
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note G_, 8
-	intensity $c6
+	volenvelope $c, $0, $6
 	note A_, 4
-	intensity $5d
+	volenvelope $5, $1, $5
 	note A_, 4
-	intensity $c7
+	volenvelope $c, $0, $7
 	note A#, 6
-	intensity $c3
+	volenvelope $c, $0, $3
 	note F_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note F_, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	octave 3
 	note A#, 8
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 4
 	note A#, 4
 	note B_, 4
 	octave 5
 	note C_, 6
-	intensity $c3
+	volenvelope $c, $0, $3
 	octave 4
 	note G_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note G_, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	octave 3
 	note E_, 8
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 5
 	note C_, 4
 	note C#, 4
-	tone $0001
+	setpitchoffset $0001
 	stereopanning $f
 	callchannel Music_TitleScreen_branch_ebae7
 	note C#, 4
@@ -492,13 +490,13 @@ Music_TitleScreen_Ch2: ; eb984
 	octave 4
 	note A_, 4
 	stereopanning $ff
-	tone $0000
-	notetype $c, $b0
+	setpitchoffset $0000
+	notetype $c, $b, $0, $0
 	octave 3
 	note B_, 6
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note B_, 10
-	intensity $c7
+	volenvelope $c, $0, $7
 	note A_, 8
 	note F_, 6
 	note E_, 1
@@ -507,11 +505,11 @@ Music_TitleScreen_Ch2: ; eb984
 	note G_, 8
 	note F_, 8
 	note A_, 8
-	intensity $b0
+	volenvelope $b, $0, $0
 	note G_, 8
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G_, 8
-	intensity $c7
+	volenvelope $c, $0, $7
 	note F_, 8
 	octave 4
 	note F_, 6
@@ -525,11 +523,11 @@ Music_TitleScreen_Ch2: ; eb984
 	note A_, 6
 	note F_, 1
 	note A_, 1
-	intensity $b0
+	volenvelope $b, $0, $0
 	note G_, 16
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G_, 16
-	intensity $c2
+	volenvelope $c, $0, $2
 	octave 4
 	note G_, 1
 	note __, 3
@@ -541,9 +539,9 @@ Music_TitleScreen_Ch2: ; eb984
 	note __, 3
 	note G_, 1
 	note __, 3
-	intensity $90
+	volenvelope $9, $0, $0
 	note G_, 4
-	notetype $8, $c2
+	notetype $8, $c, $0, $2
 	octave 3
 	note F_, 2
 	note F_, 2
@@ -551,7 +549,7 @@ Music_TitleScreen_Ch2: ; eb984
 	note F_, 2
 	note F_, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note G_, 1
 	note __, 3
 	octave 2
@@ -561,7 +559,7 @@ Music_TitleScreen_Ch2: ; eb984
 ; ebae7
 
 Music_TitleScreen_branch_ebae7: ; ebae7
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	note D_, 1
 Music_TitleScreen_branch_ebaeb: ; ebaeb
 	octave 3
@@ -576,7 +574,7 @@ Music_TitleScreen_branch_ebaeb: ; ebaeb
 	octave 4
 	note D_, 1
 	note A_, 1
-	notetype $8, $b7
+	notetype $8, $b, $0, $7
 	octave 5
 	note C_, 4
 	note C_, 4
@@ -585,9 +583,9 @@ Music_TitleScreen_branch_ebaeb: ; ebaeb
 
 Music_TitleScreen_Ch3: ; ebb01
 	stereopanning $f
-	vibrato $10, $14
-	tone $0001
-	notetype $c, $16
+	vibrato $10, $1, $4
+	setpitchoffset $0001
+	notetype $c, $1, $0, $6
 	octave 3
 	octave 3
 	note __, 4
@@ -776,8 +774,8 @@ Music_TitleScreen_Ch3: ; ebb01
 	note D_, 1
 	note __, 1
 	stereopanning $ff
-	notetype $c, $16
-	tone $0000
+	notetype $c, $1, $0, $6
+	setpitchoffset $0000
 	octave 4
 	note A_, 2
 	octave 5
@@ -789,12 +787,12 @@ Music_TitleScreen_Ch3: ; ebb01
 	note __, 2
 	note E_, 1
 	note F#, 4
-	notetype $8, $16
+	notetype $8, $1, $0, $6
 	octave 3
 	note C_, 4
 	note C_, 4
 	note C#, 4
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	note D_, 1
 	note __, 1
 	octave 4
@@ -808,15 +806,15 @@ Music_TitleScreen_Ch3: ; ebb01
 	note __, 2
 	note A_, 1
 	note A_, 4
-	notetype $8, $16
+	notetype $8, $1, $0, $6
 	octave 3
 	note C_, 4
 	note C_, 4
 	note C#, 4
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	note D_, 1
 	note __, 1
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	octave 4
 	note A_, 2
 	octave 5
@@ -827,15 +825,15 @@ Music_TitleScreen_Ch3: ; ebb01
 	note F#, 1
 	note E_, 1
 	note D_, 6
-	tone $0001
-	notetype $8, $16
+	setpitchoffset $0001
+	notetype $8, $1, $0, $6
 	octave 3
 	note C_, 4
 	note C_, 4
 	note E_, 2
 	note F#, 2
 	stereopanning $f
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	note G_, 16
 	note F_, 16
 	note G_, 8
@@ -884,14 +882,14 @@ Music_TitleScreen_Ch3: ; ebb01
 	note __, 3
 	note G_, 1
 	note __, 3
-	notetype $8, $16
+	notetype $8, $1, $0, $6
 	note F_, 2
 	note F_, 2
 	note F_, 2
 	note F_, 2
 	note F_, 2
 	note A_, 2
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	note G_, 1
 	note __, 3
 	octave 1
@@ -905,231 +903,231 @@ Music_TitleScreen_Ch4: ; ebc5c
 	stereopanning $f0
 	notetype $c
 	note __, 4
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 6
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 3
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 4
-	note D5Drum27, 2
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 6
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 3
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 4
+	note D#, 2
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 1
+	note C_, 2
 	notetype $6
-	note D5Snare11, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
+	note D_, 1
+	note D_, 1
+	note C#, 1
+	note C#, 1
+	note C#, 1
+	note C#, 1
+	note C_, 1
+	note C_, 1
 	notetype $c
 	callchannel Music_TitleScreen_branch_ebd77
 	callchannel Music_TitleScreen_branch_ebd81
 	callchannel Music_TitleScreen_branch_ebd81
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Drum27, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
+	note C_, 2
+	note D#, 2
+	note C_, 2
+	note D#, 2
+	note D#, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
 	notetype $6
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
+	note C#, 1
+	note C#, 1
+	note C_, 1
+	note C_, 1
 	notetype $c
 	callchannel Music_TitleScreen_branch_ebd77
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Snare9, 2
-	note D5Drum29, 2
-	note D5Drum27, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Snare9, 2
+	note C_, 2
+	note D#, 2
+	note C_, 2
+	note F_, 2
+	note D#, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note C_, 2
 	callchannel Music_TitleScreen_branch_ebd81
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Drum27, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
+	note C_, 2
+	note D#, 2
+	note C_, 2
+	note D#, 2
+	note D#, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note C_, 1
+	note C_, 1
 	callchannel Music_TitleScreen_branch_ebd77
 	callchannel Music_TitleScreen_branch_ebd81
 	callchannel Music_TitleScreen_branch_ebd81
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Drum27, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
+	note C_, 2
+	note D#, 2
+	note C_, 2
+	note D#, 2
+	note D#, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
 	notetype $6
-	note D5Snare10, 1
-	note D5Snare11, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
+	note C#, 1
+	note D_, 1
+	note D_, 1
+	note C#, 1
 	notetype $c
 	callchannel Music_TitleScreen_branch_ebd77
 	callchannel Music_TitleScreen_branch_ebd81
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Snare9, 2
-	note D5Drum29, 2
-	note D5Drum27, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Snare9, 2
-	note D5Drum27, 2
-	note D5Drum27, 2
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 2
+	note C_, 2
+	note D#, 2
+	note C_, 2
+	note F_, 2
+	note D#, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
+	note D#, 2
+	note C_, 2
+	note D#, 2
+	note D#, 2
+	note C_, 1
+	note C_, 1
+	note C_, 2
 	notetype $6
-	note D5Snare11, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
+	note D_, 1
+	note D_, 1
+	note C#, 1
+	note C#, 1
 	notetype $c
-	note D5Snare14, 2
-	note D5Drum27, 4
-	note D5Snare14, 4
-	note D5Drum27, 2
-	note D5Snare14, 4
-	note D5Snare14, 2
-	note D5Drum27, 4
-	note D5Snare14, 4
-	note D5Drum27, 2
-	note D5Snare14, 2
-	note D5Snare14, 2
-	note D5Snare14, 2
-	note D5Drum27, 4
-	note D5Snare14, 4
-	note D5Drum27, 2
-	note D5Snare14, 4
-	note D5Snare14, 4
-	note D5Snare14, 4
-	note D5Snare14, 2
-	note D5Snare11, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
+	note A_, 2
+	note D#, 4
+	note A_, 4
+	note D#, 2
+	note A_, 4
+	note A_, 2
+	note D#, 4
+	note A_, 4
+	note D#, 2
+	note A_, 2
+	note A_, 2
+	note A_, 2
+	note D#, 4
+	note A_, 4
+	note D#, 2
+	note A_, 4
+	note A_, 4
+	note A_, 4
+	note A_, 2
+	note D_, 1
+	note D_, 1
+	note C#, 1
+	note C#, 1
+	note C_, 1
+	note C_, 1
 	callchannel Music_TitleScreen_branch_ebd8b
 	callchannel Music_TitleScreen_branch_ebd93
-	note D5Snare10, 1
-	note D5Snare11, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
-	notetype $c
-	callchannel Music_TitleScreen_branch_ebd8b
-	callchannel Music_TitleScreen_branch_ebd93
-	note D5Snare11, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
+	note C#, 1
+	note D_, 1
+	note D_, 1
+	note C#, 1
 	notetype $c
 	callchannel Music_TitleScreen_branch_ebd8b
 	callchannel Music_TitleScreen_branch_ebd93
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
+	note D_, 1
+	note D_, 1
+	note C#, 1
+	note C#, 1
 	notetype $c
-	note D5Crash1, 16
+	callchannel Music_TitleScreen_branch_ebd8b
+	callchannel Music_TitleScreen_branch_ebd93
+	note C#, 1
+	note C#, 1
+	note C#, 1
+	note C#, 1
+	notetype $c
+	note G#, 16
 Music_TitleScreen_branch_ebd40: ; ebd40
 	note __, 16
 	loopchannel 6, Music_TitleScreen_branch_ebd40
 	note __, 12
 	notetype $6
-	note D5Snare11, 1
-	note D5Snare10, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
+	note D_, 1
+	note C#, 1
+	note D_, 1
+	note C#, 1
+	note D_, 1
+	note C#, 1
+	note C_, 1
+	note C_, 1
 	notetype $c
-	note D5Snare9, 4
-	note D5Snare9, 6
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 4
-	note D5Snare9, 4
-	note D5Snare9, 6
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 4
-	note D5Snare9, 4
-	note D5Snare9, 6
-	note D5Snare9, 1
-	note D5Snare9, 1
-	note D5Snare9, 4
-	note D5Snare9, 4
-	note D5Snare9, 4
+	note C_, 4
+	note C_, 6
+	note C_, 1
+	note C_, 1
+	note C_, 4
+	note C_, 4
+	note C_, 6
+	note C_, 1
+	note C_, 1
+	note C_, 4
+	note C_, 4
+	note C_, 6
+	note C_, 1
+	note C_, 1
+	note C_, 4
+	note C_, 4
+	note C_, 4
 	notetype $8
-	note D5Snare9, 2
-	note D5Snare9, 2
-	note D5Snare9, 2
+	note C_, 2
+	note C_, 2
+	note C_, 2
 	notetype $6
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare11, 1
-	note D5Snare11, 1
-	note D5Snare10, 1
-	note D5Snare10, 1
-	note D5Snare9, 1
-	note D5Snare9, 1
+	note C#, 1
+	note C#, 1
+	note D_, 1
+	note D_, 1
+	note C#, 1
+	note C#, 1
+	note C_, 1
+	note C_, 1
 	notetype $c
-	note D5Snare9, 4
-	note D5Kick2, 4
+	note C_, 4
+	note B_, 4
 	endchannel
 ; ebd77
 
@@ -1179,3 +1177,5 @@ Music_TitleScreen_branch_ebd93: ; ebd93
 	note C_, 4
 	endchannel
 ; ebd9e
+
+

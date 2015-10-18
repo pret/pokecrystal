@@ -7,12 +7,12 @@ Music_Route30: ; efc01
 
 Music_Route30_Ch1: ; efc0d
 	tempo 144
-	volume $77
-	dutycycle $3
-	tone $0001
-	vibrato $10, $15
+	volume $7, $7
+	setwaveduty $3
+	setpitchoffset $0001
+	vibrato $10, $1, $5
 	stereopanning $f0
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note D_, 6
 	note D_, 1
@@ -25,12 +25,12 @@ Music_Route30_Ch1: ; efc0d
 	note D_, 1
 	note D_, 2
 	note D_, 2
-	intensity $4e
+	volenvelope $4, $1, $6
 	note C_, 4
 Music_Route30_branch_efc2e: ; efc2e
-	intensity $b6
+	volenvelope $b, $0, $6
 	note D_, 6
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note B_, 2
 	octave 3
@@ -38,9 +38,9 @@ Music_Route30_branch_efc2e: ; efc2e
 	note E_, 2
 	note D_, 2
 	note E_, 2
-	intensity $b6
+	volenvelope $b, $0, $6
 	note F_, 6
-	intensity $b4
+	volenvelope $b, $0, $4
 	note C_, 2
 	note A_, 2
 	note G_, 2
@@ -61,10 +61,10 @@ Music_Route30_branch_efc2e: ; efc2e
 	note B_, 1
 	octave 4
 	note C_, 1
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 3
 	note B_, 12
-	intensity $b5
+	volenvelope $b, $0, $5
 	note F_, 6
 	note C_, 2
 	note A_, 2
@@ -87,11 +87,11 @@ Music_Route30_branch_efc2e: ; efc2e
 	note E_, 1
 	note D_, 1
 	note E_, 1
-	intensity $b6
+	volenvelope $b, $0, $6
 	note D_, 4
 	note G_, 4
 	note D_, 4
-	intensity $b3
+	volenvelope $b, $0, $3
 	octave 2
 	note B_, 1
 	octave 3
@@ -100,14 +100,14 @@ Music_Route30_branch_efc2e: ; efc2e
 	note B_, 1
 	octave 3
 	note C_, 1
-	intensity $b6
+	volenvelope $b, $0, $6
 	octave 2
 	note B_, 4
 	octave 3
 	note D_, 4
 	octave 2
 	note B_, 4
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note F_, 2
 	note E_, 2
@@ -117,7 +117,7 @@ Music_Route30_branch_efc2e: ; efc2e
 	note G_, 2
 	note F_, 2
 	note E_, 2
-	intensity $b6
+	volenvelope $b, $0, $6
 	note A_, 4
 	note B_, 4
 	octave 4
@@ -132,9 +132,9 @@ Music_Route30_branch_efc2e: ; efc2e
 	note C_, 2
 	octave 3
 	note G_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D_, 14
-	intensity $b6
+	volenvelope $b, $0, $6
 	note F_, 2
 	note E_, 2
 	note D_, 2
@@ -168,7 +168,7 @@ Music_Route30_branch_efc2e: ; efc2e
 	note G_, 2
 	octave 4
 	note D_, 2
-	intensity $b5
+	volenvelope $b, $0, $5
 	octave 3
 	note B_, 2
 	octave 4
@@ -186,10 +186,10 @@ Music_Route30_branch_efc2e: ; efc2e
 ; efcda
 
 Music_Route30_Ch2: ; efcda
-	dutycycle $3
-	vibrato $12, $36
+	setwaveduty $3
+	vibrato $12, $3, $6
 	stereopanning $f
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 3
 	note G_, 6
 	note G_, 1
@@ -202,13 +202,13 @@ Music_Route30_Ch2: ; efcda
 	note G_, 1
 	note G_, 2
 	note G_, 2
-	intensity $c4
+	volenvelope $c, $0, $4
 	note D_, 1
 	note E_, 1
 	note F_, 1
 	note F#, 1
 Music_Route30_branch_efcf6: ; efcf6
-	intensity $c7
+	volenvelope $c, $0, $7
 	note G_, 10
 	octave 4
 	note D_, 2
@@ -224,15 +224,15 @@ Music_Route30_branch_efcf6: ; efcf6
 	note E_, 1
 	note D_, 1
 	note E_, 1
-	intensity $b0
+	volenvelope $b, $0, $0
 	note D_, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D_, 8
-	intensity $3f
+	volenvelope $3, $1, $7
 	note D_, 8
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D_, 8
-	intensity $c7
+	volenvelope $c, $0, $7
 	note C_, 10
 	note C_, 2
 	octave 3
@@ -261,11 +261,11 @@ Music_Route30_branch_efcf6: ; efcf6
 	note F_, 8
 	note A_, 8
 	note G_, 2
-	intensity $b0
+	volenvelope $b, $0, $0
 	note D_, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D_, 10
-	intensity $c7
+	volenvelope $c, $0, $7
 	note C_, 4
 	octave 3
 	note B_, 4
@@ -281,24 +281,24 @@ Music_Route30_branch_efcf6: ; efcf6
 	note C_, 8
 	octave 4
 	note B_, 2
-	intensity $b0
+	volenvelope $b, $0, $0
 	note G_, 6
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G_, 8
-	intensity $c7
+	volenvelope $c, $0, $7
 	note B_, 2
-	intensity $b0
+	volenvelope $b, $0, $0
 	note G_, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G_, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	octave 3
 	note F#, 2
 	loopchannel 0, Music_Route30_branch_efcf6
 ; efd5f
 
 Music_Route30_Ch3: ; efd5f
-	notetype $c, $27
+	notetype $c, $2, $0, $7
 	octave 2
 	note G_, 1
 	note __, 5
@@ -677,3 +677,4 @@ Music_Route30_branch_efee1: ; efee1
 	notetype $c
 	endchannel
 ; efef5
+

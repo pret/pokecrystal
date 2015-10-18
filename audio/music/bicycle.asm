@@ -7,25 +7,25 @@ Music_Bicycle: ; ee119
 
 Music_Bicycle_Ch1: ; ee125
 	tempo 140
-	volume $77
-	dutycycle $3
-	tone $0001
+	volume $7, $7
+	setwaveduty $3
+	setpitchoffset $0001
 	stereopanning $f
-	vibrato $8, $15
-	notetype $c, $b4
+	vibrato $8, $1, $5
+	notetype $c, $b, $0, $4
 	octave 3
 	note B_, 6
 	note A_, 6
 	note G_, 4
-	intensity $b0
+	volenvelope $b, $0, $0
 	note A_, 6
-	intensity $b6
+	volenvelope $b, $0, $6
 	note A_, 8
-	intensity $b2
+	volenvelope $b, $0, $2
 	note F#, 2
 Music_Bicycle_branch_ee144: ; ee144
 	stereopanning $f
-	intensity $b2
+	volenvelope $b, $0, $2
 	note G_, 2
 	note G_, 2
 	note E_, 2
@@ -91,9 +91,9 @@ Music_Bicycle_branch_ee144: ; ee144
 	note F#, 2
 	note G_, 2
 	note F#, 2
-	intensity $82
+	volenvelope $8, $0, $2
 	note F#, 2
-	intensity $b2
+	volenvelope $b, $0, $2
 	note A_, 2
 	note G_, 2
 	note F#, 2
@@ -101,7 +101,7 @@ Music_Bicycle_branch_ee144: ; ee144
 	note G#, 2
 	note A_, 2
 	stereopanning $f0
-	intensity $b6
+	volenvelope $b, $0, $6
 	note B_, 4
 	note G_, 4
 	octave 4
@@ -172,16 +172,16 @@ Music_Bicycle_branch_ee144: ; ee144
 ; ee1de
 
 Music_Bicycle_Ch2: ; ee1de
-	dutycycle $2
-	vibrato $10, $24
+	setwaveduty $2
+	vibrato $10, $2, $4
 	stereopanning $f0
-	notetype $c, $c6
+	notetype $c, $c, $0, $6
 	octave 4
 	note D_, 6
 	note C_, 6
 	octave 3
 	note B_, 4
-	intensity $c2
+	volenvelope $c, $0, $2
 	octave 4
 	note D_, 2
 	note D_, 1
@@ -190,31 +190,31 @@ Music_Bicycle_Ch2: ; ee1de
 	note D_, 1
 	note E_, 1
 	note D_, 2
-	intensity $c3
+	volenvelope $c, $0, $3
 	note C_, 2
 	octave 3
 	note B_, 2
 	note A_, 2
 Music_Bicycle_branch_ee1fd: ; ee1fd
 	stereopanning $ff
-	dutycycle $2
-	intensity $c3
+	setwaveduty $2
+	volenvelope $c, $0, $3
 	octave 3
 	note B_, 4
 	note G_, 4
 	note A_, 4
 	note F#, 4
-	intensity $c2
+	volenvelope $c, $0, $2
 	note G_, 2
 	note F#, 2
 	note E_, 2
 	note F#, 2
-	intensity $c5
+	volenvelope $c, $0, $5
 	note D_, 8
-	intensity $c4
+	volenvelope $c, $0, $4
 	note E_, 4
 	note G_, 4
-	intensity $c2
+	volenvelope $c, $0, $2
 	note E_, 2
 	note B_, 2
 	note A_, 2
@@ -223,24 +223,24 @@ Music_Bicycle_branch_ee1fd: ; ee1fd
 	note G_, 2
 	note A_, 2
 	note G_, 2
-	intensity $c5
+	volenvelope $c, $0, $5
 	note F#, 8
-	intensity $c3
+	volenvelope $c, $0, $3
 	note B_, 4
 	note G_, 4
 	note A_, 4
 	note F#, 4
-	intensity $c2
+	volenvelope $c, $0, $2
 	note G_, 2
 	note F#, 2
 	note E_, 2
 	note F#, 2
-	intensity $c5
+	volenvelope $c, $0, $5
 	note D_, 8
-	intensity $c4
+	volenvelope $c, $0, $4
 	note E_, 4
 	note G_, 4
-	intensity $c2
+	volenvelope $c, $0, $2
 	note E_, 2
 	octave 4
 	note E_, 2
@@ -252,21 +252,21 @@ Music_Bicycle_branch_ee1fd: ; ee1fd
 	note C_, 2
 	note D_, 2
 	note E_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note F#, 8
 	stereopanning $f
 	callchannel Music_Bicycle_branch_ee263
 	note F#, 4
-	intensity $c3
+	volenvelope $c, $0, $3
 	note A_, 2
 	note D_, 2
 	note E_, 2
 	note F_, 2
 	note F#, 4
-	intensity $c7
+	volenvelope $c, $0, $7
 	callchannel Music_Bicycle_branch_ee263
 	note F#, 4
-	intensity $c3
+	volenvelope $c, $0, $3
 	note A_, 2
 	note B_, 2
 	note A_, 2
@@ -289,7 +289,7 @@ Music_Bicycle_branch_ee263: ; ee263
 ; ee26d
 
 Music_Bicycle_Ch3: ; ee26d
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note __, 16
 	octave 3
 	note A_, 2
@@ -519,3 +519,5 @@ Music_Bicycle_branch_ee34c: ; ee34c
 	note F_, 2
 	loopchannel 0, Music_Bicycle_branch_ee34b
 ; ee35e
+
+

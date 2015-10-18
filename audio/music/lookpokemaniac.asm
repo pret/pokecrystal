@@ -7,10 +7,10 @@ Music_LookPokemaniac: ; ebde1
 Music_LookPokemaniac_Ch1: ; ebdea
 	stereopanning $f
 	tempo 144
-	volume $77
-	vibrato $2, $33
-	tone $0002
-	notetype $c, $b3
+	volume $7, $7
+	vibrato $2, $3, $3
+	setpitchoffset $0002
+	notetype $c, $b, $0, $3
 	note __, 8
 Music_LookPokemaniac_branch_ebdfb: ; ebdfb
 	note __, 4
@@ -31,9 +31,9 @@ Music_LookPokemaniac_branch_ebdfb: ; ebdfb
 
 Music_LookPokemaniac_Ch2: ; ebe12
 	stereopanning $ff
-	vibrato $2, $33
-	tone $0001
-	notetype $c, $b3
+	vibrato $2, $3, $3
+	setpitchoffset $0001
+	notetype $c, $b, $0, $3
 	octave 2
 	note A_, 1
 	note F#, 1
@@ -83,8 +83,8 @@ Music_LookPokemaniac_branch_ebe38: ; ebe38
 
 Music_LookPokemaniac_Ch3: ; ebe51
 	stereopanning $f0
-	vibrato $6, $33
-	notetype $c, $15
+	vibrato $6, $3, $3
+	notetype $c, $1, $0, $5
 	octave 4
 	note C_, 1
 	note D#, 1
@@ -92,12 +92,12 @@ Music_LookPokemaniac_Ch3: ; ebe51
 	note A_, 1
 	octave 5
 	note C_, 4
-	intensity $10
+	volenvelope $1, $0, $0
 Music_LookPokemaniac_branch_ebe62: ; ebe62
 	callchannel Music_LookPokemaniac_branch_ebe70
-	intensity $14
+	volenvelope $1, $0, $4
 	callchannel Music_LookPokemaniac_branch_ebe70
-	intensity $10
+	volenvelope $1, $0, $0
 	loopchannel 0, Music_LookPokemaniac_branch_ebe62
 ; ebe70
 
@@ -162,3 +162,5 @@ Music_LookPokemaniac_branch_ebe70: ; ebe70
 	note __, 1
 	endchannel
 ; ebeab
+
+

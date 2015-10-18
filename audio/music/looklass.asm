@@ -7,51 +7,51 @@ Music_LookLass: ; ed79b
 
 Music_LookLass_Ch1: ; ed7a7
 	tempo 132
-	volume $77
-	tone $0001
-	dutycycle $2
-	notetype $c, $c7
+	volume $7, $7
+	setpitchoffset $0001
+	setwaveduty $2
+	notetype $c, $c, $0, $7
 	octave 3
 	note B_, 1
 	note __, 1
 	octave 4
 	note B_, 14
 	stereopanning $f
-	dutycycle $0
+	setwaveduty $0
 Music_LookLass_branch_ed7bd: ; ed7bd
-	intensity $a2
+	volenvelope $a, $0, $2
 	octave 3
 	note E_, 4
-	intensity $a1
+	volenvelope $a, $0, $1
 	note E_, 4
 	note E_, 4
 	note E_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note B_, 2
 	loopchannel 0, Music_LookLass_branch_ed7bd
 ; ed7cd
 
 Music_LookLass_Ch2: ; ed7cd
 	stereopanning $f0
-	dutycycle $0
-	notetype $c, $83
+	setwaveduty $0
+	notetype $c, $8, $0, $3
 	note __, 16
 Music_LookLass_branch_ed7d5: ; ed7d5
-	intensity $92
+	volenvelope $9, $0, $2
 	octave 2
 	note B_, 4
-	intensity $91
+	volenvelope $9, $0, $1
 	note B_, 4
 	note B_, 4
 	note B_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 3
 	note G#, 2
 	loopchannel 0, Music_LookLass_branch_ed7d5
 ; ed7e6
 
 Music_LookLass_Ch3: ; ed7e6
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	note __, 8
 	octave 6
 	note E_, 2
@@ -117,3 +117,5 @@ Music_LookLass_branch_ed81f: ; ed81f
 	note C#, 1
 	loopchannel 0, Music_LookLass_branch_ed81f
 ; ed82d
+
+

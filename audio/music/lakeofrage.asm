@@ -7,12 +7,12 @@ Music_LakeOfRage: ; ee6c5
 
 Music_LakeOfRage_Ch1: ; ee6d1
 	tempo 144
-	volume $77
-	dutycycle $3
-	tone $0002
-	vibrato $8, $22
+	volume $7, $7
+	setwaveduty $3
+	setpitchoffset $0002
+	vibrato $8, $2, $2
 	stereopanning $f0
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	octave 3
 	note D_, 6
 	note D_, 10
@@ -20,7 +20,7 @@ Music_LakeOfRage_Ch1: ; ee6d1
 	note D_, 6
 	note E_, 4
 Music_LakeOfRage_branch_ee6e9: ; ee6e9
-	intensity $b5
+	volenvelope $b, $0, $5
 	note F#, 6
 	note E_, 6
 	note D_, 4
@@ -32,43 +32,43 @@ Music_LakeOfRage_branch_ee6e9: ; ee6e9
 	octave 3
 	note B_, 6
 	note G_, 2
-	notetype $8, $b5
+	notetype $8, $b, $0, $5
 	note D_, 4
 	note G_, 4
 	note B_, 4
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	note D_, 3
 	note F#, 1
-	intensity $b7
+	volenvelope $b, $0, $7
 	note A_, 8
 	note F#, 4
 	note A_, 3
 	octave 4
 	note C#, 1
 	note D_, 12
-	notetype $8, $b4
+	notetype $8, $b, $0, $4
 	octave 3
 	note C_, 4
 	octave 2
 	note B_, 4
 	note A_, 4
-	notetype $8, $b7
+	notetype $8, $b, $0, $7
 	note A_, 12
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 3
 	note C_, 12
-	intensity $b4
+	volenvelope $b, $0, $4
 	note E_, 4
 	note D_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 2
 	note A_, 10
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note E_, 4
 	note D_, 3
 	note E_, 1
-	intensity $b7
+	volenvelope $b, $0, $7
 	note F#, 8
 	note D_, 6
 	note C_, 1
@@ -81,35 +81,35 @@ Music_LakeOfRage_branch_ee6e9: ; ee6e9
 	note G_, 6
 	note F#, 1
 	note G_, 1
-	intensity $a0
+	volenvelope $a, $0, $0
 	note A_, 7
-	intensity $a7
+	volenvelope $a, $0, $7
 	note A_, 7
 	note A_, 1
 	octave 4
 	note C_, 1
-	intensity $a0
+	volenvelope $a, $0, $0
 	note D_, 6
-	intensity $a7
+	volenvelope $a, $0, $7
 	note D_, 6
 	loopchannel 0, Music_LakeOfRage_branch_ee6e9
 ; ee749
 
 Music_LakeOfRage_Ch2: ; ee749
-	dutycycle $3
-	vibrato $20, $44
+	setwaveduty $3
+	vibrato $20, $4, $4
 	stereopanning $ff
-	notetype $c, $90
+	notetype $c, $9, $0, $0
 	octave 3
 	note G_, 8
-	intensity $97
+	volenvelope $9, $0, $7
 	note G_, 8
-	intensity $a0
+	volenvelope $a, $0, $0
 	note A_, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	note A_, 8
 Music_LakeOfRage_branch_ee75e: ; ee75e
-	notetype $8, $c7
+	notetype $8, $c, $0, $7
 	octave 4
 	note D_, 16
 	octave 3
@@ -121,22 +121,22 @@ Music_LakeOfRage_branch_ee75e: ; ee75e
 	note C_, 4
 	octave 4
 	note B_, 4
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note G_, 12
 	note B_, 4
 	note A_, 3
 	note G_, 1
-	intensity $b0
+	volenvelope $b, $0, $0
 	note F#, 12
-	intensity $b7
+	volenvelope $b, $0, $7
 	note F#, 16
-	notetype $8, $c3
+	notetype $8, $c, $0, $3
 	octave 3
 	note G_, 4
 	note F#, 4
 	note E_, 4
 	note C_, 15
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 4
 	note C_, 1
 	note E_, 1
@@ -144,22 +144,22 @@ Music_LakeOfRage_branch_ee75e: ; ee75e
 	note __, 1
 	note E_, 1
 	note G_, 1
-	intensity $c5
+	volenvelope $c, $0, $5
 	octave 5
 	note C_, 10
-	intensity $c3
+	volenvelope $c, $0, $3
 	octave 4
 	note A_, 4
 	note G_, 4
 	note F#, 4
 	note E_, 2
-	notetype $8, $c3
+	notetype $8, $c, $0, $3
 	note D_, 4
 	note E_, 4
 	note F#, 4
-	notetype $8, $c7
+	notetype $8, $c, $0, $7
 	note A_, 12
-	notetype $8, $c3
+	notetype $8, $c, $0, $3
 	octave 3
 	note G_, 4
 	note F#, 4
@@ -176,18 +176,18 @@ Music_LakeOfRage_branch_ee75e: ; ee75e
 	note G_, 4
 	note F#, 4
 	note E_, 4
-	notetype $8, $c7
+	notetype $8, $c, $0, $7
 	note F#, 16
 	note D_, 4
 	note F#, 4
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note A_, 16
 	loopchannel 0, Music_LakeOfRage_branch_ee75e
 ; ee7c1
 
 Music_LakeOfRage_Ch3: ; ee7c1
 	stereopanning $f
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	octave 3
 	note G_, 4
 	note __, 2
@@ -325,3 +325,5 @@ Music_LakeOfRage_branch_ee83b: ; ee83b
 	note D_, 1
 	loopchannel 0, Music_LakeOfRage_branch_ee83b
 ; ee852
+
+

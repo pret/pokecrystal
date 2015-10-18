@@ -16,6 +16,12 @@ HW_CH2_DISABLE_MASK EQU (~HW_CH2_ENABLE_MASK & $ff)
 HW_CH3_DISABLE_MASK EQU (~HW_CH3_ENABLE_MASK & $ff)
 HW_CH4_DISABLE_MASK EQU (~HW_CH4_ENABLE_MASK & $ff)
 
+NRX1_SoundLength_MASK EQU $3f
+NRX1_MaxSoundLength EQU $3f
+NRX1_WaveDuty_MASK EQU 3<<6
+NRX4_RestartSound EQU 1<<7
+NR52_AllSoundOn EQU 1<<7
+
 ; ChannelFlags
 	const_def
 
@@ -31,13 +37,13 @@ HW_CH4_DISABLE_MASK EQU (~HW_CH4_ENABLE_MASK & $ff)
 ; ChannelFlags2
 	const_def
 
-	const ChannelFlags2_Vibrato   ; 0 - 0:Off 1:On
-	const ChannelFlags2Bit1
-	const ChannelFlags2_DutyCycle ; 2 - 0:Off 1:On
-	const ChannelFlags2Bit3       ; Unused
-	const ChannelFlags2Bit4
-	const ChannelFlags2Bit5       ; Unused
-	const ChannelFlags2Bit6       ; Unused
+	const ChannelFlags2_Vibrato    ; 0 - 0:Off 1:On
+	const ChannelFlags2Bit1        ; set by cmd $e0
+	const ChannelFlags2_DutyCycle  ; 2 - 0:Off 1:On
+	const ChannelFlags2Bit3        ; Unused
+	const ChannelFlags2_PitchShift ; 4 - 1:pitch shift is set, used in cmd $e6 and when cries are played
+	const ChannelFlags2Bit5        ; Unused
+	const ChannelFlags2Bit6        ; Unused
 	const ChannelFlags2Bit7
 
 ; ChannelFlags3
@@ -55,13 +61,13 @@ HW_CH4_DISABLE_MASK EQU (~HW_CH4_ENABLE_MASK & $ff)
 ; ChannelNoteFlags
 	const_def
 
-	const ChannelNoteFlagsBit0
-	const ChannelNoteFlagsBit1
-	const ChannelNoteFlagsBit2     ; Not found
-	const ChannelNoteFlags_Sweep   ; 3 - 0:Off 1:On
-	const ChannelNoteFlagsBit4
+	const ChannelNoteFlags_NewWaveDuty   ; 0 - load new wave duty
+	const ChannelNoteFlags_NoteUpdated   ; 1 - - if set update both freq (NRX3 and NRX4) hardware registers
+	const ChannelNoteFlagsBit2           ; Not found
+	const ChannelNoteFlags_Sweep         ; 3 - 0:Off 1:On
+	const ChannelNoteFlags_LoadChRegs    ; 4 - if set update all hardware registers of the channel
 	const ChannelNoteFlags_Rest
-	const ChannelNoteFlagsBit6
+	const ChannelNoteFlags_UpdateDutyLoFreq  ; 6 - if set update wave duty (NRX1) and low freq (NRX3) hardware registers
 	const ChannelNoteFlagsBit7     ; Not found
 
 

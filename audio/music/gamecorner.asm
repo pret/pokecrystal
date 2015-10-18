@@ -7,12 +7,12 @@ Music_GameCorner: ; edd6d
 
 Music_GameCorner_Ch1: ; edd79
 	tempo 147
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	notetype $c, $91
+	notetype $c, $9, $0, $1
 	note __, 8
 Music_GameCorner_branch_edd84: ; edd84
-	intensity $91
+	volenvelope $9, $0, $1
 	note __, 16
 	note __, 16
 	note __, 16
@@ -38,7 +38,7 @@ Music_GameCorner_branch_edd84: ; edd84
 	note A#, 2
 	note G#, 2
 	note G_, 2
-	intensity $71
+	volenvelope $7, $0, $1
 Music_GameCorner_branch_eddb1: ; eddb1
 	octave 4
 	note G#, 1
@@ -139,12 +139,12 @@ Music_GameCorner_branch_ede13: ; ede13
 
 Music_GameCorner_Ch2: ; ede1c
 	stereopanning $ff
-	vibrato $8, $24
-	notetype $c, $a1
+	vibrato $8, $2, $4
+	notetype $c, $a, $0, $1
 	note __, 8
 Music_GameCorner_branch_ede25: ; ede25
-	intensity $92
-	dutycycle $1
+	volenvelope $9, $0, $2
+	setwaveduty $1
 	callchannel Music_GameCorner_branch_ede75
 	octave 1
 	note F_, 2
@@ -154,9 +154,9 @@ Music_GameCorner_branch_ede25: ; ede25
 	note F_, 1
 	octave 3
 	note G#, 2
-	intensity $a4
+	volenvelope $a, $0, $4
 	note G#, 3
-	intensity $92
+	volenvelope $9, $0, $2
 	note G_, 2
 	note A#, 1
 	octave 4
@@ -167,11 +167,11 @@ Music_GameCorner_branch_ede25: ; ede25
 	note D#, 2
 	note F_, 1
 	note D#, 2
-	intensity $a4
+	volenvelope $a, $0, $4
 	note G_, 3
 	note F_, 4
-	dutycycle $2
-	intensity $c7
+	setwaveduty $2
+	volenvelope $c, $0, $7
 	octave 3
 	note D#, 1
 	note F_, 1
@@ -199,13 +199,13 @@ Music_GameCorner_branch_ede25: ; ede25
 	note D#, 1
 	note F_, 1
 	note G_, 16
-	intensity $92
+	volenvelope $9, $0, $2
 	note G_, 1
 	note G_, 1
 	note G_, 3
 	note A#, 2
 	note A#, 9
-	intensity $a4
+	volenvelope $a, $0, $4
 	loopchannel 0, Music_GameCorner_branch_ede25
 ; ede75
 
@@ -258,10 +258,10 @@ Music_GameCorner_branch_ede75: ; ede75
 	note D#, 2
 	note F_, 1
 	note D#, 2
-	intensity $a4
+	volenvelope $a, $0, $4
 	note F_, 3
 	note G_, 4
-	intensity $92
+	volenvelope $9, $0, $2
 	note F#, 1
 	note F_, 1
 	octave 1
@@ -281,10 +281,10 @@ Music_GameCorner_branch_ede75: ; ede75
 	note D#, 2
 	note G_, 1
 	note D#, 2
-	intensity $a4
+	volenvelope $a, $0, $4
 	note A#, 3
 	note A_, 2
-	intensity $92
+	volenvelope $9, $0, $2
 	note A#, 1
 	octave 5
 	note C_, 3
@@ -302,10 +302,10 @@ Music_GameCorner_branch_ede75: ; ede75
 	note D#, 2
 	note F_, 1
 	note D#, 2
-	intensity $a4
+	volenvelope $a, $0, $4
 	note F_, 3
 	note G_, 4
-	intensity $92
+	volenvelope $9, $0, $2
 	note F#, 1
 	note F_, 1
 	octave 1
@@ -322,12 +322,12 @@ Music_GameCorner_branch_ede75: ; ede75
 ; edee8
 
 Music_GameCorner_Ch3: ; edee8
-	vibrato $8, $22
-	notetype $c, $14
+	vibrato $8, $2, $2
+	notetype $c, $1, $0, $4
 	note __, 8
 Music_GameCorner_branch_edeef: ; edeef
 	stereopanning $ff
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	callchannel Music_GameCorner_branch_edfdd
 	callchannel Music_GameCorner_branch_edff8
 	octave 4
@@ -414,7 +414,7 @@ Music_GameCorner_branch_edeef: ; edeef
 	octave 4
 	note A#, 1
 	note __, 1
-	intensity $15
+	volenvelope $1, $0, $5
 	callchannel Music_GameCorner_branch_ee03f
 	octave 2
 	note C_, 2
@@ -492,7 +492,7 @@ Music_GameCorner_branch_edeef: ; edeef
 	note __, 1
 	note B_, 1
 	note __, 4
-	notetype $6, $15
+	notetype $6, $1, $0, $5
 	octave 3
 	note D_, 1
 	note C_, 1
@@ -819,3 +819,5 @@ Music_GameCorner_branch_ee10f: ; ee10f
 	note F#, 2
 	endchannel
 ; ee119
+
+

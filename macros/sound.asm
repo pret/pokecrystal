@@ -29,20 +29,20 @@ A_ EQU 10
 A# EQU 11
 B_ EQU 12
 
-; Drumkit5
-;__ EQU 0
-D5Snare9 EQU 1 ; c
-D5Snare10 EQU 2 ; c#
-D5Snare11 EQU 3 ; d
-D5Drum27 EQU 4 ; d#
-D5Drum28 EQU 5 ; e
-D5Drum29 EQU 6 ; f
-D5Drum05 EQU 7 ; f#
-D5Triangle1 EQU 8 ; g
-D5Crash1 EQU 9 ; g#
-D5Snare14 EQU 10 ; a
-D5Snare13 EQU 11 ; a#
-D5Kick2 EQU 12 ; b
+; Drumkit0
+D0Drum00 EQU 0
+D0Snare1 EQU 1
+D0Snare2 EQU 2
+D0Snare3 EQU 3
+D0Snare4 EQU 4
+D0Drum05 EQU 5
+D0Triangle1 EQU 6
+D0Triangle2 EQU 7
+D0HiHat1 EQU 8
+D0Snare5 EQU 9
+D0Snare6 EQU 10
+D0Snare7 EQU 11
+D0HiHat2 EQU 12
 
 
 octave: macro
@@ -53,14 +53,15 @@ notetype: macro
 	db $d8
 	db \1 ; note_length
 	if _NARG >= 2
-	db \2 ; intensity
+	db ((\2) << 4) | ((\3) << 3) | (\4) ; volenvelope
 	endc
 	endm
 
-forceoctave: macro
+setabsnote: macro
+; \1: octave (0 - 15)
+; \2: pitch (0 - 15)
 	db $d9
-	db \1 ; octave
-    ; (\1 << 4) | \2
+	db (\1 << 4) | (\2) 
 	endm
 
 tempo: macro
@@ -68,66 +69,53 @@ tempo: macro
 	bigdw \1 ; tempo
 	endm
 
-dutycycle: macro
+setwaveduty: macro
 	db $db
 	db \1 ; duty_cycle
 	endm
 
-intensity: macro ; names: volenvelope
-; parameter is directly written
-; in hardware register NRX2
-; FF12 - NR12 - Channel 1 Volume Envelope (R/W)
-; Bit 7-4 - Initial Volume of envelope (0-0Fh) (0=No Sound)
-; Bit 3   - Envelope Direction (0=Decrease, 1=Increase)
-; Bit 2-0 - Number of envelope sweep (n: 0-7)
-;           (If zero, stop envelope operation.)
+volenvelope: macro
+; \1: Initial Volume of envelope (0-0Fh) (0=No Sound)
+; \2: Envelope Direction (0=Decrease, 1=Increase)
+; \3: Number of envelope sweep (n: 0-7)
+;     (If zero, stop envelope operation.)
 	db $dc
-	if _NARG == 1
-	db \1 ; intensity
-    endc
-	if _NARG == 2
-	db (\1 << 4) | \2
-    endc
+;	db (((\1) & 0xf) << 4) | (((\2) & 0x1) << 3) | (((\3) & 0x7) << 0)
+	db ((\1) << 4) | ((\2) << 3) | (\3)
 	endm
 
-soundinput: macro
-; Loads Parameter into 'SoundInput'
-; Sets 3rd Bit in ChannelXNoteFlags 
-; which later loads 'SoundInput' into NR10
+setsweep: macro
+; \1: Sweep Time (0-7)
+; \2: Sweep Direction (0=Increase, 1=Decrease)
+; \3: Number of sweep shift (n: 0-7)
 	db $dd
-	db \1 ; input
+	db (\1 << 4) | (\2 << 3) | (\3) ; sweep settings
 	endm
 
-unknownmusic0xde: macro
-; Rotates through 4 Settings of Wave Duty every frame
-; begins with Bits 0-1, then 2-3, 4-5, 6-7
-; Bit6-7 of TempNRX1 are written into NR11 to set the Wave Pattern Duty
+dutycycle: macro
 	db $de
-	db \1 ; unknown
+    db (\1) | ((\2) << 2) | ((\3) << 4) | ((\4) << 6)
 	endm
 
 togglesfx: macro
 	db $df
 	endm
 
-
-unknownmusic0xe0: macro ; maybe pitchbend???
+pitchbend: macro
+; \1: duration of the pitch
+; \2: octave
+; \3: pitch
 	db $e0
-	db \1 ; unknown
-	db \2 ; unknown
+	db \1, (\2 << 4) | (\3 << 0) 
 	endm
 
-
 vibrato: macro
+; \1: vibrato delay (in frames)
+; \2: extent
+; \3: rate (# frames per cycle)
 	db $e1
-	if _NARG == 2
 	db \1 ; delay
-	db \2 ; extent
-    endc
-; format: vibrato delay (in frames), extent, rate (# frames per cycle)
-	if _NARG == 3
-	db \1, (\2 << 4) | \3
-    endc
+	db (\2 << 4) | \3 ; extent and rate
 	endm
 
 unknownmusic0xe2: macro
@@ -146,28 +134,13 @@ panning: macro
 	endm
 
 volume: macro
-; parameter is directly written
-; in hardware register NR50
-; FF24 - NR50 - Channel control / ON-OFF / Volume (R/W)
-; The volume bits specify the "Master Volume" for Left/Right sound output.
-; Bit 7   - Output Vin to SO2 terminal (1=Enable)
-; Bit 6-4 - SO2 output level (volume)  (0-7)
-; Bit 3   - Output Vin to SO1 terminal (1=Enable)
-; Bit 2-0 - SO1 output level (volume)  (0-7)
 	db $e5
-	if _NARG == 1
-	db \1 ; volume
-    endc
-; \1: SO2 output level (volume)  (0-7)
-; \2: SO1 output level (volume)  (0-7)
-	if _NARG == 2
-	db (\1 << 4) | \2
-    endc
+	db ((\1) << 4) | (\2) ; volume left and right
 	endm
 
-tone: macro
+setpitchoffset: macro
 	db $e6
-	bigdw \1 ; tone
+	bigdw \1 ; pitch offset/frequency
 	endm
 
 unknownmusic0xe7: macro
@@ -180,7 +153,7 @@ unknownmusic0xe8: macro
 	db \1 ; unknown
 	endm
 
-globaltempo: macro
+addtempo: macro
 	db $e9
 	bigdw \1 ; value
 	endm
@@ -203,7 +176,7 @@ sfxpriorityoff: macro
 	db $ed
 	endm
 
-unknownmusic0xee: macro
+conditionaljump: macro
 	db $ee
 	dw \1 ; address
 	endm

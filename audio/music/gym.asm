@@ -7,11 +7,11 @@ Music_Gym: ; f48ae
 
 Music_Gym_Ch1: ; f48ba
 	tempo 156
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	vibrato $12, $24
-	dutycycle $1
-	notetype $c, $b7
+	vibrato $12, $2, $4
+	setwaveduty $1
+	notetype $c, $b, $0, $7
 Music_Gym_branch_f48c9: ; f48c9
 	octave 4
 	note F#, 2
@@ -192,10 +192,10 @@ Music_Gym_branch_f48c9: ; f48c9
 ; f497c
 
 Music_Gym_Ch2: ; f497c
-	dutycycle $1
+	setwaveduty $1
 	stereopanning $f0
 Music_Gym_branch_f4980: ; f4980
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 2
 	note D_, 2
 	octave 1
@@ -240,7 +240,7 @@ Music_Gym_branch_f4980: ; f4980
 	note G_, 1
 	octave 4
 	note C_, 1
-	intensity $d2
+	volenvelope $d, $0, $2
 	callchannel Music_Gym_branch_f4a15
 	octave 1
 	note F#, 1
@@ -373,10 +373,10 @@ Music_Gym_branch_f4a15: ; f4a15
 ; f4a37
 
 Music_Gym_Ch3: ; f4a37
-	vibrato $14, $23
+	vibrato $14, $2, $3
 	stereopanning $ff
 Music_Gym_branch_f4a3c: ; f4a3c
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	octave 6
 	note D_, 2
 	octave 4
@@ -457,7 +457,7 @@ Music_Gym_branch_f4a3c: ; f4a3c
 	note C_, 8
 	octave 5
 	note B_, 4
-	intensity $13
+	volenvelope $1, $0, $3
 	callchannel Music_Gym_branch_f4ab3
 	note __, 2
 	note A_, 2
@@ -572,3 +572,5 @@ Music_Gym_branch_f4afa: ; f4afa
 	loopchannel 8, Music_Gym_branch_f4afa
 	loopchannel 0, Music_Gym_branch_f4ac7
 ; f4b0c
+
+

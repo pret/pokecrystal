@@ -7,11 +7,11 @@ Music_BugCatchingContest: ; f7c16
 
 Music_BugCatchingContest_Ch1: ; f7c22
 	tempo 144
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	vibrato $8, $24
-	dutycycle $2
-	notetype $c, $b7
+	vibrato $8, $2, $4
+	setwaveduty $2
+	notetype $c, $b, $0, $7
 	note __, 8
 	octave 4
 	note C#, 1
@@ -39,7 +39,7 @@ Music_BugCatchingContest_Ch1: ; f7c22
 	note E_, 1
 	note E_, 1
 Music_BugCatchingContest_branch_f7c4b: ; f7c4b
-	notetype $c, $b1
+	notetype $c, $b, $0, $1
 Music_BugCatchingContest_branch_f7c4e: ; f7c4e
 	note __, 2
 	octave 2
@@ -49,8 +49,8 @@ Music_BugCatchingContest_branch_f7c55: ; f7c55
 	note __, 2
 	note B_, 2
 	loopchannel 8, Music_BugCatchingContest_branch_f7c55
-	intensity $b4
-	dutycycle $1
+	volenvelope $b, $0, $4
+	setwaveduty $1
 	octave 3
 	note B_, 6
 	note A_, 1
@@ -59,8 +59,8 @@ Music_BugCatchingContest_branch_f7c55: ; f7c55
 	octave 4
 	note D_, 1
 	note E_, 1
-	intensity $b1
-	dutycycle $2
+	volenvelope $b, $0, $1
+	setwaveduty $2
 Music_BugCatchingContest_branch_f7c6b: ; f7c6b
 	note __, 2
 	octave 2
@@ -70,7 +70,7 @@ Music_BugCatchingContest_branch_f7c6b: ; f7c6b
 	note B_, 2
 	note __, 2
 	note B_, 2
-	notetype $6, $b7
+	notetype $6, $b, $0, $7
 	octave 4
 	note E_, 4
 	note __, 1
@@ -82,7 +82,7 @@ Music_BugCatchingContest_branch_f7c6b: ; f7c6b
 	note B_, 8
 	octave 5
 	note E_, 8
-	intensity $b1
+	volenvelope $b, $0, $1
 	note __, 4
 	octave 2
 	note B_, 4
@@ -96,7 +96,7 @@ Music_BugCatchingContest_branch_f7c8e: ; f7c8e
 	octave 2
 	note A_, 4
 	loopchannel 3, Music_BugCatchingContest_branch_f7c8e
-	intensity $a7
+	volenvelope $a, $0, $7
 	octave 4
 	note F#, 4
 	note A_, 4
@@ -191,9 +191,9 @@ Music_BugCatchingContest_branch_f7c8e: ; f7c8e
 
 Music_BugCatchingContest_Ch2: ; f7cf4
 	stereopanning $f0
-	vibrato $8, $23
-	dutycycle $1
-	notetype $c, $c7
+	vibrato $8, $2, $3
+	setwaveduty $1
+	notetype $c, $c, $0, $7
 	note __, 8
 Music_BugCatchingContest_branch_f7cff: ; f7cff
 	octave 4
@@ -205,7 +205,7 @@ Music_BugCatchingContest_branch_f7cff: ; f7cff
 	note A_, 1
 	loopchannel 4, Music_BugCatchingContest_branch_f7cff
 Music_BugCatchingContest_branch_f7d0a: ; f7d0a
-	dutycycle $0
+	setwaveduty $0
 	callchannel Music_BugCatchingContest_branch_f7d8e
 	octave 2
 	note E_, 2
@@ -288,7 +288,7 @@ Music_BugCatchingContest_branch_f7d0a: ; f7d0a
 	octave 3
 	note A_, 1
 	note __, 1
-	dutycycle $0
+	setwaveduty $0
 	note __, 2
 	octave 5
 	note D_, 1
@@ -376,8 +376,8 @@ Music_BugCatchingContest_branch_f7d8e: ; f7d8e
 
 Music_BugCatchingContest_Ch3: ; f7db7
 	stereopanning $ff
-	vibrato $10, $23
-	notetype $c, $14
+	vibrato $10, $2, $3
+	notetype $c, $1, $0, $4
 	note __, 8
 	octave 3
 	note A_, 1
@@ -406,7 +406,7 @@ Music_BugCatchingContest_Ch3: ; f7db7
 	note C#, 1
 	note C#, 1
 Music_BugCatchingContest_branch_f7dda: ; f7dda
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note F#, 5
 	note __, 1
 	note F#, 1
@@ -415,14 +415,14 @@ Music_BugCatchingContest_branch_f7dda: ; f7dda
 	octave 5
 	note D_, 4
 	note C#, 2
-	intensity $10
+	volenvelope $1, $0, $0
 	note E_, 1
 	note G_, 1
 	note B_, 1
 	note __, 1
 	note G_, 1
 	note E_, 1
-	notetype $6, $20
+	notetype $6, $2, $0, $0
 	octave 6
 	note E_, 1
 	note F#, 1
@@ -433,7 +433,7 @@ Music_BugCatchingContest_branch_f7dda: ; f7dda
 	note E_, 1
 	note F#, 1
 	note E_, 8
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 4
 	note E_, 10
 	note __, 2
@@ -443,7 +443,7 @@ Music_BugCatchingContest_branch_f7dda: ; f7dda
 	octave 5
 	note C#, 8
 	note __, 4
-	intensity $10
+	volenvelope $1, $0, $0
 	note E_, 2
 	note G_, 2
 	note A_, 2
@@ -460,7 +460,7 @@ Music_BugCatchingContest_branch_f7dda: ; f7dda
 	note C#, 1
 	note D_, 1
 	note C#, 8
-	intensity $15
+	volenvelope $1, $0, $5
 	octave 5
 	note F#, 4
 	note __, 4
@@ -672,3 +672,4 @@ Music_BugCatchingContest_branch_f7ee2: ; f7ee2
 	note D_, 2
 	endchannel
 ; f7ef3
+

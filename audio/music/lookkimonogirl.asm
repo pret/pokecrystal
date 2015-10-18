@@ -4,19 +4,21 @@ Music_LookKimonoGirl: ; f79b8
 	dbw $02, Music_LookKimonoGirl_Ch3
 ; f79c1
 
-	db $3
+
+INCBIN "baserom.gbc", $f79c1, $f79c2 - $f79c1
+
 
 Music_LookKimonoGirl_Ch1: ; f79c2
 	tempo 160
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	dutycycle $1
-	notetype $6, $87
-	tone $0001
+	setwaveduty $1
+	notetype $6, $8, $0, $7
+	setpitchoffset $0001
 	callchannel Music_LookKimonoGirl_branch_f7aa8
-	tone $0000
+	setpitchoffset $0000
 Music_LookKimonoGirl_branch_f79d7: ; f79d7
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	callchannel Music_LookKimonoGirl_branch_f7a13
 	callchannel Music_LookKimonoGirl_branch_f7a13
 	callchannel Music_LookKimonoGirl_branch_f7a34
@@ -24,97 +26,97 @@ Music_LookKimonoGirl_branch_f79d7: ; f79d7
 	callchannel Music_LookKimonoGirl_branch_f7a13
 	callchannel Music_LookKimonoGirl_branch_f7a13
 	callchannel Music_LookKimonoGirl_branch_f7a34
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note E_, 1
-	intensity $54
+	volenvelope $5, $0, $4
 	octave 4
 	note E_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note D_, 1
-	intensity $54
+	volenvelope $5, $0, $4
 	octave 4
 	note D_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note B_, 1
-	intensity $54
+	volenvelope $5, $0, $4
 	octave 3
 	note B_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note A_, 1
-	intensity $54
+	volenvelope $5, $0, $4
 	octave 3
 	note A_, 1
 	loopchannel 0, Music_LookKimonoGirl_branch_f79d7
 ; f7a13
 
 Music_LookKimonoGirl_branch_f7a13: ; f7a13
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note F_, 1
-	intensity $74
+	volenvelope $7, $0, $4
 	octave 3
 	note F_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note A_, 1
-	intensity $74
+	volenvelope $7, $0, $4
 	octave 3
 	note A_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note B_, 1
-	intensity $74
+	volenvelope $7, $0, $4
 	octave 3
 	note B_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note D_, 1
-	intensity $74
+	volenvelope $7, $0, $4
 	octave 4
 	note D_, 1
 	endchannel
 ; f7a34
 
 Music_LookKimonoGirl_branch_f7a34: ; f7a34
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note E_, 1
-	intensity $74
+	volenvelope $7, $0, $4
 	octave 3
 	note E_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note A_, 1
-	intensity $74
+	volenvelope $7, $0, $4
 	octave 3
 	note A_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 2
 	note B_, 1
-	intensity $74
+	volenvelope $7, $0, $4
 	octave 3
 	note B_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note D_, 1
-	intensity $74
+	volenvelope $7, $0, $4
 	octave 4
 	note D_, 1
 	endchannel
 ; f7a55
 
 Music_LookKimonoGirl_Ch2: ; f7a55
-	dutycycle $0
-	notetype $6, $a7
+	setwaveduty $0
+	notetype $6, $a, $0, $7
 	stereopanning $f0
 	callchannel Music_LookKimonoGirl_branch_f7aa8
 Music_LookKimonoGirl_branch_f7a5f: ; f7a5f
-	dutycycle $3
-	notetype $c, $91
+	setwaveduty $3
+	notetype $c, $9, $0, $1
 	octave 5
 	note E_, 1
 	note D_, 1
@@ -189,29 +191,29 @@ Music_LookKimonoGirl_branch_f7aa8: ; f7aa8
 	note __, 1
 	note E_, 2
 	note __, 3
-	intensity $b7
+	volenvelope $b, $0, $7
 	note E_, 2
 	note __, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note E_, 2
 	note __, 1
-	intensity $a7
+	volenvelope $a, $0, $7
 	note E_, 2
 	note __, 1
-	notetype $6, $65
+	notetype $6, $6, $0, $5
 	note E_, 2
 	note __, 1
-	intensity $54
+	volenvelope $5, $0, $4
 	note E_, 2
 	note __, 1
-	intensity $63
+	volenvelope $6, $0, $3
 	note E_, 2
 	note E_, 2
-	intensity $91
+	volenvelope $9, $0, $1
 	note E_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note E_, 1
-	notetype $8, $b1
+	notetype $8, $b, $0, $1
 	note E_, 1
 	note E_, 1
 	endchannel
@@ -219,17 +221,17 @@ Music_LookKimonoGirl_branch_f7aa8: ; f7aa8
 
 Music_LookKimonoGirl_Ch3: ; f7ad4
 	stereopanning $ff
-	vibrato $12, $24
-	notetype $6, $13
+	vibrato $12, $2, $4
+	notetype $6, $1, $0, $3
 	note __, 1
 	note __, 16
 	octave 5
 	note E_, 1
 	note F_, 1
 	note E_, 2
-	notetype $c, $13
+	notetype $c, $1, $0, $3
 	note E_, 12
-	notetype $6, $13
+	notetype $6, $1, $0, $3
 	octave 5
 	note D_, 2
 	note E_, 2
@@ -271,3 +273,5 @@ Music_LookKimonoGirl_branch_f7aec: ; f7aec
 	note E_, 8
 	loopchannel 0, Music_LookKimonoGirl_branch_f7aec
 ; f7b13
+
+

@@ -7,12 +7,12 @@ Music_Clair: ; 1fa8d
 
 Music_Clair_Ch1: ; 1fa99
 	tempo 136
-	volume $77
-	tone $0001
-	vibrato $12, $34
+	volume $7, $7
+	setpitchoffset $0001
+	vibrato $12, $3, $4
 	stereopanning $f
-	notetype $c, $93
-	dutycycle $3
+	notetype $c, $9, $0, $3
+	setwaveduty $3
 Music_Clair_branch_1faab: ; 1faab
 	octave 4
 	note F_, 1
@@ -26,19 +26,19 @@ Music_Clair_branch_1faab: ; 1faab
 	note B_, 1
 	note __, 1
 	note G#, 1
-	dutycycle $2
-	intensity $92
+	setwaveduty $2
+	volenvelope $9, $0, $2
 	octave 5
 	note F_, 1
 	note G_, 4
-	intensity $a7
-	dutycycle $3
+	volenvelope $a, $0, $7
+	setwaveduty $3
 	octave 3
 	note D#, 4
 	note F_, 4
 	note G_, 4
 Music_Clair_branch_1fac9: ; 1fac9
-	intensity $93
+	volenvelope $9, $0, $3
 	callchannel Music_Clair_branch_1fb12
 	octave 2
 	note B_, 1
@@ -66,12 +66,12 @@ Music_Clair_branch_1fac9: ; 1fac9
 	octave 5
 	note D#, 1
 	callchannel Music_Clair_branch_1fb2e
-	dutycycle $3
+	setwaveduty $3
 	note G#, 3
 	note F_, 2
 	note __, 1
 	note A#, 4
-	dutycycle $2
+	setwaveduty $2
 	note D#, 1
 	note C#, 1
 	note D#, 1
@@ -80,13 +80,13 @@ Music_Clair_branch_1fac9: ; 1fac9
 	octave 5
 	note D#, 1
 	callchannel Music_Clair_branch_1fb2e
-	dutycycle $3
+	setwaveduty $3
 	note D#, 3
 	note C#, 2
 	note __, 1
 	octave 3
 	note B_, 4
-	dutycycle $2
+	setwaveduty $2
 	note G#, 1
 	note C#, 1
 	note D#, 1
@@ -98,13 +98,13 @@ Music_Clair_branch_1fac9: ; 1fac9
 ; 1fb12
 
 Music_Clair_branch_1fb12: ; 1fb12
-	dutycycle $3
+	setwaveduty $3
 	stereopanning $ff
 	octave 3
 	note B_, 1
 	note __, 2
 	note G#, 5
-	dutycycle $2
+	setwaveduty $2
 	stereopanning $f
 	octave 2
 	note B_, 2
@@ -147,9 +147,9 @@ Music_Clair_branch_1fb2e: ; 1fb2e
 ; 1fb41
 
 Music_Clair_Ch2: ; 1fb41
-	dutycycle $3
-	vibrato $12, $34
-	notetype $6, $b7
+	setwaveduty $3
+	vibrato $12, $3, $4
+	notetype $6, $b, $0, $7
 Music_Clair_branch_1fb49: ; 1fb49
 	octave 3
 	note A#, 2
@@ -163,32 +163,32 @@ Music_Clair_branch_1fb49: ; 1fb49
 	note __, 2
 	note C#, 2
 	note __, 2
-	intensity $82
+	volenvelope $8, $0, $2
 	note D#, 2
 	note A#, 2
 	octave 4
 	note C#, 2
 	octave 3
 	note A#, 2
-	intensity $92
+	volenvelope $9, $0, $2
 	note G_, 2
 	octave 4
 	note C#, 2
 	note D#, 2
 	octave 3
 	note A#, 2
-	intensity $b2
+	volenvelope $b, $0, $2
 	octave 4
 	note C#, 2
 	note D#, 2
 	note G_, 2
 	note D#, 2
-	intensity $c2
+	volenvelope $c, $0, $2
 	note C#, 2
 	note D#, 2
 	note G_, 2
 	note A#, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 Music_Clair_branch_1fb77: ; 1fb77
 	callchannel Music_Clair_branch_1fba6
 	note F#, 2
@@ -207,9 +207,9 @@ Music_Clair_branch_1fb77: ; 1fb77
 	octave 3
 	note A#, 16
 	note __, 4
-	forceoctave $c
+	setabsnote $0, $c
 	callchannel Music_Clair_branch_1fba6
-	forceoctave $0
+	setabsnote $0, $0
 	octave 5
 	note F#, 2
 	note __, 4
@@ -253,8 +253,8 @@ Music_Clair_branch_1fba6: ; 1fba6
 ; 1fbb9
 
 Music_Clair_Ch3: ; 1fbb9
-	notetype $c, $14
-	forceoctave $c
+	notetype $c, $1, $0, $4
+	setabsnote $0, $c
 	octave 3
 	note C#, 2
 	note __, 4
@@ -441,3 +441,5 @@ Music_Clair_branch_1fc6e: ; 1fc6e
 	note G_, 1
 	endchannel
 ; 1fc87
+
+

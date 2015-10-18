@@ -7,13 +7,13 @@ Music_UnionCave: ; f5c60
 
 Music_UnionCave_Ch1: ; f5c6c
 	tempo 160
-	volume $77
-	dutycycle $1
-	tone $0002
-	vibrato $18, $34
+	volume $7, $7
+	setwaveduty $1
+	setpitchoffset $0002
+	vibrato $18, $3, $4
 	stereopanning $f
 Music_UnionCave_branch_f5c7b: ; f5c7b
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 Music_UnionCave_branch_f5c7e: ; f5c7e
 	callchannel Music_UnionCave_branch_f5ccf
 	loopchannel 4, Music_UnionCave_branch_f5c7e
@@ -38,7 +38,7 @@ Music_UnionCave_branch_f5c91: ; f5c91
 	note F#, 4
 	loopchannel 4, Music_UnionCave_branch_f5c91
 	note __, 4
-	intensity $80
+	volenvelope $8, $0, $0
 	note F_, 16
 	note F#, 16
 	note G_, 16
@@ -53,16 +53,16 @@ Music_UnionCave_branch_f5c91: ; f5c91
 	note C_, 8
 	octave 3
 	note A_, 8
-	intensity $95
-	tone $0004
+	volenvelope $9, $0, $5
+	setpitchoffset $0004
 	callchannel Music_UnionCave_branch_f5ccf
-	tone $0008
+	setpitchoffset $0008
 	callchannel Music_UnionCave_branch_f5ccf
-	tone $000c
+	setpitchoffset $000c
 	callchannel Music_UnionCave_branch_f5ccf
-	tone $0010
+	setpitchoffset $0010
 	callchannel Music_UnionCave_branch_f5ccf
-	tone $0002
+	setpitchoffset $0002
 	loopchannel 0, Music_UnionCave_branch_f5c7b
 ; f5ccf
 
@@ -76,16 +76,16 @@ Music_UnionCave_branch_f5ccf: ; f5ccf
 ; f5cd5
 
 Music_UnionCave_Ch2: ; f5cd5
-	dutycycle $3
-	vibrato $8, $24
+	setwaveduty $3
+	vibrato $8, $2, $4
 Music_UnionCave_branch_f5cda: ; f5cda
-	notetype $c, $c4
+	notetype $c, $c, $0, $4
 	callchannel Music_UnionCave_branch_f5d34
-	intensity $c5
+	volenvelope $c, $0, $5
 	callchannel Music_UnionCave_branch_f5d34
-	intensity $c7
+	volenvelope $c, $0, $7
 	callchannel Music_UnionCave_branch_f5d34
-	intensity $c4
+	volenvelope $c, $0, $4
 	note C#, 4
 	octave 3
 	note B_, 4
@@ -115,7 +115,7 @@ Music_UnionCave_branch_f5cda: ; f5cda
 	note D_, 4
 	note C#, 4
 	note __, 4
-	intensity $a0
+	volenvelope $a, $0, $0
 	note C_, 16
 	note C#, 16
 	note D_, 16
@@ -124,16 +124,16 @@ Music_UnionCave_branch_f5cda: ; f5cda
 	note D#, 16
 	note A#, 16
 	note A_, 16
-	intensity $a5
-	vibrato $6, $44
+	volenvelope $a, $0, $5
+	vibrato $6, $4, $4
 	callchannel Music_UnionCave_branch_f5d52
-	vibrato $4, $33
+	vibrato $4, $3, $3
 	callchannel Music_UnionCave_branch_f5d52
-	vibrato $2, $22
+	vibrato $2, $2, $2
 	callchannel Music_UnionCave_branch_f5d52
-	vibrato $1, $41
+	vibrato $1, $4, $1
 	callchannel Music_UnionCave_branch_f5d52
-	vibrato $8, $24
+	vibrato $8, $2, $4
 	loopchannel 0, Music_UnionCave_branch_f5cda
 ; f5d34
 
@@ -180,7 +180,7 @@ Music_UnionCave_branch_f5d52: ; f5d52
 ; f5d58
 
 Music_UnionCave_Ch3: ; f5d58
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	stereopanning $f0
 Music_UnionCave_branch_f5d5d: ; f5d5d
 	note __, 16
@@ -262,5 +262,10 @@ Music_UnionCave_branch_f5da9: ; f5da9
 	note G#, 4
 	note __, 8
 	loopchannel 0, Music_UnionCave_branch_f5da9
-	loopchannel 0, Music_UnionCave_branch_f5da9 ; unused
-; f5dc5
+; f5dc1
+
+
+INCBIN "baserom.gbc", $f5dc1, $f5dc5 - $f5dc1
+
+
+

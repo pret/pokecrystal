@@ -7,12 +7,12 @@ Music_CherrygroveCity: ; f5b03
 
 Music_CherrygroveCity_Ch1: ; f5b0f
 	tempo 152
-	volume $77
-	dutycycle $3
-	tone $0001
-	vibrato $8, $15
+	volume $7, $7
+	setwaveduty $3
+	setpitchoffset $0001
+	vibrato $8, $1, $5
 	stereopanning $f0
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	note __, 10
 	octave 3
 	note C_, 2
@@ -49,7 +49,7 @@ Music_CherrygroveCity_branch_f5b26: ; f5b26
 	note A_, 2
 	octave 3
 	note C_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 2
 	note A#, 6
 	octave 3
@@ -62,7 +62,7 @@ Music_CherrygroveCity_branch_f5b26: ; f5b26
 	note A#, 6
 	octave 3
 	note D_, 6
-	intensity $b5
+	volenvelope $b, $0, $5
 	note A_, 4
 	note G_, 4
 	note E_, 4
@@ -95,10 +95,10 @@ Music_CherrygroveCity_branch_f5b26: ; f5b26
 ; f5b74
 
 Music_CherrygroveCity_Ch2: ; f5b74
-	dutycycle $3
-	vibrato $10, $36
+	setwaveduty $3
+	vibrato $10, $3, $6
 	stereopanning $f
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 3
 	note C_, 2
 	note D_, 2
@@ -109,53 +109,53 @@ Music_CherrygroveCity_Ch2: ; f5b74
 	note A_, 2
 	note A#, 2
 Music_CherrygroveCity_branch_f5b87: ; f5b87
-	intensity $c6
+	volenvelope $c, $0, $6
 	octave 4
 	note C_, 6
 	note D_, 4
-	intensity $b3
+	volenvelope $b, $0, $3
 	note D_, 2
 	note C_, 2
 	octave 3
 	note A#, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 4
 	note C_, 6
 	octave 3
 	note A_, 2
 	note F_, 8
-	intensity $c6
+	volenvelope $c, $0, $6
 	note A#, 6
 	octave 4
 	note C_, 4
-	intensity $b3
+	volenvelope $b, $0, $3
 	note C_, 2
 	octave 3
 	note A#, 2
 	note A_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note A#, 6
 	note G_, 2
 	note E_, 8
-	intensity $a0
+	volenvelope $a, $0, $0
 	note D_, 6
 	note F_, 6
 	octave 4
 	note D_, 4
 	note C_, 6
-	intensity $a5
+	volenvelope $a, $0, $5
 	octave 3
 	note A_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note F_, 8
-	intensity $a0
+	volenvelope $a, $0, $0
 	note D_, 6
 	note F_, 6
 	octave 4
 	note D_, 4
-	intensity $c7
+	volenvelope $c, $0, $7
 	note C_, 16
-	intensity $b5
+	volenvelope $b, $0, $5
 	octave 3
 	note D_, 6
 	note F_, 6
@@ -168,15 +168,15 @@ Music_CherrygroveCity_branch_f5b87: ; f5b87
 	note C#, 6
 	note F_, 6
 	note G_, 4
-	intensity $a0
+	volenvelope $a, $0, $0
 	note F_, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	note F_, 8
 	loopchannel 0, Music_CherrygroveCity_branch_f5b87
 ; f5bd8
 
 Music_CherrygroveCity_Ch3: ; f5bd8
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	note __, 4
 	octave 4
 	note C_, 2
@@ -308,3 +308,5 @@ Music_CherrygroveCity_branch_f5c4d: ; f5c4d
 	note G_, 2
 	loopchannel 0, Music_CherrygroveCity_branch_f5c4d
 ; f5c60
+
+

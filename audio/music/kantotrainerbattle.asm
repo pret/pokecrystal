@@ -4,15 +4,17 @@ Music_KantoTrainerBattle: ; ec9fa
 	dbw $02, Music_KantoTrainerBattle_Ch3
 ; eca03
 
-	db $3
+
+INCBIN "baserom.gbc", $eca03, $eca04 - $eca03
+
 
 Music_KantoTrainerBattle_Ch1: ; eca04
 	tempo 114
-	volume $77
-	forceoctave $1b
-	notetype $c, $b3
-	vibrato $12, $24
-	dutycycle $1
+	volume $7, $7
+	setabsnote $1, $b
+	notetype $c, $b, $0, $3
+	vibrato $12, $2, $4
+	setwaveduty $1
 	note __, 1
 	octave 4
 	note A_, 1
@@ -49,8 +51,8 @@ Music_KantoTrainerBattle_Ch1: ; eca04
 	note G_, 1
 	note F#, 1
 	note G_, 1
-	dutycycle $2
-	intensity $b1
+	setwaveduty $2
+	volenvelope $b, $0, $1
 	octave 4
 	note D#, 2
 	octave 2
@@ -112,7 +114,7 @@ Music_KantoTrainerBattle_Ch1: ; eca04
 	note __, 1
 	note G_, 1
 	note __, 1
-	intensity $b3
+	volenvelope $b, $0, $3
 	note D#, 2
 	note __, 4
 	note F_, 2
@@ -128,7 +130,7 @@ Music_KantoTrainerBattle_Ch1: ; eca04
 	note F_, 2
 	note F#, 2
 Music_KantoTrainerBattle_branch_eca88: ; eca88
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note D#, 4
 	note __, 2
 	note C_, 10
@@ -261,7 +263,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note D_, 2
 	octave 4
 	note D_, 2
-	intensity $67
+	volenvelope $6, $0, $7
 	note C_, 1
 	note C#, 1
 	note D_, 1
@@ -273,7 +275,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note C_, 1
 	note __, 3
 	note D#, 4
-	notetype $6, $67
+	notetype $6, $6, $0, $7
 	note D#, 1
 	note __, 1
 	note D#, 1
@@ -291,7 +293,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note __, 3
 	octave 4
 	note C_, 8
-	intensity $77
+	volenvelope $7, $0, $7
 	note C#, 2
 	note D_, 2
 	note D#, 2
@@ -320,7 +322,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note __, 3
 	octave 4
 	note C#, 8
-	intensity $87
+	volenvelope $8, $0, $7
 	note D_, 2
 	note D#, 2
 	note E_, 2
@@ -349,7 +351,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note __, 3
 	octave 4
 	note D_, 8
-	intensity $97
+	volenvelope $9, $0, $7
 	note D#, 2
 	note E_, 2
 	note F_, 2
@@ -361,10 +363,10 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note D#, 2
 	note __, 6
 	note F#, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	note G#, 8
 	note A#, 8
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 5
 	note D_, 8
 	note D_, 2
@@ -385,7 +387,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note G#, 2
 	note __, 2
 	note D#, 12
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 6
 	note C_, 2
 	note C_, 2
@@ -396,7 +398,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note C_, 4
 	note C_, 4
 	note C_, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 4
 	note A#, 2
 	note F#, 2
@@ -441,7 +443,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note F_, 2
 	note D#, 2
 	note F_, 2
-	intensity $67
+	volenvelope $6, $0, $7
 	note E_, 1
 	note D_, 1
 	note C_, 1
@@ -449,7 +451,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	note B_, 1
 	note A_, 1
 	note G_, 1
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 4
 	note C#, 2
 	octave 2
@@ -460,17 +462,17 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	octave 2
 	note G_, 2
 	note G_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 4
 	note D_, 4
 	loopchannel 0, Music_KantoTrainerBattle_branch_eca88
 ; ecbea
 
 Music_KantoTrainerBattle_Ch2: ; ecbea
-	forceoctave $1b
-	vibrato $6, $36
-	dutycycle $1
-	notetype $c, $d1
+	setabsnote $1, $b
+	vibrato $6, $3, $6
+	setwaveduty $1
+	notetype $c, $d, $0, $1
 	octave 4
 	note A#, 4
 	note A#, 4
@@ -483,8 +485,8 @@ Music_KantoTrainerBattle_Ch2: ; ecbea
 	note G#, 1
 	note G_, 1
 	note F#, 1
-	dutycycle $3
-	intensity $62
+	setwaveduty $3
+	volenvelope $6, $0, $2
 Music_KantoTrainerBattle_branch_ecc04: ; ecc04
 	octave 3
 	note G_, 1
@@ -501,8 +503,8 @@ Music_KantoTrainerBattle_branch_ecc04: ; ecc04
 	note C_, 1
 	octave 2
 	note B_, 1
-	intensity $d7
-	dutycycle $2
+	volenvelope $d, $0, $7
+	setwaveduty $2
 	note C_, 2
 	octave 3
 	note C_, 1
@@ -543,7 +545,7 @@ Music_KantoTrainerBattle_branch_ecc04: ; ecc04
 	note D_, 1
 	note F_, 1
 Music_KantoTrainerBattle_branch_ecc41: ; ecc41
-	notetype $c, $d7
+	notetype $c, $d, $0, $7
 	octave 2
 	note C_, 1
 	note C_, 1
@@ -804,15 +806,15 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 	note __, 1
 	octave 3
 	note G#, 4
-	vibrato $12, $24
-	notetype $c, $78
+	vibrato $12, $2, $4
+	notetype $c, $7, $1, $0
 	octave 4
 	note G_, 16
-	intensity $77
+	volenvelope $7, $0, $7
 	note G_, 16
-	notetype $6, $88
+	notetype $6, $8, $1, $0
 	note G#, 16
-	intensity $87
+	volenvelope $8, $0, $7
 	note G#, 15
 	note G_, 1
 	note G#, 7
@@ -823,25 +825,25 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 	note G_, 4
 	note F_, 6
 	note __, 2
-	notetype $c, $98
+	notetype $c, $9, $1, $0
 	note A_, 16
-	intensity $97
+	volenvelope $9, $0, $7
 	note A_, 16
-	intensity $a7
+	volenvelope $a, $0, $7
 	note A#, 16
-	intensity $d7
+	volenvelope $d, $0, $7
 	octave 5
 	note D_, 8
 	note F_, 8
-	vibrato $4, $36
+	vibrato $4, $3, $6
 	octave 2
 	note A#, 4
 	note D#, 4
 	note C_, 1
 	note __, 1
-	intensity $d8
+	volenvelope $d, $1, $0
 	note G#, 6
-	intensity $d7
+	volenvelope $d, $0, $7
 	note G#, 16
 	note A#, 4
 	note D#, 4
@@ -855,7 +857,7 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 	octave 3
 	note D#, 2
 	note __, 2
-	notetype $6, $d7
+	notetype $6, $d, $0, $7
 	octave 2
 	note C_, 1
 	note __, 1
@@ -890,7 +892,7 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 	note G#, 2
 	note F#, 2
 	note G#, 2
-	intensity $72
+	volenvelope $7, $0, $2
 	note G_, 1
 	note F_, 1
 	note E_, 1
@@ -898,7 +900,7 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 	note C_, 1
 	octave 2
 	note B_, 1
-	intensity $c1
+	volenvelope $c, $0, $1
 	octave 3
 	note B_, 2
 	octave 1
@@ -913,16 +915,16 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 	note __, 1
 	note F#, 1
 	note __, 1
-	intensity $d7
+	volenvelope $d, $0, $7
 	octave 3
 	note B_, 4
 	loopchannel 0, Music_KantoTrainerBattle_branch_ecc41
 ; ecdd2
 
 Music_KantoTrainerBattle_Ch3: ; ecdd2
-	forceoctave $1b
-	vibrato $12, $23
-	notetype $c, $15
+	setabsnote $1, $b
+	vibrato $12, $2, $3
+	notetype $c, $1, $0, $5
 	octave 2
 	note A#, 1
 	octave 4
@@ -970,7 +972,7 @@ Music_KantoTrainerBattle_Ch3: ; ecdd2
 	note B_, 1
 	octave 4
 	note D_, 1
-	intensity $18
+	volenvelope $1, $1, $0
 	octave 6
 	note C_, 2
 	octave 3
@@ -1051,19 +1053,19 @@ Music_KantoTrainerBattle_Ch3: ; ecdd2
 	note A#, 2
 	note B_, 2
 Music_KantoTrainerBattle_branch_ece5a: ; ece5a
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	octave 6
 	note C_, 4
-	notetype $6, $14
+	notetype $6, $1, $0, $4
 	octave 5
 	note B_, 1
 	note A#, 1
 	note A_, 1
 	note G#, 1
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note G_, 10
 	note __, 2
-	notetype $6, $14
+	notetype $6, $1, $0, $4
 	note G_, 1
 	note G#, 1
 	note A_, 1
@@ -1078,7 +1080,7 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note C_, 7
 	octave 5
 	note B_, 1
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	octave 6
 	note C#, 16
 	note C#, 8
@@ -1090,16 +1092,16 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note G#, 1
 	octave 6
 	note C_, 4
-	notetype $6, $14
+	notetype $6, $1, $0, $4
 	octave 5
 	note B_, 1
 	note A#, 1
 	note A_, 1
 	note G#, 1
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note G_, 10
 	note __, 2
-	notetype $6, $14
+	notetype $6, $1, $0, $4
 	note G_, 1
 	note G#, 1
 	note A_, 1
@@ -1127,27 +1129,27 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	octave 5
 	note A#, 2
 	note A_, 2
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	note G#, 11
-	intensity $14
+	volenvelope $1, $0, $4
 	note C_, 1
 	note F_, 1
 	note __, 1
 	note G#, 1
 	note __, 1
-	intensity $10
+	volenvelope $1, $0, $0
 	octave 6
 	note C_, 6
-	notetype $6, $10
+	notetype $6, $1, $0, $0
 	octave 5
 	note B_, 1
 	note A#, 1
 	note A_, 1
 	note G#, 1
 	note G#, 16
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	note A#, 16
-	intensity $25
+	volenvelope $2, $0, $5
 	note D_, 1
 	octave 4
 	note A#, 1
@@ -1168,27 +1170,27 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note D_, 2
 	note C#, 1
 	note C_, 1
-	intensity $10
+	volenvelope $1, $0, $0
 	octave 5
 	note G#, 11
-	intensity $14
+	volenvelope $1, $0, $4
 	note C_, 1
 	note F_, 1
 	note __, 1
 	note G#, 1
 	note __, 1
-	intensity $10
+	volenvelope $1, $0, $0
 	octave 6
 	note C_, 7
-	notetype $6, $10
+	notetype $6, $1, $0, $0
 	note C#, 1
 	note D_, 1
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	note D#, 8
 	note D_, 12
 	note G#, 1
 	note F_, 1
-	intensity $25
+	volenvelope $2, $0, $5
 	octave 5
 	note A#, 1
 	note F_, 1
@@ -1203,7 +1205,7 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note F_, 2
 	note D#, 2
 	note F_, 2
-	intensity $24
+	volenvelope $2, $0, $4
 	octave 3
 	note G_, 1
 	octave 4
@@ -1332,7 +1334,7 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note E_, 1
 	octave 4
 	note C#, 1
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 3
 	note A_, 1
 	octave 4
@@ -1365,7 +1367,7 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note F_, 1
 	octave 4
 	note D_, 1
-	intensity $15
+	volenvelope $1, $0, $5
 	octave 3
 	note A_, 1
 	octave 4
@@ -1398,7 +1400,7 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note F_, 1
 	octave 4
 	note D_, 1
-	intensity $15
+	volenvelope $1, $0, $5
 	octave 3
 	note A#, 1
 	octave 4
@@ -1431,7 +1433,7 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note F#, 1
 	octave 4
 	note D#, 1
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 3
 	note F_, 1
 	note G#, 1
@@ -1511,7 +1513,7 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note F_, 1
 	note D#, 1
 	note F_, 1
-	notetype $6, $24
+	notetype $6, $2, $0, $4
 	note E_, 1
 	note D_, 1
 	note C_, 1
@@ -1519,7 +1521,7 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note B_, 1
 	note A_, 1
 	note G_, 1
-	intensity $14
+	volenvelope $1, $0, $4
 	note G_, 2
 	octave 3
 	note G_, 1
@@ -1533,8 +1535,10 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	note __, 1
 	note G_, 1
 	note __, 1
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 5
 	note G_, 4
 	loopchannel 0, Music_KantoTrainerBattle_branch_ece5a
 ; ed06d
+
+

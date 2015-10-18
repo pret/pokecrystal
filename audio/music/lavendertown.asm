@@ -4,93 +4,95 @@ Music_LavenderTown: ; ef72f
 	dbw $02, Music_LavenderTown_Ch3
 ; ef738
 
-	db $3
+
+INCBIN "baserom.gbc", $ef738, $ef739 - $ef738
+
 
 Music_LavenderTown_Ch1: ; ef739
 	tempo 160
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	vibrato $6, $24
-	dutycycle $0
-	notetype $c, $b3
+	vibrato $6, $2, $4
+	setwaveduty $0
+	notetype $c, $b, $0, $3
 	note __, 16
 	note __, 16
 	note __, 16
 	note __, 16
 Music_LavenderTown_branch_ef74c: ; ef74c
 	callchannel Music_LavenderTown_branch_ef7fd
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 5
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note F#, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note F#, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note B_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note B_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note A_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note A_, 2
 	callchannel Music_LavenderTown_branch_ef87f
-	intensity $93
-	intensity $93
+	volenvelope $9, $0, $3
+	volenvelope $9, $0, $3
 	note F_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note F_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 4
 	note B_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note B_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
 	callchannel Music_LavenderTown_branch_ef7fd
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 5
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note B_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note B_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
 	callchannel Music_LavenderTown_branch_ef87f
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 6
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 5
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note E_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note E_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
 	octave 3
 	note F_, 2
@@ -152,161 +154,161 @@ Music_LavenderTown_branch_ef7ca: ; ef7ca
 ; ef7fd
 
 Music_LavenderTown_branch_ef7fd: ; ef7fd
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 5
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 6
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 5
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note A_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note A_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 6
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 5
 	note A_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note A_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note E_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note E_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note B_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note B_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 6
 	note E_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note E_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 5
 	note B_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note B_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note C#, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C#, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note A#, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note A#, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note F_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note F_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 6
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 5
 	note F_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note F_, 2
 	endchannel
 ; ef87f
 
 Music_LavenderTown_branch_ef87f: ; ef87f
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 5
 	note G_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note G_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note F_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note F_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $83
+	volenvelope $8, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
 	endchannel
 ; ef899
 
 Music_LavenderTown_Ch2: ; ef899
-	dutycycle $1
-	vibrato $8, $24
+	setwaveduty $1
+	vibrato $8, $2, $4
 	stereopanning $ff
 Music_LavenderTown_branch_ef8a0: ; ef8a0
-	notetype $c, $a3
+	notetype $c, $a, $0, $3
 	octave 5
 	note C_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note C_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note G_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note G_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note B_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note B_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note F#, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note F#, 2
 	loopchannel 3, Music_LavenderTown_branch_ef8a0
-	intensity $a3
+	volenvelope $a, $0, $3
 	note C_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note C_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note G_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note G_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note B_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note B_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	octave 6
 	note D_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note D_, 2
 Music_LavenderTown_branch_ef8d7: ; ef8d7
-	intensity $b5
+	volenvelope $b, $0, $5
 	callchannel Music_LavenderTown_branch_ef915
 	octave 2
 	note F#, 4
@@ -341,7 +343,7 @@ Music_LavenderTown_branch_ef8d7: ; ef8d7
 	note G_, 4
 	octave 4
 	note C_, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 2
 	note F_, 16
 	note C_, 16
@@ -352,7 +354,7 @@ Music_LavenderTown_branch_ef8d7: ; ef8d7
 	note G_, 16
 	octave 1
 	note G_, 8
-	intensity $57
+	volenvelope $5, $0, $7
 	octave 5
 	note D_, 1
 	note F_, 1
@@ -393,8 +395,8 @@ Music_LavenderTown_branch_ef915: ; ef915
 ; ef932
 
 Music_LavenderTown_Ch3: ; ef932
-	vibrato $12, $24
-	notetype $c, $13
+	vibrato $12, $2, $4
+	notetype $c, $1, $0, $3
 	stereopanning $f0
 	note __, 16
 	note __, 16
@@ -404,7 +406,7 @@ Music_LavenderTown_Ch3: ; ef932
 	note E_, 4
 	note F_, 4
 Music_LavenderTown_branch_ef941: ; ef941
-	intensity $12
+	volenvelope $1, $0, $2
 	octave 5
 	note G_, 4
 	note __, 4
@@ -465,7 +467,7 @@ Music_LavenderTown_branch_ef941: ; ef941
 	note C_, 16
 	note C_, 12
 	note __, 4
-	intensity $24
+	volenvelope $2, $0, $4
 	note A_, 2
 	note G_, 2
 	note A_, 2
@@ -488,11 +490,11 @@ Music_LavenderTown_branch_ef941: ; ef941
 	note G_, 4
 	octave 6
 	note F_, 4
-	notetype $8, $24
+	notetype $8, $2, $0, $4
 	note E_, 2
 	note F_, 2
 	note E_, 2
-	notetype $c, $24
+	notetype $c, $2, $0, $4
 	note D_, 4
 	note C_, 4
 	octave 5
@@ -519,3 +521,5 @@ Music_LavenderTown_branch_ef941: ; ef941
 	note F_, 2
 	loopchannel 0, Music_LavenderTown_branch_ef941
 ; ef9bc
+
+

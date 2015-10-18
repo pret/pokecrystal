@@ -6,11 +6,11 @@ Music_PokemonLullaby: ; f6d79
 
 Music_PokemonLullaby_Ch1: ; f6d82
 	tempo 224
-	volume $77
-	dutycycle $3
-	tone $0001
+	volume $7, $7
+	setwaveduty $3
+	setpitchoffset $0001
 Music_PokemonLullaby_branch_f6d8c: ; f6d8c
-	notetype $c, $a7
+	notetype $c, $a, $0, $7
 	octave 3
 	note G_, 16
 	octave 4
@@ -56,9 +56,9 @@ Music_PokemonLullaby_branch_f6d8c: ; f6d8c
 ; f6dc4
 
 Music_PokemonLullaby_Ch2: ; f6dc4
-	vibrato $10, $14
-	dutycycle $0
-	notetype $c, $b4
+	vibrato $10, $1, $4
+	setwaveduty $0
+	notetype $c, $b, $0, $4
 Music_PokemonLullaby_branch_f6dcc: ; f6dcc
 	note __, 16
 	note __, 10
@@ -66,7 +66,7 @@ Music_PokemonLullaby_branch_f6dcc: ; f6dcc
 	note G_, 2
 	note F#, 2
 	note G_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note E_, 12
 	note D_, 2
 	note E_, 2
@@ -77,29 +77,29 @@ Music_PokemonLullaby_branch_f6dcc: ; f6dcc
 	note D_, 2
 	note F_, 2
 	note E_, 10
-	intensity $b5
+	volenvelope $b, $0, $5
 	note D_, 2
 	note D_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note E_, 2
 	note F_, 4
 	note E_, 4
 	note F_, 4
-	intensity $b5
+	volenvelope $b, $0, $5
 	note G_, 2
 	note G_, 2
 	note D#, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note E_, 14
-	intensity $87
+	volenvelope $8, $0, $7
 	octave 3
 	note F_, 8
 	note G_, 4
-	intensity $b5
+	volenvelope $b, $0, $5
 	octave 4
 	note G_, 2
 	note G_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D#, 2
 	note E_, 16
 	note __, 14
@@ -107,7 +107,7 @@ Music_PokemonLullaby_branch_f6dcc: ; f6dcc
 ; f6e03
 
 Music_PokemonLullaby_Ch3: ; f6e03
-	notetype $c, $11
+	notetype $c, $1, $0, $1
 Music_PokemonLullaby_branch_f6e06: ; f6e06
 	stereopanning $f0
 	octave 4
@@ -134,3 +134,5 @@ Music_PokemonLullaby_branch_f6e06: ; f6e06
 	note A_, 2
 	loopchannel 0, Music_PokemonLullaby_branch_f6e06
 ; f6e23
+
+

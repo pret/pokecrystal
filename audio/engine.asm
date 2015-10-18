@@ -18,8 +18,8 @@ _SoundRestart:: ; e8000
 	xor a
 	ld [hli], a ; rNR50 ; volume/vin
 	ld [hli], a ; rNR51 ; sfx channels
-	ld a, $80 ; all channels on
-	ld [hli], a ; ff26 ; music channels
+	ld a, NR52_AllSoundOn ; all channels on
+	ld [hli], a ; rNR52 ; music channels
 
 	ld hl, rNR10 ; sound channel registers
 	ld e, $04 ; number of channels
@@ -33,13 +33,13 @@ _SoundRestart:: ; e8000
 	ld [hli], a ; rNR12, rNR22, rNR32, rNR42 ; envelope = 0
 	xor a
 	ld [hli], a ; rNR13, rNR23, rNR33, rNR43 ; frequency lo = 0
-	ld a, $80
+	ld a, NRX4_RestartSound
 	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
 	dec e
 	jr nz, .clearsound
 
 	ld hl, Channel1 ; start of channel data
-	ld de, $01bf ; length of area to clear (entire sound wram area)
+	ld de, SoundWRAM_End - Channel1 ; $01bf ; length of area to clear (entire sound wram area)
 .clearchannels ; clear Channel1-$c2bf
 	xor a
 	ld [hli], a
@@ -47,6 +47,7 @@ _SoundRestart:: ; e8000
 	ld a, e
 	or d
 	jr nz, .clearchannels
+
 	ld a, $77 ; max
 	ld [Volume], a
 	call MusicOn
@@ -126,7 +127,7 @@ _UpdateSound:: ; e805c
 	;
 	call Functione84f9
 	; duty cycle
-	ld hl, Channel1DutyCycle - Channel1
+	ld hl, Channel1WaveDuty - Channel1
 	add hl, bc
 	ld a, [hli]
 	ld [TempNRX1], a
@@ -227,22 +228,22 @@ UpdateChannels: ; e8125
 	jp [hl]
 
 .ChannelFnPtrs
-	dw .Channel1
-	dw .Channel2
-	dw .Channel3
-	dw .Channel4
+	dw Channel1Func
+	dw Channel2Func
+	dw Channel3Func
+	dw Channel4Func
 ; sfx ch ptrs are identical to music chs
 ; ..except 5
-	dw .Channel5
-	dw .Channel6
-	dw .Channel7
-	dw .Channel8
+	dw Channel5Func
+	dw Channel6Func
+	dw Channel7Func
+	dw Channel8Func
 
-.Channel1
+Channel1Func:
 	ld a, [Danger]
 	bit 7, a
 	ret nz
-.Channel5
+Channel5Func:
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	bit ChannelNoteFlags_Sweep, [hl]
@@ -253,33 +254,33 @@ UpdateChannels: ; e8125
 .sweep_off
 	bit ChannelNoteFlags_Rest, [hl] ; rest
 	jr nz, .ch1rest
-	bit ChannelNoteFlagsBit4, [hl]
-	jr nz, .asm_e81a2
-	bit ChannelNoteFlagsBit1, [hl]
-	jr nz, .asm_e816b
-	bit ChannelNoteFlagsBit6, [hl]
-	jr nz, .asm_e8184
+	bit ChannelNoteFlags_LoadChRegs, [hl]
+	jr nz, .load_chregs
+	bit ChannelNoteFlags_NoteUpdated, [hl]
+	jr nz, .note_update
+	bit ChannelNoteFlags_UpdateDutyLoFreq, [hl]
+	jr nz, .update_duty_lofreq
 	jr .asm_e8175
-.asm_e816b
+.note_update
 	ld a, [TempNRX3]
 	ld [rNR13], a
 	ld a, [TempNRX4]
 	ld [rNR14], a
 .asm_e8175
-	bit ChannelNoteFlagsBit0, [hl]
+	bit ChannelNoteFlags_NewWaveDuty, [hl]
 	ret z
 	ld a, [TempNRX1]
 	ld d, a
 	ld a, [rNR11]
-	and a, $3f ; sound length
+	and a, NRX1_SoundLength_MASK ; sound length
 	or d
 	ld [rNR11], a
 	ret
-.asm_e8184
+.update_duty_lofreq
 	ld a, [TempNRX1]
 	ld d, a
 	ld a, [rNR11]
-	and a, $3f ; sound length
+	and a, NRX1_SoundLength_MASK ; sound length
 	or d
 	ld [rNR11], a
 	ld a, [TempNRX3]
@@ -292,9 +293,9 @@ UpdateChannels: ; e8125
 	ld hl, HW_CH1_BASE
 	call ClearChannel
 	ret
-.asm_e81a2
+.load_chregs
 	ld hl, TempNRX1
-	ld a, $3f ; sound length
+	ld a, NRX1_MaxSoundLength ; sound length
 	or [hl]
 	ld [rNR11], a
 	ld a, [TempNRX2]
@@ -302,40 +303,40 @@ UpdateChannels: ; e8125
 	ld a, [TempNRX3]
 	ld [rNR13], a
 	ld a, [TempNRX4]
-	or a, $80
+	or a, NRX4_RestartSound
 	ld [rNR14], a
 	ret
 
-.Channel2
-.Channel6
+Channel2Func:
+Channel6Func:
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	bit ChannelNoteFlags_Rest, [hl] ; rest
 	jr nz, .ch2rest
-	bit ChannelNoteFlagsBit4, [hl]
-	jr nz, .asm_e8204
-	bit ChannelNoteFlagsBit6, [hl]
-	jr nz, .asm_e81e6
-	bit ChannelNoteFlagsBit0, [hl]
+	bit ChannelNoteFlags_LoadChRegs, [hl]
+	jr nz, .load_chregs
+	bit ChannelNoteFlags_UpdateDutyLoFreq, [hl]
+	jr nz, .update_duty_lofreq
+	bit ChannelNoteFlags_NewWaveDuty, [hl]
 	ret z
 	ld a, [TempNRX1]
 	ld d, a
 	ld a, [rNR21]
-	and a, $3f ; sound length
+	and a, NRX1_SoundLength_MASK ; sound length
 	or d
 	ld [rNR21], a
 	ret
-.asm_e81db ; unused
+.note_update ; unused
 	ld a, [TempNRX3]
 	ld [rNR23], a
 	ld a, [TempNRX4]
 	ld [rNR24], a
 	ret
-.asm_e81e6
+.update_duty_lofreq
 	ld a, [TempNRX1]
 	ld d, a
 	ld a, [rNR21]
-	and a, $3f ; sound length
+	and a, NRX1_SoundLength_MASK ; sound length
 	or d
 	ld [rNR21], a
 	ld a, [TempNRX3]
@@ -348,9 +349,9 @@ UpdateChannels: ; e8125
 	ld hl, HW_CH2_BASE
 	call ClearChannel
 	ret
-.asm_e8204
+.load_chregs
 	ld hl, TempNRX1
-	ld a, $3f ; sound length
+	ld a, NRX1_MaxSoundLength ; sound length
 	or [hl]
 	ld [rNR21], a
 	ld a, [TempNRX2]
@@ -358,28 +359,28 @@ UpdateChannels: ; e8125
 	ld a, [TempNRX3]
 	ld [rNR23], a
 	ld a, [TempNRX4]
-	or a, $80 ; initial (restart)
+	or a, NRX4_RestartSound ; initial (restart)
 	ld [rNR24], a
 	ret
 
-.Channel3
-.Channel7
+Channel3Func:
+Channel7Func:
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	bit ChannelNoteFlags_Rest, [hl] ; rest
 	jr nz, .ch3rest
-	bit ChannelNoteFlagsBit4, [hl]
-	jr nz, .asm_e824d
-	bit ChannelNoteFlagsBit6, [hl]
-	jr nz, .asm_e823a
+	bit ChannelNoteFlags_LoadChRegs, [hl]
+	jr nz, .load_chregs
+	bit ChannelNoteFlags_UpdateDutyLoFreq, [hl]
+	jr nz, .update_duty_lofreq
 	ret
-.asm_e822f ; unused
+.note_update ; unused
 	ld a, [TempNRX3]
 	ld [rNR33], a
 	ld a, [TempNRX4]
 	ld [rNR34], a
 	ret
-.asm_e823a
+.update_duty_lofreq
 	ld a, [TempNRX3]
 	ld [rNR33], a
 	ret
@@ -390,21 +391,22 @@ UpdateChannels: ; e8125
 	ld hl, HW_CH3_BASE
 	call ClearChannel
 	ret
-.asm_e824d
-	ld a, $3f
+.load_chregs
+	ld a, NRX1_MaxSoundLength
 	ld [rNR31], a
 	xor a
 	ld [rNR30], a
-	call .asm_e8268
+	call LoadWavePattern
 	ld a, $80
 	ld [rNR30], a
 	ld a, [TempNRX3]
 	ld [rNR33], a
 	ld a, [TempNRX4]
-	or a, $80
+	or a, NRX4_RestartSound
 	ld [rNR34], a
 	ret
-.asm_e8268
+
+LoadWavePattern:
 	push hl
 	ld a, [TempNRX2]
 	and a, $0f ; only 0-9 are valid
@@ -458,16 +460,16 @@ endr
 	ld [rNR32], a
 	ret
 
-.Channel4
-.Channel8
+Channel4Func:
+Channel8Func:
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	bit ChannelNoteFlags_Rest, [hl] ; rest
 	jr nz, .ch4rest
-	bit ChannelNoteFlagsBit4, [hl]
-	jr nz, .asm_e82d4
+	bit ChannelNoteFlags_LoadChRegs, [hl]
+	jr nz, .load_chregs
 	ret
-.asm_e82c1 ; unused
+.note_update ; unused
 	ld a, [TempNRX3]
 	ld [rNR43], a
 	ret
@@ -478,14 +480,14 @@ endr
 	ld hl, HW_CH4_BASE
 	call ClearChannel
 	ret
-.asm_e82d4
-	ld a, $3f ; sound length
+.load_chregs
+	ld a, NRX1_MaxSoundLength ; sound length
 	ld [rNR41], a
 	ld a, [TempNRX2]
 	ld [rNR42], a
 	ld a, [TempNRX3]
 	ld [rNR43], a
-	ld a, $80
+	ld a, NRX4_RestartSound
 	ld [rNR44], a
 	ret
 ; e82e7
@@ -561,17 +563,17 @@ PlayDanger: ; e8307
 ; e8350
 
 Tablee8350: ; e8350
-	db $80 ; duty 50%
+	db 2<<6 | $0 ; duty 50%
 	db $e2 ; volume $e, envelope decrease sweep 2
 	db $50 ; frequency: $750
-	db $87 ; restart sound
+	db NRX4_RestartSound | $7 ; restart sound
 ; e8354
 
 Tablee8354: ; e8354
-	db $80 ; duty 50%
+	db 2<<6 | $0 ; duty 50%
 	db $e2 ; volume $e, envelope decrease sweep 2
 	db $ee ; frequency: $6ee
-	db $86 ; restart sound
+	db NRX4_RestartSound | $6 ; restart sound
 ; e8358
 
 FadeMusic: ; e8358
@@ -691,7 +693,7 @@ LoadNote: ; e83d1
 	ld hl, Channel1NoteDuration - Channel1
 	add hl, bc
 	ld a, [hl]
-	ld hl, wc297 ; ????
+	ld hl, PitchDuration
 	sub [hl]
 	jr nc, .ok
 	ld a, $01
@@ -770,7 +772,7 @@ LoadNote: ; e83d1
 	ld d, a
 .asm_e843e
 	push bc
-	ld hl, wc297
+	ld hl, PitchDuration
 	ld b, $00 ; loop count
 .loop
 	inc b
@@ -809,23 +811,23 @@ Functione8466: ; e8466
 	add hl, bc
 	bit ChannelFlags2_DutyCycle, [hl]
 	jr z, .next
-	ld hl, Channel1_1c - Channel1
+	ld hl, Channel1WaveDutyCycle - Channel1
 	add hl, bc
 	ld a, [hl]
 	rlca
 	rlca
 	ld [hl], a
-	and a, $c0
+	and a, NRX1_WaveDuty_MASK
 	ld [TempNRX1], a
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set ChannelNoteFlagsBit0, [hl]
+	set ChannelNoteFlags_NewWaveDuty, [hl]
 .next
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit ChannelFlags2Bit4, [hl]
+	bit ChannelFlags2_PitchShift, [hl]
 	jr z, .vibrato
-	ld hl, Channel1CryPitch - Channel1
+	ld hl, Channel1PitchShift - Channel1
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -914,7 +916,7 @@ Functione8466: ; e8466
 	;
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set ChannelNoteFlagsBit6, [hl]
+	set ChannelNoteFlags_UpdateDutyLoFreq, [hl]
 .quit
 	ret
 ; e84f9
@@ -1020,8 +1022,8 @@ Functione84f9: ; e84f9
 	ld [hl], d
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set ChannelNoteFlagsBit1, [hl]
-	set ChannelNoteFlagsBit0, [hl]
+	set ChannelNoteFlags_NoteUpdated, [hl]
+	set ChannelNoteFlags_NewWaveDuty, [hl]
 	ret
 ; e858c
 
@@ -1096,7 +1098,7 @@ ReadNoiseSample: ; e85af
 
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set ChannelNoteFlagsBit4, [hl]
+	set ChannelNoteFlags_LoadChRegs, [hl]
 	ret
 .quit
 	ret
@@ -1155,7 +1157,7 @@ ParseMusic: ; e85e1
 	; ????
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set ChannelNoteFlagsBit4, [hl]
+	set ChannelNoteFlags_LoadChRegs, [hl]
 	jp LoadNote
 .rest
 ; note = rest
@@ -1216,10 +1218,10 @@ RestoreVolume: ; e8679
 	cp a, $04
 	ret nz
 	xor a
-	ld hl, Channel6CryPitch
+	ld hl, Channel6PitchShift
 	ld [hli], a
 	ld [hl], a
-	ld hl, Channel8CryPitch
+	ld hl, Channel8PitchShift
 	ld [hli], a
 	ld [hl], a
 	ld a, [LastVolume]
@@ -1231,10 +1233,11 @@ RestoreVolume: ; e8679
 ; e8698
 
 Functione8698: ; e8698
-	; turn noise sampling on
+	; set bit so that all hardware registers of the channel
+    ; are set in the update function later
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set ChannelNoteFlagsBit4, [hl] ; noise sample
+	set ChannelNoteFlags_LoadChRegs, [hl]
 	; update note duration
 	ld a, [CurMusicByte]
 	call SetNoteDuration ; top nybble doesnt matter?
@@ -1732,7 +1735,7 @@ MusicE0: ; e88bd
 ; ????
 ; params: 2
 	call GetMusicByte
-	ld [wc297], a
+	ld [PitchDuration], a
 	call GetMusicByte
 	ld d, a
 	and a, $0f
@@ -1759,8 +1762,8 @@ MusicE6: ; e88e4
 ; params: 2
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set ChannelFlags2Bit4, [hl]
-	ld hl, (Channel1CryPitch + 1) - Channel1
+	set ChannelFlags2_PitchShift, [hl]
+	ld hl, (Channel1PitchShift + 1) - Channel1
 	add hl, bc
 	call GetMusicByte
 	ld [hld], a
@@ -1793,12 +1796,12 @@ MusicDE: ; e8906
 	call GetMusicByte
 	rrca
 	rrca
-	ld hl, Channel1_1c - Channel1
+	ld hl, Channel1WaveDutyCycle - Channel1
 	add hl, bc
 	ld [hl], a
 	; update duty cycle
-	and a, $c0 ; only uses top 2 bits
-	ld hl, Channel1DutyCycle - Channel1
+	and a, NRX1_WaveDuty_MASK ; only uses top 2 bits
+	ld hl, Channel1WaveDuty - Channel1
 	add hl, bc
 	ld [hl], a
 	ret
@@ -1835,8 +1838,7 @@ MusicE3: ; e893b
 ; toggle music noise sampling
 ; can't be used as a straight toggle since the param is not read from on->off
 ; params:
-; 	noise on: 1
-; 	noise off: 0
+; 	id of the chosen drumkit
 	; check if noise sampling is on
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
@@ -1856,8 +1858,7 @@ MusicE3: ; e893b
 MusicF0: ; e894f
 ; toggle sfx noise sampling
 ; params:
-;	on: 1
-; 	off: 0
+; 	id of the chosen drumkit
 	; check if noise sampling is on
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
@@ -1910,8 +1911,8 @@ MusicDB: ; e8984
 	call GetMusicByte
 	rrca
 	rrca
-	and a, $c0
-	ld hl, Channel1DutyCycle - Channel1
+	and a, NRX1_WaveDuty_MASK
+	ld hl, Channel1WaveDuty - Channel1
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2189,7 +2190,7 @@ GetFrequency: ; e8a5d
 SetNoteDuration: ; e8a8d
 ; input: a = note duration in 16ths
 	; store delay units in de
-	inc a
+	inc a ; note duration is saved from 0-15 so add 1 to get correct value
 	ld e, a
 	ld d, $00
 	; store NoteLength in a
@@ -2197,8 +2198,8 @@ SetNoteDuration: ; e8a8d
 	add hl, bc
 	ld a, [hl]
 	; multiply NoteLength by delay units
-	ld l, $00 ; just multiply
-	call MultiplySimple
+	ld l, $00 ; just multiply, because l gets added to the result of MultiplySimple
+	call MultiplySimple ; hl = a*de + l = NoteLength*NoteDuration (max. is 255 as a result)
 	ld a, l ; % $100
 	; store Tempo in de
 	ld hl, Channel1Tempo - Channel1
@@ -2211,7 +2212,7 @@ SetNoteDuration: ; e8a8d
 	add hl, bc
 	ld l, [hl]
 	; multiply Tempo by last result (NoteLength * delay % $100)
-	call MultiplySimple
+	call MultiplySimple ; NoteDuration|Channel1_16 = hl = l(NoteLength*NoteDuration)*Tempo + Channel1_16
 	; copy result to de
 	ld e, l
 	ld d, h
@@ -2230,6 +2231,7 @@ MultiplySimple: ; e8ab8
 ; multiplies a and de
 ; adds the result to l
 ; stores the result in hl
+; hl = a*de + l
 	ld h, $00
 .loop
 	; halve a
@@ -2411,9 +2413,9 @@ endr
 	
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set ChannelFlags2Bit4, [hl]
+	set ChannelFlags2_PitchShift, [hl]
 	
-	ld hl, Channel1CryPitch - Channel1
+	ld hl, Channel1PitchShift - Channel1
 	add hl, bc
 	ld a, [CryPitch]
 	ld [hli], a

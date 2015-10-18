@@ -4,15 +4,17 @@ Music_ProfOaksPokemonTalk: ; f4c9f
 	dbw $02, Music_ProfOaksPokemonTalk_Ch3
 ; f4ca8
 
-	db $3
+
+INCBIN "baserom.gbc", $f4ca8, $f4ca9 - $f4ca8
+
 
 Music_ProfOaksPokemonTalk_Ch1: ; f4ca9
 	tempo 164
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	vibrato $6, $25
-	dutycycle $1
-	notetype $c, $94
+	vibrato $6, $2, $5
+	setwaveduty $1
+	notetype $c, $9, $0, $4
 	note __, 8
 	octave 3
 	note B_, 1
@@ -135,9 +137,9 @@ Music_ProfOaksPokemonTalk_branch_f4cc3: ; f4cc3
 ; f4d31
 
 Music_ProfOaksPokemonTalk_Ch2: ; f4d31
-	vibrato $8, $24
-	dutycycle $3
-	notetype $c, $a7
+	vibrato $8, $2, $4
+	setwaveduty $3
+	notetype $c, $a, $0, $7
 	stereopanning $ff
 	octave 3
 	note B_, 1
@@ -211,8 +213,8 @@ Music_ProfOaksPokemonTalk_branch_f4d4d: ; f4d4d
 ; f4d82
 
 Music_ProfOaksPokemonTalk_Ch3: ; f4d82
-	vibrato $6, $38
-	notetype $c, $25
+	vibrato $6, $3, $8
+	notetype $c, $2, $0, $5
 	stereopanning $f0
 	note __, 8
 	octave 3
@@ -309,3 +311,5 @@ Music_ProfOaksPokemonTalk_branch_f4d95: ; f4d95
 	note __, 1
 	loopchannel 0, Music_ProfOaksPokemonTalk_branch_f4d95
 ; f4dea
+
+

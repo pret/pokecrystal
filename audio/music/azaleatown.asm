@@ -7,21 +7,21 @@ Music_AzaleaTown: ; f57e8
 
 Music_AzaleaTown_Ch1: ; f57f4
 	tempo 160
-	volume $77
-	dutycycle $2
+	volume $7, $7
+	setwaveduty $2
 	stereopanning $f
-	notetype $c, $a1
+	notetype $c, $a, $0, $1
 	note __, 2
 Music_AzaleaTown_branch_f5801: ; f5801
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 3
 	note F_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note F_, 2
 	note F_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note F_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note F_, 2
 	note F_, 2
 	note F_, 2
@@ -30,13 +30,13 @@ Music_AzaleaTown_branch_f5801: ; f5801
 Music_AzaleaTown_branch_f5816: ; f5816
 	callchannel Music_AzaleaTown_branch_f588c
 	stereopanning $f0
-	intensity $a4
+	volenvelope $a, $0, $4
 	note G#, 2
 	note A#, 1
 	note __, 3
 	octave 4
 	note C_, 4
-	notetype $6, $a4
+	notetype $6, $a, $0, $4
 	note G_, 1
 	note G#, 3
 	note F#, 4
@@ -45,7 +45,7 @@ Music_AzaleaTown_branch_f5816: ; f5816
 	stereopanning $f
 	callchannel Music_AzaleaTown_branch_f588c
 	stereopanning $f0
-	notetype $6, $a4
+	notetype $6, $a, $0, $4
 	note D#, 4
 	note C_, 4
 	note __, 3
@@ -57,20 +57,20 @@ Music_AzaleaTown_branch_f5816: ; f5816
 	note F#, 4
 	stereopanning $f
 	callchannel Music_AzaleaTown_branch_f5912
-	intensity $a3
+	volenvelope $a, $0, $3
 	note A#, 4
 	octave 4
 	note C#, 2
 	note __, 2
 	note C_, 2
 	note __, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 3
 	note C#, 4
 	note A_, 2
 	note __, 14
 	callchannel Music_AzaleaTown_branch_f5912
-	intensity $a3
+	volenvelope $a, $0, $3
 	octave 4
 	note C_, 1
 	note C#, 3
@@ -78,12 +78,12 @@ Music_AzaleaTown_branch_f5816: ; f5816
 	note __, 2
 	note C#, 2
 	note __, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 3
 	note G_, 4
 	note A#, 4
 	note G_, 8
-	intensity $a2
+	volenvelope $a, $0, $2
 	note A#, 4
 	octave 4
 	note C#, 4
@@ -114,7 +114,7 @@ Music_AzaleaTown_branch_f5816: ; f5816
 	octave 2
 	note G#, 4
 	note __, 8
-	notetype $c, $2f
+	notetype $c, $2, $1, $7
 	octave 3
 	note G#, 14
 	note __, 2
@@ -122,150 +122,150 @@ Music_AzaleaTown_branch_f5816: ; f5816
 ; f588c
 
 Music_AzaleaTown_branch_f588c: ; f588c
-	notetype $c, $a1
+	notetype $c, $a, $0, $1
 	octave 4
 	note F_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note F_, 2
 	note F_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note D#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note D#, 2
 	note D#, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note F_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note F_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note A#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note A#, 2
 	note A#, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note G#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note G#, 2
 	note G#, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note A_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note A_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note C_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note C_, 2
 	note C_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note C#, 2
-	intensity $61
-	note C#, 2
-	note C#, 2
+	volenvelope $6, $0, $1
 	note C#, 2
 	note C#, 2
-	intensity $a1
+	note C#, 2
+	note C#, 2
+	volenvelope $a, $0, $1
 	note D#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note D#, 2
 	note D#, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note C#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note C#, 2
 	note C#, 2
 	note C#, 2
 	note __, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 3
 	note F_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note F_, 2
 	note F_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note F#, 2
-	intensity $61
-	note F#, 2
-	note F#, 2
+	volenvelope $6, $0, $1
 	note F#, 2
 	note F#, 2
-	intensity $a1
+	note F#, 2
+	note F#, 2
+	volenvelope $a, $0, $1
 	note F_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note F_, 2
 	note F_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note D#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note D#, 2
 	note D#, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note C#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note C#, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note C_, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note C_, 2
 	note C_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 2
 	note A#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note A#, 2
 	note A#, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 3
 	note C#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note C#, 2
 	endchannel
 ; f5912
 
 Music_AzaleaTown_branch_f5912: ; f5912
-	intensity $61
+	volenvelope $6, $0, $1
 	note G#, 8
 	note G#, 8
-	intensity $81
+	volenvelope $8, $0, $1
 	note A_, 8
-	intensity $a1
+	volenvelope $a, $0, $1
 	note A_, 8
 	endchannel
 ; f591d
 
 Music_AzaleaTown_Ch2: ; f591d
-	vibrato $12, $23
-	dutycycle $2
+	vibrato $12, $2, $3
+	setwaveduty $2
 	stereopanning $f0
-	notetype $c, $62
+	notetype $c, $6, $0, $2
 	note __, 1
 	octave 4
 	note D_, 1
-	intensity $b1
+	volenvelope $b, $0, $1
 	note D#, 2
-	intensity $71
+	volenvelope $7, $0, $1
 	note D#, 2
 	note D#, 2
-	intensity $b1
+	volenvelope $b, $0, $1
 	note C#, 2
-	intensity $71
-	note C#, 2
-	note C#, 2
-	intensity $51
+	volenvelope $7, $0, $1
 	note C#, 2
 	note C#, 2
-	intensity $b1
+	volenvelope $5, $0, $1
+	note C#, 2
+	note C#, 2
+	volenvelope $b, $0, $1
 	note C_, 2
-	intensity $71
+	volenvelope $7, $0, $1
 	note C_, 2
 	note C_, 2
-	intensity $b1
+	volenvelope $b, $0, $1
 	note C#, 2
-	intensity $71
+	volenvelope $7, $0, $1
 	note C#, 2
 	note C#, 2
-	notetype $6, $b4
+	notetype $6, $b, $0, $4
 	note F_, 7
-	dutycycle $1
+	setwaveduty $1
 	octave 5
 	note C_, 1
 Music_AzaleaTown_branch_f5952: ; f5952
@@ -274,10 +274,10 @@ Music_AzaleaTown_branch_f5952: ; f5952
 	note C_, 2
 	note C#, 1
 	note __, 3
-	notetype $6, $b4
+	notetype $6, $b, $0, $4
 	note D#, 11
 	note __, 8
-	dutycycle $1
+	setwaveduty $1
 	octave 5
 	note C_, 1
 	callchannel Music_AzaleaTown_branch_f59c7
@@ -286,14 +286,14 @@ Music_AzaleaTown_branch_f5952: ; f5952
 	note C_, 2
 	octave 3
 	note G#, 2
-	notetype $6, $b4
+	notetype $6, $b, $0, $4
 	note __, 3
 	octave 4
 	note G_, 1
 	note G#, 12
 	note F#, 4
 	note F_, 4
-	dutycycle $0
+	setwaveduty $0
 	note D_, 1
 	note D#, 3
 	note C#, 4
@@ -336,7 +336,7 @@ Music_AzaleaTown_branch_f5952: ; f5952
 	note D#, 4
 	note __, 4
 	note C#, 4
-	dutycycle $2
+	setwaveduty $2
 	note F_, 4
 	note D#, 4
 	note C#, 4
@@ -354,14 +354,14 @@ Music_AzaleaTown_branch_f5952: ; f5952
 	note __, 4
 	octave 5
 	note C_, 4
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 4
 	note G#, 12
 	note D#, 4
-	intensity $1f
+	volenvelope $1, $1, $7
 	note C_, 14
-	notetype $6, $b4
-	dutycycle $1
+	notetype $6, $b, $0, $4
+	setwaveduty $1
 	note G#, 2
 	octave 5
 	note C_, 2
@@ -388,15 +388,15 @@ Music_AzaleaTown_branch_f59c7: ; f59c7
 	note F_, 2
 	note __, 1
 	note C_, 1
-	notetype $c, $a8
-	vibrato $0, $0
+	notetype $c, $a, $1, $0
+	vibrato $0, $0, $0
 	note C#, 8
-	intensity $a7
-	vibrato $12, $23
+	volenvelope $a, $0, $7
+	vibrato $12, $2, $3
 	note C#, 16
 	note __, 4
-	intensity $b4
-	dutycycle $2
+	volenvelope $b, $0, $4
+	setwaveduty $2
 	octave 3
 	note A#, 2
 	octave 4
@@ -413,19 +413,19 @@ Music_AzaleaTown_branch_f59c7: ; f59c7
 	note __, 2
 	note C_, 4
 	note C#, 1
-	notetype $6, $b4
+	notetype $6, $b, $0, $4
 	note __, 1
 	note D_, 1
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note D#, 12
-	intensity $b4
+	volenvelope $b, $0, $4
 	endchannel
 ; f5a08
 
 Music_AzaleaTown_Ch3: ; f5a08
 	stereopanning $ff
-	vibrato $6, $26
-	notetype $c, $25
+	vibrato $6, $2, $6
+	notetype $c, $2, $0, $5
 	octave 2
 	note G#, 1
 	octave 3
@@ -554,10 +554,10 @@ Music_AzaleaTown_branch_f5a86: ; f5a86
 	note __, 1
 	note F_, 4
 	note A_, 2
-	intensity $15
+	volenvelope $1, $0, $5
 	note A#, 1
 	note __, 1
-	intensity $25
+	volenvelope $2, $0, $5
 	octave 4
 	note C#, 1
 	note __, 1
@@ -611,7 +611,7 @@ Music_AzaleaTown_branch_f5a86: ; f5a86
 ; f5acf
 
 Music_AzaleaTown_branch_f5acf: ; f5acf
-	intensity $35
+	volenvelope $3, $0, $5
 	octave 3
 	note F_, 1
 	note __, 1
@@ -621,7 +621,7 @@ Music_AzaleaTown_branch_f5acf: ; f5acf
 	note __, 1
 	note F_, 1
 	note __, 1
-	intensity $25
+	volenvelope $2, $0, $5
 	note F_, 1
 	note __, 1
 	note F_, 1
@@ -661,3 +661,5 @@ Music_AzaleaTown_branch_f5aea: ; f5aea
 	note F#, 2
 	loopchannel 0, Music_AzaleaTown_branch_f5aea
 ; f5b03
+
+

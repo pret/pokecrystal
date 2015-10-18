@@ -8,11 +8,11 @@ Music_Route3: ; ec2ca
 Music_Route3_Ch1: ; ec2d6
 	stereopanning $f
 	tempo 160
-	volume $77
-	notetype $c, $91
+	volume $7, $7
+	notetype $c, $9, $0, $1
 	note __, 10
-	dutycycle $0
-	vibrato $14, $6
+	setwaveduty $0
+	vibrato $14, $0, $6
 	octave 3
 	note C#, 1
 	note E_, 1
@@ -132,10 +132,10 @@ Music_Route3_branch_ec307: ; ec307
 	note B_, 1
 	octave 3
 	note D_, 1
-	intensity $6f
+	volenvelope $6, $1, $7
 	note G_, 1
 	note D_, 1
-	intensity $77
+	volenvelope $7, $0, $7
 	octave 2
 	note B_, 1
 	octave 3
@@ -145,7 +145,7 @@ Music_Route3_branch_ec307: ; ec307
 	note E_, 1
 	note G#, 1
 	note B_, 4
-	intensity $6f
+	volenvelope $6, $1, $7
 	octave 3
 	note G#, 2
 	note E_, 2
@@ -174,7 +174,7 @@ Music_Route3_branch_ec307: ; ec307
 	note D_, 2
 	note E_, 2
 	note F_, 2
-	intensity $91
+	volenvelope $9, $0, $1
 	note F#, 1
 	note D_, 1
 	octave 2
@@ -239,14 +239,14 @@ Music_Route3_branch_ec3bd: ; ec3bd
 
 Music_Route3_Ch2: ; ec3d0
 	stereopanning $f0
-	notetype $c, $5e
-	dutycycle $2
-	vibrato $6, $3
+	notetype $c, $5, $1, $6
+	setwaveduty $2
+	vibrato $6, $0, $3
 	octave 4
 	note E_, 1
 	note G_, 1
 	note G#, 6
-	intensity $87
+	volenvelope $8, $0, $7
 	note F#, 1
 	note G#, 1
 	note A_, 1
@@ -258,8 +258,8 @@ Music_Route3_Ch2: ; ec3d0
 	note B_, 4
 	octave 4
 	note C#, 4
-	intensity $a7
-	dutycycle $2
+	volenvelope $a, $0, $7
+	setwaveduty $2
 	octave 3
 	note A_, 1
 	octave 4
@@ -267,25 +267,25 @@ Music_Route3_Ch2: ; ec3d0
 	note E_, 1
 	note G#, 1
 Music_Route3_branch_ec3f5: ; ec3f5
-	intensity $7d
+	volenvelope $7, $1, $5
 	callchannel Music_Route3_branch_ec443
 	note G_, 1
 	note B_, 10
-	intensity $b7
+	volenvelope $b, $0, $7
 	note B_, 6
-	intensity $7d
+	volenvelope $7, $1, $5
 	note __, 4
-	dutycycle $3
+	setwaveduty $3
 	note G#, 4
 	callchannel Music_Route3_branch_ec443
 	note B_, 1
-	intensity $7d
+	volenvelope $7, $1, $5
 	octave 5
 	note D_, 5
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 5
 	note D_, 5
-	dutycycle $0
+	setwaveduty $0
 	octave 3
 	note D_, 1
 	note G_, 1
@@ -295,8 +295,8 @@ Music_Route3_branch_ec3f5: ; ec3f5
 	note B_, 1
 	octave 4
 	note D_, 4
-	intensity $8f
-	dutycycle $2
+	volenvelope $8, $1, $7
+	setwaveduty $2
 	octave 4
 	note E_, 2
 	note D_, 2
@@ -319,7 +319,7 @@ Music_Route3_branch_ec3f5: ; ec3f5
 	note C#, 3
 	octave 3
 	note A_, 10
-	dutycycle $2
+	setwaveduty $2
 	octave 4
 	note F#, 6
 	note E_, 1
@@ -336,10 +336,10 @@ Music_Route3_branch_ec443: ; ec443
 	note A_, 1
 	octave 5
 	note C#, 7
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 5
 	note C#, 3
-	intensity $7d
+	volenvelope $7, $1, $5
 	octave 4
 	note E_, 2
 	note A_, 2
@@ -357,8 +357,8 @@ Music_Route3_branch_ec443: ; ec443
 
 Music_Route3_Ch3: ; ec45b
 	stereopanning $ff
-	vibrato $6, $3
-	notetype $c, $13
+	vibrato $6, $0, $3
+	notetype $c, $1, $0, $3
 	octave 3
 	note B_, 1
 	octave 4
@@ -367,7 +367,7 @@ Music_Route3_Ch3: ; ec45b
 	note D_, 1
 	octave 3
 	note B_, 1
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 3
 	note A_, 1
 	note __, 1
@@ -385,7 +385,7 @@ Music_Route3_Ch3: ; ec45b
 	note G#, 2
 	callchannel Music_Route3_branch_ec4bd
 Music_Route3_branch_ec47f: ; ec47f
-	intensity $14
+	volenvelope $1, $0, $4
 	callchannel Music_Route3_branch_ec4bd
 	callchannel Music_Route3_branch_ec4bd
 	callchannel Music_Route3_branch_ec4ce
@@ -508,3 +508,5 @@ Music_Route3_branch_ec4f0: ; ec4f0
 	note C#, 1
 	loopchannel 0, Music_Route3_branch_ec4f0
 ; ec506
+
+

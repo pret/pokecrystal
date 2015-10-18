@@ -7,13 +7,13 @@ Music_Lighthouse: ; ee569
 
 Music_Lighthouse_Ch1: ; ee575
 	tempo 144
-	volume $77
-	dutycycle $3
-	tone $0004
-	vibrato $8, $45
+	volume $7, $7
+	setwaveduty $3
+	setpitchoffset $0004
+	vibrato $8, $4, $5
 	stereopanning $f
 Music_Lighthouse_branch_ee584: ; ee584
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	octave 3
 	note C#, 8
 	octave 2
@@ -131,11 +131,11 @@ Music_Lighthouse_branch_ee584: ; ee584
 ; ee5fc
 
 Music_Lighthouse_Ch2: ; ee5fc
-	dutycycle $3
-	tone $0002
-	vibrato $10, $45
+	setwaveduty $3
+	setpitchoffset $0002
+	vibrato $10, $4, $5
 Music_Lighthouse_branch_ee604: ; ee604
-	notetype $c, $c5
+	notetype $c, $c, $0, $5
 	octave 3
 	note G#, 12
 	note F#, 2
@@ -147,7 +147,7 @@ Music_Lighthouse_branch_ee604: ; ee604
 	note __, 7
 	octave 3
 	note G#, 16
-	intensity $c5
+	volenvelope $c, $0, $5
 	note C#, 1
 	note __, 1
 	note C#, 1
@@ -214,7 +214,7 @@ Music_Lighthouse_branch_ee604: ; ee604
 ; ee656
 
 Music_Lighthouse_Ch3: ; ee656
-	notetype $c, $19
+	notetype $c, $1, $1, $1
 	stereopanning $f0
 Music_Lighthouse_branch_ee65b: ; ee65b
 	octave 2
@@ -312,3 +312,5 @@ Music_Lighthouse_branch_ee6b1: ; ee6b1
 	note A_, 2
 	loopchannel 0, Music_Lighthouse_branch_ee6b1
 ; ee6c5
+
+

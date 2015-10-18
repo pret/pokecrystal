@@ -7,13 +7,13 @@ Music_PokemonCenter: ; ed5c6
 
 Music_PokemonCenter_Ch1: ; ed5d2
 	tempo 152
-	volume $77
-	dutycycle $2
-	vibrato $a, $14
-	tone $0001
+	volume $7, $7
+	setwaveduty $2
+	vibrato $a, $1, $4
+	setpitchoffset $0001
 Music_PokemonCenter_branch_ed5df: ; ed5df
 	stereopanning $f
-	notetype $c, $83
+	notetype $c, $8, $0, $3
 	octave 3
 	note F#, 2
 	note F_, 2
@@ -77,7 +77,7 @@ Music_PokemonCenter_branch_ed5df: ; ed5df
 	note B_, 2
 	note A_, 2
 	note G_, 2
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	note F#, 2
 	note E_, 2
 	note D_, 2
@@ -152,12 +152,12 @@ Music_PokemonCenter_branch_ed5df: ; ed5df
 ; ed671
 
 Music_PokemonCenter_Ch2: ; ed671
-	vibrato $10, $25
+	vibrato $10, $2, $5
 Music_PokemonCenter_branch_ed674: ; ed674
 	stereopanning $ff
 	callchannel Music_PokemonCenter_branch_ed6d1
 	stereopanning $f
-	notetype $c, $a5
+	notetype $c, $a, $0, $5
 	octave 3
 	note A_, 4
 	note E_, 4
@@ -166,14 +166,14 @@ Music_PokemonCenter_branch_ed674: ; ed674
 	note D_, 2
 	note F#, 6
 	stereopanning $f
-	notetype $c, $a5
+	notetype $c, $a, $0, $5
 	octave 3
 	note A_, 4
 	note E_, 4
 	stereopanning $ff
 	callchannel Music_PokemonCenter_branch_ed6d1
 	stereopanning $f
-	notetype $c, $a5
+	notetype $c, $a, $0, $5
 	octave 3
 	note A_, 4
 	note E_, 4
@@ -181,11 +181,11 @@ Music_PokemonCenter_branch_ed674: ; ed674
 	callchannel Music_PokemonCenter_branch_ed6e4
 	note D_, 8
 	stereopanning $f
-	notetype $c, $a5
+	notetype $c, $a, $0, $5
 	octave 3
 	note D_, 4
 	note E_, 4
-	notetype $c, $c6
+	notetype $c, $c, $0, $6
 	octave 4
 	note F#, 8
 	note A_, 8
@@ -221,15 +221,15 @@ Music_PokemonCenter_branch_ed674: ; ed674
 ; ed6d1
 
 Music_PokemonCenter_branch_ed6d1: ; ed6d1
-	dutycycle $2
-	notetype $c, $c2
+	setwaveduty $2
+	notetype $c, $c, $0, $2
 	octave 4
 	note D_, 2
 	octave 3
 	note A_, 2
 	octave 4
 	note D_, 2
-	intensity $c3
+	volenvelope $c, $0, $3
 	note A_, 4
 	note G_, 4
 	note F#, 2
@@ -239,14 +239,14 @@ Music_PokemonCenter_branch_ed6d1: ; ed6d1
 ; ed6e4
 
 Music_PokemonCenter_branch_ed6e4: ; ed6e4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note C#, 2
 	octave 3
 	note A_, 2
 	octave 4
 	note C#, 2
-	intensity $c3
+	volenvelope $c, $0, $3
 	note F#, 4
 	note E_, 4
 	note C#, 2
@@ -254,7 +254,7 @@ Music_PokemonCenter_branch_ed6e4: ; ed6e4
 ; ed6f3
 
 Music_PokemonCenter_Ch3: ; ed6f3
-	notetype $c, $28
+	notetype $c, $2, $1, $0
 Music_PokemonCenter_branch_ed6f6: ; ed6f6
 	stereopanning $f0
 	octave 3
@@ -412,3 +412,5 @@ Music_PokemonCenter_branch_ed792: ; ed792
 	note G_, 2
 	loopchannel 0, Music_PokemonCenter_branch_ed792
 ; ed79b
+
+

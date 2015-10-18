@@ -7,20 +7,20 @@ Music_MtMoon: ; edb29
 
 Music_MtMoon_Ch1: ; edb35
 	tempo 208
-	volume $77
-	dutycycle $2
-	tone $0001
-	vibrato $8, $14
+	volume $7, $7
+	setwaveduty $2
+	setpitchoffset $0001
+	vibrato $8, $1, $4
 	stereopanning $f0
-	notetype $c, $45
+	notetype $c, $4, $0, $5
 	note __, 2
 	loopchannel 0, Music_MtMoon_branch_edb56
 ; edb4c
 
 Music_MtMoon_Ch2: ; edb4c
-	vibrato $b, $15
-	dutycycle $2
-	notetype $c, $84
+	vibrato $b, $1, $5
+	setwaveduty $2
+	notetype $c, $8, $0, $4
 	stereopanning $f
 Music_MtMoon_branch_edb56: ; edb56
 	octave 4
@@ -76,7 +76,7 @@ Music_MtMoon_branch_edb56: ; edb56
 
 Music_MtMoon_Ch3: ; edb8a
 Music_MtMoon_branch_edb8a: ; edb8a
-	notetype $c, $28
+	notetype $c, $2, $1, $0
 Music_MtMoon_branch_edb8d: ; edb8d
 	octave 2
 	note B_, 2
@@ -141,3 +141,5 @@ Music_MtMoon_branch_edbc3: ; edbc3
 	note A#, 8
 	loopchannel 0, Music_MtMoon_branch_edbc3
 ; edbd8
+
+

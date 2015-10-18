@@ -6,11 +6,11 @@ Music_SuicuneBattle: ; 178b81
 
 Music_SuicuneBattle_Ch1: ; 178b8a
 	tempo 101
-	volume $77
-	dutycycle $3
-	tone $0002
-	vibrato $12, $15
-	notetype $c, $b7
+	volume $7, $7
+	setwaveduty $3
+	setpitchoffset $0002
+	vibrato $12, $1, $5
+	notetype $c, $b, $0, $7
 	octave 4
 	note A_, 1
 	note G#, 1
@@ -30,7 +30,7 @@ Music_SuicuneBattle_Ch1: ; 178b8a
 	note C#, 4
 	octave 2
 	note A#, 2
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	note A_, 2
 	note A_, 4
 	note A_, 2
@@ -42,11 +42,11 @@ Music_SuicuneBattle_Ch1: ; 178b8a
 	note A_, 2
 	note A_, 2
 	note A_, 2
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	octave 4
 	note F_, 4
 	note E_, 2
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note A_, 4
 	note A_, 2
@@ -58,11 +58,11 @@ Music_SuicuneBattle_Ch1: ; 178b8a
 	note A_, 2
 	note A_, 2
 	note A_, 2
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	octave 4
 	note F_, 4
 	note E_, 2
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note A_, 4
 	note A_, 2
@@ -74,11 +74,11 @@ Music_SuicuneBattle_Ch1: ; 178b8a
 	note A_, 2
 	note A_, 2
 	note A_, 2
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	octave 4
 	note F_, 4
 	note E_, 2
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note A_, 4
 	note A_, 2
@@ -96,7 +96,7 @@ Music_SuicuneBattle_Ch1: ; 178b8a
 	note E_, 1
 	note G#, 1
 Music_SuicuneBattle_branch_178bfc: ; 178bfc
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	octave 2
 	note A_, 2
 	note B_, 2
@@ -247,7 +247,7 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note A_, 2
 	note G_, 2
 	note C_, 2
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	octave 2
 	note B_, 2
 	octave 3
@@ -273,18 +273,18 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	octave 2
 	note G_, 2
 	note __, 2
-	notetype $c, $b6
+	notetype $c, $b, $0, $6
 	octave 3
 	note G_, 10
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	note C_, 2
 	octave 2
 	note G_, 2
 	note __, 2
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 3
 	note G_, 10
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	octave 2
 	note B_, 2
 	octave 3
@@ -330,7 +330,7 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note C_, 2
 	octave 3
 	note G_, 2
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note B_, 2
 	note B_, 6
@@ -339,31 +339,31 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note B_, 2
 	note B_, 6
 	note B_, 2
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	octave 3
 	note C_, 6
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note B_, 2
 	note B_, 2
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note B_, 2
 	note B_, 2
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note B_, 2
 	note B_, 2
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note B_, 2
 	octave 3
@@ -375,61 +375,61 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note A_, 1
 	octave 4
 	note C_, 1
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note B_, 2
 	note B_, 2
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note B_, 2
 	note B_, 2
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note B_, 2
 	note B_, 2
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note B_, 2
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	octave 4
 	note C_, 6
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note B_, 2
 	note B_, 2
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note B_, 2
 	note B_, 2
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note B_, 2
 	note B_, 2
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	octave 1
 	note F#, 4
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 3
 	note B_, 2
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	octave 4
 	note C_, 6
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 2
 	note B_, 8
 	note E_, 8
@@ -443,7 +443,7 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note C_, 2
 	note D_, 2
 	note C_, 2
-	notetype $c, $a0
+	notetype $c, $a, $0, $0
 	octave 1
 	note F#, 8
 	note B_, 8
@@ -454,7 +454,7 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note B_, 8
 	note E_, 8
 	note F_, 8
-	notetype $c, $a7
+	notetype $c, $a, $0, $7
 	note F_, 8
 	note __, 16
 	note __, 16
@@ -468,7 +468,7 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note __, 16
 	note __, 16
 	note __, 16
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	note __, 4
 	octave 3
 	note D_, 8
@@ -498,9 +498,9 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note __, 16
 	note __, 16
 	note __, 16
-	vibrato $8, $24
-	dutycycle $2
-	notetype $c, $96
+	vibrato $8, $2, $4
+	setwaveduty $2
+	notetype $c, $9, $0, $6
 	octave 4
 	note E_, 6
 	note F#, 6
@@ -508,16 +508,16 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note A_, 4
 	octave 4
 	note A_, 16
-	vibrato $12, $15
-	dutycycle $3
+	vibrato $12, $1, $5
+	setwaveduty $3
 	loopchannel 0, Music_SuicuneBattle_branch_178bfc
 ; 178dec
 
 Music_SuicuneBattle_Ch2: ; 178dec
-	dutycycle $3
-	vibrato $14, $34
-	tone $0001
-	notetype $c, $c3
+	setwaveduty $3
+	vibrato $14, $3, $4
+	setpitchoffset $0001
+	notetype $c, $c, $0, $3
 	octave 5
 	note E_, 1
 	octave 4
@@ -558,33 +558,33 @@ Music_SuicuneBattle_Ch2: ; 178dec
 	octave 4
 	note E_, 1
 	note A_, 6
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 2
 	note E_, 8
 	note E_, 8
 	note E_, 8
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 4
 	note A#, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	note A_, 4
 	octave 2
 	note E_, 8
 	note E_, 8
 	note E_, 8
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 4
 	note A#, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	note A_, 4
 	octave 4
 	note E_, 8
 	note E_, 8
 	note E_, 8
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 4
 	note A#, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	note A_, 4
 	octave 4
 	note E_, 8
@@ -592,28 +592,28 @@ Music_SuicuneBattle_Ch2: ; 178dec
 	note E_, 8
 	note E_, 4
 Music_SuicuneBattle_branch_178e4e: ; 178e4e
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 3
 	note A_, 8
 	note B_, 8
 	note D_, 8
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	octave 4
 	note D_, 8
-	notetype $c, $b6
+	notetype $c, $b, $0, $6
 	note D_, 8
-	vibrato $10, $24
-	dutycycle $2
-	notetype $c, $a4
+	vibrato $10, $2, $4
+	setwaveduty $2
+	notetype $c, $a, $0, $4
 	octave 5
 	note A_, 6
 	note B_, 6
 	note D_, 4
 	octave 6
 	note D_, 8
-	vibrato $14, $34
-	dutycycle $3
-	notetype $c, $c7
+	vibrato $14, $3, $4
+	setwaveduty $3
+	notetype $c, $c, $0, $7
 	octave 4
 	note C_, 8
 	note D_, 8
@@ -621,40 +621,40 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note G_, 8
 	octave 4
 	note F_, 8
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	note E_, 10
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note E_, 6
-	notetype $c, $a5
+	notetype $c, $a, $0, $5
 	octave 2
 	note G_, 4
 	note A_, 4
 	note G_, 4
 	note B_, 4
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 3
 	note A_, 8
 	note B_, 8
 	note D_, 8
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 4
 	note D_, 8
-	notetype $c, $4c
+	notetype $c, $4, $1, $4
 	note D_, 4
-	notetype $c, $c6
+	notetype $c, $c, $0, $6
 	note D_, 4
-	notetype $c, $a4
-	vibrato $8, $24
-	dutycycle $2
+	notetype $c, $a, $0, $4
+	vibrato $8, $2, $4
+	setwaveduty $2
 	octave 5
 	note A_, 6
 	note B_, 6
 	note D_, 4
 	octave 6
 	note D_, 8
-	vibrato $14, $34
-	notetype $c, $c7
-	dutycycle $3
+	vibrato $14, $3, $4
+	notetype $c, $c, $0, $7
+	setwaveduty $3
 	octave 4
 	note C_, 8
 	note D_, 8
@@ -662,14 +662,14 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note G_, 8
 	octave 4
 	note F_, 8
-	notetype $c, $4c
+	notetype $c, $4, $1, $4
 	note E_, 8
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note E_, 8
-	notetype $c, $c6
+	notetype $c, $c, $0, $6
 	note C_, 8
 	note G_, 8
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 3
 	note F#, 2
 	note G_, 2
@@ -689,18 +689,18 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note G_, 2
 	note C_, 2
 	note __, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 4
 	note C_, 10
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 4
 	note G_, 2
 	note C_, 2
 	note __, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 5
 	note C_, 10
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 4
 	note F#, 2
 	note G_, 2
@@ -717,12 +717,12 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note F#, 2
 	note E_, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note G_, 8
 	note F#, 8
 	note E_, 8
 	note G_, 8
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 3
 	note F#, 2
 	note F#, 6
@@ -731,85 +731,85 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note F#, 2
 	note F#, 6
 	note F#, 2
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note G_, 6
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 3
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 3
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 3
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note G_, 6
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note G_, 6
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note F#, 2
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 4
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note F#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note G_, 6
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	octave 3
 	note F#, 8
 	octave 2
@@ -822,10 +822,10 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note B_, 8
 	octave 3
 	note C_, 8
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 3
 	note C_, 8
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note B_, 8
 	octave 2
@@ -835,13 +835,13 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note E_, 8
 	octave 1
 	note B_, 8
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	octave 2
 	note C_, 10
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 2
 	note C_, 6
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 1
 	note B_, 2
 	octave 2
@@ -1062,9 +1062,9 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	octave 4
 	note D_, 2
 	note G_, 2
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	note A_, 8
-	notetype $c, $c3
+	notetype $c, $c, $0, $3
 	octave 2
 	note A_, 2
 	note B_, 2
@@ -1190,7 +1190,7 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 ; 179122
 
 Music_SuicuneBattle_Ch3: ; 179122
-	notetype $c, $18
+	notetype $c, $1, $1, $0
 	note __, 16
 	note __, 4
 	octave 2
@@ -1281,7 +1281,7 @@ Music_SuicuneBattle_Ch3: ; 179122
 	octave 2
 	note D_, 2
 	note E_, 2
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 Music_SuicuneBattle_branch_179182: ; 179182
 	octave 1
 	note A_, 2
@@ -2058,3 +2058,5 @@ Music_SuicuneBattle_branch_179182: ; 179182
 	note E_, 2
 	loopchannel 0, Music_SuicuneBattle_branch_179182
 ; 17948b
+
+

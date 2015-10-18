@@ -4,7 +4,7 @@ Music_Printer: ; f07fd
 
 Music_Printer_Ch3: ; f0800
 	tempo 256
-	notetype $c, $20
+	notetype $c, $2, $0, $0
 	octave 4
 	note B_, 6
 	octave 5
@@ -319,3 +319,4 @@ Music_Printer_branch_f0823: ; f0823
 	note __, 1
 	loopchannel 0, Music_Printer_branch_f0823
 ; f0941
+

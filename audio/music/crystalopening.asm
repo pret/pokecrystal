@@ -7,12 +7,12 @@ Music_CrystalOpening: ; 1786e8
 
 Music_CrystalOpening_Ch1: ; 1786f4
 	tempo 136
-	volume $77
-	tone $0002
-	vibrato $10, $34
-	dutycycle $3
+	volume $7, $7
+	setpitchoffset $0002
+	vibrato $10, $3, $4
+	setwaveduty $3
 	stereopanning $f0
-	notetype $c, $92
+	notetype $c, $9, $0, $2
 	octave 2
 	note F#, 2
 	note F#, 4
@@ -25,7 +25,7 @@ Music_CrystalOpening_Ch1: ; 1786f4
 	note F#, 2
 	note F#, 2
 	note F#, 6
-	notetype $c, $b4
+	notetype $c, $b, $0, $4
 	octave 2
 	note B_, 2
 	note F#, 2
@@ -112,21 +112,21 @@ Music_CrystalOpening_Ch1: ; 1786f4
 	note F#, 2
 	octave 4
 	note C_, 2
-	notetype $c, $a0
+	notetype $c, $a, $0, $0
 	note D_, 8
 	note D_, 8
-	notetype $c, $a7
+	notetype $c, $a, $0, $7
 	note D_, 8
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note D_, 16
 	endchannel
 ; 17877a
 
 Music_CrystalOpening_Ch2: ; 17877a
-	notetype $c, $a2
-	dutycycle $3
-	vibrato $8, $44
+	notetype $c, $a, $0, $2
+	setwaveduty $3
+	vibrato $8, $4, $4
 	octave 2
 	note B_, 2
 	note B_, 4
@@ -139,51 +139,51 @@ Music_CrystalOpening_Ch2: ; 17877a
 	note B_, 2
 	note B_, 2
 	note B_, 2
-	notetype $c, $a2
+	notetype $c, $a, $0, $2
 	octave 2
 	note E_, 1
 	note B_, 1
 	octave 3
 	note E_, 1
 	note F#, 1
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note E_, 8
 	note F#, 8
 	octave 2
 	note B_, 8
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	octave 3
 	note B_, 8
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note B_, 16
 	note __, 16
 	note G_, 8
 	note A_, 8
 	note D_, 8
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 4
 	note D_, 8
-	notetype $c, $7c
+	notetype $c, $7, $1, $4
 	note D_, 8
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note D_, 8
 	note G_, 8
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	note F#, 8
 	note F#, 8
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note F#, 8
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 3
 	note D_, 16
 	endchannel
 ; 1787c8
 
 Music_CrystalOpening_Ch3: ; 1787c8
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	octave 1
 	note B_, 4
-	notetype $6, $16
+	notetype $6, $1, $0, $6
 	note B_, 1
 	note A#, 1
 	note A_, 1
@@ -192,11 +192,11 @@ Music_CrystalOpening_Ch3: ; 1787c8
 	note F#, 1
 	note F_, 1
 	note E_, 1
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	note B_, 4
 	note B_, 4
 	note B_, 4
-	notetype $6, $16
+	notetype $6, $1, $0, $6
 	note B_, 1
 	note A#, 1
 	note A_, 1
@@ -205,7 +205,7 @@ Music_CrystalOpening_Ch3: ; 1787c8
 	note F#, 1
 	note F_, 1
 	note E_, 1
-	notetype $c, $16
+	notetype $c, $1, $0, $6
 	note B_, 4
 	note B_, 4
 	octave 2
@@ -362,3 +362,5 @@ Music_CrystalOpening_Ch4: ; 178810
 	note __, 16
 	endchannel
 ; 178889
+
+

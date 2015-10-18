@@ -7,16 +7,16 @@ Music_BuenasPassword: ; 178153
 
 Music_BuenasPassword_Ch1: ; 17815f
 	tempo 136
-	volume $77
-	tone $0001
-	notetype $c, $b3
+	volume $7, $7
+	setpitchoffset $0001
+	notetype $c, $b, $0, $3
 	note __, 8
 Music_BuenasPassword_branch_17816b: ; 17816b
 	stereopanning $ff
 	note __, 16
 	note __, 16
-	dutycycle $3
-	notetype $6, $97
+	setwaveduty $3
+	notetype $6, $9, $0, $7
 	stereopanning $f
 	octave 4
 	note G#, 1
@@ -37,7 +37,7 @@ Music_BuenasPassword_branch_17816b: ; 17816b
 	note F#, 2
 	note G#, 2
 	note __, 12
-	dutycycle $2
+	setwaveduty $2
 	callchannel Music_BuenasPassword_branch_178204
 	stereopanning $ff
 	callchannel Music_BuenasPassword_branch_1782df
@@ -47,7 +47,7 @@ Music_BuenasPassword_branch_17816b: ; 17816b
 	callchannel Music_BuenasPassword_branch_1782df
 	callchannel Music_BuenasPassword_branch_178222
 	callchannel Music_BuenasPassword_branch_178204
-	dutycycle $1
+	setwaveduty $1
 	note C#, 2
 	note __, 2
 	note D#, 2
@@ -142,25 +142,25 @@ Music_BuenasPassword_branch_17816b: ; 17816b
 
 Music_BuenasPassword_branch_178204: ; 178204
 	stereopanning $f
-	notetype $6, $84
+	notetype $6, $8, $0, $4
 	octave 4
 	note D#, 2
-	intensity $71
+	volenvelope $7, $0, $1
 	note C#, 1
 	note C_, 1
-	intensity $51
+	volenvelope $5, $0, $1
 	octave 3
 	note A#, 1
 	note G#, 1
-	intensity $31
+	volenvelope $3, $0, $1
 	note G_, 1
 	note F_, 1
-	intensity $11
+	volenvelope $1, $0, $1
 	note D#, 1
 	note C#, 1
 	note C_, 1
 	note __, 1
-	notetype $c, $84
+	notetype $c, $8, $0, $4
 	endchannel
 ; 178222
 
@@ -183,9 +183,9 @@ Music_BuenasPassword_branch_178222: ; 178222
 ; 178231
 
 Music_BuenasPassword_Ch2: ; 178231
-	vibrato $12, $34
-	dutycycle $2
-	notetype $c, $a5
+	vibrato $12, $3, $4
+	setwaveduty $2
+	notetype $c, $a, $0, $5
 	note __, 7
 	octave 3
 	note F#, 1
@@ -264,7 +264,7 @@ Music_BuenasPassword_branch_17823c: ; 17823c
 	note A#, 1
 	note B_, 1
 	note G#, 10
-	intensity $84
+	volenvelope $8, $0, $4
 	octave 2
 	note D#, 1
 	note __, 1
@@ -272,7 +272,7 @@ Music_BuenasPassword_branch_17823c: ; 17823c
 	note __, 1
 	note G_, 1
 	note __, 1
-	intensity $a5
+	volenvelope $a, $0, $5
 	loopchannel 0, Music_BuenasPassword_branch_17823c
 ; 1782a4
 
@@ -290,23 +290,23 @@ Music_BuenasPassword_branch_1782a4: ; 1782a4
 	stereopanning $f0
 	octave 4
 	note G#, 1
-	notetype $6, $81
+	notetype $6, $8, $0, $1
 	note G_, 1
 	note F_, 1
-	intensity $71
+	volenvelope $7, $0, $1
 	note D#, 1
 	note C#, 1
-	intensity $61
+	volenvelope $6, $0, $1
 	note C_, 1
 	octave 3
 	note A#, 1
-	intensity $41
+	volenvelope $4, $0, $1
 	note G#, 1
-	intensity $21
+	volenvelope $2, $0, $1
 	note G_, 1
 	note F_, 1
 	note __, 1
-	notetype $c, $a5
+	notetype $c, $a, $0, $5
 	endchannel
 ; 1782cc
 
@@ -386,7 +386,7 @@ Music_BuenasPassword_branch_1782df: ; 1782df
 ; 178311
 
 Music_BuenasPassword_Ch3: ; 178311
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note __, 8
 Music_BuenasPassword_branch_178315: ; 178315
 	callchannel Music_BuenasPassword_branch_1783a7
@@ -643,3 +643,5 @@ Music_BuenasPassword_branch_178424: ; 178424
 	note D_, 1
 	endchannel
 ; 17843b
+
+

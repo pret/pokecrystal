@@ -3,14 +3,16 @@ Music_PostCredits: ; cfd9e
 	dbw $01, Music_PostCredits_Ch2
 ; cfda4
 
-	db $2
+
+INCBIN "baserom.gbc", $cfda4, $cfda5 - $cfda4
+
 
 Music_PostCredits_Ch1: ; cfda5
 	tempo 271
-	volume $77
-	forceoctave $3
-	dutycycle $2
-	notetype $c, $93
+	volume $7, $7
+	setabsnote $0, $3
+	setwaveduty $2
+	notetype $c, $9, $0, $3
 	note __, 8
 Music_PostCredits_branch_cfdb2: ; cfdb2
 	octave 3
@@ -20,13 +22,13 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 	octave 4
 	note C_, 2
 	note E_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note E_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note E_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note E_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 2
 	note B_, 2
 	octave 3
@@ -35,13 +37,13 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 	note B_, 2
 	octave 4
 	note D_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note D_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 2
 	note A#, 2
 	octave 3
@@ -50,13 +52,13 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 	note A#, 2
 	octave 4
 	note D_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note D_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 2
 	note A_, 2
 	octave 3
@@ -65,13 +67,13 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 	note A_, 2
 	octave 4
 	note C_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note C_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 2
 	note G#, 2
 	octave 3
@@ -80,13 +82,13 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 	note G#, 2
 	octave 4
 	note C_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note C_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 2
 	note G_, 2
 	octave 3
@@ -95,13 +97,13 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 	note G_, 2
 	octave 4
 	note C_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note C_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 2
 	note F#, 2
 	note A_, 2
@@ -109,13 +111,13 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 	note D_, 2
 	note F#, 2
 	note A_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note A_, 2
-	intensity $63
+	volenvelope $6, $0, $3
 	note A_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note A_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 2
 	note G_, 2
 	octave 3
@@ -123,9 +125,9 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 	note D_, 2
 	note G_, 2
 	note G_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note G_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note D_, 2
 	octave 2
 	note G_, 2
@@ -133,27 +135,27 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 ; cfe48
 
 Music_PostCredits_Ch2: ; cfe48
-	forceoctave $3
-	dutycycle $2
-	notetype $c, $a3
+	setabsnote $0, $3
+	setwaveduty $2
+	notetype $c, $a, $0, $3
 	octave 5
 	note E_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note E_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note F_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note F_, 2
 Music_PostCredits_branch_cfe5a: ; cfe5a
-	intensity $a3
+	volenvelope $a, $0, $3
 	note G_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note G_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	octave 6
 	note D_, 2
 	note C_, 2
@@ -163,105 +165,106 @@ Music_PostCredits_branch_cfe5a: ; cfe5a
 	note C_, 2
 	octave 5
 	note G_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note G_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $33
+	volenvelope $3, $0, $3
 	note G_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note E_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note E_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note F_, 2
 	note G_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note G_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note G_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note G_, 2
-	intensity $33
+	volenvelope $3, $0, $3
 	note G_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note A_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note A_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note E_, 2
 	note G_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note G_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note G_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note F_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note F_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note F_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note D_, 2
 	note E_, 2
 	note F_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note F_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note F_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note F_, 2
-	intensity $33
+	volenvelope $3, $0, $3
 	note F_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note G_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note G_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note F_, 2
 	note E_, 2
 	note D#, 2
 	note E_, 2
 	note B_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note B_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note B_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note A_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note A_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note D_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note D_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note D_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note D_, 2
-	intensity $33
-	note D_, 2
-	note D_, 2
-	intensity $23
+	volenvelope $3, $0, $3
 	note D_, 2
 	note D_, 2
-	intensity $a3
+	volenvelope $2, $0, $3
+	note D_, 2
+	note D_, 2
+	volenvelope $a, $0, $3
 	note G_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	octave 4
 	note G_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	octave 5
 	note D_, 2
 	note G_, 2
-	intensity $73
+	volenvelope $7, $0, $3
 	note G_, 2
-	intensity $53
+	volenvelope $5, $0, $3
 	note G_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	note E_, 2
 	note F_, 2
 	loopchannel 0, Music_PostCredits_branch_cfe5a
 ; cff04
+

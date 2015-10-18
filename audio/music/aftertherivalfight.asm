@@ -7,16 +7,16 @@ Music_AfterTheRivalFight: ; f5127
 
 Music_AfterTheRivalFight_Ch1: ; f5133
 	tempo 112
-	volume $77
-	dutycycle $0
-	tone $0001
-	vibrato $8, $14
+	volume $7, $7
+	setwaveduty $0
+	setpitchoffset $0001
+	vibrato $8, $1, $4
 	stereopanning $f0
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 2
 	note G#, 4
 	note G#, 4
-	intensity $82
+	volenvelope $8, $0, $2
 	octave 3
 	note G#, 2
 	note G#, 2
@@ -26,14 +26,14 @@ Music_AfterTheRivalFight_Ch1: ; f5133
 ; f5153
 
 Music_AfterTheRivalFight_Ch2: ; f5153
-	dutycycle $1
-	vibrato $6, $35
+	setwaveduty $1
+	vibrato $6, $3, $5
 	stereopanning $f
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note G#, 4
 	note G#, 4
-	intensity $a2
+	volenvelope $a, $0, $2
 	note G#, 2
 	note G#, 2
 	note G#, 2
@@ -42,7 +42,7 @@ Music_AfterTheRivalFight_Ch2: ; f5153
 ; f516a
 
 Music_AfterTheRivalFight_Ch3: ; f516a
-	notetype $c, $28
+	notetype $c, $2, $1, $0
 	octave 3
 	note D#, 2
 	note __, 2
@@ -67,3 +67,5 @@ Music_AfterTheRivalFight_Ch4: ; f517a
 	note D_, 2
 	loopchannel 0, Music_AfterTheRivalFight_branch_f5118
 ; f518a
+
+

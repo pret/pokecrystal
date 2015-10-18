@@ -6,14 +6,14 @@ Music_CeladonCity: ; f435b
 
 Music_CeladonCity_Ch1: ; f4364
 	tempo 146
-	volume $77
-	tone $0001
+	volume $7, $7
+	setpitchoffset $0001
 Music_CeladonCity_branch_f436c: ; f436c
 	stereopanning $f
-	notetype $c, $a6
+	notetype $c, $a, $0, $6
 	octave 3
 	note A_, 7
-	intensity $a1
+	volenvelope $a, $0, $1
 	note G#, 1
 	note A_, 1
 	note D_, 3
@@ -145,10 +145,10 @@ Music_CeladonCity_branch_f43fe: ; f43fe
 ; f4406
 
 Music_CeladonCity_Ch2: ; f4406
-	vibrato $12, $34
-	dutycycle $2
+	vibrato $12, $3, $4
+	setwaveduty $2
 	stereopanning $f0
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 4
 	note D_, 1
 	note C#, 1
@@ -174,7 +174,7 @@ Music_CeladonCity_branch_f441a: ; f441a
 	note G_, 4
 	note B_, 4
 	callchannel Music_CeladonCity_branch_f4463
-	intensity $c1
+	volenvelope $c, $0, $1
 	note A_, 2
 	note G_, 2
 	note F#, 2
@@ -188,10 +188,10 @@ Music_CeladonCity_branch_f441a: ; f441a
 	note E_, 1
 	note F#, 1
 	note A_, 1
-	intensity $b3
+	volenvelope $b, $0, $3
 	octave 5
 	note D_, 6
-	intensity $a2
+	volenvelope $a, $0, $2
 	octave 1
 	note F#, 2
 	callchannel Music_CeladonCity_branch_f4474
@@ -211,7 +211,7 @@ Music_CeladonCity_branch_f441a: ; f441a
 	note D_, 1
 	note A_, 4
 	note D_, 6
-	intensity $97
+	volenvelope $9, $0, $7
 	octave 4
 	note F#, 1
 	note A_, 1
@@ -221,7 +221,7 @@ Music_CeladonCity_branch_f441a: ; f441a
 ; f4463
 
 Music_CeladonCity_branch_f4463: ; f4463
-	intensity $b2
+	volenvelope $b, $0, $2
 	octave 4
 	note B_, 4
 	note G_, 4
@@ -273,9 +273,9 @@ Music_CeladonCity_branch_f4474: ; f4474
 ; f4492
 
 Music_CeladonCity_Ch3: ; f4492
-	vibrato $12, $24
+	vibrato $12, $2, $4
 Music_CeladonCity_branch_f4495: ; f4495
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 3
 	note A_, 2
 	note __, 2
@@ -321,7 +321,7 @@ Music_CeladonCity_branch_f44a1: ; f44a1
 	octave 2
 	note A_, 2
 	note __, 6
-	intensity $10
+	volenvelope $1, $0, $0
 	callchannel Music_CeladonCity_branch_f4510
 	octave 5
 	note E_, 2
@@ -394,3 +394,5 @@ Music_CeladonCity_branch_f4510: ; f4510
 	note B_, 2
 	endchannel
 ; f4518
+
+

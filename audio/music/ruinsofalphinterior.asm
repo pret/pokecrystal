@@ -6,19 +6,19 @@ Music_RuinsOfAlphInterior: ; ebd9e
 
 Music_RuinsOfAlphInterior_Ch1: ; ebda7
 	tempo 224
-	volume $77
-	dutycycle $0
+	volume $7, $7
+	setwaveduty $0
 	stereopanning $f0
-	notetype $c, $44
+	notetype $c, $4, $0, $4
 	note __, 1
 	loopchannel 0, Music_RuinsOfAlphInterior_branch_ebdc2
 ; ebdb8
 
 Music_RuinsOfAlphInterior_Ch2: ; ebdb8
-	tone $0002
-	dutycycle $0
+	setpitchoffset $0002
+	setwaveduty $0
 	stereopanning $f
-	notetype $c, $a4
+	notetype $c, $a, $0, $4
 Music_RuinsOfAlphInterior_branch_ebdc2: ; ebdc2
 	octave 4
 	note C_, 4
@@ -38,7 +38,7 @@ Music_RuinsOfAlphInterior_branch_ebdc2: ; ebdc2
 ; ebdd4
 
 Music_RuinsOfAlphInterior_Ch3: ; ebdd4
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 Music_RuinsOfAlphInterior_branch_ebdd7: ; ebdd7
 	octave 2
 	note G#, 2
@@ -48,3 +48,5 @@ Music_RuinsOfAlphInterior_branch_ebdd7: ; ebdd7
 	note __, 10
 	loopchannel 0, Music_RuinsOfAlphInterior_branch_ebdd7
 ; ebde1
+
+

@@ -95,7 +95,7 @@ channel_struct: MACRO
                       dw
 \1NoteFlags::         db ; 3:sweep on/off 4:noise sample 5:rest
 \1Condition::         db ; conditional jumps
-\1DutyCycle::         db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
+\1WaveDuty::          db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
 \1Intensity::         db ; hi:pressure lo:velocity
 \1Frequency:: ; 11 bits
 \1FrequencyLo::       db
@@ -109,18 +109,18 @@ channel_struct: MACRO
 \1LoopCount::         db
 \1Tempo::             dw
 \1Tracks::            db ; hi:left lo:right
-\1_1c::               ds 1 ; c11d
+\1WaveDutyCycle::     db ; c11d - contains 4 settings for the wave duty (music command $de) that get cycled through
 \1VibratoDelayCount:: db ; initialized by \1VibratoDelay
 \1VibratoDelay::      db ; number of frames a note plays until vibrato starts
 \1VibratoExtent::     db
 \1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
-\1_21::               db ; c122
-\1_22::               db ; c123
+\1_21::               db ; c122 - new frequency:lo, comes from cmd $e0
+\1_22::               db ; c123 - new frequency:hi, comes from cmd $e0
 \1_23::               db ; c124
 \1_24::               db ; c125
 \1_25::               db ; c126
                       db ; c127
-\1CryPitch::          dw
+\1PitchShift::        dw
 \1_29::               db
 \1_2a::               db
                       db
@@ -171,17 +171,17 @@ Channel7:: channel_struct Channel7 ; c22d
 Channel8:: channel_struct Channel8 ; c25f
 
 	ds 1 ; c291
-TempNRX1:: ds 1 ; c292 - temporary memory that gets written into NRX1
-TempNRX2:: ds 1 ; c293 - temporary memory that gets written into NRX2
-TempNRX3:: ds 1 ; c294 - temporary memory that gets written into NRX3
-TempNRX4:: ds 1 ; c295 - temporary memory that gets written into NRX4
-wc296:: ds 1 ; only used by Function3d9f (which in unreferenced)
-wc297:: ds 1 ; temp memory for 1st parameter of MusicE0, used by LoadNote and gets subtracted by 1 there
+TempNRX1:: db ; c292 - temporary memory that gets written into NRX1
+TempNRX2:: db ; c293 - temporary memory that gets written into NRX2
+TempNRX3:: db ; c294 - temporary memory that gets written into NRX3
+TempNRX4:: db ; c295 - temporary memory that gets written into NRX4
+wc296:: db ; only used by Function3d9f (which in unreferenced)
+PitchDuration:: db ; c297 - temp memory for 1st parameter of MusicE0, used by LoadNote and gets subtracted by 1 there
 
 CurMusicByte:: ; c298
-	ds 1
+	db
 CurChannel:: ; c299
-	ds 1
+	db
 Volume:: ; c29a
 ; corresponds to $ff24
 ; Channel control / ON-OFF / Volume (R/W)
@@ -251,15 +251,20 @@ CryLength:: ; c2b2
 	ds 2
 LastVolume:: ; c2b4
 	ds 1
-wc2b5:: ds 1
+wc2b5:: ds 1 ; unused, never read
 SFXPriority:: ; c2b6
 ; if nonzero, turn off music when playing sfx
 	ds 1
 	ds 1
+
+; following 4 bytes should contain the result that the
+; music command $ee (conditional jump) uses to decide to jump or not
+; but their never set
 wc2b8:: ds 1
 wc2b9:: ds 1
 wc2ba:: ds 1
 wc2bb:: ds 1
+
 wc2bc:: ds 1
 CryTracks:: ; c2bd
 ; plays only in left or right track depending on what side the monster is on
@@ -269,6 +274,8 @@ wc2be:: ds 1
 CurSFX:: ; c2bf
 ; id of sfx currently playing
 	ds 1
+SoundWRAM_End::
+
 wc2c0::
 wMapMusic:: ; c2c0
 	ds 1
