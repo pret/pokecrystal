@@ -36,12 +36,10 @@ endr
 	jp [hl]
 ; fc01b
 
-
 Tileset00Anim: ; 0xfc01b
 Tileset02Anim: ; 0xfc01b
 Tileset03Anim: ; 0xfc01b
-;	   param, function
-	dw $9140, AnimateWaterTile
+	dwtile $14, VTiles2, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -55,10 +53,9 @@ Tileset03Anim: ; 0xfc01b
 ; 0xfc047
 
 Tileset25Anim: ; 0xfc047
-;	   param, function
-	dw $9140, AnimateWaterTile
+	dwtile $14, VTiles2, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
-	dw $95f0, AnimateFountain
+	dwtile $5f, VTiles2, AnimateFountain
 	dw NULL,  WaitTileAnimation
 	dw NULL,  TileAnimationPalette
 	dw NULL,  WaitTileAnimation
@@ -70,7 +67,6 @@ Tileset25Anim: ; 0xfc047
 ; 0xfc073
 
 Tileset31Anim: ; 0xfc073
-;	   param, function
 	dw NULL,  ForestTreeLeftAnimation
 	dw NULL,  ForestTreeRightAnimation
 	dw NULL,  WaitTileAnimation
@@ -79,15 +75,14 @@ Tileset31Anim: ; 0xfc073
 	dw NULL,  ForestTreeLeftAnimation2
 	dw NULL,  ForestTreeRightAnimation2
 	dw NULL,  AnimateFlowerTile
-	dw $9140, AnimateWaterTile
+	dwtile $14, VTiles2, AnimateWaterTile
 	dw NULL,  TileAnimationPalette
 	dw NULL,  NextTileFrame8
 	dw NULL,  DoneTileAnimation
 ; 0xfc0a3
 
 Tileset01Anim: ; 0xfc0a3
-;	   param, function
-	dw $9140, AnimateWaterTile
+	dwtile $14, VTiles2, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  TileAnimationPalette
@@ -103,10 +98,9 @@ Tileset01Anim: ; 0xfc0a3
 ; 0xfc0d7
 
 TilesetAnimfc0d7: ; 0xfc0d7
-;	   param, function
-	dw $9030, WriteTileToBuffer
+	dwtile $03, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileRightLeft
-	dw $9030, WriteTileFromBuffer
+	dwtile $03, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -118,10 +112,9 @@ TilesetAnimfc0d7: ; 0xfc0d7
 ; 0xfc103
 
 TilesetAnimfc103: ; 0xfc103
-;	   param, function
-	dw $9140, WriteTileToBuffer
+	dwtile $14, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileRightLeft
-	dw $9140, WriteTileFromBuffer
+	dwtile $14, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -133,8 +126,7 @@ TilesetAnimfc103: ; 0xfc103
 ; 0xfc12f
 
 Tileset09Anim: ; 0xfc12f
-;	   param, function
-	dw $9140, AnimateWaterTile
+	dwtile $14, VTiles2, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -149,7 +141,6 @@ Tileset09Anim: ; 0xfc12f
 ; 0xfc15f
 
 Tileset15Anim: ; 0xfc15f
-;	   param, function
 	dw NULL,  SafariFountainAnim2
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -161,88 +152,83 @@ Tileset15Anim: ; 0xfc15f
 ; 0xfc17f
 
 TilesetAnimfc17f: ; 0xfc17f
-;	   param, function
-	dw $9530, WriteTileToBuffer
+	dwtile $53, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileDown
 	dw wcf41, ScrollTileDown
-	dw $9530, WriteTileFromBuffer
-	dw $9030, WriteTileToBuffer
+	dwtile $53, VTiles2, WriteTileFromBuffer
+	dwtile $03, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileRightLeft
-	dw $9030, WriteTileFromBuffer
-	dw $9530, WriteTileToBuffer
+	dwtile $03, VTiles2, WriteTileFromBuffer
+	dwtile $53, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileDown
 	dw wcf41, ScrollTileDown
-	dw $9530, WriteTileFromBuffer
+	dwtile $53, VTiles2, WriteTileFromBuffer
 	dw NULL,  DoneTileAnimation
 ; 0xfc1af
 
 TilesetAnimfc1af: ; 0xfc1af
-;	   param, function
-	dw $9540, WriteTileToBuffer
+	dwtile $54, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileDown
 	dw wcf41, ScrollTileDown
-	dw $9540, WriteTileFromBuffer
+	dwtile $54, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
-	dw $9030, WriteTileToBuffer
+	dwtile $03, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileRightLeft
-	dw $9030, WriteTileFromBuffer
+	dwtile $03, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
-	dw $9540, WriteTileToBuffer
+	dwtile $54, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileDown
 	dw wcf41, ScrollTileDown
-	dw $9540, WriteTileFromBuffer
+	dwtile $54, VTiles2, WriteTileFromBuffer
 	dw NULL,  DoneTileAnimation
 ; 0xfc1e7
 
 Tileset24Anim: ; 0xfc1e7
 Tileset30Anim: ; 0xfc1e7
-;	   param, function
-	dw $9140, WriteTileToBuffer
-	dw NULL,  Functionfc71e
+	dwtile $14, VTiles2, WriteTileToBuffer
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw wcf41, ScrollTileRightLeft
-	dw NULL,  Functionfc71e
-	dw $9140, WriteTileFromBuffer
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
+	dwtile $14, VTiles2, WriteTileFromBuffer
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  TileAnimationPalette
-	dw NULL,  Functionfc71e
-	dw $9400, WriteTileToBuffer
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
+	dwtile $40, VTiles2, WriteTileToBuffer
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw wcf41, ScrollTileDown
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw wcf41, ScrollTileDown
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw wcf41, ScrollTileDown
-	dw NULL,  Functionfc71e
-	dw $9400, WriteTileFromBuffer
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
+	dwtile $40, VTiles2, WriteTileFromBuffer
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  DoneTileAnimation
 ; 0xfc233
 
 Tileset29Anim: ; 0xfc233
-;	   param, function
-	dw $9350, WriteTileToBuffer
-	dw NULL,  Functionfc71e
+	dwtile $35, VTiles2, WriteTileToBuffer
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw wcf41, ScrollTileRightLeft
-	dw NULL,  Functionfc71e
-	dw $9350, WriteTileFromBuffer
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
+	dwtile $35, VTiles2, WriteTileFromBuffer
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  TileAnimationPalette
-	dw NULL,  Functionfc71e
-	dw $9310, WriteTileToBuffer
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
+	dwtile $31, VTiles2, WriteTileToBuffer
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw wcf41, ScrollTileDown
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw wcf41, ScrollTileDown
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw wcf41, ScrollTileDown
-	dw NULL,  Functionfc71e
-	dw $9310, WriteTileFromBuffer
-	dw NULL,  Functionfc71e
+	dw NULL,  FlickeringCaveEntrancePalette
+	dwtile $31, VTiles2, WriteTileFromBuffer
+	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  DoneTileAnimation
 ; 0xfc27f
 
 Tileset23Anim: ; 0xfc27f
-;	   param, function
 	dw SproutPillarTilePointer9,  AnimateSproutPillarTile
 	dw SproutPillarTilePointer10, AnimateSproutPillarTile
 	dw SproutPillarTilePointer7,  AnimateSproutPillarTile
@@ -262,9 +248,9 @@ Tileset23Anim: ; 0xfc27f
 ; 0xfc2bf
 
 TilesetAnimfc2bf: ; 0xfc2bf
-	dw $94f0, WriteTileToBuffer
+	dwtile $4f, VTiles2, WriteTileToBuffer
 	dw wcf41, ScrollTileRightLeft
-	dw $94f0, WriteTileFromBuffer
+	dwtile $4f, VTiles2, WriteTileFromBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -299,7 +285,6 @@ Tileset33Anim: ; 0xfc2e7
 Tileset34Anim: ; 0xfc2e7
 Tileset35Anim: ; 0xfc2e7
 Tileset36Anim: ; 0xfc2e7
-;	   param, function
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -1002,36 +987,37 @@ TileAnimationPalette: ; fc6d7
 ; fc71e
 
 
-Functionfc71e: ; fc71e
+FlickeringCaveEntrancePalette: ; fc71e
+; No palette changes on DMG.
 	ld a, [hCGB]
 	and a
 	ret z
-
+; We don't want to mess with non-standard palettes.
 	ld a, [rBGP]
-	cp $e4
+	cp %11100100
 	ret nz
-
+; We only want to be here if we're in a dark cave.
 	ld a, [wd847]
-	cp $ff
+	cp $ff ; 3,3,3,3
 	ret nz
 
 	ld a, [rSVBK]
 	push af
-
-	ld a, 5
+	ld a, 5 ; wra5: gfx
 	ld [rSVBK], a
-	ld a, $a0
+; Ready for BGPD input...
+	ld a, %10100000 ; auto-increment, index $20 (pal 4 color 0)
 	ld [rBGPI], a
 	ld a, [$ff9b]
-	and 2
-	jr nz, .asm_fc743
-	ld hl, Unkn1Pals + $20
-	jr .asm_fc746
+	and %00000010
+	jr nz, .bit1set
+	ld hl, Unkn1Pals + $20 ; pal 4 color 0
+	jr .okay
 
-.asm_fc743
-	ld hl, Unkn1Pals + $22
+.bit1set
+	ld hl, Unkn1Pals + $22 ; pal 4 color 2
 
-.asm_fc746
+.okay
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -1043,16 +1029,16 @@ Functionfc71e: ; fc71e
 ; fc750
 
 
-SproutPillarTilePointer1:  dw $92d0, SproutPillarTile1
-SproutPillarTilePointer2:  dw $92f0, SproutPillarTile2
-SproutPillarTilePointer3:  dw $93d0, SproutPillarTile3
-SproutPillarTilePointer4:  dw $93f0, SproutPillarTile4
-SproutPillarTilePointer5:  dw $93c0, SproutPillarTile5
-SproutPillarTilePointer6:  dw $92c0, SproutPillarTile6
-SproutPillarTilePointer7:  dw $94d0, SproutPillarTile7
-SproutPillarTilePointer8:  dw $94f0, SproutPillarTile8
-SproutPillarTilePointer9:  dw $95d0, SproutPillarTile9
-SproutPillarTilePointer10: dw $95f0, SproutPillarTile10
+SproutPillarTilePointer1:  dwtile $2d, VTiles2, SproutPillarTile1
+SproutPillarTilePointer2:  dwtile $2f, VTiles2, SproutPillarTile2
+SproutPillarTilePointer3:  dwtile $3d, VTiles2, SproutPillarTile3
+SproutPillarTilePointer4:  dwtile $3f, VTiles2, SproutPillarTile4
+SproutPillarTilePointer5:  dwtile $3c, VTiles2, SproutPillarTile5
+SproutPillarTilePointer6:  dwtile $2c, VTiles2, SproutPillarTile6
+SproutPillarTilePointer7:  dwtile $4d, VTiles2, SproutPillarTile7
+SproutPillarTilePointer8:  dwtile $4f, VTiles2, SproutPillarTile8
+SproutPillarTilePointer9:  dwtile $5d, VTiles2, SproutPillarTile9
+SproutPillarTilePointer10: dwtile $5f, VTiles2, SproutPillarTile10
 
 SproutPillarTile1:  INCBIN "gfx/tilesets/sprout-pillar/1.2bpp"
 SproutPillarTile2:  INCBIN "gfx/tilesets/sprout-pillar/2.2bpp"
@@ -1067,10 +1053,10 @@ SproutPillarTile10: INCBIN "gfx/tilesets/sprout-pillar/10.2bpp"
 ; fca98
 
 
-WhirlpoolFrames1: dw $9320, WhirlpoolTiles1
-WhirlpoolFrames2: dw $9330, WhirlpoolTiles2
-WhirlpoolFrames3: dw $9420, WhirlpoolTiles3
-WhirlpoolFrames4: dw $9430, WhirlpoolTiles4
+WhirlpoolFrames1: dwtile $32, VTiles2, WhirlpoolTiles1
+WhirlpoolFrames2: dwtile $33, VTiles2, WhirlpoolTiles2
+WhirlpoolFrames3: dwtile $42, VTiles2, WhirlpoolTiles3
+WhirlpoolFrames4: dwtile $43, VTiles2, WhirlpoolTiles4
 ; fcaa8
 
 WhirlpoolTiles1: INCBIN "gfx/tilesets/whirlpool/1.2bpp"

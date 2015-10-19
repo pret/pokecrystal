@@ -558,11 +558,11 @@ endr
 	cp PARTY_LENGTH
 	jr z, .asm_eb3c
 
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	call ClearSprites
 
-	predef AddPkmnToParty
+	predef TryAddMonToParty
 
 	callba Function4db49
 
@@ -600,7 +600,7 @@ endr
 	ld d, h
 	ld e, l
 	push de
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld b, 0
 	callba Function116c1
@@ -691,7 +691,7 @@ endr
 	jr .asm_ebe2
 
 .asm_ebd1
-	callba Functione6ce
+	callba BugContest_SetCaughtContestMon
 	jr .asm_ebe2
 
 .asm_ebd9
@@ -980,7 +980,7 @@ LoveBallMultiplier:
 	push bc
 	ld a, [TempBattleMonSpecies]
 	ld [CurPartySpecies], a
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
@@ -1259,7 +1259,7 @@ Calcium: ; ee3d
 	ld h, [hl]
 	ld l, a
 	ld de, StringBuffer2
-	ld bc, $000d
+	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 
 	call Play_SFX_FULL_HEAL
@@ -1267,7 +1267,7 @@ Calcium: ; ee3d
 	ld hl, UnknownText_0xeea6
 	call PrintText
 
-	ld c, $2
+	ld c, HAPPINESS_USEDITEM
 	callba ChangeHappiness
 
 	jp Functionf795
@@ -1425,7 +1425,7 @@ RareCandy: ; ef14
 	ld a, $f8
 	call Functionf24a
 
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef CopyPkmnToTempMon
 
@@ -1440,7 +1440,7 @@ RareCandy: ; ef14
 
 	call Functiona80
 
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld a, [CurPartySpecies]
 	ld [wd265], a
@@ -1464,7 +1464,7 @@ HealPowder: ; efad
 
 	cp $0
 	jr nz, .asm_efc9
-	ld c, $f
+	ld c, HAPPINESS_BITTERPOWDER
 	callba ChangeHappiness
 
 	call LooksBitterMessage
@@ -1632,7 +1632,7 @@ RevivalHerb: ; f0a9
 	cp 0
 	jr nz, .asm_f0c5
 
-	ld c, $11
+	ld c, HAPPINESS_REVIVALHERB
 	callba ChangeHappiness
 	call LooksBitterMessage
 	ld a, 0
@@ -1780,12 +1780,12 @@ GoldBerry: ; f186
 
 
 Energypowder: ; f18c
-	ld c, $f
+	ld c, HAPPINESS_BITTERPOWDER
 	jr Functionf192
 ; f190
 
 EnergyRoot: ; f190
-	ld c, $10
+	ld c, HAPPINESS_ENERGYROOT
 ; f192
 
 Functionf192: ; f192
@@ -2341,7 +2341,7 @@ endr
 	ld [hBattleTurn], a
 	ld [AttackMissed], a
 	ld [EffectFailed], a
-	callba Function361ef
+	callba CheckIfStatCanBeRaised
 	call WaitSFX
 
 	callba BattleCommand8c
@@ -2349,7 +2349,7 @@ endr
 
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
-	ld c, $3
+	ld c, HAPPINESS_USEDXITEM
 	callba ChangeHappiness
 	ret
 ; f504
@@ -2705,7 +2705,7 @@ Functionf6e0: ; f6e0
 ; f6e8
 
 Functionf6e8: ; f6e8
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	call Functionf8ec
 	ld hl, PartyMon1PP
@@ -3190,7 +3190,7 @@ Functionf8b9: ; f8b9
 	ld a, PartyMon1Moves - PartyMon1
 	call GetPartyParamLocation
 	pop de
-	xor a
+	xor a ; PARTYMON
 	ld [wcfa9], a
 	ld [MonType], a
 	ld c, NUM_MOVES
@@ -3231,27 +3231,27 @@ Functionf8ec: ; f8ec
 
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
-	jr z, .asm_f91a
+	jr z, .asm_f91a ; PARTYMON
 
 	ld hl, OTPartyMon1Moves
 	dec a
-	jr z, .asm_f91a
+	jr z, .asm_f91a ; OTPARTYMON
 
 	ld hl, TempMonMoves
 	dec a
-	jr z, .asm_f915
+	jr z, .asm_f915 ; BOXMON
 
-	ld hl, TempMonMoves
+	ld hl, TempMonMoves ; Wasted cycles
 	dec a
-	jr z, .asm_f915
+	jr z, .asm_f915 ; BREEDMON
 
-	ld hl, BattleMonMoves
+	ld hl, BattleMonMoves ; WILDMON
 
-.asm_f915
+.asm_f915 ; BOXMON, BREEDMON, WILDMON
 	call Functionf969
 	jr .asm_f91d
 
-.asm_f91a
+.asm_f91a ; PARTYMON, OTPARTYMON
 	call Add_CurPartyMon_Times
 
 .asm_f91d

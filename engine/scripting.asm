@@ -1258,7 +1258,7 @@ Script_appear: ; 0x972dd
 	call GetScriptByte
 	call GetScriptPerson
 	call _CopyObjectStruct
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld b, 0 ; clear
 	call ApplyEventActionAppearDisappear
 	ret
@@ -1276,7 +1276,7 @@ Script_disappear: ; 0x972ee
 	ld a, [hLastTalked]
 .ok
 	call DeleteObjectStruct
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld b, 1 ; set
 	call ApplyEventActionAppearDisappear
 	callba RefreshMapAppearDisappear
@@ -1584,7 +1584,7 @@ Script_reloadmap: ; 0x97491
 	xor a
 	ld [wd459], a
 	ld a, $f3
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	ld a, $1
 	call LoadMapStatus
 	call StopScript
@@ -2232,7 +2232,7 @@ Script_readmoney: ; 0x97732
 	call ResetStringBuffer1
 	call GetMoneyAccount
 	ld hl, StringBuffer1
-	ld bc, $4306
+	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
 	call PrintNum
 	ld de, StringBuffer1
 	jp ConvertMemToText
@@ -2246,7 +2246,7 @@ Script_readcoins: ; 0x97747
 	call ResetStringBuffer1
 	ld hl, StringBuffer1
 	ld de, Coins
-	ld bc, $4206
+	lb bc, PRINTNUM_RIGHTALIGN | 2, 6
 	call PrintNum
 	ld de, StringBuffer1
 	jp ConvertMemToText
@@ -2260,7 +2260,7 @@ Script_RAM2MEM: ; 0x9775c
 	call ResetStringBuffer1
 	ld de, ScriptVar
 	ld hl, StringBuffer1
-	ld bc, $4103
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
 	call PrintNum
 	ld de, StringBuffer1
 	jp ConvertMemToText
@@ -2656,7 +2656,7 @@ Script_giveegg: ; 0x97968
 ;     level (DecimalParam)
 ; if no room in the party, return 0 in ScriptVar; else, return 2
 
-	xor a
+	xor a ; PARTYMON
 	ld [ScriptVar], a
 	ld [MonType], a
 	call GetScriptByte
@@ -2839,7 +2839,7 @@ Script_warp: ; 0x97a1d
 	ld a, -1
 	ld [wd001], a
 	ld a, -15
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
 	call StopScript
@@ -2851,7 +2851,7 @@ Script_warp: ; 0x97a1d
 	ld a, -1
 	ld [wd001], a
 	ld a, -5
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
 	call StopScript
@@ -2994,7 +2994,7 @@ Script_newloadmap: ; 0x97b08
 ;     which_method (SingleByteParam)
 
 	call GetScriptByte
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
 	call StopScript
@@ -3198,7 +3198,7 @@ Script_halloffame: ; 0x97bd5
 Script_credits: ; 0x97bf3
 ; script command 0xa2
 
-	callba Function86455
+	callba RedCredits
 	; fallthrough
 
 DisplayCredits:

@@ -7,9 +7,9 @@ UndergroundWarehouse_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x7d950
+	dbw 5, .ResetSwitches
 
-UnknownScript_0x7d950:
+.ResetSwitches:
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3

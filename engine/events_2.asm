@@ -95,10 +95,10 @@ CheckFacingTileEvent:: ; 97c5f
 ; 97cc0
 
 
-RockSmashEncounter:: ; 97cc0
-; Rock Smash encounter
+RandomEncounter:: ; 97cc0
+; Random encounter
 
-	call Function968c7
+	call CheckWildEncounterCooldown
 	jr c, .nope
 	call CanUseSweetScent
 	jr nc, .nope
@@ -120,8 +120,8 @@ RockSmashEncounter:: ; 97cc0
 	ret
 
 .ok
-	ld a, BANK(RockSmashBattleScript)
-	ld hl, RockSmashBattleScript
+	ld a, BANK(WildBattleScript)
+	ld hl, WildBattleScript
 	jr .done
 
 .ok_bug_contest
@@ -135,7 +135,7 @@ RockSmashEncounter:: ; 97cc0
 	ret
 ; 97cf9
 
-RockSmashBattleScript: ; 97cf9
+WildBattleScript: ; 97cf9
 	battlecheck
 	startbattle
 	returnafterbattle

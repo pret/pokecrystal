@@ -407,10 +407,10 @@ Function1002c9: ; 1002c9
 
 Function1002dc: ; 1002dc
 	ld a, $f8
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	callba RunMapSetupScript
 	xor a
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	call Functione51
 	ret
 ; 1002ed
@@ -1097,7 +1097,7 @@ Function100697: ; 100697
 	ret
 
 .asm_1006b4
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 
@@ -1484,7 +1484,7 @@ Function100902: ; 100902
 	hlcoord 4, 11
 	call PlaceString
 	hlcoord 8, 11
-	ld bc, $0102
+	lb bc, 1, 2
 	ld de, StringBuffer2
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
@@ -1844,7 +1844,7 @@ Function100b9f: ; 100b9f
 	callba Function3e786
 	ret z
 	call Function100dd8
-	jp c, Function2ec8
+	jp c, xor_a_dec_a
 	call Function100e72
 	call Function100bc2
 	push af
@@ -7558,7 +7558,7 @@ Function1034e0: ; 1034e0
 	add hl, bc
 	pop bc
 	ld a, $6
-	call Functionfb8
+	call FillBoxWithByte
 	ret
 ; 1034f1
 

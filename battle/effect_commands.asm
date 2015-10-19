@@ -1036,13 +1036,13 @@ BattleCommand04: ; 34555
 
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_34570
+	jr z, .proceed
 
 	ld hl, EnemyMonPP
 	ld de, EnemySubStatus3
 	ld bc, EnemyTurnsTaken
 
-.asm_34570
+.proceed
 
 ; If we've gotten this far, this counts as a turn.
 	ld a, [bc]
@@ -1390,7 +1390,7 @@ BattleCommand_CalcDamageTypeMultiplier: ; 346d2
 	cp c
 	jr z, .stab
 
-	jr .asm_3473a
+	jr .SkipStab
 
 .stab
 	ld hl, CurDamage + 1
@@ -1412,13 +1412,13 @@ BattleCommand_CalcDamageTypeMultiplier: ; 346d2
 	ld hl, TypeModifier
 	set 7, [hl]
 
-.asm_3473a
+.SkipStab
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	ld b, a
 	ld hl, TypeMatchup
 
-.asm_34743
+.TypesLoop
 	ld a, [hli]
 
 	cp $ff
@@ -1426,38 +1426,39 @@ BattleCommand_CalcDamageTypeMultiplier: ; 346d2
 
 	; foresight
 	cp $fe
-	jr nz, .asm_34757
+	jr nz, .SkipForesightCheck
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
 	jr nz, .end
 
-	jr .asm_34743
+	jr .TypesLoop
 
-.asm_34757
+.SkipForesightCheck
 	cp b
-	jr nz, .asm_347b3
+	jr nz, .SkipType
 	ld a, [hl]
 	cp d
-	jr z, .asm_34763
+	jr z, .GotMatchup
 	cp e
-	jr z, .asm_34763
-	jr .asm_347b3
+	jr z, .GotMatchup
+	jr .SkipType
 
-.asm_34763
+.GotMatchup
 	push hl
 	push bc
 	inc hl
 	ld a, [TypeModifier]
 	and %10000000
 	ld b, a
+; If the target is immune to the move, treat it as a miss and calculate the damage as 0
 	ld a, [hl]
 	and a
-	jr nz, .asm_34775
+	jr nz, .NotImmune
 	inc a
 	ld [AttackMissed], a
 	xor a
-.asm_34775
+.NotImmune
 	ld [hMultiplier], a
 	add b
 	ld [TypeModifier], a
@@ -1480,34 +1481,35 @@ BattleCommand_CalcDamageTypeMultiplier: ; 346d2
 	ld b, a
 	ld a, [hProduct + 3]
 	or b
-	jr z, .asm_347ab
+	jr z, .ok ; This is a very convoluted way to get back that we've essentially dealt no damage.
 
-	ld a, $a
+; Take the product and divide it by 10.
+	ld a, 10
 	ld [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
 	ld a, [hQuotient + 1]
 	ld b, a
 	ld a, [hQuotient + 2]
 	or b
-	jr nz, .asm_347ab
+	jr nz, .ok
 
-	ld a, $1
-	ld [$ffb6], a
+	ld a, 1
+	ld [hMultiplicand + 2], a
 
-.asm_347ab
-	ld a, [$ffb5]
+.ok
+	ld a, [hMultiplicand + 1]
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	ld [hl], a
 	pop bc
 	pop hl
 
-.asm_347b3
+.SkipType
 rept 2
 	inc hl
 endr
-	jr .asm_34743
+	jr .TypesLoop
 
 .end
 	call HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
@@ -1545,32 +1547,32 @@ Function347d3: ; 347d3
 	ld a, 10 ; 1.0
 	ld [wd265], a
 	ld hl, TypeMatchup
-.asm_347e7
+.TypesLoop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3482f
+	jr z, .End
 	cp $fe
-	jr nz, .asm_347fb
+	jr nz, .Next
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
-	jr nz, .asm_3482f
-	jr .asm_347e7
-.asm_347fb
+	jr nz, .End
+	jr .TypesLoop
+.Next
 	cp d
-	jr nz, .asm_34807
+	jr nz, .Nope
 	ld a, [hli]
 	cp b
-	jr z, .asm_3480b
+	jr z, .Yup
 	cp c
-	jr z, .asm_3480b
-	jr .asm_34808
-.asm_34807
+	jr z, .Yup
+	jr .Nope2
+.Nope
 	inc hl
-.asm_34808
+.Nope2
 	inc hl
-	jr .asm_347e7
-.asm_3480b
+	jr .TypesLoop
+.Yup
 	xor a
 	ld [hDividend + 0], a
 	ld [hMultiplicand + 0], a
@@ -1588,9 +1590,9 @@ Function347d3: ; 347d3
 	pop bc
 	ld a, [hQuotient + 2]
 	ld [wd265], a
-	jr .asm_347e7
+	jr .TypesLoop
 
-.asm_3482f
+.End
 	pop bc
 	pop de
 	pop hl
@@ -1603,14 +1605,14 @@ BattleCommanda3: ; 34833
 	ld a, [wd265]
 	and a
 	ld a, 10 ; 1.0
-	jr nz, .asm_3484a
+	jr nz, .skip
 	call ResetDamage
 	xor a
 	ld [TypeModifier], a
 	inc a
 	ld [AttackMissed], a
 	ret
-.asm_3484a
+.skip
 	ld [wd265], a
 	ret
 ; 3484e
@@ -6098,7 +6100,7 @@ BattleCommand7d: ; 361e0
 	jr BattleCommand1c
 BattleCommand1c: ; 361e4
 ; statup
-	call Function361ef
+	call CheckIfStatCanBeRaised
 	ld a, [FailedMessage]
 	and a
 	ret nz
@@ -6106,7 +6108,7 @@ BattleCommand1c: ; 361e4
 ; 361ef
 
 
-Function361ef: ; 361ef
+CheckIfStatCanBeRaised: ; 361ef
 	ld a, b
 	ld [LoweredStat], a
 	ld hl, PlayerStatLevels

@@ -17,6 +17,7 @@ hSeconds           EQU $ff98
 
 hROMBank           EQU $ff9d
 hVBlank            EQU $ff9e
+hMapEntryMethod    EQU $ff9f
 
 hJoypadReleased    EQU $ffa2
 hJoypadPressed     EQU $ffa3
@@ -25,6 +26,7 @@ hJoypadSum         EQU $ffa5
 hJoyReleased       EQU $ffa6
 hJoyPressed        EQU $ffa7
 hJoyDown           EQU $ffa8
+hJoyLast           EQU $ffa9
 
 hConnectionStripLength EQU $ffaf
 hConnectedMapWidth EQU $ffb0
@@ -42,6 +44,13 @@ hMultiplicand      EQU $ffb4 ; 3 bytes long
 hMultiplier        EQU $ffb7 ; 1 byte long
 hProduct           EQU $ffb3 ; result (4 bytes long)
 
+hPrintNum1         EQU $ffb3
+hPrintNum2         EQU $ffb4
+hPrintNum3         EQU $ffb5
+hPrintNum4         EQU $ffb6
+hPrintNum5         EQU $ffb7
+hPrintNum6         EQU $ffb8
+hPrintNum7         EQU $ffb9
 hMathBuffer        EQU $ffb8
 
 hMoneyTemp         EQU $ffc3

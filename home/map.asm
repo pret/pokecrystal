@@ -207,10 +207,10 @@ endr
 
 Function222a:: ; 222a
 	ld a, $fa
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	callba RunMapSetupScript
 	xor a
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	ret
 ; 2238
 

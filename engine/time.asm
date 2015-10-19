@@ -5,7 +5,7 @@ Function113d6: ; 113d6
 
 Function113da: ; 113da
 	xor a
-	ld [wdc2d], a
+	ld [wLuckyNumberDayBuffer], a
 	ld [wdc3a], a
 	ld [wdc1c], a
 	ret
@@ -242,28 +242,28 @@ Function11522: ; 11522
 ; 1152b
 
 Function1152b: ; 1152b
-	call Function11534
-	ld hl, wdc2d
+	call .GetDaysUntilNextFriday
+	ld hl, wLuckyNumberDayBuffer
 	jp Function11415
 ; 11534
 
-Function11534: ; 11534
+.GetDaysUntilNextFriday: ; 11534
 	call GetWeekday
 	ld c, a
-	ld a, $5
+	ld a, FRIDAY
 	sub c
-	jr z, .asm_1153f
-	jr nc, .asm_11541
+	jr z, .friday_saturday
+	jr nc, .earlier ; should've done "ret nc"
 
-.asm_1153f
-	add $7
+.friday_saturday
+	add 7
 
-.asm_11541
+.earlier
 	ret
 ; 11542
 
 Function11542: ; 11542
-	ld hl, wdc2d
+	ld hl, wLuckyNumberDayBuffer
 	jp Function11420
 ; 11548
 
