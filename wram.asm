@@ -294,7 +294,7 @@ wc2d7:: ds 1
 wc2d8:: ds 1
 wc2d9:: ds 1
 wc2da:: ds 2
-InLinkBattle:: ; c2dc
+wLinkMode:: ; c2dc
 ; 0 not in link battle
 ; 1 link battle
 ; 4 mobile battle
@@ -1760,7 +1760,7 @@ EnemyMonBaseExp::   db ; d22c
 EnemyMonEnd::
 
 
-IsInBattle:: ; d22d
+wBattleMode:: ; d22d
 ; 0: overworld
 ; 1: wild battle
 ; 2: trainer battle

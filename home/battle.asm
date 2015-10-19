@@ -106,7 +106,7 @@ UpdateEnemyMonInParty:: ; 39b0
 ; Update level, status, current HP
 
 ; No wildmons.
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 
@@ -194,34 +194,6 @@ endr
 	dw .status, .statusopp, .animation, .effect, .power, .type
 	dw .curmove, .lastcounter, .lastcounteropp, .lastmove, .lastmoveopp
 
-	const_def
-	const PLAYER_SUBSTATUS_1
-	const ENEMY_SUBSTATUS_1
-	const PLAYER_SUBSTATUS_2
-	const ENEMY_SUBSTATUS_2
-	const PLAYER_SUBSTATUS_3
-	const ENEMY_SUBSTATUS_3
-	const PLAYER_SUBSTATUS_4
-	const ENEMY_SUBSTATUS_4
-	const PLAYER_SUBSTATUS_5
-	const ENEMY_SUBSTATUS_5
-	const PLAYER_STATUS
-	const ENEMY_STATUS
-	const PLAYER_MOVE_ANIMATION
-	const ENEMY_MOVE_ANIMATION
-	const PLAYER_MOVE_EFFECT
-	const ENEMY_MOVE_EFFECT
-	const PLAYER_MOVE_POWER
-	const ENEMY_MOVE_POWER
-	const PLAYER_MOVE_TYPE
-	const ENEMY_MOVE_TYPE
-	const PLAYER_CUR_MOVE
-	const ENEMY_CUR_MOVE
-	const PLAYER_COUNTER_MOVE
-	const ENEMY_COUNTER_MOVE
-	const PLAYER_LAST_MOVE
-	const ENEMY_LAST_MOVE
-
 ;                       player                     enemy
 .substatus1     db PLAYER_SUBSTATUS_1,    ENEMY_SUBSTATUS_1
 .substatus1opp  db ENEMY_SUBSTATUS_1,     PLAYER_SUBSTATUS_1
@@ -293,8 +265,8 @@ CELL_PHONE_TOP    EQU $5e
 CELL_PHONE_BOTTOM EQU $5f
 
 	; For mobile link battles only.
-	ld a, [InLinkBattle]
-	cp 4
+	ld a, [wLinkMode]
+	cp LINK_MOBILE
 	ret c
 
 	; Draw a cell phone icon at the

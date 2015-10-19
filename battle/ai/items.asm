@@ -1,11 +1,11 @@
 AI_SwitchOrTryItem: ; 38000
 	and a
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
@@ -731,7 +731,7 @@ AI_Switch: ; 3846c
 	callba Function3d57a
 	xor a
 	ld [wd264], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	scf

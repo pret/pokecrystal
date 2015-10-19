@@ -300,10 +300,10 @@ Function17d0f3: ; 17d0f3
 	ld a, $1
 	ld [wd1e9], a
 	ld a, $2
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function421d8
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function14a58
 	ld a, $5
 	call GetSRAMBank

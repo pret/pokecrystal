@@ -5976,7 +5976,7 @@ Function1163c0: ; 1163c0
 	pop af
 	ld [rSVBK], a
 	callba Function104061
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr z, .asm_11642a
 	ld a, $8
@@ -16146,10 +16146,10 @@ Function11b7e5: ; 11b7e5
 	ld a, $1
 	ld [wd1e9], a
 	ld a, $2
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function421d8
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function14a58
 	ld a, $5
 	call GetSRAMBank
@@ -22841,7 +22841,7 @@ RunBattleTowerBattle: ; 17024d
 	or $1
 	ld [InBattleTowerBattle], a
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Mobile_HealParty
 	callba HealParty
 	call Function1702b7

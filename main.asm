@@ -9,7 +9,7 @@ Function4000:: ; 4000
 	ld b, 1
 	ld c, 11
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .notinbattle
 
@@ -542,7 +542,7 @@ FinishContinueFunction: ; 5e5d
 .loop
 	xor a
 	ld [wc2c1], a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ld hl, GameTimerPause
 	set 0, [hl]
 	res 7, [hl]
@@ -1620,7 +1620,7 @@ LearnMove: ; 6508
 	ld [wd265], a
 
 	ld b, a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .not_disabled
 	ld a, [DisabledMove]
@@ -1656,7 +1656,7 @@ LearnMove: ; 6508
 
 	ld [hl], a
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jp z, .learned
 
@@ -2772,7 +2772,7 @@ endr
 
 .done
 	ld [de], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ret z
 	ld a, [CurPartyMon]
@@ -8017,7 +8017,7 @@ GeneratePartyMonStats: ; d906
 	ld a, [BaseDexNo]
 	ld [de], a
 	inc de
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ld a, $0
 	jr z, .skipitem
@@ -8029,7 +8029,7 @@ GeneratePartyMonStats: ; d906
 	push de
 	ld h, d
 	ld l, e
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .randomlygeneratemoves
 	ld a, [MonType]
@@ -8108,7 +8108,7 @@ endr
 	pop de
 	pop hl
 	push hl
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr nz, .copywildmonstats
 	call Random
@@ -8213,7 +8213,7 @@ endr
 	inc de
 
 .next2
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .generatestats
 	ld hl, EnemyMonMaxHP
@@ -9207,7 +9207,7 @@ Functione039: ; e039
 	ld a, [wd10b]
 	and a
 	jp nz, CloseSRAM
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	ld a, BANK(s0_a600)
@@ -12723,7 +12723,7 @@ endr
 	call .AppendMenuList
 .no_pokemon
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .no_pack
 	ld hl, StatusFlags2
@@ -12743,7 +12743,7 @@ endr
 	ld a, 3 ; status
 	call .AppendMenuList
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .no_save
 	ld hl, StatusFlags2
@@ -13521,7 +13521,7 @@ MonMailAction: ; 12d45
 ; If in the time capsule or trade center,
 ; selecting the mail only allows you to
 ; read the mail.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jr z, .read
 	cp LINK_TRADECENTER
@@ -14103,7 +14103,7 @@ Function12fd5: ; 12fd5
 	ld bc, $0015
 	add hl, bc
 	call Function1313a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	jr z, .asm_13113
 	ld hl, BattleMonMoves
 	ld bc, $0020
@@ -24230,7 +24230,7 @@ Function24dd4: ; 24dd4
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .egg
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .skip
 	ld a, PartyMon1Moves - PartyMon1
@@ -24264,7 +24264,7 @@ Function24dd4: ; 24dd4
 	call Function24e83
 	ld a, $13
 	call Function24e83
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .skip2
 	push hl
@@ -27157,7 +27157,7 @@ Function27192: ; 27192
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .ourturn
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .done
 
@@ -27245,7 +27245,7 @@ LinkCommunications: ; 28000
 	xor a
 	ld [hli], a
 	ld [hl], $50
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jp nz, Function28177
 
@@ -27443,7 +27443,7 @@ Function28177: ; 28177
 	ld de, wc6d0
 	ld bc, $00c8
 	call Function75f
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	jr nz, .asm_281fd
 	ld hl, wc9f4
@@ -27494,7 +27494,7 @@ Function28177: ; 28177
 	ld hl, wc90f
 	dec c
 	jr nz, .asm_28224
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	jp nz, .asm_282fe
 	ld hl, wcb84
@@ -27628,7 +27628,7 @@ Function28177: ; 28177
 	cp $2
 	ld c, 66
 	call z, DelayFrames
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr nz, .asm_283a9
 	ld a, CAL
@@ -27811,7 +27811,7 @@ endr
 	dec a
 	jr nz, .asm_2847f
 	push bc
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	ld b, $d
 	jr z, .asm_2847a
@@ -28042,7 +28042,7 @@ Function28595: ; 28595
 	ld hl, PartyMonNicknames
 	ld bc, $0042
 	call CopyBytes
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	ret nz
 	ld de, wc9f4
@@ -28585,7 +28585,7 @@ Function28926: ; 28926
 
 .asm_28946
 	ld a, $7f
-	ldcoord 11, 16
+	ldcoord_a 11, 16
 	ld a, $13
 	ld [wcfa8], a
 	ld a, $1
@@ -28617,7 +28617,7 @@ Function28926: ; 28926
 
 .asm_2898d
 	ld a, $7f
-	ldcoord 1, 16
+	ldcoord_a 1, 16
 	ld a, $23
 	ld [wcfa8], a
 	ld a, $1
@@ -28763,7 +28763,7 @@ Function28ac9: ; 28ac9
 Function28ade: ; 28ade
 .asm_28ade
 	ld a, $ed
-	ldcoord 9, 17
+	ldcoord_a 9, 17
 .asm_28ae3
 	call JoyTextDelay
 	ld a, [hJoyLast]
@@ -28773,7 +28773,7 @@ Function28ade: ; 28ade
 	jr nz, .asm_28b0b
 	push af
 	ld a, " "
-	ldcoord 9, 17
+	ldcoord_a 9, 17
 	pop af
 	bit 6, a
 	jr z, .asm_28b03
@@ -28788,7 +28788,7 @@ Function28ade: ; 28ade
 
 .asm_28b0b
 	ld a, $ec
-	ldcoord 9, 17
+	ldcoord_a 9, 17
 	ld a, $f
 	ld [wcf56], a
 	callba Function16d6ce
@@ -29162,7 +29162,7 @@ Function28b87: ; 28b87
 	push bc
 	call Function862
 	pop bc
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jr z, .asm_28e63
 	ld a, b
@@ -29188,7 +29188,7 @@ Function28b87: ; 28b87
 	callba Function4d354
 	ld c, $32
 	call DelayFrames
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jp z, Function2805d
 	jp Function28177
@@ -30455,7 +30455,7 @@ Function296f2: ; 296f2 (a:56f2)
 ; 29701 (a:5701)
 
 Function29701: ; 29701
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jr z, .asm_29725
 	ld hl, UnknownText_0x29737
@@ -30891,7 +30891,7 @@ Special_EnterTimeCapsule: ; 29c7b
 	xor a
 	ld [hVBlank], a
 	inc a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 ; 29c92
 
@@ -30939,7 +30939,7 @@ Special_AbortLink: ; 29c92
 	ld [hli], a
 	ld [hl], a
 	ld [hVBlank], a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 ; 29ce8
 
@@ -31211,7 +31211,7 @@ Special_CheckBothSelectedSameRoom: ; 29e82
 	jr nz, .asm_29eaa
 	ld a, [wd265]
 	inc a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	xor a
 	ld [hVBlank], a
 	ld a, $1
@@ -31226,7 +31226,7 @@ Special_CheckBothSelectedSameRoom: ; 29e82
 
 Special_TimeCapsule: ; 29eaf
 	ld a, LINK_TIMECAPSULE
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab LinkCommunications
 	call Function2ee4
@@ -31237,7 +31237,7 @@ Special_TimeCapsule: ; 29eaf
 
 Special_TradeCenter: ; 29ec4
 	ld a, LINK_TRADECENTER
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab LinkCommunications
 	call Function2ee4
@@ -31248,7 +31248,7 @@ Special_TradeCenter: ; 29ec4
 
 Special_Colosseum: ; 29ed9
 	ld a, LINK_COLOSSEUM
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab LinkCommunications
 	call Function2ee4
@@ -31259,7 +31259,7 @@ Special_Colosseum: ; 29ed9
 
 Special_CloseLink: ; 29eee
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ld c, $3
 	call DelayFrames
 	jp Function29f04
@@ -32589,7 +32589,7 @@ Function2c000: ; 2c000
 	ld [rOBP0], a
 	call Function2c165
 	call Function2c01c
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	jp Function2c03a
@@ -32730,7 +32730,7 @@ Function2c0c5: ; 2c0c5
 	hlcoord 1, 2
 	ld de, 1
 	call Function2c0f1
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret nz
 	ld a, [TempEnemyMonSpecies]
@@ -34119,7 +34119,7 @@ ConvertBerriesToBerryJuice: ; 2ede6
 Function2ee18: ; 2ee18
 ; If we're not in a communications room,
 ; we don't need to be here.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 
@@ -34245,7 +34245,7 @@ PlayBattleMusic: ; 2ee6c
 	jr .done
 
 .othertrainer
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .johtotrainer
 
@@ -34424,7 +34424,7 @@ GetTrainerClassName: ; 3952d
 
 Function39550: ; 39550
 	ld hl, wd26b
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .ok
 
@@ -34476,7 +34476,7 @@ ReadTrainerParty: ; 39771
 	bit 0, a
 	ret nz
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
@@ -35030,7 +35030,7 @@ endr
 	cp EVOLVE_TRADE
 	jr z, .trade
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .asm_423f9
 
@@ -35107,7 +35107,7 @@ endr
 
 
 .trade
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp z, .asm_423f9
 
@@ -35119,7 +35119,7 @@ endr
 	inc a
 	jr z, .asm_422fd
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jp z, .asm_423fa
 
@@ -35142,7 +35142,7 @@ endr
 	ld a, [wd1e9]
 	and a
 	jp z, .asm_423fa
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .asm_423fa
 	jr .asm_422fd
@@ -35303,10 +35303,10 @@ Function423ff: ; 423ff
 	pop de
 	pop bc
 	pop hl
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ret nz
 	ld a, [wd268]
@@ -35652,11 +35652,11 @@ AIChooseMove: ; 440ce
 ; Pick the move with the lowest score.
 
 ; Wildmons attack at random.
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
@@ -39350,8 +39350,8 @@ Function49797: ; 49797
 	ld a, $4
 	call Function49336
 	ld a, $3
-	ldcoord 0, 1, AttrMap
-	ldcoord 0, 14, AttrMap
+	ldcoord_a 0, 1, AttrMap
+	ldcoord_a 0, 14, AttrMap
 	hlcoord 2, 0, AttrMap
 	ld bc, $0812
 	ld a, $5
@@ -43924,11 +43924,11 @@ RetroactivelyIgnoreEggs: ; 4dc67
 
 
 Function4dc7b: ; 4dc7b (13:5c7b)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, StatsScreenInit
 
-	ld a, [IsInBattle] ; wd22d (aliases: EnemyMonEnd)
+	ld a, [wBattleMode] ; wd22d (aliases: EnemyMonEnd)
 	and a
 	jr z, StatsScreenInit
 	jr Function4dc8f
@@ -45850,7 +45850,7 @@ CheckBattleScene: ; 4ea44
 ; Return carry if battle scene is turned off.
 
 	ld a, 0
-	ld hl, InLinkBattle
+	ld hl, wLinkMode
 	call GetFarWRAMByte
 	cp LINK_MOBILE
 	jr z, .mobile
@@ -54146,1287 +54146,10 @@ Predef36:
 ; 8c001
 
 
-Function8c001:: ; 8c001
-	call UpdateTime
-	ld a, [TimeOfDay]
-	ld [CurTimeOfDay], a
-	call GetTimePalette
-	ld [TimeOfDayPal], a
-	ret
-; 8c011
+INCLUDE "engine/timeofdaypals.asm"
+INCLUDE "engine/battle_start.asm"
 
-
-_TimeOfDayPals:: ; 8c011
-; return carry if pals are changed
-
-; forced pals?
-	ld hl, wd846
-	bit 7, [hl]
-	jr nz, .dontchange
-
-; do we need to bother updating?
-	ld a, [TimeOfDay]
-	ld hl, CurTimeOfDay
-	cp [hl]
-	jr z, .dontchange
-
-; if so, the time of day has changed
-	ld a, [TimeOfDay]
-	ld [CurTimeOfDay], a
-
-; get palette id
-	call GetTimePalette
-
-; same palette as before?
-	ld hl, TimeOfDayPal
-	cp [hl]
-	jr z, .dontchange
-
-; update palette id
-	ld [TimeOfDayPal], a
-
-
-; save bg palette 8
-	ld hl, Unkn1Pals + 8 * 7 ; Unkn1Pals + 7 pals
-
-; save wram bank
-	ld a, [rSVBK]
-	ld b, a
-; wram bank 5
-	ld a, 5
-	ld [rSVBK], a
-
-; push palette
-	ld c, 4 ; NUM_PAL_COLORS
-.push
-	ld d, [hl]
-	inc hl
-	ld e, [hl]
-	inc hl
-	push de
-	dec c
-	jr nz, .push
-
-; restore wram bank
-	ld a, b
-	ld [rSVBK], a
-
-
-; update sgb pals
-	ld b, $9
-	call GetSGBLayout
-
-
-; restore bg palette 8
-	ld hl, Unkn2Pals - 1 ; last byte in Unkn1Pals
-
-; save wram bank
-	ld a, [rSVBK]
-	ld d, a
-; wram bank 5
-	ld a, 5
-	ld [rSVBK], a
-
-; pop palette
-	ld e, 4 ; NUM_PAL_COLORS
-.pop
-	pop bc
-	ld [hl], c
-	dec hl
-	ld [hl], b
-	dec hl
-	dec e
-	jr nz, .pop
-
-; restore wram bank
-	ld a, d
-	ld [rSVBK], a
-
-; update palettes
-	call _UpdateTimePals
-	call DelayFrame
-
-; successful change
-	scf
-	ret
-
-.dontchange
-; no change occurred
-	and a
-	ret
-; 8c070
-
-
-_UpdateTimePals:: ; 8c070
-	ld c, $9 ; normal
-	call GetTimePalFade
-	call DmgToCgbTimePals
-	ret
-; 8c079
-
-FadeInBGMap:: ; 8c079
-	ld c, $12
-	call GetTimePalFade
-	ld b, $4
-	call Function8c16d
-	ret
-; 8c084
-
-FadeBlackBGMap:: ; 8c084
-	call Function8c0c1
-	ld c, $9
-	call GetTimePalFade
-	ld b, $4
-	call Function8c15e
-	ret
-; 8c092
-
-Special_BattleTowerFade: ; 8c092
-	call Function8c0c1
-	ld c, $9
-	call GetTimePalFade
-	ld b, $4
-.asm_8c09c
-	call DmgToCgbTimePals
-rept 3
-	inc hl
-endr
-	ld c, $7
-	call DelayFrames
-	dec b
-	jr nz, .asm_8c09c
-	ret
-; 8c0ab
-
-Special_FadeInQuickly: ; 8c0ab
-	ld c, $0
-	call GetTimePalFade
-	ld b, $4
-	call Function8c15e
-	ret
-; 8c0b6
-
-Special_FadeBlackQuickly: ; 8c0b6
-	ld c, $9
-	call GetTimePalFade
-	ld b, $4
-	call Function8c16d
-	ret
-; 8c0c1
-
-
-Function8c0c1: ; 8c0c1
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld hl, Unkn1Pals
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld hl, Unkn1Pals + 8
-	ld c, $6
-.asm_8c0d4
-	ld a, e
-	ld [hli], a
-	ld a, d
-	ld [hli], a
-rept 6
-	inc hl
-endr
-	dec c
-	jr nz, .asm_8c0d4
-	pop af
-	ld [rSVBK], a
-	ret
-; 8c0e5
-
-brightlevel: MACRO
-	db (\1 << 6) | (\2 << 4) | (\3 << 2) | \4
-ENDM
-
-Function8c0e5: ; 8c0e5
-	ld hl, .BrightnessLevels
-	ld a, [wc2d0]
-	cp $4 ; Dark cave, needs Flash
-	jr z, .DarkCave
-	and $7
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	ld a, [hl]
-	ld [wd847], a
-	ret
-.DarkCave
-	ld a, [StatusFlags]
-	bit 2, a
-	jr nz, .UsedFlash
-	ld a, $ff ; 3, 3, 3, 3
-	ld [wd847], a
-	ret
-.UsedFlash
-	ld a, $aa ; 2, 2, 2, 2
-	ld [wd847], a
-	ret
-; 8c10f (23:410f)
-
-.BrightnessLevels: ; 8c10f
-	brightlevel 3, 2, 1, 0
-	brightlevel 1, 1, 1, 1
-	brightlevel 2, 2, 2, 2
-	brightlevel 0, 0, 0, 0
-	brightlevel 3, 3, 3, 3
-	brightlevel 3, 2, 1, 0
-	brightlevel 3, 2, 1, 0
-	brightlevel 3, 2, 1, 0
-; 8c117
-
-GetTimePalette: ; 8c117
-	ld a, [TimeOfDay]
-	ld e, a
-	ld d, 0
-	ld hl, .TimePalettes
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 8c126
-
-.TimePalettes
-	dw .MorningPalette
-	dw .DayPalette
-	dw .NitePalette
-	dw .DarknessPalette
-
-.MorningPalette
-	ld a, [wd847]
-	and %00000011 ; 0
-	ret
-
-.DayPalette
-	ld a, [wd847]
-	and %00001100 ; 1
-	srl a
-	srl a
-	ret
-
-.NitePalette
-	ld a, [wd847]
-	and %00110000 ; 2
-	swap a
-	ret
-
-.DarknessPalette
-	ld a, [wd847]
-	and %11000000 ; 3
-	rlca
-	rlca
-	ret
-; 8c14e
-
-
-DmgToCgbTimePals: ; 8c14e
-	push hl
-	push de
-	ld a, [hli]
-	call DmgToCgbBGPals
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	call DmgToCgbObjPals
-	pop de
-	pop hl
-	ret
-; 8c15e
-
-Function8c15e: ; 8c15e
-.asm_8c15e
-	call DmgToCgbTimePals
-rept 3
-	inc hl
-endr
-	ld c, $2
-	call DelayFrames
-	dec b
-	jr nz, .asm_8c15e
-	ret
-; 8c16d
-
-Function8c16d: ; 8c16d
-.asm_8c16d
-	call DmgToCgbTimePals
-rept 3
-	dec hl
-endr
-	ld c, $2
-	call DelayFrames
-	dec b
-	jr nz, .asm_8c16d
-	ret
-; 8c17c
-
-
-GetTimePalFade: ; 8c17c
-; check cgb
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-
-; else: dmg
-
-; index
-	ld a, [TimeOfDayPal]
-	and %11
-
-; get fade table
-	push bc
-	ld c, a
-	ld b, $0
-	ld hl, .dmgfades
-rept 2
-	add hl, bc
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop bc
-
-; get place in fade table
-	ld b, $0
-	add hl, bc
-	ret
-
-.cgb
-	ld hl, .cgbfade
-	ld b, $0
-	add hl, bc
-	ret
-
-.dmgfades
-	dw .morn
-	dw .day
-	dw .nite
-	dw .darkness
-
-.morn
-	db %11111111, %11111111, %11111111
-	db %11111110, %11111110, %11111110
-	db %11111001, %11100100, %11100100
-	db %11100100, %11010000, %11010000
-	db %10010000, %10000000, %10000000
-	db %01000000, %01000000, %01000000
-	db %00000000, %00000000, %00000000
-
-.day
-	db %11111111, %11111111, %11111111	
-	db %11111110, %11111110, %11111110	
-	db %11111001, %11100100, %11100100
-	db %11100100, %11010000, %11010000
-	db %10010000, %10000000, %10000000
-	db %01000000, %01000000, %01000000
-	db %00000000, %00000000, %00000000
-
-.nite
-	db %11111111, %11111111, %11111111
-	db %11111110, %11111110, %11111110
-	db %11111001, %11100100, %11100100
-	db %11101001, %11010000, %11010000
-	db %10010000, %10000000, %10000000
-	db %01000000, %01000000, %01000000
-	db %00000000, %00000000, %00000000
-
-.darkness
-	db %11111111, %11111111, %11111111
-	db %11111110, %11111110, %11111111
-	db %11111110, %11100100, %11111111
-	db %11111101, %11010000, %11111111
-	db %11111101, %10000000, %11111111
-	db %00000000, %01000000, %00000000
-	db %00000000, %00000000, %00000000
-
-.cgbfade
-	db %11111111, %11111111, %11111111
-	db %11111110, %11111110, %11111110
-	db %11111001, %11111001, %11111001
-	db %11100100, %11100100, %11100100
-	db %10010000, %10010000, %10010000
-	db %01000000, %01000000, %01000000
-	db %00000000, %00000000, %00000000
-; 8c20f
-
-
-Predef_StartBattle: ; 8c20f
-	call Function8c26d
-	ld a, [rBGP]
-	ld [wcfc7], a
-	ld a, [rOBP0]
-	ld [wcfc8], a
-	ld a, [rOBP1]
-	ld [wcfc9], a
-	call DelayFrame
-	ld hl, hVBlank
-	ld a, [hl]
-	push af
-	ld [hl], $1
-
-.loop
-	ld a, [wcf63]
-	bit 7, a
-	jr nz, .done
-	call FlashingPokeballAnimation
-	call DelayFrame
-	jr .loop
-
-.done
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-
-	ld hl, Unkn1Pals
-	ld bc, $0040
-	xor a
-	call ByteFill
-
-	pop af
-	ld [rSVBK], a
-
-	ld a, %11111111
-	ld [wcfc7], a
-	call DmgToCgbBGPals
-	call DelayFrame
-	xor a
-	ld [hLCDStatCustom], a
-	ld [hLCDStatCustom + 1], a
-	ld [hLCDStatCustom + 2], a
-	ld [hSCY], a
-
-	ld a, $1
-	ld [rSVBK], a
-	pop af
-	ld [hVBlank], a
-	call DelayFrame
-	ret
-; 8c26d
-
-Function8c26d: ; 8c26d
-	ld a, [InLinkBattle]
-	cp LINK_MOBILE
-	jr z, .mobile
-	callba Function6454
-	call UpdateSprites
-	call DelayFrame
-	call Function8c2a0
-	call Function8cf4f
-	jr .resume
-
-.mobile
-	call Function8c2aa
-
-.resume
-	ld a, SCREEN_HEIGHT_PX
-	ld [hWY], a
-	call DelayFrame
-	xor a
-	ld [hBGMapMode], a
-	ld hl, wcf63
-	xor a
-rept 2
-	ld [hli], a
-endr
-	ld [hl], a
-	call WipeLYOverrides
-	ret
-; 8c2a0
-
-Function8c2a0: ; 8c2a0
-	call Function8c2aa
-	ld hl, VBGMap0
-	call Function8c2cf
-	ret
-; 8c2aa
-
-Function8c2aa: ; 8c2aa
-	ld de, GFX_8c2f4
-	ld hl, VTiles1 tile $7e
-	ld b, BANK(GFX_8c2f4)
-	ld c, 2
-	call Request2bpp
-
-	ld a, [rVBK]
-	push af
-	ld a, $1
-	ld [rVBK], a
-
-	ld de, GFX_8c2f4
-	ld hl, VTiles4 tile $7e
-	ld b, BANK(GFX_8c2f4)
-	ld c, 2
-	call Request2bpp
-
-	pop af
-	ld [rVBK], a
-	ret
-; 8c2cf
-
-Function8c2cf: ; 8c2cf
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	push hl
-	ld hl, w6_d000
-	ld bc, $28 * $10
-
-.loop
-	ld [hl], -1
-	inc hl
-	dec bc
-	ld a, c
-	or b
-	jr nz, .loop
-
-	pop hl
-	ld de, w6_d000
-	ld b, BANK(Function8c2cf) ; BANK(@)
-	ld c, $28
-	call Request2bpp
-	pop af
-	ld [rSVBK], a
-	ret
-; 8c2f4
-
-GFX_8c2f4: ; 8c2f4
-INCBIN "gfx/unknown/08c2f4.2bpp"
-
-
-FlashingPokeballAnimation: ; 8c314
-	ld a, [wcf63]
-	ld e, a
-	ld d, 0
-	ld hl, .jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 8c323
-
-.jumptable: ; 8c323 (23:4323)
-	dw StartTrainerBattle_DetermineWhichAnimation ; 00
-
-	; Animation 1: cave
-	dw StartTrainerBattle_LoadPokeBallGraphics ; 01
-	dw StartTrainerBattle_SetUpBGMap ; 02
-	dw StartTrainerBattle_Flash ; 03
-	dw StartTrainerBattle_Flash ; 04
-	dw StartTrainerBattle_Flash ; 05
-	dw StartTrainerBattle_NextScene ; 06
-	dw StartTrainerBattle_SetUpForWavyOutro ; 07
-	dw StartTrainerBattle_SineWave ; 08
-
-	; Animation 2: cave, stronger
-	dw StartTrainerBattle_LoadPokeBallGraphics ; 09
-	dw StartTrainerBattle_SetUpBGMap ; 0a
-	dw StartTrainerBattle_Flash ; 0b
-	dw StartTrainerBattle_Flash ; 0c
-	dw StartTrainerBattle_Flash ; 0d
-	dw StartTrainerBattle_NextScene ; 0e
-	; There is no setup for this one
-	dw StartTrainerBattle_ZoomToBlack ; 0f
-
-	; Animation 3: no cave
-	dw StartTrainerBattle_LoadPokeBallGraphics ; 10
-	dw StartTrainerBattle_SetUpBGMap ; 11
-	dw StartTrainerBattle_Flash ; 12
-	dw StartTrainerBattle_Flash ; 13
-	dw StartTrainerBattle_Flash ; 14
-	dw StartTrainerBattle_NextScene ; 15
-	dw StartTrainerBattle_SetUpForSpinOutro ; 16
-	dw StartTrainerBattle_SpinToBlack ; 17
-
-	; Animation 4: no cave, stronger
-	dw StartTrainerBattle_LoadPokeBallGraphics ; 18
-	dw StartTrainerBattle_SetUpBGMap ; 19
-	dw StartTrainerBattle_Flash ; 1a
-	dw StartTrainerBattle_Flash ; 1b
-	dw StartTrainerBattle_Flash ; 1c
-	dw StartTrainerBattle_NextScene ; 1d
-	dw StartTrainerBattle_SetUpForRandomScatterOutro ; 1e
-	dw StartTrainerBattle_SpeckleToBlack ; 1f
-
-	; All animations jump to here.
-	dw StartTrainerBattle_Finish ; 20
-
-
-StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
-; The screen flashes a different number of
-; times depending on the level of your lead
-; Pokemon relative to the opponent's.
-	ld de, 0
-	ld a, [BattleMonLevel]
-	add 3
-	ld hl, EnemyMonLevel
-	cp [hl]
-	jr nc, .okay
-	set 0, e
-.okay
-	ld a, [wPermission]
-	cp CAVE
-	jr z, .okay2
-	cp PERM_5
-	jr z, .okay2
-	cp DUNGEON
-	jr z, .okay2
-	set 1, e
-.okay2
-	ld hl, .StartingPoints
-	add hl, de
-	ld a, [hl]
-	ld [wcf63], a
-	ret
-; 8c38f (23:438f)
-
-.StartingPoints: ; 8c38f
-	db 1,  9
-	db 16, 24
-; 8c393
-
-StartTrainerBattle_Finish: ; 8c393 (23:4393)
-	call ClearSprites
-	ld a, $80
-	ld [wcf63], a
-	ret
-
-StartTrainerBattle_NextScene: ; 8c39c (23:439c)
-	ld hl, wcf63
-	inc [hl]
-	ret
-
-StartTrainerBattle_SetUpBGMap: ; 8c3a1 (23:43a1)
-	call StartTrainerBattle_NextScene
-	xor a
-	ld [wcf64], a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ret
-
-StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
-	call Function8c3b3
-	ret nc
-	call StartTrainerBattle_NextScene
-	ret
-
-Function8c3b3: ; 8c3b3 (23:43b3)
-	ld a, [wd847]
-	cp -1
-	jr z, .done
-	ld hl, wcf64
-	ld a, [hl]
-	inc [hl]
-	srl a
-	ld e, a
-	ld d, 0
-	ld hl, .pals
-	add hl, de
-	ld a, [hl]
-	cp $1
-	jr z, .done
-	ld [wcfc7], a
-	call DmgToCgbBGPals
-	and a
-	ret
-
-.done
-	xor a
-	ld [wcf64], a
-	scf
-	ret
-; 8c3db (23:43db)
-
-.pals: ; 8c3db
-	db %11111001 ; 3321
-	db %11111110 ; 3332
-	db %11111111 ; 3333
-	db %11111110 ; 3332
-	db %11111001 ; 3321
-	db %11100100 ; 3210
-	db %10010000 ; 2100
-	db %01000000 ; 1000
-	db %00000000 ; 0000
-	db %01000000 ; 1000
-	db %10010000 ; 2100
-	db %11100100 ; 3210
-	db %00000001 ; 0001
-; 8c3e8
-
-StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
-	callba Function5602
-	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
-	call StartTrainerBattle_NextScene
-	ld a, $43
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	xor a
-	ld [hLCDStatCustom + 1], a
-	ld a, $90
-	ld [hLCDStatCustom + 2], a
-	xor a
-	ld [wcf64], a
-	ld [wcf65], a
-	ret
-
-StartTrainerBattle_SineWave: ; 8c408 (23:4408)
-	ld a, [wcf64]
-	cp $60
-	jr nc, .end
-	call .DoSineWave
-	ret
-
-.end
-	ld a, $20
-	ld [wcf63], a
-	ret
-
-.DoSineWave: ; 8c419 (23:4419)
-	ld hl, wcf65
-	ld a, [hl]
-	inc [hl]
-	ld hl, wcf64
-	ld d, [hl]
-	add [hl]
-	ld [hl], a
-	ld a, $90
-	ld bc, wd100
-	ld e, $0
-
-.loop
-	push af
-	push de
-	ld a, e
-	call StartTrainerBattle_DrawSineWave
-	ld [bc], a
-	inc bc
-	pop de
-	ld a, e
-	add $2
-	ld e, a
-	pop af
-	dec a
-	jr nz, .loop
-	ret
-
-StartTrainerBattle_SetUpForSpinOutro: ; 8c43d (23:443d)
-	callba Function5602
-	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
-	call StartTrainerBattle_NextScene
-	xor a
-	ld [wcf64], a
-	ret
-
-spintable_entry: MACRO
-	db \1
-	dw .wedge\2
-	dwcoord \3, \4
-ENDM
-
-; quadrants
-	const_def
-	const UPPER_LEFT
-	const UPPER_RIGHT
-	const LOWER_LEFT
-	const LOWER_RIGHT
-
-StartTrainerBattle_SpinToBlack: ; 8c44f (23:444f)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, [wcf64]
-	ld e, a
-	ld d, 0
-	ld hl, .spintable
-rept 5
-	add hl, de
-endr
-	ld a, [hli]
-	cp -1
-	jr z, .end
-	ld [wcf65], a
-	call .load
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	call DelayFrame
-	call DelayFrame
-	ld hl, wcf64
-	inc [hl]
-	ret
-
-.end
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	call DelayFrame
-	call DelayFrame
-	call DelayFrame
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, $20
-	ld [wcf63], a
-	ret
-; 8c490 (23:4490)
-
-.spintable: ; 8c490
-	spintable_entry UPPER_LEFT,  1,  1,  6
-	spintable_entry UPPER_LEFT,  2,  0,  3
-	spintable_entry UPPER_LEFT,  3,  1,  0
-	spintable_entry UPPER_LEFT,  4,  5,  0
-	spintable_entry UPPER_LEFT,  5,  9,  0
-	spintable_entry UPPER_RIGHT, 5, 10,  0
-	spintable_entry UPPER_RIGHT, 4, 14,  0
-	spintable_entry UPPER_RIGHT, 3, 18,  0
-	spintable_entry UPPER_RIGHT, 2, 19,  3
-	spintable_entry UPPER_RIGHT, 1, 18,  6
-	spintable_entry LOWER_RIGHT, 1, 18, 11
-	spintable_entry LOWER_RIGHT, 2, 19, 14
-	spintable_entry LOWER_RIGHT, 3, 18, 17
-	spintable_entry LOWER_RIGHT, 4, 14, 17
-	spintable_entry LOWER_RIGHT, 5, 10, 17
-	spintable_entry LOWER_LEFT,  5,  9, 17
-	spintable_entry LOWER_LEFT,  4,  5, 17
-	spintable_entry LOWER_LEFT,  3,  1, 17
-	spintable_entry LOWER_LEFT,  2,  0, 14
-	spintable_entry LOWER_LEFT,  1,  1, 11
-	db -1
-; 8c4f5
-
-.load: ; 8c4f5 (23:44f5)
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-.loop
-	push hl
-	ld a, [de]
-	ld c, a
-	inc de
-.loop1
-	ld [hl], $ff
-	ld a, [wcf65]
-	bit 0, a
-	jr z, .leftside
-	inc hl
-	jr .okay1
-.leftside
-	dec hl
-.okay1
-	dec c
-	jr nz, .loop1
-	pop hl
-	ld a, [wcf65]
-	bit 1, a
-	ld bc, SCREEN_WIDTH
-	jr z, .upper
-	ld bc, -SCREEN_WIDTH
-.upper
-	add hl, bc
-	ld a, [de]
-	inc de
-	cp -1
-	ret z
-	and a
-	jr z, .loop
-	ld c, a
-.loop2
-	ld a, [wcf65]
-	bit 0, a
-	jr z, .leftside2
-	dec hl
-	jr .okay2
-.leftside2
-	inc hl
-.okay2
-	dec c
-	jr nz, .loop2
-	jr .loop
-; 8c538 (23:4538)
-
-.wedge1: db 2, 3, 5, 4, 9, -1
-.wedge2: db 1, 1, 2, 2, 4, 2, 4, 2, 3, -1
-.wedge3: db 2, 1, 3, 1, 4, 1, 4, 1, 4, 1, 3, 1, 2, 1, 1, 1, 1, -1
-.wedge4: db 4, 1, 4, 0, 3, 1, 3, 0, 2, 1, 2, 0, 1, -1
-.wedge5: db 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 1, 0, 1, -1
-; 8c578
-
-StartTrainerBattle_SetUpForRandomScatterOutro: ; 8c578 (23:4578)
-	callba Function5602
-	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
-	call StartTrainerBattle_NextScene
-	ld a, $10
-	ld [wcf64], a
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	ret
-
-StartTrainerBattle_SpeckleToBlack: ; 8c58f (23:458f)
-	ld hl, wcf64
-	ld a, [hl]
-	and a
-	jr z, .done
-	dec [hl]
-	ld c, $c
-.loop
-	push bc
-	call .BlackOutRandomTile
-	pop bc
-	dec c
-	jr nz, .loop
-	ret
-
-.done
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	call DelayFrame
-	call DelayFrame
-	call DelayFrame
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, $20
-	ld [wcf63], a
-	ret
-
-.BlackOutRandomTile: ; 8c5b8 (23:45b8)
-.y_loop
-	call Random
-	cp SCREEN_HEIGHT
-	jr nc, .y_loop
-	ld b, a
-
-.x_loop
-	call Random
-	cp SCREEN_WIDTH
-	jr nc, .x_loop
-	ld c, a
-
-	hlcoord 0, -1
-	ld de, SCREEN_WIDTH
-	inc b
-
-.row_loop
-	add hl, de
-	dec b
-	jr nz, .row_loop
-	add hl, bc
-
-; If the tile has already been blacked out,
-; sample a new tile
-	ld a, [hl]
-	cp $ff
-	jr z, .y_loop
-	ld [hl], $ff
-	ret
-
-StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
-	ld a, [OtherTrainerClass]
-	and a
-	jp z, .nextscene
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	inc b
-	inc c
-	jr .enter_loop_midway
-
-.loop
-	ld a, [hl]
-	or $7
-	ld [hli], a
-.enter_loop_midway
-	dec c
-	jr nz, .loop
-	dec b
-	jr nz, .loop
-	call .loadpokeballgfx
-	hlcoord 2, 1
-	ld b, $10
-.loop2
-	push hl
-	ld c, $2
-.loop3
-	push hl
-	ld a, [de]
-	inc de
-.loop4
-	and a
-	jr z, .asm_8c614
-	sla a
-	jr nc, .asm_8c611
-	ld [hl], $fe
-.asm_8c611
-	inc hl
-	jr .loop4
-.asm_8c614
-	pop hl
-	push bc
-	ld bc, $8
-	add hl, bc
-	pop bc
-	dec c
-	jr nz, .loop3
-	pop hl
-	push bc
-	ld bc, $14
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .loop2
-	ld a, [hCGB] ; $ff00+$e6
-	and a
-	jr nz, .cgb
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	call DelayFrame
-	call DelayFrame
-	jr .nextscene
-
-.cgb
-	ld hl, .daypals
-	ld a, [TimeOfDayPal]
-	and (1 << 2) - 1
-	cp 3
-	jr nz, .daytime
-	ld hl, .nightpals
-.daytime
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $5 ; WRAM5 = palettes
-	ld [rSVBK], a ; $ff00+$70
-	call .copypals
-	push hl
-	ld de, Unkn1Pals + 8 * 7
-	ld bc, $8
-	call CopyBytes
-	pop hl
-	ld de, BGPals + 8 * 7
-	ld bc, $8
-	call CopyBytes
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ld a, $1
-	ld [hCGBPalUpdate], a ; $ff00+$e5
-	call DelayFrame
-	call Function8cf4f
-
-.nextscene: ; 8c673 (23:4673)
-	call StartTrainerBattle_NextScene
-	ret
-
-.copypals: ; 8c677 (23:4677)
-	ld de, Unkn1Pals + 8 * 7
-	call .copy
-	ld de, BGPals + 8 * 7
-	call .copy
-	ld de, Unkn2Pals + 8 * 6
-	call .copy
-	ld de, OBPals + 8 * 6
-	call .copy
-	ld de, Unkn2Pals + 8 * 7
-	call .copy
-	ld de, OBPals + 8 * 7
-
-.copy: ; 8c698 (23:4698)
-	push hl
-	ld bc, $8
-	call CopyBytes
-	pop hl
-	ret
-; 8c6a1 (23:46a1)
-
-.daypals: ; 8c6a1
-	RGB 31, 18, 29
-	RGB 31, 11, 15
-	RGB 31, 05, 05
-	RGB 07, 07, 07
-; 8c6a9
-
-.nightpals: ; 8c6a9
-	RGB 31, 18, 29
-	RGB 31, 05, 05
-	RGB 31, 05, 05
-	RGB 31, 05, 05
-
-.loadpokeballgfx:
-	ld a, [OtherTrainerClass]
-	ld de, PokeBallTransition
-	ret
-
-PokeBallTransition:
-	db %00000011, %11000000
-	db %00001111, %11110000
-	db %00111100, %00111100
-	db %00110000, %00001100
-	db %01100000, %00000110
-	db %01100011, %11000110
-	db %11000110, %01100011
-	db %11111100, %00111111
-	db %11111100, %00111111
-	db %11000110, %01100011
-	db %01100011, %11000110
-	db %01100000, %00000110
-	db %00110000, %00001100
-	db %00111100, %00111100
-	db %00001111, %11110000
-	db %00000011, %11000000
-
-WipeLYOverrides: ; 8c6d8
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld hl, LYOverrides
-	call .wipe
-	ld hl, LYOverridesBackup
-	call .wipe
-	pop af
-	ld [rSVBK], a
-	ret
-; 8c6ef
-
-.wipe: ; 8c6ef
-	xor a
-	ld c, SCREEN_HEIGHT_PX
-.loop
-	ld [hli], a
-	dec c
-	jr nz, .loop
-	ret
-; 8c6f7
-
-
-StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
-	and (1 << 6) - 1
-	cp 1 << 5
-	jr nc, .okay
-	call .DoSineWave
-	ld a, h
-	ret
-
-.okay
-	and (1 << 5) - 1
-	call .DoSineWave
-	ld a, h
-	xor -1 ; cpl
-	inc a
-	ret
-
-.DoSineWave: ; 8c70c (23:470c)
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, .sinewave
-rept 2
-	add hl, de
-endr
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.loop
-	srl a
-	jr nc, .skip
-	add hl, de
-.skip
-	sla e
-	rl d
-	and a
-	jr nz, .loop
-	ret
-; 8c728 (23:4728)
-
-.sinewave: ; 8c728
-	sine_wave $100
-; 8c768
-
-zoombox: macro
-; width, height, start y, start x
-	db \1, \2
-	dwcoord \3, \4
-endm
-
-StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
-	callba Function5602
-	ld de, .boxes
-
-.loop
-	ld a, [de]
-	cp -1
-	jr z, .done
-	inc de
-	ld c, a
-	ld a, [de]
-	inc de
-	ld b, a
-	ld a, [de]
-	inc de
-	ld l, a
-	ld a, [de]
-	inc de
-	ld h, a
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	call .Copy
-	call WaitBGMap
-	jr .loop
-
-.done
-	ld a, $20
-	ld [wcf63], a
-	ret
-; 8c792 (23:4792)
-
-.boxes: ; 8c792
-	zoombox  4,  2,  8, 8
-	zoombox  6,  4,  7, 7
-	zoombox  8,  6,  6, 6
-	zoombox 10,  8,  5, 5
-	zoombox 12, 10,  4, 4
-	zoombox 14, 12,  3, 3
-	zoombox 16, 14,  2, 2
-	zoombox 18, 16,  1, 1
-	zoombox 20, 18,  0, 0
-	db -1
-; 8c7b7
-
-.Copy: ; 8c7b7 (23:47b7)
-	ld a, $ff
-.row
-	push bc
-	push hl
-.col
-	ld [hli], a
-	dec c
-	jr nz, .col
-	pop hl
-	ld bc, SCREEN_WIDTH
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .row
-	ret
-; 8c7c9 (23:47c9)
-
-Function8c7c9: ; 8c7c9
+Function8c7c9: ; unreferenced
 	ld a, $1
 	ld [hBGMapMode], a
 	call WaitBGMap
@@ -55475,25 +54198,25 @@ ShakeHeadbuttTree: ; 8c80a
 	ld a, $90
 	ld [wc3b5], a
 	callba Function8cf7a
-	call Function8c913
+	call GetHeadbuttTreeRelativeLocation
 	ld a, $20
 	ld [wcf64], a
 	call WaitSFX
 	ld de, SFX_SANDSTORM
 	call PlaySFX
-.asm_8c852
+.loop
 	ld hl, wcf64
 	ld a, [hl]
 	and a
-	jr z, .asm_8c86a
+	jr z, .done
 	dec [hl]
 	ld a, $90
 	ld [wc3b5], a
 	callba Function8cf7a
 	call DelayFrame
-	jr .asm_8c852
+	jr .loop
 
-.asm_8c86a
+.done
 	call Function2173
 	call WaitBGMap
 	xor a
@@ -55515,19 +54238,20 @@ HeadbuttTreeGFX: ; 8c893
 INCBIN "gfx/unknown/08c893.2bpp"
 ; 8c913
 
-Function8c913: ; 8c913
+GetHeadbuttTreeRelativeLocation: ; 8c913
 	xor a
 	ld [hBGMapMode], a
 	ld a, [PlayerDirection]
-	and $c
+	and %00001100
 	srl a
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_8c938
+	ld hl, TreeRelativeLocationTable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	ld a, $5
 	ld [hli], a
 	ld [hld], a
@@ -55541,11 +54265,12 @@ Function8c913: ; 8c913
 	ret
 ; 8c938
 
-Unknown_8c938: ; 8c938
-	dwcoord 8, 10
-	dwcoord 8, 6
-	dwcoord 6, 8
-	dwcoord 10, 8
+TreeRelativeLocationTable: ; 8c938
+	dwcoord 8,     8 + 2 ; RIGHT
+	dwcoord 8,     8 - 2 ; LEFT
+	dwcoord 8 - 2, 8     ; DOWN
+	dwcoord 8 + 2, 8     ; UP
+; 8c940
 ; 8c940
 
 Function8c940: ; 8c940
@@ -56409,9 +55134,11 @@ Function8cf69: ; 8cf69
 	push de
 	push bc
 	push af
+
 	ld a, $0
 	ld [wc3b5], a
 	call Function8cf7a
+
 	pop af
 	pop bc
 	pop de
@@ -56422,6 +55149,7 @@ Function8cf69: ; 8cf69
 Function8cf7a: ; 8cf7a
 	ld hl, wPartyMonMenuIconAnims
 	ld e, 10 ; Do this first loop 10 times
+
 .loop
 	ld a, [hl]
 	and a
@@ -56444,6 +55172,7 @@ Function8cf7a: ; 8cf7a
 	ld a, [wc3b5]
 	ld l, a
 	ld h, Sprites / $0100
+
 .loop2 ; Clear (Sprites + [wc3b5] --> SpritesEnd)
 	ld a, l
 	cp SpritesEnd % $0100
@@ -56458,7 +55187,8 @@ Function8cf7a: ; 8cf7a
 
 Function8cfa8: ; 8cfa8 (23:4fa8)
 	ld hl, wPartyMonMenuIconAnims
-	ld e, $a
+	ld e, 10
+
 .loop
 	ld a, [hl]
 	and a
@@ -56472,21 +55202,24 @@ Function8cfa8: ; 8cfa8 (23:4fa8)
 	pop de
 	pop hl
 	jr c, .done
+
 .next
-	ld bc, $10
+	ld bc, $0010
 	add hl, bc
 	dec e
 	jr nz, .loop
+
 	ld a, [wc3b5]
 	ld l, a
-	ld h, $c4
+	ld h, Sprites / $100
 .loop2
 	ld a, l
-	cp $40
+	cp 4 * 16
 	jr nc, .done
 	xor a
 	ld [hli], a
 	jr .loop2
+
 .done
 	ret
 
@@ -57033,7 +55766,7 @@ endr
 	ld hl, $7
 	add hl, bc
 	ld a, d
-	and $10
+	and $10 ; bit 4
 	jr z, .asm_8d2df
 	ld a, e
 	and a
@@ -59686,7 +58419,7 @@ endr
 ; 8ea3f
 
 GetGFXUnlessMobile: ; 8ea3f
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jp nz, Request2bpp
 	jp Functiondc9
@@ -60100,7 +58833,7 @@ Function90197: ; 90197
 	ret
 
 Function90199: ; 90199 (24:4199)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_901e7
 	call GetMapHeaderPhoneServiceNybble
@@ -65997,13 +64730,13 @@ UnknownText_0x931b9: ; 0x931b9
 Function931ba: ; 931ba
 	ld a, [EffectFailed]
 	add $25
-	ldcoord 2, 13
+	ldcoord_a 2, 13
 	inc a
-	ldcoord 2, 14
+	ldcoord_a 2, 14
 	inc a
-	ldcoord 3, 13
+	ldcoord_a 3, 13
 	inc a
-	ldcoord 3, 14
+	ldcoord_a 3, 14
 	hlcoord 18, 17
 	ld [hl], $ee
 	ld hl, UnknownText_0x931db
@@ -77831,7 +76564,7 @@ Functionfb57e: ; fb57e
 	ld a, [hl]
 	cp 101
 	jr nc, .asm_fb5db
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jr nz, .asm_fb5d9
 	ld hl, OTPartySpecies
@@ -84400,22 +83133,22 @@ Function1de27f: ; 1de27f
 
 
 
-Function1de28a:: ; 1de28a
+_DudeAutoInput_A:: ; 1de28a
 	ld hl, DudeAutoInput_A
-	jr Function1de299
+	jr _DudeAutoInput
 ; 1de28f
 
-Function1de28f: ; 1de28f
+_DudeAutoInput_RightA: ; 1de28f
 	ld hl, DudeAutoInput_RightA
-	jr Function1de299
+	jr _DudeAutoInput
 ; 1de294
 
-Function1de294: ; 1de294
+_DudeAutoInput_DownA: ; 1de294
 	ld hl, DudeAutoInput_DownA
-	jr Function1de299
+	jr _DudeAutoInput
 ; 1de299
 
-Function1de299: ; 1de299
+_DudeAutoInput: ; 1de299
 	ld a, BANK(DudeAutoInputs)
 	call StartAutoInput
 	ret

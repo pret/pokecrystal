@@ -111,11 +111,19 @@ dwcoord: MACRO
 	endr
 	ENDM
 
-ldcoord: MACRO
+ldcoord_a: MACRO
 	if _NARG < 3
 	ld [TileMap + SCREEN_WIDTH * (\2) + (\1)], a
 	else
 	ld [\3 + SCREEN_WIDTH * (\2) + (\1)], a
+	endc
+	ENDM
+
+lda_coord: MACRO
+	if _NARG < 3
+	ld a, [TileMap + SCREEN_WIDTH * (\2) + (\1)]
+	else
+	ld a, [\3 + SCREEN_WIDTH * (\2) + (\1)]
 	endc
 	ENDM
 

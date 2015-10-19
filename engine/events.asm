@@ -506,7 +506,7 @@ endr
 ; 9693a
 
 Function9693a: ; 9693a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .nothing
 
@@ -957,7 +957,7 @@ SelectMenuCallback: ; 96b66
 
 
 CountStep: ; 96b79
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .done
 

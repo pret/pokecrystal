@@ -1112,7 +1112,7 @@ Function107bb: ; 107bb
 	ld a, [InputType]
 	or a
 	jr z, .asm_107ca
-	callba Function1de28f
+	callba _DudeAutoInput_RightA
 
 .asm_107ca
 	call Function107d7

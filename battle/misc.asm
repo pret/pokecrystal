@@ -161,7 +161,7 @@ endr
 
 
 DoBadgeTypeBoosts: ; fbe24
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
