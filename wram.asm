@@ -135,7 +135,7 @@ INCLUDE "vram.asm"
 SECTION "Stack", WRAM0
 wc000::
 StackBottom::
-	ds $ff
+	ds $100 - 1
 Stack::
 StackTop::
 	ds 1
@@ -441,6 +441,8 @@ wc60f::
 wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
 wc616::
 EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
+	ds -5
+wInitHourBuffer:: ds 5
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
 
 BattleMon:: battle_struct BattleMon ; c62c
@@ -1179,9 +1181,9 @@ MonType:: ; cf5f
 CurSpecies:: ; cf60
 	ds 1
 
-wNamedObjectTypeBuffer:: ds 2
-wIntroSceneIndex::
-wcf63:: ds 1
+wNamedObjectTypeBuffer:: ds 1
+	ds 1
+wJumptableEntryIndexBuffer:: ds 1
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
 wIntroSceneFrameCounter::
@@ -2126,7 +2128,7 @@ Money:: ; d84e
 wd851::
 wMomsMoney:: ; d851
 	ds 3
-wd854::
+wBankOfMomMode::
 wMomSavingMoney:: ; d854
 	ds 1
 

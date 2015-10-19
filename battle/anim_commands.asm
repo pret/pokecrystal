@@ -237,16 +237,16 @@ Functioncc220: ; cc220
 ; Appears to be unused.
 	xor a
 	ld [hBGMapMode], a
-	ld a, $80
+	ld a, (VBGMap0 tile $28) % $100
 	ld [hBGMapAddress], a
-	ld a, $9a
+	ld a, (VBGMap0 tile $28) / $100
 	ld [hBGMapAddress + 1], a
 	call Function3200
 	ld a, $60
 	ld [hWY], a
 	xor a
 	ld [hBGMapAddress], a
-	ld a, $98
+	ld a, VBGMap0 / $100
 	ld [hBGMapAddress + 1], a
 	call BattleAnimDelayFrame
 	ret

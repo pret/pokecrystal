@@ -6612,12 +6612,12 @@ Function102c71: ; 102c71
 ; 102c87
 
 Function102c87: ; 102c87
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	push af
 	ld a, [wcf64]
 	push af
 	ld a, [wcd4c]
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ld a, [PartyCount]
 	ld [wcf64], a
 	ld a, $0
@@ -6632,7 +6632,7 @@ Function102c87: ; 102c87
 	ld bc, $011a
 	call Function102d3e
 	ld a, [wcd4d]
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ld a, [OTPartyCount]
 	ld [wcf64], a
 	ld a, $5
@@ -6649,18 +6649,18 @@ Function102c87: ; 102c87
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ret
 ; 102cee
 
 Function102cee: ; 102cee
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	dec a
 	call Function102d34
 	ld de, DefaultFlypoint
 	ld bc, $002f
 	call CopyBytes
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	ld c, a
 	ld a, $6
 	sub c
@@ -6669,7 +6669,7 @@ Function102cee: ; 102cee
 	ld hl, $0000
 	call AddNTimes
 	push hl
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	dec a
 	call Function102d34
 	ld d, h

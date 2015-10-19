@@ -1,5 +1,7 @@
 ; trainer groups
-	enum_start 1
+	enum_start
+	trainerclass PHONE ; 0
+	
 	trainerclass FALKNER ; 1
 
 	trainerclass WHITNEY ; 2

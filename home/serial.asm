@@ -15,7 +15,7 @@ Serial:: ; 6ef
 	jr nz, .asm_721
 
 	ld a, [$ffcb]
-	inc a
+	inc a ; is it equal to -1?
 	jr z, .asm_726
 
 	ld a, [rSB]

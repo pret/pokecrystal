@@ -9,7 +9,7 @@ _TitleScreen: ; 10ed67
 	ld [hBGMapMode], a
 	
 ; Reset timing variables
-	ld hl, wcf63
+	ld hl, wJumptableEntryIndexBuffer
 	ld [hli], a ; cf63 ; Scene?
 	ld [hli], a ; cf64
 	ld [hli], a ; cf65 ; Timer lo
@@ -130,10 +130,10 @@ _TitleScreen: ; 10ed67
 	
 ; Initialize running Suicune?
 	ld d, $0
-	call Function10eed2
+	call LoadSuicuneFrame
 	
 ; Initialize background crystal
-	call Function10ef06
+	call InitializeBackground
 	
 ; Save WRAM bank
 	ld a, [rSVBK]
@@ -145,12 +145,12 @@ _TitleScreen: ; 10ed67
 ; Update palette colors
 	ld hl, TitleScreenPalettes
 	ld de, Unkn1Pals
-	ld bc, $0080
+	ld bc, 4 * 32
 	call CopyBytes
 	
 	ld hl, TitleScreenPalettes
 	ld de, BGPals
-	ld bc, $0080
+	ld bc, 4 * 32
 	call CopyBytes
 	
 ; Restore WRAM bank
@@ -220,7 +220,7 @@ _TitleScreen: ; 10ed67
 	ld [hBGMapMode], a
 	
 	xor a
-	ld [DefaultFlypoint], a
+	ld [UnknPals1 + 2], a
 	
 ; Play starting sound effect
 	call SFXChannelsOff
@@ -230,25 +230,28 @@ _TitleScreen: ; 10ed67
 	ret
 ; 10eea7
 
-Function10eea7: ; 10eea7
-	ld hl, DefaultFlypoint
+SuicuneFrameIterator: ; 10eea7
+	ld hl, UnknPals1 + 2
 	ld a, [hl]
 	ld c, a
 	inc [hl]
-	and $7
+
+; Only do this once every eight frames
+	and (1 << 3) - 1
 	ret nz
+
 	ld a, c
-	and $18
+	and 3 << 3
 	sla a
 	swap a
 	ld e, a
 	ld d, $0
-	ld hl, Unknown_10eece
+	ld hl, .Frames
 	add hl, de
 	ld d, [hl]
 	xor a
 	ld [hBGMapMode], a
-	call Function10eed2
+	call LoadSuicuneFrame
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, $3
@@ -256,33 +259,36 @@ Function10eea7: ; 10eea7
 	ret
 ; 10eece
 
-Unknown_10eece: ; 10eece
-	db $80, $88, $00, $08
+.Frames: ; 10eece
+	db $80 ; VTiles4 tile $00
+	db $88 ; VTiles4 tile $08
+	db $00 ; VTiles5 tile $00
+	db $08 ; VTiles5 tile $08
 ; 10eed2
 
 
-Function10eed2: ; 10eed2
+LoadSuicuneFrame: ; 10eed2
 	hlcoord 6, 12
-	ld b, $6
-.asm_10eed7
-	ld c, $8
-.asm_10eed9
+	ld b, 6
+.row
+	ld c, 8
+.col
 	ld a, d
 	ld [hli], a
 	inc d
 	dec c
-	jr nz, .asm_10eed9
-	ld a, $c
+	jr nz, .col
+	ld a, SCREEN_WIDTH - 8
 	add l
 	ld l, a
-	ld a, $0
+	ld a, 0
 	adc h
 	ld h, a
-	ld a, $8
+	ld a, 8
 	add d
 	ld d, a
 	dec b
-	jr nz, .asm_10eed7
+	jr nz, .row
 	ret
 ; 10eeef
 
@@ -293,18 +299,18 @@ DrawTitleGraphic: ; 10eeef
 ;   c: width
 ;   d: tile to start drawing from
 ;   e: number of tiles to advance for each row
-.asm_10eeef
+.row
 	push de
 	push bc
 	push hl
-.asm_10eef2
+.col
 	ld a, d
 	ld [hli], a
 	inc d
 	dec c
-	jr nz, .asm_10eef2
+	jr nz, .col
 	pop hl
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	pop de
@@ -312,31 +318,31 @@ DrawTitleGraphic: ; 10eeef
 	add d
 	ld d, a
 	dec b
-	jr nz, .asm_10eeef
+	jr nz, .row
 	ret
 ; 10ef06
 
-Function10ef06: ; 10ef06
+InitializeBackground: ; 10ef06
 	ld hl, Sprites
-	ld d, $de
+	ld d, -$22
 	ld e, $0
-	ld c, $5
-.asm_10ef0f
+	ld c, 5
+.loop
 	push bc
-	call Function10ef1c
+	call .InitColumn
 	pop bc
 	ld a, $10
 	add d
 	ld d, a
 	dec c
-	jr nz, .asm_10ef0f
+	jr nz, .loop
 	ret
 ; 10ef1c
 
-Function10ef1c: ; 10ef1c
+.InitColumn: ; 10ef1c
 	ld c, $6
 	ld b, $40
-.asm_10ef20
+.loop
 	ld a, d
 	ld [hli], a
 	ld a, b
@@ -351,7 +357,7 @@ endr
 	ld a, $80
 	ld [hli], a
 	dec c
-	jr nz, .asm_10ef20
+	jr nz, .loop
 	ret
 ; 10ef32
 
@@ -363,7 +369,7 @@ AnimateTitleCrystal: ; 10ef32
 ; y is really from the bottom of the sprite, which is two tiles high
 	ld hl, Sprites
 	ld a, [hl]
-	cp 6 + 16
+	cp 6 + $10
 	ret z
 	
 ; Move all 30 parts of the crystal down by 2

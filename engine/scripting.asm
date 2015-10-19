@@ -1558,23 +1558,25 @@ Script_returnafterbattle: ; 0x97459
 	ld a, [wd0ee]
 	and $3f
 	cp $1
-	jr nz, .asm_97470 ; 0x97466 $8
+	jr nz, .notblackedout ; 0x97466 $8
 	ld b, BANK(UnknownScript_0x124c1)
 	ld hl, UnknownScript_0x124c1
 	jp ScriptJump
-.asm_97470
+
+.notblackedout
 	bit 0, d
 	jr z, .asm_9747c ; 0x97472 $8
-	callba Functionfcfec
-	jr .asm_9748e ; 0x9747a $12
+	callba MomTriesToBuySomething
+	jr .done ; 0x9747a $12
+
 .asm_9747c
 	ld a, [wd0ee]
 	bit 7, a
-	jr z, .asm_9748e ; 0x97481 $b
-	ld b, BANK(UnknownScript_0x90255)
-	ld de, UnknownScript_0x90255
+	jr z, .done ; 0x97481 $b
+	ld b, BANK(Script_SpecialBillCall)
+	ld de, Script_SpecialBillCall
 	callba Function97c4f
-.asm_9748e
+.done
 	jp Script_reloadmap
 ; 0x97491
 

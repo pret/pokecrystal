@@ -5,7 +5,7 @@ Pack: ; 10000
 	call Function1068a
 .loop
 	call JoyTextDelay
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	bit 7, a
 	jr nz, .done
 	call Function10026
@@ -21,7 +21,7 @@ Pack: ; 10000
 ; 10026
 
 Function10026: ; 10026
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	ld hl, Jumptable_10030
 	call Function1086b
 	jp [hl]
@@ -47,7 +47,7 @@ Function10046: ; 10046 (4:4046)
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function10955
 	ld a, [wcf64]
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	call Function10a40
 	ret
 
@@ -486,7 +486,7 @@ Function10355: ; 10355 (4:4355)
 	and a
 	jr z, Function1032d
 	ld a, $a
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ret
 ; 10364 (4:4364)
 
@@ -605,7 +605,7 @@ Function103fd: ; 103fd
 	call PrintText
 	jr .asm_10427
 .asm_10453
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	push af
 	ld a, [wcf64]
 	push af
@@ -618,7 +618,7 @@ Function103fd: ; 103fd
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 .asm_10475
 	pop af
 	ld [Options], a
@@ -652,7 +652,7 @@ BattlePack: ; 10493
 	call Function1068a
 .asm_1049b
 	call JoyTextDelay
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	bit 7, a
 	jr nz, .asm_104ad
 	call Function104b9
@@ -668,7 +668,7 @@ BattlePack: ; 10493
 ; 104b9
 
 Function104b9: ; 104b9
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	ld hl, Jumptable_104c3
 	call Function1086b
 	jp [hl]
@@ -694,7 +694,7 @@ Function104d9: ; 104d9 (4:44d9)
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function10955
 	ld a, [wcf64]
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	call Function10a40
 	ret
 
@@ -922,7 +922,7 @@ Function10671: ; 10671 (4:4671)
 	jr z, asm_10684
 asm_1067e: ; 1067e (4:467e)
 	ld a, $a
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ret
 asm_10684: ; 10684 (4:4684)
 	xor a
@@ -937,7 +937,7 @@ Function10689: ; 10689
 
 Function1068a: ; 1068a
 	xor a
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ld a, [wd0d6]
 	and $3
 	ld [wcf65], a
@@ -955,7 +955,7 @@ Function1068a: ; 1068a
 Function106a5: ; 106a5
 	xor a
 	ld [hBGMapMode], a
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -974,7 +974,7 @@ Function106be: ; 106be
 ; 106c7
 
 Function106c7: ; 106c7
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	ld hl, Jumptable_106d1
 	call Function1086b
 	jp [hl]
@@ -1083,10 +1083,10 @@ Function1076f: ; 1076f
 	ret
 
 .asm_10795
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	dec a
 	and $3
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	push de
 	ld de, SFX_UNKNOWN_62
 	call PlaySFX
@@ -1095,10 +1095,10 @@ Function1076f: ; 1076f
 	ret
 
 .asm_107a8
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	inc a
 	and $3
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	push de
 	ld de, SFX_UNKNOWN_62
 	call PlaySFX
@@ -1124,7 +1124,7 @@ Function107bb: ; 107bb
 ; 107d7
 
 Function107d7: ; 107d7
-	ld a, [wcf63]
+	ld a, [wJumptableEntryIndexBuffer]
 	ld hl, Jumptable_107e1
 	call Function1086b
 	jp [hl]
@@ -1228,7 +1228,7 @@ Function1085a: ; 1085a (4:485a)
 	ret
 
 Function10866: ; 10866 (4:4866)
-	ld hl, wcf63
+	ld hl, wJumptableEntryIndexBuffer
 	inc [hl]
 	ret
 
@@ -1245,14 +1245,14 @@ endr
 ; 10874
 
 Function10874: ; 10874 (4:4874)
-	ld hl, wcf63
+	ld hl, wJumptableEntryIndexBuffer
 	set 7, [hl]
 	xor a
 	ld [wcf66], a
 	ret
 
 Function1087e: ; 1087e (4:487e)
-	ld hl, wcf63
+	ld hl, wJumptableEntryIndexBuffer
 	set 7, [hl]
 	ld a, $1
 	ld [wcf66], a
@@ -1336,12 +1336,12 @@ Function108d4: ; 108d4 (4:48d4)
 	ret
 .asm_108fa
 	ld a, $9
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	scf
 	ret
 .asm_10901
 	ld a, b
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ld [wcf64], a
 	push de
 	ld de, SFX_UNKNOWN_62
@@ -1351,7 +1351,7 @@ Function108d4: ; 108d4 (4:48d4)
 	ret
 .asm_10912
 	ld a, c
-	ld [wcf63], a
+	ld [wJumptableEntryIndexBuffer], a
 	ld [wcf64], a
 	push de
 	ld de, SFX_UNKNOWN_62
