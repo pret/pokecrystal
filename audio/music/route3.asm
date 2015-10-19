@@ -11,7 +11,7 @@ Music_Route3_Ch1: ; ec2d6
 	volume $7, $7
 	notetype $c, $9, $0, $1
 	note __, 10
-	setwaveduty $0
+	waveduty $0
 	vibrato $14, $0, $6
 	octave 3
 	note C#, 1
@@ -240,7 +240,7 @@ Music_Route3_branch_ec3bd: ; ec3bd
 Music_Route3_Ch2: ; ec3d0
 	stereopanning $f0
 	notetype $c, $5, $1, $6
-	setwaveduty $2
+	waveduty $2
 	vibrato $6, $0, $3
 	octave 4
 	note E_, 1
@@ -259,7 +259,7 @@ Music_Route3_Ch2: ; ec3d0
 	octave 4
 	note C#, 4
 	volenvelope $a, $0, $7
-	setwaveduty $2
+	waveduty $2
 	octave 3
 	note A_, 1
 	octave 4
@@ -275,7 +275,7 @@ Music_Route3_branch_ec3f5: ; ec3f5
 	note B_, 6
 	volenvelope $7, $1, $5
 	note __, 4
-	setwaveduty $3
+	waveduty $3
 	note G#, 4
 	callchannel Music_Route3_branch_ec443
 	note B_, 1
@@ -285,7 +285,7 @@ Music_Route3_branch_ec3f5: ; ec3f5
 	volenvelope $b, $0, $7
 	octave 5
 	note D_, 5
-	setwaveduty $0
+	waveduty $0
 	octave 3
 	note D_, 1
 	note G_, 1
@@ -296,7 +296,7 @@ Music_Route3_branch_ec3f5: ; ec3f5
 	octave 4
 	note D_, 4
 	volenvelope $8, $1, $7
-	setwaveduty $2
+	waveduty $2
 	octave 4
 	note E_, 2
 	note D_, 2
@@ -319,7 +319,7 @@ Music_Route3_branch_ec3f5: ; ec3f5
 	note C#, 3
 	octave 3
 	note A_, 10
-	setwaveduty $2
+	waveduty $2
 	octave 4
 	note F#, 6
 	note E_, 1
@@ -486,7 +486,7 @@ Music_Route3_branch_ec4ce: ; ec4ce
 ; ec4eb
 
 Music_Route3_Ch4: ; ec4eb
-	togglenoise $4
+	drumkittoggle $4
 	notetype $c
 	note __, 10
 Music_Route3_branch_ec4f0: ; ec4f0

@@ -7,7 +7,7 @@ Music_LookSage_Ch1: ; ee364
 	tempo 144
 	stereopanning $f
 	volume $7, $7
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $b, $0, $3
 	note __, 2
 	note __, 16

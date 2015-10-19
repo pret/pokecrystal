@@ -8,9 +8,9 @@ Music_LookHiker: ; f7411
 Music_LookHiker_Ch1: ; f741d
 	tempo 132
 	volume $7, $7
-	setpitchoffset $0001
+	pitchoffset $0001
 	vibrato $12, $2, $4
-	setwaveduty $2
+	waveduty $2
 	stereopanning $f
 	notetype $c, $6, $1, $0
 	octave 3
@@ -34,7 +34,7 @@ Music_LookHiker_branch_f7433: ; f7433
 ; f7443
 
 Music_LookHiker_Ch2: ; f7443
-	setwaveduty $0
+	waveduty $0
 	notetype $c, $a, $0, $1
 	note __, 4
 	octave 1
@@ -107,7 +107,7 @@ Music_LookHiker_branch_f748a: ; f748a
 ; f7494
 
 Music_LookHiker_Ch4: ; f7494
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note F_, 4
 	note __, 16

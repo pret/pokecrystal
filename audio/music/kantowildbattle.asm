@@ -12,7 +12,7 @@ Music_KantoWildBattle_Ch1: ; ed077
 	tempo 112
 	volume $7, $7
 	vibrato $12, $2, $3
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $b, $0, $7
 	note __, 16
 	octave 4
@@ -270,7 +270,7 @@ Music_KantoWildBattle_branch_ed18a: ; ed18a
 ; ed19f
 
 Music_KantoWildBattle_Ch2: ; ed19f
-	setwaveduty $1
+	waveduty $1
 	vibrato $12, $2, $3
 	notetype $c, $b, $0, $1
 	octave 4
@@ -329,18 +329,18 @@ Music_KantoWildBattle_branch_ed1c8: ; ed1c8
 	notetype $6, $b, $0, $7
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
-	setabsnote $0, $1
+	transpose $0, $1
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
-	setabsnote $0, $0
+	transpose $0, $0
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
-	setabsnote $0, $1
+	transpose $0, $1
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
-	setabsnote $0, $0
+	transpose $0, $0
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
 	note __, 16
@@ -387,9 +387,9 @@ Music_KantoWildBattle_branch_ed1c8: ; ed1c8
 	note G#, 1
 	notetype $6, $b, $0, $7
 	callchannel Music_KantoWildBattle_branch_ed31b
-	setabsnote $0, $1
+	transpose $0, $1
 	callchannel Music_KantoWildBattle_branch_ed31b
-	setabsnote $0, $0
+	transpose $0, $0
 	callchannel Music_KantoWildBattle_branch_ed340
 	octave 2
 	note C_, 2
@@ -453,9 +453,9 @@ Music_KantoWildBattle_branch_ed1c8: ; ed1c8
 	callchannel Music_KantoWildBattle_branch_ed354
 	callchannel Music_KantoWildBattle_branch_ed340
 	callchannel Music_KantoWildBattle_branch_ed354
-	setabsnote $0, $1
+	transpose $0, $1
 	callchannel Music_KantoWildBattle_branch_ed340
-	setabsnote $0, $0
+	transpose $0, $0
 	note C#, 2
 	note __, 2
 	octave 3

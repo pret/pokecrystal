@@ -14,7 +14,7 @@ Music_Surf_Ch1: ; f5194
 	notetype $c, $a, $0, $7
 	stereopanning $f
 Music_Surf_branch_f519e: ; f519e
-	setwaveduty $2
+	waveduty $2
 	vibrato $10, $2, $4
 	volenvelope $7, $0, $3
 	octave 3
@@ -70,9 +70,9 @@ Music_Surf_branch_f519e: ; f519e
 	note A#, 2
 	octave 4
 	note D_, 2
-	setwaveduty $0
+	waveduty $0
 	callchannel Music_Surf_branch_f5233
-	setwaveduty $1
+	waveduty $1
 	notetype $8, $a, $0, $7
 	callchannel Music_Surf_branch_f5233
 	callchannel Music_Surf_branch_f5293
@@ -88,7 +88,7 @@ Music_Surf_branch_f519e: ; f519e
 	note C_, 2
 	note D#, 2
 	note G_, 2
-	setwaveduty $1
+	waveduty $1
 	notetype $6, $9, $0, $7
 	callchannel Music_Surf_branch_f5293
 	volenvelope $a, $1, $0
@@ -98,13 +98,13 @@ Music_Surf_branch_f519e: ; f519e
 	octave 4
 	note D_, 3
 	volenvelope $a, $1, $0
-	setwaveduty $1
+	waveduty $1
 	callchannel Music_Surf_branch_f52d9
 	octave 3
 	note D#, 8
 	note G#, 8
 	note D#, 8
-	setwaveduty $3
+	waveduty $3
 	notetype $8, $9, $1, $0
 	callchannel Music_Surf_branch_f52d9
 	notetype $c, $a, $0, $7
@@ -349,7 +349,7 @@ Music_Surf_Ch2: ; f5317
 Music_Surf_branch_f5317: ; f5317
 	notetype $c, $c, $0, $2
 	stereopanning $f0
-	setwaveduty $2
+	waveduty $2
 	vibrato $14, $2, $3
 Music_Surf_branch_f5321: ; f5321
 	octave 1
@@ -415,34 +415,34 @@ Music_Surf_branch_f5333: ; f5333
 	note A#, 4
 	notetype $6, $b, $1, $0
 	callchannel Music_Surf_branch_f53d6
-	setwaveduty $1
+	waveduty $1
 	volenvelope $b, $1, $0
 	callchannel Music_Surf_branch_f53e8
-	setwaveduty $2
+	waveduty $2
 	callchannel Music_Surf_branch_f53f3
-	setwaveduty $1
+	waveduty $1
 	volenvelope $b, $1, $0
 	callchannel Music_Surf_branch_f5404
 	octave 3
 	note B_, 16
 	octave 4
 	note C#, 8
-	setabsnote $0, $c
-	setwaveduty $3
+	transpose $0, $c
+	waveduty $3
 	callchannel Music_Surf_branch_f53d6
 	volenvelope $b, $1, $0
-	setwaveduty $1
+	waveduty $1
 	callchannel Music_Surf_branch_f53e8
-	setwaveduty $3
+	waveduty $3
 	callchannel Music_Surf_branch_f53f3
 	volenvelope $b, $1, $0
-	setwaveduty $1
+	waveduty $1
 	callchannel Music_Surf_branch_f5404
-	setabsnote $0, $0
+	transpose $0, $0
 	notetype $c, $b, $1, $0
 	octave 4
 	note B_, 12
-	setwaveduty $2
+	waveduty $2
 	note A#, 4
 	note G#, 4
 	note D#, 4

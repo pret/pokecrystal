@@ -9,8 +9,8 @@ Music_VictoryRoad_Ch1: ; f6c7e
 	tempo 144
 	volume $7, $7
 	stereopanning $f
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	notetype $c, $b, $0, $3
 Music_VictoryRoad_branch_f6c8d: ; f6c8d
 	callchannel Music_VictoryRoad_branch_f6cb9
@@ -66,7 +66,7 @@ Music_VictoryRoad_branch_f6cb9: ; f6cb9
 ; f6cce
 
 Music_VictoryRoad_Ch2: ; f6cce
-	setwaveduty $3
+	waveduty $3
 	vibrato $10, $2, $4
 Music_VictoryRoad_branch_f6cd3: ; f6cd3
 	notetype $c, $c, $0, $2
@@ -180,7 +180,7 @@ Music_VictoryRoad_branch_f6d52: ; f6d52
 ; f6d5f
 
 Music_VictoryRoad_Ch4: ; f6d5f
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 Music_VictoryRoad_branch_f6d63: ; f6d63
 	note D_, 2

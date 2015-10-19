@@ -8,9 +8,9 @@ Music_PokemonCenter: ; ed5c6
 Music_PokemonCenter_Ch1: ; ed5d2
 	tempo 152
 	volume $7, $7
-	setwaveduty $2
+	waveduty $2
 	vibrato $a, $1, $4
-	setpitchoffset $0001
+	pitchoffset $0001
 Music_PokemonCenter_branch_ed5df: ; ed5df
 	stereopanning $f
 	notetype $c, $8, $0, $3
@@ -221,7 +221,7 @@ Music_PokemonCenter_branch_ed674: ; ed674
 ; ed6d1
 
 Music_PokemonCenter_branch_ed6d1: ; ed6d1
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $c, $0, $2
 	octave 4
 	note D_, 2
@@ -401,7 +401,7 @@ Music_PokemonCenter_branch_ed783: ; ed783
 ; ed78c
 
 Music_PokemonCenter_Ch4: ; ed78c
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	stereopanning $ff
 Music_PokemonCenter_branch_ed792: ; ed792

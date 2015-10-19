@@ -155,7 +155,7 @@ Music_ContestResults_branch_efbd2: ; efbd2
 ; efbe9
 
 Music_ContestResults_Ch4: ; efbe9
-	togglenoise $4
+	drumkittoggle $4
 	notetype $6
 Music_ContestResults_branch_efbed: ; efbed
 	note C#, 4

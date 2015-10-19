@@ -144,7 +144,7 @@ Music_GameCorner_Ch2: ; ede1c
 	note __, 8
 Music_GameCorner_branch_ede25: ; ede25
 	volenvelope $9, $0, $2
-	setwaveduty $1
+	waveduty $1
 	callchannel Music_GameCorner_branch_ede75
 	octave 1
 	note F_, 2
@@ -170,7 +170,7 @@ Music_GameCorner_branch_ede25: ; ede25
 	volenvelope $a, $0, $4
 	note G_, 3
 	note F_, 4
-	setwaveduty $2
+	waveduty $2
 	volenvelope $c, $0, $7
 	octave 3
 	note D#, 1
@@ -668,7 +668,7 @@ Music_GameCorner_branch_ee03f: ; ee03f
 ; ee06f
 
 Music_GameCorner_Ch4: ; ee06f
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	notetype $8
 	note D_, 1

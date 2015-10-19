@@ -8,8 +8,8 @@ Music_PokeFluteChannel_Ch1: ; f7b1c
 	tempo 240
 	volume $7, $7
 	stereopanning $f0
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	notetype $c, $b, $0, $4
 	note __, 4
 	octave 3
@@ -72,8 +72,8 @@ Music_PokeFluteChannel_branch_f7b40: ; f7b40
 
 Music_PokeFluteChannel_Ch2: ; f7b68
 	stereopanning $f
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	notetype $c, $c, $0, $4
 	note __, 4
 	octave 3

@@ -171,7 +171,7 @@ Music_Route2_Ch2: ; ed996
 Music_Route2_branch_ed9a1: ; ed9a1
 	volenvelope $b, $0, $2
 	callchannel Music_Route2_branch_ed9ba
-	setwaveduty $2
+	waveduty $2
 	volenvelope $b, $0, $5
 	callchannel Music_Route2_branch_ed9dc
 	callchannel Music_Route2_branch_ed9dc
@@ -463,7 +463,7 @@ Music_Route2_branch_edacb: ; edacb
 ; edadc
 
 Music_Route2_Ch4: ; edadc
-	togglenoise $5
+	drumkittoggle $5
 	notetype $c
 Music_Route2_branch_edae0: ; edae0
 	note A_, 4

@@ -8,8 +8,8 @@ Music_Lighthouse: ; ee569
 Music_Lighthouse_Ch1: ; ee575
 	tempo 144
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0004
+	waveduty $3
+	pitchoffset $0004
 	vibrato $8, $4, $5
 	stereopanning $f
 Music_Lighthouse_branch_ee584: ; ee584
@@ -131,8 +131,8 @@ Music_Lighthouse_branch_ee584: ; ee584
 ; ee5fc
 
 Music_Lighthouse_Ch2: ; ee5fc
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $10, $4, $5
 Music_Lighthouse_branch_ee604: ; ee604
 	notetype $c, $c, $0, $5
@@ -293,7 +293,7 @@ Music_Lighthouse_branch_ee69b: ; ee69b
 ; ee6ad
 
 Music_Lighthouse_Ch4: ; ee6ad
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 Music_Lighthouse_branch_ee6b1: ; ee6b1
 	stereopanning $f

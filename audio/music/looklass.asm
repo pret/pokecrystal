@@ -8,8 +8,8 @@ Music_LookLass: ; ed79b
 Music_LookLass_Ch1: ; ed7a7
 	tempo 132
 	volume $7, $7
-	setpitchoffset $0001
-	setwaveduty $2
+	pitchoffset $0001
+	waveduty $2
 	notetype $c, $c, $0, $7
 	octave 3
 	note B_, 1
@@ -17,7 +17,7 @@ Music_LookLass_Ch1: ; ed7a7
 	octave 4
 	note B_, 14
 	stereopanning $f
-	setwaveduty $0
+	waveduty $0
 Music_LookLass_branch_ed7bd: ; ed7bd
 	volenvelope $a, $0, $2
 	octave 3
@@ -33,7 +33,7 @@ Music_LookLass_branch_ed7bd: ; ed7bd
 
 Music_LookLass_Ch2: ; ed7cd
 	stereopanning $f0
-	setwaveduty $0
+	waveduty $0
 	notetype $c, $8, $0, $3
 	note __, 16
 Music_LookLass_branch_ed7d5: ; ed7d5
@@ -102,7 +102,7 @@ Music_LookLass_branch_ed7ef: ; ed7ef
 ; ed81a
 
 Music_LookLass_Ch4: ; ed81a
-	togglenoise $4
+	drumkittoggle $4
 	notetype $c
 	note C_, 16
 Music_LookLass_branch_ed81f: ; ed81f

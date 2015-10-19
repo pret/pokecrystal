@@ -7,10 +7,10 @@ Music_LookOfficer: ; ed82d
 Music_LookOfficer_Ch1: ; ed836
 	tempo 116
 	volume $7, $7
-	setpitchoffset $0001
+	pitchoffset $0001
 	vibrato $12, $3, $4
 	stereopanning $f
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $a, $0, $7
 	octave 4
 	note C#, 1
@@ -38,7 +38,7 @@ Music_LookOfficer_branch_ed852: ; ed852
 
 Music_LookOfficer_Ch2: ; ed863
 	vibrato $12, $3, $4
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $b, $0, $7
 	octave 5
 	note D#, 1
@@ -47,7 +47,7 @@ Music_LookOfficer_Ch2: ; ed863
 	note C_, 1
 	octave 4
 	note B_, 12
-	setwaveduty $3
+	waveduty $3
 	volenvelope $a, $0, $2
 	octave 1
 	note B_, 4
@@ -73,9 +73,9 @@ Music_LookOfficer_branch_ed882: ; ed882
 	note E_, 2
 	note G#, 2
 	loopchannel 2, Music_LookOfficer_branch_ed882
-	setabsnote $0, $1
+	transpose $0, $1
 	callchannel Music_LookOfficer_branch_ed89e
-	setabsnote $0, $0
+	transpose $0, $0
 	callchannel Music_LookOfficer_branch_ed89e
 	loopchannel 0, Music_LookOfficer_branch_ed882
 ; ed89e

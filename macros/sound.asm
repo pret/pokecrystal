@@ -57,7 +57,7 @@ notetype: macro
 	endc
 	endm
 
-setabsnote: macro
+transpose: macro
 ; \1: octave (0 - 15)
 ; \2: pitch (0 - 15)
 	db $d9
@@ -69,7 +69,7 @@ tempo: macro
 	bigdw \1 ; tempo
 	endm
 
-setwaveduty: macro
+waveduty: macro
 	db $db
 	db \1 ; duty_cycle
 	endm
@@ -84,7 +84,7 @@ volenvelope: macro
 	db ((\1) << 4) | ((\2) << 3) | (\3)
 	endm
 
-setsweep: macro
+sweep: macro
 ; \1: Sweep Time (0-7)
 ; \2: Sweep Direction (0=Increase, 1=Decrease)
 ; \3: Number of sweep shift (n: 0-7)
@@ -123,7 +123,7 @@ unknownmusic0xe2: macro
 	db \1 ; unknown
 	endm
 
-togglenoise: macro
+drumkittoggle: macro
 	db $e3
 	db \1 ; id
 	endm
@@ -138,7 +138,7 @@ volume: macro
 	db ((\1) << 4) | (\2) ; volume left and right
 	endm
 
-setpitchoffset: macro
+pitchoffset: macro
 	db $e6
 	bigdw \1 ; pitch offset/frequency
 	endm
@@ -186,7 +186,7 @@ stereopanning: macro
 	db \1 ; tracks
 	endm
 
-sfxtogglenoise: macro
+sfxdrumkittoggle: macro
 	db $f0
 	db \1 ; id
 	endm
@@ -227,7 +227,7 @@ unknownmusic0xf9: macro
 	db $f9
 	endm
 
-setcondition: macro
+condition: macro
 	db $fa
 	db \1 ; condition
 	endm

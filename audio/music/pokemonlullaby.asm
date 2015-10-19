@@ -7,8 +7,8 @@ Music_PokemonLullaby: ; f6d79
 Music_PokemonLullaby_Ch1: ; f6d82
 	tempo 224
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 Music_PokemonLullaby_branch_f6d8c: ; f6d8c
 	notetype $c, $a, $0, $7
 	octave 3
@@ -57,7 +57,7 @@ Music_PokemonLullaby_branch_f6d8c: ; f6d8c
 
 Music_PokemonLullaby_Ch2: ; f6dc4
 	vibrato $10, $1, $4
-	setwaveduty $0
+	waveduty $0
 	notetype $c, $b, $0, $4
 Music_PokemonLullaby_branch_f6dcc: ; f6dcc
 	note __, 16

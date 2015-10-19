@@ -9,7 +9,7 @@ Music_Credits_Ch1: ; 1f328
 	tempo 139
 	volume $7, $7
 	stereopanning $f
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $2, $1, $7
 	octave 2
 	note G_, 16
@@ -142,12 +142,12 @@ Music_Credits_Ch1: ; 1f328
 	note E_, 7
 	octave 3
 	note __, 1
-	setabsnote $0, $2
+	transpose $0, $2
 	callchannel Music_Credits_branch_1f483
 	callchannel Music_Credits_branch_1f4ed
 	callchannel Music_Credits_branch_1f4f8
 	callchannel Music_Credits_branch_1f559
-	setabsnote $0, $0
+	transpose $0, $0
 	octave 3
 	note A_, 12
 	notetype $8, $a, $0, $7
@@ -564,7 +564,7 @@ Music_Credits_branch_1f582: ; 1f582
 ; 1f58d
 
 Music_Credits_Ch2: ; 1f58d
-	setwaveduty $1
+	waveduty $1
 	vibrato $14, $2, $3
 	notetype $c, $2, $1, $7
 	stereopanning $f0
@@ -664,11 +664,11 @@ Music_Credits_Ch2: ; 1f58d
 	note A_, 4
 	note G_, 4
 	notetype $6, $c, $0, $7
-	setabsnote $0, $2
+	transpose $0, $2
 	callchannel Music_Credits_branch_1f6cb
 	callchannel Music_Credits_branch_1f73f
 	callchannel Music_Credits_branch_1f748
-	setabsnote $0, $0
+	transpose $0, $0
 	octave 5
 	note C#, 1
 	note D_, 11
@@ -1139,15 +1139,15 @@ Music_Credits_Ch3: ; 1f772
 	note F_, 1
 	note F#, 7
 	note G_, 8
-	setabsnote $0, $2
+	transpose $0, $2
 	callchannel Music_Credits_branch_1f8aa
 	callchannel Music_Credits_branch_1f8db
-	setabsnote $1, $2
+	transpose $1, $2
 	callchannel Music_Credits_branch_1f8e7
-	setabsnote $0, $2
+	transpose $0, $2
 	callchannel Music_Credits_branch_1f934
 	callchannel Music_Credits_branch_1f94b
-	setabsnote $0, $0
+	transpose $0, $0
 	octave 6
 	note C#, 2
 	octave 5
@@ -1445,7 +1445,7 @@ Music_Credits_branch_1f94b: ; 1f94b
 ; 1f973
 
 Music_Credits_Ch4: ; 1f973
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note G#, 1
 	note G_, 1

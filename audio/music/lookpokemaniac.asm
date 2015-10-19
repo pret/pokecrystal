@@ -9,7 +9,7 @@ Music_LookPokemaniac_Ch1: ; ebdea
 	tempo 144
 	volume $7, $7
 	vibrato $2, $3, $3
-	setpitchoffset $0002
+	pitchoffset $0002
 	notetype $c, $b, $0, $3
 	note __, 8
 Music_LookPokemaniac_branch_ebdfb: ; ebdfb
@@ -32,7 +32,7 @@ Music_LookPokemaniac_branch_ebdfb: ; ebdfb
 Music_LookPokemaniac_Ch2: ; ebe12
 	stereopanning $ff
 	vibrato $2, $3, $3
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $c, $b, $0, $3
 	octave 2
 	note A_, 1

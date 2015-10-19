@@ -7,8 +7,8 @@ Music_WildPokemonVictory: ; f4518
 Music_WildPokemonVictory_Ch1: ; f4521
 	tempo 126
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	notetype $c, $b, $0, $1
 	octave 3
 	note B_, 1
@@ -29,14 +29,14 @@ Music_WildPokemonVictory_branch_f4538: ; f4538
 	volenvelope $7, $1, $0
 	octave 3
 	note G_, 4
-	setabsnote $0, $1
+	transpose $0, $1
 	callchannel Music_WildPokemonVictory_branch_f455c
 	note F#, 2
 	note F#, 2
 	note F#, 4
 	callchannel Music_WildPokemonVictory_branch_f455c
 	note G#, 4
-	setabsnote $0, $0
+	transpose $0, $0
 	volenvelope $7, $1, $0
 	octave 3
 	note F#, 4
@@ -72,7 +72,7 @@ Music_WildPokemonVictory_branch_f455c: ; f455c
 
 Music_WildPokemonVictory_Ch2: ; f4575
 	vibrato $12, $2, $4
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $d, $0, $1
 	octave 4
 	note E_, 1
@@ -97,7 +97,7 @@ Music_WildPokemonVictory_branch_f4587: ; f4587
 	note E_, 1
 	note G_, 1
 	note A#, 1
-	setabsnote $0, $1
+	transpose $0, $1
 	callchannel Music_WildPokemonVictory_branch_f45b5
 	octave 4
 	note B_, 2
@@ -106,7 +106,7 @@ Music_WildPokemonVictory_branch_f4587: ; f4587
 	callchannel Music_WildPokemonVictory_branch_f45b5
 	octave 4
 	note B_, 4
-	setabsnote $0, $0
+	transpose $0, $0
 	volenvelope $8, $0, $1
 	octave 3
 	note B_, 1
@@ -156,7 +156,7 @@ Music_WildPokemonVictory_branch_f45cf: ; f45cf
 	note E_, 2
 	note __, 2
 	note C_, 4
-	setabsnote $0, $1
+	transpose $0, $1
 	callchannel Music_WildPokemonVictory_branch_f45f4
 	note D#, 2
 	note C#, 2
@@ -166,7 +166,7 @@ Music_WildPokemonVictory_branch_f45cf: ; f45cf
 	callchannel Music_WildPokemonVictory_branch_f45f4
 	note E_, 2
 	note __, 2
-	setabsnote $0, $0
+	transpose $0, $0
 	octave 2
 	note B_, 4
 	loopchannel 0, Music_WildPokemonVictory_branch_f45cf

@@ -10,7 +10,7 @@ Music_Gym_Ch1: ; f48ba
 	volume $7, $7
 	stereopanning $f
 	vibrato $12, $2, $4
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $b, $0, $7
 Music_Gym_branch_f48c9: ; f48c9
 	octave 4
@@ -192,7 +192,7 @@ Music_Gym_branch_f48c9: ; f48c9
 ; f497c
 
 Music_Gym_Ch2: ; f497c
-	setwaveduty $1
+	waveduty $1
 	stereopanning $f0
 Music_Gym_branch_f4980: ; f4980
 	notetype $c, $c, $0, $3
@@ -509,7 +509,7 @@ Music_Gym_branch_f4ab3: ; f4ab3
 ; f4ac5
 
 Music_Gym_Ch4: ; f4ac5
-	togglenoise $4
+	drumkittoggle $4
 Music_Gym_branch_f4ac7: ; f4ac7
 	notetype $c
 	note D_, 2

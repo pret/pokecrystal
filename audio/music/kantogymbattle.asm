@@ -7,8 +7,8 @@ Music_KantoGymBattle: ; ec720
 Music_KantoGymBattle_Ch1: ; ec729
 	tempo 101
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $12, $1, $5
 	notetype $c, $b, $0, $2
 	octave 3
@@ -255,9 +255,9 @@ Music_KantoGymBattle_branch_ec832: ; ec832
 ; ec847
 
 Music_KantoGymBattle_Ch2: ; ec847
-	setwaveduty $3
+	waveduty $3
 	vibrato $8, $3, $6
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $c, $c, $0, $2
 Music_KantoGymBattle_branch_ec852: ; ec852
 	octave 4
@@ -408,7 +408,7 @@ Music_KantoGymBattle_branch_ec894: ; ec894
 ; ec907
 
 Music_KantoGymBattle_branch_ec907: ; ec907
-	setwaveduty $2
+	waveduty $2
 	volenvelope $d, $0, $1
 	octave 3
 	note A#, 2
@@ -434,7 +434,7 @@ Music_KantoGymBattle_branch_ec907: ; ec907
 	note F#, 2
 	note G#, 2
 	note A#, 2
-	setwaveduty $3
+	waveduty $3
 	volenvelope $b, $0, $0
 	endchannel
 ; ec92e

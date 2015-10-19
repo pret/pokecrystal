@@ -8,8 +8,8 @@ Music_MainMenu: ; f78fd
 Music_MainMenu_Ch1: ; f7909
 	tempo 160
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $10, $1, $5
 	stereopanning $f0
 	notetype $c, $0, $1, $7
@@ -44,7 +44,7 @@ Music_MainMenu_branch_f791d: ; f791d
 ; f7940
 
 Music_MainMenu_Ch2: ; f7940
-	setwaveduty $3
+	waveduty $3
 	stereopanning $f
 	notetype $c, $0, $1, $7
 	octave 3
@@ -116,7 +116,7 @@ Music_MainMenu_branch_f796f: ; f796f
 
 Music_MainMenu_Ch4: ; f7996
 	stereopanning $f
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 8
 	note __, 16

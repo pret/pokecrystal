@@ -8,7 +8,7 @@ Music_LookBeauty: ; eee3e
 Music_LookBeauty_Ch1: ; eee4a
 	stereopanning $f
 	vibrato $12, $2, $5
-	setwaveduty $2
+	waveduty $2
 	tempo 128
 	volume $7, $7
 	notetype $c, $a, $0, $3
@@ -16,7 +16,7 @@ Music_LookBeauty_Ch1: ; eee4a
 	note __, 8
 	octave 4
 	note C_, 8
-	setwaveduty $3
+	waveduty $3
 Music_LookBeauty_branch_eee5f: ; eee5f
 	note __, 4
 	octave 3
@@ -81,7 +81,7 @@ Music_LookBeauty_branch_eee5f: ; eee5f
 Music_LookBeauty_Ch2: ; eee9c
 	stereopanning $f0
 	vibrato $10, $2, $3
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $c, $0, $7
 	octave 3
 	note D_, 1
@@ -112,7 +112,7 @@ Music_LookBeauty_Ch2: ; eee9c
 	note __, 1
 	note F#, 1
 	note __, 1
-	setwaveduty $3
+	waveduty $3
 Music_LookBeauty_branch_eeec5: ; eeec5
 	notetype $c, $c, $0, $7
 	note G_, 16
@@ -298,7 +298,7 @@ Music_LookBeauty_branch_eef0f: ; eef0f
 ; eef8b
 
 Music_LookBeauty_Ch4: ; eef8b
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 16
 	note __, 16

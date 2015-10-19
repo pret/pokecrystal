@@ -7,8 +7,8 @@ Music_ChampionBattle: ; ea9c1
 Music_ChampionBattle_Ch1: ; ea9ca
 	tempo 98
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $12, $1, $5
 	notetype $c, $b, $0, $2
 	octave 2
@@ -303,9 +303,9 @@ Music_ChampionBattle_branch_eab31: ; eab31
 ; eab4a
 
 Music_ChampionBattle_Ch2: ; eab4a
-	setwaveduty $3
+	waveduty $3
 	vibrato $8, $3, $6
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $c, $c, $0, $2
 	octave 3
 	note D#, 8

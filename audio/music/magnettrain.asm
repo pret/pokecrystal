@@ -10,7 +10,7 @@ Music_MagnetTrain_Ch1: ; ef5fc
 	volume $7, $7
 	stereopanning $f
 	vibrato $14, $2, $3
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $b, $0, $2
 	note __, 16
 	note __, 16
@@ -72,7 +72,7 @@ Music_MagnetTrain_Ch1: ; ef5fc
 
 Music_MagnetTrain_Ch2: ; ef648
 	vibrato $14, $2, $3
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $d, $0, $2
 	stereopanning $f0
 	notetype $c, $d, $1, $0
@@ -93,7 +93,7 @@ Music_MagnetTrain_Ch2: ; ef648
 	note __, 4
 	note F_, 4
 	note __, 4
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $d, $0, $7
 	octave 4
 	note G_, 16
@@ -227,7 +227,7 @@ Music_MagnetTrain_Ch3: ; ef67d
 ; ef6f4
 
 Music_MagnetTrain_Ch4: ; ef6f4
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note B_, 12
 	note D_, 2

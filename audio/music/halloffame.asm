@@ -8,9 +8,9 @@ Music_HallOfFame: ; f05bf
 Music_HallOfFame_Ch1: ; f05cb
 	tempo 112
 	volume $7, $7
-	setwaveduty $2
+	waveduty $2
 	vibrato $c, $2, $2
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f0
 	notetype $c, $9, $0, $3
 	note __, 16
@@ -50,7 +50,7 @@ Music_HallOfFame_branch_f05e6: ; f05e6
 
 Music_HallOfFame_Ch2: ; f060b
 	vibrato $8, $2, $5
-	setwaveduty $3
+	waveduty $3
 Music_HallOfFame_branch_f0610: ; f0610
 	notetype $c, $c, $0, $4
 	octave 3
@@ -140,7 +140,7 @@ Music_HallOfFame_branch_f0631: ; f0631
 ; f066d
 
 Music_HallOfFame_Ch4: ; f066d
-	togglenoise $5
+	drumkittoggle $5
 	notetype $c
 	note __, 16
 	note __, 16

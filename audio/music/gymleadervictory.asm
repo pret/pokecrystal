@@ -9,8 +9,8 @@ Music_GymLeaderVictory_Ch1: ; f4638
 	tempo 116
 	volume $7, $7
 	vibrato $12, $3, $4
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	notetype $c, $b, $0, $7
 	octave 4
 	note D_, 6
@@ -28,7 +28,7 @@ Music_GymLeaderVictory_Ch1: ; f4638
 	note D_, 8
 	stereopanning $f
 Music_GymLeaderVictory_branch_f4658: ; f4658
-	setwaveduty $1
+	waveduty $1
 	callchannel Music_GymLeaderVictory_branch_f4689
 	octave 4
 	note C#, 4
@@ -36,7 +36,7 @@ Music_GymLeaderVictory_branch_f4658: ; f4658
 	callchannel Music_GymLeaderVictory_branch_f4689
 	note F#, 8
 	loopchannel 2, Music_GymLeaderVictory_branch_f4658
-	setwaveduty $2
+	waveduty $2
 	callchannel Music_GymLeaderVictory_branch_f46a0
 	note A_, 4
 	note G_, 4
@@ -47,7 +47,7 @@ Music_GymLeaderVictory_branch_f4658: ; f4658
 	note E_, 2
 	note D_, 8
 	note C#, 8
-	setwaveduty $3
+	waveduty $3
 	callchannel Music_GymLeaderVictory_branch_f46a0
 	note C#, 4
 	note E_, 4
@@ -119,7 +119,7 @@ Music_GymLeaderVictory_branch_f46a0: ; f46a0
 
 Music_GymLeaderVictory_Ch2: ; f46bd
 	vibrato $12, $3, $4
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $d, $0, $7
 	octave 4
 	note A_, 6
@@ -133,14 +133,14 @@ Music_GymLeaderVictory_Ch2: ; f46bd
 	note D_, 1
 	note F#, 16
 Music_GymLeaderVictory_branch_f46d0: ; f46d0
-	setwaveduty $3
+	waveduty $3
 	volenvelope $a, $0, $1
 	callchannel Music_GymLeaderVictory_branch_f4711
 	note A_, 4
 	note A_, 4
 	callchannel Music_GymLeaderVictory_branch_f4711
 	note D_, 6
-	setwaveduty $2
+	waveduty $2
 	note B_, 1
 	octave 5
 	note C#, 1
@@ -149,7 +149,7 @@ Music_GymLeaderVictory_branch_f46d0: ; f46d0
 	note A_, 4
 	callchannel Music_GymLeaderVictory_branch_f4711
 	note D_, 8
-	setwaveduty $3
+	waveduty $3
 	callchannel Music_GymLeaderVictory_branch_f4720
 	note F#, 4
 	note E_, 4
@@ -158,7 +158,7 @@ Music_GymLeaderVictory_branch_f46d0: ; f46d0
 	note B_, 2
 	volenvelope $a, $0, $7
 	note A_, 16
-	setwaveduty $2
+	waveduty $2
 	callchannel Music_GymLeaderVictory_branch_f4720
 	octave 4
 	note A_, 4
@@ -169,7 +169,7 @@ Music_GymLeaderVictory_branch_f46d0: ; f46d0
 	volenvelope $a, $0, $6
 	note D_, 12
 	note __, 2
-	setwaveduty $3
+	waveduty $3
 	octave 4
 	note B_, 1
 	octave 5
@@ -389,7 +389,7 @@ Music_GymLeaderVictory_branch_f479e: ; f479e
 ; f47e5
 
 Music_GymLeaderVictory_Ch4: ; f47e5
-	togglenoise $4
+	drumkittoggle $4
 	notetype $c
 	note B_, 16
 	note B_, 16

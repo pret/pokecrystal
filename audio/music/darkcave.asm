@@ -8,8 +8,8 @@ Music_DarkCave: ; ea2be
 Music_DarkCave_Ch1: ; ea2ca
 	tempo 128
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $11, $1, $5
 	stereopanning $f0
 	notetype $c, $a, $0, $7
@@ -139,7 +139,7 @@ Music_DarkCave_branch_ea333: ; ea333
 ; ea36a
 
 Music_DarkCave_Ch2: ; ea36a
-	setwaveduty $1
+	waveduty $1
 	vibrato $12, $3, $6
 	stereopanning $f
 	notetype $c, $a, $0, $7
@@ -465,7 +465,7 @@ Music_DarkCave_branch_ea4ce: ; ea4ce
 ; ea4ea
 
 Music_DarkCave_Ch4: ; ea4ea
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 Music_DarkCave_branch_ea4ee: ; ea4ee
 	stereopanning $ff

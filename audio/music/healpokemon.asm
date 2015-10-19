@@ -7,8 +7,8 @@ Music_HealPokemon: ; f0697
 Music_HealPokemon_Ch1: ; f06a0
 	tempo 144
 	volume $7, $7
-	setwaveduty $2
-	setpitchoffset $0001
+	waveduty $2
+	pitchoffset $0001
 	notetype $c, $8, $0, $1
 	note __, 2
 	pitchbend $0, $4, $0
@@ -26,7 +26,7 @@ Music_HealPokemon_Ch1: ; f06a0
 ; f06c4
 
 Music_HealPokemon_Ch2: ; f06c4
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $c, $0, $3
 	octave 4
 	note B_, 4

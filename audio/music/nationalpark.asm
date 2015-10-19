@@ -10,7 +10,7 @@ Music_NationalPark_Ch1: ; f54f4
 	volume $7, $7
 	stereopanning $f
 	vibrato $18, $2, $4
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $7, $0, $7
 	note __, 2
 Music_NationalPark_branch_f5504: ; f5504
@@ -301,7 +301,7 @@ Music_NationalPark_branch_f563a: ; f563a
 
 Music_NationalPark_Ch2: ; f5652
 	vibrato $14, $2, $4
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $a, $0, $7
 	note __, 2
 	stereopanning $f0
@@ -626,7 +626,7 @@ Music_NationalPark_branch_f578f: ; f578f
 ; f57b8
 
 Music_NationalPark_Ch4: ; f57b8
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 2
 Music_NationalPark_branch_f57bd: ; f57bd

@@ -9,8 +9,8 @@ Music_Evolution_Ch1: ; f06ed
 	tempo 132
 	volume $7, $7
 	vibrato $6, $3, $4
-	setpitchoffset $0001
-	setwaveduty $2
+	pitchoffset $0001
+	waveduty $2
 	notetype $c, $9, $0, $2
 	octave 3
 	pitchbend $0, $4, $a
@@ -22,7 +22,7 @@ Music_Evolution_Ch1: ; f06ed
 	pitchbend $0, $4, $a
 	note G_, 1
 	note __, 4
-	setwaveduty $3
+	waveduty $3
 	stereopanning $f
 Music_Evolution_branch_f0713: ; f0713
 	callchannel Music_Evolution_branch_f0737
@@ -68,7 +68,7 @@ Music_Evolution_branch_f0743: ; f0743
 ; f074f
 
 Music_Evolution_Ch2: ; f074f
-	setwaveduty $2
+	waveduty $2
 	vibrato $8, $2, $5
 	notetype $c, $a, $0, $2
 	octave 4
@@ -77,7 +77,7 @@ Music_Evolution_Ch2: ; f074f
 	note G_, 1
 	note D_, 1
 	note __, 4
-	setwaveduty $3
+	waveduty $3
 	stereopanning $f0
 Music_Evolution_branch_f0761: ; f0761
 	callchannel Music_Evolution_branch_f0787
@@ -195,7 +195,7 @@ Music_Evolution_branch_f07d5: ; f07d5
 ; f07eb
 
 Music_Evolution_Ch4: ; f07eb
-	togglenoise $5
+	drumkittoggle $5
 	notetype $c
 	note __, 8
 Music_Evolution_branch_f07f0: ; f07f0

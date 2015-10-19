@@ -7,15 +7,15 @@ Music_GoldSilverOpening: ; f7055
 Music_GoldSilverOpening_Ch1: ; f705e
 	tempo 256
 	volume $7, $7
-	setpitchoffset $0001
-	setwaveduty $2
+	pitchoffset $0001
+	waveduty $2
 	stereopanning $f0
 	notetype $c, $b, $0, $7
 	octave 1
 	note G#, 16
 	note G#, 16
 	tempo 168
-	setwaveduty $3
+	waveduty $3
 	notetype $6, $c, $0, $7
 	octave 3
 	note F_, 12
@@ -83,7 +83,7 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note B_, 1
 	octave 5
 	note C_, 1
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $b, $0, $3
 	note D_, 1
 	note C#, 1
@@ -102,7 +102,7 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note C_, 2
 	note D#, 4
 	note F#, 2
-	setwaveduty $3
+	waveduty $3
 	notetype $8, $9, $0, $2
 	note A_, 1
 	note F_, 1
@@ -131,14 +131,14 @@ Music_GoldSilverOpening_Ch1: ; f705e
 ; f70f8
 
 Music_GoldSilverOpening_Ch2: ; f70f8
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f
 	notetype $c, $b, $0, $7
-	setwaveduty $2
+	waveduty $2
 	octave 2
 	note C_, 16
 	note C_, 16
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $b, $0, $2
 	note __, 2
 	notetype $6, $6, $0, $2

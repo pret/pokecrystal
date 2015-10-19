@@ -173,13 +173,13 @@ Cry_39: ; f2e74
 ; f2e7d
 
 Cry_37_Ch5: ; f2e7d
-	setsweep $f, $1, $7
+	sweep $f, $1, $7
 	dutycycle $3, $0, $2, $1
 	sound $1, $f8, $05f8
 	sound $8, $9f, $04d8
 	sound $6, $f8, $05c4
 	sound $14, $f2, $0574
-	setsweep $8, $1, $0
+	sweep $8, $1, $0
 	endchannel
 ; f2e94
 
@@ -242,9 +242,9 @@ Cry_42_Ch5: ; f2f03
 	sound $3, $f8, $05c0
 	sound $8, $c8, $0490
 	sound $8, $c8, $0480
-	setsweep $f, $1, $6
+	sweep $f, $1, $6
 	sound $10, $c3, $0490
-	setsweep $8, $1, $0
+	sweep $8, $1, $0
 	endchannel
 ; f2f26
 
@@ -297,17 +297,17 @@ Cry_2F_Ch8: ; f2f71
 ; f2f8a
 
 Cry_40_Ch5: ; f2f8a
-	setwaveduty $0
-	setsweep $f, $0, $7
+	waveduty $0
+	sweep $f, $0, $7
 	sound $2, $f8, $078d
 	sound $2, $f8, $0791
-	setsweep $f, $1, $7
+	sweep $f, $1, $7
 	sound $2, $f8, $07ad
-	setsweep $8, $1, $0
+	sweep $8, $1, $0
 	sound $2, $f8, $07b4
-	setsweep $f, $0, $7
+	sweep $f, $0, $7
 	sound $2, $f8, $07b8
-	setsweep $8, $1, $0
+	sweep $8, $1, $0
 	endchannel
 ; f2fab
 
@@ -364,7 +364,7 @@ Cry_26_Ch8: ; f300c
 ; f301f
 
 Cry_28_Ch5: ; f301f
-	setpitchoffset $0002
+	pitchoffset $0002
 Cry_28_Ch6: ; f3022
 Cry_2C_branch_f3022: ; f3022
 	dutycycle $2, $0, $1, $1
@@ -376,7 +376,7 @@ Cry_2C_branch_f3022: ; f3022
 ; f3035
 
 Cry_2C_Ch5: ; f3035
-	setpitchoffset $0002
+	pitchoffset $0002
 Cry_2C_Ch6: ; f3038
 Cry_2C_branch_f3038: ; f3038
 	callchannel Cry_2C_branch_f3022
@@ -387,7 +387,7 @@ Cry_2C_branch_f3038: ; f3038
 ; f3048
 
 Cry_27_Ch5: ; f3048
-	setwaveduty $1
+	waveduty $1
 	sound $3, $2c, $07c4
 	sound $1, $0, $0001
 	sound $5, $59, $07b9
@@ -484,8 +484,8 @@ Cry_2D_Ch8: ; f3114
 ; f3121
 
 Cry_2E_Ch5: ; f3121
-	setpitchoffset $0020
-	setwaveduty $0
+	pitchoffset $0020
+	waveduty $0
 	jumpchannel Cry_2E_branch_f312b
 ; f3129
 
@@ -504,8 +504,8 @@ Cry_2E_Ch8: ; f3134
 ; f313b
 
 Cry_2B_Ch5: ; f313b
-	setpitchoffset $0020
-	setwaveduty $0
+	pitchoffset $0020
+	waveduty $0
 	jumpchannel Cry_2B_branch_f3145
 ; f3143
 
@@ -521,9 +521,9 @@ Cry_33_branch_f3145: ; f3145
 ; f3156
 
 Cry_30_Ch5: ; f3156
-	setpitchoffset $0020
+	pitchoffset $0020
 Cry_30_Ch6: ; f3159
-	setwaveduty $2
+	waveduty $2
 	sound $8, $2f, $0107
 Cry_30_branch_f315f: ; f315f
 	sound $0, $e1, $0483
@@ -544,7 +544,7 @@ Cry_33_Ch8: ; f3178
 ; f317f
 
 Cry_31_Ch5: ; f317f
-	setpitchoffset $0020
+	pitchoffset $0020
 Cry_31_Ch6: ; f3182
 	dutycycle $1, $0, $2, $0
 	sound $2, $c8, $0641
@@ -567,8 +567,8 @@ Cry_33_Ch5: ; f31a0
 ; f31a5
 
 Cry_29_Ch5: ; f31a5
-	setwaveduty $1
-	setpitchoffset $0004
+	waveduty $1
+	pitchoffset $0004
 	jumpchannel Cry_29_branch_f31af
 ; f31ad
 
@@ -611,8 +611,8 @@ Cry_35_Ch8: ; f31eb
 ; f31f8
 
 Cry_36_Ch5: ; f31f8
-	setpitchoffset $0002
-	setwaveduty $2
+	pitchoffset $0002
+	waveduty $2
 	jumpchannel Cry_36_branch_f3202
 ; f3200
 
@@ -640,7 +640,7 @@ Cry_36_Ch8: ; f321b
 
 Cry_38_Ch5: ; f322e
 Cry_43_Ch5: ; f322e
-	setwaveduty $2
+	waveduty $2
 	sound $2, $99, $0718
 	sound $4, $ab, $0722
 	sound $8, $ab, $0734
@@ -778,12 +778,12 @@ Cry_3C_Ch8: ; f3330
 ; f3337
 
 Cry_3D_Ch5: ; f3337
-	setwaveduty $0
+	waveduty $0
 	jumpchannel Cry_3D_branch_f32e9
 ; f333c
 
 Cry_39_Ch5: ; f333c
-	setwaveduty $0
+	waveduty $0
 	callchannel Cry_39_branch_f32e9
 	callchannel Cry_39_branch_f32f5
 	endchannel
@@ -807,7 +807,7 @@ Cry_3E_branch_f3355: ; f3355
 	sound $1, $c1, $0520
 	sound $1, $a1, $0420
 	loopchannel 4, Cry_3E_branch_f3355
-	setwaveduty $0
+	waveduty $0
 	sound $4, $78, $0760
 	sound $4, $78, $0730
 	sound $18, $c2, $0420
@@ -864,17 +864,17 @@ Cry_32_Ch8: ; f33c8
 
 Cry_34_Ch5: ; f33d5
 	dutycycle $1, $2, $3, $0
-	setsweep $f, $1, $7
+	sweep $f, $1, $7
 	sound $2, $f8, $0720
 	sound $2, $f8, $0727
 	sound $2, $f8, $0780
-	setsweep $8, $1, $0
+	sweep $8, $1, $0
 	sound $2, $f8, $0779
 	sound $4, $f8, $0740
 	sound $4, $f8, $073c
-	setsweep $f, $1, $7
+	sweep $f, $1, $7
 	sound $8, $f1, $0737
-	setsweep $8, $1, $0
+	sweep $8, $1, $0
 	endchannel
 ; f33fc
 

@@ -8,8 +8,8 @@ Music_RocketHideout: ; eeb75
 Music_RocketHideout_Ch1: ; eeb81
 	tempo 144
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0004
+	waveduty $3
+	pitchoffset $0004
 	vibrato $10, $4, $4
 	notetype $c, $b, $0, $3
 	stereopanning $f0
@@ -121,8 +121,8 @@ Music_RocketHideout_branch_eebfe: ; eebfe
 ; eec07
 
 Music_RocketHideout_Ch2: ; eec07
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $0, $f, $0
 	notetype $c, $c, $0, $4
 	stereopanning $f
@@ -277,7 +277,7 @@ Music_RocketHideout_branch_eeca6: ; eeca6
 ; eecb8
 
 Music_RocketHideout_Ch4: ; eecb8
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 	stereopanning $f
 	note __, 16

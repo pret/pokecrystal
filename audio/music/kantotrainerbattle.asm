@@ -11,10 +11,10 @@ INCBIN "baserom.gbc", $eca03, $eca04 - $eca03
 Music_KantoTrainerBattle_Ch1: ; eca04
 	tempo 114
 	volume $7, $7
-	setabsnote $1, $b
+	transpose $1, $b
 	notetype $c, $b, $0, $3
 	vibrato $12, $2, $4
-	setwaveduty $1
+	waveduty $1
 	note __, 1
 	octave 4
 	note A_, 1
@@ -51,7 +51,7 @@ Music_KantoTrainerBattle_Ch1: ; eca04
 	note G_, 1
 	note F#, 1
 	note G_, 1
-	setwaveduty $2
+	waveduty $2
 	volenvelope $b, $0, $1
 	octave 4
 	note D#, 2
@@ -469,9 +469,9 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 ; ecbea
 
 Music_KantoTrainerBattle_Ch2: ; ecbea
-	setabsnote $1, $b
+	transpose $1, $b
 	vibrato $6, $3, $6
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $d, $0, $1
 	octave 4
 	note A#, 4
@@ -485,7 +485,7 @@ Music_KantoTrainerBattle_Ch2: ; ecbea
 	note G#, 1
 	note G_, 1
 	note F#, 1
-	setwaveduty $3
+	waveduty $3
 	volenvelope $6, $0, $2
 Music_KantoTrainerBattle_branch_ecc04: ; ecc04
 	octave 3
@@ -504,7 +504,7 @@ Music_KantoTrainerBattle_branch_ecc04: ; ecc04
 	octave 2
 	note B_, 1
 	volenvelope $d, $0, $7
-	setwaveduty $2
+	waveduty $2
 	note C_, 2
 	octave 3
 	note C_, 1
@@ -922,7 +922,7 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 ; ecdd2
 
 Music_KantoTrainerBattle_Ch3: ; ecdd2
-	setabsnote $1, $b
+	transpose $1, $b
 	vibrato $12, $2, $3
 	notetype $c, $1, $0, $5
 	octave 2

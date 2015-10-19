@@ -8,7 +8,7 @@ Music_Mom_Ch2: ; f6bfb
 	tempo 144
 	volume $7, $7
 	stereopanning $f
-	setwaveduty $2
+	waveduty $2
 	notetype $6, $b, $0, $3
 	octave 3
 	note B_, 1
@@ -80,7 +80,7 @@ Music_Mom_branch_f6c2e: ; f6c2e
 ; f6c51
 
 Music_Mom_Ch4: ; f6c51
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 6
 Music_Mom_branch_f6c56: ; f6c56

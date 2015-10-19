@@ -8,8 +8,8 @@ Music_UnionCave: ; f5c60
 Music_UnionCave_Ch1: ; f5c6c
 	tempo 160
 	volume $7, $7
-	setwaveduty $1
-	setpitchoffset $0002
+	waveduty $1
+	pitchoffset $0002
 	vibrato $18, $3, $4
 	stereopanning $f
 Music_UnionCave_branch_f5c7b: ; f5c7b
@@ -54,15 +54,15 @@ Music_UnionCave_branch_f5c91: ; f5c91
 	octave 3
 	note A_, 8
 	volenvelope $9, $0, $5
-	setpitchoffset $0004
+	pitchoffset $0004
 	callchannel Music_UnionCave_branch_f5ccf
-	setpitchoffset $0008
+	pitchoffset $0008
 	callchannel Music_UnionCave_branch_f5ccf
-	setpitchoffset $000c
+	pitchoffset $000c
 	callchannel Music_UnionCave_branch_f5ccf
-	setpitchoffset $0010
+	pitchoffset $0010
 	callchannel Music_UnionCave_branch_f5ccf
-	setpitchoffset $0002
+	pitchoffset $0002
 	loopchannel 0, Music_UnionCave_branch_f5c7b
 ; f5ccf
 
@@ -76,7 +76,7 @@ Music_UnionCave_branch_f5ccf: ; f5ccf
 ; f5cd5
 
 Music_UnionCave_Ch2: ; f5cd5
-	setwaveduty $3
+	waveduty $3
 	vibrato $8, $2, $4
 Music_UnionCave_branch_f5cda: ; f5cda
 	notetype $c, $c, $0, $4
@@ -244,7 +244,7 @@ Music_UnionCave_branch_f5d9c: ; f5d9c
 ; f5da5
 
 Music_UnionCave_Ch4: ; f5da5
-	togglenoise $1
+	drumkittoggle $1
 	notetype $c
 Music_UnionCave_branch_f5da9: ; f5da9
 	stereopanning $f0

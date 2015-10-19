@@ -9,12 +9,12 @@ Music_LookMysticalMan_Ch1: ; 178447
 	tempo 136
 	volume $7, $7
 	vibrato $a, $3, $4
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f
 	notetype $c, $b, $0, $3
 	note __, 8
 Music_LookMysticalMan_branch_178458: ; 178458
-	setwaveduty $3
+	waveduty $3
 	notetype $6, $9, $0, $6
 	octave 3
 	note F#, 1
@@ -60,7 +60,7 @@ Music_LookMysticalMan_branch_178458: ; 178458
 	note E_, 4
 	note __, 4
 	note C#, 4
-	setwaveduty $2
+	waveduty $2
 	callchannel Music_LookMysticalMan_branch_1784f9
 	octave 4
 	note C#, 2
@@ -88,11 +88,11 @@ Music_LookMysticalMan_branch_178458: ; 178458
 	note A#, 4
 	note F#, 4
 	volenvelope $a, $0, $5
-	setwaveduty $0
+	waveduty $0
 	octave 4
 	note F#, 2
 	note A#, 6
-	setwaveduty $2
+	waveduty $2
 	volenvelope $7, $0, $2
 Music_LookMysticalMan_branch_1784b4: ; 1784b4
 	octave 5
@@ -195,7 +195,7 @@ Music_LookMysticalMan_branch_1784f9: ; 1784f9
 ; 17851a
 
 Music_LookMysticalMan_Ch2: ; 17851a
-	setwaveduty $3
+	waveduty $3
 	vibrato $a, $3, $4
 	notetype $c, $b, $0, $3
 	note __, 8
@@ -540,7 +540,7 @@ Music_LookMysticalMan_branch_178615: ; 178615
 ; 17868e
 
 Music_LookMysticalMan_Ch4: ; 17868e
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note D#, 2
 	note D#, 2

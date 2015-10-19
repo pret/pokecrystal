@@ -8,8 +8,8 @@ Music_GoldSilverOpening2: ; f7308
 Music_GoldSilverOpening2_Ch1: ; f7314
 	tempo 92
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	stereopanning $f
 	notetype $c, $3, $1, $5
 	octave 3
@@ -55,7 +55,7 @@ Music_GoldSilverOpening2_branch_f7325: ; f7325
 ; f7358
 
 Music_GoldSilverOpening2_Ch2: ; f7358
-	setwaveduty $3
+	waveduty $3
 	vibrato $14, $1, $4
 	stereopanning $f0
 	notetype $c, $3, $1, $7
@@ -187,7 +187,7 @@ Music_GoldSilverOpening2_Ch3: ; f739c
 ; f73ea
 
 Music_GoldSilverOpening2_Ch4: ; f73ea
-	togglenoise $0
+	drumkittoggle $0
 	notetype $6
 	note D#, 2
 	note D#, 2

@@ -2208,16 +2208,16 @@ SetNoteDuration: ; e8a8d
 	inc hl
 	ld d, [hl]
 	; add ???? to the next result
-	ld hl, Channel1_16 - Channel1
+	ld hl, Channel1NoteDurationRest - Channel1
 	add hl, bc
 	ld l, [hl]
 	; multiply Tempo by last result (NoteLength * delay % $100)
-	call MultiplySimple ; NoteDuration|Channel1_16 = hl = l(NoteLength*NoteDuration)*Tempo + Channel1_16
+	call MultiplySimple ; NoteDuration|Channel1NoteDurationRest = hl = l(NoteLength*NoteDuration)*Tempo + Channel1NoteDurationRest
 	; copy result to de
 	ld e, l
 	ld d, h
 	; store result in ????
-	ld hl, Channel1_16 - Channel1
+	ld hl, Channel1NoteDurationRest - Channel1
 	add hl, bc
 	ld [hl], e
 	; store result in NoteDuration
@@ -2290,7 +2290,7 @@ SetTempo: ; e8b03
 	ld [hl], d
 	; clear ????
 	xor a
-	ld hl, Channel1_16 - Channel1
+	ld hl, Channel1NoteDurationRest - Channel1
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2809,7 +2809,7 @@ WaveSamples: ; e8db2
 	db $13, $69, $bd, $ee, $ee, $ff, $ff, $ed, $de, $ff, $ff, $ee, $ee, $db, $96, $31
 	db $02, $46, $8a, $cd, $ef, $fe, $de, $ff, $ee, $dc, $ba, $98, $76, $54, $32, $10
 	db $01, $23, $45, $67, $8a, $cd, $ee, $f7, $7f, $ee, $dc, $a8, $76, $54, $32, $10
-	db $00, $11, $22, $33, $44, $33, $22, $11, $ff, $ee, $cc, $aa, $88, $aa, $cc, $ee
+	db $00, $11, $22, $33, $44, $33, $22, $11, $ff, $ee, $cc, $aa, $88, $aa, $cc, $ee ; no
 	db $02, $46, $8a, $ce, $cb, $a9, $87, $65, $ff, $fe, $ed, $dc, $44, $33, $22, $11
 	db $c0, $a9, $87, $f5, $ff, $fe, $ed, $dc, $44, $33, $22, $f1, $02, $46, $8a, $ce
 	db $44, $33, $22, $1f, $00, $46, $8a, $ce, $f8, $fe, $ed, $dc, $cb, $a9, $87, $65

@@ -8,8 +8,8 @@ Music_CherrygroveCity: ; f5b03
 Music_CherrygroveCity_Ch1: ; f5b0f
 	tempo 152
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $8, $1, $5
 	stereopanning $f0
 	notetype $c, $b, $0, $5
@@ -95,7 +95,7 @@ Music_CherrygroveCity_branch_f5b26: ; f5b26
 ; f5b74
 
 Music_CherrygroveCity_Ch2: ; f5b74
-	setwaveduty $3
+	waveduty $3
 	vibrato $10, $3, $6
 	stereopanning $f
 	notetype $c, $c, $0, $3
@@ -287,7 +287,7 @@ Music_CherrygroveCity_branch_f5be4: ; f5be4
 ; f5c48
 
 Music_CherrygroveCity_Ch4: ; f5c48
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 16
 Music_CherrygroveCity_branch_f5c4d: ; f5c4d

@@ -8,9 +8,9 @@ Music_MobileAdapter: ; 1fc87
 Music_MobileAdapter_Ch1: ; 1fc93
 	tempo 132
 	volume $7, $7
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $8, $0, $4
 	note __, 2
 	note __, 6
@@ -195,7 +195,7 @@ Music_MobileAdapter_branch_1fd39: ; 1fd39
 Music_MobileAdapter_Ch2: ; 1fd63
 	notetype $c, $c, $0, $1
 	vibrato $10, $2, $3
-	setwaveduty $2
+	waveduty $2
 	octave 3
 	note G_, 1
 	note B_, 1
@@ -307,7 +307,7 @@ Music_MobileAdapter_branch_1fd80: ; 1fd80
 	note C#, 12
 	note E_, 4
 	note D_, 16
-	setwaveduty $1
+	waveduty $1
 	volenvelope $7, $0, $1
 	callchannel Music_MobileAdapter_branch_1fe16
 	octave 4
@@ -318,7 +318,7 @@ Music_MobileAdapter_branch_1fd80: ; 1fd80
 	note E_, 1
 	callchannel Music_MobileAdapter_branch_1fe16
 	note __, 2
-	setwaveduty $2
+	waveduty $2
 	volenvelope $b, $0, $4
 	octave 4
 	note D_, 1
@@ -616,7 +616,7 @@ Music_MobileAdapter_branch_1ff09: ; 1ff09
 ; 1ff2c
 
 Music_MobileAdapter_Ch4: ; 1ff2c
-	togglenoise $3
+	drumkittoggle $3
 	stereopanning $f0
 	notetype $c
 	note __, 2

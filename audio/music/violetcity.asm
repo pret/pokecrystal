@@ -9,7 +9,7 @@ Music_VioletCity_Ch1: ; f000c
 	tempo 164
 	volume $7, $7
 	vibrato $12, $2, $5
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $9, $0, $5
 	note __, 16
 	stereopanning $f0
@@ -158,14 +158,14 @@ Music_VioletCity_branch_f0056: ; f0056
 	note __, 8
 	octave 4
 	note F_, 3
-	setwaveduty $1
+	waveduty $1
 	notetype $6, $7, $0, $5
 	note G#, 1
 	note B_, 1
 	octave 5
 	note D#, 8
 	notetype $c, $9, $0, $3
-	setwaveduty $2
+	waveduty $2
 	note __, 16
 	notetype $6, $9, $0, $1
 	stereopanning $f0
@@ -187,7 +187,7 @@ Music_VioletCity_branch_f0056: ; f0056
 	stereopanning $ff
 	note D#, 8
 	note __, 8
-	setwaveduty $3
+	waveduty $3
 	volenvelope $8, $0, $4
 	note __, 4
 	note G_, 2
@@ -286,7 +286,7 @@ Music_VioletCity_branch_f0056: ; f0056
 	note A#, 1
 	octave 5
 	note C#, 1
-	setwaveduty $2
+	waveduty $2
 	octave 4
 	note C#, 6
 	note C_, 1
@@ -300,7 +300,7 @@ Music_VioletCity_branch_f0056: ; f0056
 
 Music_VioletCity_Ch2: ; f0162
 	vibrato $12, $2, $4
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $c, $0, $7
 	note __, 16
 	octave 3
@@ -425,7 +425,7 @@ Music_VioletCity_branch_f0199: ; f0199
 	note B_, 12
 	note __, 4
 	volenvelope $a, $0, $7
-	setwaveduty $3
+	waveduty $3
 	note __, 2
 	note B_, 1
 	octave 4
@@ -493,7 +493,7 @@ Music_VioletCity_branch_f0199: ; f0199
 	note __, 5
 	vibrato $12, $2, $4
 	volenvelope $a, $0, $7
-	setwaveduty $2
+	waveduty $2
 	octave 4
 	note A#, 6
 	note A_, 1
@@ -711,7 +711,7 @@ Music_VioletCity_branch_f0311: ; f0311
 ; f031e
 
 Music_VioletCity_Ch4: ; f031e
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note D#, 2
 	note D_, 2

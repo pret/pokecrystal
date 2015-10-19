@@ -11,7 +11,7 @@ Music_Route26_Ch1: ; eefbe
 	tempo 151
 	volume $7, $7
 	vibrato $14, $2, $3
-	setwaveduty $0
+	waveduty $0
 	notetype $c, $a, $0, $7
 	octave 3
 	note D_, 4
@@ -28,7 +28,7 @@ Music_Route26_Ch1: ; eefbe
 	note G#, 2
 	note F#, 2
 Music_Route26_branch_eefe0: ; eefe0
-	setwaveduty $0
+	waveduty $0
 	notetype $c, $a, $0, $7
 	octave 3
 	note F_, 1
@@ -110,7 +110,7 @@ Music_Route26_branch_eefe0: ; eefe0
 	note C_, 6
 	octave 3
 	note G#, 6
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $a, $0, $5
 	note A_, 3
 	note G#, 3
@@ -199,7 +199,7 @@ Music_Route26_branch_eefe0: ; eefe0
 Music_Route26_Ch2: ; ef09d
 	stereopanning $f0
 	vibrato $14, $2, $3
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $c, $0, $7
 	octave 1
 	note A#, 4
@@ -235,7 +235,7 @@ Music_Route26_Ch2: ; ef09d
 	note C_, 2
 	note D#, 2
 Music_Route26_branch_ef0ce: ; ef0ce
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $c, $0, $2
 	octave 2
 	note C#, 6
@@ -301,7 +301,7 @@ Music_Route26_branch_ef10e: ; ef10e
 	note C_, 1
 	octave 1
 	note G#, 1
-	setwaveduty $3
+	waveduty $3
 	octave 4
 	note C#, 6
 	note D#, 6
@@ -553,7 +553,7 @@ Music_Route26_branch_ef22f: ; ef22f
 ; ef238
 
 Music_Route26_Ch4: ; ef238
-	togglenoise $4
+	drumkittoggle $4
 	notetype $c
 Music_Route26_branch_ef23c: ; ef23c
 	note B_, 6

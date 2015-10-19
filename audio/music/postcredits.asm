@@ -10,8 +10,8 @@ INCBIN "baserom.gbc", $cfda4, $cfda5 - $cfda4
 Music_PostCredits_Ch1: ; cfda5
 	tempo 271
 	volume $7, $7
-	setabsnote $0, $3
-	setwaveduty $2
+	transpose $0, $3
+	waveduty $2
 	notetype $c, $9, $0, $3
 	note __, 8
 Music_PostCredits_branch_cfdb2: ; cfdb2
@@ -135,8 +135,8 @@ Music_PostCredits_branch_cfdb2: ; cfdb2
 ; cfe48
 
 Music_PostCredits_Ch2: ; cfe48
-	setabsnote $0, $3
-	setwaveduty $2
+	transpose $0, $3
+	waveduty $2
 	notetype $c, $a, $0, $3
 	octave 5
 	note E_, 2

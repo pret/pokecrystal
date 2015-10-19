@@ -8,8 +8,8 @@ Music_AfterTheRivalFight: ; f5127
 Music_AfterTheRivalFight_Ch1: ; f5133
 	tempo 112
 	volume $7, $7
-	setwaveduty $0
-	setpitchoffset $0001
+	waveduty $0
+	pitchoffset $0001
 	vibrato $8, $1, $4
 	stereopanning $f0
 	notetype $c, $b, $0, $2
@@ -26,7 +26,7 @@ Music_AfterTheRivalFight_Ch1: ; f5133
 ; f5153
 
 Music_AfterTheRivalFight_Ch2: ; f5153
-	setwaveduty $1
+	waveduty $1
 	vibrato $6, $3, $5
 	stereopanning $f
 	notetype $c, $c, $0, $2
@@ -56,7 +56,7 @@ Music_AfterTheRivalFight_Ch3: ; f516a
 ; f517a
 
 Music_AfterTheRivalFight_Ch4: ; f517a
-	togglenoise $3
+	drumkittoggle $3
 	stereopanning $f
 	notetype $c
 	note D_, 4

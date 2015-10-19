@@ -15,7 +15,7 @@ Music_GoldenrodCity_Ch1: ; eb45f
 	note __, 16
 	note __, 16
 Music_GoldenrodCity_branch_eb46d: ; eb46d
-	setwaveduty $0
+	waveduty $0
 	callchannel Music_GoldenrodCity_branch_eb4a9
 	octave 3
 	note G#, 1
@@ -29,7 +29,7 @@ Music_GoldenrodCity_branch_eb46d: ; eb46d
 	octave 5
 	note C_, 1
 	volenvelope $7, $0, $1
-	setwaveduty $0
+	waveduty $0
 	callchannel Music_GoldenrodCity_branch_eb4d1
 	volenvelope $7, $0, $7
 	note D#, 2
@@ -47,7 +47,7 @@ Music_GoldenrodCity_branch_eb46d: ; eb46d
 	note G#, 2
 	note F#, 2
 	note D#, 2
-	setwaveduty $2
+	waveduty $2
 	volenvelope $9, $0, $7
 	callchannel Music_GoldenrodCity_branch_eb4a9
 	note C_, 4
@@ -179,7 +179,7 @@ Music_GoldenrodCity_branch_eb4d1: ; eb4d1
 Music_GoldenrodCity_Ch2: ; eb519
 	stereopanning $f0
 	vibrato $12, $2, $3
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $9, $0, $7
 Music_GoldenrodCity_branch_eb523: ; eb523
 	volenvelope $9, $0, $7
@@ -197,7 +197,7 @@ Music_GoldenrodCity_branch_eb523: ; eb523
 	note C_, 2
 	note C#, 2
 	note D#, 8
-	setwaveduty $2
+	waveduty $2
 	volenvelope $7, $0, $7
 	callchannel Music_GoldenrodCity_branch_eb572
 	octave 4
@@ -206,7 +206,7 @@ Music_GoldenrodCity_branch_eb523: ; eb523
 	note B_, 2
 	octave 5
 	note C_, 4
-	setwaveduty $3
+	waveduty $3
 	volenvelope $7, $0, $7
 	callchannel Music_GoldenrodCity_branch_eb572
 	note F_, 2
@@ -245,7 +245,7 @@ Music_GoldenrodCity_branch_eb555: ; eb555
 	note A#, 2
 	note G#, 2
 	note F#, 2
-	setwaveduty $1
+	waveduty $1
 	endchannel
 ; eb572
 
@@ -395,7 +395,7 @@ Music_GoldenrodCity_branch_eb5d2: ; eb5d2
 ; eb606
 
 Music_GoldenrodCity_Ch4: ; eb606
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 16
 	note __, 16

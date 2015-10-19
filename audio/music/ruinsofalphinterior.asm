@@ -7,7 +7,7 @@ Music_RuinsOfAlphInterior: ; ebd9e
 Music_RuinsOfAlphInterior_Ch1: ; ebda7
 	tempo 224
 	volume $7, $7
-	setwaveduty $0
+	waveduty $0
 	stereopanning $f0
 	notetype $c, $4, $0, $4
 	note __, 1
@@ -15,8 +15,8 @@ Music_RuinsOfAlphInterior_Ch1: ; ebda7
 ; ebdb8
 
 Music_RuinsOfAlphInterior_Ch2: ; ebdb8
-	setpitchoffset $0002
-	setwaveduty $0
+	pitchoffset $0002
+	waveduty $0
 	stereopanning $f
 	notetype $c, $a, $0, $4
 Music_RuinsOfAlphInterior_branch_ebdc2: ; ebdc2

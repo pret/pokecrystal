@@ -8,8 +8,8 @@ Music_ElmsLab: ; ea040
 Music_ElmsLab_Ch1: ; ea04c
 	tempo 144
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $10, $1, $5
 	stereopanning $f0
 	notetype $c, $b, $0, $2
@@ -185,7 +185,7 @@ Music_ElmsLab_branch_ea075: ; ea075
 ; ea128
 
 Music_ElmsLab_Ch2: ; ea128
-	setwaveduty $3
+	waveduty $3
 	vibrato $10, $2, $6
 	stereopanning $f
 	notetype $c, $c, $0, $3
@@ -532,7 +532,7 @@ Music_ElmsLab_branch_ea216: ; ea216
 
 Music_ElmsLab_Ch4: ; ea2b1
 	stereopanning $f0
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 	note __, 16
 	note __, 2

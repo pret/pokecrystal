@@ -16,7 +16,7 @@ Music_NewBarkTown_Ch1: ; eb2dd
 	notetype $c, $8, $0, $7
 	note __, 4
 Music_NewBarkTown_branch_eb2eb: ; eb2eb
-	setwaveduty $0
+	waveduty $0
 	callchannel Music_NewBarkTown_branch_eb349
 	octave 3
 	note C#, 1
@@ -27,7 +27,7 @@ Music_NewBarkTown_branch_eb2eb: ; eb2eb
 	octave 3
 	note G_, 2
 	note F#, 2
-	setwaveduty $2
+	waveduty $2
 	volenvelope $8, $0, $2
 	note E_, 1
 	note F#, 1
@@ -38,7 +38,7 @@ Music_NewBarkTown_branch_eb2eb: ; eb2eb
 	note B_, 1
 	note A_, 1
 	note G_, 1
-	setwaveduty $0
+	waveduty $0
 	volenvelope $8, $0, $7
 	callchannel Music_NewBarkTown_branch_eb349
 	octave 3
@@ -49,7 +49,7 @@ Music_NewBarkTown_branch_eb2eb: ; eb2eb
 	note __, 1
 	octave 3
 	note E_, 2
-	setwaveduty $2
+	waveduty $2
 	volenvelope $8, $0, $2
 	note C#, 1
 	note __, 1
@@ -64,7 +64,7 @@ Music_NewBarkTown_branch_eb2eb: ; eb2eb
 	note C#, 1
 	note E_, 1
 	note A_, 1
-	setwaveduty $1
+	waveduty $1
 	volenvelope $5, $1, $6
 	callchannel Music_NewBarkTown_branch_eb37c
 	callchannel Music_NewBarkTown_branch_eb37c
@@ -169,7 +169,7 @@ Music_NewBarkTown_Ch2: ; eb38d
 	notetype $6, $a, $0, $7
 	note __, 8
 Music_NewBarkTown_branch_eb396: ; eb396
-	setwaveduty $2
+	waveduty $2
 	notetype $6, $a, $0, $7
 	callchannel Music_NewBarkTown_branch_eb3bf
 	callchannel Music_NewBarkTown_branch_eb3bf
@@ -250,7 +250,7 @@ Music_NewBarkTown_branch_eb3bf: ; eb3bf
 
 Music_NewBarkTown_branch_eb3f2: ; eb3f2
 	notetype $6, $9, $0, $7
-	setwaveduty $2
+	waveduty $2
 	octave 4
 	note B_, 12
 	note A_, 12

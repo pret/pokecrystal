@@ -12,7 +12,7 @@ Music_VermilionCity_Ch1: ; eb680
 	stereopanning $f
 	tempo 176
 	volume $7, $7
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $6, $0, $5
 	octave 4
 	note B_, 4
@@ -33,7 +33,7 @@ Music_VermilionCity_Ch1: ; eb680
 	note D_, 1
 	vibrato $10, $2, $3
 Music_VermilionCity_branch_eb6a0: ; eb6a0
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $8, $0, $5
 	callchannel Music_VermilionCity_branch_eb6f9
 	note F_, 4
@@ -43,7 +43,7 @@ Music_VermilionCity_branch_eb6a0: ; eb6a0
 	note E_, 4
 	callchannel Music_VermilionCity_branch_eb6f9
 	callchannel Music_VermilionCity_branch_eb701
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $8, $0, $5
 	callchannel Music_VermilionCity_branch_eb6f9
 	note F_, 4
@@ -63,7 +63,7 @@ Music_VermilionCity_branch_eb6a0: ; eb6a0
 	callchannel Music_VermilionCity_branch_eb6f9
 	callchannel Music_VermilionCity_branch_eb701
 	volenvelope $9, $0, $3
-	setwaveduty $0
+	waveduty $0
 	note __, 2
 	note F#, 2
 	note __, 2
@@ -75,7 +75,7 @@ Music_VermilionCity_branch_eb6a0: ; eb6a0
 	callchannel Music_VermilionCity_branch_eb70c
 	callchannel Music_VermilionCity_branch_eb70c
 	volenvelope $8, $0, $7
-	setwaveduty $2
+	waveduty $2
 	octave 4
 	note D_, 8
 	octave 3
@@ -146,7 +146,7 @@ Music_VermilionCity_branch_eb70c: ; eb70c
 
 Music_VermilionCity_Ch2: ; eb721
 	stereopanning $ff
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $7, $0, $7
 	vibrato $10, $2, $3
 	octave 5

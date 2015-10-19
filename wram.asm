@@ -104,7 +104,8 @@ channel_struct: MACRO
 \1Octave::            db ; 7-0 (0 is highest)
 \1StartingOctave::    db ; raises existing octaves (to repeat phrases) 0-3:pitch 4-7:octave
 \1NoteDuration::      db ; frames remaining for the current note
-\1_16::               db ; c117
+\1NoteDurationRest::  db ; c117 - Length of played notes has to be dividable through frame time,
+                         ; the rest playtime of previous note is saved here to be added to next note
                       db ; c118
 \1LoopCount::         db
 \1Tempo::             dw

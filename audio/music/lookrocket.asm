@@ -8,16 +8,16 @@ Music_LookRocket: ; f74a2
 Music_LookRocket_Ch1: ; f74ae
 	tempo 123
 	volume $7, $7
-	setabsnote $0, $2
+	transpose $0, $2
 	stereopanning $f
-	setwaveduty $3
+	waveduty $3
 	vibrato $5, $6, $4
 	notetype $c, $a, $1, $0
 	octave 4
 	note C_, 1
 	note D_, 1
 	callchannel Music_LookRocket_branch_f74e6
-	setwaveduty $1
+	waveduty $1
 Music_LookRocket_branch_f74c7: ; f74c7
 	volenvelope $a, $1, $0
 	callchannel Music_LookRocket_branch_f74f7
@@ -94,9 +94,9 @@ Music_RocketTheme_branch_f750c: ; f750c
 ; f7514
 
 Music_LookRocket_Ch2: ; f7514
-	setabsnote $0, $2
+	transpose $0, $2
 	vibrato $4, $6, $4
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $b, $0, $7
 	stereopanning $ff
 	octave 5
@@ -132,7 +132,7 @@ Music_RocketTheme_branch_f7547: ; f7547
 	note __, 3
 	octave 3
 	note B_, 6
-	setwaveduty $0
+	waveduty $0
 	endchannel
 ; f7554
 
@@ -216,7 +216,7 @@ Music_RocketTheme_branch_f758a: ; f758a
 ; f7597
 
 Music_LookRocket_Ch3: ; f7597
-	setabsnote $0, $2
+	transpose $0, $2
 	vibrato $4, $2, $2
 	notetype $c, $1, $0, $4
 	stereopanning $f0
@@ -374,7 +374,7 @@ Music_RocketTheme_branch_f7623: ; f7623
 ; f7638
 
 Music_LookRocket_Ch4: ; f7638
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 2
 	callchannel Music_LookRocket_branch_f765c

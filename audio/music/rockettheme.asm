@@ -8,7 +8,7 @@ Music_RocketTheme: ; f766d
 Music_RocketTheme_Ch1: ; f7679
 	tempo 128
 	volume $7, $7
-	setwaveduty $3
+	waveduty $3
 	stereopanning $f
 	vibrato $5, $6, $4
 	notetype $c, $a, $1, $0
@@ -16,10 +16,10 @@ Music_RocketTheme_Ch1: ; f7679
 	note C_, 1
 	note D_, 1
 Music_RocketTheme_branch_f768b: ; f768b
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $a, $1, $0
 	callchannel Music_RocketTheme_branch_f74e6
-	setwaveduty $1
+	waveduty $1
 	volenvelope $a, $1, $0
 	callchannel Music_RocketTheme_branch_f74f7
 	callchannel Music_RocketTheme_branch_f758a
@@ -33,7 +33,7 @@ Music_RocketTheme_branch_f768b: ; f768b
 	volenvelope $e, $0, $3
 	callchannel Music_RocketTheme_branch_f750c
 	note __, 16
-	setwaveduty $0
+	waveduty $0
 	notetype $6, $b, $0, $3
 	vibrato $6, $6, $4
 	callchannel Music_RocketTheme_branch_f7727
@@ -159,7 +159,7 @@ Music_RocketTheme_branch_f7727: ; f7727
 Music_RocketTheme_Ch2: ; f773e
 	stereopanning $ff
 	vibrato $4, $6, $4
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $b, $0, $7
 	octave 5
 	note C_, 1
@@ -450,7 +450,7 @@ Music_RocketTheme_branch_f782f: ; f782f
 ; f78be
 
 Music_RocketTheme_Ch4: ; f78be
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 2
 Music_RocketTheme_branch_f78c3: ; f78c3

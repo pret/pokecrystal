@@ -9,7 +9,7 @@ Music_EcruteakCity_Ch1: ; ef2d9
 	volume $7, $7
 	stereopanning $f
 	vibrato $12, $2, $5
-	setwaveduty $2
+	waveduty $2
 Music_EcruteakCity_branch_ef2e5: ; ef2e5
 	notetype $c, $5, $0, $7
 	note __, 10
@@ -244,16 +244,16 @@ Music_EcruteakCity_branch_ef3d0: ; ef3d0
 	note G_, 2
 	loopchannel 2, Music_EcruteakCity_branch_ef3d0
 	volenvelope $5, $0, $0
-	setwaveduty $0
+	waveduty $0
 	note E_, 16
 	note G_, 16
-	setwaveduty $2
+	waveduty $2
 	endchannel
 ; ef3eb
 
 Music_EcruteakCity_Ch2: ; ef3eb
 	vibrato $12, $2, $5
-	setwaveduty $3
+	waveduty $3
 	stereopanning $f0
 Music_EcruteakCity_branch_ef3f2: ; ef3f2
 	notetype $6, $6, $0, $7
@@ -282,7 +282,7 @@ Music_EcruteakCity_branch_ef3f2: ; ef3f2
 	note B_, 4
 	notetype $6, $9, $0, $3
 	volenvelope $9, $0, $7
-	setwaveduty $2
+	waveduty $2
 	octave 3
 	note G_, 7
 	octave 4
@@ -318,7 +318,7 @@ Music_EcruteakCity_branch_ef3f2: ; ef3f2
 	stereopanning $ff
 	note D#, 9
 	stereopanning $f0
-	setwaveduty $0
+	waveduty $0
 	octave 5
 	note C#, 1
 	note D_, 11
@@ -358,7 +358,7 @@ Music_EcruteakCity_branch_ef3f2: ; ef3f2
 	note D_, 2
 	note __, 2
 	note D_, 8
-	setwaveduty $1
+	waveduty $1
 	octave 4
 	note E_, 4
 	note G_, 3

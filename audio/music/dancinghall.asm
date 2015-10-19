@@ -14,7 +14,7 @@ Music_DancingHall_Ch1: ; ef9c6
 	stereopanning $f
 	notetype $6, $b, $0, $7
 	note __, 3
-	setwaveduty $0
+	waveduty $0
 Music_DancingHall_branch_ef9d3: ; ef9d3
 	notetype $c, $b, $0, $7
 	callchannel Music_DancingHall_branch_efa17
@@ -95,7 +95,7 @@ Music_DancingHall_branch_efa17: ; efa17
 Music_DancingHall_Ch2: ; efa2c
 	stereopanning $f0
 	notetype $6, $a, $0, $1
-	setwaveduty $0
+	waveduty $0
 	vibrato $10, $2, $4
 	note __, 3
 Music_DancingHall_branch_efa37: ; efa37

@@ -8,8 +8,8 @@ Music_LakeOfRage: ; ee6c5
 Music_LakeOfRage_Ch1: ; ee6d1
 	tempo 144
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $8, $2, $2
 	stereopanning $f0
 	notetype $c, $b, $0, $4
@@ -96,7 +96,7 @@ Music_LakeOfRage_branch_ee6e9: ; ee6e9
 ; ee749
 
 Music_LakeOfRage_Ch2: ; ee749
-	setwaveduty $3
+	waveduty $3
 	vibrato $20, $4, $4
 	stereopanning $ff
 	notetype $c, $9, $0, $0
@@ -301,7 +301,7 @@ Music_LakeOfRage_branch_ee7d0: ; ee7d0
 
 Music_LakeOfRage_Ch4: ; ee835
 	stereopanning $f0
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 Music_LakeOfRage_branch_ee83b: ; ee83b
 	note D_, 2

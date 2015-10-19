@@ -9,8 +9,8 @@ Music_PokemonMarch_Ch1: ; f6e2f
 	tempo 144
 	volume $7, $7
 	stereopanning $f0
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	notetype $c, $4, $0, $2
 	octave 3
 	note D_, 4
@@ -125,7 +125,7 @@ Music_PokemonMarch_branch_f6eb8: ; f6eb8
 ; f6ec1
 
 Music_PokemonMarch_Ch2: ; f6ec1
-	setwaveduty $2
+	waveduty $2
 	vibrato $10, $2, $2
 	notetype $c, $b, $0, $2
 	octave 3
@@ -402,7 +402,7 @@ Music_PokemonMarch_branch_f6fe8: ; f6fe8
 
 Music_PokemonMarch_Ch4: ; f6ffa
 	stereopanning $f0
-	togglenoise $5
+	drumkittoggle $5
 	notetype $8
 	callchannel Music_PokemonMarch_branch_f704c
 Music_PokemonMarch_branch_f7003: ; f7003

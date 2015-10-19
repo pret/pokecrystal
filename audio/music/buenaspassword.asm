@@ -8,14 +8,14 @@ Music_BuenasPassword: ; 178153
 Music_BuenasPassword_Ch1: ; 17815f
 	tempo 136
 	volume $7, $7
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $c, $b, $0, $3
 	note __, 8
 Music_BuenasPassword_branch_17816b: ; 17816b
 	stereopanning $ff
 	note __, 16
 	note __, 16
-	setwaveduty $3
+	waveduty $3
 	notetype $6, $9, $0, $7
 	stereopanning $f
 	octave 4
@@ -37,7 +37,7 @@ Music_BuenasPassword_branch_17816b: ; 17816b
 	note F#, 2
 	note G#, 2
 	note __, 12
-	setwaveduty $2
+	waveduty $2
 	callchannel Music_BuenasPassword_branch_178204
 	stereopanning $ff
 	callchannel Music_BuenasPassword_branch_1782df
@@ -47,7 +47,7 @@ Music_BuenasPassword_branch_17816b: ; 17816b
 	callchannel Music_BuenasPassword_branch_1782df
 	callchannel Music_BuenasPassword_branch_178222
 	callchannel Music_BuenasPassword_branch_178204
-	setwaveduty $1
+	waveduty $1
 	note C#, 2
 	note __, 2
 	note D#, 2
@@ -184,7 +184,7 @@ Music_BuenasPassword_branch_178222: ; 178222
 
 Music_BuenasPassword_Ch2: ; 178231
 	vibrato $12, $3, $4
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $a, $0, $5
 	note __, 7
 	octave 3
@@ -569,7 +569,7 @@ Music_BuenasPassword_branch_1783bc: ; 1783bc
 ; 1783d0
 
 Music_BuenasPassword_Ch4: ; 1783d0
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note D#, 2
 	note D_, 2

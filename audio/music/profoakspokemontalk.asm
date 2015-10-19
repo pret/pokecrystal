@@ -13,7 +13,7 @@ Music_ProfOaksPokemonTalk_Ch1: ; f4ca9
 	volume $7, $7
 	stereopanning $f
 	vibrato $6, $2, $5
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $9, $0, $4
 	note __, 8
 	octave 3
@@ -138,7 +138,7 @@ Music_ProfOaksPokemonTalk_branch_f4cc3: ; f4cc3
 
 Music_ProfOaksPokemonTalk_Ch2: ; f4d31
 	vibrato $8, $2, $4
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $a, $0, $7
 	stereopanning $ff
 	octave 3

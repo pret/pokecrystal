@@ -8,8 +8,8 @@ Music_SproutTower: ; f6974
 Music_SproutTower_Ch1: ; f6980
 	tempo 176
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $8, $4, $5
 	stereopanning $f
 	notetype $c, $a, $0, $3
@@ -64,8 +64,8 @@ Music_SproutTower_branch_f6994: ; f6994
 ; f69c8
 
 Music_SproutTower_Ch2: ; f69c8
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $8, $4, $8
 	notetype $c, $b, $0, $2
 	octave 3
@@ -223,7 +223,7 @@ Music_SproutTower_branch_f6a3e: ; f6a3e
 ; f6a7a
 
 Music_SproutTower_Ch4: ; f6a7a
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 	note __, 4
 Music_SproutTower_branch_f6a7f: ; f6a7f

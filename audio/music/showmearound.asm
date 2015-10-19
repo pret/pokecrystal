@@ -9,7 +9,7 @@ Music_ShowMeAround_Ch1: ; edbe4
 	tempo 144
 	volume $7, $7
 	stereopanning $f
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $b, $0, $1
 	octave 4
 	note B_, 2
@@ -66,7 +66,7 @@ Music_ShowMeAround_branch_edc15: ; edc15
 
 Music_ShowMeAround_Ch2: ; edc2a
 	stereopanning $ff
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $b, $0, $1
 	octave 5
 	note E_, 2
@@ -85,7 +85,7 @@ Music_ShowMeAround_Ch2: ; edc2a
 	octave 5
 	note D_, 1
 	note E_, 8
-	setwaveduty $1
+	waveduty $1
 Music_ShowMeAround_branch_edc44: ; edc44
 	callchannel Music_ShowMeAround_branch_edc98
 	callchannel Music_ShowMeAround_branch_edc98
@@ -308,7 +308,7 @@ Music_ShowMeAround_branch_edd0f: ; edd0f
 ; edd30
 
 Music_ShowMeAround_Ch4: ; edd30
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 16
 	note __, 8

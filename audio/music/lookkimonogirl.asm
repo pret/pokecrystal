@@ -12,11 +12,11 @@ Music_LookKimonoGirl_Ch1: ; f79c2
 	tempo 160
 	volume $7, $7
 	stereopanning $f
-	setwaveduty $1
+	waveduty $1
 	notetype $6, $8, $0, $7
-	setpitchoffset $0001
+	pitchoffset $0001
 	callchannel Music_LookKimonoGirl_branch_f7aa8
-	setpitchoffset $0000
+	pitchoffset $0000
 Music_LookKimonoGirl_branch_f79d7: ; f79d7
 	notetype $c, $b, $0, $2
 	callchannel Music_LookKimonoGirl_branch_f7a13
@@ -110,12 +110,12 @@ Music_LookKimonoGirl_branch_f7a34: ; f7a34
 ; f7a55
 
 Music_LookKimonoGirl_Ch2: ; f7a55
-	setwaveduty $0
+	waveduty $0
 	notetype $6, $a, $0, $7
 	stereopanning $f0
 	callchannel Music_LookKimonoGirl_branch_f7aa8
 Music_LookKimonoGirl_branch_f7a5f: ; f7a5f
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $9, $0, $1
 	octave 5
 	note E_, 1

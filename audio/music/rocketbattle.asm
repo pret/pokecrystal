@@ -7,8 +7,8 @@ Music_RocketBattle: ; e9b6f
 Music_RocketBattle_Ch1: ; e9b78
 	tempo 101
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $10, $1, $5
 	notetype $c, $b, $0, $2
 	octave 4
@@ -392,9 +392,9 @@ Music_RocketBattle_branch_e9cc5: ; e9cc5
 ; e9d3e
 
 Music_RocketBattle_Ch2: ; e9d3e
-	setwaveduty $3
+	waveduty $3
 	vibrato $8, $3, $6
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $c, $b, $0, $2
 	octave 4
 	note A_, 4

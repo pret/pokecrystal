@@ -8,8 +8,8 @@ Music_Route36: ; e94e9
 Music_Route36_Ch1: ; e94f5
 	tempo 144
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $10, $1, $5
 	stereopanning $f
 	notetype $c, $b, $0, $3
@@ -166,7 +166,7 @@ Music_Route36_branch_e9517: ; e9517
 ; e95af
 
 Music_Route36_Ch2: ; e95af
-	setwaveduty $3
+	waveduty $3
 	vibrato $10, $3, $6
 	stereopanning $f0
 	notetype $c, $c, $0, $2
@@ -471,7 +471,7 @@ Music_Route36_branch_e9684: ; e9684
 ; e9709
 
 Music_Route36_Ch4: ; e9709
-	togglenoise $1
+	drumkittoggle $1
 	notetype $c
 	callchannel Music_Route36_branch_e9734
 	callchannel Music_Route36_branch_e9741

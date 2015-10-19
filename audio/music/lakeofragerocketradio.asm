@@ -7,8 +7,8 @@ Music_LakeOfRageRocketRadio: ; ef5b1
 Music_LakeOfRageRocketRadio_Ch1: ; ef5ba
 	tempo 160
 	volume $7, $7
-	setwaveduty $1
-	setpitchoffset $1118
+	waveduty $1
+	pitchoffset $1118
 	vibrato $0, $f, $0
 	stereopanning $f0
 Music_LakeOfRageRocketRadio_branch_ef5c9: ; ef5c9
@@ -23,7 +23,7 @@ Music_LakeOfRageRocketRadio_branch_ef5c9: ; ef5c9
 ; ef5d6
 
 Music_LakeOfRageRocketRadio_Ch2: ; ef5d6
-	setwaveduty $1
+	waveduty $1
 	vibrato $13, $e, $8
 	notetype $c, $a, $0, $7
 	note __, 2

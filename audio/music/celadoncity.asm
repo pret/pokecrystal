@@ -7,7 +7,7 @@ Music_CeladonCity: ; f435b
 Music_CeladonCity_Ch1: ; f4364
 	tempo 146
 	volume $7, $7
-	setpitchoffset $0001
+	pitchoffset $0001
 Music_CeladonCity_branch_f436c: ; f436c
 	stereopanning $f
 	notetype $c, $a, $0, $6
@@ -146,7 +146,7 @@ Music_CeladonCity_branch_f43fe: ; f43fe
 
 Music_CeladonCity_Ch2: ; f4406
 	vibrato $12, $3, $4
-	setwaveduty $2
+	waveduty $2
 	stereopanning $f0
 	notetype $c, $b, $0, $7
 	octave 4

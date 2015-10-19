@@ -7,8 +7,8 @@ Music_RivalBattle: ; e974f
 Music_RivalBattle_Ch1: ; e9758
 	tempo 102
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $8, $1, $5
 	notetype $c, $b, $0, $2
 	octave 3
@@ -288,9 +288,9 @@ Music_RivalBattle_branch_e9837: ; e9837
 ; e98af
 
 Music_RivalBattle_Ch2: ; e98af
-	setwaveduty $3
+	waveduty $3
 	vibrato $8, $3, $6
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $c, $c, $0, $2
 	octave 4
 	note E_, 1

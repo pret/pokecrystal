@@ -8,8 +8,8 @@ Music_BurnedTower: ; f6a99
 Music_BurnedTower_Ch1: ; f6aa5
 	tempo 168
 	volume $7, $7
-	setwaveduty $1
-	setpitchoffset $0004
+	waveduty $1
+	pitchoffset $0004
 	vibrato $8, $4, $5
 	stereopanning $f0
 	notetype $c, $9, $0, $1
@@ -101,16 +101,16 @@ Music_BurnedTower_branch_f6b17: ; f6b17
 ; f6b29
 
 Music_BurnedTower_Ch2: ; f6b29
-	setwaveduty $2
+	waveduty $2
 	vibrato $20, $8, $2
-	setpitchoffset $0002
+	pitchoffset $0002
 	notetype $c, $7, $0, $0
 	callchannel Music_BurnedTower_branch_f6b8e
 	volenvelope $c, $0, $5
 Music_BurnedTower_branch_f6b39: ; f6b39
 	callchannel Music_BurnedTower_branch_f6b8e
 	volenvelope $c, $0, $1
-	setwaveduty $3
+	waveduty $3
 	note __, 2
 	octave 2
 	note A_, 4
@@ -147,7 +147,7 @@ Music_BurnedTower_branch_f6b39: ; f6b39
 	volenvelope $b, $0, $0
 	octave 2
 	note G_, 4
-	setwaveduty $2
+	waveduty $2
 	volenvelope $b, $0, $0
 	octave 3
 	note F#, 4
@@ -248,7 +248,7 @@ Music_BurnedTower_branch_f6bc3: ; f6bc3
 ; f6bdd
 
 Music_BurnedTower_Ch4: ; f6bdd
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 Music_BurnedTower_branch_f6be1: ; f6be1
 	note __, 16

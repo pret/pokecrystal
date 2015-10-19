@@ -8,8 +8,8 @@ Music_Bicycle: ; ee119
 Music_Bicycle_Ch1: ; ee125
 	tempo 140
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	stereopanning $f
 	vibrato $8, $1, $5
 	notetype $c, $b, $0, $4
@@ -172,7 +172,7 @@ Music_Bicycle_branch_ee144: ; ee144
 ; ee1de
 
 Music_Bicycle_Ch2: ; ee1de
-	setwaveduty $2
+	waveduty $2
 	vibrato $10, $2, $4
 	stereopanning $f0
 	notetype $c, $c, $0, $6
@@ -197,7 +197,7 @@ Music_Bicycle_Ch2: ; ee1de
 	note A_, 2
 Music_Bicycle_branch_ee1fd: ; ee1fd
 	stereopanning $ff
-	setwaveduty $2
+	waveduty $2
 	volenvelope $c, $0, $3
 	octave 3
 	note B_, 4
@@ -501,7 +501,7 @@ Music_Bicycle_branch_ee333: ; ee333
 ; ee345
 
 Music_Bicycle_Ch4: ; ee345
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 	note __, 16
 	note __, 16

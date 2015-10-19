@@ -8,7 +8,7 @@ Music_LookYoungster_Ch1: ; f66cc
 	tempo 118
 	volume $7, $7
 	stereopanning $f
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $a, $0, $3
 	octave 3
 	note G_, 1
@@ -68,7 +68,7 @@ INCBIN "baserom.gbc", $f670e, $f670f - $f670e
 Music_LookYoungster_Ch2: ; f670f
 	stereopanning $f0
 	vibrato $12, $2, $6
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $a, $0, $3
 	octave 3
 	note B_, 1
@@ -87,7 +87,7 @@ Music_LookYoungster_Ch2: ; f670f
 	note __, 2
 	note F#, 6
 Music_LookYoungster_branch_f672f: ; f672f
-	setwaveduty $3
+	waveduty $3
 	volenvelope $b, $0, $3
 	note __, 2
 	octave 3
@@ -107,7 +107,7 @@ Music_LookYoungster_branch_f672f: ; f672f
 	note F_, 1
 	note __, 1
 	volenvelope $9, $0, $7
-	setwaveduty $2
+	waveduty $2
 	note D#, 1
 	note F_, 1
 	note D#, 1
@@ -123,7 +123,7 @@ Music_LookYoungster_branch_f672f: ; f672f
 	note __, 1
 	note G#, 1
 	note __, 1
-	setwaveduty $3
+	waveduty $3
 	volenvelope $b, $0, $3
 	note __, 2
 	note B_, 1
@@ -141,7 +141,7 @@ Music_LookYoungster_branch_f672f: ; f672f
 	note __, 3
 	note F_, 1
 	note __, 1
-	setwaveduty $2
+	waveduty $2
 	volenvelope $9, $0, $7
 	note G#, 1
 	note A#, 1

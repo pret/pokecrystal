@@ -8,9 +8,9 @@ Music_ProfOak_Ch1: ; f4df3
 	tempo 118
 	volume $7, $7
 	vibrato $12, $3, $4
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f0
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $9, $1, $0
 	octave 2
 	note F#, 1
@@ -34,10 +34,10 @@ Music_ProfOak_branch_f4e22: ; f4e22
 	callchannel Music_ProfOak_branch_f4e58
 	callchannel Music_ProfOak_branch_f4e6c
 	callchannel Music_ProfOak_branch_f4e6c
-	setabsnote $0, $2
+	transpose $0, $2
 	callchannel Music_ProfOak_branch_f4e58
 	callchannel Music_ProfOak_branch_f4e58
-	setabsnote $0, $0
+	transpose $0, $0
 	callchannel Music_ProfOak_branch_f4e6c
 	callchannel Music_ProfOak_branch_f4e6c
 	loopchannel 0, Music_ProfOak_branch_f4e22
@@ -109,7 +109,7 @@ Music_ProfOak_branch_f4e6c: ; f4e6c
 
 Music_ProfOak_Ch2: ; f4e7e
 	vibrato $12, $3, $4
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $a, $1, $0
 	octave 3
 	note B_, 1
@@ -120,7 +120,7 @@ Music_ProfOak_Ch2: ; f4e7e
 	note B_, 16
 	volenvelope $a, $0, $7
 	note B_, 10
-	setwaveduty $2
+	waveduty $2
 Music_ProfOak_branch_f4e92: ; f4e92
 	volenvelope $b, $0, $2
 	octave 3
@@ -241,10 +241,10 @@ Music_ProfOak_branch_f4f1d: ; f4f1d
 	callchannel Music_ProfOak_branch_f4f5a
 	callchannel Music_ProfOak_branch_f4f69
 	callchannel Music_ProfOak_branch_f4f69
-	setabsnote $0, $2
+	transpose $0, $2
 	callchannel Music_ProfOak_branch_f4f5a
 	callchannel Music_ProfOak_branch_f4f5a
-	setabsnote $0, $0
+	transpose $0, $0
 	callchannel Music_ProfOak_branch_f4f69
 	callchannel Music_ProfOak_branch_f4f69
 	loopchannel 0, Music_ProfOak_branch_f4f1d

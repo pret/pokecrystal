@@ -8,8 +8,8 @@ Music_LookRival: ; f4f79
 Music_LookRival_Ch1: ; f4f85
 	tempo 112
 	volume $7, $7
-	setwaveduty $1
-	setpitchoffset $0001
+	waveduty $1
+	pitchoffset $0001
 	vibrato $12, $1, $5
 	stereopanning $f
 	notetype $c, $b, $0, $2
@@ -118,7 +118,7 @@ Music_LookRival_branch_f4ff7: ; f4ff7
 ; f5010
 
 Music_LookRival_Ch2: ; f5010
-	setwaveduty $3
+	waveduty $3
 	vibrato $8, $3, $6
 	stereopanning $f0
 	notetype $c, $c, $0, $2
@@ -329,7 +329,7 @@ Music_LookRival_branch_f50ff: ; f50ff
 
 Music_LookRival_Ch4: ; f5106
 	stereopanning $f0
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 8
 	note __, 16

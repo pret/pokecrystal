@@ -8,8 +8,8 @@ Music_MobileCenter: ; 17961d
 Music_MobileCenter_Ch1: ; 179629
 	tempo 160
 	volume $7, $7
-	setwaveduty $1
-	setpitchoffset $0002
+	waveduty $1
+	pitchoffset $0002
 	vibrato $8, $2, $2
 	stereopanning $f0
 	notetype $c, $a, $0, $2
@@ -160,7 +160,7 @@ Music_MobileCenter_branch_179642: ; 179642
 
 Music_MobileCenter_Ch2: ; 1796cc
 	notetype $c, $c, $0, $2
-	setwaveduty $3
+	waveduty $3
 	note __, 10
 	octave 1
 	note G_, 2
@@ -455,7 +455,7 @@ Music_MobileCenter_branch_179788: ; 179788
 ; 179807
 
 Music_MobileCenter_Ch4: ; 179807
-	togglenoise $3
+	drumkittoggle $3
 	stereopanning $f
 	notetype $c
 	note A_, 8

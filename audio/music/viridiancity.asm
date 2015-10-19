@@ -9,7 +9,7 @@ Music_ViridianCity_Ch1: ; f400c
 	tempo 157
 	volume $7, $7
 	stereopanning $f
-	setwaveduty $2
+	waveduty $2
 	vibrato $12, $3, $4
 	notetype $c, $a, $0, $7
 	octave 3
@@ -276,7 +276,7 @@ Music_ViridianCity_branch_f410f: ; f410f
 
 Music_ViridianCity_Ch2: ; f4125
 	vibrato $10, $4, $6
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $b, $0, $7
 	stereopanning $f0
 	octave 2
@@ -699,7 +699,7 @@ Music_ViridianCity_branch_f42a2: ; f42a2
 ; f42df
 
 Music_ViridianCity_Ch4: ; f42df
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	callchannel Music_ViridianCity_branch_f431d
 	callchannel Music_ViridianCity_branch_f432c

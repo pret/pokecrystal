@@ -7,9 +7,9 @@ Music_MobileAdapterMenu: ; 17801f
 Music_MobileAdapterMenu_Ch1: ; 178028
 	tempo 168
 	volume $7, $7
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $6, $0, $6
 	note __, 2
 Music_MobileAdapterMenu_branch_178038: ; 178038
@@ -89,7 +89,7 @@ Music_MobileAdapterMenu_branch_178076: ; 178076
 Music_MobileAdapterMenu_Ch2: ; 178084
 	stereopanning $f0
 	notetype $c, $8, $0, $4
-	setwaveduty $2
+	waveduty $2
 	octave 4
 	note E_, 1
 	note G#, 1

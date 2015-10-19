@@ -13,7 +13,7 @@ Music_LavenderTown_Ch1: ; ef739
 	volume $7, $7
 	stereopanning $f
 	vibrato $6, $2, $4
-	setwaveduty $0
+	waveduty $0
 	notetype $c, $b, $0, $3
 	note __, 16
 	note __, 16
@@ -268,7 +268,7 @@ Music_LavenderTown_branch_ef87f: ; ef87f
 ; ef899
 
 Music_LavenderTown_Ch2: ; ef899
-	setwaveduty $1
+	waveduty $1
 	vibrato $8, $2, $4
 	stereopanning $ff
 Music_LavenderTown_branch_ef8a0: ; ef8a0

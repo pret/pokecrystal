@@ -8,8 +8,8 @@ Music_Route29: ; f0386
 Music_Route29_Ch1: ; f0392
 	tempo 146
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $10, $1, $5
 	stereopanning $f
 	notetype $c, $b, $0, $2
@@ -171,7 +171,7 @@ Music_Route29_branch_f03a5: ; f03a5
 ; f044d
 
 Music_Route29_Ch2: ; f044d
-	setwaveduty $3
+	waveduty $3
 	vibrato $12, $3, $6
 	notetype $c, $c, $0, $2
 	octave 4
@@ -507,7 +507,7 @@ Music_Route29_branch_f0504: ; f0504
 
 Music_Route29_Ch4: ; f05a9
 	stereopanning $f
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 	note __, 2
 Music_Route29_branch_f05b0: ; f05b0

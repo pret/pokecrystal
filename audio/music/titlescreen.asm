@@ -8,8 +8,8 @@ Music_TitleScreen: ; eb808
 Music_TitleScreen_Ch1: ; eb814
 	tempo 134
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $10, $1, $2
 	stereopanning $f0
 	notetype $c, $a, $0, $7
@@ -295,7 +295,7 @@ Music_TitleScreen_branch_eb971: ; eb971
 ; eb984
 
 Music_TitleScreen_Ch2: ; eb984
-	setwaveduty $3
+	waveduty $3
 	vibrato $14, $1, $2
 	notetype $c, $c, $0, $7
 	volenvelope $a, $0, $4
@@ -480,7 +480,7 @@ Music_TitleScreen_Ch2: ; eb984
 	octave 5
 	note C_, 4
 	note C#, 4
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f
 	callchannel Music_TitleScreen_branch_ebae7
 	note C#, 4
@@ -490,7 +490,7 @@ Music_TitleScreen_Ch2: ; eb984
 	octave 4
 	note A_, 4
 	stereopanning $ff
-	setpitchoffset $0000
+	pitchoffset $0000
 	notetype $c, $b, $0, $0
 	octave 3
 	note B_, 6
@@ -584,7 +584,7 @@ Music_TitleScreen_branch_ebaeb: ; ebaeb
 Music_TitleScreen_Ch3: ; ebb01
 	stereopanning $f
 	vibrato $10, $1, $4
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $c, $1, $0, $6
 	octave 3
 	octave 3
@@ -775,7 +775,7 @@ Music_TitleScreen_Ch3: ; ebb01
 	note __, 1
 	stereopanning $ff
 	notetype $c, $1, $0, $6
-	setpitchoffset $0000
+	pitchoffset $0000
 	octave 4
 	note A_, 2
 	octave 5
@@ -825,7 +825,7 @@ Music_TitleScreen_Ch3: ; ebb01
 	note F#, 1
 	note E_, 1
 	note D_, 6
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $8, $1, $0, $6
 	octave 3
 	note C_, 4
@@ -899,7 +899,7 @@ Music_TitleScreen_Ch3: ; ebb01
 ; ebc5c
 
 Music_TitleScreen_Ch4: ; ebc5c
-	togglenoise $5
+	drumkittoggle $5
 	stereopanning $f0
 	notetype $c
 	note __, 4

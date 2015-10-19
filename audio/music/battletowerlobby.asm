@@ -8,8 +8,8 @@ Music_BattleTowerLobby: ; 17948b
 Music_BattleTowerLobby_Ch1: ; 179497
 	tempo 152
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $8, $2, $2
 	stereopanning $f0
 	notetype $c, $7, $0, $2
@@ -119,7 +119,7 @@ Music_BattleTowerLobby_branch_1794a9: ; 1794a9
 ; 17953a
 
 Music_BattleTowerLobby_Ch2: ; 17953a
-	setwaveduty $2
+	waveduty $2
 	vibrato $10, $3, $4
 	stereopanning $f
 	notetype $c, $8, $0, $2
@@ -301,7 +301,7 @@ Music_BattleTowerLobby_branch_1795b1: ; 1795b1
 ; 179610
 
 Music_BattleTowerLobby_Ch4: ; 179610
-	togglenoise $0
+	drumkittoggle $0
 Music_BattleTowerLobby_branch_179612: ; 179612
 	notetype $c
 	note __, 2

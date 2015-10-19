@@ -7,8 +7,8 @@ Music_RuinsOfAlphRadio: ; eedcb
 Music_RuinsOfAlphRadio_Ch1: ; eedd4
 	tempo 160
 	volume $7, $7
-	setwaveduty $0
-	setpitchoffset $0118
+	waveduty $0
+	pitchoffset $0118
 	vibrato $0, $f, $0
 	stereopanning $f0
 Music_RuinsOfAlphRadio_branch_eede3: ; eede3
@@ -51,7 +51,7 @@ Music_RuinsOfAlphRadio_branch_eee08: ; eee08
 ; eee12
 
 Music_RuinsOfAlphRadio_Ch2: ; eee12
-	setwaveduty $1
+	waveduty $1
 	vibrato $1, $e, $0
 Music_RuinsOfAlphRadio_branch_eee17: ; eee17
 	stereopanning $f

@@ -9,9 +9,9 @@ Music_SSAqua_Ch1: ; eada5
 	tempo 117
 	volume $7, $7
 	stereopanning $f
-	setpitchoffset $0001
+	pitchoffset $0001
 	vibrato $12, $3, $3
-	setwaveduty $2
+	waveduty $2
 	notetype $6, $9, $0, $7
 	octave 2
 	note G_, 1
@@ -41,7 +41,7 @@ Music_SSAqua_branch_eadbc: ; eadbc
 	note G_, 2
 	note G_, 8
 	note __, 8
-	setwaveduty $1
+	waveduty $1
 	volenvelope $6, $0, $1
 	callchannel Music_SSAqua_branch_eaff5
 	octave 5
@@ -117,7 +117,7 @@ Music_SSAqua_branch_eadbc: ; eadbc
 	octave 4
 	note G_, 1
 	note F#, 1
-	setwaveduty $2
+	waveduty $2
 	volenvelope $9, $0, $7
 	note G_, 8
 	note F#, 8
@@ -252,17 +252,17 @@ Music_SSAqua_branch_eadbc: ; eadbc
 
 Music_SSAqua_Ch2: ; eaeca
 	stereopanning $f0
-	setwaveduty $2
+	waveduty $2
 	vibrato $8, $3, $3
 	notetype $c, $b, $0, $7
 	note __, 2
 Music_SSAqua_branch_eaed5: ; eaed5
 	notetype $c, $b, $0, $7
-	setwaveduty $1
+	waveduty $1
 	volenvelope $6, $0, $1
 	callchannel Music_SSAqua_branch_eaff5
 	callchannel Music_SSAqua_branch_eb03e
-	setwaveduty $2
+	waveduty $2
 	volenvelope $d, $0, $7
 	callchannel Music_SSAqua_branch_eafe0
 	note B_, 1
@@ -276,9 +276,9 @@ Music_SSAqua_branch_eaed5: ; eaed5
 	octave 4
 	note C#, 1
 	note E_, 1
-	setabsnote $0, $c
+	transpose $0, $c
 	callchannel Music_SSAqua_branch_eafe0
-	setabsnote $0, $0
+	transpose $0, $0
 	octave 3
 	note B_, 1
 	note __, 1
@@ -287,7 +287,7 @@ Music_SSAqua_branch_eaed5: ; eaed5
 	octave 4
 	note G_, 6
 	note __, 2
-	setwaveduty $3
+	waveduty $3
 	volenvelope $b, $0, $7
 	octave 3
 	note B_, 1
@@ -335,7 +335,7 @@ Music_SSAqua_branch_eaed5: ; eaed5
 	note B_, 12
 	note A_, 12
 	note __, 4
-	setwaveduty $0
+	waveduty $0
 	note B_, 2
 	note A_, 2
 	callchannel Music_SSAqua_branch_eafd5
@@ -421,7 +421,7 @@ Music_SSAqua_branch_eaf88: ; eaf88
 	note B_, 6
 	note F#, 6
 	note __, 4
-	setwaveduty $1
+	waveduty $1
 	notetype $6, $b, $0, $7
 	octave 3
 	note A_, 1
@@ -455,7 +455,7 @@ Music_SSAqua_branch_eaf88: ; eaf88
 	note __, 1
 	note F#, 1
 	note __, 1
-	setwaveduty $3
+	waveduty $3
 	note E_, 2
 	note F#, 2
 	note G_, 12
@@ -1092,7 +1092,7 @@ Music_SSAqua_branch_eb230: ; eb230
 ; eb249
 
 Music_SSAqua_Ch4: ; eb249
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 2
 Music_SSAqua_branch_eb24e: ; eb24e

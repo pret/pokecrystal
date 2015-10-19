@@ -4,7 +4,7 @@ Sfx_IntroUnown1: ; 17982d
 
 Sfx_IntroUnown1_Ch5: ; 179830
 	vibrato $1, $a, $3
-	setwaveduty $2
+	waveduty $2
 	sound $8, $39, $0705
 	sound $20, $e2, $0705
 	endchannel
@@ -16,7 +16,7 @@ Sfx_IntroUnown2: ; 17983e
 
 Sfx_IntroUnown2_Ch6: ; 179841
 	vibrato $1, $7, $3
-	setwaveduty $2
+	waveduty $2
 	sound $8, $39, $0758
 	sound $20, $e2, $0758
 	endchannel
@@ -42,11 +42,11 @@ Sfx_DittoPopUp: ; 17986e
 ; 179871
 
 Sfx_DittoPopUp_Ch5: ; 179871
-	setwaveduty $2
-	setsweep $1, $1, $6
+	waveduty $2
+	sweep $1, $1, $6
 	sound $3, $82, $0700
 	sound $1, $31, $0701
-	setsweep $1, $0, $6
+	sweep $1, $0, $6
 	sound $4, $b1, $0640
 	sound $10, $31, $0641
 	endchannel
@@ -57,8 +57,8 @@ Sfx_DittoTransform: ; 179888
 ; 17988b
 
 Sfx_DittoTransform_Ch5: ; 17988b
-	setwaveduty $1
-	setsweep $2, $0, $6
+	waveduty $1
+	sweep $2, $0, $6
 	sound $14, $3b, $0440
 	sound $4, $97, $04c0
 	sound $4, $67, $04c1
@@ -81,11 +81,11 @@ Sfx_IntroPichu: ; 1798aa
 ; 1798ad
 
 Sfx_IntroPichu_Ch5: ; 1798ad
-	setwaveduty $3
-	setsweep $4, $1, $5
+	waveduty $3
+	sweep $4, $1, $5
 	sound $1, $88, $0770
 	sound $3, $0, $0000
-	setsweep $1, $0, $7
+	sweep $1, $0, $7
 	sound $2, $88, $0776
 	endchannel
 ; 1798c0
@@ -132,11 +132,11 @@ Sfx_DittoBounce: ; 179907
 ; 17990a
 
 Sfx_DittoBounce_Ch5: ; 17990a
-	setwaveduty $2
-	setsweep $2, $1, $4
+	waveduty $2
+	sweep $2, $1, $4
 	sound $2, $82, $04b0
 	sound $0, $31, $04b0
-	setsweep $3, $0, $4
+	sweep $3, $0, $4
 	sound $10, $b1, $0420
 	endchannel
 ; 17991d
@@ -166,10 +166,10 @@ Sfx_GameFreakPresents: ; 179942
 
 Sfx_GameFreakPresents_Ch5: ; 179945
 	togglesfx
-	setwaveduty $2
+	waveduty $2
 	notetype $2, $b, $0, $1
-	setsweep $f, $1, $7
-	setabsnote $1, $a
+	sweep $f, $1, $7
+	transpose $1, $a
 	octave 5
 	note C_, 2
 	note E_, 2
@@ -193,8 +193,8 @@ Sfx_Tingle: ; 179961
 
 Sfx_Tingle_Ch5: ; 179964
 	togglesfx
-	setwaveduty $1
-	setabsnote $0, $b
+	waveduty $1
+	transpose $0, $b
 	notetype $1, $b, $0, $1
 Sfx_Tingle_branch_17996c: ; 17996c
 	octave 5
@@ -216,7 +216,7 @@ Sfx_TwoPcBeeps: ; 17997c
 ; 17997f
 
 Sfx_TwoPcBeeps_Ch5: ; 17997f
-	setwaveduty $2
+	waveduty $2
 	sound $2, $e8, $07c2
 	sound $2, $28, $07c2
 	sound $2, $e8, $07c2
@@ -232,9 +232,9 @@ Sfx_4NoteDitty: ; 179992
 
 Sfx_4NoteDitty_Ch5: ; 17999b
 	togglesfx
-	setwaveduty $2
+	waveduty $2
 	notetype $2, $e, $1, $0
-	setabsnote $0, $2
+	transpose $0, $2
 	octave 4
 	note C_, 2
 	volenvelope $4, $1, $0
@@ -278,8 +278,8 @@ Sfx_Twinkle: ; 1799cb
 
 Sfx_Twinkle_Ch5: ; 1799ce
 	togglesfx
-	setwaveduty $0
-	setabsnote $0, $2
+	waveduty $0
+	transpose $0, $2
 	notetype $2, $e, $0, $1
 	octave 3
 	note G_, 2

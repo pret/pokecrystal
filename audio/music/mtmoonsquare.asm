@@ -6,8 +6,8 @@ Music_MtMoonSquare: ; f4815
 Music_MtMoonSquare_Ch1: ; f481b
 	tempo 112
 	volume $7, $7
-	setwaveduty $2
-	setpitchoffset $0001
+	waveduty $2
+	pitchoffset $0001
 	note __, 1
 Music_MtMoonSquare_branch_f4826: ; f4826
 	notetype $c, $4, $0, $4
@@ -55,7 +55,7 @@ Music_MtMoonSquare_branch_f484d: ; f484d
 ; f485d
 
 Music_MtMoonSquare_Ch2: ; f485d
-	setwaveduty $2
+	waveduty $2
 	vibrato $18, $2, $4
 Music_MtMoonSquare_branch_f4862: ; f4862
 	notetype $c, $8, $0, $2

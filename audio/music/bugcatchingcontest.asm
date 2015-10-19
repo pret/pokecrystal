@@ -10,7 +10,7 @@ Music_BugCatchingContest_Ch1: ; f7c22
 	volume $7, $7
 	stereopanning $f
 	vibrato $8, $2, $4
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $b, $0, $7
 	note __, 8
 	octave 4
@@ -50,7 +50,7 @@ Music_BugCatchingContest_branch_f7c55: ; f7c55
 	note B_, 2
 	loopchannel 8, Music_BugCatchingContest_branch_f7c55
 	volenvelope $b, $0, $4
-	setwaveduty $1
+	waveduty $1
 	octave 3
 	note B_, 6
 	note A_, 1
@@ -60,7 +60,7 @@ Music_BugCatchingContest_branch_f7c55: ; f7c55
 	note D_, 1
 	note E_, 1
 	volenvelope $b, $0, $1
-	setwaveduty $2
+	waveduty $2
 Music_BugCatchingContest_branch_f7c6b: ; f7c6b
 	note __, 2
 	octave 2
@@ -192,7 +192,7 @@ Music_BugCatchingContest_branch_f7c8e: ; f7c8e
 Music_BugCatchingContest_Ch2: ; f7cf4
 	stereopanning $f0
 	vibrato $8, $2, $3
-	setwaveduty $1
+	waveduty $1
 	notetype $c, $c, $0, $7
 	note __, 8
 Music_BugCatchingContest_branch_f7cff: ; f7cff
@@ -205,7 +205,7 @@ Music_BugCatchingContest_branch_f7cff: ; f7cff
 	note A_, 1
 	loopchannel 4, Music_BugCatchingContest_branch_f7cff
 Music_BugCatchingContest_branch_f7d0a: ; f7d0a
-	setwaveduty $0
+	waveduty $0
 	callchannel Music_BugCatchingContest_branch_f7d8e
 	octave 2
 	note E_, 2
@@ -288,7 +288,7 @@ Music_BugCatchingContest_branch_f7d0a: ; f7d0a
 	octave 3
 	note A_, 1
 	note __, 1
-	setwaveduty $0
+	waveduty $0
 	note __, 2
 	octave 5
 	note D_, 1
@@ -590,7 +590,7 @@ Music_BugCatchingContest_branch_f7dda: ; f7dda
 ; f7e9a
 
 Music_BugCatchingContest_Ch4: ; f7e9a
-	togglenoise $4
+	drumkittoggle $4
 	notetype $6
 	note C#, 1
 	note C#, 1

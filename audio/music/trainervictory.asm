@@ -7,8 +7,8 @@ Music_TrainerVictory: ; ebeab
 Music_TrainerVictory_Ch1: ; ebeb4
 	tempo 120
 	volume $7, $7
-	setwaveduty $2
-	setpitchoffset $0001
+	waveduty $2
+	pitchoffset $0001
 	notetype $8, $b, $0, $1
 	octave 4
 	note E_, 2
@@ -88,7 +88,7 @@ Music_TrainerVictory_branch_ebf11: ; ebf11
 
 Music_TrainerVictory_Ch2: ; ebf1b
 	vibrato $12, $3, $4
-	setwaveduty $3
+	waveduty $3
 	notetype $8, $d, $0, $1
 	octave 4
 	note A_, 2

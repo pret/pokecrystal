@@ -7,8 +7,8 @@ Music_SuicuneBattle: ; 178b81
 Music_SuicuneBattle_Ch1: ; 178b8a
 	tempo 101
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $12, $1, $5
 	notetype $c, $b, $0, $7
 	octave 4
@@ -499,7 +499,7 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	note __, 16
 	note __, 16
 	vibrato $8, $2, $4
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $9, $0, $6
 	octave 4
 	note E_, 6
@@ -509,14 +509,14 @@ Music_SuicuneBattle_branch_178bfc: ; 178bfc
 	octave 4
 	note A_, 16
 	vibrato $12, $1, $5
-	setwaveduty $3
+	waveduty $3
 	loopchannel 0, Music_SuicuneBattle_branch_178bfc
 ; 178dec
 
 Music_SuicuneBattle_Ch2: ; 178dec
-	setwaveduty $3
+	waveduty $3
 	vibrato $14, $3, $4
-	setpitchoffset $0001
+	pitchoffset $0001
 	notetype $c, $c, $0, $3
 	octave 5
 	note E_, 1
@@ -603,7 +603,7 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	notetype $c, $b, $0, $6
 	note D_, 8
 	vibrato $10, $2, $4
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $a, $0, $4
 	octave 5
 	note A_, 6
@@ -612,7 +612,7 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	octave 6
 	note D_, 8
 	vibrato $14, $3, $4
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $c, $0, $7
 	octave 4
 	note C_, 8
@@ -645,7 +645,7 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note D_, 4
 	notetype $c, $a, $0, $4
 	vibrato $8, $2, $4
-	setwaveduty $2
+	waveduty $2
 	octave 5
 	note A_, 6
 	note B_, 6
@@ -654,7 +654,7 @@ Music_SuicuneBattle_branch_178e4e: ; 178e4e
 	note D_, 8
 	vibrato $14, $3, $4
 	notetype $c, $c, $0, $7
-	setwaveduty $3
+	waveduty $3
 	octave 4
 	note C_, 8
 	note D_, 8

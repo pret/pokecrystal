@@ -8,10 +8,10 @@ Music_PalletTown_Ch1: ; f4b15
 	tempo 188
 	volume $7, $7
 	vibrato $12, $2, $4
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f
 Music_PalletTown_branch_f4b22: ; f4b22
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $7, $1, $0
 	octave 3
 	note B_, 12
@@ -61,7 +61,7 @@ Music_PalletTown_branch_f4b22: ; f4b22
 	volenvelope $7, $0, $7
 	note B_, 8
 Music_PalletTown_branch_f4b59: ; f4b59
-	setwaveduty $3
+	waveduty $3
 	volenvelope $9, $0, $2
 	note G_, 2
 	note E_, 2
@@ -122,7 +122,7 @@ Music_PalletTown_branch_f4b59: ; f4b59
 
 Music_PalletTown_Ch2: ; f4ba1
 	vibrato $12, $4, $4
-	setwaveduty $2
+	waveduty $2
 	stereopanning $f0
 Music_PalletTown_branch_f4ba8: ; f4ba8
 	notetype $c, $8, $1, $0

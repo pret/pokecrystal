@@ -8,11 +8,11 @@ Music_Clair: ; 1fa8d
 Music_Clair_Ch1: ; 1fa99
 	tempo 136
 	volume $7, $7
-	setpitchoffset $0001
+	pitchoffset $0001
 	vibrato $12, $3, $4
 	stereopanning $f
 	notetype $c, $9, $0, $3
-	setwaveduty $3
+	waveduty $3
 Music_Clair_branch_1faab: ; 1faab
 	octave 4
 	note F_, 1
@@ -26,13 +26,13 @@ Music_Clair_branch_1faab: ; 1faab
 	note B_, 1
 	note __, 1
 	note G#, 1
-	setwaveduty $2
+	waveduty $2
 	volenvelope $9, $0, $2
 	octave 5
 	note F_, 1
 	note G_, 4
 	volenvelope $a, $0, $7
-	setwaveduty $3
+	waveduty $3
 	octave 3
 	note D#, 4
 	note F_, 4
@@ -66,12 +66,12 @@ Music_Clair_branch_1fac9: ; 1fac9
 	octave 5
 	note D#, 1
 	callchannel Music_Clair_branch_1fb2e
-	setwaveduty $3
+	waveduty $3
 	note G#, 3
 	note F_, 2
 	note __, 1
 	note A#, 4
-	setwaveduty $2
+	waveduty $2
 	note D#, 1
 	note C#, 1
 	note D#, 1
@@ -80,13 +80,13 @@ Music_Clair_branch_1fac9: ; 1fac9
 	octave 5
 	note D#, 1
 	callchannel Music_Clair_branch_1fb2e
-	setwaveduty $3
+	waveduty $3
 	note D#, 3
 	note C#, 2
 	note __, 1
 	octave 3
 	note B_, 4
-	setwaveduty $2
+	waveduty $2
 	note G#, 1
 	note C#, 1
 	note D#, 1
@@ -98,13 +98,13 @@ Music_Clair_branch_1fac9: ; 1fac9
 ; 1fb12
 
 Music_Clair_branch_1fb12: ; 1fb12
-	setwaveduty $3
+	waveduty $3
 	stereopanning $ff
 	octave 3
 	note B_, 1
 	note __, 2
 	note G#, 5
-	setwaveduty $2
+	waveduty $2
 	stereopanning $f
 	octave 2
 	note B_, 2
@@ -147,7 +147,7 @@ Music_Clair_branch_1fb2e: ; 1fb2e
 ; 1fb41
 
 Music_Clair_Ch2: ; 1fb41
-	setwaveduty $3
+	waveduty $3
 	vibrato $12, $3, $4
 	notetype $6, $b, $0, $7
 Music_Clair_branch_1fb49: ; 1fb49
@@ -207,9 +207,9 @@ Music_Clair_branch_1fb77: ; 1fb77
 	octave 3
 	note A#, 16
 	note __, 4
-	setabsnote $0, $c
+	transpose $0, $c
 	callchannel Music_Clair_branch_1fba6
-	setabsnote $0, $0
+	transpose $0, $0
 	octave 5
 	note F#, 2
 	note __, 4
@@ -254,7 +254,7 @@ Music_Clair_branch_1fba6: ; 1fba6
 
 Music_Clair_Ch3: ; 1fbb9
 	notetype $c, $1, $0, $4
-	setabsnote $0, $c
+	transpose $0, $c
 	octave 3
 	note C#, 2
 	note __, 4
@@ -396,7 +396,7 @@ Music_Clair_branch_1fc3c: ; 1fc3c
 ; 1fc4b
 
 Music_Clair_Ch4: ; 1fc4b
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	stereopanning $f0
 	note B_, 8

@@ -8,8 +8,8 @@ Music_Route30: ; efc01
 Music_Route30_Ch1: ; efc0d
 	tempo 144
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0001
+	waveduty $3
+	pitchoffset $0001
 	vibrato $10, $1, $5
 	stereopanning $f0
 	notetype $c, $b, $0, $2
@@ -186,7 +186,7 @@ Music_Route30_branch_efc2e: ; efc2e
 ; efcda
 
 Music_Route30_Ch2: ; efcda
-	setwaveduty $3
+	waveduty $3
 	vibrato $12, $3, $6
 	stereopanning $f
 	notetype $c, $c, $0, $2
@@ -580,7 +580,7 @@ Music_Route30_branch_efd79: ; efd79
 ; efe7a
 
 Music_Route30_Ch4: ; efe7a
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	callchannel Music_Route30_branch_efeb8
 	callchannel Music_Route30_branch_efec1

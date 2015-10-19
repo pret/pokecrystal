@@ -8,8 +8,8 @@ Music_DragonsDen: ; eece8
 Music_DragonsDen_Ch1: ; eecf4
 	tempo 144
 	volume $7, $7
-	setwaveduty $0
-	setpitchoffset $0004
+	waveduty $0
+	pitchoffset $0004
 	stereopanning $f0
 	notetype $c, $8, $0, $0
 Music_DragonsDen_branch_eed03: ; eed03
@@ -63,8 +63,8 @@ Music_DragonsDen_branch_eed2d: ; eed2d
 ; eed3c
 
 Music_DragonsDen_Ch2: ; eed3c
-	setwaveduty $0
-	setpitchoffset $0004
+	waveduty $0
+	pitchoffset $0004
 	stereopanning $f
 	notetype $c, $9, $0, $0
 Music_DragonsDen_branch_eed46: ; eed46
@@ -164,7 +164,7 @@ Music_DragonsDen_branch_eed99: ; eed99
 ; eedb7
 
 Music_DragonsDen_Ch4: ; eedb7
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 	note __, 16
 	note __, 16

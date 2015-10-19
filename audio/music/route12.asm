@@ -9,9 +9,9 @@ Music_Route12_Ch1: ; ec512
 	tempo 148
 	volume $7, $7
 	vibrato $12, $3, $4
-	setpitchoffset $0001
+	pitchoffset $0001
 	stereopanning $f
-	setwaveduty $3
+	waveduty $3
 	notetype $c, $9, $1, $0
 	octave 3
 	note G#, 1
@@ -30,7 +30,7 @@ Music_Route12_Ch1: ; ec512
 	volenvelope $9, $0, $7
 	note D#, 12
 Music_Route12_branch_ec535: ; ec535
-	setwaveduty $2
+	waveduty $2
 	volenvelope $9, $0, $6
 	callchannel Music_Route12_branch_ec5b1
 	callchannel Music_Route12_branch_ec5bf
@@ -68,7 +68,7 @@ Music_Route12_branch_ec535: ; ec535
 	note F_, 1
 	note G#, 1
 	note B_, 1
-	setwaveduty $3
+	waveduty $3
 	volenvelope $7, $1, $7
 	octave 4
 	note C#, 3
@@ -165,7 +165,7 @@ Music_Route12_branch_ec5bf: ; ec5bf
 ; ec5ca
 
 Music_Route12_Ch2: ; ec5ca
-	setwaveduty $3
+	waveduty $3
 	vibrato $12, $3, $4
 	notetype $c, $b, $1, $0
 	octave 4
@@ -187,7 +187,7 @@ Music_Route12_Ch2: ; ec5ca
 	octave 4
 	note D#, 1
 Music_Route12_branch_ec5e5: ; ec5e5
-	setwaveduty $3
+	waveduty $3
 	volenvelope $b, $0, $7
 	callchannel Music_Route12_branch_ec647
 	note F#, 1
@@ -199,7 +199,7 @@ Music_Route12_branch_ec5e5: ; ec5e5
 	note E_, 1
 	octave 3
 	note B_, 12
-	setwaveduty $2
+	waveduty $2
 	octave 2
 	note B_, 1
 	note __, 2
@@ -210,7 +210,7 @@ Music_Route12_branch_ec5e5: ; ec5e5
 	octave 3
 	note D#, 4
 	note F#, 4
-	setwaveduty $3
+	waveduty $3
 	callchannel Music_Route12_branch_ec647
 	note A_, 1
 	octave 5
@@ -227,7 +227,7 @@ Music_Route12_branch_ec5e5: ; ec5e5
 	note G#, 6
 	volenvelope $6, $1, $7
 	note G#, 16
-	setwaveduty $2
+	waveduty $2
 	volenvelope $a, $1, $0
 	note A_, 3
 	note G#, 3
@@ -397,7 +397,7 @@ Music_Route12_branch_ec6b4: ; ec6b4
 ; ec6ce
 
 Music_Route12_Ch4: ; ec6ce
-	togglenoise $4
+	drumkittoggle $4
 	stereopanning $f0
 	notetype $c
 	note B_, 10

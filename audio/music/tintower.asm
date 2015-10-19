@@ -8,8 +8,8 @@ Music_TinTower: ; f6811
 Music_TinTower_Ch1: ; f681d
 	tempo 208
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0004
+	waveduty $3
+	pitchoffset $0004
 	vibrato $8, $4, $5
 Music_TinTower_branch_f682a: ; f682a
 	stereopanning $f0
@@ -98,8 +98,8 @@ Music_TinTower_branch_f682a: ; f682a
 ; f688b
 
 Music_TinTower_Ch2: ; f688b
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $18, $4, $4
 Music_TinTower_branch_f6893: ; f6893
 	stereopanning $ff
@@ -263,7 +263,7 @@ Music_TinTower_branch_f68fb: ; f68fb
 ; f6948
 
 Music_TinTower_Ch4: ; f6948
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 Music_TinTower_branch_f694c: ; f694c
 	stereopanning $f

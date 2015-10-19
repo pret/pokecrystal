@@ -7,8 +7,8 @@ Music_JohtoWildBattle: ; f5dc5
 Music_JohtoWildBattle_Ch1: ; f5dce
 	tempo 104
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	vibrato $12, $1, $5
 Music_JohtoWildBattleNight_branch_f5ddb: ; f5ddb
 	notetype $c, $b, $0, $2
@@ -203,9 +203,9 @@ Music_JohtoWildBattle_branch_f5e2d: ; f5e2d
 ; f5ea2
 
 Music_JohtoWildBattle_Ch2: ; f5ea2
-	setwaveduty $3
+	waveduty $3
 	vibrato $8, $3, $6
-	setpitchoffset $0001
+	pitchoffset $0001
 	callchannel Music_JohtoWildBattle_branch_f5f5d
 	notetype $c, $c, $0, $2
 	octave 4

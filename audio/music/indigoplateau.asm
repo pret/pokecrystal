@@ -8,8 +8,8 @@ Music_IndigoPlateau: ; ee852
 Music_IndigoPlateau_Ch1: ; ee85e
 	tempo 128
 	volume $7, $7
-	setwaveduty $3
-	setpitchoffset $0002
+	waveduty $3
+	pitchoffset $0002
 	stereopanning $f
 Music_IndigoPlateau_branch_ee86a: ; ee86a
 	callchannel Music_IndigoPlateau_branch_ee881
@@ -43,7 +43,7 @@ Music_IndigoPlateau_branch_ee881: ; ee881
 ; ee892
 
 Music_IndigoPlateau_Ch2: ; ee892
-	setwaveduty $3
+	waveduty $3
 	vibrato $10, $2, $2
 	stereopanning $f0
 Music_IndigoPlateau_branch_ee899: ; ee899
@@ -156,7 +156,7 @@ Music_IndigoPlateau_branch_ee915: ; ee915
 
 Music_IndigoPlateau_Ch4: ; ee924
 	stereopanning $f0
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 Music_IndigoPlateau_branch_ee92a: ; ee92a
 	note D#, 4

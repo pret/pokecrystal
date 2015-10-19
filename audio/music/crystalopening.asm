@@ -8,9 +8,9 @@ Music_CrystalOpening: ; 1786e8
 Music_CrystalOpening_Ch1: ; 1786f4
 	tempo 136
 	volume $7, $7
-	setpitchoffset $0002
+	pitchoffset $0002
 	vibrato $10, $3, $4
-	setwaveduty $3
+	waveduty $3
 	stereopanning $f0
 	notetype $c, $9, $0, $2
 	octave 2
@@ -125,7 +125,7 @@ Music_CrystalOpening_Ch1: ; 1786f4
 
 Music_CrystalOpening_Ch2: ; 17877a
 	notetype $c, $a, $0, $2
-	setwaveduty $3
+	waveduty $3
 	vibrato $8, $4, $4
 	octave 2
 	note B_, 2
@@ -246,7 +246,7 @@ Music_CrystalOpening_Ch3: ; 1787c8
 
 Music_CrystalOpening_Ch4: ; 178810
 	stereopanning $f
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 16
 	note __, 12

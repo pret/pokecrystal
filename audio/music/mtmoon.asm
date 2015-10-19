@@ -8,8 +8,8 @@ Music_MtMoon: ; edb29
 Music_MtMoon_Ch1: ; edb35
 	tempo 208
 	volume $7, $7
-	setwaveduty $2
-	setpitchoffset $0001
+	waveduty $2
+	pitchoffset $0001
 	vibrato $8, $1, $4
 	stereopanning $f0
 	notetype $c, $4, $0, $5
@@ -19,7 +19,7 @@ Music_MtMoon_Ch1: ; edb35
 
 Music_MtMoon_Ch2: ; edb4c
 	vibrato $b, $1, $5
-	setwaveduty $2
+	waveduty $2
 	notetype $c, $8, $0, $4
 	stereopanning $f
 Music_MtMoon_branch_edb56: ; edb56
@@ -123,7 +123,7 @@ Music_MtMoon_branch_edbab: ; edbab
 ; edbbf
 
 Music_MtMoon_Ch4: ; edbbf
-	togglenoise $5
+	drumkittoggle $5
 	notetype $c
 Music_MtMoon_branch_edbc3: ; edbc3
 	stereopanning $f

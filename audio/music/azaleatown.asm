@@ -8,7 +8,7 @@ Music_AzaleaTown: ; f57e8
 Music_AzaleaTown_Ch1: ; f57f4
 	tempo 160
 	volume $7, $7
-	setwaveduty $2
+	waveduty $2
 	stereopanning $f
 	notetype $c, $a, $0, $1
 	note __, 2
@@ -234,7 +234,7 @@ Music_AzaleaTown_branch_f5912: ; f5912
 
 Music_AzaleaTown_Ch2: ; f591d
 	vibrato $12, $2, $3
-	setwaveduty $2
+	waveduty $2
 	stereopanning $f0
 	notetype $c, $6, $0, $2
 	note __, 1
@@ -265,7 +265,7 @@ Music_AzaleaTown_Ch2: ; f591d
 	note C#, 2
 	notetype $6, $b, $0, $4
 	note F_, 7
-	setwaveduty $1
+	waveduty $1
 	octave 5
 	note C_, 1
 Music_AzaleaTown_branch_f5952: ; f5952
@@ -277,7 +277,7 @@ Music_AzaleaTown_branch_f5952: ; f5952
 	notetype $6, $b, $0, $4
 	note D#, 11
 	note __, 8
-	setwaveduty $1
+	waveduty $1
 	octave 5
 	note C_, 1
 	callchannel Music_AzaleaTown_branch_f59c7
@@ -293,7 +293,7 @@ Music_AzaleaTown_branch_f5952: ; f5952
 	note G#, 12
 	note F#, 4
 	note F_, 4
-	setwaveduty $0
+	waveduty $0
 	note D_, 1
 	note D#, 3
 	note C#, 4
@@ -336,7 +336,7 @@ Music_AzaleaTown_branch_f5952: ; f5952
 	note D#, 4
 	note __, 4
 	note C#, 4
-	setwaveduty $2
+	waveduty $2
 	note F_, 4
 	note D#, 4
 	note C#, 4
@@ -361,7 +361,7 @@ Music_AzaleaTown_branch_f5952: ; f5952
 	volenvelope $1, $1, $7
 	note C_, 14
 	notetype $6, $b, $0, $4
-	setwaveduty $1
+	waveduty $1
 	note G#, 2
 	octave 5
 	note C_, 2
@@ -396,7 +396,7 @@ Music_AzaleaTown_branch_f59c7: ; f59c7
 	note C#, 16
 	note __, 4
 	volenvelope $b, $0, $4
-	setwaveduty $2
+	waveduty $2
 	octave 3
 	note A#, 2
 	octave 4
@@ -634,7 +634,7 @@ Music_AzaleaTown_branch_f5acf: ; f5acf
 ; f5ae5
 
 Music_AzaleaTown_Ch4: ; f5ae5
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note F_, 2
 Music_AzaleaTown_branch_f5aea: ; f5aea
